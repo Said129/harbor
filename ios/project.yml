@@ -64,8 +64,6 @@ targets:
       - target: Harbor
       - framework: Frameworks/HarborCore.xcframework
         embed: false
-      - package: MPVKit
-        product: MPVKit
   HarborIntegrationTests:
     type: bundle.unit-test
     platform: iOS

@@ -50,15 +50,11 @@ final class MPVController: GLKViewController {
     }
 
     private func initialize() throws {
-        guard let context, EAGLContext.setCurrent(context), let mpv = mpv_create() else { throw HarborError(code: "player-init") }
-        handle = mpv
+        guard let context, EAGLContext.setCurrent(context) else { throw HarborError(code: "player-init") }
         try AVAudioSession.sharedInstance().setCategory(.playback, mode: .moviePlayback)
         try AVAudioSession.sharedInstance().setActive(true)
-        for (key, value) in MPVConfiguration.options {
-            try check(mpv_set_option_string(mpv, key, value))
-        }
-        if startMs.isFinite && startMs > 0 { try check(mpv_set_option_string(mpv, "start", String(startMs / 1000))) }
-        try check(mpv_initialize(mpv))
+        let mpv = try MPVConfiguration.createHandle(startMs: startMs)
+        handle = mpv
         try check(mpv_request_log_messages(mpv, "no"))
         var initialization = mpv_opengl_init_params(get_proc_address: { _, name in
             guard let name else { return nil }
@@ -233,7 +229,7 @@ final class MPVController: GLKViewController {
         isPaused = true
         if let context { EAGLContext.setCurrent(context) }
         if let renderer { mpv_render_context_free(renderer); self.renderer = nil }
-        if let handle { mpv_terminate_destroy(handle); self.handle = nil }
+        if let handle { MPVConfiguration.destroy(handle); self.handle = nil }
         state.controller = nil
         do { try AVAudioSession.sharedInstance().setActive(false, options: .notifyOthersOnDeactivation) }
         catch { state.error = "No se pudo cerrar la sesión de audio." }
