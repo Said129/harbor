@@ -92,7 +92,7 @@ Keychain `AfterFirstUnlockThisDeviceOnly` para sesiones y URLs configuradas que 
 
 ## 17. Limitaciones iOS
 
-Ver `IOS_LIMITATIONS.md`: SDK Apple, ejecución en background limitada y aislamiento del filesystem. No confundir trabajo pendiente con una prohibición del OS. MKV, torrents, ASS, HDR, Metal y codecs se INVESTIGAN y prueban; no registrar imposibilidad sin evidencia.
+Ver `IOS_LIMITATIONS.md`: SDK Apple, ejecución en background limitada, ATS y firmado para instalación. No confundir trabajo pendiente con una prohibición del OS. MKV, torrents, ASS, HDR, Metal y codecs se INVESTIGAN y prueban; no registrar imposibilidad sin evidencia.
 
 ## 18. Arquitectura iOS
 
@@ -112,7 +112,7 @@ Keychain para secretos y addons configurados; Application Support para progreso/
 
 ## 22. CI
 
-`.github/workflows/ios.yml` filtra paths, cancela builds obsoletos, cachea Cargo y usa macOS para Xcode. Windows/Linux prueban core/bridge y contratos; macOS compila core Apple sin JS, staticlib device+sim, crea XCFramework, genera Xcode project, resuelve MPVKit, compila unsigned ambos destinos y ejecuta tests en iPhone simulator. Subir logs y xcresult incluso en fallo. No afirmar validación macOS hasta tener un run real enlazado. CI upstream Desktop y WASM permanece.
+`.github/workflows/ios.yml` filtra paths, cancela builds obsoletos, cachea Cargo y usa macOS para Xcode. Windows/Linux prueban core/bridge y contratos; macOS compila core Apple sin JS, staticlib device+sim, crea XCFramework, genera Xcode project, resuelve MPVKit, compila unsigned ambos destinos y ejecuta tests en iPhone simulator. Los logs de pasos permanecen en Actions; subir logs/xcresult y productos sólo mediante el input manual dentro de la cuota gratuita, con retención de un día. El propietario exige coste cero: jobs exclusivamente en repositorios públicos con runners estándar, sin activar gasto. No afirmar validación macOS hasta tener un run real enlazado. CI upstream Desktop y WASM permanece.
 
 ## 23. Build desde Windows
 

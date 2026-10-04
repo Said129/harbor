@@ -1,0 +1,542 @@
+{
+  "Home hero and real catalogs": {
+    "ios": "Code present; Apple runtime pending",
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Views/HomeView.swift`; `Services/HarborService.swift`; `harbor-core/src/addons.rs`",
+    "notes": "Catalogs discovered from real manifests. Windows live ABI test passed. Personalized Desktop rails/options and iPhone UI behavior pending."
+  },
+  "Series catalogs": {
+    "ios": "Code present; Apple runtime pending",
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Views/HomeView.swift`; `Services/HarborService.swift`; `harbor-core/src/addons.rs`",
+    "notes": "Catalogs discovered from real manifests. Windows live ABI test passed. Personalized Desktop rails/options and iPhone UI behavior pending."
+  },
+  "Addon catalog discovery": {
+    "ios": "Code present; Apple runtime pending",
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Views/HomeView.swift`; `Services/HarborService.swift`; `harbor-core/src/addons.rs`",
+    "notes": "Catalogs discovered from real manifests. Windows live ABI test passed. Personalized Desktop rails/options and iPhone UI behavior pending."
+  },
+  "Global search": {
+    "ios": "Code present; Apple runtime pending",
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Views/SearchView.swift`; `Services/HarborService.swift`",
+    "notes": "Real addon catalog search with cancellation/debounce. Cinemeta live search passed from Windows; full Desktop search aggregation pending."
+  },
+  "Movie search": {
+    "ios": "Code present; Apple runtime pending",
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Views/SearchView.swift`; `Services/HarborService.swift`",
+    "notes": "Real addon catalog search with cancellation/debounce. Cinemeta live search passed from Windows; full Desktop search aggregation pending."
+  },
+  "Series search": {
+    "ios": "Code present; Apple runtime pending",
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Views/SearchView.swift`; `Services/HarborService.swift`",
+    "notes": "Real addon catalog search with cancellation/debounce. Cinemeta live search passed from Windows; full Desktop search aggregation pending."
+  },
+  "Real content details": {
+    "ios": "Code present; Apple runtime pending",
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Views/DetailView.swift`; `Models/Media.swift`; `Services/HarborService.swift`",
+    "notes": "Real addon metadata/artwork/synopsis. Logo and ratings presentation/enriched providers incomplete; Apple UI untested."
+  },
+  "Poster / backdrop / logo": {
+    "ios": "Code present; Apple runtime pending",
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Views/DetailView.swift`; `Models/Media.swift`; `Services/HarborService.swift`",
+    "notes": "Real addon metadata/artwork/synopsis. Logo and ratings presentation/enriched providers incomplete; Apple UI untested."
+  },
+  "Synopsis / genres / ratings": {
+    "ios": "Code present; Apple runtime pending",
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Views/DetailView.swift`; `Models/Media.swift`; `Services/HarborService.swift`",
+    "notes": "Real addon metadata/artwork/synopsis. Logo and ratings presentation/enriched providers incomplete; Apple UI untested."
+  },
+  "Seasons": {
+    "ios": "Code present; Apple runtime pending",
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Views/DetailView.swift`; `ViewModels/DetailModel.swift`",
+    "notes": "Real manifest-provided episode IDs and labels; native episode selection. Season grouping, merge/order and watched behavior pending."
+  },
+  "Episode details": {
+    "ios": "Code present; Apple runtime pending",
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Views/DetailView.swift`; `ViewModels/DetailModel.swift`",
+    "notes": "Real manifest-provided episode IDs and labels; native episode selection. Season grouping, merge/order and watched behavior pending."
+  },
+  "Episode selection": {
+    "ios": "Code present; Apple runtime pending",
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Views/DetailView.swift`; `ViewModels/DetailModel.swift`",
+    "notes": "Real manifest-provided episode IDs and labels; native episode selection. Season grouping, merge/order and watched behavior pending."
+  },
+  "Install addon URL": {
+    "ios": "Code present; Apple runtime pending",
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Views/AddonsView.swift`; `ViewModels/AppModel.swift`; `harbor-core/src/addons.rs`",
+    "notes": "Real manifest transport; atomic Keychain persistence before UI mutation. Host protocol tests pass; Keychain/UI restart and order tests on iPhone pending."
+  },
+  "Validate and fetch manifest": {
+    "ios": "Code present; Apple runtime pending",
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Views/AddonsView.swift`; `ViewModels/AppModel.swift`; `harbor-core/src/addons.rs`",
+    "notes": "Real manifest transport; atomic Keychain persistence before UI mutation. Host protocol tests pass; Keychain/UI restart and order tests on iPhone pending."
+  },
+  "Uninstall addon": {
+    "ios": "Code present; Apple runtime pending",
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Views/AddonsView.swift`; `ViewModels/AppModel.swift`; `harbor-core/src/addons.rs`",
+    "notes": "Real manifest transport; atomic Keychain persistence before UI mutation. Host protocol tests pass; Keychain/UI restart and order tests on iPhone pending."
+  },
+  "Enable / disable addon": {
+    "ios": "Code present; Apple runtime pending",
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Views/AddonsView.swift`; `ViewModels/AppModel.swift`; `harbor-core/src/addons.rs`",
+    "notes": "Real manifest transport; atomic Keychain persistence before UI mutation. Host protocol tests pass; Keychain/UI restart and order tests on iPhone pending."
+  },
+  "Addon order": {
+    "ios": "Code present; Apple runtime pending",
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Views/AddonsView.swift`; `ViewModels/AppModel.swift`; `harbor-core/src/addons.rs`",
+    "notes": "Real manifest transport; atomic Keychain persistence before UI mutation. Host protocol tests pass; Keychain/UI restart and order tests on iPhone pending."
+  },
+  "Installed addons management": {
+    "ios": "Code present; Apple runtime pending",
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Views/AddonsView.swift`; `ViewModels/AppModel.swift`; `harbor-core/src/addons.rs`",
+    "notes": "Real manifest transport; atomic Keychain persistence before UI mutation. Host protocol tests pass; Keychain/UI restart and order tests on iPhone pending."
+  },
+  "Configure addon URL": {
+    "ios": "Code present; Apple runtime pending",
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Services/KeychainStore.swift`; `Views/AddonsView.swift`",
+    "notes": "Configured URLs accepted and stored in Keychain; config form/browser and credential lifecycle remain incomplete. No secret URLs in diagnostics."
+  },
+  "Configured addon credentials persistence": {
+    "ios": "Code present; Apple runtime pending",
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Services/KeychainStore.swift`; `Views/AddonsView.swift`",
+    "notes": "Configured URLs accepted and stored in Keychain; config form/browser and credential lifecycle remain incomplete. No secret URLs in diagnostics."
+  },
+  "Catalog extras / filters": {
+    "ios": "Code present; Apple runtime pending",
+    "state": "Partial",
+    "implementation": "`harbor-core/src/addons.rs`; `tests/addon_protocol.rs`",
+    "notes": "Rust plans search/genre/skip and matches specific resources/types/prefixes. Contracts tested; pagination/filter UI not implemented."
+  },
+  "Catalog pages": {
+    "ios": "Code present; Apple runtime pending",
+    "state": "Partial",
+    "implementation": "`harbor-core/src/addons.rs`; `tests/addon_protocol.rs`",
+    "notes": "Rust plans search/genre/skip and matches specific resources/types/prefixes. Contracts tested; pagination/filter UI not implemented."
+  },
+  "Addon resource matching": {
+    "ios": "Code present; Apple runtime pending",
+    "state": "Partial",
+    "implementation": "`harbor-core/src/addons.rs`; `tests/addon_protocol.rs`",
+    "notes": "Rust plans search/genre/skip and matches specific resources/types/prefixes. Contracts tested; pagination/filter UI not implemented."
+  },
+  "Real addon stream requests": {
+    "ios": "Code present; Apple runtime pending",
+    "state": "Partial",
+    "implementation": "`harbor-core/src/addons.rs`; `ios/Harbor/Services/HarborService.swift`",
+    "notes": "Real requests mapped with addon identity/order and unknown-field preservation; 8/22 s plans and concurrent transport. Windows live stream test passes; Apple network/runtime pending."
+  },
+  "Concurrent addon requests": {
+    "ios": "Code present; Apple runtime pending",
+    "state": "Partial",
+    "implementation": "`harbor-core/src/addons.rs`; `ios/Harbor/Services/HarborService.swift`",
+    "notes": "Real requests mapped with addon identity/order and unknown-field preservation; 8/22 s plans and concurrent transport. Windows live stream test passes; Apple network/runtime pending."
+  },
+  "Addon timeouts": {
+    "ios": "Code present; Apple runtime pending",
+    "state": "Partial",
+    "implementation": "`harbor-core/src/addons.rs`; `ios/Harbor/Services/HarborService.swift`",
+    "notes": "Real requests mapped with addon identity/order and unknown-field preservation; 8/22 s plans and concurrent transport. Windows live stream test passes; Apple network/runtime pending."
+  },
+  "Addon priority / return index": {
+    "ios": "Code present; Apple runtime pending",
+    "state": "Partial",
+    "implementation": "`harbor-core/src/addons.rs`; `ios/Harbor/Services/HarborService.swift`",
+    "notes": "Real requests mapped with addon identity/order and unknown-field preservation; 8/22 s plans and concurrent transport. Windows live stream test passes; Apple network/runtime pending."
+  },
+  "Tracker preservation": {
+    "ios": "Code present; Apple runtime pending",
+    "state": "Partial",
+    "implementation": "`harbor-core/src/addons.rs`; `ios/Harbor/Services/HarborService.swift`",
+    "notes": "Real requests mapped with addon identity/order and unknown-field preservation; 8/22 s plans and concurrent transport. Windows live stream test passes; Apple network/runtime pending."
+  },
+  "Stream resolution parsing": {
+    "ios": "Code present; Apple runtime pending",
+    "state": "Partial",
+    "implementation": "`harbor-core/src/parser.rs` through `harbor-ios-bridge`",
+    "notes": "Original Desktop parser reused unchanged. 62 core tests pass with/without WASM; Apple target cargo check passes, actual Apple link/runtime pending."
+  },
+  "HDR / DV parsing": {
+    "ios": "Code present; Apple runtime pending",
+    "state": "Partial",
+    "implementation": "`harbor-core/src/parser.rs` through `harbor-ios-bridge`",
+    "notes": "Original Desktop parser reused unchanged. 62 core tests pass with/without WASM; Apple target cargo check passes, actual Apple link/runtime pending."
+  },
+  "Video codec parsing": {
+    "ios": "Code present; Apple runtime pending",
+    "state": "Partial",
+    "implementation": "`harbor-core/src/parser.rs` through `harbor-ios-bridge`",
+    "notes": "Original Desktop parser reused unchanged. 62 core tests pass with/without WASM; Apple target cargo check passes, actual Apple link/runtime pending."
+  },
+  "Audio codec / channels parsing": {
+    "ios": "Code present; Apple runtime pending",
+    "state": "Partial",
+    "implementation": "`harbor-core/src/parser.rs` through `harbor-ios-bridge`",
+    "notes": "Original Desktop parser reused unchanged. 62 core tests pass with/without WASM; Apple target cargo check passes, actual Apple link/runtime pending."
+  },
+  "Language parsing": {
+    "ios": "Code present; Apple runtime pending",
+    "state": "Partial",
+    "implementation": "`harbor-core/src/parser.rs` through `harbor-ios-bridge`",
+    "notes": "Original Desktop parser reused unchanged. 62 core tests pass with/without WASM; Apple target cargo check passes, actual Apple link/runtime pending."
+  },
+  "File size parsing": {
+    "ios": "Code present; Apple runtime pending",
+    "state": "Partial",
+    "implementation": "`harbor-core/src/parser.rs` through `harbor-ios-bridge`",
+    "notes": "Original Desktop parser reused unchanged. 62 core tests pass with/without WASM; Apple target cargo check passes, actual Apple link/runtime pending."
+  },
+  "Seeder parsing": {
+    "ios": "Code present; Apple runtime pending",
+    "state": "Partial",
+    "implementation": "`harbor-core/src/parser.rs` through `harbor-ios-bridge`",
+    "notes": "Original Desktop parser reused unchanged. 62 core tests pass with/without WASM; Apple target cargo check passes, actual Apple link/runtime pending."
+  },
+  "Container parsing": {
+    "ios": "Code present; Apple runtime pending",
+    "state": "Partial",
+    "implementation": "`harbor-core/src/parser.rs` through `harbor-ios-bridge`",
+    "notes": "Original Desktop parser reused unchanged. 62 core tests pass with/without WASM; Apple target cargo check passes, actual Apple link/runtime pending."
+  },
+  "Release group parsing": {
+    "ios": "Code present; Apple runtime pending",
+    "state": "Partial",
+    "implementation": "`harbor-core/src/parser.rs` through `harbor-ios-bridge`",
+    "notes": "Original Desktop parser reused unchanged. 62 core tests pass with/without WASM; Apple target cargo check passes, actual Apple link/runtime pending."
+  },
+  "Anime filename parsing": {
+    "ios": "Code present; Apple runtime pending",
+    "state": "Partial",
+    "implementation": "`harbor-core/src/parser.rs` through `harbor-ios-bridge`",
+    "notes": "Original Desktop parser reused unchanged. 62 core tests pass with/without WASM; Apple target cargo check passes, actual Apple link/runtime pending."
+  },
+  "Season / episode parsing": {
+    "ios": "Code present; Apple runtime pending",
+    "state": "Partial",
+    "implementation": "`harbor-core/src/parser.rs` through `harbor-ios-bridge`",
+    "notes": "Original Desktop parser reused unchanged. 62 core tests pass with/without WASM; Apple target cargo check passes, actual Apple link/runtime pending."
+  },
+  "Edition / remux parsing": {
+    "ios": "Code present; Apple runtime pending",
+    "state": "Partial",
+    "implementation": "`harbor-core/src/parser.rs` through `harbor-ios-bridge`",
+    "notes": "Original Desktop parser reused unchanged. 62 core tests pass with/without WASM; Apple target cargo check passes, actual Apple link/runtime pending."
+  },
+  "Trust filtering": {
+    "ios": "Code present; Apple runtime pending",
+    "state": "Partial",
+    "implementation": "`harbor-core/src/trust.rs` through `harbor-ios-bridge`",
+    "notes": "Original trust engine reused unchanged with typed options. Host tests pass. All preference controls and full Desktop orchestration pending."
+  },
+  "Fake / stub rejection": {
+    "ios": "Code present; Apple runtime pending",
+    "state": "Partial",
+    "implementation": "`harbor-core/src/trust.rs` through `harbor-ios-bridge`",
+    "notes": "Original trust engine reused unchanged with typed options. Host tests pass. All preference controls and full Desktop orchestration pending."
+  },
+  "Title / year mismatch rejection": {
+    "ios": "Code present; Apple runtime pending",
+    "state": "Partial",
+    "implementation": "`harbor-core/src/trust.rs` through `harbor-ios-bridge`",
+    "notes": "Original trust engine reused unchanged with typed options. Host tests pass. All preference controls and full Desktop orchestration pending."
+  },
+  "Cinema window heuristics": {
+    "ios": "Code present; Apple runtime pending",
+    "state": "Partial",
+    "implementation": "`harbor-core/src/trust.rs` through `harbor-ios-bridge`",
+    "notes": "Original trust engine reused unchanged with typed options. Host tests pass. All preference controls and full Desktop orchestration pending."
+  },
+  "Season pack policy": {
+    "ios": "Code present; Apple runtime pending",
+    "state": "Partial",
+    "implementation": "`harbor-core/src/trust.rs` through `harbor-ios-bridge`",
+    "notes": "Original trust engine reused unchanged with typed options. Host tests pass. All preference controls and full Desktop orchestration pending."
+  },
+  "CAM / TS policy": {
+    "ios": "Code present; Apple runtime pending",
+    "state": "Partial",
+    "implementation": "`harbor-core/src/trust.rs` through `harbor-ios-bridge`",
+    "notes": "Original trust engine reused unchanged with typed options. Host tests pass. All preference controls and full Desktop orchestration pending."
+  },
+  "Preferred language requirement": {
+    "ios": "Code present; Apple runtime pending",
+    "state": "Partial",
+    "implementation": "`harbor-core/src/trust.rs` through `harbor-ios-bridge`",
+    "notes": "Original trust engine reused unchanged with typed options. Host tests pass. All preference controls and full Desktop orchestration pending."
+  },
+  "Corpus statistics": {
+    "ios": "Code present; Apple runtime pending",
+    "state": "Partial",
+    "implementation": "`harbor-core/src/scoring.rs` through `harbor-ios-bridge`",
+    "notes": "Original scoring/ranking engine reused unchanged. Cached hints rank, but native Debrid account/cache clients and settings UI pending."
+  },
+  "Stream scoring reasons": {
+    "ios": "Code present; Apple runtime pending",
+    "state": "Partial",
+    "implementation": "`harbor-core/src/scoring.rs` through `harbor-ios-bridge`",
+    "notes": "Original scoring/ranking engine reused unchanged. Cached hints rank, but native Debrid account/cache clients and settings UI pending."
+  },
+  "Quality tiers": {
+    "ios": "Code present; Apple runtime pending",
+    "state": "Partial",
+    "implementation": "`harbor-core/src/scoring.rs` through `harbor-ios-bridge`",
+    "notes": "Original scoring/ranking engine reused unchanged. Cached hints rank, but native Debrid account/cache clients and settings UI pending."
+  },
+  "Cached Debrid ranking": {
+    "ios": "Code present; Apple runtime pending",
+    "state": "Partial",
+    "implementation": "`harbor-core/src/scoring.rs` through `harbor-ios-bridge`",
+    "notes": "Original scoring/ranking engine reused unchanged. Cached hints rank, but native Debrid account/cache clients and settings UI pending."
+  },
+  "Addon order ranking": {
+    "ios": "Code present; Apple runtime pending",
+    "state": "Partial",
+    "implementation": "`harbor-core/src/scoring.rs` through `harbor-ios-bridge`",
+    "notes": "Original scoring/ranking engine reused unchanged. Cached hints rank, but native Debrid account/cache clients and settings UI pending."
+  },
+  "Best stream selection": {
+    "ios": "Code present; Apple runtime pending",
+    "state": "Partial",
+    "implementation": "`harbor-core/src/scoring.rs` through `harbor-ios-bridge`",
+    "notes": "Original scoring/ranking engine reused unchanged. Cached hints rank, but native Debrid account/cache clients and settings UI pending."
+  },
+  "Bandwidth scoring": {
+    "ios": "Code present; Apple runtime pending",
+    "state": "Partial",
+    "implementation": "`harbor-core/src/scoring.rs` through `harbor-ios-bridge`",
+    "notes": "Original scoring/ranking engine reused unchanged. Cached hints rank, but native Debrid account/cache clients and settings UI pending."
+  },
+  "Preferred language scoring": {
+    "ios": "Code present; Apple runtime pending",
+    "state": "Partial",
+    "implementation": "`harbor-core/src/scoring.rs` through `harbor-ios-bridge`",
+    "notes": "Original scoring/ranking engine reused unchanged. Cached hints rank, but native Debrid account/cache clients and settings UI pending."
+  },
+  "Direct stream resolution": {
+    "ios": "Code present; Apple runtime pending",
+    "state": "Partial",
+    "implementation": "`harbor-ios-bridge/src/dispatch.rs`; `ios/Harbor/Player/MPVController.swift`",
+    "notes": "HTTP(S) source/header/subtitle contract preserved; CR/LF/NUL header injection rejected in tests. Real direct URL resolved from remote addon; media probe returned HTTP 403 for its old video host; playback unverified."
+  },
+  "Playback request headers": {
+    "ios": "Code present; Apple runtime pending",
+    "state": "Partial",
+    "implementation": "`harbor-ios-bridge/src/dispatch.rs`; `ios/Harbor/Player/MPVController.swift`",
+    "notes": "HTTP(S) source/header/subtitle contract preserved; CR/LF/NUL header injection rejected in tests. Real direct URL resolved from remote addon; media probe returned HTTP 403 for its old video host; playback unverified."
+  },
+  "Embedded addon subtitle URLs": {
+    "ios": "Code present; Apple runtime pending",
+    "state": "Partial",
+    "implementation": "`harbor-ios-bridge/src/dispatch.rs`; `ios/Harbor/Player/MPVController.swift`",
+    "notes": "HTTP(S) source/header/subtitle contract preserved; CR/LF/NUL header injection rejected in tests. Real direct URL resolved from remote addon; media probe returned HTTP 403 for its old video host; playback unverified."
+  },
+  "Native libmpv playback": {
+    "ios": "Code present; Apple runtime pending",
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Player/MPVController.swift`; `PlayerView.swift`; `PlayerState.swift`",
+    "notes": "Pinned MPVKit integrated through libmpv render API and observed properties. Source and controls present; Swift compile, simulator and physical playback pending. No verified codec claims."
+  },
+  "Load real media URL": {
+    "ios": "Code present; Apple runtime pending",
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Player/MPVController.swift`; `PlayerView.swift`; `PlayerState.swift`",
+    "notes": "Pinned MPVKit integrated through libmpv render API and observed properties. Source and controls present; Swift compile, simulator and physical playback pending. No verified codec claims."
+  },
+  "Play / pause": {
+    "ios": "Code present; Apple runtime pending",
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Player/MPVController.swift`; `PlayerView.swift`; `PlayerState.swift`",
+    "notes": "Pinned MPVKit integrated through libmpv render API and observed properties. Source and controls present; Swift compile, simulator and physical playback pending. No verified codec claims."
+  },
+  "Seek": {
+    "ios": "Code present; Apple runtime pending",
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Player/MPVController.swift`; `PlayerView.swift`; `PlayerState.swift`",
+    "notes": "Pinned MPVKit integrated through libmpv render API and observed properties. Source and controls present; Swift compile, simulator and physical playback pending. No verified codec claims."
+  },
+  "Speed": {
+    "ios": "Code present; Apple runtime pending",
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Player/MPVController.swift`; `PlayerView.swift`; `PlayerState.swift`",
+    "notes": "Pinned MPVKit integrated through libmpv render API and observed properties. Source and controls present; Swift compile, simulator and physical playback pending. No verified codec claims."
+  },
+  "Audio track selection": {
+    "ios": "Code present; Apple runtime pending",
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Player/MPVController.swift`; `PlayerView.swift`; `PlayerState.swift`",
+    "notes": "Pinned MPVKit integrated through libmpv render API and observed properties. Source and controls present; Swift compile, simulator and physical playback pending. No verified codec claims."
+  },
+  "Subtitle track selection": {
+    "ios": "Code present; Apple runtime pending",
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Player/MPVController.swift`; `PlayerView.swift`; `PlayerState.swift`",
+    "notes": "Pinned MPVKit integrated through libmpv render API and observed properties. Source and controls present; Swift compile, simulator and physical playback pending. No verified codec claims."
+  },
+  "Hardware decoding": {
+    "ios": "Code present; Apple runtime pending",
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Player/MPVController.swift`; `PlayerView.swift`; `PlayerState.swift`",
+    "notes": "Pinned MPVKit integrated through libmpv render API and observed properties. Source and controls present; Swift compile, simulator and physical playback pending. No verified codec claims."
+  },
+  "Playback state events": {
+    "ios": "Code present; Apple runtime pending",
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Player/MPVController.swift`; `PlayerView.swift`; `PlayerState.swift`",
+    "notes": "Pinned MPVKit integrated through libmpv render API and observed properties. Source and controls present; Swift compile, simulator and physical playback pending. No verified codec claims."
+  },
+  "Touch-equivalent transport controls": {
+    "ios": "Code present; Apple runtime pending",
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Player/MPVController.swift`; `PlayerView.swift`; `PlayerState.swift`",
+    "notes": "Pinned MPVKit integrated through libmpv render API and observed properties. Source and controls present; Swift compile, simulator and physical playback pending. No verified codec claims."
+  },
+  "Custom seek bar": {
+    "ios": "Code present; Apple runtime pending",
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Player/MPVController.swift`; `PlayerView.swift`; `PlayerState.swift`",
+    "notes": "Pinned MPVKit integrated through libmpv render API and observed properties. Source and controls present; Swift compile, simulator and physical playback pending. No verified codec claims."
+  },
+  "Player resilience / errors": {
+    "ios": "Code present; Apple runtime pending",
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Player/MPVController.swift`; `PlayerView.swift`; `PlayerState.swift`",
+    "notes": "Pinned MPVKit integrated through libmpv render API and observed properties. Source and controls present; Swift compile, simulator and physical playback pending. No verified codec claims."
+  },
+  "External SRT": {
+    "ios": "Code present; Apple runtime pending",
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Player/MPVController.swift`",
+    "notes": "External addon subtitle URLs passed via sub-add and libass stack pinned. No format/encoding/styling playback certification yet."
+  },
+  "External ASS / SSA": {
+    "ios": "Code present; Apple runtime pending",
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Player/MPVController.swift`",
+    "notes": "External addon subtitle URLs passed via sub-add and libass stack pinned. No format/encoding/styling playback certification yet."
+  },
+  "External WebVTT": {
+    "ios": "Code present; Apple runtime pending",
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Player/MPVController.swift`",
+    "notes": "External addon subtitle URLs passed via sub-add and libass stack pinned. No format/encoding/styling playback certification yet."
+  },
+  "Cinemeta metadata": {
+    "ios": "Code present; Apple runtime pending",
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Services/HarborService.swift`",
+    "notes": "Actual Cinemeta manifest fallback, discovered catalogs/search/meta, verified from Windows through native ABI. Additional provider enrichment pending."
+  },
+  "Harbor visual identity": {
+    "ios": "Code present; Apple runtime pending",
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Views/HarborTheme.swift`",
+    "notes": "Upstream cool-grey canvas/accent tokens mapped to sRGB; native dark surfaces/posters/backdrops. Typography/themes and device screenshot review pending."
+  },
+  "Local P2P torrent engine": {
+    "ios": "Architecture/source audit completed",
+    "state": "Investigating",
+    "implementation": "Extraction target: `src-tauri/src/torrent_engine.rs` and `torrent_engine/stream_route.rs`",
+    "notes": "Upstream already uses librqbit/Axum instead of Node stremio-server. Apple dependency/link/lifecycle experiment and extraction still required; no claim that iOS forbids torrents."
+  },
+  "Local torrent HTTP streaming": {
+    "ios": "Architecture/source audit completed",
+    "state": "Investigating",
+    "implementation": "Extraction target: `src-tauri/src/torrent_engine.rs` and `torrent_engine/stream_route.rs`",
+    "notes": "Upstream already uses librqbit/Axum instead of Node stremio-server. Apple dependency/link/lifecycle experiment and extraction still required; no claim that iOS forbids torrents."
+  },
+  "Byte ranges / HEAD": {
+    "ios": "Architecture/source audit completed",
+    "state": "Investigating",
+    "implementation": "Extraction target: `src-tauri/src/torrent_engine.rs` and `torrent_engine/stream_route.rs`",
+    "notes": "Upstream already uses librqbit/Axum instead of Node stremio-server. Apple dependency/link/lifecycle experiment and extraction still required; no claim that iOS forbids torrents."
+  },
+  "Remote streaming server": {
+    "ios": "Architecture/source audit completed",
+    "state": "Investigating",
+    "implementation": "Extraction target: `src-tauri/src/torrent_engine.rs` and `torrent_engine/stream_route.rs`",
+    "notes": "Upstream already uses librqbit/Axum instead of Node stremio-server. Apple dependency/link/lifecycle experiment and extraction still required; no claim that iOS forbids torrents."
+  },
+  "P2P fallback": {
+    "ios": "Architecture/source audit completed",
+    "state": "Investigating",
+    "implementation": "Extraction target: `src-tauri/src/torrent_engine.rs` and `torrent_engine/stream_route.rs`",
+    "notes": "Upstream already uses librqbit/Axum instead of Node stremio-server. Apple dependency/link/lifecycle experiment and extraction still required; no claim that iOS forbids torrents."
+  },
+  "Real-Debrid account": {
+    "ios": "Desktop clients audited",
+    "state": "Investigating",
+    "implementation": "Shared Rust service boundary planned; clients currently `src/lib/debrid`",
+    "notes": "Actual clients are TypeScript, not harbor-core. Preserve five providers; port shared request/auth/cache contracts to Rust, validate parity before migrating Desktop. No native account client implemented."
+  },
+  "AllDebrid account": {
+    "ios": "Desktop clients audited",
+    "state": "Investigating",
+    "implementation": "Shared Rust service boundary planned; clients currently `src/lib/debrid`",
+    "notes": "Actual clients are TypeScript, not harbor-core. Preserve five providers; port shared request/auth/cache contracts to Rust, validate parity before migrating Desktop. No native account client implemented."
+  },
+  "Premiumize account": {
+    "ios": "Desktop clients audited",
+    "state": "Investigating",
+    "implementation": "Shared Rust service boundary planned; clients currently `src/lib/debrid`",
+    "notes": "Actual clients are TypeScript, not harbor-core. Preserve five providers; port shared request/auth/cache contracts to Rust, validate parity before migrating Desktop. No native account client implemented."
+  },
+  "TorBox account": {
+    "ios": "Desktop clients audited",
+    "state": "Investigating",
+    "implementation": "Shared Rust service boundary planned; clients currently `src/lib/debrid`",
+    "notes": "Actual clients are TypeScript, not harbor-core. Preserve five providers; port shared request/auth/cache contracts to Rust, validate parity before migrating Desktop. No native account client implemented."
+  },
+  "Debrid-Link account": {
+    "ios": "Desktop clients audited",
+    "state": "Investigating",
+    "implementation": "Shared Rust service boundary planned; clients currently `src/lib/debrid`",
+    "notes": "Actual clients are TypeScript, not harbor-core. Preserve five providers; port shared request/auth/cache contracts to Rust, validate parity before migrating Desktop. No native account client implemented."
+  },
+  "YouTube trailer resolution": {
+    "ios": "Desktop sidecars audited",
+    "state": "Investigating",
+    "implementation": "Integrated extractor/service boundary under investigation",
+    "notes": "Upstream yt-dlp/FFmpeg CLI use audited. Equivalent extraction, muxing and cache behavior required; no iOS external process assumed."
+  },
+  "Trailer download / merge": {
+    "ios": "Desktop sidecars audited",
+    "state": "Investigating",
+    "implementation": "Integrated extractor/service boundary under investigation",
+    "notes": "Upstream yt-dlp/FFmpeg CLI use audited. Equivalent extraction, muxing and cache behavior required; no iOS external process assumed."
+  },
+  "HDR / tonemapping": {
+    "ios": "Render/system API research",
+    "state": "Investigating",
+    "implementation": "`docs/ios/adr/0003-ios-player.md`",
+    "notes": "MPVKit demo warns its OpenGL iOS renderer has 10-bit issues; Metal patch is experimental. Preserve HDR/PiP/AirPlay goals and validate alternative render/system integration, not mark OS-impossible."
+  },
+  "Picture in Picture": {
+    "ios": "Render/system API research",
+    "state": "Investigating",
+    "implementation": "`docs/ios/adr/0003-ios-player.md`",
+    "notes": "MPVKit demo warns its OpenGL iOS renderer has 10-bit issues; Metal patch is experimental. Preserve HDR/PiP/AirPlay goals and validate alternative render/system integration, not mark OS-impossible."
+  },
+  "AirPlay legacy discovery / playback": {
+    "ios": "Render/system API research",
+    "state": "Investigating",
+    "implementation": "`docs/ios/adr/0003-ios-player.md`",
+    "notes": "MPVKit demo warns its OpenGL iOS renderer has 10-bit issues; Metal patch is experimental. Preserve HDR/PiP/AirPlay goals and validate alternative render/system integration, not mark OS-impossible."
+  }
+}
