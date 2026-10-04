@@ -1,4 +1,4 @@
-use harbor_core::{addons, ScoreOptions, Stream, TrustOptions};
+use harbor_core::{addons, resume, ScoreOptions, Stream, TrustOptions};
 use serde::Deserialize;
 use serde_json::{json, Value};
 
@@ -38,6 +38,27 @@ enum Request {
     },
     ResolveDirect {
         stream: Stream,
+    },
+    ResumePosition {
+        target: resume::Target,
+        document: resume::Document,
+        #[serde(rename = "durationMs")]
+        duration_ms: f64,
+        playback: bool,
+        prompt: bool,
+    },
+    ValidateResume {
+        document: resume::Document,
+    },
+    ResumeCheckpoint {
+        target: resume::Target,
+        #[serde(rename = "positionMs")]
+        position_ms: f64,
+        #[serde(rename = "durationMs")]
+        duration_ms: f64,
+        #[serde(rename = "timestampMs")]
+        timestamp_ms: u64,
+        exiting: bool,
     },
 }
 
@@ -83,6 +104,36 @@ pub fn dispatch(bytes: &[u8]) -> Result<Value, &'static str> {
             score,
         } => Ok(json!(harbor_core::run_pipeline(streams, &trust, &score))),
         Request::ResolveDirect { stream } => resolve_direct(stream),
+        Request::ResumePosition {
+            target,
+            document,
+            duration_ms,
+            playback,
+            prompt,
+        } => {
+            resume::validate(&document)?;
+            let key = resume::key(&target)?;
+            let ms = document.entries.get(&key).map_or(0.0, |entry| entry.ms);
+            Ok(json!(resume::start_plan(
+                ms,
+                duration_ms,
+                playback,
+                prompt
+            )?))
+        }
+        Request::ValidateResume { document } => {
+            resume::validate(&document)?;
+            Ok(json!(document))
+        }
+        Request::ResumeCheckpoint {
+            target,
+            position_ms,
+            duration_ms,
+            timestamp_ms,
+            exiting,
+        } => Ok(
+            json!({"checkpoint": resume::checkpoint(&target, position_ms, duration_ms, timestamp_ms, exiting)?}),
+        ),
     }
 }
 

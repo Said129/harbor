@@ -91,3 +91,26 @@ fn rejects_control_characters_before_c_string_transport_without_echoing_urls() {
         }
     }
 }
+
+#[test]
+fn resume_operations_transport_episode_keys_and_optional_checkpoints() {
+    let run = |request: Value| -> Value {
+        serde_json::from_str(&call(&serde_json::to_vec(&request).unwrap())).unwrap()
+    };
+    let target = json!({"id":"tt123","season":1,"episode":2});
+    let mut request = json!({"operation":"resumeCheckpoint","target":target,"positionMs":12000.0,"durationMs":200000.0,"timestampMs":123,"exiting":false});
+    let saved = run(request.clone());
+    assert_eq!(saved["data"]["checkpoint"]["key"], "tt123|s1e2");
+    assert_eq!(saved["data"]["checkpoint"]["entry"]["ms"], 12000.0);
+    request["positionMs"] = json!(0);
+    let empty = run(request);
+    assert_eq!(empty["ok"], true);
+    assert!(empty["data"]["checkpoint"].is_null());
+    let read = run(
+        json!({"operation":"resumePosition","target":target,"document":{"version":1,"entries":{"tt123|s1e2":{"ms":60000,"t":123}}},"durationMs":0,"playback":true,"prompt":true}),
+    );
+    assert_eq!(read["data"]["ms"], 60000.0);
+    assert_eq!(read["data"]["prompt"], true);
+    let invalid = run(json!({"operation":"validateResume","document":{"version":2,"entries":{}}}));
+    assert_eq!(invalid["error"]["code"], "unsupported-resume-version");
+}
