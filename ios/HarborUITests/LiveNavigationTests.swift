@@ -59,7 +59,10 @@ final class LiveNavigationTests: XCTestCase {
         // Catalog resources are discovered from the installed example's
         // manifest, without injecting app state.
         app.tabBars.buttons["Home"].tap()
-        let scroll = app.scrollViews["home-scroll"]
+        capture(app, "home-after-addon-install")
+        // SwiftUI can expose a scroll container as Other rather than ScrollView.
+        // The identifier selects the same product view independent of AX role.
+        let scroll = app.descendants(matching: .any).matching(identifier: "home-scroll").firstMatch
         XCTAssertTrue(scroll.waitForExistence(timeout: 5))
         let example = app.buttons.matching(NSPredicate(format: "identifier == 'catalog-movie' AND label == 'Big Buck Bunny'")).firstMatch
         reveal(example, in: scroll)

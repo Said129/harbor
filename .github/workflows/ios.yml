@@ -128,12 +128,23 @@ jobs:
           set -euo pipefail
           xcodebuild -project ios/Harbor.xcodeproj -scheme Harbor -configuration Debug -destination "platform=iOS Simulator,id=$IOS_SIMULATOR,arch=$IOS_SIMULATOR_ARCH" -derivedDataPath ios/build/DerivedData -clonedSourcePackagesDirPath ios/build/SourcePackages -resultBundlePath ios/build/Tests.xcresult CODE_SIGNING_ALLOWED=YES CODE_SIGN_IDENTITY=- test 2>&1 | tee ios/build/logs/tests.log
       - name: Run real addon services and native UI on iPhone simulator
+        id: live_tests
         if: ${{ inputs.run_live_integration == true }}
         timeout-minutes: 15
         shell: bash
         run: |
           set -euo pipefail
           xcodebuild -project ios/Harbor.xcodeproj -scheme HarborLive -configuration Debug -destination "platform=iOS Simulator,id=$IOS_SIMULATOR,arch=$IOS_SIMULATOR_ARCH" -derivedDataPath ios/build/DerivedData -clonedSourcePackagesDirPath ios/build/SourcePackages -resultBundlePath ios/build/LiveTests.xcresult -parallel-testing-enabled NO CODE_SIGNING_ALLOWED=YES CODE_SIGN_IDENTITY=- test 2>&1 | tee ios/build/logs/live-tests.log
+      - name: Preserve failed public integration screenshots in a draft Release
+        if: ${{ failure() && inputs.save_draft_build == true && steps.live_tests.conclusion == 'failure' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          xcrun xcresulttool export attachments --path ios/build/LiveTests.xcresult --output-path ios/build/attachments --only-failures
+          ditto -c -k --keepParent ios/build/attachments ios/build/iphone-test-evidence.zip
+          gh release create "iphone-test-evidence-$GITHUB_RUN_ID" ios/build/iphone-test-evidence.zip --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" --draft --prerelease --title "iPhone public integration evidence $GITHUB_RUN_ID" --notes "Failed native integration test screenshots from public Cinemeta and the official Stremio example addon. This is diagnostic evidence, not an installable app."
       - name: Build device without signing
         shell: bash
         run: |
