@@ -46,4 +46,5 @@ local_docs/
 /ios/build/
 /ios/Harbor.xcodeproj/
 /ios/Info.plist
+/scripts/ios/__pycache__/
 
