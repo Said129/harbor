@@ -16,6 +16,8 @@ struct HomeView: View {
                             }.frame(width: geometry.size.width, height: geometry.size.height)
                         }.frame(height: 290).clipped()
                     }.buttonStyle(.plain)
+                        .accessibilityElement(children: .ignore)
+                        .accessibilityLabel(hero.name)
                         .accessibilityIdentifier("home-hero")
                 }
                 if model.loading { ProgressView("Cargando catálogos…").frame(maxWidth: .infinity) }
@@ -35,7 +37,7 @@ struct HomeView: View {
                 if model.storageReady && model.rows.isEmpty && !model.loading && model.error == nil {
                     ContentUnavailableView("Sin catálogos", systemImage: "puzzlepiece.extension", description: Text("Instala o activa un addon con catálogos."))
                 }
-            }.frame(maxWidth: .infinity, alignment: .leading).padding(.bottom, 24)
+            }.containerRelativeFrame(.horizontal, alignment: .leading).padding(.bottom, 24)
         }.background(HarborTheme.background).navigationTitle("Harbor").navigationBarTitleDisplayMode(.inline)
             .refreshable { await model.loadHome() }
             .accessibilityIdentifier("home-scroll")

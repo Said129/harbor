@@ -142,7 +142,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          xcrun xcresulttool export attachments --path ios/build/LiveTests.xcresult --output-path ios/build/attachments --only-failures
+          xcrun xcresulttool export attachments --path ios/build/LiveTests.xcresult --output-path ios/build/attachments
           ditto -c -k --keepParent ios/build/attachments ios/build/iphone-test-evidence.zip
           gh release create "iphone-test-evidence-$GITHUB_RUN_ID" ios/build/iphone-test-evidence.zip --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" --draft --prerelease --title "iPhone public integration evidence $GITHUB_RUN_ID" --notes "Failed native integration test screenshots from public Cinemeta and the official Stremio example addon. This is diagnostic evidence, not an installable app."
       - name: Build device without signing

@@ -32,7 +32,7 @@ final class LiveNavigationTests: XCTestCase {
         XCTAssertTrue(homeLoaded, "Home must load a real movie catalog; startup=\(homeError.exists ? homeError.label : "no error text")")
         let hero = app.descendants(matching: .any).matching(identifier: "home-hero").firstMatch
         XCTAssertTrue(hero.waitForExistence(timeout: 5))
-        XCTAssertGreaterThanOrEqual(hero.frame.minX, app.frame.minX - 1)
+        XCTAssertGreaterThanOrEqual(hero.frame.minX, app.frame.minX - 1, "Hero bounds=\(hero.frame); app bounds=\(app.frame)")
         XCTAssertLessThanOrEqual(hero.frame.maxX, app.frame.maxX + 1, "The hero must fit the iPhone viewport")
         let catalogTitle = app.staticTexts.matching(identifier: "catalog-title").firstMatch
         XCTAssertTrue(catalogTitle.exists)
