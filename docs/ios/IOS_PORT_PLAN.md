@@ -78,6 +78,8 @@ Cinco clientes REALES: Real-Debrid, TorBox, AllDebrid, Premiumize, Debrid-Link e
 
 Trakt: device flow, refresh, profile, history, watchlist import/export, lists, recommendations, scrobble, calendar/comments. Stremio: login/browser auth, addons, library/progress/repair. AniList GraphQL/OAuth, MAL OAuth/list sync, Simkl device auth/scrobble/watchlist/ratings y Stremboxd/Letterboxd también existen. Sesiones en Keychain por profile/service; navegador de autenticación ASWebAuthenticationSession y callback con estado validado. Ninguno queda fuera del alcance final.
 
+Primer incremento Stremio: `harbor-core/src/account.rs` comparte contratos login/getUser/addonCollectionGet/Set del Desktop; Swift aporta URLSession y Keychain. El acceso nativo o navegador descarga addons antes de confirmar la sesión. La colección preserva URLs configuradas, orden, flags y campos originales; lectura fallida no significa lista vacía. Guardado atómico de sesión y colección, sincronización al arranque/manual y logout local. Las ediciones explícitas de colección escriben en la cuenta; disabled es local como Desktop. El callback tiene nonce validado y timeout. Login real, restart físico y navegador aún necesitan comprobarse; biblioteca/progreso de nube y perfiles siguen pendientes.
+
 ## 14. Persistencia actual
 
 No hay SQLite de aplicación identificado en manifests. Preferencias y sesiones frontend utilizan localStorage con nombres por perfil; settings también se respaldan en app_data/settings.json (`settings_store.rs`). Resume, historial, watchlist, listas, addons, themes y cachés tienen stores propios. Torrents utilizan archivos y estado DHT. No replicar almacenamiento plaintext de tokens en iOS.
@@ -100,7 +102,7 @@ SwiftUI nativo → ViewModels → servicios/bridge tipado → harbor-core y prot
 
 ## 19. Swift/Rust bridge
 
-Comparación en ADR 0002. API C pequeña, versionada, mensajes serde JSON tipados; librería estática y XCFramework device+simulator. Swift encapsula memoria y Codable; no exponer el ABI a Views. Pure calls fuera del main actor para ranking. No runtime Tokio sólo para este experimento. UniFFI sigue siendo opción si crece la API asíncrona; evitar 200 funciones C copiadas de Tauri.
+Comparación en ADR 0002. API C pequeña, versionada, mensajes serde JSON tipados; framework dinámico y XCFramework device+simulator para aislar el runtime Rust del bridge respecto a Libdovi. Swift encapsula memoria y Codable; no exponer el ABI a Views. Pure calls fuera del main actor para ranking. No runtime Tokio sólo para este experimento. UniFFI sigue siendo opción si crece la API asíncrona; evitar 200 funciones C copiadas de Tauri.
 
 ## 20. Player iOS
 
@@ -112,15 +114,15 @@ Keychain para secretos y addons configurados; Application Support para progreso/
 
 ## 22. CI
 
-`.github/workflows/ios.yml` filtra paths, cancela builds obsoletos, cachea Cargo y usa macOS para Xcode. Windows/Linux prueban core/bridge y contratos; macOS compila core Apple sin JS, framework dinámico device arm64 y simulator arm64/x86_64, valida exports/install name, crea XCFramework, genera Xcode project, resuelve MPVKit, compila unsigned ambos destinos y ejecuta tests en iPhone simulator. El runtime Rust del bridge se aísla del runtime de Libdovi (ADR 0002). Push sólo en main y cambios del PR evitan builds duplicados. Los logs de pasos permanecen en Actions; subir logs/xcresult y productos sólo mediante el input manual dentro de la cuota gratuita, con retención de un día. El propietario exige coste cero: jobs exclusivamente en repositorios públicos con runners estándar, sin activar gasto. Los resultados Apple observados se registran en VALIDATION. CI upstream Desktop y WASM permanece.
+`.github/workflows/ios.yml` filtra paths, cancela builds obsoletos, cachea Cargo y usa macOS para Xcode. Windows/Linux prueban core/bridge y contratos; macOS compila core Apple sin JS, framework dinámico device arm64 y simulator arm64/x86_64, valida exports/install name, crea XCFramework, genera Xcode project, resuelve MPVKit, compila simulator con firma ad hoc local para Keychain y device unsigned, y ejecuta once tests offline en iPhone simulator. El scheme opt-in HarborLive añade dos tests de servicios reales y un recorrido UI sin respuestas falsas. El runtime Rust del bridge se aísla del runtime de Libdovi (ADR 0002). Push sólo en main y cambios del PR evitan builds duplicados. Los logs de pasos permanecen en Actions; subir logs/xcresult y productos sólo mediante el input manual dentro de la cuota gratuita, con retención de un día. El propietario exige coste cero: jobs exclusivamente en repositorios públicos con runners estándar, sin activar gasto. Los resultados Apple observados se registran en VALIDATION. CI upstream Desktop y WASM permanece.
 
 ## 23. Build desde Windows
 
-Windows escribe Rust/Swift, corre cargo/test/pnpm e inventario; Apple SDK/linker/SwiftUI mediante CI. `scripts/ios/build-rust.sh` y `ios/project.yml` son reproducibles, sin Xcode local. Artefactos: XCFramework, simulator .app, device unsigned .app, logs/xcresult. App unsigned no es instalable en iPhone.
+Windows escribe Rust/Swift, corre cargo/test/pnpm e inventario; Apple SDK/linker/SwiftUI mediante CI. `scripts/ios/build-rust.sh` y `ios/project.yml` son reproducibles, sin Xcode local. Productos: XCFramework, simulator .app, device unsigned .app/IPA, informe de commit/SHA-256 y logs/xcresult. La IPA se comprueba antes de conservarla. Un dispatch con integración real y `save_draft_build=true` guarda IPA/informe/capturas en un borrador de Release sin habilitar almacenamiento de artifacts de Actions. App unsigned no es instalable en iPhone.
 
 ## 24. Code signing / distribución
 
-Separado del build. No crear IPA que se anuncie instalable sin certificates/provisioning. Futuro workflow manual de archive/export con GitHub Secrets/temporary keychain y perfiles de desarrollo/ad hoc/TestFlight configurados por el propietario. Windows descarga artefactos e instala una build válidamente firmada; no requerir Mac físico para el ciclo.
+Separado del build. No anunciar una IPA unsigned como instalable. La guía `ios/SIDELOAD.md` prepara firma local desde Windows con cuenta Apple gratuita; todavía requiere verificar instalación en el dispositivo. Las credenciales se introducen localmente en la herramienta, nunca en el chat o Git. Un futuro workflow de archive/export requeriría certificados/perfiles y un mecanismo seguro configurado por el propietario. No contratar membresías ni servicios automáticamente; no requerir Mac físico para el ciclo.
 
 ## 25. Testing
 

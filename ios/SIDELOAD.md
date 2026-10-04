@@ -2,6 +2,8 @@
 
 Esta guía prepara la siguiente comprobación del port. Todavía no hay una instalación física verificada de Harbor. El CI crea una IPA **sin firmar**; debe firmarse correctamente antes de instalarla. La app requiere iOS 17 o posterior y sólo declara iPhone.
 
+Dispositivo acordado: iPhone 14, iOS 26.6.2 según el propietario. El CI usa iPhone simulator con iOS 18.5; comprobar el arranque y la reproducción en el teléfono sigue siendo un gate separado.
+
 ## Obtener y comprobar el build
 
 El pipeline genera `Harbor-unsigned.ipa` y `Harbor-unsigned.json` con el commit, tamaño y SHA-256. Los uploads de Actions están desactivados por defecto para respetar el coste cero. La aparición de “BUILD SUCCEEDED” no implica que haya un archivo descargable.
@@ -18,6 +20,8 @@ Get-FileHash -LiteralPath 'C:\ruta\Harbor-unsigned.ipa' -Algorithm SHA256
 
 [Sideloadly](https://sideloadly.io/) publica una versión Windows y afirma permitir firma/instalación con una cuenta Apple gratuita, sin membresía de pago. Sus instrucciones actuales para Windows requieren las versiones web de iTunes e iCloud, distintas de las versiones de Microsoft Store. Consultar sus requisitos antes de modificar instalaciones existentes; no se instala ni elimina software automáticamente con esta guía.
 
+Preparación local observada: Windows detecta un iPhone por USB y tiene iTunes 12.13.10.3 y Apple Mobile Device Support 19.4.0.10. No se verificó una instalación de iCloud o Sideloadly. Se descargó el instalador Windows de 64 bits desde el enlace oficial `https://sideloadly.io/SideloadlySetup64.exe` a `C:\Users\Said\Documents\SOL\harbor-builds\tools\SideloadlySetup64.exe`, sin ejecutarlo. PowerShell informa `NotSigned`: no hay una firma Authenticode que confirme el editor. Su SHA-256 es `7f5bbd15e00897c301f51c133a552aead5064ac29134b74b116d4d200986e49b`; este hash identifica el archivo descargado, no certifica su editor.
+
 1. Descargar Sideloadly desde su sitio oficial e instalar los componentes Apple que indique para Windows.
 2. Conectar el iPhone por USB, desbloquearlo y aceptar la confianza del equipo si iOS lo solicita.
 3. Abrir Sideloadly, seleccionar ese iPhone y cargar la IPA comprobada.
@@ -28,9 +32,15 @@ Get-FileHash -LiteralPath 'C:\ruta\Harbor-unsigned.ipa' -Algorithm SHA256
 
 Según [Apple](https://developer.apple.com/help/account/basics/about-your-developer-account), los perfiles Personal Team expiran a los siete días y permiten hasta tres apps por dispositivo. Sideloadly anuncia renovación de firmas. Esto sirve como vía de pruebas personales; todavía hay que comprobarla con esta IPA y el iPhone concreto. No activa TestFlight ni publicación en App Store.
 
+## Iniciar sesión y recuperar addons
+
+Abrir Harbor y pulsar **Inicia sesión para recuperar tus addons**, o Ajustes → Cuenta. Usar la misma cuenta Stremio que en Harbor Desktop, mediante correo/contraseña o el botón de acceso oficial en el navegador del sistema. Introducir las credenciales únicamente en el teléfono. La app descarga la colección antes de mostrar el Home de la cuenta; no hace falta reinstalar manualmente sus addons. Confirmar los nombres y el orden en la pestaña Addons. Los addons que sólo estaban guardados localmente en Desktop deben estar sincronizados con esa cuenta para aparecer.
+
+Al relanzar Harbor se recupera la sesión y se actualiza esa colección. Si falla la red, se conserva la copia anterior y se muestra un error. Ajustes → Cuenta → Sincronizar addons permite reintentar. Las instalaciones, eliminaciones y cambios de orden conectado también se guardan en Stremio. La contraseña no se guarda; el token de sesión y las URLs configuradas quedan en Keychain.
+
 ## Comprobar la reproducción real
 
-Registrar commit, modelo de iPhone y versión iOS. Instalar un addon real con una fuente que el propietario pueda utilizar. El addon oficial de ejemplo sirve para comprobar el protocolo, pero su servidor de vídeo antiguo devolvió HTTP 403 desde Windows; no sustituir la fuente por datos falsos ni dar por hecha su disponibilidad.
+Registrar commit, modelo de iPhone y versión iOS. Usar un addon recuperado de la cuenta con una fuente HTTP(S) directa disponible. La sincronización de addons no incorpora todavía el motor torrent local ni los clientes Debrid completos: una oferta que sólo devuelve infoHash sigue mostrando el resolver pendiente. El addon oficial de ejemplo sirve para comprobar el protocolo, pero su servidor de vídeo antiguo devolvió HTTP 403 desde Windows; no sustituir la fuente por datos falsos ni dar por hecha su disponibilidad.
 
 Recorrer Home → Buscar → ficha → Streams → seleccionar fuente → player. Confirmar **imagen, audio y avance del tiempo**, luego pausa, seeking, volver al selector y abrir/cerrar de nuevo. Comprobar progreso tras relanzar la app, rotación, pistas/subtítulos cuando la fuente los tenga y una interrupción de red. Exportar diagnostics desde Ajustes: sólo eventos/counts/códigos permitidos. Nunca registrar URLs de reproducción ni tokens.
 
