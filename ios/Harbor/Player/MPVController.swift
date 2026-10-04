@@ -54,7 +54,7 @@ final class MPVController: GLKViewController {
         handle = mpv
         try AVAudioSession.sharedInstance().setCategory(.playback, mode: .moviePlayback)
         try AVAudioSession.sharedInstance().setActive(true)
-        for (key, value) in ["vo":"libmpv", "hwdec":"auto-safe", "config":"no", "ytdl":"no", "terminal":"no", "msg-level":"all=no", "cache":"yes", "demuxer-max-bytes":"64MiB", "network-timeout":"60", "video-timing-offset":"0"] {
+        for (key, value) in MPVConfiguration.options {
             try check(mpv_set_option_string(mpv, key, value))
         }
         if startMs.isFinite && startMs > 0 { try check(mpv_set_option_string(mpv, "start", String(startMs / 1000))) }
@@ -84,6 +84,7 @@ final class MPVController: GLKViewController {
             try check(mpv_set_property_string(mpv, "http-header-fields", value))
         }
         try command(["loadfile", source.url, "replace"])
+        state.renderReady = true
         Diagnostics.shared.record(.playerStarted)
     }
 
@@ -117,8 +118,11 @@ final class MPVController: GLKViewController {
     }
 
     override func glkView(_ surface: GLKView, drawIn rect: CGRect) {
-        guard let renderer, let handle, let context else { return }
+        guard let context else { return }
         EAGLContext.setCurrent(context)
+        glClearColor(0, 0, 0, 1)
+        glClear(GLbitfield(GL_COLOR_BUFFER_BIT))
+        guard let renderer, let handle else { return }
         drainEvents(handle)
         var framebuffer: GLint = 0
         glGetIntegerv(GLenum(GL_FRAMEBUFFER_BINDING), &framebuffer)
@@ -225,6 +229,7 @@ final class MPVController: GLKViewController {
     func close() {
         guard !didClose else { return }
         didClose = true
+        state.renderReady = false
         isPaused = true
         if let context { EAGLContext.setCurrent(context) }
         if let renderer { mpv_render_context_free(renderer); self.renderer = nil }

@@ -9,6 +9,7 @@ final class PlayerState {
     var paused = false
     var buffering = false
     var loaded = false
+    var renderReady = false
     var ended = false
     var error: String?
     var tracks: [Track] = []

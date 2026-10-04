@@ -24,6 +24,10 @@ struct PlayerView: View {
         ZStack {
             Color.black.ignoresSafeArea()
             PlayerSurface(source: session.source, startMs: session.startMs, state: state).ignoresSafeArea()
+                .accessibilityElement(children: .ignore)
+                .accessibilityLabel("Reproductor")
+                .accessibilityValue(state.renderReady ? "Preparado" : "Iniciando")
+                .accessibilityIdentifier("player-surface")
             VStack {
                 HStack { Button { dismiss() } label: { Image(systemName: "chevron.down").frame(width: 44, height: 44) }.accessibilityLabel("Cerrar reproductor").accessibilityIdentifier("player-close"); Text(title).lineLimit(1); Spacer(); trackMenu("audio", title: "Audio", property: "aid"); trackMenu("sub", title: "Subtítulos", property: "sid") }.padding().background(.black.opacity(0.6))
                 Spacer()
