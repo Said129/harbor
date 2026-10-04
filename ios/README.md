@@ -45,7 +45,7 @@ Validar el contrato desde Windows, después de construir el bridge:
 python scripts/ios/test-resume-contract.py
 ```
 
-Compara el módulo TypeScript Desktop real con la DLL/C ABI, sin red. Los tests Swift de persistencia/reinicio/corrupción y el comportamiento mpv de resume aún requieren Apple CI/iPhone. Continue Watching, historial completo y sincronización de cuentas siguen pendientes.
+Compara el módulo TypeScript Desktop real con la DLL/C ABI, sin red. Los tres tests Swift de persistencia/reinicio/corrupción pasan en Apple CI, junto con cinco tests del bridge y diagnostics. El comportamiento mpv de resume todavía requiere reproducción en iPhone. Continue Watching, historial completo y sincronización de cuentas siguen pendientes. Los resultados y commits comprobados están en VALIDATION.
 
 ## CI Apple sin Mac local
 

@@ -112,7 +112,7 @@ Keychain para secretos y addons configurados; Application Support para progreso/
 
 ## 22. CI
 
-`.github/workflows/ios.yml` filtra paths, cancela builds obsoletos, cachea Cargo y usa macOS para Xcode. Windows/Linux prueban core/bridge y contratos; macOS compila core Apple sin JS, staticlib device+sim, crea XCFramework, genera Xcode project, resuelve MPVKit, compila unsigned ambos destinos y ejecuta tests en iPhone simulator. Los logs de pasos permanecen en Actions; subir logs/xcresult y productos sólo mediante el input manual dentro de la cuota gratuita, con retención de un día. El propietario exige coste cero: jobs exclusivamente en repositorios públicos con runners estándar, sin activar gasto. No afirmar validación macOS hasta tener un run real enlazado. CI upstream Desktop y WASM permanece.
+`.github/workflows/ios.yml` filtra paths, cancela builds obsoletos, cachea Cargo y usa macOS para Xcode. Windows/Linux prueban core/bridge y contratos; macOS compila core Apple sin JS, framework dinámico device arm64 y simulator arm64/x86_64, valida exports/install name, crea XCFramework, genera Xcode project, resuelve MPVKit, compila unsigned ambos destinos y ejecuta tests en iPhone simulator. El runtime Rust del bridge se aísla del runtime de Libdovi (ADR 0002). Push sólo en main y cambios del PR evitan builds duplicados. Los logs de pasos permanecen en Actions; subir logs/xcresult y productos sólo mediante el input manual dentro de la cuota gratuita, con retención de un día. El propietario exige coste cero: jobs exclusivamente en repositorios públicos con runners estándar, sin activar gasto. Los resultados Apple observados se registran en VALIDATION. CI upstream Desktop y WASM permanece.
 
 ## 23. Build desde Windows
 
@@ -132,7 +132,7 @@ Core representa una fracción de la lógica, migración de servicios TypeScript,
 
 ## 27. Roadmap y gates
 
-1. Inventario y ADRs; baseline Desktop. 2. Core sin WASM + staticlib y CI Apple (gate de enlace temprano). 3. Catálogos/manifests/search/meta/streams reales y player nativo (gate simulator/device). 4. Progreso/resume/biblioteca/episodios y sincronización. 5. Clientes Debrid compartidos completos y cuentas. 6. Motor torrent Rust extraído y FFmpeg integrado. 7. Subtítulos/audio/options/skip, PiP/AirPlay/HDR. 8. Live/DVR/casting/Together/metadata enriquecida/temas y todas las entradas pendientes. Cada fase actualiza matriz con pruebas, sin borrar funciones difíciles.
+1. Inventario y ADRs; baseline Desktop. 2. Core sin WASM + framework C ABI y CI Apple (gate de enlace temprano). 3. Catálogos/manifests/search/meta/streams reales y player nativo (gate simulator/device). 4. Progreso/resume/biblioteca/episodios y sincronización. 5. Clientes Debrid compartidos completos y cuentas. 6. Motor torrent Rust extraído y FFmpeg integrado. 7. Subtítulos/audio/options/skip, PiP/AirPlay/HDR. 8. Live/DVR/casting/Together/metadata enriquecida/temas y todas las entradas pendientes. Cada fase actualiza matriz con pruebas, sin borrar funciones difíciles.
 
 ## 28. Decisiones y upstream
 

@@ -2,7 +2,7 @@
 
 Fecha: 2026-10-04. Base Desktop: `0117755855d3f43960bad3f9f62b69ef851d5991` (Harbor 0.9.21). Entorno local: Windows 11 x86_64, Rust estable 1.99.0, MSVC Build Tools/Windows SDK. Fork público de trabajo: [Said129/harbor](https://github.com/Said129/harbor/tree/ios/native-iphone). El fork anterior permanece como respaldo.
 
-No hay validación de SwiftUI, linker Apple, simulator o reproducción física todavía. El código del primer recorrido existe; el milestone funcional en iPhone NO está completado. En la matriz, 78 entradas tienen implementación parcial y 15 investigación; 613 permanecen Not Started. No se declara Working/Parity por compilar Rust en Windows.
+El [CI de Said129 / 37215557481](https://github.com/Said129/harbor/actions/runs/37215557481), commit `6e5c8f821a03ae3f519845a7e3f137e8aa266170`, pasó los tres jobs: shared Windows/Linux y Apple. Valida build/enlace SwiftUI/libmpv para simulator y device unsigned, framework dinámico Rust con ABI aislada y 8 tests Swift en iPhone simulator. La reproducción física todavía no está validada y el milestone funcional en iPhone NO está completado. En la matriz, 78 entradas tienen implementación parcial y 15 investigación; 613 permanecen Not Started. No se declara Working/Parity por compilar.
 
 ## Checks locales observados
 
@@ -40,15 +40,35 @@ Primer run: [iPhone Native / 37207098484](https://github.com/Said197812/harbor/a
 
 No fue un error de Rust, Swift o linker: esas etapas no llegaron a ejecutarse. No se ha contratado ningún servicio ni cambiado planes/facturación. El propietario solicita coste cero. El workflow usa únicamente runners estándar públicos y deshabilita uploads por defecto; el bloqueo de la cuenta debe resolverse sin habilitar gasto. [GitHub documenta runners estándar gratis](https://docs.github.com/en/actions/reference/runners/github-hosted-runners) y [opciones para cuentas bloqueadas, incluido GitHub Free](https://docs.github.com/en/billing/how-tos/troubleshooting/locked-account).
 
-Reejecutar desde la rama actual cuando GitHub permita Actions. Registrar aquí URL/commit, Xcode/SDK, errores y correcciones, tests y productos reales. No sustituir la validación de CI por checks sintácticos o stubs de frameworks Apple.
+Tras el traslado autorizado a Said129, [run 37212328098](https://github.com/Said129/harbor/actions/runs/37212328098), commit `4ae5f38d`, ejecutó los tests shared en Windows/Linux con éxito. En macOS pasó Rust Apple, creación del XCFramework, XcodeGen y resolución SPM; el build simulator falló en `MPVController.swift:95` al pasar `UnsafePointer.init` como función a `Optional.map`. `7300cded` usa una closure con conversión explícita de `UnsafeMutablePointer<CChar>` a `UnsafePointer<CChar>`. No cambia la propiedad ni la vida útil de las cadenas C.
+
+El [run 37213208031](https://github.com/Said129/harbor/actions/runs/37213208031) confirmó que esa conversión compila. Detectó un segundo error en `AddonsView`: el `error` del catch ocultaba el estado de la vista al borrar/reordenar. `67083301` usa `self.error`, igual que los demás handlers. Xcode también señaló que el build genérico de simulator requiere x86_64 además de arm64; `8bc1c933` construye ambas staticlibs, crea una biblioteca universal con lipo y verifica sus arquitecturas antes del XCFramework. No se excluyen arquitecturas para eludir el enlace. El mismo commit evita duplicar push/PR: push sólo en main; PR y dispatch continúan disponibles.
+
+El [run 37213676838](https://github.com/Said129/harbor/actions/runs/37213676838) compiló las tres staticlibs; falló en el orden de argumentos de `lipo -verify_arch`. `b0c39def` coloca primero el archivo de entrada según el uso de la herramienta. El [run 37213976287](https://github.com/Said129/harbor/actions/runs/37213976287) de esa corrección terminó success en los tres jobs: shared Windows/Linux, Apple packaging universal, build/enlace Swift simulator, 8 tests sin fallos (5 bridge/diagnostics y 3 persistencia) en iPhone 16 Pro/iOS 18.5, y build Release device sin firmado. Los productos se construyeron en el runner; no se subieron artifacts porque el input está desactivado.
+
+La revisión de sus logs encontró `_rust_eh_personality` duplicado entre std de HarborCore y Libdovi, y una advertencia de orientaciones sin requisito de pantalla completa. `6e5c8f82` aísla el runtime del bridge en una cdylib con sólo tres exports C verificados por arquitectura y declara pantalla completa para esta app sólo iPhone. El ABI, catch_unwind, destructor y Libdovi se mantienen. El workflow especifica la arquitectura del host al ejecutar los tests y limita esa etapa a 15 minutos; el primer arranque de simulator tardó más de seis minutos antes de ejecutar los 8 tests en menos de un segundo.
+
+El [run 37215557481](https://github.com/Said129/harbor/actions/runs/37215557481) de `6e5c8f82` terminó success y confirmó la corrección completa:
+
+| Etapa Apple                             | Resultado observado                                                                     | Alcance                                                                       |
+| --------------------------------------- | --------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| Rust device/simulator y empaquetado     | Pasa; exports ABI e install name verificados para arm64 device y arm64/x86_64 simulator | Framework dinámico embebido; std permanece privado                            |
+| Build Debug simulator                   | BUILD SUCCEEDED                                                                         | SwiftUI, SDK Apple, libmpv y C ABI enlazan                                    |
+| XCTest en iPhone 16 Pro/iOS 18.5, arm64 | 8 tests, 0 fallos, TEST SUCCEEDED                                                       | 5 bridge/diagnostics y 3 persistencia, usando la app host y su framework real |
+| Build Release device                    | BUILD SUCCEEDED                                                                         | arm64 iPhone; CODE_SIGNING_ALLOWED=NO/CODE_SIGNING_REQUIRED=NO                |
+| Colisión Rust y orientaciones           | Ya no aparecen en los logs                                                              | Se conserva Libdovi y el manejo de panics                                     |
+| Uploads                                 | Skipped por configuración                                                               | No se publicaron productos ni se generó una IPA firmada                       |
+
+Entorno Apple observado: runner `macos-15`, Xcode 16.4 (16F6), iOS/iOS Simulator SDK 18.5, Rust 1.99.0. El compilador confirmó warnings de deprecación de GLKit/OpenGL ES en la superficie experimental descrita en ADR 0003; no se silenciaron. La evaluación Metal y la comprobación de vídeo de 10 bits/HDR siguen pendientes. No sustituir la validación de CI por checks sintácticos o stubs de frameworks Apple.
+
+El procesador de metadata de Xcode también avisa que omite AppIntents porque la app no depende de ese framework; no es un fallo de extracción de una integración Siri existente. No se añade una dependencia vacía para ocultar ese aviso.
 
 ## Gates pendientes antes de declarar el milestone
 
-1. Core/bridge staticlib y XCFramework enlazan con iOS SDK device/simulator en macOS.
-2. XcodeGen/SPM, Swift/libmpv, tests de ABI y modelos pasan; app arranca en iPhone simulator y obtiene datos reales.
-3. Signing válido e instalación física por una vía acordada sin gastos automáticos.
-4. Stream accesible de un addon real avanza time-pos y reproduce imagen/audio en iPhone. Seeking/ranges, controls/tracks/subs/rotación, teardown y errores se verifican en el dispositivo.
-5. Repetir con matrices de formatos/codec, condiciones de red y lifecycle antes de declarar compatibilidad. El render OpenGL inicial tiene un riesgo documentado de vídeo 10 bits en MPVKit; evaluar Metal/VideoToolbox y conservar el objetivo HDR.
+1. Recorrido UI completo y datos reales dentro de la app en iPhone simulator. El test host arranca, pero sus unit tests no verifican catálogos ni reproducción de red.
+2. Signing válido e instalación física por una vía acordada sin gastos automáticos.
+3. Stream accesible de un addon real avanza time-pos y reproduce imagen/audio en iPhone. Seeking/ranges, controls/tracks/subs/rotación, teardown y errores se verifican en el dispositivo.
+4. Repetir con matrices de formatos/codec, condiciones de red y lifecycle antes de declarar compatibilidad. El render OpenGL inicial tiene un riesgo documentado de vídeo 10 bits en MPVKit; evaluar Metal/VideoToolbox y conservar el objetivo HDR.
 
 Después: shared Debrid completo (cinco proveedores), extracción librqbit/Axum, progreso/resume/biblioteca/sync/cuentas y cada entrada restante de FEATURE_PARITY. La investigación y el código parcial no significan retirada de funciones.
 
@@ -59,11 +79,11 @@ Después: shared Debrid completo (cinco proveedores), extracción librqbit/Axum,
 - Backend Desktop: `cargo check` y 49 lib tests pasan con el mismo override local de packaging; siguen los warnings anteriores. Ningun modulo de negocio Desktop fue reformateado o cambiado.
 - Codigo Swift nuevo: actor de almacenamiento con documento v1 en Application Support, escrituras atomicas y proteccion de archivos tras el primer desbloqueo. Corrupcion/version desconocida/fallo de lectura bloquean escrituras; fallo de escritura conserva el estado anterior. No incluye URLs, credenciales ni datos de streams en el documento.
 - Player: snapshots de posiciones observadas por mpv cada 4 s y al pausar/terminar/salir/cambiar lifecycle; no guardar una posicion inicial inventada si la fuente falla. Respeta autosave de Desktop (5 s, omitir stubs de menos de 150 s), reanudacion >5 s, aviso opcional >30 s, defaults resumePlayback=true/resumePrompt=false. Specials usan temporada 0. IDs custom sin coordenadas usan una clave por video para evitar colisiones entre episodios. Reinicio cerca del final segun runtime y guard de 20 s.
-- Tres tests Swift nuevos cubren reinicio del store, aislamiento de episodios, checkpoints retrasados, corrupcion/version futura y fallo de escritura. No se han ejecutado: Swift/iOS SDK y reproduccion siguen pendientes del gate Apple. Guardar al suspender o cerrar es best effort; no se garantiza la ultima posicion ante terminacion forzada.
+- Tres tests Swift nuevos cubren reinicio del store, aislamiento de episodios, checkpoints retrasados, corrupcion/version futura y fallo de escritura. Pasan dentro de los 8 tests del run Apple `37213976287`; la reproduccion y el lifecycle mpv siguen pendientes en iPhone. Guardar al suspender o cerrar es best effort; no se garantiza la ultima posicion ante terminacion forzada.
 - Continue Watching, historial completo, biblioteca, perfiles y sincronizacion de cuentas no estan implementados por este incremento. No se marca Working/Parity.
 
 ## Traslado a Said129 (2026-10-04)
 
-El propietario indica que Said129 es una cuenta ya existente y autoriza continuar alli. GitHub CLI verifico la identidad Said129 antes de crear un fork publico directo de harborstremio/harbor. Se conserva el checkout, commits y cambios nuevos; Said197812/harbor y su PR permanecen como respaldo y evidencia historica. No se modifica ni elimina la cuenta anterior, ni planes, presupuestos o metodos de pago. El estado de CI de la cuenta anterior no demuestra el estado de esta cuenta; se verificara con una ejecucion real del nuevo fork.
+El propietario indica que Said129 es una cuenta ya existente y autoriza continuar alli. GitHub CLI verifico la identidad Said129 antes de crear un fork publico directo de harborstremio/harbor. Se conserva el checkout, commits y cambios nuevos; Said197812/harbor y su PR permanecen como respaldo y evidencia historica. Hay tambien un bundle local completo verificado anterior al traslado. No se modifica ni elimina la cuenta anterior, ni planes, presupuestos o metodos de pago. El nuevo fork ya ejecuto CI real con exito en Windows/Linux/macOS.
 
 El comando de build completo se repitio tras los cambios de resume: tsc/Vite pasan; bundling Windows vuelve a fallar por el mpv.exe ausente descrito en el baseline. No es una compilacion Linux exitosa.
