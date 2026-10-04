@@ -18,8 +18,8 @@ Conserva misma semántica de comandos/propiedades, FFmpeg y libass, amplitud de 
 
 ## Disadvantages
 
-OpenGL ES está deprecated; evaluar render Metal después del experimento. El soporte Metal de MPVKit se declara experimental en su README. Binarios/transitivas son grandes; licencias y redistribución requieren inventario antes de distribuir. PiP/AirPlay/HDR no quedan resueltos al enlazar libmpv.
+OpenGL ES está deprecated; evaluar render Metal después del experimento. El [demo iOS de la revisión fijada](https://github.com/mpvkit/MPVKit/blob/f82e06d4f5ef4fc4aa9faba3782a462dbbef870c/Demo/Demo-iOS/Demo-iOS/Player/OpenGL/MPVViewController.swift) advierte de problemas con vídeo de 10 bits. Es un riesgo de esta superficie inicial, no una imposibilidad de iOS ni una eliminación de HDR. El soporte Metal de MPVKit se declara experimental en su README. Binarios/transitivas son grandes; licencias y redistribución requieren inventario antes de distribuir. PiP/AirPlay/HDR no quedan resueltos al enlazar libmpv.
 
 ## Consequences
 
-No declarar codecs ni HDR como Parity sin archivos/dispositivos comprobados. Observar time-pos/duration/pause/tracks/end-file; teardown sincronizado del render/callbacks/audio. No emitir URLs ni logs mpv completos. Fuentes: [MPVKit](https://github.com/mpvkit/MPVKit), [mpv render API](https://github.com/mpv-player/mpv/blob/master/libmpv/render.h).
+No declarar codecs ni HDR como Parity sin archivos/dispositivos comprobados. Observar time-pos/duration/pause/tracks/end-file; teardown sincronizado del render/audio. Comandos y cambios de propiedades de playback usan APIs asíncronas y sus replies se inspeccionan: el hilo de render no debe esperar al core mpv. Configurar video-timing-offset=0 evita su espera anticipada de frames en el hilo UI; medir sincronización A/V y frame pacing en dispositivo. No emitir URLs ni logs mpv completos. Fuentes: [MPVKit](https://github.com/mpvkit/MPVKit), [mpv render API](https://github.com/mpv-player/mpv/blob/master/include/mpv/render.h).

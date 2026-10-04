@@ -22,19 +22,23 @@ struct PlayerView: View {
             VStack {
                 HStack { Button { dismiss() } label: { Image(systemName: "chevron.down").frame(width: 44, height: 44) }; Text(title).lineLimit(1); Spacer(); trackMenu("audio", title: "Audio", property: "aid"); trackMenu("sub", title: "Subtítulos", property: "sid") }.padding().background(.black.opacity(0.6))
                 Spacer()
-                if state.buffering || !state.loaded && state.error == nil { ProgressView().tint(.white) }
+                if (state.buffering || !state.loaded) && !state.ended && state.error == nil { ProgressView().tint(.white) }
+                if state.ended && state.error == nil { Text("La reproducción ha terminado.").padding().background(.black.opacity(0.6)) }
                 if let error = state.error { Text(error).padding().background(.black.opacity(0.8)) }
                 Spacer()
                 VStack {
                     Slider(value: Binding(get: { editingSeek ? seek : min(state.position, max(1, state.duration)) }, set: { seek = $0 }), in: 0...max(1, state.duration), onEditingChanged: { editing in
                         editingSeek = editing
                         if !editing { state.controller?.run(["seek", String(seek), "absolute+exact"]) }
-                    }).disabled(state.duration <= 0)
+                    }).disabled(state.duration <= 0 || !state.loaded)
                     HStack {
                         Text(time(state.position)).monospacedDigit()
                         Spacer()
                         Button { state.controller?.run(["seek", "-10", "relative"]) } label: { Image(systemName: "gobackward.10") }.frame(width: 44, height: 44)
-                        Button { state.controller?.run(["cycle", "pause"]) } label: { Image(systemName: state.paused ? "play.fill" : "pause.fill").font(.title) }.frame(width: 56, height: 44)
+                        Button {
+                            if state.ended { state.controller?.replay() }
+                            else { state.controller?.run(["cycle", "pause"]) }
+                        } label: { Image(systemName: state.ended ? "arrow.counterclockwise" : state.paused ? "play.fill" : "pause.fill").font(.title) }.frame(width: 56, height: 44)
                         Button { state.controller?.run(["seek", "10", "relative"]) } label: { Image(systemName: "goforward.10") }.frame(width: 44, height: 44)
                         Spacer()
                         Menu("Velocidad") { ForEach([0.5, 0.75, 1, 1.25, 1.5, 2], id: \.self) { speed in Button("\(speed.formatted())×") { state.controller?.set("speed", String(speed)) } } }

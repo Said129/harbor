@@ -4,6 +4,8 @@ struct DetailView: View {
     let app: AppModel
     @State private var model: DetailModel
     @State private var showStreams = false
+    @State private var selectedEpisode: Episode?
+    @State private var resolutionTask: Task<Void, Never>?
     init(media: Media, app: AppModel) { self.app = app; _model = State(initialValue: DetailModel(media, service: app.service)) }
 
     var body: some View {
@@ -32,22 +34,23 @@ struct DetailView: View {
             }
         }.background(HarborTheme.background).navigationBarTitleDisplayMode(.inline)
         .task { await model.load(app.addons) }
-        .sheet(isPresented: $showStreams) {
+        .sheet(isPresented: $showStreams, onDismiss: { resolutionTask?.cancel() }) {
             NavigationStack {
                 List {
-                    if model.loading { ProgressView("Consultando addons…") }
+                    if model.loadingStreams { ProgressView("Consultando addons…") }
                     if let error = model.error { Text(error).foregroundStyle(.orange) }
                     ForEach(Array(model.warnings.enumerated()), id: \.offset) { Text("Solicitud addon: \($0.element)").font(.caption) }
                     ForEach(model.offers) { offer in
-                        Button { Task { await model.play(offer) } } label: { VStack(alignment: .leading, spacing: 8) { Text(offer.title); Text("\(offer.source) · \(offer.quality)").font(.caption).foregroundStyle(.secondary) }.frame(minHeight: 44) }.disabled(model.resolving)
+                        Button { resolutionTask = Task { await model.play(offer) } } label: { VStack(alignment: .leading, spacing: 8) { Text(offer.title); Text("\(offer.source) · \(offer.quality)").font(.caption).foregroundStyle(.secondary) }.frame(minHeight: 44) }.disabled(model.resolving)
                     }
                 }.navigationTitle("Streams").toolbar { ToolbarItem(placement: .topBarTrailing) { Button("Cerrar") { showStreams = false } } }
                 .fullScreenCover(item: $model.playback) { source in PlayerView(source: source, title: model.media.name) }
+                .task(id: selectedEpisode?.id ?? model.media.id) { await model.findStreams(app.addons, episode: selectedEpisode) }
             }.presentationDetents([.medium, .large])
         }
     }
     private func openStreams(_ episode: Episode? = nil) {
+        selectedEpisode = episode
         showStreams = true
-        Task { await model.findStreams(app.addons, episode: episode) }
     }
 }

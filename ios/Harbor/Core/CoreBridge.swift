@@ -29,11 +29,17 @@ struct CoreBridge: Sendable {
         var request = fields
         request["operation"] = .string(operation)
         let bytes = try JSONEncoder().encode(JSONValue.object(request))
-        let result: T = try await Task.detached(priority: .userInitiated) {
-            try Self.invoke(bytes, as: T.self)
-        }.value
-        try Task.checkCancellation()
-        return result
+        do {
+            let result: T = try await Task.detached(priority: .userInitiated) {
+                try Self.invoke(bytes, as: T.self)
+            }.value
+            try Task.checkCancellation()
+            return result
+        } catch is CancellationError { throw CancellationError() }
+        catch {
+            await Diagnostics.shared.recordFailure(error)
+            throw error
+        }
     }
 
     static func invoke<T: Decodable>(_ bytes: Data, as: T.Type) throws -> T {

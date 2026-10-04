@@ -30,7 +30,7 @@ final class AppModel {
             Diagnostics.shared.record(.coreReady)
             await loadHome()
         } catch is CancellationError { started = false }
-        catch { self.error = safeMessage(error); Diagnostics.shared.record(.failure) }
+        catch { self.error = safeMessage(error); Diagnostics.shared.recordFailure(error) }
         loading = false
     }
 
@@ -45,7 +45,7 @@ final class AppModel {
             Diagnostics.shared.record(.catalogsLoaded, count: rows.count)
             if rows.isEmpty && !warnings.isEmpty { error = "No se pudo cargar ningún catálogo. \(warnings.joined(separator: ", "))" }
         } catch is CancellationError { return }
-        catch { self.error = safeMessage(error); Diagnostics.shared.record(.failure) }
+        catch { self.error = safeMessage(error); Diagnostics.shared.recordFailure(error) }
     }
 
     func install(_ url: String) async throws {

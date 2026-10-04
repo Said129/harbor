@@ -3,8 +3,9 @@ import Darwin
 import GLKit
 import Libmpv
 
-/// All client/render/event access is serialized on the main actor. No escaping
-/// C callbacks reference UIKit objects. mpv events, not button taps, own state.
+/// Render/event access is serialized on the main actor. Playback commands and
+/// properties use mpv's asynchronous API: the render thread must not wait for
+/// the mpv core. No escaping C callbacks reference UIKit objects.
 @MainActor
 final class MPVController: GLKViewController {
     let state: PlayerState
@@ -39,7 +40,10 @@ final class MPVController: GLKViewController {
     }
 
     private func check(_ code: Int32) throws {
-        guard code >= 0 else { throw HarborError(code: "mpv-\(code)") }
+        guard code >= 0 else {
+            Diagnostics.shared.record(.playerFailed, count: Int(code))
+            throw HarborError(code: "mpv-\(code)")
+        }
     }
 
     private func initialize() throws {
@@ -47,7 +51,7 @@ final class MPVController: GLKViewController {
         handle = mpv
         try AVAudioSession.sharedInstance().setCategory(.playback, mode: .moviePlayback)
         try AVAudioSession.sharedInstance().setActive(true)
-        for (key, value) in ["vo":"libmpv", "hwdec":"auto-safe", "config":"no", "ytdl":"no", "terminal":"no", "msg-level":"all=no", "cache":"yes", "demuxer-max-bytes":"64MiB", "network-timeout":"60"] {
+        for (key, value) in ["vo":"libmpv", "hwdec":"auto-safe", "config":"no", "ytdl":"no", "terminal":"no", "msg-level":"all=no", "cache":"yes", "demuxer-max-bytes":"64MiB", "network-timeout":"60", "video-timing-offset":"0"] {
             try check(mpv_set_option_string(mpv, key, value))
         }
         try check(mpv_initialize(mpv))
@@ -83,16 +87,27 @@ final class MPVController: GLKViewController {
         guard let handle else { throw HarborError(code: "player-not-ready") }
         let allocations = values.map { strdup($0) }
         defer { for allocation in allocations { free(allocation) } }
+        guard allocations.allSatisfy({ $0 != nil }) else { throw HarborError(code: "player-allocation") }
         var pointers: [UnsafePointer<CChar>?] = allocations.map { $0.map(UnsafePointer.init) } + [nil]
-        try check(mpv_command(handle, &pointers))
+        try check(mpv_command_async(handle, 0, &pointers))
     }
 
     func set(_ name: String, _ value: String) {
         guard let handle else { return }
-        do { try check(mpv_set_property_string(handle, name, value)) } catch { state.error = safeMessage(error) }
+        do {
+            let result = value.withCString { pointer in
+                var string: UnsafePointer<CChar>? = pointer
+                return withUnsafeMutablePointer(to: &string) { mpv_set_property_async(handle, 0, name, MPV_FORMAT_STRING, $0) }
+            }
+            try check(result)
+        } catch { state.error = safeMessage(error) }
     }
     func run(_ values: [String]) {
         do { try command(values) } catch { state.error = safeMessage(error) }
+    }
+    func replay() {
+        state.error = nil
+        run(["loadfile", source.url, "replace"])
     }
 
     override func glkView(_ surface: GLKView, drawIn rect: CGRect) {
@@ -107,7 +122,10 @@ final class MPVController: GLKViewController {
             withUnsafeMutablePointer(to: &flip) { flip in
                 var parameters = [mpv_render_param(type: MPV_RENDER_PARAM_OPENGL_FBO, data: fbo), mpv_render_param(type: MPV_RENDER_PARAM_FLIP_Y, data: flip), mpv_render_param(type: MPV_RENDER_PARAM_INVALID, data: nil)]
                 let result = mpv_render_context_render(renderer, &parameters)
-                if result < 0 { state.error = "Error de render mpv: \(result)" }
+                if result < 0 {
+                    if state.error == nil { Diagnostics.shared.record(.playerFailed, count: Int(result)) }
+                    state.error = "Error de render mpv: \(result)"
+                }
             }
         }
         mpv_render_context_report_swap(renderer)
@@ -117,6 +135,14 @@ final class MPVController: GLKViewController {
         for _ in 0..<64 {
             guard let event = mpv_wait_event(handle, 0)?.pointee, event.event_id != MPV_EVENT_NONE else { return }
             switch event.event_id {
+            case MPV_EVENT_COMMAND_REPLY, MPV_EVENT_SET_PROPERTY_REPLY:
+                if event.error < 0 {
+                    Diagnostics.shared.record(.playerFailed, count: Int(event.error))
+                    state.error = "La operación del reproductor falló (mpv \(event.error))."
+                }
+            case MPV_EVENT_START_FILE:
+                state.ended = false
+                state.loaded = false
             case MPV_EVENT_FILE_LOADED:
                 state.loaded = true
                 for subtitle in source.subtitles ?? [] {
@@ -141,9 +167,14 @@ final class MPVController: GLKViewController {
             case MPV_EVENT_END_FILE:
                 if let data = event.data {
                     let end = data.assumingMemoryBound(to: mpv_event_end_file.self).pointee
-                    if end.error < 0 { state.error = "No se pudo reproducir esta fuente (mpv \(end.error))." }
+                    if end.error < 0 {
+                        Diagnostics.shared.record(.playerFailed, count: Int(end.error))
+                        state.error = "No se pudo reproducir esta fuente (mpv \(end.error))."
+                    }
                 }
                 state.loaded = false
+                state.ended = true
+                state.buffering = false
                 Diagnostics.shared.record(.playerEnded)
             case MPV_EVENT_SHUTDOWN: state.loaded = false
             default: break

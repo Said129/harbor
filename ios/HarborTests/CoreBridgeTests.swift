@@ -32,4 +32,19 @@ final class CoreBridgeTests: XCTestCase {
         XCTAssertEqual(result["picker"]["all"].array.count, 1)
         XCTAssertEqual(result["picker"]["all"].array.first?["resolution"].string, "1080p")
     }
+
+    @MainActor
+    func testExportedDiagnosticsWhitelistCodesWithoutLeakingPayloads() throws {
+        let diagnostics = Diagnostics()
+        diagnostics.recordFailure(HarborError(code: "http-403"))
+        diagnostics.recordFailure(HarborError(code: "https://example.com/private-token"))
+        diagnostics.recordFailure(HarborError(code: "mpv--3"))
+        let export = try diagnostics.export()
+        let text = try String(contentsOf: export, encoding: .utf8)
+        XCTAssertTrue(text.contains("code=http-403"))
+        XCTAssertTrue(text.contains("code=mpv--3"))
+        XCTAssertTrue(text.contains("code=unknown"))
+        XCTAssertFalse(text.contains("private-token"))
+        XCTAssertFalse(text.contains("example.com"))
+    }
 }
