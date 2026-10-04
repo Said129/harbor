@@ -6,6 +6,10 @@ on:
         description: "Test the native services and UI with real public addons"
         type: boolean
         default: false
+      save_draft_build:
+        description: "Save the verified unsigned IPA in a draft Release for download"
+        type: boolean
+        default: false
       upload_artifacts:
         description: "Upload products/evidence only after confirming available free storage"
         type: boolean
@@ -63,6 +67,8 @@ jobs:
     needs: shared
     runs-on: macos-15
     timeout-minutes: 45
+    permissions:
+      contents: write
     env:
       IPHONEOS_DEPLOYMENT_TARGET: "17.0"
     steps:
@@ -138,6 +144,11 @@ jobs:
         run: |
           set -euo pipefail
           python3 scripts/ios/package-ipa.py --app ios/build/DeviceData/Build/Products/Release-iphoneos/Harbor.app --output ios/build/Harbor-unsigned.ipa --commit "$GITHUB_SHA" 2>&1 | tee ios/build/logs/ipa.log
+      - name: Save verified unsigned IPA in a draft Release
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.run_live_integration == true && inputs.save_draft_build == true }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 scripts/ios/save-draft-build.py --repo "$GITHUB_REPOSITORY" --ipa ios/build/Harbor-unsigned.ipa --report ios/build/Harbor-unsigned.json --commit "$GITHUB_SHA"
       - name: Preserve diagnostic evidence
         if: ${{ always() && inputs.upload_artifacts == true }}
         uses: actions/upload-artifact@v4

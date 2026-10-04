@@ -68,11 +68,15 @@ Stages: tests Windows/Linux → cargo Apple sin WASM → framework dinámico dev
 
 `scripts/ios/package-ipa.py` exige un build iPhoneOS/arm64, device family 1 y HarborCore embebido. Conserva permisos/symlinks, verifica la integridad de `Payload/Harbor.app` y genera un informe con commit, tamaño y SHA-256. No firma ni instala. Por defecto la IPA sólo existe temporalmente en el runner y no se sube a GitHub.
 
+Para conservar únicamente la IPA y su informe, una ejecución manual puede activar además `save_draft_build=true`. Requiere el gate de integración real, verifica de nuevo hash/commit y crea un borrador de Release dirigido a ese commit. No publica una release final ni habilita uploads de Actions. Los [assets de Releases](https://docs.github.com/en/repositories/releasing-projects-on-github/about-releases) tienen límites distintos: cada archivo debe ser menor de 2 GiB, sin límite total de storage/bandwidth. El job Apple dispone de permiso contents write para ese paso; sólo se ejecuta por dispatch explícito, nunca al actualizar un PR.
+
 Para ejecutar las mismas etapas en un Mac disponible en el futuro: `bash scripts/ios/build-rust.sh`, `xcodegen generate --spec ios/project.yml` y los comandos xcodebuild del workflow. `project.yml` es la fuente; el proyecto Xcode, Info.plist y frameworks son generados.
 
 ## Gate de iPhone físico
 
 No existe aún una IPA firmada. El build unsigned comprueba código/enlace, pero no permite instalar normalmente en iPhone. Configurar signing/distribución por separado, sin guardar certificados o provisioning en Git. No contratar servicios ni membresías automáticamente.
+
+La [guía de prueba desde Windows](SIDELOAD.md) describe la comprobación del hash y una vía de firma local con cuenta Apple gratuita. Esa instalación aún debe verificarse con la IPA y el dispositivo concretos.
 
 Después del gate de CI, instalar una build válidamente firmada, añadir un addon real con una fuente disponible y comprobar Home → búsqueda → ficha → selector → reproducción. Registrar dispositivo/iOS/fuente, avance de time-pos, imagen/audio, seeking, subs/tracks, headers/ranges, rotación, cierres repetidos, memoria/temperatura y red interrumpida. No marcar el milestone completo hasta observar vídeo real en iPhone.
 
