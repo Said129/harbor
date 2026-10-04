@@ -34,6 +34,9 @@ targets:
         CFBundleDisplayName: Harbor
         CFBundleShortVersionString: "0.1.0"
         CFBundleVersion: "1"
+        CFBundleURLTypes:
+          - CFBundleURLName: site.harbor.iphone.login
+            CFBundleURLSchemes: [harbor-iphone]
         UILaunchScreen: {}
         UIRequiresFullScreen: YES
         UISupportedInterfaceOrientations:
@@ -52,6 +55,7 @@ targets:
       - sdk: OpenGLES.framework
       - sdk: Security.framework
       - sdk: AVFoundation.framework
+      - sdk: AuthenticationServices.framework
   HarborTests:
     type: bundle.unit-test
     platform: iOS

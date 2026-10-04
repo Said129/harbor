@@ -5,6 +5,13 @@ struct HomeView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 24) {
+                if model.user == nil {
+                    Button { model.showAccount = true } label: {
+                        Label("Inicia sesión para recuperar tus addons", systemImage: "person.crop.circle")
+                            .frame(maxWidth: .infinity, alignment: .leading).padding()
+                    }.accessibilityIdentifier("home-signin")
+                }
+                if let error = model.accountError { Text(error).font(.caption).foregroundStyle(.orange).padding(.horizontal) }
                 if let hero = model.rows.first?.metas.first {
                     NavigationLink(value: hero) {
                         GeometryReader { geometry in

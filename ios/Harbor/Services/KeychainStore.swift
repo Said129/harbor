@@ -27,6 +27,11 @@ struct KeychainStore {
         } else if status != errSecSuccess { throw HarborError(code: "keychain-write-\(status)") }
     }
 
+    func remove(_ key: String) throws {
+        let status = SecItemDelete(base(key) as CFDictionary)
+        guard status == errSecSuccess || status == errSecItemNotFound else { throw HarborError(code: "keychain-delete-\(status)") }
+    }
+
     private func base(_ key: String) -> [String: Any] {
         [kSecClass as String: kSecClassGenericPassword, kSecAttrService as String: service, kSecAttrAccount as String: key]
     }

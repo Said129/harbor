@@ -8,6 +8,9 @@ struct AddonsView: View {
     @FocusState private var editingURL: Bool
     var body: some View {
         List {
+            if app.user != nil {
+                Section { Text("Las instalaciones, eliminaciones y cambios de orden se guardan en tu cuenta de Stremio. Activar o desactivar un addon se aplica en este iPhone.").font(.caption) }
+            }
             Section("Instalar desde URL") {
                 SecureField("URL del manifest", text: $url).textInputAutocapitalization(.never).autocorrectionDisabled().keyboardType(.URL)
                     .focused($editingURL)
@@ -19,7 +22,7 @@ struct AddonsView: View {
                         defer { installing = false }
                         do { try await app.install(url); url = "" } catch { self.error = safeMessage(error) }
                     }
-                }.disabled(installing || url.isEmpty || !app.storageReady).accessibilityIdentifier("addon-install")
+                }.disabled(installing || app.accountBusy || url.isEmpty || !app.storageReady).accessibilityIdentifier("addon-install")
                 if installing { ProgressView().accessibilityIdentifier("addon-install-progress") }
                 if let error { Text(error).foregroundStyle(.orange) }
             }
@@ -27,11 +30,11 @@ struct AddonsView: View {
                 ForEach(app.addons) { addon in
                     Toggle(addon.name, isOn: Binding(get: { addon.enabled }, set: { enabled in
                         do { try app.setEnabled(addon, enabled); Task { await app.loadHome() } } catch { self.error = safeMessage(error) }
-                    })).disabled(!app.storageReady)
+                    })).disabled(!app.storageReady || app.accountBusy)
                 }
-                .onDelete { offsets in do { try app.remove(offsets); Task { await app.loadHome() } } catch { self.error = safeMessage(error) } }
-                .onMove { offsets, destination in do { try app.move(offsets, to: destination); Task { await app.loadHome() } } catch { self.error = safeMessage(error) } }
+                .onDelete { offsets in Task { do { try await app.remove(offsets) } catch { self.error = safeMessage(error) } } }
+                .onMove { offsets, destination in Task { do { try await app.move(offsets, to: destination) } catch { self.error = safeMessage(error) } } }
             }
-        }.navigationTitle("Addons").toolbar { EditButton().disabled(!app.storageReady) }
+        }.navigationTitle("Addons").toolbar { EditButton().disabled(!app.storageReady || app.accountBusy) }
     }
 }

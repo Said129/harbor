@@ -5,6 +5,14 @@ struct HarborError: Error, LocalizedError, Sendable {
     let code: String
     var errorDescription: String? {
         switch code {
+        case "invalid-account-request": "Introduce tu correo y contraseña de Stremio."
+        case "account-rejected": "Stremio ha rechazado el acceso. Comprueba tus datos o vuelve a iniciar sesión."
+        case "invalid-account-response", "invalid-account-store": "No se pudo recuperar tu cuenta. Los datos guardados se han conservado."
+        case "account-local-save-failed": "Los addons cambiaron en tu cuenta, pero no se pudo guardar la copia local. Pulsa Sincronizar para recuperarlos."
+        case "account-busy": "Espera a que termine la operación de tu cuenta."
+        case "account-cancelled": "Se canceló el inicio de sesión."
+        case "account-browser-unavailable": "No se pudo abrir el acceso de Stremio. Puedes usar correo y contraseña."
+        case "account-timeout": "El acceso de Stremio tardó demasiado. Inténtalo otra vez."
         case "torrent-resolver-pending": "Esta fuente requiere el motor torrent o Debrid, todavía pendiente en iPhone."
         case "youtube-resolver-pending": "La resolución de YouTube todavía está pendiente."
         case "addon-not-configured": "Configura este addon antes de reproducir."

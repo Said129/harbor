@@ -11,10 +11,11 @@ struct HarborApp: App {
                 NavigationStack { SearchView(app: model).navigationDestination(for: Media.self) { DetailView(media: $0, app: model) } }
                     .tabItem { Label("Buscar", systemImage: "magnifyingglass") }
                 NavigationStack { AddonsView(app: model) }.tabItem { Label("Addons", systemImage: "puzzlepiece.extension") }
-                NavigationStack { SettingsView() }.tabItem { Label("Ajustes", systemImage: "gearshape") }
+                NavigationStack { SettingsView(app: model) }.tabItem { Label("Ajustes", systemImage: "gearshape") }
             }
             .tint(HarborTheme.accent).preferredColorScheme(.dark)
             .task { await model.start() }
+            .sheet(isPresented: $model.showAccount) { NavigationStack { AccountView(app: model) } }
         }
     }
 }

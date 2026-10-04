@@ -6,6 +6,9 @@ final class AppModel {
     let service = HarborService()
     let resume = ResumeStore()
     private let keychain = KeychainStore()
+    private let accounts = AccountService()
+    private var savedAccount: SavedAccount?
+    private var homeGeneration = 0
     private var started = false
     private(set) var storageReady = false
     private(set) var addons: [Addon] = []
@@ -14,6 +17,10 @@ final class AppModel {
     var error: String?
     var warnings: [String] = []
     var progressError: String?
+    var accountError: String?
+    var accountBusy = false
+    var showAccount = false
+    var user: AccountUser? { savedAccount?.session.user }
 
     func start() async {
         guard !started else { return }
@@ -23,15 +30,24 @@ final class AppModel {
         await reloadProgress()
         do {
             // A Keychain error is not an empty store and must never overwrite it.
-            if let saved = try keychain.read("addons.v1", as: [Addon].self) { addons = saved }
+            if let account = try keychain.read("account.v1", as: SavedAccount.self) {
+                guard account.version == 1 else { throw HarborError(code: "invalid-account-store") }
+                savedAccount = account
+                addons = account.collection.addons
+            }
+            else if let saved = try keychain.read("addons.v1", as: [Addon].self) { addons = saved }
             else {
                 let fallback = try await service.install(HarborService.cinemetaManifest)
+                guard savedAccount == nil else { return }
                 try keychain.write([fallback], key: "addons.v1")
                 addons = [fallback]
             }
             storageReady = true
             Diagnostics.shared.record(.coreReady)
-            await loadHome()
+            if savedAccount != nil {
+                do { try await syncAccount() }
+                catch { accountError = safeMessage(error); await loadHome() }
+            } else { await loadHome() }
         } catch is CancellationError { started = false }
         catch { self.error = safeMessage(error); Diagnostics.shared.recordFailure(error) }
         loading = false
@@ -45,48 +61,142 @@ final class AppModel {
     }
 
     func loadHome() async {
+        homeGeneration += 1
+        let generation = homeGeneration
+        let selectedAddons = addons
         loading = true
         error = nil
-        defer { loading = false }
+        defer { if generation == homeGeneration { loading = false } }
         do {
-            (rows, warnings) = try await service.catalogs(addons)
+            let result = try await service.catalogs(selectedAddons)
+            guard generation == homeGeneration else { return }
+            (rows, warnings) = result
             Diagnostics.shared.record(.catalogsLoaded, count: rows.count)
             if rows.isEmpty && !warnings.isEmpty { error = "No se pudo cargar ningún catálogo. \(warnings.joined(separator: ", "))" }
         } catch is CancellationError { return }
-        catch { self.error = safeMessage(error); Diagnostics.shared.recordFailure(error) }
+        catch {
+            guard generation == homeGeneration else { return }
+            self.error = safeMessage(error); Diagnostics.shared.recordFailure(error)
+        }
+    }
+
+    func signIn(email: String, password: String) async throws {
+        guard !accountBusy else { throw HarborError(code: "account-busy") }
+        accountBusy = true
+        defer { accountBusy = false }
+        try await accept(try await accounts.login(email: email, password: password))
+    }
+
+    func signIn(authKey: String) async throws {
+        guard !accountBusy else { throw HarborError(code: "account-busy") }
+        accountBusy = true
+        defer { accountBusy = false }
+        try await accept(try await accounts.session(authKey: authKey))
+    }
+
+    private func accept(_ session: AccountSession) async throws {
+        let collection = try await accounts.addons(session)
+        let next = SavedAccount(session: session, collection: collection)
+        // Commit the token and downloaded collection together, only after both
+        // requests succeed. A rejected login/sync preserves the previous account.
+        try keychain.write(next, key: "account.v1")
+        savedAccount = next
+        addons = collection.addons
+        storageReady = true
+        rows = []; warnings = []; accountError = nil
+        Diagnostics.shared.record(.accountSignedIn, count: addons.count)
+        await loadHome()
+    }
+
+    func syncAccount() async throws {
+        guard !accountBusy, let old = savedAccount else { throw HarborError(code: "account-busy") }
+        accountBusy = true
+        defer { accountBusy = false }
+        var collection = try await accounts.addons(old.session)
+        let enabled = Dictionary(old.collection.addons.map { ($0.transportUrl, $0.enabled) }, uniquingKeysWith: { first, _ in first })
+        for index in collection.addons.indices {
+            collection.addons[index].enabled = enabled[collection.addons[index].transportUrl] ?? true
+        }
+        let next = SavedAccount(session: old.session, collection: collection)
+        try keychain.write(next, key: "account.v1")
+        savedAccount = next; addons = collection.addons
+        rows = []; warnings = []; accountError = nil
+        Diagnostics.shared.record(.accountSynced, count: addons.count)
+        await loadHome()
+    }
+
+    func signOut() async throws {
+        guard !accountBusy else { throw HarborError(code: "account-busy") }
+        accountBusy = true
+        defer { accountBusy = false }
+        // Desktop sign-out removes the local session, without revoking other devices.
+        let guest: [Addon]
+        if let saved = try keychain.read("addons.v1", as: [Addon].self) { guest = saved }
+        else { guest = [try await service.install(HarborService.cinemetaManifest)] }
+        try keychain.remove("account.v1")
+        savedAccount = nil; addons = guest; rows = []; warnings = []; accountError = nil
+        Diagnostics.shared.record(.accountSignedOut)
+        await loadHome()
     }
 
     func install(_ url: String) async throws {
         guard storageReady else { throw HarborError(code: "storage-unavailable") }
+        guard !accountBusy else { throw HarborError(code: "account-busy") }
+        accountBusy = true
+        defer { accountBusy = false }
         let addon = try await service.install(url)
         let next = addons.filter { $0.transportUrl != addon.transportUrl } + [addon]
-        try persist(next)
+        try await saveCollection(next)
         Diagnostics.shared.record(.addonInstalled, count: addons.count)
         await loadHome()
     }
 
     func setEnabled(_ addon: Addon, _ enabled: Bool) throws {
+        guard !accountBusy else { throw HarborError(code: "account-busy") }
         var next = addons
         guard let index = next.firstIndex(where: { $0.id == addon.id }) else { return }
         next[index].enabled = enabled
         try persist(next)
     }
 
-    func remove(_ offsets: IndexSet) throws {
-        try persist(addons.enumerated().filter { !offsets.contains($0.offset) }.map(\.element))
+    func remove(_ offsets: IndexSet) async throws {
+        guard !accountBusy else { throw HarborError(code: "account-busy") }
+        accountBusy = true
+        defer { accountBusy = false }
+        try await saveCollection(addons.enumerated().filter { !offsets.contains($0.offset) }.map(\.element))
+        await loadHome()
     }
 
-    func move(_ offsets: IndexSet, to destination: Int) throws {
+    func move(_ offsets: IndexSet, to destination: Int) async throws {
+        guard !accountBusy else { throw HarborError(code: "account-busy") }
+        accountBusy = true
+        defer { accountBusy = false }
         let moving = addons.enumerated().filter { offsets.contains($0.offset) }.map(\.element)
         var remaining = addons.enumerated().filter { !offsets.contains($0.offset) }.map(\.element)
         let insertion = destination - offsets.filter { $0 < destination }.count
         remaining.insert(contentsOf: moving, at: max(0, min(insertion, remaining.count)))
-        try persist(remaining)
+        try await saveCollection(remaining)
+        await loadHome()
+    }
+
+    private func saveCollection(_ next: [Addon]) async throws {
+        if let account = savedAccount {
+            let collection = AccountCollection(addons: next, records: account.collection.records(for: next))
+            try await accounts.save(collection, session: account.session)
+            let saved = SavedAccount(session: account.session, collection: collection)
+            do { try keychain.write(saved, key: "account.v1") }
+            catch { throw HarborError(code: "account-local-save-failed") }
+            savedAccount = saved; addons = next
+        } else { try persist(next) }
     }
 
     private func persist(_ next: [Addon]) throws {
         guard storageReady else { throw HarborError(code: "storage-unavailable") }
-        try keychain.write(next, key: "addons.v1")
+        if var account = savedAccount {
+            account.collection.addons = next
+            try keychain.write(account, key: "account.v1")
+            savedAccount = account
+        } else { try keychain.write(next, key: "addons.v1") }
         addons = next
     }
 }

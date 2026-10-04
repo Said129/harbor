@@ -5,6 +5,15 @@ use serde_json::{json, Value};
 #[derive(Deserialize)]
 #[serde(tag = "operation", rename_all = "camelCase")]
 enum Request {
+    #[serde(rename = "accountRequest")]
+    AccountPlan {
+        action: String,
+        fields: Value,
+    },
+    AccountResponse {
+        action: String,
+        response: Value,
+    },
     NormalizeAddon {
         url: String,
     },
@@ -65,6 +74,12 @@ enum Request {
 pub fn dispatch(bytes: &[u8]) -> Result<Value, &'static str> {
     let request: Request = serde_json::from_slice(bytes).map_err(|_| "invalid-request")?;
     match request {
+        Request::AccountPlan { action, fields } => {
+            harbor_core::account::request(&action, &fields)
+        }
+        Request::AccountResponse { action, response } => {
+            harbor_core::account::response(&action, &response)
+        }
         Request::NormalizeAddon { url } => {
             Ok(json!({ "url": addons::normalize_manifest_url(&url)? }))
         }

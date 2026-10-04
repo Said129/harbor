@@ -1,12 +1,18 @@
 import SwiftUI
 
 struct SettingsView: View {
+    let app: AppModel
     @AppStorage("resumePlayback") private var resumePlayback = true
     @AppStorage("resumePrompt") private var resumePrompt = false
     @State private var export: URL?
     @State private var error: String?
     var body: some View {
         Form {
+            Section("Cuenta") {
+                Button(app.user?.displayName ?? "Iniciar sesión en Stremio") { app.showAccount = true }
+                    .accessibilityIdentifier("settings-account")
+                if app.user != nil { Text("Tus addons se recuperan al iniciar sesión y al abrir Harbor.") }
+            }
             Section("Reanudación") {
                 Toggle("Reanudar la reproducción", isOn: $resumePlayback)
                 Toggle("Preguntar antes de reanudar", isOn: $resumePrompt).disabled(!resumePlayback)
