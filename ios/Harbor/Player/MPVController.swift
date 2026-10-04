@@ -92,7 +92,7 @@ final class MPVController: GLKViewController {
         let allocations = values.map { strdup($0) }
         defer { for allocation in allocations { free(allocation) } }
         guard allocations.allSatisfy({ $0 != nil }) else { throw HarborError(code: "player-allocation") }
-        var pointers: [UnsafePointer<CChar>?] = allocations.map { $0.map(UnsafePointer.init) } + [nil]
+        var pointers: [UnsafePointer<CChar>?] = allocations.map { $0.map { UnsafePointer<CChar>($0) } } + [nil]
         try check(mpv_command_async(handle, 0, &pointers))
     }
 
