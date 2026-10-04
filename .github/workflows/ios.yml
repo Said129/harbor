@@ -110,11 +110,13 @@ jobs:
           xcrun simctl list devices available --json > ios/build/devices.json
           device=$(python3 -c 'import json; d=json.load(open("ios/build/devices.json")); print(next(x["udid"] for runtime, values in d["devices"].items() if "iOS" in runtime for x in values if x["name"].startswith("iPhone")))')
           echo "IOS_SIMULATOR=$device" >> "$GITHUB_ENV"
+          echo "IOS_SIMULATOR_ARCH=$(uname -m)" >> "$GITHUB_ENV"
       - name: Run bridge and model tests on iPhone simulator
+        timeout-minutes: 15
         shell: bash
         run: |
           set -euo pipefail
-          xcodebuild -project ios/Harbor.xcodeproj -scheme Harbor -configuration Debug -destination "platform=iOS Simulator,id=$IOS_SIMULATOR" -derivedDataPath ios/build/DerivedData -clonedSourcePackagesDirPath ios/build/SourcePackages -resultBundlePath ios/build/Tests.xcresult CODE_SIGNING_ALLOWED=NO test 2>&1 | tee ios/build/logs/tests.log
+          xcodebuild -project ios/Harbor.xcodeproj -scheme Harbor -configuration Debug -destination "platform=iOS Simulator,id=$IOS_SIMULATOR,arch=$IOS_SIMULATOR_ARCH" -derivedDataPath ios/build/DerivedData -clonedSourcePackagesDirPath ios/build/SourcePackages -resultBundlePath ios/build/Tests.xcresult CODE_SIGNING_ALLOWED=NO test 2>&1 | tee ios/build/logs/tests.log
       - name: Build device without signing
         shell: bash
         run: |

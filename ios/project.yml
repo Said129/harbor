@@ -34,6 +34,7 @@ targets:
         CFBundleShortVersionString: "0.1.0"
         CFBundleVersion: "1"
         UILaunchScreen: {}
+        UIRequiresFullScreen: YES
         UISupportedInterfaceOrientations:
           - UIInterfaceOrientationPortrait
           - UIInterfaceOrientationLandscapeLeft
@@ -43,7 +44,7 @@ targets:
           NSAllowsLocalNetworking: YES
     dependencies:
       - framework: Frameworks/HarborCore.xcframework
-        embed: false
+        embed: true
       - package: MPVKit
         product: MPVKit
       - sdk: GLKit.framework

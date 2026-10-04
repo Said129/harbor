@@ -10,7 +10,7 @@ UniFFI; C ABI por cada función; C ABI versionada con mensajes tipados serde/Cod
 
 ## Decision
 
-Separar wrappers WASM con feature default; native consumer usa default-features=false. Crate `harbor-ios-bridge` con versión ABI, llamada UTF-8+length y destructor de respuesta. Request enum por operación, respuesta data/error con códigos estables y límite de tamaño. Rust construye rutas addon y corre parser/trust/scoring originales; Swift aporta URLSession y sistema. El bridge es estático, se empaqueta XCFramework device y simulator.
+Separar wrappers WASM con feature default; native consumer usa default-features=false. Crate `harbor-ios-bridge` con versión ABI, llamada UTF-8+length y destructor de respuesta. Request enum por operación, respuesta data/error con códigos estables y límite de tamaño. Rust construye rutas addon y corre parser/trust/scoring originales; Swift aporta URLSession y sistema. En iOS, el bridge se empaqueta como framework dinámico dentro de un XCFramework device y simulator. La DLL host y los demás crate types siguen disponibles.
 
 ## Advantages
 
@@ -18,8 +18,12 @@ No referencias Rust ni runtime async cruzan ABI, ownership explícito, portable 
 
 ## Disadvantages
 
-JSON implica serialización y traducción de tipos; no sirve para frames/audio. Caller C debe respetar pointers válidos y ownership. Se debe mantener versión y tests de contratos.
+JSON implica serialización y traducción de tipos; no sirve para frames/audio. Caller C debe respetar pointers válidos y ownership. Se debe mantener versión y tests de contratos. El framework dinámico se embebe en la app y también requiere firmado válido al distribuir.
 
 ## Consequences
 
 Encapsular en `CoreBridge.swift`; ningún View usa C. Buffers se liberan siempre. Core calls de ranking fuera de UI actor. No convertir errores/panics en resultados vacíos. Si servicios Rust crecen con async/cancelación, evaluar UniFFI con ADR adicional. La pequeña implementación addon Rust porta contratos hoy TypeScript porque esos servicios NO existen en core; no duplicar ranking ni Debrid en Swift.
+
+## Revisión tras enlace Apple (2026-10-04)
+
+El experimento inicial usó una staticlib. El CI `37213976287` pasó build simulator/device y 8 tests, pero el linker señaló `_rust_eh_personality` duplicado entre HarborCore y Libdovi de MPVKit: ambos contienen std de toolchains Rust distintos. La [referencia Rust](https://doc.rust-lang.org/reference/linkage.html) documenta conflictos al enlazar varios subsistemas Rust estáticos y el uso de cdylib para otros lenguajes. Elegimos una cdylib con runtime privado y ABI C idéntica; no hay llamadas Rust entre HarborCore y Libdovi ni unwinding a través de C. Se mantienen catch_unwind y el destructor dentro del mismo runtime. El empaquetado valida los tres exports de ABI 1 por arquitectura y el install name `@rpath/HarborCore.framework/HarborCore`. Device es arm64; simulator universal arm64/x86_64. No se eliminan Libdovi, Dolby Vision ni el manejo de panics para resolver la colisión.

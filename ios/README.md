@@ -61,7 +61,7 @@ gh run view RUN_ID --repo Said129/harbor --log-failed
 
 El PR abierto ejecuta el workflow al actualizar la rama. Los pushes directos sólo lo ejecutan en `main`, evitando duplicar cada build del PR. Sin un PR abierto, lanzar manualmente con `gh workflow run ios.yml --repo Said129/harbor --ref ios/native-iphone`.
 
-Stages: tests Windows/Linux → cargo Apple sin WASM → staticlib device arm64 y simulator arm64/x86_64 → XCFramework → XcodeGen → dependencias SPM fijadas → build Swift/simulator → tests de ABI/modelos en iPhone simulator → build device unsigned. El primer gate Apple ocurre antes de compilar Swift. Si se autoriza el upload dentro de la cuota, produce logs, xcresult, XCFramework y apps simulator/device unsigned.
+Stages: tests Windows/Linux → cargo Apple sin WASM → framework dinámico device arm64 y simulator arm64/x86_64 → validación de exports/install name → XCFramework → XcodeGen → dependencias SPM fijadas → build Swift/simulator → tests de ABI/modelos en iPhone simulator → build device unsigned. El runtime Rust del bridge queda dentro de su framework para evitar la colisión con Libdovi; ver ADR 0002. El primer gate Apple ocurre antes de compilar Swift. Si se autoriza el upload dentro de la cuota, produce logs, xcresult, XCFramework y apps simulator/device unsigned.
 
 Para ejecutar las mismas etapas en un Mac disponible en el futuro: `bash scripts/ios/build-rust.sh`, `xcodegen generate --spec ios/project.yml` y los comandos xcodebuild del workflow. `project.yml` es la fuente; el proyecto Xcode, Info.plist y frameworks son generados.
 
