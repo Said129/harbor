@@ -24,6 +24,7 @@ struct Episode: Codable, Identifiable, Hashable, Sendable {
     var title: String?
     var thumbnail: String?
     var overview: String?
+    var runtime: Double?
 }
 
 struct Addon: Codable, Identifiable, Sendable {

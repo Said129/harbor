@@ -11,6 +11,9 @@ struct HarborError: Error, LocalizedError, Sendable {
         case "no-streams": "Los addons consultados no devolvieron streams para este título."
         case "no-metadata": "Los addons no devolvieron metadata para este título."
         case "network": "La solicitud de red falló. Puedes volver a intentarlo."
+        case "resume-read-failed", "invalid-resume-store", "unsupported-resume-version": "No se pudo leer el progreso guardado. Los datos se han conservado."
+        case "resume-write-failed", "resume-store-too-large": "No se pudo guardar el progreso. Los datos anteriores se han conservado."
+        case "resume-store-unavailable": "El almacenamiento del progreso no está disponible."
         default: "Harbor: \(code)"
         }
     }

@@ -4,6 +4,7 @@ import Observation
 @MainActor @Observable
 final class AppModel {
     let service = HarborService()
+    let resume = ResumeStore()
     private let keychain = KeychainStore()
     private var started = false
     private(set) var storageReady = false
@@ -12,12 +13,14 @@ final class AppModel {
     var loading = false
     var error: String?
     var warnings: [String] = []
+    var progressError: String?
 
     func start() async {
         guard !started else { return }
         started = true
         loading = true
         Diagnostics.shared.record(.startup)
+        await reloadProgress()
         do {
             // A Keychain error is not an empty store and must never overwrite it.
             if let saved = try keychain.read("addons.v1", as: [Addon].self) { addons = saved }
@@ -35,6 +38,11 @@ final class AppModel {
     }
 
     func retryStartup() async { started = false; error = nil; await start() }
+
+    func reloadProgress() async {
+        do { try await resume.load(); progressError = nil }
+        catch { progressError = safeMessage(error); Diagnostics.shared.recordFailure(error) }
+    }
 
     func loadHome() async {
         loading = true

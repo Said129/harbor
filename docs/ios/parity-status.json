@@ -538,5 +538,23 @@
     "state": "Investigating",
     "implementation": "`docs/ios/adr/0003-ios-player.md`",
     "notes": "MPVKit demo warns its OpenGL iOS renderer has 10-bit issues; Metal patch is experimental. Preserve HDR/PiP/AirPlay goals and validate alternative render/system integration, not mark OS-impossible."
+  },
+  "Local playback resume": {
+    "ios": "Shared rules tested; native storage/player awaiting Apple runtime",
+    "state": "Partial",
+    "implementation": "`harbor-core/src/resume.rs`; `ios/Harbor/Services/ResumeStore.swift`; `Player/MPVController.swift`; `Views/SettingsView.swift`",
+    "notes": "Desktop episode keys, autosave guards and default resume settings retained. Eight Rust tests and 28 offline Desktop/C ABI comparisons pass. Three Swift storage tests written but not executed. Cloud sync and Continue Watching remain pending."
+  },
+  "Setting: `resumePlayback`": {
+    "ios": "Shared rules tested; native storage/player awaiting Apple runtime",
+    "state": "Partial",
+    "implementation": "`harbor-core/src/resume.rs`; `ios/Harbor/Services/ResumeStore.swift`; `Player/MPVController.swift`; `Views/SettingsView.swift`",
+    "notes": "Desktop episode keys, autosave guards and default resume settings retained. Eight Rust tests and 28 offline Desktop/C ABI comparisons pass. Three Swift storage tests written but not executed. Cloud sync and Continue Watching remain pending."
+  },
+  "Setting: `resumePrompt`": {
+    "ios": "Shared rules tested; native storage/player awaiting Apple runtime",
+    "state": "Partial",
+    "implementation": "`harbor-core/src/resume.rs`; `ios/Harbor/Services/ResumeStore.swift`; `Player/MPVController.swift`; `Views/SettingsView.swift`",
+    "notes": "Desktop episode keys, autosave guards and default resume settings retained. Eight Rust tests and 28 offline Desktop/C ABI comparisons pass. Three Swift storage tests written but not executed. Cloud sync and Continue Watching remain pending."
   }
 }

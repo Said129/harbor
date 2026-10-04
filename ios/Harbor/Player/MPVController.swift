@@ -10,13 +10,16 @@ import Libmpv
 final class MPVController: GLKViewController {
     let state: PlayerState
     private let source: PlaybackSource
+    private let startMs: Double
     private var handle: OpaquePointer?
     private var renderer: OpaquePointer?
     private var context: EAGLContext?
     private var didClose = false
+    private var checkedResumeDuration = false
 
-    init(source: PlaybackSource, state: PlayerState) {
+    init(source: PlaybackSource, state: PlayerState, startMs: Double = 0) {
         self.source = source; self.state = state
+        self.startMs = startMs
         super.init(nibName: nil, bundle: nil)
         state.controller = self
     }
@@ -54,6 +57,7 @@ final class MPVController: GLKViewController {
         for (key, value) in ["vo":"libmpv", "hwdec":"auto-safe", "config":"no", "ytdl":"no", "terminal":"no", "msg-level":"all=no", "cache":"yes", "demuxer-max-bytes":"64MiB", "network-timeout":"60", "video-timing-offset":"0"] {
             try check(mpv_set_option_string(mpv, key, value))
         }
+        if startMs.isFinite && startMs > 0 { try check(mpv_set_option_string(mpv, "start", String(startMs / 1000))) }
         try check(mpv_initialize(mpv))
         try check(mpv_request_log_messages(mpv, "no"))
         var initialization = mpv_opengl_init_params(get_proc_address: { _, name in
@@ -107,6 +111,8 @@ final class MPVController: GLKViewController {
     }
     func replay() {
         state.error = nil
+        checkedResumeDuration = true
+        set("start", "none")
         run(["loadfile", source.url, "replace"])
     }
 
@@ -143,6 +149,9 @@ final class MPVController: GLKViewController {
             case MPV_EVENT_START_FILE:
                 state.ended = false
                 state.loaded = false
+                state.hasPosition = false
+                state.position = 0
+                state.duration = 0
             case MPV_EVENT_FILE_LOADED:
                 state.loaded = true
                 for subtitle in source.subtitles ?? [] {
@@ -155,8 +164,16 @@ final class MPVController: GLKViewController {
                 let key = String(cString: name)
                 if property.format == MPV_FORMAT_DOUBLE {
                     let number = value.assumingMemoryBound(to: Double.self).pointee
-                    if key == "time-pos" { state.position = max(0, number) }
-                    if key == "duration" { state.duration = max(0, number) }
+                    guard number.isFinite && number >= 0 else { continue }
+                    if key == "time-pos" && state.loaded { state.position = number; state.hasPosition = true }
+                    if key == "duration" {
+                        state.duration = number
+                        if !checkedResumeDuration && number > 0 {
+                            checkedResumeDuration = true
+                            // Desktop restarts a saved position in the last 20s.
+                            if startMs > 5000 && startMs / 1000 >= number - 20 { run(["seek", "0", "absolute+exact"]) }
+                        }
+                    }
                 } else if property.format == MPV_FORMAT_FLAG {
                     let flag = value.assumingMemoryBound(to: Int32.self).pointee != 0
                     if key == "pause" { state.paused = flag }

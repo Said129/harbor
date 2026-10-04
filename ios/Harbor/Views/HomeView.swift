@@ -15,6 +15,12 @@ struct HomeView: View {
                     }.buttonStyle(.plain)
                 }
                 if model.loading { ProgressView("Cargando catálogos…").frame(maxWidth: .infinity) }
+                if let error = model.progressError {
+                    VStack(alignment: .leading) {
+                        Text(error).font(.caption).foregroundStyle(.orange)
+                        Button("Reintentar lectura del progreso") { Task { await model.reloadProgress() } }
+                    }.padding(.horizontal)
+                }
                 if let error = model.error {
                     ContentUnavailableView { Label("No se pudo cargar Harbor", systemImage: "wifi.exclamationmark") } description: { Text(error) } actions: {
                         Button("Reintentar") { Task { if model.storageReady { await model.loadHome() } else { await model.retryStartup() } } }

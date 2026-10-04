@@ -34,17 +34,24 @@ struct DetailView: View {
             }
         }.background(HarborTheme.background).navigationBarTitleDisplayMode(.inline)
         .task { await model.load(app.addons) }
-        .sheet(isPresented: $showStreams, onDismiss: { resolutionTask?.cancel() }) {
+        .sheet(isPresented: $showStreams, onDismiss: { resolutionTask?.cancel(); model.pendingPlayback = nil; model.showResumePrompt = false }) {
             NavigationStack {
                 List {
                     if model.loadingStreams { ProgressView("Consultando addons…") }
                     if let error = model.error { Text(error).foregroundStyle(.orange) }
                     ForEach(Array(model.warnings.enumerated()), id: \.offset) { Text("Solicitud addon: \($0.element)").font(.caption) }
                     ForEach(model.offers) { offer in
-                        Button { resolutionTask = Task { await model.play(offer) } } label: { VStack(alignment: .leading, spacing: 8) { Text(offer.title); Text("\(offer.source) · \(offer.quality)").font(.caption).foregroundStyle(.secondary) }.frame(minHeight: 44) }.disabled(model.resolving)
+                        Button { resolutionTask = Task { await model.play(offer, resume: app.resume) } } label: { VStack(alignment: .leading, spacing: 8) { Text(offer.title); Text("\(offer.source) · \(offer.quality)").font(.caption).foregroundStyle(.secondary) }.frame(minHeight: 44) }.disabled(model.resolving || model.pendingPlayback != nil)
                     }
                 }.navigationTitle("Streams").toolbar { ToolbarItem(placement: .topBarTrailing) { Button("Cerrar") { showStreams = false } } }
-                .fullScreenCover(item: $model.playback) { source in PlayerView(source: source, title: model.media.name) }
+                .fullScreenCover(item: $model.playback) { session in PlayerView(session: session, resume: app.resume, title: model.media.name) }
+                .alert("¿Reanudar la reproducción?", isPresented: $model.showResumePrompt) {
+                    Button("Reanudar") { model.chooseResume(true) }
+                    Button("Desde el principio") { model.chooseResume(false) }
+                    Button("Cancelar", role: .cancel) { model.pendingPlayback = nil }
+                } message: {
+                    Text("Continuar desde el minuto \(((model.pendingPlayback?.startMs ?? 0) / 60_000).formatted(.number.precision(.fractionLength(0)))).")
+                }
                 .task(id: selectedEpisode?.id ?? model.media.id) { await model.findStreams(app.addons, episode: selectedEpisode) }
             }.presentationDetents([.medium, .large])
         }

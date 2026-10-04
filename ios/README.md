@@ -33,6 +33,20 @@ Usa Cinemeta y el [addon de ejemplo oficial Stremio](https://github.com/Stremio/
 
 Los logs exportables se comparten desde Ajustes dentro de la app. Incluyen fecha/evento/count y códigos de fallo permitidos o números HTTP/mpv/Keychain validados; excluyen manifests, tokens, URLs y logs crudos de mpv.
 
+## Progreso local y reanudación
+
+La implementación nativa guarda claves de película/episodio, posición y timestamp en un documento versionado de Application Support, sin URLs de streams ni secretos. Usa un actor, escrituras atómicas y protección de archivos tras el primer desbloqueo. Un fallo de lectura no sobrescribe datos anteriores; las incidencias se muestran y registran mediante códigos seguros.
+
+El core comparte las reglas portadas de Desktop: autosave cada 4 s con posición mínima de 5 s, exclusión de stubs cortos, posiciones independientes por episodio y specials, reanudación automática activada por defecto y aviso opcional desactivado. Ajustes permite cambiar ambas opciones. Guarda también snapshots al pausar/terminar/salir y cambiar lifecycle; el cierre forzado puede perder el último intervalo.
+
+Validar el contrato desde Windows, después de construir el bridge:
+
+```powershell
+python scripts/ios/test-resume-contract.py
+```
+
+Compara el módulo TypeScript Desktop real con la DLL/C ABI, sin red. Los tests Swift de persistencia/reinicio/corrupción y el comportamiento mpv de resume aún requieren Apple CI/iPhone. Continue Watching, historial completo y sincronización de cuentas siguen pendientes.
+
 ## CI Apple sin Mac local
 
 El workflow [iPhone Native](../.github/workflows/ios.yml) utiliza los runners estándar `ubuntu-24.04`, `windows-latest` y `macos-15`. Sólo ejecuta jobs en repositorios públicos. GitHub documenta [runners estándar gratuitos en repositorios públicos](https://docs.github.com/en/actions/reference/runners/github-hosted-runners). No utiliza runners large/xlarge ni cambia planes, pagos, presupuestos o límites de caché.
@@ -41,9 +55,9 @@ El propietario ha solicitado no gastar dinero. Por ello los uploads de artefacto
 
 ```powershell
 git push origin ios/native-iphone
-gh workflow run ios.yml --repo Said197812/harbor --ref ios/native-iphone
-gh run list --repo Said197812/harbor --workflow ios.yml
-gh run view RUN_ID --repo Said197812/harbor --log-failed
+gh workflow run ios.yml --repo Said129/harbor --ref ios/native-iphone
+gh run list --repo Said129/harbor --workflow ios.yml
+gh run view RUN_ID --repo Said129/harbor --log-failed
 ```
 
 Stages: tests Windows/Linux → cargo Apple sin WASM → staticlib device/simulator → XCFramework → XcodeGen → dependencias SPM fijadas → build Swift/simulator → tests de ABI/modelos en iPhone simulator → build device unsigned. El primer gate Apple ocurre antes de compilar Swift. Si se autoriza el upload dentro de la cuota, produce logs, xcresult, XCFramework y apps simulator/device unsigned.

@@ -4,6 +4,7 @@ import Observation
 @MainActor @Observable
 final class PlayerState {
     var position: Double = 0
+    var hasPosition = false
     var duration: Double = 0
     var paused = false
     var buffering = false

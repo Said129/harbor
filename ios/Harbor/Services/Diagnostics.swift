@@ -6,7 +6,7 @@ final class Diagnostics {
     static let shared = Diagnostics()
     private let logger = Logger(subsystem: "site.harbor.iphone", category: "lifecycle")
     private var events: [String] = []
-    enum Event: String { case startup, coreReady, catalogsLoaded, addonInstalled, streamsLoaded, requestStarted, requestCompleted, playerStarted, playerEnded, playerFailed, failure }
+    enum Event: String { case startup, coreReady, catalogsLoaded, addonInstalled, streamsLoaded, requestStarted, requestCompleted, playerStarted, playerEnded, playerFailed, progressSaved, failure }
     func record(_ event: Event, count: Int = 0) {
         // Closed event vocabulary: callers cannot insert payloads, URLs or credentials.
         let line = "\(Date().ISO8601Format()) \(event.rawValue) count=\(count)"
@@ -15,7 +15,8 @@ final class Diagnostics {
     func recordFailure(_ error: Error) {
         let code = (error as? HarborError)?.code ?? "unknown"
         let known: Set<String> = ["unknown", "network", "invalid-http-response", "response-too-large", "invalid-request", "invalid-request-size", "core-panic", "invalid-addon-url", "invalid-manifest", "invalid-resource", "invalid-stream-response", "invalid-playback-url", "invalid-playback-header", "invalid-subtitle-url", "torrent-resolver-pending", "youtube-resolver-pending", "nzb-resolver-pending", "external-url-only", "addon-not-configured", "no-source", "no-streams", "no-metadata", "abi-version", "core-no-response", "storage-unavailable"]
-        var safe = known.contains(code) ? code : "unknown"
+        let resumeCodes: Set<String> = ["invalid-resume-target", "invalid-resume-position", "invalid-resume-store", "unsupported-resume-version", "resume-store-unavailable", "resume-store-too-large", "resume-read-failed", "resume-write-failed"]
+        var safe = known.contains(code) || resumeCodes.contains(code) ? code : "unknown"
         if code.hasPrefix("http-"), let status = Int(code.dropFirst(5)), (100...599).contains(status) { safe = "http-\(status)" }
         if code.hasPrefix("mpv-"), let status = Int(code.dropFirst(4)), (-1024...0).contains(status) { safe = "mpv-\(status)" }
         if code.hasPrefix("keychain-"), let status = Int32(code.dropFirst(9)) { safe = "keychain-\(status)" }

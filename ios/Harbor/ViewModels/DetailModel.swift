@@ -11,7 +11,9 @@ final class DetailModel {
     var offers: [StreamOffer] = []
     var warnings: [String] = []
     var error: String?
-    var playback: PlaybackSource?
+    var playback: PlaybackSession?
+    var pendingPlayback: PlaybackSession?
+    var showResumePrompt = false
     var selectedEpisode: Episode?
     private let service: HarborService
     private var streamRequest = UUID()
@@ -34,6 +36,8 @@ final class DetailModel {
         offers = []
         warnings = []
         playback = nil
+        pendingPlayback = nil
+        showResumePrompt = false
         selectedEpisode = episode
         defer { if streamRequest == request { loadingStreams = false } }
         do {
@@ -48,16 +52,37 @@ final class DetailModel {
         catch { if streamRequest == request { self.error = safeMessage(error) } }
     }
 
-    func play(_ offer: StreamOffer) async {
+    func play(_ offer: StreamOffer, resume: ResumeStore) async {
         guard !resolving else { return }
         resolving = true
         defer { resolving = false }
         do {
             let source = try await service.resolve(offer)
+            let target = ResumeTarget(id: media.id, season: selectedEpisode?.season, episode: selectedEpisode?.episode, videoId: selectedEpisode?.id)
+            var start = ResumeStart(ms: 0, prompt: false)
+            var warning: String?
+            let progressEnabled = ["movie", "series", "anime"].contains(media.type) && !media.id.hasPrefix("iptv:")
+            if progressEnabled {
+                do {
+                    start = try await resume.position(target, durationMs: (selectedEpisode?.runtime ?? 0) * 60_000, playback: UserDefaults.standard.object(forKey: "resumePlayback") as? Bool ?? true, prompt: UserDefaults.standard.object(forKey: "resumePrompt") as? Bool ?? false)
+                } catch {
+                    warning = safeMessage(error)
+                    Diagnostics.shared.recordFailure(error)
+                }
+            }
             try Task.checkCancellation()
-            playback = source
+            let session = PlaybackSession(source: source, target: target, startMs: start.ms, storageWarning: warning, progressEnabled: progressEnabled)
+            if start.prompt { pendingPlayback = session; showResumePrompt = true }
+            else { playback = session }
         }
         catch is CancellationError { return }
         catch { self.error = safeMessage(error) }
+    }
+
+    func chooseResume(_ resume: Bool) {
+        guard let pending = pendingPlayback else { return }
+        playback = PlaybackSession(source: pending.source, target: pending.target, startMs: resume ? pending.startMs : 0, storageWarning: pending.storageWarning, progressEnabled: pending.progressEnabled)
+        pendingPlayback = nil
+        showResumePrompt = false
     }
 }
