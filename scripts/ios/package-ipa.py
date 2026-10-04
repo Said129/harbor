@@ -4,6 +4,7 @@ import hashlib
 import json
 from pathlib import Path
 import plistlib
+import re
 import shutil
 import stat
 import subprocess
@@ -18,6 +19,11 @@ def require(condition, message):
 
 def verify_arm64(binary):
     subprocess.run(["xcrun", "lipo", str(binary), "-verify_arch", "arm64"], check=True)
+
+
+def linked_frameworks(binary):
+    libraries = subprocess.check_output(["xcrun", "otool", "-L", str(binary)], text=True)
+    return set(re.findall(r"@rpath/([^/\s]+\.framework)/", libraries))
 
 
 def main():
@@ -43,11 +49,24 @@ def main():
     require((app / "Harbor").stat().st_mode & stat.S_IXUSR, "App executable permission missing")
     frameworks = list((app / "Frameworks").glob("*.framework"))
     require(any(framework.name == "HarborCore.framework" for framework in frameworks), "Embedded Rust framework missing")
+    required = linked_frameworks(app / "Harbor") | {"HarborCore.framework"}
+    binaries = {}
+    resource_frameworks = set()
     for framework in frameworks:
         framework_info = plistlib.loads((framework / "Info.plist").read_bytes())
         executable = framework_info.get("CFBundleExecutable", "")
         require(executable and Path(executable).name == executable, "Invalid framework executable")
-        verify_arm64(framework / executable)
+        binary = framework / executable
+        if binary.is_file():
+            verify_arm64(binary)
+            binaries[framework.name] = binary
+            required |= linked_frameworks(binary)
+        else:
+            # Xcode removes static executables after linking their code into
+            # Harbor, retaining framework resources. Every dynamic dependency
+            # must still have a real executable in the bundle.
+            resource_frameworks.add(framework.name)
+    require(required <= binaries.keys(), "A linked dynamic framework executable is missing")
     output.parent.mkdir(parents=True, exist_ok=True)
     # ditto retains Unix modes and framework symlinks required by a signing tool.
     # The archive contains Payload/Harbor.app; it has no certificate or profile.
@@ -74,6 +93,8 @@ def main():
         "architecture": "arm64",
         "signed": False,
         "frameworkCount": len(frameworks),
+        "dynamicFrameworkCount": len(binaries),
+        "resourceFrameworkCount": len(resource_frameworks),
         "bytes": output.stat().st_size,
         "sha256": digest,
     }
