@@ -1,10 +1,10 @@
 # Harbor para iPhone: desarrollo
 
-Port nativo SwiftUI, exclusivamente iPhone (device family 1), con iOS 17 como mínimo inicial. Este es el comienzo del primer recorrido funcional, no una release con paridad Desktop. Swift y el enlace Apple todavía no han sido validados: el primer job de GitHub Actions fue rechazado por un bloqueo de facturación de la cuenta antes de ejecutar pasos. Ver [evidencia](../docs/ios/VALIDATION.md) y [matriz de 706 entradas](../docs/ios/FEATURE_PARITY.md).
+Port nativo SwiftUI, exclusivamente iPhone (device family 1), con iOS 17 como mínimo inicial. Este es el comienzo del primer recorrido funcional, no una release con paridad Desktop. El fork de trabajo es Said129/harbor; el CI ya ejecuta etapas Apple. El estado observado de compilación, tests y reproducción se registra en la [evidencia](../docs/ios/VALIDATION.md) y la [matriz de 706 entradas](../docs/ios/FEATURE_PARITY.md).
 
 La app consulta manifests, catálogos, búsqueda, metadata y streams reales. Instala Cinemeta sólo cuando no existe un registro de addons en Keychain; los catálogos se descubren del manifest. Una lista intencionalmente vacía permanece vacía. Se pueden instalar URLs configuradas de addons, habilitar/deshabilitar, reordenar y desinstalar. El parsing, trust y ranking ejecutan el código original de harbor-core mediante una ABI C versionada. Libmpv integrado usa MPVKit fijado a una revisión concreta; no hay WebView ni proceso mpv externo.
 
-Sólo se resuelven fuentes HTTP(S) directas en este momento. Los clientes nativos de los cinco proveedores Debrid, el P2P local, cuentas, biblioteca, progreso/resume y las demás entradas de la matriz siguen pendientes. Una URL directa de un addon configurado con Debrid no equivale a implementar Debrid completo. Las ofertas con otras vías no se ocultan; muestran errores explícitos al seleccionarlas.
+Sólo se resuelven fuentes HTTP(S) directas en este momento. Hay una primera implementación de progreso local y reanudación descrita abajo. Los clientes nativos de los cinco proveedores Debrid, el P2P local, cuentas, biblioteca, sincronización del progreso y las demás entradas de la matriz siguen pendientes. Una URL directa de un addon configurado con Debrid no equivale a implementar Debrid completo. Las ofertas con otras vías no se ocultan; muestran errores explícitos al seleccionarlas.
 
 ## Desde Windows
 
@@ -15,7 +15,7 @@ cargo test --manifest-path harbor-core/Cargo.toml --locked
 cargo test --manifest-path harbor-core/Cargo.toml --locked --no-default-features
 cargo test --manifest-path harbor-ios-bridge/Cargo.toml --locked
 cargo clippy --manifest-path harbor-ios-bridge/Cargo.toml --locked --all-targets -- -D warnings
-rustup target add aarch64-apple-ios aarch64-apple-ios-sim wasm32-unknown-unknown
+rustup target add aarch64-apple-ios aarch64-apple-ios-sim x86_64-apple-ios wasm32-unknown-unknown
 cargo check --manifest-path harbor-ios-bridge/Cargo.toml --locked --target aarch64-apple-ios
 cargo check --manifest-path harbor-core/Cargo.toml --locked --target wasm32-unknown-unknown
 ```
@@ -55,12 +55,13 @@ El propietario ha solicitado no gastar dinero. Por ello los uploads de artefacto
 
 ```powershell
 git push origin ios/native-iphone
-gh workflow run ios.yml --repo Said129/harbor --ref ios/native-iphone
 gh run list --repo Said129/harbor --workflow ios.yml
 gh run view RUN_ID --repo Said129/harbor --log-failed
 ```
 
-Stages: tests Windows/Linux → cargo Apple sin WASM → staticlib device/simulator → XCFramework → XcodeGen → dependencias SPM fijadas → build Swift/simulator → tests de ABI/modelos en iPhone simulator → build device unsigned. El primer gate Apple ocurre antes de compilar Swift. Si se autoriza el upload dentro de la cuota, produce logs, xcresult, XCFramework y apps simulator/device unsigned.
+El PR abierto ejecuta el workflow al actualizar la rama. Los pushes directos sólo lo ejecutan en `main`, evitando duplicar cada build del PR. Sin un PR abierto, lanzar manualmente con `gh workflow run ios.yml --repo Said129/harbor --ref ios/native-iphone`.
+
+Stages: tests Windows/Linux → cargo Apple sin WASM → staticlib device arm64 y simulator arm64/x86_64 → XCFramework → XcodeGen → dependencias SPM fijadas → build Swift/simulator → tests de ABI/modelos en iPhone simulator → build device unsigned. El primer gate Apple ocurre antes de compilar Swift. Si se autoriza el upload dentro de la cuota, produce logs, xcresult, XCFramework y apps simulator/device unsigned.
 
 Para ejecutar las mismas etapas en un Mac disponible en el futuro: `bash scripts/ios/build-rust.sh`, `xcodegen generate --spec ios/project.yml` y los comandos xcodebuild del workflow. `project.yml` es la fuente; el proyecto Xcode, Info.plist y frameworks son generados.
 
