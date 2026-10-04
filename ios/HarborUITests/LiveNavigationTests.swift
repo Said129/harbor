@@ -30,7 +30,9 @@ final class LiveNavigationTests: XCTestCase {
         capture(app, "home-real-catalogs")
         let homeError = app.staticTexts["home-error"]
         XCTAssertTrue(homeLoaded, "Home must load a real movie catalog; startup=\(homeError.exists ? homeError.label : "no error text")")
-        let hero = app.buttons.matching(identifier: "home-hero").firstMatch
+        // SwiftUI exposes the identified accessibility container as Other,
+        // with the actual NavigationLink button inside it.
+        let hero = app.descendants(matching: .any).matching(identifier: "home-hero").firstMatch
         XCTAssertTrue(hero.waitForExistence(timeout: 5))
         // Layout failures still fail the gate, while collecting the independent
         // navigation/render evidence in this same opt-in run.
