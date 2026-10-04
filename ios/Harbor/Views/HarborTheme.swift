@@ -1,8 +1,10 @@
 import SwiftUI
 
 enum HarborTheme {
-    static let background = Color(red: 0.035, green: 0.045, blue: 0.07)
-    static let accent = Color(red: 0.48, green: 0.65, blue: 0.94)
+    // sRGB equivalents of the upstream cool-grey default canvas/accent OKLCH
+    // tokens in src/lib/theme.ts. Native layouts retain Harbor's identity.
+    static let background = Color(.sRGB, red: 0.064818, green: 0.069086, blue: 0.075969)
+    static let accent = Color(.sRGB, red: 0.955883, green: 0.636209, blue: 0.359162)
 }
 
 struct Poster: View {
