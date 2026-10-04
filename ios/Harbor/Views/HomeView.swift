@@ -34,5 +34,6 @@ struct HomeView: View {
             }.padding(.bottom, 24)
         }.background(HarborTheme.background).navigationTitle("Harbor").navigationBarTitleDisplayMode(.inline)
             .refreshable { await model.loadHome() }
+            .accessibilityIdentifier("home-scroll")
     }
 }

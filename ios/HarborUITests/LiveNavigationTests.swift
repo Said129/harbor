@@ -59,10 +59,12 @@ final class LiveNavigationTests: XCTestCase {
         // Catalog resources are discovered from the installed example's
         // manifest, without injecting app state.
         app.tabBars.buttons["Home"].tap()
-        let scroll = app.scrollViews.firstMatch
+        let scroll = app.scrollViews["home-scroll"]
+        XCTAssertTrue(scroll.waitForExistence(timeout: 5))
         let example = app.buttons.matching(NSPredicate(format: "identifier == 'catalog-movie' AND label == 'Big Buck Bunny'")).firstMatch
         reveal(example, in: scroll)
-        XCTAssertTrue(example.waitForExistence(timeout: 15))
+        capture(app, "installed-addon-catalog")
+        XCTAssertTrue(example.waitForExistence(timeout: 15), "The real installed addon must appear in Home's vertical catalog list")
         XCTAssertTrue(example.isHittable)
         example.tap()
         let streams = app.buttons["detail-streams"]
