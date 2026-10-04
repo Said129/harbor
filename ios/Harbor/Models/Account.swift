@@ -22,12 +22,15 @@ struct AccountCollection: Codable, Sendable {
 
     func records(for next: [Addon]) -> [JSONValue] {
         next.map { addon in
-            let original = zip(addons, records).first { $0.0.transportUrl == addon.transportUrl }?.1
+            let original = zip(addons, records).first { $0.0.transportUrl == addon.transportUrl }
             var fields: [String: JSONValue]
-            if case .object(let value) = original { fields = value }
+            if case .object(let value) = original?.1 { fields = value }
             else { fields = ["transportName": .string(""), "flags": .object(["official": .bool(false), "protected": .bool(false)])] }
             fields["transportUrl"] = .string(addon.transportUrl)
-            fields["manifest"] = addon.manifest
+            // A reorder/remove must preserve the complete cloud manifest, including
+            // nested fields the native protocol does not consume. Refresh only
+            // an installed/reinstalled manifest that has actually changed.
+            if original?.0.manifest != addon.manifest { fields["manifest"] = addon.manifest }
             return .object(fields)
         }
     }
