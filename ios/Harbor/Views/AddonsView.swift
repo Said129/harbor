@@ -5,12 +5,15 @@ struct AddonsView: View {
     @State private var url = ""
     @State private var error: String?
     @State private var installing = false
+    @FocusState private var editingURL: Bool
     var body: some View {
         List {
             Section("Instalar desde URL") {
                 SecureField("URL del manifest", text: $url).textInputAutocapitalization(.never).autocorrectionDisabled().keyboardType(.URL)
+                    .focused($editingURL)
                     .accessibilityIdentifier("addon-manifest-url")
                 Button("Instalar addon") {
+                    editingURL = false
                     Task {
                         installing = true; error = nil
                         defer { installing = false }
