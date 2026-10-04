@@ -15,13 +15,13 @@ struct DetailView: View {
                 AsyncImage(url: (model.media.background ?? model.media.poster).flatMap(URL.init(string:))) { $0.resizable().scaledToFill() } placeholder: { Rectangle().fill(.white.opacity(0.05)) }
                     .frame(height: 220).clipped()
                 VStack(alignment: .leading, spacing: 16) {
-                    Text(model.media.name).font(.largeTitle.bold())
+                    Text(model.media.name).font(.largeTitle.bold()).accessibilityIdentifier("detail-title")
                     Text([model.media.releaseInfo, model.media.genres?.joined(separator: " · ")].compactMap { $0 }.joined(separator: " · ")).foregroundStyle(.secondary)
-                    Text(model.media.description ?? "")
+                    Text(model.media.description ?? "").accessibilityIdentifier("detail-description")
                     if let error = model.error { Text(error).foregroundStyle(.orange) }
                     if model.loading { ProgressView() }
                     if model.media.type != "series" {
-                        Button { openStreams() } label: { Label("Ver streams", systemImage: "play.fill").frame(maxWidth: .infinity).padding(8) }.buttonStyle(.borderedProminent)
+                        Button { openStreams() } label: { Label("Ver streams", systemImage: "play.fill").frame(maxWidth: .infinity).padding(8) }.buttonStyle(.borderedProminent).accessibilityIdentifier("detail-streams")
                     }
                     if let episodes = model.media.videos {
                         ForEach(episodes) { episode in
@@ -41,7 +41,7 @@ struct DetailView: View {
                     if let error = model.error { Text(error).foregroundStyle(.orange) }
                     ForEach(Array(model.warnings.enumerated()), id: \.offset) { Text("Solicitud addon: \($0.element)").font(.caption) }
                     ForEach(model.offers) { offer in
-                        Button { resolutionTask = Task { await model.play(offer, resume: app.resume) } } label: { VStack(alignment: .leading, spacing: 8) { Text(offer.title); Text("\(offer.source) · \(offer.quality)").font(.caption).foregroundStyle(.secondary) }.frame(minHeight: 44) }.disabled(model.resolving || model.pendingPlayback != nil)
+                        Button { resolutionTask = Task { await model.play(offer, resume: app.resume) } } label: { VStack(alignment: .leading, spacing: 8) { Text(offer.title); Text("\(offer.source) · \(offer.quality)").font(.caption).foregroundStyle(.secondary) }.frame(minHeight: 44) }.disabled(model.resolving || model.pendingPlayback != nil).accessibilityIdentifier("stream-offer")
                     }
                 }.navigationTitle("Streams").toolbar { ToolbarItem(placement: .topBarTrailing) { Button("Cerrar") { showStreams = false } } }
                 .fullScreenCover(item: $model.playback) { session in PlayerView(session: session, resume: app.resume, title: model.media.name) }

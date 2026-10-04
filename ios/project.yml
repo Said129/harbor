@@ -63,6 +63,28 @@ targets:
       - target: Harbor
       - framework: Frameworks/HarborCore.xcframework
         embed: false
+  HarborIntegrationTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources: [HarborIntegrationTests]
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: site.harbor.iphone.integration-tests
+        GENERATE_INFOPLIST_FILE: YES
+    dependencies:
+      - target: Harbor
+      - framework: Frameworks/HarborCore.xcframework
+        embed: false
+  HarborUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources: [HarborUITests]
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: site.harbor.iphone.ui-tests
+        GENERATE_INFOPLIST_FILE: YES
+    dependencies:
+      - target: Harbor
 schemes:
   Harbor:
     build:
@@ -71,3 +93,13 @@ schemes:
         HarborTests: [test]
     test:
       targets: [HarborTests]
+  HarborLive:
+    build:
+      targets:
+        Harbor: all
+        HarborIntegrationTests: [test]
+        HarborUITests: [test]
+    test:
+      targets: [HarborIntegrationTests, HarborUITests]
+      environmentVariables:
+        HARBOR_LIVE_INTEGRATION: "1"

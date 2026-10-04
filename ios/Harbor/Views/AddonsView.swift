@@ -9,14 +9,15 @@ struct AddonsView: View {
         List {
             Section("Instalar desde URL") {
                 SecureField("URL del manifest", text: $url).textInputAutocapitalization(.never).autocorrectionDisabled().keyboardType(.URL)
+                    .accessibilityIdentifier("addon-manifest-url")
                 Button("Instalar addon") {
                     Task {
                         installing = true; error = nil
                         defer { installing = false }
                         do { try await app.install(url); url = "" } catch { self.error = safeMessage(error) }
                     }
-                }.disabled(installing || url.isEmpty || !app.storageReady)
-                if installing { ProgressView() }
+                }.disabled(installing || url.isEmpty || !app.storageReady).accessibilityIdentifier("addon-install")
+                if installing { ProgressView().accessibilityIdentifier("addon-install-progress") }
                 if let error { Text(error).foregroundStyle(.orange) }
             }
             Section("Instalados") {

@@ -25,11 +25,11 @@ struct PlayerView: View {
             Color.black.ignoresSafeArea()
             PlayerSurface(source: session.source, startMs: session.startMs, state: state).ignoresSafeArea()
             VStack {
-                HStack { Button { dismiss() } label: { Image(systemName: "chevron.down").frame(width: 44, height: 44) }; Text(title).lineLimit(1); Spacer(); trackMenu("audio", title: "Audio", property: "aid"); trackMenu("sub", title: "Subtítulos", property: "sid") }.padding().background(.black.opacity(0.6))
+                HStack { Button { dismiss() } label: { Image(systemName: "chevron.down").frame(width: 44, height: 44) }.accessibilityLabel("Cerrar reproductor").accessibilityIdentifier("player-close"); Text(title).lineLimit(1); Spacer(); trackMenu("audio", title: "Audio", property: "aid"); trackMenu("sub", title: "Subtítulos", property: "sid") }.padding().background(.black.opacity(0.6))
                 Spacer()
                 if (state.buffering || !state.loaded) && !state.ended && state.error == nil { ProgressView().tint(.white) }
                 if state.ended && state.error == nil { Text("La reproducción ha terminado.").padding().background(.black.opacity(0.6)) }
-                if let error = state.error { Text(error).padding().background(.black.opacity(0.8)) }
+                if let error = state.error { Text(error).padding().background(.black.opacity(0.8)).accessibilityIdentifier("player-error") }
                 if let error = progressError ?? session.storageWarning { Text(error).font(.caption).padding().background(.black.opacity(0.8)) }
                 Spacer()
                 VStack {
@@ -38,7 +38,7 @@ struct PlayerView: View {
                         if !editing { state.controller?.run(["seek", String(seek), "absolute+exact"]) }
                     }).disabled(state.duration <= 0 || !state.loaded)
                     HStack {
-                        Text(time(state.position)).monospacedDigit()
+                        Text(time(state.position)).monospacedDigit().accessibilityLabel("Tiempo reproducido").accessibilityIdentifier("player-position")
                         Spacer()
                         Button { state.controller?.run(["seek", "-10", "relative"]) } label: { Image(systemName: "gobackward.10") }.frame(width: 44, height: 44)
                         Button {

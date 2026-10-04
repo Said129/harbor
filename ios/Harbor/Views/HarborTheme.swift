@@ -31,6 +31,8 @@ struct CatalogRails: View {
                         LazyHStack(alignment: .top, spacing: 12) {
                             ForEach(row.metas, id: \.identity) { media in
                                 NavigationLink(value: media) { Poster(media: media) }.buttonStyle(.plain)
+                                    .accessibilityLabel(media.name)
+                                    .accessibilityIdentifier(media.type == "movie" ? "catalog-movie" : "catalog-media")
                             }
                         }.padding(.horizontal)
                     }.scrollIndicators(.hidden)
