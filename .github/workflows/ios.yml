@@ -1,0 +1,135 @@
+name: iPhone Native
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      [
+        "harbor-core/**",
+        "harbor-ios-bridge/**",
+        "ios/**",
+        "scripts/ios/**",
+        ".github/workflows/ios.yml",
+      ]
+  pull_request:
+    paths:
+      [
+        "harbor-core/**",
+        "harbor-ios-bridge/**",
+        "ios/**",
+        "scripts/ios/**",
+        ".github/workflows/ios.yml",
+      ]
+permissions:
+  contents: read
+concurrency:
+  group: iphone-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  shared:
+    name: Shared Rust (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, windows-latest]
+    steps:
+      - uses: actions/checkout@v6
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: clippy
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: |
+            harbor-core
+            harbor-ios-bridge
+      - run: cargo test --manifest-path harbor-core/Cargo.toml --locked --no-default-features
+      - run: cargo test --manifest-path harbor-ios-bridge/Cargo.toml --locked
+      - run: cargo clippy --manifest-path harbor-ios-bridge/Cargo.toml --locked --all-targets -- -D warnings
+  apple:
+    name: Apple SDK / Swift / iPhone
+    needs: shared
+    runs-on: macos-15
+    timeout-minutes: 45
+    env:
+      IPHONEOS_DEPLOYMENT_TARGET: "17.0"
+    steps:
+      - uses: actions/checkout@v6
+      - name: Select installed Xcode
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer
+          xcodebuild -version
+          xcodebuild -showsdks
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: aarch64-apple-ios,aarch64-apple-ios-sim
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: |
+            harbor-core
+            harbor-ios-bridge
+      - name: Build and package Rust before Swift
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ios/build/logs
+          bash scripts/ios/build-rust.sh 2>&1 | tee ios/build/logs/rust.log
+      - name: Cache Swift dependencies
+        uses: actions/cache@v4
+        with:
+          path: ios/build/SourcePackages
+          key: iphone-spm-${{ runner.os }}-${{ hashFiles('ios/project.yml') }}
+      - name: Generate Xcode project
+        run: |
+          brew install xcodegen
+          xcodegen generate --spec ios/project.yml
+      - name: Resolve pinned multimedia dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          xcodebuild -resolvePackageDependencies -project ios/Harbor.xcodeproj -scheme Harbor -clonedSourcePackagesDirPath ios/build/SourcePackages 2>&1 | tee ios/build/logs/packages.log
+      - name: Build simulator
+        shell: bash
+        run: |
+          set -euo pipefail
+          xcodebuild -project ios/Harbor.xcodeproj -scheme Harbor -configuration Debug -destination 'generic/platform=iOS Simulator' -derivedDataPath ios/build/DerivedData -clonedSourcePackagesDirPath ios/build/SourcePackages CODE_SIGNING_ALLOWED=NO build 2>&1 | tee ios/build/logs/simulator.log
+      - name: Choose an available iPhone simulator
+        shell: bash
+        run: |
+          set -euo pipefail
+          xcrun simctl list devices available --json > ios/build/devices.json
+          device=$(python3 -c 'import json; d=json.load(open("ios/build/devices.json")); print(next(x["udid"] for runtime, values in d["devices"].items() if "iOS" in runtime for x in values if x["name"].startswith("iPhone")))')
+          echo "IOS_SIMULATOR=$device" >> "$GITHUB_ENV"
+      - name: Run bridge and model tests on iPhone simulator
+        shell: bash
+        run: |
+          set -euo pipefail
+          xcodebuild -project ios/Harbor.xcodeproj -scheme Harbor -configuration Debug -destination "platform=iOS Simulator,id=$IOS_SIMULATOR" -derivedDataPath ios/build/DerivedData -clonedSourcePackagesDirPath ios/build/SourcePackages -resultBundlePath ios/build/Tests.xcresult CODE_SIGNING_ALLOWED=NO test 2>&1 | tee ios/build/logs/tests.log
+      - name: Build device without signing
+        shell: bash
+        run: |
+          set -euo pipefail
+          xcodebuild -project ios/Harbor.xcodeproj -scheme Harbor -configuration Release -destination 'generic/platform=iOS' -derivedDataPath ios/build/DeviceData -clonedSourcePackagesDirPath ios/build/SourcePackages CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO build 2>&1 | tee ios/build/logs/device.log
+      - name: Preserve diagnostic evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: iphone-build-evidence
+          path: |
+            ios/build/logs
+            ios/build/Tests.xcresult
+            ios/build/devices.json
+          if-no-files-found: warn
+          retention-days: 14
+      - name: Upload unsigned build products
+        uses: actions/upload-artifact@v4
+        with:
+          name: iphone-unsigned-products
+          path: |
+            ios/Frameworks/HarborCore.xcframework
+            ios/build/DerivedData/Build/Products/Debug-iphonesimulator/Harbor.app
+            ios/build/DeviceData/Build/Products/Release-iphoneos/Harbor.app
+            ios/Harbor.xcodeproj
+          retention-days: 14
