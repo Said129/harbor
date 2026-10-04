@@ -30,13 +30,17 @@ final class LiveNavigationTests: XCTestCase {
         capture(app, "home-real-catalogs")
         let homeError = app.staticTexts["home-error"]
         XCTAssertTrue(homeLoaded, "Home must load a real movie catalog; startup=\(homeError.exists ? homeError.label : "no error text")")
-        let hero = app.descendants(matching: .any).matching(identifier: "home-hero").firstMatch
+        let hero = app.buttons.matching(identifier: "home-hero").firstMatch
         XCTAssertTrue(hero.waitForExistence(timeout: 5))
+        // Layout failures still fail the gate, while collecting the independent
+        // navigation/render evidence in this same opt-in run.
+        continueAfterFailure = true
         XCTAssertGreaterThanOrEqual(hero.frame.minX, app.frame.minX - 1, "Hero bounds=\(hero.frame); app bounds=\(app.frame)")
         XCTAssertLessThanOrEqual(hero.frame.maxX, app.frame.maxX + 1, "The hero must fit the iPhone viewport")
         let catalogTitle = app.staticTexts.matching(identifier: "catalog-title").firstMatch
         XCTAssertTrue(catalogTitle.exists)
         XCTAssertGreaterThanOrEqual(catalogTitle.frame.minX, app.frame.minX, "Catalog titles must not be cropped off the left edge")
+        continueAfterFailure = false
 
         app.tabBars.buttons["Buscar"].tap()
         let search = app.searchFields.firstMatch

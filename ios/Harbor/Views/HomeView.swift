@@ -11,10 +11,11 @@ struct HomeView: View {
                             ZStack(alignment: .bottomLeading) {
                                 AsyncImage(url: (hero.background ?? hero.poster).flatMap(URL.init(string:))) { $0.resizable().scaledToFill() } placeholder: { Rectangle().fill(.white.opacity(0.05)) }
                                     .frame(width: geometry.size.width, height: geometry.size.height).clipped()
+                                    .accessibilityHidden(true)
                                 LinearGradient(colors: [.clear, HarborTheme.background], startPoint: .top, endPoint: .bottom)
                                 VStack(alignment: .leading) { Text("HARBOR").font(.caption.weight(.semibold)).tracking(4); Text(hero.name).font(.largeTitle.bold()) }.padding()
                             }.frame(width: geometry.size.width, height: geometry.size.height)
-                        }.frame(height: 290).clipped()
+                        }.frame(height: 290).clipped().contentShape(Rectangle())
                     }.buttonStyle(.plain)
                         .accessibilityElement(children: .ignore)
                         .accessibilityLabel(hero.name)
