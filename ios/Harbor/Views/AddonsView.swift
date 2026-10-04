@@ -25,8 +25,8 @@ struct AddonsView: View {
                         do { try app.setEnabled(addon, enabled); Task { await app.loadHome() } } catch { self.error = safeMessage(error) }
                     })).disabled(!app.storageReady)
                 }
-                .onDelete { offsets in do { try app.remove(offsets); Task { await app.loadHome() } } catch { error = safeMessage(error) } }
-                .onMove { offsets, destination in do { try app.move(offsets, to: destination); Task { await app.loadHome() } } catch { error = safeMessage(error) } }
+                .onDelete { offsets in do { try app.remove(offsets); Task { await app.loadHome() } } catch { self.error = safeMessage(error) } }
+                .onMove { offsets, destination in do { try app.move(offsets, to: destination); Task { await app.loadHome() } } catch { self.error = safeMessage(error) } }
             }
         }.navigationTitle("Addons").toolbar { EditButton().disabled(!app.storageReady) }
     }
