@@ -106,7 +106,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          xcodebuild -project ios/Harbor.xcodeproj -scheme Harbor -configuration Debug -destination 'generic/platform=iOS Simulator' -derivedDataPath ios/build/DerivedData -clonedSourcePackagesDirPath ios/build/SourcePackages CODE_SIGNING_ALLOWED=NO build 2>&1 | tee ios/build/logs/simulator.log
+          xcodebuild -project ios/Harbor.xcodeproj -scheme Harbor -configuration Debug -destination 'generic/platform=iOS Simulator' -derivedDataPath ios/build/DerivedData -clonedSourcePackagesDirPath ios/build/SourcePackages CODE_SIGNING_ALLOWED=YES CODE_SIGN_IDENTITY=- build 2>&1 | tee ios/build/logs/simulator.log
       - name: Choose an available iPhone simulator
         shell: bash
         run: |
@@ -120,14 +120,14 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          xcodebuild -project ios/Harbor.xcodeproj -scheme Harbor -configuration Debug -destination "platform=iOS Simulator,id=$IOS_SIMULATOR,arch=$IOS_SIMULATOR_ARCH" -derivedDataPath ios/build/DerivedData -clonedSourcePackagesDirPath ios/build/SourcePackages -resultBundlePath ios/build/Tests.xcresult CODE_SIGNING_ALLOWED=NO test 2>&1 | tee ios/build/logs/tests.log
+          xcodebuild -project ios/Harbor.xcodeproj -scheme Harbor -configuration Debug -destination "platform=iOS Simulator,id=$IOS_SIMULATOR,arch=$IOS_SIMULATOR_ARCH" -derivedDataPath ios/build/DerivedData -clonedSourcePackagesDirPath ios/build/SourcePackages -resultBundlePath ios/build/Tests.xcresult CODE_SIGNING_ALLOWED=YES CODE_SIGN_IDENTITY=- test 2>&1 | tee ios/build/logs/tests.log
       - name: Run real addon services and native UI on iPhone simulator
         if: ${{ inputs.run_live_integration == true }}
         timeout-minutes: 15
         shell: bash
         run: |
           set -euo pipefail
-          xcodebuild -project ios/Harbor.xcodeproj -scheme HarborLive -configuration Debug -destination "platform=iOS Simulator,id=$IOS_SIMULATOR,arch=$IOS_SIMULATOR_ARCH" -derivedDataPath ios/build/DerivedData -clonedSourcePackagesDirPath ios/build/SourcePackages -resultBundlePath ios/build/LiveTests.xcresult -parallel-testing-enabled NO CODE_SIGNING_ALLOWED=NO test 2>&1 | tee ios/build/logs/live-tests.log
+          xcodebuild -project ios/Harbor.xcodeproj -scheme HarborLive -configuration Debug -destination "platform=iOS Simulator,id=$IOS_SIMULATOR,arch=$IOS_SIMULATOR_ARCH" -derivedDataPath ios/build/DerivedData -clonedSourcePackagesDirPath ios/build/SourcePackages -resultBundlePath ios/build/LiveTests.xcresult -parallel-testing-enabled NO CODE_SIGNING_ALLOWED=YES CODE_SIGN_IDENTITY=- test 2>&1 | tee ios/build/logs/live-tests.log
       - name: Build device without signing
         shell: bash
         run: |

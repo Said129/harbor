@@ -19,7 +19,12 @@ final class Diagnostics {
         var safe = known.contains(code) || resumeCodes.contains(code) ? code : "unknown"
         if code.hasPrefix("http-"), let status = Int(code.dropFirst(5)), (100...599).contains(status) { safe = "http-\(status)" }
         if code.hasPrefix("mpv-"), let status = Int(code.dropFirst(4)), (-1024...0).contains(status) { safe = "mpv-\(status)" }
-        if code.hasPrefix("keychain-"), let status = Int32(code.dropFirst(9)) { safe = "keychain-\(status)" }
+        for prefix in ["keychain-read-", "keychain-write-", "keychain-"] {
+            if code.hasPrefix(prefix), let status = Int32(code.dropFirst(prefix.count)) {
+                safe = "\(prefix)\(status)"
+                break
+            }
+        }
         // Only whitelisted codes or bounded numbers reach exported diagnostics.
         append("\(Date().ISO8601Format()) failure code=\(safe)")
     }

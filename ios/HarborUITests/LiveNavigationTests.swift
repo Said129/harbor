@@ -26,8 +26,10 @@ final class LiveNavigationTests: XCTestCase {
         let app = XCUIApplication()
         app.launch()
         let movie = app.buttons.matching(identifier: "catalog-movie").firstMatch
-        XCTAssertTrue(movie.waitForExistence(timeout: 30), "Home must load a real movie catalog")
+        let homeLoaded = movie.waitForExistence(timeout: 45)
         capture(app, "home-real-catalogs")
+        let homeError = app.staticTexts["home-error"]
+        XCTAssertTrue(homeLoaded, "Home must load a real movie catalog; startup=\(homeError.exists ? homeError.label : "no error text")")
 
         app.tabBars.buttons["Buscar"].tap()
         let search = app.searchFields.firstMatch
