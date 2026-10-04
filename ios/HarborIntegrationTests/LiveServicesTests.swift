@@ -23,9 +23,10 @@ final class LiveServicesTests: XCTestCase {
         let metadata = try await service.metadata(preview, addons: [addon])
         XCTAssertEqual(metadata.id, preview.id)
         XCTAssertFalse(metadata.name.isEmpty)
-        let (results, _) = try await service.catalogs([addon], search: "Big Buck Bunny")
+        let (results, _) = try await service.catalogs([addon], search: "Interstellar")
         let count = results.reduce(0) { $0 + $1.metas.count }
         XCTAssertGreaterThan(count, 0)
+        XCTAssertTrue(results.flatMap(\.metas).contains { $0.id == "tt0816692" && $0.name == "Interstellar" }, "The real movie query must return its matching metadata identity")
         print("Harbor live Cinemeta: catalogs=\(catalogs.count) searchItems=\(count) metadata=passed")
     }
 

@@ -27,6 +27,7 @@ struct CatalogRails: View {
             ForEach(rows) { row in
                 VStack(alignment: .leading, spacing: 12) {
                     Text(row.plan.title).font(.title3.bold()).padding(.horizontal)
+                        .accessibilityIdentifier("catalog-title")
                     ScrollView(.horizontal) {
                         LazyHStack(alignment: .top, spacing: 12) {
                             ForEach(row.metas, id: \.identity) { media in

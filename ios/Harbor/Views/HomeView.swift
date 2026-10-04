@@ -7,12 +7,16 @@ struct HomeView: View {
             VStack(alignment: .leading, spacing: 24) {
                 if let hero = model.rows.first?.metas.first {
                     NavigationLink(value: hero) {
-                        ZStack(alignment: .bottomLeading) {
-                            AsyncImage(url: (hero.background ?? hero.poster).flatMap(URL.init(string:))) { $0.resizable().scaledToFill() } placeholder: { Rectangle().fill(.white.opacity(0.05)) }
-                            LinearGradient(colors: [.clear, HarborTheme.background], startPoint: .top, endPoint: .bottom)
-                            VStack(alignment: .leading) { Text("HARBOR").font(.caption.weight(.semibold)).tracking(4); Text(hero.name).font(.largeTitle.bold()) }.padding()
+                        GeometryReader { geometry in
+                            ZStack(alignment: .bottomLeading) {
+                                AsyncImage(url: (hero.background ?? hero.poster).flatMap(URL.init(string:))) { $0.resizable().scaledToFill() } placeholder: { Rectangle().fill(.white.opacity(0.05)) }
+                                    .frame(width: geometry.size.width, height: geometry.size.height).clipped()
+                                LinearGradient(colors: [.clear, HarborTheme.background], startPoint: .top, endPoint: .bottom)
+                                VStack(alignment: .leading) { Text("HARBOR").font(.caption.weight(.semibold)).tracking(4); Text(hero.name).font(.largeTitle.bold()) }.padding()
+                            }.frame(width: geometry.size.width, height: geometry.size.height)
                         }.frame(height: 290).clipped()
                     }.buttonStyle(.plain)
+                        .accessibilityIdentifier("home-hero")
                 }
                 if model.loading { ProgressView("Cargando catálogos…").frame(maxWidth: .infinity) }
                 if let error = model.progressError {
@@ -31,7 +35,7 @@ struct HomeView: View {
                 if model.storageReady && model.rows.isEmpty && !model.loading && model.error == nil {
                     ContentUnavailableView("Sin catálogos", systemImage: "puzzlepiece.extension", description: Text("Instala o activa un addon con catálogos."))
                 }
-            }.padding(.bottom, 24)
+            }.frame(maxWidth: .infinity, alignment: .leading).padding(.bottom, 24)
         }.background(HarborTheme.background).navigationTitle("Harbor").navigationBarTitleDisplayMode(.inline)
             .refreshable { await model.loadHome() }
             .accessibilityIdentifier("home-scroll")

@@ -30,13 +30,23 @@ final class LiveNavigationTests: XCTestCase {
         capture(app, "home-real-catalogs")
         let homeError = app.staticTexts["home-error"]
         XCTAssertTrue(homeLoaded, "Home must load a real movie catalog; startup=\(homeError.exists ? homeError.label : "no error text")")
+        let hero = app.descendants(matching: .any).matching(identifier: "home-hero").firstMatch
+        XCTAssertTrue(hero.waitForExistence(timeout: 5))
+        XCTAssertGreaterThanOrEqual(hero.frame.minX, app.frame.minX - 1)
+        XCTAssertLessThanOrEqual(hero.frame.maxX, app.frame.maxX + 1, "The hero must fit the iPhone viewport")
+        let catalogTitle = app.staticTexts.matching(identifier: "catalog-title").firstMatch
+        XCTAssertTrue(catalogTitle.exists)
+        XCTAssertGreaterThanOrEqual(catalogTitle.frame.minX, app.frame.minX, "Catalog titles must not be cropped off the left edge")
 
         app.tabBars.buttons["Buscar"].tap()
         let search = app.searchFields.firstMatch
         XCTAssertTrue(search.waitForExistence(timeout: 5))
         search.tap()
-        search.typeText("Big Buck Bunny\n")
-        let result = app.buttons.matching(identifier: "catalog-movie").firstMatch
+        search.typeText("Interstellar\n")
+        let completedQuery = app.staticTexts["search-results-query"]
+        let completed = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == true AND label == %@", "Resultados para «Interstellar»"), object: completedQuery)
+        XCTAssertEqual(XCTWaiter.wait(for: [completed], timeout: 30), .completed, "Wait for the complete query, not an earlier result")
+        let result = app.buttons.matching(NSPredicate(format: "identifier == 'catalog-movie' AND label == 'Interstellar'")).firstMatch
         XCTAssertTrue(result.waitForExistence(timeout: 30), "Search must return real addon results")
         capture(app, "search-real-results")
         result.tap()
@@ -80,7 +90,11 @@ final class LiveNavigationTests: XCTestCase {
         offer.tap()
         let close = app.buttons["player-close"]
         XCTAssertTrue(close.waitForExistence(timeout: 20), "The resolved source must open the native player")
+        let surface = app.descendants(matching: .any).matching(identifier: "player-surface").firstMatch
+        let ready = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == true AND value == 'Preparado'"), object: surface)
+        let readiness = XCTWaiter.wait(for: [ready], timeout: 20)
         capture(app, "native-player-presentation")
+        XCTAssertEqual(readiness, .completed, "The real mpv engine and renderer must initialize before this navigation gate passes")
         // Opening the player is not proof that this public example's old video
         // host delivers media. Physical playback remains a separate gate.
         close.tap()
