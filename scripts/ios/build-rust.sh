@@ -19,7 +19,7 @@ xcrun lipo -create \
   "$CARGO_TARGET_DIR/aarch64-apple-ios-sim/release/libharbor_ios_bridge.a" \
   "$CARGO_TARGET_DIR/x86_64-apple-ios/release/libharbor_ios_bridge.a" \
   -output "$simulator_library"
-xcrun lipo -verify_arch arm64 x86_64 "$simulator_library"
+xcrun lipo "$simulator_library" -verify_arch arm64 x86_64
 mkdir -p ios/Frameworks
 if [[ -d "$output" ]]; then
   # Exact generated artifact below the repository; no source directories removed.
