@@ -2,6 +2,10 @@ name: iPhone Native
 on:
   workflow_dispatch:
     inputs:
+      run_live_integration:
+        description: "Test the native services and UI with real public addons"
+        type: boolean
+        default: false
       upload_artifacts:
         description: "Upload products/evidence only after confirming available free storage"
         type: boolean
@@ -28,7 +32,7 @@ on:
 permissions:
   contents: read
 concurrency:
-  group: iphone-${{ github.ref }}
+  group: iphone-${{ github.event.pull_request.head.repo.full_name || github.repository }}-${{ github.head_ref || github.ref_name }}
   cancel-in-progress: true
 jobs:
   shared:
@@ -117,11 +121,23 @@ jobs:
         run: |
           set -euo pipefail
           xcodebuild -project ios/Harbor.xcodeproj -scheme Harbor -configuration Debug -destination "platform=iOS Simulator,id=$IOS_SIMULATOR,arch=$IOS_SIMULATOR_ARCH" -derivedDataPath ios/build/DerivedData -clonedSourcePackagesDirPath ios/build/SourcePackages -resultBundlePath ios/build/Tests.xcresult CODE_SIGNING_ALLOWED=NO test 2>&1 | tee ios/build/logs/tests.log
+      - name: Run real addon services and native UI on iPhone simulator
+        if: ${{ inputs.run_live_integration == true }}
+        timeout-minutes: 15
+        shell: bash
+        run: |
+          set -euo pipefail
+          xcodebuild -project ios/Harbor.xcodeproj -scheme HarborLive -configuration Debug -destination "platform=iOS Simulator,id=$IOS_SIMULATOR,arch=$IOS_SIMULATOR_ARCH" -derivedDataPath ios/build/DerivedData -clonedSourcePackagesDirPath ios/build/SourcePackages -resultBundlePath ios/build/LiveTests.xcresult -parallel-testing-enabled NO CODE_SIGNING_ALLOWED=NO test 2>&1 | tee ios/build/logs/live-tests.log
       - name: Build device without signing
         shell: bash
         run: |
           set -euo pipefail
           xcodebuild -project ios/Harbor.xcodeproj -scheme Harbor -configuration Release -destination 'generic/platform=iOS' -derivedDataPath ios/build/DeviceData -clonedSourcePackagesDirPath ios/build/SourcePackages CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO build 2>&1 | tee ios/build/logs/device.log
+      - name: Package and verify unsigned iPhone IPA
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 scripts/ios/package-ipa.py --app ios/build/DeviceData/Build/Products/Release-iphoneos/Harbor.app --output ios/build/Harbor-unsigned.ipa --commit "$GITHUB_SHA" 2>&1 | tee ios/build/logs/ipa.log
       - name: Preserve diagnostic evidence
         if: ${{ always() && inputs.upload_artifacts == true }}
         uses: actions/upload-artifact@v4
@@ -130,6 +146,8 @@ jobs:
           path: |
             ios/build/logs
             ios/build/Tests.xcresult
+            ios/build/LiveTests.xcresult
+            ios/build/Harbor-unsigned.json
             ios/build/devices.json
           if-no-files-found: warn
           retention-days: 1
@@ -143,4 +161,6 @@ jobs:
             ios/build/DerivedData/Build/Products/Debug-iphonesimulator/Harbor.app
             ios/build/DeviceData/Build/Products/Release-iphoneos/Harbor.app
             ios/Harbor.xcodeproj
+            ios/build/Harbor-unsigned.ipa
+            ios/build/Harbor-unsigned.json
           retention-days: 1

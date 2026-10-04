@@ -72,6 +72,12 @@ El procesador de metadata de Xcode también avisa que omite AppIntents porque la
 
 Después: shared Debrid completo (cinco proveedores), extracción librqbit/Axum, progreso/resume/biblioteca/sync/cuentas y cada entrada restante de FEATURE_PARITY. La investigación y el código parcial no significan retirada de funciones.
 
+## Integración nativa y empaquetado unsigned (incremento en comprobación)
+
+Se añaden dos tests de `HarborService` con red y un recorrido XCTest UI en el scheme opt-in `HarborLive`, separado del scheme offline `Harbor`. El addon público de ejemplo se instala desde su manifest real; no se añade como default del producto. La navegación observa catálogos, búsqueda, ficha, instalación persistente, stream picker y apertura/cierre del player. Las capturas se conservan en xcresult; mostrar el player no demuestra reproducción.
+
+El workflow permite `run_live_integration=true` y prepara una IPA unsigned mediante `package-ipa.py`. La verificación exige bundle iPhoneOS/arm64, family 1, framework Rust embebido, permisos, layout Payload e integridad ZIP; el informe incluye commit y SHA-256. Las subidas continúan desactivadas por defecto. Este incremento todavía no tiene resultado Apple registrado; no se modifica ningún estado a Working/Parity por añadir pruebas.
+
 ## Incremento de reanudacion local (2026-10-04)
 
 - Core: 70 tests pasan con features default y sin WASM; bridge: 6 tests pasan. Clippy core/bridge all-targets `-D warnings`, target `aarch64-apple-ios` (metadata solamente) y WASM pasan.

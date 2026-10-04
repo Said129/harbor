@@ -57,11 +57,16 @@ El propietario ha solicitado no gastar dinero. Por ello los uploads de artefacto
 git push origin ios/native-iphone
 gh run list --repo Said129/harbor --workflow ios.yml
 gh run view RUN_ID --repo Said129/harbor --log-failed
+gh workflow run ios.yml --repo Said129/harbor --ref ios/native-iphone -f run_live_integration=true
 ```
 
 El PR abierto ejecuta el workflow al actualizar la rama. Los pushes directos sólo lo ejecutan en `main`, evitando duplicar cada build del PR. Sin un PR abierto, lanzar manualmente con `gh workflow run ios.yml --repo Said129/harbor --ref ios/native-iphone`.
 
-Stages: tests Windows/Linux → cargo Apple sin WASM → framework dinámico device arm64 y simulator arm64/x86_64 → validación de exports/install name → XCFramework → XcodeGen → dependencias SPM fijadas → build Swift/simulator → tests de ABI/modelos en iPhone simulator → build device unsigned. El runtime Rust del bridge queda dentro de su framework para evitar la colisión con Libdovi; ver ADR 0002. El primer gate Apple ocurre antes de compilar Swift. Si se autoriza el upload dentro de la cuota, produce logs, xcresult, XCFramework y apps simulator/device unsigned.
+Stages: tests Windows/Linux → cargo Apple sin WASM → framework dinámico device arm64 y simulator arm64/x86_64 → validación de exports/install name → XCFramework → XcodeGen → dependencias SPM fijadas → build Swift/simulator → tests de ABI/modelos en iPhone simulator → integración real opt-in → build device unsigned → empaquetado/verificación de IPA unsigned. El runtime Rust del bridge queda dentro de su framework para evitar la colisión con Libdovi; ver ADR 0002. El primer gate Apple ocurre antes de compilar Swift. Si se autoriza el upload dentro de la cuota, produce logs, xcresult, XCFramework, apps simulator/device e IPA unsigned.
+
+`HarborLive` es un scheme separado que activa explícitamente dos tests de servicios reales y un test de navegación XCTest UI. Usa URLSession, Codable, el framework Rust embebido, Keychain y la interfaz normal: no hay launch mode especial, estado inyectado ni respuestas falsas. Cinemeta y el addon de ejemplo oficial sólo son inputs de la prueba. El test UI conserva capturas en `LiveTests.xcresult` y comprueba apertura/cierre del player; no certifica imagen/audio ni disponibilidad del servidor de vídeo. Los ocho tests normales siguen sin depender de red. PR y dispatch de la misma rama comparten concurrency para evitar builds duplicados.
+
+`scripts/ios/package-ipa.py` exige un build iPhoneOS/arm64, device family 1 y HarborCore embebido. Conserva permisos/symlinks, verifica la integridad de `Payload/Harbor.app` y genera un informe con commit, tamaño y SHA-256. No firma ni instala. Por defecto la IPA sólo existe temporalmente en el runner y no se sube a GitHub.
 
 Para ejecutar las mismas etapas en un Mac disponible en el futuro: `bash scripts/ios/build-rust.sh`, `xcodegen generate --spec ios/project.yml` y los comandos xcodebuild del workflow. `project.yml` es la fuente; el proyecto Xcode, Info.plist y frameworks son generados.
 
