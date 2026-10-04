@@ -62,3 +62,32 @@ fn torrent_offer_remains_visible_and_resolution_error_is_explicit() {
         serde_json::from_str(&call(&serde_json::to_vec(&request).unwrap())).unwrap();
     assert_eq!(response["error"]["code"], "torrent-resolver-pending");
 }
+
+#[test]
+fn rejects_control_characters_before_c_string_transport_without_echoing_urls() {
+    for control in ['\0', '\n', '\r', '\t'] {
+        for subtitle in [false, true] {
+            let mut stream =
+                json!({"addonId":"a","addonName":"A","url":"https://example.com/video.mp4"});
+            let bad = format!("https://example.com/private{control}value");
+            if subtitle {
+                stream["subtitles"] = json!([{"url":bad}]);
+            } else {
+                stream["url"] = json!(bad);
+            }
+            let response = call(
+                &serde_json::to_vec(&json!({"operation":"resolveDirect","stream":stream})).unwrap(),
+            );
+            assert!(!response.contains("private"));
+            let response: Value = serde_json::from_str(&response).unwrap();
+            assert_eq!(
+                response["error"]["code"],
+                if subtitle {
+                    "invalid-subtitle-url"
+                } else {
+                    "invalid-playback-url"
+                }
+            );
+        }
+    }
+}

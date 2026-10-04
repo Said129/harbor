@@ -103,9 +103,21 @@ fn resolve_direct(stream: Stream) -> Result<Value, &'static str> {
     if url == "#" {
         return Err("addon-not-configured");
     }
+    // URL parsers can discard controls; CString would truncate at NUL. Preserve
+    // valid URLs exactly, and reject ambiguous input before entering libmpv.
+    if url.chars().any(char::is_control) {
+        return Err("invalid-playback-url");
+    }
     let parsed = url::Url::parse(url).map_err(|_| "invalid-playback-url")?;
     if !matches!(parsed.scheme(), "https" | "http") {
         return Err("invalid-playback-url");
+    }
+    if stream.subtitles.as_ref().is_some_and(|subtitles| {
+        subtitles
+            .iter()
+            .any(|subtitle| subtitle.url.chars().any(char::is_control))
+    }) {
+        return Err("invalid-subtitle-url");
     }
     let value = serde_json::to_value(&stream).map_err(|_| "invalid-stream")?;
     let hints = &value["behaviorHints"];
