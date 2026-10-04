@@ -1,6 +1,11 @@
 name: iPhone Native
 on:
   workflow_dispatch:
+    inputs:
+      upload_artifacts:
+        description: "Upload products/evidence only after confirming available free storage"
+        type: boolean
+        default: false
   push:
     paths:
       [
@@ -27,6 +32,7 @@ concurrency:
 jobs:
   shared:
     name: Shared Rust (${{ matrix.os }})
+    if: ${{ github.event.repository.private == false }}
     runs-on: ${{ matrix.os }}
     timeout-minutes: 15
     strategy:
@@ -48,6 +54,7 @@ jobs:
       - run: cargo clippy --manifest-path harbor-ios-bridge/Cargo.toml --locked --all-targets -- -D warnings
   apple:
     name: Apple SDK / Swift / iPhone
+    if: ${{ github.event.repository.private == false }}
     needs: shared
     runs-on: macos-15
     timeout-minutes: 45
@@ -113,7 +120,7 @@ jobs:
           set -euo pipefail
           xcodebuild -project ios/Harbor.xcodeproj -scheme Harbor -configuration Release -destination 'generic/platform=iOS' -derivedDataPath ios/build/DeviceData -clonedSourcePackagesDirPath ios/build/SourcePackages CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO build 2>&1 | tee ios/build/logs/device.log
       - name: Preserve diagnostic evidence
-        if: always()
+        if: ${{ always() && inputs.upload_artifacts == true }}
         uses: actions/upload-artifact@v4
         with:
           name: iphone-build-evidence
@@ -122,8 +129,9 @@ jobs:
             ios/build/Tests.xcresult
             ios/build/devices.json
           if-no-files-found: warn
-          retention-days: 14
+          retention-days: 1
       - name: Upload unsigned build products
+        if: ${{ inputs.upload_artifacts == true }}
         uses: actions/upload-artifact@v4
         with:
           name: iphone-unsigned-products
@@ -132,4 +140,4 @@ jobs:
             ios/build/DerivedData/Build/Products/Debug-iphonesimulator/Harbor.app
             ios/build/DeviceData/Build/Products/Release-iphoneos/Harbor.app
             ios/Harbor.xcodeproj
-          retention-days: 14
+          retention-days: 1
