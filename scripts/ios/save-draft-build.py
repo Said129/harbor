@@ -13,6 +13,7 @@ def main():
     parser.add_argument("--ipa", type=Path, required=True)
     parser.add_argument("--report", type=Path, required=True)
     parser.add_argument("--commit", required=True)
+    parser.add_argument("--evidence", type=Path)
     args = parser.parse_args()
     report = json.loads(args.report.read_text(encoding="utf-8"))
     with args.ipa.open("rb") as file:
@@ -29,6 +30,11 @@ def main():
     ):
         raise SystemExit("Device build report does not match the IPA")
     tag = f"iphone-unsigned-{args.commit[:12]}"
+    assets = [str(args.ipa), str(args.report)]
+    if args.evidence:
+        if not 0 < args.evidence.stat().st_size < 2 * 1024**3:
+            raise SystemExit("Invalid evidence archive size")
+        assets.append(str(args.evidence))
     # A rerun must not replace an existing review artifact silently.
     existing = subprocess.run(["gh", "release", "view", tag, "--repo", args.repo], capture_output=True, text=True)
     if existing.returncode == 0:
@@ -46,7 +52,7 @@ def main():
         body.write_text(notes, encoding="utf-8")
         subprocess.run([
             "gh", "release", "create", tag,
-            str(args.ipa), str(args.report),
+            *assets,
             "--repo", args.repo, "--target", args.commit,
             "--draft", "--prerelease",
             "--title", f"Harbor iPhone unsigned {args.commit[:12]}",

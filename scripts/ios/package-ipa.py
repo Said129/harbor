@@ -32,7 +32,7 @@ def main():
     require(output.suffix == ".ipa" and app not in output.parents, "IPA output must be outside the app bundle")
     info = plistlib.loads((app / "Info.plist").read_bytes())
     require(info.get("CFBundleIdentifier") == "site.harbor.iphone", "Unexpected app bundle identifier")
-    require(info.get("UIDeviceFamily") == [1], "This port must target iPhone only")
+    require(info.get("UIDeviceFamily") == [1], f"This port must target iPhone only; declared family={info.get('UIDeviceFamily')}")
     require(info.get("CFBundleSupportedPlatforms") == ["iPhoneOS"], "Simulator builds cannot be packaged as device IPA")
     require(info.get("CFBundleExecutable") == "Harbor", "Unexpected app executable")
     require(not (app / "_CodeSignature").exists() and not (app / "embedded.mobileprovision").exists(), "Expected an unsigned build without provisioning")

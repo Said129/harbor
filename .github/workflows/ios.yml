@@ -95,7 +95,7 @@ jobs:
           mkdir -p ios/build/logs
           bash scripts/ios/build-rust.sh 2>&1 | tee ios/build/logs/rust.log
       - name: Cache Swift dependencies
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: ios/build/SourcePackages
           key: iphone-spm-${{ runner.os }}-${{ hashFiles('ios/project.yml') }}
@@ -126,7 +126,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          xcodebuild -project ios/Harbor.xcodeproj -scheme Harbor -configuration Debug -destination "platform=iOS Simulator,id=$IOS_SIMULATOR,arch=$IOS_SIMULATOR_ARCH" -derivedDataPath ios/build/DerivedData -clonedSourcePackagesDirPath ios/build/SourcePackages -resultBundlePath ios/build/Tests.xcresult CODE_SIGNING_ALLOWED=YES CODE_SIGN_IDENTITY=- test 2>&1 | tee ios/build/logs/tests.log
+          xcodebuild -project ios/Harbor.xcodeproj -scheme Harbor -configuration Debug -destination "platform=iOS Simulator,id=$IOS_SIMULATOR,arch=$IOS_SIMULATOR_ARCH" -derivedDataPath ios/build/DerivedData -clonedSourcePackagesDirPath ios/build/SourcePackages -resultBundlePath ios/build/Tests.xcresult -parallel-testing-enabled NO CODE_SIGNING_ALLOWED=YES CODE_SIGN_IDENTITY=- test 2>&1 | tee ios/build/logs/tests.log
       - name: Run real addon services and native UI on iPhone simulator
         id: live_tests
         if: ${{ inputs.run_live_integration == true }}
@@ -159,7 +159,12 @@ jobs:
         if: ${{ github.event_name == 'workflow_dispatch' && inputs.run_live_integration == true && inputs.save_draft_build == true }}
         env:
           GH_TOKEN: ${{ github.token }}
-        run: python3 scripts/ios/save-draft-build.py --repo "$GITHUB_REPOSITORY" --ipa ios/build/Harbor-unsigned.ipa --report ios/build/Harbor-unsigned.json --commit "$GITHUB_SHA"
+        shell: bash
+        run: |
+          set -euo pipefail
+          xcrun xcresulttool export attachments --path ios/build/LiveTests.xcresult --output-path ios/build/live-attachments
+          ditto -c -k --keepParent ios/build/live-attachments ios/build/iphone-live-evidence.zip
+          python3 scripts/ios/save-draft-build.py --repo "$GITHUB_REPOSITORY" --ipa ios/build/Harbor-unsigned.ipa --report ios/build/Harbor-unsigned.json --commit "$GITHUB_SHA" --evidence ios/build/iphone-live-evidence.zip
       - name: Preserve diagnostic evidence
         if: ${{ always() && inputs.upload_artifacts == true }}
         uses: actions/upload-artifact@v4
