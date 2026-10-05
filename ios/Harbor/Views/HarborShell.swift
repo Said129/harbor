@@ -2,7 +2,7 @@ import SwiftUI
 import CoreText
 
 enum HarborSection: String, CaseIterable, Identifiable {
-    case home, discover, catalogs, movies, shows, kids, anime, live, calendar, library, collections, downloads, search, addons, settings
+    case home, discover, catalogs, movies, shows, kids, anime, live, ebook, calendar, library, collections, downloads, search, addons, settings
     var id: String { rawValue }
     var title: String {
         switch self {
@@ -14,6 +14,7 @@ enum HarborSection: String, CaseIterable, Identifiable {
         case .kids: "Kids"
         case .anime: "Anime"
         case .live: "Live TV"
+        case .ebook: "eBook"
         case .calendar: "Calendario"
         case .library: "Mi biblioteca"
         case .collections: "Colecciones"
@@ -33,6 +34,7 @@ enum HarborSection: String, CaseIterable, Identifiable {
         case .kids: "kids"
         case .anime: "anime"
         case .live: "livetv"
+        case .ebook: "ebook"
         case .calendar: "calendar"
         case .library: "library"
         case .collections: "collections"
@@ -83,10 +85,10 @@ struct HarborShell: View {
                                 } label: {
                                     HStack(spacing: 16) {
                                         Image("nav-\(item.icon)").resizable().scaledToFit().frame(width: 23, height: 23)
-                                        Text(InterfacePreferences.shared.label(item)).font(.system(size: 15, weight: item == section ? .semibold : .regular))
+                                        Text(InterfacePreferences.shared.label(item)).font(HarborTheme.font(15, weight: item == section ? .semibold : .regular))
                                         Spacer()
-                                    }.foregroundStyle(item == section ? .white : .white.opacity(0.65)).padding(.horizontal, 18).frame(minHeight: 52)
-                                        .background(item == section ? Color.white.opacity(0.09) : .clear, in: .rect(cornerRadius: 12))
+                                    }.foregroundStyle(item == section ? HarborTheme.ink : HarborTheme.ink.opacity(0.65)).padding(.horizontal, 18).frame(minHeight: 52)
+                                        .background(item == section ? HarborTheme.surface : .clear, in: .rect(cornerRadius: 12))
                                 }.buttonStyle(.plain).accessibilityIdentifier("nav-\(item.rawValue)")
                             }
                         }.padding(.horizontal, 12)
@@ -116,6 +118,7 @@ struct HarborShell: View {
         case .kids: ContentPageView(app: app, kind: "kids", title: section.title)
         case .anime: ContentPageView(app: app, kind: "anime", title: section.title)
         case .live: ContentPageView(app: app, kind: "tv", title: section.title)
+        case .ebook: EBooksView(app: app).id(app.user?.id ?? "guest")
         case .calendar: CalendarView(app: app)
         case .library: LibraryView(app: app)
         case .collections: CollectionsView(app: app)

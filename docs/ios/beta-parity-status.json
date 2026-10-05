@@ -543,5 +543,25 @@
     "state": "Partial",
     "implementation": "`ios/Harbor/Services/DownloadManager.swift`; `Views/DownloadsView.swift`; `Views/DetailView.swift`; `HarborApp.swift`",
     "notes": "Real HTTP/S file transfers with progress/pause/resume, protected index, account filtering, sharing and mpv local playback. Background non-credentialed and ephemeral foreground credentialed sessions. Apple compilation/live file lifecycle and physical background behavior pending. HLS/DASH, torrent and automatic downloads remain incomplete."
+  },
+  "Room: ebook": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/EBooksView.swift; Views/EBookReaderView.swift; Services/EPUBReader.swift; Services/EBookService.swift",
+    "notes": "Real Gutendex catalog/search/pages, local/remote EPUB, native spine/index/text/illustrations, per-owner shelf/progress/bookmarks, reading options and native narration. New offline archive and opt-in original Gutenberg checks await Apple compilation. CSS/full EPUB, fragment chapters, plugins, translations and annotations remain incomplete."
+  },
+  "Theme presets": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/DesktopThemes.json; Services/ThemePreferences.swift; Views/ThemeSettingsView.swift",
+    "notes": "Eight original base color palettes converted to sRGB; canvas/accent/navigation surfaces/text and custom colors persist. Full layout/card/button/CSS/background parity and Theme Studio remain incomplete. Apple build pending."
+  },
+  "Setting: theme": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/DesktopThemes.json; Services/ThemePreferences.swift; Views/ThemeSettingsView.swift",
+    "notes": "Eight original base color palettes converted to sRGB; canvas/accent/navigation surfaces/text and custom colors persist. Full layout/card/button/CSS/background parity and Theme Studio remain incomplete. Apple build pending."
+  },
+  "Font pairings": {
+    "state": "Partial",
+    "implementation": "scripts/ios/fetch-interface-font.py; ios/Harbor/Views/HarborTheme.swift",
+    "notes": "Original Switzer variable fetched from Fontshare directly for app embedding, with fixed checksum and FFL; Inter/system body selection; original Fraunces brand and Oswald rankings. Remaining display/sans pairs and full semantic text scale pending. Requires Apple font-registration gate."
   }
 }

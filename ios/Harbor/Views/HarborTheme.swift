@@ -1,10 +1,17 @@
 import SwiftUI
 
-enum HarborTheme {
-    // sRGB equivalents of the upstream cool-grey default canvas/accent OKLCH
-    // tokens in src/lib/theme.ts. Native layouts retain Harbor's identity.
-    static let background = Color(.sRGB, red: 0.064818, green: 0.069086, blue: 0.075969)
-    static let accent = Color(.sRGB, red: 0.955883, green: 0.636209, blue: 0.359162)
+@MainActor enum HarborTheme {
+    static var background: Color { ThemePreferences.shared.color("canvas") }
+    static var accent: Color { ThemePreferences.shared.color("accent") }
+    static var surface: Color { ThemePreferences.shared.color("surface") }
+    static var ink: Color { ThemePreferences.shared.color("ink") }
+    static func font(_ size: CGFloat = 16, weight: Font.Weight = .regular) -> Font {
+        switch ThemePreferences.shared.font {
+        case "inter": .custom("Inter-Regular", size: size).weight(weight)
+        case "system": .system(size: size, weight: weight)
+        default: .custom("SwitzerVariable-Regular", size: size).weight(weight)
+        }
+    }
 }
 
 struct Poster: View {

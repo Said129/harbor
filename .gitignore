@@ -48,3 +48,6 @@ local_docs/
 /ios/Info.plist
 /scripts/ios/__pycache__/
 
+# Original Fontshare resource is fetched directly for app embedding at build.
+ios/Harbor/Fonts/Switzer.ttf
+ios/Harbor/Licenses/Switzer-FFL.txt

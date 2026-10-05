@@ -40,14 +40,10 @@ concurrency:
   cancel-in-progress: true
 jobs:
   shared:
-    name: Shared Rust (${{ matrix.os }})
+    name: Shared Rust (Linux)
     if: ${{ github.event.repository.private == false }}
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-24.04
     timeout-minutes: 15
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [ubuntu-24.04, windows-latest]
     steps:
       - uses: actions/checkout@v6
       - uses: dtolnay/rust-toolchain@stable
@@ -101,6 +97,7 @@ jobs:
           key: iphone-spm-${{ runner.os }}-${{ hashFiles('ios/project.yml') }}
       - name: Generate Xcode project
         run: |
+          python3 scripts/ios/fetch-interface-font.py
           brew install xcodegen
           xcodegen generate --spec ios/project.yml
       - name: Resolve pinned multimedia dependencies

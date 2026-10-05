@@ -27,7 +27,10 @@ struct SettingsView: View {
                 }
             }
             Section("Contenido") { NavigationLink("Proveedores de metadata") { MetadataSettingsView() } }
-            Section("Apariencia") { NavigationLink("Interfaz y navegación") { InterfaceSettingsView() } }
+            Section("Apariencia") {
+                NavigationLink("Temas y colores") { ThemeSettingsView() }
+                NavigationLink("Interfaz y navegación") { InterfaceSettingsView() }
+            }
             Section("Diagnóstico") {
                 Button("Preparar logs para compartir") { do { export = try Diagnostics.shared.export() } catch { self.error = safeMessage(error) } }
                 if let export { ShareLink("Compartir logs", item: export) }

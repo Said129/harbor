@@ -81,6 +81,12 @@
       "source": "https://github.com/google/fonts/tree/main/ofl/vazirmatn",
       "license": "SIL OFL 1.1",
       "sha256": "696249a2c74b39ffdef55de4df2809c5b639d3ff80d618d8160a095d2fd49dca"
+    },
+    "Switzer": {
+      "source": "https://api.fontshare.com/v2/fonts/download/switzer",
+      "license": "ITF Free Font License 2.0; application embedding; original binary fetched directly at build, not distributed separately in source",
+      "sha256": "373c2d2ad8f1f811ca58ae725e9591db2e72cf726dc6e8066cd7f64b4c283cdf",
+      "postScript": "SwitzerVariable-Regular"
     }
   }
 }
