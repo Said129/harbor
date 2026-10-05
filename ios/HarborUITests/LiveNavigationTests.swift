@@ -49,6 +49,22 @@ final class LiveNavigationTests: XCTestCase {
         XCTAssertGreaterThanOrEqual(catalogTitle.frame.minX, app.frame.minX, "Catalog titles must not be cropped off the left edge")
         continueAfterFailure = false
 
+        app.tabBars.buttons["Catálogos"].tap()
+        let catalog = app.buttons.matching(identifier: "catalog-browser-link").firstMatch
+        XCTAssertTrue(catalog.waitForExistence(timeout: 5))
+        catalog.tap()
+        XCTAssertTrue(app.buttons.matching(identifier: "catalog-browser-media").firstMatch.waitForExistence(timeout: 20))
+        capture(app, "native-catalog-browser")
+
+        app.tabBars.buttons["Ajustes"].tap()
+        app.buttons["settings-video"].tap()
+        XCTAssertTrue(app.descendants(matching: .any).matching(identifier: "settings-hwdec").firstMatch.waitForExistence(timeout: 5))
+        capture(app, "native-video-settings")
+        app.navigationBars.buttons.firstMatch.tap()
+        app.buttons["settings-subtitles"].tap()
+        XCTAssertTrue(app.staticTexts["settings-subtitle-preview"].waitForExistence(timeout: 5))
+        capture(app, "native-subtitle-settings")
+
         app.tabBars.buttons["Buscar"].tap()
         let search = app.searchFields.firstMatch
         XCTAssertTrue(search.waitForExistence(timeout: 5))
@@ -106,6 +122,18 @@ final class LiveNavigationTests: XCTestCase {
         let readiness = XCTWaiter.wait(for: [ready], timeout: 20)
         capture(app, "native-player-presentation")
         XCTAssertEqual(readiness, .completed, "The real mpv engine and renderer must initialize before this navigation gate passes")
+        let videoTap = surface.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.35))
+        videoTap.tap()
+        let hidden = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == false"), object: close)
+        XCTAssertEqual(XCTWaiter.wait(for: [hidden], timeout: 3), .completed, "Tapping the video must remove the controls")
+        capture(app, "native-player-controls-hidden")
+        videoTap.tap()
+        XCTAssertTrue(close.waitForExistence(timeout: 3), "A second video tap must restore the controls")
+        app.buttons["player-options"].tap()
+        XCTAssertTrue(app.navigationBars["Opciones del reproductor"].waitForExistence(timeout: 5), "Controls must open options without also toggling the video interface")
+        capture(app, "native-player-options")
+        app.navigationBars.buttons["Listo"].tap()
+        XCTAssertTrue(close.waitForExistence(timeout: 3))
         // Opening the player is not proof that this public example's old video
         // host delivers media. Physical playback remains a separate gate.
         close.tap()

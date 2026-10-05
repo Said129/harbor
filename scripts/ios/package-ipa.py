@@ -41,6 +41,9 @@ def main():
     require(info.get("UIDeviceFamily") == [1], f"This port must target iPhone only; declared family={info.get('UIDeviceFamily')}")
     require(info.get("CFBundleSupportedPlatforms") == ["iPhoneOS"], "Simulator builds cannot be packaged as device IPA")
     require(info.get("CFBundleExecutable") == "Harbor", "Unexpected app executable")
+    icon = info.get("CFBundleIcons", {}).get("CFBundlePrimaryIcon", {})
+    require(icon.get("CFBundleIconName") == "AppIcon", "Original Harbor app icon is not configured")
+    require(bool(icon.get("CFBundleIconFiles")) and (app / "Assets.car").is_file(), "Compiled icon assets missing")
     require(not (app / "_CodeSignature").exists() and not (app / "embedded.mobileprovision").exists(), "Expected an unsigned build without provisioning")
     for entry in app.rglob("*"):
         if entry.is_symlink():

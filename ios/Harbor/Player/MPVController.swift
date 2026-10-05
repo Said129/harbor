@@ -71,9 +71,10 @@ final class MPVController: GLKViewController {
             }
         }
         try check(status)
-        for name in ["time-pos", "duration"] { try check(mpv_observe_property(mpv, 0, name, MPV_FORMAT_DOUBLE)) }
-        for name in ["pause", "paused-for-cache"] { try check(mpv_observe_property(mpv, 0, name, MPV_FORMAT_FLAG)) }
+        for name in ["time-pos", "duration", "speed", "volume", "audio-delay", "sub-delay"] { try check(mpv_observe_property(mpv, 0, name, MPV_FORMAT_DOUBLE)) }
+        for name in ["pause", "paused-for-cache", "mute"] { try check(mpv_observe_property(mpv, 0, name, MPV_FORMAT_FLAG)) }
         try check(mpv_observe_property(mpv, 0, "track-list", MPV_FORMAT_NODE))
+        try check(mpv_observe_property(mpv, 0, "chapter-list", MPV_FORMAT_NODE))
         if let headers = source.headers {
             // mpv string-list escapes commas by doubling; reject CR/LF in Rust.
             let value = headers.sorted(by: { $0.key < $1.key }).map { "\($0.key): \($0.value)".replacingOccurrences(of: ",", with: ",,") }.joined(separator: ",")
@@ -164,9 +165,13 @@ final class MPVController: GLKViewController {
                 let key = String(cString: name)
                 if property.format == MPV_FORMAT_DOUBLE {
                     let number = value.assumingMemoryBound(to: Double.self).pointee
-                    guard number.isFinite && number >= 0 else { continue }
-                    if key == "time-pos" && state.loaded { state.position = number; state.hasPosition = true }
-                    if key == "duration" {
+                    guard number.isFinite else { continue }
+                    if key == "speed" { state.speed = number }
+                    if key == "volume" { state.volume = number }
+                    if key == "audio-delay" { state.audioDelay = number }
+                    if key == "sub-delay" { state.subtitleDelay = number }
+                    if key == "time-pos" && state.loaded && number >= 0 { state.position = number; state.hasPosition = true }
+                    if key == "duration" && number >= 0 {
                         state.duration = number
                         if !checkedResumeDuration && number > 0 {
                             checkedResumeDuration = true
@@ -178,8 +183,11 @@ final class MPVController: GLKViewController {
                     let flag = value.assumingMemoryBound(to: Int32.self).pointee != 0
                     if key == "pause" { state.paused = flag }
                     if key == "paused-for-cache" { state.buffering = flag }
+                    if key == "mute" { state.muted = flag }
                 } else if key == "track-list" && property.format == MPV_FORMAT_NODE {
                     updateTracks(value.assumingMemoryBound(to: mpv_node.self).pointee)
+                } else if key == "chapter-list" && property.format == MPV_FORMAT_NODE {
+                    updateChapters(value.assumingMemoryBound(to: mpv_node.self).pointee)
                 }
             case MPV_EVENT_END_FILE:
                 if let data = event.data {
@@ -220,6 +228,24 @@ final class MPVController: GLKViewController {
             tracks.append(.init(id: Int(id.u.int64), type: type, label: label.isEmpty ? "Pista \(id.u.int64)" : label, selected: selected))
         }
         state.tracks = tracks
+    }
+
+    private func updateChapters(_ node: mpv_node) {
+        guard node.format == MPV_FORMAT_NODE_ARRAY, let list = node.u.list, let values = list.pointee.values else { return }
+        var chapters: [PlayerState.Chapter] = []
+        for index in 0..<Int(list.pointee.num) {
+            let item = values[index]
+            guard item.format == MPV_FORMAT_NODE_MAP, let map = item.u.list, let keys = map.pointee.keys, let fields = map.pointee.values else { continue }
+            var title = "Capítulo \(index + 1)"
+            var time: Double?
+            for field in 0..<Int(map.pointee.num) {
+                guard let key = keys[field] else { continue }
+                if String(cString: key) == "title", fields[field].format == MPV_FORMAT_STRING, let string = fields[field].u.string { title = String(cString: string) }
+                if String(cString: key) == "time", fields[field].format == MPV_FORMAT_DOUBLE { time = fields[field].u.double_ }
+            }
+            if let time, time.isFinite, time >= 0 { chapters.append(.init(id: index, title: title, time: time)) }
+        }
+        state.chapters = chapters
     }
 
     func close() {

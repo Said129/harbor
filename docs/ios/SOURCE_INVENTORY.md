@@ -1757,3 +1757,7 @@ Campos declarados; algunas opciones Desktop requieren verificación de sus consu
 | `adSkipEnabled`                  | `src/lib/settings/types.ts:467` | Not Started |
 | `adReportAlwaysShow`             | `src/lib/settings/types.ts:468` | Not Started |
 | `adReportFirstSeen`              | `src/lib/settings/types.ts:469` | Not Started |
+
+## Identidad nativa (2026-10-05)
+
+`ios/Harbor/Assets.xcassets/AppIcon.appiconset` conserva los PNG de `src-tauri/icons/ios` byte por byte. `harbor-brand` reutiliza el original 1024px. Los SVG de Home, Addons, Catalogs, Movies y Tv conservan la geometría de `src/components/icons/*-icon.tsx`, convertida en assets vectoriales template sin DOM/CSS. Search y Settings proceden de los nodos de lucide-react 1.24.0 ya utilizado por Desktop; licencia en `ios/Harbor/Licenses/Lucide.txt`. No hay imágenes generadas ni reemplazo del logo original. Animaciones de iconos y más opciones de identidad/tema siguen pendientes.

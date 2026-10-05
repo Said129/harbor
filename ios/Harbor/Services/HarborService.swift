@@ -37,6 +37,16 @@ struct HarborService: Sendable {
         throw HarborError(code: result.errors.first ?? "no-metadata")
     }
 
+    func catalog(_ plan: RequestPlan, genre: String?, skip: Int) async throws -> CatalogRow {
+        guard let definition = plan.catalog else { throw HarborError(code: "invalid-catalog") }
+        let plans: [RequestPlan] = try await core.call("catalogs", ["addons": try .encoded([plan.addon]), "search": .null, "genre": genre.map(JSONValue.string) ?? .null, "skip": .integer(Int64(skip))])
+        guard let request = plans.first(where: { $0.kind == plan.kind && $0.catalog?.id == definition.id }) else { throw HarborError(code: "catalog-unavailable") }
+        let response = try await http.json(request.url, timeout: Double(request.timeoutMs) / 1000)
+        guard case .array = response["metas"] else { throw HarborError(code: "invalid-catalog-response") }
+        // Keep the original plan identity/order across filters and pages.
+        return CatalogRow(plan: plan, metas: try response["metas"].decoded([Media].self))
+    }
+
     func streams(_ media: Media, videoID: String, addons: [Addon], season: Int? = nil, episode: Int? = nil) async throws -> ([StreamOffer], [String]) {
         let plans = try await resources(addons, "stream", media.type, videoID)
         let responses = try await fetch(plans)

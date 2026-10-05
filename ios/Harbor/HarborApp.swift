@@ -7,11 +7,13 @@ struct HarborApp: App {
         WindowGroup {
             TabView {
                 NavigationStack { HomeView(model: model).navigationDestination(for: Media.self) { DetailView(media: $0, app: model) } }
-                    .tabItem { Label("Home", systemImage: "house") }
+                    .tabItem { Label("Home", image: "nav-home") }
+                NavigationStack { CatalogsView(app: model).navigationDestination(for: Media.self) { DetailView(media: $0, app: model) } }
+                    .tabItem { Label("Catálogos", image: "nav-catalogs") }
                 NavigationStack { SearchView(app: model).navigationDestination(for: Media.self) { DetailView(media: $0, app: model) } }
-                    .tabItem { Label("Buscar", systemImage: "magnifyingglass") }
-                NavigationStack { AddonsView(app: model) }.tabItem { Label("Addons", systemImage: "puzzlepiece.extension") }
-                NavigationStack { SettingsView(app: model) }.tabItem { Label("Ajustes", systemImage: "gearshape") }
+                    .tabItem { Label("Buscar", image: "nav-search") }
+                NavigationStack { AddonsView(app: model) }.tabItem { Label("Addons", image: "nav-addons") }
+                NavigationStack { SettingsView(app: model) }.tabItem { Label("Ajustes", image: "nav-settings") }
             }
             .tint(HarborTheme.accent).preferredColorScheme(.dark)
             .task { await model.start() }

@@ -13,11 +13,22 @@ final class PlayerState {
     var ended = false
     var error: String?
     var tracks: [Track] = []
+    var chapters: [Chapter] = []
+    var speed = 1.0
+    var volume = 100.0
+    var muted = false
+    var audioDelay = 0.0
+    var subtitleDelay = 0.0
     weak var controller: MPVController?
     struct Track: Identifiable {
         let id: Int
         let type: String
         let label: String
         let selected: Bool
+    }
+    struct Chapter: Identifiable {
+        let id: Int
+        let title: String
+        let time: Double
     }
 }

@@ -35,12 +35,15 @@ enum MPVConfiguration {
         ("video-timing-offset", "0")
     ]
 
-    static func createHandle(startMs: Double = 0, decoding: HardwareDecoding? = nil) throws -> OpaquePointer {
+    static func createHandle(startMs: Double = 0, decoding: HardwareDecoding? = nil, playback: PlaybackOptions? = nil) throws -> OpaquePointer {
         guard let handle = mpv_create() else { throw HarborError(code: "player-init") }
         do {
             for (name, value) in options { try check(mpv_set_option_string(handle, name, value)) }
             let selected = decoding ?? HardwareDecoding(rawValue: UserDefaults.standard.string(forKey: "mpvHwdec") ?? "auto") ?? .auto
             try check(mpv_set_option_string(handle, "hwdec", selected.mpvValue))
+            for (name, value) in (playback ?? PlaybackPreferences.shared.options).mpvOptions {
+                try check(mpv_set_option_string(handle, name, value))
+            }
             if startMs.isFinite && startMs > 0 {
                 try check(mpv_set_option_string(handle, "start", String(startMs / 1000)))
             }

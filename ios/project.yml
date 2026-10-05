@@ -26,6 +26,7 @@ targets:
         PRODUCT_BUNDLE_IDENTIFIER: site.harbor.iphone
         TARGETED_DEVICE_FAMILY: "1"
         GENERATE_INFOPLIST_FILE: NO
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
         SWIFT_STRICT_CONCURRENCY: complete
         OTHER_LDFLAGS: ["$(inherited)", "-lresolv", "-liconv"]
     info:
@@ -33,7 +34,7 @@ targets:
       properties:
         CFBundleDisplayName: Harbor
         CFBundleShortVersionString: "0.1.0"
-        CFBundleVersion: "2"
+        CFBundleVersion: "3"
         CFBundleURLTypes:
           - CFBundleURLName: site.harbor.iphone.login
             CFBundleURLSchemes: [harbor-iphone]
