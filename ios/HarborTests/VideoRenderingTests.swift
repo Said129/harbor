@@ -16,7 +16,7 @@ final class VideoRenderingTests: XCTestCase {
         defer { window.isHidden = true; window.rootViewController = nil; previous?.makeKeyAndVisible() }
 
         for depth in [8, 10] {
-            let url = try XCTUnwrap(Bundle(for: Self.self).url(forResource: "render-\(depth)bit", withExtension: "y4m", subdirectory: "Fixtures"))
+            let url = try XCTUnwrap(Bundle(for: Self.self).url(forResource: "render-\(depth)bit", withExtension: "mp4", subdirectory: "Fixtures"))
             let state = PlayerState()
             let source = PlaybackSource(url: url.absoluteString, headers: nil, subtitles: nil, via: "test-fixture")
             let controller = MPVController(source: source, state: state)
