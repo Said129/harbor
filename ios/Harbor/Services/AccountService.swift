@@ -21,12 +21,26 @@ struct AccountService: Sendable {
     func save(_ collection: AccountCollection, session: AccountSession) async throws {
         struct Saved: Decodable, Sendable { let saved: Bool }
         let result: Saved = try await call("setAddons", ["authKey": .string(session.authKey), "addons": .array(collection.records)])
-        guard result.saved else { throw HarborError(code: "invalid-account-response") }
+        guard result.saved else { throw HarborError(code: "account-addons-save-response") }
     }
 
     private func call<T: Decodable & Sendable>(_ action: String, _ fields: [String: JSONValue]) async throws -> T {
         let plan: Plan = try await core.call("accountRequest", ["action": .string(action), "fields": .object(fields)])
         let response = try await http.post(plan.url, body: plan.body)
-        return try await core.call("accountResponse", ["action": .string(action), "response": response])
+        do {
+            return try await core.call("accountResponse", ["action": .string(action), "response": response])
+        } catch {
+            guard (error as? HarborError)?.code == "invalid-account-response" || error is DecodingError else { throw error }
+            let code: String
+            switch action {
+            case "login", "user": code = "account-auth-response"
+            case "addons": code = "account-addons-response"
+            case "setAddons": code = "account-addons-save-response"
+            default: code = "invalid-account-response"
+            }
+            let safe = HarborError(code: code)
+            await Diagnostics.shared.recordFailure(safe)
+            throw safe
+        }
     }
 }

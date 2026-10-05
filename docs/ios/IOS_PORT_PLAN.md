@@ -2,6 +2,8 @@
 
 Base inspeccionada: upstream `0117755855d3f43960bad3f9f62b69ef851d5991` (0.9.21). Fecha: 2026-10-04. Único nuevo producto: iPhone/iOS. Desktop conserva sus targets y comportamiento. La matriz registra alcance pendiente, no promete paridad por compilar.
 
+Objetivo confirmado por el propietario: port 1:1 de todas las funciones y opciones adaptables de Desktop, con interacción nativa de iPhone. Las opciones exclusivas del hardware de PC, como elegir una GPU discreta, requieren una equivalencia aplicable o una limitación documentada; no se crean controles sin efecto. Una función difícil o todavía no implementada sigue en alcance. El fallo físico de acceso comunicado el 2026-10-05 tiene prioridad para recuperar la cuenta habitual y sus addons antes de continuar con las entradas pendientes.
+
 ## 1. Arquitectura actual
 
 No existe Cargo workspace raíz. Hay dos proyectos Cargo independientes: `harbor-core/Cargo.toml` y `src-tauri/Cargo.toml`, además del crate vendorizado `src-tauri/vendor/rust_cast`. El backend depende del core por path. El paquete pnpm raíz contiene React 19, TypeScript, Vite+, TanStack Router/Query/Virtual y Tauri 2. `AGENTS.md` describe los checks requeridos.

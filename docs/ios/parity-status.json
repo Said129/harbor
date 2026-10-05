@@ -558,10 +558,10 @@
     "notes": "Desktop episode keys, autosave guards/defaults retained. Eight Rust tests, 28 Desktop/C ABI comparisons and three Swift persistence/restart/corruption tests pass. Actual mpv resume, sync and Continue Watching remain pending."
   },
   "Stremio login / logout": {
-    "ios": "Native account UI compiled and opened on simulator; real owner login pending",
+    "ios": "Owner reports both login methods failing on iPhone; nullable manifest fix pending Apple build",
     "state": "Partial",
     "implementation": "`harbor-core/src/account.rs`; `ios/Harbor/Services/AccountService.swift`; `Services/StremioWebLogin.swift`; `ViewModels/AppModel.swift`; `Views/AccountView.swift`",
-    "notes": "Native email/password and official system-browser flow implemented. Session and downloaded addon collection are committed together in Keychain before Home. Local sign-out preserves other devices. Real owner login/browser callback and physical restart remain unverified; no credentials in CI."
+    "notes": "Owner installed the app on iPhone 14 and reports the same account recovery error via email/password and official browser. Shared account decoding rejected valid nullable Stremio addon fields; a regression reproduces that code and passes after the compatibility fix. Session and collection remain atomic in Keychain; no credentials in CI. Corrected owner login and restart still require physical confirmation."
   },
   "Stremio user profile": {
     "ios": "Native account implementation; real owner validation pending",
@@ -573,6 +573,6 @@
     "ios": "Native account implementation; real owner validation pending",
     "state": "Partial",
     "implementation": "`harbor-core/src/account.rs`; `ios/Harbor/Services/AccountService.swift`; `Services/StremioWebLogin.swift`; `ViewModels/AppModel.swift`; `Views/AccountView.swift`",
-    "notes": "Pulls the real account collection at login/startup and on request; preserves configured URLs, order, flags and original records. Explicit install/remove/reorder uses addonCollectionSet; disabled stays local. Rejected/malformed sync preserves previous data. Two Rust contracts and a native preservation test pass; real account roundtrip and conflict reconciliation remain incomplete."
+    "notes": "Pulls account addons at login/startup and on request; explicit edits use addonCollectionSet. Accepts optional null manifest prefixes, resource types, catalog names and extra options as Desktop does, retaining complete original cloud records for edits. A regression reproduces the previous recovery error; fixed physical account roundtrip and conflict reconciliation remain incomplete. Disabled stays local; malformed sync preserves previous data."
   }
 }

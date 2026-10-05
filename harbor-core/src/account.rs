@@ -142,4 +142,35 @@ mod tests {
         let plan = request("setAddons", &json!({"authKey":"test","addons":records})).unwrap();
         assert_eq!(plan["body"]["addons"], records);
     }
+
+    #[test]
+    fn collection_accepts_nullable_stremio_manifest_fields_without_rewriting_cloud_records() {
+        // Stremio serializes optional manifest fields as null in account collections.
+        let records = json!([{
+            "transportUrl":"https://example.org/configured/manifest.json",
+            "flags":{"protected":true},
+            "manifest":{
+                "id":"nullable-contract", "name":"Configured addon", "version":"1.0.0",
+                "types":["movie"], "idPrefixes":null,
+                "resources":["meta", {"name":"stream","types":["movie"],"idPrefixes":null},
+                    {"name":"subtitles","types":null,"idPrefixes":null}],
+                "catalogs":[{"id":"popular","type":"movie","name":null,
+                    "extra":[{"name":"genre","options":null}]}]
+            }
+        }]);
+        let decoded = response("addons", &json!({"result":{"addons":records}})).unwrap();
+        let addons: Vec<Addon> = serde_json::from_value(decoded["addons"].clone()).unwrap();
+        assert_eq!(decoded["records"], records);
+        assert!(addons[0].accepts("meta", "movie", "tt123"));
+        assert!(addons[0].accepts("stream", "movie", "custom123"));
+        assert!(!addons[0].accepts("subtitles", "movie", "tt123"));
+        let plans = addons::catalog_plans(&addons, None, None, 0).unwrap();
+        assert_eq!(plans.len(), 1);
+        assert_eq!(plans[0].title, "Configured addon");
+        assert!(plans[0].catalog.as_ref().unwrap().extra[0]
+            .options
+            .is_empty());
+        let saved = request("setAddons", &json!({"authKey":"test","addons":records})).unwrap();
+        assert_eq!(saved["body"]["addons"], records);
+    }
 }

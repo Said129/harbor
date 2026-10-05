@@ -18,6 +18,16 @@ fn enabled_by_default() -> bool {
     true
 }
 
+// Optional Stremio fields can be absent or explicitly null in cloud manifests.
+// Normalize only the native projection; account.rs retains the original records.
+fn null_default<'de, D, T>(deserializer: D) -> Result<T, D::Error>
+where
+    D: serde::Deserializer<'de>,
+    T: Deserialize<'de> + Default,
+{
+    Ok(Option::<T>::deserialize(deserializer)?.unwrap_or_default())
+}
+
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Manifest {
@@ -25,7 +35,7 @@ pub struct Manifest {
     pub name: String,
     #[serde(default)]
     pub types: Vec<String>,
-    #[serde(default)]
+    #[serde(default, deserialize_with = "null_default")]
     pub id_prefixes: Vec<String>,
     #[serde(default)]
     pub resources: Vec<Resource>,
@@ -41,9 +51,9 @@ pub enum Resource {
     Name(String),
     Specific {
         name: String,
-        #[serde(default)]
+        #[serde(default, deserialize_with = "null_default")]
         types: Vec<String>,
-        #[serde(rename = "idPrefixes", default)]
+        #[serde(rename = "idPrefixes", default, deserialize_with = "null_default")]
         id_prefixes: Vec<String>,
     },
 }
@@ -53,7 +63,7 @@ pub struct Catalog {
     pub id: String,
     #[serde(rename = "type")]
     pub kind: String,
-    #[serde(default)]
+    #[serde(default, deserialize_with = "null_default")]
     pub name: String,
     #[serde(default)]
     pub extra: Vec<CatalogExtra>,
@@ -64,7 +74,7 @@ pub struct CatalogExtra {
     pub name: String,
     #[serde(default)]
     pub is_required: bool,
-    #[serde(default)]
+    #[serde(default, deserialize_with = "null_default")]
     pub options: Vec<String>,
 }
 
