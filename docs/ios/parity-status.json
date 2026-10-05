@@ -348,10 +348,10 @@
     "notes": "HTTP(S) source/header/subtitle contract preserved; CR/LF/NUL header injection rejected in tests. Real direct URL resolved from remote addon; media probe returned HTTP 403 for its old video host; playback unverified."
   },
   "Native libmpv playback": {
-    "ios": "Owner hears audio; uniform blue video; copy-back correction awaiting Apple gate",
+    "ios": "Simulator displays 8/10-bit video and advancing time; physical correction pending",
     "state": "Partial",
     "implementation": "`ios/Harbor/Player/MPVConfiguration.swift`; `MPVController.swift`; `PlayerView.swift`",
-    "notes": "Owner reports audio but a uniform blue surface on Interstellar and multiple sources. Default now avoids direct CoreVideo/GLES import using VideoToolbox copy-back, as the Apple embedded Desktop player does. A new native 8/10-bit pixel and advancing-time test is added; simulator validation and physical retry are pending. No codec/HDR or full playback claim."
+    "notes": "Owner reports audio but a uniform blue surface on Interstellar and multiple sources. Default now avoids direct CoreVideo/GLES import using VideoToolbox copy-back, as the Apple embedded Desktop player does. CI 37334449288 passes the native 8/10-bit pixel and advancing-time test; both real GLKView snapshots were visually inspected. Physical copy-back decoding and owner retry remain pending. No codec/HDR or full playback claim."
   },
   "Load real media URL": {
     "ios": "Apple compilation verified; media interaction pending",
@@ -393,7 +393,7 @@
     "ios": "VideoToolbox copy-back default and native decoding controls; runtime gate pending",
     "state": "Partial",
     "implementation": "`ios/Harbor/Player/MPVConfiguration.swift`; `PlayerView.swift`; `Views/SettingsView.swift`",
-    "notes": "Desktop mpvHwdec auto/on/off is adapted: auto/on prefer VideoToolbox copy-back, off uses CPU; native Settings and player menu persist the choice and apply it to mpv. Direct GPU interop is disabled for the GLES surface to avoid unsupported pixel buffer imports. Hardware behavior/performance and HDR require device validation."
+    "notes": "Desktop mpvHwdec auto/on/off is adapted: auto/on prefer VideoToolbox copy-back, off uses CPU; native Settings and player menu persist the choice and apply it to mpv. Direct GPU interop is disabled for the GLES surface to avoid unsupported pixel buffer imports. Hardware behavior/performance and HDR require device validation. Simulator uses software per the pinned MPVKit demo; the native frame gate passes without lowering input bit depth. It does not establish physical VideoToolbox compatibility."
   },
   "Playback state events": {
     "ios": "Apple compilation verified; media interaction pending",
@@ -579,6 +579,6 @@
     "ios": "Native persistent picker and live player control; runtime gate pending",
     "state": "Partial",
     "implementation": "`ios/Harbor/Player/MPVConfiguration.swift`; `PlayerView.swift`; `Views/SettingsView.swift`",
-    "notes": "Same auto/on/off values as Desktop. iPhone auto/on use VideoToolbox copy-back; off selects software. Next playback reads the saved option; player changes call mpv asynchronously without reloading the source. Default falls back to CPU when acceleration is unavailable. Physical controls and image recovery remain unverified."
+    "notes": "Same auto/on/off values as Desktop. iPhone auto/on use VideoToolbox copy-back; off selects software. Next playback reads the saved option; player changes call mpv asynchronously without reloading the source. Default falls back to CPU when acceleration is unavailable. Physical controls and image recovery remain unverified. Simulator uses software for all modes; physical iPhone mode selection and performance still require device confirmation."
   }
 }

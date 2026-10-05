@@ -1,10 +1,10 @@
 # Prueba física desde Windows sin membresía de pago
 
-Esta guía prepara la siguiente comprobación del port. El propietario confirma que ha instalado y abierto la build anterior en su iPhone 14; ambos accesos fallaron al recuperar la cuenta. Cada actualización de CI sigue siendo una IPA **sin firmar** que debe firmarse antes de instalarla. La app requiere iOS 17 o posterior y sólo declara iPhone; login corregido y reproducción física siguen pendientes.
+Esta guía prepara la siguiente comprobación del port. El propietario confirma instalación, apertura y login corregido en su iPhone 14; ahora observa audio con pantalla azul uniforme al reproducir varias fuentes. Cada actualización de CI sigue siendo una IPA **sin firmar** que debe firmarse antes de instalarla. La app requiere iOS 17 o posterior y sólo declara iPhone; la corrección de imagen de build 2 y el resto de la reproducción física siguen pendientes.
 
 Dispositivo acordado: iPhone 14, iOS 26.6.2 según el propietario. El CI usa iPhone simulator con iOS 18.5; comprobar el arranque y la reproducción en el teléfono sigue siendo un gate separado.
 
-Para repetir el acceso con la corrección, instalar la nueva IPA sobre Harbor usando la misma cuenta Apple y el mismo identificador de bundle que en la instalación anterior. Conservar la app instalada y sus datos; esta corrección no exige borrar la cuenta ni reinstalar los addons manualmente. Después usar la cuenta habitual de Stremio desde Harbor.
+Para aplicar la corrección de vídeo, instalar la nueva IPA build 2 sobre Harbor usando la misma cuenta Apple y el mismo identificador de bundle que en la instalación anterior. Conservar la app instalada y sus datos; esta corrección no exige borrar la cuenta ni reinstalar los addons manualmente. Después repetir la película con Automática. Si persiste un fallo de imagen, pulsar el icono de vídeo del reproductor y elegir Software, o cambiar Ajustes → Reproducción → Decodificación de vídeo. La selección se conserva entre aperturas.
 
 ## Obtener y comprobar el build
 
