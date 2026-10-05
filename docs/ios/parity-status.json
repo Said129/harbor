@@ -558,10 +558,10 @@
     "notes": "Desktop episode keys, autosave guards/defaults retained. Eight Rust tests, 28 Desktop/C ABI comparisons and three Swift persistence/restart/corruption tests pass. Actual mpv resume, sync and Continue Watching remain pending."
   },
   "Stremio login / logout": {
-    "ios": "Owner reports both login methods failing on iPhone; nullable manifest fix pending Apple build",
+    "ios": "Nullable manifest fix passes native Apple regression; corrected owner login pending",
     "state": "Partial",
     "implementation": "`harbor-core/src/account.rs`; `ios/Harbor/Services/AccountService.swift`; `Services/StremioWebLogin.swift`; `ViewModels/AppModel.swift`; `Views/AccountView.swift`",
-    "notes": "Owner installed the app on iPhone 14 and reports the same account recovery error via email/password and official browser. Shared account decoding rejected valid nullable Stremio addon fields; a regression reproduces that code and passes after the compatibility fix. Session and collection remain atomic in Keychain; no credentials in CI. Corrected owner login and restart still require physical confirmation."
+    "notes": "Owner installed the previous build on iPhone 14 and reports the same recovery error via both methods. Shared decoding rejected valid nullable addon fields; Rust and native Swift regressions reproduce and fix that code, with catalog plans and cloud preservation checked. CI 37321248984 passes. Session and collection remain atomic in Keychain; corrected owner login and restart still require physical confirmation. No credentials in CI."
   },
   "Stremio user profile": {
     "ios": "Native account implementation; real owner validation pending",

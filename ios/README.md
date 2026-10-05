@@ -47,7 +47,7 @@ Validar el contrato desde Windows, después de construir el bridge:
 python scripts/ios/test-resume-contract.py
 ```
 
-Compara el módulo TypeScript Desktop real con la DLL/C ABI, sin red. Los tres tests Swift de persistencia/reinicio/corrupción pasan en Apple CI, junto con cinco tests del bridge y diagnostics, un test real de Keychain, uno de inicialización de libmpv y uno de conservación de la colección de addons. El comportamiento mpv de resume todavía requiere reproducción en iPhone. Continue Watching, historial completo y sincronización de cuentas siguen pendientes. Los resultados y commits comprobados están en VALIDATION.
+Compara el módulo TypeScript Desktop real con la DLL/C ABI, sin red. Los tres tests Swift de persistencia/reinicio/corrupción pasan en Apple CI, junto con cinco tests del bridge y diagnostics, un test real de Keychain, uno de inicialización de libmpv y dos de conservación y compatibilidad de la colección de addons. El comportamiento mpv de resume todavía requiere reproducción en iPhone. Continue Watching, historial completo y sincronización de cuentas siguen pendientes. Los resultados y commits comprobados están en VALIDATION.
 
 ## CI Apple sin Mac local
 
@@ -66,7 +66,7 @@ El PR abierto ejecuta el workflow al actualizar la rama. Los pushes directos só
 
 Stages: tests Windows/Linux → cargo Apple sin WASM → framework dinámico device arm64 y simulator arm64/x86_64 → validación de exports/install name → XCFramework → XcodeGen → dependencias SPM fijadas → build Swift/simulator → tests de ABI/modelos en iPhone simulator → integración real opt-in → build device unsigned → empaquetado/verificación de IPA unsigned. El runtime Rust del bridge queda dentro de su framework para evitar la colisión con Libdovi; ver ADR 0002. El primer gate Apple ocurre antes de compilar Swift. Si se autoriza el upload dentro de la cuota, produce logs, xcresult, XCFramework, apps simulator/device e IPA unsigned.
 
-`HarborLive` es un scheme separado que activa explícitamente dos tests de servicios reales y un test de navegación XCTest UI. Usa URLSession, Codable, el framework Rust embebido, Keychain y la interfaz normal: no hay launch mode especial, estado inyectado ni respuestas falsas. Cinemeta y el addon de ejemplo oficial sólo son inputs de la prueba. El test UI conserva capturas en `LiveTests.xcresult` y comprueba límites del viewport, la consulta completa de búsqueda e inicialización real de mpv/render antes de cerrar el player; no certifica imagen/audio ni disponibilidad del servidor de vídeo. Los once tests normales siguen sin depender de red. Los builds simulator usan firma ad hoc local (`CODE_SIGN_IDENTITY=-`) para comprobar Keychain, sin cuenta Apple ni certificado; el build device sigue sin firmar. PR y dispatch de la misma rama comparten concurrency para evitar builds duplicados.
+`HarborLive` es un scheme separado que activa explícitamente dos tests de servicios reales y un test de navegación XCTest UI. Usa URLSession, Codable, el framework Rust embebido, Keychain y la interfaz normal: no hay launch mode especial, estado inyectado ni respuestas falsas. Cinemeta y el addon de ejemplo oficial sólo son inputs de la prueba. El test UI conserva capturas en `LiveTests.xcresult` y comprueba límites del viewport, la consulta completa de búsqueda e inicialización real de mpv/render antes de cerrar el player; no certifica imagen/audio ni disponibilidad del servidor de vídeo. Los doce tests normales siguen sin depender de red. Los builds simulator usan firma ad hoc local (`CODE_SIGN_IDENTITY=-`) para comprobar Keychain, sin cuenta Apple ni certificado; el build device sigue sin firmar. PR y dispatch de la misma rama comparten concurrency para evitar builds duplicados.
 
 `scripts/ios/package-ipa.py` exige un build iPhoneOS/arm64, device family 1 y HarborCore embebido. Conserva permisos/symlinks, verifica la integridad de `Payload/Harbor.app` y genera un informe con commit, tamaño y SHA-256. No firma ni instala. Por defecto la IPA sólo existe temporalmente en el runner y no se sube a GitHub.
 
@@ -76,9 +76,9 @@ Para ejecutar las mismas etapas en un Mac disponible en el futuro: `bash scripts
 
 ## Gate de iPhone físico
 
-No existe aún una IPA firmada. El build unsigned comprueba código/enlace, pero no permite instalar normalmente en iPhone. Configurar signing/distribución por separado, sin guardar certificados o provisioning en Git. No contratar servicios ni membresías automáticamente.
+El propietario confirma instalación y apertura de la build anterior en su iPhone 14, pero ambos accesos fallaron al recuperar la cuenta. Los builds de CI siguen sin firmar: comprobar código/enlace no permite instalarlos directamente. Firmar cada actualización localmente sin guardar certificados o provisioning en Git. El acceso corregido y la reproducción física siguen pendientes.
 
-La [guía de prueba desde Windows](SIDELOAD.md) describe la comprobación del hash y una vía de firma local con cuenta Apple gratuita. Esa instalación aún debe verificarse con la IPA y el dispositivo concretos.
+La [guía de prueba desde Windows](SIDELOAD.md) describe la comprobación del hash y la firma local con cuenta Apple gratuita. Para actualizar la app se conserva la misma identidad de firma y bundle; no se necesita borrar los datos para corregir la lectura de manifests de la cuenta.
 
 Después del gate de CI, instalar una build válidamente firmada, añadir un addon real con una fuente disponible y comprobar Home → búsqueda → ficha → selector → reproducción. Registrar dispositivo/iOS/fuente, avance de time-pos, imagen/audio, seeking, subs/tracks, headers/ranges, rotación, cierres repetidos, memoria/temperatura y red interrumpida. No marcar el milestone completo hasta observar vídeo real en iPhone.
 
