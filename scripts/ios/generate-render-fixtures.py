@@ -17,7 +17,7 @@ parser.add_argument("--ffmpeg", default="ffmpeg")
 args = parser.parse_args()
 folder = Path(__file__).resolve().parents[2] / "ios/HarborTests/Fixtures"
 folder.mkdir(parents=True, exist_ok=True)
-width, height, frames = 64, 32, 36
+width, height, frames = 64, 32, 180
 # Limited-range BT.601: red on the left, green on the right.
 for depth in (8, 10):
     scale = 1 << (depth - 8)

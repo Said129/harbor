@@ -25,7 +25,9 @@ final class VideoRenderingTests: XCTestCase {
             controller.view.layoutIfNeeded()
             defer { controller.close(); window.rootViewController = nil }
             let surface = try XCTUnwrap(controller.view as? GLKView)
-            let deadline = Date().addingTimeInterval(10)
+            // A cold GLES/shader startup must not consume the entire fixture.
+            // Clips last 30s; this bounded check exits as soon as pixels/time pass.
+            let deadline = Date().addingTimeInterval(20)
             var displayed = false
             var samples: [Int] = []
             var lastSnapshot: UIImage?
