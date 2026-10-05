@@ -1,4 +1,5 @@
 import XCTest
+import CryptoKit
 @testable import Harbor
 
 /// Opt-in network integration. These use the production service and embedded
@@ -44,5 +45,30 @@ final class LiveServicesTests: XCTestCase {
         XCTAssertTrue(["http", "https"].contains(URL(string: source.url)?.scheme ?? ""))
         XCTAssertEqual(source.via, "direct")
         print("Harbor live official addon: catalogs=\(catalogs.count) offers=\(offers.count) resolution=passed; media transport unverified")
+    }
+
+    func testNativeDownloadPersistsExactPublicBytesAndRemainsAccountScoped() async throws {
+        try requireOptIn()
+        let downloads = DownloadManager.shared
+        let owner = "download-test-\(UUID().uuidString)"
+        defer { for item in downloads.list(owner: owner) { downloads.remove(item) } }
+        // Original CC0 fixture hosted at a fixed public commit, test input only.
+        let source = PlaybackSource(url: "https://raw.githubusercontent.com/Said129/harbor/1f4d5d99282b2eda816cbe0d544cb33b5bc7ee21/ios/HarborTests/Fixtures/render-8bit.mp4", headers: nil, subtitles: nil, via: "direct")
+        let media = Media(id: "download-test", type: "movie", name: "Native download test")
+        try downloads.start(source: source, media: media, episode: nil, owner: owner, cellular: false)
+        let deadline = Date().addingTimeInterval(45)
+        while Date() < deadline, let item = downloads.list(owner: owner).first, item.status == .downloading {
+            try await Task.sleep(for: .milliseconds(250))
+        }
+        let item = try XCTUnwrap(downloads.list(owner: owner).first)
+        XCTAssertEqual(item.status, .complete, item.message ?? "The background download did not complete")
+        let file = try downloads.file(item)
+        let data = try Data(contentsOf: file)
+        let hash = SHA256.hash(data: data).map { String(format: "%02x", $0) }.joined()
+        XCTAssertEqual(hash, "27335d1dbe06c76690517ccbf65e26aaa341ca38a3f3cbf71e98e79e50508c59")
+        XCTAssertEqual(item.received, Int64(data.count))
+        XCTAssertTrue(downloads.list(owner: "other-\(owner)").isEmpty)
+        downloads.remove(item)
+        XCTAssertFalse(FileManager.default.fileExists(atPath: file.path))
     }
 }

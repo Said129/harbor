@@ -30,7 +30,7 @@ struct CatalogRails: View {
             ForEach(rows) { row in
                 VStack(alignment: .leading, spacing: 12) {
                     HStack {
-                        Text(row.plan.title).font(.headline).accessibilityIdentifier("catalog-title")
+                        Text(title(row)).font(.headline).accessibilityIdentifier("catalog-title")
                         Spacer()
                         if let app { NavigationLink { CatalogBrowserView(app: app, initial: row) } label: { HStack(spacing: 4) { Text("Ver todo"); Image(systemName: "chevron.right") }.font(.caption).foregroundStyle(.secondary) }.accessibilityIdentifier("catalog-browser-link") }
                     }.padding(.horizontal)
@@ -46,5 +46,17 @@ struct CatalogRails: View {
                 }
             }
         }
+    }
+    private func title(_ row: CatalogRow) -> String {
+        guard rows.filter({ $0.plan.title == row.plan.title }).count > 1 else { return row.plan.title }
+        let type: String
+        switch row.plan.kind {
+        case "movie": type = "Películas"
+        case "series": type = "Series"
+        case "anime": type = "Anime"
+        case "tv", "channel": type = "TV"
+        default: type = row.plan.kind
+        }
+        return "\(row.plan.title) · \(type)"
     }
 }

@@ -6,6 +6,9 @@ struct DetailView: View {
     @State private var showStreams = false
     @State private var selectedEpisode: Episode?
     @State private var resolutionTask: Task<Void, Never>?
+    @State private var downloading = false
+    @State private var downloadMessage: String?
+    @AppStorage("downloadsCellular") private var cellularDownloads = false
     private let playImmediately: Bool
     init(media: Media, app: AppModel, playImmediately: Bool = false) { self.app = app; self.playImmediately = playImmediately; _model = State(initialValue: DetailModel(media, service: app.service)) }
 
@@ -45,8 +48,14 @@ struct DetailView: View {
                     if model.loadingStreams { ProgressView("Consultando addons…") }
                     if let error = model.error { Text(error).foregroundStyle(.orange) }
                     if !model.warnings.isEmpty && model.offers.isEmpty && !model.loadingStreams { Text("Algunos addons no han respondido. Puedes volver a intentarlo.").font(.caption) }
+                    if let downloadMessage { Text(downloadMessage).font(.caption).foregroundStyle(.secondary) }
                     ForEach(model.offers) { offer in
-                        Button { resolutionTask = Task { await model.play(offer, resume: app.resume, library: app.library) } } label: { VStack(alignment: .leading, spacing: 8) { Text(offer.title); Text("\(offer.source) · \(offer.quality)").font(.caption).foregroundStyle(.secondary) }.frame(minHeight: 44) }.disabled(model.resolving || model.pendingPlayback != nil).accessibilityIdentifier("stream-offer")
+                        HStack(spacing: 14) {
+                            Button { resolutionTask = Task { await model.play(offer, resume: app.resume, library: app.library) } } label: { VStack(alignment: .leading, spacing: 8) { Text(offer.title); Text("\(offer.source) · \(offer.quality)").font(.caption).foregroundStyle(.secondary) }.frame(maxWidth: .infinity, minHeight: 44, alignment: .leading) }.buttonStyle(.borderless).disabled(model.resolving || model.pendingPlayback != nil).accessibilityIdentifier("stream-offer")
+                            if ["movie", "series", "anime", "music"].contains(model.media.type) {
+                                Button { Task { await download(offer) } } label: { Image("nav-downloads").resizable().scaledToFit().frame(width: 24, height: 24).frame(width: 38, height: 44) }.buttonStyle(.borderless).disabled(downloading).accessibilityLabel("Descargar esta fuente")
+                            }
+                        }
                     }
                 }.navigationTitle("Streams").toolbar { ToolbarItem(placement: .topBarTrailing) { Button("Cerrar") { showStreams = false } } }
                 .fullScreenCover(item: $model.playback) { session in PlayerView(session: session, resume: session.resumeStore ?? app.resume, title: model.media.name, media: model.media, library: app.library) }
@@ -64,5 +73,17 @@ struct DetailView: View {
     private func openStreams(_ episode: Episode? = nil) {
         selectedEpisode = episode
         showStreams = true
+    }
+    private func download(_ offer: StreamOffer) async {
+        guard !downloading else { return }
+        downloading = true; downloadMessage = nil
+        defer { downloading = false }
+        let owner = app.user?.id ?? "guest", media = model.media, episode = selectedEpisode
+        do {
+            let source = try await app.service.resolve(offer)
+            guard owner == (app.user?.id ?? "guest") else { return }
+            try DownloadManager.shared.start(source: source, media: media, episode: episode, owner: owner, cellular: cellularDownloads)
+            downloadMessage = "Descarga añadida. Puedes verla en Descargas."
+        } catch { downloadMessage = safeMessage(error) }
     }
 }

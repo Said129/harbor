@@ -533,5 +533,15 @@
     "state": "Partial",
     "implementation": "`ios/Harbor/Player/PlaybackPreferences.swift`; `Player/BufferSize.swift`; `Player/MPVConfiguration.swift`; `Views/PlayerSettingsView.swift`",
     "notes": "Native persistent control with real mpv consumer. Original bundled subtitle fonts; iPhone buffer memory cap preserves Desktop durations. Apple build and physical playback/style coverage pending."
+  },
+  "Room: downloads": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Services/DownloadManager.swift`; `Views/DownloadsView.swift`; `Views/DetailView.swift`; `HarborApp.swift`",
+    "notes": "Real HTTP/S file transfers with progress/pause/resume, protected index, account filtering, sharing and mpv local playback. Background non-credentialed and ephemeral foreground credentialed sessions. Apple compilation/live file lifecycle and physical background behavior pending. HLS/DASH, torrent and automatic downloads remain incomplete."
+  },
+  "User committed uncached downloads": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Services/DownloadManager.swift`; `Views/DownloadsView.swift`; `Views/DetailView.swift`; `HarborApp.swift`",
+    "notes": "Real HTTP/S file transfers with progress/pause/resume, protected index, account filtering, sharing and mpv local playback. Background non-credentialed and ephemeral foreground credentialed sessions. Apple compilation/live file lifecycle and physical background behavior pending. HLS/DASH, torrent and automatic downloads remain incomplete."
   }
 }

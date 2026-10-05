@@ -78,14 +78,16 @@ final class AppModel {
         homeGeneration += 1
         let generation = homeGeneration
         let selectedAddons = addons
-        let enabledIDs = Set(selectedAddons.filter(\.enabled).map(\.id))
+        var enabledIDs = Set(selectedAddons.filter(\.enabled).map(\.id))
+        if !selectedAddons.contains(where: { $0.manifest["id"].string == "com.linvo.cinemeta" }) { enabledIDs.insert(HarborService.cinemetaManifest) }
         rows = rows.filter { enabledIDs.contains($0.plan.addon.id) }
         if rows.isEmpty { heroes = [] }
         loading = true
         error = nil
         defer { if generation == homeGeneration { loading = false } }
         do {
-            let result = try await service.catalogs(selectedAddons, onRow: { [weak self] row in
+            let providers = try await service.catalogProviders(selectedAddons)
+            let result = try await service.catalogs(providers, onRow: { [weak self] row in
                 guard let self, generation == self.homeGeneration else { return }
                 if let index = self.rows.firstIndex(where: { $0.id == row.id }) { self.rows[index] = row }
                 else { self.rows.append(row) }

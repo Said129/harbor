@@ -22,7 +22,9 @@ final class LiveNavigationTests: XCTestCase {
         app.buttons["main-menu"].tap()
         let destination = app.buttons["nav-\(section)"]
         XCTAssertTrue(destination.waitForExistence(timeout: 5))
-        reveal(destination, in: app.scrollViews["navigation-scroll"], attempts: 4)
+        let scroll = app.descendants(matching: .any).matching(identifier: "navigation-scroll").firstMatch
+        XCTAssertTrue(scroll.waitForExistence(timeout: 5))
+        reveal(destination, in: scroll, attempts: 4)
         destination.tap()
     }
 

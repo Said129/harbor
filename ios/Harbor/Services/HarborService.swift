@@ -5,6 +5,15 @@ struct HarborService: Sendable {
     let http = HTTPClient()
     static let cinemetaManifest = "https://v3-cinemeta.strem.io/manifest.json"
 
+    func catalogProviders(_ addons: [Addon]) async throws -> [Addon] {
+        // A declared Cinemeta entry, including a disabled one, is an explicit
+        // account choice. Otherwise provide Harbor's built-in content catalog
+        // independently of the account's stream-only addons.
+        guard !addons.contains(where: { $0.manifest["id"].string == "com.linvo.cinemeta" }) else { return addons }
+        if let builtin = try? await BuiltinCatalogProvider.shared.cinemeta() { return addons + [builtin] }
+        return addons
+    }
+
     func install(_ url: String) async throws -> Addon {
         struct Normalized: Decodable, Sendable { let url: String }
         let normalized: Normalized = try await core.call("normalizeAddon", ["url": .string(url)])
@@ -139,5 +148,21 @@ struct HarborService: Sendable {
             try Task.checkCancellation()
             return responses
         }
+    }
+}
+
+private actor BuiltinCatalogProvider {
+    static let shared = BuiltinCatalogProvider()
+    private var cached: Addon?
+    private var pending: Task<Addon, Error>?
+    func cinemeta() async throws -> Addon {
+        if let cached { return cached }
+        if let pending { return try await pending.value }
+        let task = Task { try await HarborService().install(HarborService.cinemetaManifest) }
+        pending = task
+        defer { pending = nil }
+        let result = try await task.value
+        cached = result
+        return result
     }
 }

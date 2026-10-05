@@ -97,9 +97,9 @@ final class LibraryModel {
             fields["state"] = .object(state)
         }
     }
-    func resume(for target: ResumeTarget) async -> CloudResume? {
+    func resume(for target: ResumeTarget, refresh: Bool = true) async -> CloudResume? {
         let current = generation
-        if let session {
+        if let session, refresh {
             do {
                 let record = try await service.record(target.id, session: session)
                 guard generation == current else { return nil }

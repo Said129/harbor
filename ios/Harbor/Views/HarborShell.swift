@@ -2,7 +2,7 @@ import SwiftUI
 import CoreText
 
 enum HarborSection: String, CaseIterable, Identifiable {
-    case home, discover, catalogs, movies, shows, kids, anime, live, calendar, library, collections, search, addons, settings
+    case home, discover, catalogs, movies, shows, kids, anime, live, calendar, library, collections, downloads, search, addons, settings
     var id: String { rawValue }
     var title: String {
         switch self {
@@ -17,6 +17,7 @@ enum HarborSection: String, CaseIterable, Identifiable {
         case .calendar: "Calendario"
         case .library: "Mi biblioteca"
         case .collections: "Colecciones"
+        case .downloads: "Descargas"
         case .search: "Buscar"
         case .addons: "Addons"
         case .settings: "Ajustes"
@@ -35,6 +36,7 @@ enum HarborSection: String, CaseIterable, Identifiable {
         case .calendar: "calendar"
         case .library: "library"
         case .collections: "collections"
+        case .downloads: "downloads"
         case .search: "search"
         case .addons: "addons"
         case .settings: "settings"
@@ -91,7 +93,7 @@ struct HarborShell: View {
                     }.accessibilityIdentifier("navigation-scroll")
                     if let user = app.user { Text(user.displayName).font(.caption).foregroundStyle(.secondary).lineLimit(1).padding(.horizontal, 20) }
                 }.padding(.top, 12).padding(.bottom, 16).frame(width: 282).frame(maxHeight: .infinity).background(HarborTheme.background)
-                    .transition(.move(edge: .leading)).accessibilityIdentifier("navigation-drawer")
+                    .transition(.move(edge: .leading))
             }
         }
     }
@@ -117,6 +119,7 @@ struct HarborShell: View {
         case .calendar: CalendarView(app: app)
         case .library: LibraryView(app: app)
         case .collections: CollectionsView(app: app)
+        case .downloads: DownloadsView(app: app)
         case .discover: DiscoverView(app: app)
         case .search: SearchView(app: app)
         case .addons: AddonsView(app: app)

@@ -48,6 +48,26 @@ actor ArtworkStore {
 
 /// Shared loading prevents a hero, poster and detail from starting duplicate
 /// downloads. ImageIO downsampling bounds decoded memory on a physical iPhone.
+private struct BoundedArtworkImage: UIViewRepresentable {
+    let image: UIImage
+    let fit: ContentMode
+    func makeUIView(context: Context) -> UIImageView {
+        let view = UIImageView()
+        view.clipsToBounds = true; view.isAccessibilityElement = false; view.accessibilityElementsHidden = true
+        view.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+        view.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
+        return view
+    }
+    func updateUIView(_ view: UIImageView, context: Context) {
+        view.image = image; view.contentMode = fit == .fit ? .scaleAspectFit : .scaleAspectFill
+    }
+    func sizeThatFits(_ proposal: ProposedViewSize, uiView: UIImageView, context: Context) -> CGSize? {
+        // UIImageView draws within its bounds. A scaled SwiftUI Image instead
+        // exposes its uncropped bitmap bounds to the hero's AX container.
+        proposal.replacingUnspecifiedDimensions()
+    }
+}
+
 struct Artwork: View {
     let url: String?
     var fallback: String? = nil
@@ -58,7 +78,7 @@ struct Artwork: View {
     @State private var failed = false
     var body: some View {
         ZStack {
-            if let image { Image(uiImage: image).resizable().aspectRatio(contentMode: fit) }
+            if let image { BoundedArtworkImage(image: image, fit: fit) }
             else {
                 Rectangle().fill(.white.opacity(0.045))
                 if failed {
