@@ -90,9 +90,10 @@ struct HarborService: Sendable {
     private func decodeCatalog(_ response: JSONValue, plan: RequestPlan) throws -> CatalogRow {
         guard case .array(let values) = response["metas"] else { throw HarborError(code: "invalid-catalog-response") }
         var seen = Set<String>()
-        let metas = values.compactMap { Media.parse($0, kind: plan.kind) }.filter { seen.insert($0.identity).inserted }
-        guard values.isEmpty || !metas.isEmpty else { throw HarborError(code: "invalid-catalog-response") }
-        return CatalogRow(plan: plan, metas: metas)
+        let parsed = values.compactMap { Media.parse($0, kind: plan.kind) }.filter { seen.insert($0.identity).inserted }
+        let metas = plan.key.hasPrefix("native-kids-") ? parsed.filter(\.safeForKids) : parsed
+        guard values.isEmpty || !parsed.isEmpty else { throw HarborError(code: "invalid-catalog-response") }
+        return CatalogRow(plan: plan, metas: metas, receivedCount: values.count)
     }
 
     func streams(_ media: Media, videoID: String, addons: [Addon], season: Int? = nil, episode: Int? = nil) async throws -> ([StreamOffer], [String]) {

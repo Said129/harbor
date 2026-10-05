@@ -29,7 +29,12 @@ struct SearchView: View {
         guard !requestedQuery.isEmpty else { return }
         do {
             try await Task.sleep(for: .milliseconds(300))
-            let (result, warnings) = try await app.service.catalogs(app.addons, search: requestedQuery)
+            let (result, warnings) = try await app.service.catalogs(app.addons, search: requestedQuery, onRow: { row in
+                guard query.trimmingCharacters(in: .whitespacesAndNewlines) == requestedQuery else { return }
+                if let index = rows.firstIndex(where: { $0.id == row.id }) { rows[index] = row }
+                else { rows.append(row) }
+                completedQuery = requestedQuery
+            })
             try Task.checkCancellation()
             guard query.trimmingCharacters(in: .whitespacesAndNewlines) == requestedQuery else { return }
             rows = result

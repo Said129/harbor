@@ -35,8 +35,8 @@ targets:
       properties:
         CFBundleDisplayName: Harbor
         CFBundleShortVersionString: "0.1.0"
-        CFBundleVersion: "4"
-        UIAppFonts: [Fraunces.ttf]
+        CFBundleVersion: "5"
+        UIAppFonts: [Fraunces.ttf, Oswald.ttf]
         CFBundleURLTypes:
           - CFBundleURLName: site.harbor.iphone.login
             CFBundleURLSchemes: [harbor-iphone]

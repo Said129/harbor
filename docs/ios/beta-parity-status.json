@@ -1,0 +1,512 @@
+{
+  "Home hero and real catalogs": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Views/HomeView.swift`; `Services/HarborService.swift`; `harbor-core/src/addons.rs`",
+    "notes": "Cinemeta and installed example catalogs load through native services. UI checks actual hero/catalog bounds within the iPhone viewport and the full real-service navigation path. Personalized Desktop rails/options and physical behavior remain incomplete."
+  },
+  "Series catalogs": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Views/CatalogsView.swift`; `Services/HarborService.swift`",
+    "notes": "Movie/series catalog selection, one-catalog requests, manifest genres, supported skip pagination and detail navigation. Personalized Desktop rooms/rails and required-genre-only catalog discovery remain incomplete. Apple simulator/device build and native UI checks pass; full physical feature coverage remains pending."
+  },
+  "Addon catalog discovery": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Views/CatalogsView.swift`; `Services/HarborService.swift`",
+    "notes": "Movie/series catalog selection, one-catalog requests, manifest genres, supported skip pagination and detail navigation. Personalized Desktop rooms/rails and required-genre-only catalog discovery remain incomplete. Apple simulator/device build and native UI checks pass; full physical feature coverage remains pending."
+  },
+  "Global search": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Views/SearchView.swift`; `Services/HarborService.swift`",
+    "notes": "Cinemeta search executes through native services/Rust. UI waits for the complete Interstellar query and opens its exact real movie result. Full Desktop aggregation, series-specific interaction and physical validation remain incomplete."
+  },
+  "Movie search": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Views/SearchView.swift`; `Services/HarborService.swift`",
+    "notes": "Cinemeta search executes through native services/Rust. UI waits for the complete Interstellar query and opens its exact real movie result. Full Desktop aggregation, series-specific interaction and physical validation remain incomplete."
+  },
+  "Series search": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Views/SearchView.swift`; `Services/HarborService.swift`",
+    "notes": "Real addon catalog search with cancellation/debounce. Cinemeta live search passed from Windows; full Desktop search aggregation pending."
+  },
+  "Real content details": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Views/DetailView.swift`; `Models/Media.swift`; `Services/HarborService.swift`",
+    "notes": "Swift services retrieve remote metadata; UI opens real movie details. Logo/ratings enrichment and complete series behavior remain incomplete; screenshots and physical playback are separate evidence."
+  },
+  "Poster / backdrop / logo": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Views/DetailView.swift`; `Models/Media.swift`; `Services/HarborService.swift`",
+    "notes": "Remote artwork and synopsis appear in real native screenshots. Logo/ratings enrichment and complete presentation options remain incomplete; physical iPhone validation is pending."
+  },
+  "Synopsis / genres / ratings": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Views/DetailView.swift`; `Models/Media.swift`; `Services/HarborService.swift`",
+    "notes": "Remote artwork and synopsis appear in real native screenshots. Logo/ratings enrichment and complete presentation options remain incomplete; physical iPhone validation is pending."
+  },
+  "Seasons": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/EpisodeList.swift",
+    "notes": "Native season picker and ordered metadata episodes; code compiles in 16be61de. Physical validation pending."
+  },
+  "Episode details": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/EpisodeList.swift",
+    "notes": "Real thumbnails, overview, release date and playback selection. Full Desktop actions remain incomplete."
+  },
+  "Episode selection": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Views/DetailView.swift`; `ViewModels/DetailModel.swift`",
+    "notes": "Real manifest-provided episode IDs and labels; native episode selection. Season grouping, merge/order and watched behavior pending."
+  },
+  "Install addon URL": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Views/AddonsView.swift`; `ViewModels/AppModel.swift`; `harbor-core/src/addons.rs`",
+    "notes": "Official example URL is entered normally, fetched and persisted in Keychain; its catalog then appears in Home. Restart/order/uninstall and physical iPhone tests remain pending."
+  },
+  "Validate and fetch manifest": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Views/AddonsView.swift`; `ViewModels/AppModel.swift`; `harbor-core/src/addons.rs`",
+    "notes": "Official example URL is entered normally, fetched and persisted in Keychain; its catalog then appears in Home. Restart/order/uninstall and physical iPhone tests remain pending."
+  },
+  "Uninstall addon": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Views/AddonsView.swift`; `ViewModels/AppModel.swift`; `harbor-core/src/addons.rs`",
+    "notes": "Real manifest transport; atomic Keychain persistence before UI mutation. Host protocol tests pass; Keychain/UI restart and order tests on iPhone pending. Account-connected edits now write the cloud collection, preserving configured records; real account edits remain unverified."
+  },
+  "Enable / disable addon": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Views/AddonsView.swift`; `ViewModels/AppModel.swift`; `harbor-core/src/addons.rs`",
+    "notes": "Real manifest transport; atomic Keychain persistence before UI mutation. Host protocol tests pass; Keychain/UI restart and order tests on iPhone pending."
+  },
+  "Addon order": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Views/AddonsView.swift`; `ViewModels/AppModel.swift`; `harbor-core/src/addons.rs`",
+    "notes": "Real manifest transport; atomic Keychain persistence before UI mutation. Host protocol tests pass; Keychain/UI restart and order tests on iPhone pending. Account-connected edits now write the cloud collection, preserving configured records; real account edits remain unverified."
+  },
+  "Installed addons management": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Views/AddonsView.swift`; `ViewModels/AppModel.swift`; `harbor-core/src/addons.rs`",
+    "notes": "Native UI installation and real Keychain roundtrip/update/isolation pass. Enable/disable, reorder, uninstall, restart and physical behavior need separate interaction tests. Account-connected edits now write the cloud collection, preserving configured records; real account edits remain unverified."
+  },
+  "Configure addon URL": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Services/KeychainStore.swift`; `Views/AddonsView.swift`",
+    "notes": "Configured URLs accepted and stored in Keychain; config form/browser and credential lifecycle remain incomplete. No secret URLs in diagnostics."
+  },
+  "Configured addon credentials persistence": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Services/KeychainStore.swift`; `Views/AddonsView.swift`",
+    "notes": "Native Keychain roundtrip/update and real URL installation passed on signed simulator. Account snapshot stores session and configured collection together; remote errors do not overwrite the previous list. Real account restart, browser callback and physical signing remain unverified; diagnostics exclude secret URLs."
+  },
+  "Catalog extras / filters": {
+    "state": "Partial",
+    "implementation": "`harbor-core/src/addons.rs`; `tests/addon_protocol.rs`",
+    "notes": "Rust plans search/genre/skip and matches specific resources/types/prefixes. Contracts tested; pagination/filter UI not implemented."
+  },
+  "Catalog pages": {
+    "state": "Partial",
+    "implementation": "`harbor-core/src/addons.rs`; `tests/addon_protocol.rs`",
+    "notes": "Rust plans search/genre/skip and matches specific resources/types/prefixes. Contracts tested; pagination/filter UI not implemented."
+  },
+  "Addon resource matching": {
+    "state": "Partial",
+    "implementation": "`harbor-core/src/addons.rs`; `tests/addon_protocol.rs`",
+    "notes": "Rust plans search/genre/skip and matches specific resources/types/prefixes. Contracts tested; pagination/filter UI not implemented."
+  },
+  "Real addon stream requests": {
+    "state": "Partial",
+    "implementation": "`harbor-core/src/addons.rs`; `ios/Harbor/Services/HarborService.swift`",
+    "notes": "Real addon catalog/meta/stream requests, mapping/ranking and direct resolution pass through Swift URLSession and embedded Rust on iPhone simulator. Media delivery and physical playback remain separate gates."
+  },
+  "Concurrent addon requests": {
+    "state": "Partial",
+    "implementation": "`harbor-core/src/addons.rs`; `ios/Harbor/Services/HarborService.swift`",
+    "notes": "Real requests mapped with addon identity/order and unknown-field preservation; 8/22 s plans and concurrent transport. Windows live stream test passes; Apple network/runtime pending."
+  },
+  "Addon timeouts": {
+    "state": "Partial",
+    "implementation": "`harbor-core/src/addons.rs`; `ios/Harbor/Services/HarborService.swift`",
+    "notes": "Real requests mapped with addon identity/order and unknown-field preservation; 8/22 s plans and concurrent transport. Windows live stream test passes; Apple network/runtime pending."
+  },
+  "Addon priority / return index": {
+    "state": "Partial",
+    "implementation": "`harbor-core/src/addons.rs`; `ios/Harbor/Services/HarborService.swift`",
+    "notes": "Real requests mapped with addon identity/order and unknown-field preservation; 8/22 s plans and concurrent transport. Windows live stream test passes; Apple network/runtime pending."
+  },
+  "Tracker preservation": {
+    "state": "Partial",
+    "implementation": "`harbor-core/src/addons.rs`; `ios/Harbor/Services/HarborService.swift`",
+    "notes": "Real requests mapped with addon identity/order and unknown-field preservation; 8/22 s plans and concurrent transport. Windows live stream test passes; Apple network/runtime pending."
+  },
+  "Direct stream resolution": {
+    "state": "Partial",
+    "implementation": "`harbor-ios-bridge/src/dispatch.rs`; `ios/Harbor/Player/MPVController.swift`",
+    "notes": "HTTP(S)/headers/subtitles preserved; injection tests pass. Real addon resolves through Rust; UI waits for actual player engine/render initialization and closes back to the picker. Old sample host returned HTTP 403 from Windows; image/audio unverified."
+  },
+  "Playback request headers": {
+    "state": "Partial",
+    "implementation": "`harbor-ios-bridge/src/dispatch.rs`; `ios/Harbor/Player/MPVController.swift`",
+    "notes": "HTTP(S) source/header/subtitle contract preserved; CR/LF/NUL header injection rejected in tests. Real direct URL resolved from remote addon; media probe returned HTTP 403 for its old video host; playback unverified."
+  },
+  "Embedded addon subtitle URLs": {
+    "state": "Partial",
+    "implementation": "`harbor-ios-bridge/src/dispatch.rs`; `ios/Harbor/Player/MPVController.swift`",
+    "notes": "HTTP(S) source/header/subtitle contract preserved; CR/LF/NUL header injection rejected in tests. Real direct URL resolved from remote addon; media probe returned HTTP 403 for its old video host; playback unverified."
+  },
+  "Touch-equivalent transport controls": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Player/MPVController.swift`; `PlayerView.swift`; `PlayerState.swift`",
+    "notes": "Pinned MPVKit and these controls compile/link on Apple. The app-owned native mpv factory passes its initialization test. Media-dependent controls, events, decoding and physical playback require runtime validation; no codec claims."
+  },
+  "Custom seek bar": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Player/MPVController.swift`; `PlayerView.swift`; `PlayerState.swift`",
+    "notes": "Pinned MPVKit and these controls compile/link on Apple. The app-owned native mpv factory passes its initialization test. Media-dependent controls, events, decoding and physical playback require runtime validation; no codec claims."
+  },
+  "Player resilience / errors": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Player/MPVController.swift`; `PlayerView.swift`; `PlayerState.swift`",
+    "notes": "Pinned MPVKit and these controls compile/link on Apple. The app-owned native mpv factory passes its initialization test. Media-dependent controls, events, decoding and physical playback require runtime validation; no codec claims."
+  },
+  "External SRT": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Player/MPVController.swift`",
+    "notes": "External addon subtitle URLs passed via sub-add and libass stack pinned. No format/encoding/styling playback certification yet."
+  },
+  "External ASS / SSA": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Player/MPVController.swift`",
+    "notes": "External addon subtitle URLs passed via sub-add and libass stack pinned. No format/encoding/styling playback certification yet."
+  },
+  "External WebVTT": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Player/MPVController.swift`",
+    "notes": "External addon subtitle URLs passed via sub-add and libass stack pinned. No format/encoding/styling playback certification yet."
+  },
+  "Cinemeta metadata": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Services/HarborService.swift`",
+    "notes": "Actual Cinemeta manifest, catalog/search/meta pass from Windows and through Swift URLSession / embedded C ABI in native LiveServicesTests. Additional provider enrichment remains incomplete."
+  },
+  "Harbor visual identity": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Views/HarborTheme.swift`",
+    "notes": "Upstream cool-grey canvas/accent tokens mapped to sRGB; native dark surfaces/posters/backdrops. Typography/themes and device screenshot review pending."
+  },
+  "Remote streaming server": {
+    "state": "Investigating",
+    "implementation": "Extraction target: `src-tauri/src/torrent_engine.rs` and `torrent_engine/stream_route.rs`",
+    "notes": "Upstream already uses librqbit/Axum instead of Node stremio-server. Apple dependency/link/lifecycle experiment and extraction still required; no claim that iOS forbids torrents."
+  },
+  "P2P fallback": {
+    "state": "Investigating",
+    "implementation": "Extraction target: `src-tauri/src/torrent_engine.rs` and `torrent_engine/stream_route.rs`",
+    "notes": "Upstream already uses librqbit/Axum instead of Node stremio-server. Apple dependency/link/lifecycle experiment and extraction still required; no claim that iOS forbids torrents."
+  },
+  "Real-Debrid account": {
+    "state": "Investigating",
+    "implementation": "Shared Rust service boundary planned; clients currently `src/lib/debrid`",
+    "notes": "Actual clients are TypeScript, not harbor-core. Preserve five providers; port shared request/auth/cache contracts to Rust, validate parity before migrating Desktop. No native account client implemented."
+  },
+  "AllDebrid account": {
+    "state": "Investigating",
+    "implementation": "Shared Rust service boundary planned; clients currently `src/lib/debrid`",
+    "notes": "Actual clients are TypeScript, not harbor-core. Preserve five providers; port shared request/auth/cache contracts to Rust, validate parity before migrating Desktop. No native account client implemented."
+  },
+  "Premiumize account": {
+    "state": "Investigating",
+    "implementation": "Shared Rust service boundary planned; clients currently `src/lib/debrid`",
+    "notes": "Actual clients are TypeScript, not harbor-core. Preserve five providers; port shared request/auth/cache contracts to Rust, validate parity before migrating Desktop. No native account client implemented."
+  },
+  "TorBox account": {
+    "state": "Investigating",
+    "implementation": "Shared Rust service boundary planned; clients currently `src/lib/debrid`",
+    "notes": "Actual clients are TypeScript, not harbor-core. Preserve five providers; port shared request/auth/cache contracts to Rust, validate parity before migrating Desktop. No native account client implemented."
+  },
+  "Debrid-Link account": {
+    "state": "Investigating",
+    "implementation": "Shared Rust service boundary planned; clients currently `src/lib/debrid`",
+    "notes": "Actual clients are TypeScript, not harbor-core. Preserve five providers; port shared request/auth/cache contracts to Rust, validate parity before migrating Desktop. No native account client implemented."
+  },
+  "Local playback resume": {
+    "state": "Partial",
+    "implementation": "`harbor-core/src/resume.rs`; `ios/Harbor/Services/ResumeStore.swift`; `Player/MPVController.swift`; `Views/SettingsView.swift`",
+    "notes": "Desktop episode keys, autosave guards/defaults retained. Eight Rust tests, 28 Desktop/C ABI comparisons and three Swift persistence/restart/corruption tests pass. Actual mpv resume, sync and Continue Watching remain pending."
+  },
+  "Setting: resumePlayback": {
+    "state": "Partial",
+    "implementation": "`harbor-core/src/resume.rs`; `ios/Harbor/Services/ResumeStore.swift`; `Player/MPVController.swift`; `Views/SettingsView.swift`",
+    "notes": "Desktop episode keys, autosave guards/defaults retained. Eight Rust tests, 28 Desktop/C ABI comparisons and three Swift persistence/restart/corruption tests pass. Actual mpv resume, sync and Continue Watching remain pending."
+  },
+  "Setting: resumePrompt": {
+    "state": "Partial",
+    "implementation": "`harbor-core/src/resume.rs`; `ios/Harbor/Services/ResumeStore.swift`; `Player/MPVController.swift`; `Views/SettingsView.swift`",
+    "notes": "Desktop episode keys, autosave guards/defaults retained. Eight Rust tests, 28 Desktop/C ABI comparisons and three Swift persistence/restart/corruption tests pass. Actual mpv resume, sync and Continue Watching remain pending."
+  },
+  "Stremio login / logout": {
+    "state": "Partial",
+    "implementation": "`harbor-core/src/account.rs`; `ios/Harbor/Services/AccountService.swift`; `Services/StremioWebLogin.swift`; `ViewModels/AppModel.swift`; `Views/AccountView.swift`",
+    "notes": "Owner confirms login succeeds on iPhone 14 with the corrected build. The native account/Rust nullable-field regression and CI 37321248984 pass. Both flows exist; this report does not separately verify browser restart, logout or every collection edit. Session and collection remain atomic in Keychain; no credentials in CI."
+  },
+  "Stremio user profile": {
+    "state": "Partial",
+    "implementation": "`harbor-core/src/account.rs`; `ios/Harbor/Services/AccountService.swift`; `Services/StremioWebLogin.swift`; `ViewModels/AppModel.swift`; `Views/AccountView.swift`",
+    "notes": "Displays the real login/getUser profile, without a fabricated account. Basic identity only; full profile features and physical authentication remain incomplete."
+  },
+  "Stremio addon collection sync": {
+    "state": "Partial",
+    "implementation": "`harbor-core/src/account.rs`; `ios/Harbor/Services/AccountService.swift`; `Services/StremioWebLogin.swift`; `ViewModels/AppModel.swift`; `Views/AccountView.swift`",
+    "notes": "Pulls account addons at login/startup and on request; explicit edits use addonCollectionSet. Accepts optional null manifest prefixes, resource types, catalog names and extra options as Desktop does, retaining complete original cloud records for edits. A regression reproduces the previous recovery error; fixed physical account roundtrip and conflict reconciliation remain incomplete. Disabled stays local; malformed sync preserves previous data."
+  },
+  "Setting: mpvHwdec": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Player/MPVConfiguration.swift`; `PlayerView.swift`; `Views/SettingsView.swift`",
+    "notes": "Same auto/on/off values as Desktop. iPhone auto/on use VideoToolbox copy-back; off selects software. Next playback reads the saved option; player changes call mpv asynchronously without reloading the source. Default falls back to CPU when acceleration is unavailable. Physical controls and image recovery remain unverified. Simulator uses software for all modes; physical iPhone mode selection and performance still require device confirmation."
+  },
+  "Subtitle styling": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Player/PlayerView.swift`; `Player/MPVController.swift`; `Views/PlayerSettingsView.swift`; `Player/PlaybackPreferences.swift`",
+    "notes": "Persisted native settings, active playback sheets, observed transport/audio state and chapters. Desktop language ordering, arbitrary colors/fonts/properties and full physical option coverage remain incomplete. Apple simulator/device build, real mpv option initialization and native UI checks pass; full physical option coverage remains pending."
+  },
+  "Setting: mpvDownmixStereo": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Player/PlayerView.swift`; `Player/MPVController.swift`; `Views/PlayerSettingsView.swift`; `Player/PlaybackPreferences.swift`",
+    "notes": "Persisted native settings, active playback sheets, observed transport/audio state and chapters. Desktop language ordering, arbitrary colors/fonts/properties and full physical option coverage remain incomplete. Apple simulator/device build, real mpv option initialization and native UI checks pass; full physical option coverage remains pending."
+  },
+  "Setting: mpvTweaks": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Player/PlayerView.swift`; `Player/MPVController.swift`; `Views/PlayerSettingsView.swift`; `Player/PlaybackPreferences.swift`",
+    "notes": "Persisted native settings, active playback sheets, observed transport/audio state and chapters. Desktop language ordering, arbitrary colors/fonts/properties and full physical option coverage remain incomplete. Apple simulator/device build, real mpv option initialization and native UI checks pass; full physical option coverage remains pending."
+  },
+  "Setting: preferredSubLangs": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Player/PlayerView.swift`; `Player/MPVController.swift`; `Views/PlayerSettingsView.swift`; `Player/PlaybackPreferences.swift`",
+    "notes": "Persisted native settings, active playback sheets, observed transport/audio state and chapters. Desktop language ordering, arbitrary colors/fonts/properties and full physical option coverage remain incomplete. Apple simulator/device build, real mpv option initialization and native UI checks pass; full physical option coverage remains pending."
+  },
+  "Setting: preferredAudioLangs": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Player/PlayerView.swift`; `Player/MPVController.swift`; `Views/PlayerSettingsView.swift`; `Player/PlaybackPreferences.swift`",
+    "notes": "Persisted native settings, active playback sheets, observed transport/audio state and chapters. Desktop language ordering, arbitrary colors/fonts/properties and full physical option coverage remain incomplete. Apple simulator/device build, real mpv option initialization and native UI checks pass; full physical option coverage remains pending."
+  },
+  "Setting: subFontSize": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Player/PlayerView.swift`; `Player/MPVController.swift`; `Views/PlayerSettingsView.swift`; `Player/PlaybackPreferences.swift`",
+    "notes": "Persisted native settings, active playback sheets, observed transport/audio state and chapters. Desktop language ordering, arbitrary colors/fonts/properties and full physical option coverage remain incomplete. Apple simulator/device build, real mpv option initialization and native UI checks pass; full physical option coverage remains pending."
+  },
+  "Setting: subFontColor": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Player/PlayerView.swift`; `Player/MPVController.swift`; `Views/PlayerSettingsView.swift`; `Player/PlaybackPreferences.swift`",
+    "notes": "Persisted native settings, active playback sheets, observed transport/audio state and chapters. Desktop language ordering, arbitrary colors/fonts/properties and full physical option coverage remain incomplete. Apple simulator/device build, real mpv option initialization and native UI checks pass; full physical option coverage remains pending."
+  },
+  "Setting: subBorderColor": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Player/PlayerView.swift`; `Player/MPVController.swift`; `Views/PlayerSettingsView.swift`; `Player/PlaybackPreferences.swift`",
+    "notes": "Persisted native settings, active playback sheets, observed transport/audio state and chapters. Desktop language ordering, arbitrary colors/fonts/properties and full physical option coverage remain incomplete. Apple simulator/device build, real mpv option initialization and native UI checks pass; full physical option coverage remains pending."
+  },
+  "Setting: subBorderSize": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Player/PlayerView.swift`; `Player/MPVController.swift`; `Views/PlayerSettingsView.swift`; `Player/PlaybackPreferences.swift`",
+    "notes": "Persisted native settings, active playback sheets, observed transport/audio state and chapters. Desktop language ordering, arbitrary colors/fonts/properties and full physical option coverage remain incomplete. Apple simulator/device build, real mpv option initialization and native UI checks pass; full physical option coverage remains pending."
+  },
+  "Setting: subMarginY": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Player/PlayerView.swift`; `Player/MPVController.swift`; `Views/PlayerSettingsView.swift`; `Player/PlaybackPreferences.swift`",
+    "notes": "Persisted native settings, active playback sheets, observed transport/audio state and chapters. Desktop language ordering, arbitrary colors/fonts/properties and full physical option coverage remain incomplete. Apple simulator/device build, real mpv option initialization and native UI checks pass; full physical option coverage remains pending."
+  },
+  "Setting: subAlignX": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Player/PlayerView.swift`; `Player/MPVController.swift`; `Views/PlayerSettingsView.swift`; `Player/PlaybackPreferences.swift`",
+    "notes": "Persisted native settings, active playback sheets, observed transport/audio state and chapters. Desktop language ordering, arbitrary colors/fonts/properties and full physical option coverage remain incomplete. Apple simulator/device build, real mpv option initialization and native UI checks pass; full physical option coverage remains pending."
+  },
+  "Setting: subAssOverride": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Player/PlayerView.swift`; `Player/MPVController.swift`; `Views/PlayerSettingsView.swift`; `Player/PlaybackPreferences.swift`",
+    "notes": "Persisted native settings, active playback sheets, observed transport/audio state and chapters. Desktop language ordering, arbitrary colors/fonts/properties and full physical option coverage remain incomplete. Apple simulator/device build, real mpv option initialization and native UI checks pass; full physical option coverage remains pending."
+  },
+  "Setting: subStyle": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Player/PlayerView.swift`; `Player/MPVController.swift`; `Views/PlayerSettingsView.swift`; `Player/PlaybackPreferences.swift`",
+    "notes": "Persisted native settings, active playback sheets, observed transport/audio state and chapters. Desktop language ordering, arbitrary colors/fonts/properties and full physical option coverage remain incomplete. Apple simulator/device build, real mpv option initialization and native UI checks pass; full physical option coverage remains pending."
+  },
+  "Setting: subBold": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Player/PlayerView.swift`; `Player/MPVController.swift`; `Views/PlayerSettingsView.swift`; `Player/PlaybackPreferences.swift`",
+    "notes": "Persisted native settings, active playback sheets, observed transport/audio state and chapters. Desktop language ordering, arbitrary colors/fonts/properties and full physical option coverage remain incomplete. Apple simulator/device build, real mpv option initialization and native UI checks pass; full physical option coverage remains pending."
+  },
+  "Setting: subBoxOpacity": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Player/PlayerView.swift`; `Player/MPVController.swift`; `Views/PlayerSettingsView.swift`; `Player/PlaybackPreferences.swift`",
+    "notes": "Persisted native settings, active playback sheets, observed transport/audio state and chapters. Desktop language ordering, arbitrary colors/fonts/properties and full physical option coverage remain incomplete. Apple simulator/device build, real mpv option initialization and native UI checks pass; full physical option coverage remains pending."
+  },
+  "Setting: subOpacity": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Player/PlayerView.swift`; `Player/MPVController.swift`; `Views/PlayerSettingsView.swift`; `Player/PlaybackPreferences.swift`",
+    "notes": "Persisted native settings, active playback sheets, observed transport/audio state and chapters. Desktop language ordering, arbitrary colors/fonts/properties and full physical option coverage remain incomplete. Apple simulator/device build, real mpv option initialization and native UI checks pass; full physical option coverage remains pending."
+  },
+  "Setting: seekBackStepSec": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Player/PlayerView.swift`; `Player/MPVController.swift`; `Views/PlayerSettingsView.swift`; `Player/PlaybackPreferences.swift`",
+    "notes": "Persisted native settings, active playback sheets, observed transport/audio state and chapters. Desktop language ordering, arbitrary colors/fonts/properties and full physical option coverage remain incomplete. Apple simulator/device build, real mpv option initialization and native UI checks pass; full physical option coverage remains pending."
+  },
+  "Setting: seekForwardStepSec": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Player/PlayerView.swift`; `Player/MPVController.swift`; `Views/PlayerSettingsView.swift`; `Player/PlaybackPreferences.swift`",
+    "notes": "Persisted native settings, active playback sheets, observed transport/audio state and chapters. Desktop language ordering, arbitrary colors/fonts/properties and full physical option coverage remain incomplete. Apple simulator/device build, real mpv option initialization and native UI checks pass; full physical option coverage remains pending."
+  },
+  "Setting: subtitlesOffByDefault": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Player/PlayerView.swift`; `Player/MPVController.swift`; `Views/PlayerSettingsView.swift`; `Player/PlaybackPreferences.swift`",
+    "notes": "Persisted native settings, active playback sheets, observed transport/audio state and chapters. Desktop language ordering, arbitrary colors/fonts/properties and full physical option coverage remain incomplete. Apple simulator/device build, real mpv option initialization and native UI checks pass; full physical option coverage remains pending."
+  },
+  "Movies room": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/ViewModels/ContentPageModel.swift",
+    "notes": "Direct Cinemeta genre fallback and own-key TMDB rails. Beta batch build pending; full curation parity remains incomplete."
+  },
+  "Movie catalog pagination": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Views/CatalogsView.swift`; `Services/HarborService.swift`",
+    "notes": "Movie/series catalog selection, one-catalog requests, manifest genres, supported skip pagination and detail navigation. Personalized Desktop rooms/rails and required-genre-only catalog discovery remain incomplete. Apple simulator/device build and native UI checks pass; full physical feature coverage remains pending."
+  },
+  "Room: home": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/HarborShell.swift",
+    "notes": "Native route and real service UI implemented. Current beta increment and full physical fidelity are not yet certified."
+  },
+  "Room: discover": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/HarborShell.swift",
+    "notes": "Native route and real service UI implemented. Current beta increment and full physical fidelity are not yet certified."
+  },
+  "Room: catalogs": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/HarborShell.swift",
+    "notes": "Native route and real service UI implemented. Current beta increment and full physical fidelity are not yet certified."
+  },
+  "Room: movies": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/HarborShell.swift",
+    "notes": "Native route and real service UI implemented. Current beta increment and full physical fidelity are not yet certified."
+  },
+  "Room: shows": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/HarborShell.swift",
+    "notes": "Native route and real service UI implemented. Current beta increment and full physical fidelity are not yet certified."
+  },
+  "Room: kids": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/HarborShell.swift",
+    "notes": "Native route and real service UI implemented. Current beta increment and full physical fidelity are not yet certified."
+  },
+  "Room: anime": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/HarborShell.swift",
+    "notes": "Native route and real service UI implemented. Current beta increment and full physical fidelity are not yet certified."
+  },
+  "Room: live": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/HarborShell.swift",
+    "notes": "Native route and real service UI implemented. Current beta increment and full physical fidelity are not yet certified."
+  },
+  "Room: calendar": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/HarborShell.swift",
+    "notes": "Native route and real service UI implemented. Current beta increment and full physical fidelity are not yet certified."
+  },
+  "Room: library": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/HarborShell.swift",
+    "notes": "Native route and real service UI implemented. Current beta increment and full physical fidelity are not yet certified."
+  },
+  "Room: collections": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/HarborShell.swift",
+    "notes": "Native route and real service UI implemented. Current beta increment and full physical fidelity are not yet certified."
+  },
+  "Room: addons": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/HarborShell.swift",
+    "notes": "Native route and real service UI implemented. Current beta increment and full physical fidelity are not yet certified."
+  },
+  "Room: settings": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/HarborShell.swift",
+    "notes": "Native route and real service UI implemented. Current beta increment and full physical fidelity are not yet certified."
+  },
+  "Continue Watching on Home": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/LibraryView.swift",
+    "notes": "Real account/local library records, position bars and detail links; reconciliation with Desktop history providers remains pending."
+  },
+  "Cinema hero": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/ContentPageView.swift",
+    "notes": "Five real titles, artwork/logo, metadata and actions. Layout in Apple UI gate; personalized Desktop rotation/awards still pending."
+  },
+  "Episode watched state": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Services/WatchedCodec.swift",
+    "notes": "Canonical Stremio bitfield/zlib interoperability regression passes Apple gate 37356816568; private account mutations not physically confirmed."
+  },
+  "Release Calendar": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/CalendarView.swift",
+    "notes": "Native month grid and real library release events implemented locally. Global TMDB, Trakt and Simkl calendar sources remain pending."
+  },
+  "Library release calendar": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/ViewModels/CalendarModel.swift",
+    "notes": "Real metadata episode/movie dates, four concurrent fetches and month/type filters. Beta batch compile pending."
+  },
+  "Setting: tmdbKey": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Services/MetadataPreferences.swift",
+    "notes": "Explicit own-key input, real API validation and Keychain; no embedded third-party key. Full provider UX remains incomplete."
+  },
+  "Setting: region": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/MetadataSettingsView.swift",
+    "notes": "Persisted region used by TMDB discovery; all region/locale consumers remain incomplete."
+  },
+  "Setting: homeMode": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Services/InterfacePreferences.swift; ios/Harbor/Views/InterfaceSettingsView.swift",
+    "notes": "Persisted native control with a real consumer. Build 5 compiler/UI gate pending; full Desktop personalization and account sync remain incomplete."
+  },
+  "Setting: showImdbBadge": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Services/InterfacePreferences.swift; ios/Harbor/Views/InterfaceSettingsView.swift",
+    "notes": "Persisted native control with a real consumer. Build 5 compiler/UI gate pending; full Desktop personalization and account sync remain incomplete."
+  },
+  "Setting: showTmdbBadge": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Services/InterfacePreferences.swift; ios/Harbor/Views/InterfaceSettingsView.swift",
+    "notes": "Persisted native control with a real consumer. Build 5 compiler/UI gate pending; full Desktop personalization and account sync remain incomplete."
+  },
+  "Setting: showWatchedButton": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Services/InterfacePreferences.swift; ios/Harbor/Views/InterfaceSettingsView.swift",
+    "notes": "Persisted native control with a real consumer. Build 5 compiler/UI gate pending; full Desktop personalization and account sync remain incomplete."
+  },
+  "Setting: showEpisodeDescription": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Services/InterfacePreferences.swift; ios/Harbor/Views/InterfaceSettingsView.swift",
+    "notes": "Persisted native control with a real consumer. Build 5 compiler/UI gate pending; full Desktop personalization and account sync remain incomplete."
+  },
+  "Setting: hideSpoilers": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Services/InterfacePreferences.swift; ios/Harbor/Views/InterfaceSettingsView.swift",
+    "notes": "Persisted native control with a real consumer. Build 5 compiler/UI gate pending; full Desktop personalization and account sync remain incomplete."
+  },
+  "Setting: blurEpisodes": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Services/InterfacePreferences.swift; ios/Harbor/Views/InterfaceSettingsView.swift",
+    "notes": "Persisted native control with a real consumer. Build 5 compiler/UI gate pending; full Desktop personalization and account sync remain incomplete."
+  },
+  "Setting: navCustomization": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Services/InterfacePreferences.swift; ios/Harbor/Views/InterfaceSettingsView.swift",
+    "notes": "Persisted native control with a real consumer. Build 5 compiler/UI gate pending; full Desktop personalization and account sync remain incomplete."
+  }
+}

@@ -2,7 +2,7 @@ import SwiftUI
 import CoreText
 
 enum HarborSection: String, CaseIterable, Identifiable {
-    case home, discover, catalogs, movies, shows, anime, live, library, search, addons, settings
+    case home, discover, catalogs, movies, shows, kids, anime, live, calendar, library, collections, search, addons, settings
     var id: String { rawValue }
     var title: String {
         switch self {
@@ -11,9 +11,12 @@ enum HarborSection: String, CaseIterable, Identifiable {
         case .catalogs: "Catálogos"
         case .movies: "Películas"
         case .shows: "Series"
+        case .kids: "Kids"
         case .anime: "Anime"
         case .live: "Live TV"
+        case .calendar: "Calendario"
         case .library: "Mi biblioteca"
+        case .collections: "Colecciones"
         case .search: "Buscar"
         case .addons: "Addons"
         case .settings: "Ajustes"
@@ -26,9 +29,12 @@ enum HarborSection: String, CaseIterable, Identifiable {
         case .catalogs: "catalogs"
         case .movies: "movies"
         case .shows: "tv"
+        case .kids: "kids"
         case .anime: "anime"
         case .live: "livetv"
+        case .calendar: "calendar"
         case .library: "library"
+        case .collections: "collections"
         case .search: "search"
         case .addons: "addons"
         case .settings: "settings"
@@ -68,6 +74,9 @@ struct HarborShell: View {
                         }
                         ToolbarItem(placement: .principal) { if section == .home { HarborBrand(size: 28) } }
                         ToolbarItem(placement: .topBarTrailing) {
+                            Button { path = NavigationPath(); section = .search } label: { Image("nav-search").resizable().scaledToFit().frame(width: 22, height: 22).frame(width: 36, height: 36) }.accessibilityLabel("Buscar")
+                        }
+                        ToolbarItem(placement: .topBarTrailing) {
                             Button { app.showAccount = true } label: { Image(systemName: "person.crop.circle").frame(width: 36, height: 36) }.accessibilityLabel("Cuenta")
                         }
                     }
@@ -78,13 +87,13 @@ struct HarborShell: View {
                     HStack { HarborBrand(size: 36); Spacer(); Button { closeMenu() } label: { Image(systemName: "xmark").frame(width: 36, height: 36) }.accessibilityLabel("Cerrar navegación") }.padding(.horizontal, 18)
                     ScrollView {
                         VStack(spacing: 6) {
-                            ForEach(HarborSection.allCases) { item in
+                            ForEach(InterfacePreferences.shared.visibleSections) { item in
                                 Button {
                                     path = NavigationPath(); section = item; closeMenu()
                                 } label: {
                                     HStack(spacing: 16) {
                                         Image("nav-\(item.icon)").resizable().scaledToFit().frame(width: 23, height: 23)
-                                        Text(item.title).font(.system(size: 15, weight: item == section ? .semibold : .regular))
+                                        Text(InterfacePreferences.shared.label(item)).font(.system(size: 15, weight: item == section ? .semibold : .regular))
                                         Spacer()
                                     }.foregroundStyle(item == section ? .white : .white.opacity(0.65)).padding(.horizontal, 18).frame(minHeight: 52)
                                         .background(item == section ? Color.white.opacity(0.09) : .clear, in: .rect(cornerRadius: 12))
@@ -104,9 +113,12 @@ struct HarborShell: View {
         case .catalogs: CatalogsView(app: app)
         case .movies: ContentPageView(app: app, kind: "movie", title: section.title)
         case .shows: ContentPageView(app: app, kind: "series", title: section.title)
+        case .kids: ContentPageView(app: app, kind: "kids", title: section.title)
         case .anime: ContentPageView(app: app, kind: "anime", title: section.title)
         case .live: ContentPageView(app: app, kind: "tv", title: section.title)
+        case .calendar: CalendarView(app: app)
         case .library: LibraryView(app: app)
+        case .collections: CollectionsView(app: app)
         case .discover: DiscoverView(app: app)
         case .search: SearchView(app: app)
         case .addons: AddonsView(app: app)

@@ -55,5 +55,17 @@
     "src/assets/ui-icons/watch-together.svg": "f9f8c733d0f824f87abbf29099607c17d818fc6fa3122f494ddaec6b7118f9fb",
     "src/assets/ui-icons/xray.svg": "421dfa9535db0762596ffa4c3b30bd54b23c34015f1e1b81ddfd2ac4db1948c2",
     "src/components/icons/harbor-mark.tsx": "9147c1964bfeb598e53eff454bb670b76f67192c7ac06befe68b858933b759d3"
+  },
+  "fonts": {
+    "Fraunces": {
+      "source": "https://github.com/google/fonts/tree/main/ofl/fraunces",
+      "license": "SIL OFL 1.1",
+      "sha256": "177ff6c0f14e5550a3c624247cd1189611d4eb65d000b14944c63d967958abbb"
+    },
+    "Oswald": {
+      "source": "https://github.com/google/fonts/tree/main/ofl/oswald",
+      "license": "SIL OFL 1.1",
+      "sha256": "5b38c246e255a12f5712d640d56bcced0472466fc68983d2d0410ec0457c2817"
+    }
   }
 }

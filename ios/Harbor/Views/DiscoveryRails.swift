@@ -8,11 +8,12 @@ struct DiscoveryRails: View {
             ForEach(rows) { row in
                 VStack(alignment: .leading, spacing: 12) {
                     HStack { Text(row.title).font(.headline); Spacer(); NavigationLink("Ver todo") { DiscoveryGrid(rail: row, app: app) }.font(.caption).foregroundStyle(.secondary) }.padding(.horizontal)
-                    ScrollView(.horizontal) {
+                    if row.id.hasSuffix("-top10") { TopTenRail(metas: row.metas) }
+                    else { ScrollView(.horizontal) {
                         LazyHStack(alignment: .top, spacing: 12) {
                             ForEach(row.metas, id: \.identity) { media in NavigationLink(value: media) { Poster(media: media) }.buttonStyle(.plain).accessibilityLabel(media.name) }
                         }.padding(.horizontal)
-                    }.scrollIndicators(.hidden)
+                    }.scrollIndicators(.hidden) }
                 }
             }
         }

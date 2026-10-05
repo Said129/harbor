@@ -22,7 +22,7 @@ struct ContentPageView: View {
         }.background(HarborTheme.background).navigationTitle(title).navigationBarTitleDisplayMode(.inline)
             .accessibilityIdentifier("content-\(kind)")
             .task(id: "\(app.storageReady)|\(app.addons.filter(\.enabled).map(\.id).joined())|\(MetadataPreferences.shared.tmdbKey)|\(MetadataPreferences.shared.region)|\(MetadataPreferences.shared.language)|\(MetadataPreferences.shared.translateTitles)") { if app.storageReady { await model.load(kind: kind, app: app) } }
-            .onChange(of: app.rows.count) { _, _ in if kind != "movie" && kind != "series" { Task { await model.load(kind: kind, app: app, refresh: true) } } }
+            .onChange(of: app.rows.count) { _, _ in if !["movie", "series", "kids"].contains(kind) { Task { await model.load(kind: kind, app: app, refresh: true) } } }
             .refreshable { await model.load(kind: kind, app: app, refresh: true) }
     }
 }
@@ -37,7 +37,7 @@ struct CinemaHero: View {
                 ForEach(Array(metas.prefix(5).enumerated()), id: \.element.identity) { index, media in
                     GeometryReader { geometry in
                         ZStack(alignment: .bottomLeading) {
-                            Artwork(url: media.background, fallback: media.poster, maxPixels: 1400)
+                            Artwork(url: media.background, fallback: media.fallbackBackground, fallbacks: [media.poster].compactMap { $0 }, maxPixels: 1400)
                                 .frame(width: geometry.size.width, height: geometry.size.height)
                             LinearGradient(colors: [.black.opacity(0.12), HarborTheme.background.opacity(0.55), HarborTheme.background], startPoint: .top, endPoint: .bottom)
                             VStack(alignment: .leading, spacing: 14) {
@@ -47,7 +47,7 @@ struct CinemaHero: View {
                                 } else { Text(media.name).font(.system(size: 30, weight: .bold)).lineLimit(2) }
                                 HStack(spacing: 14) {
                                     if let year = media.releaseInfo { Text(year).foregroundStyle(.secondary) }
-                                    if let rating = media.imdbRating { HStack(spacing: 5) { Text("IMDb").font(.system(size: 9, weight: .black)).foregroundStyle(.black).padding(3).background(.yellow, in: .rect(cornerRadius: 2)); Text(rating).fontWeight(.semibold) } }
+                                    if let rating = media.imdbRating { HStack(spacing: 5) { Text(media.ratingSource ?? "IMDb").font(.system(size: 9, weight: .black)).foregroundStyle(.black).padding(3).background(.yellow, in: .rect(cornerRadius: 2)); Text(rating).fontWeight(.semibold) } }
                                     if let runtime = media.runtime { Text(runtime).foregroundStyle(.secondary) }
                                 }.font(.caption)
                                 if let description = media.description { Text(description).font(.subheadline).foregroundStyle(.white.opacity(0.72)).lineLimit(3) }

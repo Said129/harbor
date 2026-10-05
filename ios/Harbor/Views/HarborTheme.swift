@@ -12,10 +12,10 @@ struct Poster: View {
     var width: CGFloat = 116
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
-            Artwork(url: media.poster, fallback: media.background, maxPixels: 480)
+            Artwork(url: media.poster, fallback: media.fallbackPoster, fallbacks: [media.background].compactMap { $0 }, maxPixels: 480)
                 .frame(width: width, height: width * 1.5).clipShape(.rect(cornerRadius: 8))
                 .overlay(alignment: .bottomTrailing) {
-                    if let rating = media.imdbRating { HStack(spacing: 3) { Text("IMDb").font(.system(size: 7, weight: .black)).foregroundStyle(.black).padding(2).background(.yellow, in: .rect(cornerRadius: 2)); Text(rating).font(.system(size: 9, weight: .semibold)) }.padding(4).background(.black.opacity(0.8), in: .capsule).padding(5) }
+                    if (media.ratingSource == "TMDB" ? InterfacePreferences.shared.showTmdbBadge : InterfacePreferences.shared.showImdbBadge), let rating = media.imdbRating { HStack(spacing: 3) { Text(media.ratingSource ?? "IMDb").font(.system(size: 7, weight: .black)).foregroundStyle(.black).padding(2).background(media.ratingSource == "TMDB" ? Color.mint : .yellow, in: .rect(cornerRadius: 2)); Text(rating).font(.system(size: 9, weight: .semibold)) }.padding(4).background(.black.opacity(0.8), in: .capsule).padding(5) }
                 }
             Text(media.name).font(.caption.weight(.medium)).lineLimit(2).frame(width: width, alignment: .leading)
         }.foregroundStyle(.primary)

@@ -9,7 +9,10 @@ struct Media: Codable, Identifiable, Hashable, Sendable {
     var logo: String?
     var description: String?
     var releaseInfo: String?
+    var released: String?
     var imdbRating: String?
+    var ratingSource: String?
+    var adult: Bool?
     var runtime: String?
     var director: [String]?
     var cast: [String]?
@@ -19,7 +22,22 @@ struct Media: Codable, Identifiable, Hashable, Sendable {
     var behaviorHints: BehaviorHints?
     struct BehaviorHints: Codable, Hashable, Sendable { var defaultVideoId: String? }
     var identity: String { "\(type):\(id)" }
+    var fallbackPoster: String? { imdbArtwork("poster") }
+    var fallbackBackground: String? { imdbArtwork("background") }
+    private func imdbArtwork(_ kind: String) -> String? {
+        guard id.range(of: "^tt[0-9]{7,}$", options: .regularExpression) != nil else { return nil }
+        return "https://images.metahub.space/\(kind)/medium/\(id)/img"
+    }
     var episodic: Bool { type == "series" || videos?.contains(where: { $0.season != nil && $0.episode != nil }) == true }
+    var safeForKids: Bool {
+        guard adult != true else { return false }
+        let labels = Set((genres ?? []).map { $0.lowercased() })
+        let excluded: Set<String> = ["action", "biography", "crime", "history", "horror", "romance", "thriller", "war"]
+        guard labels.isDisjoint(with: excluded), labels.contains("family") || (labels.contains("animation") && labels.contains("comedy")) else { return false }
+        if let released, let date = Episode(id: "release", released: released).releaseDate { return date <= Date() }
+        if let year = releaseInfo.flatMap({ Int($0.prefix(4)) }) { return year <= Calendar.current.component(.year, from: Date()) }
+        return true
+    }
 
     static func parse(_ value: JSONValue, kind: String) -> Media? {
         guard let id = value["id"].string, !id.isEmpty,
@@ -28,8 +46,10 @@ struct Media: Codable, Identifiable, Hashable, Sendable {
         media.poster = value["poster"].string; media.background = value["background"].string
         media.logo = value["logo"].string; media.description = value["description"].string
         media.releaseInfo = value["releaseInfo"].string
+        media.released = value["released"].string
         media.imdbRating = value["imdbRating"].textValue; media.runtime = value["runtime"].textValue
         media.country = value["country"].string
+        if value["adult"] != .null { media.adult = value["adult"] == .bool(true) }
         media.genres = value["genres"].array.compactMap(\.string)
         media.director = value["director"].array.compactMap(\.string)
         media.cast = value["cast"].array.compactMap(\.string)
@@ -108,6 +128,7 @@ struct CatalogRow: Identifiable, Sendable {
     let plan: RequestPlan
     var metas: [Media]
     var selectedGenre: String? = nil
+    var receivedCount: Int? = nil
     var id: String { plan.key }
 }
 

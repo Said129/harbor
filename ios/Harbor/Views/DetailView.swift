@@ -13,7 +13,7 @@ struct DetailView: View {
         @Bindable var model = model
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
-                Artwork(url: model.media.background, fallback: model.media.poster, maxPixels: 1400)
+                Artwork(url: model.media.background, fallback: model.media.fallbackBackground, fallbacks: [model.media.poster].compactMap { $0 }, maxPixels: 1400)
                     .frame(height: 220).clipped()
                 VStack(alignment: .leading, spacing: 16) {
                     Text(model.media.name).font(.largeTitle.bold()).accessibilityIdentifier("detail-title")
@@ -22,7 +22,9 @@ struct DetailView: View {
                     HStack {
                         Button { Task { await app.library.toggleBookmark(model.media) } } label: { Label(app.library.bookmarked(model.media) ? "En mi lista" : "Añadir a mi lista", image: "ui-library") }.accessibilityIdentifier("detail-bookmark")
                         Spacer()
-                        Button { Task { await app.library.toggleWatched(model.media) } } label: { Image(app.library.watched(model.media) ? "ui-mark-unwatched" : "ui-mark-watched").resizable().scaledToFit().frame(width: 26, height: 26) }.accessibilityLabel(app.library.watched(model.media) ? "Marcar como no visto" : "Marcar como visto")
+                        if InterfacePreferences.shared.showWatchedButton {
+                            Button { Task { await app.library.toggleWatched(model.media) } } label: { Image(app.library.watched(model.media) ? "ui-mark-unwatched" : "ui-mark-watched").resizable().scaledToFit().frame(width: 26, height: 26) }.accessibilityLabel(app.library.watched(model.media) ? "Marcar como no visto" : "Marcar como visto")
+                        }
                     }.disabled(app.library.busy)
                     if let error = app.library.error { Text(error).font(.caption).foregroundStyle(.orange) }
                     if let error = model.error { Text(error).foregroundStyle(.orange) }

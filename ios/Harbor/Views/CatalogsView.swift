@@ -32,7 +32,12 @@ struct CatalogBrowserView: View {
     private let columns = [GridItem(.adaptive(minimum: 116), spacing: 12)]
     private var genres: [String] { initial.plan.catalog?.extra.first { $0.name == "genre" }?.options ?? [] }
     private var supportsPaging: Bool { initial.plan.catalog?.extra.contains { $0.name == "skip" } ?? false }
-    init(app: AppModel, initial: CatalogRow) { self.app = app; self.initial = initial; _genre = State(initialValue: initial.selectedGenre ?? "") }
+    init(app: AppModel, initial: CatalogRow) {
+        self.app = app; self.initial = initial
+        _genre = State(initialValue: initial.selectedGenre ?? "")
+        _items = State(initialValue: initial.metas)
+        _offset = State(initialValue: initial.receivedCount ?? initial.metas.count)
+    }
 
     var body: some View {
         ScrollView {
@@ -58,7 +63,7 @@ struct CatalogBrowserView: View {
                 if !loading && items.isEmpty && error == nil { ContentUnavailableView("Sin resultados", systemImage: "film") }
             }
         }.background(HarborTheme.background).navigationTitle(initial.plan.title).navigationBarTitleDisplayMode(.inline)
-            .task(id: genre) { await load(reset: true) }
+            .task(id: genre) { if items.isEmpty || genre != (initial.selectedGenre ?? "") || generation > 0 { await load(reset: true) } }
     }
 
     private func load(reset: Bool) async {
@@ -77,8 +82,9 @@ struct CatalogBrowserView: View {
             var known = Set(items.map(\.identity))
             let additions = result.metas.filter { known.insert($0.identity).inserted }
             items.append(contentsOf: additions)
-            offset += result.metas.count
-            reachedEnd = result.metas.isEmpty || additions.isEmpty
+            let count = result.receivedCount ?? result.metas.count
+            offset += count
+            reachedEnd = count == 0 || (!initial.plan.key.hasPrefix("native-kids-") && additions.isEmpty)
         } catch is CancellationError { return }
         catch { if requestGeneration == generation { self.error = safeMessage(error) } }
     }

@@ -40,6 +40,7 @@ actor ArtworkStore {
         pending[raw] = task
         defer { pending[raw] = nil }
         let data = try await task.value
+        guard CGImageSourceCreateWithData(data as CFData, nil) != nil else { throw HarborError(code: "invalid-artwork") }
         cache.setObject(data as NSData, forKey: raw as NSString, cost: data.count)
         return data
     }
@@ -50,11 +51,11 @@ actor ArtworkStore {
 struct Artwork: View {
     let url: String?
     var fallback: String? = nil
+    var fallbacks: [String] = []
     var fit: ContentMode = .fill
     var maxPixels = 1000
     @State private var image: UIImage?
     @State private var failed = false
-    @State private var revision = 0
     var body: some View {
         ZStack {
             if let image { Image(uiImage: image).resizable().aspectRatio(contentMode: fit) }
@@ -64,9 +65,10 @@ struct Artwork: View {
                     Image("nav-movies").resizable().scaledToFit().frame(width: 24, height: 24).foregroundStyle(.white.opacity(0.35))
                 } else if url != nil { ProgressView().controlSize(.small) }
             }
-        }.clipped().task(id: "\(url ?? "")|\(fallback ?? "")|\(revision)") {
+        }.clipped().task(id: "\(url ?? "")|\(fallback ?? "")|\(fallbacks.joined(separator: "|"))") {
             image = nil; failed = false
-            for raw in [url, fallback].compactMap({ $0 }).filter({ !$0.isEmpty }) {
+            var seen = Set<String>()
+            for raw in ([url, fallback].compactMap({ $0 }) + fallbacks).filter({ !$0.isEmpty && seen.insert($0).inserted }) {
                 do {
                     let data = try await ArtworkStore.shared.data(raw)
                     try Task.checkCancellation()

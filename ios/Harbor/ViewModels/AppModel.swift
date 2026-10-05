@@ -73,6 +73,9 @@ final class AppModel {
         homeGeneration += 1
         let generation = homeGeneration
         let selectedAddons = addons
+        let enabledIDs = Set(selectedAddons.filter(\.enabled).map(\.id))
+        rows = rows.filter { enabledIDs.contains($0.plan.addon.id) }
+        if rows.isEmpty { heroes = [] }
         loading = true
         error = nil
         defer { if generation == homeGeneration { loading = false } }
@@ -84,9 +87,10 @@ final class AppModel {
                 self.rows.sort { $0.plan.addonPriority == $1.plan.addonPriority ? $0.id < $1.id : $0.plan.addonPriority < $1.plan.addonPriority }
             })
             guard generation == homeGeneration else { return }
-            (rows, warnings) = result
+            warnings = result.1
+            if result.0.contains(where: { !$0.metas.isEmpty }) || warnings.isEmpty { rows = result.0 }
             Diagnostics.shared.record(.catalogsLoaded, count: rows.count)
-            if rows.allSatisfy({ $0.metas.isEmpty }) && !warnings.isEmpty { error = "No se pudieron cargar los catálogos. Comprueba la conexión y vuelve a intentarlo." }
+            if result.0.allSatisfy({ $0.metas.isEmpty }) && !warnings.isEmpty { error = "No se pudieron actualizar los catálogos. Comprueba la conexión y vuelve a intentarlo." }
             await enrichHeroes(generation: generation)
         } catch is CancellationError { return }
         catch {

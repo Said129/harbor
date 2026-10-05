@@ -11,9 +11,21 @@ struct DiscoveryRail: Identifiable, Sendable {
 
 struct TMDBService: Sendable {
     private let http = HTTPClient()
+    func kidsDefinitions() -> [DiscoveryRail] {
+        let movies = ["certification_country": "US", "certification.lte": "PG", "without_genres": "27,53", "include_adult": "false", "sort_by": "popularity.desc"]
+        let television = ["without_genres": "27,53", "include_adult": "false", "sort_by": "popularity.desc"]
+        return [("Tendencias para peques", "10751,16"), ("Películas de animación", "16"), ("Películas familiares", "10751"), ("Aventuras", "12,10751")].enumerated().map { index, definition in
+            var parameters = movies; parameters["with_genres"] = definition.1; parameters["vote_count.gte"] = "100"
+            return DiscoveryRail(id: "kids-movie-\(index)", title: definition.0, kind: "movie", path: "discover/movie", parameters: parameters)
+        } + [("Series infantiles", "10762"), ("Noches en familia", "10751")].enumerated().map { index, definition in
+            var parameters = television; parameters["with_genres"] = definition.1
+            return DiscoveryRail(id: "kids-tv-\(index)", title: definition.0, kind: "series", path: "discover/tv", parameters: parameters)
+        }
+    }
     func definitions(_ kind: String) -> [DiscoveryRail] {
         let providerKind = kind == "movie" ? "movie" : "tv"
         var rows = [
+            DiscoveryRail(id: "tmdb-\(kind)-top10", title: kind == "movie" ? "Top 10 películas de hoy" : "Top 10 series de hoy", kind: kind, path: "trending/\(providerKind)/day"),
             DiscoveryRail(id: "tmdb-\(kind)-trending", title: "Tendencias de la semana", kind: kind, path: "trending/\(providerKind)/week"),
             DiscoveryRail(id: "tmdb-\(kind)-current", title: kind == "movie" ? "Ahora en cines" : "En emisión", kind: kind, path: "\(providerKind)/\(kind == "movie" ? "now_playing" : "on_the_air")"),
             DiscoveryRail(id: "tmdb-\(kind)-rated", title: "Clásicos imprescindibles", kind: kind, path: "\(providerKind)/top_rated"),
@@ -23,6 +35,8 @@ struct TMDBService: Sendable {
             if Calendar.current.component(.month, from: Date()) == 10 { rows.insert(DiscoveryRail(id: "tmdb-spooky", title: "Spooky Season", kind: kind, path: "discover/movie", parameters: ["with_genres": "27", "sort_by": "popularity.desc"]), at: 2) }
             rows.append(DiscoveryRail(id: "tmdb-coming", title: "Próximamente en cines", kind: kind, path: "movie/upcoming"))
             rows.append(DiscoveryRail(id: "tmdb-quick", title: "Menos de 90 minutos", kind: kind, path: "discover/movie", parameters: ["with_runtime.lte": "90", "with_runtime.gte": "40", "vote_count.gte": "100", "sort_by": "popularity.desc"]))
+            rows.append(DiscoveryRail(id: "tmdb-decade-2010", title: "Lo mejor de los 2010", kind: kind, path: "discover/movie", parameters: ["primary_release_date.gte": "2010-01-01", "primary_release_date.lte": "2019-12-31", "vote_average.gte": "7.6", "vote_count.gte": "2000", "sort_by": "vote_count.desc"]))
+            rows.append(DiscoveryRail(id: "tmdb-decade-90", title: "Imprescindibles de los 90", kind: kind, path: "discover/movie", parameters: ["primary_release_date.gte": "1990-01-01", "primary_release_date.lte": "1999-12-31", "vote_average.gte": "7.6", "vote_count.gte": "1000", "sort_by": "popularity.desc"]))
         }
         for (name, id) in [("Acción", 28), ("Comedia", 35), ("Drama", 18), ("Ciencia ficción", 878), ("Animación", 16), ("Documentales", 99)] {
             let genre = kind == "series" && id == 28 ? 10759 : kind == "series" && id == 878 ? 10765 : id
@@ -35,17 +49,35 @@ struct TMDBService: Sendable {
         params["page"] = String(page); params["region"] = configuration.region
         let response = try await get(rail.path, parameters: params, configuration: configuration)
         guard case .array(let results) = response["results"] else { throw HarborError(code: "invalid-metadata-response") }
-        return results.compactMap { value in
-            guard let id = value["id"].integer, let title = value[rail.kind == "movie" ? "title" : "name"].string else { return nil }
-            let original = value[rail.kind == "movie" ? "original_title" : "original_name"].string
-            var media = Media(id: "tmdb:\(rail.kind == "movie" ? "movie" : "tv"):\(id)", type: rail.kind, name: configuration.translateTitles ? title : original ?? title)
+        return results.compactMap { makeMedia($0, kind: rail.kind, configuration: configuration) }
+    }
+    private func makeMedia(_ value: JSONValue, kind: String, configuration: MetadataConfiguration) -> Media? {
+            guard let id = value["id"].integer, let title = value[kind == "movie" ? "title" : "name"].string else { return nil }
+            let original = value[kind == "movie" ? "original_title" : "original_name"].string
+            var media = Media(id: "tmdb:\(kind == "movie" ? "movie" : "tv"):\(id)", type: kind, name: configuration.translateTitles ? title : original ?? title)
             media.poster = image(value["poster_path"].string, size: "w342")
             media.background = image(value["backdrop_path"].string, size: "w1280")
             media.description = value["overview"].string
-            media.releaseInfo = value[rail.kind == "movie" ? "release_date" : "first_air_date"].string.map { String($0.prefix(4)) }
-            if let rating = value["vote_average"].numericValue, rating > 0 { media.imdbRating = String(format: "%.1f", rating) }
+            media.adult = value["adult"] == .bool(true)
+            media.released = value[kind == "movie" ? "release_date" : "first_air_date"].string
+            media.releaseInfo = media.released.map { String($0.prefix(4)) }
+            if let rating = value["vote_average"].numericValue, rating > 0 { media.imdbRating = String(format: "%.1f", rating); media.ratingSource = "TMDB" }
             return media
+    }
+    func collections(query: String, page: Int, configuration: MetadataConfiguration) async throws -> CollectionPage {
+        let response = try await get("search/collection", parameters: ["query": query, "page": String(page), "include_adult": "false"], configuration: configuration)
+        guard case .array(let values) = response["results"] else { throw HarborError(code: "invalid-metadata-response") }
+        let items = values.compactMap { value -> MovieCollection? in
+            guard let id = value["id"].integer, let name = value["name"].string else { return nil }
+            return MovieCollection(id: id, name: name, description: value["overview"].string, poster: image(value["poster_path"].string, size: "w500"), background: image(value["backdrop_path"].string, size: "w1280"))
         }
+        return CollectionPage(items: items, totalPages: response["total_pages"].integer ?? page)
+    }
+    func collection(_ id: Int, configuration: MetadataConfiguration) async throws -> CollectionDetails {
+        let response = try await get("collection/\(id)", configuration: configuration)
+        guard let name = response["name"].string, case .array(let parts) = response["parts"] else { throw HarborError(code: "invalid-metadata-response") }
+        let items = parts.compactMap { makeMedia($0, kind: "movie", configuration: configuration) }.sorted { ($0.released ?? "9999") < ($1.released ?? "9999") }
+        return CollectionDetails(name: name, description: response["overview"].string, background: image(response["backdrop_path"].string, size: "w1280"), parts: items)
     }
     func detail(_ media: Media, configuration: MetadataConfiguration) async throws -> Media {
         let pieces = media.id.split(separator: ":")

@@ -11,8 +11,10 @@ struct HomeView: View {
                     }.accessibilityIdentifier("home-signin")
                 }
                 if let error = model.accountError { Text(error).font(.caption).foregroundStyle(.orange).padding(.horizontal) }
-                if !model.heroes.isEmpty { CinemaHero(metas: model.heroes, app: model) }
-                else if let media = model.rows.first(where: { !$0.metas.isEmpty })?.metas.first { CinemaHero(metas: [media], app: model) }
+                if InterfacePreferences.shared.homeMode == "harbor" {
+                    if !model.heroes.isEmpty { CinemaHero(metas: model.heroes, app: model) }
+                    else if let media = model.rows.first(where: { !$0.metas.isEmpty })?.metas.first { CinemaHero(metas: [media], app: model) }
+                }
                 if model.loading && model.rows.isEmpty { ProgressView("Cargando catálogos…").frame(maxWidth: .infinity).padding(40) }
                 if let error = model.progressError {
                     VStack(alignment: .leading) {
@@ -20,10 +22,12 @@ struct HomeView: View {
                         Button("Reintentar lectura del progreso") { Task { await model.reloadProgress() } }
                     }.padding(.horizontal)
                 }
-                if let error = model.error {
+                if let error = model.error, model.rows.isEmpty {
                     ContentUnavailableView { Label("No se pudo cargar Harbor", systemImage: "wifi.exclamationmark") } description: { Text(error).accessibilityIdentifier("home-error") } actions: {
                         Button("Reintentar") { Task { if model.storageReady { await model.loadHome() } else { await model.retryStartup() } } }
                     }
+                } else if let error = model.error {
+                    HStack { Text(error).font(.caption).foregroundStyle(.secondary); Button("Reintentar") { Task { await model.loadHome() } }.font(.caption) }.padding(.horizontal)
                 }
                 ContinueWatching(app: model)
                 CatalogRails(rows: model.rows.filter { !$0.metas.isEmpty }, app: model)
