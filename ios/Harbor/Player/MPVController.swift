@@ -114,6 +114,7 @@ final class MPVController: GLKViewController {
         run(["loadfile", source.url, "replace"])
     }
 
+    @available(iOS, deprecated: 12.0)
     override func glkView(_ surface: GLKView, drawIn rect: CGRect) {
         guard let context else { return }
         EAGLContext.setCurrent(context)
