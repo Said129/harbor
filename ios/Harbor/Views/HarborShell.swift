@@ -45,9 +45,10 @@ struct HarborBrand: View {
         }.foregroundStyle(.white).accessibilityElement(children: .ignore).accessibilityLabel("Harbor")
     }
     private var wordmarkFont: Font {
-        let base = CTFontCreateWithName("Fraunces-9ptBlack" as CFString, size, nil)
         let variation = [NSNumber(value: 0x77676874): NSNumber(value: 500), NSNumber(value: 0x6f70737a): NSNumber(value: Double(size))]
-        return Font(CTFontCreateCopyWithVariations(base, variation as CFDictionary))
+        let attributes: [CFString: Any] = [kCTFontNameAttribute: "Fraunces-9ptBlack", kCTFontVariationAttribute: variation]
+        let descriptor = CTFontDescriptorCreateWithAttributes(attributes as CFDictionary)
+        return Font(CTFontCreateWithFontDescriptor(descriptor, size, nil))
     }
 }
 

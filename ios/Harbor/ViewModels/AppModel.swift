@@ -34,6 +34,7 @@ final class AppModel {
         started = true
         loading = true
         Diagnostics.shared.record(.startup)
+        MetadataPreferences.shared.load()
         await reloadProgress()
         do {
             // A Keychain error is not an empty store and must never overwrite it.

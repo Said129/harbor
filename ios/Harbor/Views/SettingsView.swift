@@ -26,6 +26,7 @@ struct SettingsView: View {
                         .accessibilityIdentifier("settings-\(page.rawValue)")
                 }
             }
+            Section("Contenido") { NavigationLink("Proveedores de metadata") { MetadataSettingsView() } }
             Section("Diagnóstico") {
                 Button("Preparar logs para compartir") { do { export = try Diagnostics.shared.export() } catch { self.error = safeMessage(error) } }
                 if let export { ShareLink("Compartir logs", item: export) }

@@ -17,7 +17,27 @@ final class LibraryModel {
     var items: [LibraryRecord] { records.map { LibraryRecord(raw: $0) }.filter { !$0.id.isEmpty && $0.media != nil }.sorted { $0.modified > $1.modified } }
     var continuing: [LibraryRecord] { items.filter(\.continuing) }
     func bookmarked(_ media: Media) -> Bool { items.first { $0.id == media.id }?.bookmarked ?? false }
-    func watched(_ media: Media) -> Bool { items.first { $0.id == media.id }?.watched ?? false }
+    func watched(_ media: Media) -> Bool {
+        if media.episodic {
+            let available = (media.videos ?? []).filter { $0.season != nil && $0.episode != nil && $0.available }
+            return !available.isEmpty && available.allSatisfy { watchedEpisodes(media).contains($0.watchedKey) }
+        }
+        return items.first { $0.id == media.id }?.watched ?? false
+    }
+    func watchedEpisodes(_ media: Media) -> Set<String> {
+        let field = records.first { $0["_id"].string == media.id }?["state"]["watched"].string
+        return (try? WatchedCodec.decode(field, videos: media.videos ?? [])) ?? []
+    }
+    func toggleEpisode(_ media: Media, episode: Episode) async {
+        await update(media) { fields in
+            var state = (fields["state"] ?? .null).objectValue
+            let videos = media.videos ?? []
+            var watched = try WatchedCodec.decode(state["watched"]?.string, videos: videos)
+            if !watched.insert(episode.watchedKey).inserted { watched.remove(episode.watchedKey) }
+            state["watched"] = .string(try WatchedCodec.encode(watched, videos: videos))
+            fields["state"] = .object(state)
+        }
+    }
     func setSession(_ session: AccountSession?) async {
         generation += 1
         let current = generation
@@ -45,7 +65,7 @@ final class LibraryModel {
             guard current == generation, revision == mutation else { return }
             records = next; error = nil; writable = true
         } catch is CancellationError { return }
-        catch { if current == generation { error = safeMessage(error); Diagnostics.shared.recordFailure(error) } }
+        catch { if current == generation { self.error = safeMessage(error); Diagnostics.shared.recordFailure(error) } }
     }
     func toggleBookmark(_ media: Media) async {
         await update(media) { fields in
@@ -59,8 +79,19 @@ final class LibraryModel {
         await update(media) { fields in
             var state: [String: JSONValue] = [:]
             if case .object(let current) = fields["state"] { state = current }
-            let watched = (state["flaggedWatched"]?.numericValue ?? 0) > 0
-            state["flaggedWatched"] = .integer(watched ? 0 : 1)
+            if media.episodic {
+                let videos = media.videos ?? []
+                let available = videos.filter { $0.season != nil && $0.episode != nil && $0.available }
+                guard !available.isEmpty else { throw HarborError(code: "invalid-watched-state") }
+                var watched = try WatchedCodec.decode(state["watched"]?.string, videos: videos)
+                if available.allSatisfy({ watched.contains($0.watchedKey) }) { for video in available { watched.remove(video.watchedKey) } }
+                else { for video in available { watched.insert(video.watchedKey) } }
+                state["watched"] = .string(try WatchedCodec.encode(watched, videos: videos))
+            } else {
+                let watched = (state["flaggedWatched"]?.numericValue ?? 0) > 0 || (state["timesWatched"]?.numericValue ?? 0) > 0
+                state["flaggedWatched"] = .integer(watched ? 0 : 1)
+                if watched { state["timesWatched"] = .integer(0) }
+            }
             state["timeOffset"] = .integer(0)
             fields["state"] = .object(state)
         }
@@ -77,13 +108,19 @@ final class LibraryModel {
             if let episode = target.episode { state["episode"] = .integer(Int64(episode)) }
             state["video_id"] = .string(target.videoId ?? target.id)
             let finished = snapshot.durationMs > 0 && snapshot.positionMs / snapshot.durationMs >= 0.9
-            state["flaggedWatched"] = .integer(finished ? 1 : 0)
+            if media.episodic {
+                if finished, let videos = media.videos, let episode = videos.first(where: { $0.id == target.videoId }) {
+                    var watched = try WatchedCodec.decode(state["watched"]?.string, videos: videos)
+                    watched.insert(episode.watchedKey)
+                    state["watched"] = .string(try WatchedCodec.encode(watched, videos: videos))
+                }
+            } else { state["flaggedWatched"] = .integer(finished ? 1 : 0) }
             fields["state"] = .object(state)
             if fields["removed"] == .bool(true) { fields["temp"] = .bool(true) }
         }
         if success { lastProgressWrite[media.id] = snapshot.timestampMs }
     }
-    @discardableResult private func update(_ media: Media, progress: Bool = false, change: (inout [String: JSONValue]) -> Void) async -> Bool {
+    @discardableResult private func update(_ media: Media, progress: Bool = false, change: (inout [String: JSONValue]) throws -> Void) async -> Bool {
         guard writable, !busy else { return false }
         busy = true; mutation += 1; let current = generation; let activeSession = session
         defer { busy = false }
@@ -100,7 +137,7 @@ final class LibraryModel {
                 fields["removed"] = .bool(true)
                 fields["temp"] = .bool(progress)
             }
-            change(&fields); fields["_mtime"] = .string(Date().ISO8601Format())
+            try change(&fields); fields["_mtime"] = .string(Date().ISO8601Format())
             let record = JSONValue.object(fields)
             if let activeSession { try await service.save(record, session: activeSession) }
             guard current == generation else { return false }
@@ -109,6 +146,6 @@ final class LibraryModel {
             guard current == generation else { return false }
             records = next; error = nil; return true
         } catch is CancellationError { return false }
-        catch { if current == generation { error = safeMessage(error); Diagnostics.shared.recordFailure(error) }; return false }
+        catch { if current == generation { self.error = safeMessage(error); Diagnostics.shared.recordFailure(error) }; return false }
     }
 }

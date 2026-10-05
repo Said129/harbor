@@ -27,20 +27,16 @@ struct DetailView: View {
                     if let error = app.library.error { Text(error).font(.caption).foregroundStyle(.orange) }
                     if let error = model.error { Text(error).foregroundStyle(.orange) }
                     if model.loading { ProgressView() }
-                    if model.media.type != "series" {
+                    if !model.media.episodic {
                         Button { openStreams() } label: { Label("Ver streams", systemImage: "play.fill").frame(maxWidth: .infinity).padding(8) }.buttonStyle(.borderedProminent).accessibilityIdentifier("detail-streams")
                     }
-                    if let episodes = model.media.videos {
-                        ForEach(episodes) { episode in
-                            Button { openStreams(episode) } label: {
-                                HStack { Image(systemName: "play.circle"); VStack(alignment: .leading) { Text(episode.name ?? episode.title ?? episode.id); Text("T\(episode.season ?? 0) · E\(episode.episode ?? 0)").font(.caption).foregroundStyle(.secondary) }; Spacer() }.frame(minHeight: 48)
-                            }.buttonStyle(.plain)
-                        }
-                    }
+                    if model.media.episodic { EpisodeList(media: model.media, library: app.library, play: openStreams) }
+                    if let cast = model.media.cast, !cast.isEmpty { Text("Reparto").font(.headline); Text(cast.joined(separator: " · ")).font(.subheadline).foregroundStyle(.secondary) }
+                    if let directors = model.media.director, !directors.isEmpty { Text("Dirección").font(.headline); Text(directors.joined(separator: " · ")).font(.subheadline).foregroundStyle(.secondary) }
                 }.padding()
             }
         }.background(HarborTheme.background).navigationBarTitleDisplayMode(.inline)
-        .task { await model.load(app.addons); if playImmediately && model.media.type != "series" { openStreams() } }
+        .task { await model.load(app.addons); if playImmediately && !model.media.episodic { openStreams() } }
         .sheet(isPresented: $showStreams, onDismiss: { resolutionTask?.cancel(); model.pendingPlayback = nil; model.showResumePrompt = false }) {
             NavigationStack {
                 List {

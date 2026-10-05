@@ -1,5 +1,7 @@
 # Inventario de fuentes upstream
 
+Actualización de referencia 2026-10-05: el objetivo es **0.9.130 beta**, confirmado por `https://harbor.site/updates/latest.json` con header x-harbor-channel=beta y por las capturas del propietario. El checkout Desktop se conserva en su base histórica. La inspección adicional usa el checkpoint público beta `19ddc311a397eb3483b5c978d2cf2bbb3f7f479f` (package 0.9.128), extraído fuera del checkout; no equivale al fuente exacto de 0.9.130. El inventario histórico siguiente debe ampliarse con la superficie beta y no basta para certificar paridad 0.9.130.
+
 Base: `0117755855d3f43960bad3f9f62b69ef851d5991`. Regenerar con `python scripts/ios/update-inventory.py`. Los símbolos documentan cobertura de inspección, no certifican funcionamiento Desktop ni paridad iOS. La matriz humana descompone las funciones por comportamiento.
 
 1260 módulos/vistas, 136 comandos Tauri, 341 campos de Settings.

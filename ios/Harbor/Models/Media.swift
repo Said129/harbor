@@ -1,7 +1,7 @@
 import Foundation
 
 struct Media: Codable, Identifiable, Hashable, Sendable {
-    let id: String
+    var id: String
     let type: String
     let name: String
     var poster: String?
@@ -19,6 +19,7 @@ struct Media: Codable, Identifiable, Hashable, Sendable {
     var behaviorHints: BehaviorHints?
     struct BehaviorHints: Codable, Hashable, Sendable { var defaultVideoId: String? }
     var identity: String { "\(type):\(id)" }
+    var episodic: Bool { type == "series" || videos?.contains(where: { $0.season != nil && $0.episode != nil }) == true }
 
     static func parse(_ value: JSONValue, kind: String) -> Media? {
         guard let id = value["id"].string, !id.isEmpty,
@@ -35,7 +36,7 @@ struct Media: Codable, Identifiable, Hashable, Sendable {
         if let videoID = value["behaviorHints"]["defaultVideoId"].string { media.behaviorHints = BehaviorHints(defaultVideoId: videoID) }
         media.videos = value["videos"].array.compactMap { video in
             guard let id = video["id"].string, !id.isEmpty else { return nil }
-            return Episode(id: id, season: video["season"].integer, episode: video["episode"].integer ?? video["number"].integer, name: video["name"].string, title: video["title"].string, thumbnail: video["thumbnail"].string, overview: video["overview"].string ?? video["description"].string)
+            return Episode(id: id, season: video["season"].integer, episode: video["episode"].integer ?? video["number"].integer, name: video["name"].string, title: video["title"].string, thumbnail: video["thumbnail"].string, overview: video["overview"].string ?? video["description"].string, released: video["released"].string ?? video["firstAired"].string)
         }
         return media
     }
@@ -61,6 +62,13 @@ struct Episode: Codable, Identifiable, Hashable, Sendable {
     var thumbnail: String?
     var overview: String?
     var runtime: Double?
+    var released: String?
+    var watchedKey: String { "\(season ?? 0):\(episode ?? 0)" }
+    var releaseDate: Date? {
+        guard let released else { return nil }
+        return ISO8601DateFormatter().date(from: released) ?? ISO8601DateFormatter().date(from: String(released.prefix(10)) + "T00:00:00Z")
+    }
+    var available: Bool { releaseDate.map { $0 <= Date() } ?? true }
 }
 
 struct Addon: Codable, Identifiable, Sendable {

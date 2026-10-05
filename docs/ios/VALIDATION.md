@@ -1,5 +1,19 @@
 # Evidencia de validación
 
+## Incremento beta: navegación, catálogos, imágenes y biblioteca (2026-10-05)
+
+Referencia solicitada: Harbor Desktop 0.9.130 beta y las capturas del propietario. El updater oficial confirma 0.9.130; el código público `beta-branch` disponible es `19ddc311a397eb3483b5c978d2cf2bbb3f7f479f`, con package 0.9.128. Se documenta esa diferencia, sin presentar el checkpoint como el código exacto de 0.9.130. Los 50 SVG originales (20 navegación, 29 UI, HarborMark) y Fraunces/OFL se integran con procedencia en beta-vector-provenance.json.
+
+Home y las secciones Movies/Shows cargan rails directamente, con hero de cinco títulos, backdrop/logo, metadata y acciones. Cinemeta es el fallback real independiente de los addons de streams; TMDB usa únicamente la clave introducida por el usuario, guardada en Keychain. Hay tendencias, estrenos, géneros, región/idioma y grids paginados. No se incluyen datos ficticios ni una clave pública de terceros. Anime/Live todavía dependen de los catálogos instalados.
+
+La carga progresiva limita seis solicitudes concurrentes; el decoder tolera null y artículos opcionales defectuosos sin descartar un catálogo válido. Las advertencias técnicas de solicitudes parciales quedan fuera de Home/búsqueda cuando existe contenido válido. Artwork comparte descargas/cache y limita el tamaño y la memoria decodificada. La política de transporte permite imágenes y addons HTTP como Desktop; la sesión de cuenta sigue limitada a sus endpoints HTTPS.
+
+Biblioteca y Continue Watching usan datastoreMeta/Get/Put reales y un cache por cuenta. Cada mutación vuelve a leer el registro cloud y conserva los campos desconocidos; un fallo conserva el cache. La lista de episodios tiene temporadas, thumbnails, fecha y estado visto. El bitfield de episodios usa orden canónico, ancla y zlib compatibles con Desktop; terminar un episodio no marca toda la serie. Se añade una regresión de interoperabilidad con un payload zlib independiente y metadata reordenada. Esta funcionalidad cloud todavía requiere confirmación con la cuenta privada en el teléfono.
+
+El player incorpora zoom, sharpen, Stretch y proporciones 16:9, 4:3, 21:9, 1.85:1 y 2.39:1 mediante opciones reales de mpv, preservando preferencias y el renderer de build 3 que el propietario confirmó. Build number 4 aún no se entrega hasta superar el gate Apple. El run 37354555104 falló al compilar por una API CoreText inexistente y dos asignaciones a la variable catch; se corrigen con descriptor CoreText y self.error. No se declara paridad total: siguen pendientes las demás secciones, integraciones, opciones beta y fidelidad completa.
+
+El build completo Desktop requerido pasó tsc/Vite y falló en el sidecar Windows mpv-x86_64-pc-windows-msvc.exe ausente del baseline (log local native-beta-navigation-desktop-build.log). No hay cambios TypeScript/Rust de producto. La compilación Swift y la validación de iOS dependen del siguiente run Apple; el último IPA funcional de Descargas permanece intacto.
+
 Fecha: 2026-10-05. Base Desktop: `0117755855d3f43960bad3f9f62b69ef851d5991` (Harbor 0.9.21). Entorno local: Windows 11 x86_64, Rust estable 1.99.0, MSVC Build Tools/Windows SDK. Fork público de trabajo: [Said129/harbor](https://github.com/Said129/harbor/tree/ios/native-iphone). El fork anterior permanece como respaldo.
 
 Actualización física 2026-10-05: el propietario confirma que el acceso corregido ya funciona en su iPhone 14 (versión comunicada: iOS 26.6.2). Interstellar y varias fuentes reproducen audio, pero muestran una superficie azul uniforme sin imágenes. No se dispone del codec ni de diagnósticos privados. La actualización de vídeo se ha compilado y dejado en Descargas; su resultado en el teléfono todavía debe confirmarse.

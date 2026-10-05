@@ -10,17 +10,18 @@ struct ContentPageView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 26) {
                 if !model.heroes.isEmpty { CinemaHero(metas: model.heroes, app: app) }
-                if model.loading && model.rows.isEmpty { ProgressView("Cargando \(title.lowercased())…").frame(maxWidth: .infinity).padding(40) }
-                if let error = model.error, model.rows.isEmpty {
+                if model.loading && model.rows.isEmpty && model.curated.isEmpty { ProgressView("Cargando \(title.lowercased())…").frame(maxWidth: .infinity).padding(40) }
+                if let error = model.error, model.rows.isEmpty && model.curated.isEmpty {
                     ContentUnavailableView { Label(title, image: kind == "movie" ? "nav-movies" : "nav-shows") } description: { Text(error) } actions: {
                         Button("Reintentar") { Task { await model.load(kind: kind, app: app, refresh: true) } }
                     }
                 }
+                DiscoveryRails(rows: model.curated, app: app)
                 CatalogRails(rows: model.rows, app: app)
             }.padding(.bottom, 24)
         }.background(HarborTheme.background).navigationTitle(title).navigationBarTitleDisplayMode(.inline)
             .accessibilityIdentifier("content-\(kind)")
-            .task(id: "\(app.storageReady)|\(app.addons.filter(\.enabled).map(\.id).joined())") { if app.storageReady { await model.load(kind: kind, app: app) } }
+            .task(id: "\(app.storageReady)|\(app.addons.filter(\.enabled).map(\.id).joined())|\(MetadataPreferences.shared.tmdbKey)|\(MetadataPreferences.shared.region)|\(MetadataPreferences.shared.language)|\(MetadataPreferences.shared.translateTitles)") { if app.storageReady { await model.load(kind: kind, app: app) } }
             .onChange(of: app.rows.count) { _, _ in if kind != "movie" && kind != "series" { Task { await model.load(kind: kind, app: app, refresh: true) } } }
             .refreshable { await model.load(kind: kind, app: app, refresh: true) }
     }

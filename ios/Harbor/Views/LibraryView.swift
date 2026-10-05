@@ -22,7 +22,10 @@ struct LibraryView: View {
                             NavigationLink(value: media) { Poster(media: media) }.buttonStyle(.plain)
                                 .contextMenu {
                                     Button(record.bookmarked ? "Quitar de mi lista" : "Añadir a mi lista") { Task { await app.library.toggleBookmark(media) } }
-                                    Button(record.watched ? "Marcar como no visto" : "Marcar como visto") { Task { await app.library.toggleWatched(media) } }
+                                    Button(record.watched ? "Marcar como no visto" : "Marcar como visto") { Task {
+                                        let detailed = (try? await app.service.metadata(media, addons: app.addons)) ?? media
+                                        await app.library.toggleWatched(detailed)
+                                    } }
                                 }
                         }
                     }

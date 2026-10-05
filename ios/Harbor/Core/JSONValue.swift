@@ -37,6 +37,7 @@ indirect enum JSONValue: Codable, Sendable, Equatable {
     var string: String? { if case .string(let v) = self { return v }; return nil }
     var array: [JSONValue] { if case .array(let v) = self { return v }; return [] }
     var integer: Int? { if case .integer(let v) = self { return Int(exactly: v) }; return nil }
+    var objectValue: [String: JSONValue] { if case .object(let v) = self { return v }; return [:] }
 
     static func encoded<T: Encodable>(_ value: T) throws -> JSONValue {
         try JSONDecoder().decode(Self.self, from: JSONEncoder().encode(value))

@@ -5,22 +5,42 @@ import Observation
 final class ContentPageModel {
     var rows: [CatalogRow] = []
     var heroes: [Media] = []
+    var curated: [DiscoveryRail] = []
     var loading = false
     var error: String?
     private var generation = 0
     private var loadedSignature = ""
     func load(kind: String, app: AppModel, refresh: Bool = false) async {
-        let signature = kind + app.addons.filter(\.enabled).map(\.id).joined()
+        let configuration = MetadataPreferences.shared.configuration()
+        let signature = kind + app.addons.filter(\.enabled).map(\.id).joined() + configuration.tmdbKey + configuration.region + configuration.language + String(configuration.translateTitles)
         guard refresh || signature != loadedSignature else { return }
         generation += 1
         let current = generation
         loading = true; error = nil
-        rows = []; heroes = []
+        rows = []; heroes = []; curated = []
         defer { if generation == current { loading = false } }
         // Desktop's Movies/Shows fallback is Cinemeta top plus genre rails.
         // It is a content provider, independent of the installed stream addons.
         do {
             if kind == "movie" || kind == "series" {
+                if !configuration.tmdbKey.isEmpty {
+                    let definitions = TMDBService().definitions(kind)
+                    await withTaskGroup(of: (Int, DiscoveryRail?).self) { group in
+                        for (index, rail) in definitions.enumerated() {
+                            group.addTask {
+                                do { var result = rail; result.metas = try await TMDBService().page(rail, page: 1, configuration: configuration); return (index, result) }
+                                catch { return (index, nil) }
+                            }
+                        }
+                        var fetched: [(Int, DiscoveryRail)] = []
+                        for await (index, rail) in group {
+                            guard current == generation, let rail, !rail.metas.isEmpty else { continue }
+                            fetched.append((index, rail)); curated = fetched.sorted { $0.0 < $1.0 }.map(\.1)
+                            if heroes.isEmpty { heroes = Array(rail.metas.prefix(5)) }
+                        }
+                    }
+                }
+                if curated.isEmpty {
                 let addon = try await app.service.install(HarborService.cinemetaManifest)
                 let plans: [RequestPlan] = try await app.service.core.call("catalogs", ["addons": try .encoded([addon])])
                 guard let top = plans.first(where: { $0.kind == kind && $0.catalog?.id == "top" }) else { throw HarborError(code: "catalog-unavailable") }
@@ -44,6 +64,7 @@ final class ContentPageModel {
                         if heroes.isEmpty { heroes = Array(row.metas.prefix(5)) }
                     }
                 }
+                }
             } else {
                 rows = app.rows.filter { row in
                     if kind == "anime" { return row.plan.kind == "anime" || row.plan.addon.manifest["id"].string?.localizedCaseInsensitiveContains("kitsu") == true || row.plan.title.localizedCaseInsensitiveContains("anime") }
@@ -55,7 +76,7 @@ final class ContentPageModel {
             let addonRows = app.rows.filter { $0.plan.kind == kind && $0.plan.addon.manifest["id"].string != "com.linvo.cinemeta" }
             for row in addonRows where !rows.contains(where: { $0.id == row.id }) { rows.append(row) }
             var seen = Set<String>()
-            heroes = Array(rows.flatMap(\.metas).filter { seen.insert($0.identity).inserted }.prefix(5))
+            heroes = Array((curated.flatMap(\.metas) + rows.flatMap(\.metas)).filter { seen.insert($0.identity).inserted }.prefix(5))
             let originals = heroes
             await withTaskGroup(of: (Int, Media).self) { group in
                 for (index, media) in originals.enumerated() {
@@ -66,7 +87,7 @@ final class ContentPageModel {
                     if current == generation && index < heroes.count { heroes[index] = media }
                 }
             }
-            if rows.isEmpty { error = "No se encontraron catálogos disponibles. Revisa tus addons o vuelve a intentarlo." }
+            if rows.isEmpty && curated.isEmpty { error = "No se encontraron catálogos disponibles. Revisa tus addons o vuelve a intentarlo." }
             loadedSignature = signature
         } catch is CancellationError { return }
         catch { if current == generation { self.error = safeMessage(error) } }

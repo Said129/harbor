@@ -9,7 +9,7 @@ struct LibraryRecord: Identifiable, Sendable {
         return Media.parse(.object(fields), kind: "movie")
     }
     var bookmarked: Bool { raw["removed"] != .bool(true) && raw["temp"] != .bool(true) }
-    var watched: Bool { (raw["state"]["flaggedWatched"].numericValue ?? 0) > 0 }
+    var watched: Bool { (raw["state"]["flaggedWatched"].numericValue ?? 0) > 0 || (raw["state"]["timesWatched"].numericValue ?? 0) > 0 }
     var progress: Double {
         let duration = raw["state"]["duration"].numericValue ?? 0
         return duration > 0 ? min(1, max(0, (raw["state"]["timeOffset"].numericValue ?? 0) / duration)) : 0

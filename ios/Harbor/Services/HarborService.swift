@@ -43,12 +43,38 @@ struct HarborService: Sendable {
     }
 
     func metadata(_ media: Media, addons: [Addon]) async throws -> Media {
+        let configuration = await MetadataPreferences.shared.configuration()
+        if media.id.hasPrefix("tmdb:") && !configuration.tmdbKey.isEmpty {
+            let enriched = try await TMDBService().detail(media, configuration: configuration)
+            if enriched.id != media.id {
+                if var combined = try? await addonMetadata(enriched, addons: addons) {
+                    combined.logo = enriched.logo ?? combined.logo; combined.background = enriched.background ?? combined.background
+                    combined.cast = enriched.cast ?? combined.cast; combined.director = enriched.director ?? combined.director
+                    return combined
+                }
+                return enriched
+            }
+            return enriched
+        }
+        var result = try await addonMetadata(media, addons: addons)
+        if !configuration.tmdbKey.isEmpty, let enriched = try? await TMDBService().detail(result, configuration: configuration) {
+            result.logo = enriched.logo ?? result.logo
+            result.background = enriched.background ?? result.background
+            result.cast = enriched.cast?.isEmpty == false ? enriched.cast : result.cast
+            result.director = enriched.director?.isEmpty == false ? enriched.director : result.director
+        }
+        return result
+    }
+    private func addonMetadata(_ media: Media, addons: [Addon]) async throws -> Media {
         let plans = try await resources(addons, "meta", media.type, media.id)
         let result = try await fetch(plans)
         for plan in plans {
             if let value = result.values.first(where: { $0.0.key == plan.key })?.1,
                let meta = Media.parse(value["meta"], kind: media.type) { return meta }
         }
+        if media.id.hasPrefix("tt") && ["movie", "series"].contains(media.type),
+           let value = try? await http.json("https://v3-cinemeta.strem.io/meta/\(media.type)/\(media.id).json"),
+           let parsed = Media.parse(value["meta"], kind: media.type) { return parsed }
         throw HarborError(code: result.errors.first ?? "no-metadata")
     }
 
