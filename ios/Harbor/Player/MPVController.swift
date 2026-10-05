@@ -117,6 +117,15 @@ final class MPVController: GLKViewController {
     override func glkView(_ surface: GLKView, drawIn rect: CGRect) {
         guard let context else { return }
         EAGLContext.setCurrent(context)
+        // libmpv requires default GL state on entry and does not restore the
+        // viewport/scissor rectangle. GLKView also draws during snapshots and
+        // layout changes; start every frame with the full incoming drawable.
+        glViewport(0, 0, GLsizei(surface.drawableWidth), GLsizei(surface.drawableHeight))
+        glDisable(GLenum(GL_SCISSOR_TEST))
+        glDisable(GLenum(GL_BLEND))
+        glDisable(GLenum(GL_DEPTH_TEST))
+        glDisable(GLenum(GL_STENCIL_TEST))
+        glColorMask(GLboolean(GL_TRUE), GLboolean(GL_TRUE), GLboolean(GL_TRUE), GLboolean(GL_TRUE))
         glClearColor(0, 0, 0, 1)
         glClear(GLbitfield(GL_COLOR_BUFFER_BIT))
         guard let renderer, let handle else { return }

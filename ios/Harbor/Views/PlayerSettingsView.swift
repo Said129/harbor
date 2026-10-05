@@ -79,7 +79,7 @@ struct PlayerSettingsView: View {
                     Section("Pistas y volumen") {
                         tracks(state, type: "audio", property: "aid")
                         Toggle("Silenciar", isOn: Binding(get: { state.muted }, set: { state.controller?.set("mute", $0 ? "yes" : "no") }))
-                        dial("Volumen", value: Binding(get: { state.volume }, set: { state.controller?.set("volume", String($0)) }), range: 0...100, suffix: "%")
+                        dial("Volumen", value: Binding(get: { state.volume }, set: { preferences.options.volume = $0 }), range: 0...100, suffix: "%")
                     }
                 }
                 Section("Idioma y salida") {
@@ -171,7 +171,7 @@ struct PlayerSettingsView: View {
     private func languagePicker(_ title: String, value: Binding<String>, defaults: String, defaultTitle: String) -> some View {
         Picker(title, selection: value) {
             if !languages.contains(where: { $0.1 == defaults }) { Text(defaultTitle).tag(defaults) }
-            ForEach(languages, id: \.1) { Text($0.0).tag($0.1) }
+            ForEach(languages.filter { $0.1 == defaults || !$0.1.split(separator: ",").contains(Substring(defaults)) }, id: \.1) { Text($0.0).tag($0.1) }
         }
     }
 }

@@ -22,6 +22,7 @@ struct PlaybackOptions: Codable, Equatable {
     var seekBackSeconds = 10.0
     var seekForwardSeconds = 10.0
     var speed = 1.0
+    var volume = 100.0
     var fit = VideoFit.original
     var brightness = 0.0
     var contrast = 0.0
@@ -47,7 +48,7 @@ struct PlaybackOptions: Codable, Equatable {
 
     var mpvOptions: [(String, String)] {
         [
-            ("speed", String(speed)), ("panscan", fit == .fill ? "1" : "0"),
+            ("speed", String(speed)), ("volume", String(volume)), ("panscan", fit == .fill ? "1" : "0"),
             ("video-aspect-override", fit == .widescreen ? "16:9" : fit == .classic ? "4:3" : "no"),
             ("brightness", String(brightness)), ("contrast", String(contrast)),
             ("saturation", String(saturation)), ("gamma", String(gamma)),
