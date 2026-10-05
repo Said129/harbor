@@ -9,13 +9,13 @@
     "ios": "Native addon catalog browser with genre and pagination implemented",
     "state": "Partial",
     "implementation": "`ios/Harbor/Views/CatalogsView.swift`; `Services/HarborService.swift`",
-    "notes": "Movie/series catalog selection, one-catalog requests, manifest genres, supported skip pagination and detail navigation. Personalized Desktop rooms/rails and required-genre-only catalog discovery remain incomplete. Apple checks pending."
+    "notes": "Movie/series catalog selection, one-catalog requests, manifest genres, supported skip pagination and detail navigation. Personalized Desktop rooms/rails and required-genre-only catalog discovery remain incomplete. Apple simulator/device build and native UI checks pass; full physical feature coverage remains pending."
   },
   "Addon catalog discovery": {
     "ios": "Native addon catalog browser with genre and pagination implemented",
     "state": "Partial",
     "implementation": "`ios/Harbor/Views/CatalogsView.swift`; `Services/HarborService.swift`",
-    "notes": "Movie/series catalog selection, one-catalog requests, manifest genres, supported skip pagination and detail navigation. Personalized Desktop rooms/rails and required-genre-only catalog discovery remain incomplete. Apple checks pending."
+    "notes": "Movie/series catalog selection, one-catalog requests, manifest genres, supported skip pagination and detail navigation. Personalized Desktop rooms/rails and required-genre-only catalog discovery remain incomplete. Apple simulator/device build and native UI checks pass; full physical feature coverage remains pending."
   },
   "Global search": {
     "ios": "Real movie search/navigation verified on simulator",
@@ -351,13 +351,13 @@
     "ios": "Simulator displays 8/10-bit video and advancing time; physical correction pending",
     "state": "Partial",
     "implementation": "`ios/Harbor/Player/MPVConfiguration.swift`; `MPVController.swift`; `PlayerView.swift`",
-    "notes": "Owner reports audio but a uniform blue surface on Interstellar and multiple sources. Default now avoids direct CoreVideo/GLES import using VideoToolbox copy-back, as the Apple embedded Desktop player does. CI 37334449288 passes the native 8/10-bit pixel and advancing-time test; both real GLKView snapshots were visually inspected. Physical copy-back decoding and owner retry remain pending. No codec/HDR or full playback claim. Owner now reports visible playback working on iPhone 14 (iOS 26.6.2); this is physical feedback, not independent codec/HDR certification. Tap hide/reveal and native playback option sheets added; Apple checks pending."
+    "notes": "Owner reports visible playback working on iPhone 14 (iOS 26.6.2) with build 2. Simulator verifies advancing time and real 8/10-bit image pixels. Build 3 UI verifies tap hide/reveal and option sheet presentation. Full physical tracks/seek/HDR/lifecycle and Desktop playback parity remain incomplete."
   },
   "Load real media URL": {
     "ios": "Apple compilation verified; media interaction pending",
     "state": "Partial",
     "implementation": "`ios/Harbor/Player/MPVController.swift`; `PlayerView.swift`; `PlayerState.swift`",
-    "notes": "Pinned MPVKit and these controls compile/link on Apple. The app-owned native mpv factory passes its initialization test. Media-dependent controls, events, decoding and physical playback require runtime validation; no codec claims. Owner now reports visible playback working on iPhone 14 (iOS 26.6.2); this is physical feedback, not independent codec/HDR certification. Tap hide/reveal and native playback option sheets added; Apple checks pending."
+    "notes": "Owner reports visible playback working on iPhone 14 (iOS 26.6.2) with build 2. Simulator verifies advancing time and real 8/10-bit image pixels. Build 3 UI verifies tap hide/reveal and option sheet presentation. Full physical tracks/seek/HDR/lifecycle and Desktop playback parity remain incomplete."
   },
   "Play / pause": {
     "ios": "Apple compilation verified; media interaction pending",
@@ -585,150 +585,150 @@
     "ios": "Native player settings and real mpv consumers implemented",
     "state": "Partial",
     "implementation": "`ios/Harbor/Player/PlayerView.swift`; `Player/MPVController.swift`; `Views/PlayerSettingsView.swift`; `Player/PlaybackPreferences.swift`",
-    "notes": "Persisted native settings, active playback sheets, observed transport/audio state and chapters. Desktop language ordering, arbitrary colors/fonts/properties and full physical option coverage remain incomplete. Apple checks for this increment pending."
+    "notes": "Persisted native settings, active playback sheets, observed transport/audio state and chapters. Desktop language ordering, arbitrary colors/fonts/properties and full physical option coverage remain incomplete. Apple simulator/device build, real mpv option initialization and native UI checks pass; full physical option coverage remains pending."
   },
   "Chapters": {
     "ios": "Native player settings and real mpv consumers implemented",
     "state": "Partial",
     "implementation": "`ios/Harbor/Player/PlayerView.swift`; `Player/MPVController.swift`; `Views/PlayerSettingsView.swift`; `Player/PlaybackPreferences.swift`",
-    "notes": "Persisted native settings, active playback sheets, observed transport/audio state and chapters. Desktop language ordering, arbitrary colors/fonts/properties and full physical option coverage remain incomplete. Apple checks for this increment pending."
+    "notes": "Persisted native settings, active playback sheets, observed transport/audio state and chapters. Desktop language ordering, arbitrary colors/fonts/properties and full physical option coverage remain incomplete. Apple simulator/device build, real mpv option initialization and native UI checks pass; full physical option coverage remains pending."
   },
   "Audio delay": {
     "ios": "Native player settings and real mpv consumers implemented",
     "state": "Partial",
     "implementation": "`ios/Harbor/Player/PlayerView.swift`; `Player/MPVController.swift`; `Views/PlayerSettingsView.swift`; `Player/PlaybackPreferences.swift`",
-    "notes": "Persisted native settings, active playback sheets, observed transport/audio state and chapters. Desktop language ordering, arbitrary colors/fonts/properties and full physical option coverage remain incomplete. Apple checks for this increment pending."
+    "notes": "Persisted native settings, active playback sheets, observed transport/audio state and chapters. Desktop language ordering, arbitrary colors/fonts/properties and full physical option coverage remain incomplete. Apple simulator/device build, real mpv option initialization and native UI checks pass; full physical option coverage remains pending."
   },
   "Subtitle delay": {
     "ios": "Native player settings and real mpv consumers implemented",
     "state": "Partial",
     "implementation": "`ios/Harbor/Player/PlayerView.swift`; `Player/MPVController.swift`; `Views/PlayerSettingsView.swift`; `Player/PlaybackPreferences.swift`",
-    "notes": "Persisted native settings, active playback sheets, observed transport/audio state and chapters. Desktop language ordering, arbitrary colors/fonts/properties and full physical option coverage remain incomplete. Apple checks for this increment pending."
+    "notes": "Persisted native settings, active playback sheets, observed transport/audio state and chapters. Desktop language ordering, arbitrary colors/fonts/properties and full physical option coverage remain incomplete. Apple simulator/device build, real mpv option initialization and native UI checks pass; full physical option coverage remains pending."
   },
   "Subtitle styling": {
     "ios": "Native player settings and real mpv consumers implemented",
     "state": "Partial",
     "implementation": "`ios/Harbor/Player/PlayerView.swift`; `Player/MPVController.swift`; `Views/PlayerSettingsView.swift`; `Player/PlaybackPreferences.swift`",
-    "notes": "Persisted native settings, active playback sheets, observed transport/audio state and chapters. Desktop language ordering, arbitrary colors/fonts/properties and full physical option coverage remain incomplete. Apple checks for this increment pending."
+    "notes": "Persisted native settings, active playback sheets, observed transport/audio state and chapters. Desktop language ordering, arbitrary colors/fonts/properties and full physical option coverage remain incomplete. Apple simulator/device build, real mpv option initialization and native UI checks pass; full physical option coverage remains pending."
   },
   "Setting: `mpvDownmixStereo`": {
     "ios": "Native player settings and real mpv consumers implemented",
     "state": "Partial",
     "implementation": "`ios/Harbor/Player/PlayerView.swift`; `Player/MPVController.swift`; `Views/PlayerSettingsView.swift`; `Player/PlaybackPreferences.swift`",
-    "notes": "Persisted native settings, active playback sheets, observed transport/audio state and chapters. Desktop language ordering, arbitrary colors/fonts/properties and full physical option coverage remain incomplete. Apple checks for this increment pending."
+    "notes": "Persisted native settings, active playback sheets, observed transport/audio state and chapters. Desktop language ordering, arbitrary colors/fonts/properties and full physical option coverage remain incomplete. Apple simulator/device build, real mpv option initialization and native UI checks pass; full physical option coverage remains pending."
   },
   "Setting: `mpvTweaks`": {
     "ios": "Native player settings and real mpv consumers implemented",
     "state": "Partial",
     "implementation": "`ios/Harbor/Player/PlayerView.swift`; `Player/MPVController.swift`; `Views/PlayerSettingsView.swift`; `Player/PlaybackPreferences.swift`",
-    "notes": "Persisted native settings, active playback sheets, observed transport/audio state and chapters. Desktop language ordering, arbitrary colors/fonts/properties and full physical option coverage remain incomplete. Apple checks for this increment pending."
+    "notes": "Persisted native settings, active playback sheets, observed transport/audio state and chapters. Desktop language ordering, arbitrary colors/fonts/properties and full physical option coverage remain incomplete. Apple simulator/device build, real mpv option initialization and native UI checks pass; full physical option coverage remains pending."
   },
   "Setting: `preferredSubLangs`": {
     "ios": "Native player settings and real mpv consumers implemented",
     "state": "Partial",
     "implementation": "`ios/Harbor/Player/PlayerView.swift`; `Player/MPVController.swift`; `Views/PlayerSettingsView.swift`; `Player/PlaybackPreferences.swift`",
-    "notes": "Persisted native settings, active playback sheets, observed transport/audio state and chapters. Desktop language ordering, arbitrary colors/fonts/properties and full physical option coverage remain incomplete. Apple checks for this increment pending."
+    "notes": "Persisted native settings, active playback sheets, observed transport/audio state and chapters. Desktop language ordering, arbitrary colors/fonts/properties and full physical option coverage remain incomplete. Apple simulator/device build, real mpv option initialization and native UI checks pass; full physical option coverage remains pending."
   },
   "Setting: `preferredAudioLangs`": {
     "ios": "Native player settings and real mpv consumers implemented",
     "state": "Partial",
     "implementation": "`ios/Harbor/Player/PlayerView.swift`; `Player/MPVController.swift`; `Views/PlayerSettingsView.swift`; `Player/PlaybackPreferences.swift`",
-    "notes": "Persisted native settings, active playback sheets, observed transport/audio state and chapters. Desktop language ordering, arbitrary colors/fonts/properties and full physical option coverage remain incomplete. Apple checks for this increment pending."
+    "notes": "Persisted native settings, active playback sheets, observed transport/audio state and chapters. Desktop language ordering, arbitrary colors/fonts/properties and full physical option coverage remain incomplete. Apple simulator/device build, real mpv option initialization and native UI checks pass; full physical option coverage remains pending."
   },
   "Setting: `subFontSize`": {
     "ios": "Native player settings and real mpv consumers implemented",
     "state": "Partial",
     "implementation": "`ios/Harbor/Player/PlayerView.swift`; `Player/MPVController.swift`; `Views/PlayerSettingsView.swift`; `Player/PlaybackPreferences.swift`",
-    "notes": "Persisted native settings, active playback sheets, observed transport/audio state and chapters. Desktop language ordering, arbitrary colors/fonts/properties and full physical option coverage remain incomplete. Apple checks for this increment pending."
+    "notes": "Persisted native settings, active playback sheets, observed transport/audio state and chapters. Desktop language ordering, arbitrary colors/fonts/properties and full physical option coverage remain incomplete. Apple simulator/device build, real mpv option initialization and native UI checks pass; full physical option coverage remains pending."
   },
   "Setting: `subFontColor`": {
     "ios": "Native player settings and real mpv consumers implemented",
     "state": "Partial",
     "implementation": "`ios/Harbor/Player/PlayerView.swift`; `Player/MPVController.swift`; `Views/PlayerSettingsView.swift`; `Player/PlaybackPreferences.swift`",
-    "notes": "Persisted native settings, active playback sheets, observed transport/audio state and chapters. Desktop language ordering, arbitrary colors/fonts/properties and full physical option coverage remain incomplete. Apple checks for this increment pending."
+    "notes": "Persisted native settings, active playback sheets, observed transport/audio state and chapters. Desktop language ordering, arbitrary colors/fonts/properties and full physical option coverage remain incomplete. Apple simulator/device build, real mpv option initialization and native UI checks pass; full physical option coverage remains pending."
   },
   "Setting: `subBorderColor`": {
     "ios": "Native player settings and real mpv consumers implemented",
     "state": "Partial",
     "implementation": "`ios/Harbor/Player/PlayerView.swift`; `Player/MPVController.swift`; `Views/PlayerSettingsView.swift`; `Player/PlaybackPreferences.swift`",
-    "notes": "Persisted native settings, active playback sheets, observed transport/audio state and chapters. Desktop language ordering, arbitrary colors/fonts/properties and full physical option coverage remain incomplete. Apple checks for this increment pending."
+    "notes": "Persisted native settings, active playback sheets, observed transport/audio state and chapters. Desktop language ordering, arbitrary colors/fonts/properties and full physical option coverage remain incomplete. Apple simulator/device build, real mpv option initialization and native UI checks pass; full physical option coverage remains pending."
   },
   "Setting: `subBorderSize`": {
     "ios": "Native player settings and real mpv consumers implemented",
     "state": "Partial",
     "implementation": "`ios/Harbor/Player/PlayerView.swift`; `Player/MPVController.swift`; `Views/PlayerSettingsView.swift`; `Player/PlaybackPreferences.swift`",
-    "notes": "Persisted native settings, active playback sheets, observed transport/audio state and chapters. Desktop language ordering, arbitrary colors/fonts/properties and full physical option coverage remain incomplete. Apple checks for this increment pending."
+    "notes": "Persisted native settings, active playback sheets, observed transport/audio state and chapters. Desktop language ordering, arbitrary colors/fonts/properties and full physical option coverage remain incomplete. Apple simulator/device build, real mpv option initialization and native UI checks pass; full physical option coverage remains pending."
   },
   "Setting: `subMarginY`": {
     "ios": "Native player settings and real mpv consumers implemented",
     "state": "Partial",
     "implementation": "`ios/Harbor/Player/PlayerView.swift`; `Player/MPVController.swift`; `Views/PlayerSettingsView.swift`; `Player/PlaybackPreferences.swift`",
-    "notes": "Persisted native settings, active playback sheets, observed transport/audio state and chapters. Desktop language ordering, arbitrary colors/fonts/properties and full physical option coverage remain incomplete. Apple checks for this increment pending."
+    "notes": "Persisted native settings, active playback sheets, observed transport/audio state and chapters. Desktop language ordering, arbitrary colors/fonts/properties and full physical option coverage remain incomplete. Apple simulator/device build, real mpv option initialization and native UI checks pass; full physical option coverage remains pending."
   },
   "Setting: `subAlignX`": {
     "ios": "Native player settings and real mpv consumers implemented",
     "state": "Partial",
     "implementation": "`ios/Harbor/Player/PlayerView.swift`; `Player/MPVController.swift`; `Views/PlayerSettingsView.swift`; `Player/PlaybackPreferences.swift`",
-    "notes": "Persisted native settings, active playback sheets, observed transport/audio state and chapters. Desktop language ordering, arbitrary colors/fonts/properties and full physical option coverage remain incomplete. Apple checks for this increment pending."
+    "notes": "Persisted native settings, active playback sheets, observed transport/audio state and chapters. Desktop language ordering, arbitrary colors/fonts/properties and full physical option coverage remain incomplete. Apple simulator/device build, real mpv option initialization and native UI checks pass; full physical option coverage remains pending."
   },
   "Setting: `subAssOverride`": {
     "ios": "Native player settings and real mpv consumers implemented",
     "state": "Partial",
     "implementation": "`ios/Harbor/Player/PlayerView.swift`; `Player/MPVController.swift`; `Views/PlayerSettingsView.swift`; `Player/PlaybackPreferences.swift`",
-    "notes": "Persisted native settings, active playback sheets, observed transport/audio state and chapters. Desktop language ordering, arbitrary colors/fonts/properties and full physical option coverage remain incomplete. Apple checks for this increment pending."
+    "notes": "Persisted native settings, active playback sheets, observed transport/audio state and chapters. Desktop language ordering, arbitrary colors/fonts/properties and full physical option coverage remain incomplete. Apple simulator/device build, real mpv option initialization and native UI checks pass; full physical option coverage remains pending."
   },
   "Setting: `subStyle`": {
     "ios": "Native player settings and real mpv consumers implemented",
     "state": "Partial",
     "implementation": "`ios/Harbor/Player/PlayerView.swift`; `Player/MPVController.swift`; `Views/PlayerSettingsView.swift`; `Player/PlaybackPreferences.swift`",
-    "notes": "Persisted native settings, active playback sheets, observed transport/audio state and chapters. Desktop language ordering, arbitrary colors/fonts/properties and full physical option coverage remain incomplete. Apple checks for this increment pending."
+    "notes": "Persisted native settings, active playback sheets, observed transport/audio state and chapters. Desktop language ordering, arbitrary colors/fonts/properties and full physical option coverage remain incomplete. Apple simulator/device build, real mpv option initialization and native UI checks pass; full physical option coverage remains pending."
   },
   "Setting: `subBold`": {
     "ios": "Native player settings and real mpv consumers implemented",
     "state": "Partial",
     "implementation": "`ios/Harbor/Player/PlayerView.swift`; `Player/MPVController.swift`; `Views/PlayerSettingsView.swift`; `Player/PlaybackPreferences.swift`",
-    "notes": "Persisted native settings, active playback sheets, observed transport/audio state and chapters. Desktop language ordering, arbitrary colors/fonts/properties and full physical option coverage remain incomplete. Apple checks for this increment pending."
+    "notes": "Persisted native settings, active playback sheets, observed transport/audio state and chapters. Desktop language ordering, arbitrary colors/fonts/properties and full physical option coverage remain incomplete. Apple simulator/device build, real mpv option initialization and native UI checks pass; full physical option coverage remains pending."
   },
   "Setting: `subBoxOpacity`": {
     "ios": "Native player settings and real mpv consumers implemented",
     "state": "Partial",
     "implementation": "`ios/Harbor/Player/PlayerView.swift`; `Player/MPVController.swift`; `Views/PlayerSettingsView.swift`; `Player/PlaybackPreferences.swift`",
-    "notes": "Persisted native settings, active playback sheets, observed transport/audio state and chapters. Desktop language ordering, arbitrary colors/fonts/properties and full physical option coverage remain incomplete. Apple checks for this increment pending."
+    "notes": "Persisted native settings, active playback sheets, observed transport/audio state and chapters. Desktop language ordering, arbitrary colors/fonts/properties and full physical option coverage remain incomplete. Apple simulator/device build, real mpv option initialization and native UI checks pass; full physical option coverage remains pending."
   },
   "Setting: `subOpacity`": {
     "ios": "Native player settings and real mpv consumers implemented",
     "state": "Partial",
     "implementation": "`ios/Harbor/Player/PlayerView.swift`; `Player/MPVController.swift`; `Views/PlayerSettingsView.swift`; `Player/PlaybackPreferences.swift`",
-    "notes": "Persisted native settings, active playback sheets, observed transport/audio state and chapters. Desktop language ordering, arbitrary colors/fonts/properties and full physical option coverage remain incomplete. Apple checks for this increment pending."
+    "notes": "Persisted native settings, active playback sheets, observed transport/audio state and chapters. Desktop language ordering, arbitrary colors/fonts/properties and full physical option coverage remain incomplete. Apple simulator/device build, real mpv option initialization and native UI checks pass; full physical option coverage remains pending."
   },
   "Setting: `seekBackStepSec`": {
     "ios": "Native player settings and real mpv consumers implemented",
     "state": "Partial",
     "implementation": "`ios/Harbor/Player/PlayerView.swift`; `Player/MPVController.swift`; `Views/PlayerSettingsView.swift`; `Player/PlaybackPreferences.swift`",
-    "notes": "Persisted native settings, active playback sheets, observed transport/audio state and chapters. Desktop language ordering, arbitrary colors/fonts/properties and full physical option coverage remain incomplete. Apple checks for this increment pending."
+    "notes": "Persisted native settings, active playback sheets, observed transport/audio state and chapters. Desktop language ordering, arbitrary colors/fonts/properties and full physical option coverage remain incomplete. Apple simulator/device build, real mpv option initialization and native UI checks pass; full physical option coverage remains pending."
   },
   "Setting: `seekForwardStepSec`": {
     "ios": "Native player settings and real mpv consumers implemented",
     "state": "Partial",
     "implementation": "`ios/Harbor/Player/PlayerView.swift`; `Player/MPVController.swift`; `Views/PlayerSettingsView.swift`; `Player/PlaybackPreferences.swift`",
-    "notes": "Persisted native settings, active playback sheets, observed transport/audio state and chapters. Desktop language ordering, arbitrary colors/fonts/properties and full physical option coverage remain incomplete. Apple checks for this increment pending."
+    "notes": "Persisted native settings, active playback sheets, observed transport/audio state and chapters. Desktop language ordering, arbitrary colors/fonts/properties and full physical option coverage remain incomplete. Apple simulator/device build, real mpv option initialization and native UI checks pass; full physical option coverage remains pending."
   },
   "Setting: `subtitlesOffByDefault`": {
     "ios": "Native player settings and real mpv consumers implemented",
     "state": "Partial",
     "implementation": "`ios/Harbor/Player/PlayerView.swift`; `Player/MPVController.swift`; `Views/PlayerSettingsView.swift`; `Player/PlaybackPreferences.swift`",
-    "notes": "Persisted native settings, active playback sheets, observed transport/audio state and chapters. Desktop language ordering, arbitrary colors/fonts/properties and full physical option coverage remain incomplete. Apple checks for this increment pending."
+    "notes": "Persisted native settings, active playback sheets, observed transport/audio state and chapters. Desktop language ordering, arbitrary colors/fonts/properties and full physical option coverage remain incomplete. Apple simulator/device build, real mpv option initialization and native UI checks pass; full physical option coverage remains pending."
   },
   "Movies room": {
     "ios": "Native addon catalog browser with genre and pagination implemented",
     "state": "Partial",
     "implementation": "`ios/Harbor/Views/CatalogsView.swift`; `Services/HarborService.swift`",
-    "notes": "Movie/series catalog selection, one-catalog requests, manifest genres, supported skip pagination and detail navigation. Personalized Desktop rooms/rails and required-genre-only catalog discovery remain incomplete. Apple checks pending."
+    "notes": "Movie/series catalog selection, one-catalog requests, manifest genres, supported skip pagination and detail navigation. Personalized Desktop rooms/rails and required-genre-only catalog discovery remain incomplete. Apple simulator/device build and native UI checks pass; full physical feature coverage remains pending."
   },
   "Movie catalog pagination": {
     "ios": "Native addon catalog browser with genre and pagination implemented",
     "state": "Partial",
     "implementation": "`ios/Harbor/Views/CatalogsView.swift`; `Services/HarborService.swift`",
-    "notes": "Movie/series catalog selection, one-catalog requests, manifest genres, supported skip pagination and detail navigation. Personalized Desktop rooms/rails and required-genre-only catalog discovery remain incomplete. Apple checks pending."
+    "notes": "Movie/series catalog selection, one-catalog requests, manifest genres, supported skip pagination and detail navigation. Personalized Desktop rooms/rails and required-genre-only catalog discovery remain incomplete. Apple simulator/device build and native UI checks pass; full physical feature coverage remains pending."
   }
 }
