@@ -39,28 +39,9 @@ concurrency:
   group: iphone-${{ github.event.pull_request.head.repo.full_name || github.repository }}-${{ github.head_ref || github.ref_name }}
   cancel-in-progress: true
 jobs:
-  shared:
-    name: Shared Rust (Linux)
-    if: ${{ github.event.repository.private == false }}
-    runs-on: ubuntu-24.04
-    timeout-minutes: 15
-    steps:
-      - uses: actions/checkout@v6
-      - uses: dtolnay/rust-toolchain@stable
-        with:
-          components: clippy
-      - uses: Swatinem/rust-cache@v2
-        with:
-          workspaces: |
-            harbor-core
-            harbor-ios-bridge
-      - run: cargo test --manifest-path harbor-core/Cargo.toml --locked --no-default-features
-      - run: cargo test --manifest-path harbor-ios-bridge/Cargo.toml --locked
-      - run: cargo clippy --manifest-path harbor-ios-bridge/Cargo.toml --locked --all-targets -- -D warnings
   apple:
     name: Apple SDK / Swift / iPhone
     if: ${{ github.event.repository.private == false }}
-    needs: shared
     runs-on: macos-15
     timeout-minutes: 45
     permissions:
@@ -79,11 +60,19 @@ jobs:
       - uses: dtolnay/rust-toolchain@stable
         with:
           targets: aarch64-apple-ios,aarch64-apple-ios-sim,x86_64-apple-ios
+          components: clippy
       - uses: Swatinem/rust-cache@v2
         with:
           workspaces: |
             harbor-core
             harbor-ios-bridge
+      - name: Verify shared Rust on the Apple build host
+        shell: bash
+        run: |
+          set -euo pipefail
+          cargo test --manifest-path harbor-core/Cargo.toml --locked --no-default-features
+          cargo test --manifest-path harbor-ios-bridge/Cargo.toml --locked
+          cargo clippy --manifest-path harbor-ios-bridge/Cargo.toml --locked --all-targets -- -D warnings
       - name: Build and package Rust before Swift
         shell: bash
         run: |

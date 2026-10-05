@@ -563,5 +563,120 @@
     "state": "Partial",
     "implementation": "scripts/ios/fetch-interface-font.py; ios/Harbor/Views/HarborTheme.swift",
     "notes": "Original Switzer variable fetched from Fontshare directly for app embedding, with fixed checksum and FFL; Inter/system body selection; original Fraunces brand and Oswald rankings. Remaining display/sans pairs and full semantic text scale pending. Requires Apple font-registration gate."
+  },
+  "Room: manga": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/MangaView.swift; MangaDetailView.swift; MangaReaderView.swift; Services/MangaArchive.swift; SuwayomiClient.swift",
+    "notes": "Native CBZ/ZIP and image-folder imports; natural page order/CRC; per-account protected files and Keychain library/progress. Real Desktop Suwayomi GraphQL/REST source browse/search/library/chapters/pages/extensions/progress; credentials only in Keychain, no cross-origin auth. Five reading modes, fit/zoom/RTL, backgrounds/navigation/focus/gap, next chapter and original page export. Swift compilation/physical UI and a real user Suwayomi server still require validation. Advanced source filters/repositories/community/plugin providers and original flip sound remain pending."
+  },
+  "Manga Suwayomi connection": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/MangaView.swift; MangaDetailView.swift; MangaReaderView.swift; Services/MangaArchive.swift; SuwayomiClient.swift",
+    "notes": "Native CBZ/ZIP and image-folder imports; natural page order/CRC; per-account protected files and Keychain library/progress. Real Desktop Suwayomi GraphQL/REST source browse/search/library/chapters/pages/extensions/progress; credentials only in Keychain, no cross-origin auth. Five reading modes, fit/zoom/RTL, backgrounds/navigation/focus/gap, next chapter and original page export. Swift compilation/physical UI and a real user Suwayomi server still require validation. Advanced source filters/repositories/community/plugin providers and original flip sound remain pending."
+  },
+  "Manga Suwayomi source discovery": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/MangaView.swift; MangaDetailView.swift; MangaReaderView.swift; Services/MangaArchive.swift; SuwayomiClient.swift",
+    "notes": "Native CBZ/ZIP and image-folder imports; natural page order/CRC; per-account protected files and Keychain library/progress. Real Desktop Suwayomi GraphQL/REST source browse/search/library/chapters/pages/extensions/progress; credentials only in Keychain, no cross-origin auth. Five reading modes, fit/zoom/RTL, backgrounds/navigation/focus/gap, next chapter and original page export. Swift compilation/physical UI and a real user Suwayomi server still require validation. Advanced source filters/repositories/community/plugin providers and original flip sound remain pending."
+  },
+  "Manga popular/latest/search pagination": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/MangaView.swift; MangaDetailView.swift; MangaReaderView.swift; Services/MangaArchive.swift; SuwayomiClient.swift",
+    "notes": "Native CBZ/ZIP and image-folder imports; natural page order/CRC; per-account protected files and Keychain library/progress. Real Desktop Suwayomi GraphQL/REST source browse/search/library/chapters/pages/extensions/progress; credentials only in Keychain, no cross-origin auth. Five reading modes, fit/zoom/RTL, backgrounds/navigation/focus/gap, next chapter and original page export. Swift compilation/physical UI and a real user Suwayomi server still require validation. Advanced source filters/repositories/community/plugin providers and original flip sound remain pending."
+  },
+  "Manga Suwayomi library": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/MangaView.swift; MangaDetailView.swift; MangaReaderView.swift; Services/MangaArchive.swift; SuwayomiClient.swift",
+    "notes": "Native CBZ/ZIP and image-folder imports; natural page order/CRC; per-account protected files and Keychain library/progress. Real Desktop Suwayomi GraphQL/REST source browse/search/library/chapters/pages/extensions/progress; credentials only in Keychain, no cross-origin auth. Five reading modes, fit/zoom/RTL, backgrounds/navigation/focus/gap, next chapter and original page export. Swift compilation/physical UI and a real user Suwayomi server still require validation. Advanced source filters/repositories/community/plugin providers and original flip sound remain pending."
+  },
+  "Manga extension install/update/remove": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/MangaView.swift; MangaDetailView.swift; MangaReaderView.swift; Services/MangaArchive.swift; SuwayomiClient.swift",
+    "notes": "Native CBZ/ZIP and image-folder imports; natural page order/CRC; per-account protected files and Keychain library/progress. Real Desktop Suwayomi GraphQL/REST source browse/search/library/chapters/pages/extensions/progress; credentials only in Keychain, no cross-origin auth. Five reading modes, fit/zoom/RTL, backgrounds/navigation/focus/gap, next chapter and original page export. Swift compilation/physical UI and a real user Suwayomi server still require validation. Advanced source filters/repositories/community/plugin providers and original flip sound remain pending."
+  },
+  "Manga local CBZ/ZIP": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/MangaView.swift; MangaDetailView.swift; MangaReaderView.swift; Services/MangaArchive.swift; SuwayomiClient.swift",
+    "notes": "Native CBZ/ZIP and image-folder imports; natural page order/CRC; per-account protected files and Keychain library/progress. Real Desktop Suwayomi GraphQL/REST source browse/search/library/chapters/pages/extensions/progress; credentials only in Keychain, no cross-origin auth. Five reading modes, fit/zoom/RTL, backgrounds/navigation/focus/gap, next chapter and original page export. Swift compilation/physical UI and a real user Suwayomi server still require validation. Advanced source filters/repositories/community/plugin providers and original flip sound remain pending."
+  },
+  "Manga image-folder chapters": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/MangaView.swift; MangaDetailView.swift; MangaReaderView.swift; Services/MangaArchive.swift; SuwayomiClient.swift",
+    "notes": "Native CBZ/ZIP and image-folder imports; natural page order/CRC; per-account protected files and Keychain library/progress. Real Desktop Suwayomi GraphQL/REST source browse/search/library/chapters/pages/extensions/progress; credentials only in Keychain, no cross-origin auth. Five reading modes, fit/zoom/RTL, backgrounds/navigation/focus/gap, next chapter and original page export. Swift compilation/physical UI and a real user Suwayomi server still require validation. Advanced source filters/repositories/community/plugin providers and original flip sound remain pending."
+  },
+  "Manga natural page ordering": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/MangaView.swift; MangaDetailView.swift; MangaReaderView.swift; Services/MangaArchive.swift; SuwayomiClient.swift",
+    "notes": "Native CBZ/ZIP and image-folder imports; natural page order/CRC; per-account protected files and Keychain library/progress. Real Desktop Suwayomi GraphQL/REST source browse/search/library/chapters/pages/extensions/progress; credentials only in Keychain, no cross-origin auth. Five reading modes, fit/zoom/RTL, backgrounds/navigation/focus/gap, next chapter and original page export. Swift compilation/physical UI and a real user Suwayomi server still require validation. Advanced source filters/repositories/community/plugin providers and original flip sound remain pending."
+  },
+  "Manga vertical/horizontal strips": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/MangaView.swift; MangaDetailView.swift; MangaReaderView.swift; Services/MangaArchive.swift; SuwayomiClient.swift",
+    "notes": "Native CBZ/ZIP and image-folder imports; natural page order/CRC; per-account protected files and Keychain library/progress. Real Desktop Suwayomi GraphQL/REST source browse/search/library/chapters/pages/extensions/progress; credentials only in Keychain, no cross-origin auth. Five reading modes, fit/zoom/RTL, backgrounds/navigation/focus/gap, next chapter and original page export. Swift compilation/physical UI and a real user Suwayomi server still require validation. Advanced source filters/repositories/community/plugin providers and original flip sound remain pending."
+  },
+  "Manga single/double pages": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/MangaView.swift; MangaDetailView.swift; MangaReaderView.swift; Services/MangaArchive.swift; SuwayomiClient.swift",
+    "notes": "Native CBZ/ZIP and image-folder imports; natural page order/CRC; per-account protected files and Keychain library/progress. Real Desktop Suwayomi GraphQL/REST source browse/search/library/chapters/pages/extensions/progress; credentials only in Keychain, no cross-origin auth. Five reading modes, fit/zoom/RTL, backgrounds/navigation/focus/gap, next chapter and original page export. Swift compilation/physical UI and a real user Suwayomi server still require validation. Advanced source filters/repositories/community/plugin providers and original flip sound remain pending."
+  },
+  "Manga book page turns": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/MangaView.swift; MangaDetailView.swift; MangaReaderView.swift; Services/MangaArchive.swift; SuwayomiClient.swift",
+    "notes": "Native CBZ/ZIP and image-folder imports; natural page order/CRC; per-account protected files and Keychain library/progress. Real Desktop Suwayomi GraphQL/REST source browse/search/library/chapters/pages/extensions/progress; credentials only in Keychain, no cross-origin auth. Five reading modes, fit/zoom/RTL, backgrounds/navigation/focus/gap, next chapter and original page export. Swift compilation/physical UI and a real user Suwayomi server still require validation. Advanced source filters/repositories/community/plugin providers and original flip sound remain pending."
+  },
+  "Manga width/height/original fit": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/MangaView.swift; MangaDetailView.swift; MangaReaderView.swift; Services/MangaArchive.swift; SuwayomiClient.swift",
+    "notes": "Native CBZ/ZIP and image-folder imports; natural page order/CRC; per-account protected files and Keychain library/progress. Real Desktop Suwayomi GraphQL/REST source browse/search/library/chapters/pages/extensions/progress; credentials only in Keychain, no cross-origin auth. Five reading modes, fit/zoom/RTL, backgrounds/navigation/focus/gap, next chapter and original page export. Swift compilation/physical UI and a real user Suwayomi server still require validation. Advanced source filters/repositories/community/plugin providers and original flip sound remain pending."
+  },
+  "Manga zoom": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/MangaView.swift; MangaDetailView.swift; MangaReaderView.swift; Services/MangaArchive.swift; SuwayomiClient.swift",
+    "notes": "Native CBZ/ZIP and image-folder imports; natural page order/CRC; per-account protected files and Keychain library/progress. Real Desktop Suwayomi GraphQL/REST source browse/search/library/chapters/pages/extensions/progress; credentials only in Keychain, no cross-origin auth. Five reading modes, fit/zoom/RTL, backgrounds/navigation/focus/gap, next chapter and original page export. Swift compilation/physical UI and a real user Suwayomi server still require validation. Advanced source filters/repositories/community/plugin providers and original flip sound remain pending."
+  },
+  "Manga RTL direction": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/MangaView.swift; MangaDetailView.swift; MangaReaderView.swift; Services/MangaArchive.swift; SuwayomiClient.swift",
+    "notes": "Native CBZ/ZIP and image-folder imports; natural page order/CRC; per-account protected files and Keychain library/progress. Real Desktop Suwayomi GraphQL/REST source browse/search/library/chapters/pages/extensions/progress; credentials only in Keychain, no cross-origin auth. Five reading modes, fit/zoom/RTL, backgrounds/navigation/focus/gap, next chapter and original page export. Swift compilation/physical UI and a real user Suwayomi server still require validation. Advanced source filters/repositories/community/plugin providers and original flip sound remain pending."
+  },
+  "Manga backgrounds": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/MangaView.swift; MangaDetailView.swift; MangaReaderView.swift; Services/MangaArchive.swift; SuwayomiClient.swift",
+    "notes": "Native CBZ/ZIP and image-folder imports; natural page order/CRC; per-account protected files and Keychain library/progress. Real Desktop Suwayomi GraphQL/REST source browse/search/library/chapters/pages/extensions/progress; credentials only in Keychain, no cross-origin auth. Five reading modes, fit/zoom/RTL, backgrounds/navigation/focus/gap, next chapter and original page export. Swift compilation/physical UI and a real user Suwayomi server still require validation. Advanced source filters/repositories/community/plugin providers and original flip sound remain pending."
+  },
+  "Manga navigation placement": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/MangaView.swift; MangaDetailView.swift; MangaReaderView.swift; Services/MangaArchive.swift; SuwayomiClient.swift",
+    "notes": "Native CBZ/ZIP and image-folder imports; natural page order/CRC; per-account protected files and Keychain library/progress. Real Desktop Suwayomi GraphQL/REST source browse/search/library/chapters/pages/extensions/progress; credentials only in Keychain, no cross-origin auth. Five reading modes, fit/zoom/RTL, backgrounds/navigation/focus/gap, next chapter and original page export. Swift compilation/physical UI and a real user Suwayomi server still require validation. Advanced source filters/repositories/community/plugin providers and original flip sound remain pending."
+  },
+  "Manga double-page gap": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/MangaView.swift; MangaDetailView.swift; MangaReaderView.swift; Services/MangaArchive.swift; SuwayomiClient.swift",
+    "notes": "Native CBZ/ZIP and image-folder imports; natural page order/CRC; per-account protected files and Keychain library/progress. Real Desktop Suwayomi GraphQL/REST source browse/search/library/chapters/pages/extensions/progress; credentials only in Keychain, no cross-origin auth. Five reading modes, fit/zoom/RTL, backgrounds/navigation/focus/gap, next chapter and original page export. Swift compilation/physical UI and a real user Suwayomi server still require validation. Advanced source filters/repositories/community/plugin providers and original flip sound remain pending."
+  },
+  "Manga focus mode": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/MangaView.swift; MangaDetailView.swift; MangaReaderView.swift; Services/MangaArchive.swift; SuwayomiClient.swift",
+    "notes": "Native CBZ/ZIP and image-folder imports; natural page order/CRC; per-account protected files and Keychain library/progress. Real Desktop Suwayomi GraphQL/REST source browse/search/library/chapters/pages/extensions/progress; credentials only in Keychain, no cross-origin auth. Five reading modes, fit/zoom/RTL, backgrounds/navigation/focus/gap, next chapter and original page export. Swift compilation/physical UI and a real user Suwayomi server still require validation. Advanced source filters/repositories/community/plugin providers and original flip sound remain pending."
+  },
+  "Manga automatic next chapter": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/MangaView.swift; MangaDetailView.swift; MangaReaderView.swift; Services/MangaArchive.swift; SuwayomiClient.swift",
+    "notes": "Native CBZ/ZIP and image-folder imports; natural page order/CRC; per-account protected files and Keychain library/progress. Real Desktop Suwayomi GraphQL/REST source browse/search/library/chapters/pages/extensions/progress; credentials only in Keychain, no cross-origin auth. Five reading modes, fit/zoom/RTL, backgrounds/navigation/focus/gap, next chapter and original page export. Swift compilation/physical UI and a real user Suwayomi server still require validation. Advanced source filters/repositories/community/plugin providers and original flip sound remain pending."
+  },
+  "Manga chapter-end hint": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/MangaView.swift; MangaDetailView.swift; MangaReaderView.swift; Services/MangaArchive.swift; SuwayomiClient.swift",
+    "notes": "Native CBZ/ZIP and image-folder imports; natural page order/CRC; per-account protected files and Keychain library/progress. Real Desktop Suwayomi GraphQL/REST source browse/search/library/chapters/pages/extensions/progress; credentials only in Keychain, no cross-origin auth. Five reading modes, fit/zoom/RTL, backgrounds/navigation/focus/gap, next chapter and original page export. Swift compilation/physical UI and a real user Suwayomi server still require validation. Advanced source filters/repositories/community/plugin providers and original flip sound remain pending."
+  },
+  "Manga page download": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/MangaView.swift; MangaDetailView.swift; MangaReaderView.swift; Services/MangaArchive.swift; SuwayomiClient.swift",
+    "notes": "Native CBZ/ZIP and image-folder imports; natural page order/CRC; per-account protected files and Keychain library/progress. Real Desktop Suwayomi GraphQL/REST source browse/search/library/chapters/pages/extensions/progress; credentials only in Keychain, no cross-origin auth. Five reading modes, fit/zoom/RTL, backgrounds/navigation/focus/gap, next chapter and original page export. Swift compilation/physical UI and a real user Suwayomi server still require validation. Advanced source filters/repositories/community/plugin providers and original flip sound remain pending."
+  },
+  "Manga chapter progress sync": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/MangaView.swift; MangaDetailView.swift; MangaReaderView.swift; Services/MangaArchive.swift; SuwayomiClient.swift",
+    "notes": "Native CBZ/ZIP and image-folder imports; natural page order/CRC; per-account protected files and Keychain library/progress. Real Desktop Suwayomi GraphQL/REST source browse/search/library/chapters/pages/extensions/progress; credentials only in Keychain, no cross-origin auth. Five reading modes, fit/zoom/RTL, backgrounds/navigation/focus/gap, next chapter and original page export. Swift compilation/physical UI and a real user Suwayomi server still require validation. Advanced source filters/repositories/community/plugin providers and original flip sound remain pending."
   }
 }

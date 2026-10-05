@@ -30,6 +30,14 @@ rooms = re.findall(r'"([a-z]+)"', nav)
 groups = json.loads((ROOT / "docs/ios/features.json").read_text(encoding="utf-8"))
 features = [{"id": name, "source": group["source"]} for group in groups
             if (reference / group["source"]).exists() for name in group["features"]]
+extras = ROOT / "docs/ios/beta-extra-features.json"
+if extras.exists():
+    for group in json.loads(extras.read_text(encoding="utf-8")):
+        if not (reference / group["source"]).is_file():
+            raise ValueError("Missing beta behavior source: " + group["source"])
+        features.extend({"id": name, "source": group["source"]} for name in group["features"])
+if len({feature["id"] for feature in features}) != len(features):
+    raise ValueError("Duplicate beta behavior identifiers")
 output = {"requestedVersion": args.requested_version, "publicCheckpointVersion": package["version"],
           "publicCheckpointCommit": args.commit,
           "settingsSourceSha256": hashlib.sha256(source.encode()).hexdigest(),

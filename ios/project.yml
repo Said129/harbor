@@ -38,7 +38,7 @@ targets:
       properties:
         CFBundleDisplayName: Harbor
         CFBundleShortVersionString: "0.1.0"
-        CFBundleVersion: "9"
+        CFBundleVersion: "10"
         UIAppFonts: [Fraunces.ttf, Oswald.ttf, Inter.ttf, Fredoka.ttf, Vazirmatn.ttf, Switzer.ttf]
         CFBundleURLTypes:
           - CFBundleURLName: site.harbor.iphone.login
@@ -50,6 +50,7 @@ targets:
           - UIInterfaceOrientationLandscapeLeft
           - UIInterfaceOrientationLandscapeRight
         UIBackgroundModes: [audio]
+        NSLocalNetworkUsageDescription: Harbor se conecta a tu servidor Suwayomi y a los servicios de tu red local para cargar contenido.
         NSAppTransportSecurity:
           NSAllowsArbitraryLoads: YES
     dependencies:

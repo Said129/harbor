@@ -1090,6 +1090,106 @@
     {
       "id": "Onboarding / replay",
       "source": "src/lib/onboarding.tsx"
+    },
+    {
+      "id": "Manga Suwayomi connection",
+      "source": "src/lib/manga/sources/suwayomi/api.ts"
+    },
+    {
+      "id": "Manga Suwayomi source discovery",
+      "source": "src/lib/manga/sources/suwayomi/api.ts"
+    },
+    {
+      "id": "Manga popular/latest/search pagination",
+      "source": "src/lib/manga/sources/suwayomi/api.ts"
+    },
+    {
+      "id": "Manga Suwayomi library",
+      "source": "src/lib/manga/sources/suwayomi/api.ts"
+    },
+    {
+      "id": "Manga extension install/update/remove",
+      "source": "src/lib/manga/sources/suwayomi/graphql.ts"
+    },
+    {
+      "id": "Manga extension repositories",
+      "source": "src/lib/manga/sources/suwayomi/graphql.ts"
+    },
+    {
+      "id": "Manga source filters",
+      "source": "src/lib/manga/sources/suwayomi/graphql.ts"
+    },
+    {
+      "id": "Manga local CBZ/ZIP",
+      "source": "src/lib/manga/sources/local.ts"
+    },
+    {
+      "id": "Manga image-folder chapters",
+      "source": "src/lib/manga/sources/local.ts"
+    },
+    {
+      "id": "Manga natural page ordering",
+      "source": "src/lib/manga/sources/local.ts"
+    },
+    {
+      "id": "Manga vertical/horizontal strips",
+      "source": "src/views/manga/manga-reader/reader-prefs.ts"
+    },
+    {
+      "id": "Manga single/double pages",
+      "source": "src/views/manga/manga-reader/reader-prefs.ts"
+    },
+    {
+      "id": "Manga book page turns",
+      "source": "src/views/manga/manga-reader/reader-prefs.ts"
+    },
+    {
+      "id": "Manga width/height/original fit",
+      "source": "src/views/manga/manga-reader/reader-prefs.ts"
+    },
+    {
+      "id": "Manga zoom",
+      "source": "src/views/manga/manga-reader/reader-prefs.ts"
+    },
+    {
+      "id": "Manga RTL direction",
+      "source": "src/views/manga/manga-reader/reader-prefs.ts"
+    },
+    {
+      "id": "Manga backgrounds",
+      "source": "src/views/manga/manga-reader/reader-prefs.ts"
+    },
+    {
+      "id": "Manga navigation placement",
+      "source": "src/views/manga/manga-reader/reader-prefs.ts"
+    },
+    {
+      "id": "Manga double-page gap",
+      "source": "src/views/manga/manga-reader/reader-prefs.ts"
+    },
+    {
+      "id": "Manga focus mode",
+      "source": "src/views/manga/manga-reader/reader-prefs.ts"
+    },
+    {
+      "id": "Manga automatic next chapter",
+      "source": "src/views/manga/manga-reader/reader-prefs.ts"
+    },
+    {
+      "id": "Manga chapter-end hint",
+      "source": "src/views/manga/manga-reader/reader-prefs.ts"
+    },
+    {
+      "id": "Manga page download",
+      "source": "src/views/manga/manga-reader/reader-prefs.ts"
+    },
+    {
+      "id": "Manga page-turn sound",
+      "source": "src/views/manga/manga-reader/reader-prefs.ts"
+    },
+    {
+      "id": "Manga chapter progress sync",
+      "source": "src/lib/manga/sources/suwayomi/sync.ts"
     }
   ],
   "settings": [

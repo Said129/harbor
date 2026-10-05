@@ -1,0 +1,50 @@
+[
+  {
+    "source": "src/lib/manga/sources/suwayomi/api.ts",
+    "features": [
+      "Manga Suwayomi connection",
+      "Manga Suwayomi source discovery",
+      "Manga popular/latest/search pagination",
+      "Manga Suwayomi library"
+    ]
+  },
+  {
+    "source": "src/lib/manga/sources/suwayomi/graphql.ts",
+    "features": [
+      "Manga extension install/update/remove",
+      "Manga extension repositories",
+      "Manga source filters"
+    ]
+  },
+  {
+    "source": "src/lib/manga/sources/local.ts",
+    "features": [
+      "Manga local CBZ/ZIP",
+      "Manga image-folder chapters",
+      "Manga natural page ordering"
+    ]
+  },
+  {
+    "source": "src/views/manga/manga-reader/reader-prefs.ts",
+    "features": [
+      "Manga vertical/horizontal strips",
+      "Manga single/double pages",
+      "Manga book page turns",
+      "Manga width/height/original fit",
+      "Manga zoom",
+      "Manga RTL direction",
+      "Manga backgrounds",
+      "Manga navigation placement",
+      "Manga double-page gap",
+      "Manga focus mode",
+      "Manga automatic next chapter",
+      "Manga chapter-end hint",
+      "Manga page download",
+      "Manga page-turn sound"
+    ]
+  },
+  {
+    "source": "src/lib/manga/sources/suwayomi/sync.ts",
+    "features": ["Manga chapter progress sync"]
+  }
+]
