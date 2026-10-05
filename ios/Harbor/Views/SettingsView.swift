@@ -4,6 +4,7 @@ struct SettingsView: View {
     let app: AppModel
     @AppStorage("resumePlayback") private var resumePlayback = true
     @AppStorage("resumePrompt") private var resumePrompt = false
+    @AppStorage("mpvHwdec") private var hardwareDecoding = HardwareDecoding.auto
     @State private var export: URL?
     @State private var error: String?
     var body: some View {
@@ -12,6 +13,13 @@ struct SettingsView: View {
                 Button(app.user?.displayName ?? "Iniciar sesión en Stremio") { app.showAccount = true }
                     .accessibilityIdentifier("settings-account")
                 if app.user != nil { Text("Tus addons se recuperan al iniciar sesión y al abrir Harbor.") }
+            }
+            Section("Reproducción") {
+                Picker("Decodificación de vídeo", selection: $hardwareDecoding) {
+                    ForEach(HardwareDecoding.allCases) { mode in Text(mode.title).tag(mode) }
+                }.accessibilityIdentifier("settings-hwdec")
+                Text("Usa Software si una fuente presenta errores de imagen. También puedes cambiarlo desde el reproductor.")
+                    .font(.caption).foregroundStyle(.secondary)
             }
             Section("Reanudación") {
                 Toggle("Reanudar la reproducción", isOn: $resumePlayback)

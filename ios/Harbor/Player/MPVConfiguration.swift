@@ -1,4 +1,20 @@
+import Foundation
 import Libmpv
+
+enum HardwareDecoding: String, CaseIterable, Identifiable, Sendable {
+    case auto, on, off
+    var id: String { rawValue }
+    var title: String {
+        switch self {
+        case .auto: "Automática"
+        case .on: "Activada"
+        case .off: "Software"
+        }
+    }
+    // The direct iOS VideoToolbox/GLES mapper cannot import every pixel format.
+    // Copy-back retains hardware decoding without handing CVPixelBuffers to it.
+    var mpvValue: String { self == .off ? "no" : "videotoolbox-copy" }
+}
 
 @MainActor
 enum MPVConfiguration {
@@ -6,15 +22,17 @@ enum MPVConfiguration {
     // shared resolver; setting the absent ytdl option would abort mpv startup.
     static let options: [(String, String)] = [
         ("config", "no"), ("terminal", "no"), ("msg-level", "all=no"),
-        ("vo", "libmpv"), ("hwdec", "auto-safe"), ("cache", "yes"),
+        ("vo", "libmpv"), ("gpu-hwdec-interop", "no"), ("cache", "yes"),
         ("demuxer-max-bytes", "64MiB"), ("network-timeout", "60"),
         ("video-timing-offset", "0")
     ]
 
-    static func createHandle(startMs: Double = 0) throws -> OpaquePointer {
+    static func createHandle(startMs: Double = 0, decoding: HardwareDecoding? = nil) throws -> OpaquePointer {
         guard let handle = mpv_create() else { throw HarborError(code: "player-init") }
         do {
             for (name, value) in options { try check(mpv_set_option_string(handle, name, value)) }
+            let selected = decoding ?? HardwareDecoding(rawValue: UserDefaults.standard.string(forKey: "mpvHwdec") ?? "auto") ?? .auto
+            try check(mpv_set_option_string(handle, "hwdec", selected.mpvValue))
             if startMs.isFinite && startMs > 0 {
                 try check(mpv_set_option_string(handle, "start", String(startMs / 1000)))
             }

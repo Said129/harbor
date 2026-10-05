@@ -18,6 +18,7 @@ struct PlayerView: View {
     @State private var editingSeek = false
     @State private var progressError: String?
     @State private var lastSavedMs: Double = 0
+    @AppStorage("mpvHwdec") private var hardwareDecoding = HardwareDecoding.auto
     @Environment(\.dismiss) private var dismiss
     @Environment(\.scenePhase) private var scenePhase
     var body: some View {
@@ -29,7 +30,7 @@ struct PlayerView: View {
                 .accessibilityValue(state.renderReady ? "Preparado" : "Iniciando")
                 .accessibilityIdentifier("player-surface")
             VStack {
-                HStack { Button { dismiss() } label: { Image(systemName: "chevron.down").frame(width: 44, height: 44) }.accessibilityLabel("Cerrar reproductor").accessibilityIdentifier("player-close"); Text(title).lineLimit(1); Spacer(); trackMenu("audio", title: "Audio", property: "aid"); trackMenu("sub", title: "Subtítulos", property: "sid") }.padding().background(.black.opacity(0.6))
+                HStack { Button { dismiss() } label: { Image(systemName: "chevron.down").frame(width: 44, height: 44) }.accessibilityLabel("Cerrar reproductor").accessibilityIdentifier("player-close"); Text(title).lineLimit(1); Spacer(); decodingMenu; trackMenu("audio", title: "Audio", property: "aid"); trackMenu("sub", title: "Subtítulos", property: "sid") }.padding().background(.black.opacity(0.6))
                 Spacer()
                 if (state.buffering || !state.loaded) && !state.ended && state.error == nil { ProgressView().tint(.white) }
                 if state.ended && state.error == nil { Text("La reproducción ha terminado.").padding().background(.black.opacity(0.6)) }
@@ -65,6 +66,7 @@ struct PlayerView: View {
             }
         }
         .onChange(of: state.paused) { _, paused in if paused { saveCheckpoint(exiting: false) } }
+        .onChange(of: hardwareDecoding) { _, mode in state.controller?.set("hwdec", mode.mpvValue) }
         .onChange(of: state.ended) { _, ended in if ended { saveCheckpoint(exiting: false) } }
         .onChange(of: scenePhase) { _, phase in if phase != .active { saveCheckpoint(exiting: false) } }
         .onDisappear { saveCheckpoint(exiting: true) }
@@ -97,6 +99,19 @@ struct PlayerView: View {
             Diagnostics.shared.recordFailure(error)
         }
     }
+    private var decodingMenu: some View {
+        Menu {
+            ForEach(HardwareDecoding.allCases) { mode in
+                Button { hardwareDecoding = mode } label: {
+                    if mode == hardwareDecoding { Label(mode.title, systemImage: "checkmark") }
+                    else { Text(mode.title) }
+                }
+            }
+        } label: {
+            Image(systemName: "video").frame(width: 44, height: 44).accessibilityLabel("Decodificación de vídeo")
+        }.accessibilityIdentifier("player-decoding")
+    }
+
     private func trackMenu(_ type: String, title: String, property: String) -> some View {
         Menu {
             if type == "sub" { Button("Desactivar") { state.controller?.set(property, "no") } }

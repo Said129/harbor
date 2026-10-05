@@ -12,6 +12,10 @@ AVPlayer único; libmpv + XCFrameworks MPVKit; compilar stack FFmpeg/mpv propio;
 
 Primer experimento: libmpv de MPVKit, revisión fija y checksums SPM; render API OpenGL ES sobre superficie UIKit. APIs cliente/events como fuente de verdad; VideoToolbox cuando libmpv lo soporte. Arquitectura permite motor AVFoundation complementario futuro para rutas adecuadas. No ejecutar mpv externo ni trasladar windows/IPC Desktop.
 
+Actualización 2026-10-05: el propietario confirma audio pero pantalla azul uniforme en varias fuentes del iPhone 14. El mapper directo iOS de mpv limita los formatos que CoreVideo puede importar en GLES; el fallo de 10 bits está documentado por mpv y el demo fijado. La ruta predeterminada pasa a `videotoolbox-copy`, como el player embebido Apple de Harbor Desktop, con `gpu-hwdec-interop=no` para evitar esa importación. Mantiene decodificación acelerada con copia de frames a RAM y conserva fallback de mpv a software; no fuerza NV12 de 8 bits ni elimina HDR del alcance. `mpvHwdec` ofrece auto/on/off, con ajuste persistente y cambio durante la reproducción. Auto/on prefieren la ruta VideoToolbox compatible; off decodifica en CPU. La copia puede consumir más memoria/ancho de banda que zero-copy y debe medirse en dispositivo.
+
+Fuentes de la decisión: [mapper iOS de mpv 0.40](https://github.com/mpv-player/mpv/blob/v0.40.0/video/out/hwdec/hwdec_ios_gl.m), [pantalla azul con formato de 10 bits](https://github.com/mpv-player/mpv/issues/9633), [contrato hwdec copy/software](https://github.com/mpv-player/mpv/blob/v0.40.0/DOCS/man/options.rst). La coincidencia del síntoma es una inferencia; no se ha recibido codec/pixfmt ni un log de la fuente privada del propietario.
+
 ## Advantages
 
 Conserva misma semántica de comandos/propiedades, FFmpeg y libass, amplitud de formatos sin reescribir decodificación. Artefactos existentes permiten probar enlace temprano.

@@ -122,11 +122,22 @@ jobs:
           echo "IOS_SIMULATOR=$device" >> "$GITHUB_ENV"
           echo "IOS_SIMULATOR_ARCH=$(uname -m)" >> "$GITHUB_ENV"
       - name: Run bridge and model tests on iPhone simulator
+        id: offline_tests
         timeout-minutes: 15
         shell: bash
         run: |
           set -euo pipefail
           xcodebuild -project ios/Harbor.xcodeproj -scheme Harbor -configuration Debug -destination "platform=iOS Simulator,id=$IOS_SIMULATOR,arch=$IOS_SIMULATOR_ARCH" -derivedDataPath ios/build/DerivedData -clonedSourcePackagesDirPath ios/build/SourcePackages -resultBundlePath ios/build/Tests.xcresult -parallel-testing-enabled NO CODE_SIGNING_ALLOWED=YES CODE_SIGN_IDENTITY=- test 2>&1 | tee ios/build/logs/tests.log
+      - name: Preserve failed native render evidence in a draft Release
+        if: ${{ failure() && inputs.save_draft_build == true && steps.offline_tests.conclusion == 'failure' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          xcrun xcresulttool export attachments --path ios/build/Tests.xcresult --output-path ios/build/failed-native-render
+          ditto -c -k --keepParent ios/build/failed-native-render ios/build/iphone-native-render-evidence.zip
+          gh release create "iphone-native-render-evidence-$GITHUB_RUN_ID" ios/build/iphone-native-render-evidence.zip --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" --draft --prerelease --title "iPhone native render evidence $GITHUB_RUN_ID" --notes "Test-only native frame output for diagnosing a failed renderer regression. No private account, configured addon URL or installable app."
       - name: Run real addon services and native UI on iPhone simulator
         id: live_tests
         if: ${{ inputs.run_live_integration == true }}
@@ -163,6 +174,7 @@ jobs:
         run: |
           set -euo pipefail
           xcrun xcresulttool export attachments --path ios/build/LiveTests.xcresult --output-path ios/build/live-attachments
+          xcrun xcresulttool export attachments --path ios/build/Tests.xcresult --output-path ios/build/live-attachments/render-frames
           ditto -c -k --keepParent ios/build/live-attachments ios/build/iphone-live-evidence.zip
           python3 scripts/ios/save-draft-build.py --repo "$GITHUB_REPOSITORY" --ipa ios/build/Harbor-unsigned.ipa --report ios/build/Harbor-unsigned.json --commit "$GITHUB_SHA" --evidence ios/build/iphone-live-evidence.zip
       - name: Preserve diagnostic evidence

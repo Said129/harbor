@@ -33,7 +33,7 @@ targets:
       properties:
         CFBundleDisplayName: Harbor
         CFBundleShortVersionString: "0.1.0"
-        CFBundleVersion: "1"
+        CFBundleVersion: "2"
         CFBundleURLTypes:
           - CFBundleURLName: site.harbor.iphone.login
             CFBundleURLSchemes: [harbor-iphone]
@@ -59,7 +59,12 @@ targets:
   HarborTests:
     type: bundle.unit-test
     platform: iOS
-    sources: [HarborTests]
+    sources:
+      - path: HarborTests
+        excludes: [Fixtures]
+      - path: HarborTests/Fixtures
+        type: folder
+        buildPhase: resources
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: site.harbor.iphone.tests
