@@ -60,18 +60,20 @@ struct PlayerSettingsView: View {
                     Picker("Formato de imagen", selection: $preferences.options.fit) {
                         ForEach(VideoFit.allCases) { Text($0.title).tag($0) }
                     }
+                    if preferences.options.fit == .zoom { dial("Zoom", value: $preferences.options.zoom, range: 0...1, step: 0.05) }
                 }
                 Section("Ajustes de imagen") {
                     dial("Brillo", value: $preferences.options.brightness, range: -50...50)
                     dial("Contraste", value: $preferences.options.contrast, range: -50...50)
                     dial("Saturación", value: $preferences.options.saturation, range: -50...50)
                     dial("Gamma", value: $preferences.options.gamma, range: -50...50)
+                    dial("Nitidez", value: $preferences.options.sharpen, range: 0...2, step: 0.05)
                     Button("Aclarar películas oscuras") { preferences.options.gamma = 12; preferences.options.brightness = 4 }
                     Button("Colores más vivos") { preferences.options.saturation = 15; preferences.options.contrast = 8 }
                     Button("Descanso visual") { preferences.options.brightness = -4; preferences.options.gamma = -6; preferences.options.saturation = -5 }
                     Button("Restablecer imagen") {
                         preferences.options.brightness = 0; preferences.options.contrast = 0
-                        preferences.options.saturation = 0; preferences.options.gamma = 0; preferences.options.fit = .original
+                        preferences.options.saturation = 0; preferences.options.gamma = 0; preferences.options.sharpen = 0; preferences.options.zoom = 0; preferences.options.fit = .original
                     }
                 }
             case .audio:
@@ -112,7 +114,7 @@ struct PlayerSettingsView: View {
                         Text("Sombra").tag("shadow"); Text("Contorno").tag("outline"); Text("Barra negra").tag("box")
                     }
                     Picker("Subtítulos con estilo ASS", selection: $preferences.options.subtitleASS) {
-                        Text("Conservar original").tag("no"); Text("Redimensionar").tag("scale"); Text("Usar mi estilo").tag("force")
+                        Text("Original").tag("no"); Text("Redimensionar").tag("scale"); Text("Mi estilo").tag("force")
                     }
                     Toggle("Texto en negrita", isOn: $preferences.options.subtitleBold)
                     dial("Tamaño", value: $preferences.options.subtitleSize, range: 16...120)

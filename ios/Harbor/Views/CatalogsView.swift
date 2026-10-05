@@ -4,31 +4,22 @@ struct CatalogsView: View {
     let app: AppModel
     @State private var kind = "movie"
     var body: some View {
-        List {
-            Section {
+        ScrollView {
+            VStack(alignment: .leading, spacing: 24) {
                 Picker("Tipo de contenido", selection: $kind) {
                     Label("Películas", image: "nav-movies").tag("movie")
                     Label("Series", image: "nav-shows").tag("series")
                 }.pickerStyle(.segmented)
-            }
-            Section(kind == "movie" ? "Películas de tus addons" : "Series de tus addons") {
-                ForEach(app.rows.filter { $0.plan.kind == kind }) { row in
-                    NavigationLink { CatalogBrowserView(app: app, initial: row) } label: {
-                        VStack(alignment: .leading, spacing: 4) {
-                            Text(row.plan.title)
-                            Text(row.plan.addon.name).font(.caption).foregroundStyle(.secondary)
-                        }
-                    }.accessibilityIdentifier("catalog-browser-link")
-                }
+                CatalogRails(rows: app.rows.filter { $0.plan.kind == kind }, app: app)
                 if !app.loading && app.rows.filter({ $0.plan.kind == kind }).isEmpty {
                     Text("Tus addons no tienen catálogos de este tipo.").foregroundStyle(.secondary)
                 }
-            }
-        }.navigationTitle("Catálogos").overlay { if app.loading { ProgressView() } }
+            }.padding(.vertical)
+        }.background(HarborTheme.background).navigationTitle("Catálogos").overlay { if app.loading && app.rows.isEmpty { ProgressView() } }
     }
 }
 
-private struct CatalogBrowserView: View {
+struct CatalogBrowserView: View {
     let app: AppModel
     let initial: CatalogRow
     @State private var genre = ""
@@ -41,25 +32,28 @@ private struct CatalogBrowserView: View {
     private let columns = [GridItem(.adaptive(minimum: 116), spacing: 12)]
     private var genres: [String] { initial.plan.catalog?.extra.first { $0.name == "genre" }?.options ?? [] }
     private var supportsPaging: Bool { initial.plan.catalog?.extra.contains { $0.name == "skip" } ?? false }
+    init(app: AppModel, initial: CatalogRow) { self.app = app; self.initial = initial; _genre = State(initialValue: initial.selectedGenre ?? "") }
 
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: 16) {
+            LazyVStack(alignment: .leading, spacing: 16) {
                 if !genres.isEmpty {
                     Picker("Género", selection: $genre) {
                         Text("Todos los géneros").tag("")
                         ForEach(genres, id: \.self) { Text($0).tag($0) }
                     }.padding(.horizontal).accessibilityIdentifier("catalog-genre")
                 }
-                if let error { Text(error).font(.caption).foregroundStyle(.orange).padding(.horizontal) }
+                if let error {
+                    VStack(alignment: .leading) { Text(error).font(.caption).foregroundStyle(.orange); Button("Reintentar") { Task { await load(reset: items.isEmpty) } } }.padding(.horizontal)
+                }
                 LazyVGrid(columns: columns, spacing: 20) {
                     ForEach(items, id: \.identity) { media in
                         NavigationLink(value: media) { Poster(media: media) }.buttonStyle(.plain).accessibilityLabel(media.name).accessibilityIdentifier("catalog-browser-media")
                     }
                 }.padding(.horizontal)
                 if loading { ProgressView().frame(maxWidth: .infinity) }
-                if supportsPaging && !reachedEnd && !loading {
-                    Button("Cargar más") { Task { await load(reset: false) } }.frame(maxWidth: .infinity).padding()
+                if supportsPaging && offset > 0 && !reachedEnd && !loading && error == nil {
+                    ProgressView().frame(maxWidth: .infinity).padding().task { await load(reset: false) }
                 }
                 if !loading && items.isEmpty && error == nil { ContentUnavailableView("Sin resultados", systemImage: "film") }
             }

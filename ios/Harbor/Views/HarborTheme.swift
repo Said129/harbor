@@ -9,25 +9,31 @@ enum HarborTheme {
 
 struct Poster: View {
     let media: Media
+    var width: CGFloat = 116
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
-            AsyncImage(url: media.poster.flatMap(URL.init(string:))) { image in
-                image.resizable().scaledToFill()
-            } placeholder: { Rectangle().fill(.white.opacity(0.06)).overlay(Image(systemName: "film")) }
-            .frame(width: 116, height: 172).clipShape(.rect(cornerRadius: 12))
-            Text(media.name).font(.caption).lineLimit(2).frame(width: 116, alignment: .leading)
+            Artwork(url: media.poster, fallback: media.background, maxPixels: 480)
+                .frame(width: width, height: width * 1.5).clipShape(.rect(cornerRadius: 8))
+                .overlay(alignment: .bottomTrailing) {
+                    if let rating = media.imdbRating { HStack(spacing: 3) { Text("IMDb").font(.system(size: 7, weight: .black)).foregroundStyle(.black).padding(2).background(.yellow, in: .rect(cornerRadius: 2)); Text(rating).font(.system(size: 9, weight: .semibold)) }.padding(4).background(.black.opacity(0.8), in: .capsule).padding(5) }
+                }
+            Text(media.name).font(.caption.weight(.medium)).lineLimit(2).frame(width: width, alignment: .leading)
         }.foregroundStyle(.primary)
     }
 }
 
 struct CatalogRails: View {
     let rows: [CatalogRow]
+    var app: AppModel? = nil
     var body: some View {
         LazyVStack(alignment: .leading, spacing: 24) {
             ForEach(rows) { row in
                 VStack(alignment: .leading, spacing: 12) {
-                    Text(row.plan.title).font(.title3.bold()).padding(.horizontal)
-                        .accessibilityIdentifier("catalog-title")
+                    HStack {
+                        Text(row.plan.title).font(.headline).accessibilityIdentifier("catalog-title")
+                        Spacer()
+                        if let app { NavigationLink { CatalogBrowserView(app: app, initial: row) } label: { HStack(spacing: 4) { Text("Ver todo"); Image(systemName: "chevron.right") }.font(.caption).foregroundStyle(.secondary) }.accessibilityIdentifier("catalog-browser-link") }
+                    }.padding(.horizontal)
                     ScrollView(.horizontal) {
                         LazyHStack(alignment: .top, spacing: 12) {
                             ForEach(row.metas, id: \.identity) { media in

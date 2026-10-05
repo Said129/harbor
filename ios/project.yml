@@ -34,7 +34,8 @@ targets:
       properties:
         CFBundleDisplayName: Harbor
         CFBundleShortVersionString: "0.1.0"
-        CFBundleVersion: "3"
+        CFBundleVersion: "4"
+        UIAppFonts: [Fraunces.ttf]
         CFBundleURLTypes:
           - CFBundleURLName: site.harbor.iphone.login
             CFBundleURLSchemes: [harbor-iphone]
@@ -46,7 +47,7 @@ targets:
           - UIInterfaceOrientationLandscapeRight
         UIBackgroundModes: [audio]
         NSAppTransportSecurity:
-          NSAllowsLocalNetworking: YES
+          NSAllowsArbitraryLoads: YES
     dependencies:
       - framework: Frameworks/HarborCore.xcframework
         embed: true

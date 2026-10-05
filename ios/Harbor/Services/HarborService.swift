@@ -12,19 +12,34 @@ struct HarborService: Sendable {
         return try await core.call("installAddon", ["url": .string(normalized.url), "manifest": manifest])
     }
 
-    func catalogs(_ addons: [Addon], search: String? = nil, genre: String? = nil, skip: Int = 0) async throws -> ([CatalogRow], [String]) {
+    func catalogs(_ addons: [Addon], search: String? = nil, genre: String? = nil, skip: Int = 0, onRow: (@MainActor @Sendable (CatalogRow) -> Void)? = nil) async throws -> ([CatalogRow], [String]) {
         let plans: [RequestPlan] = try await core.call("catalogs", ["addons": try .encoded(addons), "search": search.map(JSONValue.string) ?? .null, "genre": genre.map(JSONValue.string) ?? .null, "skip": .integer(Int64(skip))])
-        let responses = try await fetch(plans)
-        var rows: [CatalogRow] = []
-        var errors = responses.errors
-        for (plan, value) in responses.values {
-            do {
-                guard case .array = value["metas"] else { throw HarborError(code: "invalid-catalog-response") }
-                let metas = try value["metas"].decoded([Media].self)
-                rows.append(CatalogRow(plan: plan, metas: metas))
-            } catch { errors.append("catalog-response") }
+        return try await withThrowingTaskGroup(of: (RequestPlan, JSONValue?, String?).self) { group in
+            var iterator = plans.makeIterator()
+            func enqueue(_ plan: RequestPlan) {
+                group.addTask {
+                    do { return (plan, try await http.json(plan.url, timeout: Double(plan.timeoutMs) / 1000), nil) }
+                    catch is CancellationError { throw CancellationError() }
+                    catch let error as HarborError { return (plan, nil, error.code) }
+                    catch { return (plan, nil, "invalid-response") }
+                }
+            }
+            for _ in 0..<6 { if let plan = iterator.next() { enqueue(plan) } }
+            var rows: [CatalogRow] = []; var errors: [String] = []
+            while let (plan, value, failure) = try await group.next() {
+                if let value {
+                    do {
+                        let row = try decodeCatalog(value, plan: plan)
+                        rows.append(row)
+                        if !row.metas.isEmpty { await onRow?(row) }
+                    } catch { errors.append("catalog-response"); await Diagnostics.shared.recordFailure(error) }
+                }
+                if let failure { errors.append(failure) }
+                if let next = iterator.next() { enqueue(next) }
+            }
+            try Task.checkCancellation()
+            return (plans.compactMap { plan in rows.first { $0.id == plan.key } }, errors)
         }
-        return (plans.compactMap { plan in rows.first { $0.id == plan.key } }, errors)
     }
 
     func metadata(_ media: Media, addons: [Addon]) async throws -> Media {
@@ -32,7 +47,7 @@ struct HarborService: Sendable {
         let result = try await fetch(plans)
         for plan in plans {
             if let value = result.values.first(where: { $0.0.key == plan.key })?.1,
-               value["meta"] != .null { return try value["meta"].decoded(Media.self) }
+               let meta = Media.parse(value["meta"], kind: media.type) { return meta }
         }
         throw HarborError(code: result.errors.first ?? "no-metadata")
     }
@@ -42,9 +57,16 @@ struct HarborService: Sendable {
         let plans: [RequestPlan] = try await core.call("catalogs", ["addons": try .encoded([plan.addon]), "search": .null, "genre": genre.map(JSONValue.string) ?? .null, "skip": .integer(Int64(skip))])
         guard let request = plans.first(where: { $0.kind == plan.kind && $0.catalog?.id == definition.id }) else { throw HarborError(code: "catalog-unavailable") }
         let response = try await http.json(request.url, timeout: Double(request.timeoutMs) / 1000)
-        guard case .array = response["metas"] else { throw HarborError(code: "invalid-catalog-response") }
         // Keep the original plan identity/order across filters and pages.
-        return CatalogRow(plan: plan, metas: try response["metas"].decoded([Media].self))
+        return try decodeCatalog(response, plan: plan)
+    }
+
+    private func decodeCatalog(_ response: JSONValue, plan: RequestPlan) throws -> CatalogRow {
+        guard case .array(let values) = response["metas"] else { throw HarborError(code: "invalid-catalog-response") }
+        var seen = Set<String>()
+        let metas = values.compactMap { Media.parse($0, kind: plan.kind) }.filter { seen.insert($0.identity).inserted }
+        guard values.isEmpty || !metas.isEmpty else { throw HarborError(code: "invalid-catalog-response") }
+        return CatalogRow(plan: plan, metas: metas)
     }
 
     func streams(_ media: Media, videoID: String, addons: [Addon], season: Int? = nil, episode: Int? = nil) async throws -> ([StreamOffer], [String]) {

@@ -9,11 +9,47 @@ struct Media: Codable, Identifiable, Hashable, Sendable {
     var logo: String?
     var description: String?
     var releaseInfo: String?
+    var imdbRating: String?
+    var runtime: String?
+    var director: [String]?
+    var cast: [String]?
+    var country: String?
     var genres: [String]?
     var videos: [Episode]?
     var behaviorHints: BehaviorHints?
     struct BehaviorHints: Codable, Hashable, Sendable { var defaultVideoId: String? }
     var identity: String { "\(type):\(id)" }
+
+    static func parse(_ value: JSONValue, kind: String) -> Media? {
+        guard let id = value["id"].string, !id.isEmpty,
+              let name = value["name"].string, !name.isEmpty else { return nil }
+        var media = Media(id: id, type: value["type"].string ?? kind, name: name)
+        media.poster = value["poster"].string; media.background = value["background"].string
+        media.logo = value["logo"].string; media.description = value["description"].string
+        media.releaseInfo = value["releaseInfo"].string
+        media.imdbRating = value["imdbRating"].textValue; media.runtime = value["runtime"].textValue
+        media.country = value["country"].string
+        media.genres = value["genres"].array.compactMap(\.string)
+        media.director = value["director"].array.compactMap(\.string)
+        media.cast = value["cast"].array.compactMap(\.string)
+        if let videoID = value["behaviorHints"]["defaultVideoId"].string { media.behaviorHints = BehaviorHints(defaultVideoId: videoID) }
+        media.videos = value["videos"].array.compactMap { video in
+            guard let id = video["id"].string, !id.isEmpty else { return nil }
+            return Episode(id: id, season: video["season"].integer, episode: video["episode"].integer ?? video["number"].integer, name: video["name"].string, title: video["title"].string, thumbnail: video["thumbnail"].string, overview: video["overview"].string ?? video["description"].string)
+        }
+        return media
+    }
+}
+
+extension JSONValue {
+    var textValue: String? {
+        switch self {
+        case .string(let value): value
+        case .number(let value): String(value)
+        case .integer(let value): String(value)
+        default: nil
+        }
+    }
 }
 
 struct Episode: Codable, Identifiable, Hashable, Sendable {
@@ -63,6 +99,7 @@ struct RequestPlan: Codable, Identifiable, Sendable {
 struct CatalogRow: Identifiable, Sendable {
     let plan: RequestPlan
     var metas: [Media]
+    var selectedGenre: String? = nil
     var id: String { plan.key }
 }
 

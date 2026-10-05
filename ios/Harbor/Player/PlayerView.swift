@@ -13,6 +13,8 @@ struct PlayerView: View {
     let session: PlaybackSession
     let resume: ResumeStore
     let title: String
+    var media: Media? = nil
+    var library: LibraryModel? = nil
     @State private var state = PlayerState()
     @State private var seek: Double = 0
     @State private var editingSeek = false
@@ -132,6 +134,7 @@ struct PlayerView: View {
                         .frame(width: 44, height: 44).accessibilityLabel(state.ended ? "Repetir" : state.paused ? "Reproducir" : "Pausar").accessibilityIdentifier("player-pause")
                     Button { jump(preferences.options.seekForwardSeconds) } label: { Image(systemName: "goforward").overlay(Text("\(Int(preferences.options.seekForwardSeconds))").font(.system(size: 9)).offset(y: 2)) }.frame(width: 44, height: 44).accessibilityLabel("Avanzar \(Int(preferences.options.seekForwardSeconds)) segundos")
                     Spacer(minLength: 0)
+                    Button { settingsPage = .video } label: { Image(systemName: "slider.horizontal.3").frame(width: 36, height: 44) }.accessibilityLabel("Imagen y formato").accessibilityIdentifier("player-picture")
                     Button("\(state.speed.formatted())×") { settingsPage = .playback }.accessibilityLabel("Velocidad").frame(minWidth: 32, minHeight: 44)
                     Text(time(state.duration)).monospacedDigit()
                 }.font(.caption)
@@ -166,6 +169,7 @@ struct PlayerView: View {
             progressError = safeMessage(error)
             Diagnostics.shared.recordFailure(error)
         }
+        if let media, let library { await library.saveProgress(media, target: session.target, snapshot: value) }
     }
     private func time(_ value: Double) -> String {
         guard value.isFinite && value >= 0 && value < Double(Int.max) else { return "0:00" }

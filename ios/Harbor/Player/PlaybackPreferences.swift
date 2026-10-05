@@ -2,14 +2,29 @@ import Foundation
 import Observation
 
 enum VideoFit: String, CaseIterable, Identifiable, Codable {
-    case original, fill, widescreen, classic
+    case original, fill, stretch, zoom, widescreen, classic, ultrawide, cinema, scope
     var id: String { rawValue }
     var title: String {
         switch self {
-        case .original: "Original"
+        case .original: "Automático · adaptar"
         case .fill: "Llenar pantalla"
+        case .stretch: "Estirar a pantalla"
+        case .zoom: "Zoom"
         case .widescreen: "16:9"
         case .classic: "4:3"
+        case .ultrawide: "21:9"
+        case .cinema: "1.85:1"
+        case .scope: "2.39:1"
+        }
+    }
+    var aspect: String {
+        switch self {
+        case .widescreen: "16:9"
+        case .classic: "4:3"
+        case .ultrawide: "21:9"
+        case .cinema: "1.85:1"
+        case .scope: "2.39:1"
+        default: "no"
         }
     }
 }
@@ -28,6 +43,8 @@ struct PlaybackOptions: Codable, Equatable {
     var contrast = 0.0
     var saturation = 0.0
     var gamma = 0.0
+    var zoom = 0.0
+    var sharpen = 0.0
     var audioLanguage = "eng,jpn"
     var subtitleLanguage = "eng"
     var stereo = false
@@ -49,7 +66,8 @@ struct PlaybackOptions: Codable, Equatable {
     var mpvOptions: [(String, String)] {
         [
             ("speed", String(speed)), ("volume", String(volume)), ("panscan", fit == .fill ? "1" : "0"),
-            ("video-aspect-override", fit == .widescreen ? "16:9" : fit == .classic ? "4:3" : "no"),
+            ("video-aspect-override", fit.aspect), ("keepaspect", fit == .stretch ? "no" : "yes"),
+            ("video-zoom", fit == .zoom ? String(zoom) : "0"), ("sharpen", String(sharpen)),
             ("brightness", String(brightness)), ("contrast", String(contrast)),
             ("saturation", String(saturation)), ("gamma", String(gamma)),
             ("alang", audioLanguage), ("slang", subtitleLanguage),
@@ -85,6 +103,10 @@ final class PlaybackPreferences {
 
     init(storage: UserDefaults = .standard) {
         self.storage = storage
-        options = storage.data(forKey: Self.key).flatMap { try? JSONDecoder().decode(PlaybackOptions.self, from: $0) } ?? PlaybackOptions()
+        // Merge new defaults into the existing document instead of dropping
+        // the user's saved options when a later build adds a field.
+        var merged = (try? JSONSerialization.jsonObject(with: JSONEncoder().encode(PlaybackOptions()))) as? [String: Any] ?? [:]
+        if let data = storage.data(forKey: Self.key), let saved = (try? JSONSerialization.jsonObject(with: data)) as? [String: Any] { merged.merge(saved) { _, saved in saved } }
+        options = (try? JSONSerialization.data(withJSONObject: merged)).flatMap { try? JSONDecoder().decode(PlaybackOptions.self, from: $0) } ?? PlaybackOptions()
     }
 }

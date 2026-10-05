@@ -17,7 +17,7 @@ struct SearchView: View {
                 Text("Resultados para «\(completedQuery)»").font(.headline).padding()
                     .accessibilityIdentifier("search-results-query")
             }
-            CatalogRails(rows: rows)
+            CatalogRails(rows: rows, app: app)
         }
         .background(HarborTheme.background).navigationTitle("Buscar")
         .searchable(text: $query, prompt: "Título")
@@ -34,7 +34,7 @@ struct SearchView: View {
             guard query.trimmingCharacters(in: .whitespacesAndNewlines) == requestedQuery else { return }
             rows = result
             completedQuery = requestedQuery
-            error = warnings.isEmpty ? nil : "Algunos addons fallaron: \(warnings.joined(separator: ", "))"
+            error = warnings.isEmpty || result.contains(where: { !$0.metas.isEmpty }) ? nil : "No se pudo completar la búsqueda. Reintentar puede recuperar los resultados."
             loading = false
         } catch is CancellationError { return }
         catch {

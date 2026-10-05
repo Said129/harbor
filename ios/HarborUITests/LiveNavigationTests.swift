@@ -18,6 +18,14 @@ final class LiveNavigationTests: XCTestCase {
         }
     }
 
+    private func navigate(_ app: XCUIApplication, _ section: String) {
+        app.buttons["main-menu"].tap()
+        let destination = app.buttons["nav-\(section)"]
+        XCTAssertTrue(destination.waitForExistence(timeout: 5))
+        reveal(destination, in: app.scrollViews["navigation-scroll"], attempts: 4)
+        destination.tap()
+    }
+
     func testRealHomeSearchAddonPickerAndPlayerPresentation() throws {
         guard ProcessInfo.processInfo.environment["HARBOR_LIVE_INTEGRATION"] == "1" else {
             throw XCTSkip("Live UI integration requires explicit opt-in")
@@ -49,14 +57,14 @@ final class LiveNavigationTests: XCTestCase {
         XCTAssertGreaterThanOrEqual(catalogTitle.frame.minX, app.frame.minX, "Catalog titles must not be cropped off the left edge")
         continueAfterFailure = false
 
-        app.tabBars.buttons["Catálogos"].tap()
+        navigate(app, "catalogs")
         let catalog = app.buttons.matching(identifier: "catalog-browser-link").firstMatch
         XCTAssertTrue(catalog.waitForExistence(timeout: 5))
         catalog.tap()
         XCTAssertTrue(app.buttons.matching(identifier: "catalog-browser-media").firstMatch.waitForExistence(timeout: 20))
         capture(app, "native-catalog-browser")
 
-        app.tabBars.buttons["Ajustes"].tap()
+        navigate(app, "settings")
         app.buttons["settings-video"].tap()
         XCTAssertTrue(app.descendants(matching: .any).matching(identifier: "settings-hwdec").firstMatch.waitForExistence(timeout: 5))
         capture(app, "native-video-settings")
@@ -65,7 +73,13 @@ final class LiveNavigationTests: XCTestCase {
         XCTAssertTrue(app.staticTexts["settings-subtitle-preview"].waitForExistence(timeout: 5))
         capture(app, "native-subtitle-settings")
 
-        app.tabBars.buttons["Buscar"].tap()
+        navigate(app, "movies")
+        XCTAssertTrue(app.buttons.matching(identifier: "catalog-movie").firstMatch.waitForExistence(timeout: 30), "Movies must load its content directly")
+        capture(app, "native-movies-direct")
+        navigate(app, "shows")
+        XCTAssertTrue(app.buttons.matching(identifier: "catalog-media").firstMatch.waitForExistence(timeout: 30), "Shows must load its content directly")
+        capture(app, "native-shows-direct")
+        navigate(app, "search")
         let search = app.searchFields.firstMatch
         XCTAssertTrue(search.waitForExistence(timeout: 5))
         search.tap()
@@ -81,7 +95,7 @@ final class LiveNavigationTests: XCTestCase {
         XCTAssertTrue(app.buttons["detail-streams"].waitForExistence(timeout: 10))
         capture(app, "real-detail")
 
-        app.tabBars.buttons["Addons"].tap()
+        navigate(app, "addons")
         let field = app.secureTextFields["addon-manifest-url"]
         XCTAssertTrue(field.waitForExistence(timeout: 5))
         field.tap()
@@ -95,7 +109,7 @@ final class LiveNavigationTests: XCTestCase {
 
         // Catalog resources are discovered from the installed example's
         // manifest, without injecting app state.
-        app.tabBars.buttons["Home"].tap()
+        navigate(app, "home")
         capture(app, "home-after-addon-install")
         // SwiftUI can expose a scroll container as Other rather than ScrollView.
         // The identifier selects the same product view independent of AX role.

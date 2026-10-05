@@ -5,14 +5,17 @@ import Observation
 final class AppModel {
     let service = HarborService()
     let resume = ResumeStore()
+    let library = LibraryModel()
     private let keychain = KeychainStore()
     private let accounts = AccountService()
     private var savedAccount: SavedAccount?
     private var homeGeneration = 0
     private var started = false
+    @ObservationIgnored private var pages: [String: ContentPageModel] = [:]
     private(set) var storageReady = false
     private(set) var addons: [Addon] = []
     private(set) var rows: [CatalogRow] = []
+    private(set) var heroes: [Media] = []
     var loading = false
     var error: String?
     var warnings: [String] = []
@@ -21,6 +24,10 @@ final class AppModel {
     var accountBusy = false
     var showAccount = false
     var user: AccountUser? { savedAccount?.session.user }
+    func pageModel(_ kind: String) -> ContentPageModel {
+        if let model = pages[kind] { return model }
+        let model = ContentPageModel(); pages[kind] = model; return model
+    }
 
     func start() async {
         guard !started else { return }
@@ -43,10 +50,11 @@ final class AppModel {
                 addons = [fallback]
             }
             storageReady = true
+            if savedAccount == nil { Task { await library.setSession(nil) } }
             Diagnostics.shared.record(.coreReady)
             if savedAccount != nil {
                 do { try await syncAccount() }
-                catch { accountError = safeMessage(error); await loadHome() }
+                catch { accountError = safeMessage(error); Task { await library.setSession(savedAccount?.session) }; await loadHome() }
             } else { await loadHome() }
         } catch is CancellationError { started = false }
         catch { self.error = safeMessage(error); Diagnostics.shared.recordFailure(error) }
@@ -68,15 +76,38 @@ final class AppModel {
         error = nil
         defer { if generation == homeGeneration { loading = false } }
         do {
-            let result = try await service.catalogs(selectedAddons)
+            let result = try await service.catalogs(selectedAddons, onRow: { [weak self] row in
+                guard let self, generation == self.homeGeneration else { return }
+                if let index = self.rows.firstIndex(where: { $0.id == row.id }) { self.rows[index] = row }
+                else { self.rows.append(row) }
+                self.rows.sort { $0.plan.addonPriority == $1.plan.addonPriority ? $0.id < $1.id : $0.plan.addonPriority < $1.plan.addonPriority }
+            })
             guard generation == homeGeneration else { return }
             (rows, warnings) = result
             Diagnostics.shared.record(.catalogsLoaded, count: rows.count)
-            if rows.isEmpty && !warnings.isEmpty { error = "No se pudo cargar ningún catálogo. \(warnings.joined(separator: ", "))" }
+            if rows.allSatisfy({ $0.metas.isEmpty }) && !warnings.isEmpty { error = "No se pudieron cargar los catálogos. Comprueba la conexión y vuelve a intentarlo." }
+            await enrichHeroes(generation: generation)
         } catch is CancellationError { return }
         catch {
             guard generation == homeGeneration else { return }
             self.error = safeMessage(error); Diagnostics.shared.recordFailure(error)
+        }
+    }
+
+    private func enrichHeroes(generation: Int) async {
+        var seen = Set<String>()
+        let candidates = rows.flatMap(\.metas).filter { ($0.type == "movie" || $0.type == "series") && seen.insert($0.identity).inserted }
+        heroes = Array(candidates.prefix(5))
+        let selected = heroes
+        await withTaskGroup(of: (Int, Media).self) { group in
+            for (index, media) in selected.enumerated() {
+                let service = service; let addons = addons
+                group.addTask { (index, (try? await service.metadata(media, addons: addons)) ?? media) }
+            }
+            for await (index, media) in group {
+                guard generation == homeGeneration, index < heroes.count else { continue }
+                heroes[index] = media
+            }
         }
     }
 
@@ -102,8 +133,9 @@ final class AppModel {
         try keychain.write(next, key: "account.v1")
         savedAccount = next
         addons = collection.addons
+        Task { await library.setSession(session) }
         storageReady = true
-        rows = []; warnings = []; accountError = nil
+        rows = []; heroes = []; warnings = []; accountError = nil
         Diagnostics.shared.record(.accountSignedIn, count: addons.count)
         await loadHome()
     }
@@ -120,6 +152,7 @@ final class AppModel {
         let next = SavedAccount(session: old.session, collection: collection)
         try keychain.write(next, key: "account.v1")
         savedAccount = next; addons = collection.addons
+        Task { await library.setSession(next.session) }
         rows = []; warnings = []; accountError = nil
         Diagnostics.shared.record(.accountSynced, count: addons.count)
         await loadHome()
@@ -134,7 +167,8 @@ final class AppModel {
         if let saved = try keychain.read("addons.v1", as: [Addon].self) { guest = saved }
         else { guest = [try await service.install(HarborService.cinemetaManifest)] }
         try keychain.remove("account.v1")
-        savedAccount = nil; addons = guest; rows = []; warnings = []; accountError = nil
+        savedAccount = nil; addons = guest; rows = []; heroes = []; warnings = []; accountError = nil
+        Task { await library.setSession(nil) }
         Diagnostics.shared.record(.accountSignedOut)
         await loadHome()
     }

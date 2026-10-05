@@ -6,18 +6,25 @@ struct DetailView: View {
     @State private var showStreams = false
     @State private var selectedEpisode: Episode?
     @State private var resolutionTask: Task<Void, Never>?
-    init(media: Media, app: AppModel) { self.app = app; _model = State(initialValue: DetailModel(media, service: app.service)) }
+    private let playImmediately: Bool
+    init(media: Media, app: AppModel, playImmediately: Bool = false) { self.app = app; self.playImmediately = playImmediately; _model = State(initialValue: DetailModel(media, service: app.service)) }
 
     var body: some View {
         @Bindable var model = model
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
-                AsyncImage(url: (model.media.background ?? model.media.poster).flatMap(URL.init(string:))) { $0.resizable().scaledToFill() } placeholder: { Rectangle().fill(.white.opacity(0.05)) }
+                Artwork(url: model.media.background, fallback: model.media.poster, maxPixels: 1400)
                     .frame(height: 220).clipped()
                 VStack(alignment: .leading, spacing: 16) {
                     Text(model.media.name).font(.largeTitle.bold()).accessibilityIdentifier("detail-title")
                     Text([model.media.releaseInfo, model.media.genres?.joined(separator: " · ")].compactMap { $0 }.joined(separator: " · ")).foregroundStyle(.secondary)
                     Text(model.media.description ?? "").accessibilityIdentifier("detail-description")
+                    HStack {
+                        Button { Task { await app.library.toggleBookmark(model.media) } } label: { Label(app.library.bookmarked(model.media) ? "En mi lista" : "Añadir a mi lista", image: "ui-library") }.accessibilityIdentifier("detail-bookmark")
+                        Spacer()
+                        Button { Task { await app.library.toggleWatched(model.media) } } label: { Image(app.library.watched(model.media) ? "ui-mark-unwatched" : "ui-mark-watched").resizable().scaledToFit().frame(width: 26, height: 26) }.accessibilityLabel(app.library.watched(model.media) ? "Marcar como no visto" : "Marcar como visto")
+                    }.disabled(app.library.busy)
+                    if let error = app.library.error { Text(error).font(.caption).foregroundStyle(.orange) }
                     if let error = model.error { Text(error).foregroundStyle(.orange) }
                     if model.loading { ProgressView() }
                     if model.media.type != "series" {
@@ -33,18 +40,18 @@ struct DetailView: View {
                 }.padding()
             }
         }.background(HarborTheme.background).navigationBarTitleDisplayMode(.inline)
-        .task { await model.load(app.addons) }
+        .task { await model.load(app.addons); if playImmediately && model.media.type != "series" { openStreams() } }
         .sheet(isPresented: $showStreams, onDismiss: { resolutionTask?.cancel(); model.pendingPlayback = nil; model.showResumePrompt = false }) {
             NavigationStack {
                 List {
                     if model.loadingStreams { ProgressView("Consultando addons…") }
                     if let error = model.error { Text(error).foregroundStyle(.orange) }
-                    ForEach(Array(model.warnings.enumerated()), id: \.offset) { Text("Solicitud addon: \($0.element)").font(.caption) }
+                    if !model.warnings.isEmpty && model.offers.isEmpty && !model.loadingStreams { Text("Algunos addons no han respondido. Puedes volver a intentarlo.").font(.caption) }
                     ForEach(model.offers) { offer in
                         Button { resolutionTask = Task { await model.play(offer, resume: app.resume) } } label: { VStack(alignment: .leading, spacing: 8) { Text(offer.title); Text("\(offer.source) · \(offer.quality)").font(.caption).foregroundStyle(.secondary) }.frame(minHeight: 44) }.disabled(model.resolving || model.pendingPlayback != nil).accessibilityIdentifier("stream-offer")
                     }
                 }.navigationTitle("Streams").toolbar { ToolbarItem(placement: .topBarTrailing) { Button("Cerrar") { showStreams = false } } }
-                .fullScreenCover(item: $model.playback) { session in PlayerView(session: session, resume: app.resume, title: model.media.name) }
+                .fullScreenCover(item: $model.playback) { session in PlayerView(session: session, resume: app.resume, title: model.media.name, media: model.media, library: app.library) }
                 .alert("¿Reanudar la reproducción?", isPresented: $model.showResumePrompt) {
                     Button("Reanudar") { model.chooseResume(true) }
                     Button("Desde el principio") { model.chooseResume(false) }

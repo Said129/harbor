@@ -22,10 +22,15 @@ struct HarborError: Error, LocalizedError, Sendable {
         case "no-streams": "Los addons consultados no devolvieron streams para este título."
         case "no-metadata": "Los addons no devolvieron metadata para este título."
         case "network": "La solicitud de red falló. Puedes volver a intentarlo."
+        case "invalid-catalog-response", "catalog-response": "Este addon no ha devuelto un catálogo válido."
+        case "invalid-artwork", "artwork-unavailable", "artwork-too-large": "No se pudo cargar esta imagen."
+        case "invalid-library-response": "No se pudo recuperar la biblioteca de Stremio. Tu copia guardada se ha conservado."
+        case "library-cache-read-failed", "library-cache-too-large": "No se pudo leer la biblioteca guardada. Los datos se han conservado."
+        case "library-cache-write-failed": "No se pudo guardar la biblioteca en este iPhone. Reintenta la sincronización."
         case "resume-read-failed", "invalid-resume-store", "unsupported-resume-version": "No se pudo leer el progreso guardado. Los datos se han conservado."
         case "resume-write-failed", "resume-store-too-large": "No se pudo guardar el progreso. Los datos anteriores se han conservado."
         case "resume-store-unavailable": "El almacenamiento del progreso no está disponible."
-        default: "Harbor: \(code)"
+        default: code.hasPrefix("http-") ? "El servicio no está disponible ahora. Inténtalo de nuevo más tarde." : "No se pudo completar la operación. Puedes volver a intentarlo."
         }
     }
 }
