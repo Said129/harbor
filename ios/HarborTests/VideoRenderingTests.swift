@@ -32,7 +32,8 @@ final class VideoRenderingTests: XCTestCase {
             var samples: [Int] = []
             var lastSnapshot: UIImage?
             while Date() < deadline, state.error == nil, !state.ended {
-                let snapshot = surface.snapshot
+                surface.display()
+                let snapshot = try drawableFrame(surface)
                 // Keep the last active frame if EOF clears the drawable.
                 if state.ended { break }
                 lastSnapshot = snapshot
@@ -54,6 +55,33 @@ final class VideoRenderingTests: XCTestCase {
             XCTAssertNil(state.error)
             XCTAssertTrue(displayed, "\(depth)-bit output must contain distinct red/green video pixels and advancing time; RGB samples=\(samples), position=\(state.position), loaded=\(state.loaded), ended=\(state.ended)")
         }
+    }
+
+    @available(iOS, deprecated: 12.0)
+    @MainActor
+    private func drawableFrame(_ surface: GLKView) throws -> UIImage {
+        // Read the same nonzero framebuffer the real player renders into.
+        // GLKView.snapshot can perform another draw with different bindings.
+        XCTAssertTrue(EAGLContext.setCurrent(surface.context))
+        surface.bindDrawable()
+        let width = surface.drawableWidth, height = surface.drawableHeight
+        XCTAssertGreaterThan(width, 0); XCTAssertGreaterThan(height, 0)
+        let stride = width * 4
+        var pixels = [UInt8](repeating: 0, count: stride * height)
+        pixels.withUnsafeMutableBytes { glReadPixels(0, 0, GLsizei(width), GLsizei(height), GLenum(GL_RGBA), GLenum(GL_UNSIGNED_BYTE), $0.baseAddress) }
+        XCTAssertEqual(glGetError(), GLenum(GL_NO_ERROR), "Drawable readback must not hide an OpenGL error")
+        // GL's first row is the bottom; preserve real pixels in an upright PNG.
+        var upright = Data(count: pixels.count)
+        upright.withUnsafeMutableBytes { target in
+            pixels.withUnsafeBytes { source in
+                for row in 0..<height {
+                    target.baseAddress!.advanced(by: row * stride).copyMemory(from: source.baseAddress!.advanced(by: (height - row - 1) * stride), byteCount: stride)
+                }
+            }
+        }
+        let provider = try XCTUnwrap(CGDataProvider(data: upright as CFData))
+        let image = try XCTUnwrap(CGImage(width: width, height: height, bitsPerComponent: 8, bitsPerPixel: 32, bytesPerRow: stride, space: CGColorSpaceCreateDeviceRGB(), bitmapInfo: CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedLast.rawValue | CGBitmapInfo.byteOrder32Big.rawValue), provider: provider, decode: nil, shouldInterpolate: false, intent: .defaultIntent))
+        return UIImage(cgImage: image, scale: surface.contentScaleFactor, orientation: .up)
     }
 
     private func colors(_ image: UIImage) throws -> [Int] {

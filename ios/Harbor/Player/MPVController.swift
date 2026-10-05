@@ -116,8 +116,7 @@ final class MPVController: GLKViewController {
 
     @available(iOS, deprecated: 12.0)
     override func glkView(_ surface: GLKView, drawIn rect: CGRect) {
-        guard let context else { return }
-        EAGLContext.setCurrent(context)
+        guard let context, EAGLContext.setCurrent(context), surface.drawableWidth > 0, surface.drawableHeight > 0 else { return }
         // libmpv requires default GL state on entry and does not restore the
         // viewport/scissor rectangle. GLKView also draws during snapshots and
         // layout changes; start every frame with the full incoming drawable.
@@ -132,7 +131,9 @@ final class MPVController: GLKViewController {
         guard let renderer, let handle else { return }
         drainEvents(handle)
         var framebuffer: GLint = 0
+        var renderbuffer: GLint = 0
         glGetIntegerv(GLenum(GL_FRAMEBUFFER_BINDING), &framebuffer)
+        glGetIntegerv(GLenum(GL_RENDERBUFFER_BINDING), &renderbuffer)
         var fbo = mpv_opengl_fbo(fbo: framebuffer, w: Int32(surface.drawableWidth), h: Int32(surface.drawableHeight), internal_format: 0)
         var flip: Int32 = 1
         withUnsafeMutablePointer(to: &fbo) { fbo in
@@ -146,6 +147,11 @@ final class MPVController: GLKViewController {
             }
         }
         mpv_render_context_report_swap(renderer)
+        // mpv leaves bindings at its defaults. GLKView owns nonzero buffers;
+        // restore them before it presents or reads back this drawable.
+        glBindFramebuffer(GLenum(GL_FRAMEBUFFER), GLuint(framebuffer))
+        glBindRenderbuffer(GLenum(GL_RENDERBUFFER), GLuint(renderbuffer))
+        glViewport(0, 0, GLsizei(surface.drawableWidth), GLsizei(surface.drawableHeight))
     }
 
     private func drainEvents(_ handle: OpaquePointer) {
