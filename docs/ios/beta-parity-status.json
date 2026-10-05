@@ -296,13 +296,13 @@
   },
   "Setting: subFontColor": {
     "state": "Partial",
-    "implementation": "`ios/Harbor/Player/PlayerView.swift`; `Player/MPVController.swift`; `Views/PlayerSettingsView.swift`; `Player/PlaybackPreferences.swift`",
-    "notes": "Persisted native settings, active playback sheets, observed transport/audio state and chapters. Desktop language ordering, arbitrary colors/fonts/properties and full physical option coverage remain incomplete. Apple simulator/device build, real mpv option initialization and native UI checks pass; full physical option coverage remains pending."
+    "implementation": "`ios/Harbor/Player/PlaybackPreferences.swift`; `Player/BufferSize.swift`; `Player/MPVConfiguration.swift`; `Views/PlayerSettingsView.swift`",
+    "notes": "Native persistent control with real mpv consumer. Original bundled subtitle fonts; iPhone buffer memory cap preserves Desktop durations. Apple build and physical playback/style coverage pending."
   },
   "Setting: subBorderColor": {
     "state": "Partial",
-    "implementation": "`ios/Harbor/Player/PlayerView.swift`; `Player/MPVController.swift`; `Views/PlayerSettingsView.swift`; `Player/PlaybackPreferences.swift`",
-    "notes": "Persisted native settings, active playback sheets, observed transport/audio state and chapters. Desktop language ordering, arbitrary colors/fonts/properties and full physical option coverage remain incomplete. Apple simulator/device build, real mpv option initialization and native UI checks pass; full physical option coverage remains pending."
+    "implementation": "`ios/Harbor/Player/PlaybackPreferences.swift`; `Player/BufferSize.swift`; `Player/MPVConfiguration.swift`; `Views/PlayerSettingsView.swift`",
+    "notes": "Native persistent control with real mpv consumer. Original bundled subtitle fonts; iPhone buffer memory cap preserves Desktop durations. Apple build and physical playback/style coverage pending."
   },
   "Setting: subBorderSize": {
     "state": "Partial",
@@ -321,8 +321,8 @@
   },
   "Setting: subAssOverride": {
     "state": "Partial",
-    "implementation": "`ios/Harbor/Player/PlayerView.swift`; `Player/MPVController.swift`; `Views/PlayerSettingsView.swift`; `Player/PlaybackPreferences.swift`",
-    "notes": "Persisted native settings, active playback sheets, observed transport/audio state and chapters. Desktop language ordering, arbitrary colors/fonts/properties and full physical option coverage remain incomplete. Apple simulator/device build, real mpv option initialization and native UI checks pass; full physical option coverage remains pending."
+    "implementation": "`ios/Harbor/Player/PlaybackPreferences.swift`; `Player/BufferSize.swift`; `Player/MPVConfiguration.swift`; `Views/PlayerSettingsView.swift`",
+    "notes": "Native persistent control with real mpv consumer. Original bundled subtitle fonts; iPhone buffer memory cap preserves Desktop durations. Apple build and physical playback/style coverage pending."
   },
   "Setting: subStyle": {
     "state": "Partial",
@@ -508,5 +508,30 @@
     "state": "Partial",
     "implementation": "ios/Harbor/Services/InterfacePreferences.swift; ios/Harbor/Views/InterfaceSettingsView.swift",
     "notes": "Persisted native control with a real consumer. Build 5 compiler/UI gate pending; full Desktop personalization and account sync remain incomplete."
+  },
+  "Setting: mpvBufferSize": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Player/PlaybackPreferences.swift`; `Player/BufferSize.swift`; `Player/MPVConfiguration.swift`; `Views/PlayerSettingsView.swift`",
+    "notes": "Native persistent control with real mpv consumer. Original bundled subtitle fonts; iPhone buffer memory cap preserves Desktop durations. Apple build and physical playback/style coverage pending."
+  },
+  "Setting: subFontFamily": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Player/PlaybackPreferences.swift`; `Player/BufferSize.swift`; `Player/MPVConfiguration.swift`; `Views/PlayerSettingsView.swift`",
+    "notes": "Native persistent control with real mpv consumer. Original bundled subtitle fonts; iPhone buffer memory cap preserves Desktop durations. Apple build and physical playback/style coverage pending."
+  },
+  "Setting: subBoxColor": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Player/PlaybackPreferences.swift`; `Player/BufferSize.swift`; `Player/MPVConfiguration.swift`; `Views/PlayerSettingsView.swift`",
+    "notes": "Native persistent control with real mpv consumer. Original bundled subtitle fonts; iPhone buffer memory cap preserves Desktop durations. Apple build and physical playback/style coverage pending."
+  },
+  "Setting: subLineSpacing": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Player/PlaybackPreferences.swift`; `Player/BufferSize.swift`; `Player/MPVConfiguration.swift`; `Views/PlayerSettingsView.swift`",
+    "notes": "Native persistent control with real mpv consumer. Original bundled subtitle fonts; iPhone buffer memory cap preserves Desktop durations. Apple build and physical playback/style coverage pending."
+  },
+  "Setting: subHideSdh": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Player/PlaybackPreferences.swift`; `Player/BufferSize.swift`; `Player/MPVConfiguration.swift`; `Views/PlayerSettingsView.swift`",
+    "notes": "Native persistent control with real mpv consumer. Original bundled subtitle fonts; iPhone buffer memory cap preserves Desktop durations. Apple build and physical playback/style coverage pending."
   }
 }

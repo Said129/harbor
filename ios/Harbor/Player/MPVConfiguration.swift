@@ -41,7 +41,12 @@ enum MPVConfiguration {
             for (name, value) in options { try check(mpv_set_option_string(handle, name, value)) }
             let selected = decoding ?? HardwareDecoding(rawValue: UserDefaults.standard.string(forKey: "mpvHwdec") ?? "auto") ?? .auto
             try check(mpv_set_option_string(handle, "hwdec", selected.mpvValue))
-            for (name, value) in (playback ?? PlaybackPreferences.shared.options).mpvOptions {
+            let settings = playback ?? PlaybackPreferences.shared.options
+            // Xcode copies registered fonts into the bundle resource root.
+            if let fonts = Bundle.main.url(forResource: "Inter", withExtension: "ttf") {
+                try check(mpv_set_option_string(handle, "sub-fonts-dir", fonts.deletingLastPathComponent().path))
+            }
+            for (name, value) in settings.bufferSize.mpvOptions + settings.mpvOptions {
                 try check(mpv_set_option_string(handle, name, value))
             }
             if startMs.isFinite && startMs > 0 {

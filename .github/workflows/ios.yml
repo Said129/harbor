@@ -107,7 +107,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          xcodebuild -resolvePackageDependencies -project ios/Harbor.xcodeproj -scheme Harbor -clonedSourcePackagesDirPath ios/build/SourcePackages 2>&1 | tee ios/build/logs/packages.log
+          python3 scripts/ios/resolve-packages.py
       - name: Build simulator
         shell: bash
         run: |

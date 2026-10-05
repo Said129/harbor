@@ -62,6 +62,21 @@ struct PlaybackOptions: Codable, Equatable {
     var borderSize = 2.0
     var boxOpacity = 0.6
     var subtitleOpacity = 1.0
+    var subtitleFont = "inter"
+    var subtitleSpacing = 0.0
+    var subtitleBoxColor = "#000000"
+    var hideSDH = false
+    var bufferSize = BufferSize.auto
+
+    var subtitleFamily: String {
+        switch subtitleFont {
+        case "system": "Helvetica Neue"
+        case "serif": "Times New Roman"
+        case "rounded": "Fredoka"
+        case "arabic": "Vazirmatn"
+        default: "Inter"
+        }
+    }
 
     var mpvOptions: [(String, String)] {
         [
@@ -75,18 +90,21 @@ struct PlaybackOptions: Codable, Equatable {
             ("audio-delay", String(audioDelay)), ("sub-delay", String(subtitleDelay)),
             ("sid", subtitlesOff ? "no" : "auto"),
             ("sub-font-size", String(subtitleSize)), ("sub-pos", String(subtitlePosition)),
+            ("sub-font", subtitleFamily), ("sub-spacing", String(subtitleSpacing)),
+            ("sub-filter-sdh", hideSDH ? "yes" : "no"), ("sub-filter-sdh-harder", "no"),
             ("sub-bold", subtitleBold ? "yes" : "no"), ("sub-ass-override", subtitleASS),
             ("sub-align-x", subtitleAlignment), ("sub-color", Self.alphaColor(subtitleColor, opacity: subtitleOpacity)),
-            ("sub-border-color", borderColor), ("sub-border-size", subtitleStyle == "outline" ? String(borderSize) : "0"),
+            ("sub-border-color", Self.alphaColor(borderColor, opacity: subtitleOpacity)), ("sub-border-size", subtitleStyle == "outline" ? String(borderSize) : "0"),
             ("sub-shadow-offset", subtitleStyle == "shadow" ? "2" : "0"),
             ("sub-border-style", subtitleStyle == "box" ? "background-box" : "outline-and-shadow"),
-            ("sub-back-color", Self.alphaColor("#000000", opacity: subtitleStyle == "box" ? boxOpacity : 0))
+            ("sub-back-color", Self.alphaColor(subtitleBoxColor, opacity: subtitleStyle == "box" ? boxOpacity * subtitleOpacity : 0))
         ]
     }
 
     private static func alphaColor(_ color: String, opacity: Double) -> String {
-        // mpv accepts #AARRGGBB; native controls only emit these known hex colors.
-        String(format: "#%02X%@", Int((min(1, max(0, opacity)) * 255).rounded()), String(color.dropFirst()))
+        // mpv accepts #AARRGGBB. Never pass malformed persisted hex to libmpv.
+        let rgb = color.count == 7 && color.first == "#" && UInt32(color.dropFirst(), radix: 16) != nil ? String(color.dropFirst()) : "FFFFFF"
+        return String(format: "#%02X%@", Int((min(1, max(0, opacity)) * 255).rounded()), rgb)
     }
 }
 

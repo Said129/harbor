@@ -66,6 +66,21 @@
       "source": "https://github.com/google/fonts/tree/main/ofl/oswald",
       "license": "SIL OFL 1.1",
       "sha256": "5b38c246e255a12f5712d640d56bcced0472466fc68983d2d0410ec0457c2817"
+    },
+    "Inter": {
+      "source": "https://github.com/google/fonts/tree/main/ofl/inter",
+      "license": "SIL OFL 1.1",
+      "sha256": "29160a80ff49ddcab2c97711247e08b1fab27a484a329ce8b813d820dc559031"
+    },
+    "Fredoka": {
+      "source": "https://github.com/google/fonts/tree/main/ofl/fredoka",
+      "license": "SIL OFL 1.1",
+      "sha256": "2ba02e68b152868aef9ba28e24b3648c7d457fe6f25c761f2c2c53fb61a73fc8"
+    },
+    "Vazirmatn": {
+      "source": "https://github.com/google/fonts/tree/main/ofl/vazirmatn",
+      "license": "SIL OFL 1.1",
+      "sha256": "696249a2c74b39ffdef55de4df2809c5b639d3ff80d618d8160a095d2fd49dca"
     }
   }
 }

@@ -1,4 +1,5 @@
 import SwiftUI
+import UIKit
 
 enum PlayerSettingsPage: String, Identifiable {
     case options, playback, video, audio, subtitles
@@ -52,6 +53,13 @@ struct PlayerSettingsView: View {
                     Toggle("Reanudar la reproducción", isOn: $resumePlayback)
                     Toggle("Preguntar antes de reanudar", isOn: $resumePrompt).disabled(!resumePlayback)
                 }
+                Section {
+                    Picker("Tamaño del búfer", selection: $preferences.options.bufferSize) {
+                        ForEach(BufferSize.allCases) { Text($0.title).tag($0) }
+                    }
+                } header: { Text("Búfer") } footer: {
+                    Text("Se aplica al abrir el siguiente vídeo. La memoria se adapta al iPhone; el tiempo disponible depende de la fuente y su calidad.")
+                }
             case .video:
                 Section("Reproductor") {
                     Picker("Decodificación de vídeo", selection: $hardwareDecoding) {
@@ -102,37 +110,47 @@ struct PlayerSettingsView: View {
                 Section("Selección") {
                     languagePicker("Idioma preferido", value: $preferences.options.subtitleLanguage, defaults: "eng", defaultTitle: "Inglés")
                     Toggle("Desactivar subtítulos por defecto", isOn: $preferences.options.subtitlesOff)
+                    Toggle("Ocultar indicaciones SDH", isOn: $preferences.options.hideSDH)
                 }
                 Section("Sincronización") {
                     dial("Retraso de subtítulos", value: $preferences.options.subtitleDelay, range: -10...10, step: 0.1, suffix: " s")
                 }
                 Section("Estilo") {
-                    Text("Vista previa de subtítulos").font(.system(size: min(40, preferences.options.subtitleSize), weight: preferences.options.subtitleBold ? .bold : .regular))
+                    Text("Vista previa de subtítulos").font(.custom(previewFont, size: min(40, preferences.options.subtitleSize), relativeTo: .body).weight(preferences.options.subtitleBold ? .bold : .regular))
+                        .kerning(preferences.options.subtitleSpacing)
                         .foregroundStyle(Color(hex: preferences.options.subtitleColor)).opacity(preferences.options.subtitleOpacity)
-                        .padding(8).frame(maxWidth: .infinity).background(.black).accessibilityIdentifier("settings-subtitle-preview")
+                        .padding(8).background(preferences.options.subtitleStyle == "box" ? Color(hex: preferences.options.subtitleBoxColor).opacity(preferences.options.boxOpacity) : .clear)
+                        .frame(maxWidth: .infinity).padding(.vertical, 12).background(.black).accessibilityIdentifier("settings-subtitle-preview")
+                    Picker("Fuente", selection: $preferences.options.subtitleFont) {
+                        Text("Inter · Harbor").tag("inter"); Text("Sistema").tag("system")
+                        Text("Redondeada · Fredoka").tag("rounded"); Text("Serif").tag("serif")
+                        Text("Árabe · Vazirmatn").tag("arabic")
+                    }
                     Picker("Fondo", selection: $preferences.options.subtitleStyle) {
                         Text("Sombra").tag("shadow"); Text("Contorno").tag("outline"); Text("Barra negra").tag("box")
                     }
                     Picker("Subtítulos con estilo ASS", selection: $preferences.options.subtitleASS) {
-                        Text("Original").tag("no"); Text("Redimensionar").tag("scale"); Text("Mi estilo").tag("force")
+                        Text("Original").tag("no"); Text("Mi estilo conservando posición").tag("yes")
+                        Text("Redimensionar").tag("scale"); Text("Forzar mi estilo").tag("force")
+                        Text("Eliminar estilos").tag("strip")
                     }
                     Toggle("Texto en negrita", isOn: $preferences.options.subtitleBold)
                     dial("Tamaño", value: $preferences.options.subtitleSize, range: 16...120)
+                    dial("Espaciado de letras", value: $preferences.options.subtitleSpacing, range: 0...12)
                     dial("Opacidad", value: $preferences.options.subtitleOpacity, range: 0.2...1, step: 0.05)
                     dial("Altura desde el borde inferior", value: Binding(get: { 100 - preferences.options.subtitlePosition }, set: { preferences.options.subtitlePosition = 100 - $0 }), range: 0...100, suffix: "%")
                     Picker("Alineación", selection: $preferences.options.subtitleAlignment) {
                         Text("Izquierda").tag("left"); Text("Centro").tag("center"); Text("Derecha").tag("right")
                     }
-                    Picker("Color del texto", selection: $preferences.options.subtitleColor) {
-                        Text("Blanco").tag("#FFFFFF"); Text("Amarillo").tag("#FFFF00"); Text("Verde").tag("#00FF00")
-                    }
+                    ColorPicker("Color del texto", selection: color($preferences.options.subtitleColor), supportsOpacity: false)
                     if preferences.options.subtitleStyle == "outline" {
                         dial("Grosor del contorno", value: $preferences.options.borderSize, range: 1...6)
-                        Picker("Color del contorno", selection: $preferences.options.borderColor) {
-                            Text("Negro").tag("#000000"); Text("Blanco").tag("#FFFFFF")
-                        }
+                        ColorPicker("Color del contorno", selection: color($preferences.options.borderColor), supportsOpacity: false)
                     }
-                    if preferences.options.subtitleStyle == "box" { dial("Opacidad del fondo", value: $preferences.options.boxOpacity, range: 0.2...1, step: 0.05) }
+                    if preferences.options.subtitleStyle == "box" {
+                        ColorPicker("Color del fondo", selection: color($preferences.options.subtitleBoxColor), supportsOpacity: false)
+                        dial("Opacidad del fondo", value: $preferences.options.boxOpacity, range: 0...1, step: 0.05)
+                    }
                     Button("Restablecer estilo de subtítulos") {
                         let original = PlaybackOptions()
                         preferences.options.subtitleSize = original.subtitleSize; preferences.options.subtitlePosition = original.subtitlePosition
@@ -141,6 +159,8 @@ struct PlayerSettingsView: View {
                         preferences.options.subtitleColor = original.subtitleColor; preferences.options.borderColor = original.borderColor
                         preferences.options.borderSize = original.borderSize; preferences.options.boxOpacity = original.boxOpacity
                         preferences.options.subtitleOpacity = original.subtitleOpacity; preferences.options.subtitleDelay = 0
+                        preferences.options.subtitleFont = original.subtitleFont; preferences.options.subtitleSpacing = original.subtitleSpacing
+                        preferences.options.subtitleBoxColor = original.subtitleBoxColor; preferences.options.hideSDH = original.hideSDH
                     }
                 }
             }
@@ -176,11 +196,28 @@ struct PlayerSettingsView: View {
             ForEach(languages.filter { $0.1 == defaults || !$0.1.split(separator: ",").contains(Substring(defaults)) }, id: \.1) { Text($0.0).tag($0.1) }
         }
     }
+    private var previewFont: String {
+        switch preferences.options.subtitleFont {
+        case "rounded": "Fredoka-Light"
+        case "arabic": "Vazirmatn-Regular"
+        case "serif": "TimesNewRomanPSMT"
+        case "system": "HelveticaNeue"
+        default: "Inter-Regular"
+        }
+    }
+    private func color(_ value: Binding<String>) -> Binding<Color> {
+        Binding(get: { Color(hex: value.wrappedValue) }, set: { value.wrappedValue = $0.rgbHex })
+    }
 }
 
 private extension Color {
     init(hex: String) {
         let value = UInt32(hex.dropFirst(), radix: 16) ?? 0xFFFFFF
         self.init(.sRGB, red: Double((value >> 16) & 255) / 255, green: Double((value >> 8) & 255) / 255, blue: Double(value & 255) / 255)
+    }
+    var rgbHex: String {
+        var red: CGFloat = 0, green: CGFloat = 0, blue: CGFloat = 0, alpha: CGFloat = 1
+        guard UIColor(self).getRed(&red, green: &green, blue: &blue, alpha: &alpha) else { return "#FFFFFF" }
+        return String(format: "#%02X%02X%02X", Int((red * 255).rounded()), Int((green * 255).rounded()), Int((blue * 255).rounded()))
     }
 }
