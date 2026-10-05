@@ -13,7 +13,15 @@ enum HardwareDecoding: String, CaseIterable, Identifiable, Sendable {
     }
     // The direct iOS VideoToolbox/GLES mapper cannot import every pixel format.
     // Copy-back retains hardware decoding without handing CVPixelBuffers to it.
-    var mpvValue: String { self == .off ? "no" : "videotoolbox-copy" }
+    var mpvValue: String {
+#if targetEnvironment(simulator)
+        // MPVKit's iOS demo also disables VideoToolbox on simulator. Its
+        // virtual decoder does not establish physical iPhone compatibility.
+        "no"
+#else
+        self == .off ? "no" : "videotoolbox-copy"
+#endif
+    }
 }
 
 @MainActor

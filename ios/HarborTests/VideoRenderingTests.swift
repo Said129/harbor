@@ -29,8 +29,10 @@ final class VideoRenderingTests: XCTestCase {
             var displayed = false
             var samples: [Int] = []
             var lastSnapshot: UIImage?
-            while Date() < deadline, state.error == nil {
+            while Date() < deadline, state.error == nil, !state.ended {
                 let snapshot = surface.snapshot
+                // Keep the last active frame if EOF clears the drawable.
+                if state.ended { break }
                 lastSnapshot = snapshot
                 samples = try colors(snapshot)
                 if state.hasPosition && state.position > 0.1 &&
@@ -48,7 +50,7 @@ final class VideoRenderingTests: XCTestCase {
                 add(attachment)
             }
             XCTAssertNil(state.error)
-            XCTAssertTrue(displayed, "\(depth)-bit output must contain distinct red/green video pixels and advancing time; RGB samples=\(samples)")
+            XCTAssertTrue(displayed, "\(depth)-bit output must contain distinct red/green video pixels and advancing time; RGB samples=\(samples), position=\(state.position), loaded=\(state.loaded), ended=\(state.ended)")
         }
     }
 

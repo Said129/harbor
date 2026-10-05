@@ -27,3 +27,5 @@ OpenGL ES está deprecated; evaluar render Metal después del experimento. El [d
 ## Consequences
 
 No declarar codecs ni HDR como Parity sin archivos/dispositivos comprobados. Observar time-pos/duration/pause/tracks/end-file; teardown sincronizado del render/audio. Comandos y cambios de propiedades de playback usan APIs asíncronas y sus replies se inspeccionan: el hilo de render no debe esperar al core mpv. Configurar video-timing-offset=0 evita su espera anticipada de frames en el hilo UI; medir sincronización A/V y frame pacing en dispositivo. No emitir URLs ni logs mpv completos. Fuentes: [MPVKit](https://github.com/mpvkit/MPVKit), [mpv render API](https://github.com/mpv-player/mpv/blob/master/include/mpv/render.h).
+
+El simulator utiliza `hwdec=no`, como el demo iOS de la revisión fijada de MPVKit; no representa el decodificador VideoToolbox de un teléfono. La prueba de H.264/HEVC conserva las aserciones de imagen y tiempo sin bajar la profundidad de color. Device sigue prefiriendo `videotoolbox-copy`; comprobar sus buffers/codec/perfil en el iPhone físico es un gate separado.
