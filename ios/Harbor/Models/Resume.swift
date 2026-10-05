@@ -12,6 +12,11 @@ struct ResumeEntry: Codable, Equatable, Sendable {
     let t: UInt64
 }
 
+struct CloudResume: Sendable {
+    let entry: ResumeEntry
+    let durationMs: Double
+}
+
 struct ResumeDocument: Codable, Sendable {
     var version = 1
     var entries: [String: ResumeEntry] = [:]
@@ -29,6 +34,8 @@ struct PlaybackSession: Identifiable, Sendable {
     let startMs: Double
     let storageWarning: String?
     let progressEnabled: Bool
+    var owner = "guest"
+    var resumeStore: ResumeStore? = nil
 }
 
 struct ResumeSnapshot: Sendable {

@@ -14,6 +14,7 @@ final class LibraryModel {
     var loading = false
     var busy = false
     var error: String?
+    var owner: String { session?.user.id ?? "guest" }
     var items: [LibraryRecord] { records.map { LibraryRecord(raw: $0) }.filter { !$0.id.isEmpty && $0.media != nil }.sorted { $0.modified > $1.modified } }
     var continuing: [LibraryRecord] { items.filter(\.continuing) }
     func bookmarked(_ media: Media) -> Bool { items.first { $0.id == media.id }?.bookmarked ?? false }
@@ -96,7 +97,21 @@ final class LibraryModel {
             fields["state"] = .object(state)
         }
     }
-    func saveProgress(_ media: Media, target: ResumeTarget, snapshot: ResumeSnapshot) async {
+    func resume(for target: ResumeTarget) async -> CloudResume? {
+        let current = generation
+        if let session {
+            do {
+                let record = try await service.record(target.id, session: session)
+                guard generation == current else { return nil }
+                return record.flatMap { LibraryRecord(raw: $0).resume(for: target) }
+            } catch { if generation == current { Diagnostics.shared.recordFailure(error) } }
+        }
+        guard generation == current else { return nil }
+        return records.first { $0["_id"].string == target.id }.flatMap { LibraryRecord(raw: $0).resume(for: target) }
+    }
+    func saveProgress(_ media: Media, target: ResumeTarget, snapshot: ResumeSnapshot, owner expectedOwner: String) async {
+        guard expectedOwner == owner else { return }
+        guard snapshot.timestampMs > (lastProgressWrite[media.id] ?? 0) else { return }
         guard snapshot.exiting || snapshot.timestampMs >= (lastProgressWrite[media.id] ?? 0) + 15_000 else { return }
         let success = await update(media, progress: true) { fields in
             var state: [String: JSONValue] = [:]

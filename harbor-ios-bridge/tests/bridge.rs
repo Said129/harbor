@@ -98,6 +98,8 @@ fn resume_operations_transport_episode_keys_and_optional_checkpoints() {
         serde_json::from_str(&call(&serde_json::to_vec(&request).unwrap())).unwrap()
     };
     let target = json!({"id":"tt123","season":1,"episode":2});
+    let key = run(json!({"operation":"resumeKey","target":target}));
+    assert_eq!(key["data"]["key"], "tt123|s1e2");
     let mut request = json!({"operation":"resumeCheckpoint","target":target,"positionMs":12000.0,"durationMs":200000.0,"timestampMs":123,"exiting":false});
     let saved = run(request.clone());
     assert_eq!(saved["data"]["checkpoint"]["key"], "tt123|s1e2");

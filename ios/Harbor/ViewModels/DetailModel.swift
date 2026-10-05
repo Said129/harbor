@@ -52,9 +52,10 @@ final class DetailModel {
         catch { if streamRequest == request { self.error = safeMessage(error) } }
     }
 
-    func play(_ offer: StreamOffer, resume: ResumeStore) async {
+    func play(_ offer: StreamOffer, resume: ResumeStore, library: LibraryModel) async {
         guard !resolving else { return }
         resolving = true
+        let owner = library.owner
         defer { resolving = false }
         do {
             let source = try await service.resolve(offer)
@@ -64,14 +65,18 @@ final class DetailModel {
             let progressEnabled = ["movie", "series", "anime"].contains(media.type) && !media.id.hasPrefix("iptv:")
             if progressEnabled {
                 do {
-                    start = try await resume.position(target, durationMs: (selectedEpisode?.runtime ?? 0) * 60_000, playback: UserDefaults.standard.object(forKey: "resumePlayback") as? Bool ?? true, prompt: UserDefaults.standard.object(forKey: "resumePrompt") as? Bool ?? false)
+                    let cloud = await library.resume(for: target)
+                    guard owner == library.owner else { return }
+                    let duration = (selectedEpisode?.runtime ?? 0) > 0 ? (selectedEpisode?.runtime ?? 0) * 60_000 : cloud?.durationMs ?? 0
+                    start = try await resume.position(target, durationMs: duration, playback: UserDefaults.standard.object(forKey: "resumePlayback") as? Bool ?? true, prompt: UserDefaults.standard.object(forKey: "resumePrompt") as? Bool ?? false, cloud: cloud?.entry)
                 } catch {
                     warning = safeMessage(error)
                     Diagnostics.shared.recordFailure(error)
                 }
             }
             try Task.checkCancellation()
-            let session = PlaybackSession(source: source, target: target, startMs: start.ms, storageWarning: warning, progressEnabled: progressEnabled)
+            guard owner == library.owner else { return }
+            let session = PlaybackSession(source: source, target: target, startMs: start.ms, storageWarning: warning, progressEnabled: progressEnabled, owner: owner, resumeStore: resume)
             if start.prompt { pendingPlayback = session; showResumePrompt = true }
             else { playback = session }
         }
@@ -81,7 +86,7 @@ final class DetailModel {
 
     func chooseResume(_ resume: Bool) {
         guard let pending = pendingPlayback else { return }
-        playback = PlaybackSession(source: pending.source, target: pending.target, startMs: resume ? pending.startMs : 0, storageWarning: pending.storageWarning, progressEnabled: pending.progressEnabled)
+        playback = PlaybackSession(source: pending.source, target: pending.target, startMs: resume ? pending.startMs : 0, storageWarning: pending.storageWarning, progressEnabled: pending.progressEnabled, owner: pending.owner, resumeStore: pending.resumeStore)
         pendingPlayback = nil
         showResumePrompt = false
     }

@@ -4,7 +4,7 @@ import Observation
 @MainActor @Observable
 final class AppModel {
     let service = HarborService()
-    let resume = ResumeStore()
+    private(set) var resume = ResumeStore()
     let library = LibraryModel()
     private let keychain = KeychainStore()
     private let accounts = AccountService()
@@ -35,7 +35,6 @@ final class AppModel {
         loading = true
         Diagnostics.shared.record(.startup)
         MetadataPreferences.shared.load()
-        await reloadProgress()
         do {
             // A Keychain error is not an empty store and must never overwrite it.
             if let account = try keychain.read("account.v1", as: SavedAccount.self) {
@@ -50,6 +49,7 @@ final class AppModel {
                 try keychain.write([fallback], key: "addons.v1")
                 addons = [fallback]
             }
+            await setProgressOwner(savedAccount?.session.user.id ?? "guest")
             storageReady = true
             if savedAccount == nil { Task { await library.setSession(nil) } }
             Diagnostics.shared.record(.coreReady)
@@ -67,6 +67,11 @@ final class AppModel {
     func reloadProgress() async {
         do { try await resume.load(); progressError = nil }
         catch { progressError = safeMessage(error); Diagnostics.shared.recordFailure(error) }
+    }
+
+    private func setProgressOwner(_ owner: String) async {
+        resume = ResumeStore(owner: owner)
+        await reloadProgress()
     }
 
     func loadHome() async {
@@ -136,11 +141,14 @@ final class AppModel {
         // Commit the token and downloaded collection together, only after both
         // requests succeed. A rejected login/sync preserves the previous account.
         try keychain.write(next, key: "account.v1")
+        let previousOwner = savedAccount?.session.user.id ?? "guest"
         savedAccount = next
         addons = collection.addons
         Task { await library.setSession(session) }
         storageReady = true
         rows = []; heroes = []; warnings = []; accountError = nil
+        homeGeneration += 1; pages = [:]
+        if previousOwner != session.user.id { await setProgressOwner(session.user.id) }
         Diagnostics.shared.record(.accountSignedIn, count: addons.count)
         await loadHome()
     }
@@ -173,7 +181,9 @@ final class AppModel {
         else { guest = [try await service.install(HarborService.cinemetaManifest)] }
         try keychain.remove("account.v1")
         savedAccount = nil; addons = guest; rows = []; heroes = []; warnings = []; accountError = nil
+        homeGeneration += 1; pages = [:]
         Task { await library.setSession(nil) }
+        await setProgressOwner("guest")
         Diagnostics.shared.record(.accountSignedOut)
         await loadHome()
     }

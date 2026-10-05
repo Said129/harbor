@@ -169,7 +169,7 @@ struct PlayerView: View {
             progressError = safeMessage(error)
             Diagnostics.shared.recordFailure(error)
         }
-        if let media, let library { await library.saveProgress(media, target: session.target, snapshot: value) }
+        if let media, let library { await library.saveProgress(media, target: session.target, snapshot: value, owner: session.owner) }
     }
     private func time(_ value: Double) -> String {
         guard value.isFinite && value >= 0 && value < Double(Int.max) else { return "0:00" }

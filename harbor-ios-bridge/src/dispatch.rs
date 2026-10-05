@@ -56,6 +56,9 @@ enum Request {
         playback: bool,
         prompt: bool,
     },
+    ResumeKey {
+        target: resume::Target,
+    },
     ValidateResume {
         document: resume::Document,
     },
@@ -74,9 +77,7 @@ enum Request {
 pub fn dispatch(bytes: &[u8]) -> Result<Value, &'static str> {
     let request: Request = serde_json::from_slice(bytes).map_err(|_| "invalid-request")?;
     match request {
-        Request::AccountPlan { action, fields } => {
-            harbor_core::account::request(&action, &fields)
-        }
+        Request::AccountPlan { action, fields } => harbor_core::account::request(&action, &fields),
         Request::AccountResponse { action, response } => {
             harbor_core::account::response(&action, &response)
         }
@@ -119,6 +120,7 @@ pub fn dispatch(bytes: &[u8]) -> Result<Value, &'static str> {
             score,
         } => Ok(json!(harbor_core::run_pipeline(streams, &trust, &score))),
         Request::ResolveDirect { stream } => resolve_direct(stream),
+        Request::ResumeKey { target } => Ok(json!({ "key": resume::key(&target)? })),
         Request::ResumePosition {
             target,
             document,

@@ -27,10 +27,11 @@ final class CalendarModel {
         let calendar = Calendar.current
         guard let interval = calendar.dateInterval(of: .month, for: month) else { return }
         var failures = 0
+        let cachedMetadata = metadata; let service = app.service; let addons = app.addons
         await withTaskGroup(of: (String, Media?).self) { group in
             var iterator = records.compactMap(\.media).makeIterator()
             func enqueue(_ media: Media) {
-                let cached = metadata[media.identity]; let service = app.service; let addons = app.addons
+                let cached = cachedMetadata[media.identity]
                 group.addTask {
                     if let cached { return (media.identity, cached) }
                     return (media.identity, try? await service.metadata(media, addons: addons))

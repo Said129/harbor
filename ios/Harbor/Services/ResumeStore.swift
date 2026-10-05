@@ -1,4 +1,5 @@
 import Foundation
+import CryptoKit
 
 /// Actor serialization keeps file I/O off the UI thread and commits memory only
 /// after a successful atomic write. No stream/addon URLs enter this document.
@@ -6,9 +7,10 @@ actor ResumeStore {
     private var document = ResumeDocument()
     private var ready = false
     private var fileURL: URL?
+    private let owner: String
     private let limit = 8 * 1024 * 1024
 
-    init(fileURL: URL? = nil) { self.fileURL = fileURL }
+    init(fileURL: URL? = nil, owner: String = "guest") { self.fileURL = fileURL; self.owner = owner }
 
     func load() throws {
         ready = false
@@ -30,9 +32,15 @@ actor ResumeStore {
         catch { throw HarborError(code: "resume-read-failed") }
     }
 
-    func position(_ target: ResumeTarget, durationMs: Double = 0, playback: Bool = true, prompt: Bool = false) throws -> ResumeStart {
+    func position(_ target: ResumeTarget, durationMs: Double = 0, playback: Bool = true, prompt: Bool = false, cloud: ResumeEntry? = nil) throws -> ResumeStart {
         guard ready else { throw HarborError(code: "resume-store-unavailable") }
-        return try invoke("resumePosition", ["target": try .encoded(target), "document": try .encoded(document), "durationMs": .number(durationMs), "playback": .bool(playback), "prompt": .bool(prompt)], as: ResumeStart.self)
+        var merged = document
+        if let cloud {
+            struct Key: Decodable { let key: String }
+            let result = try invoke("resumeKey", ["target": try .encoded(target)], as: Key.self)
+            if cloud.t >= (merged.entries[result.key]?.t ?? 0) { merged.entries[result.key] = cloud }
+        }
+        return try invoke("resumePosition", ["target": try .encoded(target), "document": try .encoded(merged), "durationMs": .number(durationMs), "playback": .bool(playback), "prompt": .bool(prompt)], as: ResumeStart.self)
     }
 
     @discardableResult
@@ -63,7 +71,8 @@ actor ResumeStore {
     private func location() throws -> URL {
         if let fileURL { return fileURL }
         let directory = try FileManager.default.url(for: .applicationSupportDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
-        let file = directory.appendingPathComponent("Harbor", isDirectory: true).appendingPathComponent("resume-v1.json")
+        let hash = SHA256.hash(data: Data(owner.utf8)).map { String(format: "%02x", $0) }.joined()
+        let file = directory.appendingPathComponent("Harbor", isDirectory: true).appendingPathComponent("resume-\(hash).json")
         fileURL = file
         return file
     }

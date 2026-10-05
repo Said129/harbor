@@ -2,6 +2,17 @@ import XCTest
 @testable import Harbor
 
 final class NativeDataTests: XCTestCase {
+    func testCloudResumeMatchesTheEpisodeAndRecognizesCompletedMovies() throws {
+        let raw: JSONValue = .object(["_id": .string("show"), "type": .string("series"), "name": .string("Show"), "_mtime": .string("2026-10-05T18:00:00.123Z"), "state": .object(["video_id": .string("show:0:1"), "timeOffset": .integer(120_000), "duration": .integer(3_600_000)])])
+        let record = LibraryRecord(raw: raw)
+        let matching = record.resume(for: ResumeTarget(id: "show", season: 0, episode: 1, videoId: "show:0:1"))
+        XCTAssertEqual(matching?.entry.ms, 120_000)
+        XCTAssertEqual(matching?.durationMs, 3_600_000)
+        XCTAssertNil(record.resume(for: ResumeTarget(id: "show", season: 1, episode: 1, videoId: "show:1:1")))
+        XCTAssertNil(record.resume(for: ResumeTarget(id: "other", videoId: "show:0:1")))
+        let movie = LibraryRecord(raw: .object(["_id": .string("movie"), "type": .string("movie"), "name": .string("Movie"), "_mtime": .string("2026-10-05T18:00:00Z"), "state": .object(["timeOffset": .integer(120_000), "flaggedWatched": .integer(1)])]))
+        XCTAssertEqual(movie.resume(for: ResumeTarget(id: "movie"))?.entry.ms, 0)
+    }
     func testDesktopWatchedBitfieldUsesCanonicalEpisodeOrderAndAnchor() throws {
         let episodes = [Episode(id: "show:1:3", season: 1, episode: 3), Episode(id: "show:1:1", season: 1, episode: 1), Episode(id: "show:1:2", season: 1, episode: 2)]
         // Independent RFC1950 fixture: zlib-compressed byte 0b00000101.

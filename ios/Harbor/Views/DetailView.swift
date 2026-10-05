@@ -46,10 +46,10 @@ struct DetailView: View {
                     if let error = model.error { Text(error).foregroundStyle(.orange) }
                     if !model.warnings.isEmpty && model.offers.isEmpty && !model.loadingStreams { Text("Algunos addons no han respondido. Puedes volver a intentarlo.").font(.caption) }
                     ForEach(model.offers) { offer in
-                        Button { resolutionTask = Task { await model.play(offer, resume: app.resume) } } label: { VStack(alignment: .leading, spacing: 8) { Text(offer.title); Text("\(offer.source) · \(offer.quality)").font(.caption).foregroundStyle(.secondary) }.frame(minHeight: 44) }.disabled(model.resolving || model.pendingPlayback != nil).accessibilityIdentifier("stream-offer")
+                        Button { resolutionTask = Task { await model.play(offer, resume: app.resume, library: app.library) } } label: { VStack(alignment: .leading, spacing: 8) { Text(offer.title); Text("\(offer.source) · \(offer.quality)").font(.caption).foregroundStyle(.secondary) }.frame(minHeight: 44) }.disabled(model.resolving || model.pendingPlayback != nil).accessibilityIdentifier("stream-offer")
                     }
                 }.navigationTitle("Streams").toolbar { ToolbarItem(placement: .topBarTrailing) { Button("Cerrar") { showStreams = false } } }
-                .fullScreenCover(item: $model.playback) { session in PlayerView(session: session, resume: app.resume, title: model.media.name, media: model.media, library: app.library) }
+                .fullScreenCover(item: $model.playback) { session in PlayerView(session: session, resume: session.resumeStore ?? app.resume, title: model.media.name, media: model.media, library: app.library) }
                 .alert("¿Reanudar la reproducción?", isPresented: $model.showResumePrompt) {
                     Button("Reanudar") { model.chooseResume(true) }
                     Button("Desde el principio") { model.chooseResume(false) }

@@ -231,18 +231,18 @@
   },
   "Local playback resume": {
     "state": "Partial",
-    "implementation": "`harbor-core/src/resume.rs`; `ios/Harbor/Services/ResumeStore.swift`; `Player/MPVController.swift`; `Views/SettingsView.swift`",
-    "notes": "Desktop episode keys, autosave guards/defaults retained. Eight Rust tests, 28 Desktop/C ABI comparisons and three Swift persistence/restart/corruption tests pass. Actual mpv resume, sync and Continue Watching remain pending."
+    "implementation": "`ios/Harbor/Services/ResumeStore.swift`; `ViewModels/LibraryModel.swift`; `ViewModels/DetailModel.swift`; `Models/Library.swift`; `harbor-ios-bridge/src/dispatch.rs`",
+    "notes": "Native local checkpoints scoped by account; fresh matching cloud episode/movie position wins only when newer. Existing Rust start/prompt/key rules remain authoritative. Original unscoped file preserved; automatic legacy migration and full physical/cloud coverage pending."
   },
   "Setting: resumePlayback": {
     "state": "Partial",
-    "implementation": "`harbor-core/src/resume.rs`; `ios/Harbor/Services/ResumeStore.swift`; `Player/MPVController.swift`; `Views/SettingsView.swift`",
-    "notes": "Desktop episode keys, autosave guards/defaults retained. Eight Rust tests, 28 Desktop/C ABI comparisons and three Swift persistence/restart/corruption tests pass. Actual mpv resume, sync and Continue Watching remain pending."
+    "implementation": "`ios/Harbor/Services/ResumeStore.swift`; `ViewModels/LibraryModel.swift`; `ViewModels/DetailModel.swift`; `Models/Library.swift`; `harbor-ios-bridge/src/dispatch.rs`",
+    "notes": "Native local checkpoints scoped by account; fresh matching cloud episode/movie position wins only when newer. Existing Rust start/prompt/key rules remain authoritative. Original unscoped file preserved; automatic legacy migration and full physical/cloud coverage pending."
   },
   "Setting: resumePrompt": {
     "state": "Partial",
-    "implementation": "`harbor-core/src/resume.rs`; `ios/Harbor/Services/ResumeStore.swift`; `Player/MPVController.swift`; `Views/SettingsView.swift`",
-    "notes": "Desktop episode keys, autosave guards/defaults retained. Eight Rust tests, 28 Desktop/C ABI comparisons and three Swift persistence/restart/corruption tests pass. Actual mpv resume, sync and Continue Watching remain pending."
+    "implementation": "`ios/Harbor/Services/ResumeStore.swift`; `ViewModels/LibraryModel.swift`; `ViewModels/DetailModel.swift`; `Models/Library.swift`; `harbor-ios-bridge/src/dispatch.rs`",
+    "notes": "Native local checkpoints scoped by account; fresh matching cloud episode/movie position wins only when newer. Existing Rust start/prompt/key rules remain authoritative. Original unscoped file preserved; automatic legacy migration and full physical/cloud coverage pending."
   },
   "Stremio login / logout": {
     "state": "Partial",
@@ -436,8 +436,8 @@
   },
   "Continue Watching on Home": {
     "state": "Partial",
-    "implementation": "ios/Harbor/Views/LibraryView.swift",
-    "notes": "Real account/local library records, position bars and detail links; reconciliation with Desktop history providers remains pending."
+    "implementation": "`ios/Harbor/Services/ResumeStore.swift`; `ViewModels/LibraryModel.swift`; `ViewModels/DetailModel.swift`; `Models/Library.swift`; `harbor-ios-bridge/src/dispatch.rs`",
+    "notes": "Native local checkpoints scoped by account; fresh matching cloud episode/movie position wins only when newer. Existing Rust start/prompt/key rules remain authoritative. Original unscoped file preserved; automatic legacy migration and full physical/cloud coverage pending."
   },
   "Cinema hero": {
     "state": "Partial",

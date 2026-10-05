@@ -1,4 +1,5 @@
 import Foundation
+import CryptoKit
 import XCTest
 @testable import Harbor
 
@@ -68,5 +69,31 @@ final class ResumeStoreTests: XCTestCase {
         XCTAssertEqual(current.ms, 60_000)
         let saved = try JSONDecoder().decode(ResumeDocument.self, from: Data(contentsOf: backup))
         XCTAssertEqual(saved.entries["tt123"]?.ms, 60_000)
+    }
+
+    func testCloudOrderingAndProductionAccountIsolation() async throws {
+        let owners = ["resume-test-\(UUID().uuidString)", "resume-test-\(UUID().uuidString)"]
+        let directory = try FileManager.default.url(for: .applicationSupportDirectory, in: .userDomainMask, appropriateFor: nil, create: false).appendingPathComponent("Harbor")
+        defer {
+            for owner in owners {
+                let hash = SHA256.hash(data: Data(owner.utf8)).map { String(format: "%02x", $0) }.joined()
+                try? FileManager.default.removeItem(at: directory.appendingPathComponent("resume-\(hash).json"))
+            }
+        }
+        let first = ResumeStore(owner: owners[0]), second = ResumeStore(owner: owners[1])
+        try await first.load(); try await second.load()
+        let target = ResumeTarget(id: "show", season: 0, episode: 1, videoId: "show:0:1")
+        try await first.save(target, snapshot: snapshot(60_000, t: 20))
+        let isolated = try await second.position(target)
+        XCTAssertEqual(isolated.ms, 0)
+        let older = try await first.position(target, cloud: ResumeEntry(ms: 120_000, t: 10))
+        let newer = try await first.position(target, prompt: true, cloud: ResumeEntry(ms: 120_000, t: 30))
+        let cleared = try await first.position(target, cloud: ResumeEntry(ms: 0, t: 30))
+        XCTAssertEqual(older.ms, 60_000)
+        XCTAssertEqual(newer.ms, 120_000); XCTAssertTrue(newer.prompt)
+        XCTAssertEqual(cleared.ms, 0)
+        // A cloud read does not mutate or erase the last local checkpoint.
+        let preserved = try await first.position(target)
+        XCTAssertEqual(preserved.ms, 60_000)
     }
 }
