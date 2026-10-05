@@ -47,7 +47,8 @@ struct Media: Codable, Identifiable, Hashable, Sendable {
         media.logo = value["logo"].string; media.description = value["description"].string
         media.releaseInfo = value["releaseInfo"].string
         media.released = value["released"].string
-        media.imdbRating = value["imdbRating"].textValue; media.runtime = value["runtime"].textValue
+        if let rating = value["imdbRating"].textValue, let number = Double(rating), number > 0, number <= 10 { media.imdbRating = rating }
+        media.runtime = value["runtime"].textValue
         media.country = value["country"].string
         if value["adult"] != .null { media.adult = value["adult"] == .bool(true) }
         media.genres = value["genres"].array.compactMap(\.string)

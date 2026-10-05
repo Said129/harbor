@@ -38,8 +38,8 @@ struct CinemaHero: View {
                     GeometryReader { geometry in
                         ZStack(alignment: .bottomLeading) {
                             Artwork(url: media.background, fallback: media.fallbackBackground, fallbacks: [media.poster].compactMap { $0 }, maxPixels: 1400)
-                                .frame(width: geometry.size.width, height: geometry.size.height)
-                            LinearGradient(colors: [.black.opacity(0.12), HarborTheme.background.opacity(0.55), HarborTheme.background], startPoint: .top, endPoint: .bottom)
+                                .frame(width: geometry.size.width, height: geometry.size.height).accessibilityHidden(true)
+                            LinearGradient(colors: [.black.opacity(0.12), HarborTheme.background.opacity(0.55), HarborTheme.background], startPoint: .top, endPoint: .bottom).accessibilityHidden(true)
                             VStack(alignment: .leading, spacing: 14) {
                                 Text("DESTACADO HOY").font(.system(size: 9, weight: .semibold)).tracking(4).foregroundStyle(.white.opacity(0.5))
                                 if let logo = media.logo {
@@ -58,7 +58,7 @@ struct CinemaHero: View {
                                 }
                             }.padding(20).frame(maxWidth: .infinity, alignment: .leading)
                         }.frame(width: geometry.size.width, height: geometry.size.height).clipped()
-                    }.tag(index).accessibilityIdentifier(index == 0 ? "home-hero" : "hero-page-\(index)")
+                    }.tag(index).accessibilityElement(children: .contain).accessibilityIdentifier(index == 0 ? "home-hero" : "hero-page-\(index)")
                 }
             }.tabViewStyle(.page(indexDisplayMode: .never)).frame(height: 410)
             if metas.count > 1 {

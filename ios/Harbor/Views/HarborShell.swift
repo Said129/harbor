@@ -68,19 +68,7 @@ struct HarborShell: View {
             NavigationStack(path: $path) {
                 destination
                     .navigationDestination(for: Media.self) { DetailView(media: $0, app: app) }
-                    .toolbar {
-                        ToolbarItem(placement: .topBarLeading) {
-                            Button { withAnimation(.easeOut(duration: 0.18)) { menu = true } } label: { Image(systemName: "line.3.horizontal").frame(width: 36, height: 36) }.accessibilityLabel("Abrir navegación").accessibilityIdentifier("main-menu")
-                        }
-                        ToolbarItem(placement: .principal) { if section == .home { HarborBrand(size: 28) } }
-                        ToolbarItem(placement: .topBarTrailing) {
-                            Button { path = NavigationPath(); section = .search } label: { Image("nav-search").resizable().scaledToFit().frame(width: 22, height: 22).frame(width: 36, height: 36) }.accessibilityLabel("Buscar")
-                        }
-                        ToolbarItem(placement: .topBarTrailing) {
-                            Button { app.showAccount = true } label: { Image(systemName: "person.crop.circle").frame(width: 36, height: 36) }.accessibilityLabel("Cuenta")
-                        }
-                    }
-            }
+            }.id(section).safeAreaInset(edge: .top, spacing: 0) { header }
             if menu {
                 Color.black.opacity(0.6).ignoresSafeArea().onTapGesture { closeMenu() }
                 VStack(alignment: .leading, spacing: 18) {
@@ -106,6 +94,16 @@ struct HarborShell: View {
                     .transition(.move(edge: .leading)).accessibilityIdentifier("navigation-drawer")
             }
         }
+    }
+    private var header: some View {
+        HStack(spacing: 6) {
+            Button { withAnimation(.easeOut(duration: 0.18)) { menu = true } } label: { Image(systemName: "line.3.horizontal").frame(width: 40, height: 44) }.accessibilityLabel("Abrir navegación").accessibilityIdentifier("main-menu")
+            Spacer(minLength: 0)
+            HarborBrand(size: 26)
+            Spacer(minLength: 0)
+            Button { path = NavigationPath(); section = .search } label: { Image("nav-search").resizable().scaledToFit().frame(width: 21, height: 21).frame(width: 34, height: 44) }.accessibilityLabel("Buscar")
+            Button { app.showAccount = true } label: { Image(systemName: "person.crop.circle").frame(width: 34, height: 44) }.accessibilityLabel("Cuenta")
+        }.padding(.horizontal, 12).background(HarborTheme.background)
     }
     @ViewBuilder private var destination: some View {
         switch section {

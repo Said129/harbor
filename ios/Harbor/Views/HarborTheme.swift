@@ -9,11 +9,11 @@ enum HarborTheme {
 
 struct Poster: View {
     let media: Media
-    var width: CGFloat = 116
+    var width: CGFloat? = 116
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
             Artwork(url: media.poster, fallback: media.fallbackPoster, fallbacks: [media.background].compactMap { $0 }, maxPixels: 480)
-                .frame(width: width, height: width * 1.5).clipShape(.rect(cornerRadius: 8))
+                .frame(width: width, height: width.map { $0 * 1.5 }).aspectRatio(2.0 / 3.0, contentMode: .fit).clipShape(.rect(cornerRadius: 8)).accessibilityHidden(true)
                 .overlay(alignment: .bottomTrailing) {
                     if (media.ratingSource == "TMDB" ? InterfacePreferences.shared.showTmdbBadge : InterfacePreferences.shared.showImdbBadge), let rating = media.imdbRating { HStack(spacing: 3) { Text(media.ratingSource ?? "IMDb").font(.system(size: 7, weight: .black)).foregroundStyle(.black).padding(2).background(media.ratingSource == "TMDB" ? Color.mint : .yellow, in: .rect(cornerRadius: 2)); Text(rating).font(.system(size: 9, weight: .semibold)) }.padding(4).background(.black.opacity(0.8), in: .capsule).padding(5) }
                 }

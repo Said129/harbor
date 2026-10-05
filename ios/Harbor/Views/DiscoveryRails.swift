@@ -31,8 +31,8 @@ struct DiscoveryGrid: View {
     var body: some View {
         ScrollView {
             LazyVStack(spacing: 18) {
-                LazyVGrid(columns: [GridItem(.adaptive(minimum: 116), spacing: 12)], spacing: 22) {
-                    ForEach(items, id: \.identity) { media in NavigationLink(value: media) { Poster(media: media) }.buttonStyle(.plain) }
+                LazyVGrid(columns: [GridItem(.adaptive(minimum: 106), spacing: 12, alignment: .top)], spacing: 22) {
+                    ForEach(items, id: \.identity) { media in NavigationLink(value: media) { Poster(media: media, width: nil) }.buttonStyle(.plain) }
                 }
                 if let error { Text(error).font(.caption).foregroundStyle(.orange); Button("Reintentar") { Task { await load() } } }
                 if loading { ProgressView() }

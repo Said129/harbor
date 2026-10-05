@@ -29,7 +29,7 @@ struct CatalogBrowserView: View {
     @State private var offset = 0
     @State private var reachedEnd = false
     @State private var generation = 0
-    private let columns = [GridItem(.adaptive(minimum: 116), spacing: 12)]
+    private let columns = [GridItem(.adaptive(minimum: 106), spacing: 12, alignment: .top)]
     private var genres: [String] { initial.plan.catalog?.extra.first { $0.name == "genre" }?.options ?? [] }
     private var supportsPaging: Bool { initial.plan.catalog?.extra.contains { $0.name == "skip" } ?? false }
     init(app: AppModel, initial: CatalogRow) {
@@ -53,7 +53,7 @@ struct CatalogBrowserView: View {
                 }
                 LazyVGrid(columns: columns, spacing: 20) {
                     ForEach(items, id: \.identity) { media in
-                        NavigationLink(value: media) { Poster(media: media) }.buttonStyle(.plain).accessibilityLabel(media.name).accessibilityIdentifier("catalog-browser-media")
+                        NavigationLink(value: media) { Poster(media: media, width: nil) }.buttonStyle(.plain).accessibilityLabel(media.name).accessibilityIdentifier("catalog-browser-media")
                     }
                 }.padding(.horizontal)
                 if loading { ProgressView().frame(maxWidth: .infinity) }

@@ -46,8 +46,8 @@ struct CollectionDetailView: View {
                     if let description = details?.description ?? collection.description { Text(description).font(.subheadline).foregroundStyle(.secondary) }
                     if let details {
                         Text("\(details.parts.count) películas").font(.headline)
-                        LazyVGrid(columns: [GridItem(.adaptive(minimum: 116), spacing: 12)], spacing: 22) {
-                            ForEach(details.parts, id: \.identity) { media in NavigationLink(value: media) { Poster(media: media) }.buttonStyle(.plain) }
+                        LazyVGrid(columns: [GridItem(.adaptive(minimum: 106), spacing: 12, alignment: .top)], spacing: 22) {
+                            ForEach(details.parts, id: \.identity) { media in NavigationLink(value: media) { Poster(media: media, width: nil) }.buttonStyle(.plain) }
                         }
                     } else if let error { Text(error).foregroundStyle(.orange); Button("Reintentar") { Task { await load() } } }
                     else { ProgressView() }

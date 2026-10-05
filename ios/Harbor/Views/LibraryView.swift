@@ -16,10 +16,10 @@ struct LibraryView: View {
                 Picker("Tipo", selection: $kind) { Text("Todo").tag("all"); Text("Películas").tag("movie"); Text("Series").tag("series") }
                 if app.library.loading { ProgressView().frame(maxWidth: .infinity) }
                 if let error = app.library.error { VStack(alignment: .leading) { Text(error).font(.caption).foregroundStyle(.orange); Button("Reintentar") { Task { await app.library.sync() } } } }
-                LazyVGrid(columns: [GridItem(.adaptive(minimum: 116), spacing: 12)], spacing: 22) {
+                LazyVGrid(columns: [GridItem(.adaptive(minimum: 106), spacing: 12, alignment: .top)], spacing: 22) {
                     ForEach(records) { record in
                         if let media = record.media {
-                            NavigationLink(value: media) { Poster(media: media) }.buttonStyle(.plain)
+                            NavigationLink(value: media) { Poster(media: media, width: nil) }.buttonStyle(.plain)
                                 .contextMenu {
                                     Button(record.bookmarked ? "Quitar de mi lista" : "Añadir a mi lista") { Task { await app.library.toggleBookmark(media) } }
                                     Button(record.watched ? "Marcar como no visto" : "Marcar como visto") { Task {
