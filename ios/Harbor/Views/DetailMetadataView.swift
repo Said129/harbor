@@ -59,7 +59,13 @@ struct DetailMetadataView: View {
             }
         }.padding(.horizontal, 20).padding(.bottom, 32)
             .sheet(isPresented: Binding(get: { imageURL != nil }, set: { if !$0 { imageURL = nil } })) {
-                NavigationStack { if let imageURL { Artwork(url: imageURL, fit: .fit, maxPixels: 1800).background(.black).navigationTitle("Imagen").toolbar { Button("Cerrar") { self.imageURL = nil } } }
+                NavigationStack {
+                    if let imageURL {
+                        Artwork(url: imageURL, fit: .fit, maxPixels: 1800)
+                            .background(.black).navigationTitle("Imagen")
+                            .toolbar { Button("Cerrar") { self.imageURL = nil } }
+                    }
+                }
             }
     }
     private func rail(_ title: String, items: [Media]) -> some View {
