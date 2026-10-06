@@ -171,18 +171,18 @@
   },
   "External SRT": {
     "state": "Partial",
-    "implementation": "`ios/Harbor/Player/MPVController.swift`",
-    "notes": "External addon subtitle URLs passed via sub-add and libass stack pinned. No format/encoding/styling playback certification yet."
+    "implementation": "ios/Harbor/Player/MPVController.swift; Services/SubtitleFileService.swift; Views/SubtitleTracksView.swift",
+    "notes": "Actual addon URLs remain supported. Build 22 adds Files imports for original SRT/ASS/SSA/VTT/SUB extensions, bounded 8 MiB security-scoped streaming copy, private protected per-player storage, acknowledged sub-add/select and observed track IDs. A failed accepted import removes its native track before discarding the copy; close destroys mpv before cleanup. Existing real subtitle playback regression adds original-file preservation, actual imported text and cleanup checks. SRT import Apple gate pending; all encodings/formats and physical Files UI are not yet certified."
   },
   "External ASS / SSA": {
     "state": "Partial",
-    "implementation": "`ios/Harbor/Player/MPVController.swift`",
-    "notes": "External addon subtitle URLs passed via sub-add and libass stack pinned. No format/encoding/styling playback certification yet."
+    "implementation": "ios/Harbor/Player/MPVController.swift; Services/SubtitleFileService.swift; Views/SubtitleTracksView.swift",
+    "notes": "Actual addon URLs remain supported. Build 22 adds Files imports for original SRT/ASS/SSA/VTT/SUB extensions, bounded 8 MiB security-scoped streaming copy, private protected per-player storage, acknowledged sub-add/select and observed track IDs. A failed accepted import removes its native track before discarding the copy; close destroys mpv before cleanup. Existing real subtitle playback regression adds original-file preservation, actual imported text and cleanup checks. SRT import Apple gate pending; all encodings/formats and physical Files UI are not yet certified."
   },
   "External WebVTT": {
     "state": "Partial",
-    "implementation": "`ios/Harbor/Player/MPVController.swift`",
-    "notes": "External addon subtitle URLs passed via sub-add and libass stack pinned. No format/encoding/styling playback certification yet."
+    "implementation": "ios/Harbor/Player/MPVController.swift; Services/SubtitleFileService.swift; Views/SubtitleTracksView.swift",
+    "notes": "Actual addon URLs remain supported. Build 22 adds Files imports for original SRT/ASS/SSA/VTT/SUB extensions, bounded 8 MiB security-scoped streaming copy, private protected per-player storage, acknowledged sub-add/select and observed track IDs. A failed accepted import removes its native track before discarding the copy; close destroys mpv before cleanup. Existing real subtitle playback regression adds original-file preservation, actual imported text and cleanup checks. SRT import Apple gate pending; all encodings/formats and physical Files UI are not yet certified."
   },
   "Cinemeta metadata": {
     "state": "Partial",
@@ -537,7 +537,7 @@
   "Room: downloads": {
     "state": "Partial",
     "implementation": "`ios/Harbor/Services/DownloadManager.swift`; `Views/DownloadsView.swift`; `Views/DetailView.swift`; `HarborApp.swift`",
-    "notes": "Real HTTP/S file transfers with progress/pause/resume, protected index, account filtering, sharing and mpv local playback. Background non-credentialed and ephemeral foreground credentialed sessions. Apple compilation/live file lifecycle and physical background behavior pending. HLS/DASH, torrent and automatic downloads remain incomplete."
+    "notes": "Real HTTP/S file transfers with progress/pause/resume, protected index, account filtering, sharing and mpv local playback. Background non-credentialed and ephemeral foreground credentialed sessions. Apple compilation/live file lifecycle and physical background behavior pending. HLS/DASH, torrent and automatic downloads remain incomplete. Build 21 live start fails download-index on a fresh sandbox. Build 22 creates the support directory and compares canonical paths instead of directory-hint URL equality, retaining before/after no-symlink guards. The existing exact-byte/hash/account/removal gate remains unchanged and pending."
   },
   "User committed uncached downloads": {
     "state": "Partial",
@@ -692,7 +692,7 @@
   "Sports calendar and scores": {
     "state": "Partial",
     "implementation": "ios/Harbor/Views/SportsView.swift; SportsEventView.swift; Services/SportsService.swift; SportsReminderService.swift; Models/Sports.swift",
-    "notes": "Native ESPN schedules/scores/statistics, 161 literal original league definitions, date/status/sport/favorite filters, foreground refresh and per-account preferences. Versioned external-service notice precedes requests. Native local reminders are an iPhone adaptation; Desktop messaging destinations, other providers/generated leagues, standings and advanced match layouts remain pending. Windows observed the public NBA response (5 events/10 competitors); native Apple and physical behavior are not yet verified."
+    "notes": "Native ESPN schedules/scores/statistics, 161 literal original league definitions, date/status/sport/favorite filters, foreground refresh and per-account preferences. Versioned external-service notice precedes requests. Native local reminders are an iPhone adaptation; Desktop messaging destinations, other providers/generated leagues, standings and advanced match layouts remain pending. Windows observed the public NBA response (5 events/10 competitors); native Apple and physical behavior are not yet verified. Actual provider timestamps omit seconds (2025-10-25T23:00Z); build 22 normalizes minute precision before Foundation parsing so valid events are retained. Existing live score/boxscore/standings gate remains unchanged and pending."
   },
   "Sports live/upcoming/final filtering": {
     "state": "Partial",
@@ -1007,7 +1007,7 @@
   "Dual subtitle tracks": {
     "state": "Partial",
     "implementation": "PlayerState / MPVController / PlayerSettingsView",
-    "notes": "Actual main-selection 0/1 distinguishes primary and secondary tracks; text-compatible second track uses native mpv rendering, manual/off selection and persistent preferences for language/top-bottom position. Serialized acknowledged writes reset source FPS before transitions; failures remain local to subtitles. Separate secondary scale, full style fidelity, all formats and physical playback remain pending; Apple regression candidate build 21."
+    "notes": "Actual main-selection 0/1 distinguishes primary and secondary tracks; text-compatible second track uses native mpv rendering, manual/off selection and persistent preferences for language/top-bottom position. Serialized acknowledged writes reset source FPS before transitions; failures remain local to subtitles. Separate secondary scale, full style fidelity, all formats and physical playback remain pending; Apple regression candidate build 21. Build 21 actual native dual text/FPS/replay regression passes. Build 22 incorporates filtered primary/secondary choices and local file import; new native gate pending."
   },
   "Subtitle source FPS correction": {
     "state": "Partial",
@@ -1023,5 +1023,10 @@
     "state": "Partial",
     "implementation": "PlaybackOptions / PlayerSettingsView / MPVController",
     "notes": "Defaults retained: empty preferred language and top placement. Native persistent preference selects a compatible actual secondary track once per video; manual choice prevents automatic reselection. Top/bottom maps the original native secondary-sub-pos policy; old preference documents merge defaults. Apple and physical behavior pending."
+  },
+  "SDH / forced flags": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Player/PlayerState.swift; Player/MPVController.swift; Player/SubtitleLanguages.swift; Views/SubtitleTracksView.swift; SubtitleLanguages.json",
+    "notes": "Actual track-list external/forced/hearing-impaired/default flags drive language/source/HI/forced filters and counts. Original 100 ISO aliases, 82 names and regional policies are extracted from the beta source with SHA256 provenance. Imported status uses observed track IDs, not matching titles. No provider rank or compatibility percentage is invented. Apple/UI/physical verification pending for build 22."
   }
 }

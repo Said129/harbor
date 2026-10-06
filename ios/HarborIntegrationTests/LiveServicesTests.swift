@@ -111,10 +111,10 @@ final class LiveServicesTests: XCTestCase {
 
     func testRealGutenbergEPUBLoadsNativeChapters() async throws {
         try requireOptIn()
-        let value = try await HTTPClient().json("https://gutendex.com/books/1342", timeout: 30)
-        let title = try XCTUnwrap(value["title"].string)
-        let url = try XCTUnwrap(value["formats"]["application/epub+zip"].string)
-        let book = EBook(id: "gutendex:1342", title: title, epub: url)
+        let (books, _) = try await EBookService.shared.catalog(query: "Pride and Prejudice", language: "en", page: 1)
+        let book = try XCTUnwrap(books.first { $0.id == "gutendex:1342" }, "The production catalog must return the requested Gutenberg book")
+        XCTAssertTrue(book.title.localizedCaseInsensitiveContains("Pride and Prejudice"))
+        XCTAssertNotNil(book.epub)
         let owner = "ebook-test-\(UUID().uuidString)"
         do {
             let publication = try await EBookService.shared.open(book, owner: owner)

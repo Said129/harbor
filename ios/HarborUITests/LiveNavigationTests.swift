@@ -70,8 +70,16 @@ final class LiveNavigationTests: XCTestCase {
         app.buttons["settings-video"].tap()
         XCTAssertTrue(app.descendants(matching: .any).matching(identifier: "settings-hwdec").firstMatch.waitForExistence(timeout: 5))
         capture(app, "native-video-settings")
-        app.navigationBars.buttons.firstMatch.tap()
-        app.buttons["settings-subtitles"].tap()
+        let settingsBack = app.navigationBars["Vídeo"].buttons["Ajustes"]
+        XCTAssertTrue(settingsBack.waitForExistence(timeout: 5))
+        XCTAssertTrue(settingsBack.isHittable, "The Harbor header must not cover the native back button")
+        settingsBack.tap()
+        let subtitles = app.buttons["settings-subtitles"]
+        let settingsScroll = app.descendants(matching: .any).matching(identifier: "settings-scroll").firstMatch
+        XCTAssertTrue(settingsScroll.waitForExistence(timeout: 5))
+        reveal(subtitles, in: settingsScroll, attempts: 3)
+        XCTAssertTrue(subtitles.isHittable)
+        subtitles.tap()
         XCTAssertTrue(app.staticTexts["settings-subtitle-preview"].waitForExistence(timeout: 5))
         capture(app, "native-subtitle-settings")
 

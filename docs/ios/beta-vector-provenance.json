@@ -125,7 +125,11 @@
     "src/lib/player/sub-format.ts": "22afeb32ea3470a9677d8cfdfa45fec5d3b505557c0c9cfce9c65fb091c6d33b",
     "src/lib/player/secondary-sub.ts": "7a2ffd9bda1e7b21647a2294fb7a350ac5734719bcf35a596a5205d24620d25e",
     "src/components/player/subtitle-menu/subtitle-fps-panel.tsx": "fc90238d3b128cd7ff1d327c398fe002dd2cd66db01d55bdad52d637fd75b2a4",
-    "src/lib/player/sub-style.ts": "57abc9acdfb8cbe6486c4d995ff0fe968ca24d0f33264b2f0a80780eab9e8fa8"
+    "src/lib/player/sub-style.ts": "57abc9acdfb8cbe6486c4d995ff0fe968ca24d0f33264b2f0a80780eab9e8fa8",
+    "src/lib/subtitles/language.ts": "e24a6b4a1b7008632aeb9d3fd1265aa982e874cf8b346a9554ac58263bb3fc53",
+    "src/lib/subtitles/track-label.ts": "a4de51fb74a727bd43a9e6b0f3ce670c5d7c8ce0ae6dbf5abf1cafe032176ba5",
+    "src/components/player/subtitle-menu/menu-body.tsx": "4cd3039a6ad704f50adc69d3d96869fa0a4481c81bbac78710af4ad42da69c49",
+    "src/components/player/subtitle-menu/utils.ts": "41b5c10df41e940649379ade89add4fd5c80354775115a6db6ccf6129434aed9"
   },
   "fonts": {
     "Fraunces": {

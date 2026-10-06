@@ -88,9 +88,12 @@ actor SportsService {
         return SportsSide(id: id, name: name, logo: logo, score: score, winner: value["winner"] == .bool(true), record: value["records"].array.first?["summary"].string, periods: periods)
     }
     nonisolated private static func isoDate(_ raw: String) -> Date? {
+        // ESPN also publishes minute-precision timestamps, such as
+        // 2025-10-25T23:00Z, while Foundation's internet style needs seconds.
+        let value = raw.range(of: "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}(Z|[+-][0-9]{2}:[0-9]{2})$", options: .regularExpression) != nil ? String(raw.prefix(16)) + ":00" + String(raw.dropFirst(16)) : raw
         let parser = ISO8601DateFormatter()
-        if let date = parser.date(from: raw) { return date }
+        if let date = parser.date(from: value) { return date }
         parser.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
-        return parser.date(from: raw)
+        return parser.date(from: value)
     }
 }

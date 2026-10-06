@@ -40,6 +40,6 @@ struct SettingsView: View {
                 Text("Versión de desarrollo de Harbor para iPhone.")
                 Text("Instala tus addons para obtener sus catálogos y fuentes reales.")
             }
-        }.navigationTitle("Ajustes")
+        }.accessibilityIdentifier("settings-scroll").navigationTitle("Ajustes").navigationBarTitleDisplayMode(.inline)
     }
 }

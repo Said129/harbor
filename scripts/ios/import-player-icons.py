@@ -64,5 +64,24 @@ image("subtitle-fps", svg.encode("utf-8"), "svg", True)
 provenance["files"][relative] = hashlib.sha256((reference / relative).read_bytes()).hexdigest()
 for relative in ["src/lib/player/subtitle-fps.ts", "src/lib/player/sub-format.ts", "src/lib/player/secondary-sub.ts", "src/lib/player/sub-style.ts", "src/components/player/subtitle-menu/subtitle-fps-panel.tsx"]:
     provenance["files"][relative] = hashlib.sha256((reference / relative).read_bytes()).hexdigest()
+relative = "src/lib/subtitles/language.ts"
+source = (reference / relative).read_text(encoding="utf-8")
+language = {}
+for name, key in [("ISO_3_TO_1", "iso3"), ("NAMES", "names")]:
+    block = re.search(r"const " + name + r"[^=]*=\s*\{([\s\S]*?)\n\};", source)
+    if block is None:
+        raise ValueError("Missing original language map: " + name)
+    language[key] = {quoted or bare: value for quoted, bare, value in re.findall(r'\s*(?:"([a-z0-9-]+)"|([a-z0-9_]+)):\s*"([^"]+)"', block[1])}
+    if len(language[key]) < 70:
+        raise ValueError("Incomplete original language map: " + name)
+for name, key in [("LATAM_ALIASES", "latamAliases"), ("LATAM_REGIONS", "latamRegions"), ("BRAZIL_ALIASES", "brazilAliases")]:
+    block = re.search(r"const " + name + r" = new Set\(\[([\s\S]*?)\]\);", source)
+    if block is None:
+        raise ValueError("Missing original language aliases: " + name)
+    language[key] = re.findall(r'"([^"]+)"', block[1])
+(root / "ios/Harbor/SubtitleLanguages.json").write_bytes((json.dumps(language, ensure_ascii=False, indent=2) + "\n").encode("utf-8"))
+provenance["files"][relative] = hashlib.sha256((reference / relative).read_bytes()).hexdigest()
+for relative in ["src/lib/subtitles/track-label.ts", "src/components/player/subtitle-menu/menu-body.tsx", "src/components/player/subtitle-menu/utils.ts"]:
+    provenance["files"][relative] = hashlib.sha256((reference / relative).read_bytes()).hexdigest()
 provenance_path.write_bytes((json.dumps(provenance, indent=2) + "\n").encode("utf-8"))
 print("Preserved 26 original player assets and two original-arrow adaptations for custom intervals")

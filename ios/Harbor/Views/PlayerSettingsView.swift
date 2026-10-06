@@ -102,24 +102,12 @@ struct PlayerSettingsView: View {
                 }
             case .subtitles:
                 if let state {
-                    Section("Pista principal") {
-                        Button("Desactivar") { state.controller?.selectSubtitle("no") }.disabled(state.subtitleChanging)
-                        tracks(state, type: "sub", property: "sid")
-                    }
-                    Section {
-                        Button("Desactivar segunda pista") { state.controller?.selectSubtitle("no", secondary: true) }.disabled(state.subtitleChanging)
-                        ForEach(state.tracks.filter { $0.type == "sub" && !$0.isImageSubtitle }) { track in
-                            Button { state.controller?.selectSubtitle(String(track.id), secondary: true) } label: {
-                                HStack { Text(track.label); Spacer(); if track.mainSelection == 1 { Image("music-check").accessibilityHidden(true) } }
-                            }.disabled(state.subtitleChanging || state.primarySubtitle?.id == track.id)
-                        }
-                    } header: { Text("Segunda pista") } footer: { Text("Los subtítulos secundarios de texto se muestran junto a la pista principal, arriba o abajo según tu preferencia.") }
+                    SubtitleTracksView(state: state)
                     Section {
                         NavigationLink { SubtitleTimingView(state: state) } label: {
                             Label { Text("FPS de subtítulos") } icon: { Image("player-subtitle-fps").resizable().scaledToFit().frame(width: 20, height: 20) }
                         }
                         if state.subtitleChanging { ProgressView("Aplicando cambio…") }
-                        if let message = state.subtitleIssue { Text(message).foregroundStyle(.secondary) }
                     }
                 }
                 Section("Selección") {

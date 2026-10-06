@@ -64,6 +64,7 @@ for key, path, line in entries:
 if progress.keys() - {entry[0] for entry in entries}:
     raise ValueError("Unknown progress keys in beta-parity-status.json")
 header = "# Paridad con la beta de Harbor Desktop\n\n"
+header += "Alcance vigente desde el 2026-10-06: [Harbor para iPhone](MOBILE_SCOPE.md), con funciones esenciales y ajustes útiles. Conservar implementaciones y terminar incrementos nativos empezados; este inventario de referencia no exige portar todas las opciones Desktop. Sus estados de evidencia se conservan y no miden por sí solos el progreso móvil.\n\n"
 header += f"Objetivo {args.requested_version}; checkpoint público {package['version']} (`{args.commit}`). La diferencia de versiones se conserva explícitamente. Capturas del propietario y updater oficial completan la referencia visual. No se cambia la base Desktop del repositorio.\n\n"
 header += f"{len(entries)} entradas: {len(rooms)} secciones, {len(features)} comportamientos revisados y {len(settings)} ajustes declarados. Los módulos beta adicionales se inspeccionan durante cada implementación; esta lista no implica paridad ni que los stubs Desktop funcionen. Ningún ajuste se excluye automáticamente por su nombre.\n\n"
 header += "Estados mantenidos en beta-parity-status.json. Working/Parity necesitan evidencia de comportamiento; código o compilación aislados se registran Partial. La matriz histórica FEATURE_PARITY.md se conserva y no certifica esta beta.\n\n"

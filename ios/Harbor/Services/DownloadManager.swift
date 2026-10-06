@@ -123,7 +123,7 @@ final class DownloadManager: NSObject, URLSessionDownloadDelegate {
         let allowed = ["mp4", "mkv", "m4v", "mov", "webm", "mp3", "m4a", "flac", "aac", "ogg", "wav", "media"]
         guard allowed.contains(item.fileExtension) else { throw HarborError(code: "download-index") }
         let path = try Self.root().appendingPathComponent(item.id.uuidString + "." + item.fileExtension)
-        guard path.standardizedFileURL == path.resolvingSymlinksInPath().standardizedFileURL else { throw HarborError(code: "download-index") }
+        guard path.standardizedFileURL.path == path.resolvingSymlinksInPath().standardizedFileURL.path else { throw HarborError(code: "download-index") }
         return path
     }
 
@@ -158,9 +158,13 @@ final class DownloadManager: NSObject, URLSessionDownloadDelegate {
         } catch { update(id) { $0.status = .failed; $0.message = "No se pudo guardar el archivo descargado." } }
     }
     nonisolated private static func root() throws -> URL {
-        let support = try FileManager.default.url(for: .applicationSupportDirectory, in: .userDomainMask, appropriateFor: nil, create: false).resolvingSymlinksInPath().standardizedFileURL
+        let support = try FileManager.default.url(for: .applicationSupportDirectory, in: .userDomainMask, appropriateFor: nil, create: true).resolvingSymlinksInPath().standardizedFileURL
         let directory = support.appendingPathComponent("Harbor/Downloads", isDirectory: true)
-        guard directory.standardizedFileURL == directory.resolvingSymlinksInPath().standardizedFileURL else { throw HarborError(code: "download-index") }
+        // URL directory hints can change when resolving a path that does not
+        // exist yet. Compare canonical paths, retaining the no-symlink policy.
+        guard directory.standardizedFileURL.path == directory.resolvingSymlinksInPath().standardizedFileURL.path else { throw HarborError(code: "download-index") }
+        try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true, attributes: [.protectionKey: FileProtectionType.completeUntilFirstUserAuthentication])
+        guard directory.standardizedFileURL.path == directory.resolvingSymlinksInPath().standardizedFileURL.path else { throw HarborError(code: "download-index") }
         return directory
     }
     nonisolated private static func staging(_ id: UUID) throws -> URL { try root().appendingPathComponent(id.uuidString + ".part") }

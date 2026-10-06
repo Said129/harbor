@@ -77,10 +77,13 @@ struct HarborShell: View {
     @State private var menu = false
     var body: some View {
         ZStack(alignment: .leading) {
-            NavigationStack(path: $path) {
-                destination
-                    .navigationDestination(for: Media.self) { DetailView(media: $0, app: app) }
-            }.id(section).safeAreaInset(edge: .top, spacing: 0) { header }
+            VStack(spacing: 0) {
+                header
+                NavigationStack(path: $path) {
+                    destination
+                        .navigationDestination(for: Media.self) { DetailView(media: $0, app: app) }
+                }.id(section)
+            }
             if menu {
                 Color.black.opacity(0.6).ignoresSafeArea().onTapGesture { closeMenu() }
                 VStack(alignment: .leading, spacing: 18) {

@@ -67,6 +67,43 @@ final class SubtitlePlaybackTests: XCTestCase {
         XCTAssertNil(state.subtitleIssue)
         XCTAssertNil(state.error)
         XCTAssertGreaterThan(state.renderCalls, 0)
+
+        controller.set("pause", "yes")
+        try await wait(surface, state: state) { state.paused }
+        let replayPrimary = try XCTUnwrap(state.tracks.first { $0.externalFilename.hasSuffix("primary.srt") })
+        controller.selectSubtitle(String(replayPrimary.id))
+        try await wait(surface, state: state) { !state.subtitleChanging && state.primarySubtitle?.id == replayPrimary.id }
+        let importedInput = directory.appendingPathComponent("Imported Spanish.srt")
+        let text = "1\n00:00:00,000 --> 00:00:29,500\nIMPORTED ACTUAL SUBTITLE\n"
+        try text.write(to: importedInput, atomically: true, encoding: .utf8)
+        controller.applySubtitleFPS(25)
+        controller.importLocalSubtitle(importedInput)
+        try await wait(surface, state: state) { !state.subtitleChanging && state.subtitleImportMessage != nil && state.subtitleFPS == 0 }
+        let imported = try XCTUnwrap(state.primarySubtitle)
+        XCTAssertTrue(imported.external)
+        XCTAssertTrue(state.importedSubtitleIDs.contains(imported.id))
+        XCTAssertEqual(imported.title, importedInput.lastPathComponent)
+        let copiedFile = imported.externalFilename.hasPrefix("file:") ? try XCTUnwrap(URL(string: imported.externalFilename)) : URL(fileURLWithPath: imported.externalFilename)
+        XCTAssertNotEqual(copiedFile.standardizedFileURL.path, importedInput.standardizedFileURL.path)
+        XCTAssertEqual(try String(contentsOf: copiedFile, encoding: .utf8), text)
+        controller.run(["seek", "1", "absolute+exact"])
+        try await wait(surface, state: state) { state.primarySubtitleText.contains("IMPORTED ACTUAL") }
+        XCTAssertNil(state.subtitleIssue)
+        XCTAssertEqual(SubtitleLanguages.normalize("spa"), "es")
+        XCTAssertEqual(SubtitleLanguages.normalize("fre"), "fr")
+        XCTAssertEqual(SubtitleLanguages.normalize("es_MX"), "es-419")
+        XCTAssertEqual(SubtitleLanguages.normalize("pt_BR"), "pt-br")
+        let unsupported = directory.appendingPathComponent("unsupported.txt")
+        try text.write(to: unsupported, atomically: true, encoding: .utf8)
+        controller.importLocalSubtitle(unsupported)
+        try await wait(surface, state: state) { !state.subtitleChanging && state.subtitleIssue != nil }
+        XCTAssertEqual(state.primarySubtitle?.id, imported.id)
+        XCTAssertNil(state.error, "A rejected Files import must not stop the loaded video")
+        controller.close()
+        let cleanupDeadline = Date().addingTimeInterval(3)
+        while Date() < cleanupDeadline, FileManager.default.fileExists(atPath: copiedFile.path) { try await Task.sleep(for: .milliseconds(50)) }
+        XCTAssertFalse(FileManager.default.fileExists(atPath: copiedFile.path), "Closing the native player removes its private subtitle copies")
+        XCTAssertEqual(try String(contentsOf: importedInput, encoding: .utf8), text, "The user's original subtitle must remain untouched")
     }
 
     @available(iOS, deprecated: 12.0)

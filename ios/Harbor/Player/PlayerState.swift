@@ -26,6 +26,8 @@ final class PlayerState {
     var containerVideoFPS: Double?
     var subtitleChanging = false
     var subtitleIssue: String?
+    var importedSubtitleIDs: Set<Int> = []
+    var subtitleImportMessage: String?
     var primarySubtitleText = ""
     var secondarySubtitleText = ""
     var videoFPS: Double? { estimatedVideoFPS ?? containerVideoFPS }
@@ -42,6 +44,10 @@ final class PlayerState {
         var title = ""
         var externalFilename = ""
         var mainSelection: Int? = nil
+        var external = false
+        var forced = false
+        var hearingImpaired = false
+        var defaultTrack = false
     }
     struct Chapter: Identifiable {
         let id: Int

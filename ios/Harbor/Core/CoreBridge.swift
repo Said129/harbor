@@ -35,6 +35,8 @@ struct HarborError: Error, LocalizedError, Sendable {
         case "music-capacity": "La biblioteca ha alcanzado el espacio reservado para Música. Elimina archivos para importar otros."
         case "music-folder": "No se pudo leer la carpeta seleccionada. Comprueba su acceso en Archivos y vuelve a intentarlo."
         case "music-folder-limit": "Selecciona una carpeta más pequeña, con hasta 500 archivos de audio. Tu biblioteca anterior se conserva."
+        case "subtitle-file": "No se pudo cargar ese subtítulo. Selecciona un archivo .srt, .ass, .ssa, .vtt o .sub compatible, de hasta 8 MB."
+        case "subtitle-capacity": "Esta reproducción ya tiene 24 archivos de subtítulos importados. Cierra el reproductor y vuelve a abrir el vídeo antes de importar más."
         case "music-player": "No se pudo iniciar la reproducción de Música."
         case "music-playlist-name": "El nombre de la lista debe tener entre 1 y 100 caracteres."
         case "music-playlist-duplicate-name": "Ya existe una lista con este nombre. Elige otro nombre."

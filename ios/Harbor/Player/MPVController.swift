@@ -27,6 +27,7 @@ final class MPVController: GLKViewController {
     private var mediaRevision = 0
     private var acknowledgedSubtitleFPS = 0.0
     private var preferredSecondaryHandled = false
+    private let subtitleSession = UUID()
 
     init(source: PlaybackSource, state: PlayerState, startMs: Double = 0) {
         self.source = source; self.state = state
@@ -189,6 +190,39 @@ final class MPVController: GLKViewController {
         }) { selectSubtitle(String(track.id), secondary: true) }
     }
 
+    func importLocalSubtitle(_ input: URL) {
+        let revision = mediaRevision
+        enqueueSubtitleOperation { controller in
+            guard controller.state.loaded else { throw HarborError(code: "subtitle-context") }
+            controller.state.subtitleImportMessage = nil
+            let subtitle = try await SubtitleFileService.shared.copy(input, session: controller.subtitleSession)
+            do {
+                guard !controller.didClose, controller.mediaRevision == revision else { throw HarborError(code: "subtitle-context") }
+                try await controller.resetSubtitleFPS()
+                try await controller.commandChecked(["sub-add", subtitle.url.absoluteString, "select", subtitle.title])
+                let deadline = Date().addingTimeInterval(7)
+                var importedTrack: Int?
+                while Date() < deadline {
+                    try Task.checkCancellation()
+                    guard !controller.didClose, controller.mediaRevision == revision else { throw HarborError(code: "subtitle-context") }
+                    if let track = controller.state.tracks.first(where: { track in track.type == "sub" && (track.externalFilename == subtitle.url.path || track.externalFilename == subtitle.url.absoluteString) }),
+                       controller.state.primarySubtitle?.id == track.id { importedTrack = track.id; break }
+                    try await Task.sleep(for: .milliseconds(50))
+                }
+                guard let importedTrack else { throw HarborError(code: "subtitle-file") }
+                controller.state.importedSubtitleIDs.insert(importedTrack)
+                controller.state.subtitleImportMessage = "Importado: " + subtitle.title
+            } catch {
+                if !controller.didClose, controller.mediaRevision == revision,
+                   let track = controller.state.tracks.first(where: { $0.type == "sub" && ($0.externalFilename == subtitle.url.path || $0.externalFilename == subtitle.url.absoluteString) }) {
+                    try? await controller.commandChecked(["sub-remove", String(track.id)])
+                }
+                await SubtitleFileService.shared.discard(subtitle, session: controller.subtitleSession)
+                throw error
+            }
+        }
+    }
+
     private func enqueueSubtitleOperation(_ operation: @escaping @MainActor (MPVController) async throws -> Void) {
         guard !didClose, handle != nil else { return }
         let previous = subtitleTail
@@ -206,7 +240,8 @@ final class MPVController: GLKViewController {
             catch {
                 if !didClose, revision == mediaRevision {
                     // An optional subtitle operation must not stop the film.
-                    state.subtitleIssue = "No se pudo aplicar el cambio de subtítulos. La reproducción continúa; vuelve a intentarlo."
+                    if let failure = error as? HarborError, ["subtitle-file", "subtitle-capacity"].contains(failure.code) { state.subtitleIssue = safeMessage(error) }
+                    else { state.subtitleIssue = "No se pudo aplicar el cambio de subtítulos. La reproducción continúa; vuelve a intentarlo." }
                 }
             }
         }
@@ -219,16 +254,30 @@ final class MPVController: GLKViewController {
     }
 
     private func setChecked(_ name: String, _ value: String) async throws {
+        try await performChecked { handle, identifier in
+            value.withCString { pointer in
+                var string: UnsafePointer<CChar>? = pointer
+                return withUnsafeMutablePointer(to: &string) { mpv_set_property_async(handle, identifier, name, MPV_FORMAT_STRING, $0) }
+            }
+        }
+    }
+
+    private func commandChecked(_ values: [String]) async throws {
+        let allocations = values.map { strdup($0) }
+        defer { for allocation in allocations { free(allocation) } }
+        guard allocations.allSatisfy({ $0 != nil }) else { throw HarborError(code: "player-allocation") }
+        var pointers: [UnsafePointer<CChar>?] = allocations.map { $0.map { UnsafePointer<CChar>($0) } } + [nil]
+        try await performChecked { handle, identifier in mpv_command_async(handle, identifier, &pointers) }
+    }
+
+    private func performChecked(_ send: (OpaquePointer, UInt64) -> Int32) async throws {
         guard let handle, !didClose else { throw HarborError(code: "player-not-ready") }
         let identifier = nextOperation
         let revision = mediaRevision
         nextOperation &+= 1
         if nextOperation == 0 { nextOperation = 1 }
         try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<Void, Error>) in
-            let result = value.withCString { pointer in
-                var string: UnsafePointer<CChar>? = pointer
-                return withUnsafeMutablePointer(to: &string) { mpv_set_property_async(handle, identifier, name, MPV_FORMAT_STRING, $0) }
-            }
+            let result = send(handle, identifier)
             guard result >= 0 else { continuation.resume(throwing: HarborError(code: "mpv-\(result)")); return }
             let timeout = Task { @MainActor [weak self] in
                 do { try await Task.sleep(for: .seconds(5)) } catch { return }
@@ -310,6 +359,8 @@ final class MPVController: GLKViewController {
                 state.primarySubtitleText = ""
                 state.secondarySubtitleText = ""
                 state.subtitleIssue = nil
+                state.importedSubtitleIDs = []
+                state.subtitleImportMessage = nil
                 state.ended = false
                 state.loaded = false
                 state.hasPosition = false
@@ -431,9 +482,11 @@ final class MPVController: GLKViewController {
             guard let id = fields["id"], id.format == MPV_FORMAT_INT64, let type = string("type") else { continue }
             let label = [string("title"), string("lang"), string("codec")].compactMap { $0 }.joined(separator: " · ")
             let selected = fields["selected"].map { $0.format == MPV_FORMAT_FLAG && $0.u.flag != 0 } ?? false
+            let flag: (String) -> Bool = { key in fields[key].map { $0.format == MPV_FORMAT_FLAG && $0.u.flag != 0 } ?? false }
             let selection = fields["main-selection"].flatMap { $0.format == MPV_FORMAT_INT64 ? Int($0.u.int64) : nil }
             tracks.append(.init(id: Int(id.u.int64), type: type, label: label.isEmpty ? "Pista \(id.u.int64)" : label, selected: selected,
-                                codec: string("codec") ?? "", language: string("lang") ?? "", title: string("title") ?? "", externalFilename: string("external-filename") ?? "", mainSelection: selection))
+                                codec: string("codec") ?? "", language: string("lang") ?? "", title: string("title") ?? "", externalFilename: string("external-filename") ?? "", mainSelection: selection,
+                                external: flag("external"), forced: flag("forced"), hearingImpaired: flag("hearing-impaired"), defaultTrack: flag("default")))
         }
         state.tracks = tracks
         applyPreferredSecondary()
@@ -469,6 +522,8 @@ final class MPVController: GLKViewController {
         if let context { EAGLContext.setCurrent(context) }
         if let renderer { mpv_render_context_free(renderer); self.renderer = nil }
         if let handle { MPVConfiguration.destroy(handle); self.handle = nil }
+        let session = subtitleSession
+        Task { await SubtitleFileService.shared.cleanup(session) }
         state.controller = nil
         do { try AVAudioSession.sharedInstance().setActive(false, options: .notifyOthersOnDeactivation) }
         catch { state.error = "No se pudo cerrar la sesión de audio." }
