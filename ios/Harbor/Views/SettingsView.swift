@@ -26,7 +26,10 @@ struct SettingsView: View {
                         .accessibilityIdentifier("settings-\(page.rawValue)")
                 }
             }
-            Section("Contenido") { NavigationLink("Proveedores de metadata") { MetadataSettingsView() } }
+            Section("Contenido") {
+                NavigationLink("Proveedores de metadata") { MetadataSettingsView() }
+                NavigationLink("Descargas y almacenamiento") { DownloadsView(app: app) }
+            }
             Section("Apariencia") {
                 NavigationLink("Temas y colores") { ThemeSettingsView() }
                 NavigationLink("Interfaz y navegación") { InterfaceSettingsView() }

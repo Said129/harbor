@@ -180,7 +180,7 @@ private struct VODDetailView: View {
                 VODEpisodeRow(episode: episode, media: media, resume: app.resume, revision: progressRevision)
             }.buttonStyle(.plain).disabled(resolving)
             Button { Task { await download(episode.channel, episode: episode) } } label: {
-                Image("nav-downloads").resizable().scaledToFit().frame(width: 20, height: 20).frame(width: 32, height: 44)
+                Image("nav-download").resizable().scaledToFit().frame(width: 20, height: 20).frame(width: 32, height: 44)
             }.disabled(downloading).accessibilityLabel("Descargar episodio \(episode.episode)")
         }.padding(12).background(HarborTheme.surface, in: .rect(cornerRadius: 10))
     }
@@ -191,7 +191,7 @@ private struct VODDetailView: View {
                 if let overview = enriched?.description, overview != original.description { Text(overview).font(.subheadline).foregroundStyle(.secondary) }
                 if let movie {
                     Button { Task { await play(movie.channel) } } label: { Label("Reproducir", image: "ui-play-filled").frame(maxWidth: .infinity).padding(8) }.buttonStyle(.borderedProminent).disabled(resolving)
-                    Button { Task { await download(movie.channel) } } label: { Label("Descargar", image: "nav-downloads") }.disabled(downloading)
+                    Button { Task { await download(movie.channel) } } label: { Label("Descargar", image: "nav-download") }.disabled(downloading)
                 }
                 if loading || resolving { ProgressView() }
                 if let error { Text(error).font(.caption).foregroundStyle(.orange) }

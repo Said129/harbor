@@ -4,6 +4,8 @@ import CryptoKit
 
 enum DownloadStatus: String, Codable, Sendable {
     case downloading, paused, complete, failed
+    var isActive: Bool { self == .downloading || self == .paused }
+    var rank: Int { isActive ? 0 : self == .failed ? 1 : 2 }
     var title: String {
         switch self {
         case .downloading: "Descargando"
@@ -84,7 +86,14 @@ final class DownloadManager: NSObject, URLSessionDownloadDelegate {
         }
     }
 
-    func list(owner: String) -> [DownloadItem] { items.filter { $0.owner == Self.ownerHash(owner) }.sorted { $0.started > $1.started } }
+    func list(owner: String) -> [DownloadItem] {
+        let hash = Self.ownerHash(owner)
+        return items.filter { $0.owner == hash }.sorted {
+            if $0.status.rank != $1.status.rank { return $0.status.rank < $1.status.rank }
+            if $0.started != $1.started { return $0.started > $1.started }
+            return $0.id.uuidString < $1.id.uuidString
+        }
+    }
 
     func start(source: PlaybackSource, media: Media, episode: Episode?, owner: String, cellular: Bool) throws {
         guard ready else { throw HarborError(code: "download-index") }
@@ -103,18 +112,21 @@ final class DownloadManager: NSObject, URLSessionDownloadDelegate {
         task.taskDescription = item.id.uuidString; tasks[item.id] = task; task.resume()
     }
 
-    func toggle(_ item: DownloadItem) {
-        guard let task = tasks[item.id] else { return }
-        if item.status == .paused { task.resume(); update(item.id) { $0.status = .downloading } }
-        else if item.status == .downloading { task.suspend(); update(item.id) { $0.status = .paused } }
+    func toggle(_ item: DownloadItem, owner: String) {
+        let hash = Self.ownerHash(owner)
+        guard ready, let current = items.first(where: { $0.id == item.id && $0.owner == hash }), let task = tasks[current.id] else { return }
+        if current.status == .paused { task.resume(); update(current.id) { $0.status = .downloading } }
+        else if current.status == .downloading { task.suspend(); update(current.id) { $0.status = .paused } }
     }
 
-    func remove(_ item: DownloadItem) {
-        guard ready else { return }
+    func remove(_ item: DownloadItem, owner: String) {
+        let hash = Self.ownerHash(owner)
+        guard ready, let current = items.first(where: { $0.id == item.id && $0.owner == hash }) else { return }
         do {
-            try commit(items.filter { $0.id != item.id })
-            tasks.removeValue(forKey: item.id)?.cancel()
-            let candidates = [try file(item), try Self.staging(item.id)]
+            let candidates = [try file(current), try Self.staging(current.id)]
+            try commit(items.filter { $0.id != current.id })
+            tasks.removeValue(forKey: current.id)?.cancel()
+            lastWrite[current.id] = nil
             for file in candidates where FileManager.default.fileExists(atPath: file.path) { try FileManager.default.removeItem(at: file) }
         } catch { self.error = "No se pudo eliminar el archivo descargado." }
     }

@@ -56,7 +56,7 @@ struct DetailView: View {
                         HStack(spacing: 14) {
                             Button { resolutionTask = Task { await model.play(offer, resume: app.resume, library: app.library) } } label: { VStack(alignment: .leading, spacing: 8) { Text(offer.title); Text("\(offer.source) · \(offer.quality)").font(.caption).foregroundStyle(.secondary) }.frame(maxWidth: .infinity, minHeight: 44, alignment: .leading) }.buttonStyle(.borderless).disabled(model.resolving || model.pendingPlayback != nil).accessibilityIdentifier("stream-offer")
                             if ["movie", "series", "anime", "music"].contains(model.media.type) {
-                                Button { Task { await download(offer) } } label: { Image("nav-downloads").resizable().scaledToFit().frame(width: 24, height: 24).frame(width: 38, height: 44) }.buttonStyle(.borderless).disabled(downloading).accessibilityLabel("Descargar esta fuente")
+                                Button { Task { await download(offer) } } label: { Image("nav-download").resizable().scaledToFit().frame(width: 24, height: 24).frame(width: 38, height: 44) }.buttonStyle(.borderless).disabled(downloading).accessibilityLabel("Descargar esta fuente")
                             }
                         }
                     }
