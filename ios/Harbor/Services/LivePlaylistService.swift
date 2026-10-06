@@ -19,6 +19,7 @@ actor LivePlaylistService {
         session = URLSession(configuration: configuration, delegate: PlaylistRedirectPolicy(), delegateQueue: nil)
     }
     func load(_ source: LivePlaylistSource, owner: String, refresh: Bool) async throws -> [LiveChannel] {
+        if source.xtream != nil { return try await XtreamClient(source: source, owner: owner).live(refresh: refresh) }
         let file = try cacheFile(source, owner: owner)
         let exists = FileManager.default.fileExists(atPath: file.path)
         let savedAt = try? file.resourceValues(forKeys: [.contentModificationDateKey]).contentModificationDate
@@ -42,11 +43,12 @@ actor LivePlaylistService {
         return channels
     }
     func remove(_ source: LivePlaylistSource, owner: String) throws {
+        try XtreamClient.remove(source: source.id, owner: owner)
         let file = try cacheFile(source, owner: owner)
         if FileManager.default.fileExists(atPath: file.path) { try FileManager.default.removeItem(at: file) }
     }
     nonisolated static func validURL(_ raw: String) -> URL? {
-        guard !raw.unicodeScalars.contains(where: CharacterSet.controlCharacters.contains), let url = URL(string: raw), ["http", "https"].contains(url.scheme), url.host != nil, url.user == nil, url.password == nil else { return nil }
+        guard !raw.unicodeScalars.contains(where: CharacterSet.controlCharacters.contains), let url = URL(string: raw), ["http", "https"].contains(url.scheme?.lowercased()), url.host != nil, url.user == nil, url.password == nil else { return nil }
         return url
     }
     private func download(_ url: URL) async throws -> Data {

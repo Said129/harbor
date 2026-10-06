@@ -5,6 +5,8 @@ struct LivePlaylistSource: Codable, Identifiable, Hashable, Sendable {
     let id: String
     var name: String
     var url: String?
+    var xtream: XtreamAccount?
+    var xtreamContainer: String?
 }
 struct LiveChannel: Codable, Identifiable, Hashable, Sendable {
     let id: String

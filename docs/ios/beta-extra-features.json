@@ -95,5 +95,17 @@
       "Home secondary button selection",
       "Home Continue Watching placement"
     ]
+  },
+  {
+    "source": "src/lib/iptv/vod.ts",
+    "features": ["M3U VOD classification", "VOD M3U episode grouping"]
+  },
+  {
+    "source": "src/lib/iptv/vod-title.ts",
+    "features": ["VOD title normalization"]
+  },
+  {
+    "source": "src/lib/iptv/xtream.ts",
+    "features": ["Xtream short EPG", "Xtream live container selection"]
   }
 ]

@@ -1266,6 +1266,26 @@
     {
       "id": "Home Continue Watching placement",
       "source": "src/lib/home-customization.ts"
+    },
+    {
+      "id": "M3U VOD classification",
+      "source": "src/lib/iptv/vod.ts"
+    },
+    {
+      "id": "VOD M3U episode grouping",
+      "source": "src/lib/iptv/vod.ts"
+    },
+    {
+      "id": "VOD title normalization",
+      "source": "src/lib/iptv/vod-title.ts"
+    },
+    {
+      "id": "Xtream short EPG",
+      "source": "src/lib/iptv/xtream.ts"
+    },
+    {
+      "id": "Xtream live container selection",
+      "source": "src/lib/iptv/xtream.ts"
     }
   ],
   "settings": [

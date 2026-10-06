@@ -13,6 +13,7 @@ struct MangaImage: View {
     var onSize: ((CGSize) -> Void)?
     @State private var image: UIImage?
     @State private var failed = false
+    private var signature: String { [owner, book.id, path ?? "cover", String(maxPixels)].joined(separator: "|") }
     var body: some View {
         Group {
             if let image { Image(uiImage: image).resizable().scaledToFit().accessibilityLabel(book.title) }
@@ -22,7 +23,7 @@ struct MangaImage: View {
                     else { ProgressView() }
                 }
             }
-        }.task(id: owner + "|" + book.id + "|" + (path ?? "cover") + "|" + String(maxPixels)) { await load() }
+        }.task(id: signature) { await load() }
     }
     private func load() async {
         failed = false; image = nil

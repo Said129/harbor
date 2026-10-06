@@ -757,7 +757,7 @@
   "Persistent IPTV cache": {
     "state": "Partial",
     "implementation": "ios/Harbor/Views/LiveTVView.swift; Models/LiveTV.swift; Services/M3UParser.swift; LivePlaylistService.swift",
-    "notes": "Native M3U URL/file import, actual channels/categories/search/favorites, owner-isolated protected six-hour cache and account-scoped Keychain source settings. VLC/pipe headers pass through the unchanged Rust resolver; unsupported DRM remains explicit. Sports opens the configured Live TV search. Public Spanish playlist returned HTTP 200 and 327 entries on Windows; native cache/isolation/resolution test is pending Apple. XMLTV, catchup playback, Xtream API/VOD and full Desktop layouts remain in scope."
+    "notes": "Native M3U URL/file import, actual channels/categories/search/favorites, owner-isolated protected six-hour cache and account-scoped Keychain source settings. VLC/pipe headers pass through the unchanged Rust resolver; unsupported DRM remains explicit. Sports opens the configured Live TV search. Public Spanish playlist returned HTTP 200 and 327 entries on Windows; native cache/isolation/resolution test is pending Apple. XMLTV, catchup playback, Xtream API/VOD and full Desktop layouts remain in scope. Xtream JSON responses also have six-hour TTL, a 32 MiB response cap and per-source 48-file/128 MiB protected cache, with response validation before replacement."
   },
   "Channel headers": {
     "state": "Partial",
@@ -828,5 +828,60 @@
     "state": "Partial",
     "implementation": "ios/Harbor/Models/PageCustomization.swift; Views/PageCustomizationView.swift; HomeView.swift; ContentPageView.swift",
     "notes": "Native per-owner/per-page Keychain customization: reorder/hide/rename rows, original Top 10 numerals, select hero catalog, rectangular/capsule Play, More Info/watchlist secondary button and Home Continue Watching placement. Uses actual catalog/TMDB metadata and original Desktop pencil geometry. Custom source folders and list rows remain pending; expanded Apple compilation and physical behavior are not yet verified."
+  },
+  "Room: vod": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Models/VOD.swift; Xtream.swift; Services/XtreamClient.swift; Views/VODView.swift; LiveTVView.swift",
+    "notes": "Native source/category/search VOD grids, Desktop M3U classification/title/episode grouping, actual Xtream account/live/movie/series/episode operations, original UA and output-format negotiation, short EPG, direct Rust/mpv playback, local owner-scoped resume and HTTP downloads. Credentials are in owner-scoped Keychain; API caches are protected/hashed and keep prior valid responses after network or shape failures. EPG number/string timestamps are accepted. One offline test checks conflicting M3U hints, natural episode order/non-Latin identity and credential URL encoding. Apple build/test and real configured Xtream/provider behavior remain unverified. XMLTV/time offsets/catchup, source editing/export, VOD metadata enrichment and advanced layouts remain pending."
+  },
+  "Xtream credentials": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Models/VOD.swift; Xtream.swift; Services/XtreamClient.swift; Views/VODView.swift; LiveTVView.swift",
+    "notes": "Native source/category/search VOD grids, Desktop M3U classification/title/episode grouping, actual Xtream account/live/movie/series/episode operations, original UA and output-format negotiation, short EPG, direct Rust/mpv playback, local owner-scoped resume and HTTP downloads. Credentials are in owner-scoped Keychain; API caches are protected/hashed and keep prior valid responses after network or shape failures. EPG number/string timestamps are accepted. One offline test checks conflicting M3U hints, natural episode order/non-Latin identity and credential URL encoding. Apple build/test and real configured Xtream/provider behavior remain unverified. XMLTV/time offsets/catchup, source editing/export, VOD metadata enrichment and advanced layouts remain pending."
+  },
+  "Xtream VOD movies": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Models/VOD.swift; Xtream.swift; Services/XtreamClient.swift; Views/VODView.swift; LiveTVView.swift",
+    "notes": "Native source/category/search VOD grids, Desktop M3U classification/title/episode grouping, actual Xtream account/live/movie/series/episode operations, original UA and output-format negotiation, short EPG, direct Rust/mpv playback, local owner-scoped resume and HTTP downloads. Credentials are in owner-scoped Keychain; API caches are protected/hashed and keep prior valid responses after network or shape failures. EPG number/string timestamps are accepted. One offline test checks conflicting M3U hints, natural episode order/non-Latin identity and credential URL encoding. Apple build/test and real configured Xtream/provider behavior remain unverified. XMLTV/time offsets/catchup, source editing/export, VOD metadata enrichment and advanced layouts remain pending."
+  },
+  "Xtream VOD series": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Models/VOD.swift; Xtream.swift; Services/XtreamClient.swift; Views/VODView.swift; LiveTVView.swift",
+    "notes": "Native source/category/search VOD grids, Desktop M3U classification/title/episode grouping, actual Xtream account/live/movie/series/episode operations, original UA and output-format negotiation, short EPG, direct Rust/mpv playback, local owner-scoped resume and HTTP downloads. Credentials are in owner-scoped Keychain; API caches are protected/hashed and keep prior valid responses after network or shape failures. EPG number/string timestamps are accepted. One offline test checks conflicting M3U hints, natural episode order/non-Latin identity and credential URL encoding. Apple build/test and real configured Xtream/provider behavior remain unverified. XMLTV/time offsets/catchup, source editing/export, VOD metadata enrichment and advanced layouts remain pending."
+  },
+  "Setting: iptvPlaylists": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Models/VOD.swift; Xtream.swift; Services/XtreamClient.swift; Views/VODView.swift; LiveTVView.swift",
+    "notes": "Native source/category/search VOD grids, Desktop M3U classification/title/episode grouping, actual Xtream account/live/movie/series/episode operations, original UA and output-format negotiation, short EPG, direct Rust/mpv playback, local owner-scoped resume and HTTP downloads. Credentials are in owner-scoped Keychain; API caches are protected/hashed and keep prior valid responses after network or shape failures. EPG number/string timestamps are accepted. One offline test checks conflicting M3U hints, natural episode order/non-Latin identity and credential URL encoding. Apple build/test and real configured Xtream/provider behavior remain unverified. XMLTV/time offsets/catchup, source editing/export, VOD metadata enrichment and advanced layouts remain pending."
+  },
+  "Setting: iptvLiveContainer": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Models/VOD.swift; Xtream.swift; Services/XtreamClient.swift; Views/VODView.swift; LiveTVView.swift",
+    "notes": "Native source/category/search VOD grids, Desktop M3U classification/title/episode grouping, actual Xtream account/live/movie/series/episode operations, original UA and output-format negotiation, short EPG, direct Rust/mpv playback, local owner-scoped resume and HTTP downloads. Credentials are in owner-scoped Keychain; API caches are protected/hashed and keep prior valid responses after network or shape failures. EPG number/string timestamps are accepted. One offline test checks conflicting M3U hints, natural episode order/non-Latin identity and credential URL encoding. Apple build/test and real configured Xtream/provider behavior remain unverified. XMLTV/time offsets/catchup, source editing/export, VOD metadata enrichment and advanced layouts remain pending."
+  },
+  "M3U VOD classification": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Models/VOD.swift; Xtream.swift; Services/XtreamClient.swift; Views/VODView.swift; LiveTVView.swift",
+    "notes": "Native source/category/search VOD grids, Desktop M3U classification/title/episode grouping, actual Xtream account/live/movie/series/episode operations, original UA and output-format negotiation, short EPG, direct Rust/mpv playback, local owner-scoped resume and HTTP downloads. Credentials are in owner-scoped Keychain; API caches are protected/hashed and keep prior valid responses after network or shape failures. EPG number/string timestamps are accepted. One offline test checks conflicting M3U hints, natural episode order/non-Latin identity and credential URL encoding. Apple build/test and real configured Xtream/provider behavior remain unverified. XMLTV/time offsets/catchup, source editing/export, VOD metadata enrichment and advanced layouts remain pending."
+  },
+  "VOD M3U episode grouping": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Models/VOD.swift; Xtream.swift; Services/XtreamClient.swift; Views/VODView.swift; LiveTVView.swift",
+    "notes": "Native source/category/search VOD grids, Desktop M3U classification/title/episode grouping, actual Xtream account/live/movie/series/episode operations, original UA and output-format negotiation, short EPG, direct Rust/mpv playback, local owner-scoped resume and HTTP downloads. Credentials are in owner-scoped Keychain; API caches are protected/hashed and keep prior valid responses after network or shape failures. EPG number/string timestamps are accepted. One offline test checks conflicting M3U hints, natural episode order/non-Latin identity and credential URL encoding. Apple build/test and real configured Xtream/provider behavior remain unverified. XMLTV/time offsets/catchup, source editing/export, VOD metadata enrichment and advanced layouts remain pending."
+  },
+  "VOD title normalization": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Models/VOD.swift; Xtream.swift; Services/XtreamClient.swift; Views/VODView.swift; LiveTVView.swift",
+    "notes": "Native source/category/search VOD grids, Desktop M3U classification/title/episode grouping, actual Xtream account/live/movie/series/episode operations, original UA and output-format negotiation, short EPG, direct Rust/mpv playback, local owner-scoped resume and HTTP downloads. Credentials are in owner-scoped Keychain; API caches are protected/hashed and keep prior valid responses after network or shape failures. EPG number/string timestamps are accepted. One offline test checks conflicting M3U hints, natural episode order/non-Latin identity and credential URL encoding. Apple build/test and real configured Xtream/provider behavior remain unverified. XMLTV/time offsets/catchup, source editing/export, VOD metadata enrichment and advanced layouts remain pending."
+  },
+  "Xtream short EPG": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Models/VOD.swift; Xtream.swift; Services/XtreamClient.swift; Views/VODView.swift; LiveTVView.swift",
+    "notes": "Native source/category/search VOD grids, Desktop M3U classification/title/episode grouping, actual Xtream account/live/movie/series/episode operations, original UA and output-format negotiation, short EPG, direct Rust/mpv playback, local owner-scoped resume and HTTP downloads. Credentials are in owner-scoped Keychain; API caches are protected/hashed and keep prior valid responses after network or shape failures. EPG number/string timestamps are accepted. One offline test checks conflicting M3U hints, natural episode order/non-Latin identity and credential URL encoding. Apple build/test and real configured Xtream/provider behavior remain unverified. XMLTV/time offsets/catchup, source editing/export, VOD metadata enrichment and advanced layouts remain pending."
+  },
+  "Xtream live container selection": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Models/VOD.swift; Xtream.swift; Services/XtreamClient.swift; Views/VODView.swift; LiveTVView.swift",
+    "notes": "Native source/category/search VOD grids, Desktop M3U classification/title/episode grouping, actual Xtream account/live/movie/series/episode operations, original UA and output-format negotiation, short EPG, direct Rust/mpv playback, local owner-scoped resume and HTTP downloads. Credentials are in owner-scoped Keychain; API caches are protected/hashed and keep prior valid responses after network or shape failures. EPG number/string timestamps are accepted. One offline test checks conflicting M3U hints, natural episode order/non-Latin identity and credential URL encoding. Apple build/test and real configured Xtream/provider behavior remain unverified. XMLTV/time offsets/catchup, source editing/export, VOD metadata enrichment and advanced layouts remain pending."
   }
 }

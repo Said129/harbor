@@ -85,8 +85,17 @@ struct CustomizedHero: View {
     @State private var selected: [Media] = []
     @State private var enrichedSignature = ""
     private var source: PageRail? { rails.first { $0.id == customization.layout.heroSource } }
-    private var signature: String { (source?.id ?? "automatic") + "|" + (source?.metas.prefix(5).map(\.identity).joined(separator: "|") ?? "") + "|" + (app.user?.id ?? "guest") + "|" + app.addons.filter(\.enabled).map(\.id).joined() + "|" + MetadataPreferences.shared.region + "|" + MetadataPreferences.shared.language + "|" + String(MetadataPreferences.shared.translateTitles) + "|" + EBookShelf.hash(MetadataPreferences.shared.tmdbKey) }
-    private var metas: [Media] { source == nil ? defaults : enrichedSignature == signature && !selected.isEmpty ? selected : Array(source?.metas.prefix(5) ?? []) }
+    private var signature: String {
+        let ids = source?.metas.prefix(5).map(\.identity).joined(separator: "|") ?? ""
+        let addons = app.addons.filter(\.enabled).map(\.id).joined()
+        let settings = MetadataPreferences.shared
+        return [source?.id ?? "automatic", ids, app.user?.id ?? "guest", addons, settings.region, settings.language, String(settings.translateTitles), EBookShelf.hash(settings.tmdbKey)].joined(separator: "|")
+    }
+    private var metas: [Media] {
+        guard let source else { return defaults }
+        if enrichedSignature == signature && !selected.isEmpty { return selected }
+        return Array(source.metas.prefix(5))
+    }
     var body: some View {
         Group { if !metas.isEmpty { CinemaHero(metas: metas, app: app, playSquare: customization.layout.playButtonSquare, moreInfo: customization.layout.secondaryMoreInfo) } }
             .task(id: signature) {
