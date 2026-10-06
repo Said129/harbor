@@ -56,6 +56,7 @@ struct PlayerView: View {
     @State private var pendingEpisode: Episode?
     @State private var episodeChanging = false
     @State private var sourceChanging = false
+    @State private var retrying = false
     @State private var pendingSourceChange = false
     @State private var autoNextCancelled = false
     @State private var adjacent: (previous: Episode?, next: Episode?) = (nil, nil)
@@ -65,6 +66,7 @@ struct PlayerView: View {
     @AppStorage("mpvHwdec") private var hardwareDecoding = HardwareDecoding.auto
     @Environment(\.dismiss) private var dismiss
     @Environment(\.scenePhase) private var scenePhase
+    @Environment(\.verticalSizeClass) private var verticalSizeClass
     @Environment(\.accessibilityVoiceOverEnabled) private var voiceOver
     var body: some View {
         withLifecycle(surface
@@ -106,10 +108,10 @@ struct PlayerView: View {
             VStack(spacing: 12) {
                 if (state.buffering || !state.loaded) && !state.ended && state.error == nil { ProgressView().tint(.white) }
                 if state.ended && state.error == nil { Text("La reproducción ha terminado.").padding().background(.black.opacity(0.6)) }
-                if let error = state.error { Text(error).padding().background(.black.opacity(0.8)).accessibilityIdentifier("player-error") }
                 if let error = progressError ?? session.storageWarning { Text(error).font(.caption).padding().background(.black.opacity(0.8)) }
                 if let issue = state.playbackIssue { Text(issue).font(.caption).padding().background(.black.opacity(0.8)) }
             }.padding().allowsHitTesting(false)
+            if let error = state.error { failureNotice(error) }
             if controlsVisible { controls.transition(.opacity) }
             if let next = adjacent.next, showUpNext {
                 VStack {
@@ -123,6 +125,27 @@ struct PlayerView: View {
                 }.padding(.horizontal, 12).padding(.bottom, controlsVisible ? 160 : 24).transition(.opacity)
             }
         }
+    }
+
+    private func failureNotice(_ message: String) -> some View {
+        let layout = verticalSizeClass == .compact ? AnyLayout(HStackLayout(spacing: 16)) : AnyLayout(VStackLayout(spacing: 10))
+        return VStack(spacing: 14) {
+            Text(message).multilineTextAlignment(.center).accessibilityIdentifier("player-error")
+            layout {
+                if state.controller?.canRestartPlayback == true {
+                    Button(retrying || state.restarting ? "Reintentando…" : "Reintentar") { requestRetry() }
+                        .frame(maxWidth: .infinity)
+                        .disabled(retrying || state.restarting || sourceChanging || episodeChanging)
+                        .accessibilityIdentifier("player-error-retry")
+                }
+                if changeSource != nil {
+                    Button("Cambiar fuente") { requestSourceChange() }.frame(maxWidth: .infinity)
+                        .disabled(retrying || state.restarting || sourceChanging || episodeChanging)
+                        .accessibilityIdentifier("player-error-change-source")
+                }
+                Button("Cerrar") { dismiss() }.frame(maxWidth: .infinity).accessibilityIdentifier("player-error-close")
+            }.font(.subheadline.weight(.semibold)).buttonStyle(.bordered)
+        }.padding(20).frame(maxWidth: 420).background(.black.opacity(0.88), in: .rect(cornerRadius: 14)).padding()
     }
 
     @ViewBuilder private var episodePanel: some View {
@@ -183,28 +206,28 @@ struct PlayerView: View {
     }
 
     private var canAutoHide: Bool {
-        controlsVisible && preferences.options.autoHideControls && state.loaded && !state.paused && !state.buffering && !state.ended && state.error == nil && !editingSeek && settingsPage == nil && !showEpisodes && !episodeChanging && !sourceChanging && !voiceOver && scenePhase == .active
+        controlsVisible && preferences.options.autoHideControls && state.loaded && !state.paused && !state.buffering && !state.ended && state.error == nil && !editingSeek && settingsPage == nil && !showEpisodes && !episodeChanging && !sourceChanging && !retrying && !state.restarting && !voiceOver && scenePhase == .active
     }
     private var canChangeEpisode: Bool { changeEpisode != nil && media?.episodic == true && !(media?.videos?.isEmpty ?? true) && (library.map { $0.owner == session.owner } ?? true) }
     private var automaticAdvanceEnabled: Bool {
         preferences.options.autoPlayNextEpisode && !autoNextCancelled && EpisodeSequence.permitsAutomaticAdvance(duration: state.duration, startedAtMs: session.advanceStartedAtMs ?? session.startMs, ended: true, hasError: state.error != nil)
     }
     private var autoAdvanceReady: Bool {
-        active && canChangeEpisode && adjacent.next != nil && automaticAdvanceEnabled && state.endedNaturally && !episodeChanging && !sourceChanging && !pendingSourceChange && pendingEpisode == nil && settingsPage == nil && !showEpisodes && scenePhase == .active
+        active && canChangeEpisode && adjacent.next != nil && automaticAdvanceEnabled && state.endedNaturally && !episodeChanging && !sourceChanging && !retrying && !state.restarting && !pendingSourceChange && pendingEpisode == nil && settingsPage == nil && !showEpisodes && scenePhase == .active
     }
     private var showUpNext: Bool {
         let remaining = state.duration - state.position
         let lead = EpisodeSequence.leadSeconds(setting: preferences.options.nextEpisodeLeadSeconds, duration: state.duration)
-        return canChangeEpisode && !episodeChanging && !sourceChanging && !pendingSourceChange && !autoNextCancelled && state.loaded && state.error == nil && settingsPage == nil && !showEpisodes && scenePhase == .active && lead > 0 && remaining > 0.5 && remaining <= lead && !state.ended
+        return canChangeEpisode && !episodeChanging && !sourceChanging && !retrying && !state.restarting && !pendingSourceChange && !autoNextCancelled && state.loaded && state.error == nil && settingsPage == nil && !showEpisodes && scenePhase == .active && lead > 0 && remaining > 0.5 && remaining <= lead && !state.ended
     }
     private func requestEpisode(_ episode: Episode) {
-        guard active, canChangeEpisode, !episodeChanging, !sourceChanging, episode.available, scenePhase == .active, let changeEpisode else { return }
+        guard active, canChangeEpisode, !episodeChanging, !sourceChanging, !retrying, !state.restarting, episode.available, scenePhase == .active, let changeEpisode else { return }
         episodeChanging = true
         saveCheckpoint(exiting: true)
         changeEpisode(episode)
     }
     private func requestSourceChange() {
-        guard active, !sourceChanging, !episodeChanging, scenePhase == .active, library.map({ $0.owner == session.owner }) ?? true, let changeSource else { return }
+        guard active, !sourceChanging, !episodeChanging, !retrying, !state.restarting, scenePhase == .active, library.map({ $0.owner == session.owner }) ?? true, let changeSource else { return }
         sourceChanging = true
         let value = snapshot(exiting: true)
         state.controller?.set("pause", "yes")
@@ -214,6 +237,21 @@ struct PlayerView: View {
             if let value { await persist(value, syncCloud: false) }
             guard active, scenePhase == .active, library.map({ $0.owner == session.owner }) ?? true else { sourceChanging = false; return }
             changeSource(value)
+        }
+    }
+    private func requestRetry() {
+        guard active, !retrying, !state.restarting, !sourceChanging, !episodeChanging, scenePhase == .active, library.map({ $0.owner == session.owner }) ?? true else { return }
+        guard let controller = state.controller, controller.canRestartPlayback else { return }
+        let value = snapshot(exiting: true)
+        let position = value?.positionMs ?? session.startMs
+        guard position.isFinite, position >= 0 else { return }
+        retrying = true
+        Task {
+            defer { retrying = false }
+            if let value { await persist(value, syncCloud: false) }
+            guard active, scenePhase == .active, library.map({ $0.owner == session.owner }) ?? true else { return }
+            controller.retry(positionMs: position)
+            controlsVisible = true; restartHideTimer()
         }
     }
     private func restartHideTimer() { hideRevision += 1 }
@@ -256,7 +294,7 @@ struct PlayerView: View {
                     editingSeek = editing
                     if !editing { state.controller?.run(["seek", String(seek), "absolute+exact"]) }
                     restartHideTimer()
-                }).disabled(state.duration <= 0 || !state.loaded).accessibilityLabel("Posición de reproducción")
+                }).disabled(state.duration <= 0 || !state.loaded || retrying || state.restarting || sourceChanging || episodeChanging).accessibilityLabel("Posición de reproducción")
                 HStack(spacing: 8) {
                     Text(time(state.position)).monospacedDigit().accessibilityLabel("Tiempo reproducido").accessibilityIdentifier("player-position")
                     Spacer(minLength: 0)
@@ -266,6 +304,7 @@ struct PlayerView: View {
                         else { state.controller?.togglePause() }
                         restartHideTimer()
                     } label: { PlayerGlyph(name: state.ended ? "seek-back-custom" : state.paused ? "play-pause--paused" : "play-pause--playing", size: 28) }
+                        .disabled(retrying || state.restarting || sourceChanging || episodeChanging)
                         .frame(width: 44, height: 44).accessibilityLabel(state.ended ? "Repetir" : state.paused ? "Reproducir" : "Pausar").accessibilityIdentifier("player-pause")
                     Button { jump(preferences.options.seekForwardSeconds) } label: { PlayerSeekGlyph(direction: "forward", seconds: preferences.options.seekForwardSeconds) }.frame(width: 44, height: 44).accessibilityLabel("Avanzar \(Int(preferences.options.seekForwardSeconds)) segundos")
                     Spacer(minLength: 0)
@@ -276,7 +315,10 @@ struct PlayerView: View {
             }.padding(.horizontal).padding(.bottom, 8).background(.black.opacity(0.7))
         }
     }
-    private func jump(_ seconds: Double) { state.controller?.run(["seek", String(seconds), "relative"]); restartHideTimer() }
+    private func jump(_ seconds: Double) {
+        guard !retrying, !state.restarting, !sourceChanging, !episodeChanging, state.loaded else { return }
+        state.controller?.run(["seek", String(seconds), "relative"]); restartHideTimer()
+    }
 
     @MainActor private func snapshot(exiting: Bool) -> ResumeSnapshot? {
         guard session.progressEnabled, state.hasPosition, state.position.isFinite, state.duration.isFinite else { return nil }

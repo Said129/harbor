@@ -162,6 +162,13 @@ final class SubtitlePlaybackTests: XCTestCase {
         let switchedSurface = try XCTUnwrap(switched.view as? GLKView)
         try await wait(switchedSurface, state: switchedState) { switchedState.loaded && switchedState.paused && switchedState.hasPosition && switchedState.duration > 29 }
         XCTAssertEqual(switchedState.position, 28, accuracy: 0.75, "Changing source must preserve its real native timestamp inside the final 20 seconds")
+        let beforeRetry = switchedState.mediaGeneration
+        switched.retry(positionMs: .nan, autoplay: false)
+        XCTAssertFalse(switchedState.restarting, "Invalid timestamps must not start a reload")
+        switched.retry(positionMs: 28_000, autoplay: false)
+        try await wait(switchedSurface, state: switchedState) { switchedState.mediaGeneration > beforeRetry && switchedState.loaded && switchedState.paused && !switchedState.restarting && switchedState.hasPosition }
+        XCTAssertNil(switchedState.error)
+        XCTAssertEqual(switchedState.position, 28, accuracy: 0.75, "An acknowledged native retry must keep the timestamp near completion")
     }
 
     @available(iOS, deprecated: 12.0)

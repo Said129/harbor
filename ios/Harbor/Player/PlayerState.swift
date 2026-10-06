@@ -14,6 +14,7 @@ final class PlayerState {
     var renderCalls = 0
     var ended = false
     var endedNaturally = false
+    var restarting = false
     var error: String?
     var playbackIssue: String?
     var tracks: [Track] = []

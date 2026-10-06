@@ -142,13 +142,25 @@ final class MPVController: GLKViewController {
         do { try command(values) } catch { state.error = safeMessage(error) }
     }
     func replay() {
+        restartPlayback(positionMs: nil, autoplay: nil)
+    }
+    var canRestartPlayback: Bool { !didClose && handle != nil && renderer != nil }
+    func retry(positionMs: Double, autoplay: Bool = true) {
+        guard positionMs.isFinite, positionMs >= 0 else { return }
+        restartPlayback(positionMs: positionMs, autoplay: autoplay)
+    }
+    private func restartPlayback(positionMs: Double?, autoplay: Bool?) {
+        guard canRestartPlayback, !state.restarting else { return }
         guard activateAudio() else { return }
+        interruptionResumeWanted = false; interruptionResumeAllowed = false; foregroundResumeWanted = false
         state.error = nil
+        state.ended = false; state.endedNaturally = false; state.buffering = true
         checkedResumeDuration = true
-        enqueueSubtitleOperation { controller in
+        enqueueSubtitleOperation(playbackRestart: true) { controller in
             try await controller.resetSubtitleFPS()
-            try await controller.setChecked("start", "none")
-            controller.run(["loadfile", controller.source.url, "replace"])
+            try await controller.setChecked("start", positionMs.map { String($0 / 1_000) } ?? "none")
+            if let autoplay { try await controller.setChecked("pause", autoplay ? "no" : "yes") }
+            try await controller.commandChecked(["loadfile", controller.source.url, "replace"], startsMedia: true)
         }
     }
 
@@ -323,24 +335,33 @@ final class MPVController: GLKViewController {
         }
     }
 
-    private func enqueueSubtitleOperation(_ operation: @escaping @MainActor (MPVController) async throws -> Void) {
+    private func enqueueSubtitleOperation(playbackRestart: Bool = false, _ operation: @escaping @MainActor (MPVController) async throws -> Void) {
         guard !didClose, handle != nil else { return }
         let previous = subtitleTail
         let revision = mediaRevision
         subtitleOperations += 1
         state.subtitleChanging = true
+        if playbackRestart { state.restarting = true }
         state.subtitleIssue = nil
         subtitleTail = Task { @MainActor [weak self] in
             await previous?.value
             guard let self else { return }
-            defer { subtitleOperations -= 1; state.subtitleChanging = subtitleOperations > 0 }
+            defer {
+                subtitleOperations -= 1; state.subtitleChanging = subtitleOperations > 0
+                if playbackRestart { state.restarting = false }
+            }
             guard !Task.isCancelled, !didClose, revision == mediaRevision else { return }
             state.subtitleIssue = nil
             do { try await operation(self) }
             catch {
                 if !didClose, revision == mediaRevision {
+                    if playbackRestart {
+                        state.error = "No se pudo volver a abrir la fuente. Prueba con otro enlace."
+                        state.buffering = false
+                        Diagnostics.shared.recordFailure(error)
+                    }
                     // An optional subtitle operation must not stop the film.
-                    if let failure = error as? HarborError, ["subtitle-file", "subtitle-capacity"].contains(failure.code) { state.subtitleIssue = safeMessage(error) }
+                    else if let failure = error as? HarborError, ["subtitle-file", "subtitle-capacity"].contains(failure.code) { state.subtitleIssue = safeMessage(error) }
                     else { state.subtitleIssue = "No se pudo aplicar el cambio de subtítulos. La reproducción continúa; vuelve a intentarlo." }
                 }
             }
@@ -362,15 +383,15 @@ final class MPVController: GLKViewController {
         }
     }
 
-    private func commandChecked(_ values: [String]) async throws {
+    private func commandChecked(_ values: [String], startsMedia: Bool = false) async throws {
         let allocations = values.map { strdup($0) }
         defer { for allocation in allocations { free(allocation) } }
         guard allocations.allSatisfy({ $0 != nil }) else { throw HarborError(code: "player-allocation") }
         var pointers: [UnsafePointer<CChar>?] = allocations.map { $0.map { UnsafePointer<CChar>($0) } } + [nil]
-        try await performChecked { handle, identifier in mpv_command_async(handle, identifier, &pointers) }
+        try await performChecked(startsMedia: startsMedia) { handle, identifier in mpv_command_async(handle, identifier, &pointers) }
     }
 
-    private func performChecked(_ send: (OpaquePointer, UInt64) -> Int32) async throws {
+    private func performChecked(startsMedia: Bool = false, _ send: (OpaquePointer, UInt64) -> Int32) async throws {
         guard let handle, !didClose else { throw HarborError(code: "player-not-ready") }
         let identifier = nextOperation
         let revision = mediaRevision
@@ -385,7 +406,9 @@ final class MPVController: GLKViewController {
             }
             pendingOperations[identifier] = PendingOperation(continuation: continuation, timeout: timeout)
         }
-        guard !didClose, revision == mediaRevision else { throw HarborError(code: "subtitle-context") }
+        // A successful loadfile acknowledgement may follow START_FILE. Other
+        // operations still belong to the exact media revision they changed.
+        guard !didClose, startsMedia || revision == mediaRevision else { throw HarborError(code: "subtitle-context") }
     }
 
     private func finishOperation(_ identifier: UInt64, error: Error? = nil) {

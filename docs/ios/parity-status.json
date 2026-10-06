@@ -348,10 +348,10 @@
     "notes": "HTTP(S) source/header/subtitle contract preserved; CR/LF/NUL header injection rejected in tests. Real direct URL resolved from remote addon; media probe returned HTTP 403 for its old video host; playback unverified."
   },
   "Native libmpv playback": {
-    "ios": "Simulator displays 8/10-bit video and advancing time; physical correction pending",
     "state": "Partial",
-    "implementation": "`ios/Harbor/Player/MPVConfiguration.swift`; `MPVController.swift`; `PlayerView.swift`",
-    "notes": "Owner reports visible playback working on iPhone 14 (iOS 26.6.2) with build 2. Simulator verifies advancing time and real 8/10-bit image pixels. Build 3 UI verifies tap hide/reveal and option sheet presentation. Full physical tracks/seek/HDR/lifecycle and Desktop playback parity remain incomplete."
+    "implementation": "ios/Harbor/Player/PlayerView.swift; PlayerState.swift; MPVController.swift; HarborTests/SubtitlePlaybackTests.swift; HarborUITests/LiveNavigationTests.swift",
+    "notes": "Owner reports visible playback working on iPhone 14 (iOS 26.6.2) with build 2. Simulator verifies advancing time and real 8/10-bit image pixels. Build 3 UI verifies tap hide/reveal and option sheet presentation. Full physical tracks/seek/HDR/lifecycle and Desktop playback parity remain incomplete. Build 27: Retry preserves checkpoints; real source picker and Close remain available. Reload acknowledgements; see VALIDATION.md. Apple/physical pending.",
+    "ios": "Native playback recovery; Apple/physical validation pending"
   },
   "Load real media URL": {
     "ios": "Apple compilation verified; media interaction pending",

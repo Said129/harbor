@@ -173,6 +173,15 @@ final class LiveNavigationTests: XCTestCase {
         capture(app, "native-player-change-source")
         offer.tap()
         XCTAssertTrue(close.waitForExistence(timeout: 20), "An actual offer must reopen the native player after switching source")
+        if app.staticTexts["player-error"].waitForExistence(timeout: 5) {
+            let recovery = app.buttons["player-error-change-source"]
+            XCTAssertTrue(recovery.waitForExistence(timeout: 3), "A failed source must provide a direct route to actual addon offers")
+            capture(app, "native-player-error-recovery")
+            recovery.tap()
+            XCTAssertTrue(offer.waitForExistence(timeout: 15))
+            offer.tap()
+            XCTAssertTrue(close.waitForExistence(timeout: 20))
+        }
         // Opening the player is not proof that this public example's old video
         // host delivers media. Physical playback remains a separate gate.
         close.tap()
