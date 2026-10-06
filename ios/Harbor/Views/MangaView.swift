@@ -7,13 +7,14 @@ struct MangaView: View {
     @State private var connection: MangaConnection
     @State private var client: SuwayomiClient?
     @State private var sources: [MangaSource] = []
-    @State private var selected = ""
+    @State private var selected = "all"
     @State private var screen = "browse"
     @State private var latest = false
     @State private var query = ""
     @State private var books: [MangaBook] = []
     @State private var serverLibrary: [MangaBook] = []
-    @State private var page = 1
+    @State private var sourcePages: [String: Int] = [:]
+    @State private var sourceMore: [String: Bool] = [:]
     @State private var more = false
     @State private var loading = false
     @State private var generation = UUID()
@@ -33,7 +34,7 @@ struct MangaView: View {
     }
     private var visibleSources: [MangaSource] { sources.filter { (adult || !$0.adult) && (language == "all" || $0.language == language) } }
     private var highlights: [MangaBook] { Array((screen == "shelf" ? savedBooks : books.isEmpty ? savedBooks : books).prefix(6)) }
-    private var signature: String { selected + "|" + query + "|" + String(latest) + "|" + String(adult) }
+    private var signature: String { selected + "|" + query + "|" + String(latest) + "|" + String(adult) + "|" + language }
     private var savedBooks: [MangaBook] {
         var seen = Set<String>()
         return (shelf.records.sorted { $0.updated > $1.updated }.map(\.book) + serverLibrary).filter { seen.insert($0.id).inserted && (query.isEmpty || $0.title.localizedCaseInsensitiveContains(query)) }
@@ -53,17 +54,21 @@ struct MangaView: View {
                 HarborSearchField(prompt: "Buscar manga…", text: $query).padding(.horizontal)
                 if let message = error ?? shelf.error ?? connection.error { Text(message).font(.caption).foregroundStyle(.orange).padding(.horizontal) }
                 if screen == "browse" {
-                    if !visibleSources.isEmpty {
+                    if !sources.filter({ adult || !$0.adult }).isEmpty {
                         HStack {
-                            Picker("Extensión", selection: $selected) { ForEach(visibleSources) { Text("\($0.name) · \($0.language.uppercased())").tag($0.id) } }.pickerStyle(.menu).padding(5).background(HarborTheme.surface, in: .capsule)
+                            Picker("Extensión", selection: $selected) {
+                                Text("Todas las extensiones").tag("all")
+                                ForEach(visibleSources) { Text("\($0.name) · \($0.language.uppercased())").tag($0.id) }
+                            }.pickerStyle(.menu).padding(5).background(HarborTheme.surface, in: .capsule)
                             Picker("Idioma", selection: $language) {
                                 Text("Todos los idiomas").tag("all")
                                 ForEach(Array(Set(sources.filter { adult || !$0.adult }.map(\.language))).sorted(), id: \.self) { code in Text(Locale.current.localizedString(forLanguageCode: code) ?? code.uppercased()).tag(code) }
                             }.pickerStyle(.menu)
                             Spacer()
-                            if sources.first(where: { $0.id == selected })?.latest == true { Toggle("Novedades", isOn: $latest).font(.caption).fixedSize() }
+                            if selected == "all" ? visibleSources.contains(where: \.latest) : sources.first(where: { $0.id == selected })?.latest == true { Toggle("Novedades", isOn: $latest).font(.caption).fixedSize() }
                         }.padding(.horizontal)
                         grid(books)
+                        if visibleSources.isEmpty && !loading { Text("No hay extensiones para este idioma. Puedes elegir Todos los idiomas.").font(.caption).foregroundStyle(.secondary).padding(.horizontal) }
                         if more { Button("Cargar más") { Task { await browse(next: true) } }.disabled(loading).frame(maxWidth: .infinity) }
                     } else if !loading {
                         ContentUnavailableView("Manga", image: "nav-manga", description: Text(connection.server == nil ? "Conecta tu servidor Suwayomi o importa un CBZ/ZIP desde Archivos." : "No hay fuentes disponibles. Instala extensiones en tu servidor o importa un archivo."))
@@ -79,9 +84,12 @@ struct MangaView: View {
             .task(id: connection.server) { await connect() }
             .task(id: signature) { await browse(next: false) }
             .onChange(of: adult) { _, _ in
-                if !visibleSources.contains(where: { $0.id == selected }) { books = []; selected = visibleSources.first?.id ?? "" }
+                if selected != "all" && !visibleSources.contains(where: { $0.id == selected }) { books = []; selected = "all" }
             }
-            .onChange(of: language) { _, _ in books = []; selected = visibleSources.first?.id ?? "" }
+            .onChange(of: language) { _, _ in books = []; selected = "all" }
+            .onChange(of: selected) { _, source in
+                if source != "all" && sources.first(where: { $0.id == source })?.latest != true { latest = false }
+            }
             .onChange(of: highlights.map(\.id)) { _, _ in featured = 0 }
             .refreshable { await connect() }
             .sheet(isPresented: $configuring) { MangaConnectionView(connection: connection) }
@@ -91,7 +99,7 @@ struct MangaView: View {
                 if case .success(let file) = result { Task { await importBook(file) } }
                 else if case .failure = result { error = "No se pudo abrir el archivo elegido." }
             }
-            .navigationDestination(item: $imported) { book in MangaDetailView(book: book, shelf: shelf, client: matchingClient(book)) }
+            .navigationDestination(item: $imported) { book in MangaDetailView(book: book, shelf: shelf, client: matchingClient(book)).toolbar(.visible, for: .navigationBar) }
     }
     private var mangaOptions: some View {
         Menu {
@@ -137,15 +145,15 @@ struct MangaView: View {
         }.padding(.horizontal)
     }
     private func connect() async {
-        generation = UUID(); client = nil; sources = []; books = []; serverLibrary = []; more = false
+        generation = UUID(); client = nil; sources = []; books = []; serverLibrary = []; more = false; sourcePages = [:]; sourceMore = [:]
         guard let server = connection.server else { loading = false; return }
         let service = SuwayomiClient(server: server); client = service; loading = true; error = nil
         do {
             let loaded = try await service.sources(); try Task.checkCancellation()
             guard connection.server == server else { return }
             sources = loaded
-            selected = visibleSources.first(where: { $0.id == selected })?.id ?? visibleSources.first(where: { $0.language == "es" })?.id ?? visibleSources.first?.id ?? ""
-            if !selected.isEmpty { await browse(next: false) }
+            if selected != "all", !visibleSources.contains(where: { $0.id == selected }) { selected = "all" }
+            if !visibleSources.isEmpty { await browse(next: false) }
             do { let library = try await service.library(); guard connection.server == server else { return }; serverLibrary = library }
             catch is CancellationError { return }
             catch { if books.isEmpty { self.error = safeMessage(error) } }
@@ -154,17 +162,51 @@ struct MangaView: View {
         if connection.server == server { loading = false }
     }
     private func browse(next: Bool) async {
-        guard let client, !selected.isEmpty, visibleSources.contains(where: { $0.id == selected }) else { return }
+        guard let client else { return }
+        let choices = visibleSources.filter { (selected == "all" || $0.id == selected) && (selected != "all" || !latest || $0.latest) }
+        guard !choices.isEmpty else { books = []; more = false; return }
         if next && loading { return }
         let token = UUID(); generation = token; loading = true; error = nil
-        let source = selected, term = query.trimmingCharacters(in: .whitespacesAndNewlines), requested = next ? page + 1 : 1, useLatest = latest && sources.first(where: { $0.id == source })?.latest == true
+        let term = query.trimmingCharacters(in: .whitespacesAndNewlines), useLatest = latest
+        let requests = choices.filter { !next || sourceMore[$0.id] == true }.map { (source: $0, page: next ? (sourcePages[$0.id] ?? 0) + 1 : 1) }
         defer { if generation == token { loading = false } }
         do {
             if !next { try await Task.sleep(for: .milliseconds(350)) }
-            let result = try await client.browse(source: source, latest: useLatest, query: term, page: requested)
+            var received: [MangaBrowsePage] = []
+            // Limit simultaneous extension requests while keeping each source's pagination.
+            for start in stride(from: 0, to: requests.count, by: 4) {
+                try Task.checkCancellation()
+                guard generation == token else { return }
+                let batch = Array(requests[start..<min(start + 4, requests.count)])
+                let result = await withTaskGroup(of: MangaBrowsePage.self, returning: [MangaBrowsePage].self) { group in
+                    for request in batch {
+                        group.addTask {
+                            do {
+                                let page = try await client.browse(source: request.source.id, latest: useLatest && request.source.latest, query: term, page: request.page)
+                                return MangaBrowsePage(source: request.source.id, page: request.page, books: page.0, more: page.1, error: nil)
+                            } catch {
+                                return MangaBrowsePage(source: request.source.id, page: request.page, books: [], more: true, error: safeMessage(error))
+                            }
+                        }
+                    }
+                    var pages: [MangaBrowsePage] = []
+                    for await page in group { pages.append(page) }
+                    return pages
+                }
+                received += result
+            }
             try Task.checkCancellation(); guard generation == token else { return }
+            if !next { sourcePages = [:]; sourceMore = [:] }
+            for result in received {
+                sourceMore[result.source] = result.more
+                if result.error == nil { sourcePages[result.source] = result.page }
+            }
+            let sourceOrder = Dictionary(uniqueKeysWithValues: choices.enumerated().map { ($0.element.id, $0.offset) })
+            let added = received.sorted { (sourceOrder[$0.source] ?? 0) < (sourceOrder[$1.source] ?? 0) }.flatMap(\.books)
             var seen = Set<String>()
-            books = ((next ? books : []) + result.0).filter { seen.insert($0.id).inserted }; page = requested; more = result.1
+            books = ((next ? books : []) + added).filter { seen.insert($0.id).inserted }; more = sourceMore.values.contains(true)
+            let failures = received.filter { $0.error != nil }
+            if !failures.isEmpty { error = failures.count == received.count ? failures[0].error : "\(failures.count) extensiones no respondieron. Puedes reintentar; los resultados disponibles se conservan." }
         } catch is CancellationError { return }
         catch { if generation == token { self.error = safeMessage(error) } }
     }
@@ -181,6 +223,14 @@ struct MangaView: View {
             screen = "shelf"; imported = book
         } catch { self.error = safeMessage(error) }
     }
+}
+
+private struct MangaBrowsePage: Sendable {
+    let source: String
+    let page: Int
+    let books: [MangaBook]
+    let more: Bool
+    let error: String?
 }
 
 struct MangaConnectionView: View {

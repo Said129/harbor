@@ -2,9 +2,9 @@ import CryptoKit
 import Foundation
 
 enum LibraryFilter: String, Codable, CaseIterable, Identifiable, Sendable {
-    case all, saved, watchlist, watched, continuing = "continue"
+    case all, saved, watchlist, watched, favorites, continuing = "continue"
     var id: String { rawValue }
-    var title: String { switch self { case .all: "Biblioteca"; case .saved: "Guardados"; case .watchlist: "Mi lista"; case .watched: "Historial"; case .continuing: "Continuar" } }
+    var title: String { switch self { case .all: "Biblioteca"; case .saved: "Guardados"; case .watchlist: "Mi lista"; case .watched: "Historial"; case .favorites: "Favoritos"; case .continuing: "Continuar" } }
 }
 enum LibraryKind: String, Codable, CaseIterable, Identifiable, Sendable {
     case all, movie, series
@@ -90,7 +90,7 @@ enum LibraryListing {
             var date = 0.0
             if display.sort == .recent {
                 switch display.filter {
-                case .all, .saved, .watchlist: date = LibraryRecord.timestamp(record.raw["_ctime"].string) ?? LibraryRecord.timestamp(record.modified) ?? 0
+                case .all, .saved, .watchlist, .favorites: date = LibraryRecord.timestamp(record.raw["_ctime"].string) ?? LibraryRecord.timestamp(record.modified) ?? 0
                 case .watched, .continuing: date = record.activityTimestamp
                 }
             }

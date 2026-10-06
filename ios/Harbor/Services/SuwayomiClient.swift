@@ -37,10 +37,11 @@ actor SuwayomiClient {
             guard case .array(let nodes) = response else { throw HarborError(code: "manga-protocol") }
             graphql = false; list = nodes
         }
-        return list.compactMap { value in
+        var seen = Set<String>()
+        return list.compactMap { value -> MangaSource? in
             guard let id = value["id"].mangaID else { return nil }
             return MangaSource(id: id, name: value["name"].string ?? value["displayName"].string ?? id, language: value["lang"].string ?? "", latest: value["supportsLatest"].mangaBool, adult: value["isNsfw"].mangaBool)
-        }
+        }.filter { seen.insert($0.id).inserted }
     }
     func browse(source: String, latest: Bool, query: String, page: Int) async throws -> ([MangaBook], Bool) {
         guard Self.digits(source) else { throw HarborError(code: "manga-protocol") }

@@ -30,7 +30,7 @@ final class SpooktoberInvitationPreferences {
     }
 }
 
-struct SpooktoberItem: Decodable, Identifiable, Sendable {
+struct SpooktoberItem: Codable, Identifiable, Sendable {
     let id: String
     let title: String
     let year: String
@@ -38,7 +38,7 @@ struct SpooktoberItem: Decodable, Identifiable, Sendable {
     let section: String
     let creator: String
     let description: String
-    let poster: String
+    var poster: String
     let source: String
     var backdrop: String?
     var runtime: String?
@@ -72,12 +72,31 @@ struct SpooktoberItem: Decodable, Identifiable, Sendable {
 }
 
 enum SpooktoberCatalog {
+    static let upstream = "https://raw.githubusercontent.com/harborstremio/harbor/beta-branch/public/spooktober/"
+    static func decode(_ data: Data, remote: Bool = false) throws -> [SpooktoberItem] {
+        guard data.count <= 1024 * 1024 else { throw HarborError(code: "spooktober-content") }
+        var items = try JSONDecoder().decode([SpooktoberItem].self, from: data)
+        guard !items.isEmpty, items.count <= 1_000, Set(items.map(\.id)).count == items.count else { throw HarborError(code: "spooktober-content") }
+        for index in items.indices {
+            let item = items[index]
+            guard !item.id.isEmpty, item.id.utf8.count <= 128, !item.title.isEmpty, item.title.utf8.count <= 512,
+                  item.description.utf8.count <= 16_384, item.creator.utf8.count <= 512, item.year.utf8.count <= 32,
+                  item.section.utf8.count <= 64, ["Film", "Series", "Book", "Manga"].contains(item.type),
+                  validURL(item.source), item.poster.utf8.count <= 2_048 else { throw HarborError(code: "spooktober-content") }
+            if item.poster.hasPrefix("assets/posters/"), item.poster.range(of: "^assets/posters/[a-zA-Z0-9_-]+\\.(jpg|jpeg|png|webp)$", options: .regularExpression) != nil {
+                if remote { items[index].poster = upstream + item.poster }
+            } else if !validURL(item.poster) { throw HarborError(code: "spooktober-content") }
+            if let backdrop = item.backdrop, !validURL(backdrop) { throw HarborError(code: "spooktober-content") }
+        }
+        return items
+    }
+    private static func validURL(_ value: String) -> Bool {
+        guard value.utf8.count <= 2_048, let url = URL(string: value), url.scheme == "https", let host = url.host, !host.isEmpty else { return false }
+        return url.user == nil && url.password == nil
+    }
     static func load() throws -> [SpooktoberItem] {
         guard let url = Bundle.main.url(forResource: "SpooktoberContent", withExtension: "json") else { throw HarborError(code: "spooktober-content") }
         let data = try Data(contentsOf: url)
-        guard data.count <= 1024 * 1024 else { throw HarborError(code: "spooktober-content") }
-        let items = try JSONDecoder().decode([SpooktoberItem].self, from: data)
-        guard !items.isEmpty, items.count <= 1_000, Set(items.map(\.id)).count == items.count else { throw HarborError(code: "spooktober-content") }
-        return items
+        return try decode(data)
     }
 }

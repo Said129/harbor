@@ -99,9 +99,13 @@ struct DetailView: View {
                 HStack(spacing: 10) {
                     Button { playTitle() } label: { Label("Reproducir", image: "ui-play-filled").font(.subheadline.weight(.semibold)).padding(.horizontal, 18).frame(minHeight: 46).foregroundStyle(.black).background(.white, in: .capsule) }.buttonStyle(.plain).disabled(model.loadingMetadata || (model.media.episodic && (model.media.videos ?? []).isEmpty)).accessibilityIdentifier("detail-play")
                     Button { Task { await app.library.toggleBookmark(model.media) } } label: { Image("ui-library").resizable().scaledToFit().frame(width: 20, height: 20).frame(width: 46, height: 46).background(app.library.bookmarked(model.media) ? HarborTheme.accent.opacity(0.35) : .black.opacity(0.45), in: .circle) }.buttonStyle(.plain).disabled(app.library.busy).accessibilityLabel(app.library.bookmarked(model.media) ? "En mi lista" : "Añadir a mi lista").accessibilityIdentifier("detail-bookmark")
+                    Button { app.library.favorites.toggle(model.media) } label: {
+                        Image(app.library.favorites.contains(model.media) ? "ui-unfavorite" : "ui-favorite").resizable().scaledToFit().frame(width: 20, height: 20).frame(width: 46, height: 46).foregroundStyle(app.library.favorites.contains(model.media) ? HarborTheme.accent : HarborTheme.ink).background(.black.opacity(0.45), in: .circle)
+                    }.buttonStyle(.plain).disabled(!app.library.favorites.ready).accessibilityLabel(app.library.favorites.contains(model.media) ? "Quitar de favoritos" : "Añadir a favoritos").accessibilityIdentifier("detail-favorite")
                     if InterfacePreferences.shared.showWatchedButton { Button { Task { await app.library.toggleWatched(model.media) } } label: { Image(app.library.watched(model.media) ? "ui-mark-unwatched" : "ui-mark-watched").resizable().scaledToFit().frame(width: 21, height: 21).frame(width: 46, height: 46).background(.black.opacity(0.45), in: .circle) }.buttonStyle(.plain).disabled(app.library.busy).accessibilityLabel(app.library.watched(model.media) ? "Marcar como no visto" : "Marcar como visto") }
                 }
                 if !model.media.episodic { Button { openStreams() } label: { Label("Fuentes", image: "nav-playlist").font(.subheadline).frame(minHeight: 44) }.accessibilityIdentifier("detail-streams") }
+                if let error = app.library.favorites.error { Text(error).font(.caption).foregroundStyle(.orange) }
             }.padding(20)
         }.frame(height: 370)
     }

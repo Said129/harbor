@@ -7,7 +7,7 @@ struct HarborPageHeading: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 9) {
             if let eyebrow { Text(eyebrow.uppercased()).font(.system(size: 9, weight: .semibold)).tracking(3).foregroundStyle(.secondary) }
-            Text(title).font(.system(size: 32, weight: .semibold, design: .serif))
+            Text(title).font(.custom("Fraunces-9ptBlack", size: 32).weight(.medium))
             if let subtitle { Text(subtitle).font(.subheadline).foregroundStyle(.secondary) }
         }.frame(maxWidth: .infinity, alignment: .leading)
     }

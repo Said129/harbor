@@ -3,6 +3,38 @@ import UIKit
 @testable import Harbor
 
 final class NativeDataTests: XCTestCase {
+    func testEditorialUpdatesValidateBeforeReplacingBundledSelections() throws {
+        let url = try XCTUnwrap(Bundle.main.url(forResource: "SpooktoberContent", withExtension: "json"))
+        let data = try Data(contentsOf: url)
+        XCTAssertEqual(try SpooktoberCatalog.decode(data).count, 71)
+        var rows = try XCTUnwrap(JSONSerialization.jsonObject(with: data) as? [[String: Any]])
+        let first = rows[0]
+        XCTAssertThrowsError(try SpooktoberCatalog.decode(JSONSerialization.data(withJSONObject: [first, first]), remote: true))
+        rows[0]["source"] = "javascript:alert(1)"
+        XCTAssertThrowsError(try SpooktoberCatalog.decode(JSONSerialization.data(withJSONObject: rows), remote: true))
+        rows[0] = first; rows[0]["poster"] = "assets/posters/../../account.json"
+        XCTAssertThrowsError(try SpooktoberCatalog.decode(JSONSerialization.data(withJSONObject: rows), remote: true))
+        rows[0]["poster"] = "assets/posters/new-cover.webp"
+        let updated = try SpooktoberCatalog.decode(JSONSerialization.data(withJSONObject: rows), remote: true)
+        XCTAssertEqual(updated[0].poster, SpooktoberCatalog.upstream + "assets/posters/new-cover.webp")
+        XCTAssertEqual(try SpooktoberCatalog.load().first?.title, first["title"] as? String)
+    }
+    @MainActor func testFavoritesKeepWatchlistSeparateAndPersistInTheirAccount() throws {
+        let owner = "favorite-test-" + UUID().uuidString
+        let key = "media-favorites-" + EBookShelf.hash(owner)
+        defer { try? KeychainStore().remove(key) }
+        let media = Media(id: "tt0816692", type: "movie", name: "Interstellar")
+        let favorites = MediaFavorites(owner: owner)
+        favorites.toggle(media)
+        XCTAssertTrue(favorites.contains(media))
+        XCTAssertTrue(MediaFavorites(owner: owner).contains(media))
+        XCTAssertFalse(MediaFavorites(owner: owner + "-other").contains(media))
+        let record = try XCTUnwrap(favorites.entries.first?.record)
+        XCTAssertEqual(record.media?.id, media.id)
+        XCTAssertFalse(record.bookmarked, "A favorite must not silently alter the Stremio watchlist")
+        favorites.toggle(media)
+        XCTAssertTrue(MediaFavorites(owner: owner).entries.isEmpty)
+    }
     @MainActor func testOriginalAvatarAssetsAndIsolatedProfilePersistence() throws {
         XCTAssertEqual(DesktopAvatar.catalog.count, 65)
         for avatar in DesktopAvatar.catalog { XCTAssertNotNil(UIImage(named: avatar.asset), "Missing original avatar: \(avatar.id)") }

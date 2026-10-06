@@ -67,6 +67,7 @@ struct HomeView: View {
                 while !Task.isCancelled {
                     seasonalDate = Date()
                     if !SpooktoberSeason.available(seasonalDate) { showSpooktober = false }
+                    else { _ = try? await SpooktoberUpdates.shared.refresh() }
                     do { try await Task.sleep(for: .seconds(SpooktoberSeason.nextCheck(seasonalDate))) }
                     catch { return }
                 }

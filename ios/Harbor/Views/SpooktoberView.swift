@@ -63,14 +63,15 @@ struct SpooktoberView: View {
                     Text("Todo").tag("Todos"); Text("Cine").tag("Film"); Text("Series").tag("Series"); Text("Libros").tag("Book"); Text("Manga").tag("Manga")
                 }.pickerStyle(.segmented).padding(.horizontal)
                 if let error {
-                    ContentUnavailableView { Label("No se pudo cargar Spooktober", systemImage: "exclamationmark.triangle") } description: { Text(error) } actions: { Button("Reintentar", action: load) }
+                    ContentUnavailableView { Label("No se pudo cargar Spooktober", systemImage: "exclamationmark.triangle") } description: { Text(error) } actions: { Button("Reintentar") { Task { await load(force: true) } } }
                 } else if items.isEmpty { ProgressView().frame(maxWidth: .infinity) }
                 else if filtered.isEmpty { ContentUnavailableView.search(text: query) }
                 else { ForEach(sections, id: \.0) { section in shelf(section) } }
             }.padding(.vertical, 20)
         }.background(HarborTheme.background).navigationTitle("Spooktober").navigationBarTitleDisplayMode(.inline)
             .searchable(text: $query, prompt: "Buscar títulos o autores")
-            .task { load() }
+            .task { await load() }
+            .refreshable { await load(force: true) }
             .accessibilityIdentifier("spooktober-scroll")
     }
     private var header: some View {
@@ -94,7 +95,7 @@ struct SpooktoberView: View {
                     LazyHStack(alignment: .top, spacing: 14) {
                         ForEach(selected) { item in
                             if let media = item.media {
-                                NavigationLink(value: media) { SpooktoberCard(item: item) }.buttonStyle(.plain)
+                                NavigationLink { DetailView(media: media, app: app) } label: { SpooktoberCard(item: item) }.buttonStyle(.plain)
                             } else {
                                 NavigationLink { SpooktoberSourceView(item: item) } label: { SpooktoberCard(item: item) }.buttonStyle(.plain)
                             }
@@ -104,8 +105,13 @@ struct SpooktoberView: View {
             }
         }
     }
-    private func load() {
-        do { items = try SpooktoberCatalog.load(); error = nil }
+    private func load(force: Bool = false) async {
+        do {
+            items = try await SpooktoberUpdates.shared.catalog(); error = nil
+            let refreshed = try await SpooktoberUpdates.shared.refresh(force: force)
+            try Task.checkCancellation(); items = refreshed
+        }
+        catch is CancellationError { return }
         catch { self.error = "No se pudieron leer las selecciones de Spooktober." }
     }
 }

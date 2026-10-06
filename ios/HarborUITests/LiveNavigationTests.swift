@@ -44,7 +44,9 @@ final class LiveNavigationTests: XCTestCase {
         XCTAssertTrue(app.textFields["account-email"].waitForExistence(timeout: 5))
         XCTAssertTrue(app.buttons["account-browser-login"].exists)
         capture(app, "account-native-login")
+        app.buttons["account-tab-profile"].tap()
         XCTAssertTrue(app.textFields["profile-name"].exists, "The account screen must expose the original profile editor")
+        capture(app, "account-original-profile")
         app.navigationBars.buttons["Cerrar"].tap()
         // SwiftUI exposes the identified accessibility container as Other,
         // with the actual NavigationLink button inside it.
@@ -109,10 +111,19 @@ final class LiveNavigationTests: XCTestCase {
         app.buttons["detail-bookmark"].tap()
         let saved = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == true AND label == 'En mi lista'"), object: app.buttons["detail-bookmark"])
         XCTAssertEqual(XCTWaiter.wait(for: [saved], timeout: 10), .completed)
+        app.buttons["detail-favorite"].tap()
+        XCTAssertEqual(app.buttons["detail-favorite"].label, "Quitar de favoritos")
         navigate(app, "library")
         let savedMovie = app.buttons.matching(NSPredicate(format: "identifier == 'library-media' AND label == 'Interstellar'")).firstMatch
         XCTAssertTrue(savedMovie.waitForExistence(timeout: 10), "Saving from the real detail must populate the actual library")
         capture(app, "native-library-original-layout")
+        let favorites = app.buttons["Favoritos"]
+        let filterBar = app.descendants(matching: .any).matching(identifier: "library-filter").firstMatch
+        for _ in 0..<3 { if favorites.isHittable { break }; filterBar.swipeLeft() }
+        XCTAssertTrue(favorites.isHittable)
+        favorites.tap()
+        XCTAssertTrue(savedMovie.waitForExistence(timeout: 5), "Favorites must show the actual detail selection")
+        capture(app, "native-library-favorites")
         savedMovie.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.25)).tap()
         XCTAssertTrue(app.staticTexts["detail-title"].waitForExistence(timeout: 10), "The image area of a library poster must open its detail")
         navigate(app, "calendar")

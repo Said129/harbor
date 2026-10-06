@@ -13,6 +13,7 @@ final class LibraryModel {
     private var presentationReady = false
     private(set) var presentation = LibraryPresentation()
     private(set) var presentationError: String?
+    private(set) var favorites = MediaFavorites(owner: "guest")
     var canChangePresentation: Bool { presentationReady }
     private var lastProgressWrite: [String: UInt64] = [:]
     var loading = false
@@ -26,15 +27,25 @@ final class LibraryModel {
     }
     var hiddenContinuing: [LibraryRecord] { items.filter { $0.continuing && presentation.dismissed[$0.id]?.hides($0) == true } }
     func selectedItems(query: String) -> [LibraryRecord] {
+        LibraryListing.select(filteredItems(for: presentation.display.filter), display: presentation.display, query: query)
+    }
+    func filteredItems(for filter: LibraryFilter) -> [LibraryRecord] {
         let selected: [LibraryRecord]
-        switch presentation.display.filter {
+        switch filter {
         case .all: selected = items.filter { $0.bookmarked || $0.continuing || $0.watched }
         case .saved: selected = items.filter(\.bookmarked)
         case .watchlist: selected = items.filter { $0.bookmarked && !$0.watched }
         case .watched: selected = items.filter(\.watched)
+        case .favorites:
+            selected = favorites.entries.map { favorite in
+                guard let record = items.first(where: { $0.id == favorite.media.id }) else { return favorite.record }
+                var fields = record.raw.objectValue
+                fields["_ctime"] = favorite.record.raw["_ctime"]
+                return LibraryRecord(raw: .object(fields))
+            }
         case .continuing: selected = continuing
         }
-        return LibraryListing.select(selected, display: presentation.display, query: query)
+        return selected
     }
     func reloadPresentation() {
         presentationReady = false
@@ -89,6 +100,7 @@ final class LibraryModel {
         generation += 1
         let current = generation
         self.session = session; records = []; error = nil; writable = false; loading = true
+        favorites = MediaFavorites(owner: session?.user.id ?? "guest")
         presentation = LibraryPresentation(); reloadPresentation()
         lastProgressWrite = [:]
         defer { if current == generation { loading = false } }

@@ -26,6 +26,11 @@ struct LibraryView: View {
                 HarborPageHeading(title: "Tu colección.", eyebrow: "Mi biblioteca", subtitle: "Tu biblioteca reúne los títulos guardados y el progreso de Stremio y de este iPhone. Mi lista muestra lo que aún no has visto; Historial, lo que has visto.")
                 filters
                 LibraryPresentationFeedback(library: app.library)
+                if let error = app.library.favorites.error {
+                    Text(error).font(.caption).foregroundStyle(.orange)
+                    Button("Reintentar favoritos") { app.library.favorites.reload() }
+                }
+                if display.filter == .favorites { Text("Favoritos guardados en este iPhone para esta cuenta.").font(.caption).foregroundStyle(.secondary) }
                 if app.library.loading { ProgressView().frame(maxWidth: .infinity) }
                 if let error = app.library.error { VStack(alignment: .leading) { Text(error).font(.caption).foregroundStyle(.orange); Button("Reintentar") { Task { await app.library.sync() } } } }
                 ForEach(Array(groups.enumerated()), id: \.offset) { _, group in
@@ -62,7 +67,7 @@ struct LibraryView: View {
                     ForEach(LibraryFilter.allCases) { filter in
                         Button { app.library.changeDisplay { $0.filter = filter } } label: {
                             HStack(spacing: 7) {
-                                Image(filter == .watched ? "nav-calendar" : filter == .continuing ? "ui-play-filled" : filter == .all ? "nav-library" : "ui-library").resizable().scaledToFit().frame(width: 16, height: 16)
+                                Image(filter == .favorites ? "ui-favorite" : filter == .watched ? "nav-calendar" : filter == .continuing ? "ui-play-filled" : filter == .all ? "nav-library" : "ui-library").resizable().scaledToFit().frame(width: 16, height: 16)
                                 Text(filter.title).font(HarborTheme.font(13, weight: .semibold))
                             }.frame(minHeight: 44).foregroundStyle(display.filter == filter ? HarborTheme.ink : HarborTheme.ink.opacity(0.5))
                                 .overlay(alignment: .bottom) { if display.filter == filter { Rectangle().fill(HarborTheme.ink).frame(height: 2) } }
@@ -75,10 +80,7 @@ struct LibraryView: View {
             ScrollView(.horizontal) {
                 HStack(spacing: 5) {
                     ForEach(LibraryKind.allCases) { kind in
-                        let count = app.library.items.filter { record in
-                            let matches = display.filter == .all ? record.bookmarked || record.watched || record.continuing : display.filter == .saved ? record.bookmarked : display.filter == .watchlist ? record.bookmarked && !record.watched : display.filter == .watched ? record.watched : record.continuing && app.library.presentation.dismissed[record.id]?.hides(record) != true
-                            return matches && (kind == .all || record.media?.type == kind.rawValue)
-                        }.count
+                        let count = app.library.filteredItems(for: display.filter).filter { kind == .all || $0.media?.type == kind.rawValue }.count
                         HarborPill(title: "\(kind.title)  \(count)", selected: display.kind == kind) { app.library.changeDisplay { $0.kind = kind } }
                     }
                 }
@@ -145,6 +147,10 @@ private struct LibraryActions: View {
     let media: Media
     let owner: String
     var body: some View {
+        Button(app.library.favorites.contains(media) ? "Quitar de favoritos de este iPhone" : "Añadir a favoritos de este iPhone") {
+            guard owner == app.library.owner else { return }
+            app.library.favorites.toggle(media)
+        }.disabled(!app.library.favorites.ready)
         Button(record.bookmarked ? "Quitar de mi lista" : "Añadir a mi lista") {
             Task { guard owner == app.library.owner else { return }; await app.library.toggleBookmark(media) }
         }.disabled(app.library.busy)
