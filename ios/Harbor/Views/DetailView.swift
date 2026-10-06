@@ -5,6 +5,9 @@ struct DetailView: View {
     @State private var model: DetailModel
     @State private var showStreams = false
     @State private var selectedEpisode: Episode?
+    @State private var pendingEpisode: Episode?
+    @State private var pendingEpisodeOwner: String?
+    @State private var autoplayEpisode = false
     @State private var resolutionTask: Task<Void, Never>?
     @State private var downloading = false
     @State private var downloadMessage: String?
@@ -42,7 +45,7 @@ struct DetailView: View {
             }
         }.background(HarborTheme.background).navigationBarTitleDisplayMode(.inline)
         .task { await model.load(app.addons); if playImmediately && !model.media.episodic { openStreams() } }
-        .sheet(isPresented: $showStreams, onDismiss: { resolutionTask?.cancel(); model.pendingPlayback = nil; model.showResumePrompt = false }) {
+        .sheet(isPresented: $showStreams, onDismiss: { resolutionTask?.cancel(); model.pendingPlayback = nil; model.showResumePrompt = false; pendingEpisode = nil; pendingEpisodeOwner = nil; autoplayEpisode = false }) {
             NavigationStack {
                 List {
                     if model.loadingStreams { ProgressView("Consultando addons…") }
@@ -57,22 +60,48 @@ struct DetailView: View {
                             }
                         }
                     }
-                }.navigationTitle("Streams").toolbar { ToolbarItem(placement: .topBarTrailing) { Button("Cerrar") { showStreams = false } } }
-                .fullScreenCover(item: $model.playback) { session in PlayerView(session: session, resume: session.resumeStore ?? app.resume, title: model.media.name, media: model.media, library: app.library) }
+                }.navigationTitle(selectedEpisode.map { "T\($0.season ?? 0) · E\($0.episode ?? 0) · Streams" } ?? "Streams").toolbar { ToolbarItem(placement: .topBarTrailing) { Button("Cerrar") { showStreams = false } } }
+                .fullScreenCover(item: $model.playback, onDismiss: playerDismissed) { session in
+                    PlayerView(session: session, resume: session.resumeStore ?? app.resume, title: model.media.name, media: model.media, library: app.library) { episode in
+                        guard session.owner == app.library.owner else { return }
+                        pendingEpisode = episode; pendingEpisodeOwner = session.owner
+                        model.playback = nil
+                    }
+                }
                 .alert("¿Reanudar la reproducción?", isPresented: $model.showResumePrompt) {
-                    Button("Reanudar") { model.chooseResume(true) }
-                    Button("Desde el principio") { model.chooseResume(false) }
+                    Button("Reanudar") { model.chooseResume(true, owner: app.library.owner) }
+                    Button("Desde el principio") { model.chooseResume(false, owner: app.library.owner) }
                     Button("Cancelar", role: .cancel) { model.pendingPlayback = nil }
                 } message: {
                     Text("Continuar desde el minuto \(((model.pendingPlayback?.startMs ?? 0) / 60_000).formatted(.number.precision(.fractionLength(0)))).")
                 }
-                .task(id: selectedEpisode?.id ?? model.media.id) { await model.findStreams(app.addons, episode: selectedEpisode) }
+                .task(id: selectedEpisode?.id ?? model.media.id) {
+                    let owner = app.library.owner
+                    let shouldAutoplay = autoplayEpisode
+                    autoplayEpisode = false
+                    await model.findStreams(app.addons, episode: selectedEpisode)
+                    guard !Task.isCancelled, owner == app.library.owner, shouldAutoplay else { return }
+                    if let offer = model.continuationOffer {
+                        await model.play(offer, resume: app.resume, library: app.library)
+                    }
+                }
             }.presentationDetents([.medium, .large])
         }
     }
     private func openStreams(_ episode: Episode? = nil) {
+        autoplayEpisode = false
         selectedEpisode = episode
         showStreams = true
+    }
+    private func playerDismissed() {
+        guard let episode = pendingEpisode else { return }
+        let owner = pendingEpisodeOwner
+        pendingEpisode = nil; pendingEpisodeOwner = nil
+        guard showStreams, owner == app.library.owner, episode.available else { return }
+        // Present the next session only after the old full-screen player has
+        // dismissed and released its native surface.
+        autoplayEpisode = true
+        selectedEpisode = episode
     }
     private func download(_ offer: StreamOffer) async {
         guard !downloading else { return }

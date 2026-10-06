@@ -13,6 +13,7 @@ final class PlayerState {
     var renderReady = false
     var renderCalls = 0
     var ended = false
+    var endedNaturally = false
     var error: String?
     var tracks: [Track] = []
     var chapters: [Chapter] = []

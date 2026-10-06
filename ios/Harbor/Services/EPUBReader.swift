@@ -98,13 +98,14 @@ final class EPUBReader {
     }
 }
 
-private enum BookXML {
+enum BookXML {
     static let ignored: Set<String> = ["script", "style", "noscript", "nav", "form", "svg", "head"]
     final class Node {
         enum Content { case text(String), element(Node) }
         let name: String
         let attributes: [String: String]
         var content: [Content] = []
+        var elements: [Node] { content.compactMap { if case .element(let node) = $0 { return node }; return nil } }
         init(_ name: String, _ attributes: [String: String]) { self.name = name; self.attributes = attributes }
         var text: String {
             guard !ignored.contains(name) else { return "" }

@@ -1028,5 +1028,20 @@
     "state": "Partial",
     "implementation": "ios/Harbor/Player/PlayerState.swift; Player/MPVController.swift; Player/SubtitleLanguages.swift; Views/SubtitleTracksView.swift; SubtitleLanguages.json",
     "notes": "Actual track-list external/forced/hearing-impaired/default flags drive language/source/HI/forced filters and counts. Original 100 ISO aliases, 82 names and regional policies are extracted from the beta source with SHA256 provenance. Imported status uses observed track IDs, not matching titles. No provider rank or compatibility percentage is invented. Apple/UI/physical verification pending for build 22."
+  },
+  "Player episode panel": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Player/EpisodeSequence.swift; PlayerView.swift; Views/PlayerEpisodesView.swift; PlayerUpNextView.swift; DetailView.swift; ViewModels/DetailModel.swift",
+    "notes": "Native previous/next and in-player season/episode selection use actual metadata IDs, availability and the original player vectors. Normal seasons cross boundaries without entering specials; duplicate coordinates and unaired episodes are excluded from adjacent playback. A configurable original lead policy offers play-now/cancel, and auto-next requires natural mpv EOF, an active scene, the same owner, no error and no short-video/near-end resume. Handoff waits for full-screen dismissal, saves the old checkpoint and queries real addon streams with previous addon/binge-group preference and the ordinary resume policy. Apple compilation, presentation lifecycle and physical behavior remain pending."
+  },
+  "Setting: autoPlayNextEpisode": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Player/EpisodeSequence.swift; PlayerView.swift; Views/PlayerEpisodesView.swift; PlayerUpNextView.swift; DetailView.swift; ViewModels/DetailModel.swift",
+    "notes": "Native previous/next and in-player season/episode selection use actual metadata IDs, availability and the original player vectors. Normal seasons cross boundaries without entering specials; duplicate coordinates and unaired episodes are excluded from adjacent playback. A configurable original lead policy offers play-now/cancel, and auto-next requires natural mpv EOF, an active scene, the same owner, no error and no short-video/near-end resume. Handoff waits for full-screen dismissal, saves the old checkpoint and queries real addon streams with previous addon/binge-group preference and the ordinary resume policy. Apple compilation, presentation lifecycle and physical behavior remain pending."
+  },
+  "Setting: nextEpisodeLeadSec": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Player/EpisodeSequence.swift; PlayerView.swift; Views/PlayerEpisodesView.swift; PlayerUpNextView.swift; DetailView.swift; ViewModels/DetailModel.swift",
+    "notes": "Native previous/next and in-player season/episode selection use actual metadata IDs, availability and the original player vectors. Normal seasons cross boundaries without entering specials; duplicate coordinates and unaired episodes are excluded from adjacent playback. A configurable original lead policy offers play-now/cancel, and auto-next requires natural mpv EOF, an active scene, the same owner, no error and no short-video/near-end resume. Handoff waits for full-screen dismissal, saves the old checkpoint and queries real addon streams with previous addon/binge-group preference and the ordinary resume policy. Apple compilation, presentation lifecycle and physical behavior remain pending."
   }
 }

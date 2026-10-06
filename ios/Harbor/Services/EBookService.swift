@@ -6,10 +6,18 @@ actor EBookService {
     private var recent: [String] = []
     func catalog(query: String, language: String, page: Int) async throws -> ([EBook], Bool) {
         var components = URLComponents(string: "https://gutendex.com/books/")!
-        components.queryItems = [URLQueryItem(name: "page", value: String(max(1, page))), URLQueryItem(name: "mime_type", value: "application/epub+zip")]
+        components.queryItems = [URLQueryItem(name: "page", value: String(max(1, page))), URLQueryItem(name: "mime_type", value: "application/epub")]
         if !query.isEmpty { components.queryItems?.append(URLQueryItem(name: "search", value: query)) }
         if !language.isEmpty { components.queryItems?.append(URLQueryItem(name: "languages", value: language)) }
-        let response = try await HTTPClient().json(components.url!.absoluteString, timeout: 30)
+        components.percentEncodedQuery = components.percentEncodedQuery?.replacingOccurrences(of: "+", with: "%2B")
+        let response: JSONValue
+        do { response = try await HTTPClient().json(components.url!.absoluteString, timeout: 15) }
+        catch {
+            try Task.checkCancellation()
+            // Use the publisher's actual catalog when its JSON mirror is
+            // unavailable, retaining Gutenberg IDs and advertised EPUB URLs.
+            return try await GutenbergCatalog.catalog(query: query, language: language, page: page)
+        }
         let books = response["results"].array.compactMap { value -> EBook? in
             guard let id = value["id"].integer, let title = value["title"].string else { return nil }
             let formats = value["formats"].objectValue
@@ -66,9 +74,9 @@ actor EBookService {
     }
     nonisolated private static func key(_ book: EBook, _ owner: String) -> String { EBookShelf.hash(owner + "|" + book.id) }
     nonisolated private static func file(_ book: EBook, _ owner: String) throws -> URL {
-        let support = try FileManager.default.url(for: .applicationSupportDirectory, in: .userDomainMask, appropriateFor: nil, create: false).resolvingSymlinksInPath().standardizedFileURL
+        let support = try FileManager.default.url(for: .applicationSupportDirectory, in: .userDomainMask, appropriateFor: nil, create: true).resolvingSymlinksInPath().standardizedFileURL
         let file = support.appendingPathComponent("Harbor/eBooks/" + key(book, owner) + ".epub")
-        guard file.standardizedFileURL == file.resolvingSymlinksInPath().standardizedFileURL else { throw HarborError(code: "ebook-store") }
+        guard file.standardizedFileURL.path == file.resolvingSymlinksInPath().standardizedFileURL.path else { throw HarborError(code: "ebook-store") }
         return file
     }
 }

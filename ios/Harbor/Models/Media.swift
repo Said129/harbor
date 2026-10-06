@@ -139,6 +139,8 @@ struct StreamOffer: Identifiable, Sendable {
     var title: String { raw["title"].string ?? raw["name"].string ?? raw["addonName"].string ?? "Stream" }
     var source: String { raw["addonName"].string ?? "Addon" }
     var quality: String { raw["tier"].string ?? "" }
+    var addonID: String? { raw["addonId"].string }
+    var bingeGroup: String? { raw["behaviorHints"]["bingeGroup"].string.flatMap { $0.isEmpty ? nil : $0 } }
 }
 
 struct PlaybackSource: Codable, Identifiable, Sendable {

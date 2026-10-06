@@ -362,6 +362,7 @@ final class MPVController: GLKViewController {
                 state.importedSubtitleIDs = []
                 state.subtitleImportMessage = nil
                 state.ended = false
+                state.endedNaturally = false
                 state.loaded = false
                 state.hasPosition = false
                 state.position = 0
@@ -424,8 +425,10 @@ final class MPVController: GLKViewController {
 #endif
                 }
             case MPV_EVENT_END_FILE:
+                state.endedNaturally = false
                 if let data = event.data {
                     let end = data.assumingMemoryBound(to: mpv_event_end_file.self).pointee
+                    state.endedNaturally = end.reason == MPV_END_FILE_REASON_EOF && end.error >= 0
                     if end.error < 0 {
                         Diagnostics.shared.record(.playerFailed, count: Int(end.error))
                         state.error = "No se pudo reproducir esta fuente (mpv \(end.error))."

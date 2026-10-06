@@ -15,6 +15,12 @@ final class DetailModel {
     var pendingPlayback: PlaybackSession?
     var showResumePrompt = false
     var selectedEpisode: Episode?
+    var lastPlayedAddonID: String?
+    var lastPlayedBingeGroup: String?
+    var continuationOffer: StreamOffer? {
+        offers.first(where: { $0.addonID == lastPlayedAddonID && lastPlayedBingeGroup != nil && $0.bingeGroup == lastPlayedBingeGroup }) ??
+            offers.first(where: { $0.addonID != nil && $0.addonID == lastPlayedAddonID }) ?? offers.first
+    }
     private let service: HarborService
     private var streamRequest = UUID()
 
@@ -56,18 +62,22 @@ final class DetailModel {
         guard !resolving else { return }
         resolving = true
         let owner = library.owner
+        let request = streamRequest
+        let episode = selectedEpisode
         defer { resolving = false }
         do {
             let source = try await service.resolve(offer)
-            let target = ResumeTarget(id: media.id, season: selectedEpisode?.season, episode: selectedEpisode?.episode, videoId: selectedEpisode?.id)
+            try Task.checkCancellation()
+            guard owner == library.owner, request == streamRequest else { return }
+            let target = ResumeTarget(id: media.id, season: episode?.season, episode: episode?.episode, videoId: episode?.id)
             var start = ResumeStart(ms: 0, prompt: false)
             var warning: String?
             let progressEnabled = ["movie", "series", "anime"].contains(media.type) && !media.id.hasPrefix("iptv:")
             if progressEnabled {
                 do {
                     let cloud = await library.resume(for: target)
-                    guard owner == library.owner else { return }
-                    let duration = (selectedEpisode?.runtime ?? 0) > 0 ? (selectedEpisode?.runtime ?? 0) * 60_000 : cloud?.durationMs ?? 0
+                    guard owner == library.owner, request == streamRequest else { return }
+                    let duration = (episode?.runtime ?? 0) > 0 ? (episode?.runtime ?? 0) * 60_000 : cloud?.durationMs ?? 0
                     start = try await resume.position(target, durationMs: duration, playback: UserDefaults.standard.object(forKey: "resumePlayback") as? Bool ?? true, prompt: UserDefaults.standard.object(forKey: "resumePrompt") as? Bool ?? false, cloud: cloud?.entry)
                 } catch {
                     warning = safeMessage(error)
@@ -75,17 +85,20 @@ final class DetailModel {
                 }
             }
             try Task.checkCancellation()
-            guard owner == library.owner else { return }
+            guard owner == library.owner, request == streamRequest else { return }
+            lastPlayedAddonID = offer.addonID
+            lastPlayedBingeGroup = offer.bingeGroup
             let session = PlaybackSession(source: source, target: target, startMs: start.ms, storageWarning: warning, progressEnabled: progressEnabled, owner: owner, resumeStore: resume)
             if start.prompt { pendingPlayback = session; showResumePrompt = true }
             else { playback = session }
         }
         catch is CancellationError { return }
-        catch { self.error = safeMessage(error) }
+        catch { if request == streamRequest { self.error = safeMessage(error) } }
     }
 
-    func chooseResume(_ resume: Bool) {
+    func chooseResume(_ resume: Bool, owner: String) {
         guard let pending = pendingPlayback else { return }
+        guard pending.owner == owner else { pendingPlayback = nil; showResumePrompt = false; return }
         playback = PlaybackSession(source: pending.source, target: pending.target, startMs: resume ? pending.startMs : 0, storageWarning: pending.storageWarning, progressEnabled: pending.progressEnabled, owner: pending.owner, resumeStore: pending.resumeStore)
         pendingPlayback = nil
         showResumePrompt = false

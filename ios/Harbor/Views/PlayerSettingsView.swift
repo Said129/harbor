@@ -53,6 +53,15 @@ struct PlayerSettingsView: View {
                     Toggle("Reanudar la reproducción", isOn: $resumePlayback)
                     Toggle("Preguntar antes de reanudar", isOn: $resumePrompt).disabled(!resumePlayback)
                 }
+                Section("Episodios") {
+                    Toggle("Reproducir automáticamente el siguiente episodio", isOn: $preferences.options.autoPlayNextEpisode)
+                        .accessibilityIdentifier("settings-auto-next")
+                    Picker("Aviso del siguiente episodio", selection: $preferences.options.nextEpisodeLeadSeconds) {
+                        Text("Automático · Harbor").tag(-1.0)
+                        Text("Sin aviso").tag(0.0)
+                        ForEach([15.0, 30, 45, 60, 90], id: \.self) { Text("\(Int($0)) segundos antes").tag($0) }
+                    }
+                }
                 Section {
                     Picker("Tamaño del búfer", selection: $preferences.options.bufferSize) {
                         ForEach(BufferSize.allCases) { Text($0.title).tag($0) }

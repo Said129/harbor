@@ -52,5 +52,27 @@ final class NativeDataTests: XCTestCase {
         XCTAssertEqual(preferences.options.subtitleSize, 48)
         XCTAssertEqual(preferences.options.fit, .classic)
         XCTAssertEqual(preferences.options.zoom, 0)
+        XCTAssertTrue(preferences.options.autoPlayNextEpisode)
+        XCTAssertEqual(preferences.options.nextEpisodeLeadSeconds, -1)
+    }
+    func testEpisodeAdvanceCrossesSeasonsKeepsSpecialsSeparateAndExcludesUnairedEpisodes() throws {
+        let now = try XCTUnwrap(ISO8601DateFormatter().date(from: "2026-10-06T12:00:00Z"))
+        let videos = [Episode(id: "show:2:1", season: 2, episode: 1), Episode(id: "show:1:2", season: 1, episode: 2), Episode(id: "show:0:1", season: 0, episode: 1), Episode(id: "show:1:1", season: 1, episode: 1), Episode(id: "duplicate:1:2", season: 1, episode: 2), Episode(id: "show:2:2", season: 2, episode: 2, released: "2026-12-01T12:00:00Z")]
+        let adjacent = EpisodeSequence.adjacent(videos, current: ResumeTarget(id: "show", season: 1, episode: 2, videoId: "show:1:2"), now: now)
+        XCTAssertEqual(adjacent.previous?.id, "show:1:1")
+        XCTAssertEqual(adjacent.next?.id, "show:2:1")
+        XCTAssertNil(EpisodeSequence.adjacent(videos, current: ResumeTarget(id: "show", season: 2, episode: 1), now: now).next)
+        let special = EpisodeSequence.adjacent(videos, current: ResumeTarget(id: "show", videoId: "show:0:1"), now: now)
+        XCTAssertNil(special.previous)
+        XCTAssertNil(special.next)
+        XCTAssertNil(EpisodeSequence.adjacent(videos, current: ResumeTarget(id: "show", videoId: "missing"), now: now).next)
+        XCTAssertEqual(EpisodeSequence.leadSeconds(setting: -1, duration: 600), 24)
+        XCTAssertEqual(EpisodeSequence.leadSeconds(setting: -1, duration: 3_600), 45)
+        XCTAssertEqual(EpisodeSequence.leadSeconds(setting: 0, duration: 600), 0)
+        XCTAssertTrue(EpisodeSequence.permitsAutomaticAdvance(duration: 1_800, startedAtMs: 0, ended: true, hasError: false))
+        XCTAssertFalse(EpisodeSequence.permitsAutomaticAdvance(duration: 90, startedAtMs: 0, ended: true, hasError: false))
+        XCTAssertFalse(EpisodeSequence.permitsAutomaticAdvance(duration: 1_800, startedAtMs: 1_500_000, ended: true, hasError: false))
+        XCTAssertFalse(EpisodeSequence.permitsAutomaticAdvance(duration: 1_800, startedAtMs: 0, ended: false, hasError: false))
+        XCTAssertFalse(EpisodeSequence.permitsAutomaticAdvance(duration: 1_800, startedAtMs: 0, ended: true, hasError: true))
     }
 }

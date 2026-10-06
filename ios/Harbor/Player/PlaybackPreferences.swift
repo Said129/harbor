@@ -34,6 +34,8 @@ enum VideoFit: String, CaseIterable, Identifiable, Codable {
 struct PlaybackOptions: Codable, Equatable {
     var autoHideControls = true
     var keepScreenAwake = true
+    var autoPlayNextEpisode = true
+    var nextEpisodeLeadSeconds = -1.0
     var seekBackSeconds = 10.0
     var seekForwardSeconds = 10.0
     var speed = 1.0

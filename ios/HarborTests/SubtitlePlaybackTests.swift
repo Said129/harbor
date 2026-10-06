@@ -99,6 +99,10 @@ final class SubtitlePlaybackTests: XCTestCase {
         try await wait(surface, state: state) { !state.subtitleChanging && state.subtitleIssue != nil }
         XCTAssertEqual(state.primarySubtitle?.id, imported.id)
         XCTAssertNil(state.error, "A rejected Files import must not stop the loaded video")
+        controller.run(["seek", "29.8", "absolute+exact"])
+        controller.set("pause", "no")
+        try await wait(surface, state: state) { state.ended }
+        XCTAssertTrue(state.endedNaturally, "Automatic episode advance must use the actual native EOF reason")
         controller.close()
         let cleanupDeadline = Date().addingTimeInterval(3)
         while Date() < cleanupDeadline, FileManager.default.fileExists(atPath: copiedFile.path) { try await Task.sleep(for: .milliseconds(50)) }

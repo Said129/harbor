@@ -41,6 +41,7 @@ struct PlayerView: View {
     let title: String
     var media: Media? = nil
     var library: LibraryModel? = nil
+    var changeEpisode: ((Episode) -> Void)? = nil
     @State private var state = PlayerState()
     @State private var seek: Double = 0
     @State private var editingSeek = false
@@ -49,6 +50,11 @@ struct PlayerView: View {
     @State private var controlsVisible = true
     @State private var hideRevision = 0
     @State private var settingsPage: PlayerSettingsPage?
+    @State private var showEpisodes = false
+    @State private var pendingEpisode: Episode?
+    @State private var episodeChanging = false
+    @State private var autoNextCancelled = false
+    @State private var adjacent: (previous: Episode?, next: Episode?) = (nil, nil)
     @State private var previousIdleTimer = false
     @State private var active = false
     @Bindable private var preferences = PlaybackPreferences.shared
@@ -57,6 +63,23 @@ struct PlayerView: View {
     @Environment(\.scenePhase) private var scenePhase
     @Environment(\.accessibilityVoiceOverEnabled) private var voiceOver
     var body: some View {
+        withLifecycle(surface
+            .foregroundStyle(.white)
+            .statusBarHidden(!controlsVisible)
+            .persistentSystemOverlays(controlsVisible ? .visible : .hidden)
+            .sheet(item: $settingsPage, onDismiss: restartHideTimer) { page in
+                NavigationStack {
+                    PlayerSettingsView(page: page, state: state)
+                        .toolbar { ToolbarItem(placement: .confirmationAction) { Button("Listo") { settingsPage = nil } } }
+                }.tint(HarborTheme.accent).preferredColorScheme(.dark)
+            }
+            .sheet(isPresented: $showEpisodes, onDismiss: {
+                restartHideTimer()
+                if let episode = pendingEpisode { pendingEpisode = nil; requestEpisode(episode) }
+            }) { episodePanel })
+    }
+
+    private var surface: some View {
         ZStack {
             Color.black.ignoresSafeArea()
             PlayerSurface(source: session.source, startMs: session.startMs, state: state).ignoresSafeArea().accessibilityHidden(true)
@@ -77,15 +100,35 @@ struct PlayerView: View {
                 if let error = progressError ?? session.storageWarning { Text(error).font(.caption).padding().background(.black.opacity(0.8)) }
             }.padding().allowsHitTesting(false)
             if controlsVisible { controls.transition(.opacity) }
+            if let next = adjacent.next, showUpNext {
+                VStack {
+                    Spacer()
+                    HStack {
+                        Spacer(minLength: 0)
+                        PlayerUpNextView(episode: next, remaining: max(0, state.duration - state.position), automatic: automaticAdvanceEnabled,
+                            hideSpoiler: InterfacePreferences.shared.hideSpoilers && library?.watchedEpisodes(media ?? Media(id: session.target.id, type: "series", name: title)).contains(next.watchedKey) != true,
+                            play: { requestEpisode(next) }, cancel: { autoNextCancelled = true })
+                    }
+                }.padding(.horizontal, 12).padding(.bottom, controlsVisible ? 160 : 24).transition(.opacity)
+            }
         }
-        .foregroundStyle(.white)
-        .statusBarHidden(!controlsVisible)
-        .persistentSystemOverlays(controlsVisible ? .visible : .hidden)
-        .sheet(item: $settingsPage, onDismiss: restartHideTimer) { page in
+    }
+
+    @ViewBuilder private var episodePanel: some View {
+        if let media {
             NavigationStack {
-                PlayerSettingsView(page: page, state: state)
-                    .toolbar { ToolbarItem(placement: .confirmationAction) { Button("Listo") { settingsPage = nil } } }
+                PlayerEpisodesView(media: media, current: session.target, library: library) { episode in
+                    pendingEpisode = episode
+                    showEpisodes = false
+                }.toolbar { ToolbarItem(placement: .confirmationAction) { Button("Listo") { showEpisodes = false } } }
             }.tint(HarborTheme.accent).preferredColorScheme(.dark)
+        }
+    }
+
+    private func withLifecycle<V: View>(_ content: V) -> some View {
+        content.task(id: autoAdvanceReady) {
+            guard autoAdvanceReady, let next = adjacent.next else { return }
+            requestEpisode(next)
         }
         .task(id: hideRevision) {
             guard canAutoHide else { return }
@@ -116,14 +159,38 @@ struct PlayerView: View {
         }
         .onChange(of: voiceOver) { _, enabled in if enabled { controlsVisible = true }; restartHideTimer() }
         .onChange(of: hardwareDecoding) { _, mode in state.controller?.set("hwdec", mode.mpvValue) }
-        .onChange(of: state.ended) { _, ended in if ended { controlsVisible = true; saveCheckpoint(exiting: false) }; updateIdleTimer() }
+        .onChange(of: state.ended) { _, ended in
+            if ended { controlsVisible = true; saveCheckpoint(exiting: false); if scenePhase != .active { autoNextCancelled = true } }
+            updateIdleTimer()
+        }
         .onChange(of: scenePhase) { _, phase in if phase != .active { saveCheckpoint(exiting: false) }; restartHideTimer(); updateIdleTimer() }
-        .onAppear { previousIdleTimer = UIApplication.shared.isIdleTimerDisabled; active = true; updateIdleTimer() }
+        .onAppear {
+            adjacent = EpisodeSequence.adjacent(media?.videos ?? [], current: session.target)
+            previousIdleTimer = UIApplication.shared.isIdleTimerDisabled; active = true; updateIdleTimer()
+        }
         .onDisappear { active = false; UIApplication.shared.isIdleTimerDisabled = previousIdleTimer; saveCheckpoint(exiting: true) }
     }
 
     private var canAutoHide: Bool {
-        controlsVisible && preferences.options.autoHideControls && state.loaded && !state.paused && !state.buffering && !state.ended && state.error == nil && !editingSeek && settingsPage == nil && !voiceOver && scenePhase == .active
+        controlsVisible && preferences.options.autoHideControls && state.loaded && !state.paused && !state.buffering && !state.ended && state.error == nil && !editingSeek && settingsPage == nil && !showEpisodes && !episodeChanging && !voiceOver && scenePhase == .active
+    }
+    private var canChangeEpisode: Bool { changeEpisode != nil && media?.episodic == true && !(media?.videos?.isEmpty ?? true) && (library.map { $0.owner == session.owner } ?? true) }
+    private var automaticAdvanceEnabled: Bool {
+        preferences.options.autoPlayNextEpisode && !autoNextCancelled && EpisodeSequence.permitsAutomaticAdvance(duration: state.duration, startedAtMs: session.startMs, ended: true, hasError: state.error != nil)
+    }
+    private var autoAdvanceReady: Bool {
+        active && canChangeEpisode && adjacent.next != nil && automaticAdvanceEnabled && state.endedNaturally && !episodeChanging && pendingEpisode == nil && settingsPage == nil && !showEpisodes && scenePhase == .active
+    }
+    private var showUpNext: Bool {
+        let remaining = state.duration - state.position
+        let lead = EpisodeSequence.leadSeconds(setting: preferences.options.nextEpisodeLeadSeconds, duration: state.duration)
+        return canChangeEpisode && !episodeChanging && !autoNextCancelled && state.loaded && state.error == nil && settingsPage == nil && !showEpisodes && scenePhase == .active && lead > 0 && remaining > 0.5 && remaining <= lead && !state.ended
+    }
+    private func requestEpisode(_ episode: Episode) {
+        guard active, canChangeEpisode, !episodeChanging, episode.available, scenePhase == .active, let changeEpisode else { return }
+        episodeChanging = true
+        saveCheckpoint(exiting: true)
+        changeEpisode(episode)
     }
     private func restartHideTimer() { hideRevision += 1 }
     private func updateIdleTimer() {
@@ -137,6 +204,10 @@ struct PlayerView: View {
                 Button { dismiss() } label: { PlayerGlyph(name: "back").frame(width: 44, height: 44) }
                     .accessibilityLabel("Cerrar reproductor").accessibilityIdentifier("player-close")
                 Text(title).lineLimit(1).frame(maxWidth: .infinity, alignment: .leading)
+                if canChangeEpisode {
+                    Button { showEpisodes = true; restartHideTimer() } label: { Image("nav-shows").resizable().scaledToFit().frame(width: 24, height: 24).frame(width: 44, height: 44) }
+                        .accessibilityLabel("Temporadas y episodios").accessibilityIdentifier("player-episodes")
+                }
                 Button { settingsPage = .audio } label: { PlayerGlyph(name: "audio").frame(width: 44, height: 44) }.accessibilityLabel("Audio")
                 Button { settingsPage = .subtitles } label: { PlayerGlyph(name: "subtitle").frame(width: 44, height: 44) }.accessibilityLabel("Subtítulos")
                 Button { settingsPage = .options } label: { Image("nav-settings").frame(width: 44, height: 44) }
@@ -144,6 +215,19 @@ struct PlayerView: View {
             }.padding(.horizontal, 8).padding(.vertical, 4).background(.black.opacity(0.7))
             Spacer()
             VStack(spacing: 4) {
+                if canChangeEpisode {
+                    HStack {
+                        Button { if let previous = adjacent.previous { requestEpisode(previous) } } label: {
+                            HStack(spacing: 6) { PlayerGlyph(name: "prev-episode", size: 17); Text("Anterior") }
+                        }.frame(minHeight: 44).disabled(adjacent.previous == nil || episodeChanging).accessibilityIdentifier("player-previous-episode")
+                        Spacer()
+                        Text("T\(session.target.season ?? 0) · E\(session.target.episode ?? 0)").foregroundStyle(.secondary)
+                        Spacer()
+                        Button { if let next = adjacent.next { requestEpisode(next) } } label: {
+                            HStack(spacing: 6) { Text("Siguiente"); PlayerGlyph(name: "next-episode", size: 17) }
+                        }.frame(minHeight: 44).disabled(adjacent.next == nil || episodeChanging).accessibilityIdentifier("player-next-episode")
+                    }.font(.caption)
+                }
                 Slider(value: Binding(get: { editingSeek ? seek : min(state.position, max(1, state.duration)) }, set: { seek = $0 }), in: 0...max(1, state.duration), onEditingChanged: { editing in
                     editingSeek = editing
                     if !editing { state.controller?.run(["seek", String(seek), "absolute+exact"]) }

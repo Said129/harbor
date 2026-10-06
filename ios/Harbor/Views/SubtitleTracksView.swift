@@ -51,6 +51,10 @@ struct SubtitleTracksView: View {
                 Toggle("Sólo subtítulos forzados", isOn: $forcedOnly)
             }
             Section("Pista principal") {
+                if let primary = state.primarySubtitle, !visible.contains(where: { $0.id == primary.id }) {
+                    row(primary, selected: true)
+                    Text("La pista seleccionada no coincide con estos filtros.").font(.caption).foregroundStyle(.secondary)
+                }
                 Button("Desactivar") { state.controller?.selectSubtitle("no") }.disabled(disabled || state.primarySubtitle == nil)
                 if tracks.isEmpty { Text("No hay pistas de subtítulos disponibles.").foregroundStyle(.secondary) }
                 else if visible.isEmpty { Text("Ninguna pista coincide con estos filtros.").foregroundStyle(.secondary) }
