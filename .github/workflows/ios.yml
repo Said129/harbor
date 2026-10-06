@@ -108,10 +108,26 @@ jobs:
           echo "IOS_SIMULATOR_ARCH=$(uname -m)" >> "$GITHUB_ENV"
           xcrun simctl bootstatus "$device" -b
       - name: Build simulator
+        id: simulator_build
         shell: bash
         run: |
           set -euo pipefail
-          xcodebuild -project ios/Harbor.xcodeproj -scheme Harbor -configuration Debug -destination "platform=iOS Simulator,id=$IOS_SIMULATOR,arch=$IOS_SIMULATOR_ARCH" -derivedDataPath ios/build/DerivedData -clonedSourcePackagesDirPath ios/build/SourcePackages CODE_SIGNING_ALLOWED=YES CODE_SIGN_IDENTITY=- build 2>&1 | tee ios/build/logs/simulator.log
+          xcodebuild -project ios/Harbor.xcodeproj -scheme Harbor -configuration Debug -destination "platform=iOS Simulator,id=$IOS_SIMULATOR,arch=$IOS_SIMULATOR_ARCH" -derivedDataPath ios/build/DerivedData -clonedSourcePackagesDirPath ios/build/SourcePackages -resultBundlePath ios/build/SimulatorBuild.xcresult CODE_SIGNING_ALLOWED=YES CODE_SIGN_IDENTITY=- build 2>&1 | tee ios/build/logs/simulator.log
+      - name: Preserve simulator compiler diagnostics
+        if: ${{ failure() && steps.simulator_build.conclusion == 'failure' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -d ios/build/SimulatorBuild.xcresult ]]; then
+            xcrun xcresulttool get object --legacy --format json --path ios/build/SimulatorBuild.xcresult > ios/build/logs/simulator-result.json || true
+          fi
+          python3 scripts/ios/report-build-issues.py ios/build/logs/simulator-result.json
+          if [[ "${{ inputs.save_draft_build }}" == "true" ]]; then
+            ditto -c -k --keepParent ios/build/logs ios/build/iphone-compiler-evidence.zip
+            gh release create "iphone-compiler-evidence-$GITHUB_RUN_ID" ios/build/iphone-compiler-evidence.zip --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" --draft --prerelease --title "iPhone compiler evidence $GITHUB_RUN_ID" --notes "Public build diagnostics only. No private account, configured addon URL or installable app."
+          fi
       - name: Run bridge and model tests on iPhone simulator
         id: offline_tests
         timeout-minutes: 15

@@ -85,8 +85,12 @@ struct MangaView: View {
             .task(id: signature) { await browse(next: false) }
             .onChange(of: adult) { _, _ in
                 if selected != "all" && !visibleSources.contains(where: { $0.id == selected }) { books = []; selected = "all" }
+                if !visibleSources.contains(where: \.latest) { latest = false }
             }
-            .onChange(of: language) { _, _ in books = []; selected = "all" }
+            .onChange(of: language) { _, _ in
+                books = []; selected = "all"
+                if !visibleSources.contains(where: \.latest) { latest = false }
+            }
             .onChange(of: selected) { _, source in
                 if source != "all" && sources.first(where: { $0.id == source })?.latest != true { latest = false }
             }
@@ -153,6 +157,7 @@ struct MangaView: View {
             guard connection.server == server else { return }
             sources = loaded
             if selected != "all", !visibleSources.contains(where: { $0.id == selected }) { selected = "all" }
+            if !visibleSources.contains(where: \.latest) { latest = false }
             if !visibleSources.isEmpty { await browse(next: false) }
             do { let library = try await service.library(); guard connection.server == server else { return }; serverLibrary = library }
             catch is CancellationError { return }
