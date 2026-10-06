@@ -24,29 +24,30 @@ struct AddonConfigurationView: View {
     }
 }
 
-private struct AddonConfigurationSurface: UIViewRepresentable {
+private struct AddonConfigurationSurface: UIViewControllerRepresentable {
     let url: URL
     @Binding var loading: Bool
     @Binding var error: String?
     let receive: (String) -> Void
     func makeCoordinator() -> Coordinator { Coordinator(self) }
-    func makeUIView(context: Context) -> WKWebView {
+    func makeUIViewController(context: Context) -> WebPageController {
         let configuration = WKWebViewConfiguration()
         configuration.websiteDataStore = .nonPersistent()
         let view = WKWebView(frame: .zero, configuration: configuration)
+        let controller = WebPageController(webView: view)
+        context.coordinator.controller = controller
         view.navigationDelegate = context.coordinator
-        view.uiDelegate = context.coordinator
+        controller.openWindow = { [weak coordinator = context.coordinator] view, action in coordinator?.openWindow(view, action: action) }
         view.allowsBackForwardNavigationGestures = true
         view.load(URLRequest(url: url))
-        return view
+        return controller
     }
-    func updateUIView(_ view: WKWebView, context: Context) { context.coordinator.parent = self }
-    static func dismantleUIView(_ view: WKWebView, coordinator: Coordinator) {
-        view.stopLoading(); view.navigationDelegate = nil; view.uiDelegate = nil
-    }
+    func updateUIViewController(_ controller: WebPageController, context: Context) { context.coordinator.parent = self }
+    static func dismantleUIViewController(_ controller: WebPageController, coordinator: Coordinator) { controller.close() }
 
-    @MainActor final class Coordinator: NSObject, WKNavigationDelegate, WKUIDelegate {
+    @MainActor final class Coordinator: NSObject, WKNavigationDelegate {
         var parent: AddonConfigurationSurface
+        weak var controller: WebPageController?
         private var received = false
         init(_ parent: AddonConfigurationSurface) { self.parent = parent }
         private func capture(_ url: URL) -> Bool {
@@ -63,12 +64,11 @@ private struct AddonConfigurationSurface: UIViewRepresentable {
             if action.targetFrame?.isMainFrame != false, capture(url) { return .cancel }
             return ["http", "https", "about"].contains(url.scheme?.lowercased() ?? "") ? .allow : .cancel
         }
-        func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for action: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
-            guard let url = action.request.url, !capture(url), ["http", "https"].contains(url.scheme?.lowercased() ?? "") else { return nil }
+        func openWindow(_ webView: WKWebView, action: WKNavigationAction) {
+            guard let url = action.request.url, !capture(url), ["http", "https"].contains(url.scheme?.lowercased() ?? "") else { return }
             webView.load(action.request)
-            return nil
         }
-        func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) { parent.loading = true; parent.error = nil }
+        func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) { controller?.cancelSiteDialog(); parent.loading = true; parent.error = nil }
         func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) { parent.loading = false }
         func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) { failed(error) }
         func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) { failed(error) }

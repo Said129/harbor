@@ -23,15 +23,22 @@ final class SubmanhwaSession {
     }
 }
 
-private struct SubmanhwaBrowser: UIViewRepresentable {
+private struct SubmanhwaBrowser: UIViewControllerRepresentable {
     let session: SubmanhwaSession
-    func makeUIView(context: Context) -> WKWebView { session.web.navigationDelegate = context.coordinator; return session.web }
-    func updateUIView(_ view: WKWebView, context: Context) { }
+    func makeUIViewController(context: Context) -> WebPageController {
+        let controller = WebPageController(webView: session.web)
+        context.coordinator.controller = controller
+        session.web.navigationDelegate = context.coordinator
+        return controller
+    }
+    func updateUIViewController(_ controller: WebPageController, context: Context) { }
+    static func dismantleUIViewController(_ controller: WebPageController, coordinator: Coordinator) { controller.close() }
     func makeCoordinator() -> Coordinator { Coordinator(session) }
     @MainActor final class Coordinator: NSObject, WKNavigationDelegate {
         let session: SubmanhwaSession
+        weak var controller: WebPageController?
         init(_ session: SubmanhwaSession) { self.session = session }
-        func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) { session.loading = true; session.error = nil }
+        func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) { controller?.cancelSiteDialog(); session.loading = true; session.error = nil }
         func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) { finish() }
         func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) { fail(error) }
         func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) { fail(error) }
