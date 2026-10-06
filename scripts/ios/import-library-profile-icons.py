@@ -23,15 +23,19 @@ def main():
     assert base64.b64encode(hashlib.sha512(archive).digest()).decode() == integrity
     records = {}
     with tarfile.open(fileobj=io.BytesIO(archive), mode="r:gz") as sources:
-        for name in ["bookmark", "clock", "hard-drive", "image", "palette", "chevron-right"]:
-            relative = f"package/dist/esm/icons/{name}.js"
+        for name in ["library", "bookmark", "bookmark-filled", "clock", "hard-drive", "image", "palette", "chevron-right", "star"]:
+            source_name = "bookmark" if name == "bookmark-filled" else name
+            relative = f"package/dist/esm/icons/{source_name}.js"
             original = sources.extractfile(relative).read()
             source = original.decode("utf-8")
             match = re.search(r'createLucideIcon\("[^"]+",\s*(\[.*\])\);', source, re.S)
             assert match is not None, f"Missing declarative geometry: {name}"
             literal = re.sub(r'([,{]\s*)([A-Za-z][A-Za-z0-9_-]*)(\s*:)', r'\1"\2"\3', match[1])
             nodes = json.loads(literal)
-            svg = ET.Element("svg", {"xmlns": "http://www.w3.org/2000/svg", "width": "26", "height": "26", "viewBox": "0 0 24 24", "fill": "none", "stroke": "#fff", "stroke-width": "2.2", "stroke-linecap": "round", "stroke-linejoin": "round"})
+            filled = name == "bookmark-filled"
+            # Desktop WatchlistCard uses Bookmark size=12, fill=currentColor,
+            # strokeWidth=2.6. The tab/action version stays outlined at 2.2.
+            svg = ET.Element("svg", {"xmlns": "http://www.w3.org/2000/svg", "width": "26", "height": "26", "viewBox": "0 0 24 24", "fill": "#fff" if filled else "none", "stroke": "#fff", "stroke-width": "2.6" if filled else "2.2", "stroke-linecap": "round", "stroke-linejoin": "round"})
             for tag, attributes in nodes:
                 assert tag in {"path", "line", "circle", "ellipse", "polyline", "polygon", "rect"}
                 ET.SubElement(svg, tag, {key: str(value) for key, value in attributes.items() if key != "key"})

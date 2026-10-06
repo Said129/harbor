@@ -120,7 +120,14 @@ final class LiveNavigationTests: XCTestCase {
         capture(app, "native-library-original-layout")
         let favorites = app.buttons["library-tab-favorites"]
         let filterBar = app.descendants(matching: .any).matching(identifier: "library-filter").firstMatch
-        for _ in 0..<3 { if favorites.isHittable { break }; filterBar.swipeLeft() }
+        XCTAssertTrue(filterBar.waitForExistence(timeout: 5))
+        // XCTest can throw while asking hittability of a button outside a
+        // horizontal scroll viewport. Reveal its frame before querying it.
+        for _ in 0..<3 {
+            if filterBar.frame.contains(favorites.frame) { break }
+            filterBar.swipeLeft()
+        }
+        XCTAssertTrue(filterBar.frame.contains(favorites.frame), "The Favorites tab must scroll into the iPhone viewport")
         XCTAssertTrue(favorites.isHittable)
         favorites.tap()
         XCTAssertTrue(savedMovie.waitForExistence(timeout: 5), "Favorites must show the actual detail selection")

@@ -1,5 +1,17 @@
 import SwiftUI
 
+struct HarborAccountButtonStyle: ButtonStyle {
+    var primary = false
+    @Environment(\.isEnabled) private var enabled
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label.font(HarborTheme.font(13, weight: .semibold))
+            .padding(.horizontal, 16).frame(minHeight: 44)
+            .foregroundStyle(primary ? Color.black : HarborTheme.ink)
+            .background(primary ? Color.white : HarborTheme.surface, in: .rect(cornerRadius: 9))
+            .opacity(enabled ? configuration.isPressed ? 0.7 : 1 : 0.4)
+    }
+}
+
 struct HarborPageHeading: View {
     let title: String
     var eyebrow: String? = nil

@@ -38,7 +38,7 @@ struct AccountView: View {
                             error = nil
                             do { try await app.syncAccount() } catch { self.error = safeMessage(error) }
                         }
-                    }.accessibilityIdentifier("account-sync")
+                    }.buttonStyle(HarborAccountButtonStyle()).accessibilityIdentifier("account-sync")
                     Button("Cerrar sesión", role: .destructive) {
                         Task {
                             error = nil
@@ -62,16 +62,16 @@ struct AccountView: View {
                             catch let failure as HarborError where failure.code == "account-cancelled" { }
                             catch { self.error = safeMessage(error) }
                         }
-                    }.accessibilityIdentifier("account-browser-login")
+                    }.buttonStyle(HarborAccountButtonStyle(primary: true)).accessibilityIdentifier("account-browser-login")
                     Text("Acceso oficial con correo, Apple o Facebook.").font(.caption).foregroundStyle(.secondary)
                 }
                 VStack(alignment: .leading, spacing: 14) {
                     Text("Correo y contraseña").font(.headline)
                     TextField("Correo de Stremio", text: $email).keyboardType(.emailAddress)
                         .textContentType(.username).textInputAutocapitalization(.never).autocorrectionDisabled()
-                        .focused($editing).accessibilityIdentifier("account-email")
+                        .focused($editing).padding(13).background(HarborTheme.surface, in: .rect(cornerRadius: 10)).accessibilityIdentifier("account-email")
                     SecureField("Contraseña", text: $password).textContentType(.password)
-                        .focused($editing).accessibilityIdentifier("account-password")
+                        .focused($editing).padding(13).background(HarborTheme.surface, in: .rect(cornerRadius: 10)).accessibilityIdentifier("account-password")
                     Button("Iniciar sesión") {
                         editing = false
                         let suppliedPassword = password
@@ -81,7 +81,7 @@ struct AccountView: View {
                             do { try await app.signIn(email: email, password: suppliedPassword); dismiss() }
                             catch { self.error = safeMessage(error) }
                         }
-                    }.disabled(email.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty || password.isEmpty)
+                    }.buttonStyle(HarborAccountButtonStyle(primary: true)).disabled(email.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty || password.isEmpty)
                         .accessibilityIdentifier("account-login")
                 }
             }
@@ -90,7 +90,7 @@ struct AccountView: View {
           }.padding(22)
         }
         .background(HarborTheme.background)
-        .textFieldStyle(.roundedBorder)
+        .textFieldStyle(.plain)
         .disabled(app.accountBusy || browserBusy)
         .navigationTitle("").navigationBarTitleDisplayMode(.inline)
         .toolbar { Button("Cerrar") { dismiss() } }

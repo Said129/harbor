@@ -31,7 +31,7 @@ struct HarborApp: App {
                     guard scenePhase == .active, model.storageReady else { return }
                     await model.library.sync()
                 }
-                .sheet(isPresented: $model.showAccount) { NavigationStack { AccountView(app: model) } }
+                .sheet(isPresented: $model.showAccount) { NavigationStack { AccountView(app: model) }.font(HarborTheme.font()).foregroundStyle(HarborTheme.ink).tint(HarborTheme.accent).preferredColorScheme(.dark) }
         }
     }
 }

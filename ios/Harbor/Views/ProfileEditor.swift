@@ -36,19 +36,19 @@ struct ProfileEditor: View {
                 ProfileAvatar(profile: profile)
                 VStack(alignment: .leading, spacing: 8) {
                     Text("Nombre visible").font(.caption).foregroundStyle(.secondary)
-                    TextField("Nombre", text: $name).padding(13).background(HarborTheme.surface, in: .rect(cornerRadius: 10)).accessibilityIdentifier("profile-name")
+                    TextField("Nombre", text: $name).textFieldStyle(.plain).padding(13).background(HarborTheme.surface, in: .rect(cornerRadius: 10)).accessibilityIdentifier("profile-name")
                 }
             }
-            Button("Guardar nombre") { profile.update { $0.name = String(name.trimmingCharacters(in: .whitespacesAndNewlines).prefix(80)) } }.buttonStyle(.bordered).disabled(!profile.ready)
+            Button("Guardar nombre") { profile.update { $0.name = String(name.trimmingCharacters(in: .whitespacesAndNewlines).prefix(80)) } }.buttonStyle(HarborAccountButtonStyle()).disabled(!profile.ready)
             Divider()
             Label("Avatar", image: "desktop-image").font(.headline)
             Text("Sube una foto o elige uno del catálogo original de Harbor.").font(.subheadline).foregroundStyle(.secondary)
             HStack(spacing: 12) {
-                PhotosPicker(selection: $chosenPhoto, matching: .images) { Text("Subir foto").font(.subheadline).padding(12).background(HarborTheme.surface, in: .rect(cornerRadius: 9)) }
+                PhotosPicker(selection: $chosenPhoto, matching: .images) { Text("Subir foto") }.buttonStyle(HarborAccountButtonStyle())
                 Button { avatars = true } label: {
                     HStack(spacing: -7) { ForEach(DesktopAvatar.catalog.prefix(5)) { Image($0.asset).resizable().scaledToFill().frame(width: 29, height: 29).clipShape(.circle).overlay { Circle().stroke(HarborTheme.background, lineWidth: 2) } } }
                     Text("\(DesktopAvatar.catalog.count)").font(.caption2).padding(4).background(HarborTheme.surface, in: .capsule)
-                }.accessibilityLabel("Elegir avatar de Harbor")
+                }.buttonStyle(.plain).foregroundStyle(HarborTheme.ink).frame(minHeight: 44).contentShape(Rectangle()).accessibilityLabel("Elegir avatar de Harbor")
             }.disabled(!profile.ready)
             if profile.value.photo != nil { Button("Usar mi avatar de Harbor") { profile.update { $0.photo = nil } }.font(.caption) }
             Divider()
@@ -82,7 +82,7 @@ struct ProfileEditor: View {
                             }
                         }.padding()
                     }.background(HarborTheme.background).navigationTitle("Avatares de Harbor").toolbar { Button("Cerrar") { avatars = false } }
-                }
+                }.font(HarborTheme.font()).foregroundStyle(HarborTheme.ink).tint(HarborTheme.accent).preferredColorScheme(.dark)
             }
     }
 }

@@ -5,10 +5,20 @@
   "notes": "Original Lucide geometry from the declared beta dependency, not SF Symbols. The reference does not include a lockfile; no claim of its exact resolved dependency version.",
   "integrity": "sha512-BVtq/DykVeIvRTJvRAgCsOwaGL8Un3Bxh8MbDxMhEWlZay3T4IpEKDEpwt5KZ0KJMHzgm6jrltxlT5eXOWXDHg==",
   "files": {
+    "library": {
+      "source": "package/dist/esm/icons/library.js",
+      "sha256": "bf3fb7957e46c429be45baf39374f37b5c1d47012ce5cb9642564466bb338ce8",
+      "svgSha256": "ca068f57eeff5f143f6f1be9afa2cd70d81239de786c9c6e1288590dc010c755"
+    },
     "bookmark": {
       "source": "package/dist/esm/icons/bookmark.js",
       "sha256": "3a2b1a9e263133d039ff40396f154bfb00af6a74f94ce4b689287859b70b8b87",
       "svgSha256": "d3d7e84cfb9efa0cea60e267e3c2c16daa113cbaa7b6ceb05196cba4718a44a7"
+    },
+    "bookmark-filled": {
+      "source": "package/dist/esm/icons/bookmark.js",
+      "sha256": "3a2b1a9e263133d039ff40396f154bfb00af6a74f94ce4b689287859b70b8b87",
+      "svgSha256": "2531e2dc14e1647fa815dc61ffb9237faf857184fbc9c69db72a0fb197866821"
     },
     "clock": {
       "source": "package/dist/esm/icons/clock.js",
@@ -34,6 +44,11 @@
       "source": "package/dist/esm/icons/chevron-right.js",
       "sha256": "ee161fee79e5583f4e7db5d633edb7c94cdb024001292646f313e1b8e5542aec",
       "svgSha256": "a4d3f273556be147589aedf772f7b3706f71d3fbfebaa52ef6ad1014d9b5a245"
+    },
+    "star": {
+      "source": "package/dist/esm/icons/star.js",
+      "sha256": "d4090a7df7e4f2f67b254e7650be3a5cdda207dc47536aa8e1a98fde48f14202",
+      "svgSha256": "6aef9e3ac7489f099a3ed0a57c491a93ce27d983ddf83f1a063b0b14c095a650"
     }
   }
 }
