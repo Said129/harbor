@@ -425,7 +425,7 @@ final class MPVController: GLKViewController {
                 let result = mpv_render_context_render(renderer, &parameters)
                 if result < 0 {
                     if state.error == nil { Diagnostics.shared.record(.playerFailed, count: Int(result)) }
-                    state.error = "Error de render mpv: \(result)"
+                    state.error = "No se pudo mostrar el vídeo. Prueba con otra fuente."
                 }
             }
         }
@@ -448,7 +448,7 @@ final class MPVController: GLKViewController {
                 }
                 if event.error < 0 {
                     Diagnostics.shared.record(.playerFailed, count: Int(event.error))
-                    state.error = "La operación del reproductor falló (mpv \(event.error))."
+                    state.error = "No se pudo completar la operación del reproductor. Vuelve a intentarlo."
                 }
             case MPV_EVENT_START_FILE:
                 mediaRevision += 1
@@ -532,7 +532,7 @@ final class MPVController: GLKViewController {
                     state.endedNaturally = end.reason == MPV_END_FILE_REASON_EOF && end.error >= 0
                     if end.error < 0 {
                         Diagnostics.shared.record(.playerFailed, count: Int(end.error))
-                        state.error = "No se pudo reproducir esta fuente (mpv \(end.error))."
+                        state.error = "No se pudo abrir esta fuente. Prueba con otro enlace."
                     }
                 }
                 state.loaded = false
