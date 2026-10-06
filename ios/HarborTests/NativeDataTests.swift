@@ -31,6 +31,17 @@ final class NativeDataTests: XCTestCase {
         XCTAssertEqual(media.videos?.first?.id, "episode:1")
         XCTAssertNil(Media.parse(.object(["id": .null, "name": .string("Invalid")]), kind: "movie"))
     }
+    func testPartialCatalogRefreshKeepsFailedRowsButClearsSuccessfulEmptyAndRemovedRows() {
+        let addon = Addon(manifest: .object(["id": .string("test-only")]), transportUrl: "https://example.invalid/manifest.json", enabled: true)
+        func plan(_ key: String) -> RequestPlan { RequestPlan(key: key, url: "https://example.invalid/catalog/\(key).json", title: key, kind: "movie", addon: addon, addonPriority: 0, timeoutMs: 8_000, catalog: nil) }
+        let first = plan("first"), failed = plan("failed"), removed = plan("removed")
+        let previous = [first, failed, removed].map { CatalogRow(plan: $0, metas: [Media(id: $0.key, type: "movie", name: $0.title)]) }
+        let merged = HarborService.mergeCatalogs(plans: [first, failed], received: [CatalogRow(plan: first, metas: [])], previous: previous)
+        XCTAssertEqual(merged.map(\.id), ["first", "failed"])
+        XCTAssertTrue(merged[0].metas.isEmpty)
+        XCTAssertEqual(merged[1].metas.first?.id, "failed")
+        XCTAssertTrue(HarborService.mergeCatalogs(plans: [], received: [], previous: previous).isEmpty)
+    }
     @MainActor func testOldSavedOptionsSurviveAddingAspectControls() throws {
         let name = "harbor-migration-\(UUID().uuidString)"
         let storage = try XCTUnwrap(UserDefaults(suiteName: name))

@@ -29,6 +29,18 @@ final class VODPlaylistTests: XCTestCase {
         XCTAssertEqual(catalog.series.count, 2, "Non-Latin show titles must not collapse into one empty normalized key")
         let show = try XCTUnwrap(catalog.series.first { $0.title == "المسلسل" })
         XCTAssertEqual(show.episodes.map(\.episode), [2, 10])
+        XCTAssertEqual(VODTitles.searchKey("\u{200F}إِنْتِرْسْتِلَّار ٢٠١٤"), VODTitles.searchKey("انترستلار 2014"))
+        XCTAssertEqual(VODTitles.searchKey("  Ｆｉｌｍ　２  "), "film 2")
+
+        let original = try XCTUnwrap(catalog.movies.first { $0.year == 2020 }).media
+        var metadata = Media(id: "tmdb:movie:42", type: "movie", name: "A translated title")
+        metadata.poster = "https://example.invalid/actual-provider-art.jpg"
+        metadata.description = "Provider overview"
+        let enriched = VODMetadataService.apply(metadata, to: original)
+        XCTAssertEqual(enriched.id, original.id, "Public metadata must not replace a playlist's private resume identity")
+        XCTAssertEqual(enriched.name, original.name)
+        XCTAssertEqual(enriched.poster, metadata.poster)
+        XCTAssertEqual(enriched.releaseInfo, "2020")
 
         let account = try XtreamAccount.make(server: "https://example.invalid:8443/server", username: "test+user", password: "pass/word?&=#")
         let api = try account.api("get_series_info", extra: ["series_id": "42"])

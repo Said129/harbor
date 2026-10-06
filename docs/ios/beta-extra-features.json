@@ -107,5 +107,17 @@
   {
     "source": "src/lib/iptv/xtream.ts",
     "features": ["Xtream short EPG", "Xtream live container selection"]
+  },
+  {
+    "source": "src/lib/iptv/vod-enrich.ts",
+    "features": ["VOD metadata enrichment"]
+  },
+  {
+    "source": "src/lib/iptv/rtl.ts",
+    "features": ["VOD Arabic-aware search"]
+  },
+  {
+    "source": "src/views/playlist-vod/episode-row.tsx",
+    "features": ["VOD episode progress display"]
   }
 ]

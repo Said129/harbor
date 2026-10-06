@@ -1286,6 +1286,18 @@
     {
       "id": "Xtream live container selection",
       "source": "src/lib/iptv/xtream.ts"
+    },
+    {
+      "id": "VOD metadata enrichment",
+      "source": "src/lib/iptv/vod-enrich.ts"
+    },
+    {
+      "id": "VOD Arabic-aware search",
+      "source": "src/lib/iptv/rtl.ts"
+    },
+    {
+      "id": "VOD episode progress display",
+      "source": "src/views/playlist-vod/episode-row.tsx"
     }
   ],
   "settings": [

@@ -12,6 +12,7 @@ struct VODMovie: Identifiable, Sendable {
     let channel: LiveChannel
     let title: String
     let year: Int?
+    let searchKey: String
     var id: String { channel.id }
     var media: Media { Media(id: "vod:" + EBookShelf.hash(id), type: "movie", name: title, poster: channel.logo, background: channel.logo, description: channel.group, releaseInfo: year.map(String.init)) }
 }
@@ -19,6 +20,7 @@ struct VODSeries: Identifiable, Sendable {
     let id: String
     let source: String
     let title: String
+    let searchKey: String
     let logo: String?
     let group: String?
     let xtreamID: String?
@@ -37,11 +39,11 @@ struct VODLibrary: Sendable {
             case "movie":
                 let title = VODTitles.clean(channel.name), year = VODTitles.year(channel.name)
                 let key = channel.source + "|" + VODTitles.normalized(title) + "|" + String(year ?? 0)
-                if seen.insert(key).inserted { result.movies.append(VODMovie(channel: channel, title: title, year: year)) }
+                if seen.insert(key).inserted { result.movies.append(VODMovie(channel: channel, title: title, year: year, searchKey: VODTitles.searchKey(title))) }
             case "series":
                 let title = VODTitles.show(channel.name), xtream = channel.attributes["xtream-series-id"]
                 let id = channel.source + "|" + (xtream.map { "xtream:" + $0 } ?? VODTitles.normalized(title))
-                var series = shows[id] ?? VODSeries(id: id, source: channel.source, title: title, logo: channel.logo, group: channel.group, xtreamID: xtream, episodes: [])
+                var series = shows[id] ?? VODSeries(id: id, source: channel.source, title: title, searchKey: VODTitles.searchKey(title), logo: channel.logo, group: channel.group, xtreamID: xtream, episodes: [])
                 if xtream == nil {
                     let number = VODTitles.number(channel.name)
                     series.episodes.append(VODEpisode(channel: channel, season: number?.0 ?? 1, episode: number?.1 ?? 0, title: VODTitles.clean(channel.name)))
@@ -122,6 +124,24 @@ enum VODTitles {
     static func normalized(_ title: String) -> String {
         let ascii = replace(#"[^a-z0-9]+"#, title.lowercased(), "-").trimmingCharacters(in: CharacterSet(charactersIn: "-"))
         return ascii.isEmpty ? EBookShelf.hash(title.lowercased()) : ascii
+    }
+    static func searchKey(_ text: String) -> String {
+        var result = String.UnicodeScalarView()
+        for scalar in text.precomposedStringWithCompatibilityMapping.unicodeScalars {
+            let value = scalar.value
+            if (0x200B...0x200F).contains(value) || (0x202A...0x202E).contains(value) || (0x2066...0x2069).contains(value) || value == 0xFEFF || (0x064B...0x0652).contains(value) || value == 0x0670 || value == 0x0640 { continue }
+            let replacement: UInt32
+            switch value {
+            case 0x0623, 0x0625, 0x0622, 0x0671: replacement = 0x0627
+            case 0x0629: replacement = 0x0647
+            case 0x0649, 0x0626: replacement = 0x064A
+            case 0x0624: replacement = 0x0648
+            case 0x0660...0x0669, 0x06F0...0x06F9: replacement = 0x30 + (value & 0xF)
+            default: replacement = value
+            }
+            if let mapped = Unicode.Scalar(replacement) { result.append(mapped) }
+        }
+        return String(result).lowercased().split(whereSeparator: \.isWhitespace).joined(separator: " ")
     }
     private static func tags(_ name: String) -> String {
         var value = name.trimmingCharacters(in: .whitespacesAndNewlines)

@@ -7,6 +7,13 @@ private final class AccountRedirectPolicy: NSObject, URLSessionTaskDelegate, @un
 }
 
 struct HTTPClient: Sendable {
+    private static let metadataSession: URLSession = {
+        let configuration = URLSessionConfiguration.ephemeral
+        configuration.httpShouldSetCookies = false
+        configuration.httpCookieStorage = nil
+        configuration.urlCache = nil
+        return URLSession(configuration: configuration)
+    }()
     private static let accountSession: URLSession = {
         let configuration = URLSessionConfiguration.ephemeral
         configuration.httpShouldSetCookies = false
@@ -25,11 +32,11 @@ struct HTTPClient: Sendable {
         return try await receive(request, session: Self.accountSession)
     }
 
-    func json(_ value: String, timeout: TimeInterval = 8) async throws -> JSONValue {
+    func json(_ value: String, timeout: TimeInterval = 8, credentialed: Bool = false) async throws -> JSONValue {
         guard let url = URL(string: value), ["https", "http"].contains(url.scheme) else { throw HarborError(code: "invalid-url") }
-        let request = URLRequest(url: url, timeoutInterval: max(15, timeout))
+        let request = URLRequest(url: url, cachePolicy: credentialed ? .reloadIgnoringLocalCacheData : .useProtocolCachePolicy, timeoutInterval: max(15, timeout))
         for attempt in 0..<2 {
-            do { return try await receive(request, session: .shared) }
+            do { return try await receive(request, session: credentialed ? Self.accountSession : Self.metadataSession) }
             catch let error as HarborError {
                 guard attempt == 0, error.code == "network" || error.code == "http-429" || error.code.hasPrefix("http-5") else { throw error }
                 try await Task.sleep(for: .milliseconds(500))

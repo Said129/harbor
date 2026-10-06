@@ -87,7 +87,7 @@ final class AppModel {
         defer { if generation == homeGeneration { loading = false } }
         do {
             let providers = try await service.catalogProviders(selectedAddons)
-            let result = try await service.catalogs(providers, onRow: { [weak self] row in
+            let result = try await service.catalogs(providers, previous: rows, onRow: { [weak self] row in
                 guard let self, generation == self.homeGeneration else { return }
                 if let index = self.rows.firstIndex(where: { $0.id == row.id }) { self.rows[index] = row }
                 else { self.rows.append(row) }
@@ -95,9 +95,11 @@ final class AppModel {
             })
             guard generation == homeGeneration else { return }
             warnings = result.1
-            if result.0.contains(where: { !$0.metas.isEmpty }) || warnings.isEmpty { rows = result.0 }
+            rows = result.0
             Diagnostics.shared.record(.catalogsLoaded, count: rows.count)
-            if result.0.allSatisfy({ $0.metas.isEmpty }) && !warnings.isEmpty { error = "No se pudieron actualizar los catálogos. Comprueba la conexión y vuelve a intentarlo." }
+            if !warnings.isEmpty {
+                error = rows.contains(where: { !$0.metas.isEmpty }) ? "Algunos catálogos no han respondido. Los títulos disponibles siguen accesibles." : "No se pudieron actualizar los catálogos. Comprueba la conexión y vuelve a intentarlo."
+            }
             await enrichHeroes(generation: generation)
         } catch is CancellationError { return }
         catch {
@@ -168,7 +170,7 @@ final class AppModel {
         try keychain.write(next, key: "account.v1")
         savedAccount = next; addons = collection.addons
         Task { await library.setSession(next.session) }
-        rows = []; warnings = []; accountError = nil
+        warnings = []; accountError = nil
         Diagnostics.shared.record(.accountSynced, count: addons.count)
         await loadHome()
     }

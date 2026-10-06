@@ -105,7 +105,7 @@ struct TMDBService: Sendable {
         guard !configuration.tmdbKey.isEmpty, var url = URLComponents(string: "https://api.themoviedb.org/3/\(path)") else { throw HarborError(code: "metadata-not-configured") }
         url.queryItems = [URLQueryItem(name: "api_key", value: configuration.tmdbKey), URLQueryItem(name: "language", value: configuration.language)] + parameters.sorted { $0.key < $1.key }.map { URLQueryItem(name: $0.key, value: $0.value) }
         guard let target = url.string else { throw HarborError(code: "invalid-url") }
-        return try await http.json(target, timeout: 15)
+        return try await http.json(target, timeout: 15, credentialed: true)
     }
     private func image(_ path: String?, size: String) -> String? { path.map { "https://image.tmdb.org/t/p/\(size)\($0)" } }
 }

@@ -21,7 +21,7 @@ struct HarborService: Sendable {
         return try await core.call("installAddon", ["url": .string(normalized.url), "manifest": manifest])
     }
 
-    func catalogs(_ addons: [Addon], search: String? = nil, genre: String? = nil, skip: Int = 0, onRow: (@MainActor @Sendable (CatalogRow) -> Void)? = nil) async throws -> ([CatalogRow], [String]) {
+    func catalogs(_ addons: [Addon], search: String? = nil, genre: String? = nil, skip: Int = 0, previous: [CatalogRow] = [], onRow: (@MainActor @Sendable (CatalogRow) -> Void)? = nil) async throws -> ([CatalogRow], [String]) {
         let plans: [RequestPlan] = try await core.call("catalogs", ["addons": try .encoded(addons), "search": search.map(JSONValue.string) ?? .null, "genre": genre.map(JSONValue.string) ?? .null, "skip": .integer(Int64(skip))])
         return try await withThrowingTaskGroup(of: (RequestPlan, JSONValue?, String?).self) { group in
             var iterator = plans.makeIterator()
@@ -47,8 +47,16 @@ struct HarborService: Sendable {
                 if let next = iterator.next() { enqueue(next) }
             }
             try Task.checkCancellation()
-            return (plans.compactMap { plan in rows.first { $0.id == plan.key } }, errors)
+            return (Self.mergeCatalogs(plans: plans, received: rows, previous: previous), errors)
         }
+    }
+
+    static func mergeCatalogs(plans: [RequestPlan], received: [CatalogRow], previous: [CatalogRow]) -> [CatalogRow] {
+        let fresh = Dictionary(received.map { ($0.id, $0) }, uniquingKeysWith: { _, last in last })
+        let saved = Dictionary(previous.map { ($0.id, $0) }, uniquingKeysWith: { _, last in last })
+        // Successful empty responses clear their row. Only a failed current
+        // request retains its prior data; removed/disabled plans disappear.
+        return plans.compactMap { fresh[$0.key] ?? saved[$0.key] }
     }
 
     func metadata(_ media: Media, addons: [Addon]) async throws -> Media {

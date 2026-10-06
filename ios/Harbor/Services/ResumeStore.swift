@@ -43,6 +43,13 @@ actor ResumeStore {
         return try invoke("resumePosition", ["target": try .encoded(target), "document": try .encoded(merged), "durationMs": .number(durationMs), "playback": .bool(playback), "prompt": .bool(prompt)], as: ResumeStart.self)
     }
 
+    func entry(_ target: ResumeTarget) throws -> ResumeEntry? {
+        guard ready else { throw HarborError(code: "resume-store-unavailable") }
+        struct Key: Decodable { let key: String }
+        let result = try invoke("resumeKey", ["target": try .encoded(target)], as: Key.self)
+        return document.entries[result.key]
+    }
+
     @discardableResult
     func save(_ target: ResumeTarget, snapshot: ResumeSnapshot) throws -> Bool {
         guard ready else { throw HarborError(code: "resume-store-unavailable") }
