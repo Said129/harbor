@@ -32,6 +32,18 @@ final class MusicPlaybackTests: XCTestCase {
             let seekDeadline = Date().addingTimeInterval(3)
             while Date() < seekDeadline, player.position < 1.9 { try await Task.sleep(for: .milliseconds(50)) }
             XCTAssertEqual(player.position, 2, accuracy: 0.2)
+            let lists = MusicPlaylistStore(owner: owner)
+            lists.create("  Night music  ")
+            let list = try XCTUnwrap(lists.playlists.first)
+            lists.add(record, to: list.id); lists.add(record, to: list.id)
+            XCTAssertNil(lists.error)
+            let restored = MusicPlaylistStore(owner: owner)
+            XCTAssertEqual(restored.playlists.first?.name, "Night music")
+            XCTAssertEqual(restored.playlists.first?.trackIds, [record.id])
+            XCTAssertTrue(MusicPlaylistStore(owner: owner + "-other").playlists.isEmpty)
+            restored.delete(list.id)
+            XCTAssertTrue(MusicPlaylistStore(owner: owner).playlists.isEmpty)
+            XCTAssertTrue(FileManager.default.fileExists(atPath: try MusicFileService.file(record, owner: owner).path), "Deleting a playlist must preserve owned audio")
             player.stop(); player.changeVolume(previousVolume)
             try await MusicFileService.shared.remove(record, owner: owner)
         } catch {

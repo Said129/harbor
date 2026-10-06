@@ -43,7 +43,7 @@ final class MusicPlayback {
             if self.owner != owner { stop() }
             self.owner = owner
             self.queue = Array(queue.prefix(500))
-            if !self.queue.contains(where: { $0.id == record.id }) { self.queue.append(record) }
+            if !self.queue.contains(where: { $0.id == record.id }) { self.queue = Array(self.queue.prefix(499)); self.queue.append(record) }
             try setup()
             guard let handle else { throw HarborError(code: "music-player") }
             current = record; position = 0; duration = Double(record.local.track.durationSeconds)
@@ -53,7 +53,7 @@ final class MusicPlayback {
             set("volume", String(volume)); set("pause", "no")
             try MusicMPV.command(handle, ["loadfile", url.path, "replace"])
             nowPlaying()
-        } catch { error = safeMessage(error) }
+        } catch { self.error = safeMessage(error) }
     }
     func togglePause() { setPaused(!paused) }
     func setPaused(_ value: Bool) {
@@ -69,7 +69,7 @@ final class MusicPlayback {
     func seek(_ value: Double) {
         guard value.isFinite, value >= 0, let handle else { return }
         do { try MusicMPV.command(handle, ["seek", String(min(value, max(duration, 0))), "absolute+exact"]) }
-        catch { error = safeMessage(error) }
+        catch { self.error = safeMessage(error) }
     }
     func changeVolume(_ value: Double) {
         guard value.isFinite else { return }
@@ -98,6 +98,33 @@ final class MusicPlayback {
     func remove(_ record: MusicRecord) {
         if current?.id == record.id { stop() }
         else { queue.removeAll { $0.id == record.id } }
+    }
+    func enqueue(_ record: MusicRecord, owner: String, next: Bool = false) {
+        guard self.owner == owner, let current else { play(record, queue: [record], owner: owner); return }
+        guard current.id != record.id else { return }
+        queue.removeAll { $0.id == record.id }
+        guard queue.count < 500 else { error = "La cola admite hasta 500 canciones."; return }
+        if next, let index = queue.firstIndex(where: { $0.id == current.id }) { queue.insert(record, at: index + 1) }
+        else { queue.append(record) }
+        played.remove(record.id)
+    }
+    func moveAfterCurrent(_ record: MusicRecord) {
+        guard let current, current.id != record.id, queue.contains(where: { $0.id == record.id }) else { return }
+        do {
+            let remaining = queue.filter { $0.id != record.id }
+            guard let index = remaining.firstIndex(where: { $0.id == current.id }) else { return }
+            let ids = try MusicOrdering.move(queue.map(\.id), track: record.id, to: index + 1)
+            let records = Dictionary(uniqueKeysWithValues: queue.map { ($0.id, $0) })
+            queue = ids.compactMap { records[$0] }; played.remove(record.id)
+        } catch { self.error = safeMessage(error) }
+    }
+    func removeFromQueue(_ record: MusicRecord) {
+        guard let index = queue.firstIndex(where: { $0.id == record.id }) else { return }
+        let remaining = queue.filter { $0.id != record.id }
+        if current?.id == record.id {
+            if !remaining.isEmpty { play(remaining[min(index, remaining.count - 1)], queue: remaining, owner: owner, continuingQueue: true) }
+            else { stop() }
+        } else { queue = remaining; played.remove(record.id) }
     }
     func stopForAccount(_ owner: String) { if self.owner != owner { stop(); self.owner = owner } }
     func stop() {

@@ -1342,6 +1342,22 @@
     {
       "id": "Music and video coordination",
       "source": "src-tauri/src/music/commands/playback.rs"
+    },
+    {
+      "id": "Music playlist creation and rename",
+      "source": "src-tauri/src/music/library.rs"
+    },
+    {
+      "id": "Music playlist track membership",
+      "source": "src-tauri/src/music/library.rs"
+    },
+    {
+      "id": "Music playlist track ordering",
+      "source": "src-tauri/src/music/library.rs"
+    },
+    {
+      "id": "Music playlist deletion preserving library",
+      "source": "src-tauri/src/music/library.rs"
     }
   ],
   "settings": [

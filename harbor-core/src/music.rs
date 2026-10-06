@@ -5,6 +5,38 @@ use std::path::Path;
 
 pub const AUDIO_EXTENSIONS: [&str; 8] = ["flac", "mp3", "m4a", "aac", "ogg", "opus", "wav", "wv"];
 
+/// Original Desktop playlist name rules, with a transport NUL guard.
+pub fn playlist_name(name: &str) -> Result<String, &'static str> {
+    let name = name.trim();
+    if name.is_empty() || name.chars().count() > 100 || name.contains('\0') {
+        return Err("music-playlist-name");
+    }
+    Ok(name.to_string())
+}
+
+/// Original Desktop index arithmetic; the native host owns persistence.
+pub fn playlist_order(
+    mut ids: Vec<String>,
+    track_id: &str,
+    to_index: usize,
+) -> Result<Vec<String>, &'static str> {
+    if ids.len() > 500
+        || ids
+            .iter()
+            .any(|id| id.is_empty() || id.len() > 256 || id.contains('\0'))
+        || ids.iter().collect::<std::collections::HashSet<_>>().len() != ids.len()
+    {
+        return Err("music-playlist-order");
+    }
+    let Some(from) = ids.iter().position(|id| id == track_id) else {
+        return Ok(ids);
+    };
+    let track = ids.remove(from);
+    let to = to_index.min(ids.len());
+    ids.insert(to, track);
+    Ok(ids)
+}
+
 #[derive(Debug, Clone, Deserialize, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct MusicTrack {
@@ -191,5 +223,17 @@ mod tests {
             bad.source_id = path.to_owned();
             assert_eq!(local_track(bad).unwrap_err(), "invalid-music-tags");
         }
+        assert_eq!(playlist_name("  Late night  "), Ok("Late night".to_owned()));
+        assert!(playlist_name(" ").is_err());
+        assert!(playlist_name(&"界".repeat(101)).is_err());
+        let ids = || ["a", "b", "c", "d"].map(str::to_owned).to_vec();
+        assert_eq!(playlist_order(ids(), "a", 2).unwrap(), ["b", "c", "a", "d"]);
+        assert_eq!(playlist_order(ids(), "d", 0).unwrap(), ["d", "a", "b", "c"]);
+        assert_eq!(
+            playlist_order(ids(), "a", 99).unwrap(),
+            ["b", "c", "d", "a"]
+        );
+        assert_eq!(playlist_order(ids(), "missing", 0).unwrap(), ids());
+        assert!(playlist_order(vec!["a".into(), "a".into()], "a", 0).is_err());
     }
 }

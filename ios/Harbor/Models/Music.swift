@@ -54,7 +54,7 @@ final class MusicLibrary {
             let saved = try KeychainStore().read(key, as: [MusicRecord].self) ?? []
             guard Self.valid(saved) else { throw HarborError(code: "music-store") }
             records = saved; ready = true
-        } catch { error = "No se pudo recuperar tu biblioteca de Música. Los archivos se conservan." }
+        } catch { self.error = "No se pudo recuperar tu biblioteca de Música. Los archivos se conservan." }
     }
     func importFiles(_ urls: [URL]) async {
         guard ready, !importing else { return }
@@ -83,7 +83,7 @@ final class MusicLibrary {
             let next = records.filter { $0.id != record.id }
             try KeychainStore().write(next, key: key); records = next
             try await MusicFileService.shared.remove(record, owner: owner)
-        } catch { error = "No se pudo completar la eliminación de este archivo." }
+        } catch { self.error = "No se pudo completar la eliminación de este archivo." }
     }
     private static func valid(_ records: [MusicRecord]) -> Bool {
         records.count <= 500 && Set(records.map(\.id)).count == records.count &&

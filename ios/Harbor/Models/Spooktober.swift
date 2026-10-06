@@ -21,12 +21,12 @@ final class SpooktoberInvitationPreferences {
     init(owner: String) {
         key = "spooktober-invitation-" + EBookShelf.hash(owner)
         do { dismissed = try KeychainStore().read(key, as: Bool.self) ?? false; ready = true }
-        catch { error = "No se pudo recuperar la preferencia de Spooktober." }
+        catch { self.error = "No se pudo recuperar la preferencia de Spooktober." }
     }
     func dismiss() {
         guard ready else { return }
         do { try KeychainStore().write(true, key: key); dismissed = true; error = nil }
-        catch { error = "No se pudo guardar el cambio. La preferencia anterior se conserva." }
+        catch { self.error = "No se pudo guardar el cambio. La preferencia anterior se conserva." }
     }
 }
 

@@ -65,6 +65,16 @@ enum Request {
     MusicLocalTrack {
         tags: harbor_core::music::LocalTags,
     },
+    MusicPlaylistName {
+        name: String,
+    },
+    MusicPlaylistOrder {
+        ids: Vec<String>,
+        #[serde(rename = "trackId")]
+        track_id: String,
+        #[serde(rename = "toIndex")]
+        to_index: usize,
+    },
     ResumeCheckpoint {
         target: resume::Target,
         #[serde(rename = "positionMs")]
@@ -124,6 +134,14 @@ pub fn dispatch(bytes: &[u8]) -> Result<Value, &'static str> {
         } => Ok(json!(harbor_core::run_pipeline(streams, &trust, &score))),
         Request::ResolveDirect { stream } => resolve_direct(stream),
         Request::MusicLocalTrack { tags } => Ok(json!(harbor_core::music::local_track(tags)?)),
+        Request::MusicPlaylistName { name } => Ok(json!(harbor_core::music::playlist_name(&name)?)),
+        Request::MusicPlaylistOrder {
+            ids,
+            track_id,
+            to_index,
+        } => Ok(json!(harbor_core::music::playlist_order(
+            ids, &track_id, to_index
+        )?)),
         Request::ResumeKey { target } => Ok(json!({ "key": resume::key(&target)? })),
         Request::ResumePosition {
             target,

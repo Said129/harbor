@@ -34,6 +34,8 @@ struct HarborError: Error, LocalizedError, Sendable {
         case "music-store": "No se pudo guardar tu biblioteca de Música. Los datos anteriores se conservan."
         case "music-capacity": "La biblioteca ha alcanzado el espacio reservado para Música. Elimina archivos para importar otros."
         case "music-player": "No se pudo iniciar la reproducción de Música."
+        case "music-playlist-name": "El nombre de la lista debe tener entre 1 y 100 caracteres."
+        case "music-playlist-order": "No se pudo cambiar el orden de las canciones."
         case "download-source": "Esta fuente no se puede guardar como un archivo. Elige un enlace directo de vídeo o audio."
         case "download-missing": "El archivo descargado ya no está disponible en este iPhone."
         case "download-active": "Este título ya tiene una descarga activa. Puedes verla en Descargas."

@@ -152,5 +152,14 @@
       "Music system controls",
       "Music and video coordination"
     ]
+  },
+  {
+    "source": "src-tauri/src/music/library.rs",
+    "features": [
+      "Music playlist creation and rename",
+      "Music playlist track membership",
+      "Music playlist track ordering",
+      "Music playlist deletion preserving library"
+    ]
   }
 ]
