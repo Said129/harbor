@@ -31,6 +31,7 @@ final class MPVController: GLKViewController {
         }
         self.context = context
         let surface = GLKView(frame: .zero, context: context)
+        surface.delegate = self
         surface.drawableDepthFormat = .formatNone
         surface.backgroundColor = .black
         view = surface
@@ -129,6 +130,7 @@ final class MPVController: GLKViewController {
         glClearColor(0, 0, 0, 1)
         glClear(GLbitfield(GL_COLOR_BUFFER_BIT))
         guard let renderer, let handle else { return }
+        state.renderCalls += 1
         drainEvents(handle)
         var framebuffer: GLint = 0
         var renderbuffer: GLint = 0

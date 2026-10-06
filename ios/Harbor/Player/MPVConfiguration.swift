@@ -39,6 +39,11 @@ enum MPVConfiguration {
         guard let handle = mpv_create() else { throw HarborError(code: "player-init") }
         do {
             for (name, value) in options { try check(mpv_set_option_string(handle, name, value)) }
+#if targetEnvironment(simulator)
+            // A virtual GL driver may need software rendering. Permit it only
+            // on simulators; physical iPhone output keeps its validated path.
+            try check(mpv_set_option_string(handle, "gpu-sw", "yes"))
+#endif
             let selected = decoding ?? HardwareDecoding(rawValue: UserDefaults.standard.string(forKey: "mpvHwdec") ?? "auto") ?? .auto
             try check(mpv_set_option_string(handle, "hwdec", selected.mpvValue))
             let settings = playback ?? PlaybackPreferences.shared.options

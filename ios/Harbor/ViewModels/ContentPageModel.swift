@@ -17,7 +17,11 @@ final class ContentPageModel {
         generation += 1
         let current = generation
         loading = true; error = nil
-        rows = []; heroes = []; curated = []
+        let previousRows = signature == loadedSignature ? rows : []
+        let previousCurated = signature == loadedSignature ? curated : []
+        var failed = false
+        rows = previousRows; curated = previousCurated
+        if signature != loadedSignature { heroes = [] }
         defer { if generation == current { loading = false } }
         // Desktop's Movies/Shows fallback is Cinemeta top plus genre rails.
         // It is a content provider, independent of the installed stream addons.
@@ -34,37 +38,43 @@ final class ContentPageModel {
                         }
                         var fetched: [(Int, DiscoveryRail)] = []
                         for await (index, rail) in group {
-                            guard current == generation, let rail, !rail.metas.isEmpty else { continue }
-                            fetched.append((index, rail)); curated = fetched.sorted { $0.0 < $1.0 }.map(\.1)
+                            guard current == generation else { continue }
+                            guard let rail else { failed = true; continue }
+                            fetched.append((index, rail))
+                            curated = CatalogRefresh.merge(order: definitions.map(\.id), received: fetched.map(\.1), previous: previousCurated)
+                            if !rail.metas.isEmpty { rows = [] }
                             if heroes.isEmpty { heroes = Array(rail.metas.prefix(5)) }
                         }
                     }
                 }
-                if curated.isEmpty {
-                let addon = try await app.service.install(HarborService.cinemetaManifest)
-                let plans: [RequestPlan] = try await app.service.core.call("catalogs", ["addons": try .encoded([addon])])
-                let providerKind = kind == "kids" ? "movie" : kind
-                guard let top = plans.first(where: { $0.kind == providerKind && $0.catalog?.id == "top" }) else { throw HarborError(code: "catalog-unavailable") }
-                let genres = kind == "kids" ? ["Animation", "Family"] : ["Action", "Drama", "Comedy", "Sci-Fi", "Thriller", "Horror", "Romance", "Animation", "Adventure", "Crime", "Mystery", "Fantasy", "Documentary"]
-                let definitions: [(String, String?)] = (kind == "kids" ? [] : [(kind == "movie" ? "Top películas" : "Top series", nil)]) + genres.map { ($0, Optional($0)) }
-                await withTaskGroup(of: (Int, CatalogRow?).self) { group in
-                    for (index, definition) in definitions.enumerated() {
-                        let service = app.service
-                        group.addTask {
-                            do {
-                                let fetched = try await service.catalog(top, genre: definition.1, skip: 0)
-                                let plan = RequestPlan(key: "native-\(kind)-\(index)", url: top.url, title: definition.0, kind: providerKind, addon: top.addon, addonPriority: 0, timeoutMs: top.timeoutMs, catalog: top.catalog)
-                                return (index, CatalogRow(plan: plan, metas: kind == "kids" ? fetched.metas.filter(\.safeForKids) : fetched.metas, selectedGenre: definition.1, receivedCount: fetched.receivedCount))
-                            } catch { return (index, nil) }
+                if !curated.contains(where: { !$0.metas.isEmpty }) {
+                    let addon = try await app.service.install(HarborService.cinemetaManifest)
+                    let plans: [RequestPlan] = try await app.service.core.call("catalogs", ["addons": try .encoded([addon])])
+                    let providerKind = kind == "kids" ? "movie" : kind
+                    guard let top = plans.first(where: { $0.kind == providerKind && $0.catalog?.id == "top" }) else { throw HarborError(code: "catalog-unavailable") }
+                    let genres = kind == "kids" ? ["Animation", "Family"] : ["Action", "Drama", "Comedy", "Sci-Fi", "Thriller", "Horror", "Romance", "Animation", "Adventure", "Crime", "Mystery", "Fantasy", "Documentary"]
+                    let definitions: [(String, String?)] = (kind == "kids" ? [] : [(kind == "movie" ? "Top películas" : "Top series", nil)]) + genres.map { ($0, Optional($0)) }
+                    await withTaskGroup(of: (Int, CatalogRow?).self) { group in
+                        for (index, definition) in definitions.enumerated() {
+                            let service = app.service
+                            group.addTask {
+                                do {
+                                    let fetched = try await service.catalog(top, genre: definition.1, skip: 0)
+                                    let plan = RequestPlan(key: "native-\(kind)-\(index)", url: top.url, title: definition.0, kind: providerKind, addon: top.addon, addonPriority: 0, timeoutMs: top.timeoutMs, catalog: top.catalog)
+                                    return (index, CatalogRow(plan: plan, metas: kind == "kids" ? fetched.metas.filter(\.safeForKids) : fetched.metas, selectedGenre: definition.1, receivedCount: fetched.receivedCount))
+                                } catch { return (index, nil) }
+                            }
+                        }
+                        var fetched: [(Int, CatalogRow)] = []
+                        for await (index, row) in group {
+                            guard current == generation else { continue }
+                            guard let row else { failed = true; continue }
+                            fetched.append((index, row))
+                            let ordered = definitions.indices.map { "native-\(kind)-\($0)" }
+                            rows = CatalogRefresh.merge(order: ordered, received: fetched.map(\.1), previous: previousRows)
+                            if heroes.isEmpty { heroes = Array(row.metas.prefix(5)) }
                         }
                     }
-                    var fetched: [(Int, CatalogRow)] = []
-                    for await (index, row) in group {
-                        guard current == generation, let row, !row.metas.isEmpty else { continue }
-                        fetched.append((index, row)); rows = fetched.sorted { $0.0 < $1.0 }.map(\.1)
-                        if heroes.isEmpty { heroes = Array(row.metas.prefix(5)) }
-                    }
-                }
                 }
             } else {
                 rows = app.rows.filter { row in
@@ -88,8 +98,10 @@ final class ContentPageModel {
                     if current == generation && index < heroes.count { heroes[index] = media }
                 }
             }
-            if rows.isEmpty && curated.isEmpty { error = "No se encontraron catálogos disponibles. Revisa tus addons o vuelve a intentarlo." }
-            loadedSignature = signature
+            let hasTitles = rows.contains { !$0.metas.isEmpty } || curated.contains { !$0.metas.isEmpty }
+            if !hasTitles { error = "No se encontraron catálogos disponibles. Revisa tus addons o vuelve a intentarlo." }
+            else if failed { error = "Algunas filas no han respondido. Los títulos disponibles siguen accesibles." }
+            if hasTitles { loadedSignature = signature }
         } catch is CancellationError { return }
         catch { if current == generation { self.error = safeMessage(error) } }
     }

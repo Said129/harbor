@@ -25,6 +25,10 @@ final class VideoRenderingTests: XCTestCase {
             controller.view.layoutIfNeeded()
             defer { controller.close(); window.rootViewController = nil }
             let surface = try XCTUnwrap(controller.view as? GLKView)
+            XCTAssertTrue(surface.delegate === controller, "The native GLKView must call its player renderer")
+            if let version = glGetString(GLenum(GL_VERSION)), let driver = glGetString(GLenum(GL_RENDERER)) {
+                print("Native fixture GL version=\(String(cString: version)), renderer=\(String(cString: driver))")
+            }
             // A cold GLES/shader startup must not consume the entire fixture.
             // Clips last 30s; this bounded check exits as soon as pixels/time pass.
             let deadline = Date().addingTimeInterval(20)
@@ -53,7 +57,9 @@ final class VideoRenderingTests: XCTestCase {
                 add(attachment)
             }
             XCTAssertNil(state.error)
-            XCTAssertTrue(displayed, "\(depth)-bit output must contain distinct red/green video pixels and advancing time; RGB samples=\(samples), position=\(state.position), loaded=\(state.loaded), ended=\(state.ended)")
+            XCTAssertGreaterThan(state.renderCalls, 0, "The native rendering callback must run")
+            let videoSelected = state.tracks.contains { $0.type == "video" && $0.selected }
+            XCTAssertTrue(displayed, "\(depth)-bit output must contain distinct red/green video pixels and advancing time; RGB samples=\(samples), position=\(state.position), loaded=\(state.loaded), ended=\(state.ended), draws=\(state.renderCalls), videoSelected=\(videoSelected)")
         }
     }
 

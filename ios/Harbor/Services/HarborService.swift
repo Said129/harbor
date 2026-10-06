@@ -52,11 +52,7 @@ struct HarborService: Sendable {
     }
 
     static func mergeCatalogs(plans: [RequestPlan], received: [CatalogRow], previous: [CatalogRow]) -> [CatalogRow] {
-        let fresh = Dictionary(received.map { ($0.id, $0) }, uniquingKeysWith: { _, last in last })
-        let saved = Dictionary(previous.map { ($0.id, $0) }, uniquingKeysWith: { _, last in last })
-        // Successful empty responses clear their row. Only a failed current
-        // request retains its prior data; removed/disabled plans disappear.
-        return plans.compactMap { fresh[$0.key] ?? saved[$0.key] }
+        CatalogRefresh.merge(order: plans.map(\.key), received: received, previous: previous)
     }
 
     func metadata(_ media: Media, addons: [Addon]) async throws -> Media {
