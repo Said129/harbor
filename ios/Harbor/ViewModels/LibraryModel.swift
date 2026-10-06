@@ -10,13 +10,57 @@ final class LibraryModel {
     private var generation = 0
     private var mutation = 0
     private var writable = false
+    private var presentationReady = false
+    private(set) var presentation = LibraryPresentation()
+    private(set) var presentationError: String?
+    var canChangePresentation: Bool { presentationReady }
     private var lastProgressWrite: [String: UInt64] = [:]
     var loading = false
     var busy = false
     var error: String?
     var owner: String { session?.user.id ?? "guest" }
     var items: [LibraryRecord] { records.map { LibraryRecord(raw: $0) }.filter { !$0.id.isEmpty && $0.media != nil }.sorted { $0.modified > $1.modified } }
-    var continuing: [LibraryRecord] { items.filter(\.continuing) }
+    var continuing: [LibraryRecord] {
+        var display = LibraryDisplay(); display.filter = .continuing
+        return LibraryListing.select(items.filter { $0.continuing && presentation.dismissed[$0.id]?.hides($0) != true }, display: display, query: "")
+    }
+    var hiddenContinuing: [LibraryRecord] { items.filter { $0.continuing && presentation.dismissed[$0.id]?.hides($0) == true } }
+    func selectedItems(query: String) -> [LibraryRecord] {
+        let selected: [LibraryRecord]
+        switch presentation.display.filter {
+        case .saved: selected = items.filter(\.bookmarked)
+        case .watched: selected = items.filter(\.watched)
+        case .continuing: selected = continuing
+        }
+        return LibraryListing.select(selected, display: presentation.display, query: query)
+    }
+    func reloadPresentation() {
+        presentationReady = false
+        do {
+            let saved = try KeychainStore().read(LibraryPresentation.key(owner: owner), as: LibraryPresentation.self) ?? LibraryPresentation()
+            guard saved.valid else { throw HarborError(code: "library-presentation") }
+            presentation = saved; presentationReady = true; presentationError = nil
+        } catch { presentationError = "No se pudieron recuperar las preferencias de biblioteca. Los datos guardados se conservan." }
+    }
+    func changeDisplay(_ edit: (inout LibraryDisplay) -> Void) { changePresentation { edit(&$0.display) } }
+    func hideContinuing(_ record: LibraryRecord, owner expectedOwner: String) {
+        guard owner == expectedOwner, let current = items.first(where: { $0.id == record.id }), current.continuing else { return }
+        changePresentation { $0.dismissed[current.id] = ContinueDismissal(current) }
+    }
+    func showContinuing(_ record: LibraryRecord) { changePresentation { $0.dismissed.removeValue(forKey: record.id) } }
+    func noteLocalProgress(_ target: ResumeTarget, snapshot: ResumeSnapshot, owner expectedOwner: String) {
+        guard owner == expectedOwner, let dismissal = presentation.dismissed[target.id], dismissal.hasNewPlayback(snapshot) else { return }
+        changePresentation { $0.dismissed.removeValue(forKey: target.id) }
+    }
+    private func changePresentation(_ edit: (inout LibraryPresentation) -> Void) {
+        guard presentationReady else { return }
+        var next = presentation; edit(&next)
+        do {
+            guard next.valid, try JSONEncoder().encode(next).count <= 1_024 * 1_024 else { throw HarborError(code: "library-presentation") }
+            try KeychainStore().write(next, key: LibraryPresentation.key(owner: owner))
+            presentation = next; presentationError = nil
+        } catch { presentationError = "No se pudo guardar este cambio de biblioteca. Los datos anteriores se conservan." }
+    }
     func bookmarked(_ media: Media) -> Bool { items.first { $0.id == media.id }?.bookmarked ?? false }
     func watched(_ media: Media) -> Bool {
         if media.episodic {
@@ -43,6 +87,7 @@ final class LibraryModel {
         generation += 1
         let current = generation
         self.session = session; records = []; error = nil; writable = false; loading = true
+        presentation = LibraryPresentation(); reloadPresentation()
         lastProgressWrite = [:]
         defer { if current == generation { loading = false } }
         let owner = session?.user.id ?? "guest"

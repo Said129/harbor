@@ -21,5 +21,17 @@ final class KeychainStoreTests: XCTestCase {
         try store.write(["credential": "test-updated-value"], key: key)
         XCTAssertEqual(try store.read(key, as: [String: String].self), ["credential": "test-updated-value"])
         XCTAssertNil(try store.read(key + ".other", as: [String: String].self))
+        let owner = "tests-library-\(UUID().uuidString)"
+        let presentationKey = LibraryPresentation.key(owner: owner)
+        defer { try? store.remove(presentationKey) }
+        var presentation = LibraryPresentation(); presentation.display.sort = .title
+        let record = LibraryRecord(raw: .object(["_id": .string("test-title"), "type": .string("movie"), "name": .string("Test title"), "state": .object(["timeOffset": .integer(60_000), "duration": .integer(120_000)])]))
+        presentation.dismissed[record.id] = ContinueDismissal(record)
+        try store.write(presentation, key: presentationKey)
+        let restored = try XCTUnwrap(store.read(presentationKey, as: LibraryPresentation.self))
+        XCTAssertTrue(restored.valid)
+        XCTAssertEqual(restored.display.sort, .title)
+        XCTAssertTrue(try XCTUnwrap(restored.dismissed[record.id]).hides(record))
+        XCTAssertNil(try store.read(LibraryPresentation.key(owner: owner + ".other"), as: LibraryPresentation.self))
     }
 }

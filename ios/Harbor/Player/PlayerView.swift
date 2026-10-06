@@ -299,6 +299,7 @@ struct PlayerView: View {
                 lastSavedMs = value.positionMs
                 progressError = nil
                 Diagnostics.shared.record(.progressSaved)
+                library?.noteLocalProgress(session.target, snapshot: value, owner: session.owner)
             }
         } catch {
             progressError = safeMessage(error)

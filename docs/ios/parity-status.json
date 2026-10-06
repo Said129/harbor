@@ -754,5 +754,23 @@
     "implementation": "ios/Harbor/Models/AddonConfiguration.swift; Account.swift; Views/AddonsView.swift; AddonDetailView.swift; AddonConfigurationView.swift; ViewModels/AppModel.swift",
     "notes": "Build 25 adds native addon details, manifest logos/description/version, local activation and the selected addon configuration journey. The provider page uses a nonpersistent WebKit sheet with no native credential/script bridge; main-frame stremio/manifest navigation captures a candidate and returns to the native secure field. Only the explicit native Save action fetches/validates the real manifest and updates the same manifest identity in place. Account/target guards retain activation, order, other configured instances, full cloud flags/unknown records and the fetched complete manifest. Mismatched identities, removed targets and collisions are rejected before mutation. Safari/manual-link fallback is available. Existing account-record and real addon-navigation methods are extended; Apple execution, actual configurable provider interaction and physical account changes remain pending.",
     "ios": "Native configuration code; Apple/provider/physical validation pending"
+  },
+  "Continue Watching on Home": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Models/LibraryPresentation.swift; Models/Library.swift; ViewModels/LibraryModel.swift; Views/LibraryView.swift; Player/PlayerView.swift",
+    "notes": "Build 26 adds account-scoped library search, type filters and original Recent/A-Z/Year sorting. Continuing cards show real episode/time/progress. Explicit iPhone-only hide/restore preserves resume/cloud/watched data and releases on newer activity, forward episodes or committed local playback. Data/Keychain assertions are extended. See VALIDATION; Apple/private/physical verification pending.",
+    "ios": "Native library code; Apple/account/physical validation pending"
+  },
+  "Cloud library": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Models/LibraryPresentation.swift; Models/Library.swift; ViewModels/LibraryModel.swift; Views/LibraryView.swift; Player/PlayerView.swift",
+    "notes": "Build 26 adds account-scoped library search, type filters and original Recent/A-Z/Year sorting. Continuing cards show real episode/time/progress. Explicit iPhone-only hide/restore preserves resume/cloud/watched data and releases on newer activity, forward episodes or committed local playback. Data/Keychain assertions are extended. See VALIDATION; Apple/private/physical verification pending.",
+    "ios": "Native library code; Apple/account/physical validation pending"
+  },
+  "Continue Watching merge": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Models/LibraryPresentation.swift; Models/Library.swift; ViewModels/LibraryModel.swift; Views/LibraryView.swift; Player/PlayerView.swift",
+    "notes": "Build 26 adds account-scoped library search, type filters and original Recent/A-Z/Year sorting. Continuing cards show real episode/time/progress. Explicit iPhone-only hide/restore preserves resume/cloud/watched data and releases on newer activity, forward episodes or committed local playback. Data/Keychain assertions are extended. See VALIDATION; Apple/private/physical verification pending.",
+    "ios": "Native library code; Apple/account/physical validation pending"
   }
 }

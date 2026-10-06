@@ -13,6 +13,37 @@ final class NativeDataTests: XCTestCase {
         let movie = LibraryRecord(raw: .object(["_id": .string("movie"), "type": .string("movie"), "name": .string("Movie"), "_mtime": .string("2026-10-05T18:00:00Z"), "state": .object(["timeOffset": .integer(120_000), "flaggedWatched": .integer(1)])]))
         XCTAssertEqual(movie.resume(for: ResumeTarget(id: "movie"))?.entry.ms, 0)
 
+        // Hiding a card must leave its cloud fields intact, resist stale earlier
+        // episodes, and release the dismissal when actual progress moves forward.
+        let hiddenAt = try XCTUnwrap(ISO8601DateFormatter().date(from: "2026-10-05T19:00:00Z"))
+        let dismissal = ContinueDismissal(record, now: hiddenAt)
+        XCTAssertTrue(dismissal.valid)
+        XCTAssertTrue(dismissal.hides(record))
+        XCTAssertFalse(dismissal.hasNewPlayback(ResumeSnapshot(positionMs: 120_000, durationMs: 3_600_000, timestampMs: 1, exiting: true)))
+        XCTAssertTrue(dismissal.hasNewPlayback(ResumeSnapshot(positionMs: 0, durationMs: 3_600_000, timestampMs: UInt64(hiddenAt.timeIntervalSince1970 * 1_000) + 1, exiting: true)), "New local playback releases the dismissal even when cloud sync is unavailable")
+        var changed = raw.objectValue
+        var state = changed["state"]!.objectValue
+        state["timeOffset"] = .integer(180_000); changed["state"] = .object(state)
+        XCTAssertFalse(dismissal.hides(LibraryRecord(raw: .object(changed))))
+        state["timeOffset"] = .integer(120_000); state["video_id"] = .string("show:1:1"); changed["state"] = .object(state)
+        XCTAssertFalse(dismissal.hides(LibraryRecord(raw: .object(changed))))
+        let seasonOne = ContinueDismissal(LibraryRecord(raw: .object(changed)), now: hiddenAt)
+        XCTAssertTrue(seasonOne.hides(record), "Stale progress from an earlier season must stay hidden")
+        changed = raw.objectValue; changed["_mtime"] = .string("2026-10-05T20:00:00Z")
+        XCTAssertFalse(dismissal.hides(LibraryRecord(raw: .object(changed))))
+        XCTAssertEqual(record.playbackCaption, "T0 · E1 · 58 min restantes")
+
+        let older = LibraryRecord(raw: .object(["_id": .string("older"), "type": .string("movie"), "name": .string("Árbol"), "releaseInfo": .string("1999"), "_ctime": .string("2024-01-01T00:00:00Z")]))
+        let newer = LibraryRecord(raw: .object(["_id": .string("newer"), "type": .string("movie"), "name": .string("Zeta"), "releaseInfo": .string("2025"), "_ctime": .string("2025-01-01T00:00:00Z")]))
+        var display = LibraryDisplay()
+        XCTAssertEqual(LibraryListing.select([older, newer, record], display: display, query: " arbol ").map(\.id), ["older"])
+        display.kind = .movie; display.sort = .year
+        XCTAssertEqual(LibraryListing.select([older, newer, record], display: display, query: "").map(\.id), ["newer", "older"])
+        display.sort = .title
+        XCTAssertEqual(LibraryListing.select([newer, older], display: display, query: "").map(\.id), ["older", "newer"])
+        display.sort = .recent
+        XCTAssertEqual(LibraryListing.select([older, newer], display: display, query: "").map(\.id), ["newer", "older"])
+
         // Switching links keeps the live position even inside the ordinary
         // completed-video window, and cannot move it to another account/episode.
         let target = ResumeTarget(id: "show", season: 0, episode: 1, videoId: "show:0:1")

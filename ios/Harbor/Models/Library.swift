@@ -12,10 +12,42 @@ struct LibraryRecord: Identifiable, Sendable {
     var watched: Bool { (raw["state"]["flaggedWatched"].numericValue ?? 0) > 0 || (raw["state"]["timesWatched"].numericValue ?? 0) > 0 }
     var progress: Double {
         let duration = raw["state"]["duration"].numericValue ?? 0
-        return duration > 0 ? min(1, max(0, (raw["state"]["timeOffset"].numericValue ?? 0) / duration)) : 0
+        let offset = raw["state"]["timeOffset"].numericValue ?? 0
+        return duration.isFinite && duration > 0 && offset.isFinite ? min(1, max(0, offset / duration)) : 0
     }
-    var continuing: Bool { !watched && (raw["state"]["timeOffset"].numericValue ?? 0) > 0 && (bookmarked || raw["temp"] == .bool(true)) }
+    var continuing: Bool {
+        let offset = raw["state"]["timeOffset"].numericValue ?? 0
+        return !watched && offset.isFinite && offset > 0 && (bookmarked || raw["temp"] == .bool(true))
+    }
     var modified: String { raw["_mtime"].string ?? "" }
+    var activityTimestamp: Double { max(Self.timestamp(modified) ?? 0, Self.timestamp(raw["state"]["lastWatched"].string) ?? 0) }
+    var playbackCoordinates: (season: Int?, episode: Int?) {
+        let state = raw["state"]
+        let parts = (state["video_id"].string ?? "").split(separator: ":")
+        let anime = ["kitsu", "mal", "anilist", "anidb"].contains(String(parts.first ?? "")) && parts.count == 3
+        let season = state["season"].integer ?? (anime ? 1 : parts.count >= 3 ? Int(parts[parts.count - 2]) : nil)
+        let episode = state["episode"].integer ?? (parts.count >= 3 ? Int(parts[parts.count - 1]) : nil)
+        return (season, episode)
+    }
+    var playbackCaption: String? {
+        var parts: [String] = []
+        let coordinates = playbackCoordinates
+        if media?.episodic == true, let season = coordinates.season, let episode = coordinates.episode { parts.append("T\(season) · E\(episode)") }
+        let duration = raw["state"]["duration"].numericValue ?? 0
+        let offset = raw["state"]["timeOffset"].numericValue ?? 0
+        if duration.isFinite, duration > 0, offset.isFinite, offset >= 0, duration > offset {
+            let minutes = ceil((duration - offset) / 60_000)
+            if minutes < Double(Int.max) { parts.append("\(Int(minutes)) min restantes") }
+        }
+        return parts.isEmpty ? nil : parts.joined(separator: " · ")
+    }
+    static func timestamp(_ value: String?) -> Double? {
+        guard let value else { return nil }
+        let fractional = ISO8601DateFormatter(); fractional.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+        guard let date = fractional.date(from: value) ?? ISO8601DateFormatter().date(from: value) else { return nil }
+        let timestamp = date.timeIntervalSince1970 * 1_000
+        return timestamp.isFinite && timestamp >= 0 ? timestamp : nil
+    }
     func resume(for target: ResumeTarget) -> CloudResume? {
         guard id == target.id, let media else { return nil }
         let state = raw["state"]
