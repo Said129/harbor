@@ -547,7 +547,7 @@
   "Room: ebook": {
     "state": "Partial",
     "implementation": "ios/Harbor/Services/EBookService.swift; GutenbergCatalog.swift; EPUBReader.swift; Views/EBooksView.swift; HarborIntegrationTests/LiveServicesTests.swift",
-    "notes": "Real Gutendex catalog/search/pages, local/remote EPUB, native spine/index/text/illustrations, per-owner shelf/progress/bookmarks, reading options and native narration. New offline archive and opt-in original Gutenberg checks await Apple compilation. CSS/full EPUB, fragment chapters, plugins, translations and annotations remain incomplete. Build 29: one fresh-session retry for EPUB connection loss/timeout; bounded streaming, cancellation and validation before atomic storage preserved. Current Apple/physical pending."
+    "notes": "Real Gutendex catalog/search/pages, local/remote EPUB, native spine/index/text/illustrations, per-owner shelf/progress/bookmarks, reading options and native narration. New offline archive and opt-in original Gutenberg checks await Apple compilation. CSS/full EPUB, fragment chapters, plugins, translations and annotations remain incomplete. Build 29: one fresh-session retry for EPUB connection loss/timeout; bounded streaming, cancellation and validation before atomic storage preserved. Current Apple/physical pending. Build 30 merges actual reading position into the latest shelf record, preserves new bookmarks/read state and flushes on background/exit. Actual Keychain/EPUB assertions extended; Apple/physical pending."
   },
   "Theme presets": {
     "state": "Partial",
@@ -567,7 +567,7 @@
   "Room: manga": {
     "state": "Partial",
     "implementation": "ios/Harbor/Views/MangaView.swift; MangaDetailView.swift; MangaReaderView.swift; Services/MangaArchive.swift; SuwayomiClient.swift",
-    "notes": "Native CBZ/ZIP and image-folder imports; natural page order/CRC; per-account protected files and Keychain library/progress. Real Desktop Suwayomi GraphQL/REST source browse/search/library/chapters/pages/extensions/progress; credentials only in Keychain, no cross-origin auth. Five reading modes, fit/zoom/RTL, backgrounds/navigation/focus/gap, next chapter and original page export. Swift compilation/physical UI and a real user Suwayomi server still require validation. Advanced source filters/repositories/community/plugin providers and original flip sound remain pending."
+    "notes": "Native CBZ/ZIP and image-folder imports; natural page order/CRC; per-account protected files and Keychain library/progress. Real Desktop Suwayomi GraphQL/REST source browse/search/library/chapters/pages/extensions/progress; credentials only in Keychain, no cross-origin auth. Five reading modes, fit/zoom/RTL, backgrounds/navigation/focus/gap, next chapter and original page export. Swift compilation/physical UI and a real user Suwayomi server still require validation. Advanced source filters/repositories/community/plugin providers and original flip sound remain pending. Build 30 flushes the actual page locally before background suspension and schedules ordinary server sync after returning active. Apple/physical pending."
   },
   "Manga Suwayomi connection": {
     "state": "Partial",

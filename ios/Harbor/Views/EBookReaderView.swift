@@ -34,6 +34,8 @@ struct EBookReaderView: View {
     @State private var focus = false
     @State private var narrator = BookNarrator()
     @State private var saveTask: Task<Void, Never>?
+    @State private var chapterTask: Task<Void, Never>?
+    @Environment(\.scenePhase) private var scenePhase
     @AppStorage("ebook.fontSize") private var fontSize = 19.0
     @AppStorage("ebook.lineHeight") private var lineHeight = 1.85
     @AppStorage("ebook.margin") private var margin = 22.0
@@ -95,12 +97,19 @@ struct EBookReaderView: View {
             }
             .task { await open() }
             .onChange(of: visible) { _, line in
-                guard let line, !loading else { return }
+                guard let line, !loading, scenePhase == .active, blocks.contains(where: { $0.id == line }) else { return }
                 saveTask?.cancel()
-                var next = record; next.chapter = chapter; next.block = line
-                saveTask = Task { do { try await Task.sleep(for: .milliseconds(350)); persist(next) } catch {} }
+                let selectedChapter = chapter
+                saveTask = Task {
+                    do {
+                        try await Task.sleep(for: .milliseconds(350))
+                        guard chapter == selectedChapter, blocks.contains(where: { $0.id == line }) else { return }
+                        persistPosition(chapter: selectedChapter, block: line)
+                    } catch {}
+                }
             }
-            .onDisappear { saveTask?.cancel(); narrator.stop(); if !blocks.isEmpty { var next = record; next.chapter = chapter; next.block = visible ?? 0; persist(next) } }
+            .onChange(of: scenePhase) { _, phase in if phase != .active { saveTask?.cancel(); saveCurrentPosition() } }
+            .onDisappear { saveTask?.cancel(); chapterTask?.cancel(); narrator.stop(); saveCurrentPosition() }
             .sheet(isPresented: $contents) {
                 NavigationStack { List { if let publication { ForEach(Array(publication.chapters.enumerated()), id: \.element.id) { index, item in Button(item.title) { contents = false; select(index) } } } }.navigationTitle("Índice").toolbar { ToolbarItem(placement: .topBarTrailing) { Button("Listo") { contents = false } } } }
             }
@@ -133,29 +142,42 @@ struct EBookReaderView: View {
             }
     }
     private func open() async {
+        guard !loading else { return }
         loading = true; error = nil
+        defer { loading = false }
         do {
             let publication = try await EBookService.shared.open(book, owner: shelf.owner)
-            self.publication = publication
             let saved = record
-            chapter = max(0, min(saved.chapter, publication.chapters.count - 1))
-            blocks = try await EBookService.shared.blocks(book, owner: shelf.owner, chapter: chapter)
-            visible = blocks.indices.contains(saved.block) ? saved.block : 0
+            let selected = max(0, min(saved.chapter, publication.chapters.count - 1))
+            let loaded = try await EBookService.shared.blocks(book, owner: shelf.owner, chapter: selected)
+            try Task.checkCancellation()
+            self.publication = publication; chapter = selected; blocks = loaded
+            visible = loaded.contains(where: { $0.id == saved.block }) ? saved.block : loaded.first?.id
             if shelf.record(book) == nil { try shelf.save(EBookRecord(book: book)) }
-        } catch { self.error = safeMessage(error) }
-        loading = false
+        } catch is CancellationError { return }
+        catch { self.error = safeMessage(error) }
     }
     private func select(_ selected: Int, block: Int = 0) {
         guard let publication, publication.chapters.indices.contains(selected), !loading else { return }
-        saveTask?.cancel(); narrator.stop(); loading = true; error = nil
-        Task {
+        saveTask?.cancel(); saveCurrentPosition(); narrator.stop(); loading = true; error = nil
+        chapterTask = Task {
             defer { loading = false }
             do {
                 let loaded = try await EBookService.shared.blocks(book, owner: shelf.owner, chapter: selected)
-                chapter = selected; blocks = loaded; visible = loaded.indices.contains(block) ? block : 0
-                var next = record; next.chapter = selected; next.block = visible ?? 0; persist(next)
-            } catch { self.error = safeMessage(error) }
+                try Task.checkCancellation()
+                chapter = selected; blocks = loaded; visible = loaded.contains(where: { $0.id == block }) ? block : loaded.first?.id
+                saveCurrentPosition()
+            } catch is CancellationError { return }
+            catch { self.error = safeMessage(error) }
         }
+    }
+    private func saveCurrentPosition() {
+        guard let publication, publication.chapters.indices.contains(chapter), let block = blocks.first(where: { $0.id == visible }) ?? blocks.first else { return }
+        persistPosition(chapter: chapter, block: block.id)
+    }
+    private func persistPosition(chapter: Int, block: Int) {
+        do { try shelf.savePosition(book, chapter: chapter, block: block) }
+        catch { self.error = "No se pudo guardar tu posición. El progreso anterior se conserva." }
     }
     private func persist(_ record: EBookRecord) {
         do { var next = record; next.updated = Date(); try shelf.save(next) }

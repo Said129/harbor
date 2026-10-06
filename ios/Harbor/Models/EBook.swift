@@ -48,6 +48,14 @@ final class EBookShelf {
         guard next.count <= 500, try JSONEncoder().encode(next).count <= 2 * 1024 * 1024 else { throw HarborError(code: "ebook-store") }
         try KeychainStore().write(next, key: Self.key(owner)); records = next
     }
+    func savePosition(_ book: EBook, chapter: Int, block: Int) throws {
+        guard chapter >= 0, block >= 0 else { throw HarborError(code: "ebook-store") }
+        // Merge only the position into the latest record. A delayed scroll save
+        // must preserve bookmarks and read-state changes made in the meantime.
+        var next = record(book) ?? EBookRecord(book: book)
+        next.chapter = chapter; next.block = block; next.updated = Date()
+        try save(next)
+    }
     func remove(_ book: EBook) throws {
         guard ready else { throw HarborError(code: "ebook-store") }
         let next = records.filter { $0.id != book.id }

@@ -24,6 +24,7 @@ struct MangaReaderView: View {
     @State private var chapterEnded = false
     @State private var hasScrolled = false
     @State private var pageSound: AVAudioPlayer?
+    @Environment(\.scenePhase) private var scenePhase
     @AppStorage("manga.reader.mode") private var mode = "long"
     @AppStorage("manga.reader.fit") private var fit = "width"
     @AppStorage("manga.reader.background") private var background = "dark"
@@ -64,6 +65,10 @@ struct MangaReaderView: View {
             .onChange(of: visible) { _, _ in scheduleProgress() }
             .onChange(of: spread) { _, value in if !loading { visible = min(pages.count - 1, value * (double ? 2 : 1)) } }
             .onChange(of: mode) { _, _ in spread = current / (double ? 2 : 1) }
+            .onChange(of: scenePhase) { _, phase in
+                if phase == .active { scheduleProgress() }
+                else { progressTask?.cancel(); if !pages.isEmpty { persist(page: current, sync: false) } }
+            }
             .onDisappear { progressTask?.cancel(); pageSound?.stop(); if !pages.isEmpty { persist(page: current, sync: true) }; if let export { try? FileManager.default.removeItem(at: export) } }
             .sheet(isPresented: $settings) { readerSettings }
             .sheet(isPresented: $contents) { chapterList }
@@ -237,7 +242,7 @@ struct MangaReaderView: View {
         } else { go(next); chapterEnded = false }
     }
     private func scheduleProgress() {
-        guard !loading, !pages.isEmpty else { return }
+        guard !loading, !pages.isEmpty, scenePhase == .active else { return }
         progressTask?.cancel()
         let page = current
         chapterEnded = page == pages.count - 1
