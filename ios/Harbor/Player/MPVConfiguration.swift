@@ -43,6 +43,10 @@ enum MPVConfiguration {
             // A virtual GL driver may need software rendering. Permit it only
             // on simulators; physical iPhone output keeps its validated path.
             try check(mpv_set_option_string(handle, "gpu-sw", "yes"))
+            // Apple's Intel software GLES driver renders 8-bit planes, but the
+            // observed 10-bit path stays black. Convert decoded simulator frames
+            // before uploading; device decoding/HDR processing is unchanged.
+            try check(mpv_set_option_string(handle, "vf", "format=fmt=yuv420p"))
 #endif
             let selected = decoding ?? HardwareDecoding(rawValue: UserDefaults.standard.string(forKey: "mpvHwdec") ?? "auto") ?? .auto
             try check(mpv_set_option_string(handle, "hwdec", selected.mpvValue))

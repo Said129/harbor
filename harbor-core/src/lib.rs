@@ -1,6 +1,7 @@
 //! Shared Harbor stream engine. WASM exports remain enabled by default.
 pub mod account;
 pub mod addons;
+pub mod music;
 pub mod parser;
 pub mod resume;
 pub mod scoring;

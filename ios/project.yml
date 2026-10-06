@@ -38,7 +38,7 @@ targets:
       properties:
         CFBundleDisplayName: Harbor
         CFBundleShortVersionString: "0.1.0"
-        CFBundleVersion: "16"
+        CFBundleVersion: "17"
         UIAppFonts: [Fraunces.ttf, Oswald.ttf, Inter.ttf, Fredoka.ttf, Vazirmatn.ttf, Switzer.ttf]
         CFBundleURLTypes:
           - CFBundleURLName: site.harbor.iphone.login
@@ -64,6 +64,7 @@ targets:
       - sdk: OpenGLES.framework
       - sdk: Security.framework
       - sdk: AVFoundation.framework
+      - sdk: MediaPlayer.framework
       - sdk: UserNotifications.framework
       - sdk: AuthenticationServices.framework
       - sdk: libz.tbd

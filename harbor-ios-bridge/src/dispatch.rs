@@ -62,6 +62,9 @@ enum Request {
     ValidateResume {
         document: resume::Document,
     },
+    MusicLocalTrack {
+        tags: harbor_core::music::LocalTags,
+    },
     ResumeCheckpoint {
         target: resume::Target,
         #[serde(rename = "positionMs")]
@@ -120,6 +123,7 @@ pub fn dispatch(bytes: &[u8]) -> Result<Value, &'static str> {
             score,
         } => Ok(json!(harbor_core::run_pipeline(streams, &trust, &score))),
         Request::ResolveDirect { stream } => resolve_direct(stream),
+        Request::MusicLocalTrack { tags } => Ok(json!(harbor_core::music::local_track(tags)?)),
         Request::ResumeKey { target } => Ok(json!({ "key": resume::key(&target)? })),
         Request::ResumePosition {
             target,

@@ -3,7 +3,16 @@ import SwiftUI
 struct HomeView: View {
     let model: AppModel
     @State private var customization: PageCustomization
-    @MainActor init(model: AppModel) { self.model = model; _customization = State(initialValue: PageCustomization(owner: model.user?.id ?? "guest", page: "home")) }
+    @State private var seasonalPreferences: SpooktoberInvitationPreferences
+    @State private var seasonalDate = Date()
+    @State private var showSpooktober = false
+    @Environment(\.scenePhase) private var scenePhase
+    @MainActor init(model: AppModel) {
+        self.model = model
+        let owner = model.user?.id ?? "guest"
+        _customization = State(initialValue: PageCustomization(owner: owner, page: "home"))
+        _seasonalPreferences = State(initialValue: SpooktoberInvitationPreferences(owner: owner))
+    }
     private var rails: [PageRail] { model.rows.filter { !$0.metas.isEmpty }.map(PageRail.catalog) }
     private var heroes: [Media] { model.heroes.isEmpty ? Array(model.rows.first(where: { !$0.metas.isEmpty })?.metas.prefix(5) ?? []) : model.heroes }
     var body: some View {
@@ -20,6 +29,9 @@ struct HomeView: View {
                     CustomizedHero(rails: rails, defaults: heroes, app: model, customization: customization)
                 }
                 if model.loading && model.rows.isEmpty { ProgressView("Cargando catálogos…").frame(maxWidth: .infinity).padding(40) }
+                if SpooktoberSeason.available(seasonalDate) && !seasonalPreferences.dismissed {
+                    SpooktoberInvitation(preferences: seasonalPreferences) { showSpooktober = true }
+                }
                 if let error = model.progressError {
                     VStack(alignment: .leading) {
                         Text(error).font(.caption).foregroundStyle(.orange)
@@ -43,6 +55,22 @@ struct HomeView: View {
             }.padding(.bottom, 24)
         }.background(HarborTheme.background).navigationBarTitleDisplayMode(.inline)
             .refreshable { await model.loadHome() }
+            .sheet(isPresented: $showSpooktober) {
+                NavigationStack {
+                    SpooktoberView(app: model)
+                        .navigationDestination(for: Media.self) { DetailView(media: $0, app: model) }
+                        .toolbar { ToolbarItem(placement: .topBarTrailing) { Button("Cerrar") { showSpooktober = false } } }
+                }
+            }
+            .task(id: scenePhase) {
+                guard scenePhase == .active else { return }
+                while !Task.isCancelled {
+                    seasonalDate = Date()
+                    if !SpooktoberSeason.available(seasonalDate) { showSpooktober = false }
+                    do { try await Task.sleep(for: .seconds(SpooktoberSeason.nextCheck(seasonalDate))) }
+                    catch { return }
+                }
+            }
             .accessibilityIdentifier("home-scroll")
     }
 }

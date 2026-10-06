@@ -2,7 +2,7 @@ import SwiftUI
 import CoreText
 
 enum HarborSection: String, CaseIterable, Identifiable {
-    case home, discover, catalogs, movies, shows, kids, anime, live, sports, manga, ebook, vod, calendar, library, collections, downloads, search, addons, settings
+    case home, discover, catalogs, movies, shows, kids, anime, live, sports, manga, ebook, music, vod, calendar, library, collections, downloads, search, addons, settings
     var id: String { rawValue }
     var title: String {
         switch self {
@@ -17,6 +17,7 @@ enum HarborSection: String, CaseIterable, Identifiable {
         case .sports: "Sports"
         case .manga: "Manga"
         case .ebook: "eBook"
+        case .music: "Música"
         case .vod: "VOD"
         case .calendar: "Calendario"
         case .library: "Mi biblioteca"
@@ -40,6 +41,7 @@ enum HarborSection: String, CaseIterable, Identifiable {
         case .sports: "sports"
         case .manga: "manga"
         case .ebook: "ebook"
+        case .music: "music"
         case .vod: "playlist"
         case .calendar: "calendar"
         case .library: "library"
@@ -103,7 +105,7 @@ struct HarborShell: View {
                 }.padding(.top, 12).padding(.bottom, 16).frame(width: 282).frame(maxHeight: .infinity).background(HarborTheme.background)
                     .transition(.move(edge: .leading))
             }
-        }
+        }.safeAreaInset(edge: .bottom, spacing: 0) { MusicMiniPlayer() }
     }
     private var header: some View {
         HStack(spacing: 6) {
@@ -127,6 +129,7 @@ struct HarborShell: View {
         case .sports: SportsView(app: app).id(app.user?.id ?? "guest")
         case .manga: MangaView(app: app).id(app.user?.id ?? "guest")
         case .ebook: EBooksView(app: app).id(app.user?.id ?? "guest")
+        case .music: MusicView(app: app).id(app.user?.id ?? "guest")
         case .vod: VODView(app: app).id(app.user?.id ?? "guest")
         case .calendar: CalendarView(app: app)
         case .library: LibraryView(app: app)

@@ -52,6 +52,7 @@ final class MPVController: GLKViewController {
 
     private func initialize() throws {
         guard let context, EAGLContext.setCurrent(context) else { throw HarborError(code: "player-init") }
+        MusicPlayback.shared.pauseForVideo()
         try AVAudioSession.sharedInstance().setCategory(.playback, mode: .moviePlayback)
         try AVAudioSession.sharedInstance().setActive(true)
         let mpv = try MPVConfiguration.createHandle(startMs: startMs)

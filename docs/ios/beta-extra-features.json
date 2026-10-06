@@ -119,5 +119,38 @@
   {
     "source": "src/views/playlist-vod/episode-row.tsx",
     "features": ["VOD episode progress display"]
+  },
+  {
+    "source": "src/lib/spooktober-season.ts",
+    "features": ["Spooktober seasonal availability"]
+  },
+  {
+    "source": "src/views/spooktober/spooktober-entry.tsx",
+    "features": ["Spooktober invitation and dismissal"]
+  },
+  {
+    "source": "public/spooktober/content.json",
+    "features": ["Spooktober original curated selections"]
+  },
+  {
+    "source": "src/views/spooktober/spooktober-view.tsx",
+    "features": ["Spooktober native detail navigation"]
+  },
+  {
+    "source": "src-tauri/src/music/connectors/local/tags.rs",
+    "features": [
+      "Local music file import",
+      "Music album and artist grouping",
+      "Music audio cover import"
+    ]
+  },
+  {
+    "source": "src-tauri/src/music/commands/playback.rs",
+    "features": [
+      "Music native audio playback",
+      "Music playback queue",
+      "Music system controls",
+      "Music and video coordination"
+    ]
   }
 ]

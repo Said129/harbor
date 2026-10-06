@@ -1,0 +1,10 @@
+{
+  "publicCheckpointCommit": "19ddc311a397eb3483b5c978d2cf2bbb3f7f479f",
+  "files": {
+    "src-tauri/src/music.rs": "1bc4c996d3b8679eed3525f2319fa5245357e2cffda929d61ddcd352e4416d24",
+    "src-tauri/src/music/connectors/local/tags.rs": "f010a3cac761188440a5f199d42d22f66a4c2431f919a513cb13d5297d75f805",
+    "src-tauri/src/music/commands/playback.rs": "164e3b96f17af64fd04fe6235f19ece37e697ab3aed9ed93fad56331cfdc051b",
+    "src-tauri/src/music/engine.rs": "c5615dcacb40234065db0b0f78bd71403c2846357e4e536a9bc2749776236cac"
+  },
+  "scope": "Pure MusicTrack/FNV/tag/group/duration extraction in shared core. Swift owns protected imported files, mpv inspection/audio and Apple system controls. Connected providers and the full Desktop deck remain incomplete."
+}

@@ -9,10 +9,12 @@ actor ArtworkStore {
     private var pending: [String: Task<Data, Error>] = [:]
     private let session: URLSession
     init() {
-        let config = URLSessionConfiguration.default
+        let config = URLSessionConfiguration.ephemeral
         config.httpMaximumConnectionsPerHost = 4
         config.timeoutIntervalForRequest = 25
-        config.urlCache = URLCache(memoryCapacity: 16 * 1024 * 1024, diskCapacity: 64 * 1024 * 1024)
+        config.httpCookieStorage = nil
+        config.httpShouldSetCookies = false
+        config.urlCache = URLCache(memoryCapacity: 16 * 1024 * 1024, diskCapacity: 0)
         session = URLSession(configuration: config)
         cache.totalCostLimit = 24 * 1024 * 1024
     }
@@ -22,7 +24,7 @@ actor ArtworkStore {
         if let task = pending[raw] { return try await task.value }
         let session = session
         let task = Task<Data, Error> {
-            var request = URLRequest(url: url, cachePolicy: .returnCacheDataElseLoad, timeoutInterval: 25)
+            var request = URLRequest(url: url, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 25)
             request.setValue("image/*", forHTTPHeaderField: "Accept")
             request.setValue("Harbor-iOS/0.1", forHTTPHeaderField: "User-Agent")
             let (bytes, response) = try await session.bytes(for: request)
@@ -48,7 +50,7 @@ actor ArtworkStore {
 
 /// Shared loading prevents a hero, poster and detail from starting duplicate
 /// downloads. ImageIO downsampling bounds decoded memory on a physical iPhone.
-private struct BoundedArtworkImage: UIViewRepresentable {
+struct BoundedArtworkImage: UIViewRepresentable {
     let image: UIImage
     let fit: ContentMode
     func makeUIView(context: Context) -> UIImageView {

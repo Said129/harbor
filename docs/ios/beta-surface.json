@@ -1298,6 +1298,50 @@
     {
       "id": "VOD episode progress display",
       "source": "src/views/playlist-vod/episode-row.tsx"
+    },
+    {
+      "id": "Spooktober seasonal availability",
+      "source": "src/lib/spooktober-season.ts"
+    },
+    {
+      "id": "Spooktober invitation and dismissal",
+      "source": "src/views/spooktober/spooktober-entry.tsx"
+    },
+    {
+      "id": "Spooktober original curated selections",
+      "source": "public/spooktober/content.json"
+    },
+    {
+      "id": "Spooktober native detail navigation",
+      "source": "src/views/spooktober/spooktober-view.tsx"
+    },
+    {
+      "id": "Local music file import",
+      "source": "src-tauri/src/music/connectors/local/tags.rs"
+    },
+    {
+      "id": "Music album and artist grouping",
+      "source": "src-tauri/src/music/connectors/local/tags.rs"
+    },
+    {
+      "id": "Music audio cover import",
+      "source": "src-tauri/src/music/connectors/local/tags.rs"
+    },
+    {
+      "id": "Music native audio playback",
+      "source": "src-tauri/src/music/commands/playback.rs"
+    },
+    {
+      "id": "Music playback queue",
+      "source": "src-tauri/src/music/commands/playback.rs"
+    },
+    {
+      "id": "Music system controls",
+      "source": "src-tauri/src/music/commands/playback.rs"
+    },
+    {
+      "id": "Music and video coordination",
+      "source": "src-tauri/src/music/commands/playback.rs"
     }
   ],
   "settings": [

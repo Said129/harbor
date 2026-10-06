@@ -25,6 +25,7 @@ struct HarborApp: App {
             HarborShell(app: model).font(HarborTheme.font()).foregroundStyle(HarborTheme.ink).tint(HarborTheme.accent).preferredColorScheme(.dark)
                 .task { await model.start() }
                 .task(id: String(model.storageReady) + "|" + (model.user?.id ?? "guest")) { if model.storageReady { await SportsReminderService.shared.removeOtherAccounts(owner: model.user?.id ?? "guest") } }
+                .task(id: model.user?.id ?? "guest") { MusicPlayback.shared.stopForAccount(model.user?.id ?? "guest") }
                 .sheet(isPresented: $model.showAccount) { NavigationStack { AccountView(app: model) } }
         }
     }
