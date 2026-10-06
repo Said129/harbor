@@ -546,8 +546,8 @@
   },
   "Room: ebook": {
     "state": "Partial",
-    "implementation": "ios/Harbor/Views/EBooksView.swift; Views/EBookReaderView.swift; Services/EPUBReader.swift; Services/EBookService.swift",
-    "notes": "Real Gutendex catalog/search/pages, local/remote EPUB, native spine/index/text/illustrations, per-owner shelf/progress/bookmarks, reading options and native narration. New offline archive and opt-in original Gutenberg checks await Apple compilation. CSS/full EPUB, fragment chapters, plugins, translations and annotations remain incomplete."
+    "implementation": "ios/Harbor/Services/EBookService.swift; GutenbergCatalog.swift; EPUBReader.swift; Views/EBooksView.swift; HarborIntegrationTests/LiveServicesTests.swift",
+    "notes": "Real Gutendex catalog/search/pages, local/remote EPUB, native spine/index/text/illustrations, per-owner shelf/progress/bookmarks, reading options and native narration. New offline archive and opt-in original Gutenberg checks await Apple compilation. CSS/full EPUB, fragment chapters, plugins, translations and annotations remain incomplete. Build 29: one fresh-session retry for EPUB connection loss/timeout; bounded streaming, cancellation and validation before atomic storage preserved. Current Apple/physical pending."
   },
   "Theme presets": {
     "state": "Partial",

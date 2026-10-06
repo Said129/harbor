@@ -38,21 +38,7 @@ actor EBookService {
             data = try Data(contentsOf: file)
         } else {
             guard let raw = book.epub, let url = URL(string: raw), ["https", "http"].contains(url.scheme?.lowercased() ?? "") else { throw HarborError(code: "ebook-missing") }
-            let configuration = URLSessionConfiguration.ephemeral
-            configuration.httpShouldSetCookies = false; configuration.httpCookieStorage = nil
-            let session = URLSession(configuration: configuration)
-            defer { session.invalidateAndCancel() }
-            let (bytes, response) = try await session.bytes(for: URLRequest(url: url, timeoutInterval: 60))
-            guard let response = response as? HTTPURLResponse, (200..<300).contains(response.statusCode) else { throw HarborError(code: "ebook-network") }
-            let limit = 48 * 1024 * 1024
-            guard response.expectedContentLength <= Int64(limit) else { throw HarborError(code: "ebook-size") }
-            var payload = Data()
-            for try await byte in bytes {
-                try Task.checkCancellation()
-                guard payload.count < limit else { throw HarborError(code: "ebook-size") }
-                payload.append(byte)
-            }
-            data = payload
+            data = try await Self.fetchEPUB(url)
         }
         try Task.checkCancellation()
         let reader = try EPUBReader(data: data)
@@ -61,6 +47,41 @@ actor EBookService {
         recent.removeAll { $0 == key }; recent.append(key); readers[key] = reader
         while recent.count > 2 { readers.removeValue(forKey: recent.removeFirst()) }
         return reader.publication
+    }
+    nonisolated private static func fetchEPUB(_ url: URL) async throws -> Data {
+        for attempt in 0..<2 {
+            try Task.checkCancellation()
+            do { return try await fetchEPUBAttempt(url) }
+            catch let error as URLError {
+                try Task.checkCancellation()
+                if error.code == .cancelled { throw CancellationError() }
+                guard attempt == 0, error.code == .networkConnectionLost || error.code == .timedOut else { throw HarborError(code: "ebook-network") }
+                // Repeat this GET once with a fresh connection. A partial EPUB
+                // remains local to the failed attempt and is never persisted.
+                try await Task.sleep(for: .milliseconds(500))
+            }
+        }
+        throw HarborError(code: "ebook-network")
+    }
+    nonisolated private static func fetchEPUBAttempt(_ url: URL) async throws -> Data {
+        let configuration = URLSessionConfiguration.ephemeral
+        configuration.httpShouldSetCookies = false; configuration.httpCookieStorage = nil
+        configuration.urlCache = nil; configuration.timeoutIntervalForResource = 90
+        let session = URLSession(configuration: configuration)
+        defer { session.invalidateAndCancel() }
+        let (bytes, response) = try await session.bytes(for: URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 60))
+        guard let response = response as? HTTPURLResponse, (200..<300).contains(response.statusCode) else { throw HarborError(code: "ebook-network") }
+        let limit = 48 * 1024 * 1024
+        guard response.expectedContentLength <= Int64(limit) else { throw HarborError(code: "ebook-size") }
+        var payload = Data()
+        payload.reserveCapacity(Int(max(0, response.expectedContentLength)))
+        for try await byte in bytes {
+            try Task.checkCancellation()
+            guard payload.count < limit else { throw HarborError(code: "ebook-size") }
+            payload.append(byte)
+        }
+        try Task.checkCancellation()
+        return payload
     }
     func blocks(_ book: EBook, owner: String, chapter: Int) async throws -> [EBookBlock] {
         _ = try await open(book, owner: owner)
