@@ -8,6 +8,7 @@ struct SearchView: View {
     @State private var loading = false
     @State private var completedQuery: String?
     @State private var generation = UUID()
+    init(app: AppModel, initialQuery: String = "") { self.app = app; _query = State(initialValue: initialQuery) }
     var body: some View {
         ScrollView {
             if loading { ProgressView().padding() }

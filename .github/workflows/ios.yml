@@ -42,7 +42,7 @@ jobs:
   apple:
     name: Apple SDK / Swift / iPhone
     if: ${{ github.event.repository.private == false }}
-    runs-on: macos-15
+    runs-on: macos-15-intel
     timeout-minutes: 45
     permissions:
       contents: write

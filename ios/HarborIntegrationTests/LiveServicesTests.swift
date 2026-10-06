@@ -14,6 +14,19 @@ final class LiveServicesTests: XCTestCase {
             throw XCTSkip("Live integration requires explicit opt-in")
         }
     }
+    func testNativeSportsLoadsPublishedScoresAndActualBoxscore() async throws {
+        try requireOptIn()
+        let league = try XCTUnwrap(try SportsLeague.catalog().first { $0.id == "NBA" })
+        let events = try await SportsService.shared.events(league, date: "20251025", refresh: true)
+        XCTAssertFalse(events.isEmpty)
+        let event = try XCTUnwrap(events.first)
+        XCTAssertEqual(event.league.path, "basketball/nba")
+        XCTAssertEqual(event.sides.count, 2)
+        XCTAssertTrue(event.sides.allSatisfy { !$0.name.isEmpty && $0.score != nil })
+        let summary = try await SportsService.shared.summary(event)
+        XCTAssertFalse(summary.groups.isEmpty, "Published team/player statistics must survive native parsing")
+        print("Harbor live Sports: events=\(events.count), statisticGroups=\(summary.groups.count)")
+    }
 
     func testCinemetaCatalogSearchAndMetadataThroughNativeService() async throws {
         try requireOptIn()

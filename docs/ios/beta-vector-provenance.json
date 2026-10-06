@@ -88,5 +88,47 @@
       "sha256": "373c2d2ad8f1f811ca58ae725e9591db2e72cf726dc6e8066cd7f64b4c283cdf",
       "postScript": "SwitzerVariable-Regular"
     }
+  },
+  "readerIcons": {
+    "public/reader-icons/about.png": "47ed33ad20bc8627b45844e1d3ac66f206941ab241d605590a676188906376d6",
+    "public/reader-icons/arrows.png": "4377df968ae8edcd88637a2accd78c7a2d7991cfd9c599c8175f5ac6d28ebb8a",
+    "public/reader-icons/book-ltr.png": "50a91ff4045753c9a8eb0ca31ce7a1d285d18198ab132b2d38ded01605b8cf83",
+    "public/reader-icons/book-rtl.png": "10fd19d2068a6f356706c27482bbb7651f78d96905fda188f1914246f67c1fae",
+    "public/reader-icons/bookshelf.png": "fc5db8d182964c718f2eaabca65ee8317d30447983b13df23b9d2b6041c24393",
+    "public/reader-icons/brightness.png": "b193fbab083b0ff06672b9de9ba98e0384927f8c0c196b098b2c7396e6c3bf37",
+    "public/reader-icons/continue-reading.png": "2da315a90b529f1b67a189861b6453adc2fd9662aff4b36c72a047403862cd1b",
+    "public/reader-icons/file-list.png": "c04c535e5475a17cb073ffdae1f4bbd437403ae0d6967ebb72c6363cb6b04f0e",
+    "public/reader-icons/first-page-blank.png": "d8cfe7c2b2f326c778e573aae05885f5d1ca99fc0e767ddf78297df556b66554",
+    "public/reader-icons/fit-height.png": "ab41ff612b85b4223bda3ae401af08cf54626c811b9d906facccc0677cecf540",
+    "public/reader-icons/fit-width.png": "25c3cdede64647ba11b1dfc21f6abea15c4810742a105d1d83c1a76ae4a65de9",
+    "public/reader-icons/flip-direction.png": "40225d1f1e72a7379b484e95b2b5c7633e491359e57f09502d8e79b173fa7532",
+    "public/reader-icons/fullscreen.png": "60953ada973912f5b7fd8743cc631983b32d5c3729bd98d1cb7a69b6a26d6fb8",
+    "public/reader-icons/help.png": "2acaf703ce67a6fff65372c88840e1ba36de28df6adb346256388cb1ad8f8dc3",
+    "public/reader-icons/image-position.png": "6853d005ee1566b3306de4194c1fd7c79a5a7adbefb87c1907dbf89ede7a0fbd",
+    "public/reader-icons/layout-book.png": "98ce8daf93e0d56122923a072da7a5e825ad2d91abdba8ec5f4b3ae5fd485215",
+    "public/reader-icons/layout-double.png": "f94a7cf83cbe2add73547c4a96740d3872dd52c6a7e21311882cb8b0221e382c",
+    "public/reader-icons/layout-long.png": "bbd7e6041f07ddce5755d87b4803a0868aeef48f0614ef01536b2b8269766967",
+    "public/reader-icons/layout-menu.png": "cb24d8bf790e341b24e5a1d71cebb3178a1742675511395a2c9c803fadababbd",
+    "public/reader-icons/layout-single.png": "d6a82cbba2f4546f534ebef81bc43c1dd201cf97dd64a1794db0380ee855a9c6",
+    "public/reader-icons/more.png": "fe93d0ab46fb1a8621834b6c7187f18d1595a97357bd13470eb8c2956bf93e0f",
+    "public/reader-icons/open-file.png": "b4acd85ceeefd68b858808fe3c6286f1eb0a0208d744d9a8fc4d55cf5a1e8743",
+    "public/reader-icons/page-info.png": "5a14782740bcf75761f2cb8ccdb5caa3722a5b6d27e8f5b4379444f2fcbd04d8",
+    "public/reader-icons/reading-mode.png": "9886a25e6ca0bda32913b39988f83c33bbf787ec565f3aff183579c13b99a4ca",
+    "public/reader-icons/rotate-page.png": "3d56a30c978b7369aec4eff7d3eb9fedbfd980f4608222180d873343f7c708c0",
+    "public/reader-icons/scroll-ltr.png": "d2dd63ab147820fa13c10aa9a704d6045a998e761f956f038eb6974f909843b2",
+    "public/reader-icons/scroll-rtl.png": "3ec936db59e68b46b2627107897fa0bb2d6e61e3f51c38aedb81b86a4fcb46cd",
+    "public/reader-icons/scroll-vertical.png": "ce0614fc0f69b17198fe2ec761fffe3d6c114d7452ef435ec71b830f4d23a7bb",
+    "public/reader-icons/settings.png": "b52b1df42131c2215a96afba3498b901aed8d5d5a12e02c452c05a50b4936c52",
+    "public/reader-icons/zoom.png": "696927b02e512ab9e22ee4b28bbc1228fc705382c47aaf1086db0a38e960f6d6"
+  },
+  "sportsCatalog": {
+    "sourceHashes": {
+      "src/lib/sports/espn-leagues.ts": "6cd18fea336ed05835bce2f19012e0fc0ff10e29328ea0187c31b062f0ae2f43",
+      "src/lib/sports/leagues-extra.ts": "849f7edc3f6df0fe31a1e6888e4c0266c4e1154016cfbbfc50260c7de44d070b",
+      "src/lib/sports/regional-sports-catalog.ts": "3ad5a13e3d49ddf0b123f813671fc87e5196f227e09dc49ac6db14a6bbf39a7c",
+      "src/lib/sports/additional-sports-catalog.ts": "eb53a44af5f5bead213dcc85ed355fe07b5d9e9749d574f990b6df499e81dca7"
+    },
+    "count": 161,
+    "scope": "Literal ESPN leagues and original soccer tuple expansions; provider-only and other generated catalogs remain separate."
   }
 }

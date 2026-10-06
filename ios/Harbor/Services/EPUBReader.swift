@@ -15,7 +15,8 @@ final class EPUBReader {
             guard count <= 5_000, entry.uncompressedSize <= 12 * 1024 * 1024, total <= 192 * 1024 * 1024 else { throw HarborError(code: "ebook-size") }
             total += entry.uncompressedSize
         }
-        guard total <= 192 * 1024 * 1024, archive["META-INF/encryption.xml"] == nil else { throw HarborError(code: "ebook-encrypted") }
+        guard total <= 192 * 1024 * 1024 else { throw HarborError(code: "ebook-size") }
+        guard archive["META-INF/encryption.xml"] == nil else { throw HarborError(code: "ebook-encrypted") }
         let container = try BookXML.parse(Self.read(archive, path: "META-INF/container.xml", limit: 256 * 1024))
         guard let opfPath = container.descendants("rootfile").first?.attributes["full-path"], Self.safePath(opfPath) else { throw HarborError(code: "ebook-format") }
         let opf = try BookXML.parse(Self.read(archive, path: opfPath, limit: 2 * 1024 * 1024))

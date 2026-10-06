@@ -15,6 +15,7 @@ struct MangaReaderView: View {
     @State private var dimensions: [Int: CGSize] = [:]
     @State private var loading = false
     @State private var settings = false
+    @State private var settingsCategory = "mode"
     @State private var contents = false
     @State private var error: String?
     @State private var progressTask: Task<Void, Never>?
@@ -54,7 +55,7 @@ struct MangaReaderView: View {
             if !focus { bottomBar }
         }.background(canvas).foregroundStyle(ink).navigationTitle(chapter.title).navigationBarTitleDisplayMode(.inline)
             .toolbar(focus ? .hidden : .visible, for: .navigationBar)
-            .toolbar { ToolbarItemGroup(placement: .topBarTrailing) { Button { contents = true } label: { Image(systemName: "list.bullet") }.accessibilityLabel("Capítulos"); Button { settings = true } label: { Image(systemName: "slider.horizontal.3") }.accessibilityLabel("Opciones del lector") } }
+            .toolbar { ToolbarItemGroup(placement: .topBarTrailing) { Button { contents = true } label: { readerIcon("file-list", size: 24) }.accessibilityLabel("Capítulos"); Button { settings = true } label: { readerIcon("settings", size: 24) }.accessibilityLabel("Opciones del lector") } }
             .overlay(alignment: .topTrailing) { if focus { Button { focus = false } label: { Image(systemName: "eye").padding(12).background(.ultraThinMaterial, in: .circle) }.accessibilityLabel("Mostrar controles").padding(8) } }
             .task { await load(chapter) }
             .onChange(of: visible) { _, _ in scheduleProgress() }
@@ -131,16 +132,36 @@ struct MangaReaderView: View {
     private var readerSettings: some View {
         NavigationStack {
             Form {
-                Section("Modo de lectura") {
-                    Picker("Modo", selection: $mode) { Text("Tira vertical").tag("long"); Text("Tira horizontal").tag("long-h"); Text("Una página").tag("paged"); Text("Dos páginas").tag("double"); Text("Libro").tag("book") }
-                    Picker("Ajuste", selection: $fit) { Text("Anchura").tag("width"); Text("Altura").tag("height"); Text("Original").tag("original") }
-                    LabeledContent("Zoom", value: "\(Int(zoom * 100)) %"); Slider(value: $zoom, in: 0.5...3, step: 0.1)
-                    Toggle("Derecha a izquierda", isOn: $rtl)
-                    LabeledContent("Separación entre páginas", value: "\(Int(doubleGap))"); Slider(value: $doubleGap, in: 0...40, step: 2)
+                Section {
+                    ScrollView(.horizontal) {
+                        HStack(spacing: 10) {
+                            category("mode", "Modo", "reading-mode"); category("direction", "Dirección", "flip-direction"); category("fit", "Ajuste", "image-position"); category("nav", "Flechas", "arrows"); category("background", "Fondo", "brightness"); category("zoom", "Zoom", "zoom")
+                        }.padding(.vertical, 6)
+                    }.scrollIndicators(.hidden)
+                }.listRowBackground(HarborTheme.background)
+                if settingsCategory == "mode" {
+                    Section("Modo de lectura") {
+                        LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
+                            modeCard("long", "Tira vertical", "layout-long"); modeCard("long-h", "Horizontal", "layout-long", rotated: true); modeCard("paged", "Una página", "layout-single"); modeCard("double", "Dos páginas", "layout-double"); modeCard("book", "Libro", "layout-book")
+                        }.padding(.vertical, 6)
+                        if double { LabeledContent("Separación entre páginas", value: "\(Int(doubleGap))"); Slider(value: $doubleGap, in: 0...40, step: 2) }
+                    }
                 }
+                if settingsCategory == "direction" {
+                    Section("Dirección") { HStack(spacing: 12) { directionCard(false, "Izquierda a derecha", "book-ltr"); directionCard(true, "Derecha a izquierda", "book-rtl") } }
+                }
+                if settingsCategory == "fit" {
+                    Section("Ajuste de imagen") {
+                        HStack(spacing: 10) { fitCard("width", "Anchura", "fit-width"); fitCard("height", "Altura", "fit-height"); fitCard("original", "Original", "image-position") }
+                    }
+                }
+                if settingsCategory == "zoom" { Section("Zoom") {
+                    LabeledContent("Zoom", value: "\(Int(zoom * 100)) %"); Slider(value: $zoom, in: 0.5...3, step: 0.1)
+                    Button("Restablecer zoom") { zoom = 1 }
+                } }
+                if settingsCategory == "background" { Section("Fondo") { Picker("Fondo", selection: $background) { Text("Oscuro").tag("dark"); Text("Gris").tag("gray"); Text("Claro").tag("light") }.pickerStyle(.segmented) } }
+                if settingsCategory == "nav" { Section("Flechas") { Picker("Navegación", selection: $navPos) { Text("Abajo a la derecha").tag("stack-br"); Text("Abajo a la izquierda").tag("stack-bl"); Text("Barra inferior").tag("bottom"); Text("Laterales").tag("sides") } } }
                 Section("Interfaz") {
-                    Picker("Fondo", selection: $background) { Text("Oscuro").tag("dark"); Text("Gris").tag("gray"); Text("Claro").tag("light") }
-                    Picker("Navegación", selection: $navPos) { Text("Abajo a la derecha").tag("stack-br"); Text("Abajo a la izquierda").tag("stack-bl"); Text("Laterales").tag("sides"); Text("Barra inferior").tag("bottom") }
                     Toggle("Modo de concentración", isOn: $focus)
                     Toggle("Ocultar aviso de fin", isOn: $hideEndHint)
                     Toggle("Continuar al siguiente capítulo", isOn: $autoNext)
@@ -149,6 +170,20 @@ struct MangaReaderView: View {
             }.navigationTitle("Opciones del lector").toolbar { ToolbarItem(placement: .topBarTrailing) { Button("Listo") { settings = false } } }
         }
     }
+    private func readerIcon(_ name: String, size: CGFloat = 40) -> some View { Image("reader-" + name).resizable().scaledToFit().frame(width: size, height: size).accessibilityHidden(true) }
+    private func option(_ label: String, icon: String, selected: Bool, rotated: Bool = false, action: @escaping () -> Void) -> some View {
+        Button(action: action) {
+            VStack(spacing: 10) { readerIcon(icon).rotationEffect(.degrees(rotated ? 90 : 0)); Text(label).font(.caption).lineLimit(2).multilineTextAlignment(.center) }.frame(maxWidth: .infinity, minHeight: 98).padding(6)
+                .background(selected ? HarborTheme.accent.opacity(0.13) : HarborTheme.surface, in: .rect(cornerRadius: 12))
+                .overlay { RoundedRectangle(cornerRadius: 12).strokeBorder(selected ? HarborTheme.accent : .clear, lineWidth: 1.5) }
+        }.buttonStyle(.plain).accessibilityAddTraits(selected ? .isSelected : [])
+    }
+    private func category(_ value: String, _ label: String, _ icon: String) -> some View {
+        Button { settingsCategory = value } label: { VStack(spacing: 6) { readerIcon(icon, size: 28); Text(label).font(.caption2) }.frame(width: 60).padding(.vertical, 6).background(settingsCategory == value ? HarborTheme.surface : .clear, in: .rect(cornerRadius: 8)) }.buttonStyle(.plain)
+    }
+    private func modeCard(_ value: String, _ label: String, _ icon: String, rotated: Bool = false) -> some View { option(label, icon: icon, selected: mode == value, rotated: rotated) { mode = value } }
+    private func fitCard(_ value: String, _ label: String, _ icon: String) -> some View { option(label, icon: icon, selected: fit == value) { fit = value } }
+    private func directionCard(_ value: Bool, _ label: String, _ icon: String) -> some View { option(label, icon: icon, selected: rtl == value) { rtl = value } }
     private var chapterList: some View {
         NavigationStack {
             List(chapters) { item in Button { contents = false; Task { await load(item) } } label: { HStack { Text(item.title); Spacer(); if item.id == chapter.id { Image(systemName: "checkmark") } } } }.navigationTitle("Capítulos").toolbar { ToolbarItem(placement: .topBarTrailing) { Button("Listo") { contents = false } } }
@@ -242,6 +277,7 @@ private struct MangaEndOffset: PreferenceKey {
     }
     func updateUIViewController(_ view: UIPageViewController, context: Context) {
         context.coordinator.parent = self; view.view.backgroundColor = UIColor(canvas)
+        if let leaf = view.viewControllers?.first as? Leaf, pages.indices.contains(leaf.index) { leaf.rootView = content(pages[leaf.index]) }
         if (view.viewControllers?.first as? Leaf)?.index != selected, let leaf = context.coordinator.leaf(selected) { view.setViewControllers([leaf], direction: .forward, animated: false) }
     }
     private final class Leaf: UIHostingController<AnyView> {

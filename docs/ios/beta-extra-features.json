@@ -10,11 +10,7 @@
   },
   {
     "source": "src/lib/manga/sources/suwayomi/graphql.ts",
-    "features": [
-      "Manga extension install/update/remove",
-      "Manga extension repositories",
-      "Manga source filters"
-    ]
+    "features": ["Manga extension install/update/remove", "Manga extension repositories"]
   },
   {
     "source": "src/lib/manga/sources/local.ts",
@@ -46,5 +42,45 @@
   {
     "source": "src/lib/manga/sources/suwayomi/sync.ts",
     "features": ["Manga chapter progress sync"]
+  },
+  {
+    "source": "src/lib/manga/sources/suwayomi/rest.ts",
+    "features": ["Manga source filters"]
+  },
+  {
+    "source": "src/lib/sports/espn-leagues.ts",
+    "features": ["Sports original league catalog"]
+  },
+  {
+    "source": "src/lib/sports/espn-scoreboard.ts",
+    "features": [
+      "Sports calendar and scores",
+      "Sports live/upcoming/final filtering",
+      "Sports live score refresh"
+    ]
+  },
+  {
+    "source": "src/lib/sports/espn-summary.ts",
+    "features": ["Sports score periods and statistics", "Sports event commentary"]
+  },
+  {
+    "source": "src/lib/sports/favourites.ts",
+    "features": ["Sports favorite leagues and teams"]
+  },
+  {
+    "source": "src/lib/sports/usage-notice.ts",
+    "features": ["Sports external-service consent"]
+  },
+  {
+    "source": "src/lib/sports/reminders.ts",
+    "features": ["Sports event reminders"]
+  },
+  {
+    "source": "src/lib/sports/standings.ts",
+    "features": ["Sports standings"]
+  },
+  {
+    "source": "src/lib/sports/stream-resolver.ts",
+    "features": ["Sports configured broadcast sources"]
   }
 ]

@@ -2,7 +2,7 @@ import SwiftUI
 import CoreText
 
 enum HarborSection: String, CaseIterable, Identifiable {
-    case home, discover, catalogs, movies, shows, kids, anime, live, manga, ebook, calendar, library, collections, downloads, search, addons, settings
+    case home, discover, catalogs, movies, shows, kids, anime, live, sports, manga, ebook, calendar, library, collections, downloads, search, addons, settings
     var id: String { rawValue }
     var title: String {
         switch self {
@@ -14,6 +14,7 @@ enum HarborSection: String, CaseIterable, Identifiable {
         case .kids: "Kids"
         case .anime: "Anime"
         case .live: "Live TV"
+        case .sports: "Sports"
         case .manga: "Manga"
         case .ebook: "eBook"
         case .calendar: "Calendario"
@@ -35,6 +36,7 @@ enum HarborSection: String, CaseIterable, Identifiable {
         case .kids: "kids"
         case .anime: "anime"
         case .live: "livetv"
+        case .sports: "sports"
         case .manga: "manga"
         case .ebook: "ebook"
         case .calendar: "calendar"
@@ -120,6 +122,7 @@ struct HarborShell: View {
         case .kids: ContentPageView(app: app, kind: "kids", title: section.title)
         case .anime: ContentPageView(app: app, kind: "anime", title: section.title)
         case .live: ContentPageView(app: app, kind: "tv", title: section.title)
+        case .sports: SportsView(app: app).id(app.user?.id ?? "guest")
         case .manga: MangaView(app: app).id(app.user?.id ?? "guest")
         case .ebook: EBooksView(app: app).id(app.user?.id ?? "guest")
         case .calendar: CalendarView(app: app)

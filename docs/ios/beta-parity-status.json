@@ -678,5 +678,55 @@
     "state": "Partial",
     "implementation": "ios/Harbor/Views/MangaView.swift; MangaDetailView.swift; MangaReaderView.swift; Services/MangaArchive.swift; SuwayomiClient.swift",
     "notes": "Native CBZ/ZIP and image-folder imports; natural page order/CRC; per-account protected files and Keychain library/progress. Real Desktop Suwayomi GraphQL/REST source browse/search/library/chapters/pages/extensions/progress; credentials only in Keychain, no cross-origin auth. Five reading modes, fit/zoom/RTL, backgrounds/navigation/focus/gap, next chapter and original page export. Swift compilation/physical UI and a real user Suwayomi server still require validation. Advanced source filters/repositories/community/plugin providers and original flip sound remain pending."
+  },
+  "Room: sports": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/SportsView.swift; SportsEventView.swift; Services/SportsService.swift; SportsReminderService.swift; Models/Sports.swift",
+    "notes": "Native ESPN schedules/scores/statistics, 161 literal original league definitions, date/status/sport/favorite filters, foreground refresh and per-account preferences. Versioned external-service notice precedes requests. Native local reminders are an iPhone adaptation; Desktop messaging destinations, other providers/generated leagues, standings and advanced match layouts remain pending. Windows observed the public NBA response (5 events/10 competitors); native Apple and physical behavior are not yet verified."
+  },
+  "Sports original league catalog": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/SportsView.swift; SportsEventView.swift; Services/SportsService.swift; SportsReminderService.swift; Models/Sports.swift",
+    "notes": "Native ESPN schedules/scores/statistics, 161 literal original league definitions, date/status/sport/favorite filters, foreground refresh and per-account preferences. Versioned external-service notice precedes requests. Native local reminders are an iPhone adaptation; Desktop messaging destinations, other providers/generated leagues, standings and advanced match layouts remain pending. Windows observed the public NBA response (5 events/10 competitors); native Apple and physical behavior are not yet verified."
+  },
+  "Sports calendar and scores": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/SportsView.swift; SportsEventView.swift; Services/SportsService.swift; SportsReminderService.swift; Models/Sports.swift",
+    "notes": "Native ESPN schedules/scores/statistics, 161 literal original league definitions, date/status/sport/favorite filters, foreground refresh and per-account preferences. Versioned external-service notice precedes requests. Native local reminders are an iPhone adaptation; Desktop messaging destinations, other providers/generated leagues, standings and advanced match layouts remain pending. Windows observed the public NBA response (5 events/10 competitors); native Apple and physical behavior are not yet verified."
+  },
+  "Sports live/upcoming/final filtering": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/SportsView.swift; SportsEventView.swift; Services/SportsService.swift; SportsReminderService.swift; Models/Sports.swift",
+    "notes": "Native ESPN schedules/scores/statistics, 161 literal original league definitions, date/status/sport/favorite filters, foreground refresh and per-account preferences. Versioned external-service notice precedes requests. Native local reminders are an iPhone adaptation; Desktop messaging destinations, other providers/generated leagues, standings and advanced match layouts remain pending. Windows observed the public NBA response (5 events/10 competitors); native Apple and physical behavior are not yet verified."
+  },
+  "Sports live score refresh": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/SportsView.swift; SportsEventView.swift; Services/SportsService.swift; SportsReminderService.swift; Models/Sports.swift",
+    "notes": "Native ESPN schedules/scores/statistics, 161 literal original league definitions, date/status/sport/favorite filters, foreground refresh and per-account preferences. Versioned external-service notice precedes requests. Native local reminders are an iPhone adaptation; Desktop messaging destinations, other providers/generated leagues, standings and advanced match layouts remain pending. Windows observed the public NBA response (5 events/10 competitors); native Apple and physical behavior are not yet verified."
+  },
+  "Sports score periods and statistics": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/SportsView.swift; SportsEventView.swift; Services/SportsService.swift; SportsReminderService.swift; Models/Sports.swift",
+    "notes": "Native ESPN schedules/scores/statistics, 161 literal original league definitions, date/status/sport/favorite filters, foreground refresh and per-account preferences. Versioned external-service notice precedes requests. Native local reminders are an iPhone adaptation; Desktop messaging destinations, other providers/generated leagues, standings and advanced match layouts remain pending. Windows observed the public NBA response (5 events/10 competitors); native Apple and physical behavior are not yet verified."
+  },
+  "Sports event commentary": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/SportsView.swift; SportsEventView.swift; Services/SportsService.swift; SportsReminderService.swift; Models/Sports.swift",
+    "notes": "Native ESPN schedules/scores/statistics, 161 literal original league definitions, date/status/sport/favorite filters, foreground refresh and per-account preferences. Versioned external-service notice precedes requests. Native local reminders are an iPhone adaptation; Desktop messaging destinations, other providers/generated leagues, standings and advanced match layouts remain pending. Windows observed the public NBA response (5 events/10 competitors); native Apple and physical behavior are not yet verified."
+  },
+  "Sports favorite leagues and teams": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/SportsView.swift; SportsEventView.swift; Services/SportsService.swift; SportsReminderService.swift; Models/Sports.swift",
+    "notes": "Native ESPN schedules/scores/statistics, 161 literal original league definitions, date/status/sport/favorite filters, foreground refresh and per-account preferences. Versioned external-service notice precedes requests. Native local reminders are an iPhone adaptation; Desktop messaging destinations, other providers/generated leagues, standings and advanced match layouts remain pending. Windows observed the public NBA response (5 events/10 competitors); native Apple and physical behavior are not yet verified."
+  },
+  "Sports external-service consent": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/SportsView.swift; SportsEventView.swift; Services/SportsService.swift; SportsReminderService.swift; Models/Sports.swift",
+    "notes": "Native ESPN schedules/scores/statistics, 161 literal original league definitions, date/status/sport/favorite filters, foreground refresh and per-account preferences. Versioned external-service notice precedes requests. Native local reminders are an iPhone adaptation; Desktop messaging destinations, other providers/generated leagues, standings and advanced match layouts remain pending. Windows observed the public NBA response (5 events/10 competitors); native Apple and physical behavior are not yet verified."
+  },
+  "Sports event reminders": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/SportsView.swift; SportsEventView.swift; Services/SportsService.swift; SportsReminderService.swift; Models/Sports.swift",
+    "notes": "Native ESPN schedules/scores/statistics, 161 literal original league definitions, date/status/sport/favorite filters, foreground refresh and per-account preferences. Versioned external-service notice precedes requests. Native local reminders are an iPhone adaptation; Desktop messaging destinations, other providers/generated leagues, standings and advanced match layouts remain pending. Windows observed the public NBA response (5 events/10 competitors); native Apple and physical behavior are not yet verified."
   }
 }
