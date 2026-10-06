@@ -1,6 +1,6 @@
 # Matriz de paridad Harbor Desktop → iPhone
 
-Base upstream: `0117755855d3f43960bad3f9f62b69ef851d5991`, 2026-10-04. Alcance final incluye todas las entradas. Desktop indica evidencia de código, no certificación de todas las integraciones. States: Not Started, Investigating, Partial, Working, Parity, Blocked. Compilar no basta para Working/Parity; requieren pruebas de comportamiento.
+Base upstream: `0117755855d3f43960bad3f9f62b69ef851d5991`, 2026-10-04. El [alcance móvil vigente](MOBILE_SCOPE.md), actualizado por el propietario el 2026-10-06, prioriza funciones esenciales y ajustes útiles, conserva las implementaciones y termina los incrementos empezados. Este inventario histórico no exige portar todas las entradas. Desktop indica evidencia de código, no certificación de todas las integraciones. States: Not Started, Investigating, Partial, Working, Parity, Blocked. Compilar no basta para Working/Parity; requieren pruebas de comportamiento.
 
 706 entradas: funciones revisadas y cada campo real de Settings. SOURCE_INVENTORY registra además módulos y comandos. No todos los símbolos son funciones de usuario. No se deben presentar stubs upstream como funciones verificadas.
 

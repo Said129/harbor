@@ -1,5 +1,7 @@
 # Paridad con la beta de Harbor Desktop
 
+Alcance vigente desde el 2026-10-06: [Harbor para iPhone](MOBILE_SCOPE.md), con funciones esenciales y ajustes útiles. Conservar implementaciones y terminar incrementos nativos empezados; este inventario de referencia no exige portar todas las opciones Desktop. Sus estados de evidencia se conservan y no miden por sí solos el progreso móvil.
+
 Objetivo 0.9.130; checkpoint público 0.9.128 (`19ddc311a397eb3483b5c978d2cf2bbb3f7f479f`). La diferencia de versiones se conserva explícitamente. Capturas del propietario y updater oficial completan la referencia visual. No se cambia la base Desktop del repositorio.
 
 859 entradas: 20 secciones, 339 comportamientos revisados y 500 ajustes declarados. Los módulos beta adicionales se inspeccionan durante cada implementación; esta lista no implica paridad ni que los stubs Desktop funcionen. Ningún ajuste se excluye automáticamente por su nombre.

@@ -2,7 +2,7 @@
 
 Base inspeccionada: upstream `0117755855d3f43960bad3f9f62b69ef851d5991` (0.9.21). Fecha: 2026-10-04. Único nuevo producto: iPhone/iOS. Desktop conserva sus targets y comportamiento. La matriz registra alcance pendiente, no promete paridad por compilar.
 
-Objetivo confirmado por el propietario: port 1:1 de todas las funciones y opciones adaptables de Desktop, con interacción nativa de iPhone. Las opciones exclusivas del hardware de PC, como elegir una GPU discreta, requieren una equivalencia aplicable o una limitación documentada; no se crean controles sin efecto. Una función difícil o todavía no implementada sigue en alcance. El propietario confirma que el acceso ya funciona tras la corrección de manifests. El propietario confirma también vídeo y ocultación de controles en la IPA 3. Continúa la implementación de toda la beta 0.9.130; las compilaciones posteriores y sus nuevas interfaces requieren sus propios gates Apple y verificación física.
+Objetivo vigente desde el 2026-10-06: Harbor nativo para iPhone fiel a la identidad y a las funciones seleccionadas de Desktop beta 0.9.130, centrado en lo esencial y en configuraciones útiles para móvil. Conservar todo lo implementado y terminar los incrementos nativos empezados; las herramientas avanzadas de Desktop aún sin empezar dejan de ser obligatorias. El [alcance móvil](MOBILE_SCOPE.md) sustituye el objetivo anterior de portar todas las entradas y define las prioridades y los criterios de entrega. El propietario confirma acceso, vídeo y ocultación de controles en la IPA 3; las nuevas compilaciones requieren su propia evidencia Apple y de dispositivo.
 
 ## 1. Arquitectura actual
 
@@ -136,7 +136,7 @@ Core representa una fracción de la lógica, migración de servicios TypeScript,
 
 ## 27. Roadmap y gates
 
-1. Inventario y ADRs; baseline Desktop. 2. Core sin WASM + framework C ABI y CI Apple (gate de enlace temprano). 3. Catálogos/manifests/search/meta/streams reales y player nativo (gate simulator/device). 4. Progreso/resume/biblioteca/episodios y sincronización. 5. Clientes Debrid compartidos completos y cuentas. 6. Motor torrent Rust extraído y FFmpeg integrado. 7. Subtítulos/audio/options/skip, PiP/AirPlay/HDR. 8. Live/DVR/casting/Together/metadata enriquecida/temas y todas las entradas pendientes. Cada fase actualiza matriz con pruebas, sin borrar funciones difíciles.
+El inventario, el core/bridge, el CI Apple y el primer recorrido ya existen. El trabajo restante sigue [MOBILE_SCOPE.md](MOBILE_SCOPE.md): primero cerrar incrementos abiertos y fallos reales; después consolidar cuenta/addons, catálogos/búsqueda/ficha, reproducción, biblioteca/progreso y ajustes móviles. Conservar y completar los recorridos empezados en TV/VOD, Música, lectores, Deportes y otras secciones. Incorporar compatibilidad y funciones móviles necesarias, como PiP/AirPlay, con evidencia proporcionada. Los clientes completos de todos los proveedores, DVR/Together y todas las entradas pendientes del inventario Desktop ya no son fases obligatorias. La entrega conserva los gates de reproducción, servicios, interfaz y paquete y la validación física de los cambios relevantes.
 
 ## 28. Decisiones y upstream
 
