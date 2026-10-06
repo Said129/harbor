@@ -46,7 +46,7 @@ enum HarborSection: String, CaseIterable, Identifiable {
         case .calendar: "calendar"
         case .library: "library"
         case .collections: "collections"
-        case .downloads: "downloads"
+        case .downloads: "download"
         case .search: "search"
         case .addons: "addons"
         case .settings: "settings"

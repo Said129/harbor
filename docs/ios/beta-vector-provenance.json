@@ -136,7 +136,8 @@
     "src/views/player/hooks/use-started-near-end.ts": "d7cd628652acb412091ef61ee67b5858ead788c67f5240b16c8fcceaa375be15",
     "src/views/player/hooks/use-episode-navigation.ts": "5d37ec61fe1cd82fef86fa6e353e1e085841102eca9e32a7fe03f720b1e22104",
     "src/views/player/skip-pill-container.tsx": "8ab6c0d1a05be11bab6aebbc52a3e065ec983a851e006a3d01ee4dc4661b9894",
-    "src/lib/series-episodes.ts": "0ce5066f685c01b28cac501f4fd37a5ab7605f173868e1806f83a90027fe59f9"
+    "src/lib/series-episodes.ts": "0ce5066f685c01b28cac501f4fd37a5ab7605f173868e1806f83a90027fe59f9",
+    "src/chrome/nav-items.tsx": "8604479e860ce47726e7476441d024cce2bd97eded4f01ed596f2a1a442ec58b"
   },
   "fonts": {
     "Fraunces": {
@@ -219,5 +220,17 @@
     "sha256": "15dd78185f6470770354597a74bc625d8ebc80c4a4fe0aa25ac9991ed20fb5a7",
     "bytes": 23839,
     "modified": false
+  },
+  "librarySources": {
+    "nav-kids": {
+      "library": "lucide",
+      "version": "0.460.0",
+      "betaRequirement": "^0.460.0",
+      "source": "https://raw.githubusercontent.com/lucide-icons/lucide/0.460.0/icons/popcorn.svg",
+      "sha256": "4bcf2d930fed98a4ce810286759d72bff7863c14747e0e4e50478ff41c483b85",
+      "reference": "src/chrome/nav-items.tsx Popcorn size=26 strokeWidth=2.2",
+      "adaptation": "Exact geometry, original stroke width/line caps/joins; native template tint replaces currentColor",
+      "license": "ios/Harbor/Licenses/Lucide-0.460.0.txt"
+    }
   }
 }

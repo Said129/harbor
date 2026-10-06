@@ -397,7 +397,7 @@
   "Room: kids": {
     "state": "Partial",
     "implementation": "ios/Harbor/Views/HarborShell.swift",
-    "notes": "Native route and real service UI implemented. Current beta increment and full physical fidelity are not yet certified."
+    "notes": "Native route and real service UI implemented. Current beta increment and full physical fidelity are not yet certified. Build 30: all 20 navigation icons resolve; Downloads uses the original asset and Kids imports original Popcorn geometry/stroke with license/provenance. Apple/physical pending."
   },
   "Room: anime": {
     "state": "Partial",
@@ -537,7 +537,7 @@
   "Room: downloads": {
     "state": "Partial",
     "implementation": "ios/Harbor/Services/DownloadManager.swift; Views/DownloadsView.swift; Views/DetailView.swift; Views/VODView.swift; Views/SettingsView.swift; HarborIntegrationTests/LiveServicesTests.swift",
-    "notes": "Real HTTP/S file transfers with progress/pause/resume, protected index, account filtering, sharing and mpv local playback. Background non-credentialed and ephemeral foreground credentialed sessions. Build 24 verifies Apple compilation and exact public file bytes/hash/removal. Physical background behavior and current source remain pending. HLS/DASH, torrent and automatic downloads remain incomplete. Build 21 live start fails download-index on a fresh sandbox. Build 22 creates the support directory and compares canonical paths instead of directory-hint URL equality, retaining before/after no-symlink guards. The existing exact-byte/hash/account/removal gate remains unchanged and pending. Build 28: active-first owner-scoped list, search/filter counts, saved bytes, actual pause/cancel actions, failed-source route and original download icon restored. Apple/physical pending."
+    "notes": "Real HTTP/S file transfers with progress/pause/resume, protected index, account filtering, sharing and mpv local playback. Background non-credentialed and ephemeral foreground credentialed sessions. Build 24 verifies Apple compilation and exact public file bytes/hash/removal. Physical background behavior and current source remain pending. HLS/DASH, torrent and automatic downloads remain incomplete. Build 21 live start fails download-index on a fresh sandbox. Build 22 creates the support directory and compares canonical paths instead of directory-hint URL equality, retaining before/after no-symlink guards. The existing exact-byte/hash/account/removal gate remains unchanged and pending. Build 28: active-first owner-scoped list, search/filter counts, saved bytes, actual pause/cancel actions, failed-source route and original download icon restored. Apple/physical pending. Build 30: all 20 navigation icons resolve; Downloads uses the original asset and Kids imports original Popcorn geometry/stroke with license/provenance. Apple/physical pending."
   },
   "User committed uncached downloads": {
     "state": "Partial",
