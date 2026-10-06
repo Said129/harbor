@@ -177,5 +177,9 @@
   {
     "source": "src/components/music/music-track-menu.tsx",
     "features": ["Music track title copying"]
+  },
+  {
+    "source": "src/lib/player/subtitle-fps.ts",
+    "features": ["Subtitle source FPS correction"]
   }
 ]

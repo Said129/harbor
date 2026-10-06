@@ -43,13 +43,11 @@ enum MPVConfiguration {
             // A virtual GL driver may need software rendering. Permit it only
             // on simulators; physical iPhone output keeps its validated path.
             try check(mpv_set_option_string(handle, "gpu-sw", "yes"))
-            // Apple's Intel software GLES driver renders 8-bit planes, but the
-            // observed 10-bit path stays black. Convert decoded simulator frames
-            // before uploading; device decoding/HDR processing is unchanged.
-            try check(mpv_set_option_string(handle, "vf", "format=fmt=yuv420p"))
-            // Conversion now produces colors but a regular black grid on the
-            // Intel simulator. Use libswscale rather than the optional zimg
-            // repacker there, and retain the same actual input/pixel checks.
+            // Both actual decoder formats reach yuv420p after conversion, yet
+            // the Intel software GLES plane/shader path still loses pixels.
+            // Upload packed RGBA on simulators; physical iPhone retains its
+            // validated decoder/render/HDR path and the inputs are unchanged.
+            try check(mpv_set_option_string(handle, "vf", "format=fmt=rgba"))
             try check(mpv_set_option_string(handle, "sws-allow-zimg", "no"))
 #endif
             let selected = decoding ?? HardwareDecoding(rawValue: UserDefaults.standard.string(forKey: "mpvHwdec") ?? "auto") ?? .auto

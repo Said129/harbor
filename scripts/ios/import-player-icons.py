@@ -3,6 +3,7 @@ import argparse
 import hashlib
 import json
 from pathlib import Path
+import re
 import xml.etree.ElementTree as ET
 
 parser = argparse.ArgumentParser(description=__doc__)
@@ -53,5 +54,15 @@ for direction in ["back", "forward"]:
             raise ValueError("Expected original seek PNG")
         image(name, data, "png", False)
         provenance["files"][relative] = hashlib.sha256(data).hexdigest()
+relative = "src/components/player/subtitle-menu/subtitle-fps-icon.tsx"
+source = (reference / relative).read_text(encoding="utf-8")
+paths = re.findall(r'<path d="([^"]+)"\s*/>', source)
+if len(paths) != 3 or 'viewBox="0 0 512 512"' not in source:
+    raise ValueError("Unexpected original SubtitleFpsIcon geometry")
+svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">' + "".join(f'<path fill="#ffffff" d="{path}"/>' for path in paths) + "</svg>\n"
+image("subtitle-fps", svg.encode("utf-8"), "svg", True)
+provenance["files"][relative] = hashlib.sha256((reference / relative).read_bytes()).hexdigest()
+for relative in ["src/lib/player/subtitle-fps.ts", "src/lib/player/sub-format.ts", "src/lib/player/secondary-sub.ts", "src/lib/player/sub-style.ts", "src/components/player/subtitle-menu/subtitle-fps-panel.tsx"]:
+    provenance["files"][relative] = hashlib.sha256((reference / relative).read_bytes()).hexdigest()
 provenance_path.write_bytes((json.dumps(provenance, indent=2) + "\n").encode("utf-8"))
-print("Preserved 25 original player assets and two original-arrow adaptations for custom intervals")
+print("Preserved 26 original player assets and two original-arrow adaptations for custom intervals")

@@ -47,6 +47,8 @@ struct PlaybackOptions: Codable, Equatable {
     var sharpen = 0.0
     var audioLanguage = "eng,jpn"
     var subtitleLanguage = "eng"
+    var secondarySubtitleLanguage = ""
+    var secondarySubtitlePlacement = "top"
     var stereo = false
     var audioDelay = 0.0
     var subtitleDelay = 0.0
@@ -89,6 +91,7 @@ struct PlaybackOptions: Codable, Equatable {
             ("audio-channels", stereo ? "stereo" : "auto-safe"),
             ("audio-delay", String(audioDelay)), ("sub-delay", String(subtitleDelay)),
             ("sid", subtitlesOff ? "no" : "auto"),
+            ("secondary-sub-pos", secondarySubtitlePlacement == "top" ? "0" : String(max(0, min(100, subtitlePosition - 8)))),
             ("sub-font-size", String(subtitleSize)), ("sub-pos", String(subtitlePosition)),
             ("sub-font", subtitleFamily), ("sub-spacing", String(subtitleSpacing)),
             ("sub-filter-sdh", hideSDH ? "yes" : "no"), ("sub-filter-sdh-harder", "no"),

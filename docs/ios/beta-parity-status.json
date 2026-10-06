@@ -982,7 +982,7 @@
   "Music local folder scanning": {
     "state": "Partial",
     "implementation": "`ios/Harbor/Services/MusicFolderScan.swift`; `Models/Music.swift`; `Models/MusicFilters.swift`; `Models/MusicPlaylists.swift`; `Views/MusicView.swift`; `Views/MusicFilterTools.swift`; `Views/MusicPlaylistsView.swift`",
-    "notes": "Native folder picker holds access for the complete scan/import, follows the original depth-12/no-link traversal, imports up to 500 actual audio files and deduplicates owned SHA256 identities. Progress/cancel preserves already saved tracks; scan/read/write failures preserve existing data. Native listening filters adapt original NFKD/term/source/explicit policies, all six sorts, numeric/locale text order and unknown values last in either direction. Sorting never changes stored playlist order; move is disabled while filtered/sorted and deletion uses the displayed IDs. Original compact/list preference, copy title, duplicate-name suffix and six new original vectors included. Existing PCM regression extends to actual nested Files scan/import, symlink exclusion, duplicate content and Keychain restoration, without another playback test. Build 20 Apple/physical evidence pending. Folder watching/persistent folder sources, genres and connected providers remain incomplete."
+    "notes": "Native folder picker holds access for the complete scan/import, follows the original depth-12/no-link traversal, imports up to 500 actual audio files and deduplicates owned SHA256 identities. Progress/cancel preserves already saved tracks; scan/read/write failures preserve existing data. Native listening filters adapt original NFKD/term/source/explicit policies, all six sorts, numeric/locale text order and unknown values last in either direction. Sorting never changes stored playlist order; move is disabled while filtered/sorted and deletion uses the displayed IDs. Original compact/list preference, copy title, duplicate-name suffix and six new original vectors included. Existing PCM regression extends to actual nested Files scan/import, symlink exclusion, duplicate content and Keychain restoration, without another playback test. Build 20 Apple/physical evidence pending. Folder watching/persistent folder sources, genres and connected providers remain incomplete. Build 20 Apple exposed a skipped sibling after a file symlink (one of two nested audio files); build 21 restricts skipDescendants to real directories. Original two-folder/symlink counts remain required; corrected Apple result pending."
   },
   "Music playlist search and content filters": {
     "state": "Partial",
@@ -1003,5 +1003,25 @@
     "state": "Partial",
     "implementation": "`ios/Harbor/Services/MusicFolderScan.swift`; `Models/Music.swift`; `Models/MusicFilters.swift`; `Models/MusicPlaylists.swift`; `Views/MusicView.swift`; `Views/MusicFilterTools.swift`; `Views/MusicPlaylistsView.swift`",
     "notes": "Native folder picker holds access for the complete scan/import, follows the original depth-12/no-link traversal, imports up to 500 actual audio files and deduplicates owned SHA256 identities. Progress/cancel preserves already saved tracks; scan/read/write failures preserve existing data. Native listening filters adapt original NFKD/term/source/explicit policies, all six sorts, numeric/locale text order and unknown values last in either direction. Sorting never changes stored playlist order; move is disabled while filtered/sorted and deletion uses the displayed IDs. Original compact/list preference, copy title, duplicate-name suffix and six new original vectors included. Existing PCM regression extends to actual nested Files scan/import, symlink exclusion, duplicate content and Keychain restoration, without another playback test. Build 20 Apple/physical evidence pending. Folder watching/persistent folder sources, genres and connected providers remain incomplete."
+  },
+  "Dual subtitle tracks": {
+    "state": "Partial",
+    "implementation": "PlayerState / MPVController / PlayerSettingsView",
+    "notes": "Actual main-selection 0/1 distinguishes primary and secondary tracks; text-compatible second track uses native mpv rendering, manual/off selection and persistent preferences for language/top-bottom position. Serialized acknowledged writes reset source FPS before transitions; failures remain local to subtitles. Separate secondary scale, full style fidelity, all formats and physical playback remain pending; Apple regression candidate build 21."
+  },
+  "Subtitle source FPS correction": {
+    "state": "Partial",
+    "implementation": "SubtitleTiming / SubtitleTimingView / MPVController",
+    "notes": "Original rational presets 23.976/24/25/29.97/30/50/59.94/60, default 0, actual video-FPS matching and custom finite 1-240. Availability follows actual text codec/source, primary selection, video FPS/runtime property and inactive second track. Nonzero request IDs await mpv replies with timeout/close cleanup, serial reset before selection/replay, media revision guard and original FPS icon. Real libass/mpv regression added; Apple/device/UI/physical results pending."
+  },
+  "Setting: secondarySubLang": {
+    "state": "Partial",
+    "implementation": "PlaybackOptions / PlayerSettingsView / MPVController",
+    "notes": "Defaults retained: empty preferred language and top placement. Native persistent preference selects a compatible actual secondary track once per video; manual choice prevents automatic reselection. Top/bottom maps the original native secondary-sub-pos policy; old preference documents merge defaults. Apple and physical behavior pending."
+  },
+  "Setting: subSecondaryPlacement": {
+    "state": "Partial",
+    "implementation": "PlaybackOptions / PlayerSettingsView / MPVController",
+    "notes": "Defaults retained: empty preferred language and top placement. Native persistent preference selects a compatible actual secondary track once per video; manual choice prevents automatic reselection. Top/bottom maps the original native secondary-sub-pos policy; old preference documents merge defaults. Apple and physical behavior pending."
   }
 }

@@ -20,8 +20,14 @@ extension MusicFileService {
             if visited.isMultiple(of: 128) { await Task.yield() }
             guard file.standardizedFileURL.path.hasPrefix(prefix) else { throw HarborError(code: "music-folder") }
             let info = try file.resourceValues(forKeys: keys)
-            if info.isSymbolicLink == true { entries.skipDescendants(); continue }
-            if entries.level > 12 { entries.skipDescendants(); continue }
+            // Foundation never follows symlinks. skipDescendants on a file
+            // can skip the most recently returned directory instead, dropping
+            // an unrelated album; reserve it for actual directory entries.
+            if info.isSymbolicLink == true { continue }
+            if entries.level > 12 {
+                if info.isDirectory == true { entries.skipDescendants() }
+                continue
+            }
             if info.isDirectory == true {
                 if entries.level == 12 { entries.skipDescendants() }
                 continue

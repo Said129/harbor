@@ -9,6 +9,7 @@ final class PlayerState {
     var paused = false
     var buffering = false
     var loaded = false
+    var mediaGeneration = 0
     var renderReady = false
     var renderCalls = 0
     var ended = false
@@ -20,12 +21,27 @@ final class PlayerState {
     var muted = false
     var audioDelay = 0.0
     var subtitleDelay = 0.0
+    var subtitleFPS: Double?
+    var estimatedVideoFPS: Double?
+    var containerVideoFPS: Double?
+    var subtitleChanging = false
+    var subtitleIssue: String?
+    var primarySubtitleText = ""
+    var secondarySubtitleText = ""
+    var videoFPS: Double? { estimatedVideoFPS ?? containerVideoFPS }
+    var primarySubtitle: Track? { tracks.first { $0.type == "sub" && $0.mainSelection == 0 } }
+    var secondarySubtitle: Track? { tracks.first { $0.type == "sub" && $0.mainSelection == 1 } }
     weak var controller: MPVController?
-    struct Track: Identifiable {
+    struct Track: Identifiable, Sendable {
         let id: Int
         let type: String
         let label: String
         let selected: Bool
+        var codec = ""
+        var language = ""
+        var title = ""
+        var externalFilename = ""
+        var mainSelection: Int? = nil
     }
     struct Chapter: Identifiable {
         let id: Int

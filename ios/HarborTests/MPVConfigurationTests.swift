@@ -17,6 +17,7 @@ final class MPVConfigurationTests: XCTestCase {
         options.subtitleStyle = "box"; options.subtitleASS = "force"
         options.subtitleFont = "rounded"; options.subtitleSpacing = 3
         options.hideSDH = true; options.subtitleBoxColor = "#102030"
+        options.secondarySubtitlePlacement = "bottom"
         options.bufferSize = .medium
         options.brightness = 4; options.gamma = 12
         let configured = try MPVConfiguration.createHandle(decoding: .off, playback: options)

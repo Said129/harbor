@@ -110,6 +110,7 @@ struct PlayerView: View {
         .onChange(of: preferences.options) { old, new in
             let previous = Dictionary(uniqueKeysWithValues: old.mpvOptions)
             for (name, value) in new.mpvOptions where previous[name] != value { state.controller?.set(name, value) }
+            if old.secondarySubtitleLanguage != new.secondarySubtitleLanguage { state.controller?.applyPreferredSecondary(reset: true) }
             if !new.autoHideControls { controlsVisible = true }
             restartHideTimer(); updateIdleTimer()
         }

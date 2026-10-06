@@ -16,9 +16,17 @@ final class MPVController: GLKViewController {
     private var context: EAGLContext?
     private var didClose = false
     private var checkedResumeDuration = false
-#if targetEnvironment(simulator)
-    private var fixtureLogCount = 0
-#endif
+    private struct PendingOperation {
+        let continuation: CheckedContinuation<Void, Error>
+        let timeout: Task<Void, Never>
+    }
+    private var pendingOperations: [UInt64: PendingOperation] = [:]
+    private var nextOperation: UInt64 = 1
+    private var subtitleTail: Task<Void, Never>?
+    private var subtitleOperations = 0
+    private var mediaRevision = 0
+    private var acknowledgedSubtitleFPS = 0.0
+    private var preferredSecondaryHandled = false
 
     init(source: PlaybackSource, state: PlayerState, startMs: Double = 0) {
         self.source = source; self.state = state
@@ -63,7 +71,6 @@ final class MPVController: GLKViewController {
         try check(mpv_request_log_messages(mpv, "no"))
 #if targetEnvironment(simulator)
         if source.via == "test-fixture" {
-            try check(mpv_request_log_messages(mpv, "v"))
             for name in ["video-dec-params", "video-out-params", "vf"] { try check(mpv_observe_property(mpv, 0, name, MPV_FORMAT_NODE)) }
         }
 #endif
@@ -86,6 +93,10 @@ final class MPVController: GLKViewController {
         for name in ["pause", "paused-for-cache", "mute"] { try check(mpv_observe_property(mpv, 0, name, MPV_FORMAT_FLAG)) }
         try check(mpv_observe_property(mpv, 0, "track-list", MPV_FORMAT_NODE))
         try check(mpv_observe_property(mpv, 0, "chapter-list", MPV_FORMAT_NODE))
+        // Optional timing properties must not prevent ordinary playback on an
+        // older runtime. Availability comes from their actual property events.
+        for name in ["sub-fps", "estimated-vf-fps", "container-fps"] { _ = mpv_observe_property(mpv, 0, name, MPV_FORMAT_DOUBLE) }
+        for name in ["sub-text", "secondary-sub-text"] { _ = mpv_observe_property(mpv, 0, name, MPV_FORMAT_STRING) }
         if let headers = source.headers {
             // mpv string-list escapes commas by doubling; reject CR/LF in Rust.
             let value = headers.sorted(by: { $0.key < $1.key }).map { "\($0.key): \($0.value)".replacingOccurrences(of: ",", with: ",,") }.joined(separator: ",")
@@ -106,6 +117,7 @@ final class MPVController: GLKViewController {
     }
 
     func set(_ name: String, _ value: String) {
+        if name == "sid" || name == "secondary-sid" { selectSubtitle(value, secondary: name == "secondary-sid"); return }
         guard let handle else { return }
         do {
             let result = value.withCString { pointer in
@@ -121,8 +133,117 @@ final class MPVController: GLKViewController {
     func replay() {
         state.error = nil
         checkedResumeDuration = true
-        set("start", "none")
-        run(["loadfile", source.url, "replace"])
+        enqueueSubtitleOperation { controller in
+            try await controller.resetSubtitleFPS()
+            try await controller.setChecked("start", "none")
+            controller.run(["loadfile", controller.source.url, "replace"])
+        }
+    }
+
+    func applySubtitleFPS(_ value: Double) {
+        guard value == 0 || SubtitleTiming.valid(value) else { state.subtitleIssue = "Introduce unos FPS entre 1 y 240."; return }
+        let trackID = state.primarySubtitle?.id
+        enqueueSubtitleOperation { controller in
+            guard SubtitleTiming.unavailable(controller.state) == nil,
+                  controller.state.primarySubtitle?.id == trackID else { throw HarborError(code: "subtitle-context") }
+            try await controller.setChecked("sub-fps", String(value))
+            controller.acknowledgedSubtitleFPS = value
+            guard controller.state.primarySubtitle?.id == trackID else {
+                try await controller.resetSubtitleFPS()
+                throw HarborError(code: "subtitle-context")
+            }
+        }
+    }
+
+    func selectSubtitle(_ value: String, secondary: Bool = false) {
+        guard value == "no" || value == "auto" || Int(value).map({ $0 > 0 }) == true else { return }
+        if secondary { preferredSecondaryHandled = true }
+        enqueueSubtitleOperation { controller in
+            if let id = Int(value) {
+                guard let track = controller.state.tracks.first(where: { $0.type == "sub" && $0.id == id }) else { throw HarborError(code: "subtitle-context") }
+                if secondary && (track.isImageSubtitle || controller.state.primarySubtitle?.id == id) { throw HarborError(code: "subtitle-secondary") }
+            }
+            // Desktop aborts a track transition if the source-FPS reset fails.
+            // Wait for the real mpv reply instead of announcing an optimistic
+            // selection or racing a pending timing write.
+            try await controller.resetSubtitleFPS()
+            if !secondary, let id = Int(value), id == controller.state.secondarySubtitle?.id {
+                try await controller.setChecked("secondary-sid", "no")
+            }
+            try await controller.setChecked(secondary ? "secondary-sid" : "sid", value)
+        }
+    }
+
+    func applyPreferredSecondary(reset: Bool = false) {
+        if reset { preferredSecondaryHandled = false }
+        guard !preferredSecondaryHandled, state.loaded else { return }
+        let languages = PlaybackPreferences.shared.options.secondarySubtitleLanguage.lowercased().split(separator: ",").map(String.init)
+        guard !languages.isEmpty else {
+            if reset { selectSubtitle("no", secondary: true) }
+            return
+        }
+        guard let main = state.primarySubtitle else { return }
+        if let track = state.tracks.first(where: {
+            $0.type == "sub" && $0.id != main.id && !$0.isImageSubtitle &&
+                languages.contains($0.language.lowercased().split(whereSeparator: { $0 == "-" || $0 == "_" }).first.map(String.init) ?? "")
+        }) { selectSubtitle(String(track.id), secondary: true) }
+    }
+
+    private func enqueueSubtitleOperation(_ operation: @escaping @MainActor (MPVController) async throws -> Void) {
+        guard !didClose, handle != nil else { return }
+        let previous = subtitleTail
+        let revision = mediaRevision
+        subtitleOperations += 1
+        state.subtitleChanging = true
+        state.subtitleIssue = nil
+        subtitleTail = Task { @MainActor [weak self] in
+            await previous?.value
+            guard let self else { return }
+            defer { subtitleOperations -= 1; state.subtitleChanging = subtitleOperations > 0 }
+            guard !Task.isCancelled, !didClose, revision == mediaRevision else { return }
+            state.subtitleIssue = nil
+            do { try await operation(self) }
+            catch {
+                if !didClose, revision == mediaRevision {
+                    // An optional subtitle operation must not stop the film.
+                    state.subtitleIssue = "No se pudo aplicar el cambio de subtítulos. La reproducción continúa; vuelve a intentarlo."
+                }
+            }
+        }
+    }
+
+    private func resetSubtitleFPS() async throws {
+        guard acknowledgedSubtitleFPS != 0 || (state.subtitleFPS ?? 0) != 0 else { return }
+        try await setChecked("sub-fps", "0")
+        acknowledgedSubtitleFPS = 0
+    }
+
+    private func setChecked(_ name: String, _ value: String) async throws {
+        guard let handle, !didClose else { throw HarborError(code: "player-not-ready") }
+        let identifier = nextOperation
+        let revision = mediaRevision
+        nextOperation &+= 1
+        if nextOperation == 0 { nextOperation = 1 }
+        try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<Void, Error>) in
+            let result = value.withCString { pointer in
+                var string: UnsafePointer<CChar>? = pointer
+                return withUnsafeMutablePointer(to: &string) { mpv_set_property_async(handle, identifier, name, MPV_FORMAT_STRING, $0) }
+            }
+            guard result >= 0 else { continuation.resume(throwing: HarborError(code: "mpv-\(result)")); return }
+            let timeout = Task { @MainActor [weak self] in
+                do { try await Task.sleep(for: .seconds(5)) } catch { return }
+                self?.finishOperation(identifier, error: HarborError(code: "subtitle-timeout"))
+            }
+            pendingOperations[identifier] = PendingOperation(continuation: continuation, timeout: timeout)
+        }
+        guard !didClose, revision == mediaRevision else { throw HarborError(code: "subtitle-context") }
+    }
+
+    private func finishOperation(_ identifier: UInt64, error: Error? = nil) {
+        guard let operation = pendingOperations.removeValue(forKey: identifier) else { return }
+        operation.timeout.cancel()
+        if let error { operation.continuation.resume(throwing: error) }
+        else { operation.continuation.resume() }
     }
 
     @available(iOS, deprecated: 12.0)
@@ -171,11 +292,24 @@ final class MPVController: GLKViewController {
             guard let event = mpv_wait_event(handle, 0)?.pointee, event.event_id != MPV_EVENT_NONE else { return }
             switch event.event_id {
             case MPV_EVENT_COMMAND_REPLY, MPV_EVENT_SET_PROPERTY_REPLY:
+                if event.reply_userdata != 0 {
+                    finishOperation(event.reply_userdata, error: event.error < 0 ? HarborError(code: "mpv-\(event.error)") : nil)
+                    continue
+                }
                 if event.error < 0 {
                     Diagnostics.shared.record(.playerFailed, count: Int(event.error))
                     state.error = "La operación del reproductor falló (mpv \(event.error))."
                 }
             case MPV_EVENT_START_FILE:
+                mediaRevision += 1
+                preferredSecondaryHandled = false
+                state.mediaGeneration = mediaRevision
+                state.tracks = []
+                state.estimatedVideoFPS = nil
+                state.containerVideoFPS = nil
+                state.primarySubtitleText = ""
+                state.secondarySubtitleText = ""
+                state.subtitleIssue = nil
                 state.ended = false
                 state.loaded = false
                 state.hasPosition = false
@@ -189,8 +323,16 @@ final class MPVController: GLKViewController {
             case MPV_EVENT_PROPERTY_CHANGE:
                 guard let data = event.data else { continue }
                 let property = data.assumingMemoryBound(to: mpv_event_property.self).pointee
-                guard let name = property.name, let value = property.data else { continue }
+                guard let name = property.name else { continue }
                 let key = String(cString: name)
+                guard let value = property.data, property.format != MPV_FORMAT_NONE else {
+                    if key == "sub-fps" { state.subtitleFPS = nil }
+                    if key == "estimated-vf-fps" { state.estimatedVideoFPS = nil }
+                    if key == "container-fps" { state.containerVideoFPS = nil }
+                    if key == "sub-text" { state.primarySubtitleText = "" }
+                    if key == "secondary-sub-text" { state.secondarySubtitleText = "" }
+                    continue
+                }
                 if property.format == MPV_FORMAT_DOUBLE {
                     let number = value.assumingMemoryBound(to: Double.self).pointee
                     guard number.isFinite else { continue }
@@ -198,6 +340,9 @@ final class MPVController: GLKViewController {
                     if key == "volume" { state.volume = number }
                     if key == "audio-delay" { state.audioDelay = number }
                     if key == "sub-delay" { state.subtitleDelay = number }
+                    if key == "sub-fps" { state.subtitleFPS = number >= 0 ? number : nil }
+                    if key == "estimated-vf-fps" { state.estimatedVideoFPS = number > 0 ? number : nil }
+                    if key == "container-fps" { state.containerVideoFPS = number > 0 ? number : nil }
                     if key == "time-pos" && state.loaded && number >= 0 { state.position = number; state.hasPosition = true }
                     if key == "duration" && number >= 0 {
                         state.duration = number
@@ -216,6 +361,10 @@ final class MPVController: GLKViewController {
                     updateTracks(value.assumingMemoryBound(to: mpv_node.self).pointee)
                 } else if key == "chapter-list" && property.format == MPV_FORMAT_NODE {
                     updateChapters(value.assumingMemoryBound(to: mpv_node.self).pointee)
+                } else if property.format == MPV_FORMAT_STRING {
+                    let text = value.assumingMemoryBound(to: UnsafePointer<CChar>?.self).pointee.map { String(cString: $0) } ?? ""
+                    if key == "sub-text" { state.primarySubtitleText = text }
+                    if key == "secondary-sub-text" { state.secondarySubtitleText = text }
                 } else if property.format == MPV_FORMAT_NODE {
 #if targetEnvironment(simulator)
                     if source.via == "test-fixture", ["video-dec-params", "video-out-params", "vf"].contains(key) {
@@ -236,19 +385,6 @@ final class MPVController: GLKViewController {
                 state.buffering = false
                 Diagnostics.shared.record(.playerEnded)
             case MPV_EVENT_SHUTDOWN: state.loaded = false
-#if targetEnvironment(simulator)
-            case MPV_EVENT_LOG_MESSAGE:
-                if source.via == "test-fixture", fixtureLogCount < 150, let data = event.data {
-                    let message = data.assumingMemoryBound(to: mpv_event_log_message.self).pointee
-                    if let prefix = message.prefix, let text = message.text {
-                        let module = String(cString: prefix)
-                        if ["vd", "vf", "vo/libmpv", "ffmpeg/video", "lavfi", "cplayer"].contains(where: { module.hasPrefix($0) }) {
-                            print("Native fixture mpv [\(module)]: \(String(String(cString: text).prefix(1024)))")
-                            fixtureLogCount += 1
-                        }
-                    }
-                }
-#endif
             default: break
             }
         }
@@ -295,9 +431,12 @@ final class MPVController: GLKViewController {
             guard let id = fields["id"], id.format == MPV_FORMAT_INT64, let type = string("type") else { continue }
             let label = [string("title"), string("lang"), string("codec")].compactMap { $0 }.joined(separator: " · ")
             let selected = fields["selected"].map { $0.format == MPV_FORMAT_FLAG && $0.u.flag != 0 } ?? false
-            tracks.append(.init(id: Int(id.u.int64), type: type, label: label.isEmpty ? "Pista \(id.u.int64)" : label, selected: selected))
+            let selection = fields["main-selection"].flatMap { $0.format == MPV_FORMAT_INT64 ? Int($0.u.int64) : nil }
+            tracks.append(.init(id: Int(id.u.int64), type: type, label: label.isEmpty ? "Pista \(id.u.int64)" : label, selected: selected,
+                                codec: string("codec") ?? "", language: string("lang") ?? "", title: string("title") ?? "", externalFilename: string("external-filename") ?? "", mainSelection: selection))
         }
         state.tracks = tracks
+        applyPreferredSecondary()
     }
 
     private func updateChapters(_ node: mpv_node) {
@@ -321,6 +460,10 @@ final class MPVController: GLKViewController {
     func close() {
         guard !didClose else { return }
         didClose = true
+        mediaRevision += 1
+        subtitleTail?.cancel()
+        subtitleTail = nil
+        for identifier in Array(pendingOperations.keys) { finishOperation(identifier, error: CancellationError()) }
         state.renderReady = false
         isPaused = true
         if let context { EAGLContext.setCurrent(context) }

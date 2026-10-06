@@ -119,7 +119,13 @@
     "src/assets/music-icons/copy.svg": "49030feae24e565f7ec396d04416b9328ab27bf61a7addf02fd5eca932591216",
     "src/assets/music-icons/check.svg": "c8ffeafe400a2c1c8a54d408dea8e92ca9293e5fd68f4ac5ca45924547114dd8",
     "src/assets/music-icons/arrow-down.svg": "d6e8da1e31fa76a969554e3be7e3f7a07798615b829b38a7c7849e88096671db",
-    "src/components/music/music-filter-icon.tsx": "64e37cd438b21dd92baad3400724895c580a88acdb3b88db555447ed33de8a17"
+    "src/components/music/music-filter-icon.tsx": "64e37cd438b21dd92baad3400724895c580a88acdb3b88db555447ed33de8a17",
+    "src/components/player/subtitle-menu/subtitle-fps-icon.tsx": "d6165e10a921cf7dea426f8c33d26da36d7c90a4dcc7d82aa52ae37b3c73c9ee",
+    "src/lib/player/subtitle-fps.ts": "5a5e7440c3d6bd12c17c49dc954caf58d8ba8a960fbac2721c46a055dbcbbaf4",
+    "src/lib/player/sub-format.ts": "22afeb32ea3470a9677d8cfdfa45fec5d3b505557c0c9cfce9c65fb091c6d33b",
+    "src/lib/player/secondary-sub.ts": "7a2ffd9bda1e7b21647a2294fb7a350ac5734719bcf35a596a5205d24620d25e",
+    "src/components/player/subtitle-menu/subtitle-fps-panel.tsx": "fc90238d3b128cd7ff1d327c398fe002dd2cd66db01d55bdad52d637fd75b2a4",
+    "src/lib/player/sub-style.ts": "57abc9acdfb8cbe6486c4d995ff0fe968ca24d0f33264b2f0a80780eab9e8fa8"
   },
   "fonts": {
     "Fraunces": {

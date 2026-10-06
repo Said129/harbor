@@ -1378,6 +1378,10 @@
     {
       "id": "Music track title copying",
       "source": "src/components/music/music-track-menu.tsx"
+    },
+    {
+      "id": "Subtitle source FPS correction",
+      "source": "src/lib/player/subtitle-fps.ts"
     }
   ],
   "settings": [
