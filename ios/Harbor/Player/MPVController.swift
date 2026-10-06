@@ -16,6 +16,9 @@ final class MPVController: GLKViewController {
     private var context: EAGLContext?
     private var didClose = false
     private var checkedResumeDuration = false
+#if targetEnvironment(simulator)
+    private var fixtureLogCount = 0
+#endif
 
     init(source: PlaybackSource, state: PlayerState, startMs: Double = 0) {
         self.source = source; self.state = state
@@ -58,6 +61,12 @@ final class MPVController: GLKViewController {
         let mpv = try MPVConfiguration.createHandle(startMs: startMs)
         handle = mpv
         try check(mpv_request_log_messages(mpv, "no"))
+#if targetEnvironment(simulator)
+        if source.via == "test-fixture" {
+            try check(mpv_request_log_messages(mpv, "v"))
+            for name in ["video-dec-params", "video-out-params", "vf"] { try check(mpv_observe_property(mpv, 0, name, MPV_FORMAT_NODE)) }
+        }
+#endif
         var initialization = mpv_opengl_init_params(get_proc_address: { _, name in
             guard let name else { return nil }
             return dlsym(UnsafeMutableRawPointer(bitPattern: -2), name)
@@ -207,6 +216,12 @@ final class MPVController: GLKViewController {
                     updateTracks(value.assumingMemoryBound(to: mpv_node.self).pointee)
                 } else if key == "chapter-list" && property.format == MPV_FORMAT_NODE {
                     updateChapters(value.assumingMemoryBound(to: mpv_node.self).pointee)
+                } else if property.format == MPV_FORMAT_NODE {
+#if targetEnvironment(simulator)
+                    if source.via == "test-fixture", ["video-dec-params", "video-out-params", "vf"].contains(key) {
+                        print("Native fixture \(key): \(fixtureDescription(value.assumingMemoryBound(to: mpv_node.self).pointee))")
+                    }
+#endif
                 }
             case MPV_EVENT_END_FILE:
                 if let data = event.data {
@@ -221,10 +236,46 @@ final class MPVController: GLKViewController {
                 state.buffering = false
                 Diagnostics.shared.record(.playerEnded)
             case MPV_EVENT_SHUTDOWN: state.loaded = false
+#if targetEnvironment(simulator)
+            case MPV_EVENT_LOG_MESSAGE:
+                if source.via == "test-fixture", fixtureLogCount < 150, let data = event.data {
+                    let message = data.assumingMemoryBound(to: mpv_event_log_message.self).pointee
+                    if let prefix = message.prefix, let text = message.text {
+                        let module = String(cString: prefix)
+                        if ["vd", "vf", "vo/libmpv", "ffmpeg/video", "lavfi", "cplayer"].contains(where: { module.hasPrefix($0) }) {
+                            print("Native fixture mpv [\(module)]: \(String(String(cString: text).prefix(1024)))")
+                            fixtureLogCount += 1
+                        }
+                    }
+                }
+#endif
             default: break
             }
         }
     }
+
+#if targetEnvironment(simulator)
+    private func fixtureDescription(_ node: mpv_node, depth: Int = 0) -> String {
+        guard depth < 4 else { return "…" }
+        switch node.format {
+        case MPV_FORMAT_STRING: return node.u.string.map { String(String(cString: $0).prefix(128)) } ?? ""
+        case MPV_FORMAT_INT64: return String(node.u.int64)
+        case MPV_FORMAT_DOUBLE: return String(node.u.double_)
+        case MPV_FORMAT_FLAG: return node.u.flag == 0 ? "false" : "true"
+        case MPV_FORMAT_NODE_MAP, MPV_FORMAT_NODE_ARRAY:
+            guard let list = node.u.list, let values = list.pointee.values else { return "[]" }
+            var fields: [String] = []
+            for index in 0..<max(0, min(Int(list.pointee.num), 24)) {
+                let name: String
+                if let keys = list.pointee.keys, let key = keys[index] { name = String(cString: key) }
+                else { name = String(index) }
+                fields.append(name + "=" + fixtureDescription(values[index], depth: depth + 1))
+            }
+            return "[" + fields.joined(separator: ", ") + "]"
+        default: return "unavailable"
+        }
+    }
+#endif
 
     private func updateTracks(_ node: mpv_node) {
         guard node.format == MPV_FORMAT_NODE_ARRAY, let list = node.u.list, let values = list.pointee.values else { return }

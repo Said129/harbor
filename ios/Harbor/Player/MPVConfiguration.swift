@@ -47,6 +47,10 @@ enum MPVConfiguration {
             // observed 10-bit path stays black. Convert decoded simulator frames
             // before uploading; device decoding/HDR processing is unchanged.
             try check(mpv_set_option_string(handle, "vf", "format=fmt=yuv420p"))
+            // Conversion now produces colors but a regular black grid on the
+            // Intel simulator. Use libswscale rather than the optional zimg
+            // repacker there, and retain the same actual input/pixel checks.
+            try check(mpv_set_option_string(handle, "sws-allow-zimg", "no"))
 #endif
             let selected = decoding ?? HardwareDecoding(rawValue: UserDefaults.standard.string(forKey: "mpvHwdec") ?? "auto") ?? .auto
             try check(mpv_set_option_string(handle, "hwdec", selected.mpvValue))
