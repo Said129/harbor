@@ -25,7 +25,31 @@ final class LiveServicesTests: XCTestCase {
         XCTAssertTrue(event.sides.allSatisfy { !$0.name.isEmpty && $0.score != nil })
         let summary = try await SportsService.shared.summary(event)
         XCTAssertFalse(summary.groups.isEmpty, "Published team/player statistics must survive native parsing")
+        let standings = try await SportsStandingsService.shared.table(league, season: 2026)
+        XCTAssertFalse(standings.groups.isEmpty)
+        XCTAssertTrue(standings.groups.flatMap(\.rows).contains { !$0.side.name.isEmpty && !$0.cells.isEmpty })
         print("Harbor live Sports: events=\(events.count), statisticGroups=\(summary.groups.count)")
+    }
+
+    func testPublishedM3UIsCachedPrivatelyAndChannelsResolveWithNativeCore() async throws {
+        try requireOptIn()
+        let source = LivePlaylistSource(id: UUID().uuidString.lowercased(), name: "Public playlist integration", url: "https://iptv-org.github.io/iptv/countries/es.m3u")
+        let cached = LivePlaylistSource(id: source.id, name: source.name, url: nil)
+        let owner = "iptv-test-" + UUID().uuidString
+        do {
+            let channels = try await LivePlaylistService.shared.load(source, owner: owner, refresh: true)
+            let channel = try XCTUnwrap(channels.first { $0.url.hasPrefix("https://") && !$0.drm })
+            let headers = JSONValue.object(channel.headers.mapValues(JSONValue.string))
+            let offer = StreamOffer(id: 0, raw: .object(["addonId": .string("iptv:" + source.id), "addonName": .string("Live TV"), "url": .string(channel.url), "behaviorHints": .object(["proxyHeaders": .object(["request": headers])])]))
+            let playback = try await service.resolve(offer)
+            XCTAssertEqual(playback.url, channel.url)
+            let reloaded = try await LivePlaylistService.shared.load(cached, owner: owner, refresh: false)
+            XCTAssertEqual(reloaded, channels)
+            do { _ = try await LivePlaylistService.shared.load(cached, owner: owner + "-other", refresh: false); XCTFail("An unrelated account must not open the private playlist copy") }
+            catch let error as HarborError { XCTAssertEqual(error.code, "iptv-url") }
+            try await LivePlaylistService.shared.remove(source, owner: owner)
+            print("Harbor live M3U: channels=\(channels.count), native resolution/cache/isolation=passed; media transport unverified")
+        } catch { try? await LivePlaylistService.shared.remove(source, owner: owner); throw error }
     }
 
     func testCinemetaCatalogSearchAndMetadataThroughNativeService() async throws {

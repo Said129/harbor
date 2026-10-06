@@ -45,7 +45,7 @@ output = {"requestedVersion": args.requested_version, "publicCheckpointVersion":
           "navigation": rooms, "features": features, "settings": settings,
           "scopeNote": "Public checkpoint plus owner screenshots; not the exact source of the requested updater release."}
 destination = ROOT / "docs/ios"
-(destination / "beta-surface.json").write_text(json.dumps(output, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+(destination / "beta-surface.json").write_bytes((json.dumps(output, indent=2, ensure_ascii=False) + "\n").encode("utf-8"))
 progress_file = destination / "beta-parity-status.json"
 progress = json.loads(progress_file.read_text(encoding="utf-8")) if progress_file.exists() else {}
 entries = [("Room: " + room, nav_path, None) for room in rooms]
@@ -68,5 +68,5 @@ header += f"Objetivo {args.requested_version}; checkpoint público {package['ver
 header += f"{len(entries)} entradas: {len(rooms)} secciones, {len(features)} comportamientos revisados y {len(settings)} ajustes declarados. Los módulos beta adicionales se inspeccionan durante cada implementación; esta lista no implica paridad ni que los stubs Desktop funcionen. Ningún ajuste se excluye automáticamente por su nombre.\n\n"
 header += "Estados mantenidos en beta-parity-status.json. Working/Parity necesitan evidencia de comportamiento; código o compilación aislados se registran Partial. La matriz histórica FEATURE_PARITY.md se conserva y no certifica esta beta.\n\n"
 header += "| Función | Estado | Fuente beta | Implementación iOS | Evidencia / pendiente |\n| --- | --- | --- | --- | --- |\n"
-(destination / "BETA_FEATURE_PARITY.md").write_text(header + "\n".join(rows) + "\n", encoding="utf-8")
+(destination / "BETA_FEATURE_PARITY.md").write_bytes((header + "\n".join(rows) + "\n").encode("utf-8"))
 print(f"Imported beta {package['version']}: {len(rooms)} rooms, {len(features)} behaviors, {len(settings)} settings")

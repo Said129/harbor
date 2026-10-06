@@ -130,5 +130,12 @@
     },
     "count": 161,
     "scope": "Literal ESPN leagues and original soccer tuple expansions; provider-only and other generated catalogs remain separate."
+  },
+  "readerAudio": {
+    "source": "public/flipbook/assets/mp3/turnPage.mp3",
+    "consumer": "src/views/manga/manga-reader/book-view.tsx",
+    "sha256": "15dd78185f6470770354597a74bc625d8ebc80c4a4fe0aa25ac9991ed20fb5a7",
+    "bytes": 23839,
+    "modified": false
   }
 }

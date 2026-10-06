@@ -24,11 +24,23 @@ struct SportsEventView: View {
                     VStack(alignment: .leading, spacing: 8) { Text("Dónde se emite").font(.headline); Text(event.broadcasts.joined(separator: " · ")).font(.subheadline).foregroundStyle(.secondary) }
                 }
                 NavigationLink { SearchView(app: app, initialQuery: event.sides.count == 2 ? event.sides[0].name : event.title) } label: { Label("Buscar en mis addons", image: "nav-search") }.buttonStyle(.bordered)
+                NavigationLink { LiveTVView(app: app, initialQuery: event.broadcasts.first ?? "") } label: { Label("Buscar canales en Live TV", image: "nav-livetv") }.buttonStyle(.bordered)
                 ForEach(event.sides) { side in
                     VStack(alignment: .leading, spacing: 8) {
                         HStack { Text(side.name).font(.headline); Spacer(); Button { do { try preferences.toggle(side, league: event.league) } catch { self.error = safeMessage(error) } } label: { Image(systemName: preferences.favorite(side, league: event.league) ? "star.fill" : "star") }.accessibilityLabel("Favorito: \(side.name)") }
                         if let record = side.record { Text(record).font(.caption).foregroundStyle(.secondary) }
-                        if !side.periods.isEmpty { HStack(spacing: 16) { ForEach(side.periods) { period in VStack(spacing: 5) { Text("\(period.id)").font(.caption2).foregroundStyle(.secondary); Text(period.value).font(.subheadline.monospacedDigit()) } } }
+                        if !side.periods.isEmpty {
+                            ScrollView(.horizontal, showsIndicators: false) {
+                                HStack(spacing: 16) {
+                                    ForEach(side.periods) { period in
+                                        VStack(spacing: 5) {
+                                            Text("\(period.id)").font(.caption2).foregroundStyle(.secondary)
+                                            Text(period.value).font(.subheadline.monospacedDigit())
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }.padding(14).background(HarborTheme.surface, in: .rect(cornerRadius: 12))
                 }
                 if loading { ProgressView().frame(maxWidth: .infinity) }

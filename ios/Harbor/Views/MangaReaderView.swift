@@ -1,6 +1,7 @@
 import SwiftUI
 import ImageIO
 import UniformTypeIdentifiers
+import AVFoundation
 
 struct MangaReaderView: View {
     let book: MangaBook
@@ -22,6 +23,7 @@ struct MangaReaderView: View {
     @State private var export: URL?
     @State private var chapterEnded = false
     @State private var hasScrolled = false
+    @State private var pageSound: AVAudioPlayer?
     @AppStorage("manga.reader.mode") private var mode = "long"
     @AppStorage("manga.reader.fit") private var fit = "width"
     @AppStorage("manga.reader.background") private var background = "dark"
@@ -33,6 +35,7 @@ struct MangaReaderView: View {
     @AppStorage("manga.reader.focusMode") private var focus = false
     @AppStorage("manga.reader.hideChapterEndHint") private var hideEndHint = false
     @AppStorage("manga.reader.enablePageDownload") private var pageDownload = false
+    @AppStorage("manga.reader.flipSound") private var flipSound = true
     init(book: MangaBook, initialChapter: MangaChapter, chapters: [MangaChapter], shelf: MangaShelf, client: SuwayomiClient?) {
         self.book = book; self.chapters = chapters; self.shelf = shelf; self.client = client; _chapter = State(initialValue: initialChapter)
     }
@@ -61,14 +64,14 @@ struct MangaReaderView: View {
             .onChange(of: visible) { _, _ in scheduleProgress() }
             .onChange(of: spread) { _, value in if !loading { visible = min(pages.count - 1, value * (double ? 2 : 1)) } }
             .onChange(of: mode) { _, _ in spread = current / (double ? 2 : 1) }
-            .onDisappear { progressTask?.cancel(); if !pages.isEmpty { persist(page: current, sync: true) }; if let export { try? FileManager.default.removeItem(at: export) } }
+            .onDisappear { progressTask?.cancel(); pageSound?.stop(); if !pages.isEmpty { persist(page: current, sync: true) }; if let export { try? FileManager.default.removeItem(at: export) } }
             .sheet(isPresented: $settings) { readerSettings }
             .sheet(isPresented: $contents) { chapterList }
     }
     @ViewBuilder private func reader(size: CGSize) -> some View {
         if !pages.isEmpty {
             if mode == "book" {
-                MangaBookPager(pages: pages, selected: Binding(get: { current }, set: { visible = $0 }), rtl: rtl, canvas: canvas) { page in AnyView(pageView(page, width: size.width, height: size.height)) }
+                MangaBookPager(pages: pages, selected: Binding(get: { current }, set: { page in if current != page { playPageTurnSound() }; visible = page }), rtl: rtl, canvas: canvas) { page in AnyView(pageView(page, width: size.width, height: size.height)) }
             } else if mode == "paged" || double {
                 TabView(selection: $spread) {
                     ForEach(0..<spreadCount, id: \.self) { number in
@@ -162,6 +165,7 @@ struct MangaReaderView: View {
                 if settingsCategory == "background" { Section("Fondo") { Picker("Fondo", selection: $background) { Text("Oscuro").tag("dark"); Text("Gris").tag("gray"); Text("Claro").tag("light") }.pickerStyle(.segmented) } }
                 if settingsCategory == "nav" { Section("Flechas") { Picker("Navegación", selection: $navPos) { Text("Abajo a la derecha").tag("stack-br"); Text("Abajo a la izquierda").tag("stack-bl"); Text("Barra inferior").tag("bottom"); Text("Laterales").tag("sides") } } }
                 Section("Interfaz") {
+                    if mode == "book" { Toggle("Sonido al pasar página", isOn: $flipSound) }
                     Toggle("Modo de concentración", isOn: $focus)
                     Toggle("Ocultar aviso de fin", isOn: $hideEndHint)
                     Toggle("Continuar al siguiente capítulo", isOn: $autoNext)
@@ -210,7 +214,18 @@ struct MangaReaderView: View {
     }
     private func go(_ page: Int) {
         guard !loading, pages.indices.contains(page) else { return }
+        if current != page { playPageTurnSound() }
         visible = page; spread = page / (double ? 2 : 1)
+    }
+    private func playPageTurnSound() {
+        guard mode == "book", flipSound else { return }
+        do {
+            if pageSound == nil {
+                guard let url = Bundle.main.url(forResource: "turnPage", withExtension: "mp3") else { throw HarborError(code: "manga-sound") }
+                pageSound = try AVAudioPlayer(contentsOf: url); pageSound?.prepareToPlay()
+            }
+            pageSound?.stop(); pageSound?.currentTime = 0; pageSound?.play()
+        } catch { self.error = "No se pudo reproducir el sonido de página. Puedes desactivarlo en las opciones del lector." }
     }
     private func turn(_ direction: Int) {
         let next = current + direction * (double ? 2 : 1)

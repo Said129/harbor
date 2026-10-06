@@ -121,7 +121,7 @@ struct HarborShell: View {
         case .shows: ContentPageView(app: app, kind: "series", title: section.title)
         case .kids: ContentPageView(app: app, kind: "kids", title: section.title)
         case .anime: ContentPageView(app: app, kind: "anime", title: section.title)
-        case .live: ContentPageView(app: app, kind: "tv", title: section.title)
+        case .live: LiveTVView(app: app).id(app.user?.id ?? "guest")
         case .sports: SportsView(app: app).id(app.user?.id ?? "guest")
         case .manga: MangaView(app: app).id(app.user?.id ?? "guest")
         case .ebook: EBooksView(app: app).id(app.user?.id ?? "guest")

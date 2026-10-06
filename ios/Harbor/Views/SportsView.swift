@@ -61,6 +61,11 @@ struct SportsView: View {
                     Picker("Deporte", selection: $sport) { Text("Todos los deportes").tag("all"); ForEach(Array(Set(events.map { $0.league.group })).sorted(), id: \.self) { Text(sportName($0)).tag($0) } }
                     Spacer(); Toggle("Favoritos", isOn: $onlyFavorites).font(.caption).fixedSize()
                 }
+                if !preferences.leagues.isEmpty {
+                    Menu {
+                        ForEach(leagues.filter { preferences.leagues.contains($0.id) }) { league in NavigationLink(league.title) { SportsStandingsView(league: league, preferences: preferences) } }
+                    } label: { Label("Clasificaciones", systemImage: "list.number") }.font(.subheadline)
+                }
                 if let error = error ?? preferences.error { Text(error).font(.caption).foregroundStyle(.orange) }
                 if loading { ProgressView("Cargando Sports…").frame(maxWidth: .infinity).padding() }
                 ForEach(filtered) { event in
