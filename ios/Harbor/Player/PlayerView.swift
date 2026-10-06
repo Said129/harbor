@@ -62,6 +62,7 @@ struct PlayerView: View {
     @State private var adjacent: (previous: Episode?, next: Episode?) = (nil, nil)
     @State private var previousIdleTimer = false
     @State private var active = false
+    @State private var fitNotice: String?
     @Bindable private var preferences = PlaybackPreferences.shared
     @AppStorage("mpvHwdec") private var hardwareDecoding = HardwareDecoding.auto
     @Environment(\.dismiss) private var dismiss
@@ -78,12 +79,15 @@ struct PlayerView: View {
                 if pendingSourceChange { pendingSourceChange = false; requestSourceChange() }
             }) { page in
                 NavigationStack {
-                    PlayerSettingsView(page: page, state: state, changeSource: changeSource == nil ? nil : {
-                        pendingSourceChange = true
-                        settingsPage = nil
-                    })
+                    Group {
+                        if page == .audio || page == .subtitles { PlayerTrackPanel(page: page, state: state) }
+                        else { PlayerSettingsView(page: page, state: state, changeSource: changeSource == nil ? nil : {
+                            pendingSourceChange = true
+                            settingsPage = nil
+                        }) }
+                    }
                         .toolbar { ToolbarItem(placement: .confirmationAction) { Button("Listo") { settingsPage = nil } } }
-                }.tint(HarborTheme.accent).preferredColorScheme(.dark)
+                }.tint(HarborTheme.accent).preferredColorScheme(.dark).presentationDetents([.medium, .large])
             }
             .sheet(isPresented: $showEpisodes, onDismiss: {
                 restartHideTimer()
@@ -99,6 +103,18 @@ struct PlayerView: View {
             // button or a slider never also toggles the entire interface.
             Color.clear.ignoresSafeArea().contentShape(Rectangle())
                 .onTapGesture { withAnimation(.easeInOut(duration: 0.2)) { controlsVisible.toggle() }; restartHideTimer() }
+                .simultaneousGesture(MagnifyGesture().onEnded { value in
+                    guard state.loaded, state.error == nil, scenePhase == .active else { return }
+                    let scale = value.magnification
+                    guard scale.isFinite else { return }
+                    if scale < 0.9 {
+                        preferences.options.fit = .original; preferences.options.zoom = 0
+                    } else if scale > 1.1 {
+                        preferences.options.fit = .fill; preferences.options.zoom = 0
+                    } else { return }
+                    fitNotice = preferences.options.fit.title
+                    restartHideTimer()
+                })
                 .accessibilityElement(children: .ignore)
                 .accessibilityLabel("Reproductor. \(controlsVisible ? "Ocultar" : "Mostrar") controles")
                 .accessibilityValue(state.renderReady ? "Preparado" : "Iniciando")
@@ -111,6 +127,11 @@ struct PlayerView: View {
                 if let error = progressError ?? session.storageWarning { Text(error).font(.caption).padding().background(.black.opacity(0.8)) }
                 if let issue = state.playbackIssue { Text(issue).font(.caption).padding().background(.black.opacity(0.8)) }
             }.padding().allowsHitTesting(false)
+            if let fitNotice {
+                Text(fitNotice).font(.caption.weight(.semibold)).padding(12).background(.black.opacity(0.8), in: .capsule)
+                    .allowsHitTesting(false).accessibilityIdentifier("player-fit-notice")
+                    .task(id: fitNotice) { do { try await Task.sleep(for: .seconds(2)); self.fitNotice = nil } catch {} }
+            }
             if let error = state.error { failureNotice(error) }
             if controlsVisible { controls.transition(.opacity) }
             if let next = adjacent.next, showUpNext {
@@ -270,8 +291,6 @@ struct PlayerView: View {
                     Button { showEpisodes = true; restartHideTimer() } label: { Image("nav-shows").resizable().scaledToFit().frame(width: 24, height: 24).frame(width: 44, height: 44) }
                         .accessibilityLabel("Temporadas y episodios").accessibilityIdentifier("player-episodes")
                 }
-                Button { settingsPage = .audio } label: { PlayerGlyph(name: "audio").frame(width: 44, height: 44) }.accessibilityLabel("Audio")
-                Button { settingsPage = .subtitles } label: { PlayerGlyph(name: "subtitle").frame(width: 44, height: 44) }.accessibilityLabel("Subtítulos")
                 Button { settingsPage = .options } label: { Image("nav-settings").frame(width: 44, height: 44) }
                     .accessibilityLabel("Opciones del reproductor").accessibilityIdentifier("player-options")
             }.padding(.horizontal, 8).padding(.vertical, 4).background(.black.opacity(0.7))
@@ -296,7 +315,7 @@ struct PlayerView: View {
                     restartHideTimer()
                 }).disabled(state.duration <= 0 || !state.loaded || retrying || state.restarting || sourceChanging || episodeChanging).accessibilityLabel("Posición de reproducción")
                 HStack(spacing: 8) {
-                    Text(time(state.position)).monospacedDigit().accessibilityLabel("Tiempo reproducido").accessibilityIdentifier("player-position")
+                    Button { state.controller?.set("mute", state.muted ? "no" : "yes") } label: { PlayerGlyph(name: state.muted ? "volume--mute" : "volume").frame(width: 44, height: 44) }.accessibilityLabel(state.muted ? "Activar sonido" : "Silenciar")
                     Spacer(minLength: 0)
                     Button { jump(-preferences.options.seekBackSeconds) } label: { PlayerSeekGlyph(direction: "back", seconds: preferences.options.seekBackSeconds) }.frame(width: 44, height: 44).accessibilityLabel("Retroceder \(Int(preferences.options.seekBackSeconds)) segundos")
                     Button {
@@ -308,11 +327,19 @@ struct PlayerView: View {
                         .frame(width: 44, height: 44).accessibilityLabel(state.ended ? "Repetir" : state.paused ? "Reproducir" : "Pausar").accessibilityIdentifier("player-pause")
                     Button { jump(preferences.options.seekForwardSeconds) } label: { PlayerSeekGlyph(direction: "forward", seconds: preferences.options.seekForwardSeconds) }.frame(width: 44, height: 44).accessibilityLabel("Avanzar \(Int(preferences.options.seekForwardSeconds)) segundos")
                     Spacer(minLength: 0)
-                    Button { settingsPage = .video } label: { PlayerGlyph(name: "aspect").frame(width: 44, height: 44) }.accessibilityLabel("Imagen y formato").accessibilityIdentifier("player-picture")
-                    Button { settingsPage = .playback } label: { VStack(spacing: 1) { PlayerGlyph(name: "speed", size: 19); Text("\(state.speed.formatted())×").font(.system(size: 9)) } }.accessibilityLabel("Velocidad").accessibilityValue("\(state.speed.formatted())×").frame(minWidth: 32, minHeight: 44)
-                    Text(time(state.duration)).monospacedDigit()
+                    if verticalSizeClass == .compact { trackControls }
                 }.font(.caption)
+                if verticalSizeClass != .compact { HStack { Spacer(); trackControls; Spacer() } }
+                HStack { Text(time(state.position)).monospacedDigit().accessibilityLabel("Tiempo reproducido").accessibilityIdentifier("player-position"); Spacer(); Text(time(state.duration)).monospacedDigit() }.font(.caption)
             }.padding(.horizontal).padding(.bottom, 8).background(.black.opacity(0.7))
+        }
+    }
+    private var trackControls: some View {
+        HStack(spacing: 10) {
+            Button { settingsPage = .audio } label: { PlayerGlyph(name: "audio").frame(width: 44, height: 44) }.accessibilityLabel("Audio").accessibilityIdentifier("player-audio")
+            Button { settingsPage = .subtitles } label: { PlayerGlyph(name: "subtitle").frame(width: 44, height: 44) }.accessibilityLabel("Subtítulos").accessibilityIdentifier("player-subtitles")
+            Button { settingsPage = .video } label: { PlayerGlyph(name: "aspect").frame(width: 44, height: 44) }.accessibilityLabel("Imagen y formato").accessibilityIdentifier("player-picture")
+            Button { settingsPage = .playback } label: { VStack(spacing: 1) { PlayerGlyph(name: "speed", size: 19); Text("\(state.speed.formatted())×").font(.system(size: 9)) } }.accessibilityLabel("Velocidad").accessibilityValue("\(state.speed.formatted())×").frame(minWidth: 44, minHeight: 44)
         }
     }
     private func jump(_ seconds: Double) {

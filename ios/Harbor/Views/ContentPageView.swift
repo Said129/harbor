@@ -22,7 +22,7 @@ struct ContentPageView: View {
                 if let error = customization.error { Text(error).font(.caption).foregroundStyle(.orange).padding(.horizontal) }
                 CustomizedRails(rails: rails, app: app, customization: customization)
             }.padding(.bottom, 24)
-        }.background(HarborTheme.background).navigationTitle(title).navigationBarTitleDisplayMode(.inline)
+        }.background(HarborTheme.background).navigationTitle("").toolbar(.hidden, for: .navigationBar)
             .accessibilityIdentifier("content-\(kind)")
             .task(id: "\(app.storageReady)|\(app.addons.filter(\.enabled).map(\.id).joined())|\(MetadataPreferences.shared.tmdbKey)|\(MetadataPreferences.shared.region)|\(MetadataPreferences.shared.language)|\(MetadataPreferences.shared.translateTitles)") { if app.storageReady { await model.load(kind: kind, app: app) } }
             .onChange(of: app.rows.count) { _, _ in if !["movie", "series", "kids"].contains(kind) { Task { await model.load(kind: kind, app: app, refresh: true) } } }

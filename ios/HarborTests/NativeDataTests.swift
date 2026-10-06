@@ -1,7 +1,29 @@
 import XCTest
+import UIKit
 @testable import Harbor
 
 final class NativeDataTests: XCTestCase {
+    @MainActor func testOriginalAvatarAssetsAndIsolatedProfilePersistence() throws {
+        XCTAssertEqual(DesktopAvatar.catalog.count, 65)
+        for avatar in DesktopAvatar.catalog { XCTAssertNotNil(UIImage(named: avatar.asset), "Missing original avatar: \(avatar.id)") }
+        let owner = "profile-test-" + UUID().uuidString
+        let key = "mobile-profile-" + EBookShelf.hash(owner)
+        defer { try? KeychainStore().remove(key) }
+        let profile = ProfilePreferences.forOwner(owner)
+        XCTAssertTrue(profile.ready)
+        profile.update { $0.name = "Harbor"; $0.avatar = DesktopAvatar.catalog[1].id; $0.color = "fbbf24" }
+        let saved = try XCTUnwrap(KeychainStore().read(key, as: MobileProfile.self))
+        XCTAssertEqual(saved.name, "Harbor")
+        XCTAssertEqual(saved.avatar, DesktopAvatar.catalog[1].id)
+        XCTAssertTrue(saved.valid)
+        XCTAssertEqual(ProfilePreferences.forOwner(owner + "-other").value.name, "")
+        let legacy = Data(#"{"filter":"saved","kind":"movie","sort":"title"}"#.utf8)
+        let display = try JSONDecoder().decode(LibraryDisplay.self, from: legacy)
+        XCTAssertEqual(display.filter, .saved)
+        XCTAssertEqual(display.kind, .movie)
+        XCTAssertEqual(display.sort, .title)
+        XCTAssertTrue(display.grouped, "The old saved presentation must survive the new layout")
+    }
     func testCloudResumeMatchesTheEpisodeAndRecognizesCompletedMovies() throws {
         let raw: JSONValue = .object(["_id": .string("show"), "type": .string("series"), "name": .string("Show"), "_mtime": .string("2026-10-05T18:00:00.123Z"), "state": .object(["video_id": .string("show:0:1"), "timeOffset": .integer(120_000), "duration": .integer(3_600_000)])])
         let record = LibraryRecord(raw: raw)

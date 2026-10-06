@@ -104,7 +104,7 @@ struct HarborShell: View {
                             }
                         }.padding(.horizontal, 12)
                     }.accessibilityIdentifier("navigation-scroll")
-                    if let user = app.user { Text(user.displayName).font(.caption).foregroundStyle(.secondary).lineLimit(1).padding(.horizontal, 20) }
+                    ProfileAccountButton(app: app, expanded: true).id(app.user?.id ?? "guest").padding(.horizontal, 20)
                 }.padding(.top, 12).padding(.bottom, 16).frame(width: 282).frame(maxHeight: .infinity).background(HarborTheme.background)
                     .transition(.move(edge: .leading))
             }
@@ -117,13 +117,13 @@ struct HarborShell: View {
             HarborBrand(size: 26)
             Spacer(minLength: 0)
             Button { path = NavigationPath(); section = .search } label: { Image("nav-search").resizable().scaledToFit().frame(width: 21, height: 21).frame(width: 34, height: 44) }.accessibilityLabel("Buscar")
-            Button { app.showAccount = true } label: { Image(systemName: "person.crop.circle").frame(width: 34, height: 44) }.accessibilityLabel("Cuenta")
+            ProfileAccountButton(app: app).id(app.user?.id ?? "guest")
         }.padding(.horizontal, 12).background(HarborTheme.background)
     }
     @ViewBuilder private var destination: some View {
         switch section {
         case .home: HomeView(model: app).id(app.user?.id ?? "guest")
-        case .catalogs: CatalogsView(app: app)
+        case .catalogs: CatalogsView(app: app).id(app.user?.id ?? "guest")
         case .movies: ContentPageView(app: app, kind: "movie", title: section.title).id(app.user?.id ?? "guest")
         case .shows: ContentPageView(app: app, kind: "series", title: section.title).id(app.user?.id ?? "guest")
         case .kids: ContentPageView(app: app, kind: "kids", title: section.title).id(app.user?.id ?? "guest")
@@ -134,8 +134,8 @@ struct HarborShell: View {
         case .ebook: EBooksView(app: app).id(app.user?.id ?? "guest")
         case .music: MusicView(app: app).id(app.user?.id ?? "guest")
         case .vod: VODView(app: app).id(app.user?.id ?? "guest")
-        case .calendar: CalendarView(app: app)
-        case .library: LibraryView(app: app)
+        case .calendar: CalendarView(app: app).id(app.user?.id ?? "guest")
+        case .library: LibraryView(app: app).id(app.user?.id ?? "guest")
         case .collections: CollectionsView(app: app)
         case .downloads: DownloadsView(app: app)
         case .discover: DiscoverView(app: app)

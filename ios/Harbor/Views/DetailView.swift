@@ -8,6 +8,7 @@ struct DetailView: View {
     @State private var pendingEpisode: Episode?
     @State private var pendingEpisodeOwner: String?
     @State private var autoplayEpisode = false
+    @State private var continuingEpisode = false
     @State private var resolutionTask: Task<Void, Never>?
     @State private var downloading = false
     @State private var downloadMessage: String?
@@ -18,33 +19,19 @@ struct DetailView: View {
     var body: some View {
         @Bindable var model = model
         ScrollView {
-            VStack(alignment: .leading, spacing: 20) {
-                Artwork(url: model.media.background, fallback: model.media.fallbackBackground, fallbacks: [model.media.poster].compactMap { $0 }, maxPixels: 1400)
-                    .frame(height: 220).clipped()
+            LazyVStack(alignment: .leading, spacing: 24) {
+                hero
                 VStack(alignment: .leading, spacing: 16) {
-                    Text(model.media.name).font(.largeTitle.bold()).accessibilityIdentifier("detail-title")
-                    Text([model.media.releaseInfo, model.media.genres?.joined(separator: " · ")].compactMap { $0 }.joined(separator: " · ")).foregroundStyle(.secondary)
                     Text(model.media.description ?? "").accessibilityIdentifier("detail-description")
-                    HStack {
-                        Button { Task { await app.library.toggleBookmark(model.media) } } label: { Label(app.library.bookmarked(model.media) ? "En mi lista" : "Añadir a mi lista", image: "ui-library") }.accessibilityIdentifier("detail-bookmark")
-                        Spacer()
-                        if InterfacePreferences.shared.showWatchedButton {
-                            Button { Task { await app.library.toggleWatched(model.media) } } label: { Image(app.library.watched(model.media) ? "ui-mark-unwatched" : "ui-mark-watched").resizable().scaledToFit().frame(width: 26, height: 26) }.accessibilityLabel(app.library.watched(model.media) ? "Marcar como no visto" : "Marcar como visto")
-                        }
-                    }.disabled(app.library.busy)
                     if let error = app.library.error { Text(error).font(.caption).foregroundStyle(.orange) }
                     if let error = model.error { Text(error).foregroundStyle(.orange) }
                     if model.loading { ProgressView() }
-                    if !model.media.episodic {
-                        Button { openStreams() } label: { Label("Ver streams", systemImage: "play.fill").frame(maxWidth: .infinity).padding(8) }.buttonStyle(.borderedProminent).accessibilityIdentifier("detail-streams")
-                    }
-                    if model.media.episodic { EpisodeList(media: model.media, library: app.library, play: openStreams) }
-                    if let cast = model.media.cast, !cast.isEmpty { Text("Reparto").font(.headline); Text(cast.joined(separator: " · ")).font(.subheadline).foregroundStyle(.secondary) }
-                    if let directors = model.media.director, !directors.isEmpty { Text("Dirección").font(.headline); Text(directors.joined(separator: " · ")).font(.subheadline).foregroundStyle(.secondary) }
+                    if model.media.episodic { EpisodeList(media: model.media, library: app.library, play: { openStreams($0, automatic: StreamPreferences.shared.automatic) }) }
                 }.padding()
+                DetailMetadataView(media: model.media, app: app)
             }
-        }.background(HarborTheme.background).navigationBarTitleDisplayMode(.inline)
-        .task { await model.load(app.addons); if playImmediately && !model.media.episodic { openStreams() } }
+        }.background(HarborTheme.background).navigationBarTitleDisplayMode(.inline).toolbar(.visible, for: .navigationBar)
+        .task { await model.load(app.addons); if playImmediately { playTitle() } }
         .sheet(isPresented: $showStreams, onDismiss: { resolutionTask?.cancel(); model.pendingPlayback = nil; model.showResumePrompt = false; pendingEpisode = nil; pendingEpisodeOwner = nil; autoplayEpisode = false; model.clearSourceChange() }) {
             NavigationStack {
                 List {
@@ -81,19 +68,48 @@ struct DetailView: View {
                 .task(id: selectedEpisode?.id ?? model.media.id) {
                     let owner = app.library.owner
                     let shouldAutoplay = autoplayEpisode
+                    let isContinuation = continuingEpisode
                     autoplayEpisode = false
+                    continuingEpisode = false
                     await model.findStreams(app.addons, episode: selectedEpisode)
                     guard !Task.isCancelled, owner == app.library.owner, shouldAutoplay else { return }
-                    if let offer = model.continuationOffer {
+                    if let offer = isContinuation ? model.continuationOffer : StreamPreferences.shared.preferred(model.offers) {
                         await model.play(offer, resume: app.resume, library: app.library)
                     }
                 }
             }.presentationDetents([.medium, .large])
         }
     }
-    private func openStreams(_ episode: Episode? = nil) {
+    private var hero: some View {
+        ZStack(alignment: .bottomLeading) {
+            Artwork(url: model.media.background, fallback: model.media.fallbackBackground, fallbacks: [model.media.poster].compactMap { $0 }, maxPixels: 1400).frame(height: 370).clipped()
+            LinearGradient(colors: [.black.opacity(0.12), HarborTheme.background.opacity(0.45), HarborTheme.background], startPoint: .top, endPoint: .bottom).allowsHitTesting(false)
+            VStack(alignment: .leading, spacing: 18) {
+                if let tagline = model.media.details?.tagline, !tagline.isEmpty { Text(tagline.uppercased()).font(.system(size: 10, weight: .medium)).tracking(2).foregroundStyle(.secondary).lineLimit(2) }
+                if let logo = model.media.logo { Artwork(url: logo, fit: .fit, maxPixels: 800).frame(maxWidth: 310).frame(height: 78) }
+                Text(model.media.name).font(HarborTheme.font(model.media.logo == nil ? 30 : 16, weight: .bold)).lineLimit(3).accessibilityIdentifier("detail-title")
+                ScrollView(.horizontal) {
+                    HStack(spacing: 8) {
+                        if let year = model.media.releaseInfo { badge(year) }
+                        if let rating = model.media.imdbRating { badge("\(model.media.ratingSource ?? "IMDb")  \(rating)") }
+                        if let runtime = model.media.runtime { badge(runtime) }
+                        ForEach(model.media.genres ?? [], id: \.self) { badge($0) }
+                    }
+                }.scrollIndicators(.hidden)
+                HStack(spacing: 10) {
+                    Button { playTitle() } label: { Label("Reproducir", image: "ui-play-filled").font(.subheadline.weight(.semibold)).padding(.horizontal, 18).frame(minHeight: 46).foregroundStyle(.black).background(.white, in: .capsule) }.buttonStyle(.plain).disabled(model.loadingMetadata || (model.media.episodic && (model.media.videos ?? []).isEmpty)).accessibilityIdentifier("detail-play")
+                    Button { Task { await app.library.toggleBookmark(model.media) } } label: { Image("ui-library").resizable().scaledToFit().frame(width: 20, height: 20).frame(width: 46, height: 46).background(app.library.bookmarked(model.media) ? HarborTheme.accent.opacity(0.35) : .black.opacity(0.45), in: .circle) }.buttonStyle(.plain).disabled(app.library.busy).accessibilityLabel(app.library.bookmarked(model.media) ? "En mi lista" : "Añadir a mi lista").accessibilityIdentifier("detail-bookmark")
+                    if InterfacePreferences.shared.showWatchedButton { Button { Task { await app.library.toggleWatched(model.media) } } label: { Image(app.library.watched(model.media) ? "ui-mark-unwatched" : "ui-mark-watched").resizable().scaledToFit().frame(width: 21, height: 21).frame(width: 46, height: 46).background(.black.opacity(0.45), in: .circle) }.buttonStyle(.plain).disabled(app.library.busy).accessibilityLabel(app.library.watched(model.media) ? "Marcar como no visto" : "Marcar como visto") }
+                }
+                if !model.media.episodic { Button { openStreams() } label: { Label("Fuentes", image: "nav-playlist").font(.subheadline).frame(minHeight: 44) }.accessibilityIdentifier("detail-streams") }
+            }.padding(20)
+        }.frame(height: 370)
+    }
+    private func badge(_ text: String) -> some View { Text(text).font(HarborTheme.font(11, weight: .medium)).padding(.horizontal, 10).padding(.vertical, 6).background(.black.opacity(0.5), in: .capsule) }
+    private func openStreams(_ episode: Episode? = nil, automatic: Bool = false) {
         model.clearSourceChange()
-        autoplayEpisode = false
+        autoplayEpisode = automatic
+        continuingEpisode = false
         selectedEpisode = episode
         showStreams = true
     }
@@ -105,7 +121,19 @@ struct DetailView: View {
         // Present the next session only after the old full-screen player has
         // dismissed and released its native surface.
         autoplayEpisode = true
+        continuingEpisode = true
         selectedEpisode = episode
+    }
+    private func playTitle() {
+        if !model.media.episodic { openStreams(automatic: StreamPreferences.shared.automatic); return }
+        let episodes = WatchedCodec.ordered(model.media.videos ?? []).filter(\.available)
+        let record = app.library.items.first { $0.id == model.media.id }
+        let coordinates = record?.playbackCoordinates
+        let resumed = episodes.first { $0.id == record?.raw["state"]["video_id"].string || ($0.season == coordinates?.season && $0.episode == coordinates?.episode) }
+        let watched = app.library.watchedEpisodes(model.media)
+        if let episode = resumed ?? episodes.first(where: { !watched.contains($0.watchedKey) && ($0.season ?? 1) > 0 }) ?? episodes.first {
+            openStreams(episode, automatic: StreamPreferences.shared.automatic)
+        }
     }
     private func download(_ offer: StreamOffer) async {
         guard !downloading else { return }

@@ -11,9 +11,14 @@ struct AccountView: View {
     @Environment(\.dismiss) private var dismiss
 
     var body: some View {
-        Form {
+        ScrollView {
+          VStack(alignment: .leading, spacing: 24) {
+            HarborPageHeading(title: app.user == nil ? "Tu cuenta" : "Cuenta", eyebrow: "Cuenta y configuración")
+            ProfileEditor(user: app.user, profile: ProfilePreferences.forOwner(app.user?.id ?? "guest")).id(app.user?.id ?? "guest")
+            Divider()
             if let user = app.user {
-                Section("Tu cuenta") {
+                VStack(alignment: .leading, spacing: 14) {
+                    Label("Stremio", systemImage: "diamond.fill").font(.headline)
                     Text(user.displayName).accessibilityIdentifier("account-user")
                     Text("\(app.addons.count) addons recuperados")
                     Button("Sincronizar addons") {
@@ -30,7 +35,7 @@ struct AccountView: View {
                     }.accessibilityIdentifier("account-signout")
                 }
             } else {
-                Section {
+                VStack(alignment: .leading, spacing: 14) {
                     Text("Usa la misma cuenta de Stremio que utilizas en Harbor. Tus addons configurados se recuperarán al iniciar sesión.")
                     Button("Iniciar sesión con Stremio") {
                         editing = false
@@ -48,7 +53,8 @@ struct AccountView: View {
                     }.accessibilityIdentifier("account-browser-login")
                     Text("Acceso oficial con correo, Apple o Facebook.").font(.caption).foregroundStyle(.secondary)
                 }
-                Section("Correo y contraseña") {
+                VStack(alignment: .leading, spacing: 14) {
+                    Text("Correo y contraseña").font(.headline)
                     TextField("Correo de Stremio", text: $email).keyboardType(.emailAddress)
                         .textContentType(.username).textInputAutocapitalization(.never).autocorrectionDisabled()
                         .focused($editing).accessibilityIdentifier("account-email")
@@ -69,7 +75,10 @@ struct AccountView: View {
             }
             if app.accountBusy || browserBusy { ProgressView("Recuperando tu cuenta…") }
             if let error = error ?? app.accountError { Text(error).foregroundStyle(.orange).accessibilityIdentifier("account-error") }
+          }.padding(22)
         }
+        .background(HarborTheme.background)
+        .textFieldStyle(.roundedBorder)
         .disabled(app.accountBusy || browserBusy)
         .navigationTitle(app.user == nil ? "Iniciar sesión" : "Cuenta")
         .toolbar { Button("Cerrar") { dismiss() } }

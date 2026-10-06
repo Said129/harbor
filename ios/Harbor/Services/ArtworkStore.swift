@@ -97,7 +97,7 @@ struct Artwork: View {
                     Image(failureIcon).resizable().scaledToFit().frame(width: 24, height: 24).foregroundStyle(.white.opacity(0.35))
                 } else if url != nil { ProgressView().controlSize(.small) }
             }
-        }.clipped().task(id: "\(url ?? "")|\(fallback ?? "")|\(fallbacks.joined(separator: "|"))|\(maxPixels)|\(retryRevision)") {
+        }.clipped().allowsHitTesting(false).task(id: "\(url ?? "")|\(fallback ?? "")|\(fallbacks.joined(separator: "|"))|\(maxPixels)|\(retryRevision)") {
             image = nil; failed = false
             var seen = Set<String>()
             for raw in ([url, fallback].compactMap({ $0 }) + fallbacks).filter({ !$0.isEmpty && seen.insert($0).inserted }) {

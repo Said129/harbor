@@ -20,6 +20,7 @@ struct PlayerSettingsView: View {
     var state: PlayerState? = nil
     var changeSource: (() -> Void)? = nil
     @Bindable var preferences = PlaybackPreferences.shared
+    @Bindable private var sources = StreamPreferences.shared
     @AppStorage("mpvHwdec") private var hardwareDecoding = HardwareDecoding.auto
     @AppStorage("resumePlayback") private var resumePlayback = true
     @AppStorage("resumePrompt") private var resumePrompt = false
@@ -40,6 +41,17 @@ struct PlayerSettingsView: View {
                 chapters
             case .playback:
                 chapters
+                Section("Fuentes y calidad") {
+                    Toggle("Elegir automáticamente la mejor calidad", isOn: $sources.automatic)
+                    Toggle("Ocultar grabaciones de cámara · CAM / TS / TC", isOn: $sources.excludeCamera)
+                    Picker("Calidad máxima", selection: $sources.maximum) {
+                        Text("4K").tag(2160); Text("1080p").tag(1080); Text("720p").tag(720)
+                    }
+                    Picker("Calidad mínima", selection: $sources.minimum) {
+                        Text("Todas").tag(0); Text("720p").tag(720); Text("1080p").tag(1080); Text("4K").tag(2160)
+                    }
+                    Text("Se respetan tus filtros antes de elegir la fuente. Si ninguna los cumple, podrás ajustarlos sin reproducir un enlace excluido.").font(.caption).foregroundStyle(.secondary)
+                }
                 Section("Controles") {
                     Toggle("Ocultar controles automáticamente", isOn: $preferences.options.autoHideControls)
                     Toggle("Mantener la pantalla encendida", isOn: $preferences.options.keepScreenAwake)
@@ -108,7 +120,7 @@ struct PlayerSettingsView: View {
                     }
                 }
                 Section("Idioma y salida") {
-                    languagePicker("Idioma preferido", value: $preferences.options.audioLanguage, defaults: "eng,jpn", defaultTitle: "Inglés, japonés")
+                    preferredLanguages($preferences.options.audioLanguage)
                     Toggle("Mezclar sonido multicanal a estéreo", isOn: $preferences.options.stereo)
                 }
                 Section("Sincronización") {
@@ -126,7 +138,7 @@ struct PlayerSettingsView: View {
                     }
                 }
                 Section("Selección") {
-                    languagePicker("Idioma preferido", value: $preferences.options.subtitleLanguage, defaults: "eng", defaultTitle: "Inglés")
+                    preferredLanguages($preferences.options.subtitleLanguage)
                     Picker("Idioma de la segunda pista", selection: $preferences.options.secondarySubtitleLanguage) {
                         Text("No seleccionar automáticamente").tag("")
                         ForEach(languages.filter { !$0.1.isEmpty }, id: \.1) { Text($0.0).tag($0.1) }
@@ -221,6 +233,34 @@ struct PlayerSettingsView: View {
             if !languages.contains(where: { $0.1 == defaults }) { Text(defaultTitle).tag(defaults) }
             ForEach(languages.filter { $0.1 == defaults || !$0.1.split(separator: ",").contains(Substring(defaults)) }, id: \.1) { Text($0.0).tag($0.1) }
         }
+    }
+    private func preferredLanguages(_ value: Binding<String>) -> some View {
+        VStack(alignment: .leading, spacing: 12) {
+            Picker("Primer idioma preferido", selection: languagePriority(value, index: 0)) {
+                ForEach(priorityLanguages, id: \.1) { Text($0.0).tag($0.1) }
+            }
+            Picker("Segundo idioma preferido", selection: languagePriority(value, index: 1)) {
+                ForEach(priorityLanguages, id: \.1) { Text($0.0).tag($0.1) }
+            }
+        }
+    }
+    private var priorityLanguages: [(String, String)] {
+        languages.map { ($0.0, String($0.1.split(separator: ",").first ?? "")) }
+    }
+    private func languagePriority(_ value: Binding<String>, index: Int) -> Binding<String> {
+        let canonical = ["es": "spa", "en": "eng", "ja": "jpn", "fre": "fra", "fr": "fra", "ger": "deu", "de": "deu", "it": "ita", "pt": "por"]
+        func codes() -> [String] {
+            var seen = Set<String>()
+            return value.wrappedValue.split(separator: ",").map { canonical[String($0)] ?? String($0) }.filter { seen.insert($0).inserted }
+        }
+        return Binding(get: { let items = codes(); return index < items.count ? items[index] : "" }, set: { code in
+            var items = codes()
+            while items.count <= index { items.append("") }
+            items[index] = code
+            if index == 0 && code.isEmpty { value.wrappedValue = ""; return }
+            var seen = Set<String>()
+            value.wrappedValue = items.filter { !$0.isEmpty && seen.insert($0).inserted }.prefix(2).joined(separator: ",")
+        })
     }
     private var previewFont: String {
         switch preferences.options.subtitleFont {

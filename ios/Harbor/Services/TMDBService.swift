@@ -88,7 +88,7 @@ struct TMDBService: Sendable {
             guard let raw = found[media.type == "movie" ? "movie_results" : "tv_results"].array.first, let id = raw["id"].integer else { return media }
             path = "\(media.type == "movie" ? "movie" : "tv")/\(id)"
         } else { return media }
-        let value = try await get(path, parameters: ["append_to_response": "external_ids,images,credits", "include_image_language": "\(configuration.language.prefix(2)),en,null"], configuration: configuration)
+        let value = try await get(path, parameters: ["append_to_response": "external_ids,images,credits,recommendations,similar,videos", "include_image_language": "\(configuration.language.prefix(2)),en,null"], configuration: configuration)
         var result = media
         if let imdb = value["imdb_id"].string ?? value["external_ids"]["imdb_id"].string, !imdb.isEmpty { result.id = imdb }
         result.background = image(value["backdrop_path"].string, size: "w1280") ?? result.background
@@ -99,6 +99,39 @@ struct TMDBService: Sendable {
         result.cast = Array(value["credits"]["cast"].array.compactMap { $0["name"].string }.prefix(15))
         result.director = value["credits"]["crew"].array.filter { $0["job"].string == "Director" }.compactMap { $0["name"].string }
         if let minutes = value["runtime"].integer { result.runtime = "\(minutes) min" }
+        var details = MediaDetails()
+        details.tagline = value["tagline"].string
+        details.status = value["status"].string
+        details.language = value["original_language"].string
+        details.countries = value["production_countries"].array.compactMap { $0["name"].string }
+        details.studios = value["production_companies"].array.compactMap { $0["name"].string }
+        details.votes = value["vote_count"].integer
+        if let amount = value["budget"].integer, amount > 0 { details.budget = Int64(amount) }
+        if let amount = value["revenue"].integer, amount > 0 { details.revenue = Int64(amount) }
+        details.cast = value["credits"]["cast"].array.prefix(60).compactMap { credit in
+            guard let id = credit["id"].integer, let name = credit["name"].string else { return nil }
+            return MediaDetails.Credit(id: id, name: name, role: credit["character"].string ?? "", photo: image(credit["profile_path"].string, size: "w185"))
+        }
+        details.crew = value["credits"]["crew"].array.compactMap { credit in
+            guard let id = credit["id"].integer, let name = credit["name"].string, let role = credit["job"].string,
+                  ["Director", "Writer", "Screenplay", "Producer", "Director of Photography", "Original Music Composer", "Editor"].contains(role) else { return nil }
+            return MediaDetails.Credit(id: id, name: name, role: role)
+        }
+        details.recommendations = Array(value["recommendations"]["results"].array.compactMap { makeMedia($0, kind: media.type, configuration: configuration) }.prefix(20))
+        details.similar = Array(value["similar"]["results"].array.compactMap { makeMedia($0, kind: media.type, configuration: configuration) }.prefix(20))
+        details.trailers = value["videos"]["results"].array.prefix(20).compactMap { trailer in
+            guard trailer["site"].string == "YouTube", let key = trailer["key"].string,
+                  key.range(of: "^[a-zA-Z0-9_-]+$", options: .regularExpression) != nil else { return nil }
+            return MediaDetails.Trailer(id: key, title: trailer["name"].string ?? trailer["type"].string ?? "Vídeo", url: "https://www.youtube.com/watch?v=\(key)", thumbnail: "https://i.ytimg.com/vi/\(key)/hqdefault.jpg")
+        }
+        details.backdrops = Array(value["images"]["backdrops"].array.compactMap { image($0["file_path"].string, size: "w1280") }.prefix(24))
+        details.posters = Array(value["images"]["posters"].array.compactMap { image($0["file_path"].string, size: "w500") }.prefix(24))
+        details.logos = Array(value["images"]["logos"].array.compactMap { image($0["file_path"].string, size: "w500") }.prefix(24))
+        if let id = value["belongs_to_collection"]["id"].integer, let collection = try? await self.collection(id, configuration: configuration) {
+            details.collectionName = collection.name; details.collection = collection.parts
+        }
+        try Task.checkCancellation()
+        result.details = details
         return result
     }
     private func get(_ path: String, parameters: [String: String] = [:], configuration: MetadataConfiguration) async throws -> JSONValue {

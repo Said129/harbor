@@ -2,9 +2,9 @@ import CryptoKit
 import Foundation
 
 enum LibraryFilter: String, Codable, CaseIterable, Identifiable, Sendable {
-    case saved, watched, continuing = "continue"
+    case all, saved, watchlist, watched, continuing = "continue"
     var id: String { rawValue }
-    var title: String { switch self { case .saved: "Mi lista"; case .watched: "Vistos"; case .continuing: "Continuar" } }
+    var title: String { switch self { case .all: "Biblioteca"; case .saved: "Guardados"; case .watchlist: "Mi lista"; case .watched: "Historial"; case .continuing: "Continuar" } }
 }
 enum LibraryKind: String, Codable, CaseIterable, Identifiable, Sendable {
     case all, movie, series
@@ -17,9 +17,19 @@ enum LibrarySort: String, Codable, CaseIterable, Identifiable, Sendable {
     var title: String { switch self { case .recent: "Recientes"; case .title: "A–Z"; case .year: "Año" } }
 }
 struct LibraryDisplay: Codable, Sendable {
-    var filter = LibraryFilter.saved
+    var filter = LibraryFilter.all
     var kind = LibraryKind.all
     var sort = LibrarySort.recent
+    var grouped = true
+    private enum CodingKeys: String, CodingKey { case filter, kind, sort, grouped }
+    init() { }
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        filter = try values.decodeIfPresent(LibraryFilter.self, forKey: .filter) ?? .all
+        kind = try values.decodeIfPresent(LibraryKind.self, forKey: .kind) ?? .all
+        sort = try values.decodeIfPresent(LibrarySort.self, forKey: .sort) ?? .recent
+        grouped = try values.decodeIfPresent(Bool.self, forKey: .grouped) ?? true
+    }
 }
 struct ContinueDismissal: Codable, Sendable {
     let timestampMs: Double
@@ -80,7 +90,7 @@ enum LibraryListing {
             var date = 0.0
             if display.sort == .recent {
                 switch display.filter {
-                case .saved: date = LibraryRecord.timestamp(record.raw["_ctime"].string) ?? LibraryRecord.timestamp(record.modified) ?? 0
+                case .all, .saved, .watchlist: date = LibraryRecord.timestamp(record.raw["_ctime"].string) ?? LibraryRecord.timestamp(record.modified) ?? 0
                 case .watched, .continuing: date = record.activityTimestamp
                 }
             }

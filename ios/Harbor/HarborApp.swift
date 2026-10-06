@@ -20,12 +20,17 @@ final class HarborAppDelegate: NSObject, UIApplicationDelegate, UNUserNotificati
 struct HarborApp: App {
     @UIApplicationDelegateAdaptor(HarborAppDelegate.self) private var delegate
     @State private var model = AppModel()
+    @Environment(\.scenePhase) private var scenePhase
     var body: some Scene {
         WindowGroup {
             HarborShell(app: model).font(HarborTheme.font()).foregroundStyle(HarborTheme.ink).tint(HarborTheme.accent).preferredColorScheme(.dark)
                 .task { await model.start() }
                 .task(id: String(model.storageReady) + "|" + (model.user?.id ?? "guest")) { if model.storageReady { await SportsReminderService.shared.removeOtherAccounts(owner: model.user?.id ?? "guest") } }
                 .task(id: model.user?.id ?? "guest") { MusicPlayback.shared.stopForAccount(model.user?.id ?? "guest") }
+                .task(id: scenePhase) {
+                    guard scenePhase == .active, model.storageReady else { return }
+                    await model.library.sync()
+                }
                 .sheet(isPresented: $model.showAccount) { NavigationStack { AccountView(app: model) } }
         }
     }

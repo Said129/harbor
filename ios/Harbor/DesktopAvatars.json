@@ -1,0 +1,526 @@
+{
+  "reference": "19ddc311a397eb3483b5c978d2cf2bbb3f7f479f",
+  "catalogSha256": "d2df4e688c43df33cb9b13386a53dc17d780dcfaa0aea5a619b113ff4a328c97",
+  "avatars": [
+    {
+      "id": "harbor_person_01",
+      "name": "Person 1",
+      "asset": "avatar-harbor_person_01",
+      "source": "public/avatars/harbor_person_01.webp",
+      "sourceSha256": "bc1af133b3c26cf74dad765c3c37d6ebdfa55b208ac41b6756c4e47be770a096",
+      "decodedRgbaSha256": "af4e59e94146eeca6898326e00f1ee17886662e9fa8860f3f62bfedab89acd08"
+    },
+    {
+      "id": "harbor_person_02",
+      "name": "Person 2",
+      "asset": "avatar-harbor_person_02",
+      "source": "public/avatars/harbor_person_02.webp",
+      "sourceSha256": "b07a76f56188eba00443d0cbe2f80def70058ef6f32cad9ee046b4964c174614",
+      "decodedRgbaSha256": "0b23b849946c6c77c8f6453aacb4cac0b9f326e9d252f61086013d4101daa586"
+    },
+    {
+      "id": "harbor_person_03",
+      "name": "Person 3",
+      "asset": "avatar-harbor_person_03",
+      "source": "public/avatars/harbor_person_03.webp",
+      "sourceSha256": "a575a5ed299022173219f900b70bc38705a17d8f3f90e0115b4009e42a3cf659",
+      "decodedRgbaSha256": "25853628471fbaa810c26ed9cb4aaadaa57f811d7ad641506842576508c74647"
+    },
+    {
+      "id": "harbor_person_04",
+      "name": "Person 4",
+      "asset": "avatar-harbor_person_04",
+      "source": "public/avatars/harbor_person_04.webp",
+      "sourceSha256": "9a4ed95385dc882a74387adf30ec12dc1e6d1b4e19226394f648cfabd50b5ecb",
+      "decodedRgbaSha256": "a847f490db96383d47a6380df233f08365b06ef7aade099a16f26e22e636199f"
+    },
+    {
+      "id": "harbor_person_05",
+      "name": "Person 5",
+      "asset": "avatar-harbor_person_05",
+      "source": "public/avatars/harbor_person_05.webp",
+      "sourceSha256": "de88b3fdbffa751da87255707267c0ba0123a43cc369319372e1f943989cb125",
+      "decodedRgbaSha256": "e520f156e5bd7562620c57001f1aa52ba2763e0b04ea6ddb00cded9c5f3643e3"
+    },
+    {
+      "id": "harbor_person_06",
+      "name": "Person 6",
+      "asset": "avatar-harbor_person_06",
+      "source": "public/avatars/harbor_person_06.webp",
+      "sourceSha256": "8b59ff367f8e62a9f3890b9cb4d6183909d6536714c1126c4abeff51b07e44f6",
+      "decodedRgbaSha256": "e33cc27bf6c85ee3cdaa7cfc8599c827ff95b941a3b570bff3423c26ec3a55fc"
+    },
+    {
+      "id": "harbor_person_07",
+      "name": "Person 7",
+      "asset": "avatar-harbor_person_07",
+      "source": "public/avatars/harbor_person_07.webp",
+      "sourceSha256": "39b5b4d330a9225a2aa78377f697f4c54ce2f480914937572430c8055001398a",
+      "decodedRgbaSha256": "14eb28e8c9a6bb90ca70077362a5c3fbdfb7bcf03321a238c68f5822450d7da7"
+    },
+    {
+      "id": "harbor_person_08",
+      "name": "Person 8",
+      "asset": "avatar-harbor_person_08",
+      "source": "public/avatars/harbor_person_08.webp",
+      "sourceSha256": "e5dec947d6256f6415c72f9b66d8f5081a64420b86431b846f8786921d8b89ac",
+      "decodedRgbaSha256": "985657919e1eccf139d210361d9e5878bca3022385c739a7402f8420aae51b00"
+    },
+    {
+      "id": "harbor_person_09",
+      "name": "Person 9",
+      "asset": "avatar-harbor_person_09",
+      "source": "public/avatars/harbor_person_09.webp",
+      "sourceSha256": "37a6145ea03451a13b7b83d2192a39207c105840eaaf20960025b0342a21c5af",
+      "decodedRgbaSha256": "3fdaa1496e4ae5336bac4632969f9c4469213346e08a4f4a9238eeb8dd19ce61"
+    },
+    {
+      "id": "harbor_person_10",
+      "name": "Person 10",
+      "asset": "avatar-harbor_person_10",
+      "source": "public/avatars/harbor_person_10.webp",
+      "sourceSha256": "7861e847c8ad660770a2f66559e139cc8e19f3de01541a7ccc3b1e518e68b8c4",
+      "decodedRgbaSha256": "d4ffdfcaa544d6752952ec62131162c29f344afd1dc8ec7666e5017c71f02c8c"
+    },
+    {
+      "id": "harbor_person_11",
+      "name": "Person 11",
+      "asset": "avatar-harbor_person_11",
+      "source": "public/avatars/harbor_person_11.webp",
+      "sourceSha256": "fc00e5edc71a5067c91162cd8f9b00158309861ee31de0e9db1eaa02aa3a1a5e",
+      "decodedRgbaSha256": "f66a470595b7afbf874acbf27d01bca3d84d39b72ccad46c65097aea27fce103"
+    },
+    {
+      "id": "harbor_person_12",
+      "name": "Person 12",
+      "asset": "avatar-harbor_person_12",
+      "source": "public/avatars/harbor_person_12.webp",
+      "sourceSha256": "9fd4dac8cb9bf4ea7e3df015048e4f8cb5a02e10b877007329e841adc53f6095",
+      "decodedRgbaSha256": "6b264bcbe7404ddcedcea552486c369168a6ba48f8bec44ba36f7b96630cab4e"
+    },
+    {
+      "id": "harbor_person_13",
+      "name": "Person 13",
+      "asset": "avatar-harbor_person_13",
+      "source": "public/avatars/harbor_person_13.webp",
+      "sourceSha256": "9edf75a0a6d1a5d6edf2922e14b159baa06cdc461a4ca07775b15cb7d95ee2f2",
+      "decodedRgbaSha256": "24fe39f089545fe18230b83ee4974ec6c9ac6806c81e27cf21ae7ae5e41de8f1"
+    },
+    {
+      "id": "harbor_person_14",
+      "name": "Person 14",
+      "asset": "avatar-harbor_person_14",
+      "source": "public/avatars/harbor_person_14.webp",
+      "sourceSha256": "cfc96653fb3e54720afcb6193e68b0fec3b537d882298e42dd164320f97ac96c",
+      "decodedRgbaSha256": "bee261f2e47a42aadf7c9349efc41c94d3466ed40e1729606afe6121a3d8db5e"
+    },
+    {
+      "id": "harbor_person_15",
+      "name": "Person 15",
+      "asset": "avatar-harbor_person_15",
+      "source": "public/avatars/harbor_person_15.webp",
+      "sourceSha256": "0eadcf6ddd95d1ec9348a53232e86c095dbd746a63c990bdf2ca1db00fe831d7",
+      "decodedRgbaSha256": "653950be159359d2309252e40aa8fd71512061c862d1bc39fd99c23b928cbe76"
+    },
+    {
+      "id": "harbor_person_16",
+      "name": "Person 16",
+      "asset": "avatar-harbor_person_16",
+      "source": "public/avatars/harbor_person_16.webp",
+      "sourceSha256": "fb44818cd34b1105408fafb84ed9093dd6ad586a3e285be1e0cdb88363a00eef",
+      "decodedRgbaSha256": "bb2af07593e3a972d0b349ea5496e360e0a7f1bef78a84c4c3ee41fbd5717e3c"
+    },
+    {
+      "id": "harbor_person_17",
+      "name": "Person 17",
+      "asset": "avatar-harbor_person_17",
+      "source": "public/avatars/harbor_person_17.webp",
+      "sourceSha256": "20ce8bf2ec723659a4575c96c603355d61b0d896c67961444897a1708c7c0a7c",
+      "decodedRgbaSha256": "a5e73b701264f1e61c12618d342161be970ef9e5031fc0a5e1fb06f858660599"
+    },
+    {
+      "id": "harbor_face_01",
+      "name": "Red",
+      "asset": "avatar-harbor_face_01",
+      "source": "public/avatars/harbor_face_01.webp",
+      "sourceSha256": "9658036cfe6bcff9c388b39b6333e8ff05e16b914f146f731cc4c93dc648fcec",
+      "decodedRgbaSha256": "a2cfc55aa9660ba884510c163969ba598c374a48f4574bc2a048df31252ac5b4"
+    },
+    {
+      "id": "harbor_face_02",
+      "name": "Orange",
+      "asset": "avatar-harbor_face_02",
+      "source": "public/avatars/harbor_face_02.webp",
+      "sourceSha256": "afad9a8dea7cfc77647910a9a4c59715d9ba743ddcb57928adeefbc235e10b8c",
+      "decodedRgbaSha256": "7b7e9cbdc37301c18115f3f63709d0b818582d187f979cc41c2593c81829f36b"
+    },
+    {
+      "id": "harbor_face_03",
+      "name": "Gold",
+      "asset": "avatar-harbor_face_03",
+      "source": "public/avatars/harbor_face_03.webp",
+      "sourceSha256": "6d7025fbb865b3ea0d74015fc1a7592363fa42f15eb931fcce03e0c8de1db20f",
+      "decodedRgbaSha256": "141684f0fdb4cefacb2bc54c5ced1e62f48c9bca85a9596df68a0a7f9f1fc52a"
+    },
+    {
+      "id": "harbor_face_04",
+      "name": "Green",
+      "asset": "avatar-harbor_face_04",
+      "source": "public/avatars/harbor_face_04.webp",
+      "sourceSha256": "bd22ae717d92da10fa5ac0807b8cddbc49a21f76d081c5a7efd57f87c284094c",
+      "decodedRgbaSha256": "b15023168d7c0cb83aec3785036b67938bfc56e821b89f4e1dc7f346881ac06d"
+    },
+    {
+      "id": "harbor_face_05",
+      "name": "Teal",
+      "asset": "avatar-harbor_face_05",
+      "source": "public/avatars/harbor_face_05.webp",
+      "sourceSha256": "4e202acfc556d193a860b5218db200f17664f8df59086c7579bcdd02f9e55f7a",
+      "decodedRgbaSha256": "daff77363984b7414954e5fe653a805d29f6e0ad4378c9042208d5a942d66a22"
+    },
+    {
+      "id": "harbor_face_06",
+      "name": "Blue",
+      "asset": "avatar-harbor_face_06",
+      "source": "public/avatars/harbor_face_06.webp",
+      "sourceSha256": "8b5863de67c51af0968d0b76d3eb27235f3dff2ec784c29f36898d0a3fab43de",
+      "decodedRgbaSha256": "10470be7a60b81a50bf0b3418f5bbd56b6386eee39389c7fdadcf7580f91e64d"
+    },
+    {
+      "id": "harbor_face_07",
+      "name": "Indigo",
+      "asset": "avatar-harbor_face_07",
+      "source": "public/avatars/harbor_face_07.webp",
+      "sourceSha256": "463c78387880afdc484c41d4445c64de30a0c7c832f78e3f48edbaaa45eed33d",
+      "decodedRgbaSha256": "f9008dc4704557ebaa1ee029dd85824730b17692a1056d52dbe2c39cdc5e3295"
+    },
+    {
+      "id": "harbor_face_08",
+      "name": "Purple",
+      "asset": "avatar-harbor_face_08",
+      "source": "public/avatars/harbor_face_08.webp",
+      "sourceSha256": "38d21ff8f1091512e0e6f9cdbad4a716a143f59192f3f300a74156812d6929e6",
+      "decodedRgbaSha256": "f0cc33f22f07495df425643548f870104ac2a9c5a64ee6308b40f76ef07a3e14"
+    },
+    {
+      "id": "harbor_face_09",
+      "name": "Pink",
+      "asset": "avatar-harbor_face_09",
+      "source": "public/avatars/harbor_face_09.webp",
+      "sourceSha256": "9171c712bed5c04c35bdd9fc234454641df3551b5733ff9017cf09bcd9e21f45",
+      "decodedRgbaSha256": "2bc0bc3c7782ece5e5a123cf6499095ef0f4dca5c7edbf138ac80ad0e0134e51"
+    },
+    {
+      "id": "harbor_face_10",
+      "name": "Rose",
+      "asset": "avatar-harbor_face_10",
+      "source": "public/avatars/harbor_face_10.webp",
+      "sourceSha256": "5831c58acc669627eddf60567058fad2e18550f4890a466989a2afb6dc25e23d",
+      "decodedRgbaSha256": "a3b74b102f4e630c310cbd15059f4250cbcd0f6abfe1f415a0febe7135616cf4"
+    },
+    {
+      "id": "harbor_face_11",
+      "name": "Slate",
+      "asset": "avatar-harbor_face_11",
+      "source": "public/avatars/harbor_face_11.webp",
+      "sourceSha256": "bc75bc3653419d3b13987173d94e9e519e0fc9670470eeb64cb8dc592d7c35bf",
+      "decodedRgbaSha256": "c9fa6f10c9dbd83d98168beba4938516fd84dae3286d3c2dd664bd686c3128ab"
+    },
+    {
+      "id": "harbor_face_12",
+      "name": "Graphite",
+      "asset": "avatar-harbor_face_12",
+      "source": "public/avatars/harbor_face_12.webp",
+      "sourceSha256": "ade9e6c004d87b2a9c194b64b9b7499ede14b7df3d13f08822b10f27dd6c2db6",
+      "decodedRgbaSha256": "ec59ad14ba2beefd8687b28499d83af155b76368879242262133fc6638cc1628"
+    },
+    {
+      "id": "harbor_misc_01",
+      "name": "Dreamer",
+      "asset": "avatar-harbor_misc_01",
+      "source": "public/avatars/harbor_misc_01.webp",
+      "sourceSha256": "2a4e443842c8b61e0c6cf2164425e740b112dd52b0c79a7062e976e00493b8e6",
+      "decodedRgbaSha256": "c473697e14737cf1e552d1b6f9f65b5a40386f9cea594c2276e7423bb2c77956"
+    },
+    {
+      "id": "harbor_misc_02",
+      "name": "Rebel",
+      "asset": "avatar-harbor_misc_02",
+      "source": "public/avatars/harbor_misc_02.webp",
+      "sourceSha256": "b73b60bf8c1c5bd3ce3ae9b6d9bb04274e0f766f1f2e3546de7f99f23e45551f",
+      "decodedRgbaSha256": "76be032ed89d2a599aac8d2f540c21c3df7c852c31b9e7ea41b4acc381c3259d"
+    },
+    {
+      "id": "harbor_misc_03",
+      "name": "Techie",
+      "asset": "avatar-harbor_misc_03",
+      "source": "public/avatars/harbor_misc_03.webp",
+      "sourceSha256": "747b6ba49ec9ab42735232eaf847c9119b2b611e3e6a0a01cd5e7ed7c5801839",
+      "decodedRgbaSha256": "955186d144f42fa855c702fc646c90cba9451afda2e55971b91c749684430b14"
+    },
+    {
+      "id": "harbor_misc_04",
+      "name": "Zen Master",
+      "asset": "avatar-harbor_misc_04",
+      "source": "public/avatars/harbor_misc_04.webp",
+      "sourceSha256": "3a2ae8d7d33254b47315cc577dc413a1b062047fecba5ab49589f46a7b9746af",
+      "decodedRgbaSha256": "895396952939e7ee74250155795323c677fe8b89f661de9b39d25d6927cae4bc"
+    },
+    {
+      "id": "harbor_misc_05",
+      "name": "Ninja",
+      "asset": "avatar-harbor_misc_05",
+      "source": "public/avatars/harbor_misc_05.webp",
+      "sourceSha256": "157dbad1f92b6d218bc61fd63baf58f0293200919ed6be339399cb72a8c35f05",
+      "decodedRgbaSha256": "8ef102bf59ca7d2872bd381703722cb108d20c23f7edb06d7cb82758206d8b89"
+    },
+    {
+      "id": "harbor_misc_06",
+      "name": "Robot",
+      "asset": "avatar-harbor_misc_06",
+      "source": "public/avatars/harbor_misc_06.webp",
+      "sourceSha256": "6eaec9fe752b44d2218aef1925916cae3e053d81fd06e855dceb62acb305b0d5",
+      "decodedRgbaSha256": "44d6f5d95509395d3964e397e2c42120d97116a36dff374ee848c7b018eaa8a9"
+    },
+    {
+      "id": "harbor_misc_08",
+      "name": "Wizard",
+      "asset": "avatar-harbor_misc_08",
+      "source": "public/avatars/harbor_misc_08.webp",
+      "sourceSha256": "838380c4e424b9221a1cbbd01e31e64411fe463ff8cae614cdbca16de317d1b3",
+      "decodedRgbaSha256": "5583138b5f929212ce80389be643b4ee06c8765789dbef6edda5182961c6579b"
+    },
+    {
+      "id": "harbor_animal_01",
+      "name": "Brave Lion",
+      "asset": "avatar-harbor_animal_01",
+      "source": "public/avatars/harbor_animal_01.webp",
+      "sourceSha256": "20a15a407571a24d0e5fce7add3a72ed25eac446eae56d94b1c9f2731a897756",
+      "decodedRgbaSha256": "357199af87502306d7ec6a549549e2f4f7e987ff132468004c99031ac9c82044"
+    },
+    {
+      "id": "harbor_animal_02",
+      "name": "Cheerful Koala",
+      "asset": "avatar-harbor_animal_02",
+      "source": "public/avatars/harbor_animal_02.webp",
+      "sourceSha256": "ca3d91f031f49ee53bea027aa3df56913b39a3c51354f0eb7124c3016bb60b5b",
+      "decodedRgbaSha256": "493c6b705b0726f73605524c83e1a8c10e42a88df579aad406837b06bccb218f"
+    },
+    {
+      "id": "harbor_animal_04",
+      "name": "Curious Raccoon",
+      "asset": "avatar-harbor_animal_04",
+      "source": "public/avatars/harbor_animal_04.webp",
+      "sourceSha256": "d2bea697c9114efd0ee23699c6ebf420d55a936610c4446af187ef7d816fd6be",
+      "decodedRgbaSha256": "ed4b1f8a46b1c863be08230ca343176832d1e43412be756fda57712680e1b818"
+    },
+    {
+      "id": "harbor_animal_05",
+      "name": "Friendly Bear",
+      "asset": "avatar-harbor_animal_05",
+      "source": "public/avatars/harbor_animal_05.webp",
+      "sourceSha256": "d114a55a013cf46bf77343cc71dc17ce16616d5bd5d3ef56de91d0c929723fec",
+      "decodedRgbaSha256": "68d493a4183a84b5806621731e4526dc9a26c036e0497c97535489d1a4b9ad8c"
+    },
+    {
+      "id": "harbor_animal_06",
+      "name": "Happy Panda",
+      "asset": "avatar-harbor_animal_06",
+      "source": "public/avatars/harbor_animal_06.webp",
+      "sourceSha256": "2eec51e310aac13e1f55a6ff09230cd39023c8c625ea76efdbbb3c4d1e94135c",
+      "decodedRgbaSha256": "72dc7438398be1632cbd35e4e1d1ade14ddcd6d8338e6abe648bc8ddee06b67d"
+    },
+    {
+      "id": "harbor_animal_07",
+      "name": "Magic Unicorn",
+      "asset": "avatar-harbor_animal_07",
+      "source": "public/avatars/harbor_animal_07.webp",
+      "sourceSha256": "0f24f85bb218a1991ddc7eb0aa6d8022f8ebdde26b6d06f32051e820101d794e",
+      "decodedRgbaSha256": "d954f68437486d32770d3cef4fd3345a607209425636151f4e50b9b828dee791"
+    },
+    {
+      "id": "harbor_animal_08",
+      "name": "Mysterious Owl",
+      "asset": "avatar-harbor_animal_08",
+      "source": "public/avatars/harbor_animal_08.webp",
+      "sourceSha256": "5a2f4c9291515e3c50a26909b8a93bf6adf78f00db64f6f82c5981ba14810b3b",
+      "decodedRgbaSha256": "856ce468bf921aad79b5932a0395e2b07ee5edfccece5d76d3ea81e5c6a298df"
+    },
+    {
+      "id": "harbor_space_01",
+      "name": "Nova",
+      "asset": "avatar-harbor_space_01",
+      "source": "public/avatars/harbor_space_01.webp",
+      "sourceSha256": "319af949491b62ef9d13fe9c49b646312624b020c287d867dd68f55f85d6dad4",
+      "decodedRgbaSha256": "1b4d61107eb79518153402017d6e998f4fb82b4aace94ae44f2f7fc3d428cdc3"
+    },
+    {
+      "id": "harbor_space_02",
+      "name": "Satellite",
+      "asset": "avatar-harbor_space_02",
+      "source": "public/avatars/harbor_space_02.webp",
+      "sourceSha256": "bd1d8fa588b0449972c02fe9436ce8a32310bfc52f02d45986826dea14bfb119",
+      "decodedRgbaSha256": "0c83ca4b97222d1945d1276df342fa6ec2d16728c123ed6f5b15f3ea85619b82"
+    },
+    {
+      "id": "harbor_space_03",
+      "name": "Visitor",
+      "asset": "avatar-harbor_space_03",
+      "source": "public/avatars/harbor_space_03.webp",
+      "sourceSha256": "8c4b4d628088a219080a9287931c33026f18ae970db3025eabe4d63623b0cc84",
+      "decodedRgbaSha256": "b6af185d0d56296b107421aef00dc2a4d6bfe998a973d1819fc0d59830f4edb4"
+    },
+    {
+      "id": "harbor_element_01",
+      "name": "Earth",
+      "asset": "avatar-harbor_element_01",
+      "source": "public/avatars/harbor_element_01.webp",
+      "sourceSha256": "55ac128e5cf7caefef8a51d8a4d39ba5ca01738dbf8b1336b7a47fdc95e99d6d",
+      "decodedRgbaSha256": "233304d4126deb586a309bd326cd16263529d7a8992a4ded4ad6851b2dccc080"
+    },
+    {
+      "id": "harbor_element_02",
+      "name": "Fire",
+      "asset": "avatar-harbor_element_02",
+      "source": "public/avatars/harbor_element_02.webp",
+      "sourceSha256": "61c24f274ef8f564d81ce4d90306101a4f53db541fffbb5b6969f7eb50755010",
+      "decodedRgbaSha256": "1fd6864c1c53789efd042ca4f258d7dbe3d9c376786986051400d55328fa28f4"
+    },
+    {
+      "id": "harbor_element_03",
+      "name": "Electric",
+      "asset": "avatar-harbor_element_03",
+      "source": "public/avatars/harbor_element_03.webp",
+      "sourceSha256": "29f2a851ae927dce0b9c1a32b3a614eb19ba784e55256ae609ae394b911e60b6",
+      "decodedRgbaSha256": "ace5f5c6d1c6ca6964b390059f22f30defe9a0c1d890ed15a733e4e6fc6c7db3"
+    },
+    {
+      "id": "harbor_element_04",
+      "name": "Water",
+      "asset": "avatar-harbor_element_04",
+      "source": "public/avatars/harbor_element_04.webp",
+      "sourceSha256": "d85f04db074e9d19a7d13ae692d3d4a641c24e4775ced2ab751d182f8360a73e",
+      "decodedRgbaSha256": "093ec45e9996aad327c2ea117a1aaa5b70cd5ccc2fc791f81998e245c1a2942a"
+    },
+    {
+      "id": "eboy_manga_eyes_bw_zoomed",
+      "name": "Manga Boy",
+      "asset": "avatar-eboy_manga_eyes_bw_zoomed",
+      "source": "public/avatars/eboy_manga_eyes_bw_zoomed.webp",
+      "sourceSha256": "ce3f4886ce2856617c343933ba49c8088f211db7c743afb5bb8bbe2155ab1ae2",
+      "decodedRgbaSha256": "2749e5878005ad0b149c1e82cd53079bde47aff70f1d6aae41c7a277ed9662a3"
+    },
+    {
+      "id": "egirl_manga_eyes_bw_zoomed_distinct",
+      "name": "Manga Girl",
+      "asset": "avatar-egirl_manga_eyes_bw_zoomed_distinct",
+      "source": "public/avatars/egirl_manga_eyes_bw_zoomed_distinct.webp",
+      "sourceSha256": "f1c602eb1d57987a3e065dd52a96fb7f79202722f09d222d53275d365e0a533d",
+      "decodedRgbaSha256": "ad84e96b49fa7d2473b12e67e4f5242f5bf1ac31f859dfbd9c6bd44f1024eda7"
+    },
+    {
+      "id": "harbor_kawaii_01",
+      "name": "Grumpy",
+      "asset": "avatar-harbor_kawaii_01",
+      "source": "public/avatars/harbor_kawaii_01.webp",
+      "sourceSha256": "3fc70f2e87e7e588661f9e6d5feeade5f4d2405450e14f0a6f71024ec641a64e",
+      "decodedRgbaSha256": "0dc21b60b2ef3f0143885b95ecf2505b6a35dc8f5ad7366718718303f383d0fa"
+    },
+    {
+      "id": "harbor_kawaii_02",
+      "name": "Shocked",
+      "asset": "avatar-harbor_kawaii_02",
+      "source": "public/avatars/harbor_kawaii_02.webp",
+      "sourceSha256": "58a438160fe1e639f46d1bac07d36d76e89e096fd2898ca9e4de01625783cf21",
+      "decodedRgbaSha256": "fcdc4bc3791f2e1b406983780ac21959d8ac438f894c1a9667da7b6ec22cd799"
+    },
+    {
+      "id": "harbor_kawaii_03",
+      "name": "Thinking",
+      "asset": "avatar-harbor_kawaii_03",
+      "source": "public/avatars/harbor_kawaii_03.webp",
+      "sourceSha256": "21c33ded303bbb6f43d075235d4be4c2e3181cb8024e20cf4e8216605b99181f",
+      "decodedRgbaSha256": "33179ae6acdf400ccc2aa989c81e240ef094a96960786e0acae0dc5ff53478cd"
+    },
+    {
+      "id": "harbor_kawaii_04",
+      "name": "Kiss",
+      "asset": "avatar-harbor_kawaii_04",
+      "source": "public/avatars/harbor_kawaii_04.webp",
+      "sourceSha256": "df840d11c2fd6f3a53169d91d9b4ffbf41b139d37eea134992244cb8393c9316",
+      "decodedRgbaSha256": "146cce464d2e48c0d73a2ea112c2e17a96c5a494ffcdb103d6715b7c357bdf29"
+    },
+    {
+      "id": "harbor_kawaii_05",
+      "name": "Crying",
+      "asset": "avatar-harbor_kawaii_05",
+      "source": "public/avatars/harbor_kawaii_05.webp",
+      "sourceSha256": "68d3752aa72e9fc0fd0a036e10b15ad5b13c156b7386c8c1ac66036b3c40c6a1",
+      "decodedRgbaSha256": "28d52ce4869b0b45872d6ff351b432538b9de4f96827eae7d91472c7ed649e27"
+    },
+    {
+      "id": "harbor_kawaii_06",
+      "name": "Sly",
+      "asset": "avatar-harbor_kawaii_06",
+      "source": "public/avatars/harbor_kawaii_06.webp",
+      "sourceSha256": "bca16dda55b42f30157d2822625084e4e65025d0a3710b583edbac50598c13ac",
+      "decodedRgbaSha256": "6562c1881ddda1c49314ef617f3284ba7151381e53197daa27e59d249f1ebe75"
+    },
+    {
+      "id": "harbor_kawaii_07",
+      "name": "Grin",
+      "asset": "avatar-harbor_kawaii_07",
+      "source": "public/avatars/harbor_kawaii_07.webp",
+      "sourceSha256": "4dfb56329bd47c1725b0616e97fbf11493c710e123521ff3e437159c13dff728",
+      "decodedRgbaSha256": "42a9a85753ccaee901d90731880cbc7a1e17e8df3d16a85b8bae82a57ec20c77"
+    },
+    {
+      "id": "harbor_kawaii_08",
+      "name": "Smile",
+      "asset": "avatar-harbor_kawaii_08",
+      "source": "public/avatars/harbor_kawaii_08.webp",
+      "sourceSha256": "a36b1ae540dc3b6ba502fe57a82fe64529216536bd0e976d2f0bb0915e6fa424",
+      "decodedRgbaSha256": "68c4d5dab7a832557d41766d8b0e0fca910bd0e2612bed195c6ed2b25e254052"
+    },
+    {
+      "id": "harbor_kawaii_10",
+      "name": "Wink",
+      "asset": "avatar-harbor_kawaii_10",
+      "source": "public/avatars/harbor_kawaii_10.webp",
+      "sourceSha256": "4d395f4e10a55c607dcf5ad630707e17be249e352687fd8b27b52ad65f020a1a",
+      "decodedRgbaSha256": "d2d84fa2e28d0448c05e0e396ce98f596887e35c34e5a2b8f5e6f1610c32e0ce"
+    },
+    {
+      "id": "harbor_cat_01",
+      "name": "Flash Tabby",
+      "asset": "avatar-harbor_cat_01",
+      "source": "public/avatars/harbor_cat_01.webp",
+      "sourceSha256": "905aac7969c0ccca3a9bb86a18cd36f314ce63e45eced4b1c3bda58eb7488d72",
+      "decodedRgbaSha256": "fdd08f581f9c55c510194d4ea6fd7c677fd206fb186df57568caf70f4995812f"
+    },
+    {
+      "id": "harbor_cat_02",
+      "name": "Midnight Blep",
+      "asset": "avatar-harbor_cat_02",
+      "source": "public/avatars/harbor_cat_02.webp",
+      "sourceSha256": "baa409aae7593137f18bf92e2bce846230a7f2d8cfb1a8389a759e97977766b8",
+      "decodedRgbaSha256": "c729a2f58bf5999390d0e9db86de6235c0cc0ddc8931e55fc4d3cba023d79e6e"
+    },
+    {
+      "id": "harbor_cat_03",
+      "name": "Cloud Grump",
+      "asset": "avatar-harbor_cat_03",
+      "source": "public/avatars/harbor_cat_03.webp",
+      "sourceSha256": "57f7abffb3c82cb2e4411a565395e7955ca34818b6fa53e5690f16ae1f8ce7f4",
+      "decodedRgbaSha256": "79e93f1ce2d20800ee74b1e36bd029a7650de8e72b8918c51b4e0982be8087b4"
+    },
+    {
+      "id": "harbor_cat_04",
+      "name": "Tiny Headset",
+      "asset": "avatar-harbor_cat_04",
+      "source": "public/avatars/harbor_cat_04.webp",
+      "sourceSha256": "a42a0f28a436b0e8d992de0c653a65d4a2726c334e710ac465ba94eb2fcb6f34",
+      "decodedRgbaSha256": "93c0ed03d61d1e5c92e158f7fe522ea35dd6a30310cd3f791db912c4e861023e"
+    }
+  ]
+}

@@ -26,7 +26,7 @@ struct Poster: View {
                     if (media.ratingSource == "TMDB" ? InterfacePreferences.shared.showTmdbBadge : InterfacePreferences.shared.showImdbBadge), let rating = media.imdbRating { HStack(spacing: 3) { Text(media.ratingSource ?? "IMDb").font(.system(size: 7, weight: .black)).foregroundStyle(.black).padding(2).background(media.ratingSource == "TMDB" ? Color.mint : .yellow, in: .rect(cornerRadius: 2)); Text(rating).font(.system(size: 9, weight: .semibold)) }.padding(4).background(.black.opacity(0.8), in: .capsule).padding(5) }
                 }
             Text(media.name).font(.caption.weight(.medium)).lineLimit(2).frame(width: width, alignment: .leading)
-        }.foregroundStyle(.primary)
+        }.foregroundStyle(.primary).contentShape(Rectangle())
     }
 }
 
@@ -46,9 +46,13 @@ struct CatalogRails: View {
                     ScrollView(.horizontal) {
                         LazyHStack(alignment: .top, spacing: 12) {
                             ForEach(row.metas, id: \.identity) { media in
-                                NavigationLink(value: media) { Poster(media: media) }.buttonStyle(.plain)
-                                    .accessibilityLabel(media.name)
-                                    .accessibilityIdentifier(media.type == "movie" ? "catalog-movie" : "catalog-media")
+                                if let app {
+                                    NavigationLink { DetailView(media: media, app: app) } label: { Poster(media: media) }
+                                        .buttonStyle(.plain).accessibilityLabel(media.name)
+                                        .accessibilityIdentifier(media.type == "movie" ? "catalog-movie" : "catalog-media")
+                                } else {
+                                    NavigationLink(value: media) { Poster(media: media) }.buttonStyle(.plain).accessibilityLabel(media.name)
+                                }
                             }
                         }.padding(.horizontal)
                     }.scrollIndicators(.hidden)

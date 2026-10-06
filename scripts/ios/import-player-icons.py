@@ -28,7 +28,7 @@ def image(name, data, extension, template):
     (target / "Contents.json").write_bytes((json.dumps(contents, indent=2) + "\n").encode("utf-8"))
 
 
-names = "back audio subtitle aspect speed play-pause--paused play-pause--playing seek-back seek-forward prev-episode next-episode".split()
+names = "back audio subtitle aspect speed volume volume--mute play-pause--paused play-pause--playing seek-back seek-forward prev-episode next-episode".split()
 for name in names:
     relative = f"public/player-icons/{name}.svg"
     data = (reference / relative).read_bytes()
@@ -86,4 +86,4 @@ for relative in ["src/lib/subtitles/track-label.ts", "src/components/player/subt
 for relative in ["src/views/player/hooks/use-auto-next-episode.ts", "src/views/player/hooks/use-started-near-end.ts", "src/views/player/hooks/use-episode-navigation.ts", "src/views/player/skip-pill-container.tsx", "src/lib/series-episodes.ts"]:
     provenance["files"][relative] = hashlib.sha256((reference / relative).read_bytes()).hexdigest()
 provenance_path.write_bytes((json.dumps(provenance, indent=2) + "\n").encode("utf-8"))
-print("Preserved 28 original player assets and two original-arrow adaptations for custom intervals")
+print("Preserved 30 original player assets and two original-arrow adaptations for custom intervals")

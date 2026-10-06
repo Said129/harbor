@@ -18,8 +18,8 @@ final class DetailModel {
     var lastPlayedAddonID: String?
     var lastPlayedBingeGroup: String?
     var continuationOffer: StreamOffer? {
-        offers.first(where: { $0.addonID == lastPlayedAddonID && lastPlayedBingeGroup != nil && $0.bingeGroup == lastPlayedBingeGroup }) ??
-            offers.first(where: { $0.addonID != nil && $0.addonID == lastPlayedAddonID }) ?? offers.first
+        StreamPreferences.shared.preferred(offers.filter { $0.addonID == lastPlayedAddonID && lastPlayedBingeGroup != nil && $0.bingeGroup == lastPlayedBingeGroup }) ??
+            StreamPreferences.shared.preferred(offers.filter { $0.addonID != nil && $0.addonID == lastPlayedAddonID }) ?? StreamPreferences.shared.preferred(offers)
     }
     private let service: HarborService
     private var streamRequest = UUID()
@@ -58,9 +58,13 @@ final class DetailModel {
             let result = try await service.streams(media, videoID: videoID, addons: addons, season: episode?.season, episode: episode?.episode)
             try Task.checkCancellation()
             guard streamRequest == request else { return }
-            (offers, warnings) = result
+            offers = StreamPreferences.shared.filter(result.0)
+            warnings = result.1
             Diagnostics.shared.record(.streamsLoaded, count: offers.count)
-            if offers.isEmpty { throw HarborError(code: warnings.first ?? "no-streams") }
+            if offers.isEmpty {
+                if !result.0.isEmpty { self.error = "Ninguna fuente cumple tus filtros de calidad. Puedes cambiarlos en Ajustes → Reproducción." }
+                else { throw HarborError(code: warnings.first ?? "no-streams") }
+            }
         } catch is CancellationError { return }
         catch { if streamRequest == request { self.error = safeMessage(error) } }
     }

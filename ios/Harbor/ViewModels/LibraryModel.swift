@@ -28,7 +28,9 @@ final class LibraryModel {
     func selectedItems(query: String) -> [LibraryRecord] {
         let selected: [LibraryRecord]
         switch presentation.display.filter {
+        case .all: selected = items.filter { $0.bookmarked || $0.continuing || $0.watched }
         case .saved: selected = items.filter(\.bookmarked)
+        case .watchlist: selected = items.filter { $0.bookmarked && !$0.watched }
         case .watched: selected = items.filter(\.watched)
         case .continuing: selected = continuing
         }

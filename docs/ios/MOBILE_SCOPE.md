@@ -35,3 +35,21 @@ Hacer comprobaciones proporcionadas a cada cambio: implementar, verificar el rec
 El inventario completo de Desktop permanece como referencia y conserva sus estados reales. Sus 859 entradas no son una lista obligatoria de entrega ni el denominador del nuevo porcentaje de avance. Medir el progreso del objetivo móvil por los recorridos anteriores y su evidencia, sin convertir opciones excluidas en funciones terminadas.
 
 Mantener la IPA anterior hasta que una nueva pase sus comprobaciones. Continuar sin contratar servicios, planes o runners de pago ni alterar facturación. El cambio de alcance no declara terminado el trabajo.
+
+## Referencias y requisitos añadidos el 6 de octubre
+
+La petición posterior conserva el alcance móvil esencial y exige máxima fidelidad en las pantallas elegidas. Referencias: las capturas Desktop de `2026.10.06-20.25` a `20.45`, las cuatro de `20.54` y `20.57_1`, en la carpeta Radeon ReLive del usuario. La IPA 24 no cumple todavía esa fidelidad; la 29 entregada contiene mejoras funcionales anteriores, no estos cambios nuevos.
+
+- Perfil/cuenta: estructura Harbor, avatar original/foto/nombre/color, con controles reales y datos aislados por cuenta.
+- Catálogos: búsqueda, filtros de tipo y addon, agrupación por proveedor, carteles y personalización. Las categorías directas no repiten el título bajo la cabecera Harbor.
+- Fichas de películas/series/anime: hero/logo/datos/acciones, sinopsis, episodios, reparto, información y recomendaciones reales cuando las fuentes las proporcionan. No inventar datos ni mostrar acciones sin implementación.
+- Calendario: cabecera, mes/anterior/siguiente/Hoy, celdas y eventos, inicio de semana y tamaño; fuentes adicionales sólo con datos reales.
+- Manga: hero, biblioteca, búsqueda y filtros de extensiones/idiomas, manteniendo Suwayomi y archivos locales.
+- Biblioteca: reproducir la cabecera y pestañas, contadores, búsqueda, filtros, orden y agrupación por fechas de la captura `2026.10.06-21.06.png`, con títulos y progreso reales.
+- Corregir el fallo físico comunicado: los carteles de búsqueda y el resto de listados deben abrir su ficha al tocar la imagen.
+- Continuar viendo y posición PC/iPhone usando la misma cuenta: leer/escribir progreso real y refrescar al volver al primer plano, sin mezclar cuentas.
+- Reproducción: siguiente episodio, fuente automática según calidad/filtros configurados, idiomas de audio/subtítulos por prioridad, segunda pista, exclusión CAM/TS y controles/paneles Harbor. Añadir pellizco para adaptar/llenar; conservar el ajuste manual de zoom.
+- Campañas: actualización de contenido con datos oficiales compatibles y respaldo válido. Una actualización de código de la IPA firmada requiere reinstalación/firma; no prometer instalación silenciosa.
+- Submanhwa: acceso a la cuenta del sitio, lectura y sección Gacha/Mudae desde Harbor. Sesión del sitio persistente y aislada por cuenta; no ejecutar giros, compras o mensajes en nombre del usuario.
+
+Registrar implementación y evidencia por recorrido; esta lista nueva no declara terminadas las funciones existentes.

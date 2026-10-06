@@ -44,6 +44,7 @@ final class LiveNavigationTests: XCTestCase {
         XCTAssertTrue(app.textFields["account-email"].waitForExistence(timeout: 5))
         XCTAssertTrue(app.buttons["account-browser-login"].exists)
         capture(app, "account-native-login")
+        XCTAssertTrue(app.textFields["profile-name"].exists, "The account screen must expose the original profile editor")
         app.navigationBars.buttons["Cerrar"].tap()
         // SwiftUI exposes the identified accessibility container as Other,
         // with the actual NavigationLink button inside it.
@@ -62,6 +63,7 @@ final class LiveNavigationTests: XCTestCase {
         navigate(app, "catalogs")
         let catalog = app.buttons.matching(identifier: "catalog-browser-link").firstMatch
         XCTAssertTrue(catalog.waitForExistence(timeout: 5))
+        capture(app, "native-catalogs-original-layout")
         catalog.tap()
         XCTAssertTrue(app.buttons.matching(identifier: "catalog-browser-media").firstMatch.waitForExistence(timeout: 20))
         capture(app, "native-catalog-browser")
@@ -100,10 +102,23 @@ final class LiveNavigationTests: XCTestCase {
         let result = app.buttons.matching(NSPredicate(format: "identifier == 'catalog-movie' AND label == 'Interstellar'")).firstMatch
         XCTAssertTrue(result.waitForExistence(timeout: 30), "Search must return real addon results")
         capture(app, "search-real-results")
-        result.tap()
+        result.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.25)).tap()
         XCTAssertTrue(app.staticTexts["detail-title"].waitForExistence(timeout: 10))
         XCTAssertTrue(app.buttons["detail-streams"].waitForExistence(timeout: 10))
         capture(app, "real-detail")
+        app.buttons["detail-bookmark"].tap()
+        let saved = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == true AND label == 'En mi lista'"), object: app.buttons["detail-bookmark"])
+        XCTAssertEqual(XCTWaiter.wait(for: [saved], timeout: 10), .completed)
+        navigate(app, "library")
+        let savedMovie = app.buttons.matching(NSPredicate(format: "identifier == 'library-media' AND label == 'Interstellar'")).firstMatch
+        XCTAssertTrue(savedMovie.waitForExistence(timeout: 10), "Saving from the real detail must populate the actual library")
+        capture(app, "native-library-original-layout")
+        savedMovie.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.25)).tap()
+        XCTAssertTrue(app.staticTexts["detail-title"].waitForExistence(timeout: 10), "The image area of a library poster must open its detail")
+        navigate(app, "calendar")
+        capture(app, "native-calendar-original-layout")
+        navigate(app, "manga")
+        capture(app, "native-manga-original-layout")
 
         navigate(app, "addons")
         let field = app.secureTextFields["addon-manifest-url"]

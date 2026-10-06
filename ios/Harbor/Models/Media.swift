@@ -20,6 +20,7 @@ struct Media: Codable, Identifiable, Hashable, Sendable {
     var genres: [String]?
     var videos: [Episode]?
     var behaviorHints: BehaviorHints?
+    var details: MediaDetails?
     struct BehaviorHints: Codable, Hashable, Sendable { var defaultVideoId: String? }
     var identity: String { "\(type):\(id)" }
     var fallbackPoster: String? { imdbArtwork("poster") }
@@ -61,6 +62,39 @@ struct Media: Codable, Identifiable, Hashable, Sendable {
         }
         return media
     }
+}
+
+struct MediaDetails: Codable, Hashable, Sendable {
+    struct Credit: Codable, Hashable, Identifiable, Sendable {
+        let id: Int
+        let name: String
+        let role: String
+        var photo: String?
+    }
+    struct Trailer: Codable, Hashable, Identifiable, Sendable {
+        let id: String
+        let title: String
+        let url: String
+        let thumbnail: String?
+    }
+    var tagline: String?
+    var status: String?
+    var language: String?
+    var countries: [String] = []
+    var studios: [String] = []
+    var budget: Int64?
+    var revenue: Int64?
+    var votes: Int?
+    var cast: [Credit] = []
+    var crew: [Credit] = []
+    var recommendations: [Media] = []
+    var similar: [Media] = []
+    var trailers: [Trailer] = []
+    var backdrops: [String] = []
+    var posters: [String] = []
+    var logos: [String] = []
+    var collectionName: String?
+    var collection: [Media] = []
 }
 
 extension JSONValue {

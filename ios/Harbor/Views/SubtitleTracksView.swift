@@ -3,6 +3,7 @@ import UniformTypeIdentifiers
 
 struct SubtitleTracksView: View {
     let state: PlayerState
+    var panel = false
     @State private var language: String?
     @State private var source = "all"
     @State private var hideHI = false
@@ -35,7 +36,7 @@ struct SubtitleTracksView: View {
     }
     private var disabled: Bool { !state.loaded || state.subtitleChanging }
 
-    var body: some View {
+    private var sections: some View {
         Group {
             Section("Idiomas y fuentes") {
                 Picker("Idioma", selection: Binding(get: { selectedLanguage }, set: { language = $0 })) {
@@ -83,6 +84,11 @@ struct SubtitleTracksView: View {
                 if let message = fileError ?? state.subtitleIssue { Text(message).foregroundStyle(.secondary) }
             } footer: { Text("Archivos .srt, .ass, .ssa, .vtt o .sub, hasta 8 MB. El original se conserva en Archivos.") }
         }
+    }
+    var body: some View {
+        Group {
+            if panel { customPanel } else { sections }
+        }
         .fileImporter(isPresented: $chooseFile, allowedContentTypes: [.plainText, .data], allowsMultipleSelection: false) { result in
             switch result {
             case .success(let urls): if let url = urls.first { state.controller?.importLocalSubtitle(url) }
@@ -91,6 +97,48 @@ struct SubtitleTracksView: View {
         }
         .onChange(of: groups.map(\.key)) { _, keys in if let language, language != "all", !keys.contains(language) { self.language = nil } }
         .onChange(of: state.subtitleImportMessage) { _, message in if message != nil { language = "all"; source = "all" } }
+    }
+    private var customPanel: some View {
+        ScrollView {
+            VStack(alignment: .leading, spacing: 16) {
+                HStack {
+                    HarborPill(title: state.primarySubtitle == nil ? "Desactivados" : "Activados", selected: state.primarySubtitle != nil) {
+                        if state.primarySubtitle != nil { state.controller?.selectSubtitle("no") }
+                        else if let first = visible.first ?? tracks.first { state.controller?.selectSubtitle(String(first.id)) }
+                    }.disabled(disabled)
+                    Spacer()
+                    NavigationLink { PlayerSettingsView(page: .subtitles) } label: { Image("ui-customize-subtitles").resizable().scaledToFit().frame(width: 23, height: 23).frame(width: 44, height: 44) }.accessibilityLabel("Preferencias de subtítulos")
+                }
+                ScrollView(.horizontal) { HStack(spacing: 6) {
+                    HarborPill(title: "Todos  \(tracks.count)", selected: source == "all") { source = "all" }
+                    HarborPill(title: "Integrados  \(tracks.filter { !$0.external }.count)", selected: source == "embedded") { source = "embedded" }
+                    HarborPill(title: "Externos  \(tracks.filter(\.external).count)", selected: source == "external") { source = "external" }
+                    HarborPill(title: "HI / SDH", selected: !hideHI) { hideHI.toggle() }
+                    HarborPill(title: "Forzados", selected: forcedOnly) { forcedOnly.toggle() }
+                } }.scrollIndicators(.hidden)
+                Text("IDIOMAS").font(.system(size: 9, weight: .medium)).tracking(2).foregroundStyle(.secondary)
+                ScrollView(.horizontal) { HStack(spacing: 6) {
+                    HarborPill(title: "Todos  \(tracks.count)", selected: selectedLanguage == "all") { language = "all" }
+                    ForEach(groups, id: \.key) { group in HarborPill(title: "\(group.title)  \(group.count)", selected: selectedLanguage == group.key) { language = group.key } }
+                } }.scrollIndicators(.hidden)
+                if let primary = state.primarySubtitle, !visible.contains(where: { $0.id == primary.id }) { row(primary, selected: true).padding(12).background(HarborTheme.surface, in: .rect(cornerRadius: 10)); Text("La pista seleccionada no coincide con los filtros.").font(.caption).foregroundStyle(.secondary) }
+                if tracks.isEmpty { Text("No hay pistas de subtítulos disponibles.").foregroundStyle(.secondary) }
+                else if visible.isEmpty { Text("Ninguna pista coincide con los filtros.").foregroundStyle(.secondary) }
+                ForEach(visible) { track in
+                    Button { state.controller?.selectSubtitle(String(track.id)) } label: { row(track, selected: track.mainSelection == 0).padding(12).background(track.mainSelection == 0 ? HarborTheme.surface : HarborTheme.surface.opacity(0.35), in: .rect(cornerRadius: 10)) }.buttonStyle(.plain).disabled(disabled)
+                }
+                DisclosureGroup("Segunda pista") {
+                    VStack(alignment: .leading, spacing: 10) {
+                        Button("Desactivar segunda pista") { state.controller?.selectSubtitle("no", secondary: true) }.disabled(disabled || state.secondarySubtitle == nil)
+                        ForEach(visible.filter { !$0.isImageSubtitle && $0.mainSelection != 0 }) { track in Button { state.controller?.selectSubtitle(String(track.id), secondary: true) } label: { row(track, selected: track.mainSelection == 1).padding(10).background(HarborTheme.surface.opacity(0.4), in: .rect(cornerRadius: 9)) }.buttonStyle(.plain).disabled(disabled) }
+                    }.padding(.top, 10)
+                }
+                Divider()
+                Button { fileError = nil; chooseFile = true } label: { Label("Cargar desde Archivos", image: "music-folder-open").frame(minHeight: 44) }.disabled(disabled).accessibilityIdentifier("subtitle-import-file")
+                if let message = state.subtitleImportMessage { Text(message).font(.caption).foregroundStyle(HarborTheme.accent) }
+                if let message = fileError ?? state.subtitleIssue { Text(message).font(.caption).foregroundStyle(.secondary) }
+            }.padding(18)
+        }.background(HarborTheme.background)
     }
 
     private func row(_ track: PlayerState.Track, selected: Bool) -> some View {

@@ -2,20 +2,59 @@ import SwiftUI
 
 struct CatalogsView: View {
     let app: AppModel
-    @State private var kind = "movie"
+    @State private var kind = "all"
+    @State private var query = ""
+    @State private var addon = ""
+    @State private var customization: PageCustomization
+    @MainActor init(app: AppModel) {
+        self.app = app
+        _customization = State(initialValue: PageCustomization(owner: app.user?.id ?? "guest", page: "catalogs"))
+    }
+    private var rows: [CatalogRow] {
+        app.rows.filter { row in
+            (kind == "all" || row.plan.kind == kind) && (addon.isEmpty || row.plan.addon.id == addon) &&
+                (query.isEmpty || (row.plan.title + " " + row.plan.addon.name).localizedCaseInsensitiveContains(query))
+        }
+    }
+    private var providers: [Addon] {
+        var seen = Set<String>()
+        return app.rows.map { $0.plan.addon }.filter { seen.insert($0.id).inserted }
+    }
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 24) {
-                Picker("Tipo de contenido", selection: $kind) {
-                    Label("Películas", image: "nav-movies").tag("movie")
-                    Label("Series", image: "nav-shows").tag("series")
-                }.pickerStyle(.segmented)
-                CatalogRails(rows: app.rows.filter { $0.plan.kind == kind }, app: app)
-                if !app.loading && app.rows.filter({ $0.plan.kind == kind }).isEmpty {
-                    Text("Tus addons no tienen catálogos de este tipo.").foregroundStyle(.secondary)
+                HarborPageHeading(title: "Catálogos", subtitle: "Todo lo que ofrecen tus addons. Explora, busca o filtra tus catálogos.").padding(.horizontal)
+                HarborSearchField(prompt: "Buscar catálogos", text: $query).padding(.horizontal)
+                ScrollView(.horizontal) {
+                    HStack(spacing: 6) {
+                        ForEach([("Todos", "all"), ("Películas", "movie"), ("Series", "series"), ("Anime", "anime")], id: \.1) { title, value in
+                            HarborPill(title: title, selected: kind == value) { kind = value }
+                        }
+                        NavigationLink { LibraryView(app: app) } label: { Text("Biblioteca").font(.caption.weight(.semibold)).padding(.horizontal, 14).frame(height: 38).background(HarborTheme.surface, in: .capsule) }.buttonStyle(.plain)
+                        Menu {
+                            Button("Todos los addons") { addon = "" }
+                            ForEach(providers) { provider in Button(provider.name) { addon = provider.id } }
+                        } label: { Label(providers.first { $0.id == addon }?.name ?? "Todos los addons", image: "nav-addons").font(.caption).padding(.horizontal, 14).frame(height: 38).background(HarborTheme.surface, in: .capsule) }
+                    }.padding(.horizontal)
+                }.scrollIndicators(.hidden)
+                PageCustomizeButton(rails: app.rows.map(PageRail.catalog), customization: customization)
+                ForEach(providers.filter { provider in rows.contains { $0.plan.addon.id == provider.id } }) { provider in
+                    VStack(alignment: .leading, spacing: 18) {
+                        HStack(spacing: 9) {
+                            Artwork(url: provider.manifest["logo"].string, maxPixels: 96, failureIcon: "nav-addons").frame(width: 24, height: 24).clipShape(.rect(cornerRadius: 6))
+                            Text(provider.name).font(.subheadline.weight(.semibold))
+                            Text("\(rows.filter { $0.plan.addon.id == provider.id }.count)").font(.caption2).foregroundStyle(.secondary)
+                        }.padding(.horizontal)
+                        CustomizedRails(rails: rows.filter { $0.plan.addon.id == provider.id }.map(PageRail.catalog), app: app, customization: customization)
+                    }
                 }
-            }.padding(.vertical)
-        }.background(HarborTheme.background).navigationTitle("Catálogos").overlay { if app.loading && app.rows.isEmpty { ProgressView() } }
+                if !app.loading && rows.isEmpty {
+                    Text(query.isEmpty ? "Tus addons no tienen catálogos de este tipo." : "No hay catálogos que coincidan con la búsqueda.").foregroundStyle(.secondary).padding(.horizontal)
+                }
+            }.padding(.vertical, 20)
+        }.background(HarborTheme.background).navigationTitle("").toolbar(.hidden, for: .navigationBar)
+            .overlay { if app.loading && app.rows.isEmpty { ProgressView() } }
+            .refreshable { await app.loadHome() }
     }
 }
 
@@ -53,7 +92,7 @@ struct CatalogBrowserView: View {
                 }
                 LazyVGrid(columns: columns, spacing: 20) {
                     ForEach(items, id: \.identity) { media in
-                        NavigationLink(value: media) { Poster(media: media, width: nil) }.buttonStyle(.plain).accessibilityLabel(media.name).accessibilityIdentifier("catalog-browser-media")
+                        NavigationLink { DetailView(media: media, app: app) } label: { Poster(media: media, width: nil) }.buttonStyle(.plain).accessibilityLabel(media.name).accessibilityIdentifier("catalog-browser-media")
                     }
                 }.padding(.horizontal)
                 if loading { ProgressView().frame(maxWidth: .infinity) }
@@ -62,7 +101,7 @@ struct CatalogBrowserView: View {
                 }
                 if !loading && items.isEmpty && error == nil { ContentUnavailableView("Sin resultados", systemImage: "film") }
             }
-        }.background(HarborTheme.background).navigationTitle(initial.plan.title).navigationBarTitleDisplayMode(.inline)
+        }.background(HarborTheme.background).navigationTitle(initial.plan.title).navigationBarTitleDisplayMode(.inline).toolbar(.visible, for: .navigationBar)
             .task(id: genre) { if items.isEmpty || genre != (initial.selectedGenre ?? "") || generation > 0 { await load(reset: true) } }
     }
 

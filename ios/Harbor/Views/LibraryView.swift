@@ -5,48 +5,93 @@ struct LibraryView: View {
     @State private var query = ""
     @State private var showHidden = false
     private var records: [LibraryRecord] { app.library.selectedItems(query: query) }
+    private var display: LibraryDisplay { app.library.presentation.display }
+    private var groups: [(title: String, items: [LibraryRecord])] {
+        guard display.grouped else { return [("", records)] }
+        let calendar = Calendar.current, now = Date()
+        let week = calendar.dateInterval(of: .weekOfYear, for: now)
+        let month = calendar.dateInterval(of: .month, for: now)
+        var buckets = [[LibraryRecord](), [LibraryRecord](), [LibraryRecord](), [LibraryRecord]()]
+        for record in records {
+            let timestamp = display.filter == .watched || display.filter == .continuing ? record.activityTimestamp : LibraryRecord.timestamp(record.raw["_ctime"].string) ?? LibraryRecord.timestamp(record.modified) ?? 0
+            let date = Date(timeIntervalSince1970: timestamp / 1_000)
+            let index = timestamp == 0 ? 3 : week?.contains(date) == true ? 0 : month?.contains(date) == true ? 1 : 2
+            buckets[index].append(record)
+        }
+        return zip(["Esta semana", "Este mes", "Anteriores", "Sin fecha"], buckets).filter { !$0.1.isEmpty }.map { (title: $0.0, items: $0.1) }
+    }
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
+                HarborPageHeading(title: "Tu colección.", eyebrow: "Mi biblioteca", subtitle: "Tu biblioteca reúne los títulos guardados y el progreso de Stremio y de este iPhone. Mi lista muestra lo que aún no has visto; Historial, lo que has visto.")
                 filters
                 LibraryPresentationFeedback(library: app.library)
                 if app.library.loading { ProgressView().frame(maxWidth: .infinity) }
                 if let error = app.library.error { VStack(alignment: .leading) { Text(error).font(.caption).foregroundStyle(.orange); Button("Reintentar") { Task { await app.library.sync() } } } }
-                LazyVGrid(columns: [GridItem(.adaptive(minimum: 106), spacing: 12, alignment: .top)], spacing: 22) {
-                    ForEach(records) { record in
-                        if let media = record.media {
-                            NavigationLink(value: media) {
-                                VStack(alignment: .leading, spacing: 6) {
-                                    Poster(media: media, width: nil)
-                                    if app.library.presentation.display.filter == .continuing { LibraryProgress(record: record) }
+                ForEach(Array(groups.enumerated()), id: \.offset) { _, group in
+                    VStack(alignment: .leading, spacing: 14) {
+                        if !group.title.isEmpty { Text("\(group.title.uppercased())  \(group.items.count)").font(.system(size: 10, weight: .semibold)).tracking(2).foregroundStyle(.secondary) }
+                        LazyVGrid(columns: [GridItem(.adaptive(minimum: 106), spacing: 12, alignment: .top)], spacing: 22) {
+                            ForEach(group.items) { record in
+                                if let media = record.media {
+                                    NavigationLink { DetailView(media: media, app: app) } label: {
+                                        VStack(alignment: .leading, spacing: 6) {
+                                            Poster(media: media, width: nil).overlay(alignment: .topLeading) {
+                                                if record.bookmarked { Image("ui-library").resizable().scaledToFit().frame(width: 12, height: 12).foregroundStyle(.black).padding(6).background(.white.opacity(0.9), in: .circle).padding(6) }
+                                            }
+                                            if display.filter == .continuing { LibraryProgress(record: record) }
+                                        }.contentShape(Rectangle())
+                                    }.buttonStyle(.plain).accessibilityLabel(media.name).accessibilityIdentifier("library-media").contextMenu { LibraryActions(app: app, record: record, media: media, owner: app.library.owner) }
                                 }
-                            }.buttonStyle(.plain).contextMenu { LibraryActions(app: app, record: record, media: media, owner: app.library.owner) }
+                            }
                         }
                     }
                 }
                 if records.isEmpty && !app.library.loading { emptyState }
                 else if !records.isEmpty { Text("\(records.count) títulos").font(.caption).foregroundStyle(.secondary) }
             }.padding()
-        }.background(HarborTheme.background).navigationTitle("Mi biblioteca").navigationBarTitleDisplayMode(.inline)
-            .searchable(text: $query, prompt: "Buscar en tu biblioteca")
+        }.background(HarborTheme.background).navigationTitle("").toolbar(.hidden, for: .navigationBar)
             .refreshable { await app.library.sync() }
             .onChange(of: app.library.owner) { _, _ in query = ""; showHidden = false }
             .sheet(isPresented: $showHidden) { HiddenContinuingView(app: app) }
     }
     private var filters: some View {
         VStack(alignment: .leading, spacing: 12) {
-            Picker("Biblioteca", selection: Binding(get: { app.library.presentation.display.filter }, set: { value in app.library.changeDisplay { $0.filter = value } })) {
-                ForEach(LibraryFilter.allCases) { Text($0.title).tag($0) }
-            }.pickerStyle(.segmented).accessibilityIdentifier("library-filter")
-            HStack {
-                Picker("Tipo", selection: Binding(get: { app.library.presentation.display.kind }, set: { value in app.library.changeDisplay { $0.kind = value } })) {
-                    ForEach(LibraryKind.allCases) { Text($0.title).tag($0) }
-                }.pickerStyle(.menu).accessibilityIdentifier("library-kind")
-                Spacer()
-                Picker("Orden", selection: Binding(get: { app.library.presentation.display.sort }, set: { value in app.library.changeDisplay { $0.sort = value } })) {
-                    ForEach(LibrarySort.allCases) { Text($0.title).tag($0) }
-                }.pickerStyle(.menu).accessibilityIdentifier("library-sort")
-            }
+            ScrollView(.horizontal) {
+                HStack(spacing: 18) {
+                    ForEach(LibraryFilter.allCases) { filter in
+                        Button { app.library.changeDisplay { $0.filter = filter } } label: {
+                            HStack(spacing: 7) {
+                                Image(filter == .watched ? "nav-calendar" : filter == .continuing ? "ui-play-filled" : filter == .all ? "nav-library" : "ui-library").resizable().scaledToFit().frame(width: 16, height: 16)
+                                Text(filter.title).font(HarborTheme.font(13, weight: .semibold))
+                            }.frame(minHeight: 44).foregroundStyle(display.filter == filter ? HarborTheme.ink : HarborTheme.ink.opacity(0.5))
+                                .overlay(alignment: .bottom) { if display.filter == filter { Rectangle().fill(HarborTheme.ink).frame(height: 2) } }
+                        }.buttonStyle(.plain).accessibilityAddTraits(display.filter == filter ? [.isSelected] : [])
+                    }
+                    NavigationLink { DownloadsView(app: app).toolbar(.visible, for: .navigationBar) } label: { Label("Local", image: "nav-download").font(.subheadline).foregroundStyle(.secondary).frame(minHeight: 44) }
+                }
+            }.scrollIndicators(.hidden).accessibilityIdentifier("library-filter")
+            Divider()
+            ScrollView(.horizontal) {
+                HStack(spacing: 5) {
+                    ForEach(LibraryKind.allCases) { kind in
+                        let count = app.library.items.filter { record in
+                            let matches = display.filter == .all ? record.bookmarked || record.watched || record.continuing : display.filter == .saved ? record.bookmarked : display.filter == .watchlist ? record.bookmarked && !record.watched : display.filter == .watched ? record.watched : record.continuing && app.library.presentation.dismissed[record.id]?.hides(record) != true
+                            return matches && (kind == .all || record.media?.type == kind.rawValue)
+                        }.count
+                        HarborPill(title: "\(kind.title)  \(count)", selected: display.kind == kind) { app.library.changeDisplay { $0.kind = kind } }
+                    }
+                }
+            }.scrollIndicators(.hidden).accessibilityIdentifier("library-kind")
+            HarborSearchField(prompt: "Buscar título…", text: $query)
+            ScrollView(.horizontal) {
+                HStack(spacing: 5) {
+                    ForEach(LibrarySort.allCases) { sort in HarborPill(title: sort.title, selected: display.sort == sort) { app.library.changeDisplay { $0.sort = sort } } }
+                    Divider().frame(height: 24).padding(.horizontal, 5)
+                    HarborPill(title: "Agrupada", selected: display.grouped) { app.library.changeDisplay { $0.grouped = true } }
+                    HarborPill(title: "Una lista", selected: !display.grouped) { app.library.changeDisplay { $0.grouped = false } }
+                }
+            }.scrollIndicators(.hidden).accessibilityIdentifier("library-sort")
             if !app.library.hiddenContinuing.isEmpty {
                 Button("Títulos ocultos de Continuar viendo (\(app.library.hiddenContinuing.count))") { showHidden = true }.font(.caption)
             }
@@ -69,7 +114,7 @@ struct ContinueWatching: View {
                     LazyHStack(alignment: .top, spacing: 12) {
                         ForEach(app.library.continuing) { item in
                             if let media = item.media {
-                                NavigationLink(value: media) {
+                                NavigationLink { DetailView(media: media, app: app, playImmediately: true) } label: {
                                     VStack(alignment: .leading, spacing: 7) {
                                         Artwork(url: media.background, fallback: media.poster, fallbacks: [media.fallbackBackground, media.fallbackPoster].compactMap { $0 }, maxPixels: 650).frame(width: 230, height: 130).clipShape(.rect(cornerRadius: 10))
                                         LibraryProgress(record: item)
