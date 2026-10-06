@@ -6,18 +6,17 @@ struct MusicView: View {
     let app: AppModel
     @State private var library: MusicLibrary
     @State private var playlists: MusicPlaylistStore
-    @State private var query = ""
+    @State private var filters = MusicFilters(sort: .title)
     @State private var category = "Canciones"
     @State private var importFiles = false
+    @State private var selectFolder = false
     @MainActor init(app: AppModel) {
         self.app = app
         _library = State(initialValue: MusicLibrary(owner: app.user?.id ?? "guest"))
         _playlists = State(initialValue: MusicPlaylistStore(owner: app.user?.id ?? "guest"))
     }
-    private var records: [MusicRecord] {
-        library.records.filter { query.isEmpty || $0.local.track.title.localizedCaseInsensitiveContains(query) || $0.local.track.artist.localizedCaseInsensitiveContains(query) || ($0.local.track.album?.localizedCaseInsensitiveContains(query) ?? false) }
-            .sorted { $0.local.track.title.localizedStandardCompare($1.local.track.title) == .orderedAscending }
-    }
+    private var query: String { filters.query }
+    private var records: [MusicRecord] { filters.apply(library.records) }
     private var groups: [(String, String, [MusicRecord])] {
         let grouped = Dictionary(grouping: records) { record in
             category == "Álbumes" ? record.local.albumKey ?? record.id : record.local.artistKey
@@ -36,46 +35,75 @@ struct MusicView: View {
     var body: some View {
         VStack(spacing: 12) {
             Picker("Biblioteca", selection: $category) { Text("Canciones").tag("Canciones"); Text("Álbumes").tag("Álbumes"); Text("Artistas").tag("Artistas"); Text("Listas").tag("Listas") }.pickerStyle(.segmented).padding(.horizontal)
+            if category == "Canciones", !library.records.isEmpty { MusicFilterTools(filters: $filters, count: records.count).padding(.horizontal) }
             if let error = library.error { Text(error).font(.caption).foregroundStyle(.orange).padding(.horizontal) }
             if let error = playlists.error { Text(error).font(.caption).foregroundStyle(.orange).padding(.horizontal) }
-            if library.importing { ProgressView("Importando música…") }
-            if category == "Listas" { MusicPlaylistsView(library: library, store: playlists, query: query) }
-            else if library.records.isEmpty {
-                ContentUnavailableView { Label("Tu música", image: "nav-music") } description: { Text("Importa archivos de audio desde Archivos para escucharlos en Harbor.") } actions: { Button("Importar archivos") { importFiles = true }.disabled(!library.ready || library.importing) }
-            } else if records.isEmpty { ContentUnavailableView.search(text: query) }
-            else if category == "Canciones" {
-                List {
-                    ForEach(records) { record in
-                        MusicTrackRow(record: record, owner: library.owner) { MusicPlayback.shared.play(record, queue: records, owner: library.owner) }
-                            .contextMenu { MusicPlaylistChoices(record: record, store: playlists); Button("Reproducir después") { MusicPlayback.shared.enqueue(record, owner: library.owner, next: true) }; Button("Añadir a la cola") { MusicPlayback.shared.enqueue(record, owner: library.owner) } }
-                            .swipeActions { Button("Eliminar", role: .destructive) { remove(record) } }
-                    }
-                }.listStyle(.plain).scrollContentBackground(.hidden)
-            } else {
-                List {
-                    ForEach(groups, id: \.0) { group in
-                        NavigationLink {
-                            MusicGroupView(title: group.1, records: group.2, owner: library.owner, playlists: playlists)
-                        } label: {
-                            HStack(spacing: 12) {
-                                MusicCover(record: group.2.first, owner: library.owner).frame(width: 52, height: 52)
-                                VStack(alignment: .leading, spacing: 4) { Text(group.1); Text("\(group.2.count) canciones").font(.caption).foregroundStyle(.secondary) }
-                            }
-                        }
-                    }
-                }.listStyle(.plain).scrollContentBackground(.hidden)
-            }
+            importStatus
+            libraryContent
         }.background(HarborTheme.background).navigationTitle("Música").navigationBarTitleDisplayMode(.inline)
-            .searchable(text: $query, prompt: "Canciones, álbumes, artistas o listas")
-            .toolbar { ToolbarItem(placement: .topBarTrailing) { Button { importFiles = true } label: { MusicGlyph("plus") }.accessibilityLabel("Importar música").disabled(!library.ready || library.importing) } }
-            .fileImporter(isPresented: $importFiles, allowedContentTypes: [.audio, .data], allowsMultipleSelection: true) { result in
+            .searchable(text: $filters.query, prompt: "Canciones, álbumes, artistas o listas")
+            .onChange(of: filters.query) { _, value in if value.count > 200 { filters.query = String(value.prefix(200)) } }
+            .toolbar { ToolbarItem(placement: .topBarTrailing) {
+                Menu {
+                    Button { openImport(folder: false) } label: { Label("Importar archivos", image: "music-plus") }
+                    Button { openImport(folder: true) } label: { Label("Importar carpeta", image: "music-folder-open") }
+                } label: { MusicGlyph("plus").frame(width: 44, height: 44) }.accessibilityLabel("Importar música").disabled(!library.ready || library.importing)
+            } }
+            .fileImporter(isPresented: $importFiles, allowedContentTypes: selectFolder ? [.folder] : [.audio, .data], allowsMultipleSelection: !selectFolder) { result in
                 switch result {
-                case .success(let urls): Task { await library.importFiles(urls) }
+                case .success(let urls):
+                    if selectFolder { if let folder = urls.first { library.importFolder(folder) } }
+                    else { library.importFiles(urls) }
                 case .failure: library.error = "No se pudo abrir la selección de archivos."
                 }
             }
+            .onDisappear { if library.owner != (app.user?.id ?? "guest") { library.cancelImport() } }
             .accessibilityIdentifier("music-library")
     }
+    @ViewBuilder private var importStatus: some View {
+        if library.importing {
+            VStack(spacing: 6) {
+                if library.scanning { ProgressView("Buscando música en la carpeta…") }
+                else { ProgressView("Importando \(library.importCompleted) de \(library.importTotal)", value: Double(library.importCompleted), total: Double(max(library.importTotal, 1))) }
+                Button("Cancelar importación") { library.cancelImport() }.font(.caption)
+            }.padding(.horizontal).accessibilityIdentifier("music-import-progress")
+        } else if let message = library.importMessage { Text(message).font(.caption).foregroundStyle(.secondary).padding(.horizontal) }
+    }
+    @ViewBuilder private var libraryContent: some View {
+        if category == "Listas" { MusicPlaylistsView(library: library, store: playlists, query: query) }
+        else if library.records.isEmpty {
+            ContentUnavailableView { Label("Tu música", image: "nav-music") } description: { Text("Importa tus canciones o una carpeta desde Archivos para escucharlas en Harbor.") } actions: {
+                Button { openImport(folder: false) } label: { Label("Importar archivos", image: "music-plus") }
+                Button { openImport(folder: true) } label: { Label("Importar carpeta", image: "music-folder-open") }
+            }.disabled(!library.ready || library.importing)
+        } else if records.isEmpty {
+            if !query.isEmpty { ContentUnavailableView.search(text: query) }
+            else { ContentUnavailableView("No hay canciones con estos filtros", image: "nav-music") }
+        }
+        else if category == "Canciones" {
+            List {
+                ForEach(records) { record in
+                    MusicTrackRow(record: record, owner: library.owner) { MusicPlayback.shared.play(record, queue: records, owner: library.owner) }
+                        .contextMenu { MusicTrackActions(record: record, owner: library.owner, playlists: playlists) }
+                        .swipeActions { Button("Eliminar", role: .destructive) { remove(record) } }
+                }
+            }.listStyle(.plain).scrollContentBackground(.hidden)
+        } else {
+            List {
+                ForEach(groups, id: \.0) { group in
+                    NavigationLink {
+                        MusicGroupView(title: group.1, records: group.2, owner: library.owner, playlists: playlists)
+                    } label: {
+                        HStack(spacing: 12) {
+                            MusicCover(record: group.2.first, owner: library.owner).frame(width: 52, height: 52)
+                            VStack(alignment: .leading, spacing: 4) { Text(group.1); Text("\(group.2.count) canciones").font(.caption).foregroundStyle(.secondary) }
+                        }
+                    }
+                }
+            }.listStyle(.plain).scrollContentBackground(.hidden)
+        }
+    }
+    private func openImport(folder: Bool) { selectFolder = folder; importFiles = true }
     private func remove(_ record: MusicRecord) {
         MusicPlayback.shared.remove(record)
         Task { await library.remove(record) }
@@ -90,8 +118,19 @@ private struct MusicGroupView: View {
     var body: some View {
         List {
             Button { if let first = records.first { MusicPlayback.shared.play(first, queue: records, owner: owner) } } label: { Label("Reproducir", image: "music-play") }
-            ForEach(records) { record in MusicTrackRow(record: record, owner: owner) { MusicPlayback.shared.play(record, queue: records, owner: owner) }.contextMenu { MusicPlaylistChoices(record: record, store: playlists); Button("Añadir a la cola") { MusicPlayback.shared.enqueue(record, owner: owner) } } }
+            ForEach(records) { record in MusicTrackRow(record: record, owner: owner) { MusicPlayback.shared.play(record, queue: records, owner: owner) }.contextMenu { MusicTrackActions(record: record, owner: owner, playlists: playlists) } }
         }.listStyle(.plain).scrollContentBackground(.hidden).background(HarborTheme.background).navigationTitle(title).navigationBarTitleDisplayMode(.inline)
+    }
+}
+struct MusicTrackActions: View {
+    let record: MusicRecord
+    let owner: String
+    var playlists: MusicPlaylistStore?
+    var body: some View {
+        if let playlists { MusicPlaylistChoices(record: record, store: playlists) }
+        Button { MusicPlayback.shared.enqueue(record, owner: owner, next: true) } label: { Label("Reproducir después", image: "music-queue-next") }
+        Button { MusicPlayback.shared.enqueue(record, owner: owner) } label: { Label("Añadir a la cola", image: "music-queue") }
+        Button { UIPasteboard.general.string = record.local.track.title + " - " + record.local.track.artist } label: { Label("Copiar título", image: "music-copy") }
     }
 }
 struct MusicCover: View {
@@ -112,18 +151,20 @@ struct MusicTrackRow: View {
     let record: MusicRecord
     let owner: String
     let play: () -> Void
+    @AppStorage("harbor.music.playlistView") private var layout = "list"
+    private var compact: Bool { layout == "compact" }
     var body: some View {
         Button(action: play) {
             HStack(spacing: 12) {
-                MusicCover(record: record, owner: owner).frame(width: 44, height: 44)
+                MusicCover(record: record, owner: owner).frame(width: compact ? 32 : 44, height: compact ? 32 : 44)
                 VStack(alignment: .leading, spacing: 4) {
-                    Text(record.local.track.title).lineLimit(1)
+                    Text(record.local.track.title).font(compact ? .subheadline : .body).lineLimit(1)
                     Text(record.local.track.artist + (record.local.track.album.map { " · " + $0 } ?? "")).font(.caption).foregroundStyle(.secondary).lineLimit(1)
                 }
                 Spacer()
                 if MusicPlayback.shared.owner == owner && MusicPlayback.shared.current?.id == record.id { MusicGlyph(MusicPlayback.shared.paused ? "pause" : "waveform").foregroundStyle(HarborTheme.accent) }
                 Text(record.local.track.durationLabel).font(.caption.monospacedDigit()).foregroundStyle(.secondary)
-            }.contentShape(.rect)
+            }.frame(minHeight: 44).contentShape(.rect)
         }.buttonStyle(.plain).accessibilityLabel(record.local.track.title + ", " + record.local.track.artist)
     }
 }

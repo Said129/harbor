@@ -11,6 +11,39 @@ final class MusicPlaybackTests: XCTestCase {
         let player = MusicPlayback.shared
         let previousVolume = player.volume
         do {
+            let folderOwner = owner + "-folder"
+            let folder = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString, isDirectory: true)
+            try FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true)
+            defer { try? FileManager.default.removeItem(at: folder) }
+            for name in ["A", "B"] {
+                let album = folder.appendingPathComponent(name, isDirectory: true)
+                try FileManager.default.createDirectory(at: album, withIntermediateDirectories: true)
+                try FileManager.default.copyItem(at: url, to: album.appendingPathComponent("owned-tone.wav"))
+            }
+            try Data("This is not audio".utf8).write(to: folder.appendingPathComponent("notes.txt"))
+            try FileManager.default.createSymbolicLink(at: folder.appendingPathComponent("outside.wav"), withDestinationURL: url)
+            let selected = try await MusicFileService.shared.scanFolder(folder)
+            XCTAssertEqual(selected.count, 2, "A folder scan includes nested audio and excludes unrelated files and links")
+            let library = MusicLibrary(owner: folderOwner)
+            defer { library.cancelImport() }
+            library.importFolder(folder)
+            let importDeadline = Date().addingTimeInterval(40)
+            while Date() < importDeadline, library.importing { try await Task.sleep(for: .milliseconds(50)) }
+            if library.importing {
+                library.cancelImport()
+                let cancelDeadline = Date().addingTimeInterval(3)
+                while Date() < cancelDeadline, library.importing { try await Task.sleep(for: .milliseconds(50)) }
+                XCTFail("The bounded folder import did not finish")
+                throw HarborError(code: "music-file")
+            }
+            XCTAssertFalse(library.importing)
+            XCTAssertNil(library.error)
+            XCTAssertEqual(library.importTotal, 2)
+            XCTAssertEqual(library.importCompleted, 2)
+            XCTAssertEqual(library.records.count, 1, "Importing the same actual audio twice preserves one owned track")
+            XCTAssertEqual(MusicLibrary(owner: folderOwner).records.map(\.id), library.records.map(\.id))
+            for copied in library.records { await library.remove(copied) }
+            try KeychainStore().remove("music-library-" + EBookShelf.hash(folderOwner))
             XCTAssertEqual(record.local.track.title, "owned-tone")
             XCTAssertEqual(record.local.track.durationSeconds, 8)
             XCTAssertEqual(record.local.track.durationLabel, "0:08")

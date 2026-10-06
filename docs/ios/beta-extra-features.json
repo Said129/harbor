@@ -161,5 +161,21 @@
       "Music playlist track ordering",
       "Music playlist deletion preserving library"
     ]
+  },
+  {
+    "source": "src-tauri/src/music/connectors/local/scan.rs",
+    "features": ["Music local folder scanning"]
+  },
+  {
+    "source": "src/lib/music/playlist-filters.ts",
+    "features": ["Music playlist search and content filters", "Music playlist listening order"]
+  },
+  {
+    "source": "src/components/music/music-playlist-toolbar.tsx",
+    "features": ["Music playlist compact view"]
+  },
+  {
+    "source": "src/components/music/music-track-menu.tsx",
+    "features": ["Music track title copying"]
   }
 ]

@@ -113,7 +113,13 @@
     "public/player-icons/seek-forward-15.png": "d8c9650d84c769c0478c7461eb7ae2ef090452abd0a79f597165e8ce3cbfac00",
     "public/player-icons/seek-forward-30.png": "e128fa567e4a5ac9e7ed9112cd43f9bb632c7838b462a5dff14903d24742d16f",
     "public/player-icons/seek-forward-60.png": "35e094ed8f956132cdd288d7d1237e38a027bada2a6cfda6ad4eb6d7c3c7697b",
-    "public/player-icons/seek-forward-90.png": "7f486c9f0b9fff9539f010311f1f82e9778e1ce507823750add50ad35e3d7101"
+    "public/player-icons/seek-forward-90.png": "7f486c9f0b9fff9539f010311f1f82e9778e1ce507823750add50ad35e3d7101",
+    "src/assets/music-icons/folder-open.svg": "91d587c38b624c7c9d82711a4c99766595f95535786657174852378b00871726",
+    "src/assets/music-icons/queue-next.svg": "7548babbb0f09fd1d2c0c19d585d0cba414df878d3bd7c1a86057fb26b1b3078",
+    "src/assets/music-icons/copy.svg": "49030feae24e565f7ec396d04416b9328ab27bf61a7addf02fd5eca932591216",
+    "src/assets/music-icons/check.svg": "c8ffeafe400a2c1c8a54d408dea8e92ca9293e5fd68f4ac5ca45924547114dd8",
+    "src/assets/music-icons/arrow-down.svg": "d6e8da1e31fa76a969554e3be7e3f7a07798615b829b38a7c7849e88096671db",
+    "src/components/music/music-filter-icon.tsx": "64e37cd438b21dd92baad3400724895c580a88acdb3b88db555447ed33de8a17"
   },
   "fonts": {
     "Fraunces": {

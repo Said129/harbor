@@ -46,6 +46,11 @@ final class MusicLibrary {
     private(set) var records: [MusicRecord] = []
     private(set) var ready = false
     private(set) var importing = false
+    private(set) var scanning = false
+    private(set) var importCompleted = 0
+    private(set) var importTotal = 0
+    private(set) var importMessage: String?
+    @ObservationIgnored private var importTask: Task<Void, Never>?
     var error: String?
     private var key: String { "music-library-" + EBookShelf.hash(owner) }
     init(owner: String) {
@@ -56,26 +61,67 @@ final class MusicLibrary {
             records = saved; ready = true
         } catch { self.error = "No se pudo recuperar tu biblioteca de Música. Los archivos se conservan." }
     }
-    func importFiles(_ urls: [URL]) async {
+    func importFiles(_ urls: [URL]) {
         guard ready, !importing else { return }
         guard urls.count <= 20 else { error = "Selecciona hasta 20 archivos por importación."; return }
-        importing = true; error = nil
-        defer { importing = false }
-        for url in urls.prefix(20) {
+        startImport(urls, folder: nil)
+    }
+    func importFolder(_ url: URL) {
+        guard ready, !importing else { return }
+        startImport([], folder: url)
+    }
+    func cancelImport() { importTask?.cancel() }
+    private func startImport(_ urls: [URL], folder: URL?) {
+        importing = true; scanning = folder != nil; error = nil; importMessage = nil
+        importCompleted = 0; importTotal = 0
+        importTask = Task { [weak self] in
+            guard let self else { return }
+            await self.performImport(urls, folder: folder)
+            self.importTask = nil
+        }
+    }
+    private func performImport(_ urls: [URL], folder: URL?) async {
+        let access = folder?.startAccessingSecurityScopedResource() ?? false
+        defer {
+            if access { folder?.stopAccessingSecurityScopedResource() }
+            importing = false; scanning = false
+        }
+        let files: [URL]
+        do {
+            if let folder { files = try await MusicFileService.shared.scanFolder(folder) }
+            else { files = urls }
+            try Task.checkCancellation()
+        } catch is CancellationError { importMessage = "Importación cancelada."; return }
+        catch { self.error = safeMessage(error); return }
+        scanning = false; importTotal = files.count
+        guard !files.isEmpty else { importMessage = "No hay archivos de audio compatibles en la selección."; return }
+        var added = 0, existing = 0, failed = 0
+        for url in files {
             do {
                 try Task.checkCancellation()
                 let imported = try await MusicFileService.shared.importFile(url, owner: owner)
+                let known = records.contains { $0.id == imported.record.id }
                 var next = records.filter { $0.id != imported.record.id }; next.append(imported.record)
                 do {
+                    try Task.checkCancellation()
+                    guard next.count <= 500 else { throw HarborError(code: "music-capacity") }
                     guard Self.valid(next) else { throw HarborError(code: "music-store") }
                     try KeychainStore().write(next, key: key); records = next
+                    if known { existing += 1 } else { added += 1 }
                 } catch {
                     if imported.createdFile { try? await MusicFileService.shared.remove(imported.record, owner: owner) }
                     throw error
                 }
-            } catch is CancellationError { return }
-            catch { self.error = safeMessage(error) }
+            } catch is CancellationError {
+                importMessage = "Importación cancelada. Se conservan las \(added) canciones añadidas."
+                return
+            } catch {
+                failed += 1; self.error = safeMessage(error)
+                if let failure = error as? HarborError, ["music-capacity", "music-store"].contains(failure.code) { break }
+            }
+            importCompleted += 1
         }
+        importMessage = "\(added) canciones añadidas · \(existing) ya estaban en tu biblioteca" + (failed > 0 ? " · \(failed) archivos no se pudieron importar" : "")
     }
     func remove(_ record: MusicRecord) async {
         guard ready, !importing else { return }

@@ -33,7 +33,7 @@ struct MusicPlaylistChoices: View {
             if store.playlists.isEmpty { Text("Crea una lista desde Biblioteca → Listas.") }
             ForEach(store.playlists) { playlist in
                 Button { store.add(record, to: playlist.id) } label: {
-                    if playlist.trackIds.contains(record.id) { Label(playlist.name, systemImage: "checkmark") }
+                    if playlist.trackIds.contains(record.id) { Label(playlist.name, image: "music-check") }
                     else { Text(playlist.name) }
                 }.disabled(playlist.trackIds.contains(record.id))
             }
@@ -47,36 +47,45 @@ private struct MusicPlaylistView: View {
     let store: MusicPlaylistStore
     @State private var renaming = false
     @State private var deleting = false
+    @State private var filters = MusicFilters()
     @Environment(\.dismiss) private var dismiss
     private var playlist: MusicPlaylist? { store.playlists.first { $0.id == id } }
     private var available: [MusicRecord] {
         let records = Dictionary(uniqueKeysWithValues: library.records.map { ($0.id, $0) })
-        return playlist?.trackIds.compactMap { records[$0] } ?? []
+        let ordered = playlist?.trackIds.compactMap { records[$0] } ?? []
+        return filters.apply(ordered, addedAt: playlist?.trackAddedAt ?? [:])
     }
+    private var displayedIDs: [String] { filters.canReorder ? playlist?.trackIds ?? [] : available.map(\.id) }
     var body: some View {
         List {
             if let playlist {
                 Section {
                     Button { if let first = available.first { MusicPlayback.shared.play(first, queue: available, owner: library.owner) } } label: { Label("Reproducir lista", image: "music-play") }.disabled(available.isEmpty)
-                    Text("\(playlist.trackIds.count) canciones").font(.caption).foregroundStyle(.secondary)
+                    MusicFilterTools(filters: $filters, count: available.count)
                 }
                 Section {
-                    ForEach(playlist.trackIds, id: \.self) { trackID in
+                    ForEach(displayedIDs, id: \.self) { trackID in
                         if let record = library.records.first(where: { $0.id == trackID }) {
                             MusicTrackRow(record: record, owner: library.owner) { MusicPlayback.shared.play(record, queue: available, owner: library.owner) }
-                                .contextMenu { Button("Reproducir después") { MusicPlayback.shared.enqueue(record, owner: library.owner, next: true) }; Button("Añadir a la cola") { MusicPlayback.shared.enqueue(record, owner: library.owner) } }
+                                .contextMenu { MusicTrackActions(record: record, owner: library.owner) }
                         } else { Text("Archivo fuera de la biblioteca").foregroundStyle(.secondary) }
-                    }.onDelete { offsets in for index in offsets { store.remove(playlist.trackIds[index], from: id) } }
+                    }.onDelete { offsets in
+                        let ids = displayedIDs
+                        for index in offsets where ids.indices.contains(index) { store.remove(ids[index], from: id) }
+                    }
                         .onMove { from, destination in
-                            guard let source = from.first else { return }
+                            guard filters.canReorder, let source = from.first, playlist.trackIds.indices.contains(source) else { return }
                             store.move(playlist.trackIds[source], in: id, to: destination > source ? destination - 1 : destination)
-                        }
+                        }.moveDisabled(!filters.canReorder)
+                    if displayedIDs.isEmpty { Text(filters.active ? "No hay canciones con estos filtros." : "Añade canciones desde sus opciones.").foregroundStyle(.secondary) }
                 }
                 if let error = store.error { Text(error).foregroundStyle(.orange) }
                 Section { Button("Eliminar lista", role: .destructive) { deleting = true } }
             } else { Text("Esta lista ya no está disponible.") }
         }.listStyle(.insetGrouped).scrollContentBackground(.hidden).background(HarborTheme.background)
             .navigationTitle(playlist?.name ?? "Lista").navigationBarTitleDisplayMode(.inline)
+            .searchable(text: $filters.query, prompt: "Filtrar canciones")
+            .onChange(of: filters.query) { _, value in if value.count > 200 { filters.query = String(value.prefix(200)) } }
             .toolbar { ToolbarItemGroup(placement: .topBarTrailing) { Button("Renombrar") { renaming = true }; EditButton() } }
             .sheet(isPresented: $renaming) { MusicPlaylistNameView(store: store, id: id) }
             .confirmationDialog("¿Eliminar esta lista?", isPresented: $deleting, titleVisibility: .visible) {

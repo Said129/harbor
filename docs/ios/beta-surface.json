@@ -1358,6 +1358,26 @@
     {
       "id": "Music playlist deletion preserving library",
       "source": "src-tauri/src/music/library.rs"
+    },
+    {
+      "id": "Music local folder scanning",
+      "source": "src-tauri/src/music/connectors/local/scan.rs"
+    },
+    {
+      "id": "Music playlist search and content filters",
+      "source": "src/lib/music/playlist-filters.ts"
+    },
+    {
+      "id": "Music playlist listening order",
+      "source": "src/lib/music/playlist-filters.ts"
+    },
+    {
+      "id": "Music playlist compact view",
+      "source": "src/components/music/music-playlist-toolbar.tsx"
+    },
+    {
+      "id": "Music track title copying",
+      "source": "src/components/music/music-track-menu.tsx"
     }
   ],
   "settings": [

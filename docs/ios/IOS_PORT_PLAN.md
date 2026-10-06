@@ -2,7 +2,7 @@
 
 Base inspeccionada: upstream `0117755855d3f43960bad3f9f62b69ef851d5991` (0.9.21). Fecha: 2026-10-04. Único nuevo producto: iPhone/iOS. Desktop conserva sus targets y comportamiento. La matriz registra alcance pendiente, no promete paridad por compilar.
 
-Objetivo confirmado por el propietario: port 1:1 de todas las funciones y opciones adaptables de Desktop, con interacción nativa de iPhone. Las opciones exclusivas del hardware de PC, como elegir una GPU discreta, requieren una equivalencia aplicable o una limitación documentada; no se crean controles sin efecto. Una función difícil o todavía no implementada sigue en alcance. El propietario confirma que el acceso ya funciona tras la corrección de manifests. La prioridad actual es resolver el audio con pantalla azul uniforme antes de continuar con las entradas pendientes.
+Objetivo confirmado por el propietario: port 1:1 de todas las funciones y opciones adaptables de Desktop, con interacción nativa de iPhone. Las opciones exclusivas del hardware de PC, como elegir una GPU discreta, requieren una equivalencia aplicable o una limitación documentada; no se crean controles sin efecto. Una función difícil o todavía no implementada sigue en alcance. El propietario confirma que el acceso ya funciona tras la corrección de manifests. El propietario confirma también vídeo y ocultación de controles en la IPA 3. Continúa la implementación de toda la beta 0.9.130; las compilaciones posteriores y sus nuevas interfaces requieren sus propios gates Apple y verificación física.
 
 ## 1. Arquitectura actual
 

@@ -27,7 +27,12 @@ final class MusicPlaylistStore {
     }
     func create(_ name: String) {
         change { values in
-            let title: String = try CoreBridge.invoke(JSONEncoder().encode(JSONValue.object(["operation": .string("musicPlaylistName"), "name": .string(name)])), as: String.self)
+            let base = try Self.name(name)
+            let names = Set(values.map { $0.name.trimmingCharacters(in: .whitespacesAndNewlines).lowercased(with: .current) })
+            var title = base
+            var suffix = 1
+            while names.contains(title.lowercased(with: .current)) { title = base + " (\(suffix))"; suffix += 1 }
+            title = try Self.name(title)
             let now = Self.timestamp
             values.insert(MusicPlaylist(id: UUID().uuidString, name: title, createdAt: now, updatedAt: now, trackIds: [], trackAddedAt: [:]), at: 0)
         }
@@ -35,7 +40,8 @@ final class MusicPlaylistStore {
     func rename(_ id: String, name: String) {
         change { values in
             guard let index = values.firstIndex(where: { $0.id == id }) else { throw HarborError(code: "music-store") }
-            let title: String = try CoreBridge.invoke(JSONEncoder().encode(JSONValue.object(["operation": .string("musicPlaylistName"), "name": .string(name)])), as: String.self)
+            let title = try Self.name(name)
+            guard !values.contains(where: { $0.id != id && $0.name.compare(title, options: .caseInsensitive, locale: .current) == .orderedSame }) else { throw HarborError(code: "music-playlist-duplicate-name") }
             values[index].name = title; values[index].updatedAt = Self.timestamp
         }
     }
@@ -74,6 +80,9 @@ final class MusicPlaylistStore {
         } catch { self.error = safeMessage(error) }
     }
     private static var timestamp: String { String(Int64(Date().timeIntervalSince1970 * 1000)) }
+    private static func name(_ input: String) throws -> String {
+        try CoreBridge.invoke(JSONEncoder().encode(JSONValue.object(["operation": .string("musicPlaylistName"), "name": .string(input)])), as: String.self)
+    }
     private static func valid(_ values: [MusicPlaylist]) -> Bool {
         values.count <= 200 && Set(values.map(\.id)).count == values.count && values.allSatisfy { value in
             UUID(uuidString: value.id) != nil && !value.name.isEmpty && value.name.unicodeScalars.count <= 100 && !value.name.contains("\0") &&

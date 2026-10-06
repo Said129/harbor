@@ -11,7 +11,7 @@ parser.add_argument("--reference", required=True, type=Path)
 args = parser.parse_args()
 reference = args.reference.resolve(strict=True)
 root = Path(__file__).resolve().parents[2]
-names = "play pause previous next shuffle repeat repeat-one volume-high volume-low volume-mute waveform music queue album artist plus close".split()
+names = "play pause previous next shuffle repeat repeat-one volume-high volume-low volume-mute waveform music queue album artist plus close folder-open queue-next copy check arrow-down".split()
 provenance_path = root / "docs/ios/beta-vector-provenance.json"
 provenance = json.loads(provenance_path.read_text(encoding="utf-8"))
 wrapper = "src/components/icons/music-glyph.tsx"
@@ -39,5 +39,16 @@ for name in names:
     contents = {"images": [{"idiom": "universal", "filename": "icon.svg"}], "info": {"version": 1, "author": "xcode"}, "properties": {"preserves-vector-representation": True, "template-rendering-intent": "template"}}
     (target / "Contents.json").write_bytes((json.dumps(contents, indent=2) + "\n").encode("utf-8"))
     provenance["files"][relative] = hashlib.sha256(source.read_bytes()).hexdigest()
+filter_path = "src/components/music/music-filter-icon.tsx"
+filter_source = (reference / filter_path).read_text(encoding="utf-8")
+paths = re.findall(r'<path d="([^"]+)"\s*/>', filter_source)
+if len(paths) != 2 or 'viewBox="0 0 24 24"' not in filter_source or 'strokeWidth="1.6"' not in filter_source:
+    raise ValueError("Unexpected original MusicFilterIcon geometry")
+filter_svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">' + "".join(f'<path d="{path}"/>' for path in paths) + "</svg>\n"
+target = root / "ios/Harbor/Assets.xcassets/music-filter.imageset"
+target.mkdir(exist_ok=True)
+(target / "icon.svg").write_bytes(filter_svg.encode("utf-8"))
+(target / "Contents.json").write_bytes((json.dumps(contents, indent=2) + "\n").encode("utf-8"))
+provenance["files"][filter_path] = hashlib.sha256((reference / filter_path).read_bytes()).hexdigest()
 provenance_path.write_bytes((json.dumps(provenance, indent=2) + "\n").encode("utf-8"))
-print(f"Imported {len(names)} original MusicGlyph masters")
+print(f"Imported {len(names)} original MusicGlyph masters and the original MusicFilterIcon")
