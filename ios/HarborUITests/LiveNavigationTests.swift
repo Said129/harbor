@@ -116,6 +116,13 @@ final class LiveNavigationTests: XCTestCase {
         XCTAssertTrue(installed.waitForExistence(timeout: 30), "The public addon must install through Keychain-backed UI")
         let finished = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == false"), object: app.progressIndicators["addon-install-progress"])
         XCTAssertEqual(XCTWaiter.wait(for: [finished], timeout: 30), .completed, "Catalog fetching must finish after installation")
+        let addonDetails = app.buttons.matching(NSPredicate(format: "identifier == 'addon-details' AND label == 'Detalles de Now.sh Example'")).firstMatch
+        XCTAssertTrue(addonDetails.waitForExistence(timeout: 5))
+        addonDetails.tap()
+        XCTAssertTrue(app.staticTexts["addon-detail-title"].waitForExistence(timeout: 5))
+        XCTAssertEqual(app.staticTexts["addon-detail-title"].label, "Now.sh Example")
+        capture(app, "native-addon-detail")
+        app.navigationBars.buttons["Cerrar"].tap()
 
         // Catalog resources are discovered from the installed example's
         // manifest, without injecting app state.

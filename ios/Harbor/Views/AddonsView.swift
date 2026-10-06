@@ -5,6 +5,7 @@ struct AddonsView: View {
     @State private var url = ""
     @State private var error: String?
     @State private var installing = false
+    @State private var selectedAddon: Addon?
     @FocusState private var editingURL: Bool
     var body: some View {
         List {
@@ -28,13 +29,22 @@ struct AddonsView: View {
             }
             Section("Instalados") {
                 ForEach(app.addons) { addon in
-                    Toggle(addon.name, isOn: Binding(get: { addon.enabled }, set: { enabled in
-                        do { try app.setEnabled(addon, enabled); Task { await app.loadHome() } } catch { self.error = safeMessage(error) }
-                    })).disabled(!app.storageReady || app.accountBusy)
+                    HStack(spacing: 12) {
+                        Button { selectedAddon = addon } label: {
+                            HStack(spacing: 12) {
+                                AddonLogo(addon: addon, size: 36)
+                                Text(addon.name).foregroundStyle(.primary).frame(maxWidth: .infinity, alignment: .leading)
+                            }.contentShape(Rectangle())
+                        }.buttonStyle(.plain).accessibilityLabel("Detalles de \(addon.name)").accessibilityIdentifier("addon-details")
+                        Toggle(addon.name, isOn: Binding(get: { addon.enabled }, set: { enabled in
+                            do { try app.setEnabled(addon, enabled); Task { await app.loadHome() } } catch { self.error = safeMessage(error) }
+                        })).labelsHidden().fixedSize().accessibilityLabel(addon.name).disabled(!app.storageReady || app.accountBusy)
+                    }
                 }
                 .onDelete { offsets in Task { do { try await app.remove(offsets) } catch { self.error = safeMessage(error) } } }
                 .onMove { offsets, destination in Task { do { try await app.move(offsets, to: destination) } catch { self.error = safeMessage(error) } } }
             }
         }.navigationTitle("Addons").toolbar { EditButton().disabled(!app.storageReady || app.accountBusy) }
+            .sheet(item: $selectedAddon) { addon in NavigationStack { AddonDetailView(app: app, addon: addon) }.tint(HarborTheme.accent) }
     }
 }

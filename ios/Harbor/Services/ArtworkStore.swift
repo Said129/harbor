@@ -84,6 +84,7 @@ struct Artwork: View {
     var fallbacks: [String] = []
     var fit: ContentMode = .fill
     var maxPixels = 1000
+    var failureIcon = "nav-movies"
     @State private var image: UIImage?
     @State private var failed = false
     @State private var retryRevision = 0
@@ -93,7 +94,7 @@ struct Artwork: View {
             else {
                 Rectangle().fill(.white.opacity(0.045))
                 if failed {
-                    Image("nav-movies").resizable().scaledToFit().frame(width: 24, height: 24).foregroundStyle(.white.opacity(0.35))
+                    Image(failureIcon).resizable().scaledToFit().frame(width: 24, height: 24).foregroundStyle(.white.opacity(0.35))
                 } else if url != nil { ProgressView().controlSize(.small) }
             }
         }.clipped().task(id: "\(url ?? "")|\(fallback ?? "")|\(fallbacks.joined(separator: "|"))|\(maxPixels)|\(retryRevision)") {

@@ -213,6 +213,22 @@ final class AppModel {
         try persist(next)
     }
 
+    func reconfigure(_ id: String, url: String) async throws -> Addon {
+        guard storageReady else { throw HarborError(code: "storage-unavailable") }
+        guard !accountBusy else { throw HarborError(code: "account-busy") }
+        let owner = user?.id ?? "guest"
+        accountBusy = true
+        defer { accountBusy = false }
+        let replacement = try await service.install(url)
+        try Task.checkCancellation()
+        guard owner == (user?.id ?? "guest") else { throw HarborError(code: "account-cancelled") }
+        let next = try AddonReplacement.apply(replacement, replacing: id, in: addons)
+        try await saveCollection(next, replacing: [replacement.id: id])
+        Diagnostics.shared.record(.addonInstalled, count: addons.count)
+        Task { await loadHome() }
+        return next.first { $0.id == replacement.id } ?? replacement
+    }
+
     func remove(_ offsets: IndexSet) async throws {
         guard !accountBusy else { throw HarborError(code: "account-busy") }
         accountBusy = true
@@ -233,9 +249,9 @@ final class AppModel {
         await loadHome()
     }
 
-    private func saveCollection(_ next: [Addon]) async throws {
+    private func saveCollection(_ next: [Addon], replacing replacements: [String: String] = [:]) async throws {
         if let account = savedAccount {
-            let collection = AccountCollection(addons: next, records: account.collection.records(for: next))
+            let collection = AccountCollection(addons: next, records: account.collection.records(for: next, replacing: replacements))
             try await accounts.save(collection, session: account.session)
             let saved = SavedAccount(session: account.session, collection: collection)
             do { try keychain.write(saved, key: "account.v1") }

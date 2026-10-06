@@ -8,6 +8,28 @@ final class AccountCollectionTests: XCTestCase {
         let reordered = [collection.addons[1], collection.addons[0]]
         XCTAssertEqual(collection.records(for: reordered), [collection.records[1], collection.records[0]])
         XCTAssertEqual(collection.records(for: [collection.addons[1]]), [collection.records[1]])
+
+        var original = collection.addons[0]
+        original.enabled = false
+        var fields = original.manifest.objectValue
+        fields["version"] = .string("2")
+        fields["behaviorHints"] = .object(["configurable": .bool(true)])
+        fields["futureConfiguration"] = .object(["keep": .bool(true)])
+        let replacement = Addon(manifest: .object(fields), transportUrl: "https://example.org/config-c/manifest.json?private=test-only", enabled: true)
+        let next = try AddonReplacement.apply(replacement, replacing: original.id, in: [original, collection.addons[1]])
+        XCTAssertEqual(next.map(\.id), [replacement.id, collection.addons[1].id], "Reconfiguration must preserve order and the other configured instance of the same manifest")
+        XCTAssertFalse(next[0].enabled, "Reconfiguration must retain the local activation preference")
+        XCTAssertEqual(next[0].configurationURL?.absoluteString, "https://example.org/config-c/configure")
+        let records = collection.records(for: next, replacing: [replacement.id: original.id])
+        XCTAssertEqual(records[0]["flags"], collection.records[0]["flags"])
+        XCTAssertEqual(records[0]["transportName"], collection.records[0]["transportName"])
+        XCTAssertEqual(records[0]["transportUrl"], .string(replacement.id))
+        XCTAssertEqual(records[0]["manifest"], replacement.manifest)
+        XCTAssertEqual(records[1], collection.records[1])
+        let duplicate = Addon(manifest: replacement.manifest, transportUrl: collection.addons[1].id, enabled: true)
+        XCTAssertThrowsError(try AddonReplacement.apply(duplicate, replacing: original.id, in: collection.addons))
+        let unrelated = Addon(manifest: .object(["id": .string("other"), "name": .string("Other")]), transportUrl: replacement.id, enabled: true)
+        XCTAssertThrowsError(try AddonReplacement.apply(unrelated, replacing: original.id, in: collection.addons))
     }
 
     func testNullableStremioCollectionLoadsNativeCatalogsAndPreservesCloudManifest() throws {

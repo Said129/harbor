@@ -20,9 +20,10 @@ struct AccountCollection: Codable, Sendable {
     var addons: [Addon]
     var records: [JSONValue]
 
-    func records(for next: [Addon]) -> [JSONValue] {
+    func records(for next: [Addon], replacing replacements: [String: String] = [:]) -> [JSONValue] {
         next.map { addon in
-            let original = zip(addons, records).first { $0.0.transportUrl == addon.transportUrl }
+            let originalURL = replacements[addon.transportUrl] ?? addon.transportUrl
+            let original = zip(addons, records).first { $0.0.transportUrl == originalURL }
             var fields: [String: JSONValue]
             if case .object(let value) = original?.1 { fields = value }
             else { fields = ["transportName": .string(""), "flags": .object(["official": .bool(false), "protected": .bool(false)])] }

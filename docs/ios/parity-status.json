@@ -102,22 +102,22 @@
     "notes": "Real manifest transport; atomic Keychain persistence before UI mutation. Host protocol tests pass; Keychain/UI restart and order tests on iPhone pending. Account-connected edits now write the cloud collection, preserving configured records; real account edits remain unverified."
   },
   "Installed addons management": {
-    "ios": "Native installation verified; other interactions pending",
     "state": "Partial",
-    "implementation": "`ios/Harbor/Views/AddonsView.swift`; `ViewModels/AppModel.swift`; `harbor-core/src/addons.rs`",
-    "notes": "Native UI installation and real Keychain roundtrip/update/isolation pass. Enable/disable, reorder, uninstall, restart and physical behavior need separate interaction tests. Account-connected edits now write the cloud collection, preserving configured records; real account edits remain unverified."
+    "implementation": "ios/Harbor/Models/AddonConfiguration.swift; Account.swift; Views/AddonsView.swift; AddonDetailView.swift; AddonConfigurationView.swift; ViewModels/AppModel.swift",
+    "notes": "Build 25 adds native addon details, manifest logos/description/version, local activation and the selected addon configuration journey. The provider page uses a nonpersistent WebKit sheet with no native credential/script bridge; main-frame stremio/manifest navigation captures a candidate and returns to the native secure field. Only the explicit native Save action fetches/validates the real manifest and updates the same manifest identity in place. Account/target guards retain activation, order, other configured instances, full cloud flags/unknown records and the fetched complete manifest. Mismatched identities, removed targets and collisions are rejected before mutation. Safari/manual-link fallback is available. Existing account-record and real addon-navigation methods are extended; Apple execution, actual configurable provider interaction and physical account changes remain pending.",
+    "ios": "Native configuration code; Apple/provider/physical validation pending"
   },
   "Configure addon URL": {
-    "ios": "Code present; feature behavior incomplete",
     "state": "Partial",
-    "implementation": "`ios/Harbor/Services/KeychainStore.swift`; `Views/AddonsView.swift`",
-    "notes": "Configured URLs accepted and stored in Keychain; config form/browser and credential lifecycle remain incomplete. No secret URLs in diagnostics."
+    "implementation": "ios/Harbor/Models/AddonConfiguration.swift; Account.swift; Views/AddonsView.swift; AddonDetailView.swift; AddonConfigurationView.swift; ViewModels/AppModel.swift",
+    "notes": "Build 25 adds native addon details, manifest logos/description/version, local activation and the selected addon configuration journey. The provider page uses a nonpersistent WebKit sheet with no native credential/script bridge; main-frame stremio/manifest navigation captures a candidate and returns to the native secure field. Only the explicit native Save action fetches/validates the real manifest and updates the same manifest identity in place. Account/target guards retain activation, order, other configured instances, full cloud flags/unknown records and the fetched complete manifest. Mismatched identities, removed targets and collisions are rejected before mutation. Safari/manual-link fallback is available. Existing account-record and real addon-navigation methods are extended; Apple execution, actual configurable provider interaction and physical account changes remain pending.",
+    "ios": "Native configuration code; Apple/provider/physical validation pending"
   },
   "Configured addon credentials persistence": {
-    "ios": "Real Keychain persistence verified on signed simulator",
     "state": "Partial",
-    "implementation": "`ios/Harbor/Services/KeychainStore.swift`; `Views/AddonsView.swift`",
-    "notes": "Native Keychain roundtrip/update and real URL installation passed on signed simulator. Account snapshot stores session and configured collection together; remote errors do not overwrite the previous list. Real account restart, browser callback and physical signing remain unverified; diagnostics exclude secret URLs."
+    "implementation": "ios/Harbor/Models/AddonConfiguration.swift; Account.swift; Views/AddonsView.swift; AddonDetailView.swift; AddonConfigurationView.swift; ViewModels/AppModel.swift",
+    "notes": "Build 25 adds native addon details, manifest logos/description/version, local activation and the selected addon configuration journey. The provider page uses a nonpersistent WebKit sheet with no native credential/script bridge; main-frame stremio/manifest navigation captures a candidate and returns to the native secure field. Only the explicit native Save action fetches/validates the real manifest and updates the same manifest identity in place. Account/target guards retain activation, order, other configured instances, full cloud flags/unknown records and the fetched complete manifest. Mismatched identities, removed targets and collisions are rejected before mutation. Safari/manual-link fallback is available. Existing account-record and real addon-navigation methods are extended; Apple execution, actual configurable provider interaction and physical account changes remain pending.",
+    "ios": "Native configuration code; Apple/provider/physical validation pending"
   },
   "Catalog extras / filters": {
     "ios": "Code present; feature behavior incomplete",
@@ -748,5 +748,11 @@
     "implementation": "ios/Harbor/Player/EpisodeSequence.swift; PlayerView.swift; Views/PlayerEpisodesView.swift; PlayerUpNextView.swift; DetailView.swift; ViewModels/DetailModel.swift",
     "notes": "Native previous/next and in-player season/episode selection use actual metadata IDs, availability and the original player vectors. Normal seasons cross boundaries without entering specials; duplicate coordinates and unaired episodes are excluded from adjacent playback. A configurable original lead policy offers play-now/cancel, and auto-next requires natural mpv EOF, an active scene, the same owner, no error and no short-video/near-end resume. Handoff waits for full-screen dismissal, saves the old checkpoint and queries real addon streams with previous addon/binge-group preference and the ordinary resume policy. Apple compilation, presentation lifecycle and physical behavior remain pending.",
     "ios": "Native code present; Apple behavior validation pending"
+  },
+  "Addon configuration viewport": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Models/AddonConfiguration.swift; Account.swift; Views/AddonsView.swift; AddonDetailView.swift; AddonConfigurationView.swift; ViewModels/AppModel.swift",
+    "notes": "Build 25 adds native addon details, manifest logos/description/version, local activation and the selected addon configuration journey. The provider page uses a nonpersistent WebKit sheet with no native credential/script bridge; main-frame stremio/manifest navigation captures a candidate and returns to the native secure field. Only the explicit native Save action fetches/validates the real manifest and updates the same manifest identity in place. Account/target guards retain activation, order, other configured instances, full cloud flags/unknown records and the fetched complete manifest. Mismatched identities, removed targets and collisions are rejected before mutation. Safari/manual-link fallback is available. Existing account-record and real addon-navigation methods are extended; Apple execution, actual configurable provider interaction and physical account changes remain pending.",
+    "ios": "Native configuration code; Apple/provider/physical validation pending"
   }
 }
