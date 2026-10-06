@@ -32,6 +32,7 @@ struct Poster: View {
 struct CatalogRails: View {
     let rows: [CatalogRow]
     var app: AppModel? = nil
+    var titleOverrides: [String: String] = [:]
     var body: some View {
         LazyVStack(alignment: .leading, spacing: 24) {
             ForEach(rows) { row in
@@ -55,6 +56,7 @@ struct CatalogRails: View {
         }
     }
     private func title(_ row: CatalogRow) -> String {
+        if let title = titleOverrides[row.id] { return title }
         guard rows.filter({ $0.plan.title == row.plan.title }).count > 1 else { return row.plan.title }
         let type: String
         switch row.plan.kind {

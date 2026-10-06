@@ -48,7 +48,7 @@ final class LiveTVPreferences {
             let saved = try KeychainStore().read(key, as: LiveTVDocument.self) ?? LiveTVDocument()
             guard saved.version == 1, saved.sources.count <= 32, saved.sources.allSatisfy({ UUID(uuidString: $0.id) != nil }) else { throw HarborError(code: "iptv-store") }
             stored = saved; ready = true
-        } catch { error = "No se pudo recuperar Live TV. Las listas y los favoritos anteriores se conservan." }
+        } catch { self.error = "No se pudo recuperar Live TV. Las listas y los favoritos anteriores se conservan." }
     }
     func add(_ source: LivePlaylistSource) throws {
         var next = stored

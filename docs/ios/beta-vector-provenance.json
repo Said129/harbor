@@ -54,7 +54,8 @@
     "src/assets/ui-icons/unrate.svg": "53e850fd76c106f5eaa65a9907553477a5f0f62c721f5f7c8fa9378646323af4",
     "src/assets/ui-icons/watch-together.svg": "f9f8c733d0f824f87abbf29099607c17d818fc6fa3122f494ddaec6b7118f9fb",
     "src/assets/ui-icons/xray.svg": "421dfa9535db0762596ffa4c3b30bd54b23c34015f1e1b81ddfd2ac4db1948c2",
-    "src/components/icons/harbor-mark.tsx": "9147c1964bfeb598e53eff454bb670b76f67192c7ac06befe68b858933b759d3"
+    "src/components/icons/harbor-mark.tsx": "9147c1964bfeb598e53eff454bb670b76f67192c7ac06befe68b858933b759d3",
+    "src/components/icons/pencil-outline.tsx": "3aaf4f17222bf4bdfd3a8f3cbf635e4770147b665c3b0cad308e72c840612b13"
   },
   "fonts": {
     "Fraunces": {

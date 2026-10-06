@@ -1234,6 +1234,38 @@
     {
       "id": "Sports configured broadcast sources",
       "source": "src/lib/sports/stream-resolver.ts"
+    },
+    {
+      "id": "Home row ordering",
+      "source": "src/lib/home-customization.ts"
+    },
+    {
+      "id": "Home row visibility",
+      "source": "src/lib/home-customization.ts"
+    },
+    {
+      "id": "Home row titles",
+      "source": "src/lib/home-customization.ts"
+    },
+    {
+      "id": "Home Top 10 numerals",
+      "source": "src/lib/home-customization.ts"
+    },
+    {
+      "id": "Home hero source selection",
+      "source": "src/lib/home-customization.ts"
+    },
+    {
+      "id": "Home play button shape",
+      "source": "src/lib/home-customization.ts"
+    },
+    {
+      "id": "Home secondary button selection",
+      "source": "src/lib/home-customization.ts"
+    },
+    {
+      "id": "Home Continue Watching placement",
+      "source": "src/lib/home-customization.ts"
     }
   ],
   "settings": [

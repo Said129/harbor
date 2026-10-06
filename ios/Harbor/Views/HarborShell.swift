@@ -115,12 +115,12 @@ struct HarborShell: View {
     }
     @ViewBuilder private var destination: some View {
         switch section {
-        case .home: HomeView(model: app)
+        case .home: HomeView(model: app).id(app.user?.id ?? "guest")
         case .catalogs: CatalogsView(app: app)
-        case .movies: ContentPageView(app: app, kind: "movie", title: section.title)
-        case .shows: ContentPageView(app: app, kind: "series", title: section.title)
-        case .kids: ContentPageView(app: app, kind: "kids", title: section.title)
-        case .anime: ContentPageView(app: app, kind: "anime", title: section.title)
+        case .movies: ContentPageView(app: app, kind: "movie", title: section.title).id(app.user?.id ?? "guest")
+        case .shows: ContentPageView(app: app, kind: "series", title: section.title).id(app.user?.id ?? "guest")
+        case .kids: ContentPageView(app: app, kind: "kids", title: section.title).id(app.user?.id ?? "guest")
+        case .anime: ContentPageView(app: app, kind: "anime", title: section.title).id(app.user?.id ?? "guest")
         case .live: LiveTVView(app: app).id(app.user?.id ?? "guest")
         case .sports: SportsView(app: app).id(app.user?.id ?? "guest")
         case .manga: MangaView(app: app).id(app.user?.id ?? "guest")

@@ -69,7 +69,7 @@ final class SportsPreferences {
     init(owner: String) {
         self.owner = owner
         do { stored = try KeychainStore().read(key, as: SportsPersonalization.self) ?? SportsPersonalization(); ready = true }
-        catch { error = "No se pudo recuperar la configuración de Sports. Los favoritos se conservan." }
+        catch { self.error = "No se pudo recuperar la configuración de Sports. Los favoritos se conservan." }
     }
     func setLeagues(_ ids: [String]) throws { var next = stored; next.leagues = Array(Set(ids)).sorted(); try save(next) }
     func toggle(_ side: SportsSide, league: SportsLeague) throws {

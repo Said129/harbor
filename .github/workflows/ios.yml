@@ -65,6 +65,7 @@ jobs:
           components: clippy
       - uses: Swatinem/rust-cache@v2
         with:
+          cache-on-failure: true
           workspaces: |
             harbor-core
             harbor-ios-bridge
@@ -86,6 +87,7 @@ jobs:
         with:
           path: ios/build/SourcePackages
           key: iphone-spm-${{ runner.os }}-${{ hashFiles('ios/project.yml') }}
+          restore-keys: iphone-spm-${{ runner.os }}-
       - name: Generate Xcode project
         run: |
           python3 scripts/ios/fetch-interface-font.py

@@ -82,5 +82,18 @@
   {
     "source": "src/lib/sports/stream-resolver.ts",
     "features": ["Sports configured broadcast sources"]
+  },
+  {
+    "source": "src/lib/home-customization.ts",
+    "features": [
+      "Home row ordering",
+      "Home row visibility",
+      "Home row titles",
+      "Home Top 10 numerals",
+      "Home hero source selection",
+      "Home play button shape",
+      "Home secondary button selection",
+      "Home Continue Watching placement"
+    ]
   }
 ]

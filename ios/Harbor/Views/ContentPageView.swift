@@ -5,19 +5,22 @@ struct ContentPageView: View {
     let kind: String
     let title: String
     @State private var model: ContentPageModel
-    @MainActor init(app: AppModel, kind: String, title: String) { self.app = app; self.kind = kind; self.title = title; _model = State(initialValue: app.pageModel(kind)) }
+    @State private var customization: PageCustomization
+    @MainActor init(app: AppModel, kind: String, title: String) { self.app = app; self.kind = kind; self.title = title; _model = State(initialValue: app.pageModel(kind)); _customization = State(initialValue: PageCustomization(owner: app.user?.id ?? "guest", page: kind)) }
+    private var rails: [PageRail] { model.curated.map(PageRail.discovery) + model.rows.map(PageRail.catalog) }
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 26) {
-                if !model.heroes.isEmpty { CinemaHero(metas: model.heroes, app: app) }
+                CustomizedHero(rails: rails, defaults: model.heroes, app: app, customization: customization)
                 if model.loading && model.rows.isEmpty && model.curated.isEmpty { ProgressView("Cargando \(title.lowercased())…").frame(maxWidth: .infinity).padding(40) }
                 if let error = model.error, model.rows.isEmpty && model.curated.isEmpty {
                     ContentUnavailableView { Label(title, image: kind == "movie" ? "nav-movies" : "nav-shows") } description: { Text(error) } actions: {
                         Button("Reintentar") { Task { await model.load(kind: kind, app: app, refresh: true) } }
                     }
                 }
-                DiscoveryRails(rows: model.curated, app: app)
-                CatalogRails(rows: model.rows, app: app)
+                PageCustomizeButton(rails: rails, customization: customization)
+                if let error = customization.error { Text(error).font(.caption).foregroundStyle(.orange).padding(.horizontal) }
+                CustomizedRails(rails: rails, app: app, customization: customization)
             }.padding(.bottom, 24)
         }.background(HarborTheme.background).navigationTitle(title).navigationBarTitleDisplayMode(.inline)
             .accessibilityIdentifier("content-\(kind)")
@@ -30,6 +33,8 @@ struct ContentPageView: View {
 struct CinemaHero: View {
     let metas: [Media]
     let app: AppModel
+    var playSquare = true
+    var moreInfo = true
     @State private var selected = 0
     var body: some View {
         VStack(spacing: 14) {
@@ -52,9 +57,13 @@ struct CinemaHero: View {
                                 }.font(.caption)
                                 if let description = media.description { Text(description).font(.subheadline).foregroundStyle(.white.opacity(0.72)).lineLimit(3) }
                                 HStack(spacing: 10) {
-                                    NavigationLink { DetailView(media: media, app: app, playImmediately: true) } label: { Label("Reproducir", systemImage: "play.fill").font(.subheadline.weight(.semibold)).padding(.horizontal, 18).padding(.vertical, 13).foregroundStyle(.black).background(.white, in: .rect(cornerRadius: 8)) }
+                                    NavigationLink { DetailView(media: media, app: app, playImmediately: true) } label: { Label("Reproducir", image: "ui-play-filled").font(HarborTheme.font(14, weight: .semibold)).padding(.horizontal, 18).padding(.vertical, 13).foregroundStyle(.black).background(.white, in: .rect(cornerRadius: playSquare ? 8 : 24)) }
                                         .buttonStyle(.plain).accessibilityIdentifier("hero-play")
-                                    NavigationLink(value: media) { Label("Más información", systemImage: "info.circle").font(.subheadline.weight(.semibold)).padding(.horizontal, 14).padding(.vertical, 13).background(.black.opacity(0.3), in: .rect(cornerRadius: 8)) }.buttonStyle(.plain)
+                                    if moreInfo {
+                                        NavigationLink(value: media) { Label("Más información", systemImage: "info.circle").font(HarborTheme.font(14, weight: .semibold)).padding(.horizontal, 14).padding(.vertical, 13).background(.black.opacity(0.3), in: .rect(cornerRadius: 8)) }.buttonStyle(.plain)
+                                    } else {
+                                        Button { if app.user == nil { app.showAccount = true } else { Task { await app.library.toggleBookmark(media) } } } label: { Label(app.library.bookmarked(media) ? "En mi lista" : "Añadir a mi lista", image: "ui-library").font(HarborTheme.font(14, weight: .semibold)).padding(.horizontal, 10).padding(.vertical, 13) }.buttonStyle(.plain).disabled(app.library.busy || app.library.loading)
+                                    }
                                 }
                             }.padding(20).frame(maxWidth: .infinity, alignment: .leading)
                         }.frame(width: geometry.size.width, height: geometry.size.height).clipped()
@@ -68,6 +77,8 @@ struct CinemaHero: View {
                     }
                 }
             }
+            if !moreInfo, let error = app.library.error { Text(error).font(.caption).foregroundStyle(.orange).padding(.horizontal) }
         }
+        .onChange(of: metas.map(\.identity)) { _, _ in if selected >= min(5, metas.count) { selected = 0 } }
     }
 }

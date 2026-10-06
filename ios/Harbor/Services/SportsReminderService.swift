@@ -22,13 +22,21 @@ actor SportsReminderService {
         try await center.add(UNNotificationRequest(identifier: identifier(event, owner: owner), content: content, trigger: trigger))
         if activeOwner != owner { center.removePendingNotificationRequests(withIdentifiers: [identifier(event, owner: owner)]); throw HarborError(code: "sports-store") }
     }
-    func scheduled(_ event: SportsEvent, owner: String) async -> Bool { await center.pendingNotificationRequests().contains { $0.identifier == identifier(event, owner: owner) } }
+    func scheduled(_ event: SportsEvent, owner: String) async -> Bool {
+        let ids = await pendingIDs()
+        return activeOwner == owner && ids.contains(identifier(event, owner: owner))
+    }
     func cancel(_ event: SportsEvent, owner: String) { center.removePendingNotificationRequests(withIdentifiers: [identifier(event, owner: owner)]) }
     func removeOtherAccounts(owner: String) async {
         activeOwner = owner
         let prefix = "harbor-sports-" + EBookShelf.hash(owner) + "-"
-        let old = await center.pendingNotificationRequests().filter { $0.identifier.hasPrefix("harbor-sports-") && !$0.identifier.hasPrefix(prefix) }.map(\.identifier)
+        let old = await pendingIDs().filter { $0.hasPrefix("harbor-sports-") && !$0.hasPrefix(prefix) }
         if activeOwner == owner { center.removePendingNotificationRequests(withIdentifiers: old) }
     }
     private func identifier(_ event: SportsEvent, owner: String) -> String { "harbor-sports-" + EBookShelf.hash(owner) + "-" + EBookShelf.hash(event.id) }
+    private func pendingIDs() async -> [String] {
+        await withCheckedContinuation { continuation in
+            center.getPendingNotificationRequests { requests in continuation.resume(returning: requests.map(\.identifier)) }
+        }
+    }
 }

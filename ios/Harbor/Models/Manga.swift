@@ -65,7 +65,7 @@ final class MangaShelf {
     init(owner: String) {
         self.owner = owner
         do { records = try KeychainStore().read(key, as: [MangaRecord].self) ?? []; ready = true }
-        catch { error = "No se pudo leer tu biblioteca de Manga. Los archivos y el progreso se conservan." }
+        catch { self.error = "No se pudo leer tu biblioteca de Manga. Los archivos y el progreso se conservan." }
     }
     func record(_ book: MangaBook) -> MangaRecord? { records.first { $0.id == book.id } }
     func save(_ record: MangaRecord) throws {
@@ -121,7 +121,7 @@ final class MangaConnection {
     init(owner: String) {
         self.owner = owner
         do { server = try KeychainStore().read(key, as: MangaServer.self); ready = true }
-        catch { error = "No se pudo recuperar la conexión de Manga. La configuración se conserva." }
+        catch { self.error = "No se pudo recuperar la conexión de Manga. La configuración se conserva." }
     }
     func save(_ value: MangaServer?) throws {
         guard ready else { throw HarborError(code: "manga-store") }

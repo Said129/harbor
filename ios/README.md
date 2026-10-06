@@ -10,7 +10,7 @@ Sólo se resuelven fuentes HTTP(S) directas en este momento. Hay una primera imp
 
 ## Desde Windows
 
-El incremento beta actual se sigue en la [matriz de 822 entradas](../docs/ios/BETA_FEATURE_PARITY.md). Añade navegación/activos originales, rooms con catálogos directos, biblioteca y progreso cloud, metadata TMDB con clave del propietario, calendarios, colecciones, descargas de archivos, lectores eBook/Manga y Sports. Los incrementos posteriores a build 3 permanecen pendientes de su gate Apple/entrega. Home/búsqueda usan Cinemeta como proveedor de contenido si no está declarado en la colección; no alteran la colección cloud y respetan una entrada Cinemeta desactivada. Se distinguen datos de producto, fixtures originales de tests y evidencia física en VALIDATION.md.
+El incremento beta actual se sigue en la [matriz de 830 entradas](../docs/ios/BETA_FEATURE_PARITY.md). Añade navegación/activos originales, rooms con catálogos directos, biblioteca y progreso cloud, metadata TMDB con clave del propietario, calendarios, colecciones, descargas de archivos, lectores eBook/Manga y Sports. Los incrementos posteriores a build 3 permanecen pendientes de su gate Apple/entrega. Home/búsqueda usan Cinemeta como proveedor de contenido si no está declarado en la colección; no alteran la colección cloud y respetan una entrada Cinemeta desactivada. Se distinguen datos de producto, fixtures originales de tests y evidencia física en VALIDATION.md.
 
 Para generar el proyecto actual en Mac, ejecutar primero `python3 scripts/ios/fetch-interface-font.py`. Obtiene Switzer original directamente de Fontshare para embedding en esta app, verifica SHA256 e incorpora la licencia. El archivo de fuente no se publica por separado en el repositorio. EPUB y Manga CBZ/ZIP/carpetas usan ZIPFoundation fijado a una revisión; el contenido se muestra en vistas nativas y nunca se ejecuta como una página web.
 
@@ -41,7 +41,7 @@ Los logs exportables se comparten desde Ajustes dentro de la app. Incluyen fecha
 
 ## Progreso local y reanudación
 
-La implementación nativa guarda claves de película/episodio, posición y timestamp en un documento versionado de Application Support, sin URLs de streams ni secretos. Usa un actor, escrituras atómicas y protección de archivos tras el primer desbloqueo. Un fallo de lectura no sobrescribe datos anteriores; las incidencias se muestran y registran mediante códigos seguros.
+La implementación nativa guarda claves de película/episodio, posición y timestamp en documentos versionados de Application Support separados por owner, sin URLs de streams ni secretos; también recupera el progreso cloud de la biblioteca de la cuenta. Usa un actor, escrituras atómicas y protección de archivos tras el primer desbloqueo. Un fallo de lectura no sobrescribe datos anteriores; las incidencias se muestran y registran mediante códigos seguros.
 
 El core comparte las reglas portadas de Desktop: autosave cada 4 s con posición mínima de 5 s, exclusión de stubs cortos, posiciones independientes por episodio y specials, reanudación automática activada por defecto y aviso opcional desactivado. Ajustes permite cambiar ambas opciones. Guarda también snapshots al pausar/terminar/salir y cambiar lifecycle; el cierre forzado puede perder el último intervalo.
 

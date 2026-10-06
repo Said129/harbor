@@ -778,5 +778,55 @@
     "state": "Partial",
     "implementation": "ios/Harbor/Views/MangaReaderView.swift; ReaderAudio/turnPage.mp3; scripts/ios/import-reader-audio.py",
     "notes": "AVAudioPlayer uses the exact original 23,839-byte MP3 from Desktop book-view, SHA256 15dd78185f6470770354597a74bc625d8ebc80c4a4fe0aa25ac9991ed20fb5a7. Default true and mute toggle in book mode. Runtime sound and physical reader interaction remain pending."
+  },
+  "Home row ordering": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Models/PageCustomization.swift; Views/PageCustomizationView.swift; HomeView.swift; ContentPageView.swift",
+    "notes": "Native per-owner/per-page Keychain customization: reorder/hide/rename rows, original Top 10 numerals, select hero catalog, rectangular/capsule Play, More Info/watchlist secondary button and Home Continue Watching placement. Uses actual catalog/TMDB metadata and original Desktop pencil geometry. Custom source folders and list rows remain pending; expanded Apple compilation and physical behavior are not yet verified."
+  },
+  "Home row visibility": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Models/PageCustomization.swift; Views/PageCustomizationView.swift; HomeView.swift; ContentPageView.swift",
+    "notes": "Native per-owner/per-page Keychain customization: reorder/hide/rename rows, original Top 10 numerals, select hero catalog, rectangular/capsule Play, More Info/watchlist secondary button and Home Continue Watching placement. Uses actual catalog/TMDB metadata and original Desktop pencil geometry. Custom source folders and list rows remain pending; expanded Apple compilation and physical behavior are not yet verified."
+  },
+  "Home row titles": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Models/PageCustomization.swift; Views/PageCustomizationView.swift; HomeView.swift; ContentPageView.swift",
+    "notes": "Native per-owner/per-page Keychain customization: reorder/hide/rename rows, original Top 10 numerals, select hero catalog, rectangular/capsule Play, More Info/watchlist secondary button and Home Continue Watching placement. Uses actual catalog/TMDB metadata and original Desktop pencil geometry. Custom source folders and list rows remain pending; expanded Apple compilation and physical behavior are not yet verified."
+  },
+  "Home Top 10 numerals": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Models/PageCustomization.swift; Views/PageCustomizationView.swift; HomeView.swift; ContentPageView.swift",
+    "notes": "Native per-owner/per-page Keychain customization: reorder/hide/rename rows, original Top 10 numerals, select hero catalog, rectangular/capsule Play, More Info/watchlist secondary button and Home Continue Watching placement. Uses actual catalog/TMDB metadata and original Desktop pencil geometry. Custom source folders and list rows remain pending; expanded Apple compilation and physical behavior are not yet verified."
+  },
+  "Home hero source selection": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Models/PageCustomization.swift; Views/PageCustomizationView.swift; HomeView.swift; ContentPageView.swift",
+    "notes": "Native per-owner/per-page Keychain customization: reorder/hide/rename rows, original Top 10 numerals, select hero catalog, rectangular/capsule Play, More Info/watchlist secondary button and Home Continue Watching placement. Uses actual catalog/TMDB metadata and original Desktop pencil geometry. Custom source folders and list rows remain pending; expanded Apple compilation and physical behavior are not yet verified."
+  },
+  "Home play button shape": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Models/PageCustomization.swift; Views/PageCustomizationView.swift; HomeView.swift; ContentPageView.swift",
+    "notes": "Native per-owner/per-page Keychain customization: reorder/hide/rename rows, original Top 10 numerals, select hero catalog, rectangular/capsule Play, More Info/watchlist secondary button and Home Continue Watching placement. Uses actual catalog/TMDB metadata and original Desktop pencil geometry. Custom source folders and list rows remain pending; expanded Apple compilation and physical behavior are not yet verified."
+  },
+  "Home secondary button selection": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Models/PageCustomization.swift; Views/PageCustomizationView.swift; HomeView.swift; ContentPageView.swift",
+    "notes": "Native per-owner/per-page Keychain customization: reorder/hide/rename rows, original Top 10 numerals, select hero catalog, rectangular/capsule Play, More Info/watchlist secondary button and Home Continue Watching placement. Uses actual catalog/TMDB metadata and original Desktop pencil geometry. Custom source folders and list rows remain pending; expanded Apple compilation and physical behavior are not yet verified."
+  },
+  "Home Continue Watching placement": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Models/PageCustomization.swift; Views/PageCustomizationView.swift; HomeView.swift; ContentPageView.swift",
+    "notes": "Native per-owner/per-page Keychain customization: reorder/hide/rename rows, original Top 10 numerals, select hero catalog, rectangular/capsule Play, More Info/watchlist secondary button and Home Continue Watching placement. Uses actual catalog/TMDB metadata and original Desktop pencil geometry. Custom source folders and list rows remain pending; expanded Apple compilation and physical behavior are not yet verified."
+  },
+  "Home row customization": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Models/PageCustomization.swift; Views/PageCustomizationView.swift; HomeView.swift; ContentPageView.swift",
+    "notes": "Native per-owner/per-page Keychain customization: reorder/hide/rename rows, original Top 10 numerals, select hero catalog, rectangular/capsule Play, More Info/watchlist secondary button and Home Continue Watching placement. Uses actual catalog/TMDB metadata and original Desktop pencil geometry. Custom source folders and list rows remain pending; expanded Apple compilation and physical behavior are not yet verified."
+  },
+  "Setting: homeRows": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Models/PageCustomization.swift; Views/PageCustomizationView.swift; HomeView.swift; ContentPageView.swift",
+    "notes": "Native per-owner/per-page Keychain customization: reorder/hide/rename rows, original Top 10 numerals, select hero catalog, rectangular/capsule Play, More Info/watchlist secondary button and Home Continue Watching placement. Uses actual catalog/TMDB metadata and original Desktop pencil geometry. Custom source folders and list rows remain pending; expanded Apple compilation and physical behavior are not yet verified."
   }
 }

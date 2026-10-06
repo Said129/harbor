@@ -3,12 +3,14 @@ import SwiftUI
 struct DiscoveryRails: View {
     let rows: [DiscoveryRail]
     let app: AppModel
+    var titleOverrides: [String: String] = [:]
+    var disableDefaultRanking = false
     var body: some View {
         LazyVStack(alignment: .leading, spacing: 24) {
             ForEach(rows) { row in
                 VStack(alignment: .leading, spacing: 12) {
-                    HStack { Text(row.title).font(.headline); Spacer(); NavigationLink("Ver todo") { DiscoveryGrid(rail: row, app: app) }.font(.caption).foregroundStyle(.secondary) }.padding(.horizontal)
-                    if row.id.hasSuffix("-top10") { TopTenRail(metas: row.metas) }
+                    HStack { Text(titleOverrides[row.id] ?? row.title).font(.headline); Spacer(); NavigationLink("Ver todo") { DiscoveryGrid(rail: row, app: app) }.font(.caption).foregroundStyle(.secondary) }.padding(.horizontal)
+                    if row.id.hasSuffix("-top10") && !disableDefaultRanking { TopTenRail(metas: row.metas) }
                     else { ScrollView(.horizontal) {
                         LazyHStack(alignment: .top, spacing: 12) {
                             ForEach(row.metas, id: \.identity) { media in NavigationLink(value: media) { Poster(media: media) }.buttonStyle(.plain).accessibilityLabel(media.name) }
