@@ -46,7 +46,7 @@ final class ProfilePreferences {
             let profile = try KeychainStore().read(key, as: MobileProfile.self) ?? MobileProfile()
             guard profile.valid else { throw HarborError(code: "profile-data") }
             value = profile; ready = true; error = nil
-        } catch { ready = false; error = "No se pudo recuperar este perfil. Los datos guardados se conservan." }
+        } catch { ready = false; self.error = "No se pudo recuperar este perfil. Los datos guardados se conservan." }
     }
     func update(_ edit: (inout MobileProfile) -> Void) {
         guard ready else { return }
@@ -54,7 +54,7 @@ final class ProfilePreferences {
         do {
             guard next.valid else { throw HarborError(code: "profile-data") }
             try KeychainStore().write(next, key: key); value = next; error = nil
-        } catch { error = "No se pudo guardar el perfil. Los datos anteriores se conservan." }
+        } catch { self.error = "No se pudo guardar el perfil. Los datos anteriores se conservan." }
     }
     func setPhoto(_ data: Data) throws {
         guard data.count <= 20 * 1_024 * 1_024, let source = CGImageSourceCreateWithData(data as CFData, nil),

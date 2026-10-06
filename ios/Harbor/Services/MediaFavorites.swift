@@ -32,7 +32,7 @@ final class MediaFavorites {
             let saved = try KeychainStore().read(key, as: [FavoriteMedia].self) ?? []
             guard saved.count <= 1_000, saved.allSatisfy(\.valid), Set(saved.map { $0.media.identity }).count == saved.count else { throw HarborError(code: "favorite-store") }
             entries = saved; ready = true; error = nil
-        } catch { error = "No se pudieron recuperar los favoritos de este iPhone. Los datos guardados se conservan." }
+        } catch { self.error = "No se pudieron recuperar los favoritos de este iPhone. Los datos guardados se conservan." }
     }
     func contains(_ media: Media) -> Bool { entries.contains { $0.media.identity == media.identity } }
     func toggle(_ media: Media) {
@@ -47,6 +47,6 @@ final class MediaFavorites {
         do {
             guard next.count <= 1_000, next.allSatisfy(\.valid), try JSONEncoder().encode(next).count <= 1024 * 1024 else { throw HarborError(code: "favorite-store") }
             try KeychainStore().write(next, key: key); entries = next; error = nil
-        } catch { error = "No se pudo guardar el favorito. Los favoritos anteriores se conservan." }
+        } catch { self.error = "No se pudo guardar el favorito. Los favoritos anteriores se conservan." }
     }
 }
