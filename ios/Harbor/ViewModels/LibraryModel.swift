@@ -38,7 +38,7 @@ final class LibraryModel {
         case .watched: selected = items.filter(\.watched)
         case .favorites:
             selected = favorites.entries.map { favorite in
-                guard let record = items.first(where: { $0.id == favorite.media.id }) else { return favorite.record }
+                guard let record = items.first(where: { $0.media?.identity == favorite.media.identity }) else { return favorite.record }
                 var fields = record.raw.objectValue
                 fields["_ctime"] = favorite.record.raw["_ctime"]
                 return LibraryRecord(raw: .object(fields))

@@ -24,13 +24,20 @@ final class StreamPreferences {
         }
     }
     func preferred(_ offers: [StreamOffer]) -> StreamOffer? {
+        let candidates = offers.filter(\.automaticallyPlayable)
         // Rust ranking still breaks ties within the same resolution.
-        let bestHeight = offers.map(\.videoHeight).max()
-        return offers.first { $0.videoHeight == bestHeight }
+        let bestHeight = candidates.map(\.videoHeight).max()
+        return candidates.first { $0.videoHeight == bestHeight }
     }
 }
 
 extension StreamOffer {
+    var automaticallyPlayable: Bool {
+        guard let value = raw["url"].string, value.rangeOfCharacter(from: .controlCharacters) == nil,
+              let url = URLComponents(string: value), ["http", "https"].contains(url.scheme?.lowercased() ?? ""),
+              let host = url.host, !host.isEmpty else { return false }
+        return true
+    }
     var videoHeight: Int {
         if quality.hasPrefix("4K") { return 2160 }
         if quality.hasPrefix("1080p") { return 1080 }
@@ -42,6 +49,6 @@ extension StreamOffer {
         let source = raw["source"].string?.lowercased() ?? ""
         if ["cam", "ts", "hdts", "tc", "telesync", "telecine", "workprint"].contains(source) { return true }
         let text = [raw["name"].string, raw["title"].string, raw["description"].string].compactMap { $0 }.joined(separator: " ")
-        return text.range(of: "(?i)(?:^|[^a-z0-9])(?:hdcam|camrip|cam|hdts|telesync|telecine|tsrip|tc)(?:$|[^a-z0-9])", options: .regularExpression) != nil
+        return text.range(of: "(?i)(?:^|[^a-z0-9])(?:hdcam|camrip|cam|hdts|telesync|telecine|tsrip|ts|tc)(?:$|[^a-z0-9])", options: .regularExpression) != nil
     }
 }

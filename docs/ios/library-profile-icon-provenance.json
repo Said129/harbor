@@ -1,0 +1,39 @@
+{
+  "package": "lucide-react",
+  "version": "0.460.0",
+  "desktopDeclaredVersion": "^0.460.0",
+  "notes": "Original Lucide geometry from the declared beta dependency, not SF Symbols. The reference does not include a lockfile; no claim of its exact resolved dependency version.",
+  "integrity": "sha512-BVtq/DykVeIvRTJvRAgCsOwaGL8Un3Bxh8MbDxMhEWlZay3T4IpEKDEpwt5KZ0KJMHzgm6jrltxlT5eXOWXDHg==",
+  "files": {
+    "bookmark": {
+      "source": "package/dist/esm/icons/bookmark.js",
+      "sha256": "3a2b1a9e263133d039ff40396f154bfb00af6a74f94ce4b689287859b70b8b87",
+      "svgSha256": "d3d7e84cfb9efa0cea60e267e3c2c16daa113cbaa7b6ceb05196cba4718a44a7"
+    },
+    "clock": {
+      "source": "package/dist/esm/icons/clock.js",
+      "sha256": "61638293337cb553790d01aa4233f66973c8579b37205b2db56f1b6e001bc892",
+      "svgSha256": "3e38faaf0ae565f7d97fe3a3e68a42768c021389b669264795ac841339aa8074"
+    },
+    "hard-drive": {
+      "source": "package/dist/esm/icons/hard-drive.js",
+      "sha256": "97ecad95069b3c9dd8581971ef8a2098a76714c5eb84cd6a4bef3ed761b6ddb7",
+      "svgSha256": "7c9589d1e21270a3ec176fe12e93055f527327d6341ac101f9d45dc06f08aea4"
+    },
+    "image": {
+      "source": "package/dist/esm/icons/image.js",
+      "sha256": "f9917c4e2bf2e30184d2c2ab1de918db4a39d4f54dddb9272a7bc879f7c41891",
+      "svgSha256": "5ae4d82d0581f487dc49085648a304ca9faec351c756e85ff6168be2863462c6"
+    },
+    "palette": {
+      "source": "package/dist/esm/icons/palette.js",
+      "sha256": "ca21a163b786c43440e672d09660a7953c3f71c0c84fb642ebe93a812e294da5",
+      "svgSha256": "5e95ce48a34c262a8758c5bc983e9c5254df5e370476f6ab67927cd9f7cb7cbf"
+    },
+    "chevron-right": {
+      "source": "package/dist/esm/icons/chevron-right.js",
+      "sha256": "ee161fee79e5583f4e7db5d633edb7c94cdb024001292646f313e1b8e5542aec",
+      "svgSha256": "a4d3f273556be147589aedf772f7b3706f71d3fbfebaa52ef6ad1014d9b5a245"
+    }
+  }
+}

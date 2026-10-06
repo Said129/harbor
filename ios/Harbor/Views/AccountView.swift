@@ -92,7 +92,7 @@ struct AccountView: View {
         .background(HarborTheme.background)
         .textFieldStyle(.roundedBorder)
         .disabled(app.accountBusy || browserBusy)
-        .navigationTitle(app.user == nil ? "Iniciar sesión" : "Cuenta")
+        .navigationTitle("").navigationBarTitleDisplayMode(.inline)
         .toolbar { Button("Cerrar") { dismiss() } }
         .onDisappear { password = ""; web.cancel() }
     }

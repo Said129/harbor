@@ -26,7 +26,7 @@ struct HarborPill: View {
             }.padding(.horizontal, 14).frame(minHeight: 38)
                 .foregroundStyle(selected ? Color.black : HarborTheme.ink.opacity(0.65))
                 .background(selected ? Color.white : HarborTheme.surface.opacity(0.65), in: .capsule)
-        }.buttonStyle(.plain).accessibilityAddTraits(selected ? [.isSelected] : [])
+        }.buttonStyle(.plain).accessibilityLabel(title).accessibilityAddTraits(selected ? [.isSelected] : [])
     }
 }
 

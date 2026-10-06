@@ -4,45 +4,81 @@ struct SettingsView: View {
     let app: AppModel
     @State private var export: URL?
     @State private var error: String?
+    @State private var query = ""
+    private func matches(_ title: String) -> Bool {
+        let term = query.trimmingCharacters(in: .whitespacesAndNewlines)
+        return term.isEmpty || title.localizedCaseInsensitiveContains(term)
+    }
+    private var playerPages: [PlayerSettingsPage] { [PlayerSettingsPage.playback, .video, .audio, .subtitles].filter { matches($0.title) } }
     var body: some View {
-        Form {
-            Section {
-                HStack(spacing: 16) {
-                    Image("harbor-brand").resizable().frame(width: 64, height: 64).clipShape(.rect(cornerRadius: 14))
-                    VStack(alignment: .leading) {
-                        Text("Harbor").font(.title2.bold())
-                        Text("iPhone · \(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "") (\(Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? ""))").font(.caption).foregroundStyle(.secondary)
+        ScrollView {
+            VStack(alignment: .leading, spacing: 24) {
+                HarborPageHeading(title: "Ajustes", subtitle: "Tu cuenta, reproducción y apariencia.")
+                HarborSearchField(prompt: "Buscar ajustes…", text: $query)
+                if matches("Cuenta y configuración perfil Stremio") {
+                    group("Cuenta y configuración") {
+                        ProfileAccountButton(app: app, expanded: true).accessibilityIdentifier("settings-account").padding(14)
+                        if app.user != nil { Text("Tus addons se recuperan al iniciar sesión y al abrir Harbor.").font(.caption).foregroundStyle(.secondary).padding(.horizontal, 14).padding(.bottom, 14) }
                     }
-                }.padding(.vertical, 4)
-            }
-            Section("Cuenta") {
-                Button(app.user?.displayName ?? "Iniciar sesión en Stremio") { app.showAccount = true }
-                    .accessibilityIdentifier("settings-account")
-                if app.user != nil { Text("Tus addons se recuperan al iniciar sesión y al abrir Harbor.") }
-            }
-            Section("Reproductor") {
-                ForEach([PlayerSettingsPage.playback, .video, .audio, .subtitles]) { page in
-                    NavigationLink(page.title) { PlayerSettingsView(page: page) }
-                        .accessibilityIdentifier("settings-\(page.rawValue)")
                 }
-            }
-            Section("Contenido") {
-                NavigationLink("Proveedores de metadata") { MetadataSettingsView() }
-                NavigationLink("Descargas y almacenamiento") { DownloadsView(app: app) }
-            }
-            Section("Apariencia") {
-                NavigationLink("Temas y colores") { ThemeSettingsView() }
-                NavigationLink("Interfaz y navegación") { InterfaceSettingsView() }
-            }
-            Section("Diagnóstico") {
-                Button("Preparar logs para compartir") { do { export = try Diagnostics.shared.export() } catch { self.error = safeMessage(error) } }
-                if let export { ShareLink("Compartir logs", item: export) }
-                if let error { Text(error).foregroundStyle(.orange) }
-            }
-            Section("Harbor para iPhone") {
-                Text("Versión de desarrollo de Harbor para iPhone.")
-                Text("Instala tus addons para obtener sus catálogos y fuentes reales.")
-            }
-        }.accessibilityIdentifier("settings-scroll").navigationTitle("Ajustes").navigationBarTitleDisplayMode(.inline)
+                if !playerPages.isEmpty {
+                    group("Reproducción") {
+                        ForEach(playerPages) { page in
+                            NavigationLink { PlayerSettingsView(page: page).toolbar(.visible, for: .navigationBar) } label: {
+                                SettingsRow(title: page.title, icon: page == .subtitles ? "ui-customize-subtitles" : page == .audio ? "nav-music" : "ui-play-filled")
+                            }.accessibilityIdentifier("settings-\(page.rawValue)")
+                        }
+                    }
+                }
+                if matches("Proveedores de metadata") || matches("Descargas y almacenamiento") {
+                    group("Fuentes y biblioteca") {
+                        if matches("Proveedores de metadata") {
+                            NavigationLink { MetadataSettingsView().toolbar(.visible, for: .navigationBar) } label: { SettingsRow(title: "Proveedores de metadata", icon: "nav-catalogs") }
+                        }
+                        if matches("Descargas y almacenamiento") {
+                            NavigationLink { DownloadsView(app: app).toolbar(.visible, for: .navigationBar) } label: { SettingsRow(title: "Descargas y almacenamiento", icon: "nav-download") }
+                        }
+                    }
+                }
+                if matches("Temas y colores") || matches("Interfaz y navegación") {
+                    group("Apariencia") {
+                        if matches("Temas y colores") {
+                            NavigationLink { ThemeSettingsView().toolbar(.visible, for: .navigationBar) } label: { SettingsRow(title: "Temas y colores", icon: "desktop-palette") }
+                        }
+                        if matches("Interfaz y navegación") {
+                            NavigationLink { InterfaceSettingsView().toolbar(.visible, for: .navigationBar) } label: { SettingsRow(title: "Interfaz y navegación", icon: "nav-settings") }
+                        }
+                    }
+                }
+                if matches("Diagnóstico y ayuda sistema logs compartir") {
+                    group("Sistema y ayuda") {
+                        Button { do { export = try Diagnostics.shared.export() } catch { self.error = safeMessage(error) } } label: { SettingsRow(title: "Preparar logs para compartir", icon: "ui-help") }
+                        if let export { ShareLink(item: export) { SettingsRow(title: "Compartir logs", icon: "ui-help") } }
+                        if let error { Text(error).font(.caption).foregroundStyle(.orange).padding(14) }
+                    }
+                }
+                Text("Harbor para iPhone · \(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "") (\(Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? ""))").font(.caption).foregroundStyle(.secondary)
+            }.padding(20)
+        }.background(HarborTheme.background).buttonStyle(.plain).accessibilityIdentifier("settings-scroll")
+            .navigationTitle("Ajustes").toolbar(.hidden, for: .navigationBar)
+    }
+    private func group<Content: View>(_ title: String, @ViewBuilder content: () -> Content) -> some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Text(title).font(HarborTheme.font(14, weight: .semibold))
+            VStack(alignment: .leading, spacing: 0, content: content).frame(maxWidth: .infinity, alignment: .leading).background(HarborTheme.surface.opacity(0.65), in: .rect(cornerRadius: 12))
+        }
+    }
+}
+
+private struct SettingsRow: View {
+    let title: String
+    let icon: String
+    var body: some View {
+        HStack(spacing: 12) {
+            Image(icon).resizable().scaledToFit().frame(width: 19, height: 19).foregroundStyle(.secondary)
+            Text(title).font(HarborTheme.font(14)).foregroundStyle(HarborTheme.ink)
+            Spacer(minLength: 8)
+            Image("desktop-chevron-right").resizable().scaledToFit().frame(width: 14, height: 14).foregroundStyle(.secondary)
+        }.padding(.horizontal, 14).frame(minHeight: 54).contentShape(Rectangle())
     }
 }

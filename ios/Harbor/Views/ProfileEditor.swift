@@ -41,7 +41,7 @@ struct ProfileEditor: View {
             }
             Button("Guardar nombre") { profile.update { $0.name = String(name.trimmingCharacters(in: .whitespacesAndNewlines).prefix(80)) } }.buttonStyle(.bordered).disabled(!profile.ready)
             Divider()
-            Label("Avatar", systemImage: "photo").font(.headline)
+            Label("Avatar", image: "desktop-image").font(.headline)
             Text("Sube una foto o elige uno del catálogo original de Harbor.").font(.subheadline).foregroundStyle(.secondary)
             HStack(spacing: 12) {
                 PhotosPicker(selection: $chosenPhoto, matching: .images) { Text("Subir foto").font(.subheadline).padding(12).background(HarborTheme.surface, in: .rect(cornerRadius: 9)) }
@@ -52,7 +52,7 @@ struct ProfileEditor: View {
             }.disabled(!profile.ready)
             if profile.value.photo != nil { Button("Usar mi avatar de Harbor") { profile.update { $0.photo = nil } }.font(.caption) }
             Divider()
-            Label("Tu color", systemImage: "paintpalette").font(.headline)
+            Label("Tu color", image: "desktop-palette").font(.headline)
             Text("Colorea el anillo de tu avatar.").font(.subheadline).foregroundStyle(.secondary)
             LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 5), spacing: 14) {
                 ForEach(ProfilePreferences.colors, id: \.self) { hex in

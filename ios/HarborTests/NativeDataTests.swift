@@ -3,6 +3,17 @@ import UIKit
 @testable import Harbor
 
 final class NativeDataTests: XCTestCase {
+    @MainActor func testAutomaticPlaybackSkipsUnresolvedSourcesAndPreservesQualityOrder() {
+        let torrent = StreamOffer(id: 0, raw: .object(["infoHash": .string(String(repeating: "a", count: 40)), "tier": .string("4K")]))
+        let direct = StreamOffer(id: 1, raw: .object(["url": .string("https://example.com/first.mp4"), "tier": .string("1080p")]))
+        let tied = StreamOffer(id: 2, raw: .object(["url": .string("https://example.com/second.mp4"), "tier": .string("1080p")]))
+        let preferences = StreamPreferences()
+        XCTAssertEqual(preferences.preferred([torrent, direct, tied])?.id, direct.id)
+        XCTAssertNil(preferences.preferred([torrent]))
+        let camera = StreamOffer(id: 3, raw: .object(["title": .string("Film 1080p TS")]))
+        XCTAssertTrue(camera.cameraRecording)
+        XCTAssertFalse(StreamOffer(id: 4, raw: .object(["title": .string("Artists 1080p WEB-DL")])).cameraRecording)
+    }
     func testEditorialUpdatesValidateBeforeReplacingBundledSelections() throws {
         let url = try XCTUnwrap(Bundle.main.url(forResource: "SpooktoberContent", withExtension: "json"))
         let data = try Data(contentsOf: url)

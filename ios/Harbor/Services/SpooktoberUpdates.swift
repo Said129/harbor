@@ -13,9 +13,11 @@ actor SpooktoberUpdates {
     }
     func catalog() throws -> [SpooktoberItem] {
         if let current { return current }
-        if let size = try? file.resourceValues(forKeys: [.fileSizeKey]).fileSize, size <= 1024 * 1024,
+        if let saved = try? file.resourceValues(forKeys: [.fileSizeKey, .contentModificationDateKey]),
+           let size = saved.fileSize, size <= 1024 * 1024,
            let data = try? Data(contentsOf: file), let cached = try? SpooktoberCatalog.decode(data) {
             current = cached
+            lastAttempt = min(saved.contentModificationDate ?? .distantPast, Date()); retryInterval = 86_400
         } else { current = try SpooktoberCatalog.load() }
         return current ?? []
     }

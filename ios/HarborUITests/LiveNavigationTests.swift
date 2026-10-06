@@ -71,6 +71,7 @@ final class LiveNavigationTests: XCTestCase {
         capture(app, "native-catalog-browser")
 
         navigate(app, "settings")
+        capture(app, "native-settings-original-layout")
         app.buttons["settings-video"].tap()
         XCTAssertTrue(app.descendants(matching: .any).matching(identifier: "settings-hwdec").firstMatch.waitForExistence(timeout: 5))
         capture(app, "native-video-settings")
@@ -117,7 +118,7 @@ final class LiveNavigationTests: XCTestCase {
         let savedMovie = app.buttons.matching(NSPredicate(format: "identifier == 'library-media' AND label == 'Interstellar'")).firstMatch
         XCTAssertTrue(savedMovie.waitForExistence(timeout: 10), "Saving from the real detail must populate the actual library")
         capture(app, "native-library-original-layout")
-        let favorites = app.buttons["Favoritos"]
+        let favorites = app.buttons["library-tab-favorites"]
         let filterBar = app.descendants(matching: .any).matching(identifier: "library-filter").firstMatch
         for _ in 0..<3 { if favorites.isHittable { break }; filterBar.swipeLeft() }
         XCTAssertTrue(favorites.isHittable)

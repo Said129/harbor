@@ -42,7 +42,7 @@ struct LibraryView: View {
                                     NavigationLink { DetailView(media: media, app: app) } label: {
                                         VStack(alignment: .leading, spacing: 6) {
                                             Poster(media: media, width: nil).overlay(alignment: .topLeading) {
-                                                if record.bookmarked { Image("ui-library").resizable().scaledToFit().frame(width: 12, height: 12).foregroundStyle(.black).padding(6).background(.white.opacity(0.9), in: .circle).padding(6) }
+                                                if record.bookmarked { Image("desktop-bookmark").resizable().scaledToFit().frame(width: 12, height: 12).foregroundStyle(.black).padding(6).background(.white.opacity(0.9), in: .circle).padding(6) }
                                             }
                                             if display.filter == .continuing { LibraryProgress(record: record) }
                                         }.contentShape(Rectangle())
@@ -67,13 +67,13 @@ struct LibraryView: View {
                     ForEach(LibraryFilter.allCases) { filter in
                         Button { app.library.changeDisplay { $0.filter = filter } } label: {
                             HStack(spacing: 7) {
-                                Image(filter == .favorites ? "ui-favorite" : filter == .watched ? "nav-calendar" : filter == .continuing ? "ui-play-filled" : filter == .all ? "nav-library" : "ui-library").resizable().scaledToFit().frame(width: 16, height: 16)
+                                Image(filter == .favorites ? "ui-favorite" : filter == .watched ? "desktop-clock" : filter == .continuing ? "ui-play-filled" : filter == .all ? "nav-library" : "desktop-bookmark").resizable().scaledToFit().frame(width: 16, height: 16)
                                 Text(filter.title).font(HarborTheme.font(13, weight: .semibold))
                             }.frame(minHeight: 44).foregroundStyle(display.filter == filter ? HarborTheme.ink : HarborTheme.ink.opacity(0.5))
                                 .overlay(alignment: .bottom) { if display.filter == filter { Rectangle().fill(HarborTheme.ink).frame(height: 2) } }
-                        }.buttonStyle(.plain).accessibilityAddTraits(display.filter == filter ? [.isSelected] : [])
+                        }.buttonStyle(.plain).accessibilityLabel(filter.title).accessibilityIdentifier("library-tab-\(filter.rawValue)").accessibilityAddTraits(display.filter == filter ? [.isSelected] : [])
                     }
-                    NavigationLink { DownloadsView(app: app).toolbar(.visible, for: .navigationBar) } label: { Label("Local", image: "nav-download").font(.subheadline).foregroundStyle(.secondary).frame(minHeight: 44) }
+                    NavigationLink { DownloadsView(app: app).toolbar(.visible, for: .navigationBar) } label: { Label("Local", image: "desktop-hard-drive").font(.subheadline).foregroundStyle(.secondary).frame(minHeight: 44) }
                 }
             }.scrollIndicators(.hidden).accessibilityIdentifier("library-filter")
             Divider()
