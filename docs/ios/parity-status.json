@@ -398,8 +398,8 @@
   "Playback state events": {
     "ios": "Apple compilation verified; media interaction pending",
     "state": "Partial",
-    "implementation": "`ios/Harbor/Player/MPVController.swift`; `PlayerView.swift`; `PlayerState.swift`",
-    "notes": "Pinned MPVKit and these controls compile/link on Apple. The app-owned native mpv factory passes its initialization test. Media-dependent controls, events, decoding and physical playback require runtime validation; no codec claims."
+    "implementation": "`ios/Harbor/Player/MPVController.swift`; `PlayerView.swift`; `PlayerState.swift`; ios/Harbor/Player/PlayerView.swift; MPVController.swift; PlaybackPreferences.swift; Models/Resume.swift; ViewModels/DetailModel.swift; Views/DetailView.swift; PlayerSettingsView.swift",
+    "notes": "Pinned MPVKit and these controls compile/link on Apple. The app-owned native mpv factory passes its initialization test. Media-dependent controls, events, decoding and physical playback require runtime validation; no codec claims. Build 24 adds the normal options -> change source -> real addon picker journey. An owner/episode-scoped live checkpoint overrides the ordinary completed-video restart policy only for that handoff; the actual mpv duration handler preserves its timestamp inside the final 20 seconds. Audio interruptions and unplugged output pause real mpv; automatic return requires shouldResume and a saved preference. The foreground preference defaults to paused. UIKit suspension drains GL work synchronously and continues only non-GL acknowledgements; background close defers renderer destruction until active. Existing data/native subtitle/UI tests are extended, not duplicated. Native Apple verification and physical calls/headphone/background/source interaction remain pending."
   },
   "Touch-equivalent transport controls": {
     "ios": "Apple compilation verified; media interaction pending",
@@ -416,8 +416,8 @@
   "Player resilience / errors": {
     "ios": "Apple compilation verified; media interaction pending",
     "state": "Partial",
-    "implementation": "`ios/Harbor/Player/MPVController.swift`; `PlayerView.swift`; `PlayerState.swift`",
-    "notes": "Pinned MPVKit and these controls compile/link on Apple. The app-owned native mpv factory passes its initialization test. Media-dependent controls, events, decoding and physical playback require runtime validation; no codec claims."
+    "implementation": "`ios/Harbor/Player/MPVController.swift`; `PlayerView.swift`; `PlayerState.swift`; ios/Harbor/Player/PlayerView.swift; MPVController.swift; PlaybackPreferences.swift; Models/Resume.swift; ViewModels/DetailModel.swift; Views/DetailView.swift; PlayerSettingsView.swift",
+    "notes": "Pinned MPVKit and these controls compile/link on Apple. The app-owned native mpv factory passes its initialization test. Media-dependent controls, events, decoding and physical playback require runtime validation; no codec claims. Build 24 adds the normal options -> change source -> real addon picker journey. An owner/episode-scoped live checkpoint overrides the ordinary completed-video restart policy only for that handoff; the actual mpv duration handler preserves its timestamp inside the final 20 seconds. Audio interruptions and unplugged output pause real mpv; automatic return requires shouldResume and a saved preference. The foreground preference defaults to paused. UIKit suspension drains GL work synchronously and continues only non-GL acknowledgements; background close defers renderer destruction until active. Existing data/native subtitle/UI tests are extended, not duplicated. Native Apple verification and physical calls/headphone/background/source interaction remain pending."
   },
   "External SRT": {
     "ios": "Code present; feature behavior incomplete",
@@ -542,8 +542,8 @@
   "Local playback resume": {
     "ios": "Shared rules/native storage verified; playback pending",
     "state": "Partial",
-    "implementation": "`harbor-core/src/resume.rs`; `ios/Harbor/Services/ResumeStore.swift`; `Player/MPVController.swift`; `Views/SettingsView.swift`",
-    "notes": "Desktop episode keys, autosave guards/defaults retained. Eight Rust tests, 28 Desktop/C ABI comparisons and three Swift persistence/restart/corruption tests pass. Actual mpv resume, sync and Continue Watching remain pending."
+    "implementation": "`harbor-core/src/resume.rs`; `ios/Harbor/Services/ResumeStore.swift`; `Player/MPVController.swift`; `Views/SettingsView.swift`; ios/Harbor/Player/PlayerView.swift; MPVController.swift; PlaybackPreferences.swift; Models/Resume.swift; ViewModels/DetailModel.swift; Views/DetailView.swift; PlayerSettingsView.swift",
+    "notes": "Desktop episode keys, autosave guards/defaults retained. Eight Rust tests, 28 Desktop/C ABI comparisons and three Swift persistence/restart/corruption tests pass. Actual mpv resume, sync and Continue Watching remain pending. Build 24 adds the normal options -> change source -> real addon picker journey. An owner/episode-scoped live checkpoint overrides the ordinary completed-video restart policy only for that handoff; the actual mpv duration handler preserves its timestamp inside the final 20 seconds. Audio interruptions and unplugged output pause real mpv; automatic return requires shouldResume and a saved preference. The foreground preference defaults to paused. UIKit suspension drains GL work synchronously and continues only non-GL acknowledgements; background close defers renderer destruction until active. Existing data/native subtitle/UI tests are extended, not duplicated. Native Apple verification and physical calls/headphone/background/source interaction remain pending."
   },
   "Setting: `resumePlayback`": {
     "ios": "Shared rules/native storage verified; playback pending",

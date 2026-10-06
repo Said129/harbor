@@ -15,7 +15,7 @@ struct ContentPageView: View {
                 if model.loading && model.rows.isEmpty && model.curated.isEmpty { ProgressView("Cargando \(title.lowercased())…").frame(maxWidth: .infinity).padding(40) }
                 if let error = model.error, model.rows.isEmpty && model.curated.isEmpty {
                     ContentUnavailableView { Label(title, image: kind == "movie" ? "nav-movies" : "nav-shows") } description: { Text(error) } actions: {
-                        Button("Reintentar") { Task { await model.load(kind: kind, app: app, refresh: true) } }
+                        Button("Reintentar") { Task { ArtworkRefresh.shared.retryFailedImages(); await model.load(kind: kind, app: app, refresh: true) } }
                     }
                 }
                 PageCustomizeButton(rails: rails, customization: customization)
@@ -26,7 +26,7 @@ struct ContentPageView: View {
             .accessibilityIdentifier("content-\(kind)")
             .task(id: "\(app.storageReady)|\(app.addons.filter(\.enabled).map(\.id).joined())|\(MetadataPreferences.shared.tmdbKey)|\(MetadataPreferences.shared.region)|\(MetadataPreferences.shared.language)|\(MetadataPreferences.shared.translateTitles)") { if app.storageReady { await model.load(kind: kind, app: app) } }
             .onChange(of: app.rows.count) { _, _ in if !["movie", "series", "kids"].contains(kind) { Task { await model.load(kind: kind, app: app, refresh: true) } } }
-            .refreshable { await model.load(kind: kind, app: app, refresh: true) }
+            .refreshable { ArtworkRefresh.shared.retryFailedImages(); await model.load(kind: kind, app: app, refresh: true) }
     }
 }
 

@@ -36,6 +36,8 @@ struct PlaybackOptions: Codable, Equatable {
     var keepScreenAwake = true
     var autoPlayNextEpisode = true
     var nextEpisodeLeadSeconds = -1.0
+    var resumeAfterInterruption = true
+    var resumeOnForeground = false
     var seekBackSeconds = 10.0
     var seekForwardSeconds = 10.0
     var speed = 1.0

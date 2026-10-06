@@ -45,7 +45,7 @@ struct DetailView: View {
             }
         }.background(HarborTheme.background).navigationBarTitleDisplayMode(.inline)
         .task { await model.load(app.addons); if playImmediately && !model.media.episodic { openStreams() } }
-        .sheet(isPresented: $showStreams, onDismiss: { resolutionTask?.cancel(); model.pendingPlayback = nil; model.showResumePrompt = false; pendingEpisode = nil; pendingEpisodeOwner = nil; autoplayEpisode = false }) {
+        .sheet(isPresented: $showStreams, onDismiss: { resolutionTask?.cancel(); model.pendingPlayback = nil; model.showResumePrompt = false; pendingEpisode = nil; pendingEpisodeOwner = nil; autoplayEpisode = false; model.clearSourceChange() }) {
             NavigationStack {
                 List {
                     if model.loadingStreams { ProgressView("Consultando addons…") }
@@ -62,11 +62,14 @@ struct DetailView: View {
                     }
                 }.navigationTitle(selectedEpisode.map { "T\($0.season ?? 0) · E\($0.episode ?? 0) · Streams" } ?? "Streams").toolbar { ToolbarItem(placement: .topBarTrailing) { Button("Cerrar") { showStreams = false } } }
                 .fullScreenCover(item: $model.playback, onDismiss: playerDismissed) { session in
-                    PlayerView(session: session, resume: session.resumeStore ?? app.resume, title: model.media.name, media: model.media, library: app.library) { episode in
+                    PlayerView(session: session, resume: session.resumeStore ?? app.resume, title: model.media.name, media: model.media, library: app.library, changeEpisode: { episode in
                         guard session.owner == app.library.owner else { return }
                         pendingEpisode = episode; pendingEpisodeOwner = session.owner
                         model.playback = nil
-                    }
+                    }, changeSource: { snapshot in
+                        guard session.owner == app.library.owner else { return }
+                        model.prepareSourceChange(session, snapshot: snapshot)
+                    })
                 }
                 .alert("¿Reanudar la reproducción?", isPresented: $model.showResumePrompt) {
                     Button("Reanudar") { model.chooseResume(true, owner: app.library.owner) }
@@ -89,6 +92,7 @@ struct DetailView: View {
         }
     }
     private func openStreams(_ episode: Episode? = nil) {
+        model.clearSourceChange()
         autoplayEpisode = false
         selectedEpisode = episode
         showStreams = true

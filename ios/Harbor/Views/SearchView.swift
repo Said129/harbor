@@ -12,7 +12,12 @@ struct SearchView: View {
     var body: some View {
         ScrollView {
             if loading { ProgressView().padding() }
-            if let error { Text(error).foregroundStyle(.secondary).padding() }
+            if let error {
+                VStack(spacing: 8) {
+                    Text(error).foregroundStyle(.secondary)
+                    Button("Reintentar") { Task { ArtworkRefresh.shared.retryFailedImages(); await search() } }
+                }.padding()
+            }
             if query.isEmpty { ContentUnavailableView("Busca en tus addons", systemImage: "magnifyingglass", description: Text("Películas, series y catálogos instalados.")) }
             else if rows.isEmpty && !loading { ContentUnavailableView.search(text: query) }
             if let completedQuery {
@@ -23,6 +28,7 @@ struct SearchView: View {
         }
         .background(HarborTheme.background).navigationTitle("Buscar")
         .searchable(text: $query, prompt: "Título")
+        .refreshable { ArtworkRefresh.shared.retryFailedImages(); await search() }
         .task(id: query + (app.user?.id ?? "guest") + app.addons.filter(\.enabled).map(\.id).joined()) { await search() }
     }
     private func search() async {

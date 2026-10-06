@@ -43,7 +43,7 @@ jobs:
     name: Apple SDK / Swift / iPhone
     if: ${{ github.event.repository.private == false }}
     runs-on: macos-15-intel
-    timeout-minutes: 45
+    timeout-minutes: 90
     permissions:
       contents: write
     env:
@@ -98,11 +98,6 @@ jobs:
         run: |
           set -euo pipefail
           python3 scripts/ios/resolve-packages.py
-      - name: Build simulator
-        shell: bash
-        run: |
-          set -euo pipefail
-          xcodebuild -project ios/Harbor.xcodeproj -scheme Harbor -configuration Debug -destination 'generic/platform=iOS Simulator' -derivedDataPath ios/build/DerivedData -clonedSourcePackagesDirPath ios/build/SourcePackages CODE_SIGNING_ALLOWED=YES CODE_SIGN_IDENTITY=- build 2>&1 | tee ios/build/logs/simulator.log
       - name: Choose an available iPhone simulator
         shell: bash
         run: |
@@ -112,6 +107,11 @@ jobs:
           echo "IOS_SIMULATOR=$device" >> "$GITHUB_ENV"
           echo "IOS_SIMULATOR_ARCH=$(uname -m)" >> "$GITHUB_ENV"
           xcrun simctl bootstatus "$device" -b
+      - name: Build simulator
+        shell: bash
+        run: |
+          set -euo pipefail
+          xcodebuild -project ios/Harbor.xcodeproj -scheme Harbor -configuration Debug -destination "platform=iOS Simulator,id=$IOS_SIMULATOR,arch=$IOS_SIMULATOR_ARCH" -derivedDataPath ios/build/DerivedData -clonedSourcePackagesDirPath ios/build/SourcePackages CODE_SIGNING_ALLOWED=YES CODE_SIGN_IDENTITY=- build 2>&1 | tee ios/build/logs/simulator.log
       - name: Run bridge and model tests on iPhone simulator
         id: offline_tests
         timeout-minutes: 15
@@ -155,7 +155,7 @@ jobs:
           set -euo pipefail
           xcodebuild -project ios/Harbor.xcodeproj -scheme HarborLive -configuration Debug -destination "platform=iOS Simulator,id=$IOS_SIMULATOR,arch=$IOS_SIMULATOR_ARCH" -derivedDataPath ios/build/DerivedData -clonedSourcePackagesDirPath ios/build/SourcePackages -resultBundlePath ios/build/LiveTests.xcresult -only-testing:HarborUITests -parallel-testing-enabled NO CODE_SIGNING_ALLOWED=YES CODE_SIGN_IDENTITY=- test 2>&1 | tee ios/build/logs/live-tests.log
       - name: Preserve failed public integration screenshots in a draft Release
-        if: ${{ failure() && inputs.save_draft_build == true && (steps.live_tests.conclusion == 'failure' || steps.live_services.conclusion == 'failure') }}
+        if: ${{ always() && inputs.save_draft_build == true && (steps.live_tests.conclusion == 'failure' || steps.live_tests.conclusion == 'cancelled' || steps.live_services.conclusion == 'failure' || steps.live_services.conclusion == 'cancelled') }}
         env:
           GH_TOKEN: ${{ github.token }}
         shell: bash

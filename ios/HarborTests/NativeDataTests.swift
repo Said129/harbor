@@ -12,6 +12,17 @@ final class NativeDataTests: XCTestCase {
         XCTAssertNil(record.resume(for: ResumeTarget(id: "other", videoId: "show:0:1")))
         let movie = LibraryRecord(raw: .object(["_id": .string("movie"), "type": .string("movie"), "name": .string("Movie"), "_mtime": .string("2026-10-05T18:00:00Z"), "state": .object(["timeOffset": .integer(120_000), "flaggedWatched": .integer(1)])]))
         XCTAssertEqual(movie.resume(for: ResumeTarget(id: "movie"))?.entry.ms, 0)
+
+        // Switching links keeps the live position even inside the ordinary
+        // completed-video window, and cannot move it to another account/episode.
+        let target = ResumeTarget(id: "show", season: 0, episode: 1, videoId: "show:0:1")
+        let continuation = SourceContinuation(target: target, owner: "first", snapshot: ResumeSnapshot(positionMs: 3_590_000, durationMs: 3_600_000, timestampMs: 1, exiting: true), advanceStartedAtMs: 0)
+        XCTAssertEqual(continuation.position(for: target, owner: "first"), 3_590_000)
+        XCTAssertTrue(EpisodeSequence.permitsAutomaticAdvance(duration: 3_600, startedAtMs: try XCTUnwrap(continuation.advanceStartedAtMs), ended: true, hasError: false), "Changing source near the end must preserve the original automatic episode eligibility")
+        XCTAssertNil(continuation.position(for: target, owner: "second"))
+        XCTAssertNil(continuation.position(for: ResumeTarget(id: "show", season: 1, episode: 1, videoId: "show:1:1"), owner: "first"))
+        XCTAssertNil(continuation.position(for: ResumeTarget(id: "other", season: 0, episode: 1, videoId: "show:0:1"), owner: "first"))
+        XCTAssertNil(SourceContinuation(target: target, owner: "first", snapshot: ResumeSnapshot(positionMs: .nan, durationMs: 0, timestampMs: 1, exiting: true)).position(for: target, owner: "first"))
     }
     func testDesktopWatchedBitfieldUsesCanonicalEpisodeOrderAndAnchor() throws {
         let episodes = [Episode(id: "show:1:3", season: 1, episode: 3), Episode(id: "show:1:1", season: 1, episode: 1), Episode(id: "show:1:2", season: 1, episode: 2)]
@@ -54,6 +65,8 @@ final class NativeDataTests: XCTestCase {
         XCTAssertEqual(preferences.options.zoom, 0)
         XCTAssertTrue(preferences.options.autoPlayNextEpisode)
         XCTAssertEqual(preferences.options.nextEpisodeLeadSeconds, -1)
+        XCTAssertTrue(preferences.options.resumeAfterInterruption)
+        XCTAssertFalse(preferences.options.resumeOnForeground)
     }
     func testEpisodeAdvanceCrossesSeasonsKeepsSpecialsSeparateAndExcludesUnairedEpisodes() throws {
         let now = try XCTUnwrap(ISO8601DateFormatter().date(from: "2026-10-06T12:00:00Z"))

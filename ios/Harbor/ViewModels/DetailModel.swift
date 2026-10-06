@@ -23,6 +23,13 @@ final class DetailModel {
     }
     private let service: HarborService
     private var streamRequest = UUID()
+    private var sourceContinuation: SourceContinuation?
+
+    func prepareSourceChange(_ session: PlaybackSession, snapshot: ResumeSnapshot?) {
+        sourceContinuation = snapshot.map { SourceContinuation(target: session.target, owner: session.owner, snapshot: $0, advanceStartedAtMs: session.advanceStartedAtMs ?? session.startMs) }
+        playback = nil
+    }
+    func clearSourceChange() { sourceContinuation = nil }
 
     init(_ media: Media, service: HarborService) { self.media = media; self.service = service }
 
@@ -64,6 +71,7 @@ final class DetailModel {
         let owner = library.owner
         let request = streamRequest
         let episode = selectedEpisode
+        let continuation = sourceContinuation
         defer { resolving = false }
         do {
             let source = try await service.resolve(offer)
@@ -72,8 +80,10 @@ final class DetailModel {
             let target = ResumeTarget(id: media.id, season: episode?.season, episode: episode?.episode, videoId: episode?.id)
             var start = ResumeStart(ms: 0, prompt: false)
             var warning: String?
+            let preservedPosition = continuation?.position(for: target, owner: owner)
             let progressEnabled = ["movie", "series", "anime"].contains(media.type) && !media.id.hasPrefix("iptv:")
-            if progressEnabled {
+            if let preservedPosition { start = ResumeStart(ms: preservedPosition, prompt: false) }
+            else if progressEnabled {
                 do {
                     let cloud = await library.resume(for: target)
                     guard owner == library.owner, request == streamRequest else { return }
@@ -88,7 +98,8 @@ final class DetailModel {
             guard owner == library.owner, request == streamRequest else { return }
             lastPlayedAddonID = offer.addonID
             lastPlayedBingeGroup = offer.bingeGroup
-            let session = PlaybackSession(source: source, target: target, startMs: start.ms, storageWarning: warning, progressEnabled: progressEnabled, owner: owner, resumeStore: resume)
+            sourceContinuation = nil
+            let session = PlaybackSession(source: source, target: target, startMs: start.ms, storageWarning: warning, progressEnabled: progressEnabled, owner: owner, resumeStore: resume, preservePosition: preservedPosition != nil, advanceStartedAtMs: preservedPosition == nil ? nil : continuation?.advanceStartedAtMs)
             if start.prompt { pendingPlayback = session; showResumePrompt = true }
             else { playback = session }
         }
@@ -99,7 +110,7 @@ final class DetailModel {
     func chooseResume(_ resume: Bool, owner: String) {
         guard let pending = pendingPlayback else { return }
         guard pending.owner == owner else { pendingPlayback = nil; showResumePrompt = false; return }
-        playback = PlaybackSession(source: pending.source, target: pending.target, startMs: resume ? pending.startMs : 0, storageWarning: pending.storageWarning, progressEnabled: pending.progressEnabled, owner: pending.owner, resumeStore: pending.resumeStore)
+        playback = PlaybackSession(source: pending.source, target: pending.target, startMs: resume ? pending.startMs : 0, storageWarning: pending.storageWarning, progressEnabled: pending.progressEnabled, owner: pending.owner, resumeStore: pending.resumeStore, preservePosition: pending.preservePosition, advanceStartedAtMs: pending.advanceStartedAtMs)
         pendingPlayback = nil
         showResumePrompt = false
     }

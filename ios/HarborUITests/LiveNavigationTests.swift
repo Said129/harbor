@@ -158,6 +158,14 @@ final class LiveNavigationTests: XCTestCase {
         capture(app, "native-player-options")
         app.navigationBars.buttons["Listo"].tap()
         XCTAssertTrue(close.waitForExistence(timeout: 3))
+        app.buttons["player-options"].tap()
+        let changeSource = app.buttons["player-change-source"]
+        XCTAssertTrue(changeSource.waitForExistence(timeout: 5))
+        changeSource.tap()
+        XCTAssertTrue(offer.waitForExistence(timeout: 15), "Changing source must return to actual addon offers after dismissing the options and player")
+        capture(app, "native-player-change-source")
+        offer.tap()
+        XCTAssertTrue(close.waitForExistence(timeout: 20), "An actual offer must reopen the native player after switching source")
         // Opening the player is not proof that this public example's old video
         // host delivers media. Physical playback remains a separate gate.
         close.tap()

@@ -15,6 +15,7 @@ final class PlayerState {
     var ended = false
     var endedNaturally = false
     var error: String?
+    var playbackIssue: String?
     var tracks: [Track] = []
     var chapters: [Chapter] = []
     var speed = 1.0

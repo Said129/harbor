@@ -18,6 +18,7 @@ enum PlayerSettingsPage: String, Identifiable {
 struct PlayerSettingsView: View {
     let page: PlayerSettingsPage
     var state: PlayerState? = nil
+    var changeSource: (() -> Void)? = nil
     @Bindable var preferences = PlaybackPreferences.shared
     @AppStorage("mpvHwdec") private var hardwareDecoding = HardwareDecoding.auto
     @AppStorage("resumePlayback") private var resumePlayback = true
@@ -28,6 +29,9 @@ struct PlayerSettingsView: View {
         Form {
             switch page {
             case .options:
+                if let changeSource {
+                    Section("Fuente") { Button("Cambiar fuente", action: changeSource).accessibilityIdentifier("player-change-source") }
+                }
                 Section {
                     ForEach([PlayerSettingsPage.playback, .video, .audio, .subtitles]) { destination in
                         NavigationLink(destination.title) { PlayerSettingsView(page: destination, state: state) }
@@ -39,6 +43,8 @@ struct PlayerSettingsView: View {
                 Section("Controles") {
                     Toggle("Ocultar controles automáticamente", isOn: $preferences.options.autoHideControls)
                     Toggle("Mantener la pantalla encendida", isOn: $preferences.options.keepScreenAwake)
+                    Toggle("Reanudar tras una interrupción de audio", isOn: $preferences.options.resumeAfterInterruption)
+                    Toggle("Reanudar al volver a la app", isOn: $preferences.options.resumeOnForeground)
                     Picker("Salto al retroceder", selection: $preferences.options.seekBackSeconds) {
                         ForEach([5.0, 10, 15, 30, 60], id: \.self) { Text("\(Int($0)) segundos").tag($0) }
                     }

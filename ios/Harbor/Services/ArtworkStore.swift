@@ -1,7 +1,15 @@
 import Foundation
 import ImageIO
+import Observation
 import SwiftUI
 import UIKit
+
+@MainActor @Observable
+final class ArtworkRefresh {
+    static let shared = ArtworkRefresh()
+    private(set) var revision = 0
+    func retryFailedImages() { revision &+= 1 }
+}
 
 actor ArtworkStore {
     static let shared = ArtworkStore()
@@ -78,6 +86,7 @@ struct Artwork: View {
     var maxPixels = 1000
     @State private var image: UIImage?
     @State private var failed = false
+    @State private var retryRevision = 0
     var body: some View {
         ZStack {
             if let image { BoundedArtworkImage(image: image, fit: fit) }
@@ -87,7 +96,7 @@ struct Artwork: View {
                     Image("nav-movies").resizable().scaledToFit().frame(width: 24, height: 24).foregroundStyle(.white.opacity(0.35))
                 } else if url != nil { ProgressView().controlSize(.small) }
             }
-        }.clipped().task(id: "\(url ?? "")|\(fallback ?? "")|\(fallbacks.joined(separator: "|"))") {
+        }.clipped().task(id: "\(url ?? "")|\(fallback ?? "")|\(fallbacks.joined(separator: "|"))|\(maxPixels)|\(retryRevision)") {
             image = nil; failed = false
             var seen = Set<String>()
             for raw in ([url, fallback].compactMap({ $0 }) + fallbacks).filter({ !$0.isEmpty && seen.insert($0).inserted }) {
@@ -101,6 +110,10 @@ struct Artwork: View {
                 catch { continue }
             }
             failed = true
+        }
+        .onChange(of: ArtworkRefresh.shared.revision) { _, _ in if failed { retryRevision &+= 1 } }
+        .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)) { _ in
+            if failed { retryRevision &+= 1 }
         }
     }
 }

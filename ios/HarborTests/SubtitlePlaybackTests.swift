@@ -1,3 +1,4 @@
+import AVFoundation
 import GLKit
 import UIKit
 import XCTest
@@ -99,6 +100,49 @@ final class SubtitlePlaybackTests: XCTestCase {
         try await wait(surface, state: state) { !state.subtitleChanging && state.subtitleIssue != nil }
         XCTAssertEqual(state.primarySubtitle?.id, imported.id)
         XCTAssertNil(state.error, "A rejected Files import must not stop the loaded video")
+        let preferences = PlaybackPreferences.shared
+        let previousOptions = preferences.options
+        preferences.options.resumeAfterInterruption = true
+        preferences.options.resumeOnForeground = false
+        defer { preferences.options = previousOptions }
+        let center = NotificationCenter.default
+        func interruption(_ type: AVAudioSession.InterruptionType, options: AVAudioSession.InterruptionOptions = []) {
+            center.post(name: AVAudioSession.interruptionNotification, object: AVAudioSession.sharedInstance(), userInfo: [AVAudioSessionInterruptionTypeKey: type.rawValue, AVAudioSessionInterruptionOptionKey: options.rawValue])
+        }
+        controller.togglePause()
+        try await wait(surface, state: state) { !state.paused }
+        interruption(.began)
+        try await wait(surface, state: state) { state.paused }
+        interruption(.ended)
+        try await Task.sleep(for: .milliseconds(150))
+        XCTAssertTrue(state.paused, "An interruption without shouldResume must leave actual mpv paused")
+        controller.togglePause()
+        try await wait(surface, state: state) { !state.paused }
+        interruption(.began)
+        try await wait(surface, state: state) { state.paused }
+        interruption(.began)
+        try await Task.sleep(for: .milliseconds(100))
+        interruption(.ended, options: .shouldResume)
+        try await wait(surface, state: state) { !state.paused }
+        center.post(name: AVAudioSession.routeChangeNotification, object: AVAudioSession.sharedInstance(), userInfo: [AVAudioSessionRouteChangeReasonKey: AVAudioSession.RouteChangeReason.oldDeviceUnavailable.rawValue])
+        try await wait(surface, state: state) { state.paused }
+        controller.togglePause()
+        try await wait(surface, state: state) { !state.paused }
+        center.post(name: UIApplication.willResignActiveNotification, object: nil)
+        try await wait(surface, state: state) { state.paused }
+        let callbacks = state.renderCalls
+        surface.display()
+        XCTAssertEqual(state.renderCalls, callbacks, "A suspended surface must not issue mpv GL render calls")
+        center.post(name: UIApplication.didBecomeActiveNotification, object: nil)
+        try await Task.sleep(for: .milliseconds(100))
+        XCTAssertTrue(state.paused, "The default foreground preference must keep playback paused")
+        preferences.options.resumeOnForeground = true
+        controller.togglePause()
+        try await wait(surface, state: state) { !state.paused }
+        center.post(name: UIApplication.willResignActiveNotification, object: nil)
+        try await wait(surface, state: state) { state.paused }
+        center.post(name: UIApplication.didBecomeActiveNotification, object: nil)
+        try await wait(surface, state: state) { !state.paused }
         controller.run(["seek", "29.8", "absolute+exact"])
         controller.set("pause", "no")
         try await wait(surface, state: state) { state.ended }
@@ -108,6 +152,16 @@ final class SubtitlePlaybackTests: XCTestCase {
         while Date() < cleanupDeadline, FileManager.default.fileExists(atPath: copiedFile.path) { try await Task.sleep(for: .milliseconds(50)) }
         XCTAssertFalse(FileManager.default.fileExists(atPath: copiedFile.path), "Closing the native player removes its private subtitle copies")
         XCTAssertEqual(try String(contentsOf: importedInput, encoding: .utf8), text, "The user's original subtitle must remain untouched")
+
+        let switchedState = PlayerState()
+        let switched = MPVController(source: source, state: switchedState, startMs: 28_000, preservePosition: true)
+        window.rootViewController = switched
+        switched.view.layoutIfNeeded()
+        switched.set("pause", "yes")
+        defer { switched.close() }
+        let switchedSurface = try XCTUnwrap(switched.view as? GLKView)
+        try await wait(switchedSurface, state: switchedState) { switchedState.loaded && switchedState.paused && switchedState.hasPosition && switchedState.duration > 29 }
+        XCTAssertEqual(switchedState.position, 28, accuracy: 0.75, "Changing source must preserve its real native timestamp inside the final 20 seconds")
     }
 
     @available(iOS, deprecated: 12.0)

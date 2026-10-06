@@ -36,6 +36,8 @@ struct PlaybackSession: Identifiable, Sendable {
     let progressEnabled: Bool
     var owner = "guest"
     var resumeStore: ResumeStore? = nil
+    var preservePosition = false
+    var advanceStartedAtMs: Double? = nil
 }
 
 struct ResumeSnapshot: Sendable {
@@ -43,4 +45,17 @@ struct ResumeSnapshot: Sendable {
     let durationMs: Double
     let timestampMs: UInt64
     let exiting: Bool
+}
+
+struct SourceContinuation: Sendable {
+    let target: ResumeTarget
+    let owner: String
+    let snapshot: ResumeSnapshot
+    var advanceStartedAtMs: Double? = nil
+    func position(for target: ResumeTarget, owner: String) -> Double? {
+        guard owner == self.owner, target.id == self.target.id, target.season == self.target.season,
+              target.episode == self.target.episode, target.videoId == self.target.videoId,
+              snapshot.positionMs.isFinite, snapshot.positionMs >= 0 else { return nil }
+        return snapshot.positionMs
+    }
 }

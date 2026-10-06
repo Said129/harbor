@@ -3,8 +3,9 @@ import SwiftUI
 private struct PlayerSurface: UIViewControllerRepresentable {
     let source: PlaybackSource
     let startMs: Double
+    let preservePosition: Bool
     let state: PlayerState
-    func makeUIViewController(context: Context) -> MPVController { MPVController(source: source, state: state, startMs: startMs) }
+    func makeUIViewController(context: Context) -> MPVController { MPVController(source: source, state: state, startMs: startMs, preservePosition: preservePosition) }
     func updateUIViewController(_ controller: MPVController, context: Context) {}
     static func dismantleUIViewController(_ controller: MPVController, coordinator: ()) { controller.close() }
 }
@@ -42,6 +43,7 @@ struct PlayerView: View {
     var media: Media? = nil
     var library: LibraryModel? = nil
     var changeEpisode: ((Episode) -> Void)? = nil
+    var changeSource: ((ResumeSnapshot?) -> Void)? = nil
     @State private var state = PlayerState()
     @State private var seek: Double = 0
     @State private var editingSeek = false
@@ -53,6 +55,8 @@ struct PlayerView: View {
     @State private var showEpisodes = false
     @State private var pendingEpisode: Episode?
     @State private var episodeChanging = false
+    @State private var sourceChanging = false
+    @State private var pendingSourceChange = false
     @State private var autoNextCancelled = false
     @State private var adjacent: (previous: Episode?, next: Episode?) = (nil, nil)
     @State private var previousIdleTimer = false
@@ -67,9 +71,15 @@ struct PlayerView: View {
             .foregroundStyle(.white)
             .statusBarHidden(!controlsVisible)
             .persistentSystemOverlays(controlsVisible ? .visible : .hidden)
-            .sheet(item: $settingsPage, onDismiss: restartHideTimer) { page in
+            .sheet(item: $settingsPage, onDismiss: {
+                restartHideTimer()
+                if pendingSourceChange { pendingSourceChange = false; requestSourceChange() }
+            }) { page in
                 NavigationStack {
-                    PlayerSettingsView(page: page, state: state)
+                    PlayerSettingsView(page: page, state: state, changeSource: changeSource == nil ? nil : {
+                        pendingSourceChange = true
+                        settingsPage = nil
+                    })
                         .toolbar { ToolbarItem(placement: .confirmationAction) { Button("Listo") { settingsPage = nil } } }
                 }.tint(HarborTheme.accent).preferredColorScheme(.dark)
             }
@@ -82,7 +92,7 @@ struct PlayerView: View {
     private var surface: some View {
         ZStack {
             Color.black.ignoresSafeArea()
-            PlayerSurface(source: session.source, startMs: session.startMs, state: state).ignoresSafeArea().accessibilityHidden(true)
+            PlayerSurface(source: session.source, startMs: session.startMs, preservePosition: session.preservePosition, state: state).ignoresSafeArea().accessibilityHidden(true)
             // This sibling receives taps only on the video, so a transport
             // button or a slider never also toggles the entire interface.
             Color.clear.ignoresSafeArea().contentShape(Rectangle())
@@ -98,6 +108,7 @@ struct PlayerView: View {
                 if state.ended && state.error == nil { Text("La reproducción ha terminado.").padding().background(.black.opacity(0.6)) }
                 if let error = state.error { Text(error).padding().background(.black.opacity(0.8)).accessibilityIdentifier("player-error") }
                 if let error = progressError ?? session.storageWarning { Text(error).font(.caption).padding().background(.black.opacity(0.8)) }
+                if let issue = state.playbackIssue { Text(issue).font(.caption).padding().background(.black.opacity(0.8)) }
             }.padding().allowsHitTesting(false)
             if controlsVisible { controls.transition(.opacity) }
             if let next = adjacent.next, showUpNext {
@@ -172,25 +183,38 @@ struct PlayerView: View {
     }
 
     private var canAutoHide: Bool {
-        controlsVisible && preferences.options.autoHideControls && state.loaded && !state.paused && !state.buffering && !state.ended && state.error == nil && !editingSeek && settingsPage == nil && !showEpisodes && !episodeChanging && !voiceOver && scenePhase == .active
+        controlsVisible && preferences.options.autoHideControls && state.loaded && !state.paused && !state.buffering && !state.ended && state.error == nil && !editingSeek && settingsPage == nil && !showEpisodes && !episodeChanging && !sourceChanging && !voiceOver && scenePhase == .active
     }
     private var canChangeEpisode: Bool { changeEpisode != nil && media?.episodic == true && !(media?.videos?.isEmpty ?? true) && (library.map { $0.owner == session.owner } ?? true) }
     private var automaticAdvanceEnabled: Bool {
-        preferences.options.autoPlayNextEpisode && !autoNextCancelled && EpisodeSequence.permitsAutomaticAdvance(duration: state.duration, startedAtMs: session.startMs, ended: true, hasError: state.error != nil)
+        preferences.options.autoPlayNextEpisode && !autoNextCancelled && EpisodeSequence.permitsAutomaticAdvance(duration: state.duration, startedAtMs: session.advanceStartedAtMs ?? session.startMs, ended: true, hasError: state.error != nil)
     }
     private var autoAdvanceReady: Bool {
-        active && canChangeEpisode && adjacent.next != nil && automaticAdvanceEnabled && state.endedNaturally && !episodeChanging && pendingEpisode == nil && settingsPage == nil && !showEpisodes && scenePhase == .active
+        active && canChangeEpisode && adjacent.next != nil && automaticAdvanceEnabled && state.endedNaturally && !episodeChanging && !sourceChanging && !pendingSourceChange && pendingEpisode == nil && settingsPage == nil && !showEpisodes && scenePhase == .active
     }
     private var showUpNext: Bool {
         let remaining = state.duration - state.position
         let lead = EpisodeSequence.leadSeconds(setting: preferences.options.nextEpisodeLeadSeconds, duration: state.duration)
-        return canChangeEpisode && !episodeChanging && !autoNextCancelled && state.loaded && state.error == nil && settingsPage == nil && !showEpisodes && scenePhase == .active && lead > 0 && remaining > 0.5 && remaining <= lead && !state.ended
+        return canChangeEpisode && !episodeChanging && !sourceChanging && !pendingSourceChange && !autoNextCancelled && state.loaded && state.error == nil && settingsPage == nil && !showEpisodes && scenePhase == .active && lead > 0 && remaining > 0.5 && remaining <= lead && !state.ended
     }
     private func requestEpisode(_ episode: Episode) {
-        guard active, canChangeEpisode, !episodeChanging, episode.available, scenePhase == .active, let changeEpisode else { return }
+        guard active, canChangeEpisode, !episodeChanging, !sourceChanging, episode.available, scenePhase == .active, let changeEpisode else { return }
         episodeChanging = true
         saveCheckpoint(exiting: true)
         changeEpisode(episode)
+    }
+    private func requestSourceChange() {
+        guard active, !sourceChanging, !episodeChanging, scenePhase == .active, library.map({ $0.owner == session.owner }) ?? true, let changeSource else { return }
+        sourceChanging = true
+        let value = snapshot(exiting: true)
+        state.controller?.set("pause", "yes")
+        Task {
+            // Save locally before dismissal. The existing disappearance
+            // checkpoint synchronizes cloud progress without delaying the picker.
+            if let value { await persist(value, syncCloud: false) }
+            guard active, scenePhase == .active, library.map({ $0.owner == session.owner }) ?? true else { sourceChanging = false; return }
+            changeSource(value)
+        }
     }
     private func restartHideTimer() { hideRevision += 1 }
     private func updateIdleTimer() {
@@ -239,7 +263,7 @@ struct PlayerView: View {
                     Button { jump(-preferences.options.seekBackSeconds) } label: { PlayerSeekGlyph(direction: "back", seconds: preferences.options.seekBackSeconds) }.frame(width: 44, height: 44).accessibilityLabel("Retroceder \(Int(preferences.options.seekBackSeconds)) segundos")
                     Button {
                         if state.ended { state.controller?.replay() }
-                        else { state.controller?.run(["cycle", "pause"]) }
+                        else { state.controller?.togglePause() }
                         restartHideTimer()
                     } label: { PlayerGlyph(name: state.ended ? "seek-back-custom" : state.paused ? "play-pause--paused" : "play-pause--playing", size: 28) }
                         .frame(width: 44, height: 44).accessibilityLabel(state.ended ? "Repetir" : state.paused ? "Reproducir" : "Pausar").accessibilityIdentifier("player-pause")
@@ -269,7 +293,7 @@ struct PlayerView: View {
         await persist(value)
     }
 
-    @MainActor private func persist(_ value: ResumeSnapshot) async {
+    @MainActor private func persist(_ value: ResumeSnapshot, syncCloud: Bool = true) async {
         do {
             if try await resume.save(session.target, snapshot: value) {
                 lastSavedMs = value.positionMs
@@ -280,7 +304,7 @@ struct PlayerView: View {
             progressError = safeMessage(error)
             Diagnostics.shared.recordFailure(error)
         }
-        if let media, let library { await library.saveProgress(media, target: session.target, snapshot: value, owner: session.owner) }
+        if syncCloud, let media, let library { await library.saveProgress(media, target: session.target, snapshot: value, owner: session.owner) }
     }
     private func time(_ value: Double) -> String {
         guard value.isFinite && value >= 0 && value < Double(Int.max) else { return "0:00" }

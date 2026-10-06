@@ -45,7 +45,8 @@ def main():
         f"SHA-256: `{digest}`\n\n"
         "Requires iOS 17 or later and valid signing before installation. No certificate or provisioning profile is included. "
         "Simulator service/UI tests pass before this workflow stage; opening the player does not certify physical video/audio playback. "
-        "Full Harbor Desktop feature parity remains in progress.\n"
+        "Essential mobile journeys and started native features remain in progress; "
+        "the complete Desktop inventory is a reference under docs/ios/MOBILE_SCOPE.md.\n"
     )
     with tempfile.TemporaryDirectory(prefix="harbor-draft-") as temporary:
         body = Path(temporary) / "notes.md"

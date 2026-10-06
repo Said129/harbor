@@ -75,6 +75,7 @@ final class AppModel {
     }
 
     func loadHome() async {
+        ArtworkRefresh.shared.retryFailedImages()
         homeGeneration += 1
         let generation = homeGeneration
         let selectedAddons = addons

@@ -28,10 +28,19 @@ final class MPVController: GLKViewController {
     private var acknowledgedSubtitleFPS = 0.0
     private var preferredSecondaryHandled = false
     private let subtitleSession = UUID()
+    private var lifecycleTokens: [NSObjectProtocol] = []
+    private var deferredCloseToken: NSObjectProtocol?
+    private var suspendedEvents: Task<Void, Never>?
+    private var renderSuspended = false
+    private var interrupted = false
+    private var interruptionResumeWanted = false
+    private var interruptionResumeAllowed = false
+    private var foregroundResumeWanted = false
 
-    init(source: PlaybackSource, state: PlayerState, startMs: Double = 0) {
+    init(source: PlaybackSource, state: PlayerState, startMs: Double = 0, preservePosition: Bool = false) {
         self.source = source; self.state = state
         self.startMs = startMs
+        checkedResumeDuration = preservePosition
         super.init(nibName: nil, bundle: nil)
         state.controller = self
     }
@@ -105,6 +114,7 @@ final class MPVController: GLKViewController {
         }
         try command(["loadfile", source.url, "replace"])
         state.renderReady = true
+        observePlaybackLifecycle()
         Diagnostics.shared.record(.playerStarted)
     }
 
@@ -132,6 +142,7 @@ final class MPVController: GLKViewController {
         do { try command(values) } catch { state.error = safeMessage(error) }
     }
     func replay() {
+        guard activateAudio() else { return }
         state.error = nil
         checkedResumeDuration = true
         enqueueSubtitleOperation { controller in
@@ -139,6 +150,95 @@ final class MPVController: GLKViewController {
             try await controller.setChecked("start", "none")
             controller.run(["loadfile", controller.source.url, "replace"])
         }
+    }
+
+    func togglePause() {
+        interruptionResumeWanted = false; interruptionResumeAllowed = false; foregroundResumeWanted = false
+        if state.paused {
+            guard activateAudio() else { return }
+        }
+        run(["cycle", "pause"])
+    }
+
+    private func activateAudio() -> Bool {
+        guard !didClose, UIApplication.shared.applicationState == .active else { return false }
+        do {
+            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .moviePlayback)
+            try AVAudioSession.sharedInstance().setActive(true)
+            interrupted = false
+            state.playbackIssue = nil
+            return true
+        } catch { state.playbackIssue = "No se pudo recuperar la salida de audio. Puedes volver a pulsar Reproducir."; return false }
+    }
+
+    private func observePlaybackLifecycle() {
+        let center = NotificationCenter.default
+        lifecycleTokens.append(center.addObserver(forName: AVAudioSession.interruptionNotification, object: nil, queue: nil) { [weak self] notification in
+            let type = notification.userInfo?[AVAudioSessionInterruptionTypeKey] as? UInt
+            let options = notification.userInfo?[AVAudioSessionInterruptionOptionKey] as? UInt ?? 0
+            Task { @MainActor [weak self] in self?.audioInterruption(type: type, options: options) }
+        })
+        lifecycleTokens.append(center.addObserver(forName: AVAudioSession.routeChangeNotification, object: nil, queue: nil) { [weak self] notification in
+            let reason = notification.userInfo?[AVAudioSessionRouteChangeReasonKey] as? UInt
+            guard reason == AVAudioSession.RouteChangeReason.oldDeviceUnavailable.rawValue else { return }
+            Task { @MainActor [weak self] in
+                guard let self, !self.didClose else { return }
+                self.interruptionResumeWanted = false; self.interruptionResumeAllowed = false; self.foregroundResumeWanted = false
+                self.set("pause", "yes")
+            }
+        })
+        lifecycleTokens.append(center.addObserver(forName: UIApplication.willResignActiveNotification, object: nil, queue: .main) { [weak self] _ in
+            MainActor.assumeIsolated { self?.suspendForApp() }
+        })
+        lifecycleTokens.append(center.addObserver(forName: UIApplication.didBecomeActiveNotification, object: nil, queue: .main) { [weak self] _ in
+            MainActor.assumeIsolated { self?.restoreForApp() }
+        })
+    }
+
+    private func audioInterruption(type: UInt?, options: UInt) {
+        guard !didClose, let type else { return }
+        if type == AVAudioSession.InterruptionType.began.rawValue {
+            if !interrupted { interruptionResumeWanted = state.loaded && !state.ended && (!state.paused || foregroundResumeWanted) }
+            interruptionResumeAllowed = false
+            interrupted = true
+            set("pause", "yes")
+        } else if type == AVAudioSession.InterruptionType.ended.rawValue {
+            interrupted = false
+            interruptionResumeAllowed = interruptionResumeWanted && AVAudioSession.InterruptionOptions(rawValue: options).contains(.shouldResume) && PlaybackPreferences.shared.options.resumeAfterInterruption
+            interruptionResumeWanted = false
+            if interruptionResumeAllowed && !renderSuspended && UIApplication.shared.applicationState == .active {
+                interruptionResumeAllowed = false
+                if activateAudio() { set("pause", "no") }
+            }
+        }
+    }
+
+    private func suspendForApp() {
+        guard !didClose, !renderSuspended else { return }
+        foregroundResumeWanted = !interrupted && state.loaded && !state.paused && !state.ended
+        set("pause", "yes")
+        renderSuspended = true
+        isPaused = true
+        if UIApplication.shared.applicationState != .background, let context, EAGLContext.setCurrent(context) { glFinish() }
+        // Property/command acknowledgements remain available while the
+        // drawable is suspended. This loop never touches OpenGL.
+        suspendedEvents = Task { @MainActor [weak self] in
+            while !Task.isCancelled {
+                guard let self, !self.didClose, self.renderSuspended else { return }
+                if let handle = self.handle { self.drainEvents(handle) }
+                do { try await Task.sleep(for: .milliseconds(100)) } catch { return }
+            }
+        }
+    }
+
+    private func restoreForApp() {
+        guard !didClose else { return }
+        suspendedEvents?.cancel(); suspendedEvents = nil
+        renderSuspended = false; isPaused = false
+        if let handle { drainEvents(handle) }
+        let resume = !interrupted && (interruptionResumeAllowed || (foregroundResumeWanted && PlaybackPreferences.shared.options.resumeOnForeground))
+        interruptionResumeAllowed = false; foregroundResumeWanted = false
+        if resume && !state.ended && activateAudio() { set("pause", "no") }
     }
 
     func applySubtitleFPS(_ value: Double) {
@@ -297,6 +397,7 @@ final class MPVController: GLKViewController {
 
     @available(iOS, deprecated: 12.0)
     override func glkView(_ surface: GLKView, drawIn rect: CGRect) {
+        guard !renderSuspended, UIApplication.shared.applicationState != .background else { return }
         guard let context, EAGLContext.setCurrent(context), surface.drawableWidth > 0, surface.drawableHeight > 0 else { return }
         // libmpv requires default GL state on entry and does not restore the
         // viewport/scissor rectangle. GLKView also draws during snapshots and
@@ -515,20 +616,36 @@ final class MPVController: GLKViewController {
 
     func close() {
         guard !didClose else { return }
+        set("pause", "yes")
         didClose = true
+        suspendedEvents?.cancel(); suspendedEvents = nil
+        for token in lifecycleTokens { NotificationCenter.default.removeObserver(token) }
+        lifecycleTokens = []
         mediaRevision += 1
         subtitleTail?.cancel()
         subtitleTail = nil
         for identifier in Array(pendingOperations.keys) { finishOperation(identifier, error: CancellationError()) }
         state.renderReady = false
         isPaused = true
+        if UIApplication.shared.applicationState == .background {
+            // Freeing the mpv render context also issues GL commands. Retain
+            // this closed surface until UIKit permits graphics work again.
+            deferredCloseToken = NotificationCenter.default.addObserver(forName: UIApplication.didBecomeActiveNotification, object: nil, queue: .main) { [self] _ in
+                MainActor.assumeIsolated { finishClosing() }
+            }
+        } else { finishClosing() }
+        state.controller = nil
+        do { try AVAudioSession.sharedInstance().setActive(false, options: .notifyOthersOnDeactivation) }
+        catch { state.playbackIssue = "No se pudo cerrar la sesión de audio." }
+    }
+
+    private func finishClosing() {
+        guard UIApplication.shared.applicationState != .background else { return }
+        if let token = deferredCloseToken { NotificationCenter.default.removeObserver(token); deferredCloseToken = nil }
         if let context { EAGLContext.setCurrent(context) }
         if let renderer { mpv_render_context_free(renderer); self.renderer = nil }
         if let handle { MPVConfiguration.destroy(handle); self.handle = nil }
         let session = subtitleSession
         Task { await SubtitleFileService.shared.cleanup(session) }
-        state.controller = nil
-        do { try AVAudioSession.sharedInstance().setActive(false, options: .notifyOthersOnDeactivation) }
-        catch { state.error = "No se pudo cerrar la sesión de audio." }
     }
 }
