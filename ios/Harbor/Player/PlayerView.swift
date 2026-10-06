@@ -9,6 +9,32 @@ private struct PlayerSurface: UIViewControllerRepresentable {
     static func dismantleUIViewController(_ controller: MPVController, coordinator: ()) { controller.close() }
 }
 
+private struct PlayerGlyph: View {
+    let name: String
+    var size: CGFloat = 24
+    var body: some View {
+        Image("player-" + name).resizable().scaledToFit().frame(width: size, height: size).accessibilityHidden(true)
+    }
+}
+
+private struct PlayerSeekGlyph: View {
+    let direction: String
+    let seconds: Double
+    private static let originalIntervals: Set<Double> = [1, 3, 5, 10, 15, 30, 60, 90]
+    var body: some View {
+        if Self.originalIntervals.contains(seconds) {
+            PlayerGlyph(name: "seek-" + direction + "-" + String(Int(seconds)), size: 26)
+        } else {
+            PlayerGlyph(name: "seek-" + direction + "-custom", size: 26)
+                .overlay {
+                    Text(seconds.formatted(.number.precision(.fractionLength(0...1))))
+                        .font(.system(size: 9, weight: .semibold)).monospacedDigit().offset(y: 3)
+                        .accessibilityHidden(true)
+                }
+        }
+    }
+}
+
 struct PlayerView: View {
     let session: PlaybackSession
     let resume: ResumeStore
@@ -107,11 +133,11 @@ struct PlayerView: View {
     private var controls: some View {
         VStack(spacing: 0) {
             HStack(spacing: 0) {
-                Button { dismiss() } label: { Image(systemName: "chevron.down").frame(width: 44, height: 44) }
+                Button { dismiss() } label: { PlayerGlyph(name: "back").frame(width: 44, height: 44) }
                     .accessibilityLabel("Cerrar reproductor").accessibilityIdentifier("player-close")
                 Text(title).lineLimit(1).frame(maxWidth: .infinity, alignment: .leading)
-                Button { settingsPage = .audio } label: { Image(systemName: "waveform").frame(width: 44, height: 44) }.accessibilityLabel("Audio")
-                Button { settingsPage = .subtitles } label: { Image(systemName: "captions.bubble").frame(width: 44, height: 44) }.accessibilityLabel("Subtítulos")
+                Button { settingsPage = .audio } label: { PlayerGlyph(name: "audio").frame(width: 44, height: 44) }.accessibilityLabel("Audio")
+                Button { settingsPage = .subtitles } label: { PlayerGlyph(name: "subtitle").frame(width: 44, height: 44) }.accessibilityLabel("Subtítulos")
                 Button { settingsPage = .options } label: { Image("nav-settings").frame(width: 44, height: 44) }
                     .accessibilityLabel("Opciones del reproductor").accessibilityIdentifier("player-options")
             }.padding(.horizontal, 8).padding(.vertical, 4).background(.black.opacity(0.7))
@@ -125,17 +151,17 @@ struct PlayerView: View {
                 HStack(spacing: 8) {
                     Text(time(state.position)).monospacedDigit().accessibilityLabel("Tiempo reproducido").accessibilityIdentifier("player-position")
                     Spacer(minLength: 0)
-                    Button { jump(-preferences.options.seekBackSeconds) } label: { Image(systemName: "gobackward").overlay(Text("\(Int(preferences.options.seekBackSeconds))").font(.system(size: 9)).offset(y: 2)) }.frame(width: 44, height: 44).accessibilityLabel("Retroceder \(Int(preferences.options.seekBackSeconds)) segundos")
+                    Button { jump(-preferences.options.seekBackSeconds) } label: { PlayerSeekGlyph(direction: "back", seconds: preferences.options.seekBackSeconds) }.frame(width: 44, height: 44).accessibilityLabel("Retroceder \(Int(preferences.options.seekBackSeconds)) segundos")
                     Button {
                         if state.ended { state.controller?.replay() }
                         else { state.controller?.run(["cycle", "pause"]) }
                         restartHideTimer()
-                    } label: { Image(systemName: state.ended ? "arrow.counterclockwise" : state.paused ? "play.fill" : "pause.fill").font(.title) }
+                    } label: { PlayerGlyph(name: state.ended ? "seek-back-custom" : state.paused ? "play-pause--paused" : "play-pause--playing", size: 28) }
                         .frame(width: 44, height: 44).accessibilityLabel(state.ended ? "Repetir" : state.paused ? "Reproducir" : "Pausar").accessibilityIdentifier("player-pause")
-                    Button { jump(preferences.options.seekForwardSeconds) } label: { Image(systemName: "goforward").overlay(Text("\(Int(preferences.options.seekForwardSeconds))").font(.system(size: 9)).offset(y: 2)) }.frame(width: 44, height: 44).accessibilityLabel("Avanzar \(Int(preferences.options.seekForwardSeconds)) segundos")
+                    Button { jump(preferences.options.seekForwardSeconds) } label: { PlayerSeekGlyph(direction: "forward", seconds: preferences.options.seekForwardSeconds) }.frame(width: 44, height: 44).accessibilityLabel("Avanzar \(Int(preferences.options.seekForwardSeconds)) segundos")
                     Spacer(minLength: 0)
-                    Button { settingsPage = .video } label: { Image(systemName: "slider.horizontal.3").frame(width: 36, height: 44) }.accessibilityLabel("Imagen y formato").accessibilityIdentifier("player-picture")
-                    Button("\(state.speed.formatted())×") { settingsPage = .playback }.accessibilityLabel("Velocidad").frame(minWidth: 32, minHeight: 44)
+                    Button { settingsPage = .video } label: { PlayerGlyph(name: "aspect").frame(width: 44, height: 44) }.accessibilityLabel("Imagen y formato").accessibilityIdentifier("player-picture")
+                    Button { settingsPage = .playback } label: { VStack(spacing: 1) { PlayerGlyph(name: "speed", size: 19); Text("\(state.speed.formatted())×").font(.system(size: 9)) } }.accessibilityLabel("Velocidad").accessibilityValue("\(state.speed.formatted())×").frame(minWidth: 32, minHeight: 44)
                     Text(time(state.duration)).monospacedDigit()
                 }.font(.caption)
             }.padding(.horizontal).padding(.bottom, 8).background(.black.opacity(0.7))

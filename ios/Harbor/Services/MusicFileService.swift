@@ -36,7 +36,7 @@ actor MusicFileService {
         defer { if access { input.stopAccessingSecurityScopedResource() } }
         let values = try input.resourceValues(forKeys: [.isRegularFileKey, .isSymbolicLinkKey, .fileSizeKey])
         let ext = input.pathExtension.lowercased()
-        guard extensions.contains(ext), values.isRegularFile == true, values.isSymbolicLink != true,
+        guard Self.extensions.contains(ext), values.isRegularFile == true, values.isSymbolicLink != true,
               let size = values.fileSize, size > 0, size <= 512 * 1024 * 1024 else { throw HarborError(code: "music-file") }
         let root = try Self.root(owner: owner)
         let owned = try FileManager.default.contentsOfDirectory(at: root, includingPropertiesForKeys: [.fileSizeKey], options: [.skipsHiddenFiles])
