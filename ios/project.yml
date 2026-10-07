@@ -24,6 +24,10 @@ targets:
     platform: iOS
     sources:
       - path: Harbor
+        excludes: [HarborLoader]
+      - path: Harbor/HarborLoader
+        type: folder
+        buildPhase: resources
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: site.harbor.iphone
@@ -38,7 +42,7 @@ targets:
       properties:
         CFBundleDisplayName: Harbor
         CFBundleShortVersionString: "0.1.0"
-        CFBundleVersion: "43"
+        CFBundleVersion: "44"
         UIAppFonts:
           [
             Fraunces.ttf,

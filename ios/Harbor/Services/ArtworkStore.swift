@@ -86,6 +86,7 @@ struct Artwork: View {
     var maxPixels = 1000
     var failureIcon = "nav-movies"
     var showsPlaceholder = true
+    var onImageAvailability: ((Bool) -> Void)? = nil
     @State private var image: UIImage?
     @State private var failed = false
     @State private var retryRevision = 0
@@ -99,7 +100,7 @@ struct Artwork: View {
                 } else if url != nil { ProgressView().controlSize(.small) }
             }
         }.clipped().allowsHitTesting(false).task(id: "\(url ?? "")|\(fallback ?? "")|\(fallbacks.joined(separator: "|"))|\(maxPixels)|\(retryRevision)") {
-            image = nil; failed = false
+            image = nil; failed = false; onImageAvailability?(false)
             var seen = Set<String>()
             for raw in ([url, fallback].compactMap({ $0 }) + fallbacks).filter({ !$0.isEmpty && seen.insert($0).inserted }) {
                 do {
@@ -107,7 +108,7 @@ struct Artwork: View {
                     try Task.checkCancellation()
                     guard let source = CGImageSourceCreateWithData(data as CFData, nil),
                           let cgImage = CGImageSourceCreateThumbnailAtIndex(source, 0, [kCGImageSourceCreateThumbnailFromImageAlways: true, kCGImageSourceCreateThumbnailWithTransform: true, kCGImageSourceThumbnailMaxPixelSize: maxPixels] as CFDictionary) else { continue }
-                    image = UIImage(cgImage: cgImage); return
+                    image = UIImage(cgImage: cgImage); onImageAvailability?(true); return
                 } catch is CancellationError { return }
                 catch { continue }
             }

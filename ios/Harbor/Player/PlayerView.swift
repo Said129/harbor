@@ -62,7 +62,6 @@ struct PlayerView: View {
     @State private var adjacent: (previous: Episode?, next: Episode?) = (nil, nil)
     @State private var previousIdleTimer = false
     @State private var active = false
-    @State private var fitNotice: String?
     @Bindable private var preferences = PlaybackPreferences.shared
     @AppStorage("mpvHwdec") private var hardwareDecoding = HardwareDecoding.auto
     @Environment(\.dismiss) private var dismiss
@@ -112,7 +111,6 @@ struct PlayerView: View {
                     } else if scale > 1.1 {
                         preferences.options.fit = .fill; preferences.options.zoom = 0
                     } else { return }
-                    fitNotice = preferences.options.fit.title
                     restartHideTimer()
                 })
                 .accessibilityElement(children: .ignore)
@@ -122,18 +120,14 @@ struct PlayerView: View {
                 .accessibilityAction { controlsVisible.toggle(); restartHideTimer() }
                 .accessibilityIdentifier("player-surface")
             VStack(spacing: 12) {
-                if (state.buffering || !state.loaded) && !state.ended && state.error == nil { ProgressView().tint(.white) }
+                if state.buffering && state.loaded && !state.ended && state.error == nil { HarborLoader() }
                 if state.ended && state.error == nil { Text("La reproducción ha terminado.").padding().background(.black.opacity(0.6)) }
                 if let error = progressError ?? session.storageWarning { Text(error).font(.caption).padding().background(.black.opacity(0.8)) }
                 if let issue = state.playbackIssue { Text(issue).font(.caption).padding().background(.black.opacity(0.8)) }
             }.padding().allowsHitTesting(false)
-            if let fitNotice {
-                Text(fitNotice).font(.caption.weight(.semibold)).padding(12).background(.black.opacity(0.8), in: .capsule)
-                    .allowsHitTesting(false).accessibilityIdentifier("player-fit-notice")
-                    .task(id: fitNotice) { do { try await Task.sleep(for: .seconds(2)); self.fitNotice = nil } catch {} }
-            }
+            if !state.loaded && !state.ended && state.error == nil { HarborPlaybackConnecting(media: media, cancelIdentifier: "player-close") { dismiss() } }
             if let error = state.error { failureNotice(error) }
-            if controlsVisible { controls.transition(.opacity) }
+            if controlsVisible && (state.loaded || state.error != nil) { controls.transition(.opacity) }
             if let next = adjacent.next, showUpNext {
                 VStack {
                     Spacer()
@@ -313,7 +307,7 @@ struct PlayerView: View {
                     editingSeek = editing
                     if !editing { state.controller?.run(["seek", String(seek), "absolute+exact"]) }
                     restartHideTimer()
-                }).disabled(state.duration <= 0 || !state.loaded || retrying || state.restarting || sourceChanging || episodeChanging).accessibilityLabel("Posición de reproducción")
+                }).tint(ThemePreferences.shared.seekColor).disabled(state.duration <= 0 || !state.loaded || retrying || state.restarting || sourceChanging || episodeChanging).accessibilityLabel("Posición de reproducción")
                 HStack(spacing: 8) {
                     Button { state.controller?.set("mute", state.muted ? "no" : "yes") } label: { PlayerGlyph(name: state.muted ? "volume--mute" : "volume").frame(width: 44, height: 44) }.accessibilityLabel(state.muted ? "Activar sonido" : "Silenciar")
                     Spacer(minLength: 0)

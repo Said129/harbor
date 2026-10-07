@@ -1,0 +1,41 @@
+import SwiftUI
+import UIKit
+import WebKit
+import XCTest
+@testable import Harbor
+
+final class HarborLoaderTests: XCTestCase {
+    @MainActor
+    func testOriginalBundledBoatRendersAndAnimatesWithoutNetwork() async throws {
+        let scene = try XCTUnwrap(UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }.first)
+        let previous = scene.windows.first { $0.isKeyWindow }
+        let window = UIWindow(windowScene: scene)
+        window.frame = CGRect(x: 0, y: 0, width: 390, height: 844)
+        window.rootViewController = UIHostingController(rootView: HarborLoaderArtwork().frame(width: 128, height: 128))
+        window.makeKeyAndVisible()
+        defer { window.isHidden = true; window.rootViewController = nil; previous?.makeKeyAndVisible() }
+        var web: WKWebView?
+        let deadline = Date().addingTimeInterval(10)
+        while Date() < deadline {
+            web = webView(in: window)
+            if let web, !web.isLoading, web.estimatedProgress == 1 { break }
+            try await Task.sleep(for: .milliseconds(50))
+        }
+        let browser = try XCTUnwrap(web)
+        XCTAssertEqual(browser.url, HarborLoaderArtwork.index)
+        XCTAssertEqual(browser.configuration.websiteDataStore.isPersistent, false)
+        let hasPaths = try await browser.evaluateJavaScript("document.querySelectorAll('#boat svg path').length > 0") as? Bool
+        XCTAssertEqual(hasPaths, true, "The original animation must actually render its SVG paths")
+        let firstValue = try await browser.evaluateJavaScript("window.harborLoader.currentFrame")
+        let first = try XCTUnwrap(firstValue as? Double)
+        try await Task.sleep(for: .milliseconds(300))
+        let laterValue = try await browser.evaluateJavaScript("window.harborLoader.currentFrame")
+        let later = try XCTUnwrap(laterValue as? Double)
+        XCTAssertNotEqual(first, later, "A static logo does not prove the desktop animation works")
+        browser.evaluateJavaScript("window.harborLoader.goToAndStop(0, true)", completionHandler: nil)
+    }
+    @MainActor private func webView(in view: UIView) -> WKWebView? {
+        if let web = view as? WKWebView { return web }
+        return view.subviews.compactMap { webView(in: $0) }.first
+    }
+}

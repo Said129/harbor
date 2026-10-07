@@ -48,7 +48,7 @@ struct MangaView: View {
                     HStack(spacing: 10) {
                         HarborPill(title: "Explorar manga", selected: screen == "browse", icon: "nav-manga") { screen = "browse" }
                         HarborPill(title: "Biblioteca", selected: screen == "shelf", icon: "nav-library") { screen = "shelf" }
-                        Button { submanhwa = true } label: { Label("Submanhwa · Cuenta y Gacha", systemImage: "person.crop.circle").font(.caption.weight(.semibold)).padding(.horizontal, 14).frame(minHeight: 44).background(HarborTheme.surface, in: .capsule) }
+                        Button { submanhwa = true } label: { Label("Submanhwa", image: "nav-manga").font(HarborTheme.font(13, weight: .medium)).padding(.horizontal, 14).frame(minHeight: 44).background(HarborTheme.surface, in: .capsule) }
                     }.padding(.horizontal)
                 }.scrollIndicators(.hidden)
                 HStack { Text(screen == "shelf" ? "Tu biblioteca de manga" : "Explorar manga").font(HarborTheme.font(21, weight: .semibold)); Spacer(); mangaOptions }.padding(.horizontal)

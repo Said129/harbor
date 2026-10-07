@@ -81,7 +81,7 @@ final class AppModel {
         let selectedAddons = addons
         var enabledIDs = Set(selectedAddons.filter(\.enabled).map(\.id))
         if !selectedAddons.contains(where: { $0.manifest["id"].string == "com.linvo.cinemeta" }) { enabledIDs.insert(HarborService.cinemetaManifest) }
-        rows = rows.filter { enabledIDs.contains($0.plan.addon.id) }
+        rows = rows.filter { enabledIDs.contains($0.plan.addon.id) && !$0.plan.isPlaybackHistoryCatalog }
         if rows.isEmpty { heroes = [] }
         loading = true
         error = nil

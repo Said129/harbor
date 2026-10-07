@@ -22,7 +22,8 @@ struct HarborService: Sendable {
     }
 
     func catalogs(_ addons: [Addon], search: String? = nil, genre: String? = nil, skip: Int = 0, previous: [CatalogRow] = [], onRow: (@MainActor @Sendable (CatalogRow) -> Void)? = nil) async throws -> ([CatalogRow], [String]) {
-        let plans: [RequestPlan] = try await core.call("catalogs", ["addons": try .encoded(addons), "search": search.map(JSONValue.string) ?? .null, "genre": genre.map(JSONValue.string) ?? .null, "skip": .integer(Int64(skip))])
+        let requested: [RequestPlan] = try await core.call("catalogs", ["addons": try .encoded(addons), "search": search.map(JSONValue.string) ?? .null, "genre": genre.map(JSONValue.string) ?? .null, "skip": .integer(Int64(skip))])
+        let plans = requested.filter { !$0.isPlaybackHistoryCatalog }
         return try await withThrowingTaskGroup(of: (RequestPlan, JSONValue?, String?).self) { group in
             var iterator = plans.makeIterator()
             func enqueue(_ plan: RequestPlan) {

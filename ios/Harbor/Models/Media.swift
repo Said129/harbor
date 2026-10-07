@@ -180,6 +180,11 @@ struct RequestPlan: Codable, Identifiable, Sendable {
     let timeoutMs: Int
     let catalog: CatalogDefinition?
     var id: String { key }
+    var isPlaybackHistoryCatalog: Bool {
+        [title, catalog?.name ?? "", catalog?.id ?? ""].contains {
+            $0.trimmingCharacters(in: .whitespacesAndNewlines).caseInsensitiveCompare("TorBox") == .orderedSame
+        }
+    }
 }
 
 struct CatalogRow: Identifiable, Sendable {

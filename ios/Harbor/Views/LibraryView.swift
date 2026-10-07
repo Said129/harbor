@@ -170,6 +170,8 @@ private struct ContinueWatchingArtwork: View {
     let record: LibraryRecord
     let media: Media
     var body: some View {
+        ZStack {
+            Color.clear
         Artwork(url: media.background, fallback: media.poster, fallbacks: [media.fallbackBackground, media.fallbackPoster].compactMap { $0 }, maxPixels: 650)
             .frame(width: 260, height: 260 * 9 / 16)
             .overlay {
@@ -200,7 +202,8 @@ private struct ContinueWatchingArtwork: View {
             }
             .clipShape(.rect(cornerRadius: 12))
             .overlay { RoundedRectangle(cornerRadius: 12).stroke(.white.opacity(0.06), lineWidth: 1) }
-            .contentShape(Rectangle())
+            .allowsHitTesting(false)
+        }.frame(width: 260, height: 260 * 9 / 16).contentShape(Rectangle())
     }
 }
 

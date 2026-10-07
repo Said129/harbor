@@ -104,6 +104,7 @@ struct PlayerSettingsView: View {
     }
 
     @ViewBuilder private var videoSettings: some View {
+        PlayerSeekBarSettings()
         HarborSettingsSection("Reproductor") {
             HarborSettingsChoice("Decodificación de vídeo", selection: $hardwareDecoding, choices: HardwareDecoding.allCases.map { ($0.title, $0) })
                 .accessibilityIdentifier("settings-hwdec")

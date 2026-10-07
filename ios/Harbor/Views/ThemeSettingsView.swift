@@ -38,6 +38,7 @@ struct ThemeSettingsView: View {
                 }
             }
             Section { Button("Restablecer apariencia") { preferences.reset() } }
+            Section { PlayerSeekBarSettings() }
         }.navigationTitle("Apariencia").navigationBarTitleDisplayMode(.inline)
             .scrollContentBackground(.hidden).background(HarborTheme.background)
     }

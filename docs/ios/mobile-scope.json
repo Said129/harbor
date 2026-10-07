@@ -348,7 +348,7 @@
     {
       "build": 43,
       "name": "Original Harbor playback settings sections and full readable menu choices, with embedded actual subtitle track panel; original Continue Watching card layout and distinct resume/detail targets; profile typography, avatar fan and original color selection",
-      "status": "Local implementation and proportionate checks complete. Native compilation and actual UI review pending; Downloads retains verified IPA 42.",
+      "status": "Published. Actual Apple simulator build, native tests, public services and UI completed successfully; device/package and full evidence review are still pending at the time of this source record. Downloads retains verified IPA 42.",
       "files": [
         "ios/Harbor/Views/HarborSettingsControls.swift",
         "ios/Harbor/Views/PlayerSettingsView.swift",
@@ -359,7 +359,22 @@
         "ios/Harbor/Services/ArtworkStore.swift",
         "ios/Harbor/Views/ProfileEditor.swift",
         "ios/Harbor/Views/AccountView.swift"
-      ]
+      ],
+      "source": "fd3d9e59e82717fac70523f9a30fc2e5a8a21c3a",
+      "ciRun": 37634911030
+    },
+    {
+      "build": 44,
+      "name": "Physical IPA 42 feedback: silent size gesture, Continue Watching touch target, TorBox catalog suppression, persistent Submanhwa browser, real original Lottie connecting animation, touch action labels and independent timeline color; original detail and Calendar typography",
+      "status": "Local source in progress; Apple build, full actual review and physical verification pending. These changes are not in Downloads IPA 42.",
+      "feedback": "docs/ios/IPHONE_FEEDBACK_2026-10-07.md"
     }
+  ],
+  "additionalRequestedMobileWork": [
+    "Original Anime editorial sections backed by real AniList data and working detail targets",
+    "Original Discover recommended carousel, catalogs, voyage, genres, top-rated, queue and award-winning sections",
+    "Official Harbor labels/descriptions; remove introduced generic UI copy",
+    "Harbor identity login and revision-safe bidirectional Desktop roster/profile sync; never seed from an unhydrated or empty local roster",
+    "Physical Continue Watching, Submanhwa remembered access and video/settings verification"
   ]
 }

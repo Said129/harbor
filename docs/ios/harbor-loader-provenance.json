@@ -1,0 +1,14 @@
+{
+  "reference": "Harbor Desktop beta 0.9.130 / beta-19dd",
+  "originalSource": "src/assets/lottie/harbor-loader.json",
+  "animationSha256": "ac52ccbf2b59f29e790b26da5b5a9274f75596e2c08d5cceef7288ea67460d9d",
+  "renderer": "lottie-web 5.13.0 / SVG",
+  "rendererSha256": "2eb762973aec914d981f426123040bfac9d26217239605e225ddc7cee17618ac",
+  "rendererLicense": "MIT / ios/Harbor/HarborLoader/LICENSE.md",
+  "localWrapper": "animation.js prefixes window.harborAnimation to the original JSON; index.html/start.js invoke the original SVG renderer",
+  "requiresNetworkToAnimate": false,
+  "nativeRenderVerified": false,
+  "firstFrame": 0,
+  "finalFrame": 61,
+  "framesPerSecond": 30
+}

@@ -7,7 +7,7 @@ struct DetailMetadataView: View {
     @State private var gallery = "videos"
     @State private var imageURL: String?
     private var details: MediaDetails? { media.details }
-    private var information: [(String, String)] {
+    private var crewInformation: [(String, String)] {
         var fields: [(String, String)] = []
         if let directors = media.director, !directors.isEmpty { fields.append(("Dirección", directors.joined(separator: ", "))) }
         for (job, label) in [("Writer", "Guion"), ("Screenplay", "Guion adaptado"), ("Producer", "Producción"), ("Director of Photography", "Fotografía"), ("Original Music Composer", "Música"), ("Editor", "Montaje")] {
@@ -15,6 +15,10 @@ struct DetailMetadataView: View {
             if names.isEmpty && job == "Writer" { names = media.writer ?? [] }
             if !names.isEmpty { fields.append((label, names.joined(separator: ", "))) }
         }
+        return fields
+    }
+    private var information: [(String, String)] {
+        var fields: [(String, String)] = []
         if let status = details?.status, !status.isEmpty { fields.append(("Estado", status)) }
         if let studios = details?.studios, !studios.isEmpty { fields.append(("Estudios", studios.joined(separator: " · "))) }
         let countries = details?.countries.joined(separator: " · ") ?? ""
@@ -28,37 +32,36 @@ struct DetailMetadataView: View {
     }
     var body: some View {
         VStack(alignment: .leading, spacing: 30) {
+            if !crewInformation.isEmpty { informationGrid(crewInformation) }
             if let credits = details?.cast, !credits.isEmpty {
                 VStack(alignment: .leading, spacing: 14) {
-                    Text("Reparto · \(credits.count)").font(.headline)
+                    Text("Reparto · \(credits.count)").font(HarborTheme.font(17, weight: .medium))
                     ScrollView(.horizontal) {
                         LazyHStack(alignment: .top, spacing: 12) {
                             ForEach(credits) { credit in
-                                VStack(alignment: .leading, spacing: 6) {
-                                    Artwork(url: credit.photo, maxPixels: 350).frame(width: 102, height: 140).clipShape(.rect(cornerRadius: 10))
-                                    Text(credit.name).font(.caption.bold()).lineLimit(2)
-                                    if !credit.role.isEmpty { Text(credit.role).font(.caption2).foregroundStyle(.secondary).lineLimit(2) }
+                                VStack(alignment: .leading, spacing: 10) {
+                                    Artwork(url: credit.photo, maxPixels: 350).frame(width: 102, height: 153).clipShape(.rect(cornerRadius: 12))
+                                    VStack(alignment: .leading, spacing: 2) {
+                                        Text(credit.name).font(HarborTheme.font(13, weight: .medium)).lineLimit(2)
+                                        if !credit.role.isEmpty { Text(credit.role).font(HarborTheme.font(12)).foregroundStyle(HarborTheme.ink.opacity(0.5)).lineLimit(2) }
+                                    }
                                 }.frame(width: 102, alignment: .leading)
                             }
                         }
                     }.scrollIndicators(.hidden)
                 }
-            } else if let cast = media.cast, !cast.isEmpty { VStack(alignment: .leading, spacing: 12) { Text("Reparto · \(cast.count)").font(.headline); Text(cast.joined(separator: " · ")).font(.subheadline).foregroundStyle(.secondary) } }
+            } else if let cast = media.cast, !cast.isEmpty { VStack(alignment: .leading, spacing: 12) { Text("Reparto · \(cast.count)").font(HarborTheme.font(17, weight: .medium)); Text(cast.joined(separator: " · ")).font(HarborTheme.font(15)).foregroundStyle(HarborTheme.ink.opacity(0.5)) } }
             if let collection = details?.collection, !collection.isEmpty { rail(details?.collectionName ?? "Colección", items: collection) }
             if let similar = details?.similar, !similar.isEmpty { rail("Más como esto", items: similar) }
             if let recommendations = details?.recommendations, !recommendations.isEmpty { rail("También te puede gustar", items: recommendations) }
             if let details, !details.trailers.isEmpty || !details.backdrops.isEmpty || !details.posters.isEmpty || !details.logos.isEmpty { mediaGallery(details) }
             if !information.isEmpty {
                 VStack(alignment: .leading, spacing: 22) {
-                    Text("Información").font(.title3.bold())
-                    LazyVGrid(columns: [GridItem(.flexible(), alignment: .topLeading), GridItem(.flexible(), alignment: .topLeading)], alignment: .leading, spacing: 24) {
-                        ForEach(Array(information.enumerated()), id: \.offset) { _, field in
-                            VStack(alignment: .leading, spacing: 9) { Text(field.0.uppercased()).font(.system(size: 9, weight: .medium)).tracking(2).foregroundStyle(.secondary); Text(field.1).font(.subheadline).accessibilityIdentifier("detail-information-\(field.0)") }.frame(maxWidth: .infinity, alignment: .leading)
-                        }
-                    }
+                    Text("Información").font(HarborTheme.font(22, weight: .medium))
+                    informationGrid(information)
                 }
             }
-        }.padding(.horizontal, 20).padding(.bottom, 32)
+        }.font(HarborTheme.font(14.5)).foregroundStyle(HarborTheme.ink).padding(.horizontal, 20).padding(.bottom, 32)
             .sheet(isPresented: Binding(get: { imageURL != nil }, set: { if !$0 { imageURL = nil } })) {
                 NavigationStack {
                     if let imageURL {
@@ -69,15 +72,25 @@ struct DetailMetadataView: View {
                 }
             }
     }
+    private func informationGrid(_ fields: [(String, String)]) -> some View {
+        LazyVGrid(columns: [GridItem(.flexible(), alignment: .topLeading), GridItem(.flexible(), alignment: .topLeading)], alignment: .leading, spacing: 24) {
+            ForEach(Array(fields.enumerated()), id: \.offset) { _, field in
+                VStack(alignment: .leading, spacing: 6) {
+                    Text(field.0.uppercased()).font(HarborTheme.font(12, weight: .medium)).tracking(2.16).foregroundStyle(HarborTheme.ink.opacity(0.45)).fixedSize(horizontal: false, vertical: true)
+                    Text(field.1).font(HarborTheme.font(14.5)).fixedSize(horizontal: false, vertical: true).accessibilityIdentifier("detail-information-\(field.0)")
+                }.frame(maxWidth: .infinity, alignment: .leading)
+            }
+        }
+    }
     private func rail(_ title: String, items: [Media]) -> some View {
         VStack(alignment: .leading, spacing: 14) {
-            Text(title).font(.headline)
+            Text(title).font(HarborTheme.font(17, weight: .medium))
             ScrollView(.horizontal) { LazyHStack(alignment: .top, spacing: 12) { ForEach(items, id: \.identity) { item in NavigationLink { DetailView(media: item, app: app) } label: { Poster(media: item) }.buttonStyle(.plain) } } }.scrollIndicators(.hidden)
         }
     }
     private func mediaGallery(_ details: MediaDetails) -> some View {
         VStack(alignment: .leading, spacing: 14) {
-            Text("Media").font(.headline)
+            Text("Media").font(HarborTheme.font(17, weight: .medium))
             ScrollView(.horizontal) {
                 HStack(spacing: 5) {
                     ForEach([("videos", "Vídeos", details.trailers.count), ("backdrops", "Fondos", details.backdrops.count), ("posters", "Carteles", details.posters.count), ("logos", "Logos", details.logos.count)], id: \.0) { key, name, count in
@@ -89,7 +102,7 @@ struct DetailMetadataView: View {
                 LazyHStack(alignment: .top, spacing: 12) {
                     if gallery == "videos" {
                         ForEach(details.trailers) { trailer in
-                            Button { if let url = URL(string: trailer.url) { openURL(url) } } label: { VStack(alignment: .leading, spacing: 6) { Artwork(url: trailer.thumbnail, maxPixels: 500).frame(width: 220, height: 124).clipShape(.rect(cornerRadius: 10)).overlay { Image("ui-play-filled").resizable().scaledToFit().frame(width: 28, height: 28).shadow(radius: 4) }; Text(trailer.title).font(.caption).lineLimit(2) }.frame(width: 220) }.buttonStyle(.plain).accessibilityIdentifier("detail-trailer").accessibilityLabel(trailer.title)
+                            Button { if let url = URL(string: trailer.url) { openURL(url) } } label: { VStack(alignment: .leading, spacing: 6) { Artwork(url: trailer.thumbnail, maxPixels: 500).frame(width: 220, height: 124).clipShape(.rect(cornerRadius: 12)).overlay { Image("ui-play-filled").resizable().scaledToFit().frame(width: 28, height: 28).shadow(radius: 4) }; Text(trailer.title).font(HarborTheme.font(13, weight: .medium)).lineLimit(2) }.frame(width: 220) }.buttonStyle(.plain).accessibilityIdentifier("detail-trailer").accessibilityLabel(trailer.title)
                         }
                     } else {
                         let urls = gallery == "backdrops" ? details.backdrops : gallery == "posters" ? details.posters : details.logos

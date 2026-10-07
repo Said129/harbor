@@ -42,16 +42,17 @@ final class PageCustomization {
     }
     func ordered(_ rails: [PageRail], includeHidden: Bool = false) -> [PageRail] {
         var unique = Set<String>()
-        let available = rails.filter { unique.insert($0.id).inserted && (includeHidden || !layout.hidden.contains($0.id)) }
+        let available = rails.filter { rail in
+            if case .catalog(let row) = rail, row.plan.isPlaybackHistoryCatalog { return false }
+            return unique.insert(rail.id).inserted && (includeHidden || !layout.hidden.contains(rail.id))
+        }
         let byID = Dictionary(uniqueKeysWithValues: available.map { ($0.id, $0) })
         var seen = Set<String>()
         return (layout.order.compactMap { byID[$0] } + available).filter { seen.insert($0.id).inserted }
     }
     func title(_ rail: PageRail, among rails: [PageRail]) -> String {
         if let title = layout.renamed[rail.id] { return title }
-        guard rails.filter({ $0.title == rail.title }).count > 1 else { return rail.title }
-        let name = ["movie": "Películas", "series": "Series", "anime": "Anime", "tv": "TV", "channel": "TV"][rail.kind] ?? rail.kind
-        return rail.title + " · " + name
+        return rail.title
     }
     func ranked(_ rail: PageRail) -> Bool { layout.numerals.contains(rail.id) || (rail.defaultNumerals && !layout.plain.contains(rail.id)) }
     func change(_ edit: (inout PageLayout) -> Void) {
