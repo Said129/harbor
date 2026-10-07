@@ -18,7 +18,7 @@ struct AccountView: View {
     var body: some View {
         ScrollView {
           VStack(alignment: .leading, spacing: 24) {
-            HarborPageHeading(title: app.user == nil ? "Tu cuenta" : "Cuenta", eyebrow: "Cuenta y configuración")
+            Text(app.user == nil ? "Tu cuenta" : "Cuenta").font(HarborTheme.font(30, weight: .semibold)).accessibilityAddTraits(.isHeader)
             HStack(spacing: 8) {
                 HarborPill(title: "Tu perfil", selected: section == "profile") { section = "profile" }.accessibilityIdentifier("account-tab-profile")
                 HarborPill(title: "Stremio", selected: section == "stremio", icon: "account-stremio") { section = "stremio" }.accessibilityIdentifier("account-tab-stremio")
@@ -29,7 +29,7 @@ struct AccountView: View {
                 VStack(alignment: .leading, spacing: 14) {
                     HStack(spacing: 10) {
                         Image("account-stremio").resizable().scaledToFit().frame(width: 23, height: 23)
-                        Text("Stremio").font(.headline)
+                        Text("Stremio").font(HarborTheme.font(18, weight: .semibold))
                     }
                     Text(user.displayName).accessibilityIdentifier("account-user")
                     Text("\(app.addons.count) addons recuperados")
@@ -63,10 +63,10 @@ struct AccountView: View {
                             catch { self.error = safeMessage(error) }
                         }
                     }.buttonStyle(HarborAccountButtonStyle(primary: true)).accessibilityIdentifier("account-browser-login")
-                    Text("Acceso oficial con correo, Apple o Facebook.").font(.caption).foregroundStyle(.secondary)
+                    Text("Acceso oficial con correo, Apple o Facebook.").font(HarborTheme.font(13)).foregroundStyle(.secondary)
                 }
                 VStack(alignment: .leading, spacing: 14) {
-                    Text("Correo y contraseña").font(.headline)
+                    Text("Correo y contraseña").font(HarborTheme.font(18, weight: .semibold))
                     TextField("Correo de Stremio", text: $email).keyboardType(.emailAddress)
                         .textContentType(.username).textInputAutocapitalization(.never).autocorrectionDisabled()
                         .focused($editing).padding(13).background(HarborTheme.surface, in: .rect(cornerRadius: 10)).accessibilityIdentifier("account-email")
@@ -90,6 +90,7 @@ struct AccountView: View {
           }.padding(22)
         }
         .background(HarborTheme.background)
+        .font(HarborTheme.font(15)).foregroundStyle(HarborTheme.ink)
         .textFieldStyle(.plain)
         .disabled(app.accountBusy || browserBusy)
         .navigationTitle("").navigationBarTitleDisplayMode(.inline)

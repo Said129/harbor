@@ -357,7 +357,8 @@
         "ios/HarborUITests/LiveNavigationTests.swift",
         "ios/Harbor/Views/LibraryView.swift",
         "ios/Harbor/Services/ArtworkStore.swift",
-        "ios/Harbor/Views/ProfileEditor.swift"
+        "ios/Harbor/Views/ProfileEditor.swift",
+        "ios/Harbor/Views/AccountView.swift"
       ]
     }
   ]
