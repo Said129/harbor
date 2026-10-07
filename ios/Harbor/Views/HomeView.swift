@@ -34,9 +34,11 @@ struct HomeView: View {
                     }.padding(.horizontal)
                 }
                 if let error = model.error, model.rows.isEmpty {
-                    ContentUnavailableView { Label("No se pudo cargar Harbor", systemImage: "wifi.exclamationmark") } description: { Text(error).accessibilityIdentifier("home-error") } actions: {
-                        Button("Reintentar") { Task { if model.storageReady { await model.loadHome() } else { await model.retryStartup() } } }
-                    }
+                    VStack(spacing: 16) {
+                        Image("harbor-mark").resizable().scaledToFit().frame(width: 44, height: 44).foregroundStyle(.secondary).accessibilityHidden(true)
+                        Text(error).font(HarborTheme.font(13)).foregroundStyle(.secondary).multilineTextAlignment(.center).accessibilityIdentifier("home-error")
+                        Button("Reintentar") { Task { if model.storageReady { await model.loadHome() } else { await model.retryStartup() } } }.buttonStyle(HarborAccountButtonStyle())
+                    }.padding(28).frame(maxWidth: .infinity)
                 } else if let error = model.error {
                     HStack { Text(error).font(.caption).foregroundStyle(.secondary); Button("Reintentar") { Task { await model.loadHome() } }.font(.caption) }.padding(.horizontal)
                 }
@@ -45,7 +47,7 @@ struct HomeView: View {
                 if !customization.layout.cwTop { ContinueWatching(app: model) }
                 CustomizedRails(rails: rails, app: model, customization: customization)
                 if model.storageReady && model.rows.isEmpty && !model.loading && model.error == nil {
-                    ContentUnavailableView("Sin catálogos", systemImage: "puzzlepiece.extension", description: Text("Instala o activa un addon con catálogos."))
+                    HarborCatalogEmptyView(app: model).padding(.horizontal)
                 }
             }.padding(.bottom, 24)
         }.background(HarborTheme.background).navigationBarTitleDisplayMode(.inline)

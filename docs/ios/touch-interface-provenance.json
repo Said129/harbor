@@ -60,7 +60,8 @@
     "Addon genre parameters remain in their original language; display labels alone use official translations.",
     "The original 22-point Cast glyph fronts Apple AVRoutePickerView for real audio routes; active color follows AVAudioSession route notifications.",
     "Native Addons uses the original public rising/stars/newest endpoints, spotlight composition, community cards and six category tiles; only actual community ratings are displayed.",
-    "Native addon Browse preserves original API category slugs and multiple memberships, server search, stars/newest ordering, rising entries and validated pagination. Query plus signs are escaped for the API form decoder; public caches are bounded to 48 entries."
+    "Native addon Browse preserves original API category slugs and multiple memberships, server search, stars/newest ordering, rising entries and validated pagination. Query plus signs are escaped for the API form decoder; public caches are bounded to 48 entries.",
+    "Home and Catalogs replace generic empty layouts with the original Harbor dashed panels, Puzzle geometry, official title/description and real Browse addons navigation. No matches uses original catalog/title copy. Shared search fields use the existing original X asset and a 44-point touch target."
   ],
   "copyOutput": "ios/Harbor/DesktopDiscoverSpanish.json",
   "limitations": [
@@ -116,6 +117,16 @@
       "strokeWidth": "2.4",
       "fill": false,
       "output": "ios/Harbor/Assets.xcassets/desktop-arrow-up-right.imageset/icon.svg"
+    },
+    "catalog-empty-puzzle": {
+      "package": "lucide-react",
+      "version": "0.460.0",
+      "integrity": "sha512-BVtq/DykVeIvRTJvRAgCsOwaGL8Un3Bxh8MbDxMhEWlZay3T4IpEKDEpwt5KZ0KJMHzgm6jrltxlT5eXOWXDHg==",
+      "sourceSha256": "b6f66a480110ae7baecb69c3751fd81e6cc3fe34bd0cfcdd7b516a4fc9cde6b4",
+      "svgSha256": "9ab48cc71c54b0d64dd68903cea9c7d9bf744d2b55af6d9913dc2f36849e66ea",
+      "strokeWidth": "1.6",
+      "fill": false,
+      "output": "ios/Harbor/Assets.xcassets/catalog-empty-puzzle.imageset/icon.svg"
     }
   },
   "interfaceCopyOutput": "ios/Harbor/DesktopInterfaceSpanish.json"

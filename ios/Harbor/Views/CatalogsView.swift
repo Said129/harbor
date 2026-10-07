@@ -49,7 +49,8 @@ struct CatalogsView: View {
                     }
                 }
                 if !app.loading && rows.isEmpty {
-                    Text(query.isEmpty ? "Tus addons no tienen catálogos de este tipo." : "No hay catálogos que coincidan con la búsqueda.").foregroundStyle(.secondary).padding(.horizontal)
+                    if app.rows.isEmpty { HarborCatalogEmptyView(app: app).padding(.horizontal) }
+                    else { HarborNoMatchesView().padding(.horizontal) }
                 }
             }.padding(.vertical, 20)
         }.background(HarborTheme.background).navigationTitle("").toolbar(.hidden, for: .navigationBar)
@@ -99,7 +100,7 @@ struct CatalogBrowserView: View {
                 if supportsPaging && offset > 0 && !reachedEnd && !loading && error == nil {
                     ProgressView().frame(maxWidth: .infinity).padding().task { await load(reset: false) }
                 }
-                if !loading && items.isEmpty && error == nil { ContentUnavailableView("Sin resultados", systemImage: "film") }
+                if !loading && items.isEmpty && error == nil { HarborNoMatchesView(text: "No titles match these filters.").padding(.horizontal) }
             }
         }.background(HarborTheme.background).navigationTitle(initial.plan.title).navigationBarTitleDisplayMode(.inline).toolbar(.visible, for: .navigationBar)
             .task(id: genre) { if items.isEmpty || genre != (initial.selectedGenre ?? "") || generation > 0 { await load(reset: true) } }

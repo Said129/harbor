@@ -40,6 +40,12 @@ El reproductor añade `AVRoutePickerView` para elegir salidas de audio reales, c
 
 El check acotado de los archivos nuevos pasa en Windows; no valida Swift. Un método específico cubre ratings ausentes, URLs con credenciales, duplicados y categorías adultas. Se amplía el servicio público existente para usar el cliente/parser nativo y el recorrido UI recoge el destacado nuevo. La API pública respondió desde Windows con manifests y estrellas reales; no sustituye la ejecución Apple. La fuente 47 sigue en compilación en `37681100097`; 48/49 todavía no han pasado el SDK Apple ni han sustituido Descargas.
 
+## Candidata local 51: estados vacíos originales
+
+Inicio y Catálogos emplean el panel original de Harbor cuando no existen catálogos: borde discontinuo, Puzzle de Lucide 0.460.0 con peso 1.6, título/descripción oficiales y navegación real a Addons. Los filtros sin coincidencias y el listado de títulos vacío usan sus textos originales, sin encabezados genéricos. Borrar una búsqueda emplea el activo X original y un área táctil de 44. Los textos españoles proceden de los diccionarios del checkpoint y la procedencia incluye la integridad del paquete y los hashes de los archivos.
+
+Esta candidata es local, posterior a la fuente 50 `8cc5d8b3a50e63fbfecb0cb09332a71e04668414` que sigue en el [run 37687739623](https://github.com/Said129/harbor/actions/runs/37687739623). No interrumpe esa compilación, no ha pasado el SDK Apple y no sustituye la IPA 43 de Descargas.
+
 ## Candidata 50: catálogo de Addons y corrección de Swift
 
 La fuente 47 `7bf897e20e1ebec6178fe53ead96747f4554675c`, [run 37681100097](https://github.com/Said129/harbor/actions/runs/37681100097), terminó con error de compilación en `ContentPageModel.swift:122`: Swift no pudo resolver a tiempo la concatenación de cinco arrays de Anime. La candidata 50 la divide en operaciones `append`, conservando el orden y los seis títulos. La ejecución 47 no pasó a pruebas ni empaquetado; Descargas conserva la IPA 43 verificada.

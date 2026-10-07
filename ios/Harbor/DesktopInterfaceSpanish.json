@@ -30,5 +30,11 @@
   "Show adult addons": "Mostrar complementos para adultos",
   "Top rising": "En ascenso",
   "View more": "Ver más",
-  "You've reached the end · {n} addons": "Llegaste al final · {n} complementos"
+  "You've reached the end · {n} addons": "Llegaste al final · {n} complementos",
+  "Install a Stremio addon and its catalogs show up here as poster rails, ready to browse.": "Instala un complemento de Stremio y sus catálogos aparecerán aquí como filas de pósteres, listos para explorar.",
+  "No catalogs match your search.": "Ningún catálogo coincide con tu búsqueda.",
+  "No catalogs yet": "Aún no hay catálogos",
+  "No titles match these filters.": "Ningún título coincide con estos filtros.",
+  "Clear search": "Borrar búsqueda",
+  "Browse addons": "Explorar complementos"
 }

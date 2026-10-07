@@ -49,8 +49,38 @@ struct HarborSearchField: View {
         HStack(spacing: 9) {
             Image("nav-search").resizable().scaledToFit().frame(width: 16, height: 16).foregroundStyle(.secondary)
             TextField(prompt, text: $text).font(HarborTheme.font(14)).textInputAutocapitalization(.never).autocorrectionDisabled().submitLabel(.search)
-            if !text.isEmpty { Button { text = "" } label: { Image(systemName: "xmark.circle.fill").foregroundStyle(.secondary) }.accessibilityLabel("Borrar búsqueda") }
+            if !text.isEmpty { Button { text = "" } label: { Image("desktop-x").resizable().scaledToFit().frame(width: 14, height: 14).foregroundStyle(.secondary).frame(width: 44, height: 44).contentShape(Rectangle()) }.buttonStyle(.plain).accessibilityLabel(DesktopInterfaceText.value("Clear search")) }
         }.padding(.horizontal, 14).frame(minHeight: 44).background(HarborTheme.surface.opacity(0.6), in: .capsule)
             .overlay { Capsule().stroke(.white.opacity(0.04), lineWidth: 1) }
+    }
+}
+
+struct HarborCatalogEmptyView: View {
+    let app: AppModel
+    var body: some View {
+        VStack(spacing: 16) {
+            Image("catalog-empty-puzzle").resizable().scaledToFit().frame(width: 30, height: 30).foregroundStyle(HarborTheme.ink.opacity(0.35)).accessibilityHidden(true)
+            VStack(spacing: 6) {
+                Text(DesktopInterfaceText.value("No catalogs yet")).font(HarborTheme.font(17, weight: .semibold))
+                Text(DesktopInterfaceText.value("Install a Stremio addon and its catalogs show up here as poster rails, ready to browse."))
+                    .font(HarborTheme.font(13)).foregroundStyle(.secondary).fixedSize(horizontal: false, vertical: true)
+            }
+            NavigationLink { AddonsView(app: app) } label: {
+                Text(DesktopInterfaceText.value("Browse addons")).font(HarborTheme.font(13, weight: .semibold))
+                    .padding(.horizontal, 20).frame(minHeight: 44).foregroundStyle(HarborTheme.background).background(HarborTheme.ink, in: .capsule)
+            }.buttonStyle(.plain).accessibilityIdentifier("empty-catalog-browse-addons")
+        }.multilineTextAlignment(.center).padding(.horizontal, 28).padding(.vertical, 50).frame(maxWidth: .infinity)
+            .background(HarborTheme.background.opacity(0.3), in: .rect(cornerRadius: 16))
+            .overlay { RoundedRectangle(cornerRadius: 16).stroke(HarborTheme.ink.opacity(0.1), style: StrokeStyle(lineWidth: 1, dash: [4, 4])) }
+    }
+}
+
+struct HarborNoMatchesView: View {
+    var text = "No catalogs match your search."
+    var body: some View {
+        Text(DesktopInterfaceText.value(text)).font(HarborTheme.font(13)).foregroundStyle(.secondary).multilineTextAlignment(.center)
+            .padding(.horizontal, 24).padding(.vertical, 48).frame(maxWidth: .infinity)
+            .background(HarborTheme.background.opacity(0.3), in: .rect(cornerRadius: 16))
+            .overlay { RoundedRectangle(cornerRadius: 16).stroke(HarborTheme.ink.opacity(0.1), style: StrokeStyle(lineWidth: 1, dash: [4, 4])) }
     }
 }
