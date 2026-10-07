@@ -282,7 +282,7 @@
   ],
   "openNativeIncrement": {
     "name": "Local subtitle import, language grouping and actual track filters",
-    "status": "Committed and present in delivered build 37, whose native, public, UI and device/package gates passed. Physical account/provider behavior remains pending.",
+    "status": "Committed and present in delivered build 41. Native, public, UI and device/package gates passed; physical private account/provider behavior remains pending.",
     "files": [
       "ios/Harbor/Services/SubtitleFileService.swift",
       "ios/Harbor/Player/SubtitleLanguages.swift",
@@ -308,7 +308,7 @@
   "unstartedAdvancedDesktopFeaturesRequired": false,
   "desktopInventoryIsCompletionDenominator": false,
   "desktopEvidenceStatesChanged": false,
-  "deliveredIpaBuild": 37,
+  "deliveredIpaBuild": 41,
   "paidServicesAuthorized": false,
   "completionEvidence": "docs/ios/VALIDATION.md",
   "scopeChangeSnapshot": {
@@ -317,8 +317,8 @@
     "openNativeIncrementStatus": "uncommitted; native validation pending"
   },
   "deliveredIpaEvidence": {
-    "commit": "b30c5a1ece011bc4b912a39bc985c80fa99f7da4",
-    "ciRun": 37543013485,
+    "commit": "252b6f5f01126b09e97db1f0ea24b3db0bc6f8fb",
+    "ciRun": 37589420764,
     "ciConclusion": "success",
     "physicalTested": false,
     "verification": "docs/ios/VALIDATION.md"
@@ -336,12 +336,12 @@
       "name": "Original Manga background/title font/library entry, usable source/language controls and simulator GLES compatibility",
       "source": "252b6f5f01126b09e97db1f0ea24b3db0bc6f8fb",
       "ciRun": 37589420764,
-      "status": "Published. Apple validation in progress after actual build 40 failure review; screen review and delivery pending."
+      "status": "Apple success: 31 native, 6 public service tests and full UI journey, device/package pass. All 33 actual images reviewed and IPA verified/delivered to Downloads. Physical verification remains pending."
     },
     {
       "build": 42,
-      "name": "Original Manga detail typography, actual reading/library actions and chapter search/order; Harbor Library empty and filtered states",
-      "status": "Local implementation. Native compilation and actual screen review pending; do not interrupt build 41."
+      "name": "Original Manga detail typography, actual reading/library actions and chapter search/order; Harbor Library empty and filtered states; stable Calendar date-cell identities",
+      "status": "Local implementation and proportionate checks complete. Native compilation, actual Manga detail/Library initial-state and full Calendar first-row review pending."
     }
   ]
 }

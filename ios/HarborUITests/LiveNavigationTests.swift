@@ -149,6 +149,7 @@ final class LiveNavigationTests: XCTestCase {
         savedMovie.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.25)).tap()
         XCTAssertTrue(app.staticTexts["detail-title"].waitForExistence(timeout: 10), "The image area of a library poster must open its detail")
         navigate(app, "calendar")
+        XCTAssertTrue(app.buttons["calendar-day-1"].waitForExistence(timeout: 5), "The first week of the month must remain visible alongside weekday headings")
         capture(app, "native-calendar-original-layout")
         navigate(app, "manga")
         let mangaLibrary = app.buttons["manga-library-card"]

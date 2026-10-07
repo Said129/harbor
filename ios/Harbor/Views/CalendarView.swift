@@ -64,7 +64,7 @@ struct CalendarView: View {
             ForEach(0..<7, id: \.self) { index in
                 Text(calendar.veryShortStandaloneWeekdaySymbols[(calendar.firstWeekday - 1 + index) % 7]).font(.caption).foregroundStyle(.secondary)
             }
-            ForEach(Array(cells.enumerated()), id: \.offset) { _, date in
+            ForEach(cells, id: \.self) { date in
                     let events = shown.filter { calendar.isDate($0.date, inSameDayAs: date) }
                     let inMonth = calendar.isDate(date, equalTo: month, toGranularity: .month)
                     Button { selected = date; if !inMonth { month = date } } label: {
@@ -78,6 +78,7 @@ struct CalendarView: View {
                         }.padding(6).frame(maxWidth: .infinity, alignment: .leading).frame(height: large ? 100 : 76).background(calendar.isDate(date, inSameDayAs: selected) ? Color.white.opacity(0.06) : HarborTheme.surface.opacity(0.2), in: .rect(cornerRadius: 10))
                             .overlay { RoundedRectangle(cornerRadius: 10).stroke(calendar.isDate(date, inSameDayAs: selected) ? Color.white.opacity(0.65) : .white.opacity(0.05), lineWidth: 1) }.opacity(inMonth ? 1 : 0.3).contentShape(Rectangle())
                     }.buttonStyle(.plain).accessibilityLabel(date.formatted(.dateTime.day().month().year()) + ", \(events.count) estrenos")
+                        .accessibilityIdentifier(inMonth ? "calendar-day-\(calendar.component(.day, from: date))" : "calendar-adjacent-day")
             }
         }
     }
