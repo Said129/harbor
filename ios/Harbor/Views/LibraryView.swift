@@ -8,6 +8,8 @@ struct LibraryView: View {
     private var display: LibraryDisplay { app.library.presentation.display }
     private var groups: [(title: String, items: [LibraryRecord])] {
         guard display.grouped else { return [("", records)] }
+        if display.sort == .title { return [("A–Z", records)] }
+        if display.sort == .year { return [("Por año", records)] }
         let calendar = Calendar.current, now = Date()
         let week = calendar.dateInterval(of: .weekOfYear, for: now)
         let month = calendar.dateInterval(of: .month, for: now)
