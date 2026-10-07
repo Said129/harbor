@@ -6,11 +6,16 @@ struct DesktopAvatar: Decodable, Identifiable, Sendable {
     let id: String
     let name: String
     let asset: String
+    let group: String?
     static let catalog: [DesktopAvatar] = {
         struct Document: Decodable { let avatars: [DesktopAvatar] }
         return Bundle.main.url(forResource: "DesktopAvatars", withExtension: "json")
             .flatMap { try? Data(contentsOf: $0) }.flatMap { try? JSONDecoder().decode(Document.self, from: $0).avatars } ?? []
     }()
+    static var groups: [String] {
+        var seen = Set<String>()
+        return catalog.compactMap(\.group).filter { seen.insert($0).inserted }
+    }
 }
 
 struct MobileProfile: Codable, Sendable {

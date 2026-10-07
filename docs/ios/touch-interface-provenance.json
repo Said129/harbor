@@ -47,7 +47,15 @@
     "src/views/catalogs.tsx": "3bad3f1f83f11fbcc37d8740755cc0845b5da0ae3946d13567696811b4b39d2a",
     "src/views/addons/community-browse-list.tsx": "27e7c69b3d82ac28ed91392f8d7e4f83c1c6d497562e14bf9e20801f5a8b6ac4",
     "src/views/addons/browse-pane.tsx": "314bf9834ea88b3988a5a6a2b3a287679c0b6bd280324388277837021cdf5a41",
-    "src/views/addons/installed-pane.tsx": "9a8053f6b5238415c14fdd27de28bbc35c2f48aa68a0cffabb3ce7cf5b34c70d"
+    "src/views/addons/installed-pane.tsx": "9a8053f6b5238415c14fdd27de28bbc35c2f48aa68a0cffabb3ce7cf5b34c70d",
+    "src/lib/i18n/locales/es/chrome.ts": "395b4b01eb544fcfe4e901dead8ff916adf1e3e53bdac1856b1c9680dd65dcb1",
+    "src/lib/i18n/locales/es/esports-arena.ts": "98c05d27563035addafd4d531022dadf191660cdc47270a397e8126c05a32343",
+    "src/lib/i18n/locales/es/settings.ts": "9cd8533cff87c4f8fb00ba88a1c1c10f4cfccf85138f6ec559d093a9940ff1fc",
+    "src/components/avatar-picker/avatar-fan.tsx": "072f120c711c01da7d6ab731614b5b049a920676cacdc726c6d457f003a13e87",
+    "src/components/avatar-picker/avatar-catalog-modal.tsx": "61382627985aee2ba50975017fb60d248d79a2a299638feab0608cad63f1cac9",
+    "src/components/avatar-picker/avatar-grid.tsx": "20ddafaf076f14157b3d4c74cc64b8b6e32f6ccbe2b61c4aebc4bb5cccb49e87",
+    "src/lib/avatars/catalog.ts": "d2df4e688c43df33cb9b13386a53dc17d780dcfaa0aea5a619b113ff4a328c97",
+    "src/chrome/account-menu/account-menu-parts.tsx": "da44aeb794abd99eae2df8e27682edfeaea070d644a1385b4b2fe0d2d124c703"
   },
   "changes": [
     "Original six-point playback timeline with a 44-point touch target; seeking commits to mpv on release.",
@@ -61,7 +69,8 @@
     "The original 22-point Cast glyph fronts Apple AVRoutePickerView for real audio routes; active color follows AVAudioSession route notifications.",
     "Native Addons uses the original public rising/stars/newest endpoints, spotlight composition, community cards and six category tiles; only actual community ratings are displayed.",
     "Native addon Browse preserves original API category slugs and multiple memberships, server search, stars/newest ordering, rising entries and validated pagination. Query plus signs are escaped for the API form decoder; public caches are bounded to 48 entries.",
-    "Home and Catalogs replace generic empty layouts with the original Harbor dashed panels, Puzzle geometry, official title/description and real Browse addons navigation. No matches uses original catalog/title copy. Shared search fields use the existing original X asset and a 44-point touch target."
+    "Home and Catalogs replace generic empty layouts with the original Harbor dashed panels, Puzzle geometry, official title/description and real Browse addons navigation. No matches uses original catalog/title copy. Shared search fields use the existing original X asset and a 44-point touch target.",
+    "Profile and account labels use the original Spanish dictionaries, including profile.signedIn. Upload/check/shuffle use original Lucide geometry and exact stroke weights. The avatar fan retains five shuffled original choices; the gallery preserves catalog groups, search, square rounded tiles, names, selection rings and reduced-motion-aware touch feedback. Original group labels lacking Spanish locale entries retain their Desktop fallback."
   ],
   "copyOutput": "ios/Harbor/DesktopDiscoverSpanish.json",
   "limitations": [
@@ -127,6 +136,36 @@
       "strokeWidth": "1.6",
       "fill": false,
       "output": "ios/Harbor/Assets.xcassets/catalog-empty-puzzle.imageset/icon.svg"
+    },
+    "profile-upload-plus": {
+      "package": "lucide-react",
+      "version": "0.460.0",
+      "integrity": "sha512-BVtq/DykVeIvRTJvRAgCsOwaGL8Un3Bxh8MbDxMhEWlZay3T4IpEKDEpwt5KZ0KJMHzgm6jrltxlT5eXOWXDHg==",
+      "sourceSha256": "aea51d91604882a5e4aa596e9ba61d1eefd62601534e39b53eedd9785b1025ab",
+      "svgSha256": "656701c16ca09d98ddf1c254c69d95faaab834ca1484f8bbcf9c965e4ac58a2a",
+      "strokeWidth": "2",
+      "fill": false,
+      "output": "ios/Harbor/Assets.xcassets/profile-upload-plus.imageset/icon.svg"
+    },
+    "profile-preset-check": {
+      "package": "lucide-react",
+      "version": "0.460.0",
+      "integrity": "sha512-BVtq/DykVeIvRTJvRAgCsOwaGL8Un3Bxh8MbDxMhEWlZay3T4IpEKDEpwt5KZ0KJMHzgm6jrltxlT5eXOWXDHg==",
+      "sourceSha256": "942041f985f610b080af1db8958a1338705d3303330e9fd6615ac8c95c1fa438",
+      "svgSha256": "05c1630af83f6ddb0a77573287e74d610028f4f82d80d64c0c69d506c235dadf",
+      "strokeWidth": "3.2",
+      "fill": false,
+      "output": "ios/Harbor/Assets.xcassets/profile-preset-check.imageset/icon.svg"
+    },
+    "profile-avatar-shuffle": {
+      "package": "lucide-react",
+      "version": "0.460.0",
+      "integrity": "sha512-BVtq/DykVeIvRTJvRAgCsOwaGL8Un3Bxh8MbDxMhEWlZay3T4IpEKDEpwt5KZ0KJMHzgm6jrltxlT5eXOWXDHg==",
+      "sourceSha256": "1f710ec5088b876204c4416faaf22e06afd2d1371af135e770097661c6252666",
+      "svgSha256": "d5910886bce0fea92cc13c36e0a1b75045b3b5b3718b04c12c8af3f5e9d3107c",
+      "strokeWidth": "2.2",
+      "fill": false,
+      "output": "ios/Harbor/Assets.xcassets/profile-avatar-shuffle.imageset/icon.svg"
     }
   },
   "interfaceCopyOutput": "ios/Harbor/DesktopInterfaceSpanish.json"

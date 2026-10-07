@@ -47,6 +47,16 @@ final class LiveNavigationTests: XCTestCase {
         app.buttons["account-tab-profile"].tap()
         XCTAssertTrue(app.textFields["profile-name"].exists, "The account screen must expose the original profile editor")
         capture(app, "account-original-profile")
+        let avatarPicker = app.buttons["profile-avatar-picker"]
+        reveal(avatarPicker, in: app.scrollViews.firstMatch, attempts: 3)
+        avatarPicker.tap()
+        let avatarSearch = app.textFields["profile-avatar-search"]
+        XCTAssertTrue(avatarSearch.waitForExistence(timeout: 5))
+        XCTAssertTrue(app.buttons.matching(identifier: "profile-avatar-choice").firstMatch.exists)
+        capture(app, "account-original-avatar-gallery")
+        avatarSearch.tap(); avatarSearch.typeText("Nova")
+        XCTAssertEqual(app.buttons.matching(identifier: "profile-avatar-choice").count, 1, "Original avatar names must be searchable")
+        app.navigationBars.buttons["Cerrar"].tap()
         app.navigationBars.buttons["Cerrar"].tap()
         // SwiftUI exposes the identified accessibility container as Other,
         // with the actual NavigationLink button inside it.

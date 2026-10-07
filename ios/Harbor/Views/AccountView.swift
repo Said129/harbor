@@ -18,11 +18,11 @@ struct AccountView: View {
     var body: some View {
         ScrollView {
           VStack(alignment: .leading, spacing: 24) {
-            Text(app.user == nil ? "Tu cuenta" : "Cuenta").font(HarborTheme.font(30, weight: .semibold)).accessibilityAddTraits(.isHeader)
+            Text(DesktopInterfaceText.value("Account")).font(HarborTheme.font(30, weight: .semibold)).accessibilityAddTraits(.isHeader)
             ScrollView(.horizontal) { HStack(spacing: 8) {
-                HarborPill(title: "Tu perfil", selected: section == "profile") { section = "profile" }.accessibilityIdentifier("account-tab-profile")
+                HarborPill(title: DesktopInterfaceText.value("Your profile"), selected: section == "profile") { section = "profile" }.accessibilityIdentifier("account-tab-profile")
                 HarborPill(title: "Stremio", selected: section == "stremio", icon: "account-stremio") { section = "stremio" }.accessibilityIdentifier("account-tab-stremio")
-                HarborPill(title: "Harbor account", selected: section == "harbor", icon: "harbor-brand") { section = "harbor" }.accessibilityIdentifier("account-tab-harbor")
+                HarborPill(title: DesktopInterfaceText.value("Harbor account"), selected: section == "harbor", icon: "harbor-brand") { section = "harbor" }.accessibilityIdentifier("account-tab-harbor")
             } }.scrollIndicators(.hidden)
             if section == "profile" {
                 ProfileEditor(user: app.user, profile: ProfilePreferences.forOwner(app.user?.id ?? "guest")).id(app.user?.id ?? "guest")
