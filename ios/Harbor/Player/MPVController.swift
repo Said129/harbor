@@ -53,6 +53,7 @@ final class MPVController: GLKViewController {
         self.context = context
         let surface = GLKView(frame: .zero, context: context)
         surface.delegate = self
+        surface.drawableColorFormat = .RGBA8888
         surface.drawableDepthFormat = .formatNone
         surface.backgroundColor = .black
         view = surface
@@ -420,7 +421,7 @@ final class MPVController: GLKViewController {
 
     @available(iOS, deprecated: 12.0)
     override func glkView(_ surface: GLKView, drawIn rect: CGRect) {
-        guard !renderSuspended, UIApplication.shared.applicationState != .background else { return }
+        guard !didClose, !renderSuspended, UIApplication.shared.applicationState != .background else { return }
         guard let context, EAGLContext.setCurrent(context), surface.drawableWidth > 0, surface.drawableHeight > 0 else { return }
         // libmpv requires default GL state on entry and does not restore the
         // viewport/scissor rectangle. GLKView also draws during snapshots and
@@ -430,6 +431,10 @@ final class MPVController: GLKViewController {
         glDisable(GLenum(GL_BLEND))
         glDisable(GLenum(GL_DEPTH_TEST))
         glDisable(GLenum(GL_STENCIL_TEST))
+        glDisable(GLenum(GL_CULL_FACE))
+        glDisable(GLenum(GL_SAMPLE_ALPHA_TO_COVERAGE))
+        glDisable(GLenum(GL_SAMPLE_COVERAGE))
+        if context.api == .openGLES3 { glDisable(GLenum(GL_RASTERIZER_DISCARD)) }
         glColorMask(GLboolean(GL_TRUE), GLboolean(GL_TRUE), GLboolean(GL_TRUE), GLboolean(GL_TRUE))
         glClearColor(0, 0, 0, 1)
         glClear(GLbitfield(GL_COLOR_BUFFER_BIT))
@@ -440,7 +445,9 @@ final class MPVController: GLKViewController {
         var renderbuffer: GLint = 0
         glGetIntegerv(GLenum(GL_FRAMEBUFFER_BINDING), &framebuffer)
         glGetIntegerv(GLenum(GL_RENDERBUFFER_BINDING), &renderbuffer)
-        var fbo = mpv_opengl_fbo(fbo: framebuffer, w: Int32(surface.drawableWidth), h: Int32(surface.drawableHeight), internal_format: 0)
+        // GLKView's drawable is explicitly RGBA8888. Do not leave mpv to infer
+        // the color format through the simulator's software GL driver.
+        var fbo = mpv_opengl_fbo(fbo: framebuffer, w: Int32(surface.drawableWidth), h: Int32(surface.drawableHeight), internal_format: Int32(GL_RGBA8))
         var flip: Int32 = 1
         withUnsafeMutablePointer(to: &fbo) { fbo in
             withUnsafeMutablePointer(to: &flip) { flip in
