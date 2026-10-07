@@ -53,7 +53,7 @@ struct LibraryView: View {
                     }
                 }
                 if records.isEmpty && !app.library.loading { emptyState }
-                else if !records.isEmpty { Text("\(records.count) títulos").font(.caption).foregroundStyle(.secondary) }
+                else if !records.isEmpty { Text(records.count == 1 ? "1 título" : "\(records.count) títulos").font(.caption).foregroundStyle(.secondary) }
             }.padding()
         }.background(HarborTheme.background).navigationTitle("").toolbar(.hidden, for: .navigationBar)
             .refreshable { await app.library.sync() }
