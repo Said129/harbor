@@ -193,12 +193,16 @@ final class AppModel {
         await loadHome()
     }
 
-    func install(_ url: String) async throws {
+    func install(_ url: String, expectedManifestID: String? = nil) async throws {
         guard storageReady else { throw HarborError(code: "storage-unavailable") }
         guard !accountBusy else { throw HarborError(code: "account-busy") }
+        let owner = user?.id ?? "guest"
         accountBusy = true
         defer { accountBusy = false }
         let addon = try await service.install(url)
+        try Task.checkCancellation()
+        guard owner == (user?.id ?? "guest") else { throw HarborError(code: "account-cancelled") }
+        if let expectedManifestID, addon.manifest["id"].string != expectedManifestID { throw HarborError(code: "addon-reconfigure-mismatch") }
         let next = addons.filter { $0.transportUrl != addon.transportUrl } + [addon]
         try await saveCollection(next)
         Diagnostics.shared.record(.addonInstalled, count: addons.count)

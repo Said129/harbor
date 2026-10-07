@@ -2,6 +2,23 @@ import XCTest
 @testable import Harbor
 
 final class CoreBridgeTests: XCTestCase {
+    func testPublicDirectoryContractsUseNativeManifestValidation() async throws {
+        let manifest: JSONValue = .object(["id": .string("directory-test"), "name": .string("Catalog test"), "version": .string("1.0.0"), "resources": .array([.string("catalog")]), "types": .array([.string("movie")]), "catalogs": .array([])])
+        let valid: JSONValue = .object(["manifest": manifest, "transportUrl": .string("https://example.org/manifest.json")])
+        let unsafe: JSONValue = .object(["manifest": manifest, "transportUrl": .string("https://private:credential@example.org/manifest.json")])
+        let invalid: JSONValue = .object(["manifest": .object(["id": .string("missing-name")]), "transportUrl": .string("https://example.org/manifest.json")])
+        let flat = try await AddonDirectory.parse(.array([unsafe, invalid, valid, valid]))
+        let wrapped = try await AddonDirectory.parse(.object(["addons": .array([valid])]))
+        XCTAssertEqual(flat.count, 1)
+        XCTAssertEqual(flat.first?.id, wrapped.first?.id)
+        XCTAssertEqual(flat.first?.category, .metadata)
+        XCTAssertEqual(flat.first?.adult, false, "The bundled Desktop filter must be available")
+        var adult = try XCTUnwrap(flat.first)
+        adult.manifest = .object(["id": .string("filter-test"), "name": .string("D0uj1n source")])
+        XCTAssertTrue(adult.adult, "Discovery must preserve Desktop's normalized content filter")
+        do { _ = try await AddonDirectory.parse(.object(["error": .string("failed")])); XCTFail("A failure response must not replace discovery with a valid empty catalog") }
+        catch let error as HarborError { XCTAssertEqual(error.code, "addon-directory-response") }
+    }
     func testABITransportAndMemoryOwnershipRepeatedly() throws {
         let request = Data(#"{"operation":"normalizeAddon","url":"stremio://example.com/configure"}"#.utf8)
         for _ in 0..<100 {

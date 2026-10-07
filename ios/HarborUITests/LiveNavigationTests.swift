@@ -151,18 +151,28 @@ final class LiveNavigationTests: XCTestCase {
         capture(app, "native-manga-original-layout")
 
         navigate(app, "addons")
+        XCTAssertTrue(app.buttons["addon-tab-discover"].waitForExistence(timeout: 5))
+        capture(app, "native-addon-store")
         let field = app.secureTextFields["addon-manifest-url"]
         XCTAssertTrue(field.waitForExistence(timeout: 5))
         field.tap()
         field.typeText("https://raw.githubusercontent.com/Stremio/stremio-static-addon-example/master/manifest.json")
         app.buttons["addon-install"].tap()
         // Installation and subsequent catalog fetching use the real app model.
+        let addonSearch = app.textFields.matching(NSPredicate(format: "placeholderValue == 'Buscar addons'")).firstMatch
+        XCTAssertTrue(addonSearch.waitForExistence(timeout: 5))
+        addonSearch.tap()
+        addonSearch.typeText("Now.sh")
+        app.buttons["addon-tab-installed"].tap()
         let installed = app.switches["Now.sh Example"]
         XCTAssertTrue(installed.waitForExistence(timeout: 30), "The public addon must install through Keychain-backed UI")
         let finished = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == false"), object: app.progressIndicators["addon-install-progress"])
         XCTAssertEqual(XCTWaiter.wait(for: [finished], timeout: 30), .completed, "Catalog fetching must finish after installation")
         let addonDetails = app.buttons.matching(NSPredicate(format: "identifier == 'addon-details' AND label == 'Detalles de Now.sh Example'")).firstMatch
         XCTAssertTrue(addonDetails.waitForExistence(timeout: 5))
+        for _ in 0..<4 { if addonDetails.isHittable { break }; app.swipeUp() }
+        XCTAssertTrue(addonDetails.isHittable)
+        capture(app, "native-addon-store-installed")
         addonDetails.tap()
         XCTAssertTrue(app.staticTexts["addon-detail-title"].waitForExistence(timeout: 5))
         XCTAssertEqual(app.staticTexts["addon-detail-title"].label, "Now.sh Example")

@@ -14,10 +14,12 @@ extension Addon {
         parts.query = nil; parts.fragment = nil
         return parts.url
     }
-    var logoURL: String? {
-        guard let raw = manifest["logo"].string, let base = URL(string: transportUrl),
+    var logoURL: String? { artworkURL("logo") }
+    var backgroundURL: String? { artworkURL("background") }
+    private func artworkURL(_ field: String) -> String? {
+        guard let raw = manifest[field].string, let base = URL(string: transportUrl),
               let url = URL(string: raw, relativeTo: base)?.absoluteURL,
-              ["https", "http"].contains(url.scheme?.lowercased() ?? "") else { return nil }
+              ["https", "http"].contains(url.scheme?.lowercased() ?? ""), url.user == nil, url.password == nil else { return nil }
         return url.absoluteString
     }
 }

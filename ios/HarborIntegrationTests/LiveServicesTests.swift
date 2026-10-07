@@ -81,6 +81,10 @@ final class LiveServicesTests: XCTestCase {
 
     func testOfficialAddonCatalogMetadataStreamsAndResolution() async throws {
         try requireOptIn()
+        let directory = try await AddonDirectory.shared.load(refresh: true)
+        XCTAssertFalse(directory.addons.isEmpty, "Public discovery must load real manifests through the native client")
+        XCTAssertTrue(directory.addons.allSatisfy { !$0.name.isEmpty && $0.manifest["id"].string != nil && URL(string: $0.transportUrl)?.scheme == "https" })
+        print("Harbor live addon directory: entries=\(directory.addons.count) unavailableSources=\(directory.failedSources)")
         // This addon is installed within the test only; it is not an app default.
         let addon = try await service.install(publicAddon)
         let (catalogs, _) = try await service.catalogs([addon])
