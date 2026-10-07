@@ -33,7 +33,7 @@ final class WebPageDialogTests: XCTestCase {
             XCTAssertEqual(web.url?.host, "example.org")
 
             let response = Response()
-            web.callAsyncJavaScript(script, arguments: [:], in: nil, contentWorld: .page) { value in
+            web.callAsyncJavaScript(script, arguments: [:], in: nil, in: .page) { value in
                 switch value {
                 case .success(let value): response.result = value as? Bool ?? false
                 case .failure(let error): response.failure = error
