@@ -51,3 +51,6 @@ local_docs/
 # Original Fontshare resource is fetched directly for app embedding at build.
 ios/Harbor/Fonts/Switzer.ttf
 ios/Harbor/Licenses/Switzer-FFL.txt
+
+# QR Ames beta's embedded license permits personal use; fetch it for this app build.
+ios/Harbor/Fonts/QRAmesBeta.otf

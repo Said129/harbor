@@ -49,6 +49,11 @@
       "source": "package/dist/esm/icons/star.js",
       "sha256": "d4090a7df7e4f2f67b254e7650be3a5cdda207dc47536aa8e1a98fde48f14202",
       "svgSha256": "6aef9e3ac7489f099a3ed0a57c491a93ce27d983ddf83f1a063b0b14c095a650"
+    },
+    "layers": {
+      "source": "package/dist/esm/icons/layers.js",
+      "sha256": "9a08651bda2c98a214dab5c56b2e8ff0ba33cf5958370b99c885c959e890907f",
+      "svgSha256": "bfbe75f3dd455b15ff4aed1eb564933affe2872bd6b408e008245548ba282e1e"
     }
   }
 }

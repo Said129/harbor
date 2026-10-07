@@ -47,7 +47,14 @@ final class MPVController: GLKViewController {
     required init?(coder: NSCoder) { return nil }
 
     override func loadView() {
-        guard let context = EAGLContext(api: .openGLES3) ?? EAGLContext(api: .openGLES2) else {
+#if targetEnvironment(simulator)
+        // Use MPVKit's GLES2 demo path on the Intel software renderer. Its
+        // GLES3 path intermittently produces grid-shaped missing pixels.
+        let candidate = EAGLContext(api: .openGLES2)
+#else
+        let candidate = EAGLContext(api: .openGLES3) ?? EAGLContext(api: .openGLES2)
+#endif
+        guard let context = candidate else {
             view = UIView(); state.error = "No se pudo iniciar el render de vídeo."; return
         }
         self.context = context
@@ -86,8 +93,10 @@ final class MPVController: GLKViewController {
         }
 #endif
         var initialization = mpv_opengl_init_params(get_proc_address: { _, name in
-            guard let name else { return nil }
-            return dlsym(UnsafeMutableRawPointer(bitPattern: -2), name)
+            // Resolve this context's GLES entry points, as the pinned MPVKit
+            // demo does. A process-wide lookup can find another GL backend.
+            guard let name, let bundle = CFBundleGetBundleWithIdentifier("com.apple.opengles" as CFString) else { return nil }
+            return CFBundleGetFunctionPointerForName(bundle, String(cString: name) as CFString)
         }, get_proc_address_ctx: nil)
         let status = "opengl".withCString { api in
             withUnsafeMutablePointer(to: &initialization) { initialization in

@@ -91,6 +91,7 @@ jobs:
       - name: Generate Xcode project
         run: |
           python3 scripts/ios/fetch-interface-font.py
+          python3 scripts/ios/fetch-manga-font.py
           brew install xcodegen
           xcodegen generate --spec ios/project.yml
       - name: Resolve pinned multimedia dependencies

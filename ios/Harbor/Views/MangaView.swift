@@ -43,6 +43,7 @@ struct MangaView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 18) {
                 if !highlights.isEmpty { mangaHero }
+                if screen == "browse" { libraryCard.padding(.horizontal) }
                 ScrollView(.horizontal) {
                     HStack(spacing: 10) {
                         HarborPill(title: "Explorar manga", selected: screen == "browse", icon: "nav-manga") { screen = "browse" }
@@ -50,33 +51,22 @@ struct MangaView: View {
                         Button { submanhwa = true } label: { Label("Submanhwa · Cuenta y Gacha", systemImage: "person.crop.circle").font(.caption.weight(.semibold)).padding(.horizontal, 14).frame(minHeight: 44).background(HarborTheme.surface, in: .capsule) }
                     }.padding(.horizontal)
                 }.scrollIndicators(.hidden)
-                HStack { Text(screen == "shelf" ? "Tu biblioteca de manga" : "Explorar manga").font(.title2.bold()); Spacer(); mangaOptions }.padding(.horizontal)
+                HStack { Text(screen == "shelf" ? "Tu biblioteca de manga" : "Explorar manga").font(HarborTheme.font(21, weight: .semibold)); Spacer(); mangaOptions }.padding(.horizontal)
                 HarborSearchField(prompt: "Buscar manga…", text: $query).padding(.horizontal)
                 if let message = error ?? shelf.error ?? connection.error { Text(message).font(.caption).foregroundStyle(.orange).padding(.horizontal) }
                 if screen == "browse" {
                     if !sources.filter({ adult || !$0.adult }).isEmpty {
-                        HStack {
-                            Picker("Extensión", selection: $selected) {
-                                Text("Todas las extensiones").tag("all")
-                                ForEach(visibleSources) { Text("\($0.name) · \($0.language.uppercased())").tag($0.id) }
-                            }.pickerStyle(.menu).padding(5).background(HarborTheme.surface, in: .capsule)
-                            Picker("Idioma", selection: $language) {
-                                Text("Todos los idiomas").tag("all")
-                                ForEach(Array(Set(sources.filter { adult || !$0.adult }.map(\.language))).sorted(), id: \.self) { code in Text(Locale.current.localizedString(forLanguageCode: code) ?? code.uppercased()).tag(code) }
-                            }.pickerStyle(.menu)
-                            Spacer()
-                            if selected == "all" ? visibleSources.contains(where: \.latest) : sources.first(where: { $0.id == selected })?.latest == true { Toggle("Novedades", isOn: $latest).font(.caption).fixedSize() }
-                        }.padding(.horizontal)
+                        browseFilters
                         grid(books)
                         if visibleSources.isEmpty && !loading { Text("No hay extensiones para este idioma. Puedes elegir Todos los idiomas.").font(.caption).foregroundStyle(.secondary).padding(.horizontal) }
                         if more { Button("Cargar más") { Task { await browse(next: true) } }.disabled(loading).frame(maxWidth: .infinity) }
                     } else if !loading {
-                        ContentUnavailableView("Manga", image: "nav-manga", description: Text(connection.server == nil ? "Conecta tu servidor Suwayomi o importa un CBZ/ZIP desde Archivos." : "No hay fuentes disponibles. Instala extensiones en tu servidor o importa un archivo."))
+                        emptyShelf("Empieza a leer", message: connection.server == nil ? "Conecta tu servidor Suwayomi o importa un CBZ/ZIP desde Archivos." : "No hay fuentes disponibles. Instala extensiones en tu servidor o importa un archivo.")
                         HStack { Button("Suwayomi") { configuring = true }; Button("Importar CBZ/ZIP") { importing = true } }.frame(maxWidth: .infinity)
                     }
                 } else {
                     grid(savedBooks)
-                    if savedBooks.isEmpty { ContentUnavailableView("Tu biblioteca de Manga", image: "nav-manga", description: Text("Los mangas que leas o guardes y tus archivos locales aparecerán aquí.")) }
+                    if savedBooks.isEmpty { emptyShelf(query.isEmpty ? "Tu biblioteca de manga" : "Sin coincidencias", message: query.isEmpty ? "Los mangas que leas o guardes y tus archivos locales aparecerán aquí." : "Prueba con otro título o borra la búsqueda.") }
                 }
                 if loading { ProgressView().frame(maxWidth: .infinity) }
             }.padding(.vertical, 16)
@@ -114,20 +104,85 @@ struct MangaView: View {
             Toggle("Fuentes para adultos", isOn: $adult)
         } label: { Image("nav-settings").resizable().scaledToFit().frame(width: 21, height: 21).frame(width: 44, height: 44).background(HarborTheme.surface, in: .rect(cornerRadius: 10)) }.accessibilityLabel("Opciones de Manga")
     }
+    private var libraryCard: some View {
+        Button { screen = "shelf" } label: {
+            HStack(spacing: 14) {
+                Image("desktop-layers").resizable().scaledToFit().frame(width: 21, height: 21).foregroundStyle(HarborTheme.ink.opacity(0.5))
+                    .frame(width: 48, height: 48).background(HarborTheme.surface, in: .rect(cornerRadius: 13))
+                VStack(alignment: .leading, spacing: 5) {
+                    Text("Biblioteca").font(HarborTheme.font(15, weight: .semibold))
+                    Text("Tus mangas guardados y lecturas").font(HarborTheme.font(12)).foregroundStyle(HarborTheme.ink.opacity(0.55))
+                }.frame(maxWidth: .infinity, alignment: .leading)
+                Image("desktop-chevron-right").resizable().scaledToFit().frame(width: 18, height: 18).foregroundStyle(HarborTheme.ink.opacity(0.4))
+            }.padding(16).frame(maxWidth: .infinity, alignment: .leading).background(HarborTheme.surface.opacity(0.5), in: .rect(cornerRadius: 18))
+                .overlay { RoundedRectangle(cornerRadius: 18).stroke(HarborTheme.ink.opacity(0.07), lineWidth: 1) }
+                .contentShape(Rectangle())
+        }.buttonStyle(.plain).accessibilityIdentifier("manga-library-card")
+    }
+    private var browseFilters: some View {
+        ScrollView(.horizontal) {
+            HStack(spacing: 8) {
+                Menu {
+                    Picker("Extensión", selection: $selected) {
+                        Text("Todas las extensiones").tag("all")
+                        ForEach(visibleSources) { Text("\($0.name) · \($0.language.uppercased())").tag($0.id) }
+                    }
+                } label: { filterLabel(selected == "all" ? "Todas las extensiones" : sources.first(where: { $0.id == selected })?.name ?? "Extensión", icon: "desktop-layers") }
+                    .accessibilityLabel("Extensión de manga").accessibilityIdentifier("manga-source-filter")
+                Menu {
+                    Picker("Idioma", selection: $language) {
+                        Text("Todos los idiomas").tag("all")
+                        ForEach(Array(Set(sources.filter { adult || !$0.adult }.map(\.language))).sorted(), id: \.self) { code in Text(Locale.current.localizedString(forLanguageCode: code) ?? code.uppercased()).tag(code) }
+                    }
+                } label: { filterLabel(language == "all" ? "Todos los idiomas" : Locale.current.localizedString(forLanguageCode: language) ?? language.uppercased(), icon: "player-audio") }
+                    .accessibilityLabel("Idioma de manga").accessibilityIdentifier("manga-language-filter")
+                if selected == "all" ? visibleSources.contains(where: \.latest) : sources.first(where: { $0.id == selected })?.latest == true {
+                    HarborPill(title: "Novedades", selected: latest) { latest.toggle() }
+                }
+            }.padding(.horizontal)
+        }.scrollIndicators(.hidden).accessibilityIdentifier("manga-filters")
+    }
+    private func filterLabel(_ title: String, icon: String) -> some View {
+        HStack(spacing: 7) {
+            Image(icon).resizable().scaledToFit().frame(width: 15, height: 15).foregroundStyle(HarborTheme.ink.opacity(0.55))
+            Text(title).font(HarborTheme.font(12, weight: .semibold)).lineLimit(1)
+            Image("desktop-chevron-right").resizable().scaledToFit().frame(width: 11, height: 11).rotationEffect(.degrees(90)).foregroundStyle(HarborTheme.ink.opacity(0.4))
+        }.padding(.horizontal, 13).frame(minHeight: 44).foregroundStyle(HarborTheme.ink).background(HarborTheme.surface.opacity(0.65), in: .capsule)
+    }
+    private func emptyShelf(_ title: String, message: String) -> some View {
+        VStack(spacing: 14) {
+            Image("nav-manga").resizable().scaledToFit().frame(width: 32, height: 32).foregroundStyle(HarborTheme.ink.opacity(0.4))
+                .frame(width: 68, height: 68).background(HarborTheme.surface, in: .rect(cornerRadius: 18))
+            Text(title).font(HarborTheme.font(20, weight: .semibold))
+            Text(message).font(HarborTheme.font(14)).foregroundStyle(HarborTheme.ink.opacity(0.6)).multilineTextAlignment(.center)
+        }.padding(28).frame(maxWidth: .infinity).foregroundStyle(HarborTheme.ink).padding(.horizontal)
+    }
     private var mangaHero: some View {
         let book = highlights[min(featured, highlights.count - 1)]
         return VStack(alignment: .leading, spacing: 14) {
             HStack(spacing: 18) {
                 VStack(alignment: .leading, spacing: 14) {
                     Label("FEATURED MANGA", image: "nav-manga").font(.system(size: 9, weight: .bold)).tracking(2).foregroundStyle(HarborTheme.accent)
-                    Text(book.title.uppercased()).font(.custom("Fredoka-Light", size: 27).weight(.medium)).lineLimit(4)
-                    if !book.author.isEmpty { Text(book.author).font(.caption).foregroundStyle(.secondary) }
+                    Text(book.title.uppercased()).font(.custom("QRAmesBeta-Regular", size: 28)).lineLimit(4).foregroundStyle(.white)
+                    if !book.author.isEmpty { Text(book.author).font(HarborTheme.font(12)).foregroundStyle(.white.opacity(0.7)) }
+                    if !book.description.isEmpty { Text(book.description).font(HarborTheme.font(12)).foregroundStyle(.white.opacity(0.7)).lineLimit(3) }
                     NavigationLink { MangaDetailView(book: book, shelf: shelf, client: matchingClient(book)).toolbar(.visible, for: .navigationBar) } label: { Label("Leer ahora", image: "nav-ebook").font(.caption.weight(.semibold)).padding(.horizontal, 16).frame(height: 44).foregroundStyle(.black).background(.white, in: .capsule) }.buttonStyle(.plain)
                 }.frame(maxWidth: .infinity, alignment: .leading)
-                MangaImage(book: book, owner: shelf.owner, path: book.cover, client: matchingClient(book), maxPixels: 600).frame(width: 116, height: 174).clipShape(.rect(cornerRadius: 15))
+                NavigationLink { MangaDetailView(book: book, shelf: shelf, client: matchingClient(book)).toolbar(.visible, for: .navigationBar) } label: {
+                    MangaImage(book: book, owner: shelf.owner, path: book.cover, client: matchingClient(book), maxPixels: 600).frame(width: 116, height: 174).clipShape(.rect(cornerRadius: 15))
+                        .shadow(color: .black.opacity(0.4), radius: 18, y: 10).contentShape(Rectangle())
+                }.buttonStyle(.plain).accessibilityLabel(book.title)
             }
             HStack(spacing: 6) { ForEach(highlights.indices, id: \.self) { index in Button { featured = index } label: { Capsule().fill(index == featured ? HarborTheme.accent : .white.opacity(0.2)).frame(width: index == featured ? 26 : 13, height: 5).frame(height: 30) }.buttonStyle(.plain).accessibilityLabel("Manga destacado \(index + 1)") } }
-        }.padding(20).padding(.vertical, 14).frame(maxWidth: .infinity, alignment: .leading).background(HarborTheme.surface.opacity(0.35))
+        }.padding(20).padding(.vertical, 14).frame(maxWidth: .infinity, alignment: .leading)
+            .background {
+                GeometryReader { frame in
+                    Image("manga-hero-background").resizable().scaledToFill().frame(width: frame.size.width, height: frame.size.height).clipped()
+                        .overlay(.black.opacity(0.4))
+                        .overlay { LinearGradient(colors: [.black.opacity(0.9), .black.opacity(0.55), .clear], startPoint: .leading, endPoint: .trailing) }
+                        .overlay { LinearGradient(colors: [.clear, HarborTheme.background], startPoint: .center, endPoint: .bottom) }
+                }.accessibilityHidden(true)
+            }.accessibilityIdentifier("manga-featured")
     }
     private func matchingClient(_ book: MangaBook) -> SuwayomiClient? { book.server == connection.server?.id ? client : nil }
     private func grid(_ entries: [MangaBook]) -> some View {

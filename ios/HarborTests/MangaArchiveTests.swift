@@ -1,9 +1,11 @@
 import XCTest
 import ImageIO
+import UIKit
 @testable import Harbor
 
 final class MangaArchiveTests: XCTestCase {
-    func testActualCBZImagesUseNaturalOrderAndNeverExposeUnsafePaths() throws {
+    @MainActor func testActualCBZImagesUseNaturalOrderAndNeverExposeUnsafePaths() throws {
+        XCTAssertNotNil(UIFont(name: "QRAmesBeta-Regular", size: 28), "The original Manga title font must be registered in the app host")
         let file = try XCTUnwrap(Bundle(for: Self.self).url(forResource: "reader", withExtension: "cbz", subdirectory: "Fixtures"))
         let reader = try MangaArchive(file: file)
         XCTAssertEqual(reader.paths, ["page1.png", "page2.png", "page10.png"])

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-06",
+  "updatedAt": "2026-10-07",
   "authority": "Explicit scope change by the repository owner in the current conversation",
   "status": "in_progress",
   "objective": "Create a native iPhone Harbor faithful to Desktop beta 0.9.130 identity and selected mobile functions. Preserve everything implemented and finish native increments already started. For remaining work implement essential functions and useful mobile settings, without requiring every adaptable Desktop option.",
@@ -282,7 +282,7 @@
   ],
   "openNativeIncrement": {
     "name": "Local subtitle import, language grouping and actual track filters",
-    "status": "uncommitted; native validation pending",
+    "status": "Committed and present in delivered build 37, whose native, public, UI and device/package gates passed. Physical account/provider behavior remains pending.",
     "files": [
       "ios/Harbor/Services/SubtitleFileService.swift",
       "ios/Harbor/Player/SubtitleLanguages.swift",
@@ -308,7 +308,33 @@
   "unstartedAdvancedDesktopFeaturesRequired": false,
   "desktopInventoryIsCompletionDenominator": false,
   "desktopEvidenceStatesChanged": false,
-  "deliveredIpaBuild": 3,
+  "deliveredIpaBuild": 37,
   "paidServicesAuthorized": false,
-  "completionEvidence": "docs/ios/VALIDATION.md"
+  "completionEvidence": "docs/ios/VALIDATION.md",
+  "scopeChangeSnapshot": {
+    "updatedAt": "2026-10-06",
+    "deliveredIpaBuild": 3,
+    "openNativeIncrementStatus": "uncommitted; native validation pending"
+  },
+  "deliveredIpaEvidence": {
+    "commit": "b30c5a1ece011bc4b912a39bc985c80fa99f7da4",
+    "ciRun": 37543013485,
+    "ciConclusion": "success",
+    "physicalTested": false,
+    "verification": "docs/ios/VALIDATION.md"
+  },
+  "activeNativeIncrements": [
+    {
+      "build": 40,
+      "name": "Original addon browser/categories and WebKit/drawable corrections",
+      "source": "e1b590dbb5d8924e5b1e79c69cc5f72c2bbbe2e4",
+      "ciRun": 37586211507,
+      "status": "Apple run completed failure: simulator compilation passes, 30 of 31 native tests pass including WebKit dialogs and 8-bit video. The 10-bit frame has grid-shaped black pixels. Public/UI/device/package skipped; no IPA 40. Keep delivered IPA 37."
+    },
+    {
+      "build": 41,
+      "name": "Original Manga background/title font/library entry, usable source/language controls and simulator GLES compatibility",
+      "status": "Local implementation after actual build 40 failure review. Apple parsing, type checking, unchanged 8/10-bit rendering gates and screen review pending."
+    }
+  ]
 }

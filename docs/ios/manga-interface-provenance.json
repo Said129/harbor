@@ -1,0 +1,22 @@
+{
+  "repository": "harborstremio/harbor",
+  "commit": "19ddc311a397eb3483b5c978d2cf2bbb3f7f479f",
+  "version": "0.9.128",
+  "requestedReference": "0.9.130",
+  "notes": "The supplied beta 0.9.130 screenshot uses the same background composition. The public checkpoint is not asserted to be its exact source.",
+  "files": {
+    "public/mangahero.png": {
+      "sha256": "166b68bf7966e802834819648e69b183f50196fbfa45454d2d33c3e7749490d5",
+      "output": "ios/Harbor/Assets.xcassets/manga-hero-background.imageset/mangahero.png",
+      "unchangedBytes": true
+    },
+    "src/assets/fonts/qr-ames-beta.otf": {
+      "sha256": "5c593a025281aeb2f03aacaa081dc3b206d4dff41f0b5bb55edc49b5dff62dd4",
+      "bytes": 29152,
+      "postScriptName": "QRAmesBeta-Regular",
+      "copyright": "QR Ames by Abay Emes, QR Type",
+      "license": "Beta Version - Free for personal use only",
+      "distribution": "Fetched directly from the original pinned source for the personal app build, not redistributed as a standalone font in this source repository"
+    }
+  }
+}

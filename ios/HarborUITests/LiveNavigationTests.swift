@@ -148,7 +148,12 @@ final class LiveNavigationTests: XCTestCase {
         navigate(app, "calendar")
         capture(app, "native-calendar-original-layout")
         navigate(app, "manga")
+        let mangaLibrary = app.buttons["manga-library-card"]
+        XCTAssertTrue(mangaLibrary.waitForExistence(timeout: 5))
         capture(app, "native-manga-original-layout")
+        mangaLibrary.tap()
+        XCTAssertTrue(app.staticTexts["Tu biblioteca de manga"].firstMatch.waitForExistence(timeout: 5))
+        capture(app, "native-manga-library")
 
         navigate(app, "addons")
         XCTAssertTrue(app.buttons["addon-tab-discover"].waitForExistence(timeout: 5))
