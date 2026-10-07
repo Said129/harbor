@@ -48,12 +48,7 @@ struct AddonsView: View {
                     HarborPageHeading(title: "Explora por categoría", subtitle: "Encuentra fuentes, catálogos y subtítulos para tus addons.")
                     LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 12) {
                         ForEach(AddonCategory.allCases.filter { $0 != .all && ($0 != .adult || allowAdult) }) { value in
-                            Button { category = value; tab = .browse } label: {
-                                VStack(alignment: .leading, spacing: 12) {
-                                    Image(value.icon).resizable().scaledToFit().frame(width: 36, height: 36).foregroundStyle(.secondary).frame(maxWidth: .infinity, alignment: .trailing)
-                                    Text(value.title).font(HarborTheme.font(14, weight: .semibold))
-                                }.frame(maxWidth: .infinity, minHeight: 90, alignment: .leading).padding(14).background(HarborTheme.surface, in: .rect(cornerRadius: 16))
-                            }.buttonStyle(.plain)
+                            categoryTile(value)
                         }
                     }
                 }
@@ -72,7 +67,7 @@ struct AddonsView: View {
                 }.scrollIndicators(.hidden)
                 ForEach(visible) { addon in AddonStoreCard(app: app, addon: resolved(addon), installed: installed(addon)) { selectedAddon = resolved(addon) } }
                 if !loading && visible.isEmpty { Text(query.isEmpty ? "No hay addons en esta categoría." : "No hay addons que coincidan con la búsqueda.").font(.subheadline).foregroundStyle(.secondary) }
-                if tab != .installed { Text("Los datos proceden de los directorios públicos de Stremio. La instalación consulta el manifest actual del addon.").font(.caption).foregroundStyle(.secondary) }
+                if tab != .installed { Text("Addons públicos de la comunidad Stremio.").font(.caption).foregroundStyle(.secondary) }
             }.padding()
         }.scrollDismissesKeyboard(.interactively).background(HarborTheme.background).navigationTitle("").toolbar(.hidden, for: .navigationBar)
             .task { if !loaded { await loadDirectory() } }
@@ -80,6 +75,26 @@ struct AddonsView: View {
             .sheet(item: $selectedAddon) { addon in NavigationStack { AddonDetailView(app: app, addon: addon) }.font(HarborTheme.font()).tint(HarborTheme.accent) }
             .sheet(isPresented: $reorder) { AddonOrderView(app: app) }
             .onChange(of: app.user?.id) { _, _ in url = ""; error = nil; query = ""; selectedAddon = nil; reorder = false }
+    }
+    private func categoryTile(_ value: AddonCategory) -> some View {
+        let colors: [Color] = switch value {
+        case .streams: [.orange, .orange]
+        case .metadata: [.blue, .indigo]
+        case .subtitles: [.purple, .pink]
+        case .anime: [.pink, .pink]
+        case .sports: [.green, .teal]
+        case .television: [.cyan, .blue]
+        default: [HarborTheme.surface, HarborTheme.surface]
+        }
+        return Button { category = value; tab = .browse } label: {
+            ZStack(alignment: .bottomLeading) {
+                LinearGradient(colors: [colors[0].opacity(0.4), colors[1].opacity(0.3)], startPoint: .topLeading, endPoint: .bottomTrailing)
+                LinearGradient(colors: [HarborTheme.background.opacity(0.85), HarborTheme.background.opacity(0.3), .clear], startPoint: .bottom, endPoint: .top)
+                Image(value.icon).resizable().scaledToFit().frame(width: 50, height: 50).foregroundStyle(HarborTheme.ink.opacity(0.55)).frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing).padding(14)
+                Text(value.title).font(.custom("Fraunces-9ptBlack", size: 18)).foregroundStyle(HarborTheme.ink).padding(16)
+            }.frame(height: 120).clipShape(.rect(cornerRadius: 16))
+                .overlay { RoundedRectangle(cornerRadius: 16).stroke(HarborTheme.ink.opacity(0.08), lineWidth: 1) }
+        }.buttonStyle(.plain).accessibilityLabel(value.title)
     }
     private var installation: some View {
         VStack(alignment: .leading, spacing: 12) {
@@ -99,8 +114,8 @@ struct AddonsView: View {
     private func featuredCard(_ addon: Addon) -> some View {
         VStack(alignment: .leading, spacing: 18) {
             Text("DESCUBRE EN STREMIO").font(.system(size: 9, weight: .semibold)).tracking(2).foregroundStyle(HarborTheme.accent)
-            HStack(spacing: 14) { AddonLogo(addon: addon, size: 54); Text(addon.name).font(.custom("Fraunces-9ptBlack", size: 28)) }
-            if let description = addon.manifest["description"].string { Text(String(description.prefix(1_000))).font(.subheadline).foregroundStyle(.secondary).lineLimit(4) }
+            HStack(spacing: 14) { AddonLogo(addon: addon, size: 54); Text(addon.name).font(.custom("Fraunces-9ptBlack", size: 28)).foregroundStyle(addon.backgroundURL == nil ? HarborTheme.ink : Color.white) }
+            if let description = addon.manifest["description"].string { Text(String(description.prefix(1_000))).font(.subheadline).foregroundStyle((addon.backgroundURL == nil ? HarborTheme.ink : Color.white).opacity(0.75)).lineLimit(4) }
             Button("Detalles") { selectedAddon = resolved(addon) }.buttonStyle(HarborAccountButtonStyle(primary: true))
         }.frame(maxWidth: .infinity, alignment: .leading).padding(22)
             .background {
