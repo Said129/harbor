@@ -64,8 +64,13 @@ final class LiveServicesTests: XCTestCase {
         let (results, _) = try await service.catalogs([addon], search: "Interstellar")
         let count = results.reduce(0) { $0 + $1.metas.count }
         XCTAssertGreaterThan(count, 0)
-        XCTAssertTrue(results.flatMap(\.metas).contains { $0.id == "tt0816692" && $0.name == "Interstellar" }, "The real movie query must return its matching metadata identity")
-        print("Harbor live Cinemeta: catalogs=\(catalogs.count) searchItems=\(count) metadata=passed")
+        let match = try XCTUnwrap(results.flatMap(\.metas).first { $0.id == "tt0816692" && $0.name == "Interstellar" }, "The real movie query must return its matching metadata identity")
+        let detail = try await service.metadata(match, addons: [addon])
+        XCTAssertFalse(detail.writer?.isEmpty ?? true, "The native detail must preserve writers returned by the real addon")
+        let trailers = try XCTUnwrap(detail.details?.trailers)
+        XCTAssertFalse(trailers.isEmpty, "Addon trailers must be available without a TMDB key")
+        XCTAssertTrue(trailers.allSatisfy { URL(string: $0.url)?.host == "www.youtube.com" })
+        print("Harbor live Cinemeta: catalogs=\(catalogs.count) searchItems=\(count) trailers=\(trailers.count) metadata=passed")
     }
 
     func testOfficialAddonCatalogMetadataStreamsAndResolution() async throws {

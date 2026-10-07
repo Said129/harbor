@@ -120,9 +120,8 @@ struct TMDBService: Sendable {
         details.recommendations = Array(value["recommendations"]["results"].array.compactMap { makeMedia($0, kind: media.type, configuration: configuration) }.prefix(20))
         details.similar = Array(value["similar"]["results"].array.compactMap { makeMedia($0, kind: media.type, configuration: configuration) }.prefix(20))
         details.trailers = value["videos"]["results"].array.prefix(20).compactMap { trailer in
-            guard trailer["site"].string == "YouTube", let key = trailer["key"].string,
-                  key.range(of: "^[a-zA-Z0-9_-]+$", options: .regularExpression) != nil else { return nil }
-            return MediaDetails.Trailer(id: key, title: trailer["name"].string ?? trailer["type"].string ?? "Vídeo", url: "https://www.youtube.com/watch?v=\(key)", thumbnail: "https://i.ytimg.com/vi/\(key)/hqdefault.jpg")
+            guard trailer["site"].string == "YouTube", let key = trailer["key"].string else { return nil }
+            return MediaDetails.Trailer.youtube(key, title: trailer["name"].string ?? trailer["type"].string)
         }
         details.backdrops = Array(value["images"]["backdrops"].array.compactMap { image($0["file_path"].string, size: "w1280") }.prefix(24))
         details.posters = Array(value["images"]["posters"].array.compactMap { image($0["file_path"].string, size: "w500") }.prefix(24))
@@ -131,7 +130,7 @@ struct TMDBService: Sendable {
             details.collectionName = collection.name; details.collection = collection.parts
         }
         try Task.checkCancellation()
-        result.details = details
+        result.details = details.includingTrailers(from: media.details)
         return result
     }
     private func get(_ path: String, parameters: [String: String] = [:], configuration: MetadataConfiguration) async throws -> JSONValue {

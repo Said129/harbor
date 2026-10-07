@@ -114,6 +114,17 @@ final class LiveNavigationTests: XCTestCase {
         XCTAssertEqual(XCTWaiter.wait(for: [saved], timeout: 10), .completed)
         app.buttons["detail-favorite"].tap()
         XCTAssertEqual(app.buttons["detail-favorite"].label, "Quitar de favoritos")
+        let detailScroll = app.scrollViews.firstMatch
+        let trailer = app.buttons.matching(identifier: "detail-trailer").firstMatch
+        reveal(trailer, in: detailScroll, attempts: 5)
+        XCTAssertTrue(trailer.waitForExistence(timeout: 15), "The real detail must show addon trailers without a metadata key")
+        XCTAssertTrue(trailer.isHittable)
+        capture(app, "real-detail-addon-trailers")
+        let writers = app.staticTexts["detail-information-Guion"]
+        reveal(writers, in: detailScroll, attempts: 3)
+        XCTAssertTrue(writers.waitForExistence(timeout: 5))
+        XCTAssertTrue(writers.label.contains("Nolan"), "The detail must display real writer names from Cinemeta")
+        capture(app, "real-detail-addon-information")
         navigate(app, "library")
         let savedMovie = app.buttons.matching(NSPredicate(format: "identifier == 'library-media' AND label == 'Interstellar'")).firstMatch
         XCTAssertTrue(savedMovie.waitForExistence(timeout: 10), "Saving from the real detail must populate the actual library")

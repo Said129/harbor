@@ -11,7 +11,8 @@ struct DetailMetadataView: View {
         var fields: [(String, String)] = []
         if let directors = media.director, !directors.isEmpty { fields.append(("Dirección", directors.joined(separator: ", "))) }
         for (job, label) in [("Writer", "Guion"), ("Screenplay", "Guion adaptado"), ("Producer", "Producción"), ("Director of Photography", "Fotografía"), ("Original Music Composer", "Música"), ("Editor", "Montaje")] {
-            let names = details?.crew.filter { $0.role == job }.map(\.name) ?? []
+            var names = details?.crew.filter { $0.role == job }.map(\.name) ?? []
+            if names.isEmpty && job == "Writer" { names = media.writer ?? [] }
             if !names.isEmpty { fields.append((label, names.joined(separator: ", "))) }
         }
         if let status = details?.status, !status.isEmpty { fields.append(("Estado", status)) }
@@ -52,7 +53,7 @@ struct DetailMetadataView: View {
                     Text("Información").font(.title3.bold())
                     LazyVGrid(columns: [GridItem(.flexible(), alignment: .topLeading), GridItem(.flexible(), alignment: .topLeading)], alignment: .leading, spacing: 24) {
                         ForEach(Array(information.enumerated()), id: \.offset) { _, field in
-                            VStack(alignment: .leading, spacing: 9) { Text(field.0.uppercased()).font(.system(size: 9, weight: .medium)).tracking(2).foregroundStyle(.secondary); Text(field.1).font(.subheadline) }.frame(maxWidth: .infinity, alignment: .leading)
+                            VStack(alignment: .leading, spacing: 9) { Text(field.0.uppercased()).font(.system(size: 9, weight: .medium)).tracking(2).foregroundStyle(.secondary); Text(field.1).font(.subheadline).accessibilityIdentifier("detail-information-\(field.0)") }.frame(maxWidth: .infinity, alignment: .leading)
                         }
                     }
                 }
@@ -88,7 +89,7 @@ struct DetailMetadataView: View {
                 LazyHStack(alignment: .top, spacing: 12) {
                     if gallery == "videos" {
                         ForEach(details.trailers) { trailer in
-                            Button { if let url = URL(string: trailer.url) { openURL(url) } } label: { VStack(alignment: .leading, spacing: 6) { Artwork(url: trailer.thumbnail, maxPixels: 500).frame(width: 220, height: 124).clipShape(.rect(cornerRadius: 10)).overlay { Image("ui-play-filled").resizable().scaledToFit().frame(width: 28, height: 28).shadow(radius: 4) }; Text(trailer.title).font(.caption).lineLimit(2) }.frame(width: 220) }.buttonStyle(.plain)
+                            Button { if let url = URL(string: trailer.url) { openURL(url) } } label: { VStack(alignment: .leading, spacing: 6) { Artwork(url: trailer.thumbnail, maxPixels: 500).frame(width: 220, height: 124).clipShape(.rect(cornerRadius: 10)).overlay { Image("ui-play-filled").resizable().scaledToFit().frame(width: 28, height: 28).shadow(radius: 4) }; Text(trailer.title).font(.caption).lineLimit(2) }.frame(width: 220) }.buttonStyle(.plain).accessibilityIdentifier("detail-trailer").accessibilityLabel(trailer.title)
                         }
                     } else {
                         let urls = gallery == "backdrops" ? details.backdrops : gallery == "posters" ? details.posters : details.logos

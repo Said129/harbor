@@ -137,6 +137,24 @@ final class NativeDataTests: XCTestCase {
         XCTAssertEqual(media.imdbRating, "8.7")
         XCTAssertEqual(media.videos?.first?.id, "episode:1")
         XCTAssertNil(Media.parse(.object(["id": .null, "name": .string("Invalid")]), kind: "movie"))
+
+        let metadata = Data(#"{"id":"tt0816692","name":"Interstellar","writer":[" Jonathan Nolan ",null,"Christopher Nolan","Jonathan Nolan",""],"trailerStreams":[{"ytId":"LY19rHKAaAg","title":"Official trailer"},{"ytId":"https://example.invalid/video"},{"ytId":null}],"trailers":[{"source":"LY19rHKAaAg","type":"Trailer"},{"source":"R8teZZ-loaI","type":"Trailer"},{"source":"bad"}]}"#.utf8)
+        let parsed = try XCTUnwrap(Media.parse(try JSONDecoder().decode(JSONValue.self, from: metadata), kind: "movie"))
+        XCTAssertEqual(parsed.writer, ["Jonathan Nolan", "Christopher Nolan"])
+        XCTAssertEqual(parsed.details?.trailers.map(\.id), ["LY19rHKAaAg", "R8teZZ-loaI"], "Legacy and stream-style addon trailers must coexist without duplicate cards")
+        XCTAssertEqual(parsed.details?.trailers.first?.title, "Official trailer")
+        XCTAssertEqual(parsed.details?.trailers.last?.url, "https://www.youtube.com/watch?v=R8teZZ-loaI")
+        XCTAssertEqual(try JSONDecoder().decode(Media.self, from: JSONEncoder().encode(parsed)).writer, parsed.writer)
+        let oldSaved = try JSONDecoder().decode(Media.self, from: Data(#"{"id":"saved","type":"movie","name":"Saved before writer support"}"#.utf8))
+        XCTAssertNil(oldSaved.writer, "Previously saved library records must remain readable")
+
+        var richer = MediaDetails()
+        richer.status = "Released"
+        richer.trailers = [try XCTUnwrap(MediaDetails.Trailer.youtube("LY19rHKAaAg", title: "Localized trailer"))]
+        let combined = richer.includingTrailers(from: parsed.details)
+        XCTAssertEqual(combined.status, "Released")
+        XCTAssertEqual(combined.trailers.map(\.id), ["LY19rHKAaAg", "R8teZZ-loaI"], "Metadata enrichment must keep unique addon trailers")
+        XCTAssertEqual(combined.trailers.first?.title, "Localized trailer")
     }
     func testPartialCatalogRefreshKeepsFailedRowsButClearsSuccessfulEmptyAndRemovedRows() {
         let addon = Addon(manifest: .object(["id": .string("test-only")]), transportUrl: "https://example.invalid/manifest.json", enabled: true)

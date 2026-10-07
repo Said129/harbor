@@ -63,7 +63,7 @@ struct HarborService: Sendable {
                 if var combined = try? await addonMetadata(enriched, addons: addons) {
                     combined.logo = enriched.logo ?? combined.logo; combined.background = enriched.background ?? combined.background
                     combined.cast = enriched.cast ?? combined.cast; combined.director = enriched.director ?? combined.director
-                    combined.details = enriched.details
+                    combined.details = enriched.details?.includingTrailers(from: combined.details) ?? combined.details
                     return combined
                 }
                 return enriched

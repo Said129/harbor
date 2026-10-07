@@ -15,6 +15,7 @@ struct Media: Codable, Identifiable, Hashable, Sendable {
     var adult: Bool?
     var runtime: String?
     var director: [String]?
+    var writer: [String]?
     var cast: [String]?
     var country: String?
     var genres: [String]?
@@ -54,12 +55,23 @@ struct Media: Codable, Identifiable, Hashable, Sendable {
         if value["adult"] != .null { media.adult = value["adult"] == .bool(true) }
         media.genres = value["genres"].array.compactMap(\.string)
         media.director = value["director"].array.compactMap(\.string)
+        var writers = Set<String>()
+        media.writer = value["writer"].array.compactMap(\.string).map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }.filter { !$0.isEmpty && writers.insert($0).inserted }
         media.cast = value["cast"].array.compactMap(\.string)
         if let videoID = value["behaviorHints"]["defaultVideoId"].string { media.behaviorHints = BehaviorHints(defaultVideoId: videoID) }
         media.videos = value["videos"].array.compactMap { video in
             guard let id = video["id"].string, !id.isEmpty else { return nil }
             return Episode(id: id, season: video["season"].integer, episode: video["episode"].integer ?? video["number"].integer, name: video["name"].string, title: video["title"].string, thumbnail: video["thumbnail"].string, overview: video["overview"].string ?? video["description"].string, released: video["released"].string ?? video["firstAired"].string)
         }
+        var trailers = Set<String>()
+        let candidates = Array(value["trailerStreams"].array.prefix(100)) + Array(value["trailers"].array.prefix(100))
+        let videos = candidates.compactMap { value -> MediaDetails.Trailer? in
+            guard let key = value["ytId"].string ?? value["source"].string,
+                  let trailer = MediaDetails.Trailer.youtube(key, title: value["title"].string ?? value["name"].string ?? value["type"].string),
+                  trailers.insert(key).inserted else { return nil }
+            return trailer
+        }
+        if !videos.isEmpty { var details = MediaDetails(); details.trailers = Array(videos.prefix(30)); media.details = details }
         return media
     }
 }
@@ -76,6 +88,11 @@ struct MediaDetails: Codable, Hashable, Sendable {
         let title: String
         let url: String
         let thumbnail: String?
+        static func youtube(_ key: String, title: String?) -> Trailer? {
+            guard key.utf8.count == 11, key.range(of: "^[a-zA-Z0-9_-]{11}$", options: .regularExpression) != nil else { return nil }
+            let label = title?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+            return Trailer(id: key, title: label.isEmpty ? "Tráiler" : String(label.prefix(160)), url: "https://www.youtube.com/watch?v=\(key)", thumbnail: "https://i.ytimg.com/vi/\(key)/hqdefault.jpg")
+        }
     }
     var tagline: String?
     var status: String?
@@ -95,6 +112,12 @@ struct MediaDetails: Codable, Hashable, Sendable {
     var logos: [String] = []
     var collectionName: String?
     var collection: [Media] = []
+    func includingTrailers(from fallback: MediaDetails?) -> MediaDetails {
+        var result = self
+        var seen = Set<String>()
+        result.trailers = Array((trailers + (fallback?.trailers ?? [])).filter { seen.insert($0.id).inserted }.prefix(30))
+        return result
+    }
 }
 
 extension JSONValue {
