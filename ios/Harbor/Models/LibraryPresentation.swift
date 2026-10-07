@@ -81,6 +81,29 @@ struct LibraryPresentation: Codable, Sendable {
     }
 }
 enum LibraryListing {
+    struct Group {
+        let title: String
+        let items: [LibraryRecord]
+    }
+    static func groups(_ records: [LibraryRecord], display: LibraryDisplay, now: Date = Date(), calendar: Calendar = .current) -> [Group] {
+        guard display.grouped else { return [Group(title: "", items: records)] }
+        if display.sort == .title { return [Group(title: "A–Z", items: records)] }
+        if display.sort == .year { return [Group(title: "Por año", items: records)] }
+        var buckets: [Int: Group] = [:]
+        for record in records {
+            let timestamp = display.filter == .watched || display.filter == .continuing ? record.activityTimestamp : LibraryRecord.timestamp(record.raw["_ctime"].string) ?? LibraryRecord.timestamp(record.modified) ?? 0
+            let date = Date(timeIntervalSince1970: timestamp / 1_000)
+            let days = now.timeIntervalSince(date) / 86_400
+            let year = calendar.component(.year, from: date)
+            let currentYear = calendar.component(.year, from: now)
+            let rank = timestamp == 0 ? 1_000 : days < 1 ? 0 : days < 7 ? 1 : days < 30 ? 2 : 10 + currentYear - year
+            let title = timestamp == 0 ? "Sin fecha" : days < 1 ? "Hoy" : days < 7 ? "Esta semana" : days < 30 ? "Este mes" : String(year)
+            var items = buckets[rank]?.items ?? []
+            items.append(record)
+            buckets[rank] = Group(title: title, items: items)
+        }
+        return buckets.sorted { $0.key < $1.key }.map(\.value)
+    }
     static func select(_ records: [LibraryRecord], display: LibraryDisplay, query: String) -> [LibraryRecord] {
         let query = query.trimmingCharacters(in: .whitespacesAndNewlines).folding(options: [.caseInsensitive, .diacriticInsensitive], locale: .current)
         let candidates = records.compactMap { record -> (record: LibraryRecord, name: String, year: Int, date: Double)? in

@@ -8,6 +8,11 @@ struct DesktopVoyage: Decodable, Identifiable, Sendable {
     let genre: String?
     let backdrop: String?
     let seeds: [String]
+    static func copy(_ key: String) -> String { spanish[key] ?? key }
+    private static let spanish: [String: String] = {
+        guard let url = Bundle.main.url(forResource: "DesktopDiscoverSpanish", withExtension: "json"), let data = try? Data(contentsOf: url) else { return [:] }
+        return (try? JSONDecoder().decode([String: String].self, from: data)) ?? [:]
+    }()
     static let all: [DesktopVoyage] = {
         struct Catalog: Decodable { let themes: [DesktopVoyage] }
         guard let url = Bundle.main.url(forResource: "DesktopVoyages", withExtension: "json"), let data = try? Data(contentsOf: url) else { return [] }
@@ -40,7 +45,7 @@ final class DiscoverModel {
         defer { if current == generation { loading = false } }
         refreshRecommendations(app: app)
         if !configuration.tmdbKey.isEmpty {
-            let definitions = [DiscoveryRail(id: "discover-trending", title: "Trending This Week", kind: "movie", path: "trending/movie/week"), DiscoveryRail(id: "discover-rated", title: "Top Rated", kind: "movie", path: "discover/movie", parameters: ["vote_average.gte": "8.0", "vote_count.gte": "1000", "with_runtime.gte": "70", "sort_by": "vote_average.desc"])]
+            let definitions = [DiscoveryRail(id: "discover-trending", title: "Tendencias de esta semana", kind: "movie", path: "trending/movie/week"), DiscoveryRail(id: "discover-rated", title: "Mejor valorado", kind: "movie", path: "discover/movie", parameters: ["vote_average.gte": "8.0", "vote_count.gte": "1000", "with_runtime.gte": "70", "sort_by": "vote_average.desc"])]
             for rail in definitions {
                 do {
                     let items = try await TMDBService().page(rail, page: 1, configuration: configuration)
@@ -91,15 +96,15 @@ struct DiscoverView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 30) {
                 if !model.recommended.isEmpty {
-                    Text("Recommended").font(HarborTheme.displayFont(28)).padding(.horizontal)
+                    Text("Recomendado").font(HarborTheme.displayFont(28)).padding(.horizontal)
                     DiscoverFeatured(items: model.recommended, app: app)
                 }
                 catalogBrowser
                 surpriseChooser
                 voyageChooser
-                if !model.trending.isEmpty { shelf("Trending This Week", items: model.trending) }
+                if !model.trending.isEmpty { shelf("Tendencias de esta semana", items: model.trending) }
                 genreTiles
-                if !model.topRated.isEmpty { shelf("Top Rated", items: model.topRated) }
+                if !model.topRated.isEmpty { shelf("Mejor valorado", items: model.topRated) }
                 queue
                 if !model.awards.isEmpty { shelf("Award Winning", items: model.awards) }
                 if model.loading { ProgressView().frame(maxWidth: .infinity) }
@@ -117,16 +122,16 @@ struct DiscoverView: View {
     }
     private var catalogBrowser: some View {
         VStack(alignment: .leading, spacing: 12) {
-            Text("Browse your catalogs").font(HarborTheme.font(17, weight: .semibold))
+            Text("Explorar tus catálogos").font(HarborTheme.font(17, weight: .semibold))
             ScrollView(.horizontal) {
                 HStack(spacing: 8) {
-                    Menu { ForEach([("Movies", "movie"), ("Series", "series"), ("Anime", "anime")], id: \.1) { name, value in Button(name) { kind = value } } } label: { control("TYPE", value: kind == "movie" ? "Movies" : kind == "series" ? "Series" : "Anime") }
-                    Menu { ForEach(catalogs) { row in Button(row.plan.addon.name + " · " + row.plan.title) { catalog = row.id } } } label: { control("CATALOG", value: selected?.plan.title ?? "Catalogs") }
-                    Menu { Button("All genres") { genre = "" }; ForEach(genres, id: \.self) { value in Button(value) { genre = value } } } label: { control("GENRE", value: genre.isEmpty ? "All genres" : genre) }
+                    Menu { ForEach([("Películas", "movie"), ("Series", "series"), ("Anime", "anime")], id: \.1) { name, value in Button(name) { kind = value } } } label: { control("TIPO", value: kind == "movie" ? "Películas" : kind == "series" ? "Series" : "Anime") }
+                    Menu { ForEach(catalogs) { row in Button(row.plan.addon.name + " · " + row.plan.title) { catalog = row.id } } } label: { control("CATÁLOGO", value: selected?.plan.title ?? "Catalogs") }
+                    Menu { Button("Todos los géneros") { genre = "" }; ForEach(genres, id: \.self) { value in Button(DesktopVoyage.copy(value)) { genre = value } } } label: { control("GÉNERO", value: genre.isEmpty ? "Todos los géneros" : DesktopVoyage.copy(genre)) }
                     if let row = selected {
                         NavigationLink {
                             CatalogBrowserView(app: app, initial: withGenre(row))
-                        } label: { Text("Browse").font(HarborTheme.font(13, weight: .semibold)).foregroundStyle(.black).padding(.horizontal, 20).frame(height: 44).background(.white, in: .capsule) }.buttonStyle(.plain)
+                        } label: { Text("Explorar").font(HarborTheme.font(13, weight: .semibold)).foregroundStyle(.black).padding(.horizontal, 20).frame(height: 44).background(.white, in: .capsule) }.buttonStyle(.plain)
                     }
                 }
             }.scrollIndicators(.hidden)
@@ -160,17 +165,17 @@ struct DiscoverView: View {
     }
     private var voyageChooser: some View {
         VStack(alignment: .leading, spacing: 14) {
-            Text("NEW VOYAGE").font(HarborTheme.font(10, weight: .semibold)).tracking(2).foregroundStyle(HarborTheme.accent)
-            Text("Where to today?").font(HarborTheme.displayFont(28))
-            Text("Pick a direction. You steer from there, one film at a time.").font(HarborTheme.font(13)).foregroundStyle(.secondary)
-            HStack(spacing: 6) { Text("How many films?").font(HarborTheme.font(12)).foregroundStyle(.secondary); Spacer(); ForEach([3, 5, 7], id: \.self) { count in HarborPill(title: String(count), selected: count == length) { withAnimation(.easeInOut(duration: 0.2)) { length = count } } } }
+            Text("NUEVO VIAJE").font(HarborTheme.font(10, weight: .semibold)).tracking(2).foregroundStyle(HarborTheme.accent)
+            Text("¿A dónde vamos hoy?").font(HarborTheme.displayFont(28))
+            Text("Elige una dirección. Desde ahí, tú decides el rumbo, una película a la vez.").font(HarborTheme.font(13)).foregroundStyle(.secondary)
+            HStack(spacing: 6) { Text("¿Cuántas películas?").font(HarborTheme.font(12)).foregroundStyle(.secondary); Spacer(); ForEach([3, 5, 7], id: \.self) { count in HarborPill(title: String(count), selected: count == length) { withAnimation(.easeInOut(duration: 0.2)) { length = count } } } }
             LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
                 ForEach(DesktopVoyage.all) { theme in
                     NavigationLink { VoyageRouteView(theme: theme, count: length, app: app) } label: {
                         ZStack(alignment: .bottomLeading) {
                             Artwork(url: theme.backdrop, maxPixels: 500).accessibilityHidden(true)
                             LinearGradient(colors: [.black.opacity(0.15), .black.opacity(0.8)], startPoint: .top, endPoint: .bottom)
-                            VStack(alignment: .leading, spacing: 5) { if let genre = theme.genre { Text(genre.uppercased()).font(HarborTheme.font(9, weight: .semibold)).tracking(1).foregroundStyle(HarborTheme.accent) }; Text(theme.label).font(HarborTheme.font(14, weight: .semibold)); Text(theme.tagline).font(HarborTheme.font(11)).foregroundStyle(.white.opacity(0.7)).lineLimit(2) }.padding(12)
+                            VStack(alignment: .leading, spacing: 5) { if let genre = theme.genre { Text(DesktopVoyage.copy(genre).uppercased()).font(HarborTheme.font(9, weight: .semibold)).tracking(1).foregroundStyle(HarborTheme.accent) }; Text(DesktopVoyage.copy(theme.label)).font(HarborTheme.font(14, weight: .semibold)); Text(DesktopVoyage.copy(theme.tagline)).font(HarborTheme.font(11)).foregroundStyle(.white.opacity(0.7)).lineLimit(2) }.padding(12)
                         }.frame(height: 140).clipShape(.rect(cornerRadius: 10))
                     }.buttonStyle(.plain)
                 }
@@ -179,12 +184,12 @@ struct DiscoverView: View {
     }
     private var genreTiles: some View {
         VStack(alignment: .leading, spacing: 14) {
-            Text("Browse by Genre").font(HarborTheme.font(19, weight: .semibold))
+            Text("Explorar por género").font(HarborTheme.font(19, weight: .semibold))
             LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
-                ForEach(["Action", "Drama", "Comedy", "Horror", "Sci-Fi", "Romance"], id: \.self) { name in
+                ForEach(["Acción", "Drama", "Comedy", "Horror", "Sci-Fi", "Romance"], id: \.self) { name in
                     if let row = app.rows.first(where: { $0.plan.kind == "movie" && $0.plan.catalog?.extra.contains(where: { $0.name == "genre" && $0.options.contains(name) }) == true }) {
                         NavigationLink { CatalogBrowserView(app: app, initial: CatalogRow(plan: row.plan, metas: [], selectedGenre: name, receivedCount: 0)) } label: {
-                            ZStack(alignment: .bottomLeading) { Artwork(url: row.metas.first(where: { $0.genres?.contains(name) == true })?.background, maxPixels: 500); LinearGradient(colors: [.black.opacity(0.3), .black.opacity(0.7)], startPoint: .top, endPoint: .bottom); Text(name).font(HarborTheme.displayFont(22)).padding(14) }.frame(height: 90).clipShape(.rect(cornerRadius: 10))
+                            ZStack(alignment: .bottomLeading) { Artwork(url: row.metas.first(where: { $0.genres?.contains(name) == true })?.background, maxPixels: 500); LinearGradient(colors: [.black.opacity(0.3), .black.opacity(0.7)], startPoint: .top, endPoint: .bottom); Text(DesktopVoyage.copy(name)).font(HarborTheme.displayFont(22)).padding(14) }.frame(height: 90).clipShape(.rect(cornerRadius: 10))
                         }.buttonStyle(.plain)
                     }
                 }
@@ -193,12 +198,12 @@ struct DiscoverView: View {
     }
     private var queue: some View {
         VStack(alignment: .leading, spacing: 12) {
-            Text("Your Discovery Queue").font(HarborTheme.displayFont(27))
+            Text("Tu cola de descubrimiento").font(HarborTheme.displayFont(27))
             NavigationLink { DiscoveryQueueView(items: pool, app: app) } label: {
                 ZStack(alignment: .trailing) {
                     HStack(spacing: 0) { ForEach(Array(pool.prefix(5)), id: \.identity) { item in Artwork(url: item.background ?? item.poster, fallback: item.fallbackBackground, maxPixels: 350) } }.accessibilityHidden(true)
                     LinearGradient(colors: [.black.opacity(0.25), .black.opacity(0.75)], startPoint: .leading, endPoint: .trailing)
-                    Label("Explore", image: "desktop-chevron-right").font(HarborTheme.displayFont(30)).padding(20)
+                    Label("Explorar", image: "desktop-chevron-right").font(HarborTheme.displayFont(30)).padding(20)
                 }.frame(height: 118).clipShape(.rect(cornerRadius: 12))
             }.buttonStyle(.plain).disabled(pool.isEmpty)
         }.padding(.horizontal)
@@ -215,26 +220,107 @@ private struct DiscoverFeatured: View {
     let items: [Media]
     let app: AppModel
     @State private var selected = 0
+    @State private var enriched: [String: Media] = [:]
+    @State private var expandedImage: String?
+    @Environment(\.scenePhase) private var scenePhase
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    private var slides: [Media] { Array(items.prefix(8)).map { enriched[$0.identity] ?? $0 } }
+    private var current: Media? { slides.indices.contains(selected) ? slides[selected] : slides.first }
     var body: some View {
         VStack(alignment: .leading, spacing: 14) {
             TabView(selection: $selected) {
-                ForEach(Array(items.prefix(8).enumerated()), id: \.element.identity) { index, item in
+                ForEach(Array(slides.enumerated()), id: \.element.identity) { index, item in
                     NavigationLink(value: item) {
-                        ZStack(alignment: .topLeading) { Artwork(url: item.background, fallback: item.fallbackBackground, fallbacks: [item.poster].compactMap { $0 }, maxPixels: 1100); Text("FEATURED").font(HarborTheme.font(10, weight: .semibold)).tracking(1).padding(8).background(.black.opacity(0.5), in: .capsule).padding(16) }.clipShape(.rect(cornerRadius: 15)).padding(.horizontal)
+                        ZStack(alignment: .topLeading) {
+                            Artwork(url: item.background, fallback: item.fallbackBackground, fallbacks: [item.poster].compactMap { $0 }, maxPixels: 1100).accessibilityHidden(true)
+                            LinearGradient(colors: [.clear, HarborTheme.background.opacity(0.2), HarborTheme.background.opacity(0.92)], startPoint: .top, endPoint: .bottom)
+                            Text("DESTACADO").font(HarborTheme.font(10, weight: .semibold)).tracking(2.2).padding(.horizontal, 10).padding(.vertical, 5).background(.black.opacity(0.55), in: .capsule).padding(20)
+                            VStack(alignment: .leading, spacing: 10) {
+                                Spacer()
+                                HarborHeroTitle(media: item, size: 28, height: 76).frame(maxWidth: 240, alignment: .leading)
+                                if let year = item.releaseInfo { Text(year).font(HarborTheme.font(13)).foregroundStyle(.white.opacity(0.8)) }
+                            }.padding(24).frame(maxWidth: .infinity, alignment: .leading)
+                        }.clipShape(.rect(cornerRadius: 15)).overlay { RoundedRectangle(cornerRadius: 15).stroke(HarborTheme.ink.opacity(0.08), lineWidth: 1) }.padding(.horizontal)
                     }.buttonStyle(.plain).tag(index)
                 }
-            }.tabViewStyle(.page(indexDisplayMode: .automatic)).frame(height: 225)
-            if !items.isEmpty {
-                let item = items[min(selected, items.count - 1)]
-                NavigationLink(value: item) {
-                    VStack(alignment: .leading, spacing: 8) {
-                        Text(item.name).font(HarborTheme.displayFont(25))
-                        if let year = item.releaseInfo { Text(year).font(HarborTheme.font(12)).foregroundStyle(.secondary) }
-                        if let description = item.description { Text(description).font(HarborTheme.font(14)).foregroundStyle(.secondary).lineLimit(3) }
-                    }.frame(maxWidth: .infinity, alignment: .leading)
-                }.buttonStyle(.plain).padding(.horizontal)
+            }.tabViewStyle(.page(indexDisplayMode: .never)).frame(height: 300)
+                .overlay {
+                    if slides.count > 1 {
+                        HStack {
+                            carouselArrow("desktop-chevron-left", label: "Anterior", step: -1)
+                            Spacer()
+                            carouselArrow("desktop-chevron-right", label: "Siguiente", step: 1)
+                        }.padding(.horizontal, 24)
+                    }
+                }
+            if let item = current { sidePanel(item).padding(.horizontal) }
+            HarborHeroPips(count: slides.count, selected: selected) { jump($0) }
+        }.onChange(of: items.map(\.identity)) { _, _ in if selected >= slides.count { selected = 0 } }
+            .onChange(of: app.library.owner) { _, _ in enriched = [:]; expandedImage = nil; selected = 0 }
+            .task(id: current?.identity) {
+                guard let item = current, enriched[item.identity] == nil else { return }
+                let owner = app.library.owner
+                do {
+                    let detailed = try await app.service.metadata(item, addons: app.addons)
+                    try Task.checkCancellation()
+                    guard owner == app.library.owner else { return }
+                    enriched[item.identity] = detailed
+                } catch {}
             }
-        }.onChange(of: items.map(\.identity)) { _, _ in if selected >= items.count { selected = 0 } }
+            .task(id: "\(scenePhase == .active)|\(reduceMotion)|\(selected)|\(expandedImage != nil)|\(slides.map(\.identity).joined())") {
+                guard scenePhase == .active, !reduceMotion, slides.count > 1, expandedImage == nil else { return }
+                do { try await Task.sleep(for: .seconds(14)); try Task.checkCancellation(); jump((selected + 1) % slides.count) } catch {}
+            }
+            .sheet(isPresented: Binding(get: { expandedImage != nil }, set: { if !$0 { expandedImage = nil } })) {
+                NavigationStack {
+                    if let expandedImage {
+                        Artwork(url: expandedImage, fit: .fit, maxPixels: 1800).background(.black).navigationTitle(current?.name ?? "")
+                            .toolbar { Button("Cerrar") { self.expandedImage = nil } }
+                    }
+                }
+            }
+    }
+    private func jump(_ index: Int) {
+        guard slides.indices.contains(index) else { return }
+        withAnimation(reduceMotion ? nil : .easeInOut(duration: 0.64)) { selected = index }
+    }
+    private func carouselArrow(_ asset: String, label: String, step: Int) -> some View {
+        Button { guard !slides.isEmpty else { return }; jump((selected + step + slides.count) % slides.count) } label: {
+            Image(asset).resizable().scaledToFit().frame(width: 22, height: 22).frame(width: 44, height: 44)
+                .foregroundStyle(HarborTheme.ink).background(HarborTheme.background.opacity(0.65), in: .circle)
+        }.buttonStyle(.plain).accessibilityLabel(label)
+    }
+    private func sidePanel(_ item: Media) -> some View {
+        VStack(alignment: .leading, spacing: 12) {
+            NavigationLink(value: item) {
+                HStack(alignment: .firstTextBaseline) {
+                    Text(item.name).font(HarborTheme.displayFont(19)).lineLimit(2)
+                    Spacer()
+                    Text(String(format: "%02d / %02d", selected + 1, slides.count)).font(HarborTheme.font(12)).tracking(1.6).foregroundStyle(.secondary)
+                }
+            }.buttonStyle(.plain)
+            let stills = Array((item.details?.backdrops ?? []).prefix(4))
+            let fallback = item.background ?? item.poster
+            if !stills.isEmpty || fallback != nil {
+                LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 8) {
+                    ForEach(0..<4) { index in
+                        let source = stills.indices.contains(index) ? stills[index] : fallback
+                        Button { expandedImage = source } label: {
+                            Artwork(url: source, maxPixels: 500).aspectRatio(16.0 / 9.0, contentMode: .fit).clipShape(.rect(cornerRadius: 7))
+                        }.buttonStyle(.plain).disabled(source == nil).accessibilityLabel(item.name)
+                    }
+                }
+            }
+            if let description = item.description { Text(description).font(HarborTheme.font(13)).foregroundStyle(.secondary).lineLimit(3) }
+            if let rating = item.imdbRating {
+                HStack(spacing: 6) {
+                    Text(item.ratingSource ?? "IMDb").font(HarborTheme.font(9, weight: .bold)).foregroundStyle(.black).padding(3).background(.yellow, in: .rect(cornerRadius: 2))
+                    Text(rating).font(HarborTheme.font(12, weight: .semibold))
+                    Text("· Mejor valorado").font(HarborTheme.font(12)).foregroundStyle(.secondary)
+                }.padding(.horizontal, 10).padding(.vertical, 6).background(HarborTheme.background.opacity(0.4), in: .capsule)
+            }
+        }.padding(16).background(HarborTheme.surface.opacity(0.35), in: .rect(cornerRadius: 16))
+            .overlay { RoundedRectangle(cornerRadius: 16).stroke(HarborTheme.ink.opacity(0.07), lineWidth: 1) }
     }
 }
 
@@ -248,13 +334,13 @@ private struct VoyageRouteView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
-                Text(theme.label).font(HarborTheme.displayFont(30)); Text(theme.tagline).font(HarborTheme.font(14)).foregroundStyle(.secondary)
+                Text(DesktopVoyage.copy(theme.label)).font(HarborTheme.displayFont(30)); Text(DesktopVoyage.copy(theme.tagline)).font(HarborTheme.font(14)).foregroundStyle(.secondary)
                 ForEach(Array(items.enumerated()), id: \.element.identity) { index, item in
                     NavigationLink(value: item) { HStack(alignment: .top, spacing: 16) { Text(String(index + 1)).font(HarborTheme.displayFont(32)).foregroundStyle(HarborTheme.accent); Poster(media: item, width: 110); VStack(alignment: .leading, spacing: 8) { Text(item.name).font(HarborTheme.font(17, weight: .semibold)); if let text = item.description { Text(text).font(HarborTheme.font(13)).foregroundStyle(.secondary).lineLimit(5) } } } }.buttonStyle(.plain)
                 }
                 if loading { ProgressView() }; if let error { Text(error).font(HarborTheme.font(13)).foregroundStyle(.orange); Button("Reintentar") { Task { await load() } } }
             }.padding()
-        }.background(HarborTheme.background).navigationTitle(theme.label).navigationBarTitleDisplayMode(.inline).toolbar(.visible, for: .navigationBar)
+        }.background(HarborTheme.background).navigationTitle(DesktopVoyage.copy(theme.label)).navigationBarTitleDisplayMode(.inline).toolbar(.visible, for: .navigationBar)
             .task { if items.isEmpty { await load() } }
     }
     private func load() async {
@@ -265,7 +351,7 @@ private struct VoyageRouteView: View {
             do { let response = try await HTTPClient().json("https://v3-cinemeta.strem.io/meta/movie/\(id).json"); try Task.checkCancellation(); if let media = Media.parse(response["meta"], kind: "movie"), !items.contains(where: { $0.id == media.id }) { items.append(media) } }
             catch is CancellationError { return } catch { continue }
         }
-        if items.count < count { error = "That route wouldn't chart. Try a different direction." }
+        if items.count < count { error = "Esa ruta no se pudo trazar. Prueba otra dirección." }
     }
 }
 
@@ -276,14 +362,14 @@ private struct DiscoveryQueueView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 22) {
-                Text("Your Discovery Queue").font(HarborTheme.displayFont(30))
+                Text("Tu cola de descubrimiento").font(HarborTheme.displayFont(30))
                 if items.indices.contains(index) {
                     let media = items[index]
                     CinemaHero(metas: [media], app: app)
                     Text("\(index + 1) / \(items.count)").font(HarborTheme.font(13)).foregroundStyle(.secondary)
-                    HStack { Button("Previous") { if index > 0 { index -= 1 } }.disabled(index == 0); Spacer(); Button("Next") { if index + 1 < items.count { index += 1 } }.disabled(index + 1 >= items.count) }.buttonStyle(HarborAccountButtonStyle())
+                    HStack { Button("Anterior") { if index > 0 { index -= 1 } }.disabled(index == 0); Spacer(); Button("Siguiente") { if index + 1 < items.count { index += 1 } }.disabled(index + 1 >= items.count) }.buttonStyle(HarborAccountButtonStyle())
                 }
             }.padding(.vertical, 20)
-        }.background(HarborTheme.background).navigationTitle("Explore").navigationBarTitleDisplayMode(.inline).toolbar(.visible, for: .navigationBar)
+        }.background(HarborTheme.background).navigationTitle("Explorar").navigationBarTitleDisplayMode(.inline).toolbar(.visible, for: .navigationBar)
     }
 }

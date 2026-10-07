@@ -45,7 +45,6 @@ struct PlayerView: View {
     var changeEpisode: ((Episode) -> Void)? = nil
     var changeSource: ((ResumeSnapshot?) -> Void)? = nil
     @State private var state = PlayerState()
-    @State private var seek: Double = 0
     @State private var editingSeek = false
     @State private var progressError: String?
     @State private var lastSavedMs: Double = 0
@@ -303,11 +302,14 @@ struct PlayerView: View {
                         }.frame(minHeight: 44).disabled(adjacent.next == nil || episodeChanging).accessibilityIdentifier("player-next-episode")
                     }.font(.caption)
                 }
-                Slider(value: Binding(get: { editingSeek ? seek : min(state.position, max(1, state.duration)) }, set: { seek = $0 }), in: 0...max(1, state.duration), onEditingChanged: { editing in
-                    editingSeek = editing
-                    if !editing { state.controller?.run(["seek", String(seek), "absolute+exact"]) }
-                    restartHideTimer()
-                }).tint(ThemePreferences.shared.seekColor).disabled(state.duration <= 0 || !state.loaded || retrying || state.restarting || sourceChanging || episodeChanging).accessibilityLabel("Posición de reproducción")
+                HStack(spacing: 10) {
+                    Text(time(state.position)).monospacedDigit().accessibilityLabel("Tiempo reproducido").accessibilityIdentifier("player-position")
+                    HarborSeekBar(position: state.position, duration: state.duration,
+                        enabled: state.loaded && !retrying && !state.restarting && !sourceChanging && !episodeChanging,
+                        editing: { editingSeek = $0; restartHideTimer() },
+                        seek: { state.controller?.run(["seek", String($0), "absolute+exact"]); restartHideTimer() })
+                    Text(time(state.duration)).monospacedDigit()
+                }.font(HarborTheme.font(12, weight: .medium))
                 HStack(spacing: 8) {
                     Button { state.controller?.set("mute", state.muted ? "no" : "yes") } label: { PlayerGlyph(name: state.muted ? "volume--mute" : "volume").frame(width: 44, height: 44) }.accessibilityLabel(state.muted ? "Activar sonido" : "Silenciar")
                     Spacer(minLength: 0)
@@ -324,7 +326,6 @@ struct PlayerView: View {
                     if verticalSizeClass == .compact { trackControls }
                 }.font(.caption)
                 if verticalSizeClass != .compact { HStack { Spacer(); trackControls; Spacer() } }
-                HStack { Text(time(state.position)).monospacedDigit().accessibilityLabel("Tiempo reproducido").accessibilityIdentifier("player-position"); Spacer(); Text(time(state.duration)).monospacedDigit() }.font(.caption)
             }.padding(.horizontal).padding(.bottom, 8).background(.black.opacity(0.7))
         }
     }
@@ -370,9 +371,5 @@ struct PlayerView: View {
         }
         if syncCloud, let media, let library { await library.saveProgress(media, target: session.target, snapshot: value, owner: session.owner) }
     }
-    private func time(_ value: Double) -> String {
-        guard value.isFinite && value >= 0 && value < Double(Int.max) else { return "0:00" }
-        let seconds = Int(value)
-        return seconds >= 3600 ? String(format: "%d:%02d:%02d", seconds / 3600, (seconds / 60) % 60, seconds % 60) : String(format: "%d:%02d", seconds / 60, seconds % 60)
-    }
+    private func time(_ value: Double) -> String { HarborSeekBar.time(value) }
 }

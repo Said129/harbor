@@ -1,0 +1,36 @@
+{
+  "reference": "19ddc311a397eb3483b5c978d2cf2bbb3f7f479f",
+  "requestedReference": "0.9.130",
+  "publicCheckpointVersion": "0.9.128",
+  "files": {
+    "src/components/player/transport/seek-bar-visual.tsx": "a1d8f0d5a61bef9d034d6cc0472b95af579a416558272df08eae8b2018e6c191",
+    "src/components/featured-banner.tsx": "82f66f663463933529d23cc1eba802a0b5fd7e1fc8fbd2d6defec4e3136c8a1e",
+    "src/components/featured-banner/big-card-stack.tsx": "c3db4db4e8522d90e0f7390404aa2a5a822362056f26a7f1d6249ade338b5761",
+    "src/components/featured-banner/side-panel.tsx": "dcb47e530b3ae799c35da6328d8fd4fd107e79962a6084ac62ecac259f1de857",
+    "src/views/library/shared.tsx": "01abb1404c81681f14b6e54d8fc22d42fc2dd8f6413164b4f6bf82297c6a1952",
+    "src/lib/i18n/locales/es/catalog.ts": "b278852b313eed3eefa19bb57a6c55179b44856d57b523cff2fb79fc30d9b9ba",
+    "src/lib/i18n/locales/es/manga.ts": "5217bf0ea88227568b87e1a8ed957011f20641d9f52355650e7307a193011d4b",
+    "src/lib/i18n/locales/es/discover.ts": "2513a5100daac75e4ab67a96128ef62d85999bf59ca7289e618590e249ee563e",
+    "src/lib/i18n/locales/es/app-fill.ts": "e310f8109b62fc3f5c5b068b56a768d74eb269c4f6dac00913ab64f102b36710",
+    "src/lib/i18n/locales/es/library.ts": "a0e3972813762b9a902c4a5a9bb96846c667129d64a23456ec91dcd42cadcffb",
+    "src/lib/i18n/locales/es/extra.ts": "ea9f3198c0c7d1fde783c0aefd448fd475b07245fa1cd19d0035fbca860a11b1",
+    "src/lib/i18n/locales/es/rails.ts": "62f93cc751f996e3946aad23330c4a6f7b9b315ce0f7f8125b042a6d945a9647",
+    "src/lib/i18n/locales/es/misc.ts": "435320b1568a2c66d0ae6a4afe83e1452b2ffb8cd27be197960f0199e1e1879d",
+    "src/lib/i18n/locales/es/coverage.ts": "980ce2c0a63e3efb53c4e635dcfdae7f2b2380e431e432bfcc7aae3246697b32",
+    "src/lib/i18n/locales/es/live.ts": "231e99f5acf87f26308741227bbfbc1f989b0ffe65cf4e2f0ceaa57583324f63",
+    "src/lib/i18n/locales/es/detail.ts": "a660a2eac50a0ee57ccb4c42c5fbd89797b7d22e4191c57c555033456be97c6a",
+    "src/lib/i18n/locales/es/sweep.ts": "2cb9858c2465860582dc4b7e32390c0e9d8b021d220983f4b7b4dd0a1798db9c"
+  },
+  "changes": [
+    "Original six-point playback timeline with a 44-point touch target; seeking commits to mpv on release.",
+    "Library uses rolling 1/7/30-day date groups from the original implementation.",
+    "Discover adapts the original large-card/title and side-panel compositions with actual addon metadata and expandable original images.",
+    "Visible Spanish text comes from original locale dictionaries; untranslatable editorial text retains the original English."
+  ],
+  "copyOutput": "ios/Harbor/DesktopDiscoverSpanish.json",
+  "limitations": [
+    "The public checkpoint is not claimed as the exact 0.9.130 source.",
+    "Native touch rendering and new navigation require Apple build/runtime evidence.",
+    "Recommendation feedback buttons and the full Desktop ranking algorithm are not included in this increment."
+  ]
+}

@@ -34,3 +34,9 @@ La candidata 46 corrige esos errores y los avisos de firmas WebKit mediante dele
 La animación original necesita un controlador separado: `goToAndStop` pausa el reloj de Lottie y no puede sustituir el método que regula el reloj nativo. Se elimina la modificación del contador público y se exige que cambie el SVG realmente dibujado. Reducir movimiento debe detenerlo en el frame original cero. El recorrido público existente recogerá Anime, sus filas Top 100/premios, Series y Discover, y comprobará que Sorpréndeme abre una ficha real.
 
 Estos son cambios de fuente pendientes del gate Apple y de la revisión de capturas. Descargas contiene la IPA 43 comprobada, no 44/45/46. El perfil privado PC/iPhone, la sesión Submanhwa y las tarjetas personales de progreso siguen pendientes de comprobación con la cuenta del usuario.
+
+## Candidata 47
+
+La siguiente fuente añade la línea del tiempo con la geometría original y arrastre táctil, y ajusta la agrupación de Biblioteca a ventanas móviles de 1/7/30 días. El color personalizado aparece también en el punto del control. Discover incorpora el logo dentro del carrusel, flechas, indicadores y el panel original de imágenes ampliables, datos y sinopsis; usa textos del diccionario español original sin cambiar los parámetros del proveedor. Los votos y la lógica completa de clasificación de Desktop conservan trabajo pendiente.
+
+Manga incluye las tres tarjetas Colecciones/Universos/Biblioteca y sus destinos. Las seis selecciones editoriales y treinta universos provienen de la referencia; los títulos se buscan en las fuentes reales permitidas por los filtros o la biblioteca local. Se mantienen los carruseles de 9/7 segundos y los ajustes de Reducir movimiento. El recorrido UI existente añade las dos subpáginas y comprueba el encabezado real de Biblioteca. La compilación, las imágenes de estas nuevas pantallas y el funcionamiento con el servidor personal todavía no están verificados.

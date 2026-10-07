@@ -91,7 +91,7 @@ private struct HarborAnimeSlide: View {
                     Image(saved ? "desktop-check" : "desktop-plus").resizable().scaledToFit().frame(width: 18, height: 18).frame(width: 48, height: 48).background(saved ? HarborTheme.ink.opacity(0.15) : HarborTheme.background.opacity(0.8), in: .circle)
                 }.buttonStyle(.plain).disabled(app.library.busy || app.library.loading)
                     .accessibilityLabel(saved ? "Quitar de mi lista" : "Guardar para más tarde")
-                    .modifier(HarborActionHint(id: "saved", title: saved ? "En mi lista" : "Quitar de mi lista", selected: hint))
+                    .modifier(HarborActionHint(id: "saved", title: saved ? "Quitar de mi lista" : "Guardar para más tarde", selected: hint))
                 if let rating = media.imdbRating { Text("\(media.ratingSource ?? "IMDb") \(rating)").font(HarborTheme.font(12, weight: .semibold)).foregroundStyle(.white.opacity(0.8)) }
             }
             if let error = app.library.error { Text(error).font(.caption).foregroundStyle(.orange) }
@@ -159,7 +159,7 @@ private struct HarborSeriesSlide: View {
     }
 }
 
-private struct HarborHeroPips: View {
+struct HarborHeroPips: View {
     let count: Int
     let selected: Int
     let select: (Int) -> Void

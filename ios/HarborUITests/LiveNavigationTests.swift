@@ -214,8 +214,19 @@ final class LiveNavigationTests: XCTestCase {
         let mangaLibrary = app.buttons["manga-library-card"]
         XCTAssertTrue(mangaLibrary.waitForExistence(timeout: 5))
         capture(app, "native-manga-original-layout")
+        let mangaCollections = app.buttons["manga-collections-card"]
+        XCTAssertTrue(mangaCollections.isHittable)
+        mangaCollections.tap()
+        XCTAssertTrue(app.descendants(matching: .any).matching(identifier: "manga-collections").firstMatch.waitForExistence(timeout: 5))
+        capture(app, "native-manga-collections")
+        navigate(app, "manga")
+        app.buttons["manga-universes-card"].tap()
+        XCTAssertTrue(app.descendants(matching: .any).matching(identifier: "manga-universes").firstMatch.waitForExistence(timeout: 5))
+        XCTAssertTrue(app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH %@", "manga-universe-")).firstMatch.exists)
+        capture(app, "native-manga-universes")
+        navigate(app, "manga")
         mangaLibrary.tap()
-        XCTAssertTrue(app.staticTexts["Tu biblioteca de manga"].firstMatch.waitForExistence(timeout: 5))
+        XCTAssertEqual(app.staticTexts["manga-content-heading"].label, "Biblioteca")
         capture(app, "native-manga-library")
 
         navigate(app, "addons")

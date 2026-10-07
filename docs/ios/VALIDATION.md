@@ -8,6 +8,16 @@ La candidata 46 corrige esas asignaciones y adopta métodos async de los delegad
 
 Las interfaces nuevas, el movimiento, los diálogos, la sincronización privada de perfil y la sesión privada de Submanhwa siguen necesitando evidencia de ejecución. La candidata 46 todavía no es una entrega. Las cuentas, el renderer físico y los dispositivos de salida conservan sus límites de validación anteriores.
 
+## Candidata 47: interfaz táctil y Manga
+
+Fuente local todavía sin gate Apple. La barra nativa Slider se sustituye por la composición original de seis puntos, con objetivo táctil de 44, punto que crece al arrastrar y color de los ajustes. La posición procede de mpv y el seek se envía al soltar; el estado de arrastre evita ocultar los controles. Biblioteca agrupa por ventanas móviles de 1/7/30 días y después por año; se amplía el método existente con los límites exactos y el cambio de año.
+
+Manga añade Colecciones, Universos y Biblioteca con abanico de portadas, fondos originales, carrusel de destacados de nueve segundos y rotación de Universos de siete. Se conservan las seis colecciones y treinta universos originales; cada título se resuelve en extensiones reales permitidas por los filtros de fuente/idioma/adultos o en la biblioteca local. Las colecciones consultan cuatro títulos por lote y conservan el orden original; no crean resultados de lectura ficticios. Al configurar un servidor desde una subpágina se vuelve a la pantalla que mantiene esa misma conexión.
+
+Discover adapta logo/título sobre el carrusel, flechas/indicadores originales, panel de sinopsis/valoración e imágenes reales ampliables. El movimiento automático se detiene con Reducir movimiento, al suspender la app o al ampliar una imagen. Los textos españoles se obtienen de los diccionarios oficiales sin traducir parámetros de los proveedores; un texto editorial sin traducción conserva el original. Los votos de recomendaciones y el algoritmo completo de Desktop siguen pendientes. Los tooltips de favorito/visto muestran la acción real disponible después de guardar. Procedencia en `touch-interface-provenance.json` y `manga-interface-provenance.json`.
+
+Estos cambios todavía no sustituyen Descargas ni prueban el aspecto físico, los servidores o las cuentas privadas del usuario.
+
 ## Entrega anterior: IPA 42
 
 Fuente `5f1f556dd554a55c3be68adc525241ebbc910028`, [CI 37627862741](https://github.com/Said129/harbor/actions/runs/37627862741): simulator/device, 31 pruebas nativas (41.797 s), seis servicios públicos (45.302 s), recorrido UI completo (251.471 s), paquete y borrador de Release pasan. Esta ejecución no demuestra un binario Linux completo. El log conserva las deprecaciones GLKit/OpenGLES y metadata AppIntents anteriores; no se observan warnings nuevos del incremento.

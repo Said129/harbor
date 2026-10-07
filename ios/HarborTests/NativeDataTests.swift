@@ -109,6 +109,18 @@ final class NativeDataTests: XCTestCase {
         display.sort = .recent
         XCTAssertEqual(LibraryListing.select([older, newer], display: display, query: "").map(\.id), ["newer", "older"])
 
+        // Rolling windows stay intact across midnight, a new month and year.
+        let groupingDate = try XCTUnwrap(ISO8601DateFormatter().date(from: "2026-01-02T12:00:00Z"))
+        let dates = ["2026-01-01T13:00:00Z", "2026-01-01T12:00:00Z", "2025-12-27T12:00:00Z", "2025-12-26T12:00:00Z", "2025-12-04T12:00:00Z", "2025-12-03T12:00:00Z"]
+        let datedRecords = dates.enumerated().map { index, date in
+            LibraryRecord(raw: .object(["_id": .string("dated-\(index)"), "type": .string("movie"), "name": .string("Movie"), "_ctime": .string(date)]))
+        }
+        let dateGroups = LibraryListing.groups(datedRecords, display: display, now: groupingDate)
+        XCTAssertEqual(dateGroups.map(\.title), ["Hoy", "Esta semana", "Este mes", "2025"])
+        XCTAssertEqual(dateGroups.map { $0.items.map(\.id) }, [["dated-0"], ["dated-1", "dated-2"], ["dated-3", "dated-4"], ["dated-5"]])
+        display.grouped = false
+        XCTAssertEqual(LibraryListing.groups(datedRecords, display: display, now: groupingDate).first?.items.map(\.id), datedRecords.map(\.id))
+
         // Switching links keeps the live position even inside the ordinary
         // completed-video window, and cannot move it to another account/episode.
         let target = ResumeTarget(id: "show", season: 0, episode: 1, videoId: "show:0:1")

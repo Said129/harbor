@@ -18,5 +18,29 @@
       "license": "Beta Version - Free for personal use only",
       "distribution": "Fetched directly from the original pinned source for the personal app build, not redistributed as a standalone font in this source repository"
     }
+  },
+  "editorial": {
+    "collections": 6,
+    "universes": 30,
+    "sourceFiles": {
+      "src/lib/manga/collections.ts": "292be268d97c5fdf4fa8731dec788968dfb7ceea7b24c3e8c6fd20662cea8636",
+      "src/lib/manga/universes.ts": "6c33437811fcafe6c09a3d14dd0f9e7d20d2f06deb0e3884ca9fe60769b74339"
+    },
+    "output": "ios/Harbor/DesktopMangaEditorial.json",
+    "notes": "Original title selections and universe artwork URLs. Public relative artwork URLs resolve against harbor.site; actual reading results come from the configured Suwayomi extensions or local library.",
+    "icons": {
+      "users": {
+        "package": "lucide-react",
+        "version": "0.460.0",
+        "sourceSha256": "e9d42972228be25cf5d28c1fb645f3fecf689a43fd4057f6d7ef220686682b58",
+        "svgSha256": "759e6cc274f3adb317f520f89def6ffedcc61eaea69469ba703ccbc2dceaf258",
+        "output": "ios/Harbor/Assets.xcassets/desktop-users.imageset/icon.svg"
+      }
+    },
+    "interfaces": [
+      "src/views/manga.tsx",
+      "src/views/manga/manga-universes.tsx",
+      "src/views/manga/manga-hero.tsx"
+    ]
   }
 }

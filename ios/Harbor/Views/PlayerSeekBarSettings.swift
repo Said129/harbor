@@ -20,13 +20,7 @@ struct PlayerSeekBarSettings: View {
                 }
                 ColorPicker("Personalizado", selection: Binding(get: { preferences.seekColor }, set: { preferences.setSeekColor($0) }), supportsOpacity: false)
                     .font(HarborTheme.font(14)).accessibilityIdentifier("settings-seek-color")
-                GeometryReader { geometry in
-                    ZStack(alignment: .leading) {
-                        Capsule().fill(HarborTheme.ink.opacity(0.15))
-                        Capsule().fill(preferences.seekColor).frame(width: geometry.size.width * 0.4)
-                        Circle().fill(.white).frame(width: 14, height: 14).offset(x: max(0, geometry.size.width * 0.4 - 7))
-                    }.frame(height: 6)
-                }.frame(height: 14).accessibilityHidden(true)
+                HarborSeekBar(position: 40, duration: 100, previewOnly: true).accessibilityHidden(true)
                 if !preferences.seekBarColor.isEmpty { Button("Restablecer") { preferences.seekBarColor = "" }.font(HarborTheme.font(13)) }
             }
         }
