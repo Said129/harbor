@@ -4,6 +4,7 @@ import UniformTypeIdentifiers
 struct SubtitleTracksView: View {
     let state: PlayerState
     var panel = false
+    var embedded = false
     @State private var language: String?
     @State private var source = "all"
     @State private var hideHI = false
@@ -98,8 +99,11 @@ struct SubtitleTracksView: View {
         .onChange(of: groups.map(\.key)) { _, keys in if let language, language != "all", !keys.contains(language) { self.language = nil } }
         .onChange(of: state.subtitleImportMessage) { _, message in if message != nil { language = "all"; source = "all" } }
     }
-    private var customPanel: some View {
-        ScrollView {
+    @ViewBuilder private var customPanel: some View {
+        if embedded { panelContent }
+        else { ScrollView { panelContent.padding(18) }.background(HarborTheme.background) }
+    }
+    private var panelContent: some View {
             VStack(alignment: .leading, spacing: 16) {
                 HStack {
                     HarborPill(title: state.primarySubtitle == nil ? "Desactivados" : "Activados", selected: state.primarySubtitle != nil) {
@@ -107,7 +111,9 @@ struct SubtitleTracksView: View {
                         else if let first = visible.first ?? tracks.first { state.controller?.selectSubtitle(String(first.id)) }
                     }.disabled(disabled)
                     Spacer()
-                    NavigationLink { PlayerSettingsView(page: .subtitles) } label: { Image("ui-customize-subtitles").resizable().scaledToFit().frame(width: 23, height: 23).frame(width: 44, height: 44) }.accessibilityLabel("Preferencias de subtítulos")
+                    if !embedded {
+                        NavigationLink { PlayerSettingsView(page: .subtitles) } label: { Image("ui-customize-subtitles").resizable().scaledToFit().frame(width: 23, height: 23).frame(width: 44, height: 44) }.accessibilityLabel("Preferencias de subtítulos")
+                    }
                 }
                 ScrollView(.horizontal) { HStack(spacing: 6) {
                     HarborPill(title: "Todos  \(tracks.count)", selected: source == "all") { source = "all" }
@@ -137,8 +143,7 @@ struct SubtitleTracksView: View {
                 Button { fileError = nil; chooseFile = true } label: { Label("Cargar desde Archivos", image: "music-folder-open").frame(minHeight: 44) }.disabled(disabled).accessibilityIdentifier("subtitle-import-file")
                 if let message = state.subtitleImportMessage { Text(message).font(.caption).foregroundStyle(HarborTheme.accent) }
                 if let message = fileError ?? state.subtitleIssue { Text(message).font(.caption).foregroundStyle(.secondary) }
-            }.padding(18)
-        }.background(HarborTheme.background)
+            }
     }
 
     private func row(_ track: PlayerState.Track, selected: Bool) -> some View {

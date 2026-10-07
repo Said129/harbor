@@ -341,7 +341,21 @@
     {
       "build": 42,
       "name": "Original Manga detail typography, actual reading/library actions and chapter search/order; Harbor Library empty and filtered states; stable Calendar date-cell identities",
-      "status": "Local implementation and proportionate checks complete. Native compilation, actual Manga detail/Library initial-state and full Calendar first-row review pending."
+      "status": "Published. Apple simulator build in progress; Manga detail, Library initial state and Calendar first-week output review pending. Downloads retains verified build 41.",
+      "source": "5f1f556dd554a55c3be68adc525241ebbc910028",
+      "ciRun": 37627862741
+    },
+    {
+      "build": 43,
+      "name": "Original Harbor playback settings sections and full readable menu choices, with embedded actual subtitle track panel",
+      "status": "Local implementation; native compilation and actual UI review pending. Do not cancel source 42 or replace delivered IPA 41.",
+      "files": [
+        "ios/Harbor/Views/HarborSettingsControls.swift",
+        "ios/Harbor/Views/PlayerSettingsView.swift",
+        "ios/Harbor/Views/SubtitleTracksView.swift",
+        "ios/Harbor/Views/SettingsView.swift",
+        "ios/HarborUITests/LiveNavigationTests.swift"
+      ]
     }
   ]
 }

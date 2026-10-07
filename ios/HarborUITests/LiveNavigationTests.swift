@@ -74,6 +74,17 @@ final class LiveNavigationTests: XCTestCase {
         capture(app, "native-settings-original-layout")
         app.buttons["settings-video"].tap()
         XCTAssertTrue(app.descendants(matching: .any).matching(identifier: "settings-hwdec").firstMatch.waitForExistence(timeout: 5))
+        let fit = app.buttons["Formato de imagen"]
+        XCTAssertTrue(fit.waitForExistence(timeout: 5))
+        let originalFit = try XCTUnwrap(fit.value as? String)
+        fit.tap()
+        XCTAssertTrue(app.buttons["4:3"].waitForExistence(timeout: 3))
+        capture(app, "native-video-format-menu")
+        app.buttons["4:3"].tap()
+        XCTAssertEqual(fit.value as? String, "4:3")
+        fit.tap()
+        app.buttons[originalFit].tap()
+        XCTAssertEqual(fit.value as? String, originalFit, "Restore the user's starting image format after checking the real menu")
         capture(app, "native-video-settings")
         let settingsBack = app.navigationBars["Vídeo"].buttons["Ajustes"]
         XCTAssertTrue(settingsBack.waitForExistence(timeout: 5))
@@ -85,7 +96,30 @@ final class LiveNavigationTests: XCTestCase {
         reveal(subtitles, in: settingsScroll, attempts: 3)
         XCTAssertTrue(subtitles.isHittable)
         subtitles.tap()
-        XCTAssertTrue(app.staticTexts["settings-subtitle-preview"].waitForExistence(timeout: 5))
+        let firstLanguage = app.buttons["Primer idioma preferido"]
+        XCTAssertTrue(firstLanguage.waitForExistence(timeout: 5))
+        let originalLanguage = try XCTUnwrap(firstLanguage.value as? String)
+        let secondLanguage = app.buttons["Segundo idioma preferido"]
+        let originalSecondLanguage = try XCTUnwrap(secondLanguage.value as? String)
+        firstLanguage.tap()
+        XCTAssertTrue(app.buttons["Español"].waitForExistence(timeout: 3))
+        app.buttons["Español"].tap()
+        XCTAssertEqual(firstLanguage.value as? String, "Español")
+        firstLanguage.tap()
+        app.buttons[originalLanguage].tap()
+        XCTAssertEqual(firstLanguage.value as? String, originalLanguage)
+        secondLanguage.tap()
+        app.buttons[originalSecondLanguage].tap()
+        XCTAssertEqual(secondLanguage.value as? String, originalSecondLanguage)
+        let secondaryLanguage = app.buttons["Idioma de la segunda pista"]
+        XCTAssertTrue(secondaryLanguage.waitForExistence(timeout: 5))
+        XCTAssertNotNil(secondaryLanguage.value as? String)
+        capture(app, "native-subtitle-language-settings")
+        let playerSettings = app.descendants(matching: .any).matching(identifier: "player-settings-scroll").firstMatch
+        XCTAssertTrue(playerSettings.waitForExistence(timeout: 5))
+        let subtitlePreview = app.staticTexts["settings-subtitle-preview"]
+        reveal(subtitlePreview, in: playerSettings, attempts: 4)
+        XCTAssertTrue(subtitlePreview.isHittable)
         capture(app, "native-subtitle-settings")
 
         navigate(app, "library")

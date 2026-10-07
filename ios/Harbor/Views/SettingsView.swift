@@ -25,7 +25,7 @@ struct SettingsView: View {
                     group("Reproducción") {
                         ForEach(playerPages) { page in
                             NavigationLink { PlayerSettingsView(page: page).toolbar(.visible, for: .navigationBar) } label: {
-                                SettingsRow(title: page.title, icon: page == .subtitles ? "ui-customize-subtitles" : page == .audio ? "nav-music" : "ui-play-filled")
+                                SettingsRow(title: page.title, icon: page.icon)
                             }.accessibilityIdentifier("settings-\(page.rawValue)")
                         }
                     }
