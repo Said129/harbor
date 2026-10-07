@@ -151,6 +151,11 @@ enum FeaturedRanking {
         var confidence: Double { switch source { case .tmdb: 10; case .awards: 12; case .trending: 6; case .seed: 5 } }
         var prominence: Double { switch source { case .tmdb: 0.9; case .trending: 0.95; case .awards: 0.85; case .seed: 0.7 } }
     }
+    private struct Scored {
+        let index: Int
+        let media: Media
+        let value: Double
+    }
     @MainActor static func select(_ candidates: [Candidate], preferences: DiscoveryPreferences, excluded: [Media], count: Int = 10, now: Date = Date()) -> [Media] {
         let ids = Set(excluded.map(\.id))
         let titles = Set(excluded.map { DiscoveryPreferences.titleKey($0.name) }.filter { !$0.isEmpty })
@@ -165,8 +170,14 @@ enum FeaturedRanking {
             else { unique[media.id] = item; order.append(media.id) }
         }
         let affinity = preferences.affinity(now: now)
-        var ranked = order.compactMap { unique[$0] }.enumerated().map { index, item in (index, item, score(item, preferences: preferences, affinity: affinity, now: now)) }
-            .sorted { $0.2 == $1.2 ? $0.0 < $1.0 : $0.2 > $1.2 }.map { $0.1.media }
+        var scored: [Scored] = []
+        for (index, id) in order.enumerated() {
+            guard let item = unique[id] else { continue }
+            let value = score(item, preferences: preferences, affinity: affinity, now: now)
+            scored.append(Scored(index: index, media: item.media, value: value))
+        }
+        scored.sort { left, right in left.value == right.value ? left.index < right.index : left.value > right.value }
+        var ranked: [Media] = scored.map(\.media)
         var result: [Media] = []
         while result.count < count && !ranked.isEmpty {
             var next = 0
@@ -181,7 +192,12 @@ enum FeaturedRanking {
         let quality = rating > 0 ? (rating * item.confidence + 0.62 * 8) / (item.confidence + 8) : 0.5
         let taste = min(1, affinity.score(item.media) / 4)
         let vote = preferences.votes[item.media.id]
-        let suppression = vote?.vote == .up ? 6 * exp(-log(2) * (now.timeIntervalSince1970 * 1_000 - (vote?.timestamp ?? 0)) / (12 * 86_400_000)) : 0
+        var suppression: Double = 0
+        if let vote, vote.vote == .up {
+            let elapsed: Double = now.timeIntervalSince1970 * 1_000 - vote.timestamp
+            let decay: Double = -log(2.0) * elapsed / (12.0 * 86_400_000.0)
+            suppression = 6.0 * exp(decay)
+        }
         let day = UInt32(truncatingIfNeeded: Int64(floor(now.timeIntervalSince1970 / 86_400)))
         return 6 * taste + 2 * quality + 1.2 * item.prominence / Double(1 + item.rank) - suppression + jitter(item.media.id, day: day) * 0.2
     }

@@ -41,7 +41,7 @@ private struct NativeAudioRoutePicker: UIViewRepresentable {
     }
 
     @MainActor
-    final class Coordinator: NSObject, AVRoutePickerViewDelegate {
+    final class Coordinator: NSObject, @preconcurrency AVRoutePickerViewDelegate {
         let state: PlayerState
         init(state: PlayerState) { self.state = state }
         func routePickerViewWillBeginPresentingRoutes(_ routePickerView: AVRoutePickerView) {

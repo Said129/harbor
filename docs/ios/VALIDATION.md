@@ -8,6 +8,12 @@ La candidata 46 corrige esas asignaciones y adopta métodos async de los delegad
 
 La build 46, fuente `510a6053dc3ed6bede31e30a5c44ffdf828f5014`, [run 37675647198](https://github.com/Said129/harbor/actions/runs/37675647198), termina con fallo de compilación en tres asignaciones de `HarborProfileSync.swift` (70, 89 y 108): el `error` del catch ocultaba la propiedad del modelo. La candidata 47 las corrige con `self.error`; los avisos reportados son las deprecaciones GLKit/OpenGLES anteriores. No se ejecutaron pruebas nativas, servicios, UI ni build de dispositivo para 46, ni se creó una IPA. Las interfaces nuevas, el movimiento, los diálogos, la sincronización privada de perfil y la sesión privada de Submanhwa siguen necesitando evidencia de ejecución. Las cuentas, el renderer físico y los dispositivos de salida conservan sus límites de validación anteriores.
 
+## Candidata 52: corrección de compilación y estados vacíos
+
+La fuente 50 `8cc5d8b3a50e63fbfecb0cb09332a71e04668414`, [run 37687739623](https://github.com/Said129/harbor/actions/runs/37687739623), terminó con dos errores del compilador en `DiscoveryPreferences.swift:168` y `184`: inferencia excesiva en la cadena de ordenación y en el decaimiento temporal del voto. La candidata 52 usa un registro tipado para la puntuación y pasos aritméticos `Double` separados; conserva la fórmula, desempate y diversificación originales. La conformidad del delegado del selector de audio incorpora la anotación de concurrencia indicada por el SDK para sus callbacks UIKit. Se corrigen los dos avisos introducidos; las advertencias anteriores de GLKit/OpenGLES siguen registradas como baseline.
+
+También incluye el incremento 51 de estados vacíos originales descrito abajo. El check acotado pasa en Windows; la ejecución 50 no llegó a pruebas ni a empaquetado, y las candidatas 51/52 aún deben pasar el SDK Apple. Descargas conserva la IPA 43. No se declaran validados PiP, vídeo inalámbrico ni sincronización de cuentas privadas PC/iPhone.
+
 ## Candidata 47: interfaz táctil y Manga
 
 Fuente local todavía sin gate Apple. La barra nativa Slider se sustituye por la composición original de seis puntos, con objetivo táctil de 44, punto que crece al arrastrar y color de los ajustes. La posición procede de mpv y el seek se envía al soltar; el estado de arrastre evita ocultar los controles. Biblioteca agrupa por ventanas móviles de 1/7/30 días y después por año; se amplía el método existente con los límites exactos y el cambio de año.
@@ -54,7 +60,7 @@ Browse de Addons usa la fuente original de Desktop, búsqueda del servidor, las 
 
 Se eliminan el título añadido «Directorio de Stremio» y el listado duplicado bajo Discover; los complementos siguen accesibles desde Browse/Instalados. Búsqueda, adultos, ascenso, Ver más y fin de lista usan los textos españoles oficiales registrados en procedencia. Ver todo en los catálogos usa la flecha original y un área táctil de 44. Las tarjetas de categorías recuperan el tamaño original de sus iconos.
 
-La API pública respondió desde Windows a la consulta Streaming con categorías múltiples y cursor real. Se amplía la regresión existente para slugs/query/cursor/NSFW y el recorrido UI para entrar en Streaming y capturar Browse; todavía deben ejecutarse con el SDK Apple. Las candidatas 48–50 y AirPlay de audio aún no han superado ese gate ni las comprobaciones físicas. PiP, transmisión de vídeo y cuentas privadas PC/iPhone no se declaran validados.
+La API pública respondió desde Windows a la consulta Streaming con categorías múltiples y cursor real. Se amplía la regresión existente para slugs/query/cursor/NSFW y el recorrido UI para entrar en Streaming y capturar Browse; todavía deben ejecutarse con el SDK Apple. La ejecución 50 terminó con errores de inferencia en Discover, corregidos en la candidata 52. Las candidatas 48–50 y AirPlay de audio aún no han superado ese gate ni las comprobaciones físicas. PiP, transmisión de vídeo y cuentas privadas PC/iPhone no se declaran validados.
 
 ## Entrega anterior: IPA 42
 
