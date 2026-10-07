@@ -308,7 +308,7 @@
   "unstartedAdvancedDesktopFeaturesRequired": false,
   "desktopInventoryIsCompletionDenominator": false,
   "desktopEvidenceStatesChanged": false,
-  "deliveredIpaBuild": 41,
+  "deliveredIpaBuild": 42,
   "paidServicesAuthorized": false,
   "completionEvidence": "docs/ios/VALIDATION.md",
   "scopeChangeSnapshot": {
@@ -317,8 +317,8 @@
     "openNativeIncrementStatus": "uncommitted; native validation pending"
   },
   "deliveredIpaEvidence": {
-    "commit": "252b6f5f01126b09e97db1f0ea24b3db0bc6f8fb",
-    "ciRun": 37589420764,
+    "commit": "5f1f556dd554a55c3be68adc525241ebbc910028",
+    "ciRun": 37627862741,
     "ciConclusion": "success",
     "physicalTested": false,
     "verification": "docs/ios/VALIDATION.md"
@@ -341,14 +341,14 @@
     {
       "build": 42,
       "name": "Original Manga detail typography, actual reading/library actions and chapter search/order; Harbor Library empty and filtered states; stable Calendar date-cell identities",
-      "status": "Published. Apple simulator build in progress; Manga detail, Library initial state and Calendar first-week output review pending. Downloads retains verified build 41.",
+      "status": "Apple success: 31 native, 6 public and complete UI tests plus device/package passed. All 35 actual images reviewed and verified IPA delivered to Downloads. Calendar first week is present; local Manga cover still loading in its capture. Physical/private verification remains pending.",
       "source": "5f1f556dd554a55c3be68adc525241ebbc910028",
       "ciRun": 37627862741
     },
     {
       "build": 43,
       "name": "Original Harbor playback settings sections and full readable menu choices, with embedded actual subtitle track panel; original Continue Watching card layout and distinct resume/detail targets; profile typography, avatar fan and original color selection",
-      "status": "Local implementation; native compilation and actual UI review pending. Do not cancel source 42 or replace delivered IPA 41.",
+      "status": "Local implementation and proportionate checks complete. Native compilation and actual UI review pending; Downloads retains verified IPA 42.",
       "files": [
         "ios/Harbor/Views/HarborSettingsControls.swift",
         "ios/Harbor/Views/PlayerSettingsView.swift",
