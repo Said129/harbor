@@ -51,7 +51,6 @@ struct AccountView: View {
                 }
             } else {
                 VStack(alignment: .leading, spacing: 14) {
-                    Text("Usa la misma cuenta de Stremio que utilizas en Harbor. Tus addons configurados se recuperarán al iniciar sesión.")
                     Button("Iniciar sesión con Stremio") {
                         editing = false
                         Task {
@@ -66,7 +65,6 @@ struct AccountView: View {
                             catch { self.error = safeMessage(error) }
                         }
                     }.buttonStyle(HarborAccountButtonStyle(primary: true)).accessibilityIdentifier("account-browser-login")
-                    Text("Acceso oficial con correo, Apple o Facebook.").font(HarborTheme.font(13)).foregroundStyle(.secondary)
                 }
                 VStack(alignment: .leading, spacing: 14) {
                     Text("Correo y contraseña").font(HarborTheme.font(18, weight: .semibold))

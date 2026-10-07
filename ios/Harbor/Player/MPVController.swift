@@ -84,6 +84,7 @@ final class MPVController: GLKViewController {
         MusicPlayback.shared.pauseForVideo()
         try AVAudioSession.sharedInstance().setCategory(.playback, mode: .moviePlayback)
         try AVAudioSession.sharedInstance().setActive(true)
+        updateAudioRoute()
         let mpv = try MPVConfiguration.createHandle(startMs: startMs)
         handle = mpv
         try check(mpv_request_log_messages(mpv, "no"))
@@ -187,6 +188,7 @@ final class MPVController: GLKViewController {
         do {
             try AVAudioSession.sharedInstance().setCategory(.playback, mode: .moviePlayback)
             try AVAudioSession.sharedInstance().setActive(true)
+            updateAudioRoute()
             interrupted = false
             state.playbackIssue = nil
             return true
@@ -202,11 +204,13 @@ final class MPVController: GLKViewController {
         })
         lifecycleTokens.append(center.addObserver(forName: AVAudioSession.routeChangeNotification, object: nil, queue: nil) { [weak self] notification in
             let reason = notification.userInfo?[AVAudioSessionRouteChangeReasonKey] as? UInt
-            guard reason == AVAudioSession.RouteChangeReason.oldDeviceUnavailable.rawValue else { return }
             Task { @MainActor [weak self] in
                 guard let self, !self.didClose else { return }
-                self.interruptionResumeWanted = false; self.interruptionResumeAllowed = false; self.foregroundResumeWanted = false
-                self.set("pause", "yes")
+                self.updateAudioRoute()
+                if reason == AVAudioSession.RouteChangeReason.oldDeviceUnavailable.rawValue {
+                    self.interruptionResumeWanted = false; self.interruptionResumeAllowed = false; self.foregroundResumeWanted = false
+                    self.set("pause", "yes")
+                }
             }
         })
         lifecycleTokens.append(center.addObserver(forName: UIApplication.willResignActiveNotification, object: nil, queue: .main) { [weak self] _ in
@@ -215,6 +219,12 @@ final class MPVController: GLKViewController {
         lifecycleTokens.append(center.addObserver(forName: UIApplication.didBecomeActiveNotification, object: nil, queue: .main) { [weak self] _ in
             MainActor.assumeIsolated { self?.restoreForApp() }
         })
+    }
+
+    private func updateAudioRoute() {
+        let outputs = AVAudioSession.sharedInstance().currentRoute.outputs
+        state.audioOutput = outputs.map(\.portName).joined(separator: ", ")
+        state.wirelessAudio = outputs.contains { $0.portType == .airPlay }
     }
 
     private func audioInterruption(type: UInt?, options: UInt) {

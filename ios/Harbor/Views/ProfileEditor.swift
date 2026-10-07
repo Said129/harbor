@@ -35,11 +35,11 @@ struct ProfileEditor: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 22) {
             Text("Tu perfil").font(HarborTheme.font(20, weight: .semibold)).accessibilityAddTraits(.isHeader)
-            Text("Tu avatar, nombre y nombre de usuario en Harbor.").font(HarborTheme.font(15)).foregroundStyle(.secondary)
+            Text("Tu avatar, nombre e identificador en Harbor.").font(HarborTheme.font(15)).foregroundStyle(.secondary)
             HStack(spacing: 18) {
                 ProfileAvatar(profile: profile, size: 88)
                 VStack(alignment: .leading, spacing: 8) {
-                    Text("Nombre visible").font(HarborTheme.font(15)).foregroundStyle(.secondary)
+                    Text("Nombre para mostrar").font(HarborTheme.font(15)).foregroundStyle(.secondary)
                     TextField("Nombre", text: $name).textFieldStyle(.plain).font(HarborTheme.font(17, weight: .medium))
                         .padding(.horizontal, 12).frame(minHeight: 48).background(HarborTheme.surface, in: .rect(cornerRadius: 10))
                         .overlay { RoundedRectangle(cornerRadius: 10).stroke(HarborTheme.ink.opacity(0.06), lineWidth: 1) }
@@ -51,7 +51,7 @@ struct ProfileEditor: View {
             if name.trimmingCharacters(in: .whitespacesAndNewlines) != displayedName { Button("Guardar"){ saveName() }.buttonStyle(HarborAccountButtonStyle()).disabled(!editable) }
             Divider()
             profileLabel("Avatar", icon: "desktop-image")
-            Text("Sube tu propia foto o elige una del catálogo de Harbor.").font(HarborTheme.font(15)).foregroundStyle(.secondary)
+            Text("Sube una imagen tuya o elige una del catálogo de Harbor.").font(HarborTheme.font(15)).foregroundStyle(.secondary)
             VStack(alignment: .leading, spacing: 12) {
                 PhotosPicker(selection: $chosenPhoto, matching: .images) { Text("Subir foto") }.buttonStyle(HarborAccountButtonStyle())
                 avatarFan
@@ -59,7 +59,7 @@ struct ProfileEditor: View {
             if profile.value.photo != nil { Button("Usar mi avatar de Harbor") { profile.update { $0.photo = nil; $0.remoteAvatar = nil; $0.initialsAvatar = false } }.font(HarborTheme.font(13)).disabled(!editable) }
             Divider()
             profileLabel("Tu color", icon: "desktop-palette")
-            Text("Colorea tu nombre, tu cursor en Watch Together y el anillo de tu avatar.").font(HarborTheme.font(15)).foregroundStyle(.secondary)
+            Text("Da color a tu nombre, al cursor en Ver juntos y al anillo alrededor de tu avatar.").font(HarborTheme.font(15)).foregroundStyle(.secondary)
             LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 5), spacing: 14) {
                 ForEach(ProfilePreferences.colors, id: \.self) { hex in
                     Button { profile.update { $0.color = hex } } label: {

@@ -61,9 +61,9 @@ actor AddonDirectory {
 }
 
 enum AddonCategory: String, CaseIterable, Identifiable {
-    case all, streams, metadata, subtitles, anime, sports, television, tools, adult
+    case all, streams, metadata, subtitles, anime, torrents, sports, television, tools, adult
     var id: String { rawValue }
-    var icon: String { switch self { case .all: "ui-all-addons"; case .metadata: "category-catalogs"; case .television: "category-livetv"; default: "category-" + rawValue } }
+    var icon: String { switch self { case .all: "ui-all-addons"; case .metadata: "category-catalogs"; case .television: "category-livetv"; case .torrents: "category-sports"; default: "category-" + rawValue } }
     var title: String {
         switch self {
         case .all: "Todos"
@@ -71,6 +71,7 @@ enum AddonCategory: String, CaseIterable, Identifiable {
         case .metadata: "Catálogos"
         case .subtitles: "Subtítulos"
         case .anime: "Anime"
+        case .torrents: "Torrents"
         case .sports: "Deportes"
         case .television: "TV en directo"
         case .tools: "Herramientas"
@@ -92,6 +93,7 @@ extension Addon {
         if types.contains("tv") || types.contains("channel") || text.range(of: #"\biptv\b|\blive\s*tv\b|\bchannel\b|\bm3u\b|\bplutotv\b|\bpluto\.tv\b|\busatv\b|\bota\b|\bbroadcast\b"#, options: .regularExpression) != nil { return .television }
         if text.range(of: #"\bsports?\b|\bnfl\b|\bnba\b|\bnhl\b|\bmlb\b|\bsoccer\b|\bfootball\b|\bf1\b|\bformula\s*1\b|\bcricket\b|\bbasketball\b|\bufc\b|\bmma\b|\bwwe\b|\bdazn\b|\besports?\b|\bsporttv\b|\bdaddylive\b"#, options: .regularExpression) != nil { return .sports }
         if resources.contains("subtitles") { return .subtitles }
+        if resources.contains("stream"), (manifest["behaviorHints"]["p2p"] == .bool(true) || text.range(of: #"\btorrents?\b|\bmagnet\b|\bdebrid\b"#, options: .regularExpression) != nil) { return .torrents }
         if resources.contains("stream") { return .streams }
         if resources.contains("catalog") || resources.contains("meta") { return .metadata }
         return .tools

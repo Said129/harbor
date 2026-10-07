@@ -111,6 +111,12 @@ final class LiveServicesTests: XCTestCase {
         XCTAssertFalse(directory.addons.isEmpty, "Public discovery must load real manifests through the native client")
         XCTAssertTrue(directory.addons.allSatisfy { !$0.name.isEmpty && $0.manifest["id"].string != nil && URL(string: $0.transportUrl)?.scheme == "https" })
         print("Harbor live addon directory: entries=\(directory.addons.count) unavailableSources=\(directory.failedSources)")
+        let community = try await CommunityAddons.shared.list(.stars, allowAdult: false, refresh: true)
+        XCTAssertFalse(community.isEmpty, "The original community index must load through the actual native parser")
+        XCTAssertTrue(community.allSatisfy { !$0.adult && $0.stars >= 0 && $0.siteURL?.host == "stremio-addons.net" })
+        let spotlight = try await CommunityAddons.shared.spotlight(allowAdult: false)
+        XCTAssertNotNil(spotlight, "A spotlight must resolve from public rising or rated entries")
+        print("Harbor live community addon index: entries=\(community.count) spotlight=\(spotlight == nil ? "missing" : "passed")")
         // This addon is installed within the test only; it is not an app default.
         let addon = try await service.install(publicAddon)
         let (catalogs, _) = try await service.catalogs([addon])

@@ -22,6 +22,9 @@ final class PlayerState {
     var speed = 1.0
     var volume = 100.0
     var muted = false
+    var audioOutput = ""
+    var wirelessAudio = false
+    var choosingAudioRoute = false
     var audioDelay = 0.0
     var subtitleDelay = 0.0
     var subtitleFPS: Double?

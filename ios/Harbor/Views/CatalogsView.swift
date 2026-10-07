@@ -23,7 +23,7 @@ struct CatalogsView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 24) {
-                HarborPageHeading(title: "Catálogos", subtitle: "Todo lo que ofrecen tus addons. Explora, busca o filtra tus catálogos.").padding(.horizontal)
+                HarborPageHeading(title: "Catálogos", subtitle: "Todo lo que ofrecen tus complementos, mostrado como pósteres. Desplázate, busca o filtra hasta encontrar lo que quieras.").padding(.horizontal)
                 HarborSearchField(prompt: "Buscar catálogos", text: $query).padding(.horizontal)
                 ScrollView(.horizontal) {
                     HStack(spacing: 6) {

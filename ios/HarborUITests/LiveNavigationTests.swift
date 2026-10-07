@@ -241,7 +241,7 @@ final class LiveNavigationTests: XCTestCase {
 
         navigate(app, "addons")
         XCTAssertTrue(app.buttons["addon-tab-discover"].waitForExistence(timeout: 5))
-        XCTAssertTrue(app.descendants(matching: .any).matching(identifier: "addon-featured").firstMatch.waitForExistence(timeout: 30), "Discovery must load an actual public addon before its screen is reviewed")
+        XCTAssertTrue(app.descendants(matching: .any).matching(identifier: "addon-community-spotlight").firstMatch.waitForExistence(timeout: 30), "Discovery must resolve its real spotlight from the original public community index")
         capture(app, "native-addon-store")
         let streamingCategory = app.buttons["addon-category-streams"]
         for _ in 0..<4 { if streamingCategory.isHittable { break }; app.swipeUp() }

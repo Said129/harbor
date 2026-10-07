@@ -3,6 +3,21 @@ import UIKit
 @testable import Harbor
 
 final class NativeDataTests: XCTestCase {
+    func testCommunityIndexRequiresRealRatingsAndIsolatesUnsafeRows() async throws {
+        let manifest: JSONValue = .object(["id": .string("com.linvo.cinemeta"), "name": .string("Cinemeta"), "version": .string("3.0.0"), "types": .array([.string("movie"), .string("series")]), "resources": .array([.string("catalog"), .string("meta")]), "catalogs": .array([])])
+        let valid: [String: JSONValue] = ["uuid": .string("community-test"), "slug": .string("cinemeta"), "stars": .integer(12), "manifestUrl": .string("https://v3-cinemeta.strem.io/manifest.json"), "manifest": manifest]
+        var missingRating = valid; missingRating["uuid"] = .string("missing-rating"); missingRating.removeValue(forKey: "stars")
+        var credentialed = valid; credentialed["uuid"] = .string("credentialed"); credentialed["manifestUrl"] = .string("https://private@example.com/manifest.json")
+        var adult = valid; adult["uuid"] = .string("adult-category"); adult["categories"] = .array([.object(["slug": .string("nsfw")])])
+        let rows = try await CommunityAddons.parse(.object(["addons": .array([.object(valid), .object(missingRating), .object(credentialed), .object(valid), .object(adult)])]))
+        XCTAssertEqual(rows.map(\.id), ["community-test", "adult-category"])
+        XCTAssertEqual(rows.first?.stars, 12, "Unavailable ratings must not turn into fabricated zero-star cards")
+        XCTAssertEqual(rows.first?.siteURL?.absoluteString, "https://stremio-addons.net/addons/cinemeta")
+        XCTAssertEqual(rows.last?.adult, true, "An NSFW category must apply even when the manifest omits its adult flag")
+        let empty = try await CommunityAddons.parse(.object(["addons": .array([])]))
+        XCTAssertTrue(empty.isEmpty)
+    }
+
     @MainActor func testDiscoveryVotesPersistPerAccountAndAffectActualRecommendations() throws {
         let owner = "discovery-test-" + UUID().uuidString
         let key = DiscoveryPreferences.key(owner)

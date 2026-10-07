@@ -32,7 +32,19 @@
     "src/lib/feed/exclude.ts": "3cd3f4b4620b06f51a160ce7d37ac62c7f4569021f3ef719c76b8eddccf19f08",
     "src/lib/feed/tags.ts": "182c341d6b74ab089417ce2bd5915d295898ab8ffe365d64a7828f9d09ddeb18",
     "src/lib/playback-history.ts": "b000d0258f43a8d49b72f9dee3416898d2c44393f949557d6815c57c1a60cc1a",
-    "src/assets/ui-icons/thumbs-up.svg": "0ffb4668d4368297f2e2345f6b39671f275003e9c53fc413dc53d1cf76be974b"
+    "src/assets/ui-icons/thumbs-up.svg": "0ffb4668d4368297f2e2345f6b39671f275003e9c53fc413dc53d1cf76be974b",
+    "src/components/player/transport/cast-button.tsx": "8be50146597f007b8feb93bed37f022f3e2b6932ec8209d7c6370c9dadfce4ef",
+    "src/assets/stremio-addons-net.png": "aa13b83e22ea90aac7a408a65f11481eccb6441ec48960f12ae42c51f9f22fca",
+    "src/lib/i18n/locales/es/addons.ts": "f249f09f57c5058c64aeb8b8fede63361601572177c2c0e48f40663970ac434b",
+    "src/lib/i18n/locales/es/common.ts": "bf96571c719f10ec75940247502be740359d3f792cfb8cf4c7302b3fb965402b",
+    "src/lib/i18n/locales/es/settings-fill.ts": "8350a7bc03b42e2ef863d5123bd639386d1af7d820bafe11f0493a00c481d0d2",
+    "src/lib/i18n/locales/es/settings-refinements.ts": "a28c5c5eba9701d9cf6df61b92a8280f40182731ec52210f4194e5523283cbcc",
+    "src/views/addons/addon-spotlight.tsx": "566f6d596978206e55f7be3643881a542bd94b6a8105014d94a2d77256c25501",
+    "src/components/community-addons-rail.tsx": "509fb6aa4166e7a7af48408e679fb5e3430a979fe1e2cdf6fae223db5080b5d2",
+    "src/lib/providers/stremio-addons.ts": "f77946c99552c2b3bf17489661b3acabe8daa94c4b2d92314eda8e7e213a5a27",
+    "src/views/addons/category-grid.tsx": "06af16377801ef4526f400e41311733dd484644618b1e06d342ea8a41ae30a93",
+    "src/views/settings/account/identity-tab.tsx": "31823d62d3d8a6c353b8f0edd01c94d5553aabb2e7177e3d53f2eb7c9027c066",
+    "src/views/catalogs.tsx": "3bad3f1f83f11fbcc37d8740755cc0845b5da0ae3946d13567696811b4b39d2a"
   },
   "changes": [
     "Original six-point playback timeline with a 44-point touch target; seeking commits to mpv on release.",
@@ -42,7 +54,9 @@
     "Original up/down glyph, active colors and Spanish touch labels; successful votes persist per account before the display changes.",
     "Original 500-event, 90-day affinity weights, quality/prominence/daily jitter and three-title genre diversification for native seed/trending/TMDB/awards lanes.",
     "Negative votes hide matching IDs/title aliases; positive votes apply the original seven-day Featured cooldown and twelve-day suppression.",
-    "Addon genre parameters remain in their original language; display labels alone use official translations."
+    "Addon genre parameters remain in their original language; display labels alone use official translations.",
+    "The original 22-point Cast glyph fronts Apple AVRoutePickerView for real audio routes; active color follows AVAudioSession route notifications.",
+    "Native Addons uses the original public rising/stars/newest endpoints, spotlight composition, community cards and six category tiles; only actual community ratings are displayed."
   ],
   "copyOutput": "ios/Harbor/DesktopDiscoverSpanish.json",
   "limitations": [
@@ -50,7 +64,9 @@
     "Native touch rendering and new navigation require Apple build/runtime evidence.",
     "The native sources do not include all Desktop streaming/acclaimed/similar-provider lanes or external watched-ID resolution.",
     "Recommendation votes are stored on this iPhone per Stremio account; cross-device vote sync is not claimed.",
-    "The native taste snapshot uses real genres/decade; cast/creator/keyword/language affinity and dwell events remain outside this increment."
+    "The native taste snapshot uses real genres/decade; cast/creator/keyword/language affinity and dwell events remain outside this increment.",
+    "AirPlay audio routing is separate from wireless video casting; real receiver behavior still requires physical iPhone evidence.",
+    "Community rating submissions and website identity are not performed by the native addon directory; private configured instances remain in the Stremio account."
   ],
   "icons": {
     "x": {
@@ -66,6 +82,37 @@
       "geometryUnchanged": true,
       "nativeSha256": "b8796668d1e9e7f52fe0781e39df8d510afca65d52f74d21c7a8d99e3e984d1a",
       "note": "Existing original vector import strips the XML declaration and changes the canvas width/height to 26; paths and viewBox are unchanged."
+    },
+    "cast": {
+      "package": "lucide-react",
+      "version": "0.460.0",
+      "integrity": "sha512-BVtq/DykVeIvRTJvRAgCsOwaGL8Un3Bxh8MbDxMhEWlZay3T4IpEKDEpwt5KZ0KJMHzgm6jrltxlT5eXOWXDHg==",
+      "sourceSha256": "0f33cd4f092fbf23b7bb4ae76e4d8bd31a1c89b5de06a87c254c55f2cedcaed8",
+      "svgSha256": "3d090cda5411bb467cf5e8f1d4f65294bbc1455cd1bc905be313f99959423025",
+      "output": "ios/Harbor/Assets.xcassets/player-cast.imageset/icon.svg",
+      "strokeWidth": 1.9,
+      "displaySize": 22
+    },
+    "community-star": {
+      "package": "lucide-react",
+      "version": "0.460.0",
+      "integrity": "sha512-BVtq/DykVeIvRTJvRAgCsOwaGL8Un3Bxh8MbDxMhEWlZay3T4IpEKDEpwt5KZ0KJMHzgm6jrltxlT5eXOWXDHg==",
+      "sourceSha256": "d4090a7df7e4f2f67b254e7650be3a5cdda207dc47536aa8e1a98fde48f14202",
+      "svgSha256": "5e24f828599518211947f899f394b52c4fc0accb7a8058a630fc573ae750c3e5",
+      "strokeWidth": "2.6",
+      "fill": true,
+      "output": "ios/Harbor/Assets.xcassets/community-star.imageset/icon.svg"
+    },
+    "desktop-arrow-up-right": {
+      "package": "lucide-react",
+      "version": "0.460.0",
+      "integrity": "sha512-BVtq/DykVeIvRTJvRAgCsOwaGL8Un3Bxh8MbDxMhEWlZay3T4IpEKDEpwt5KZ0KJMHzgm6jrltxlT5eXOWXDHg==",
+      "sourceSha256": "5549763cec9a51162a186f53b8e0c625770678168561dcb52cea427f3aa483af",
+      "svgSha256": "56d93f84b881eda42f95fde49ce255a69bac1c6ec15ebf6bde6ff6ac2eca7de2",
+      "strokeWidth": "2.4",
+      "fill": false,
+      "output": "ios/Harbor/Assets.xcassets/desktop-arrow-up-right.imageset/icon.svg"
     }
-  }
+  },
+  "interfaceCopyOutput": "ios/Harbor/DesktopInterfaceSpanish.json"
 }
