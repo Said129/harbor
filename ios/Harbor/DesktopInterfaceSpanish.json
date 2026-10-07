@@ -24,5 +24,11 @@
   "Harbor account": "Cuenta de Harbor",
   "Username": "Nombre de usuario",
   "Password": "Contraseña",
-  "Sign in": "Iniciar sesión"
+  "Sign in": "Iniciar sesión",
+  "No installed addon matches that.": "Ningún complemento instalado coincide con eso.",
+  "Search addons": "Buscar complementos",
+  "Show adult addons": "Mostrar complementos para adultos",
+  "Top rising": "En ascenso",
+  "View more": "Ver más",
+  "You've reached the end · {n} addons": "Llegaste al final · {n} complementos"
 }

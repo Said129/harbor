@@ -5,7 +5,7 @@ import UIKit
 final class NativeDataTests: XCTestCase {
     func testCommunityIndexRequiresRealRatingsAndIsolatesUnsafeRows() async throws {
         let manifest: JSONValue = .object(["id": .string("com.linvo.cinemeta"), "name": .string("Cinemeta"), "version": .string("3.0.0"), "types": .array([.string("movie"), .string("series")]), "resources": .array([.string("catalog"), .string("meta")]), "catalogs": .array([])])
-        let valid: [String: JSONValue] = ["uuid": .string("community-test"), "slug": .string("cinemeta"), "stars": .integer(12), "manifestUrl": .string("https://v3-cinemeta.strem.io/manifest.json"), "manifest": manifest]
+        let valid: [String: JSONValue] = ["uuid": .string("community-test"), "slug": .string("cinemeta"), "stars": .integer(12), "manifestUrl": .string("https://v3-cinemeta.strem.io/manifest.json"), "manifest": manifest, "categories": .array([.object(["slug": .string("http+streams")]), .object(["slug": .string("torrents")])])]
         var missingRating = valid; missingRating["uuid"] = .string("missing-rating"); missingRating.removeValue(forKey: "stars")
         var credentialed = valid; credentialed["uuid"] = .string("credentialed"); credentialed["manifestUrl"] = .string("https://private@example.com/manifest.json")
         var adult = valid; adult["uuid"] = .string("adult-category"); adult["categories"] = .array([.object(["slug": .string("nsfw")])])
@@ -14,6 +14,17 @@ final class NativeDataTests: XCTestCase {
         XCTAssertEqual(rows.first?.stars, 12, "Unavailable ratings must not turn into fabricated zero-star cards")
         XCTAssertEqual(rows.first?.siteURL?.absoluteString, "https://stremio-addons.net/addons/cinemeta")
         XCTAssertEqual(rows.last?.adult, true, "An NSFW category must apply even when the manifest omits its adult flag")
+        XCTAssertEqual(rows.first?.categories, Set(["http+streams", "torrents"]), "Community addons can belong to multiple categories")
+        let path = CommunityAddons.browsePath(page: 2, sort: .createdAt, category: .streams, query: "a&b+c", allowAdult: false)
+        let parts = try XCTUnwrap(URLComponents(string: path))
+        XCTAssertEqual(parts.queryItems?.first { $0.name == "category" }?.value, "http+streams")
+        XCTAssertTrue(path.contains("http%2Bstreams"), "The public API form decoder must not turn category '+' into a space")
+        XCTAssertEqual(parts.queryItems?.first { $0.name == "search" }?.value, "a&b+c")
+        XCTAssertEqual(parts.queryItems?.first { $0.name == "nsfw" }?.value, "exclude")
+        let pagination: JSONValue = .object(["page": .integer(2), "limit": .integer(50), "total": .integer(101), "totalPages": .integer(3), "hasNextPage": .bool(true)])
+        XCTAssertEqual(try CommunityAddons.nextPage(pagination, expectedPage: 2), 3)
+        XCTAssertThrowsError(try CommunityAddons.nextPage(pagination, expectedPage: 3), "A stale response must not skip another page")
+        XCTAssertThrowsError(try CommunityAddons.nextPage(.object(["page": .integer(2), "hasNextPage": .bool(true)]), expectedPage: 2), "Missing cursors must not silently mean the end")
         let empty = try await CommunityAddons.parse(.object(["addons": .array([])]))
         XCTAssertTrue(empty.isEmpty)
     }

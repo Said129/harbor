@@ -121,7 +121,7 @@ struct CommunityAddonsView: View {
     }
 }
 
-private struct CommunityStars: View {
+struct CommunityStars: View {
     let count: Int
     var body: some View {
         HStack(spacing: 4) {
@@ -165,7 +165,7 @@ private struct CommunityAddonCard: View {
 }
 
 @MainActor
-private struct CommunityInstallButton: View {
+struct CommunityInstallButton: View {
     let app: AppModel
     let item: CommunityAddon
     let open: (Addon) -> Void

@@ -17,10 +17,11 @@ struct AddonsView: View {
     @State private var reorder = false
     @State private var communityRefresh = 0
     @FocusState private var editingURL: Bool
+    private var browsing: Bool { tab == .browse || (tab == .discover && (!query.isEmpty || category != .all)) }
     private var visible: [Addon] {
         let source = tab == .installed ? app.addons : directory
         return source.filter { addon in
-            (tab == .installed || allowAdult || !addon.adult) && (category == .all || addon.category == category) &&
+            (tab == .installed || allowAdult || !addon.adult) && addon.matches(category) &&
             (query.isEmpty || (addon.name + " " + (addon.manifest["description"].string ?? "")).localizedCaseInsensitiveContains(query))
         }
     }
@@ -35,7 +36,7 @@ struct AddonsView: View {
                         }
                     }
                 }.scrollIndicators(.hidden)
-                HarborSearchField(prompt: "Buscar addons", text: $query).accessibilityIdentifier("addon-search")
+                HarborSearchField(prompt: DesktopInterfaceText.value("Search addons"), text: $query).accessibilityIdentifier("addon-search")
                 installation
                 if loading { ProgressView("Cargando addons…") }
                 if failedSources > 0 && tab != .installed {
@@ -53,21 +54,27 @@ struct AddonsView: View {
                         }
                     }
                 }
-                HStack {
-                    Text(tab == .installed ? "Tus addons" : "Directorio de Stremio").font(.headline)
-                    Spacer()
-                    if tab == .installed { Button("Ordenar") { reorder = true }.font(.caption).disabled(app.accountBusy || !app.storageReady).accessibilityIdentifier("addon-reorder") }
+                if tab == .installed {
+                    HStack {
+                        Text("Tus addons").font(.headline)
+                        Spacer()
+                        Button("Ordenar") { reorder = true }.font(.caption).disabled(app.accountBusy || !app.storageReady).accessibilityIdentifier("addon-reorder")
+                    }
                 }
                 ScrollView(.horizontal) {
                     HStack(spacing: 6) {
                         ForEach(AddonCategory.allCases.filter { $0 != .adult || allowAdult || tab == .installed }) { value in
                             HarborPill(title: value.title, selected: category == value) { category = value }
                         }
-                        if tab != .installed { HarborPill(title: "Mostrar adultos", selected: allowAdult) { allowAdult.toggle(); if !allowAdult && category == .adult { category = .all } }.accessibilityIdentifier("addon-adult-filter") }
+                        if tab != .installed { HarborPill(title: DesktopInterfaceText.value("Show adult addons"), selected: allowAdult) { allowAdult.toggle(); if !allowAdult && category == .adult { category = .all } }.accessibilityIdentifier("addon-adult-filter") }
                     }
                 }.scrollIndicators(.hidden)
-                ForEach(visible) { addon in AddonStoreCard(app: app, addon: resolved(addon), installed: installed(addon)) { selectedAddon = resolved(addon) } }
-                if !loading && visible.isEmpty { Text(query.isEmpty ? "No hay addons en esta categoría." : "No hay addons que coincidan con la búsqueda.").font(.subheadline).foregroundStyle(.secondary) }
+                if browsing {
+                    CommunityAddonBrowseView(app: app, query: query, category: category, allowAdult: allowAdult, refreshRevision: communityRefresh, fallback: visible) { selectedAddon = resolved($0) }
+                } else if tab == .installed {
+                    ForEach(visible) { addon in AddonStoreCard(app: app, addon: resolved(addon), installed: true) { selectedAddon = resolved(addon) } }
+                    if visible.isEmpty { Text(DesktopInterfaceText.value("No installed addon matches that.")).font(.subheadline).foregroundStyle(.secondary) }
+                }
             }.padding()
         }.scrollDismissesKeyboard(.interactively).background(HarborTheme.background).navigationTitle("").toolbar(.hidden, for: .navigationBar)
             .task { if !loaded { await loadDirectory() } }
@@ -90,7 +97,7 @@ struct AddonsView: View {
             ZStack(alignment: .bottomLeading) {
                 LinearGradient(colors: [colors[0].opacity(0.4), colors[1].opacity(0.3)], startPoint: .topLeading, endPoint: .bottomTrailing)
                 LinearGradient(colors: [HarborTheme.background.opacity(0.85), HarborTheme.background.opacity(0.3), .clear], startPoint: .bottom, endPoint: .top)
-                Image(value.icon).resizable().scaledToFit().frame(width: 50, height: 50).foregroundStyle(HarborTheme.ink.opacity(0.55)).frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing).padding(14)
+                Image(value.icon).resizable().scaledToFit().frame(width: 56, height: 56).foregroundStyle(HarborTheme.ink.opacity(0.55)).frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing).padding(16)
                 VStack(alignment: .leading, spacing: 5) {
                     Text(value.title).font(HarborTheme.displayFont(20))
                     Text(DesktopInterfaceText.value(categoryBlurb(value))).font(HarborTheme.font(12)).foregroundStyle(.secondary)
@@ -125,7 +132,6 @@ struct AddonsView: View {
             if app.user != nil { Text("Instalación, eliminación y orden se sincronizan con Stremio. La activación se aplica en este iPhone.").font(.caption).foregroundStyle(.secondary) }
         }
     }
-    private func installed(_ addon: Addon) -> Bool { app.addons.contains { $0.id == addon.id || $0.manifest["id"].string == addon.manifest["id"].string } }
     private func resolved(_ addon: Addon) -> Addon { app.addons.first { $0.id == addon.id } ?? app.addons.first { $0.manifest["id"].string == addon.manifest["id"].string } ?? addon }
     private func install() {
         guard !installing else { return }
@@ -155,7 +161,7 @@ private enum AddonStoreTab: String, CaseIterable, Identifiable {
     var id: String { rawValue }
     var title: String { switch self { case .discover: "Descubrir"; case .browse: "Explorar"; case .installed: "Instalados" } }
 }
-private struct AddonStoreCard: View {
+struct AddonStoreCard: View {
     let app: AppModel
     let addon: Addon
     let installed: Bool

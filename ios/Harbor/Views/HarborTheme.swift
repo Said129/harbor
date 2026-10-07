@@ -45,7 +45,7 @@ struct CatalogRails: View {
                             Text(["movie": "Películas", "series": "Series", "anime": "Anime", "tv": "TV", "channel": "TV"][row.plan.kind] ?? row.plan.kind).font(HarborTheme.font(12)).foregroundStyle(HarborTheme.ink.opacity(0.45))
                         }
                         Spacer()
-                        if let app { NavigationLink { CatalogBrowserView(app: app, initial: row) } label: { HStack(spacing: 4) { Text("Ver todo"); Image(systemName: "chevron.right") }.font(.caption).foregroundStyle(.secondary) }.accessibilityIdentifier("catalog-browser-link") }
+                        if let app { NavigationLink { CatalogBrowserView(app: app, initial: row) } label: { HStack(spacing: 4) { Text("Ver todo"); Image("desktop-chevron-right").resizable().scaledToFit().frame(width: 14, height: 14) }.font(.caption).foregroundStyle(.secondary).frame(minHeight: 44) }.accessibilityIdentifier("catalog-browser-link") }
                     }.padding(.horizontal)
                     ScrollView(.horizontal) {
                         LazyHStack(alignment: .top, spacing: 12) {

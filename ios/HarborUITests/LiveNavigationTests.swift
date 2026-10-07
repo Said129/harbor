@@ -247,6 +247,11 @@ final class LiveNavigationTests: XCTestCase {
         for _ in 0..<4 { if streamingCategory.isHittable { break }; app.swipeUp() }
         XCTAssertTrue(streamingCategory.isHittable)
         capture(app, "native-addon-store-categories")
+        streamingCategory.tap()
+        let communityDetails = app.buttons["addon-browse-details"].firstMatch
+        XCTAssertTrue(communityDetails.waitForExistence(timeout: 30), "The category must open a real community catalog")
+        for _ in 0..<4 { if communityDetails.isHittable { break }; app.swipeUp() }
+        capture(app, "native-addon-browse")
         let field = app.secureTextFields["addon-manifest-url"]
         XCTAssertTrue(field.waitForExistence(timeout: 5))
         for _ in 0..<4 { if field.isHittable { break }; app.swipeDown() }
@@ -255,7 +260,7 @@ final class LiveNavigationTests: XCTestCase {
         field.typeText("https://raw.githubusercontent.com/Stremio/stremio-static-addon-example/master/manifest.json")
         app.buttons["addon-install"].tap()
         // Installation and subsequent catalog fetching use the real app model.
-        let addonSearch = app.textFields.matching(NSPredicate(format: "placeholderValue == 'Buscar addons'")).firstMatch
+        let addonSearch = app.textFields.matching(NSPredicate(format: "placeholderValue == 'Buscar complementos'")).firstMatch
         XCTAssertTrue(addonSearch.waitForExistence(timeout: 5))
         addonSearch.tap()
         addonSearch.typeText("Now.sh")

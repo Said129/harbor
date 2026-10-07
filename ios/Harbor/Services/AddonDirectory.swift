@@ -63,6 +63,20 @@ actor AddonDirectory {
 enum AddonCategory: String, CaseIterable, Identifiable {
     case all, streams, metadata, subtitles, anime, torrents, sports, television, tools, adult
     var id: String { rawValue }
+    var communitySlug: String? {
+        switch self {
+        case .all: nil
+        case .streams: "http+streams"
+        case .metadata: "metadata"
+        case .subtitles: "subtitles"
+        case .anime: "anime"
+        case .torrents: "torrents"
+        case .sports: "sports"
+        case .television: "live+tv"
+        case .tools: "tools"
+        case .adult: "nsfw"
+        }
+    }
     var icon: String { switch self { case .all: "ui-all-addons"; case .metadata: "category-catalogs"; case .television: "category-livetv"; case .torrents: "category-sports"; default: "category-" + rawValue } }
     var title: String {
         switch self {
@@ -80,6 +94,17 @@ enum AddonCategory: String, CaseIterable, Identifiable {
     }
 }
 extension Addon {
+    func matches(_ filter: AddonCategory) -> Bool {
+        switch filter {
+        case .all: true
+        case .adult: adult
+        case .streams: !adult && resources.contains("stream") && manifest["behaviorHints"]["p2p"] != .bool(true)
+        case .metadata: !adult && (resources.contains("catalog") || resources.contains("meta"))
+        case .subtitles: !adult && resources.contains("subtitles")
+        case .torrents: !adult && resources.contains("stream") && (manifest["behaviorHints"]["p2p"] == .bool(true) || category == .torrents)
+        default: category == filter
+        }
+    }
     var resources: [String] { manifest["resources"].array.compactMap { $0.string ?? $0["name"].string } }
     var types: [String] { manifest["types"].array.compactMap(\.string) }
     var adult: Bool { manifest["behaviorHints"]["adult"] == .bool(true) || AddonAdultRules.matches([manifest["id"].string ?? "", name]) }

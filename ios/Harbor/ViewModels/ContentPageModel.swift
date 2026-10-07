@@ -119,7 +119,11 @@ final class ContentPageModel {
                 let trending = curated.first { $0.id == "anilist-trending" }?.metas ?? []
                 let airing = curated.first { $0.id == "anime-airing" }?.metas ?? []
                 let winners = curated.first { $0.id == "anime-awards" }?.metas ?? []
-                let candidates = Array(trending.prefix(3)) + Array(winners.prefix(1)) + Array(airing.prefix(2)) + curated.flatMap(\.metas) + rows.flatMap(\.metas)
+                var candidates: [Media] = Array(trending.prefix(3))
+                candidates.append(contentsOf: winners.prefix(1))
+                candidates.append(contentsOf: airing.prefix(2))
+                candidates.append(contentsOf: curated.flatMap(\.metas))
+                candidates.append(contentsOf: rows.flatMap(\.metas))
                 heroes = Array(candidates.filter { seen.insert($0.identity).inserted }.prefix(6))
                 heroSources = [:]
                 for media in heroes {

@@ -44,7 +44,10 @@
     "src/lib/providers/stremio-addons.ts": "f77946c99552c2b3bf17489661b3acabe8daa94c4b2d92314eda8e7e213a5a27",
     "src/views/addons/category-grid.tsx": "06af16377801ef4526f400e41311733dd484644618b1e06d342ea8a41ae30a93",
     "src/views/settings/account/identity-tab.tsx": "31823d62d3d8a6c353b8f0edd01c94d5553aabb2e7177e3d53f2eb7c9027c066",
-    "src/views/catalogs.tsx": "3bad3f1f83f11fbcc37d8740755cc0845b5da0ae3946d13567696811b4b39d2a"
+    "src/views/catalogs.tsx": "3bad3f1f83f11fbcc37d8740755cc0845b5da0ae3946d13567696811b4b39d2a",
+    "src/views/addons/community-browse-list.tsx": "27e7c69b3d82ac28ed91392f8d7e4f83c1c6d497562e14bf9e20801f5a8b6ac4",
+    "src/views/addons/browse-pane.tsx": "314bf9834ea88b3988a5a6a2b3a287679c0b6bd280324388277837021cdf5a41",
+    "src/views/addons/installed-pane.tsx": "9a8053f6b5238415c14fdd27de28bbc35c2f48aa68a0cffabb3ce7cf5b34c70d"
   },
   "changes": [
     "Original six-point playback timeline with a 44-point touch target; seeking commits to mpv on release.",
@@ -56,7 +59,8 @@
     "Negative votes hide matching IDs/title aliases; positive votes apply the original seven-day Featured cooldown and twelve-day suppression.",
     "Addon genre parameters remain in their original language; display labels alone use official translations.",
     "The original 22-point Cast glyph fronts Apple AVRoutePickerView for real audio routes; active color follows AVAudioSession route notifications.",
-    "Native Addons uses the original public rising/stars/newest endpoints, spotlight composition, community cards and six category tiles; only actual community ratings are displayed."
+    "Native Addons uses the original public rising/stars/newest endpoints, spotlight composition, community cards and six category tiles; only actual community ratings are displayed.",
+    "Native addon Browse preserves original API category slugs and multiple memberships, server search, stars/newest ordering, rising entries and validated pagination. Query plus signs are escaped for the API form decoder; public caches are bounded to 48 entries."
   ],
   "copyOutput": "ios/Harbor/DesktopDiscoverSpanish.json",
   "limitations": [

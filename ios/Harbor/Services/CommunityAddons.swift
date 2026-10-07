@@ -7,6 +7,7 @@ struct CommunityAddon: Identifiable, Sendable {
     let stars: Int
     let recentStars: Int?
     let adult: Bool
+    var categories: Set<String> = []
     var siteURL: URL? {
         var parts = URLComponents(string: "https://stremio-addons.net")!
         guard let encoded = slug.addingPercentEncoding(withAllowedCharacters: CharacterSet(charactersIn: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~")) else { return nil }
@@ -25,9 +26,60 @@ actor CommunityAddons {
         }
     }
     struct Spotlight: Sendable { let item: CommunityAddon; let trending: Bool }
-    private struct Cached { let at: Date; let entries: [CommunityAddon] }
+    struct Page: Sendable { let entries: [CommunityAddon]; let nextPage: Int? }
+    private struct Payload: Sendable { let entries: [CommunityAddon]; let pagination: JSONValue }
+    private struct Cached { let at: Date; let payload: Payload }
+    private struct Pending { let id: UUID; let task: Task<Payload, Error> }
     private var cache: [String: Cached] = [:]
-    private var pending: [String: Task<[CommunityAddon], Error>] = [:]
+    private var pending: [String: Pending] = [:]
+
+    static func browsePath(page: Int, sort: Sort, category: AddonCategory, query: String, allowAdult: Bool) -> String {
+        var parts = URLComponents()
+        parts.path = "addons"
+        parts.queryItems = [URLQueryItem(name: "page", value: String(page)), URLQueryItem(name: "limit", value: "50"), URLQueryItem(name: "sort_by", value: sort == .createdAt ? "createdAt" : "stars"), URLQueryItem(name: "order", value: "desc")]
+        if !allowAdult { parts.queryItems?.append(URLQueryItem(name: "nsfw", value: "exclude")) }
+        if let slug = category.communitySlug { parts.queryItems?.append(URLQueryItem(name: "category", value: slug)) }
+        let search = query.trimmingCharacters(in: .whitespacesAndNewlines)
+        if !search.isEmpty { parts.queryItems?.append(URLQueryItem(name: "search", value: search)) }
+        // The index decodes query strings as forms: a literal '+' in its category
+        // slugs must survive as '+' rather than become a space.
+        return (parts.string ?? "addons").replacingOccurrences(of: "+", with: "%2B")
+    }
+
+    func browse(page: Int, sort: Sort, category: AddonCategory, query: String, allowAdult: Bool, refresh: Bool = false) async throws -> Page {
+        guard (1...10_000).contains(page), query.utf8.count <= 2_048 else { throw HarborError(code: "addon-directory-response") }
+        if sort == .trending {
+            do {
+                let rising = try await fetch("rising", refresh: refresh)
+                if !rising.isEmpty {
+                    let search = query.trimmingCharacters(in: .whitespacesAndNewlines)
+                    let matching = rising.filter { item in
+                        (allowAdult || !item.adult) &&
+                        (category.communitySlug.map { item.categories.contains($0) } ?? true) &&
+                        (search.isEmpty || (item.addon.name + " " + (item.addon.manifest["description"].string ?? "") + " " + item.slug).localizedCaseInsensitiveContains(search))
+                    }
+                    return Page(entries: matching, nextPage: nil)
+                }
+            } catch is CancellationError { throw CancellationError() }
+            catch { }
+        }
+        let path = Self.browsePath(page: page, sort: sort, category: category, query: query, allowAdult: allowAdult)
+        let payload = try await fetchPayload(path, refresh: refresh)
+        let next: Int?
+        do { next = try Self.nextPage(payload.pagination, expectedPage: page) }
+        catch { cache[path] = nil; throw error }
+        return Page(entries: payload.entries.filter { allowAdult || !$0.adult }, nextPage: next)
+    }
+
+    static func nextPage(_ value: JSONValue, expectedPage: Int) throws -> Int? {
+        guard value["page"].integer == expectedPage,
+              let limit = value["limit"].integer, (1...100).contains(limit),
+              let total = value["total"].integer, total >= 0,
+              let pages = value["totalPages"].integer, pages >= 0, pages <= 10_000,
+              case .bool(let more) = value["hasNextPage"],
+              !more || expectedPage < pages else { throw HarborError(code: "addon-directory-response") }
+        return more ? expectedPage + 1 : nil
+    }
 
     func list(_ sort: Sort, allowAdult: Bool, refresh: Bool = false) async throws -> [CommunityAddon] {
         if sort == .trending {
@@ -56,24 +108,32 @@ actor CommunityAddons {
     }
 
     private func fetch(_ path: String, refresh: Bool) async throws -> [CommunityAddon] {
-        if !refresh, let saved = cache[path], Date().timeIntervalSince(saved.at) < 3_600 { return saved.entries }
-        let task: Task<[CommunityAddon], Error>
-        if let existing = pending[path] { task = existing }
+        try await fetchPayload(path, refresh: refresh).entries
+    }
+
+    private func fetchPayload(_ path: String, refresh: Bool) async throws -> Payload {
+        if !refresh, let saved = cache[path], Date().timeIntervalSince(saved.at) < 3_600 { return saved.payload }
+        let work: Pending
+        if let existing = pending[path] { work = existing }
         else {
-            task = Task {
+            let task = Task {
                 let json = try await HTTPClient().json("https://stremio-addons.net/api/v0/" + path)
-                return try await Self.parse(json)
+                return Payload(entries: try await Self.parse(json), pagination: json["pagination"])
             }
-            pending[path] = task
+            work = Pending(id: UUID(), task: task)
+            pending[path] = work
         }
         do {
-            let entries = try await task.value
-            pending[path] = nil
-            cache[path] = Cached(at: Date(), entries: entries)
+            let payload = try await work.task.value
+            if pending[path]?.id == work.id {
+                pending[path] = nil
+                cache[path] = Cached(at: Date(), payload: payload)
+                while cache.count > 48, let oldest = cache.min(by: { $0.value.at < $1.value.at })?.key { cache[oldest] = nil }
+            }
             try Task.checkCancellation()
-            return entries
+            return payload
         } catch {
-            pending[path] = nil
+            if pending[path]?.id == work.id { pending[path] = nil }
             throw error
         }
     }
@@ -96,7 +156,8 @@ actor CommunityAddons {
                 let categories = row["categories"].array.flatMap { [$0["name"].string ?? "", $0["slug"].string ?? ""] }
                 let explicitAdult = row["manifest"]["adult"] == .bool(true)
                 let adult = explicitAdult || addon.adult || categories.contains { $0.range(of: #"porn|onlyfans|hentai|\bxxx\b|\bnsfw\b|\badult\b|camgirl|\bsex\b"#, options: [.regularExpression, .caseInsensitive]) != nil }
-                result.append(CommunityAddon(id: uuid, addon: addon, slug: slug, stars: stars, recentStars: row["recentStars"].integer, adult: adult))
+                let slugs = Set(row["categories"].array.compactMap { $0["slug"].string })
+                result.append(CommunityAddon(id: uuid, addon: addon, slug: slug, stars: stars, recentStars: row["recentStars"].integer, adult: adult, categories: slugs))
             } catch is CancellationError { throw CancellationError() }
             catch { continue }
         }
