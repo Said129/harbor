@@ -68,7 +68,7 @@ final class HarborProfileSync {
     func reload() {
         guard !busy else { return }
         do { stored = try KeychainStore().read(key, as: Stored.self) ?? Stored(); ready = true; error = nil }
-        catch { ready = false; error = "No se pudo recuperar la cuenta de Harbor. Los datos guardados se conservan." }
+        catch { ready = false; self.error = "No se pudo recuperar la cuenta de Harbor. Los datos guardados se conservan." }
     }
     func signIn(username: String, password: String) async {
         guard ready, !busy else { return }
@@ -87,7 +87,7 @@ final class HarborProfileSync {
             try persist(next); stored = next; selectedID = nil; hydrated = false
             try await synchronize(scope: scope)
         } catch is CancellationError { return }
-        catch { if scope == generation { error = safeMessage(error) } }
+        catch { if scope == generation { self.error = safeMessage(error) } }
     }
     func signOut() async {
         guard ready, !busy else { return }
@@ -106,7 +106,7 @@ final class HarborProfileSync {
         defer { if scope == generation { busy = false } }
         do { try await synchronize(scope: scope) }
         catch is CancellationError { return }
-        catch { if scope == generation { error = safeMessage(error) } }
+        catch { if scope == generation { self.error = safeMessage(error) } }
     }
     func enqueue(before: MobileProfile, after: MobileProfile) {
         guard hydrated, let session = stored.session, let id = selectedID else { return }
