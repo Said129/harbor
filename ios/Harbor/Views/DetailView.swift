@@ -39,10 +39,14 @@ struct DetailView: View {
             let owner = app.library.owner
             await model.load(app.addons, owner: owner, library: app.library)
             guard !Task.isCancelled, owner == app.library.owner else { return }
+            app.library.discovery.track(.open, media: model.media)
             if playImmediately { playTitle() }
             await model.loadRelated(app.addons, owner: owner, library: app.library)
         }
         .onChange(of: model.media.logo) { _, _ in logoLoaded = false }
+        .onChange(of: model.playback?.id) { _, _ in
+            if let session = model.playback, session.owner == app.library.owner { app.library.discovery.track(.play, media: model.media) }
+        }
         .sheet(isPresented: $showStreams, onDismiss: { resolutionTask?.cancel(); model.pendingPlayback = nil; model.showResumePrompt = false; pendingEpisode = nil; pendingEpisodeOwner = nil; autoplayEpisode = false; showConnecting = false; model.clearSourceChange() }) {
             NavigationStack {
                 List {

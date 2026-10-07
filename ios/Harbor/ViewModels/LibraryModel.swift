@@ -14,6 +14,7 @@ final class LibraryModel {
     private(set) var presentation = LibraryPresentation()
     private(set) var presentationError: String?
     private(set) var favorites = MediaFavorites(owner: "guest")
+    private(set) var discovery = DiscoveryPreferences(owner: "guest")
     var canChangePresentation: Bool { presentationReady }
     private var lastProgressWrite: [String: UInt64] = [:]
     var loading = false
@@ -101,6 +102,7 @@ final class LibraryModel {
         let current = generation
         self.session = session; records = []; error = nil; writable = false; loading = true
         favorites = MediaFavorites(owner: session?.user.id ?? "guest")
+        discovery = DiscoveryPreferences(owner: session?.user.id ?? "guest")
         presentation = LibraryPresentation(); reloadPresentation()
         lastProgressWrite = [:]
         defer { if current == generation { loading = false } }
@@ -128,15 +130,18 @@ final class LibraryModel {
         catch { if current == generation { self.error = safeMessage(error); Diagnostics.shared.recordFailure(error) } }
     }
     func toggleBookmark(_ media: Media) async {
-        await update(media) { fields in
+        let taste = discovery
+        let success = await update(media) { fields in
             let wasSaved = fields["removed"] != .bool(true) && fields["temp"] != .bool(true)
             fields["removed"] = .bool(wasSaved)
             let state = fields["state"] ?? .null
             fields["temp"] = .bool(wasSaved && ((state["timeOffset"].numericValue ?? 0) > 0 || (state["flaggedWatched"].numericValue ?? 0) > 0))
         }
+        if success, taste.owner == owner, bookmarked(media) { taste.track(.watchlist, media: media) }
     }
     func toggleWatched(_ media: Media) async {
-        await update(media) { fields in
+        let taste = discovery
+        let success = await update(media) { fields in
             var state: [String: JSONValue] = [:]
             if case .object(let current) = fields["state"] { state = current }
             if media.episodic {
@@ -155,6 +160,7 @@ final class LibraryModel {
             state["timeOffset"] = .integer(0)
             fields["state"] = .object(state)
         }
+        if success, taste.owner == owner, watched(media) { taste.track(.watched, media: media) }
     }
     func resume(for target: ResumeTarget, refresh: Bool = true) async -> CloudResume? {
         let current = generation

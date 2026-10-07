@@ -3,6 +3,45 @@ import UIKit
 @testable import Harbor
 
 final class NativeDataTests: XCTestCase {
+    @MainActor func testDiscoveryVotesPersistPerAccountAndAffectActualRecommendations() throws {
+        let owner = "discovery-test-" + UUID().uuidString
+        let key = DiscoveryPreferences.key(owner)
+        defer { try? KeychainStore().remove(key) }
+        let now = Date(timeIntervalSince1970: 1_791_417_600)
+        var science = Media(id: "tt0816692", type: "movie", name: "Interstellar")
+        science.genres = ["Sci-Fi"]; science.releaseInfo = "2014"; science.imdbRating = "8.6"
+        var similar = Media(id: "tt1187064", type: "movie", name: "Triangle")
+        similar.genres = ["Sci-Fi"]; similar.releaseInfo = "2009"; similar.imdbRating = "8.6"
+        var romance = Media(id: "tt0338013", type: "movie", name: "Eternal Sunshine")
+        romance.genres = ["Romance"]; romance.releaseInfo = "2004"; romance.imdbRating = "8.6"
+        let preferences = DiscoveryPreferences(owner: owner)
+        XCTAssertTrue(preferences.toggle(.up, for: science, now: now))
+        XCTAssertEqual(DiscoveryPreferences(owner: owner).vote(for: science), .up)
+        XCTAssertNil(DiscoveryPreferences(owner: owner + "-other").vote(for: science))
+        XCTAssertTrue(preferences.excludes(science, now: now))
+        XCTAssertFalse(preferences.excludes(science, now: now.addingTimeInterval(7 * 86_400 + 1)))
+        let candidates = [romance, similar, science].enumerated().map { FeaturedRanking.Candidate(media: $0.element, source: .seed, rank: $0.offset) }
+        XCTAssertEqual(FeaturedRanking.select(candidates, preferences: preferences, excluded: [], now: now).first?.id, similar.id)
+        XCTAssertTrue(preferences.toggle(.down, for: similar, now: now))
+        var alternate = similar; alternate.id = "tmdb:26466"; alternate.background = "https://example.com/backdrop.jpg"
+        XCTAssertTrue(preferences.excludes(alternate, now: now), "Provider aliases for the same title must remain excluded")
+        XCTAssertFalse(FeaturedRanking.select(candidates, preferences: preferences, excluded: [], now: now).contains { $0.id == similar.id })
+        XCTAssertTrue(preferences.toggle(.down, for: similar, now: now))
+        XCTAssertNil(DiscoveryPreferences(owner: owner).vote(for: similar))
+        let previous = preferences.votes[science.id]
+        XCTAssertTrue(preferences.toggle(.down, for: science, now: now))
+        let applied = preferences.votes[science.id]
+        XCTAssertFalse(preferences.restoreVote(for: science.id, expected: previous, previous: nil), "Undo cannot overwrite a newer vote")
+        XCTAssertTrue(preferences.restoreVote(for: science.id, expected: applied, previous: previous))
+        XCTAssertEqual(DiscoveryPreferences(owner: owner).votes[science.id], previous)
+        XCTAssertTrue(DiscoveryPreferences(owner: owner).hintDismissed)
+        let damaged: JSONValue = .object(["votes": .string("invalid")])
+        try KeychainStore().write(damaged, key: key)
+        let preserved = DiscoveryPreferences(owner: owner)
+        XCTAssertFalse(preserved.ready)
+        XCTAssertFalse(preserved.toggle(.up, for: science, now: now))
+        XCTAssertEqual(try KeychainStore().read(key, as: JSONValue.self), damaged)
+    }
     @MainActor func testAutomaticPlaybackSkipsUnresolvedSourcesAndPreservesQualityOrder() {
         let torrent = StreamOffer(id: 0, raw: .object(["infoHash": .string(String(repeating: "a", count: 40)), "tier": .string("4K")]))
         let direct = StreamOffer(id: 1, raw: .object(["url": .string("https://example.com/first.mp4"), "tier": .string("1080p")]))

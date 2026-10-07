@@ -26,5 +26,11 @@
   "Comedy": "Comedia",
   "Horror": "Terror",
   "Sci-Fi": "Ciencia ficción",
-  "Romance": "Romance"
+  "Romance": "Romance",
+  "Tune your recommendations": "Ajustar tus recomendaciones",
+  "Thumbs down hides this title from Featured. Thumbs up helps surface similar picks.": "El pulgar abajo oculta este título de Destacados. El pulgar arriba ayuda a mostrar opciones similares.",
+  "Show me less like this": "Mostrarme menos contenido como este",
+  "Show me more like this": "Mostrarme más contenido como este",
+  "Dismiss": "Descartar",
+  "Undo": "Deshacer"
 }

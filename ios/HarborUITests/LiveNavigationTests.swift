@@ -135,6 +135,16 @@ final class LiveNavigationTests: XCTestCase {
         navigate(app, "discover")
         XCTAssertTrue(app.descendants(matching: .any).matching(identifier: "discover-original").firstMatch.waitForExistence(timeout: 5))
         capture(app, "native-discover-recommended")
+        let downvote = app.buttons["discover-vote-down"]
+        reveal(downvote, in: app.scrollViews.firstMatch, attempts: 3)
+        XCTAssertTrue(downvote.waitForExistence(timeout: 15))
+        XCTAssertTrue(downvote.isHittable)
+        capture(app, "native-discover-feedback")
+        downvote.tap()
+        let undoVote = app.buttons["Deshacer"]
+        XCTAssertTrue(undoVote.waitForExistence(timeout: 5))
+        capture(app, "native-discover-feedback-saved")
+        undoVote.tap()
         let surprise = app.buttons["discover-surprise"]
         reveal(surprise, in: app.scrollViews.firstMatch, attempts: 3)
         XCTAssertTrue(surprise.isHittable)

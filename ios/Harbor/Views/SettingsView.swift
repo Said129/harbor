@@ -13,12 +13,11 @@ struct SettingsView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 24) {
-                HarborPageHeading(title: "Ajustes", subtitle: "Tu cuenta, reproducción y apariencia.")
+                HarborPageHeading(title: "Ajustes")
                 HarborSearchField(prompt: "Buscar ajustes…", text: $query)
                 if matches("Cuenta y configuración perfil Stremio") {
                     group("Cuenta y configuración") {
                         ProfileAccountButton(app: app, expanded: true).accessibilityIdentifier("settings-account").padding(14)
-                        if app.user != nil { Text("Tus addons se recuperan al iniciar sesión y al abrir Harbor.").font(.caption).foregroundStyle(.secondary).padding(.horizontal, 14).padding(.bottom, 14) }
                     }
                 }
                 if !playerPages.isEmpty {

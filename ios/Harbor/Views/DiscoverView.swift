@@ -31,10 +31,12 @@ final class DiscoverModel {
     private var generation = 0
     private var signature = ""
     func refreshRecommendations(app: AppModel) {
-        var seen = Set<String>()
-        let watched = Set(app.library.items.filter(\.watched).map(\.id))
-        let pool = (app.rows.flatMap(\.metas) + trending).filter { ["movie", "series"].contains($0.type) && !watched.contains($0.id) && seen.insert($0.identity).inserted }
-        recommended = Array(pool.prefix(8))
+        var pool = app.rows.flatMap(\.metas).enumerated().map { FeaturedRanking.Candidate(media: $0.element, source: .seed, rank: $0.offset) }
+        pool += trending.enumerated().map { FeaturedRanking.Candidate(media: $0.element, source: .trending, rank: $0.offset) }
+        pool += topRated.enumerated().map { FeaturedRanking.Candidate(media: $0.element, source: .tmdb, rank: $0.offset) }
+        pool += awards.enumerated().map { FeaturedRanking.Candidate(media: $0.element, source: .awards, rank: $0.offset) }
+        let excluded = app.library.items.filter { $0.watched || $0.continuing }.compactMap(\.media)
+        recommended = FeaturedRanking.select(pool, preferences: app.library.discovery, excluded: excluded)
     }
     func load(app: AppModel, refresh: Bool = false) async {
         let configuration = MetadataPreferences.shared.configuration()
@@ -51,7 +53,7 @@ final class DiscoverModel {
                     let items = try await TMDBService().page(rail, page: 1, configuration: configuration)
                     try Task.checkCancellation(); guard current == generation else { return }
                     if rail.id == "discover-trending" { trending = items; refreshRecommendations(app: app) }
-                    else { topRated = items }
+                    else { topRated = items; refreshRecommendations(app: app) }
                 } catch is CancellationError { return } catch { self.error = safeMessage(error) }
             }
         }
@@ -73,6 +75,7 @@ final class DiscoverModel {
                 }
                 guard current == generation else { return }
                 awards = items.sorted { $0.0 < $1.0 }.map(\.1)
+                refreshRecommendations(app: app)
             }
         } catch is CancellationError { return } catch { self.error = safeMessage(error) }
         if !recommended.isEmpty || !awards.isEmpty { signature = currentSignature }
@@ -80,6 +83,7 @@ final class DiscoverModel {
 }
 
 struct DiscoverView: View {
+    private struct VoteUndo { let media: Media; let previous: DiscoveryPreferences.Entry?; let expected: DiscoveryPreferences.Entry? }
     let app: AppModel
     @State private var model = DiscoverModel()
     @State private var kind = "movie"
@@ -88,16 +92,18 @@ struct DiscoverView: View {
     @State private var length = 5
     @State private var surprise: Media?
     @State private var lastSurprise: String?
+    @State private var voteUndo: VoteUndo?
+    @Environment(\.scenePhase) private var scenePhase
     private var catalogs: [CatalogRow] { app.rows.filter { !$0.plan.isPlaybackHistoryCatalog && $0.plan.catalog != nil && (kind == "anime" ? $0.isAnimeCatalog : $0.plan.kind == kind && !$0.isAnimeCatalog) } }
     private var selected: CatalogRow? { catalogs.first { $0.id == catalog } ?? catalogs.first }
     private var genres: [String] { selected?.plan.catalog?.extra.first { $0.name == "genre" }?.options ?? [] }
-    private var pool: [Media] { var seen = Set<String>(); return (model.recommended + model.trending + model.awards + app.rows.flatMap(\.metas)).filter { seen.insert($0.identity).inserted } }
+    private var pool: [Media] { var seen = Set<String>(); return (model.recommended + model.trending + model.awards + app.rows.flatMap(\.metas)).filter { !$0.id.isEmpty && seen.insert($0.identity).inserted } }
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 30) {
                 if !model.recommended.isEmpty {
                     Text("Recomendado").font(HarborTheme.displayFont(28)).padding(.horizontal)
-                    DiscoverFeatured(items: model.recommended, app: app)
+                    DiscoverFeatured(items: model.recommended, app: app) { media, previous, expected in voteUndo = VoteUndo(media: media, previous: previous, expected: expected) }
                 }
                 catalogBrowser
                 surpriseChooser
@@ -109,6 +115,7 @@ struct DiscoverView: View {
                 if !model.awards.isEmpty { shelf("Award Winning", items: model.awards) }
                 if model.loading { ProgressView().frame(maxWidth: .infinity) }
                 if let error = model.error { Text(error).font(HarborTheme.font(13)).foregroundStyle(.orange).padding(.horizontal); Button("Reintentar") { Task { await model.load(app: app, refresh: true) } }.padding(.horizontal) }
+                if let error = app.library.discovery.error { Text(error).font(HarborTheme.font(13)).foregroundStyle(.orange).padding(.horizontal) }
             }.padding(.top, 20).padding(.bottom, 32)
         }.background(HarborTheme.background).navigationTitle("").toolbar(.hidden, for: .navigationBar)
             .accessibilityIdentifier("discover-original")
@@ -118,6 +125,21 @@ struct DiscoverView: View {
             .onChange(of: catalog) { _, _ in genre = "" }
             .onChange(of: app.rows.flatMap(\.metas).map(\.identity)) { _, _ in model.refreshRecommendations(app: app) }
             .onChange(of: app.library.items.filter(\.watched).map(\.id)) { _, _ in model.refreshRecommendations(app: app) }
+            .onChange(of: app.library.continuing.map(\.id)) { _, _ in model.refreshRecommendations(app: app) }
+            .onChange(of: app.library.discovery.revision) { _, _ in model.refreshRecommendations(app: app) }
+            .onChange(of: app.library.owner) { _, _ in voteUndo = nil; model.refreshRecommendations(app: app) }
+            .onChange(of: scenePhase) { _, phase in if phase == .active { model.refreshRecommendations(app: app) } }
+            .safeAreaInset(edge: .bottom) {
+                if let change = voteUndo {
+                    HStack(spacing: 12) {
+                        Text(change.media.name).font(HarborTheme.font(13)).lineLimit(2)
+                        Spacer(minLength: 0)
+                        Button(DesktopVoyage.copy("Undo")) {
+                            if app.library.discovery.restoreVote(for: change.media.id, expected: change.expected, previous: change.previous) { voteUndo = nil }
+                        }.font(HarborTheme.font(13, weight: .semibold)).frame(minHeight: 44)
+                    }.padding(.horizontal, 16).padding(.vertical, 4).background(ThemePreferences.shared.color("elevated"), in: .rect(cornerRadius: 12)).padding(.horizontal).padding(.bottom, 8)
+                }
+            }
             .navigationDestination(item: $surprise) { DetailView(media: $0, app: app) }
     }
     private var catalogBrowser: some View {
@@ -186,8 +208,8 @@ struct DiscoverView: View {
         VStack(alignment: .leading, spacing: 14) {
             Text("Explorar por género").font(HarborTheme.font(19, weight: .semibold))
             LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
-                ForEach(["Acción", "Drama", "Comedy", "Horror", "Sci-Fi", "Romance"], id: \.self) { name in
-                    if let row = app.rows.first(where: { $0.plan.kind == "movie" && $0.plan.catalog?.extra.contains(where: { $0.name == "genre" && $0.options.contains(name) }) == true }) {
+                ForEach(["Action", "Drama", "Comedy", "Horror", "Sci-Fi", "Romance"], id: \.self) { name in
+                    if let row = app.rows.first(where: { !$0.plan.isPlaybackHistoryCatalog && $0.plan.kind == "movie" && $0.plan.catalog?.extra.contains(where: { $0.name == "genre" && $0.options.contains(name) }) == true }) {
                         NavigationLink { CatalogBrowserView(app: app, initial: CatalogRow(plan: row.plan, metas: [], selectedGenre: name, receivedCount: 0)) } label: {
                             ZStack(alignment: .bottomLeading) { Artwork(url: row.metas.first(where: { $0.genres?.contains(name) == true })?.background, maxPixels: 500); LinearGradient(colors: [.black.opacity(0.3), .black.opacity(0.7)], startPoint: .top, endPoint: .bottom); Text(DesktopVoyage.copy(name)).font(HarborTheme.displayFont(22)).padding(14) }.frame(height: 90).clipShape(.rect(cornerRadius: 10))
                         }.buttonStyle(.plain)
@@ -219,12 +241,15 @@ struct DiscoverView: View {
 private struct DiscoverFeatured: View {
     let items: [Media]
     let app: AppModel
+    let onVote: (Media, DiscoveryPreferences.Entry?, DiscoveryPreferences.Entry?) -> Void
     @State private var selected = 0
     @State private var enriched: [String: Media] = [:]
     @State private var expandedImage: String?
+    @State private var voteHint: String?
+    @State private var voteRevision = 0
     @Environment(\.scenePhase) private var scenePhase
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
-    private var slides: [Media] { Array(items.prefix(8)).map { enriched[$0.identity] ?? $0 } }
+    private var slides: [Media] { Array(items.prefix(10)).map { enriched[$0.identity] ?? $0 } }
     private var current: Media? { slides.indices.contains(selected) ? slides[selected] : slides.first }
     var body: some View {
         VStack(alignment: .leading, spacing: 14) {
@@ -254,9 +279,14 @@ private struct DiscoverFeatured: View {
                     }
                 }
             if let item = current { sidePanel(item).padding(.horizontal) }
+            if let item = current { feedback(item).padding(.horizontal) }
             HarborHeroPips(count: slides.count, selected: selected) { jump($0) }
         }.onChange(of: items.map(\.identity)) { _, _ in if selected >= slides.count { selected = 0 } }
             .onChange(of: app.library.owner) { _, _ in enriched = [:]; expandedImage = nil; selected = 0 }
+            .task(id: voteRevision) {
+                guard voteHint != nil else { return }
+                do { try await Task.sleep(for: .seconds(1.8)); withAnimation(reduceMotion ? nil : .easeOut(duration: 0.2)) { voteHint = nil } } catch {}
+            }
             .task(id: current?.identity) {
                 guard let item = current, enriched[item.identity] == nil else { return }
                 let owner = app.library.owner
@@ -314,13 +344,50 @@ private struct DiscoverFeatured: View {
             if let description = item.description { Text(description).font(HarborTheme.font(13)).foregroundStyle(.secondary).lineLimit(3) }
             if let rating = item.imdbRating {
                 HStack(spacing: 6) {
-                    Text(item.ratingSource ?? "IMDb").font(HarborTheme.font(9, weight: .bold)).foregroundStyle(.black).padding(3).background(.yellow, in: .rect(cornerRadius: 2))
+                    Text(item.ratingSource ?? "IMDb").font(HarborTheme.font(9, weight: .bold)).foregroundStyle(.black).padding(3).background(item.ratingSource == "TMDB" ? Color.mint : .yellow, in: .rect(cornerRadius: 2))
                     Text(rating).font(HarborTheme.font(12, weight: .semibold))
-                    Text("· Mejor valorado").font(HarborTheme.font(12)).foregroundStyle(.secondary)
                 }.padding(.horizontal, 10).padding(.vertical, 6).background(HarborTheme.background.opacity(0.4), in: .capsule)
             }
         }.padding(16).background(HarborTheme.surface.opacity(0.35), in: .rect(cornerRadius: 16))
             .overlay { RoundedRectangle(cornerRadius: 16).stroke(HarborTheme.ink.opacity(0.07), lineWidth: 1) }
+    }
+    private func feedback(_ media: Media) -> some View {
+        VStack(alignment: .trailing, spacing: 14) {
+            if !app.library.discovery.hintDismissed {
+                HStack(alignment: .top, spacing: 8) {
+                    VStack(alignment: .leading, spacing: 6) {
+                        Text(DesktopVoyage.copy("Tune your recommendations")).font(HarborTheme.font(13, weight: .semibold))
+                        Text(DesktopVoyage.copy("Thumbs down hides this title from Featured. Thumbs up helps surface similar picks.")).font(HarborTheme.font(12)).foregroundStyle(.secondary)
+                    }
+                    Button { app.library.discovery.dismissHint() } label: { Image("desktop-x").resizable().scaledToFit().frame(width: 13, height: 13).frame(width: 44, height: 44) }.buttonStyle(.plain).accessibilityLabel(DesktopVoyage.copy("Dismiss"))
+                }.padding(14).background(ThemePreferences.shared.color("elevated").opacity(0.95), in: .rect(cornerRadius: 16))
+                    .overlay { RoundedRectangle(cornerRadius: 16).stroke(HarborTheme.ink.opacity(0.1), lineWidth: 1) }
+            }
+            HStack(spacing: 8) {
+                Spacer()
+                thumb(.down, media: media)
+                thumb(.up, media: media)
+            }
+        }
+    }
+    private func thumb(_ vote: DiscoveryPreferences.Vote, media: Media) -> some View {
+        let selected = app.library.discovery.vote(for: media) == vote
+        let label = DesktopVoyage.copy(vote == .up ? "Show me more like this" : "Show me less like this")
+        let color: Color = vote == .up ? .mint : .pink
+        return Button {
+            let previous = app.library.discovery.votes[media.id]
+            if app.library.discovery.toggle(vote, for: media) {
+                onVote(media, previous, app.library.discovery.votes[media.id])
+                withAnimation(reduceMotion ? nil : .spring(response: 0.25, dampingFraction: 0.7)) { voteHint = vote.rawValue; voteRevision &+= 1 }
+            }
+        } label: {
+            Image("ui-thumbs-up").resizable().scaledToFit().frame(width: 16, height: 16).rotationEffect(.degrees(vote == .down ? 180 : 0)).frame(width: 44, height: 44)
+                .foregroundStyle(selected ? color : HarborTheme.ink.opacity(0.85))
+                .background(selected ? color.opacity(0.15) : HarborTheme.background.opacity(0.55), in: .circle)
+                .overlay { Circle().stroke(selected ? color.opacity(0.6) : HarborTheme.ink.opacity(0.1), lineWidth: 1) }
+        }.buttonStyle(.plain).disabled(!app.library.discovery.ready).accessibilityLabel(label).accessibilityValue(selected ? "Seleccionado" : "")
+            .accessibilityIdentifier("discover-vote-" + vote.rawValue)
+            .modifier(HarborActionHint(id: vote.rawValue, title: label, selected: voteHint))
     }
 }
 

@@ -18,6 +18,18 @@ Discover adapta logo/título sobre el carrusel, flechas/indicadores originales, 
 
 Estos cambios todavía no sustituyen Descargas ni prueban el aspecto físico, los servidores o las cuentas privadas del usuario.
 
+## Candidata 48: recomendaciones y filtros de Discover
+
+Incremento local mientras la fuente 47 `7bf897e20e1ebec6178fe53ead96747f4554675c` se comprueba en [run 37681100097](https://github.com/Said129/harbor/actions/runs/37681100097). La primera ejecución manual 37680955678 fue cancelada por la ejecución automática del PR que arrancó después; esta ejecución manual posterior incluye los servicios y la entrega de borrador. No se presenta la cancelación como fallo de código.
+
+Discover añade los votos originales, el pulgar abajo como rotación de `ui-thumbs-up`, colores activos, textos españoles oficiales y una pista inicial que se puede descartar. Guarda el voto antes de cambiar la pantalla, en Keychain por cuenta; un almacén ilegible queda protegido. Deshacer restaura el voto anterior únicamente si ese voto no ha cambiado después; aparece fuera del carrusel para poder recuperar también el último título visible. Las aperturas, elecciones de reproducción y mutaciones de pendiente/visto guardadas aportan eventos reales, con deduplicación de 90 segundos y límite de 500. No se registran mutaciones rechazadas ni se mezclan cuentas durante una operación async.
+
+La clasificación adapta las reglas originales de afinidad de géneros/décadas, vida media de 90 días, calidad, prioridad/prominencia de fuente, variación diaria y diversidad después de tres títulos del mismo género. Los negativos excluyen ID y nombre normalizado, y los positivos respetan el cooldown de siete días y la supresión de doce. El pool nativo incluye catálogos, Trending, Top Rated y premios; las fuentes adicionales streaming/similar/acclaimed, resolución completa de IDs vistos externos y afinidad de reparto/creadores/keywords conservan diferencias documentadas. Los votos no se anuncian sincronizados con Desktop.
+
+Se corrige un error real de la candidata 47: la lista de géneros de Discover usaba `Acción` como parámetro, de modo que no encontraba un catálogo que anuncia `Action`. Los seis parámetros quedan en inglés, y sólo el texto visible pasa por el diccionario original. Se elimina la etiqueta «Mejor valorado» que aparecía junto a cualquier valoración, y dos explicaciones añadidas en Ajustes. El nuevo icono de cerrar procede de Lucide 0.460.0 con integridad verificada.
+
+Anime admite al reiniciar la misma actualización de arte que aceptó en red: el umbral del 90 % se compara siempre con el índice incluido y no se va reduciendo con cada refresco; lectura y escritura remotas respetan 8 MiB. Un método nativo específico comprueba votos persistentes/aislamiento, efecto sobre el resultado, alias, cooldown y protección de datos ilegibles. Las nuevas fuentes todavía necesitan compilación y ejecución Apple; no sustituyen la IPA 43.
+
 ## Entrega anterior: IPA 42
 
 Fuente `5f1f556dd554a55c3be68adc525241ebbc910028`, [CI 37627862741](https://github.com/Said129/harbor/actions/runs/37627862741): simulator/device, 31 pruebas nativas (41.797 s), seis servicios públicos (45.302 s), recorrido UI completo (251.471 s), paquete y borrador de Release pasan. Esta ejecución no demuestra un binario Linux completo. El log conserva las deprecaciones GLKit/OpenGLES y metadata AppIntents anteriores; no se observan warnings nuevos del incremento.

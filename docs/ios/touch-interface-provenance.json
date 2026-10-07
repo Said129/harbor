@@ -19,18 +19,53 @@
     "src/lib/i18n/locales/es/coverage.ts": "980ce2c0a63e3efb53c4e635dcfdae7f2b2380e431e432bfcc7aae3246697b32",
     "src/lib/i18n/locales/es/live.ts": "231e99f5acf87f26308741227bbfbc1f989b0ffe65cf4e2f0ceaa57583324f63",
     "src/lib/i18n/locales/es/detail.ts": "a660a2eac50a0ee57ccb4c42c5fbd89797b7d22e4191c57c555033456be97c6a",
-    "src/lib/i18n/locales/es/sweep.ts": "2cb9858c2465860582dc4b7e32390c0e9d8b021d220983f4b7b4dd0a1798db9c"
+    "src/lib/i18n/locales/es/sweep.ts": "2cb9858c2465860582dc4b7e32390c0e9d8b021d220983f4b7b4dd0a1798db9c",
+    "src/components/featured-banner/thumbs-dock.tsx": "b2506fa280a398c8f71d1fcb7dbb62a8461ccdc41b68e88cfac604eb4438ef9f",
+    "src/components/icons/harbor-glyphs.tsx": "d658b25c9e050394a49b080be5984f5bb8e683fa1788d9b1fce3c2d8980e5dd6",
+    "src/lib/feed/preferences.ts": "1e1fdcaf3ef0bc203cc366028756df9c169f5d3fd1680239bf962537319a8383",
+    "src/lib/discover/store.ts": "501a17c190c15ed0f80029900461c00c15626b67a2044e88ec2d800069e2b3f0",
+    "src/lib/discover/affinity.ts": "73ec970320bc0f9a43ccf3cfebd72fb2251013fbf1b174fde79420b7fca48bbc",
+    "src/lib/discover/profile.ts": "179386677bd8e7e2a2665143eb9600632507c4cad144f3ebb6c1dc709c160673",
+    "src/lib/feed/featured/score.ts": "0d1087385f2ee04f7a507e99bd868e9c4b92cd0126641a856edce9321e8ed7e4",
+    "src/lib/feed/featured/types.ts": "2aa5de1ec208b8a2b4580e6d5348ce5edc27e653733870bbc4c0d3bc33afc989",
+    "src/lib/feed/featured/diversify.ts": "c3b57162925b09c11e40764c4c223c13f0a9133bd60f7c980605193582824d0f",
+    "src/lib/feed/exclude.ts": "3cd3f4b4620b06f51a160ce7d37ac62c7f4569021f3ef719c76b8eddccf19f08",
+    "src/lib/feed/tags.ts": "182c341d6b74ab089417ce2bd5915d295898ab8ffe365d64a7828f9d09ddeb18",
+    "src/lib/playback-history.ts": "b000d0258f43a8d49b72f9dee3416898d2c44393f949557d6815c57c1a60cc1a",
+    "src/assets/ui-icons/thumbs-up.svg": "0ffb4668d4368297f2e2345f6b39671f275003e9c53fc413dc53d1cf76be974b"
   },
   "changes": [
     "Original six-point playback timeline with a 44-point touch target; seeking commits to mpv on release.",
     "Library uses rolling 1/7/30-day date groups from the original implementation.",
     "Discover adapts the original large-card/title and side-panel compositions with actual addon metadata and expandable original images.",
-    "Visible Spanish text comes from original locale dictionaries; untranslatable editorial text retains the original English."
+    "Visible Spanish text comes from original locale dictionaries; untranslatable editorial text retains the original English.",
+    "Original up/down glyph, active colors and Spanish touch labels; successful votes persist per account before the display changes.",
+    "Original 500-event, 90-day affinity weights, quality/prominence/daily jitter and three-title genre diversification for native seed/trending/TMDB/awards lanes.",
+    "Negative votes hide matching IDs/title aliases; positive votes apply the original seven-day Featured cooldown and twelve-day suppression.",
+    "Addon genre parameters remain in their original language; display labels alone use official translations."
   ],
   "copyOutput": "ios/Harbor/DesktopDiscoverSpanish.json",
   "limitations": [
     "The public checkpoint is not claimed as the exact 0.9.130 source.",
     "Native touch rendering and new navigation require Apple build/runtime evidence.",
-    "Recommendation feedback buttons and the full Desktop ranking algorithm are not included in this increment."
-  ]
+    "The native sources do not include all Desktop streaming/acclaimed/similar-provider lanes or external watched-ID resolution.",
+    "Recommendation votes are stored on this iPhone per Stremio account; cross-device vote sync is not claimed.",
+    "The native taste snapshot uses real genres/decade; cast/creator/keyword/language affinity and dwell events remain outside this increment."
+  ],
+  "icons": {
+    "x": {
+      "package": "lucide-react",
+      "version": "0.460.0",
+      "integrity": "sha512-BVtq/DykVeIvRTJvRAgCsOwaGL8Un3Bxh8MbDxMhEWlZay3T4IpEKDEpwt5KZ0KJMHzgm6jrltxlT5eXOWXDHg==",
+      "sourceSha256": "ab7e26e558dea6786e50df7e592c46ddeae6f016d2d0c24b52979508e346b7b0",
+      "svgSha256": "5cd216503b1c66df0d56351d86e746d059ce42de244abaebf873e784c9d074e3",
+      "output": "ios/Harbor/Assets.xcassets/desktop-x.imageset/icon.svg"
+    },
+    "thumbs-up": {
+      "output": "ios/Harbor/Assets.xcassets/ui-thumbs-up.imageset/icon.svg",
+      "geometryUnchanged": true,
+      "nativeSha256": "b8796668d1e9e7f52fe0781e39df8d510afca65d52f74d21c7a8d99e3e984d1a",
+      "note": "Existing original vector import strips the XML declaration and changes the canvas width/height to 26; paths and viewBox are unchanged."
+    }
+  }
 }
