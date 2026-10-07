@@ -152,9 +152,16 @@ final class LiveNavigationTests: XCTestCase {
 
         navigate(app, "addons")
         XCTAssertTrue(app.buttons["addon-tab-discover"].waitForExistence(timeout: 5))
+        XCTAssertTrue(app.descendants(matching: .any).matching(identifier: "addon-featured").firstMatch.waitForExistence(timeout: 30), "Discovery must load an actual public addon before its screen is reviewed")
         capture(app, "native-addon-store")
+        let streamingCategory = app.buttons["addon-category-streams"]
+        for _ in 0..<4 { if streamingCategory.isHittable { break }; app.swipeUp() }
+        XCTAssertTrue(streamingCategory.isHittable)
+        capture(app, "native-addon-store-categories")
         let field = app.secureTextFields["addon-manifest-url"]
         XCTAssertTrue(field.waitForExistence(timeout: 5))
+        for _ in 0..<4 { if field.isHittable { break }; app.swipeDown() }
+        XCTAssertTrue(field.isHittable)
         field.tap()
         field.typeText("https://raw.githubusercontent.com/Stremio/stremio-static-addon-example/master/manifest.json")
         app.buttons["addon-install"].tap()

@@ -94,7 +94,7 @@ struct AddonsView: View {
                 Text(value.title).font(.custom("Fraunces-9ptBlack", size: 18)).foregroundStyle(HarborTheme.ink).padding(16)
             }.frame(height: 120).clipShape(.rect(cornerRadius: 16))
                 .overlay { RoundedRectangle(cornerRadius: 16).stroke(HarborTheme.ink.opacity(0.08), lineWidth: 1) }
-        }.buttonStyle(.plain).accessibilityLabel(value.title)
+        }.buttonStyle(.plain).accessibilityLabel(value.title).accessibilityIdentifier("addon-category-\(value.rawValue)")
     }
     private var installation: some View {
         VStack(alignment: .leading, spacing: 12) {
@@ -128,7 +128,7 @@ struct AddonsView: View {
                         }
                     }
                 }
-            }.clipShape(.rect(cornerRadius: 22))
+            }.clipShape(.rect(cornerRadius: 22)).accessibilityIdentifier("addon-featured")
     }
     private func installed(_ addon: Addon) -> Bool { app.addons.contains { $0.id == addon.id || $0.manifest["id"].string == addon.manifest["id"].string } }
     private func resolved(_ addon: Addon) -> Addon { app.addons.first { $0.id == addon.id } ?? app.addons.first { $0.manifest["id"].string == addon.manifest["id"].string } ?? addon }
