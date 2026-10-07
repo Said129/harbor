@@ -54,6 +54,16 @@
       "source": "package/dist/esm/icons/layers.js",
       "sha256": "9a08651bda2c98a214dab5c56b2e8ff0ba33cf5958370b99c885c959e890907f",
       "svgSha256": "bfbe75f3dd455b15ff4aed1eb564933affe2872bd6b408e008245548ba282e1e"
+    },
+    "book-open": {
+      "source": "package/dist/esm/icons/book-open.js",
+      "sha256": "44ee3da30f9d7e37567fc722f6c181f032ed8f0da65634a0b13a5546459511be",
+      "svgSha256": "8f36cc7efdaf6ebe7d53108ada81cf243920e88f7ddecde0e1850e04ad1ee68c"
+    },
+    "arrow-up-down": {
+      "source": "package/dist/esm/icons/arrow-up-down.js",
+      "sha256": "08e738e189228a9e36ad3b164448479c172727470c5b0e008a59b5bd4c95c27c",
+      "svgSha256": "53bd1d477104444656876a242ca92537df56d49eb4898a6b00b52c843226b37f"
     }
   }
 }

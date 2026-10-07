@@ -88,6 +88,9 @@ final class LiveNavigationTests: XCTestCase {
         XCTAssertTrue(app.staticTexts["settings-subtitle-preview"].waitForExistence(timeout: 5))
         capture(app, "native-subtitle-settings")
 
+        navigate(app, "library")
+        XCTAssertTrue(app.buttons["library-tab-all"].waitForExistence(timeout: 5))
+        capture(app, "native-library-initial-state")
         navigate(app, "movies")
         XCTAssertTrue(app.buttons.matching(identifier: "catalog-movie").firstMatch.waitForExistence(timeout: 30), "Movies must load its content directly")
         capture(app, "native-movies-direct")

@@ -23,7 +23,7 @@ def main():
     assert base64.b64encode(hashlib.sha512(archive).digest()).decode() == integrity
     records = {}
     with tarfile.open(fileobj=io.BytesIO(archive), mode="r:gz") as sources:
-        for name in ["library", "bookmark", "bookmark-filled", "clock", "hard-drive", "image", "palette", "chevron-right", "star", "layers"]:
+        for name in ["library", "bookmark", "bookmark-filled", "clock", "hard-drive", "image", "palette", "chevron-right", "star", "layers", "book-open", "arrow-up-down"]:
             source_name = "bookmark" if name == "bookmark-filled" else name
             relative = f"package/dist/esm/icons/{source_name}.js"
             original = sources.extractfile(relative).read()

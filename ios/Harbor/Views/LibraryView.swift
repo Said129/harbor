@@ -109,7 +109,27 @@ struct LibraryView: View {
     }
     private var emptyState: some View {
         let filtered = !query.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty || app.library.presentation.display.kind != .all
-        return ContentUnavailableView(filtered ? "Sin coincidencias" : "Tu biblioteca", image: "nav-library", description: Text(filtered ? "Prueba con otro título o cambia el filtro de tipo." : app.user == nil ? "Puedes guardar títulos en este iPhone o iniciar sesión para recuperar tu biblioteca." : "Los títulos guardados y el progreso de tu cuenta aparecen aquí."))
+        let icon = filtered ? "nav-search" : display.filter == .favorites ? "desktop-star" : display.filter == .watched ? "desktop-clock" : display.filter == .continuing ? "ui-play-filled" : "desktop-bookmark"
+        let title: String
+        let message: String
+        if filtered { title = "Sin coincidencias"; message = "Prueba con otro título o cambia el filtro de tipo." }
+        else {
+            switch display.filter {
+            case .favorites: title = "Aún no hay favoritos"; message = "Toca el corazón en la ficha de una película o serie para guardarla aquí."
+            case .watched: title = "Aún no has visto ningún título"; message = "Empieza a reproducir algo y aparecerá aquí."
+            case .continuing: title = "Nada pendiente de continuar"; message = "Los títulos que empieces a ver aparecerán aquí con su progreso."
+            case .watchlist: title = "Tu lista está vacía"; message = "Pulsa «Añadir a mi lista» en la ficha de un título para guardarlo aquí."
+            default: title = "Tu biblioteca está vacía"; message = app.user == nil ? "Guarda títulos desde su ficha o inicia sesión para recuperar la biblioteca de tu cuenta." : "Los títulos guardados y el progreso de tu cuenta aparecen aquí."
+            }
+        }
+        return VStack(spacing: 12) {
+            Image(icon).resizable().scaledToFit().frame(width: 28, height: 28).foregroundStyle(HarborTheme.ink.opacity(0.4)).accessibilityHidden(true)
+            Text(title).font(HarborTheme.font(16, weight: .semibold)).foregroundStyle(HarborTheme.ink)
+            Text(message).font(HarborTheme.font(13)).lineSpacing(4).foregroundStyle(HarborTheme.ink.opacity(0.6))
+        }.multilineTextAlignment(.center).frame(maxWidth: .infinity).padding(.horizontal, 24).padding(.vertical, 56)
+            .background(HarborTheme.background.opacity(0.3), in: .rect(cornerRadius: 16))
+            .overlay { RoundedRectangle(cornerRadius: 16).stroke(HarborTheme.ink.opacity(0.12), style: StrokeStyle(lineWidth: 1, dash: [4, 4])) }
+            .accessibilityIdentifier("library-empty-state")
     }
 }
 

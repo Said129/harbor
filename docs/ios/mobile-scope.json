@@ -334,7 +334,14 @@
     {
       "build": 41,
       "name": "Original Manga background/title font/library entry, usable source/language controls and simulator GLES compatibility",
-      "status": "Local implementation after actual build 40 failure review. Apple parsing, type checking, unchanged 8/10-bit rendering gates and screen review pending."
+      "source": "252b6f5f01126b09e97db1f0ea24b3db0bc6f8fb",
+      "ciRun": 37589420764,
+      "status": "Published. Apple validation in progress after actual build 40 failure review; screen review and delivery pending."
+    },
+    {
+      "build": 42,
+      "name": "Original Manga detail typography, actual reading/library actions and chapter search/order; Harbor Library empty and filtered states",
+      "status": "Local implementation. Native compilation and actual screen review pending; do not interrupt build 41."
     }
   ]
 }
