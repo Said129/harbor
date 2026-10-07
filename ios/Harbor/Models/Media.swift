@@ -193,6 +193,11 @@ struct CatalogRow: Identifiable, Sendable {
     var selectedGenre: String? = nil
     var receivedCount: Int? = nil
     var id: String { plan.key }
+    var isAnimeCatalog: Bool {
+        plan.kind == "anime" || metas.prefix(6).contains { AnimeService.isAnime($0.id) }
+            || plan.addon.manifest["id"].string?.localizedCaseInsensitiveContains("kitsu") == true
+            || plan.title.localizedCaseInsensitiveContains("anime")
+    }
 }
 
 struct StreamOffer: Identifiable, Sendable {

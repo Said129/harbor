@@ -47,7 +47,7 @@ final class DiscoverModel {
                     try Task.checkCancellation(); guard current == generation else { return }
                     if rail.id == "discover-trending" { trending = items; refreshRecommendations(app: app) }
                     else { topRated = items }
-                } catch is CancellationError { return } catch { error = safeMessage(error) }
+                } catch is CancellationError { return } catch { self.error = safeMessage(error) }
             }
         }
         do {
@@ -69,7 +69,7 @@ final class DiscoverModel {
                 guard current == generation else { return }
                 awards = items.sorted { $0.0 < $1.0 }.map(\.1)
             }
-        } catch is CancellationError { return } catch { error = safeMessage(error) }
+        } catch is CancellationError { return } catch { self.error = safeMessage(error) }
         if !recommended.isEmpty || !awards.isEmpty { signature = currentSignature }
     }
 }
@@ -81,7 +81,9 @@ struct DiscoverView: View {
     @State private var catalog = ""
     @State private var genre = ""
     @State private var length = 5
-    private var catalogs: [CatalogRow] { app.rows.filter { !$0.plan.isPlaybackHistoryCatalog && $0.plan.kind == kind && $0.plan.catalog != nil } }
+    @State private var surprise: Media?
+    @State private var lastSurprise: String?
+    private var catalogs: [CatalogRow] { app.rows.filter { !$0.plan.isPlaybackHistoryCatalog && $0.plan.catalog != nil && (kind == "anime" ? $0.isAnimeCatalog : $0.plan.kind == kind && !$0.isAnimeCatalog) } }
     private var selected: CatalogRow? { catalogs.first { $0.id == catalog } ?? catalogs.first }
     private var genres: [String] { selected?.plan.catalog?.extra.first { $0.name == "genre" }?.options ?? [] }
     private var pool: [Media] { var seen = Set<String>(); return (model.recommended + model.trending + model.awards + app.rows.flatMap(\.metas)).filter { seen.insert($0.identity).inserted } }
@@ -93,6 +95,7 @@ struct DiscoverView: View {
                     DiscoverFeatured(items: model.recommended, app: app)
                 }
                 catalogBrowser
+                surpriseChooser
                 voyageChooser
                 if !model.trending.isEmpty { shelf("Trending This Week", items: model.trending) }
                 genreTiles
@@ -110,6 +113,7 @@ struct DiscoverView: View {
             .onChange(of: catalog) { _, _ in genre = "" }
             .onChange(of: app.rows.flatMap(\.metas).map(\.identity)) { _, _ in model.refreshRecommendations(app: app) }
             .onChange(of: app.library.items.filter(\.watched).map(\.id)) { _, _ in model.refreshRecommendations(app: app) }
+            .navigationDestination(item: $surprise) { DetailView(media: $0, app: app) }
     }
     private var catalogBrowser: some View {
         VStack(alignment: .leading, spacing: 12) {
@@ -130,6 +134,25 @@ struct DiscoverView: View {
     }
     private func withGenre(_ row: CatalogRow) -> CatalogRow {
         CatalogRow(plan: row.plan, metas: genre.isEmpty ? row.metas : [], selectedGenre: genre.isEmpty ? nil : genre, receivedCount: genre.isEmpty ? row.receivedCount : 0)
+    }
+    private var surpriseChooser: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            Text("¿No puedes decidirte?").font(HarborTheme.font(17, weight: .semibold))
+            Button {
+                let candidates = pool.filter { $0.identity != lastSurprise }
+                guard let pick = (candidates.isEmpty ? pool : candidates).randomElement() else { return }
+                lastSurprise = pick.identity; surprise = pick
+            } label: {
+                ZStack(alignment: .leading) {
+                    HStack(spacing: 0) { ForEach(Array(pool.prefix(18)), id: \.identity) { media in Artwork(url: media.poster, fallback: media.fallbackPoster, maxPixels: 120) } }.accessibilityHidden(true)
+                    LinearGradient(colors: [HarborTheme.background, HarborTheme.background.opacity(0.85), HarborTheme.background.opacity(0.3)], startPoint: .leading, endPoint: .trailing).allowsHitTesting(false)
+                    HStack(spacing: 12) {
+                        Image("desktop-dices").resizable().scaledToFit().frame(width: 18, height: 18).foregroundStyle(HarborTheme.background).frame(width: 36, height: 36).background(HarborTheme.ink, in: .circle)
+                        VStack(alignment: .leading, spacing: 3) { Text("Sorpréndeme").font(HarborTheme.font(14, weight: .semibold)); Text("Elige un título al azar").font(HarborTheme.font(12)).foregroundStyle(.secondary) }
+                    }.padding(16)
+                }.frame(height: 76).clipShape(.rect(cornerRadius: 16)).overlay { RoundedRectangle(cornerRadius: 16).stroke(HarborTheme.ink.opacity(0.08), lineWidth: 1) }.contentShape(Rectangle())
+            }.buttonStyle(.plain).disabled(pool.isEmpty).accessibilityIdentifier("discover-surprise")
+        }.padding(.horizontal)
     }
     private func control(_ label: String, value: String) -> some View {
         HStack(spacing: 8) { Text(label).font(HarborTheme.font(9, weight: .semibold)).tracking(1).foregroundStyle(.secondary); Text(value).font(HarborTheme.font(13, weight: .medium)).lineLimit(1); Image("desktop-chevron-right").resizable().scaledToFit().frame(width: 12, height: 12).rotationEffect(.degrees(90)) }

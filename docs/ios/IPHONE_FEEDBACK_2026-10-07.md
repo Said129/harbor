@@ -24,3 +24,13 @@ Estas son modificaciones de fuente. La compilación Apple, la revisión de sus i
 - Comprobar en el iPhone del usuario Continuar viendo, acceso persistente de Submanhwa y vídeo/ajustes después de instalar la fuente corregida con la misma identidad de firma.
 
 La nueva lista conserva el objetivo móvil acordado y el trabajo previo. Ninguno de estos puntos se considera completo por estar enumerado aquí.
+
+## Fuente 45/46: implementación y evidencia actualizadas
+
+La fuente 45 añadió las filas reales AniList/MAL/premios, la composición inicial de Discover y acceso/sincronización Harbor mediante el protocolo revisionado de perfiles. Sus cuatro pruebas nuevas de roster preservan perfiles ajenos y conflictos de revisión; no equivalen a una sesión privada PC/iPhone comprobada. El [run 37670786042](https://github.com/Said129/harbor/actions/runs/37670786042) falló en compilación en dos asignaciones de Discover, antes de ejecutar esas pruebas.
+
+La candidata 46 corrige esos errores y los avisos de firmas WebKit mediante delegados async. Adapta AnimeHero y PeekHero por separado, conserva los títulos/logos cuando una imagen no responde, incluye Top Picks en el hero y Seguir viendo en Anime y Continúa donde lo dejaste en Series, usando el estado de biblioteca existente. Las recomendaciones se recalculan al cambiar el historial. El arte procede del índice original, cotejado después de formatear su JSON, con actualizaciones del endpoint original. Se añade Sorpréndeme con una elección real sin repetir consecutivamente el mismo título. El selector de Discover reconoce los catálogos de Anime que declaran el tipo series. Biblioteca elimina dos explicaciones añadidas que no procedían de Desktop.
+
+La animación original necesita un controlador separado: `goToAndStop` pausa el reloj de Lottie y no puede sustituir el método que regula el reloj nativo. Se elimina la modificación del contador público y se exige que cambie el SVG realmente dibujado. Reducir movimiento debe detenerlo en el frame original cero. El recorrido público existente recogerá Anime, sus filas Top 100/premios, Series y Discover, y comprobará que Sorpréndeme abre una ficha real.
+
+Estos son cambios de fuente pendientes del gate Apple y de la revisión de capturas. Descargas contiene la IPA 43 comprobada, no 44/45/46. El perfil privado PC/iPhone, la sesión Submanhwa y las tarjetas personales de progreso siguen pendientes de comprobación con la cuenta del usuario.

@@ -1,4 +1,14 @@
-# Entrega actual: IPA 42, 7 de octubre de 2026
+# Entrega actual: IPA 43, 7 de octubre de 2026
+
+El informe que acompaña a `C:/Users/Said/Downloads/Harbor-unsigned.ipa` identifica la fuente `fd3d9e59e82717fac70523f9a30fc2e5a8a21c3a`, build 43, del [run 37634911030](https://github.com/Said129/harbor/actions/runs/37634911030). Paquete: 28,917,014 bytes, SHA-256 `276164ed4d013ba064faf183ad0d245dbd618f27dab65e77b43a9df1aca81410`. La descarga, el paquete arm64 y sus 37 imágenes se verificaron antes de sustituir la entrega. Pasaron 31 pruebas nativas, seis servicios públicos y el recorrido UI. No se ha confirmado una revisión física de la build 43.
+
+La build 44 del [run 37643035564](https://github.com/Said129/harbor/actions/runs/37643035564) falló en las pruebas de animación/diálogos web. La build 45, fuente `4da3e639491613fc7d329b1299774b7749ae7c22`, [run 37670786042](https://github.com/Said129/harbor/actions/runs/37670786042), falló antes de los tests: Discover intentaba asignar su mensaje al `error` inmutable del bloque catch. También conservó avisos de firmas de WebKit. Ninguna de ellas sustituyó Descargas.
+
+La candidata 46 corrige esas asignaciones y adopta métodos async de los delegados WebKit. El movimiento de Lottie se administra fuera de `goToAndStop`; la prueba compara el SVG dibujado, además del avance del frame. El código anterior de 45 alteraba el contador que usaba la prueba y no constituía evidencia suficiente de movimiento visible. Anime y Series adoptan sus composiciones de referencia; Anime incluye recomendaciones en el hero y ambas páginas muestran su progreso filtrado. Discover incorpora Sorpréndeme y admite catálogos de Anime que usan `series` y IDs Kitsu/MAL. El índice de arte original incluye 6,249 entradas, con refresco público diario. Los hashes de origen y los iconos Lucide 0.460.0 se registran en `content-hero-provenance.json`.
+
+Las interfaces nuevas, el movimiento, los diálogos, la sincronización privada de perfil y la sesión privada de Submanhwa siguen necesitando evidencia de ejecución. La candidata 46 todavía no es una entrega. Las cuentas, el renderer físico y los dispositivos de salida conservan sus límites de validación anteriores.
+
+## Entrega anterior: IPA 42
 
 Fuente `5f1f556dd554a55c3be68adc525241ebbc910028`, [CI 37627862741](https://github.com/Said129/harbor/actions/runs/37627862741): simulator/device, 31 pruebas nativas (41.797 s), seis servicios públicos (45.302 s), recorrido UI completo (251.471 s), paquete y borrador de Release pasan. Esta ejecución no demuestra un binario Linux completo. El log conserva las deprecaciones GLKit/OpenGLES y metadata AppIntents anteriores; no se observan warnings nuevos del incremento.
 

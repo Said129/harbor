@@ -5,6 +5,7 @@ import Observation
 final class ContentPageModel {
     var rows: [CatalogRow] = []
     var heroes: [Media] = []
+    var heroSources: [String: String] = [:]
     var curated: [DiscoveryRail] = []
     var loading = false
     var error: String?
@@ -12,7 +13,7 @@ final class ContentPageModel {
     private var loadedSignature = ""
     func load(kind: String, app: AppModel, refresh: Bool = false) async {
         let configuration = MetadataPreferences.shared.configuration()
-        let signature = kind + app.addons.filter(\.enabled).map(\.id).joined() + configuration.tmdbKey + configuration.region + configuration.language + String(configuration.translateTitles)
+        let signature = kind + (app.user?.id ?? "guest") + app.addons.filter(\.enabled).map(\.id).joined() + configuration.tmdbKey + configuration.region + configuration.language + String(configuration.translateTitles)
         guard refresh || signature != loadedSignature else { return }
         generation += 1
         let current = generation
@@ -21,7 +22,7 @@ final class ContentPageModel {
         let previousCurated = signature == loadedSignature ? curated : []
         var failed = false
         rows = previousRows; curated = previousCurated
-        if signature != loadedSignature { heroes = [] }
+        if signature != loadedSignature { heroes = []; heroSources = [:] }
         defer { if generation == current { loading = false } }
         // Desktop's Movies/Shows fallback is Cinemeta top plus genre rails.
         // It is a content provider, independent of the installed stream addons.
@@ -77,7 +78,7 @@ final class ContentPageModel {
                     }
                 }
             } else if kind == "anime" {
-                rows = app.rows.filter { $0.plan.kind == "anime" || $0.metas.prefix(6).contains { AnimeService.isAnime($0.id) } }
+                rows = app.rows.filter(\.isAnimeCatalog)
                 let definitions = AnimeService.definitions()
                 let records = app.library.items
                 await withTaskGroup(of: (Int, DiscoveryRail?).self) { group in
@@ -114,15 +115,40 @@ final class ContentPageModel {
             let addonRows = app.rows.filter { $0.plan.kind == kind && $0.plan.addon.manifest["id"].string != "com.linvo.cinemeta" }
             for row in addonRows where !rows.contains(where: { $0.id == row.id }) { rows.append(row) }
             var seen = Set<String>()
-            heroes = Array((curated.flatMap(\.metas) + rows.flatMap(\.metas)).filter { seen.insert($0.identity).inserted }.prefix(5))
+            if kind == "anime" {
+                let trending = curated.first { $0.id == "anilist-trending" }?.metas ?? []
+                let airing = curated.first { $0.id == "anime-airing" }?.metas ?? []
+                let winners = curated.first { $0.id == "anime-awards" }?.metas ?? []
+                let candidates = Array(trending.prefix(3)) + Array(winners.prefix(1)) + Array(airing.prefix(2)) + curated.flatMap(\.metas) + rows.flatMap(\.metas)
+                heroes = Array(candidates.filter { seen.insert($0.identity).inserted }.prefix(6))
+                heroSources = [:]
+                for media in heroes {
+                    if trending.contains(where: { $0.id == media.id }) { heroSources[media.id] = "AniList" }
+                    else if airing.contains(where: { $0.id == media.id }) { heroSources[media.id] = "MAL" }
+                }
+                heroes = await AnimeArtwork.shared.enrich(heroes)
+                guard current == generation else { return }
+            } else {
+                heroes = Array((curated.flatMap(\.metas) + rows.flatMap(\.metas)).filter { seen.insert($0.identity).inserted }.prefix(5))
+            }
             let originals = heroes
             await withTaskGroup(of: (Int, Media).self) { group in
                 for (index, media) in originals.enumerated() {
                     let service = app.service; let addons = app.addons
-                    group.addTask { (index, (try? await service.metadata(media, addons: addons)) ?? media) }
+                    group.addTask {
+                        var enriched = (try? await service.metadata(media, addons: addons)) ?? media
+                        // Canonical episode metadata must not discard the selected provider's score/art.
+                        enriched.background = media.background ?? enriched.background
+                        enriched.logo = media.logo ?? enriched.logo
+                        if let score = media.imdbRating { enriched.imdbRating = score; enriched.ratingSource = media.ratingSource }
+                        return (index, enriched)
+                    }
                 }
                 for await (index, media) in group {
-                    if current == generation && index < heroes.count { heroes[index] = media }
+                    if current == generation && index < heroes.count {
+                        if let source = heroSources[originals[index].id] { heroSources[media.id] = source }
+                        heroes[index] = media
+                    }
                 }
             }
             let hasTitles = rows.contains { !$0.metas.isEmpty } || curated.contains { !$0.metas.isEmpty }
@@ -131,5 +157,12 @@ final class ContentPageModel {
             if hasTitles { loadedSignature = signature }
         } catch is CancellationError { return }
         catch { if current == generation { self.error = safeMessage(error) } }
+    }
+    func refreshAnimePicks(app: AppModel) async {
+        guard !loading, let index = curated.firstIndex(where: { $0.id == "anime-picks" }) else { return }
+        let current = generation, owner = app.user?.id ?? "guest"
+        guard let picks = try? await AnimeService.shared.picks(records: app.library.items), !Task.isCancelled,
+              current == generation, owner == (app.user?.id ?? "guest"), curated.indices.contains(index), curated[index].id == "anime-picks" else { return }
+        curated[index].metas = picks
     }
 }

@@ -28,11 +28,17 @@ final class HarborLoaderTests: XCTestCase {
         XCTAssertEqual(hasPaths, true, "The original animation must actually render its SVG paths")
         let firstValue = try await browser.evaluateJavaScript("window.harborLoader.currentFrame")
         let first = try XCTUnwrap(firstValue as? Double)
+        let firstArtwork = try await browser.evaluateJavaScript("document.querySelector('#boat svg').innerHTML") as? String
         try await Task.sleep(for: .milliseconds(300))
         let laterValue = try await browser.evaluateJavaScript("window.harborLoader.currentFrame")
         let later = try XCTUnwrap(laterValue as? Double)
         XCTAssertNotEqual(first, later, "A static logo does not prove the desktop animation works")
-        browser.evaluateJavaScript("window.harborLoader.goToAndStop(0, true)", completionHandler: nil)
+        let laterArtwork = try await browser.evaluateJavaScript("document.querySelector('#boat svg').innerHTML") as? String
+        XCTAssertNotEqual(firstArtwork, laterArtwork, "The rendered artwork must move, not just its frame counter")
+        _ = try await browser.evaluateJavaScript("window.harborLoaderMotion.stop()")
+        try await Task.sleep(for: .milliseconds(300))
+        let stopped = try await browser.evaluateJavaScript("window.harborLoader.currentFrame") as? Double
+        XCTAssertEqual(stopped, 0, "Reduce Motion must leave the original boat still")
     }
     @MainActor private func webView(in view: UIView) -> WKWebView? {
         if let web = view as? WKWebView { return web }

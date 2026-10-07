@@ -32,15 +32,15 @@ struct HarborLoaderArtwork: UIViewRepresentable {
         context.coordinator.reduceMotion = reduceMotion
         context.coordinator.applyMotion(web)
     }
-    static func dismantleUIView(_ web: WKWebView, coordinator: Coordinator) { web.stopLoading(); web.navigationDelegate = nil }
+    static func dismantleUIView(_ web: WKWebView, coordinator: Coordinator) { web.evaluateJavaScript("window.harborLoaderMotion?.destroy()", completionHandler: nil); web.stopLoading(); web.navigationDelegate = nil }
     @MainActor final class Coordinator: NSObject, WKNavigationDelegate {
         var reduceMotion: Bool
         init(reduceMotion: Bool) { self.reduceMotion = reduceMotion }
-        func applyMotion(_ web: WKWebView) { web.evaluateJavaScript(reduceMotion ? "window.harborLoader?.goToAndStop(0, true)" : "window.harborLoader?.play()", completionHandler: nil) }
+        func applyMotion(_ web: WKWebView) { web.evaluateJavaScript(reduceMotion ? "window.harborLoaderMotion?.stop()" : "window.harborLoaderMotion?.play()", completionHandler: nil) }
         func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) { applyMotion(webView) }
-        func webView(_ webView: WKWebView, decidePolicyFor action: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-            guard let url = action.request.url, let folder = HarborLoaderArtwork.index?.deletingLastPathComponent(), url.isFileURL, url.standardizedFileURL.path.hasPrefix(folder.standardizedFileURL.path + "/") else { decisionHandler(.cancel); return }
-            decisionHandler(.allow)
+        func webView(_ webView: WKWebView, decidePolicyFor action: WKNavigationAction) async -> WKNavigationActionPolicy {
+            guard let url = action.request.url, let folder = HarborLoaderArtwork.index?.deletingLastPathComponent(), url.isFileURL, url.standardizedFileURL.path.hasPrefix(folder.standardizedFileURL.path + "/") else { return .cancel }
+            return .allow
         }
     }
 }

@@ -130,7 +130,32 @@ final class LiveNavigationTests: XCTestCase {
         capture(app, "native-movies-direct")
         navigate(app, "shows")
         XCTAssertTrue(app.buttons.matching(identifier: "catalog-media").firstMatch.waitForExistence(timeout: 30), "Shows must load its content directly")
+        XCTAssertTrue(app.descendants(matching: .any).matching(identifier: "series-original-hero").firstMatch.exists)
         capture(app, "native-shows-direct")
+        navigate(app, "discover")
+        XCTAssertTrue(app.descendants(matching: .any).matching(identifier: "discover-original").firstMatch.waitForExistence(timeout: 5))
+        capture(app, "native-discover-recommended")
+        let surprise = app.buttons["discover-surprise"]
+        reveal(surprise, in: app.scrollViews.firstMatch, attempts: 3)
+        XCTAssertTrue(surprise.isHittable)
+        capture(app, "native-discover-catalogs-surprise")
+        surprise.tap()
+        XCTAssertTrue(app.staticTexts["detail-title"].waitForExistence(timeout: 10), "Surprise me must open a real title detail")
+        capture(app, "native-discover-surprise-detail")
+        navigate(app, "anime")
+        let animeHero = app.descendants(matching: .any).matching(identifier: "anime-original-hero").firstMatch
+        XCTAssertTrue(animeHero.waitForExistence(timeout: 5))
+        XCTAssertTrue(app.buttons["anime-start-watching"].firstMatch.waitForExistence(timeout: 60), "The anime hero must use real public anime metadata")
+        capture(app, "native-anime-original-hero")
+        let animeScroll = app.descendants(matching: .any).matching(identifier: "content-anime").firstMatch
+        let top100 = app.staticTexts["rail-anilist-top100"]
+        reveal(top100, in: animeScroll, attempts: 6)
+        XCTAssertTrue(top100.waitForExistence(timeout: 30))
+        capture(app, "native-anime-anilist-top100")
+        let awards = app.staticTexts["rail-anime-awards"]
+        reveal(awards, in: animeScroll, attempts: 4)
+        XCTAssertTrue(awards.waitForExistence(timeout: 30))
+        capture(app, "native-anime-award-winners")
         navigate(app, "search")
         let search = app.searchFields.firstMatch
         XCTAssertTrue(search.waitForExistence(timeout: 5))

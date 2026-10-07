@@ -25,14 +25,13 @@ struct LibraryView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
-                HarborPageHeading(title: "Tu colección.", eyebrow: "Mi biblioteca", subtitle: "Tu biblioteca reúne los títulos guardados y el progreso de Stremio y de este iPhone. Mi lista muestra lo que aún no has visto; Historial, lo que has visto.")
+                HarborPageHeading(title: "Tu colección.", eyebrow: "Mi biblioteca")
                 filters
                 LibraryPresentationFeedback(library: app.library)
                 if let error = app.library.favorites.error {
                     Text(error).font(.caption).foregroundStyle(.orange)
                     Button("Reintentar favoritos") { app.library.favorites.reload() }
                 }
-                if display.filter == .favorites { Text("Favoritos guardados en este iPhone para esta cuenta.").font(.caption).foregroundStyle(.secondary) }
                 if app.library.loading { ProgressView().frame(maxWidth: .infinity) }
                 if let error = app.library.error { VStack(alignment: .leading) { Text(error).font(.caption).foregroundStyle(.orange); Button("Reintentar") { Task { await app.library.sync() } } } }
                 ForEach(Array(groups.enumerated()), id: \.offset) { _, group in
@@ -137,14 +136,24 @@ struct LibraryView: View {
 
 struct ContinueWatching: View {
     let app: AppModel
+    var kind: String? = nil
+    var title = "Continuar viendo"
+    private var items: [LibraryRecord] {
+        app.library.continuing.filter { record in
+            guard let kind else { return true }
+            guard let media = record.media else { return false }
+            if kind == "anime" { return AnimeService.isAnime(media.id) }
+            return media.type == kind && !AnimeService.isAnime(media.id)
+        }
+    }
     var body: some View {
-        if !app.library.continuing.isEmpty || app.library.presentationError != nil {
+        if !items.isEmpty || app.library.presentationError != nil {
             VStack(alignment: .leading, spacing: 12) {
-                Text("Continuar viendo").font(HarborTheme.font(17, weight: .medium)).padding(.horizontal)
+                Text(title).font(HarborTheme.font(17, weight: .medium)).padding(.horizontal)
                 LibraryPresentationFeedback(library: app.library).padding(.horizontal)
                 ScrollView(.horizontal) {
                     LazyHStack(alignment: .top, spacing: 12) {
-                        ForEach(app.library.continuing) { item in
+                        ForEach(items) { item in
                             if let media = item.media {
                                 VStack(alignment: .leading, spacing: 2) {
                                     NavigationLink { DetailView(media: media, app: app, playImmediately: true) } label: {

@@ -6,40 +6,42 @@ window.harborLoader = window.lottie.loadAnimation({
   animationData: window.harborAnimation,
 });
 
-// WKWebView can suspend a WebKit animation immediately after the file has
-// finished loading. Keep the original Lottie artwork, but drive the same
-// timeline from the page clock so the native loader never appears frozen.
+// Use the page clock while Lottie renders its original SVG. Its goToAndStop
+// method pauses Lottie's own clock; native motion controls remain separate.
 (function () {
   var animation = window.harborLoader;
   var started = performance.now();
-  var running = true;
+  var running = false;
   var frameRate = Number(window.harborAnimation.fr) || 30;
-  var lastFrame = -1;
+  var lastFrame = 0;
+  var request = null;
   function tick(now) {
-    if (running) {
-      var frame = (((now - started) / 1000) * frameRate) % window.harborAnimation.op;
-      if (Math.floor(frame) !== lastFrame) {
-        lastFrame = Math.floor(frame);
-        animation.goToAndStop(frame, true);
-      }
+    request = null;
+    if (!running) return;
+    if (animation.isLoaded && animation.totalFrames > 0) {
+      lastFrame = (((now - started) / 1000) * frameRate) % animation.totalFrames;
+      animation.goToAndStop(lastFrame, true);
     }
-    window.requestAnimationFrame(tick);
+    request = window.requestAnimationFrame(tick);
   }
-  animation.play = function () {
-    running = true;
-    started = performance.now() - (lastFrame / frameRate) * 1000;
+  window.harborLoaderMotion = {
+    play: function () {
+      if (running) return;
+      running = true;
+      started = performance.now() - (lastFrame / frameRate) * 1000;
+      request = window.requestAnimationFrame(tick);
+    },
+    stop: function () {
+      running = false;
+      if (request !== null) window.cancelAnimationFrame(request);
+      request = null;
+      lastFrame = 0;
+      animation.goToAndStop(0, true);
+    },
+    destroy: function () {
+      this.stop();
+      animation.destroy();
+    },
   };
-  animation.pause = function () {
-    running = false;
-  };
-  var originalStop = animation.goToAndStop.bind(animation);
-  animation.goToAndStop = function (frame, force) {
-    lastFrame = Math.floor(frame);
-    originalStop(frame, force);
-    // Keep the public Lottie frame value observable to the native smoke test
-    // even when WebKit has deferred the SVG renderer's internal bookkeeping.
-    animation.currentFrame = frame;
-  };
-  window.requestAnimationFrame(tick);
-  animation.play();
+  window.harborLoaderMotion.play();
 })();

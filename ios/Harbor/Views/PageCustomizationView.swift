@@ -82,11 +82,12 @@ struct CustomizedHero: View {
     let defaults: [Media]
     let app: AppModel
     let customization: PageCustomization
+    var animeSources: [String: String] = [:]
     @State private var selected: [Media] = []
     @State private var enrichedSignature = ""
     private var source: PageRail? { rails.first { $0.id == customization.layout.heroSource } }
     private var signature: String {
-        let ids = source?.metas.prefix(5).map(\.identity).joined(separator: "|") ?? ""
+        let ids = source?.metas.prefix(6).map(\.identity).joined(separator: "|") ?? ""
         let addons = app.addons.filter(\.enabled).map(\.id).joined()
         let settings = MetadataPreferences.shared
         return [source?.id ?? "automatic", ids, app.user?.id ?? "guest", addons, settings.region, settings.language, String(settings.translateTitles), EBookShelf.hash(settings.tmdbKey)].joined(separator: "|")
@@ -94,14 +95,22 @@ struct CustomizedHero: View {
     private var metas: [Media] {
         guard let source else { return defaults }
         if enrichedSignature == signature && !selected.isEmpty { return selected }
-        return Array(source.metas.prefix(5))
+        return Array(source.metas.prefix(customization.page == "anime" ? 6 : 5))
     }
     var body: some View {
-        Group { if !metas.isEmpty { CinemaHero(metas: metas, app: app, playSquare: customization.layout.playButtonSquare, moreInfo: customization.layout.secondaryMoreInfo) } }
+        Group {
+            if customization.page == "anime" {
+                HarborAnimeHero(metas: metas, sources: source == nil ? animeSources : [:], picks: rails.first { $0.id == "anime-picks" }, app: app, customization: customization)
+            } else if customization.page == "series" {
+                HarborSeriesHero(metas: metas, app: app)
+            } else if !metas.isEmpty {
+                CinemaHero(metas: metas, app: app, playSquare: customization.layout.playButtonSquare, moreInfo: customization.layout.secondaryMoreInfo)
+            }
+        }
             .task(id: signature) {
                 guard let source else { selected = []; enrichedSignature = ""; return }
                 let currentSignature = signature
-                let originals = Array(source.metas.prefix(5)); selected = originals; enrichedSignature = currentSignature
+                let originals = Array(source.metas.prefix(customization.page == "anime" ? 6 : 5)); selected = originals; enrichedSignature = currentSignature
                 let owner = app.user?.id ?? "guest", service = app.service, addons = app.addons
                 let fetched = await withTaskGroup(of: (Int, Media).self, returning: [(Int, Media)].self) { group in
                     for (index, media) in originals.enumerated() { group.addTask { (index, (try? await service.metadata(media, addons: addons)) ?? media) } }
