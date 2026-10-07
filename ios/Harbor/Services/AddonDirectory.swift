@@ -63,6 +63,7 @@ actor AddonDirectory {
 enum AddonCategory: String, CaseIterable, Identifiable {
     case all, streams, metadata, subtitles, anime, sports, television, tools, adult
     var id: String { rawValue }
+    var icon: String { switch self { case .all: "ui-all-addons"; case .metadata: "category-catalogs"; case .television: "category-livetv"; default: "category-" + rawValue } }
     var title: String {
         switch self {
         case .all: "Todos"

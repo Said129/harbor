@@ -49,8 +49,10 @@ struct AddonsView: View {
                     LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 12) {
                         ForEach(AddonCategory.allCases.filter { $0 != .all && ($0 != .adult || allowAdult) }) { value in
                             Button { category = value; tab = .browse } label: {
-                                Text(value.title).font(HarborTheme.font(14, weight: .semibold)).frame(maxWidth: .infinity, minHeight: 68, alignment: .leading).padding(.horizontal, 14)
-                                    .background(HarborTheme.surface, in: .rect(cornerRadius: 16))
+                                VStack(alignment: .leading, spacing: 12) {
+                                    Image(value.icon).resizable().scaledToFit().frame(width: 36, height: 36).foregroundStyle(.secondary).frame(maxWidth: .infinity, alignment: .trailing)
+                                    Text(value.title).font(HarborTheme.font(14, weight: .semibold))
+                                }.frame(maxWidth: .infinity, minHeight: 90, alignment: .leading).padding(14).background(HarborTheme.surface, in: .rect(cornerRadius: 16))
                             }.buttonStyle(.plain)
                         }
                     }
