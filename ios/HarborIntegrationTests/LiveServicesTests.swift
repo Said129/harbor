@@ -70,7 +70,13 @@ final class LiveServicesTests: XCTestCase {
         let trailers = try XCTUnwrap(detail.details?.trailers)
         XCTAssertFalse(trailers.isEmpty, "Addon trailers must be available without a TMDB key")
         XCTAssertTrue(trailers.allSatisfy { URL(string: $0.url)?.host == "www.youtube.com" })
-        print("Harbor live Cinemeta: catalogs=\(catalogs.count) searchItems=\(count) trailers=\(trailers.count) metadata=passed")
+        let related = try await service.related(detail, addons: [addon])
+        XCTAssertFalse(related.isEmpty, "The native detail must retain Desktop's real Cinemeta genre discovery")
+        XCTAssertFalse(related.contains { $0.identity == detail.identity })
+        var disabled = addon; disabled.enabled = false
+        let disabledRelated = try await service.related(detail, addons: [disabled])
+        XCTAssertTrue(disabledRelated.isEmpty, "Related titles must respect an explicitly disabled catalog provider")
+        print("Harbor live Cinemeta: catalogs=\(catalogs.count) searchItems=\(count) trailers=\(trailers.count) related=\(related.count) metadata=passed")
     }
 
     func testOfficialAddonCatalogMetadataStreamsAndResolution() async throws {

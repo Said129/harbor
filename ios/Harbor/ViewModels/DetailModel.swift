@@ -33,12 +33,30 @@ final class DetailModel {
 
     init(_ media: Media, service: HarborService) { self.media = media; self.service = service }
 
-    func load(_ addons: [Addon]) async {
+    func load(_ addons: [Addon], owner: String, library: LibraryModel) async {
         loadingMetadata = true
         defer { loadingMetadata = false }
-        do { media = try await service.metadata(media, addons: addons) }
+        do {
+            let result = try await service.metadata(media, addons: addons)
+            try Task.checkCancellation()
+            guard library.owner == owner else { return }
+            media = result
+        }
         catch is CancellationError { return }
-        catch { self.error = safeMessage(error) }
+        catch { if library.owner == owner { self.error = safeMessage(error) } }
+    }
+
+    func loadRelated(_ addons: [Addon], owner: String, library: LibraryModel) async {
+        guard library.owner == owner, media.details?.similar.isEmpty ?? true else { return }
+        let selected = media
+        do {
+            let related = try await service.related(selected, addons: addons)
+            try Task.checkCancellation()
+            guard library.owner == owner, media.identity == selected.identity, !related.isEmpty, media.details?.similar.isEmpty ?? true else { return }
+            var details = media.details ?? MediaDetails()
+            details.similar = related
+            media.details = details
+        } catch { return } // Optional discovery must not prevent opening or playing the title.
     }
 
     func findStreams(_ addons: [Addon], episode: Episode? = nil) async {

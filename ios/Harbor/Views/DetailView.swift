@@ -31,7 +31,13 @@ struct DetailView: View {
                 DetailMetadataView(media: model.media, app: app)
             }
         }.background(HarborTheme.background).navigationBarTitleDisplayMode(.inline).toolbar(.visible, for: .navigationBar)
-        .task { await model.load(app.addons); if playImmediately { playTitle() } }
+        .task {
+            let owner = app.library.owner
+            await model.load(app.addons, owner: owner, library: app.library)
+            guard !Task.isCancelled, owner == app.library.owner else { return }
+            if playImmediately { playTitle() }
+            await model.loadRelated(app.addons, owner: owner, library: app.library)
+        }
         .sheet(isPresented: $showStreams, onDismiss: { resolutionTask?.cancel(); model.pendingPlayback = nil; model.showResumePrompt = false; pendingEpisode = nil; pendingEpisodeOwner = nil; autoplayEpisode = false; model.clearSourceChange() }) {
             NavigationStack {
                 List {

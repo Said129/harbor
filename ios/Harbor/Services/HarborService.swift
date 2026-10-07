@@ -80,6 +80,18 @@ struct HarborService: Sendable {
         }
         return result
     }
+    func related(_ media: Media, addons: [Addon]) async throws -> [Media] {
+        guard media.id.range(of: "^tt[0-9]{7,}$", options: .regularExpression) != nil,
+              ["movie", "series"].contains(media.type), let genre = media.genres?.first, !genre.isEmpty else { return [] }
+        let providers = try await catalogProviders(addons)
+        guard let provider = providers.first(where: { $0.enabled && $0.manifest["id"].string == "com.linvo.cinemeta" }) else { return [] }
+        let plans: [RequestPlan] = try await core.call("catalogs", ["addons": try .encoded([provider]), "search": .null, "genre": .string(genre), "skip": .integer(0)])
+        guard let plan = plans.first(where: { $0.kind == media.type && $0.catalog?.id == "top" && $0.catalog?.extra.first(where: { $0.name == "genre" })?.options.contains(genre) == true }) else { return [] }
+        let response = try await http.json(plan.url, timeout: Double(plan.timeoutMs) / 1000)
+        let row = try decodeCatalog(response, plan: plan)
+        try Task.checkCancellation()
+        return Array(row.metas.filter { $0.identity != media.identity }.prefix(30))
+    }
     private func addonMetadata(_ media: Media, addons: [Addon]) async throws -> Media {
         let plans = try await resources(addons, "meta", media.type, media.id)
         let result = try await fetch(plans)
