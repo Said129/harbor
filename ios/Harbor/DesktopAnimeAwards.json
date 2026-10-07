@@ -1,0 +1,2909 @@
+{
+  "reference": "19ddc311a397eb3483b5c978d2cf2bbb3f7f479f",
+  "sourcesSha256": {
+    "crunchyroll-awards": "ad3e0f240924a1eb9344cc08370233a72adc0e6b19320961323c7c420e90922d",
+    "taaf-awards": "a89af793c681079dfc4eb20e2d5f9b6fb90d7782d8cab4c2416cc5d337e1ab1e",
+    "japan-media-arts-awards": "1e93ed2af36581e6363a1b998173a63ef86f93d51cf49fbef76da53c3e62269b",
+    "animation-kobe-awards": "6d0513fac6bc256186a12bf5e0f23b2cbff93b8f5f35af4ae77182fb2eee1134",
+    "r-anime-awards": "771ae9aafaf0e89e7388546061a8e7581f31f858673ee0488f1914a6dc8a2b30"
+  },
+  "idMapSha256": "d6ab5be037c3cc87603c2e75821779d3bc88a62728782273c5487a91f1a0292f",
+  "winners": [
+    {
+      "id": "kitsu:49279",
+      "title": "My Hero Academia: Final Season",
+      "year": 2026,
+      "source": "Crunchyroll Anime Awards",
+      "category": "Anime of the Year",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:49001",
+      "title": "Demon Slayer: Kimetsu no Yaiba – The Movie: Infinity Castle",
+      "year": 2026,
+      "source": "Crunchyroll Anime Awards",
+      "category": "Film of the Year",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:49386",
+      "title": "Mobile Suit Gundam GQuuuuuuX",
+      "year": 2026,
+      "source": "taaf-awards",
+      "category": "Animation of the Year (TV)",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:46231",
+      "title": "Solo Leveling",
+      "year": 2025,
+      "source": "Crunchyroll Anime Awards",
+      "category": "Anime of the Year",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:48541",
+      "title": "Look Back",
+      "year": 2025,
+      "source": "Crunchyroll Anime Awards",
+      "category": "Film of the Year",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:46474",
+      "title": "Frieren: Beyond Journey's End",
+      "year": 2025,
+      "source": "taaf-awards",
+      "category": "Animation of the Year (TV)",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:46492",
+      "title": "Sono Bisque Doll wa Koi wo Suru Season 2",
+      "year": 2025,
+      "source": "https://animeawards.moe",
+      "category": "Anime of the Year",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:46809",
+      "title": "Kimi no Iro",
+      "year": 2025,
+      "source": "https://animeawards.moe",
+      "category": "Movie of the Year",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:42765",
+      "title": "Jujutsu Kaisen",
+      "year": 2024,
+      "source": "Crunchyroll Anime Awards",
+      "category": "Anime of the Year",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:45597",
+      "title": "Suzume",
+      "year": 2024,
+      "source": "Crunchyroll Anime Awards",
+      "category": "Film of the Year",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:46225",
+      "title": "The First Slam Dunk",
+      "year": 2024,
+      "source": "taaf-awards",
+      "category": "Animation of the Year",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:46170",
+      "title": "Oshi no Ko",
+      "year": 2024,
+      "source": "taaf-awards",
+      "category": "Animation of the Year (TV)",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:46320",
+      "title": "Dungeon Meshi",
+      "year": 2024,
+      "source": "https://animeawards.moe",
+      "category": "Anime of the Year",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:46188",
+      "title": "Mononoke: Karakasa",
+      "year": 2024,
+      "source": "https://animeawards.moe",
+      "category": "Movie of the Year",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:43248",
+      "title": "Cyberpunk: Edgerunners",
+      "year": 2023,
+      "source": "Crunchyroll Anime Awards",
+      "category": "Anime of the Year",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:44212",
+      "title": "Jujutsu Kaisen 0",
+      "year": 2023,
+      "source": "Crunchyroll Anime Awards",
+      "category": "Film of the Year",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:45513",
+      "title": "One Piece Film: Red",
+      "year": 2023,
+      "source": "taaf-awards",
+      "category": "Animation of the Year",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:45398",
+      "title": "Spy × Family",
+      "year": 2023,
+      "source": "taaf-awards",
+      "category": "Animation of the Year (TV)",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:47291",
+      "title": "BanG Dream! It's MyGO!!!!!",
+      "year": 2023,
+      "source": "https://animeawards.moe",
+      "category": "Anime of the Year",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:46038",
+      "title": "Attack on Titan: The Final Season Part 1",
+      "year": 2022,
+      "source": "Crunchyroll Anime Awards",
+      "category": "Anime of the Year",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:42586",
+      "title": "Demon Slayer: Kimetsu no Yaiba – The Movie: Mugen Train",
+      "year": 2022,
+      "source": "Crunchyroll Anime Awards",
+      "category": "Film of the Year",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:3252",
+      "title": "Evangelion: 3.0+1.0 Thrice Upon a Time",
+      "year": 2022,
+      "source": "taaf-awards",
+      "category": "Animation of the Year",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:44193",
+      "title": "Yama no Susume: Next Summit",
+      "year": 2022,
+      "source": "https://animeawards.moe",
+      "category": "Anime of the Year",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:41450",
+      "title": "Violet Evergarden: The Movie",
+      "year": 2021,
+      "source": "taaf-awards",
+      "category": "Animation of the Year",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:42343",
+      "title": "Keep Your Hands Off Eizouken!",
+      "year": 2021,
+      "source": "taaf-awards",
+      "category": "Animation of the Year (TV)",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:44501",
+      "title": "Sonny Boy",
+      "year": 2021,
+      "source": "https://animeawards.moe",
+      "category": "Anime of the Year",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:43046",
+      "title": "Eiga Daisuki Pompo-san",
+      "year": 2021,
+      "source": "https://animeawards.moe",
+      "category": "Movie of the Year",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:41370",
+      "title": "Demon Slayer: Kimetsu no Yaiba",
+      "year": 2020,
+      "source": "Crunchyroll Anime Awards",
+      "category": "Anime of the Year",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:42028",
+      "title": "Weathering with You",
+      "year": 2020,
+      "source": "taaf-awards",
+      "category": "Animation of the Year",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:41489",
+      "title": "Children of the Sea",
+      "year": 2020,
+      "source": "japan-media-arts-awards",
+      "category": "Grand Prize",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:40998",
+      "title": "Chihayafuru 3",
+      "year": 2020,
+      "source": "https://animeawards.moe",
+      "category": "Anime of the Year",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:43234",
+      "title": "Ongaku",
+      "year": 2020,
+      "source": "https://animeawards.moe",
+      "category": "Movie of the Year",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:13230",
+      "title": "Devilman Crybaby",
+      "year": 2019,
+      "source": "Crunchyroll Anime Awards",
+      "category": "Anime of the Year",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:14084",
+      "title": "My Hero Academia: Two Heroes",
+      "year": 2019,
+      "source": "Crunchyroll Anime Awards",
+      "category": "Film of the Year",
+      "aoty": true
+    },
+    {
+      "id": "anilist:100653",
+      "title": "Detective Conan: Zero the Enforcer",
+      "year": 2019,
+      "source": "taaf-awards",
+      "category": "Animation of the Year",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:41459",
+      "title": "Zombie Land Saga",
+      "year": 2019,
+      "source": "taaf-awards",
+      "category": "Animation of the Year (TV)",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:13972",
+      "title": "HUGtto! Precure",
+      "year": 2019,
+      "source": "https://animeawards.moe",
+      "category": "Anime of the Year",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:13535",
+      "title": "Non Non Biyori: Vacation",
+      "year": 2019,
+      "source": "https://animeawards.moe",
+      "category": "Movie of the Year",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:13273",
+      "title": "Made in Abyss",
+      "year": 2018,
+      "source": "Crunchyroll Anime Awards",
+      "category": "Anime of the Year",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:11614",
+      "title": "Your Name",
+      "year": 2018,
+      "source": "Crunchyroll Anime Awards",
+      "category": "Film of the Year",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:7234",
+      "title": "In This Corner of the World",
+      "year": 2018,
+      "source": "taaf-awards",
+      "category": "Animation of the Year",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:12707",
+      "title": "Kemono Friends",
+      "year": 2018,
+      "source": "taaf-awards",
+      "category": "Animation of the Year (TV)",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:13401",
+      "title": "3-gatsu no Lion 2nd Season",
+      "year": 2018,
+      "source": "https://animeawards.moe",
+      "category": "Anime of the Year",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:13618",
+      "title": "Liz and the Blue Bird",
+      "year": 2018,
+      "source": "https://animeawards.moe",
+      "category": "Movie of the Year",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:11999",
+      "title": "Yuri on Ice",
+      "year": 2017,
+      "source": "Crunchyroll Anime Awards",
+      "category": "Anime of the Year",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:10028",
+      "title": "A Silent Voice",
+      "year": 2017,
+      "source": "taaf-awards",
+      "category": "Animation of the Year",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:10051",
+      "title": "Rakugo Shinjuu S2",
+      "year": 2017,
+      "source": "https://animeawards.moe",
+      "category": "Anime of the Year",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:13138",
+      "title": "The Night is Short, Walk on Girl",
+      "year": 2017,
+      "source": "https://animeawards.moe",
+      "category": "Movie of the Year",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:8531",
+      "title": "Love Live! The School Idol Movie",
+      "year": 2016,
+      "source": "taaf-awards",
+      "category": "Animation of the Year",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:8698",
+      "title": "Shirobako",
+      "year": 2016,
+      "source": "taaf-awards",
+      "category": "Animation of the Year (TV)",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:10056",
+      "title": "Anthem of the Heart",
+      "year": 2016,
+      "source": "https://animeawards.moe",
+      "category": "Movie of the Year",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:8603",
+      "title": "Frozen",
+      "year": 2015,
+      "source": "taaf-awards",
+      "category": "Animation of the Year",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:8010",
+      "title": "Yo-Kai Watch",
+      "year": 2015,
+      "source": "taaf-awards",
+      "category": "Animation of the Year (TV)",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:8566",
+      "title": "Stand by Me Doraemon",
+      "year": 2015,
+      "source": "taaf-awards",
+      "category": "Animation of the Year (Film)",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:9721",
+      "title": "Ghost in the Shell: The New Movie",
+      "year": 2015,
+      "source": "animation-kobe-awards",
+      "category": "Theatrical Film Award",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:7485",
+      "title": "The Wind Rises",
+      "year": 2014,
+      "source": "taaf-awards",
+      "category": "Animation of the Year",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:6729",
+      "title": "Space Brothers",
+      "year": 2014,
+      "source": "taaf-awards",
+      "category": "Animation of the Year (TV)",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:50028",
+      "title": "The Wound",
+      "year": 2014,
+      "source": "japan-media-arts-awards",
+      "category": "Grand Prize",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:6638",
+      "title": "Puella Magi Madoka Magica: Rebellion",
+      "year": 2014,
+      "source": "animation-kobe-awards",
+      "category": "Theatrical Film Award",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:11745",
+      "title": "Love Live!",
+      "year": 2014,
+      "source": "animation-kobe-awards",
+      "category": "Television Award",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:6711",
+      "title": "Wolf Children",
+      "year": 2013,
+      "source": "taaf-awards",
+      "category": "Animation of the Year",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:6595",
+      "title": "Kuroko's Basketball",
+      "year": 2013,
+      "source": "taaf-awards",
+      "category": "Animation of the Year (TV)",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:7515",
+      "title": "The Garden of Words",
+      "year": 2013,
+      "source": "animation-kobe-awards",
+      "category": "Theatrical Film Award",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:7442",
+      "title": "Attack on Titan",
+      "year": 2013,
+      "source": "animation-kobe-awards",
+      "category": "Television Award",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:6000",
+      "title": "From up on Poppy Hill",
+      "year": 2012,
+      "source": "taaf-awards",
+      "category": "Animation of the Year",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:5853",
+      "title": "Puella Magi Madoka Magica",
+      "year": 2012,
+      "source": "taaf-awards",
+      "category": "Animation of the Year (TV)",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:7003",
+      "title": "Combustible",
+      "year": 2012,
+      "source": "japan-media-arts-awards",
+      "category": "Grand Prize",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:5810",
+      "title": "K-On! The Movie",
+      "year": 2012,
+      "source": "animation-kobe-awards",
+      "category": "Theatrical Film Award",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:41353",
+      "title": "YuruYuri",
+      "year": 2012,
+      "source": "animation-kobe-awards",
+      "category": "Television Award",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:5090",
+      "title": "The Secret World of Arrietty",
+      "year": 2011,
+      "source": "taaf-awards",
+      "category": "Animation of the Year",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:4240",
+      "title": "K-On!!",
+      "year": 2011,
+      "source": "taaf-awards",
+      "category": "Animation of the Year (TV)",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:4903",
+      "title": "Macross Frontier: Sayonara no Tsubasa",
+      "year": 2011,
+      "source": "animation-kobe-awards",
+      "category": "Theatrical Film Award",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:4241",
+      "title": "Summer Wars",
+      "year": 2010,
+      "source": "taaf-awards",
+      "category": "Animation of the Year",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:4211",
+      "title": "Eden of the East",
+      "year": 2010,
+      "source": "taaf-awards",
+      "category": "Animation of the Year (TV)",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:5122",
+      "title": "The Tatami Galaxy",
+      "year": 2010,
+      "source": "japan-media-arts-awards",
+      "category": "Grand Prize",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:4938",
+      "title": "The Disappearance of Haruhi Suzumiya",
+      "year": 2010,
+      "source": "animation-kobe-awards",
+      "category": "Theatrical Film Award",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:2624",
+      "title": "Ponyo",
+      "year": 2009,
+      "source": "taaf-awards",
+      "category": "Animation of the Year",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:3113",
+      "title": "Macross Frontier",
+      "year": 2009,
+      "source": "taaf-awards",
+      "category": "Animation of the Year (TV)",
+      "aoty": true
+    },
+    {
+      "id": "anilist:103719",
+      "title": "WALL-E",
+      "year": 2009,
+      "source": "animation-kobe-awards",
+      "category": "Theatrical Film Award",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:2519",
+      "title": "Evangelion: 1.0 You Are (Not) Alone",
+      "year": 2008,
+      "source": "taaf-awards",
+      "category": "Animation of the Year",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:1959",
+      "title": "Dennō Coil",
+      "year": 2008,
+      "source": "taaf-awards",
+      "category": "Animation of the Year (TV)",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:2598",
+      "title": "Summer Days with Coo",
+      "year": 2008,
+      "source": "taaf-awards",
+      "category": "Animation of the Year (Film)",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:4073",
+      "title": "La Maison en petits cubes",
+      "year": 2008,
+      "source": "japan-media-arts-awards",
+      "category": "Grand Prize",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:5801",
+      "title": "Code Geass R2",
+      "year": 2008,
+      "source": "animation-kobe-awards",
+      "category": "Television Award",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:2027",
+      "title": "The Girl Who Leapt Through Time",
+      "year": 2007,
+      "source": "taaf-awards",
+      "category": "Animation of the Year",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:1415",
+      "title": "Code Geass: Lelouch of the Rebellion",
+      "year": 2007,
+      "source": "taaf-awards",
+      "category": "Animation of the Year (TV)",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:1752",
+      "title": "Paprika",
+      "year": 2007,
+      "source": "taaf-awards",
+      "category": "Animation of the Year (Film)",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:394",
+      "title": "Fullmetal Alchemist the Movie: Conqueror of Shamballa",
+      "year": 2006,
+      "source": "taaf-awards",
+      "category": "Animation of the Year",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:212",
+      "title": "Eureka Seven",
+      "year": 2006,
+      "source": "taaf-awards",
+      "category": "Animation of the Year (TV)",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:1351",
+      "title": "Detective Conan: Strategy Above the Depths",
+      "year": 2006,
+      "source": "taaf-awards",
+      "category": "Animation of the Year (Film)",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:751",
+      "title": "The Melancholy of Haruhi Suzumiya",
+      "year": 2006,
+      "source": "animation-kobe-awards",
+      "category": "Television Award",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:395",
+      "title": "Howl's Moving Castle",
+      "year": 2005,
+      "source": "taaf-awards",
+      "category": "Animation of the Year",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:214",
+      "title": "Gankutsuou: The Count of Monte Cristo",
+      "year": 2005,
+      "source": "taaf-awards",
+      "category": "Animation of the Year (TV)",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:430",
+      "title": "Ghost in the Shell 2: Innocence",
+      "year": 2005,
+      "source": "taaf-awards",
+      "category": "Animation of the Year (Film)",
+      "aoty": true
+    },
+    {
+      "id": "anilist:148590",
+      "title": "Flow",
+      "year": 2005,
+      "source": "japan-media-arts-awards",
+      "category": "Grand Prize",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:1772",
+      "title": "New Translation Zeta Gundam: Heirs to the Stars",
+      "year": 2005,
+      "source": "animation-kobe-awards",
+      "category": "Theatrical Film Award",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:72",
+      "title": "Mobile Suit Gundam Seed",
+      "year": 2004,
+      "source": "taaf-awards",
+      "category": "Animation of the Year",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:2507",
+      "title": "Astro Boy",
+      "year": 2004,
+      "source": "taaf-awards",
+      "category": "Animation of the Year (TV)",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:681",
+      "title": "Tokyo Godfathers",
+      "year": 2004,
+      "source": "taaf-awards",
+      "category": "Animation of the Year (Film)",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:775",
+      "title": "Mind Game",
+      "year": 2004,
+      "source": "japan-media-arts-awards",
+      "category": "Grand Prize",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:100",
+      "title": "Fullmetal Alchemist",
+      "year": 2004,
+      "source": "animation-kobe-awards",
+      "category": "Television Award",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:1804",
+      "title": "Hanada Shōnen-shi",
+      "year": 2003,
+      "source": "taaf-awards",
+      "category": "Animation of the Year (TV)",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:923",
+      "title": "Millennium Actress",
+      "year": 2003,
+      "source": "taaf-awards",
+      "category": "Animation of the Year (Film)",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:2861",
+      "title": "Winter Days",
+      "year": 2003,
+      "source": "japan-media-arts-awards",
+      "category": "Grand Prize",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:176",
+      "title": "Spirited Away",
+      "year": 2002,
+      "source": "taaf-awards",
+      "category": "Animation of the Year",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:224",
+      "title": "Inuyasha",
+      "year": 2002,
+      "source": "taaf-awards",
+      "category": "Animation of the Year (TV)",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:918",
+      "title": "Princess Arete",
+      "year": 2002,
+      "source": "taaf-awards",
+      "category": "Animation of the Year (Film)",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:3225",
+      "title": "Crayon Shin-chan: The Storm Called: The Battle of the Warring States",
+      "year": 2002,
+      "source": "japan-media-arts-awards",
+      "category": "Grand Prize",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:552",
+      "title": "The Cat Returns",
+      "year": 2002,
+      "source": "animation-kobe-awards",
+      "category": "Theatrical Film Award",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:143",
+      "title": "RahXephon",
+      "year": 2002,
+      "source": "animation-kobe-awards",
+      "category": "Television Award",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:33",
+      "title": "Angelic Layer",
+      "year": 2001,
+      "source": "animation-kobe-awards",
+      "category": "Television Award",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:372",
+      "title": "Blood: The Last Vampire",
+      "year": 2000,
+      "source": "japan-media-arts-awards",
+      "category": "Grand Prize",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:339",
+      "title": "Cardcaptor Sakura The Movie 2: The Sealed Card",
+      "year": 2000,
+      "source": "animation-kobe-awards",
+      "category": "Theatrical Film Award",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:548",
+      "title": "Infinite Ryvius",
+      "year": 2000,
+      "source": "animation-kobe-awards",
+      "category": "Television Award",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:13461",
+      "title": "The Old Man and the Sea",
+      "year": 1999,
+      "source": "japan-media-arts-awards",
+      "category": "Grand Prize",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:338",
+      "title": "Cardcaptor Sakura The Movie",
+      "year": 1999,
+      "source": "animation-kobe-awards",
+      "category": "Theatrical Film Award",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:74",
+      "title": "∀ Gundam",
+      "year": 1999,
+      "source": "animation-kobe-awards",
+      "category": "Television Award",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:1082",
+      "title": "Glassy Ocean",
+      "year": 1998,
+      "source": "japan-media-arts-awards",
+      "category": "Grand Prize",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:41871",
+      "title": "Pokémon: Mewtwo Strikes Back",
+      "year": 1998,
+      "source": "animation-kobe-awards",
+      "category": "Theatrical Film Award",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:1",
+      "title": "Cowboy Bebop",
+      "year": 1998,
+      "source": "animation-kobe-awards",
+      "category": "Television Award",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:142",
+      "title": "Princess Mononoke",
+      "year": 1997,
+      "source": "japan-media-arts-awards",
+      "category": "Grand Prize",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:403",
+      "title": "Revolutionary Girl Utena",
+      "year": 1997,
+      "source": "animation-kobe-awards",
+      "category": "Television Award",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:25",
+      "title": "Ghost in the Shell",
+      "year": 1996,
+      "source": "animation-kobe-awards",
+      "category": "Theatrical Film Award",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:21",
+      "title": "Neon Genesis Evangelion",
+      "year": 1996,
+      "source": "animation-kobe-awards",
+      "category": "Television Award",
+      "aoty": true
+    },
+    {
+      "id": "kitsu:12",
+      "title": "One Piece",
+      "year": 2026,
+      "source": "Crunchyroll Anime Awards",
+      "category": "Best Continuing Series",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:48946",
+      "title": "Gachiakuta",
+      "year": 2026,
+      "source": "Crunchyroll Anime Awards",
+      "category": "Best New Series",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:47778",
+      "title": "Lazarus",
+      "year": 2026,
+      "source": "Crunchyroll Anime Awards",
+      "category": "Best Original Anime",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:48671",
+      "title": "Solo Leveling: Arise from the Shadow",
+      "year": 2026,
+      "source": "Crunchyroll Anime Awards",
+      "category": "Best Animation",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:47083",
+      "title": "The Apothecary Diaries",
+      "year": 2026,
+      "source": "Crunchyroll Anime Awards",
+      "category": "Best Director",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:11209",
+      "title": "Re:Zero − Starting Life in Another World",
+      "year": 2026,
+      "source": "Crunchyroll Anime Awards",
+      "category": "Best Isekai",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:48269",
+      "title": "Dandadan",
+      "year": 2026,
+      "source": "Crunchyroll Anime Awards",
+      "category": "Best Comedy",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:49205",
+      "title": "The Fragrant Flower Blooms with Dignity",
+      "year": 2026,
+      "source": "Crunchyroll Anime Awards",
+      "category": "Best Romance",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:48323",
+      "title": "Chainsaw Man – The Movie: Reze Arc",
+      "year": 2026,
+      "source": "Crunchyroll Anime Awards",
+      "category": "Best Anime Song",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:47635",
+      "title": "Demon Slayer: Kimetsu no Yaiba Hashira Training Arc",
+      "year": 2025,
+      "source": "Crunchyroll Anime Awards",
+      "category": "Best Continuing Series",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:46224",
+      "title": "Ninja Kamui",
+      "year": 2025,
+      "source": "Crunchyroll Anime Awards",
+      "category": "Best Original Anime",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:47671",
+      "title": "Mashle: Magic and Muscles The Divine Visionary Candidate Exam Arc",
+      "year": 2025,
+      "source": "Crunchyroll Anime Awards",
+      "category": "Best Comedy",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:48239",
+      "title": "Blue Box",
+      "year": 2025,
+      "source": "Crunchyroll Anime Awards",
+      "category": "Best Romance",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:48312",
+      "title": "Makeine: Too Many Losing Heroines!",
+      "year": 2025,
+      "source": "Crunchyroll Anime Awards",
+      "category": "Best Slice of Life",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:49216",
+      "title": "CITY THE ANIMATION",
+      "year": 2025,
+      "source": "https://animeawards.moe",
+      "category": "Best Animation",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:48216",
+      "title": "Dungeon ni Deai wo Motomeru no wa Machigatteiru Darou ka V: Houjou no Megami-hen",
+      "year": 2025,
+      "source": "https://animeawards.moe",
+      "category": "Best Adventure",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:48839",
+      "title": "Ninja to Koroshiya no Futarigurashi",
+      "year": 2025,
+      "source": "https://animeawards.moe",
+      "category": "Best Comedy",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:47454",
+      "title": "Medalist",
+      "year": 2025,
+      "source": "https://animeawards.moe",
+      "category": "Best Drama",
+      "aoty": false
+    },
+    {
+      "id": "anilist:174596",
+      "title": "Sora-iro Utility (TV)",
+      "year": 2025,
+      "source": "https://animeawards.moe",
+      "category": "Best Slice of Life",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:49392",
+      "title": "Takopii no Genzai",
+      "year": 2025,
+      "source": "https://animeawards.moe",
+      "category": "Best Suspense",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:49704",
+      "title": "Ginga Tokkyuu Milky☆Subway",
+      "year": 2025,
+      "source": "https://animeawards.moe",
+      "category": "Best Character Design",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:48893",
+      "title": "Hikaru ga Shinda Natsu",
+      "year": 2025,
+      "source": "https://animeawards.moe",
+      "category": "Best Cinematography",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:46227",
+      "title": "New PANTY & STOCKING with GARTERBELT",
+      "year": 2025,
+      "source": "https://animeawards.moe",
+      "category": "Best Soundtrack",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:43806",
+      "title": "Chainsaw Man",
+      "year": 2024,
+      "source": "Crunchyroll Anime Awards",
+      "category": "Best New Series",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:46650",
+      "title": "Buddy Daddies",
+      "year": 2024,
+      "source": "Crunchyroll Anime Awards",
+      "category": "Best Original Anime",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:45866",
+      "title": "Demon Slayer: Kimetsu no Yaiba Swordsmith Village Arc",
+      "year": 2024,
+      "source": "Crunchyroll Anime Awards",
+      "category": "Best Animation",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:47234",
+      "title": "Horimiya: The Missing Pieces",
+      "year": 2024,
+      "source": "Crunchyroll Anime Awards",
+      "category": "Best Romance",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:44196",
+      "title": "Bocchi the Rock!",
+      "year": 2024,
+      "source": "Crunchyroll Anime Awards",
+      "category": "Best Slice of Life",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:49259",
+      "title": "ONE PIECE FAN LETTER",
+      "year": 2024,
+      "source": "https://animeawards.moe",
+      "category": "Short of the Year",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:47656",
+      "title": "Hime-sama, \"Goumon\" no Jikan desu",
+      "year": 2024,
+      "source": "https://animeawards.moe",
+      "category": "Best Comedy",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:47905",
+      "title": "Kimi ni Todoke 3RD SEASON",
+      "year": 2024,
+      "source": "https://animeawards.moe",
+      "category": "Best Romance",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:49162",
+      "title": "Yuru Camp△ SEASON 3",
+      "year": 2024,
+      "source": "https://animeawards.moe",
+      "category": "Best Slice of Life",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:48008",
+      "title": "Ochibi-san",
+      "year": 2024,
+      "source": "https://animeawards.moe",
+      "category": "Best Background Art",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:48434",
+      "title": "Monogatari Series: Off & Monster Season",
+      "year": 2024,
+      "source": "https://animeawards.moe",
+      "category": "Best Soundtrack",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:45705",
+      "title": "Lycoris Recoil",
+      "year": 2023,
+      "source": "Crunchyroll Anime Awards",
+      "category": "Best Original Anime",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:44081",
+      "title": "Demon Slayer: Kimetsu no Yaiba Entertainment District Arc",
+      "year": 2023,
+      "source": "Crunchyroll Anime Awards",
+      "category": "Best Animation",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:44240",
+      "title": "Attack on Titan: The Final Season Part 2",
+      "year": 2023,
+      "source": "Crunchyroll Anime Awards",
+      "category": "Best Drama",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:43691",
+      "title": "Kaguya-sama: Love Is War – Ultra Romantic",
+      "year": 2023,
+      "source": "Crunchyroll Anime Awards",
+      "category": "Best Romance",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:46077",
+      "title": "Onii-chan wa Oshimai!",
+      "year": 2023,
+      "source": "https://animeawards.moe",
+      "category": "Best Animation",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:45857",
+      "title": "Jujutsu Kaisen 2nd Season",
+      "year": 2023,
+      "source": "https://animeawards.moe",
+      "category": "Best Action",
+      "aoty": false
+    },
+    {
+      "id": "anilist:135806",
+      "title": "Isekai Oji-san",
+      "year": 2023,
+      "source": "https://animeawards.moe",
+      "category": "Best Comedy",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:45746",
+      "title": "Kimi wa Houkago Insomnia",
+      "year": 2023,
+      "source": "https://animeawards.moe",
+      "category": "Best Romance",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:49722",
+      "title": "Aikatsu! 10th STORY: Mirai e no STARWAY (2023)",
+      "year": 2023,
+      "source": "https://animeawards.moe",
+      "category": "Best Slice of Life",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:13563",
+      "title": "PLUTO",
+      "year": 2023,
+      "source": "https://animeawards.moe",
+      "category": "Best Suspense",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:46641",
+      "title": "Tengoku Daimakyou",
+      "year": 2023,
+      "source": "https://animeawards.moe",
+      "category": "Best Background Art",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:46368",
+      "title": "Tsurune: Tsunagari no Issha",
+      "year": 2023,
+      "source": "https://animeawards.moe",
+      "category": "Best Cinematography",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:45249",
+      "title": "Demon Slayer: Kimetsu no Yaiba Mugen Train Arc",
+      "year": 2022,
+      "source": "Crunchyroll Anime Awards",
+      "category": "Best Animation",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:43932",
+      "title": "Odd Taxi",
+      "year": 2022,
+      "source": "Crunchyroll Anime Awards",
+      "category": "Best Director",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:41024",
+      "title": "That Time I Got Reincarnated as a Slime",
+      "year": 2022,
+      "source": "Crunchyroll Anime Awards",
+      "category": "Best Fantasy",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:43211",
+      "title": "To Your Eternity",
+      "year": 2022,
+      "source": "Crunchyroll Anime Awards",
+      "category": "Best Drama",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:44551",
+      "title": "Komi Can't Communicate",
+      "year": 2022,
+      "source": "Crunchyroll Anime Awards",
+      "category": "Best Comedy",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:43545",
+      "title": "Horimiya",
+      "year": 2022,
+      "source": "Crunchyroll Anime Awards",
+      "category": "Best Romance",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:43849",
+      "title": "Ranking of Kings",
+      "year": 2022,
+      "source": "Crunchyroll Anime Awards",
+      "category": "Best Boy",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:46194",
+      "title": "Dozens of Norths",
+      "year": 2022,
+      "source": "japan-media-arts-awards",
+      "category": "Excellence Prize",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:44395",
+      "title": "Fortune Favors Lady Nikuko",
+      "year": 2022,
+      "source": "japan-media-arts-awards",
+      "category": "Excellence Prize",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:46195",
+      "title": "A Bite of Bone",
+      "year": 2022,
+      "source": "japan-media-arts-awards",
+      "category": "New Face Award",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:42900",
+      "title": "Dragon Quest: Dai no Daibouken (2020)",
+      "year": 2022,
+      "source": "https://animeawards.moe",
+      "category": "Best Adventure",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:42681",
+      "title": "Shoujo☆Kageki Revue Starlight Movie",
+      "year": 2022,
+      "source": "https://animeawards.moe",
+      "category": "Best Drama",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:44171",
+      "title": "ARIA The BENEDIZIONE",
+      "year": 2022,
+      "source": "https://animeawards.moe",
+      "category": "Best Slice of Life",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:44428",
+      "title": "Deaimon",
+      "year": 2022,
+      "source": "https://animeawards.moe",
+      "category": "Best Background Art",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:44237",
+      "title": "Do It Yourself!!",
+      "year": 2022,
+      "source": "https://animeawards.moe",
+      "category": "Best Character Design",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:44974",
+      "title": "Yojouhan Time Machine Blues",
+      "year": 2022,
+      "source": "https://animeawards.moe",
+      "category": "Best Cinematography",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:99",
+      "title": "Fruits Basket",
+      "year": 2021,
+      "source": "Crunchyroll Anime Awards",
+      "category": "Best Drama",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:41373",
+      "title": "Kaguya-sama: Love Is War?",
+      "year": 2021,
+      "source": "Crunchyroll Anime Awards",
+      "category": "Best Comedy",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:42322",
+      "title": "Toilet-Bound Hanako-kun",
+      "year": 2021,
+      "source": "Crunchyroll Anime Awards",
+      "category": "Best Character Design",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:43004",
+      "title": "Tower of God",
+      "year": 2021,
+      "source": "Crunchyroll Anime Awards",
+      "category": "Best Score",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:42147",
+      "title": "Beastars",
+      "year": 2021,
+      "source": "Crunchyroll Anime Awards",
+      "category": "Best Opening",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:42059",
+      "title": "Haikyu!! To the Top",
+      "year": 2021,
+      "source": "Crunchyroll Anime Awards",
+      "category": "Best Boy",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:42277",
+      "title": "My Next Life as a Villainess: All Routes Lead to Doom!",
+      "year": 2021,
+      "source": "Crunchyroll Anime Awards",
+      "category": "Best Protagonist",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:43034",
+      "title": "TONIKAWA: Over The Moon For You",
+      "year": 2021,
+      "source": "Crunchyroll Anime Awards",
+      "category": "Best Couple",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:11469",
+      "title": "My Hero Academia",
+      "year": 2021,
+      "source": "Crunchyroll Anime Awards",
+      "category": "Best Fight",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:42965",
+      "title": "A Whisker Away",
+      "year": 2021,
+      "source": "japan-media-arts-awards",
+      "category": "Excellence Prize",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:45354",
+      "title": "The Mark of Emi",
+      "year": 2021,
+      "source": "japan-media-arts-awards",
+      "category": "New Face Award",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:44326",
+      "title": "Kobayashi-san Chi no Maidragon S",
+      "year": 2021,
+      "source": "https://animeawards.moe",
+      "category": "Best Animation",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:42888",
+      "title": "SSSS.DYNAZENON",
+      "year": 2021,
+      "source": "https://animeawards.moe",
+      "category": "Best Action",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:43907",
+      "title": "Mushoku Tensei: Isekai Ittara Honki Dasu (Part 1 and Part 2)",
+      "year": 2021,
+      "source": "https://animeawards.moe",
+      "category": "Best Adventure",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:42467",
+      "title": "Zombie Land Saga: Revenge",
+      "year": 2021,
+      "source": "https://animeawards.moe",
+      "category": "Best Comedy",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:42720",
+      "title": "NOMAD: Megalo Box 2",
+      "year": 2021,
+      "source": "https://animeawards.moe",
+      "category": "Best Drama",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:44035",
+      "title": "Shinigami Bocchan to Kuro Maid",
+      "year": 2021,
+      "source": "https://animeawards.moe",
+      "category": "Best Romance",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:42349",
+      "title": "Non Non Biyori: Nonstop",
+      "year": 2021,
+      "source": "https://animeawards.moe",
+      "category": "Best Slice of Life",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:44241",
+      "title": "Vanitas",
+      "year": 2021,
+      "source": "https://animeawards.moe",
+      "category": "Best VA Performance",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:41071",
+      "title": "Mob Psycho 100 II",
+      "year": 2020,
+      "source": "Crunchyroll Anime Awards",
+      "category": "Best Animation",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:41312",
+      "title": "The Promised Neverland",
+      "year": 2020,
+      "source": "Crunchyroll Anime Awards",
+      "category": "Best Fantasy",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:41084",
+      "title": "Vinland Saga",
+      "year": 2020,
+      "source": "Crunchyroll Anime Awards",
+      "category": "Best Drama",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:13593",
+      "title": "The Rising of the Shield Hero",
+      "year": 2020,
+      "source": "Crunchyroll Anime Awards",
+      "category": "Best Girl",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:42080",
+      "title": "Dr. Stone",
+      "year": 2020,
+      "source": "Crunchyroll Anime Awards",
+      "category": "Best Protagonist",
+      "aoty": false
+    },
+    {
+      "id": "anilist:116354",
+      "title": "A Japanese Boy Who Draws",
+      "year": 2020,
+      "source": "japan-media-arts-awards",
+      "category": "Excellence Prize",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:46950",
+      "title": "Gon, the Little Fox",
+      "year": 2020,
+      "source": "japan-media-arts-awards",
+      "category": "Excellence Prize",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:42203",
+      "title": "Daughter",
+      "year": 2020,
+      "source": "japan-media-arts-awards",
+      "category": "New Face Award",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:42869",
+      "title": "Hakumei no Tsubasa",
+      "year": 2020,
+      "source": "https://animeawards.moe",
+      "category": "Short of the Year",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:43067",
+      "title": "Akudama Drive",
+      "year": 2020,
+      "source": "https://animeawards.moe",
+      "category": "Best Action",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:42632",
+      "title": "Kaguya-sama Season 2",
+      "year": 2020,
+      "source": "https://animeawards.moe",
+      "category": "Best Comedy",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:42031",
+      "title": "Kimi to, Nami ni Noretara",
+      "year": 2020,
+      "source": "https://animeawards.moe",
+      "category": "Best Romance",
+      "aoty": false
+    },
+    {
+      "id": "anilist:108632",
+      "title": "Re:Zero Season 2",
+      "year": 2020,
+      "source": "https://animeawards.moe",
+      "category": "Best Suspense",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:10879",
+      "title": "Dragon Ball Super",
+      "year": 2019,
+      "source": "Crunchyroll Anime Awards",
+      "category": "Best Continuing Series",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:12230",
+      "title": "Violet Evergarden",
+      "year": 2019,
+      "source": "Crunchyroll Anime Awards",
+      "category": "Best Animation",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:41410",
+      "title": "JoJo's Bizarre Adventure: Golden Wind",
+      "year": 2019,
+      "source": "Crunchyroll Anime Awards",
+      "category": "Best Character Design",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:13600",
+      "title": "Darling in the Franxx",
+      "year": 2019,
+      "source": "Crunchyroll Anime Awards",
+      "category": "Best Opening",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:41056",
+      "title": "Rascal Does Not Dream of Bunny Girl Senpai",
+      "year": 2019,
+      "source": "Crunchyroll Anime Awards",
+      "category": "Best Girl",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:14042",
+      "title": "Dragon Pilot: Hisone and Masotan",
+      "year": 2019,
+      "source": "japan-media-arts-awards",
+      "category": "Excellence Prize",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:41007",
+      "title": "Penguin Highway",
+      "year": 2019,
+      "source": "japan-media-arts-awards",
+      "category": "Excellence Prize",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:41406",
+      "title": "Okko's Inn",
+      "year": 2019,
+      "source": "japan-media-arts-awards",
+      "category": "Excellence Prize",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:49937",
+      "title": "Invisible",
+      "year": 2019,
+      "source": "japan-media-arts-awards",
+      "category": "New Face Award",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:44114",
+      "title": "Totsukuni no Shoujo",
+      "year": 2019,
+      "source": "https://animeawards.moe",
+      "category": "Short of the Year",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:42025",
+      "title": "Araburu Kisetsu no Otome-domo yo",
+      "year": 2019,
+      "source": "https://animeawards.moe",
+      "category": "Best Romance",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:14129",
+      "title": "Zoku Owarimonogatari",
+      "year": 2019,
+      "source": "https://animeawards.moe",
+      "category": "Best Background Art",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:41015",
+      "title": "Aikatsu Friends!",
+      "year": 2019,
+      "source": "https://animeawards.moe",
+      "category": "Best Character Design",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:11380",
+      "title": "March Comes in Like a Lion",
+      "year": 2018,
+      "source": "Crunchyroll Anime Awards",
+      "category": "Best Continuing Series",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:13228",
+      "title": "The Ancient Magus' Bride",
+      "year": 2018,
+      "source": "Crunchyroll Anime Awards",
+      "category": "Best Drama",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:12243",
+      "title": "Miss Kobayashi's Dragon Maid",
+      "year": 2018,
+      "source": "Crunchyroll Anime Awards",
+      "category": "Best Comedy",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:13597",
+      "title": "Girls' Last Tour",
+      "year": 2018,
+      "source": "Crunchyroll Anime Awards",
+      "category": "Best Slice of Life",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:13521",
+      "title": "Land of the Lustrous",
+      "year": 2018,
+      "source": "Crunchyroll Anime Awards",
+      "category": "Best CGI",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:50131",
+      "title": "Tatsuki",
+      "year": 2018,
+      "source": "taaf-awards",
+      "category": "Animation of the Year (OVA)",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:42768",
+      "title": "Harmonia feat. Makoto",
+      "year": 2018,
+      "source": "japan-media-arts-awards",
+      "category": "Excellence Prize",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:12642",
+      "title": "Cocolors",
+      "year": 2018,
+      "source": "japan-media-arts-awards",
+      "category": "Excellence Prize",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:42775",
+      "title": "Negative Space",
+      "year": 2018,
+      "source": "japan-media-arts-awards",
+      "category": "Excellence Prize",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:11939",
+      "title": "The Great Passage",
+      "year": 2018,
+      "source": "japan-media-arts-awards",
+      "category": "New Face Award",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:46093",
+      "title": "Yin",
+      "year": 2018,
+      "source": "japan-media-arts-awards",
+      "category": "New Face Award",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:13883",
+      "title": "Baja's Studio",
+      "year": 2018,
+      "source": "https://animeawards.moe",
+      "category": "Short of the Year",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:13569",
+      "title": "Shingeki no Kyojin 3",
+      "year": 2018,
+      "source": "https://animeawards.moe",
+      "category": "Best Action",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:14018",
+      "title": "Hinamatsuri",
+      "year": 2018,
+      "source": "https://animeawards.moe",
+      "category": "Best Comedy",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:41240",
+      "title": "Bloom Into You",
+      "year": 2018,
+      "source": "https://animeawards.moe",
+      "category": "Best Romance",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:13583",
+      "title": "Yama no Susume: Third Season",
+      "year": 2018,
+      "source": "https://animeawards.moe",
+      "category": "Best Slice of Life",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:13277",
+      "title": "After the Rain",
+      "year": 2018,
+      "source": "https://animeawards.moe",
+      "category": "Best Background Art",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:12237",
+      "title": "Cardcaptor Sakura: Clear Card",
+      "year": 2018,
+      "source": "https://animeawards.moe",
+      "category": "Best Character Design",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:11578",
+      "title": "Mob Psycho 100",
+      "year": 2017,
+      "source": "Crunchyroll Anime Awards",
+      "category": "Best Action",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:11110",
+      "title": "Erased",
+      "year": 2017,
+      "source": "Crunchyroll Anime Awards",
+      "category": "Best Drama",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:11751",
+      "title": "Haven't You Heard? I'm Sakamoto",
+      "year": 2017,
+      "source": "Crunchyroll Anime Awards",
+      "category": "Best Comedy",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:9146",
+      "title": "Moom",
+      "year": 2017,
+      "source": "japan-media-arts-awards",
+      "category": "New Face Award",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:14011",
+      "title": "CRYSTAL CLEAR",
+      "year": 2017,
+      "source": "https://animeawards.moe",
+      "category": "Short of the Year",
+      "aoty": false
+    },
+    {
+      "id": "anilist:21699",
+      "title": "KonoSuba 2",
+      "year": 2017,
+      "source": "https://animeawards.moe",
+      "category": "Best Comedy",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:13234",
+      "title": "Tsuki ga Kirei",
+      "year": 2017,
+      "source": "https://animeawards.moe",
+      "category": "Best Romance",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:12551",
+      "title": "Uchouten Kazoku 2",
+      "year": 2017,
+      "source": "https://animeawards.moe",
+      "category": "Best Background Art",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:12202",
+      "title": "ACCA: 13-ku Kansatsu-ka",
+      "year": 2017,
+      "source": "https://animeawards.moe",
+      "category": "Best Character Design",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:8806",
+      "title": "Saiki Kusuo no Ψ-nan",
+      "year": 2016,
+      "source": "https://animeawards.moe",
+      "category": "Short of the Year",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:8133",
+      "title": "Haikyuu!! (S2 & S3)",
+      "year": 2016,
+      "source": "https://animeawards.moe",
+      "category": "Best Action",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:11997",
+      "title": "Flip Flappers",
+      "year": 2016,
+      "source": "https://animeawards.moe",
+      "category": "Best Adventure",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:46909",
+      "title": "Shirayuki-hime S2",
+      "year": 2016,
+      "source": "https://animeawards.moe",
+      "category": "Best Romance",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:11317",
+      "title": "Flying Witch",
+      "year": 2016,
+      "source": "https://animeawards.moe",
+      "category": "Best Slice of Life",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:11437",
+      "title": "Kiznaiver",
+      "year": 2016,
+      "source": "https://animeawards.moe",
+      "category": "Best Character Design",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:9978",
+      "title": "The Case of Hana & Alice",
+      "year": 2015,
+      "source": "japan-media-arts-awards",
+      "category": "Excellence Prize",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:12714",
+      "title": "My Home",
+      "year": 2015,
+      "source": "japan-media-arts-awards",
+      "category": "Excellence Prize",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:10869",
+      "title": "Typhoon Noruda",
+      "year": 2015,
+      "source": "japan-media-arts-awards",
+      "category": "New Face Award",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:8286",
+      "title": "Crayon Shin-chan: Serious Battle! Robot Dad Strikes Back",
+      "year": 2014,
+      "source": "japan-media-arts-awards",
+      "category": "Excellence Prize",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:7801",
+      "title": "Giovanni's Island",
+      "year": 2014,
+      "source": "japan-media-arts-awards",
+      "category": "Excellence Prize",
+      "aoty": false
+    },
+    {
+      "id": "anilist:106165",
+      "title": "Padre",
+      "year": 2014,
+      "source": "japan-media-arts-awards",
+      "category": "Excellence Prize",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:45706",
+      "title": "My Milk Cup Cow",
+      "year": 2014,
+      "source": "japan-media-arts-awards",
+      "category": "New Face Award",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:8135",
+      "title": "Tamako Love Story",
+      "year": 2014,
+      "source": "japan-media-arts-awards",
+      "category": "New Face Award",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:43757",
+      "title": "Man on the Chair",
+      "year": 2014,
+      "source": "japan-media-arts-awards",
+      "category": "New Face Award",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:4023",
+      "title": "The Adventures of Tintin: The Secret of the Unicorn",
+      "year": 2013,
+      "source": "taaf-awards",
+      "category": "Animation of the Year (OVA)",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:7675",
+      "title": "The Eccentric Family",
+      "year": 2013,
+      "source": "japan-media-arts-awards",
+      "category": "Excellence Prize",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:7708",
+      "title": "Golden Time",
+      "year": 2013,
+      "source": "japan-media-arts-awards",
+      "category": "Excellence Prize",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:6742",
+      "title": "Patema Inverted",
+      "year": 2013,
+      "source": "japan-media-arts-awards",
+      "category": "Excellence Prize",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:3251",
+      "title": "Evangelion: 3.33 You Can (Not) Redo",
+      "year": 2013,
+      "source": "japan-media-arts-awards",
+      "category": "Excellence Prize",
+      "aoty": false
+    },
+    {
+      "id": "anilist:140631",
+      "title": "YOKOSOBOKUDESU Selection",
+      "year": 2013,
+      "source": "japan-media-arts-awards",
+      "category": "New Face Award",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:8713",
+      "title": "Airy Me",
+      "year": 2013,
+      "source": "japan-media-arts-awards",
+      "category": "New Face Award",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:4525",
+      "title": "Mobile Suit Gundam Unicorn",
+      "year": 2012,
+      "source": "taaf-awards",
+      "category": "Animation of the Year (OVA)",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:5348",
+      "title": "Asura",
+      "year": 2012,
+      "source": "japan-media-arts-awards",
+      "category": "Excellence Prize",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:10175",
+      "title": "The Great Rabbit",
+      "year": 2012,
+      "source": "japan-media-arts-awards",
+      "category": "Excellence Prize",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:6912",
+      "title": "The Life of Budori Gusuko",
+      "year": 2012,
+      "source": "japan-media-arts-awards",
+      "category": "Excellence Prize",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:10171",
+      "title": "Futon",
+      "year": 2012,
+      "source": "japan-media-arts-awards",
+      "category": "New Face Award",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:6910",
+      "title": "Lupin III: The Woman Called Fujiko Mine",
+      "year": 2012,
+      "source": "japan-media-arts-awards",
+      "category": "New Face Award",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:5354",
+      "title": "Legend of the Millennium Dragon",
+      "year": 2011,
+      "source": "japan-media-arts-awards",
+      "category": "Excellence Prize",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:6160",
+      "title": "A Letter to Momo",
+      "year": 2011,
+      "source": "japan-media-arts-awards",
+      "category": "Excellence Prize",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:6294",
+      "title": "Muybridge's Strings",
+      "year": 2011,
+      "source": "japan-media-arts-awards",
+      "category": "Excellence Prize",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:5351",
+      "title": "Hetalia: World Series",
+      "year": 2011,
+      "source": "animation-kobe-awards",
+      "category": "Network Award",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:7661",
+      "title": "Time of Eve",
+      "year": 2010,
+      "source": "taaf-awards",
+      "category": "Animation of the Year (OVA)",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:746",
+      "title": "Colorful",
+      "year": 2010,
+      "source": "japan-media-arts-awards",
+      "category": "Excellence Prize",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:3921",
+      "title": "Mai Mai Miracle",
+      "year": 2010,
+      "source": "japan-media-arts-awards",
+      "category": "Excellence Prize",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:5234",
+      "title": "Fumiko's Confession",
+      "year": 2010,
+      "source": "japan-media-arts-awards",
+      "category": "Excellence Prize",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:5975",
+      "title": "In a pig's eye",
+      "year": 2010,
+      "source": "japan-media-arts-awards",
+      "category": "Excellence Prize",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:3202",
+      "title": "Detroit Metal City",
+      "year": 2009,
+      "source": "taaf-awards",
+      "category": "Animation of the Year (OVA)",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:46379",
+      "title": "In the Attic",
+      "year": 2009,
+      "source": "japan-media-arts-awards",
+      "category": "Excellence Prize",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:4477",
+      "title": "Tokyo Magnitude 8.0",
+      "year": 2009,
+      "source": "japan-media-arts-awards",
+      "category": "Excellence Prize",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:5094",
+      "title": "ELEMI'",
+      "year": 2009,
+      "source": "japan-media-arts-awards",
+      "category": "Excellence Prize",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:3939",
+      "title": "Melancholy of Haruhi-chan Suzumiya",
+      "year": 2009,
+      "source": "animation-kobe-awards",
+      "category": "Network Award",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:2803",
+      "title": "Nasu: A Migratory Bird with Suitcase",
+      "year": 2008,
+      "source": "taaf-awards",
+      "category": "Animation of the Year (OVA)",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:3201",
+      "title": "Kaiba",
+      "year": 2008,
+      "source": "japan-media-arts-awards",
+      "category": "Excellence Prize",
+      "aoty": false
+    },
+    {
+      "id": "anilist:103698",
+      "title": "Dreams",
+      "year": 2008,
+      "source": "japan-media-arts-awards",
+      "category": "Excellence Prize",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:5295",
+      "title": "KUDAN",
+      "year": 2008,
+      "source": "japan-media-arts-awards",
+      "category": "Excellence Prize",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:5296",
+      "title": "A Child's Metaphysics'",
+      "year": 2008,
+      "source": "japan-media-arts-awards",
+      "category": "Excellence Prize",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:6297",
+      "title": "Hatsune Miku",
+      "year": 2008,
+      "source": "animation-kobe-awards",
+      "category": "Network Award",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:892",
+      "title": "Diebuster",
+      "year": 2007,
+      "source": "taaf-awards",
+      "category": "Animation of the Year (OVA)",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:5300",
+      "title": "Ukkari Pénélope",
+      "year": 2007,
+      "source": "japan-media-arts-awards",
+      "category": "Excellence Prize",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:1801",
+      "title": "Gurren Lagann",
+      "year": 2007,
+      "source": "japan-media-arts-awards",
+      "category": "Excellence Prize",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:2938",
+      "title": "Franz Kafka's A Country Doctor",
+      "year": 2007,
+      "source": "japan-media-arts-awards",
+      "category": "Excellence Prize",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:1406",
+      "title": "Ghost in the Shell: Stand Alone Complex - Solid State Society",
+      "year": 2007,
+      "source": "animation-kobe-awards",
+      "category": "Packaged Work Award",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:42149",
+      "title": "Second Life",
+      "year": 2007,
+      "source": "animation-kobe-awards",
+      "category": "Network Award",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:356",
+      "title": "Karas",
+      "year": 2006,
+      "source": "taaf-awards",
+      "category": "Animation of the Year (OVA)",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:42721",
+      "title": "Bloomed Words",
+      "year": 2006,
+      "source": "japan-media-arts-awards",
+      "category": "Excellence Prize",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:3679",
+      "title": "A Country Between the World",
+      "year": 2006,
+      "source": "japan-media-arts-awards",
+      "category": "Excellence Prize",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:81",
+      "title": "My Love",
+      "year": 2006,
+      "source": "japan-media-arts-awards",
+      "category": "Excellence Prize",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:10208",
+      "title": "PIKA PIKA",
+      "year": 2006,
+      "source": "japan-media-arts-awards",
+      "category": "Excellence Prize",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:531",
+      "title": "The Wings of Rean",
+      "year": 2006,
+      "source": "animation-kobe-awards",
+      "category": "Packaged Work Award",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:9955",
+      "title": "Yawaraka Sensha",
+      "year": 2006,
+      "source": "animation-kobe-awards",
+      "category": "Network Award",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:1618",
+      "title": "Animation Runner Kuromi 2",
+      "year": 2005,
+      "source": "taaf-awards",
+      "category": "Animation of the Year (OVA)",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:5008",
+      "title": "The Book of the Dead",
+      "year": 2005,
+      "source": "japan-media-arts-awards",
+      "category": "Excellence Prize",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:7763",
+      "title": "Kamichu!",
+      "year": 2005,
+      "source": "japan-media-arts-awards",
+      "category": "Excellence Prize",
+      "aoty": false
+    },
+    {
+      "id": "anilist:201851",
+      "title": "flowery",
+      "year": 2005,
+      "source": "japan-media-arts-awards",
+      "category": "Excellence Prize",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:3630",
+      "title": "The Old Crocodile",
+      "year": 2005,
+      "source": "japan-media-arts-awards",
+      "category": "Excellence Prize",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:6091",
+      "title": "Mayutoro The Toons",
+      "year": 2005,
+      "source": "animation-kobe-awards",
+      "category": "Network Award",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:1175",
+      "title": "The Animatrix",
+      "year": 2004,
+      "source": "taaf-awards",
+      "category": "Animation of the Year (OVA)",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:2547",
+      "title": "Grrl Power!",
+      "year": 2004,
+      "source": "japan-media-arts-awards",
+      "category": "Excellence Prize",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:5338",
+      "title": "ACIDMAN",
+      "year": 2004,
+      "source": "japan-media-arts-awards",
+      "category": "Excellence Prize",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:4112",
+      "title": "Birthday Boy",
+      "year": 2004,
+      "source": "japan-media-arts-awards",
+      "category": "Excellence Prize",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:230",
+      "title": "Haré+Guu FINAL",
+      "year": 2004,
+      "source": "animation-kobe-awards",
+      "category": "Packaged Work Award",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:6271",
+      "title": "Ski Jumping Pairs",
+      "year": 2004,
+      "source": "animation-kobe-awards",
+      "category": "Network Award",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:3070",
+      "title": "Mr. Stain on Junk Alley",
+      "year": 2003,
+      "source": "japan-media-arts-awards",
+      "category": "Excellence Prize",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:4984",
+      "title": "Komaneko",
+      "year": 2003,
+      "source": "japan-media-arts-awards",
+      "category": "Excellence Prize",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:5537",
+      "title": "Visions of Frank",
+      "year": 2003,
+      "source": "japan-media-arts-awards",
+      "category": "Excellence Prize",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:14190",
+      "title": "Grand-Ma",
+      "year": 2003,
+      "source": "animation-kobe-awards",
+      "category": "Network Award",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:1617",
+      "title": "Animation Runner Kuromi",
+      "year": 2002,
+      "source": "taaf-awards",
+      "category": "Animation of the Year (OVA)",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:1224",
+      "title": "Mt. Head",
+      "year": 2002,
+      "source": "japan-media-arts-awards",
+      "category": "Excellence Prize",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:7665",
+      "title": "Magical Shopping Arcade Abenobashi",
+      "year": 2002,
+      "source": "japan-media-arts-awards",
+      "category": "Excellence Prize",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:429",
+      "title": "Ghost in the Shell: Stand Alone Complex",
+      "year": 2002,
+      "source": "japan-media-arts-awards",
+      "category": "Excellence Prize",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:231",
+      "title": "Voices of a Distant Star",
+      "year": 2002,
+      "source": "animation-kobe-awards",
+      "category": "Packaged Work Award",
+      "aoty": false
+    },
+    {
+      "id": "anilist:212280",
+      "title": "Final Fantasy XI",
+      "year": 2002,
+      "source": "animation-kobe-awards",
+      "category": "Network Award",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:47737",
+      "title": "Nostalgia",
+      "year": 2001,
+      "source": "japan-media-arts-awards",
+      "category": "Excellence Prize",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:556",
+      "title": "Cat Soup",
+      "year": 2001,
+      "source": "japan-media-arts-awards",
+      "category": "Excellence Prize",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:11200",
+      "title": "Phantasy Star Online",
+      "year": 2001,
+      "source": "animation-kobe-awards",
+      "category": "Network Award",
+      "aoty": false
+    },
+    {
+      "id": "anilist:103303",
+      "title": "Luz",
+      "year": 2000,
+      "source": "japan-media-arts-awards",
+      "category": "Excellence Prize",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:2456",
+      "title": "Hidamari no Ki",
+      "year": 2000,
+      "source": "japan-media-arts-awards",
+      "category": "Excellence Prize",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:9660",
+      "title": "TarePanda",
+      "year": 2000,
+      "source": "japan-media-arts-awards",
+      "category": "Excellence Prize",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:6589",
+      "title": "S.O.S",
+      "year": 2000,
+      "source": "japan-media-arts-awards",
+      "category": "Excellence Prize",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:43530",
+      "title": "Shenmue",
+      "year": 2000,
+      "source": "animation-kobe-awards",
+      "category": "Packaged Work Award",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:3618",
+      "title": "Ojarumaru 2",
+      "year": 1999,
+      "source": "japan-media-arts-awards",
+      "category": "Excellence Prize",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:10816",
+      "title": "TYO Story",
+      "year": 1999,
+      "source": "japan-media-arts-awards",
+      "category": "Excellence Prize",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:379",
+      "title": "My Neighbors the Yamadas",
+      "year": 1999,
+      "source": "japan-media-arts-awards",
+      "category": "Excellence Prize",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:941",
+      "title": "Blue Submarine No. 6",
+      "year": 1999,
+      "source": "animation-kobe-awards",
+      "category": "Packaged Work Award",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:10277",
+      "title": "Kaidohryoku REAL",
+      "year": 1998,
+      "source": "japan-media-arts-awards",
+      "category": "Excellence Prize",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:306",
+      "title": "Serial Experiments Lain",
+      "year": 1998,
+      "source": "japan-media-arts-awards",
+      "category": "Excellence Prize",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:10374",
+      "title": "Believe in It",
+      "year": 1998,
+      "source": "japan-media-arts-awards",
+      "category": "Excellence Prize",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:2427",
+      "title": "Doraemon: Nobita's South Sea Adventure",
+      "year": 1998,
+      "source": "japan-media-arts-awards",
+      "category": "Excellence Prize",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:518",
+      "title": "Sakura Taisen 2 ~Kimi, Shinitamou koto Nakare~",
+      "year": 1998,
+      "source": "animation-kobe-awards",
+      "category": "Packaged Work Award",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:49729",
+      "title": "Mini Cartoon ~Knyacki~",
+      "year": 1997,
+      "source": "japan-media-arts-awards",
+      "category": "Excellence Prize",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:4334",
+      "title": "Donguri's House",
+      "year": 1997,
+      "source": "japan-media-arts-awards",
+      "category": "Excellence Prize",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:7964",
+      "title": "Gundam Wing: Endless Waltz",
+      "year": 1997,
+      "source": "animation-kobe-awards",
+      "category": "Packaged Work Award",
+      "aoty": false
+    },
+    {
+      "id": "kitsu:1307",
+      "title": "Key the Metal Idol",
+      "year": 1996,
+      "source": "animation-kobe-awards",
+      "category": "Packaged Work Award",
+      "aoty": false
+    }
+  ]
+}

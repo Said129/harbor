@@ -9,11 +9,11 @@ struct DiscoveryRails: View {
         LazyVStack(alignment: .leading, spacing: 24) {
             ForEach(rows) { row in
                 VStack(alignment: .leading, spacing: 12) {
-                    HStack { Text(titleOverrides[row.id] ?? row.title).font(.headline); Spacer(); NavigationLink("Ver todo") { DiscoveryGrid(rail: row, app: app) }.font(.caption).foregroundStyle(.secondary) }.padding(.horizontal)
+                    HStack { Text(titleOverrides[row.id] ?? row.title).font(HarborTheme.font(18, weight: .semibold)).accessibilityIdentifier("rail-" + row.id); Spacer(); NavigationLink("Ver todo") { DiscoveryGrid(rail: row, app: app) }.font(HarborTheme.font(12)).foregroundStyle(.secondary) }.padding(.horizontal)
                     if row.id.hasSuffix("-top10") && !disableDefaultRanking { TopTenRail(metas: row.metas) }
                     else { ScrollView(.horizontal) {
                         LazyHStack(alignment: .top, spacing: 12) {
-                            ForEach(row.metas, id: \.identity) { media in NavigationLink(value: media) { Poster(media: media) }.buttonStyle(.plain).accessibilityLabel(media.name) }
+                            ForEach(row.metas, id: \.identity) { media in NavigationLink(value: media) { Poster(media: media) }.buttonStyle(.plain).accessibilityLabel(media.name).accessibilityIdentifier(row.kind == "anime" ? "anime-media" : "curated-media") }
                         }.padding(.horizontal)
                     }.scrollIndicators(.hidden) }
                 }
@@ -48,7 +48,10 @@ struct DiscoveryGrid: View {
         loading = true; error = nil
         defer { loading = false }
         do {
-            let next = try await TMDBService().page(rail, page: page, configuration: MetadataPreferences.shared.configuration())
+            let next: [Media]
+            if rail.path == "anime:picks" { next = page == 1 ? rail.metas : [] }
+            else if rail.kind == "anime" { next = try await AnimeService.shared.page(rail, page: page) }
+            else { next = try await TMDBService().page(rail, page: page, configuration: MetadataPreferences.shared.configuration()) }
             try Task.checkCancellation()
             var known = Set(items.map(\.identity)); let additions = next.filter { known.insert($0.identity).inserted }
             items.append(contentsOf: additions); page += 1; finished = next.isEmpty || additions.isEmpty

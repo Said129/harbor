@@ -50,7 +50,7 @@ final class WebPageController: UIViewController, WKUIDelegate {
     private func origin(_ frame: WKFrameInfo) -> String {
         frame.request.url?.host ?? webView.url?.host ?? "Página web"
     }
-    func webView(_ webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping @Sendable () -> Void) {
+    func webView(_ webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping @MainActor @Sendable () -> Void) {
         let dialog = UIAlertController(title: origin(frame), message: message, preferredStyle: .alert)
         dialog.addAction(UIAlertAction(title: "Aceptar", style: .default) { [weak self] _ in self?.finish(completionHandler) })
         show(dialog, cancelled: completionHandler)

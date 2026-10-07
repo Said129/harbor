@@ -53,7 +53,7 @@ final class ContentPageModel {
                     let providerKind = kind == "kids" ? "movie" : kind
                     guard let top = plans.first(where: { $0.kind == providerKind && $0.catalog?.id == "top" }) else { throw HarborError(code: "catalog-unavailable") }
                     let genres = kind == "kids" ? ["Animation", "Family"] : ["Action", "Drama", "Comedy", "Sci-Fi", "Thriller", "Horror", "Romance", "Animation", "Adventure", "Crime", "Mystery", "Fantasy", "Documentary"]
-                    let definitions: [(String, String?)] = (kind == "kids" ? [] : [(kind == "movie" ? "Top películas" : "Top series", nil)]) + genres.map { ($0, Optional($0)) }
+                    let definitions: [(String, String?)] = (kind == "kids" ? [] : [(kind == "movie" ? "Top Movies" : "Top Series", nil)]) + genres.map { ("Top " + $0, Optional($0)) }
                     await withTaskGroup(of: (Int, CatalogRow?).self) { group in
                         for (index, definition) in definitions.enumerated() {
                             let service = app.service
@@ -74,6 +74,33 @@ final class ContentPageModel {
                             rows = CatalogRefresh.merge(order: ordered, received: fetched.map(\.1), previous: previousRows)
                             if heroes.isEmpty { heroes = Array(row.metas.prefix(5)) }
                         }
+                    }
+                }
+            } else if kind == "anime" {
+                rows = app.rows.filter { $0.plan.kind == "anime" || $0.metas.prefix(6).contains { AnimeService.isAnime($0.id) } }
+                let definitions = AnimeService.definitions()
+                let records = app.library.items
+                await withTaskGroup(of: (Int, DiscoveryRail?).self) { group in
+                    for (index, rail) in definitions.enumerated() {
+                        group.addTask {
+                            do {
+                                var result = rail
+                                if rail.path == "anime:picks" { result.metas = try await AnimeService.shared.picks(records: records) }
+                                else if rail.id == "anilist-top100" {
+                                    let first = try await AnimeService.shared.page(rail, page: 1)
+                                    let second = try await AnimeService.shared.page(rail, page: 2)
+                                    result.metas = first + second
+                                } else { result.metas = try await AnimeService.shared.page(rail, page: 1) }
+                                return (index, result)
+                            } catch { return (index, nil) }
+                        }
+                    }
+                    var fetched: [(Int, DiscoveryRail)] = []
+                    for await (index, rail) in group {
+                        guard current == generation else { continue }
+                        guard let rail else { failed = true; continue }
+                        fetched.append((index, rail))
+                        curated = CatalogRefresh.merge(order: definitions.map(\.id), received: fetched.map(\.1), previous: previousCurated)
                     }
                 }
             } else {

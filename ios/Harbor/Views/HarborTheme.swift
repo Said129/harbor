@@ -5,6 +5,7 @@ import SwiftUI
     static var accent: Color { ThemePreferences.shared.color("accent") }
     static var surface: Color { ThemePreferences.shared.color("surface") }
     static var ink: Color { ThemePreferences.shared.color("ink") }
+    static func displayFont(_ size: CGFloat) -> Font { .custom("Fraunces-9ptBlack", size: size).weight(.medium) }
     static func font(_ size: CGFloat = 16, weight: Font.Weight = .regular) -> Font {
         switch ThemePreferences.shared.font {
         case "inter": .custom("Inter-Regular", size: size).weight(weight)

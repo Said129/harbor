@@ -16,7 +16,7 @@ struct ProfileAccountButton: View {
                     }
                 }
             }.frame(minHeight: 44)
-        }.buttonStyle(.plain).accessibilityLabel("Cuenta")
+        }.buttonStyle(.plain).accessibilityLabel("Cuenta").accessibilityIdentifier("main-account")
     }
 }
 
@@ -27,11 +27,15 @@ struct ProfileEditor: View {
     @State private var chosenPhoto: PhotosPickerItem?
     @State private var avatars = false
     @State private var photoError: String?
+    @State private var previousName = ""
+    @FocusState private var editingName: Bool
+    private var cloud: HarborProfileSync { profile.cloud }
+    private var editable: Bool { profile.ready && (!cloud.signedIn || cloud.hydrated) && !cloud.busy }
     private var displayedName: String { profile.value.name.isEmpty ? user?.displayName ?? "Invitado" : profile.value.name }
     var body: some View {
         VStack(alignment: .leading, spacing: 22) {
             Text("Tu perfil").font(HarborTheme.font(20, weight: .semibold)).accessibilityAddTraits(.isHeader)
-            Text("Tu avatar, nombre y color en este iPhone.").font(HarborTheme.font(15)).foregroundStyle(.secondary)
+            Text("Tu avatar, nombre y nombre de usuario en Harbor.").font(HarborTheme.font(15)).foregroundStyle(.secondary)
             HStack(spacing: 18) {
                 ProfileAvatar(profile: profile, size: 88)
                 VStack(alignment: .leading, spacing: 8) {
@@ -40,20 +44,22 @@ struct ProfileEditor: View {
                         .padding(.horizontal, 12).frame(minHeight: 48).background(HarborTheme.surface, in: .rect(cornerRadius: 10))
                         .overlay { RoundedRectangle(cornerRadius: 10).stroke(HarborTheme.ink.opacity(0.06), lineWidth: 1) }
                         .accessibilityIdentifier("profile-name")
+                        .focused($editingName).onSubmit { saveName() }.disabled(!editable)
                 }
             }
-            Button("Guardar nombre") { profile.update { $0.name = String(name.trimmingCharacters(in: .whitespacesAndNewlines).prefix(80)) } }.buttonStyle(HarborAccountButtonStyle()).disabled(!profile.ready)
+            if let handle = cloud.handle { Text("@" + handle).font(HarborTheme.font(14)).foregroundStyle(.secondary) }
+            if name.trimmingCharacters(in: .whitespacesAndNewlines) != displayedName { Button("Guardar"){ saveName() }.buttonStyle(HarborAccountButtonStyle()).disabled(!editable) }
             Divider()
             profileLabel("Avatar", icon: "desktop-image")
-            Text("Sube una foto o elige uno del catálogo original de Harbor.").font(HarborTheme.font(15)).foregroundStyle(.secondary)
+            Text("Sube tu propia foto o elige una del catálogo de Harbor.").font(HarborTheme.font(15)).foregroundStyle(.secondary)
             VStack(alignment: .leading, spacing: 12) {
                 PhotosPicker(selection: $chosenPhoto, matching: .images) { Text("Subir foto") }.buttonStyle(HarborAccountButtonStyle())
                 avatarFan
-            }.disabled(!profile.ready)
-            if profile.value.photo != nil { Button("Usar mi avatar de Harbor") { profile.update { $0.photo = nil } }.font(HarborTheme.font(13)) }
+            }.disabled(!editable)
+            if profile.value.photo != nil { Button("Usar mi avatar de Harbor") { profile.update { $0.photo = nil; $0.remoteAvatar = nil; $0.initialsAvatar = false } }.font(HarborTheme.font(13)).disabled(!editable) }
             Divider()
             profileLabel("Tu color", icon: "desktop-palette")
-            Text("Colorea el anillo de tu avatar.").font(HarborTheme.font(15)).foregroundStyle(.secondary)
+            Text("Colorea tu nombre, tu cursor en Watch Together y el anillo de tu avatar.").font(HarborTheme.font(15)).foregroundStyle(.secondary)
             LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 5), spacing: 14) {
                 ForEach(ProfilePreferences.colors, id: \.self) { hex in
                     Button { profile.update { $0.color = hex } } label: {
@@ -65,11 +71,15 @@ struct ProfileEditor: View {
                         }.frame(minWidth: 44, minHeight: 44)
                     }.buttonStyle(.plain).accessibilityLabel("Color \(hex)").accessibilityAddTraits(profile.value.color == hex ? [.isSelected] : [])
                 }
-            }.disabled(!profile.ready)
-            ColorPicker("Personalizado", selection: Binding(get: { profile.color }, set: { profile.setColor($0) }), supportsOpacity: false).font(HarborTheme.font(14, weight: .medium)).disabled(!profile.ready)
-            if let error = profile.error ?? photoError { Text(error).font(HarborTheme.font(13)).foregroundStyle(.orange) }
+            }.disabled(!editable)
+            ColorPicker("Personalizado", selection: Binding(get: { profile.color }, set: { profile.setColor($0) }), supportsOpacity: false).font(HarborTheme.font(14, weight: .medium)).disabled(!editable)
+            if cloud.busy { ProgressView() }
+            if let error = profile.error ?? photoError ?? cloud.error { Text(error).font(HarborTheme.font(13)).foregroundStyle(.orange) }
+            if cloud.signedIn { Button("Sincronizar") { Task { await cloud.sync() } }.buttonStyle(HarborAccountButtonStyle()).disabled(cloud.busy) }
             if !profile.ready { Button("Recuperar perfil") { profile.reload() } }
-        }.onAppear { name = displayedName }
+        }.onAppear { name = displayedName; previousName = displayedName }
+            .onChange(of: displayedName) { _, value in if !editingName || name == previousName { name = value }; previousName = value }
+            .onChange(of: editingName) { before, after in if before && !after { saveName() } }
             .task(id: chosenPhoto) {
                 guard let chosenPhoto else { return }
                 do {
@@ -83,12 +93,18 @@ struct ProfileEditor: View {
                     ScrollView {
                         LazyVGrid(columns: [GridItem(.adaptive(minimum: 64))], spacing: 15) {
                             ForEach(DesktopAvatar.catalog) { avatar in
-                                Button { profile.update { $0.avatar = avatar.id; $0.photo = nil }; avatars = false } label: { Image(avatar.asset).resizable().scaledToFill().frame(width: 64, height: 64).clipShape(.circle).overlay { Circle().stroke(profile.value.avatar == avatar.id ? profile.color : .clear, lineWidth: 3) } }.accessibilityLabel(avatar.name)
+                                Button { profile.update { $0.avatar = avatar.id; $0.photo = nil; $0.remoteAvatar = nil; $0.initialsAvatar = false }; avatars = false } label: { Image(avatar.asset).resizable().scaledToFill().frame(width: 64, height: 64).clipShape(.circle).overlay { Circle().stroke(profile.value.avatar == avatar.id ? profile.color : .clear, lineWidth: 3) } }.accessibilityLabel(avatar.name).disabled(!editable)
                             }
                         }.padding()
                     }.background(HarborTheme.background).navigationTitle("Avatares de Harbor").toolbar { Button("Cerrar") { avatars = false } }
                 }.font(HarborTheme.font()).foregroundStyle(HarborTheme.ink).tint(HarborTheme.accent).preferredColorScheme(.dark)
             }
+    }
+    private func saveName() {
+        guard editable else { return }
+        let next = String(name.trimmingCharacters(in: .whitespacesAndNewlines).prefix(32))
+        guard !next.isEmpty, next != displayedName else { return }
+        profile.update { $0.name = next }; name = next
     }
 
     private func profileLabel(_ title: String, icon: String) -> some View {
@@ -114,14 +130,14 @@ struct ProfileEditor: View {
                                 }
                         }
                     }.accessibilityHidden(true)
-                    Text("Elige un avatar").font(HarborTheme.font(15, weight: .medium)).foregroundStyle(.secondary)
+                    Text("o usa uno de nuestros avatares").font(HarborTheme.font(15, weight: .medium)).foregroundStyle(.secondary)
                         .multilineTextAlignment(.leading).fixedSize(horizontal: false, vertical: true)
                     Spacer(minLength: 0)
                 }.padding(.horizontal, 10).padding(.vertical, 8).frame(minHeight: 52).contentShape(Rectangle())
             }.buttonStyle(.plain).accessibilityLabel("Elegir avatar de Harbor")
             Button {
                 guard let avatar = DesktopAvatar.catalog.randomElement() else { return }
-                profile.update { $0.avatar = avatar.id; $0.photo = nil }
+                profile.update { $0.avatar = avatar.id; $0.photo = nil; $0.remoteAvatar = nil; $0.initialsAvatar = false }
             } label: {
                 Image("music-shuffle").resizable().scaledToFit().frame(width: 15, height: 15)
                     .foregroundStyle(.secondary).frame(width: 44, height: 52).contentShape(Rectangle())

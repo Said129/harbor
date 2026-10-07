@@ -32,6 +32,26 @@ struct HTTPClient: Sendable {
         return try await receive(request, session: Self.accountSession)
     }
 
+    func anilist(query: String, variables: JSONValue) async throws -> JSONValue {
+        var request = URLRequest(url: URL(string: "https://graphql.anilist.co")!, timeoutInterval: 20)
+        request.httpMethod = "POST"
+        request.httpBody = try JSONEncoder().encode(JSONValue.object(["query": .string(query), "variables": variables]))
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        let result = try await receive(request, session: Self.metadataSession)
+        guard result["errors"].array.isEmpty, result["data"] != .null else { throw HarborError(code: "anime-response") }
+        return result["data"]
+    }
+
+    func harbor(_ path: String, method: String = "GET", body: JSONValue? = nil, token: String? = nil) async throws -> JSONValue {
+        let allowed: [String: String] = ["/identity/api/login": "POST", "/identity/api/token/refresh": "POST", "/identity/api/me": "GET", "/auth/logout": "POST", "/sync/v1/state": "GET", "/sync/v1/push": "POST", "/social/me/profile": "PATCH"]
+        guard allowed[path] == method, let url = URL(string: "https://harbor.site/themes/api" + path) else { throw HarborError(code: "invalid-account-request") }
+        var request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 20)
+        request.httpMethod = method
+        if let body { request.httpBody = try JSONEncoder().encode(body); request.setValue("application/json", forHTTPHeaderField: "Content-Type") }
+        if let token { request.setValue("Bearer " + token, forHTTPHeaderField: "Authorization") }
+        return try await receive(request, session: Self.accountSession)
+    }
+
     func json(_ value: String, timeout: TimeInterval = 8, credentialed: Bool = false) async throws -> JSONValue {
         guard let url = URL(string: value), ["https", "http"].contains(url.scheme) else { throw HarborError(code: "invalid-url") }
         let request = URLRequest(url: url, cachePolicy: credentialed ? .reloadIgnoringLocalCacheData : .useProtocolCachePolicy, timeoutInterval: max(15, timeout))

@@ -100,6 +100,7 @@ struct HarborService: Sendable {
             if let value = result.values.first(where: { $0.0.key == plan.key })?.1,
                let meta = Media.parse(value["meta"], kind: media.type) { return meta }
         }
+        if AnimeService.isAnime(media.id), let parsed = try? await AnimeService.metadata(id: media.id, kind: media.type) { return parsed }
         if media.id.hasPrefix("tt") && ["movie", "series"].contains(media.type),
            let value = try? await http.json("https://v3-cinemeta.strem.io/meta/\(media.type)/\(media.id).json"),
            let parsed = Media.parse(value["meta"], kind: media.type) { return parsed }

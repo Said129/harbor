@@ -14,6 +14,32 @@ final class LiveServicesTests: XCTestCase {
             throw XCTSkip("Live integration requires explicit opt-in")
         }
     }
+    func testAniListRailsAndCanonicalEpisodeMetadata() async throws {
+        try requireOptIn()
+        let definition = try XCTUnwrap(AnimeService.definitions().first { $0.id == "anilist-top100" })
+        let first = try await AnimeService.shared.page(definition, page: 1)
+        let second = try await AnimeService.shared.page(definition, page: 2)
+        XCTAssertEqual(first.count + second.count, 100, "The original Top 100 rail must fetch both actual AniList pages")
+        XCTAssertTrue(first.allSatisfy { AnimeService.isAnime($0.id) && $0.poster?.hasPrefix("https://") == true && $0.ratingSource == "AniList" })
+        XCTAssertTrue(Set(first.map(\.id)).isDisjoint(with: second.map(\.id)))
+        let detail = try await AnimeService.metadata(id: "mal:1", kind: "series")
+        XCTAssertFalse(detail.name.isEmpty)
+        XCTAssertFalse(detail.videos?.isEmpty ?? true, "Anime details must use the provider's canonical episode identities")
+        XCTAssertTrue(detail.videos?.allSatisfy { !$0.id.isEmpty } == true)
+        print("Harbor live Anime: AniList=\(first.count + second.count), canonical episodes=\(detail.videos?.count ?? 0)")
+    }
+    func testMALRecommendationsAndDesktopAwardCatalog() async throws {
+        try requireOptIn()
+        let definition = try XCTUnwrap(AnimeService.definitions().first { $0.id == "anime-popular" })
+        let popular = try await AnimeService.shared.page(definition, page: 1)
+        XCTAssertFalse(popular.isEmpty)
+        XCTAssertTrue(popular.allSatisfy { $0.id.hasPrefix("mal:") && $0.ratingSource == "MAL" && $0.poster?.hasPrefix("https://") == true })
+        let award = try XCTUnwrap(AnimeService.definitions().first { $0.id == "anime-awards" })
+        let winners = try await AnimeService.shared.page(award, page: 1)
+        XCTAssertFalse(winners.isEmpty)
+        XCTAssertTrue(winners.allSatisfy { AnimeService.isAnime($0.id) && $0.poster != nil })
+        print("Harbor live Anime: MAL=\(popular.count), original award winners resolved=\(winners.count)")
+    }
     func testNativeSportsLoadsPublishedScoresAndActualBoxscore() async throws {
         try requireOptIn()
         let league = try XCTUnwrap(try SportsLeague.catalog().first { $0.id == "NBA" })

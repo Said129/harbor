@@ -138,28 +138,11 @@ struct HarborShell: View {
         case .library: LibraryView(app: app).id(app.user?.id ?? "guest")
         case .collections: CollectionsView(app: app)
         case .downloads: DownloadsView(app: app)
-        case .discover: DiscoverView(app: app)
+        case .discover: DiscoverView(app: app).id(app.user?.id ?? "guest")
         case .search: SearchView(app: app)
         case .addons: AddonsView(app: app)
         case .settings: SettingsView(app: app)
         }
     }
     private func closeMenu() { withAnimation(.easeOut(duration: 0.18)) { menu = false } }
-}
-
-struct DiscoverView: View {
-    let app: AppModel
-    @State private var selected = ""
-    private var catalogs: [CatalogRow] { app.rows.filter { !$0.metas.isEmpty } }
-    var body: some View {
-        VStack(spacing: 12) {
-            Picker("Catálogo", selection: $selected) {
-                ForEach(catalogs) { Text("\($0.plan.addon.name) · \($0.plan.title)").tag($0.id) }
-            }.padding(.horizontal)
-            if let row = catalogs.first(where: { $0.id == selected }) ?? catalogs.first {
-                CatalogBrowserView(app: app, initial: row).id(row.id)
-            } else if app.loading { ProgressView() }
-            else { ContentUnavailableView("Sin catálogos", image: "nav-catalogs", description: Text("Instala un addon o recupera los de tu cuenta.")) }
-        }.background(HarborTheme.background).navigationTitle("Discover").navigationBarTitleDisplayMode(.inline)
-    }
 }

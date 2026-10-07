@@ -40,7 +40,7 @@ final class LiveNavigationTests: XCTestCase {
         capture(app, "home-real-catalogs")
         let homeError = app.staticTexts["home-error"]
         XCTAssertTrue(homeLoaded, "Home must load a real movie catalog; startup=\(homeError.exists ? homeError.label : "no error text")")
-        app.buttons["home-signin"].tap()
+        app.buttons["main-account"].firstMatch.tap()
         XCTAssertTrue(app.textFields["account-email"].waitForExistence(timeout: 5))
         XCTAssertTrue(app.buttons["account-browser-login"].exists)
         capture(app, "account-native-login")

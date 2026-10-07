@@ -18,11 +18,6 @@ struct HomeView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 26) {
-                if model.user == nil {
-                    Button { model.showAccount = true } label: {
-                        Label("Inicia sesión para recuperar tus addons", systemImage: "person.crop.circle").font(.subheadline).frame(maxWidth: .infinity, alignment: .leading).padding()
-                    }.accessibilityIdentifier("home-signin")
-                }
                 if let error = model.accountError { Text(error).font(.caption).foregroundStyle(.orange).padding(.horizontal) }
                 if customization.layout.cwTop { ContinueWatching(app: model) }
                 if InterfacePreferences.shared.homeMode == "harbor" {

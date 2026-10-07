@@ -46,10 +46,10 @@ struct CinemaHero: View {
                                 .frame(width: geometry.size.width, height: geometry.size.height).accessibilityHidden(true)
                             LinearGradient(colors: [.black.opacity(0.12), HarborTheme.background.opacity(0.55), HarborTheme.background], startPoint: .top, endPoint: .bottom).accessibilityHidden(true)
                             VStack(alignment: .leading, spacing: 14) {
-                                Text("DESTACADO HOY").font(.system(size: 9, weight: .semibold)).tracking(4).foregroundStyle(.white.opacity(0.5))
+                                Text("FEATURED TONIGHT").font(HarborTheme.font(9, weight: .semibold)).tracking(4).foregroundStyle(.white.opacity(0.5))
                                 if let logo = media.logo {
                                     Artwork(url: logo, fit: .fit, maxPixels: 650).frame(maxWidth: 260).frame(height: 66).accessibilityHidden(true)
-                                } else { Text(media.name).font(.system(size: 30, weight: .bold)).lineLimit(2) }
+                                } else { Text(media.name).font(HarborTheme.displayFont(30)).lineLimit(2) }
                                 HStack(spacing: 14) {
                                     if let year = media.releaseInfo { Text(year).foregroundStyle(.secondary) }
                                     if let rating = media.imdbRating { HStack(spacing: 5) { Text(media.ratingSource ?? "IMDb").font(.system(size: 9, weight: .black)).foregroundStyle(.black).padding(3).background(.yellow, in: .rect(cornerRadius: 2)); Text(rating).fontWeight(.semibold) } }
