@@ -85,13 +85,14 @@ struct Artwork: View {
     var fit: ContentMode = .fill
     var maxPixels = 1000
     var failureIcon = "nav-movies"
+    var showsPlaceholder = true
     @State private var image: UIImage?
     @State private var failed = false
     @State private var retryRevision = 0
     var body: some View {
         ZStack {
             if let image { BoundedArtworkImage(image: image, fit: fit) }
-            else {
+            else if showsPlaceholder {
                 Rectangle().fill(.white.opacity(0.045))
                 if failed {
                     Image(failureIcon).resizable().scaledToFit().frame(width: 24, height: 24).foregroundStyle(.white.opacity(0.35))

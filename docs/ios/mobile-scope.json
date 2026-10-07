@@ -347,14 +347,16 @@
     },
     {
       "build": 43,
-      "name": "Original Harbor playback settings sections and full readable menu choices, with embedded actual subtitle track panel",
+      "name": "Original Harbor playback settings sections and full readable menu choices, with embedded actual subtitle track panel; original Continue Watching card layout and distinct resume/detail targets",
       "status": "Local implementation; native compilation and actual UI review pending. Do not cancel source 42 or replace delivered IPA 41.",
       "files": [
         "ios/Harbor/Views/HarborSettingsControls.swift",
         "ios/Harbor/Views/PlayerSettingsView.swift",
         "ios/Harbor/Views/SubtitleTracksView.swift",
         "ios/Harbor/Views/SettingsView.swift",
-        "ios/HarborUITests/LiveNavigationTests.swift"
+        "ios/HarborUITests/LiveNavigationTests.swift",
+        "ios/Harbor/Views/LibraryView.swift",
+        "ios/Harbor/Services/ArtworkStore.swift"
       ]
     }
   ]

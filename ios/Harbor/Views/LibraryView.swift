@@ -140,25 +140,67 @@ struct ContinueWatching: View {
     var body: some View {
         if !app.library.continuing.isEmpty || app.library.presentationError != nil {
             VStack(alignment: .leading, spacing: 12) {
-                Text("Continuar viendo").font(.headline).padding(.horizontal)
+                Text("Continuar viendo").font(HarborTheme.font(17, weight: .medium)).padding(.horizontal)
                 LibraryPresentationFeedback(library: app.library).padding(.horizontal)
                 ScrollView(.horizontal) {
                     LazyHStack(alignment: .top, spacing: 12) {
                         ForEach(app.library.continuing) { item in
                             if let media = item.media {
-                                NavigationLink { DetailView(media: media, app: app, playImmediately: true) } label: {
-                                    VStack(alignment: .leading, spacing: 7) {
-                                        Artwork(url: media.background, fallback: media.poster, fallbacks: [media.fallbackBackground, media.fallbackPoster].compactMap { $0 }, maxPixels: 650).frame(width: 230, height: 130).clipShape(.rect(cornerRadius: 10))
-                                        LibraryProgress(record: item)
-                                        Text(media.name).font(.caption).lineLimit(1)
-                                    }.frame(width: 230)
-                                }.buttonStyle(.plain).contextMenu { LibraryActions(app: app, record: item, media: media, owner: app.library.owner) }
+                                VStack(alignment: .leading, spacing: 2) {
+                                    NavigationLink { DetailView(media: media, app: app, playImmediately: true) } label: {
+                                        ContinueWatchingArtwork(record: item, media: media)
+                                    }.accessibilityIdentifier("continue-watching-resume").accessibilityLabel("Continuar viendo \(media.name)")
+                                        .accessibilityValue("\(item.playbackCaption ?? "En curso") · \(Int(item.progress * 100)) por ciento")
+                                    NavigationLink { DetailView(media: media, app: app) } label: {
+                                        Text(media.name).font(HarborTheme.font(13, weight: .medium)).lineLimit(1)
+                                            .frame(maxWidth: .infinity, minHeight: 44, alignment: .leading).contentShape(Rectangle())
+                                    }.accessibilityIdentifier("continue-watching-details").accessibilityLabel("Abrir ficha de \(media.name)")
+                                }.frame(width: 260, alignment: .leading).foregroundStyle(HarborTheme.ink).buttonStyle(.plain)
+                                    .contextMenu { LibraryActions(app: app, record: item, media: media, owner: app.library.owner) }
                             }
                         }
                     }.padding(.horizontal)
                 }.scrollIndicators(.hidden)
             }
         }
+    }
+}
+
+private struct ContinueWatchingArtwork: View {
+    let record: LibraryRecord
+    let media: Media
+    var body: some View {
+        Artwork(url: media.background, fallback: media.poster, fallbacks: [media.fallbackBackground, media.fallbackPoster].compactMap { $0 }, maxPixels: 650)
+            .frame(width: 260, height: 260 * 9 / 16)
+            .overlay {
+                if let logo = media.logo {
+                    Artwork(url: logo, fit: .fit, maxPixels: 500, showsPlaceholder: false)
+                        .frame(width: 190, height: 72).opacity(0.8).accessibilityHidden(true)
+                }
+            }
+            .overlay(alignment: .bottom) {
+                LinearGradient(colors: [.clear, .black.opacity(0.7)], startPoint: .top, endPoint: .bottom)
+                    .frame(height: 52).allowsHitTesting(false)
+            }
+            .overlay(alignment: .bottomLeading) {
+                HStack(spacing: 6) {
+                    Image("ui-play-filled").resizable().scaledToFit().frame(width: 11, height: 11).accessibilityHidden(true)
+                    Text(record.playbackCaption ?? "Continuar").font(HarborTheme.font(11, weight: .medium)).lineLimit(1)
+                }.foregroundStyle(.white).padding(.horizontal, 8).padding(.vertical, 5)
+                    .background(HarborTheme.background.opacity(0.95), in: .rect(cornerRadius: 6))
+                    .padding(.horizontal, 8).padding(.bottom, 10)
+            }
+            .overlay(alignment: .bottom) {
+                GeometryReader { bounds in
+                    ZStack(alignment: .leading) {
+                        Rectangle().fill(HarborTheme.background.opacity(0.4))
+                        Rectangle().fill(HarborTheme.accent).frame(width: bounds.size.width * CGFloat(record.progress))
+                    }
+                }.frame(height: 3).accessibilityLabel("Progreso").accessibilityValue("\(Int(record.progress * 100)) por ciento")
+            }
+            .clipShape(.rect(cornerRadius: 12))
+            .overlay { RoundedRectangle(cornerRadius: 12).stroke(.white.opacity(0.06), lineWidth: 1) }
+            .contentShape(Rectangle())
     }
 }
 
