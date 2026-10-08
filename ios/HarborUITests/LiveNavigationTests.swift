@@ -246,7 +246,10 @@ final class LiveNavigationTests: XCTestCase {
         XCTAssertTrue(app.descendants(matching: .any).matching(identifier: "theme-custom-scroll").firstMatch.waitForExistence(timeout: 5))
         capture(app, "native-appearance-original-custom-colors")
         app.buttons["theme-custom-cancel"].tap()
+        let restoredPalette = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == true AND value == %@", initialPalette), object: themeScroll)
+        XCTAssertEqual(XCTWaiter.wait(for: [restoredPalette], timeout: 10), .completed, "Cancelling live custom colors must restore the previously active palette")
         XCTAssertEqual(themeScroll.value as? String, initialPalette, "Cancelling live custom colors must restore the previously active palette")
+        capture(app, "native-appearance-custom-cancelled")
         let fontSpecimen = app.buttons["theme-font-switzer"]
         reveal(fontSpecimen, in: themeScroll, attempts: 5)
         XCTAssertTrue(fontSpecimen.isHittable)

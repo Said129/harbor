@@ -2,6 +2,14 @@
 
 El informe que acompaña a `C:/Users/Said/Downloads/Harbor-unsigned.ipa` identifica la fuente `fd3d9e59e82717fac70523f9a30fc2e5a8a21c3a`, build 43, del [run 37634911030](https://github.com/Said129/harbor/actions/runs/37634911030). Paquete: 28,917,014 bytes, SHA-256 `276164ed4d013ba064faf183ad0d245dbd618f27dab65e77b43a9df1aca81410`. La descarga, el paquete arm64 y sus 37 imágenes se verificaron antes de sustituir la entrega. Pasaron 31 pruebas nativas, seis servicios públicos y el recorrido UI. No se ha confirmado una revisión física de la build 43.
 
+## Candidata 83: restaurar los colores al pulsar Cancelar
+
+El [run 37818382030](https://github.com/Said129/harbor/actions/runs/37818382030), fuente 82 `a87c62d806dd15788dcf79ec9b3bbeaee312e92c`, terminó con fallo UI. Compiló y pasaron las 42 pruebas nativas y los ocho servicios públicos. LiveNavigationTests.swift:249 leyó `custom` tras pulsar Cancelar cuando la paleta anterior era `cool-grey`. El editor restauraba los valores sólo en onDisappear, después del cierre de la hoja. El recorrido se detuvo antes de Discover, Anime y la ficha; no comprobó el cambio de orden de 82 ni ejecutó dispositivo/empaquetado. No se creó una IPA 82.
+
+83 restaura la paleta y sus colores en la acción de Cancelar, antes de cerrar. Conserva la restauración al descartar la hoja con un gesto y evita restaurarla dos veces o deshacer un guardado. La comprobación existente espera el valor accesible restaurado, mantiene la igualdad de la paleta y captura el estado tras cancelar. No añade funciones y conserva las demás aserciones, incluida la comprobación del guion antes de Media.
+
+La evidencia de 82 se descargó y extrajo comprobando rutas, CRC y hash: 58,256,196 bytes, SHA-256 `53a9c667fca7c3a158d86cf45c481e7f12d97ab7a9477a84d763415bb2f93f6f`. Contiene 24 PNG UI; se revisaron la selección original de paletas y el editor personalizado. No se presentan las otras capturas como revisadas. 83 requiere comprobación Apple propia; Descargas conserva la IPA 43 hasta una candidata comprobada y revisada. La continuidad privada y el iPhone físico siguen pendientes.
+
 ## Candidata 82: recorrer la ficha en su orden real
 
 El [run 37811932795](https://github.com/Said129/harbor/actions/runs/37811932795), fuente 81 `28cbdfd2970a89d1873f357766ba87ef92a38798`, terminó con fallo UI. Compiló y pasaron las 42 pruebas nativas y los ocho servicios públicos. El recorrido pasó la etiqueta oficial al guardar, favoritos y los tráileres reales de Interstellar. Después, LiveNavigationTests.swift:327 buscó el guion mediante desplazamientos hacia abajo, aunque la ficha sitúa el equipo antes de Media. La captura inicial muestra Jonathan Nolan y Christopher Nolan. La jerarquía del fallo confirma que el scroll estaba al 100 %, con tráileres e Información visibles; la cuadrícula lazy del equipo ya estaba fuera de la vista y sin sus elementos accesibles. No se ejecutaron los pasos de dispositivo ni se creó una IPA 81.

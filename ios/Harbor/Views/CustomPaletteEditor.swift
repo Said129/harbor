@@ -7,7 +7,7 @@ struct CustomPaletteEditor: View {
     @State private var seed: [String: [Double]]
     @State private var original: [String: [Double]]
     @State private var originallyCustom: Bool
-    @State private var saved = false
+    @State private var finished = false
     @State private var started = false
     private let groups: [(String, [(String, String, String)])] = [
         ("Surfaces", [("canvas", "Background", "Page base."), ("surface", "Surface", "Slightly lighter than background."), ("elevated", "Elevated", "Cards, panels."), ("raised", "Raised", "Highlighted blocks.")]),
@@ -45,17 +45,21 @@ struct CustomPaletteEditor: View {
             }.background(HarborTheme.background).foregroundStyle(HarborTheme.ink).accessibilityIdentifier("theme-custom-scroll")
                 .navigationTitle(DesktopInterfaceText.value("Custom")).navigationBarTitleDisplayMode(.inline)
                 .toolbar {
-                    ToolbarItem(placement: .cancellationAction) { Button(DesktopInterfaceText.value("Cancel")) { dismiss() }.accessibilityIdentifier("theme-custom-cancel") }
+                    ToolbarItem(placement: .cancellationAction) { Button(DesktopInterfaceText.value("Cancel")) { restore(); dismiss() }.accessibilityIdentifier("theme-custom-cancel") }
                     ToolbarItemGroup(placement: .confirmationAction) {
                         Button { draft = seed } label: { Image("audio-reset-sync").resizable().scaledToFit().frame(width: 18, height: 18).frame(minWidth: 44, minHeight: 44) }
                             .accessibilityLabel(DesktopInterfaceText.value("Reset")).accessibilityIdentifier("theme-custom-reset")
-                        Button(DesktopInterfaceText.value("Save")) { saved = true; dismiss() }.accessibilityIdentifier("theme-custom-save")
+                        Button(DesktopInterfaceText.value("Save")) { finished = true; dismiss() }.accessibilityIdentifier("theme-custom-save")
                     }
                 }
         }.tint(HarborTheme.accent)
             .onAppear { if !started { started = true; preview() } }
             .onChange(of: draft) { _, _ in preview() }
-            .onDisappear { if !saved { preferences.customColors = original; preferences.custom = originallyCustom } }
+            .onDisappear { if !finished { restore() } }
+    }
+    private func restore() {
+        finished = true
+        preferences.customColors = original; preferences.custom = originallyCustom
     }
     private func preview() { preferences.customColors = draft; preferences.custom = true }
     private func binding(_ token: String) -> Binding<Color> {
