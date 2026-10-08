@@ -6,6 +6,7 @@ enum SubtitleLanguages {
     private struct Policy: Decodable, Sendable {
         let iso3: [String: String]
         let names: [String: String]
+        let order: [String]
         let latamAliases: [String]
         let latamRegions: [String]
         let brazilAliases: [String]
@@ -43,6 +44,24 @@ enum SubtitleLanguages {
         let code = normalize(input)
         guard policy?.names[code] != nil else { return input.uppercased() }
         return Locale.current.localizedString(forLanguageCode: code) ?? policy?.names[code] ?? input.uppercased()
+    }
+    static var allCodes: [String] { policy?.order ?? [] }
+    static func preferenceName(_ input: String) -> String {
+        policy?.names[normalize(input)] ?? input
+    }
+    static func preferredCodes(_ input: String) -> [String] {
+        var seen = Set<String>()
+        return input.split(separator: ",").map { normalize(String($0)) }
+            .filter { !$0.isEmpty && seen.insert($0).inserted }
+    }
+    static func preferredSecondary(in tracks: [PlayerState.Track], excluding primaryID: Int, languages: String) -> PlayerState.Track? {
+        let eligible = tracks.filter { $0.type == "sub" && $0.id != primaryID && !$0.isImageSubtitle }
+        for preference in preferredCodes(languages) {
+            if let exact = eligible.first(where: { normalize($0.language) == preference }) { return exact }
+            let family = preference.split(separator: "-").first
+            if let fallback = eligible.first(where: { normalize($0.language).split(separator: "-").first == family }) { return fallback }
+        }
+        return nil
     }
     static func key(_ track: PlayerState.Track) -> String {
         let language = track.language.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()

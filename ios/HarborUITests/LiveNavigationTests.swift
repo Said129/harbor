@@ -114,22 +114,31 @@ final class LiveNavigationTests: XCTestCase {
         reveal(subtitles, in: settingsScroll, attempts: 3)
         XCTAssertTrue(subtitles.isHittable)
         subtitles.tap()
-        let firstLanguage = app.buttons["Primer idioma preferido"]
-        XCTAssertTrue(firstLanguage.waitForExistence(timeout: 5))
-        let originalLanguage = try XCTUnwrap(firstLanguage.value as? String)
-        let secondLanguage = app.buttons["Segundo idioma preferido"]
-        let originalSecondLanguage = try XCTUnwrap(secondLanguage.value as? String)
-        firstLanguage.tap()
-        XCTAssertTrue(app.buttons["Español"].waitForExistence(timeout: 3))
-        app.buttons["Español"].tap()
-        XCTAssertEqual(firstLanguage.value as? String, "Español")
-        firstLanguage.tap()
-        app.buttons[originalLanguage].tap()
-        XCTAssertEqual(firstLanguage.value as? String, originalLanguage)
-        secondLanguage.tap()
-        app.buttons[originalSecondLanguage].tap()
-        XCTAssertEqual(secondLanguage.value as? String, originalSecondLanguage)
-        let secondaryLanguage = app.buttons["Idioma de la segunda pista"]
+        let languageOrder = app.descendants(matching: .any).matching(identifier: "settings-subtitle-languages").firstMatch
+        XCTAssertTrue(languageOrder.waitForExistence(timeout: 5))
+        let originalLanguages = try XCTUnwrap(languageOrder.value as? String)
+        let originalCodes = originalLanguages.split(separator: ",").map(String.init)
+        let newCode = originalCodes.contains("es") ? "ar" : "es"
+        let newName = newCode == "es" ? "Spanish" : "Arabic"
+        let expandLanguages = app.buttons["settings-subtitle-languages-toggle"]
+        expandLanguages.tap()
+        let languageSearch = app.textFields["settings-subtitle-languages-search"]
+        XCTAssertTrue(languageSearch.waitForExistence(timeout: 3))
+        languageSearch.tap(); languageSearch.typeText(newName)
+        let addLanguage = app.buttons["settings-subtitle-languages-add-" + newCode]
+        XCTAssertTrue(addLanguage.waitForExistence(timeout: 3))
+        addLanguage.tap()
+        XCTAssertEqual(languageOrder.value as? String, (originalCodes + [newCode]).joined(separator: ","))
+        expandLanguages.tap()
+        if !originalCodes.isEmpty {
+            app.buttons["settings-subtitle-languages-earlier-" + newCode].tap()
+            var reordered = originalCodes + [newCode]; reordered.swapAt(reordered.count - 1, reordered.count - 2)
+            XCTAssertEqual(languageOrder.value as? String, reordered.joined(separator: ","))
+        }
+        capture(app, "native-subtitle-original-language-order")
+        app.buttons["settings-subtitle-languages-remove-" + newCode].tap()
+        XCTAssertEqual(languageOrder.value as? String, originalLanguages)
+        let secondaryLanguage = app.buttons["Segundo idioma de subtítulos"]
         XCTAssertTrue(secondaryLanguage.waitForExistence(timeout: 5))
         XCTAssertNotNil(secondaryLanguage.value as? String)
         capture(app, "native-subtitle-language-settings")

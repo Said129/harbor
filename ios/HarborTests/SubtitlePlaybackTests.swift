@@ -5,6 +5,25 @@ import XCTest
 @testable import Harbor
 
 final class SubtitlePlaybackTests: XCTestCase {
+    @MainActor
+    func testSecondaryLanguagePriorityAliasesAndRegions() {
+        func track(_ id: Int, _ language: String, codec: String = "subrip") -> PlayerState.Track {
+            var value = PlayerState.Track(id: id, type: "sub", label: language, selected: false)
+            value.language = language; value.codec = codec
+            return value
+        }
+        let tracks = [track(1, "spa"), track(2, "eng"), track(3, "es_MX"), track(4, "por"), track(5, "pt_BR"), track(6, "pt_BR", codec: "hdmv_pgs_subtitle"), track(7, "ara")]
+        XCTAssertEqual(SubtitleLanguages.preferredCodes("fra,fre, fr ,eng,en,pt_BR,por"), ["fr", "en", "pt-br", "pt"])
+        XCTAssertEqual(SubtitleLanguages.preferredSecondary(in: tracks, excluding: 4, languages: "eng,spa")?.id, 2, "Preference order must take precedence over file track order")
+        XCTAssertEqual(SubtitleLanguages.preferredSecondary(in: tracks, excluding: 2, languages: "es-419")?.id, 3)
+        XCTAssertEqual(SubtitleLanguages.preferredSecondary(in: tracks, excluding: 4, languages: "pt-br")?.id, 5)
+        XCTAssertNil(SubtitleLanguages.preferredSecondary(in: [tracks[4], tracks[5]], excluding: 5, languages: "pt_BR"), "The primary track and bitmap tracks cannot become a second line")
+        XCTAssertEqual(SubtitleLanguages.preferredSecondary(in: tracks, excluding: 4, languages: "ar")?.id, 7, "Languages beyond the previous eight must resolve ISO aliases")
+        XCTAssertEqual(SubtitleLanguages.preferredSecondary(in: [tracks[0]], excluding: 4, languages: "es-419")?.id, 1, "A generic language is the fallback when its preferred region is unavailable")
+        XCTAssertTrue(SubtitleLanguages.allCodes.contains("ar"))
+        XCTAssertTrue(SubtitleLanguages.allCodes.contains("zu"))
+    }
+
     // Exercise actual libass/mpv tracks and acknowledged property transitions,
     // using the existing real video fixture rather than a mocked controller.
     @available(iOS, deprecated: 12.0)

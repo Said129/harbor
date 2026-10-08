@@ -496,16 +496,15 @@ final class MPVController: GLKViewController {
     func applyPreferredSecondary(reset: Bool = false) {
         if reset { preferredSecondaryHandled = false }
         guard !preferredSecondaryHandled, state.loaded else { return }
-        let languages = PlaybackPreferences.shared.options.secondarySubtitleLanguage.lowercased().split(separator: ",").map(String.init)
-        guard !languages.isEmpty else {
+        let languages = PlaybackPreferences.shared.options.secondarySubtitleLanguage
+        guard !SubtitleLanguages.preferredCodes(languages).isEmpty else {
             if reset { selectSubtitle("no", secondary: true) }
             return
         }
         guard let main = state.primarySubtitle else { return }
-        if let track = state.tracks.first(where: {
-            $0.type == "sub" && $0.id != main.id && !$0.isImageSubtitle &&
-                languages.contains($0.language.lowercased().split(whereSeparator: { $0 == "-" || $0 == "_" }).first.map(String.init) ?? "")
-        }) { selectSubtitle(String(track.id), secondary: true) }
+        if let track = SubtitleLanguages.preferredSecondary(in: state.tracks, excluding: main.id, languages: languages) {
+            selectSubtitle(String(track.id), secondary: true)
+        }
     }
 
     func importLocalSubtitle(_ input: URL) {

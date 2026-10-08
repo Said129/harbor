@@ -60,7 +60,13 @@
     "src/components/player/transport/control-renderer.tsx": "65855f862e741e3a46f92866386e8f0c39fd869bea408d24e79225cd605e4f73",
     "src/views/settings/mpv-panel/dials.tsx": "4d48557c4d62d63d0bd62672943f78086fbe017ee64f883779c09318704e60bf",
     "src/views/player/hooks/use-video-fill.ts": "4fbedf8080e665d17e70b36391263ad27a522779b65731914312921963b9135e",
-    "src/components/player/transport/aspect-menu.tsx": "b73465eecabbf01521380cf2b62306b0603a7c6d526a3eb5a36cfdceb8d35a8d"
+    "src/components/player/transport/aspect-menu.tsx": "b73465eecabbf01521380cf2b62306b0603a7c6d526a3eb5a36cfdceb8d35a8d",
+    "src/lib/subtitles/language.ts": "e24a6b4a1b7008632aeb9d3fd1265aa982e874cf8b346a9554ac58263bb3fc53",
+    "src/views/settings/language-panel/audio-tab.tsx": "1c9b2134578675c6f08bcaacd2e58556cfec3b71af33eeaaea3a764c7fdad383",
+    "src/views/settings/language-panel/subtitles-tab.tsx": "e17bdcc82a3548ebededf3146363e93e72f49272bae86a74055b087ace51bc54",
+    "src/views/settings/language-panel/dual-subtitle-section.tsx": "7913ecc13dbf5b3f4c035aed09983d730b9223bf014d0d79ab083cd5e52847de",
+    "src/components/flag.tsx": "04286315dd10099a8bc5bf83a4215a17e83f6b86b933f4a70e9caff88964320b",
+    "src/views/settings/streaming-panel.tsx": "af683805abe1016577512b4c7466ac3f3118d9aa45ecf8c961bc368b0e6470d8"
   },
   "changes": [
     "Original six-point playback timeline with a 44-point touch target; seeking commits to mpv on release.",
@@ -77,7 +83,9 @@
     "Home and Catalogs replace generic empty layouts with the original Harbor dashed panels, Puzzle geometry, official title/description and real Browse addons navigation. No matches uses original catalog/title copy. Shared search fields use the existing original X asset and a 44-point touch target.",
     "Profile and account labels use the original Spanish dictionaries, including profile.signedIn. Upload/check/shuffle use original Lucide geometry and exact stroke weights. The avatar fan retains five shuffled original choices; the gallery preserves catalog groups, search, square rounded tiles, names, selection rings and reduced-motion-aware touch feedback. Original group labels lacking Spanish locale entries retain their Desktop fallback.",
     "The native PiP entry uses the original PictureInPicture2 geometry, 22px size, 1.9 stroke and official Spanish labels. AVKit owns the platform floating-window controls; it controls the same mpv source and does not create a second player.",
-    "Picture uses original Fit/Fill/Stretch labels, four Desktop picture templates with exact values and reset-before-apply semantics, and original Spanish descriptions. Persisted native aspect identifiers remain compatible; pinch remains silent."
+    "Picture uses original Fit/Fill/Stretch labels, four Desktop picture templates with exact values and reset-before-apply semantics, and original Spanish descriptions. Persisted native aspect identifiers remain compatible; pinch remains silent.",
+    "Audio/subtitle priorities and the second subtitle picker use the whole original Harbor language catalog, preserve alias-equivalent stored preferences, and retain regional Spanish/Portuguese. Automatic secondary selection tries preferred languages in order and exact regional matches before language-family fallback. Section labels/descriptions and placement choices use official Spanish copy.",
+    "Audio/subtitle priorities use the original numbered, reorderable/removable language chips and searchable two-column catalog. The second subtitle picker uses the whole original catalog. Stored aliases normalize without changes until an edit; regional Spanish/Portuguese remain distinct. Automatic secondary selection tries preferences in order and exact regions before language-family fallback. Section labels/descriptions and placement choices use official Spanish copy."
   ],
   "copyOutput": "ios/Harbor/DesktopDiscoverSpanish.json",
   "limitations": [

@@ -34,7 +34,6 @@ struct PlayerSettingsView: View {
     @AppStorage("resumePlayback") private var resumePlayback = true
     @AppStorage("resumePrompt") private var resumePrompt = false
 
-    private let languages = [("Automático", ""), ("Español", "spa,es"), ("Inglés", "eng,en"), ("Japonés", "jpn,ja"), ("Francés", "fra,fre,fr"), ("Alemán", "deu,ger,de"), ("Italiano", "ita,it"), ("Portugués", "por,pt")]
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 32) {
@@ -150,9 +149,11 @@ struct PlayerSettingsView: View {
                 dial("Volumen", value: Binding(get: { state.volume }, set: { preferences.options.volume = $0 }), range: 0...100, suffix: "%")
             }
         }
-        HarborSettingsSection("Idioma y salida") {
-            preferredLanguages($preferences.options.audioLanguage)
-            HarborSettingsToggle("Mezclar sonido multicanal a estéreo", isOn: $preferences.options.stereo)
+        HarborSettingsSection(DesktopInterfaceText.value("Audio languages"), note: DesktopInterfaceText.value("When a release ships multiple audio tracks, Harbor selects the first match from this list.")) {
+            HarborLanguagesPicker(value: $preferences.options.audioLanguage, identifier: "settings-audio-languages")
+        }
+        HarborSettingsSection(DesktopInterfaceText.value("Audio")) {
+            HarborSettingsToggle(DesktopInterfaceText.value("Mix surround sound down to stereo"), isOn: $preferences.options.stereo)
         }
         HarborSettingsSection("Sincronización") {
             dial("Retraso del audio", value: $preferences.options.audioDelay, range: -10...10, step: 0.1, suffix: " s")
@@ -172,13 +173,17 @@ struct PlayerSettingsView: View {
                 if state.subtitleChanging { ProgressView("Aplicando cambio…") }
             }
         }
-        HarborSettingsSection("Selección") {
-            preferredLanguages($preferences.options.subtitleLanguage)
-            HarborSettingsChoice("Idioma de la segunda pista", selection: $preferences.options.secondarySubtitleLanguage, choices: [("No seleccionar automáticamente", "")] + languages.filter { !$0.1.isEmpty })
-                .accessibilityIdentifier("settings-secondary-subtitle-language")
-            HarborSettingsChoice("Posición de la segunda pista", selection: $preferences.options.secondarySubtitlePlacement, choices: [("Arriba", "top"), ("Abajo", "bottom")])
+        HarborSettingsSection(DesktopInterfaceText.value("Subtitle languages"), note: DesktopInterfaceText.value("Harbor looks for subtitles in this order. Put your preferred language first.")) {
+            HarborLanguagesPicker(value: $preferences.options.subtitleLanguage, identifier: "settings-subtitle-languages")
             HarborSettingsToggle("Desactivar subtítulos por defecto", isOn: $preferences.options.subtitlesOff)
             HarborSettingsToggle("Ocultar indicaciones SDH", isOn: $preferences.options.hideSDH)
+        }
+        HarborSettingsSection(DesktopInterfaceText.value("Dual subtitles"), note: DesktopInterfaceText.value("Show two subtitle languages at once. Useful for learning a language or watching together.")) {
+            HarborSettingsChoice(DesktopInterfaceText.value("Second subtitle language"), selection: secondaryLanguage, choices: [(DesktopInterfaceText.value("Off"), "")] + SubtitleLanguages.allCodes.map { (SubtitleLanguages.preferenceName($0), $0) })
+                .accessibilityIdentifier("settings-secondary-subtitle-language")
+            if !secondaryLanguage.wrappedValue.isEmpty {
+                HarborSettingsChoice(DesktopInterfaceText.value("Where it shows"), selection: $preferences.options.secondarySubtitlePlacement, choices: [(DesktopInterfaceText.value("Top of the screen"), "top"), (DesktopInterfaceText.value("Above the main line"), "bottom")])
+            }
         }
         HarborSettingsSection("Sincronización") {
             dial("Retraso de subtítulos", value: $preferences.options.subtitleDelay, range: -10...10, step: 0.1, suffix: " s")
@@ -245,31 +250,9 @@ struct PlayerSettingsView: View {
             Slider(value: value, in: range, step: step).accessibilityLabel(title)
         }
     }
-    private func preferredLanguages(_ value: Binding<String>) -> some View {
-        VStack(alignment: .leading, spacing: 18) {
-            HarborSettingsChoice("Primer idioma preferido", selection: languagePriority(value, index: 0), choices: priorityLanguages)
-                .accessibilityIdentifier("settings-first-language")
-            HarborSettingsChoice("Segundo idioma preferido", selection: languagePriority(value, index: 1), choices: priorityLanguages)
-                .accessibilityIdentifier("settings-second-language")
-        }
-    }
-    private var priorityLanguages: [(String, String)] {
-        languages.map { ($0.0, String($0.1.split(separator: ",").first ?? "")) }
-    }
-    private func languagePriority(_ value: Binding<String>, index: Int) -> Binding<String> {
-        let canonical = ["es": "spa", "en": "eng", "ja": "jpn", "fre": "fra", "fr": "fra", "ger": "deu", "de": "deu", "it": "ita", "pt": "por"]
-        func codes() -> [String] {
-            var seen = Set<String>()
-            return value.wrappedValue.split(separator: ",").map { canonical[String($0)] ?? String($0) }.filter { seen.insert($0).inserted }
-        }
-        return Binding(get: { let items = codes(); return index < items.count ? items[index] : "" }, set: { code in
-            var items = codes()
-            while items.count <= index { items.append("") }
-            items[index] = code
-            if index == 0 && code.isEmpty { value.wrappedValue = ""; return }
-            var seen = Set<String>()
-            value.wrappedValue = items.filter { !$0.isEmpty && seen.insert($0).inserted }.prefix(2).joined(separator: ",")
-        })
+    private var secondaryLanguage: Binding<String> {
+        Binding(get: { SubtitleLanguages.preferredCodes(preferences.options.secondarySubtitleLanguage).first ?? "" },
+                set: { preferences.options.secondarySubtitleLanguage = $0 })
     }
     private var previewFont: String {
         switch preferences.options.subtitleFont {
