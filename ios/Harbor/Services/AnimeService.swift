@@ -3,9 +3,15 @@ import Foundation
 actor AnimeService {
     static let shared = AnimeService()
     private let http = HTTPClient()
-    private var cache: [String: (Date, [Media])] = [:]
+    private struct Cached: Codable { let at: Date; let items: [Media] }
+    private var cache: [String: Cached] = [:]
+    private var cacheLoaded = false
     private var pending: [String: Task<[Media], Error>] = [:]
     private var nextJikan = Date.distantPast
+    private var cacheURL: URL? {
+        try? FileManager.default.url(for: .cachesDirectory, in: .userDomainMask, appropriateFor: nil, create: true).appendingPathComponent("harbor-public-anime-rails.json")
+    }
+    private static let fallbackAge: TimeInterval = 7 * 24 * 3_600
 
     static func definitions() -> [DiscoveryRail] {
         [DiscoveryRail(id: "anime-picks", title: "Top Picks for You", kind: "anime", path: "anime:picks"),
@@ -21,16 +27,52 @@ actor AnimeService {
 
     func page(_ rail: DiscoveryRail, page: Int) async throws -> [Media] {
         guard (1...100).contains(page) else { return [] }
+        loadCache()
         let key = rail.id + ":" + String(page)
-        if let hit = cache[key], Date().timeIntervalSince(hit.0) < 3_600 { return hit.1 }
+        if let hit = cache[key], Date().timeIntervalSince(hit.at) < 3_600 { return hit.items }
         if let task = pending[key] { return try await task.value }
         let task = Task { try await self.fetch(rail, page: page) }
         pending[key] = task
         defer { pending[key] = nil }
-        let result = try await task.value
-        if cache.count >= 100 { cache.removeValue(forKey: cache.min { $0.value.0 < $1.value.0 }!.key) }
-        cache[key] = (Date(), result)
-        return result
+        do {
+            let result = try await task.value
+            // Empty pages and failed loads must not replace a working catalog.
+            if !result.isEmpty {
+                if cache.count >= 100 { cache.removeValue(forKey: cache.min { $0.value.at < $1.value.at }!.key) }
+                cache[key] = Cached(at: Date(), items: result)
+                persistCache()
+            }
+            return result
+        } catch is CancellationError { throw CancellationError() }
+        catch {
+            if let hit = cache[key], Date().timeIntervalSince(hit.at) <= Self.fallbackAge { return hit.items }
+            throw error
+        }
+    }
+
+    private func loadCache() {
+        guard !cacheLoaded else { return }
+        cacheLoaded = true
+        guard let url = cacheURL, let size = try? url.resourceValues(forKeys: [.fileSizeKey]).fileSize, size <= 4 * 1_024 * 1_024,
+              let data = try? Data(contentsOf: url), let entries = try? JSONDecoder().decode([String: Cached].self, from: data), entries.count <= 100 else { return }
+        let validIDs = Set(Self.definitions().map(\.id))
+        let now = Date()
+        cache = entries.filter { key, entry in
+            let components = key.split(separator: ":")
+            guard components.count == 2, validIDs.contains(String(components[0])), let page = Int(components[1]), (1...100).contains(page),
+                  !entry.items.isEmpty, entry.items.count <= 100, now.timeIntervalSince(entry.at) >= -60, now.timeIntervalSince(entry.at) <= Self.fallbackAge else { return false }
+            return entry.items.allSatisfy { Self.isAnime($0.id) && !$0.name.isEmpty }
+        }
+    }
+
+    private func persistCache() {
+        guard let url = cacheURL else { return }
+        // Only provider rails are persisted. Personalized recommendations and
+        // account history never enter this shared public cache.
+        let validIDs = Set(Self.definitions().map(\.id))
+        let entries = cache.filter { validIDs.contains(String($0.key.split(separator: ":").first ?? "")) && Date().timeIntervalSince($0.value.at) <= Self.fallbackAge }
+        guard let data = try? JSONEncoder().encode(entries), data.count <= 4 * 1_024 * 1_024 else { return }
+        try? data.write(to: url, options: .atomic)
     }
 
     private func fetch(_ rail: DiscoveryRail, page: Int) async throws -> [Media] {
@@ -89,8 +131,15 @@ actor AnimeService {
         let genres = Array(Set(active.flatMap { $0.genres ?? [] })).sorted()
         var candidates: [Media] = []
         for title in ["anime-airing", "anime-popular"] {
+            try Task.checkCancellation()
             if let rail = Self.definitions().first(where: { $0.id == title }), let items = try? await page(rail, page: 1) { candidates.append(contentsOf: items) }
         }
+        if candidates.isEmpty, let rail = Self.definitions().first(where: { $0.id == "anilist-trending" }) {
+            // Keep the actual provider/rating rather than relabeling AniList
+            // results as MAL during a Jikan outage.
+            candidates = try await page(rail, page: 1)
+        }
+        try Task.checkCancellation()
         guard !candidates.isEmpty else { throw HarborError(code: "anime-picks") }
         return Array(Self.unique(candidates).filter { !excludedIDs.contains($0.id) && !excluded.contains(Self.nameKey($0.name)) }
             .sorted { first, second in
