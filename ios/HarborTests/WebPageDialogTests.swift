@@ -26,7 +26,8 @@ final class WebPageDialogTests: XCTestCase {
             window.makeKeyAndVisible()
             defer { controller.close(); window.rootViewController = nil }
             web.loadHTMLString("<p>Harbor</p>", baseURL: URL(string: "https://example.org/"))
-            let loadDeadline = Date().addingTimeInterval(10)
+            // A cold simulator can take over 17 seconds to launch WebContent.
+            let loadDeadline = Date().addingTimeInterval(30)
             while (web.isLoading || web.estimatedProgress < 1 || web.url?.host != "example.org"), Date() < loadDeadline { try await Task.sleep(for: .milliseconds(50)) }
             XCTAssertFalse(web.isLoading)
             XCTAssertEqual(web.estimatedProgress, 1)

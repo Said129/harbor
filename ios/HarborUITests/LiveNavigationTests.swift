@@ -28,6 +28,45 @@ final class LiveNavigationTests: XCTestCase {
         destination.tap()
     }
 
+    func testCancellingCustomPaletteRestoresActiveTheme() throws {
+        guard ProcessInfo.processInfo.environment["HARBOR_LIVE_INTEGRATION"] == "1" else {
+            throw XCTSkip("Live UI integration requires explicit opt-in")
+        }
+        continueAfterFailure = false
+        let app = XCUIApplication()
+        app.launch()
+        XCTAssertTrue(app.buttons["main-menu"].waitForExistence(timeout: 10))
+        navigate(app, "settings")
+        let settingsScroll = app.descendants(matching: .any).matching(identifier: "settings-scroll").firstMatch
+        XCTAssertTrue(settingsScroll.waitForExistence(timeout: 5))
+        let appearance = app.buttons["settings-theme"]
+        reveal(appearance, in: settingsScroll)
+        XCTAssertTrue(appearance.isHittable)
+        appearance.tap()
+        let themeScroll = app.descendants(matching: .any).matching(identifier: "theme-settings-scroll").firstMatch
+        XCTAssertTrue(themeScroll.waitForExistence(timeout: 5))
+        let original = app.buttons["theme-palette-cool-grey"]
+        XCTAssertTrue(original.waitForExistence(timeout: 5))
+        original.tap()
+        let originalSelected = XCTNSPredicateExpectation(predicate: NSPredicate(format: "value == %@", "cool-grey"), object: themeScroll)
+        XCTAssertEqual(XCTWaiter.wait(for: [originalSelected], timeout: 5), .completed)
+        let initialPalette = try XCTUnwrap(themeScroll.value as? String)
+        let custom = app.buttons["theme-custom"]
+        reveal(custom, in: themeScroll, attempts: 6)
+        XCTAssertTrue(custom.isHittable)
+        let edit = app.buttons["theme-custom-edit"]
+        if edit.exists { edit.tap() } else { custom.tap() }
+        XCTAssertTrue(app.descendants(matching: .any).matching(identifier: "theme-custom-scroll").firstMatch.waitForExistence(timeout: 5))
+        capture(app, "native-appearance-custom-editor")
+        app.buttons["theme-custom-cancel"].tap()
+        let restored = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == true AND value == %@", "cool-grey"), object: themeScroll)
+        XCTAssertEqual(XCTWaiter.wait(for: [restored], timeout: 10), .completed)
+        XCTAssertEqual(themeScroll.value as? String, initialPalette)
+        let closed = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == false"), object: app.buttons["theme-custom-save"])
+        XCTAssertEqual(XCTWaiter.wait(for: [closed], timeout: 5), .completed)
+        capture(app, "native-appearance-custom-cancelled")
+    }
+
     func testRealHomeSearchAddonPickerAndPlayerPresentation() throws {
         guard ProcessInfo.processInfo.environment["HARBOR_LIVE_INTEGRATION"] == "1" else {
             throw XCTSkip("Live UI integration requires explicit opt-in")
