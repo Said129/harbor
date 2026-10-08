@@ -59,6 +59,7 @@ final class PlayerState {
         var forced = false
         var hearingImpaired = false
         var defaultTrack = false
+        var channels = ""
     }
     struct Chapter: Identifiable {
         let id: Int

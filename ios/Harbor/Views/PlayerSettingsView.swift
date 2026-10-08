@@ -143,10 +143,10 @@ struct PlayerSettingsView: View {
 
     @ViewBuilder private var audioSettings: some View {
         if let state {
-            HarborSettingsSection("Pistas y volumen") {
+            HarborSettingsSection(DesktopInterfaceText.value("Audio")) {
                 tracks(state, type: "audio", property: "aid")
-                HarborSettingsToggle("Silenciar", isOn: Binding(get: { state.muted }, set: { state.controller?.set("mute", $0 ? "yes" : "no") }))
-                dial("Volumen", value: Binding(get: { state.volume }, set: { preferences.options.volume = $0 }), range: 0...100, suffix: "%")
+                HarborSettingsToggle(DesktopInterfaceText.value("Mute"), isOn: Binding(get: { state.muted }, set: { state.controller?.set("mute", $0 ? "yes" : "no") }))
+                dial(DesktopInterfaceText.value("Volume"), value: Binding(get: { state.volume }, set: { preferences.options.volume = $0 }), range: 0...100, suffix: "%")
             }
         }
         HarborSettingsSection(DesktopInterfaceText.value("Audio languages"), note: DesktopInterfaceText.value("When a release ships multiple audio tracks, Harbor selects the first match from this list.")) {
@@ -155,9 +155,9 @@ struct PlayerSettingsView: View {
         HarborSettingsSection(DesktopInterfaceText.value("Audio")) {
             HarborSettingsToggle(DesktopInterfaceText.value("Mix surround sound down to stereo"), isOn: $preferences.options.stereo)
         }
-        HarborSettingsSection("Sincronización") {
-            dial("Retraso del audio", value: $preferences.options.audioDelay, range: -10...10, step: 0.1, suffix: " s")
-            Button("Restablecer retraso") { preferences.options.audioDelay = 0 }
+        HarborSettingsSection(DesktopInterfaceText.value("Sync Offset")) {
+            dial(DesktopInterfaceText.value("Sync Offset"), value: $preferences.options.audioDelay, range: -10...10, step: 0.1, suffix: " s")
+            Button(DesktopInterfaceText.value("Reset sync")) { preferences.options.audioDelay = 0 }
         }
     }
 

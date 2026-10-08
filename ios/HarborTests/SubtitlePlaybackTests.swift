@@ -74,20 +74,7 @@ final class SubtitlePlaybackTests: XCTestCase {
         XCTAssertEqual(state.primarySubtitle?.id, main.id)
         XCTAssertEqual(state.secondarySubtitle?.mainSelection, 1)
 
-        let originalFrame = window.frame
-        window.frame = CGRect(x: 0, y: 0, width: 402, height: 874)
-        controller.view.layoutIfNeeded()
-        let panel = UIHostingController(rootView: NavigationStack { PlayerTrackPanel(page: .subtitles, state: state) }.preferredColorScheme(.dark))
-        controller.addChild(panel); controller.view.addSubview(panel.view); panel.didMove(toParent: controller)
-        panel.view.frame = controller.view.bounds
-        try await Task.sleep(for: .milliseconds(400))
-        panel.view.layoutIfNeeded()
-        let panelImage = UIGraphicsImageRenderer(bounds: panel.view.bounds).image { _ in _ = panel.view.drawHierarchy(in: panel.view.bounds, afterScreenUpdates: true) }
-        let panelAttachment = XCTAttachment(image: panelImage)
-        panelAttachment.name = "native-subtitle-original-tracks"; panelAttachment.lifetime = .keepAlways
-        add(panelAttachment)
-        panel.willMove(toParent: nil); panel.view.removeFromSuperview(); panel.removeFromParent()
-        window.frame = originalFrame; controller.view.layoutIfNeeded()
+        try await capturePanel(NavigationStack { PlayerTrackPanel(page: .subtitles, state: state) }, in: window, over: controller, name: "native-subtitle-original-tracks")
 
         controller.selectSubtitle("no", secondary: true)
         try await wait(surface, state: state) { !state.subtitleChanging && state.secondarySubtitle == nil }
@@ -97,6 +84,7 @@ final class SubtitlePlaybackTests: XCTestCase {
         try await wait(surface, state: state) { !state.subtitleChanging && state.primarySubtitle?.id == extra.id && state.subtitleFPS == 0 }
         controller.applySubtitleFPS(30)
         try await wait(surface, state: state) { !state.subtitleChanging && state.subtitleFPS == 30 }
+        try await capturePanel(NavigationStack { SubtitleTimingView(state: state) }, in: window, over: controller, name: "native-subtitle-original-fps")
         let generation = state.mediaGeneration
         controller.replay()
         try await wait(surface, state: state) { !state.subtitleChanging && state.mediaGeneration > generation && state.loaded && state.subtitleFPS == 0 && state.tracks.filter { $0.type == "sub" }.count == 2 }
@@ -204,6 +192,25 @@ final class SubtitlePlaybackTests: XCTestCase {
         try await wait(switchedSurface, state: switchedState) { switchedState.mediaGeneration > beforeRetry && switchedState.loaded && switchedState.paused && !switchedState.restarting && switchedState.hasPosition }
         XCTAssertNil(switchedState.error)
         XCTAssertEqual(switchedState.position, 28, accuracy: 0.75, "An acknowledged native retry must keep the timestamp near completion")
+    }
+
+    @available(iOS, deprecated: 12.0)
+    @MainActor private func capturePanel<V: View>(_ view: V, in window: UIWindow, over controller: MPVController, name: String) async throws {
+        let originalFrame = window.frame
+        window.frame = CGRect(x: 0, y: 0, width: 402, height: 874)
+        controller.view.layoutIfNeeded()
+        let panel = UIHostingController(rootView: view.preferredColorScheme(.dark))
+        controller.addChild(panel); controller.view.addSubview(panel.view); panel.didMove(toParent: controller)
+        defer {
+            panel.willMove(toParent: nil); panel.view.removeFromSuperview(); panel.removeFromParent()
+            window.frame = originalFrame; controller.view.layoutIfNeeded()
+        }
+        panel.view.frame = controller.view.bounds
+        try await Task.sleep(for: .milliseconds(400))
+        panel.view.layoutIfNeeded()
+        let image = UIGraphicsImageRenderer(bounds: panel.view.bounds).image { _ in _ = panel.view.drawHierarchy(in: panel.view.bounds, afterScreenUpdates: true) }
+        let attachment = XCTAttachment(image: image)
+        attachment.name = name; attachment.lifetime = .keepAlways; add(attachment)
     }
 
     @available(iOS, deprecated: 12.0)

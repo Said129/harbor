@@ -460,7 +460,7 @@ final class MPVController: GLKViewController {
     }
 
     func applySubtitleFPS(_ value: Double) {
-        guard value == 0 || SubtitleTiming.valid(value) else { state.subtitleIssue = "Introduce unos FPS entre 1 y 240."; return }
+        guard value == 0 || SubtitleTiming.valid(value) else { state.subtitleIssue = DesktopInterfaceText.value("Enter an FPS from 1 to 240."); return }
         let trackID = state.primarySubtitle?.id
         enqueueSubtitleOperation { controller in
             guard SubtitleTiming.unavailable(controller.state) == nil,
@@ -829,9 +829,10 @@ final class MPVController: GLKViewController {
             let selected = fields["selected"].map { $0.format == MPV_FORMAT_FLAG && $0.u.flag != 0 } ?? false
             let flag: (String) -> Bool = { key in fields[key].map { $0.format == MPV_FORMAT_FLAG && $0.u.flag != 0 } ?? false }
             let selection = fields["main-selection"].flatMap { $0.format == MPV_FORMAT_INT64 ? Int($0.u.int64) : nil }
+            let codec = type == "audio" ? string("codec-desc") ?? string("codec") ?? "" : string("codec") ?? ""
             tracks.append(.init(id: Int(id.u.int64), type: type, label: label.isEmpty ? "Pista \(id.u.int64)" : label, selected: selected,
-                                codec: string("codec") ?? "", language: string("lang") ?? "", title: string("title") ?? "", externalFilename: string("external-filename") ?? "", mainSelection: selection,
-                                external: flag("external"), forced: flag("forced"), hearingImpaired: flag("hearing-impaired"), defaultTrack: flag("default")))
+                                codec: codec, language: string("lang") ?? "", title: string("title") ?? "", externalFilename: string("external-filename") ?? "", mainSelection: selection,
+                                external: flag("external"), forced: flag("forced"), hearingImpaired: flag("hearing-impaired"), defaultTrack: flag("default"), channels: string("demux-channels") ?? ""))
         }
         state.tracks = tracks
         applyPreferredSecondary()

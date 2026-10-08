@@ -32,11 +32,11 @@ enum SubtitleTiming {
     }
 
     @MainActor static func unavailable(_ state: PlayerState) -> String? {
-        guard state.loaded, let track = state.primarySubtitle else { return "Selecciona primero una pista de subtítulos." }
-        guard track.isTextSubtitle else { return "La corrección de FPS requiere subtítulos de texto." }
-        guard state.secondarySubtitle == nil else { return "Desactiva la segunda pista para corregir los FPS." }
-        guard state.videoFPS != nil else { return "No se han podido obtener los FPS del vídeo." }
-        guard state.subtitleFPS != nil else { return "Esta versión del reproductor no admite la corrección de FPS." }
+        guard state.loaded, let track = state.primarySubtitle else { return DesktopInterfaceText.value("Select a subtitle track first.") }
+        guard track.isTextSubtitle else { return DesktopInterfaceText.value("Subtitle FPS conversion is only available for text-based subtitles.") }
+        guard state.secondarySubtitle == nil else { return DesktopInterfaceText.value("Subtitle FPS is unavailable while a secondary subtitle is active.") }
+        guard state.videoFPS != nil else { return DesktopInterfaceText.value("Video FPS is unavailable.") }
+        guard state.subtitleFPS != nil else { return DesktopInterfaceText.value("Subtitle FPS is unavailable in this libmpv runtime.") }
         return nil
     }
 }
