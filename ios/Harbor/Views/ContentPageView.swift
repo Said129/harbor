@@ -24,9 +24,9 @@ struct ContentPageView: View {
                 if ["series", "anime"].contains(kind) { ContinueWatching(app: app, kind: kind, title: kind == "series" ? "Continúa donde lo dejaste" : "Seguir viendo") }
                 CustomizedRails(rails: remainingRails, app: app, customization: customization)
             }.padding(.bottom, 24)
-        }.background(HarborTheme.background).navigationTitle("").toolbar(.hidden, for: .navigationBar)
+        }.accessibilityIdentifier("content-\(kind)")
+            .background(HarborTheme.background).navigationTitle("").toolbar(.hidden, for: .navigationBar)
             .safeAreaInset(edge: .bottom) { PageEditingFooter(customization: customization) }
-            .accessibilityIdentifier("content-\(kind)")
             .task(id: "\(app.storageReady)|\(app.addons.filter(\.enabled).map(\.id).joined())|\(MetadataPreferences.shared.tmdbKey)|\(MetadataPreferences.shared.region)|\(MetadataPreferences.shared.language)|\(MetadataPreferences.shared.translateTitles)") { if app.storageReady { await model.load(kind: kind, app: app) } }
             .onChange(of: app.rows.count) { _, _ in if !["movie", "series", "kids"].contains(kind) { Task { await model.load(kind: kind, app: app, refresh: true) } } }
             .onChange(of: app.library.items.map { $0.id + $0.modified }) { _, _ in if kind == "anime" { Task { await model.refreshAnimePicks(app: app) } } }

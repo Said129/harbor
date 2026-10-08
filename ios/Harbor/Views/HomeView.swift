@@ -66,7 +66,8 @@ struct HomeView: View {
                     HarborCatalogEmptyView(app: model).padding(.horizontal)
                 }
             }.padding(.bottom, 24)
-        }.background(HarborTheme.background).navigationBarTitleDisplayMode(.inline)
+        }.accessibilityIdentifier("home-scroll")
+            .background(HarborTheme.background).navigationBarTitleDisplayMode(.inline)
             .safeAreaInset(edge: .bottom) { PageEditingFooter(customization: customization) }
             .refreshable { await refresh() }
             .task(id: contentSignature) {
@@ -92,7 +93,6 @@ struct HomeView: View {
                     catch { return }
                 }
             }
-            .accessibilityIdentifier("home-scroll")
     }
     private func refresh() async {
         guard model.storageReady else { await model.retryStartup(); return }
