@@ -16,6 +16,7 @@ struct DetailView: View {
     @State private var actionHint: String?
     @State private var actionHintRevision = 0
     @State private var showConnecting = false
+    @Environment(\.openURL) private var openURL
     @AppStorage("downloadsCellular") private var cellularDownloads = false
     private let playImmediately: Bool
     init(media: Media, app: AppModel, playImmediately: Bool = false) { self.app = app; self.playImmediately = playImmediately; _model = State(initialValue: DetailModel(media, service: app.service)) }
@@ -49,20 +50,7 @@ struct DetailView: View {
         }
         .sheet(isPresented: $showStreams, onDismiss: { resolutionTask?.cancel(); model.pendingPlayback = nil; model.showResumePrompt = false; pendingEpisode = nil; pendingEpisodeOwner = nil; autoplayEpisode = false; showConnecting = false; model.clearSourceChange() }) {
             NavigationStack {
-                List {
-                    if model.loadingStreams { ProgressView("Consultando addons…") }
-                    if let error = model.error { Text(error).foregroundStyle(.orange) }
-                    if !model.warnings.isEmpty && model.offers.isEmpty && !model.loadingStreams { Text("Algunos addons no han respondido. Puedes volver a intentarlo.").font(.caption) }
-                    if let downloadMessage { Text(downloadMessage).font(.caption).foregroundStyle(.secondary) }
-                    ForEach(model.offers) { offer in
-                        HStack(spacing: 14) {
-                            Button { resolutionTask = Task { await model.play(offer, resume: app.resume, library: app.library) } } label: { VStack(alignment: .leading, spacing: 8) { Text(offer.title); Text("\(offer.source) · \(offer.quality)").font(.caption).foregroundStyle(.secondary) }.frame(maxWidth: .infinity, minHeight: 44, alignment: .leading) }.buttonStyle(.borderless).disabled(model.resolving || model.pendingPlayback != nil).accessibilityIdentifier("stream-offer")
-                            if ["movie", "series", "anime", "music"].contains(model.media.type) {
-                                Button { Task { await download(offer) } } label: { Image("nav-download").resizable().scaledToFit().frame(width: 24, height: 24).frame(width: 38, height: 44) }.buttonStyle(.borderless).disabled(downloading).accessibilityLabel("Descargar esta fuente")
-                            }
-                        }
-                    }
-                }.navigationTitle(selectedEpisode.map { "T\($0.season ?? 0) · E\($0.episode ?? 0) · Streams" } ?? "Streams").toolbar { ToolbarItem(placement: .topBarTrailing) { Button("Cerrar") { showStreams = false } } }
+                streamPicker
                 .overlay {
                     if model.resolving || (showConnecting && model.loadingStreams) {
                         HarborPlaybackConnecting(media: model.media) { resolutionTask?.cancel(); showStreams = false }
@@ -97,9 +85,25 @@ struct DetailView: View {
                         await model.play(offer, resume: app.resume, library: app.library)
                     }
                 }
-            }.presentationDetents(showConnecting ? [.large] : [.medium, .large])
+            }.presentationDetents([.large])
         }
     }
+    private var streamPicker: some View {
+        StreamPickerView(model: model, addons: app.addons, episode: selectedEpisode, downloading: downloading, downloadMessage: downloadMessage,
+                         play: playOffer, download: ["movie", "series", "anime", "music"].contains(model.media.type) ? startDownload : nil,
+                         refresh: refreshStreams, back: { showStreams = false })
+    }
+    private func playOffer(_ offer: StreamOffer) {
+        guard !model.resolving, model.pendingPlayback == nil else { return }
+        if let url = offer.pickerExternalURL { openURL(url); return }
+        resolutionTask = Task { await model.play(offer, resume: app.resume, library: app.library) }
+    }
+    private func refreshStreams() {
+        guard !model.loadingStreams, !model.resolving, model.pendingPlayback == nil else { return }
+        resolutionTask?.cancel()
+        resolutionTask = Task { await model.findStreams(app.addons, episode: selectedEpisode) }
+    }
+    private func startDownload(_ offer: StreamOffer) { Task { await download(offer) } }
     private var hero: some View {
         ZStack(alignment: .bottomLeading) {
             Artwork(url: model.media.background, fallback: model.media.fallbackBackground, fallbacks: [model.media.poster].compactMap { $0 }, maxPixels: 1400).frame(height: 370).clipped()
@@ -193,7 +197,7 @@ struct DetailView: View {
             let source = try await app.service.resolve(offer)
             guard owner == (app.user?.id ?? "guest") else { return }
             try DownloadManager.shared.start(source: source, media: media, episode: episode, owner: owner, cellular: cellularDownloads)
-            downloadMessage = "Descarga añadida. Puedes verla en Descargas."
+            downloadMessage = DesktopInterfaceText.value("Download started")
         } catch { downloadMessage = safeMessage(error) }
     }
 }

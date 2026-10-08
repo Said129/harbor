@@ -72,7 +72,7 @@ struct PlayerEpisodesView: View {
             expanded: expanded == episode.id, canRestart: canRestart, thumbnailWidth: thumbnailWidth,
             activate: { if playing { restart(); close() } else { play(episode) } },
             toggle: { withAnimation(reduceMotion ? nil : .easeOut(duration: 0.3)) { expanded = expanded == episode.id ? nil : episode.id } },
-            reveal: { withAnimation(reduceMotion ? nil : .easeOut(duration: 0.2)) { revealed.insert(episode.id) } })
+            reveal: { withAnimation(reduceMotion ? nil : .easeOut(duration: 0.2)) { _ = revealed.insert(episode.id) } })
             .id(episode.id)
     }
 

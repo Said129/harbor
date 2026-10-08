@@ -427,6 +427,17 @@ final class LiveNavigationTests: XCTestCase {
         streams.tap()
         let offer = app.buttons.matching(identifier: "stream-offer").firstMatch
         XCTAssertTrue(offer.waitForExistence(timeout: 30), "A real addon must populate the stream picker")
+        let pickerScroll = app.scrollViews["stream-picker-scroll"]
+        XCTAssertTrue(app.buttons["stream-picker-refresh"].exists)
+        let allSources = app.buttons["stream-all-sources"]
+        reveal(allSources, in: pickerScroll, attempts: 5)
+        XCTAssertTrue(allSources.isHittable)
+        allSources.tap()
+        XCTAssertTrue(app.buttons.matching(identifier: "stream-source-row").firstMatch.waitForExistence(timeout: 5))
+        capture(app, "real-stream-original-source-drawer")
+        allSources.tap()
+        for _ in 0..<5 { if offer.isHittable { break }; pickerScroll.swipeDown() }
+        XCTAssertTrue(offer.isHittable)
         capture(app, "real-stream-picker")
         offer.tap()
         let close = app.buttons["player-close"]

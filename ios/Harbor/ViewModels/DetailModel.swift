@@ -10,6 +10,7 @@ final class DetailModel {
     var resolving = false
     var offers: [StreamOffer] = []
     var warnings: [String] = []
+    var filteredSources = false
     var error: String?
     var playback: PlaybackSession?
     var pendingPlayback: PlaybackSession?
@@ -64,6 +65,7 @@ final class DetailModel {
         error = nil
         offers = []
         warnings = []
+        filteredSources = false
         playback = nil
         pendingPlayback = nil
         showResumePrompt = false
@@ -78,7 +80,7 @@ final class DetailModel {
             warnings = result.1
             Diagnostics.shared.record(.streamsLoaded, count: offers.count)
             if offers.isEmpty {
-                if !result.0.isEmpty { self.error = "Ninguna fuente cumple tus filtros de calidad. Puedes cambiarlos en Ajustes → Reproducción." }
+                if !result.0.isEmpty { filteredSources = true; self.error = DesktopInterfaceText.value("Strict filters dropped everything") }
                 else { throw HarborError(code: warnings.first ?? "no-streams") }
             }
         } catch is CancellationError { return }
