@@ -56,8 +56,13 @@ final class LiveNavigationTests: XCTestCase {
         capture(app, "account-original-avatar-gallery")
         avatarSearch.tap(); avatarSearch.typeText("Nova")
         XCTAssertEqual(app.buttons.matching(identifier: "profile-avatar-choice").count, 1, "Original avatar names must be searchable")
-        app.navigationBars.buttons["Cerrar"].tap()
-        app.navigationBars.buttons["Cerrar"].tap()
+        let avatarClose = app.buttons["profile-avatar-close"]
+        XCTAssertTrue(avatarClose.isHittable)
+        avatarClose.tap()
+        XCTAssertTrue(app.textFields["profile-name"].waitForExistence(timeout: 5))
+        let accountClose = app.buttons["account-close"]
+        XCTAssertTrue(accountClose.isHittable)
+        accountClose.tap()
         // SwiftUI exposes the identified accessibility container as Other,
         // with the actual NavigationLink button inside it.
         let hero = app.descendants(matching: .any).matching(identifier: "home-hero").firstMatch
@@ -388,7 +393,7 @@ final class LiveNavigationTests: XCTestCase {
         let scroll = app.descendants(matching: .any).matching(identifier: "home-scroll").firstMatch
         XCTAssertTrue(scroll.waitForExistence(timeout: 5))
         let example = app.buttons.matching(NSPredicate(format: "identifier == 'catalog-movie' AND label == 'Big Buck Bunny'")).firstMatch
-        reveal(example, in: scroll)
+        reveal(example, in: scroll, attempts: 36)
         capture(app, "installed-addon-catalog")
         XCTAssertTrue(example.waitForExistence(timeout: 15), "The real installed addon must appear in Home's vertical catalog list")
         XCTAssertTrue(example.isHittable)

@@ -41,6 +41,12 @@ final class LiveServicesTests: XCTestCase {
         let winners = try await AnimeService.shared.page(award, page: 1)
         XCTAssertFalse(winners.isEmpty)
         XCTAssertTrue(winners.allSatisfy { AnimeService.isAnime($0.id) && $0.poster != nil })
+        let home = await AnimeService.shared.homeRows()
+        XCTAssertFalse(home.isEmpty, "Home must retain its real public anime sources")
+        XCTAssertTrue(home.contains { $0.id == "anime-airing" && !$0.metas.isEmpty })
+        XCTAssertTrue(home.contains { $0.id == "anime-popular" && !$0.metas.isEmpty })
+        XCTAssertTrue(home.allSatisfy { (6...60).contains($0.metas.count) && $0.path == "home:fixed" && $0.metas.allSatisfy { AnimeService.isAnime($0.id) && $0.ratingSource == "MAL" } })
+        print("Harbor live Home anime: loaded=\(home.map(\.id).joined(separator: ",")), items=\(home.reduce(0) { $0 + $1.metas.count })")
         print("Harbor live Anime: MAL=\(popular.count + second.count), original award winners resolved=\(winners.count)")
     }
     func testNativeSportsLoadsPublishedScoresAndActualBoxscore() async throws {

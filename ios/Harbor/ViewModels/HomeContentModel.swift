@@ -4,13 +4,28 @@ import Observation
 @MainActor @Observable
 final class HomeContentModel {
     private(set) var rows: [DiscoveryRail] = []
+    private(set) var animeRows: [DiscoveryRail] = []
+    private var animeGeneration = 0
+    private var animeLoadedOwner: String?
     private(set) var heroes: [Media] = []
     private(set) var loading = false
     private(set) var error: String?
     private var generation = 0
     private var loadedSignature = ""
 
-    func reset() { generation += 1; loadedSignature = ""; rows = []; heroes = []; loading = false; error = nil }
+    func reset() { generation += 1; loadedSignature = ""; rows = []; heroes = []; loading = false; error = nil; animeGeneration += 1; animeLoadedOwner = nil; animeRows = [] }
+
+    func loadAnime(owner: String, refresh: Bool = false) async {
+        guard refresh || animeLoadedOwner != owner else { return }
+        animeGeneration += 1
+        let current = animeGeneration
+        let previous = animeLoadedOwner == owner ? animeRows : []
+        animeRows = previous
+        let fetched = await AnimeService.shared.homeRows()
+        guard !Task.isCancelled, current == animeGeneration else { return }
+        animeRows = CatalogRefresh.merge(order: AnimeService.homeDefinitions().map { String($0.id.dropFirst(5)) }, received: fetched, previous: previous)
+        if !fetched.isEmpty { animeLoadedOwner = owner }
+    }
 
     func load(app: AppModel, refresh: Bool = false) async {
         let configuration = MetadataPreferences.shared.configuration()

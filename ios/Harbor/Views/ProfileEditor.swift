@@ -171,7 +171,7 @@ struct ProfileEditor: View {
                 if matchingAvatars.isEmpty { Text(DesktopInterfaceText.value("No matches.")).font(HarborTheme.font(13.5)).foregroundStyle(.secondary).frame(maxWidth: .infinity).padding(.vertical, 64) }
             }.padding()
         }.background(HarborTheme.background).navigationTitle(DesktopInterfaceText.value("Choose an avatar"))
-            .toolbar { Button(DesktopInterfaceText.value("Close")) { avatars = false } }
+            .toolbar { Button(DesktopInterfaceText.value("Close")) { avatars = false }.accessibilityIdentifier("profile-avatar-close") }
     }
 }
 

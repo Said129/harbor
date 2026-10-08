@@ -95,7 +95,7 @@ struct AccountView: View {
         .textFieldStyle(.plain)
         .disabled(app.accountBusy || browserBusy)
         .navigationTitle("").navigationBarTitleDisplayMode(.inline)
-        .toolbar { Button("Cerrar") { dismiss() } }
+        .toolbar { Button("Cerrar") { dismiss() }.accessibilityIdentifier("account-close") }
         .onDisappear { password = ""; web.cancel() }
     }
 }

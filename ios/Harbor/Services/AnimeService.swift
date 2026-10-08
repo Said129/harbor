@@ -25,6 +25,51 @@ actor AnimeService {
          DiscoveryRail(id: "anime-popular", title: "Most Popular on MAL", kind: "anime", path: "jikan:top/anime", parameters: ["filter": "bypopularity"])]
     }
 
+    static func homeDefinitions() -> [DiscoveryRail] {
+        [DiscoveryRail(id: "home-anime-airing", title: DesktopInterfaceText.value("Trending Anime"), kind: "anime", path: "jikan:top/anime", parameters: ["filter": "airing"]),
+         DiscoveryRail(id: "home-anime-new", title: DesktopInterfaceText.value("New Anime Releases"), kind: "anime", path: "jikan:anime", parameters: ["order_by": "start_date", "sort": "desc", "status": "airing", "min_score": "6"]),
+         DiscoveryRail(id: "home-anime-popular", title: DesktopInterfaceText.value("Popular Anime"), kind: "anime", path: "jikan:top/anime", parameters: ["filter": "bypopularity"]),
+         DiscoveryRail(id: "home-anime-upcoming", title: DesktopInterfaceText.value("Upcoming Anime"), kind: "anime", path: "jikan:seasons/upcoming")]
+    }
+
+    func homeRows() async -> [DiscoveryRail] {
+        let definitions = Self.homeDefinitions()
+        return await withTaskGroup(of: (Int, DiscoveryRail?).self) { group in
+            for (index, definition) in definitions.enumerated() {
+                group.addTask {
+                    var titles: [Media] = [], failed = false, seen = Set<String>()
+                    for number in 1...3 {
+                        guard !Task.isCancelled else { return (index, nil) }
+                        do {
+                            let page = try await self.page(definition, page: number)
+                            titles.append(contentsOf: page.filter { seen.insert($0.identity).inserted })
+                        } catch { failed = true }
+                    }
+                    guard !Task.isCancelled, titles.count >= 6 || !failed else { return (index, nil) }
+                    let cleaned = titles.count >= 6 ? Array(titles.prefix(60)).map { media in
+                        var result = media; result.name = Self.homeFranchiseTitle(media.name); return result
+                    } : []
+                    return (index, DiscoveryRail(id: String(definition.id.dropFirst(5)), title: definition.title, kind: "anime", path: "home:fixed", metas: cleaned))
+                }
+            }
+            var received: [(Int, DiscoveryRail)] = []
+            for await (index, row) in group { if let row { received.append((index, row)) } }
+            return received.sorted { $0.0 < $1.0 }.map(\.1)
+        }
+    }
+
+    private static func homeFranchiseTitle(_ name: String) -> String {
+        let patterns = [
+            #"(?i)\s*[-:]?\s*(?:1st|2nd|3rd|4th|5th|6th|7th|8th|9th|10th|11th|12th|First|Second|Third|Fourth|Fifth|Sixth|Seventh|Eighth|Ninth|Tenth|Final|Last)\s+(?:Season|Cour|Part)\b.*$"#,
+            #"(?i)\s*[-:]?\s*Season\s+\d+\b.*$"#,
+            #"(?i)\s+S\d+(?:\s|$).*"#,
+            #"(?i)\s*[-:]?\s*(?:Part|Cour|Chapter)\s+\d+\b.*$"#,
+            #"\s+(?:II|III|IV|V|VI|VII|VIII|IX|X)\s*$"#,
+            #"[\s°'."’˚_:\-]+$"#
+        ]
+        return patterns.reduce(name) { $0.replacingOccurrences(of: $1, with: "", options: .regularExpression) }.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+
     func page(_ rail: DiscoveryRail, page: Int) async throws -> [Media] {
         guard (1...100).contains(page) else { return [] }
         loadCache()
@@ -55,7 +100,7 @@ actor AnimeService {
         cacheLoaded = true
         guard let url = cacheURL, let size = try? url.resourceValues(forKeys: [.fileSizeKey]).fileSize, size <= 4 * 1_024 * 1_024,
               let data = try? Data(contentsOf: url), let entries = try? JSONDecoder().decode([String: Cached].self, from: data), entries.count <= 100 else { return }
-        let validIDs = Set(Self.definitions().map(\.id))
+        let validIDs = Set((Self.definitions() + Self.homeDefinitions()).map(\.id))
         let now = Date()
         cache = entries.filter { key, entry in
             let components = key.split(separator: ":")
@@ -69,7 +114,7 @@ actor AnimeService {
         guard let url = cacheURL else { return }
         // Only provider rails are persisted. Personalized recommendations and
         // account history never enter this shared public cache.
-        let validIDs = Set(Self.definitions().map(\.id))
+        let validIDs = Set((Self.definitions() + Self.homeDefinitions()).map(\.id))
         let entries = cache.filter { validIDs.contains(String($0.key.split(separator: ":").first ?? "")) && Date().timeIntervalSince($0.value.at) <= Self.fallbackAge }
         guard let data = try? JSONEncoder().encode(entries), data.count <= 4 * 1_024 * 1_024 else { return }
         try? data.write(to: url, options: .atomic)

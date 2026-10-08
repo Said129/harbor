@@ -15,15 +15,16 @@ enum MALPublicCatalog {
         var parameters = ["limit": "25", "offset": String((page - 1) * 25), "nsfw": "false",
                           "fields": "alternative_titles,mean,genres,nsfw,media_type,start_season,start_date,synopsis,status"]
         switch railID {
-        case "anime-popular": parameters["ranking_type"] = "bypopularity"
+        case "anime-popular", "home-anime-popular": parameters["ranking_type"] = "bypopularity"
+        case "home-anime-airing": parameters["ranking_type"] = "airing"
         case "anime-top-tv": parameters["ranking_type"] = "tv"
         case "anime-top-movies": parameters["ranking_type"] = "movie"
-        case "anime-airing", "anime-upcoming":
+        case "anime-airing", "anime-upcoming", "home-anime-upcoming":
             var calendar = Calendar(identifier: .gregorian); calendar.timeZone = TimeZone(secondsFromGMT: 0)!
             let components = calendar.dateComponents([.year, .month], from: now)
             guard var year = components.year, let month = components.month else { throw HarborError(code: "anime-season") }
             var quarter = (month - 1) / 3
-            if railID == "anime-upcoming" { quarter += 1; if quarter == 4 { quarter = 0; year += 1 } }
+            if railID == "anime-upcoming" || railID == "home-anime-upcoming" { quarter += 1; if quarter == 4 { quarter = 0; year += 1 } }
             parameters["sort"] = "anime_num_list_users"
             return ("/anime/season/\(year)/\(["winter", "spring", "summer", "fall"][quarter])", parameters)
         default: throw HarborError(code: "anime-catalog")

@@ -16,7 +16,7 @@ struct HomeView: View {
     private var rails: [PageRail] {
         let catalogs = model.rows.filter { !$0.metas.isEmpty }.map(PageRail.catalog)
         guard !classic else { return catalogs }
-        let built = model.home.rows.filter { !$0.metas.isEmpty }.map(PageRail.discovery)
+        let built = (model.home.rows + model.home.animeRows).filter { !$0.metas.isEmpty }.map(PageRail.discovery)
         var names = Set(built.map { $0.kind + "|" + $0.title.trimmingCharacters(in: .whitespacesAndNewlines).lowercased() })
         return built + catalogs.filter { names.insert($0.kind + "|" + $0.title.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()).inserted }
     }
@@ -70,7 +70,9 @@ struct HomeView: View {
             .refreshable { await refresh() }
             .task(id: contentSignature) {
                 guard model.storageReady, !classic else { return }
-                await model.home.load(app: model)
+                async let curated: Void = model.home.load(app: model)
+                async let anime: Void = model.home.loadAnime(owner: model.user?.id ?? "guest")
+                _ = await (curated, anime)
             }
             .sheet(isPresented: $showSpooktober) {
                 NavigationStack {
@@ -94,7 +96,11 @@ struct HomeView: View {
     private func refresh() async {
         guard model.storageReady else { await model.retryStartup(); return }
         async let catalogs: Void = model.loadHome()
-        if !classic { await model.home.load(app: model, refresh: true) }
+        if !classic {
+            async let curated: Void = model.home.load(app: model, refresh: true)
+            async let anime: Void = model.home.loadAnime(owner: model.user?.id ?? "guest", refresh: true)
+            _ = await (curated, anime)
+        }
         await catalogs
     }
 }
