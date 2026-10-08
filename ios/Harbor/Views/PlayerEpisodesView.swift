@@ -24,58 +24,69 @@ struct PlayerEpisodesView: View {
         GeometryReader { geometry in
             VStack(spacing: 0) {
                 header
-                HStack(spacing: 12) {
-                    if let episode = currentEpisode {
-                        Text(DesktopInterfaceText.value("Now playing: {label}").replacingOccurrences(of: "{label}", with: currentLabel(episode)))
-                            .font(HarborTheme.font(12.5)).foregroundStyle(subtle).lineLimit(1)
-                    }
-                    Spacer(minLength: 0)
-                    if seasons.count > 1 { seasonPicker }
-                }.padding(.horizontal, 24).padding(.bottom, 12)
-                ScrollViewReader { scroll in
-                    ScrollView {
-                        LazyVStack(spacing: 12) {
-                            ForEach(visible) { episode in
-                                let playing = isCurrent(episode)
-                                let watched = library?.watchedEpisodes(media).contains(episode.watchedKey) == true
-                                let hidden = InterfacePreferences.shared.hideSpoilers && !playing && !watched && !revealed.contains(episode.id)
-                                PlayerEpisodeCard(episode: episode, playing: playing, watched: watched, hidden: hidden,
-                                    expanded: expanded == episode.id, canRestart: canRestart,
-                                    thumbnailWidth: min(156.45, max(80, (geometry.size.width - 56) * 0.36)),
-                                    activate: {
-                                        if playing { restart(); close() } else { play(episode) }
-                                    }, toggle: {
-                                        withAnimation(reduceMotion ? nil : .easeOut(duration: 0.3)) { expanded = expanded == episode.id ? nil : episode.id }
-                                    }, reveal: {
-                                        withAnimation(reduceMotion ? nil : .easeOut(duration: 0.2)) { revealed.insert(episode.id) }
-                                    }).id(episode.id)
-                            }
-                            if visible.isEmpty {
-                                Text(DesktopInterfaceText.value("No episodes found for this season."))
-                                    .font(HarborTheme.font(13.5)).foregroundStyle(ThemePreferences.shared.color("ink-muted"))
-                                    .multilineTextAlignment(.center).padding(.vertical, 40).padding(.horizontal, 8)
-                            }
-                            if let nextSeason {
-                                Button { changeSeason(nextSeason) } label: {
-                                    HStack(spacing: 6) {
-                                        Text(seasonLabel(nextSeason))
-                                        episodeGlyph("episode-next-season", size: 16)
-                                    }.font(HarborTheme.font(13.5, weight: .semibold))
-                                        .frame(maxWidth: .infinity, minHeight: 48)
-                                        .background(ThemePreferences.shared.color("elevated"), in: .rect(cornerRadius: 16))
-                                        .overlay { RoundedRectangle(cornerRadius: 16).stroke(ThemePreferences.shared.color("edge-soft"), lineWidth: 1) }
-                                }.buttonStyle(.plain).accessibilityIdentifier("player-next-season")
-                            }
-                        }.padding(.horizontal, 16).padding(.top, 8).padding(.bottom, 32)
-                    }.accessibilityIdentifier("player-episodes-scroll")
-                        .onChange(of: season) { _, _ in if let first = visible.first { scroll.scrollTo(first.id, anchor: .top) } }
-                        .task {
-                            season = current.season ?? seasons.first(where: { $0 > 0 }) ?? seasons.first ?? 1
-                            if let episode = currentEpisode { scroll.scrollTo(episode.id, anchor: .top) }
-                        }
-                }
+                playbackContext
+                episodeScroll(width: geometry.size.width)
             }.frame(maxWidth: .infinity, maxHeight: .infinity).foregroundStyle(HarborTheme.ink)
                 .background(HarborTheme.background)
+        }
+    }
+
+    private var playbackContext: some View {
+        HStack(spacing: 12) {
+            if let episode = currentEpisode {
+                Text(DesktopInterfaceText.value("Now playing: {label}").replacingOccurrences(of: "{label}", with: currentLabel(episode)))
+                    .font(HarborTheme.font(12.5)).foregroundStyle(subtle).lineLimit(1)
+            }
+            Spacer(minLength: 0)
+            if seasons.count > 1 { seasonPicker }
+        }.padding(.horizontal, 24).padding(.bottom, 12)
+    }
+
+    private func episodeScroll(width: CGFloat) -> some View {
+        let thumbnailWidth: CGFloat = min(156.45, max(80, (width - 56) * 0.36))
+        return ScrollViewReader { scroll in
+            ScrollView {
+                LazyVStack(spacing: 12) {
+                    ForEach(visible) { episode in episodeCard(episode, thumbnailWidth: thumbnailWidth) }
+                    if visible.isEmpty {
+                        Text(DesktopInterfaceText.value("No episodes found for this season."))
+                            .font(HarborTheme.font(13.5)).foregroundStyle(ThemePreferences.shared.color("ink-muted"))
+                            .multilineTextAlignment(.center).padding(.vertical, 40).padding(.horizontal, 8)
+                    }
+                    nextSeasonButton
+                }.padding(.horizontal, 16).padding(.top, 8).padding(.bottom, 32)
+            }.accessibilityIdentifier("player-episodes-scroll")
+                .onChange(of: season) { _, _ in if let first = visible.first { scroll.scrollTo(first.id, anchor: .top) } }
+                .task {
+                    season = current.season ?? seasons.first(where: { $0 > 0 }) ?? seasons.first ?? 1
+                    if let episode = currentEpisode { scroll.scrollTo(episode.id, anchor: .top) }
+                }
+        }
+    }
+
+    private func episodeCard(_ episode: Episode, thumbnailWidth: CGFloat) -> some View {
+        let playing = isCurrent(episode)
+        let watched = library?.watchedEpisodes(media).contains(episode.watchedKey) == true
+        let hidden = InterfacePreferences.shared.hideSpoilers && !playing && !watched && !revealed.contains(episode.id)
+        return PlayerEpisodeCard(episode: episode, playing: playing, watched: watched, hidden: hidden,
+            expanded: expanded == episode.id, canRestart: canRestart, thumbnailWidth: thumbnailWidth,
+            activate: { if playing { restart(); close() } else { play(episode) } },
+            toggle: { withAnimation(reduceMotion ? nil : .easeOut(duration: 0.3)) { expanded = expanded == episode.id ? nil : episode.id } },
+            reveal: { withAnimation(reduceMotion ? nil : .easeOut(duration: 0.2)) { revealed.insert(episode.id) } })
+            .id(episode.id)
+    }
+
+    @ViewBuilder private var nextSeasonButton: some View {
+        if let nextSeason {
+            Button { changeSeason(nextSeason) } label: {
+                HStack(spacing: 6) {
+                    Text(seasonLabel(nextSeason))
+                    episodeGlyph("episode-next-season", size: 16)
+                }.font(HarborTheme.font(13.5, weight: .semibold))
+                    .frame(maxWidth: .infinity, minHeight: 48)
+                    .background(ThemePreferences.shared.color("elevated"), in: .rect(cornerRadius: 16))
+                    .overlay { RoundedRectangle(cornerRadius: 16).stroke(ThemePreferences.shared.color("edge-soft"), lineWidth: 1) }
+            }.buttonStyle(.plain).accessibilityIdentifier("player-next-season")
         }
     }
 

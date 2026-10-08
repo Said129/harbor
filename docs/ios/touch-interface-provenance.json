@@ -109,7 +109,20 @@
     "src/components/player/episode-panel/season-picker.tsx": "8dd5c58a3a66e3ed633a98f5aa667f9738baa92ab6680947ae5745a322e69435",
     "src/views/home/row-controls.tsx": "a3fc2a08b87ff766dd990605b4e65d1d5c206e87baf6df1aaaf5cea4835882f0",
     "src/views/home/customize-bar.tsx": "f4a7cab299678bd17f1515b4b5786534c164a8b011af0d3db6b5ab2f4215580b",
-    "src/components/catalog/customize-bar.tsx": "a412f99ecd33a8066144a3830c16a810ca232a106ffa8c14dc1e7b22dbcd9ed5"
+    "src/components/catalog/customize-bar.tsx": "a412f99ecd33a8066144a3830c16a810ca232a106ffa8c14dc1e7b22dbcd9ed5",
+    "src/views/settings/groups.ts": "75ab5def6de52c2f11a3b47962f7a6c0faae68afb204a46b9bfc4df672272069",
+    "src/views/settings/settings-sidebar.tsx": "4056bf7e17ab4cd56ff3e06438b5b4919fb323e5088f17368d8f633375268448",
+    "src/views/settings/library-panel/provider-key-row.tsx": "58192ed0f3f945521a6518568f582e3f7e6950f25026bc4bc65d99ec6a8eea6b",
+    "src/views/settings/library-panel/provider-keys.tsx": "9b73c9ea58b46d29e2d1ec77b6e1a7f7a8cf5b37087450575a0215370321a244",
+    "src/views/settings/library-panel/providers-tab.tsx": "284d624c8f6620defed63041613fbf4d83c732478b20ccd3792ae86a5eff6aa6",
+    "src/views/settings/language-panel/app-tab.tsx": "b13b696f1ef144ef109d09a623aa845914f7919730d7ee2550661fcbc7dac730",
+    "src/views/settings/kit.tsx": "27a9bebefd503a4da2eae5f458b1630f160fcc482366197b19b39fd5a390ba96",
+    "src/views/settings/advanced-panel/about-tab.tsx": "28cacb81d205d4dab41fc5f20278f3d3ff11c8d24ce32f4fe625d66a3d7b0c7a",
+    "src/views/settings/bug-report-panel.tsx": "75651d863af76b25ae8e7a0dd1d9be26ba77bede6f3c8a1d7ae5a1f761a70b68",
+    "src/index.css": "e94d5673da94f30a915c676953718792bf5181f6c748fdde1ccfb3af187a1d4c",
+    "src/assets/addon-logos/tmdb.png": "57ed4b3b0450fd5e9a0c20f34e814b82adaa1085c79bdde2f00ca8787b63d2c4",
+    "src/components/anime-hero.tsx": "a2ecbfe2a52773292c62af92e6d4b219dd01a0bdc8b1096ea5a4f0b0681e6e50",
+    "src/lib/i18n/locales/es/masthead.ts": "a396ba8c3fbe013c57c95c8e7149998c1336443705713717bb601929cc81b9be"
   },
   "changes": [
     "Original six-point playback timeline with a 44-point touch target; seeking commits to mpv on release.",
@@ -142,7 +155,8 @@
     "Home now consumes the eight original TMDB definitions when configured and the eighteen Cinemeta rows without a key or when TMDB cannot load titles, with original order, six/four hero source rows, ranked Top 10 and the shared Popular offset. The real production services load titles progressively and keep prior rows on partial failures. Classic retains addon rows and Continue Watching first. Existing customization identifiers, account isolation and addon destinations are preserved; the Home loader uses the original artwork without added copy. Cinemeta View all opens the bounded original row. The existing public Cinemeta gate checks these real Home results; this increment does not yet add the four Home anime rows.",
     "The curated Home now appends the four original anime definitions in source order, with three public pages, the minimum six/maximum sixty titles, real MAL scores, the original franchise-suffix cleanup and bounded View all. Airing/popular/upcoming share the established production MAL transport with Jikan fallback; new releases retain the exact original Jikan date/status/score query rather than substituting a different season. Unique provider cache keys avoid overwriting the separate Anime page. Failed refreshes preserve previous owner rows and account reset invalidates pending Home/anime work. The existing public MAL gate checks the loaded production Home rows without claiming all four survived every provider outage. The 70 native/services gates passed; its UI gate failed because a nested avatar sheet and Account exposed two Close buttons. Distinct accessibility identifiers now exercise each real dismissal and assert the return to Profile before closing Account.",
     "Build 74 replaces the native player episode List with the original Up Next header, display title, Now Playing badge, S/E still overlays, watched badge, accent Play/Restart cards, expandable details, original season picker and next-season action. Thumbnails adapt to iPhone width without substituting the show backdrop. Current episodes bypass spoiler masks and Restart calls the checked mpv reload at zero with autoplay, under existing lifecycle/owner guards. Existing reveal/description preferences remain active. Only supplied release/runtime metadata is rendered; no synthetic episode rating is added.",
-    "Build 75 replaces the generic customization sheet with original inline RowControls and CustomizeBar actions. Desktop row order/visibility/rename/numerals/hero selection and existing option bindings remain persisted per owner/page. Mobile rows split the title and five 44 pt action targets, show official action hints within the card width, and preserve reduced motion. Catalog moves swap scoped neighboring rows without discarding order for other provider groups. A floating Reset/Done editing bar keeps the exit accessible in long pages. Eight original Lucide glyphs match source strokes; labels are taken from original locales. The Anime picks row is rendered once in its existing hero, correcting the prefixed PageRail identity in the lower list."
+    "Build 75 replaces the generic customization sheet with original inline RowControls and CustomizeBar actions. Desktop row order/visibility/rename/numerals/hero selection and existing option bindings remain persisted per owner/page. Mobile rows split the title and five 44 pt action targets, show official action hints within the card width, and preserve reduced motion. Catalog moves swap scoped neighboring rows without discarding order for other provider groups. A floating Reset/Done editing bar keeps the exit accessible in long pages. Eight original Lucide glyphs match source strokes; labels are taken from original locales. The Anime picks row is rendered once in its existing hero, correcting the prefixed PageRail identity in the lower list.",
+    "Build 76 replaces the generic metadata Form with original provider/KeyField controls, original TMDB logo, inline reveal SVGs, Saved check stroke and semantic success color. It preserves the existing real key validation and Keychain storage, cancelling verification on close. Settings use official sections/copy: Library belongs to Sources & library, subtitles to Languages & subtitles, downloads to System and logs/version to Help & about. Original locale labels replace invented headlines, helper paragraphs, status messages and version footer. The existing live UI route captures the metadata provider/editor without supplying a secret or claiming authentication verification. Anime Start Watching now enters the existing playback-intent detail flow as requested, preserving automatic/manual source selection and account guards. Anime and Series hero text/actions resolve official source/locale keys."
   ],
   "copyOutput": "ios/Harbor/DesktopDiscoverSpanish.json",
   "limitations": [
@@ -435,6 +449,30 @@
       "sourceSha256": "942041f985f610b080af1db8958a1338705d3303330e9fd6615ac8c95c1fa438",
       "svgSha256": "266a3488e43ff4bf00096eadab2c8341ff7a76ad626eec700d9a763ce369a7c3",
       "output": "ios/Harbor/Assets.xcassets/page-save.imageset/icon.svg"
+    },
+    "metadata-tmdb": {
+      "source": "src/assets/addon-logos/tmdb.png",
+      "sha256": "57ed4b3b0450fd5e9a0c20f34e814b82adaa1085c79bdde2f00ca8787b63d2c4",
+      "output": "ios/Harbor/Assets.xcassets/metadata-tmdb.imageset/original.png"
+    },
+    "metadata-key-show": {
+      "source": "src/views/settings/shared.tsx KeyField inline SVG",
+      "svgSha256": "20d15a4735c1e46b3c673598d68a0723e5885725bee0f4d765aad393ae86a3ee",
+      "output": "ios/Harbor/Assets.xcassets/metadata-key-show.imageset/icon.svg"
+    },
+    "metadata-key-hide": {
+      "source": "src/views/settings/shared.tsx KeyField inline SVG",
+      "svgSha256": "688dad83c88d72f76d331590c24918afbc47fe413952c865a331af13aa8a5f16",
+      "output": "ios/Harbor/Assets.xcassets/metadata-key-hide.imageset/icon.svg"
+    },
+    "metadata-key-check": {
+      "package": "lucide-react",
+      "version": "0.460.0",
+      "integrity": "sha512-BVtq/DykVeIvRTJvRAgCsOwaGL8Un3Bxh8MbDxMhEWlZay3T4IpEKDEpwt5KZ0KJMHzgm6jrltxlT5eXOWXDHg==",
+      "sourceSha256": "942041f985f610b080af1db8958a1338705d3303330e9fd6615ac8c95c1fa438",
+      "svgSha256": "129ec96260938cb79e63a0e1349e79fd2e3f61a3ce9d58a0c5e2d58d8c2eec8b",
+      "output": "ios/Harbor/Assets.xcassets/metadata-key-check.imageset/icon.svg",
+      "sourceUsage": "src/views/settings/shared.tsx KeyField Check size 15 strokeWidth 2.6"
     }
   },
   "interfaceCopyOutput": "ios/Harbor/DesktopInterfaceSpanish.json",

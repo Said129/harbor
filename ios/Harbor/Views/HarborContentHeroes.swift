@@ -72,7 +72,7 @@ private struct HarborAnimeSlide: View {
         VStack(alignment: .leading, spacing: 16) {
             Spacer(minLength: 65)
             if let source {
-                HStack(spacing: 7) { Image("desktop-trending-up").resizable().scaledToFit().frame(width: 16, height: 16).foregroundStyle(HarborTheme.accent); Text("Tendencias en \(source)").font(HarborTheme.font(11, weight: .semibold)).textCase(.uppercase).tracking(1) }
+                HStack(spacing: 7) { Image("desktop-trending-up").resizable().scaledToFit().frame(width: 16, height: 16).foregroundStyle(HarborTheme.accent); Text(DesktopInterfaceText.value("Trending on {source}").replacingOccurrences(of: "{source}", with: source)).font(HarborTheme.font(11, weight: .semibold)).textCase(.uppercase).tracking(1) }
             }
             HarborHeroTitle(media: media, size: 32, height: 100)
             HStack(spacing: 8) {
@@ -81,8 +81,8 @@ private struct HarborAnimeSlide: View {
             }.font(HarborTheme.font(12)).foregroundStyle(.white.opacity(0.75)).lineLimit(1)
             if let description = media.description { Text(description).font(HarborTheme.font(14)).foregroundStyle(.white.opacity(0.8)).lineLimit(3) }
             HStack(spacing: 12) {
-                NavigationLink(value: media) {
-                    Label("Comenzar a ver", image: "ui-play-filled").font(HarborTheme.font(15, weight: .semibold)).padding(.horizontal, 22).frame(minHeight: 48).foregroundStyle(HarborTheme.background).background(HarborTheme.ink, in: .capsule)
+                NavigationLink { DetailView(media: media, app: app, playImmediately: true) } label: {
+                    Label(DesktopInterfaceText.value("Start Watching"), image: "ui-play-filled").font(HarborTheme.font(15, weight: .semibold)).padding(.horizontal, 22).frame(minHeight: 48).foregroundStyle(HarborTheme.background).background(HarborTheme.ink, in: .capsule)
                 }.buttonStyle(.plain).accessibilityIdentifier("anime-start-watching")
                 Button {
                     if app.user == nil { app.showAccount = true }
@@ -90,8 +90,8 @@ private struct HarborAnimeSlide: View {
                 } label: {
                     Image(saved ? "desktop-check" : "desktop-plus").resizable().scaledToFit().frame(width: 18, height: 18).frame(width: 48, height: 48).background(saved ? HarborTheme.ink.opacity(0.15) : HarborTheme.background.opacity(0.8), in: .circle)
                 }.buttonStyle(.plain).disabled(app.library.busy || app.library.loading)
-                    .accessibilityLabel(saved ? "Quitar de mi lista" : "Guardar para más tarde")
-                    .modifier(HarborActionHint(id: "saved", title: saved ? "Quitar de mi lista" : "Guardar para más tarde", selected: hint))
+                    .accessibilityLabel(DesktopInterfaceText.value(saved ? "Remove from saved" : "Save for later"))
+                    .modifier(HarborActionHint(id: "saved", title: DesktopInterfaceText.value(saved ? "Remove from saved" : "Save for later"), selected: hint))
                 if let rating = media.imdbRating { Text("\(media.ratingSource ?? "IMDb") \(rating)").font(HarborTheme.font(12, weight: .semibold)).foregroundStyle(.white.opacity(0.8)) }
             }
             if let error = app.library.error { Text(error).font(.caption).foregroundStyle(.orange) }
@@ -112,8 +112,8 @@ struct HarborSeriesHero: View {
         VStack(alignment: .leading, spacing: 20) {
             VStack(alignment: .leading, spacing: 8) {
                 Text("SHOWTIME").font(HarborTheme.font(10, weight: .semibold)).tracking(4).foregroundStyle(.secondary)
-                Text("Evento principal de esta noche").font(HarborTheme.displayFont(30))
-                Text("Series para esa parte del día que de verdad esperas con ganas.").font(HarborTheme.font(14)).foregroundStyle(.secondary)
+                Text(DesktopInterfaceText.value("Tonight's main event")).font(HarborTheme.displayFont(30))
+                Text(DesktopInterfaceText.value("Series for the part of the day you actually look forward to.")).font(HarborTheme.font(14)).foregroundStyle(.secondary)
             }.padding(.horizontal, 20)
             if !slides.isEmpty {
                 GeometryReader { bounds in

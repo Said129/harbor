@@ -97,6 +97,19 @@ final class LiveNavigationTests: XCTestCase {
 
         navigate(app, "settings")
         capture(app, "native-settings-original-layout")
+        let metadata = app.buttons["settings-metadata"]
+        let metadataSettingsScroll = app.descendants(matching: .any).matching(identifier: "settings-scroll").firstMatch
+        reveal(metadata, in: metadataSettingsScroll, attempts: 4)
+        XCTAssertTrue(metadata.isHittable)
+        metadata.tap()
+        XCTAssertTrue(app.buttons["metadata-manage-key"].waitForExistence(timeout: 5))
+        capture(app, "native-metadata-original-provider-row")
+        app.buttons["metadata-manage-key"].tap()
+        XCTAssertTrue(app.descendants(matching: .any).matching(identifier: "metadata-key-field").firstMatch.waitForExistence(timeout: 5))
+        capture(app, "native-metadata-original-key-editor")
+        app.buttons["metadata-key-close"].tap()
+        XCTAssertTrue(app.buttons["metadata-manage-key"].waitForExistence(timeout: 5))
+        navigate(app, "settings")
         app.buttons["settings-playback"].tap()
         let instant = app.buttons["Instantáneo"]
         let manual = app.buttons["Elige una fuente"]
@@ -110,7 +123,7 @@ final class LiveNavigationTests: XCTestCase {
         XCTAssertTrue(instant.isSelected)
         capture(app, "native-play-mode-instant")
         if !startedInstant { manual.tap() }
-        app.navigationBars["Reproducción"].buttons["Ajustes"].tap()
+        app.navigationBars["Reproducción"].buttons["Configuración"].tap()
         app.buttons["settings-playback"].tap()
         XCTAssertEqual(app.buttons["Instantáneo"].isSelected, startedInstant, "The real saved play mode must survive reopening settings")
         let playbackSettings = app.descendants(matching: .any).matching(identifier: "player-settings-scroll").firstMatch
@@ -118,7 +131,7 @@ final class LiveNavigationTests: XCTestCase {
         reveal(nextPrompt, in: playbackSettings, attempts: 8)
         XCTAssertTrue(nextPrompt.isHittable)
         capture(app, "native-next-prompt-original")
-        app.navigationBars["Reproducción"].buttons["Ajustes"].tap()
+        app.navigationBars["Reproducción"].buttons["Configuración"].tap()
         app.buttons["settings-video"].tap()
         XCTAssertTrue(app.descendants(matching: .any).matching(identifier: "settings-hwdec").firstMatch.waitForExistence(timeout: 5))
         let videoSettings = app.descendants(matching: .any).matching(identifier: "player-settings-scroll").firstMatch
@@ -141,7 +154,7 @@ final class LiveNavigationTests: XCTestCase {
         app.buttons[originalFit].tap()
         XCTAssertEqual(fit.value as? String, originalFit, "Restore the user's starting image format after checking the real menu")
         capture(app, "native-video-settings")
-        let settingsBack = app.navigationBars["Vídeo"].buttons["Ajustes"]
+        let settingsBack = app.navigationBars["Vídeo"].buttons["Configuración"]
         XCTAssertTrue(settingsBack.waitForExistence(timeout: 5))
         XCTAssertTrue(settingsBack.isHittable, "The Harbor header must not cover the native back button")
         settingsBack.tap()
