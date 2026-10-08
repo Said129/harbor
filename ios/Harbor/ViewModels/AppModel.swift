@@ -6,6 +6,7 @@ final class AppModel {
     let service = HarborService()
     private(set) var resume = ResumeStore()
     let library = LibraryModel()
+    let home = HomeContentModel()
     private let keychain = KeychainStore()
     private let accounts = AccountService()
     private var savedAccount: SavedAccount?
@@ -152,7 +153,7 @@ final class AppModel {
         Task { await library.setSession(session) }
         storageReady = true
         rows = []; heroes = []; warnings = []; accountError = nil
-        homeGeneration += 1; pages = [:]
+        homeGeneration += 1; pages = [:]; home.reset()
         if previousOwner != session.user.id { await setProgressOwner(session.user.id) }
         Diagnostics.shared.record(.accountSignedIn, count: addons.count)
         await loadHome()
@@ -186,7 +187,7 @@ final class AppModel {
         else { guest = [try await service.install(HarborService.cinemetaManifest)] }
         try keychain.remove("account.v1")
         savedAccount = nil; addons = guest; rows = []; heroes = []; warnings = []; accountError = nil
-        homeGeneration += 1; pages = [:]
+        homeGeneration += 1; pages = [:]; home.reset()
         Task { await library.setSession(nil) }
         await setProgressOwner("guest")
         Diagnostics.shared.record(.accountSignedOut)

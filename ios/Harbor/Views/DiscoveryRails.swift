@@ -13,7 +13,7 @@ struct DiscoveryRails: View {
                     if row.id.hasSuffix("-top10") && !disableDefaultRanking { TopTenRail(metas: row.metas) }
                     else { ScrollView(.horizontal) {
                         LazyHStack(alignment: .top, spacing: 12) {
-                            ForEach(row.metas, id: \.identity) { media in NavigationLink(value: media) { Poster(media: media) }.buttonStyle(.plain).accessibilityLabel(media.name).accessibilityIdentifier(row.kind == "anime" ? "anime-media" : "curated-media") }
+                                ForEach(row.metas, id: \.identity) { media in NavigationLink(value: media) { Poster(media: media) }.buttonStyle(.plain).accessibilityLabel(media.name).accessibilityIdentifier(row.kind == "anime" ? "anime-media" : row.kind == "movie" ? "catalog-movie" : "catalog-media") }
                         }.padding(.horizontal)
                     }.scrollIndicators(.hidden) }
                 }
@@ -49,12 +49,12 @@ struct DiscoveryGrid: View {
         defer { loading = false }
         do {
             let next: [Media]
-            if rail.path == "anime:picks" { next = page == 1 ? rail.metas : [] }
+            if ["anime:picks", "home:fixed"].contains(rail.path) { next = page == 1 ? rail.metas : [] }
             else if rail.kind == "anime" { next = try await AnimeService.shared.page(rail, page: page) }
             else { next = try await TMDBService().page(rail, page: page, configuration: MetadataPreferences.shared.configuration()) }
             try Task.checkCancellation()
             var known = Set(items.map(\.identity)); let additions = next.filter { known.insert($0.identity).inserted }
-            items.append(contentsOf: additions); page += 1; finished = next.isEmpty || additions.isEmpty
+            items.append(contentsOf: additions); page += 1; finished = next.isEmpty || additions.isEmpty || rail.path == "home:fixed"
         } catch is CancellationError { return }
         catch { self.error = safeMessage(error) }
     }

@@ -23,7 +23,7 @@ struct TopTenRail: View {
                                 .mask(LinearGradient(stops: [.init(color: .clear, location: 0), .init(color: .black, location: 0.12), .init(color: .black, location: 0.65), .init(color: .clear, location: 1)], startPoint: .leading, endPoint: .trailing))
                             Poster(media: media).padding(.leading, 76)
                         }.frame(width: 192, height: 213, alignment: .topLeading).clipped()
-                    }.buttonStyle(.plain).accessibilityLabel("\(index + 1). \(media.name)")
+                    }.buttonStyle(.plain).accessibilityLabel("\(index + 1). \(media.name)").accessibilityIdentifier(media.type == "movie" ? "catalog-movie" : "catalog-media")
                 }
             }.padding(.horizontal)
         }.scrollIndicators(.hidden)

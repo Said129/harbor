@@ -8,7 +8,7 @@ enum PageRail: Identifiable, Sendable {
     var title: String { switch self { case .catalog(let row): row.plan.title; case .discovery(let row): row.title } }
     var kind: String { switch self { case .catalog(let row): row.plan.kind; case .discovery(let row): row.kind } }
     var metas: [Media] { switch self { case .catalog(let row): row.metas; case .discovery(let row): row.metas } }
-    var defaultNumerals: Bool { switch self { case .catalog: false; case .discovery(let row): row.id.hasSuffix("-top10") } }
+    var defaultNumerals: Bool { switch self { case .catalog: false; case .discovery(let row): row.id.hasSuffix("-top10") || ["cm-top-movies", "cm-drama", "cm-comedy"].contains(row.id) } }
 }
 struct PageLayout: Codable {
     var version = 1

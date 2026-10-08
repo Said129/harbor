@@ -11,6 +11,18 @@ struct DiscoveryRail: Identifiable, Sendable {
 
 struct TMDBService: Sendable {
     private let http = HTTPClient()
+    func homeDefinitions() -> [DiscoveryRail] {
+        [
+            DiscoveryRail(id: "tmdb-trending-movies", title: DesktopInterfaceText.value("Trending This Week"), kind: "movie", path: "trending/movie/week"),
+            DiscoveryRail(id: "tmdb-now-playing", title: DesktopInterfaceText.value("In Theaters Now"), kind: "movie", path: "movie/now_playing"),
+            DiscoveryRail(id: "tmdb-popular-movies", title: DesktopInterfaceText.value("Popular Movies"), kind: "movie", path: "movie/popular"),
+            DiscoveryRail(id: "tmdb-trending-tv", title: DesktopInterfaceText.value("Trending Series"), kind: "series", path: "trending/tv/week"),
+            DiscoveryRail(id: "tmdb-on-the-air", title: DesktopInterfaceText.value("On The Air"), kind: "series", path: "tv/on_the_air"),
+            DiscoveryRail(id: "tmdb-popular-tv", title: DesktopInterfaceText.value("Popular Series"), kind: "series", path: "tv/popular"),
+            DiscoveryRail(id: "tmdb-top-rated-tv", title: DesktopInterfaceText.value("Top Rated Series"), kind: "series", path: "tv/top_rated"),
+            DiscoveryRail(id: "tmdb-top-rated-movies", title: DesktopInterfaceText.value("Top Rated Movies"), kind: "movie", path: "movie/top_rated")
+        ]
+    }
     func kidsDefinitions() -> [DiscoveryRail] {
         let movies = ["certification_country": "US", "certification.lte": "PG", "without_genres": "27,53", "include_adult": "false", "sort_by": "popularity.desc"]
         let television = ["without_genres": "27,53", "include_adult": "false", "sort_by": "popularity.desc"]

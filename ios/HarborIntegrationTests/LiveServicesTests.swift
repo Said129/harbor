@@ -105,6 +105,18 @@ final class LiveServicesTests: XCTestCase {
         var disabled = addon; disabled.enabled = false
         let disabledRelated = try await service.related(detail, addons: [disabled])
         XCTAssertTrue(disabledRelated.isEmpty, "Related titles must respect an explicitly disabled catalog provider")
+        let homeApp = AppModel()
+        XCTAssertTrue(MetadataPreferences.shared.configuration().tmdbKey.isEmpty, "The public Home gate must exercise the real no-key fallback")
+        await homeApp.home.load(app: homeApp)
+        XCTAssertNil(homeApp.home.error)
+        XCTAssertEqual(homeApp.home.rows.count, 18, "Home must load the original Cinemeta rows rather than only installed addon rows")
+        let ranked = try XCTUnwrap(homeApp.home.rows.first { $0.id == "cm-top-movies" })
+        XCTAssertEqual(ranked.metas.count, 10)
+        XCTAssertEqual(ranked.path, "home:fixed", "View all must retain the original bounded Top 10")
+        let popular = try XCTUnwrap(homeApp.home.rows.first { $0.id == "cm-popular" })
+        XCTAssertTrue(Set(ranked.metas.map(\.identity)).isDisjoint(with: popular.metas.map(\.identity)), "Popular must begin after the Top 10 from the same real response")
+        XCTAssertFalse(homeApp.home.heroes.isEmpty)
+        print("Harbor live Home: Cinemeta rows=\(homeApp.home.rows.count), ranked=\(ranked.metas.count), heroes=\(homeApp.home.heroes.count)")
         print("Harbor live Cinemeta: catalogs=\(catalogs.count) searchItems=\(count) trailers=\(trailers.count) related=\(related.count) metadata=passed")
     }
 
