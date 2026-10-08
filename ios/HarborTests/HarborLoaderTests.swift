@@ -27,13 +27,13 @@ final class HarborLoaderTests: XCTestCase {
         let hasPaths = try await browser.evaluateJavaScript("document.querySelectorAll('#boat svg path').length > 0") as? Bool
         XCTAssertEqual(hasPaths, true, "The original animation must actually render its SVG paths")
         let state = try await browser.evaluateJavaScript("JSON.stringify({ visibility: document.visibilityState, loaded: window.harborLoader.isLoaded, bounds: document.getElementById('boat').getBoundingClientRect().toJSON() })")
-        let diagnostic = XCTAttachment(string: "applicationState=\(UIApplication.shared.applicationState.rawValue), keyWindow=\(window.isKeyWindow), page=\(state)")
+        let diagnostic = XCTAttachment(string: "applicationState=\(UIApplication.shared.applicationState.rawValue), keyWindow=\(window.isKeyWindow), page=\(String(describing: state))")
         diagnostic.name = "native-loader-state"; diagnostic.lifetime = .keepAlways; add(diagnostic)
         let firstValue = try await browser.evaluateJavaScript("window.harborLoader.currentFrame")
         let first = try XCTUnwrap(firstValue as? Double)
         let firstMarkup = try await browser.evaluateJavaScript("document.querySelector('#boat svg').innerHTML")
         let firstArtwork = try XCTUnwrap(firstMarkup as? String)
-        let firstImage = try await browser.takeSnapshot(with: nil)
+        let firstImage = try await snapshot(browser)
         attach(firstImage, name: "native-loader-before")
         try await Task.sleep(for: .milliseconds(300))
         let laterValue = try await browser.evaluateJavaScript("window.harborLoader.currentFrame")
@@ -42,12 +42,21 @@ final class HarborLoaderTests: XCTestCase {
         let laterMarkup = try await browser.evaluateJavaScript("document.querySelector('#boat svg').innerHTML")
         let laterArtwork = try XCTUnwrap(laterMarkup as? String)
         XCTAssertTrue(firstArtwork != laterArtwork, "The rendered artwork must move, not just its frame counter")
-        let laterImage = try await browser.takeSnapshot(with: nil)
+        let laterImage = try await snapshot(browser)
         attach(laterImage, name: "native-loader-after")
         _ = try await browser.evaluateJavaScript("window.harborLoaderMotion.stop()")
         try await Task.sleep(for: .milliseconds(300))
         let stopped = try await browser.evaluateJavaScript("window.harborLoader.currentFrame") as? Double
         XCTAssertEqual(stopped, 0, "Reduce Motion must leave the original boat still")
+    }
+    @MainActor private func snapshot(_ browser: WKWebView) async throws -> UIImage {
+        let image: UIImage? = try await withCheckedThrowingContinuation { continuation in
+            browser.takeSnapshot(with: nil) { image, error in
+                if let error { continuation.resume(throwing: error) }
+                else { continuation.resume(returning: image) }
+            }
+        }
+        return try XCTUnwrap(image, "WebKit must supply the rendered boat image")
     }
     @MainActor private func attach(_ image: UIImage, name: String) {
         let attachment = XCTAttachment(image: image)

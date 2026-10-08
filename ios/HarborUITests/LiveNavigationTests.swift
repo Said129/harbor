@@ -171,6 +171,33 @@ final class LiveNavigationTests: XCTestCase {
         XCTAssertTrue(subtitlePreview.isHittable)
         capture(app, "native-subtitle-settings")
 
+        navigate(app, "settings")
+        let interface = app.buttons["settings-interface"]
+        reveal(interface, in: app.descendants(matching: .any).matching(identifier: "settings-scroll").firstMatch, attempts: 4)
+        XCTAssertTrue(interface.isHittable)
+        interface.tap()
+        let curatedHome = app.buttons["home-style-harbor"]
+        let classicHome = app.buttons["home-style-classic"]
+        XCTAssertTrue(curatedHome.waitForExistence(timeout: 5))
+        let originallyCurated = curatedHome.isSelected
+        let interfaceScroll = app.descendants(matching: .any).matching(identifier: "interface-settings-scroll").firstMatch
+        reveal(classicHome, in: interfaceScroll, attempts: 3)
+        XCTAssertTrue(classicHome.isHittable)
+        classicHome.tap()
+        XCTAssertTrue(classicHome.isSelected)
+        capture(app, "native-interface-original-home-styles")
+        if originallyCurated {
+            interfaceScroll.swipeDown()
+            curatedHome.tap()
+            XCTAssertTrue(curatedHome.isSelected)
+        }
+        let navigationSettings = app.buttons["settings-navigation"]
+        reveal(navigationSettings, in: interfaceScroll, attempts: 3)
+        XCTAssertTrue(navigationSettings.isHittable)
+        navigationSettings.tap()
+        XCTAssertTrue(app.buttons["navigation-visible-discover"].waitForExistence(timeout: 5))
+        capture(app, "native-interface-original-navigation")
+
         navigate(app, "library")
         XCTAssertTrue(app.buttons["library-tab-all"].waitForExistence(timeout: 5))
         capture(app, "native-library-initial-state")

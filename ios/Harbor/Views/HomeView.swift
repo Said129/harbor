@@ -15,11 +15,12 @@ struct HomeView: View {
     }
     private var rails: [PageRail] { model.rows.filter { !$0.metas.isEmpty }.map(PageRail.catalog) }
     private var heroes: [Media] { model.heroes.isEmpty ? Array(model.rows.first(where: { !$0.metas.isEmpty })?.metas.prefix(5) ?? []) : model.heroes }
+    private var classic: Bool { InterfacePreferences.shared.homeMode == "classic" }
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 26) {
                 if let error = model.accountError { Text(error).font(.caption).foregroundStyle(.orange).padding(.horizontal) }
-                if customization.layout.cwTop { ContinueWatching(app: model) }
+                if classic || customization.layout.cwTop { ContinueWatching(app: model) }
                 if InterfacePreferences.shared.homeMode == "harbor" {
                     CustomizedHero(rails: rails, defaults: heroes, app: model, customization: customization)
                 }
@@ -44,7 +45,7 @@ struct HomeView: View {
                 }
                 PageCustomizeButton(rails: rails, customization: customization)
                 if let error = customization.error { Text(error).font(.caption).foregroundStyle(.orange).padding(.horizontal) }
-                if !customization.layout.cwTop { ContinueWatching(app: model) }
+                if !classic && !customization.layout.cwTop { ContinueWatching(app: model) }
                 CustomizedRails(rails: rails, app: model, customization: customization)
                 if model.storageReady && model.rows.isEmpty && !model.loading && model.error == nil {
                     HarborCatalogEmptyView(app: model).padding(.horizontal)

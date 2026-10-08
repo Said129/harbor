@@ -88,7 +88,14 @@
     "src/views/settings/shared.tsx": "e70bd16655c232f4042115481f8e77b2fed300d9d124ff7bdc98a89455259942",
     "src/views/settings/preview-shell.tsx": "8015adb853fae764de322b8ff059450451ff68d18d917aff005ff89034d05b50",
     "src/views/play-picker/use-auto-candidates.ts": "80dde398b30afc28ebee7d4e26938cca82c2701dd4411ed93f18e4d967394b35",
-    "src/lib/settings/defaults.ts": "dd8239884f63afcaf42eabfbc85c64f7d5751f2f4c77989eb6fe23466ae40e39"
+    "src/lib/settings/defaults.ts": "dd8239884f63afcaf42eabfbc85c64f7d5751f2f4c77989eb6fe23466ae40e39",
+    "src/views/settings/library-panel/home-tab.tsx": "dad374be2d1fa5b8370ea5a5a7fc1e2e8afaa448e346f39110565786ce3ea598",
+    "src/views/settings/library-panel/detail-tab.tsx": "c77647d47d9686f668388749597bc4d6f9967a72cc26fed7c46ad3264b64687a",
+    "src/views/settings/library-panel/cards-tab.tsx": "e89024506e0b41b55a2eea414d435e7dd233412927a242f59487feea8b11026d",
+    "src/views/settings/ratings-matrix.tsx": "d812f090e3340250942259e367fb0ad892e76ba8b71ba813673ffca4940a1a0d",
+    "src/views/settings/theme-panel/theme-studio/nav-editor.tsx": "09148842e8656ee38c20aee8167ea66df526da7ecd1e4bb14b77caece5ac53ed",
+    "src/views/settings/theme-panel/theme-studio/nav-editor/nav-row.tsx": "d6be796e30db89a4cf3acd9d372eea750470ecffec87c7892605890404482fa5",
+    "src/lib/spoilers.ts": "a8164d05b68233f460f3d894962a34d8c0e94ecd796b615dbb45b7556dbaa4f9"
   },
   "changes": [
     "Original six-point playback timeline with a 44-point touch target; seeking commits to mpv on release.",
@@ -114,7 +121,9 @@
     "Seek color settings use the original preview image, square swatches, default slash and official labels. The existing color preference and actual timeline consumer are retained.",
     "Playback uses the original Instant/Pick a source choice, resume labels, Up Next prompt choices and copy. Shared switches follow the original 48x32 track/26 pt knob. Segments wrap on narrow screens; same-row selection stretches then contracts in 420 ms, cross-row selection moves in 320 ms, and reduced motion disables both. Existing 15 s prompt values remain editable; the original 120 s choice is exposed.",
     "The original Keep same source on next episode toggle uses its false default and streamMatchesSource identity precedence. It controls the real next-episode offer selection, preserves filters, and falls back to the best playable offer when no match exists.",
-    "Original bundled Lottie SVG artwork is driven by a native CADisplayLink clock, with one JS render in flight, a weak target, teardown and Reduce Motion/scene lifecycle stops. The existing regression checks actual SVG changes and attaches before/after web snapshots; it does not replace the artwork with a static image or a synthetic frame counter."
+    "Original bundled Lottie SVG artwork is driven by a native CADisplayLink clock, with one JS render in flight, a weak target, teardown and Reduce Motion/scene lifecycle stops. The existing regression checks actual SVG changes and attaches before/after web snapshots; it does not replace the artwork with a static image or a synthetic frame counter.",
+    "Home style uses the original two preview images and radio choices. Interface settings preserve all existing preferences, use original section/toggle labels, and separate title/description spoiler masks in both episode lists. Legacy blurEpisodes still controls list thumbnail blur, so it is labelled Blur thumbnails instead of claiming Desktop episode-detail hero blur. Navigation uses original row geometry, edited/default names, official reset/show/hide labels and Lucide up/down/eye controls with 44 pt targets. Reordering, naming and hiding continue to use the existing preference store.",
+    "WebKit snapshots use the completion-handler API available in the Apple SDK, bridged to a checked continuation; missing images still fail the original animation regression."
   ],
   "copyOutput": "ios/Harbor/DesktopDiscoverSpanish.json",
   "limitations": [
@@ -247,6 +256,38 @@
       "svgSha256": "ed5c750963b0d3d8876a8edfaf89cd77da29e76e41f76907b0c236ef45c1af96",
       "strokeWidth": 2.5,
       "output": "ios/Harbor/Assets.xcassets/subtitle-fps-apply.imageset/icon.svg"
+    },
+    "settings-eye": {
+      "package": "lucide-react",
+      "version": "0.460.0",
+      "integrity": "sha512-BVtq/DykVeIvRTJvRAgCsOwaGL8Un3Bxh8MbDxMhEWlZay3T4IpEKDEpwt5KZ0KJMHzgm6jrltxlT5eXOWXDHg==",
+      "sourceSha256": "36fa8d9e47c281c721afd724ab86677011ff11c0d6ec2b97ed064d0f64234efe",
+      "svgSha256": "49509de0fb1dc8fa794d6f7049b3d48cace060e28a44ee9afb1fa0fba8dd70e5",
+      "output": "ios/Harbor/Assets.xcassets/settings-eye.imageset/icon.svg"
+    },
+    "settings-eye-off": {
+      "package": "lucide-react",
+      "version": "0.460.0",
+      "integrity": "sha512-BVtq/DykVeIvRTJvRAgCsOwaGL8Un3Bxh8MbDxMhEWlZay3T4IpEKDEpwt5KZ0KJMHzgm6jrltxlT5eXOWXDHg==",
+      "sourceSha256": "b412a24aee16a0c0e36c4daed4b85d868534160ec29394a575dd0b839af023aa",
+      "svgSha256": "287af365bf23e7985c53b90ea6594eb564ae03a69a19773e91cdf680b555de3d",
+      "output": "ios/Harbor/Assets.xcassets/settings-eye-off.imageset/icon.svg"
+    },
+    "settings-chevron-up": {
+      "package": "lucide-react",
+      "version": "0.460.0",
+      "integrity": "sha512-BVtq/DykVeIvRTJvRAgCsOwaGL8Un3Bxh8MbDxMhEWlZay3T4IpEKDEpwt5KZ0KJMHzgm6jrltxlT5eXOWXDHg==",
+      "sourceSha256": "76dd0d1fc25245fb661d24f158662a8ecc398fba26c5ff25e5d519fda135d33e",
+      "svgSha256": "e2a398f5cdf41d4d8fe6052160ef8d839bb8fece466dabba1ba7d206dbee4315",
+      "output": "ios/Harbor/Assets.xcassets/settings-chevron-up.imageset/icon.svg"
+    },
+    "settings-chevron-down": {
+      "package": "lucide-react",
+      "version": "0.460.0",
+      "integrity": "sha512-BVtq/DykVeIvRTJvRAgCsOwaGL8Un3Bxh8MbDxMhEWlZay3T4IpEKDEpwt5KZ0KJMHzgm6jrltxlT5eXOWXDHg==",
+      "sourceSha256": "15dcc071a0731525ad2f8bf9fd6e8353aa3a8d1fd9b30b3ead51053ed3937731",
+      "svgSha256": "215913df535cd28d682dd8e98b347ac775b72c7ddb03076756a46d0ccad5080c",
+      "output": "ios/Harbor/Assets.xcassets/settings-chevron-down.imageset/icon.svg"
     }
   },
   "interfaceCopyOutput": "ios/Harbor/DesktopInterfaceSpanish.json",
@@ -270,5 +311,21 @@
     "rgbPixelsSha256": "ede5a0e525f4134ee13f8715e1d4b74f9d348945f7b40309274185ba135ae4c7",
     "output": "ios/Harbor/Assets.xcassets/play-mode-preview.imageset/still.png",
     "notes": "Lossless pixel conversion of the original fallback still to an asset-catalog PNG. Preview follows PressPlayPreview/PreviewShell (260 pt, 16:9, 300 ms crossfade); it illustrates the choice and never starts media or pretends to be a live source list. Desktop's rotating sample artwork is not implemented here."
+  },
+  "homeStylePreview": {
+    "home-style-harbor": {
+      "source": "src/assets/onboarding/harborstyle.webp",
+      "sourceSha256": "9a042555d6184a365c5364ba5acbc248cd26b1a26ce3cb8f61bf9c7e6423a469",
+      "pngSha256": "fdecc5cef9f2950ca0368cc5c5e45ca401178c275ecc4a28778396dceac8ee75",
+      "rgbSha256": "3634730f2acf59aece498966478c59dd19c648531f90e814488933f7778f9100",
+      "size": [720, 449]
+    },
+    "home-style-classic": {
+      "source": "src/assets/onboarding/traditional.webp",
+      "sourceSha256": "3eeb31fa6477b74e6e61301a0226a10e64efae4dd0b8965a7bcbba6270a04d3a",
+      "pngSha256": "57cc3cd27f76f6edc8ac0cd620ee3fd8c78e888358a768d11117a304963f5d4c",
+      "rgbSha256": "d8914d39c683e1f90121501d485109c4ab6e7d36796010ecf4e7a82ffd2368a9",
+      "size": [720, 449]
+    }
   }
 }

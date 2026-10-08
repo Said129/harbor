@@ -12,6 +12,8 @@ final class InterfacePreferences {
     var showEpisodeDescription = UserDefaults.standard.object(forKey: "showEpisodeDescription") as? Bool ?? true { didSet { storage.set(showEpisodeDescription, forKey: "showEpisodeDescription") } }
     var hideSpoilers = UserDefaults.standard.object(forKey: "hideSpoilers") as? Bool ?? false { didSet { storage.set(hideSpoilers, forKey: "hideSpoilers") } }
     var blurEpisodes = UserDefaults.standard.object(forKey: "blurEpisodes") as? Bool ?? false { didSet { storage.set(blurEpisodes, forKey: "blurEpisodes") } }
+    var spoilerHideTitles = UserDefaults.standard.object(forKey: "spoilerHideTitles") as? Bool ?? true { didSet { storage.set(spoilerHideTitles, forKey: "spoilerHideTitles") } }
+    var spoilerHideDescriptions = UserDefaults.standard.object(forKey: "spoilerHideDescriptions") as? Bool ?? true { didSet { storage.set(spoilerHideDescriptions, forKey: "spoilerHideDescriptions") } }
     var navigationOrder = UserDefaults.standard.stringArray(forKey: "iphone.nav.order") ?? [] { didSet { storage.set(navigationOrder, forKey: "iphone.nav.order") } }
     var navigationHidden = Set(UserDefaults.standard.stringArray(forKey: "iphone.nav.hidden") ?? []) { didSet { storage.set(Array(navigationHidden), forKey: "iphone.nav.hidden") } }
     var navigationNames = UserDefaults.standard.dictionary(forKey: "iphone.nav.names") as? [String: String] ?? [:] { didSet { storage.set(navigationNames, forKey: "iphone.nav.names") } }

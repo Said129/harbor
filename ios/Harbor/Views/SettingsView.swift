@@ -39,13 +39,13 @@ struct SettingsView: View {
                         }
                     }
                 }
-                if matches("Temas y colores") || matches("Interfaz y navegación") {
+                if matches("Temas y colores") || matches(DesktopInterfaceText.value("Library") + " Interfaz navegación Home spoilers") {
                     group("Apariencia") {
                         if matches("Temas y colores") {
                             NavigationLink { ThemeSettingsView().toolbar(.visible, for: .navigationBar) } label: { SettingsRow(title: "Temas y colores", icon: "desktop-palette") }
                         }
-                        if matches("Interfaz y navegación") {
-                            NavigationLink { InterfaceSettingsView().toolbar(.visible, for: .navigationBar) } label: { SettingsRow(title: "Interfaz y navegación", icon: "nav-settings") }
+                        if matches(DesktopInterfaceText.value("Library") + " Interfaz navegación Home spoilers") {
+                            NavigationLink { InterfaceSettingsView().toolbar(.visible, for: .navigationBar) } label: { SettingsRow(title: DesktopInterfaceText.value("Library"), icon: "nav-settings") }.accessibilityIdentifier("settings-interface")
                         }
                     }
                 }
