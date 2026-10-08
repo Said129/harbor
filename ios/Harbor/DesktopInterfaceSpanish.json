@@ -199,5 +199,9 @@
   "Serif": "Con serifas",
   "Arabic": "Árabe",
   "Subtitles": "Subtítulos",
-  "Override embedded styles": "Anular estilos integrados"
+  "Override embedded styles": "Anular estilos integrados",
+  "Seek bar": "Barra de búsqueda",
+  "Bar color": "Color de la barra",
+  "The filled part of the timeline. Default follows your Harbor accent.": "The filled part of the timeline. Default follows your Harbor accent.",
+  "Default (gold accent)": "Predeterminado (acento dorado)"
 }

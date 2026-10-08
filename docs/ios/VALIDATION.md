@@ -8,6 +8,12 @@ La candidata 46 corrige esas asignaciones y adopta métodos async de los delegad
 
 La build 46, fuente `510a6053dc3ed6bede31e30a5c44ffdf828f5014`, [run 37675647198](https://github.com/Said129/harbor/actions/runs/37675647198), termina con fallo de compilación en tres asignaciones de `HarborProfileSync.swift` (70, 89 y 108): el `error` del catch ocultaba la propiedad del modelo. La candidata 47 las corrige con `self.error`; los avisos reportados son las deprecaciones GLKit/OpenGLES anteriores. No se ejecutaron pruebas nativas, servicios, UI ni build de dispositivo para 46, ni se creó una IPA. Las interfaces nuevas, el movimiento, los diálogos, la sincronización privada de perfil y la sesión privada de Submanhwa siguen necesitando evidencia de ejecución. Las cuentas, el renderer físico y los dispositivos de salida conservan sus límites de validación anteriores.
 
+## Candidata local 66: controles originales de color de timeline
+
+El selector conserva el ajuste existente y su consumidor en la línea de tiempo real. La preview usa los bytes originales de `seek-preview.png`, proporción 1599/254, radios de 10 pt, gradient y padding originales; arrastrarla cambia sólo su posición local. Las diez muestras adoptan cuadrados de 44 pt, borde de selección y la marca diagonal transparente del valor predeterminado. Selector libre, botón Default y RotateCcw original sustituyen los labels añadidos. La nota de color no tiene traducción española en el checkpoint y mantiene el fallback inglés oficial. Los archivos/hash/textos se registran en `touch-interface-provenance.json`.
+
+Se ha revisado el PNG original y el formato de los archivos cambiados; esto no certifica el layout Swift ni el recorrido del usuario. 66 permanece local mientras 65 se comprueba. No añade controles sin implementación para imágenes, buffer o estilos de barra todavía fuera de este incremento.
+
 ## Candidata 65: catálogos MAL mediante la API oficial
 
 Los cinco catálogos MAL consultan ahora los endpoints públicos oficiales de rankings y temporadas con el identificador de aplicación pública que Harbor ya incorpora en `src/lib/mal/config.ts`. La referencia oficial describe client-auth para esas lecturas. No se solicita una cuenta ni se reutilizan tokens personales, secretos o sesiones del usuario. Jikan permanece como respaldo si falla esa consulta; AniList no se etiqueta como MAL.
@@ -15,6 +21,8 @@ Los cinco catálogos MAL consultan ahora los endpoints públicos oficiales de ra
 Ranking conserva tipos/popularidad, 25 resultados por página y offset real. Temporadas calcula trimestre UTC y el salto de año. El parser usa título inglés disponible, imagen, puntuación, géneros, sinopsis y año reales, excluye black/NSFW desconocido y géneros explícitos, y deduplica IDs. Se mantiene el caché acotado anterior. El transporte restringe las rutas a rankings/temporadas, desactiva cookies y rechaza redirects para conservar el identificador en su host.
 
 La consulta directa desde Windows obtuvo HTTP 200 y 25 títulos con imágenes en cada categoría TV, películas, otoño 2026 e invierno 2027; la segunda página popular obtuvo otros 25 títulos. Esto prueba disponibilidad/contrato público desde ese host, no ejecución Swift en iPhone. La regresión acotada cubre valores MAL, deduplicación, exclusión explícita/desconocida y límite de año. La prueba de servicio nativo existente conserva MAL/premios y exige también paginación sin repetir IDs. El checkpoint, hash y fuente del identificador quedan en `mal-catalog-provenance.json`. 65 incorpora los controles 63–64; aún requiere su propia compilación Apple, revisión de imágenes y IPA.
+
+Fuente enviada `e563b367fea7d4320a330d0788b5ddc05a0c0bdf`. La primera ejecución manual `37731692164` terminó cancelada por la ejecución automática posterior de la PR, antes de iniciar los pasos. Se volvió a despachar la ejecución completa [37731788356](https://github.com/Said129/harbor/actions/runs/37731788356) después de confirmar ese estado terminal; no se reinició por timeout de observación. Esta ejecución incluye servicios, UI y guardado de IPA; no cubre los cambios locales 66.
 
 ## Candidata local 64: apariencia original de subtítulos
 
