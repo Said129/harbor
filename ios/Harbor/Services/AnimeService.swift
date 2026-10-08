@@ -110,6 +110,12 @@ actor AnimeService {
             return Self.unique(result)
         }
         if rail.path.hasPrefix("jikan:") {
+            do { return try await MALPublicCatalog.page(rail, page: page, http: http) }
+            catch is CancellationError { throw CancellationError() }
+            catch {
+                // Both transports read MAL. Retain Jikan when client-auth is unavailable.
+                try Task.checkCancellation()
+            }
             // Reserve a slot before suspension; concurrent rail requests cannot burst the API.
             let delay = max(0, nextJikan.timeIntervalSinceNow)
             nextJikan = Date().addingTimeInterval(delay + 0.45)

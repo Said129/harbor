@@ -3,6 +3,27 @@ import UIKit
 @testable import Harbor
 
 final class NativeDataTests: XCTestCase {
+    func testMALPublicCatalogPreservesProviderRatingsFiltersAndSeasonBoundaries() throws {
+        // Minimal independently observed MAL v2 node, not a substitute catalog in the app.
+        let node: JSONValue = .object(["id": .integer(16498), "title": .string("Shingeki no Kyojin"), "alternative_titles": .object(["en": .string("Attack on Titan")]),
+                                      "main_picture": .object(["large": .string("https://cdn.myanimelist.net/images/anime/10/47347.jpg")]),
+                                      "mean": .number(8.58), "nsfw": .string("white"), "media_type": .string("tv"),
+                                      "genres": .array([.object(["name": .string("Action")])]), "start_season": .object(["year": .integer(2013)])])
+        var explicit = node.objectValue; explicit["id"] = .integer(2); explicit["nsfw"] = .string("black")
+        var unknown = node.objectValue; unknown["id"] = .integer(3); unknown.removeValue(forKey: "nsfw")
+        let response: JSONValue = .object(["data": .array([.object(["node": node]), .object(["node": node]), .object(["node": .object(explicit)]), .object(["node": .object(unknown)])])])
+        let items = try MALPublicCatalog.parse(response)
+        XCTAssertEqual(items.map(\.id), ["mal:16498"])
+        XCTAssertEqual(items.first?.name, "Attack on Titan")
+        XCTAssertEqual(items.first?.imdbRating, "8.6"); XCTAssertEqual(items.first?.ratingSource, "MAL")
+        XCTAssertEqual(items.first?.releaseInfo, "2013"); XCTAssertEqual(items.first?.type, "series")
+        let second = try MALPublicCatalog.request("anime-popular", page: 2)
+        XCTAssertEqual(second.parameters["offset"], "25"); XCTAssertEqual(second.parameters["ranking_type"], "bypopularity")
+        let december = try XCTUnwrap(ISO8601DateFormatter().date(from: "2026-12-31T23:59:00Z"))
+        XCTAssertEqual(try MALPublicCatalog.request("anime-upcoming", page: 1, now: december).path, "/anime/season/2027/winter")
+        XCTAssertThrowsError(try MALPublicCatalog.request("anime-popular", page: 0))
+    }
+
     func testCommunityIndexRequiresRealRatingsAndIsolatesUnsafeRows() async throws {
         let manifest: JSONValue = .object(["id": .string("com.linvo.cinemeta"), "name": .string("Cinemeta"), "version": .string("3.0.0"), "types": .array([.string("movie"), .string("series")]), "resources": .array([.string("catalog"), .string("meta")]), "catalogs": .array([])])
         let valid: [String: JSONValue] = ["uuid": .string("community-test"), "slug": .string("cinemeta"), "stars": .integer(12), "manifestUrl": .string("https://v3-cinemeta.strem.io/manifest.json"), "manifest": manifest, "categories": .array([.object(["slug": .string("http+streams")]), .object(["slug": .string("torrents")])])]

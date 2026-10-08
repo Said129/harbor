@@ -65,6 +65,18 @@ struct HTTPClient: Sendable {
         throw HarborError(code: "network")
     }
 
+    func malCatalog(path: String, parameters: [String: String], clientID: String) async throws -> JSONValue {
+        let seasonal = path.range(of: #"^/anime/season/[0-9]{4}/(winter|spring|summer|fall)$"#, options: .regularExpression) != nil
+        guard path == "/anime/ranking" || seasonal,
+              clientID.range(of: "^[a-f0-9]{32}$", options: .regularExpression) != nil else { throw HarborError(code: "invalid-anime-request") }
+        var components = URLComponents(string: "https://api.myanimelist.net/v2" + path)!
+        components.queryItems = parameters.sorted { $0.key < $1.key }.map { URLQueryItem(name: $0.key, value: $0.value) }
+        var request = URLRequest(url: components.url!, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 15)
+        request.setValue(clientID, forHTTPHeaderField: "X-MAL-CLIENT-ID")
+        // Public application identity stays on MAL; this session rejects redirects and has no cookies.
+        return try await receive(request, session: Self.accountSession)
+    }
+
     private func receive(_ input: URLRequest, session: URLSession) async throws -> JSONValue {
         var request = input
         request.setValue("application/json", forHTTPHeaderField: "Accept")

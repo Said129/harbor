@@ -34,11 +34,14 @@ final class LiveServicesTests: XCTestCase {
         let popular = try await AnimeService.shared.page(definition, page: 1)
         XCTAssertFalse(popular.isEmpty)
         XCTAssertTrue(popular.allSatisfy { $0.id.hasPrefix("mal:") && $0.ratingSource == "MAL" && $0.poster?.hasPrefix("https://") == true })
+        let second = try await AnimeService.shared.page(definition, page: 2)
+        XCTAssertFalse(second.isEmpty)
+        XCTAssertTrue(Set(popular.map(\.id)).isDisjoint(with: second.map(\.id)), "Public MAL pagination must advance rather than repeat its first page")
         let award = try XCTUnwrap(AnimeService.definitions().first { $0.id == "anime-awards" })
         let winners = try await AnimeService.shared.page(award, page: 1)
         XCTAssertFalse(winners.isEmpty)
         XCTAssertTrue(winners.allSatisfy { AnimeService.isAnime($0.id) && $0.poster != nil })
-        print("Harbor live Anime: MAL=\(popular.count), original award winners resolved=\(winners.count)")
+        print("Harbor live Anime: MAL=\(popular.count + second.count), original award winners resolved=\(winners.count)")
     }
     func testNativeSportsLoadsPublishedScoresAndActualBoxscore() async throws {
         try requireOptIn()
