@@ -86,9 +86,10 @@ final class VideoRenderingTests: XCTestCase {
             renderer = try MPVSampleBufferRenderer(handle: handle)
             let output = try XCTUnwrap(renderer)
             XCTAssertGreaterThanOrEqual(mpv_observe_property(handle, 1, "time-pos", MPV_FORMAT_DOUBLE), 0)
-            let allocations = ["loadfile", url.absoluteString].map { strdup($0) }
+            let command: [String] = ["loadfile", url.absoluteString]
+            let allocations = command.map { strdup($0) }
             defer { for pointer in allocations { free(pointer) } }
-            XCTAssertTrue(allocations.allSatisfy { $0 != nil })
+            guard allocations.allSatisfy({ $0 != nil }) else { throw HarborError(code: "player-allocation") }
             var arguments: [UnsafePointer<CChar>?] = allocations.map { $0.map { UnsafePointer<CChar>($0) } } + [nil]
             XCTAssertGreaterThanOrEqual(mpv_command_async(handle, 0, &arguments), 0)
             var position = 0.0
