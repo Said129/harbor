@@ -1,4 +1,4 @@
-import AVKit
+@preconcurrency import AVKit
 import CoreMedia
 import CoreVideo
 
@@ -106,7 +106,7 @@ final class MPVPictureInPicture: NSObject, @preconcurrency AVPictureInPictureCon
         owner.state.playbackIssue = safeMessage(HarborError(code: "pip-unavailable"))
         owner.restoreAfterPictureInPicture()
     }
-    func pictureInPictureController(_ pictureInPictureController: AVPictureInPictureController, restoreUserInterfaceForPictureInPictureStopWithCompletionHandler completionHandler: @escaping @Sendable (Bool) -> Void) {
+    func pictureInPictureController(_ pictureInPictureController: AVPictureInPictureController, restoreUserInterfaceForPictureInPictureStopWithCompletionHandler completionHandler: @escaping (Bool) -> Void) {
         completionHandler(owner?.viewIfLoaded?.window != nil)
     }
     func pictureInPictureController(_ pictureInPictureController: AVPictureInPictureController, setPlaying playing: Bool) {
@@ -128,7 +128,7 @@ final class MPVPictureInPicture: NSObject, @preconcurrency AVPictureInPictureCon
         // A change of window size does not restart decoding or grow the pool.
         synchronizeClock()
     }
-    func pictureInPictureController(_ pictureInPictureController: AVPictureInPictureController, skipByInterval skipInterval: CMTime, completion completionHandler: @escaping @Sendable () -> Void) {
+    func pictureInPictureController(_ pictureInPictureController: AVPictureInPictureController, skipByInterval skipInterval: CMTime, completion completionHandler: @escaping () -> Void) {
         guard let owner, CMTimeGetSeconds(skipInterval).isFinite else { completionHandler(); return }
         Task { @MainActor in
             defer { completionHandler() }

@@ -53,7 +53,7 @@ final class VideoRenderingTests: XCTestCase {
             let position = state.position
             try await controller.seekForPictureInPicture(1)
             let seek = Date().addingTimeInterval(5)
-            while Date() < seek && state.position < position + 0.5 { try await Task.sleep(for: .milliseconds(30)) }
+            while Date() < seek && state.position <= position + 0.5 { try await Task.sleep(for: .milliseconds(30)) }
             XCTAssertGreaterThan(state.position, position + 0.5)
             try await controller.restoreInlineRendering()
             let resumedAt = state.position

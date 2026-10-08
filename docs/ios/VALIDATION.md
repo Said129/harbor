@@ -8,6 +8,12 @@ La candidata 46 corrige esas asignaciones y adopta métodos async de los delegad
 
 La build 46, fuente `510a6053dc3ed6bede31e30a5c44ffdf828f5014`, [run 37675647198](https://github.com/Said129/harbor/actions/runs/37675647198), termina con fallo de compilación en tres asignaciones de `HarborProfileSync.swift` (70, 89 y 108): el `error` del catch ocultaba la propiedad del modelo. La candidata 47 las corrige con `self.error`; los avisos reportados son las deprecaciones GLKit/OpenGLES anteriores. No se ejecutaron pruebas nativas, servicios, UI ni build de dispositivo para 46, ni se creó una IPA. Las interfaces nuevas, el movimiento, los diálogos, la sincronización privada de perfil y la sesión privada de Submanhwa siguen necesitando evidencia de ejecución. Las cuentas, el renderer físico y los dispositivos de salida conservan sus límites de validación anteriores.
 
+## Candidata 62: espera del salto y firmas del SDK Apple
+
+El [run 37709361019](https://github.com/Said129/harbor/actions/runs/37709361019), fuente 58 `9527dc00778cf058ef7c69bc86afc7469d02c8dd`, terminó con 39 de 40 pruebas nativas correctas. Compilaron la aplicación y el bundle de tests; vídeo SW de 8/10 bits, subtítulos duales, animación y diálogos web pasaron. La prueba de transición PiP/GLES falló en la aserción de salto con posición `1.0` y umbral `1.0`: la espera salía al alcanzar el umbral (`<`) mientras la aserción exigía superarlo (`>`). 62 mantiene el umbral, deadline y aserción, y espera también en la igualdad (`<=`). El resultado anterior no demuestra un fallo del comando seek ni certifica todavía el recorrido completo.
+
+El SDK iOS 18.5 empleado por CI exige callbacks de AVKit sin `@Sendable`; se corrigen las dos firmas y se declara la compatibilidad de concurrencia del import. Permanecen las conformidades de delegado y tareas en MainActor. Los nuevos avisos de 58 no se cuentan como baseline: su resolución debe comprobarse en el siguiente build. Los servicios, UI y paquete no se ejecutaron tras el fallo nativo; Descargas conserva la IPA 43. 62 incorpora las mejoras locales 59–61, que siguen pendientes de compilación y revisión visual propias.
+
 ## Candidata local 61: panel de pistas de subtítulos original
 
 El panel conserva la selección/importación real y adopta las etiquetas originales, banderas, círculos de selección a la izquierda, datos de idioma/fuente/códec y marcas de clasificación observadas. El botón 2.º de cada pista de texto selecciona o quita la segunda pista directamente; no aparece para la primaria ni para subtítulos de imagen. La segunda selección actual se muestra arriba con una acción de quitar. A más de 560 pt las lenguas forman la columna lateral original; en vertical se desplazan horizontalmente. Filtros, fuentes, acciones de 44 pt, acceso a apariencia/FPS y mensajes de error continúan siendo utilizables; no se añaden porcentajes de compatibilidad ficticios. La opción FPS conserva sus restricciones de formato/segunda pista.
@@ -20,7 +26,7 @@ Audio y subtítulos usan los chips numerados, añadir/quitar/priorizar, búsqued
 
 Leer preferencias antiguas conserva sus valores hasta una edición y normaliza alias ISO equivalentes sin duplicar idiomas. La segunda pista dispone de todo el catálogo y textos/posiciones oficiales; su selección automática recorre prioridades, busca una coincidencia regional exacta y después el idioma general. Corrige el orden por archivo y la pérdida de alias/regiones. Excluye la pista primaria y subtítulos de imagen para la segunda línea, conservando la selección real confirmada por mpv. Se añade una comprobación acotada del fallo de prioridad/alias y se adapta el recorrido UI existente al nuevo selector; no se han ejecutado aún con el SDK Apple.
 
-60 y 59 son locales mientras se espera el resultado terminal del run 58; no cambian la IPA 43 en Descargas. La comprobación local de formato no valida Swift, render de SVG ni acciones táctiles; esos resultados dependen de la siguiente ejecución Apple/UI.
+60 y 59 se prepararon localmente mientras se esperaba el resultado terminal del run 58; no cambiaron la IPA 43 en Descargas. La comprobación local de formato no valida Swift, render de SVG ni acciones táctiles; esos resultados dependen de la siguiente ejecución Apple/UI.
 
 ## Candidata local 59: imagen, proporciones y presets originales
 
