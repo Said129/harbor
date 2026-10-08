@@ -163,20 +163,20 @@ struct PlayerSettingsView: View {
 
     @ViewBuilder private var subtitlesSettings: some View {
         if let state {
-            HarborSettingsSection("Pistas de subtítulos") {
+            HarborSettingsSection(DesktopInterfaceText.value("Subtitles")) {
                 SubtitleTracksView(state: state, embedded: true)
             }
-            HarborSettingsSection("Temporización") {
+            HarborSettingsSection(DesktopInterfaceText.value("Subtitle FPS")) {
                 NavigationLink { SubtitleTimingView(state: state) } label: {
-                    Label { Text("FPS de subtítulos") } icon: { Image("player-subtitle-fps").resizable().scaledToFit().frame(width: 20, height: 20) }
+                    Label { Text(DesktopInterfaceText.value("Subtitle FPS")) } icon: { Image("player-subtitle-fps").resizable().scaledToFit().frame(width: 20, height: 20) }
                 }
-                if state.subtitleChanging { ProgressView("Aplicando cambio…") }
+                if state.subtitleChanging { ProgressView(DesktopInterfaceText.value("Saving")) }
             }
         }
         HarborSettingsSection(DesktopInterfaceText.value("Subtitle languages"), note: DesktopInterfaceText.value("Harbor looks for subtitles in this order. Put your preferred language first.")) {
             HarborLanguagesPicker(value: $preferences.options.subtitleLanguage, identifier: "settings-subtitle-languages")
-            HarborSettingsToggle("Desactivar subtítulos por defecto", isOn: $preferences.options.subtitlesOff)
-            HarborSettingsToggle("Ocultar indicaciones SDH", isOn: $preferences.options.hideSDH)
+            HarborSettingsToggle(DesktopInterfaceText.value("Start with subtitles off"), isOn: $preferences.options.subtitlesOff)
+            HarborSettingsToggle(DesktopInterfaceText.value("Hide sound effects and speaker names"), isOn: $preferences.options.hideSDH)
         }
         HarborSettingsSection(DesktopInterfaceText.value("Dual subtitles"), note: DesktopInterfaceText.value("Show two subtitle languages at once. Useful for learning a language or watching together.")) {
             HarborSettingsChoice(DesktopInterfaceText.value("Second subtitle language"), selection: secondaryLanguage, choices: [(DesktopInterfaceText.value("Off"), "")] + SubtitleLanguages.allCodes.map { (SubtitleLanguages.preferenceName($0), $0) })
@@ -185,43 +185,43 @@ struct PlayerSettingsView: View {
                 HarborSettingsChoice(DesktopInterfaceText.value("Where it shows"), selection: $preferences.options.secondarySubtitlePlacement, choices: [(DesktopInterfaceText.value("Top of the screen"), "top"), (DesktopInterfaceText.value("Above the main line"), "bottom")])
             }
         }
-        HarborSettingsSection("Sincronización") {
-            dial("Retraso de subtítulos", value: $preferences.options.subtitleDelay, range: -10...10, step: 0.1, suffix: " s")
+        HarborSettingsSection(DesktopInterfaceText.value("Sync Offset")) {
+            dial(DesktopInterfaceText.value("Sync Offset"), value: $preferences.options.subtitleDelay, range: -10...10, step: 0.1, suffix: " s")
         }
-        HarborSettingsSection("Estilo") {
-            Text("Vista previa de subtítulos").font(.custom(previewFont, size: min(40, preferences.options.subtitleSize), relativeTo: .body).weight(preferences.options.subtitleBold ? .bold : .regular))
-                .kerning(preferences.options.subtitleSpacing)
-                .foregroundStyle(Color(hex: preferences.options.subtitleColor)).opacity(preferences.options.subtitleOpacity)
-                .padding(8).background(preferences.options.subtitleStyle == "box" ? Color(hex: preferences.options.subtitleBoxColor).opacity(preferences.options.boxOpacity) : .clear)
-                .frame(maxWidth: .infinity).padding(.vertical, 12).background(.black).accessibilityIdentifier("settings-subtitle-preview")
-            HarborSettingsChoice("Fuente", selection: $preferences.options.subtitleFont, choices: [("Inter · Harbor", "inter"), ("Sistema", "system"), ("Redondeada · Fredoka", "rounded"), ("Serif", "serif"), ("Árabe · Vazirmatn", "arabic")])
-            HarborSettingsChoice("Fondo", selection: $preferences.options.subtitleStyle, choices: [("Sombra", "shadow"), ("Contorno", "outline"), ("Barra negra", "box")])
-            HarborSettingsChoice("Subtítulos con estilo ASS", selection: $preferences.options.subtitleASS, choices: [("Original", "no"), ("Mi estilo conservando posición", "yes"), ("Redimensionar", "scale"), ("Forzar mi estilo", "force"), ("Eliminar estilos", "strip")])
-            HarborSettingsToggle("Texto en negrita", isOn: $preferences.options.subtitleBold)
-            dial("Tamaño", value: $preferences.options.subtitleSize, range: 16...120)
-            dial("Espaciado de letras", value: $preferences.options.subtitleSpacing, range: 0...12)
-            dial("Opacidad", value: $preferences.options.subtitleOpacity, range: 0.2...1, step: 0.05)
-            dial("Altura desde el borde inferior", value: Binding(get: { 100 - preferences.options.subtitlePosition }, set: { preferences.options.subtitlePosition = 100 - $0 }), range: 0...100, suffix: "%")
-            HarborSettingsChoice("Alineación", selection: $preferences.options.subtitleAlignment, choices: [("Izquierda", "left"), ("Centro", "center"), ("Derecha", "right")])
-            ColorPicker("Color del texto", selection: color($preferences.options.subtitleColor), supportsOpacity: false)
+        HarborSettingsSection(DesktopInterfaceText.value("Subtitle style"), note: DesktopInterfaceText.value("Adjust the text and background. The preview shows your changes as you make them.")) {
+            SubtitleStylePreview(options: preferences.options)
+            Text(DesktopInterfaceText.value("Background")).font(HarborTheme.font(14, weight: .semibold))
+            SubtitleBackgroundChoices(selection: $preferences.options.subtitleStyle)
+            Text(DesktopInterfaceText.value("Font")).font(HarborTheme.font(14, weight: .semibold))
+            SubtitleFontChoices(selection: $preferences.options.subtitleFont)
+            HarborSettingsChoice(DesktopInterfaceText.value("Styled (ASS) subtitles"), selection: $preferences.options.subtitleASS, choices: [(DesktopInterfaceText.value("Keep original"), "no"), (DesktopInterfaceText.value("Override embedded styles"), "yes"), (DesktopInterfaceText.value("Resize only"), "scale"), (DesktopInterfaceText.value("Use my style"), "force"), (DesktopInterfaceText.value("No styling"), "strip")])
+            HarborSettingsToggle(DesktopInterfaceText.value("Bold text"), isOn: $preferences.options.subtitleBold)
+            dial(DesktopInterfaceText.value("Size"), value: $preferences.options.subtitleSize, range: 16...120)
+            dial(DesktopInterfaceText.value("Letter spacing"), value: $preferences.options.subtitleSpacing, range: 0...12)
+            dial(DesktopInterfaceText.value("Opacity"), value: $preferences.options.subtitleOpacity, range: 0.2...1, step: 0.05)
+            dial(DesktopInterfaceText.value("Distance from bottom"), value: Binding(get: { 100 - preferences.options.subtitlePosition }, set: { preferences.options.subtitlePosition = 100 - $0 }), range: 0...100, suffix: "%")
+            HarborSettingsChoice(DesktopInterfaceText.value("Alignment"), selection: $preferences.options.subtitleAlignment, choices: [(DesktopInterfaceText.value("Left"), "left"), (DesktopInterfaceText.value("Center"), "center"), (DesktopInterfaceText.value("Right"), "right")])
+            SubtitleColorField(title: DesktopInterfaceText.value("Text color"), value: $preferences.options.subtitleColor, fallback: "#FFFFFF")
             if preferences.options.subtitleStyle == "outline" {
-                dial("Grosor del contorno", value: $preferences.options.borderSize, range: 1...6)
-                ColorPicker("Color del contorno", selection: color($preferences.options.borderColor), supportsOpacity: false)
+                dial(DesktopInterfaceText.value("Outline thickness"), value: $preferences.options.borderSize, range: 1...6, step: 0.5)
+                SubtitleColorField(title: DesktopInterfaceText.value("Outline color"), value: $preferences.options.borderColor, fallback: "#000000")
             }
             if preferences.options.subtitleStyle == "box" {
-                ColorPicker("Color del fondo", selection: color($preferences.options.subtitleBoxColor), supportsOpacity: false)
-                dial("Opacidad del fondo", value: $preferences.options.boxOpacity, range: 0...1, step: 0.05)
+                SubtitleColorField(title: DesktopInterfaceText.value("Box color"), value: $preferences.options.subtitleBoxColor, fallback: "#000000")
+                dial(DesktopInterfaceText.value("Background opacity"), value: $preferences.options.boxOpacity, range: 0...1, step: 0.05)
             }
-            Button("Restablecer estilo de subtítulos") {
+            Button(DesktopInterfaceText.value("Reset subtitle style")) {
                 let original = PlaybackOptions()
-                preferences.options.subtitleSize = original.subtitleSize; preferences.options.subtitlePosition = original.subtitlePosition
-                preferences.options.subtitleBold = false; preferences.options.subtitleStyle = original.subtitleStyle
-                preferences.options.subtitleASS = original.subtitleASS; preferences.options.subtitleAlignment = original.subtitleAlignment
-                preferences.options.subtitleColor = original.subtitleColor; preferences.options.borderColor = original.borderColor
-                preferences.options.borderSize = original.borderSize; preferences.options.boxOpacity = original.boxOpacity
-                preferences.options.subtitleOpacity = original.subtitleOpacity; preferences.options.subtitleDelay = 0
-                preferences.options.subtitleFont = original.subtitleFont; preferences.options.subtitleSpacing = original.subtitleSpacing
-                preferences.options.subtitleBoxColor = original.subtitleBoxColor; preferences.options.hideSDH = original.hideSDH
+                var next = preferences.options
+                next.subtitleSize = original.subtitleSize; next.subtitlePosition = original.subtitlePosition
+                next.subtitleBold = false; next.subtitleStyle = original.subtitleStyle
+                next.subtitleAlignment = original.subtitleAlignment
+                next.subtitleColor = original.subtitleColor; next.borderColor = original.borderColor
+                next.borderSize = original.borderSize; next.boxOpacity = original.boxOpacity
+                next.subtitleOpacity = original.subtitleOpacity
+                next.subtitleFont = original.subtitleFont; next.subtitleSpacing = original.subtitleSpacing
+                next.subtitleBoxColor = original.subtitleBoxColor
+                preferences.options = next
             }
         }
     }
@@ -254,21 +254,12 @@ struct PlayerSettingsView: View {
         Binding(get: { SubtitleLanguages.preferredCodes(preferences.options.secondarySubtitleLanguage).first ?? "" },
                 set: { preferences.options.secondarySubtitleLanguage = $0 })
     }
-    private var previewFont: String {
-        switch preferences.options.subtitleFont {
-        case "rounded": "Fredoka-Light"
-        case "arabic": "Vazirmatn-Regular"
-        case "serif": "TimesNewRomanPSMT"
-        case "system": "HelveticaNeue"
-        default: "Inter-Regular"
-        }
-    }
     private func color(_ value: Binding<String>) -> Binding<Color> {
         Binding(get: { Color(hex: value.wrappedValue) }, set: { value.wrappedValue = $0.rgbHex })
     }
 }
 
-private extension Color {
+extension Color {
     init(hex: String) {
         let value = UInt32(hex.dropFirst(), radix: 16) ?? 0xFFFFFF
         self.init(.sRGB, red: Double((value >> 16) & 255) / 255, green: Double((value >> 8) & 255) / 255, blue: Double(value & 255) / 255)

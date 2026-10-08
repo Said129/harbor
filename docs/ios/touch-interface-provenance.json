@@ -74,7 +74,11 @@
     "src/lib/subtitles/classification-labels.ts": "25c19ffda6a7af87df39b9d963831d892867e6b1639fc5976beb38340287e1ee",
     "src/components/player/audio-menu.tsx": "40fab943456e802bb8feefc61e2060efba81fbb9aed1cd68f682488a918cf447",
     "src/components/player/subtitle-menu/subtitle-fps-panel.tsx": "fc90238d3b128cd7ff1d327c398fe002dd2cd66db01d55bdad52d637fd75b2a4",
-    "src/lib/player/mpv.ts": "c5044376f393b05ea17a73c087e0d265daf541585be60ef35ddbd9464eecf0e2"
+    "src/lib/player/mpv.ts": "c5044376f393b05ea17a73c087e0d265daf541585be60ef35ddbd9464eecf0e2",
+    "src/lib/i18n/locales/es/controllers.ts": "18dcb4e1f1f0952afadfa4cf3fde45700617d4e775f887db50d67d9bcf37e869",
+    "src/views/settings/player-panel/subtitle-section.tsx": "02d86db33815f3371f080098c07811f833478cf4e9efb3f4c6b238434812a7bd",
+    "src/views/settings/subtitles-panel.tsx": "c3233e385d9fe0b1956e69b54a8cec5a54b8111a2720413fc5ccf1728e4a5029",
+    "src/assets/godfather-offer.svg": "16e63274067f647a323ad5c39b45339713939d1093203e6de5826ba407b74104"
   },
   "changes": [
     "Original six-point playback timeline with a 44-point touch target; seeking commits to mpv on release.",
@@ -95,7 +99,8 @@
     "Audio/subtitle priorities and the second subtitle picker use the whole original Harbor language catalog, preserve alias-equivalent stored preferences, and retain regional Spanish/Portuguese. Automatic secondary selection tries preferred languages in order and exact regional matches before language-family fallback. Section labels/descriptions and placement choices use official Spanish copy.",
     "Audio/subtitle priorities use the original numbered, reorderable/removable language chips and searchable two-column catalog. The second subtitle picker uses the whole original catalog. Stored aliases normalize without changes until an edit; regional Spanish/Portuguese remain distinct. Automatic secondary selection tries preferences in order and exact regions before language-family fallback. Section labels/descriptions and placement choices use official Spanish copy.",
     "The native subtitle panel uses official On/Off, source/language filters, flags, left selection circle, actual classification tags, inline second-subtitle action and import feedback. Generic duplicated track sections and added prose are removed. Portrait uses horizontal language buttons; wider views use the original sidebar/track composition. All track changes continue through acknowledged mpv operations.",
-    "Audio uses the original track titles, language flags, codec/channel/default details, left selection circles and sync offset row with actual mpv state. The subtitle FPS panel uses the original dropdown, optional custom input/apply check, observed timing values and official availability messages; the generic Form and added prose are removed. Touch targets remain at least 44pt."
+    "Audio uses the original track titles, language flags, codec/channel/default details, left selection circles and sync offset row with actual mpv state. The subtitle FPS panel uses the original dropdown, optional custom input/apply check, observed timing values and official availability messages; the generic Form and added prose are removed. Touch targets remain at least 44pt.",
+    "Subtitle appearance uses the original preview still/text, background choice cards, font preset grid, color swatches and official field labels. Existing ASS yes/strip options and persisted settings are retained; no generic preview slogan is added."
   ],
   "copyOutput": "ios/Harbor/DesktopDiscoverSpanish.json",
   "limitations": [
@@ -230,5 +235,12 @@
       "output": "ios/Harbor/Assets.xcassets/subtitle-fps-apply.imageset/icon.svg"
     }
   },
-  "interfaceCopyOutput": "ios/Harbor/DesktopInterfaceSpanish.json"
+  "interfaceCopyOutput": "ios/Harbor/DesktopInterfaceSpanish.json",
+  "subtitlePreview": {
+    "source": "src/assets/godfather-offer.svg",
+    "sourceSha256": "16e63274067f647a323ad5c39b45339713939d1093203e6de5826ba407b74104",
+    "pngSha256": "24dabd7bd986e1bb0c25cb4e740723edd2fd91eb6a435d912098b66807bc8ac5",
+    "output": "ios/Harbor/Assets.xcassets/subtitle-preview.imageset/still.png",
+    "notes": "The embedded 1920x1080 PNG is extracted byte for byte. Native layout preserves the 1440x810 SVG viewport and its 0.773437/0.773611 image transform before applying the original cover/center preview crop."
+  }
 }

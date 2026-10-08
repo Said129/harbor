@@ -144,7 +144,7 @@ final class LiveNavigationTests: XCTestCase {
         capture(app, "native-subtitle-language-settings")
         let playerSettings = app.descendants(matching: .any).matching(identifier: "player-settings-scroll").firstMatch
         XCTAssertTrue(playerSettings.waitForExistence(timeout: 5))
-        let subtitlePreview = app.staticTexts["settings-subtitle-preview"]
+        let subtitlePreview = app.descendants(matching: .any).matching(identifier: "settings-subtitle-preview").firstMatch
         reveal(subtitlePreview, in: playerSettings, attempts: 4)
         XCTAssertTrue(subtitlePreview.isHittable)
         capture(app, "native-subtitle-settings")
