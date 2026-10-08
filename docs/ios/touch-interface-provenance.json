@@ -66,7 +66,12 @@
     "src/views/settings/language-panel/subtitles-tab.tsx": "e17bdcc82a3548ebededf3146363e93e72f49272bae86a74055b087ace51bc54",
     "src/views/settings/language-panel/dual-subtitle-section.tsx": "7913ecc13dbf5b3f4c035aed09983d730b9223bf014d0d79ab083cd5e52847de",
     "src/components/flag.tsx": "04286315dd10099a8bc5bf83a4215a17e83f6b86b933f4a70e9caff88964320b",
-    "src/views/settings/streaming-panel.tsx": "af683805abe1016577512b4c7466ac3f3118d9aa45ecf8c961bc368b0e6470d8"
+    "src/views/settings/streaming-panel.tsx": "af683805abe1016577512b4c7466ac3f3118d9aa45ecf8c961bc368b0e6470d8",
+    "src/components/player/subtitle-menu/menu-body.tsx": "4cd3039a6ad704f50adc69d3d96869fa0a4481c81bbac78710af4ad42da69c49",
+    "src/components/player/subtitle-menu/variant-row.tsx": "81acf1421dec6637785712ba1febaf5c823e29a10210ea5b49eee903a011248c",
+    "src/components/player/subtitle-menu/menu-body-parts.tsx": "2e352b89048c3a446adc6f1dd2591083d1f781cacb6acb430b7d5494ae0a2f53",
+    "src/lib/subtitles/track-label.ts": "a4de51fb74a727bd43a9e6b0f3ce670c5d7c8ce0ae6dbf5abf1cafe032176ba5",
+    "src/lib/subtitles/classification-labels.ts": "25c19ffda6a7af87df39b9d963831d892867e6b1639fc5976beb38340287e1ee"
   },
   "changes": [
     "Original six-point playback timeline with a 44-point touch target; seeking commits to mpv on release.",
@@ -85,7 +90,8 @@
     "The native PiP entry uses the original PictureInPicture2 geometry, 22px size, 1.9 stroke and official Spanish labels. AVKit owns the platform floating-window controls; it controls the same mpv source and does not create a second player.",
     "Picture uses original Fit/Fill/Stretch labels, four Desktop picture templates with exact values and reset-before-apply semantics, and original Spanish descriptions. Persisted native aspect identifiers remain compatible; pinch remains silent.",
     "Audio/subtitle priorities and the second subtitle picker use the whole original Harbor language catalog, preserve alias-equivalent stored preferences, and retain regional Spanish/Portuguese. Automatic secondary selection tries preferred languages in order and exact regional matches before language-family fallback. Section labels/descriptions and placement choices use official Spanish copy.",
-    "Audio/subtitle priorities use the original numbered, reorderable/removable language chips and searchable two-column catalog. The second subtitle picker uses the whole original catalog. Stored aliases normalize without changes until an edit; regional Spanish/Portuguese remain distinct. Automatic secondary selection tries preferences in order and exact regions before language-family fallback. Section labels/descriptions and placement choices use official Spanish copy."
+    "Audio/subtitle priorities use the original numbered, reorderable/removable language chips and searchable two-column catalog. The second subtitle picker uses the whole original catalog. Stored aliases normalize without changes until an edit; regional Spanish/Portuguese remain distinct. Automatic secondary selection tries preferences in order and exact regions before language-family fallback. Section labels/descriptions and placement choices use official Spanish copy.",
+    "The native subtitle panel uses official On/Off, source/language filters, flags, left selection circle, actual classification tags, inline second-subtitle action and import feedback. Generic duplicated track sections and added prose are removed. Portrait uses horizontal language buttons; wider views use the original sidebar/track composition. All track changes continue through acknowledged mpv operations."
   ],
   "copyOutput": "ios/Harbor/DesktopDiscoverSpanish.json",
   "limitations": [
@@ -191,6 +197,15 @@
       "strokeWidth": "1.9",
       "fill": false,
       "output": "ios/Harbor/Assets.xcassets/player-pip.imageset/icon.svg"
+    },
+    "subtitle-check": {
+      "source": "src/components/player/subtitle-menu/variant-row.tsx: Check size 9 strokeWidth 3",
+      "sourceGeometry": "ios/Harbor/Assets.xcassets/desktop-check.imageset/icon.svg",
+      "sourceGeometrySha256": "71ce317514b38dcd9994e6ffd873478e3902f86c20645153b6086f0676da1bba",
+      "svgSha256": "08063936ab9cffc36aeec615c19c96b803596332649abeb082df3d2283aba32e",
+      "strokeWidth": 3,
+      "size": 9,
+      "output": "ios/Harbor/Assets.xcassets/subtitle-check.imageset/icon.svg"
     }
   },
   "interfaceCopyOutput": "ios/Harbor/DesktopInterfaceSpanish.json"

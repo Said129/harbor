@@ -1,5 +1,6 @@
 import AVFoundation
 import GLKit
+import SwiftUI
 import UIKit
 import XCTest
 @testable import Harbor
@@ -72,6 +73,21 @@ final class SubtitlePlaybackTests: XCTestCase {
         try await wait(surface, state: state) { state.primarySubtitleText.contains("PRIMARY ACTUAL") && state.secondarySubtitleText.contains("SECONDARY ACTUAL") }
         XCTAssertEqual(state.primarySubtitle?.id, main.id)
         XCTAssertEqual(state.secondarySubtitle?.mainSelection, 1)
+
+        let originalFrame = window.frame
+        window.frame = CGRect(x: 0, y: 0, width: 402, height: 874)
+        controller.view.layoutIfNeeded()
+        let panel = UIHostingController(rootView: NavigationStack { PlayerTrackPanel(page: .subtitles, state: state) }.preferredColorScheme(.dark))
+        controller.addChild(panel); controller.view.addSubview(panel.view); panel.didMove(toParent: controller)
+        panel.view.frame = controller.view.bounds
+        try await Task.sleep(for: .milliseconds(400))
+        panel.view.layoutIfNeeded()
+        let panelImage = UIGraphicsImageRenderer(bounds: panel.view.bounds).image { _ in _ = panel.view.drawHierarchy(in: panel.view.bounds, afterScreenUpdates: true) }
+        let panelAttachment = XCTAttachment(image: panelImage)
+        panelAttachment.name = "native-subtitle-original-tracks"; panelAttachment.lifetime = .keepAlways
+        add(panelAttachment)
+        panel.willMove(toParent: nil); panel.view.removeFromSuperview(); panel.removeFromParent()
+        window.frame = originalFrame; controller.view.layoutIfNeeded()
 
         controller.selectSubtitle("no", secondary: true)
         try await wait(surface, state: state) { !state.subtitleChanging && state.secondarySubtitle == nil }

@@ -7,7 +7,7 @@ struct PlayerTrackPanel: View {
     private var tracks: [PlayerState.Track] { state.tracks.filter { $0.type == "audio" } }
     var body: some View {
         Group {
-            if page == .subtitles { SubtitleTracksView(state: state, panel: true) }
+            if page == .subtitles { SubtitleTracksView(state: state) }
             else {
                 ScrollView {
                     VStack(alignment: .leading, spacing: 16) {
@@ -15,7 +15,7 @@ struct PlayerTrackPanel: View {
                         ForEach(tracks) { track in
                             Button { state.controller?.set("aid", String(track.id)) } label: {
                                 HStack(spacing: 12) {
-                                    Circle().fill(track.selected ? HarborTheme.accent : .white.opacity(0.1)).frame(width: 17, height: 17).overlay { if track.selected { Image(systemName: "checkmark").font(.system(size: 10, weight: .bold)).foregroundStyle(.black) } }
+                                    Circle().fill(track.selected ? HarborTheme.accent : .white.opacity(0.1)).frame(width: 17, height: 17).overlay { if track.selected { Image("subtitle-check").resizable().scaledToFit().frame(width: 9, height: 9).foregroundStyle(HarborTheme.background) } }
                                     VStack(alignment: .leading, spacing: 5) { Text(track.label).font(.subheadline).lineLimit(2); Text([SubtitleLanguages.label(track), track.codec.uppercased()].filter { !$0.isEmpty }.joined(separator: " · ")).font(.caption2).foregroundStyle(.secondary) }
                                     Spacer()
                                 }.padding(14).frame(minHeight: 54).background(track.selected ? HarborTheme.surface : HarborTheme.surface.opacity(0.35), in: .rect(cornerRadius: 10))

@@ -164,7 +164,7 @@ struct PlayerSettingsView: View {
     @ViewBuilder private var subtitlesSettings: some View {
         if let state {
             HarborSettingsSection("Pistas de subtítulos") {
-                SubtitleTracksView(state: state, panel: true, embedded: true)
+                SubtitleTracksView(state: state, embedded: true)
             }
             HarborSettingsSection("Temporización") {
                 NavigationLink { SubtitleTimingView(state: state) } label: {

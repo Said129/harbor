@@ -528,7 +528,7 @@ final class MPVController: GLKViewController {
                 }
                 guard let importedTrack else { throw HarborError(code: "subtitle-file") }
                 controller.state.importedSubtitleIDs.insert(importedTrack)
-                controller.state.subtitleImportMessage = "Importado: " + subtitle.title
+                controller.state.subtitleImportMessage = subtitle.title
             } catch {
                 if !controller.didClose, controller.mediaRevision == revision,
                    let track = controller.state.tracks.first(where: { $0.type == "sub" && ($0.externalFilename == subtitle.url.path || $0.externalFilename == subtitle.url.absoluteString) }) {

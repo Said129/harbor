@@ -47,7 +47,7 @@ enum SubtitleLanguages {
     }
     static var allCodes: [String] { policy?.order ?? [] }
     static func preferenceName(_ input: String) -> String {
-        policy?.names[normalize(input)] ?? input
+        policy?.names[normalize(input)] ?? input.uppercased()
     }
     static func preferredCodes(_ input: String) -> [String] {
         var seen = Set<String>()
@@ -70,9 +70,9 @@ enum SubtitleLanguages {
     }
     static func label(_ track: PlayerState.Track) -> String {
         switch key(track) {
-        case "__external_unknown__": "Idioma desconocido"
-        case "__embedded_unknown__": "Integrados sin idioma"
-        default: name(track.language)
+        case "__external_unknown__": DesktopInterfaceText.value("Unknown")
+        case "__embedded_unknown__": DesktopInterfaceText.value("Embedded")
+        default: preferenceName(normalize(track.language))
         }
     }
 }
