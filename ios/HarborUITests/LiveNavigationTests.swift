@@ -82,6 +82,28 @@ final class LiveNavigationTests: XCTestCase {
 
         navigate(app, "settings")
         capture(app, "native-settings-original-layout")
+        app.buttons["settings-playback"].tap()
+        let instant = app.buttons["Instantáneo"]
+        let manual = app.buttons["Elige una fuente"]
+        XCTAssertTrue(instant.waitForExistence(timeout: 5))
+        XCTAssertTrue(manual.isHittable)
+        let startedInstant = instant.isSelected
+        manual.tap()
+        XCTAssertTrue(manual.isSelected)
+        capture(app, "native-play-mode-manual")
+        instant.tap()
+        XCTAssertTrue(instant.isSelected)
+        capture(app, "native-play-mode-instant")
+        if !startedInstant { manual.tap() }
+        app.navigationBars["Reproducción"].buttons["Ajustes"].tap()
+        app.buttons["settings-playback"].tap()
+        XCTAssertEqual(app.buttons["Instantáneo"].isSelected, startedInstant, "The real saved play mode must survive reopening settings")
+        let playbackSettings = app.descendants(matching: .any).matching(identifier: "player-settings-scroll").firstMatch
+        let nextPrompt = app.descendants(matching: .any).matching(identifier: "settings-next-prompt").firstMatch
+        reveal(nextPrompt, in: playbackSettings, attempts: 8)
+        XCTAssertTrue(nextPrompt.isHittable)
+        capture(app, "native-next-prompt-original")
+        app.navigationBars["Reproducción"].buttons["Ajustes"].tap()
         app.buttons["settings-video"].tap()
         XCTAssertTrue(app.descendants(matching: .any).matching(identifier: "settings-hwdec").firstMatch.waitForExistence(timeout: 5))
         let videoSettings = app.descendants(matching: .any).matching(identifier: "player-settings-scroll").firstMatch

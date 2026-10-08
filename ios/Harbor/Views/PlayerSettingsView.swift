@@ -72,8 +72,8 @@ struct PlayerSettingsView: View {
 
     @ViewBuilder private var playbackSettings: some View {
         chapters
+        PlayerPlayModeSettings(automatic: $sources.automatic)
         HarborSettingsSection("Fuentes y calidad") {
-            HarborSettingsToggle("Elegir automáticamente la mejor calidad", isOn: $sources.automatic)
             HarborSettingsToggle("Ocultar grabaciones de cámara · CAM / TS / TC", isOn: $sources.excludeCamera)
             HarborSettingsChoice("Calidad máxima", selection: $sources.maximum, choices: [("4K", 2160), ("1080p", 1080), ("720p", 720)])
             HarborSettingsChoice("Calidad mínima", selection: $sources.minimum, choices: [("Todas", 0), ("720p", 720), ("1080p", 1080), ("4K", 2160)])
@@ -87,15 +87,11 @@ struct PlayerSettingsView: View {
             HarborSettingsChoice("Salto al avanzar", selection: $preferences.options.seekForwardSeconds, choices: [5.0, 10, 15, 30, 60].map { ("\(Int($0)) segundos", $0) })
             HarborSettingsChoice("Velocidad inicial", selection: $preferences.options.speed, choices: [0.5, 0.75, 1, 1.25, 1.5, 1.75, 2].map { ("\($0.formatted())×", $0) })
         }
-        HarborSettingsSection("Reanudación") {
-            HarborSettingsToggle("Reanudar la reproducción", isOn: $resumePlayback)
-            HarborSettingsToggle("Preguntar antes de reanudar", isOn: $resumePrompt).disabled(!resumePlayback)
+        HarborSettingsSection(DesktopInterfaceText.value("Resume")) {
+            HarborSettingsToggle(DesktopInterfaceText.value("Resume where you left off"), note: DesktopInterfaceText.value("Pick up partly-watched episodes and movies at your saved spot. Anything watched past 80% always restarts. Turn this off to always start from the beginning, handy if you rewatch shows."), isOn: $resumePlayback)
+            HarborSettingsToggle(DesktopInterfaceText.value("Ask to resume or start over"), isOn: $resumePrompt).disabled(!resumePlayback)
         }
-        HarborSettingsSection("Episodios") {
-            HarborSettingsToggle("Reproducir automáticamente el siguiente episodio", isOn: $preferences.options.autoPlayNextEpisode)
-                .accessibilityIdentifier("settings-auto-next")
-            HarborSettingsChoice("Aviso del siguiente episodio", selection: $preferences.options.nextEpisodeLeadSeconds, choices: [("Automático · Harbor", -1.0), ("Sin aviso", 0.0)] + [15.0, 30, 45, 60, 90].map { ("\(Int($0)) segundos antes", $0) })
-        }
+        PlayerNextEpisodeSettings()
         HarborSettingsSection("Búfer") {
             HarborSettingsChoice("Tamaño del búfer", selection: $preferences.options.bufferSize, choices: BufferSize.allCases.map { ($0.title, $0) })
         }

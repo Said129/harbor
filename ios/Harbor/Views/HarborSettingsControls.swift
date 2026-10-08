@@ -76,17 +76,43 @@ struct HarborSettingsChoice<Value: Hashable>: View {
 
 struct HarborSettingsToggle: View {
     let title: String
+    var note: String? = nil
     @Binding var isOn: Bool
 
-    init(_ title: String, isOn: Binding<Bool>) {
+    init(_ title: String, note: String? = nil, isOn: Binding<Bool>) {
         self.title = title
+        self.note = note
         self._isOn = isOn
     }
 
     var body: some View {
         Toggle(isOn: $isOn) {
-            Text(title).font(HarborTheme.font(14, weight: .semibold))
-                .fixedSize(horizontal: false, vertical: true)
-        }.toggleStyle(.switch).frame(minHeight: 44).tint(HarborTheme.accent)
+            VStack(alignment: .leading, spacing: 5) {
+                Text(title).font(HarborTheme.font(14, weight: .semibold))
+                if let note { Text(note).font(HarborTheme.font(13)).foregroundStyle(.secondary) }
+            }.fixedSize(horizontal: false, vertical: true)
+        }.toggleStyle(HarborSettingsSwitchStyle()).frame(minHeight: 44)
+    }
+}
+
+private struct HarborSettingsSwitchStyle: ToggleStyle {
+    @Environment(\.isEnabled) private var enabled
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+
+    func makeBody(configuration: Configuration) -> some View {
+        Button { configuration.isOn.toggle() } label: {
+            HStack(spacing: 16) {
+                configuration.label.frame(maxWidth: .infinity, alignment: .leading)
+                Capsule().fill(configuration.isOn ? HarborTheme.ink : ThemePreferences.shared.color("edge"))
+                    .overlay(alignment: .leading) {
+                        Circle().fill(HarborTheme.background).frame(width: 26, height: 26)
+                            .offset(x: configuration.isOn ? 19 : 3)
+                    }.frame(width: 48, height: 32).frame(height: 44)
+                    .animation(reduceMotion ? nil : .easeInOut(duration: 0.2), value: configuration.isOn)
+            }.contentShape(Rectangle()).opacity(enabled ? 1 : 0.6)
+        }.buttonStyle(.plain)
+            .accessibilityRepresentation {
+                Toggle(isOn: configuration.$isOn) { configuration.label }.toggleStyle(.switch)
+            }
     }
 }

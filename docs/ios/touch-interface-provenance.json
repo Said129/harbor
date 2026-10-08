@@ -80,7 +80,13 @@
     "src/views/settings/subtitles-panel.tsx": "c3233e385d9fe0b1956e69b54a8cec5a54b8111a2720413fc5ccf1728e4a5029",
     "src/assets/godfather-offer.svg": "16e63274067f647a323ad5c39b45339713939d1093203e6de5826ba407b74104",
     "src/assets/preview/seek-preview.png": "3159b9e8cad39c4aba0af3f6574da0b24e31e401c774a41f9f0c0d5603cc789f",
-    "src/views/settings/player-panel/seek-bar-section.tsx": "8310e5cb32cf0f766f902df983240fe3952a61954ed96531240417069adb3195"
+    "src/views/settings/player-panel/seek-bar-section.tsx": "8310e5cb32cf0f766f902df983240fe3952a61954ed96531240417069adb3195",
+    "src/assets/settings-preview/the-general-still.webp": "e677bab120f1948f44b7d4f939f0b5fc75e506ef10efc7383d066972b7ff62b2",
+    "src/views/settings/player-panel/play-mode-section.tsx": "1db9c4bda03251daee0780d328bddc911d7b2129328cf893c15a25b3a87392a3",
+    "src/views/settings/player-panel/press-play-preview.tsx": "605a61af4ae7b90ff515e03538e4cd7b03add0f12cffa7cc4f5737bde779ea70",
+    "src/views/settings/quality-panel/up-next-tab.tsx": "69ccb4df1fa05f42f38160948c1910d7b6ef42fa7896aba4bad8b1c271c07528",
+    "src/views/settings/shared.tsx": "e70bd16655c232f4042115481f8e77b2fed300d9d124ff7bdc98a89455259942",
+    "src/views/settings/preview-shell.tsx": "8015adb853fae764de322b8ff059450451ff68d18d917aff005ff89034d05b50"
   },
   "changes": [
     "Original six-point playback timeline with a 44-point touch target; seeking commits to mpv on release.",
@@ -103,7 +109,8 @@
     "The native subtitle panel uses official On/Off, source/language filters, flags, left selection circle, actual classification tags, inline second-subtitle action and import feedback. Generic duplicated track sections and added prose are removed. Portrait uses horizontal language buttons; wider views use the original sidebar/track composition. All track changes continue through acknowledged mpv operations.",
     "Audio uses the original track titles, language flags, codec/channel/default details, left selection circles and sync offset row with actual mpv state. The subtitle FPS panel uses the original dropdown, optional custom input/apply check, observed timing values and official availability messages; the generic Form and added prose are removed. Touch targets remain at least 44pt.",
     "Subtitle appearance uses the original preview still/text, background choice cards, font preset grid, color swatches and official field labels. Existing ASS yes/strip options and persisted settings are retained; no generic preview slogan is added.",
-    "Seek color settings use the original preview image, square swatches, default slash and official labels. The existing color preference and actual timeline consumer are retained."
+    "Seek color settings use the original preview image, square swatches, default slash and official labels. The existing color preference and actual timeline consumer are retained.",
+    "Playback uses the original Instant/Pick a source choice, resume labels, Up Next prompt choices and copy. Shared switches follow the original 48x32 track/26 pt knob. Segments wrap on narrow screens; same-row selection stretches then contracts in 420 ms, cross-row selection moves in 320 ms, and reduced motion disables both. Existing 15 s prompt values remain editable; the original 120 s choice is exposed."
   ],
   "copyOutput": "ios/Harbor/DesktopDiscoverSpanish.json",
   "limitations": [
@@ -251,5 +258,13 @@
     "sha256": "3159b9e8cad39c4aba0af3f6574da0b24e31e401c774a41f9f0c0d5603cc789f",
     "output": "ios/Harbor/Assets.xcassets/seek-preview.imageset/still.png",
     "notes": "Original artwork bytes, 1599/254 preview ratio, 10 pt corners, original color squares and default mark; preview touch changes its own position without seeking the active video. Reset uses the original RotateCcw geometry with stroke 2.4."
+  },
+  "playModePreview": {
+    "source": "src/assets/settings-preview/the-general-still.webp",
+    "sourceSha256": "e677bab120f1948f44b7d4f939f0b5fc75e506ef10efc7383d066972b7ff62b2",
+    "pngSha256": "757e9d12cfdb38c0fb035b9544154dd2077263147db0360467b74e801427603c",
+    "rgbPixelsSha256": "ede5a0e525f4134ee13f8715e1d4b74f9d348945f7b40309274185ba135ae4c7",
+    "output": "ios/Harbor/Assets.xcassets/play-mode-preview.imageset/still.png",
+    "notes": "Lossless pixel conversion of the original fallback still to an asset-catalog PNG. Preview follows PressPlayPreview/PreviewShell (260 pt, 16:9, 300 ms crossfade); it illustrates the choice and never starts media or pretends to be a live source list. Desktop's rotating sample artwork is not implemented here."
   }
 }
