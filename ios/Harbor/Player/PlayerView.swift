@@ -343,7 +343,7 @@ struct PlayerView: View {
                     PlayerGlyph(name: "pip", size: 22).frame(width: 44, height: 44)
                 }
                 .disabled(state.pictureInPictureChanging || state.subtitleChanging || retrying || state.restarting || sourceChanging || episodeChanging || !state.loaded || state.ended || !state.tracks.contains(where: { $0.type == "video" && $0.selected }))
-                .accessibilityLabel(DesktopInterfaceText.text(state.pictureInPictureActive ? "Exit Picture in Picture" : "Picture in Picture"))
+                .accessibilityLabel(DesktopInterfaceText.value(state.pictureInPictureActive ? "Exit Picture in Picture" : "Picture in Picture"))
                 .accessibilityIdentifier("player-pip")
             }
         }
