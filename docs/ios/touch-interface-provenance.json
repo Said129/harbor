@@ -95,7 +95,11 @@
     "src/views/settings/ratings-matrix.tsx": "d812f090e3340250942259e367fb0ad892e76ba8b71ba813673ffca4940a1a0d",
     "src/views/settings/theme-panel/theme-studio/nav-editor.tsx": "09148842e8656ee38c20aee8167ea66df526da7ecd1e4bb14b77caece5ac53ed",
     "src/views/settings/theme-panel/theme-studio/nav-editor/nav-row.tsx": "d6be796e30db89a4cf3acd9d372eea750470ecffec87c7892605890404482fa5",
-    "src/lib/spoilers.ts": "a8164d05b68233f460f3d894962a34d8c0e94ecd796b615dbb45b7556dbaa4f9"
+    "src/lib/spoilers.ts": "a8164d05b68233f460f3d894962a34d8c0e94ecd796b615dbb45b7556dbaa4f9",
+    "src/lib/theme.ts": "264fe4dad8afba2ad7d0ce0d1b17c030ebb446a54572e60483c2dece69b6d288",
+    "src/views/settings/theme-panel/color-theme-body.tsx": "f50d56ef90091995e6a1baa74d05fd7476f16cf734b9387747364bed766b2baa",
+    "src/views/settings/theme-panel/font-grid.tsx": "aa625c505d8e5aa318432c9abd84c8611897ff58d10c77ff4a7d00080fde6bb0",
+    "src/views/settings/theme-panel/custom-editor.tsx": "2f05610ee654522602a9ee00d66f5acd3c24ef63119d7fb685101189f4443bce"
   },
   "changes": [
     "Original six-point playback timeline with a 44-point touch target; seeking commits to mpv on release.",
@@ -123,7 +127,8 @@
     "The original Keep same source on next episode toggle uses its false default and streamMatchesSource identity precedence. It controls the real next-episode offer selection, preserves filters, and falls back to the best playable offer when no match exists.",
     "Original bundled Lottie SVG artwork is driven by a native CADisplayLink clock, with one JS render in flight, a weak target, teardown and Reduce Motion/scene lifecycle stops. The existing regression checks actual SVG changes and attaches before/after web snapshots; it does not replace the artwork with a static image or a synthetic frame counter.",
     "Home style uses the original two preview images and radio choices. Interface settings preserve all existing preferences, use original section/toggle labels, and separate title/description spoiler masks in both episode lists. Legacy blurEpisodes still controls list thumbnail blur, so it is labelled Blur thumbnails instead of claiming Desktop episode-detail hero blur. Navigation uses original row geometry, edited/default names, official reset/show/hide labels and Lucide up/down/eye controls with 44 pt targets. Reordering, naming and hiding continue to use the existing preference store.",
-    "WebKit snapshots use the completion-handler API available in the Apple SDK, bridged to a checked continuation; missing images still fail the original animation regression."
+    "WebKit snapshots use the completion-handler API available in the Apple SDK, bridged to a checked continuation; missing images still fail the original animation regression.",
+    "Appearance preserves every existing palette and the three installed interface fonts, uses ColorThemeBody tiles with original swatches, 168 pt minimum/10 pt corners and actual selection, FontGrid specimens with installed typefaces, and original Lucide checks/Pencil strokes. It does not advertise unavailable font pairs, Desktop layouts, or scripts. The existing custom palette now has all ten original color fields, live preview, save/reset/cancel; cancel restores the saved state and border/accent alpha tokens derive from the selected color."
   ],
   "copyOutput": "ios/Harbor/DesktopDiscoverSpanish.json",
   "limitations": [
@@ -288,6 +293,30 @@
       "sourceSha256": "15dcc071a0731525ad2f8bf9fd6e8353aa3a8d1fd9b30b3ead51053ed3937731",
       "svgSha256": "215913df535cd28d682dd8e98b347ac775b72c7ddb03076756a46d0ccad5080c",
       "output": "ios/Harbor/Assets.xcassets/settings-chevron-down.imageset/icon.svg"
+    },
+    "theme-selected": {
+      "package": "lucide-react",
+      "version": "0.460.0",
+      "integrity": "sha512-BVtq/DykVeIvRTJvRAgCsOwaGL8Un3Bxh8MbDxMhEWlZay3T4IpEKDEpwt5KZ0KJMHzgm6jrltxlT5eXOWXDHg==",
+      "sourceSha256": "942041f985f610b080af1db8958a1338705d3303330e9fd6615ac8c95c1fa438",
+      "svgSha256": "b5f3e5f9bb20ae41261f9ef4643de308fda3df41947e9713280ed58a3a02fe40",
+      "output": "ios/Harbor/Assets.xcassets/theme-selected.imageset/icon.svg"
+    },
+    "theme-font-selected": {
+      "package": "lucide-react",
+      "version": "0.460.0",
+      "integrity": "sha512-BVtq/DykVeIvRTJvRAgCsOwaGL8Un3Bxh8MbDxMhEWlZay3T4IpEKDEpwt5KZ0KJMHzgm6jrltxlT5eXOWXDHg==",
+      "sourceSha256": "942041f985f610b080af1db8958a1338705d3303330e9fd6615ac8c95c1fa438",
+      "svgSha256": "129ec96260938cb79e63a0e1349e79fd2e3f61a3ce9d58a0c5e2d58d8c2eec8b",
+      "output": "ios/Harbor/Assets.xcassets/theme-font-selected.imageset/icon.svg"
+    },
+    "theme-edit": {
+      "package": "lucide-react",
+      "version": "0.460.0",
+      "integrity": "sha512-BVtq/DykVeIvRTJvRAgCsOwaGL8Un3Bxh8MbDxMhEWlZay3T4IpEKDEpwt5KZ0KJMHzgm6jrltxlT5eXOWXDHg==",
+      "sourceSha256": "6d2743f570d3cce321f335048b0102b9178b960b22a568feaac11cc98985f239",
+      "svgSha256": "9ae42030d8e75bbcef974b3c56e89e34bf539538cde4f075161ebb0fbbc518f8",
+      "output": "ios/Harbor/Assets.xcassets/theme-edit.imageset/icon.svg"
     }
   },
   "interfaceCopyOutput": "ios/Harbor/DesktopInterfaceSpanish.json",

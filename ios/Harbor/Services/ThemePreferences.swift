@@ -5,6 +5,7 @@ struct NativePalette: Decodable, Identifiable {
     let id: String
     let name: String
     let tokens: [String: [Double]]
+    let swatch: [String]?
 }
 
 @MainActor @Observable
@@ -41,6 +42,10 @@ final class ThemePreferences {
         var red: CGFloat = 0, green: CGFloat = 0, blue: CGFloat = 0, alpha: CGFloat = 0
         guard UIColor(color).getRed(&red, green: &green, blue: &blue, alpha: &alpha) else { return }
         customColors[token] = [Double(red), Double(green), Double(blue), Double(alpha)]
+    }
+    func customPaletteSeed() -> [String: [Double]] {
+        let selected = palettes.first { $0.id == preset } ?? palettes.first
+        return (selected?.tokens ?? [:]).merging(customColors) { _, saved in saved }
     }
     func reset() { preset = "cool-grey"; custom = false; customColors = [:]; font = "switzer"; seekBarColor = "" }
 }

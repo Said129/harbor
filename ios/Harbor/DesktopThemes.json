@@ -32,7 +32,8 @@
         "accent": "oklch(0.78 0.13 60)",
         "accent-soft": "oklch(0.78 0.13 60 / 0.18)",
         "danger": "oklch(0.55 0.18 25)"
-      }
+      },
+      "swatch": ["#2c2e36", "#3a3d47", "#dcdde4"]
     },
     {
       "id": "nord",
@@ -64,7 +65,8 @@
         "accent": "#88c0d0",
         "accent-soft": "#88c0d02e",
         "danger": "#bf616a"
-      }
+      },
+      "swatch": ["#2e3440", "#434c5e", "#88c0d0"]
     },
     {
       "id": "stremio",
@@ -96,7 +98,8 @@
         "accent": "#7b5bf5",
         "accent-soft": "rgba(123,91,245,0.18)",
         "danger": "#dc2626"
-      }
+      },
+      "swatch": ["#0c0b11", "#1a173e", "#7b5bf5"]
     },
     {
       "id": "crunch",
@@ -128,7 +131,8 @@
         "accent": "#ff640a",
         "accent-soft": "rgba(255,100,10,0.18)",
         "danger": "#c13937"
-      }
+      },
+      "swatch": ["#000000", "#272727", "#ff640a"]
     },
     {
       "id": "tokyo-night",
@@ -160,7 +164,8 @@
         "accent": "#f08032",
         "accent-soft": "#f080322e",
         "danger": "#ef5a5a"
-      }
+      },
+      "swatch": ["#0c1118", "#1c2230", "#f08032"]
     },
     {
       "id": "dracula",
@@ -192,7 +197,8 @@
         "accent": "#bd93f9",
         "accent-soft": "#bd93f92e",
         "danger": "#ff5555"
-      }
+      },
+      "swatch": ["#282a36", "#44475a", "#bd93f9"]
     },
     {
       "id": "forest",
@@ -224,7 +230,8 @@
         "accent": "oklch(0.80 0.15 145)",
         "accent-soft": "oklch(0.80 0.15 145 / 0.18)",
         "danger": "oklch(0.58 0.20 25)"
-      }
+      },
+      "swatch": ["#1a221d", "#26312a", "#dde7df"]
     },
     {
       "id": "noir",
@@ -256,7 +263,8 @@
         "accent": "#ffffff",
         "accent-soft": "rgba(255,255,255,0.10)",
         "danger": "#b94545"
-      }
+      },
+      "swatch": ["#000000", "#0a0a0a", "#ffffff"]
     }
   ]
 }

@@ -2,44 +2,35 @@ import SwiftUI
 
 struct ThemeSettingsView: View {
     @Bindable var preferences = ThemePreferences.shared
+    @State private var editingColors = false
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     var body: some View {
-        Form {
-            Section("Tipografía") {
-                Picker("Fuente de la interfaz", selection: $preferences.font) { Text("Switzer").tag("switzer"); Text("Inter").tag("inter"); Text("Sistema").tag("system") }
-                Text("Harbor").font(HarborTheme.font(24, weight: .semibold))
-            }
-            Section("Paleta de Harbor") {
-                ForEach(preferences.palettes) { palette in
-                    Button {
-                        preferences.preset = palette.id; preferences.custom = false
-                    } label: {
-                        HStack {
-                            VStack(alignment: .leading, spacing: 10) {
-                                Text(palette.name).foregroundStyle(.primary)
-                                HStack(spacing: 5) {
-                                    ForEach(["canvas", "surface", "elevated", "accent"], id: \.self) { token in
-                                        let rgba = palette.tokens[token] ?? [0, 0, 0, 1]
-                                        RoundedRectangle(cornerRadius: 4).fill(Color(.sRGB, red: rgba[0], green: rgba[1], blue: rgba[2])).frame(width: 35, height: 18)
-                                    }
-                                }
+        ScrollView {
+            VStack(alignment: .leading, spacing: 30) {
+                HarborSettingsSection(DesktopInterfaceText.value("Colors")) {
+                    LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 12) {
+                        ForEach(preferences.palettes) { palette in
+                            ThemePaletteCard(palette: palette, selected: preferences.preset == palette.id && !preferences.custom) {
+                                preferences.preset = palette.id; preferences.custom = false
                             }
-                            Spacer()
-                            if preferences.preset == palette.id && !preferences.custom { Image(systemName: "checkmark").foregroundStyle(HarborTheme.accent) }
-                        }.padding(.vertical, 5)
+                        }
+                        ThemeCustomCard(preferences: preferences) { editingColors = true }
+                    }.animation(reduceMotion ? nil : .easeOut(duration: 0.2), value: preferences.preset)
+                }
+                HarborSettingsSection(DesktopInterfaceText.value("Typography")) {
+                    ForEach([("switzer", "Switzer"), ("inter", "Inter"), ("system", "System UI")], id: \.0) { value, name in
+                        ThemeFontCard(value: value, name: DesktopInterfaceText.value(name), selected: preferences.font == value) { preferences.font = value }
                     }
                 }
-            }
-            Section("Colores personalizados") {
-                Toggle("Personalizar colores", isOn: $preferences.custom)
-                if preferences.custom {
-                    ForEach([("canvas", "Fondo"), ("surface", "Superficies"), ("ink", "Texto"), ("accent", "Acento")], id: \.0) { token, name in
-                        ColorPicker(name, selection: Binding(get: { preferences.color(token) }, set: { preferences.set($0, token: token) }), supportsOpacity: false)
-                    }
-                }
-            }
-            Section { Button("Restablecer apariencia") { preferences.reset() } }
-            Section { PlayerSeekBarSettings() }
-        }.navigationTitle("Apariencia").navigationBarTitleDisplayMode(.inline)
-            .scrollContentBackground(.hidden).background(HarborTheme.background)
+                PlayerSeekBarSettings()
+                Button { preferences.reset() } label: {
+                    Label(DesktopInterfaceText.value("Reset"), image: "audio-reset-sync").font(HarborTheme.font(14, weight: .medium)).frame(minHeight: 44)
+                }.buttonStyle(.plain).accessibilityIdentifier("theme-reset")
+            }.padding(20)
+        }.background(HarborTheme.background).foregroundStyle(HarborTheme.ink)
+            .navigationTitle(DesktopInterfaceText.value("Appearance")).navigationBarTitleDisplayMode(.inline).tint(HarborTheme.accent)
+            .accessibilityIdentifier("theme-settings-scroll")
+            .accessibilityElement(children: .contain).accessibilityValue(preferences.custom ? "custom" : preferences.preset)
+            .sheet(isPresented: $editingColors) { CustomPaletteEditor(preferences: preferences) }
     }
 }

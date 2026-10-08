@@ -198,6 +198,29 @@ final class LiveNavigationTests: XCTestCase {
         XCTAssertTrue(app.buttons["navigation-visible-discover"].waitForExistence(timeout: 5))
         capture(app, "native-interface-original-navigation")
 
+        navigate(app, "settings")
+        let themeSettings = app.buttons["settings-theme"]
+        reveal(themeSettings, in: app.descendants(matching: .any).matching(identifier: "settings-scroll").firstMatch, attempts: 4)
+        XCTAssertTrue(themeSettings.isHittable)
+        themeSettings.tap()
+        let themeScroll = app.descendants(matching: .any).matching(identifier: "theme-settings-scroll").firstMatch
+        XCTAssertTrue(themeScroll.waitForExistence(timeout: 5))
+        let initialPalette = try XCTUnwrap(themeScroll.value as? String)
+        capture(app, "native-appearance-original-palettes")
+        let customPalette = app.buttons["theme-custom"]
+        reveal(customPalette, in: themeScroll, attempts: 8)
+        XCTAssertTrue(customPalette.isHittable)
+        if app.buttons["theme-custom-edit"].exists { app.buttons["theme-custom-edit"].tap() }
+        else { customPalette.tap() }
+        XCTAssertTrue(app.descendants(matching: .any).matching(identifier: "theme-custom-scroll").firstMatch.waitForExistence(timeout: 5))
+        capture(app, "native-appearance-original-custom-colors")
+        app.buttons["theme-custom-cancel"].tap()
+        XCTAssertEqual(themeScroll.value as? String, initialPalette, "Cancelling live custom colors must restore the previously active palette")
+        let fontSpecimen = app.buttons["theme-font-switzer"]
+        reveal(fontSpecimen, in: themeScroll, attempts: 5)
+        XCTAssertTrue(fontSpecimen.isHittable)
+        capture(app, "native-appearance-original-fonts")
+
         navigate(app, "library")
         XCTAssertTrue(app.buttons["library-tab-all"].waitForExistence(timeout: 5))
         capture(app, "native-library-initial-state")
