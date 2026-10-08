@@ -42,7 +42,7 @@ targets:
       properties:
         CFBundleDisplayName: Harbor
         CFBundleShortVersionString: "0.1.0"
-        CFBundleVersion: "67"
+        CFBundleVersion: "68"
         UIAppFonts:
           [
             Fraunces.ttf,

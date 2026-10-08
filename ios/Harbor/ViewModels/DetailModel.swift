@@ -15,11 +15,9 @@ final class DetailModel {
     var pendingPlayback: PlaybackSession?
     var showResumePrompt = false
     var selectedEpisode: Episode?
-    var lastPlayedAddonID: String?
-    var lastPlayedBingeGroup: String?
+    private var lastPlayedSource: StreamSourceIdentity?
     var continuationOffer: StreamOffer? {
-        StreamPreferences.shared.preferred(offers.filter { $0.addonID == lastPlayedAddonID && lastPlayedBingeGroup != nil && $0.bingeGroup == lastPlayedBingeGroup }) ??
-            StreamPreferences.shared.preferred(offers.filter { $0.addonID != nil && $0.addonID == lastPlayedAddonID }) ?? StreamPreferences.shared.preferred(offers)
+        StreamPreferences.shared.preferredContinuation(offers, previous: lastPlayedSource)
     }
     private let service: HarborService
     private var streamRequest = UUID()
@@ -118,8 +116,7 @@ final class DetailModel {
             }
             try Task.checkCancellation()
             guard owner == library.owner, request == streamRequest else { return }
-            lastPlayedAddonID = offer.addonID
-            lastPlayedBingeGroup = offer.bingeGroup
+            lastPlayedSource = StreamSourceIdentity(offer)
             sourceContinuation = nil
             let session = PlaybackSession(source: source, target: target, startMs: start.ms, storageWarning: warning, progressEnabled: progressEnabled, owner: owner, resumeStore: resume, preservePosition: preservedPosition != nil, advanceStartedAtMs: preservedPosition == nil ? nil : continuation?.advanceStartedAtMs)
             if start.prompt { pendingPlayback = session; showResumePrompt = true }

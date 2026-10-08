@@ -48,6 +48,7 @@ struct PlayerPlayModeSettings: View {
 
 struct PlayerNextEpisodeSettings: View {
     @Bindable private var preferences = PlaybackPreferences.shared
+    @Bindable private var sources = StreamPreferences.shared
     private var choices: [(String, Double)] {
         [(DesktopInterfaceText.value("Auto"), -1), (DesktopInterfaceText.value("Off"), 0), ("30s", 30), ("45s", 45), (DesktopInterfaceText.value("1 min"), 60), (DesktopInterfaceText.value("1.5 min"), 90), (DesktopInterfaceText.value("2 min"), 120)]
             + (preferences.options.nextEpisodeLeadSeconds == 15 ? [("15s", 15)] : [])
@@ -60,6 +61,8 @@ struct PlayerNextEpisodeSettings: View {
                 .accessibilityIdentifier("settings-next-prompt")
             HarborSettingsToggle(DesktopInterfaceText.value("Auto-play next episode"), note: DesktopInterfaceText.value("When an episode ends, automatically start the next one. Off lets the episode finish and stop."), isOn: $preferences.options.autoPlayNextEpisode)
                 .accessibilityIdentifier("settings-auto-next")
+            HarborSettingsToggle(DesktopInterfaceText.value("Keep same source on next episode"), note: DesktopInterfaceText.value("When auto-playing the next episode, keep the same release/source you were just watching instead of Harbor's top-ranked stream. Falls back to the best stream if that source isn't available."), isOn: $sources.keepSourceNextEpisode)
+                .accessibilityIdentifier("settings-next-source")
         }
     }
 }

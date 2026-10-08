@@ -7,6 +7,9 @@ final class StreamPreferences {
     var automatic = UserDefaults.standard.object(forKey: "streams.automatic") as? Bool ?? true {
         didSet { UserDefaults.standard.set(automatic, forKey: "streams.automatic") }
     }
+    var keepSourceNextEpisode = UserDefaults.standard.object(forKey: "keepSourceNextEpisode") as? Bool ?? false {
+        didSet { UserDefaults.standard.set(keepSourceNextEpisode, forKey: "keepSourceNextEpisode") }
+    }
     var excludeCamera = UserDefaults.standard.object(forKey: "streams.excludeCamera") as? Bool ?? true {
         didSet { UserDefaults.standard.set(excludeCamera, forKey: "streams.excludeCamera") }
     }
@@ -28,6 +31,31 @@ final class StreamPreferences {
         // Rust ranking still breaks ties within the same resolution.
         let bestHeight = candidates.map(\.videoHeight).max()
         return candidates.first { $0.videoHeight == bestHeight }
+    }
+    func preferredContinuation(_ offers: [StreamOffer], previous: StreamSourceIdentity?) -> StreamOffer? {
+        if keepSourceNextEpisode, let previous, let matched = preferred(offers.filter { previous.matches($0) }) { return matched }
+        return preferred(offers)
+    }
+}
+
+struct StreamSourceIdentity: Sendable {
+    let infoHash: String?
+    let bingeGroup: String?
+    let addonID: String?
+    let resolution: String?
+    let source: String?
+    init(_ offer: StreamOffer) {
+        infoHash = offer.raw["infoHash"].string.flatMap { $0.isEmpty ? nil : $0 }
+        bingeGroup = offer.bingeGroup
+        addonID = offer.addonID.flatMap { $0.isEmpty ? nil : $0 }
+        resolution = offer.raw["resolution"].string
+        source = offer.raw["source"].string
+    }
+    func matches(_ offer: StreamOffer) -> Bool {
+        let candidate = StreamSourceIdentity(offer)
+        if let infoHash, let other = candidate.infoHash { return infoHash.caseInsensitiveCompare(other) == .orderedSame }
+        if let bingeGroup, let other = candidate.bingeGroup { return bingeGroup == other }
+        return addonID != nil && addonID == candidate.addonID && resolution == candidate.resolution && source == candidate.source
     }
 }
 

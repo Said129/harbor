@@ -86,7 +86,9 @@
     "src/views/settings/player-panel/press-play-preview.tsx": "605a61af4ae7b90ff515e03538e4cd7b03add0f12cffa7cc4f5737bde779ea70",
     "src/views/settings/quality-panel/up-next-tab.tsx": "69ccb4df1fa05f42f38160948c1910d7b6ef42fa7896aba4bad8b1c271c07528",
     "src/views/settings/shared.tsx": "e70bd16655c232f4042115481f8e77b2fed300d9d124ff7bdc98a89455259942",
-    "src/views/settings/preview-shell.tsx": "8015adb853fae764de322b8ff059450451ff68d18d917aff005ff89034d05b50"
+    "src/views/settings/preview-shell.tsx": "8015adb853fae764de322b8ff059450451ff68d18d917aff005ff89034d05b50",
+    "src/views/play-picker/use-auto-candidates.ts": "80dde398b30afc28ebee7d4e26938cca82c2701dd4411ed93f18e4d967394b35",
+    "src/lib/settings/defaults.ts": "dd8239884f63afcaf42eabfbc85c64f7d5751f2f4c77989eb6fe23466ae40e39"
   },
   "changes": [
     "Original six-point playback timeline with a 44-point touch target; seeking commits to mpv on release.",
@@ -110,7 +112,8 @@
     "Audio uses the original track titles, language flags, codec/channel/default details, left selection circles and sync offset row with actual mpv state. The subtitle FPS panel uses the original dropdown, optional custom input/apply check, observed timing values and official availability messages; the generic Form and added prose are removed. Touch targets remain at least 44pt.",
     "Subtitle appearance uses the original preview still/text, background choice cards, font preset grid, color swatches and official field labels. Existing ASS yes/strip options and persisted settings are retained; no generic preview slogan is added.",
     "Seek color settings use the original preview image, square swatches, default slash and official labels. The existing color preference and actual timeline consumer are retained.",
-    "Playback uses the original Instant/Pick a source choice, resume labels, Up Next prompt choices and copy. Shared switches follow the original 48x32 track/26 pt knob. Segments wrap on narrow screens; same-row selection stretches then contracts in 420 ms, cross-row selection moves in 320 ms, and reduced motion disables both. Existing 15 s prompt values remain editable; the original 120 s choice is exposed."
+    "Playback uses the original Instant/Pick a source choice, resume labels, Up Next prompt choices and copy. Shared switches follow the original 48x32 track/26 pt knob. Segments wrap on narrow screens; same-row selection stretches then contracts in 420 ms, cross-row selection moves in 320 ms, and reduced motion disables both. Existing 15 s prompt values remain editable; the original 120 s choice is exposed.",
+    "The original Keep same source on next episode toggle uses its false default and streamMatchesSource identity precedence. It controls the real next-episode offer selection, preserves filters, and falls back to the best playable offer when no match exists."
   ],
   "copyOutput": "ios/Harbor/DesktopDiscoverSpanish.json",
   "limitations": [

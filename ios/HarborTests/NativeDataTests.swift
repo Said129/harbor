@@ -99,6 +99,24 @@ final class NativeDataTests: XCTestCase {
         let camera = StreamOffer(id: 3, raw: .object(["title": .string("Film 1080p TS")]))
         XCTAssertTrue(camera.cameraRecording)
         XCTAssertFalse(StreamOffer(id: 4, raw: .object(["title": .string("Artists 1080p WEB-DL")])).cameraRecording)
+        let initialKeepSource = preferences.keepSourceNextEpisode
+        defer { preferences.keepSourceNextEpisode = initialKeepSource }
+        let previous = StreamOffer(id: 5, raw: .object(["addonId": .string("first-addon"), "behaviorHints": .object(["bingeGroup": .string("same-release")])]))
+        let sameRelease = StreamOffer(id: 6, raw: .object(["url": .string("https://example.com/next.mp4"), "tier": .string("1080p"), "addonId": .string("second-addon"), "behaviorHints": .object(["bingeGroup": .string("same-release")])]))
+        let best = StreamOffer(id: 7, raw: .object(["url": .string("https://example.com/best.mp4"), "tier": .string("4K"), "addonId": .string("first-addon"), "behaviorHints": .object(["bingeGroup": .string("another-release")])]))
+        let identity = StreamSourceIdentity(previous)
+        preferences.keepSourceNextEpisode = false
+        XCTAssertEqual(preferences.preferredContinuation([best, sameRelease], previous: identity)?.id, best.id)
+        preferences.keepSourceNextEpisode = true
+        XCTAssertEqual(preferences.preferredContinuation([best, sameRelease], previous: identity)?.id, sameRelease.id)
+        XCTAssertEqual(preferences.preferredContinuation([best], previous: identity)?.id, best.id, "A different release from the same addon must not count as a match")
+        XCTAssertEqual(preferences.preferredContinuation([best], previous: nil)?.id, best.id)
+        let hash = StreamSourceIdentity(StreamOffer(id: 8, raw: .object(["infoHash": .string(String(repeating: "A", count: 40))])))
+        XCTAssertTrue(hash.matches(torrent))
+        XCTAssertFalse(hash.matches(StreamOffer(id: 9, raw: .object(["infoHash": .string(String(repeating: "b", count: 40))]))))
+        let source = StreamSourceIdentity(StreamOffer(id: 10, raw: .object(["addonId": .string("one"), "resolution": .string("1080p"), "source": .string("WEB-DL")])))
+        XCTAssertTrue(source.matches(StreamOffer(id: 11, raw: .object(["addonId": .string("one"), "resolution": .string("1080p"), "source": .string("WEB-DL")]))))
+        XCTAssertFalse(source.matches(StreamOffer(id: 12, raw: .object(["addonId": .string("one"), "resolution": .string("720p"), "source": .string("WEB-DL")]))))
     }
     func testEditorialUpdatesValidateBeforeReplacingBundledSelections() throws {
         let url = try XCTUnwrap(Bundle.main.url(forResource: "SpooktoberContent", withExtension: "json"))

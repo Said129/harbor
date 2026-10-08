@@ -222,5 +222,7 @@
   "2 min": "2 min",
   "When the Up Next pill appears before an episode ends. Auto scales to the episode length, so short episodes stop prompting so early. Off hides it.": "Momento en que aparece la etiqueta A continuación antes de que termine un episodio. Automático se ajusta a la duración del episodio, para que en los episodios cortos no aparezca tan pronto. Desactivado la oculta.",
   "Auto-play next episode": "Reproducir automáticamente el siguiente episodio",
-  "When an episode ends, automatically start the next one. Off lets the episode finish and stop.": "Cuando termina un episodio, inicia automáticamente el siguiente. Si se desactiva, el episodio termina y la reproducción se detiene."
+  "When an episode ends, automatically start the next one. Off lets the episode finish and stop.": "Cuando termina un episodio, inicia automáticamente el siguiente. Si se desactiva, el episodio termina y la reproducción se detiene.",
+  "Keep same source on next episode": "Mantener la misma fuente en el siguiente episodio",
+  "When auto-playing the next episode, keep the same release/source you were just watching instead of Harbor's top-ranked stream. Falls back to the best stream if that source isn't available.": "Al reproducir automáticamente el siguiente episodio, conserva la misma versión/fuente que acabas de ver en lugar de la fuente mejor clasificada de Harbor. Si esa fuente no está disponible, usa la mejor fuente."
 }
