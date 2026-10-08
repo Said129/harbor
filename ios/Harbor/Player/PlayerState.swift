@@ -25,6 +25,11 @@ final class PlayerState {
     var audioOutput = ""
     var wirelessAudio = false
     var choosingAudioRoute = false
+    var pictureInPictureSupported = false
+    var pictureInPictureActive = false
+    var pictureInPictureChanging = false
+    var videoWidth = 0
+    var videoHeight = 0
     var audioDelay = 0.0
     var subtitleDelay = 0.0
     var subtitleFPS: Double?

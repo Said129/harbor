@@ -198,6 +198,7 @@ struct PlayerView: View {
         .onChange(of: state.loaded) { _, _ in restartHideTimer(); updateIdleTimer() }
         .onChange(of: state.buffering) { _, _ in restartHideTimer() }
         .onChange(of: state.choosingAudioRoute) { _, _ in controlsVisible = true; restartHideTimer() }
+        .onChange(of: state.pictureInPictureChanging) { _, _ in controlsVisible = true; restartHideTimer() }
         .onChange(of: state.error) { _, error in if error != nil { controlsVisible = true }; restartHideTimer() }
         .onChange(of: preferences.options) { old, new in
             let previous = Dictionary(uniqueKeysWithValues: old.mpvOptions)
@@ -221,7 +222,7 @@ struct PlayerView: View {
     }
 
     private var canAutoHide: Bool {
-        controlsVisible && preferences.options.autoHideControls && state.loaded && !state.paused && !state.buffering && !state.ended && state.error == nil && !editingSeek && !state.choosingAudioRoute && settingsPage == nil && !showEpisodes && !episodeChanging && !sourceChanging && !retrying && !state.restarting && !voiceOver && scenePhase == .active
+        controlsVisible && preferences.options.autoHideControls && state.loaded && !state.paused && !state.buffering && !state.ended && state.error == nil && !editingSeek && !state.choosingAudioRoute && !state.pictureInPictureChanging && settingsPage == nil && !showEpisodes && !episodeChanging && !sourceChanging && !retrying && !state.restarting && !voiceOver && scenePhase == .active
     }
     private var canChangeEpisode: Bool { changeEpisode != nil && media?.episodic == true && !(media?.videos?.isEmpty ?? true) && (library.map { $0.owner == session.owner } ?? true) }
     private var automaticAdvanceEnabled: Bool {
@@ -337,6 +338,14 @@ struct PlayerView: View {
             Button { settingsPage = .video } label: { PlayerGlyph(name: "aspect").frame(width: 44, height: 44) }.accessibilityLabel("Imagen y formato").accessibilityIdentifier("player-picture")
             Button { settingsPage = .playback } label: { VStack(spacing: 1) { PlayerGlyph(name: "speed", size: 19); Text("\(state.speed.formatted())×").font(.system(size: 9)) } }.accessibilityLabel("Velocidad").accessibilityValue("\(state.speed.formatted())×").frame(minWidth: 44, minHeight: 44)
             AudioRoutePicker(state: state)
+            if state.pictureInPictureSupported {
+                Button { state.controller?.togglePictureInPicture(); restartHideTimer() } label: {
+                    PlayerGlyph(name: "pip", size: 22).frame(width: 44, height: 44)
+                }
+                .disabled(state.pictureInPictureChanging || state.subtitleChanging || retrying || state.restarting || sourceChanging || episodeChanging || !state.loaded || state.ended || !state.tracks.contains(where: { $0.type == "video" && $0.selected }))
+                .accessibilityLabel(DesktopInterfaceText.text(state.pictureInPictureActive ? "Exit Picture in Picture" : "Picture in Picture"))
+                .accessibilityIdentifier("player-pip")
+            }
         }
     }
     private func jump(_ seconds: Double) {

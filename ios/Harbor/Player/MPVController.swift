@@ -1,4 +1,6 @@
 import AVFoundation
+import AVKit
+import CoreVideo
 import Darwin
 import GLKit
 import Libmpv
@@ -36,6 +38,16 @@ final class MPVController: GLKViewController {
     private var interruptionResumeWanted = false
     private var interruptionResumeAllowed = false
     private var foregroundResumeWanted = false
+    private var sampleOutput: MPVSampleBufferRenderer?
+    private var sampleEvents: Task<Void, Never>?
+    private var pictureInPicture: MPVPictureInPicture?
+    private var pictureInPictureTask: Task<Void, Never>?
+    private var inlineRestoreTask: Task<Void, Never>?
+    private var renderSwitching = false
+    private var inlineRestorePending = false
+    private var videoOutputName = ""
+    var sampleFrame: CVPixelBuffer? { pictureInPicture?.lastFrame }
+    var sampleRenderCalls: Int { pictureInPicture?.renderedFrames ?? 0 }
 
     init(source: PlaybackSource, state: PlayerState, startMs: Double = 0, preservePosition: Bool = false) {
         self.source = source; self.state = state
@@ -72,6 +84,11 @@ final class MPVController: GLKViewController {
         do { try initialize() } catch { state.error = safeMessage(error); close() }
     }
 
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        pictureInPicture?.layout(view.bounds)
+    }
+
     private func check(_ code: Int32) throws {
         guard code >= 0 else {
             Diagnostics.shared.record(.playerFailed, count: Int(code))
@@ -93,23 +110,10 @@ final class MPVController: GLKViewController {
             for name in ["video-dec-params", "video-out-params", "vf"] { try check(mpv_observe_property(mpv, 0, name, MPV_FORMAT_NODE)) }
         }
 #endif
-        var initialization = mpv_opengl_init_params(get_proc_address: { _, name in
-            // Resolve this context's GLES entry points, as the pinned MPVKit
-            // demo does. A process-wide lookup can find another GL backend.
-            guard let name, let bundle = CFBundleGetBundleWithIdentifier("com.apple.opengles" as CFString) else { return nil }
-            return CFBundleGetFunctionPointerForName(bundle, String(cString: name) as CFString)
-        }, get_proc_address_ctx: nil)
-        let status = "opengl".withCString { api in
-            withUnsafeMutablePointer(to: &initialization) { initialization in
-                var parameters = [
-                    mpv_render_param(type: MPV_RENDER_PARAM_API_TYPE, data: UnsafeMutableRawPointer(mutating: api)),
-                    mpv_render_param(type: MPV_RENDER_PARAM_OPENGL_INIT_PARAMS, data: initialization),
-                    mpv_render_param(type: MPV_RENDER_PARAM_INVALID, data: nil)
-                ]
-                return mpv_render_context_create(&renderer, mpv, &parameters)
-            }
-        }
-        try check(status)
+        try createGLRenderer(mpv)
+        state.pictureInPictureSupported = AVPictureInPictureController.isPictureInPictureSupported()
+        for name in ["dwidth", "dheight"] { _ = mpv_observe_property(mpv, 0, name, MPV_FORMAT_INT64) }
+        _ = mpv_observe_property(mpv, 0, "current-vo", MPV_FORMAT_STRING)
         for name in ["time-pos", "duration", "speed", "volume", "audio-delay", "sub-delay"] { try check(mpv_observe_property(mpv, 0, name, MPV_FORMAT_DOUBLE)) }
         for name in ["pause", "paused-for-cache", "mute"] { try check(mpv_observe_property(mpv, 0, name, MPV_FORMAT_FLAG)) }
         try check(mpv_observe_property(mpv, 0, "track-list", MPV_FORMAT_NODE))
@@ -127,6 +131,27 @@ final class MPVController: GLKViewController {
         state.renderReady = true
         observePlaybackLifecycle()
         Diagnostics.shared.record(.playerStarted)
+    }
+
+    private func createGLRenderer(_ mpv: OpaquePointer) throws {
+        guard UIApplication.shared.applicationState != .background, let context, EAGLContext.setCurrent(context), renderer == nil, sampleOutput == nil else { throw HarborError(code: "player-init") }
+        var initialization = mpv_opengl_init_params(get_proc_address: { _, name in
+            // Resolve this context's GLES entry points, as the pinned MPVKit
+            // demo does. A process-wide lookup can find another GL backend.
+            guard let name, let bundle = CFBundleGetBundleWithIdentifier("com.apple.opengles" as CFString) else { return nil }
+            return CFBundleGetFunctionPointerForName(bundle, String(cString: name) as CFString)
+        }, get_proc_address_ctx: nil)
+        let status = "opengl".withCString { api in
+            withUnsafeMutablePointer(to: &initialization) { initialization in
+                var parameters = [
+                    mpv_render_param(type: MPV_RENDER_PARAM_API_TYPE, data: UnsafeMutableRawPointer(mutating: api)),
+                    mpv_render_param(type: MPV_RENDER_PARAM_OPENGL_INIT_PARAMS, data: initialization),
+                    mpv_render_param(type: MPV_RENDER_PARAM_INVALID, data: nil)
+                ]
+                return mpv_render_context_create(&renderer, mpv, &parameters)
+            }
+        }
+        try check(status)
     }
 
     func command(_ values: [String]) throws {
@@ -155,7 +180,7 @@ final class MPVController: GLKViewController {
     func replay() {
         restartPlayback(positionMs: nil, autoplay: nil)
     }
-    var canRestartPlayback: Bool { !didClose && handle != nil && renderer != nil }
+    var canRestartPlayback: Bool { !didClose && !renderSwitching && handle != nil && (renderer != nil || sampleOutput != nil) }
     func retry(positionMs: Double, autoplay: Bool = true) {
         guard positionMs.isFinite, positionMs >= 0 else { return }
         restartPlayback(positionMs: positionMs, autoplay: autoplay)
@@ -184,7 +209,7 @@ final class MPVController: GLKViewController {
     }
 
     private func activateAudio() -> Bool {
-        guard !didClose, UIApplication.shared.applicationState == .active else { return false }
+        guard !didClose, UIApplication.shared.applicationState == .active || pictureInPicture?.active == true else { return false }
         do {
             try AVAudioSession.sharedInstance().setCategory(.playback, mode: .moviePlayback)
             try AVAudioSession.sharedInstance().setActive(true)
@@ -193,6 +218,151 @@ final class MPVController: GLKViewController {
             state.playbackIssue = nil
             return true
         } catch { state.playbackIssue = "No se pudo recuperar la salida de audio. Puedes volver a pulsar Reproducir."; return false }
+    }
+
+    func togglePictureInPicture() {
+        if pictureInPicture?.active == true { pictureInPicture?.stop(); return }
+        guard state.pictureInPictureSupported, state.loaded, !state.ended, !state.pictureInPictureChanging, !state.subtitleChanging,
+              state.tracks.contains(where: { $0.type == "video" && $0.selected }), UIApplication.shared.applicationState == .active else { return }
+        state.pictureInPictureChanging = true; state.playbackIssue = nil
+        pictureInPictureTask = Task { @MainActor [weak self] in
+            guard let self else { return }
+            defer { self.state.pictureInPictureChanging = false; self.pictureInPictureTask = nil }
+            do {
+                try await self.prepareSampleRendering()
+                guard let picture = self.pictureInPicture else { throw HarborError(code: "pip-unavailable") }
+                try await picture.start()
+            } catch {
+                guard !self.didClose else { return }
+                self.pictureInPicture?.stop()
+                if !(error is CancellationError) { self.state.playbackIssue = safeMessage(error) }
+                self.restoreAfterPictureInPicture()
+            }
+        }
+    }
+
+    /// A renderer transition never reloads the source or creates another core.
+    /// Use mpv's null output while replacing its single render context so a
+    /// video-only file also retains a selected video track and its timeline.
+    func prepareSampleRendering() async throws {
+        guard !didClose, !renderSwitching, sampleOutput == nil, let handle, renderer != nil,
+              state.loaded, !state.ended, !state.subtitleChanging, UIApplication.shared.applicationState == .active,
+              state.tracks.contains(where: { $0.type == "video" && $0.selected }) else { throw HarborError(code: "player-not-ready") }
+        renderSwitching = true
+        defer { renderSwitching = false }
+        do {
+            try await setChecked("vo", "null")
+            try await waitForVideoOutput("null")
+            try Task.checkCancellation()
+            guard !didClose, UIApplication.shared.applicationState == .active, let context, EAGLContext.setCurrent(context) else { throw HarborError(code: "player-not-ready") }
+            renderSuspended = true; isPaused = true
+            suspendedEvents?.cancel(); suspendedEvents = nil
+            startSampleEvents()
+            if let renderer { mpv_render_context_free(renderer); self.renderer = nil }
+            sampleOutput = try MPVSampleBufferRenderer(handle: handle)
+            pictureInPicture = try MPVPictureInPicture(owner: self, view: view)
+            try await setChecked("vo", "libmpv")
+            try await waitForVideoOutput("libmpv")
+            try Task.checkCancellation()
+        } catch {
+            if !didClose, UIApplication.shared.applicationState == .active {
+                do {
+                    try await setChecked("vo", "null")
+                    try await waitForVideoOutput("null")
+                    sampleOutput?.close(); sampleOutput = nil
+                    pictureInPicture?.close(); pictureInPicture = nil
+                    if renderer == nil { try createGLRenderer(handle) }
+                    try await setChecked("vo", "libmpv")
+                    try await waitForVideoOutput("libmpv")
+                    sampleEvents?.cancel(); sampleEvents = nil
+                    renderSuspended = false; isPaused = false
+                } catch { state.error = safeMessage(error) }
+            } else if !didClose { inlineRestorePending = true; set("pause", "yes") }
+            throw error
+        }
+    }
+
+    private func startSampleEvents() {
+        sampleEvents?.cancel()
+        sampleEvents = Task { @MainActor [weak self] in
+            while !Task.isCancelled {
+                guard let self, !self.didClose, let handle = self.handle else { return }
+                self.drainEvents(handle)
+                self.pictureInPicture?.synchronizeClock()
+                let canDraw = UIApplication.shared.applicationState != .background || self.pictureInPicture?.active == true
+                if !self.renderSwitching, canDraw, let output = self.sampleOutput {
+                    let width = self.state.videoWidth, height = self.state.videoHeight
+                    let ratio = width > 0 && height > 0 ? Double(width) / Double(height) : 16.0 / 9.0
+                    let boundedRatio = min(20, max(0.05, ratio))
+                    let targetWidth = boundedRatio >= 1 ? 640 : max(32, Int(640 * boundedRatio))
+                    let targetHeight = boundedRatio >= 1 ? max(32, Int(640 / boundedRatio)) : 640
+                    do {
+                        if let frame = try output.draw(width: targetWidth, height: targetHeight) { try self.pictureInPicture?.enqueue(frame) }
+                    } catch {
+                        self.state.playbackIssue = safeMessage(error)
+                        self.pictureInPicture?.stop()
+                        self.restoreAfterPictureInPicture()
+                    }
+                }
+                do { try await Task.sleep(for: .milliseconds(33)) } catch { return }
+            }
+        }
+    }
+
+    func restoreAfterPictureInPicture() {
+        guard !didClose, sampleOutput != nil || renderer == nil else { return }
+        if UIApplication.shared.applicationState != .active {
+            inlineRestorePending = true
+            foregroundResumeWanted = foregroundResumeWanted || (!interrupted && state.loaded && !state.paused && !state.ended)
+            set("pause", "yes")
+            return
+        }
+        guard !renderSwitching else { inlineRestorePending = true; return }
+        guard inlineRestoreTask == nil else { return }
+        inlineRestoreTask = Task { @MainActor [weak self] in
+            guard let self, !self.didClose else { return }
+            defer { self.inlineRestoreTask = nil }
+            do { try await self.restoreInlineRendering() }
+            catch { if !self.didClose { self.state.error = safeMessage(error) } }
+        }
+    }
+
+    func restoreInlineRendering() async throws {
+        guard !didClose, !renderSwitching, sampleOutput != nil || renderer == nil, let handle,
+              UIApplication.shared.applicationState == .active else { throw HarborError(code: "player-not-ready") }
+        renderSwitching = true; inlineRestorePending = false
+        defer { renderSwitching = false }
+        try await setChecked("vo", "null")
+        try await waitForVideoOutput("null")
+        try Task.checkCancellation()
+        guard !didClose, UIApplication.shared.applicationState == .active else { inlineRestorePending = true; throw HarborError(code: "player-not-ready") }
+        pictureInPicture?.close(); pictureInPicture = nil
+        sampleOutput?.close(); sampleOutput = nil
+        try createGLRenderer(handle)
+        try await setChecked("vo", "libmpv")
+        try await waitForVideoOutput("libmpv")
+        sampleEvents?.cancel(); sampleEvents = nil
+        if UIApplication.shared.applicationState == .active {
+            renderSuspended = false; isPaused = false
+            resumeConfiguredForegroundPlayback()
+        }
+        else { set("pause", "yes") }
+    }
+
+    func seekForPictureInPicture(_ seconds: Double) async throws {
+        guard seconds.isFinite, !didClose, sampleOutput != nil, !renderSwitching, state.loaded, !state.ended, state.duration.isFinite, state.duration > 0 else { throw HarborError(code: "player-not-ready") }
+        try await commandChecked(["seek", String(seconds), "relative+exact"])
+    }
+
+    private func waitForVideoOutput(_ name: String) async throws {
+        let deadline = Date().addingTimeInterval(5)
+        while videoOutputName != name && Date() < deadline {
+            try Task.checkCancellation()
+            guard !didClose, !state.ended, let handle else { throw HarborError(code: "player-not-ready") }
+            drainEvents(handle)
+            try await Task.sleep(for: .milliseconds(20))
+        }
+        guard !didClose, videoOutputName == name else { throw HarborError(code: "player-output-timeout") }
     }
 
     private func observePlaybackLifecycle() {
@@ -238,7 +408,7 @@ final class MPVController: GLKViewController {
             interrupted = false
             interruptionResumeAllowed = interruptionResumeWanted && AVAudioSession.InterruptionOptions(rawValue: options).contains(.shouldResume) && PlaybackPreferences.shared.options.resumeAfterInterruption
             interruptionResumeWanted = false
-            if interruptionResumeAllowed && !renderSuspended && UIApplication.shared.applicationState == .active {
+            if interruptionResumeAllowed && ((!renderSuspended && UIApplication.shared.applicationState == .active) || pictureInPicture?.active == true) {
                 interruptionResumeAllowed = false
                 if activateAudio() { set("pause", "no") }
             }
@@ -246,6 +416,13 @@ final class MPVController: GLKViewController {
     }
 
     private func suspendForApp() {
+        if !didClose, sampleOutput != nil {
+            if pictureInPicture?.active != true {
+                foregroundResumeWanted = !interrupted && state.loaded && !state.paused && !state.ended
+                set("pause", "yes")
+            }
+            return
+        }
         guard !didClose, !renderSuspended else { return }
         foregroundResumeWanted = !interrupted && state.loaded && !state.paused && !state.ended
         set("pause", "yes")
@@ -265,9 +442,18 @@ final class MPVController: GLKViewController {
 
     private func restoreForApp() {
         guard !didClose else { return }
+        if sampleOutput != nil || inlineRestorePending || renderer == nil {
+            if let handle { drainEvents(handle) }
+            if inlineRestorePending || pictureInPicture?.active != true { restoreAfterPictureInPicture() }
+            return
+        }
         suspendedEvents?.cancel(); suspendedEvents = nil
         renderSuspended = false; isPaused = false
         if let handle { drainEvents(handle) }
+        resumeConfiguredForegroundPlayback()
+    }
+
+    private func resumeConfiguredForegroundPlayback() {
         let resume = !interrupted && (interruptionResumeAllowed || (foregroundResumeWanted && PlaybackPreferences.shared.options.resumeOnForeground))
         interruptionResumeAllowed = false; foregroundResumeWanted = false
         if resume && !state.ended && activateAudio() { set("pause", "no") }
@@ -395,7 +581,7 @@ final class MPVController: GLKViewController {
     }
 
     private func setChecked(_ name: String, _ value: String) async throws {
-        try await performChecked { handle, identifier in
+        try await performChecked(timeoutCode: name == "vo" ? "player-output-timeout" : "subtitle-timeout") { handle, identifier in
             value.withCString { pointer in
                 var string: UnsafePointer<CChar>? = pointer
                 return withUnsafeMutablePointer(to: &string) { mpv_set_property_async(handle, identifier, name, MPV_FORMAT_STRING, $0) }
@@ -411,7 +597,7 @@ final class MPVController: GLKViewController {
         try await performChecked(startsMedia: startsMedia) { handle, identifier in mpv_command_async(handle, identifier, &pointers) }
     }
 
-    private func performChecked(startsMedia: Bool = false, _ send: (OpaquePointer, UInt64) -> Int32) async throws {
+    private func performChecked(startsMedia: Bool = false, timeoutCode: String = "subtitle-timeout", _ send: (OpaquePointer, UInt64) -> Int32) async throws {
         guard let handle, !didClose else { throw HarborError(code: "player-not-ready") }
         let identifier = nextOperation
         let revision = mediaRevision
@@ -422,7 +608,7 @@ final class MPVController: GLKViewController {
             guard result >= 0 else { continuation.resume(throwing: HarborError(code: "mpv-\(result)")); return }
             let timeout = Task { @MainActor [weak self] in
                 do { try await Task.sleep(for: .seconds(5)) } catch { return }
-                self?.finishOperation(identifier, error: HarborError(code: "subtitle-timeout"))
+                self?.finishOperation(identifier, error: HarborError(code: timeoutCode))
             }
             pendingOperations[identifier] = PendingOperation(continuation: continuation, timeout: timeout)
         }
@@ -559,6 +745,12 @@ final class MPVController: GLKViewController {
                     if key == "pause" { state.paused = flag }
                     if key == "paused-for-cache" { state.buffering = flag }
                     if key == "mute" { state.muted = flag }
+                } else if property.format == MPV_FORMAT_INT64 {
+                    let number = value.assumingMemoryBound(to: Int64.self).pointee
+                    if (1...32_768).contains(number) {
+                        if key == "dwidth" { state.videoWidth = Int(number) }
+                        if key == "dheight" { state.videoHeight = Int(number) }
+                    }
                 } else if key == "track-list" && property.format == MPV_FORMAT_NODE {
                     updateTracks(value.assumingMemoryBound(to: mpv_node.self).pointee)
                 } else if key == "chapter-list" && property.format == MPV_FORMAT_NODE {
@@ -567,6 +759,7 @@ final class MPVController: GLKViewController {
                     let text = value.assumingMemoryBound(to: UnsafePointer<CChar>?.self).pointee.map { String(cString: $0) } ?? ""
                     if key == "sub-text" { state.primarySubtitleText = text }
                     if key == "secondary-sub-text" { state.secondarySubtitleText = text }
+                    if key == "current-vo" { videoOutputName = text }
                 } else if property.format == MPV_FORMAT_NODE {
 #if targetEnvironment(simulator)
                     if source.via == "test-fixture", ["video-dec-params", "video-out-params", "vf"].contains(key) {
@@ -667,6 +860,12 @@ final class MPVController: GLKViewController {
         guard !didClose else { return }
         set("pause", "yes")
         didClose = true
+        pictureInPictureTask?.cancel(); pictureInPictureTask = nil
+        inlineRestoreTask?.cancel(); inlineRestoreTask = nil
+        sampleEvents?.cancel(); sampleEvents = nil
+        pictureInPicture?.close(); pictureInPicture = nil
+        sampleOutput?.close(); sampleOutput = nil
+        state.pictureInPictureActive = false; state.pictureInPictureChanging = false; state.pictureInPictureSupported = false
         suspendedEvents?.cancel(); suspendedEvents = nil
         for token in lifecycleTokens { NotificationCenter.default.removeObserver(token) }
         lifecycleTokens = []
@@ -676,7 +875,7 @@ final class MPVController: GLKViewController {
         for identifier in Array(pendingOperations.keys) { finishOperation(identifier, error: CancellationError()) }
         state.renderReady = false
         isPaused = true
-        if UIApplication.shared.applicationState == .background {
+        if UIApplication.shared.applicationState == .background, renderer != nil {
             // Freeing the mpv render context also issues GL commands. Retain
             // this closed surface until UIKit permits graphics work again.
             deferredCloseToken = NotificationCenter.default.addObserver(forName: UIApplication.didBecomeActiveNotification, object: nil, queue: .main) { [self] _ in
@@ -689,9 +888,9 @@ final class MPVController: GLKViewController {
     }
 
     private func finishClosing() {
-        guard UIApplication.shared.applicationState != .background else { return }
+        guard UIApplication.shared.applicationState != .background || renderer == nil else { return }
         if let token = deferredCloseToken { NotificationCenter.default.removeObserver(token); deferredCloseToken = nil }
-        if let context { EAGLContext.setCurrent(context) }
+        if renderer != nil, let context { EAGLContext.setCurrent(context) }
         if let renderer { mpv_render_context_free(renderer); self.renderer = nil }
         if let handle { MPVConfiguration.destroy(handle); self.handle = nil }
         let session = subtitleSession

@@ -55,7 +55,9 @@
     "src/components/avatar-picker/avatar-catalog-modal.tsx": "61382627985aee2ba50975017fb60d248d79a2a299638feab0608cad63f1cac9",
     "src/components/avatar-picker/avatar-grid.tsx": "20ddafaf076f14157b3d4c74cc64b8b6e32f6ccbe2b61c4aebc4bb5cccb49e87",
     "src/lib/avatars/catalog.ts": "d2df4e688c43df33cb9b13386a53dc17d780dcfaa0aea5a619b113ff4a328c97",
-    "src/chrome/account-menu/account-menu-parts.tsx": "da44aeb794abd99eae2df8e27682edfeaea070d644a1385b4b2fe0d2d124c703"
+    "src/chrome/account-menu/account-menu-parts.tsx": "da44aeb794abd99eae2df8e27682edfeaea070d644a1385b4b2fe0d2d124c703",
+    "src/lib/i18n/locales/es/player.ts": "f3f7022ff66b8ccd48e41056236a5166b9ef1d96cdff1980f21678a0d30795e7",
+    "src/components/player/transport/control-renderer.tsx": "65855f862e741e3a46f92866386e8f0c39fd869bea408d24e79225cd605e4f73"
   },
   "changes": [
     "Original six-point playback timeline with a 44-point touch target; seeking commits to mpv on release.",
@@ -70,7 +72,8 @@
     "Native Addons uses the original public rising/stars/newest endpoints, spotlight composition, community cards and six category tiles; only actual community ratings are displayed.",
     "Native addon Browse preserves original API category slugs and multiple memberships, server search, stars/newest ordering, rising entries and validated pagination. Query plus signs are escaped for the API form decoder; public caches are bounded to 48 entries.",
     "Home and Catalogs replace generic empty layouts with the original Harbor dashed panels, Puzzle geometry, official title/description and real Browse addons navigation. No matches uses original catalog/title copy. Shared search fields use the existing original X asset and a 44-point touch target.",
-    "Profile and account labels use the original Spanish dictionaries, including profile.signedIn. Upload/check/shuffle use original Lucide geometry and exact stroke weights. The avatar fan retains five shuffled original choices; the gallery preserves catalog groups, search, square rounded tiles, names, selection rings and reduced-motion-aware touch feedback. Original group labels lacking Spanish locale entries retain their Desktop fallback."
+    "Profile and account labels use the original Spanish dictionaries, including profile.signedIn. Upload/check/shuffle use original Lucide geometry and exact stroke weights. The avatar fan retains five shuffled original choices; the gallery preserves catalog groups, search, square rounded tiles, names, selection rings and reduced-motion-aware touch feedback. Original group labels lacking Spanish locale entries retain their Desktop fallback.",
+    "The native PiP entry uses the original PictureInPicture2 geometry, 22px size, 1.9 stroke and official Spanish labels. AVKit owns the platform floating-window controls; it controls the same mpv source and does not create a second player."
   ],
   "copyOutput": "ios/Harbor/DesktopDiscoverSpanish.json",
   "limitations": [
@@ -166,6 +169,16 @@
       "strokeWidth": "2.2",
       "fill": false,
       "output": "ios/Harbor/Assets.xcassets/profile-avatar-shuffle.imageset/icon.svg"
+    },
+    "player-pip": {
+      "package": "lucide-react",
+      "version": "0.460.0",
+      "integrity": "sha512-BVtq/DykVeIvRTJvRAgCsOwaGL8Un3Bxh8MbDxMhEWlZay3T4IpEKDEpwt5KZ0KJMHzgm6jrltxlT5eXOWXDHg==",
+      "sourceSha256": "ebf9de969a52d4e5156aa3d3029798f1dd548bbd1b25599f0322764034998d49",
+      "svgSha256": "7cdb01999d81ae707ef3a1ea1d76eb84006e2e566c23331875b5f37369d8e786",
+      "strokeWidth": "1.9",
+      "fill": false,
+      "output": "ios/Harbor/Assets.xcassets/player-pip.imageset/icon.svg"
     }
   },
   "interfaceCopyOutput": "ios/Harbor/DesktopInterfaceSpanish.json"

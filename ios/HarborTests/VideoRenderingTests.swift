@@ -8,6 +8,73 @@ import XCTest
 @testable import Harbor
 
 final class VideoRenderingTests: XCTestCase {
+    @available(iOS, deprecated: 12.0)
+    @MainActor
+    func testPictureInPictureRendererRoundTripPreservesVideoOnlyPlaybackAndSeeking() async throws {
+        let scene = try XCTUnwrap(UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }.first)
+        let previous = scene.windows.first { $0.isKeyWindow }
+        let window = UIWindow(windowScene: scene)
+        window.frame = CGRect(x: 0, y: 0, width: 320, height: 180)
+        defer { window.isHidden = true; window.rootViewController = nil; previous?.makeKeyAndVisible() }
+        let images = CIContext(options: [.useSoftwareRenderer: true])
+        for depth in [8, 10] {
+            let url = try XCTUnwrap(Bundle(for: Self.self).url(forResource: "render-\(depth)bit", withExtension: "mp4", subdirectory: "Fixtures"))
+            let state = PlayerState()
+            let source = PlaybackSource(url: url.absoluteString, headers: nil, subtitles: nil, via: "test-fixture")
+            let controller = MPVController(source: source, state: state)
+            window.rootViewController = controller; window.makeKeyAndVisible(); controller.view.layoutIfNeeded()
+            defer { controller.close(); window.rootViewController = nil }
+            let surface = try XCTUnwrap(controller.view as? GLKView)
+            let loaded = Date().addingTimeInterval(10)
+            while Date() < loaded && (!state.loaded || state.position < 0.1 || !state.tracks.contains(where: { $0.type == "video" && $0.selected })) {
+                surface.display()
+                try await Task.sleep(for: .milliseconds(30))
+            }
+            XCTAssertTrue(state.loaded)
+            let generation = state.mediaGeneration
+            let before = state.position
+            let track = try XCTUnwrap(state.tracks.first { $0.type == "video" && $0.selected })
+            try await controller.prepareSampleRendering()
+            let frames = Date().addingTimeInterval(5)
+            while Date() < frames && (controller.sampleRenderCalls < 2 || state.position <= before + 0.1) { try await Task.sleep(for: .milliseconds(30)) }
+            let buffer = try XCTUnwrap(controller.sampleFrame)
+            let input = CIImage(cvPixelBuffer: buffer)
+            let cgImage = try XCTUnwrap(images.createCGImage(input, from: input.extent))
+            let image = UIImage(cgImage: cgImage)
+            let rgb = try colors(image)
+            XCTAssertGreaterThan(rgb[0], 120); XCTAssertGreaterThan(rgb[0], rgb[1] + 30)
+            XCTAssertGreaterThan(rgb[5], 120); XCTAssertGreaterThan(rgb[5], rgb[4] + 30)
+            XCTAssertGreaterThan(controller.sampleRenderCalls, 1)
+            XCTAssertGreaterThan(state.position, before)
+            XCTAssertEqual(state.mediaGeneration, generation, "Changing output must not load the source again")
+            XCTAssertTrue(state.tracks.contains { $0.id == track.id && $0.type == "video" && $0.selected })
+            let attachment = XCTAttachment(image: image)
+            attachment.name = "native-pip-source-\(depth)bit"; attachment.lifetime = .keepAlways; add(attachment)
+            let position = state.position
+            try await controller.seekForPictureInPicture(1)
+            let seek = Date().addingTimeInterval(5)
+            while Date() < seek && state.position < position + 0.5 { try await Task.sleep(for: .milliseconds(30)) }
+            XCTAssertGreaterThan(state.position, position + 0.5)
+            try await controller.restoreInlineRendering()
+            let resumedAt = state.position
+            let inline = Date().addingTimeInterval(5)
+            var result: [Int] = []
+            while Date() < inline {
+                surface.display()
+                result = try colors(drawableFrame(surface))
+                if result[0] > 120 && result[0] > result[1] + 30 && result[5] > 120 && result[5] > result[4] + 30 && state.position > resumedAt + 0.1 { break }
+                try await Task.sleep(for: .milliseconds(30))
+            }
+            XCTAssertGreaterThan(state.position, resumedAt + 0.1)
+            XCTAssertGreaterThan(result[0], 120); XCTAssertGreaterThan(result[0], result[1] + 30)
+            XCTAssertGreaterThan(result[5], 120); XCTAssertGreaterThan(result[5], result[4] + 30)
+            XCTAssertEqual(state.mediaGeneration, generation)
+            XCTAssertNil(state.error)
+            XCTAssertFalse(state.ended)
+            XCTAssertTrue(controller.canRestartPlayback)
+        }
+    }
+
     @MainActor
     func testSampleBufferOutputContainsDecoded8And10BitVideoAndRealTime() async throws {
         let images = CIContext(options: [.useSoftwareRenderer: true])
