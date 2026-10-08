@@ -319,5 +319,18 @@
   "Trending Anime": "Anime en tendencia",
   "New Anime Releases": "Nuevos estrenos de anime",
   "Popular Anime": "Anime popular",
-  "Upcoming Anime": "Próximos animes"
+  "Upcoming Anime": "Próximos animes",
+  "Up Next": "A continuación",
+  "Now Playing": "En reproducción",
+  "Now playing: {label}": "En reproducción: {label}",
+  "Restart": "Reiniciar",
+  "Play": "Reproducir",
+  "Specials": "Especiales",
+  "Season {n}": "Temporada {n}",
+  "Hide details": "Ocultar detalles",
+  "Show details": "Mostrar detalles",
+  "No description available.": "No hay descripción disponible.",
+  "No episodes found for this season.": "No se encontraron episodios para esta temporada.",
+  "{n} min": "{n} min",
+  "Watched": "Visto"
 }

@@ -58,6 +58,7 @@ struct PlayerView: View {
     @State private var retrying = false
     @State private var pendingSourceChange = false
     @State private var autoNextCancelled = false
+    @State private var restartStartedAtMs: Double?
     @State private var adjacent: (previous: Episode?, next: Episode?) = (nil, nil)
     @State private var previousIdleTimer = false
     @State private var active = false
@@ -164,11 +165,10 @@ struct PlayerView: View {
 
     @ViewBuilder private var episodePanel: some View {
         if let media {
-            NavigationStack {
-                PlayerEpisodesView(media: media, current: session.target, library: library) { episode in
-                    pendingEpisode = episode
-                    showEpisodes = false
-                }.toolbar { ToolbarItem(placement: .confirmationAction) { Button("Listo") { showEpisodes = false } } }
+            PlayerEpisodesView(media: media, current: session.target, library: library,
+                canRestart: canRestartEpisode, restart: restartEpisode, close: { showEpisodes = false }) { episode in
+                pendingEpisode = episode
+                showEpisodes = false
             }.tint(HarborTheme.accent).preferredColorScheme(.dark)
         }
     }
@@ -226,7 +226,7 @@ struct PlayerView: View {
     }
     private var canChangeEpisode: Bool { changeEpisode != nil && media?.episodic == true && !(media?.videos?.isEmpty ?? true) && (library.map { $0.owner == session.owner } ?? true) }
     private var automaticAdvanceEnabled: Bool {
-        preferences.options.autoPlayNextEpisode && !autoNextCancelled && EpisodeSequence.permitsAutomaticAdvance(duration: state.duration, startedAtMs: session.advanceStartedAtMs ?? session.startMs, ended: true, hasError: state.error != nil)
+        preferences.options.autoPlayNextEpisode && !autoNextCancelled && EpisodeSequence.permitsAutomaticAdvance(duration: state.duration, startedAtMs: restartStartedAtMs ?? session.advanceStartedAtMs ?? session.startMs, ended: true, hasError: state.error != nil)
     }
     private var autoAdvanceReady: Bool {
         active && canChangeEpisode && adjacent.next != nil && automaticAdvanceEnabled && state.endedNaturally && !episodeChanging && !sourceChanging && !retrying && !state.restarting && !pendingSourceChange && pendingEpisode == nil && settingsPage == nil && !showEpisodes && scenePhase == .active
@@ -241,6 +241,18 @@ struct PlayerView: View {
         episodeChanging = true
         saveCheckpoint(exiting: true)
         changeEpisode(episode)
+    }
+    private var canRestartEpisode: Bool {
+        active && !episodeChanging && !sourceChanging && !retrying && !state.restarting && scenePhase == .active &&
+            (library.map { $0.owner == session.owner } ?? true) && state.controller?.canRestartPlayback == true
+    }
+    private func restartEpisode() {
+        guard canRestartEpisode, let controller = state.controller else { return }
+        restartStartedAtMs = 0
+        autoNextCancelled = false
+        controller.retry(positionMs: 0, autoplay: true)
+        controlsVisible = true
+        restartHideTimer()
     }
     private func requestSourceChange() {
         guard active, !sourceChanging, !episodeChanging, !retrying, !state.restarting, scenePhase == .active, library.map({ $0.owner == session.owner }) ?? true, let changeSource else { return }

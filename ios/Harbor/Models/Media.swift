@@ -3,7 +3,7 @@ import Foundation
 struct Media: Codable, Identifiable, Hashable, Sendable {
     var id: String
     let type: String
-    let name: String
+    var name: String
     var poster: String?
     var background: String?
     var logo: String?

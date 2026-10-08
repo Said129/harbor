@@ -192,6 +192,21 @@ final class SubtitlePlaybackTests: XCTestCase {
         try await wait(switchedSurface, state: switchedState) { switchedState.mediaGeneration > beforeRetry && switchedState.loaded && switchedState.paused && !switchedState.restarting && switchedState.hasPosition }
         XCTAssertNil(switchedState.error)
         XCTAssertEqual(switchedState.position, 28, accuracy: 0.75, "An acknowledged native retry must keep the timestamp near completion")
+        let beforeRestart = switchedState.mediaGeneration
+        switched.retry(positionMs: 0, autoplay: true)
+        try await wait(switchedSurface, state: switchedState) {
+            switchedState.mediaGeneration > beforeRestart && switchedState.loaded && !switchedState.paused &&
+                !switchedState.restarting && switchedState.hasPosition && switchedState.position < 2
+        }
+        XCTAssertNil(switchedState.error)
+        XCTAssertEqual(switchedState.subtitleFPS, 0, "Restart must clear timing overrides before reloading the actual clip")
+        let currentEpisode = Episode(id: "fixture:1:1", season: 1, episode: 1)
+        var fixtureSeries = Media(id: "fixture", type: "series", name: "Harbor")
+        fixtureSeries.videos = [currentEpisode, Episode(id: "fixture:1:2", season: 1, episode: 2), Episode(id: "fixture:2:1", season: 2, episode: 1)]
+        try await capturePanel(PlayerEpisodesView(media: fixtureSeries,
+            current: ResumeTarget(id: "fixture", season: 1, episode: 1, videoId: currentEpisode.id), library: nil,
+            canRestart: switched.canRestartPlayback, restart: { switched.retry(positionMs: 0, autoplay: true) }, close: {}, play: { _ in }),
+            in: window, over: switched, name: "native-player-original-episodes-fixture")
     }
 
     @available(iOS, deprecated: 12.0)

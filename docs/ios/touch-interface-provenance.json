@@ -103,7 +103,10 @@
     "src/views/home.tsx": "acd8d676a7c2bfc07a80fe9855e6af70615827fe73470a455b4cf81e2852141f",
     "src/views/home/home-rows.ts": "01fe842bcef75aa62ce074b583fd960c6e0a5b08e0fe6836966a8f46742191cc",
     "src/views/home/customizable-rows.tsx": "05052150a5402e52a4a1c9e2f106bae8b178029a4223ee46b7844a71d7ebfb3e",
-    "src/lib/providers/jikan.ts": "d7777daac64836afc84ea56948c56f6412f43f4966b31fa2fe219714852b3862"
+    "src/lib/providers/jikan.ts": "d7777daac64836afc84ea56948c56f6412f43f4966b31fa2fe219714852b3862",
+    "src/components/player/episode-panel/index.tsx": "f83a58388dd3d1ce6c2fd95f16bc3d1170f094196e72db86595ef37f05211048",
+    "src/components/player/episode-panel/episode-row.tsx": "b79e9f449c58dd950cf8512dd82102fc1409e1d075412d89dadd621a8d79a817",
+    "src/components/player/episode-panel/season-picker.tsx": "8dd5c58a3a66e3ed633a98f5aa667f9738baa92ab6680947ae5745a322e69435"
   },
   "changes": [
     "Original six-point playback timeline with a 44-point touch target; seeking commits to mpv on release.",
@@ -134,7 +137,8 @@
     "WebKit snapshots use the completion-handler API available in the Apple SDK, bridged to a checked continuation; missing images still fail the original animation regression.",
     "Appearance preserves every existing palette and the three installed interface fonts, uses ColorThemeBody tiles with original swatches, 168 pt minimum/10 pt corners and actual selection, FontGrid specimens with installed typefaces, and original Lucide checks/Pencil strokes. It does not advertise unavailable font pairs, Desktop layouts, or scripts. The existing custom palette now has all ten original color fields, live preview, save/reset/cancel; cancel restores the saved state and border/accent alpha tokens derive from the selected color.",
     "Home now consumes the eight original TMDB definitions when configured and the eighteen Cinemeta rows without a key or when TMDB cannot load titles, with original order, six/four hero source rows, ranked Top 10 and the shared Popular offset. The real production services load titles progressively and keep prior rows on partial failures. Classic retains addon rows and Continue Watching first. Existing customization identifiers, account isolation and addon destinations are preserved; the Home loader uses the original artwork without added copy. Cinemeta View all opens the bounded original row. The existing public Cinemeta gate checks these real Home results; this increment does not yet add the four Home anime rows.",
-    "The curated Home now appends the four original anime definitions in source order, with three public pages, the minimum six/maximum sixty titles, real MAL scores, the original franchise-suffix cleanup and bounded View all. Airing/popular/upcoming share the established production MAL transport with Jikan fallback; new releases retain the exact original Jikan date/status/score query rather than substituting a different season. Unique provider cache keys avoid overwriting the separate Anime page. Failed refreshes preserve previous owner rows and account reset invalidates pending Home/anime work. The existing public MAL gate checks the loaded production Home rows without claiming all four survived every provider outage. The 70 native/services gates passed; its UI gate failed because a nested avatar sheet and Account exposed two Close buttons. Distinct accessibility identifiers now exercise each real dismissal and assert the return to Profile before closing Account."
+    "The curated Home now appends the four original anime definitions in source order, with three public pages, the minimum six/maximum sixty titles, real MAL scores, the original franchise-suffix cleanup and bounded View all. Airing/popular/upcoming share the established production MAL transport with Jikan fallback; new releases retain the exact original Jikan date/status/score query rather than substituting a different season. Unique provider cache keys avoid overwriting the separate Anime page. Failed refreshes preserve previous owner rows and account reset invalidates pending Home/anime work. The existing public MAL gate checks the loaded production Home rows without claiming all four survived every provider outage. The 70 native/services gates passed; its UI gate failed because a nested avatar sheet and Account exposed two Close buttons. Distinct accessibility identifiers now exercise each real dismissal and assert the return to Profile before closing Account.",
+    "Build 74 replaces the native player episode List with the original Up Next header, display title, Now Playing badge, S/E still overlays, watched badge, accent Play/Restart cards, expandable details, original season picker and next-season action. Thumbnails adapt to iPhone width without substituting the show backdrop. Current episodes bypass spoiler masks and Restart calls the checked mpv reload at zero with autoplay, under existing lifecycle/owner guards. Existing reveal/description preferences remain active. Only supplied release/runtime metadata is rendered; no synthetic episode rating is added."
   ],
   "copyOutput": "ios/Harbor/DesktopDiscoverSpanish.json",
   "limitations": [
@@ -323,6 +327,46 @@
       "sourceSha256": "6d2743f570d3cce321f335048b0102b9178b960b22a568feaac11cc98985f239",
       "svgSha256": "9ae42030d8e75bbcef974b3c56e89e34bf539538cde4f075161ebb0fbbc518f8",
       "output": "ios/Harbor/Assets.xcassets/theme-edit.imageset/icon.svg"
+    },
+    "episode-restart": {
+      "package": "lucide-react",
+      "version": "0.460.0",
+      "integrity": "sha512-BVtq/DykVeIvRTJvRAgCsOwaGL8Un3Bxh8MbDxMhEWlZay3T4IpEKDEpwt5KZ0KJMHzgm6jrltxlT5eXOWXDHg==",
+      "sourceSha256": "416ff10c04320ce7c3e84fc52d419256d64a8b91662b0fb0d762b062f9ebd8d5",
+      "svgSha256": "4569eb5fa49d7f1f3dbea866a6768d696d599e3c294b5df3dddb39c4a189900a",
+      "output": "ios/Harbor/Assets.xcassets/episode-restart.imageset/icon.svg"
+    },
+    "episode-expand": {
+      "package": "lucide-react",
+      "version": "0.460.0",
+      "integrity": "sha512-BVtq/DykVeIvRTJvRAgCsOwaGL8Un3Bxh8MbDxMhEWlZay3T4IpEKDEpwt5KZ0KJMHzgm6jrltxlT5eXOWXDHg==",
+      "sourceSha256": "15dcc071a0731525ad2f8bf9fd6e8353aa3a8d1fd9b30b3ead51053ed3937731",
+      "svgSha256": "215913df535cd28d682dd8e98b347ac775b72c7ddb03076756a46d0ccad5080c",
+      "output": "ios/Harbor/Assets.xcassets/episode-expand.imageset/icon.svg"
+    },
+    "episode-await": {
+      "package": "lucide-react",
+      "version": "0.460.0",
+      "integrity": "sha512-BVtq/DykVeIvRTJvRAgCsOwaGL8Un3Bxh8MbDxMhEWlZay3T4IpEKDEpwt5KZ0KJMHzgm6jrltxlT5eXOWXDHg==",
+      "sourceSha256": "5b3f49531bb669349f6cac5d62a6fac026afd126c14b2d898f34738dcb16760f",
+      "svgSha256": "b9e7e012eed81a8664fe0ad9f8853896de6f71255b5f914153ad4ec7a3d8cbc8",
+      "output": "ios/Harbor/Assets.xcassets/episode-await.imageset/icon.svg"
+    },
+    "episode-close": {
+      "package": "lucide-react",
+      "version": "0.460.0",
+      "integrity": "sha512-BVtq/DykVeIvRTJvRAgCsOwaGL8Un3Bxh8MbDxMhEWlZay3T4IpEKDEpwt5KZ0KJMHzgm6jrltxlT5eXOWXDHg==",
+      "sourceSha256": "ab7e26e558dea6786e50df7e592c46ddeae6f016d2d0c24b52979508e346b7b0",
+      "svgSha256": "b045e2a92f431211d46d3059d9101649e888d9fae9b6e1e763bd4805bd035e90",
+      "output": "ios/Harbor/Assets.xcassets/episode-close.imageset/icon.svg"
+    },
+    "episode-next-season": {
+      "package": "lucide-react",
+      "version": "0.460.0",
+      "integrity": "sha512-BVtq/DykVeIvRTJvRAgCsOwaGL8Un3Bxh8MbDxMhEWlZay3T4IpEKDEpwt5KZ0KJMHzgm6jrltxlT5eXOWXDHg==",
+      "sourceSha256": "ee161fee79e5583f4e7db5d633edb7c94cdb024001292646f313e1b8e5542aec",
+      "svgSha256": "a78b989908eb54d4c00779cb48ceb0ce8825c6072c616dc5a1e5aa1dd6d4dbb1",
+      "output": "ios/Harbor/Assets.xcassets/episode-next-season.imageset/icon.svg"
     }
   },
   "interfaceCopyOutput": "ios/Harbor/DesktopInterfaceSpanish.json",
