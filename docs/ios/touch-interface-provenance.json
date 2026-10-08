@@ -113,7 +113,8 @@
     "Subtitle appearance uses the original preview still/text, background choice cards, font preset grid, color swatches and official field labels. Existing ASS yes/strip options and persisted settings are retained; no generic preview slogan is added.",
     "Seek color settings use the original preview image, square swatches, default slash and official labels. The existing color preference and actual timeline consumer are retained.",
     "Playback uses the original Instant/Pick a source choice, resume labels, Up Next prompt choices and copy. Shared switches follow the original 48x32 track/26 pt knob. Segments wrap on narrow screens; same-row selection stretches then contracts in 420 ms, cross-row selection moves in 320 ms, and reduced motion disables both. Existing 15 s prompt values remain editable; the original 120 s choice is exposed.",
-    "The original Keep same source on next episode toggle uses its false default and streamMatchesSource identity precedence. It controls the real next-episode offer selection, preserves filters, and falls back to the best playable offer when no match exists."
+    "The original Keep same source on next episode toggle uses its false default and streamMatchesSource identity precedence. It controls the real next-episode offer selection, preserves filters, and falls back to the best playable offer when no match exists.",
+    "Original bundled Lottie SVG artwork is driven by a native CADisplayLink clock, with one JS render in flight, a weak target, teardown and Reduce Motion/scene lifecycle stops. The existing regression checks actual SVG changes and attaches before/after web snapshots; it does not replace the artwork with a static image or a synthetic frame counter."
   ],
   "copyOutput": "ios/Harbor/DesktopDiscoverSpanish.json",
   "limitations": [
