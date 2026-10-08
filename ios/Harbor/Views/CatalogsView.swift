@@ -54,6 +54,7 @@ struct CatalogsView: View {
                 }
             }.padding(.vertical, 20)
         }.background(HarborTheme.background).navigationTitle("").toolbar(.hidden, for: .navigationBar)
+            .safeAreaInset(edge: .bottom) { PageEditingFooter(customization: customization) }
             .overlay { if app.loading && app.rows.isEmpty { ProgressView() } }
             .refreshable { await app.loadHome() }
     }

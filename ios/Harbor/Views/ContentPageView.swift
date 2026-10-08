@@ -8,12 +8,12 @@ struct ContentPageView: View {
     @State private var customization: PageCustomization
     @MainActor init(app: AppModel, kind: String, title: String) { self.app = app; self.kind = kind; self.title = title; _model = State(initialValue: app.pageModel(kind)); _customization = State(initialValue: PageCustomization(owner: app.user?.id ?? "guest", page: kind)) }
     private var rails: [PageRail] { model.curated.map(PageRail.discovery) + model.rows.map(PageRail.catalog) }
-    private var remainingRails: [PageRail] { kind == "anime" ? rails.filter { $0.id != "anime-picks" } : rails }
+    private var remainingRails: [PageRail] { kind == "anime" ? rails.filter { $0.id != "discovery-anime-picks" } : rails }
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 26) {
                 CustomizedHero(rails: rails, defaults: model.heroes, app: app, customization: customization, animeSources: model.heroSources)
-                if model.loading && model.rows.isEmpty && model.curated.isEmpty { ProgressView("Cargando \(title.lowercased())…").frame(maxWidth: .infinity).padding(40) }
+                if model.loading && model.rows.isEmpty && model.curated.isEmpty { HarborLoader().frame(maxWidth: .infinity).padding(40) }
                 if let error = model.error, model.rows.isEmpty && model.curated.isEmpty {
                     ContentUnavailableView { Label(title, image: kind == "movie" ? "nav-movies" : "nav-shows") } description: { Text(error) } actions: {
                         Button("Reintentar") { Task { ArtworkRefresh.shared.retryFailedImages(); await model.load(kind: kind, app: app, refresh: true) } }
@@ -25,6 +25,7 @@ struct ContentPageView: View {
                 CustomizedRails(rails: remainingRails, app: app, customization: customization)
             }.padding(.bottom, 24)
         }.background(HarborTheme.background).navigationTitle("").toolbar(.hidden, for: .navigationBar)
+            .safeAreaInset(edge: .bottom) { PageEditingFooter(customization: customization) }
             .accessibilityIdentifier("content-\(kind)")
             .task(id: "\(app.storageReady)|\(app.addons.filter(\.enabled).map(\.id).joined())|\(MetadataPreferences.shared.tmdbKey)|\(MetadataPreferences.shared.region)|\(MetadataPreferences.shared.language)|\(MetadataPreferences.shared.translateTitles)") { if app.storageReady { await model.load(kind: kind, app: app) } }
             .onChange(of: app.rows.count) { _, _ in if !["movie", "series", "kids"].contains(kind) { Task { await model.load(kind: kind, app: app, refresh: true) } } }

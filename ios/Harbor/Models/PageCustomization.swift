@@ -29,6 +29,8 @@ final class PageCustomization {
     private(set) var layout: PageLayout
     private(set) var ready = false
     private(set) var error: String?
+    var editing = false
+    private var editingRails: [PageRail] = []
     private var key: String { "page-layout-" + EBookShelf.hash(owner + "|" + page) }
     init(owner: String, page: String) {
         self.owner = owner; self.page = page
@@ -55,6 +57,13 @@ final class PageCustomization {
         return rail.title
     }
     func ranked(_ rail: PageRail) -> Bool { layout.numerals.contains(rail.id) || (rail.defaultNumerals && !layout.plain.contains(rail.id)) }
+    func setEditingRails(_ rails: [PageRail]) { editingRails = rails }
+    func move(_ rail: PageRail, toward neighbor: PageRail) {
+        var ids = ordered(editingRails.isEmpty ? [rail, neighbor] : editingRails, includeHidden: true).map(\.id)
+        guard let first = ids.firstIndex(of: rail.id), let second = ids.firstIndex(of: neighbor.id) else { return }
+        ids.swapAt(first, second)
+        change { $0.order = ids }
+    }
     func change(_ edit: (inout PageLayout) -> Void) {
         guard ready else { return }
         var next = layout; edit(&next)

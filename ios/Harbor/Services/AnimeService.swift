@@ -46,7 +46,7 @@ actor AnimeService {
                         } catch { failed = true }
                     }
                     guard !Task.isCancelled, titles.count >= 6 || !failed else { return (index, nil) }
-                    let cleaned = titles.count >= 6 ? Array(titles.prefix(60)).map { media in
+                    let cleaned: [Media] = titles.count >= 6 ? Array(titles.prefix(60)).map { (media: Media) -> Media in
                         var result = media; result.name = Self.homeFranchiseTitle(media.name); return result
                     } : []
                     return (index, DiscoveryRail(id: String(definition.id.dropFirst(5)), title: definition.title, kind: "anime", path: "home:fixed", metas: cleaned))

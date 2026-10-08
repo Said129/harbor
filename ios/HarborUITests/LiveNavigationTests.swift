@@ -40,6 +40,16 @@ final class LiveNavigationTests: XCTestCase {
         capture(app, "home-real-catalogs")
         let homeError = app.staticTexts["home-error"]
         XCTAssertTrue(homeLoaded, "Home must load a real movie catalog; startup=\(homeError.exists ? homeError.label : "no error text")")
+        let customize = app.buttons["page-customize"]
+        reveal(customize, in: app.scrollViews.firstMatch, attempts: 6)
+        XCTAssertTrue(customize.isHittable)
+        customize.tap()
+        let doneEditing = app.buttons["page-customize-done"]
+        XCTAssertTrue(doneEditing.waitForExistence(timeout: 5))
+        capture(app, "native-home-original-inline-customization")
+        doneEditing.tap()
+        let stoppedEditing = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == false"), object: doneEditing)
+        XCTAssertEqual(XCTWaiter.wait(for: [stoppedEditing], timeout: 5), .completed)
         app.buttons["main-account"].firstMatch.tap()
         XCTAssertTrue(app.textFields["account-email"].waitForExistence(timeout: 5))
         XCTAssertTrue(app.buttons["account-browser-login"].exists)

@@ -67,6 +67,7 @@ struct HomeView: View {
                 }
             }.padding(.bottom, 24)
         }.background(HarborTheme.background).navigationBarTitleDisplayMode(.inline)
+            .safeAreaInset(edge: .bottom) { PageEditingFooter(customization: customization) }
             .refreshable { await refresh() }
             .task(id: contentSignature) {
                 guard model.storageReady, !classic else { return }

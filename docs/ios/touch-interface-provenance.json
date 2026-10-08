@@ -106,7 +106,10 @@
     "src/lib/providers/jikan.ts": "d7777daac64836afc84ea56948c56f6412f43f4966b31fa2fe219714852b3862",
     "src/components/player/episode-panel/index.tsx": "f83a58388dd3d1ce6c2fd95f16bc3d1170f094196e72db86595ef37f05211048",
     "src/components/player/episode-panel/episode-row.tsx": "b79e9f449c58dd950cf8512dd82102fc1409e1d075412d89dadd621a8d79a817",
-    "src/components/player/episode-panel/season-picker.tsx": "8dd5c58a3a66e3ed633a98f5aa667f9738baa92ab6680947ae5745a322e69435"
+    "src/components/player/episode-panel/season-picker.tsx": "8dd5c58a3a66e3ed633a98f5aa667f9738baa92ab6680947ae5745a322e69435",
+    "src/views/home/row-controls.tsx": "a3fc2a08b87ff766dd990605b4e65d1d5c206e87baf6df1aaaf5cea4835882f0",
+    "src/views/home/customize-bar.tsx": "f4a7cab299678bd17f1515b4b5786534c164a8b011af0d3db6b5ab2f4215580b",
+    "src/components/catalog/customize-bar.tsx": "a412f99ecd33a8066144a3830c16a810ca232a106ffa8c14dc1e7b22dbcd9ed5"
   },
   "changes": [
     "Original six-point playback timeline with a 44-point touch target; seeking commits to mpv on release.",
@@ -138,7 +141,8 @@
     "Appearance preserves every existing palette and the three installed interface fonts, uses ColorThemeBody tiles with original swatches, 168 pt minimum/10 pt corners and actual selection, FontGrid specimens with installed typefaces, and original Lucide checks/Pencil strokes. It does not advertise unavailable font pairs, Desktop layouts, or scripts. The existing custom palette now has all ten original color fields, live preview, save/reset/cancel; cancel restores the saved state and border/accent alpha tokens derive from the selected color.",
     "Home now consumes the eight original TMDB definitions when configured and the eighteen Cinemeta rows without a key or when TMDB cannot load titles, with original order, six/four hero source rows, ranked Top 10 and the shared Popular offset. The real production services load titles progressively and keep prior rows on partial failures. Classic retains addon rows and Continue Watching first. Existing customization identifiers, account isolation and addon destinations are preserved; the Home loader uses the original artwork without added copy. Cinemeta View all opens the bounded original row. The existing public Cinemeta gate checks these real Home results; this increment does not yet add the four Home anime rows.",
     "The curated Home now appends the four original anime definitions in source order, with three public pages, the minimum six/maximum sixty titles, real MAL scores, the original franchise-suffix cleanup and bounded View all. Airing/popular/upcoming share the established production MAL transport with Jikan fallback; new releases retain the exact original Jikan date/status/score query rather than substituting a different season. Unique provider cache keys avoid overwriting the separate Anime page. Failed refreshes preserve previous owner rows and account reset invalidates pending Home/anime work. The existing public MAL gate checks the loaded production Home rows without claiming all four survived every provider outage. The 70 native/services gates passed; its UI gate failed because a nested avatar sheet and Account exposed two Close buttons. Distinct accessibility identifiers now exercise each real dismissal and assert the return to Profile before closing Account.",
-    "Build 74 replaces the native player episode List with the original Up Next header, display title, Now Playing badge, S/E still overlays, watched badge, accent Play/Restart cards, expandable details, original season picker and next-season action. Thumbnails adapt to iPhone width without substituting the show backdrop. Current episodes bypass spoiler masks and Restart calls the checked mpv reload at zero with autoplay, under existing lifecycle/owner guards. Existing reveal/description preferences remain active. Only supplied release/runtime metadata is rendered; no synthetic episode rating is added."
+    "Build 74 replaces the native player episode List with the original Up Next header, display title, Now Playing badge, S/E still overlays, watched badge, accent Play/Restart cards, expandable details, original season picker and next-season action. Thumbnails adapt to iPhone width without substituting the show backdrop. Current episodes bypass spoiler masks and Restart calls the checked mpv reload at zero with autoplay, under existing lifecycle/owner guards. Existing reveal/description preferences remain active. Only supplied release/runtime metadata is rendered; no synthetic episode rating is added.",
+    "Build 75 replaces the generic customization sheet with original inline RowControls and CustomizeBar actions. Desktop row order/visibility/rename/numerals/hero selection and existing option bindings remain persisted per owner/page. Mobile rows split the title and five 44 pt action targets, show official action hints within the card width, and preserve reduced motion. Catalog moves swap scoped neighboring rows without discarding order for other provider groups. A floating Reset/Done editing bar keeps the exit accessible in long pages. Eight original Lucide glyphs match source strokes; labels are taken from original locales. The Anime picks row is rendered once in its existing hero, correcting the prefixed PageRail identity in the lower list."
   ],
   "copyOutput": "ios/Harbor/DesktopDiscoverSpanish.json",
   "limitations": [
@@ -367,6 +371,70 @@
       "sourceSha256": "ee161fee79e5583f4e7db5d633edb7c94cdb024001292646f313e1b8e5542aec",
       "svgSha256": "a78b989908eb54d4c00779cb48ceb0ce8825c6072c616dc5a1e5aa1dd6d4dbb1",
       "output": "ios/Harbor/Assets.xcassets/episode-next-season.imageset/icon.svg"
+    },
+    "page-move-up": {
+      "package": "lucide-react",
+      "version": "0.460.0",
+      "integrity": "sha512-BVtq/DykVeIvRTJvRAgCsOwaGL8Un3Bxh8MbDxMhEWlZay3T4IpEKDEpwt5KZ0KJMHzgm6jrltxlT5eXOWXDHg==",
+      "sourceSha256": "7dcc8cac6868ef841a2581a4bf2b19821c35fa88c3ae8d27a15e094559762eb6",
+      "svgSha256": "1b233154c41631bd4a024a8f125eb958d3eac67a3a35166eb5ee9dc1c6b93ee1",
+      "output": "ios/Harbor/Assets.xcassets/page-move-up.imageset/icon.svg"
+    },
+    "page-move-down": {
+      "package": "lucide-react",
+      "version": "0.460.0",
+      "integrity": "sha512-BVtq/DykVeIvRTJvRAgCsOwaGL8Un3Bxh8MbDxMhEWlZay3T4IpEKDEpwt5KZ0KJMHzgm6jrltxlT5eXOWXDHg==",
+      "sourceSha256": "ca6c2aa863255b5cb8f3c79d0465387fa094f9dae2f4c158cd1e08328e2d7b3b",
+      "svgSha256": "6e549098ef092a8ade9ba9dd7e306394595d83601ca79371225fe1b7c48d1254",
+      "output": "ios/Harbor/Assets.xcassets/page-move-down.imageset/icon.svg"
+    },
+    "page-row-eye": {
+      "package": "lucide-react",
+      "version": "0.460.0",
+      "integrity": "sha512-BVtq/DykVeIvRTJvRAgCsOwaGL8Un3Bxh8MbDxMhEWlZay3T4IpEKDEpwt5KZ0KJMHzgm6jrltxlT5eXOWXDHg==",
+      "sourceSha256": "36fa8d9e47c281c721afd724ab86677011ff11c0d6ec2b97ed064d0f64234efe",
+      "svgSha256": "49509de0fb1dc8fa794d6f7049b3d48cace060e28a44ee9afb1fa0fba8dd70e5",
+      "output": "ios/Harbor/Assets.xcassets/page-row-eye.imageset/icon.svg"
+    },
+    "page-row-hidden": {
+      "package": "lucide-react",
+      "version": "0.460.0",
+      "integrity": "sha512-BVtq/DykVeIvRTJvRAgCsOwaGL8Un3Bxh8MbDxMhEWlZay3T4IpEKDEpwt5KZ0KJMHzgm6jrltxlT5eXOWXDHg==",
+      "sourceSha256": "b412a24aee16a0c0e36c4daed4b85d868534160ec29394a575dd0b839af023aa",
+      "svgSha256": "287af365bf23e7985c53b90ea6594eb564ae03a69a19773e91cdf680b555de3d",
+      "output": "ios/Harbor/Assets.xcassets/page-row-hidden.imageset/icon.svg"
+    },
+    "page-row-numerals": {
+      "package": "lucide-react",
+      "version": "0.460.0",
+      "integrity": "sha512-BVtq/DykVeIvRTJvRAgCsOwaGL8Un3Bxh8MbDxMhEWlZay3T4IpEKDEpwt5KZ0KJMHzgm6jrltxlT5eXOWXDHg==",
+      "sourceSha256": "b2ddbac98eba13e286ad152fdb62116e5a7dde16bee8bc6e8382b5f3e48e2d7c",
+      "svgSha256": "6eaa3483a05bb05ac24fc8764c82a87a3db42c8855ebe6d7ab72d191acfff107",
+      "output": "ios/Harbor/Assets.xcassets/page-row-numerals.imageset/icon.svg"
+    },
+    "page-row-hero": {
+      "package": "lucide-react",
+      "version": "0.460.0",
+      "integrity": "sha512-BVtq/DykVeIvRTJvRAgCsOwaGL8Un3Bxh8MbDxMhEWlZay3T4IpEKDEpwt5KZ0KJMHzgm6jrltxlT5eXOWXDHg==",
+      "sourceSha256": "71981607cf32ef098b40c8990772d3b84c23724e54fb3e1476fd003886fadbbd",
+      "svgSha256": "06e89a3578deff08f02b7c5b13609b52b8d060362dd8d0b0771030929f0d5ee5",
+      "output": "ios/Harbor/Assets.xcassets/page-row-hero.imageset/icon.svg"
+    },
+    "page-options": {
+      "package": "lucide-react",
+      "version": "0.460.0",
+      "integrity": "sha512-BVtq/DykVeIvRTJvRAgCsOwaGL8Un3Bxh8MbDxMhEWlZay3T4IpEKDEpwt5KZ0KJMHzgm6jrltxlT5eXOWXDHg==",
+      "sourceSha256": "81830e0f5333ad791d7c4cbc18bd0da0486ad42931ff0b71982e595a92f640ae",
+      "svgSha256": "8cbe95ad1d2602a6f97522c4c7e3ed071e8f1d4e6e662e3dcad02707cec7dc06",
+      "output": "ios/Harbor/Assets.xcassets/page-options.imageset/icon.svg"
+    },
+    "page-save": {
+      "package": "lucide-react",
+      "version": "0.460.0",
+      "integrity": "sha512-BVtq/DykVeIvRTJvRAgCsOwaGL8Un3Bxh8MbDxMhEWlZay3T4IpEKDEpwt5KZ0KJMHzgm6jrltxlT5eXOWXDHg==",
+      "sourceSha256": "942041f985f610b080af1db8958a1338705d3303330e9fd6615ac8c95c1fa438",
+      "svgSha256": "266a3488e43ff4bf00096eadab2c8341ff7a76ad626eec700d9a763ce369a7c3",
+      "output": "ios/Harbor/Assets.xcassets/page-save.imageset/icon.svg"
     }
   },
   "interfaceCopyOutput": "ios/Harbor/DesktopInterfaceSpanish.json",

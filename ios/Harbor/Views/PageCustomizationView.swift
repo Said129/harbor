@@ -3,45 +3,36 @@ import SwiftUI
 struct PageCustomizeButton: View {
     let rails: [PageRail]
     let customization: PageCustomization
-    @State private var editing = false
-    var body: some View {
-        HStack { Spacer(); Button { editing = true } label: { Label("Personalizar página", image: "ui-pencil-outline").font(.caption).padding(.horizontal, 12).padding(.vertical, 8).background(HarborTheme.surface, in: .rect(cornerRadius: 8)) } }.padding(.horizontal)
-            .sheet(isPresented: $editing) { PageCustomizationView(rails: rails, customization: customization) }
+    @State private var optionsOpen = false
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    private var title: String {
+        DesktopInterfaceText.value(customization.editing ? "Done editing" : customization.page == "home" ? "Customize home" : customization.page == "anime" ? "Customize anime" : "Customize page")
     }
-}
-
-private struct PageCustomizationView: View {
-    let rails: [PageRail]
-    let customization: PageCustomization
-    @Environment(\.dismiss) private var dismiss
-    private var ordered: [PageRail] { customization.ordered(rails, includeHidden: true) }
     var body: some View {
-        NavigationStack {
-            List {
-                Section("Destacados") {
-                    Picker("Usar una fila como destacados", selection: Binding(get: { customization.layout.heroSource ?? "automatic" }, set: { id in customization.change { $0.heroSource = id == "automatic" ? nil : id } })) {
-                        Text("Automático").tag("automatic"); ForEach(ordered) { Text(customization.title($0, among: rails)).tag($0.id) }
+        HStack(spacing: 8) {
+            Spacer(minLength: 0)
+            if customization.editing {
+                PageEditPill(title: DesktopInterfaceText.value("Options"), icon: "page-options") { optionsOpen.toggle() }
+                    .accessibilityIdentifier("page-customize-options")
+                    .popover(isPresented: $optionsOpen) {
+                        VStack(alignment: .leading, spacing: 18) {
+                            HarborSettingsToggle(DesktopInterfaceText.value("Square play button"), isOn: setting(\.playButtonSquare))
+                            HarborSettingsToggle(DesktopInterfaceText.value("Show More info button"), isOn: setting(\.secondaryMoreInfo))
+                            if customization.page == "home" {
+                                HarborSettingsToggle(DesktopInterfaceText.value("Continue Watching at top"), isOn: setting(\.cwTop))
+                            }
+                        }.padding(16).frame(width: 280).background(ThemePreferences.shared.color("elevated"))
+                            .presentationCompactAdaptation(.popover)
                     }
-                    Toggle("Botón Reproducir rectangular", isOn: setting(\.playButtonSquare))
-                    Toggle("Mostrar Más información", isOn: setting(\.secondaryMoreInfo))
-                    if customization.page == "home" { Toggle("Continuar viendo al principio", isOn: setting(\.cwTop)) }
-                }.disabled(!customization.ready)
-                Section { Text("Arrastra las filas para cambiar su orden. Abre sus opciones para ocultarlas o cambiar el título.").font(.caption).foregroundStyle(.secondary) }
-                Section("Filas") {
-                    ForEach(ordered) { rail in
-                        DisclosureGroup {
-                            Toggle("Mostrar fila", isOn: Binding(get: { !customization.layout.hidden.contains(rail.id) }, set: { visible in customization.change { if visible { $0.hidden.remove(rail.id) } else { $0.hidden.insert(rail.id) } } }))
-                            TextField("Título", text: Binding(get: { customization.layout.renamed[rail.id] ?? rail.title }, set: { title in customization.change { value in let clean = String(title.trimmingCharacters(in: .whitespacesAndNewlines).prefix(120)); value.renamed[rail.id] = clean.isEmpty || clean == rail.title ? nil : clean } }))
-                            Toggle("Numeración Top 10", isOn: Binding(get: { customization.ranked(rail) }, set: { ranked in customization.change { if ranked { $0.numerals.insert(rail.id); $0.plain.remove(rail.id) } else { $0.numerals.remove(rail.id); $0.plain.insert(rail.id) } } }))
-                            if customization.layout.renamed[rail.id] != nil { Button("Restablecer título") { customization.change { $0.renamed[rail.id] = nil } } }
-                        } label: { HStack { Text(customization.title(rail, among: rails)); Spacer(); if customization.layout.hidden.contains(rail.id) { Image(systemName: "eye.slash").foregroundStyle(.secondary) } } }
-                    }.onMove { from, to in var items = ordered.map(\.id); items.move(fromOffsets: from, toOffset: to); customization.change { $0.order = items } }
-                }.disabled(!customization.ready)
-                if let error = customization.error { Text(error).font(.caption).foregroundStyle(.orange) }
-                Section { Button("Restablecer página", role: .destructive) { customization.reset() }.disabled(!customization.ready) }
-            }.environment(\.editMode, .constant(.active)).navigationTitle("Personalizar página")
-                .toolbar { ToolbarItem(placement: .topBarTrailing) { Button("Listo") { dismiss() } } }
-        }
+            }
+            PageEditPill(title: title, icon: "ui-pencil-outline", selected: customization.editing) {
+                customization.setEditingRails(rails)
+                withAnimation(reduceMotion ? nil : .easeOut(duration: 0.2)) { customization.editing.toggle() }
+                optionsOpen = false
+            }.accessibilityIdentifier("page-customize")
+        }.padding(.horizontal).disabled(!customization.ready)
+            .task(id: rails.map(\.id)) { customization.setEditingRails(rails) }
+            .onDisappear { customization.editing = false }
     }
     private func setting(_ key: WritableKeyPath<PageLayout, Bool>) -> Binding<Bool> { Binding(get: { customization.layout[keyPath: key] }, set: { value in customization.change { $0[keyPath: key] = value } }) }
 }
@@ -52,18 +43,23 @@ struct CustomizedRails: View {
     let customization: PageCustomization
     var body: some View {
         LazyVStack(spacing: 24) {
-            ForEach(customization.ordered(rails)) { rail in
-                let title = customization.title(rail, among: rails)
-                if customization.ranked(rail) {
-                    VStack(alignment: .leading, spacing: 12) {
-                        HStack { Text(title).font(.headline).accessibilityIdentifier("catalog-title"); Spacer(); browse(rail) }.padding(.horizontal)
-                        TopTenRail(metas: rail.metas)
-                    }
-                } else {
-                    switch rail {
-                    case .catalog(let row): CatalogRails(rows: [row], app: app, titleOverrides: [row.id: title])
-                    case .discovery(let row):
-                        DiscoveryRails(rows: [row], app: app, titleOverrides: [row.id: title], disableDefaultRanking: true)
+            ForEach(customization.ordered(rails, includeHidden: customization.editing)) { rail in
+                VStack(spacing: 8) {
+                    if customization.editing { PageRowControls(rail: rail, rails: rails, customization: customization).padding(.horizontal) }
+                    if !customization.layout.hidden.contains(rail.id) {
+                        let title = customization.title(rail, among: rails)
+                        if customization.ranked(rail) {
+                            VStack(alignment: .leading, spacing: 12) {
+                                HStack { Text(title).font(.headline).accessibilityIdentifier("catalog-title"); Spacer(); browse(rail) }.padding(.horizontal)
+                                TopTenRail(metas: rail.metas)
+                            }
+                        } else {
+                            switch rail {
+                            case .catalog(let row): CatalogRails(rows: [row], app: app, titleOverrides: [row.id: title])
+                            case .discovery(let row):
+                                DiscoveryRails(rows: [row], app: app, titleOverrides: [row.id: title], disableDefaultRanking: true)
+                            }
+                        }
                     }
                 }
             }
@@ -71,8 +67,8 @@ struct CustomizedRails: View {
     }
     @ViewBuilder private func browse(_ rail: PageRail) -> some View {
         switch rail {
-        case .catalog(let row): NavigationLink { CatalogBrowserView(app: app, initial: row) } label: { Label("Ver todo", systemImage: "chevron.right").font(.caption).foregroundStyle(.secondary) }.accessibilityIdentifier("catalog-browser-link")
-        case .discovery(let row): NavigationLink("Ver todo") { DiscoveryGrid(rail: row, app: app) }.font(.caption).foregroundStyle(.secondary)
+        case .catalog(let row): NavigationLink { CatalogBrowserView(app: app, initial: row) } label: { Label(DesktopInterfaceText.value("View all"), image: "desktop-chevron-right").font(.caption).foregroundStyle(.secondary) }.accessibilityIdentifier("catalog-browser-link")
+        case .discovery(let row): NavigationLink(DesktopInterfaceText.value("View all")) { DiscoveryGrid(rail: row, app: app) }.font(.caption).foregroundStyle(.secondary)
         }
     }
 }
@@ -100,7 +96,7 @@ struct CustomizedHero: View {
     var body: some View {
         Group {
             if customization.page == "anime" {
-                HarborAnimeHero(metas: metas, sources: source == nil ? animeSources : [:], picks: rails.first { $0.id == "anime-picks" }, app: app, customization: customization)
+                HarborAnimeHero(metas: metas, sources: source == nil ? animeSources : [:], picks: rails.first { $0.id == "discovery-anime-picks" }, app: app, customization: customization)
             } else if customization.page == "series" {
                 HarborSeriesHero(metas: metas, app: app)
             } else if !metas.isEmpty {
