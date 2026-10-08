@@ -312,7 +312,7 @@ final class LiveNavigationTests: XCTestCase {
         XCTAssertTrue(app.buttons["detail-streams"].waitForExistence(timeout: 10))
         capture(app, "real-detail")
         app.buttons["detail-bookmark"].tap()
-        let saved = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == true AND label == 'En mi lista'"), object: app.buttons["detail-bookmark"])
+        let saved = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == true AND label == 'En la lista para ver'"), object: app.buttons["detail-bookmark"])
         XCTAssertEqual(XCTWaiter.wait(for: [saved], timeout: 10), .completed)
         app.buttons["detail-favorite"].tap()
         XCTAssertEqual(app.buttons["detail-favorite"].label, "Quitar de favoritos")
