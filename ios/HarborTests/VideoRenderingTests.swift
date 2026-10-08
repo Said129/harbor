@@ -1,9 +1,77 @@
 import GLKit
+import CoreImage
+import CoreMedia
+import CoreVideo
+import Libmpv
 import UIKit
 import XCTest
 @testable import Harbor
 
 final class VideoRenderingTests: XCTestCase {
+    @MainActor
+    func testSampleBufferOutputContainsDecoded8And10BitVideoAndRealTime() async throws {
+        let images = CIContext(options: [.useSoftwareRenderer: true])
+        for depth in [8, 10] {
+            let url = try XCTUnwrap(Bundle(for: Self.self).url(forResource: "render-\(depth)bit", withExtension: "mp4", subdirectory: "Fixtures"))
+            let handle = try MPVConfiguration.createHandle(decoding: .off)
+            var renderer: MPVSampleBufferRenderer?
+            defer { renderer?.close(); MPVConfiguration.destroy(handle) }
+            renderer = try MPVSampleBufferRenderer(handle: handle)
+            let output = try XCTUnwrap(renderer)
+            XCTAssertGreaterThanOrEqual(mpv_observe_property(handle, 1, "time-pos", MPV_FORMAT_DOUBLE), 0)
+            let allocations = ["loadfile", url.absoluteString].map { strdup($0) }
+            defer { for pointer in allocations { free(pointer) } }
+            XCTAssertTrue(allocations.allSatisfy { $0 != nil })
+            var arguments: [UnsafePointer<CChar>?] = allocations.map { $0.map { UnsafePointer<CChar>($0) } } + [nil]
+            XCTAssertGreaterThanOrEqual(mpv_command_async(handle, 0, &arguments), 0)
+            var position = 0.0
+            var displayed = false
+            var lastImage: UIImage?
+            var lastBuffer: CVPixelBuffer?
+            let deadline = Date().addingTimeInterval(20)
+            while Date() < deadline {
+                while let event = mpv_wait_event(handle, 0), event.pointee.event_id != MPV_EVENT_NONE {
+                    if event.pointee.event_id == MPV_EVENT_PROPERTY_CHANGE, let data = event.pointee.data {
+                        let property = data.assumingMemoryBound(to: mpv_event_property.self).pointee
+                        if property.format == MPV_FORMAT_DOUBLE, let value = property.data { position = value.assumingMemoryBound(to: Double.self).pointee }
+                    }
+                }
+                if let buffer = try output.draw(width: 320, height: 180) {
+                    lastBuffer = buffer
+                    let input = CIImage(cvPixelBuffer: buffer)
+                    let cgImage = try XCTUnwrap(images.createCGImage(input, from: input.extent))
+                    let image = UIImage(cgImage: cgImage)
+                    lastImage = image
+                    let rgb = try colors(image)
+                    if position > 0.1 && rgb[0] > 120 && rgb[0] > rgb[1] + 30 && rgb[0] > rgb[2] + 30 && rgb[5] > 120 && rgb[5] > rgb[4] + 30 && rgb[5] > rgb[6] + 30 {
+                        let sample = try MPVSampleBufferRenderer.sample(buffer, position: position)
+                        XCTAssertTrue(CMSampleBufferIsValid(sample))
+                        XCTAssertTrue(CMSampleBufferDataIsReady(sample))
+                        XCTAssertEqual(CMTimeGetSeconds(CMSampleBufferGetPresentationTimeStamp(sample)), position, accuracy: 0.001)
+                        XCTAssertNotNil(CMSampleBufferGetImageBuffer(sample))
+                        let attachments = try XCTUnwrap(CMSampleBufferGetSampleAttachmentsArray(sample, createIfNecessary: false))
+                        let frame = try XCTUnwrap((attachments as NSArray).firstObject as? NSDictionary)
+                        XCTAssertEqual(frame[kCMSampleAttachmentKey_DisplayImmediately as String] as? Bool, true)
+                        displayed = true; break
+                    }
+                }
+                try await Task.sleep(for: .milliseconds(30))
+            }
+            if let image = lastImage {
+                let attachment = XCTAttachment(image: image)
+                attachment.name = "native-sample-buffer-\(depth)bit"
+                attachment.lifetime = .keepAlways
+                add(attachment)
+            }
+            XCTAssertTrue(displayed, "The sample buffer must carry decoded \(depth)-bit colors and advancing mpv time, not a placeholder frame")
+            XCTAssertThrowsError(try output.draw(width: 2_000, height: 2_000))
+            let buffer = try XCTUnwrap(lastBuffer)
+            XCTAssertThrowsError(try MPVSampleBufferRenderer.sample(buffer, position: .nan))
+            output.close(); output.close()
+            XCTAssertThrowsError(try output.draw(width: 320, height: 180))
+        }
+    }
+
     // The renderer being exercised is already deprecated. This test deliberately
     // checks its real output until a separately validated Metal renderer replaces it.
     @available(iOS, deprecated: 12.0)
