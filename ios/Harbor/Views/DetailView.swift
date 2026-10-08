@@ -88,10 +88,14 @@ struct DetailView: View {
             }.presentationDetents([.large])
         }
     }
-    private var streamPicker: some View {
+    private var streamPicker: StreamPickerView {
         StreamPickerView(model: model, addons: app.addons, episode: selectedEpisode, downloading: downloading, downloadMessage: downloadMessage,
-                         play: playOffer, download: ["movie", "series", "anime", "music"].contains(model.media.type) ? startDownload : nil,
-                         refresh: refreshStreams, back: { showStreams = false })
+                         play: { offer in playOffer(offer) }, download: streamDownloadAction,
+                         refresh: { refreshStreams() }, back: { showStreams = false })
+    }
+    private var streamDownloadAction: ((StreamOffer) -> Void)? {
+        guard ["movie", "series", "anime", "music"].contains(model.media.type) else { return nil }
+        return { offer in startDownload(offer) }
     }
     private func playOffer(_ offer: StreamOffer) {
         guard !model.resolving, model.pendingPlayback == nil else { return }
