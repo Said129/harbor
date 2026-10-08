@@ -335,7 +335,7 @@ struct PlayerView: View {
         HStack(spacing: 10) {
             Button { settingsPage = .audio } label: { PlayerGlyph(name: "audio").frame(width: 44, height: 44) }.accessibilityLabel("Audio").accessibilityIdentifier("player-audio")
             Button { settingsPage = .subtitles } label: { PlayerGlyph(name: "subtitle").frame(width: 44, height: 44) }.accessibilityLabel("Subtítulos").accessibilityIdentifier("player-subtitles")
-            Button { settingsPage = .video } label: { PlayerGlyph(name: "aspect").frame(width: 44, height: 44) }.accessibilityLabel("Imagen y formato").accessibilityIdentifier("player-picture")
+            Button { settingsPage = .video } label: { PlayerGlyph(name: "aspect").frame(width: 44, height: 44) }.accessibilityLabel(DesktopInterfaceText.value("Picture")).accessibilityIdentifier("player-picture")
             Button { settingsPage = .playback } label: { VStack(spacing: 1) { PlayerGlyph(name: "speed", size: 19); Text("\(state.speed.formatted())×").font(.system(size: 9)) } }.accessibilityLabel("Velocidad").accessibilityValue("\(state.speed.formatted())×").frame(minWidth: 44, minHeight: 44)
             AudioRoutePicker(state: state)
             if state.pictureInPictureSupported {

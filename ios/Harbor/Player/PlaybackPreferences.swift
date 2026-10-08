@@ -6,9 +6,9 @@ enum VideoFit: String, CaseIterable, Identifiable, Codable {
     var id: String { rawValue }
     var title: String {
         switch self {
-        case .original: "Automático · adaptar"
-        case .fill: "Llenar pantalla"
-        case .stretch: "Estirar a pantalla"
+        case .original: DesktopInterfaceText.value("Fit")
+        case .fill: DesktopInterfaceText.value("Fill")
+        case .stretch: DesktopInterfaceText.value("Stretch")
         case .zoom: "Zoom"
         case .widescreen: "16:9"
         case .classic: "4:3"
@@ -25,6 +25,37 @@ enum VideoFit: String, CaseIterable, Identifiable, Codable {
         case .cinema: "1.85:1"
         case .scope: "2.39:1"
         default: "no"
+        }
+    }
+}
+
+enum PicturePreset: String, CaseIterable, Identifiable {
+    case brighten, punchier, easy, crisp
+    var id: String { rawValue }
+    var title: String {
+        let original = switch self {
+        case .brighten: "Brighten dark movies"
+        case .punchier: "Punchier color"
+        case .easy: "Easy on the eyes"
+        case .crisp: "Crisp (anime & cartoons)"
+        }
+        return DesktopInterfaceText.value(original)
+    }
+    var description: String {
+        let original = switch self {
+        case .brighten: "Lifts shadows so the pitch-black scenes are actually watchable."
+        case .punchier: "Richer, more vivid picture with a touch more contrast."
+        case .easy: "Softer and dimmer, kinder for late-night watching."
+        case .crisp: "Sharper lines and a little more pop."
+        }
+        return DesktopInterfaceText.value(original)
+    }
+    var values: (brightness: Double, contrast: Double, saturation: Double, gamma: Double, sharpen: Double) {
+        switch self {
+        case .brighten: (4, 0, 0, 12, 0)
+        case .punchier: (0, 8, 15, 0, 0)
+        case .easy: (-4, 0, -5, -6, 0)
+        case .crisp: (0, 0, 8, 0, 0.6)
         }
     }
 }
@@ -82,6 +113,12 @@ struct PlaybackOptions: Codable, Equatable {
         case "arabic": "Vazirmatn"
         default: "Inter"
         }
+    }
+
+    mutating func applyPicturePreset(_ preset: PicturePreset) {
+        let values = preset.values
+        brightness = values.brightness; contrast = values.contrast
+        saturation = values.saturation; gamma = values.gamma; sharpen = values.sharpen
     }
 
     var mpvOptions: [(String, String)] {

@@ -57,7 +57,10 @@
     "src/lib/avatars/catalog.ts": "d2df4e688c43df33cb9b13386a53dc17d780dcfaa0aea5a619b113ff4a328c97",
     "src/chrome/account-menu/account-menu-parts.tsx": "da44aeb794abd99eae2df8e27682edfeaea070d644a1385b4b2fe0d2d124c703",
     "src/lib/i18n/locales/es/player.ts": "f3f7022ff66b8ccd48e41056236a5166b9ef1d96cdff1980f21678a0d30795e7",
-    "src/components/player/transport/control-renderer.tsx": "65855f862e741e3a46f92866386e8f0c39fd869bea408d24e79225cd605e4f73"
+    "src/components/player/transport/control-renderer.tsx": "65855f862e741e3a46f92866386e8f0c39fd869bea408d24e79225cd605e4f73",
+    "src/views/settings/mpv-panel/dials.tsx": "4d48557c4d62d63d0bd62672943f78086fbe017ee64f883779c09318704e60bf",
+    "src/views/player/hooks/use-video-fill.ts": "4fbedf8080e665d17e70b36391263ad27a522779b65731914312921963b9135e",
+    "src/components/player/transport/aspect-menu.tsx": "b73465eecabbf01521380cf2b62306b0603a7c6d526a3eb5a36cfdceb8d35a8d"
   },
   "changes": [
     "Original six-point playback timeline with a 44-point touch target; seeking commits to mpv on release.",
@@ -73,7 +76,8 @@
     "Native addon Browse preserves original API category slugs and multiple memberships, server search, stars/newest ordering, rising entries and validated pagination. Query plus signs are escaped for the API form decoder; public caches are bounded to 48 entries.",
     "Home and Catalogs replace generic empty layouts with the original Harbor dashed panels, Puzzle geometry, official title/description and real Browse addons navigation. No matches uses original catalog/title copy. Shared search fields use the existing original X asset and a 44-point touch target.",
     "Profile and account labels use the original Spanish dictionaries, including profile.signedIn. Upload/check/shuffle use original Lucide geometry and exact stroke weights. The avatar fan retains five shuffled original choices; the gallery preserves catalog groups, search, square rounded tiles, names, selection rings and reduced-motion-aware touch feedback. Original group labels lacking Spanish locale entries retain their Desktop fallback.",
-    "The native PiP entry uses the original PictureInPicture2 geometry, 22px size, 1.9 stroke and official Spanish labels. AVKit owns the platform floating-window controls; it controls the same mpv source and does not create a second player."
+    "The native PiP entry uses the original PictureInPicture2 geometry, 22px size, 1.9 stroke and official Spanish labels. AVKit owns the platform floating-window controls; it controls the same mpv source and does not create a second player.",
+    "Picture uses original Fit/Fill/Stretch labels, four Desktop picture templates with exact values and reset-before-apply semantics, and original Spanish descriptions. Persisted native aspect identifiers remain compatible; pinch remains silent."
   ],
   "copyOutput": "ios/Harbor/DesktopDiscoverSpanish.json",
   "limitations": [

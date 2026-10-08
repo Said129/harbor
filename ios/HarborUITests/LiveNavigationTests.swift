@@ -84,8 +84,16 @@ final class LiveNavigationTests: XCTestCase {
         capture(app, "native-settings-original-layout")
         app.buttons["settings-video"].tap()
         XCTAssertTrue(app.descendants(matching: .any).matching(identifier: "settings-hwdec").firstMatch.waitForExistence(timeout: 5))
-        let fit = app.buttons["Formato de imagen"]
+        let videoSettings = app.descendants(matching: .any).matching(identifier: "player-settings-scroll").firstMatch
+        XCTAssertTrue(videoSettings.waitForExistence(timeout: 5))
+        let crisp = app.buttons["settings-picture-preset-crisp"]
+        reveal(crisp, in: videoSettings, attempts: 5)
+        XCTAssertTrue(crisp.isHittable)
+        capture(app, "native-picture-original-presets")
+        let fit = app.buttons["Relación de aspecto"]
         XCTAssertTrue(fit.waitForExistence(timeout: 5))
+        reveal(fit, in: videoSettings, attempts: 3)
+        XCTAssertTrue(fit.isHittable)
         let originalFit = try XCTUnwrap(fit.value as? String)
         fit.tap()
         XCTAssertTrue(app.buttons["4:3"].waitForExistence(timeout: 3))

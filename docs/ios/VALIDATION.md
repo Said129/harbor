@@ -8,6 +8,12 @@ La candidata 46 corrige esas asignaciones y adopta métodos async de los delegad
 
 La build 46, fuente `510a6053dc3ed6bede31e30a5c44ffdf828f5014`, [run 37675647198](https://github.com/Said129/harbor/actions/runs/37675647198), termina con fallo de compilación en tres asignaciones de `HarborProfileSync.swift` (70, 89 y 108): el `error` del catch ocultaba la propiedad del modelo. La candidata 47 las corrige con `self.error`; los avisos reportados son las deprecaciones GLKit/OpenGLES anteriores. No se ejecutaron pruebas nativas, servicios, UI ni build de dispositivo para 46, ni se creó una IPA. Las interfaces nuevas, el movimiento, los diálogos, la sincronización privada de perfil y la sesión privada de Submanhwa siguen necesitando evidencia de ejecución. Las cuentas, el renderer físico y los dispositivos de salida conservan sus límites de validación anteriores.
 
+## Candidata local 59: imagen, proporciones y presets originales
+
+El panel Imagen usa los textos y las cuatro plantillas de `mpv-panel/dials.tsx`, incluyendo Nítido (anime y caricaturas), sus descripciones y sus valores exactos. Cambiar de plantilla sustituye los cinco ajustes en una sola actualización; ya no mezcla el contraste/color/nitidez de una plantilla anterior. Restablecer imagen limpia esos ajustes sin modificar una relación de aspecto elegida por el usuario, igual que el menú Desktop. Ajustar/Rellenar/Estirar y los cinco formatos de proporción mantienen sus identificadores persistidos, con las etiquetas originales. No añade mensajes al pellizcar. Se retiran dos explicaciones añadidas por el port sobre filtros/búfer; permanecen sus controles reales.
+
+La fuente de estos 22 textos se copia del checkpoint y sus hashes quedan en `touch-interface-provenance.json`. 59 necesita evidencia Apple/UI propia. La build 58, fuente `9527dc00778cf058ef7c69bc86afc7469d02c8dd`, está en el [run 37709361019](https://github.com/Said129/harbor/actions/runs/37709361019); ese run no contiene 59.
+
 ## Candidata 58: etiqueta original de PiP
 
 Se corrige la llamada nueva a `DesktopInterfaceText.value`, que es el método existente para los textos originales. La candidata 57 `5d242638bf87c7c2ee03e691e7f971885d2c877c` estaba pendiente en el [run 37709172834](https://github.com/Said129/harbor/actions/runs/37709172834); se cancela deliberadamente para sustituir una fuente que todavía contenía la llamada inexistente `.text`, no por un timeout de observación. 58 incluye la corrección de argumentos C y la integración PiP; necesita sus propias comprobaciones con el SDK Apple.

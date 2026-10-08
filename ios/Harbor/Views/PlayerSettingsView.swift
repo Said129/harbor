@@ -78,7 +78,6 @@ struct PlayerSettingsView: View {
             HarborSettingsToggle("Ocultar grabaciones de cámara · CAM / TS / TC", isOn: $sources.excludeCamera)
             HarborSettingsChoice("Calidad máxima", selection: $sources.maximum, choices: [("4K", 2160), ("1080p", 1080), ("720p", 720)])
             HarborSettingsChoice("Calidad mínima", selection: $sources.minimum, choices: [("Todas", 0), ("720p", 720), ("1080p", 1080), ("4K", 2160)])
-            Text("Se respetan tus filtros antes de elegir la fuente. Si ninguna los cumple, podrás ajustarlos sin reproducir un enlace excluido.").font(.caption).foregroundStyle(.secondary)
         }
         HarborSettingsSection("Controles") {
             HarborSettingsToggle("Ocultar controles automáticamente", isOn: $preferences.options.autoHideControls)
@@ -98,7 +97,7 @@ struct PlayerSettingsView: View {
                 .accessibilityIdentifier("settings-auto-next")
             HarborSettingsChoice("Aviso del siguiente episodio", selection: $preferences.options.nextEpisodeLeadSeconds, choices: [("Automático · Harbor", -1.0), ("Sin aviso", 0.0)] + [15.0, 30, 45, 60, 90].map { ("\(Int($0)) segundos antes", $0) })
         }
-        HarborSettingsSection("Búfer", note: "Se aplica al abrir el siguiente vídeo. La memoria se adapta al iPhone; el tiempo disponible depende de la fuente y su calidad.") {
+        HarborSettingsSection("Búfer") {
             HarborSettingsChoice("Tamaño del búfer", selection: $preferences.options.bufferSize, choices: BufferSize.allCases.map { ($0.title, $0) })
         }
     }
@@ -108,23 +107,38 @@ struct PlayerSettingsView: View {
         HarborSettingsSection("Reproductor") {
             HarborSettingsChoice("Decodificación de vídeo", selection: $hardwareDecoding, choices: HardwareDecoding.allCases.map { ($0.title, $0) })
                 .accessibilityIdentifier("settings-hwdec")
-            HarborSettingsChoice("Formato de imagen", selection: $preferences.options.fit, choices: VideoFit.allCases.map { ($0.title, $0) })
-                .accessibilityIdentifier("settings-video-fit")
-            if preferences.options.fit == .zoom { dial("Zoom", value: $preferences.options.zoom, range: 0...1, step: 0.05) }
         }
-        HarborSettingsSection("Ajustes de imagen") {
-            dial("Brillo", value: $preferences.options.brightness, range: -50...50)
-            dial("Contraste", value: $preferences.options.contrast, range: -50...50)
-            dial("Saturación", value: $preferences.options.saturation, range: -50...50)
-            dial("Gamma", value: $preferences.options.gamma, range: -50...50)
-            dial("Nitidez", value: $preferences.options.sharpen, range: 0...2, step: 0.05)
-            Button("Aclarar películas oscuras") { preferences.options.gamma = 12; preferences.options.brightness = 4 }
-            Button("Colores más vivos") { preferences.options.saturation = 15; preferences.options.contrast = 8 }
-            Button("Descanso visual") { preferences.options.brightness = -4; preferences.options.gamma = -6; preferences.options.saturation = -5 }
-            Button("Restablecer imagen") {
-                preferences.options.brightness = 0; preferences.options.contrast = 0
-                preferences.options.saturation = 0; preferences.options.gamma = 0; preferences.options.sharpen = 0; preferences.options.zoom = 0; preferences.options.fit = .original
+        HarborSettingsSection(DesktopInterfaceText.value("Picture")) {
+            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 8) {
+                ForEach(PicturePreset.allCases) { preset in
+                    Button {
+                        var next = preferences.options; next.applyPicturePreset(preset)
+                        preferences.options = next
+                    } label: {
+                        Text(preset.title).font(HarborTheme.font(12, weight: .semibold))
+                            .multilineTextAlignment(.center).fixedSize(horizontal: false, vertical: true)
+                            .padding(.horizontal, 12).padding(.vertical, 8)
+                            .frame(maxWidth: .infinity, minHeight: 44)
+                            .background(HarborTheme.surface.opacity(0.4), in: .capsule)
+                            .overlay { Capsule().stroke(HarborTheme.ink.opacity(0.1), lineWidth: 1) }
+                    }.accessibilityHint(preset.description).accessibilityIdentifier("settings-picture-preset-\(preset.id)")
+                }
             }
+            dial(DesktopInterfaceText.value("Brightness"), value: $preferences.options.brightness, range: -50...50)
+            dial(DesktopInterfaceText.value("Contrast"), value: $preferences.options.contrast, range: -50...50)
+            dial(DesktopInterfaceText.value("Saturation"), value: $preferences.options.saturation, range: -50...50)
+            dial(DesktopInterfaceText.value("Gamma"), value: $preferences.options.gamma, range: -50...50)
+            dial(DesktopInterfaceText.value("Sharpen"), value: $preferences.options.sharpen, range: 0...2, step: 0.05)
+            Button(DesktopInterfaceText.value("Reset picture")) {
+                var next = preferences.options
+                next.brightness = 0; next.contrast = 0; next.saturation = 0; next.gamma = 0; next.sharpen = 0
+                preferences.options = next
+            }
+        }
+        HarborSettingsSection(DesktopInterfaceText.value("Aspect ratio")) {
+            HarborSettingsChoice(DesktopInterfaceText.value("Aspect ratio"), selection: $preferences.options.fit, choices: VideoFit.allCases.map { ($0.title, $0) })
+                .accessibilityIdentifier("settings-video-fit")
+            if preferences.options.fit == .zoom { dial(DesktopInterfaceText.value("Zoom"), value: $preferences.options.zoom, range: 0...1, step: 0.05) }
         }
     }
 
