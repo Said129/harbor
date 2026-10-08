@@ -2,6 +2,14 @@
 
 El informe que acompaña a `C:/Users/Said/Downloads/Harbor-unsigned.ipa` identifica la fuente `fd3d9e59e82717fac70523f9a30fc2e5a8a21c3a`, build 43, del [run 37634911030](https://github.com/Said129/harbor/actions/runs/37634911030). Paquete: 28,917,014 bytes, SHA-256 `276164ed4d013ba064faf183ad0d245dbd618f27dab65e77b43a9df1aca81410`. La descarga, el paquete arm64 y sus 37 imágenes se verificaron antes de sustituir la entrega. Pasaron 31 pruebas nativas, seis servicios públicos y el recorrido UI. No se ha confirmado una revisión física de la build 43.
 
+## Candidata 80: volver a la raíz al seleccionar una sección
+
+El [run 37797520367](https://github.com/Said129/harbor/actions/runs/37797520367), fuente 79 `1e9714da9874e6d22bc2432acf7d7a508dd73672`, terminó con fallo UI. Compiló y pasaron las 42 pruebas nativas y los ocho servicios públicos. El recorrido abrió y cerró la personalización, el perfil y la galería, navegó por catálogos y abrió/cerró el editor real de la clave TMDB. Después, seleccionar Configuración desde el menú conservó la subpantalla de metadatos y LiveNavigationTests.swift:113 no encontró `settings-playback`. La jerarquía exportada confirma que la subpantalla seguía abierta. No hubo compilación del paquete de dispositivo ni IPA 79.
+
+80 renueva la identidad del NavigationStack cada vez que se selecciona una sección o Buscar. Vaciar NavigationPath no elimina los NavigationLink con destino directo; renovar sólo la identidad de la sección tampoco funciona cuando se selecciona la misma sección. El cambio vuelve a la raíz en ambos casos, conserva los datos de AppModel y no añade funciones. El recorrido existente comprueba explícitamente la raíz y la ausencia de la subpantalla, y guarda una captura antes de abrir Reproducción. No elimina ninguna aserción anterior.
+
+La evidencia de 79 se descargó y extrajo comprobando rutas, CRC y hash: 23,456,004 bytes, SHA-256 `4d3a76b0ae6a05884434c2f51f5aa118e823bc38a3fc068eac4751e4d4f97c14`. Se revisaron el PNG del editor y la jerarquía del fallo. Los recorridos posteriores y el dispositivo físico siguen pendientes. 80 requiere comprobación Apple propia; Descargas conserva la IPA 43 hasta una candidata comprobada y revisada.
+
 ## Candidata 79: identificar por separado el pie de personalización
 
 El [run 37791546373](https://github.com/Said129/harbor/actions/runs/37791546373), fuente 78 `c7999397ff5518c942e12c55f1ebffeb82f413d6`, terminó con fallo en el recorrido UI. Compiló y pasaron las 42 pruebas nativas y los ocho servicios públicos sin fallos. La navegación pulsó Personalizar inicio y el editor apareció, pero LiveNavigationTests.swift:48 no encontró el botón `page-customize-done`. La jerarquía real exportada muestra Restablecer y Edición terminada visibles y con sus acciones; ambos heredaron el identificador `home-scroll` del contenedor que incluía también el safeAreaInset. No se compiló el paquete de dispositivo y no hay una IPA 78.

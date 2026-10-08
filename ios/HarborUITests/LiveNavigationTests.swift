@@ -110,6 +110,9 @@ final class LiveNavigationTests: XCTestCase {
         app.buttons["metadata-key-close"].tap()
         XCTAssertTrue(app.buttons["metadata-manage-key"].waitForExistence(timeout: 5))
         navigate(app, "settings")
+        XCTAssertTrue(app.descendants(matching: .any).matching(identifier: "settings-scroll").firstMatch.waitForExistence(timeout: 5), "Selecting Settings from a subpage must return to the section root")
+        XCTAssertFalse(app.buttons["metadata-manage-key"].exists)
+        capture(app, "native-settings-root-after-reselection")
         app.buttons["settings-playback"].tap()
         let instant = app.buttons["Instantáneo"]
         let manual = app.buttons["Elige una fuente"]

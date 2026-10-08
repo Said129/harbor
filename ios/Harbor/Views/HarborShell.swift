@@ -74,6 +74,7 @@ struct HarborShell: View {
     let app: AppModel
     @State private var section = HarborSection.home
     @State private var path = NavigationPath()
+    @State private var navigationID = UUID()
     @State private var menu = false
     var body: some View {
         ZStack(alignment: .leading) {
@@ -82,7 +83,7 @@ struct HarborShell: View {
                 NavigationStack(path: $path) {
                     destination
                         .navigationDestination(for: Media.self) { DetailView(media: $0, app: app) }
-                }.id(section)
+                }.id(navigationID)
             }
             if menu {
                 Color.black.opacity(0.6).ignoresSafeArea().onTapGesture { closeMenu() }
@@ -92,7 +93,7 @@ struct HarborShell: View {
                         VStack(spacing: 6) {
                             ForEach(InterfacePreferences.shared.visibleSections) { item in
                                 Button {
-                                    path = NavigationPath(); section = item; closeMenu()
+                                    select(item); closeMenu()
                                 } label: {
                                     HStack(spacing: 16) {
                                         Image("nav-\(item.icon)").resizable().scaledToFit().frame(width: 23, height: 23)
@@ -116,7 +117,7 @@ struct HarborShell: View {
             Spacer(minLength: 0)
             HarborBrand(size: 26)
             Spacer(minLength: 0)
-            Button { path = NavigationPath(); section = .search } label: { Image("nav-search").resizable().scaledToFit().frame(width: 21, height: 21).frame(width: 34, height: 44) }.accessibilityLabel("Buscar")
+            Button { select(.search) } label: { Image("nav-search").resizable().scaledToFit().frame(width: 21, height: 21).frame(width: 34, height: 44) }.accessibilityLabel("Buscar")
             ProfileAccountButton(app: app).id(app.user?.id ?? "guest")
         }.padding(.horizontal, 12).background(HarborTheme.background)
     }
@@ -143,6 +144,12 @@ struct HarborShell: View {
         case .addons: AddonsView(app: app)
         case .settings: SettingsView(app: app)
         }
+    }
+    private func select(_ destination: HarborSection) {
+        path = NavigationPath()
+        section = destination
+        // Destination-based links are not stored in path; recreate the stack on reselection too.
+        navigationID = UUID()
     }
     private func closeMenu() { withAnimation(.easeOut(duration: 0.18)) { menu = false } }
 }
