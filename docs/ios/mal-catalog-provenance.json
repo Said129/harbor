@@ -1,0 +1,11 @@
+{
+  "referenceCommit": "19ddc311a397eb3483b5c978d2cf2bbb3f7f479f",
+  "referenceVersion": "0.9.128",
+  "source": "src/lib/mal/config.ts",
+  "sourceSha256": "0a6ddde76e0773b42467b4c4274214e36562ee38301b55ae330b987c71101ac0",
+  "output": "ios/Harbor/DesktopMALCatalog.json",
+  "officialApi": "https://api.myanimelist.net/v2",
+  "apiReference": "https://myanimelist.net/apiconfig/references/api/v2",
+  "apiReferenceSha256": "3977653e430e2eb4e76e1ee349a6a53ec5d287744ed1535e4b5881206ca2cbdd",
+  "notes": "Use Harbor's existing public OAuth application identifier for client-auth catalog reads only. No user OAuth token, client secret, account list or authenticated mutation is used. Ranked and seasonal data remain MAL; Jikan is retained as a transport fallback."
+}

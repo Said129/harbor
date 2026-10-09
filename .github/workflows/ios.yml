@@ -1,0 +1,252 @@
+name: iPhone Native
+on:
+  workflow_dispatch:
+    inputs:
+      run_live_integration:
+        description: "Test the native services and UI with real public addons"
+        type: boolean
+        default: false
+      validation_scope:
+        description: "Full suite, or only the browser close and palette Cancel regressions"
+        type: choice
+        options: [full, affected]
+        default: full
+      save_draft_build:
+        description: "Save the verified unsigned IPA in a draft Release for download"
+        type: boolean
+        default: false
+      upload_artifacts:
+        description: "Upload products/evidence only after confirming available free storage"
+        type: boolean
+        default: false
+  push:
+    branches: [main]
+    paths:
+      [
+        "harbor-core/**",
+        "harbor-ios-bridge/**",
+        "ios/**",
+        "scripts/ios/**",
+        ".github/workflows/ios.yml",
+      ]
+  pull_request:
+    paths:
+      [
+        "harbor-core/**",
+        "harbor-ios-bridge/**",
+        "ios/**",
+        "scripts/ios/**",
+        ".github/workflows/ios.yml",
+      ]
+permissions:
+  contents: read
+concurrency:
+  group: iphone-${{ github.event.pull_request.head.repo.full_name || github.repository }}-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
+jobs:
+  apple:
+    name: Apple SDK / Swift / iPhone
+    if: ${{ github.event.repository.private == false }}
+    runs-on: macos-15-intel
+    timeout-minutes: 90
+    permissions:
+      contents: write
+    env:
+      IPHONEOS_DEPLOYMENT_TARGET: "17.0"
+    steps:
+      - uses: actions/checkout@v6
+      - name: Select installed Xcode
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer
+          xcodebuild -version
+          xcodebuild -showsdks
+      - name: Parse Swift before building dependencies
+        run: python3 scripts/ios/parse-swift.py
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: aarch64-apple-ios,aarch64-apple-ios-sim,x86_64-apple-ios
+          components: clippy
+      - uses: Swatinem/rust-cache@v2
+        with:
+          cache-on-failure: true
+          workspaces: |
+            harbor-core
+            harbor-ios-bridge
+      - name: Verify shared Rust on the Apple build host
+        if: ${{ inputs.validation_scope != 'affected' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          cargo test --manifest-path harbor-core/Cargo.toml --locked --no-default-features
+          cargo test --manifest-path harbor-ios-bridge/Cargo.toml --locked
+          cargo clippy --manifest-path harbor-ios-bridge/Cargo.toml --locked --all-targets -- -D warnings
+      - name: Build and package Rust before Swift
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ios/build/logs
+          bash scripts/ios/build-rust.sh 2>&1 | tee ios/build/logs/rust.log
+      - name: Cache Swift dependencies
+        uses: actions/cache@v6
+        with:
+          path: ios/build/SourcePackages
+          key: iphone-spm-${{ runner.os }}-${{ hashFiles('ios/project.yml') }}
+          restore-keys: iphone-spm-${{ runner.os }}-
+      - name: Generate Xcode project
+        run: |
+          python3 scripts/ios/fetch-interface-font.py
+          python3 scripts/ios/fetch-manga-font.py
+          brew install xcodegen
+          xcodegen generate --spec ios/project.yml
+      - name: Resolve pinned multimedia dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 scripts/ios/resolve-packages.py
+      - name: Choose an available iPhone simulator
+        shell: bash
+        run: |
+          set -euo pipefail
+          xcrun simctl list devices available --json > ios/build/devices.json
+          device=$(python3 -c 'import json; d=json.load(open("ios/build/devices.json")); print(next(x["udid"] for runtime, values in d["devices"].items() if "iOS" in runtime for x in values if x["name"].startswith("iPhone")))')
+          echo "IOS_SIMULATOR=$device" >> "$GITHUB_ENV"
+          echo "IOS_SIMULATOR_ARCH=$(uname -m)" >> "$GITHUB_ENV"
+          xcrun simctl bootstatus "$device" -b
+      - name: Build simulator
+        id: simulator_build
+        shell: bash
+        run: |
+          set -euo pipefail
+          xcodebuild -project ios/Harbor.xcodeproj -scheme Harbor -configuration Debug -destination "platform=iOS Simulator,id=$IOS_SIMULATOR,arch=$IOS_SIMULATOR_ARCH" -derivedDataPath ios/build/DerivedData -clonedSourcePackagesDirPath ios/build/SourcePackages -resultBundlePath ios/build/SimulatorBuild.xcresult CODE_SIGNING_ALLOWED=YES CODE_SIGN_IDENTITY=- build 2>&1 | tee ios/build/logs/simulator.log
+      - name: Preserve simulator compiler diagnostics
+        if: ${{ failure() && steps.simulator_build.conclusion == 'failure' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -d ios/build/SimulatorBuild.xcresult ]]; then
+            xcrun xcresulttool get object --legacy --format json --path ios/build/SimulatorBuild.xcresult > ios/build/logs/simulator-result.json || true
+          fi
+          python3 scripts/ios/report-build-issues.py ios/build/logs/simulator-result.json
+          if [[ "${{ inputs.save_draft_build }}" == "true" ]]; then
+            ditto -c -k --keepParent ios/build/logs ios/build/iphone-compiler-evidence.zip
+            gh release create "iphone-compiler-evidence-$GITHUB_RUN_ID" ios/build/iphone-compiler-evidence.zip --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" --draft --prerelease --title "iPhone compiler evidence $GITHUB_RUN_ID" --notes "Public build diagnostics only. No private account, configured addon URL or installable app."
+          fi
+      - name: Run bridge and model tests on iPhone simulator
+        id: offline_tests
+        timeout-minutes: 15
+        shell: bash
+        run: |
+          set -euo pipefail
+          selection=(-only-testing:HarborTests)
+          if [[ "${{ inputs.validation_scope }}" == "affected" ]]; then
+            selection=(-only-testing:HarborTests/WebPageDialogTests)
+          fi
+          xcodebuild -project ios/Harbor.xcodeproj -scheme Harbor -configuration Debug -destination "platform=iOS Simulator,id=$IOS_SIMULATOR,arch=$IOS_SIMULATOR_ARCH" -derivedDataPath ios/build/DerivedData -clonedSourcePackagesDirPath ios/build/SourcePackages -resultBundlePath ios/build/Tests.xcresult "${selection[@]}" -parallel-testing-enabled NO CODE_SIGNING_ALLOWED=YES CODE_SIGN_IDENTITY=- test 2>&1 | tee ios/build/logs/tests.log
+      - name: Preserve failed native render evidence in a draft Release
+        if: ${{ failure() && inputs.save_draft_build == true && steps.offline_tests.conclusion == 'failure' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          xcrun xcresulttool export attachments --path ios/build/Tests.xcresult --output-path ios/build/failed-native-render
+          ditto -c -k --keepParent ios/build/failed-native-render ios/build/iphone-native-render-evidence.zip
+          gh release create "iphone-native-render-evidence-$GITHUB_RUN_ID" ios/build/iphone-native-render-evidence.zip --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" --draft --prerelease --title "iPhone native render evidence $GITHUB_RUN_ID" --notes "Test-only native frame output for diagnosing a failed renderer regression. No private account, configured addon URL or installable app."
+      - name: Run real addon services on iPhone simulator
+        id: live_services
+        if: ${{ inputs.run_live_integration == true && inputs.validation_scope != 'affected' }}
+        timeout-minutes: 10
+        shell: bash
+        run: |
+          set -euo pipefail
+          xcodebuild -project ios/Harbor.xcodeproj -scheme HarborLive -configuration Debug -destination "platform=iOS Simulator,id=$IOS_SIMULATOR,arch=$IOS_SIMULATOR_ARCH" -derivedDataPath ios/build/DerivedData -clonedSourcePackagesDirPath ios/build/SourcePackages -resultBundlePath ios/build/ServicesTests.xcresult -only-testing:HarborIntegrationTests -parallel-testing-enabled NO CODE_SIGNING_ALLOWED=YES CODE_SIGN_IDENTITY=- test 2>&1 | tee ios/build/logs/live-services.log
+      - name: Boot a clean UI runtime while preserving application data
+        if: ${{ inputs.run_live_integration == true }}
+        timeout-minutes: 5
+        shell: bash
+        run: |
+          set -euo pipefail
+          xcrun simctl shutdown "$IOS_SIMULATOR"
+          xcrun simctl boot "$IOS_SIMULATOR"
+          xcrun simctl bootstatus "$IOS_SIMULATOR" -b
+      - name: Run native UI on iPhone simulator
+        id: live_tests
+        if: ${{ inputs.run_live_integration == true }}
+        timeout-minutes: 20
+        shell: bash
+        run: |
+          set -euo pipefail
+          selection=(-only-testing:HarborUITests)
+          if [[ "${{ inputs.validation_scope }}" == "affected" ]]; then
+            selection=(-only-testing:HarborUITests/LiveNavigationTests/testCancellingCustomPaletteRestoresActiveTheme)
+          fi
+          xcodebuild -project ios/Harbor.xcodeproj -scheme HarborLive -configuration Debug -destination "platform=iOS Simulator,id=$IOS_SIMULATOR,arch=$IOS_SIMULATOR_ARCH" -derivedDataPath ios/build/DerivedData -clonedSourcePackagesDirPath ios/build/SourcePackages -resultBundlePath ios/build/LiveTests.xcresult "${selection[@]}" -parallel-testing-enabled NO CODE_SIGNING_ALLOWED=YES CODE_SIGN_IDENTITY=- test 2>&1 | tee ios/build/logs/live-tests.log
+      - name: Preserve failed public integration screenshots in a draft Release
+        if: ${{ always() && inputs.save_draft_build == true && (steps.live_tests.conclusion == 'failure' || steps.live_tests.conclusion == 'cancelled' || steps.live_services.conclusion == 'failure' || steps.live_services.conclusion == 'cancelled') }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ios/build/attachments
+          for name in ServicesTests LiveTests; do
+            if [ -d "ios/build/$name.xcresult" ]; then
+              xcrun xcresulttool export attachments --path "ios/build/$name.xcresult" --output-path "ios/build/attachments/$name"
+            fi
+          done
+          ditto -c -k --keepParent ios/build/attachments ios/build/iphone-test-evidence.zip
+          gh release create "iphone-test-evidence-$GITHUB_RUN_ID" ios/build/iphone-test-evidence.zip --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" --draft --prerelease --title "iPhone public integration evidence $GITHUB_RUN_ID" --notes "Failed native integration test screenshots from public Cinemeta and the official Stremio example addon. This is diagnostic evidence, not an installable app."
+      - name: Build device without signing
+        shell: bash
+        run: |
+          set -euo pipefail
+          xcodebuild -project ios/Harbor.xcodeproj -scheme Harbor -configuration Release -destination 'generic/platform=iOS' -derivedDataPath ios/build/DeviceData -clonedSourcePackagesDirPath ios/build/SourcePackages CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO build 2>&1 | tee ios/build/logs/device.log
+      - name: Package and verify unsigned iPhone IPA
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 scripts/ios/package-ipa.py --app ios/build/DeviceData/Build/Products/Release-iphoneos/Harbor.app --output ios/build/Harbor-unsigned.ipa --commit "$GITHUB_SHA" 2>&1 | tee ios/build/logs/ipa.log
+      - name: Save verified unsigned IPA in a draft Release
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.run_live_integration == true && inputs.save_draft_build == true }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          xcrun xcresulttool export attachments --path ios/build/LiveTests.xcresult --output-path ios/build/live-attachments
+          if [[ -d ios/build/ServicesTests.xcresult ]]; then
+            xcrun xcresulttool export attachments --path ios/build/ServicesTests.xcresult --output-path ios/build/live-attachments/services
+          fi
+          xcrun xcresulttool export attachments --path ios/build/Tests.xcresult --output-path ios/build/live-attachments/native-tests
+          ditto -c -k --keepParent ios/build/live-attachments ios/build/iphone-live-evidence.zip
+          python3 scripts/ios/save-draft-build.py --repo "$GITHUB_REPOSITORY" --ipa ios/build/Harbor-unsigned.ipa --report ios/build/Harbor-unsigned.json --commit "$GITHUB_SHA" --evidence ios/build/iphone-live-evidence.zip --validation-scope "${{ inputs.validation_scope }}"
+      - name: Preserve diagnostic evidence
+        if: ${{ always() && inputs.upload_artifacts == true }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: iphone-build-evidence
+          path: |
+            ios/build/logs
+            ios/build/Tests.xcresult
+            ios/build/LiveTests.xcresult
+            ios/build/Harbor-unsigned.json
+            ios/build/devices.json
+          if-no-files-found: warn
+          retention-days: 1
+      - name: Upload unsigned build products
+        if: ${{ inputs.upload_artifacts == true }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: iphone-unsigned-products
+          path: |
+            ios/Frameworks/HarborCore.xcframework
+            ios/build/DerivedData/Build/Products/Debug-iphonesimulator/Harbor.app
+            ios/build/DeviceData/Build/Products/Release-iphoneos/Harbor.app
+            ios/Harbor.xcodeproj
+            ios/build/Harbor-unsigned.ipa
+            ios/build/Harbor-unsigned.json
+          retention-days: 1

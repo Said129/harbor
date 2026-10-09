@@ -1,0 +1,140 @@
+name: Harbor
+options:
+  minimumXcodeGenVersion: 2.42.0
+  deploymentTarget:
+    iOS: "17.0"
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    TARGETED_DEVICE_FAMILY: "1"
+    SUPPORTS_MACCATALYST: NO
+    SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD: NO
+    CODE_SIGNING_ALLOWED: NO
+    ENABLE_USER_SCRIPT_SANDBOXING: YES
+packages:
+  MPVKit:
+    url: https://github.com/mpvkit/MPVKit.git
+    revision: f82e06d4f5ef4fc4aa9faba3782a462dbbef870c
+  ZIPFoundation:
+    url: https://github.com/weichsel/ZIPFoundation.git
+    revision: 22787ffb59de99e5dc1fbfe80b19c97a904ad48d
+targets:
+  Harbor:
+    type: application
+    platform: iOS
+    sources:
+      - path: Harbor
+        excludes: [HarborLoader]
+      - path: Harbor/HarborLoader
+        type: folder
+        buildPhase: resources
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: site.harbor.iphone
+        TARGETED_DEVICE_FAMILY: "1"
+        GENERATE_INFOPLIST_FILE: NO
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        SWIFT_STRICT_CONCURRENCY: complete
+        SWIFT_OBJC_BRIDGING_HEADER: Harbor/Harbor-Bridging-Header.h
+        OTHER_LDFLAGS: ["$(inherited)", "-lresolv", "-liconv"]
+    info:
+      path: Info.plist
+      properties:
+        CFBundleDisplayName: Harbor
+        CFBundleShortVersionString: "0.1.0"
+        CFBundleVersion: "85"
+        UIAppFonts:
+          [
+            Fraunces.ttf,
+            Oswald.ttf,
+            Inter.ttf,
+            Fredoka.ttf,
+            Vazirmatn.ttf,
+            Switzer.ttf,
+            QRAmesBeta.otf,
+          ]
+        CFBundleURLTypes:
+          - CFBundleURLName: site.harbor.iphone.login
+            CFBundleURLSchemes: [harbor-iphone]
+        UILaunchScreen: {}
+        UIRequiresFullScreen: YES
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight
+        UIBackgroundModes: [audio]
+        NSLocalNetworkUsageDescription: Harbor se conecta a tu servidor Suwayomi y a los servicios de tu red local para cargar contenido.
+        NSAppTransportSecurity:
+          NSAllowsArbitraryLoads: YES
+    dependencies:
+      - framework: Frameworks/HarborCore.xcframework
+        embed: true
+      - package: MPVKit
+        product: MPVKit
+      - package: ZIPFoundation
+        product: ZIPFoundation
+      - sdk: GLKit.framework
+      - sdk: OpenGLES.framework
+      - sdk: Security.framework
+      - sdk: AVFoundation.framework
+      - sdk: MediaPlayer.framework
+      - sdk: UserNotifications.framework
+      - sdk: AuthenticationServices.framework
+      - sdk: libz.tbd
+  HarborTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: HarborTests
+        excludes: [Fixtures]
+      - path: HarborTests/Fixtures
+        type: folder
+        buildPhase: resources
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: site.harbor.iphone.tests
+        GENERATE_INFOPLIST_FILE: YES
+    dependencies:
+      - target: Harbor
+      - framework: Frameworks/HarborCore.xcframework
+        embed: false
+  HarborIntegrationTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources: [HarborIntegrationTests]
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: site.harbor.iphone.integration-tests
+        GENERATE_INFOPLIST_FILE: YES
+    dependencies:
+      - target: Harbor
+      - framework: Frameworks/HarborCore.xcframework
+        embed: false
+  HarborUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources: [HarborUITests]
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: site.harbor.iphone.ui-tests
+        GENERATE_INFOPLIST_FILE: YES
+    dependencies:
+      - target: Harbor
+schemes:
+  Harbor:
+    build:
+      targets:
+        Harbor: all
+        HarborTests: [test]
+    test:
+      targets: [HarborTests]
+  HarborLive:
+    build:
+      targets:
+        Harbor: all
+        HarborIntegrationTests: [test]
+        HarborUITests: [test]
+    test:
+      targets: [HarborIntegrationTests, HarborUITests]
+      environmentVariables:
+        HARBOR_LIVE_INTEGRATION: "1"

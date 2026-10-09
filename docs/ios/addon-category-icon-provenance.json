@@ -1,0 +1,55 @@
+{
+  "renderer": "@resvg/resvg-js",
+  "reference": "src/views/addons/category-grid.tsx",
+  "notes": "Original Harbor category SVG geometry, embedded images and masks rasterized without replacements. Tint is supplied by the native catalog. This is the public source checkpoint; supplied Desktop 0.9.130 screenshots remain the visual reference.",
+  "icons": {
+    "streams": {
+      "source": "src/assets/category/streams.svg",
+      "sourceSha256": "ca56eb8e65d45b59394c233f7e8f4d9657713912d6eeb2dc409268fa0ca4a036",
+      "pngSha256": "39f73e4f741d8fad118213ac31a6464fa583e305435f9e49bf86252dcb65c545",
+      "width": 256
+    },
+    "catalogs": {
+      "source": "src/assets/category/catalogs.svg",
+      "sourceSha256": "3823d517d7eaba554c02e4a9aaaa13505e7199e2fce9bda8b46cd5f0226eb7a7",
+      "pngSha256": "3e133c4eb7fc68b28e1da29699025a751e826526032fad40003fc0e61e61eb34",
+      "width": 256
+    },
+    "subtitles": {
+      "source": "src/assets/category/subtitles.svg",
+      "sourceSha256": "43d2b6da4786501f1f40c0ab6a055eb8d5b2188e14170311d3c4e9ee20cc980f",
+      "pngSha256": "b9910428586892bcd35de0d4f3ac147ee7118a9a220cd3a1c35983db67aab6fb",
+      "width": 256
+    },
+    "anime": {
+      "source": "src/assets/category/anime.svg",
+      "sourceSha256": "5a2754702eb2feee06095d822f512ce3debcb2f8a09ebf68437a20c3d18bcea7",
+      "pngSha256": "31bbe727998849a30390d7eaab74982470a3f1a361c867c801ca179fc731fa0d",
+      "width": 256
+    },
+    "sports": {
+      "source": "src/assets/category/sports.svg",
+      "sourceSha256": "93166b9ed4b3ac05b9bce50954be80abd66dc3f373b22a8f4c9459827fac2409",
+      "pngSha256": "b1eb9495d78f537e1bde16f8890aa93efb4a1c4518faa8cbadfa9c5905353a8c",
+      "width": 256
+    },
+    "livetv": {
+      "source": "src/assets/category/livetv.svg",
+      "sourceSha256": "01bd835bf5b60c2a2dd3fdf97ec8061a4b67e5d7b6d6a439341b43174b4b5e77",
+      "pngSha256": "3fa02bc4f797cef7e03ea5567b8d47d7a59695956b760b3697f4aba5eee0068e",
+      "width": 256
+    },
+    "tools": {
+      "source": "src/assets/category/tools.svg",
+      "sourceSha256": "7b24c2df513ab645b21b1109275243b41badfd636104f1f78ecc7fd83063da61",
+      "pngSha256": "c41e74b668f1a4e186386912b15126095775e0c530fa4aaa80ae45fd087d2b57",
+      "width": 256
+    },
+    "adult": {
+      "source": "src/assets/category/adult.svg",
+      "sourceSha256": "19f2b21225526b987c67a2f80e4c2209a6ad9ac50e29a38923db4e39af328e2b",
+      "pngSha256": "8c3ba7737b95059328fed2ba150b4f63affc385b3b9d555999b3f930a4d6281b",
+      "width": 256
+    }
+  }
+}

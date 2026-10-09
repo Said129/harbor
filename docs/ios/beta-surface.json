@@ -1,0 +1,3890 @@
+{
+  "requestedVersion": "0.9.130",
+  "publicCheckpointVersion": "0.9.128",
+  "publicCheckpointCommit": "19ddc311a397eb3483b5c978d2cf2bbb3f7f479f",
+  "settingsSourceSha256": "8c770721ca75cbcabcc21c479ba1fdb954b30350b99c275f40d8315c16fbb1b6",
+  "navigationSourceSha256": "663b190bfb4a46cd80c430c1f5067eb3c82397bf85af10e9133eef342b6cfc24",
+  "navigation": [
+    "home",
+    "discover",
+    "catalogs",
+    "plugins",
+    "movies",
+    "shows",
+    "music",
+    "kids",
+    "anime",
+    "manga",
+    "ebook",
+    "live",
+    "sports",
+    "vod",
+    "calendar",
+    "library",
+    "collections",
+    "downloads",
+    "addons",
+    "settings"
+  ],
+  "features": [
+    {
+      "id": "Home hero and real catalogs",
+      "source": "src/views/home.tsx"
+    },
+    {
+      "id": "Continue Watching on Home",
+      "source": "src/views/home.tsx"
+    },
+    {
+      "id": "Home row customization",
+      "source": "src/views/home.tsx"
+    },
+    {
+      "id": "Classic Stremio Home",
+      "source": "src/views/home.tsx"
+    },
+    {
+      "id": "Discover personalized feed",
+      "source": "src/views/discover.tsx"
+    },
+    {
+      "id": "Daily discovery rails",
+      "source": "src/views/discover.tsx"
+    },
+    {
+      "id": "Critics Pick",
+      "source": "src/views/discover.tsx"
+    },
+    {
+      "id": "Genre discovery",
+      "source": "src/views/discover.tsx"
+    },
+    {
+      "id": "Discovery Queue entry",
+      "source": "src/views/discover.tsx"
+    },
+    {
+      "id": "Movies room",
+      "source": "src/views/movies.tsx"
+    },
+    {
+      "id": "Cinema hero",
+      "source": "src/views/movies.tsx"
+    },
+    {
+      "id": "Movie mood and decade rails",
+      "source": "src/views/movies.tsx"
+    },
+    {
+      "id": "Movie catalog pagination",
+      "source": "src/views/movies.tsx"
+    },
+    {
+      "id": "Shows room",
+      "source": "src/views/shows.tsx"
+    },
+    {
+      "id": "Series Continue Watching",
+      "source": "src/views/shows.tsx"
+    },
+    {
+      "id": "Network and premiere rails",
+      "source": "src/views/shows.tsx"
+    },
+    {
+      "id": "Series catalogs",
+      "source": "src/views/shows.tsx"
+    },
+    {
+      "id": "Anime room",
+      "source": "src/views/anime.tsx"
+    },
+    {
+      "id": "Anime genres and rankings",
+      "source": "src/views/anime.tsx"
+    },
+    {
+      "id": "Anime award winners",
+      "source": "src/views/anime.tsx"
+    },
+    {
+      "id": "Anime Top Picks",
+      "source": "src/views/anime.tsx"
+    },
+    {
+      "id": "Global search",
+      "source": "src/lib/search.ts"
+    },
+    {
+      "id": "Movie search",
+      "source": "src/lib/search.ts"
+    },
+    {
+      "id": "Series search",
+      "source": "src/lib/search.ts"
+    },
+    {
+      "id": "Search provider aggregation",
+      "source": "src/lib/search.ts"
+    },
+    {
+      "id": "Search people",
+      "source": "src/components/search"
+    },
+    {
+      "id": "Search anime",
+      "source": "src/components/search"
+    },
+    {
+      "id": "Search Live TV",
+      "source": "src/components/search"
+    },
+    {
+      "id": "Search direct video URLs",
+      "source": "src/components/search"
+    },
+    {
+      "id": "Search magnet links",
+      "source": "src/components/search"
+    },
+    {
+      "id": "Search guide",
+      "source": "src/components/search"
+    },
+    {
+      "id": "AI search",
+      "source": "src/components/search"
+    },
+    {
+      "id": "Real content details",
+      "source": "src/views/detail.tsx"
+    },
+    {
+      "id": "Poster / backdrop / logo",
+      "source": "src/views/detail.tsx"
+    },
+    {
+      "id": "Synopsis / genres / ratings",
+      "source": "src/views/detail.tsx"
+    },
+    {
+      "id": "Cast and crew",
+      "source": "src/views/detail.tsx"
+    },
+    {
+      "id": "Awards drill-down",
+      "source": "src/views/detail.tsx"
+    },
+    {
+      "id": "Region Watch On links",
+      "source": "src/views/detail.tsx"
+    },
+    {
+      "id": "Recommendations and similar titles",
+      "source": "src/views/detail.tsx"
+    },
+    {
+      "id": "Seasons",
+      "source": "src/views/detail/series-episodes.tsx"
+    },
+    {
+      "id": "Episode details",
+      "source": "src/views/detail/series-episodes.tsx"
+    },
+    {
+      "id": "Episode selection",
+      "source": "src/views/detail/series-episodes.tsx"
+    },
+    {
+      "id": "Episode watched state",
+      "source": "src/views/detail/series-episodes.tsx"
+    },
+    {
+      "id": "Episode merge and deduplication",
+      "source": "src/lib/series-episodes.ts"
+    },
+    {
+      "id": "Season episode mapping",
+      "source": "src/lib/series-episodes.ts"
+    },
+    {
+      "id": "Alternative episode order",
+      "source": "src/lib/providers/tvdb-order.ts"
+    },
+    {
+      "id": "TVDB order cache",
+      "source": "src/lib/providers/tvdb-order.ts"
+    },
+    {
+      "id": "Install addon URL",
+      "source": "src/lib/addon-store.ts"
+    },
+    {
+      "id": "Validate and fetch manifest",
+      "source": "src/lib/addon-store.ts"
+    },
+    {
+      "id": "Configure addon URL",
+      "source": "src/lib/addon-store.ts"
+    },
+    {
+      "id": "Uninstall addon",
+      "source": "src/lib/addon-store.ts"
+    },
+    {
+      "id": "Enable / disable addon",
+      "source": "src/lib/addon-store.ts"
+    },
+    {
+      "id": "Addon sharing",
+      "source": "src/lib/addon-store.ts"
+    },
+    {
+      "id": "Configured addon credentials persistence",
+      "source": "src/lib/addon-store.ts"
+    },
+    {
+      "id": "Addon order",
+      "source": "src/lib/addons-store"
+    },
+    {
+      "id": "Community addon discovery",
+      "source": "src/lib/addons-store"
+    },
+    {
+      "id": "Addon recommendations",
+      "source": "src/lib/addons-store"
+    },
+    {
+      "id": "Addon adult filtering",
+      "source": "src/lib/addons-store"
+    },
+    {
+      "id": "Addon browser",
+      "source": "src/views/addons.tsx"
+    },
+    {
+      "id": "Installed addons management",
+      "source": "src/views/addons.tsx"
+    },
+    {
+      "id": "Addon configuration viewport",
+      "source": "src/views/addons.tsx"
+    },
+    {
+      "id": "Addon detail pages",
+      "source": "src/views/addons.tsx"
+    },
+    {
+      "id": "Addon catalog discovery",
+      "source": "src/lib/addons.ts"
+    },
+    {
+      "id": "Catalog extras / filters",
+      "source": "src/lib/addons.ts"
+    },
+    {
+      "id": "Catalog pages",
+      "source": "src/lib/addons.ts"
+    },
+    {
+      "id": "Addon resource matching",
+      "source": "src/lib/addons.ts"
+    },
+    {
+      "id": "Stremio addon collection sync",
+      "source": "src/lib/addons.ts"
+    },
+    {
+      "id": "Real addon stream requests",
+      "source": "src/lib/streams/addons.ts"
+    },
+    {
+      "id": "Concurrent addon requests",
+      "source": "src/lib/streams/addons.ts"
+    },
+    {
+      "id": "Addon timeouts",
+      "source": "src/lib/streams/addons.ts"
+    },
+    {
+      "id": "Partial stream results",
+      "source": "src/lib/streams/addons.ts"
+    },
+    {
+      "id": "Addon priority / return index",
+      "source": "src/lib/streams/addons.ts"
+    },
+    {
+      "id": "Stream deduplication",
+      "source": "src/lib/streams/addons.ts"
+    },
+    {
+      "id": "Multiple anime / IMDb ID matching",
+      "source": "src/lib/streams/addons.ts"
+    },
+    {
+      "id": "Tracker preservation",
+      "source": "src/lib/streams/addons.ts"
+    },
+    {
+      "id": "Full stream orchestration",
+      "source": "src/lib/streams/pipeline.ts"
+    },
+    {
+      "id": "Corroborated early leak rescue",
+      "source": "src/lib/streams/pipeline.ts"
+    },
+    {
+      "id": "Anime stream enrichment",
+      "source": "src/lib/streams/pipeline.ts"
+    },
+    {
+      "id": "Debrid library merge",
+      "source": "src/lib/streams/pipeline.ts"
+    },
+    {
+      "id": "Direct stream resolution",
+      "source": "src/lib/streams/resolve.ts"
+    },
+    {
+      "id": "Playback request headers",
+      "source": "src/lib/streams/resolve.ts"
+    },
+    {
+      "id": "Embedded addon subtitle URLs",
+      "source": "src/lib/streams/resolve.ts"
+    },
+    {
+      "id": "Debrid resolver fallback",
+      "source": "src/lib/streams/resolve.ts"
+    },
+    {
+      "id": "P2P fallback",
+      "source": "src/lib/streams/resolve.ts"
+    },
+    {
+      "id": "Stub / error video validation",
+      "source": "src/lib/streams/resolve.ts"
+    },
+    {
+      "id": "Episode torrent file selection",
+      "source": "src/lib/streams/resolve.ts"
+    },
+    {
+      "id": "User committed uncached downloads",
+      "source": "src/lib/streams/resolve.ts"
+    },
+    {
+      "id": "External / YouTube / NZB error handling",
+      "source": "src/lib/streams/resolve.ts"
+    },
+    {
+      "id": "Real-Debrid account",
+      "source": "src/lib/debrid/realdebrid.ts"
+    },
+    {
+      "id": "Real-Debrid cache checking",
+      "source": "src/lib/debrid/realdebrid.ts"
+    },
+    {
+      "id": "Real-Debrid playable URL",
+      "source": "src/lib/debrid/realdebrid.ts"
+    },
+    {
+      "id": "Real-Debrid library",
+      "source": "src/lib/debrid/realdebrid.ts"
+    },
+    {
+      "id": "AllDebrid account",
+      "source": "src/lib/debrid/alldebrid.ts"
+    },
+    {
+      "id": "AllDebrid cache checking",
+      "source": "src/lib/debrid/alldebrid.ts"
+    },
+    {
+      "id": "AllDebrid playable URL",
+      "source": "src/lib/debrid/alldebrid.ts"
+    },
+    {
+      "id": "AllDebrid library",
+      "source": "src/lib/debrid/alldebrid.ts"
+    },
+    {
+      "id": "Premiumize account",
+      "source": "src/lib/debrid/premiumize.ts"
+    },
+    {
+      "id": "Premiumize cache checking",
+      "source": "src/lib/debrid/premiumize.ts"
+    },
+    {
+      "id": "Premiumize playable URL",
+      "source": "src/lib/debrid/premiumize.ts"
+    },
+    {
+      "id": "Premiumize library",
+      "source": "src/lib/debrid/premiumize.ts"
+    },
+    {
+      "id": "TorBox account",
+      "source": "src/lib/debrid/torbox.ts"
+    },
+    {
+      "id": "TorBox cache checking",
+      "source": "src/lib/debrid/torbox.ts"
+    },
+    {
+      "id": "TorBox playable URL",
+      "source": "src/lib/debrid/torbox.ts"
+    },
+    {
+      "id": "TorBox library",
+      "source": "src/lib/debrid/torbox.ts"
+    },
+    {
+      "id": "Debrid-Link account",
+      "source": "src/lib/debrid/debridlink.ts"
+    },
+    {
+      "id": "Debrid-Link cache checking",
+      "source": "src/lib/debrid/debridlink.ts"
+    },
+    {
+      "id": "Debrid-Link playable URL",
+      "source": "src/lib/debrid/debridlink.ts"
+    },
+    {
+      "id": "Debrid-Link library",
+      "source": "src/lib/debrid/debridlink.ts"
+    },
+    {
+      "id": "Remote streaming server",
+      "source": "src/lib/stremio-server.ts"
+    },
+    {
+      "id": "Strict remote server policy",
+      "source": "src/lib/stremio-server.ts"
+    },
+    {
+      "id": "Transcode URL generation",
+      "source": "src/lib/stremio-server.ts"
+    },
+    {
+      "id": "Streaming server health",
+      "source": "src/lib/stremio-server.ts"
+    },
+    {
+      "id": "Full torrent download",
+      "source": "src/lib/torrent/full-download.ts"
+    },
+    {
+      "id": "Resume prompt",
+      "source": "src/lib/player"
+    },
+    {
+      "id": "Subtitle styling",
+      "source": "src/lib/player"
+    },
+    {
+      "id": "Dual subtitle tracks",
+      "source": "src/lib/player"
+    },
+    {
+      "id": "Custom subtitle fonts",
+      "source": "src/lib/player"
+    },
+    {
+      "id": "Playback audio filters",
+      "source": "src/lib/player"
+    },
+    {
+      "id": "RTX HDR policy",
+      "source": "src/lib/player"
+    },
+    {
+      "id": "Player resilience / errors",
+      "source": "src/lib/player"
+    },
+    {
+      "id": "Motion interpolation policies",
+      "source": "src/lib/player"
+    },
+    {
+      "id": "Touch-equivalent transport controls",
+      "source": "src/components/player"
+    },
+    {
+      "id": "Stream switcher",
+      "source": "src/components/player"
+    },
+    {
+      "id": "Next / previous episode",
+      "source": "src/components/player"
+    },
+    {
+      "id": "Auto advance",
+      "source": "src/components/player"
+    },
+    {
+      "id": "A/B loop",
+      "source": "src/components/player"
+    },
+    {
+      "id": "Sleep timer",
+      "source": "src/components/player"
+    },
+    {
+      "id": "Stats overlay",
+      "source": "src/components/player"
+    },
+    {
+      "id": "Custom seek bar",
+      "source": "src/components/player"
+    },
+    {
+      "id": "Player chrome customization",
+      "source": "src/components/player"
+    },
+    {
+      "id": "Player episode panel",
+      "source": "src/components/player"
+    },
+    {
+      "id": "GIF recording",
+      "source": "src/components/player"
+    },
+    {
+      "id": "Local episode chooser",
+      "source": "src/components/player"
+    },
+    {
+      "id": "AniSkip intro / outro",
+      "source": "src/lib/skip-intro"
+    },
+    {
+      "id": "TheIntroDB intro / recap",
+      "source": "src/lib/skip-intro"
+    },
+    {
+      "id": "Chapter based skipping",
+      "source": "src/lib/skip-intro"
+    },
+    {
+      "id": "Ad corpus / fingerprint skip",
+      "source": "src/lib/skip-intro"
+    },
+    {
+      "id": "External SRT",
+      "source": "src/lib/subtitles"
+    },
+    {
+      "id": "External ASS / SSA",
+      "source": "src/lib/subtitles"
+    },
+    {
+      "id": "External WebVTT",
+      "source": "src/lib/subtitles"
+    },
+    {
+      "id": "Subtitle encoding detection",
+      "source": "src/lib/subtitles"
+    },
+    {
+      "id": "Subtitle addon requests",
+      "source": "src/lib/subtitles"
+    },
+    {
+      "id": "Subtitle ranking / dedupe",
+      "source": "src/lib/subtitles"
+    },
+    {
+      "id": "SDH / forced flags",
+      "source": "src/lib/subtitles"
+    },
+    {
+      "id": "Subtitle text resync",
+      "source": "src/lib/subtitles"
+    },
+    {
+      "id": "OpenSubtitles v3",
+      "source": "src/lib/subtitles"
+    },
+    {
+      "id": "Wyzie subtitles",
+      "source": "src/lib/subtitles"
+    },
+    {
+      "id": "M3U import",
+      "source": "src/lib/iptv"
+    },
+    {
+      "id": "Xtream credentials",
+      "source": "src/lib/iptv"
+    },
+    {
+      "id": "XMLTV EPG",
+      "source": "src/lib/iptv"
+    },
+    {
+      "id": "Live channel catalogs",
+      "source": "src/lib/iptv"
+    },
+    {
+      "id": "Channel categories",
+      "source": "src/lib/iptv"
+    },
+    {
+      "id": "Live favorites",
+      "source": "src/lib/iptv"
+    },
+    {
+      "id": "Live text search",
+      "source": "src/lib/iptv"
+    },
+    {
+      "id": "Region top networks",
+      "source": "src/lib/iptv"
+    },
+    {
+      "id": "Live catchup",
+      "source": "src/lib/iptv"
+    },
+    {
+      "id": "Xtream VOD movies",
+      "source": "src/lib/iptv"
+    },
+    {
+      "id": "Xtream VOD series",
+      "source": "src/lib/iptv"
+    },
+    {
+      "id": "Playlist export",
+      "source": "src/lib/iptv"
+    },
+    {
+      "id": "Persistent IPTV cache",
+      "source": "src/lib/iptv"
+    },
+    {
+      "id": "Channel headers",
+      "source": "src/lib/iptv"
+    },
+    {
+      "id": "Watch party create / join",
+      "source": "src/lib/together"
+    },
+    {
+      "id": "Room invite links",
+      "source": "src/lib/together"
+    },
+    {
+      "id": "Clock aligned playback sync",
+      "source": "src/lib/together"
+    },
+    {
+      "id": "Together chat",
+      "source": "src/lib/together"
+    },
+    {
+      "id": "On-screen cursors",
+      "source": "src/lib/together"
+    },
+    {
+      "id": "Collaborative drawing",
+      "source": "src/lib/together"
+    },
+    {
+      "id": "Host summon / invite",
+      "source": "src/lib/together"
+    },
+    {
+      "id": "Source matching",
+      "source": "src/lib/together"
+    },
+    {
+      "id": "Self-hosted relay",
+      "source": "src/lib/together"
+    },
+    {
+      "id": "Stremio login / logout",
+      "source": "src/lib/stremio.ts"
+    },
+    {
+      "id": "Stremio user profile",
+      "source": "src/lib/stremio.ts"
+    },
+    {
+      "id": "Cloud library",
+      "source": "src/lib/stremio.ts"
+    },
+    {
+      "id": "Cloud bookmark add / remove",
+      "source": "src/lib/stremio.ts"
+    },
+    {
+      "id": "Cloud progress persistence",
+      "source": "src/lib/stremio.ts"
+    },
+    {
+      "id": "Stremio library repair",
+      "source": "src/lib/stremio-library-repair.ts"
+    },
+    {
+      "id": "Continue Watching merge",
+      "source": "src/lib/continue-watching.ts"
+    },
+    {
+      "id": "Local playback resume",
+      "source": "src/lib/resume.ts"
+    },
+    {
+      "id": "Playback history",
+      "source": "src/lib/playback-history.ts"
+    },
+    {
+      "id": "Watchlist",
+      "source": "src/lib/watchlist.ts"
+    },
+    {
+      "id": "Manual watched state",
+      "source": "src/lib/mark-watched.ts"
+    },
+    {
+      "id": "Trakt device login",
+      "source": "src/lib/trakt"
+    },
+    {
+      "id": "Trakt token refresh",
+      "source": "src/lib/trakt"
+    },
+    {
+      "id": "Trakt profile",
+      "source": "src/lib/trakt"
+    },
+    {
+      "id": "Trakt history sync",
+      "source": "src/lib/trakt"
+    },
+    {
+      "id": "Trakt watchlist",
+      "source": "src/lib/trakt"
+    },
+    {
+      "id": "Trakt watchlist import / export",
+      "source": "src/lib/trakt"
+    },
+    {
+      "id": "Trakt lists",
+      "source": "src/lib/trakt"
+    },
+    {
+      "id": "Trakt recommendations",
+      "source": "src/lib/trakt"
+    },
+    {
+      "id": "Trakt scrobble",
+      "source": "src/lib/trakt"
+    },
+    {
+      "id": "Trakt calendar",
+      "source": "src/lib/trakt"
+    },
+    {
+      "id": "Trakt comments",
+      "source": "src/lib/trakt"
+    },
+    {
+      "id": "AniList login",
+      "source": "src/lib/anilist"
+    },
+    {
+      "id": "AniList watched sync",
+      "source": "src/lib/anilist"
+    },
+    {
+      "id": "AniList lists",
+      "source": "src/lib/anilist"
+    },
+    {
+      "id": "AniList recommendations",
+      "source": "src/lib/anilist"
+    },
+    {
+      "id": "AniList profile / avatar",
+      "source": "src/lib/anilist"
+    },
+    {
+      "id": "AniList relations / threads",
+      "source": "src/lib/anilist"
+    },
+    {
+      "id": "MyAnimeList login",
+      "source": "src/lib/mal"
+    },
+    {
+      "id": "MAL profile",
+      "source": "src/lib/mal"
+    },
+    {
+      "id": "MAL lists",
+      "source": "src/lib/mal"
+    },
+    {
+      "id": "MAL watched sync",
+      "source": "src/lib/mal"
+    },
+    {
+      "id": "Simkl device login",
+      "source": "src/lib/simkl"
+    },
+    {
+      "id": "Simkl history",
+      "source": "src/lib/simkl"
+    },
+    {
+      "id": "Simkl watchlist",
+      "source": "src/lib/simkl"
+    },
+    {
+      "id": "Simkl scrobble",
+      "source": "src/lib/simkl"
+    },
+    {
+      "id": "Simkl calendar",
+      "source": "src/lib/simkl"
+    },
+    {
+      "id": "Simkl user ratings",
+      "source": "src/lib/simkl"
+    },
+    {
+      "id": "Simkl anime grouping",
+      "source": "src/lib/simkl"
+    },
+    {
+      "id": "Letterboxd / Stremboxd session",
+      "source": "src/lib/stremboxd"
+    },
+    {
+      "id": "Letterboxd home rails",
+      "source": "src/lib/stremboxd"
+    },
+    {
+      "id": "Letterboxd catalog integration",
+      "source": "src/lib/stremboxd"
+    },
+    {
+      "id": "Cinemeta metadata",
+      "source": "src/lib/providers"
+    },
+    {
+      "id": "TMDB catalog / metadata",
+      "source": "src/lib/providers"
+    },
+    {
+      "id": "TMDB cast / crew / collections",
+      "source": "src/lib/providers"
+    },
+    {
+      "id": "TMDB IMDb ID resolution",
+      "source": "src/lib/providers"
+    },
+    {
+      "id": "TMDB images / trailers / providers",
+      "source": "src/lib/providers"
+    },
+    {
+      "id": "OMDB ratings and budget",
+      "source": "src/lib/providers"
+    },
+    {
+      "id": "RPDB rated posters",
+      "source": "src/lib/providers"
+    },
+    {
+      "id": "Fanart artwork",
+      "source": "src/lib/providers"
+    },
+    {
+      "id": "MDBList ratings",
+      "source": "src/lib/providers"
+    },
+    {
+      "id": "Wikidata awards / people",
+      "source": "src/lib/providers"
+    },
+    {
+      "id": "TVDB metadata / IDs",
+      "source": "src/lib/providers"
+    },
+    {
+      "id": "TVMaze schedules",
+      "source": "src/lib/providers"
+    },
+    {
+      "id": "Kitsu anime / episodes",
+      "source": "src/lib/providers"
+    },
+    {
+      "id": "AniZip mappings",
+      "source": "src/lib/providers"
+    },
+    {
+      "id": "Jikan MAL ratings",
+      "source": "src/lib/providers"
+    },
+    {
+      "id": "Release Calendar",
+      "source": "src/lib/calendar.ts"
+    },
+    {
+      "id": "Calendar source filters",
+      "source": "src/lib/calendar.ts"
+    },
+    {
+      "id": "Library release calendar",
+      "source": "src/lib/calendar.ts"
+    },
+    {
+      "id": "Custom lists",
+      "source": "src/lib/custom-lists.ts"
+    },
+    {
+      "id": "Multiple profiles",
+      "source": "src/lib/profiles.tsx"
+    },
+    {
+      "id": "Profile switching",
+      "source": "src/lib/profiles.tsx"
+    },
+    {
+      "id": "Per-profile configuration",
+      "source": "src/lib/profiles.tsx"
+    },
+    {
+      "id": "Profile identity sync",
+      "source": "src/lib/profiles.tsx"
+    },
+    {
+      "id": "Parental PIN gates",
+      "source": "src/lib/parental.tsx"
+    },
+    {
+      "id": "Content categories",
+      "source": "src/lib/parental.tsx"
+    },
+    {
+      "id": "Age restrictions",
+      "source": "src/lib/parental.tsx"
+    },
+    {
+      "id": "Curfew controls",
+      "source": "src/lib/curfew.ts"
+    },
+    {
+      "id": "Harbor visual identity",
+      "source": "src/lib/theme.ts"
+    },
+    {
+      "id": "Theme presets",
+      "source": "src/lib/theme.ts"
+    },
+    {
+      "id": "Font pairings",
+      "source": "src/lib/theme.ts"
+    },
+    {
+      "id": "Card / button styles",
+      "source": "src/lib/theme.ts"
+    },
+    {
+      "id": "Custom navigation layouts",
+      "source": "src/lib/theme.ts"
+    },
+    {
+      "id": "Theme Studio",
+      "source": "src/views/settings/theme-panel"
+    },
+    {
+      "id": "Theme code editor",
+      "source": "src/views/settings/theme-panel"
+    },
+    {
+      "id": "Theme import / export",
+      "source": "src/views/settings/theme-panel"
+    },
+    {
+      "id": "Theme library",
+      "source": "src/views/settings/theme-panel"
+    },
+    {
+      "id": "Custom background / logo",
+      "source": "src/views/settings/theme-panel"
+    },
+    {
+      "id": "Remappable hotkeys",
+      "source": "src/lib/hotkeys.ts"
+    },
+    {
+      "id": "Custom font upload",
+      "source": "src/lib/custom-fonts.ts"
+    },
+    {
+      "id": "Discord / Telegram webhooks",
+      "source": "src/lib/webhook-engine.ts"
+    },
+    {
+      "id": "Content notifications",
+      "source": "src/lib/webhook-engine.ts"
+    },
+    {
+      "id": "AI assisted recommendations / search",
+      "source": "src/lib/ai-search.ts"
+    },
+    {
+      "id": "Watching statistics / Wrapped",
+      "source": "src/lib/wrapped"
+    },
+    {
+      "id": "Interface languages",
+      "source": "src/lib/i18n"
+    },
+    {
+      "id": "RTL-aware interface",
+      "source": "src/lib/i18n"
+    },
+    {
+      "id": "Remote control sessions",
+      "source": "src/lib/remote"
+    },
+    {
+      "id": "Remote player binding",
+      "source": "src/lib/remote"
+    },
+    {
+      "id": "Remote text entry",
+      "source": "src/lib/remote"
+    },
+    {
+      "id": "Metadata cache",
+      "source": "src/lib/cache.ts"
+    },
+    {
+      "id": "Settings persistence",
+      "source": "src/lib/settings"
+    },
+    {
+      "id": "Profile settings migration",
+      "source": "src/lib/settings"
+    },
+    {
+      "id": "Advanced configuration",
+      "source": "src/lib/settings"
+    },
+    {
+      "id": "Harbor / Stremio deep links",
+      "source": "src/lib/deep-link.ts"
+    },
+    {
+      "id": "Onboarding / replay",
+      "source": "src/lib/onboarding.tsx"
+    },
+    {
+      "id": "Manga Suwayomi connection",
+      "source": "src/lib/manga/sources/suwayomi/api.ts"
+    },
+    {
+      "id": "Manga Suwayomi source discovery",
+      "source": "src/lib/manga/sources/suwayomi/api.ts"
+    },
+    {
+      "id": "Manga popular/latest/search pagination",
+      "source": "src/lib/manga/sources/suwayomi/api.ts"
+    },
+    {
+      "id": "Manga Suwayomi library",
+      "source": "src/lib/manga/sources/suwayomi/api.ts"
+    },
+    {
+      "id": "Manga extension install/update/remove",
+      "source": "src/lib/manga/sources/suwayomi/graphql.ts"
+    },
+    {
+      "id": "Manga extension repositories",
+      "source": "src/lib/manga/sources/suwayomi/graphql.ts"
+    },
+    {
+      "id": "Manga local CBZ/ZIP",
+      "source": "src/lib/manga/sources/local.ts"
+    },
+    {
+      "id": "Manga image-folder chapters",
+      "source": "src/lib/manga/sources/local.ts"
+    },
+    {
+      "id": "Manga natural page ordering",
+      "source": "src/lib/manga/sources/local.ts"
+    },
+    {
+      "id": "Manga vertical/horizontal strips",
+      "source": "src/views/manga/manga-reader/reader-prefs.ts"
+    },
+    {
+      "id": "Manga single/double pages",
+      "source": "src/views/manga/manga-reader/reader-prefs.ts"
+    },
+    {
+      "id": "Manga book page turns",
+      "source": "src/views/manga/manga-reader/reader-prefs.ts"
+    },
+    {
+      "id": "Manga width/height/original fit",
+      "source": "src/views/manga/manga-reader/reader-prefs.ts"
+    },
+    {
+      "id": "Manga zoom",
+      "source": "src/views/manga/manga-reader/reader-prefs.ts"
+    },
+    {
+      "id": "Manga RTL direction",
+      "source": "src/views/manga/manga-reader/reader-prefs.ts"
+    },
+    {
+      "id": "Manga backgrounds",
+      "source": "src/views/manga/manga-reader/reader-prefs.ts"
+    },
+    {
+      "id": "Manga navigation placement",
+      "source": "src/views/manga/manga-reader/reader-prefs.ts"
+    },
+    {
+      "id": "Manga double-page gap",
+      "source": "src/views/manga/manga-reader/reader-prefs.ts"
+    },
+    {
+      "id": "Manga focus mode",
+      "source": "src/views/manga/manga-reader/reader-prefs.ts"
+    },
+    {
+      "id": "Manga automatic next chapter",
+      "source": "src/views/manga/manga-reader/reader-prefs.ts"
+    },
+    {
+      "id": "Manga chapter-end hint",
+      "source": "src/views/manga/manga-reader/reader-prefs.ts"
+    },
+    {
+      "id": "Manga page download",
+      "source": "src/views/manga/manga-reader/reader-prefs.ts"
+    },
+    {
+      "id": "Manga page-turn sound",
+      "source": "src/views/manga/manga-reader/reader-prefs.ts"
+    },
+    {
+      "id": "Manga chapter progress sync",
+      "source": "src/lib/manga/sources/suwayomi/sync.ts"
+    },
+    {
+      "id": "Manga source filters",
+      "source": "src/lib/manga/sources/suwayomi/rest.ts"
+    },
+    {
+      "id": "Sports original league catalog",
+      "source": "src/lib/sports/espn-leagues.ts"
+    },
+    {
+      "id": "Sports calendar and scores",
+      "source": "src/lib/sports/espn-scoreboard.ts"
+    },
+    {
+      "id": "Sports live/upcoming/final filtering",
+      "source": "src/lib/sports/espn-scoreboard.ts"
+    },
+    {
+      "id": "Sports live score refresh",
+      "source": "src/lib/sports/espn-scoreboard.ts"
+    },
+    {
+      "id": "Sports score periods and statistics",
+      "source": "src/lib/sports/espn-summary.ts"
+    },
+    {
+      "id": "Sports event commentary",
+      "source": "src/lib/sports/espn-summary.ts"
+    },
+    {
+      "id": "Sports favorite leagues and teams",
+      "source": "src/lib/sports/favourites.ts"
+    },
+    {
+      "id": "Sports external-service consent",
+      "source": "src/lib/sports/usage-notice.ts"
+    },
+    {
+      "id": "Sports event reminders",
+      "source": "src/lib/sports/reminders.ts"
+    },
+    {
+      "id": "Sports standings",
+      "source": "src/lib/sports/standings.ts"
+    },
+    {
+      "id": "Sports configured broadcast sources",
+      "source": "src/lib/sports/stream-resolver.ts"
+    },
+    {
+      "id": "Home row ordering",
+      "source": "src/lib/home-customization.ts"
+    },
+    {
+      "id": "Home row visibility",
+      "source": "src/lib/home-customization.ts"
+    },
+    {
+      "id": "Home row titles",
+      "source": "src/lib/home-customization.ts"
+    },
+    {
+      "id": "Home Top 10 numerals",
+      "source": "src/lib/home-customization.ts"
+    },
+    {
+      "id": "Home hero source selection",
+      "source": "src/lib/home-customization.ts"
+    },
+    {
+      "id": "Home play button shape",
+      "source": "src/lib/home-customization.ts"
+    },
+    {
+      "id": "Home secondary button selection",
+      "source": "src/lib/home-customization.ts"
+    },
+    {
+      "id": "Home Continue Watching placement",
+      "source": "src/lib/home-customization.ts"
+    },
+    {
+      "id": "M3U VOD classification",
+      "source": "src/lib/iptv/vod.ts"
+    },
+    {
+      "id": "VOD M3U episode grouping",
+      "source": "src/lib/iptv/vod.ts"
+    },
+    {
+      "id": "VOD title normalization",
+      "source": "src/lib/iptv/vod-title.ts"
+    },
+    {
+      "id": "Xtream short EPG",
+      "source": "src/lib/iptv/xtream.ts"
+    },
+    {
+      "id": "Xtream live container selection",
+      "source": "src/lib/iptv/xtream.ts"
+    },
+    {
+      "id": "VOD metadata enrichment",
+      "source": "src/lib/iptv/vod-enrich.ts"
+    },
+    {
+      "id": "VOD Arabic-aware search",
+      "source": "src/lib/iptv/rtl.ts"
+    },
+    {
+      "id": "VOD episode progress display",
+      "source": "src/views/playlist-vod/episode-row.tsx"
+    },
+    {
+      "id": "Spooktober seasonal availability",
+      "source": "src/lib/spooktober-season.ts"
+    },
+    {
+      "id": "Spooktober invitation and dismissal",
+      "source": "src/views/spooktober/spooktober-entry.tsx"
+    },
+    {
+      "id": "Spooktober original curated selections",
+      "source": "public/spooktober/content.json"
+    },
+    {
+      "id": "Spooktober native detail navigation",
+      "source": "src/views/spooktober/spooktober-view.tsx"
+    },
+    {
+      "id": "Local music file import",
+      "source": "src-tauri/src/music/connectors/local/tags.rs"
+    },
+    {
+      "id": "Music album and artist grouping",
+      "source": "src-tauri/src/music/connectors/local/tags.rs"
+    },
+    {
+      "id": "Music audio cover import",
+      "source": "src-tauri/src/music/connectors/local/tags.rs"
+    },
+    {
+      "id": "Music native audio playback",
+      "source": "src-tauri/src/music/commands/playback.rs"
+    },
+    {
+      "id": "Music playback queue",
+      "source": "src-tauri/src/music/commands/playback.rs"
+    },
+    {
+      "id": "Music system controls",
+      "source": "src-tauri/src/music/commands/playback.rs"
+    },
+    {
+      "id": "Music and video coordination",
+      "source": "src-tauri/src/music/commands/playback.rs"
+    },
+    {
+      "id": "Music playlist creation and rename",
+      "source": "src-tauri/src/music/library.rs"
+    },
+    {
+      "id": "Music playlist track membership",
+      "source": "src-tauri/src/music/library.rs"
+    },
+    {
+      "id": "Music playlist track ordering",
+      "source": "src-tauri/src/music/library.rs"
+    },
+    {
+      "id": "Music playlist deletion preserving library",
+      "source": "src-tauri/src/music/library.rs"
+    },
+    {
+      "id": "Music local folder scanning",
+      "source": "src-tauri/src/music/connectors/local/scan.rs"
+    },
+    {
+      "id": "Music playlist search and content filters",
+      "source": "src/lib/music/playlist-filters.ts"
+    },
+    {
+      "id": "Music playlist listening order",
+      "source": "src/lib/music/playlist-filters.ts"
+    },
+    {
+      "id": "Music playlist compact view",
+      "source": "src/components/music/music-playlist-toolbar.tsx"
+    },
+    {
+      "id": "Music track title copying",
+      "source": "src/components/music/music-track-menu.tsx"
+    },
+    {
+      "id": "Subtitle source FPS correction",
+      "source": "src/lib/player/subtitle-fps.ts"
+    }
+  ],
+  "settings": [
+    {
+      "id": "soundTheme",
+      "source": "src/lib/settings/types.ts",
+      "line": 108
+    },
+    {
+      "id": "sfxVolume",
+      "source": "src/lib/settings/types.ts",
+      "line": 109
+    },
+    {
+      "id": "playerVolumeSfx",
+      "source": "src/lib/settings/types.ts",
+      "line": 110
+    },
+    {
+      "id": "blurComments",
+      "source": "src/lib/settings/types.ts",
+      "line": 111
+    },
+    {
+      "id": "blurEpisodes",
+      "source": "src/lib/settings/types.ts",
+      "line": 112
+    },
+    {
+      "id": "tmdbKey",
+      "source": "src/lib/settings/types.ts",
+      "line": 113
+    },
+    {
+      "id": "omdbKey",
+      "source": "src/lib/settings/types.ts",
+      "line": 114
+    },
+    {
+      "id": "rpdbKey",
+      "source": "src/lib/settings/types.ts",
+      "line": 115
+    },
+    {
+      "id": "imdbApiFallback",
+      "source": "src/lib/settings/types.ts",
+      "line": 116
+    },
+    {
+      "id": "fanartKey",
+      "source": "src/lib/settings/types.ts",
+      "line": 117
+    },
+    {
+      "id": "tvdbKey",
+      "source": "src/lib/settings/types.ts",
+      "line": 118
+    },
+    {
+      "id": "rdKey",
+      "source": "src/lib/settings/types.ts",
+      "line": 119
+    },
+    {
+      "id": "tbKey",
+      "source": "src/lib/settings/types.ts",
+      "line": 120
+    },
+    {
+      "id": "adKey",
+      "source": "src/lib/settings/types.ts",
+      "line": 121
+    },
+    {
+      "id": "pmKey",
+      "source": "src/lib/settings/types.ts",
+      "line": 122
+    },
+    {
+      "id": "dlKey",
+      "source": "src/lib/settings/types.ts",
+      "line": 123
+    },
+    {
+      "id": "region",
+      "source": "src/lib/settings/types.ts",
+      "line": 124
+    },
+    {
+      "id": "preferredLanguages",
+      "source": "src/lib/settings/types.ts",
+      "line": 125
+    },
+    {
+      "id": "requirePreferredLanguage",
+      "source": "src/lib/settings/types.ts",
+      "line": 126
+    },
+    {
+      "id": "showImdbBadge",
+      "source": "src/lib/settings/types.ts",
+      "line": 127
+    },
+    {
+      "id": "showSubtitleIndicator",
+      "source": "src/lib/settings/types.ts",
+      "line": 128
+    },
+    {
+      "id": "showTmdbBadge",
+      "source": "src/lib/settings/types.ts",
+      "line": 129
+    },
+    {
+      "id": "showRtBadge",
+      "source": "src/lib/settings/types.ts",
+      "line": 130
+    },
+    {
+      "id": "showMalBadge",
+      "source": "src/lib/settings/types.ts",
+      "line": 131
+    },
+    {
+      "id": "animeCardRating",
+      "source": "src/lib/settings/types.ts",
+      "line": 132
+    },
+    {
+      "id": "showMetacriticBadge",
+      "source": "src/lib/settings/types.ts",
+      "line": 133
+    },
+    {
+      "id": "showLetterboxdBadge",
+      "source": "src/lib/settings/types.ts",
+      "line": 134
+    },
+    {
+      "id": "showMdblistBadge",
+      "source": "src/lib/settings/types.ts",
+      "line": 135
+    },
+    {
+      "id": "showTraktBadge",
+      "source": "src/lib/settings/types.ts",
+      "line": 136
+    },
+    {
+      "id": "showDetailRatings",
+      "source": "src/lib/settings/types.ts",
+      "line": 137
+    },
+    {
+      "id": "showImdbDetail",
+      "source": "src/lib/settings/types.ts",
+      "line": 138
+    },
+    {
+      "id": "showTmdbDetail",
+      "source": "src/lib/settings/types.ts",
+      "line": 139
+    },
+    {
+      "id": "showMalDetail",
+      "source": "src/lib/settings/types.ts",
+      "line": 140
+    },
+    {
+      "id": "showRtDetail",
+      "source": "src/lib/settings/types.ts",
+      "line": 141
+    },
+    {
+      "id": "showRtAudienceDetail",
+      "source": "src/lib/settings/types.ts",
+      "line": 142
+    },
+    {
+      "id": "showLetterboxdDetail",
+      "source": "src/lib/settings/types.ts",
+      "line": 143
+    },
+    {
+      "id": "showMetacriticDetail",
+      "source": "src/lib/settings/types.ts",
+      "line": 144
+    },
+    {
+      "id": "showTraktDetail",
+      "source": "src/lib/settings/types.ts",
+      "line": 145
+    },
+    {
+      "id": "showMdblistDetail",
+      "source": "src/lib/settings/types.ts",
+      "line": 146
+    },
+    {
+      "id": "showTraktComments",
+      "source": "src/lib/settings/types.ts",
+      "line": 147
+    },
+    {
+      "id": "showSimklBadge",
+      "source": "src/lib/settings/types.ts",
+      "line": 148
+    },
+    {
+      "id": "showSimklDetail",
+      "source": "src/lib/settings/types.ts",
+      "line": 149
+    },
+    {
+      "id": "showDubBadge",
+      "source": "src/lib/settings/types.ts",
+      "line": 150
+    },
+    {
+      "id": "simklShowCommunityRatings",
+      "source": "src/lib/settings/types.ts",
+      "line": 151
+    },
+    {
+      "id": "simklEnableUserRatings",
+      "source": "src/lib/settings/types.ts",
+      "line": 152
+    },
+    {
+      "id": "simklGranularFilters",
+      "source": "src/lib/settings/types.ts",
+      "line": 153
+    },
+    {
+      "id": "cardBadgeLimit",
+      "source": "src/lib/settings/types.ts",
+      "line": 154
+    },
+    {
+      "id": "showQualityBadge",
+      "source": "src/lib/settings/types.ts",
+      "line": 155
+    },
+    {
+      "id": "qualityBadgeStyle",
+      "source": "src/lib/settings/types.ts",
+      "line": 156
+    },
+    {
+      "id": "showCardBadges",
+      "source": "src/lib/settings/types.ts",
+      "line": 157
+    },
+    {
+      "id": "homeLanguages",
+      "source": "src/lib/settings/types.ts",
+      "line": 158
+    },
+    {
+      "id": "posterScale",
+      "source": "src/lib/settings/types.ts",
+      "line": 159
+    },
+    {
+      "id": "posterRadius",
+      "source": "src/lib/settings/types.ts",
+      "line": 160
+    },
+    {
+      "id": "posterEffect",
+      "source": "src/lib/settings/types.ts",
+      "line": 161
+    },
+    {
+      "id": "posterQuality",
+      "source": "src/lib/settings/types.ts",
+      "line": 162
+    },
+    {
+      "id": "liquidGlass",
+      "source": "src/lib/settings/types.ts",
+      "line": 163
+    },
+    {
+      "id": "defaultLiquidGlassBlur",
+      "source": "src/lib/settings/types.ts",
+      "line": 164
+    },
+    {
+      "id": "defaultLiquidGlassTint",
+      "source": "src/lib/settings/types.ts",
+      "line": 165
+    },
+    {
+      "id": "experimentalLiquidGlassEnabled",
+      "source": "src/lib/settings/types.ts",
+      "line": 166
+    },
+    {
+      "id": "experimentalLiquidGlassOpacity",
+      "source": "src/lib/settings/types.ts",
+      "line": 167
+    },
+    {
+      "id": "posterBackdropExpansion",
+      "source": "src/lib/settings/types.ts",
+      "line": 168
+    },
+    {
+      "id": "posterFocusedCard",
+      "source": "src/lib/settings/types.ts",
+      "line": 169
+    },
+    {
+      "id": "posterDockMagnification",
+      "source": "src/lib/settings/types.ts",
+      "line": 170
+    },
+    {
+      "id": "posterDockTransitionMs",
+      "source": "src/lib/settings/types.ts",
+      "line": 171
+    },
+    {
+      "id": "top10Ribbon",
+      "source": "src/lib/settings/types.ts",
+      "line": 172
+    },
+    {
+      "id": "top10RibbonSide",
+      "source": "src/lib/settings/types.ts",
+      "line": 173
+    },
+    {
+      "id": "awardTabs",
+      "source": "src/lib/settings/types.ts",
+      "line": 174
+    },
+    {
+      "id": "awardTabPosition",
+      "source": "src/lib/settings/types.ts",
+      "line": 175
+    },
+    {
+      "id": "rowTitleScale",
+      "source": "src/lib/settings/types.ts",
+      "line": 176
+    },
+    {
+      "id": "playerTitleScale",
+      "source": "src/lib/settings/types.ts",
+      "line": 177
+    },
+    {
+      "id": "playerTitleSeriesFirst",
+      "source": "src/lib/settings/types.ts",
+      "line": 178
+    },
+    {
+      "id": "uiScale",
+      "source": "src/lib/settings/types.ts",
+      "line": 179
+    },
+    {
+      "id": "serveWebUi",
+      "source": "src/lib/settings/types.ts",
+      "line": 180
+    },
+    {
+      "id": "remoteControlEnabled",
+      "source": "src/lib/settings/types.ts",
+      "line": 181
+    },
+    {
+      "id": "controllerSupportEnabled",
+      "source": "src/lib/settings/types.ts",
+      "line": 182
+    },
+    {
+      "id": "controllerBackgroundInput",
+      "source": "src/lib/settings/types.ts",
+      "line": 183
+    },
+    {
+      "id": "controllerDeadzone",
+      "source": "src/lib/settings/types.ts",
+      "line": 184
+    },
+    {
+      "id": "controllerCursorSpeed",
+      "source": "src/lib/settings/types.ts",
+      "line": 185
+    },
+    {
+      "id": "controllerCursor",
+      "source": "src/lib/settings/types.ts",
+      "line": 186
+    },
+    {
+      "id": "controllerCursorImage",
+      "source": "src/lib/settings/types.ts",
+      "line": 187
+    },
+    {
+      "id": "controllerCursorSize",
+      "source": "src/lib/settings/types.ts",
+      "line": 188
+    },
+    {
+      "id": "controllerCursorEnabled",
+      "source": "src/lib/settings/types.ts",
+      "line": 189
+    },
+    {
+      "id": "controllerCursorHideMs",
+      "source": "src/lib/settings/types.ts",
+      "line": 190
+    },
+    {
+      "id": "controllerKeyboardSize",
+      "source": "src/lib/settings/types.ts",
+      "line": 191
+    },
+    {
+      "id": "controllerRepeatMs",
+      "source": "src/lib/settings/types.ts",
+      "line": 192
+    },
+    {
+      "id": "controllerInitialDelayMs",
+      "source": "src/lib/settings/types.ts",
+      "line": 193
+    },
+    {
+      "id": "trailerQuality",
+      "source": "src/lib/settings/types.ts",
+      "line": 194
+    },
+    {
+      "id": "detailTrailerAutoplay",
+      "source": "src/lib/settings/types.ts",
+      "line": 195
+    },
+    {
+      "id": "heroBackdropCarousel",
+      "source": "src/lib/settings/types.ts",
+      "line": 196
+    },
+    {
+      "id": "detailTrailerAudio",
+      "source": "src/lib/settings/types.ts",
+      "line": 197
+    },
+    {
+      "id": "heroShadow",
+      "source": "src/lib/settings/types.ts",
+      "line": 198
+    },
+    {
+      "id": "heroFull",
+      "source": "src/lib/settings/types.ts",
+      "line": 199
+    },
+    {
+      "id": "heroFullQuality",
+      "source": "src/lib/settings/types.ts",
+      "line": 200
+    },
+    {
+      "id": "heroFeed",
+      "source": "src/lib/settings/types.ts",
+      "line": 201
+    },
+    {
+      "id": "heroTrailers",
+      "source": "src/lib/settings/types.ts",
+      "line": 202
+    },
+    {
+      "id": "heroTrailerAudio",
+      "source": "src/lib/settings/types.ts",
+      "line": 203
+    },
+    {
+      "id": "navIconAnimations",
+      "source": "src/lib/settings/types.ts",
+      "line": 204
+    },
+    {
+      "id": "bigPicturePlayerUi",
+      "source": "src/lib/settings/types.ts",
+      "line": 205
+    },
+    {
+      "id": "screensaver",
+      "source": "src/lib/settings/types.ts",
+      "line": 206
+    },
+    {
+      "id": "screensaverStyle",
+      "source": "src/lib/settings/types.ts",
+      "line": 207
+    },
+    {
+      "id": "screensaverMedia",
+      "source": "src/lib/settings/types.ts",
+      "line": 208
+    },
+    {
+      "id": "screensaverMediaId",
+      "source": "src/lib/settings/types.ts",
+      "line": 209
+    },
+    {
+      "id": "screensaverDelayMin",
+      "source": "src/lib/settings/types.ts",
+      "line": 210
+    },
+    {
+      "id": "resumePrompt",
+      "source": "src/lib/settings/types.ts",
+      "line": 211
+    },
+    {
+      "id": "resumePlayback",
+      "source": "src/lib/settings/types.ts",
+      "line": 212
+    },
+    {
+      "id": "keepFullscreenOnExit",
+      "source": "src/lib/settings/types.ts",
+      "line": 213
+    },
+    {
+      "id": "fullscreenRestorePosition",
+      "source": "src/lib/settings/types.ts",
+      "line": 214
+    },
+    {
+      "id": "contentAdvisoryToast",
+      "source": "src/lib/settings/types.ts",
+      "line": 215
+    },
+    {
+      "id": "contentAdvisoryTheme",
+      "source": "src/lib/settings/types.ts",
+      "line": 216
+    },
+    {
+      "id": "contentAdvisoryShowIgnore",
+      "source": "src/lib/settings/types.ts",
+      "line": 217
+    },
+    {
+      "id": "playerVolumeHud",
+      "source": "src/lib/settings/types.ts",
+      "line": 218
+    },
+    {
+      "id": "playerVolumeHudPosition",
+      "source": "src/lib/settings/types.ts",
+      "line": 219
+    },
+    {
+      "id": "customPlaybackSpeeds",
+      "source": "src/lib/settings/types.ts",
+      "line": 220
+    },
+    {
+      "id": "customSleepMinutes",
+      "source": "src/lib/settings/types.ts",
+      "line": 221
+    },
+    {
+      "id": "defaultPlaybackSpeed",
+      "source": "src/lib/settings/types.ts",
+      "line": 222
+    },
+    {
+      "id": "navbarSleepTimer",
+      "source": "src/lib/settings/types.ts",
+      "line": 223
+    },
+    {
+      "id": "badgePlacement",
+      "source": "src/lib/settings/types.ts",
+      "line": 224
+    },
+    {
+      "id": "watchlistBadge",
+      "source": "src/lib/settings/types.ts",
+      "line": 225
+    },
+    {
+      "id": "showWatchedButton",
+      "source": "src/lib/settings/types.ts",
+      "line": 226
+    },
+    {
+      "id": "showPopcornBadge",
+      "source": "src/lib/settings/types.ts",
+      "line": 227
+    },
+    {
+      "id": "episodeLayout",
+      "source": "src/lib/settings/types.ts",
+      "line": 228
+    },
+    {
+      "id": "episodeCardScale",
+      "source": "src/lib/settings/types.ts",
+      "line": 229
+    },
+    {
+      "id": "episodeSort",
+      "source": "src/lib/settings/types.ts",
+      "line": 230
+    },
+    {
+      "id": "showEpisodeRating",
+      "source": "src/lib/settings/types.ts",
+      "line": 231
+    },
+    {
+      "id": "showEpisodeDescription",
+      "source": "src/lib/settings/types.ts",
+      "line": 232
+    },
+    {
+      "id": "episodeHiding",
+      "source": "src/lib/settings/types.ts",
+      "line": 233
+    },
+    {
+      "id": "hdEpisodeImages",
+      "source": "src/lib/settings/types.ts",
+      "line": 234
+    },
+    {
+      "id": "episodeArcGroups",
+      "source": "src/lib/settings/types.ts",
+      "line": 235
+    },
+    {
+      "id": "episodeOrderProvider",
+      "source": "src/lib/settings/types.ts",
+      "line": 236
+    },
+    {
+      "id": "tvdbSeasonType",
+      "source": "src/lib/settings/types.ts",
+      "line": 237
+    },
+    {
+      "id": "tvdbOrderPanel",
+      "source": "src/lib/settings/types.ts",
+      "line": 246
+    },
+    {
+      "id": "tvdbPin",
+      "source": "src/lib/settings/types.ts",
+      "line": 247
+    },
+    {
+      "id": "harborAvatar",
+      "source": "src/lib/settings/types.ts",
+      "line": 248
+    },
+    {
+      "id": "harborColor",
+      "source": "src/lib/settings/types.ts",
+      "line": 249
+    },
+    {
+      "id": "anilistAutoSync",
+      "source": "src/lib/settings/types.ts",
+      "line": 250
+    },
+    {
+      "id": "malAutoSync",
+      "source": "src/lib/settings/types.ts",
+      "line": 251
+    },
+    {
+      "id": "anilistBlurComments",
+      "source": "src/lib/settings/types.ts",
+      "line": 252
+    },
+    {
+      "id": "showAnilistComments",
+      "source": "src/lib/settings/types.ts",
+      "line": 253
+    },
+    {
+      "id": "useAnilistAvatar",
+      "source": "src/lib/settings/types.ts",
+      "line": 254
+    },
+    {
+      "id": "useTraktAvatar",
+      "source": "src/lib/settings/types.ts",
+      "line": 255
+    },
+    {
+      "id": "useSimklAvatar",
+      "source": "src/lib/settings/types.ts",
+      "line": 256
+    },
+    {
+      "id": "useMalAvatar",
+      "source": "src/lib/settings/types.ts",
+      "line": 257
+    },
+    {
+      "id": "traktClientId",
+      "source": "src/lib/settings/types.ts",
+      "line": 258
+    },
+    {
+      "id": "traktClientSecret",
+      "source": "src/lib/settings/types.ts",
+      "line": 259
+    },
+    {
+      "id": "traktAccessToken",
+      "source": "src/lib/settings/types.ts",
+      "line": 260
+    },
+    {
+      "id": "traktRefreshToken",
+      "source": "src/lib/settings/types.ts",
+      "line": 261
+    },
+    {
+      "id": "traktExpiresAt",
+      "source": "src/lib/settings/types.ts",
+      "line": 262
+    },
+    {
+      "id": "traktUsername",
+      "source": "src/lib/settings/types.ts",
+      "line": 263
+    },
+    {
+      "id": "streaming",
+      "source": "src/lib/settings/types.ts",
+      "line": 264
+    },
+    {
+      "id": "showAdultAddons",
+      "source": "src/lib/settings/types.ts",
+      "line": 265
+    },
+    {
+      "id": "togetherRelayUrl",
+      "source": "src/lib/settings/types.ts",
+      "line": 266
+    },
+    {
+      "id": "togetherCfToken",
+      "source": "src/lib/settings/types.ts",
+      "line": 267
+    },
+    {
+      "id": "togetherCfAccountId",
+      "source": "src/lib/settings/types.ts",
+      "line": 268
+    },
+    {
+      "id": "togetherCfDeployed",
+      "source": "src/lib/settings/types.ts",
+      "line": 269
+    },
+    {
+      "id": "togetherShareCursors",
+      "source": "src/lib/settings/types.ts",
+      "line": 270
+    },
+    {
+      "id": "togetherGuestsPick",
+      "source": "src/lib/settings/types.ts",
+      "line": 271
+    },
+    {
+      "id": "discordRichPresence",
+      "source": "src/lib/settings/types.ts",
+      "line": 272
+    },
+    {
+      "id": "discordHideTitle",
+      "source": "src/lib/settings/types.ts",
+      "line": 273
+    },
+    {
+      "id": "discordShowWhenPaused",
+      "source": "src/lib/settings/types.ts",
+      "line": 274
+    },
+    {
+      "id": "discordShowWhenBrowsing",
+      "source": "src/lib/settings/types.ts",
+      "line": 275
+    },
+    {
+      "id": "discordShowPoster",
+      "source": "src/lib/settings/types.ts",
+      "line": 276
+    },
+    {
+      "id": "discordShowTimestamp",
+      "source": "src/lib/settings/types.ts",
+      "line": 277
+    },
+    {
+      "id": "discordShowPartyJoin",
+      "source": "src/lib/settings/types.ts",
+      "line": 278
+    },
+    {
+      "id": "discordMusicPresence",
+      "source": "src/lib/settings/types.ts",
+      "line": 279
+    },
+    {
+      "id": "playerEngine",
+      "source": "src/lib/settings/types.ts",
+      "line": 280
+    },
+    {
+      "id": "pipBehavior",
+      "source": "src/lib/settings/types.ts",
+      "line": 282
+    },
+    {
+      "id": "playerShellId",
+      "source": "src/lib/settings/types.ts",
+      "line": 283
+    },
+    {
+      "id": "playerChromeTheme",
+      "source": "src/lib/settings/types.ts",
+      "line": 284
+    },
+    {
+      "id": "playerMenuBlack",
+      "source": "src/lib/settings/types.ts",
+      "line": 285
+    },
+    {
+      "id": "playerScreenLockEnabled",
+      "source": "src/lib/settings/types.ts",
+      "line": 286
+    },
+    {
+      "id": "seekPreviewEnabled",
+      "source": "src/lib/settings/types.ts",
+      "line": 287
+    },
+    {
+      "id": "instantPlay",
+      "source": "src/lib/settings/types.ts",
+      "line": 288
+    },
+    {
+      "id": "instantPlaybackPreparation",
+      "source": "src/lib/settings/types.ts",
+      "line": 289
+    },
+    {
+      "id": "autoNextStreamOnStall",
+      "source": "src/lib/settings/types.ts",
+      "line": 290
+    },
+    {
+      "id": "autoNextStreamOnStallSec",
+      "source": "src/lib/settings/types.ts",
+      "line": 291
+    },
+    {
+      "id": "fullscreenMode",
+      "source": "src/lib/settings/types.ts",
+      "line": 292
+    },
+    {
+      "id": "seasonSourceLock",
+      "source": "src/lib/settings/types.ts",
+      "line": 293
+    },
+    {
+      "id": "rememberLastStream",
+      "source": "src/lib/settings/types.ts",
+      "line": 294
+    },
+    {
+      "id": "keepSourceNextEpisode",
+      "source": "src/lib/settings/types.ts",
+      "line": 295
+    },
+    {
+      "id": "playerHdrToSdr",
+      "source": "src/lib/settings/types.ts",
+      "line": 296
+    },
+    {
+      "id": "playerRtxHdr",
+      "source": "src/lib/settings/types.ts",
+      "line": 297
+    },
+    {
+      "id": "playerRtxVsr",
+      "source": "src/lib/settings/types.ts",
+      "line": 298
+    },
+    {
+      "id": "playerMacEdr",
+      "source": "src/lib/settings/types.ts",
+      "line": 299
+    },
+    {
+      "id": "playerDisplayPanel",
+      "source": "src/lib/settings/types.ts",
+      "line": 300
+    },
+    {
+      "id": "playerMotionInterp",
+      "source": "src/lib/settings/types.ts",
+      "line": 301
+    },
+    {
+      "id": "playerAnime4k",
+      "source": "src/lib/settings/types.ts",
+      "line": 302
+    },
+    {
+      "id": "playerAnime4kAnimeOnly",
+      "source": "src/lib/settings/types.ts",
+      "line": 303
+    },
+    {
+      "id": "playerAnime4kIndicator",
+      "source": "src/lib/settings/types.ts",
+      "line": 304
+    },
+    {
+      "id": "playerMpvEmbed",
+      "source": "src/lib/settings/types.ts",
+      "line": 305
+    },
+    {
+      "id": "playerSeparateDisplay",
+      "source": "src/lib/settings/types.ts",
+      "line": 307
+    },
+    {
+      "id": "playerSeparateCoverTaskbar",
+      "source": "src/lib/settings/types.ts",
+      "line": 309
+    },
+    {
+      "id": "playerP2pChip",
+      "source": "src/lib/settings/types.ts",
+      "line": 310
+    },
+    {
+      "id": "showQualityInfo",
+      "source": "src/lib/settings/types.ts",
+      "line": 311
+    },
+    {
+      "id": "stremioServerTranscode",
+      "source": "src/lib/settings/types.ts",
+      "line": 312
+    },
+    {
+      "id": "directTorrentStream",
+      "source": "src/lib/settings/types.ts",
+      "line": 313
+    },
+    {
+      "id": "torrentsDisabled",
+      "source": "src/lib/settings/types.ts",
+      "line": 314
+    },
+    {
+      "id": "torrentFullDownload",
+      "source": "src/lib/settings/types.ts",
+      "line": 315
+    },
+    {
+      "id": "keepStreamDownloadsInBackground",
+      "source": "src/lib/settings/types.ts",
+      "line": 316
+    },
+    {
+      "id": "deferTorrentEngine",
+      "source": "src/lib/settings/types.ts",
+      "line": 317
+    },
+    {
+      "id": "p2pAutoConsent",
+      "source": "src/lib/settings/types.ts",
+      "line": 318
+    },
+    {
+      "id": "streamMode",
+      "source": "src/lib/settings/types.ts",
+      "line": 319
+    },
+    {
+      "id": "queueDrivesNav",
+      "source": "src/lib/settings/types.ts",
+      "line": 320
+    },
+    {
+      "id": "streamCacheRetentionHours",
+      "source": "src/lib/settings/types.ts",
+      "line": 321
+    },
+    {
+      "id": "streamCacheMaxGb",
+      "source": "src/lib/settings/types.ts",
+      "line": 322
+    },
+    {
+      "id": "deleteWatchedDownloads",
+      "source": "src/lib/settings/types.ts",
+      "line": 323
+    },
+    {
+      "id": "streamCacheDir",
+      "source": "src/lib/settings/types.ts",
+      "line": 324
+    },
+    {
+      "id": "playbackCacheDir",
+      "source": "src/lib/settings/types.ts",
+      "line": 325
+    },
+    {
+      "id": "remoteStreamServerUrl",
+      "source": "src/lib/settings/types.ts",
+      "line": 326
+    },
+    {
+      "id": "remoteStreamServerStrict",
+      "source": "src/lib/settings/types.ts",
+      "line": 327
+    },
+    {
+      "id": "castAlwaysTranscode",
+      "source": "src/lib/settings/types.ts",
+      "line": 328
+    },
+    {
+      "id": "playerAnime4kShaders",
+      "source": "src/lib/settings/types.ts",
+      "line": 329
+    },
+    {
+      "id": "playerAnime4kMode",
+      "source": "src/lib/settings/types.ts",
+      "line": 330
+    },
+    {
+      "id": "playerAnime4kTier",
+      "source": "src/lib/settings/types.ts",
+      "line": 331
+    },
+    {
+      "id": "playerAnime4kFolder",
+      "source": "src/lib/settings/types.ts",
+      "line": 332
+    },
+    {
+      "id": "playerAnime4kOverride",
+      "source": "src/lib/settings/types.ts",
+      "line": 333
+    },
+    {
+      "id": "playerShaders",
+      "source": "src/lib/settings/types.ts",
+      "line": 334
+    },
+    {
+      "id": "preferredSubLangs",
+      "source": "src/lib/settings/types.ts",
+      "line": 335
+    },
+    {
+      "id": "preferredAudioLangs",
+      "source": "src/lib/settings/types.ts",
+      "line": 336
+    },
+    {
+      "id": "subFontSize",
+      "source": "src/lib/settings/types.ts",
+      "line": 337
+    },
+    {
+      "id": "subFontColor",
+      "source": "src/lib/settings/types.ts",
+      "line": 338
+    },
+    {
+      "id": "subBorderColor",
+      "source": "src/lib/settings/types.ts",
+      "line": 339
+    },
+    {
+      "id": "subBorderSize",
+      "source": "src/lib/settings/types.ts",
+      "line": 340
+    },
+    {
+      "id": "subMarginY",
+      "source": "src/lib/settings/types.ts",
+      "line": 341
+    },
+    {
+      "id": "subAlignX",
+      "source": "src/lib/settings/types.ts",
+      "line": 342
+    },
+    {
+      "id": "subAssOverride",
+      "source": "src/lib/settings/types.ts",
+      "line": 343
+    },
+    {
+      "id": "subAssNormalizeSize",
+      "source": "src/lib/settings/types.ts",
+      "line": 344
+    },
+    {
+      "id": "subStyle",
+      "source": "src/lib/settings/types.ts",
+      "line": 345
+    },
+    {
+      "id": "subFontFamily",
+      "source": "src/lib/settings/types.ts",
+      "line": 346
+    },
+    {
+      "id": "subBold",
+      "source": "src/lib/settings/types.ts",
+      "line": 347
+    },
+    {
+      "id": "customFonts",
+      "source": "src/lib/settings/types.ts",
+      "line": 348
+    },
+    {
+      "id": "subBoxOpacity",
+      "source": "src/lib/settings/types.ts",
+      "line": 355
+    },
+    {
+      "id": "subBoxColor",
+      "source": "src/lib/settings/types.ts",
+      "line": 356
+    },
+    {
+      "id": "subOpacity",
+      "source": "src/lib/settings/types.ts",
+      "line": 357
+    },
+    {
+      "id": "subLineSpacing",
+      "source": "src/lib/settings/types.ts",
+      "line": 358
+    },
+    {
+      "id": "subProvidersEnabled",
+      "source": "src/lib/settings/types.ts",
+      "line": 359
+    },
+    {
+      "id": "subOffsetIndicatorEnabled",
+      "source": "src/lib/settings/types.ts",
+      "line": 367
+    },
+    {
+      "id": "subOffsetIndicatorPosition",
+      "source": "src/lib/settings/types.ts",
+      "line": 368
+    },
+    {
+      "id": "subOffsetIndicatorSize",
+      "source": "src/lib/settings/types.ts",
+      "line": 369
+    },
+    {
+      "id": "subShowInPip",
+      "source": "src/lib/settings/types.ts",
+      "line": 370
+    },
+    {
+      "id": "subHideSdh",
+      "source": "src/lib/settings/types.ts",
+      "line": 371
+    },
+    {
+      "id": "secondarySubLang",
+      "source": "src/lib/settings/types.ts",
+      "line": 372
+    },
+    {
+      "id": "subSecondaryPlacement",
+      "source": "src/lib/settings/types.ts",
+      "line": 373
+    },
+    {
+      "id": "subSecondaryScale",
+      "source": "src/lib/settings/types.ts",
+      "line": 374
+    },
+    {
+      "id": "subtitleAutoSync",
+      "source": "src/lib/settings/types.ts",
+      "line": 375
+    },
+    {
+      "id": "autoSyncApplyStructural",
+      "source": "src/lib/settings/types.ts",
+      "line": 376
+    },
+    {
+      "id": "autoSyncDrift",
+      "source": "src/lib/settings/types.ts",
+      "line": 377
+    },
+    {
+      "id": "subtitleAutoSyncAsr",
+      "source": "src/lib/settings/types.ts",
+      "line": 378
+    },
+    {
+      "id": "subtitleAutoSyncPivot",
+      "source": "src/lib/settings/types.ts",
+      "line": 379
+    },
+    {
+      "id": "subtitleAutoSyncCrowd",
+      "source": "src/lib/settings/types.ts",
+      "line": 380
+    },
+    {
+      "id": "communitySyncUrl",
+      "source": "src/lib/settings/types.ts",
+      "line": 381
+    },
+    {
+      "id": "communitySyncOptOut",
+      "source": "src/lib/settings/types.ts",
+      "line": 382
+    },
+    {
+      "id": "subtitlesOffByDefault",
+      "source": "src/lib/settings/types.ts",
+      "line": 383
+    },
+    {
+      "id": "preferEmbeddedSubs",
+      "source": "src/lib/settings/types.ts",
+      "line": 384
+    },
+    {
+      "id": "subtitleAutoUpgrade",
+      "source": "src/lib/settings/types.ts",
+      "line": 385
+    },
+    {
+      "id": "subtitlePreselect",
+      "source": "src/lib/settings/types.ts",
+      "line": 386
+    },
+    {
+      "id": "betaUpdates",
+      "source": "src/lib/settings/types.ts",
+      "line": 387
+    },
+    {
+      "id": "autoSkipIntro",
+      "source": "src/lib/settings/types.ts",
+      "line": 388
+    },
+    {
+      "id": "autoSkipRecap",
+      "source": "src/lib/settings/types.ts",
+      "line": 389
+    },
+    {
+      "id": "autoSkipOutro",
+      "source": "src/lib/settings/types.ts",
+      "line": 390
+    },
+    {
+      "id": "autoSkipAd",
+      "source": "src/lib/settings/types.ts",
+      "line": 391
+    },
+    {
+      "id": "showSkipButton",
+      "source": "src/lib/settings/types.ts",
+      "line": 392
+    },
+    {
+      "id": "skipButtonHideSec",
+      "source": "src/lib/settings/types.ts",
+      "line": 393
+    },
+    {
+      "id": "trackBlockWords",
+      "source": "src/lib/settings/types.ts",
+      "line": 394
+    },
+    {
+      "id": "forcedSubsWhenNativeAudio",
+      "source": "src/lib/settings/types.ts",
+      "line": 395
+    },
+    {
+      "id": "tmdbLanguage",
+      "source": "src/lib/settings/types.ts",
+      "line": 396
+    },
+    {
+      "id": "tmdbImageLangs",
+      "source": "src/lib/settings/types.ts",
+      "line": 397
+    },
+    {
+      "id": "nfoPosterSize",
+      "source": "src/lib/settings/types.ts",
+      "line": 398
+    },
+    {
+      "id": "nfoBackdropSize",
+      "source": "src/lib/settings/types.ts",
+      "line": 399
+    },
+    {
+      "id": "nfoLogoSize",
+      "source": "src/lib/settings/types.ts",
+      "line": 400
+    },
+    {
+      "id": "showLocalLibraryBadge",
+      "source": "src/lib/settings/types.ts",
+      "line": 401
+    },
+    {
+      "id": "showWatchedBadge",
+      "source": "src/lib/settings/types.ts",
+      "line": 402
+    },
+    {
+      "id": "localPlaybackMode",
+      "source": "src/lib/settings/types.ts",
+      "line": 403
+    },
+    {
+      "id": "playbackSourcePreference",
+      "source": "src/lib/settings/types.ts",
+      "line": 404
+    },
+    {
+      "id": "preferredMediaServerId",
+      "source": "src/lib/settings/types.ts",
+      "line": 405
+    },
+    {
+      "id": "localMinFileSizeMb",
+      "source": "src/lib/settings/types.ts",
+      "line": 406
+    },
+    {
+      "id": "localAutoScan",
+      "source": "src/lib/settings/types.ts",
+      "line": 409
+    },
+    {
+      "id": "localScanMode",
+      "source": "src/lib/settings/types.ts",
+      "line": 411
+    },
+    {
+      "id": "catalogsPinned",
+      "source": "src/lib/settings/types.ts",
+      "line": 412
+    },
+    {
+      "id": "catalogsHidden",
+      "source": "src/lib/settings/types.ts",
+      "line": 413
+    },
+    {
+      "id": "posterBaseUrl",
+      "source": "src/lib/settings/types.ts",
+      "line": 414
+    },
+    {
+      "id": "hidePosterTitles",
+      "source": "src/lib/settings/types.ts",
+      "line": 415
+    },
+    {
+      "id": "hoverPreviewEnabled",
+      "source": "src/lib/settings/types.ts",
+      "line": 416
+    },
+    {
+      "id": "hoverPreviewPlacement",
+      "source": "src/lib/settings/types.ts",
+      "line": 417
+    },
+    {
+      "id": "cardHoverStyle",
+      "source": "src/lib/settings/types.ts",
+      "line": 418
+    },
+    {
+      "id": "rowCardStyle",
+      "source": "src/lib/settings/types.ts",
+      "line": 427
+    },
+    {
+      "id": "tvCardLogoPos",
+      "source": "src/lib/settings/types.ts",
+      "line": 428
+    },
+    {
+      "id": "scrollUpTrailer",
+      "source": "src/lib/settings/types.ts",
+      "line": 429
+    },
+    {
+      "id": "cardHoverShine",
+      "source": "src/lib/settings/types.ts",
+      "line": 430
+    },
+    {
+      "id": "customHoverId",
+      "source": "src/lib/settings/types.ts",
+      "line": 431
+    },
+    {
+      "id": "mdblistKey",
+      "source": "src/lib/settings/types.ts",
+      "line": 432
+    },
+    {
+      "id": "auddKey",
+      "source": "src/lib/settings/types.ts",
+      "line": 433
+    },
+    {
+      "id": "songIdProvider",
+      "source": "src/lib/settings/types.ts",
+      "line": 434
+    },
+    {
+      "id": "songIdAiKey",
+      "source": "src/lib/settings/types.ts",
+      "line": 435
+    },
+    {
+      "id": "songIdAiModel",
+      "source": "src/lib/settings/types.ts",
+      "line": 436
+    },
+    {
+      "id": "aiSearchKey",
+      "source": "src/lib/settings/types.ts",
+      "line": 437
+    },
+    {
+      "id": "aiSearchModel",
+      "source": "src/lib/settings/types.ts",
+      "line": 438
+    },
+    {
+      "id": "aiSearchProvider",
+      "source": "src/lib/settings/types.ts",
+      "line": 439
+    },
+    {
+      "id": "aiGroqKey",
+      "source": "src/lib/settings/types.ts",
+      "line": 440
+    },
+    {
+      "id": "jinaKey",
+      "source": "src/lib/settings/types.ts",
+      "line": 441
+    },
+    {
+      "id": "aiWebSearch",
+      "source": "src/lib/settings/types.ts",
+      "line": 442
+    },
+    {
+      "id": "playerD3d11Flip",
+      "source": "src/lib/settings/types.ts",
+      "line": 443
+    },
+    {
+      "id": "mpvExtraOptions",
+      "source": "src/lib/settings/types.ts",
+      "line": 444
+    },
+    {
+      "id": "mpvQuality",
+      "source": "src/lib/settings/types.ts",
+      "line": 445
+    },
+    {
+      "id": "mpvHwdec",
+      "source": "src/lib/settings/types.ts",
+      "line": 446
+    },
+    {
+      "id": "mpvRenderer",
+      "source": "src/lib/settings/types.ts",
+      "line": 447
+    },
+    {
+      "id": "uiGraphicsBackend",
+      "source": "src/lib/settings/types.ts",
+      "line": 448
+    },
+    {
+      "id": "mpvForceYuv420p",
+      "source": "src/lib/settings/types.ts",
+      "line": 449
+    },
+    {
+      "id": "mpvBufferBoost",
+      "source": "src/lib/settings/types.ts",
+      "line": 450
+    },
+    {
+      "id": "mpvBufferSize",
+      "source": "src/lib/settings/types.ts",
+      "line": 451
+    },
+    {
+      "id": "mpvDownmixStereo",
+      "source": "src/lib/settings/types.ts",
+      "line": 452
+    },
+    {
+      "id": "volumeBoostMax",
+      "source": "src/lib/settings/types.ts",
+      "line": 453
+    },
+    {
+      "id": "mpvTweaks",
+      "source": "src/lib/settings/types.ts",
+      "line": 454
+    },
+    {
+      "id": "playerSvp",
+      "source": "src/lib/settings/types.ts",
+      "line": 455
+    },
+    {
+      "id": "svpVpyPath",
+      "source": "src/lib/settings/types.ts",
+      "line": 456
+    },
+    {
+      "id": "svpScope",
+      "source": "src/lib/settings/types.ts",
+      "line": 457
+    },
+    {
+      "id": "svpTargetFps",
+      "source": "src/lib/settings/types.ts",
+      "line": 458
+    },
+    {
+      "id": "seekBackStepSec",
+      "source": "src/lib/settings/types.ts",
+      "line": 459
+    },
+    {
+      "id": "seekForwardStepSec",
+      "source": "src/lib/settings/types.ts",
+      "line": 460
+    },
+    {
+      "id": "seekBackStepShortSec",
+      "source": "src/lib/settings/types.ts",
+      "line": 461
+    },
+    {
+      "id": "seekForwardStepShortSec",
+      "source": "src/lib/settings/types.ts",
+      "line": 462
+    },
+    {
+      "id": "shareWatchPresence",
+      "source": "src/lib/settings/types.ts",
+      "line": 463
+    },
+    {
+      "id": "playerHdrOpaqueWindow",
+      "source": "src/lib/settings/types.ts",
+      "line": 464
+    },
+    {
+      "id": "playerEscExitsFullscreen",
+      "source": "src/lib/settings/types.ts",
+      "line": 465
+    },
+    {
+      "id": "playerConfirmLeave",
+      "source": "src/lib/settings/types.ts",
+      "line": 466
+    },
+    {
+      "id": "tvNavigation",
+      "source": "src/lib/settings/types.ts",
+      "line": 467
+    },
+    {
+      "id": "playerTvNavigation",
+      "source": "src/lib/settings/types.ts",
+      "line": 468
+    },
+    {
+      "id": "bigPictureButton",
+      "source": "src/lib/settings/types.ts",
+      "line": 469
+    },
+    {
+      "id": "bigPictureAutoStart",
+      "source": "src/lib/settings/types.ts",
+      "line": 470
+    },
+    {
+      "id": "bigPictureDisplay",
+      "source": "src/lib/settings/types.ts",
+      "line": 472
+    },
+    {
+      "id": "bigPictureSound",
+      "source": "src/lib/settings/types.ts",
+      "line": 473
+    },
+    {
+      "id": "bigPictureMosaic",
+      "source": "src/lib/settings/types.ts",
+      "line": 474
+    },
+    {
+      "id": "bigPictureOverscan",
+      "source": "src/lib/settings/types.ts",
+      "line": 486
+    },
+    {
+      "id": "playerHdrStage",
+      "source": "src/lib/settings/types.ts",
+      "line": 487
+    },
+    {
+      "id": "opensubtitlesApiKey",
+      "source": "src/lib/settings/types.ts",
+      "line": 488
+    },
+    {
+      "id": "theIntroDbKey",
+      "source": "src/lib/settings/types.ts",
+      "line": 489
+    },
+    {
+      "id": "jimakuToken",
+      "source": "src/lib/settings/types.ts",
+      "line": 490
+    },
+    {
+      "id": "subdlApiKey",
+      "source": "src/lib/settings/types.ts",
+      "line": 491
+    },
+    {
+      "id": "subsourceApiKey",
+      "source": "src/lib/settings/types.ts",
+      "line": 492
+    },
+    {
+      "id": "audioNormalize",
+      "source": "src/lib/settings/types.ts",
+      "line": 493
+    },
+    {
+      "id": "audioProfile",
+      "source": "src/lib/settings/types.ts",
+      "line": 494
+    },
+    {
+      "id": "audioDevice",
+      "source": "src/lib/settings/types.ts",
+      "line": 495
+    },
+    {
+      "id": "bandwidthMbps",
+      "source": "src/lib/settings/types.ts",
+      "line": 496
+    },
+    {
+      "id": "nextEpisodeLeadSec",
+      "source": "src/lib/settings/types.ts",
+      "line": 497
+    },
+    {
+      "id": "autoPlayNextEpisode",
+      "source": "src/lib/settings/types.ts",
+      "line": 498
+    },
+    {
+      "id": "stillWatching",
+      "source": "src/lib/settings/types.ts",
+      "line": 499
+    },
+    {
+      "id": "stillWatchingAfter",
+      "source": "src/lib/settings/types.ts",
+      "line": 500
+    },
+    {
+      "id": "keyboardPauseShowsControls",
+      "source": "src/lib/settings/types.ts",
+      "line": 501
+    },
+    {
+      "id": "hideWatchedInCatalogs",
+      "source": "src/lib/settings/types.ts",
+      "line": 502
+    },
+    {
+      "id": "hideUnreleased",
+      "source": "src/lib/settings/types.ts",
+      "line": 503
+    },
+    {
+      "id": "localEpisodeSortDesc",
+      "source": "src/lib/settings/types.ts",
+      "line": 504
+    },
+    {
+      "id": "smoothScroll",
+      "source": "src/lib/settings/types.ts",
+      "line": 505
+    },
+    {
+      "id": "showSimklCard",
+      "source": "src/lib/settings/types.ts",
+      "line": 506
+    },
+    {
+      "id": "showLetterboxdCard",
+      "source": "src/lib/settings/types.ts",
+      "line": 507
+    },
+    {
+      "id": "externalContinueWatching",
+      "source": "src/lib/settings/types.ts",
+      "line": 508
+    },
+    {
+      "id": "cwSources",
+      "source": "src/lib/settings/types.ts",
+      "line": 509
+    },
+    {
+      "id": "showPlaylistsTab",
+      "source": "src/lib/settings/types.ts",
+      "line": 510
+    },
+    {
+      "id": "skipProfileScreen",
+      "source": "src/lib/settings/types.ts",
+      "line": 511
+    },
+    {
+      "id": "profilePromptInterval",
+      "source": "src/lib/settings/types.ts",
+      "line": 512
+    },
+    {
+      "id": "defaultProfileId",
+      "source": "src/lib/settings/types.ts",
+      "line": 513
+    },
+    {
+      "id": "sportsLeagues",
+      "source": "src/lib/settings/types.ts",
+      "line": 514
+    },
+    {
+      "id": "sportsShowOdds",
+      "source": "src/lib/settings/types.ts",
+      "line": 515
+    },
+    {
+      "id": "sportsWithoutProvider",
+      "source": "src/lib/settings/types.ts",
+      "line": 517
+    },
+    {
+      "id": "hideSpoilers",
+      "source": "src/lib/settings/types.ts",
+      "line": 518
+    },
+    {
+      "id": "spoilerHideThumbnails",
+      "source": "src/lib/settings/types.ts",
+      "line": 519
+    },
+    {
+      "id": "spoilerHideTitles",
+      "source": "src/lib/settings/types.ts",
+      "line": 520
+    },
+    {
+      "id": "spoilerHideDescriptions",
+      "source": "src/lib/settings/types.ts",
+      "line": 521
+    },
+    {
+      "id": "spoilerSkipNext",
+      "source": "src/lib/settings/types.ts",
+      "line": 522
+    },
+    {
+      "id": "streamBackdropBlur",
+      "source": "src/lib/settings/types.ts",
+      "line": 523
+    },
+    {
+      "id": "songIdEnabled",
+      "source": "src/lib/settings/types.ts",
+      "line": 524
+    },
+    {
+      "id": "songCardStyle",
+      "source": "src/lib/settings/types.ts",
+      "line": 525
+    },
+    {
+      "id": "songCardDetails",
+      "source": "src/lib/settings/types.ts",
+      "line": 526
+    },
+    {
+      "id": "hideContent",
+      "source": "src/lib/settings/types.ts",
+      "line": 527
+    },
+    {
+      "id": "theme",
+      "source": "src/lib/settings/types.ts",
+      "line": 528
+    },
+    {
+      "id": "customLogoMark",
+      "source": "src/lib/settings/types.ts",
+      "line": 529
+    },
+    {
+      "id": "customLogoWordmark",
+      "source": "src/lib/settings/types.ts",
+      "line": 530
+    },
+    {
+      "id": "customAppIcon",
+      "source": "src/lib/settings/types.ts",
+      "line": 531
+    },
+    {
+      "id": "customAppIconPreset",
+      "source": "src/lib/settings/types.ts",
+      "line": 532
+    },
+    {
+      "id": "musicArtworkAppIcon",
+      "source": "src/lib/settings/types.ts",
+      "line": 533
+    },
+    {
+      "id": "musicSeekThumb",
+      "source": "src/lib/settings/types.ts",
+      "line": 534
+    },
+    {
+      "id": "musicSeekThumbHover",
+      "source": "src/lib/settings/types.ts",
+      "line": 535
+    },
+    {
+      "id": "musicSpeedPresets",
+      "source": "src/lib/settings/types.ts",
+      "line": 536
+    },
+    {
+      "id": "homeMode",
+      "source": "src/lib/settings/types.ts",
+      "line": 537
+    },
+    {
+      "id": "homeShowAllAddonRows",
+      "source": "src/lib/settings/types.ts",
+      "line": 538
+    },
+    {
+      "id": "homeNewEpisodes",
+      "source": "src/lib/settings/types.ts",
+      "line": 539
+    },
+    {
+      "id": "libraryBookmarkedOnly",
+      "source": "src/lib/settings/types.ts",
+      "line": 540
+    },
+    {
+      "id": "librarySort",
+      "source": "src/lib/settings/types.ts",
+      "line": 541
+    },
+    {
+      "id": "preferCustomMetaAddon",
+      "source": "src/lib/settings/types.ts",
+      "line": 542
+    },
+    {
+      "id": "cinemetaEnabled",
+      "source": "src/lib/settings/types.ts",
+      "line": 543
+    },
+    {
+      "id": "animeOnlyInAnimeRoom",
+      "source": "src/lib/settings/types.ts",
+      "line": 544
+    },
+    {
+      "id": "animeCwEnd",
+      "source": "src/lib/settings/types.ts",
+      "line": 545
+    },
+    {
+      "id": "cwAdvanceNext",
+      "source": "src/lib/settings/types.ts",
+      "line": 546
+    },
+    {
+      "id": "cwHideCaughtUp",
+      "source": "src/lib/settings/types.ts",
+      "line": 547
+    },
+    {
+      "id": "useNativeTitleBar",
+      "source": "src/lib/settings/types.ts",
+      "line": 548
+    },
+    {
+      "id": "fullscreenClockEnabled",
+      "source": "src/lib/settings/types.ts",
+      "line": 549
+    },
+    {
+      "id": "fullscreenClockFormat",
+      "source": "src/lib/settings/types.ts",
+      "line": 550
+    },
+    {
+      "id": "fullscreenClockStyle",
+      "source": "src/lib/settings/types.ts",
+      "line": 551
+    },
+    {
+      "id": "fullscreenClockShowSeconds",
+      "source": "src/lib/settings/types.ts",
+      "line": 552
+    },
+    {
+      "id": "fullscreenClockShowEndTime",
+      "source": "src/lib/settings/types.ts",
+      "line": 553
+    },
+    {
+      "id": "fullscreenClockWindowed",
+      "source": "src/lib/settings/types.ts",
+      "line": 554
+    },
+    {
+      "id": "fullscreenClockSizePx",
+      "source": "src/lib/settings/types.ts",
+      "line": 555
+    },
+    {
+      "id": "hybridTitleBar",
+      "source": "src/lib/settings/types.ts",
+      "line": 556
+    },
+    {
+      "id": "topbarScrollBlur",
+      "source": "src/lib/settings/types.ts",
+      "line": 557
+    },
+    {
+      "id": "transparentTopBar",
+      "source": "src/lib/settings/types.ts",
+      "line": 558
+    },
+    {
+      "id": "topbarAppearance",
+      "source": "src/lib/settings/types.ts",
+      "line": 559
+    },
+    {
+      "id": "dragAnywhere",
+      "source": "src/lib/settings/types.ts",
+      "line": 560
+    },
+    {
+      "id": "resumeDetailScroll",
+      "source": "src/lib/settings/types.ts",
+      "line": 561
+    },
+    {
+      "id": "pluginsEnabled",
+      "source": "src/lib/settings/types.ts",
+      "line": 562
+    },
+    {
+      "id": "pluginsOutsideTab",
+      "source": "src/lib/settings/types.ts",
+      "line": 566
+    },
+    {
+      "id": "pluginsGroupByRepo",
+      "source": "src/lib/settings/types.ts",
+      "line": 567
+    },
+    {
+      "id": "pluginsAutoCheck",
+      "source": "src/lib/settings/types.ts",
+      "line": 568
+    },
+    {
+      "id": "pluginsBackground",
+      "source": "src/lib/settings/types.ts",
+      "line": 569
+    },
+    {
+      "id": "pluginsPosterLanguages",
+      "source": "src/lib/settings/types.ts",
+      "line": 573
+    },
+    {
+      "id": "pluginsPosterQuality",
+      "source": "src/lib/settings/types.ts",
+      "line": 574
+    },
+    {
+      "id": "cwPerProfile",
+      "source": "src/lib/settings/types.ts",
+      "line": 575
+    },
+    {
+      "id": "closeToTray",
+      "source": "src/lib/settings/types.ts",
+      "line": 576
+    },
+    {
+      "id": "trayAlwaysOnTop",
+      "source": "src/lib/settings/types.ts",
+      "line": 577
+    },
+    {
+      "id": "pauseMinimized",
+      "source": "src/lib/settings/types.ts",
+      "line": 578
+    },
+    {
+      "id": "pauseUnfocused",
+      "source": "src/lib/settings/types.ts",
+      "line": 579
+    },
+    {
+      "id": "cwSnapshotRetentionDays",
+      "source": "src/lib/settings/types.ts",
+      "line": 580
+    },
+    {
+      "id": "cwSnapshotFullQuality",
+      "source": "src/lib/settings/types.ts",
+      "line": 581
+    },
+    {
+      "id": "cwPreferEpisodeStill",
+      "source": "src/lib/settings/types.ts",
+      "line": 582
+    },
+    {
+      "id": "streamFilterLevel",
+      "source": "src/lib/settings/types.ts",
+      "line": 583
+    },
+    {
+      "id": "blockTrackers",
+      "source": "src/lib/settings/types.ts",
+      "line": 584
+    },
+    {
+      "id": "homeRows",
+      "source": "src/lib/settings/types.ts",
+      "line": 585
+    },
+    {
+      "id": "navCustomization",
+      "source": "src/lib/settings/types.ts",
+      "line": 597
+    },
+    {
+      "id": "navCustomizationOwn",
+      "source": "src/lib/settings/types.ts",
+      "line": 602
+    },
+    {
+      "id": "animeRows",
+      "source": "src/lib/settings/types.ts",
+      "line": 607
+    },
+    {
+      "id": "hotkeys",
+      "source": "src/lib/settings/types.ts",
+      "line": 612
+    },
+    {
+      "id": "animeFavoriteGenres",
+      "source": "src/lib/settings/types.ts",
+      "line": 613
+    },
+    {
+      "id": "animeExcludeOrigins",
+      "source": "src/lib/settings/types.ts",
+      "line": 614
+    },
+    {
+      "id": "animeHideWatchedPicks",
+      "source": "src/lib/settings/types.ts",
+      "line": 615
+    },
+    {
+      "id": "animePicksDismissedAt",
+      "source": "src/lib/settings/types.ts",
+      "line": 616
+    },
+    {
+      "id": "animeAnilistRowsHidden",
+      "source": "src/lib/settings/types.ts",
+      "line": 617
+    },
+    {
+      "id": "animeMalRowsHidden",
+      "source": "src/lib/settings/types.ts",
+      "line": 618
+    },
+    {
+      "id": "addonTimeoutSec",
+      "source": "src/lib/settings/types.ts",
+      "line": 619
+    },
+    {
+      "id": "profileAudio",
+      "source": "src/lib/settings/types.ts",
+      "line": 620
+    },
+    {
+      "id": "syncIndicator",
+      "source": "src/lib/settings/types.ts",
+      "line": 621
+    },
+    {
+      "id": "syncIndicatorPosition",
+      "source": "src/lib/settings/types.ts",
+      "line": 622
+    },
+    {
+      "id": "pickerLayout",
+      "source": "src/lib/settings/types.ts",
+      "line": 623
+    },
+    {
+      "id": "streamSort",
+      "source": "src/lib/settings/types.ts",
+      "line": 624
+    },
+    {
+      "id": "streamPriority",
+      "source": "src/lib/settings/types.ts",
+      "line": 625
+    },
+    {
+      "id": "fullStreamDescription",
+      "source": "src/lib/settings/types.ts",
+      "line": 626
+    },
+    {
+      "id": "pickerShowFilename",
+      "source": "src/lib/settings/types.ts",
+      "line": 627
+    },
+    {
+      "id": "pickerRefreshNextToBack",
+      "source": "src/lib/settings/types.ts",
+      "line": 628
+    },
+    {
+      "id": "customStreamFilters",
+      "source": "src/lib/settings/types.ts",
+      "line": 629
+    },
+    {
+      "id": "activeStreamFilterId",
+      "source": "src/lib/settings/types.ts",
+      "line": 630
+    },
+    {
+      "id": "seekBarStyle",
+      "source": "src/lib/settings/types.ts",
+      "line": 631
+    },
+    {
+      "id": "seekBarHeight",
+      "source": "src/lib/settings/types.ts",
+      "line": 632
+    },
+    {
+      "id": "seekBarColor",
+      "source": "src/lib/settings/types.ts",
+      "line": 633
+    },
+    {
+      "id": "seekBarImage",
+      "source": "src/lib/settings/types.ts",
+      "line": 634
+    },
+    {
+      "id": "seekBarFill",
+      "source": "src/lib/settings/types.ts",
+      "line": 635
+    },
+    {
+      "id": "seekBarFillOpacity",
+      "source": "src/lib/settings/types.ts",
+      "line": 636
+    },
+    {
+      "id": "seekDotShape",
+      "source": "src/lib/settings/types.ts",
+      "line": 637
+    },
+    {
+      "id": "seekDotHover",
+      "source": "src/lib/settings/types.ts",
+      "line": 638
+    },
+    {
+      "id": "seekDotSize",
+      "source": "src/lib/settings/types.ts",
+      "line": 639
+    },
+    {
+      "id": "seekDotImage",
+      "source": "src/lib/settings/types.ts",
+      "line": 640
+    },
+    {
+      "id": "customCss",
+      "source": "src/lib/settings/types.ts",
+      "line": 641
+    },
+    {
+      "id": "customJs",
+      "source": "src/lib/settings/types.ts",
+      "line": 642
+    },
+    {
+      "id": "customHtml",
+      "source": "src/lib/settings/types.ts",
+      "line": 643
+    },
+    {
+      "id": "webhooks",
+      "source": "src/lib/settings/types.ts",
+      "line": 644
+    },
+    {
+      "id": "calendarSource",
+      "source": "src/lib/settings/types.ts",
+      "line": 659
+    },
+    {
+      "id": "simklHomeRailsEnabled",
+      "source": "src/lib/settings/types.ts",
+      "line": 668
+    },
+    {
+      "id": "simklUpNextRailEnabled",
+      "source": "src/lib/settings/types.ts",
+      "line": 669
+    },
+    {
+      "id": "simklTrendingRailEnabled",
+      "source": "src/lib/settings/types.ts",
+      "line": 670
+    },
+    {
+      "id": "simklScrobbleEnabled",
+      "source": "src/lib/settings/types.ts",
+      "line": 671
+    },
+    {
+      "id": "simklAnimeTitleLanguage",
+      "source": "src/lib/settings/types.ts",
+      "line": 672
+    },
+    {
+      "id": "weekStartsMonday",
+      "source": "src/lib/settings/types.ts",
+      "line": 673
+    },
+    {
+      "id": "calendarPosterSize",
+      "source": "src/lib/settings/types.ts",
+      "line": 674
+    },
+    {
+      "id": "customCalendar",
+      "source": "src/lib/settings/types.ts",
+      "line": 675
+    },
+    {
+      "id": "webhookRules",
+      "source": "src/lib/settings/types.ts",
+      "line": 689
+    },
+    {
+      "id": "downloadDir",
+      "source": "src/lib/settings/types.ts",
+      "line": 696
+    },
+    {
+      "id": "downloadCreateFolders",
+      "source": "src/lib/settings/types.ts",
+      "line": 697
+    },
+    {
+      "id": "ebookDownloadDir",
+      "source": "src/lib/settings/types.ts",
+      "line": 698
+    },
+    {
+      "id": "ebookDownloadCreateFolders",
+      "source": "src/lib/settings/types.ts",
+      "line": 699
+    },
+    {
+      "id": "nytKey",
+      "source": "src/lib/settings/types.ts",
+      "line": 700
+    },
+    {
+      "id": "sportsApiKey",
+      "source": "src/lib/settings/types.ts",
+      "line": 701
+    },
+    {
+      "id": "stremioDeeplinkInstall",
+      "source": "src/lib/settings/types.ts",
+      "line": 702
+    },
+    {
+      "id": "iptvPlaylists",
+      "source": "src/lib/settings/types.ts",
+      "line": 703
+    },
+    {
+      "id": "iptvLiveContainer",
+      "source": "src/lib/settings/types.ts",
+      "line": 716
+    },
+    {
+      "id": "iptvForceProxy",
+      "source": "src/lib/settings/types.ts",
+      "line": 717
+    },
+    {
+      "id": "iptvEpgOffsetHours",
+      "source": "src/lib/settings/types.ts",
+      "line": 718
+    },
+    {
+      "id": "sidebarCollapsed",
+      "source": "src/lib/settings/types.ts",
+      "line": 719
+    },
+    {
+      "id": "wrappedButton",
+      "source": "src/lib/settings/types.ts",
+      "line": 720
+    },
+    {
+      "id": "libraryHero",
+      "source": "src/lib/settings/types.ts",
+      "line": 721
+    },
+    {
+      "id": "mangaEnabled",
+      "source": "src/lib/settings/types.ts",
+      "line": 722
+    },
+    {
+      "id": "feedLocaleBias",
+      "source": "src/lib/settings/types.ts",
+      "line": 723
+    },
+    {
+      "id": "uiLanguage",
+      "source": "src/lib/settings/types.ts",
+      "line": 724
+    },
+    {
+      "id": "arabicWelcomeSeen",
+      "source": "src/lib/settings/types.ts",
+      "line": 725
+    },
+    {
+      "id": "cropMode",
+      "source": "src/lib/settings/types.ts",
+      "line": 726
+    },
+    {
+      "id": "customLists",
+      "source": "src/lib/settings/types.ts",
+      "line": 727
+    },
+    {
+      "id": "pauseListStatusOnPause",
+      "source": "src/lib/settings/types.ts",
+      "line": 728
+    },
+    {
+      "id": "translateTitles",
+      "source": "src/lib/settings/types.ts",
+      "line": 729
+    },
+    {
+      "id": "translateDescriptions",
+      "source": "src/lib/settings/types.ts",
+      "line": 730
+    },
+    {
+      "id": "letterboxd",
+      "source": "src/lib/settings/types.ts",
+      "line": 731
+    },
+    {
+      "id": "adSkipEnabled",
+      "source": "src/lib/settings/types.ts",
+      "line": 732
+    },
+    {
+      "id": "adReportAlwaysShow",
+      "source": "src/lib/settings/types.ts",
+      "line": 733
+    },
+    {
+      "id": "adReportFirstSeen",
+      "source": "src/lib/settings/types.ts",
+      "line": 734
+    },
+    {
+      "id": "xrayEnabled",
+      "source": "src/lib/settings/types.ts",
+      "line": 735
+    },
+    {
+      "id": "xrayLiveScan",
+      "source": "src/lib/settings/types.ts",
+      "line": 736
+    },
+    {
+      "id": "auddApiKey",
+      "source": "src/lib/settings/types.ts",
+      "line": 737
+    }
+  ],
+  "scopeNote": "Public checkpoint plus owner screenshots; not the exact source of the requested updater release."
+}

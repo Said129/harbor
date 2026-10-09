@@ -1,0 +1,462 @@
+import SwiftUI
+import UniformTypeIdentifiers
+
+struct MangaView: View {
+    let app: AppModel
+    @State private var shelf: MangaShelf
+    @State private var connection: MangaConnection
+    @State private var client: SuwayomiClient?
+    @State private var sources: [MangaSource] = []
+    @State private var selected = "all"
+    @State private var screen = "browse"
+    @State private var latest = false
+    @State private var query = ""
+    @State private var books: [MangaBook] = []
+    @State private var serverLibrary: [MangaBook] = []
+    @State private var sourcePages: [String: Int] = [:]
+    @State private var sourceMore: [String: Bool] = [:]
+    @State private var more = false
+    @State private var loading = false
+    @State private var generation = UUID()
+    @State private var configuring = false
+    @State private var extensions = false
+    @State private var importing = false
+    @State private var imported: MangaBook?
+    @State private var submanhwa = false
+    @State private var featured = 0
+    @State private var universe = 0
+    @State private var language = "all"
+    @State private var error: String?
+    @AppStorage("manga.adultSources") private var adult = false
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @Environment(\.scenePhase) private var scenePhase
+    @MainActor init(app: AppModel) {
+        self.app = app
+        let owner = app.user?.id ?? "guest"
+        _shelf = State(initialValue: MangaShelf(owner: owner)); _connection = State(initialValue: MangaConnection(owner: owner))
+    }
+    private var visibleSources: [MangaSource] { sources.filter { (adult || !$0.adult) && (language == "all" || $0.language == language) } }
+    private var highlights: [MangaBook] { Array((screen == "shelf" ? savedBooks : books.isEmpty ? savedBooks : books).prefix(6)) }
+    private var signature: String { selected + "|" + query + "|" + String(latest) + "|" + String(adult) + "|" + language }
+    private var canAnimate: Bool { scenePhase == .active && !reduceMotion }
+    private var editorialSources: [MangaSource] { visibleSources.filter { selected == "all" || $0.id == selected } }
+    private var allSavedBooks: [MangaBook] {
+        var seen = Set<String>()
+        return (shelf.records.sorted { $0.updated > $1.updated }.map(\.book) + serverLibrary).filter { seen.insert($0.id).inserted }
+    }
+    private var savedBooks: [MangaBook] {
+        allSavedBooks.filter { query.isEmpty || $0.title.localizedCaseInsensitiveContains(query) }
+    }
+    var body: some View {
+        ScrollView {
+            VStack(alignment: .leading, spacing: 18) {
+                if !highlights.isEmpty { mangaHero }
+                if screen == "browse" {
+                    if query.isEmpty && !latest && !books.isEmpty { popularRail }
+                    editorialCards.padding(.horizontal)
+                }
+                ScrollView(.horizontal) {
+                    HStack(spacing: 10) {
+                        if screen == "shelf" { HarborPill(title: "Volver a explorar", selected: false, icon: "desktop-chevron-left") { screen = "browse" } }
+                        Button { submanhwa = true } label: { Label("Submanhwa", image: "nav-manga").font(HarborTheme.font(13, weight: .medium)).padding(.horizontal, 14).frame(minHeight: 44).background(HarborTheme.surface, in: .capsule) }
+                    }.padding(.horizontal)
+                }.scrollIndicators(.hidden)
+                HStack { Text(screen == "shelf" ? "Biblioteca" : "Explorar manga").font(HarborTheme.font(21, weight: .semibold)).accessibilityIdentifier("manga-content-heading"); Spacer(); mangaOptions }.padding(.horizontal)
+                HarborSearchField(prompt: "Buscar manga…", text: $query).padding(.horizontal)
+                if let message = error ?? shelf.error ?? connection.error { Text(message).font(.caption).foregroundStyle(.orange).padding(.horizontal) }
+                if screen == "browse" {
+                    if !sources.filter({ adult || !$0.adult }).isEmpty {
+                        browseFilters
+                        grid(books)
+                        if visibleSources.isEmpty && !loading { Text("Ninguna fuente coincide con tu filtro").font(.caption).foregroundStyle(.secondary).padding(.horizontal) }
+                        if more { Button("Cargar más") { Task { await browse(next: true) } }.disabled(loading).frame(maxWidth: .infinity) }
+                    } else if !loading {
+                        emptyShelf("Fuentes de manga", message: "Agrega carpetas de imágenes por capítulo o archivos .cbz / .zip.")
+                        HStack { Button("Fuentes de manga") { configuring = true }; Button("Agregar una carpeta local") { importing = true } }.frame(maxWidth: .infinity)
+                    }
+                } else {
+                    grid(savedBooks)
+                    if savedBooks.isEmpty { emptyShelf("No se encontró ningún manga", message: "") }
+                }
+                if loading { ProgressView().frame(maxWidth: .infinity) }
+            }.padding(.vertical, 16)
+        }.background(HarborTheme.background).navigationTitle("").toolbar(.hidden, for: .navigationBar)
+            .task(id: connection.server) { await connect() }
+            .task(id: signature) { await browse(next: false) }
+            .onChange(of: adult) { _, _ in
+                if selected != "all" && !visibleSources.contains(where: { $0.id == selected }) { books = []; selected = "all" }
+                if !visibleSources.contains(where: \.latest) { latest = false }
+            }
+            .onChange(of: language) { _, _ in
+                books = []; selected = "all"
+                if !visibleSources.contains(where: \.latest) { latest = false }
+            }
+            .onChange(of: selected) { _, source in
+                if source != "all" && sources.first(where: { $0.id == source })?.latest != true { latest = false }
+            }
+            .onChange(of: highlights.map(\.id)) { _, _ in featured = 0 }
+            .task(id: canAnimate) {
+                guard canAnimate else { return }
+                while !Task.isCancelled {
+                    do { try await Task.sleep(for: .seconds(9)) } catch { return }
+                    guard canAnimate, !Task.isCancelled else { return }
+                    if highlights.count > 1 { withAnimation(.easeInOut(duration: 0.28)) { featured = (featured + 1) % highlights.count } }
+                }
+            }
+            .task(id: canAnimate ? "universes-active" : "universes-paused") {
+                guard canAnimate else { return }
+                while !Task.isCancelled {
+                    do { try await Task.sleep(for: .seconds(7)) } catch { return }
+                    guard canAnimate, !Task.isCancelled else { return }
+                    if let count = MangaEditorial.original?.universes.count, count > 1 { withAnimation(.easeInOut(duration: 1)) { universe = (universe + 1) % count } }
+                }
+            }
+            .refreshable { await connect() }
+            .sheet(isPresented: $configuring) { MangaConnectionView(connection: connection) }
+            .sheet(isPresented: $submanhwa) { SubmanhwaView(owner: shelf.owner) }
+            .sheet(isPresented: $extensions, onDismiss: { Task { await connect() } }) { if let client { MangaExtensionsView(client: client, adult: adult) } }
+            .fileImporter(isPresented: $importing, allowedContentTypes: [UTType(filenameExtension: "cbz") ?? .zip, .zip, .folder]) { result in
+                if case .success(let file) = result { Task { await importBook(file) } }
+                else if case .failure = result { error = "No se pudo abrir el archivo elegido." }
+            }
+            .navigationDestination(item: $imported) { book in MangaDetailView(book: book, shelf: shelf, client: matchingClient(book)).toolbar(.visible, for: .navigationBar) }
+    }
+    private var mangaOptions: some View {
+        Menu {
+            Button("Importar CBZ/ZIP o carpeta") { importing = true }
+            Button("Conexión Suwayomi") { configuring = true }
+            if client != nil { Button("Extensiones") { extensions = true } }
+            Button("Submanhwa") { submanhwa = true }
+            Toggle("Fuentes para adultos", isOn: $adult)
+        } label: { Image("nav-settings").resizable().scaledToFit().frame(width: 21, height: 21).frame(width: 44, height: 44).background(HarborTheme.surface, in: .rect(cornerRadius: 10)) }.accessibilityLabel("Opciones de Manga")
+    }
+    private var editorialCards: some View {
+        VStack(spacing: 12) {
+            NavigationLink {
+                MangaEditorialView(universes: false, shelf: shelf, client: client, sources: editorialSources, local: allSavedBooks, connection: connection)
+            } label: {
+                editorialCard(title: "Colecciones", subtitle: "Las más populares, aclamadas por la crítica, premiadas y más") { coverFan(highlights) }
+            }.buttonStyle(.plain).accessibilityIdentifier("manga-collections-card")
+            NavigationLink {
+                MangaEditorialView(universes: true, shelf: shelf, client: client, sources: editorialSources, local: allSavedBooks, connection: connection)
+            } label: {
+                editorialCard(title: "Universos", subtitle: "One Piece, Naruto y más mundos") {
+                    Image("desktop-users").resizable().scaledToFit().frame(width: 20, height: 20).foregroundStyle(HarborTheme.ink.opacity(0.5))
+                        .frame(width: 48, height: 48).background(HarborTheme.surface, in: .rect(cornerRadius: 12))
+                }.background(alignment: .trailing) {
+                    if let definitions = MangaEditorial.original?.universes, !definitions.isEmpty {
+                        let selected = definitions[min(universe, definitions.count - 1)]
+                        Artwork(url: selected.backdrop, maxPixels: 650).frame(width: 220)
+                            .mask { LinearGradient(colors: [.clear, .white.opacity(0.6)], startPoint: .leading, endPoint: .trailing) }
+                            .id(selected.id).transition(.opacity).accessibilityHidden(true)
+                    }
+                }.clipShape(.rect(cornerRadius: 16))
+            }.buttonStyle(.plain).accessibilityIdentifier("manga-universes-card")
+            libraryCard
+        }
+    }
+    private func editorialCard<Icon: View>(title: String, subtitle: String, @ViewBuilder icon: () -> Icon) -> some View {
+        HStack(spacing: 14) {
+            icon()
+            VStack(alignment: .leading, spacing: 5) {
+                Text(title).font(HarborTheme.font(15, weight: .semibold))
+                Text(subtitle).font(HarborTheme.font(12)).foregroundStyle(HarborTheme.ink.opacity(0.55)).lineLimit(2)
+            }.frame(maxWidth: .infinity, alignment: .leading)
+            Image("desktop-chevron-right").resizable().scaledToFit().frame(width: 22, height: 22).foregroundStyle(HarborTheme.ink.opacity(0.4))
+        }.padding(16).frame(maxWidth: .infinity, minHeight: 84, alignment: .leading)
+            .background(HarborTheme.surface.opacity(0.4), in: .rect(cornerRadius: 16))
+            .overlay { RoundedRectangle(cornerRadius: 16).stroke(HarborTheme.ink.opacity(0.07), lineWidth: 1) }
+            .contentShape(Rectangle())
+    }
+    private func coverFan(_ items: [MangaBook]) -> some View {
+        ZStack {
+            ForEach([1, 2, 0], id: \.self) { index in
+                ZStack {
+                    if index == 0 { HarborTheme.accent.opacity(0.8) } else { HarborTheme.surface }
+                    if items.indices.contains(index) {
+                        let book = items[index]
+                        MangaImage(book: book, owner: shelf.owner, path: book.cover, client: matchingClient(book), maxPixels: 160)
+                    }
+                }.frame(width: 28, height: 40).clipShape(.rect(cornerRadius: 5))
+                    .rotationEffect(.degrees(index == 1 ? -18 : index == 2 ? 18 : 0)).offset(x: index == 1 ? -10 : index == 2 ? 10 : 0)
+                    .shadow(color: .black.opacity(0.5), radius: 5, y: 4)
+            }
+        }.frame(width: 64, height: 48).accessibilityHidden(true)
+    }
+    private var libraryCard: some View {
+        Button { screen = "shelf" } label: {
+            editorialCard(title: "Biblioteca", subtitle: "Your favorites and manga lists") {
+                if !allSavedBooks.isEmpty { coverFan(allSavedBooks) }
+                else {
+                    Image("desktop-layers").resizable().scaledToFit().frame(width: 20, height: 20).foregroundStyle(HarborTheme.ink.opacity(0.5))
+                        .frame(width: 48, height: 48).background(HarborTheme.surface, in: .rect(cornerRadius: 12))
+                }
+            }
+        }.buttonStyle(.plain).accessibilityIdentifier("manga-library-card")
+    }
+    private var popularRail: some View {
+        VStack(alignment: .leading, spacing: 14) {
+            HStack(alignment: .firstTextBaseline, spacing: 10) {
+                Text("Manga popular").font(HarborTheme.font(17, weight: .semibold))
+                Text("Más leídos del momento").font(HarborTheme.font(12)).foregroundStyle(.secondary)
+            }.padding(.horizontal)
+            ScrollView(.horizontal) {
+                LazyHStack(alignment: .top, spacing: 12) {
+                    ForEach(Array(books.prefix(12))) { book in
+                        NavigationLink { MangaDetailView(book: book, shelf: shelf, client: matchingClient(book)).toolbar(.visible, for: .navigationBar) } label: {
+                            VStack(alignment: .leading, spacing: 7) {
+                                MangaImage(book: book, owner: shelf.owner, path: book.cover, client: matchingClient(book), maxPixels: 500).frame(width: 116, height: 174).clipShape(.rect(cornerRadius: 10))
+                                Text(book.title).font(HarborTheme.font(12, weight: .medium)).lineLimit(2).frame(width: 116, alignment: .leading)
+                            }.contentShape(Rectangle())
+                        }.buttonStyle(.plain)
+                    }
+                }.padding(.horizontal)
+            }.scrollIndicators(.hidden)
+        }
+    }
+    private var browseFilters: some View {
+        ScrollView(.horizontal) {
+            HStack(spacing: 8) {
+                Menu {
+                    Picker("Extensión", selection: $selected) {
+                        Text("Todas las extensiones").tag("all")
+                        ForEach(visibleSources) { Text("\($0.name) · \($0.language.uppercased())").tag($0.id) }
+                    }
+                } label: { filterLabel(selected == "all" ? "Todas las extensiones" : sources.first(where: { $0.id == selected })?.name ?? "Extensión", icon: "desktop-layers") }
+                    .accessibilityLabel("Extensión de manga").accessibilityIdentifier("manga-source-filter")
+                Menu {
+                    Picker("Idioma", selection: $language) {
+                        Text("Todos los idiomas").tag("all")
+                        ForEach(Array(Set(sources.filter { adult || !$0.adult }.map(\.language))).sorted(), id: \.self) { code in Text(Locale.current.localizedString(forLanguageCode: code) ?? code.uppercased()).tag(code) }
+                    }
+                } label: { filterLabel(language == "all" ? "Todos los idiomas" : Locale.current.localizedString(forLanguageCode: language) ?? language.uppercased(), icon: "player-audio") }
+                    .accessibilityLabel("Idioma de manga").accessibilityIdentifier("manga-language-filter")
+                if selected == "all" ? visibleSources.contains(where: \.latest) : sources.first(where: { $0.id == selected })?.latest == true {
+                    HarborPill(title: "Novedades", selected: latest) { latest.toggle() }
+                }
+            }.padding(.horizontal)
+        }.scrollIndicators(.hidden).accessibilityIdentifier("manga-filters")
+    }
+    private func filterLabel(_ title: String, icon: String) -> some View {
+        HStack(spacing: 7) {
+            Image(icon).resizable().scaledToFit().frame(width: 15, height: 15).foregroundStyle(HarborTheme.ink.opacity(0.55))
+            Text(title).font(HarborTheme.font(12, weight: .semibold)).lineLimit(1)
+            Image("desktop-chevron-right").resizable().scaledToFit().frame(width: 11, height: 11).rotationEffect(.degrees(90)).foregroundStyle(HarborTheme.ink.opacity(0.4))
+        }.padding(.horizontal, 13).frame(minHeight: 44).foregroundStyle(HarborTheme.ink).background(HarborTheme.surface.opacity(0.65), in: .capsule)
+    }
+    private func emptyShelf(_ title: String, message: String) -> some View {
+        VStack(spacing: 14) {
+            Image("nav-manga").resizable().scaledToFit().frame(width: 32, height: 32).foregroundStyle(HarborTheme.ink.opacity(0.4))
+                .frame(width: 68, height: 68).background(HarborTheme.surface, in: .rect(cornerRadius: 18))
+            Text(title).font(HarborTheme.font(20, weight: .semibold))
+            if !message.isEmpty { Text(message).font(HarborTheme.font(14)).foregroundStyle(HarborTheme.ink.opacity(0.6)).multilineTextAlignment(.center) }
+        }.padding(28).frame(maxWidth: .infinity).foregroundStyle(HarborTheme.ink).padding(.horizontal)
+    }
+    private var mangaHero: some View {
+        let book = highlights[min(featured, highlights.count - 1)]
+        return VStack(alignment: .leading, spacing: 14) {
+            HStack(spacing: 18) {
+                VStack(alignment: .leading, spacing: 14) {
+                    Label("MANGA DESTACADO", image: "nav-ebook").font(HarborTheme.font(9, weight: .bold)).tracking(2).foregroundStyle(HarborTheme.accent)
+                    Text(book.title.uppercased()).font(.custom("QRAmesBeta-Regular", size: 28)).lineLimit(4).foregroundStyle(.white)
+                    if !book.author.isEmpty { Text(book.author).font(HarborTheme.font(12)).foregroundStyle(.white.opacity(0.7)) }
+                    if !book.description.isEmpty { Text(book.description).font(HarborTheme.font(12)).foregroundStyle(.white.opacity(0.7)).lineLimit(3) }
+                    NavigationLink { MangaDetailView(book: book, shelf: shelf, client: matchingClient(book)).toolbar(.visible, for: .navigationBar) } label: { Label("Leer ahora", image: "nav-ebook").font(.caption.weight(.semibold)).padding(.horizontal, 16).frame(height: 44).foregroundStyle(.black).background(.white, in: .capsule) }.buttonStyle(.plain)
+                }.frame(maxWidth: .infinity, alignment: .leading)
+                NavigationLink { MangaDetailView(book: book, shelf: shelf, client: matchingClient(book)).toolbar(.visible, for: .navigationBar) } label: {
+                    MangaImage(book: book, owner: shelf.owner, path: book.cover, client: matchingClient(book), maxPixels: 600).frame(width: 116, height: 174).clipShape(.rect(cornerRadius: 15))
+                        .shadow(color: .black.opacity(0.4), radius: 18, y: 10).contentShape(Rectangle())
+                }.buttonStyle(.plain).accessibilityLabel(book.title)
+            }
+            HStack(spacing: 6) { ForEach(highlights.indices, id: \.self) { index in Button { featured = index } label: { Capsule().fill(index == featured ? HarborTheme.accent : .white.opacity(0.2)).frame(width: index == featured ? 26 : 13, height: 5).frame(height: 30) }.buttonStyle(.plain).accessibilityLabel("Manga destacado \(index + 1)") } }
+        }.padding(20).padding(.vertical, 14).frame(maxWidth: .infinity, alignment: .leading)
+            .background {
+                GeometryReader { frame in
+                    Image("manga-hero-background").resizable().scaledToFill().frame(width: frame.size.width, height: frame.size.height).clipped()
+                        .overlay(.black.opacity(0.4))
+                        .overlay { LinearGradient(colors: [.black.opacity(0.9), .black.opacity(0.55), .clear], startPoint: .leading, endPoint: .trailing) }
+                        .overlay { LinearGradient(colors: [.clear, HarborTheme.background], startPoint: .center, endPoint: .bottom) }
+                }.accessibilityHidden(true)
+            }.accessibilityIdentifier("manga-featured")
+    }
+    private func matchingClient(_ book: MangaBook) -> SuwayomiClient? { book.server == connection.server?.id ? client : nil }
+    private func grid(_ entries: [MangaBook]) -> some View {
+        LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())], alignment: .leading, spacing: 18) {
+            ForEach(entries) { book in
+                NavigationLink { MangaDetailView(book: book, shelf: shelf, client: matchingClient(book)).toolbar(.visible, for: .navigationBar) } label: {
+                    VStack(alignment: .leading, spacing: 6) {
+                        MangaImage(book: book, owner: shelf.owner, path: book.cover, client: matchingClient(book), maxPixels: 500).aspectRatio(2.0 / 3.0, contentMode: .fit).clipShape(.rect(cornerRadius: 8))
+                        Text(book.title).font(.caption.weight(.medium)).lineLimit(2)
+                        if let record = shelf.record(book), let progress = record.progress[record.chapter] { Text(progress.completed ? "Leído" : "Página \(progress.page + 1)").font(.system(size: 10)).foregroundStyle(.secondary) }
+                    }.contentShape(Rectangle())
+                }.buttonStyle(.plain).contextMenu {
+                    Button("Quitar de esta biblioteca", role: .destructive) {
+                        do { try shelf.remove(book) } catch { self.error = safeMessage(error) }
+                    }
+                    if book.server == nil { Button("Eliminar archivo", role: .destructive) { Task { do { try await MangaLocalStore.shared.remove(book, owner: shelf.owner); try shelf.remove(book) } catch { self.error = safeMessage(error) } } } }
+                }
+            }
+        }.padding(.horizontal)
+    }
+    private func connect() async {
+        generation = UUID(); client = nil; sources = []; books = []; serverLibrary = []; more = false; sourcePages = [:]; sourceMore = [:]
+        guard let server = connection.server else { loading = false; return }
+        let service = SuwayomiClient(server: server); client = service; loading = true; error = nil
+        do {
+            let loaded = try await service.sources(); try Task.checkCancellation()
+            guard connection.server == server else { return }
+            sources = loaded
+            if selected != "all", !visibleSources.contains(where: { $0.id == selected }) { selected = "all" }
+            if !visibleSources.contains(where: \.latest) { latest = false }
+            if !visibleSources.isEmpty { await browse(next: false) }
+            do { let library = try await service.library(); guard connection.server == server else { return }; serverLibrary = library }
+            catch is CancellationError { return }
+            catch { if books.isEmpty { self.error = safeMessage(error) } }
+        } catch is CancellationError { return }
+        catch { self.error = safeMessage(error) }
+        if connection.server == server { loading = false }
+    }
+    private func browse(next: Bool) async {
+        guard let client else { return }
+        let choices = visibleSources.filter { (selected == "all" || $0.id == selected) && (selected != "all" || !latest || $0.latest) }
+        guard !choices.isEmpty else { books = []; more = false; return }
+        if next && loading { return }
+        let token = UUID(); generation = token; loading = true; error = nil
+        let term = query.trimmingCharacters(in: .whitespacesAndNewlines), useLatest = latest
+        let requests = choices.filter { !next || sourceMore[$0.id] == true }.map { (source: $0, page: next ? (sourcePages[$0.id] ?? 0) + 1 : 1) }
+        defer { if generation == token { loading = false } }
+        do {
+            if !next { try await Task.sleep(for: .milliseconds(350)) }
+            var received: [MangaBrowsePage] = []
+            // Limit simultaneous extension requests while keeping each source's pagination.
+            for start in stride(from: 0, to: requests.count, by: 4) {
+                try Task.checkCancellation()
+                guard generation == token else { return }
+                let batch = Array(requests[start..<min(start + 4, requests.count)])
+                let result = await withTaskGroup(of: MangaBrowsePage.self, returning: [MangaBrowsePage].self) { group in
+                    for request in batch {
+                        group.addTask {
+                            do {
+                                let page = try await client.browse(source: request.source.id, latest: useLatest && request.source.latest, query: term, page: request.page)
+                                return MangaBrowsePage(source: request.source.id, page: request.page, books: page.0, more: page.1, error: nil)
+                            } catch {
+                                return MangaBrowsePage(source: request.source.id, page: request.page, books: [], more: true, error: safeMessage(error))
+                            }
+                        }
+                    }
+                    var pages: [MangaBrowsePage] = []
+                    for await page in group { pages.append(page) }
+                    return pages
+                }
+                received += result
+            }
+            try Task.checkCancellation(); guard generation == token else { return }
+            if !next { sourcePages = [:]; sourceMore = [:] }
+            for result in received {
+                sourceMore[result.source] = result.more
+                if result.error == nil { sourcePages[result.source] = result.page }
+            }
+            let sourceOrder = Dictionary(uniqueKeysWithValues: choices.enumerated().map { ($0.element.id, $0.offset) })
+            let added = received.sorted { (sourceOrder[$0.source] ?? 0) < (sourceOrder[$1.source] ?? 0) }.flatMap(\.books)
+            var seen = Set<String>()
+            books = ((next ? books : []) + added).filter { seen.insert($0.id).inserted }; more = sourceMore.values.contains(true)
+            let failures = received.filter { $0.error != nil }
+            if !failures.isEmpty { error = failures.count == received.count ? failures[0].error : "\(failures.count) extensiones no respondieron. Puedes reintentar; los resultados disponibles se conservan." }
+        } catch is CancellationError { return }
+        catch { if generation == token { self.error = safeMessage(error) } }
+    }
+    private func importBook(_ file: URL) async {
+        guard shelf.ready else { error = "La biblioteca no está disponible. Los archivos guardados se conservan."; return }
+        let access = file.startAccessingSecurityScopedResource(); defer { if access { file.stopAccessingSecurityScopedResource() } }
+        do {
+            let folder = try file.resourceValues(forKeys: [.isDirectoryKey]).isDirectory == true
+            let book: MangaBook
+            if folder { book = try await MangaLocalStore.shared.importFolder(file, owner: shelf.owner) }
+            else { book = try await MangaLocalStore.shared.importArchive(file, owner: shelf.owner) }
+            do { try shelf.save(MangaRecord(book: book)) }
+            catch { try? await MangaLocalStore.shared.remove(book, owner: shelf.owner); throw error }
+            screen = "shelf"; imported = book
+        } catch { self.error = safeMessage(error) }
+    }
+}
+
+private struct MangaBrowsePage: Sendable {
+    let source: String
+    let page: Int
+    let books: [MangaBook]
+    let more: Bool
+    let error: String?
+}
+
+struct MangaConnectionView: View {
+    let connection: MangaConnection
+    @Environment(\.dismiss) private var dismiss
+    @State private var base = ""
+    @State private var username = ""
+    @State private var password = ""
+    @State private var busy = false
+    @State private var error: String?
+    var body: some View {
+        NavigationStack {
+            Form {
+                Section("Suwayomi") {
+                    TextField("URL del servidor", text: $base).textInputAutocapitalization(.never).autocorrectionDisabled().keyboardType(.URL)
+                    TextField("Usuario (opcional)", text: $username).textInputAutocapitalization(.never).autocorrectionDisabled().textContentType(.username)
+                    SecureField("Contraseña", text: $password).textContentType(.password)
+                    Text("Usa el servidor que ya tienes configurado en Harbor. En la red local, permite el acceso cuando iOS lo solicite.").font(.caption).foregroundStyle(.secondary)
+                }
+                if let error { Section { Text(error).foregroundStyle(.orange) } }
+                Section {
+                    Button(busy ? "Conectando…" : "Comprobar y guardar") { Task { await save() } }.disabled(busy || !connection.ready)
+                    if connection.server != nil { Button("Desconectar", role: .destructive) { do { try connection.save(nil); dismiss() } catch { self.error = safeMessage(error) } }.disabled(busy) }
+                }
+            }.navigationTitle("Conexión Manga").toolbar { ToolbarItem(placement: .topBarTrailing) { Button("Listo") { dismiss() }.disabled(busy) } }
+                .onAppear { if let server = connection.server { base = server.base; username = server.username; password = server.password } }
+        }
+    }
+    private func save() async {
+        busy = true; error = nil; defer { busy = false }
+        do {
+            let server = try MangaServer.normalized(base, username: username, password: password)
+            _ = try await SuwayomiClient(server: server).sources()
+            try Task.checkCancellation(); try connection.save(server); dismiss()
+        } catch { self.error = safeMessage(error) }
+    }
+}
+
+private struct MangaExtensionsView: View {
+    let client: SuwayomiClient
+    let adult: Bool
+    @Environment(\.dismiss) private var dismiss
+    @State private var entries: [MangaExtension] = []
+    @State private var loading = false
+    @State private var query = ""
+    @State private var error: String?
+    var body: some View {
+        NavigationStack {
+            List {
+                if let error { Text(error).foregroundStyle(.orange) }
+                ForEach(entries.filter { (adult || !$0.adult) && (query.isEmpty || $0.name.localizedCaseInsensitiveContains(query)) }) { entry in
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text(entry.name).font(.headline)
+                        Text("\(entry.language.uppercased()) · \(entry.version)\(entry.obsolete ? " · Obsoleta" : "")").font(.caption).foregroundStyle(.secondary)
+                        HStack {
+                            Button(entry.installed ? "Desinstalar" : "Instalar", role: entry.installed ? .destructive : nil) { change(entry, action: entry.installed ? "uninstall" : "install") }
+                            if entry.update { Button("Actualizar") { change(entry, action: "update") } }
+                        }.buttonStyle(.bordered).disabled(loading)
+                    }.padding(.vertical, 6)
+                }
+                if loading { ProgressView() }
+                if entries.isEmpty && !loading { Text("No hay extensiones disponibles en este servidor.") }
+            }.navigationTitle("Extensiones Manga").searchable(text: $query).toolbar { ToolbarItem(placement: .topBarTrailing) { Button("Listo") { dismiss() } } }.task { await load() }.refreshable { await load() }
+        }
+    }
+    private func load() async {
+        loading = true; defer { loading = false }
+        do { entries = try await client.extensions() } catch { self.error = safeMessage(error) }
+    }
+    private func change(_ entry: MangaExtension, action: String) {
+        loading = true; error = nil
+        Task { do { try await client.changeExtension(entry, action: action); await load() } catch { self.error = safeMessage(error); loading = false } }
+    }
+}
