@@ -34,6 +34,8 @@ Hacer comprobaciones proporcionadas a cada cambio: implementar, verificar el rec
 
 El 9 de octubre el propietario restableció el proceso habitual para las próximas entregas: validación completa con `validation_scope=full`, servicios públicos y recorrido UI activados, además de compilación y paquete para iPhone. La validación reducida de la build 84 fue una excepción para dos fallos ya identificados tras varias pruebas generales; no es la política para las entregas siguientes. No repetir la build 84 ya entregada sólo por este cambio de proceso.
 
+La instrucción posterior del propietario exige reunir todos los añadidos y correcciones pendientes en una única IPA final. Conservar los cambios de fuente y usar `[skip ci]` en los commits intermedios; no iniciar compilaciones Apple ni generar IPAs intermedias. Ejecutar la validación completa al preparar esa entrega final.
+
 El inventario completo de Desktop permanece como referencia y conserva sus estados reales. Sus 859 entradas no son una lista obligatoria de entrega ni el denominador del nuevo porcentaje de avance. Medir el progreso del objetivo móvil por los recorridos anteriores y su evidencia, sin convertir opciones excluidas en funciones terminadas.
 
 Mantener la IPA anterior hasta que una nueva pase sus comprobaciones. Continuar sin contratar servicios, planes o runners de pago ni alterar facturación. El cambio de alcance no declara terminado el trabajo.
@@ -53,5 +55,7 @@ La petición posterior conserva el alcance móvil esencial y exige máxima fidel
 - Reproducción: siguiente episodio, fuente automática según calidad/filtros configurados, idiomas de audio/subtítulos por prioridad, segunda pista, exclusión CAM/TS y controles/paneles Harbor. Añadir pellizco para adaptar/llenar; conservar el ajuste manual de zoom.
 - Campañas: actualización de contenido con datos oficiales compatibles y respaldo válido. Una actualización de código de la IPA firmada requiere reinstalación/firma; no prometer instalación silenciosa.
 - Submanhwa: acceso a la cuenta del sitio, lectura y sección Gacha/Mudae desde Harbor. Sesión del sitio persistente y aislada por cuenta; no ejecutar giros, compras o mensajes en nombre del usuario.
+
+El 9 de octubre se añadió el bloqueo de publicidad dentro del navegador de Submanhwa: filtrar las redes publicitarias detectadas, ocultar sus contenedores y rechazar ventanas emergentes no solicitadas, conservando la navegación, las imágenes de lectura y los datos de sesión. Los filtros pueden requerir mantenimiento si el sitio cambia; no afirmar que bloquean el 100 % de anuncios presentes o futuros. El código y los límites de comprobación se registran en [IPHONE_FEEDBACK_2026-10-09.md](IPHONE_FEEDBACK_2026-10-09.md).
 
 Registrar implementación y evidencia por recorrido; esta lista nueva no declara terminadas las funciones existentes.

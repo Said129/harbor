@@ -8,6 +8,10 @@ Los servicios públicos conservan el pase de ocho pruebas en 82. Para vídeo se 
 
 La IPA 43 y sus informes se respaldaron en `C:/Users/Said/Documents/SOL/harbor-builds/downloads-before-build84-20261009-202657`. Descargas incluye el nuevo informe y las instrucciones. No hay verificación física de 84 ni de las cuentas privadas; el port y el incremento conservado de reanudación siguen en progreso.
 
+## Fuente pendiente: bloqueo de anuncios en Submanhwa, 9 de octubre
+
+Se añadieron reglas nativas de WebKit antes de la primera navegación, filtros de banners del sitio y una política que rechaza ventanas publicitarias sin sustituir la página de lectura. El almacén persistente por cuenta se conserva. Las pruebas nuevas de reglas WebKit, contenido de lectura/formulario/almacenamiento y política de ventanas están preparadas para la validación Apple final; todavía no se han ejecutado. No hay compilación ni nueva IPA para este incremento. Detalles y límites en [IPHONE_FEEDBACK_2026-10-09.md](IPHONE_FEEDBACK_2026-10-09.md).
+
 ## Entrega anterior: IPA 43, 7 de octubre de 2026
 
 El informe de la entrega anterior identificaba la fuente `fd3d9e59e82717fac70523f9a30fc2e5a8a21c3a`, build 43, del [run 37634911030](https://github.com/Said129/harbor/actions/runs/37634911030). Paquete: 28,917,014 bytes, SHA-256 `276164ed4d013ba064faf183ad0d245dbd618f27dab65e77b43a9df1aca81410`. La descarga, el paquete arm64 y sus 37 imágenes se verificaron antes de sustituir la entrega. Pasaron 31 pruebas nativas, seis servicios públicos y el recorrido UI. No se ha confirmado una revisión física de la build 43.
