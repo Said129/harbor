@@ -141,7 +141,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          selection=()
+          selection=(-only-testing:HarborTests)
           if [[ "${{ inputs.validation_scope }}" == "affected" ]]; then
             selection=(-only-testing:HarborTests/WebPageDialogTests)
           fi

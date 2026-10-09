@@ -14,7 +14,7 @@ El informe de la entrega anterior identificaba la fuente `fd3d9e59e82717fac70523
 
 ## Preparación de 84: comprobar sólo los dos fallos y generar la IPA
 
-Por petición explícita del usuario se detiene la repetición del recorrido completo en cada candidata. El modo manual `validation_scope=affected` ejecuta únicamente WebPageDialogTests y el recorrido breve de Cancelar en el editor de colores. Omite las suites Rust, servicios públicos y el recorrido UI general, conservando la compilación Apple y la verificación del paquete de dispositivo. El modo `full` permanece disponible. La Release identifica la cobertura limitada de esta candidata; no afirma que todas las suites se hayan repetido.
+Para esta entrega el usuario pidió no repetir el recorrido completo tras varias comprobaciones generales y dos fallos identificados. El modo manual `validation_scope=affected` ejecutó únicamente WebPageDialogTests y el recorrido breve de Cancelar en el editor de colores. Omitió las suites Rust, servicios públicos y el recorrido UI general, conservando la compilación Apple y la verificación del paquete de dispositivo. La Release identifica esa cobertura limitada. El 9 de octubre el usuario restableció la validación completa para las próximas entregas; `full` sigue siendo el modo por defecto. La excepción de 84 no se extiende a las candidatas siguientes.
 
 Los servicios públicos pasaron en 82; las tres pruebas de vídeo pasaron en 83. Esos componentes no se han modificado. La única modificación de producción desde 82 es la restauración de la paleta al cancelar, que se comprueba de forma específica. Los recorridos posteriores al fallo de 82 siguen sin comprobarse en esa ejecución; no se presentan como pasados.
 

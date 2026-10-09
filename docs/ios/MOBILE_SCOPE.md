@@ -32,6 +32,8 @@ El objetivo termina cuando funcionan los recorridos prioritarios, se cierran los
 
 Hacer comprobaciones proporcionadas a cada cambio: implementar, verificar el recorrido afectado, solucionar el fallo si aparece y continuar. Mantener las comprobaciones de entrega de vídeo real, servicios, interfaz, dispositivo y paquete; evitar repetir pruebas amplias cuando no haya cambios o fallos que lo justifiquen.
 
+El 9 de octubre el propietario restableció el proceso habitual para las próximas entregas: validación completa con `validation_scope=full`, servicios públicos y recorrido UI activados, además de compilación y paquete para iPhone. La validación reducida de la build 84 fue una excepción para dos fallos ya identificados tras varias pruebas generales; no es la política para las entregas siguientes. No repetir la build 84 ya entregada sólo por este cambio de proceso.
+
 El inventario completo de Desktop permanece como referencia y conserva sus estados reales. Sus 859 entradas no son una lista obligatoria de entrega ni el denominador del nuevo porcentaje de avance. Medir el progreso del objetivo móvil por los recorridos anteriores y su evidencia, sin convertir opciones excluidas en funciones terminadas.
 
 Mantener la IPA anterior hasta que una nueva pase sus comprobaciones. Continuar sin contratar servicios, planes o runners de pago ni alterar facturación. El cambio de alcance no declara terminado el trabajo.
