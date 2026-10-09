@@ -193,12 +193,9 @@ struct DetailView: View {
     }
     private func playTitle() {
         if !model.media.episodic { openStreams(automatic: StreamPreferences.shared.automatic); return }
-        let episodes = WatchedCodec.ordered(model.media.videos ?? []).filter(\.available)
         let record = app.library.items.first { $0.id == model.media.id }
-        let coordinates = record?.playbackCoordinates
-        let resumed = episodes.first { $0.id == record?.raw["state"]["video_id"].string || ($0.season == coordinates?.season && $0.episode == coordinates?.episode) }
         let watched = app.library.watchedEpisodes(model.media)
-        if let episode = resumed ?? episodes.first(where: { !watched.contains($0.watchedKey) && ($0.season ?? 1) > 0 }) ?? episodes.first {
+        if let episode = EpisodeSequence.startingEpisode(model.media.videos ?? [], record: record, watched: watched) {
             openStreams(episode, automatic: StreamPreferences.shared.automatic)
         }
     }

@@ -158,7 +158,13 @@
     "src/lib/i18n/locales/ui-fallback.ts": "cfbee1e4f6f5a11a45dcbc5df2ca7f53ed969ebc62eeb88ad931f7f87f6206a1",
     "src/components/feed-hero.tsx": "44d64873829bdbeb22fcb1e6c9f51b8b34bb43554366d6f2b04c4ff118752f20",
     "src/lib/feed/skipped.ts": "1d2ee7f34b792f516eed0421ca5f8272cb81090bc8cbd62d4ea29427f7d20b26",
-    "src/assets/tide-info.png": "baeeebb3ae2556c836138e132ab9b9cf959f17fa1447f944d72a03478a72782a"
+    "src/assets/tide-info.png": "baeeebb3ae2556c836138e132ab9b9cf959f17fa1447f944d72a03478a72782a",
+    "src/lib/stremio.ts": "dd785247ba25a37bd0a03ce577e117dd38fe75c6d4dcdc1c607cdf3095b8272b",
+    "src/lib/detail-resume-advance.ts": "eafb83b7d20b12ae4fb16e240cd92ed60376c783debac67fb35e3ebf16814499",
+    "src/views/home/hooks/use-cw-advance.ts": "8c40e81c8c10ee9f86442daa48a4861357a50f8210beab79657e4052a2e4cd5b",
+    "src/views/player/hooks/use-stremio-sync.ts": "b3b9b731f52c7d13062117e6bb164e080a09b263749151536935e884dde1811f",
+    "src/components/continue-card.tsx": "a75a66fba2fcde5aca32001e8a6cc123d21dbad9800ccbbb047fc0403ea58633",
+    "src/lib/i18n/locales/es/common.ts": "bf96571c719f10ec75940247502be740359d3f792cfb8cf4c7302b3fb965402b"
   },
   "fonts": {
     "Fraunces": {
@@ -282,5 +288,23 @@
       "modified": false
     },
     "adaptation": "Original FeedHero structure, labels, chip glyphs, scrims and 200px strip; actions wrap for iPhone. Queue tags use actual media type, without claiming a ranking source that was not fetched. Skip lasts 14 days; not-interested persists per account. Desktop fallback strings remain verbatim when its Spanish locale has no translation."
+  },
+  "continueWatching": {
+    "reference": [
+      "src/lib/stremio.ts",
+      "src/lib/detail-resume-advance.ts",
+      "src/views/home/hooks/use-cw-advance.ts",
+      "src/views/player/hooks/use-stremio-sync.ts",
+      "src/components/continue-card.tsx",
+      "src/lib/i18n/locales/es/common.ts"
+    ],
+    "native": [
+      "ios/Harbor/Models/Library.swift",
+      "ios/Harbor/Models/LibraryPlayback.swift",
+      "ios/Harbor/Player/EpisodeSequence.swift",
+      "ios/Harbor/Models/ContinueWatchingPresentation.swift",
+      "ios/Harbor/Views/LibraryView.swift"
+    ],
+    "adaptation": "Current-video flags remain distinct from cumulative watch counts. Match numeric and ISO cloud dates, provider video IDs and episode coordinates. Enrich cards with real metadata; offer the next available unwatched ordinary episode without mutating the cloud playback position. Preserve partial rewatches and keep specials separate. Original Desktop card labels and remaining-time formats, with touch navigation to playback or details."
   }
 }

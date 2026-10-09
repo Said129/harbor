@@ -426,5 +426,11 @@
   "Resume from {time}": "Reanudar desde {time}",
   "Start Over": "Volver a empezar",
   "Switch stream": "Cambiar fuente",
-  "Connecting": "Conectando"
+  "Connecting": "Conectando",
+  "{h}h {m}m left": "Quedan {h} h {m} min",
+  "{h}h left": "Quedan {h} h",
+  "{m}m left": "Quedan {m} min",
+  "Add to favorites": "Agregar a favoritos",
+  "Remove from favorites": "Quitar de favoritos",
+  "Remove from Continue Watching": "Quitar de Seguir viendo"
 }

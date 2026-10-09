@@ -139,17 +139,7 @@ struct ContinueWatching: View {
                     LazyHStack(alignment: .top, spacing: 12) {
                         ForEach(items) { item in
                             if let media = item.media {
-                                VStack(alignment: .leading, spacing: 2) {
-                                    NavigationLink { DetailView(media: media, app: app, playImmediately: true) } label: {
-                                        ContinueWatchingArtwork(record: item, media: media)
-                                    }.accessibilityIdentifier("continue-watching-resume").accessibilityLabel("Continuar viendo \(media.name)")
-                                        .accessibilityValue("\(item.playbackCaption ?? "En curso") · \(Int(item.progress * 100)) por ciento")
-                                    NavigationLink { DetailView(media: media, app: app) } label: {
-                                        Text(media.name).font(HarborTheme.font(13, weight: .medium)).lineLimit(1)
-                                            .frame(maxWidth: .infinity, minHeight: 44, alignment: .leading).contentShape(Rectangle())
-                                    }.accessibilityIdentifier("continue-watching-details").accessibilityLabel("Abrir ficha de \(media.name)")
-                                }.frame(width: 260, alignment: .leading).foregroundStyle(HarborTheme.ink).buttonStyle(.plain)
-                                    .contextMenu { LibraryActions(app: app, record: item, media: media, owner: app.library.owner) }
+                                ContinueWatchingCard(app: app, record: item, media: media).id(app.library.owner + "|" + item.id)
                             }
                         }
                     }.padding(.horizontal)
@@ -159,9 +149,59 @@ struct ContinueWatching: View {
     }
 }
 
+private struct ContinueWatchingCard: View {
+    let app: AppModel
+    let record: LibraryRecord
+    let media: Media
+    @State private var hydrated: Media?
+    private var detailed: Media { hydrated ?? media }
+    private var presentation: ContinueWatchingPresentation {
+        ContinueWatchingPresentation(record: record, media: detailed, watched: app.library.watchedEpisodes(detailed))
+    }
+    var body: some View {
+        let presentation = self.presentation
+        VStack(alignment: .leading, spacing: 2) {
+            NavigationLink { DetailView(media: detailed, app: app, playImmediately: true) } label: {
+                ContinueWatchingArtwork(record: record, media: detailed, presentation: presentation)
+            }.accessibilityIdentifier("continue-watching-resume").accessibilityLabel("Continuar viendo \(detailed.name)")
+                .accessibilityValue(presentation.upNext ? DesktopInterfaceText.value("Up Next") : "\(record.playbackCaption ?? "") · \(Int(presentation.progress * 100)) por ciento")
+            NavigationLink { DetailView(media: detailed, app: app) } label: {
+                Text(detailed.name).font(HarborTheme.font(13, weight: .medium)).lineLimit(1)
+                    .frame(maxWidth: .infinity, minHeight: 44, alignment: .leading).contentShape(Rectangle())
+            }.accessibilityIdentifier("continue-watching-details").accessibilityLabel("Abrir ficha de \(detailed.name)")
+        }.frame(width: 260, alignment: .leading).foregroundStyle(HarborTheme.ink).buttonStyle(.plain)
+            .contextMenu { LibraryActions(app: app, record: record, media: detailed, owner: app.library.owner) }
+            .task {
+                let owner = app.library.owner
+                guard var result = try? await app.service.metadata(media, addons: app.addons), !Task.isCancelled, owner == app.library.owner else { return }
+                // Artwork and episodes can be enriched without changing the
+                // cloud library identity used for resume and dismissal.
+                result.id = media.id
+                hydrated = result
+            }
+    }
+}
+
 private struct ContinueWatchingArtwork: View {
     let record: LibraryRecord
     let media: Media
+    let presentation: ContinueWatchingPresentation
+    private var episodeCaption: String? {
+        let season = presentation.episode?.season ?? record.playbackCoordinates.season
+        let episode = presentation.episode?.episode ?? record.playbackCoordinates.episode
+        guard media.episodic, let season, let episode else { return nil }
+        return AnimeService.isAnime(media.id) && season == 1 ? "Ep \(episode)" : "S\(season)E\(episode)"
+    }
+    private var remainingCaption: String? {
+        let duration = record.raw["state"]["duration"].numericValue ?? 0
+        let offset = record.raw["state"]["timeOffset"].numericValue ?? 0
+        guard duration.isFinite, duration > 0, offset.isFinite, offset >= 0 else { return nil }
+        let remaining = max(0, ((duration - offset) / 60_000).rounded())
+        guard remaining < Double(Int.max) else { return nil }
+        let minutes = Int(remaining), hours = minutes / 60
+        let original = minutes < 60 ? "{m}m left" : minutes % 60 == 0 ? "{h}h left" : "{h}h {m}m left"
+        return DesktopInterfaceText.value(original).replacingOccurrences(of: "{h}", with: String(hours)).replacingOccurrences(of: "{m}", with: String(minutes < 60 ? minutes : minutes % 60))
+    }
     var body: some View {
         ZStack {
             Color.clear
@@ -180,18 +220,30 @@ private struct ContinueWatchingArtwork: View {
             .overlay(alignment: .bottomLeading) {
                 HStack(spacing: 6) {
                     Image("ui-play-filled").resizable().scaledToFit().frame(width: 11, height: 11).accessibilityHidden(true)
-                    Text(record.playbackCaption ?? "Continuar").font(HarborTheme.font(11, weight: .medium)).lineLimit(1)
+                    if let episodeCaption { Text(episodeCaption).font(HarborTheme.font(11, weight: .medium)).fixedSize(horizontal: true, vertical: false) }
+                    if presentation.upNext {
+                        if episodeCaption != nil { Text("·").foregroundStyle(.white.opacity(0.5)) }
+                        Text(DesktopInterfaceText.value("Up Next")).font(HarborTheme.font(11, weight: .medium)).foregroundStyle(HarborTheme.accent).lineLimit(1)
+                    } else if let title = presentation.episode?.name ?? presentation.episode?.title, !title.isEmpty {
+                        if episodeCaption != nil { Text("·").foregroundStyle(.white.opacity(0.5)) }
+                        Text(title).font(HarborTheme.font(11)).foregroundStyle(.white.opacity(0.7)).lineLimit(1)
+                    } else if let caption = remainingCaption {
+                        if episodeCaption != nil { Text("·").foregroundStyle(.white.opacity(0.5)) }
+                        Text(caption).font(HarborTheme.font(11)).foregroundStyle(.white.opacity(0.7)).lineLimit(1)
+                    }
                 }.foregroundStyle(.white).padding(.horizontal, 8).padding(.vertical, 5)
                     .background(HarborTheme.background.opacity(0.95), in: .rect(cornerRadius: 6))
                     .padding(.horizontal, 8).padding(.bottom, 10)
             }
             .overlay(alignment: .bottom) {
+                if presentation.progress > 0 {
                 GeometryReader { bounds in
                     ZStack(alignment: .leading) {
                         Rectangle().fill(HarborTheme.background.opacity(0.4))
-                        Rectangle().fill(HarborTheme.accent).frame(width: bounds.size.width * CGFloat(record.progress))
+                        Rectangle().fill(HarborTheme.accent).frame(width: bounds.size.width * CGFloat(presentation.progress))
                     }
-                }.frame(height: 3).accessibilityLabel("Progreso").accessibilityValue("\(Int(record.progress * 100)) por ciento")
+                }.frame(height: 3).accessibilityLabel("Progreso").accessibilityValue("\(Int(presentation.progress * 100)) por ciento")
+                }
             }
             .clipShape(.rect(cornerRadius: 12))
             .overlay { RoundedRectangle(cornerRadius: 12).stroke(.white.opacity(0.06), lineWidth: 1) }
@@ -215,7 +267,7 @@ private struct LibraryActions: View {
     let media: Media
     let owner: String
     var body: some View {
-        Button(app.library.favorites.contains(media) ? "Quitar de favoritos de este iPhone" : "Añadir a favoritos de este iPhone") {
+        Button(DesktopInterfaceText.value(app.library.favorites.contains(media) ? "Remove from favorites" : "Add to favorites")) {
             guard owner == app.library.owner else { return }
             app.library.favorites.toggle(media)
         }.disabled(!app.library.favorites.ready)
@@ -231,7 +283,7 @@ private struct LibraryActions: View {
             }
         }.disabled(app.library.busy)
         if record.continuing {
-            Button("Ocultar de Continuar viendo en este iPhone") { app.library.hideContinuing(record, owner: owner) }.disabled(!app.library.canChangePresentation)
+            Button(DesktopInterfaceText.value("Remove from Continue Watching")) { app.library.hideContinuing(record, owner: owner) }.disabled(!app.library.canChangePresentation)
         }
     }
 }

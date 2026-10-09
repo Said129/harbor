@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-09",
+  "updatedAt": "2026-10-10",
   "authority": "Explicit scope change by the repository owner in the current conversation",
   "status": "in_progress",
   "objective": "Create a native iPhone Harbor faithful to Desktop beta 0.9.130 identity and selected mobile functions. Preserve everything implemented and finish native increments already started. For remaining work implement essential functions and useful mobile settings, without requiring every adaptable Desktop option.",
@@ -373,7 +373,7 @@
       "feedback": "docs/ios/IPHONE_FEEDBACK_2026-10-07.md"
     },
     {
-      "name": "Single final IPA: playback corrections, original resume and Discover queue, Submanhwa ad blocking",
+      "name": "Single final IPA: playback corrections, original resume and Discover queue, Submanhwa ad blocking, Desktop cloud continuity",
       "status": "Source implemented; no intermediate Apple build or IPA. Swift compilation, native/public/UI tests, review of real rendered evidence, final device package and physical/private validation remain pending. Delivered build 84 does not contain these changes.",
       "feedback": "docs/ios/IPHONE_FEEDBACK_2026-10-09.md",
       "files": [
@@ -395,8 +395,18 @@
         "ios/HarborTests/PlaybackControlTests.swift",
         "ios/HarborTests/SubmanhwaAdBlockerTests.swift",
         "ios/HarborTests/NativeDataTests.swift",
-        "ios/HarborUITests/LiveNavigationTests.swift"
-      ]
+        "ios/HarborUITests/LiveNavigationTests.swift",
+        "ios/Harbor/Models/Library.swift",
+        "ios/Harbor/Models/LibraryPlayback.swift",
+        "ios/Harbor/Models/LibraryPresentation.swift",
+        "ios/Harbor/Models/ContinueWatchingPresentation.swift",
+        "ios/Harbor/Models/Media.swift",
+        "ios/Harbor/ViewModels/LibraryModel.swift",
+        "ios/Harbor/Player/EpisodeSequence.swift",
+        "ios/Harbor/Views/LibraryView.swift",
+        "ios/HarborTests/LibraryContinuityTests.swift"
+      ],
+      "continuityFeedback": "docs/ios/IPHONE_FEEDBACK_2026-10-10.md"
     }
   ],
   "additionalRequestedMobileWork": [

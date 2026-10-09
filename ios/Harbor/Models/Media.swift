@@ -30,7 +30,7 @@ struct Media: Codable, Identifiable, Hashable, Sendable {
         guard id.range(of: "^tt[0-9]{7,}$", options: .regularExpression) != nil else { return nil }
         return "https://images.metahub.space/\(kind)/medium/\(id)/img"
     }
-    var episodic: Bool { type == "series" || videos?.contains(where: { $0.season != nil && $0.episode != nil }) == true }
+    var episodic: Bool { type == "series" || type == "anime" || videos?.contains(where: { $0.season != nil && $0.episode != nil }) == true }
     var safeForKids: Bool {
         guard adult != true else { return false }
         let labels = Set((genres ?? []).map { $0.lowercased() })

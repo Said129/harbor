@@ -91,7 +91,7 @@ enum LibraryListing {
         if display.sort == .year { return [Group(title: "Por año", items: records)] }
         var buckets: [Int: Group] = [:]
         for record in records {
-            let timestamp = display.filter == .watched || display.filter == .continuing ? record.activityTimestamp : LibraryRecord.timestamp(record.raw["_ctime"].string) ?? LibraryRecord.timestamp(record.modified) ?? 0
+            let timestamp = display.filter == .watched || display.filter == .continuing ? record.activityTimestamp : LibraryRecord.timestamp(record.raw["_ctime"]) ?? LibraryRecord.timestamp(record.raw["_mtime"]) ?? 0
             let date = Date(timeIntervalSince1970: timestamp / 1_000)
             let days = now.timeIntervalSince(date) / 86_400
             let year = calendar.component(.year, from: date)
@@ -113,7 +113,7 @@ enum LibraryListing {
             var date = 0.0
             if display.sort == .recent {
                 switch display.filter {
-                case .all, .saved, .watchlist, .favorites: date = LibraryRecord.timestamp(record.raw["_ctime"].string) ?? LibraryRecord.timestamp(record.modified) ?? 0
+                case .all, .saved, .watchlist, .favorites: date = LibraryRecord.timestamp(record.raw["_ctime"]) ?? LibraryRecord.timestamp(record.raw["_mtime"]) ?? 0
                 case .watched, .continuing: date = record.activityTimestamp
                 }
             }

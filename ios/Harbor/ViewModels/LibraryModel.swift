@@ -21,7 +21,7 @@ final class LibraryModel {
     var busy = false
     var error: String?
     var owner: String { session?.user.id ?? "guest" }
-    var items: [LibraryRecord] { records.map { LibraryRecord(raw: $0) }.filter { !$0.id.isEmpty && $0.media != nil }.sorted { $0.modified > $1.modified } }
+    var items: [LibraryRecord] { records.map { LibraryRecord(raw: $0) }.filter { !$0.id.isEmpty && $0.media != nil }.sorted { $0.activityTimestamp == $1.activityTimestamp ? $0.id < $1.id : $0.activityTimestamp > $1.activityTimestamp } }
     var continuing: [LibraryRecord] {
         var display = LibraryDisplay(); display.filter = .continuing
         return LibraryListing.select(items.filter { $0.continuing && presentation.dismissed[$0.id]?.hides($0) != true }, display: display, query: "")
@@ -179,24 +179,7 @@ final class LibraryModel {
         guard snapshot.timestampMs > (lastProgressWrite[media.id] ?? 0) else { return }
         guard snapshot.exiting || snapshot.timestampMs >= (lastProgressWrite[media.id] ?? 0) + 15_000 else { return }
         let success = await update(media, progress: true) { fields in
-            var state: [String: JSONValue] = [:]
-            if case .object(let previous) = fields["state"] { state = previous }
-            state["timeOffset"] = .number(snapshot.positionMs)
-            state["duration"] = .number(snapshot.durationMs)
-            state["lastWatched"] = .string(Date().ISO8601Format())
-            if let season = target.season { state["season"] = .integer(Int64(season)) }
-            if let episode = target.episode { state["episode"] = .integer(Int64(episode)) }
-            state["video_id"] = .string(target.videoId ?? target.id)
-            let finished = snapshot.durationMs > 0 && snapshot.positionMs / snapshot.durationMs >= 0.9
-            if media.episodic {
-                if finished, let videos = media.videos, let episode = videos.first(where: { $0.id == target.videoId }) {
-                    var watched = try WatchedCodec.decode(state["watched"]?.string, videos: videos)
-                    watched.insert(episode.watchedKey)
-                    state["watched"] = .string(try WatchedCodec.encode(watched, videos: videos))
-                }
-            } else { state["flaggedWatched"] = .integer(finished ? 1 : 0) }
-            fields["state"] = .object(state)
-            if fields["removed"] == .bool(true) { fields["temp"] = .bool(true) }
+            try LibraryPlayback.apply(snapshot, target: target, media: media, to: &fields)
         }
         if success { lastProgressWrite[media.id] = snapshot.timestampMs }
     }

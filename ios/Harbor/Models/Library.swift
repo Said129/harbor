@@ -17,10 +17,16 @@ struct LibraryRecord: Identifiable, Sendable {
     }
     var continuing: Bool {
         let offset = raw["state"]["timeOffset"].numericValue ?? 0
-        return !watched && offset.isFinite && offset > 0 && (bookmarked || raw["temp"] == .bool(true))
+        guard let media, ["movie", "series", "anime"].contains(media.type), !id.hasPrefix("iptv:"),
+              offset.isFinite, offset > 0, bookmarked || raw["temp"] == .bool(true) else { return false }
+        // Desktop keeps series with a current video, including the completed
+        // episode from which it offers the next one. timesWatched is cumulative;
+        // it must not hide a later episode or a movie being watched again.
+        return media.type != "movie" || !currentMovieFinished
     }
-    var modified: String { raw["_mtime"].string ?? "" }
-    var activityTimestamp: Double { max(Self.timestamp(modified) ?? 0, Self.timestamp(raw["state"]["lastWatched"].string) ?? 0) }
+    private var currentMovieFinished: Bool { (raw["state"]["flaggedWatched"].numericValue ?? 0) > 0 || progress >= 0.9 }
+    var modified: String { raw["_mtime"].textValue ?? "" }
+    var activityTimestamp: Double { max(Self.timestamp(raw["_mtime"]) ?? 0, Self.timestamp(raw["state"]["lastWatched"]) ?? 0) }
     var playbackCoordinates: (season: Int?, episode: Int?) {
         let state = raw["state"]
         let parts = (state["video_id"].string ?? "").split(separator: ":")
@@ -43,26 +49,31 @@ struct LibraryRecord: Identifiable, Sendable {
     }
     static func timestamp(_ value: String?) -> Double? {
         guard let value else { return nil }
+        if let timestamp = Double(value), timestamp.isFinite, timestamp >= 0 { return timestamp }
         let fractional = ISO8601DateFormatter(); fractional.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
         guard let date = fractional.date(from: value) ?? ISO8601DateFormatter().date(from: value) else { return nil }
         let timestamp = date.timeIntervalSince1970 * 1_000
         return timestamp.isFinite && timestamp >= 0 ? timestamp : nil
+    }
+    static func timestamp(_ value: JSONValue) -> Double? {
+        if let timestamp = value.numericValue { return timestamp.isFinite && timestamp >= 0 ? timestamp : nil }
+        return timestamp(value.string)
     }
     func resume(for target: ResumeTarget) -> CloudResume? {
         guard id == target.id, let media else { return nil }
         let state = raw["state"]
         if media.episodic {
             let sameVideo = target.videoId != nil && state["video_id"].string == target.videoId
-            let sameCoordinates = target.season != nil && target.episode != nil && state["season"].integer == target.season && state["episode"].integer == target.episode
+            let coordinates = playbackCoordinates
+            let sameCoordinates = target.season != nil && target.episode != nil && coordinates.season == target.season && coordinates.episode == target.episode
             guard sameVideo || sameCoordinates else { return nil }
         }
         guard let offset = state["timeOffset"].numericValue, offset.isFinite, offset >= 0 else { return nil }
-        let finished = !media.episodic && watched
-        let value = finished || offset == 0 ? modified : state["lastWatched"].string ?? modified
-        let fractional = ISO8601DateFormatter(); fractional.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
-        guard let date = fractional.date(from: value) ?? ISO8601DateFormatter().date(from: value), date.timeIntervalSince1970 >= 0, date.timeIntervalSince1970 * 1000 < Double(UInt64.max) else { return nil }
+        let finished = media.type == "movie" && currentMovieFinished
+        let timestamp = finished || offset == 0 ? Self.timestamp(raw["_mtime"]) : Self.timestamp(state["lastWatched"]) ?? Self.timestamp(raw["_mtime"])
+        guard let timestamp, timestamp < Double(UInt64.max) else { return nil }
         let duration = state["duration"].numericValue ?? 0
-        return CloudResume(entry: ResumeEntry(ms: finished ? 0 : offset, t: UInt64(date.timeIntervalSince1970 * 1000)), durationMs: duration.isFinite && duration >= 0 ? duration : 0)
+        return CloudResume(entry: ResumeEntry(ms: finished ? 0 : offset, t: UInt64(timestamp)), durationMs: duration.isFinite && duration >= 0 ? duration : 0)
     }
     static func new(_ media: Media) -> [String: JSONValue] {
         let now = Date().ISO8601Format()

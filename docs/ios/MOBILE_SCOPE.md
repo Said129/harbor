@@ -59,3 +59,5 @@ La petición posterior conserva el alcance móvil esencial y exige máxima fidel
 El 9 de octubre se añadió el bloqueo de publicidad dentro del navegador de Submanhwa: filtrar las redes publicitarias detectadas, ocultar sus contenedores y rechazar ventanas emergentes no solicitadas, conservando la navegación, las imágenes de lectura y los datos de sesión. Los filtros pueden requerir mantenimiento si el sitio cambia; no afirmar que bloquean el 100 % de anuncios presentes o futuros. El código y los límites de comprobación se registran en [IPHONE_FEEDBACK_2026-10-09.md](IPHONE_FEEDBACK_2026-10-09.md).
 
 Registrar implementación y evidencia por recorrido; esta lista nueva no declara terminadas las funciones existentes.
+
+El 10 de octubre se corrigió en fuente la lectura del contador histórico de Stremio, la reanudación por coordenadas y fechas numéricas, la selección del siguiente capítulo y la presentación de «A continuación». El incremento se registra en [IPHONE_FEEDBACK_2026-10-10.md](IPHONE_FEEDBACK_2026-10-10.md) y se acumula para la misma IPA final, con validación nativa pendiente.
