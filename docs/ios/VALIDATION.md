@@ -1,8 +1,18 @@
-# Entrega actual: IPA 43, 7 de octubre de 2026
+# Entrega actual: IPA 84, 9 de octubre de 2026
 
-El informe que acompaña a `C:/Users/Said/Downloads/Harbor-unsigned.ipa` identifica la fuente `fd3d9e59e82717fac70523f9a30fc2e5a8a21c3a`, build 43, del [run 37634911030](https://github.com/Said129/harbor/actions/runs/37634911030). Paquete: 28,917,014 bytes, SHA-256 `276164ed4d013ba064faf183ad0d245dbd618f27dab65e77b43a9df1aca81410`. La descarga, el paquete arm64 y sus 37 imágenes se verificaron antes de sustituir la entrega. Pasaron 31 pruebas nativas, seis servicios públicos y el recorrido UI. No se ha confirmado una revisión física de la build 43.
+`C:/Users/Said/Downloads/Harbor-unsigned.ipa` contiene ahora la build 84, fuente `a71602f4b21deba6c5cb00910fc59e5753c1b2b6`, del [run 37834434921](https://github.com/Said129/harbor/actions/runs/37834434921), terminado correctamente el 8 de octubre a las 20:43 UTC. Se descargó y entregó el 9 de octubre. Paquete arm64 para iPhone, sin firmar, iOS mínimo 17: 36,732,153 bytes, SHA-256 `52937d74105a84392624b1199a5ee3490be966cefd66e7180d6ee5f125482c5e`. Se comprobaron los hashes de los tres assets originales, el informe, CRC/rutas, plataforma del ejecutable y frameworks, familia de dispositivo y ausencia de firma/fixtures en el paquete.
 
-## Candidata 84: comprobar sólo los dos fallos y generar la IPA
+Esta ejecución usó `validation_scope=affected`: pasó una prueba del cierre de los diálogos web (22.437 segundos) y una prueba UI del editor de colores y Cancelar (127.119 segundos). Las suites Rust, servicios públicos y recorrido UI general se omitieron. Las dos capturas nuevas se revisaron: el editor es legible y se cierra; la aserción de ejecución confirma la restauración a `cool-grey`. No se presentan las demás pantallas como comprobadas nuevamente.
+
+Los servicios públicos conservan el pase de ocho pruebas en 82. Para vídeo se conserva el pase de tres pruebas en 83; se descargó su archivo original y se verificaron hash/CRC/rutas. Se revisaron únicamente sus dos PNG de render de 8/10 bits, que muestran las mitades roja y verde decodificadas. El código de producción completo de Harbor y los dos crates Rust es idéntico entre 83 y 84. Las imágenes de vídeo proceden de 83, no de una repetición en 84. La evidencia y el alcance están en `harbor-builds/build84/reviewed-evidence.json` y `delivery.json`.
+
+La IPA 43 y sus informes se respaldaron en `C:/Users/Said/Documents/SOL/harbor-builds/downloads-before-build84-20261009-202657`. Descargas incluye el nuevo informe y las instrucciones. No hay verificación física de 84 ni de las cuentas privadas; el port y el incremento conservado de reanudación siguen en progreso.
+
+## Entrega anterior: IPA 43, 7 de octubre de 2026
+
+El informe de la entrega anterior identificaba la fuente `fd3d9e59e82717fac70523f9a30fc2e5a8a21c3a`, build 43, del [run 37634911030](https://github.com/Said129/harbor/actions/runs/37634911030). Paquete: 28,917,014 bytes, SHA-256 `276164ed4d013ba064faf183ad0d245dbd618f27dab65e77b43a9df1aca81410`. La descarga, el paquete arm64 y sus 37 imágenes se verificaron antes de sustituir la entrega. Pasaron 31 pruebas nativas, seis servicios públicos y el recorrido UI. No se ha confirmado una revisión física de la build 43.
+
+## Preparación de 84: comprobar sólo los dos fallos y generar la IPA
 
 Por petición explícita del usuario se detiene la repetición del recorrido completo en cada candidata. El modo manual `validation_scope=affected` ejecuta únicamente WebPageDialogTests y el recorrido breve de Cancelar en el editor de colores. Omite las suites Rust, servicios públicos y el recorrido UI general, conservando la compilación Apple y la verificación del paquete de dispositivo. El modo `full` permanece disponible. La Release identifica la cobertura limitada de esta candidata; no afirma que todas las suites se hayan repetido.
 
@@ -12,7 +22,7 @@ El [run 37823050570](https://github.com/Said129/harbor/actions/runs/37823050570)
 
 84 permite hasta 30 segundos para que termine esa carga local. Conserva el sondeo del estado real, las tres aserciones de carga/origen y todas las comprobaciones de los diálogos, incluidas la cancelación y la finalización exactamente una vez al cerrar dos veces. No introduce esperas fijas, elimina controles ni cambia el navegador de producción. Conserva los cambios de paleta y ficha pendientes de comprobar.
 
-El log Apple fallido se descargó y se revisaron las aserciones y el arranque de WebContent. La Release de diagnóstico identifica un archivo de 1,578,164 bytes, SHA-256 `58be58f77a480c7c7b026c0b6430d4543d9eaabac211b3a98e4375fd19acd471`; sus imágenes no se descargaron ni se presentan como revisadas. 84 necesita comprobación Apple propia. Descargas conserva la IPA 43 hasta una candidata comprobada y revisada; el dispositivo y las cuentas privadas siguen pendientes.
+Al preparar 84 se revisaron el log Apple fallido, las aserciones y el arranque de WebContent. Su archivo de diagnóstico identifica 1,578,164 bytes, SHA-256 `58be58f77a480c7c7b026c0b6430d4543d9eaabac211b3a98e4375fd19acd471`. La comprobación posterior y la entrega de 84 se registran arriba, incluido el alcance de la revisión de imágenes de 83.
 
 ## Candidata 83: restaurar los colores al pulsar Cancelar
 
