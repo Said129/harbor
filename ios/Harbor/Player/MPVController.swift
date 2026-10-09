@@ -13,6 +13,7 @@ final class MPVController: GLKViewController {
     let state: PlayerState
     private let source: PlaybackSource
     private let startMs: Double
+    private let startPaused: Bool
     private var handle: OpaquePointer?
     private var renderer: OpaquePointer?
     private var context: EAGLContext?
@@ -49,9 +50,11 @@ final class MPVController: GLKViewController {
     var sampleFrame: CVPixelBuffer? { pictureInPicture?.lastFrame }
     var sampleRenderCalls: Int { pictureInPicture?.renderedFrames ?? 0 }
 
-    init(source: PlaybackSource, state: PlayerState, startMs: Double = 0, preservePosition: Bool = false) {
+    init(source: PlaybackSource, state: PlayerState, startMs: Double = 0, preservePosition: Bool = false, startPaused: Bool = false) {
         self.source = source; self.state = state
         self.startMs = startMs
+        self.startPaused = startPaused
+        state.paused = startPaused
         checkedResumeDuration = preservePosition
         super.init(nibName: nil, bundle: nil)
         state.controller = self
@@ -102,7 +105,7 @@ final class MPVController: GLKViewController {
         try AVAudioSession.sharedInstance().setCategory(.playback, mode: .moviePlayback)
         try AVAudioSession.sharedInstance().setActive(true)
         updateAudioRoute()
-        let mpv = try MPVConfiguration.createHandle(startMs: startMs)
+        let mpv = try MPVConfiguration.createHandle(startMs: startMs, startPaused: startPaused)
         handle = mpv
         try check(mpv_request_log_messages(mpv, "no"))
 #if targetEnvironment(simulator)
@@ -112,6 +115,15 @@ final class MPVController: GLKViewController {
 #endif
         try createGLRenderer(mpv)
         state.pictureInPictureSupported = AVPictureInPictureController.isPictureInPictureSupported()
+        if state.pictureInPictureSupported {
+            do { pictureInPicture = try MPVPictureInPicture(owner: self, view: view) }
+            catch {
+                // Register AVKit early, but an optional floating window must
+                // never prevent the regular mpv player from loading.
+                state.pictureInPictureSupported = false
+                Diagnostics.shared.recordFailure(error)
+            }
+        }
         for name in ["dwidth", "dheight"] { _ = mpv_observe_property(mpv, 0, name, MPV_FORMAT_INT64) }
         _ = mpv_observe_property(mpv, 0, "current-vo", MPV_FORMAT_STRING)
         for name in ["time-pos", "duration", "speed", "volume", "audio-delay", "sub-delay"] { try check(mpv_observe_property(mpv, 0, name, MPV_FORMAT_DOUBLE)) }
@@ -208,6 +220,23 @@ final class MPVController: GLKViewController {
         run(["cycle", "pause"])
     }
 
+    func seekForResume(_ positionMs: Double) async throws -> Double {
+        guard positionMs.isFinite, positionMs >= 0, canRestartPlayback, state.loaded, !state.ended, !state.restarting,
+              UIApplication.shared.applicationState == .active, activateAudio() else { throw HarborError(code: "player-not-ready") }
+        let seconds = positionMs / 1000
+        let nearEnd = seconds > 5 && state.duration > 0 && seconds >= state.duration - 20
+        let target = nearEnd ? 0 : seconds
+        try await commandChecked(["seek", String(target), "absolute+exact"])
+        return target * 1000
+    }
+
+    func seekRelative(_ seconds: Double) {
+        guard seconds.isFinite, state.loaded, !state.ended, !state.restarting, !renderSwitching, !didClose else { return }
+        // Keyframe seeking can leave a short backward jump at the same image.
+        // Keep the native clock authoritative and request the exact interval.
+        run(["seek", String(seconds), "relative+exact"])
+    }
+
     private func activateAudio() -> Bool {
         guard !didClose, UIApplication.shared.applicationState == .active || pictureInPicture?.active == true else { return false }
         do {
@@ -260,7 +289,7 @@ final class MPVController: GLKViewController {
             startSampleEvents()
             if let renderer { mpv_render_context_free(renderer); self.renderer = nil }
             sampleOutput = try MPVSampleBufferRenderer(handle: handle)
-            pictureInPicture = try MPVPictureInPicture(owner: self, view: view)
+            if pictureInPicture == nil { pictureInPicture = try MPVPictureInPicture(owner: self, view: view) }
             try await setChecked("vo", "libmpv")
             try await waitForVideoOutput("libmpv")
             try Task.checkCancellation()
@@ -270,7 +299,7 @@ final class MPVController: GLKViewController {
                     try await setChecked("vo", "null")
                     try await waitForVideoOutput("null")
                     sampleOutput?.close(); sampleOutput = nil
-                    pictureInPicture?.close(); pictureInPicture = nil
+                    pictureInPicture?.resetFrames()
                     if renderer == nil { try createGLRenderer(handle) }
                     try await setChecked("vo", "libmpv")
                     try await waitForVideoOutput("libmpv")
@@ -297,7 +326,7 @@ final class MPVController: GLKViewController {
                     let targetWidth = boundedRatio >= 1 ? 640 : max(32, Int(640 * boundedRatio))
                     let targetHeight = boundedRatio >= 1 ? max(32, Int(640 / boundedRatio)) : 640
                     do {
-                        if let frame = try output.draw(width: targetWidth, height: targetHeight) { try self.pictureInPicture?.enqueue(frame) }
+                        if let frame = try output.draw(width: targetWidth, height: targetHeight, force: self.pictureInPicture?.lastFrame == nil) { try self.pictureInPicture?.enqueue(frame) }
                     } catch {
                         self.state.playbackIssue = safeMessage(error)
                         self.pictureInPicture?.stop()
@@ -336,7 +365,7 @@ final class MPVController: GLKViewController {
         try await waitForVideoOutput("null")
         try Task.checkCancellation()
         guard !didClose, UIApplication.shared.applicationState == .active else { inlineRestorePending = true; throw HarborError(code: "player-not-ready") }
-        pictureInPicture?.close(); pictureInPicture = nil
+        pictureInPicture?.resetFrames()
         sampleOutput?.close(); sampleOutput = nil
         try createGLRenderer(handle)
         try await setChecked("vo", "libmpv")

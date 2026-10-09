@@ -142,9 +142,7 @@ private struct VODDetailView: View {
     @State private var resolving = false
     @State private var downloading = false
     @State private var playback: PlaybackSession?
-    @State private var pendingPlayback: PlaybackSession?
     @State private var currentEpisode: VODEpisode?
-    @State private var showResumePrompt = false
     @State private var error: String?
     @State private var downloadMessage: String?
     @State private var enriched: Media?
@@ -207,9 +205,7 @@ private struct VODDetailView: View {
                 enriched = result
             }
             .fullScreenCover(item: $playback, onDismiss: { progressRevision = UUID() }) { session in PlayerView(session: session, resume: session.resumeStore ?? app.resume, title: currentEpisode.map { media.name + " · " + $0.title } ?? media.name, media: media) }
-            .alert("¿Reanudar la reproducción?", isPresented: $showResumePrompt) {
-                Button("Reanudar") { chooseResume(true) }; Button("Desde el principio") { chooseResume(false) }; Button("Cancelar", role: .cancel) { pendingPlayback = nil }
-            } message: { Text("Continuar desde el minuto \(((pendingPlayback?.startMs ?? 0) / 60_000).formatted(.number.precision(.fractionLength(0)))).") }
+            .onChange(of: owner) { _, _ in playback = nil; currentEpisode = nil }
     }
     private func load(refresh: Bool) async {
         guard let series, !loading else { return }; loading = true; error = nil; defer { loading = false }
@@ -239,14 +235,9 @@ private struct VODDetailView: View {
             catch { warning = safeMessage(error) }
             try Task.checkCancellation(); guard owner == (app.user?.id ?? "guest") else { return }
             currentEpisode = episode
-            let session = PlaybackSession(source: resolved, target: target, startMs: start.ms, storageWarning: warning, progressEnabled: true, owner: owner, resumeStore: resume)
-            if start.prompt { pendingPlayback = session; showResumePrompt = true } else { playback = session }
+            playback = PlaybackSession(source: resolved, target: target, startMs: start.ms, storageWarning: warning, progressEnabled: true, owner: owner, resumeStore: resume, promptForResume: start.prompt)
         } catch is CancellationError { return }
         catch { self.error = safeMessage(error) }
-    }
-    private func chooseResume(_ enabled: Bool) {
-        guard let pending = pendingPlayback else { return }
-        playback = PlaybackSession(source: pending.source, target: pending.target, startMs: enabled ? pending.startMs : 0, storageWarning: pending.storageWarning, progressEnabled: pending.progressEnabled, owner: pending.owner, resumeStore: pending.resumeStore); pendingPlayback = nil
     }
     private func download(_ channel: LiveChannel, episode: VODEpisode? = nil) async {
         guard !downloading else { return }; downloading = true; downloadMessage = nil; defer { downloading = false }

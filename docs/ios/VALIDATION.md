@@ -12,6 +12,14 @@ La IPA 43 y sus informes se respaldaron en `C:/Users/Said/Documents/SOL/harbor-b
 
 Se añadieron reglas nativas de WebKit antes de la primera navegación, filtros de banners del sitio y una política que rechaza ventanas publicitarias sin sustituir la página de lectura. El almacén persistente por cuenta se conserva. Las pruebas nuevas de reglas WebKit, contenido de lectura/formulario/almacenamiento y política de ventanas están preparadas para la validación Apple final; todavía no se han ejecutado. No hay compilación ni nueva IPA para este incremento. Detalles y límites en [IPHONE_FEEDBACK_2026-10-09.md](IPHONE_FEEDBACK_2026-10-09.md).
 
+## Fuente pendiente: reproductor y Discover para la única entrega final
+
+Se conserva y termina en fuente el panel original de reanudación iniciado antes de 84. Se añaden cancelación segura de selección automática, cambio manual de fuente, activación de toda la tarjeta de episodio, retroceso exacto, registro temprano de AVKit/primer frame pausado y solicitud de orientación desde la conexión de la ventana. La pantalla de conexión reserva espacio a Cancelar y espera horizontal para mostrar la animación. Se elimina la referencia obsoleta a `pendingPlayback` del selector. Las nuevas pruebas usan mpv/AVKit y la escena UIKit reales; todavía no se han ejecutado.
+
+Discover incorpora la composición original de la entrada y la cola, metadata y acciones reales, exclusiones temporales/permanentes por cuenta y un recorrido UI con contenido público. Las pruebas de preferencias comprueban lectura de almacenes anteriores, caducidad de 14 días, persistencia entre aperturas, aislamiento y conservación de datos dañados. No se atribuye a estos cambios un pase Apple, revisión visual de una ejecución ni verificación física. El gate final debe ejecutar `validation_scope=full` con servicios y UI activados; no se inicia ninguna compilación intermedia. Detalles en [IPHONE_FEEDBACK_2026-10-09.md](IPHONE_FEEDBACK_2026-10-09.md).
+
+Las comprobaciones locales de JSON, procedencia de activos/textos y `git diff --check` no sustituyen compilación o ejecución Swift. En Windows no está disponible Xcode ni el build Linux solicitado por AGENTS.md; las instrucciones posteriores del propietario prohíben compilar antes de reunir la entrega final. No se modifican TypeScript ni Rust en este incremento.
+
 ## Entrega anterior: IPA 43, 7 de octubre de 2026
 
 El informe de la entrega anterior identificaba la fuente `fd3d9e59e82717fac70523f9a30fc2e5a8a21c3a`, build 43, del [run 37634911030](https://github.com/Said129/harbor/actions/runs/37634911030). Paquete: 28,917,014 bytes, SHA-256 `276164ed4d013ba064faf183ad0d245dbd618f27dab65e77b43a9df1aca81410`. La descarga, el paquete arm64 y sus 37 imágenes se verificaron antes de sustituir la entrega. Pasaron 31 pruebas nativas, seis servicios públicos y el recorrido UI. No se ha confirmado una revisión física de la build 43.

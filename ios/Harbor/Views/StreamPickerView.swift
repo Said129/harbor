@@ -16,7 +16,7 @@ struct StreamPickerView: View {
     @State private var overviewExpanded = false
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
-    private var busy: Bool { model.resolving || model.pendingPlayback != nil }
+    private var busy: Bool { model.resolving || model.playback != nil }
     private var selected: StreamOffer? {
         model.offers.first { $0.id == selectedID } ?? StreamPreferences.shared.preferred(model.offers) ?? model.offers.first
     }

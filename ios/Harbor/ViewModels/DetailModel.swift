@@ -13,8 +13,6 @@ final class DetailModel {
     var filteredSources = false
     var error: String?
     var playback: PlaybackSession?
-    var pendingPlayback: PlaybackSession?
-    var showResumePrompt = false
     var selectedEpisode: Episode?
     private var lastPlayedSource: StreamSourceIdentity?
     var continuationOffer: StreamOffer? {
@@ -22,6 +20,7 @@ final class DetailModel {
     }
     private let service: HarborService
     private var streamRequest = UUID()
+    private var resolutionRequest = UUID()
     private var sourceContinuation: SourceContinuation?
 
     func prepareSourceChange(_ session: PlaybackSession, snapshot: ResumeSnapshot?) {
@@ -29,6 +28,7 @@ final class DetailModel {
         playback = nil
     }
     func clearSourceChange() { sourceContinuation = nil }
+    func cancelResolution() { resolutionRequest = UUID(); resolving = false }
 
     init(_ media: Media, service: HarborService) { self.media = media; self.service = service }
 
@@ -67,8 +67,6 @@ final class DetailModel {
         warnings = []
         filteredSources = false
         playback = nil
-        pendingPlayback = nil
-        showResumePrompt = false
         selectedEpisode = episode
         defer { if streamRequest == request { loadingStreams = false } }
         do {
@@ -90,15 +88,17 @@ final class DetailModel {
     func play(_ offer: StreamOffer, resume: ResumeStore, library: LibraryModel) async {
         guard !resolving else { return }
         resolving = true
+        let resolution = UUID()
+        resolutionRequest = resolution
         let owner = library.owner
         let request = streamRequest
         let episode = selectedEpisode
         let continuation = sourceContinuation
-        defer { resolving = false }
+        defer { if resolutionRequest == resolution { resolving = false } }
         do {
             let source = try await service.resolve(offer)
             try Task.checkCancellation()
-            guard owner == library.owner, request == streamRequest else { return }
+            guard owner == library.owner, request == streamRequest, resolution == resolutionRequest else { return }
             let target = ResumeTarget(id: media.id, season: episode?.season, episode: episode?.episode, videoId: episode?.id)
             var start = ResumeStart(ms: 0, prompt: false)
             var warning: String?
@@ -108,7 +108,7 @@ final class DetailModel {
             else if progressEnabled {
                 do {
                     let cloud = await library.resume(for: target)
-                    guard owner == library.owner, request == streamRequest else { return }
+                    guard owner == library.owner, request == streamRequest, resolution == resolutionRequest else { return }
                     let duration = (episode?.runtime ?? 0) > 0 ? (episode?.runtime ?? 0) * 60_000 : cloud?.durationMs ?? 0
                     start = try await resume.position(target, durationMs: duration, playback: UserDefaults.standard.object(forKey: "resumePlayback") as? Bool ?? true, prompt: UserDefaults.standard.object(forKey: "resumePrompt") as? Bool ?? false, cloud: cloud?.entry)
                 } catch {
@@ -117,22 +117,13 @@ final class DetailModel {
                 }
             }
             try Task.checkCancellation()
-            guard owner == library.owner, request == streamRequest else { return }
+            guard owner == library.owner, request == streamRequest, resolution == resolutionRequest else { return }
             lastPlayedSource = StreamSourceIdentity(offer)
             sourceContinuation = nil
-            let session = PlaybackSession(source: source, target: target, startMs: start.ms, storageWarning: warning, progressEnabled: progressEnabled, owner: owner, resumeStore: resume, preservePosition: preservedPosition != nil, advanceStartedAtMs: preservedPosition == nil ? nil : continuation?.advanceStartedAtMs)
-            if start.prompt { pendingPlayback = session; showResumePrompt = true }
-            else { playback = session }
+            playback = PlaybackSession(source: source, target: target, startMs: start.ms, storageWarning: warning, progressEnabled: progressEnabled, owner: owner, resumeStore: resume, preservePosition: preservedPosition != nil, advanceStartedAtMs: preservedPosition == nil ? nil : continuation?.advanceStartedAtMs, promptForResume: start.prompt)
         }
         catch is CancellationError { return }
-        catch { if request == streamRequest { self.error = safeMessage(error) } }
+        catch { if request == streamRequest, resolution == resolutionRequest { self.error = safeMessage(error) } }
     }
 
-    func chooseResume(_ resume: Bool, owner: String) {
-        guard let pending = pendingPlayback else { return }
-        guard pending.owner == owner else { pendingPlayback = nil; showResumePrompt = false; return }
-        playback = PlaybackSession(source: pending.source, target: pending.target, startMs: resume ? pending.startMs : 0, storageWarning: pending.storageWarning, progressEnabled: pending.progressEnabled, owner: pending.owner, resumeStore: pending.resumeStore, preservePosition: pending.preservePosition, advanceStartedAtMs: pending.advanceStartedAtMs)
-        pendingPlayback = nil
-        showResumePrompt = false
-    }
 }

@@ -38,6 +38,7 @@ struct PlaybackSession: Identifiable, Sendable {
     var resumeStore: ResumeStore? = nil
     var preservePosition = false
     var advanceStartedAtMs: Double? = nil
+    var promptForResume = false
 }
 
 struct ResumeSnapshot: Sendable {

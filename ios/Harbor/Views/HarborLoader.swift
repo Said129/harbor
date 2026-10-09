@@ -92,19 +92,44 @@ struct HarborPlaybackConnecting: View {
     let media: Media?
     var cancelIdentifier = "connecting-cancel"
     let cancel: () -> Void
+    @State private var logoLoaded = false
     var body: some View {
-        ZStack {
-            Color.black.ignoresSafeArea()
-            if let media {
-                Artwork(url: media.background, fallback: media.poster, fallbacks: [media.fallbackBackground].compactMap { $0 }, maxPixels: 1000)
-                    .blur(radius: 20).overlay(.black.opacity(0.65)).ignoresSafeArea()
-            }
-            VStack(spacing: 20) {
-                if let logo = media?.logo { Artwork(url: logo, fit: .fit, maxPixels: 650, showsPlaceholder: false).frame(maxWidth: 280).frame(height: 90) }
-                else if let media { Text(media.name).font(.custom("Fraunces-9ptBlack", size: 30)).multilineTextAlignment(.center).foregroundStyle(.white) }
-                HarborLoader(caption: "Conectando")
-            }.padding(28).frame(maxWidth: .infinity, maxHeight: .infinity)
-            VStack { Spacer(); Button("Cancelar", action: cancel).font(HarborTheme.font(13, weight: .medium)).foregroundStyle(.white).padding(.horizontal, 20).frame(minHeight: 44).background(.white.opacity(0.12), in: .capsule).padding(.bottom, 28).accessibilityIdentifier(cancelIdentifier) }
-        }.accessibilityIdentifier("player-connecting")
+        GeometryReader { geometry in
+            ZStack {
+                Color.black.ignoresSafeArea()
+                if let media {
+                    Artwork(url: media.background, fallback: media.poster, fallbacks: [media.fallbackBackground].compactMap { $0 }, maxPixels: 1000)
+                        .blur(radius: 20).overlay(.black.opacity(0.65)).ignoresSafeArea()
+                }
+                if geometry.size.width > geometry.size.height {
+                    VStack(spacing: min(28, geometry.size.height * 0.055)) {
+                        if let media {
+                            ZStack {
+                                if media.logo == nil || !logoLoaded {
+                                    Text(media.name).font(HarborTheme.displayFont(32)).lineLimit(2).minimumScaleFactor(0.7)
+                                        .multilineTextAlignment(.center).foregroundStyle(.white)
+                                }
+                                if let logo = media.logo {
+                                    Artwork(url: logo, fit: .fit, maxPixels: 650, showsPlaceholder: false, onImageAvailability: { logoLoaded = $0 })
+                                }
+                            }.frame(maxWidth: min(400, geometry.size.width * 0.72)).frame(height: min(90, max(44, geometry.size.height * 0.22)))
+                        }
+                        HarborLoader(caption: DesktopInterfaceText.value("Connecting"), size: min(128, max(56, geometry.size.height * 0.25)))
+                    }.padding(.horizontal, 28).padding(.top, 12).padding(.bottom, 76)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                }
+                VStack {
+                    Spacer()
+                    Button(action: cancel) {
+                        HStack(spacing: 8) {
+                            Image("player-connecting-cancel").resizable().scaledToFit().frame(width: 14, height: 14).accessibilityHidden(true)
+                            Text(DesktopInterfaceText.value("Cancel"))
+                        }.font(HarborTheme.font(13.5, weight: .medium)).foregroundStyle(.white.opacity(0.85))
+                            .padding(.horizontal, 24).frame(minHeight: 44).background(Color(red: 52 / 255, green: 52 / 255, blue: 59 / 255), in: .capsule)
+                    }.buttonStyle(.plain).padding(.bottom, 16).accessibilityIdentifier(cancelIdentifier)
+                }
+            }.accessibilityIdentifier("player-connecting")
+        }.background { PlayerOrientationAnchor().allowsHitTesting(false) }
+            .onChange(of: media?.logo) { _, _ in logoLoaded = false }
     }
 }

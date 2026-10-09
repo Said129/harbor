@@ -4,8 +4,9 @@ private struct PlayerSurface: UIViewControllerRepresentable {
     let source: PlaybackSource
     let startMs: Double
     let preservePosition: Bool
+    let startPaused: Bool
     let state: PlayerState
-    func makeUIViewController(context: Context) -> MPVController { MPVController(source: source, state: state, startMs: startMs, preservePosition: preservePosition) }
+    func makeUIViewController(context: Context) -> MPVController { MPVController(source: source, state: state, startMs: startMs, preservePosition: preservePosition, startPaused: startPaused) }
     func updateUIViewController(_ controller: MPVController, context: Context) {}
     static func dismantleUIViewController(_ controller: MPVController, coordinator: ()) { controller.close() }
 }
@@ -62,6 +63,9 @@ struct PlayerView: View {
     @State private var adjacent: (previous: Episode?, next: Episode?) = (nil, nil)
     @State private var previousIdleTimer = false
     @State private var active = false
+    @State private var resumeAcknowledged = false
+    @State private var confirmingResume = false
+    @State private var resumeError: String?
     @Bindable private var preferences = PlaybackPreferences.shared
     @AppStorage("mpvHwdec") private var hardwareDecoding = HardwareDecoding.auto
     @Environment(\.dismiss) private var dismiss
@@ -97,13 +101,13 @@ struct PlayerView: View {
     private var surface: some View {
         ZStack {
             Color.black.ignoresSafeArea()
-            PlayerSurface(source: session.source, startMs: session.startMs, preservePosition: session.preservePosition, state: state).ignoresSafeArea().accessibilityHidden(true)
+            PlayerSurface(source: session.source, startMs: session.promptForResume ? 0 : session.startMs, preservePosition: session.preservePosition, startPaused: session.promptForResume, state: state).ignoresSafeArea().accessibilityHidden(true)
             // This sibling receives taps only on the video, so a transport
             // button or a slider never also toggles the entire interface.
             Color.clear.ignoresSafeArea().contentShape(Rectangle())
-                .onTapGesture { withAnimation(.easeInOut(duration: 0.2)) { controlsVisible.toggle() }; restartHideTimer() }
+                .onTapGesture { guard !resumePending else { return }; withAnimation(.easeInOut(duration: 0.2)) { controlsVisible.toggle() }; restartHideTimer() }
                 .simultaneousGesture(MagnifyGesture().onEnded { value in
-                    guard state.loaded, state.error == nil, scenePhase == .active else { return }
+                    guard !resumePending, state.loaded, state.error == nil, scenePhase == .active else { return }
                     let scale = value.magnification
                     guard scale.isFinite else { return }
                     if scale < 0.9 {
@@ -117,7 +121,7 @@ struct PlayerView: View {
                 .accessibilityLabel("Reproductor. \(controlsVisible ? "Ocultar" : "Mostrar") controles")
                 .accessibilityValue(state.renderReady ? "Preparado" : "Iniciando")
                 .accessibilityAddTraits(.isButton)
-                .accessibilityAction { controlsVisible.toggle(); restartHideTimer() }
+                .accessibilityAction { if !resumePending { controlsVisible.toggle(); restartHideTimer() } }
                 .accessibilityIdentifier("player-surface")
             VStack(spacing: 12) {
                 if state.buffering && state.loaded && !state.ended && state.error == nil { HarborLoader() }
@@ -127,7 +131,7 @@ struct PlayerView: View {
             }.padding().allowsHitTesting(false)
             if !state.loaded && !state.ended && state.error == nil { HarborPlaybackConnecting(media: media, cancelIdentifier: "player-close") { dismiss() } }
             if let error = state.error { failureNotice(error) }
-            if controlsVisible && (state.loaded || state.error != nil) { controls.transition(.opacity) }
+            if !resumePending && controlsVisible && (state.loaded || state.error != nil) { controls.transition(.opacity) }
             if let next = adjacent.next, showUpNext {
                 VStack {
                     Spacer()
@@ -139,6 +143,37 @@ struct PlayerView: View {
                     }
                 }.padding(.horizontal, 12).padding(.bottom, controlsVisible ? 160 : 24).transition(.opacity)
             }
+            if resumePending && state.loaded && state.error == nil { resumePrompt }
+        }
+    }
+
+    private var resumePending: Bool { session.promptForResume && !resumeAcknowledged }
+    private var resumePrompt: some View {
+        PlayerResumePrompt(title: title, resumeMs: session.startMs, duration: state.duration, busy: confirmingResume,
+                           onResume: { acknowledgeResume(true) }, onStartOver: { acknowledgeResume(false) })
+            .overlay(alignment: .topLeading) {
+                Button { dismiss() } label: { PlayerGlyph(name: "back").frame(width: 44, height: 44).background(.black.opacity(0.5), in: .circle) }
+                    .buttonStyle(.plain).padding(8).accessibilityLabel(DesktopInterfaceText.value("Back")).accessibilityIdentifier("player-close")
+            }
+            .overlay(alignment: .top) {
+                if let resumeError { Text(resumeError).font(HarborTheme.font(13)).padding(12).background(.black.opacity(0.8), in: .rect(cornerRadius: 8)).padding(.horizontal, 60).padding(.top, 12) }
+            }
+    }
+    private func acknowledgeResume(_ continuing: Bool) {
+        guard resumePending, !confirmingResume, active, scenePhase == .active, state.loaded, state.error == nil,
+              library.map({ $0.owner == session.owner }) ?? true, let controller = state.controller else { return }
+        confirmingResume = true; resumeError = nil
+        Task {
+            defer { confirmingResume = false }
+            do {
+                let position = continuing ? session.startMs : 0
+                let actualPosition = try await controller.seekForResume(position)
+                guard active, scenePhase == .active, library.map({ $0.owner == session.owner }) ?? true else { return }
+                restartStartedAtMs = actualPosition
+                controller.set("pause", "no")
+                resumeAcknowledged = true
+                controlsVisible = true; restartHideTimer()
+            } catch { if active { resumeError = safeMessage(error) } }
         }
     }
 
@@ -174,7 +209,7 @@ struct PlayerView: View {
     }
 
     private func withLifecycle<V: View>(_ content: V) -> some View {
-        content.task(id: autoAdvanceReady) {
+        content.background { PlayerOrientationAnchor().allowsHitTesting(false) }.task(id: autoAdvanceReady) {
             guard autoAdvanceReady, let next = adjacent.next else { return }
             requestEpisode(next)
         }
@@ -214,6 +249,7 @@ struct PlayerView: View {
             updateIdleTimer()
         }
         .onChange(of: scenePhase) { _, phase in if phase != .active { saveCheckpoint(exiting: false) }; restartHideTimer(); updateIdleTimer() }
+        .onChange(of: library?.owner) { _, owner in if let owner, owner != session.owner { dismiss() } }
         .onAppear {
             adjacent = EpisodeSequence.adjacent(media?.videos ?? [], current: session.target)
             previousIdleTimer = UIApplication.shared.isIdleTimerDisabled; active = true; updateIdleTimer()
@@ -222,11 +258,11 @@ struct PlayerView: View {
     }
 
     private var canAutoHide: Bool {
-        controlsVisible && preferences.options.autoHideControls && state.loaded && !state.paused && !state.buffering && !state.ended && state.error == nil && !editingSeek && !state.choosingAudioRoute && !state.pictureInPictureChanging && settingsPage == nil && !showEpisodes && !episodeChanging && !sourceChanging && !retrying && !state.restarting && !voiceOver && scenePhase == .active
+        !resumePending && controlsVisible && preferences.options.autoHideControls && state.loaded && !state.paused && !state.buffering && !state.ended && state.error == nil && !editingSeek && !state.choosingAudioRoute && !state.pictureInPictureChanging && settingsPage == nil && !showEpisodes && !episodeChanging && !sourceChanging && !retrying && !state.restarting && !voiceOver && scenePhase == .active
     }
     private var canChangeEpisode: Bool { changeEpisode != nil && media?.episodic == true && !(media?.videos?.isEmpty ?? true) && (library.map { $0.owner == session.owner } ?? true) }
     private var automaticAdvanceEnabled: Bool {
-        preferences.options.autoPlayNextEpisode && !autoNextCancelled && EpisodeSequence.permitsAutomaticAdvance(duration: state.duration, startedAtMs: restartStartedAtMs ?? session.advanceStartedAtMs ?? session.startMs, ended: true, hasError: state.error != nil)
+        !resumePending && preferences.options.autoPlayNextEpisode && !autoNextCancelled && EpisodeSequence.permitsAutomaticAdvance(duration: state.duration, startedAtMs: restartStartedAtMs ?? session.advanceStartedAtMs ?? session.startMs, ended: true, hasError: state.error != nil)
     }
     private var autoAdvanceReady: Bool {
         active && canChangeEpisode && adjacent.next != nil && automaticAdvanceEnabled && state.endedNaturally && !episodeChanging && !sourceChanging && !retrying && !state.restarting && !pendingSourceChange && pendingEpisode == nil && settingsPage == nil && !showEpisodes && scenePhase == .active
@@ -234,7 +270,7 @@ struct PlayerView: View {
     private var showUpNext: Bool {
         let remaining = state.duration - state.position
         let lead = EpisodeSequence.leadSeconds(setting: preferences.options.nextEpisodeLeadSeconds, duration: state.duration)
-        return canChangeEpisode && !episodeChanging && !sourceChanging && !retrying && !state.restarting && !pendingSourceChange && !autoNextCancelled && state.loaded && state.error == nil && settingsPage == nil && !showEpisodes && scenePhase == .active && lead > 0 && remaining > 0.5 && remaining <= lead && !state.ended
+        return !resumePending && canChangeEpisode && !episodeChanging && !sourceChanging && !retrying && !state.restarting && !pendingSourceChange && !autoNextCancelled && state.loaded && state.error == nil && settingsPage == nil && !showEpisodes && scenePhase == .active && lead > 0 && remaining > 0.5 && remaining <= lead && !state.ended
     }
     private func requestEpisode(_ episode: Episode) {
         guard active, canChangeEpisode, !episodeChanging, !sourceChanging, !retrying, !state.restarting, episode.available, scenePhase == .active, let changeEpisode else { return }
@@ -278,7 +314,7 @@ struct PlayerView: View {
             defer { retrying = false }
             if let value { await persist(value, syncCloud: false) }
             guard active, scenePhase == .active, library.map({ $0.owner == session.owner }) ?? true else { return }
-            controller.retry(positionMs: position)
+            controller.retry(positionMs: resumePending ? 0 : position, autoplay: !resumePending)
             controlsVisible = true; restartHideTimer()
         }
     }
@@ -324,27 +360,36 @@ struct PlayerView: View {
                         seek: { state.controller?.run(["seek", String($0), "absolute+exact"]); restartHideTimer() })
                     Text(time(state.duration)).monospacedDigit()
                 }.font(HarborTheme.font(12, weight: .medium))
-                HStack(spacing: 8) {
-                    Button { state.controller?.set("mute", state.muted ? "no" : "yes") } label: { PlayerGlyph(name: state.muted ? "volume--mute" : "volume").frame(width: 44, height: 44) }.accessibilityLabel(state.muted ? "Activar sonido" : "Silenciar")
-                    Spacer(minLength: 0)
-                    Button { jump(-preferences.options.seekBackSeconds) } label: { PlayerSeekGlyph(direction: "back", seconds: preferences.options.seekBackSeconds) }.frame(width: 44, height: 44).accessibilityLabel("Retroceder \(Int(preferences.options.seekBackSeconds)) segundos")
-                    Button {
-                        if state.ended { state.controller?.replay() }
-                        else { state.controller?.togglePause() }
-                        restartHideTimer()
-                    } label: { PlayerGlyph(name: state.ended ? "seek-back-custom" : state.paused ? "play-pause--paused" : "play-pause--playing", size: 28) }
-                        .disabled(retrying || state.restarting || sourceChanging || episodeChanging)
-                        .frame(width: 44, height: 44).accessibilityLabel(state.ended ? "Repetir" : state.paused ? "Reproducir" : "Pausar").accessibilityIdentifier("player-pause")
-                    Button { jump(preferences.options.seekForwardSeconds) } label: { PlayerSeekGlyph(direction: "forward", seconds: preferences.options.seekForwardSeconds) }.frame(width: 44, height: 44).accessibilityLabel("Avanzar \(Int(preferences.options.seekForwardSeconds)) segundos")
-                    Spacer(minLength: 0)
-                    if verticalSizeClass == .compact { trackControls }
-                }.font(.caption)
-                if verticalSizeClass != .compact { HStack { Spacer(); trackControls; Spacer() } }
+                ViewThatFits(in: .horizontal) {
+                    HStack(spacing: 8) { transportControls; trackControls }
+                    VStack(spacing: 4) { transportControls; trackControls }
+                }
             }.padding(.horizontal).padding(.bottom, 8).background(.black.opacity(0.7))
         }
     }
+    private var transportControls: some View {
+        HStack(spacing: 8) {
+            Button { state.controller?.set("mute", state.muted ? "no" : "yes") } label: { PlayerGlyph(name: state.muted ? "volume--mute" : "volume").frame(width: 44, height: 44) }.accessibilityLabel(state.muted ? "Activar sonido" : "Silenciar")
+            Spacer(minLength: 0)
+            Button { jump(-preferences.options.seekBackSeconds) } label: { PlayerSeekGlyph(direction: "back", seconds: preferences.options.seekBackSeconds).frame(width: 44, height: 44).contentShape(Rectangle()) }.accessibilityLabel("Retroceder \(Int(preferences.options.seekBackSeconds)) segundos").accessibilityIdentifier("player-seek-back")
+            Button {
+                if state.ended { state.controller?.replay() }
+                else { state.controller?.togglePause() }
+                restartHideTimer()
+            } label: { PlayerGlyph(name: state.ended ? "seek-back-custom" : state.paused ? "play-pause--paused" : "play-pause--playing", size: 28).frame(width: 44, height: 44).contentShape(Rectangle()) }
+                .disabled(retrying || state.restarting || sourceChanging || episodeChanging)
+                .accessibilityLabel(state.ended ? "Repetir" : state.paused ? "Reproducir" : "Pausar").accessibilityIdentifier("player-pause")
+            Button { jump(preferences.options.seekForwardSeconds) } label: { PlayerSeekGlyph(direction: "forward", seconds: preferences.options.seekForwardSeconds).frame(width: 44, height: 44).contentShape(Rectangle()) }.accessibilityLabel("Avanzar \(Int(preferences.options.seekForwardSeconds)) segundos").accessibilityIdentifier("player-seek-forward")
+            Spacer(minLength: 0)
+        }.font(.caption)
+    }
     private var trackControls: some View {
         HStack(spacing: 10) {
+            if changeSource != nil {
+                Button { requestSourceChange() } label: { PlayerGlyph(name: "pick-another", size: 22).frame(width: 44, height: 44).contentShape(Rectangle()) }
+                    .disabled(sourceChanging || episodeChanging || retrying || state.restarting)
+                    .accessibilityLabel(DesktopInterfaceText.value("Switch stream")).accessibilityIdentifier("player-change-source")
+            }
             Button { settingsPage = .audio } label: { PlayerGlyph(name: "audio").frame(width: 44, height: 44) }.accessibilityLabel("Audio").accessibilityIdentifier("player-audio")
             Button { settingsPage = .subtitles } label: { PlayerGlyph(name: "subtitle").frame(width: 44, height: 44) }.accessibilityLabel("Subtítulos").accessibilityIdentifier("player-subtitles")
             Button { settingsPage = .video } label: { PlayerGlyph(name: "aspect").frame(width: 44, height: 44) }.accessibilityLabel(DesktopInterfaceText.value("Picture")).accessibilityIdentifier("player-picture")
@@ -362,11 +407,11 @@ struct PlayerView: View {
     }
     private func jump(_ seconds: Double) {
         guard !retrying, !state.restarting, !sourceChanging, !episodeChanging, state.loaded else { return }
-        state.controller?.run(["seek", String(seconds), "relative"]); restartHideTimer()
+        state.controller?.seekRelative(seconds); restartHideTimer()
     }
 
     @MainActor private func snapshot(exiting: Bool) -> ResumeSnapshot? {
-        guard session.progressEnabled, state.hasPosition, state.position.isFinite, state.duration.isFinite else { return nil }
+        guard !resumePending, !confirmingResume, session.progressEnabled, state.hasPosition, state.position.isFinite, state.duration.isFinite else { return nil }
         return ResumeSnapshot(positionMs: state.position * 1000, durationMs: state.duration * 1000, timestampMs: UInt64(max(0, Date().timeIntervalSince1970 * 1000)), exiting: exiting)
     }
 

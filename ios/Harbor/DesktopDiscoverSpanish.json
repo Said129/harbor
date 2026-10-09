@@ -32,5 +32,22 @@
   "Show me less like this": "Mostrarme menos contenido como este",
   "Show me more like this": "Mostrarme más contenido como este",
   "Dismiss": "Descartar",
-  "Undo": "Deshacer"
+  "Undo": "Deshacer",
+  "Can't decide?": "¿No puedes decidirte?",
+  "Surprise me": "Sorpréndeme",
+  "Pick a random title": "Elige un título al azar",
+  "{count} picks ready": "{count} selecciones listas",
+  "Discovery Queue": "Cola de descubrimiento",
+  "Queue": "Cola",
+  "Loading…": "Cargando…",
+  "See details": "Ver detalles",
+  "Play now": "Reproducir ahora",
+  "Saved": "Guardado",
+  "Save": "Guardar",
+  "Skip": "Omitir",
+  "Not interested": "No me interesa",
+  "Add a TMDB key in Settings to unlock the full discovery feed.": "Agrega una clave de TMDB en Configuración para acceder a toda la sección de descubrimiento.",
+  "No picks loaded. TMDB might be unreachable.": "No se cargaron selecciones. Es posible que TMDB no esté disponible.",
+  "Back in two weeks": "Back in two weeks",
+  "Never shown again": "Never shown again"
 }

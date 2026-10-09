@@ -16,6 +16,7 @@ struct DetailView: View {
     @State private var actionHint: String?
     @State private var actionHintRevision = 0
     @State private var showConnecting = false
+    @State private var selectionRevision = 0
     @Environment(\.openURL) private var openURL
     @AppStorage("downloadsCellular") private var cellularDownloads = false
     private let playImmediately: Bool
@@ -36,6 +37,7 @@ struct DetailView: View {
                 DetailMetadataView(media: model.media, app: app)
             }
         }.background(HarborTheme.background).foregroundStyle(HarborTheme.ink).navigationBarTitleDisplayMode(.inline).toolbar(.visible, for: .navigationBar)
+        .background { PlayerOrientationAnchor(enabled: showStreams && (showConnecting || model.resolving || model.playback != nil || pendingEpisode != nil)).allowsHitTesting(false) }
         .task {
             let owner = app.library.owner
             await model.load(app.addons, owner: owner, library: app.library)
@@ -48,12 +50,12 @@ struct DetailView: View {
         .onChange(of: model.playback?.id) { _, _ in
             if let session = model.playback, session.owner == app.library.owner { app.library.discovery.track(.play, media: model.media) }
         }
-        .sheet(isPresented: $showStreams, onDismiss: { resolutionTask?.cancel(); model.pendingPlayback = nil; model.showResumePrompt = false; pendingEpisode = nil; pendingEpisodeOwner = nil; autoplayEpisode = false; showConnecting = false; model.clearSourceChange() }) {
+        .sheet(isPresented: $showStreams, onDismiss: { resolutionTask?.cancel(); model.cancelResolution(); pendingEpisode = nil; pendingEpisodeOwner = nil; autoplayEpisode = false; showConnecting = false; model.clearSourceChange() }) {
             NavigationStack {
                 streamPicker
                 .overlay {
                     if model.resolving || (showConnecting && model.loadingStreams) {
-                        HarborPlaybackConnecting(media: model.media) { resolutionTask?.cancel(); showStreams = false }
+                        HarborPlaybackConnecting(media: model.media, cancel: chooseSourcesManually)
                     }
                 }
                 .fullScreenCover(item: $model.playback, onDismiss: playerDismissed) { session in
@@ -66,24 +68,23 @@ struct DetailView: View {
                         model.prepareSourceChange(session, snapshot: snapshot)
                     })
                 }
-                .alert("¿Reanudar la reproducción?", isPresented: $model.showResumePrompt) {
-                    Button("Reanudar") { model.chooseResume(true, owner: app.library.owner) }
-                    Button("Desde el principio") { model.chooseResume(false, owner: app.library.owner) }
-                    Button("Cancelar", role: .cancel) { model.pendingPlayback = nil }
-                } message: {
-                    Text("Continuar desde el minuto \(((model.pendingPlayback?.startMs ?? 0) / 60_000).formatted(.number.precision(.fractionLength(0)))).")
-                }
                 .task(id: selectedEpisode?.id ?? model.media.id) {
                     let owner = app.library.owner
                     let shouldAutoplay = autoplayEpisode
                     let isContinuation = continuingEpisode
+                    let revision = selectionRevision
                     autoplayEpisode = false
                     continuingEpisode = false
-                    await model.findStreams(app.addons, episode: selectedEpisode)
-                    guard !Task.isCancelled, owner == app.library.owner, shouldAutoplay else { return }
-                    if let offer = isContinuation ? model.continuationOffer : StreamPreferences.shared.preferred(model.offers) {
-                        await model.play(offer, resume: app.resume, library: app.library)
+                    let task = Task {
+                        defer { if revision == selectionRevision, model.playback == nil { showConnecting = false } }
+                        await model.findStreams(app.addons, episode: selectedEpisode)
+                        guard !Task.isCancelled, owner == app.library.owner, shouldAutoplay, revision == selectionRevision else { return }
+                        if let offer = isContinuation ? model.continuationOffer : StreamPreferences.shared.preferred(model.offers) {
+                            await model.play(offer, resume: app.resume, library: app.library)
+                        }
                     }
+                    resolutionTask = task
+                    await withTaskCancellationHandler { await task.value } onCancel: { task.cancel() }
                 }
             }.presentationDetents([.large])
         }
@@ -98,12 +99,17 @@ struct DetailView: View {
         return { offer in startDownload(offer) }
     }
     private func playOffer(_ offer: StreamOffer) {
-        guard !model.resolving, model.pendingPlayback == nil else { return }
+        guard !model.resolving, model.playback == nil else { return }
         if let url = offer.pickerExternalURL { openURL(url); return }
         resolutionTask = Task { await model.play(offer, resume: app.resume, library: app.library) }
     }
+    private func chooseSourcesManually() {
+        selectionRevision &+= 1
+        autoplayEpisode = false; showConnecting = false
+        if model.resolving { resolutionTask?.cancel(); model.cancelResolution() }
+    }
     private func refreshStreams() {
-        guard !model.loadingStreams, !model.resolving, model.pendingPlayback == nil else { return }
+        guard !model.loadingStreams, !model.resolving, model.playback == nil else { return }
         resolutionTask?.cancel()
         resolutionTask = Task { await model.findStreams(app.addons, episode: selectedEpisode) }
     }
@@ -163,6 +169,7 @@ struct DetailView: View {
         HStack(spacing: 6) { Text(model.media.ratingSource ?? "IMDb").font(.system(size: 9, weight: .black)).foregroundStyle(.black).padding(.horizontal, 3).padding(.vertical, 2).background(model.media.ratingSource == "TMDB" ? Color.mint : .yellow, in: .rect(cornerRadius: 2)); Text(rating).font(HarborTheme.font(12, weight: .semibold)) }.padding(.horizontal, 10).padding(.vertical, 5).background(HarborTheme.background.opacity(0.85), in: .capsule)
     }
     private func openStreams(_ episode: Episode? = nil, automatic: Bool = false) {
+        selectionRevision &+= 1
         model.clearSourceChange()
         autoplayEpisode = automatic
         showConnecting = automatic
@@ -171,13 +178,16 @@ struct DetailView: View {
         showStreams = true
     }
     private func playerDismissed() {
+        showConnecting = false
         guard let episode = pendingEpisode else { return }
         let owner = pendingEpisodeOwner
         pendingEpisode = nil; pendingEpisodeOwner = nil
         guard showStreams, owner == app.library.owner, episode.available else { return }
+        selectionRevision &+= 1
         // Present the next session only after the old full-screen player has
         // dismissed and released its native surface.
         autoplayEpisode = true
+        showConnecting = true
         continuingEpisode = true
         selectedEpisode = episode
     }

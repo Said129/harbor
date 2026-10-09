@@ -17,8 +17,6 @@ struct DownloadsView: View {
     @State private var query = ""
     @State private var preparation: UUID?
     @State private var playback: PlaybackSession?
-    @State private var pending: PlaybackSession?
-    @State private var showResume = false
     @State private var playbackMedia: Media?
     @State private var error: String?
     private var owner: String { app.user?.id ?? "guest" }
@@ -48,15 +46,8 @@ struct DownloadsView: View {
         downloads.toggle(item, owner: owner)
     }
     private func clearPresentation() {
-        preparation = nil; playback = nil; pending = nil; showResume = false
+        preparation = nil; playback = nil
         playbackMedia = nil; error = nil; query = ""; filter = .all
-    }
-    private func presentPending(fromBeginning: Bool = false) {
-        guard let session = pending, session.owner == owner else { pending = nil; return }
-        if fromBeginning {
-            playback = PlaybackSession(source: session.source, target: session.target, startMs: 0, storageWarning: session.storageWarning, progressEnabled: session.progressEnabled, owner: session.owner, resumeStore: session.resumeStore)
-        } else { playback = session }
-        pending = nil
     }
     private func row(_ item: DownloadItem) -> some View {
         HStack(alignment: .top, spacing: 13) {
@@ -102,11 +93,6 @@ struct DownloadsView: View {
             .searchable(text: $query, prompt: "Buscar en descargas")
             .onChange(of: owner) { _, _ in clearPresentation() }
             .fullScreenCover(item: $playback) { session in PlayerView(session: session, resume: session.resumeStore ?? app.resume, title: playbackMedia?.name ?? "Harbor", media: playbackMedia, library: app.library) }
-            .alert("¿Reanudar la reproducción?", isPresented: $showResume) {
-                Button("Reanudar") { presentPending() }
-                Button("Desde el principio") { presentPending(fromBeginning: true) }
-                Button("Cancelar", role: .cancel) { pending = nil }
-            } message: { Text("Continuar desde el minuto \(((pending?.startMs ?? 0) / 60_000).formatted(.number.precision(.fractionLength(0)))).") }
     }
     private func play(_ item: DownloadItem) async {
         guard preparation == nil, item.status == .complete, allItems.contains(where: { $0.id == item.id && $0.status == .complete }) else { return }
@@ -120,8 +106,7 @@ struct DownloadsView: View {
             let start = try await store.position(item.target, durationMs: cloud?.durationMs ?? 0, playback: UserDefaults.standard.object(forKey: "resumePlayback") as? Bool ?? true, prompt: UserDefaults.standard.object(forKey: "resumePrompt") as? Bool ?? false, cloud: cloud?.entry)
             guard expectedOwner == owner, preparation == operation, allItems.contains(where: { $0.id == item.id && $0.status == .complete }), FileManager.default.fileExists(atPath: file.path) else { return }
             playbackMedia = item.media
-            let session = PlaybackSession(source: PlaybackSource(url: file.path, headers: nil, subtitles: nil, via: "download"), target: item.target, startMs: start.ms, storageWarning: nil, progressEnabled: true, owner: expectedOwner, resumeStore: store)
-            if start.prompt { pending = session; showResume = true } else { playback = session }
+            playback = PlaybackSession(source: PlaybackSource(url: file.path, headers: nil, subtitles: nil, via: "download"), target: item.target, startMs: start.ms, storageWarning: nil, progressEnabled: true, owner: expectedOwner, resumeStore: store, promptForResume: start.prompt)
         } catch { if expectedOwner == owner, preparation == operation { self.error = safeMessage(error) } }
     }
 }

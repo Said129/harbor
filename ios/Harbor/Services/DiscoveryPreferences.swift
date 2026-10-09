@@ -44,10 +44,16 @@ final class DiscoveryPreferences {
         var votes: [String: Entry] = [:]
         var events: [Event] = []
         var hintDismissed = false
+        // Optional fields preserve stores written before Queue's skip actions existed.
+        var queueSnoozed: [String: Double]?
+        var queueBlocked: Set<String>?
         var valid: Bool {
             votes.count <= 1_000 && events.count <= 500
                 && votes.allSatisfy { Self.validID($0.key) && $0.value.timestamp.isFinite && $0.value.timestamp >= 0 && $0.value.name.utf8.count <= 1_024 && $0.value.type.utf8.count <= 64 }
                 && events.allSatisfy { Self.validID($0.id) && $0.timestamp.isFinite && $0.timestamp >= 0 && $0.snapshot.valid }
+                && (queueSnoozed?.count ?? 0) <= 10_000 && (queueBlocked?.count ?? 0) <= 10_000
+                && (queueSnoozed?.allSatisfy { Self.validID($0.key) && $0.value.isFinite && $0.value >= 0 } ?? true)
+                && (queueBlocked?.allSatisfy(Self.validID) ?? true)
         }
         static func validID(_ id: String) -> Bool { !id.isEmpty && id.utf8.count <= 4_096 }
     }
@@ -69,6 +75,31 @@ final class DiscoveryPreferences {
         } catch { self.error = "No se pudieron recuperar las preferencias de recomendaciones. Los datos guardados se conservan." }
     }
     func vote(for media: Media) -> Vote? { stored.votes[media.id]?.vote }
+    func isQueueItemHidden(_ id: String, now: Date = Date()) -> Bool {
+        let key = Self.queueKey(id)
+        return stored.queueBlocked?.contains(key) == true || (stored.queueSnoozed?[key] ?? 0) > now.timeIntervalSince1970 * 1_000
+    }
+    @discardableResult func snoozeQueueItem(_ id: String, now: Date = Date()) -> Bool {
+        let key = Self.queueKey(id)
+        let timestamp = now.timeIntervalSince1970 * 1_000
+        guard ready, Stored.validID(key), timestamp.isFinite, timestamp >= 0 else { return false }
+        var next = stored
+        var snoozed = (next.queueSnoozed ?? [:]).filter { $0.value > timestamp }
+        snoozed[key] = timestamp + 14 * 86_400_000
+        next.queueSnoozed = snoozed
+        return persist(next)
+    }
+    @discardableResult func blockQueueItem(_ id: String) -> Bool {
+        let key = Self.queueKey(id)
+        guard ready, Stored.validID(key) else { return false }
+        var next = stored
+        var blocked = next.queueBlocked ?? []
+        blocked.insert(key)
+        next.queueBlocked = blocked
+        next.queueSnoozed?.removeValue(forKey: key)
+        return persist(next)
+    }
+    private static func queueKey(_ id: String) -> String { id.trimmingCharacters(in: .whitespacesAndNewlines).lowercased() }
     @discardableResult func toggle(_ vote: Vote, for media: Media, now: Date = Date()) -> Bool {
         guard ready, Stored.validID(media.id) else { return false }
         var next = stored

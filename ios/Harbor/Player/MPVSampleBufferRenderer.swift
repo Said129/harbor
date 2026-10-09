@@ -23,10 +23,11 @@ final class MPVSampleBufferRenderer {
         guard status >= 0 else { throw HarborError(code: "mpv-\(status)") }
     }
 
-    func draw(width: Int, height: Int) throws -> CVPixelBuffer? {
+    func draw(width: Int, height: Int, force: Bool = false) throws -> CVPixelBuffer? {
         guard let context else { throw HarborError(code: "player-not-ready") }
         guard (32...1_280).contains(width), (32...1_280).contains(height), width * height <= 921_600 else { throw HarborError(code: "player-frame-size") }
-        guard mpv_render_context_update(context) & UInt64(MPV_RENDER_UPDATE_FRAME.rawValue) != 0 else { return nil }
+        let changed = mpv_render_context_update(context) & UInt64(MPV_RENDER_UPDATE_FRAME.rawValue) != 0
+        guard changed || force else { return nil }
         let pool = try bufferPool(width: width, height: height)
         var buffer: CVPixelBuffer?
         let attributes = [kCVPixelBufferPoolAllocationThresholdKey: 6] as CFDictionary

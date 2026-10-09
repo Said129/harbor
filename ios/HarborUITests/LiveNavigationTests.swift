@@ -67,6 +67,44 @@ final class LiveNavigationTests: XCTestCase {
         capture(app, "native-appearance-custom-cancelled")
     }
 
+    func testDiscoveryQueueSkipsAnActualTitleAndOpensTheNextDetails() throws {
+        guard ProcessInfo.processInfo.environment["HARBOR_LIVE_INTEGRATION"] == "1" else {
+            throw XCTSkip("Live UI integration requires explicit opt-in")
+        }
+        continueAfterFailure = false
+        let app = XCUIApplication()
+        app.launch()
+        XCTAssertTrue(app.buttons.matching(identifier: "catalog-movie").firstMatch.waitForExistence(timeout: 45))
+        navigate(app, "discover")
+        let enter = app.buttons["discover-queue"]
+        reveal(enter, in: app.scrollViews.firstMatch)
+        XCTAssertTrue(enter.isHittable)
+        capture(app, "native-discover-original-queue-entry")
+        enter.tap()
+        let title = app.staticTexts["discovery-queue-title"]
+        let position = app.staticTexts["discovery-queue-position"]
+        XCTAssertTrue(title.waitForExistence(timeout: 10))
+        XCTAssertFalse(title.label.isEmpty)
+        let originalPosition = position.label
+        let scroll = app.scrollViews["discovery-queue-scroll"]
+        XCTAssertTrue(scroll.exists)
+        let skip = app.buttons["discovery-queue-skip"]
+        reveal(skip, in: scroll, attempts: 3)
+        XCTAssertTrue(skip.isHittable)
+        capture(app, "native-discovery-queue-original-hero")
+        skip.tap()
+        let advanced = XCTNSPredicateExpectation(predicate: NSPredicate(format: "label != %@", originalPosition), object: position)
+        XCTAssertEqual(XCTWaiter.wait(for: [advanced], timeout: 5), .completed, "Skip must remove one real selection from the queue")
+        XCTAssertTrue(app.buttons["discovery-queue-block"].exists)
+        capture(app, "native-discovery-queue-skipped")
+        let details = app.buttons["discovery-queue-details"]
+        for _ in 0..<3 { if details.isHittable { break }; scroll.swipeDown() }
+        XCTAssertTrue(details.isHittable)
+        details.tap()
+        XCTAssertTrue(app.staticTexts["detail-title"].waitForExistence(timeout: 10))
+        capture(app, "native-discovery-queue-real-details")
+    }
+
     func testRealHomeSearchAddonPickerAndPlayerPresentation() throws {
         guard ProcessInfo.processInfo.environment["HARBOR_LIVE_INTEGRATION"] == "1" else {
             throw XCTSkip("Live UI integration requires explicit opt-in")

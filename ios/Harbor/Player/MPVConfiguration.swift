@@ -35,7 +35,7 @@ enum MPVConfiguration {
         ("video-timing-offset", "0")
     ]
 
-    static func createHandle(startMs: Double = 0, decoding: HardwareDecoding? = nil, playback: PlaybackOptions? = nil) throws -> OpaquePointer {
+    static func createHandle(startMs: Double = 0, decoding: HardwareDecoding? = nil, playback: PlaybackOptions? = nil, startPaused: Bool = false) throws -> OpaquePointer {
         guard let handle = mpv_create() else { throw HarborError(code: "player-init") }
         do {
             for (name, value) in options { try check(mpv_set_option_string(handle, name, value)) }
@@ -63,6 +63,7 @@ enum MPVConfiguration {
             if startMs.isFinite && startMs > 0 {
                 try check(mpv_set_option_string(handle, "start", String(startMs / 1000)))
             }
+            if startPaused { try check(mpv_set_option_string(handle, "pause", "yes")) }
             try check(mpv_initialize(handle))
             return handle
         } catch {

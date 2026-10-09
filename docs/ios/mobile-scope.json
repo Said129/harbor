@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-07",
+  "updatedAt": "2026-10-09",
   "authority": "Explicit scope change by the repository owner in the current conversation",
   "status": "in_progress",
   "objective": "Create a native iPhone Harbor faithful to Desktop beta 0.9.130 identity and selected mobile functions. Preserve everything implemented and finish native increments already started. For remaining work implement essential functions and useful mobile settings, without requiring every adaptable Desktop option.",
@@ -308,7 +308,7 @@
   "unstartedAdvancedDesktopFeaturesRequired": false,
   "desktopInventoryIsCompletionDenominator": false,
   "desktopEvidenceStatesChanged": false,
-  "deliveredIpaBuild": 42,
+  "deliveredIpaBuild": 84,
   "paidServicesAuthorized": false,
   "completionEvidence": "docs/ios/VALIDATION.md",
   "scopeChangeSnapshot": {
@@ -317,10 +317,13 @@
     "openNativeIncrementStatus": "uncommitted; native validation pending"
   },
   "deliveredIpaEvidence": {
-    "commit": "5f1f556dd554a55c3be68adc525241ebbc910028",
-    "ciRun": 37627862741,
+    "commit": "a71602f4b21deba6c5cb00910fc59e5753c1b2b6",
+    "ciRun": 37834434921,
     "ciConclusion": "success",
     "physicalTested": false,
+    "sha256": "52937d74105a84392624b1199a5ee3490be966cefd66e7180d6ee5f125482c5e",
+    "bytes": 36732153,
+    "validationScope": "affected",
     "verification": "docs/ios/VALIDATION.md"
   },
   "activeNativeIncrements": [
@@ -368,6 +371,32 @@
       "name": "Physical IPA 42 feedback: silent size gesture, Continue Watching touch target, TorBox catalog suppression, persistent Submanhwa browser, real original Lottie connecting animation, touch action labels and independent timeline color; original detail and Calendar typography",
       "status": "Local source in progress; Apple build, full actual review and physical verification pending. These changes are not in Downloads IPA 42.",
       "feedback": "docs/ios/IPHONE_FEEDBACK_2026-10-07.md"
+    },
+    {
+      "name": "Single final IPA: playback corrections, original resume and Discover queue, Submanhwa ad blocking",
+      "status": "Source implemented; no intermediate Apple build or IPA. Swift compilation, native/public/UI tests, review of real rendered evidence, final device package and physical/private validation remain pending. Delivered build 84 does not contain these changes.",
+      "feedback": "docs/ios/IPHONE_FEEDBACK_2026-10-09.md",
+      "files": [
+        "ios/Harbor/Player/PlayerOrientation.swift",
+        "ios/Harbor/Player/MPVController.swift",
+        "ios/Harbor/Player/MPVPictureInPicture.swift",
+        "ios/Harbor/Player/PlayerView.swift",
+        "ios/Harbor/Views/PlayerResumePrompt.swift",
+        "ios/Harbor/Views/HarborLoader.swift",
+        "ios/Harbor/Views/DetailView.swift",
+        "ios/Harbor/ViewModels/DetailModel.swift",
+        "ios/Harbor/Views/EpisodeList.swift",
+        "ios/Harbor/Views/PlayerEpisodesView.swift",
+        "ios/Harbor/Views/DiscoverView.swift",
+        "ios/Harbor/Views/DiscoveryQueueView.swift",
+        "ios/Harbor/Services/DiscoveryPreferences.swift",
+        "ios/Harbor/Services/SubmanhwaAdBlocker.swift",
+        "ios/Harbor/Views/SubmanhwaView.swift",
+        "ios/HarborTests/PlaybackControlTests.swift",
+        "ios/HarborTests/SubmanhwaAdBlockerTests.swift",
+        "ios/HarborTests/NativeDataTests.swift",
+        "ios/HarborUITests/LiveNavigationTests.swift"
+      ]
     }
   ],
   "additionalRequestedMobileWork": [
@@ -376,5 +405,14 @@
     "Official Harbor labels/descriptions; remove introduced generic UI copy",
     "Harbor identity login and revision-safe bidirectional Desktop roster/profile sync; never seed from an unhydrated or empty local roster",
     "Physical Continue Watching, Submanhwa remembered access and video/settings verification"
-  ]
+  ],
+  "deliveryPolicy": {
+    "singleFinalIpa": true,
+    "intermediateAppleBuilds": false,
+    "intermediateCommitsSkipCI": true,
+    "finalValidationScope": "full",
+    "finalPublicServices": true,
+    "finalUIJourney": true,
+    "keepPreviousVerifiedIpa": true
+  }
 }

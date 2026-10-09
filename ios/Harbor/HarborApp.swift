@@ -4,6 +4,9 @@ import UserNotifications
 
 @MainActor
 final class HarborAppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDelegate {
+    func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
+        PlayerOrientation.supportedOrientations(for: window)
+    }
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
         _ = DownloadManager.shared
         UNUserNotificationCenter.current().delegate = self

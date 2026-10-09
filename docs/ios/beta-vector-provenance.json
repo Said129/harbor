@@ -140,7 +140,25 @@
     "src/chrome/nav-items.tsx": "8604479e860ce47726e7476441d024cce2bd97eded4f01ed596f2a1a442ec58b",
     "public/player-icons/volume.svg": "b9e1dd9c972ac66f79c3797d68a79672e548548c96806c18bbcaf259e7226b61",
     "public/player-icons/volume--mute.svg": "86756e4819130effa31708ceb7ac7c955cc774f8500ee15edb11c0ee92a8f2c2",
-    "src/assets/stremio.png": "261a3512b3cceb113d810ddf4f6b1b9c5d6b93810dac8c2b25aea1d26dfae412"
+    "src/assets/stremio.png": "261a3512b3cceb113d810ddf4f6b1b9c5d6b93810dac8c2b25aea1d26dfae412",
+    "public/player-icons/pick-another.svg": "95324973e999d43a0c9df31aaea8b840b8f185b79d0e30dd511cc1659343407e",
+    "src/components/player/resume-prompt.tsx": "cc604a87e7f1f6b36f9cfa30afcf3ff7cae9f08020429b3832a06dbb68d3386a",
+    "src/components/icons/play-filled.tsx": "58bd9a323251633539c43f4c9a66f6b31d6eb40a88c49c93af7786a9f40786da",
+    "src/lib/i18n/locales/es/player.ts": "f3f7022ff66b8ccd48e41056236a5166b9ef1d96cdff1980f21678a0d30795e7",
+    "src/components/discovery-queue-cta.tsx": "926408d84e251505fb2dab0fa8df650d4dcffec5d497d0100df8f2f2d0262131",
+    "src/views/queue.tsx": "bed72bcdb04f91c1cf920e6c33a18d9bb4f0a4730bd97662eb5af452ea586b6c",
+    "src/lib/i18n/locales/es/discover.ts": "2513a5100daac75e4ab67a96128ef62d85999bf59ca7289e618590e249ee563e",
+    "src/lib/i18n/locales/es/misc.ts": "435320b1568a2c66d0ae6a4afe83e1452b2ffb8cd27be197960f0199e1e1879d",
+    "src/views/player/cinematic-player-loader.tsx": "2ea1286f8ea298206e614fe3cde8681ae988053bc304b4f370ade800d802f003",
+    "src/views/player/loader-logo-or-text.tsx": "933b917eff04fe8957edfd45920ebd5f54b7bf0441b64386545c187684d998ca",
+    "src/lib/i18n/locales/es/extra.ts": "ea9f3198c0c7d1fde783c0aefd448fd475b07245fa1cd19d0035fbca860a11b1",
+    "src/lib/i18n/locales/es/rails.ts": "62f93cc751f996e3946aad23330c4a6f7b9b315ce0f7f8125b042a6d945a9647",
+    "src/lib/i18n/locales/es/coverage.ts": "980ce2c0a63e3efb53c4e635dcfdae7f2b2380e431e432bfcc7aae3246697b32",
+    "src/lib/i18n/locales/es/library.ts": "a0e3972813762b9a902c4a5a9bb96846c667129d64a23456ec91dcd42cadcffb",
+    "src/lib/i18n/locales/ui-fallback.ts": "cfbee1e4f6f5a11a45dcbc5df2ca7f53ed969ebc62eeb88ad931f7f87f6206a1",
+    "src/components/feed-hero.tsx": "44d64873829bdbeb22fcb1e6c9f51b8b34bb43554366d6f2b04c4ff118752f20",
+    "src/lib/feed/skipped.ts": "1d2ee7f34b792f516eed0421ca5f8272cb81090bc8cbd62d4ea29427f7d20b26",
+    "src/assets/tide-info.png": "baeeebb3ae2556c836138e132ab9b9cf959f17fa1447f944d72a03478a72782a"
   },
   "fonts": {
     "Fraunces": {
@@ -234,6 +252,35 @@
       "reference": "src/chrome/nav-items.tsx Popcorn size=26 strokeWidth=2.2",
       "adaptation": "Exact geometry, original stroke width/line caps/joins; native template tint replaces currentColor",
       "license": "ios/Harbor/Licenses/Lucide-0.460.0.txt"
+    },
+    "desktop-arrow-right": {
+      "library": "lucide",
+      "version": "0.460.0",
+      "betaRequirement": "^0.460.0",
+      "source": "https://raw.githubusercontent.com/lucide-icons/lucide/0.460.0/icons/arrow-right.svg",
+      "sha256": "288397fdb73bb4f783cf9eabb726ff47357df1d4e3f1201dd748090579f108b9",
+      "reference": "src/components/discovery-queue-cta.tsx ArrowRight size=42 strokeWidth=2",
+      "adaptation": "Unmodified original geometry and stroke; native template tint replaces currentColor",
+      "license": "ios/Harbor/Licenses/Lucide-0.460.0.txt"
     }
+  },
+  "inlineIcons": {
+    "player-connecting-cancel": {
+      "source": "src/views/player/cinematic-player-loader.tsx",
+      "geometry": "Original cancel path, 14 x 14, stroke 1.7, round line caps; JSX attributes serialized as SVG",
+      "sha256": "9343bed14291db229a3284ebb8336c2f3954a58f39132529f9f37e1f629e27c8",
+      "modified": false
+    }
+  },
+  "discoveryQueue": {
+    "reference": ["src/views/queue.tsx", "src/components/feed-hero.tsx", "src/lib/feed/skipped.ts"],
+    "native": "ios/Harbor/Views/DiscoveryQueueView.swift",
+    "detailsIcon": {
+      "source": "src/assets/tide-info.png",
+      "destination": "ios/Harbor/Assets.xcassets/discovery-queue-info.imageset/original.png",
+      "sha256": "baeeebb3ae2556c836138e132ab9b9cf959f17fa1447f944d72a03478a72782a",
+      "modified": false
+    },
+    "adaptation": "Original FeedHero structure, labels, chip glyphs, scrims and 200px strip; actions wrap for iPhone. Queue tags use actual media type, without claiming a ranking source that was not fetched. Skip lasts 14 days; not-interested persists per account. Desktop fallback strings remain verbatim when its Spanish locale has no translation."
   }
 }

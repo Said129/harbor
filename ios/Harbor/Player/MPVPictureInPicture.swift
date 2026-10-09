@@ -12,6 +12,7 @@ final class MPVPictureInPicture: NSObject, @preconcurrency AVPictureInPictureCon
     private var timebase: CMTimebase?
     private var previousPaused: Bool?
     private var previousDuration = 0.0
+    private var startFailure: Error?
     private(set) var lastFrame: CVPixelBuffer?
     private(set) var renderedFrames = 0
 
@@ -19,7 +20,7 @@ final class MPVPictureInPicture: NSObject, @preconcurrency AVPictureInPictureCon
         self.owner = owner
         super.init()
         layer.videoGravity = .resizeAspect
-        layer.backgroundColor = UIColor.black.cgColor
+        layer.backgroundColor = UIColor.clear.cgColor
         layer.frame = view.bounds
         view.layer.addSublayer(layer)
         var clock: CMTimebase?
@@ -47,6 +48,7 @@ final class MPVPictureInPicture: NSObject, @preconcurrency AVPictureInPictureCon
         synchronizeClock()
         guard renderer.isReadyForMoreMediaData else { return }
         renderer.enqueue(sample)
+        layer.backgroundColor = UIColor.black.cgColor
         lastFrame = buffer; renderedFrames += 1
     }
 
@@ -67,22 +69,29 @@ final class MPVPictureInPicture: NSObject, @preconcurrency AVPictureInPictureCon
 
     func start() async throws {
         guard let controller else { throw HarborError(code: "pip-unavailable") }
+        startFailure = nil
         let ready = Date().addingTimeInterval(5)
-        while !controller.isPictureInPicturePossible && Date() < ready {
+        while (lastFrame == nil || !controller.isPictureInPicturePossible) && Date() < ready {
             try Task.checkCancellation()
             try await Task.sleep(for: .milliseconds(50))
         }
-        guard controller.isPictureInPicturePossible else { throw HarborError(code: "pip-unavailable") }
+        guard lastFrame != nil, controller.isPictureInPicturePossible else { throw HarborError(code: "pip-unavailable") }
         controller.startPictureInPicture()
         let deadline = Date().addingTimeInterval(5)
-        while !controller.isPictureInPictureActive && Date() < deadline {
+        while !controller.isPictureInPictureActive && startFailure == nil && Date() < deadline {
             try Task.checkCancellation()
             try await Task.sleep(for: .milliseconds(50))
         }
+        if let startFailure { throw startFailure }
         guard controller.isPictureInPictureActive else { throw HarborError(code: "pip-unavailable") }
     }
 
     func stop() { controller?.stopPictureInPicture() }
+    func resetFrames() {
+        layer.sampleBufferRenderer.flush(removingDisplayedImage: true, completionHandler: nil)
+        layer.backgroundColor = UIColor.clear.cgColor
+        lastFrame = nil; previousPaused = nil; previousDuration = 0
+    }
     func close() {
         controller?.delegate = nil
         controller?.stopPictureInPicture()
@@ -103,8 +112,9 @@ final class MPVPictureInPicture: NSObject, @preconcurrency AVPictureInPictureCon
     func pictureInPictureController(_ pictureInPictureController: AVPictureInPictureController, failedToStartPictureInPictureWithError error: Error) {
         guard let owner else { return }
         owner.state.pictureInPictureActive = false
-        owner.state.playbackIssue = safeMessage(HarborError(code: "pip-unavailable"))
-        owner.restoreAfterPictureInPicture()
+        startFailure = HarborError(code: "pip-unavailable")
+        Diagnostics.shared.record(.playerFailed, count: (error as NSError).code)
+        // The awaiting start task performs one restoration after this callback.
     }
     func pictureInPictureController(_ pictureInPictureController: AVPictureInPictureController, restoreUserInterfaceForPictureInPictureStopWithCompletionHandler completionHandler: @escaping (Bool) -> Void) {
         completionHandler(owner?.viewIfLoaded?.window != nil)

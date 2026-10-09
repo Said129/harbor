@@ -89,6 +89,42 @@ final class NativeDataTests: XCTestCase {
         XCTAssertFalse(preserved.toggle(.up, for: science, now: now))
         XCTAssertEqual(try KeychainStore().read(key, as: JSONValue.self), damaged)
     }
+    @MainActor func testDiscoveryQueueSkipExpiresAndNotInterestedSurvivesRelaunchWithoutCrossingAccounts() throws {
+        let owner = "discovery-queue-test-" + UUID().uuidString
+        let key = DiscoveryPreferences.key(owner)
+        let otherKey = DiscoveryPreferences.key(owner + "-other")
+        defer { try? KeychainStore().remove(key); try? KeychainStore().remove(otherKey) }
+        let legacy: JSONValue = .object(["votes": .object([:]), "events": .array([]), "hintDismissed": .bool(true)])
+        try KeychainStore().write(legacy, key: key)
+        let preferences = DiscoveryPreferences(owner: owner)
+        XCTAssertTrue(preferences.ready, "Existing votes must still decode before the optional Queue fields are written")
+        XCTAssertTrue(preferences.hintDismissed)
+        let now = Date(timeIntervalSince1970: 1_791_417_600)
+        XCTAssertTrue(preferences.snoozeQueueItem("  TT0816692 \n", now: now))
+        let reopened = DiscoveryPreferences(owner: owner)
+        XCTAssertTrue(reopened.isQueueItemHidden("tt0816692", now: now.addingTimeInterval(14 * 86_400 - 1)))
+        XCTAssertFalse(reopened.isQueueItemHidden("tt0816692", now: now.addingTimeInterval(14 * 86_400)), "Skip is temporary, not a permanent dismissal")
+        XCTAssertFalse(DiscoveryPreferences(owner: owner + "-other").isQueueItemHidden("tt0816692", now: now))
+        XCTAssertTrue(reopened.blockQueueItem("TT0816692"))
+        let blocked = DiscoveryPreferences(owner: owner)
+        XCTAssertTrue(blocked.isQueueItemHidden("tt0816692", now: now.addingTimeInterval(366 * 86_400)))
+        XCTAssertTrue(blocked.toggle(.up, for: Media(id: "tt1187064", type: "movie", name: "Triangle"), now: now))
+        let afterVote = DiscoveryPreferences(owner: owner)
+        XCTAssertTrue(afterVote.isQueueItemHidden("tt0816692", now: now))
+        XCTAssertEqual(afterVote.vote(for: Media(id: "tt1187064", type: "movie", name: "Triangle")), .up)
+    }
+    @MainActor func testDamagedDiscoveryQueueStoreIsPreservedWhenAnActionCannotBeSaved() throws {
+        let owner = "discovery-queue-damaged-" + UUID().uuidString
+        let key = DiscoveryPreferences.key(owner)
+        defer { try? KeychainStore().remove(key) }
+        let damaged: JSONValue = .object(["votes": .object([:]), "events": .array([]), "hintDismissed": .bool(false), "queueSnoozed": .string("damaged")])
+        try KeychainStore().write(damaged, key: key)
+        let preferences = DiscoveryPreferences(owner: owner)
+        XCTAssertFalse(preferences.ready)
+        XCTAssertFalse(preferences.blockQueueItem("tt0816692"))
+        XCTAssertFalse(preferences.snoozeQueueItem("tt0816692"))
+        XCTAssertEqual(try KeychainStore().read(key, as: JSONValue.self), damaged)
+    }
     @MainActor func testAutomaticPlaybackSkipsUnresolvedSourcesAndPreservesQualityOrder() {
         let torrent = StreamOffer(id: 0, raw: .object(["infoHash": .string(String(repeating: "a", count: 40)), "tier": .string("4K")]))
         let direct = StreamOffer(id: 1, raw: .object(["url": .string("https://example.com/first.mp4"), "tier": .string("1080p")]))

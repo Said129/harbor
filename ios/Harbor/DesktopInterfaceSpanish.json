@@ -420,5 +420,11 @@
   "Theater Capture": "Theater Capture",
   "Standard Def": "Standard Def",
   "Strict filters dropped everything": "Los filtros estrictos descartaron todo",
-  "No source returned a stream": "Ningún proveedor devolvió una fuente"
+  "No source returned a stream": "Ningún proveedor devolvió una fuente",
+  "Pick up where you left off": "Continúa donde lo dejaste",
+  "{watched} of {total} watched ({pct}%).": "{watched} de {total} vistos ({pct}%).",
+  "Resume from {time}": "Reanudar desde {time}",
+  "Start Over": "Volver a empezar",
+  "Switch stream": "Cambiar fuente",
+  "Connecting": "Conectando"
 }

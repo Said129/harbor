@@ -170,25 +170,43 @@ private struct PlayerEpisodeCard: View {
     var body: some View {
         VStack(spacing: 0) {
             HStack(alignment: .top, spacing: 16) {
-                thumbnail
-                VStack(alignment: .leading, spacing: 8) {
-                    Text(title).font(HarborTheme.font(14.5, weight: .semibold)).lineLimit(2)
-                        .blur(radius: hidesTitle ? 5 : 0).accessibilityLabel(hidesTitle ? fallbackTitle : title)
-                    if playing {
-                        Text(DesktopInterfaceText.value("Now Playing").uppercased())
-                            .font(HarborTheme.font(10, weight: .bold)).tracking(1.2).foregroundStyle(HarborTheme.accent)
-                            .padding(.horizontal, 8).padding(.vertical, 2)
-                            .background(HarborTheme.accent.opacity(0.15), in: Capsule())
-                            .overlay { Capsule().stroke(HarborTheme.accent.opacity(0.3), lineWidth: 1) }
-                    }
-                    actions
-                }.frame(maxWidth: .infinity, minHeight: thumbnailWidth * 9 / 16, alignment: .topLeading)
+                Button(action: activate) {
+                    HStack(alignment: .top, spacing: 16) {
+                        thumbnail
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text(title).font(HarborTheme.font(14.5, weight: .semibold)).lineLimit(2)
+                                .blur(radius: hidesTitle ? 5 : 0).accessibilityLabel(hidesTitle ? fallbackTitle : title)
+                            if playing {
+                                Text(DesktopInterfaceText.value("Now Playing").uppercased())
+                                    .font(HarborTheme.font(10, weight: .bold)).tracking(1.2).foregroundStyle(HarborTheme.accent)
+                                    .padding(.horizontal, 8).padding(.vertical, 2)
+                                    .background(HarborTheme.accent.opacity(0.15), in: Capsule())
+                                    .overlay { Capsule().stroke(HarborTheme.accent.opacity(0.3), lineWidth: 1) }
+                            }
+                            HStack(spacing: 8) {
+                                episodeGlyph(playing ? "episode-restart" : "ui-play-filled", size: playing ? 15 : 16)
+                                Text(DesktopInterfaceText.value(playing ? "Restart" : "Play"))
+                            }.font(HarborTheme.font(14, weight: .semibold)).padding(.horizontal, 12)
+                                .frame(minHeight: 44).foregroundStyle(HarborTheme.background)
+                                .background(HarborTheme.accent.opacity(0.82), in: Capsule())
+                        }.frame(maxWidth: .infinity, minHeight: thumbnailWidth * 9 / 16, alignment: .topLeading)
+                    }.frame(maxWidth: .infinity, alignment: .leading).contentShape(Rectangle())
+                }.buttonStyle(.plain).disabled(playing ? !canRestart : !episode.available)
+                    .accessibilityIdentifier("player-episode-\(episode.id)")
+                    .accessibilityLabel(DesktopInterfaceText.value(playing ? "Restart" : "Play") + ": " + (hidesTitle ? fallbackTitle : title))
+                detailsButton
             }.padding(12)
             if canReveal {
                 Button(DesktopInterfaceText.value("Reveal"), action: reveal).font(HarborTheme.font(13, weight: .semibold))
                     .frame(maxWidth: .infinity, minHeight: 44).accessibilityIdentifier("player-episode-reveal-\(episode.id)")
             }
-            if expanded { details.padding(.horizontal, 12).padding(.bottom, 12).transition(.opacity.combined(with: .move(edge: .top))) }
+            if expanded {
+                Button(action: activate) { details.contentShape(Rectangle()) }
+                    .buttonStyle(.plain).disabled(playing ? !canRestart : !episode.available)
+                    .accessibilityLabel(DesktopInterfaceText.value(playing ? "Restart" : "Play") + ": " + (hidesTitle ? fallbackTitle : title))
+                    .accessibilityIdentifier("player-episode-description-\(episode.id)")
+                    .padding(.horizontal, 12).padding(.bottom, 12).transition(.opacity.combined(with: .move(edge: .top)))
+            }
         }.background(ThemePreferences.shared.color("elevated").opacity(0.6), in: .rect(cornerRadius: 16))
             .overlay { RoundedRectangle(cornerRadius: 16).stroke(playing ? HarborTheme.accent : ThemePreferences.shared.color("edge-soft"), lineWidth: playing ? 2 : 1) }
             .clipShape(.rect(cornerRadius: 16))
@@ -220,29 +238,16 @@ private struct PlayerEpisodeCard: View {
             .animation(reduceMotion ? nil : .easeOut(duration: 0.2), value: hidden)
     }
 
-    private var actions: some View {
-        HStack(spacing: 8) {
-            Button(action: activate) {
-                HStack(spacing: 8) {
-                    episodeGlyph(playing ? "episode-restart" : "ui-play-filled", size: playing ? 15 : 16)
-                    Text(DesktopInterfaceText.value(playing ? "Restart" : "Play")).lineLimit(1).minimumScaleFactor(0.8)
-                }.font(HarborTheme.font(14, weight: .semibold)).padding(.horizontal, 8)
-                    .frame(maxWidth: .infinity, minHeight: 44).foregroundStyle(HarborTheme.background)
-                    .background { ZStack { HarborTheme.background; HarborTheme.accent.opacity(0.82) }.clipShape(Capsule()) }
-                    .opacity((playing ? canRestart : episode.available) ? 1 : 0.5)
-            }.buttonStyle(.plain).disabled(playing ? !canRestart : !episode.available)
-                .accessibilityIdentifier("player-episode-\(episode.id)")
-                .accessibilityLabel(DesktopInterfaceText.value(playing ? "Restart" : "Play") + ": " + (hidesTitle ? fallbackTitle : title))
-            Button(action: toggle) {
-                episodeGlyph("episode-expand", size: 18).rotationEffect(.degrees(expanded ? 180 : 0))
-                    .foregroundStyle(ThemePreferences.shared.color("ink-muted"))
-                    .frame(width: 44, height: 44).background(ThemePreferences.shared.color("elevated"), in: Circle())
-                    .overlay { Circle().stroke(ThemePreferences.shared.color("edge-soft"), lineWidth: 1) }
-            }.buttonStyle(.plain).accessibilityLabel(DesktopInterfaceText.value(expanded ? "Hide details" : "Show details"))
-                .accessibilityValue(expanded ? DesktopInterfaceText.value("Hide details") : DesktopInterfaceText.value("Show details"))
-                .accessibilityIdentifier("player-episode-details-\(episode.id)")
-                .animation(reduceMotion ? nil : .easeInOut(duration: 0.2), value: expanded)
-        }
+    private var detailsButton: some View {
+        Button(action: toggle) {
+            episodeGlyph("episode-expand", size: 18).rotationEffect(.degrees(expanded ? 180 : 0))
+                .foregroundStyle(ThemePreferences.shared.color("ink-muted"))
+                .frame(width: 44, height: 44).background(ThemePreferences.shared.color("elevated"), in: Circle())
+                .overlay { Circle().stroke(ThemePreferences.shared.color("edge-soft"), lineWidth: 1) }
+        }.buttonStyle(.plain).accessibilityLabel(DesktopInterfaceText.value(expanded ? "Hide details" : "Show details"))
+            .accessibilityValue(expanded ? DesktopInterfaceText.value("Hide details") : DesktopInterfaceText.value("Show details"))
+            .accessibilityIdentifier("player-episode-details-\(episode.id)")
+            .animation(reduceMotion ? nil : .easeInOut(duration: 0.2), value: expanded)
     }
 
     private var details: some View {
