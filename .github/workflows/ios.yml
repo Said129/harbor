@@ -176,7 +176,7 @@ jobs:
       - name: Run native UI on iPhone simulator
         id: live_tests
         if: ${{ inputs.run_live_integration == true }}
-        timeout-minutes: 15
+        timeout-minutes: 20
         shell: bash
         run: |
           set -euo pipefail

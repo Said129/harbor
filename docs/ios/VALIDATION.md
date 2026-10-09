@@ -8,6 +8,12 @@ Los servicios públicos conservan el pase de ocho pruebas en 82. Para vídeo se 
 
 La IPA 43 y sus informes se respaldaron en `C:/Users/Said/Documents/SOL/harbor-builds/downloads-before-build84-20261009-202657`. Descargas incluye el nuevo informe y las instrucciones. No hay verificación física de 84 ni de las cuentas privadas; el port y el incremento conservado de reanudación siguen en progreso.
 
+## Candidata 85: única entrega final, 10 de octubre
+
+La candidata reúne el bloqueo de anuncios y la navegación de Submanhwa, las correcciones de reproducción/orientación/PiP, Discover y la continuidad Stremio entre episodios. La lectura del historial distingue el contador acumulado de los estados del vídeo actual; las tarjetas enriquecen su metadata y ofrecen el siguiente episodio disponible sin escribir progreso ficticio en la cuenta. El detalle y las seis pruebas nuevas de continuidad están en [IPHONE_FEEDBACK_2026-10-10.md](IPHONE_FEEDBACK_2026-10-10.md).
+
+La [lista de preparación de la entrega](FINAL_READINESS_2026-10-10.md) relaciona las peticiones con su implementación y la evidencia requerida. La fuente prepara build 85 y el gate completo (`validation_scope=full`, servicios públicos y UI activados). Todavía no hay resultado Apple, paquete 85 ni revisión visual de esta candidata. Descargas conserva la IPA 84; las comprobaciones privadas y del iPhone físico siguen pendientes.
+
 ## Fuente pendiente: bloqueo de anuncios en Submanhwa, 9 de octubre
 
 Se añadieron reglas nativas de WebKit antes de la primera navegación, filtros de banners del sitio y una política que rechaza ventanas publicitarias sin sustituir la página de lectura. El almacén persistente por cuenta se conserva. Las pruebas nuevas de reglas WebKit, contenido de lectura/formulario/almacenamiento y política de ventanas están preparadas para la validación Apple final; todavía no se han ejecutado. No hay compilación ni nueva IPA para este incremento. Detalles y límites en [IPHONE_FEEDBACK_2026-10-09.md](IPHONE_FEEDBACK_2026-10-09.md).
