@@ -1,8 +1,14 @@
-# Estado local tras recuperar el respaldo, 11 de octubre de 2026
+# Estado de la continuación, 11 de octubre de 2026
 
-La última entrega verificada del respaldo es la IPA 84. En este entorno `C:/Users/Said/Downloads/Harbor-unsigned.ipa` no existe; su copia recuperada y comprobada permanece en `work/harbor-context/entrega-84`. No hay IPA 85 ni compilación Apple nueva. El estado de recuperación y las comprobaciones locales están en [RECOVERY_2026-10-11.md](RECOVERY_2026-10-11.md).
+La IPA 84 recuperada permanece en `work/harbor-context/entrega-84`; no hay una IPA nueva en Descargas. La corrección de sesión conserva por cuenta el navegador Submanhwa al cerrar y abrir su presentación, sin repetir formularios. Los detalles de recuperación están en [RECOVERY_2026-10-11.md](RECOVERY_2026-10-11.md).
 
-La continuación corrige una carga de Submanhwa que se cancelaba al cerrar su pantalla mientras el navegador persistente conservaba una URL incompleta. La sesión por cuenta posee ahora el delegado de navegación; cerrar la presentación cancela sus diálogos y la separa, conservando la petición en curso. No se añade una recarga automática de formularios. `SubmanhwaSessionTests` comprueba peticiones GET/POST demoradas, reapertura antes y después de completarlas, y conservación del estado de la página. Esa prueba y la compilación Swift siguen pendientes de Apple.
+El [run 38093923557](https://github.com/Said129/harbor/actions/runs/38093923557), fuente `6efacb67b57b241b15740d2e97117272c77f94c9`, terminó con fallo el 10 de octubre a las 23:37 UTC. Pasaron sintaxis Swift, pruebas/Clippy y frameworks Rust, y compilación de la app del simulador. La suite nativa detectó una regla publicitaria que WebKit no puede compilar y un cierre del proceso durante `SubmanhwaSessionTests` (`freed pointer was not the last allocation`). Servicios públicos, UI, dispositivo y paquete quedaron omitidos: no se generó una IPA 85.
+
+Se sustituye la alternancia y el ancla final interior de la regla por el delimitador de host `[:/]`, admitido por [WebKit](https://webkit.org/blog/4062/targeting-domains-with-content-blockers/), manteniendo dominios y subdominios exactos. GET y POST se comprueban ahora como casos independientes con un puente JavaScript de resultado String, sin quitar la navegación retenida, el contador de peticiones ni la comprobación del estado DOM. El error del runtime no tiene pila en la evidencia anterior; este ajuste de la prueba sigue siendo una hipótesis hasta ejecutarse en Apple. El workflow conserva también diagnósticos de crash y el registro de las pruebas si vuelve a fallar. No se reducen los gates ni sus plazos.
+
+En el intento fallido pasaron las seis pruebas de continuidad, las cuatro de roster, las tres de render de vídeo y los controles de reanudación/orientación. El inicio real de PiP se omitió porque AVKit no lo admite en ese destino de simulador; no se presenta como un pase. Las 12 imágenes de ese intento muestran el loader, Manga local, episodios/subtítulos y frames 8/10 bits correctos, pero no sustituyen la evidencia de una ejecución final completa.
+
+El acceso GitHub está resuelto y autenticado como Said129. Se prepara una nueva validación `full`, con servicios y recorrido UI activados, tras subir esta corrección. La entrega sigue pendiente. Las comprobaciones privadas y físicas se declararán por separado.
 
 ## Última entrega registrada: IPA 84, 9 de octubre de 2026
 

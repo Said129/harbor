@@ -17,7 +17,10 @@ enum SubmanhwaAdBlocker {
     static func contentRules() async throws -> WKContentRuleList {
         if let compiled { return compiled }
         var rules: [[String: Any]] = advertisingDomains.map { domain in
-            ["trigger": ["url-filter": "^https?://([a-z0-9-]+\\.)*" + NSRegularExpression.escapedPattern(for: domain) + "([:/]|$)"],
+            // WebKit accepts only a subset of regular expressions: no
+            // alternation, and $ is valid only at the end of the whole filter.
+            // Canonical HTTP URLs always delimit the host with a slash or port.
+            ["trigger": ["url-filter": "^https?://([a-z0-9-]+\\.)*" + domain.replacingOccurrences(of: ".", with: "\\.") + "[:/]"],
              "action": ["type": "block"]]
         }
         let cosmeticTrigger: [String: Any] = ["url-filter": ".*", "if-domain": ["*submanhwa.com"]]

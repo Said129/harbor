@@ -1,6 +1,6 @@
 # Candidata 85: comprobaciones de la única entrega final
 
-Actualización del 11 de octubre: la fuente se recuperó en el commit exacto de la candidata y continúa con la corrección de la navegación retenida de Submanhwa y `SubmanhwaSessionTests`. El estado local y la copia recuperada de la IPA 84 se describen en [RECOVERY_2026-10-11.md](RECOVERY_2026-10-11.md); las ubicaciones de Descargas que siguen corresponden al entorno original. El gate final debe incluir también esa regresión nueva.
+Actualización del 11 de octubre: el primer gate completo compiló la app del simulador, pero falló en las reglas WebKit y la regresión de reapertura de Submanhwa. No produjo IPA. Se reparan los filtros y la prueba manteniendo la cobertura; la siguiente ejecución seguirá siendo completa. El resultado y la limitación de PiP en el simulador están en [VALIDATION.md](VALIDATION.md); la recuperación de fuente y de la IPA 84, en [RECOVERY_2026-10-11.md](RECOVERY_2026-10-11.md).
 
 La revisión usa el alcance móvil vigente, las capturas del propietario y el código actual. La presencia de una implementación no acredita su funcionamiento: las comprobaciones Apple, servicios públicos, capturas reales y paquete siguen siendo obligatorias. La IPA 84 de Descargas se conserva hasta completar esas comprobaciones. No se entregan IPAs intermedias.
 
