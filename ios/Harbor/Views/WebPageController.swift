@@ -25,12 +25,15 @@ final class WebPageController: UIViewController, WKUIDelegate {
         dialog?.dismiss(animated: false)
         completion?()
     }
-    func close() {
+    func detach() {
         cancelSiteDialog()
+        if webView.uiDelegate === self { webView.uiDelegate = nil }
+        openWindow = nil
+    }
+    func close() {
+        detach()
         webView.stopLoading()
         webView.navigationDelegate = nil
-        webView.uiDelegate = nil
-        openWindow = nil
     }
     private func finish(_ action: () -> Void) {
         guard completeDialog != nil else { return }

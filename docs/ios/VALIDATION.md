@@ -1,4 +1,12 @@
-# Entrega actual: IPA 84, 9 de octubre de 2026
+# Estado local tras recuperar el respaldo, 11 de octubre de 2026
+
+La última entrega verificada del respaldo es la IPA 84. En este entorno `C:/Users/Said/Downloads/Harbor-unsigned.ipa` no existe; su copia recuperada y comprobada permanece en `work/harbor-context/entrega-84`. No hay IPA 85 ni compilación Apple nueva. El estado de recuperación y las comprobaciones locales están en [RECOVERY_2026-10-11.md](RECOVERY_2026-10-11.md).
+
+La continuación corrige una carga de Submanhwa que se cancelaba al cerrar su pantalla mientras el navegador persistente conservaba una URL incompleta. La sesión por cuenta posee ahora el delegado de navegación; cerrar la presentación cancela sus diálogos y la separa, conservando la petición en curso. No se añade una recarga automática de formularios. `SubmanhwaSessionTests` comprueba peticiones GET/POST demoradas, reapertura antes y después de completarlas, y conservación del estado de la página. Esa prueba y la compilación Swift siguen pendientes de Apple.
+
+## Última entrega registrada: IPA 84, 9 de octubre de 2026
+
+Las ubicaciones y afirmaciones de entrega de los apartados históricos siguientes corresponden al entorno original del respaldo.
 
 `C:/Users/Said/Downloads/Harbor-unsigned.ipa` contiene ahora la build 84, fuente `a71602f4b21deba6c5cb00910fc59e5753c1b2b6`, del [run 37834434921](https://github.com/Said129/harbor/actions/runs/37834434921), terminado correctamente el 8 de octubre a las 20:43 UTC. Se descargó y entregó el 9 de octubre. Paquete arm64 para iPhone, sin firmar, iOS mínimo 17: 36,732,153 bytes, SHA-256 `52937d74105a84392624b1199a5ee3490be966cefd66e7180d6ee5f125482c5e`. Se comprobaron los hashes de los tres assets originales, el informe, CRC/rutas, plataforma del ejecutable y frameworks, familia de dispositivo y ausencia de firma/fixtures en el paquete.
 
@@ -13,6 +21,8 @@ La IPA 43 y sus informes se respaldaron en `C:/Users/Said/Documents/SOL/harbor-b
 La candidata reúne el bloqueo de anuncios y la navegación de Submanhwa, las correcciones de reproducción/orientación/PiP, Discover y la continuidad Stremio entre episodios. La lectura del historial distingue el contador acumulado de los estados del vídeo actual; las tarjetas enriquecen su metadata y ofrecen el siguiente episodio disponible sin escribir progreso ficticio en la cuenta. El detalle y las seis pruebas nuevas de continuidad están en [IPHONE_FEEDBACK_2026-10-10.md](IPHONE_FEEDBACK_2026-10-10.md).
 
 La [lista de preparación de la entrega](FINAL_READINESS_2026-10-10.md) relaciona las peticiones con su implementación y la evidencia requerida. La fuente prepara build 85 y el gate completo (`validation_scope=full`, servicios públicos y UI activados). Todavía no hay resultado Apple, paquete 85 ni revisión visual de esta candidata. Descargas conserva la IPA 84; las comprobaciones privadas y del iPhone físico siguen pendientes.
+
+La candidata `33f194817c5c7c6695b8e018a2362c3a14d04584` se subió a la rama `ios/native-iphone`. GitHub rechazó dos intentos de iniciar el gate con HTTP 422 (`Actions has been disabled for this repository`), el último el 10 de octubre a las 19:20:35 UTC. El repositorio permite Actions y el workflow figura activo según sus APIs, por lo que esas opciones no explican el rechazo. No se creó una ejecución nueva. Se pidió al propietario el aviso de GitHub; no hay compilación en marcha ni IPA 85 entregada.
 
 ## Fuente pendiente: bloqueo de anuncios en Submanhwa, 9 de octubre
 

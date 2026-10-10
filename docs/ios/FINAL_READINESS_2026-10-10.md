@@ -1,5 +1,7 @@
 # Candidata 85: comprobaciones de la única entrega final
 
+Actualización del 11 de octubre: la fuente se recuperó en el commit exacto de la candidata y continúa con la corrección de la navegación retenida de Submanhwa y `SubmanhwaSessionTests`. El estado local y la copia recuperada de la IPA 84 se describen en [RECOVERY_2026-10-11.md](RECOVERY_2026-10-11.md); las ubicaciones de Descargas que siguen corresponden al entorno original. El gate final debe incluir también esa regresión nueva.
+
 La revisión usa el alcance móvil vigente, las capturas del propietario y el código actual. La presencia de una implementación no acredita su funcionamiento: las comprobaciones Apple, servicios públicos, capturas reales y paquete siguen siendo obligatorias. La IPA 84 de Descargas se conserva hasta completar esas comprobaciones. No se entregan IPAs intermedias.
 
 | Petición                                                                                       | Implementación que debe comprobarse                                                                                                                         | Evidencia requerida                                                                                                                                                        |
@@ -29,3 +31,11 @@ La revisión usa el alcance móvil vigente, las capturas del propietario y el c�
 La candidata usa `validation_scope=full`, `run_live_integration=true`, `save_draft_build=true` y `upload_artifacts=false`. Se eleva el límite del paso UI de 15 a 20 minutos para incluir el recorrido nuevo de la cola además de los ya existentes; no se retiran pruebas ni se amplían sus deadlines individuales. El gate completo aún no se ha ejecutado sobre esta candidata.
 
 La instrucción posterior de alcance conserva las funciones móviles esenciales y lo ya iniciado, y deja fuera herramientas de PC sin utilidad móvil. El inventario completo de Desktop no es un denominador ni prueba de finalización. Los recorridos físicos/privados pendientes deben informarse como tales, incluso si el gate público pasa. Esta lista no marca el objetivo como completado.
+
+## Inicio rechazado por GitHub Actions
+
+La fuente `33f194817c5c7c6695b8e018a2362c3a14d04584` está guardada y subida a `ios/native-iphone`. Dos intentos de iniciar el workflow final fueron rechazados con HTTP 422: `Actions has been disabled for this repository`. El segundo se comprobó el 10 de octubre a las 19:20:35 UTC. No se creó una ejecución ni una IPA 85.
+
+La API del repositorio informa `enabled: true`, permite las acciones y mantiene `iPhone Native` en estado `active`. No identifica la causa del rechazo. La lista de ejecuciones sigue terminando en el run 37834434921 del 8 de octubre; no hay trabajo activo que esperar. Se solicita al propietario el aviso que muestra GitHub con su cuenta, sin modificar facturación ni trasladar la compilación a otra cuenta. La IPA 84 se conserva.
+
+Windows no dispone de Swift/Xcode y la consulta de WSL confirma que el subsistema Linux tampoco está instalado. La compilación y las comprobaciones pendientes no pueden presentarse como realizadas. Al resolverse el rechazo, iniciar el mismo gate completo y revisar su evidencia antes de entregar el paquete.

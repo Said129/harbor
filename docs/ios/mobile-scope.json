@@ -309,6 +309,28 @@
   "desktopInventoryIsCompletionDenominator": false,
   "desktopEvidenceStatesChanged": false,
   "deliveredIpaBuild": 84,
+  "finalCandidate": {
+    "build": 85,
+    "source": "33f194817c5c7c6695b8e018a2362c3a14d04584",
+    "readiness": "docs/ios/FINAL_READINESS_2026-10-10.md",
+    "validationScope": "full",
+    "runLiveIntegration": true,
+    "status": "Validation not started: GitHub rejected workflow dispatch before creating a run",
+    "dispatchAttempts": 2,
+    "lastAttemptAtUtc": "2026-10-10T19:20:35Z",
+    "dispatchError": "HTTP 422: Actions has been disabled for this repository",
+    "repositoryActionsEnabled": true,
+    "workflowState": "active",
+    "ciRun": null,
+    "ipaGenerated": false,
+    "localContinuation": {
+      "date": "2026-10-11",
+      "status": "Source changed after restoration; Apple validation pending",
+      "change": "Keep Submanhwa navigation in its account session while detaching the presentation, without replaying forms",
+      "nativeRegression": "SubmanhwaSessionTests",
+      "recoveryEvidence": "docs/ios/RECOVERY_2026-10-11.md"
+    }
+  },
   "paidServicesAuthorized": false,
   "completionEvidence": "docs/ios/VALIDATION.md",
   "scopeChangeSnapshot": {

@@ -3,7 +3,7 @@ import WebKit
 import Observation
 
 @MainActor @Observable
-final class SubmanhwaSession {
+final class SubmanhwaSession: NSObject, WKNavigationDelegate {
     private static var sessions: [String: SubmanhwaSession] = [:]
     static func forOwner(_ owner: String) -> SubmanhwaSession {
         if let session = sessions[owner] { return session }
@@ -17,13 +17,18 @@ final class SubmanhwaSession {
     var canGoBack = false
     var canGoForward = false
     private var contentRulesInstalled = false
-    private init(owner: String) {
+    private convenience init(owner: String) {
         let hex = Array(EBookShelf.hash("submanhwa|" + owner).prefix(32))
         let identifier = UUID(uuidString: String(hex[0..<8]) + "-" + String(hex[8..<12]) + "-" + String(hex[12..<16]) + "-" + String(hex[16..<20]) + "-" + String(hex[20..<32]))!
         let configuration = WKWebViewConfiguration()
         configuration.websiteDataStore = WKWebsiteDataStore(forIdentifier: identifier)
         configuration.preferences.javaScriptCanOpenWindowsAutomatically = false
+        self.init(configuration: configuration)
+    }
+    init(configuration: WKWebViewConfiguration) {
         web = WKWebView(frame: .zero, configuration: configuration)
+        super.init()
+        web.navigationDelegate = self
         web.allowsBackForwardNavigationGestures = true
         web.isOpaque = false
         web.backgroundColor = .clear
@@ -48,6 +53,18 @@ final class SubmanhwaSession {
         if web.url == nil { await openIfNeeded() }
         else { error = nil; web.reload() }
     }
+    func webView(_ webView: WKWebView, decidePolicyFor action: WKNavigationAction) async -> WKNavigationActionPolicy {
+        SubmanhwaAdBlocker.blocks(action.request.url) ? .cancel : .allow
+    }
+    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+        (webView.uiDelegate as? WebPageController)?.cancelSiteDialog()
+        loading = true; error = nil
+    }
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) { finish() }
+    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) { fail(error) }
+    func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) { fail(error) }
+    private func finish() { loading = false; canGoBack = web.canGoBack; canGoForward = web.canGoForward }
+    private func fail(_ error: Error) { finish(); if (error as NSError).code != NSURLErrorCancelled { self.error = "No se pudo cargar Submanhwa. Puedes reintentar." } }
 }
 
 private struct SubmanhwaBrowser: UIViewControllerRepresentable {
@@ -58,26 +75,13 @@ private struct SubmanhwaBrowser: UIViewControllerRepresentable {
             guard SubmanhwaAdBlocker.allowsNewWindow(action.request.url, navigation: action.navigationType) else { return }
             _ = web.load(action.request)
         }
-        context.coordinator.controller = controller
-        session.web.navigationDelegate = context.coordinator
         return controller
     }
     func updateUIViewController(_ controller: WebPageController, context: Context) { }
-    static func dismantleUIViewController(_ controller: WebPageController, coordinator: Coordinator) { controller.close() }
-    func makeCoordinator() -> Coordinator { Coordinator(session) }
-    @MainActor final class Coordinator: NSObject, WKNavigationDelegate {
-        let session: SubmanhwaSession
-        weak var controller: WebPageController?
-        init(_ session: SubmanhwaSession) { self.session = session }
-        func webView(_ webView: WKWebView, decidePolicyFor action: WKNavigationAction) async -> WKNavigationActionPolicy {
-            SubmanhwaAdBlocker.blocks(action.request.url) ? .cancel : .allow
-        }
-        func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) { controller?.cancelSiteDialog(); session.loading = true; session.error = nil }
-        func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) { finish() }
-        func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) { fail(error) }
-        func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) { fail(error) }
-        private func finish() { session.loading = false; session.canGoBack = session.web.canGoBack; session.canGoForward = session.web.canGoForward }
-        private func fail(_ error: Error) { finish(); if (error as NSError).code != NSURLErrorCancelled { session.error = "No se pudo cargar Submanhwa. Puedes reintentar." } }
+    static func dismantleUIViewController(_ controller: WebPageController, coordinator: ()) {
+        // The account owns the page and its in-flight navigation. Closing its
+        // presentation must not leave a partial page or replay a submitted form.
+        controller.detach()
     }
 }
 
@@ -98,6 +102,6 @@ struct SubmanhwaView: View {
                     Button("Cerrar") { dismiss() }.font(HarborTheme.font(14, weight: .medium)).frame(minHeight: 44)
                 }.padding(.horizontal, 12)
             }.background(HarborTheme.background).foregroundStyle(HarborTheme.ink).toolbar(.hidden, for: .navigationBar)
-        }.task { await session.openIfNeeded() }.onDisappear { session.web.stopLoading(); session.loading = false }
+        }.task { await session.openIfNeeded() }
     }
 }
