@@ -1,6 +1,6 @@
 # Candidata 85: comprobaciones de la única entrega final
 
-Actualización del 11 de octubre: el primer gate completo compiló la app del simulador, pero falló en las reglas WebKit y la regresión de reapertura de Submanhwa. No produjo IPA. Se reparan los filtros y la prueba manteniendo la cobertura; la siguiente ejecución seguirá siendo completa. El resultado y la limitación de PiP en el simulador están en [VALIDATION.md](VALIDATION.md); la recuperación de fuente y de la IPA 84, en [RECOVERY_2026-10-11.md](RECOVERY_2026-10-11.md).
+Actualización del 11 de octubre: el segundo gate compiló la app y aprobó las reglas WebKit corregidas, pero GET y POST de reapertura abortaron en el manejo TaskLocal de XCTest. Se prepara una invocación con tarea y expectativa explícitas, manteniendo la cobertura y el gate completo. No hay IPA 85. Los dos intentos y sus diagnósticos están en [VALIDATION.md](VALIDATION.md); la recuperación de fuente y de la IPA 84, en [RECOVERY_2026-10-11.md](RECOVERY_2026-10-11.md).
 
 La revisión usa el alcance móvil vigente, las capturas del propietario y el código actual. La presencia de una implementación no acredita su funcionamiento: las comprobaciones Apple, servicios públicos, capturas reales y paquete siguen siendo obligatorias. La IPA 84 de Descargas se conserva hasta completar esas comprobaciones. No se entregan IPAs intermedias.
 

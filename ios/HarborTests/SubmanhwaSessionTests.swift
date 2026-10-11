@@ -5,13 +5,28 @@ import XCTest
 
 final class SubmanhwaSessionTests: XCTestCase {
     @MainActor
-    func testReopeningPendingAndCompletedGETPreservesNavigation() async throws {
-        try await reopening(method: "GET")
+    func testReopeningPendingAndCompletedGETPreservesNavigation() {
+        checkReopening(method: "GET")
     }
 
     @MainActor
-    func testReopeningPendingAndCompletedPOSTDoesNotReplayTheForm() async throws {
-        try await reopening(method: "POST")
+    func testReopeningPendingAndCompletedPOSTDoesNotReplayTheForm() {
+        checkReopening(method: "POST")
+    }
+
+    @MainActor
+    private func checkReopening(method: String) {
+        // Xcode 16.4's XCTest async invocation aborts in TaskLocal.withValue
+        // during this WebKit lifecycle. An explicit task/expectation keeps the
+        // same async assertions outside that invocation's task-local scope.
+        let finished = expectation(description: "Reopen \(method) without repeating the request")
+        let task = Task { @MainActor in
+            defer { finished.fulfill() }
+            do { try await reopening(method: method) }
+            catch { XCTFail("\(method) navigation regression: \(error)") }
+        }
+        defer { task.cancel() }
+        wait(for: [finished], timeout: 95)
     }
 
     @MainActor
@@ -40,17 +55,21 @@ final class SubmanhwaSessionTests: XCTestCase {
         print("Submanhwa session \(method): detach and reopen pending navigation")
 
         first.detach()
+        print("Submanhwa session \(method): first presentation detached")
         window.rootViewController = nil
         XCTAssertNil(web.uiDelegate)
         // The response is deliberately withheld until after the original
         // presentation is gone and the user has opened the page again.
         let second = WebPageController(webView: web)
         window.rootViewController = second
+        print("Submanhwa session \(method): second presentation installed")
         await session.openIfNeeded()
+        print("Submanhwa session \(method): openIfNeeded returned without loading again")
         XCTAssertTrue(session.loading)
         XCTAssertEqual(server.methods, [method])
         XCTAssertEqual(server.stopped, 0)
         try server.complete()
+        print("Submanhwa session \(method): response delivered")
         try await waitUntil { !session.loading && !web.isLoading && web.estimatedProgress == 1 }
         print("Submanhwa session \(method): response finished")
         XCTAssertNil(session.error)

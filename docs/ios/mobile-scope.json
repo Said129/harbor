@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-10",
+  "updatedAt": "2026-10-11",
   "authority": "Explicit scope change by the repository owner in the current conversation",
   "status": "in_progress",
   "objective": "Create a native iPhone Harbor faithful to Desktop beta 0.9.130 identity and selected mobile functions. Preserve everything implemented and finish native increments already started. For remaining work implement essential functions and useful mobile settings, without requiring every adaptable Desktop option.",
@@ -311,28 +311,44 @@
   "deliveredIpaBuild": 84,
   "finalCandidate": {
     "build": 85,
-    "source": "6efacb67b57b241b15740d2e97117272c77f94c9",
+    "source": "d17a824ac1d72bafb8248f9603cc4b1c51a03231",
     "baseSource": "33f194817c5c7c6695b8e018a2362c3a14d04584",
     "readiness": "docs/ios/FINAL_READINESS_2026-10-10.md",
     "validationScope": "full",
     "runLiveIntegration": true,
-    "status": "First full Apple gate failed in native WebKit tests; focused repair prepared for another full gate; no IPA generated",
-    "dispatchAttempts": 3,
-    "lastAttemptAtUtc": "2026-10-10T23:07:27Z",
+    "status": "Second full Apple gate failed with XCTest TaskLocal aborts in GET/POST; explicit-task expectation repair prepared; no IPA",
+    "dispatchAttempts": 4,
+    "lastAttemptAtUtc": "2026-10-10T23:43:49Z",
     "dispatchError": null,
     "historicalDispatchError": "HTTP 422: Actions has been disabled for this repository (two attempts on 2026-10-10)",
     "repositoryActionsEnabled": true,
     "workflowState": "active",
-    "ciRun": 38093923557,
+    "ciRun": 38096031012,
     "ipaGenerated": false,
     "localContinuation": {
       "date": "2026-10-11",
-      "status": "Native rule compilation repaired; GET/POST regressions retained with typed JavaScript callbacks and crash diagnostics; Apple validation pending",
+      "status": "Actual WebKit filters verified; GET/POST coverage retained with explicit-task XCTest invocation; new full gate pending",
       "change": "Keep Submanhwa navigation in its account session while detaching the presentation, without replaying forms",
       "nativeRegression": "SubmanhwaSessionTests",
       "recoveryEvidence": "docs/ios/RECOVERY_2026-10-11.md"
     },
     "failedValidation": {
+      "ciRun": 38096031012,
+      "source": "d17a824ac1d72bafb8248f9603cc4b1c51a03231",
+      "result": "failure",
+      "nativePassed": 54,
+      "nativeSkipped": 1,
+      "nativeAborted": 2,
+      "adBlocker": "Actual WebKit compilation and page preservation pass",
+      "stack": [
+        "swift::_swift_task_dealloc_specific",
+        "TaskLocal.withValue",
+        "XCTSwiftErrorObservation._observeErrors"
+      ],
+      "evidenceSha256": "2b7f563d912669d45ff2c4378b1f592f46302482335abd0f2ec1e1aeac8c461c",
+      "ipaGenerated": false
+    },
+    "previousFailedValidation": {
       "ciRun": 38093923557,
       "source": "6efacb67b57b241b15740d2e97117272c77f94c9",
       "result": "failure",
