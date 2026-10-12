@@ -15,7 +15,23 @@ final class WebPageController: UIViewController, WKUIDelegate {
         webView.uiDelegate = self
     }
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
-    override func loadView() { view = webView }
+    override func loadView() {
+        // UIKit associates a root view with one controller. The account's web
+        // view can outlive a presentation, so reparent it inside a fresh root.
+        let container = UIView()
+        container.backgroundColor = .clear
+        container.isOpaque = false
+        webView.removeFromSuperview()
+        webView.translatesAutoresizingMaskIntoConstraints = false
+        container.addSubview(webView)
+        NSLayoutConstraint.activate([
+            webView.leadingAnchor.constraint(equalTo: container.leadingAnchor),
+            webView.trailingAnchor.constraint(equalTo: container.trailingAnchor),
+            webView.topAnchor.constraint(equalTo: container.topAnchor),
+            webView.bottomAnchor.constraint(equalTo: container.bottomAnchor),
+        ])
+        view = container
+    }
 
     func cancelSiteDialog() {
         let completion = completeDialog
@@ -28,6 +44,7 @@ final class WebPageController: UIViewController, WKUIDelegate {
     func detach() {
         cancelSiteDialog()
         if webView.uiDelegate === self { webView.uiDelegate = nil }
+        if let root = viewIfLoaded, webView.superview === root { webView.removeFromSuperview() }
         openWindow = nil
     }
     func close() {

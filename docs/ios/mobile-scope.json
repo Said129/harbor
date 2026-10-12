@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-11",
+  "updatedAt": "2026-10-12",
   "authority": "Explicit scope change by the repository owner in the current conversation",
   "status": "in_progress",
   "objective": "Create a native iPhone Harbor faithful to Desktop beta 0.9.130 identity and selected mobile functions. Preserve everything implemented and finish native increments already started. For remaining work implement essential functions and useful mobile settings, without requiring every adaptable Desktop option.",
@@ -311,28 +311,39 @@
   "deliveredIpaBuild": 84,
   "finalCandidate": {
     "build": 85,
-    "source": "d17a824ac1d72bafb8248f9603cc4b1c51a03231",
+    "source": "0a37dd0115f16bbdc1cd197113722d3969db9185",
     "baseSource": "33f194817c5c7c6695b8e018a2362c3a14d04584",
     "readiness": "docs/ios/FINAL_READINESS_2026-10-10.md",
     "validationScope": "full",
     "runLiveIntegration": true,
-    "status": "Second full Apple gate failed with XCTest TaskLocal aborts in GET/POST; explicit-task expectation repair prepared; no IPA",
-    "dispatchAttempts": 4,
-    "lastAttemptAtUtc": "2026-10-10T23:43:49Z",
+    "status": "Third full gate failed; independent root containers prepared; new full validation pending",
+    "dispatchAttempts": 5,
+    "lastAttemptAtUtc": "2026-10-11T00:17:02Z",
     "dispatchError": null,
     "historicalDispatchError": "HTTP 422: Actions has been disabled for this repository (two attempts on 2026-10-10)",
     "repositoryActionsEnabled": true,
     "workflowState": "active",
-    "ciRun": 38096031012,
+    "ciRun": 38097897000,
     "ipaGenerated": false,
     "localContinuation": {
-      "date": "2026-10-11",
-      "status": "Actual WebKit filters verified; GET/POST coverage retained with explicit-task XCTest invocation; new full gate pending",
+      "date": "2026-10-12",
+      "status": "Own presentation roots and safe page reparenting; GET/POST and late-detach regression coverage retained; Apple validation pending",
       "change": "Keep Submanhwa navigation in its account session while detaching the presentation, without replaying forms",
       "nativeRegression": "SubmanhwaSessionTests",
       "recoveryEvidence": "docs/ios/RECOVERY_2026-10-11.md"
     },
     "failedValidation": {
+      "ciRun": 38097897000,
+      "source": "0a37dd0115f16bbdc1cd197113722d3969db9185",
+      "result": "failure",
+      "nativePassed": 54,
+      "nativeSkipped": 1,
+      "nativeAborted": 2,
+      "lastRegressionPhase": "First presentation detached; second presentation not installed",
+      "evidenceSha256": "ad6b479afb991e1becefb56c348f07afc033b9787903eb8ef2d6a13ce7f001ef",
+      "ipaGenerated": false
+    },
+    "previousFailedValidation": {
       "ciRun": 38096031012,
       "source": "d17a824ac1d72bafb8248f9603cc4b1c51a03231",
       "result": "failure",
@@ -348,20 +359,49 @@
       "evidenceSha256": "2b7f563d912669d45ff2c4378b1f592f46302482335abd0f2ec1e1aeac8c461c",
       "ipaGenerated": false
     },
-    "previousFailedValidation": {
-      "ciRun": 38093923557,
-      "source": "6efacb67b57b241b15740d2e97117272c77f94c9",
-      "result": "failure",
-      "failures": [
-        "Unsupported WebKit content blocker regular expression",
-        "Swift runtime abort in SubmanhwaSessionTests without an exported stack"
-      ],
-      "skipped": [
-        "Actual PiP start unsupported on simulator",
-        "Public services, UI, device and IPA steps skipped after native failure"
-      ],
-      "ipaGenerated": false
-    }
+    "failedValidationHistory": [
+      {
+        "ciRun": 38093923557,
+        "source": "6efacb67b57b241b15740d2e97117272c77f94c9",
+        "result": "failure",
+        "failures": [
+          "Unsupported WebKit content blocker regular expression",
+          "Swift runtime abort in SubmanhwaSessionTests without an exported stack"
+        ],
+        "skipped": [
+          "Actual PiP start unsupported on simulator",
+          "Public services, UI, device and IPA steps skipped after native failure"
+        ],
+        "ipaGenerated": false
+      },
+      {
+        "ciRun": 38096031012,
+        "source": "d17a824ac1d72bafb8248f9603cc4b1c51a03231",
+        "result": "failure",
+        "nativePassed": 54,
+        "nativeSkipped": 1,
+        "nativeAborted": 2,
+        "adBlocker": "Actual WebKit compilation and page preservation pass",
+        "stack": [
+          "swift::_swift_task_dealloc_specific",
+          "TaskLocal.withValue",
+          "XCTSwiftErrorObservation._observeErrors"
+        ],
+        "evidenceSha256": "2b7f563d912669d45ff2c4378b1f592f46302482335abd0f2ec1e1aeac8c461c",
+        "ipaGenerated": false
+      },
+      {
+        "ciRun": 38097897000,
+        "source": "0a37dd0115f16bbdc1cd197113722d3969db9185",
+        "result": "failure",
+        "nativePassed": 54,
+        "nativeSkipped": 1,
+        "nativeAborted": 2,
+        "lastRegressionPhase": "First presentation detached; second presentation not installed",
+        "evidenceSha256": "ad6b479afb991e1becefb56c348f07afc033b9787903eb8ef2d6a13ce7f001ef",
+        "ipaGenerated": false
+      }
+    ]
   },
   "paidServicesAuthorized": false,
   "completionEvidence": "docs/ios/VALIDATION.md",

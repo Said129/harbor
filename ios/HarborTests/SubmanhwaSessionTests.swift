@@ -5,28 +5,13 @@ import XCTest
 
 final class SubmanhwaSessionTests: XCTestCase {
     @MainActor
-    func testReopeningPendingAndCompletedGETPreservesNavigation() {
-        checkReopening(method: "GET")
+    func testReopeningPendingAndCompletedGETPreservesNavigation() async throws {
+        try await reopening(method: "GET")
     }
 
     @MainActor
-    func testReopeningPendingAndCompletedPOSTDoesNotReplayTheForm() {
-        checkReopening(method: "POST")
-    }
-
-    @MainActor
-    private func checkReopening(method: String) {
-        // Xcode 16.4's XCTest async invocation aborts in TaskLocal.withValue
-        // during this WebKit lifecycle. An explicit task/expectation keeps the
-        // same async assertions outside that invocation's task-local scope.
-        let finished = expectation(description: "Reopen \(method) without repeating the request")
-        let task = Task { @MainActor in
-            defer { finished.fulfill() }
-            do { try await reopening(method: method) }
-            catch { XCTFail("\(method) navigation regression: \(error)") }
-        }
-        defer { task.cancel() }
-        wait(for: [finished], timeout: 95)
+    func testReopeningPendingAndCompletedPOSTDoesNotReplayTheForm() async throws {
+        try await reopening(method: "POST")
     }
 
     @MainActor
@@ -46,6 +31,9 @@ final class SubmanhwaSessionTests: XCTestCase {
         defer { web.stopLoading(); web.navigationDelegate = nil }
         let first = WebPageController(webView: web)
         window.rootViewController = first; window.makeKeyAndVisible()
+        window.layoutIfNeeded()
+        XCTAssertFalse(first.view === web, "A persistent page must not be owned as a presentation's root view")
+        XCTAssertTrue(web.superview === first.view)
         let url = try XCTUnwrap(URL(string: "harbor-session://fixture/" + method.lowercased()))
         var request = URLRequest(url: url)
         request.httpMethod = method
@@ -56,12 +44,23 @@ final class SubmanhwaSessionTests: XCTestCase {
 
         first.detach()
         print("Submanhwa session \(method): first presentation detached")
+        XCTAssertNil(web.superview)
         window.rootViewController = nil
+        print("Submanhwa session \(method): previous presentation removed")
         XCTAssertNil(web.uiDelegate)
+        print("Submanhwa session \(method): presentation delegate cleared")
         // The response is deliberately withheld until after the original
         // presentation is gone and the user has opened the page again.
         let second = WebPageController(webView: web)
+        print("Submanhwa session \(method): second presentation created")
         window.rootViewController = second
+        window.layoutIfNeeded()
+        XCTAssertFalse(first.view === second.view)
+        XCTAssertTrue(web.superview === second.view)
+        XCTAssertEqual(web.frame, second.view.bounds)
+        first.detach()
+        XCTAssertTrue(web.superview === second.view, "A late detach must not remove the new presentation's page")
+        XCTAssertTrue(web.uiDelegate === second)
         print("Submanhwa session \(method): second presentation installed")
         await session.openIfNeeded()
         print("Submanhwa session \(method): openIfNeeded returned without loading again")
@@ -78,9 +77,13 @@ final class SubmanhwaSessionTests: XCTestCase {
         XCTAssertEqual(initial, "Finished")
 
         second.detach()
+        XCTAssertNil(web.superview)
         window.rootViewController = nil
         let third = WebPageController(webView: web)
         window.rootViewController = third
+        window.layoutIfNeeded()
+        XCTAssertFalse(second.view === third.view)
+        XCTAssertTrue(web.superview === third.view)
         defer { third.close(); window.rootViewController = nil }
         await session.openIfNeeded()
         let preserved = try await evaluate(web, "return String(window.fixtureCounter);")
