@@ -53,7 +53,7 @@ struct PlayerSettingsView: View {
 
     @ViewBuilder private var optionsSettings: some View {
         if let changeSource {
-            HarborSettingsSection("Fuente") { Button("Cambiar fuente", action: changeSource).accessibilityIdentifier("player-change-source") }
+            HarborSettingsSection("Fuente") { Button("Cambiar fuente", action: changeSource).accessibilityIdentifier("player-options-change-source") }
         }
         HarborSettingsSection("Reproducción") {
             ForEach([PlayerSettingsPage.playback, .video, .audio, .subtitles]) { destination in

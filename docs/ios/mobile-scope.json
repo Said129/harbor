@@ -311,28 +311,51 @@
   "deliveredIpaBuild": 84,
   "finalCandidate": {
     "build": 85,
-    "source": "3a5f94b4d46d9405a46cd14317d57d15f84bf94d",
+    "source": "367586f2ec2795e2cd3820d2b950ed7b62472b33",
     "baseSource": "33f194817c5c7c6695b8e018a2362c3a14d04584",
     "readiness": "docs/ios/FINAL_READINESS_2026-10-10.md",
     "validationScope": "full",
     "runLiveIntegration": true,
-    "status": "Three EPUB regressions passed; loader readiness and loopback teardown repairs prepared; full gate pending",
-    "dispatchAttempts": 10,
-    "lastAttemptAtUtc": "2026-10-12T12:46:03Z",
+    "status": "Native/public and two UI cases passed; unique source-button identifiers and full-screen visual diagnostics prepared; full gate pending",
+    "dispatchAttempts": 11,
+    "lastAttemptAtUtc": "2026-10-12T13:31:47Z",
     "dispatchError": null,
     "historicalDispatchError": "HTTP 422: Actions has been disabled for this repository (two attempts on 2026-10-10)",
     "repositoryActionsEnabled": true,
     "workflowState": "active",
-    "ciRun": 38251102128,
+    "ciRun": 38256305604,
     "ipaGenerated": false,
     "localContinuation": {
       "date": "2026-10-12",
-      "status": "EPUB retry regressions verified; loader test now waits for actual SVG readiness; UI accessibility and full public/device validation remain pending",
+      "status": "Loader and EPUB repairs verified; Discover queue passed; remaining source-return UI, landscape visual review and full device/package validation pending",
       "change": "Keep Submanhwa navigation in its account session while detaching the presentation, without replaying forms",
       "nativeRegression": "SubmanhwaSessionTests",
       "recoveryEvidence": "docs/ios/RECOVERY_2026-10-11.md"
     },
     "failedValidation": {
+      "ciRun": 38256305604,
+      "source": "367586f2ec2795e2cd3820d2b950ed7b62472b33",
+      "result": "failure",
+      "nativePassed": 60,
+      "nativeFailed": 0,
+      "nativeSkipped": 1,
+      "nativeAborted": 0,
+      "publicExecuted": true,
+      "publicPassed": 8,
+      "publicFailed": 0,
+      "uiExecuted": true,
+      "uiPassed": 2,
+      "uiFailed": 1,
+      "ipaGenerated": false,
+      "failures": [
+        "Options and direct player source buttons shared player-change-source; final source-return UI steps not reached"
+      ],
+      "visualReviewPending": [
+        "Landscape app-element screenshots cropped; compare actual full-screen captures in next full gate"
+      ],
+      "evidenceSha256": "2868b17cb09211aca7073360cf385cff15c9da9180576092f7c8e21dac75ac17"
+    },
+    "previousFailedValidation": {
       "ciRun": 38251102128,
       "source": "3a5f94b4d46d9405a46cd14317d57d15f84bf94d",
       "result": "failure",
@@ -345,22 +368,6 @@
       "ipaGenerated": false,
       "failures": ["Loader test queried SVG/harborLoader before actual WebKit animation readiness"],
       "evidenceSha256": "256c1932890b78d00d5c5b431a6272b4e310bf363aa9d915ebe0aff6b930fe73"
-    },
-    "previousFailedValidation": {
-      "ciRun": 38245569310,
-      "source": "4580b0e9b78061792947d8360093e338c35cbf66",
-      "result": "failure",
-      "nativePassed": 57,
-      "nativeSkipped": 1,
-      "nativeAborted": 0,
-      "publicPassed": 7,
-      "publicFailed": 1,
-      "uiExecuted": false,
-      "ipaGenerated": false,
-      "failures": [
-        "Catalog passed; advertised publisher EPUB returned ebook-network; identical local URL returned HTTP 504"
-      ],
-      "evidenceSha256": "7e6dc2a620f63bd6aca2ce85f31b01950c6a692a701b24141253a5466642b868"
     },
     "failedValidationHistory": [
       {
@@ -484,6 +491,29 @@
           "Loader test queried SVG/harborLoader before actual WebKit animation readiness"
         ],
         "evidenceSha256": "256c1932890b78d00d5c5b431a6272b4e310bf363aa9d915ebe0aff6b930fe73"
+      },
+      {
+        "ciRun": 38256305604,
+        "source": "367586f2ec2795e2cd3820d2b950ed7b62472b33",
+        "result": "failure",
+        "nativePassed": 60,
+        "nativeFailed": 0,
+        "nativeSkipped": 1,
+        "nativeAborted": 0,
+        "publicExecuted": true,
+        "publicPassed": 8,
+        "publicFailed": 0,
+        "uiExecuted": true,
+        "uiPassed": 2,
+        "uiFailed": 1,
+        "ipaGenerated": false,
+        "failures": [
+          "Options and direct player source buttons shared player-change-source; final source-return UI steps not reached"
+        ],
+        "visualReviewPending": [
+          "Landscape app-element screenshots cropped; compare actual full-screen captures in next full gate"
+        ],
+        "evidenceSha256": "2868b17cb09211aca7073360cf385cff15c9da9180576092f7c8e21dac75ac17"
       }
     ]
   },

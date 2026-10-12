@@ -9,6 +9,18 @@ final class LiveNavigationTests: XCTestCase {
         attachment.name = name
         attachment.lifetime = .keepAlways
         add(attachment)
+        if name.hasPrefix("native-player-") {
+            // Keep the app capture for comparison: its element crop may retain
+            // portrait geometry after the scene requests landscape.
+            let screen = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
+            screen.name = name + "-screen"
+            screen.lifetime = .keepAlways
+            add(screen)
+            let geometry = XCTAttachment(string: "application-frame=\(app.frame)\ndevice-orientation=\(XCUIDevice.shared.orientation.rawValue)")
+            geometry.name = name + "-geometry"
+            geometry.lifetime = .keepAlways
+            add(geometry)
+        }
     }
 
     private func reveal(_ element: XCUIElement, in scroll: XCUIElement, attempts: Int = 10) {
@@ -551,9 +563,11 @@ final class LiveNavigationTests: XCTestCase {
         capture(app, "native-player-options")
         app.navigationBars.buttons["Listo"].tap()
         XCTAssertTrue(close.waitForExistence(timeout: 3))
+        XCTAssertTrue(app.buttons["player-change-source"].exists, "The direct source control must remain available outside the options sheet")
         app.buttons["player-options"].tap()
-        let changeSource = app.buttons["player-change-source"]
+        let changeSource = app.buttons["player-options-change-source"]
         XCTAssertTrue(changeSource.waitForExistence(timeout: 5))
+        XCTAssertEqual(app.buttons.matching(identifier: "player-options-change-source").count, 1)
         changeSource.tap()
         XCTAssertTrue(offer.waitForExistence(timeout: 15), "Changing source must return to actual addon offers after dismissing the options and player")
         capture(app, "native-player-change-source")
