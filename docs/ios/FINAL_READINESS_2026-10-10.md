@@ -1,6 +1,6 @@
 # Candidata 85: comprobaciones de la única entrega final
 
-Actualización del 12 de octubre: el tercer gate compiló, pero las regresiones GET/POST volvieron a abortar durante el cambio de presentación. Se corrige la propiedad de la vista raíz: cada controlador tiene su contenedor y conserva el navegador de la cuenta como subvista transferible. Se repite el gate completo con las mismas comprobaciones de navegación. No hay IPA 85; los tres intentos están registrados en [VALIDATION.md](VALIDATION.md).
+Actualización del 12 de octubre: el cuarto gate aprobó las 56 pruebas nativas (PiP físico omitido), incluidas GET/POST, pero falló en dos pruebas públicas. Se corrige la identidad AniList ante alias MAL compartidos, se conserva la metadata canónica y se añade recuperación transitoria de OPDS. También se corrige el arnés de transiciones UIKit. La próxima validación sigue siendo completa; no hay IPA 85. Evidencia y límites en [VALIDATION.md](VALIDATION.md).
 
 La revisión usa el alcance móvil vigente, las capturas del propietario y el código actual. La presencia de una implementación no acredita su funcionamiento: las comprobaciones Apple, servicios públicos, capturas reales y paquete siguen siendo obligatorias. La IPA 84 recuperada se conserva en el área de trabajo como evidencia anterior. No se entregan IPAs intermedias.
 

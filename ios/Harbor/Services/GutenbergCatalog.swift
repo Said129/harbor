@@ -63,6 +63,25 @@ enum GutenbergCatalog {
     }
 
     private static func data(_ url: URL) async throws -> Data {
+        for attempt in 0..<2 {
+            try Task.checkCancellation()
+            do { return try await dataAttempt(url) }
+            catch let error as URLError {
+                try Task.checkCancellation()
+                if error.code == .cancelled { throw CancellationError() }
+                guard attempt == 0, error.code == .timedOut || error.code == .networkConnectionLost else { throw HarborError(code: "ebook-network") }
+            } catch let error as HarborError {
+                await Diagnostics.shared.recordFailure(error)
+                guard error.code.hasPrefix("http-") else { throw error }
+                guard attempt == 0, error.code == "http-429" || error.code.hasPrefix("http-5") else { throw HarborError(code: "ebook-network") }
+            }
+            // Retry this public, read-only request once with a fresh connection.
+            try await Task.sleep(for: .milliseconds(500))
+        }
+        throw HarborError(code: "ebook-network")
+    }
+
+    private static func dataAttempt(_ url: URL) async throws -> Data {
         let configuration = URLSessionConfiguration.ephemeral
         configuration.httpShouldSetCookies = false; configuration.httpCookieStorage = nil; configuration.urlCache = nil
         let session = URLSession(configuration: configuration)
@@ -71,7 +90,9 @@ enum GutenbergCatalog {
         request.setValue("application/atom+xml", forHTTPHeaderField: "Accept")
         request.setValue("Harbor-iOS/0.1", forHTTPHeaderField: "User-Agent")
         let (bytes, response) = try await session.bytes(for: request)
-        guard let response = response as? HTTPURLResponse, (200..<300).contains(response.statusCode), response.expectedContentLength <= 2 * 1024 * 1024 else { throw HarborError(code: "ebook-network") }
+        guard let response = response as? HTTPURLResponse else { throw HarborError(code: "ebook-network") }
+        guard (200..<300).contains(response.statusCode) else { throw HarborError(code: "http-\(response.statusCode)") }
+        guard response.expectedContentLength <= 2 * 1024 * 1024 else { throw HarborError(code: "ebook-size") }
         var result = Data()
         for try await byte in bytes {
             try Task.checkCancellation()

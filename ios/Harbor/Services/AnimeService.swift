@@ -106,6 +106,9 @@ actor AnimeService {
             let components = key.split(separator: ":")
             guard components.count == 2, validIDs.contains(String(components[0])), let page = Int(components[1]), (1...100).contains(page),
                   !entry.items.isEmpty, entry.items.count <= 100, now.timeIntervalSince(entry.at) >= -60, now.timeIntervalSince(entry.at) <= Self.fallbackAge else { return false }
+            // Earlier AniList caches used MAL aliases, which can identify more
+            // than one AniList entry. Reload those public rails with native IDs.
+            if String(components[0]).hasPrefix("anilist-"), !entry.items.allSatisfy({ $0.id.hasPrefix("anilist:") }) { return false }
             return entry.items.allSatisfy { Self.isAnime($0.id) && !$0.name.isEmpty }
         }
     }
@@ -207,14 +210,23 @@ actor AnimeService {
             let response = try? await HTTPClient().json("https://anime-kitsu.strem.fun/meta/\(type)/\(safe).json")
             if let response, let media = Media.parse(response["meta"], kind: type) { return media }
         }
+        if id.hasPrefix("anilist:"), let number = Int64(id.dropFirst(8)) {
+            // The metadata addon may not know a newly split AniList entry yet.
+            // Keep its catalog identity and resolve only a provider-supplied alias.
+            let query = "query($id:Int){Media(id:$id,type:ANIME){idMal}}"
+            if let value = try? await HTTPClient().anilist(query: query, variables: .object(["id": .integer(number)])),
+               let mal = value["Media"]["idMal"].integer, mal > 0 {
+                return try await metadata(id: "mal:\(mal)", kind: kind)
+            }
+        }
         throw HarborError(code: "no-metadata")
     }
     private static func nameKey(_ name: String) -> String { name.folding(options: [.diacriticInsensitive, .caseInsensitive], locale: Locale(identifier: "en")) }
     private static func unique(_ items: [Media]) -> [Media] { var ids = Set<String>(); return items.filter { ids.insert($0.identity).inserted } }
     private static func plain(_ value: String?) -> String? { value?.replacingOccurrences(of: "<br\\s*/?>", with: "\n", options: .regularExpression).replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression).replacingOccurrences(of: "&amp;", with: "&").replacingOccurrences(of: "&quot;", with: "\"").replacingOccurrences(of: "&#039;", with: "'") }
-    private static func anilistMedia(_ value: JSONValue) -> Media? {
+    static func anilistMedia(_ value: JSONValue) -> Media? {
         guard let id = value["id"].integer, let name = value["title"]["english"].string ?? value["title"]["userPreferred"].string ?? value["title"]["romaji"].string else { return nil }
-        var media = Media(id: value["idMal"].integer.map { "mal:\($0)" } ?? "anilist:\(id)", type: value["format"].string == "MOVIE" ? "movie" : "series", name: name)
+        var media = Media(id: "anilist:\(id)", type: value["format"].string == "MOVIE" ? "movie" : "series", name: name)
         media.poster = value["coverImage"]["extraLarge"].string ?? value["coverImage"]["large"].string
         media.background = value["bannerImage"].string; media.description = plain(value["description"].string)
         media.releaseInfo = value["seasonYear"].integer.map(String.init); media.genres = value["genres"].array.compactMap(\.string)

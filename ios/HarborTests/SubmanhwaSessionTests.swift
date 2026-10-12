@@ -29,8 +29,15 @@ final class SubmanhwaSessionTests: XCTestCase {
         let session = SubmanhwaSession(configuration: configuration)
         let web = session.web
         defer { web.stopLoading(); web.navigationDelegate = nil }
+        let host = UIViewController()
         let first = WebPageController(webView: web)
-        window.rootViewController = first; window.makeKeyAndVisible()
+        window.rootViewController = host
+        host.addChild(first)
+        first.view.frame = host.view.bounds
+        first.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        host.view.addSubview(first.view)
+        first.didMove(toParent: host)
+        window.makeKeyAndVisible()
         window.layoutIfNeeded()
         XCTAssertFalse(first.view === web, "A persistent page must not be owned as a presentation's root view")
         XCTAssertTrue(web.superview === first.view)
@@ -45,15 +52,14 @@ final class SubmanhwaSessionTests: XCTestCase {
         first.detach()
         print("Submanhwa session \(method): first presentation detached")
         XCTAssertNil(web.superview)
-        window.rootViewController = nil
-        print("Submanhwa session \(method): previous presentation removed")
         XCTAssertNil(web.uiDelegate)
         print("Submanhwa session \(method): presentation delegate cleared")
         // The response is deliberately withheld until after the original
         // presentation is gone and the user has opened the page again.
         let second = WebPageController(webView: web)
         print("Submanhwa session \(method): second presentation created")
-        window.rootViewController = second
+        await replace(first, with: second, in: host)
+        print("Submanhwa session \(method): previous presentation removed")
         window.layoutIfNeeded()
         XCTAssertFalse(first.view === second.view)
         XCTAssertTrue(web.superview === second.view)
@@ -78,19 +84,35 @@ final class SubmanhwaSessionTests: XCTestCase {
 
         second.detach()
         XCTAssertNil(web.superview)
-        window.rootViewController = nil
         let third = WebPageController(webView: web)
-        window.rootViewController = third
+        await replace(second, with: third, in: host)
         window.layoutIfNeeded()
         XCTAssertFalse(second.view === third.view)
         XCTAssertTrue(web.superview === third.view)
-        defer { third.close(); window.rootViewController = nil }
+        defer { third.close() }
         await session.openIfNeeded()
         let preserved = try await evaluate(web, "return String(window.fixtureCounter);")
         XCTAssertEqual(preserved, "42")
         XCTAssertEqual(server.methods, [method], "Reopening must not repeat a navigation or a submitted POST")
         XCTAssertFalse(session.loading)
         print("Submanhwa session \(method): completed page preserved without a second request")
+    }
+
+    @MainActor
+    private func replace(_ old: UIViewController, with next: UIViewController, in host: UIViewController) async {
+        // Match representable containment and await UIKit's actual completion,
+        // rather than interrupting root-window appearance transitions.
+        old.willMove(toParent: nil)
+        host.addChild(next)
+        next.view.frame = host.view.bounds
+        next.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        await withCheckedContinuation { (continuation: CheckedContinuation<Void, Never>) in
+            host.transition(from: old, to: next, duration: 0, options: [], animations: nil) { _ in
+                old.removeFromParent()
+                next.didMove(toParent: host)
+                continuation.resume()
+            }
+        }
     }
 
     @MainActor

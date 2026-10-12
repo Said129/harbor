@@ -1,5 +1,17 @@
 # Estado de la continuación, 11 de octubre de 2026
 
+## Cuarto gate: sesión corregida y servicios públicos, 12 de octubre
+
+El [run 38224879079](https://github.com/Said129/harbor/actions/runs/38224879079), fuente `f423eebfcd0464240366773ee72ab9fe9a1befd9`, compiló y aprobó 56 casos nativos, incluidos GET y POST de reapertura, las raíces independientes, geometría, desmontaje tardío y conservación del estado DOM. PiP real se omitió por soporte del simulador. No hubo casos abortados. Las dos regresiones terminaron en 1.494 y 0.701 segundos.
+
+Pasaron seis de las ocho pruebas públicas. AniList falló por identidades compartidas entre páginas; Gutenberg falló tras dos timeouts de Gutendex y un error de red del catálogo OPDS de respaldo. UI, dispositivo y paquete quedaron omitidos. No hay IPA 85. El archivo público sólo contiene el manifiesto sin adjuntos: 510 bytes, SHA-256 `84dc1777a66819a1df38f34db1d046ca9862bbb57e3ea1509d48238b95fbbf09`; los registros completos y resultados están conservados localmente.
+
+La consulta independiente a AniList reprodujo la colisión: sus entradas 190327 y 210482 (dos etapas de Steel Ball Run) tienen el mismo alias MAL 61469, pero distinto identificador AniList. Se conserva ahora `anilist:<id>` en el catálogo y se invalidan únicamente sus antiguas cachés públicas basadas en alias. La metadata conserva la resolución canónica del addon y, si desconoce una entrada nueva, consulta el alias MAL real del proveedor. No se cambian ni eliminan los registros existentes de biblioteca MAL. Una regresión local comprueba las dos identidades y el gate público mantiene sus aserciones de 100 entradas únicas; añade equivalencia de episodios de `anilist:1` y `mal:1`.
+
+Gutendex y los feeds oficiales Gutenberg responden 200 en la consulta posterior, pero ese resultado Windows no sustituye el gate Apple. OPDS reintenta una vez sólo timeouts, conexiones interrumpidas, HTTP 429 o 5xx, con conexión nueva y los mismos límites de respuesta; registra únicamente códigos HTTP acotados. No se omite la prueba ni se amplían sus deadlines del workflow.
+
+El registro de Submanhwa detectó un aviso de apariencia causado por sustituir sucesivamente la raíz de una ventana dentro de la prueba. El arnés usa ahora un contenedor UIKit estable y espera la finalización real de `transition(from:to:)`, conservando todos los cambios de presentación y las aserciones. El gate completo siguiente debe acreditar los cambios y la ausencia del aviso; no se declara un pase anticipado.
+
 ## Tercer gate y propiedad de las vistas, 12 de octubre
 
 El [run 38097897000](https://github.com/Said129/harbor/actions/runs/38097897000), fuente `0a37dd0115f16bbdc1cd197113722d3969db9185`, terminó con fallo el 11 de octubre a las 00:48 UTC. Compilación Swift/Rust y 54 casos nativos pasan; PiP real se omite por soporte del simulador y GET/POST vuelven a abortar sin resultado. Servicios, UI, dispositivo y paquete se omiten; no se genera una IPA. La invocación con tarea y expectativa no resolvió el cierre y se retira.

@@ -26,6 +26,9 @@ final class LiveServicesTests: XCTestCase {
         XCTAssertFalse(detail.name.isEmpty)
         XCTAssertFalse(detail.videos?.isEmpty ?? true, "Anime details must use the provider's canonical episode identities")
         XCTAssertTrue(detail.videos?.allSatisfy { !$0.id.isEmpty } == true)
+        let anilistDetail = try await AnimeService.metadata(id: "anilist:1", kind: "series")
+        XCTAssertEqual(anilistDetail.id, detail.id, "Provider IDs must resolve to the same canonical playback metadata")
+        XCTAssertEqual(anilistDetail.videos?.map(\.id), detail.videos?.map(\.id))
         print("Harbor live Anime: AniList=\(first.count + second.count), canonical episodes=\(detail.videos?.count ?? 0)")
     }
     func testMALRecommendationsAndDesktopAwardCatalog() async throws {

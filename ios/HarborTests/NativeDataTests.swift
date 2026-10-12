@@ -3,6 +3,23 @@ import UIKit
 @testable import Harbor
 
 final class NativeDataTests: XCTestCase {
+    func testAniListEntriesRemainDistinctWhenTheyShareAMALAlias() throws {
+        // Independently observed provider entries for two Steel Ball Run stages.
+        let first: JSONValue = .object(["id": .integer(190327), "idMal": .integer(61469), "title": .object(["english": .string("First stage")]), "format": .string("ONA"), "averageScore": .integer(87)])
+        var fields = first.objectValue
+        fields["id"] = .integer(210482)
+        fields["title"] = .object(["english": .string("Second stage")])
+        let a = try XCTUnwrap(AnimeService.anilistMedia(first))
+        let b = try XCTUnwrap(AnimeService.anilistMedia(.object(fields)))
+        XCTAssertEqual(a.id, "anilist:190327")
+        XCTAssertEqual(b.id, "anilist:210482")
+        XCTAssertNotEqual(a.identity, b.identity)
+        XCTAssertEqual(a.ratingSource, "AniList")
+        XCTAssertEqual(a.imdbRating, "8.7")
+        XCTAssertTrue(AnimeService.isAnime(a.id))
+        XCTAssertTrue(AnimeService.isAnime("mal:61469"), "Existing MAL library records remain valid")
+    }
+
     func testMALPublicCatalogPreservesProviderRatingsFiltersAndSeasonBoundaries() throws {
         // Minimal independently observed MAL v2 node, not a substitute catalog in the app.
         let node: JSONValue = .object(["id": .integer(16498), "title": .string("Shingeki no Kyojin"), "alternative_titles": .object(["en": .string("Attack on Titan")]),

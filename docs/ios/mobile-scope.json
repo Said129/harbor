@@ -311,28 +311,43 @@
   "deliveredIpaBuild": 84,
   "finalCandidate": {
     "build": 85,
-    "source": "0a37dd0115f16bbdc1cd197113722d3969db9185",
+    "source": "f423eebfcd0464240366773ee72ab9fe9a1befd9",
     "baseSource": "33f194817c5c7c6695b8e018a2362c3a14d04584",
     "readiness": "docs/ios/FINAL_READINESS_2026-10-10.md",
     "validationScope": "full",
     "runLiveIntegration": true,
-    "status": "Third full gate failed; independent root containers prepared; new full validation pending",
-    "dispatchAttempts": 5,
+    "status": "Native full suite passed; public identity/network repairs and UIKit test containment prepared; new full gate pending",
+    "dispatchAttempts": 6,
     "lastAttemptAtUtc": "2026-10-11T00:17:02Z",
     "dispatchError": null,
     "historicalDispatchError": "HTTP 422: Actions has been disabled for this repository (two attempts on 2026-10-10)",
     "repositoryActionsEnabled": true,
     "workflowState": "active",
-    "ciRun": 38097897000,
+    "ciRun": 38224879079,
     "ipaGenerated": false,
     "localContinuation": {
       "date": "2026-10-12",
-      "status": "Own presentation roots and safe page reparenting; GET/POST and late-detach regression coverage retained; Apple validation pending",
+      "status": "Submanhwa ownership verified; AniList identity/canonical metadata and OPDS transient recovery prepared; full final validation pending",
       "change": "Keep Submanhwa navigation in its account session while detaching the presentation, without replaying forms",
       "nativeRegression": "SubmanhwaSessionTests",
       "recoveryEvidence": "docs/ios/RECOVERY_2026-10-11.md"
     },
     "failedValidation": {
+      "ciRun": 38224879079,
+      "source": "f423eebfcd0464240366773ee72ab9fe9a1befd9",
+      "result": "failure",
+      "nativePassed": 56,
+      "nativeSkipped": 1,
+      "nativeAborted": 0,
+      "publicPassed": 6,
+      "publicFailed": 2,
+      "failures": [
+        "Distinct AniList entries share MAL alias 61469",
+        "Gutendex timeout and OPDS network failure"
+      ],
+      "ipaGenerated": false
+    },
+    "previousFailedValidation": {
       "ciRun": 38097897000,
       "source": "0a37dd0115f16bbdc1cd197113722d3969db9185",
       "result": "failure",
@@ -341,22 +356,6 @@
       "nativeAborted": 2,
       "lastRegressionPhase": "First presentation detached; second presentation not installed",
       "evidenceSha256": "ad6b479afb991e1becefb56c348f07afc033b9787903eb8ef2d6a13ce7f001ef",
-      "ipaGenerated": false
-    },
-    "previousFailedValidation": {
-      "ciRun": 38096031012,
-      "source": "d17a824ac1d72bafb8248f9603cc4b1c51a03231",
-      "result": "failure",
-      "nativePassed": 54,
-      "nativeSkipped": 1,
-      "nativeAborted": 2,
-      "adBlocker": "Actual WebKit compilation and page preservation pass",
-      "stack": [
-        "swift::_swift_task_dealloc_specific",
-        "TaskLocal.withValue",
-        "XCTSwiftErrorObservation._observeErrors"
-      ],
-      "evidenceSha256": "2b7f563d912669d45ff2c4378b1f592f46302482335abd0f2ec1e1aeac8c461c",
       "ipaGenerated": false
     },
     "failedValidationHistory": [
@@ -399,6 +398,21 @@
         "nativeAborted": 2,
         "lastRegressionPhase": "First presentation detached; second presentation not installed",
         "evidenceSha256": "ad6b479afb991e1becefb56c348f07afc033b9787903eb8ef2d6a13ce7f001ef",
+        "ipaGenerated": false
+      },
+      {
+        "ciRun": 38224879079,
+        "source": "f423eebfcd0464240366773ee72ab9fe9a1befd9",
+        "result": "failure",
+        "nativePassed": 56,
+        "nativeSkipped": 1,
+        "nativeAborted": 0,
+        "publicPassed": 6,
+        "publicFailed": 2,
+        "failures": [
+          "Distinct AniList entries share MAL alias 61469",
+          "Gutendex timeout and OPDS network failure"
+        ],
         "ipaGenerated": false
       }
     ]
