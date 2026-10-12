@@ -85,8 +85,9 @@ final class LiveNavigationTests: XCTestCase {
         let position = app.staticTexts["discovery-queue-position"]
         XCTAssertTrue(title.waitForExistence(timeout: 10))
         XCTAssertFalse(title.label.isEmpty)
+        capture(app, "native-discovery-queue-opened")
         let originalPosition = position.label
-        let scroll = app.scrollViews["discovery-queue-scroll"]
+        let scroll = app.descendants(matching: .any).matching(identifier: "discovery-queue-scroll").firstMatch
         XCTAssertTrue(scroll.exists)
         let skip = app.buttons["discovery-queue-skip"]
         reveal(skip, in: scroll, attempts: 3)
@@ -510,7 +511,9 @@ final class LiveNavigationTests: XCTestCase {
         reveal(streams, in: app.scrollViews.firstMatch, attempts: 5)
         streams.tap()
         let offer = app.buttons.matching(identifier: "stream-offer").firstMatch
-        XCTAssertTrue(offer.waitForExistence(timeout: 30), "A real addon must populate the stream picker")
+        let offerLoaded = offer.waitForExistence(timeout: 30)
+        capture(app, "real-stream-picker-loaded")
+        XCTAssertTrue(offerLoaded, "A real addon must populate the stream picker")
         let pickerScroll = app.scrollViews["stream-picker-scroll"]
         XCTAssertTrue(app.buttons["stream-picker-refresh"].exists)
         let allSources = app.buttons["stream-all-sources"]

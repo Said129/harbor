@@ -15,6 +15,9 @@ final class VideoRenderingTests: XCTestCase {
         let previous = scene.windows.first { $0.isKeyWindow }
         let window = UIWindow(windowScene: scene)
         window.frame = CGRect(x: 0, y: 0, width: 320, height: 180)
+        let host = RenderTestHost()
+        window.rootViewController = host
+        window.makeKeyAndVisible()
         defer { window.isHidden = true; window.rootViewController = nil; previous?.makeKeyAndVisible() }
         let images = CIContext(options: [.useSoftwareRenderer: true])
         for depth in [8, 10] {
@@ -22,8 +25,9 @@ final class VideoRenderingTests: XCTestCase {
             let state = PlayerState()
             let source = PlaybackSource(url: url.absoluteString, headers: nil, subtitles: nil, via: "test-fixture")
             let controller = MPVController(source: source, state: state)
-            window.rootViewController = controller; window.makeKeyAndVisible(); controller.view.layoutIfNeeded()
-            defer { controller.close(); window.rootViewController = nil }
+            host.show(controller)
+            controller.view.layoutIfNeeded()
+            defer { host.remove(controller); controller.close() }
             let surface = try XCTUnwrap(controller.view as? GLKView)
             let loaded = Date().addingTimeInterval(10)
             while Date() < loaded && (!state.loaded || state.position < 0.1 || !state.tracks.contains(where: { $0.type == "video" && $0.selected })) {
@@ -149,6 +153,9 @@ final class VideoRenderingTests: XCTestCase {
         let previous = scene.windows.first { $0.isKeyWindow }
         let window = UIWindow(windowScene: scene)
         window.frame = CGRect(x: 0, y: 0, width: 320, height: 180)
+        let host = RenderTestHost()
+        window.rootViewController = host
+        window.makeKeyAndVisible()
         defer { window.isHidden = true; window.rootViewController = nil; previous?.makeKeyAndVisible() }
 
         for depth in [8, 10] {
@@ -156,10 +163,9 @@ final class VideoRenderingTests: XCTestCase {
             let state = PlayerState()
             let source = PlaybackSource(url: url.absoluteString, headers: nil, subtitles: nil, via: "test-fixture")
             let controller = MPVController(source: source, state: state)
-            window.rootViewController = controller
-            window.makeKeyAndVisible()
+            host.show(controller)
             controller.view.layoutIfNeeded()
-            defer { controller.close(); window.rootViewController = nil }
+            defer { host.remove(controller); controller.close() }
             let surface = try XCTUnwrap(controller.view as? GLKView)
             XCTAssertTrue(surface.delegate === controller, "The native GLKView must call its player renderer")
             if let version = glGetString(GLenum(GL_VERSION)), let driver = glGetString(GLenum(GL_RENDERER)) {
@@ -237,5 +243,30 @@ final class VideoRenderingTests: XCTestCase {
             context.draw(right, in: CGRect(x: 1, y: 0, width: 1, height: 1))
         }
         return bytes.map(Int.init)
+    }
+}
+
+@MainActor
+private final class RenderTestHost: UIViewController {
+    // Complete each fixture's appearance before tearing it down, even when its
+    // pixel assertions finish before UIWindow's normal root transition would.
+    override var shouldAutomaticallyForwardAppearanceMethods: Bool { false }
+
+    func show(_ child: UIViewController) {
+        addChild(child)
+        child.view.frame = view.bounds
+        child.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        child.beginAppearanceTransition(true, animated: false)
+        view.addSubview(child.view)
+        child.didMove(toParent: self)
+        child.endAppearanceTransition()
+    }
+
+    func remove(_ child: UIViewController) {
+        child.willMove(toParent: nil)
+        child.beginAppearanceTransition(false, animated: false)
+        child.view.removeFromSuperview()
+        child.endAppearanceTransition()
+        child.removeFromParent()
     }
 }

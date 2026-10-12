@@ -21,7 +21,6 @@ struct StreamPrimaryCard: View {
         }.padding(20).frame(maxWidth: .infinity, alignment: .leading)
             .background(HarborTheme.background.opacity(0.7), in: .rect(cornerRadius: 24))
             .overlay { RoundedRectangle(cornerRadius: 24).stroke(HarborTheme.ink.opacity(0.08), lineWidth: 1) }
-            .accessibilityIdentifier("stream-primary-card")
     }
     private var artwork: some View {
         Artwork(url: landscape ?? media.poster, fallback: landscape == nil ? media.fallbackPoster : media.fallbackBackground, maxPixels: 900)

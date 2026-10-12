@@ -1,5 +1,17 @@
 # Estado de la continuación, 11 de octubre de 2026
 
+## Quinto gate: servicios aprobados y colisiones de accesibilidad, 12 de octubre
+
+El [run 38230520713](https://github.com/Said129/harbor/actions/runs/38230520713), fuente `780562ca1914847852955464a37d5211a9a1ff42`, aprobó Swift/Rust, la compilación de simulador, 57 casos nativos y las ocho pruebas con servicios públicos. La única omisión nativa sigue siendo el inicio real de PiP no admitido por el simulador. AniList aprobó identidades únicas y equivalencia canónica de episodios; Gutenberg cargó capítulos del EPUB real. GET/POST aprobaron y desapareció el aviso de apariencia de WebPageController.
+
+La UI aprobó Cancelar del tema y falló en dos consultas de accesibilidad: el área de desplazamiento de la cola y el botón de reproducir del selector. No hubo casos abortados: 66 aprobados, dos fallidos y uno omitido en total. Dispositivo y paquete quedaron omitidos; no se generó IPA 85.
+
+El árbol AX adjunto acredita que Big Buck Bunny y su fuente Now.sh Example sí estaban presentes, pero el identificador del contenedor `stream-primary-card` había reemplazado los de sus hijos, incluido `stream-offer`. Se retiran los identificadores redundantes de contenedores del selector, manteniendo los de sus botones. Se retira asimismo el identificador exterior de GeometryReader que ocultaba el del ScrollView de la cola; la consulta del área admite el rol AX expuesto por SwiftUI, como otros recorridos existentes. No se amplían esperas ni se omiten las aserciones de saltar un título, abrir su ficha, obtener fuentes o inicializar mpv. Se añaden capturas justo al abrir cola/selector para conservar diagnóstico antes de esas aserciones.
+
+Los tests de vídeo detectaron dos avisos de apariencia de MPVController al alternar raíces de UIWindow entre fixtures que terminan muy rápido. Su arnés conserva ahora una raíz estable, con contención y transiciones de apariencia síncronas equilibradas por fixture. No cambia el renderer ni sus comprobaciones de píxeles, profundidad, reloj, seek o conservación de generación. El siguiente gate completo debe comprobar la ausencia de los avisos.
+
+La evidencia UI se conserva localmente: 58 PNG, jerarquía AX y grabaciones; archivo de 200405715 bytes, SHA-256 `5ac791f2c708c14975a22161c75f9cde35bcb073d1e1037c7933eca62a3dbb5c`. No se usa como evidencia de una entrega aprobada.
+
 ## Cuarto gate: sesión corregida y servicios públicos, 12 de octubre
 
 El [run 38224879079](https://github.com/Said129/harbor/actions/runs/38224879079), fuente `f423eebfcd0464240366773ee72ab9fe9a1befd9`, compiló y aprobó 56 casos nativos, incluidos GET y POST de reapertura, las raíces independientes, geometría, desmontaje tardío y conservación del estado DOM. PiP real se omitió por soporte del simulador. No hubo casos abortados. Las dos regresiones terminaron en 1.494 y 0.701 segundos.

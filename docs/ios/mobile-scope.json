@@ -311,28 +311,46 @@
   "deliveredIpaBuild": 84,
   "finalCandidate": {
     "build": 85,
-    "source": "f423eebfcd0464240366773ee72ab9fe9a1befd9",
+    "source": "780562ca1914847852955464a37d5211a9a1ff42",
     "baseSource": "33f194817c5c7c6695b8e018a2362c3a14d04584",
     "readiness": "docs/ios/FINAL_READINESS_2026-10-10.md",
     "validationScope": "full",
     "runLiveIntegration": true,
-    "status": "Native full suite passed; public identity/network repairs and UIKit test containment prepared; new full gate pending",
-    "dispatchAttempts": 6,
+    "status": "Native and public suites passed; UI accessibility and renderer-test containment repairs prepared; full gate pending",
+    "dispatchAttempts": 7,
     "lastAttemptAtUtc": "2026-10-11T00:17:02Z",
     "dispatchError": null,
     "historicalDispatchError": "HTTP 422: Actions has been disabled for this repository (two attempts on 2026-10-10)",
     "repositoryActionsEnabled": true,
     "workflowState": "active",
-    "ciRun": 38224879079,
+    "ciRun": 38230520713,
     "ipaGenerated": false,
     "localContinuation": {
       "date": "2026-10-12",
-      "status": "Submanhwa ownership verified; AniList identity/canonical metadata and OPDS transient recovery prepared; full final validation pending",
+      "status": "WebKit lifecycle, AniList identity/canonical episodes and Gutenberg verified; UI identifier and video test harness corrections pending full gate",
       "change": "Keep Submanhwa navigation in its account session while detaching the presentation, without replaying forms",
       "nativeRegression": "SubmanhwaSessionTests",
       "recoveryEvidence": "docs/ios/RECOVERY_2026-10-11.md"
     },
     "failedValidation": {
+      "ciRun": 38230520713,
+      "source": "780562ca1914847852955464a37d5211a9a1ff42",
+      "result": "failure",
+      "nativePassed": 57,
+      "nativeSkipped": 1,
+      "nativeAborted": 0,
+      "publicPassed": 8,
+      "publicFailed": 0,
+      "uiPassed": 1,
+      "uiFailed": 2,
+      "failures": [
+        "Queue scroll identifier shadowed by its GeometryReader",
+        "Stream offer identifier replaced by parent card identifier"
+      ],
+      "evidenceSha256": "5ac791f2c708c14975a22161c75f9cde35bcb073d1e1037c7933eca62a3dbb5c",
+      "ipaGenerated": false
+    },
+    "previousFailedValidation": {
       "ciRun": 38224879079,
       "source": "f423eebfcd0464240366773ee72ab9fe9a1befd9",
       "result": "failure",
@@ -345,17 +363,6 @@
         "Distinct AniList entries share MAL alias 61469",
         "Gutendex timeout and OPDS network failure"
       ],
-      "ipaGenerated": false
-    },
-    "previousFailedValidation": {
-      "ciRun": 38097897000,
-      "source": "0a37dd0115f16bbdc1cd197113722d3969db9185",
-      "result": "failure",
-      "nativePassed": 54,
-      "nativeSkipped": 1,
-      "nativeAborted": 2,
-      "lastRegressionPhase": "First presentation detached; second presentation not installed",
-      "evidenceSha256": "ad6b479afb991e1becefb56c348f07afc033b9787903eb8ef2d6a13ce7f001ef",
       "ipaGenerated": false
     },
     "failedValidationHistory": [
@@ -413,6 +420,24 @@
           "Distinct AniList entries share MAL alias 61469",
           "Gutendex timeout and OPDS network failure"
         ],
+        "ipaGenerated": false
+      },
+      {
+        "ciRun": 38230520713,
+        "source": "780562ca1914847852955464a37d5211a9a1ff42",
+        "result": "failure",
+        "nativePassed": 57,
+        "nativeSkipped": 1,
+        "nativeAborted": 0,
+        "publicPassed": 8,
+        "publicFailed": 0,
+        "uiPassed": 1,
+        "uiFailed": 2,
+        "failures": [
+          "Queue scroll identifier shadowed by its GeometryReader",
+          "Stream offer identifier replaced by parent card identifier"
+        ],
+        "evidenceSha256": "5ac791f2c708c14975a22161c75f9cde35bcb073d1e1037c7933eca62a3dbb5c",
         "ipaGenerated": false
       }
     ]

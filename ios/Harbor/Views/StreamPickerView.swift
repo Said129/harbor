@@ -126,7 +126,7 @@ struct StreamPickerView: View {
             StreamChipLayout(spacing: 10) {
                 ForEach(tiers) { offer in qualityButton(offer) }
             }
-        }.accessibilityIdentifier("stream-quality-strip")
+        }
     }
     private func qualityButton(_ offer: StreamOffer) -> some View {
         let active = offer.quality == selected?.quality
@@ -165,7 +165,7 @@ struct StreamPickerView: View {
                     }
                 }.background(HarborTheme.background.opacity(0.8), in: .rect(cornerRadius: 16))
                     .overlay { RoundedRectangle(cornerRadius: 16).stroke(ThemePreferences.shared.color("edge-soft").opacity(0.6), lineWidth: 1) }
-                    .transition(.opacity).accessibilityIdentifier("stream-source-list")
+                    .transition(.opacity)
             }
         }
     }

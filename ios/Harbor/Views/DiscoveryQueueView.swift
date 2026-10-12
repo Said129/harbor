@@ -49,7 +49,6 @@ struct DiscoveryQueueView: View {
             }.scrollIndicators(.hidden).accessibilityIdentifier("discovery-queue-scroll")
         }.background(HarborTheme.background)
             .navigationTitle("").navigationBarTitleDisplayMode(.inline).toolbar(.visible, for: .navigationBar)
-            .accessibilityIdentifier("discovery-queue")
             .onChange(of: app.library.owner) { _, _ in enriched = [:]; activeID = nil; hint = nil; dismiss() }
             .task(id: current?.identity) {
                 guard let media = current, enriched[media.identity] == nil else { return }
