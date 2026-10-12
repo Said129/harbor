@@ -1,6 +1,6 @@
 # Candidata 85: comprobaciones de la única entrega final
 
-Actualización del 12 de octubre: el noveno gate aprobó 60 casos nativos, ocho servicios públicos y dos recorridos UI. Falló sólo al seleccionar entre dos botones con el mismo identificador en Cambiar fuente; se distinguen sus identificadores sin cambiar acciones. Las capturas horizontales de elemento aparecen recortadas y se añaden capturas de pantalla completa para comprobarlas antes de aceptar la revisión visual. El barco y las tres regresiones EPUB pasaron, sin avisos de apariencia/cancelación del loopback. Paquete y recorrido UI restante siguen pendientes del gate completo; no hay IPA 85. Evidencia en [VALIDATION.md](VALIDATION.md).
+La build 85 está entregada en `C:/Users/Said/Downloads/Harbor-unsigned.ipa`, fuente `e1b88eb114b2c37ffbde86836b4c6d0112c15552`, del gate completo [38264171474](https://github.com/Said129/harbor/actions/runs/38264171474). XCTest terminó con 71 aprobadas, 0 fallidas y 1 omitida; la omisión corresponde al inicio real de PiP no admitido en el simulador. Se revisaron las 89 imágenes de esta ejecución y se verificó la IPA descargada. La verificación física y privada sigue pendiente y se detalla en [DELIVERY_2026-10-12.md](DELIVERY_2026-10-12.md).
 
 La revisión usa el alcance móvil vigente, las capturas del propietario y el código actual. La presencia de una implementación no acredita su funcionamiento: las comprobaciones Apple, servicios públicos, capturas reales y paquete siguen siendo obligatorias. La IPA 84 recuperada se conserva en el área de trabajo como evidencia anterior. No se entregan IPAs intermedias.
 
@@ -28,11 +28,13 @@ La revisión usa el alcance móvil vigente, las capturas del propietario y el c�
 | Conservar y terminar lectores, Música, TV/VOD, Deportes, descargas y personalización iniciados | Clientes, modelos y pantallas existentes en `ios/Harbor`                                                                                                    | Suite nativa completa y recorridos públicos disponibles; no retirar implementaciones para reducir el alcance.                                                              |
 | Una IPA final estable y cuentas privadas aisladas al compartirla                               | Gate `ios.yml`, `package-ipa.py`, `save-draft-build.py`                                                                                                     | Rust/Swift, vídeo, ocho servicios públicos, UI completa, build iPhone, revisión de imágenes, hash/CRC/plataforma y ausencia de datos privados antes de copiar a Descargas. |
 
-La candidata usa `validation_scope=full`, `run_live_integration=true`, `save_draft_build=true` y `upload_artifacts=false`. Se eleva el límite del paso UI de 15 a 20 minutos para incluir el recorrido nuevo de la cola además de los ya existentes; no se retiran pruebas ni se amplían sus deadlines individuales. El gate completo aún no se ha ejecutado sobre esta candidata.
+La candidata usa `validation_scope=full`, `run_live_integration=true`, `save_draft_build=true` y `upload_artifacts=false`. Se eleva el límite del paso UI de 15 a 20 minutos para incluir el recorrido nuevo de la cola además de los ya existentes; no se retiran pruebas ni se amplían sus deadlines individuales. El gate completo de la fuente entregada ya pasó; el documento de entrega registra el resultado y los límites.
 
-La instrucción posterior de alcance conserva las funciones móviles esenciales y lo ya iniciado, y deja fuera herramientas de PC sin utilidad móvil. El inventario completo de Desktop no es un denominador ni prueba de finalización. Los recorridos físicos/privados pendientes deben informarse como tales, incluso si el gate público pasa. Esta lista no marca el objetivo como completado.
+La instrucción posterior de alcance conserva las funciones móviles esenciales y lo ya iniciado, y deja fuera herramientas de PC sin utilidad móvil. El inventario completo de Desktop no es un denominador ni prueba de finalización. Los recorridos físicos/privados pendientes deben informarse como tales, incluso si el gate público pasa. La entrega cierra el trabajo disponible en este entorno; las comprobaciones físicas y privadas siguen explícitamente pendientes.
 
-## Inicio rechazado por GitHub Actions
+## Antecedente del 10 de octubre: inicio rechazado (resuelto)
+
+El acceso local y Actions se resolvieron antes de los gates del 11. El texto siguiente conserva el estado histórico del rechazo.
 
 La fuente `33f194817c5c7c6695b8e018a2362c3a14d04584` está guardada y subida a `ios/native-iphone`. Dos intentos de iniciar el workflow final fueron rechazados con HTTP 422: `Actions has been disabled for this repository`. El segundo se comprobó el 10 de octubre a las 19:20:35 UTC. No se creó una ejecución ni una IPA 85.
 

@@ -1,5 +1,9 @@
 # Continuidad Desktop/iPhone para la única IPA final
 
+Actualización de entrega: La build 85 está entregada en `C:/Users/Said/Downloads/Harbor-unsigned.ipa`, fuente `e1b88eb114b2c37ffbde86836b4c6d0112c15552`, del gate completo [38264171474](https://github.com/Said129/harbor/actions/runs/38264171474). XCTest terminó con 71 aprobadas, 0 fallidas y 1 omitida; la omisión corresponde al inicio real de PiP no admitido en el simulador. Se revisaron las 89 imágenes de esta ejecución y se verificó la IPA descargada. La verificación física y privada sigue pendiente y se detalla en [DELIVERY_2026-10-12.md](DELIVERY_2026-10-12.md).
+
+## Registro del incremento antes de su validación final
+
 Este incremento se acumula con las correcciones del [9 de octubre](IPHONE_FEEDBACK_2026-10-09.md). La IPA 84 de Descargas permanece intacta; estos cambios de fuente todavía no están compilados ni entregados.
 
 ## Causa y comportamiento

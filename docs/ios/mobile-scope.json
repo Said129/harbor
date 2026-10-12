@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "updatedAt": "2026-10-12",
   "authority": "Explicit scope change by the repository owner in the current conversation",
-  "status": "in_progress",
+  "status": "delivered_with_physical_and_private_verification_pending",
   "objective": "Create a native iPhone Harbor faithful to Desktop beta 0.9.130 identity and selected mobile functions. Preserve everything implemented and finish native increments already started. For remaining work implement essential functions and useful mobile settings, without requiring every adaptable Desktop option.",
   "supersedes": "The earlier active goal instruction requiring every adaptable Desktop feature and setting. This scope override governs ongoing work; it does not mark that work complete.",
   "scopeDocument": "docs/ios/MOBILE_SCOPE.md",
@@ -282,7 +282,7 @@
   ],
   "openNativeIncrement": {
     "name": "Local subtitle import, language grouping and actual track filters",
-    "status": "Committed and present in delivered build 41. Native, public, UI and device/package gates passed; physical private account/provider behavior remains pending.",
+    "status": "Preserved and verified again in delivered build 85; private/physical provider behavior remains pending",
     "files": [
       "ios/Harbor/Services/SubtitleFileService.swift",
       "ios/Harbor/Player/SubtitleLanguages.swift",
@@ -294,7 +294,8 @@
       "ios/Harbor/Core/CoreBridge.swift",
       "scripts/ios/import-player-icons.py",
       "docs/ios/beta-vector-provenance.json"
-    ]
+    ],
+    "closedByDeliveredBuild": 85
   },
   "requiredMobileJourneys": [
     "Account and addon lifecycle",
@@ -308,26 +309,25 @@
   "unstartedAdvancedDesktopFeaturesRequired": false,
   "desktopInventoryIsCompletionDenominator": false,
   "desktopEvidenceStatesChanged": false,
-  "deliveredIpaBuild": 84,
+  "deliveredIpaBuild": 85,
   "finalCandidate": {
     "build": 85,
-    "source": "367586f2ec2795e2cd3820d2b950ed7b62472b33",
+    "source": "e1b88eb114b2c37ffbde86836b4c6d0112c15552",
     "baseSource": "33f194817c5c7c6695b8e018a2362c3a14d04584",
     "readiness": "docs/ios/FINAL_READINESS_2026-10-10.md",
     "validationScope": "full",
     "runLiveIntegration": true,
-    "status": "Native/public and two UI cases passed; unique source-button identifiers and full-screen visual diagnostics prepared; full gate pending",
-    "dispatchAttempts": 11,
-    "lastAttemptAtUtc": "2026-10-12T13:31:47Z",
+    "status": "Full Apple gate passed; actual package and every image reviewed; single final IPA delivered",
+    "lastAttemptAtUtc": "2026-10-12T14:36:36Z",
     "dispatchError": null,
     "historicalDispatchError": "HTTP 422: Actions has been disabled for this repository (two attempts on 2026-10-10)",
     "repositoryActionsEnabled": true,
     "workflowState": "active",
-    "ciRun": 38256305604,
-    "ipaGenerated": false,
+    "ciRun": 38264171474,
+    "ipaGenerated": true,
     "localContinuation": {
       "date": "2026-10-12",
-      "status": "Loader and EPUB repairs verified; Discover queue passed; remaining source-return UI, landscape visual review and full device/package validation pending",
+      "status": "Full delivered gate verified WebKit rules/lifecycle and GET/POST reopen, AniList identities/canonical episodes, Gutenberg EPUB, discovery queue and stream selection UI",
       "change": "Keep Submanhwa navigation in its account session while detaching the presentation, without replaying forms",
       "nativeRegression": "SubmanhwaSessionTests",
       "recoveryEvidence": "docs/ios/RECOVERY_2026-10-11.md"
@@ -515,7 +515,27 @@
         ],
         "evidenceSha256": "2868b17cb09211aca7073360cf385cff15c9da9180576092f7c8e21dac75ac17"
       }
-    ]
+    ],
+    "historicalDispatchAttemptsBeforeDelivery": 11,
+    "totalDispatchAttemptsIncludingDelivery": 12,
+    "delivery": {
+      "document": "docs/ios/DELIVERY_2026-10-12.md",
+      "testCounts": {
+        "passed": 71,
+        "failed": 0,
+        "skipped": 1
+      },
+      "imagesReviewed": 89,
+      "limitations": [
+        "IPA sin firmar para iPhone con iOS 17 o posterior. La instalación exige firma válida del propietario; para conservar datos se debe usar la misma identidad y bundle ID e instalar sobre la app anterior.",
+        "No se ha instalado esta candidata en el iPhone físico del propietario. PiP real, giro con bloqueo del sistema, gestos de tamaño, audio e interrupciones y salida AirPlay necesitan comprobación física. AirPlay está implementado como selección de salida de audio; no se promete vídeo AirPlay.",
+        "El simulador omite la prueba de inicio real de PiP porque AVKit no lo admite en ese destino. Decodificar vídeo y cambiar entre renderers no demuestra que aparezca la ventana PiP en un iPhone.",
+        "No se han usado cuentas ni credenciales privadas para comprobar Stremio PC/iPhone, roster de Harbor, addons configurados como TorBox, acceso/lectura de Submanhwa o servidores Suwayomi/Xtream. No se ejecutaron giros, compras ni mensajes Gacha.",
+        "La reproducción necesita enlaces HTTP(S) resueltos por el addon o proveedor. Torrents/infoHash sin URL resuelta, resolución nativa de YouTube/NZB y contenidos DRM no están soportados. El protocolo público y los fixtures no certifican todos los transportes ni la disponibilidad del servidor de vídeo antiguo del addon de ejemplo.",
+        "Los catálogos, metadata, imágenes y libros dependen de proveedores externos; pueden responder con errores o timeouts. El bloqueo publicitario de Submanhwa cubre las redes y reglas comprobadas y puede necesitar mantenimiento si cambia el sitio.",
+        "La compilación Linux se intentó y no pudo iniciarse por ausencia de cargo en este host Windows, que tampoco dispone de WSL. No se presenta el gate de iPhone como validación de Linux."
+      ]
+    }
   },
   "paidServicesAuthorized": false,
   "completionEvidence": "docs/ios/VALIDATION.md",
@@ -525,14 +545,15 @@
     "openNativeIncrementStatus": "uncommitted; native validation pending"
   },
   "deliveredIpaEvidence": {
-    "commit": "a71602f4b21deba6c5cb00910fc59e5753c1b2b6",
-    "ciRun": 37834434921,
+    "commit": "e1b88eb114b2c37ffbde86836b4c6d0112c15552",
+    "ciRun": 38264171474,
     "ciConclusion": "success",
+    "build": "85",
     "physicalTested": false,
-    "sha256": "52937d74105a84392624b1199a5ee3490be966cefd66e7180d6ee5f125482c5e",
-    "bytes": 36732153,
-    "validationScope": "affected",
-    "verification": "docs/ios/VALIDATION.md"
+    "sha256": "5e8556f36fc21c7107447fe05ce9869aea698905bf3f34d8d1a51ed7989687eb",
+    "bytes": 36968022,
+    "validationScope": "full",
+    "verification": "docs/ios/DELIVERY_2026-10-12.md"
   },
   "activeNativeIncrements": [
     {
@@ -540,21 +561,27 @@
       "name": "Original addon browser/categories and WebKit/drawable corrections",
       "source": "e1b590dbb5d8924e5b1e79c69cc5f72c2bbbe2e4",
       "ciRun": 37586211507,
-      "status": "Apple run completed failure: simulator compilation passes, 30 of 31 native tests pass including WebKit dialogs and 8-bit video. The 10-bit frame has grid-shaped black pixels. Public/UI/device/package skipped; no IPA 40. Keep delivered IPA 37."
+      "status": "Apple run completed failure: simulator compilation passes, 30 of 31 native tests pass including WebKit dialogs and 8-bit video. The 10-bit frame has grid-shaped black pixels. Public/UI/device/package skipped; no IPA 40. Keep delivered IPA 37.",
+      "historicalRecord": true,
+      "supersededByDeliveredBuild": "85"
     },
     {
       "build": 41,
       "name": "Original Manga background/title font/library entry, usable source/language controls and simulator GLES compatibility",
       "source": "252b6f5f01126b09e97db1f0ea24b3db0bc6f8fb",
       "ciRun": 37589420764,
-      "status": "Apple success: 31 native, 6 public service tests and full UI journey, device/package pass. All 33 actual images reviewed and IPA verified/delivered to Downloads. Physical verification remains pending."
+      "status": "Apple success: 31 native, 6 public service tests and full UI journey, device/package pass. All 33 actual images reviewed and IPA verified/delivered to Downloads. Physical verification remains pending.",
+      "historicalRecord": true,
+      "supersededByDeliveredBuild": "85"
     },
     {
       "build": 42,
       "name": "Original Manga detail typography, actual reading/library actions and chapter search/order; Harbor Library empty and filtered states; stable Calendar date-cell identities",
       "status": "Apple success: 31 native, 6 public and complete UI tests plus device/package passed. All 35 actual images reviewed and verified IPA delivered to Downloads. Calendar first week is present; local Manga cover still loading in its capture. Physical/private verification remains pending.",
       "source": "5f1f556dd554a55c3be68adc525241ebbc910028",
-      "ciRun": 37627862741
+      "ciRun": 37627862741,
+      "historicalRecord": true,
+      "supersededByDeliveredBuild": "85"
     },
     {
       "build": 43,
@@ -572,17 +599,21 @@
         "ios/Harbor/Views/AccountView.swift"
       ],
       "source": "fd3d9e59e82717fac70523f9a30fc2e5a8a21c3a",
-      "ciRun": 37634911030
+      "ciRun": 37634911030,
+      "historicalRecord": true,
+      "supersededByDeliveredBuild": "85"
     },
     {
       "build": 44,
       "name": "Physical IPA 42 feedback: silent size gesture, Continue Watching touch target, TorBox catalog suppression, persistent Submanhwa browser, real original Lottie connecting animation, touch action labels and independent timeline color; original detail and Calendar typography",
       "status": "Local source in progress; Apple build, full actual review and physical verification pending. These changes are not in Downloads IPA 42.",
-      "feedback": "docs/ios/IPHONE_FEEDBACK_2026-10-07.md"
+      "feedback": "docs/ios/IPHONE_FEEDBACK_2026-10-07.md",
+      "historicalRecord": true,
+      "supersededByDeliveredBuild": "85"
     },
     {
       "name": "Single final IPA: playback corrections, original resume and Discover queue, Submanhwa ad blocking, Desktop cloud continuity",
-      "status": "Source implemented; no intermediate Apple build or IPA. Swift compilation, native/public/UI tests, review of real rendered evidence, final device package and physical/private validation remain pending. Delivered build 84 does not contain these changes.",
+      "status": "Delivered after full Apple validation and visual/package review; physical/private verification pending",
       "feedback": "docs/ios/IPHONE_FEEDBACK_2026-10-09.md",
       "files": [
         "ios/Harbor/Player/PlayerOrientation.swift",
@@ -614,7 +645,12 @@
         "ios/Harbor/Views/LibraryView.swift",
         "ios/HarborTests/LibraryContinuityTests.swift"
       ],
-      "continuityFeedback": "docs/ios/IPHONE_FEEDBACK_2026-10-10.md"
+      "continuityFeedback": "docs/ios/IPHONE_FEEDBACK_2026-10-10.md",
+      "historicalRecord": true,
+      "supersededByDeliveredBuild": "85",
+      "source": "e1b88eb114b2c37ffbde86836b4c6d0112c15552",
+      "ciRun": 38264171474,
+      "build": "85"
     }
   ],
   "additionalRequestedMobileWork": [
@@ -632,5 +668,14 @@
     "finalPublicServices": true,
     "finalUIJourney": true,
     "keepPreviousVerifiedIpa": true
-  }
+  },
+  "remainingVerification": [
+    "IPA sin firmar para iPhone con iOS 17 o posterior. La instalación exige firma válida del propietario; para conservar datos se debe usar la misma identidad y bundle ID e instalar sobre la app anterior.",
+    "No se ha instalado esta candidata en el iPhone físico del propietario. PiP real, giro con bloqueo del sistema, gestos de tamaño, audio e interrupciones y salida AirPlay necesitan comprobación física. AirPlay está implementado como selección de salida de audio; no se promete vídeo AirPlay.",
+    "El simulador omite la prueba de inicio real de PiP porque AVKit no lo admite en ese destino. Decodificar vídeo y cambiar entre renderers no demuestra que aparezca la ventana PiP en un iPhone.",
+    "No se han usado cuentas ni credenciales privadas para comprobar Stremio PC/iPhone, roster de Harbor, addons configurados como TorBox, acceso/lectura de Submanhwa o servidores Suwayomi/Xtream. No se ejecutaron giros, compras ni mensajes Gacha.",
+    "La reproducción necesita enlaces HTTP(S) resueltos por el addon o proveedor. Torrents/infoHash sin URL resuelta, resolución nativa de YouTube/NZB y contenidos DRM no están soportados. El protocolo público y los fixtures no certifican todos los transportes ni la disponibilidad del servidor de vídeo antiguo del addon de ejemplo.",
+    "Los catálogos, metadata, imágenes y libros dependen de proveedores externos; pueden responder con errores o timeouts. El bloqueo publicitario de Submanhwa cubre las redes y reglas comprobadas y puede necesitar mantenimiento si cambia el sitio.",
+    "La compilación Linux se intentó y no pudo iniciarse por ausencia de cargo en este host Windows, que tampoco dispone de WSL. No se presenta el gate de iPhone como validación de Linux."
+  ]
 }

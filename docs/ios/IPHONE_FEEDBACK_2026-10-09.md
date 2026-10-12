@@ -1,5 +1,9 @@
 # Correcciones y añadidos para la única IPA final, 9 de octubre de 2026
 
+Actualización de entrega: La build 85 está entregada en `C:/Users/Said/Downloads/Harbor-unsigned.ipa`, fuente `e1b88eb114b2c37ffbde86836b4c6d0112c15552`, del gate completo [38264171474](https://github.com/Said129/harbor/actions/runs/38264171474). XCTest terminó con 71 aprobadas, 0 fallidas y 1 omitida; la omisión corresponde al inicio real de PiP no admitido en el simulador. Se revisaron las 89 imágenes de esta ejecución y se verificó la IPA descargada. La verificación física y privada sigue pendiente y se detalla en [DELIVERY_2026-10-12.md](DELIVERY_2026-10-12.md).
+
+## Registro del incremento antes de su validación final
+
 El propietario pide bloquear la publicidad al navegar dentro de Submanhwa. Este añadido se incorpora a la única IPA final solicitada junto con las correcciones anteriores. La build 84 entregada no incluye estos cambios; no se inicia una compilación ni se genera una IPA intermedia.
 
 ## Implementación

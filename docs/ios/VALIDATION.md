@@ -1,3 +1,11 @@
+# Entrega final, 12 de octubre de 2026
+
+La build 85 está entregada en `C:/Users/Said/Downloads/Harbor-unsigned.ipa`, fuente `e1b88eb114b2c37ffbde86836b4c6d0112c15552`, del gate completo [38264171474](https://github.com/Said129/harbor/actions/runs/38264171474). XCTest terminó con 71 aprobadas, 0 fallidas y 1 omitida; la omisión corresponde al inicio real de PiP no admitido en el simulador. Se revisaron las 89 imágenes de esta ejecución y se verificó la IPA descargada. La verificación física y privada sigue pendiente y se detalla en [DELIVERY_2026-10-12.md](DELIVERY_2026-10-12.md).
+
+IPA: 36968022 bytes; SHA-256 `5e8556f36fc21c7107447fe05ce9869aea698905bf3f34d8d1a51ed7989687eb`. El informe y los límites se conservan en el documento de entrega.
+
+## Registro histórico de recuperación y validaciones
+
 # Estado de la continuación, 11 de octubre de 2026
 
 ## Noveno gate: 70 aprobados y dos botones de cambio de fuente, 12 de octubre
