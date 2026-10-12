@@ -18,6 +18,7 @@ final class EBookDownloadTests: XCTestCase {
         let restored = EBookService()
         let cached = try await restored.open(book, owner: owner)
         XCTAssertEqual(cached.chapters.map(\.title), publication.chapters.map(\.title))
+        XCTAssertEqual(server.requests, 2, "Reopening from disk must not issue another HTTP request")
         try await restored.remove(book, owner: owner)
         try await service.remove(book, owner: owner)
     }
@@ -67,6 +68,7 @@ final class EBookDownloadTests: XCTestCase {
         private let statuses: [Int]
         private let body: Data
         private var count = 0
+        private var stopped = false
         private var startCompleted = false // Accessed only on the listener's serial queue.
         var requests: Int { lock.lock(); defer { lock.unlock() }; return count }
 
@@ -79,7 +81,8 @@ final class EBookDownloadTests: XCTestCase {
 
         func start() async throws -> URL {
             try await withCheckedThrowingContinuation { continuation in
-                listener.stateUpdateHandler = { [self] state in
+                listener.stateUpdateHandler = { [weak self] state in
+                    guard let self else { return }
                     guard !startCompleted else { return }
                     switch state {
                     case .ready:
@@ -91,7 +94,8 @@ final class EBookDownloadTests: XCTestCase {
                     default: break
                     }
                 }
-                listener.newConnectionHandler = { [self] connection in
+                listener.newConnectionHandler = { [weak self] connection in
+                    guard let self else { connection.cancel(); return }
                     connection.start(queue: queue)
                     receive(connection, request: Data())
                 }
@@ -118,9 +122,11 @@ final class EBookDownloadTests: XCTestCase {
         }
 
         func stop() {
+            lock.lock()
+            guard !stopped else { lock.unlock(); return }
+            stopped = true
+            lock.unlock()
             listener.cancel()
-            listener.stateUpdateHandler = nil
-            listener.newConnectionHandler = nil
         }
     }
 }

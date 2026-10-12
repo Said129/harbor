@@ -1,5 +1,17 @@
 # Estado de la continuación, 11 de octubre de 2026
 
+## Octavo gate: EPUB aprobado y espera incompleta del cargador, 12 de octubre
+
+El [run 38251102128](https://github.com/Said129/harbor/actions/runs/38251102128), fuente `3a5f94b4d46d9405a46cd14317d57d15f84bf94d`, aprobó Rust/Swift y compilación de simulador. La suite nativa terminó con 59 aprobados, un fallo y la omisión PiP habitual, sin abortos. Las tres regresiones nuevas de EPUB pasaron: 504/200 con caché completa, 404 sin repetir/guardar y dos 503 limitados con recuperación posterior.
+
+Falló `HarborLoaderTests`: la consulta no encontró rutas SVG y `window.harborLoader` todavía no existía. El caso salió de una espera de diez segundos sin comprobar que se hubiera completado; el registro muestra el arranque del proceso GPU de WebKit unos quince segundos después del comienzo del caso. No se generó su captura ni su estado porque la siguiente consulta JavaScript lanzó una excepción. Los otros casos WebKit, vídeo, subtítulos y modelos pasaron; no hubo avisos de apariencia desequilibrada. Servicios públicos, UI, dispositivo y paquete quedaron omitidos; no hubo IPA 85.
+
+Se cambia sólo el arnés del cargador para esperar hasta treinta segundos a la animación original cargada y sus rutas SVG reales, con consultas seguras y diagnóstico antes de fallar. Se mantienen identidad del archivo, almacenamiento no persistente, rutas, avance de frames, cambio del SVG, dos imágenes reales y parada Reduce Motion. No se sustituye el barco ni se cambia el código de animación para aprobar la prueba.
+
+El servidor loopback de EPUB emitió avisos por limpiar handlers después de cancelar y por cancelar dos veces. Ahora usa capturas débiles para evitar ciclos, conserva sus handlers hasta cerrar y cancela una sola vez. Se añade además la aserción de que la reapertura desde disco no emitió otra petición HTTP. Los avisos del socket NECP/SO_NOWAKEFROMSLEEP pertenecen a capacidades del simulador; las transacciones HTTP sí pasaron. No se añadieron warnings Swift; se conservan únicamente los de OpenGLES/AppIntents anteriores.
+
+Se conservan 61268600 bytes de diagnóstico, SHA-256 `256c1932890b78d00d5c5b431a6272b4e310bf363aa9d915ebe0aff6b930fe73`. Se revisaron sus diez PNG de Manga, episodios/subtítulos y render 8/10 bits; son diagnóstico de un gate fallido, no evidencia de una entrega aprobada. El siguiente intento sigue siendo el gate completo con servicios y UI activados.
+
 ## Sexto y séptimo gates: disponibilidad de Gutenberg y descarga EPUB, 12 de octubre
 
 Ambas ejecuciones usaron la fuente `4580b0e9b78061792947d8360093e338c35cbf66`. Aprobaron Swift/Rust, compilación de simulador, 57 casos nativos y siete públicos; se omitió únicamente el inicio real de PiP no admitido por AVKit en el simulador. GET/POST, vídeo 8/10 bits y cambios del renderer pasaron sin los avisos de apariencia de WebPageController/MPVController. Cada gate terminó con 64 aprobados, un fallo y una omisión, sin abortos. La UI, dispositivo y paquete quedaron omitidos; no hubo IPA 85.

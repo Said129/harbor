@@ -15,20 +15,28 @@ final class HarborLoaderTests: XCTestCase {
         window.makeKeyAndVisible()
         defer { window.isHidden = true; window.rootViewController = nil; previous?.makeKeyAndVisible() }
         var web: WKWebView?
-        let deadline = Date().addingTimeInterval(10)
+        var ready = false
+        // A cold WebKit process may outlive document progress updates. Wait for
+        // the original animation itself, rather than querying an empty page.
+        let deadline = Date().addingTimeInterval(30)
         while Date() < deadline {
             web = webView(in: window)
-            if let web, !web.isLoading, web.estimatedProgress == 1 { break }
+            if let web, !web.isLoading, web.estimatedProgress == 1 {
+                ready = (try? await web.evaluateJavaScript("Boolean(window.harborLoader?.isLoaded && document.querySelectorAll('#boat svg path').length > 0)")) as? Bool == true
+                if ready { break }
+            }
             try await Task.sleep(for: .milliseconds(50))
         }
         let browser = try XCTUnwrap(web)
         XCTAssertEqual(browser.url, HarborLoaderArtwork.index)
         XCTAssertEqual(browser.configuration.websiteDataStore.isPersistent, false)
+        let state = try await browser.evaluateJavaScript("JSON.stringify({ ready: document.readyState, visibility: document.visibilityState, loaded: Boolean(window.harborLoader?.isLoaded), paths: document.querySelectorAll('#boat svg path').length, bounds: document.getElementById('boat')?.getBoundingClientRect().toJSON() })")
+        let diagnostic = XCTAttachment(string: "applicationState=\(UIApplication.shared.applicationState.rawValue), keyWindow=\(window.isKeyWindow), loading=\(browser.isLoading), progress=\(browser.estimatedProgress), page=\(String(describing: state))")
+        diagnostic.name = "native-loader-state"; diagnostic.lifetime = .keepAlways; add(diagnostic)
+        XCTAssertTrue(ready, "The bundled boat must finish loading and render actual SVG paths")
+        guard ready else { throw NSError(domain: "HarborLoaderTests", code: 1) }
         let hasPaths = try await browser.evaluateJavaScript("document.querySelectorAll('#boat svg path').length > 0") as? Bool
         XCTAssertEqual(hasPaths, true, "The original animation must actually render its SVG paths")
-        let state = try await browser.evaluateJavaScript("JSON.stringify({ visibility: document.visibilityState, loaded: window.harborLoader.isLoaded, bounds: document.getElementById('boat').getBoundingClientRect().toJSON() })")
-        let diagnostic = XCTAttachment(string: "applicationState=\(UIApplication.shared.applicationState.rawValue), keyWindow=\(window.isKeyWindow), page=\(String(describing: state))")
-        diagnostic.name = "native-loader-state"; diagnostic.lifetime = .keepAlways; add(diagnostic)
         let firstValue = try await browser.evaluateJavaScript("window.harborLoader.currentFrame")
         let first = try XCTUnwrap(firstValue as? Double)
         let firstMarkup = try await browser.evaluateJavaScript("document.querySelector('#boat svg').innerHTML")

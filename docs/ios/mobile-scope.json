@@ -311,28 +311,42 @@
   "deliveredIpaBuild": 84,
   "finalCandidate": {
     "build": 85,
-    "source": "4580b0e9b78061792947d8360093e338c35cbf66",
+    "source": "3a5f94b4d46d9405a46cd14317d57d15f84bf94d",
     "baseSource": "33f194817c5c7c6695b8e018a2362c3a14d04584",
     "readiness": "docs/ios/FINAL_READINESS_2026-10-10.md",
     "validationScope": "full",
     "runLiveIntegration": true,
-    "status": "Native suites passed; EPUB transient HTTP handling and three regressions prepared; full public/UI/device gate pending",
-    "dispatchAttempts": 9,
-    "lastAttemptAtUtc": "2026-10-12T11:53:32Z",
+    "status": "Three EPUB regressions passed; loader readiness and loopback teardown repairs prepared; full gate pending",
+    "dispatchAttempts": 10,
+    "lastAttemptAtUtc": "2026-10-12T12:46:03Z",
     "dispatchError": null,
     "historicalDispatchError": "HTTP 422: Actions has been disabled for this repository (two attempts on 2026-10-10)",
     "repositoryActionsEnabled": true,
     "workflowState": "active",
-    "ciRun": 38245569310,
+    "ciRun": 38251102128,
     "ipaGenerated": false,
     "localContinuation": {
       "date": "2026-10-12",
-      "status": "WebKit and renderer containment verified; AniList public identities verified; EPUB HTTP retry and UI accessibility corrections await full gate",
+      "status": "EPUB retry regressions verified; loader test now waits for actual SVG readiness; UI accessibility and full public/device validation remain pending",
       "change": "Keep Submanhwa navigation in its account session while detaching the presentation, without replaying forms",
       "nativeRegression": "SubmanhwaSessionTests",
       "recoveryEvidence": "docs/ios/RECOVERY_2026-10-11.md"
     },
     "failedValidation": {
+      "ciRun": 38251102128,
+      "source": "3a5f94b4d46d9405a46cd14317d57d15f84bf94d",
+      "result": "failure",
+      "nativePassed": 59,
+      "nativeFailed": 1,
+      "nativeSkipped": 1,
+      "nativeAborted": 0,
+      "publicExecuted": false,
+      "uiExecuted": false,
+      "ipaGenerated": false,
+      "failures": ["Loader test queried SVG/harborLoader before actual WebKit animation readiness"],
+      "evidenceSha256": "256c1932890b78d00d5c5b431a6272b4e310bf363aa9d915ebe0aff6b930fe73"
+    },
+    "previousFailedValidation": {
       "ciRun": 38245569310,
       "source": "4580b0e9b78061792947d8360093e338c35cbf66",
       "result": "failure",
@@ -347,22 +361,6 @@
         "Catalog passed; advertised publisher EPUB returned ebook-network; identical local URL returned HTTP 504"
       ],
       "evidenceSha256": "7e6dc2a620f63bd6aca2ce85f31b01950c6a692a701b24141253a5466642b868"
-    },
-    "previousFailedValidation": {
-      "ciRun": 38241446239,
-      "source": "4580b0e9b78061792947d8360093e338c35cbf66",
-      "result": "failure",
-      "nativePassed": 57,
-      "nativeSkipped": 1,
-      "nativeAborted": 0,
-      "publicPassed": 7,
-      "publicFailed": 1,
-      "uiExecuted": false,
-      "ipaGenerated": false,
-      "failures": [
-        "Catalog unavailable: Gutendex timeouts and official OPDS timeout/HTTP 504 before EPUB download"
-      ],
-      "evidenceSha256": "7e35f980e4f94b697b23b1fea42b5ba5b7744ab91aa03ef53321e9c9042a9ccb"
     },
     "failedValidationHistory": [
       {
@@ -470,6 +468,22 @@
           "Catalog passed; advertised publisher EPUB returned ebook-network; identical local URL returned HTTP 504"
         ],
         "evidenceSha256": "7e6dc2a620f63bd6aca2ce85f31b01950c6a692a701b24141253a5466642b868"
+      },
+      {
+        "ciRun": 38251102128,
+        "source": "3a5f94b4d46d9405a46cd14317d57d15f84bf94d",
+        "result": "failure",
+        "nativePassed": 59,
+        "nativeFailed": 1,
+        "nativeSkipped": 1,
+        "nativeAborted": 0,
+        "publicExecuted": false,
+        "uiExecuted": false,
+        "ipaGenerated": false,
+        "failures": [
+          "Loader test queried SVG/harborLoader before actual WebKit animation readiness"
+        ],
+        "evidenceSha256": "256c1932890b78d00d5c5b431a6272b4e310bf363aa9d915ebe0aff6b930fe73"
       }
     ]
   },
