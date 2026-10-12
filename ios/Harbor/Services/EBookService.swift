@@ -56,10 +56,15 @@ actor EBookService {
                 try Task.checkCancellation()
                 if error.code == .cancelled { throw CancellationError() }
                 guard attempt == 0, error.code == .networkConnectionLost || error.code == .timedOut else { throw HarborError(code: "ebook-network") }
-                // Repeat this GET once with a fresh connection. A partial EPUB
-                // remains local to the failed attempt and is never persisted.
-                try await Task.sleep(for: .milliseconds(500))
+            } catch let error as HarborError {
+                try Task.checkCancellation()
+                await Diagnostics.shared.recordFailure(error)
+                guard error.code.hasPrefix("http-") else { throw error }
+                guard attempt == 0, error.code == "http-429" || error.code.hasPrefix("http-5") else { throw HarborError(code: "ebook-network") }
             }
+            // Repeat this GET once with a fresh connection. A partial EPUB
+            // remains local to the failed attempt and is never persisted.
+            try await Task.sleep(for: .milliseconds(500))
         }
         throw HarborError(code: "ebook-network")
     }
@@ -70,7 +75,8 @@ actor EBookService {
         let session = URLSession(configuration: configuration)
         defer { session.invalidateAndCancel() }
         let (bytes, response) = try await session.bytes(for: URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 60))
-        guard let response = response as? HTTPURLResponse, (200..<300).contains(response.statusCode) else { throw HarborError(code: "ebook-network") }
+        guard let response = response as? HTTPURLResponse else { throw HarborError(code: "ebook-network") }
+        guard (200..<300).contains(response.statusCode) else { throw HarborError(code: "http-\(response.statusCode)") }
         let limit = 48 * 1024 * 1024
         guard response.expectedContentLength <= Int64(limit) else { throw HarborError(code: "ebook-size") }
         var payload = Data()

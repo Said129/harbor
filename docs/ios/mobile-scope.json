@@ -311,59 +311,58 @@
   "deliveredIpaBuild": 84,
   "finalCandidate": {
     "build": 85,
-    "source": "780562ca1914847852955464a37d5211a9a1ff42",
+    "source": "4580b0e9b78061792947d8360093e338c35cbf66",
     "baseSource": "33f194817c5c7c6695b8e018a2362c3a14d04584",
     "readiness": "docs/ios/FINAL_READINESS_2026-10-10.md",
     "validationScope": "full",
     "runLiveIntegration": true,
-    "status": "Native and public suites passed; UI accessibility and renderer-test containment repairs prepared; full gate pending",
-    "dispatchAttempts": 7,
-    "lastAttemptAtUtc": "2026-10-11T00:17:02Z",
+    "status": "Native suites passed; EPUB transient HTTP handling and three regressions prepared; full public/UI/device gate pending",
+    "dispatchAttempts": 9,
+    "lastAttemptAtUtc": "2026-10-12T11:53:32Z",
     "dispatchError": null,
     "historicalDispatchError": "HTTP 422: Actions has been disabled for this repository (two attempts on 2026-10-10)",
     "repositoryActionsEnabled": true,
     "workflowState": "active",
-    "ciRun": 38230520713,
+    "ciRun": 38245569310,
     "ipaGenerated": false,
     "localContinuation": {
       "date": "2026-10-12",
-      "status": "WebKit lifecycle, AniList identity/canonical episodes and Gutenberg verified; UI identifier and video test harness corrections pending full gate",
+      "status": "WebKit and renderer containment verified; AniList public identities verified; EPUB HTTP retry and UI accessibility corrections await full gate",
       "change": "Keep Submanhwa navigation in its account session while detaching the presentation, without replaying forms",
       "nativeRegression": "SubmanhwaSessionTests",
       "recoveryEvidence": "docs/ios/RECOVERY_2026-10-11.md"
     },
     "failedValidation": {
-      "ciRun": 38230520713,
-      "source": "780562ca1914847852955464a37d5211a9a1ff42",
+      "ciRun": 38245569310,
+      "source": "4580b0e9b78061792947d8360093e338c35cbf66",
       "result": "failure",
       "nativePassed": 57,
       "nativeSkipped": 1,
       "nativeAborted": 0,
-      "publicPassed": 8,
-      "publicFailed": 0,
-      "uiPassed": 1,
-      "uiFailed": 2,
+      "publicPassed": 7,
+      "publicFailed": 1,
+      "uiExecuted": false,
+      "ipaGenerated": false,
       "failures": [
-        "Queue scroll identifier shadowed by its GeometryReader",
-        "Stream offer identifier replaced by parent card identifier"
+        "Catalog passed; advertised publisher EPUB returned ebook-network; identical local URL returned HTTP 504"
       ],
-      "evidenceSha256": "5ac791f2c708c14975a22161c75f9cde35bcb073d1e1037c7933eca62a3dbb5c",
-      "ipaGenerated": false
+      "evidenceSha256": "7e6dc2a620f63bd6aca2ce85f31b01950c6a692a701b24141253a5466642b868"
     },
     "previousFailedValidation": {
-      "ciRun": 38224879079,
-      "source": "f423eebfcd0464240366773ee72ab9fe9a1befd9",
+      "ciRun": 38241446239,
+      "source": "4580b0e9b78061792947d8360093e338c35cbf66",
       "result": "failure",
-      "nativePassed": 56,
+      "nativePassed": 57,
       "nativeSkipped": 1,
       "nativeAborted": 0,
-      "publicPassed": 6,
-      "publicFailed": 2,
+      "publicPassed": 7,
+      "publicFailed": 1,
+      "uiExecuted": false,
+      "ipaGenerated": false,
       "failures": [
-        "Distinct AniList entries share MAL alias 61469",
-        "Gutendex timeout and OPDS network failure"
+        "Catalog unavailable: Gutendex timeouts and official OPDS timeout/HTTP 504 before EPUB download"
       ],
-      "ipaGenerated": false
+      "evidenceSha256": "7e35f980e4f94b697b23b1fea42b5ba5b7744ab91aa03ef53321e9c9042a9ccb"
     },
     "failedValidationHistory": [
       {
@@ -439,6 +438,38 @@
         ],
         "evidenceSha256": "5ac791f2c708c14975a22161c75f9cde35bcb073d1e1037c7933eca62a3dbb5c",
         "ipaGenerated": false
+      },
+      {
+        "ciRun": 38241446239,
+        "source": "4580b0e9b78061792947d8360093e338c35cbf66",
+        "result": "failure",
+        "nativePassed": 57,
+        "nativeSkipped": 1,
+        "nativeAborted": 0,
+        "publicPassed": 7,
+        "publicFailed": 1,
+        "uiExecuted": false,
+        "ipaGenerated": false,
+        "failures": [
+          "Catalog unavailable: Gutendex timeouts and official OPDS timeout/HTTP 504 before EPUB download"
+        ],
+        "evidenceSha256": "7e35f980e4f94b697b23b1fea42b5ba5b7744ab91aa03ef53321e9c9042a9ccb"
+      },
+      {
+        "ciRun": 38245569310,
+        "source": "4580b0e9b78061792947d8360093e338c35cbf66",
+        "result": "failure",
+        "nativePassed": 57,
+        "nativeSkipped": 1,
+        "nativeAborted": 0,
+        "publicPassed": 7,
+        "publicFailed": 1,
+        "uiExecuted": false,
+        "ipaGenerated": false,
+        "failures": [
+          "Catalog passed; advertised publisher EPUB returned ebook-network; identical local URL returned HTTP 504"
+        ],
+        "evidenceSha256": "7e6dc2a620f63bd6aca2ce85f31b01950c6a692a701b24141253a5466642b868"
       }
     ]
   },

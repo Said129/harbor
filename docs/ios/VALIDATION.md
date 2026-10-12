@@ -1,5 +1,20 @@
 # Estado de la continuación, 11 de octubre de 2026
 
+## Sexto y séptimo gates: disponibilidad de Gutenberg y descarga EPUB, 12 de octubre
+
+Ambas ejecuciones usaron la fuente `4580b0e9b78061792947d8360093e338c35cbf66`. Aprobaron Swift/Rust, compilación de simulador, 57 casos nativos y siete públicos; se omitió únicamente el inicio real de PiP no admitido por AVKit en el simulador. GET/POST, vídeo 8/10 bits y cambios del renderer pasaron sin los avisos de apariencia de WebPageController/MPVController. Cada gate terminó con 64 aprobados, un fallo y una omisión, sin abortos. La UI, dispositivo y paquete quedaron omitidos; no hubo IPA 85.
+
+- [Run 38241446239](https://github.com/Said129/harbor/actions/runs/38241446239): el catálogo eBook falló antes de descargar el EPUB. Gutendex agotó dos timeouts y OPDS terminó con un timeout y HTTP 504. Una consulta local posterior obtuvo 200 de Gutendex y 503/504 de Gutenberg. Se repitió el gate completo sin modificar la fuente.
+- [Run 38245569310](https://github.com/Said129/harbor/actions/runs/38245569310): Gutendex respondió con los 6034 bytes esperados, pero `open` del libro falló con `ebook-network`. La URL EPUB anunciada por el catálogo, `https://www.gutenberg.org/ebooks/1342.epub3.images`, devolvió HTTP 504 en la consulta local posterior. Esa consulta no sustituye la prueba Apple ni prueba recuperación del editor.
+
+El cliente de descarga ya limitaba cada apertura a dos intentos para timeouts o conexiones cortadas; descartaba los fallos HTTP antes de aplicar ese límite. Se mantiene el máximo de dos intentos, los timeouts de 60/90 segundos, el límite de 48 MB, la cancelación, la conexión nueva por intento y la escritura sólo después de validar un EPUB completo. Ahora también se permite el único reintento ante HTTP 429/5xx, coherente con los otros clientes públicos. Se registra únicamente el código HTTP permitido por Diagnostics, sin URL ni contenido privado.
+
+Tres regresiones nativas usan un servidor HTTP loopback y el downloader real: 504 seguido de EPUB válido y reapertura desde disco; 404 sin reintento ni caché del cuerpo; dos 503 que terminan y permiten un intento posterior del usuario. Están pendientes del siguiente gate completo. No se omite el Gutenberg real ni se relajan sus aserciones.
+
+El workflow permite ahora ejecutar el recorrido UI después de un fallo público si la suite nativa y el reinicio del simulador pasan. Esto permite obtener evidencia de cola/fuentes aunque el editor eBook esté caído. La compilación de dispositivo, el paquete y su entrega siguen exigiendo éxito de todos los pasos; una UI aprobada no convierte un gate público fallido en una entrega válida.
+
+Se conservan los archivos de diagnóstico, ambos de 510 bytes y sin capturas: SHA-256 `7e35f980e4f94b697b23b1fea42b5ba5b7744ab91aa03ef53321e9c9042a9ccb` (sexto) y `7e6dc2a620f63bd6aca2ce85f31b01950c6a692a701b24141253a5466642b868` (séptimo), junto con registros, resultados y consultas locales.
+
 ## Quinto gate: servicios aprobados y colisiones de accesibilidad, 12 de octubre
 
 El [run 38230520713](https://github.com/Said129/harbor/actions/runs/38230520713), fuente `780562ca1914847852955464a37d5211a9a1ff42`, aprobó Swift/Rust, la compilación de simulador, 57 casos nativos y las ocho pruebas con servicios públicos. La única omisión nativa sigue siendo el inicio real de PiP no admitido por el simulador. AniList aprobó identidades únicas y equivalencia canónica de episodios; Gutenberg cargó capítulos del EPUB real. GET/POST aprobaron y desapareció el aviso de apariencia de WebPageController.

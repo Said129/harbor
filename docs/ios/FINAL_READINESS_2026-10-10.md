@@ -1,6 +1,6 @@
 # Candidata 85: comprobaciones de la única entrega final
 
-Actualización del 12 de octubre: el quinto gate aprobó 57 pruebas nativas y las ocho públicas, con PiP real omitido por el simulador. La UI detectó dos colisiones de identificadores de accesibilidad; se corrigen sin reducir el recorrido. También se equilibran las transiciones del arnés de vídeo. La nueva validación sigue siendo completa; no hay IPA 85. Evidencia y límites en [VALIDATION.md](VALIDATION.md).
+Actualización del 12 de octubre: el sexto y séptimo gates aprobaron 57 casos nativos y siete públicos, con PiP real omitido por el simulador. Gutenberg falló primero en catálogo y después en descarga. Se incorpora el tratamiento de HTTP transitorio al único reintento existente de EPUB, con tres regresiones loopback nuevas. La UI de cola/fuentes sigue pendiente del siguiente gate completo; no hay IPA 85. Evidencia en [VALIDATION.md](VALIDATION.md).
 
 La revisión usa el alcance móvil vigente, las capturas del propietario y el código actual. La presencia de una implementación no acredita su funcionamiento: las comprobaciones Apple, servicios públicos, capturas reales y paquete siguen siendo obligatorias. La IPA 84 recuperada se conserva en el área de trabajo como evidencia anterior. No se entregan IPAs intermedias.
 

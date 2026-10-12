@@ -168,7 +168,8 @@ jobs:
           set -euo pipefail
           xcodebuild -project ios/Harbor.xcodeproj -scheme HarborLive -configuration Debug -destination "platform=iOS Simulator,id=$IOS_SIMULATOR,arch=$IOS_SIMULATOR_ARCH" -derivedDataPath ios/build/DerivedData -clonedSourcePackagesDirPath ios/build/SourcePackages -resultBundlePath ios/build/ServicesTests.xcresult -only-testing:HarborIntegrationTests -parallel-testing-enabled NO CODE_SIGNING_ALLOWED=YES CODE_SIGN_IDENTITY=- test 2>&1 | tee ios/build/logs/live-services.log
       - name: Boot a clean UI runtime while preserving application data
-        if: ${{ inputs.run_live_integration == true }}
+        id: ui_runtime
+        if: ${{ !cancelled() && inputs.run_live_integration == true && steps.offline_tests.conclusion == 'success' }}
         timeout-minutes: 5
         shell: bash
         run: |
@@ -178,7 +179,7 @@ jobs:
           xcrun simctl bootstatus "$IOS_SIMULATOR" -b
       - name: Run native UI on iPhone simulator
         id: live_tests
-        if: ${{ inputs.run_live_integration == true }}
+        if: ${{ !cancelled() && inputs.run_live_integration == true && steps.offline_tests.conclusion == 'success' && steps.ui_runtime.conclusion == 'success' }}
         timeout-minutes: 20
         shell: bash
         run: |
