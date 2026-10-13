@@ -657,7 +657,11 @@ final class MPVController: GLKViewController {
             } catch is CancellationError { return }
             catch {
                 guard let self, !didClose, subtitleSyncRequest == request, mediaRevision == revision else { return }
-                state.subtitleSyncMessage = (error as? HarborError)?.code == "subtitle-sync-format" ? "Selecciona un subtítulo externo SRT o VTT con al menos cuatro líneas." : "No se pudo analizar esta fuente. La reproducción continúa; puedes reintentarlo."
+                switch (error as? HarborError)?.code {
+                case "subtitle-sync-format": state.subtitleSyncMessage = "Selecciona un subtítulo externo SRT o VTT con al menos cuatro líneas."
+                case "subtitle-sync-encoding": state.subtitleSyncMessage = "Se conserva el original: para sincronizar este archivo, expórtalo como UTF-8 o UTF-16."
+                default: state.subtitleSyncMessage = "No se pudo analizar esta fuente. La reproducción continúa; puedes reintentarlo."
+                }
             }
         }
     }

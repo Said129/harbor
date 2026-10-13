@@ -162,7 +162,7 @@ struct PlayerSettingsView: View {
 
     @ViewBuilder private var subtitlesSettings: some View {
         if state == nil {
-            HarborSettingsSection("Sincronización automática", note: "Analiza el audio en segundo plano para ajustar subtítulos externos SRT/VTT. Si no hay una coincidencia fiable, conserva el original.") {
+            HarborSettingsSection("Sincronización automática", note: "Analiza el audio en segundo plano para ajustar subtítulos externos SRT/VTT en UTF-8 o UTF-16. Si no hay una coincidencia fiable, conserva el original.") {
                 HarborSettingsToggle("Sincronizar subtítulos con el audio", isOn: $subtitleAutoSync)
             }
         }

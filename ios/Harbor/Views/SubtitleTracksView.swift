@@ -103,7 +103,7 @@ struct SubtitleTracksView: View {
             Toggle("Sincronizar automáticamente con el audio", isOn: $autoSync)
                 .accessibilityIdentifier("subtitle-auto-sync")
                 .onChange(of: autoSync) { _, _ in state.controller?.subtitleAutoSyncPreferenceChanged() }
-            Text("Para subtítulos externos SRT/VTT. Solo se aplica un cambio si el análisis encuentra una coincidencia fiable.")
+            Text("Para subtítulos externos SRT/VTT en UTF-8 o UTF-16. Solo se aplica un cambio si el análisis encuentra una coincidencia fiable.")
                 .font(HarborTheme.font(11)).foregroundStyle(.secondary)
             if state.subtitleSyncing {
                 HStack {

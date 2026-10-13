@@ -32,6 +32,10 @@ final class SubtitleAutoSyncTests: XCTestCase {
         let bom = try SubtitleDocument("\u{FEFF}" + text.replacingOccurrences(of: "\n", with: "\r\n"))
         XCTAssertTrue(bom.vtt)
         XCTAssertTrue(bom.applying(.init(offset: 2, ratio: 1.25, confidence: 0.9)).contains("00:03.250 --> 00:04.500 align:start\r\nOne"))
+        XCTAssertEqual(try SubtitleAutoSync.decode(Data("Español · 日本語".utf8)), "Español · 日本語")
+        let utf16 = Data([0xff, 0xfe]) + (try XCTUnwrap(text.data(using: .utf16LittleEndian)))
+        XCTAssertTrue(try SubtitleAutoSync.decode(utf16).contains("WEBVTT"))
+        XCTAssertThrowsError(try SubtitleAutoSync.decode(Data([0xff, 0x20, 0x41, 0x20])), "Unknown encodings must not silently corrupt the original text")
         XCTAssertThrowsError(try SubtitleDocument("No timing data"))
         XCTAssertTrue(SubtitleAutoSync.windows(900).allSatisfy { $0.start + $0.length <= 900 })
     }

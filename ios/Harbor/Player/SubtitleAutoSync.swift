@@ -52,8 +52,16 @@ enum SubtitleAutoSync {
             }
             data = received
         }
-        guard let text = String(data: data, encoding: .utf8) ?? String(data: data, encoding: .utf16) ?? String(data: data, encoding: .isoLatin1) else { throw HarborError(code: "subtitle-sync-format") }
-        return try SubtitleDocument(text)
+        return try SubtitleDocument(decode(data))
+    }
+
+    static func decode(_ data: Data) throws -> String {
+        let prefix = data.prefix(2)
+        let encoding: String.Encoding = prefix == Data([0xff, 0xfe]) || prefix == Data([0xfe, 0xff]) ? .utf16 : .utf8
+        // Do not guess a legacy encoding and silently replace the subtitle's
+        // text. Unsupported byte sequences leave the original track intact.
+        guard let text = String(data: data, encoding: encoding) else { throw HarborError(code: "subtitle-sync-encoding") }
+        return text
     }
 
     static func value(_ line: String, after tag: String) -> Double? {
