@@ -62,7 +62,9 @@ final class SubtitleAutoSyncTests: XCTestCase {
         integer(UInt32(rate)); integer(UInt32(rate * 2)); integer(UInt16(2)); integer(UInt16(16)); wav.append(Data("data".utf8)); integer(UInt32(samples.count)); wav.append(samples)
         try wav.write(to: url)
         let source = PlaybackSource(url: url.absoluteString, headers: nil, subtitles: nil, via: "test-fixture")
-        let extracted = try await Task.detached { try SubtitleAutoSync.speech(source, window: .init(start: 2, length: 225), audioID: nil) }.value
+        let extracted: [(Double, Double)]
+        do { extracted = try await Task.detached { try SubtitleAutoSync.speech(source, window: .init(start: 2, length: 225), audioID: nil) }.value }
+        catch let error as HarborError { XCTFail("Native PCM extraction failed: " + error.code); return }
         XCTAssertEqual(extracted.count, pairs.count)
         XCTAssertEqual(try XCTUnwrap(extracted.first).0, pairs[0].0, accuracy: 0.15)
         let result = try XCTUnwrap(SubtitleAutoSync.solve(audio: extracted, cues: pairs.map { ($0.0 - 4, $0.1 - 4) }, duration: 230, windows: [.init(start: 2, length: 225)]))

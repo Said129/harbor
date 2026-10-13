@@ -64,41 +64,56 @@ enum SubtitleAutoSync {
         return text
     }
 
-    static func value(_ line: String, after tag: String) -> Double? {
-        guard let range = line.range(of: tag), let token = line[range.upperBound...].split(whereSeparator: { $0.isWhitespace || $0 == "|" }).first,
-              let number = Double(token), number.isFinite else { return nil }
-        return number
-    }
-    static func complement(_ silences: [(Double, Double)], window: Window) -> [(Double, Double)] {
-        var cursor = window.start
-        let end = window.start + window.length
-        var speech: [(Double, Double)] = []
-        for (start, stop) in silences.sorted(by: { $0.0 < $1.0 }) {
-            let first = max(window.start, min(end, start)), last = max(first, min(end, stop))
-            if first > cursor { speech.append((cursor, first)) }
-            cursor = max(cursor, last)
+    private static func speechPCM(_ data: Data, window: Window) throws -> [(Double, Double)] {
+        // MPVKit excludes silencedetect/highpass/lowpass/ametadata. Decode mono
+        // s16 PCM with mpv's file output, then measure voice-band energy here.
+        let rate = 8_000, frame = 160
+        let count = min(data.count / 2, Int(window.length * Double(rate)))
+        guard count > 0, data.count.isMultiple(of: 2) else { throw HarborError(code: "subtitle-sync-pcm") }
+        let highAlpha = 1 / (1 + 2 * Double.pi * 200 / Double(rate))
+        let lowAlpha = 1 / (1 + Double(rate) / (2 * Double.pi * 3_000))
+        var previous = 0.0, high = 0.0, low = 0.0, energy = 0.0
+        var active: Double?, lastVoice = window.start
+        var result: [(Double, Double)] = []
+        try data.withUnsafeBytes { (bytes: UnsafeRawBufferPointer) -> Void in
+            for index in 0..<count {
+                if index.isMultiple(of: rate) { try Task.checkCancellation() }
+                let sample = Double(Int16(littleEndian: bytes.loadUnaligned(fromByteOffset: index * 2, as: Int16.self))) / 32_768
+                high = highAlpha * (high + sample - previous); previous = sample
+                low += lowAlpha * (high - low); energy += low * low
+                if (index + 1).isMultiple(of: frame) || index + 1 == count {
+                    let samples = index % frame + 1
+                    let start = window.start + Double(index + 1 - samples) / Double(rate)
+                    let end = window.start + Double(index + 1) / Double(rate)
+                    if sqrt(energy / Double(samples)) >= 0.0316227766 {
+                        if active == nil { active = start }
+                        lastVoice = end
+                    } else if let begin = active, end - lastVoice >= 0.35 {
+                        result.append((begin, lastVoice)); active = nil
+                    }
+                    energy = 0
+                }
+            }
         }
-        if cursor < end { speech.append((cursor, end)) }
-        return speech
+        if let begin = active { result.append((begin, lastVoice)) }
+        return result
     }
 
     static func speech(_ source: PlaybackSource, window: Window, audioID: Int?) throws -> [(Double, Double)] {
-        let metadata = FileManager.default.temporaryDirectory.appendingPathComponent("harbor-sub-sync-" + UUID().uuidString + ".txt")
-        // Generated iPhone container paths are safe lavfi option values. Never
-        // interpolate a caller-supplied path into the filter graph.
-        guard metadata.path.rangeOfCharacter(from: CharacterSet(charactersIn: " \t\r\n:,'[]\\;")) == nil,
-              FileManager.default.createFile(atPath: metadata.path, contents: nil, attributes: [.protectionKey: FileProtectionType.completeUntilFirstUserAuthentication]) else { throw HarborError(code: "subtitle-sync-audio") }
-        defer { try? FileManager.default.removeItem(at: metadata) }
+        let pcm = FileManager.default.temporaryDirectory.appendingPathComponent("harbor-sub-sync-" + UUID().uuidString + ".pcm")
+        guard FileManager.default.createFile(atPath: pcm.path, contents: nil, attributes: [.protectionKey: FileProtectionType.completeUntilFirstUserAuthentication]) else { throw HarborError(code: "subtitle-sync-file") }
+        defer { try? FileManager.default.removeItem(at: pcm) }
         guard let handle = mpv_create() else { throw HarborError(code: "subtitle-sync-audio") }
         var destroyed = false
         defer { if !destroyed { mpv_terminate_destroy(handle) } }
         let options = [("config", "no"), ("load-scripts", "no"), ("terminal", "no"), ("vid", "no"), ("sid", "no"),
-                       ("ao", "null"), ("untimed", "yes"), ("audio-pitch-correction", "no"), ("keep-open", "no"),
+                       ("ao", "pcm"), ("ao-pcm-file", pcm.path), ("ao-pcm-waveheader", "no"),
+                       ("audio-format", "s16"), ("audio-samplerate", "8000"), ("audio-channels", "mono"),
+                       ("untimed", "yes"), ("audio-pitch-correction", "no"), ("keep-open", "no"),
                        ("network-timeout", "10"), ("cache", "no"), ("demuxer-max-bytes", "16MiB"),
                        ("aid", audioID.map(String.init) ?? "auto"), ("start", String(window.start)), ("length", String(window.length)),
-                       ("af", "lavfi=[aformat=channel_layouts=mono,highpass=f=200,lowpass=f=3000,silencedetect=noise=-30dB:d=0.35,ametadata=mode=print:file=\(metadata.path)]"),
                        ("msg-level", "all=no")]
-        for (name, value) in options { guard mpv_set_option_string(handle, name, value) >= 0 else { throw HarborError(code: "subtitle-sync-audio") } }
+        for (name, value) in options { guard mpv_set_option_string(handle, name, value) >= 0 else { throw HarborError(code: "subtitle-sync-option-" + name) } }
         if let headers = source.headers, !headers.isEmpty {
             let value = headers.sorted { $0.key < $1.key }.map { "\($0.key): \($0.value)".replacingOccurrences(of: ",", with: ",,") }.joined(separator: ",")
             guard !value.contains("\r"), !value.contains("\n"), mpv_set_option_string(handle, "http-header-fields", value) >= 0 else { throw HarborError(code: "subtitle-sync-audio") }
@@ -117,21 +132,11 @@ enum SubtitleAutoSync {
             if event.event_id == MPV_EVENT_END_FILE {
                 guard let data = event.data else { throw HarborError(code: "subtitle-sync-audio") }
                 let end = data.assumingMemoryBound(to: mpv_event_end_file.self).pointee
-                guard end.error >= 0, end.reason == MPV_END_FILE_REASON_EOF else { throw HarborError(code: "subtitle-sync-audio") }
-                // FFmpeg's process-global log callback belongs to the first mpv
-                // instance. Filter metadata stays with this analysis handle,
-                // including when the real player already owns that callback.
+                guard end.error >= 0, end.reason == MPV_END_FILE_REASON_EOF else { throw HarborError(code: "subtitle-sync-decode-\(end.error)") }
                 mpv_terminate_destroy(handle); destroyed = true
-                guard let size = try metadata.resourceValues(forKeys: [.fileSizeKey]).fileSize, size > 0, size <= 8 * 1_024 * 1_024 else { throw HarborError(code: "subtitle-sync-audio") }
-                let text = try String(contentsOf: metadata, encoding: .utf8)
-                var silences: [(Double, Double)] = [], open: Double?, observed = false
-                for line in text.components(separatedBy: .newlines) {
-                    if let time = value(line, after: "lavfi.silence_start=") { open = time; observed = true }
-                    if let time = value(line, after: "lavfi.silence_end="), let start = open { silences.append((start, time)); open = nil; observed = true }
-                }
-                guard observed else { throw HarborError(code: "subtitle-sync-audio") }
-                if let start = open { silences.append((start, window.start + window.length)) }
-                return complement(silences, window: window)
+                let limit = Int((window.length + 1) * 8_000 * 2)
+                guard let size = try pcm.resourceValues(forKeys: [.fileSizeKey]).fileSize, size > 0, size <= limit else { throw HarborError(code: "subtitle-sync-pcm-size") }
+                return try speechPCM(Data(contentsOf: pcm), window: window)
             }
             if event.event_id == MPV_EVENT_COMMAND_REPLY && event.error < 0 { throw HarborError(code: "subtitle-sync-audio") }
         }
