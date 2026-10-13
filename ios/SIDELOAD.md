@@ -1,6 +1,6 @@
 # Instalar y comprobar Harbor para iPhone
 
-La build 85 está entregada en `C:/Users/Said/Downloads/Harbor-unsigned.ipa`, fuente `e1b88eb114b2c37ffbde86836b4c6d0112c15552`, del gate completo [38264171474](https://github.com/Said129/harbor/actions/runs/38264171474). XCTest terminó con 71 aprobadas, 0 fallidas y 1 omitida; la omisión corresponde al inicio real de PiP no admitido en el simulador. Se revisaron las 89 imágenes de esta ejecución y se verificó la IPA descargada. La verificación física y privada sigue pendiente y se detalla en [DELIVERY_2026-10-12.md](../docs/ios/DELIVERY_2026-10-12.md).
+La build 86 corrige la regresión de lentitud de la 85 y está entregada en `C:/Users/Said/Downloads/Harbor-unsigned.ipa`. Fuente de app `c3e3d28abc46b868417f655b4167394c2a48b22c`; [compilación arm64 38450204545](https://github.com/Said129/harbor/actions/runs/38450204545) aprobada. Por petición del propietario se conservan resultados aprobados del mismo código: 76 métodos y una omisión PiP del simulador, con los dos fallos de red de un intento posterior registrados por separado. Las tres pruebas UI de la 86 pasaron; se reutiliza la revisión visual previa para diseño/recursos sin cambios, sin afirmar que se revisaron capturas nuevas de la 86. La fluidez física en el iPhone 14 sigue pendiente de confirmación. Procedencia y límites en [DELIVERY_2026-10-13.md](../docs/ios/DELIVERY_2026-10-13.md).
 
 La IPA está sin firmar y requiere iPhone con iOS 17 o posterior. El gate de simulador/dispositivo compilado no acredita instalación ni reproducción en el iPhone físico del propietario.
 
@@ -11,7 +11,7 @@ La IPA está sin firmar y requiere iPhone con iOS 17 o posterior. El gate de sim
 3. Conserva la misma identidad de firma y el bundle ID `site.harbor.iphone`. Instala la actualización sobre Harbor para conservar datos, sin desinstalar la app anterior ni cambiar el requisito mínimo de iOS.
 4. Abre la app y comprueba tus addons y biblioteca. La guía y el informe de esta entrega están junto a la IPA en Descargas.
 
-El paquete tiene 36968022 bytes y SHA-256 `5e8556f36fc21c7107447fe05ce9869aea698905bf3f34d8d1a51ed7989687eb`. Para comprobar la copia:
+El paquete tiene 36997265 bytes y SHA-256 `a2ea66b50641d9ba7d0a927d60873fce1b90717ed7ac51b7eb0115b2a05953ce`. Para comprobar la copia:
 
 ```powershell
 Get-FileHash -LiteralPath 'C:/Users/Said/Downloads/Harbor-unsigned.ipa' -Algorithm SHA256
@@ -31,4 +31,4 @@ Verifica biblioteca y progreso en PC/iPhone con la misma cuenta, aislamiento al 
 
 El simulador omitió el inicio real de PiP por falta de soporte AVKit en ese destino. Decodificar vídeo y alternar renderers no demuestra una ventana PiP física. La confirmación física de builds anteriores no se extiende a esta candidata ni a todas las fuentes/opciones. Se registran modelo/iOS y resultados seguros al hacer estas pruebas; los diagnostics exportables excluyen tokens y URLs privadas.
 
-Los límites completos y la evidencia de esta fuente se conservan en [la entrega](../docs/ios/DELIVERY_2026-10-12.md). Se actualiza contenido editorial mediante sus fuentes validadas; cambiar el binario firmado exige otra instalación/firma y no se promete actualización silenciosa.
+Los límites completos y la evidencia de esta fuente se conservan en [la entrega](../docs/ios/DELIVERY_2026-10-13.md). Se actualiza contenido editorial mediante sus fuentes validadas; cambiar el binario firmado exige otra instalación/firma y no se promete actualización silenciosa.

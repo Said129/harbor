@@ -1,3 +1,9 @@
+# Corrección de rendimiento, 13 de octubre de 2026
+
+La build 86 corrige la regresión de lentitud de la 85 y está entregada en `C:/Users/Said/Downloads/Harbor-unsigned.ipa`. Fuente de app `c3e3d28abc46b868417f655b4167394c2a48b22c`; [compilación arm64 38450204545](https://github.com/Said129/harbor/actions/runs/38450204545) aprobada. Por petición del propietario se conservan resultados aprobados del mismo código: 76 métodos y una omisión PiP del simulador, con los dos fallos de red de un intento posterior registrados por separado. Las tres pruebas UI de la 86 pasaron; se reutiliza la revisión visual previa para diseño/recursos sin cambios, sin afirmar que se revisaron capturas nuevas de la 86. La fluidez física en el iPhone 14 sigue pendiente de confirmación. Procedencia y límites en [DELIVERY_2026-10-13.md](DELIVERY_2026-10-13.md).
+
+La entrega 85 conservada a continuación pasó CI, pero el propietario informó lag real. La 86 corrige el procesamiento de biblioteca y metadata y conserva comprobaciones aprobadas del mismo código, por petición expresa.
+
 # Entrega final, 12 de octubre de 2026
 
 La build 85 está entregada en `C:/Users/Said/Downloads/Harbor-unsigned.ipa`, fuente `e1b88eb114b2c37ffbde86836b4c6d0112c15552`, del gate completo [38264171474](https://github.com/Said129/harbor/actions/runs/38264171474). XCTest terminó con 71 aprobadas, 0 fallidas y 1 omitida; la omisión corresponde al inicio real de PiP no admitido en el simulador. Se revisaron las 89 imágenes de esta ejecución y se verificó la IPA descargada. La verificación física y privada sigue pendiente y se detalla en [DELIVERY_2026-10-12.md](DELIVERY_2026-10-12.md).
