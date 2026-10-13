@@ -26,6 +26,11 @@ final class MPVController: GLKViewController {
     private var pendingOperations: [UInt64: PendingOperation] = [:]
     private var nextOperation: UInt64 = 1
     private var subtitleTail: Task<Void, Never>?
+    private var subtitleSyncTask: Task<Void, Never>?
+    private var subtitleSyncKey: String?
+    private var subtitleSyncRequest = UUID()
+    private var synchronizedTracks = Set<Int>()
+    private var subtitleSyncOriginalTiming: (delay: Double, fps: Double)?
     private var subtitleOperations = 0
     private var mediaRevision = 0
     private var acknowledgedSubtitleFPS = 0.0
@@ -445,6 +450,7 @@ final class MPVController: GLKViewController {
     }
 
     private func suspendForApp() {
+        cancelSubtitleSync()
         if !didClose, sampleOutput != nil {
             if pictureInPicture?.active != true {
                 foregroundResumeWanted = !interrupted && state.loaded && !state.paused && !state.ended
@@ -489,6 +495,7 @@ final class MPVController: GLKViewController {
     }
 
     func applySubtitleFPS(_ value: Double) {
+        cancelSubtitleSync()
         guard value == 0 || SubtitleTiming.valid(value) else { state.subtitleIssue = DesktopInterfaceText.value("Enter an FPS from 1 to 240."); return }
         let trackID = state.primarySubtitle?.id
         enqueueSubtitleOperation { controller in
@@ -504,6 +511,7 @@ final class MPVController: GLKViewController {
     }
 
     func selectSubtitle(_ value: String, secondary: Bool = false) {
+        cancelSubtitleSync()
         guard value == "no" || value == "auto" || Int(value).map({ $0 > 0 }) == true else { return }
         if secondary { preferredSecondaryHandled = true }
         enqueueSubtitleOperation { controller in
@@ -566,6 +574,104 @@ final class MPVController: GLKViewController {
                 await SubtitleFileService.shared.discard(subtitle, session: controller.subtitleSession)
                 throw error
             }
+        }
+    }
+
+    func cancelSubtitleSync() {
+        subtitleSyncRequest = UUID(); subtitleSyncTask?.cancel(); subtitleSyncTask = nil; state.subtitleSyncing = false
+    }
+
+    func subtitleAutoSyncPreferenceChanged() {
+        cancelSubtitleSync(); subtitleSyncKey = nil
+        considerSubtitleAutoSync()
+    }
+
+    private func considerSubtitleAutoSync() {
+        guard UIApplication.shared.applicationState == .active, UserDefaults.standard.bool(forKey: "subtitleAutoSync"), subtitleSyncTask == nil, !state.subtitleChanging,
+              state.loaded, state.duration >= 60, state.secondarySubtitle == nil, let track = state.primarySubtitle,
+              track.external, track.isTextSubtitle, !synchronizedTracks.contains(track.id), !track.externalFilename.isEmpty else { return }
+        let key = "\(mediaRevision):\(track.id):\(state.tracks.first { $0.type == "audio" && $0.selected }?.id ?? 0)"
+        guard subtitleSyncKey != key else { return }
+        synchronizeSubtitle()
+    }
+
+    func synchronizeSubtitle() {
+        guard !didClose, subtitleSyncTask == nil, !state.subtitleChanging, state.loaded, state.duration >= 60,
+              state.secondarySubtitle == nil, let track = state.primarySubtitle, track.external, track.isTextSubtitle,
+              !track.externalFilename.isEmpty else { return }
+        let revision = mediaRevision, request = UUID(), duration = state.duration, source = source
+        let audioID = state.tracks.first { $0.type == "audio" && $0.selected }?.id
+        let delay = state.subtitleDelay, fps = state.subtitleFPS
+        subtitleSyncRequest = request; state.subtitleSyncing = true; state.subtitleSyncMessage = "Analizando el audio… Puedes seguir viendo."
+        subtitleSyncKey = "\(revision):\(track.id):\(audioID ?? 0)"
+        subtitleSyncTask = Task { @MainActor [weak self] in
+            let worker = Task.detached(priority: .utility) { try await SubtitleAutoSync.analyze(source: source, subtitle: track.externalFilename, duration: duration, audioID: audioID) }
+            defer {
+                if let self, self.subtitleSyncRequest == request { self.subtitleSyncTask = nil; self.state.subtitleSyncing = false }
+            }
+            do {
+                let (document, result) = try await withTaskCancellationHandler { try await worker.value } onCancel: { worker.cancel() }
+                try Task.checkCancellation()
+                guard let self, !didClose, mediaRevision == revision, subtitleSyncRequest == request,
+                      state.primarySubtitle?.id == track.id, state.secondarySubtitle == nil, state.subtitleDelay == delay, state.subtitleFPS == fps,
+                      state.tracks.first(where: { $0.type == "audio" && $0.selected })?.id == audioID else { return }
+                guard let result else { state.subtitleSyncMessage = "No se encontró un ajuste fiable. Se conserva el subtítulo original."; return }
+                if abs(result.offset) < 0.25 && abs(result.ratio - 1) < 0.003 { state.subtitleSyncMessage = "El subtítulo ya coincide con el audio."; return }
+                let file = try await SubtitleFileService.shared.synchronized(document.applying(result), vtt: document.vtt, session: subtitleSession)
+                enqueueSubtitleOperation { controller in
+                    guard controller.subtitleSyncRequest == request, controller.state.primarySubtitle?.id == track.id,
+                          controller.state.secondarySubtitle == nil, controller.state.subtitleDelay == delay, controller.state.subtitleFPS == fps else {
+                        await SubtitleFileService.shared.discard(file, session: controller.subtitleSession); return
+                    }
+                    do {
+                        try await controller.resetSubtitleFPS()
+                        try await controller.commandChecked(["sub-add", file.url.absoluteString, "select", file.title])
+                        try await controller.setChecked("sub-delay", "0")
+                        let deadline = Date().addingTimeInterval(5)
+                        while Date() < deadline {
+                            guard !controller.didClose, controller.mediaRevision == revision else { throw CancellationError() }
+                            if let selected = controller.state.primarySubtitle, [file.url.path, file.url.absoluteString].contains(selected.externalFilename) {
+                                controller.synchronizedTracks.insert(selected.id)
+                                controller.state.subtitleSyncOriginal = track.id
+                                controller.subtitleSyncOriginalTiming = (delay, fps ?? 0)
+                                controller.state.subtitleSyncMessage = "Sincronizado · \(result.offset.formatted(.number.precision(.fractionLength(1)))) s · \(result.ratio.formatted(.number.precision(.fractionLength(4))))×"
+                                return
+                            }
+                            try await Task.sleep(for: .milliseconds(50))
+                        }
+                        throw HarborError(code: "subtitle-sync-timeout")
+                    } catch {
+                        if !controller.didClose, controller.mediaRevision == revision {
+                            try? await controller.setChecked("sid", String(track.id))
+                            try? await controller.setChecked("sub-delay", String(delay))
+                            try? await controller.setChecked("sub-fps", String(fps ?? 0))
+                            controller.state.subtitleSyncMessage = "No se pudo aplicar el ajuste. Se conserva el subtítulo original."
+                        }
+                        throw error
+                    }
+                }
+            } catch is CancellationError { return }
+            catch {
+                guard let self, !didClose, subtitleSyncRequest == request, mediaRevision == revision else { return }
+                state.subtitleSyncMessage = (error as? HarborError)?.code == "subtitle-sync-format" ? "Selecciona un subtítulo externo SRT o VTT con al menos cuatro líneas." : "No se pudo analizar esta fuente. La reproducción continúa; puedes reintentarlo."
+            }
+        }
+    }
+
+    func restoreSubtitleBeforeSync() {
+        guard let id = state.subtitleSyncOriginal else { return }
+        cancelSubtitleSync()
+        let timing = subtitleSyncOriginalTiming
+        enqueueSubtitleOperation { controller in
+            try await controller.resetSubtitleFPS()
+            try await controller.setChecked("sid", String(id))
+            if let timing {
+                try await controller.setChecked("sub-delay", String(timing.delay))
+                try await controller.setChecked("sub-fps", String(timing.fps))
+                controller.acknowledgedSubtitleFPS = timing.fps
+            }
+            controller.state.subtitleSyncOriginal = nil; controller.state.subtitleSyncMessage = nil
+            controller.subtitleSyncOriginalTiming = nil
         }
     }
 
@@ -701,6 +807,7 @@ final class MPVController: GLKViewController {
     }
 
     private func drainEvents(_ handle: OpaquePointer) {
+        defer { considerSubtitleAutoSync() }
         for _ in 0..<64 {
             guard let event = mpv_wait_event(handle, 0)?.pointee, event.event_id != MPV_EVENT_NONE else { return }
             switch event.event_id {
@@ -714,6 +821,8 @@ final class MPVController: GLKViewController {
                     state.error = "No se pudo completar la operación del reproductor. Vuelve a intentarlo."
                 }
             case MPV_EVENT_START_FILE:
+                cancelSubtitleSync()
+                subtitleSyncKey = nil; synchronizedTracks = []; state.subtitleSyncOriginal = nil; subtitleSyncOriginalTiming = nil; state.subtitleSyncMessage = nil
                 mediaRevision += 1
                 preferredSecondaryHandled = false
                 state.mediaGeneration = mediaRevision
@@ -886,6 +995,7 @@ final class MPVController: GLKViewController {
     }
 
     func close() {
+        cancelSubtitleSync()
         guard !didClose else { return }
         set("pause", "yes")
         didClose = true

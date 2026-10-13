@@ -20,6 +20,30 @@ struct AccountCollection: Codable, Sendable {
     var addons: [Addon]
     var records: [JSONValue]
 
+    func merging(_ next: [Addon], into fresh: [Addon]) -> [Addon] {
+        let baseline = Dictionary(addons.map { ($0.id, $0) }, uniquingKeysWith: { first, _ in first })
+        let desired = Dictionary(next.map { ($0.id, $0) }, uniquingKeysWith: { first, _ in first })
+        let remote = Dictionary(fresh.map { ($0.id, $0) }, uniquingKeysWith: { first, _ in first })
+        let removed = Set(baseline.keys).subtracting(desired.keys)
+        var merged = fresh.filter { !removed.contains($0.id) }.map { addon -> Addon in
+            guard let local = desired[addon.id] else { return addon }
+            var result = baseline[addon.id]?.manifest != local.manifest ? local : addon
+            result.enabled = local.enabled
+            return result
+        }
+        // A remote removal stays removed unless this device installed/reconfigured it.
+        merged += next.filter { remote[$0.id] == nil && (baseline[$0.id] == nil || baseline[$0.id]?.manifest != $0.manifest) }
+        let existingOrder = addons.map(\.id).filter { desired[$0] != nil }
+        let localOrder = next.map(\.id).filter { baseline[$0] != nil }
+        if existingOrder != localOrder {
+            let indices = Dictionary(next.enumerated().map { ($0.element.id, $0.offset) }, uniquingKeysWith: { first, _ in first })
+            let slots = merged.indices.filter { indices[merged[$0].id] != nil }
+            let ordered = slots.map { merged[$0] }.sorted { (indices[$0.id] ?? 0) < (indices[$1.id] ?? 0) }
+            for (slot, addon) in zip(slots, ordered) { merged[slot] = addon }
+        }
+        return merged
+    }
+
     func records(for next: [Addon], replacing replacements: [String: String] = [:]) -> [JSONValue] {
         next.map { addon in
             let originalURL = replacements[addon.transportUrl] ?? addon.transportUrl

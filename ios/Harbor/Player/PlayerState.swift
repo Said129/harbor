@@ -39,6 +39,9 @@ final class PlayerState {
     var subtitleIssue: String?
     var importedSubtitleIDs: Set<Int> = []
     var subtitleImportMessage: String?
+    var subtitleSyncing = false
+    var subtitleSyncMessage: String?
+    var subtitleSyncOriginal: Int?
     var primarySubtitleText = ""
     var secondarySubtitleText = ""
     var videoFPS: Double? { estimatedVideoFPS ?? containerVideoFPS }

@@ -11,6 +11,7 @@ struct SubtitleTracksView: View {
     @State private var chooseFile = false
     @State private var fileError: String?
     @State private var panelWidth: CGFloat = 0
+    @AppStorage("subtitleAutoSync") private var autoSync = false
 
     private var tracks: [PlayerState.Track] { state.tracks.filter { $0.type == "sub" } }
     private var groups: [(key: String, title: String, count: Int)] {
@@ -97,6 +98,26 @@ struct SubtitleTracksView: View {
             } else {
                 languageButtons(vertical: false)
                 trackContent
+            }
+            Divider()
+            Toggle("Sincronizar automáticamente con el audio", isOn: $autoSync)
+                .accessibilityIdentifier("subtitle-auto-sync")
+                .onChange(of: autoSync) { _, _ in state.controller?.subtitleAutoSyncPreferenceChanged() }
+            Text("Para subtítulos externos SRT/VTT. Solo se aplica un cambio si el análisis encuentra una coincidencia fiable.")
+                .font(HarborTheme.font(11)).foregroundStyle(.secondary)
+            if state.subtitleSyncing {
+                HStack {
+                    ProgressView()
+                    Button("Cancelar análisis") { state.controller?.cancelSubtitleSync() }
+                }
+            } else {
+                Button("Sincronizar ahora") { state.controller?.synchronizeSubtitle() }
+                    .disabled(disabled || state.duration < 60 || state.primarySubtitle?.external != true || state.primarySubtitle?.isTextSubtitle != true || state.secondarySubtitle != nil)
+                    .frame(minHeight: 44).accessibilityIdentifier("subtitle-sync-now")
+            }
+            if let message = state.subtitleSyncMessage { Text(message).font(HarborTheme.font(12)).foregroundStyle(.secondary).accessibilityIdentifier("subtitle-sync-status") }
+            if state.subtitleSyncOriginal != nil {
+                Button("Restaurar subtítulo original") { state.controller?.restoreSubtitleBeforeSync() }.frame(minHeight: 44)
             }
             Divider()
             Button { fileError = nil; chooseFile = true } label: {

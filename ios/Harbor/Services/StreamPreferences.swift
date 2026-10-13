@@ -4,6 +4,13 @@ import Observation
 @MainActor @Observable
 final class StreamPreferences {
     static let shared = StreamPreferences()
+    var filterLevel = UserDefaults.standard.string(forKey: "streamFilterLevel") ?? "strict" {
+        didSet { UserDefaults.standard.set(filterLevel, forKey: "streamFilterLevel") }
+    }
+    var addonOrder = UserDefaults.standard.object(forKey: "streams.addonOrder") as? Bool ?? true {
+        didSet { UserDefaults.standard.set(addonOrder, forKey: "streams.addonOrder") }
+    }
+    func configuration() -> StreamFilterConfiguration { .init(level: filterLevel, addonOrder: addonOrder) }
     var automatic = UserDefaults.standard.object(forKey: "streams.automatic") as? Bool ?? true {
         didSet { UserDefaults.standard.set(automatic, forKey: "streams.automatic") }
     }
@@ -35,6 +42,21 @@ final class StreamPreferences {
     func preferredContinuation(_ offers: [StreamOffer], previous: StreamSourceIdentity?) -> StreamOffer? {
         if keepSourceNextEpisode, let previous, let matched = preferred(offers.filter { previous.matches($0) }) { return matched }
         return preferred(offers)
+    }
+}
+
+struct StreamFilterConfiguration: Sendable {
+    let level: String
+    let addonOrder: Bool
+    func trust(_ media: Media, season: Int?, episode: Int?) -> JSONValue {
+        let strict = level == "strict"
+        return .object(["kind": .string(media.episodic ? "series" : "movie"), "expectedTitle": .string(media.name),
+                        "expectedYear": media.releaseInfo.flatMap { Int64($0.prefix(4)) }.map(JSONValue.integer) ?? .null,
+                        "releaseDate": media.released.map(JSONValue.string) ?? .null,
+                        "expectedSeason": season.map { .integer(Int64($0)) } ?? .null,
+                        "expectedEpisode": episode.map { .integer(Int64($0)) } ?? .null,
+                        "isAnime": .bool(AnimeService.isAnime(media.id)), "strict": .bool(strict), "disabled": .bool(level == "off"),
+                        "allowSeasonPacks": .bool(!strict), "allowSizeOutliers": .bool(!strict)])
     }
 }
 

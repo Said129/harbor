@@ -13,6 +13,8 @@ final class AppModel {
     private var savedAccount: SavedAccount?
     private var homeGeneration = 0
     private var started = false
+    @ObservationIgnored private var addonRefresh: Task<AccountCollection, Error>?
+    private var lastAddonRefresh = Date.distantPast
     @ObservationIgnored private var pages: [String: ContentPageModel] = [:]
     private(set) var storageReady = false
     private(set) var addons: [Addon] = []
@@ -181,10 +183,35 @@ final class AppModel {
         let next = SavedAccount(session: old.session, collection: collection)
         try keychain.write(next, key: "account.v1")
         savedAccount = next; addons = collection.addons
+        lastAddonRefresh = Date()
         Task { await library.setSession(next.session) }
         warnings = []; accountError = nil
         Diagnostics.shared.record(.accountSynced, count: addons.count)
         await loadHome()
+    }
+
+    func refreshAddons(force: Bool = false) async {
+        guard !accountBusy, let old = savedAccount, force || Date().timeIntervalSince(lastAddonRefresh) > 30 else { return }
+        let task: Task<AccountCollection, Error>
+        if let existing = addonRefresh { task = existing }
+        else {
+            let accounts = accounts
+            task = Task { try await accounts.addons(old.session) }
+            addonRefresh = task
+        }
+        defer { addonRefresh = nil }
+        do {
+            var collection = try await task.value
+            guard !Task.isCancelled, !accountBusy, savedAccount?.session.authKey == old.session.authKey else { return }
+            let enabled = Dictionary(addons.map { ($0.id, $0.enabled) }, uniquingKeysWith: { first, _ in first })
+            for index in collection.addons.indices { collection.addons[index].enabled = enabled[collection.addons[index].id] ?? true }
+            let changed = addons.count != collection.addons.count || zip(addons, collection.addons).contains { $0.0.id != $0.1.id || $0.0.manifest != $0.1.manifest }
+            let next = SavedAccount(session: old.session, collection: collection)
+            try keychain.write(next, key: "account.v1")
+            savedAccount = next; addons = collection.addons; lastAddonRefresh = Date(); accountError = nil
+            if changed { pages = [:]; home.reset(); Task { await loadHome() } }
+        } catch is CancellationError { return }
+        catch { accountError = "No se pudieron actualizar los addons de la cuenta. Se conservan los últimos guardados; vuelve a actualizar las fuentes." }
     }
 
     func signOut() async throws {
@@ -266,12 +293,14 @@ final class AppModel {
 
     private func saveCollection(_ next: [Addon], replacing replacements: [String: String] = [:]) async throws {
         if let account = savedAccount {
-            let collection = AccountCollection(addons: next, records: account.collection.records(for: next, replacing: replacements))
+            let fresh = try await accounts.addons(account.session)
+            let merged = account.collection.merging(next, into: fresh.addons)
+            let collection = AccountCollection(addons: merged, records: fresh.records(for: merged, replacing: replacements))
             try await accounts.save(collection, session: account.session)
             let saved = SavedAccount(session: account.session, collection: collection)
             do { try keychain.write(saved, key: "account.v1") }
             catch { throw HarborError(code: "account-local-save-failed") }
-            savedAccount = saved; addons = next
+            savedAccount = saved; addons = merged; lastAddonRefresh = Date()
         } else { try persist(next) }
     }
 

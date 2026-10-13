@@ -9,7 +9,7 @@ on:
       validation_scope:
         description: "Full suite, browser/palette regressions, or preserved exact-source validation"
         type: choice
-        options: [full, affected, reuse]
+        options: [full, affected, sources-search-subtitles, reuse]
         default: full
       source_sha:
         description: "Exact previously tested application commit, for reuse only"
@@ -71,6 +71,18 @@ jobs:
       IPHONEOS_DEPLOYMENT_TARGET: "17.0"
     steps:
       - uses: actions/checkout@v6
+      - name: Check reserved feature delivery draft before compiling
+        if: ${{ inputs.validation_scope == 'sources-search-subtitles' && inputs.save_draft_build == true }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          tag="iphone-unsigned-${GITHUB_SHA:0:12}"
+          gh release view "$tag" --repo "$GITHUB_REPOSITORY" --json isDraft,targetCommitish > /tmp/harbor-reserved.json
+          python3 -c 'import json,os; v=json.load(open("/tmp/harbor-reserved.json")); assert v["isDraft"] and v["targetCommitish"] == os.environ["GITHUB_SHA"]'
+          mkdir -p ios/build
+          python3 -c 'import json,os; json.dump({"source":os.environ["GITHUB_SHA"],"scope":"sources-search-subtitles","preservedBaseline":"c3e3d28abc46b868417f655b4167394c2a48b22c","tests":"SearchAndSourcesTests, SubtitleAutoSyncTests, SubtitlePlaybackTests, AccountCollectionTests, live Danmachi aliases, search UI"},open("ios/build/validation-plan.json","w"),indent=2)'
+          gh release upload "$tag" ios/build/validation-plan.json --repo "$GITHUB_REPOSITORY"
       - name: Select installed Xcode
         shell: bash
         run: |
@@ -91,7 +103,7 @@ jobs:
             harbor-core
             harbor-ios-bridge
       - name: Verify shared Rust on the Apple build host
-        if: ${{ inputs.validation_scope != 'affected' }}
+        if: ${{ inputs.validation_scope != 'affected' && inputs.validation_scope != 'sources-search-subtitles' }}
         shell: bash
         run: |
           set -euo pipefail
@@ -160,6 +172,8 @@ jobs:
           selection=(-only-testing:HarborTests)
           if [[ "${{ inputs.validation_scope }}" == "affected" ]]; then
             selection=(-only-testing:HarborTests/WebPageDialogTests)
+          elif [[ "${{ inputs.validation_scope }}" == "sources-search-subtitles" ]]; then
+            selection=(-only-testing:HarborTests/SearchAndSourcesTests -only-testing:HarborTests/SubtitleAutoSyncTests -only-testing:HarborTests/SubtitlePlaybackTests -only-testing:HarborTests/AccountCollectionTests)
           fi
           xcodebuild -project ios/Harbor.xcodeproj -scheme Harbor -configuration Debug -destination "platform=iOS Simulator,id=$IOS_SIMULATOR,arch=$IOS_SIMULATOR_ARCH" -derivedDataPath ios/build/DerivedData -clonedSourcePackagesDirPath ios/build/SourcePackages -resultBundlePath ios/build/Tests.xcresult "${selection[@]}" -parallel-testing-enabled NO CODE_SIGNING_ALLOWED=YES CODE_SIGN_IDENTITY=- test 2>&1 | tee ios/build/logs/tests.log
       - name: Preserve failed native render evidence in a draft Release
@@ -182,7 +196,11 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          xcodebuild -project ios/Harbor.xcodeproj -scheme HarborLive -configuration Debug -destination "platform=iOS Simulator,id=$IOS_SIMULATOR,arch=$IOS_SIMULATOR_ARCH" -derivedDataPath ios/build/DerivedData -clonedSourcePackagesDirPath ios/build/SourcePackages -resultBundlePath ios/build/ServicesTests.xcresult -only-testing:HarborIntegrationTests -parallel-testing-enabled NO CODE_SIGNING_ALLOWED=YES CODE_SIGN_IDENTITY=- test 2>&1 | tee ios/build/logs/live-services.log
+          selection=(-only-testing:HarborIntegrationTests)
+          if [[ "${{ inputs.validation_scope }}" == "sources-search-subtitles" ]]; then
+            selection=(-only-testing:HarborIntegrationTests/LiveServicesTests/testDanmachiSeasonOneEpisodeSevenUsesDesktopAliases)
+          fi
+          xcodebuild -project ios/Harbor.xcodeproj -scheme HarborLive -configuration Debug -destination "platform=iOS Simulator,id=$IOS_SIMULATOR,arch=$IOS_SIMULATOR_ARCH" -derivedDataPath ios/build/DerivedData -clonedSourcePackagesDirPath ios/build/SourcePackages -resultBundlePath ios/build/ServicesTests.xcresult "${selection[@]}" -parallel-testing-enabled NO CODE_SIGNING_ALLOWED=YES CODE_SIGN_IDENTITY=- test 2>&1 | tee ios/build/logs/live-services.log
       - name: Boot a clean UI runtime while preserving application data
         id: ui_runtime
         if: ${{ !cancelled() && inputs.run_live_integration == true && steps.offline_tests.conclusion == 'success' }}
@@ -203,6 +221,8 @@ jobs:
           selection=(-only-testing:HarborUITests)
           if [[ "${{ inputs.validation_scope }}" == "affected" ]]; then
             selection=(-only-testing:HarborUITests/LiveNavigationTests/testCancellingCustomPaletteRestoresActiveTheme)
+          elif [[ "${{ inputs.validation_scope }}" == "sources-search-subtitles" ]]; then
+            selection=(-only-testing:HarborUITests/LiveNavigationTests/testSearchHasContentOnlyAndRemovableRecentHistory)
           fi
           xcodebuild -project ios/Harbor.xcodeproj -scheme HarborLive -configuration Debug -destination "platform=iOS Simulator,id=$IOS_SIMULATOR,arch=$IOS_SIMULATOR_ARCH" -derivedDataPath ios/build/DerivedData -clonedSourcePackagesDirPath ios/build/SourcePackages -resultBundlePath ios/build/LiveTests.xcresult "${selection[@]}" -parallel-testing-enabled NO CODE_SIGNING_ALLOWED=YES CODE_SIGN_IDENTITY=- test 2>&1 | tee ios/build/logs/live-tests.log
       - name: Preserve failed public integration screenshots in a draft Release

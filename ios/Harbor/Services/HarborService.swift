@@ -127,8 +127,13 @@ struct HarborService: Sendable {
         return CatalogRow(plan: plan, metas: metas, receivedCount: values.count)
     }
 
-    func streams(_ media: Media, videoID: String, addons: [Addon], season: Int? = nil, episode: Int? = nil) async throws -> ([StreamOffer], [String]) {
-        let plans = try await resources(addons, "stream", media.type, videoID)
+    func streams(_ media: Media, videoID: String, addons: [Addon], season: Int? = nil, episode: Int? = nil, unfiltered: Bool = false) async throws -> ([StreamOffer], [String]) {
+        var requested: [RequestPlan] = []
+        let kind = media.type == "anime" ? "series" : media.type
+        for id in StreamRequestPolicy.ids(media, videoID: videoID, season: season, episode: episode) {
+            requested += try await resources(addons, "stream", kind, id)
+        }
+        let plans = StreamRequestPolicy.plans(requested)
         let responses = try await fetch(plans)
         var raw: [JSONValue] = []
         var errors = responses.errors
@@ -138,8 +143,9 @@ struct HarborService: Sendable {
                 raw.append(contentsOf: streams)
             } catch { errors.append("stream-response") }
         }
-        let trust: JSONValue = .object(["kind": .string(media.type), "expectedTitle": .string(media.name), "expectedSeason": season.map { .integer(Int64($0)) } ?? .null, "expectedEpisode": episode.map { .integer(Int64($0)) } ?? .null])
-        let result: JSONValue = try await core.call("rank", ["streams": .array(raw), "trust": trust, "score": .object(["mediaKind": .string(media.type), "respectAddonOrder": .bool(false)])])
+        let preferences = await StreamPreferences.shared.configuration()
+        let trust = (unfiltered ? StreamFilterConfiguration(level: "off", addonOrder: preferences.addonOrder) : preferences).trust(media, season: season, episode: episode)
+        let result: JSONValue = try await core.call("rank", ["streams": .array(StreamRequestPolicy.deduplicated(raw)), "trust": trust, "score": .object(["mediaKind": .string(kind), "respectAddonOrder": .bool(preferences.addonOrder)])])
         return (result["picker"]["all"].array.enumerated().map { StreamOffer(id: $0.offset, raw: $0.element) }, errors)
     }
 

@@ -40,6 +40,31 @@ final class LiveNavigationTests: XCTestCase {
         destination.tap()
     }
 
+    func testSearchHasContentOnlyAndRemovableRecentHistory() throws {
+        guard ProcessInfo.processInfo.environment["HARBOR_LIVE_INTEGRATION"] == "1" else { throw XCTSkip("Live UI integration requires explicit opt-in") }
+        continueAfterFailure = false
+        let app = XCUIApplication(); app.launch()
+        XCTAssertTrue(app.buttons["main-menu"].waitForExistence(timeout: 15))
+        navigate(app, "search")
+        let search = app.searchFields.firstMatch
+        XCTAssertTrue(search.waitForExistence(timeout: 10))
+        search.tap(); search.typeText("Oppenheimer\n")
+        XCTAssertTrue(app.staticTexts["search-results-query"].waitForExistence(timeout: 45))
+        XCTAssertTrue(app.buttons.matching(identifier: "catalog-movie").firstMatch.waitForExistence(timeout: 30))
+        XCTAssertFalse(app.buttons["catalog-browser-link"].exists)
+        XCTAssertFalse(app.staticTexts.matching(NSPredicate(format: "label == 'Search'")).firstMatch.exists)
+        capture(app, "native-search-content-only")
+        let clear = search.buttons.firstMatch
+        XCTAssertTrue(clear.exists); clear.tap()
+        let recent = app.buttons.matching(identifier: "search-recent-query").matching(NSPredicate(format: "label CONTAINS[c] 'Oppenheimer'")).firstMatch
+        XCTAssertTrue(recent.waitForExistence(timeout: 5))
+        capture(app, "native-search-recent-history")
+        let remove = app.buttons.matching(identifier: "search-recent-remove").matching(NSPredicate(format: "label CONTAINS[c] 'Oppenheimer'")).firstMatch
+        XCTAssertTrue(remove.isHittable); remove.tap()
+        XCTAssertFalse(recent.exists)
+        capture(app, "native-search-history-item-removed")
+    }
+
     func testCancellingCustomPaletteRestoresActiveTheme() throws {
         guard ProcessInfo.processInfo.environment["HARBOR_LIVE_INTEGRATION"] == "1" else {
             throw XCTSkip("Live UI integration requires explicit opt-in")

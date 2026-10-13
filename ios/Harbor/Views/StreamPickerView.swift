@@ -38,6 +38,10 @@ struct StreamPickerView: View {
                 navigation
                 header
                 content
+                Button(model.showAllSources ? "Aplicar mis filtros" : "Mostrar todas las fuentes sin filtrar") {
+                    model.showAllSources.toggle(); refresh()
+                }.disabled(model.loadingStreams || busy).font(HarborTheme.font(13)).frame(minHeight: 44)
+                    .accessibilityIdentifier("stream-toggle-filters")
             }.padding(20).frame(maxWidth: 760, alignment: .leading).frame(maxWidth: .infinity)
         }.background(HarborTheme.background).foregroundStyle(HarborTheme.ink)
             .toolbar(.hidden, for: .navigationBar).accessibilityIdentifier("stream-picker-scroll")

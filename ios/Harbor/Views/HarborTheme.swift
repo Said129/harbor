@@ -35,6 +35,8 @@ struct CatalogRails: View {
     let rows: [CatalogRow]
     var app: AppModel? = nil
     var titleOverrides: [String: String] = [:]
+    var browseCatalogs = true
+    var onSelect: (() -> Void)? = nil
     var body: some View {
         LazyVStack(alignment: .leading, spacing: 24) {
             ForEach(rows) { row in
@@ -45,7 +47,7 @@ struct CatalogRails: View {
                             Text(["movie": "Películas", "series": "Series", "anime": "Anime", "tv": "TV", "channel": "TV"][row.plan.kind] ?? row.plan.kind).font(HarborTheme.font(12)).foregroundStyle(HarborTheme.ink.opacity(0.45))
                         }
                         Spacer()
-                        if let app { NavigationLink { CatalogBrowserView(app: app, initial: row) } label: { HStack(spacing: 4) { Text("Ver todo"); Image("desktop-chevron-right").resizable().scaledToFit().frame(width: 14, height: 14) }.font(.caption).foregroundStyle(.secondary).frame(minHeight: 44) }.accessibilityIdentifier("catalog-browser-link") }
+                        if browseCatalogs, let app { NavigationLink { CatalogBrowserView(app: app, initial: row) } label: { HStack(spacing: 4) { Text("Ver todo"); Image("desktop-chevron-right").resizable().scaledToFit().frame(width: 14, height: 14) }.font(.caption).foregroundStyle(.secondary).frame(minHeight: 44) }.accessibilityIdentifier("catalog-browser-link") }
                     }.padding(.horizontal)
                     ScrollView(.horizontal) {
                         LazyHStack(alignment: .top, spacing: 12) {
@@ -54,6 +56,7 @@ struct CatalogRails: View {
                                     NavigationLink { DetailView(media: media, app: app) } label: { Poster(media: media) }
                                         .buttonStyle(.plain).accessibilityLabel(media.name)
                                         .accessibilityIdentifier(media.type == "movie" ? "catalog-movie" : "catalog-media")
+                                        .simultaneousGesture(TapGesture().onEnded { onSelect?() })
                                 } else {
                                     NavigationLink(value: media) { Poster(media: media) }.buttonStyle(.plain).accessibilityLabel(media.name)
                                 }

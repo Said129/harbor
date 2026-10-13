@@ -14,6 +14,14 @@ final class LiveServicesTests: XCTestCase {
             throw XCTSkip("Live integration requires explicit opt-in")
         }
     }
+    func testDanmachiSeasonOneEpisodeSevenUsesDesktopAliases() async throws {
+        try requireOptIn()
+        let media = try await AnimeService.metadata(id: "mal:28121", kind: "series")
+        let episode = try XCTUnwrap(media.videos?.first { $0.season == 1 && $0.episode == 7 })
+        XCTAssertEqual(episode.id, "kitsu:9962:7")
+        XCTAssertEqual(StreamRequestPolicy.ids(media, videoID: episode.id, season: 1, episode: 7), ["kitsu:9962:7", "tt4728568:1:7"])
+        print("Live Danmachi S1E7: verified Kitsu and IMDb request identities from actual provider metadata")
+    }
     func testAniListRailsAndCanonicalEpisodeMetadata() async throws {
         try requireOptIn()
         let definition = try XCTUnwrap(AnimeService.definitions().first { $0.id == "anilist-top100" })

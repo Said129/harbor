@@ -41,6 +41,7 @@ struct HarborApp: App {
                 .task(id: scenePhase) {
                     guard scenePhase == .active, model.storageReady else { return }
                     await model.library.sync()
+                    await model.refreshAddons()
                 }
                 .sheet(isPresented: $model.showAccount) { NavigationStack { AccountView(app: model) }.font(HarborTheme.font()).foregroundStyle(HarborTheme.ink).tint(HarborTheme.accent).preferredColorScheme(.dark) }
         }

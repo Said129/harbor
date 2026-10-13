@@ -33,6 +33,7 @@ struct PlayerSettingsView: View {
     @AppStorage("mpvHwdec") private var hardwareDecoding = HardwareDecoding.auto
     @AppStorage("resumePlayback") private var resumePlayback = true
     @AppStorage("resumePrompt") private var resumePrompt = false
+    @AppStorage("subtitleAutoSync") private var subtitleAutoSync = false
 
     var body: some View {
         ScrollView {
@@ -74,6 +75,8 @@ struct PlayerSettingsView: View {
         chapters
         PlayerPlayModeSettings(automatic: $sources.automatic)
         HarborSettingsSection("Fuentes y calidad") {
+            HarborSettingsChoice("Filtros de fuentes", selection: $sources.filterLevel, choices: [("Estricto", "strict"), ("Equilibrado", "balanced"), ("Mostrar todas", "off")])
+            HarborSettingsToggle("Respetar el orden del addon", isOn: $sources.addonOrder)
             HarborSettingsToggle("Ocultar grabaciones de cámara · CAM / TS / TC", isOn: $sources.excludeCamera)
             HarborSettingsChoice("Calidad máxima", selection: $sources.maximum, choices: [("4K", 2160), ("1080p", 1080), ("720p", 720)])
             HarborSettingsChoice("Calidad mínima", selection: $sources.minimum, choices: [("Todas", 0), ("720p", 720), ("1080p", 1080), ("4K", 2160)])
@@ -158,6 +161,11 @@ struct PlayerSettingsView: View {
     }
 
     @ViewBuilder private var subtitlesSettings: some View {
+        if state == nil {
+            HarborSettingsSection("Sincronización automática", note: "Analiza el audio en segundo plano para ajustar subtítulos externos SRT/VTT. Si no hay una coincidencia fiable, conserva el original.") {
+                HarborSettingsToggle("Sincronizar subtítulos con el audio", isOn: $subtitleAutoSync)
+            }
+        }
         if let state {
             HarborSettingsSection(DesktopInterfaceText.value("Subtitles")) {
                 SubtitleTracksView(state: state, embedded: true)

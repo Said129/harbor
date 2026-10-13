@@ -11,6 +11,7 @@ final class DetailModel {
     var offers: [StreamOffer] = []
     var warnings: [String] = []
     var filteredSources = false
+    var showAllSources = false
     var error: String?
     var playback: PlaybackSession?
     var selectedEpisode: Episode?
@@ -64,6 +65,7 @@ final class DetailModel {
     }
 
     func findStreams(_ addons: [Addon], episode: Episode? = nil) async {
+        if selectedEpisode?.id != episode?.id { showAllSources = false }
         let request = UUID()
         streamRequest = request
         loadingStreams = true
@@ -76,10 +78,10 @@ final class DetailModel {
         defer { if streamRequest == request { loadingStreams = false } }
         do {
             let videoID = episode?.id ?? media.behaviorHints?.defaultVideoId ?? media.id
-            let result = try await service.streams(media, videoID: videoID, addons: addons, season: episode?.season, episode: episode?.episode)
+            let result = try await service.streams(media, videoID: videoID, addons: addons, season: episode?.season, episode: episode?.episode, unfiltered: showAllSources)
             try Task.checkCancellation()
             guard streamRequest == request else { return }
-            offers = StreamPreferences.shared.filter(result.0)
+            offers = showAllSources ? result.0 : StreamPreferences.shared.filter(result.0)
             warnings = result.1
             Diagnostics.shared.record(.streamsLoaded, count: offers.count)
             if offers.isEmpty {

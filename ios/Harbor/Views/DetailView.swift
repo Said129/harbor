@@ -80,6 +80,8 @@ struct DetailView: View {
                     continuingEpisode = false
                     let task = Task {
                         defer { if revision == selectionRevision, model.playback == nil { showConnecting = false } }
+                        await app.refreshAddons()
+                        guard !Task.isCancelled, owner == app.library.owner else { return }
                         await model.findStreams(app.addons, episode: selectedEpisode)
                         guard !Task.isCancelled, owner == app.library.owner, shouldAutoplay, revision == selectionRevision else { return }
                         if let offer = isContinuation ? model.continuationOffer : StreamPreferences.shared.preferred(model.offers) {
@@ -114,7 +116,7 @@ struct DetailView: View {
     private func refreshStreams() {
         guard !model.loadingStreams, !model.resolving, model.playback == nil else { return }
         resolutionTask?.cancel()
-        resolutionTask = Task { await model.findStreams(app.addons, episode: selectedEpisode) }
+        resolutionTask = Task { await app.refreshAddons(force: true); await model.findStreams(app.addons, episode: selectedEpisode) }
     }
     private func startDownload(_ offer: StreamOffer) { Task { await download(offer) } }
     private var hero: some View {

@@ -22,6 +22,7 @@ struct Media: Codable, Identifiable, Hashable, Sendable {
     var videos: [Episode]?
     var behaviorHints: BehaviorHints?
     var details: MediaDetails?
+    var imdbID: String?
     struct BehaviorHints: Codable, Hashable, Sendable { var defaultVideoId: String? }
     var identity: String { "\(type):\(id)" }
     var fallbackPoster: String? { imdbArtwork("poster") }
@@ -49,6 +50,7 @@ struct Media: Codable, Identifiable, Hashable, Sendable {
         media.logo = value["logo"].string; media.description = value["description"].string
         media.releaseInfo = value["releaseInfo"].string
         media.released = value["released"].string
+        media.imdbID = value["imdb_id"].string
         if let rating = value["imdbRating"].textValue, let number = Double(rating), number > 0, number <= 10 { media.imdbRating = rating }
         media.runtime = value["runtime"].textValue
         media.country = value["country"].string
@@ -61,7 +63,7 @@ struct Media: Codable, Identifiable, Hashable, Sendable {
         if let videoID = value["behaviorHints"]["defaultVideoId"].string { media.behaviorHints = BehaviorHints(defaultVideoId: videoID) }
         media.videos = value["videos"].array.compactMap { video in
             guard let id = video["id"].string, !id.isEmpty else { return nil }
-            return Episode(id: id, season: video["season"].integer, episode: video["episode"].integer ?? video["number"].integer, name: video["name"].string, title: video["title"].string, thumbnail: video["thumbnail"].string, overview: video["overview"].string ?? video["description"].string, released: video["released"].string ?? video["firstAired"].string)
+            return Episode(id: id, season: video["season"].integer, episode: video["episode"].integer ?? video["number"].integer, name: video["name"].string, title: video["title"].string, thumbnail: video["thumbnail"].string, overview: video["overview"].string ?? video["description"].string, released: video["released"].string ?? video["firstAired"].string, imdbID: video["imdb_id"].string, imdbSeason: video["imdbSeason"].integer, imdbEpisode: video["imdbEpisode"].integer)
         }
         var trailers = Set<String>()
         let candidates = Array(value["trailerStreams"].array.prefix(100)) + Array(value["trailers"].array.prefix(100))
@@ -141,6 +143,9 @@ struct Episode: Codable, Identifiable, Hashable, Sendable {
     var overview: String?
     var runtime: Double?
     var released: String?
+    var imdbID: String?
+    var imdbSeason: Int?
+    var imdbEpisode: Int?
     var watchedKey: String { "\(season ?? 0):\(episode ?? 0)" }
     var releaseDate: Date? {
         guard let released else { return nil }

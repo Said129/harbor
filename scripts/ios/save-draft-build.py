@@ -14,7 +14,7 @@ def main():
     parser.add_argument("--report", type=Path, required=True)
     parser.add_argument("--commit", required=True)
     parser.add_argument("--evidence", type=Path)
-    parser.add_argument("--validation-scope", choices=["full", "affected"], default="full")
+    parser.add_argument("--validation-scope", choices=["full", "affected", "sources-search-subtitles"], default="full")
     args = parser.parse_args()
     report = json.loads(args.report.read_text(encoding="utf-8"))
     with args.ipa.open("rb") as file:
@@ -38,12 +38,20 @@ def main():
         assets.append(str(args.evidence))
     # A rerun must not replace an existing review artifact silently.
     existing = subprocess.run(["gh", "release", "view", tag, "--repo", args.repo], capture_output=True, text=True)
-    if existing.returncode == 0:
+    reserved = args.validation_scope == "sources-search-subtitles" and existing.returncode == 0
+    if existing.returncode == 0 and not reserved:
         raise SystemExit(f"Draft build tag already exists: {tag}; review the existing asset before replacing it")
+    if reserved:
+        detail = json.loads(subprocess.check_output(["gh", "release", "view", tag, "--repo", args.repo, "--json", "isDraft,targetCommitish,assets"], text=True))
+        if not detail["isDraft"] or detail["targetCommitish"] != args.commit or any(a["name"].endswith((".ipa", ".zip")) for a in detail["assets"]):
+            raise SystemExit("Reserved draft identity or immutable delivery assets do not match")
     validation = (
         "Only the browser-dialog close and custom-palette Cancel regressions were rerun on the simulator. "
         "The full native, public-service and UI suites were not rerun for this candidate. "
         if args.validation_scope == "affected" else
+        "Affected native source/search/account/subtitle tests, live Danmachi identity mapping, and content-only search/history UI pass. "
+        "Unchanged features retain the accepted build 86 validation; the full suite was not repeated. "
+        if args.validation_scope == "sources-search-subtitles" else
         "Simulator service/UI tests pass before this workflow stage. "
     )
     notes = (
@@ -58,6 +66,10 @@ def main():
     with tempfile.TemporaryDirectory(prefix="harbor-draft-") as temporary:
         body = Path(temporary) / "notes.md"
         body.write_text(notes, encoding="utf-8")
+        if reserved:
+            subprocess.run(["gh", "release", "upload", tag, *assets, "--repo", args.repo], check=True)
+            subprocess.run(["gh", "release", "edit", tag, "--repo", args.repo, "--title", "Harbor iPhone 87 — unsigned reviewed candidate", "--notes-file", str(body)], check=True)
+            return
         subprocess.run([
             "gh", "release", "create", tag,
             *assets,

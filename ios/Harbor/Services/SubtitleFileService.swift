@@ -60,6 +60,16 @@ actor SubtitleFileService {
         try? FileManager.default.removeItem(at: file.url)
     }
 
+    func synchronized(_ text: String, vtt: Bool, session: UUID) throws -> ImportedSubtitle {
+        let data = Data(text.utf8)
+        guard !data.isEmpty, data.count <= Self.maximumSize else { throw HarborError(code: "subtitle-file") }
+        let root = try directory(session, create: true)
+        guard try FileManager.default.contentsOfDirectory(at: root, includingPropertiesForKeys: nil).count < 24 else { throw HarborError(code: "subtitle-capacity") }
+        let url = root.appendingPathComponent(UUID().uuidString + (vtt ? ".vtt" : ".srt"))
+        try data.write(to: url, options: [.atomic, .completeFileProtectionUntilFirstUserAuthentication])
+        return ImportedSubtitle(url: url, title: "Sincronizado automáticamente")
+    }
+
     func cleanup(_ session: UUID) {
         guard let root = try? directory(session, create: false) else { return }
         try? FileManager.default.removeItem(at: root)
