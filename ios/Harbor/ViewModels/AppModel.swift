@@ -4,6 +4,7 @@ import Observation
 @MainActor @Observable
 final class AppModel {
     let service = HarborService()
+    private let continuationMetadataStore = MediaMetadataStore()
     private(set) var resume = ResumeStore()
     let library = LibraryModel()
     let home = HomeContentModel()
@@ -25,6 +26,15 @@ final class AppModel {
     var accountBusy = false
     var showAccount = false
     var user: AccountUser? { savedAccount?.session.user }
+    func continuationMetadata(_ media: Media) async throws -> Media {
+        let configuration = MetadataPreferences.shared.configuration()
+        let selectedAddons = addons
+        let key = try MediaMetadataStore.key(media, owner: library.owner, addons: selectedAddons, configuration: configuration)
+        let service = service
+        return try await continuationMetadataStore.value(for: key) {
+            try await service.metadata(media, addons: selectedAddons, configuration: configuration)
+        }
+    }
     func pageModel(_ kind: String) -> ContentPageModel {
         if let model = pages[kind] { return model }
         let model = ContentPageModel(); pages[kind] = model; return model

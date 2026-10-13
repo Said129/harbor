@@ -154,31 +154,38 @@ private struct ContinueWatchingCard: View {
     let record: LibraryRecord
     let media: Media
     @State private var hydrated: Media?
+    @State private var cardPresentation: ContinueWatchingPresentation?
     private var detailed: Media { hydrated ?? media }
     private var presentation: ContinueWatchingPresentation {
-        ContinueWatchingPresentation(record: record, media: detailed, watched: app.library.watchedEpisodes(detailed))
+        cardPresentation ?? ContinueWatchingPresentation(record: record, media: media, watched: [])
     }
     var body: some View {
         let presentation = self.presentation
         VStack(alignment: .leading, spacing: 2) {
-            NavigationLink { DetailView(media: detailed, app: app, playImmediately: true) } label: {
+            NavigationLink { DetailView(media: detailed, app: app, playImmediately: true, metadataLoaded: hydrated != nil) } label: {
                 ContinueWatchingArtwork(record: record, media: detailed, presentation: presentation)
             }.accessibilityIdentifier("continue-watching-resume").accessibilityLabel("Continuar viendo \(detailed.name)")
                 .accessibilityValue(presentation.upNext ? DesktopInterfaceText.value("Up Next") : "\(record.playbackCaption ?? "") · \(Int(presentation.progress * 100)) por ciento")
-            NavigationLink { DetailView(media: detailed, app: app) } label: {
+            NavigationLink { DetailView(media: detailed, app: app, metadataLoaded: hydrated != nil) } label: {
                 Text(detailed.name).font(HarborTheme.font(13, weight: .medium)).lineLimit(1)
                     .frame(maxWidth: .infinity, minHeight: 44, alignment: .leading).contentShape(Rectangle())
             }.accessibilityIdentifier("continue-watching-details").accessibilityLabel("Abrir ficha de \(detailed.name)")
         }.frame(width: 260, alignment: .leading).foregroundStyle(HarborTheme.ink).buttonStyle(.plain)
             .contextMenu { LibraryActions(app: app, record: record, media: detailed, owner: app.library.owner) }
+            .onChange(of: record.raw, initial: true) { _, _ in updatePresentation() }
             .task {
                 let owner = app.library.owner
-                guard var result = try? await app.service.metadata(media, addons: app.addons), !Task.isCancelled, owner == app.library.owner else { return }
+                guard var result = try? await app.continuationMetadata(media), !Task.isCancelled, owner == app.library.owner else { return }
                 // Artwork and episodes can be enriched without changing the
                 // cloud library identity used for resume and dismissal.
                 result.id = media.id
                 hydrated = result
+                updatePresentation()
             }
+    }
+    private func updatePresentation() {
+        let watched = (try? WatchedCodec.decode(record.raw["state"]["watched"].string, videos: detailed.videos ?? [])) ?? []
+        cardPresentation = ContinueWatchingPresentation(record: record, media: detailed, watched: watched)
     }
 }
 

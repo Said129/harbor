@@ -2,11 +2,24 @@ import Foundation
 
 struct LibraryRecord: Identifiable, Sendable {
     let raw: JSONValue
-    var id: String { raw["_id"].string ?? "" }
-    var media: Media? {
-        guard case .object(var fields) = raw else { return nil }
-        fields["id"] = .string(id)
-        return Media.parse(.object(fields), kind: "movie")
+    let id: String
+    let media: Media?
+    let activityTimestamp: Double
+    let createdTimestamp: Double
+    private let modifiedTimestamp: Double?
+    private let lastWatchedTimestamp: Double?
+
+    init(raw: JSONValue) {
+        self.raw = raw
+        id = raw["_id"].string ?? ""
+        if case .object(var fields) = raw {
+            fields["id"] = .string(id)
+            media = Media.parse(.object(fields), kind: "movie")
+        } else { media = nil }
+        modifiedTimestamp = Self.timestamp(raw["_mtime"])
+        lastWatchedTimestamp = Self.timestamp(raw["state"]["lastWatched"])
+        activityTimestamp = max(modifiedTimestamp ?? 0, lastWatchedTimestamp ?? 0)
+        createdTimestamp = Self.timestamp(raw["_ctime"]) ?? modifiedTimestamp ?? 0
     }
     var bookmarked: Bool { raw["removed"] != .bool(true) && raw["temp"] != .bool(true) }
     var watched: Bool { (raw["state"]["flaggedWatched"].numericValue ?? 0) > 0 || (raw["state"]["timesWatched"].numericValue ?? 0) > 0 }
@@ -26,7 +39,6 @@ struct LibraryRecord: Identifiable, Sendable {
     }
     private var currentMovieFinished: Bool { (raw["state"]["flaggedWatched"].numericValue ?? 0) > 0 || progress >= 0.9 }
     var modified: String { raw["_mtime"].textValue ?? "" }
-    var activityTimestamp: Double { max(Self.timestamp(raw["_mtime"]) ?? 0, Self.timestamp(raw["state"]["lastWatched"]) ?? 0) }
     var playbackCoordinates: (season: Int?, episode: Int?) {
         let state = raw["state"]
         let parts = (state["video_id"].string ?? "").split(separator: ":")
@@ -50,8 +62,7 @@ struct LibraryRecord: Identifiable, Sendable {
     static func timestamp(_ value: String?) -> Double? {
         guard let value else { return nil }
         if let timestamp = Double(value), timestamp.isFinite, timestamp >= 0 { return timestamp }
-        let fractional = ISO8601DateFormatter(); fractional.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
-        guard let date = fractional.date(from: value) ?? ISO8601DateFormatter().date(from: value) else { return nil }
+        guard let date = ISO8601DateParser.shared.date(value) else { return nil }
         let timestamp = date.timeIntervalSince1970 * 1_000
         return timestamp.isFinite && timestamp >= 0 ? timestamp : nil
     }
@@ -70,7 +81,7 @@ struct LibraryRecord: Identifiable, Sendable {
         }
         guard let offset = state["timeOffset"].numericValue, offset.isFinite, offset >= 0 else { return nil }
         let finished = media.type == "movie" && currentMovieFinished
-        let timestamp = finished || offset == 0 ? Self.timestamp(raw["_mtime"]) : Self.timestamp(state["lastWatched"]) ?? Self.timestamp(raw["_mtime"])
+        let timestamp = finished || offset == 0 ? modifiedTimestamp : lastWatchedTimestamp ?? modifiedTimestamp
         guard let timestamp, timestamp < Double(UInt64.max) else { return nil }
         let duration = state["duration"].numericValue ?? 0
         return CloudResume(entry: ResumeEntry(ms: finished ? 0 : offset, t: UInt64(timestamp)), durationMs: duration.isFinite && duration >= 0 ? duration : 0)

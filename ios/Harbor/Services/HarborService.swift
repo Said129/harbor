@@ -56,8 +56,10 @@ struct HarborService: Sendable {
         CatalogRefresh.merge(order: plans.map(\.key), received: received, previous: previous)
     }
 
-    func metadata(_ media: Media, addons: [Addon]) async throws -> Media {
-        let configuration = await MetadataPreferences.shared.configuration()
+    func metadata(_ media: Media, addons: [Addon], configuration supplied: MetadataConfiguration? = nil) async throws -> Media {
+        let configuration: MetadataConfiguration
+        if let supplied { configuration = supplied }
+        else { configuration = await MetadataPreferences.shared.configuration() }
         if media.id.hasPrefix("tmdb:") && !configuration.tmdbKey.isEmpty {
             let enriched = try await TMDBService().detail(media, configuration: configuration)
             if enriched.id != media.id {

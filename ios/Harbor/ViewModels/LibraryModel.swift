@@ -3,12 +3,14 @@ import Observation
 
 @MainActor @Observable
 final class LibraryModel {
-    private var records: [JSONValue] = []
+    private var snapshot = LibrarySnapshot([])
+    private var records: [JSONValue] { snapshot.records }
     private let cache = LibraryCache()
     private let service = LibraryService()
     private var session: AccountSession?
     private var generation = 0
     private var mutation = 0
+    private var syncing = false
     private var writable = false
     private var presentationReady = false
     private(set) var presentation = LibraryPresentation()
@@ -21,12 +23,11 @@ final class LibraryModel {
     var busy = false
     var error: String?
     var owner: String { session?.user.id ?? "guest" }
-    var items: [LibraryRecord] { records.map { LibraryRecord(raw: $0) }.filter { !$0.id.isEmpty && $0.media != nil }.sorted { $0.activityTimestamp == $1.activityTimestamp ? $0.id < $1.id : $0.activityTimestamp > $1.activityTimestamp } }
+    var items: [LibraryRecord] { snapshot.items }
     var continuing: [LibraryRecord] {
-        var display = LibraryDisplay(); display.filter = .continuing
-        return LibraryListing.select(items.filter { $0.continuing && presentation.dismissed[$0.id]?.hides($0) != true }, display: display, query: "")
+        snapshot.continuing.filter { presentation.dismissed[$0.id]?.hides($0) != true }
     }
-    var hiddenContinuing: [LibraryRecord] { items.filter { $0.continuing && presentation.dismissed[$0.id]?.hides($0) == true } }
+    var hiddenContinuing: [LibraryRecord] { snapshot.continuing.filter { presentation.dismissed[$0.id]?.hides($0) == true } }
     func selectedItems(query: String) -> [LibraryRecord] {
         LibraryListing.select(filteredItems(for: presentation.display.filter), display: presentation.display, query: query)
     }
@@ -79,7 +80,8 @@ final class LibraryModel {
     func watched(_ media: Media) -> Bool {
         if media.episodic {
             let available = (media.videos ?? []).filter { $0.season != nil && $0.episode != nil && $0.available }
-            return !available.isEmpty && available.allSatisfy { watchedEpisodes(media).contains($0.watchedKey) }
+            let watched = watchedEpisodes(media)
+            return !available.isEmpty && available.allSatisfy { watched.contains($0.watchedKey) }
         }
         return items.first { $0.id == media.id }?.watched ?? false
     }
@@ -100,7 +102,7 @@ final class LibraryModel {
     func setSession(_ session: AccountSession?) async {
         generation += 1
         let current = generation
-        self.session = session; records = []; error = nil; writable = false; loading = true
+        self.session = session; snapshot = LibrarySnapshot([]); syncing = false; error = nil; writable = false; loading = true
         favorites = MediaFavorites(owner: session?.user.id ?? "guest")
         discovery = DiscoveryPreferences(owner: session?.user.id ?? "guest")
         presentation = LibraryPresentation(); reloadPresentation()
@@ -108,24 +110,25 @@ final class LibraryModel {
         defer { if current == generation { loading = false } }
         let owner = session?.user.id ?? "guest"
         do {
-            let saved = try await cache.read(owner: owner)
+            let saved = try await cache.readSnapshot(owner: owner)
             guard current == generation else { return }
-            records = saved; writable = true
+            snapshot = saved; writable = true
         } catch { self.error = safeMessage(error); return }
         await sync()
     }
     func sync() async {
-        guard let session, !busy else { return }
+        guard let session, !busy, !syncing else { return }
         let current = generation
         let revision = mutation
+        syncing = true
         loading = true
-        defer { if current == generation { loading = false } }
+        defer { if current == generation { loading = false; syncing = false } }
         do {
             let next = try await service.records(session)
             guard current == generation, revision == mutation else { return }
-            try await cache.save(next, owner: session.user.id)
+            let prepared = try await cache.saveSnapshot(next, owner: session.user.id)
             guard current == generation, revision == mutation else { return }
-            records = next; error = nil; writable = true
+            snapshot = prepared; error = nil; writable = true
         } catch is CancellationError { return }
         catch { if current == generation { self.error = safeMessage(error); Diagnostics.shared.recordFailure(error) } }
     }
@@ -205,9 +208,9 @@ final class LibraryModel {
             if let activeSession { try await service.save(record, session: activeSession) }
             guard current == generation else { return false }
             var next = records.filter { $0["_id"].string != media.id }; next.append(record)
-            try await cache.save(next, owner: activeSession?.user.id ?? "guest")
+            let prepared = try await cache.saveSnapshot(next, owner: activeSession?.user.id ?? "guest")
             guard current == generation else { return false }
-            records = next; error = nil; return true
+            snapshot = prepared; error = nil; return true
         } catch is CancellationError { return false }
         catch { if current == generation { self.error = safeMessage(error); Diagnostics.shared.recordFailure(error) }; return false }
     }

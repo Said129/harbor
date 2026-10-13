@@ -19,6 +19,7 @@ final class DetailModel {
         StreamPreferences.shared.preferredContinuation(offers, previous: lastPlayedSource)
     }
     private let service: HarborService
+    private var metadataLoaded: Bool
     private var streamRequest = UUID()
     private var resolutionRequest = UUID()
     private var sourceContinuation: SourceContinuation?
@@ -30,9 +31,10 @@ final class DetailModel {
     func clearSourceChange() { sourceContinuation = nil }
     func cancelResolution() { resolutionRequest = UUID(); resolving = false }
 
-    init(_ media: Media, service: HarborService) { self.media = media; self.service = service }
+    init(_ media: Media, service: HarborService, metadataLoaded: Bool = false) { self.media = media; self.service = service; self.metadataLoaded = metadataLoaded }
 
     func load(_ addons: [Addon], owner: String, library: LibraryModel) async {
+        guard !metadataLoaded else { return }
         loadingMetadata = true
         defer { loadingMetadata = false }
         do {
@@ -40,6 +42,7 @@ final class DetailModel {
             try Task.checkCancellation()
             guard library.owner == owner else { return }
             media = result
+            metadataLoaded = true
         }
         catch is CancellationError { return }
         catch { if library.owner == owner { self.error = safeMessage(error) } }

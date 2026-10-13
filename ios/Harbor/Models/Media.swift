@@ -144,7 +144,7 @@ struct Episode: Codable, Identifiable, Hashable, Sendable {
     var watchedKey: String { "\(season ?? 0):\(episode ?? 0)" }
     var releaseDate: Date? {
         guard let released else { return nil }
-        return ISO8601DateFormatter().date(from: released) ?? ISO8601DateFormatter().date(from: String(released.prefix(10)) + "T00:00:00Z")
+        return ISO8601DateParser.shared.date(released) ?? ISO8601DateParser.shared.date(String(released.prefix(10)) + "T00:00:00Z")
     }
     var available: Bool { releaseDate.map { $0 <= Date() } ?? true }
 }

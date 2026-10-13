@@ -20,7 +20,7 @@ struct DetailView: View {
     @Environment(\.openURL) private var openURL
     @AppStorage("downloadsCellular") private var cellularDownloads = false
     private let playImmediately: Bool
-    init(media: Media, app: AppModel, playImmediately: Bool = false) { self.app = app; self.playImmediately = playImmediately; _model = State(initialValue: DetailModel(media, service: app.service)) }
+    init(media: Media, app: AppModel, playImmediately: Bool = false, metadataLoaded: Bool = false) { self.app = app; self.playImmediately = playImmediately; _model = State(initialValue: DetailModel(media, service: app.service, metadataLoaded: metadataLoaded)) }
 
     var body: some View {
         @Bindable var model = model

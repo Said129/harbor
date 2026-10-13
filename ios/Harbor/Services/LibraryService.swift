@@ -30,6 +30,11 @@ struct LibraryService: Sendable {
 }
 
 actor LibraryCache {
+    func readSnapshot(owner: String) throws -> LibrarySnapshot { LibrarySnapshot(try read(owner: owner)) }
+    func saveSnapshot(_ records: [JSONValue], owner: String) throws -> LibrarySnapshot {
+        try save(records, owner: owner)
+        return LibrarySnapshot(records)
+    }
     func read(owner: String) throws -> [JSONValue] {
         do {
             let data = try Data(contentsOf: location(owner))
