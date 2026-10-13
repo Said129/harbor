@@ -40,7 +40,10 @@ struct DetailView: View {
         .background { PlayerOrientationAnchor(enabled: showStreams && (showConnecting || model.resolving || model.playback != nil || pendingEpisode != nil)).allowsHitTesting(false) }
         .task {
             let owner = app.library.owner
-            await model.load(app.addons, owner: owner, library: app.library)
+            let selected = model.media
+            await model.load(app.addons, owner: owner, library: app.library) {
+                try await app.continuationMetadata(selected)
+            }
             guard !Task.isCancelled, owner == app.library.owner else { return }
             app.library.discovery.track(.open, media: model.media)
             if playImmediately { playTitle() }

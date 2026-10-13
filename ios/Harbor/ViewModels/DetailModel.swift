@@ -33,12 +33,14 @@ final class DetailModel {
 
     init(_ media: Media, service: HarborService, metadataLoaded: Bool = false) { self.media = media; self.service = service; self.metadataLoaded = metadataLoaded }
 
-    func load(_ addons: [Addon], owner: String, library: LibraryModel) async {
+    func load(_ addons: [Addon], owner: String, library: LibraryModel, fetch: (@MainActor () async throws -> Media)? = nil) async {
         guard !metadataLoaded else { return }
         loadingMetadata = true
         defer { loadingMetadata = false }
         do {
-            let result = try await service.metadata(media, addons: addons)
+            let result: Media
+            if let fetch { result = try await fetch() }
+            else { result = try await service.metadata(media, addons: addons) }
             try Task.checkCancellation()
             guard library.owner == owner else { return }
             media = result

@@ -83,6 +83,28 @@ final class LibraryPerformanceTests: XCTestCase {
     }
 
     @MainActor
+    func testColdDetailJoinsTheMetadataRequestAlreadyLoadingForItsCard() async throws {
+        actor Counter {
+            var count = 0
+            func load(_ media: Media) async throws -> Media { count += 1; try await Task.sleep(for: .milliseconds(20)); return media }
+            func value() -> Int { count }
+        }
+        let original = try XCTUnwrap(Media.parse(.object(["id": .string("local-cold-detail"), "name": .string("Library")]), kind: "movie"))
+        let resolved = try XCTUnwrap(Media.parse(.object(["id": .string("local-cold-detail"), "name": .string("Ready")]), kind: "movie"))
+        let store = MediaMetadataStore(), counter = Counter()
+        async let card = store.value(for: "cold-detail") { try await counter.load(resolved) }
+        let model = DetailModel(original, service: HarborService())
+        await model.load([], owner: "guest", library: LibraryModel()) {
+            try await store.value(for: "cold-detail") { try await counter.load(resolved) }
+        }
+        _ = try await card
+        let requests = await counter.value()
+        XCTAssertEqual(requests, 1, "A tap during hydration must join the card request")
+        XCTAssertEqual(model.media.name, "Ready"); XCTAssertNil(model.error)
+        XCTAssertFalse(model.loadingMetadata)
+    }
+
+    @MainActor
     func testHydratedContinuationOpensWithoutRepeatingMetadataLoading() async throws {
         let media = try XCTUnwrap(Media.parse(.object(["id": .string("local-perf-no-provider"), "name": .string("Ready"), "type": .string("series"), "videos": .array([.object(["id": .string("local-perf-no-provider:1:1"), "season": .integer(1), "episode": .integer(1)])])]), kind: "series"))
         let model = DetailModel(media, service: HarborService(), metadataLoaded: true)

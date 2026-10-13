@@ -2,6 +2,8 @@
 
 El propietario comunica lentitud general al entrar y navegar por la build 85, además de una espera larga al tocar la imagen de Continuar viendo. Indica que la IPA anterior era más fluida. Este informe físico invalida la suposición de que el recorrido UI de CI bastaba para acreditar fluidez con una biblioteca privada grande.
 
+Dispositivo comunicado por el propietario: iPhone 14, iOS 26.6.2. La versión se registra tal como la indica; el runner Apple no sustituye la comprobación en ese teléfono.
+
 ## Causa localizada y corrección preparada
 
 La build 84 ordenaba la biblioteca por una cadena de fecha. La 85 corrigió la compatibilidad de fechas cloud y pasó a ordenar por `activityTimestamp`, pero lo calculaba creando formateadores ISO en cada comparación. `LibraryModel.items` repetía el parsing y el orden completo en cada consulta de SwiftUI. Las tarjetas nuevas también calculaban episodios/vistos en su cuerpo y descargaban metadata que la ficha volvía a solicitar antes de reproducir.
@@ -13,11 +15,12 @@ La candidata 86 conserva la semántica corregida de fechas numéricas/ISO, rewat
 - Calcular la presentación de cada tarjeta cuando cambian sus datos, evitando descomprimir/ordenar episodios en cada actualización de su cuerpo.
 - Compartir solicitudes y conservar metadata de Continuar viendo en memoria durante cinco minutos, con un máximo de 64 entradas y claves que separan cuenta, addons configurados y ajustes de metadata. No guardar credenciales en disco ni incluirlas en diagnósticos.
 - Abrir la ficha/reproducción con la metadata ya cargada de la tarjeta, evitando otra petición obligatoria. Los datos faltantes siguen cargándose por el recorrido habitual.
+- Si se toca una tarjeta antes de terminar su hidratación, la ficha se une a la petición compartida que ya está en curso, en lugar de iniciar otra descarga. Las fichas usan la misma caché acotada por cuenta/addons/configuración.
 - Evitar sincronizaciones de biblioteca simultáneas para la misma sesión y decodificar una vez el conjunto de vistos al comprobar una serie.
 
 ## Verificación
 
-`LibraryPerformanceTests` compara el coste de ordenación de la 85 con el snapshot y cien lecturas, sobre 250 registros con fechas ISO. También comprueba actualización sin mutar datos anteriores, campos del proveedor, fechas ISO/numéricas, solicitudes compartidas, separación por cuenta/addons/idioma, reintento tras fallo y apertura de metadata ya preparada. La suite de continuidad existente conserva sus comprobaciones de capítulos y rewatch.
+`LibraryPerformanceTests` compara el coste de ordenación de la 85 con el snapshot y cien lecturas, sobre 250 registros con fechas ISO. También comprueba actualización sin mutar datos anteriores, campos del proveedor, fechas ISO/numéricas, solicitudes compartidas, separación por cuenta/addons/idioma, reintento tras fallo, apertura de metadata ya preparada y primer toque durante una descarga compartida todavía en curso. La suite de continuidad existente conserva sus comprobaciones de capítulos y rewatch.
 
 La validación Apple completa, el resultado numérico de rendimiento, la revisión visual y una nueva IPA están pendientes. Se conserva la entrega 85 y el respaldo 84 hasta que la candidata pase su validación. No se atribuye una medida física del iPhone a la comparación de CI.
 
