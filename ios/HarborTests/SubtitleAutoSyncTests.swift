@@ -29,6 +29,9 @@ final class SubtitleAutoSyncTests: XCTestCase {
         let output = document.applying(.init(offset: 2, ratio: 1.25, confidence: 0.9))
         XCTAssertTrue(output.contains("00:03.250 --> 00:04.500 align:start\nOne"))
         XCTAssertTrue(output.contains("00:10.750 --> 00:12.000\nFour"))
+        let bom = try SubtitleDocument("\u{FEFF}" + text.replacingOccurrences(of: "\n", with: "\r\n"))
+        XCTAssertTrue(bom.vtt)
+        XCTAssertTrue(bom.applying(.init(offset: 2, ratio: 1.25, confidence: 0.9)).contains("00:03.250 --> 00:04.500 align:start\r\nOne"))
         XCTAssertThrowsError(try SubtitleDocument("No timing data"))
         XCTAssertTrue(SubtitleAutoSync.windows(900).allSatisfy { $0.start + $0.length <= 900 })
     }

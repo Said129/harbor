@@ -15,6 +15,8 @@ def main():
     parser.add_argument("--commit", required=True)
     parser.add_argument("--evidence", type=Path)
     parser.add_argument("--validation-scope", choices=["full", "affected", "sources-search-subtitles"], default="full")
+    parser.add_argument("--native-selection", default="")
+    parser.add_argument("--previous-runs", default="")
     args = parser.parse_args()
     report = json.loads(args.report.read_text(encoding="utf-8"))
     with args.ipa.open("rb") as file:
@@ -54,14 +56,22 @@ def main():
         if args.validation_scope == "sources-search-subtitles" else
         "Simulator service/UI tests pass before this workflow stage. "
     )
+    if args.validation_scope == "sources-search-subtitles" and args.native_selection:
+        if not args.previous_runs:
+            raise SystemExit("A focused follow-up must identify its preserved feature validation")
+        validation = (
+            f"Native follow-up cases passed: {args.native_selection}. "
+            f"Accepted unchanged native cases are preserved from completed run(s) {args.previous_runs}. "
+            "Live Danmachi mapping and content-only search/recent-history UI pass in this run. "
+            "Unchanged features retain build 86 validation; the full suite was not repeated. "
+        )
     notes = (
         "Native iPhone development build, unsigned. This draft preserves the output for owner review and local signing.\n\n"
         f"Commit: `{args.commit}`\n\n"
         f"SHA-256: `{digest}`\n\n"
         "Requires iOS 17 or later and valid signing before installation. No certificate or provisioning profile is included. "
         f"{validation}Opening the player does not certify physical video/audio playback. "
-        "Essential mobile journeys and started native features remain in progress; "
-        "the complete Desktop inventory is a reference under docs/ios/MOBILE_SCOPE.md.\n"
+        "The Desktop inventory and documented platform limits remain under docs/ios/MOBILE_SCOPE.md.\n"
     )
     with tempfile.TemporaryDirectory(prefix="harbor-draft-") as temporary:
         body = Path(temporary) / "notes.md"

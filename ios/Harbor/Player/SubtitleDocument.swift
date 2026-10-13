@@ -7,7 +7,8 @@ struct SubtitleDocument: Sendable {
     let vtt: Bool
     init(_ text: String) throws {
         self.text = text
-        vtt = text.trimmingCharacters(in: .whitespacesAndNewlines).hasPrefix("WEBVTT")
+        let header = text.first == "\u{FEFF}" ? String(text.dropFirst()) : text
+        vtt = header.trimmingCharacters(in: .whitespacesAndNewlines).hasPrefix("WEBVTT")
         let pattern = #"(?m)^((?:\d{1,3}:)?\d{2}:\d{2}[,.]\d{3})[ \t]+-->[ \t]+((?:\d{1,3}:)?\d{2}:\d{2}[,.]\d{3})"#
         let regex = try NSRegularExpression(pattern: pattern)
         let source = text as NSString

@@ -16,7 +16,11 @@ on:
         type: string
         default: ""
       validation_runs:
-        description: "Completed validation run IDs from that exact source"
+        description: "Completed evidence runs (exact source for reuse; reviewed unchanged cases for feature follow-ups)"
+        type: string
+        default: ""
+      native_test_selection:
+        description: "Optional comma-separated affected native test identifiers; leave blank for the complete feature group"
         type: string
         default: ""
       reviewed_external_failures:
@@ -69,8 +73,13 @@ jobs:
       contents: write
     env:
       IPHONEOS_DEPLOYMENT_TARGET: "17.0"
+      HARBOR_NATIVE_SELECTION: ${{ inputs.native_test_selection }}
+      HARBOR_PREVIOUS_RUNS: ${{ inputs.validation_runs }}
     steps:
       - uses: actions/checkout@v6
+      - name: Validate focused native follow-up selection
+        if: ${{ inputs.validation_scope == 'sources-search-subtitles' && inputs.native_test_selection != '' }}
+        run: python3 scripts/ios/select-feature-tests.py --selection "$HARBOR_NATIVE_SELECTION" --output ios/build/feature-native-selection.txt
       - name: Check reserved feature delivery draft before compiling
         if: ${{ inputs.validation_scope == 'sources-search-subtitles' && inputs.save_draft_build == true }}
         env:
@@ -81,7 +90,7 @@ jobs:
           gh release view "$tag" --repo "$GITHUB_REPOSITORY" --json isDraft,targetCommitish > /tmp/harbor-reserved.json
           python3 -c 'import json,os; v=json.load(open("/tmp/harbor-reserved.json")); assert v["isDraft"] and v["targetCommitish"] == os.environ["GITHUB_SHA"]'
           mkdir -p ios/build
-          python3 -c 'import json,os; json.dump({"source":os.environ["GITHUB_SHA"],"scope":"sources-search-subtitles","preservedBaseline":"c3e3d28abc46b868417f655b4167394c2a48b22c","tests":"SearchAndSourcesTests, SubtitleAutoSyncTests, SubtitlePlaybackTests, AccountCollectionTests, live Danmachi aliases, search UI"},open("ios/build/validation-plan.json","w"),indent=2)'
+          python3 -c 'import json,os; json.dump({"source":os.environ["GITHUB_SHA"],"scope":"sources-search-subtitles","preservedBaseline":"c3e3d28abc46b868417f655b4167394c2a48b22c","nativeSelection":os.environ.get("HARBOR_NATIVE_SELECTION") or "SearchAndSourcesTests, SubtitleAutoSyncTests, SubtitlePlaybackTests, AccountCollectionTests","preservedFeatureRuns":os.environ.get("HARBOR_PREVIOUS_RUNS"),"live":"Danmachi aliases and search/history UI"},open("ios/build/validation-plan.json","w"),indent=2)'
           gh release upload "$tag" ios/build/validation-plan.json --repo "$GITHUB_REPOSITORY"
       - name: Select installed Xcode
         shell: bash
@@ -174,6 +183,10 @@ jobs:
             selection=(-only-testing:HarborTests/WebPageDialogTests)
           elif [[ "${{ inputs.validation_scope }}" == "sources-search-subtitles" ]]; then
             selection=(-only-testing:HarborTests/SearchAndSourcesTests -only-testing:HarborTests/SubtitleAutoSyncTests -only-testing:HarborTests/SubtitlePlaybackTests -only-testing:HarborTests/AccountCollectionTests)
+            if [[ -s ios/build/feature-native-selection.txt ]]; then
+              selection=()
+              while IFS= read -r identifier; do selection+=("-only-testing:$identifier"); done < ios/build/feature-native-selection.txt
+            fi
           fi
           xcodebuild -project ios/Harbor.xcodeproj -scheme Harbor -configuration Debug -destination "platform=iOS Simulator,id=$IOS_SIMULATOR,arch=$IOS_SIMULATOR_ARCH" -derivedDataPath ios/build/DerivedData -clonedSourcePackagesDirPath ios/build/SourcePackages -resultBundlePath ios/build/Tests.xcresult "${selection[@]}" -parallel-testing-enabled NO CODE_SIGNING_ALLOWED=YES CODE_SIGN_IDENTITY=- test 2>&1 | tee ios/build/logs/tests.log
       - name: Preserve failed native render evidence in a draft Release
@@ -263,7 +276,7 @@ jobs:
           fi
           xcrun xcresulttool export attachments --path ios/build/Tests.xcresult --output-path ios/build/live-attachments/native-tests
           ditto -c -k --keepParent ios/build/live-attachments ios/build/iphone-live-evidence.zip
-          python3 scripts/ios/save-draft-build.py --repo "$GITHUB_REPOSITORY" --ipa ios/build/Harbor-unsigned.ipa --report ios/build/Harbor-unsigned.json --commit "$GITHUB_SHA" --evidence ios/build/iphone-live-evidence.zip --validation-scope "${{ inputs.validation_scope }}"
+          python3 scripts/ios/save-draft-build.py --repo "$GITHUB_REPOSITORY" --ipa ios/build/Harbor-unsigned.ipa --report ios/build/Harbor-unsigned.json --commit "$GITHUB_SHA" --evidence ios/build/iphone-live-evidence.zip --validation-scope "${{ inputs.validation_scope }}" --native-selection "$HARBOR_NATIVE_SELECTION" --previous-runs "$HARBOR_PREVIOUS_RUNS"
       - name: Preserve diagnostic evidence
         if: ${{ always() && inputs.upload_artifacts == true }}
         uses: actions/upload-artifact@v4

@@ -75,20 +75,27 @@ enum SubtitleAutoSync {
     }
 
     static func speech(_ source: PlaybackSource, window: Window, audioID: Int?) throws -> [(Double, Double)] {
+        let metadata = FileManager.default.temporaryDirectory.appendingPathComponent("harbor-sub-sync-" + UUID().uuidString + ".txt")
+        // Generated iPhone container paths are safe lavfi option values. Never
+        // interpolate a caller-supplied path into the filter graph.
+        guard metadata.path.rangeOfCharacter(from: CharacterSet(charactersIn: " \t\r\n:,'[]\\;")) == nil,
+              FileManager.default.createFile(atPath: metadata.path, contents: nil, attributes: [.protectionKey: FileProtectionType.completeUntilFirstUserAuthentication]) else { throw HarborError(code: "subtitle-sync-audio") }
+        defer { try? FileManager.default.removeItem(at: metadata) }
         guard let handle = mpv_create() else { throw HarborError(code: "subtitle-sync-audio") }
-        defer { mpv_terminate_destroy(handle) }
+        var destroyed = false
+        defer { if !destroyed { mpv_terminate_destroy(handle) } }
         let options = [("config", "no"), ("load-scripts", "no"), ("terminal", "no"), ("vid", "no"), ("sid", "no"),
                        ("ao", "null"), ("untimed", "yes"), ("audio-pitch-correction", "no"), ("keep-open", "no"),
                        ("network-timeout", "10"), ("cache", "no"), ("demuxer-max-bytes", "16MiB"),
                        ("aid", audioID.map(String.init) ?? "auto"), ("start", String(window.start)), ("length", String(window.length)),
-                       ("af", "lavfi=[aformat=channel_layouts=mono,highpass=f=200,lowpass=f=3000,silencedetect=noise=-30dB:d=0.35]"),
-                       ("msg-level", "all=warn,ffmpeg=info")]
+                       ("af", "lavfi=[aformat=channel_layouts=mono,highpass=f=200,lowpass=f=3000,silencedetect=noise=-30dB:d=0.35,ametadata=mode=print:file=\(metadata.path)]"),
+                       ("msg-level", "all=no")]
         for (name, value) in options { guard mpv_set_option_string(handle, name, value) >= 0 else { throw HarborError(code: "subtitle-sync-audio") } }
         if let headers = source.headers, !headers.isEmpty {
             let value = headers.sorted { $0.key < $1.key }.map { "\($0.key): \($0.value)".replacingOccurrences(of: ",", with: ",,") }.joined(separator: ",")
             guard !value.contains("\r"), !value.contains("\n"), mpv_set_option_string(handle, "http-header-fields", value) >= 0 else { throw HarborError(code: "subtitle-sync-audio") }
         }
-        guard mpv_initialize(handle) >= 0, mpv_request_log_messages(handle, "info") >= 0 else { throw HarborError(code: "subtitle-sync-audio") }
+        guard mpv_initialize(handle) >= 0 else { throw HarborError(code: "subtitle-sync-audio") }
         let command = ["loadfile", source.url]
         let arguments = command.map { strdup($0) }
         defer { arguments.forEach { free($0) } }
@@ -96,21 +103,25 @@ enum SubtitleAutoSync {
         var pointers = arguments.map { $0.map { UnsafePointer<CChar>($0) } } + [nil]
         guard mpv_command_async(handle, 1, &pointers) >= 0 else { throw HarborError(code: "subtitle-sync-audio") }
         let deadline = Date().addingTimeInterval(90)
-        var silences: [(Double, Double)] = [], open: Double?, observed = false
         while Date() < deadline {
             try Task.checkCancellation()
             guard let event = mpv_wait_event(handle, 0.1)?.pointee else { continue }
-            if event.event_id == MPV_EVENT_LOG_MESSAGE, let data = event.data {
-                let message = data.assumingMemoryBound(to: mpv_event_log_message.self).pointee
-                guard let pointer = message.text else { continue }
-                let line = String(cString: pointer)
-                if let time = value(line, after: "silence_start:") { open = time; observed = true }
-                if let time = value(line, after: "silence_end:"), let start = open { silences.append((start, time)); open = nil; observed = true }
-            }
             if event.event_id == MPV_EVENT_END_FILE {
                 guard let data = event.data else { throw HarborError(code: "subtitle-sync-audio") }
                 let end = data.assumingMemoryBound(to: mpv_event_end_file.self).pointee
-                guard end.error >= 0, end.reason == MPV_END_FILE_REASON_EOF, observed else { throw HarborError(code: "subtitle-sync-audio") }
+                guard end.error >= 0, end.reason == MPV_END_FILE_REASON_EOF else { throw HarborError(code: "subtitle-sync-audio") }
+                // FFmpeg's process-global log callback belongs to the first mpv
+                // instance. Filter metadata stays with this analysis handle,
+                // including when the real player already owns that callback.
+                mpv_terminate_destroy(handle); destroyed = true
+                guard let size = try metadata.resourceValues(forKeys: [.fileSizeKey]).fileSize, size > 0, size <= 8 * 1_024 * 1_024 else { throw HarborError(code: "subtitle-sync-audio") }
+                let text = try String(contentsOf: metadata, encoding: .utf8)
+                var silences: [(Double, Double)] = [], open: Double?, observed = false
+                for line in text.components(separatedBy: .newlines) {
+                    if let time = value(line, after: "lavfi.silence_start=") { open = time; observed = true }
+                    if let time = value(line, after: "lavfi.silence_end="), let start = open { silences.append((start, time)); open = nil; observed = true }
+                }
+                guard observed else { throw HarborError(code: "subtitle-sync-audio") }
                 if let start = open { silences.append((start, window.start + window.length)) }
                 return complement(silences, window: window)
             }

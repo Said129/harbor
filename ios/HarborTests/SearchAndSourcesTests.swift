@@ -29,7 +29,7 @@ final class SearchAndSourcesTests: XCTestCase {
         XCTAssertEqual(trust["allowSeasonPacks"], .bool(true)); XCTAssertEqual(trust["allowSizeOutliers"], .bool(true))
         let off = StreamFilterConfiguration(level: "off", addonOrder: true).trust(media, season: 1, episode: 7)
         XCTAssertEqual(off["disabled"], .bool(true))
-        let source: JSONValue = .object(["addonId": .string("test"), "addonName": .string("Test"), "title": .string("Danmachi.S01E07.1080p.WEB-DL.H264.AAC"), "url": .string("https://example.org/video.mkv"), "size": .integer(180 * 1_024 * 1_024)])
+        let source: JSONValue = .object(["addonId": .string("test"), "addonName": .string("Test"), "title": .string("Danmachi.S01E07.1080p.WEB-DL.H264.AAC"), "url": .string("https://example.org/video.mkv"), "size": .integer(Int64(180) * 1_024 * 1_024)])
         let request = try JSONEncoder().encode(JSONValue.object(["operation": .string("rank"), "streams": .array([source]), "trust": trust, "score": .object([:])]))
         XCTAssertEqual(try CoreBridge.invoke(request, as: JSONValue.self)["picker"]["all"].array.count, 1, "A normal anime episode must not be rejected using feature-film size limits")
     }
