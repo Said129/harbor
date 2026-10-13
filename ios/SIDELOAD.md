@@ -1,6 +1,6 @@
 # Instalar y comprobar Harbor para iPhone
 
-La build 86 corrige la regresión de lentitud de la 85 y está entregada en `C:/Users/Said/Downloads/Harbor-unsigned.ipa`. Fuente de app `c3e3d28abc46b868417f655b4167394c2a48b22c`; [compilación arm64 38450204545](https://github.com/Said129/harbor/actions/runs/38450204545) aprobada. Por petición del propietario se conservan resultados aprobados del mismo código: 76 métodos y una omisión PiP del simulador, con los dos fallos de red de un intento posterior registrados por separado. Las tres pruebas UI de la 86 pasaron; se reutiliza la revisión visual previa para diseño/recursos sin cambios, sin afirmar que se revisaron capturas nuevas de la 86. La fluidez física en el iPhone 14 sigue pendiente de confirmación. Procedencia y límites en [DELIVERY_2026-10-13.md](../docs/ios/DELIVERY_2026-10-13.md).
+La build 87 está entregada en `C:/Users/Said/Downloads/Harbor-iPhone-87.ipa` y como última versión en `Harbor-unsigned.ipa`. Corrige consultas/filtros de fuentes anime y añade búsqueda de contenido, historial borrable y sincronización opcional de subtítulos externos SRT/VTT. Fuente `925fdd05b39f8ba0cdb3329c4c16879a5f31efe6`, [compilación 38474226961](https://github.com/Said129/harbor/actions/runs/38474226961) aprobada. Catorce métodos afectados tienen resultados aprobados: once conservados y tres ejecutados en la revisión final; las demás áreas mantienen la evidencia aceptada de la 86. Se revisaron 3 capturas nuevas de búsqueda/historial. Addons y URLs configuradas se comparten por Stremio; los ajustes generales siguen locales. La cifra privada de trece fuentes de Core Nexus y la comprobación física de la 87 siguen pendientes. Informe: [DELIVERY_2026-10-14.md](../docs/ios/DELIVERY_2026-10-14.md).
 
 La IPA está sin firmar y requiere iPhone con iOS 17 o posterior. El gate de simulador/dispositivo compilado no acredita instalación ni reproducción en el iPhone físico del propietario.
 
@@ -11,7 +11,7 @@ La IPA está sin firmar y requiere iPhone con iOS 17 o posterior. El gate de sim
 3. Conserva la misma identidad de firma y el bundle ID `site.harbor.iphone`. Instala la actualización sobre Harbor para conservar datos, sin desinstalar la app anterior ni cambiar el requisito mínimo de iOS.
 4. Abre la app y comprueba tus addons y biblioteca. La guía y el informe de esta entrega están junto a la IPA en Descargas.
 
-El paquete tiene 36997265 bytes y SHA-256 `a2ea66b50641d9ba7d0a927d60873fce1b90717ed7ac51b7eb0115b2a05953ce`. Para comprobar la copia:
+El paquete tiene 37104770 bytes y SHA-256 `d11b5368b019f54f1d45f6ad0da045cd43707dacb7e59966c42bd8954413f77d`. Para comprobar la copia:
 
 ```powershell
 Get-FileHash -LiteralPath 'C:/Users/Said/Downloads/Harbor-unsigned.ipa' -Algorithm SHA256

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-13",
+  "updatedAt": "2026-10-14",
   "authority": "Explicit scope change by the repository owner in the current conversation",
   "status": "delivered_with_physical_and_private_verification_pending",
   "objective": "Create a native iPhone Harbor faithful to Desktop beta 0.9.130 identity and selected mobile functions. Preserve everything implemented and finish native increments already started. For remaining work implement essential functions and useful mobile settings, without requiring every adaptable Desktop option.",
@@ -509,7 +509,7 @@
     "singleFinalIpa": true,
     "intermediateAppleBuilds": false,
     "intermediateCommitsSkipCI": true,
-    "finalValidationScope": "full",
+    "finalValidationScope": "Affected source/search/account/subtitle cases; accepted unchanged build 86 evidence preserved at owner request",
     "finalPublicServices": true,
     "finalUIJourney": true,
     "keepPreviousVerifiedIpa": true
@@ -522,9 +522,9 @@
     "La reproducción necesita enlaces HTTP(S) resueltos por el addon o proveedor. Torrents/infoHash sin URL resuelta, resolución nativa de YouTube/NZB y contenidos DRM no están soportados. El protocolo público y los fixtures no certifican todos los transportes ni la disponibilidad del servidor de vídeo antiguo del addon de ejemplo.",
     "Los catálogos, metadata, imágenes y libros dependen de proveedores externos; pueden responder con errores o timeouts. El bloqueo publicitario de Submanhwa cubre las redes y reglas comprobadas y puede necesitar mantenimiento si cambia el sitio.",
     "La compilación Linux se intentó y no pudo iniciarse por ausencia de cargo en este host Windows, que tampoco dispone de WSL. No se presenta el gate de iPhone como validación de Linux.",
-    "La fluidez física de la build 86 requiere confirmación del propietario en su iPhone 14 con iOS 26.6.2 comunicado. El benchmark mide operaciones de biblioteca en simulador, no FPS ni la velocidad de toda la app en el teléfono.",
-    "Se reutilizan resultados aprobados del mismo código, por petición del propietario. En el intento más reciente hubo dos fallos de red en Cinemeta y MyAnimeList/Jikan; ambas pruebas habían pasado con esta misma fuente y sus fallos posteriores se conservan. La disponibilidad de esos servicios externos puede variar.",
-    "La revisión visual anterior de 89 imágenes se conserva para recursos y diseño sin cambios. Las tres pruebas UI de la build 86 pasaron, pero GitHub rechazó subir sus capturas con HTTP 403. No se afirma haber revisado imágenes nuevas de la 86."
+    "La base 86 reutiliza resultados aprobados de su misma fuente por petición del propietario; uno de sus intentos registró dos fallos de red en Cinemeta y MyAnimeList/Jikan, conservados junto a los pases previos. La 87 conserva once casos afectados sin cambios y ejecuta los tres restantes; el proof registra todas las fuentes y observaciones. La disponibilidad de esos servicios externos puede variar.",
+    "La revisión visual anterior de 89 imágenes se conserva para recursos y diseño sin cambios. Las tres pruebas UI de la build 86 pasaron, pero GitHub rechazó subir sus capturas con HTTP 403. No se afirma haber revisado imágenes nuevas de la 86.",
+    "La 87 requiere contraste físico de las trece fuentes privadas Core Nexus de Danmachi T1E7 y sincronización con el vídeo/subtítulo del propietario. Los resultados públicos/fixtures no certifican ese recuento ni precisión universal."
   ],
   "previousFinalCandidate": {
     "build": 85,
@@ -799,6 +799,26 @@
       "note": "The individual benchmark passed. The containing runs had an unrelated UI timeout or external-service network failures; their overall conclusions are retained in validation-proof.json."
     },
     "ownerAuthorizedReuse": true,
+    "physicalConfirmationPending": false,
+    "ownerAcceptance": "Owner reports the build 86 additions and fixes work well; no new instrumented physical measurement."
+  },
+  "latestDelivery": {
+    "build": 87,
+    "source": "925fdd05b39f8ba0cdb3329c4c16879a5f31efe6",
+    "run": 38474226961,
+    "ipa": "C:\\Users\\Said\\Downloads\\Harbor-iPhone-87.ipa",
+    "latest": "C:\\Users\\Said\\Downloads\\Harbor-unsigned.ipa",
+    "backup86": "C:\\Users\\Said\\Downloads\\Harbor-iPhone-86.ipa",
+    "sha256": "d11b5368b019f54f1d45f6ad0da045cd43707dacb7e59966c42bd8954413f77d",
+    "bytes": 37104770,
+    "affected_tests_passed": 14,
+    "physical_core_nexus_count_verified": false,
+    "document": "docs/ios/DELIVERY_2026-10-14.md",
+    "newCases": 3,
+    "preservedCases": 11,
+    "preservedFeatureRun": 38468972612,
+    "reviewedNewImages": 3,
+    "settingsSync": "Stremio addon/configuration URLs; general preferences remain local",
     "physicalConfirmationPending": true
   }
 }

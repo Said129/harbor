@@ -1,5 +1,9 @@
 # Regresión de rendimiento de la build 85
 
+## Confirmación posterior del propietario
+
+El propietario confirmó «funcionan bien los añadidos y los arreglos» antes de solicitar las mejoras de fuentes/búsqueda/subtítulos de la 87. Se registra su aceptación de los arreglos de la 86; no es una medición nueva de FPS ni una comprobación física de la 87.
+
 El propietario comunica lentitud general al entrar y navegar por la build 85, además de una espera larga al tocar la imagen de Continuar viendo. Indica que la IPA anterior era más fluida. Este informe físico invalida la suposición de que el recorrido UI de CI bastaba para acreditar fluidez con una biblioteca privada grande.
 
 Dispositivo comunicado por el propietario: iPhone 14, iOS 26.6.2. La versión se registra tal como la indica; el runner Apple no sustituye la comprobación en ese teléfono.
