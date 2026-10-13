@@ -579,6 +579,7 @@ final class MPVController: GLKViewController {
 
     func cancelSubtitleSync() {
         subtitleSyncRequest = UUID(); subtitleSyncTask?.cancel(); subtitleSyncTask = nil; state.subtitleSyncing = false
+        if state.subtitleSyncMessage == "Analizando el audio… Puedes seguir viendo." { state.subtitleSyncMessage = nil }
     }
 
     func subtitleAutoSyncPreferenceChanged() {
@@ -588,7 +589,7 @@ final class MPVController: GLKViewController {
 
     private func considerSubtitleAutoSync() {
         guard UIApplication.shared.applicationState == .active, UserDefaults.standard.bool(forKey: "subtitleAutoSync"), subtitleSyncTask == nil, !state.subtitleChanging,
-              state.loaded, state.duration >= 60, state.secondarySubtitle == nil, let track = state.primarySubtitle,
+              state.loaded, !state.buffering, state.duration >= 60, state.secondarySubtitle == nil, let track = state.primarySubtitle,
               track.external, track.isTextSubtitle, !synchronizedTracks.contains(track.id), !track.externalFilename.isEmpty else { return }
         let key = "\(mediaRevision):\(track.id):\(state.tracks.first { $0.type == "audio" && $0.selected }?.id ?? 0)"
         guard subtitleSyncKey != key else { return }
@@ -607,7 +608,10 @@ final class MPVController: GLKViewController {
         subtitleSyncTask = Task { @MainActor [weak self] in
             let worker = Task.detached(priority: .utility) { try await SubtitleAutoSync.analyze(source: source, subtitle: track.externalFilename, duration: duration, audioID: audioID) }
             defer {
-                if let self, self.subtitleSyncRequest == request { self.subtitleSyncTask = nil; self.state.subtitleSyncing = false }
+                if let self, self.subtitleSyncRequest == request {
+                    self.subtitleSyncTask = nil; self.state.subtitleSyncing = false
+                    if self.state.subtitleSyncMessage == "Analizando el audio… Puedes seguir viendo.", !self.state.subtitleChanging { self.state.subtitleSyncMessage = nil }
+                }
             }
             do {
                 let (document, result) = try await withTaskCancellationHandler { try await worker.value } onCancel: { worker.cancel() }
@@ -880,7 +884,13 @@ final class MPVController: GLKViewController {
                 } else if property.format == MPV_FORMAT_FLAG {
                     let flag = value.assumingMemoryBound(to: Int32.self).pointee != 0
                     if key == "pause" { state.paused = flag }
-                    if key == "paused-for-cache" { state.buffering = flag }
+                    if key == "paused-for-cache" {
+                        state.buffering = flag
+                        if flag && state.subtitleSyncing {
+                            cancelSubtitleSync()
+                            state.subtitleSyncMessage = "Análisis detenido para priorizar la reproducción. Puedes reintentarlo cuando termine de cargar."
+                        }
+                    }
                     if key == "mute" { state.muted = flag }
                 } else if property.format == MPV_FORMAT_INT64 {
                     let number = value.assumingMemoryBound(to: Int64.self).pointee

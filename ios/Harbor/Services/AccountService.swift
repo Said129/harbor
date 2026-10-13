@@ -14,8 +14,8 @@ struct AccountService: Sendable {
         return AccountSession(authKey: authKey, user: user)
     }
 
-    func addons(_ session: AccountSession) async throws -> AccountCollection {
-        try await call("addons", ["authKey": .string(session.authKey)])
+    func addons(_ session: AccountSession, timeout: TimeInterval = 30) async throws -> AccountCollection {
+        try await call("addons", ["authKey": .string(session.authKey)], timeout: timeout)
     }
 
     func save(_ collection: AccountCollection, session: AccountSession) async throws {
@@ -24,9 +24,9 @@ struct AccountService: Sendable {
         guard result.saved else { throw HarborError(code: "account-addons-save-response") }
     }
 
-    private func call<T: Decodable & Sendable>(_ action: String, _ fields: [String: JSONValue]) async throws -> T {
+    private func call<T: Decodable & Sendable>(_ action: String, _ fields: [String: JSONValue], timeout: TimeInterval = 30) async throws -> T {
         let plan: Plan = try await core.call("accountRequest", ["action": .string(action), "fields": .object(fields)])
-        let response = try await http.post(plan.url, body: plan.body)
+        let response = try await http.post(plan.url, body: plan.body, timeout: timeout)
         do {
             return try await core.call("accountResponse", ["action": .string(action), "response": response])
         } catch {

@@ -196,7 +196,7 @@ final class AppModel {
         if let existing = addonRefresh { task = existing }
         else {
             let accounts = accounts
-            task = Task { try await accounts.addons(old.session) }
+            task = Task { try await accounts.addons(old.session, timeout: 5) }
             addonRefresh = task
         }
         defer { addonRefresh = nil }

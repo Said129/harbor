@@ -1,4 +1,6 @@
 import XCTest
+import GLKit
+import UIKit
 @testable import Harbor
 
 final class SubtitleAutoSyncTests: XCTestCase {
@@ -28,8 +30,10 @@ final class SubtitleAutoSyncTests: XCTestCase {
         XCTAssertTrue(output.contains("00:03.250 --> 00:04.500 align:start\nOne"))
         XCTAssertTrue(output.contains("00:10.750 --> 00:12.000\nFour"))
         XCTAssertThrowsError(try SubtitleDocument("No timing data"))
+        XCTAssertTrue(SubtitleAutoSync.windows(900).allSatisfy { $0.start + $0.length <= 900 })
     }
-    func testActualBundledMPVExtractsSpeechWithoutPlayingAudio() async throws {
+    @available(iOS, deprecated: 12.0)
+    @MainActor func testActualBundledMPVExtractsSpeechWithoutPlayingAudio() async throws {
         let pairs = cues()
         let directory = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString, isDirectory: true)
         try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true)
@@ -57,5 +61,44 @@ final class SubtitleAutoSyncTests: XCTestCase {
         let result = try XCTUnwrap(SubtitleAutoSync.solve(audio: extracted, cues: pairs.map { ($0.0 - 4, $0.1 - 4) }, duration: 230, windows: [.init(start: 2, length: 225)]))
         XCTAssertEqual(result.offset, 4, accuracy: 0.2)
         print("Native auto-sync: actual libmpv extracted \(extracted.count) intervals; recovered offset=\(result.offset), ratio=\(result.ratio), confidence=\(result.confidence)")
+
+        func stamp(_ seconds: Double) -> String {
+            let ms = Int((seconds * 1_000).rounded())
+            return String(format: "%02d:%02d:%02d,%03d", ms / 3_600_000, (ms / 60_000) % 60, (ms / 1_000) % 60, ms % 1_000)
+        }
+        let input = directory.appendingPathComponent("offset-original.srt")
+        let originalText = pairs.enumerated().map { "\($0.offset + 1)\n\(stamp($0.element.0 - 4)) --> \(stamp($0.element.1 - 4))\nKnown speech \($0.offset + 1)\n" }.joined(separator: "\n")
+        try originalText.write(to: input, atomically: true, encoding: .utf8)
+        let scene = try XCTUnwrap(UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }.first)
+        let previous = scene.windows.first { $0.isKeyWindow }
+        let window = UIWindow(windowScene: scene)
+        window.frame = CGRect(x: 0, y: 0, width: 320, height: 180)
+        let state = PlayerState()
+        let playback = PlaybackSource(url: url.absoluteString, headers: nil, subtitles: [.init(url: input.absoluteString, lang: "eng", id: "original")], via: "test-fixture")
+        let controller = MPVController(source: playback, state: state, startPaused: true)
+        window.rootViewController = controller; window.makeKeyAndVisible(); controller.loadViewIfNeeded()
+        defer { controller.close(); window.isHidden = true; window.rootViewController = nil; previous?.makeKeyAndVisible() }
+        let surface = try XCTUnwrap(controller.view as? GLKView)
+        func wait(_ condition: () -> Bool) async throws {
+            let end = Date().addingTimeInterval(30)
+            while Date() < end && !condition() { surface.display(); try await Task.sleep(for: .milliseconds(20)) }
+            XCTAssertTrue(condition(), state.subtitleSyncMessage ?? state.subtitleIssue ?? state.error ?? "No native synchronization result")
+        }
+        try await wait { state.loaded && state.duration > 200 && state.tracks.contains { $0.type == "sub" } }
+        let original = try XCTUnwrap(state.tracks.first { $0.type == "sub" })
+        controller.selectSubtitle(String(original.id))
+        try await wait { !state.subtitleChanging && state.primarySubtitle?.id == original.id }
+        controller.synchronizeSubtitle()
+        try await wait { !state.subtitleSyncing && !state.subtitleChanging && state.subtitleSyncOriginal == original.id }
+        let synchronized = try XCTUnwrap(state.primarySubtitle)
+        XCTAssertNotEqual(synchronized.id, original.id)
+        XCTAssertEqual(try String(contentsOf: input, encoding: .utf8), originalText, "Automatic synchronization must not edit the source subtitle")
+        let saved = synchronized.externalFilename.hasPrefix("file:") ? try XCTUnwrap(URL(string: synchronized.externalFilename)) : URL(fileURLWithPath: synchronized.externalFilename)
+        let adjusted = try SubtitleDocument(String(contentsOf: saved, encoding: .utf8))
+        XCTAssertEqual(try XCTUnwrap(adjusted.cues.first).start, pairs[0].0, accuracy: 0.2)
+        controller.restoreSubtitleBeforeSync()
+        try await wait { !state.subtitleChanging && state.primarySubtitle?.id == original.id && state.subtitleSyncOriginal == nil }
+        XCTAssertTrue(state.loaded); XCTAssertNil(state.error); XCTAssertNil(state.subtitleIssue)
+        print("Native auto-sync: applied acknowledged synchronized track, preserved original file and restored original track")
     }
 }

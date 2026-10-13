@@ -11,7 +11,8 @@ enum SubtitleAutoSync {
             let start = max(5, duration * 0.05)
             return [.init(start: start, length: max(30, duration * 0.9 - start))]
         }
-        return [.init(start: 180, length: 600), .init(start: max(780, duration - 720), length: 600)]
+        let late = max(780, duration - 720)
+        return [.init(start: 180, length: 600), .init(start: late, length: min(600, duration - late))]
     }
 
     static func analyze(source: PlaybackSource, subtitle: String, duration: Double, audioID: Int?) async throws -> (SubtitleDocument, SubtitleSyncResult?) {
@@ -88,7 +89,8 @@ enum SubtitleAutoSync {
             guard !value.contains("\r"), !value.contains("\n"), mpv_set_option_string(handle, "http-header-fields", value) >= 0 else { throw HarborError(code: "subtitle-sync-audio") }
         }
         guard mpv_initialize(handle) >= 0, mpv_request_log_messages(handle, "info") >= 0 else { throw HarborError(code: "subtitle-sync-audio") }
-        let arguments = ["loadfile", source.url].map { strdup($0) }
+        let command = ["loadfile", source.url]
+        let arguments = command.map { strdup($0) }
         defer { arguments.forEach { free($0) } }
         guard arguments.allSatisfy({ $0 != nil }) else { throw HarborError(code: "subtitle-sync-audio") }
         var pointers = arguments.map { $0.map { UnsafePointer<CChar>($0) } } + [nil]

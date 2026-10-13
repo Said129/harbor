@@ -22,10 +22,10 @@ struct HTTPClient: Sendable {
         return URLSession(configuration: configuration, delegate: AccountRedirectPolicy(), delegateQueue: nil)
     }()
 
-    func post(_ value: String, body: JSONValue) async throws -> JSONValue {
+    func post(_ value: String, body: JSONValue, timeout: TimeInterval = 30) async throws -> JSONValue {
         let allowed = ["login", "getUser", "addonCollectionGet", "addonCollectionSet", "datastoreMeta", "datastoreGet", "datastorePut"].map { "https://api.strem.io/api/\($0)" }
         guard allowed.contains(value), let url = URL(string: value) else { throw HarborError(code: "invalid-account-request") }
-        var request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 30)
+        var request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: max(1, min(30, timeout)))
         request.httpMethod = "POST"
         request.httpBody = try JSONEncoder().encode(body)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
