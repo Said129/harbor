@@ -296,6 +296,19 @@ jobs:
       - name: Verify preserved tests against the exact application source
         id: preserved
         run: python3 "$RUNNER_TEMP/reuse-iphone-validation.py" --source "$VALIDATED_SOURCE" --runs "$VALIDATION_RUNS" --external-failures "$REVIEWED_EXTERNAL_FAILURES" --output ios/build/validation-proof.json
+      - name: Confirm write access to the reserved draft before building
+        run: |
+          set -euo pipefail
+          tag="iphone-unsigned-${VALIDATED_SOURCE:0:12}"
+          gh release view "$tag" --repo "$GITHUB_REPOSITORY" --json isDraft,targetCommitish,assets > ios/build/reserved-draft.json
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          draft = json.loads(Path('ios/build/reserved-draft.json').read_text())
+          assert draft['isDraft'] and draft['targetCommitish'] == os.environ['VALIDATED_SOURCE']
+          assert not any(item['name'].endswith(('.ipa', '.zip')) for item in draft['assets']), 'A build artifact already exists; review it before replacement'
+          PY
+          gh release upload "$tag" ios/build/validation-proof.json --repo "$GITHUB_REPOSITORY" --clobber
       - name: Select installed Xcode
         run: |
           sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer
@@ -375,7 +388,7 @@ jobs:
             xcrun xcresulttool export attachments --path ios/build/PendingUI.xcresult --output-path ios/build/reviewed-evidence/pending-ui
           fi
           cp ios/build/validation-proof.json ios/build/reviewed-evidence/validation-proof.json
-          ditto -c -k --keepParent ios/build/reviewed-evidence ios/build/iphone-live-evidence.zip
+          ditto -c -k --keepParent ios/build/reviewed-evidence ios/build/iphone-validation-evidence.zip
       - name: Build device without signing
         run: |
           set -euo pipefail
@@ -386,9 +399,9 @@ jobs:
         if: inputs.save_draft_build == true
         run: |
           set -euo pipefail
-          python3 scripts/ios/save-draft-build.py --repo "$GITHUB_REPOSITORY" --ipa ios/build/Harbor-unsigned.ipa --report ios/build/Harbor-unsigned.json --commit "$VALIDATED_SOURCE" --evidence ios/build/iphone-live-evidence.zip
           tag="iphone-unsigned-${VALIDATED_SOURCE:0:12}"
-          gh release upload "$tag" ios/build/validation-proof.json --repo "$GITHUB_REPOSITORY"
+          gh release upload "$tag" ios/build/Harbor-unsigned.ipa ios/build/Harbor-unsigned.json ios/build/iphone-validation-evidence.zip --repo "$GITHUB_REPOSITORY"
+          gh release upload "$tag" ios/build/validation-proof.json --repo "$GITHUB_REPOSITORY" --clobber
           python3 - <<'PY'
           import json
           from pathlib import Path
