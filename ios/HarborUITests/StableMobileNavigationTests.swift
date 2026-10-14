@@ -31,9 +31,16 @@ import XCTest
         XCTAssertTrue(importer.label.contains("Import from Files"), "The native literal must follow the selected interface language")
         importer.tap()
         let cancel = app.buttons["Cancel"].firstMatch
-        XCTAssertTrue(cancel.waitForExistence(timeout: 10), "The system picker must open on iPhone and iPad")
-        capture(app, "ebook-system-file-picker"); cancel.tap()
-        app.buttons["ebook-reading-help"].tap()
+        // The first Documents view-service launch on a cold CI simulator can
+        // take longer than the Harbor view. Wait for the real system control.
+        let opened = cancel.waitForExistence(timeout: 60)
+        capture(app, "ebook-system-file-picker")
+        XCTAssertTrue(opened, "The system picker must open on iPhone and iPad")
+        cancel.tap()
+        let help = app.buttons["ebook-reading-help"]
+        let ready = XCTNSPredicateExpectation(predicate: NSPredicate(format: "isHittable == true"), object: help)
+        XCTAssertEqual(XCTWaiter.wait(for: [ready], timeout: 10), .completed)
+        help.tap()
         XCTAssertTrue(app.staticTexts["Apple Books"].waitForExistence(timeout: 5))
         capture(app, "ebook-reading-help")
         if UIDeviceIsPad(app) {

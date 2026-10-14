@@ -190,9 +190,15 @@ final class StableMobileTests: XCTestCase {
         let previous = scene.windows.first { $0.isKeyWindow }
         let window = UIWindow(windowScene: scene); window.frame = CGRect(origin: .zero, size: size)
         let host = UIHostingController(rootView: content.preferredColorScheme(.dark)); window.rootViewController = host; window.makeKeyAndVisible()
-        defer { window.isHidden = true; window.rootViewController = nil; previous?.makeKeyAndVisible() }
+        var disposed = false
+        defer { if !disposed { window.isHidden = true; window.rootViewController = nil; previous?.makeKeyAndVisible() } }
         try await Task.sleep(for: .milliseconds(450)); host.view.layoutIfNeeded()
         let image = UIGraphicsImageRenderer(bounds: host.view.bounds).image { _ in _ = host.view.drawHierarchy(in: host.view.bounds, afterScreenUpdates: true) }
         let attachment = XCTAttachment(image: image); attachment.name = name; attachment.lifetime = .keepAlways; add(attachment)
+        // Let UIKit finish hiding the host before detaching its controller.
+        // Removing it in the same turn interrupts appearance forwarding.
+        window.isHidden = true; previous?.makeKeyAndVisible()
+        try await Task.sleep(for: .milliseconds(400))
+        window.rootViewController = nil; disposed = true
     }
 }
