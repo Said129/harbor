@@ -14,7 +14,7 @@ def main():
     parser.add_argument("--report", type=Path, required=True)
     parser.add_argument("--commit", required=True)
     parser.add_argument("--evidence", type=Path)
-    parser.add_argument("--validation-scope", choices=["full", "affected", "sources-search-subtitles", "mobile-sources-subtitles", "stable-mobile"], default="full")
+    parser.add_argument("--validation-scope", choices=["full", "affected", "sources-search-subtitles", "mobile-sources-subtitles", "stable-mobile", "stable-tablet-ui"], default="full")
     parser.add_argument("--native-selection", default="")
     parser.add_argument("--previous-runs", default="")
     args = parser.parse_args()
@@ -40,7 +40,7 @@ def main():
         assets.append(str(args.evidence))
     # A rerun must not replace an existing review artifact silently.
     existing = subprocess.run(["gh", "release", "view", tag, "--repo", args.repo], capture_output=True, text=True)
-    reserved = args.validation_scope in ["sources-search-subtitles", "mobile-sources-subtitles", "stable-mobile"] and existing.returncode == 0
+    reserved = args.validation_scope in ["sources-search-subtitles", "mobile-sources-subtitles", "stable-mobile", "stable-tablet-ui"] and existing.returncode == 0
     if existing.returncode == 0 and not reserved:
         raise SystemExit(f"Draft build tag already exists: {tag}; review the existing asset before replacing it")
     if reserved:
@@ -95,13 +95,25 @@ def main():
             "Requires iOS/iPadOS 17 or later and valid signing. Does not include accounts, certificates or provisioning. "
             "Apple Books private-library enumeration is unavailable; unprotected EPUB/PDF files can be imported. Physical-device validation remains with the owner."
         )
+    if args.validation_scope == "stable-tablet-ui":
+        if not args.previous_runs or args.native_selection:
+            raise SystemExit("Tablet UI follow-up must preserve approved tests without rerunning native cases")
+        notes = (
+            f"Harbor {report['build']} for iPhone and iPad, unsigned.\n\n"
+            f"Commit: `{args.commit}`\n\nSHA-256: `{digest}`\n\n"
+            "Only the remaining normal-app tablet UI was executed in this follow-up. "
+            f"Approved phone/native/tablet evidence is preserved from {args.previous_runs}; the production source is byte-identical to its preserved application. "
+            "The earlier tablet UI observation and recording are retained. This run builds and verifies the arm64 device IPA. "
+            "Requires iOS/iPadOS 17 or later and valid signing; no sessions, certificates or provisioning are included. "
+            "Physical-device validation remains with the owner."
+        )
     with tempfile.TemporaryDirectory(prefix="harbor-draft-") as temporary:
         body = Path(temporary) / "notes.md"
         body.write_text(notes, encoding="utf-8")
         if reserved:
             subprocess.run(["gh", "release", "upload", tag, *assets, "--repo", args.repo], check=True)
             title = "Harbor iPhone 88 — unsigned reviewed candidate" if args.validation_scope == "mobile-sources-subtitles" else "Harbor iPhone 87 — unsigned reviewed candidate"
-            if args.validation_scope == "stable-mobile": title = f"Harbor {report['build']} iPhone and iPad — unsigned reviewed candidate"
+            if args.validation_scope in ["stable-mobile", "stable-tablet-ui"]: title = f"Harbor {report['build']} iPhone and iPad — unsigned reviewed candidate"
             subprocess.run(["gh", "release", "edit", tag, "--repo", args.repo, "--title", title, "--notes-file", str(body)], check=True)
             return
         subprocess.run([

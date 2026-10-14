@@ -10,10 +10,12 @@ import XCTest
         capture(app, "home-before-x-fixture")
         remove.tap()
         let removed = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == false"), object: remove)
-        XCTAssertEqual(XCTWaiter.wait(for: [removed], timeout: 5), .completed)
+        // A tablet accessibility snapshot can outlive the visual removal.
+        let removalResult = XCTWaiter.wait(for: [removed], timeout: 45)
+        capture(app, "home-after-x-fixture")
+        XCTAssertEqual(removalResult, .completed)
         XCTAssertFalse(app.otherElements["player-surface"].exists)
         XCTAssertTrue(app.buttons["main-menu"].exists, "X must not navigate into playback")
-        capture(app, "home-after-x-fixture")
         navigate(app, "settings")
         let headings = ["English": "Settings", "Русский": "Настройки", "العربية": "الإعدادات", "Português": "Configurações", "Español": "Configuración"]
         for name in ["English", "Русский", "العربية", "Português", "Español", "English"] {
