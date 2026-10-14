@@ -113,8 +113,9 @@ private struct HarborSettingsSwitchStyle: ToggleStyle {
                 Capsule().fill(configuration.isOn ? HarborTheme.ink : ThemePreferences.shared.color("edge"))
                     .overlay(alignment: .leading) {
                         Circle().fill(HarborTheme.background).frame(width: 26, height: 26)
-                            .offset(x: (configuration.isOn ? 19 : 3) * (direction == .rightToLeft ? -1 : 1))
-                    }.frame(width: 48, height: 32).frame(height: 44)
+                            .offset(x: direction == .rightToLeft ? (configuration.isOn ? 3 : 19) : (configuration.isOn ? 19 : 3))
+                    }.environment(\.layoutDirection, .leftToRight)
+                    .frame(width: 48, height: 32).frame(height: 44)
                     .animation(reduceMotion ? nil : .easeInOut(duration: 0.2), value: configuration.isOn)
             }.contentShape(Rectangle()).opacity(enabled ? 1 : 0.6)
         }.buttonStyle(.plain)

@@ -122,6 +122,12 @@ final class StableMobileTests: XCTestCase {
         for code in ["en", "ar"] {
             defaults.set(code, forKey: "uiLanguage")
             XCTAssertNotEqual(DesktopInterfaceText.value("Continuar viendo"), "Continuar viendo")
+            let direction: LayoutDirection = code == "ar" ? .rightToLeft : .leftToRight
+            let switchRenderer = ImageRenderer(content: HarborSettingsToggle("", isOn: .constant(true))
+                .frame(width: 80, height: 44).background(HarborTheme.background).environment(\.layoutDirection, direction))
+            switchRenderer.scale = 1
+            let switchImage = try XCTUnwrap(switchRenderer.uiImage?.cgImage)
+            XCTAssertEqual(try switchRimSegments(switchImage), 2, "The dark thumb must leave a visible capsule rim on both sides in \(code)")
             for width in [CGFloat(393), CGFloat(1024)] {
                 let content = VStack(alignment: .leading, spacing: 24) {
                     HarborSettingsToggle(DesktopInterfaceText.value("Rotate featured banners automatically"), isOn: .constant(true))
@@ -135,6 +141,24 @@ final class StableMobileTests: XCTestCase {
             }
         }
         defaults.set("classic", forKey: "homeMode")
+    }
+
+    private func switchRimSegments(_ image: CGImage) throws -> Int {
+        var pixels = [UInt8](repeating: 0, count: image.width * image.height * 4)
+        return try pixels.withUnsafeMutableBytes { buffer in
+            let context = try XCTUnwrap(CGContext(data: buffer.baseAddress, width: image.width, height: image.height, bitsPerComponent: 8,
+                bytesPerRow: image.width * 4, space: CGColorSpaceCreateDeviceRGB(), bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue | CGBitmapInfo.byteOrder32Big.rawValue))
+            context.draw(image, in: CGRect(x: 0, y: 0, width: image.width, height: image.height))
+            let row = image.height / 2 * image.width * 4
+            var segments = 0, previous = false
+            for x in 0..<image.width {
+                let offset = row + x * 4
+                let light = Int(buffer[offset]) + Int(buffer[offset + 1]) + Int(buffer[offset + 2]) > 600
+                if light && !previous { segments += 1 }
+                previous = light
+            }
+            return segments
+        }
     }
 
     @MainActor func testTabletResizableReadingAndPlaybackOrientation() async throws {
