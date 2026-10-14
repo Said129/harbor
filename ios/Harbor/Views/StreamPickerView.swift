@@ -11,10 +11,9 @@ struct StreamPickerView: View {
     let refresh: () -> Void
     let back: () -> Void
     @State private var selectedID: Int?
-    @State private var sourcesExpanded = false
+    @State private var quality: String?
     @State private var provider: String?
     @State private var overviewExpanded = false
-    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     private var busy: Bool { model.resolving || model.playback != nil }
     private var selected: StreamOffer? {
@@ -22,15 +21,16 @@ struct StreamPickerView: View {
     }
     private var tiers: [StreamOffer] {
         var seen = Set<String>()
-        let representatives = model.offers.filter { seen.insert($0.quality).inserted }
-        let order = ["4K_DV", "4K_HDR", "4K", "1080p_HDR", "1080p", "720p", "SD", "ROUGH"]
-        return representatives.sorted { (order.firstIndex(of: $0.quality) ?? 8) < (order.firstIndex(of: $1.quality) ?? 8) }
+        let representatives = model.offers.filter { seen.insert($0.pickerQualityGroup).inserted }
+        let order = ["4K", "1080p", "720p", "SD", "ROUGH"]
+        return representatives.sorted { (order.firstIndex(of: $0.pickerQualityGroup) ?? 5) < (order.firstIndex(of: $1.pickerQualityGroup) ?? 5) }
     }
     private var providers: [StreamOffer] {
         var seen = Set<String>()
-        return model.offers.filter { seen.insert($0.pickerInstance).inserted }
+        return qualitySources.filter { seen.insert($0.pickerInstance).inserted }
     }
-    private var sources: [StreamOffer] { model.offers.filter { provider == nil || $0.pickerInstance == provider } }
+    private var qualitySources: [StreamOffer] { StreamPickerFilter.sources(model.offers, quality: quality, provider: nil) }
+    private var sources: [StreamOffer] { StreamPickerFilter.sources(model.offers, quality: quality, provider: provider) }
 
     var body: some View {
         ScrollView {
@@ -38,18 +38,15 @@ struct StreamPickerView: View {
                 navigation
                 header
                 content
-                Button(model.showAllSources ? "Aplicar mis filtros" : "Mostrar todas las fuentes sin filtrar") {
-                    model.showAllSources.toggle(); refresh()
-                }.disabled(model.loadingStreams || busy).font(HarborTheme.font(13)).frame(minHeight: 44)
-                    .accessibilityIdentifier("stream-toggle-filters")
             }.padding(20).frame(maxWidth: 760, alignment: .leading).frame(maxWidth: .infinity)
         }.background(HarborTheme.background).foregroundStyle(HarborTheme.ink)
             .toolbar(.hidden, for: .navigationBar).accessibilityIdentifier("stream-picker-scroll")
             .onChange(of: model.offers.map(\.id)) { _, _ in
                 if !model.offers.contains(where: { $0.id == selectedID }) { selectedID = nil }
+                if !model.offers.contains(where: { $0.pickerQualityGroup == quality }) { quality = nil }
                 if !providers.contains(where: { $0.pickerInstance == provider }) { provider = nil }
             }
-            .onChange(of: episode?.id) { _, _ in selectedID = nil; overviewExpanded = false; provider = nil }
+            .onChange(of: episode?.id) { _, _ in selectedID = nil; overviewExpanded = false; provider = nil; quality = nil }
     }
     private var navigation: some View {
         HStack(spacing: 12) {
@@ -117,7 +114,7 @@ struct StreamPickerView: View {
             if let downloadMessage { Text(downloadMessage).font(HarborTheme.font(13)).foregroundStyle(ThemePreferences.shared.color("ink-muted")) }
             StreamPrimaryCard(media: model.media, episode: episode, offer: offer, addonLogo: logo(offer), busy: busy, downloading: downloading,
                               play: { play(offer) }, download: download.map { action in { action(offer) } })
-            if tiers.count > 1 { qualityStrip }
+            qualityStrip
             sourceDrawer
         } else {
             emptySources
@@ -128,57 +125,55 @@ struct StreamPickerView: View {
             Text(DesktopInterfaceText.value("Switch quality")).font(HarborTheme.font(12, weight: .bold)).tracking(2.5).textCase(.uppercase)
                 .foregroundStyle(ThemePreferences.shared.color("ink-subtle"))
             StreamChipLayout(spacing: 10) {
+                Button { quality = nil; provider = nil } label: {
+                    Text("Todas · \(model.offers.count)").font(HarborTheme.font(13, weight: .semibold)).padding(.horizontal, 16).frame(minHeight: 56)
+                        .background(quality == nil ? HarborTheme.surface : .clear, in: .rect(cornerRadius: 8))
+                }.buttonStyle(.plain).disabled(busy).accessibilityIdentifier("stream-quality-all")
+                    .accessibilityAddTraits(quality == nil ? [.isSelected] : [])
                 ForEach(tiers) { offer in qualityButton(offer) }
             }
         }
     }
     private func qualityButton(_ offer: StreamOffer) -> some View {
-        let active = offer.quality == selected?.quality
-        return Button { selectedID = offer.id } label: {
+        let active = offer.pickerQualityGroup == quality
+        let count = model.offers.filter { $0.pickerQualityGroup == offer.pickerQualityGroup }.count
+        return Button { quality = offer.pickerQualityGroup; provider = nil; selectedID = offer.id } label: {
             HStack(spacing: 10) {
                 StreamFormatBadges(kinds: [offer.pickerLeadBadge], large: true)
                 VStack(alignment: .leading, spacing: 4) {
                     Text(DesktopInterfaceText.value(offer.pickerLeadLabel)).font(HarborTheme.font(12.5, weight: .bold))
-                    Text([offer.pickerStatus.map { DesktopInterfaceText.value($0) }, offer.pickerSize].compactMap { $0 }.joined(separator: " · "))
+                    Text("\(count) fuentes")
                         .font(HarborTheme.font(12, weight: .semibold)).foregroundStyle(ThemePreferences.shared.color("ink-subtle"))
                 }
             }.padding(.horizontal, 12).padding(.vertical, 10).frame(minHeight: 56)
                 .background(active ? HarborTheme.ink.opacity(0.05) : HarborTheme.background.opacity(0.6), in: .rect(cornerRadius: 8))
                 .overlay { RoundedRectangle(cornerRadius: 8).stroke(active ? HarborTheme.ink.opacity(0.35) : ThemePreferences.shared.color("edge-soft"), lineWidth: 1) }
         }.buttonStyle(.plain).disabled(busy).accessibilityAddTraits(active ? [.isSelected] : [])
-            .accessibilityIdentifier("stream-quality-" + offer.quality)
+            .accessibilityIdentifier("stream-quality-" + offer.pickerQualityGroup)
     }
     private var sourceDrawer: some View {
         VStack(alignment: .leading, spacing: 14) {
-            Button {
-                withAnimation(reduceMotion ? nil : .easeInOut(duration: 0.2)) { sourcesExpanded.toggle() }
-            } label: {
-                HStack(spacing: 8) {
-                    Text(DesktopInterfaceText.value(sourcesExpanded ? "Hide all sources" : "All sources")).font(HarborTheme.font(13, weight: .semibold))
-                    Text(String(model.offers.count)).font(HarborTheme.font(12)).foregroundStyle(ThemePreferences.shared.color("ink-subtle"))
-                    Image("settings-chevron-down").resizable().scaledToFit().frame(width: 14, height: 14).rotationEffect(.degrees(sourcesExpanded ? 180 : 0))
-                }.frame(minHeight: 44)
-            }.buttonStyle(.plain).accessibilityIdentifier("stream-all-sources")
-            if sourcesExpanded {
-                if providers.count > 1 { providerFilters }
-                LazyVStack(spacing: 0) {
-                    ForEach(Array(sources.enumerated()), id: \.element.id) { index, offer in
-                        if index > 0 { Divider().overlay(ThemePreferences.shared.color("edge-soft").opacity(0.3)) }
-                        StreamSourceRow(media: model.media, episode: episode, offer: offer, addonLogo: logo(offer), busy: busy, downloading: downloading,
-                                        play: { play(offer) }, download: download.map { action in { action(offer) } })
-                    }
-                }.background(HarborTheme.background.opacity(0.8), in: .rect(cornerRadius: 16))
-                    .overlay { RoundedRectangle(cornerRadius: 16).stroke(ThemePreferences.shared.color("edge-soft").opacity(0.6), lineWidth: 1) }
-                    .transition(.opacity)
-            }
+            HStack(spacing: 8) {
+                Text(quality == nil ? DesktopInterfaceText.value("All sources") : "Fuentes · \(quality == "1080p" ? "FHD" : quality ?? "")").font(HarborTheme.font(13, weight: .semibold))
+                Text(String(sources.count)).font(HarborTheme.font(12)).foregroundStyle(ThemePreferences.shared.color("ink-subtle"))
+            }.frame(minHeight: 44).accessibilityIdentifier("stream-source-count")
+            if providers.count > 1 { providerFilters }
+            LazyVStack(spacing: 0) {
+                ForEach(Array(sources.enumerated()), id: \.element.id) { index, offer in
+                    if index > 0 { Divider().overlay(ThemePreferences.shared.color("edge-soft").opacity(0.3)) }
+                    StreamSourceRow(media: model.media, episode: episode, offer: offer, addonLogo: logo(offer), busy: busy, downloading: downloading,
+                                    play: { play(offer) }, download: download.map { action in { action(offer) } })
+                }
+            }.background(HarborTheme.background.opacity(0.8), in: .rect(cornerRadius: 16))
+                .overlay { RoundedRectangle(cornerRadius: 16).stroke(ThemePreferences.shared.color("edge-soft").opacity(0.6), lineWidth: 1) }
         }
     }
     private var providerFilters: some View {
         ScrollView(.horizontal) {
             HStack(spacing: 8) {
-                providerPill(nil, name: DesktopInterfaceText.value("All"), count: model.offers.count)
+                providerPill(nil, name: DesktopInterfaceText.value("All"), count: qualitySources.count)
                 ForEach(providers) { offer in
-                    providerPill(offer.pickerInstance, name: offer.source, count: model.offers.filter { $0.pickerInstance == offer.pickerInstance }.count)
+                    providerPill(offer.pickerInstance, name: offer.source, count: qualitySources.filter { $0.pickerInstance == offer.pickerInstance }.count)
                 }
             }
         }.scrollIndicators(.hidden)

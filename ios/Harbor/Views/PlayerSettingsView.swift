@@ -75,7 +75,8 @@ struct PlayerSettingsView: View {
         chapters
         PlayerPlayModeSettings(automatic: $sources.automatic)
         HarborSettingsSection("Fuentes y calidad") {
-            HarborSettingsChoice("Filtros de fuentes", selection: $sources.filterLevel, choices: [("Estricto", "strict"), ("Equilibrado", "balanced"), ("Mostrar todas", "off")])
+            Text("El selector muestra todas las fuentes. Estos filtros y límites de calidad se aplican a la reproducción automática.").font(HarborTheme.font(12)).foregroundStyle(.secondary)
+            HarborSettingsChoice("Filtros para reproducción automática", selection: $sources.filterLevel, choices: [("Estricto", "strict"), ("Equilibrado", "balanced"), ("Sin filtrar", "off")])
             HarborSettingsToggle("Respetar el orden del addon", isOn: $sources.addonOrder)
             HarborSettingsToggle("Ocultar grabaciones de cámara · CAM / TS / TC", isOn: $sources.excludeCamera)
             HarborSettingsChoice("Calidad máxima", selection: $sources.maximum, choices: [("4K", 2160), ("1080p", 1080), ("720p", 720)])

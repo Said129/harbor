@@ -10,6 +10,7 @@ struct SubtitleTracksView: View {
     @State private var forcedOnly = false
     @State private var chooseFile = false
     @State private var fileError: String?
+    @State private var addonQuery = ""
     @State private var panelWidth: CGFloat = 0
     @AppStorage("subtitleAutoSync") private var autoSync = false
 
@@ -37,6 +38,13 @@ struct SubtitleTracksView: View {
         }
     }
     private var disabled: Bool { !state.loaded || state.subtitleChanging }
+    private var availableAddonSubtitles: [PlaybackSource.Subtitle] {
+        let query = addonQuery.trimmingCharacters(in: .whitespacesAndNewlines)
+        return state.addonSubtitles.filter { subtitle in
+            let language = SubtitleLanguages.name(subtitle.lang ?? "")
+            return query.isEmpty || [subtitle.title ?? "", subtitle.lang ?? "", language, SubtitleLanguages.preferenceName(subtitle.lang ?? "")].contains { $0.localizedCaseInsensitiveContains(query) }
+        }
+    }
 
     var body: some View {
         Group {
@@ -99,6 +107,7 @@ struct SubtitleTracksView: View {
                 languageButtons(vertical: false)
                 trackContent
             }
+            if state.canSearchAddonSubtitles || !state.addonSubtitles.isEmpty { addonSection }
             Divider()
             Toggle("Sincronizar automáticamente con el audio", isOn: $autoSync)
                 .accessibilityIdentifier("subtitle-auto-sync")
@@ -142,6 +151,47 @@ struct SubtitleTracksView: View {
                 Color.clear.onAppear { panelWidth = proxy.size.width }.onChange(of: proxy.size.width) { _, width in panelWidth = width }
             }
         }.accessibilityIdentifier("subtitle-original-panel")
+    }
+
+    private var addonSection: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            Divider()
+            HStack {
+                Text("Subtítulos de tus addons").font(HarborTheme.font(14, weight: .semibold))
+                Text(String(state.addonSubtitles.count)).font(HarborTheme.font(12)).foregroundStyle(.secondary)
+                Spacer()
+                if state.addonSubtitlesLoading { ProgressView() }
+                Button { state.addonSubtitlesRetry += 1 } label: { Image(systemName: "arrow.clockwise").frame(width: 44, height: 44) }
+                    .buttonStyle(.plain).disabled(!state.loaded || state.addonSubtitlesLoading)
+                    .accessibilityLabel("Buscar subtítulos de nuevo").accessibilityIdentifier("subtitle-addons-refresh")
+            }
+            if !state.addonSubtitles.isEmpty {
+                TextField("Filtrar por idioma o nombre", text: $addonQuery)
+                    .textInputAutocapitalization(.never).autocorrectionDisabled().textFieldStyle(.roundedBorder)
+                    .accessibilityIdentifier("subtitle-addons-search")
+                LazyVStack(alignment: .leading, spacing: 6) {
+                    ForEach(Array(availableAddonSubtitles.enumerated()), id: \.element.url) { index, subtitle in
+                        Button { state.controller?.loadAddonSubtitle(subtitle) } label: {
+                            HStack(spacing: 10) {
+                                let code = SubtitleLanguages.normalize(subtitle.lang ?? "")
+                                HarborLanguageFlag(code: code)
+                                VStack(alignment: .leading, spacing: 4) {
+                                    Text(SubtitleLanguages.name(code)).font(HarborTheme.font(13, weight: .semibold))
+                                    Text(subtitle.title ?? "Addon").font(HarborTheme.font(11)).foregroundStyle(.secondary).lineLimit(2)
+                                }
+                                Spacer(minLength: 0)
+                                if let track = state.primarySubtitle, subtitle.matchesFilename(track.externalFilename) { Image(systemName: "checkmark") }
+                                else { Image(systemName: "arrow.down.circle") }
+                            }.padding(10).frame(minHeight: 52).contentShape(Rectangle())
+                                .background(HarborTheme.surface, in: .rect(cornerRadius: 8))
+                        }.buttonStyle(.plain).disabled(disabled).accessibilityIdentifier("subtitle-addon-\(index)")
+                    }
+                }
+                if availableAddonSubtitles.isEmpty { Text("No hay subtítulos que coincidan con tu búsqueda.").font(HarborTheme.font(12)).foregroundStyle(.secondary) }
+            }
+            if let message = state.addonSubtitlesMessage { Text(message).font(HarborTheme.font(12)).foregroundStyle(.secondary).accessibilityIdentifier("subtitle-addons-status") }
+            Text("Toca un subtítulo para cargarlo. Puedes seguir viendo mientras se buscan los demás.").font(HarborTheme.font(11)).foregroundStyle(.secondary)
+        }.accessibilityIdentifier("subtitle-addons-section")
     }
 
     @ViewBuilder private func languageButtons(vertical: Bool) -> some View {

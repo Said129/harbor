@@ -9,21 +9,22 @@ final class DetailModel {
     var loading: Bool { loadingMetadata || loadingStreams }
     var resolving = false
     var offers: [StreamOffer] = []
+    var automaticOffers: [StreamOffer] = []
     var warnings: [String] = []
     var filteredSources = false
-    var showAllSources = false
     var error: String?
     var playback: PlaybackSession?
     var selectedEpisode: Episode?
     private var lastPlayedSource: StreamSourceIdentity?
     var continuationOffer: StreamOffer? {
-        StreamPreferences.shared.preferredContinuation(offers, previous: lastPlayedSource)
+        StreamPreferences.shared.preferredContinuation(automaticOffers, previous: lastPlayedSource)
     }
     private let service: HarborService
     private var metadataLoaded: Bool
     private var streamRequest = UUID()
     private var resolutionRequest = UUID()
     private var sourceContinuation: SourceContinuation?
+    private var streamAddons: [Addon] = []
 
     func prepareSourceChange(_ session: PlaybackSession, snapshot: ResumeSnapshot?) {
         sourceContinuation = snapshot.map { SourceContinuation(target: session.target, owner: session.owner, snapshot: $0, advanceStartedAtMs: session.advanceStartedAtMs ?? session.startMs) }
@@ -65,12 +66,13 @@ final class DetailModel {
     }
 
     func findStreams(_ addons: [Addon], episode: Episode? = nil) async {
-        if selectedEpisode?.id != episode?.id { showAllSources = false }
         let request = UUID()
         streamRequest = request
         loadingStreams = true
         error = nil
         offers = []
+        automaticOffers = []
+        streamAddons = addons
         warnings = []
         filteredSources = false
         playback = nil
@@ -78,10 +80,12 @@ final class DetailModel {
         defer { if streamRequest == request { loadingStreams = false } }
         do {
             let videoID = episode?.id ?? media.behaviorHints?.defaultVideoId ?? media.id
-            let result = try await service.streams(media, videoID: videoID, addons: addons, season: episode?.season, episode: episode?.episode, unfiltered: showAllSources)
+            let result = try await service.streams(media, videoID: videoID, addons: addons, season: episode?.season, episode: episode?.episode, unfiltered: true)
+            let automatic = try await service.automaticStreams(result.0, media: media, season: episode?.season, episode: episode?.episode)
             try Task.checkCancellation()
             guard streamRequest == request else { return }
-            offers = showAllSources ? result.0 : StreamPreferences.shared.filter(result.0)
+            offers = result.0
+            automaticOffers = StreamPreferences.shared.filter(automatic)
             warnings = result.1
             Diagnostics.shared.record(.streamsLoaded, count: offers.count)
             if offers.isEmpty {
@@ -128,6 +132,7 @@ final class DetailModel {
             lastPlayedSource = StreamSourceIdentity(offer)
             sourceContinuation = nil
             playback = PlaybackSession(source: source, target: target, startMs: start.ms, storageWarning: warning, progressEnabled: progressEnabled, owner: owner, resumeStore: resume, preservePosition: preservedPosition != nil, advanceStartedAtMs: preservedPosition == nil ? nil : continuation?.advanceStartedAtMs, promptForResume: start.prompt)
+            playback?.subtitleRequest = SubtitleRequest(media: media, videoID: episode?.id ?? media.behaviorHints?.defaultVideoId ?? media.id, season: episode?.season, episode: episode?.episode, addons: streamAddons, stream: offer.raw)
         }
         catch is CancellationError { return }
         catch { if request == streamRequest, resolution == resolutionRequest { self.error = safeMessage(error) } }

@@ -84,7 +84,7 @@ struct DetailView: View {
                         guard !Task.isCancelled, owner == app.library.owner else { return }
                         await model.findStreams(app.addons, episode: selectedEpisode)
                         guard !Task.isCancelled, owner == app.library.owner, shouldAutoplay, revision == selectionRevision else { return }
-                        if let offer = isContinuation ? model.continuationOffer : StreamPreferences.shared.preferred(model.offers) {
+                        if let offer = isContinuation ? model.continuationOffer : StreamPreferences.shared.preferred(model.automaticOffers) {
                             await model.play(offer, resume: app.resume, library: app.library)
                         }
                     }

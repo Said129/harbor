@@ -22,6 +22,27 @@ final class LiveServicesTests: XCTestCase {
         XCTAssertEqual(StreamRequestPolicy.ids(media, videoID: episode.id, season: 1, episode: 7), ["kitsu:9962:7", "tt4728568:1:7"])
         print("Live Danmachi S1E7: verified Kitsu and IMDb request identities from actual provider metadata")
     }
+    func testSubtitleAddonsReturnMovieSeriesAndMappedAnimeResults() async throws {
+        try requireOptIn()
+        let addon = try await service.install("https://opensubtitles-v3.strem.io/manifest.json")
+        let movie = Media(id: "tt15398776", type: "movie", name: "Oppenheimer")
+        let series = Media(id: "tt0903747", type: "series", name: "Breaking Bad")
+        let anime = try await AnimeService.metadata(id: "mal:28121", kind: "series")
+        let episode = try XCTUnwrap(anime.videos?.first { $0.season == 1 && $0.episode == 7 })
+        let requests = [
+            SubtitleRequest(media: movie, videoID: movie.id, season: nil, episode: nil, addons: [addon], stream: .null),
+            SubtitleRequest(media: series, videoID: "tt0903747:1:1", season: 1, episode: 1, addons: [addon], stream: .null),
+            SubtitleRequest(media: anime, videoID: episode.id, season: 1, episode: 7, addons: [addon], stream: .null)
+        ]
+        for request in requests {
+            let result = try await SubtitleAddonService().search(request)
+            XCTAssertGreaterThan(result.subtitles.count, 0, "The production subtitle addon query returned no results for \(request.media.name)")
+            XCTAssertEqual(result.failures, 0)
+            XCTAssertEqual(result.providers, 1)
+            XCTAssertTrue(result.subtitles.allSatisfy { $0.title?.contains("OpenSubtitles") == true && $0.lang?.isEmpty == false })
+            print("Actual subtitle addon: \(request.media.name), subtitles=\(result.subtitles.count)")
+        }
+    }
     func testAniListRailsAndCanonicalEpisodeMetadata() async throws {
         try requireOptIn()
         let definition = try XCTUnwrap(AnimeService.definitions().first { $0.id == "anilist-top100" })

@@ -14,7 +14,7 @@ def main():
     parser.add_argument("--report", type=Path, required=True)
     parser.add_argument("--commit", required=True)
     parser.add_argument("--evidence", type=Path)
-    parser.add_argument("--validation-scope", choices=["full", "affected", "sources-search-subtitles"], default="full")
+    parser.add_argument("--validation-scope", choices=["full", "affected", "sources-search-subtitles", "mobile-sources-subtitles"], default="full")
     parser.add_argument("--native-selection", default="")
     parser.add_argument("--previous-runs", default="")
     args = parser.parse_args()
@@ -40,7 +40,7 @@ def main():
         assets.append(str(args.evidence))
     # A rerun must not replace an existing review artifact silently.
     existing = subprocess.run(["gh", "release", "view", tag, "--repo", args.repo], capture_output=True, text=True)
-    reserved = args.validation_scope == "sources-search-subtitles" and existing.returncode == 0
+    reserved = args.validation_scope in ["sources-search-subtitles", "mobile-sources-subtitles"] and existing.returncode == 0
     if existing.returncode == 0 and not reserved:
         raise SystemExit(f"Draft build tag already exists: {tag}; review the existing asset before replacing it")
     if reserved:
@@ -73,12 +73,24 @@ def main():
         f"{validation}Opening the player does not certify physical video/audio playback. "
         "The Desktop inventory and documented platform limits remain under docs/ios/MOBILE_SCOPE.md.\n"
     )
+    if args.validation_scope == "mobile-sources-subtitles":
+        if not args.native_selection or not args.previous_runs:
+            raise SystemExit("Mobile follow-up must identify its selected tests and preserved validation")
+        notes = (
+            "Native iPhone 88, unsigned. Direct source list with quality/provider filters; installed subtitle addon discovery and on-demand subtitle loading.\n\n"
+            f"Commit: `{args.commit}`\n\nSHA-256: `{digest}`\n\n"
+            f"Affected native cases: {args.native_selection}. Actual public subtitle queries tested for movie, series and mapped anime. "
+            f"Accepted unchanged validation is preserved from {args.previous_runs}; the full suite was not repeated. "
+            "Native view attachments are layout evidence with clearly identified test data. Requires iOS 17 or later and valid signing before installation. "
+            "No account session, signing certificate or provisioning profile is included. Physical-device validation remains with the owner."
+        )
     with tempfile.TemporaryDirectory(prefix="harbor-draft-") as temporary:
         body = Path(temporary) / "notes.md"
         body.write_text(notes, encoding="utf-8")
         if reserved:
             subprocess.run(["gh", "release", "upload", tag, *assets, "--repo", args.repo], check=True)
-            subprocess.run(["gh", "release", "edit", tag, "--repo", args.repo, "--title", "Harbor iPhone 87 — unsigned reviewed candidate", "--notes-file", str(body)], check=True)
+            title = "Harbor iPhone 88 — unsigned reviewed candidate" if args.validation_scope == "mobile-sources-subtitles" else "Harbor iPhone 87 — unsigned reviewed candidate"
+            subprocess.run(["gh", "release", "edit", tag, "--repo", args.repo, "--title", title, "--notes-file", str(body)], check=True)
             return
         subprocess.run([
             "gh", "release", "create", tag,

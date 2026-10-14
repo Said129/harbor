@@ -153,6 +153,12 @@ struct HarborService: Sendable {
         try await core.call("resolveDirect", ["stream": offer.raw])
     }
 
+    func automaticStreams(_ offers: [StreamOffer], media: Media, season: Int?, episode: Int?) async throws -> [StreamOffer] {
+        let preferences = await StreamPreferences.shared.configuration()
+        let result: JSONValue = try await core.call("rank", ["streams": .array(offers.map(\.raw)), "trust": preferences.trust(media, season: season, episode: episode), "score": .object(["mediaKind": .string(media.type == "anime" ? "series" : media.type), "respectAddonOrder": .bool(preferences.addonOrder)])])
+        return result["picker"]["all"].array.enumerated().map { StreamOffer(id: $0.offset, raw: $0.element) }
+    }
+
     private func resources(_ addons: [Addon], _ resource: String, _ kind: String, _ id: String) async throws -> [RequestPlan] {
         try await core.call("resources", ["addons": try .encoded(addons), "resource": .string(resource), "kind": .string(kind), "id": .string(id)])
     }

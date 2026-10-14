@@ -209,7 +209,29 @@ struct PlayerView: View {
     }
 
     private func withLifecycle<V: View>(_ content: V) -> some View {
-        content.background { PlayerOrientationAnchor().allowsHitTesting(false) }.task(id: autoAdvanceReady) {
+        content.background { PlayerOrientationAnchor().allowsHitTesting(false) }
+        .task(id: "\(state.mediaGeneration):\(state.loaded):\(state.addonSubtitlesRetry)") {
+            guard state.loaded, let request = session.subtitleRequest, library.map({ $0.owner == session.owner }) ?? true else { return }
+            state.canSearchAddonSubtitles = true
+            state.addonSubtitlesLoading = true; state.addonSubtitlesMessage = nil
+            let generation = state.mediaGeneration
+            let retry = state.addonSubtitlesRetry
+            defer { if generation == state.mediaGeneration, retry == state.addonSubtitlesRetry { state.addonSubtitlesLoading = false } }
+            do {
+                let result = try await SubtitleAddonService().search(request) { batch in
+                    guard !Task.isCancelled, generation == state.mediaGeneration, library.map({ $0.owner == session.owner }) ?? true else { return }
+                    var urls = Set(state.addonSubtitles.map(\.url))
+                    state.addonSubtitles += batch.filter { urls.insert($0.url).inserted }
+                }
+                try Task.checkCancellation()
+                guard generation == state.mediaGeneration, library.map({ $0.owner == session.owner }) ?? true else { return }
+                if result.providers == 0 { state.addonSubtitlesMessage = "No hay addons de subtítulos activados compatibles con este título." }
+                else if result.failures > 0 { state.addonSubtitlesMessage = "Algunos addons no respondieron. Puedes reintentar la búsqueda." }
+                else if state.addonSubtitles.isEmpty { state.addonSubtitlesMessage = "Tus addons no devolvieron subtítulos para este título." }
+            } catch is CancellationError { return }
+            catch { if !Task.isCancelled { state.addonSubtitlesMessage = "No se pudieron buscar subtítulos. Puedes reintentarlo." } }
+        }
+        .task(id: autoAdvanceReady) {
             guard autoAdvanceReady, let next = adjacent.next else { return }
             requestEpisode(next)
         }

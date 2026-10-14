@@ -221,5 +221,5 @@ struct PlaybackSource: Codable, Identifiable, Sendable {
     let subtitles: [Subtitle]?
     let via: String
     var id: String { url }
-    struct Subtitle: Codable, Sendable { let url: String; var lang: String?; var id: String? }
+    struct Subtitle: Codable, Sendable { let url: String; var lang: String?; var id: String?; var title: String? = nil }
 }

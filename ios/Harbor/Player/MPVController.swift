@@ -544,6 +544,35 @@ final class MPVController: GLKViewController {
         }
     }
 
+    func loadAddonSubtitle(_ subtitle: PlaybackSource.Subtitle) {
+        cancelSubtitleSync()
+        enqueueSubtitleOperation { controller in
+            guard controller.state.loaded else { throw HarborError(code: "subtitle-context") }
+            try await controller.resetSubtitleFPS()
+            if let track = controller.state.tracks.first(where: { $0.type == "sub" && subtitle.matchesFilename($0.externalFilename) }) {
+                if controller.state.secondarySubtitle?.id == track.id { try await controller.setChecked("secondary-sid", "no") }
+                try await controller.setChecked("sid", String(track.id))
+                return
+            }
+            let previous = controller.state.primarySubtitle?.id
+            let revision = controller.mediaRevision
+            do {
+                try await controller.commandChecked(["sub-add", subtitle.url, "select", subtitle.title ?? "Addon", subtitle.lang ?? ""])
+                for _ in 0..<50 {
+                    try Task.checkCancellation()
+                    if let track = controller.state.primarySubtitle, subtitle.matchesFilename(track.externalFilename) { return }
+                    try await Task.sleep(for: .milliseconds(100))
+                }
+                throw HarborError(code: "subtitle-timeout")
+            } catch {
+                if controller.mediaRevision == revision, !controller.didClose {
+                    try? await controller.setChecked("sid", previous.map(String.init) ?? "no")
+                }
+                throw error
+            }
+        }
+    }
+
     func importLocalSubtitle(_ input: URL) {
         let revision = mediaRevision
         enqueueSubtitleOperation { controller in
@@ -842,6 +871,7 @@ final class MPVController: GLKViewController {
                 state.subtitleIssue = nil
                 state.importedSubtitleIDs = []
                 state.subtitleImportMessage = nil
+                state.addonSubtitles = []; state.addonSubtitlesMessage = nil; state.addonSubtitlesLoading = false
                 state.ended = false
                 state.endedNaturally = false
                 state.loaded = false

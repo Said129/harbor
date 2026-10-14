@@ -39,6 +39,7 @@ struct PlaybackSession: Identifiable, Sendable {
     var preservePosition = false
     var advanceStartedAtMs: Double? = nil
     var promptForResume = false
+    var subtitleRequest: SubtitleRequest? = nil
 }
 
 struct ResumeSnapshot: Sendable {
