@@ -15,7 +15,7 @@ import XCTest
         XCTAssertTrue(app.buttons["main-menu"].exists, "X must not navigate into playback")
         capture(app, "home-after-x-fixture")
         navigate(app, "settings")
-        let headings = ["English": "Settings", "Русский": "Настройки", "العربية": "الإعدادات", "Português": "Configurações", "Español": "Ajustes"]
+        let headings = ["English": "Settings", "Русский": "Настройки", "العربية": "الإعدادات", "Português": "Configurações", "Español": "Configuración"]
         for name in ["English", "Русский", "العربية", "Português", "Español", "English"] {
             let choice = app.descendants(matching: .any).matching(identifier: "settings-app-language").firstMatch
             XCTAssertTrue(choice.waitForExistence(timeout: 8)); choice.tap()

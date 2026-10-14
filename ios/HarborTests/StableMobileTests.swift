@@ -63,7 +63,7 @@ final class StableMobileTests: XCTestCase {
         let defaults = UserDefaults.standard, old = defaults.string(forKey: "uiLanguage")
         defer { defaults.set(old, forKey: "uiLanguage") }
         XCTAssertEqual(Set(InterfaceLanguage.all.map(\.code)), ["en", "es", "ar", "pt", "ru"])
-        let expected = ["en": "Settings", "es": "Ajustes", "pt": "Configurações", "ru": "Настройки", "ar": "الإعدادات"]
+        let expected = ["en": "Settings", "es": "Configuración", "pt": "Configurações", "ru": "Настройки", "ar": "الإعدادات"]
         for language in InterfaceLanguage.all {
             defaults.set(language.code, forKey: "uiLanguage")
             XCTAssertEqual(DesktopInterfaceText.value("Settings"), expected[language.code])
