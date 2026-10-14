@@ -261,7 +261,7 @@ struct MangaView: View {
             HStack(spacing: 18) {
                 VStack(alignment: .leading, spacing: 14) {
                     Label("MANGA DESTACADO", image: "nav-ebook").font(HarborTheme.font(9, weight: .bold)).tracking(2).foregroundStyle(HarborTheme.accent)
-                    Text(book.title.uppercased()).font(.custom("QRAmesBeta-Regular", size: 28)).lineLimit(4).foregroundStyle(.white)
+                    Text(book.title.uppercased()).font(.custom("Oswald-Regular", size: 28)).lineLimit(4).foregroundStyle(.white)
                     if !book.author.isEmpty { Text(book.author).font(HarborTheme.font(12)).foregroundStyle(.white.opacity(0.7)) }
                     if !book.description.isEmpty { Text(book.description).font(HarborTheme.font(12)).foregroundStyle(.white.opacity(0.7)).lineLimit(3) }
                     NavigationLink { MangaDetailView(book: book, shelf: shelf, client: matchingClient(book)).toolbar(.visible, for: .navigationBar) } label: { Label("Leer ahora", image: "nav-ebook").font(.caption.weight(.semibold)).padding(.horizontal, 16).frame(height: 44).foregroundStyle(.black).background(.white, in: .capsule) }.buttonStyle(.plain)

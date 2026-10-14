@@ -101,8 +101,8 @@ def main():
         notes = (
             f"Harbor {report['build']} for iPhone and iPad, unsigned.\n\n"
             f"Commit: `{args.commit}`\n\nSHA-256: `{digest}`\n\n"
-            "Only the remaining normal-app tablet UI was executed in this follow-up. "
-            f"Approved phone/native/tablet evidence is preserved from {args.previous_runs}; the production source is byte-identical to its preserved application. "
+            "Only the remaining normal-app tablet UI and the affected Manga font/reader were executed in this follow-up. "
+            f"Approved phone/native/tablet evidence is preserved from {args.previous_runs}; only the strictly reviewed font replacement changes production. "
             "The earlier tablet UI observation and recording are retained. This run builds and verifies the arm64 device IPA. "
             "Requires iOS/iPadOS 17 or later and valid signing; no sessions, certificates or provisioning are included. "
             "Physical-device validation remains with the owner."

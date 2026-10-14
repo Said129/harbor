@@ -50,16 +50,7 @@ targets:
             LSHandlerRank: Alternate
             LSItemContentTypes: [org.idpf.epub-container, com.adobe.pdf]
         LSSupportsOpeningDocumentsInPlace: YES
-        UIAppFonts:
-          [
-            Fraunces.ttf,
-            Oswald.ttf,
-            Inter.ttf,
-            Fredoka.ttf,
-            Vazirmatn.ttf,
-            Switzer.ttf,
-            QRAmesBeta.otf,
-          ]
+        UIAppFonts: [Fraunces.ttf, Oswald.ttf, Inter.ttf, Fredoka.ttf, Vazirmatn.ttf, Switzer.ttf]
         CFBundleURLTypes:
           - CFBundleURLName: site.harbor.iphone.login
             CFBundleURLSchemes: [harbor-iphone]

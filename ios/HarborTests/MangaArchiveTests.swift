@@ -6,7 +6,7 @@ import SwiftUI
 
 final class MangaArchiveTests: XCTestCase {
     @MainActor func testActualCBZImagesUseNaturalOrderAndNeverExposeUnsafePaths() async throws {
-        XCTAssertNotNil(UIFont(name: "QRAmesBeta-Regular", size: 28), "The original Manga title font must be registered in the app host")
+        XCTAssertNotNil(UIFont(name: "Oswald-Regular", size: 28), "The bundled OFL Manga title font must be registered in the app host")
         let file = try XCTUnwrap(Bundle(for: Self.self).url(forResource: "reader", withExtension: "cbz", subdirectory: "Fixtures"))
         let reader = try MangaArchive(file: file)
         XCTAssertEqual(reader.paths, ["page1.png", "page2.png", "page10.png"])

@@ -16,9 +16,16 @@ p.add_argument('--output', required=True, type=Path)
 a = p.parse_args()
 assert re.fullmatch(r'[0-9a-f]{40}', a.source)
 subprocess.run(['git', 'fetch', '--no-tags', '--depth=1', 'origin', a.source], check=True)
-changed = subprocess.check_output(['git', 'diff', '--name-only', a.source, 'HEAD', '--',
-                                  'ios/Harbor', 'ios/project.yml', 'harbor-core', 'harbor-ios-bridge'], text=True)
-assert not changed.strip(), 'Production must be identical to the preserved source'
+changed = set(subprocess.check_output(['git', 'diff', '--name-only', a.source, 'HEAD', '--',
+                                      'ios/Harbor', 'ios/project.yml', 'harbor-core', 'harbor-ios-bridge'], text=True).splitlines())
+titles = ['ios/Harbor/Views/MangaView.swift', 'ios/Harbor/Views/MangaDetailView.swift', 'ios/Harbor/Views/MangaEditorialView.swift']
+removed_notice = 'ios/Harbor/Licenses/QR-Ames-personal-use.txt'
+assert changed == set(titles + ['ios/project.yml', removed_notice]), 'Only the reviewed font replacement may change production'
+for path in titles + ['ios/project.yml']:
+    before = subprocess.check_output(['git', 'show', a.source + ':' + path]).decode('utf-8')
+    expected = before.replace('"QRAmesBeta-Regular"', '"Oswald-Regular"') if path in titles else before.replace('            QRAmesBeta.otf,\n', '')
+    assert Path(path).read_text('utf-8') == expected, path
+assert not Path(removed_notice).exists()
 repo = os.environ['GITHUB_REPOSITORY']
 headers = {'Accept': 'application/vnd.github+json', 'Authorization': 'Bearer ' + os.environ['GH_TOKEN'],
            'User-Agent': 'Harbor-tablet-followup'}
@@ -69,5 +76,6 @@ assert ui == ['passed', 'failed'], 'Keep the actual successful phone and unsucce
 a.output.parent.mkdir(parents=True, exist_ok=True)
 a.output.write_text(json.dumps({'source': os.environ['GITHUB_SHA'], 'preserved_source': a.source,
                                'preserved_run': a.run, 'preserved_executions': passed,
-                               'pending': 'tablet UI only', 'production_identical': True}, indent=2) + '\n', 'utf-8')
-print('Preserved six approved phone/tablet executions; only the remaining tablet UI will run.')
+                               'pending': 'tablet UI and affected embedded Manga font',
+                               'production_identical_except_reviewed_manga_font': True}, indent=2) + '\n', 'utf-8')
+print('Preserved six approved phone/tablet executions; only tablet UI and the changed Manga font are pending.')

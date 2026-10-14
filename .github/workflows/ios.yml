@@ -236,11 +236,19 @@ jobs:
             selection=(-only-testing:HarborIntegrationTests/LiveServicesTests/testSubtitleAddonsReturnMovieSeriesAndMappedAnimeResults)
           fi
           xcodebuild -project ios/Harbor.xcodeproj -scheme HarborLive -configuration Debug -destination "platform=iOS Simulator,id=$IOS_SIMULATOR,arch=$IOS_SIMULATOR_ARCH" -derivedDataPath ios/build/DerivedData -clonedSourcePackagesDirPath ios/build/SourcePackages -resultBundlePath ios/build/ServicesTests.xcresult "${selection[@]}" -parallel-testing-enabled NO CODE_SIGNING_ALLOWED=YES CODE_SIGN_IDENTITY=- test 2>&1 | tee ios/build/logs/live-services.log
+      - name: Verify the affected bundled Manga font in its native reader
+        id: manga_font_tests
+        if: ${{ inputs.validation_scope == 'stable-tablet-ui' }}
+        timeout-minutes: 15
+        run: |
+          set -euo pipefail
+          xcodebuild -project ios/Harbor.xcodeproj -scheme Harbor -configuration Debug -destination "platform=iOS Simulator,id=$IOS_SIMULATOR,arch=$IOS_SIMULATOR_ARCH" -derivedDataPath ios/build/DerivedData -clonedSourcePackagesDirPath ios/build/SourcePackages -resultBundlePath ios/build/MangaFontTests.xcresult -only-testing:HarborTests/MangaArchiveTests/testActualCBZImagesUseNaturalOrderAndNeverExposeUnsafePaths -parallel-testing-enabled NO CODE_SIGNING_ALLOWED=YES CODE_SIGN_IDENTITY=- test 2>&1 | tee ios/build/logs/manga-font.log
       - name: Prepare ordinary guest data for the pending tablet UI
         id: tablet_seed
         if: ${{ inputs.validation_scope == 'stable-tablet-ui' }}
         run: |
           set -euo pipefail
+          xcrun simctl terminate "$IOS_SIMULATOR" site.harbor.iphone || true
           xcrun simctl install "$IOS_SIMULATOR" ios/build/DerivedData/Build/Products/Debug-iphonesimulator/Harbor.app
           container=$(xcrun simctl get_app_container "$IOS_SIMULATOR" site.harbor.iphone data)
           python3 scripts/ios/seed-stable-tablet-ui.py --container "$container"
@@ -288,14 +296,14 @@ jobs:
           xcodebuild -project ios/Harbor.xcodeproj -scheme HarborLive -configuration Debug -destination "platform=iOS Simulator,id=$tablet,arch=$IOS_SIMULATOR_ARCH" -derivedDataPath ios/build/DerivedData -clonedSourcePackagesDirPath ios/build/SourcePackages -resultBundlePath ios/build/TabletUITests.xcresult -only-testing:HarborUITests/StableMobileNavigationTests -parallel-testing-enabled NO CODE_SIGNING_ALLOWED=YES CODE_SIGN_IDENTITY=- test 2>&1 | tee ios/build/logs/tablet-ui.log
           xcrun simctl shutdown "$tablet"
       - name: Preserve failed public integration screenshots in a draft Release
-        if: ${{ always() && inputs.save_draft_build == true && (steps.live_tests.conclusion == 'failure' || steps.live_tests.conclusion == 'cancelled' || steps.live_services.conclusion == 'failure' || steps.live_services.conclusion == 'cancelled' || steps.tablet_tests.conclusion == 'failure') }}
+        if: ${{ always() && inputs.save_draft_build == true && (steps.live_tests.conclusion == 'failure' || steps.live_tests.conclusion == 'cancelled' || steps.live_services.conclusion == 'failure' || steps.live_services.conclusion == 'cancelled' || steps.tablet_tests.conclusion == 'failure' || steps.manga_font_tests.conclusion == 'failure') }}
         env:
           GH_TOKEN: ${{ github.token }}
         shell: bash
         run: |
           set -euo pipefail
           mkdir -p ios/build/attachments
-          for name in Tests ServicesTests LiveTests TabletTests TabletUITests; do
+          for name in Tests ServicesTests LiveTests TabletTests TabletUITests MangaFontTests; do
             if [ -d "ios/build/$name.xcresult" ]; then
               xcrun xcresulttool export attachments --path "ios/build/$name.xcresult" --output-path "ios/build/attachments/$name"
             fi
@@ -333,7 +341,7 @@ jobs:
           if [[ -f ios/build/preserved-mobile-validation.json ]]; then
             cp ios/build/preserved-mobile-validation.json ios/build/live-attachments/
           fi
-          for name in TabletTests TabletUITests; do
+          for name in TabletTests TabletUITests MangaFontTests; do
             if [[ -d "ios/build/$name.xcresult" ]]; then
               xcrun xcresulttool export attachments --path "ios/build/$name.xcresult" --output-path "ios/build/live-attachments/$name"
             fi

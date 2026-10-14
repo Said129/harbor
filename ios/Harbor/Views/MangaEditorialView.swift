@@ -17,7 +17,7 @@ struct MangaEditorialView: View {
     var body: some View {
         ScrollView {
             LazyVStack(alignment: .leading, spacing: 28) {
-                Text(universes ? "Universos" : "Colecciones").font(.custom("QRAmesBeta-Regular", size: 34))
+                Text(universes ? "Universos" : "Colecciones").font(.custom("Oswald-Regular", size: 34))
                 if universes {
                     Text("Elige un mundo y sumérgete en todo lo que contiene.").font(HarborTheme.font(15)).foregroundStyle(.secondary)
                     universeGrid

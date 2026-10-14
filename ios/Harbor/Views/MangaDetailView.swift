@@ -62,7 +62,7 @@ struct MangaDetailView: View {
                 MangaImage(book: displayed, owner: shelf.owner, path: displayed.cover, client: client, maxPixels: 700)
                     .frame(width: 116, height: 174).clipShape(.rect(cornerRadius: 16)).shadow(color: .black.opacity(0.4), radius: 16, y: 8)
                 VStack(alignment: .leading, spacing: 12) {
-                    Text(displayed.title).font(.custom("QRAmesBeta-Regular", size: 28)).foregroundStyle(.white).accessibilityIdentifier("manga-detail-title")
+                    Text(displayed.title).font(.custom("Oswald-Regular", size: 28)).foregroundStyle(.white).accessibilityIdentifier("manga-detail-title")
                     if !displayed.author.isEmpty { Text(displayed.author).font(HarborTheme.font(13)).foregroundStyle(.white.opacity(0.7)) }
                 }.frame(maxWidth: .infinity, alignment: .leading)
             }
