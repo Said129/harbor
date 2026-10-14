@@ -12,7 +12,9 @@ final class MobileSourcesAndSubtitlesTests: XCTestCase {
     private func offers() -> [StreamOffer] {
         (0..<13).map { index in
             let tier = index < 9 ? (index == 8 ? "1080p_HDR" : "1080p") : index < 11 ? "720p" : "SD"
-            return StreamOffer(id: index, raw: .object(["addonId": .string(index == 12 ? "watchhub" : "corenexus"), "addonName": .string(index == 12 ? "WatchHub" : "Core Nexus"), "tier": .string(tier), "name": .string("Danmachi · E07 · \(tier)"), "url": .string("https://example.org/\(index).mkv"), "title": .string("Danmachi.S01E07.\(tier).BluRay.FLAC.mkv")]))
+            // Match the ranker's required resolution field as well as its tier.
+            let resolution = index < 9 ? "1080p" : index < 11 ? "720p" : "SD"
+            return StreamOffer(id: index, raw: .object(["addonId": .string(index == 12 ? "watchhub" : "corenexus"), "addonName": .string(index == 12 ? "WatchHub" : "Core Nexus"), "tier": .string(tier), "resolution": .string(resolution), "name": .string("Danmachi · E07 · \(tier)"), "url": .string("https://example.org/\(index).mkv"), "title": .string("Danmachi.S01E07.\(tier).BluRay.FLAC.mkv")]))
         }
     }
 
