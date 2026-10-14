@@ -23,7 +23,15 @@ removed_notice = 'ios/Harbor/Licenses/QR-Ames-personal-use.txt'
 assert changed == set(titles + ['ios/project.yml', removed_notice]), 'Only the reviewed font replacement may change production'
 for path in titles + ['ios/project.yml']:
     before = subprocess.check_output(['git', 'show', a.source + ':' + path]).decode('utf-8')
-    expected = before.replace('"QRAmesBeta-Regular"', '"Oswald-Regular"') if path in titles else before.replace('            QRAmesBeta.otf,\n', '')
+    if path in titles:
+        expected = before.replace('"QRAmesBeta-Regular"', '"Oswald-Regular"')
+    else:
+        block = re.search(r'(?ms)^        UIAppFonts:\n          \[\n(.*?)^          \]\n', before)
+        assert block
+        fonts = [line.strip().rstrip(',') for line in block[1].splitlines()]
+        assert fonts.count('QRAmesBeta.otf') == 1
+        replacement = '        UIAppFonts: [' + ', '.join(f for f in fonts if f != 'QRAmesBeta.otf') + ']\n'
+        expected = before[:block.start()] + replacement + before[block.end():]
     assert Path(path).read_text('utf-8') == expected, path
 assert not Path(removed_notice).exists()
 repo = os.environ['GITHUB_REPOSITORY']
