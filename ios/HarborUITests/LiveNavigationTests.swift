@@ -65,6 +65,62 @@ final class LiveNavigationTests: XCTestCase {
         capture(app, "native-search-history-item-removed")
     }
 
+    func testDirectQualitySourcesAndInstalledSubtitleAddonInPlayer() throws {
+        guard ProcessInfo.processInfo.environment["HARBOR_LIVE_INTEGRATION"] == "1" else { throw XCTSkip("Live UI integration requires explicit opt-in") }
+        continueAfterFailure = false
+        let app = XCUIApplication(); app.launch()
+        XCTAssertTrue(app.buttons["main-menu"].waitForExistence(timeout: 15))
+        for url in ["https://raw.githubusercontent.com/Stremio/stremio-static-addon-example/master/manifest.json", "https://opensubtitles-v3.strem.io/manifest.json"] {
+            navigate(app, "addons")
+            app.buttons["addon-tab-installed"].tap()
+            let field = app.secureTextFields["addon-manifest-url"]
+            XCTAssertTrue(field.waitForExistence(timeout: 5))
+            field.tap(); field.typeText(url); app.buttons["addon-install"].tap()
+            let finished = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == false"), object: app.progressIndicators["addon-install-progress"])
+            XCTAssertEqual(XCTWaiter.wait(for: [finished], timeout: 45), .completed)
+        }
+        navigate(app, "search")
+        let search = app.searchFields.firstMatch
+        XCTAssertTrue(search.waitForExistence(timeout: 5)); search.tap(); search.typeText("Big Buck Bunny\n")
+        let movie = app.buttons.matching(NSPredicate(format: "identifier == 'catalog-movie' AND label == 'Big Buck Bunny'")).firstMatch
+        XCTAssertTrue(movie.waitForExistence(timeout: 45)); movie.tap()
+        let streams = app.buttons["detail-streams"]
+        XCTAssertTrue(streams.waitForExistence(timeout: 15)); reveal(streams, in: app.scrollViews.firstMatch, attempts: 5); streams.tap()
+        let offer = app.buttons.matching(identifier: "stream-offer").firstMatch
+        XCTAssertTrue(offer.waitForExistence(timeout: 30))
+        let scroll = app.scrollViews["stream-picker-scroll"]
+        let allQuality = app.buttons["stream-quality-all"]
+        reveal(allQuality, in: scroll, attempts: 6)
+        XCTAssertTrue(allQuality.isHittable)
+        let row = app.buttons.matching(identifier: "stream-source-row").firstMatch
+        reveal(row, in: scroll, attempts: 3)
+        XCTAssertTrue(row.isHittable, "Sources must appear without an expansion or unfiltered button")
+        XCTAssertFalse(app.buttons["stream-toggle-filters"].exists)
+        XCTAssertFalse(app.buttons["stream-all-sources"].exists)
+        capture(app, "native-live-sources-visible-directly")
+        let tier = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH 'stream-quality-' AND identifier != 'stream-quality-all'")).firstMatch
+        for _ in 0..<4 { if tier.isHittable { break }; scroll.swipeDown() }
+        XCTAssertTrue(tier.isHittable); tier.tap()
+        XCTAssertTrue(row.waitForExistence(timeout: 5))
+        capture(app, "native-live-sources-quality-selected")
+        allQuality.tap()
+        for _ in 0..<6 { if offer.isHittable { break }; scroll.swipeDown() }
+        XCTAssertTrue(offer.isHittable); offer.tap()
+        let subtitleButton = app.buttons["player-subtitles"]
+        XCTAssertTrue(subtitleButton.waitForExistence(timeout: 30)); subtitleButton.tap()
+        let addonSubtitle = app.buttons["subtitle-addon-0"]
+        XCTAssertTrue(addonSubtitle.waitForExistence(timeout: 45), "The installed OpenSubtitles addon must reach the actual player UI")
+        let subtitleScroll = app.scrollViews.firstMatch
+        reveal(addonSubtitle, in: subtitleScroll, attempts: 6)
+        XCTAssertTrue(addonSubtitle.isHittable)
+        capture(app, "native-live-subtitle-addon-results")
+        addonSubtitle.tap()
+        let loaded = XCTNSPredicateExpectation(predicate: NSPredicate(format: "value == 'Seleccionado'"), object: addonSubtitle)
+        XCTAssertEqual(XCTWaiter.wait(for: [loaded], timeout: 20), .completed, "mpv must confirm the chosen real addon subtitle")
+        capture(app, "native-live-subtitle-addon-selected")
+        XCTAssertFalse(app.staticTexts["player-error"].exists)
+    }
+
     func testCancellingCustomPaletteRestoresActiveTheme() throws {
         guard ProcessInfo.processInfo.environment["HARBOR_LIVE_INTEGRATION"] == "1" else {
             throw XCTSkip("Live UI integration requires explicit opt-in")
@@ -553,13 +609,11 @@ final class LiveNavigationTests: XCTestCase {
         XCTAssertTrue(offerLoaded, "A real addon must populate the stream picker")
         let pickerScroll = app.scrollViews["stream-picker-scroll"]
         XCTAssertTrue(app.buttons["stream-picker-refresh"].exists)
-        let allSources = app.buttons["stream-all-sources"]
-        reveal(allSources, in: pickerScroll, attempts: 5)
-        XCTAssertTrue(allSources.isHittable)
-        allSources.tap()
-        XCTAssertTrue(app.buttons.matching(identifier: "stream-source-row").firstMatch.waitForExistence(timeout: 5))
-        capture(app, "real-stream-original-source-drawer")
-        allSources.tap()
+        let sourceRow = app.buttons.matching(identifier: "stream-source-row").firstMatch
+        reveal(sourceRow, in: pickerScroll, attempts: 5)
+        XCTAssertTrue(sourceRow.isHittable)
+        XCTAssertFalse(app.buttons["stream-toggle-filters"].exists)
+        capture(app, "real-stream-direct-source-list")
         for _ in 0..<5 { if offer.isHittable { break }; pickerScroll.swipeDown() }
         XCTAssertTrue(offer.isHittable)
         capture(app, "real-stream-picker")

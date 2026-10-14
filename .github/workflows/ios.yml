@@ -221,7 +221,7 @@ jobs:
           xcodebuild -project ios/Harbor.xcodeproj -scheme HarborLive -configuration Debug -destination "platform=iOS Simulator,id=$IOS_SIMULATOR,arch=$IOS_SIMULATOR_ARCH" -derivedDataPath ios/build/DerivedData -clonedSourcePackagesDirPath ios/build/SourcePackages -resultBundlePath ios/build/ServicesTests.xcresult "${selection[@]}" -parallel-testing-enabled NO CODE_SIGNING_ALLOWED=YES CODE_SIGN_IDENTITY=- test 2>&1 | tee ios/build/logs/live-services.log
       - name: Boot a clean UI runtime while preserving application data
         id: ui_runtime
-        if: ${{ !cancelled() && inputs.validation_scope != 'mobile-sources-subtitles' && inputs.run_live_integration == true && steps.offline_tests.conclusion == 'success' }}
+        if: ${{ !cancelled() && inputs.run_live_integration == true && steps.offline_tests.conclusion == 'success' }}
         timeout-minutes: 5
         shell: bash
         run: |
@@ -241,6 +241,8 @@ jobs:
             selection=(-only-testing:HarborUITests/LiveNavigationTests/testCancellingCustomPaletteRestoresActiveTheme)
           elif [[ "${{ inputs.validation_scope }}" == "sources-search-subtitles" ]]; then
             selection=(-only-testing:HarborUITests/LiveNavigationTests/testSearchHasContentOnlyAndRemovableRecentHistory)
+          elif [[ "${{ inputs.validation_scope }}" == "mobile-sources-subtitles" ]]; then
+            selection=(-only-testing:HarborUITests/LiveNavigationTests/testDirectQualitySourcesAndInstalledSubtitleAddonInPlayer)
           fi
           xcodebuild -project ios/Harbor.xcodeproj -scheme HarborLive -configuration Debug -destination "platform=iOS Simulator,id=$IOS_SIMULATOR,arch=$IOS_SIMULATOR_ARCH" -derivedDataPath ios/build/DerivedData -clonedSourcePackagesDirPath ios/build/SourcePackages -resultBundlePath ios/build/LiveTests.xcresult "${selection[@]}" -parallel-testing-enabled NO CODE_SIGNING_ALLOWED=YES CODE_SIGN_IDENTITY=- test 2>&1 | tee ios/build/logs/live-tests.log
       - name: Preserve failed public integration screenshots in a draft Release

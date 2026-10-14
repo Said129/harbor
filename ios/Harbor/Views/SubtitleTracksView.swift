@@ -185,6 +185,7 @@ struct SubtitleTracksView: View {
                             }.padding(10).frame(minHeight: 52).contentShape(Rectangle())
                                 .background(HarborTheme.surface, in: .rect(cornerRadius: 8))
                         }.buttonStyle(.plain).disabled(disabled).accessibilityIdentifier("subtitle-addon-\(index)")
+                            .accessibilityValue(state.primarySubtitle.map { subtitle.matchesFilename($0.externalFilename) } == true ? "Seleccionado" : "Disponible")
                     }
                 }
                 if availableAddonSubtitles.isEmpty { Text("No hay subtítulos que coincidan con tu búsqueda.").font(HarborTheme.font(12)).foregroundStyle(.secondary) }
