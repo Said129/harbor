@@ -65,12 +65,12 @@ final class LiveNavigationTests: XCTestCase {
         capture(app, "native-search-history-item-removed")
     }
 
-    func testDirectQualitySourcesAndInstalledSubtitleAddonInPlayer() throws {
+    func testDirectQualitySourcesAreVisibleWithoutExpansion() throws {
         guard ProcessInfo.processInfo.environment["HARBOR_LIVE_INTEGRATION"] == "1" else { throw XCTSkip("Live UI integration requires explicit opt-in") }
         continueAfterFailure = false
         let app = XCUIApplication(); app.launch()
         XCTAssertTrue(app.buttons["main-menu"].waitForExistence(timeout: 15))
-        for url in ["https://raw.githubusercontent.com/Stremio/stremio-static-addon-example/master/manifest.json", "https://opensubtitles-v3.strem.io/manifest.json"] {
+        for url in ["https://raw.githubusercontent.com/Stremio/stremio-static-addon-example/master/manifest.json"] {
             navigate(app, "addons")
             app.buttons["addon-tab-installed"].tap()
             let field = app.secureTextFields["addon-manifest-url"]
@@ -79,10 +79,13 @@ final class LiveNavigationTests: XCTestCase {
             let finished = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == false"), object: app.progressIndicators["addon-install-progress"])
             XCTAssertEqual(XCTWaiter.wait(for: [finished], timeout: 45), .completed)
         }
-        navigate(app, "search")
-        let search = app.searchFields.firstMatch
-        XCTAssertTrue(search.waitForExistence(timeout: 5)); search.tap(); search.typeText("Big Buck Bunny\n")
+        // The official example uses its own BigBuckBunny ID, not the IMDb
+        // result from Cinemeta search. Open its actual installed catalog.
+        navigate(app, "home")
+        let home = app.descendants(matching: .any).matching(identifier: "home-scroll").firstMatch
+        XCTAssertTrue(home.waitForExistence(timeout: 10))
         let movie = app.buttons.matching(NSPredicate(format: "identifier == 'catalog-movie' AND label == 'Big Buck Bunny'")).firstMatch
+        reveal(movie, in: home, attempts: 36)
         XCTAssertTrue(movie.waitForExistence(timeout: 45)); movie.tap()
         let streams = app.buttons["detail-streams"]
         XCTAssertTrue(streams.waitForExistence(timeout: 15)); reveal(streams, in: app.scrollViews.firstMatch, attempts: 5); streams.tap()
@@ -104,21 +107,7 @@ final class LiveNavigationTests: XCTestCase {
         XCTAssertTrue(row.waitForExistence(timeout: 5))
         capture(app, "native-live-sources-quality-selected")
         allQuality.tap()
-        for _ in 0..<6 { if offer.isHittable { break }; scroll.swipeDown() }
-        XCTAssertTrue(offer.isHittable); offer.tap()
-        let subtitleButton = app.buttons["player-subtitles"]
-        XCTAssertTrue(subtitleButton.waitForExistence(timeout: 30)); subtitleButton.tap()
-        let addonSubtitle = app.buttons["subtitle-addon-0"]
-        XCTAssertTrue(addonSubtitle.waitForExistence(timeout: 45), "The installed OpenSubtitles addon must reach the actual player UI")
-        let subtitleScroll = app.scrollViews.firstMatch
-        reveal(addonSubtitle, in: subtitleScroll, attempts: 6)
-        XCTAssertTrue(addonSubtitle.isHittable)
-        capture(app, "native-live-subtitle-addon-results")
-        addonSubtitle.tap()
-        let loaded = XCTNSPredicateExpectation(predicate: NSPredicate(format: "value == 'Seleccionado'"), object: addonSubtitle)
-        XCTAssertEqual(XCTWaiter.wait(for: [loaded], timeout: 20), .completed, "mpv must confirm the chosen real addon subtitle")
-        capture(app, "native-live-subtitle-addon-selected")
-        XCTAssertFalse(app.staticTexts["player-error"].exists)
+        XCTAssertTrue(row.waitForExistence(timeout: 5))
     }
 
     func testCancellingCustomPaletteRestoresActiveTheme() throws {

@@ -1,5 +1,8 @@
 import XCTest
 import CryptoKit
+import GLKit
+import SwiftUI
+import UIKit
 @testable import Harbor
 
 /// Opt-in network integration. These use the production service and embedded
@@ -22,6 +25,7 @@ final class LiveServicesTests: XCTestCase {
         XCTAssertEqual(StreamRequestPolicy.ids(media, videoID: episode.id, season: 1, episode: 7), ["kitsu:9962:7", "tt4728568:1:7"])
         print("Live Danmachi S1E7: verified Kitsu and IMDb request identities from actual provider metadata")
     }
+    @available(iOS, deprecated: 12.0)
     func testSubtitleAddonsReturnMovieSeriesAndMappedAnimeResults() async throws {
         try requireOptIn()
         let addon = try await service.install("https://opensubtitles-v3.strem.io/manifest.json")
@@ -42,6 +46,55 @@ final class LiveServicesTests: XCTestCase {
             XCTAssertTrue(result.subtitles.allSatisfy { $0.title?.contains("OpenSubtitles") == true && $0.lang?.isEmpty == false })
             print("Actual subtitle addon: \(request.media.name), subtitles=\(result.subtitles.count)")
         }
+        // The public example's video URL has been retired. Use the existing
+        // native video fixture, with the real production PlayerView and real
+        // addon responses/downloads, rather than substituting network results.
+        let scene = try XCTUnwrap(UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }.first)
+        let previous = scene.windows.first { $0.isKeyWindow }
+        let window = UIWindow(windowScene: scene); window.frame = CGRect(x: 0, y: 0, width: 402, height: 874)
+        defer { window.isHidden = true; window.rootViewController = nil; previous?.makeKeyAndVisible() }
+        let video = try XCTUnwrap(Bundle(for: Self.self).url(forResource: "render-8bit", withExtension: "mp4", subdirectory: "Fixtures"))
+        let bunny = Media(id: "tt1254207", type: "movie", name: "Big Buck Bunny")
+        var playback = PlaybackSession(source: PlaybackSource(url: video.absoluteString, headers: nil, subtitles: nil, via: "test-fixture"), target: ResumeTarget(id: bunny.id), startMs: 0, storageWarning: nil, progressEnabled: false)
+        playback.subtitleRequest = SubtitleRequest(media: bunny, videoID: bunny.id, season: nil, episode: nil, addons: [addon], stream: .null)
+        let host = UIHostingController(rootView: PlayerView(session: playback, resume: ResumeStore(owner: "subtitle-integration"), title: "Vídeo de prueba · addon real").preferredColorScheme(.dark))
+        window.rootViewController = host; window.makeKeyAndVisible()
+        func findPlayer(_ container: UIViewController) -> MPVController? {
+            if let player = container as? MPVController { return player }
+            return container.children.compactMap { findPlayer($0) }.first
+        }
+        let deadline = Date().addingTimeInterval(45)
+        var loaded: MPVController?
+        while Date() < deadline {
+            host.view.layoutIfNeeded()
+            if let player = findPlayer(host) {
+                (player.view as? GLKView)?.display()
+                if player.state.loaded, !player.state.addonSubtitles.isEmpty { loaded = player; break }
+                XCTAssertNil(player.state.error)
+            }
+            try await Task.sleep(for: .milliseconds(100))
+        }
+        let player = try XCTUnwrap(loaded, "The actual PlayerView lifecycle must discover installed addon subtitles")
+        defer { player.close() }
+        let state = player.state
+        let chosen = try XCTUnwrap(state.addonSubtitles.first)
+        player.loadAddonSubtitle(chosen)
+        let downloadDeadline = Date().addingTimeInterval(35)
+        while Date() < downloadDeadline, !state.addonSubtitleSelected(chosen) {
+            (player.view as? GLKView)?.display()
+            try await Task.sleep(for: .milliseconds(100))
+        }
+        XCTAssertTrue(state.addonSubtitleSelected(chosen), "Real addon download must be acknowledged as the actual selected mpv track")
+        XCTAssertNil(state.subtitleIssue); XCTAssertNil(state.error)
+        let selected = try XCTUnwrap(state.primarySubtitle)
+        XCTAssertTrue(selected.external)
+        XCTAssertTrue(selected.externalFilename.hasPrefix("file:") || selected.externalFilename.hasPrefix("/"), "mpv must receive a protected local copy, never the addon URL with video headers")
+        let panel = UIHostingController(rootView: NavigationStack { SubtitleTracksView(state: state) }.preferredColorScheme(.dark))
+        player.addChild(panel); player.view.addSubview(panel.view); panel.didMove(toParent: player); panel.view.frame = player.view.bounds
+        defer { panel.willMove(toParent: nil); panel.view.removeFromSuperview(); panel.removeFromParent() }
+        try await Task.sleep(for: .milliseconds(400)); panel.view.layoutIfNeeded()
+        let image = UIGraphicsImageRenderer(bounds: panel.view.bounds).image { _ in _ = panel.view.drawHierarchy(in: panel.view.bounds, afterScreenUpdates: true) }
+        let attachment = XCTAttachment(image: image); attachment.name = "native-live-addon-subtitle-selected-with-local-video-fixture"; attachment.lifetime = .keepAlways; add(attachment)
     }
     func testAniListRailsAndCanonicalEpisodeMetadata() async throws {
         try requireOptIn()

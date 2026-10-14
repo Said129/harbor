@@ -101,7 +101,11 @@ targets:
   HarborIntegrationTests:
     type: bundle.unit-test
     platform: iOS
-    sources: [HarborIntegrationTests]
+    sources:
+      - path: HarborIntegrationTests
+      - path: HarborTests/Fixtures
+        type: folder
+        buildPhase: resources
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: site.harbor.iphone.integration-tests
