@@ -19,8 +19,8 @@ struct SettingsView: View {
                 HarborSearchField(prompt: DesktopInterfaceText.value("Search settings"), text: $query)
                 if matches("Language", group: "Appearance") {
                     HarborSettingsChoice(DesktopInterfaceText.value("Language"), selection: $uiLanguage,
-                                         choices: InterfaceLanguage.all.map { ($0.nativeLabel, $0.code) }, localizeChoices: false)
-                        .accessibilityIdentifier("settings-app-language")
+                                         choices: InterfaceLanguage.all.map { ($0.nativeLabel, $0.code) }, localizeChoices: false,
+                                         identifier: "settings-app-language")
                 }
                 if matches("Your profile", group: "Account & setup") || matches("Stremio") {
                     group("Account & setup") {

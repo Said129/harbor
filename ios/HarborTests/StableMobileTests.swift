@@ -112,6 +112,31 @@ final class StableMobileTests: XCTestCase {
         try await render(ReadingHelpView(), size: CGSize(width: 393, height: 852), name: "reading-help-phone")
     }
 
+    @MainActor func testRTLControlsAndLocalizedContinueWatchingLayout() async throws {
+        let defaults = UserDefaults.standard, previous = defaults.string(forKey: "uiLanguage")
+        defer { defaults.set(previous, forKey: "uiLanguage") }
+        let raw = try JSONDecoder().decode(JSONValue.self, from: Data(#"{"_id":"harbor-stable-removal-fixture","type":"movie","name":"Harbor removal fixture","removed":false,"temp":false,"_mtime":1791950000000,"state":{"timeOffset":120000,"duration":3600000}}"#.utf8))
+        try await LibraryCache().save([raw], owner: "guest")
+        let app = AppModel(); await app.library.setSession(nil)
+        app.library.showContinuing(try XCTUnwrap(app.library.items.first))
+        for code in ["en", "ar"] {
+            defaults.set(code, forKey: "uiLanguage")
+            XCTAssertNotEqual(DesktopInterfaceText.value("Continuar viendo"), "Continuar viendo")
+            for width in [CGFloat(393), CGFloat(1024)] {
+                let content = VStack(alignment: .leading, spacing: 24) {
+                    HarborSettingsToggle(DesktopInterfaceText.value("Rotate featured banners automatically"), isOn: .constant(true))
+                    HarborSettingsToggle(DesktopInterfaceText.value("Automatically hide controls"), isOn: .constant(false))
+                    HarborSettingsSegmented(selection: .constant(true), choices: [(DesktopInterfaceText.value("Instant"), true), (DesktopInterfaceText.value("Pick a source"), false)])
+                    ContinueWatching(app: app)
+                }.padding(20).background(HarborTheme.background)
+                    .environment(\.locale, Locale(identifier: code))
+                    .environment(\.layoutDirection, code == "ar" ? .rightToLeft : .leftToRight)
+                try await render(content, size: CGSize(width: width, height: 600), name: "controls-\(code)-\(Int(width))")
+            }
+        }
+        defaults.set("classic", forKey: "homeMode")
+    }
+
     @MainActor func testTabletResizableReadingAndPlaybackOrientation() async throws {
         XCTAssertEqual(UIDevice.current.userInterfaceIdiom, .pad, "This case runs only on the iPad simulator")
         let scene = try XCTUnwrap(UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }.first)

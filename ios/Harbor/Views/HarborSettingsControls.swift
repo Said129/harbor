@@ -32,15 +32,17 @@ struct HarborSettingsChoice<Value: Hashable>: View {
     @Binding var selection: Value
     let choices: [(String, Value)]
     var localizeChoices = true
+    let identifier: String?
     private var selectedTitle: String {
         choices.first { $0.1 == selection }?.0 ?? String(describing: selection)
     }
 
-    init(_ title: String, selection: Binding<Value>, choices: [(String, Value)], localizeChoices: Bool = true) {
+    init(_ title: String, selection: Binding<Value>, choices: [(String, Value)], localizeChoices: Bool = true, identifier: String? = nil) {
         self.title = title
         self._selection = selection
         self.choices = choices
         self.localizeChoices = localizeChoices
+        self.identifier = identifier
     }
 
     var body: some View {
@@ -71,7 +73,8 @@ struct HarborSettingsChoice<Value: Hashable>: View {
                     .background(HarborTheme.surface, in: .rect(cornerRadius: 8))
                     .overlay { RoundedRectangle(cornerRadius: 8).stroke(HarborTheme.ink.opacity(0.06), lineWidth: 1) }
                     .contentShape(Rectangle())
-            }.buttonStyle(.plain).accessibilityLabel(title).accessibilityValue(selectedTitle)
+            }.buttonStyle(.plain).accessibilityLabel(DesktopInterfaceText.value(title)).accessibilityValue(choiceTitle(selectedTitle))
+                .accessibilityIdentifier(identifier ?? title)
         }
     }
     private func choiceTitle(_ value: String) -> String { localizeChoices ? DesktopInterfaceText.value(value) : value }
@@ -99,6 +102,7 @@ struct HarborSettingsToggle: View {
 }
 
 private struct HarborSettingsSwitchStyle: ToggleStyle {
+    @Environment(\.layoutDirection) private var direction
     @Environment(\.isEnabled) private var enabled
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
@@ -109,7 +113,7 @@ private struct HarborSettingsSwitchStyle: ToggleStyle {
                 Capsule().fill(configuration.isOn ? HarborTheme.ink : ThemePreferences.shared.color("edge"))
                     .overlay(alignment: .leading) {
                         Circle().fill(HarborTheme.background).frame(width: 26, height: 26)
-                            .offset(x: configuration.isOn ? 19 : 3)
+                            .offset(x: (configuration.isOn ? 19 : 3) * (direction == .rightToLeft ? -1 : 1))
                     }.frame(width: 48, height: 32).frame(height: 44)
                     .animation(reduceMotion ? nil : .easeInOut(duration: 0.2), value: configuration.isOn)
             }.contentShape(Rectangle()).opacity(enabled ? 1 : 0.6)

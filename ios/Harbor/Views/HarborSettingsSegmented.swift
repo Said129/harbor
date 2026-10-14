@@ -31,7 +31,7 @@ struct HarborSettingsSegmented<Value: Hashable>: View {
                         }
                 }
             }
-        }.coordinateSpace(name: coordinates).padding(4)
+        }.environment(\.layoutDirection, .leftToRight).coordinateSpace(name: coordinates).padding(4)
             .background(HarborTheme.background, in: .rect(cornerRadius: 10))
             .onPreferenceChange(SegmentFrames.self) { next in
                 frames = next

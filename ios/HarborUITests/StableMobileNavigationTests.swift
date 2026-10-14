@@ -17,7 +17,7 @@ import XCTest
         navigate(app, "settings")
         let headings = ["English": "Settings", "Русский": "Настройки", "العربية": "الإعدادات", "Português": "Configurações", "Español": "Configuración"]
         for name in ["English", "Русский", "العربية", "Português", "Español", "English"] {
-            let choice = app.descendants(matching: .any).matching(identifier: "settings-app-language").firstMatch
+            let choice = app.buttons["settings-app-language"]
             XCTAssertTrue(choice.waitForExistence(timeout: 8)); choice.tap()
             let option = app.buttons[name].firstMatch
             XCTAssertTrue(option.waitForExistence(timeout: 5)); option.tap()

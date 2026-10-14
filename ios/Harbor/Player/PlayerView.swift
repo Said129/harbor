@@ -134,7 +134,7 @@ struct PlayerView: View {
             }.padding().allowsHitTesting(false)
             if !state.loaded && !state.ended && state.error == nil { HarborPlaybackConnecting(media: media, cancelIdentifier: "player-close") { dismiss() } }
             if let error = state.error { failureNotice(error) }
-            if !resumePending && controlsVisible && (state.loaded || state.error != nil) { controls.transition(.opacity) }
+            if !resumePending && controlsVisible && (state.loaded || state.error != nil) { controls.environment(\.layoutDirection, .leftToRight).transition(.opacity) }
             if let next = adjacent.next, showUpNext {
                 VStack {
                     Spacer()

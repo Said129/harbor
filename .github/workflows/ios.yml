@@ -271,7 +271,7 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p ios/build/attachments
-          for name in ServicesTests LiveTests TabletTests TabletUITests; do
+          for name in Tests ServicesTests LiveTests TabletTests TabletUITests; do
             if [ -d "ios/build/$name.xcresult" ]; then
               xcrun xcresulttool export attachments --path "ios/build/$name.xcresult" --output-path "ios/build/attachments/$name"
             fi

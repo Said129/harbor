@@ -133,7 +133,7 @@ struct ContinueWatching: View {
     var body: some View {
         if !items.isEmpty || app.library.presentationError != nil {
             VStack(alignment: .leading, spacing: 12) {
-                Text(title).font(HarborTheme.font(17, weight: .medium)).padding(.horizontal)
+                Text(DesktopInterfaceText.value(title)).font(HarborTheme.font(17, weight: .medium)).padding(.horizontal)
                 LibraryPresentationFeedback(library: app.library).padding(.horizontal)
                 ScrollView(.horizontal) {
                     LazyHStack(alignment: .top, spacing: 12) {
