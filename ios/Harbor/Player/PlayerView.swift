@@ -76,7 +76,7 @@ struct PlayerView: View {
         withLifecycle(surface
             .foregroundStyle(.white)
             .onChange(of: state.subtitleSyncRevision) { _, _ in
-                if state.subtitleSyncPhase != .idle { settingsPage = nil }
+                if state.subtitleSyncPhase == .analyzing { settingsPage = nil }
             }
             .statusBarHidden(!controlsVisible)
             .persistentSystemOverlays(controlsVisible ? .visible : .hidden)

@@ -117,12 +117,47 @@ final class StableMobileTests: XCTestCase {
         let scene = try XCTUnwrap(UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }.first)
         let window = UIWindow(windowScene: scene)
         XCTAssertEqual(PlayerOrientation.supportedOrientations(for: window), .all)
+        XCTAssertEqual(PlayerOrientation.supportedOrientations(for: nil), .all)
         let lease = PlayerOrientation.begin(in: window)
         XCTAssertEqual(PlayerOrientation.supportedOrientations(for: window), .all)
         PlayerOrientation.end(lease)
         for size in [CGSize(width: 1024, height: 1366), CGSize(width: 1366, height: 1024), CGSize(width: 390, height: 1024)] {
             try await render(ReadingHelpView(), size: size, name: "reading-help-tablet-\(Int(size.width))")
         }
+    }
+
+    @MainActor func testPDFReaderRestoresPageAfterLayoutAndNavigatesInBothDirections() async throws {
+        let data = UIGraphicsPDFRenderer(bounds: CGRect(x: 0, y: 0, width: 600, height: 800)).pdfData { context in
+            for page in 1...3 { context.beginPage(); ("Reader page \(page)" as NSString).draw(at: CGPoint(x: 50, y: 50), withAttributes: [.font: UIFont.systemFont(ofSize: 24)]) }
+        }
+        let document = try XCTUnwrap(PDFDocument(data: data))
+        let scene = try XCTUnwrap(UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }.first)
+        let previous = scene.windows.first { $0.isKeyWindow }
+        let window = UIWindow(windowScene: scene); window.frame = CGRect(x: 0, y: 0, width: 393, height: 852)
+        var current = -1
+        let host = UIHostingController(rootView: PDFBookSurface(document: document, initialPage: 1, horizontal: true) { current = $0 })
+        window.rootViewController = host; window.makeKeyAndVisible()
+        defer { window.isHidden = true; window.rootViewController = nil; previous?.makeKeyAndVisible() }
+        try await Task.sleep(for: .milliseconds(500)); host.view.layoutIfNeeded()
+        func find(_ view: UIView) -> PDFView? { (view as? PDFView) ?? view.subviews.compactMap(find).first }
+        let pdf = try XCTUnwrap(find(host.view))
+        XCTAssertEqual(document.index(for: try XCTUnwrap(pdf.currentPage)), 1, "Restore only after PDFView knows its page geometry")
+        XCTAssertEqual(pdf.displayDirection, .horizontal)
+        XCTAssertEqual(pdf.displayMode, .singlePageContinuous, "All pages remain reachable horizontally")
+        pdf.goToNextPage(nil)
+        try await Task.sleep(for: .milliseconds(200))
+        XCTAssertEqual(current, 2, "Page changes must report the saved position")
+        pdf.goToPreviousPage(nil)
+        window.frame = CGRect(x: 0, y: 0, width: 844, height: 390)
+        host.view.setNeedsLayout(); host.view.layoutIfNeeded()
+        try await Task.sleep(for: .milliseconds(200))
+        XCTAssertEqual(document.index(for: try XCTUnwrap(pdf.currentPage)), 1)
+        let attachment = XCTAttachment(image: UIGraphicsImageRenderer(bounds: host.view.bounds).image { _ in _ = host.view.drawHierarchy(in: host.view.bounds, afterScreenUpdates: true) })
+        attachment.name = "pdf-native-horizontal-restored-page"; attachment.lifetime = .keepAlways; add(attachment)
+        host.rootView = PDFBookSurface(document: document, initialPage: 1, horizontal: false) { current = $0 }
+        try await Task.sleep(for: .milliseconds(200))
+        XCTAssertEqual(pdf.displayDirection, .vertical)
+        XCTAssertEqual(document.index(for: try XCTUnwrap(pdf.currentPage)), 1)
     }
 
     @MainActor private func render<Content: View>(_ content: Content, size: CGSize, name: String) async throws {

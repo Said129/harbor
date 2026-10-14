@@ -19,7 +19,17 @@
     "Harbor cannot list the private Apple Books library. Import an unprotected EPUB or PDF from Files or choose Harbor when opening a compatible file in another app. A store link is not a book file; protected purchases stay in Apple Books.": "Harbor no puede listar la biblioteca privada de Apple Books. Importa un EPUB o PDF sin protección desde Archivos o elige Harbor al abrir un archivo compatible en otra app. Un enlace de la tienda no contiene el libro; las compras protegidas se leen en Apple Books.",
     "Import CBZ, ZIP or image folders from the Manga menu. For online sources, connect your Suwayomi server, install its extensions and select a source. Keep that server reachable from your iPhone or iPad.": "Importa CBZ, ZIP o carpetas de imágenes desde el menú de Manga. Para fuentes en línea, conecta tu servidor Suwayomi, instala sus extensiones y elige una fuente. El servidor debe estar accesible desde tu iPhone o iPad.",
     "Your library": "Tu biblioteca",
-    "Imported books and reading progress are stored separately for each Harbor account on this device. Importing the same file again keeps its saved reading position. These files are not uploaded to Stremio.": "Los libros importados y el progreso se guardan por separado para cada cuenta de Harbor en este dispositivo. Al importar el mismo archivo se conserva la posición de lectura. Estos archivos no se suben a Stremio."
+    "Imported books and reading progress are stored separately for each Harbor account on this device. Importing the same file again keeps its saved reading position. These files are not uploaded to Stremio.": "Los libros importados y el progreso se guardan por separado para cada cuenta de Harbor en este dispositivo. Al importar el mismo archivo se conserva la posición de lectura. Estos archivos no se suben a Stremio.",
+    "Analyzing audio… Keep watching.": "Analizando el audio… Puedes seguir viendo.",
+    "Applying subtitle timing…": "Aplicando el ajuste…",
+    "No reliable match was found. The original subtitle is kept.": "No se encontró un ajuste fiable. Se conserva el subtítulo original.",
+    "The subtitle already matches the audio.": "El subtítulo ya coincide con el audio.",
+    "Could not apply the timing. The original subtitle is kept.": "No se pudo aplicar el ajuste. Se conserva el subtítulo original.",
+    "Select an external SRT or VTT subtitle with at least four lines.": "Selecciona un subtítulo externo SRT o VTT con al menos cuatro líneas.",
+    "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it.": "Se conserva el original: para sincronizar este archivo, expórtalo como UTF-8 o UTF-16.",
+    "Could not analyze this source. Playback continues; you can retry.": "No se pudo analizar esta fuente. La reproducción continúa; puedes reintentarlo.",
+    "Select an external SRT/VTT subtitle without dual subtitles, in a video at least one minute long.": "Selecciona un subtítulo externo SRT/VTT, sin subtítulos dobles, en un vídeo de al menos un minuto.",
+    "Analysis stopped to prioritize playback. Retry after buffering finishes.": "Análisis detenido para priorizar la reproducción. Puedes reintentarlo cuando termine de cargar."
   },
   "pt": {
     "Auto-sync": "Sincronização automática",
@@ -41,7 +51,17 @@
     "Harbor cannot list the private Apple Books library. Import an unprotected EPUB or PDF from Files or choose Harbor when opening a compatible file in another app. A store link is not a book file; protected purchases stay in Apple Books.": "O Harbor não pode listar a biblioteca privada do Apple Books. Importe um EPUB ou PDF sem proteção de Arquivos ou escolha Harbor ao abrir um arquivo compatível em outro app. Um link da loja não é o arquivo do livro; compras protegidas ficam no Apple Books.",
     "Import CBZ, ZIP or image folders from the Manga menu. For online sources, connect your Suwayomi server, install its extensions and select a source. Keep that server reachable from your iPhone or iPad.": "Importe CBZ, ZIP ou pastas de imagens pelo menu Manga. Para fontes online, conecte seu servidor Suwayomi, instale suas extensões e selecione uma fonte. Mantenha o servidor acessível pelo iPhone ou iPad.",
     "Your library": "Sua biblioteca",
-    "Imported books and reading progress are stored separately for each Harbor account on this device. Importing the same file again keeps its saved reading position. These files are not uploaded to Stremio.": "Os livros importados e o progresso são separados por conta do Harbor neste dispositivo. Importar o mesmo arquivo novamente preserva a posição de leitura. Os arquivos não são enviados ao Stremio."
+    "Imported books and reading progress are stored separately for each Harbor account on this device. Importing the same file again keeps its saved reading position. These files are not uploaded to Stremio.": "Os livros importados e o progresso são separados por conta do Harbor neste dispositivo. Importar o mesmo arquivo novamente preserva a posição de leitura. Os arquivos não são enviados ao Stremio.",
+    "Analyzing audio… Keep watching.": "Analisando áudio… Continue assistindo.",
+    "Applying subtitle timing…": "Aplicando a sincronização…",
+    "No reliable match was found. The original subtitle is kept.": "Nenhuma correspondência confiável foi encontrada. A legenda original foi mantida.",
+    "The subtitle already matches the audio.": "A legenda já corresponde ao áudio.",
+    "Could not apply the timing. The original subtitle is kept.": "Não foi possível aplicar o ajuste. A legenda original foi mantida.",
+    "Select an external SRT or VTT subtitle with at least four lines.": "Selecione uma legenda SRT ou VTT externa com pelo menos quatro linhas.",
+    "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it.": "O original foi mantido. Exporte a legenda em UTF-8 ou UTF-16 para sincronizá-la.",
+    "Could not analyze this source. Playback continues; you can retry.": "Não foi possível analisar esta fonte. A reprodução continua; você pode tentar novamente.",
+    "Select an external SRT/VTT subtitle without dual subtitles, in a video at least one minute long.": "Selecione uma legenda SRT/VTT externa, sem legendas duplas, em um vídeo de pelo menos um minuto.",
+    "Analysis stopped to prioritize playback. Retry after buffering finishes.": "A análise parou para priorizar a reprodução. Tente novamente após o carregamento."
   },
   "ru": {
     "Auto-sync": "Автосинхронизация",
@@ -63,7 +83,17 @@
     "Harbor cannot list the private Apple Books library. Import an unprotected EPUB or PDF from Files or choose Harbor when opening a compatible file in another app. A store link is not a book file; protected purchases stay in Apple Books.": "Harbor не имеет доступа к закрытой библиотеке Apple Books. Импортируйте EPUB или PDF без защиты из «Файлов» или откройте совместимый файл в Harbor из другого приложения. Ссылка на магазин не является файлом книги; защищённые покупки остаются в Apple Books.",
     "Import CBZ, ZIP or image folders from the Manga menu. For online sources, connect your Suwayomi server, install its extensions and select a source. Keep that server reachable from your iPhone or iPad.": "Импортируйте CBZ, ZIP или папки изображений через меню Manga. Для онлайн-источников подключите сервер Suwayomi, установите расширения и выберите источник. Сервер должен быть доступен с iPhone или iPad.",
     "Your library": "Ваша библиотека",
-    "Imported books and reading progress are stored separately for each Harbor account on this device. Importing the same file again keeps its saved reading position. These files are not uploaded to Stremio.": "Импортированные книги и прогресс хранятся отдельно для каждой учётной записи Harbor на этом устройстве. Повторный импорт того же файла сохраняет позицию чтения. Файлы не отправляются в Stremio."
+    "Imported books and reading progress are stored separately for each Harbor account on this device. Importing the same file again keeps its saved reading position. These files are not uploaded to Stremio.": "Импортированные книги и прогресс хранятся отдельно для каждой учётной записи Harbor на этом устройстве. Повторный импорт того же файла сохраняет позицию чтения. Файлы не отправляются в Stremio.",
+    "Analyzing audio… Keep watching.": "Анализ звука… Продолжайте просмотр.",
+    "Applying subtitle timing…": "Применение синхронизации…",
+    "No reliable match was found. The original subtitle is kept.": "Надёжное совпадение не найдено. Исходные субтитры сохранены.",
+    "The subtitle already matches the audio.": "Субтитры уже совпадают со звуком.",
+    "Could not apply the timing. The original subtitle is kept.": "Не удалось применить синхронизацию. Исходные субтитры сохранены.",
+    "Select an external SRT or VTT subtitle with at least four lines.": "Выберите внешний файл SRT или VTT с минимум четырьмя строками.",
+    "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it.": "Оригинал сохранён. Для синхронизации экспортируйте субтитры в UTF-8 или UTF-16.",
+    "Could not analyze this source. Playback continues; you can retry.": "Не удалось проанализировать источник. Просмотр продолжается; можно повторить попытку.",
+    "Select an external SRT/VTT subtitle without dual subtitles, in a video at least one minute long.": "Выберите внешние SRT/VTT без двойных субтитров в видео продолжительностью не менее минуты.",
+    "Analysis stopped to prioritize playback. Retry after buffering finishes.": "Анализ остановлен ради воспроизведения. Повторите попытку после буферизации."
   },
   "ar": {
     "Auto-sync": "مزامنة تلقائية",
@@ -85,6 +115,16 @@
     "Harbor cannot list the private Apple Books library. Import an unprotected EPUB or PDF from Files or choose Harbor when opening a compatible file in another app. A store link is not a book file; protected purchases stay in Apple Books.": "لا يستطيع Harbor عرض مكتبة Apple Books الخاصة. استورد EPUB أو PDF غير محمي من الملفات، أو اختر Harbor عند فتح ملف متوافق في تطبيق آخر. رابط المتجر ليس ملف كتاب؛ تبقى المشتريات المحمية في Apple Books.",
     "Import CBZ, ZIP or image folders from the Manga menu. For online sources, connect your Suwayomi server, install its extensions and select a source. Keep that server reachable from your iPhone or iPad.": "استورد CBZ أو ZIP أو مجلدات الصور من قائمة المانغا. للمصادر عبر الإنترنت، اربط خادم Suwayomi وثبّت إضافاته واختر مصدرًا. يجب أن يكون الخادم متاحًا من iPhone أو iPad.",
     "Your library": "مكتبتك",
-    "Imported books and reading progress are stored separately for each Harbor account on this device. Importing the same file again keeps its saved reading position. These files are not uploaded to Stremio.": "تُحفظ الكتب المستوردة وتقدّم القراءة بشكل منفصل لكل حساب Harbor على هذا الجهاز. يحتفظ استيراد الملف نفسه مجددًا بموضع القراءة. لا تُرفع هذه الملفات إلى Stremio."
+    "Imported books and reading progress are stored separately for each Harbor account on this device. Importing the same file again keeps its saved reading position. These files are not uploaded to Stremio.": "تُحفظ الكتب المستوردة وتقدّم القراءة بشكل منفصل لكل حساب Harbor على هذا الجهاز. يحتفظ استيراد الملف نفسه مجددًا بموضع القراءة. لا تُرفع هذه الملفات إلى Stremio.",
+    "Analyzing audio… Keep watching.": "جارٍ تحليل الصوت… يمكنك متابعة المشاهدة.",
+    "Applying subtitle timing…": "جارٍ تطبيق توقيت الترجمة…",
+    "No reliable match was found. The original subtitle is kept.": "لم يتم العثور على تطابق موثوق. تم الاحتفاظ بالترجمة الأصلية.",
+    "The subtitle already matches the audio.": "تتطابق الترجمة مع الصوت بالفعل.",
+    "Could not apply the timing. The original subtitle is kept.": "تعذر تطبيق التوقيت. تم الاحتفاظ بالترجمة الأصلية.",
+    "Select an external SRT or VTT subtitle with at least four lines.": "اختر ترجمة خارجية بصيغة SRT أو VTT تحتوي على أربعة أسطر على الأقل.",
+    "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it.": "تم الاحتفاظ بالأصل. صدّر الترجمة بترميز UTF-8 أو UTF-16 لمزامنتها.",
+    "Could not analyze this source. Playback continues; you can retry.": "تعذر تحليل هذا المصدر. تستمر المشاهدة ويمكنك المحاولة مجددًا.",
+    "Select an external SRT/VTT subtitle without dual subtitles, in a video at least one minute long.": "اختر ترجمة خارجية SRT/VTT دون ترجمة مزدوجة، لفيديو مدته دقيقة على الأقل.",
+    "Analysis stopped to prioritize playback. Retry after buffering finishes.": "توقف التحليل لإعطاء الأولوية للمشاهدة. أعد المحاولة بعد اكتمال التحميل."
   }
 }

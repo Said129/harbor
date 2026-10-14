@@ -22,7 +22,7 @@ enum PlayerOrientation {
     private static var presentations: [ObjectIdentifier: Presentation] = [:]
 
     static func supportedOrientations(for window: UIWindow?) -> UIInterfaceOrientationMask {
-        if window?.traitCollection.userInterfaceIdiom == .pad { return .all }
+        if window?.traitCollection.userInterfaceIdiom == .pad || (window == nil && UIDevice.current.userInterfaceIdiom == .pad) { return .all }
         guard let window, presentations[ObjectIdentifier(window)] != nil else { return .allButUpsideDown }
         return .landscape
     }

@@ -695,7 +695,7 @@ final class MPVController: GLKViewController {
                                 controller.synchronizedTracks.insert(selected.id)
                                 controller.state.subtitleSyncOriginal = track.id
                                 controller.subtitleSyncOriginalTiming = (delay, fps ?? 0)
-                                controller.state.updateSubtitleSync(.synced, message: "Sincronizado · \(result.offset.formatted(.number.precision(.fractionLength(1)))) s · \(result.ratio.formatted(.number.precision(.fractionLength(4))))×")
+                                controller.state.updateSubtitleSync(.synced, message: DesktopInterfaceText.value("Subtitles synced") + " · \(result.offset.formatted(.number.precision(.fractionLength(1)))) s · \(result.ratio.formatted(.number.precision(.fractionLength(4))))×")
                                 return
                             }
                             try await Task.sleep(for: .milliseconds(50))

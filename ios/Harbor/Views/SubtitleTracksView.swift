@@ -125,7 +125,7 @@ struct SubtitleTracksView: View {
                     .disabled(disabled)
                     .frame(minHeight: 44).accessibilityIdentifier("subtitle-sync-now")
             }
-            if let message = state.subtitleSyncMessage { Text(message).font(HarborTheme.font(12)).foregroundStyle(.secondary).accessibilityIdentifier("subtitle-sync-status") }
+            if let message = state.subtitleSyncMessage { Text(DesktopInterfaceText.value(message)).font(HarborTheme.font(12)).foregroundStyle(.secondary).accessibilityIdentifier("subtitle-sync-status") }
             if state.subtitleSyncOriginal != nil {
                 Button("Restaurar subtítulo original") { state.controller?.restoreSubtitleBeforeSync() }.frame(minHeight: 44)
             }

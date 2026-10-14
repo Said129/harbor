@@ -238,5 +238,15 @@
   "Cancelar siguiente episodio": "Cancel next episode",
   "Cancelar importación": "Cancel import",
   "Ocultar aviso de fin": "Hide end notice",
-  "Ocultar invitación de Spooktober": "Hide Spooktober invitation"
+  "Ocultar invitación de Spooktober": "Hide Spooktober invitation",
+  "Analizando el audio… Puedes seguir viendo.": "Analyzing audio… Keep watching.",
+  "Aplicando el ajuste…": "Applying subtitle timing…",
+  "No se encontró un ajuste fiable. Se conserva el subtítulo original.": "No reliable match was found. The original subtitle is kept.",
+  "El subtítulo ya coincide con el audio.": "The subtitle already matches the audio.",
+  "No se pudo aplicar el ajuste. Se conserva el subtítulo original.": "Could not apply the timing. The original subtitle is kept.",
+  "Selecciona un subtítulo externo SRT o VTT con al menos cuatro líneas.": "Select an external SRT or VTT subtitle with at least four lines.",
+  "Se conserva el original: para sincronizar este archivo, expórtalo como UTF-8 o UTF-16.": "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it.",
+  "No se pudo analizar esta fuente. La reproducción continúa; puedes reintentarlo.": "Could not analyze this source. Playback continues; you can retry.",
+  "Selecciona un subtítulo externo SRT/VTT, sin subtítulos dobles, en un vídeo de al menos un minuto.": "Select an external SRT/VTT subtitle without dual subtitles, in a video at least one minute long.",
+  "Análisis detenido para priorizar la reproducción. Puedes reintentarlo cuando termine de cargar.": "Analysis stopped to prioritize playback. Retry after buffering finishes."
 }

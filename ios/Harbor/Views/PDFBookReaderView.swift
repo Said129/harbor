@@ -65,17 +65,17 @@ private struct PDFBookReaderView: View {
     }
 }
 
-private struct PDFBookSurface: UIViewRepresentable {
+struct PDFBookSurface: UIViewRepresentable {
     let document: PDFDocument
     let initialPage: Int
     let horizontal: Bool
     let pageChanged: (Int) -> Void
     func makeCoordinator() -> Coordinator { Coordinator(pageChanged) }
     func makeUIView(context: Context) -> PDFView {
-        let view = PDFView(); view.autoScales = true; view.backgroundColor = .secondarySystemBackground
+        let view = ReadingPDFView(); view.autoScales = true; view.backgroundColor = .secondarySystemBackground
         view.document = document
         configure(view)
-        if let page = document.page(at: min(max(0, initialPage), document.pageCount - 1)) { view.go(to: page) }
+        view.pendingPage = document.page(at: min(max(0, initialPage), document.pageCount - 1))
         context.coordinator.view = view
         NotificationCenter.default.addObserver(context.coordinator, selector: #selector(Coordinator.changed), name: .PDFViewPageChanged, object: view)
         return view
@@ -83,7 +83,7 @@ private struct PDFBookSurface: UIViewRepresentable {
     func updateUIView(_ view: PDFView, context: Context) { context.coordinator.pageChanged = pageChanged; configure(view) }
     private func configure(_ view: PDFView) {
         let direction: PDFDisplayDirection = horizontal ? .horizontal : .vertical
-        let mode: PDFDisplayMode = horizontal ? .singlePage : .singlePageContinuous
+        let mode: PDFDisplayMode = .singlePageContinuous
         if view.displayDirection != direction { view.displayDirection = direction }
         if view.displayMode != mode { view.displayMode = mode }
     }
@@ -96,5 +96,15 @@ private struct PDFBookSurface: UIViewRepresentable {
             guard let view, let page = view.currentPage, let document = view.document else { return }
             pageChanged(document.index(for: page))
         }
+    }
+}
+
+private final class ReadingPDFView: PDFView {
+    var pendingPage: PDFPage?
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        guard bounds.width > 0, bounds.height > 0, let page = pendingPage else { return }
+        pendingPage = nil
+        go(to: page)
     }
 }

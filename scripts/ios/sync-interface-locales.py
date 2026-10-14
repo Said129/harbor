@@ -17,6 +17,25 @@ extras = json.loads((native / 'NativeInterfaceTranslations.json').read_text('utf
 english = json.loads((desktop / 'locales/en.json').read_text('utf-8'))
 source_by_value = {value: key for key, value in english.items()}
 native_spanish = {english_key: label for label, english_key in aliases.items()}
+used = set(spanish) | set(aliases) | set(aliases.values())
+for catalog in extras.values():
+    used.update(catalog)
+for path in native.rglob('*.swift'):
+    used.update(re.findall(r'"([^"\n]*)"', path.read_text('utf-8')))
+
+def resource_labels(value):
+    if isinstance(value, str):
+        used.add(value)
+    elif isinstance(value, list):
+        for item in value:
+            resource_labels(item)
+    elif isinstance(value, dict):
+        for key, item in value.items():
+            used.add(key)
+            resource_labels(item)
+
+for path in native.rglob('*.json'):
+    resource_labels(json.loads(path.read_text('utf-8')))
 
 def quoted(value):
     return json.dumps(value, ensure_ascii=False)
@@ -24,7 +43,9 @@ def quoted(value):
 for language in languages:
     code = language['code']
     catalog = spanish if code == 'es' else json.loads((desktop / f'locales/{code}.json').read_text('utf-8'))
-    values = {key: catalog.get(key, value) for key, value in english.items()}
+    # Include the shared labels used by native code, with their English fallback.
+    # Desktop-only tools do not need localization resources in the mobile IPA.
+    values = {key: catalog.get(key, value) for key, value in english.items() if key in used or value in used}
     for key in set(aliases.values()) | set(spanish):
         source_key = source_by_value.get(key, key)
         values[key] = (spanish.get(key) or native_spanish.get(key) or key) if code == 'es' else catalog.get(source_key, key)
