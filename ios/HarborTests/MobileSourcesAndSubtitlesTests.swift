@@ -88,6 +88,16 @@ final class MobileSourcesAndSubtitlesTests: XCTestCase {
         catch is CancellationError {}
     }
 
+    func testSubtitleDownloadRequestHasNoVideoCredentialsOrCookies() throws {
+        let request = try SubtitleFileService.remoteRequest("https://example.org/subtitles/123.srt")
+        XCTAssertNil(request.value(forHTTPHeaderField: "Authorization"))
+        XCTAssertNil(request.value(forHTTPHeaderField: "Cookie"))
+        XCTAssertNil(request.value(forHTTPHeaderField: "Referer"))
+        XCTAssertEqual(request.cachePolicy, .reloadIgnoringLocalCacheData)
+        XCTAssertThrowsError(try SubtitleFileService.remoteRequest("https://user:password@example.org/sub.srt"))
+        XCTAssertThrowsError(try SubtitleFileService.remoteRequest("file:///private/account.json"))
+    }
+
     @available(iOS, deprecated: 12.0)
     @MainActor func testDirectSourcePickerLayout() async throws {
         let scene = try XCTUnwrap(UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }.first)

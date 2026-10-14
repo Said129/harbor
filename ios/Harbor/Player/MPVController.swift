@@ -36,6 +36,7 @@ final class MPVController: GLKViewController {
     private var acknowledgedSubtitleFPS = 0.0
     private var preferredSecondaryHandled = false
     private let subtitleSession = UUID()
+    private var addonSubtitleFiles: [String: ImportedSubtitle] = [:]
     private var lifecycleTokens: [NSObjectProtocol] = []
     private var deferredCloseToken: NSObjectProtocol?
     private var suspendedEvents: Task<Void, Never>?
@@ -548,26 +549,49 @@ final class MPVController: GLKViewController {
         cancelSubtitleSync()
         enqueueSubtitleOperation { controller in
             guard controller.state.loaded else { throw HarborError(code: "subtitle-context") }
+            controller.state.addonSubtitleDownloading = true
+            defer { controller.state.addonSubtitleDownloading = false }
+            let file: ImportedSubtitle
+            if let cached = controller.addonSubtitleFiles[subtitle.url] { file = cached }
+            else {
+                if let input = URL(string: subtitle.url), input.isFileURL { file = try await SubtitleFileService.shared.copy(input, session: controller.subtitleSession) }
+                else { file = try await SubtitleFileService.shared.download(subtitle, session: controller.subtitleSession) }
+                controller.addonSubtitleFiles[subtitle.url] = file
+            }
+            guard !controller.didClose, controller.state.loaded else { throw HarborError(code: "subtitle-context") }
             try await controller.resetSubtitleFPS()
-            if let track = controller.state.tracks.first(where: { $0.type == "sub" && subtitle.matchesFilename($0.externalFilename) }) {
+            let local = PlaybackSource.Subtitle(url: file.url.absoluteString, lang: subtitle.lang, id: subtitle.id)
+            if let track = controller.state.tracks.first(where: { $0.type == "sub" && local.matchesFilename($0.externalFilename) }) {
                 if controller.state.secondarySubtitle?.id == track.id { try await controller.setChecked("secondary-sid", "no") }
                 try await controller.setChecked("sid", String(track.id))
+                controller.state.addonSubtitleTracks[subtitle.url] = track.id
                 return
             }
             let previous = controller.state.primarySubtitle?.id
             let revision = controller.mediaRevision
             do {
-                try await controller.commandChecked(["sub-add", subtitle.url, "select", subtitle.title ?? "Addon", subtitle.lang ?? ""])
+                // Downloaded through a separate cookie/credential-free session;
+                // mpv's video HTTP headers must never reach a subtitle addon.
+                try await controller.commandChecked(["sub-add", file.url.absoluteString, "select", subtitle.title ?? "Addon", subtitle.lang ?? ""])
                 for _ in 0..<50 {
                     try Task.checkCancellation()
-                    if let track = controller.state.primarySubtitle, subtitle.matchesFilename(track.externalFilename) { return }
+                    if let track = controller.state.primarySubtitle, local.matchesFilename(track.externalFilename) {
+                        controller.state.addonSubtitleTracks[subtitle.url] = track.id
+                        return
+                    }
                     try await Task.sleep(for: .milliseconds(100))
                 }
                 throw HarborError(code: "subtitle-timeout")
             } catch {
                 if controller.mediaRevision == revision, !controller.didClose {
                     try? await controller.setChecked("sid", previous.map(String.init) ?? "no")
+                    if let failed = controller.state.tracks.first(where: { $0.type == "sub" && local.matchesFilename($0.externalFilename) }) {
+                        try? await controller.commandChecked(["sub-remove", String(failed.id)])
+                    }
                 }
+                controller.addonSubtitleFiles.removeValue(forKey: subtitle.url)
+                controller.state.addonSubtitleTracks.removeValue(forKey: subtitle.url)
+                await SubtitleFileService.shared.discard(file, session: controller.subtitleSession)
                 throw error
             }
         }
@@ -872,6 +896,7 @@ final class MPVController: GLKViewController {
                 state.importedSubtitleIDs = []
                 state.subtitleImportMessage = nil
                 state.addonSubtitles = []; state.addonSubtitlesMessage = nil; state.addonSubtitlesLoading = false
+                state.addonSubtitleTracks = [:]
                 state.ended = false
                 state.endedNaturally = false
                 state.loaded = false

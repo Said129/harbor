@@ -156,6 +156,7 @@ struct SubtitleTracksView: View {
     private var addonSection: some View {
         VStack(alignment: .leading, spacing: 12) {
             Divider()
+            if state.addonSubtitleDownloading { ProgressView("Cargando subtítulo…").font(HarborTheme.font(12)).accessibilityIdentifier("subtitle-addon-loading") }
             HStack {
                 Text("Subtítulos de tus addons").font(HarborTheme.font(14, weight: .semibold))
                 Text(String(state.addonSubtitles.count)).font(HarborTheme.font(12)).foregroundStyle(.secondary)
@@ -180,12 +181,12 @@ struct SubtitleTracksView: View {
                                     Text(subtitle.title ?? "Addon").font(HarborTheme.font(11)).foregroundStyle(.secondary).lineLimit(2)
                                 }
                                 Spacer(minLength: 0)
-                                if let track = state.primarySubtitle, subtitle.matchesFilename(track.externalFilename) { Image(systemName: "checkmark") }
+                                if state.addonSubtitleSelected(subtitle) { Image(systemName: "checkmark") }
                                 else { Image(systemName: "arrow.down.circle") }
                             }.padding(10).frame(minHeight: 52).contentShape(Rectangle())
                                 .background(HarborTheme.surface, in: .rect(cornerRadius: 8))
                         }.buttonStyle(.plain).disabled(disabled).accessibilityIdentifier("subtitle-addon-\(index)")
-                            .accessibilityValue(state.primarySubtitle.map { subtitle.matchesFilename($0.externalFilename) } == true ? "Seleccionado" : "Disponible")
+                            .accessibilityValue(state.addonSubtitleSelected(subtitle) ? "Seleccionado" : "Disponible")
                     }
                 }
                 if availableAddonSubtitles.isEmpty { Text("No hay subtítulos que coincidan con tu búsqueda.").font(HarborTheme.font(12)).foregroundStyle(.secondary) }
@@ -236,7 +237,7 @@ struct SubtitleTracksView: View {
                 }
             }.scrollIndicators(.hidden)
             if let primary = state.primarySubtitle, !visible.contains(where: { $0.id == primary.id }) { trackRow(primary) }
-            if tracks.isEmpty { Text(text("No subtitles found.")).foregroundStyle(.secondary).padding(.vertical, 12) }
+            if tracks.isEmpty { Text(state.addonSubtitles.isEmpty ? text("No subtitles found.") : "Elige un subtítulo de tus addons para cargarlo.").foregroundStyle(.secondary).padding(.vertical, 12) }
             else if visible.isEmpty { Text(text("No tracks match these filters. Try toggling HI/SDH or Forced.")).foregroundStyle(.secondary).padding(.vertical, 12) }
             ForEach(visible) { track in trackRow(track) }
         }
