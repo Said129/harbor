@@ -111,8 +111,8 @@ final class AppModel {
             warnings = result.1
             rows = result.0
             Diagnostics.shared.record(.catalogsLoaded, count: rows.count)
-            if !warnings.isEmpty {
-                error = rows.contains(where: { !$0.metas.isEmpty }) ? "Algunos catálogos no han respondido. Los títulos disponibles siguen accesibles." : "No se pudieron actualizar los catálogos. Comprueba la conexión y vuelve a intentarlo."
+            if !warnings.isEmpty && !rows.contains(where: { !$0.metas.isEmpty }) {
+                error = "No se pudieron actualizar los catálogos. Comprueba la conexión y vuelve a intentarlo."
             }
             await enrichHeroes(generation: generation)
         } catch is CancellationError { return }

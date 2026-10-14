@@ -22,6 +22,7 @@ enum PlayerOrientation {
     private static var presentations: [ObjectIdentifier: Presentation] = [:]
 
     static func supportedOrientations(for window: UIWindow?) -> UIInterfaceOrientationMask {
+        if window?.traitCollection.userInterfaceIdiom == .pad { return .all }
         guard let window, presentations[ObjectIdentifier(window)] != nil else { return .allButUpsideDown }
         return .landscape
     }
@@ -45,6 +46,8 @@ enum PlayerOrientation {
     }
 
     private static func request(_ orientations: UIInterfaceOrientationMask, in window: UIWindow) {
+        // iPad supports rotation and resizable windows throughout playback.
+        guard window.traitCollection.userInterfaceIdiom != .pad else { return }
         guard let scene = window.windowScene else { return }
         var controller = window.rootViewController
         while let current = controller {

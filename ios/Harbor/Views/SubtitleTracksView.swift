@@ -40,6 +40,7 @@ struct SubtitleTracksView: View {
     private var disabled: Bool { !state.loaded || state.subtitleChanging }
     private var availableAddonSubtitles: [PlaybackSource.Subtitle] {
         let query = addonQuery.trimmingCharacters(in: .whitespacesAndNewlines)
+        if query.isEmpty { return state.addonSubtitles }
         return state.addonSubtitles.filter { subtitle in
             let language = SubtitleLanguages.name(subtitle.lang ?? "")
             return query.isEmpty || [subtitle.title ?? "", subtitle.lang ?? "", language, SubtitleLanguages.preferenceName(subtitle.lang ?? "")].contains { $0.localizedCaseInsensitiveContains(query) }
@@ -114,14 +115,14 @@ struct SubtitleTracksView: View {
                 .onChange(of: autoSync) { _, _ in state.controller?.subtitleAutoSyncPreferenceChanged() }
             Text("Para subtítulos externos SRT/VTT en UTF-8 o UTF-16. Solo se aplica un cambio si el análisis encuentra una coincidencia fiable.")
                 .font(HarborTheme.font(11)).foregroundStyle(.secondary)
-            if state.subtitleSyncing {
+            if state.subtitleSyncPhase.working {
                 HStack {
                     ProgressView()
                     Button("Cancelar análisis") { state.controller?.cancelSubtitleSync() }
                 }
             } else {
-                Button("Sincronizar ahora") { state.controller?.synchronizeSubtitle() }
-                    .disabled(disabled || state.duration < 60 || state.primarySubtitle?.external != true || state.primarySubtitle?.isTextSubtitle != true || state.secondarySubtitle != nil)
+                Button(DesktopInterfaceText.value("Auto-sync")) { state.controller?.synchronizeSubtitle() }
+                    .disabled(disabled)
                     .frame(minHeight: 44).accessibilityIdentifier("subtitle-sync-now")
             }
             if let message = state.subtitleSyncMessage { Text(message).font(HarborTheme.font(12)).foregroundStyle(.secondary).accessibilityIdentifier("subtitle-sync-status") }

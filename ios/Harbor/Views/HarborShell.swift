@@ -4,7 +4,8 @@ import CoreText
 enum HarborSection: String, CaseIterable, Identifiable {
     case home, discover, catalogs, movies, shows, kids, anime, live, sports, manga, ebook, music, vod, calendar, library, collections, downloads, search, addons, settings
     var id: String { rawValue }
-    var title: String {
+    var title: String { DesktopInterfaceText.value(sourceTitle) }
+    private var sourceTitle: String {
         switch self {
         case .home: "Home"
         case .discover: "Discover"
@@ -76,6 +77,9 @@ struct HarborShell: View {
     @State private var path = NavigationPath()
     @State private var navigationID = UUID()
     @State private var menu = false
+    @State private var document: IncomingBook?
+    @State private var pendingDocument: URL?
+    @AppStorage("uiLanguage") private var uiLanguage = "es"
     var body: some View {
         ZStack(alignment: .leading) {
             VStack(spacing: 0) {
@@ -110,6 +114,29 @@ struct HarborShell: View {
                     .transition(.move(edge: .leading))
             }
         }.safeAreaInset(edge: .bottom, spacing: 0) { MusicMiniPlayer() }
+            .environment(\.locale, Locale(identifier: InterfaceLanguage.resolve(uiLanguage)))
+            .environment(\.layoutDirection, InterfaceLanguage.resolve(uiLanguage) == "ar" ? .rightToLeft : .leftToRight)
+            .onChange(of: uiLanguage) { _, _ in navigationID = UUID() }
+            .onOpenURL { url in
+                guard url.isFileURL, ["epub", "pdf"].contains(url.pathExtension.lowercased()) else { return }
+                pendingDocument = url
+                presentPendingDocument()
+            }
+            .onChange(of: app.storageReady) { _, ready in if ready { presentPendingDocument() } }
+            .onChange(of: app.user?.id) { _, _ in document = nil }
+            .sheet(item: $document) { incoming in
+                if incoming.owner == (app.user?.id ?? "guest") {
+                    NavigationStack {
+                        EBooksView(app: app, initialFile: incoming.url)
+                            .toolbar { ToolbarItem(placement: .confirmationAction) { Button("Listo") { document = nil } } }
+                    }.preferredColorScheme(.dark)
+                }
+            }
+    }
+    private func presentPendingDocument() {
+        guard app.storageReady, let url = pendingDocument else { return }
+        pendingDocument = nil; app.showAccount = false
+        document = IncomingBook(url: url, owner: app.user?.id ?? "guest")
     }
     private var header: some View {
         HStack(spacing: 6) {
@@ -152,4 +179,10 @@ struct HarborShell: View {
         navigationID = UUID()
     }
     private func closeMenu() { withAnimation(.easeOut(duration: 0.18)) { menu = false } }
+}
+
+private struct IncomingBook: Identifiable {
+    let id = UUID()
+    let url: URL
+    let owner: String
 }

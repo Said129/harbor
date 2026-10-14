@@ -11,6 +11,8 @@ struct EBook: Codable, Identifiable, Hashable, Sendable {
     var language: String?
     var epub: String?
     var source = "Project Gutenberg"
+    var format: String?
+    var isPDF: Bool { format == "pdf" }
 }
 
 struct EBookBookmark: Codable, Identifiable, Sendable {
@@ -42,6 +44,9 @@ final class EBookShelf {
         catch { self.error = "No se pudo leer tu estantería. Los libros y el progreso se conservan." }
     }
     func record(_ book: EBook) -> EBookRecord? { records.first { $0.id == book.id } }
+    func addImported(_ book: EBook) throws {
+        if record(book) == nil { try save(EBookRecord(book: book)) }
+    }
     func save(_ record: EBookRecord) throws {
         guard ready else { throw HarborError(code: "ebook-store") }
         var next = records.filter { $0.id != record.id }; next.append(record)
@@ -61,7 +66,8 @@ final class EBookShelf {
         let next = records.filter { $0.id != book.id }
         try KeychainStore().write(next, key: Self.key(owner)); records = next
     }
-    nonisolated static func hash(_ raw: String) -> String { SHA256.hash(data: Data(raw.utf8)).map { String(format: "%02x", $0) }.joined() }
+    nonisolated static func hash(_ raw: String) -> String { hash(Data(raw.utf8)) }
+    nonisolated static func hash(_ data: Data) -> String { SHA256.hash(data: data).map { String(format: "%02x", $0) }.joined() }
     nonisolated private static func key(_ owner: String) -> String { "ebook-shelf-" + hash(owner) }
 }
 

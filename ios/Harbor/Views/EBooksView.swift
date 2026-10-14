@@ -3,6 +3,7 @@ import UniformTypeIdentifiers
 
 struct EBooksView: View {
     let app: AppModel
+    let initialFile: URL?
     @State private var shelf: EBookShelf
     @State private var books: [EBook] = []
     @State private var query = ""
@@ -14,14 +15,18 @@ struct EBooksView: View {
     @State private var generation = UUID()
     @State private var error: String?
     @State private var importing = false
+    @State private var importingDocument = false
+    @State private var help = false
     @State private var imported: EBook?
-    @MainActor init(app: AppModel) { self.app = app; _shelf = State(initialValue: EBookShelf(owner: app.user?.id ?? "guest")) }
+    @MainActor init(app: AppModel, initialFile: URL? = nil) { self.app = app; self.initialFile = initialFile; _screen = State(initialValue: initialFile == nil ? "browse" : "shelf"); _shelf = State(initialValue: EBookShelf(owner: app.user?.id ?? "guest")) }
     private var signature: String { query + "|" + language }
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
                 Picker("eBook", selection: $screen) { Text("Explorar").tag("browse"); Text("Estantería").tag("shelf") }.pickerStyle(.segmented).padding(.horizontal)
                 if let message = error ?? shelf.error { Text(message).font(.caption).foregroundStyle(.orange).padding(.horizontal) }
+                Button { importing = true } label: { Label("Importar desde Archivos · EPUB / PDF", systemImage: "square.and.arrow.down").frame(maxWidth: .infinity, minHeight: 44) }.padding(.horizontal).disabled(importingDocument).accessibilityIdentifier("ebook-import")
+                if importingDocument { ProgressView("Importando libro…").frame(maxWidth: .infinity) }
                 if screen == "browse" {
                     HStack {
                         Text("Project Gutenberg").font(.headline)
@@ -35,7 +40,7 @@ struct EBooksView: View {
                 } else {
                     let saved = shelf.records.sorted { $0.updated > $1.updated }
                     ForEach(saved) { record in
-                        NavigationLink { EBookReaderView(book: record.book, shelf: shelf) } label: {
+                        NavigationLink { BookReaderDestination(book: record.book, shelf: shelf) } label: {
                             HStack(spacing: 16) {
                                 Artwork(url: record.book.cover, maxPixels: 280).frame(width: 58, height: 86).clipShape(.rect(cornerRadius: 6))
                                 VStack(alignment: .leading, spacing: 8) {
@@ -57,21 +62,30 @@ struct EBooksView: View {
             }.padding(.vertical, 16)
         }.background(HarborTheme.background).navigationTitle("eBook").navigationBarTitleDisplayMode(.inline)
             .searchable(text: $query, prompt: "Libros y autores")
-            .toolbar { ToolbarItem(placement: .topBarTrailing) { Button { importing = true } label: { Image(systemName: "square.and.arrow.down") }.accessibilityLabel("Importar EPUB") } }
-            .task(id: signature) { await load(next: false) }
-            .refreshable { await load(next: false) }
-            .fileImporter(isPresented: $importing, allowedContentTypes: [UTType(filenameExtension: "epub") ?? .data]) { result in
+            .toolbar { ToolbarItem(placement: .topBarTrailing) { Button { help = true } label: { Image(systemName: "questionmark.circle") }.accessibilityLabel("Cómo leer tus libros").accessibilityIdentifier("ebook-reading-help") } }
+            .sheet(isPresented: $help) { ReadingHelpView() }
+            .task { if let initialFile { await importBook(initialFile) } }
+            .task(id: signature + "|" + screen) { if screen == "browse" && !importingDocument { await load(next: false) } }
+            .refreshable { if screen == "browse" { await load(next: false) } }
+            .fileImporter(isPresented: $importing, allowedContentTypes: [UTType(filenameExtension: "epub") ?? .data, .pdf], allowsMultipleSelection: true) { result in
                 switch result {
-                case .success(let file): Task { await importBook(file) }
+                case .success(let files): Task {
+                    var failures: [String] = []
+                    for file in files {
+                        await importBook(file, open: files.count == 1)
+                        if let error { failures.append(file.lastPathComponent + ": " + error) }
+                    }
+                    if !failures.isEmpty { error = failures.joined(separator: "\n") }
+                }
                 case .failure: error = "No se pudo abrir el archivo elegido."
                 }
             }
-            .navigationDestination(item: $imported) { book in EBookReaderView(book: book, shelf: shelf) }
+            .navigationDestination(item: $imported) { book in BookReaderDestination(book: book, shelf: shelf) }
     }
     private func grid(_ entries: [EBook]) -> some View {
-        LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())], alignment: .leading, spacing: 18) {
+        LazyVGrid(columns: [GridItem(.adaptive(minimum: 110, maximum: 180))], alignment: .leading, spacing: 18) {
             ForEach(entries) { book in
-                NavigationLink { EBookReaderView(book: book, shelf: shelf) } label: {
+                NavigationLink { BookReaderDestination(book: book, shelf: shelf) } label: {
                     VStack(alignment: .leading, spacing: 6) {
                         Artwork(url: book.cover, maxPixels: 500).aspectRatio(2.0 / 3.0, contentMode: .fit).clipShape(.rect(cornerRadius: 8))
                         Text(book.title).font(.caption.weight(.medium)).lineLimit(2)
@@ -97,19 +111,18 @@ struct EBooksView: View {
         } catch is CancellationError { return }
         catch { if token == generation { self.error = "No se pudo cargar Project Gutenberg. Vuelve a intentarlo." } }
     }
-    private func importBook(_ file: URL) async {
+    private func importBook(_ file: URL, open: Bool = true) async {
         guard shelf.ready else { error = "La estantería no está disponible. Los libros guardados se conservan."; return }
-        let access = file.startAccessingSecurityScopedResource()
-        defer { if access { file.stopAccessingSecurityScopedResource() } }
+        importingDocument = true; error = nil
+        defer { importingDocument = false }
         do {
-            let data = try await Task.detached(priority: .userInitiated) {
-                guard (try file.resourceValues(forKeys: [.fileSizeKey]).fileSize ?? 0) <= 48 * 1024 * 1024 else { throw HarborError(code: "ebook-size") }
-                return try Data(contentsOf: file)
-            }.value
-            var book = EBook(id: "local:\(UUID().uuidString)", title: file.deletingPathExtension().lastPathComponent, source: "Archivo local")
-            let publication = try await EBookService.shared.open(book, owner: shelf.owner, imported: data)
-            book.title = publication.title; book.authors = publication.authors; book.language = publication.language
-            try shelf.save(EBookRecord(book: book)); screen = "shelf"; imported = book
-        } catch { self.error = safeMessage(error) }
+            let book = try await EBookService.shared.importDocument(file, owner: shelf.owner)
+            try Task.checkCancellation()
+            guard shelf.owner == (app.user?.id ?? "guest") else { return }
+            try shelf.addImported(book)
+            screen = "shelf"
+            if open { imported = book }
+        } catch is CancellationError { return }
+        catch { self.error = safeMessage(error) }
     }
 }

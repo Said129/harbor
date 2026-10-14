@@ -5,6 +5,7 @@ import Observation
 final class InterfacePreferences {
     static let shared = InterfacePreferences()
     private let storage = UserDefaults.standard
+    var autoRotateBanners = UserDefaults.standard.object(forKey: "interface.autoRotateBanners") as? Bool ?? true { didSet { storage.set(autoRotateBanners, forKey: "interface.autoRotateBanners") } }
     var homeMode = UserDefaults.standard.string(forKey: "homeMode") ?? "harbor" { didSet { storage.set(homeMode, forKey: "homeMode") } }
     var showImdbBadge = UserDefaults.standard.object(forKey: "showImdbBadge") as? Bool ?? true { didSet { storage.set(showImdbBadge, forKey: "showImdbBadge") } }
     var showTmdbBadge = UserDefaults.standard.object(forKey: "showTmdbBadge") as? Bool ?? false { didSet { storage.set(showTmdbBadge, forKey: "showTmdbBadge") } }
@@ -22,6 +23,6 @@ final class InterfacePreferences {
         return (navigationOrder.compactMap(HarborSection.init(rawValue:)) + HarborSection.allCases).filter { seen.insert($0).inserted }
     }
     var visibleSections: [HarborSection] { orderedSections.filter { !navigationHidden.contains($0.rawValue) || $0 == .settings || $0 == .home } }
-    func label(_ section: HarborSection) -> String { navigationNames[section.rawValue].flatMap { $0.isEmpty ? nil : $0 } ?? section.title }
+    func label(_ section: HarborSection) -> String { navigationNames[section.rawValue].flatMap { $0.isEmpty ? nil : $0 } ?? DesktopInterfaceText.value(section.title) }
     func resetNavigation() { navigationOrder = []; navigationHidden = []; navigationNames = [:] }
 }

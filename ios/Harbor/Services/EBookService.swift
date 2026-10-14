@@ -1,4 +1,5 @@
 import Foundation
+import PDFKit
 
 actor EBookService {
     static let shared = EBookService()
@@ -31,6 +32,7 @@ actor EBookService {
         let key = Self.key(book, owner)
         if let cached = readers[key] { return cached.publication }
         let file = try Self.file(book, owner)
+        let persist = imported != nil || !FileManager.default.fileExists(atPath: file.path)
         let data: Data
         if let imported { data = imported }
         else if FileManager.default.fileExists(atPath: file.path) {
@@ -43,7 +45,7 @@ actor EBookService {
         try Task.checkCancellation()
         let reader = try EPUBReader(data: data)
         try FileManager.default.createDirectory(at: file.deletingLastPathComponent(), withIntermediateDirectories: true, attributes: [.protectionKey: FileProtectionType.completeUntilFirstUserAuthentication])
-        try data.write(to: file, options: [.atomic, .completeFileProtectionUntilFirstUserAuthentication])
+        if persist { try data.write(to: file, options: [.atomic, .completeFileProtectionUntilFirstUserAuthentication]) }
         recent.removeAll { $0 == key }; recent.append(key); readers[key] = reader
         while recent.count > 2 { readers.removeValue(forKey: recent.removeFirst()) }
         return reader.publication
@@ -99,10 +101,55 @@ actor EBookService {
         if FileManager.default.fileExists(atPath: file.path) { try FileManager.default.removeItem(at: file) }
         readers[key] = nil; recent.removeAll { $0 == key }
     }
+    func importDocument(_ url: URL, owner: String) async throws -> EBook {
+        let ext = url.pathExtension.lowercased()
+        guard url.isFileURL, ["pdf", "epub"].contains(ext) else { throw HarborError(code: "ebook-format") }
+        let access = url.startAccessingSecurityScopedResource()
+        defer { if access { url.stopAccessingSecurityScopedResource() } }
+        var payload: Data?
+        var readingError: Error?
+        var coordinationError: NSError?
+        NSFileCoordinator().coordinate(readingItemAt: url, options: .withoutChanges, error: &coordinationError) { file in
+            do {
+                guard (try file.resourceValues(forKeys: [.fileSizeKey]).fileSize ?? 0) <= 48 * 1024 * 1024 else { throw HarborError(code: "ebook-size") }
+                let handle = try FileHandle(forReadingFrom: file)
+                defer { try? handle.close() }
+                var data = Data()
+                while let chunk = try handle.read(upToCount: 256 * 1024), !chunk.isEmpty {
+                    try Task.checkCancellation()
+                    guard data.count <= 48 * 1024 * 1024 - chunk.count else { throw HarborError(code: "ebook-size") }
+                    data.append(chunk)
+                }
+                payload = data
+            } catch { readingError = error }
+        }
+        if let coordinationError { throw coordinationError }
+        if let readingError { throw readingError }
+        guard let data = payload, !data.isEmpty, data.count <= 48 * 1024 * 1024 else { throw HarborError(code: "ebook-size") }
+        try Task.checkCancellation()
+        var book = EBook(id: "local:" + EBookShelf.hash(data), title: url.deletingPathExtension().lastPathComponent, source: "Archivo local", format: ext)
+        if ext == "epub" {
+            let publication = try await open(book, owner: owner, imported: data)
+            book.title = publication.title; book.authors = publication.authors; book.language = publication.language
+        } else {
+            guard let document = PDFDocument(data: data), !document.isLocked, document.pageCount > 0 else { throw HarborError(code: "ebook-format") }
+            book.title = document.documentAttributes?[PDFDocumentAttribute.titleAttribute] as? String ?? book.title
+            if let author = document.documentAttributes?[PDFDocumentAttribute.authorAttribute] as? String { book.authors = [author] }
+            let destination = try Self.file(book, owner)
+            try FileManager.default.createDirectory(at: destination.deletingLastPathComponent(), withIntermediateDirectories: true, attributes: [.protectionKey: FileProtectionType.completeUntilFirstUserAuthentication])
+            try data.write(to: destination, options: [.atomic, .completeFileProtectionUntilFirstUserAuthentication])
+        }
+        return book
+    }
+    func pdfURL(_ book: EBook, owner: String) throws -> URL {
+        let file = try Self.file(book, owner)
+        guard book.isPDF, FileManager.default.fileExists(atPath: file.path) else { throw HarborError(code: "ebook-missing") }
+        return file
+    }
     nonisolated private static func key(_ book: EBook, _ owner: String) -> String { EBookShelf.hash(owner + "|" + book.id) }
     nonisolated private static func file(_ book: EBook, _ owner: String) throws -> URL {
         let support = try FileManager.default.url(for: .applicationSupportDirectory, in: .userDomainMask, appropriateFor: nil, create: true).resolvingSymlinksInPath().standardizedFileURL
-        let file = support.appendingPathComponent("Harbor/eBooks/" + key(book, owner) + ".epub")
+        let file = support.appendingPathComponent("Harbor/eBooks/" + key(book, owner) + (book.isPDF ? ".pdf" : ".epub"))
         guard file.standardizedFileURL.path == file.resolvingSymlinksInPath().standardizedFileURL.path else { throw HarborError(code: "ebook-store") }
         return file
     }

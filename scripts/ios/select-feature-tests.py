@@ -7,7 +7,7 @@ parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument('--selection', required=True)
 parser.add_argument('--output', type=Path, required=True)
 args = parser.parse_args()
-allowed = {'SearchAndSourcesTests', 'SubtitleAutoSyncTests', 'SubtitlePlaybackTests', 'AccountCollectionTests', 'MobileSourcesAndSubtitlesTests'}
+allowed = {'SearchAndSourcesTests', 'SubtitleAutoSyncTests', 'SubtitlePlaybackTests', 'AccountCollectionTests', 'MobileSourcesAndSubtitlesTests', 'StableMobileTests'}
 selected = args.selection.split(',')
 assert selected and len(set(selected)) == len(selected)
 for identifier in selected:

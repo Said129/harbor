@@ -5,6 +5,9 @@ struct InterfaceSettingsView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 30) {
+                HarborSettingsSection(DesktopInterfaceText.value("Motion")) {
+                    HarborSettingsToggle(DesktopInterfaceText.value("Rotate featured banners automatically"), isOn: $preferences.autoRotateBanners)
+                }
                 HarborSettingsSection(DesktopInterfaceText.value("Home layout")) {
                     Text(DesktopInterfaceText.value("The shape of the whole Home page. Everything below tunes the rows inside it."))
                         .font(HarborTheme.font(13)).foregroundStyle(.secondary)

@@ -55,8 +55,6 @@ struct HomeView: View {
                         Text(error).font(HarborTheme.font(13)).foregroundStyle(.secondary).multilineTextAlignment(.center).accessibilityIdentifier("home-error")
                         Button("Reintentar") { Task { await refresh() } }.buttonStyle(HarborAccountButtonStyle())
                     }.padding(28).frame(maxWidth: .infinity)
-                } else if let error = homeError {
-                    HStack { Text(error).font(.caption).foregroundStyle(.secondary); Button("Reintentar") { Task { await refresh() } }.font(.caption) }.padding(.horizontal)
                 }
                 PageCustomizeButton(rails: rails, customization: customization)
                 if let error = customization.error { Text(error).font(.caption).foregroundStyle(.orange).padding(.horizontal) }

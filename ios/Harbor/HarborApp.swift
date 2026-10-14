@@ -23,6 +23,7 @@ final class HarborAppDelegate: NSObject, UIApplicationDelegate, UNUserNotificati
 struct HarborApp: App {
     @UIApplicationDelegateAdaptor(HarborAppDelegate.self) private var delegate
     @State private var model = AppModel()
+    @AppStorage("uiLanguage") private var uiLanguage = "es"
     @Environment(\.scenePhase) private var scenePhase
     var body: some Scene {
         WindowGroup {
@@ -43,7 +44,9 @@ struct HarborApp: App {
                     await model.library.sync()
                     await model.refreshAddons()
                 }
-                .sheet(isPresented: $model.showAccount) { NavigationStack { AccountView(app: model) }.font(HarborTheme.font()).foregroundStyle(HarborTheme.ink).tint(HarborTheme.accent).preferredColorScheme(.dark) }
+                .sheet(isPresented: $model.showAccount) { NavigationStack { AccountView(app: model) }.font(HarborTheme.font()).foregroundStyle(HarborTheme.ink).tint(HarborTheme.accent).preferredColorScheme(.dark)
+                        .environment(\.locale, Locale(identifier: InterfaceLanguage.resolve(uiLanguage)))
+                        .environment(\.layoutDirection, InterfaceLanguage.resolve(uiLanguage) == "ar" ? .rightToLeft : .leftToRight) }
         }
     }
 }

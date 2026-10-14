@@ -63,7 +63,7 @@ struct EBookReaderView: View {
                             }
                         }.frame(maxWidth: .infinity, alignment: .leading).id(block.id)
                     }
-                }.scrollTargetLayout().padding(.horizontal, margin).padding(.vertical, 24)
+                }.scrollTargetLayout().frame(maxWidth: 800).frame(maxWidth: .infinity).padding(.horizontal, margin).padding(.vertical, 24)
             }.scrollPosition(id: $visible, anchor: .top).environment(\.layoutDirection, rtl ? .rightToLeft : .leftToRight)
                 .foregroundStyle(ink)
             if !focus, let publication {

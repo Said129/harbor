@@ -98,8 +98,10 @@ final class SubtitleAutoSyncTests: XCTestCase {
         controller.selectSubtitle(String(original.id))
         try await wait { !state.subtitleChanging && state.primarySubtitle?.id == original.id }
         controller.synchronizeSubtitle()
+        XCTAssertEqual(state.subtitleSyncPhase, .analyzing)
         try await wait { !state.subtitleSyncing && !state.subtitleChanging && state.subtitleSyncOriginal == original.id }
         let synchronized = try XCTUnwrap(state.primarySubtitle)
+        XCTAssertEqual(state.subtitleSyncPhase, .synced)
         XCTAssertNotEqual(synchronized.id, original.id)
         XCTAssertEqual(try String(contentsOf: input, encoding: .utf8), originalText, "Automatic synchronization must not edit the source subtitle")
         let saved = synchronized.externalFilename.hasPrefix("file:") ? try XCTUnwrap(URL(string: synchronized.externalFilename)) : URL(fileURLWithPath: synchronized.externalFilename)
@@ -108,6 +110,7 @@ final class SubtitleAutoSyncTests: XCTestCase {
         controller.restoreSubtitleBeforeSync()
         try await wait { !state.subtitleChanging && state.primarySubtitle?.id == original.id && state.subtitleSyncOriginal == nil }
         XCTAssertTrue(state.loaded); XCTAssertNil(state.error); XCTAssertNil(state.subtitleIssue)
+        XCTAssertEqual(state.subtitleSyncPhase, .idle)
         print("Native auto-sync: applied acknowledged synchronized track, preserved original file and restored original track")
     }
 }

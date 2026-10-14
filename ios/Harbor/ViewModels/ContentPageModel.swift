@@ -20,7 +20,6 @@ final class ContentPageModel {
         loading = true; error = nil
         let previousRows = signature == loadedSignature ? rows : []
         let previousCurated = signature == loadedSignature ? curated : []
-        var failed = false
         rows = previousRows; curated = previousCurated
         if signature != loadedSignature { heroes = []; heroSources = [:] }
         defer { if generation == current { loading = false } }
@@ -40,7 +39,7 @@ final class ContentPageModel {
                         var fetched: [(Int, DiscoveryRail)] = []
                         for await (index, rail) in group {
                             guard current == generation else { continue }
-                            guard let rail else { failed = true; continue }
+                            guard let rail else { continue }
                             fetched.append((index, rail))
                             curated = CatalogRefresh.merge(order: definitions.map(\.id), received: fetched.map(\.1), previous: previousCurated)
                             if !rail.metas.isEmpty { rows = [] }
@@ -69,7 +68,7 @@ final class ContentPageModel {
                         var fetched: [(Int, CatalogRow)] = []
                         for await (index, row) in group {
                             guard current == generation else { continue }
-                            guard let row else { failed = true; continue }
+                            guard let row else { continue }
                             fetched.append((index, row))
                             let ordered = definitions.indices.map { "native-\(kind)-\($0)" }
                             rows = CatalogRefresh.merge(order: ordered, received: fetched.map(\.1), previous: previousRows)
@@ -99,7 +98,7 @@ final class ContentPageModel {
                     var fetched: [(Int, DiscoveryRail)] = []
                     for await (index, rail) in group {
                         guard current == generation else { continue }
-                        guard let rail else { failed = true; continue }
+                        guard let rail else { continue }
                         fetched.append((index, rail))
                         curated = CatalogRefresh.merge(order: definitions.map(\.id), received: fetched.map(\.1), previous: previousCurated)
                     }
@@ -157,7 +156,6 @@ final class ContentPageModel {
             }
             let hasTitles = rows.contains { !$0.metas.isEmpty } || curated.contains { !$0.metas.isEmpty }
             if !hasTitles { error = "No se encontraron catálogos disponibles. Revisa tus addons o vuelve a intentarlo." }
-            else if failed { error = "Algunas filas no han respondido. Los títulos disponibles siguen accesibles." }
             if hasTitles { loadedSignature = signature }
         } catch is CancellationError { return }
         catch { if current == generation { self.error = safeMessage(error) } }

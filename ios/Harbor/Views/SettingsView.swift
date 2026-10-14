@@ -5,6 +5,7 @@ struct SettingsView: View {
     @State private var export: URL?
     @State private var error: String?
     @State private var query = ""
+    @AppStorage("uiLanguage") private var uiLanguage = "es"
     private func matches(_ title: String, group: String? = nil) -> Bool {
         let term = query.trimmingCharacters(in: .whitespacesAndNewlines)
         let labels = [title, group].compactMap { $0 }.flatMap { [$0, DesktopInterfaceText.value($0)] }
@@ -16,6 +17,11 @@ struct SettingsView: View {
             VStack(alignment: .leading, spacing: 24) {
                 HarborPageHeading(title: DesktopInterfaceText.value("Settings"))
                 HarborSearchField(prompt: DesktopInterfaceText.value("Search settings"), text: $query)
+                if matches("Language", group: "Appearance") {
+                    HarborSettingsChoice(DesktopInterfaceText.value("Language"), selection: $uiLanguage,
+                                         choices: InterfaceLanguage.all.map { ($0.nativeLabel, $0.code) }, localizeChoices: false)
+                        .accessibilityIdentifier("settings-app-language")
+                }
                 if matches("Your profile", group: "Account & setup") || matches("Stremio") {
                     group("Account & setup") {
                         ProfileAccountButton(app: app, expanded: true).accessibilityIdentifier("settings-account").padding(14)

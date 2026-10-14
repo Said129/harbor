@@ -38,7 +38,9 @@ def main():
     require(output.suffix == ".ipa" and app not in output.parents, "IPA output must be outside the app bundle")
     info = plistlib.loads((app / "Info.plist").read_bytes())
     require(info.get("CFBundleIdentifier") == "site.harbor.iphone", "Unexpected app bundle identifier")
-    require(info.get("UIDeviceFamily") == [1], f"This port must target iPhone only; declared family={info.get('UIDeviceFamily')}")
+    require(info.get("UIDeviceFamily") == [1, 2], f"Expected a universal iPhone/iPad build; declared family={info.get('UIDeviceFamily')}")
+    require(len(info.get("UISupportedInterfaceOrientations~ipad", [])) == 4, "iPad requires all four orientations")
+    require(not info.get("UIRequiresFullScreen", False), "iPad must support resizable windows")
     require(info.get("CFBundleSupportedPlatforms") == ["iPhoneOS"], "Simulator builds cannot be packaged as device IPA")
     require(info.get("CFBundleExecutable") == "Harbor", "Unexpected app executable")
     icon = info.get("CFBundleIcons", {}).get("CFBundlePrimaryIcon", {})
@@ -92,7 +94,7 @@ def main():
         "version": info["CFBundleShortVersionString"],
         "build": info["CFBundleVersion"],
         "platform": "iPhoneOS",
-        "deviceFamily": [1],
+        "deviceFamily": [1, 2],
         "architecture": "arm64",
         "signed": False,
         "frameworkCount": len(frameworks),

@@ -52,6 +52,11 @@ final class PlayerState {
     }
     var subtitleSyncing = false
     var subtitleSyncMessage: String?
+    var subtitleSyncPhase = SubtitleSyncPhase.idle
+    var subtitleSyncRevision = 0
+    func updateSubtitleSync(_ phase: SubtitleSyncPhase, message: String? = nil) {
+        subtitleSyncPhase = phase; subtitleSyncMessage = message; subtitleSyncRevision += 1
+    }
     var subtitleSyncOriginal: Int?
     var primarySubtitleText = ""
     var secondarySubtitleText = ""

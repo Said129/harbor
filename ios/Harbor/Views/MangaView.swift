@@ -21,6 +21,7 @@ struct MangaView: View {
     @State private var configuring = false
     @State private var extensions = false
     @State private var importing = false
+    @State private var readingHelp = false
     @State private var imported: MangaBook?
     @State private var submanhwa = false
     @State private var featured = 0
@@ -38,7 +39,7 @@ struct MangaView: View {
     private var visibleSources: [MangaSource] { sources.filter { (adult || !$0.adult) && (language == "all" || $0.language == language) } }
     private var highlights: [MangaBook] { Array((screen == "shelf" ? savedBooks : books.isEmpty ? savedBooks : books).prefix(6)) }
     private var signature: String { selected + "|" + query + "|" + String(latest) + "|" + String(adult) + "|" + language }
-    private var canAnimate: Bool { scenePhase == .active && !reduceMotion }
+    private var canAnimate: Bool { scenePhase == .active && !reduceMotion && InterfacePreferences.shared.autoRotateBanners }
     private var editorialSources: [MangaSource] { visibleSources.filter { selected == "all" || $0.id == selected } }
     private var allSavedBooks: [MangaBook] {
         var seen = Set<String>()
@@ -112,6 +113,7 @@ struct MangaView: View {
                 }
             }
             .refreshable { await connect() }
+            .sheet(isPresented: $readingHelp) { ReadingHelpView() }
             .sheet(isPresented: $configuring) { MangaConnectionView(connection: connection) }
             .sheet(isPresented: $submanhwa) { SubmanhwaView(owner: shelf.owner) }
             .sheet(isPresented: $extensions, onDismiss: { Task { await connect() } }) { if let client { MangaExtensionsView(client: client, adult: adult) } }
@@ -123,6 +125,7 @@ struct MangaView: View {
     }
     private var mangaOptions: some View {
         Menu {
+            Button(DesktopInterfaceText.value("Reading help")) { readingHelp = true }
             Button("Importar CBZ/ZIP o carpeta") { importing = true }
             Button("Conexión Suwayomi") { configuring = true }
             if client != nil { Button("Extensiones") { extensions = true } }
@@ -281,7 +284,7 @@ struct MangaView: View {
     }
     private func matchingClient(_ book: MangaBook) -> SuwayomiClient? { book.server == connection.server?.id ? client : nil }
     private func grid(_ entries: [MangaBook]) -> some View {
-        LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())], alignment: .leading, spacing: 18) {
+        LazyVGrid(columns: [GridItem(.adaptive(minimum: 110, maximum: 180))], alignment: .leading, spacing: 18) {
             ForEach(entries) { book in
                 NavigationLink { MangaDetailView(book: book, shelf: shelf, client: matchingClient(book)).toolbar(.visible, for: .navigationBar) } label: {
                     VStack(alignment: .leading, spacing: 6) {

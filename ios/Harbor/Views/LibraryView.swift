@@ -166,6 +166,17 @@ private struct ContinueWatchingCard: View {
                 ContinueWatchingArtwork(record: record, media: detailed, presentation: presentation)
             }.accessibilityIdentifier("continue-watching-resume").accessibilityLabel("Continuar viendo \(detailed.name)")
                 .accessibilityValue(presentation.upNext ? DesktopInterfaceText.value("Up Next") : "\(record.playbackCaption ?? "") · \(Int(presentation.progress * 100)) por ciento")
+                .overlay(alignment: .topTrailing) {
+                    Button { app.library.hideContinuing(record, owner: app.library.owner) } label: {
+                        Image(systemName: "xmark").font(.system(size: 12, weight: .bold))
+                            .foregroundStyle(.white).frame(width: 28, height: 28)
+                            .background(.black.opacity(0.75), in: .circle)
+                            .frame(width: 44, height: 44).contentShape(Rectangle())
+                    }.buttonStyle(.plain).disabled(!app.library.canChangePresentation)
+                        .accessibilityLabel(DesktopInterfaceText.value("Remove from continue watching") + ": " + detailed.name)
+                        .accessibilityHint(DesktopInterfaceText.value("Your library and watch history are kept."))
+                        .accessibilityIdentifier("continue-watching-remove")
+                }
             NavigationLink { DetailView(media: detailed, app: app, metadataLoaded: hydrated != nil) } label: {
                 Text(detailed.name).font(HarborTheme.font(13, weight: .medium)).lineLimit(1)
                     .frame(maxWidth: .infinity, minHeight: 44, alignment: .leading).contentShape(Rectangle())

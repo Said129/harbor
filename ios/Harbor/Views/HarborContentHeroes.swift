@@ -53,8 +53,8 @@ struct HarborAnimeHero: View {
             }.padding(.bottom, 12)
         }.clipped().accessibilityIdentifier("anime-original-hero")
             .onChange(of: slides.map(\.identity)) { _, _ in if selected >= slides.count { selected = 0 } }
-            .task(id: "\(scenePhase == .active)|\(reduceMotion)|\(selected)|\(slides.map(\.identity).joined())") {
-                guard scenePhase == .active, !reduceMotion, slides.count > 1 else { return }
+            .task(id: "\(scenePhase == .active)|\(reduceMotion)|\(InterfacePreferences.shared.autoRotateBanners)|\(selected)|\(slides.map(\.identity).joined())") {
+                guard scenePhase == .active, !reduceMotion, InterfacePreferences.shared.autoRotateBanners, slides.count > 1 else { return }
                 do { try await Task.sleep(for: .seconds(14)); try Task.checkCancellation(); withAnimation(.easeInOut(duration: 0.7)) { selected = (selected + 1) % slides.count } } catch {}
             }
     }
@@ -133,8 +133,8 @@ struct HarborSeriesHero: View {
             }
         }.padding(.top, 18).accessibilityIdentifier("series-original-hero")
             .onChange(of: slides.map(\.identity)) { _, identities in if !identities.contains(selected ?? "") { selected = identities.first } }
-            .task(id: "\(scenePhase == .active)|\(reduceMotion)|\(selected ?? "")|\(slides.map(\.identity).joined())") {
-                guard scenePhase == .active, !reduceMotion, slides.count > 1 else { return }
+            .task(id: "\(scenePhase == .active)|\(reduceMotion)|\(InterfacePreferences.shared.autoRotateBanners)|\(selected ?? "")|\(slides.map(\.identity).joined())") {
+                guard scenePhase == .active, !reduceMotion, InterfacePreferences.shared.autoRotateBanners, slides.count > 1 else { return }
                 do { try await Task.sleep(for: .milliseconds(9500)); try Task.checkCancellation(); withAnimation(.easeInOut(duration: 0.72)) { selected = slides[(index + 1) % slides.count].identity } } catch {}
             }
     }

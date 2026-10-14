@@ -4,7 +4,8 @@ import UIKit
 enum PlayerSettingsPage: String, Identifiable {
     case options, playback, video, audio, subtitles
     var id: String { rawValue }
-    var title: String {
+    var title: String { DesktopInterfaceText.value(sourceTitle) }
+    private var sourceTitle: String {
         switch self {
         case .options: "Opciones del reproductor"
         case .playback: "Reproducción"
@@ -68,11 +69,9 @@ struct PlayerSettingsView: View {
                 }.buttonStyle(.plain)
             }
         }
-        chapters
     }
 
     @ViewBuilder private var playbackSettings: some View {
-        chapters
         PlayerPlayModeSettings(automatic: $sources.automatic)
         HarborSettingsSection("Fuentes y calidad") {
             Text("El selector muestra todas las fuentes. Estos filtros y límites de calidad se aplican a la reproducción automática.").font(HarborTheme.font(12)).foregroundStyle(.secondary)
@@ -231,15 +230,6 @@ struct PlayerSettingsView: View {
         }
     }
 
-    @ViewBuilder private var chapters: some View {
-        if let state, !state.chapters.isEmpty {
-            HarborSettingsSection("Capítulos") {
-                ForEach(state.chapters) { chapter in
-                    Button(chapter.title) { state.controller?.run(["seek", String(chapter.time), "absolute+exact"]) }
-                }
-            }
-        }
-    }
     private func tracks(_ state: PlayerState, type: String, property: String) -> some View {
         ForEach(state.tracks.filter { $0.type == type }) { track in
             Button { state.controller?.set(property, String(track.id)) } label: {

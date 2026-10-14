@@ -75,6 +75,9 @@ struct PlayerView: View {
     var body: some View {
         withLifecycle(surface
             .foregroundStyle(.white)
+            .onChange(of: state.subtitleSyncRevision) { _, _ in
+                if state.subtitleSyncPhase != .idle { settingsPage = nil }
+            }
             .statusBarHidden(!controlsVisible)
             .persistentSystemOverlays(controlsVisible ? .visible : .hidden)
             .sheet(item: $settingsPage, onDismiss: {
@@ -144,6 +147,7 @@ struct PlayerView: View {
                 }.padding(.horizontal, 12).padding(.bottom, controlsVisible ? 160 : 24).transition(.opacity)
             }
             if resumePending && state.loaded && state.error == nil { resumePrompt }
+            SubtitleSyncFeedback(state: state)
         }
     }
 

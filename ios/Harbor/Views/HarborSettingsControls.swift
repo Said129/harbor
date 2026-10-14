@@ -15,12 +15,12 @@ struct HarborSettingsSection<Content: View>: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 14) {
-            Text(title).font(HarborTheme.font(20, weight: .semibold))
+            Text(DesktopInterfaceText.value(title)).font(HarborTheme.font(20, weight: .semibold))
                 .accessibilityAddTraits(.isHeader)
             VStack(alignment: .leading, spacing: 18) { content }
                 .frame(maxWidth: .infinity, alignment: .leading)
             if let note {
-                Text(note).font(HarborTheme.font(13)).foregroundStyle(.secondary)
+                Text(DesktopInterfaceText.value(note)).font(HarborTheme.font(13)).foregroundStyle(.secondary)
                     .fixedSize(horizontal: false, vertical: true)
             }
         }.frame(maxWidth: .infinity, alignment: .leading)
@@ -31,33 +31,35 @@ struct HarborSettingsChoice<Value: Hashable>: View {
     let title: String
     @Binding var selection: Value
     let choices: [(String, Value)]
+    var localizeChoices = true
     private var selectedTitle: String {
         choices.first { $0.1 == selection }?.0 ?? String(describing: selection)
     }
 
-    init(_ title: String, selection: Binding<Value>, choices: [(String, Value)]) {
+    init(_ title: String, selection: Binding<Value>, choices: [(String, Value)], localizeChoices: Bool = true) {
         self.title = title
         self._selection = selection
         self.choices = choices
+        self.localizeChoices = localizeChoices
     }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
-            Text(title).font(HarborTheme.font(14, weight: .semibold))
+            Text(DesktopInterfaceText.value(title)).font(HarborTheme.font(14, weight: .semibold))
                 .fixedSize(horizontal: false, vertical: true)
             Menu {
                 ForEach(choices.indices, id: \.self) { index in
                     Button { selection = choices[index].1 } label: {
                         if selection == choices[index].1 {
-                            Label(choices[index].0, image: "music-check")
+                            Label(choiceTitle(choices[index].0), image: "music-check")
                         } else {
-                            Text(choices[index].0)
+                            Text(choiceTitle(choices[index].0))
                         }
                     }
                 }
             } label: {
                 HStack(spacing: 12) {
-                    Text(selectedTitle).font(HarborTheme.font(15, weight: .semibold))
+                    Text(choiceTitle(selectedTitle)).font(HarborTheme.font(15, weight: .semibold))
                         .multilineTextAlignment(.leading)
                         .fixedSize(horizontal: false, vertical: true)
                     Spacer(minLength: 0)
@@ -72,6 +74,7 @@ struct HarborSettingsChoice<Value: Hashable>: View {
             }.buttonStyle(.plain).accessibilityLabel(title).accessibilityValue(selectedTitle)
         }
     }
+    private func choiceTitle(_ value: String) -> String { localizeChoices ? DesktopInterfaceText.value(value) : value }
 }
 
 struct HarborSettingsToggle: View {
@@ -88,8 +91,8 @@ struct HarborSettingsToggle: View {
     var body: some View {
         Toggle(isOn: $isOn) {
             VStack(alignment: .leading, spacing: 5) {
-                Text(title).font(HarborTheme.font(14, weight: .semibold))
-                if let note { Text(note).font(HarborTheme.font(13)).foregroundStyle(.secondary) }
+                Text(DesktopInterfaceText.value(title)).font(HarborTheme.font(14, weight: .semibold))
+                if let note { Text(DesktopInterfaceText.value(note)).font(HarborTheme.font(13)).foregroundStyle(.secondary) }
             }.fixedSize(horizontal: false, vertical: true)
         }.toggleStyle(HarborSettingsSwitchStyle()).frame(minHeight: 44)
     }
