@@ -1,6 +1,8 @@
-# Objetivo vigente: Harbor para iPhone
+# Objetivo vigente: Harbor para iPhone y iPad
 
-Actualizado por petición del propietario el 2026-10-06. Este alcance sustituye la obligación anterior de portar todas las opciones adaptables de Desktop. La referencia visual sigue siendo Harbor Desktop beta 0.9.130; el checkpoint público 0.9.128 y sus diferencias siguen documentados.
+Ampliado a iPad por petición del propietario el 2026-10-14: IPA universal con mínimo iOS/iPadOS 17, rotación y ventanas redimensionables; EPUB/PDF desde Archivos, idiomas Desktop y ajustes móviles. Se conserva la instrucción posterior de no repetir comprobaciones aprobadas de código intacto; se prueban los cambios y la nueva plataforma. La build 89 y su evidencia están en [DELIVERY_2026-10-15_89.md](DELIVERY_2026-10-15_89.md).
+
+Alcance original actualizado por petición del propietario el 2026-10-06. Este alcance sustituye la obligación anterior de portar todas las opciones adaptables de Desktop. La referencia visual sigue siendo Harbor Desktop beta 0.9.130; el checkpoint público 0.9.128 y sus diferencias siguen documentados.
 
 Crear un Harbor nativo para iPhone fiel a la identidad, los iconos y las interfaces originales, con las funciones principales, todo lo esencial y una selección amplia de configuraciones útiles en móvil. La fidelidad 1:1 se aplica a las funciones seleccionadas, adaptando su interacción a pantalla táctil. La aplicación no necesita reproducir cada herramienta avanzada de Desktop.
 
