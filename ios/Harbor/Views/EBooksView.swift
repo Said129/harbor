@@ -86,7 +86,7 @@ struct EBooksView: View {
                         if screen == "shelf", let record = shelf.record(book) {
                             Text(record.completed ? "Leído" : book.isPDF ? "Página \(record.block + 1)" : "Sección \(record.chapter + 1)").font(.system(size: 10)).foregroundStyle(.secondary)
                         }
-                    }
+                    }.contentShape(Rectangle())
                 }.buttonStyle(.plain).accessibilityIdentifier("ebook-card-" + book.id).contextMenu {
                     if screen == "shelf" {
                         Button("Eliminar libro guardado", role: .destructive) {

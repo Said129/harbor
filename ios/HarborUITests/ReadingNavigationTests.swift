@@ -66,14 +66,16 @@ import UIKit
         manga.tap()
         let read = app.buttons["manga-detail-read"]
         XCTAssertTrue(read.waitForExistence(timeout: 20)); read.tap()
-        let image = app.images["Reading Volume 2"].firstMatch
+        let image = app.images["manga-page-0"].firstMatch
         XCTAssertTrue(image.waitForExistence(timeout: 20), "The PDF's rasterized page must actually render in the Manga reader")
         capture("manga-pdf-reader-portrait")
+        try assertPageFillsReader(image, app: app)
         if max(app.frame.width, app.frame.height) >= 1000 {
             XCUIDevice.shared.orientation = .landscapeLeft
             let ready = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in app.frame.width > app.frame.height && image.isHittable }, object: app)
             XCTAssertEqual(XCTWaiter.wait(for: [ready], timeout: 45), .completed)
             capture("manga-pdf-reader-ipad-landscape")
+            try assertPageFillsReader(image, app: app)
         }
     }
     private func navigate(_ app: XCUIApplication, _ name: String) {
@@ -93,5 +95,23 @@ import UIKit
     private func expectKeyboardClosed(_ app: XCUIApplication) {
         let closed = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == false"), object: app.keyboards.firstMatch)
         XCTAssertEqual(XCTWaiter.wait(for: [closed], timeout: 10), .completed)
+    }
+    private func assertPageFillsReader(_ element: XCUIElement, app: XCUIApplication) throws {
+        XCTAssertGreaterThan(element.frame.width, app.frame.width * 0.7, "Fit to width must show a readable full-size page")
+        let shot = XCUIScreen.main.screenshot().image
+        let format = UIGraphicsImageRendererFormat(); format.scale = 1
+        let normalized = UIGraphicsImageRenderer(size: app.frame.size, format: format).image { _ in shot.draw(in: CGRect(origin: .zero, size: app.frame.size)) }
+        let screenshot = try XCTUnwrap(normalized.cgImage)
+        let visible = element.frame.intersection(app.frame)
+        let sx = CGFloat(screenshot.width) / app.frame.width, sy = CGFloat(screenshot.height) / app.frame.height
+        let cropRect = CGRect(x: (visible.minX - app.frame.minX) * sx, y: (visible.minY - app.frame.minY) * sy, width: visible.width * sx, height: visible.height * sy).insetBy(dx: visible.width * sx * 0.08, dy: visible.height * sy * 0.08)
+        let crop = try XCTUnwrap(screenshot.cropping(to: cropRect))
+        var pixels = [UInt8](repeating: 0, count: 80 * 80 * 4)
+        try pixels.withUnsafeMutableBytes { buffer in
+            let context = try XCTUnwrap(CGContext(data: buffer.baseAddress, width: 80, height: 80, bitsPerComponent: 8, bytesPerRow: 320, space: CGColorSpaceCreateDeviceRGB(), bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue | CGBitmapInfo.byteOrder32Big.rawValue))
+            context.draw(crop, in: CGRect(x: 0, y: 0, width: 80, height: 80))
+        }
+        let colored = stride(from: 0, to: pixels.count, by: 4).filter { Int(pixels[$0 + 2]) > Int(pixels[$0]) + 40 && Int(pixels[$0 + 2]) > Int(pixels[$0 + 1]) + 40 }.count
+        XCTAssertGreaterThan(Double(colored) / 6400, 0.65, "The fixture page must fill the reader image, not remain a small picture in a white canvas")
     }
 }

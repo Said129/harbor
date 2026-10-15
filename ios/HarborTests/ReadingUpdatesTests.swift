@@ -41,11 +41,23 @@ final class ReadingUpdatesTests: XCTestCase {
         let chapters = try await store.chapters(book, owner: owner)
         XCTAssertEqual(chapters.first?.pages, 3)
         for page in pages {
-            let data = try await store.data(book, owner: owner, path: page.path, maxPixels: 600)
-            let source = try XCTUnwrap(CGImageSourceCreateWithData(data as CFData, nil))
-            let image = try XCTUnwrap(CGImageSourceCreateImageAtIndex(source, 0, nil))
-            XCTAssertEqual(image.width, 450); XCTAssertEqual(image.height, 600)
-            let attachment = XCTAttachment(image: UIImage(cgImage: image)); attachment.name = "manga-pdf-page-\(page.id)"; attachment.lifetime = .keepAlways; add(attachment)
+            for limit in [600, 2200] {
+                let data = try await store.data(book, owner: owner, path: page.path, maxPixels: limit)
+                let source = try XCTUnwrap(CGImageSourceCreateWithData(data as CFData, nil))
+                let image = try XCTUnwrap(CGImageSourceCreateImageAtIndex(source, 0, nil))
+                XCTAssertEqual(image.width, limit * 3 / 4); XCTAssertEqual(image.height, limit)
+                var pixels = [UInt8](repeating: 0, count: 20 * 20 * 4)
+                try pixels.withUnsafeMutableBytes { buffer in
+                    let context = try XCTUnwrap(CGContext(data: buffer.baseAddress, width: 20, height: 20, bitsPerComponent: 8, bytesPerRow: 80, space: CGColorSpaceCreateDeviceRGB(), bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue | CGBitmapInfo.byteOrder32Big.rawValue))
+                    context.draw(image, in: CGRect(x: 0, y: 0, width: 20, height: 20))
+                }
+                for (x, y) in [(2, 2), (17, 2), (2, 17), (17, 17)] {
+                    let offset = (y * 20 + x) * 4
+                    XCTAssertLessThan(pixels[offset], 220, "The actual page must fill the raster at both thumbnail and reader resolution, without white margins")
+                    XCTAssertLessThan(pixels[offset + 1], 220)
+                }
+                let attachment = XCTAttachment(image: UIImage(cgImage: image)); attachment.name = "manga-pdf-page-\(page.id)-\(limit)"; attachment.lifetime = .keepAlways; add(attachment)
+            }
         }
         do { _ = try await store.data(book, owner: owner, path: "../page-0.jpg"); XCTFail("Unsafe page identifiers must fail") } catch {}
         do { _ = try await store.pages(book, owner: owner + "-other"); XCTFail("Another owner must not open this document") } catch {}
@@ -139,7 +151,11 @@ final class ReadingUpdatesTests: XCTestCase {
             try mangas.save(MangaRecord(book: book))
         }
         UserDefaults.standard.set("title", forKey: "ebook.shelfSort"); UserDefaults.standard.set("title", forKey: "manga.shelfSort")
-        UserDefaults.standard.set(false, forKey: "autoRotateBanners")
+        UserDefaults.standard.set(false, forKey: "interface.autoRotateBanners")
+        UserDefaults.standard.set("long", forKey: "manga.reader.mode")
+        UserDefaults.standard.set("width", forKey: "manga.reader.fit")
+        UserDefaults.standard.set(1.0, forKey: "manga.reader.zoom")
+        UserDefaults.standard.set("dark", forKey: "manga.reader.background")
     }
 
     @MainActor private func pdf(title: String) throws -> URL {

@@ -14,12 +14,18 @@ enum ReadingArtwork {
               let page = document.page(at: index + 1) else { throw HarborError(code: "ebook-format") }
         let bounds = page.getBoxRect(.cropBox)
         guard bounds.width.isFinite, bounds.height.isFinite, bounds.width > 0, bounds.height > 0 else { throw HarborError(code: "ebook-format") }
-        let scale = CGFloat(min(2200, max(100, maxPixels))) / max(bounds.width, bounds.height)
-        let width = max(1, Int((bounds.width * scale).rounded())), height = max(1, Int((bounds.height * scale).rounded()))
+        let rotation = (page.rotationAngle % 360 + 360) % 360
+        let swapped = rotation == 90 || rotation == 270
+        let pageSize = CGSize(width: swapped ? bounds.height : bounds.width, height: swapped ? bounds.width : bounds.height)
+        let scale = CGFloat(min(2200, max(100, maxPixels))) / max(pageSize.width, pageSize.height)
+        let width = max(1, Int((pageSize.width * scale).rounded())), height = max(1, Int((pageSize.height * scale).rounded()))
         guard let context = CGContext(data: nil, width: width, height: height, bitsPerComponent: 8, bytesPerRow: 0, space: CGColorSpaceCreateDeviceRGB(), bitmapInfo: CGImageAlphaInfo.noneSkipLast.rawValue) else { throw HarborError(code: "ebook-format") }
         let rectangle = CGRect(x: 0, y: 0, width: CGFloat(width), height: CGFloat(height))
         context.setFillColor(CGColor(gray: 1, alpha: 1)); context.fill(rectangle)
-        context.concatenate(page.getDrawingTransform(.cropBox, rect: rectangle, rotate: 0, preserveAspectRatio: true))
+        // Keep page geometry separate from raster density at both thumbnail
+        // and full-reader resolution, including rotated crop boxes.
+        context.scaleBy(x: CGFloat(width) / pageSize.width, y: CGFloat(height) / pageSize.height)
+        context.concatenate(page.getDrawingTransform(.cropBox, rect: CGRect(origin: .zero, size: pageSize), rotate: 0, preserveAspectRatio: true))
         context.drawPDFPage(page)
         guard let image = context.makeImage() else { throw HarborError(code: "ebook-format") }
         return try jpeg(image)
