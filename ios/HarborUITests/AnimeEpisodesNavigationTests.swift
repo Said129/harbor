@@ -10,7 +10,7 @@ import XCTest
         XCTAssertTrue(searchNavigation.waitForExistence(timeout: 10)); searchNavigation.tap()
         let field = app.searchFields.firstMatch
         XCTAssertTrue(field.waitForExistence(timeout: 15)); field.tap(); field.typeText("Dragon Ball Super\n")
-        let card = app.buttons.matching(NSPredicate(format: "identifier == 'catalog-series' AND label == 'Dragon Ball Super'")).firstMatch
+        let card = app.buttons.matching(NSPredicate(format: "identifier == 'catalog-media' AND label == 'Dragon Ball Super'")).firstMatch
         XCTAssertTrue(card.waitForExistence(timeout: 90))
         for _ in 0..<8 { if card.isHittable { break }; app.swipeUp() }
         XCTAssertTrue(card.isHittable); card.tap()
