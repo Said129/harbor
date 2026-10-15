@@ -14,7 +14,7 @@ def main():
     parser.add_argument("--report", type=Path, required=True)
     parser.add_argument("--commit", required=True)
     parser.add_argument("--evidence", type=Path)
-    parser.add_argument("--validation-scope", choices=["full", "affected", "sources-search-subtitles", "mobile-sources-subtitles", "stable-mobile", "stable-tablet-ui", "reading-intro", "reading-followup", "reading-final"], default="full")
+    parser.add_argument("--validation-scope", choices=["full", "affected", "sources-search-subtitles", "mobile-sources-subtitles", "stable-mobile", "stable-tablet-ui", "reading-intro", "reading-followup", "reading-final", "reading-tablet-final"], default="full")
     parser.add_argument("--native-selection", default="")
     parser.add_argument("--previous-runs", default="")
     args = parser.parse_args()
@@ -40,7 +40,7 @@ def main():
         assets.append(str(args.evidence))
     # A rerun must not replace an existing review artifact silently.
     existing = subprocess.run(["gh", "release", "view", tag, "--repo", args.repo], capture_output=True, text=True)
-    reserved = args.validation_scope in ["sources-search-subtitles", "mobile-sources-subtitles", "stable-mobile", "stable-tablet-ui", "reading-intro", "reading-followup", "reading-final"] and existing.returncode == 0
+    reserved = args.validation_scope in ["sources-search-subtitles", "mobile-sources-subtitles", "stable-mobile", "stable-tablet-ui", "reading-intro", "reading-followup", "reading-final", "reading-tablet-final"] and existing.returncode == 0
     if existing.returncode == 0 and not reserved:
         raise SystemExit(f"Draft build tag already exists: {tag}; review the existing asset before replacing it")
     if reserved:
@@ -107,7 +107,7 @@ def main():
             "Requires iOS/iPadOS 17 or later and valid signing; no sessions, certificates or provisioning are included. "
             "Physical-device validation remains with the owner."
         )
-    if args.validation_scope in ["reading-intro", "reading-followup", "reading-final"]:
+    if args.validation_scope in ["reading-intro", "reading-followup", "reading-final", "reading-tablet-final"]:
         notes = (
             f"Harbor {report['build']} for iPhone and iPad, unsigned. Desktop skip-intro providers/chapter marks, PDF Manga import, real imported covers, natural shelf sorting and Gutenberg/local search fixes.\n\n"
             f"Commit: `{args.commit}`\n\nSHA-256: `{digest}`\n\n"
@@ -122,7 +122,7 @@ def main():
         if reserved:
             subprocess.run(["gh", "release", "upload", tag, *assets, "--repo", args.repo], check=True)
             title = "Harbor iPhone 88 — unsigned reviewed candidate" if args.validation_scope == "mobile-sources-subtitles" else "Harbor iPhone 87 — unsigned reviewed candidate"
-            if args.validation_scope in ["stable-mobile", "stable-tablet-ui", "reading-intro", "reading-followup", "reading-final"]: title = f"Harbor {report['build']} iPhone and iPad — unsigned reviewed candidate"
+            if args.validation_scope in ["stable-mobile", "stable-tablet-ui", "reading-intro", "reading-followup", "reading-final", "reading-tablet-final"]: title = f"Harbor {report['build']} iPhone and iPad — unsigned reviewed candidate"
             subprocess.run(["gh", "release", "edit", tag, "--repo", args.repo, "--title", title, "--notes-file", str(body)], check=True)
             return
         subprocess.run([
