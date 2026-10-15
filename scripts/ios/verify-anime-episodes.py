@@ -19,7 +19,7 @@ assert changed==allowed,'Reassess any changes outside anime episode metadata/pre
 guards={}
 for path in subprocess.check_output(['git','ls-tree','-r','--name-only',a.source,'--','ios/HarborTests','ios/HarborIntegrationTests','ios/HarborUITests'],text=True).splitlines():
  before=subprocess.check_output(['git','show',a.source+':'+path])
- after=Path(path).read_bytes().replace(b'\r\n',b'\n')
+ after=subprocess.check_output(['git','show','HEAD:'+path])
  assert before==after,'Previously approved test changed: '+path
  guards[path]=hashlib.sha256(after).hexdigest()
 for path in ['ios/Harbor/Services/HarborService.swift','ios/Harbor/Services/StreamRequestPolicy.swift','ios/Harbor/Player/EpisodeSequence.swift','ios/Harbor/Models/Library.swift','ios/Harbor/Models/LibrarySnapshot.swift','ios/Harbor/Services/MediaMetadataStore.swift','ios/Harbor/Services/HTTPClient.swift']:
