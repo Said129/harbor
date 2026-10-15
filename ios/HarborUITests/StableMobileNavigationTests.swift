@@ -14,15 +14,15 @@ import UIKit
         navigate(app, "ebook")
         let help = app.buttons["ebook-reading-help"]
         XCTAssertTrue(help.waitForExistence(timeout: 15))
-        help.tap()
         let done = app.buttons["Done"].firstMatch
-        XCTAssertTrue(done.waitForExistence(timeout: 10))
         for (orientation, landscape, name) in [
             (UIDeviceOrientation.portrait, false, "portrait-before"),
             (.landscapeLeft, true, "landscape-left"),
             (.landscapeRight, true, "landscape-right"),
             (.portrait, false, "portrait-after")
         ] {
+            help.tap()
+            XCTAssertTrue(done.waitForExistence(timeout: 10))
             XCUIDevice.shared.orientation = orientation
             let ready = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
                 let frame = app.frame
@@ -30,7 +30,7 @@ import UIKit
             }, object: app)
             let result = XCTWaiter.wait(for: [ready], timeout: 45)
             // Capture the complete display, avoiding a stale app-element crop after rotation.
-            let attachment = XCTAttachment(screenshot: XCUIDevice.shared.screenshot())
+            let attachment = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
             attachment.name = "ipad-help-" + name
             attachment.lifetime = .keepAlways
             add(attachment)
@@ -40,12 +40,14 @@ import UIKit
             XCTAssertTrue(app.frame.contains(section.frame))
             let scroll = app.scrollViews.containing(.staticText, identifier: "Apple Books").firstMatch
             XCTAssertTrue(scroll.exists)
-            scroll.swipeUp()
-            XCTAssertTrue(app.staticTexts["Your library"].firstMatch.isHittable, "The end of the help must remain reachable")
+            let library = app.staticTexts["Your library"].firstMatch
+            for _ in 0..<3 { if library.isHittable { break }; scroll.swipeUp() }
+            XCTAssertTrue(library.isHittable, "The end of the help must remain reachable")
             XCTAssertTrue(done.isHittable)
-            scroll.swipeDown()
+            done.tap()
+            let closed = XCTNSPredicateExpectation(predicate: NSPredicate(format: "isHittable == true"), object: help)
+            XCTAssertEqual(XCTWaiter.wait(for: [closed], timeout: 45), .completed)
         }
-        done.tap()
         XCTAssertFalse(app.staticTexts["Apple Books"].exists)
         XCTAssertTrue(app.buttons["ebook-import"].isHittable)
         XCTAssertTrue(app.buttons["main-menu"].isHittable)
