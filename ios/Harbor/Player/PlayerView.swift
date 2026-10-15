@@ -226,8 +226,8 @@ struct PlayerView: View {
         }
     }
 
-    private func withLifecycle<V: View>(_ content: V) -> some View {
-        content.background { PlayerOrientationAnchor().allowsHitTesting(false) }
+    private func withSkipIntro<V: View>(_ content: V) -> some View {
+        content
         .onChange(of: state.chapters) { _, chapters in chapterSkipSegments = SkipSegment.chapters(chapters, duration: state.duration) }
         .onChange(of: state.duration) { _, duration in chapterSkipSegments = SkipSegment.chapters(state.chapters, duration: duration) }
         .task(id: "skip:\(state.mediaGeneration):\(state.loaded && state.duration > 0):\(preferences.options.showSkipIntro)") {
@@ -241,7 +241,10 @@ struct PlayerView: View {
                 skipSegments = segments
             } catch {}
         }
-        .task(id: "\(state.mediaGeneration):\(state.loaded):\(state.addonSubtitlesRetry)") {
+    }
+
+    private func withAddonSubtitles<V: View>(_ content: V) -> some View {
+        content.task(id: "\(state.mediaGeneration):\(state.loaded):\(state.addonSubtitlesRetry)") {
             guard state.loaded, let request = session.subtitleRequest, library.map({ $0.owner == session.owner }) ?? true else { return }
             state.canSearchAddonSubtitles = true
             state.addonSubtitlesLoading = true; state.addonSubtitlesMessage = nil
@@ -262,6 +265,10 @@ struct PlayerView: View {
             } catch is CancellationError { return }
             catch { if !Task.isCancelled { state.addonSubtitlesMessage = "No se pudieron buscar subtítulos. Puedes reintentarlo." } }
         }
+    }
+
+    private func withLifecycle<V: View>(_ content: V) -> some View {
+        withAddonSubtitles(withSkipIntro(content.background { PlayerOrientationAnchor().allowsHitTesting(false) }))
         .task(id: autoAdvanceReady) {
             guard autoAdvanceReady, let next = adjacent.next else { return }
             requestEpisode(next)
