@@ -1,3 +1,7 @@
+# Versión universal 90 — lectura y Saltar intro
+
+La build 90 añade Saltar intro con referencias de Desktop, PDF Manga, portadas y orden natural de las estanterías, y corrige la búsqueda/apertura de Gutenberg y la búsqueda local. Fuente `1593af9c24fbad3513fbd192f7aa0e053be3e9ba`; [validación](https://github.com/Said129/harbor/actions/runs/38755836388), 2 ejecuciones en el seguimiento, 9 nativas, 2 consultas públicas y 2 recorridos UI de iPhone conservados, 14 métodos 90 únicos y 29 métodos conservados de otras áreas intactas. Universal iPhone/iPad, iOS/iPadOS 17+. Paquete, hashes, límites y procedencia: [entrega 90](DELIVERY_2026-10-15_90.md).
+
 # Objetivo vigente: Harbor para iPhone y iPad
 
 Ampliado a iPad por petición del propietario el 2026-10-14: IPA universal con mínimo iOS/iPadOS 17, rotación y ventanas redimensionables; EPUB/PDF desde Archivos, idiomas Desktop y ajustes móviles. Se conserva la instrucción posterior de no repetir comprobaciones aprobadas de código intacto; se prueban los cambios y la nueva plataforma. La build 89 y su evidencia están en [DELIVERY_2026-10-15_89.md](DELIVERY_2026-10-15_89.md).
