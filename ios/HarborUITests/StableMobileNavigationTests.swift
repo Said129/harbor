@@ -1,6 +1,56 @@
 import XCTest
+import UIKit
 
 @MainActor final class StableMobileNavigationTests: XCTestCase {
+    func testReadingHelpRemainsUsableAfterTabletRotation() throws {
+        continueAfterFailure = false
+        let app = XCUIApplication()
+        app.launchArguments = ["-uiLanguage", "en"]
+        XCUIDevice.shared.orientation = .portrait
+        app.launch()
+        defer { XCUIDevice.shared.orientation = .portrait; app.terminate() }
+        XCTAssertTrue(app.buttons["main-menu"].waitForExistence(timeout: 30))
+        XCTAssertTrue(UIDeviceIsPad(app), "This case requires a tablet")
+        navigate(app, "ebook")
+        let help = app.buttons["ebook-reading-help"]
+        XCTAssertTrue(help.waitForExistence(timeout: 15))
+        help.tap()
+        let done = app.buttons["Done"].firstMatch
+        XCTAssertTrue(done.waitForExistence(timeout: 10))
+        for (orientation, landscape, name) in [
+            (UIDeviceOrientation.portrait, false, "portrait-before"),
+            (.landscapeLeft, true, "landscape-left"),
+            (.landscapeRight, true, "landscape-right"),
+            (.portrait, false, "portrait-after")
+        ] {
+            XCUIDevice.shared.orientation = orientation
+            let ready = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+                let frame = app.frame
+                return (frame.width > frame.height) == landscape && done.isHittable && frame.contains(done.frame)
+            }, object: app)
+            let result = XCTWaiter.wait(for: [ready], timeout: 45)
+            // Capture the complete display, avoiding a stale app-element crop after rotation.
+            let attachment = XCTAttachment(screenshot: XCUIDevice.shared.screenshot())
+            attachment.name = "ipad-help-" + name
+            attachment.lifetime = .keepAlways
+            add(attachment)
+            XCTAssertEqual(result, .completed, "Rotation must keep the sheet's close control inside the app and tappable")
+            let section = app.staticTexts["Apple Books"].firstMatch
+            XCTAssertTrue(section.isHittable)
+            XCTAssertTrue(app.frame.contains(section.frame))
+            let scroll = app.scrollViews.containing(.staticText, identifier: "Apple Books").firstMatch
+            XCTAssertTrue(scroll.exists)
+            scroll.swipeUp()
+            XCTAssertTrue(app.staticTexts["Your library"].firstMatch.isHittable, "The end of the help must remain reachable")
+            XCTAssertTrue(done.isHittable)
+            scroll.swipeDown()
+        }
+        done.tap()
+        XCTAssertFalse(app.staticTexts["Apple Books"].exists)
+        XCTAssertTrue(app.buttons["ebook-import"].isHittable)
+        XCTAssertTrue(app.buttons["main-menu"].isHittable)
+    }
+
     func testContinueRemovalLanguagesAndReadingImportInNormalApp() throws {
         continueAfterFailure = false
         let app = XCUIApplication(); app.launch()
