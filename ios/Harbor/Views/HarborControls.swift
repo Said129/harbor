@@ -45,10 +45,13 @@ struct HarborPill: View {
 struct HarborSearchField: View {
     let prompt: String
     @Binding var text: String
+    var dismissOnSubmit = false
+    @FocusState private var focused: Bool
     var body: some View {
         HStack(spacing: 9) {
             Image("nav-search").resizable().scaledToFit().frame(width: 16, height: 16).foregroundStyle(.secondary)
             TextField(prompt, text: $text).font(HarborTheme.font(14)).textInputAutocapitalization(.never).autocorrectionDisabled().submitLabel(.search)
+                .focused($focused).onSubmit { if dismissOnSubmit { focused = false } }
             if !text.isEmpty { Button { text = "" } label: { Image("desktop-x").resizable().scaledToFit().frame(width: 14, height: 14).foregroundStyle(.secondary).frame(width: 44, height: 44).contentShape(Rectangle()) }.buttonStyle(.plain).accessibilityLabel(DesktopInterfaceText.value("Clear search")) }
         }.padding(.horizontal, 14).frame(minHeight: 44).background(HarborTheme.surface.opacity(0.6), in: .capsule)
             .overlay { Capsule().stroke(.white.opacity(0.04), lineWidth: 1) }

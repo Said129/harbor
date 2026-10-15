@@ -76,7 +76,7 @@ actor SkipIntroService {
             switch parts[0] {
             case "mal", "myanimelist": mal = identifier
             case "kitsu":
-                let response = try await HTTPClient().json("https://kitsu.io/api/edge/anime/\(identifier)/mappings")
+                let response = try await HTTPClient().json("https://kitsu.io/api/edge/anime/\(identifier)/mappings", accept: "application/vnd.api+json")
                 mal = response["data"].array.first { $0["attributes"]["externalSite"].string == "myanimelist/anime" }?["attributes"]["externalId"].string.flatMap(Int.init)
             case "anilist":
                 let response = try await HTTPClient().anilist(query: "query($id:Int!){Media(id:$id,type:ANIME){idMal}}", variables: .object(["id": .integer(Int64(identifier))]))

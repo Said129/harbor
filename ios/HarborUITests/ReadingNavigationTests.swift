@@ -8,13 +8,17 @@ import UIKit
         defer { app.terminate() }
         navigate(app, "ebook")
         let field = app.textFields.firstMatch
-        XCTAssertTrue(field.waitForExistence(timeout: 10)); field.tap(); field.typeText("Frankenstein")
+        XCTAssertTrue(field.waitForExistence(timeout: 10)); field.tap(); field.typeText("Frankenstein\n")
+        expectKeyboardClosed(app)
         let result = app.buttons["ebook-card-gutendex:84"]
         XCTAssertTrue(result.waitForExistence(timeout: 90), "Typing must actually search Gutenberg")
+        XCTAssertTrue(result.isHittable)
         capture("gutenberg-frankenstein-results")
         result.tap()
         let next = app.buttons["ebook-next-section"]
-        XCTAssertTrue(next.waitForExistence(timeout: 90), "A real catalog EPUB must open")
+        let opened = next.waitForExistence(timeout: 90)
+        capture("gutenberg-after-open")
+        XCTAssertTrue(opened, "A real catalog EPUB must open")
         XCTAssertFalse(app.staticTexts["ebook-reader-error"].exists)
         capture("gutenberg-real-cover")
         next.tap()
@@ -31,7 +35,8 @@ import UIKit
         let picker = app.segmentedControls["ebook-screen"]
         XCTAssertTrue(picker.waitForExistence(timeout: 10)); picker.buttons.element(boundBy: 1).tap()
         let field = app.textFields.firstMatch
-        XCTAssertTrue(field.exists); field.tap(); field.typeText("Reading Volume")
+        XCTAssertTrue(field.exists); field.tap(); field.typeText("Reading Volume\n")
+        expectKeyboardClosed(app)
         let first = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH 'ebook-card-' AND label CONTAINS 'Reading Volume 1'")).firstMatch
         XCTAssertTrue(first.waitForExistence(timeout: 15))
         let links = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH 'ebook-card-'")).allElementsBoundByIndex
@@ -51,7 +56,8 @@ import UIKit
         app.swipeDown(); app.swipeDown()
         let mangaSearch = app.textFields.firstMatch
         for _ in 0..<4 { if mangaSearch.isHittable { break }; app.swipeUp() }
-        XCTAssertTrue(mangaSearch.isHittable); mangaSearch.tap(); mangaSearch.typeText("Reading Volume 2")
+        XCTAssertTrue(mangaSearch.isHittable); mangaSearch.tap(); mangaSearch.typeText("Reading Volume 2\n")
+        expectKeyboardClosed(app)
         app.swipeUp()
         let manga = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH 'manga-card-' AND label CONTAINS 'Reading Volume 2'")).firstMatch
         for _ in 0..<4 { if manga.isHittable { break }; app.swipeUp() }
@@ -76,10 +82,16 @@ import UIKit
         let scroll = app.descendants(matching: .any).matching(identifier: "navigation-scroll").firstMatch
         XCTAssertTrue(scroll.waitForExistence(timeout: 10))
         let button = app.buttons["nav-" + name]
+        for _ in 0..<8 { if button.isHittable { break }; scroll.swipeDown() }
         for _ in 0..<8 { if button.isHittable { break }; scroll.swipeUp() }
+        if !button.isHittable { capture("navigation-missing-" + name) }
         XCTAssertTrue(button.isHittable); button.tap()
     }
     private func capture(_ name: String) {
         let attachment = XCTAttachment(screenshot: XCUIScreen.main.screenshot()); attachment.name = name; attachment.lifetime = .keepAlways; add(attachment)
+    }
+    private func expectKeyboardClosed(_ app: XCUIApplication) {
+        let closed = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == false"), object: app.keyboards.firstMatch)
+        XCTAssertEqual(XCTWaiter.wait(for: [closed], timeout: 10), .completed)
     }
 }

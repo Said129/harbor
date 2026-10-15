@@ -70,7 +70,7 @@ struct MangaView: View {
                     }.padding(.horizontal)
                 }.scrollIndicators(.hidden)
                 HStack { Text(screen == "shelf" ? "Biblioteca" : "Explorar manga").font(HarborTheme.font(21, weight: .semibold)).accessibilityIdentifier("manga-content-heading"); Spacer(); mangaOptions }.padding(.horizontal)
-                HarborSearchField(prompt: "Buscar manga…", text: $query).padding(.horizontal)
+                HarborSearchField(prompt: "Buscar manga…", text: $query, dismissOnSubmit: true).padding(.horizontal)
                 if screen == "shelf" { HStack { Spacer(); ReadingSortMenu(selection: $shelfSort) }.padding(.horizontal) }
                 if importingDocument { ProgressView("Importando manga…").frame(maxWidth: .infinity) }
                 if let message = error ?? shelf.error ?? connection.error { Text(message).font(.caption).foregroundStyle(.orange).padding(.horizontal) }

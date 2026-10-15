@@ -17,6 +17,7 @@ on:
             mobile-sources-subtitles,
             stable-mobile,
             reading-intro,
+            reading-followup,
             stable-tablet-ui,
             stable-tablet-rotation,
             reuse,
@@ -90,6 +91,11 @@ jobs:
       HARBOR_PREVIOUS_SOURCE: ${{ inputs.source_sha }}
     steps:
       - uses: actions/checkout@v6
+      - name: Preserve approved native reading checks before provider and UI follow-up
+        if: ${{ inputs.validation_scope == 'reading-followup' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 scripts/ios/verify-reading-followup.py --source "$HARBOR_PREVIOUS_SOURCE" --run 38731103925 --output ios/build/preserved-reading-validation.json
       - name: Verify the unchanged application and approved phone and tablet evidence
         if: ${{ inputs.validation_scope == 'stable-tablet-ui' }}
         env:
@@ -104,7 +110,7 @@ jobs:
         if: ${{ (inputs.validation_scope == 'sources-search-subtitles' || inputs.validation_scope == 'mobile-sources-subtitles' || inputs.validation_scope == 'stable-mobile') && inputs.native_test_selection != '' }}
         run: python3 scripts/ios/select-feature-tests.py --selection "$HARBOR_NATIVE_SELECTION" --output ios/build/feature-native-selection.txt
       - name: Check reserved feature delivery draft before compiling
-        if: ${{ (inputs.validation_scope == 'sources-search-subtitles' || inputs.validation_scope == 'mobile-sources-subtitles' || inputs.validation_scope == 'stable-mobile' || inputs.validation_scope == 'stable-tablet-ui' || inputs.validation_scope == 'stable-tablet-rotation' || inputs.validation_scope == 'reading-intro') && inputs.save_draft_build == true }}
+        if: ${{ (inputs.validation_scope == 'sources-search-subtitles' || inputs.validation_scope == 'mobile-sources-subtitles' || inputs.validation_scope == 'stable-mobile' || inputs.validation_scope == 'stable-tablet-ui' || inputs.validation_scope == 'stable-tablet-rotation' || inputs.validation_scope == 'reading-intro' || inputs.validation_scope == 'reading-followup') && inputs.save_draft_build == true }}
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -136,7 +142,7 @@ jobs:
             harbor-core
             harbor-ios-bridge
       - name: Verify shared Rust on the Apple build host
-        if: ${{ inputs.validation_scope != 'affected' && inputs.validation_scope != 'sources-search-subtitles' && inputs.validation_scope != 'mobile-sources-subtitles' && inputs.validation_scope != 'stable-mobile' && inputs.validation_scope != 'stable-tablet-ui' && inputs.validation_scope != 'stable-tablet-rotation' && inputs.validation_scope != 'reading-intro' }}
+        if: ${{ inputs.validation_scope != 'affected' && inputs.validation_scope != 'sources-search-subtitles' && inputs.validation_scope != 'mobile-sources-subtitles' && inputs.validation_scope != 'stable-mobile' && inputs.validation_scope != 'stable-tablet-ui' && inputs.validation_scope != 'stable-tablet-rotation' && inputs.validation_scope != 'reading-intro' && inputs.validation_scope != 'reading-followup' }}
         shell: bash
         run: |
           set -euo pipefail
@@ -204,7 +210,9 @@ jobs:
         run: |
           set -euo pipefail
           selection=(-only-testing:HarborTests)
-          if [[ "${{ inputs.validation_scope }}" == "reading-intro" ]]; then
+          if [[ "${{ inputs.validation_scope }}" == "reading-followup" ]]; then
+            selection=(-only-testing:HarborTests/ReadingUpdatesTests/testPrepareOrdinaryReadingShelfUIFixtures)
+          elif [[ "${{ inputs.validation_scope }}" == "reading-intro" ]]; then
             selection=(-only-testing:HarborTests/ReadingUpdatesTests -only-testing:HarborTests/StableMobileTests/testImportEPUBAndPDFKeepsOwnerIsolationAndReadingPosition -only-testing:HarborTests/StableMobileTests/testReopeningEPUBDoesNotRewriteTheCachedPublication -only-testing:HarborTests/MangaArchiveTests/testActualCBZImagesUseNaturalOrderAndNeverExposeUnsafePaths)
           elif [[ "${{ inputs.validation_scope }}" == "affected" ]]; then
             selection=(-only-testing:HarborTests/WebPageDialogTests)
@@ -240,7 +248,7 @@ jobs:
         run: |
           set -euo pipefail
           selection=(-only-testing:HarborIntegrationTests)
-          if [[ "${{ inputs.validation_scope }}" == "reading-intro" ]]; then
+          if [[ "${{ inputs.validation_scope }}" == "reading-intro" || "${{ inputs.validation_scope }}" == "reading-followup" ]]; then
             selection=(-only-testing:HarborIntegrationTests/ReadingLiveTests)
           elif [[ "${{ inputs.validation_scope }}" == "sources-search-subtitles" ]]; then
             selection=(-only-testing:HarborIntegrationTests/LiveServicesTests/testDanmachiSeasonOneEpisodeSevenUsesDesktopAliases)
@@ -295,7 +303,7 @@ jobs:
             trap finish_rotation_recording EXIT
           fi
           selection=(-only-testing:HarborUITests)
-          if [[ "${{ inputs.validation_scope }}" == "reading-intro" ]]; then
+          if [[ "${{ inputs.validation_scope }}" == "reading-intro" || "${{ inputs.validation_scope }}" == "reading-followup" ]]; then
             selection=(-only-testing:HarborUITests/ReadingNavigationTests)
           elif [[ "${{ inputs.validation_scope }}" == "stable-tablet-rotation" ]]; then
             selection=(-only-testing:HarborUITests/StableMobileNavigationTests/testReadingHelpRemainsUsableAfterTabletRotation)
@@ -326,7 +334,7 @@ jobs:
           xcrun simctl shutdown "$tablet"
       - name: Verify the new reading shelves and PDF Manga on iPad
         id: reading_tablet_tests
-        if: ${{ inputs.validation_scope == 'reading-intro' && success() }}
+        if: ${{ (inputs.validation_scope == 'reading-intro' || inputs.validation_scope == 'reading-followup') && success() }}
         timeout-minutes: 15
         shell: bash
         run: |
@@ -401,6 +409,9 @@ jobs:
           fi
           if [[ -f ios/build/preserved-mobile-validation.json ]]; then
             cp ios/build/preserved-mobile-validation.json ios/build/live-attachments/
+          fi
+          if [[ -f ios/build/preserved-reading-validation.json ]]; then
+            cp ios/build/preserved-reading-validation.json ios/build/live-attachments/
           fi
           for name in TabletTests TabletUITests MangaFontTests ReadingTabletSeed ReadingTabletUI; do
             if [[ -d "ios/build/$name.xcresult" ]]; then

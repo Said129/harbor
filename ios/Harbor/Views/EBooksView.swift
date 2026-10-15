@@ -25,7 +25,7 @@ struct EBooksView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
                 Picker("eBook", selection: $screen) { Text("Explorar").tag("browse"); Text("Estantería").tag("shelf") }.pickerStyle(.segmented).padding(.horizontal).accessibilityIdentifier("ebook-screen")
-                HarborSearchField(prompt: screen == "browse" ? "Buscar en Gutenberg…" : "Buscar en tu estantería…", text: $query)
+                HarborSearchField(prompt: screen == "browse" ? "Buscar en Gutenberg…" : "Buscar en tu estantería…", text: $query, dismissOnSubmit: true)
                     .padding(.horizontal).accessibilityIdentifier("ebook-search")
                 if let message = error ?? shelf.error { Text(message).font(.caption).foregroundStyle(.orange).padding(.horizontal) }
                 Button { importing = true } label: { Label("Importar desde Archivos · EPUB / PDF", systemImage: "square.and.arrow.down").frame(maxWidth: .infinity, minHeight: 44) }.padding(.horizontal).disabled(importingDocument).accessibilityIdentifier("ebook-import")

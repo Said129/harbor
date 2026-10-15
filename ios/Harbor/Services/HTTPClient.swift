@@ -52,9 +52,10 @@ struct HTTPClient: Sendable {
         return try await receive(request, session: Self.accountSession)
     }
 
-    func json(_ value: String, timeout: TimeInterval = 8, credentialed: Bool = false) async throws -> JSONValue {
-        guard let url = URL(string: value), ["https", "http"].contains(url.scheme) else { throw HarborError(code: "invalid-url") }
-        let request = URLRequest(url: url, cachePolicy: credentialed ? .reloadIgnoringLocalCacheData : .useProtocolCachePolicy, timeoutInterval: max(15, timeout))
+    func json(_ value: String, timeout: TimeInterval = 8, credentialed: Bool = false, accept: String = "application/json") async throws -> JSONValue {
+        guard let url = URL(string: value), ["https", "http"].contains(url.scheme), ["application/json", "application/vnd.api+json"].contains(accept) else { throw HarborError(code: "invalid-url") }
+        var request = URLRequest(url: url, cachePolicy: credentialed ? .reloadIgnoringLocalCacheData : .useProtocolCachePolicy, timeoutInterval: max(15, timeout))
+        request.setValue(accept, forHTTPHeaderField: "Accept")
         for attempt in 0..<2 {
             do { return try await receive(request, session: credentialed ? Self.accountSession : Self.metadataSession) }
             catch let error as HarborError {
@@ -79,7 +80,7 @@ struct HTTPClient: Sendable {
 
     private func receive(_ input: URLRequest, session: URLSession) async throws -> JSONValue {
         var request = input
-        request.setValue("application/json", forHTTPHeaderField: "Accept")
+        if request.value(forHTTPHeaderField: "Accept") == nil { request.setValue("application/json", forHTTPHeaderField: "Accept") }
         request.setValue("Harbor-iOS/0.1", forHTTPHeaderField: "User-Agent")
         await Diagnostics.shared.record(.requestStarted)
         do {

@@ -5,31 +5,9 @@ actor EBookService {
     static let shared = EBookService()
     private var readers: [String: EPUBReader] = [:]
     private var recent: [String] = []
-    private var mirrorBlockedUntil = Date.distantPast
     func catalog(query: String, language: String, page: Int) async throws -> ([EBook], Bool) {
-        if Date() < mirrorBlockedUntil { return try await GutenbergCatalog.catalog(query: query, language: language, page: page) }
-        var components = URLComponents(string: "https://gutendex.com/books/")!
-        components.queryItems = [URLQueryItem(name: "page", value: String(max(1, page))), URLQueryItem(name: "mime_type", value: "application/epub")]
-        if !query.isEmpty { components.queryItems?.append(URLQueryItem(name: "search", value: query)) }
-        if !language.isEmpty { components.queryItems?.append(URLQueryItem(name: "languages", value: language)) }
-        components.percentEncodedQuery = components.percentEncodedQuery?.replacingOccurrences(of: "+", with: "%2B")
-        let response: JSONValue
-        do { response = try await HTTPClient().json(components.url!.absoluteString, timeout: 15) }
-        catch {
-            try Task.checkCancellation()
-            mirrorBlockedUntil = Date().addingTimeInterval(300)
-            // Use the publisher's actual catalog when its JSON mirror is
-            // unavailable, retaining Gutenberg IDs and advertised EPUB URLs.
-            return try await GutenbergCatalog.catalog(query: query, language: language, page: page)
-        }
-        let books = response["results"].array.compactMap { value -> EBook? in
-            guard let id = value["id"].integer, let title = value["title"].string else { return nil }
-            let formats = value["formats"].objectValue
-            guard let epub = formats.first(where: { $0.key.hasPrefix("application/epub+zip") && $0.value.string?.hasSuffix(".zip") != true })?.value.string else { return nil }
-            let authors = value["authors"].array.compactMap { $0["name"].string }.map { name -> String in let parts = name.components(separatedBy: ", "); return parts.count == 2 ? parts.reversed().joined(separator: " ") : name }
-            return EBook(id: "gutendex:\(id)", title: title, authors: authors, description: value["summaries"].array.compactMap(\.string).joined(separator: "\n\n"), cover: formats.first(where: { $0.key.hasPrefix("image/jpeg") })?.value.string, language: value["languages"].array.first?.string, epub: epub)
-        }
-        return (books, response["next"].string != nil)
+        // Query the publisher directly; an unavailable mirror delayed every first search.
+        return try await GutenbergCatalog.catalog(query: query, language: language, page: page)
     }
     func open(_ book: EBook, owner: String, imported: Data? = nil) async throws -> EBookPublication {
         let key = Self.key(book, owner)
