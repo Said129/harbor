@@ -579,8 +579,10 @@
 "Import CBZ, ZIP or image folders from the Manga menu. For online sources, connect your Suwayomi server, install its extensions and select a source. Keep that server reachable from your iPhone or iPad." = "استورد CBZ أو ZIP أو مجلدات الصور من قائمة المانغا. للمصادر عبر الإنترنت، اربط خادم Suwayomi وثبّت إضافاته واختر مصدرًا. يجب أن يكون الخادم متاحًا من iPhone أو iPad.";
 "Import CBZ/ZIP or folder" = "Import CBZ/ZIP or folder";
 "Import M3U file" = "Import M3U file";
+"Import PDF, CBZ, ZIP or image folders from the Manga menu. Your library shows their covers and can sort titles in reading order. For online sources, connect your Suwayomi server, install its extensions and select a source. Keep that server reachable from your iPhone or iPad." = "Import PDF, CBZ, ZIP or image folders from the Manga menu. Your library shows their covers and can sort titles in reading order. For online sources, connect your Suwayomi server, install its extensions and select a source. Keep that server reachable from your iPhone or iPad.";
 "Import from Files · EPUB / PDF" = "استيراد من الملفات · EPUB / PDF";
 "Import music" = "Import music";
+"Importa PDF, CBZ, ZIP o carpetas de imágenes desde el menú de Manga. Tu biblioteca muestra sus portadas y permite ordenar los títulos. Para fuentes en línea, conecta tu servidor Suwayomi, instala sus extensiones y elige una fuente. El servidor debe estar accesible desde tu iPhone o iPad." = "Import PDF, CBZ, ZIP or image folders from the Manga menu. Your library shows their covers and can sort titles in reading order. For online sources, connect your Suwayomi server, install its extensions and select a source. Keep that server reachable from your iPhone or iPad.";
 "Importado" = "مستورد";
 "Importado y reproduciendo" = "تم الاستيراد ويُشغَّل الآن";
 "Importando libro…" = "جارٍ استيراد الكتاب…";
@@ -712,6 +714,7 @@
 "Mostrar controles" = "Show controls";
 "Mostrar descripción del episodio" = "Show episode description";
 "Mostrar detalles" = "إظهار التفاصيل";
+"Mostrar el botón Saltar" = "Show the Skip button";
 "Mostrar fila" = "Show row";
 "Mostrar menos" = "عرض أقل";
 "Mostrar más canales" = "Show more channels";
@@ -730,6 +733,7 @@
 "Mover hacia arriba" = "نقل لأعلى";
 "Movie" = "فيلم";
 "Movies" = "أفلام";
+"Muestra Saltar intro o Saltar créditos cuando se detecta un intervalo. Puedes desactivarlo o tocar su X para ocultarlo durante ese episodio." = "Show a Skip Intro / Skip Credits button when Harbor detects one. Turn this off to never show it. You can also tap the X on the button to dismiss a wrong one for the rest of the episode.";
 "Muestra la sinopsis del episodio en las tarjetas. Desactívalo para ocultarla." = "Shows the episode synopsis on the cards. Turn it off to hide it.";
 "Muestra nombres traducidos al idioma seleccionado arriba. Desactívalo para mantener los títulos originales." = "Show translated names in the language selected above. Turn off to keep original titles.";
 "Muestra subtítulos en dos idiomas a la vez. Útil para aprender un idioma o ver contenido juntos." = "Show two subtitle languages at once. Useful for learning a language or watching together.";
@@ -1133,6 +1137,7 @@
 "Sharper lines and a little more pop." = "خطوط أكثر حدة وقليل من البروز.";
 "Show" = "إظهار";
 "Show More info button" = "Show More info button";
+"Show a Skip Intro / Skip Credits button when Harbor detects one. Turn this off to never show it. You can also tap the X on the button to dismiss a wrong one for the rest of the episode." = "Show a Skip Intro / Skip Credits button when Harbor detects one. Turn this off to never show it. You can also tap the X on the button to dismiss a wrong one for the rest of the episode.";
 "Show adult addons" = "إظهار إضافات البالغين";
 "Show as a Top 10 with big numerals" = "العرض كأفضل 10 بأرقام كبيرة";
 "Show as a normal row" = "العرض كصف عادي";
@@ -1147,6 +1152,7 @@
 "Show more titles" = "Show more titles";
 "Show pages" = "Show pages";
 "Show row" = "Show row";
+"Show the Skip button" = "Show the Skip button";
 "Show translated names in the language selected above. Turn off to keep original titles." = "Show translated names in the language selected above. Turn off to keep original titles.";
 "Show two subtitle languages at once. Useful for learning a language or watching together." = "Show two subtitle languages at once. Useful for learning a language or watching together.";
 "Show {name} in navigation" = "Show {name} in navigation";

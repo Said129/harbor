@@ -55,7 +55,7 @@ struct PlayerNextEpisodeSettings: View {
     }
     var body: some View {
         HarborSettingsSection(DesktopInterfaceText.value("Next episode prompt")) {
-            HarborSettingsToggle("Mostrar Saltar intro y créditos", note: "Usa AniSkip, TheIntroDB o las marcas del vídeo cuando estén disponibles.", isOn: $preferences.options.showSkipIntro)
+            HarborSettingsToggle(DesktopInterfaceText.value("Show the Skip button"), note: DesktopInterfaceText.value("Show a Skip Intro / Skip Credits button when Harbor detects one. Turn this off to never show it. You can also tap the X on the button to dismiss a wrong one for the rest of the episode."), isOn: $preferences.options.showSkipIntro)
                 .accessibilityIdentifier("settings-skip-intro")
             Text(DesktopInterfaceText.value("When the Up Next pill appears before an episode ends. Auto scales to the episode length, so short episodes stop prompting so early. Off hides it."))
                 .font(HarborTheme.font(13)).foregroundStyle(.secondary).fixedSize(horizontal: false, vertical: true)

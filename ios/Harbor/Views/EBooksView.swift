@@ -83,6 +83,9 @@ struct EBooksView: View {
                         EBookCover(book: book, owner: shelf.owner).aspectRatio(2.0 / 3.0, contentMode: .fit).clipShape(.rect(cornerRadius: 8))
                         Text(book.title).font(.caption.weight(.medium)).lineLimit(2)
                         Text(book.authors.first ?? book.source).font(.system(size: 10)).foregroundStyle(.secondary).lineLimit(1)
+                        if screen == "shelf", let record = shelf.record(book) {
+                            Text(record.completed ? "Leído" : book.isPDF ? "Página \(record.block + 1)" : "Sección \(record.chapter + 1)").font(.system(size: 10)).foregroundStyle(.secondary)
+                        }
                     }
                 }.buttonStyle(.plain).accessibilityIdentifier("ebook-card-" + book.id).contextMenu {
                     if screen == "shelf" {

@@ -84,6 +84,16 @@ final class ReadingUpdatesTests: XCTestCase {
         let television = try JSONDecoder().decode(JSONValue.self, from: Data(#"{"intro":[{"start_ms":10000,"end_ms":100000}],"credits":[{"start_ms":1380000,"end_ms":null}]}"#.utf8))
         XCTAssertEqual(SkipSegment.merge([SkipIntroService.parseIntroDB(television, duration: 1420)], duration: 1420).map(\.end), [100, 1420])
     }
+    @MainActor func testAddedSkipPreferenceKeepsEarlierPlaybackSettings() throws {
+        let name = "reading90-preferences-" + UUID().uuidString, storage = try XCTUnwrap(UserDefaults(suiteName: name))
+        defer { storage.removePersistentDomain(forName: name) }
+        storage.set(try JSONSerialization.data(withJSONObject: ["seekBackSeconds": 30, "subtitleLanguage": "spa", "autoPlayNextEpisode": false]), forKey: "iphone.player-options.v1")
+        let restored = PlaybackPreferences(storage: storage)
+        XCTAssertEqual(restored.options.seekBackSeconds, 30); XCTAssertEqual(restored.options.subtitleLanguage, "spa"); XCTAssertFalse(restored.options.autoPlayNextEpisode)
+        XCTAssertTrue(restored.options.showSkipIntro)
+        restored.options.showSkipIntro = false
+        XCTAssertFalse(PlaybackPreferences(storage: storage).options.showSkipIntro)
+    }
 
     @available(iOS, deprecated: 12.0)
     @MainActor func testSkipButtonSeeksTheActualMPVWithoutReloading() async throws {

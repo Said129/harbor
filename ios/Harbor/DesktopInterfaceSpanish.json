@@ -436,5 +436,8 @@
   "Skip Intro": "Saltar intro",
   "Skip Credits": "Saltar créditos",
   "Skip Recap": "Saltar resumen",
-  "Dismiss": "Ocultar"
+  "Dismiss": "Ocultar",
+  "Show the Skip button": "Mostrar el botón Saltar",
+  "Show a Skip Intro / Skip Credits button when Harbor detects one. Turn this off to never show it. You can also tap the X on the button to dismiss a wrong one for the rest of the episode.": "Muestra Saltar intro o Saltar créditos cuando se detecta un intervalo. Puedes desactivarlo o tocar su X para ocultarlo durante ese episodio.",
+  "Import PDF, CBZ, ZIP or image folders from the Manga menu. Your library shows their covers and can sort titles in reading order. For online sources, connect your Suwayomi server, install its extensions and select a source. Keep that server reachable from your iPhone or iPad.": "Importa PDF, CBZ, ZIP o carpetas de imágenes desde el menú de Manga. Tu biblioteca muestra sus portadas y permite ordenar los títulos. Para fuentes en línea, conecta tu servidor Suwayomi, instala sus extensiones y elige una fuente. El servidor debe estar accesible desde tu iPhone o iPad."
 }

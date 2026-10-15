@@ -152,7 +152,7 @@ struct PlayerView: View {
             if resumePending && state.loaded && state.error == nil { resumePrompt }
             if let segment = activeSkip {
                 VStack { Spacer(); HStack { PlayerSkipControl(segment: segment, skip: { PlayerSkipAction.perform(segment, state: state); restartHideTimer() }, dismiss: { dismissedSkips.insert(segment.id) }); Spacer(minLength: 0) } }
-                    .padding(.horizontal, 16).padding(.bottom, controlsVisible ? (verticalSizeClass == .compact ? 115 : 160) : 24)
+                    .padding(.horizontal, 16).padding(.bottom, (controlsVisible ? (verticalSizeClass == .compact ? 115.0 : 160) : 24) + (showUpNext && verticalSizeClass != .compact ? 140 : 0))
             }
             SubtitleSyncFeedback(state: state)
         }

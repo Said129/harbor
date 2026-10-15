@@ -579,8 +579,10 @@
 "Import CBZ, ZIP or image folders from the Manga menu. For online sources, connect your Suwayomi server, install its extensions and select a source. Keep that server reachable from your iPhone or iPad." = "Importa CBZ, ZIP o carpetas de imágenes desde el menú de Manga. Para fuentes en línea, conecta tu servidor Suwayomi, instala sus extensiones y elige una fuente. El servidor debe estar accesible desde tu iPhone o iPad.";
 "Import CBZ/ZIP or folder" = "Importar CBZ/ZIP o carpeta";
 "Import M3U file" = "Importar archivo M3U";
+"Import PDF, CBZ, ZIP or image folders from the Manga menu. Your library shows their covers and can sort titles in reading order. For online sources, connect your Suwayomi server, install its extensions and select a source. Keep that server reachable from your iPhone or iPad." = "Importa PDF, CBZ, ZIP o carpetas de imágenes desde el menú de Manga. Tu biblioteca muestra sus portadas y permite ordenar los títulos. Para fuentes en línea, conecta tu servidor Suwayomi, instala sus extensiones y elige una fuente. El servidor debe estar accesible desde tu iPhone o iPad.";
 "Import from Files · EPUB / PDF" = "Importar desde Archivos · EPUB / PDF";
 "Import music" = "Importar música";
+"Importa PDF, CBZ, ZIP o carpetas de imágenes desde el menú de Manga. Tu biblioteca muestra sus portadas y permite ordenar los títulos. Para fuentes en línea, conecta tu servidor Suwayomi, instala sus extensiones y elige una fuente. El servidor debe estar accesible desde tu iPhone o iPad." = "Importa PDF, CBZ, ZIP o carpetas de imágenes desde el menú de Manga. Tu biblioteca muestra sus portadas y permite ordenar los títulos. Para fuentes en línea, conecta tu servidor Suwayomi, instala sus extensiones y elige una fuente. El servidor debe estar accesible desde tu iPhone o iPad.";
 "Importado" = "Importado";
 "Importado y reproduciendo" = "Importado y reproduciendo";
 "Importando libro…" = "Importando libro…";
@@ -712,6 +714,7 @@
 "Mostrar controles" = "Mostrar controles";
 "Mostrar descripción del episodio" = "Mostrar descripción del episodio";
 "Mostrar detalles" = "Mostrar detalles";
+"Mostrar el botón Saltar" = "Mostrar el botón Saltar";
 "Mostrar fila" = "Mostrar fila";
 "Mostrar menos" = "Mostrar menos";
 "Mostrar más canales" = "Mostrar más canales";
@@ -730,6 +733,7 @@
 "Mover hacia arriba" = "Mover hacia arriba";
 "Movie" = "Movie";
 "Movies" = "Películas";
+"Muestra Saltar intro o Saltar créditos cuando se detecta un intervalo. Puedes desactivarlo o tocar su X para ocultarlo durante ese episodio." = "Muestra Saltar intro o Saltar créditos cuando se detecta un intervalo. Puedes desactivarlo o tocar su X para ocultarlo durante ese episodio.";
 "Muestra la sinopsis del episodio en las tarjetas. Desactívalo para ocultarla." = "Muestra la sinopsis del episodio en las tarjetas. Desactívalo para ocultarla.";
 "Muestra nombres traducidos al idioma seleccionado arriba. Desactívalo para mantener los títulos originales." = "Muestra nombres traducidos al idioma seleccionado arriba. Desactívalo para mantener los títulos originales.";
 "Muestra subtítulos en dos idiomas a la vez. Útil para aprender un idioma o ver contenido juntos." = "Muestra subtítulos en dos idiomas a la vez. Útil para aprender un idioma o ver contenido juntos.";
@@ -1133,6 +1137,7 @@
 "Sharper lines and a little more pop." = "Líneas más definidas y un poco más de impacto visual.";
 "Show" = "Show";
 "Show More info button" = "Mostrar botón Más información";
+"Show a Skip Intro / Skip Credits button when Harbor detects one. Turn this off to never show it. You can also tap the X on the button to dismiss a wrong one for the rest of the episode." = "Muestra Saltar intro o Saltar créditos cuando se detecta un intervalo. Puedes desactivarlo o tocar su X para ocultarlo durante ese episodio.";
 "Show adult addons" = "Mostrar complementos para adultos";
 "Show as a Top 10 with big numerals" = "Mostrar como Top 10 con números grandes";
 "Show as a normal row" = "Mostrar como una fila normal";
@@ -1147,6 +1152,7 @@
 "Show more titles" = "Mostrar más títulos";
 "Show pages" = "Mostrar páginas";
 "Show row" = "Mostrar fila";
+"Show the Skip button" = "Mostrar el botón Saltar";
 "Show translated names in the language selected above. Turn off to keep original titles." = "Muestra nombres traducidos al idioma seleccionado arriba. Desactívalo para mantener los títulos originales.";
 "Show two subtitle languages at once. Useful for learning a language or watching together." = "Muestra subtítulos en dos idiomas a la vez. Útil para aprender un idioma o ver contenido juntos.";
 "Show {name} in navigation" = "Mostrar {name} en la navegación";
