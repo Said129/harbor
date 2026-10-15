@@ -51,15 +51,15 @@ struct EBookReaderView: View {
     var body: some View {
         VStack(spacing: 0) {
             if loading { ProgressView("Abriendo libro…").padding() }
-            if let error { Text(error).font(.caption).foregroundStyle(.orange).padding(); Button("Reintentar") { Task { await open() } } }
+            if let error { Text(error).font(.caption).foregroundStyle(.orange).padding().accessibilityIdentifier("ebook-reader-error"); Button("Reintentar") { Task { await open() } } }
             ScrollView {
                 LazyVStack(alignment: .leading, spacing: fontSize * max(0.5, lineHeight - 0.85)) {
                     ForEach(blocks) { block in
                         Group {
                             if let image = block.image {
-                                BookIllustration(data: image, label: block.text)
+                                BookIllustration(data: image, label: block.text).accessibilityIdentifier("ebook-reader-image")
                             } else {
-                                Text(block.text).font(block.heading ? readerFont.weight(.bold) : readerFont).lineSpacing(fontSize * (lineHeight - 1)).textSelection(.enabled)
+                                Text(block.text).font(block.heading ? readerFont.weight(.bold) : readerFont).lineSpacing(fontSize * (lineHeight - 1)).textSelection(.enabled).accessibilityIdentifier("ebook-reader-text")
                             }
                         }.frame(maxWidth: .infinity, alignment: .leading).id(block.id)
                     }
@@ -74,7 +74,7 @@ struct EBookReaderView: View {
                         Spacer()
                         Text("\(chapter + 1) / \(publication.chapters.count)").font(.caption.monospacedDigit())
                         Spacer()
-                        Button { select(chapter + 1) } label: { Image(systemName: "chevron.right").frame(width: 44, height: 40) }.disabled(chapter >= publication.chapters.count - 1).accessibilityLabel("Capítulo siguiente")
+                        Button { select(chapter + 1) } label: { Image(systemName: "chevron.right").frame(width: 44, height: 44) }.disabled(chapter >= publication.chapters.count - 1).accessibilityLabel("Capítulo siguiente").accessibilityIdentifier("ebook-next-section")
                     }
                 }.padding(.horizontal).background(.thinMaterial)
             }

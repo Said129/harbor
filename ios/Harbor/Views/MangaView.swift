@@ -21,6 +21,7 @@ struct MangaView: View {
     @State private var configuring = false
     @State private var extensions = false
     @State private var importing = false
+    @State private var importingDocument = false
     @State private var readingHelp = false
     @State private var imported: MangaBook?
     @State private var submanhwa = false
@@ -29,6 +30,7 @@ struct MangaView: View {
     @State private var language = "all"
     @State private var error: String?
     @AppStorage("manga.adultSources") private var adult = false
+    @AppStorage("manga.shelfSort") private var shelfSort = "title"
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @Environment(\.scenePhase) private var scenePhase
     @MainActor init(app: AppModel) {
@@ -46,7 +48,12 @@ struct MangaView: View {
         return (shelf.records.sorted { $0.updated > $1.updated }.map(\.book) + serverLibrary).filter { seen.insert($0.id).inserted }
     }
     private var savedBooks: [MangaBook] {
-        allSavedBooks.filter { query.isEmpty || $0.title.localizedCaseInsensitiveContains(query) }
+        let order = ReadingShelfSort(rawValue: shelfSort) ?? .title
+        let dates = Dictionary(uniqueKeysWithValues: shelf.records.map { ($0.id, $0.updated) })
+        return allSavedBooks.filter { ReadingShelfSort.matches(query, title: $0.title, author: $0.author) }.sorted {
+            order.before(title: $0.title, author: $0.author, updated: dates[$0.id] ?? .distantPast, id: $0.id,
+                         title: $1.title, author: $1.author, updated: dates[$1.id] ?? .distantPast, id: $1.id)
+        }
     }
     var body: some View {
         ScrollView {
@@ -64,6 +71,8 @@ struct MangaView: View {
                 }.scrollIndicators(.hidden)
                 HStack { Text(screen == "shelf" ? "Biblioteca" : "Explorar manga").font(HarborTheme.font(21, weight: .semibold)).accessibilityIdentifier("manga-content-heading"); Spacer(); mangaOptions }.padding(.horizontal)
                 HarborSearchField(prompt: "Buscar manga…", text: $query).padding(.horizontal)
+                if screen == "shelf" { HStack { Spacer(); ReadingSortMenu(selection: $shelfSort) }.padding(.horizontal) }
+                if importingDocument { ProgressView("Importando manga…").frame(maxWidth: .infinity) }
                 if let message = error ?? shelf.error ?? connection.error { Text(message).font(.caption).foregroundStyle(.orange).padding(.horizontal) }
                 if screen == "browse" {
                     if !sources.filter({ adult || !$0.adult }).isEmpty {
@@ -72,7 +81,7 @@ struct MangaView: View {
                         if visibleSources.isEmpty && !loading { Text("Ninguna fuente coincide con tu filtro").font(.caption).foregroundStyle(.secondary).padding(.horizontal) }
                         if more { Button("Cargar más") { Task { await browse(next: true) } }.disabled(loading).frame(maxWidth: .infinity) }
                     } else if !loading {
-                        emptyShelf("Fuentes de manga", message: "Agrega carpetas de imágenes por capítulo o archivos .cbz / .zip.")
+                        emptyShelf("Fuentes de manga", message: "Agrega carpetas de imágenes por capítulo o archivos PDF, CBZ o ZIP.")
                         HStack { Button("Fuentes de manga") { configuring = true }; Button("Agregar una carpeta local") { importing = true } }.frame(maxWidth: .infinity)
                     }
                 } else {
@@ -117,7 +126,7 @@ struct MangaView: View {
             .sheet(isPresented: $configuring) { MangaConnectionView(connection: connection) }
             .sheet(isPresented: $submanhwa) { SubmanhwaView(owner: shelf.owner) }
             .sheet(isPresented: $extensions, onDismiss: { Task { await connect() } }) { if let client { MangaExtensionsView(client: client, adult: adult) } }
-            .fileImporter(isPresented: $importing, allowedContentTypes: [UTType(filenameExtension: "cbz") ?? .zip, .zip, .folder]) { result in
+            .fileImporter(isPresented: $importing, allowedContentTypes: [UTType(filenameExtension: "cbz") ?? .zip, .zip, .pdf, .folder]) { result in
                 if case .success(let file) = result { Task { await importBook(file) } }
                 else if case .failure = result { error = "No se pudo abrir el archivo elegido." }
             }
@@ -126,7 +135,7 @@ struct MangaView: View {
     private var mangaOptions: some View {
         Menu {
             Button(DesktopInterfaceText.value("Reading help")) { readingHelp = true }
-            Button("Importar CBZ/ZIP o carpeta") { importing = true }
+            Button("Importar PDF, CBZ/ZIP o carpeta") { importing = true }.disabled(importingDocument)
             Button("Conexión Suwayomi") { configuring = true }
             if client != nil { Button("Extensiones") { extensions = true } }
             Button("Submanhwa") { submanhwa = true }
@@ -292,7 +301,7 @@ struct MangaView: View {
                         Text(book.title).font(.caption.weight(.medium)).lineLimit(2)
                         if let record = shelf.record(book), let progress = record.progress[record.chapter] { Text(progress.completed ? "Leído" : "Página \(progress.page + 1)").font(.system(size: 10)).foregroundStyle(.secondary) }
                     }.contentShape(Rectangle())
-                }.buttonStyle(.plain).contextMenu {
+                }.buttonStyle(.plain).accessibilityIdentifier("manga-card-" + book.id).contextMenu {
                     Button("Quitar de esta biblioteca", role: .destructive) {
                         do { try shelf.remove(book) } catch { self.error = safeMessage(error) }
                     }
@@ -370,12 +379,17 @@ struct MangaView: View {
     }
     private func importBook(_ file: URL) async {
         guard shelf.ready else { error = "La biblioteca no está disponible. Los archivos guardados se conservan."; return }
+        importingDocument = true; error = nil
+        defer { importingDocument = false }
         let access = file.startAccessingSecurityScopedResource(); defer { if access { file.stopAccessingSecurityScopedResource() } }
         do {
             let folder = try file.resourceValues(forKeys: [.isDirectoryKey]).isDirectory == true
             let book: MangaBook
             if folder { book = try await MangaLocalStore.shared.importFolder(file, owner: shelf.owner) }
+            else if file.pathExtension.lowercased() == "pdf" { book = try await MangaLocalStore.shared.importPDF(file, owner: shelf.owner) }
             else { book = try await MangaLocalStore.shared.importArchive(file, owner: shelf.owner) }
+            try Task.checkCancellation()
+            guard shelf.owner == (app.user?.id ?? "guest") else { try? await MangaLocalStore.shared.remove(book, owner: shelf.owner); return }
             do { try shelf.save(MangaRecord(book: book)) }
             catch { try? await MangaLocalStore.shared.remove(book, owner: shelf.owner); throw error }
             screen = "shelf"; imported = book

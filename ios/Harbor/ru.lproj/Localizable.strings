@@ -1070,6 +1070,9 @@
 "Rounded background panel behind the text. Most readable." = "Скруглённая панель фона за текстом. Наиболее читаемо.";
 "Russian" = "Русский";
 "Salir de imagen en imagen" = "Выйти из режима «картинка в картинке»";
+"Saltar créditos" = "Пропустить титры";
+"Saltar intro" = "Пропустить заставку";
+"Saltar resumen" = "Пропустить дайджест";
 "Saturación" = "Насыщенность";
 "Saturation" = "Насыщенность";
 "Save" = "Сохранить";
@@ -1173,6 +1176,9 @@
 "Six places to start. Tap one and we'll filter the catalog for you." = "Шесть отправных точек. Нажмите одну — и мы отфильтруем каталог за вас.";
 "Size" = "Размер";
 "Skip" = "Пропустить";
+"Skip Credits" = "Пропустить титры";
+"Skip Intro" = "Пропустить заставку";
+"Skip Recap" = "Пропустить дайджест";
 "Slice of Life" = "Повседневность";
 "Slightly lighter than background." = "Slightly lighter than background.";
 "Sobre la línea principal" = "Above the main line";

@@ -8,7 +8,8 @@ struct EBooksView: View {
     @State private var books: [EBook] = []
     @State private var query = ""
     @State private var screen = "browse"
-    @State private var language = "en"
+    @State private var language = ""
+    @AppStorage("ebook.shelfSort") private var shelfSort = "title"
     @State private var page = 1
     @State private var more = false
     @State private var loading = false
@@ -23,7 +24,9 @@ struct EBooksView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
-                Picker("eBook", selection: $screen) { Text("Explorar").tag("browse"); Text("Estantería").tag("shelf") }.pickerStyle(.segmented).padding(.horizontal)
+                Picker("eBook", selection: $screen) { Text("Explorar").tag("browse"); Text("Estantería").tag("shelf") }.pickerStyle(.segmented).padding(.horizontal).accessibilityIdentifier("ebook-screen")
+                HarborSearchField(prompt: screen == "browse" ? "Buscar en Gutenberg…" : "Buscar en tu estantería…", text: $query)
+                    .padding(.horizontal).accessibilityIdentifier("ebook-search")
                 if let message = error ?? shelf.error { Text(message).font(.caption).foregroundStyle(.orange).padding(.horizontal) }
                 Button { importing = true } label: { Label("Importar desde Archivos · EPUB / PDF", systemImage: "square.and.arrow.down").frame(maxWidth: .infinity, minHeight: 44) }.padding(.horizontal).disabled(importingDocument).accessibilityIdentifier("ebook-import")
                 if importingDocument { ProgressView("Importando libro…").frame(maxWidth: .infinity) }
@@ -34,34 +37,17 @@ struct EBooksView: View {
                         Picker("Idioma", selection: $language) { Text("English").tag("en"); Text("Español").tag("es"); Text("Français").tag("fr"); Text("Deutsch").tag("de"); Text("Todos").tag("") }
                     }.padding(.horizontal)
                     grid(books)
-                    if loading { ProgressView().frame(maxWidth: .infinity) }
+                    if loading { ProgressView("Buscando libros…").frame(maxWidth: .infinity) }
+                    else if error != nil { Button("Reintentar búsqueda") { Task { await load(next: false) } }.frame(maxWidth: .infinity, minHeight: 44) }
                     else if books.isEmpty { ContentUnavailableView("Sin resultados", image: "nav-ebook", description: Text("Busca por título o autor, o cambia el idioma.")) }
                     if more { Button("Cargar más") { Task { await load(next: true) } }.disabled(loading).frame(maxWidth: .infinity) }
                 } else {
-                    let saved = shelf.records.sorted { $0.updated > $1.updated }
-                    ForEach(saved) { record in
-                        NavigationLink { BookReaderDestination(book: record.book, shelf: shelf) } label: {
-                            HStack(spacing: 16) {
-                                Artwork(url: record.book.cover, maxPixels: 280).frame(width: 58, height: 86).clipShape(.rect(cornerRadius: 6))
-                                VStack(alignment: .leading, spacing: 8) {
-                                    Text(record.book.title).font(.subheadline.weight(.semibold)).lineLimit(2)
-                                    Text(record.completed ? "Leído" : "Sección \(record.chapter + 1)").font(.caption).foregroundStyle(.secondary)
-                                    Text(record.book.authors.joined(separator: ", ")).font(.caption).foregroundStyle(.secondary).lineLimit(1)
-                                }
-                                Spacer()
-                                Image(systemName: "chevron.right").font(.caption)
-                            }.padding(.horizontal)
-                        }.buttonStyle(.plain).contextMenu {
-                            Button("Eliminar libro guardado", role: .destructive) {
-                                Task { do { try await EBookService.shared.remove(record.book, owner: shelf.owner); try shelf.remove(record.book) } catch { self.error = safeMessage(error) } }
-                            }
-                        }
-                    }
-                    if saved.isEmpty { ContentUnavailableView("Tu estantería", image: "nav-ebook", description: Text("Los libros que abras e importes aparecerán aquí.")) }
+                    HStack { Text("Tu estantería").font(.headline); Spacer(); ReadingSortMenu(selection: $shelfSort) }.padding(.horizontal)
+                    grid(savedBooks)
+                    if savedBooks.isEmpty { ContentUnavailableView(query.isEmpty ? "Tu estantería" : "Sin resultados", image: "nav-ebook", description: Text(query.isEmpty ? "Los libros que abras e importes aparecerán aquí." : "Busca por título o autor entre tus libros guardados.")) }
                 }
             }.padding(.vertical, 16)
-        }.background(HarborTheme.background).navigationTitle("eBook").navigationBarTitleDisplayMode(.inline)
-            .searchable(text: $query, prompt: "Libros y autores")
+        }.scrollDismissesKeyboard(.interactively).background(HarborTheme.background).navigationTitle("eBook").navigationBarTitleDisplayMode(.inline)
             .toolbar { ToolbarItem(placement: .topBarTrailing) { Button { help = true } label: { Image(systemName: "questionmark.circle") }.accessibilityLabel("Cómo leer tus libros").accessibilityIdentifier("ebook-reading-help") } }
             .sheet(isPresented: $help) { ReadingHelpView() }
             .task { if let initialFile { await importBook(initialFile) } }
@@ -82,16 +68,29 @@ struct EBooksView: View {
             }
             .navigationDestination(item: $imported) { book in BookReaderDestination(book: book, shelf: shelf) }
     }
+    private var savedBooks: [EBook] {
+        let order = ReadingShelfSort(rawValue: shelfSort) ?? .title
+        return shelf.records.filter { ReadingShelfSort.matches(query, title: $0.book.title, author: $0.book.authors.joined(separator: " ")) }.sorted {
+            order.before(title: $0.book.title, author: $0.book.authors.joined(separator: " "), updated: $0.updated, id: $0.id,
+                         title: $1.book.title, author: $1.book.authors.joined(separator: " "), updated: $1.updated, id: $1.id)
+        }.map(\.book)
+    }
     private func grid(_ entries: [EBook]) -> some View {
         LazyVGrid(columns: [GridItem(.adaptive(minimum: 110, maximum: 180))], alignment: .leading, spacing: 18) {
             ForEach(entries) { book in
                 NavigationLink { BookReaderDestination(book: book, shelf: shelf) } label: {
                     VStack(alignment: .leading, spacing: 6) {
-                        Artwork(url: book.cover, maxPixels: 500).aspectRatio(2.0 / 3.0, contentMode: .fit).clipShape(.rect(cornerRadius: 8))
+                        EBookCover(book: book, owner: shelf.owner).aspectRatio(2.0 / 3.0, contentMode: .fit).clipShape(.rect(cornerRadius: 8))
                         Text(book.title).font(.caption.weight(.medium)).lineLimit(2)
                         Text(book.authors.first ?? book.source).font(.system(size: 10)).foregroundStyle(.secondary).lineLimit(1)
                     }
-                }.buttonStyle(.plain)
+                }.buttonStyle(.plain).accessibilityIdentifier("ebook-card-" + book.id).contextMenu {
+                    if screen == "shelf" {
+                        Button("Eliminar libro guardado", role: .destructive) {
+                            Task { do { try await EBookService.shared.remove(book, owner: shelf.owner); try shelf.remove(book) } catch { self.error = safeMessage(error) } }
+                        }
+                    }
+                }
             }
         }.padding(.horizontal)
     }
@@ -100,6 +99,7 @@ struct EBooksView: View {
         let token = UUID(); generation = token
         let term = query.trimmingCharacters(in: .whitespacesAndNewlines), selectedLanguage = language, requestedPage = next ? page + 1 : 1
         loading = true; error = nil
+        if !next { books = []; more = false }
         defer { if generation == token { loading = false } }
         do {
             if !next { try await Task.sleep(for: .milliseconds(350)) }

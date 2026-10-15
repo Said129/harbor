@@ -432,5 +432,9 @@
   "{m}m left": "Quedan {m} min",
   "Add to favorites": "Agregar a favoritos",
   "Remove from favorites": "Quitar de favoritos",
-  "Remove from Continue Watching": "Quitar de Seguir viendo"
+  "Remove from Continue Watching": "Quitar de Seguir viendo",
+  "Skip Intro": "Saltar intro",
+  "Skip Credits": "Saltar créditos",
+  "Skip Recap": "Saltar resumen",
+  "Dismiss": "Ocultar"
 }

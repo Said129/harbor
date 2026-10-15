@@ -11,6 +11,8 @@ struct MangaBook: Codable, Identifiable, Hashable, Sendable {
     var remoteID: String?
     var sourceID: String?
     var folderChapters: Bool?
+    var format: String?
+    var isPDF: Bool { format == "pdf" }
 }
 struct MangaSource: Identifiable, Sendable {
     let id: String

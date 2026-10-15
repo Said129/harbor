@@ -16,6 +16,7 @@ on:
             sources-search-subtitles,
             mobile-sources-subtitles,
             stable-mobile,
+            reading-intro,
             stable-tablet-ui,
             stable-tablet-rotation,
             reuse,
@@ -103,7 +104,7 @@ jobs:
         if: ${{ (inputs.validation_scope == 'sources-search-subtitles' || inputs.validation_scope == 'mobile-sources-subtitles' || inputs.validation_scope == 'stable-mobile') && inputs.native_test_selection != '' }}
         run: python3 scripts/ios/select-feature-tests.py --selection "$HARBOR_NATIVE_SELECTION" --output ios/build/feature-native-selection.txt
       - name: Check reserved feature delivery draft before compiling
-        if: ${{ (inputs.validation_scope == 'sources-search-subtitles' || inputs.validation_scope == 'mobile-sources-subtitles' || inputs.validation_scope == 'stable-mobile' || inputs.validation_scope == 'stable-tablet-ui' || inputs.validation_scope == 'stable-tablet-rotation') && inputs.save_draft_build == true }}
+        if: ${{ (inputs.validation_scope == 'sources-search-subtitles' || inputs.validation_scope == 'mobile-sources-subtitles' || inputs.validation_scope == 'stable-mobile' || inputs.validation_scope == 'stable-tablet-ui' || inputs.validation_scope == 'stable-tablet-rotation' || inputs.validation_scope == 'reading-intro') && inputs.save_draft_build == true }}
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -135,7 +136,7 @@ jobs:
             harbor-core
             harbor-ios-bridge
       - name: Verify shared Rust on the Apple build host
-        if: ${{ inputs.validation_scope != 'affected' && inputs.validation_scope != 'sources-search-subtitles' && inputs.validation_scope != 'mobile-sources-subtitles' && inputs.validation_scope != 'stable-mobile' && inputs.validation_scope != 'stable-tablet-ui' && inputs.validation_scope != 'stable-tablet-rotation' }}
+        if: ${{ inputs.validation_scope != 'affected' && inputs.validation_scope != 'sources-search-subtitles' && inputs.validation_scope != 'mobile-sources-subtitles' && inputs.validation_scope != 'stable-mobile' && inputs.validation_scope != 'stable-tablet-ui' && inputs.validation_scope != 'stable-tablet-rotation' && inputs.validation_scope != 'reading-intro' }}
         shell: bash
         run: |
           set -euo pipefail
@@ -203,7 +204,9 @@ jobs:
         run: |
           set -euo pipefail
           selection=(-only-testing:HarborTests)
-          if [[ "${{ inputs.validation_scope }}" == "affected" ]]; then
+          if [[ "${{ inputs.validation_scope }}" == "reading-intro" ]]; then
+            selection=(-only-testing:HarborTests/ReadingUpdatesTests -only-testing:HarborTests/StableMobileTests/testImportEPUBAndPDFKeepsOwnerIsolationAndReadingPosition -only-testing:HarborTests/StableMobileTests/testReopeningEPUBDoesNotRewriteTheCachedPublication -only-testing:HarborTests/MangaArchiveTests/testActualCBZImagesUseNaturalOrderAndNeverExposeUnsafePaths)
+          elif [[ "${{ inputs.validation_scope }}" == "affected" ]]; then
             selection=(-only-testing:HarborTests/WebPageDialogTests)
           elif [[ "${{ inputs.validation_scope }}" == "sources-search-subtitles" || "${{ inputs.validation_scope }}" == "mobile-sources-subtitles" || "${{ inputs.validation_scope }}" == "stable-mobile" ]]; then
             selection=(-only-testing:HarborTests/SearchAndSourcesTests -only-testing:HarborTests/SubtitleAutoSyncTests -only-testing:HarborTests/SubtitlePlaybackTests -only-testing:HarborTests/AccountCollectionTests)
@@ -237,7 +240,9 @@ jobs:
         run: |
           set -euo pipefail
           selection=(-only-testing:HarborIntegrationTests)
-          if [[ "${{ inputs.validation_scope }}" == "sources-search-subtitles" ]]; then
+          if [[ "${{ inputs.validation_scope }}" == "reading-intro" ]]; then
+            selection=(-only-testing:HarborIntegrationTests/ReadingLiveTests)
+          elif [[ "${{ inputs.validation_scope }}" == "sources-search-subtitles" ]]; then
             selection=(-only-testing:HarborIntegrationTests/LiveServicesTests/testDanmachiSeasonOneEpisodeSevenUsesDesktopAliases)
           elif [[ "${{ inputs.validation_scope }}" == "mobile-sources-subtitles" ]]; then
             selection=(-only-testing:HarborIntegrationTests/LiveServicesTests/testSubtitleAddonsReturnMovieSeriesAndMappedAnimeResults)
@@ -290,7 +295,9 @@ jobs:
             trap finish_rotation_recording EXIT
           fi
           selection=(-only-testing:HarborUITests)
-          if [[ "${{ inputs.validation_scope }}" == "stable-tablet-rotation" ]]; then
+          if [[ "${{ inputs.validation_scope }}" == "reading-intro" ]]; then
+            selection=(-only-testing:HarborUITests/ReadingNavigationTests)
+          elif [[ "${{ inputs.validation_scope }}" == "stable-tablet-rotation" ]]; then
             selection=(-only-testing:HarborUITests/StableMobileNavigationTests/testReadingHelpRemainsUsableAfterTabletRotation)
           elif [[ "${{ inputs.validation_scope }}" == "affected" ]]; then
             selection=(-only-testing:HarborUITests/LiveNavigationTests/testCancellingCustomPaletteRestoresActiveTheme)
@@ -317,15 +324,30 @@ jobs:
           xcrun simctl bootstatus "$tablet" -b
           xcodebuild -project ios/Harbor.xcodeproj -scheme HarborLive -configuration Debug -destination "platform=iOS Simulator,id=$tablet,arch=$IOS_SIMULATOR_ARCH" -derivedDataPath ios/build/DerivedData -clonedSourcePackagesDirPath ios/build/SourcePackages -resultBundlePath ios/build/TabletUITests.xcresult -only-testing:HarborUITests/StableMobileNavigationTests -parallel-testing-enabled NO CODE_SIGNING_ALLOWED=YES CODE_SIGN_IDENTITY=- test 2>&1 | tee ios/build/logs/tablet-ui.log
           xcrun simctl shutdown "$tablet"
+      - name: Verify the new reading shelves and PDF Manga on iPad
+        id: reading_tablet_tests
+        if: ${{ inputs.validation_scope == 'reading-intro' && success() }}
+        timeout-minutes: 15
+        shell: bash
+        run: |
+          set -euo pipefail
+          xcrun simctl shutdown "$IOS_SIMULATOR"
+          tablet=$(python3 -c 'import json; d=json.load(open("ios/build/devices.json")); print(next(x["udid"] for runtime, values in d["devices"].items() if "iOS" in runtime for x in values if x["name"].startswith("iPad")))')
+          xcrun simctl bootstatus "$tablet" -b
+          xcodebuild -project ios/Harbor.xcodeproj -scheme Harbor -configuration Debug -destination "platform=iOS Simulator,id=$tablet,arch=$IOS_SIMULATOR_ARCH" -derivedDataPath ios/build/DerivedData -clonedSourcePackagesDirPath ios/build/SourcePackages -resultBundlePath ios/build/ReadingTabletSeed.xcresult -only-testing:HarborTests/ReadingUpdatesTests/testPrepareOrdinaryReadingShelfUIFixtures -parallel-testing-enabled NO CODE_SIGNING_ALLOWED=YES CODE_SIGN_IDENTITY=- test 2>&1 | tee ios/build/logs/reading-tablet-seed.log
+          xcrun simctl shutdown "$tablet"
+          xcrun simctl bootstatus "$tablet" -b
+          xcodebuild -project ios/Harbor.xcodeproj -scheme HarborLive -configuration Debug -destination "platform=iOS Simulator,id=$tablet,arch=$IOS_SIMULATOR_ARCH" -derivedDataPath ios/build/DerivedData -clonedSourcePackagesDirPath ios/build/SourcePackages -resultBundlePath ios/build/ReadingTabletUI.xcresult -only-testing:HarborUITests/ReadingNavigationTests/testLocalShelvesSearchSortCoversAndPDFMangaReader -parallel-testing-enabled NO CODE_SIGNING_ALLOWED=YES CODE_SIGN_IDENTITY=- test 2>&1 | tee ios/build/logs/reading-tablet-ui.log
+          xcrun simctl shutdown "$tablet"
       - name: Preserve failed public integration screenshots in a draft Release
-        if: ${{ always() && inputs.validation_scope != 'stable-tablet-rotation' && inputs.save_draft_build == true && (steps.live_tests.conclusion == 'failure' || steps.live_tests.conclusion == 'cancelled' || steps.live_services.conclusion == 'failure' || steps.live_services.conclusion == 'cancelled' || steps.tablet_tests.conclusion == 'failure' || steps.manga_font_tests.conclusion == 'failure') }}
+        if: ${{ always() && inputs.validation_scope != 'stable-tablet-rotation' && inputs.save_draft_build == true && (steps.live_tests.conclusion == 'failure' || steps.live_tests.conclusion == 'cancelled' || steps.live_services.conclusion == 'failure' || steps.live_services.conclusion == 'cancelled' || steps.tablet_tests.conclusion == 'failure' || steps.manga_font_tests.conclusion == 'failure' || steps.reading_tablet_tests.conclusion == 'failure') }}
         env:
           GH_TOKEN: ${{ github.token }}
         shell: bash
         run: |
           set -euo pipefail
           mkdir -p ios/build/attachments
-          for name in Tests ServicesTests LiveTests TabletTests TabletUITests MangaFontTests; do
+          for name in Tests ServicesTests LiveTests TabletTests TabletUITests MangaFontTests ReadingTabletSeed ReadingTabletUI; do
             if [ -d "ios/build/$name.xcresult" ]; then
               xcrun xcresulttool export attachments --path "ios/build/$name.xcresult" --output-path "ios/build/attachments/$name"
             fi
@@ -380,7 +402,7 @@ jobs:
           if [[ -f ios/build/preserved-mobile-validation.json ]]; then
             cp ios/build/preserved-mobile-validation.json ios/build/live-attachments/
           fi
-          for name in TabletTests TabletUITests MangaFontTests; do
+          for name in TabletTests TabletUITests MangaFontTests ReadingTabletSeed ReadingTabletUI; do
             if [[ -d "ios/build/$name.xcresult" ]]; then
               xcrun xcresulttool export attachments --path "ios/build/$name.xcresult" --output-path "ios/build/live-attachments/$name"
             fi

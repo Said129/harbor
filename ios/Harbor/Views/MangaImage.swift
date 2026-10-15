@@ -37,7 +37,7 @@ struct MangaImage: View {
                     guard let first = pages.first(where: { ($0.path as NSString).lastPathComponent.lowercased().hasPrefix("cover.") }) ?? pages.first else { throw HarborError(code: "manga-format") }
                     selected = first.path
                 }
-                data = try await MangaLocalStore.shared.data(book, owner: owner, path: selected)
+                data = try await MangaLocalStore.shared.data(book, owner: owner, path: selected, maxPixels: maxPixels)
             } else {
                 guard let client, let path else { throw HarborError(code: "manga-connection") }
                 data = try await client.image(path)

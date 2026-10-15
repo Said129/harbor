@@ -378,7 +378,7 @@
 "Discover" = "Discover";
 "Discovery Queue" = "Discovery Queue";
 "Diseño de Inicio" = "Diseño de Inicio";
-"Dismiss" = "Dismiss";
+"Dismiss" = "Ocultar";
 "Disney+ Originals" = "Disney+ Originals";
 "Display name" = "Nombre para mostrar";
 "Distance from bottom" = "Distancia desde la parte inferior";
@@ -1070,6 +1070,9 @@
 "Rounded background panel behind the text. Most readable." = "Panel de fondo redondeado detrás del texto. La opción más legible.";
 "Russian" = "Russian";
 "Salir de imagen en imagen" = "Salir de imagen en imagen";
+"Saltar créditos" = "Saltar créditos";
+"Saltar intro" = "Saltar intro";
+"Saltar resumen" = "Saltar resumen";
 "Saturación" = "Saturación";
 "Saturation" = "Saturación";
 "Save" = "Guardar";
@@ -1173,6 +1176,9 @@
 "Six places to start. Tap one and we'll filter the catalog for you." = "Seis lugares para comenzar. Toca uno y filtraremos el catálogo para ti.";
 "Size" = "Tamaño";
 "Skip" = "Skip";
+"Skip Credits" = "Saltar créditos";
+"Skip Intro" = "Saltar intro";
+"Skip Recap" = "Saltar resumen";
 "Slice of Life" = "Slice of Life";
 "Slightly lighter than background." = "Un poco más claro que el fondo.";
 "Sobre la línea principal" = "Sobre la línea principal";

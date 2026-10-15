@@ -1,5 +1,7 @@
 import Foundation
 import ZIPFoundation
+import CoreGraphics
+import PDFKit
 
 /// Read images directly from a validated ZIP. No archive path is extracted.
 final class MangaArchive {
@@ -41,6 +43,37 @@ actor MangaLocalStore {
     static let shared = MangaLocalStore()
     private var opened: [String: MangaArchive] = [:]
     private var recent: [String] = []
+    func importPDF(_ input: URL, owner: String) throws -> MangaBook {
+        guard input.isFileURL, input.pathExtension.lowercased() == "pdf" else { throw HarborError(code: "manga-format") }
+        var book = MangaBook(id: "local:" + UUID().uuidString, title: input.deletingPathExtension().lastPathComponent, format: "pdf")
+        let destination = try Self.file(book, owner)
+        let access = input.startAccessingSecurityScopedResource()
+        defer { if access { input.stopAccessingSecurityScopedResource() } }
+        try FileManager.default.createDirectory(at: destination.deletingLastPathComponent(), withIntermediateDirectories: true, attributes: [.protectionKey: FileProtectionType.completeUntilFirstUserAuthentication])
+        var failure: Error?, coordinationError: NSError?
+        NSFileCoordinator().coordinate(readingItemAt: input, options: .withoutChanges, error: &coordinationError) { source in
+            do {
+                guard (try source.resourceValues(forKeys: [.fileSizeKey]).fileSize ?? 0) <= 256 * 1024 * 1024 else { throw HarborError(code: "manga-size") }
+                guard FileManager.default.createFile(atPath: destination.path, contents: nil, attributes: [.protectionKey: FileProtectionType.completeUntilFirstUserAuthentication]) else { throw HarborError(code: "manga-store") }
+                let reader = try FileHandle(forReadingFrom: source), writer = try FileHandle(forWritingTo: destination)
+                defer { try? reader.close(); try? writer.close() }
+                var count = 0
+                while let data = try reader.read(upToCount: 256 * 1024), !data.isEmpty {
+                    try Task.checkCancellation()
+                    guard count <= 256 * 1024 * 1024 - data.count else { throw HarborError(code: "manga-size") }
+                    try writer.write(contentsOf: data); count += data.count
+                }
+            } catch { failure = error }
+        }
+        do {
+            if let coordinationError { throw coordinationError }; if let failure { throw failure }
+            _ = try pdf(book, owner: owner)
+            let attributes = PDFDocument(url: destination)?.documentAttributes
+            if let title = attributes?[PDFDocumentAttribute.titleAttribute] as? String, !title.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty { book.title = title }
+            if let author = attributes?[PDFDocumentAttribute.authorAttribute] as? String { book.author = author }
+            return book
+        } catch { try? FileManager.default.removeItem(at: destination); throw error }
+    }
     func importArchive(_ input: URL, owner: String) throws -> MangaBook {
         let book = MangaBook(id: "local:" + UUID().uuidString, title: input.deletingPathExtension().lastPathComponent)
         let file = try Self.file(book, owner)
@@ -82,6 +115,7 @@ actor MangaLocalStore {
         } catch { try? FileManager.default.removeItem(at: file); throw error }
     }
     func chapters(_ book: MangaBook, owner: String) throws -> [MangaChapter] {
+        if book.isPDF { return [MangaChapter(id: "local", title: book.title, pages: try pdf(book, owner: owner).numberOfPages)] }
         let paths = try archive(book, owner: owner).paths
         guard book.folderChapters == true else { return [MangaChapter(id: "local", title: book.title, pages: paths.count)] }
         let groups = Dictionary(grouping: paths, by: Self.chapter)
@@ -92,11 +126,25 @@ actor MangaLocalStore {
         }
     }
     func pages(_ book: MangaBook, owner: String, chapter: String? = nil) throws -> [MangaPage] {
+        if book.isPDF { return (0..<(try pdf(book, owner: owner).numberOfPages)).map { MangaPage(id: $0, path: "page-\($0).jpg") } }
         let paths = try archive(book, owner: owner).paths
         let filtered = book.folderChapters == true && chapter != nil ? paths.filter { Self.chapter($0) == chapter } : paths
         return filtered.enumerated().map { MangaPage(id: $0.offset, path: $0.element) }
     }
-    func data(_ book: MangaBook, owner: String, path: String) throws -> Data { try archive(book, owner: owner).data(path) }
+    func data(_ book: MangaBook, owner: String, path: String, maxPixels: Int = 2200) throws -> Data {
+        if book.isPDF {
+            guard path.range(of: "^page-[0-9]+\\.jpg$", options: .regularExpression) != nil, let page = Int(path.dropFirst(5).dropLast(4)) else { throw HarborError(code: "manga-format") }
+            _ = try pdf(book, owner: owner)
+            return try ReadingArtwork.pdfPage(Self.file(book, owner), page: page, maxPixels: maxPixels)
+        }
+        return try archive(book, owner: owner).data(path)
+    }
+    private func pdf(_ book: MangaBook, owner: String) throws -> CGPDFDocument {
+        let file = try Self.file(book, owner)
+        guard (try file.resourceValues(forKeys: [.fileSizeKey]).fileSize ?? 0) <= 256 * 1024 * 1024,
+              let document = CGPDFDocument(file as CFURL), (!document.isEncrypted || document.isUnlocked), document.numberOfPages > 0, document.numberOfPages <= 5_000 else { throw HarborError(code: "manga-format") }
+        return document
+    }
     func remove(_ book: MangaBook, owner: String) throws {
         let key = Self.key(book, owner), file = try Self.file(book, owner)
         if FileManager.default.fileExists(atPath: file.path) { try FileManager.default.removeItem(at: file) }
@@ -115,7 +163,7 @@ actor MangaLocalStore {
     nonisolated private static func file(_ book: MangaBook, _ owner: String) throws -> URL {
         guard book.server == nil else { throw HarborError(code: "manga-format") }
         let support = try FileManager.default.url(for: .applicationSupportDirectory, in: .userDomainMask, appropriateFor: nil, create: false).resolvingSymlinksInPath().standardizedFileURL
-        let file = support.appendingPathComponent("Harbor/Manga/" + key(book, owner) + ".cbz")
+        let file = support.appendingPathComponent("Harbor/Manga/" + key(book, owner) + (book.isPDF ? ".pdf" : ".cbz"))
         guard file.standardizedFileURL == file.resolvingSymlinksInPath().standardizedFileURL else { throw HarborError(code: "manga-store") }
         return file
     }

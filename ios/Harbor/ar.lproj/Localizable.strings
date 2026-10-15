@@ -1070,6 +1070,9 @@
 "Rounded background panel behind the text. Most readable." = "لوحة خلفية دائرية خلف النص. الأكثر قابلية للقراءة.";
 "Russian" = "الروسية";
 "Salir de imagen en imagen" = "الخروج من صورة داخل صورة";
+"Saltar créditos" = "تخطّي الشارة";
+"Saltar intro" = "تخطّي المقدمة";
+"Saltar resumen" = "تخطّي الملخص";
 "Saturación" = "التشبع";
 "Saturation" = "التشبع";
 "Save" = "حفظ التغييرات";
@@ -1173,6 +1176,9 @@
 "Six places to start. Tap one and we'll filter the catalog for you." = "ستة أماكن للبدء. اضغط على واحد وسنُرشّح الكتالوج لك.";
 "Size" = "الحجم";
 "Skip" = "تخطي";
+"Skip Credits" = "تخطّي الشارة";
+"Skip Intro" = "تخطّي المقدمة";
+"Skip Recap" = "تخطّي الملخص";
 "Slice of Life" = "شريحة من الحياة";
 "Slightly lighter than background." = "Slightly lighter than background.";
 "Sobre la línea principal" = "Above the main line";

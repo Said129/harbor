@@ -1070,6 +1070,9 @@
 "Rounded background panel behind the text. Most readable." = "Painel de fundo arredondado atrás do texto. Mais legível.";
 "Russian" = "Russo";
 "Salir de imagen en imagen" = "Sair do Picture in Picture";
+"Saltar créditos" = "Pular Créditos";
+"Saltar intro" = "Pular Abertura";
+"Saltar resumen" = "Pular Recapitulação";
 "Saturación" = "Saturação";
 "Saturation" = "Saturação";
 "Save" = "Salvar";
@@ -1173,6 +1176,9 @@
 "Six places to start. Tap one and we'll filter the catalog for you." = "Seis pontos de partida. Toque em um e filtraremos o catálogo para você.";
 "Size" = "Tamanho";
 "Skip" = "Pular";
+"Skip Credits" = "Pular Créditos";
+"Skip Intro" = "Pular Abertura";
+"Skip Recap" = "Pular Recapitulação";
 "Slice of Life" = "Slice of Life";
 "Slightly lighter than background." = "Slightly lighter than background.";
 "Sobre la línea principal" = "Above the main line";

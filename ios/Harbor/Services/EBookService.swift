@@ -5,7 +5,9 @@ actor EBookService {
     static let shared = EBookService()
     private var readers: [String: EPUBReader] = [:]
     private var recent: [String] = []
+    private var mirrorBlockedUntil = Date.distantPast
     func catalog(query: String, language: String, page: Int) async throws -> ([EBook], Bool) {
+        if Date() < mirrorBlockedUntil { return try await GutenbergCatalog.catalog(query: query, language: language, page: page) }
         var components = URLComponents(string: "https://gutendex.com/books/")!
         components.queryItems = [URLQueryItem(name: "page", value: String(max(1, page))), URLQueryItem(name: "mime_type", value: "application/epub")]
         if !query.isEmpty { components.queryItems?.append(URLQueryItem(name: "search", value: query)) }
@@ -15,6 +17,7 @@ actor EBookService {
         do { response = try await HTTPClient().json(components.url!.absoluteString, timeout: 15) }
         catch {
             try Task.checkCancellation()
+            mirrorBlockedUntil = Date().addingTimeInterval(300)
             // Use the publisher's actual catalog when its JSON mirror is
             // unavailable, retaining Gutenberg IDs and advertised EPUB URLs.
             return try await GutenbergCatalog.catalog(query: query, language: language, page: page)
@@ -99,6 +102,8 @@ actor EBookService {
     func remove(_ book: EBook, owner: String) throws {
         let key = Self.key(book, owner), file = try Self.file(book, owner)
         if FileManager.default.fileExists(atPath: file.path) { try FileManager.default.removeItem(at: file) }
+        let cover = file.deletingPathExtension().appendingPathExtension("cover.jpg")
+        if FileManager.default.fileExists(atPath: cover.path) { try FileManager.default.removeItem(at: cover) }
         readers[key] = nil; recent.removeAll { $0 == key }
     }
     func importDocument(_ url: URL, owner: String) async throws -> EBook {
@@ -140,6 +145,30 @@ actor EBookService {
             try data.write(to: destination, options: [.atomic, .completeFileProtectionUntilFirstUserAuthentication])
         }
         return book
+    }
+    func cover(_ book: EBook, owner: String) async throws -> Data? {
+        let original = try Self.file(book, owner)
+        guard FileManager.default.fileExists(atPath: original.path) else { return nil }
+        let destination = original.deletingPathExtension().appendingPathExtension("cover.jpg")
+        if FileManager.default.fileExists(atPath: destination.path) { return try Data(contentsOf: destination) }
+        let data: Data
+        if book.isPDF { data = try ReadingArtwork.pdfPage(original) }
+        else {
+            _ = try await open(book, owner: owner)
+            guard let reader = readers[Self.key(book, owner)] else { return nil }
+            if let cover = reader.coverData { data = try ReadingArtwork.thumbnail(cover) }
+            else {
+                var first: Data?
+                for chapter in reader.publication.chapters.prefix(3) {
+                    if let image = try? reader.blocks(chapter).first(where: { $0.image != nil })?.image { first = image; break }
+                }
+                guard let first else { return nil }
+                data = try ReadingArtwork.thumbnail(first)
+            }
+        }
+        try Task.checkCancellation()
+        try data.write(to: destination, options: [.atomic, .completeFileProtectionUntilFirstUserAuthentication])
+        return data
     }
     func pdfURL(_ book: EBook, owner: String) throws -> URL {
         let file = try Self.file(book, owner)

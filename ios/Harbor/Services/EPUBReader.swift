@@ -6,6 +6,7 @@ import ZIPFoundation
 final class EPUBReader {
     private let archive: Archive
     let publication: EBookPublication
+    let coverData: Data?
     init(data: Data) throws {
         guard data.count <= 48 * 1024 * 1024 else { throw HarborError(code: "ebook-size") }
         let archive = try Archive(data: data, accessMode: .read)
@@ -43,6 +44,10 @@ final class EPUBReader {
             return EBookChapter(path: path, title: titles[path].flatMap { $0.isEmpty ? nil : $0 } ?? "Sección \(seen.count)")
         }
         guard !chapters.isEmpty else { throw HarborError(code: "ebook-format") }
+        let coverID = opf.descendants("meta").first(where: { $0.attributes["name"] == "cover" })?.attributes["content"]
+        let coverItem = manifest.first { ($0.attributes["properties"] ?? "").split(separator: " ").contains("cover-image") }
+            ?? manifest.first { $0.attributes["id"] == coverID && ($0.attributes["media-type"] ?? "").hasPrefix("image/") }
+        coverData = coverItem?.attributes["id"].flatMap { paths[$0] }.flatMap { try? Self.read(archive, path: $0, limit: 12 * 1024 * 1024) }
         self.archive = archive
         publication = EBookPublication(title: opf.descendants("title").first?.text.normalizedBookText ?? "eBook", authors: opf.descendants("creator").map { $0.text.normalizedBookText }, language: opf.descendants("language").first?.text.normalizedBookText, chapters: chapters)
     }
@@ -52,10 +57,13 @@ final class EPUBReader {
         var blocks: [EBookBlock] = []
         let textNames: Set<String> = ["p", "h1", "h2", "h3", "h4", "h5", "h6", "li", "blockquote", "pre", "figcaption"]
         func image(_ node: BookXML.Node) {
-            guard let raw = node.attributes["src"], let path = Self.resolve(raw, base: chapter.path), let data = try? Self.read(archive, path: path, limit: 12 * 1024 * 1024) else { return }
+            guard let raw = node.attributes["src"] ?? node.attributes["href"] ?? node.attributes["xlink:href"], let path = Self.resolve(raw, base: chapter.path), let data = try? Self.read(archive, path: path, limit: 12 * 1024 * 1024) else { return }
             blocks.append(EBookBlock(id: blocks.count, text: node.attributes["alt"] ?? "Ilustración", image: data))
         }
         func walk(_ node: BookXML.Node) {
+            // SVG cover wrappers are common in valid Gutenberg EPUBs. Read only
+            // their local raster image; never execute or render active SVG content.
+            if node.name == "svg" { for child in node.descendants("image") { image(child) }; return }
             guard !BookXML.ignored.contains(node.name) else { return }
             if node.name == "img" { image(node); return }
             if textNames.contains(node.name) {

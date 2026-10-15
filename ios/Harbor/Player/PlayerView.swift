@@ -66,6 +66,9 @@ struct PlayerView: View {
     @State private var resumeAcknowledged = false
     @State private var confirmingResume = false
     @State private var resumeError: String?
+    @State private var skipSegments: [SkipSegment] = []
+    @State private var chapterSkipSegments: [SkipSegment] = []
+    @State private var dismissedSkips: Set<String> = []
     @Bindable private var preferences = PlaybackPreferences.shared
     @AppStorage("mpvHwdec") private var hardwareDecoding = HardwareDecoding.auto
     @Environment(\.dismiss) private var dismiss
@@ -147,11 +150,22 @@ struct PlayerView: View {
                 }.padding(.horizontal, 12).padding(.bottom, controlsVisible ? 160 : 24).transition(.opacity)
             }
             if resumePending && state.loaded && state.error == nil { resumePrompt }
+            if let segment = activeSkip {
+                VStack { Spacer(); HStack { PlayerSkipControl(segment: segment, skip: { PlayerSkipAction.perform(segment, state: state); restartHideTimer() }, dismiss: { dismissedSkips.insert(segment.id) }); Spacer(minLength: 0) } }
+                    .padding(.horizontal, 16).padding(.bottom, controlsVisible ? (verticalSizeClass == .compact ? 115 : 160) : 24)
+            }
             SubtitleSyncFeedback(state: state)
         }
     }
 
     private var resumePending: Bool { session.promptForResume && !resumeAcknowledged }
+    private var activeSkip: SkipSegment? {
+        guard active, preferences.options.showSkipIntro, !resumePending, state.loaded, !state.ended, !state.restarting, state.error == nil,
+              !state.pictureInPictureActive, settingsPage == nil, !showEpisodes, !episodeChanging, !sourceChanging, !retrying, scenePhase == .active,
+              library.map({ $0.owner == session.owner }) ?? true else { return nil }
+        return SkipSegment.merge([skipSegments, chapterSkipSegments], duration: state.duration)
+            .first { $0.active(at: state.position) && !dismissedSkips.contains($0.id) }
+    }
     private var resumePrompt: some View {
         PlayerResumePrompt(title: title, resumeMs: session.startMs, duration: state.duration, busy: confirmingResume,
                            onResume: { acknowledgeResume(true) }, onStartOver: { acknowledgeResume(false) })
@@ -214,6 +228,19 @@ struct PlayerView: View {
 
     private func withLifecycle<V: View>(_ content: V) -> some View {
         content.background { PlayerOrientationAnchor().allowsHitTesting(false) }
+        .onChange(of: state.chapters) { _, chapters in chapterSkipSegments = SkipSegment.chapters(chapters, duration: state.duration) }
+        .onChange(of: state.duration) { _, duration in chapterSkipSegments = SkipSegment.chapters(state.chapters, duration: duration) }
+        .task(id: "skip:\(state.mediaGeneration):\(state.loaded && state.duration > 0):\(preferences.options.showSkipIntro)") {
+            skipSegments = []; dismissedSkips = []
+            guard preferences.options.showSkipIntro, state.loaded, state.duration > 0 else { return }
+            let generation = state.mediaGeneration
+            do {
+                let segments = try await SkipIntroService.shared.segments(target: session.target, media: media, duration: state.duration)
+                try Task.checkCancellation()
+                guard generation == state.mediaGeneration, library.map({ $0.owner == session.owner }) ?? true else { return }
+                skipSegments = segments
+            } catch {}
+        }
         .task(id: "\(state.mediaGeneration):\(state.loaded):\(state.addonSubtitlesRetry)") {
             guard state.loaded, let request = session.subtitleRequest, library.map({ $0.owner == session.owner }) ?? true else { return }
             state.canSearchAddonSubtitles = true

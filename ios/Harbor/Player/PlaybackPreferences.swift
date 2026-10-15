@@ -64,6 +64,7 @@ enum PicturePreset: String, CaseIterable, Identifiable {
 /// event stream remains authoritative for the running player's transport state.
 struct PlaybackOptions: Codable, Equatable {
     var autoHideControls = true
+    var showSkipIntro = true
     var keepScreenAwake = true
     var autoPlayNextEpisode = true
     var nextEpisodeLeadSeconds = -1.0

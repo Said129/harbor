@@ -80,7 +80,7 @@ final class PlayerState {
         var defaultTrack = false
         var channels = ""
     }
-    struct Chapter: Identifiable {
+    struct Chapter: Identifiable, Equatable, Sendable {
         let id: Int
         let title: String
         let time: Double

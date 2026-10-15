@@ -1061,6 +1061,9 @@
 "Rounded background panel behind the text. Most readable." = "Rounded background panel behind the text. Most readable.";
 "Russian" = "Russian";
 "Salir de imagen en imagen" = "Exit Picture in Picture";
+"Saltar créditos" = "Skip Credits";
+"Saltar intro" = "Skip Intro";
+"Saltar resumen" = "Skip Recap";
 "Saturación" = "Saturation";
 "Saturation" = "Saturation";
 "Save" = "Save";
@@ -1164,6 +1167,9 @@
 "Six places to start. Tap one and we'll filter the catalog for you." = "Six places to start. Tap one and we'll filter the catalog for you.";
 "Size" = "Size";
 "Skip" = "Skip";
+"Skip Credits" = "Skip Credits";
+"Skip Intro" = "Skip Intro";
+"Skip Recap" = "Skip Recap";
 "Slice of Life" = "Slice of Life";
 "Slightly lighter than background." = "Slightly lighter than background.";
 "Sobre la línea principal" = "Above the main line";
