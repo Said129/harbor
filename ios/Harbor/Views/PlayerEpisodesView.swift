@@ -14,8 +14,8 @@ struct PlayerEpisodesView: View {
     @State private var revealed = Set<String>()
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     private var episodes: [Episode] { EpisodeSequence.ordered(media.videos ?? []) }
-    private var seasons: [Int] { Array(Set(episodes.compactMap(\.season))).sorted() }
-    private var visible: [Episode] { episodes.filter { ($0.season ?? season) == season } }
+    private var seasons: [Int] { Array(Set(episodes.compactMap(\.listedSeason))).sorted() }
+    private var visible: [Episode] { episodes.filter { ($0.listedSeason ?? season) == season } }
     private var currentEpisode: Episode? { episodes.first(where: isCurrent) }
     private var nextSeason: Int? { seasons.first { $0 > season } }
     private var subtle: Color { ThemePreferences.shared.color("ink-subtle") }
@@ -58,9 +58,10 @@ struct PlayerEpisodesView: View {
             }.accessibilityIdentifier("player-episodes-scroll")
                 .onChange(of: season) { _, _ in if let first = visible.first { scroll.scrollTo(first.id, anchor: .top) } }
                 .task {
-                    season = current.season ?? seasons.first(where: { $0 > 0 }) ?? seasons.first ?? 1
+                    season = currentEpisode?.listedSeason ?? seasons.first(where: { $0 > 0 }) ?? seasons.first ?? 1
                     if let episode = currentEpisode { scroll.scrollTo(episode.id, anchor: .top) }
                 }
+                .onChange(of: seasons) { _, _ in if !seasons.contains(season) { season = currentEpisode?.listedSeason ?? seasons.first ?? 1 } }
         }
     }
 
@@ -271,7 +272,7 @@ private struct PlayerEpisodeCard: View {
 }
 
 private func playerEpisodeLabel(_ episode: Episode) -> String {
-    "S\(episode.season ?? 0) · E\(String(format: "%02d", episode.episode ?? 0))"
+    "S\(episode.listedSeason ?? 0) · E\(String(format: "%02d", episode.listedEpisode ?? 0))"
 }
 
 private func episodeGlyph(_ name: String, size: CGFloat) -> some View {

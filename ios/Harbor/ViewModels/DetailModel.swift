@@ -21,6 +21,7 @@ final class DetailModel {
     }
     private let service: HarborService
     private var metadataLoaded: Bool
+    private var animeEpisodesLoaded = false
     private var streamRequest = UUID()
     private var resolutionRequest = UUID()
     private var sourceContinuation: SourceContinuation?
@@ -63,6 +64,15 @@ final class DetailModel {
             details.similar = related
             media.details = details
         } catch { return } // Optional discovery must not prevent opening or playing the title.
+    }
+
+    func loadAnimeEpisodes(owner: String, library: LibraryModel) async {
+        guard !animeEpisodesLoaded, !loadingMetadata, media.videos?.isEmpty == false, library.owner == owner else { return }
+        let selected = media
+        let episodes = await AnimeEpisodeService.shared.episodes(for: selected)
+        guard !Task.isCancelled, library.owner == owner, media.identity == selected.identity else { return }
+        media.videos = episodes
+        animeEpisodesLoaded = true
     }
 
     func findStreams(_ addons: [Addon], episode: Episode? = nil) async {

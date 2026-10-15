@@ -1,0 +1,13 @@
+# Corrección de episodios de anime — build 91
+
+Dragon Ball Super se muestra como una secuencia continua de 131 episodios cuando la correspondencia completa con su entrada de anime lo confirma. Los especiales permanecen separados. Las series cuya correspondencia es parcial, ambigua o realmente contiene distintas temporadas conservan su agrupación.
+
+Cinemeta devuelve cinco bloques para este título. La ficha pública de Kitsu lo representa como una temporada continua, mientras que algunas imágenes generadas del addon todavía usan los bloques anteriores. En la consulta real, la imagen de `tt4644488/2/1` devuelve 404, pero la de `tt4644488/1/15` y la imagen propia del episodio en TVDB responden correctamente. El suplemento usa las imágenes reales de AniZip y la numeración canónica verificada de la entrada Kitsu; funciona por identificadores y correspondencias, sin una excepción de código para Dragon Ball.
+
+La corrección cambia la presentación y las imágenes. Conserva los identificadores, temporadas y números internos usados por las fuentes, subtítulos, vistos, continuar viendo y siguiente episodio. Los nuevos campos opcionales permiten leer los registros anteriores. El suplemento carga en segundo plano, comparte consultas en curso y mantiene una caché limitada; las filas de la ficha se crean de forma diferida al desplazarse. Un fallo de red conserva los datos disponibles. Las imágenes dependen de la cobertura de los proveedores; no se inventa una captura cuando no existe.
+
+La validación selecciona únicamente los casos nuevos de `AnimeEpisodeTests`, la consulta pública de Super y sus imágenes de los episodios 15/77/131, y el recorrido de su ficha en iPhone. La preparación de preferencias usa el contenedor ordinario del simulador. No se repiten las suites anteriores de lectura, fuentes, reproducción ni subtítulos. El resultado de compilación y el paquete final se registrarán al terminar la validación de Apple.
+
+Los tres JSON `dbs-*` de Fixtures son respuestas públicas reducidas de Cinemeta, anime-kitsu y AniZip, obtenidas el 16 de octubre de 2026 (hora de Madrid). Conservan los identificadores, coordenadas, imágenes y fechas necesarios para reproducir la diferencia; se omiten las descripciones largas. Pertenecen sólo a los targets de pruebas y no se distribuyen en la aplicación.
+
+Referencias: [ficha del productor, 131 episodios](https://lineup.toei-anim.co.jp/en/tv/dragon_super/), [orden de emisión de TVDB](https://thetvdb.com/series/dragon-ball-super), [Cinemeta](https://v3-cinemeta.strem.io/meta/series/tt4644488.json), [anime-kitsu](https://anime-kitsu.strem.fun/meta/series/kitsu:10879.json), [AniZip](https://api.ani.zip/mappings?mal_id=30694).

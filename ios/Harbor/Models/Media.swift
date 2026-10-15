@@ -146,6 +146,10 @@ struct Episode: Codable, Identifiable, Hashable, Sendable {
     var imdbID: String?
     var imdbSeason: Int?
     var imdbEpisode: Int?
+    var displaySeason: Int?
+    var displayEpisode: Int?
+    var listedSeason: Int? { displaySeason ?? season }
+    var listedEpisode: Int? { displayEpisode ?? episode }
     var watchedKey: String { "\(season ?? 0):\(episode ?? 0)" }
     var releaseDate: Date? {
         guard let released else { return nil }

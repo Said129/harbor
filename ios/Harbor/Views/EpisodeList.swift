@@ -8,19 +8,24 @@ struct EpisodeList: View {
     @State private var revealed = Set<String>()
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     private var videos: [Episode] { WatchedCodec.ordered(media.videos ?? []) }
-    private var seasons: [Int] { Array(Set(videos.compactMap(\.season))).sorted() }
+    private var seasons: [Int] { Array(Set(videos.compactMap(\.listedSeason))).sorted() }
+    private var episodeSummary: String {
+        let count = seasons.filter { $0 > 0 }.count
+        return "\(videos.filter { ($0.listedSeason ?? 1) > 0 }.count) episodios · \(count) \(count == 1 ? "temporada" : "temporadas")"
+    }
     var body: some View {
-        VStack(alignment: .leading, spacing: 18) {
+        LazyVStack(alignment: .leading, spacing: 18) {
             HStack {
-                Text("Episodios").font(.title2.bold())
+                Text("Episodios").font(.title2.bold()).accessibilityIdentifier("detail-episode-summary")
+                    .accessibilityValue(episodeSummary)
                 Spacer()
-                Picker("Temporada", selection: $season) {
+                if seasons.count > 1 { Picker("Temporada", selection: $season) {
                     ForEach(seasons, id: \.self) { Text($0 == 0 ? "Especiales" : "Temporada \($0)").tag($0) }
-                }.pickerStyle(.menu).accessibilityIdentifier("episode-season")
+                }.pickerStyle(.menu).accessibilityIdentifier("episode-season") }
             }
-            ForEach(videos.filter { ($0.season ?? season) == season }) { episode in
+            ForEach(videos.filter { ($0.listedSeason ?? season) == season }) { episode in
                 let hidden = spoilerHidden(episode)
-                let episodeLabel = DesktopInterfaceText.value("Episode {n}").replacingOccurrences(of: "{n}", with: String(episode.episode ?? 0))
+                let episodeLabel = DesktopInterfaceText.value("Episode {n}").replacingOccurrences(of: "{n}", with: String(episode.listedEpisode ?? 0))
                 VStack(alignment: .leading, spacing: 9) {
                     HStack(alignment: .top, spacing: 0) {
                         Button { play(episode) } label: {
@@ -34,7 +39,7 @@ struct EpisodeList: View {
                                         Text(episode.name ?? episode.title ?? episodeLabel).font(.subheadline.weight(.semibold)).lineLimit(2)
                                             .blur(radius: hidden && InterfacePreferences.shared.spoilerHideTitles ? 5 : 0)
                                             .accessibilityLabel(hidden && InterfacePreferences.shared.spoilerHideTitles ? episodeLabel : episode.name ?? episode.title ?? episodeLabel)
-                                        Text("T\(episode.season ?? 0) · E\(episode.episode ?? 0)").font(.caption).foregroundStyle(.secondary)
+                                        Text("T\(episode.listedSeason ?? 0) · E\(episode.listedEpisode ?? 0)").font(.caption).foregroundStyle(.secondary)
                                         if let date = episode.releaseDate { Text(date, style: .date).font(.caption2).foregroundStyle(.secondary) }
                                     }.frame(maxWidth: .infinity, alignment: .leading)
                                 }
@@ -45,7 +50,7 @@ struct EpisodeList: View {
                                 }
                             }.frame(maxWidth: .infinity, alignment: .leading).contentShape(Rectangle())
                         }.buttonStyle(.plain).disabled(!episode.available)
-                            .accessibilityLabel("Reproducir episodio \(episode.episode ?? 0)")
+                            .accessibilityLabel("Reproducir episodio \(episode.listedEpisode ?? 0)")
                             .accessibilityIdentifier("detail-episode-\(episode.id)")
                         Button { Task { await library.toggleEpisode(media, episode: episode) } } label: {
                             Image(library.watchedEpisodes(media).contains(episode.watchedKey) ? "ui-mark-unwatched" : "ui-mark-watched").resizable().scaledToFit().frame(width: 23, height: 23).frame(width: 44, height: 44).contentShape(Rectangle())
@@ -60,6 +65,7 @@ struct EpisodeList: View {
             }
         }.animation(reduceMotion ? nil : .easeOut(duration: 0.2), value: revealed)
             .task(id: media.identity) { if !seasons.contains(season) { season = seasons.first(where: { $0 > 0 }) ?? seasons.first ?? 1 } }
+            .onChange(of: seasons) { _, _ in if !seasons.contains(season) { season = seasons.first(where: { $0 > 0 }) ?? seasons.first ?? 1 } }
     }
     private func spoilerHidden(_ episode: Episode) -> Bool { InterfacePreferences.shared.hideSpoilers && !library.watchedEpisodes(media).contains(episode.watchedKey) && !revealed.contains(episode.id) }
 }

@@ -50,6 +50,9 @@ struct DetailView: View {
             await model.loadRelated(app.addons, owner: owner, library: app.library)
         }
         .onChange(of: model.media.logo) { _, _ in logoLoaded = false }
+        .task(id: "\(model.media.identity):\(model.loadingMetadata):\(model.media.videos?.count ?? 0)") {
+            await model.loadAnimeEpisodes(owner: app.library.owner, library: app.library)
+        }
         .onChange(of: model.playback?.id) { _, _ in
             if let session = model.playback, session.owner == app.library.owner { app.library.discovery.track(.play, media: model.media) }
         }

@@ -1,0 +1,104 @@
+import Foundation
+
+/// Supplement public anime episodes without changing their playback or library identity.
+actor AnimeEpisodeService {
+    static let shared = AnimeEpisodeService()
+    private struct Supplement: Sendable { let mapping: JSONValue; let canonical: [Episode] }
+    private struct Entry { let value: Supplement; let expires: Date }
+    private var cache: [String: Entry] = [:]
+    private var pending: [String: Task<Supplement?, Never>] = [:]
+
+    func episodes(for media: Media) async -> [Episode] {
+        let original = media.videos ?? []
+        guard media.episodic, !original.isEmpty, let query = Self.query(media) else { return original }
+        let supplement: Supplement?
+        if let entry = cache[query], entry.expires > Date() { supplement = entry.value }
+        else if let task = pending[query] { supplement = await task.value }
+        else {
+            let task = Task { await Self.fetch(query) }
+            pending[query] = task
+            supplement = await task.value
+            pending[query] = nil
+            if let supplement {
+                if cache.count >= 32, let oldest = cache.min(by: { $0.value.expires < $1.value.expires })?.key { cache[oldest] = nil }
+                cache[query] = Entry(value: supplement, expires: Date().addingTimeInterval(1800))
+            }
+        }
+        guard !Task.isCancelled, let supplement else { return original }
+        return Self.applying(supplement.mapping, canonical: supplement.canonical, to: original, animeIdentity: AnimeService.isAnime(media.id))
+    }
+
+    private static func query(_ media: Media) -> String? {
+        let providers = ["kitsu": "kitsu_id", "mal": "mal_id", "anilist": "anilist_id", "anidb": "anidb_id"]
+        let components = media.id.split(separator: ":")
+        if components.count == 2, let key = providers[String(components[0])], let number = Int64(components[1]), number > 0 { return "\(key)=\(number)" }
+        guard media.type == "anime" || media.genres?.contains(where: { ["anime", "animation"].contains($0.lowercased()) }) == true,
+              media.id.range(of: "^tt[0-9]{7,}$", options: .regularExpression) != nil else { return nil }
+        return "imdb_id=\(media.id)"
+    }
+
+    private static func fetch(_ query: String) async -> Supplement? {
+        do {
+            let mapping = try await HTTPClient().json("https://api.ani.zip/mappings?" + query)
+            let requested = query.split(separator: "=", maxSplits: 1)
+            guard requested.count == 2, mapping["mappings"][String(requested[0])].textValue == String(requested[1]) else { return nil }
+            guard let kitsu = mapping["mappings"]["kitsu_id"].integer, kitsu > 0 else { return nil }
+            // A Kitsu entry supplies the anime's own episode order. TV/IMDb
+            // seasons in the mapping are retained only as lookup coordinates.
+            let canonical = try await AnimeService.metadata(id: "kitsu:\(kitsu)", kind: "series")
+            guard canonical.id == "kitsu:\(kitsu)" else { return nil }
+            return Supplement(mapping: mapping, canonical: canonical.videos ?? [])
+        } catch { return nil }
+    }
+
+    static func applying(_ mapping: JSONValue, canonical: [Episode], to original: [Episode], animeIdentity: Bool) -> [Episode] {
+        guard case .object(let entries) = mapping["episodes"] else { return original }
+        let regular = canonical.filter { ($0.season ?? 1) > 0 && ($0.episode ?? 0) > 0 }
+        var byNumber: [Int: Episode] = [:]
+        for episode in regular {
+            guard let number = episode.episode, byNumber[number] == nil else { return original }
+            byNumber[number] = episode
+        }
+        let numeric = entries.compactMap { key, value -> (Int, JSONValue)? in
+            guard let number = Int(key), number > 0, (value["seasonNumber"].integer ?? 1) > 0 else { return nil }
+            return (number, value)
+        }
+        var coordinates: [String: Int] = [:]
+        var ambiguous = Set<String>()
+        for (number, value) in numeric {
+            guard let season = value["seasonNumber"].integer, let episode = value["episodeNumber"].integer, season > 0, episode > 0 else { continue }
+            let key = "\(season):\(episode)"
+            if coordinates[key] != nil { ambiguous.insert(key) }
+            coordinates[key] = number
+        }
+        let ordinary = original.filter { ($0.season ?? 1) > 0 }
+        let sourceNumbers = ordinary.compactMap(\.episode)
+        let uniqueNumbers = Set(sourceNumbers).count == ordinary.count
+        let sourceAlreadyCanonical = Set(ordinary.compactMap(\.season)).count == 1 && uniqueNumbers && Set(sourceNumbers) == Set(byNumber.keys)
+        let numbers = original.map { episode -> Int? in
+            guard (episode.season ?? 1) > 0 else { return nil }
+            if (animeIdentity && uniqueNumbers) || sourceAlreadyCanonical, let number = episode.episode, byNumber[number] != nil { return number }
+            guard !ambiguous.contains(episode.watchedKey) else { return nil }
+            return coordinates[episode.watchedKey]
+        }
+        let ordinaryCount = ordinary.count
+        let resolved = numbers.compactMap { $0 }
+        let complete = !regular.isEmpty && ordinaryCount == regular.count && resolved.count == ordinaryCount && Set(resolved) == Set(byNumber.keys)
+        let singleSeason = Set(regular.compactMap(\.season)) == [1]
+        return zip(original, numbers).map { source, number in
+            guard let number, let reference = byNumber[number], let entry = entries[String(number)] else { return source }
+            var result = source
+            if complete && singleSeason { result.displaySeason = 1; result.displayEpisode = number }
+            // Actual episode artwork takes precedence over generated Metahub
+            // URLs whose older season mapping may now return 404.
+            if let image = imageURL(entry["image"].string) { result.thumbnail = image }
+            else if result.thumbnail == nil { result.thumbnail = imageURL(reference.thumbnail) }
+            return result
+        }
+    }
+
+    private static func imageURL(_ raw: String?) -> String? {
+        guard let raw, let url = URL(string: raw), url.scheme == "https", url.host != nil else { return nil }
+        return raw
+    }
+}
