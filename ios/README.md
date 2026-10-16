@@ -1,3 +1,7 @@
+# Versión universal 91 — episodios de anime
+
+La build 91 corrige las temporadas artificiales y las imágenes de episodios de anime, con Dragon Ball Super como caso público verificado. [Compilación](https://github.com/Said129/harbor/actions/runs/38822918265), fuente `77385750b1f8d7c80b34b04a8123d0a2c32725b5`. La validación reúne siete casos afectados: este seguimiento ejecutó 1 y conservó 6 aprobados con la aplicación idéntica. Las validaciones de las áreas intactas se mantienen. iOS/iPadOS 17+, IPA sin firmar. Paquete, procedencia y límites: [entrega 91](../docs/ios/DELIVERY_2026-10-16_91.md).
+
 # Versión universal 90 — lectura y Saltar intro
 
 La build 90 añade Saltar intro con referencias de Desktop, PDF Manga, portadas y orden natural de las estanterías, y corrige la búsqueda/apertura de Gutenberg y la búsqueda local. Fuente `1593af9c24fbad3513fbd192f7aa0e053be3e9ba`; [validación](https://github.com/Said129/harbor/actions/runs/38755836388), 2 ejecuciones en el seguimiento, 9 nativas, 2 consultas públicas y 2 recorridos UI de iPhone conservados, 14 métodos 90 únicos y 29 métodos conservados de otras áreas intactas. Universal iPhone/iPad, iOS/iPadOS 17+. Paquete, hashes, límites y procedencia: [entrega 90](../docs/ios/DELIVERY_2026-10-15_90.md).
