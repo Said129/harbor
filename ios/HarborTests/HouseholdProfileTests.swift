@@ -153,6 +153,9 @@ private actor HeldProfileCredentialCheck: ProfileCredentialChecking {
         try store.edit(kid.id, fields: ["kid": .object(["age": .integer(9), "curfewMinutes": .integer(90)])])
         XCTAssertEqual(store.active?.desktop.curfewMinutes, 90)
         let accepted = try await store.select(adult.id); XCTAssertTrue(accepted)
+        _ = try await store.select(kid.id)
+        let nextVisit = try await store.select(adult.id)
+        XCTAssertFalse(nextVisit, "A parent editing the profile does not leave the next child visit unlocked")
     }
 
     func testServerAdoptionPreservesDevicePINParentPINSharingAndMigrationOwner() throws {

@@ -135,9 +135,11 @@ struct HouseholdProfileState: Codable, Equatable, Sendable {
         }
         try Task.checkCancellation()
         guard currentGeneration == generation, profiles.first(where: { $0.id == id }) == target else { throw HarborError(code: "profile-selection-changed") }
+        let previousID = state.selectedID
         var next = state; next.selectedID = id
         try commit(next)
         if newlyUnlocked { unlocked.insert(id) }
+        if target.desktop.isKid && previousID != id { parentUnlocked.remove(id) }
         verifying = false; return true
     }
     @discardableResult func unlockParent(_ id: String, password: String) async throws -> Bool {
