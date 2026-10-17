@@ -829,5 +829,11 @@
   },
   "referenceCommit": "0834340cec5531650bfe78cd628628702e636987",
   "excludedSections": ["games"],
-  "inventory": "docs/ios/desktop-parity-0.9.132.json"
+  "inventory": "docs/ios/desktop-parity-0.9.132.json",
+  "lastValidatedIncrement": {
+    "build": 92,
+    "source": "7c904bac067752f5ce16ad22e4b4f75b47c71859",
+    "run": 39026561340,
+    "fullParityComplete": false
+  }
 }

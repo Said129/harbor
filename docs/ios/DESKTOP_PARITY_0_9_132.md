@@ -19,6 +19,10 @@ El inventario reproducible de esta referencia se registra por separado de las ma
 
 Orden de trabajo: continuidad y episodios; cuenta y sincronización; fuentes y plugins; reproducción y subtítulos; biblioteca, descubrimiento y personalización; TV/VOD y deportes; música y lectura; almacenamiento, copias, avisos y ayuda. Esta agrupación organiza el trabajo y no reduce el alcance.
 
-Pendientes confirmados por el propietario: el reproductor todavía muestra `T5 · E23` para el episodio absoluto 99 de Super; «Continuar viendo» debe incluir el anime guardado con identificador IMDb en Anime, además de su presencia en Shows. La ficha y su lista de episodios ya tienen la presentación continua de la build 91, cuya evidencia se conserva.
+Incidencias comunicadas al fijar el objetivo: el reproductor todavía muestra `T5 · E23` para el episodio absoluto 99 de Super; «Continuar viendo» debe incluir el anime guardado con identificador IMDb en Anime, además de su presencia en Shows. La ficha y su lista de episodios ya tienen la presentación continua de la build 91, cuya evidencia se conserva.
 
 El objetivo permanece **en curso**. Ni la build 91 ni la existencia de un inventario significan que el port 1:1 esté terminado.
+
+## Primer incremento validado
+
+La build 92 corrige los rótulos de episodio y la continuidad de anime IMDb. [Entrega 92](DELIVERY_2026-10-17_92.md), [ejecución](https://github.com/Said129/harbor/actions/runs/39026561340), fuente `7c904bac067752f5ce16ad22e4b4f75b47c71859`. Siete casos afectados y tres imágenes revisadas; validación física pendiente. El inventario completo permanece en revisión y el objetivo sigue activo.

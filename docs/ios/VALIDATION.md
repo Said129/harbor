@@ -1,3 +1,7 @@
+# Incremento universal 92 — continuidad; port 1:1 en curso
+
+Referencia Desktop 0.9.132 Beta, con Games excluido. La build 92 unifica la presentación del episodio 99 y reconoce anime IMDb en Continuar viendo de Anime/Shows. [Compilación](https://github.com/Said129/harbor/actions/runs/39026561340), fuente `7c904bac067752f5ce16ad22e4b4f75b47c71859`, siete casos afectados aprobados y tres imágenes revisadas. La evidencia de las áreas intactas se conserva. El port completo 1:1 sigue en curso. [Entrega y límites](DELIVERY_2026-10-17_92.md).
+
 # Versión universal 91 — episodios de anime
 
 La build 91 corrige las temporadas artificiales y las imágenes de episodios de anime, con Dragon Ball Super como caso público verificado. [Compilación](https://github.com/Said129/harbor/actions/runs/38822918265), fuente `77385750b1f8d7c80b34b04a8123d0a2c32725b5`. La validación reúne siete casos afectados: este seguimiento ejecutó 1 y conservó 6 aprobados con la aplicación idéntica. Las validaciones de las áreas intactas se mantienen. iOS/iPadOS 17+, IPA sin firmar. Paquete, procedencia y límites: [entrega 91](DELIVERY_2026-10-16_91.md).
