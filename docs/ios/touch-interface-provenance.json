@@ -1,0 +1,826 @@
+{
+  "reference": "19ddc311a397eb3483b5c978d2cf2bbb3f7f479f",
+  "requestedReference": "0.9.130",
+  "publicCheckpointVersion": "0.9.128",
+  "files": {
+    "src/components/player/transport/seek-bar-visual.tsx": "a1d8f0d5a61bef9d034d6cc0472b95af579a416558272df08eae8b2018e6c191",
+    "src/components/featured-banner.tsx": "82f66f663463933529d23cc1eba802a0b5fd7e1fc8fbd2d6defec4e3136c8a1e",
+    "src/components/featured-banner/big-card-stack.tsx": "c3db4db4e8522d90e0f7390404aa2a5a822362056f26a7f1d6249ade338b5761",
+    "src/components/featured-banner/side-panel.tsx": "dcb47e530b3ae799c35da6328d8fd4fd107e79962a6084ac62ecac259f1de857",
+    "src/views/library/shared.tsx": "01abb1404c81681f14b6e54d8fc22d42fc2dd8f6413164b4f6bf82297c6a1952",
+    "src/lib/i18n/locales/es/catalog.ts": "b278852b313eed3eefa19bb57a6c55179b44856d57b523cff2fb79fc30d9b9ba",
+    "src/lib/i18n/locales/es/manga.ts": "5217bf0ea88227568b87e1a8ed957011f20641d9f52355650e7307a193011d4b",
+    "src/lib/i18n/locales/es/discover.ts": "2513a5100daac75e4ab67a96128ef62d85999bf59ca7289e618590e249ee563e",
+    "src/lib/i18n/locales/es/app-fill.ts": "e310f8109b62fc3f5c5b068b56a768d74eb269c4f6dac00913ab64f102b36710",
+    "src/lib/i18n/locales/es/library.ts": "a0e3972813762b9a902c4a5a9bb96846c667129d64a23456ec91dcd42cadcffb",
+    "src/lib/i18n/locales/es/extra.ts": "ea9f3198c0c7d1fde783c0aefd448fd475b07245fa1cd19d0035fbca860a11b1",
+    "src/lib/i18n/locales/es/rails.ts": "62f93cc751f996e3946aad23330c4a6f7b9b315ce0f7f8125b042a6d945a9647",
+    "src/lib/i18n/locales/es/misc.ts": "435320b1568a2c66d0ae6a4afe83e1452b2ffb8cd27be197960f0199e1e1879d",
+    "src/lib/i18n/locales/es/coverage.ts": "980ce2c0a63e3efb53c4e635dcfdae7f2b2380e431e432bfcc7aae3246697b32",
+    "src/lib/i18n/locales/es/live.ts": "231e99f5acf87f26308741227bbfbc1f989b0ffe65cf4e2f0ceaa57583324f63",
+    "src/lib/i18n/locales/es/detail.ts": "a660a2eac50a0ee57ccb4c42c5fbd89797b7d22e4191c57c555033456be97c6a",
+    "src/lib/i18n/locales/es/sweep.ts": "2cb9858c2465860582dc4b7e32390c0e9d8b021d220983f4b7b4dd0a1798db9c",
+    "src/components/featured-banner/thumbs-dock.tsx": "b2506fa280a398c8f71d1fcb7dbb62a8461ccdc41b68e88cfac604eb4438ef9f",
+    "src/components/icons/harbor-glyphs.tsx": "d658b25c9e050394a49b080be5984f5bb8e683fa1788d9b1fce3c2d8980e5dd6",
+    "src/lib/feed/preferences.ts": "1e1fdcaf3ef0bc203cc366028756df9c169f5d3fd1680239bf962537319a8383",
+    "src/lib/discover/store.ts": "501a17c190c15ed0f80029900461c00c15626b67a2044e88ec2d800069e2b3f0",
+    "src/lib/discover/affinity.ts": "73ec970320bc0f9a43ccf3cfebd72fb2251013fbf1b174fde79420b7fca48bbc",
+    "src/lib/discover/profile.ts": "179386677bd8e7e2a2665143eb9600632507c4cad144f3ebb6c1dc709c160673",
+    "src/lib/feed/featured/score.ts": "0d1087385f2ee04f7a507e99bd868e9c4b92cd0126641a856edce9321e8ed7e4",
+    "src/lib/feed/featured/types.ts": "2aa5de1ec208b8a2b4580e6d5348ce5edc27e653733870bbc4c0d3bc33afc989",
+    "src/lib/feed/featured/diversify.ts": "c3b57162925b09c11e40764c4c223c13f0a9133bd60f7c980605193582824d0f",
+    "src/lib/feed/exclude.ts": "3cd3f4b4620b06f51a160ce7d37ac62c7f4569021f3ef719c76b8eddccf19f08",
+    "src/lib/feed/tags.ts": "182c341d6b74ab089417ce2bd5915d295898ab8ffe365d64a7828f9d09ddeb18",
+    "src/lib/playback-history.ts": "b000d0258f43a8d49b72f9dee3416898d2c44393f949557d6815c57c1a60cc1a",
+    "src/assets/ui-icons/thumbs-up.svg": "0ffb4668d4368297f2e2345f6b39671f275003e9c53fc413dc53d1cf76be974b",
+    "src/components/player/transport/cast-button.tsx": "8be50146597f007b8feb93bed37f022f3e2b6932ec8209d7c6370c9dadfce4ef",
+    "src/assets/stremio-addons-net.png": "aa13b83e22ea90aac7a408a65f11481eccb6441ec48960f12ae42c51f9f22fca",
+    "src/lib/i18n/locales/es/addons.ts": "f249f09f57c5058c64aeb8b8fede63361601572177c2c0e48f40663970ac434b",
+    "src/lib/i18n/locales/es/common.ts": "bf96571c719f10ec75940247502be740359d3f792cfb8cf4c7302b3fb965402b",
+    "src/lib/i18n/locales/es/settings-fill.ts": "8350a7bc03b42e2ef863d5123bd639386d1af7d820bafe11f0493a00c481d0d2",
+    "src/lib/i18n/locales/es/settings-refinements.ts": "a28c5c5eba9701d9cf6df61b92a8280f40182731ec52210f4194e5523283cbcc",
+    "src/views/addons/addon-spotlight.tsx": "566f6d596978206e55f7be3643881a542bd94b6a8105014d94a2d77256c25501",
+    "src/components/community-addons-rail.tsx": "509fb6aa4166e7a7af48408e679fb5e3430a979fe1e2cdf6fae223db5080b5d2",
+    "src/lib/providers/stremio-addons.ts": "f77946c99552c2b3bf17489661b3acabe8daa94c4b2d92314eda8e7e213a5a27",
+    "src/views/addons/category-grid.tsx": "06af16377801ef4526f400e41311733dd484644618b1e06d342ea8a41ae30a93",
+    "src/views/settings/account/identity-tab.tsx": "31823d62d3d8a6c353b8f0edd01c94d5553aabb2e7177e3d53f2eb7c9027c066",
+    "src/views/catalogs.tsx": "3bad3f1f83f11fbcc37d8740755cc0845b5da0ae3946d13567696811b4b39d2a",
+    "src/views/addons/community-browse-list.tsx": "27e7c69b3d82ac28ed91392f8d7e4f83c1c6d497562e14bf9e20801f5a8b6ac4",
+    "src/views/addons/browse-pane.tsx": "314bf9834ea88b3988a5a6a2b3a287679c0b6bd280324388277837021cdf5a41",
+    "src/views/addons/installed-pane.tsx": "9a8053f6b5238415c14fdd27de28bbc35c2f48aa68a0cffabb3ce7cf5b34c70d",
+    "src/lib/i18n/locales/es/chrome.ts": "395b4b01eb544fcfe4e901dead8ff916adf1e3e53bdac1856b1c9680dd65dcb1",
+    "src/lib/i18n/locales/es/esports-arena.ts": "98c05d27563035addafd4d531022dadf191660cdc47270a397e8126c05a32343",
+    "src/lib/i18n/locales/es/settings.ts": "9cd8533cff87c4f8fb00ba88a1c1c10f4cfccf85138f6ec559d093a9940ff1fc",
+    "src/components/avatar-picker/avatar-fan.tsx": "072f120c711c01da7d6ab731614b5b049a920676cacdc726c6d457f003a13e87",
+    "src/components/avatar-picker/avatar-catalog-modal.tsx": "61382627985aee2ba50975017fb60d248d79a2a299638feab0608cad63f1cac9",
+    "src/components/avatar-picker/avatar-grid.tsx": "20ddafaf076f14157b3d4c74cc64b8b6e32f6ccbe2b61c4aebc4bb5cccb49e87",
+    "src/lib/avatars/catalog.ts": "d2df4e688c43df33cb9b13386a53dc17d780dcfaa0aea5a619b113ff4a328c97",
+    "src/chrome/account-menu/account-menu-parts.tsx": "da44aeb794abd99eae2df8e27682edfeaea070d644a1385b4b2fe0d2d124c703",
+    "src/lib/i18n/locales/es/player.ts": "f3f7022ff66b8ccd48e41056236a5166b9ef1d96cdff1980f21678a0d30795e7",
+    "src/components/player/transport/control-renderer.tsx": "65855f862e741e3a46f92866386e8f0c39fd869bea408d24e79225cd605e4f73",
+    "src/views/settings/mpv-panel/dials.tsx": "4d48557c4d62d63d0bd62672943f78086fbe017ee64f883779c09318704e60bf",
+    "src/views/player/hooks/use-video-fill.ts": "4fbedf8080e665d17e70b36391263ad27a522779b65731914312921963b9135e",
+    "src/components/player/transport/aspect-menu.tsx": "b73465eecabbf01521380cf2b62306b0603a7c6d526a3eb5a36cfdceb8d35a8d",
+    "src/lib/subtitles/language.ts": "e24a6b4a1b7008632aeb9d3fd1265aa982e874cf8b346a9554ac58263bb3fc53",
+    "src/views/settings/language-panel/audio-tab.tsx": "1c9b2134578675c6f08bcaacd2e58556cfec3b71af33eeaaea3a764c7fdad383",
+    "src/views/settings/language-panel/subtitles-tab.tsx": "e17bdcc82a3548ebededf3146363e93e72f49272bae86a74055b087ace51bc54",
+    "src/views/settings/language-panel/dual-subtitle-section.tsx": "7913ecc13dbf5b3f4c035aed09983d730b9223bf014d0d79ab083cd5e52847de",
+    "src/components/flag.tsx": "04286315dd10099a8bc5bf83a4215a17e83f6b86b933f4a70e9caff88964320b",
+    "src/views/settings/streaming-panel.tsx": "af683805abe1016577512b4c7466ac3f3118d9aa45ecf8c961bc368b0e6470d8",
+    "src/components/player/subtitle-menu/menu-body.tsx": "4cd3039a6ad704f50adc69d3d96869fa0a4481c81bbac78710af4ad42da69c49",
+    "src/components/player/subtitle-menu/variant-row.tsx": "81acf1421dec6637785712ba1febaf5c823e29a10210ea5b49eee903a011248c",
+    "src/components/player/subtitle-menu/menu-body-parts.tsx": "2e352b89048c3a446adc6f1dd2591083d1f781cacb6acb430b7d5494ae0a2f53",
+    "src/lib/subtitles/track-label.ts": "a4de51fb74a727bd43a9e6b0f3ce670c5d7c8ce0ae6dbf5abf1cafe032176ba5",
+    "src/lib/subtitles/classification-labels.ts": "25c19ffda6a7af87df39b9d963831d892867e6b1639fc5976beb38340287e1ee",
+    "src/components/player/audio-menu.tsx": "40fab943456e802bb8feefc61e2060efba81fbb9aed1cd68f682488a918cf447",
+    "src/components/player/subtitle-menu/subtitle-fps-panel.tsx": "fc90238d3b128cd7ff1d327c398fe002dd2cd66db01d55bdad52d637fd75b2a4",
+    "src/lib/player/mpv.ts": "c5044376f393b05ea17a73c087e0d265daf541585be60ef35ddbd9464eecf0e2",
+    "src/lib/i18n/locales/es/controllers.ts": "18dcb4e1f1f0952afadfa4cf3fde45700617d4e775f887db50d67d9bcf37e869",
+    "src/views/settings/player-panel/subtitle-section.tsx": "02d86db33815f3371f080098c07811f833478cf4e9efb3f4c6b238434812a7bd",
+    "src/views/settings/subtitles-panel.tsx": "c3233e385d9fe0b1956e69b54a8cec5a54b8111a2720413fc5ccf1728e4a5029",
+    "src/assets/godfather-offer.svg": "16e63274067f647a323ad5c39b45339713939d1093203e6de5826ba407b74104",
+    "src/assets/preview/seek-preview.png": "3159b9e8cad39c4aba0af3f6574da0b24e31e401c774a41f9f0c0d5603cc789f",
+    "src/views/settings/player-panel/seek-bar-section.tsx": "8310e5cb32cf0f766f902df983240fe3952a61954ed96531240417069adb3195",
+    "src/assets/settings-preview/the-general-still.webp": "e677bab120f1948f44b7d4f939f0b5fc75e506ef10efc7383d066972b7ff62b2",
+    "src/views/settings/player-panel/play-mode-section.tsx": "1db9c4bda03251daee0780d328bddc911d7b2129328cf893c15a25b3a87392a3",
+    "src/views/settings/player-panel/press-play-preview.tsx": "605a61af4ae7b90ff515e03538e4cd7b03add0f12cffa7cc4f5737bde779ea70",
+    "src/views/settings/quality-panel/up-next-tab.tsx": "69ccb4df1fa05f42f38160948c1910d7b6ef42fa7896aba4bad8b1c271c07528",
+    "src/views/settings/shared.tsx": "e70bd16655c232f4042115481f8e77b2fed300d9d124ff7bdc98a89455259942",
+    "src/views/settings/preview-shell.tsx": "8015adb853fae764de322b8ff059450451ff68d18d917aff005ff89034d05b50",
+    "src/views/play-picker/use-auto-candidates.ts": "80dde398b30afc28ebee7d4e26938cca82c2701dd4411ed93f18e4d967394b35",
+    "src/lib/settings/defaults.ts": "dd8239884f63afcaf42eabfbc85c64f7d5751f2f4c77989eb6fe23466ae40e39",
+    "src/views/settings/library-panel/home-tab.tsx": "dad374be2d1fa5b8370ea5a5a7fc1e2e8afaa448e346f39110565786ce3ea598",
+    "src/views/settings/library-panel/detail-tab.tsx": "c77647d47d9686f668388749597bc4d6f9967a72cc26fed7c46ad3264b64687a",
+    "src/views/settings/library-panel/cards-tab.tsx": "e89024506e0b41b55a2eea414d435e7dd233412927a242f59487feea8b11026d",
+    "src/views/settings/ratings-matrix.tsx": "d812f090e3340250942259e367fb0ad892e76ba8b71ba813673ffca4940a1a0d",
+    "src/views/settings/theme-panel/theme-studio/nav-editor.tsx": "09148842e8656ee38c20aee8167ea66df526da7ecd1e4bb14b77caece5ac53ed",
+    "src/views/settings/theme-panel/theme-studio/nav-editor/nav-row.tsx": "d6be796e30db89a4cf3acd9d372eea750470ecffec87c7892605890404482fa5",
+    "src/lib/spoilers.ts": "a8164d05b68233f460f3d894962a34d8c0e94ecd796b615dbb45b7556dbaa4f9",
+    "src/lib/theme.ts": "264fe4dad8afba2ad7d0ce0d1b17c030ebb446a54572e60483c2dece69b6d288",
+    "src/views/settings/theme-panel/color-theme-body.tsx": "f50d56ef90091995e6a1baa74d05fd7476f16cf734b9387747364bed766b2baa",
+    "src/views/settings/theme-panel/font-grid.tsx": "aa625c505d8e5aa318432c9abd84c8611897ff58d10c77ff4a7d00080fde6bb0",
+    "src/views/settings/theme-panel/custom-editor.tsx": "2f05610ee654522602a9ee00d66f5acd3c24ef63119d7fb685101189f4443bce",
+    "src/views/home.tsx": "acd8d676a7c2bfc07a80fe9855e6af70615827fe73470a455b4cf81e2852141f",
+    "src/views/home/home-rows.ts": "01fe842bcef75aa62ce074b583fd960c6e0a5b08e0fe6836966a8f46742191cc",
+    "src/views/home/customizable-rows.tsx": "05052150a5402e52a4a1c9e2f106bae8b178029a4223ee46b7844a71d7ebfb3e",
+    "src/lib/providers/jikan.ts": "d7777daac64836afc84ea56948c56f6412f43f4966b31fa2fe219714852b3862",
+    "src/components/player/episode-panel/index.tsx": "f83a58388dd3d1ce6c2fd95f16bc3d1170f094196e72db86595ef37f05211048",
+    "src/components/player/episode-panel/episode-row.tsx": "b79e9f449c58dd950cf8512dd82102fc1409e1d075412d89dadd621a8d79a817",
+    "src/components/player/episode-panel/season-picker.tsx": "8dd5c58a3a66e3ed633a98f5aa667f9738baa92ab6680947ae5745a322e69435",
+    "src/views/home/row-controls.tsx": "a3fc2a08b87ff766dd990605b4e65d1d5c206e87baf6df1aaaf5cea4835882f0",
+    "src/views/home/customize-bar.tsx": "f4a7cab299678bd17f1515b4b5786534c164a8b011af0d3db6b5ab2f4215580b",
+    "src/components/catalog/customize-bar.tsx": "a412f99ecd33a8066144a3830c16a810ca232a106ffa8c14dc1e7b22dbcd9ed5",
+    "src/views/settings/groups.ts": "75ab5def6de52c2f11a3b47962f7a6c0faae68afb204a46b9bfc4df672272069",
+    "src/views/settings/settings-sidebar.tsx": "4056bf7e17ab4cd56ff3e06438b5b4919fb323e5088f17368d8f633375268448",
+    "src/views/settings/library-panel/provider-key-row.tsx": "58192ed0f3f945521a6518568f582e3f7e6950f25026bc4bc65d99ec6a8eea6b",
+    "src/views/settings/library-panel/provider-keys.tsx": "9b73c9ea58b46d29e2d1ec77b6e1a7f7a8cf5b37087450575a0215370321a244",
+    "src/views/settings/library-panel/providers-tab.tsx": "284d624c8f6620defed63041613fbf4d83c732478b20ccd3792ae86a5eff6aa6",
+    "src/views/settings/language-panel/app-tab.tsx": "b13b696f1ef144ef109d09a623aa845914f7919730d7ee2550661fcbc7dac730",
+    "src/views/settings/kit.tsx": "27a9bebefd503a4da2eae5f458b1630f160fcc482366197b19b39fd5a390ba96",
+    "src/views/settings/advanced-panel/about-tab.tsx": "28cacb81d205d4dab41fc5f20278f3d3ff11c8d24ce32f4fe625d66a3d7b0c7a",
+    "src/views/settings/bug-report-panel.tsx": "75651d863af76b25ae8e7a0dd1d9be26ba77bede6f3c8a1d7ae5a1f761a70b68",
+    "src/index.css": "e94d5673da94f30a915c676953718792bf5181f6c748fdde1ccfb3af187a1d4c",
+    "src/assets/addon-logos/tmdb.png": "57ed4b3b0450fd5e9a0c20f34e814b82adaa1085c79bdde2f00ca8787b63d2c4",
+    "src/components/anime-hero.tsx": "a2ecbfe2a52773292c62af92e6d4b219dd01a0bdc8b1096ea5a4f0b0681e6e50",
+    "src/lib/i18n/locales/es/masthead.ts": "a396ba8c3fbe013c57c95c8e7149998c1336443705713717bb601929cc81b9be",
+    "src/lib/i18n/locales/es/together.ts": "c9ac8093a44ae4d338ed23d5d0899bc6c44b10f775be802c293b7457ae659287",
+    "src/lib/i18n/locales/es/bp-sources.ts": "576d35da07366e501e0b28a651d40826ed2ba72cd3fd6167edd2d460af4d1627",
+    "src/views/play-picker.tsx": "5ae8ee9df1efd75a237d3a725ba902bbeedcafafe17a4018dcec676510f6d841",
+    "src/views/play-picker/picker-header.tsx": "a9212a8902a7231eadaa1f950ddb36d3762f1519b98fa7f830877e2ecd9b3718",
+    "src/views/play-picker/primary-card.tsx": "43f59bbf1499bec1e0c8cdc54f12ae39310d719760658b9769551cf76058b0bb",
+    "src/views/play-picker/source-drawer.tsx": "2cabd7b48fcf10b009eaebea231efe7755e10a8982ced9ac8d1a32066e699454",
+    "src/views/play-picker/tier-strip.tsx": "ee4cc48bd63d077a85cd6522d1a3423f230a1253d4ee30bc860a3ec455d0b57a",
+    "src/views/play-picker/picker-utils.ts": "364b04a71628bba46d45e2539a00b24b7226b68ac66f50f45197493f13673bbb",
+    "src/views/play-picker/empty-states.tsx": "c66efd8d0bbc5eaaf4a286d1b1262aaccbeb0f954690f67fe81f8015a01a2dea",
+    "src/components/format-badge.tsx": "804a8416a3173cbabc75b6e37717b87b0e284b4ad78366307f3494bdf22256e3",
+    "src/lib/streams/cached.ts": "b558c3089a1e0533f778888a94c06783431f65738206d1b5e2f24d50347c7415"
+  },
+  "changes": [
+    "Original six-point playback timeline with a 44-point touch target; seeking commits to mpv on release.",
+    "Library uses rolling 1/7/30-day date groups from the original implementation.",
+    "Discover adapts the original large-card/title and side-panel compositions with actual addon metadata and expandable original images.",
+    "Visible Spanish text comes from original locale dictionaries; untranslatable editorial text retains the original English.",
+    "Original up/down glyph, active colors and Spanish touch labels; successful votes persist per account before the display changes.",
+    "Original 500-event, 90-day affinity weights, quality/prominence/daily jitter and three-title genre diversification for native seed/trending/TMDB/awards lanes.",
+    "Negative votes hide matching IDs/title aliases; positive votes apply the original seven-day Featured cooldown and twelve-day suppression.",
+    "Addon genre parameters remain in their original language; display labels alone use official translations.",
+    "The original 22-point Cast glyph fronts Apple AVRoutePickerView for real audio routes; active color follows AVAudioSession route notifications.",
+    "Native Addons uses the original public rising/stars/newest endpoints, spotlight composition, community cards and six category tiles; only actual community ratings are displayed.",
+    "Native addon Browse preserves original API category slugs and multiple memberships, server search, stars/newest ordering, rising entries and validated pagination. Query plus signs are escaped for the API form decoder; public caches are bounded to 48 entries.",
+    "Home and Catalogs replace generic empty layouts with the original Harbor dashed panels, Puzzle geometry, official title/description and real Browse addons navigation. No matches uses original catalog/title copy. Shared search fields use the existing original X asset and a 44-point touch target.",
+    "Profile and account labels use the original Spanish dictionaries, including profile.signedIn. Upload/check/shuffle use original Lucide geometry and exact stroke weights. The avatar fan retains five shuffled original choices; the gallery preserves catalog groups, search, square rounded tiles, names, selection rings and reduced-motion-aware touch feedback. Original group labels lacking Spanish locale entries retain their Desktop fallback.",
+    "The native PiP entry uses the original PictureInPicture2 geometry, 22px size, 1.9 stroke and official Spanish labels. AVKit owns the platform floating-window controls; it controls the same mpv source and does not create a second player.",
+    "Picture uses original Fit/Fill/Stretch labels, four Desktop picture templates with exact values and reset-before-apply semantics, and original Spanish descriptions. Persisted native aspect identifiers remain compatible; pinch remains silent.",
+    "Audio/subtitle priorities and the second subtitle picker use the whole original Harbor language catalog, preserve alias-equivalent stored preferences, and retain regional Spanish/Portuguese. Automatic secondary selection tries preferred languages in order and exact regional matches before language-family fallback. Section labels/descriptions and placement choices use official Spanish copy.",
+    "Audio/subtitle priorities use the original numbered, reorderable/removable language chips and searchable two-column catalog. The second subtitle picker uses the whole original catalog. Stored aliases normalize without changes until an edit; regional Spanish/Portuguese remain distinct. Automatic secondary selection tries preferences in order and exact regions before language-family fallback. Section labels/descriptions and placement choices use official Spanish copy.",
+    "The native subtitle panel uses official On/Off, source/language filters, flags, left selection circle, actual classification tags, inline second-subtitle action and import feedback. Generic duplicated track sections and added prose are removed. Portrait uses horizontal language buttons; wider views use the original sidebar/track composition. All track changes continue through acknowledged mpv operations.",
+    "Audio uses the original track titles, language flags, codec/channel/default details, left selection circles and sync offset row with actual mpv state. The subtitle FPS panel uses the original dropdown, optional custom input/apply check, observed timing values and official availability messages; the generic Form and added prose are removed. Touch targets remain at least 44pt.",
+    "Subtitle appearance uses the original preview still/text, background choice cards, font preset grid, color swatches and official field labels. Existing ASS yes/strip options and persisted settings are retained; no generic preview slogan is added.",
+    "Seek color settings use the original preview image, square swatches, default slash and official labels. The existing color preference and actual timeline consumer are retained.",
+    "Playback uses the original Instant/Pick a source choice, resume labels, Up Next prompt choices and copy. Shared switches follow the original 48x32 track/26 pt knob. Segments wrap on narrow screens; same-row selection stretches then contracts in 420 ms, cross-row selection moves in 320 ms, and reduced motion disables both. Existing 15 s prompt values remain editable; the original 120 s choice is exposed.",
+    "The original Keep same source on next episode toggle uses its false default and streamMatchesSource identity precedence. It controls the real next-episode offer selection, preserves filters, and falls back to the best playable offer when no match exists.",
+    "Original bundled Lottie SVG artwork is driven by a native CADisplayLink clock, with one JS render in flight, a weak target, teardown and Reduce Motion/scene lifecycle stops. The existing regression checks actual SVG changes and attaches before/after web snapshots; it does not replace the artwork with a static image or a synthetic frame counter.",
+    "Home style uses the original two preview images and radio choices. Interface settings preserve all existing preferences, use original section/toggle labels, and separate title/description spoiler masks in both episode lists. Legacy blurEpisodes still controls list thumbnail blur, so it is labelled Blur thumbnails instead of claiming Desktop episode-detail hero blur. Navigation uses original row geometry, edited/default names, official reset/show/hide labels and Lucide up/down/eye controls with 44 pt targets. Reordering, naming and hiding continue to use the existing preference store.",
+    "WebKit snapshots use the completion-handler API available in the Apple SDK, bridged to a checked continuation; missing images still fail the original animation regression.",
+    "Appearance preserves every existing palette and the three installed interface fonts, uses ColorThemeBody tiles with original swatches, 168 pt minimum/10 pt corners and actual selection, FontGrid specimens with installed typefaces, and original Lucide checks/Pencil strokes. It does not advertise unavailable font pairs, Desktop layouts, or scripts. The existing custom palette now has all ten original color fields, live preview, save/reset/cancel; cancel restores the saved state and border/accent alpha tokens derive from the selected color.",
+    "Home now consumes the eight original TMDB definitions when configured and the eighteen Cinemeta rows without a key or when TMDB cannot load titles, with original order, six/four hero source rows, ranked Top 10 and the shared Popular offset. The real production services load titles progressively and keep prior rows on partial failures. Classic retains addon rows and Continue Watching first. Existing customization identifiers, account isolation and addon destinations are preserved; the Home loader uses the original artwork without added copy. Cinemeta View all opens the bounded original row. The existing public Cinemeta gate checks these real Home results; this increment does not yet add the four Home anime rows.",
+    "The curated Home now appends the four original anime definitions in source order, with three public pages, the minimum six/maximum sixty titles, real MAL scores, the original franchise-suffix cleanup and bounded View all. Airing/popular/upcoming share the established production MAL transport with Jikan fallback; new releases retain the exact original Jikan date/status/score query rather than substituting a different season. Unique provider cache keys avoid overwriting the separate Anime page. Failed refreshes preserve previous owner rows and account reset invalidates pending Home/anime work. The existing public MAL gate checks the loaded production Home rows without claiming all four survived every provider outage. The 70 native/services gates passed; its UI gate failed because a nested avatar sheet and Account exposed two Close buttons. Distinct accessibility identifiers now exercise each real dismissal and assert the return to Profile before closing Account.",
+    "Build 74 replaces the native player episode List with the original Up Next header, display title, Now Playing badge, S/E still overlays, watched badge, accent Play/Restart cards, expandable details, original season picker and next-season action. Thumbnails adapt to iPhone width without substituting the show backdrop. Current episodes bypass spoiler masks and Restart calls the checked mpv reload at zero with autoplay, under existing lifecycle/owner guards. Existing reveal/description preferences remain active. Only supplied release/runtime metadata is rendered; no synthetic episode rating is added.",
+    "Build 75 replaces the generic customization sheet with original inline RowControls and CustomizeBar actions. Desktop row order/visibility/rename/numerals/hero selection and existing option bindings remain persisted per owner/page. Mobile rows split the title and five 44 pt action targets, show official action hints within the card width, and preserve reduced motion. Catalog moves swap scoped neighboring rows without discarding order for other provider groups. A floating Reset/Done editing bar keeps the exit accessible in long pages. Eight original Lucide glyphs match source strokes; labels are taken from original locales. The Anime picks row is rendered once in its existing hero, correcting the prefixed PageRail identity in the lower list.",
+    "Build 76 replaces the generic metadata Form with original provider/KeyField controls, original TMDB logo, inline reveal SVGs, Saved check stroke and semantic success color. It preserves the existing real key validation and Keychain storage, cancelling verification on close. Settings use official sections/copy: Library belongs to Sources & library, subtitles to Languages & subtitles, downloads to System and logs/version to Help & about. Original locale labels replace invented headlines, helper paragraphs, status messages and version footer. The existing live UI route captures the metadata provider/editor without supplying a secret or claiming authentication verification. Anime Start Watching now enters the existing playback-intent detail flow as requested, preserving automatic/manual source selection and account guards. Anime and Series hero text/actions resolve official source/locale keys.",
+    "Build 77 replaces the generic native stream List with original PickerNav, title/episode header, PrimaryCard, TierStrip and SourceDrawer composition. Thirty-three original bitmap badges retain exact RGBA pixels; four Lucide glyphs use the original package and source strokes. Sizes wrap for iPhone touch without inventing resolution, languages, file size, cache or authentication. Source instance grouping uses the core addonPriority when addonUrl is absent, keeping configured copies distinct without displaying their private transport URLs. Playback, downloads, resume/account guards and source-change position remain in the existing model; refresh performs a new real addon request. Optional external-only sources open their validated original HTTP(S)/YouTube URL. The connecting animation remains attached to actual loading/resolution. Native UI extends its real installed addon/player route to expand and capture the source drawer."
+  ],
+  "copyOutput": "ios/Harbor/DesktopDiscoverSpanish.json",
+  "limitations": [
+    "The public checkpoint is not claimed as the exact 0.9.130 source.",
+    "Native touch rendering and new navigation require Apple build/runtime evidence.",
+    "The native sources do not include all Desktop streaming/acclaimed/similar-provider lanes or external watched-ID resolution.",
+    "Recommendation votes are stored on this iPhone per Stremio account; cross-device vote sync is not claimed.",
+    "The native taste snapshot uses real genres/decade; cast/creator/keyword/language affinity and dwell events remain outside this increment.",
+    "AirPlay audio routing is separate from wireless video casting; real receiver behavior still requires physical iPhone evidence.",
+    "Community rating submissions and website identity are not performed by the native addon directory; private configured instances remain in the Stremio account."
+  ],
+  "icons": {
+    "x": {
+      "package": "lucide-react",
+      "version": "0.460.0",
+      "integrity": "sha512-BVtq/DykVeIvRTJvRAgCsOwaGL8Un3Bxh8MbDxMhEWlZay3T4IpEKDEpwt5KZ0KJMHzgm6jrltxlT5eXOWXDHg==",
+      "sourceSha256": "ab7e26e558dea6786e50df7e592c46ddeae6f016d2d0c24b52979508e346b7b0",
+      "svgSha256": "5cd216503b1c66df0d56351d86e746d059ce42de244abaebf873e784c9d074e3",
+      "output": "ios/Harbor/Assets.xcassets/desktop-x.imageset/icon.svg"
+    },
+    "thumbs-up": {
+      "output": "ios/Harbor/Assets.xcassets/ui-thumbs-up.imageset/icon.svg",
+      "geometryUnchanged": true,
+      "nativeSha256": "b8796668d1e9e7f52fe0781e39df8d510afca65d52f74d21c7a8d99e3e984d1a",
+      "note": "Existing original vector import strips the XML declaration and changes the canvas width/height to 26; paths and viewBox are unchanged."
+    },
+    "cast": {
+      "package": "lucide-react",
+      "version": "0.460.0",
+      "integrity": "sha512-BVtq/DykVeIvRTJvRAgCsOwaGL8Un3Bxh8MbDxMhEWlZay3T4IpEKDEpwt5KZ0KJMHzgm6jrltxlT5eXOWXDHg==",
+      "sourceSha256": "0f33cd4f092fbf23b7bb4ae76e4d8bd31a1c89b5de06a87c254c55f2cedcaed8",
+      "svgSha256": "3d090cda5411bb467cf5e8f1d4f65294bbc1455cd1bc905be313f99959423025",
+      "output": "ios/Harbor/Assets.xcassets/player-cast.imageset/icon.svg",
+      "strokeWidth": 1.9,
+      "displaySize": 22
+    },
+    "community-star": {
+      "package": "lucide-react",
+      "version": "0.460.0",
+      "integrity": "sha512-BVtq/DykVeIvRTJvRAgCsOwaGL8Un3Bxh8MbDxMhEWlZay3T4IpEKDEpwt5KZ0KJMHzgm6jrltxlT5eXOWXDHg==",
+      "sourceSha256": "d4090a7df7e4f2f67b254e7650be3a5cdda207dc47536aa8e1a98fde48f14202",
+      "svgSha256": "5e24f828599518211947f899f394b52c4fc0accb7a8058a630fc573ae750c3e5",
+      "strokeWidth": "2.6",
+      "fill": true,
+      "output": "ios/Harbor/Assets.xcassets/community-star.imageset/icon.svg"
+    },
+    "desktop-arrow-up-right": {
+      "package": "lucide-react",
+      "version": "0.460.0",
+      "integrity": "sha512-BVtq/DykVeIvRTJvRAgCsOwaGL8Un3Bxh8MbDxMhEWlZay3T4IpEKDEpwt5KZ0KJMHzgm6jrltxlT5eXOWXDHg==",
+      "sourceSha256": "5549763cec9a51162a186f53b8e0c625770678168561dcb52cea427f3aa483af",
+      "svgSha256": "56d93f84b881eda42f95fde49ce255a69bac1c6ec15ebf6bde6ff6ac2eca7de2",
+      "strokeWidth": "2.4",
+      "fill": false,
+      "output": "ios/Harbor/Assets.xcassets/desktop-arrow-up-right.imageset/icon.svg"
+    },
+    "catalog-empty-puzzle": {
+      "package": "lucide-react",
+      "version": "0.460.0",
+      "integrity": "sha512-BVtq/DykVeIvRTJvRAgCsOwaGL8Un3Bxh8MbDxMhEWlZay3T4IpEKDEpwt5KZ0KJMHzgm6jrltxlT5eXOWXDHg==",
+      "sourceSha256": "b6f66a480110ae7baecb69c3751fd81e6cc3fe34bd0cfcdd7b516a4fc9cde6b4",
+      "svgSha256": "9ab48cc71c54b0d64dd68903cea9c7d9bf744d2b55af6d9913dc2f36849e66ea",
+      "strokeWidth": "1.6",
+      "fill": false,
+      "output": "ios/Harbor/Assets.xcassets/catalog-empty-puzzle.imageset/icon.svg"
+    },
+    "profile-upload-plus": {
+      "package": "lucide-react",
+      "version": "0.460.0",
+      "integrity": "sha512-BVtq/DykVeIvRTJvRAgCsOwaGL8Un3Bxh8MbDxMhEWlZay3T4IpEKDEpwt5KZ0KJMHzgm6jrltxlT5eXOWXDHg==",
+      "sourceSha256": "aea51d91604882a5e4aa596e9ba61d1eefd62601534e39b53eedd9785b1025ab",
+      "svgSha256": "656701c16ca09d98ddf1c254c69d95faaab834ca1484f8bbcf9c965e4ac58a2a",
+      "strokeWidth": "2",
+      "fill": false,
+      "output": "ios/Harbor/Assets.xcassets/profile-upload-plus.imageset/icon.svg"
+    },
+    "profile-preset-check": {
+      "package": "lucide-react",
+      "version": "0.460.0",
+      "integrity": "sha512-BVtq/DykVeIvRTJvRAgCsOwaGL8Un3Bxh8MbDxMhEWlZay3T4IpEKDEpwt5KZ0KJMHzgm6jrltxlT5eXOWXDHg==",
+      "sourceSha256": "942041f985f610b080af1db8958a1338705d3303330e9fd6615ac8c95c1fa438",
+      "svgSha256": "05c1630af83f6ddb0a77573287e74d610028f4f82d80d64c0c69d506c235dadf",
+      "strokeWidth": "3.2",
+      "fill": false,
+      "output": "ios/Harbor/Assets.xcassets/profile-preset-check.imageset/icon.svg"
+    },
+    "profile-avatar-shuffle": {
+      "package": "lucide-react",
+      "version": "0.460.0",
+      "integrity": "sha512-BVtq/DykVeIvRTJvRAgCsOwaGL8Un3Bxh8MbDxMhEWlZay3T4IpEKDEpwt5KZ0KJMHzgm6jrltxlT5eXOWXDHg==",
+      "sourceSha256": "1f710ec5088b876204c4416faaf22e06afd2d1371af135e770097661c6252666",
+      "svgSha256": "d5910886bce0fea92cc13c36e0a1b75045b3b5b3718b04c12c8af3f5e9d3107c",
+      "strokeWidth": "2.2",
+      "fill": false,
+      "output": "ios/Harbor/Assets.xcassets/profile-avatar-shuffle.imageset/icon.svg"
+    },
+    "player-pip": {
+      "package": "lucide-react",
+      "version": "0.460.0",
+      "integrity": "sha512-BVtq/DykVeIvRTJvRAgCsOwaGL8Un3Bxh8MbDxMhEWlZay3T4IpEKDEpwt5KZ0KJMHzgm6jrltxlT5eXOWXDHg==",
+      "sourceSha256": "ebf9de969a52d4e5156aa3d3029798f1dd548bbd1b25599f0322764034998d49",
+      "svgSha256": "7cdb01999d81ae707ef3a1ea1d76eb84006e2e566c23331875b5f37369d8e786",
+      "strokeWidth": "1.9",
+      "fill": false,
+      "output": "ios/Harbor/Assets.xcassets/player-pip.imageset/icon.svg"
+    },
+    "subtitle-check": {
+      "source": "src/components/player/subtitle-menu/variant-row.tsx: Check size 9 strokeWidth 3",
+      "sourceGeometry": "ios/Harbor/Assets.xcassets/desktop-check.imageset/icon.svg",
+      "sourceGeometrySha256": "71ce317514b38dcd9994e6ffd873478e3902f86c20645153b6086f0676da1bba",
+      "svgSha256": "08063936ab9cffc36aeec615c19c96b803596332649abeb082df3d2283aba32e",
+      "strokeWidth": 3,
+      "size": 9,
+      "output": "ios/Harbor/Assets.xcassets/subtitle-check.imageset/icon.svg"
+    },
+    "audio-reset-sync": {
+      "package": "lucide-react",
+      "version": "0.460.0",
+      "integrity": "sha512-BVtq/DykVeIvRTJvRAgCsOwaGL8Un3Bxh8MbDxMhEWlZay3T4IpEKDEpwt5KZ0KJMHzgm6jrltxlT5eXOWXDHg==",
+      "sourceSha256": "416ff10c04320ce7c3e84fc52d419256d64a8b91662b0fb0d762b062f9ebd8d5",
+      "svgSha256": "e1da351d9a2344c159f3a82f56519d98c9d73f84452463f584b293a94826deef",
+      "strokeWidth": 2.2,
+      "output": "ios/Harbor/Assets.xcassets/audio-reset-sync.imageset/icon.svg"
+    },
+    "subtitle-fps-apply": {
+      "package": "lucide-react",
+      "version": "0.460.0",
+      "integrity": "sha512-BVtq/DykVeIvRTJvRAgCsOwaGL8Un3Bxh8MbDxMhEWlZay3T4IpEKDEpwt5KZ0KJMHzgm6jrltxlT5eXOWXDHg==",
+      "sourceSha256": "942041f985f610b080af1db8958a1338705d3303330e9fd6615ac8c95c1fa438",
+      "svgSha256": "ed5c750963b0d3d8876a8edfaf89cd77da29e76e41f76907b0c236ef45c1af96",
+      "strokeWidth": 2.5,
+      "output": "ios/Harbor/Assets.xcassets/subtitle-fps-apply.imageset/icon.svg"
+    },
+    "settings-eye": {
+      "package": "lucide-react",
+      "version": "0.460.0",
+      "integrity": "sha512-BVtq/DykVeIvRTJvRAgCsOwaGL8Un3Bxh8MbDxMhEWlZay3T4IpEKDEpwt5KZ0KJMHzgm6jrltxlT5eXOWXDHg==",
+      "sourceSha256": "36fa8d9e47c281c721afd724ab86677011ff11c0d6ec2b97ed064d0f64234efe",
+      "svgSha256": "49509de0fb1dc8fa794d6f7049b3d48cace060e28a44ee9afb1fa0fba8dd70e5",
+      "output": "ios/Harbor/Assets.xcassets/settings-eye.imageset/icon.svg"
+    },
+    "settings-eye-off": {
+      "package": "lucide-react",
+      "version": "0.460.0",
+      "integrity": "sha512-BVtq/DykVeIvRTJvRAgCsOwaGL8Un3Bxh8MbDxMhEWlZay3T4IpEKDEpwt5KZ0KJMHzgm6jrltxlT5eXOWXDHg==",
+      "sourceSha256": "b412a24aee16a0c0e36c4daed4b85d868534160ec29394a575dd0b839af023aa",
+      "svgSha256": "287af365bf23e7985c53b90ea6594eb564ae03a69a19773e91cdf680b555de3d",
+      "output": "ios/Harbor/Assets.xcassets/settings-eye-off.imageset/icon.svg"
+    },
+    "settings-chevron-up": {
+      "package": "lucide-react",
+      "version": "0.460.0",
+      "integrity": "sha512-BVtq/DykVeIvRTJvRAgCsOwaGL8Un3Bxh8MbDxMhEWlZay3T4IpEKDEpwt5KZ0KJMHzgm6jrltxlT5eXOWXDHg==",
+      "sourceSha256": "76dd0d1fc25245fb661d24f158662a8ecc398fba26c5ff25e5d519fda135d33e",
+      "svgSha256": "e2a398f5cdf41d4d8fe6052160ef8d839bb8fece466dabba1ba7d206dbee4315",
+      "output": "ios/Harbor/Assets.xcassets/settings-chevron-up.imageset/icon.svg"
+    },
+    "settings-chevron-down": {
+      "package": "lucide-react",
+      "version": "0.460.0",
+      "integrity": "sha512-BVtq/DykVeIvRTJvRAgCsOwaGL8Un3Bxh8MbDxMhEWlZay3T4IpEKDEpwt5KZ0KJMHzgm6jrltxlT5eXOWXDHg==",
+      "sourceSha256": "15dcc071a0731525ad2f8bf9fd6e8353aa3a8d1fd9b30b3ead51053ed3937731",
+      "svgSha256": "215913df535cd28d682dd8e98b347ac775b72c7ddb03076756a46d0ccad5080c",
+      "output": "ios/Harbor/Assets.xcassets/settings-chevron-down.imageset/icon.svg"
+    },
+    "theme-selected": {
+      "package": "lucide-react",
+      "version": "0.460.0",
+      "integrity": "sha512-BVtq/DykVeIvRTJvRAgCsOwaGL8Un3Bxh8MbDxMhEWlZay3T4IpEKDEpwt5KZ0KJMHzgm6jrltxlT5eXOWXDHg==",
+      "sourceSha256": "942041f985f610b080af1db8958a1338705d3303330e9fd6615ac8c95c1fa438",
+      "svgSha256": "b5f3e5f9bb20ae41261f9ef4643de308fda3df41947e9713280ed58a3a02fe40",
+      "output": "ios/Harbor/Assets.xcassets/theme-selected.imageset/icon.svg"
+    },
+    "theme-font-selected": {
+      "package": "lucide-react",
+      "version": "0.460.0",
+      "integrity": "sha512-BVtq/DykVeIvRTJvRAgCsOwaGL8Un3Bxh8MbDxMhEWlZay3T4IpEKDEpwt5KZ0KJMHzgm6jrltxlT5eXOWXDHg==",
+      "sourceSha256": "942041f985f610b080af1db8958a1338705d3303330e9fd6615ac8c95c1fa438",
+      "svgSha256": "129ec96260938cb79e63a0e1349e79fd2e3f61a3ce9d58a0c5e2d58d8c2eec8b",
+      "output": "ios/Harbor/Assets.xcassets/theme-font-selected.imageset/icon.svg"
+    },
+    "theme-edit": {
+      "package": "lucide-react",
+      "version": "0.460.0",
+      "integrity": "sha512-BVtq/DykVeIvRTJvRAgCsOwaGL8Un3Bxh8MbDxMhEWlZay3T4IpEKDEpwt5KZ0KJMHzgm6jrltxlT5eXOWXDHg==",
+      "sourceSha256": "6d2743f570d3cce321f335048b0102b9178b960b22a568feaac11cc98985f239",
+      "svgSha256": "9ae42030d8e75bbcef974b3c56e89e34bf539538cde4f075161ebb0fbbc518f8",
+      "output": "ios/Harbor/Assets.xcassets/theme-edit.imageset/icon.svg"
+    },
+    "episode-restart": {
+      "package": "lucide-react",
+      "version": "0.460.0",
+      "integrity": "sha512-BVtq/DykVeIvRTJvRAgCsOwaGL8Un3Bxh8MbDxMhEWlZay3T4IpEKDEpwt5KZ0KJMHzgm6jrltxlT5eXOWXDHg==",
+      "sourceSha256": "416ff10c04320ce7c3e84fc52d419256d64a8b91662b0fb0d762b062f9ebd8d5",
+      "svgSha256": "4569eb5fa49d7f1f3dbea866a6768d696d599e3c294b5df3dddb39c4a189900a",
+      "output": "ios/Harbor/Assets.xcassets/episode-restart.imageset/icon.svg"
+    },
+    "episode-expand": {
+      "package": "lucide-react",
+      "version": "0.460.0",
+      "integrity": "sha512-BVtq/DykVeIvRTJvRAgCsOwaGL8Un3Bxh8MbDxMhEWlZay3T4IpEKDEpwt5KZ0KJMHzgm6jrltxlT5eXOWXDHg==",
+      "sourceSha256": "15dcc071a0731525ad2f8bf9fd6e8353aa3a8d1fd9b30b3ead51053ed3937731",
+      "svgSha256": "215913df535cd28d682dd8e98b347ac775b72c7ddb03076756a46d0ccad5080c",
+      "output": "ios/Harbor/Assets.xcassets/episode-expand.imageset/icon.svg"
+    },
+    "episode-await": {
+      "package": "lucide-react",
+      "version": "0.460.0",
+      "integrity": "sha512-BVtq/DykVeIvRTJvRAgCsOwaGL8Un3Bxh8MbDxMhEWlZay3T4IpEKDEpwt5KZ0KJMHzgm6jrltxlT5eXOWXDHg==",
+      "sourceSha256": "5b3f49531bb669349f6cac5d62a6fac026afd126c14b2d898f34738dcb16760f",
+      "svgSha256": "b9e7e012eed81a8664fe0ad9f8853896de6f71255b5f914153ad4ec7a3d8cbc8",
+      "output": "ios/Harbor/Assets.xcassets/episode-await.imageset/icon.svg"
+    },
+    "episode-close": {
+      "package": "lucide-react",
+      "version": "0.460.0",
+      "integrity": "sha512-BVtq/DykVeIvRTJvRAgCsOwaGL8Un3Bxh8MbDxMhEWlZay3T4IpEKDEpwt5KZ0KJMHzgm6jrltxlT5eXOWXDHg==",
+      "sourceSha256": "ab7e26e558dea6786e50df7e592c46ddeae6f016d2d0c24b52979508e346b7b0",
+      "svgSha256": "b045e2a92f431211d46d3059d9101649e888d9fae9b6e1e763bd4805bd035e90",
+      "output": "ios/Harbor/Assets.xcassets/episode-close.imageset/icon.svg"
+    },
+    "episode-next-season": {
+      "package": "lucide-react",
+      "version": "0.460.0",
+      "integrity": "sha512-BVtq/DykVeIvRTJvRAgCsOwaGL8Un3Bxh8MbDxMhEWlZay3T4IpEKDEpwt5KZ0KJMHzgm6jrltxlT5eXOWXDHg==",
+      "sourceSha256": "ee161fee79e5583f4e7db5d633edb7c94cdb024001292646f313e1b8e5542aec",
+      "svgSha256": "a78b989908eb54d4c00779cb48ceb0ce8825c6072c616dc5a1e5aa1dd6d4dbb1",
+      "output": "ios/Harbor/Assets.xcassets/episode-next-season.imageset/icon.svg"
+    },
+    "page-move-up": {
+      "package": "lucide-react",
+      "version": "0.460.0",
+      "integrity": "sha512-BVtq/DykVeIvRTJvRAgCsOwaGL8Un3Bxh8MbDxMhEWlZay3T4IpEKDEpwt5KZ0KJMHzgm6jrltxlT5eXOWXDHg==",
+      "sourceSha256": "7dcc8cac6868ef841a2581a4bf2b19821c35fa88c3ae8d27a15e094559762eb6",
+      "svgSha256": "1b233154c41631bd4a024a8f125eb958d3eac67a3a35166eb5ee9dc1c6b93ee1",
+      "output": "ios/Harbor/Assets.xcassets/page-move-up.imageset/icon.svg"
+    },
+    "page-move-down": {
+      "package": "lucide-react",
+      "version": "0.460.0",
+      "integrity": "sha512-BVtq/DykVeIvRTJvRAgCsOwaGL8Un3Bxh8MbDxMhEWlZay3T4IpEKDEpwt5KZ0KJMHzgm6jrltxlT5eXOWXDHg==",
+      "sourceSha256": "ca6c2aa863255b5cb8f3c79d0465387fa094f9dae2f4c158cd1e08328e2d7b3b",
+      "svgSha256": "6e549098ef092a8ade9ba9dd7e306394595d83601ca79371225fe1b7c48d1254",
+      "output": "ios/Harbor/Assets.xcassets/page-move-down.imageset/icon.svg"
+    },
+    "page-row-eye": {
+      "package": "lucide-react",
+      "version": "0.460.0",
+      "integrity": "sha512-BVtq/DykVeIvRTJvRAgCsOwaGL8Un3Bxh8MbDxMhEWlZay3T4IpEKDEpwt5KZ0KJMHzgm6jrltxlT5eXOWXDHg==",
+      "sourceSha256": "36fa8d9e47c281c721afd724ab86677011ff11c0d6ec2b97ed064d0f64234efe",
+      "svgSha256": "49509de0fb1dc8fa794d6f7049b3d48cace060e28a44ee9afb1fa0fba8dd70e5",
+      "output": "ios/Harbor/Assets.xcassets/page-row-eye.imageset/icon.svg"
+    },
+    "page-row-hidden": {
+      "package": "lucide-react",
+      "version": "0.460.0",
+      "integrity": "sha512-BVtq/DykVeIvRTJvRAgCsOwaGL8Un3Bxh8MbDxMhEWlZay3T4IpEKDEpwt5KZ0KJMHzgm6jrltxlT5eXOWXDHg==",
+      "sourceSha256": "b412a24aee16a0c0e36c4daed4b85d868534160ec29394a575dd0b839af023aa",
+      "svgSha256": "287af365bf23e7985c53b90ea6594eb564ae03a69a19773e91cdf680b555de3d",
+      "output": "ios/Harbor/Assets.xcassets/page-row-hidden.imageset/icon.svg"
+    },
+    "page-row-numerals": {
+      "package": "lucide-react",
+      "version": "0.460.0",
+      "integrity": "sha512-BVtq/DykVeIvRTJvRAgCsOwaGL8Un3Bxh8MbDxMhEWlZay3T4IpEKDEpwt5KZ0KJMHzgm6jrltxlT5eXOWXDHg==",
+      "sourceSha256": "b2ddbac98eba13e286ad152fdb62116e5a7dde16bee8bc6e8382b5f3e48e2d7c",
+      "svgSha256": "6eaa3483a05bb05ac24fc8764c82a87a3db42c8855ebe6d7ab72d191acfff107",
+      "output": "ios/Harbor/Assets.xcassets/page-row-numerals.imageset/icon.svg"
+    },
+    "page-row-hero": {
+      "package": "lucide-react",
+      "version": "0.460.0",
+      "integrity": "sha512-BVtq/DykVeIvRTJvRAgCsOwaGL8Un3Bxh8MbDxMhEWlZay3T4IpEKDEpwt5KZ0KJMHzgm6jrltxlT5eXOWXDHg==",
+      "sourceSha256": "71981607cf32ef098b40c8990772d3b84c23724e54fb3e1476fd003886fadbbd",
+      "svgSha256": "06e89a3578deff08f02b7c5b13609b52b8d060362dd8d0b0771030929f0d5ee5",
+      "output": "ios/Harbor/Assets.xcassets/page-row-hero.imageset/icon.svg"
+    },
+    "page-options": {
+      "package": "lucide-react",
+      "version": "0.460.0",
+      "integrity": "sha512-BVtq/DykVeIvRTJvRAgCsOwaGL8Un3Bxh8MbDxMhEWlZay3T4IpEKDEpwt5KZ0KJMHzgm6jrltxlT5eXOWXDHg==",
+      "sourceSha256": "81830e0f5333ad791d7c4cbc18bd0da0486ad42931ff0b71982e595a92f640ae",
+      "svgSha256": "8cbe95ad1d2602a6f97522c4c7e3ed071e8f1d4e6e662e3dcad02707cec7dc06",
+      "output": "ios/Harbor/Assets.xcassets/page-options.imageset/icon.svg"
+    },
+    "page-save": {
+      "package": "lucide-react",
+      "version": "0.460.0",
+      "integrity": "sha512-BVtq/DykVeIvRTJvRAgCsOwaGL8Un3Bxh8MbDxMhEWlZay3T4IpEKDEpwt5KZ0KJMHzgm6jrltxlT5eXOWXDHg==",
+      "sourceSha256": "942041f985f610b080af1db8958a1338705d3303330e9fd6615ac8c95c1fa438",
+      "svgSha256": "266a3488e43ff4bf00096eadab2c8341ff7a76ad626eec700d9a763ce369a7c3",
+      "output": "ios/Harbor/Assets.xcassets/page-save.imageset/icon.svg"
+    },
+    "metadata-tmdb": {
+      "source": "src/assets/addon-logos/tmdb.png",
+      "sha256": "57ed4b3b0450fd5e9a0c20f34e814b82adaa1085c79bdde2f00ca8787b63d2c4",
+      "output": "ios/Harbor/Assets.xcassets/metadata-tmdb.imageset/original.png"
+    },
+    "metadata-key-show": {
+      "source": "src/views/settings/shared.tsx KeyField inline SVG",
+      "svgSha256": "20d15a4735c1e46b3c673598d68a0723e5885725bee0f4d765aad393ae86a3ee",
+      "output": "ios/Harbor/Assets.xcassets/metadata-key-show.imageset/icon.svg"
+    },
+    "metadata-key-hide": {
+      "source": "src/views/settings/shared.tsx KeyField inline SVG",
+      "svgSha256": "688dad83c88d72f76d331590c24918afbc47fe413952c865a331af13aa8a5f16",
+      "output": "ios/Harbor/Assets.xcassets/metadata-key-hide.imageset/icon.svg"
+    },
+    "metadata-key-check": {
+      "package": "lucide-react",
+      "version": "0.460.0",
+      "integrity": "sha512-BVtq/DykVeIvRTJvRAgCsOwaGL8Un3Bxh8MbDxMhEWlZay3T4IpEKDEpwt5KZ0KJMHzgm6jrltxlT5eXOWXDHg==",
+      "sourceSha256": "942041f985f610b080af1db8958a1338705d3303330e9fd6615ac8c95c1fa438",
+      "svgSha256": "129ec96260938cb79e63a0e1349e79fd2e3f61a3ce9d58a0c5e2d58d8c2eec8b",
+      "output": "ios/Harbor/Assets.xcassets/metadata-key-check.imageset/icon.svg",
+      "sourceUsage": "src/views/settings/shared.tsx KeyField Check size 15 strokeWidth 2.6"
+    },
+    "stream-back": {
+      "package": "lucide-react",
+      "version": "0.460.0",
+      "integrity": "sha512-BVtq/DykVeIvRTJvRAgCsOwaGL8Un3Bxh8MbDxMhEWlZay3T4IpEKDEpwt5KZ0KJMHzgm6jrltxlT5eXOWXDHg==",
+      "sourceSha256": "8abf33893266f7815dc77480d788644804c0a76818429e887c7b2595597d43db",
+      "svgSha256": "81a150b11c576cfba50f423eaa77ea38b82cd493861315be4e27c36d4ad13ed4",
+      "output": "ios/Harbor/Assets.xcassets/stream-back.imageset/icon.svg"
+    },
+    "stream-refresh": {
+      "package": "lucide-react",
+      "version": "0.460.0",
+      "integrity": "sha512-BVtq/DykVeIvRTJvRAgCsOwaGL8Un3Bxh8MbDxMhEWlZay3T4IpEKDEpwt5KZ0KJMHzgm6jrltxlT5eXOWXDHg==",
+      "sourceSha256": "40589e82d362c15466a71a224ad92cf1b4dd332271b7857846926283021446db",
+      "svgSha256": "c7f85be5d65aa65586b560b1451eab6f536e7edef4fbb1901e410870bdedd49c",
+      "output": "ios/Harbor/Assets.xcassets/stream-refresh.imageset/icon.svg"
+    },
+    "stream-download": {
+      "package": "lucide-react",
+      "version": "0.460.0",
+      "integrity": "sha512-BVtq/DykVeIvRTJvRAgCsOwaGL8Un3Bxh8MbDxMhEWlZay3T4IpEKDEpwt5KZ0KJMHzgm6jrltxlT5eXOWXDHg==",
+      "sourceSha256": "438555a705216a4de7ecbc554f331f7b25ebd7d818c6f4fb47d239c19ca46157",
+      "svgSha256": "c1f2e563bb4202bcabb736c8e78a95f1bd96fab3e2be935780198e51354128cc",
+      "output": "ios/Harbor/Assets.xcassets/stream-download.imageset/icon.svg"
+    },
+    "stream-external": {
+      "package": "lucide-react",
+      "version": "0.460.0",
+      "integrity": "sha512-BVtq/DykVeIvRTJvRAgCsOwaGL8Un3Bxh8MbDxMhEWlZay3T4IpEKDEpwt5KZ0KJMHzgm6jrltxlT5eXOWXDHg==",
+      "sourceSha256": "c1bdfb5eec0072a2a74ae373f7acea895cfb8af647843966feef64b388d22f84",
+      "svgSha256": "8cfa3f5e3fb4b95da734efa577114678733609589bc27ec1e1c73351fe81a4f4",
+      "output": "ios/Harbor/Assets.xcassets/stream-external.imageset/icon.svg"
+    }
+  },
+  "interfaceCopyOutput": "ios/Harbor/DesktopInterfaceSpanish.json",
+  "subtitlePreview": {
+    "source": "src/assets/godfather-offer.svg",
+    "sourceSha256": "16e63274067f647a323ad5c39b45339713939d1093203e6de5826ba407b74104",
+    "pngSha256": "24dabd7bd986e1bb0c25cb4e740723edd2fd91eb6a435d912098b66807bc8ac5",
+    "output": "ios/Harbor/Assets.xcassets/subtitle-preview.imageset/still.png",
+    "notes": "The embedded 1920x1080 PNG is extracted byte for byte. Native layout preserves the 1440x810 SVG viewport and its 0.773437/0.773611 image transform before applying the original cover/center preview crop."
+  },
+  "seekPreview": {
+    "source": "src/assets/preview/seek-preview.png",
+    "sha256": "3159b9e8cad39c4aba0af3f6574da0b24e31e401c774a41f9f0c0d5603cc789f",
+    "output": "ios/Harbor/Assets.xcassets/seek-preview.imageset/still.png",
+    "notes": "Original artwork bytes, 1599/254 preview ratio, 10 pt corners, original color squares and default mark; preview touch changes its own position without seeking the active video. Reset uses the original RotateCcw geometry with stroke 2.4."
+  },
+  "playModePreview": {
+    "source": "src/assets/settings-preview/the-general-still.webp",
+    "sourceSha256": "e677bab120f1948f44b7d4f939f0b5fc75e506ef10efc7383d066972b7ff62b2",
+    "pngSha256": "757e9d12cfdb38c0fb035b9544154dd2077263147db0360467b74e801427603c",
+    "rgbPixelsSha256": "ede5a0e525f4134ee13f8715e1d4b74f9d348945f7b40309274185ba135ae4c7",
+    "output": "ios/Harbor/Assets.xcassets/play-mode-preview.imageset/still.png",
+    "notes": "Lossless pixel conversion of the original fallback still to an asset-catalog PNG. Preview follows PressPlayPreview/PreviewShell (260 pt, 16:9, 300 ms crossfade); it illustrates the choice and never starts media or pretends to be a live source list. Desktop's rotating sample artwork is not implemented here."
+  },
+  "homeStylePreview": {
+    "home-style-harbor": {
+      "source": "src/assets/onboarding/harborstyle.webp",
+      "sourceSha256": "9a042555d6184a365c5364ba5acbc248cd26b1a26ce3cb8f61bf9c7e6423a469",
+      "pngSha256": "fdecc5cef9f2950ca0368cc5c5e45ca401178c275ecc4a28778396dceac8ee75",
+      "rgbSha256": "3634730f2acf59aece498966478c59dd19c648531f90e814488933f7778f9100",
+      "size": [720, 449]
+    },
+    "home-style-classic": {
+      "source": "src/assets/onboarding/traditional.webp",
+      "sourceSha256": "3eeb31fa6477b74e6e61301a0226a10e64efae4dd0b8965a7bcbba6270a04d3a",
+      "pngSha256": "57cc3cd27f76f6edc8ac0cd620ee3fd8c78e888358a768d11117a304963f5d4c",
+      "rgbSha256": "d8914d39c683e1f90121501d485109c4ab6e7d36796010ecf4e7a82ffd2368a9",
+      "size": [720, 449]
+    }
+  },
+  "streamPickerBadges": {
+    "4k-uhd": {
+      "source": "src/assets/badges/4k_uhd.webp",
+      "sourceSha256": "99baaae61251015f568e522784ee1a8236d22a2c65dfc612f01a4ae8c32c4069",
+      "outputSha256": "c09b668fb89a7fa3da93d845472c428dc264939bfbce378da42156ee1b83fa3b",
+      "rgbaSha256": "3617240ab926833a53b95959547dc4be733dc96f535660e1b4cec33090d0eb27",
+      "size": [143, 103],
+      "output": "ios/Harbor/Assets.xcassets/stream-badge-4k-uhd.imageset/original.png"
+    },
+    "1080p": {
+      "source": "src/assets/badges/1080p_fhd.webp",
+      "sourceSha256": "fbe7fcf4f3a5538c739e737f8ce9e9b9344df7a4458a7daff015ce8b00344f29",
+      "outputSha256": "f9ae2cdee4581ea2eca97daca9be25a73e0f0f6e631b20fdd76d0f28cf86acd9",
+      "rgbaSha256": "31c2995b107c0821c8d3346ef1d131504cda41f2abbdef21ca6b0a8d07b96dd9",
+      "size": [266, 101],
+      "output": "ios/Harbor/Assets.xcassets/stream-badge-1080p.imageset/original.png"
+    },
+    "720p": {
+      "source": "src/assets/badges/720p_hd.webp",
+      "sourceSha256": "c1321fe8d19cfc3b554cd87179c8867aa258d238f18cdffe48a75b939a2c54f2",
+      "outputSha256": "7b9273aa81c6f6f178c79f11c142d75db4325f2c51d5583a0b7f030c895547b4",
+      "rgbaSha256": "f9bd9c1a9c138ddf2dd57e4fdc569e0a6a3cde910315c94f153c238d2b1192e9",
+      "size": [378, 97],
+      "output": "ios/Harbor/Assets.xcassets/stream-badge-720p.imageset/original.png"
+    },
+    "480p": {
+      "source": "src/assets/badges/480p.png",
+      "sourceSha256": "a54da538f620a799e42cba87beaea6979180ab726e629ec7485ae3d2df225915",
+      "outputSha256": "a54da538f620a799e42cba87beaea6979180ab726e629ec7485ae3d2df225915",
+      "rgbaSha256": "c5ec1ff4fec570cbf0be9bf49edb179c487246508bcf5d7a5c4c3820089990a1",
+      "size": [199, 102],
+      "output": "ios/Harbor/Assets.xcassets/stream-badge-480p.imageset/original.png"
+    },
+    "dvd": {
+      "source": "src/assets/badges/dvd.webp",
+      "sourceSha256": "3e5249b637a99ba340e415d63f1a229a661fd4053e0e6ffb4667702a18313e3c",
+      "outputSha256": "7533ef249ec663cff04714b1c64a30d7c81ec42ec294229064ba27b8ad5b4e5f",
+      "rgbaSha256": "e75c142517e1af9288395b950792b23fad1c81a18db3f9464a07f35a8985ae84",
+      "size": [173, 105],
+      "output": "ios/Harbor/Assets.xcassets/stream-badge-dvd.imageset/original.png"
+    },
+    "sd": {
+      "source": "src/assets/badges/sd.png",
+      "sourceSha256": "cf669eaf9897e19612ae3385a0e2706b8d33149c2d2f3b8fd922fbd03b21ba85",
+      "outputSha256": "cf669eaf9897e19612ae3385a0e2706b8d33149c2d2f3b8fd922fbd03b21ba85",
+      "rgbaSha256": "f9bb285eab3e84ae47b582f955a1720c87fb4b4e2da3ca865925e0e1391a3643",
+      "size": [142, 101],
+      "output": "ios/Harbor/Assets.xcassets/stream-badge-sd.imageset/original.png"
+    },
+    "cam": {
+      "source": "src/assets/badges/cam.png",
+      "sourceSha256": "e9d709104685b44fdf018838e03c3cb778ad745541f58b1e7a41f23205b96751",
+      "outputSha256": "e9d709104685b44fdf018838e03c3cb778ad745541f58b1e7a41f23205b96751",
+      "rgbaSha256": "a70b56da0fbfdd3a466689b6850082216b7e1327984e9608f28e03f61accf0fb",
+      "size": [349, 112],
+      "output": "ios/Harbor/Assets.xcassets/stream-badge-cam.imageset/original.png"
+    },
+    "telesync": {
+      "source": "src/assets/badges/telesync.png",
+      "sourceSha256": "71fb3e104e0fc5a8895461fd068b2e28096927dca70109ad3ae194786fa39fbc",
+      "outputSha256": "71fb3e104e0fc5a8895461fd068b2e28096927dca70109ad3ae194786fa39fbc",
+      "rgbaSha256": "96b1284c8935b84384708a17d3c6835ddf8fa5de5bf62f60530b71a226a250bc",
+      "size": [195, 112],
+      "output": "ios/Harbor/Assets.xcassets/stream-badge-telesync.imageset/original.png"
+    },
+    "telecine": {
+      "source": "src/assets/badges/telecine.png",
+      "sourceSha256": "7330ffa62f6ea9d638b5a0bb495d7b7a3b7e3c81c5d024910a3809b4fc98a324",
+      "outputSha256": "7330ffa62f6ea9d638b5a0bb495d7b7a3b7e3c81c5d024910a3809b4fc98a324",
+      "rgbaSha256": "dc49c670f8662018d5418eefa6019241b78e713a9c925fc737a2bdef5c9968ea",
+      "size": [199, 112],
+      "output": "ios/Harbor/Assets.xcassets/stream-badge-telecine.imageset/original.png"
+    },
+    "bluray": {
+      "source": "src/assets/badges/bluray.png",
+      "sourceSha256": "7dc3754bc50452d29a9280506c96d92ed7fc0e7f413ba3df770a3aa75b90f664",
+      "outputSha256": "7dc3754bc50452d29a9280506c96d92ed7fc0e7f413ba3df770a3aa75b90f664",
+      "rgbaSha256": "ea2270e4fb021fe4a8b277827ec2ee16c16ea399704b1ce2b91d51ba26915c15",
+      "size": [427, 103],
+      "output": "ios/Harbor/Assets.xcassets/stream-badge-bluray.imageset/original.png"
+    },
+    "remux": {
+      "source": "src/assets/badges/remux.png",
+      "sourceSha256": "356345b2ee906a0ed208cd312ddafa9f421248e7589a7652e566dd23aaf46b74",
+      "outputSha256": "356345b2ee906a0ed208cd312ddafa9f421248e7589a7652e566dd23aaf46b74",
+      "rgbaSha256": "6c1796332b44ad3b526e247f82c9d31585e65b25e37f6f6e256b4685604a2c63",
+      "size": [444, 100],
+      "output": "ios/Harbor/Assets.xcassets/stream-badge-remux.imageset/original.png"
+    },
+    "webdl": {
+      "source": "src/assets/badges/webdl.png",
+      "sourceSha256": "b77d08839a33f0bda87b2dc577427047cce2ae9f6210e9725d287b0600fcb78f",
+      "outputSha256": "b77d08839a33f0bda87b2dc577427047cce2ae9f6210e9725d287b0600fcb78f",
+      "rgbaSha256": "30e16e2ad2cfda4fd9372555e7e831fd96e48b8e1ceb2402f37e9801f2600251",
+      "size": [455, 100],
+      "output": "ios/Harbor/Assets.xcassets/stream-badge-webdl.imageset/original.png"
+    },
+    "hdtv": {
+      "source": "src/assets/badges/hdtv.png",
+      "sourceSha256": "4934d3575cbe69329b0c478fa2547fe5d768adbf6de1ed9fa5159b604bb7fb47",
+      "outputSha256": "4934d3575cbe69329b0c478fa2547fe5d768adbf6de1ed9fa5159b604bb7fb47",
+      "rgbaSha256": "ea89d1d7d91772d3cc4e95662bfe4a86082fa892cf2e216620beb14bfb17e6ea",
+      "size": [423, 101],
+      "output": "ios/Harbor/Assets.xcassets/stream-badge-hdtv.imageset/original.png"
+    },
+    "hevc": {
+      "source": "src/assets/badges/hevc.png",
+      "sourceSha256": "112943bce799cef67432fcc497d2d522bb88581dccb8ede8c01769b700866b77",
+      "outputSha256": "112943bce799cef67432fcc497d2d522bb88581dccb8ede8c01769b700866b77",
+      "rgbaSha256": "5bdc5e7a893dc55415ee9936d03a4e24238edd60e6396e9de264d3e26311ca62",
+      "size": [235, 103],
+      "output": "ios/Harbor/Assets.xcassets/stream-badge-hevc.imageset/original.png"
+    },
+    "av1": {
+      "source": "src/assets/badges/av1.png",
+      "sourceSha256": "c214e987010355dfcddfe8a8fc78cea0f6704a12d5ded70b2199ebbe464bfb07",
+      "outputSha256": "c214e987010355dfcddfe8a8fc78cea0f6704a12d5ded70b2199ebbe464bfb07",
+      "rgbaSha256": "ae5dfefe2b901019e59996e951c334e023ca259f5d337a536822866e4d8576b2",
+      "size": [233, 98],
+      "output": "ios/Harbor/Assets.xcassets/stream-badge-av1.imageset/original.png"
+    },
+    "dv": {
+      "source": "src/assets/badges/dv.webp",
+      "sourceSha256": "ea56c8749416195fb0250283b93aed1115e42b1ee0500f9893f9a0bf65839ac7",
+      "outputSha256": "3391003470724e928b5c074402b711042315bf6034b3deafa1e6a82c3dd61bc1",
+      "rgbaSha256": "37881dd2819041ab31bbea5b24ee6e570fa85df4f86ee714ea91fd243ae7262a",
+      "size": [267, 109],
+      "output": "ios/Harbor/Assets.xcassets/stream-badge-dv.imageset/original.png"
+    },
+    "hdr10-plus": {
+      "source": "src/assets/badges/hdr10plus.webp",
+      "sourceSha256": "26870596c286b2bfc4ba33930fa6c6f0d22eecdfaedbadf7ed65c40ac4b96340",
+      "outputSha256": "7fe0706a462f74f051ef5ec1e65840ee075c2b807736a925b105532fbb5a4b46",
+      "rgbaSha256": "b49c6d5897a0234ccd76755d3da96acb0c5b2e1830d0a030ffd337d1b6345a95",
+      "size": [529, 108],
+      "output": "ios/Harbor/Assets.xcassets/stream-badge-hdr10-plus.imageset/original.png"
+    },
+    "hdr10": {
+      "source": "src/assets/badges/hdr10.png",
+      "sourceSha256": "87033fde342339a029923f648e7b49bd8cedc9a96229b68889d114d20e10759c",
+      "outputSha256": "87033fde342339a029923f648e7b49bd8cedc9a96229b68889d114d20e10759c",
+      "rgbaSha256": "2e8e96982ea655557c8aa5c656b4e9b617042827ae5f0744b34c3ae59916ecfa",
+      "size": [469, 107],
+      "output": "ios/Harbor/Assets.xcassets/stream-badge-hdr10.imageset/original.png"
+    },
+    "hlg": {
+      "source": "src/assets/badges/hlg.png",
+      "sourceSha256": "4647d0377d274e995cc5df71b3366a65e90b9b13e81a9bab63ab467c0f9d0a54",
+      "outputSha256": "4647d0377d274e995cc5df71b3366a65e90b9b13e81a9bab63ab467c0f9d0a54",
+      "rgbaSha256": "342e7c935607b3121f405d4dffdfdcb486f0a525eb38e39565af42de4eb29f17",
+      "size": [305, 101],
+      "output": "ios/Harbor/Assets.xcassets/stream-badge-hlg.imageset/original.png"
+    },
+    "atmos": {
+      "source": "src/assets/badges/atmos.webp",
+      "sourceSha256": "1c81b126897807409ecb9e3eae9b69bfbc222d5c910dbb57ec003e10e09f2b28",
+      "outputSha256": "c6dd409675616714e3ea8de22902bb6345f89bd90c9e89092a0de47c594370cb",
+      "rgbaSha256": "3f340283493fe1b9d1c3de0ec01aa1f1d6870d297b4f25eeecb43fb7a68f1888",
+      "size": [267, 109],
+      "output": "ios/Harbor/Assets.xcassets/stream-badge-atmos.imageset/original.png"
+    },
+    "truehd": {
+      "source": "src/assets/badges/truehd.webp",
+      "sourceSha256": "385f8a9fb18c3f00975f0ac081c7332a7036b265030d11a1515736eb39a1a7f9",
+      "outputSha256": "bce7bf557a85906b3a66186e17d2a2190194fdd2d7bfd22c85ce8a01829da019",
+      "rgbaSha256": "a5f4831598595e80f94d08c13a0ee4fcf3792db60e1a3522e2572603cf3b4920",
+      "size": [267, 109],
+      "output": "ios/Harbor/Assets.xcassets/stream-badge-truehd.imageset/original.png"
+    },
+    "dts-hd": {
+      "source": "src/assets/badges/dtshd.webp",
+      "sourceSha256": "e5d5fff47f413d5c18a87de919e48958da05287063c3a20a7e7f33b6eb275914",
+      "outputSha256": "68abd763d073ee7e28f3a35c9f13d6f00ad81ef59284fbad22e2ceb9cd9fc1e8",
+      "rgbaSha256": "c1162c160af56c09cebdb14302afbac6d724b69ae4cb8bd13e360465be3d701d",
+      "size": [638, 109],
+      "output": "ios/Harbor/Assets.xcassets/stream-badge-dts-hd.imageset/original.png"
+    },
+    "dts": {
+      "source": "src/assets/badges/dts.png",
+      "sourceSha256": "336e5c75a4c9d680c4f5f8c35e2a0d982de9ac9fe89ec721eca3a790cceadb80",
+      "outputSha256": "336e5c75a4c9d680c4f5f8c35e2a0d982de9ac9fe89ec721eca3a790cceadb80",
+      "rgbaSha256": "99cb5c1f936d50aaf151ed2444149468ba94802e5d4f477909a27fd1f5e13538",
+      "size": [443, 109],
+      "output": "ios/Harbor/Assets.xcassets/stream-badge-dts.imageset/original.png"
+    },
+    "ddp": {
+      "source": "src/assets/badges/ddplus.png",
+      "sourceSha256": "101c5dacf29cbbb213a758f961fef305eb1dba03c6064a0db56aa75624079e25",
+      "outputSha256": "101c5dacf29cbbb213a758f961fef305eb1dba03c6064a0db56aa75624079e25",
+      "rgbaSha256": "abdeab5cd38767f0f560bd1ba72db8f879b39e6aa305193b51c605c692f3ad88",
+      "size": [267, 109],
+      "output": "ios/Harbor/Assets.xcassets/stream-badge-ddp.imageset/original.png"
+    },
+    "flac": {
+      "source": "src/assets/badges/flac.png",
+      "sourceSha256": "7f51976e08d26cf65d34fd662bc4641fae9cc789d581c7dd0b1784472c320d9a",
+      "outputSha256": "7f51976e08d26cf65d34fd662bc4641fae9cc789d581c7dd0b1784472c320d9a",
+      "rgbaSha256": "38ea90ef9dbfd358737c4618397830d914f28f368cc0ff058304001d52636297",
+      "size": [336, 100],
+      "output": "ios/Harbor/Assets.xcassets/stream-badge-flac.imageset/original.png"
+    },
+    "aac": {
+      "source": "src/assets/badges/aac.png",
+      "sourceSha256": "572f9b8e66ccefae75e30294bd81913cf757c7f4a5181263313bd5bb12656135",
+      "outputSha256": "572f9b8e66ccefae75e30294bd81913cf757c7f4a5181263313bd5bb12656135",
+      "rgbaSha256": "0850a6fc9c68fff9e478eb8b2ac4abfde2a2c269a065f0c83366ee91e2b4ff0a",
+      "size": [302, 100],
+      "output": "ios/Harbor/Assets.xcassets/stream-badge-aac.imageset/original.png"
+    },
+    "mono": {
+      "source": "src/assets/badges/mono.png",
+      "sourceSha256": "831c6ce296207798d91e516f627c4771a8422896402686a1de3090868f5d1bbf",
+      "outputSha256": "831c6ce296207798d91e516f627c4771a8422896402686a1de3090868f5d1bbf",
+      "rgbaSha256": "b2ce9dab07e877ebbad0c982cbe5c28a5b22509f5e4fef97492802ee39683a17",
+      "size": [343, 100],
+      "output": "ios/Harbor/Assets.xcassets/stream-badge-mono.imageset/original.png"
+    },
+    "imax": {
+      "source": "src/assets/badges/imax.png",
+      "sourceSha256": "4fb9facc43261705f880459a551b7735f949a584608c8d9b6a859b14c85fe70b",
+      "outputSha256": "4fb9facc43261705f880459a551b7735f949a584608c8d9b6a859b14c85fe70b",
+      "rgbaSha256": "a4303017a4411afe7ceeff7e22296bcdd9647344c59ceb4868851fd8615ac094",
+      "size": [566, 109],
+      "output": "ios/Harbor/Assets.xcassets/stream-badge-imax.imageset/original.png"
+    },
+    "extended": {
+      "source": "src/assets/badges/extended.png",
+      "sourceSha256": "b12011178b53d856d6ac0d73f871fc5f739b9866389063e9b1c94c82ceca78a1",
+      "outputSha256": "b12011178b53d856d6ac0d73f871fc5f739b9866389063e9b1c94c82ceca78a1",
+      "rgbaSha256": "e44f73f66e91f7cab4ad97cb9bdf132fe6d50bf97b717be4a5c2faccb591e98b",
+      "size": [294, 102],
+      "output": "ios/Harbor/Assets.xcassets/stream-badge-extended.imageset/original.png"
+    },
+    "remastered": {
+      "source": "src/assets/badges/remastered.png",
+      "sourceSha256": "e8a8550133eeb76a77960882550ff10da7a532527e06678c962ce911b2181f1b",
+      "outputSha256": "e8a8550133eeb76a77960882550ff10da7a532527e06678c962ce911b2181f1b",
+      "rgbaSha256": "01aa59a74b1239dca520ebf238d453a7a59cc90bbeac3e23ae3ec8f2fd369429",
+      "size": [676, 112],
+      "output": "ios/Harbor/Assets.xcassets/stream-badge-remastered.imageset/original.png"
+    },
+    "repack": {
+      "source": "src/assets/badges/repack.png",
+      "sourceSha256": "7e45204d6e4014d5bb263ef1395514160da7da2eb88dc42cd466f1d0b0fed1fd",
+      "outputSha256": "7e45204d6e4014d5bb263ef1395514160da7da2eb88dc42cd466f1d0b0fed1fd",
+      "rgbaSha256": "ccb8d8c4c7be7cc039259e0dd31fa083797e127ab2987f75f1bef3739edda0d6",
+      "size": [648, 112],
+      "output": "ios/Harbor/Assets.xcassets/stream-badge-repack.imageset/original.png"
+    },
+    "no-label": {
+      "source": "src/assets/badges/no_label.png",
+      "sourceSha256": "a054a6539caf51f46bb197a7f2b6859a90478674d2791230713315ff463bb8e3",
+      "outputSha256": "a054a6539caf51f46bb197a7f2b6859a90478674d2791230713315ff463bb8e3",
+      "rgbaSha256": "a43f3a0c20df5953300279dc275b86a0b1c07ee76abd9bc406963ade68eb9671",
+      "size": [820, 112],
+      "output": "ios/Harbor/Assets.xcassets/stream-badge-no-label.imageset/original.png"
+    },
+    "unknown": {
+      "source": "src/assets/badges/unknown.png",
+      "sourceSha256": "b19d459bed34aa72a632b755e2fe9875dbe656ee6deebfffa8d86d68fe565d1d",
+      "outputSha256": "b19d459bed34aa72a632b755e2fe9875dbe656ee6deebfffa8d86d68fe565d1d",
+      "rgbaSha256": "07c95cc6fc9583d3c0093336bac472146f04c127c55dcccf2240d57309b64010",
+      "size": [910, 112],
+      "output": "ios/Harbor/Assets.xcassets/stream-badge-unknown.imageset/original.png"
+    }
+  }
+}

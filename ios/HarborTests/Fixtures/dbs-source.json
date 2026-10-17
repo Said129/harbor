@@ -1,0 +1,1074 @@
+{
+  "id": "tt4644488",
+  "type": "series",
+  "name": "Dragon Ball Super",
+  "country": "Japan",
+  "genres": ["Animation", "Action", "Adventure"],
+  "imdb_id": "tt4644488",
+  "videos": [
+    {
+      "id": "tt4644488:0:3",
+      "season": 0,
+      "episode": 3,
+      "name": "Dragon Ball Super: Broly",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/0/3/w780.jpg",
+      "released": "2018-12-14T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:0:4",
+      "season": 0,
+      "episode": 4,
+      "name": "Dragon Ball Super: Super Hero",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/0/4/w780.jpg",
+      "released": "2022-06-11T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:1:1",
+      "season": 1,
+      "episode": 1,
+      "name": "A Peacetime Reward: Who Gets the 100,000,000 Zeni?!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/1/1/w780.jpg",
+      "released": "2015-07-05T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:1:2",
+      "season": 1,
+      "episode": 2,
+      "name": "To the Promised Resort! Vegeta Takes a Family Trip!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/1/2/w780.jpg",
+      "released": "2015-07-12T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:1:3",
+      "season": 1,
+      "episode": 3,
+      "name": "Where Does the Dream Pick Up? Find the Super Saiyan God!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/1/3/w780.jpg",
+      "released": "2015-07-19T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:1:4",
+      "season": 1,
+      "episode": 4,
+      "name": "Bid for the Dragon Balls! Pilaf and Crew's Impossible Mission!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/1/4/w780.jpg",
+      "released": "2015-08-02T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:1:5",
+      "season": 1,
+      "episode": 5,
+      "name": "Showdown on King Kai's World! Goku vs. Beerus the Destroyer!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/1/5/w780.jpg",
+      "released": "2015-08-09T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:1:6",
+      "season": 1,
+      "episode": 6,
+      "name": "Don't Anger the Destroyer! A Heart-Pounding Birthday Party",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/1/6/w780.jpg",
+      "released": "2015-08-16T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:1:7",
+      "season": 1,
+      "episode": 7,
+      "name": "How Dare You Do That to My Bulma! Vegeta's Metamorphosis of Fury?",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/1/7/w780.jpg",
+      "released": "2015-08-23T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:1:8",
+      "season": 1,
+      "episode": 8,
+      "name": "Goku Makes an Entrance! A Last Chance from Lord Beerus?",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/1/8/w780.jpg",
+      "released": "2015-08-30T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:1:9",
+      "season": 1,
+      "episode": 9,
+      "name": "Thanks for Waiting, Lord Beerus! A Super Saiyan God is Born at Last!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/1/9/w780.jpg",
+      "released": "2015-09-06T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:1:10",
+      "season": 1,
+      "episode": 10,
+      "name": "Show Us, Goku! The Power of a Super Saiyan God!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/1/10/w780.jpg",
+      "released": "2015-09-13T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:1:11",
+      "season": 1,
+      "episode": 11,
+      "name": "Let's Keep Going, Lord Beerus! The Battle of Gods!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/1/11/w780.jpg",
+      "released": "2015-09-20T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:1:12",
+      "season": 1,
+      "episode": 12,
+      "name": "The Universe Will Shatter? Clash! Destroyer vs. Super Saiyan God!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/1/12/w780.jpg",
+      "released": "2015-09-27T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:1:13",
+      "season": 1,
+      "episode": 13,
+      "name": "Goku, Surpass Super Saiyan God!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/1/13/w780.jpg",
+      "released": "2015-10-04T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:1:14",
+      "season": 1,
+      "episode": 14,
+      "name": "This is All the Power I've Got! A Settlement Between Gods",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/1/14/w780.jpg",
+      "released": "2015-10-11T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:2:1",
+      "season": 2,
+      "episode": 1,
+      "name": "Valiant Mr. Satan, Work a Miracle! A Challenge from Outer Space!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/2/1/w780.jpg",
+      "released": "2015-10-18T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:2:2",
+      "season": 2,
+      "episode": 2,
+      "name": "Vegeta Becomes a Student?! Win Over Whis!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/2/2/w780.jpg",
+      "released": "2015-10-25T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:2:3",
+      "season": 2,
+      "episode": 3,
+      "name": "Pan is Born! And Goku Goes on a Training Journey?!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/2/3/w780.jpg",
+      "released": "2015-11-01T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:2:4",
+      "season": 2,
+      "episode": 4,
+      "name": "I'm Here, Too! Training Commences on Beerus' World",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/2/4/w780.jpg",
+      "released": "2015-11-08T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:2:5",
+      "season": 2,
+      "episode": 5,
+      "name": "Despair Redux! The Return of the Evil Emperor, Frieza!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/2/5/w780.jpg",
+      "released": "2015-11-15T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:2:6",
+      "season": 2,
+      "episode": 6,
+      "name": "A Warning from Jaco! Frieza and 1,000 Soldiers Close In",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/2/6/w780.jpg",
+      "released": "2015-11-22T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:2:7",
+      "season": 2,
+      "episode": 7,
+      "name": "The Start of Vengeance! The Frieza Force's Malice Strikes Gohan!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/2/7/w780.jpg",
+      "released": "2015-11-29T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:2:8",
+      "season": 2,
+      "episode": 8,
+      "name": "Change! An Unexpected Return! His Name is Ginyu!!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/2/8/w780.jpg",
+      "released": "2015-12-06T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:2:9",
+      "season": 2,
+      "episode": 9,
+      "name": "Earth! Gohan! Both on the Ropes! Hurry and Get Here, Goku!!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/2/9/w780.jpg",
+      "released": "2015-12-13T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:2:10",
+      "season": 2,
+      "episode": 10,
+      "name": "Clash! Frieza vs. Goku! This is the Result of My Training!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/2/10/w780.jpg",
+      "released": "2015-12-20T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:2:11",
+      "season": 2,
+      "episode": 11,
+      "name": "A Full-Throttle Battle! The Vengeful Golden Frieza",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/2/11/w780.jpg",
+      "released": "2015-12-27T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:2:12",
+      "season": 2,
+      "episode": 12,
+      "name": "A Chance Appears in a Tight Spot! Launch a Counteroffensive, Goku!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/2/12/w780.jpg",
+      "released": "2016-01-10T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:2:13",
+      "season": 2,
+      "episode": 13,
+      "name": "The Earth Explodes? A Decisive Kamehameha!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/2/13/w780.jpg",
+      "released": "2016-01-17T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:3:1",
+      "season": 3,
+      "episode": 1,
+      "name": "The 6th Universe's Destroyer! His Name is Champa!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/3/1/w780.jpg",
+      "released": "2016-01-24T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:3:2",
+      "season": 3,
+      "episode": 2,
+      "name": "Combat Matches Are a Go! The Captain is Someone Stronger Than Goku",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/3/2/w780.jpg",
+      "released": "2016-01-31T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:3:3",
+      "season": 3,
+      "episode": 3,
+      "name": "A Run-Through For the Competition! Who Are the Last Two Members?",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/3/3/w780.jpg",
+      "released": "2016-02-07T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:3:4",
+      "season": 3,
+      "episode": 4,
+      "name": "Off to See Master Zuno! Find Out Where the Super Dragon Balls Are!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/3/4/w780.jpg",
+      "released": "2016-02-14T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:3:5",
+      "season": 3,
+      "episode": 5,
+      "name": "The Matches Begin! We're All Off to the Planet with No Name!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/3/5/w780.jpg",
+      "released": "2016-02-21T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:3:6",
+      "season": 3,
+      "episode": 6,
+      "name": "Surprise, 6th Universe! This is Super Saiyan Goku!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/3/6/w780.jpg",
+      "released": "2016-02-28T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:3:7",
+      "season": 3,
+      "episode": 7,
+      "name": "Piccolo vs Frost! Stake it All on the Special Beam Cannon!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/3/7/w780.jpg",
+      "released": "2016-03-06T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:3:8",
+      "season": 3,
+      "episode": 8,
+      "name": "Turn Your Anger into Strength! Vegeta's Full-Bore Battle",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/3/8/w780.jpg",
+      "released": "2016-03-20T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:3:9",
+      "season": 3,
+      "episode": 9,
+      "name": "An Unexpectedly Uphill Battle! Vegeta's Great Blast of Fury!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/3/9/w780.jpg",
+      "released": "2016-03-27T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:3:10",
+      "season": 3,
+      "episode": 10,
+      "name": "Don't Forget Your Saiyan Pride! Vegeta vs. The 6th Universe's Saiyan!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/3/10/w780.jpg",
+      "released": "2016-04-03T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:3:11",
+      "season": 3,
+      "episode": 11,
+      "name": "The 6th Universe's Mightiest Warrior! Engage the Assassin Hit!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/3/11/w780.jpg",
+      "released": "2016-04-10T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:3:12",
+      "season": 3,
+      "episode": 12,
+      "name": "A Developed \"Time Skip\" Counterstrike? Here Comes Goku's New Move!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/3/12/w780.jpg",
+      "released": "2016-04-17T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:3:13",
+      "season": 3,
+      "episode": 13,
+      "name": "A Decision at Last! Is the Winner Beerus? Or is it Champa?",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/3/13/w780.jpg",
+      "released": "2016-04-24T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:3:14",
+      "season": 3,
+      "episode": 14,
+      "name": "Come Forth, Divine Dragon! And Grant My Wish, Peas and Carrots!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/3/14/w780.jpg",
+      "released": "2016-05-01T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:3:15",
+      "season": 3,
+      "episode": 15,
+      "name": "A Chaotic Victory Party! Showdown at Last? Monaka vs. Goku!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/3/15/w780.jpg",
+      "released": "2016-05-08T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:3:16",
+      "season": 3,
+      "episode": 16,
+      "name": "Goku's Energy is Out of Control? The Struggle to Look After Pan",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/3/16/w780.jpg",
+      "released": "2016-05-15T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:3:17",
+      "season": 3,
+      "episode": 17,
+      "name": "The Seal of Planet Pot-au-feu; Secrets of the Unleashed Superhuman Water!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/3/17/w780.jpg",
+      "released": "2016-05-22T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:3:18",
+      "season": 3,
+      "episode": 18,
+      "name": "Vegeta Disappears?! Menace of the Duplicate Vegeta!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/3/18/w780.jpg",
+      "released": "2016-05-29T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:3:19",
+      "season": 3,
+      "episode": 19,
+      "name": "Goku vs. the Duplicate Vegeta! Which One is Going to Win?",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/3/19/w780.jpg",
+      "released": "2016-06-05T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:4:1",
+      "season": 4,
+      "episode": 1,
+      "name": "SOS from the Future: A Dark New Enemy Appears!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/4/1/w780.jpg",
+      "released": "2016-06-12T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:4:2",
+      "season": 4,
+      "episode": 2,
+      "name": "HOPE!! Redux: Awaken in the Present, Trunks",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/4/2/w780.jpg",
+      "released": "2016-06-19T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:4:3",
+      "season": 4,
+      "episode": 3,
+      "name": "A Message From the Future - The Incursion of Goku Black!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/4/3/w780.jpg",
+      "released": "2016-06-26T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:4:4",
+      "season": 4,
+      "episode": 4,
+      "name": "Goku vs. Black! A Closed-Off Road to the Future",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/4/4/w780.jpg",
+      "released": "2016-07-03T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:4:5",
+      "season": 4,
+      "episode": 5,
+      "name": "Feelings That Transcend Time: Trunks and Mai",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/4/5/w780.jpg",
+      "released": "2016-07-10T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:4:6",
+      "season": 4,
+      "episode": 6,
+      "name": "Master and Pupil Reunited! Gohan and Future Trunks!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/4/6/w780.jpg",
+      "released": "2016-07-17T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:4:7",
+      "season": 4,
+      "episode": 7,
+      "name": "Uncover Black's Identity! Off to the 10th Universe's World of the Kai!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/4/7/w780.jpg",
+      "released": "2016-07-31T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:4:8",
+      "season": 4,
+      "episode": 8,
+      "name": "He Who is of Saiyan Blood: Trunks's Resolve",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/4/8/w780.jpg",
+      "released": "2016-08-07T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:4:9",
+      "season": 4,
+      "episode": 9,
+      "name": "I'd Like to See Goku, You See! A Summons From Grand Zeno!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/4/9/w780.jpg",
+      "released": "2016-08-21T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:4:10",
+      "season": 4,
+      "episode": 10,
+      "name": "Rematch with Goku Black! Enter Super Saiyan Rosé",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/4/10/w780.jpg",
+      "released": "2016-08-28T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:4:11",
+      "season": 4,
+      "episode": 11,
+      "name": "A God with an Invincible Body - The Advent of Zamasu",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/4/11/w780.jpg",
+      "released": "2016-09-04T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:4:12",
+      "season": 4,
+      "episode": 12,
+      "name": "Zamasu and Black - The Duo's Mystery Deepens",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/4/12/w780.jpg",
+      "released": "2016-09-11T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:4:13",
+      "season": 4,
+      "episode": 13,
+      "name": "Protect The Supreme Kai Gowasu - Destroy Zamasu!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/4/13/w780.jpg",
+      "released": "2016-09-25T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:4:14",
+      "season": 4,
+      "episode": 14,
+      "name": "Into the Future Once Again - Goku Black's True Identity Revealed!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/4/14/w780.jpg",
+      "released": "2016-10-02T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:4:15",
+      "season": 4,
+      "episode": 15,
+      "name": "Zamasu's Ambition – The Storied \"Project 0 Mortals\" of Terror",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/4/15/w780.jpg",
+      "released": "2016-10-09T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:4:16",
+      "season": 4,
+      "episode": 16,
+      "name": "I Will Defend the World! Trunks' Furious Burst of Super Power!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/4/16/w780.jpg",
+      "released": "2016-10-16T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:4:17",
+      "season": 4,
+      "episode": 17,
+      "name": "Don't You Disgrace Saiyan Cells! Vegeta's Fierce Battle Commences!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/4/17/w780.jpg",
+      "released": "2016-10-23T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:4:18",
+      "season": 4,
+      "episode": 18,
+      "name": "Worship Me! Give Praise Unto Me! The Explosive Birth of a Merged Zamasu!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/4/18/w780.jpg",
+      "released": "2016-10-30T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:4:19",
+      "season": 4,
+      "episode": 19,
+      "name": "Final Judgement? The Ultimate Power of an Absolute God",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/4/19/w780.jpg",
+      "released": "2016-11-06T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:4:20",
+      "season": 4,
+      "episode": 20,
+      "name": "Showdown! The Miraculous Power of Unyielding Warriors",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/4/20/w780.jpg",
+      "released": "2016-11-13T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:4:21",
+      "season": 4,
+      "episode": 21,
+      "name": "With New Hope in His Heart - Farewell, Trunks",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/4/21/w780.jpg",
+      "released": "2016-11-20T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:4:22",
+      "season": 4,
+      "episode": 22,
+      "name": "Come Forth, Shenron! Whose Wish Will Be Granted?",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/4/22/w780.jpg",
+      "released": "2016-11-27T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:4:23",
+      "season": 4,
+      "episode": 23,
+      "name": "Goku vs. Arale! An Off-the-Wall Battle Spells the End of the Earth?",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/4/23/w780.jpg",
+      "released": "2016-12-04T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:4:24",
+      "season": 4,
+      "episode": 24,
+      "name": "A Challenge From Champa! This Time, a Baseball Game!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/4/24/w780.jpg",
+      "released": "2016-12-11T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:4:25",
+      "season": 4,
+      "episode": 25,
+      "name": "Goku Dies! An Assassination That Must Be Executed!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/4/25/w780.jpg",
+      "released": "2016-12-18T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:4:26",
+      "season": 4,
+      "episode": 26,
+      "name": "Will He Strike Back? The Unseen Killing Technique!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/4/26/w780.jpg",
+      "released": "2016-12-25T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:4:27",
+      "season": 4,
+      "episode": 27,
+      "name": "Gohan's Plight! The Preposterous Great Saiyaman Film Adaptation?!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/4/27/w780.jpg",
+      "released": "2017-01-08T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:4:28",
+      "season": 4,
+      "episode": 28,
+      "name": "For My Beloved Ones! The Indomitable Great Saiyaman!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/4/28/w780.jpg",
+      "released": "2017-01-15T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:4:29",
+      "season": 4,
+      "episode": 29,
+      "name": "Goku and Krillin! Back to the Old Familiar Training Ground!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/4/29/w780.jpg",
+      "released": "2017-01-22T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:4:30",
+      "season": 4,
+      "episode": 30,
+      "name": "Conquer the Terrifying Foes! Krillin's Fighting Spirit Rebounds!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/4/30/w780.jpg",
+      "released": "2017-01-29T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:5:1",
+      "season": 5,
+      "episode": 1,
+      "name": "Let's Do It, Grand Zeno! The Universes' Best Tournament!!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/5/1/w780.jpg",
+      "released": "2017-02-05T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:5:2",
+      "season": 5,
+      "episode": 2,
+      "name": "Even the Universes' Gods are Appalled?! The Lose-and-Perish Tournament of Power",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/5/2/w780.jpg",
+      "released": "2017-02-12T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:5:3",
+      "season": 5,
+      "episode": 3,
+      "name": "The 9th Universe's Kicking Basil vs. the 7th Universe's Majin Buu!!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/5/3/w780.jpg",
+      "released": "2017-02-19T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:5:4",
+      "season": 5,
+      "episode": 4,
+      "name": "Awaken Your Dormant Fighting Spirit! Gohan's Fight!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/5/4/w780.jpg",
+      "released": "2017-02-26T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:5:5",
+      "season": 5,
+      "episode": 5,
+      "name": "Bergamo the Crusher vs. Goku! Whose Strength Reaches the Wild Blue Yonder?",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/5/5/w780.jpg",
+      "released": "2017-03-05T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:5:6",
+      "season": 5,
+      "episode": 6,
+      "name": "Goku Must Pay! The Warrior of Justice Top Barges In!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/5/6/w780.jpg",
+      "released": "2017-03-19T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:5:7",
+      "season": 5,
+      "episode": 7,
+      "name": "Field the All-7th-Universe Team! Who are the Mighty Ten?",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/5/7/w780.jpg",
+      "released": "2017-03-26T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:5:8",
+      "season": 5,
+      "episode": 8,
+      "name": "Goku the Talent Scout! Recruit Krillin and Android 18",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/5/8/w780.jpg",
+      "released": "2017-04-02T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:5:9",
+      "season": 5,
+      "episode": 9,
+      "name": "The Universes Go Into Action - Each With Their Own Motives",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/5/9/w780.jpg",
+      "released": "2017-04-09T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:5:10",
+      "season": 5,
+      "episode": 10,
+      "name": "First Time Exchanging Blows! Android 17 vs. Goku!!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/5/10/w780.jpg",
+      "released": "2017-04-16T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:5:11",
+      "season": 5,
+      "episode": 11,
+      "name": "Hunt the Poaching Ring! Goku and Android 17's Joint Struggle!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/5/11/w780.jpg",
+      "released": "2017-04-23T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:5:12",
+      "season": 5,
+      "episode": 12,
+      "name": "Gohan and Piccolo Master and Pupil Clash in Max Training!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/5/12/w780.jpg",
+      "released": "2017-04-30T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:5:13",
+      "season": 5,
+      "episode": 13,
+      "name": "A Mysterious Beauty Appears! The Enigma of the Tien Shin-Style Dojo?",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/5/13/w780.jpg",
+      "released": "2017-05-07T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:5:14",
+      "season": 5,
+      "episode": 14,
+      "name": "Staring Down the Wall to be Overcome! Goku vs. Gohan",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/5/14/w780.jpg",
+      "released": "2017-05-14T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:5:15",
+      "season": 5,
+      "episode": 15,
+      "name": "Which Universe Will Win Their Place? The Mighty Warriors Gradually Assemble!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/5/15/w780.jpg",
+      "released": "2017-05-21T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:5:16",
+      "season": 5,
+      "episode": 16,
+      "name": "A State of Emergency! Failure to Reach Ten Members!!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/5/16/w780.jpg",
+      "released": "2017-05-28T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:5:17",
+      "season": 5,
+      "episode": 17,
+      "name": "You're Our Tenth Warrior! Goku Approaches Frieza!!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/5/17/w780.jpg",
+      "released": "2017-06-04T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:5:18",
+      "season": 5,
+      "episode": 18,
+      "name": "The Evil Emperor Returns! A Reception from Mysterious Assassins?",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/5/18/w780.jpg",
+      "released": "2017-06-11T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:5:19",
+      "season": 5,
+      "episode": 19,
+      "name": "Most Heinous! Most Evil! Frieza's Rampage!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/5/19/w780.jpg",
+      "released": "2017-06-18T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:5:20",
+      "season": 5,
+      "episode": 20,
+      "name": "The Time Has Come! To the Null Realm with the Universes on the Line!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/5/20/w780.jpg",
+      "released": "2017-06-25T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:5:21",
+      "season": 5,
+      "episode": 21,
+      "name": "Survive! The \"Tournament of Power\" Begins at Last!!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/5/21/w780.jpg",
+      "released": "2017-07-02T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:5:22",
+      "season": 5,
+      "episode": 22,
+      "name": "Ah, the Uncertainty! A Universe Despairs!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/5/22/w780.jpg",
+      "released": "2017-07-09T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:5:23",
+      "season": 5,
+      "episode": 23,
+      "name": "Show Them! Krillin's Underlying Strength!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/5/23/w780.jpg",
+      "released": "2017-07-16T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:5:24",
+      "season": 5,
+      "episode": 24,
+      "name": "Rampage! A Crazed Warrior's Savagery Awakens!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/5/24/w780.jpg",
+      "released": "2017-07-23T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:5:25",
+      "season": 5,
+      "episode": 25,
+      "name": "Warriors of Justice Close In! The Pride Troopers!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/5/25/w780.jpg",
+      "released": "2017-07-30T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:5:26",
+      "season": 5,
+      "episode": 26,
+      "name": "The Power of Love Explodes? The 2nd Universe's Witchy Warriors!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/5/26/w780.jpg",
+      "released": "2017-08-06T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:5:27",
+      "season": 5,
+      "episode": 27,
+      "name": "Gohan, Get Ruthless! Showdown with the 10th Universe!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/5/27/w780.jpg",
+      "released": "2017-08-13T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:5:28",
+      "season": 5,
+      "episode": 28,
+      "name": "A Transcendent Light-Speed Battle Erupts! Goku and Hit's United Front!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/5/28/w780.jpg",
+      "released": "2017-08-20T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:5:29",
+      "season": 5,
+      "episode": 29,
+      "name": "A Valiant Fight! Master Roshi's Blaze of Glory!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/5/29/w780.jpg",
+      "released": "2017-08-27T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:5:30",
+      "season": 5,
+      "episode": 30,
+      "name": "Find them Out! Deathmatch with a Furtive Attacker!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/5/30/w780.jpg",
+      "released": "2017-09-03T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:5:31",
+      "season": 5,
+      "episode": 31,
+      "name": "Revenge 'F'! A Cunning Trap is Set?",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/5/31/w780.jpg",
+      "released": "2017-09-17T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:5:32",
+      "season": 5,
+      "episode": 32,
+      "name": "Frieza and Frost! A Mutual Malevolence?",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/5/32/w780.jpg",
+      "released": "2017-09-24T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:5:33",
+      "season": 5,
+      "episode": 33,
+      "name": "The Mightiest Enemy Zeroes in on Goku! Launch the Knockout Spirit Bomb Now!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/5/33/w780.jpg",
+      "released": "2017-10-08T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:5:34",
+      "season": 5,
+      "episode": 34,
+      "name": "Goku Enkindled! The Awakened One's New Ultra Instinct!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/5/34/w780.jpg",
+      "released": "2017-10-08T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:5:35",
+      "season": 5,
+      "episode": 35,
+      "name": "An Extra-Dimensional Ultimate Battle! Hit vs. Jiren!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/5/35/w780.jpg",
+      "released": "2017-10-15T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:5:36",
+      "season": 5,
+      "episode": 36,
+      "name": "A Saiyan Oath! Vegeta's Resolve!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/5/36/w780.jpg",
+      "released": "2017-10-22T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:5:37",
+      "season": 5,
+      "episode": 37,
+      "name": "With Great Joy! The Fighting Freak Saiyans' Battle Rejoined!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/5/37/w780.jpg",
+      "released": "2017-10-29T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:5:38",
+      "season": 5,
+      "episode": 38,
+      "name": "Bloodcurdling! The Explosive Birth of a New Super Warrior!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/5/38/w780.jpg",
+      "released": "2017-11-05T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:5:39",
+      "season": 5,
+      "episode": 39,
+      "name": "Goku vs. Kefla! Super Saiyan Blue Beaten?",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/5/39/w780.jpg",
+      "released": "2017-11-12T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:5:40",
+      "season": 5,
+      "episode": 40,
+      "name": "Signs of a Turnabout! The Autonomous Ultra Instinct Erupts!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/5/40/w780.jpg",
+      "released": "2017-11-19T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:5:41",
+      "season": 5,
+      "episode": 41,
+      "name": "Showdown of Love! The Androids vs the 2nd Universe!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/5/41/w780.jpg",
+      "released": "2017-11-26T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:5:42",
+      "season": 5,
+      "episode": 42,
+      "name": "Accelerating Tragedy - Vanishing Universes",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/5/42/w780.jpg",
+      "released": "2017-12-03T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:5:43",
+      "season": 5,
+      "episode": 43,
+      "name": "Unavoidable? The Ferocity of a Stealth Attack!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/5/43/w780.jpg",
+      "released": "2017-12-10T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:5:44",
+      "season": 5,
+      "episode": 44,
+      "name": "A Perfect Survival Strategy! The 3rd Universe's Menacing Assassin!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/5/44/w780.jpg",
+      "released": "2017-12-17T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:5:45",
+      "season": 5,
+      "episode": 45,
+      "name": "All-Out War! The Ultimate Four-Fold Union vs. the 7th Universe's Total Offensive!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/5/45/w780.jpg",
+      "released": "2017-12-24T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:5:46",
+      "season": 5,
+      "episode": 46,
+      "name": "With His Pride on the Line! Vegeta's Challenge to Be the Strongest!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/5/46/w780.jpg",
+      "released": "2018-01-07T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:5:47",
+      "season": 5,
+      "episode": 47,
+      "name": "Body, Soul and Power Unleashed! Goku and Vegeta!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/5/47/w780.jpg",
+      "released": "2018-01-14T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:5:48",
+      "season": 5,
+      "episode": 48,
+      "name": "A Storm-and-Stress Assault! Gohan's Last Stand!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/5/48/w780.jpg",
+      "released": "2018-01-21T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:5:49",
+      "season": 5,
+      "episode": 49,
+      "name": "A Commanding Presence! The Advent of Top the Destroyer!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/5/49/w780.jpg",
+      "released": "2018-01-28T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:5:50",
+      "season": 5,
+      "episode": 50,
+      "name": "Surpass Even a God! Vegeta's Sacrifice Strike!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/5/50/w780.jpg",
+      "released": "2018-02-04T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:5:51",
+      "season": 5,
+      "episode": 51,
+      "name": "The Approaching Wall! A Hopeful Final Barrier!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/5/51/w780.jpg",
+      "released": "2018-02-11T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:5:52",
+      "season": 5,
+      "episode": 52,
+      "name": "With Noble Pride to the End! Vegeta Falls!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/5/52/w780.jpg",
+      "released": "2018-02-18T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:5:53",
+      "season": 5,
+      "episode": 53,
+      "name": "A Transcendent Limit Break! Autonomous Ultra Instinct Mastered!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/5/53/w780.jpg",
+      "released": "2018-03-04T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:5:54",
+      "season": 5,
+      "episode": 54,
+      "name": "The Greatest Showdown of All Time! The Ultimate Survival Battle!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/5/54/w780.jpg",
+      "released": "2018-03-18T00:00:00.000Z"
+    },
+    {
+      "id": "tt4644488:5:55",
+      "season": 5,
+      "episode": 55,
+      "name": "A Miraculous Conclusion! Farewell, Goku! Until the Day We Meet Again!",
+      "thumbnail": "https://episodes.metahub.space/tt4644488/5/55/w780.jpg",
+      "released": "2018-03-25T00:00:00.000Z"
+    }
+  ]
+}

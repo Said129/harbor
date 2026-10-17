@@ -1,0 +1,604 @@
+[
+  {
+    "source": "src/views/home.tsx",
+    "features": [
+      "Home hero and real catalogs",
+      "Continue Watching on Home",
+      "Home row customization",
+      "Classic Stremio Home"
+    ]
+  },
+  {
+    "source": "src/views/discover.tsx",
+    "features": [
+      "Discover personalized feed",
+      "Daily discovery rails",
+      "Critics Pick",
+      "Genre discovery",
+      "Discovery Queue entry"
+    ]
+  },
+  {
+    "source": "src/views/movies.tsx",
+    "features": [
+      "Movies room",
+      "Cinema hero",
+      "Movie mood and decade rails",
+      "Movie catalog pagination"
+    ]
+  },
+  {
+    "source": "src/views/shows.tsx",
+    "features": [
+      "Shows room",
+      "Series Continue Watching",
+      "Network and premiere rails",
+      "Series catalogs"
+    ]
+  },
+  {
+    "source": "src/views/anime.tsx",
+    "features": [
+      "Anime room",
+      "Anime genres and rankings",
+      "Anime award winners",
+      "Anime Top Picks"
+    ]
+  },
+  {
+    "source": "src/lib/search.ts",
+    "features": ["Global search", "Movie search", "Series search", "Search provider aggregation"]
+  },
+  {
+    "source": "src/components/search",
+    "features": [
+      "Search people",
+      "Search anime",
+      "Search Live TV",
+      "Search direct video URLs",
+      "Search magnet links",
+      "Search guide",
+      "AI search"
+    ]
+  },
+  {
+    "source": "src/views/detail.tsx",
+    "features": [
+      "Real content details",
+      "Poster / backdrop / logo",
+      "Synopsis / genres / ratings",
+      "Cast and crew",
+      "Awards drill-down",
+      "Region Watch On links",
+      "Recommendations and similar titles"
+    ]
+  },
+  {
+    "source": "src/views/detail/series-episodes.tsx",
+    "features": ["Seasons", "Episode details", "Episode selection", "Episode watched state"]
+  },
+  {
+    "source": "src/lib/series-episodes.ts",
+    "features": ["Episode merge and deduplication", "Season episode mapping"]
+  },
+  {
+    "source": "src/lib/providers/tvdb-order.ts",
+    "features": ["Alternative episode order", "TVDB order cache"]
+  },
+  {
+    "source": "src/lib/addon-store.ts",
+    "features": [
+      "Install addon URL",
+      "Validate and fetch manifest",
+      "Configure addon URL",
+      "Uninstall addon",
+      "Enable / disable addon",
+      "Addon sharing",
+      "Configured addon credentials persistence"
+    ]
+  },
+  {
+    "source": "src/lib/addons-store",
+    "features": [
+      "Addon order",
+      "Community addon discovery",
+      "Addon recommendations",
+      "Addon adult filtering"
+    ]
+  },
+  {
+    "source": "src/views/addons.tsx",
+    "features": [
+      "Addon browser",
+      "Installed addons management",
+      "Addon configuration viewport",
+      "Addon detail pages"
+    ]
+  },
+  {
+    "source": "src/lib/addons.ts",
+    "features": [
+      "Addon catalog discovery",
+      "Catalog extras / filters",
+      "Catalog pages",
+      "Addon resource matching",
+      "Stremio addon collection sync"
+    ]
+  },
+  {
+    "source": "src/lib/streams/addons.ts",
+    "features": [
+      "Real addon stream requests",
+      "Concurrent addon requests",
+      "Addon timeouts",
+      "Partial stream results",
+      "Addon priority / return index",
+      "Stream deduplication",
+      "Multiple anime / IMDb ID matching",
+      "Tracker preservation"
+    ]
+  },
+  {
+    "source": "harbor-core/src/parser.rs",
+    "features": [
+      "Stream resolution parsing",
+      "HDR / DV parsing",
+      "Video codec parsing",
+      "Audio codec / channels parsing",
+      "Language parsing",
+      "File size parsing",
+      "Seeder parsing",
+      "Container parsing",
+      "Release group parsing",
+      "Anime filename parsing",
+      "Season / episode parsing",
+      "Edition / remux parsing"
+    ]
+  },
+  {
+    "source": "harbor-core/src/trust.rs",
+    "features": [
+      "Trust filtering",
+      "Fake / stub rejection",
+      "Title / year mismatch rejection",
+      "Cinema window heuristics",
+      "Season pack policy",
+      "CAM / TS policy",
+      "Preferred language requirement"
+    ]
+  },
+  {
+    "source": "harbor-core/src/scoring.rs",
+    "features": [
+      "Corpus statistics",
+      "Stream scoring reasons",
+      "Quality tiers",
+      "Cached Debrid ranking",
+      "Addon order ranking",
+      "Best stream selection",
+      "Bandwidth scoring",
+      "Preferred language scoring"
+    ]
+  },
+  {
+    "source": "src/lib/streams/pipeline.ts",
+    "features": [
+      "Full stream orchestration",
+      "Corroborated early leak rescue",
+      "Anime stream enrichment",
+      "Debrid library merge"
+    ]
+  },
+  {
+    "source": "src/lib/streams/resolve.ts",
+    "features": [
+      "Direct stream resolution",
+      "Playback request headers",
+      "Embedded addon subtitle URLs",
+      "Debrid resolver fallback",
+      "P2P fallback",
+      "Stub / error video validation",
+      "Episode torrent file selection",
+      "User committed uncached downloads",
+      "External / YouTube / NZB error handling"
+    ]
+  },
+  {
+    "source": "src/lib/debrid/realdebrid.ts",
+    "features": [
+      "Real-Debrid account",
+      "Real-Debrid cache checking",
+      "Real-Debrid playable URL",
+      "Real-Debrid library"
+    ]
+  },
+  {
+    "source": "src/lib/debrid/alldebrid.ts",
+    "features": [
+      "AllDebrid account",
+      "AllDebrid cache checking",
+      "AllDebrid playable URL",
+      "AllDebrid library"
+    ]
+  },
+  {
+    "source": "src/lib/debrid/premiumize.ts",
+    "features": [
+      "Premiumize account",
+      "Premiumize cache checking",
+      "Premiumize playable URL",
+      "Premiumize library"
+    ]
+  },
+  {
+    "source": "src/lib/debrid/torbox.ts",
+    "features": ["TorBox account", "TorBox cache checking", "TorBox playable URL", "TorBox library"]
+  },
+  {
+    "source": "src/lib/debrid/debridlink.ts",
+    "features": [
+      "Debrid-Link account",
+      "Debrid-Link cache checking",
+      "Debrid-Link playable URL",
+      "Debrid-Link library"
+    ]
+  },
+  {
+    "source": "src-tauri/src/torrent_engine.rs",
+    "features": [
+      "Local P2P torrent engine",
+      "DHT / tracker peer discovery",
+      "Torrent file selection",
+      "Torrent cache retention",
+      "Torrent cache size controls",
+      "Torrent statistics",
+      "Torrent engine selftest",
+      "Torrent restart / hard reset",
+      "LAN stream server"
+    ]
+  },
+  {
+    "source": "src-tauri/src/torrent_engine/stream_route.rs",
+    "features": [
+      "Local torrent HTTP streaming",
+      "Byte ranges / HEAD",
+      "Stremio compatible torrent create route",
+      "Remote engine file listing"
+    ]
+  },
+  {
+    "source": "src/lib/stremio-server.ts",
+    "features": [
+      "Remote streaming server",
+      "Strict remote server policy",
+      "Transcode URL generation",
+      "Streaming server health"
+    ]
+  },
+  { "source": "src/lib/torrent/full-download.ts", "features": ["Full torrent download"] },
+  {
+    "source": "src-tauri/src/mpv.rs",
+    "features": [
+      "Native libmpv playback",
+      "Load real media URL",
+      "Play / pause",
+      "Seek",
+      "Speed",
+      "Player volume / mute",
+      "Audio track selection",
+      "Subtitle track selection",
+      "Chapters",
+      "Hardware decoding",
+      "HDR / tonemapping",
+      "Playback state events",
+      "Audio delay",
+      "Subtitle delay",
+      "Screenshot / frame grab",
+      "Advanced mpv properties",
+      "Separate player window"
+    ]
+  },
+  {
+    "source": "src/lib/player",
+    "features": [
+      "Resume prompt",
+      "Subtitle styling",
+      "Dual subtitle tracks",
+      "Custom subtitle fonts",
+      "Playback audio filters",
+      "RTX HDR policy",
+      "Player resilience / errors",
+      "Motion interpolation policies"
+    ]
+  },
+  {
+    "source": "src/components/player",
+    "features": [
+      "Touch-equivalent transport controls",
+      "Stream switcher",
+      "Next / previous episode",
+      "Auto advance",
+      "A/B loop",
+      "Sleep timer",
+      "Stats overlay",
+      "Custom seek bar",
+      "Player chrome customization",
+      "Player episode panel",
+      "GIF recording",
+      "Local episode chooser"
+    ]
+  },
+  { "source": "src-tauri/src/anime4k.rs", "features": ["Anime4K shaders"] },
+  {
+    "source": "src/lib/skip-intro",
+    "features": [
+      "AniSkip intro / outro",
+      "TheIntroDB intro / recap",
+      "Chapter based skipping",
+      "Ad corpus / fingerprint skip"
+    ]
+  },
+  {
+    "source": "src/lib/subtitles",
+    "features": [
+      "External SRT",
+      "External ASS / SSA",
+      "External WebVTT",
+      "Subtitle encoding detection",
+      "Subtitle addon requests",
+      "Subtitle ranking / dedupe",
+      "SDH / forced flags",
+      "Subtitle text resync",
+      "OpenSubtitles v3",
+      "Wyzie subtitles"
+    ]
+  },
+  { "source": "src-tauri/src/subsync", "features": ["Audio correlation subtitle sync"] },
+  { "source": "src-tauri/src/sub_extract.rs", "features": ["Subtitle track extraction"] },
+  { "source": "src-tauri/src/pip.rs", "features": ["Picture in Picture"] },
+  {
+    "source": "src-tauri/src/thumbs.rs",
+    "features": ["Trickplay seeking previews", "Shadow mpv thumbnail session"]
+  },
+  {
+    "source": "src-tauri/src/trailer.rs",
+    "features": [
+      "YouTube trailer resolution",
+      "Trailer download / merge",
+      "Trailer quality and cache"
+    ]
+  },
+  {
+    "source": "src-tauri/src/download.rs",
+    "features": ["Media download", "Resumable range download", "Download progress / cancellation"]
+  },
+  {
+    "source": "src/lib/iptv",
+    "features": [
+      "M3U import",
+      "Xtream credentials",
+      "XMLTV EPG",
+      "Live channel catalogs",
+      "Channel categories",
+      "Live favorites",
+      "Live text search",
+      "Region top networks",
+      "Live catchup",
+      "Xtream VOD movies",
+      "Xtream VOD series",
+      "Playlist export",
+      "Persistent IPTV cache",
+      "Channel headers"
+    ]
+  },
+  {
+    "source": "src-tauri/src/dvr.rs",
+    "features": ["Scheduled DVR", "Active recordings", "Recording directory", "DVR stop / delete"]
+  },
+  {
+    "source": "src-tauri/src/multiview.rs",
+    "features": ["Multiview", "Per tile audio focus", "Multiview geometry", "Live reconnect"]
+  },
+  {
+    "source": "src-tauri/src/cast.rs",
+    "features": ["Chromecast discovery / playback", "Cast control", "Resume locally after cast"]
+  },
+  {
+    "source": "src-tauri/src/dlna.rs",
+    "features": ["DLNA discovery", "DLNA vendor capabilities", "DLNA transport controls"]
+  },
+  {
+    "source": "src-tauri/src/airplay.rs",
+    "features": ["AirPlay legacy discovery / playback"],
+    "notes": "Upstream legacy support does not prove AirPlay 2 compatibility"
+  },
+  { "source": "src-tauri/src/roku.rs", "features": ["Roku discovery / playback"] },
+  {
+    "source": "src-tauri/src/cast_hls.rs",
+    "features": ["Cast HLS transcoding", "Receiver compatible re-encode"]
+  },
+  { "source": "src-tauri/src/cast_subs.rs", "features": ["Cast subtitle conversion / serving"] },
+  {
+    "source": "src/lib/together",
+    "features": [
+      "Watch party create / join",
+      "Room invite links",
+      "Clock aligned playback sync",
+      "Together chat",
+      "On-screen cursors",
+      "Collaborative drawing",
+      "Host summon / invite",
+      "Source matching",
+      "Self-hosted relay"
+    ]
+  },
+  {
+    "source": "src-tauri/src/cf_relay.rs",
+    "features": ["Cloudflare relay deploy / check / delete"]
+  },
+  {
+    "source": "src/lib/stremio.ts",
+    "features": [
+      "Stremio login / logout",
+      "Stremio user profile",
+      "Cloud library",
+      "Cloud bookmark add / remove",
+      "Cloud progress persistence"
+    ]
+  },
+  { "source": "src/lib/stremio-library-repair.ts", "features": ["Stremio library repair"] },
+  { "source": "src/lib/continue-watching.ts", "features": ["Continue Watching merge"] },
+  { "source": "src/lib/resume.ts", "features": ["Local playback resume"] },
+  { "source": "src/lib/playback-history.ts", "features": ["Playback history"] },
+  { "source": "src/lib/watchlist.ts", "features": ["Watchlist"] },
+  { "source": "src/lib/mark-watched.ts", "features": ["Manual watched state"] },
+  {
+    "source": "src-tauri/src/local_lib.rs",
+    "features": ["Local file library scanning", "Local media import", "Local episode discovery"]
+  },
+  {
+    "source": "src/lib/trakt",
+    "features": [
+      "Trakt device login",
+      "Trakt token refresh",
+      "Trakt profile",
+      "Trakt history sync",
+      "Trakt watchlist",
+      "Trakt watchlist import / export",
+      "Trakt lists",
+      "Trakt recommendations",
+      "Trakt scrobble",
+      "Trakt calendar",
+      "Trakt comments"
+    ]
+  },
+  {
+    "source": "src/lib/anilist",
+    "features": [
+      "AniList login",
+      "AniList watched sync",
+      "AniList lists",
+      "AniList recommendations",
+      "AniList profile / avatar",
+      "AniList relations / threads"
+    ]
+  },
+  {
+    "source": "src/lib/mal",
+    "features": ["MyAnimeList login", "MAL profile", "MAL lists", "MAL watched sync"]
+  },
+  {
+    "source": "src/lib/simkl",
+    "features": [
+      "Simkl device login",
+      "Simkl history",
+      "Simkl watchlist",
+      "Simkl scrobble",
+      "Simkl calendar",
+      "Simkl user ratings",
+      "Simkl anime grouping"
+    ]
+  },
+  {
+    "source": "src/lib/stremboxd",
+    "features": [
+      "Letterboxd / Stremboxd session",
+      "Letterboxd home rails",
+      "Letterboxd catalog integration"
+    ]
+  },
+  {
+    "source": "src/lib/providers",
+    "features": [
+      "Cinemeta metadata",
+      "TMDB catalog / metadata",
+      "TMDB cast / crew / collections",
+      "TMDB IMDb ID resolution",
+      "TMDB images / trailers / providers",
+      "OMDB ratings and budget",
+      "RPDB rated posters",
+      "Fanart artwork",
+      "MDBList ratings",
+      "Wikidata awards / people",
+      "TVDB metadata / IDs",
+      "TVMaze schedules",
+      "Kitsu anime / episodes",
+      "AniZip mappings",
+      "Jikan MAL ratings"
+    ]
+  },
+  {
+    "source": "src/lib/calendar.ts",
+    "features": ["Release Calendar", "Calendar source filters", "Library release calendar"]
+  },
+  { "source": "src/lib/custom-lists.ts", "features": ["Custom lists"] },
+  {
+    "source": "src/lib/profiles.tsx",
+    "features": [
+      "Multiple profiles",
+      "Profile switching",
+      "Per-profile configuration",
+      "Profile identity sync"
+    ]
+  },
+  {
+    "source": "src/lib/parental.tsx",
+    "features": ["Parental PIN gates", "Content categories", "Age restrictions"],
+    "notes": "Upstream notes parental rework; validate each consumer before marking Desktop Working"
+  },
+  { "source": "src/lib/curfew.ts", "features": ["Curfew controls"] },
+  {
+    "source": "src/lib/theme.ts",
+    "features": [
+      "Harbor visual identity",
+      "Theme presets",
+      "Font pairings",
+      "Card / button styles",
+      "Custom navigation layouts"
+    ]
+  },
+  {
+    "source": "src/views/settings/theme-panel",
+    "features": [
+      "Theme Studio",
+      "Theme code editor",
+      "Theme import / export",
+      "Theme library",
+      "Custom background / logo"
+    ]
+  },
+  { "source": "src/lib/hotkeys.ts", "features": ["Remappable hotkeys"] },
+  { "source": "src/lib/custom-fonts.ts", "features": ["Custom font upload"] },
+  {
+    "source": "src/lib/webhook-engine.ts",
+    "features": ["Discord / Telegram webhooks", "Content notifications"]
+  },
+  { "source": "src-tauri/src/discord_rp.rs", "features": ["Discord Rich Presence"] },
+  { "source": "src/lib/ai-search.ts", "features": ["AI assisted recommendations / search"] },
+  { "source": "src-tauri/src/song_id.rs", "features": ["Song identification"] },
+  { "source": "src/lib/wrapped", "features": ["Watching statistics / Wrapped"] },
+  { "source": "src/lib/i18n", "features": ["Interface languages", "RTL-aware interface"] },
+  {
+    "source": "src/lib/remote",
+    "features": ["Remote control sessions", "Remote player binding", "Remote text entry"]
+  },
+  {
+    "source": "src-tauri/src/stream_proxy.rs",
+    "features": ["Stream header proxy", "Progressive media proxy"]
+  },
+  {
+    "source": "src-tauri/src/web_server.rs",
+    "features": ["Optional web receiver / remote interface"]
+  },
+  { "source": "src/lib/cache.ts", "features": ["Metadata cache"] },
+  {
+    "source": "src/lib/settings",
+    "features": ["Settings persistence", "Profile settings migration", "Advanced configuration"]
+  },
+  {
+    "source": "src-tauri/src/crash_report.rs",
+    "features": ["Startup crash detection", "Crash diagnostics"]
+  },
+  { "source": "src/lib/deep-link.ts", "features": ["Harbor / Stremio deep links"] },
+  { "source": "src/lib/onboarding.tsx", "features": ["Onboarding / replay"] }
+]

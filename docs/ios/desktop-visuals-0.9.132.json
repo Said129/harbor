@@ -1,0 +1,3570 @@
+{
+  "schema": 1,
+  "reference": "0834340cec5531650bfe78cd628628702e636987",
+  "version": "0.9.132",
+  "authority": "Owner explicitly requires all compatible interfaces, animations, transitions and sections.",
+  "countedAsCompletion": false,
+  "note": "This reproducible index is a review checklist, not proof of visual or functional parity. Existing native views and imported vectors still need complete flow and motion comparison on iPhone/iPad. Exclusions require a concrete PC dependency, not implementation difficulty.",
+  "excludedSections": ["games"],
+  "sections": [
+    {
+      "id": "home",
+      "nativeEntry": "ios/Harbor/Views/HomeView.swift",
+      "status": "pending_complete_reference_comparison",
+      "requiredStates": [
+        "normal",
+        "loading",
+        "empty",
+        "error",
+        "touch",
+        "iPad_layout",
+        "Reduce_Motion"
+      ],
+      "review": {
+        "desktopReference": null,
+        "phoneCapture": null,
+        "tabletCapture": null,
+        "animationEvidence": null
+      }
+    },
+    {
+      "id": "discover",
+      "nativeEntry": "ios/Harbor/Views/DiscoverView.swift",
+      "status": "pending_complete_reference_comparison",
+      "requiredStates": [
+        "normal",
+        "loading",
+        "empty",
+        "error",
+        "touch",
+        "iPad_layout",
+        "Reduce_Motion"
+      ],
+      "review": {
+        "desktopReference": null,
+        "phoneCapture": null,
+        "tabletCapture": null,
+        "animationEvidence": null
+      }
+    },
+    {
+      "id": "catalogs",
+      "nativeEntry": "ios/Harbor/Views/CatalogsView.swift",
+      "status": "pending_complete_reference_comparison",
+      "requiredStates": [
+        "normal",
+        "loading",
+        "empty",
+        "error",
+        "touch",
+        "iPad_layout",
+        "Reduce_Motion"
+      ],
+      "review": {
+        "desktopReference": null,
+        "phoneCapture": null,
+        "tabletCapture": null,
+        "animationEvidence": null
+      }
+    },
+    {
+      "id": "plugins",
+      "nativeEntry": null,
+      "status": "pending_complete_reference_comparison",
+      "requiredStates": [
+        "normal",
+        "loading",
+        "empty",
+        "error",
+        "touch",
+        "iPad_layout",
+        "Reduce_Motion"
+      ],
+      "review": {
+        "desktopReference": null,
+        "phoneCapture": null,
+        "tabletCapture": null,
+        "animationEvidence": null
+      }
+    },
+    {
+      "id": "movies",
+      "nativeEntry": "ios/Harbor/Views/ContentPageView.swift",
+      "status": "pending_complete_reference_comparison",
+      "requiredStates": [
+        "normal",
+        "loading",
+        "empty",
+        "error",
+        "touch",
+        "iPad_layout",
+        "Reduce_Motion"
+      ],
+      "review": {
+        "desktopReference": null,
+        "phoneCapture": null,
+        "tabletCapture": null,
+        "animationEvidence": null
+      }
+    },
+    {
+      "id": "shows",
+      "nativeEntry": "ios/Harbor/Views/ContentPageView.swift",
+      "status": "pending_complete_reference_comparison",
+      "requiredStates": [
+        "normal",
+        "loading",
+        "empty",
+        "error",
+        "touch",
+        "iPad_layout",
+        "Reduce_Motion"
+      ],
+      "review": {
+        "desktopReference": null,
+        "phoneCapture": null,
+        "tabletCapture": null,
+        "animationEvidence": null
+      }
+    },
+    {
+      "id": "music",
+      "nativeEntry": "ios/Harbor/Views/MusicView.swift",
+      "status": "pending_complete_reference_comparison",
+      "requiredStates": [
+        "normal",
+        "loading",
+        "empty",
+        "error",
+        "touch",
+        "iPad_layout",
+        "Reduce_Motion"
+      ],
+      "review": {
+        "desktopReference": null,
+        "phoneCapture": null,
+        "tabletCapture": null,
+        "animationEvidence": null
+      }
+    },
+    {
+      "id": "kids",
+      "nativeEntry": "ios/Harbor/Views/ContentPageView.swift",
+      "status": "pending_complete_reference_comparison",
+      "requiredStates": [
+        "normal",
+        "loading",
+        "empty",
+        "error",
+        "touch",
+        "iPad_layout",
+        "Reduce_Motion"
+      ],
+      "review": {
+        "desktopReference": null,
+        "phoneCapture": null,
+        "tabletCapture": null,
+        "animationEvidence": null
+      }
+    },
+    {
+      "id": "anime",
+      "nativeEntry": "ios/Harbor/Views/ContentPageView.swift",
+      "status": "pending_complete_reference_comparison",
+      "requiredStates": [
+        "normal",
+        "loading",
+        "empty",
+        "error",
+        "touch",
+        "iPad_layout",
+        "Reduce_Motion"
+      ],
+      "review": {
+        "desktopReference": null,
+        "phoneCapture": null,
+        "tabletCapture": null,
+        "animationEvidence": null
+      }
+    },
+    {
+      "id": "manga",
+      "nativeEntry": "ios/Harbor/Views/MangaView.swift",
+      "status": "pending_complete_reference_comparison",
+      "requiredStates": [
+        "normal",
+        "loading",
+        "empty",
+        "error",
+        "touch",
+        "iPad_layout",
+        "Reduce_Motion"
+      ],
+      "review": {
+        "desktopReference": null,
+        "phoneCapture": null,
+        "tabletCapture": null,
+        "animationEvidence": null
+      }
+    },
+    {
+      "id": "ebook",
+      "nativeEntry": "ios/Harbor/Views/EBooksView.swift",
+      "status": "pending_complete_reference_comparison",
+      "requiredStates": [
+        "normal",
+        "loading",
+        "empty",
+        "error",
+        "touch",
+        "iPad_layout",
+        "Reduce_Motion"
+      ],
+      "review": {
+        "desktopReference": null,
+        "phoneCapture": null,
+        "tabletCapture": null,
+        "animationEvidence": null
+      }
+    },
+    {
+      "id": "live",
+      "nativeEntry": "ios/Harbor/Views/LiveTVView.swift",
+      "status": "pending_complete_reference_comparison",
+      "requiredStates": [
+        "normal",
+        "loading",
+        "empty",
+        "error",
+        "touch",
+        "iPad_layout",
+        "Reduce_Motion"
+      ],
+      "review": {
+        "desktopReference": null,
+        "phoneCapture": null,
+        "tabletCapture": null,
+        "animationEvidence": null
+      }
+    },
+    {
+      "id": "sports",
+      "nativeEntry": "ios/Harbor/Views/SportsView.swift",
+      "status": "pending_complete_reference_comparison",
+      "requiredStates": [
+        "normal",
+        "loading",
+        "empty",
+        "error",
+        "touch",
+        "iPad_layout",
+        "Reduce_Motion"
+      ],
+      "review": {
+        "desktopReference": null,
+        "phoneCapture": null,
+        "tabletCapture": null,
+        "animationEvidence": null
+      }
+    },
+    {
+      "id": "vod",
+      "nativeEntry": "ios/Harbor/Views/VODView.swift",
+      "status": "pending_complete_reference_comparison",
+      "requiredStates": [
+        "normal",
+        "loading",
+        "empty",
+        "error",
+        "touch",
+        "iPad_layout",
+        "Reduce_Motion"
+      ],
+      "review": {
+        "desktopReference": null,
+        "phoneCapture": null,
+        "tabletCapture": null,
+        "animationEvidence": null
+      }
+    },
+    {
+      "id": "calendar",
+      "nativeEntry": "ios/Harbor/Views/CalendarView.swift",
+      "status": "pending_complete_reference_comparison",
+      "requiredStates": [
+        "normal",
+        "loading",
+        "empty",
+        "error",
+        "touch",
+        "iPad_layout",
+        "Reduce_Motion"
+      ],
+      "review": {
+        "desktopReference": null,
+        "phoneCapture": null,
+        "tabletCapture": null,
+        "animationEvidence": null
+      }
+    },
+    {
+      "id": "library",
+      "nativeEntry": "ios/Harbor/Views/LibraryView.swift",
+      "status": "pending_complete_reference_comparison",
+      "requiredStates": [
+        "normal",
+        "loading",
+        "empty",
+        "error",
+        "touch",
+        "iPad_layout",
+        "Reduce_Motion"
+      ],
+      "review": {
+        "desktopReference": null,
+        "phoneCapture": null,
+        "tabletCapture": null,
+        "animationEvidence": null
+      }
+    },
+    {
+      "id": "collections",
+      "nativeEntry": "ios/Harbor/Views/CollectionsView.swift",
+      "status": "pending_complete_reference_comparison",
+      "requiredStates": [
+        "normal",
+        "loading",
+        "empty",
+        "error",
+        "touch",
+        "iPad_layout",
+        "Reduce_Motion"
+      ],
+      "review": {
+        "desktopReference": null,
+        "phoneCapture": null,
+        "tabletCapture": null,
+        "animationEvidence": null
+      }
+    },
+    {
+      "id": "downloads",
+      "nativeEntry": "ios/Harbor/Views/DownloadsView.swift",
+      "status": "pending_complete_reference_comparison",
+      "requiredStates": [
+        "normal",
+        "loading",
+        "empty",
+        "error",
+        "touch",
+        "iPad_layout",
+        "Reduce_Motion"
+      ],
+      "review": {
+        "desktopReference": null,
+        "phoneCapture": null,
+        "tabletCapture": null,
+        "animationEvidence": null
+      }
+    },
+    {
+      "id": "addons",
+      "nativeEntry": "ios/Harbor/Views/AddonsView.swift",
+      "status": "pending_complete_reference_comparison",
+      "requiredStates": [
+        "normal",
+        "loading",
+        "empty",
+        "error",
+        "touch",
+        "iPad_layout",
+        "Reduce_Motion"
+      ],
+      "review": {
+        "desktopReference": null,
+        "phoneCapture": null,
+        "tabletCapture": null,
+        "animationEvidence": null
+      }
+    },
+    {
+      "id": "settings",
+      "nativeEntry": "ios/Harbor/Views/SettingsView.swift",
+      "status": "pending_complete_reference_comparison",
+      "requiredStates": [
+        "normal",
+        "loading",
+        "empty",
+        "error",
+        "touch",
+        "iPad_layout",
+        "Reduce_Motion"
+      ],
+      "review": {
+        "desktopReference": null,
+        "phoneCapture": null,
+        "tabletCapture": null,
+        "animationEvidence": null
+      }
+    }
+  ],
+  "crossCuttingInterfaces": [
+    {
+      "id": "navigation",
+      "desktop": ["src/chrome/nav-items.tsx", "src/components/icons/nav-lottie.tsx"],
+      "native": [
+        "ios/Harbor/Views/HarborShell.swift",
+        "ios/Harbor/Views/SidebarNavigationIcon.swift",
+        "ios/Harbor/Views/InterfaceSettingsView.swift"
+      ],
+      "status": "pending_complete_reference_comparison"
+    },
+    {
+      "id": "onboarding",
+      "desktop": ["src/components/onboarding.tsx"],
+      "native": ["ios/Harbor/Views/AppWalkthroughView.swift"],
+      "status": "partial_native_walkthrough_requires_the_desktop_configuration_steps"
+    },
+    {
+      "id": "account_and_profiles",
+      "desktop": ["src/views/profile"],
+      "native": ["ios/Harbor/Views/AccountView.swift"],
+      "status": "pending_complete_reference_comparison"
+    },
+    {
+      "id": "player",
+      "desktop": ["src/views/player"],
+      "native": ["ios/Harbor/Player/PlayerView.swift"],
+      "status": "pending_complete_reference_comparison"
+    },
+    {
+      "id": "details",
+      "desktop": ["src/views/detail"],
+      "native": ["ios/Harbor/Views/DetailView.swift"],
+      "status": "pending_complete_reference_comparison"
+    }
+  ],
+  "cssAnimations": [
+    {
+      "name": "ebook-nav-page-flip",
+      "source": "src/components/icons/ebook-nav-icon.css",
+      "line": 49,
+      "definitionSha256": "33cb87631ce677dad9b9c669d44b8d4629258d5efa35c1e6f8832f0349f1c9d6",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-nav-play",
+      "source": "src/components/icons/games-nav-icon.css",
+      "line": 37,
+      "definitionSha256": "107481ec579f8f1dcf840b20ecafc63693fa3490778f5e0f1d794574e595d000",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-nav-press",
+      "source": "src/components/icons/games-nav-icon.css",
+      "line": 55,
+      "definitionSha256": "0d25375e11c17e68d86aa7f06e47a01f47010bccccbb4b5bc0ea83aba271fa04",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "sports-nav-bounce",
+      "source": "src/components/icons/sports-nav-icon.css",
+      "line": 27,
+      "definitionSha256": "c9dadc0c2d26d096e3669ecfb02c7461880aaac7886a772e3b6d1e183ab6f50f",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "sports-nav-compress",
+      "source": "src/components/icons/sports-nav-icon.css",
+      "line": 45,
+      "definitionSha256": "2981721fd66ed2476d45ad377b614efc9d4bb2f7a722ce24214292c62d3b500b",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "music-action-working",
+      "source": "src/components/music/music-action-feedback.css",
+      "line": 31,
+      "definitionSha256": "adde95deb359e6e7db49ec4e8fda8ec7036583b1e46d813758ede2a9e29ae251",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "music-action-signed",
+      "source": "src/components/music/music-action-feedback.css",
+      "line": 34,
+      "definitionSha256": "8e39f95f6e4b5ec640a7c5a66f47f9391a435aeb68fb604b9e0ccc628b38c805",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "artist-extras-spin",
+      "source": "src/components/music/music-artist-extras.css",
+      "line": 177,
+      "definitionSha256": "6a493d84323cf482e59f2d0662742136953ed2b18f5a8ce4e336b72d04240282",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "music-gallery-fade",
+      "source": "src/components/music/music-artist-gallery-modal.css",
+      "line": 51,
+      "definitionSha256": "14578c6c82de4fded628b876c2eabf8aaab41cc77d1e80dbd16750043aea3bb8",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "music-dock-tip-in",
+      "source": "src/components/music/music-dock.css",
+      "line": 155,
+      "definitionSha256": "232a039eccaea471144a7fea53c7efd1d845b02abe7b8030c9643d5818898bd1",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "music-dock-tab-in",
+      "source": "src/components/music/music-dock.css",
+      "line": 383,
+      "definitionSha256": "ea2ee4b702a634312b3fe84f1aa0692a55e9be1cf0e745e0ba823ea137d0c52a",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "music-dock-tab-out",
+      "source": "src/components/music/music-dock.css",
+      "line": 393,
+      "definitionSha256": "c930df76660ae03f6ed0701336b6a382567b104094f35fed3c13a6c203c0457e",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "music-dock-bar-in",
+      "source": "src/components/music/music-dock.css",
+      "line": 405,
+      "definitionSha256": "ac71aa4cc10bcbb68941bb3d34910b995d183b20d2dff2f9b4f85bce46ef4040",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "music-dock-bar-out",
+      "source": "src/components/music/music-dock.css",
+      "line": 413,
+      "definitionSha256": "bfbe5b9e6ce7a1414576421da3f826bf61eb05fe050f144eef61f96e06e20444",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "music-karaoke-in",
+      "source": "src/components/music/music-karaoke.css",
+      "line": 138,
+      "definitionSha256": "f87639a6acfc542cff5de91a0f237afbb3777381367df5005984ee1324ef3193",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "dock-like-pop",
+      "source": "src/components/music/music-like-burst.css",
+      "line": 14,
+      "definitionSha256": "31873de789af264cffd069e467621f998f6f2aaebab3c9e088c25e091d4a6a2d",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "dock-like-ring",
+      "source": "src/components/music/music-like-burst.css",
+      "line": 39,
+      "definitionSha256": "3050e3bd2359bc27d0841f8d2ca5f7495a726a6dac3bb4359a53c2f4244baecf",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "dock-like-move",
+      "source": "src/components/music/music-like-burst.css",
+      "line": 60,
+      "definitionSha256": "d80283e1882a4c4d6c6f4b7a878ce579df85642aede2f7ac996a9ee5d14721f1",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "dock-like-spark",
+      "source": "src/components/music/music-like-burst.css",
+      "line": 65,
+      "definitionSha256": "9b8ea4cf6145b8d70e549806b3cf395e26e9e4eba55adccd380cbf6b9cbaf562",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "music-miku-idle",
+      "source": "src/components/music/music-miku-visualizer.css",
+      "line": 74,
+      "definitionSha256": "c8864e56f80049fe9dbb43177b6e14411c1160ed2be715741c7b0e94f69b4bce",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "music-live-mark-in",
+      "source": "src/components/music/music-now-playing-mark.css",
+      "line": 24,
+      "definitionSha256": "361f6990ec70b43e2df4f2dc018a77c7d65c9052e470e251cce32f759bdc0ef0",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "music-now-back-hint",
+      "source": "src/components/music/music-now-playing.css",
+      "line": 245,
+      "definitionSha256": "47806838c972f27cacd96cb31a3d47c632c910a7b4c4436d1f0ecf7316b1722e",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "music-now-queue-breathe",
+      "source": "src/components/music/music-now-playing.css",
+      "line": 454,
+      "definitionSha256": "73735b2d3d2b034f6861c845ee666a12b465eb4efa59437a09dc25d7e25f6e03",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "music-now-unravel",
+      "source": "src/components/music/music-now-playing.css",
+      "line": 484,
+      "definitionSha256": "756e85e1bac1fff9dc11adf7ce44b1c1aa0b7ca649c338f501065f745def6d5a",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "music-now-unravel-rtl",
+      "source": "src/components/music/music-now-playing.css",
+      "line": 497,
+      "definitionSha256": "96488c298778b134e102d383d715b3c5c5066792d6ede1eec11ac8341beea363",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "music-now-search-settle",
+      "source": "src/components/music/music-now-playing.css",
+      "line": 510,
+      "definitionSha256": "d81b4d225230ffc9079403b2476be36b1102101e1db5274276928770ad6cd0e7",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "music-now-search-dim",
+      "source": "src/components/music/music-now-playing.css",
+      "line": 520,
+      "definitionSha256": "691a78912f33f4b8ee9f202a82326bda29f7eccfcc665db5f2fc31338d4103b9",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "music-now-rise",
+      "source": "src/components/music/music-now-playing.css",
+      "line": 691,
+      "definitionSha256": "170c1d35497da2218bca664b935f2fd7dcc25dfbff62d0eecf1adf394f97347a",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "music-now-fall",
+      "source": "src/components/music/music-now-playing.css",
+      "line": 703,
+      "definitionSha256": "61dba3d6ef2775e5fdd795743ca16920c2ee9a91f9cd9590c3728fe74d58df6a",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "music-immersive-in",
+      "source": "src/components/music/music-now-playing.css",
+      "line": 945,
+      "definitionSha256": "9b7a5fea8f87ecba667d3e45851c859ed5488eb31dcec84e081ec9fa4a6adf67",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "music-immersive-veil",
+      "source": "src/components/music/music-now-playing.css",
+      "line": 1048,
+      "definitionSha256": "9f5f250e4b504226ee2d225183b3232ee6b406b9148095a230426dcdfd818145",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "music-playlist-pill-in",
+      "source": "src/components/music/music-playlist-toolbar.css",
+      "line": 35,
+      "definitionSha256": "569ce38b129a25cd0f0d6a6cdfa4cd666a5e79895f1b9233f00cece26235ea19",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "music-playlist-pill-loading",
+      "source": "src/components/music/music-playlist-toolbar.css",
+      "line": 36,
+      "definitionSha256": "85252ac6f8b363bf26178e9d3a5f7a6be3fd91e4cb37fa0c725d967586f333e1",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "music-queue-enter",
+      "source": "src/components/music/music-queue.css",
+      "line": 289,
+      "definitionSha256": "6cf188cf27b184d634a3cf3e794f261167f40ffbd7a4a125104297dd505b4226",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "snippet-color-drift",
+      "source": "src/components/music/music-quick-listen.css",
+      "line": 36,
+      "definitionSha256": "efb18aac025186b4b415db1b867afb82a19872a2ffea117db048a5fde8cafaf0",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "music-snippet-scroll-nudge",
+      "source": "src/components/music/music-quick-listen.css",
+      "line": 61,
+      "definitionSha256": "80c7dee9265025c4441576c556f8222dbc24dfd17997df0637327c5c602a86eb",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "music-snippet-search",
+      "source": "src/components/music/music-quick-listen.css",
+      "line": 72,
+      "definitionSha256": "45397bc058678a2eeb1fcbe8a48951df1105338fcc06ff8aaa8ff605e8f4af99",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "music-snippet-search-bars",
+      "source": "src/components/music/music-quick-listen.css",
+      "line": 73,
+      "definitionSha256": "451b8b25debae16ae2aff53dd10dbdcdd2934d1f32ccdf3f714f10ca40ba09dc",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "music-search-remove",
+      "source": "src/components/music/music-search-history.css",
+      "line": 14,
+      "definitionSha256": "738965cbeb3e6ebaf374b494e2db148d7c801c74190a0234133d5c0e9908f512",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "music-skeleton-breathe",
+      "source": "src/components/music/music-skeletons.css",
+      "line": 89,
+      "definitionSha256": "39d908a4dd671fa810c0d401393b00637daec8142687a2c386d73b01dc80a27d",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "music-source-enter",
+      "source": "src/components/music/music-source-popover.css",
+      "line": 84,
+      "definitionSha256": "5e9489bc269ff574a7c4d3d9b032f98645985bcc48c1110423a627b53e02c10c",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "music-source-cycle",
+      "source": "src/components/music/music-source-search-motion.css",
+      "line": 4,
+      "definitionSha256": "8a7bb1c91226fc471fb15218c802894ed4934fe423c39fc6aa7ae71fa2dd778b",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "music-source-breathe",
+      "source": "src/components/music/music-source-search-motion.css",
+      "line": 10,
+      "definitionSha256": "bdcf2f3f38bc28fb6e4c76f2e32458c9e3f0dda37b2ac43ade1085816cc2722d",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "music-surprise-roll",
+      "source": "src/components/music/music-surprise-button.css",
+      "line": 5,
+      "definitionSha256": "2a1bbc494ead28e70c4419b31bfd1e6b8fd913cf06dc4deb07e459ba9ad581cc",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "music-video-sheen",
+      "source": "src/components/music/music-video-discovery.css",
+      "line": 266,
+      "definitionSha256": "7269795af8e9d417c15a5e94c2cf00f5eb1657a3e42a977d65027de8fb4dc6af",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "music-video-subtitle-in",
+      "source": "src/components/music/music-video-surface.css",
+      "line": 199,
+      "definitionSha256": "d14ff349c808ba3a17af904b1af6f12a80ddd40a306b25df54d9018afe9291fe",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "music-video-spinner-in",
+      "source": "src/components/music/music-video-surface.css",
+      "line": 223,
+      "definitionSha256": "d53b12626d2297c95b06d630b0f65258008f56cf38bd5b341da859c66c3a09b6",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "music-watch-sheen",
+      "source": "src/components/music/music-watch.css",
+      "line": 156,
+      "definitionSha256": "1a365106b1b32ecb878d0cf9d5102701f3334de51cdf0cb79dafb2699aaf568d",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "voyage-info-appear",
+      "source": "src/components/voyage/port-hover-card.css",
+      "line": 30,
+      "definitionSha256": "715c00565446fa5590e9f178c3e2546820e47550975fe44fe11acfc5f764c569",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "voyage-reveal",
+      "source": "src/components/voyage/voyage-inline.css",
+      "line": 49,
+      "definitionSha256": "208843cb8f1277d9959ee9c2068423c49d96f6d5c51cd0f690d4599f3f2ddc7f",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "voyage-choice-in",
+      "source": "src/components/voyage/voyage-inline.css",
+      "line": 50,
+      "definitionSha256": "8862e0949dbe09cdac10ff96f4b7f6b48ff5a620908060fe5584746dee31f85c",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "voyage-slot-in",
+      "source": "src/components/voyage/voyage-inline.css",
+      "line": 51,
+      "definitionSha256": "f5cf40fd91432d30d6e68bb2d1f1499df1ef62bdde9740a9d1b71a371cb46fc4",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "voyage-chart-in",
+      "source": "src/components/voyage/voyage-inline.css",
+      "line": 52,
+      "definitionSha256": "e5fb85e8f2e93a7e5e627026f3e298b548f46ea5c5231402453d1193c0c405a3",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "voyage-close",
+      "source": "src/components/voyage/voyage-inline.css",
+      "line": 53,
+      "definitionSha256": "85b31a798a6910dce6a6a07a3196a8cbe000584dab64a9a712389b0ebad001fc",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "hero-reveal",
+      "source": "src/index.css",
+      "line": 124,
+      "definitionSha256": "8660f48cbe6df3fccbd102d63a0502692300a99a2831b1747fcfa964d75f1274",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "banner-content-in",
+      "source": "src/index.css",
+      "line": 138,
+      "definitionSha256": "9250c130bbf712d2ab2504d4e0a3c58d17d861820826dd3706453ba1c63f8b7d",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "kids-drift",
+      "source": "src/index.css",
+      "line": 172,
+      "definitionSha256": "c31e998c8bd1b82b76453b365d3fc65b61d72478e01cc2de0387da119617d911",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "kids-twinkle",
+      "source": "src/index.css",
+      "line": 194,
+      "definitionSha256": "1ca6fa63b46581fd11d8fe0c6ba6d296a48c5035eeca3c23bba22bb1b4d23ce7",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "kids-pop-in",
+      "source": "src/index.css",
+      "line": 206,
+      "definitionSha256": "656586c7bf975bb9ffd5fb6396c1a368a71b1ed69657e650bf96d44fecf6ebae",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "kid-confetti-fall",
+      "source": "src/index.css",
+      "line": 344,
+      "definitionSha256": "d6f217cf142eb35654b9fd75bb4179086eb6907f706b690820d34d97aa66037d",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "kid-bubble-rise",
+      "source": "src/index.css",
+      "line": 358,
+      "definitionSha256": "c60097d1dbf25276de73bad253f1fff3b87c1e552c9d4cc25bef5bdc574a1a9c",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "curfew-sail",
+      "source": "src/index.css",
+      "line": 375,
+      "definitionSha256": "54a47535cb6589e833ebfd9863c3275102eb7a7435fc190c8834e8e738f4243f",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "curfew-drift",
+      "source": "src/index.css",
+      "line": 388,
+      "definitionSha256": "f0b921af44c855eeb2bf52ec25dd797cbff4984be82a2cb8dde366ef446fceb4",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "curfew-bob",
+      "source": "src/index.css",
+      "line": 401,
+      "definitionSha256": "6936be0901b765a4beaa8cfa96314d78bb62f427937620043efcf92018b0b5ef",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "curfew-bubble",
+      "source": "src/index.css",
+      "line": 414,
+      "definitionSha256": "828a1d4e5b1d6a605163ef150eefc45956781e5017884dbac80e567d2f1f46ca",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "curfew-shake",
+      "source": "src/index.css",
+      "line": 431,
+      "definitionSha256": "82ae96036a6f371f8d53bf48bb66b7b531cabf202b3dd08f968471759668d352",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-fade-in",
+      "source": "src/index.css",
+      "line": 559,
+      "definitionSha256": "8ab3037f1b7f0ed98a54638a19ebf206a3eb9c624c8dfb5aeddb0e35286ac09b",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-bg-fade",
+      "source": "src/index.css",
+      "line": 568,
+      "definitionSha256": "e42eb63e074bcbf58cca62e3967e4376675da24a63647bad16169f1c82350855",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-bg-drift",
+      "source": "src/index.css",
+      "line": 577,
+      "definitionSha256": "92b9bc29ff080e9fd2e3b69c0a4d59d58169e843fd520f5761ece4d60dce0bb4",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-step-in",
+      "source": "src/index.css",
+      "line": 586,
+      "definitionSha256": "80bdd8d483d5b6a485744bcf02d563177618d2b217d2f6a41dfaf45b1dcf6818",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-pop",
+      "source": "src/index.css",
+      "line": 601,
+      "definitionSha256": "c1468130fcb68ea878239f0bb94197d4cb85176a2551e21b7649042e4a0debce",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "pad-press",
+      "source": "src/index.css",
+      "line": 619,
+      "definitionSha256": "9b252a4be100bd8b4e314f5c302bf087e38f862588b92933afbfc26229dcc5c0",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "pad-release",
+      "source": "src/index.css",
+      "line": 634,
+      "definitionSha256": "174460f657b2df64e9bc60c5e3e4bd01664779a83624ad2d0fa830d5d8d6bb4d",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "pad-sink",
+      "source": "src/index.css",
+      "line": 649,
+      "definitionSha256": "605d6e00f2a363664cb12b7ba3276c4043c1ea74630ecaaa1db37bd98b92cb4b",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "pad-rise",
+      "source": "src/index.css",
+      "line": 664,
+      "definitionSha256": "99e463d5c640450163c2e0c33d6cef6b3650ff3020453d7c4c511029ef01efcb",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-panel-in",
+      "source": "src/index.css",
+      "line": 701,
+      "definitionSha256": "88728aebe62e573b28bc0cf40f130af834cc46b054a4cb90aa03a42d275ec552",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-dialog-in",
+      "source": "src/index.css",
+      "line": 721,
+      "definitionSha256": "eaa9bd4060c91f99df044c4f783e0b8addd084e848e584bc27529c05d7a8201b",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-drift",
+      "source": "src/index.css",
+      "line": 748,
+      "definitionSha256": "354e40eba69dcd2a693eefb13919c5e98f6cf5d933c8845d3752beb4c7148547",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-marquee",
+      "source": "src/index.css",
+      "line": 774,
+      "definitionSha256": "11e96831936906c376dccffd55bd2ab39bdfd0289677c1a57a57bc5379c4cc54",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-lift-in",
+      "source": "src/index.css",
+      "line": 799,
+      "definitionSha256": "672ef1fb59e687ddac8435b949b56ec04b00751bf17303807a358c0447248fea",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-sync-travel",
+      "source": "src/index.css",
+      "line": 818,
+      "definitionSha256": "b871ec01d13fc9eeb24f44df65f9a0afd5c87666811470366d26c2156f85d798",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-broadcast-ring",
+      "source": "src/index.css",
+      "line": 843,
+      "definitionSha256": "0717c3567bdfe24bb80f768ee477e8d9d7b402b69f2be4bac9a99fa38f053dfb",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-tip-pop",
+      "source": "src/index.css",
+      "line": 869,
+      "definitionSha256": "53e8a7fabee58cacef0c08ea945189721d7c66c2c2d4c17bce4b5e1021388fd6",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-hop",
+      "source": "src/index.css",
+      "line": 890,
+      "definitionSha256": "80a8338c394c675bbb332e0a665966bf90df05c2d883ee842bf3f8aea335e514",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-slot-a",
+      "source": "src/index.css",
+      "line": 950,
+      "definitionSha256": "ed352d68332aad53e4aee33fa0d5174cb545e73b0722a32d88a496aec987afd7",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-slot-b",
+      "source": "src/index.css",
+      "line": 964,
+      "definitionSha256": "bf5484e94dc45a8fdbdf0bb80da6a60e7df5c3709fdd5c762d0928074014aeec",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-slot-c",
+      "source": "src/index.css",
+      "line": 979,
+      "definitionSha256": "17504cc265453d0d186e59c89c82157deba01726d81ca97b9c0820984eefee18",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-perk-pop",
+      "source": "src/index.css",
+      "line": 1023,
+      "definitionSha256": "3913889b9c2fc354df775cbe1569ef187496b30ec045f766dcfb6a5bef0e8c6b",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-banner-in",
+      "source": "src/index.css",
+      "line": 1161,
+      "definitionSha256": "d8aeba8d1990bd2e44077d769142f4d15a5f416d376f273e66689abb37c51739",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-fade-soft",
+      "source": "src/index.css",
+      "line": 1177,
+      "definitionSha256": "84f3c5ddd41c90f62d9f1468defdd632649956f2cc9162d6e3b27a3713bf4c14",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-rail-mark-in",
+      "source": "src/index.css",
+      "line": 1190,
+      "definitionSha256": "5563bb637bc944ee8c6fcc4799ef00813ba7628ff304748f1e96ea918441a5fe",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-cascade-in",
+      "source": "src/index.css",
+      "line": 1215,
+      "definitionSha256": "5864d8eee4796399616133654d22a79ccec453865f3f3bf0d6b189733437b4fb",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-knob-on",
+      "source": "src/index.css",
+      "line": 1254,
+      "definitionSha256": "9783754d085eecdb211ae39a9a6743aeba93fa90888a3ae7426ebffa74b7a5bc",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-knob-off",
+      "source": "src/index.css",
+      "line": 1273,
+      "definitionSha256": "2206e0618d62b0fb33bee1494aeef1ffdabe6d9f19f4018c04a43a55870f28c9",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-badge-pop",
+      "source": "src/index.css",
+      "line": 1309,
+      "definitionSha256": "9eaec5638efe514ffade4f5ab0de8c2d28ef5fc43bb713de205554c140029ac1",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-menu-in",
+      "source": "src/index.css",
+      "line": 1328,
+      "definitionSha256": "4b9ac2ede005b80e5619ff6fa0951d84e908559ed6622cf7ab29f4d92502c5b3",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-item-in",
+      "source": "src/index.css",
+      "line": 1352,
+      "definitionSha256": "18612a2e221ebf67e8b062e51db91cf8d895df3d785231c246b2545690e19bfc",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-row-in",
+      "source": "src/index.css",
+      "line": 1371,
+      "definitionSha256": "5c3df3f7993d62d8a361b642eba3f43c46e5694c8e341ea6d7ebc1d65dbadd56",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-field-focus",
+      "source": "src/index.css",
+      "line": 1396,
+      "definitionSha256": "af9b2305003449d6123a63236c494509122ab413f0c37a72474b653ff2b94e2f",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "voyage-launch-in",
+      "source": "src/index.css",
+      "line": 1439,
+      "definitionSha256": "72d63e19a6e9337ceea99facecc98b9f2bc322e17b64ec5595a395b1b7ced5b6",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-tile-rise",
+      "source": "src/index.css",
+      "line": 1502,
+      "definitionSha256": "ec92011e9e8710a9aa25d60a20a3ca807f3b71eea41646d65543213a46115aec",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-tile-art",
+      "source": "src/index.css",
+      "line": 1517,
+      "definitionSha256": "feef8bc276377ece0727303986a00fab5b97be517758e672d4cb2b0e2044588e",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-tile-keel",
+      "source": "src/index.css",
+      "line": 1529,
+      "definitionSha256": "8c27770d5e0a1066e8495e32f8d81d3b300bda4797a1c7152d5f5e2e484324ad",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-seg-a",
+      "source": "src/index.css",
+      "line": 1599,
+      "definitionSha256": "f44a7401f2742fd8c3bc9894d0cf678dd53d980c746e4697196ccfb3f365b834",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-seg-b",
+      "source": "src/index.css",
+      "line": 1612,
+      "definitionSha256": "fdd9dc146915d79014f81357673eecb042c6173c232804e1bbd1c2c0b51bc5b4",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-art-resume",
+      "source": "src/index.css",
+      "line": 1632,
+      "definitionSha256": "6cfbebc1f83e2d556f52a8b62f50e9258fa305d010595fc1a210b1bbdaf9f037",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-art-fill",
+      "source": "src/index.css",
+      "line": 1650,
+      "definitionSha256": "1b05212e37d9bfa325c1967b4d81b5d926aa50348774b68db5ee13964fa1e277",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-art-fly",
+      "source": "src/index.css",
+      "line": 1665,
+      "definitionSha256": "dc2793c41f96303af2cbbfa480ffc22a1940003eead4b25107a7b22abd594506",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-art-prompt",
+      "source": "src/index.css",
+      "line": 1686,
+      "definitionSha256": "f0bde34f01c22f5a2c475e73db7b60c2d279296a309f3928f14b401ad35bd3f3",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-art-seq",
+      "source": "src/index.css",
+      "line": 1708,
+      "definitionSha256": "9b933b194909607a0303de091131efa79c090d99e9c4b54ed5625a4af438e116",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-art-stall",
+      "source": "src/index.css",
+      "line": 1718,
+      "definitionSha256": "20ac19539c82cd50018e1f33de6a616ae6aff9542a9cfaa55f52f8887dd14ad8",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-modal-in",
+      "source": "src/index.css",
+      "line": 1765,
+      "definitionSha256": "dfb537434f2720c6100ea577e26ebeb43d09ae721d31fd44ff97e3634c874fb7",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-nudge-in",
+      "source": "src/index.css",
+      "line": 1776,
+      "definitionSha256": "01c8fdc2cc7f8201177c5b5a3ffe96d76174db6afad9d577817c6b63145f0766",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "stremio-progress",
+      "source": "src/index.css",
+      "line": 1787,
+      "definitionSha256": "644ee20f0acef91143cc0cec3b294a9ebb6098f13ba94351a8f11653856a127b",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-barberpole",
+      "source": "src/index.css",
+      "line": 1796,
+      "definitionSha256": "f9869aa4230a449bcb5c372ef005cb5c72f51077a49f03fe40e34d7797fd23a4",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-dots-anim",
+      "source": "src/index.css",
+      "line": 1805,
+      "definitionSha256": "274452c107da01c5dde2c97d461c933368069431bef91e1146ae15a94046cf42",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-welcome-rise",
+      "source": "src/index.css",
+      "line": 1863,
+      "definitionSha256": "c03649c160d4eaaa698f91686b8b4e0a15ae7d70e4307502d054269de249134f",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-welcome-aura",
+      "source": "src/index.css",
+      "line": 1874,
+      "definitionSha256": "2adc773090ea1ced865f2387e24df138b0288a4ab455f458e4ad9f4a86f39632",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-home-roof",
+      "source": "src/index.css",
+      "line": 1893,
+      "definitionSha256": "c0432d0cf456bae2fa3947fc97fcaf8e4a3d337d4ae1126f33c2d9e1af8a4c73",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-home-hearth",
+      "source": "src/index.css",
+      "line": 1904,
+      "definitionSha256": "bf34bce83ca8a4b8232cfb1b372f8835361af732ad6515b6e664b0335badcfbf",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-reel-spin",
+      "source": "src/index.css",
+      "line": 1926,
+      "definitionSha256": "95aeeaec5f96d74cb7a31c4ef9e8159f34eb18f45372928ee2bd382e0e78ec43",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-tv-scan",
+      "source": "src/index.css",
+      "line": 1941,
+      "definitionSha256": "4df9e70e230ca2f74a7854676742be71080796b88aa4ab237fa47e2884539802",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-anger-pop",
+      "source": "src/index.css",
+      "line": 1962,
+      "definitionSha256": "1b5c804380abb7f0ad944f7763aff5dc133b9fcadcd31260ce8e7cc520779f2f",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-bang-pop",
+      "source": "src/index.css",
+      "line": 1984,
+      "definitionSha256": "454c55bd3ec3f02b0744e7565543b3fa088bc0eb60142f10fb9b5fd1b5e04598",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-ball-spin",
+      "source": "src/index.css",
+      "line": 2005,
+      "definitionSha256": "bd84e817a685b5b7f475c80bea2b34d3a4eead7e31ff4707ba59205e44f84f8d",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-ball-bounce",
+      "source": "src/index.css",
+      "line": 2014,
+      "definitionSha256": "8c569db916ca2a3a4e58f0c304763fa5184a7d55808c6aec4e7cf8e152053b41",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-book-wobble-a",
+      "source": "src/index.css",
+      "line": 2056,
+      "definitionSha256": "c17eabf3ac777496a1ed18c178528ff8211ca09fd2e5731a1f4180dd0f4c852b",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-book-wobble-b",
+      "source": "src/index.css",
+      "line": 2069,
+      "definitionSha256": "6460a23a62a8951bf65fec1aa629ee268c3ba8ddfcb063a9d0801b980da789de",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-book-wobble-c",
+      "source": "src/index.css",
+      "line": 2082,
+      "definitionSha256": "7daa72359ea688163f25024a5e27d70624a458121f45d7d859c2ab8a66fac398",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-block-drop",
+      "source": "src/index.css",
+      "line": 2112,
+      "definitionSha256": "7b91489bb06bfb40d10cc1520a3af61ff7b1976ce321b1f44e6e2bffc86b445d",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-gear-spin",
+      "source": "src/index.css",
+      "line": 2162,
+      "definitionSha256": "b41606b824ef361f0a889ab735944444dc7ea01529cc8ff178d2c2d16f923072",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-download-arrow",
+      "source": "src/index.css",
+      "line": 2181,
+      "definitionSha256": "e90c129a189e8a07ea484baa345299bebb057b7257da13a5c05623d614644a80",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-source-download-trail",
+      "source": "src/index.css",
+      "line": 2273,
+      "definitionSha256": "b75021c0a9c0ef444fe406730665fd338d97c4a5525b3aca758201c94b41600c",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-download-delete-shake",
+      "source": "src/index.css",
+      "line": 2287,
+      "definitionSha256": "0770eb38109466fe09c9e0af78cbe171e0b7909a9129456652b4158ed5354aa0",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-clap-snap",
+      "source": "src/index.css",
+      "line": 2324,
+      "definitionSha256": "48a29b830102d2ddc34f80c639965f4368baa37f4c35d271e06f60428ca36f56",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-shimmer",
+      "source": "src/index.css",
+      "line": 2348,
+      "definitionSha256": "271e9f5e2e153ea72f4d259a063dc35b25f3141f882995f7c8c2aebfdaf135f9",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-loader-pulse",
+      "source": "src/index.css",
+      "line": 2372,
+      "definitionSha256": "67f542deadc316828e7c52acfda4810c86342dc42cfdc7b7bb0548c27bbed2e6",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-stroke-fade",
+      "source": "src/index.css",
+      "line": 2386,
+      "definitionSha256": "246846e1f5d5a8b41822d3fb504d923a0349fc43a76bd3d6c751b5443888f83e",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "splash-title-in",
+      "source": "src/index.css",
+      "line": 2398,
+      "definitionSha256": "c1cee1b77c5c094c14d29a1be6898fa2bf87d1f74eb4103ae800e5383143b475",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "splash-fade-out",
+      "source": "src/index.css",
+      "line": 2411,
+      "definitionSha256": "b6f370ab5b84fef639c38bb0609cec514e3f73a7678031abbf7fd1bb7f2032fd",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "skip-in",
+      "source": "src/index.css",
+      "line": 2425,
+      "definitionSha256": "7bd30467887d2fc92ba4870e4b2317fcce582b45f5284012ba5112c2e8354e9b",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "done-ring-draw",
+      "source": "src/index.css",
+      "line": 2440,
+      "definitionSha256": "ec6e2e85533c8764c8c63af26a3145b718d5ad729b946d93b7db584c775d8542",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "done-check-draw",
+      "source": "src/index.css",
+      "line": 2449,
+      "definitionSha256": "c47342d79b0bc7dc11bfb79a1c3f08fe08baaaba6e7927950b658fb67ef3f903",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "popover-in",
+      "source": "src/index.css",
+      "line": 2458,
+      "definitionSha256": "44e64575026c394ad7bdb2ab16eb7d2d24fb7844094d7c47378e405abe975444",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "preview-in",
+      "source": "src/index.css",
+      "line": 2474,
+      "definitionSha256": "4f4a9239a7771b129ba39b58409c4e6e296278869c385142e81a9c53c11a8121",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "menu-pop",
+      "source": "src/index.css",
+      "line": 2489,
+      "definitionSha256": "24c053e65bdbf6c47f581fc8772c0381f80571a7b349c863ce1b1e04dd01aca1",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "media-swap",
+      "source": "src/index.css",
+      "line": 2504,
+      "definitionSha256": "490d8dea0a8a45eb242d2a2853bdd165cf2b57106b00f8d61798db82b10cf77a",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "xray-open",
+      "source": "src/index.css",
+      "line": 2525,
+      "definitionSha256": "9f2925034d7a266dd90b134e041eebc36d5fb1867089f0f6293e361864a58b60",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "sub-bar-drop",
+      "source": "src/index.css",
+      "line": 2540,
+      "definitionSha256": "e7d51d43594f54e13efa973f579f3c9e1cc8b4ab2b7ef3a97544e41fa0b83859",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "xray-rail-in",
+      "source": "src/index.css",
+      "line": 2555,
+      "definitionSha256": "eb12b49e197739079ee68203bcda28383125646f81db42eddcf9643246724097",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "play-toggle",
+      "source": "src/index.css",
+      "line": 2566,
+      "definitionSha256": "1edcd86dd7f85e22cb342c599423b6e185c45c0895bdf3a9dbc2753798faac9d",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "pirate-peek",
+      "source": "src/index.css",
+      "line": 2585,
+      "definitionSha256": "fc1814512504581bb13248b6c6e10ffd3541bd197c535dec7c9fe9e254514f84",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "copy-swap",
+      "source": "src/index.css",
+      "line": 2605,
+      "definitionSha256": "22f9816196d1d5be340663a96afb158dad43e0946bb0fa4e360becd58623e0b3",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "copy-check",
+      "source": "src/index.css",
+      "line": 2624,
+      "definitionSha256": "b3e1e9e959700254f1f799a33ea2058c402d0ad03ec15e38e5a93a97f9c5ba0b",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "slide-from-right",
+      "source": "src/index.css",
+      "line": 2642,
+      "definitionSha256": "3feb98856d9c613f65b6a721b96823b626b6f2edcfa062445af2a294b81c35e4",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "slide-from-left",
+      "source": "src/index.css",
+      "line": 2653,
+      "definitionSha256": "3656b61c686739e35a4481565d26fc75411311d9a1f97dd36633bbe1bd0b3727",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "done-pop",
+      "source": "src/index.css",
+      "line": 2672,
+      "definitionSha256": "0d26109a9cc115942d18c25da9454937c8dbed85cc9196baf727589cf707faa7",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "verified-pulse",
+      "source": "src/index.css",
+      "line": 2692,
+      "definitionSha256": "87372d3ee2d999f882d16b31acf2c68fa3d2faf2deb2d395a0008cf88dfc1883",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "verified-button-pulse",
+      "source": "src/index.css",
+      "line": 2711,
+      "definitionSha256": "a298fda7ab7aa4f8d53a68c2bb4094e95e453252cf9cc24d95377d3da0fb7ba5",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-search-panel-in",
+      "source": "src/index.css",
+      "line": 3197,
+      "definitionSha256": "73441d885ce27df7319c22737a50acd85a398be732542fa96ee5db06f93c6112",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-search-rise",
+      "source": "src/index.css",
+      "line": 3208,
+      "definitionSha256": "4e54797f366735fe725198583f26f25d4b3895ad80a1b23975542fdb7563e162",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-search-panel-out",
+      "source": "src/index.css",
+      "line": 3236,
+      "definitionSha256": "51a1191502cecafa6bb5ad1e877bf8543c98dbfe8613ec23831d7a519bb2ce79",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-search-scrim-in",
+      "source": "src/index.css",
+      "line": 3257,
+      "definitionSha256": "43b839ade1a19130a8e78064cc36b61fdf19d2719a25e1105c6cfe27c50248e3",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-search-scrim-out",
+      "source": "src/index.css",
+      "line": 3266,
+      "definitionSha256": "a6e4623edfc5c2f31dc98ec85cd295838b1cac3524d32f13c4f7b63ffde45348",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-rise-in",
+      "source": "src/index.css",
+      "line": 3287,
+      "definitionSha256": "c7579f705530d354185ef4f6eabc38783ef6a2e22b47d8c83dda94649f428b6e",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-check-ring",
+      "source": "src/index.css",
+      "line": 3298,
+      "definitionSha256": "d47066d3b17fadba8a808b92b9865afdf640f7b44ba268a18ca7a6deea35b97c",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-check-draw",
+      "source": "src/index.css",
+      "line": 3303,
+      "definitionSha256": "cb7391c295c9bf38d322a9b4e2b2ade4163b2461c315293c918df093a5b4258f",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-view-in",
+      "source": "src/index.css",
+      "line": 3308,
+      "definitionSha256": "dba565bba17cec83a3ab7bff1985401b973ebac615216529a28b09fea98084b2",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-detail-fade",
+      "source": "src/index.css",
+      "line": 3315,
+      "definitionSha256": "b52e461a5c327e927d9be6e4d07d525cb6f958908f5f23b6034f07567d1955a6",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "queue-in-right",
+      "source": "src/index.css",
+      "line": 3331,
+      "definitionSha256": "40eb8a6bd5ce02a67e3be44232bc0fcd0d1e628a8b438b62e12c00a672062e01",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "queue-in-left",
+      "source": "src/index.css",
+      "line": 3337,
+      "definitionSha256": "901755ef60bb52e70615da85e496b922467331fdd8a537d0fc7bac30deac01ec",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "queue-in-pop",
+      "source": "src/index.css",
+      "line": 3343,
+      "definitionSha256": "be213960f25a027a3570b9b0fb46f536305f9e40b53d134c160ef054a62fbbdf",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-skel-sweep",
+      "source": "src/index.css",
+      "line": 3375,
+      "definitionSha256": "68eb648c9ff9ee9b7e235f4fb05daa5a4c74f8f1a0e00f04ade7c2b4c0e26658",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-hist-in",
+      "source": "src/index.css",
+      "line": 3386,
+      "definitionSha256": "ae61788c4ce72041a2b5a05a0f71686176600cbc903f5c0c556fb131e35c1da4",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "critics-backdrop-in",
+      "source": "src/index.css",
+      "line": 3405,
+      "definitionSha256": "776ef3c2bf2dfc2c531aa37c8cc4cc92e535ee70b8c9329ac55c0415fbab7914",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "critics-modal-in",
+      "source": "src/index.css",
+      "line": 3413,
+      "definitionSha256": "f90b0c7c1eb3cc6e3039844b23be5ee5a7414a342cf0709f921d8789d1e3a22c",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "critics-review-next",
+      "source": "src/index.css",
+      "line": 3423,
+      "definitionSha256": "a7c73a33d185d8a7ebe266bd0868cb5ad3baec648848e37188496a7e61faea98",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "critics-review-prev",
+      "source": "src/index.css",
+      "line": 3433,
+      "definitionSha256": "9518a9dc0203658ad7c1388cb0c85533171aba2fabc829648becdf25ee325d16",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-flip-shade",
+      "source": "src/index.css",
+      "line": 3463,
+      "definitionSha256": "0ac84cc1a8c353d41d8cb125bc7f470b13814fc5b2d20ac9de8589b9f54a9f83",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "reader-tab-in",
+      "source": "src/index.css",
+      "line": 3480,
+      "definitionSha256": "c4e41e9eea4a922d998e303a8e31c3795d561d8e94b4b07528d7f3a9d5a6e332",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "avatar-row-flash",
+      "source": "src/index.css",
+      "line": 3494,
+      "definitionSha256": "f2bbfeb04c3293686b405c0b6097a76740fb0a2a289a97a28a0f633e212440ee",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-twinkle",
+      "source": "src/index.css",
+      "line": 3942,
+      "definitionSha256": "09a92c6bc1d85e183b5998750fdbec8513e8c4aeef370f571d901b5700c99b70",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-moon-bob",
+      "source": "src/index.css",
+      "line": 3954,
+      "definitionSha256": "97b17c6ecd067be774dc463b2f2468468b68f218c25f7b699b5c835705cb304c",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-forest-ray",
+      "source": "src/index.css",
+      "line": 3971,
+      "definitionSha256": "6303603ef84b0f8a42439909c3462eb568e3dcb7eda3902d2ac7663356b86758",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-royal-bar-in",
+      "source": "src/index.css",
+      "line": 3984,
+      "definitionSha256": "6a46e508982c296a13a64238b5e4d1c25f1126cf52952a31eda87a585aab74a9",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-royal-pop-in",
+      "source": "src/index.css",
+      "line": 3997,
+      "definitionSha256": "55f7692c1c9c84f380dba2171e0dfa8a6f888a1caf6b1109668db69599c28952",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-royal-glint",
+      "source": "src/index.css",
+      "line": 4011,
+      "definitionSha256": "7f8eea4bb23103ffbbd06c590f4e72514f37443768c7c2d3c9e9d59aca577925",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harborFontIn",
+      "source": "src/index.css",
+      "line": 4068,
+      "definitionSha256": "a5b07de67d6172b79ac1b9fe51b87ecad8481c13847190acd1806f985059491b",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-studio-in",
+      "source": "src/index.css",
+      "line": 4079,
+      "definitionSha256": "86ed21ee37540b23bb8f6cb68ae1fa3b30e1149637ebaa92ee27ae70db67f3c5",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-studio-tab-in",
+      "source": "src/index.css",
+      "line": 4090,
+      "definitionSha256": "3a978bb253b54d4a3cb0e9ef4b9ee2b902e3e5885b9d0efb52a423f7b3575062",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-studio-tab-pop",
+      "source": "src/index.css",
+      "line": 4108,
+      "definitionSha256": "729d7117bc4a2e7fefbe05ef0344cbb6cf70dd2fbfa33b275880fcafe88dd5f8",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "editorIn",
+      "source": "src/index.css",
+      "line": 4144,
+      "definitionSha256": "25d0244e7269ea39c3c43dd29a6812d96c9ce494ac7c02247dd9061f825e3784",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "editorOut",
+      "source": "src/index.css",
+      "line": 4155,
+      "definitionSha256": "94696fa6f5dfe55c2baec1ab81cd5a1f1222ad42978fcebd7b3bd94b31c9efea",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "ai-entrance",
+      "source": "src/index.css",
+      "line": 4276,
+      "definitionSha256": "0eedb48196ca69041809a05397b23244b86adcdd3ec1a3c852a820bc18f4f664",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "ai-reveal",
+      "source": "src/index.css",
+      "line": 4290,
+      "definitionSha256": "c1516e87855ff20ee52736745fc478fdb1af34ee36a02a318a0ca4609cc73ce3",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "ai-status-swap",
+      "source": "src/index.css",
+      "line": 4304,
+      "definitionSha256": "7dda14838ef7b29b1c179107a201d17b8633b75a02399ebaeadcc0fbff8fac01",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "ai-ring-spin",
+      "source": "src/index.css",
+      "line": 4318,
+      "definitionSha256": "25850a1d025b6b05a7ac5b010d4980b6ecd7e8ac14df244741b17d3fa85464ee",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "ai-shimmer",
+      "source": "src/index.css",
+      "line": 4334,
+      "definitionSha256": "432a971fa93baa36cdc6794e270c43d98c1726997e89b7203c8d55c3491f6f78",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-adskip-pill",
+      "source": "src/index.css",
+      "line": 4418,
+      "definitionSha256": "2604b878779aab7b87e38807ddaa1cf45f06c5f5d61dc5d502f0ee04f41fa587",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-preview-sweep",
+      "source": "src/index.css",
+      "line": 4445,
+      "definitionSha256": "788a8207de085adc6598662ecf31de3290950c424cbcc3f2fb38aaae90c75c3b",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-shimmer-sweep",
+      "source": "src/index.css",
+      "line": 4458,
+      "definitionSha256": "fd5cb19c1b2d83aa3f8fd23d55ea08ed948af8bc4bdde729bc790c327012ac06",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "ai-morph-in",
+      "source": "src/index.css",
+      "line": 4469,
+      "definitionSha256": "6e39e3cd0e4cdd2f3c8869b2694f9bcc14f8f3e606fd0fed5ee29117df561fbb",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "text-shimmer",
+      "source": "src/index.css",
+      "line": 4485,
+      "definitionSha256": "0f27e381cf873feebc9805f9f7848ef6d3c6ec5273d1e0e83ee7cfdd617c451e",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "ai-logo-swap",
+      "source": "src/index.css",
+      "line": 4508,
+      "definitionSha256": "0126512d952a4025ffe5b063d594de4aad3e1e455e6224cb572b2dabe02d7781",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "ai-sheen",
+      "source": "src/index.css",
+      "line": 4525,
+      "definitionSha256": "5c09f0bd6e32edb554142b0e504cce7fe9bf394d47bf6156dc101489e3688465",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-nav-expand",
+      "source": "src/index.css",
+      "line": 5580,
+      "definitionSha256": "fb54adb1c46b559b054948f40b8b54b6667f5c4cdb76b74ef0defcceba20de0d",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "hset-jump",
+      "source": "src/index.css",
+      "line": 6059,
+      "definitionSha256": "36498d5fa74bb459bf2d7f0ffb709a79f0586e1626ac715ca0c74da53843dc55",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "harbor-spinner-turn",
+      "source": "src/index.css",
+      "line": 6426,
+      "definitionSha256": "8ca6746fd0509a0e84258dd2242985066fc795535578b5729b3c390fdb4c6971",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "hset-avatar-swap",
+      "source": "src/index.css",
+      "line": 7006,
+      "definitionSha256": "383c1d88943004bf13ccf3e57afca7bf77b97318009bd285fcf8b6fed4848bc5",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "hset-motion-pan",
+      "source": "src/index.css",
+      "line": 7333,
+      "definitionSha256": "51b21d3f43e00b8e8952b7eda7be0cb96977f0559ec9dac82945daa9e33ed1c9",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "hset-motion-fade",
+      "source": "src/index.css",
+      "line": 7344,
+      "definitionSha256": "608bc87bcb9691f281513c95c815146da4497ceb2bb9a429ec8bacc391d182ff",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "music-eq-bounce",
+      "source": "src/index.css",
+      "line": 7428,
+      "definitionSha256": "214600ef1977ec42bba978a662879c97d816f8e0376706cfaeb051a36a29f8bf",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "game-calendar-reveal",
+      "source": "src/views/calendar/game-release-calendar.css",
+      "line": 46,
+      "definitionSha256": "c6aae0f7505b0d7f93a236c2ddffaad3a6554d54ecb26402d3d1558df474f0db",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "detail-layout-confirm",
+      "source": "src/views/detail/layout-editor.css",
+      "line": 50,
+      "definitionSha256": "7b998d78e6b7a6c074e4d0b95ee5635441f8d9a793e9ebb9a782d6601563c893",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "hbk-page-drift",
+      "source": "src/views/ebook-book3d.css",
+      "line": 200,
+      "definitionSha256": "45454a08249669c6ed271617e9d59175b3186f9a1248b08bf38607675d21ca7c",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-active-image",
+      "source": "src/views/games/game-active-players.css",
+      "line": 73,
+      "definitionSha256": "7b78670d3c3776dd808197b6596827d2084bca939656160ee3a9c785ae601577",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-active-copy",
+      "source": "src/views/games/game-active-players.css",
+      "line": 74,
+      "definitionSha256": "fc0f16a64d6a4eff9f85a723c7c5fbbf568a2962cd0a037f19786006a1fed3b0",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-archive-file-travel",
+      "source": "src/views/games/game-archive-motion.css",
+      "line": 18,
+      "definitionSha256": "1e8329a1aba9ad360ba7ac48fa22a561cc6768c4cdf7e03c3e2a63444f282598",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-archive-folder-settle",
+      "source": "src/views/games/game-archive-motion.css",
+      "line": 19,
+      "definitionSha256": "47d53976716bee8fc987d0f004f86215b1810fbec15d8259347666884bf24ec9",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-archive-scan",
+      "source": "src/views/games/game-archive-motion.css",
+      "line": 20,
+      "definitionSha256": "5175b74cb46f790cbe71ce3733c74eb1655a735a83079848db123c350bded96f",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-archive-skeleton",
+      "source": "src/views/games/game-archive.css",
+      "line": 70,
+      "definitionSha256": "567b5ee8e4ae70779354d2f4c1ee66333351e23b4f5ba7f5c3d69e7b818a4525",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-archive-indeterminate",
+      "source": "src/views/games/game-archive.css",
+      "line": 71,
+      "definitionSha256": "f759e8a88932215cf32459767e4936dabfa05335b4d269f8910a611a3f5b8c1b",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-archive-content-in",
+      "source": "src/views/games/game-archive.css",
+      "line": 72,
+      "definitionSha256": "918017096a13dd1c014e7e12df7205e86e27cbb03118594f8ec0161e1d605716",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "atlas-scene-in",
+      "source": "src/views/games/game-atlas-discovery.css",
+      "line": 12,
+      "definitionSha256": "32e35e0135d345f743a27074df4cec7668a5ac742026e5f370c79d91f1eb215f",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "atlas-copy-in",
+      "source": "src/views/games/game-atlas-discovery.css",
+      "line": 12,
+      "definitionSha256": "b525886eb5c1ec12a29a60011560415d1dbb0faf348a83475ef778556e95f7b6",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-broadcast-pulse",
+      "source": "src/views/games/game-broadcast.css",
+      "line": 3,
+      "definitionSha256": "cb7e57c35f540b4dd35b1952d1f6da93135fa2e461ae11b3014896dc18b74e47",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-broadcast-invite",
+      "source": "src/views/games/game-broadcast.css",
+      "line": 29,
+      "definitionSha256": "c00cb1f2c5a96803c3b343e6b1e40304f0a5e770a1265c20f6def1f22d21b3fc",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-filter-open",
+      "source": "src/views/games/game-catalog-filters.css",
+      "line": 45,
+      "definitionSha256": "fb5508d007ac035b474d223d956ed0537ea71580133236c785ebaa4bc8ab78ac",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-filter-close",
+      "source": "src/views/games/game-catalog-filters.css",
+      "line": 46,
+      "definitionSha256": "30f35e99b2e71c4633a321f3f788c60621b57385db893a2cd4ca34aff0cda75d",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-filter-content",
+      "source": "src/views/games/game-catalog-filters.css",
+      "line": 47,
+      "definitionSha256": "5f818cda8dd7580540fcfec7097f5566bbc9df001590afa20eb4e1623dccea84",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-cloud-breathe",
+      "source": "src/views/games/game-cloud.css",
+      "line": 44,
+      "definitionSha256": "2910f1e651000f1d7287180f3f8433a69de55f4e5cdc5e9c7b091d383cd3c5d1",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-community-breathe",
+      "source": "src/views/games/game-community.css",
+      "line": 78,
+      "definitionSha256": "36167a4f32cac048ca7bbc41d08a7db7a026ecc4a529d7c557206341d4638f52",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-community-unfurl",
+      "source": "src/views/games/game-community.css",
+      "line": 79,
+      "definitionSha256": "4d28b0aeb28db98452cdf4be48c471a555ffe6a7103254080a9937389f58d12f",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-media-enter",
+      "source": "src/views/games/game-cross-media.css",
+      "line": 36,
+      "definitionSha256": "d228067db2935d41ef43c01d99a483c12cbc3ff18baabb812c6eae863627ade0",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-media-score-enter",
+      "source": "src/views/games/game-cross-media.css",
+      "line": 37,
+      "definitionSha256": "32765da3765798b6573582d0cee9d7a579c7a34b1e450d55a7632c9193dac4eb",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-media-loading",
+      "source": "src/views/games/game-cross-media.css",
+      "line": 38,
+      "definitionSha256": "0e049fc4053cd23a39f09d76af257b68ee20d284f7a459d770297a5ca987b0dd",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-custom-spin",
+      "source": "src/views/games/game-custom-library.css",
+      "line": 3,
+      "definitionSha256": "17c434144fc8ac1ba8ae266c0819f94c53324edbf37662ca435cd7baa2b4cd91",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-player-buffer",
+      "source": "src/views/games/game-detail-media.css",
+      "line": 45,
+      "definitionSha256": "7afa073321bab16e268df8273b06b7704646e0e6031aeb3a558e091f0f57cfff",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-gallery-in",
+      "source": "src/views/games/game-detail-media.css",
+      "line": 69,
+      "definitionSha256": "48b2346c1317bcb08230eafbc3fb06c47b6947c7c789223ae4e29890ff4dcfad",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-detail-enter",
+      "source": "src/views/games/game-detail-refinement.css",
+      "line": 13,
+      "definitionSha256": "cdf0bfb9e277e450bb6f3931e07af62d4ee2db82d572f48bdbca59b95a040dd4",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-detail-shimmer",
+      "source": "src/views/games/game-detail-refinement.css",
+      "line": 349,
+      "definitionSha256": "9ecd4218cc231e4a6532e56fa5bb17637c80e1c6f4a0ec12f071593e18859b07",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-chart-reveal",
+      "source": "src/views/games/game-discovery-desk.css",
+      "line": 55,
+      "definitionSha256": "251e9e630011c706b1d95a0dc2c35885509db33a2e87bb3b9643a40b90d67caa",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "game-picker-settle",
+      "source": "src/views/games/game-discovery-picker.css",
+      "line": 128,
+      "definitionSha256": "355e5f01f699eaf5b54465d7a2620ef692d82540efd6aedd575d7b614ee9038d",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "game-picker-breathe",
+      "source": "src/views/games/game-discovery-picker.css",
+      "line": 129,
+      "definitionSha256": "9f3787545cabdd35e82a401160b11c00ab7d589e16e2185de223bd5c96d52884",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "game-picker-spin",
+      "source": "src/views/games/game-discovery-picker.css",
+      "line": 130,
+      "definitionSha256": "34a1997fc1193a5fc404c11167395384893695efb881882d652142a0235263cd",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "game-dock-invite-pulse",
+      "source": "src/views/games/game-dock-welcome.css",
+      "line": 15,
+      "definitionSha256": "47bf8bbff5fd571c84659f29aa29b07b04043ea7d17046a0e06838f5961863ad",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "game-dock-invite-grip",
+      "source": "src/views/games/game-dock-welcome.css",
+      "line": 16,
+      "definitionSha256": "13c2daf4c3190f7c223b6cf96d21fe19bb4eb6ec05ce7d25b21f03f43ac6a8f3",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-install-flow",
+      "source": "src/views/games/game-download-setup.css",
+      "line": 37,
+      "definitionSha256": "269be9193a8557622c270246829130a46cb6ea1010ddf4fe9a03187c0963b485",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-download-flow",
+      "source": "src/views/games/game-downloads.css",
+      "line": 176,
+      "definitionSha256": "8d0ac77e9d0c4c85108125a2ea60fcdd87eec1ebc2790699cbbfc9da13e86015",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-download-spin",
+      "source": "src/views/games/game-downloads.css",
+      "line": 177,
+      "definitionSha256": "5fa52669467c304ddabf75a3a87d35cfbe7ea0b6a49f0f3ce967b4c6e4d46fee",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-esports-reveal",
+      "source": "src/views/games/game-esports.css",
+      "line": 51,
+      "definitionSha256": "0c2cbafd06ecd383a1226d1ba555ee7f26fe942b87630afbb6cb6c64bfb5b5ff",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-esports-shimmer",
+      "source": "src/views/games/game-esports.css",
+      "line": 52,
+      "definitionSha256": "7e417ec69050d228722e757e65e2f0d7f24d77626a0f4ea0487ee50eb5c5b2c4",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-eve-pulse",
+      "source": "src/views/games/game-eve-companion.css",
+      "line": 16,
+      "definitionSha256": "6ac675bc046929202c4a6a5357cec891ade7c0d60cfec3d009c40466d0c7be8a",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-world-scene-in",
+      "source": "src/views/games/game-explore-polish.css",
+      "line": 30,
+      "definitionSha256": "d782d127bcbcd61ae28dc553369595768cf2208a7c57c2678d4ee70fcacb281c",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-world-scene-out",
+      "source": "src/views/games/game-explore-polish.css",
+      "line": 31,
+      "definitionSha256": "293533f35da3f181c102b7559b1c4308e93c19554917fdd06ec304f830d22990",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-explore-art-in",
+      "source": "src/views/games/game-explore-polish.css",
+      "line": 54,
+      "definitionSha256": "e71a2e3735d4c5df7ab0b2065935101b271985850a1bb569be4b46733f6b388b",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-explore-copy-in",
+      "source": "src/views/games/game-explore-polish.css",
+      "line": 55,
+      "definitionSha256": "0901ef35a6df0cb127e013be1b36782f7a5734dfbd0884dd3a3119873e5d977a",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-explore-spin",
+      "source": "src/views/games/game-explore-polish.css",
+      "line": 56,
+      "definitionSha256": "0f9c2a5e0499de5ac7b8fbb27776331fc09e7112687c6fd7767318da6a0b6c74",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "ffxiv-spin",
+      "source": "src/views/games/game-ffxiv-companion.css",
+      "line": 14,
+      "definitionSha256": "6a4d3b6133583151a797179648ceb55cc8eff7c32602a24e76149e513ad46d66",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "ffxiv-fade",
+      "source": "src/views/games/game-ffxiv-companion.css",
+      "line": 14,
+      "definitionSha256": "5cfff42f39c4fde0bd49d17cdc1ae8c1dd4e7eeb071cab7987725f79c329027c",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-fortnite-spin",
+      "source": "src/views/games/game-fortnite-companion.css",
+      "line": 48,
+      "definitionSha256": "e7a52fc4b36ffc6a2df14286a2379fcbcb5064158b390e265f48a183dfe520ca",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-world-fade",
+      "source": "src/views/games/game-franchise-worlds.css",
+      "line": 45,
+      "definitionSha256": "ebc345f985406c2c4d11435c30eeac429fb4faa275711546f5b645bb31730418",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-guide-panel-enter",
+      "source": "src/views/games/game-guides.css",
+      "line": 144,
+      "definitionSha256": "816aa8e54e93c6f3e4a281d53dead28cdbf408ce835c6234c2bb4ae50ac5961a",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-guide-pulse",
+      "source": "src/views/games/game-guides.css",
+      "line": 145,
+      "definitionSha256": "f43e4072324864f797e16fb6809f25b99abc893f8a2959b6fbe4e39ce045f901",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "hack-scene-in",
+      "source": "src/views/games/game-hack-hub.css",
+      "line": 130,
+      "definitionSha256": "87a4d734b2302e3bf03773617bb12754d97e20dcaa3598d08ceb0a2da161c4fc",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-library-label-in",
+      "source": "src/views/games/game-harbor-menu.css",
+      "line": 75,
+      "definitionSha256": "8d48c4942e1f1feb461fa0daf6fddebeef9d027b589ce130ea44dc116a7615be",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-launcher-reveal",
+      "source": "src/views/games/game-launchers.css",
+      "line": 44,
+      "definitionSha256": "5996d358241e213a52547a71e575589c11ccb269c4b6d61138eb51488fd7bc25",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-launcher-shimmer",
+      "source": "src/views/games/game-launchers.css",
+      "line": 60,
+      "definitionSha256": "b09ed8499060bf686c3a274a6cac18af191e65067916b120269cfc0a00ba5913",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "g-library-menu-in",
+      "source": "src/views/games/game-library-context-menu.css",
+      "line": 13,
+      "definitionSha256": "5afaa8fbc9d3066436153bdd991df2288832c758ae752254fb2638c9f680c4a0",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "game-dock-in",
+      "source": "src/views/games/game-library-dock.css",
+      "line": 50,
+      "definitionSha256": "652fc014f70d07093bead5b66fb2eb74f1c8947846e4fe40feaffdab170719d5",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "game-dock-out",
+      "source": "src/views/games/game-library-dock.css",
+      "line": 51,
+      "definitionSha256": "48ad2ae8484bb46ff2e0b391550436c9da1b8f96b58e8565f31de39316e0d7f6",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "game-dock-favorite",
+      "source": "src/views/games/game-library-dock.css",
+      "line": 52,
+      "definitionSha256": "73f4c3acba017619f0c20e2ec667838d97c913d553bfb8b414d3a18ab921db1d",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "game-dock-mode-swap",
+      "source": "src/views/games/game-library-dock.css",
+      "line": 62,
+      "definitionSha256": "a605c7f8c63065835f9e37e541f34e79bd7ad6ef2c1dc3dfcadb2860bcd64efd",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "game-dock-strip-swap",
+      "source": "src/views/games/game-library-dock.css",
+      "line": 63,
+      "definitionSha256": "c904c91d59f847f5bb3ee8c0798ef6ff82bbb9ac6aa8929dacc950e58d070177",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-library-news-page",
+      "source": "src/views/games/game-library-news.css",
+      "line": 35,
+      "definitionSha256": "86d2553a7dc99e2af7e9c31a5086ec5095f3a5af7c6e63d0ed460128df77380e",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-selection-reveal",
+      "source": "src/views/games/game-library-selection.css",
+      "line": 16,
+      "definitionSha256": "5bb407e393d8022fe692c745c432e60bd79c8250d9ce45f092b64a3215e164bb",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-library-loading-breathe",
+      "source": "src/views/games/game-library-sidebar-loading.css",
+      "line": 21,
+      "definitionSha256": "c26013dacd65d92445c429a2c9eb2f43754e6c0dd5c1155c4c69225d4843c99f",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-library-panel-in",
+      "source": "src/views/games/game-library-sidebar.css",
+      "line": 134,
+      "definitionSha256": "e5ada2ef814311906ada9c771ce4cfc0eef32b8fb63ad768006c56c394dd900c",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-library-panel-in-rtl",
+      "source": "src/views/games/game-library-sidebar.css",
+      "line": 136,
+      "definitionSha256": "8a1fd3c953c9a2db3e144f8a2e7b0334e4059a8a037d71f16a8feb29b1d68add",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-library-panel-out",
+      "source": "src/views/games/game-library-sidebar.css",
+      "line": 153,
+      "definitionSha256": "a6f32e2ddae2236bcbd04bc35371f293e9337844c4c1b4a5f21826e350e3999b",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-library-panel-out-rtl",
+      "source": "src/views/games/game-library-sidebar.css",
+      "line": 154,
+      "definitionSha256": "da7e1e63be4c172fb4d14432fd8adb2b7b99609888cc2f0ffda630613a700cf6",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-library-item-out",
+      "source": "src/views/games/game-library-sidebar.css",
+      "line": 155,
+      "definitionSha256": "2b507c1dfba72b4a90c5892aa2f0ce00d0608f15ee970fe61c65fb0e1ffb969c",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-library-item-out-rtl",
+      "source": "src/views/games/game-library-sidebar.css",
+      "line": 156,
+      "definitionSha256": "8b71ebc66c82e128e7ef323fda4bf35bcd1b32a18d6d514eb7719e74f7876475",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-mod-breathe",
+      "source": "src/views/games/game-mods.css",
+      "line": 42,
+      "definitionSha256": "11d6dc683f67f515484af28b7ea20d963848630926975f64b0842f0093dda8ec",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-navigation-download-spin",
+      "source": "src/views/games/game-navigation.css",
+      "line": 18,
+      "definitionSha256": "0b444baf35acd7d51d6b09defdb93407960f034be3e70b841b790ae6b1a9889f",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-navigation-download-pop",
+      "source": "src/views/games/game-navigation.css",
+      "line": 19,
+      "definitionSha256": "e88a72c2dfcf8a6598d1af67d1a9b26398be67b4cf771b96fe30adb3adfad1e3",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-notes-spin",
+      "source": "src/views/games/game-notes.css",
+      "line": 40,
+      "definitionSha256": "70f27e5f7951e0af30bf8e3ea18e6dbc9b78bf77ea49f960d7dbbdd21e964bd7",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-notes-pulse",
+      "source": "src/views/games/game-notes.css",
+      "line": 41,
+      "definitionSha256": "90d8aaa2fe09bbed68ff4013a603a3846f82b5c4b619b44e8e306ce3a3eca4c3",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-notes-reveal",
+      "source": "src/views/games/game-notes.css",
+      "line": 42,
+      "definitionSha256": "307b807a64c86f64e6fd8d1fbcae574f01a7acd06c50cb874f87b4edef50bd37",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "osrs-fade",
+      "source": "src/views/games/game-osrs-companion.css",
+      "line": 9,
+      "definitionSha256": "a3e196b3c2401ee6b92eabb43bfdf18c976dd8653a10c1a3412bebffcfff9f83",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "osrs-spin",
+      "source": "src/views/games/game-osrs-companion.css",
+      "line": 9,
+      "definitionSha256": "41e605165b3f2c5b745a95d612c663e88c09661deec62bf05aec2d3dcf61863f",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-patch-spin",
+      "source": "src/views/games/game-patch.css",
+      "line": 44,
+      "definitionSha256": "ea0279887153810ea2f84526aefe4f9c56b5f81efbfdef52006343108c9f1f61",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-patch-reveal",
+      "source": "src/views/games/game-patch.css",
+      "line": 79,
+      "definitionSha256": "af5d861912fd9283b362cf090d1077343417712a47b4784c1b120894aae119d6",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-play-wave",
+      "source": "src/views/games/game-play-button.css",
+      "line": 13,
+      "definitionSha256": "558381fd75089a4020fb9c9ab6f3f94aa26bdd47dc0ca14d37fb46251c6c82be",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-play-label-enter",
+      "source": "src/views/games/game-play-button.css",
+      "line": 14,
+      "definitionSha256": "d5038c4f4957eddd58c810857b2356bd8f1d2faa18ce6e0a175503eb2c26dd09",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "pokemon-shimmer",
+      "source": "src/views/games/game-pokemon-companion.css",
+      "line": 2,
+      "definitionSha256": "a4dc159d2b01788ef3ddf7073511a010d23b884e4a03cbc6b10039f66d1e93fb",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "pokemon-breathe",
+      "source": "src/views/games/game-pokemon-companion.css",
+      "line": 39,
+      "definitionSha256": "6fa1d4b2a0c7940251566599034d8eb98df77fb2a07ff58d51711c0749b90bdb",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "pokemon-panel-in",
+      "source": "src/views/games/game-pokemon-companion.css",
+      "line": 40,
+      "definitionSha256": "eea6ee8bde86f65f659541691e62bd81c953e3116b24d91191566574ad5ad521",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "pokemon-download-spin",
+      "source": "src/views/games/game-pokemon-companion.css",
+      "line": 69,
+      "definitionSha256": "0dc906562e22709bf16649fd3ca6247c7c9ec05c401d11c8b86a30e41836fa62",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-achievement-pending",
+      "source": "src/views/games/game-public-achievements.css",
+      "line": 27,
+      "definitionSha256": "6293cd622ec245791533527f3ab4cd850a6853f12eeeb779a92dc154fe6e828a",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-achievement-panel",
+      "source": "src/views/games/game-public-achievements.css",
+      "line": 34,
+      "definitionSha256": "b28b5274daee1aeea8302b963a9824f2b2411262c6828bba0998ea6f38d5dadd",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-source-panel-in",
+      "source": "src/views/games/game-recent-dialog.css",
+      "line": 42,
+      "definitionSha256": "39f95bdef59a3f199644611eedb7f0df301b32a41c031df60ca113cc7fad0d94",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-source-panel-out",
+      "source": "src/views/games/game-recent-dialog.css",
+      "line": 43,
+      "definitionSha256": "3ac1082d3d607f91546a8258664f98c5017fa8b1d7253d94d116fbdc98624213",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-source-placeholder",
+      "source": "src/views/games/game-recent-dialog.css",
+      "line": 44,
+      "definitionSha256": "fa0d0452d47379e67013e61ec7d1803d5c5c65bb7406904ed83513700d611e29",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-recent-pulse",
+      "source": "src/views/games/game-recent-sources.css",
+      "line": 38,
+      "definitionSha256": "3eeb2f73cf016e4e0d628df5f91d8522f167e150305c5a7950066fc2e28afb7f",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-recommend-in",
+      "source": "src/views/games/game-recommendations.css",
+      "line": 1,
+      "definitionSha256": "2c68ec7c574d84f9f2e966e1d49aa8f4d9064f113c910d3e1e140c6b19bb6081",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "retro-controls-enter",
+      "source": "src/views/games/game-retro-controls.css",
+      "line": 28,
+      "definitionSha256": "ff935242e3fd42a2eb927519a57e5088f465b3b1a4b180be05c4a9b518e05cf3",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-retro-enter",
+      "source": "src/views/games/game-retro-player.css",
+      "line": 38,
+      "definitionSha256": "02b5b1258f5ebb7b1e777e5dbaca202bedc15ebc9eaeed0672089c13c6809568",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "retro-menu-enter",
+      "source": "src/views/games/game-retro-player.css",
+      "line": 39,
+      "definitionSha256": "6b57e60689ceb3d8840e985250a7513c67fb4deac89cc91456b780c73b8d37cf",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-retro-spin",
+      "source": "src/views/games/game-retro-player.css",
+      "line": 40,
+      "definitionSha256": "6ef973ba8276d99587c87ed4c2df1706a4df9b14f6a3b12e278bddfbc8195e88",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-review-enter",
+      "source": "src/views/games/game-reviews.css",
+      "line": 70,
+      "definitionSha256": "e2e6d6be0c3bfeebe5f940781a3e2ee28ae7be6a3502df45bce3c8d5225e9999",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-review-pulse",
+      "source": "src/views/games/game-reviews.css",
+      "line": 71,
+      "definitionSha256": "9c1e8e2c62b62a6d61f6df1ba4029ed6ea7a0a4cd5ba83434e85174dac08e956",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-rom-scene-in",
+      "source": "src/views/games/game-roms.css",
+      "line": 212,
+      "definitionSha256": "f61c73ea6873d6d7e12ce0deb1c5e40808c890d0269f232cbb600358e1657b43",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-rom-copy-in",
+      "source": "src/views/games/game-roms.css",
+      "line": 213,
+      "definitionSha256": "aeda57c553ecbd9f48cb0d34e3ae1e4f2b0c620a2a70f8a7629c3e8a029eec9d",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-rom-shimmer",
+      "source": "src/views/games/game-roms.css",
+      "line": 214,
+      "definitionSha256": "0d3a2c959ae33be00e94485354d4f75e880d9db9452b29390ec2b55c2d1c7c38",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-row-arrive",
+      "source": "src/views/games/game-row-motion.css",
+      "line": 8,
+      "definitionSha256": "e2169ab6e4c44e267cafd042a80e4605d1044c20b6c4e9af0fa54aa288c99f3b",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-saves-spin",
+      "source": "src/views/games/game-saves.css",
+      "line": 3,
+      "definitionSha256": "419b089550d81d784dc76952b6596a481fb93bc23b8e6a9fc56e92ef2692704d",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-saves-pulse",
+      "source": "src/views/games/game-saves.css",
+      "line": 3,
+      "definitionSha256": "e7a67cd599fc16d8b232a81fc54168e6490676b224700904f66bf609de2a6d6b",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-screenshot-in",
+      "source": "src/views/games/game-screenshot-viewer.css",
+      "line": 21,
+      "definitionSha256": "2219c94f94079d57a174fc228bf2c555c3a0ca5742205d8d1e79ca148f525c1c",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-random-settle",
+      "source": "src/views/games/game-search.css",
+      "line": 27,
+      "definitionSha256": "42286437f1a9208b8cbb3c890515961213334cfa91ff7aa15e8fac48fd93af31",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-search-spin",
+      "source": "src/views/games/game-search.css",
+      "line": 46,
+      "definitionSha256": "69634cb4e5a46af59c5c6cbeb98e7414326a310f71314850acdd4a146e814d0c",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-preview-enter",
+      "source": "src/views/games/game-search.css",
+      "line": 70,
+      "definitionSha256": "da910e12c2fbd23e78d8bba98cc4c4d2ea99bad2b7836e297f0f776aae9fe39a",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-setup-link-in",
+      "source": "src/views/games/game-setup.css",
+      "line": 90,
+      "definitionSha256": "451fc493cd32fae198d051c6a55ed569b3e2fde7ad9db7482e80b366700fbea3",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-setup-spin",
+      "source": "src/views/games/game-setup.css",
+      "line": 127,
+      "definitionSha256": "f9ea995ffb68149f875f7e806b883d75751cb2945f27c5e9904cca076c5b4d9a",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-setup-step-in",
+      "source": "src/views/games/game-setup.css",
+      "line": 128,
+      "definitionSha256": "389a32525d971abe297b03f404fc4480cba042ac6f6eb95cf585d62ace2859aa",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-setup-skeleton-pulse",
+      "source": "src/views/games/game-setup.css",
+      "line": 129,
+      "definitionSha256": "7da9998cd010c905c5cbc163f4be7d427ff14383c2e8a6d350ed1cc445e2a7ff",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-setup-working",
+      "source": "src/views/games/game-setup.css",
+      "line": 130,
+      "definitionSha256": "ff5ea6fff332d087f93dbb3253456f29dfb44fa9b93c62d4d99282134c549877",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-setup-confirm",
+      "source": "src/views/games/game-setup.css",
+      "line": 131,
+      "definitionSha256": "573f0200f203f9c172874a9e877733603584b413adfb8ff8d8226b575ed983e9",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-setup-placeholder-pulse",
+      "source": "src/views/games/game-setup.css",
+      "line": 155,
+      "definitionSha256": "ae687b2604f64df69da1864a0cc13ac682d6cb765457c3b27cb3fc3f4a8dcb89",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "sims-spin",
+      "source": "src/views/games/game-sims-companion.css",
+      "line": 27,
+      "definitionSha256": "57759666310ad903041d3d318f3f32f3e1ebd05a05894abc0706208b1aefe6f5",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "sims-discovery-pulse",
+      "source": "src/views/games/game-sims-discovery.css",
+      "line": 66,
+      "definitionSha256": "16a8ebdf80eb4d59718d4b89087bd7bbe24fd7cf8edba69093ce36daec0eec04",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "sims-art-reveal",
+      "source": "src/views/games/game-sims-discovery.css",
+      "line": 67,
+      "definitionSha256": "18b7b38b73b9839a6f92b6985d6f83b03cc194fbef23a6711a0e4a5975a0caa2",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-link-panel-in",
+      "source": "src/views/games/game-source-links.css",
+      "line": 63,
+      "definitionSha256": "48fc8c0d61a68d4e2c1e817d72790774012fa05b6eed21b73f429fdd4a9245e8",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-link-panel-out",
+      "source": "src/views/games/game-source-links.css",
+      "line": 64,
+      "definitionSha256": "c22b47b2c73a9899d3cd7f8ea7bd252c5c91bcf3be121e966fc40e4f35b5460b",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-link-content-in",
+      "source": "src/views/games/game-source-links.css",
+      "line": 65,
+      "definitionSha256": "9df5cb19a137ac55a3a642fbbf2d7145800b6dba549021ebe9e49c9caddbcad5",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-link-placeholder",
+      "source": "src/views/games/game-source-links.css",
+      "line": 66,
+      "definitionSha256": "cf9f7b2c6c282998aabcad18cfa0c2cb7493d7d435f6379ab8b37548497e8738",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-source-refresh",
+      "source": "src/views/games/game-sources.css",
+      "line": 2,
+      "definitionSha256": "9c00d5a566d0779388cdd08f107d999b91f6ee642848fce5e4fa341c19b7aa40",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-transfer-arrive",
+      "source": "src/views/games/game-sources.css",
+      "line": 48,
+      "definitionSha256": "177c9cb957d857d15f6389f1e3bd71cb8a792d6988df1783826e3a23415beade",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-transfer-glyph",
+      "source": "src/views/games/game-sources.css",
+      "line": 49,
+      "definitionSha256": "a04aa0a9ac7e3f1c27761d4045f8a4302b9dc42bdcfaf36836601f3f99066fdc",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-transfer-label",
+      "source": "src/views/games/game-sources.css",
+      "line": 50,
+      "definitionSha256": "87fec27578c69098b03c08c56c85a21a1f0a9383208b43dd47d7667f98515a1e",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-source-page-in",
+      "source": "src/views/games/game-sources.css",
+      "line": 69,
+      "definitionSha256": "d2d5ac77e501b77b02cb26583f7a0bd408ea8906c21d057d0d9c615bf00a7801",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-source-loading-pulse",
+      "source": "src/views/games/game-sources.css",
+      "line": 75,
+      "definitionSha256": "288c90acf8d44ee95fff2244a9a1e668a2c7ccc4e237d30fba3efa5367424cc0",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-stardew-spin",
+      "source": "src/views/games/game-stardew-companion.css",
+      "line": 53,
+      "definitionSha256": "40b75a8a5fe6b084e93bf9891aa7eb37239a32a495949b8c00ce18ec11432c6e",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-sale-calendar-in",
+      "source": "src/views/games/game-steam-sale.css",
+      "line": 55,
+      "definitionSha256": "c69d069eea4f3c8956a6552416df1173ae8d948e8fe6e3d915ab56262418286d",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-sale-breathe",
+      "source": "src/views/games/game-steam-sale.css",
+      "line": 56,
+      "definitionSha256": "af16213cc175d154b5284d132167b1b75d892a8a69c1fe46f281f568884be9ba",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-story-reveal",
+      "source": "src/views/games/game-story-timeline.css",
+      "line": 11,
+      "definitionSha256": "4c5c18bd158d75630e9448a0b4e04856a7ae45b9a39ea7f34cb5db30fa49359e",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-tarkov-spin",
+      "source": "src/views/games/game-tarkov-companion.css",
+      "line": 17,
+      "definitionSha256": "f5023636a0ec1d5d1d40d9a1d5c7dac05a90fe1dca6e00eb419c515361a833da",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-tft-pulse",
+      "source": "src/views/games/game-tft-companion.css",
+      "line": 13,
+      "definitionSha256": "7fe088dbf6c68b72f2286d45acce4ed6e42552ec14e0166831bf4660d40be344",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-tft-spin",
+      "source": "src/views/games/game-tft-companion.css",
+      "line": 13,
+      "definitionSha256": "9f8f8441f7fba3fe29e1e0e3ab718631d5696daaa20f771316cfe3fede05fcd9",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-torrent-spin",
+      "source": "src/views/games/game-torrent.css",
+      "line": 96,
+      "definitionSha256": "0cd8a08761e604139953eccb935d241be8e701b25d15d2f624840c2c0bf48733",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-torrent-step-in",
+      "source": "src/views/games/game-torrent.css",
+      "line": 97,
+      "definitionSha256": "b8a832060decccfc7371e2b8ebc8102a95a149167eb594f7aeab448e0e7bf8cf",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-torrent-skeleton-pulse",
+      "source": "src/views/games/game-torrent.css",
+      "line": 98,
+      "definitionSha256": "f10a29a6a8fff75a1a06d4bc6a2de7af203a192cf8093e0d87373642a995c90f",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "valorant-portrait-spin",
+      "source": "src/views/games/game-valorant-companion.css",
+      "line": 38,
+      "definitionSha256": "e35eef297def48748da4b85f8984b5dbef037706d64aead1d96b42d173306234",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "wow-addon-pulse",
+      "source": "src/views/games/game-wow-addon-manager.css",
+      "line": 55,
+      "definitionSha256": "04f4b43c7306c290a5b6d8f18902d557081f68fefed4831e4e2539b39a164513",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-studio-stage-in",
+      "source": "src/views/games/games-discovery-refinement.css",
+      "line": 107,
+      "definitionSha256": "a535e233f8cc37cd01a227478e08b2fc80c5b7681b6c225da8de33f4968a85da",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-pumpkin-wake",
+      "source": "src/views/games/games-discovery-refinement.css",
+      "line": 169,
+      "definitionSha256": "4ce66e4de86e4d27f8999ee9b1e974a59286dd0183a25b9781418e3e6dfdb509",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-season-image-in",
+      "source": "src/views/games/games-discovery-refinement.css",
+      "line": 205,
+      "definitionSha256": "1d72178652d8e9c5174e2b468032e8865ffb99d0913e3ec8ea002990f998bfb2",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-season-copy-in",
+      "source": "src/views/games/games-discovery-refinement.css",
+      "line": 206,
+      "definitionSha256": "1c3e856417ab102207d7045a492121ff972d1ffeff637d328441703e38c507a3",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-editorial-in",
+      "source": "src/views/games/games-editorial.css",
+      "line": 104,
+      "definitionSha256": "0bf22ca184a9cc0801e1e5c2468c6f90f5be4d42df652f13133e3f46a61398ea",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-image-crossfade",
+      "source": "src/views/games/games-editorial.css",
+      "line": 105,
+      "definitionSha256": "fb9fa05028993301c6bb94efd1dbfc28d3d998d7fd2534942402ff53fc390dbe",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-home-scene-in",
+      "source": "src/views/games/games-editorial.css",
+      "line": 216,
+      "definitionSha256": "1f429b518c4b21b71cea1925073e25a90eaf78ee53c42ef86c3042d268fb43bd",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-skeleton-breathe",
+      "source": "src/views/games/games-loading.css",
+      "line": 35,
+      "definitionSha256": "c54ef88278bd626446dd270d1061adfc15ee2d898be1e1507b1eb4a8a852bea1",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-loading",
+      "source": "src/views/games/games.css",
+      "line": 129,
+      "definitionSha256": "ce305e73dde48b3fd1e322f774c0f024ad5bc6df7440864c5736618761a5749d",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-copy-enter",
+      "source": "src/views/games/games.css",
+      "line": 306,
+      "definitionSha256": "1a529f1b2da59306b1f8a0cb553295139097354a428acb05ba4f965308625ea8",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-section-enter",
+      "source": "src/views/games/games.css",
+      "line": 307,
+      "definitionSha256": "69d6bf675c87d262ca99543bbf470c7d6c54f0c48eed473bea4d86b4cff3f53e",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-rescan",
+      "source": "src/views/games/games.css",
+      "line": 408,
+      "definitionSha256": "940398e0ac20ca18b362c2753d6c60cca620a00fe30fe7549bb5296957082bc8",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-launch-dot",
+      "source": "src/views/games/games.css",
+      "line": 472,
+      "definitionSha256": "34968e7802414f45713914d1a28e9028175a710d01fea658f1cd608835d91bb6",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "games-guide-export-spin",
+      "source": "src/views/games/guide-export.css",
+      "line": 16,
+      "definitionSha256": "bdce17b260c0894e208ecb61d58a11b088a1e1b1ed4274b7bd83bee0972c5ba5",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "mc-catalog-pulse",
+      "source": "src/views/games/minecraft-catalog.css",
+      "line": 81,
+      "definitionSha256": "c70230137c6e894e6312877d844290883866b255089df3dbd2a68a8685711df9",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "mc-discovery-pulse",
+      "source": "src/views/games/minecraft-discovery.css",
+      "line": 73,
+      "definitionSha256": "3e4f946dfaf31c696010c56eefe970993674ac2ccf00c375420324e4d5231418",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "mc-instance-spin",
+      "source": "src/views/games/minecraft-instances.css",
+      "line": 112,
+      "definitionSha256": "84f407408fe5901a6e10a5b84af26844ec12d7dca1f3e7f278eea4c5d89c833f",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "mods-loading",
+      "source": "src/views/games/mods-workspace.css",
+      "line": 6,
+      "definitionSha256": "22da9bf7e5590f7cdc204b1a520fb1a6bc3d63b94f641d01c134c8c5046fa250",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "music-detail-enter",
+      "source": "src/views/music/music-detail.css",
+      "line": 5,
+      "definitionSha256": "ac6e734721e4405746710e280fbb323c3c9b8cb0a087c16abf92d36776dbfe97",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "music-event-loading",
+      "source": "src/views/music/music-event-discovery.css",
+      "line": 37,
+      "definitionSha256": "68b5455afbfd2ab74051a013a688404f622a0ce16dc7993f68beb00a4fda9329",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "music-hero-art-in",
+      "source": "src/views/music/music-home.css",
+      "line": 434,
+      "definitionSha256": "e12b8b74a6414da33993ef11b605b08e92f85278fbc594fe687a0723cbc8c8b0",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "music-hero-backdrop-in",
+      "source": "src/views/music/music-home.css",
+      "line": 444,
+      "definitionSha256": "fd4f9993f606e09807ba8221f41de33795f18e4cbfaf874b65c89d657816a849",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "music-hero-copy-in",
+      "source": "src/views/music/music-home.css",
+      "line": 454,
+      "definitionSha256": "29c4d68e97dffaa65aa4d0d33b1da319acf6e219a3019c4354c143a35a5b5dc5",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "music-page-enter",
+      "source": "src/views/music/music-home.css",
+      "line": 720,
+      "definitionSha256": "d20e061df3ce29b0ae6c9906c0d612c0a50736b0fd4754a7d0c18560800b08c4",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "music-note-in",
+      "source": "src/views/music/music-recent-contexts-band.css",
+      "line": 14,
+      "definitionSha256": "5402fbd349c6e0859eeb6525494bca0ee3e454930b86e7e3b758eb6cf7014a28",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "spooktoberPumpkinSway",
+      "source": "src/views/spooktober/spooktober-entry.css",
+      "line": 22,
+      "definitionSha256": "fa396eefdc3949da760b303d3e753417249f7ae38ce69732985d0b268830d97f",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "sh-addon-spin",
+      "source": "src/views/sports/addon-source-panel.css",
+      "line": 114,
+      "definitionSha256": "ce404ff65f799e0eda62aa6440f60627a8a54ad8540586338c185c24d5b56587",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "broadcast-scores",
+      "source": "src/views/sports/broadcast-score-ticker.css",
+      "line": 98,
+      "definitionSha256": "e4522076271e5a9ae4c95422c2f982fbd2f6284da411f911ff46be18256a9f12",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "broadcast-scores-rtl",
+      "source": "src/views/sports/broadcast-score-ticker.css",
+      "line": 106,
+      "definitionSha256": "f0b638892af8d3332531dc02bc57167d84566c4a34aa2371b2e3ca2cfb92ddeb",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "sports-spin",
+      "source": "src/views/sports/dock.css",
+      "line": 143,
+      "definitionSha256": "aefc9196c658d8744906196a4e9387cd6be48ecd46be7b8b483d3e16ef93f489",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "sports-embed-spin",
+      "source": "src/views/sports/embedded-broadcast-player.css",
+      "line": 182,
+      "definitionSha256": "6be06bf70e7ff3fd129f19c26b768623268057d49692053987a9ca3d239deb0b",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "ea-cs-spin",
+      "source": "src/views/sports/esports-cs-roster.css",
+      "line": 236,
+      "definitionSha256": "bb0985c54e7acb494db195561058b1c7aebcea9674a7689ac884acb25014fd4b",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "ea-home-enter",
+      "source": "src/views/sports/esports-hero.css",
+      "line": 78,
+      "definitionSha256": "1f89cb56b516159fbed4988d80f30dd12097156cc773dfdf0971c0ba711d7057",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "ea-spin",
+      "source": "src/views/sports/esports-hub.css",
+      "line": 1082,
+      "definitionSha256": "a3e415c19d7e83d865a208b615023ed08fb7ba0be38af5c3a6032928925644de",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "ea-breathe",
+      "source": "src/views/sports/esports-hub.css",
+      "line": 1087,
+      "definitionSha256": "e43a042fd217a327587bde3d1bff6f623d95b9dedb2b73237e2baf70dbf029ec",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "sh-esmap-spin",
+      "source": "src/views/sports/esports-map.css",
+      "line": 452,
+      "definitionSha256": "d4156f37eaf4c173ffc66526197e2301c014131e6d0cc6ad082d71a164a2d039",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "emr-pulse",
+      "source": "src/views/sports/esports-match-rail.css",
+      "line": 255,
+      "definitionSha256": "981673ccfe6a35c1593df7fe17ee94b7c7c80aebac64162880a054ce2f779402",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "sh-es-profile-spin",
+      "source": "src/views/sports/esports-profile.css",
+      "line": 321,
+      "definitionSha256": "864f7ee22c2f5b76a286bd096c8e4e8fd3a5c056d7bd58c8f5a974f6cd28b9a0",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "sports-hero-dwell",
+      "source": "src/views/sports/hero-carousel.css",
+      "line": 202,
+      "definitionSha256": "3094e0e671dd65aec1b950def852daaa4f6dcdecd538ee1199db0beb0d7046db",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "sports-hero-in-next",
+      "source": "src/views/sports/hero-carousel.css",
+      "line": 211,
+      "definitionSha256": "e6399fc91788e20c4f34c951af6d6e0fd807296c690eb84b86e2701dafb84111",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "sports-hero-in-prev",
+      "source": "src/views/sports/hero-carousel.css",
+      "line": 231,
+      "definitionSha256": "4200460fb585a5974ef74de9555ebed18a2f11cb42c22e3cc29755d69c16c3c1",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "sports-hero-out-next",
+      "source": "src/views/sports/hero-carousel.css",
+      "line": 251,
+      "definitionSha256": "76f76b23d3b2bccb27e103dbd0c9900888309b22175b8178c3480724979f21fb",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "sports-hero-out-prev",
+      "source": "src/views/sports/hero-carousel.css",
+      "line": 270,
+      "definitionSha256": "74d81ab67d76a8b16c3e9002746a21c91e6ae4073a5ba5a9ed6e22041fd9bc14",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "sports-hero-score-pop",
+      "source": "src/views/sports/hero-carousel.css",
+      "line": 289,
+      "definitionSha256": "24f32e94556f034f04b37dded3e3662211e1465d38881111061dee863834e339",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "hot-loading",
+      "source": "src/views/sports/hot-events.css",
+      "line": 511,
+      "definitionSha256": "380955e5ffa9595ce56a8ffe7392f57699aaa7389edc0d0f140c05afd41e71a4",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "hot-pulse",
+      "source": "src/views/sports/hot-events.css",
+      "line": 516,
+      "definitionSha256": "a1430fb7e312eb86864bc83f8851de0d97d52d9d6b3a7c5cfc3365a939f492f0",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "sh-emblem-loading",
+      "source": "src/views/sports/hub-art-motion.css",
+      "line": 41,
+      "definitionSha256": "e015992d2028e37ac17427d186ba665da2e620049a3ed1438909939bcae0b549",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "sh-previous-hero-out",
+      "source": "src/views/sports/hub-art-motion.css",
+      "line": 117,
+      "definitionSha256": "091f7ebeba0d0886c7e23e2215b92914524fe9db8070c32e0cac64b577dc2afa",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "sh-ken-burns",
+      "source": "src/views/sports/hub-art-motion.css",
+      "line": 125,
+      "definitionSha256": "d6b2d3aeef808dabd9f7b4aef8b662da615542f373df311747d842505033d1c2",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "sh-arrive-mid",
+      "source": "src/views/sports/hub-art-motion.css",
+      "line": 133,
+      "definitionSha256": "38ee96d1f6bfeca88e2e0bd62196b6834f418c650cbf1abbed39cbf8d502b1c2",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "sh-depart-far",
+      "source": "src/views/sports/hub-art-motion.css",
+      "line": 143,
+      "definitionSha256": "82ca07597f554265dfa29d9479506e9ee5cc2207a3832def574caeaf202408b5",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "sh-depart-mid",
+      "source": "src/views/sports/hub-art-motion.css",
+      "line": 153,
+      "definitionSha256": "448135b9c4b01b8d644623742fadd5bea5bb47d267eb79a03130379d5b445a78",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "sh-depart-near",
+      "source": "src/views/sports/hub-art-motion.css",
+      "line": 163,
+      "definitionSha256": "a8620ca7efe8443ecbbe0bfc30f6ba24d6ff297ce8e48763f40d00d484541ae7",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "sh-status-spin",
+      "source": "src/views/sports/hub.css",
+      "line": 141,
+      "definitionSha256": "4e1f8dd395cd9c364484136de8f0c4f146214d10f417a460315032ad04c2883a",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "sh-hero-arrive",
+      "source": "src/views/sports/hub.css",
+      "line": 3343,
+      "definitionSha256": "d5660b79b6fb78401528083eb24778c0e246c54884f3792a1b3dcc93fa13c515",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "sh-copy-arrive",
+      "source": "src/views/sports/hub.css",
+      "line": 3351,
+      "definitionSha256": "8f8c6782506f10ea70c337be6efc26f5a457ff2b56b8b4a92d307deee6e2026f",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "sh-skeleton",
+      "source": "src/views/sports/hub.css",
+      "line": 3361,
+      "definitionSha256": "8a7cf4fd8be2d01f3a8a029216ca49177c8ccd75d27a4f4727e75af8f60a2d2e",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "pitch-token-in",
+      "source": "src/views/sports/pitch/pitch.css",
+      "line": 293,
+      "definitionSha256": "fba17f59396ed2aa71fca7ba20cfcb5311575f1915130ef40d52acfa0aa3019e",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "pitch-mark-pop",
+      "source": "src/views/sports/pitch/pitch.css",
+      "line": 302,
+      "definitionSha256": "81347aa5e905f0d738f854b66884cb5270046bcd82904a740cff6ddc2ee99d73",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "pitch-bar-grow",
+      "source": "src/views/sports/pitch/pitch.css",
+      "line": 315,
+      "definitionSha256": "cf852abd2068415448e9ca238d1e018ab596bf63d8bd048cda4bd637bdf269ec",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "sh-refresh-turn",
+      "source": "src/views/sports/refresh-button.css",
+      "line": 4,
+      "definitionSha256": "cddc099002ab009794f2409694d5a6dc7272eeb837796e188cab1f39ec216f61",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "sk-pulse",
+      "source": "src/views/sports/sports-skeletons.css",
+      "line": 166,
+      "definitionSha256": "bd04442add5d9a82b88ca529fa2898d478f73cf2c11d31be2c98c520380e0ae3",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "sk-arrive",
+      "source": "src/views/sports/sports-skeletons.css",
+      "line": 171,
+      "definitionSha256": "c8a27b5876e900ab5fcd4a674485af3eb9f2160dd1e539a199b45ca53b7a801a",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "sh-video-preview-spin",
+      "source": "src/views/sports/sports-video-preview.css",
+      "line": 51,
+      "definitionSha256": "92c15acea3b4d9774387a3eeeebe4f191d5200ed7a8e125814535e066fc18790",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "name": "sh-team-spin",
+      "source": "src/views/sports/team-profile.css",
+      "line": 304,
+      "definitionSha256": "4297ad8e2c6f6d11ccc19e3dd7b1c95f37f41924cc9055fa2e97bfad87bcfd0c",
+      "status": "pending_native_and_visual_review"
+    }
+  ],
+  "vectorAnimations": [
+    {
+      "source": "src/assets/harbor-lottie.json",
+      "bytes": 200682,
+      "sha256": "15e2eb25a7c823abc0dac855301ed4fe508affe9f32b110a5af02c711e8e256a",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "source": "src/assets/lottie/addons-boat-dark.json",
+      "bytes": 26801,
+      "sha256": "a0516859b3fc0eb0e448c4ddd1b796c6113e583808b1e15aefa1115d890c8830",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "source": "src/assets/lottie/addons-boat-white.json",
+      "bytes": 26419,
+      "sha256": "4fdc0bac5ce55ac57780695f08481be30d7094ab45253a768bc60c0a2eddcb9a",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "source": "src/assets/lottie/flame-streak.json",
+      "bytes": 8896,
+      "sha256": "bec0be77c94744b3ef24a981fc1ceb179ab7714fe4ce046fb1ee57ab7bc77726",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "source": "src/assets/lottie/harbor-loader.json",
+      "bytes": 19551,
+      "sha256": "ac52ccbf2b59f29e790b26da5b5a9274f75596e2c08d5cceef7288ea67460d9d",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "source": "src/assets/lottie/install-boat-white.json",
+      "bytes": 18326,
+      "sha256": "48e9082690d3d9624140704602a3ead9413138fe85c7476acd67db3e6a42ea6b",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "source": "src/assets/lottie/nav/addons.json",
+      "bytes": 3734,
+      "sha256": "541244c5d696e7239423591936f0336c0e879eba8c32e406f387df1e4947a355",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "source": "src/assets/lottie/nav/anime.json",
+      "bytes": 17554,
+      "sha256": "a9c94ab2479c787d8c19c3755bd528f34c9932cc204e550d9a51a2da09611825",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "source": "src/assets/lottie/nav/calendar.json",
+      "bytes": 19847,
+      "sha256": "1169602338bbbd1fc34c5d17956c6979a9bb67cb1ef4cc0b3c3ced4d8c4f4a3c",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "source": "src/assets/lottie/nav/catalogs.json",
+      "bytes": 7900,
+      "sha256": "154748a1f9ee10cea426041e78bd951fdda0df7ea01ad0b632d888f3e161501e",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "source": "src/assets/lottie/nav/collections.json",
+      "bytes": 8078,
+      "sha256": "94fc33791672cbb938bd164cc42dd07f1911f7856062bdd6d97c185ac5c88f41",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "source": "src/assets/lottie/nav/discover.json",
+      "bytes": 3829,
+      "sha256": "31d75d23a71856cd3e4c5ad660ed3e97edda56c85548c1ad5a9f508c297ab2ee",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "source": "src/assets/lottie/nav/downloads.json",
+      "bytes": 5303,
+      "sha256": "6dae00c6b369422a1570189175b965b70263e4a94ce5c2cbb86e60ad964ba153",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "source": "src/assets/lottie/nav/ebook.json",
+      "bytes": 12385,
+      "sha256": "904a421ea290907a9efc8297f6b17ca314d38bd55aad1f4c547a5c6d12e12007",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "source": "src/assets/lottie/nav/home.json",
+      "bytes": 31947,
+      "sha256": "895d26c436fe1e635c6a5ebe2834cb945209568613cf9bb6921ea8f1be542d24",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "source": "src/assets/lottie/nav/library.json",
+      "bytes": 6112,
+      "sha256": "9187937a7164b097cbeef852da0d98fed106bcfcad11a5544cd253ceac153f4f",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "source": "src/assets/lottie/nav/live-tv.json",
+      "bytes": 8485,
+      "sha256": "dccc191eddd252b5d97554f76d7753ff38062b654dada78661474091b3fce951",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "source": "src/assets/lottie/nav/manga.json",
+      "bytes": 9784,
+      "sha256": "08e9973278ca63cf356d81f0c2492b22528254413c3e747a74f08121b5517b6f",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "source": "src/assets/lottie/nav/movies.json",
+      "bytes": 9898,
+      "sha256": "2ac83bb9ebaf6fa39035c9d637f0ff3befc3fb98e3c386986c540fdebd8cf09c",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "source": "src/assets/lottie/nav/music.json",
+      "bytes": 3830,
+      "sha256": "36fe8d7db48aff62ded02e78acf706a6f9df1503d76a63d7a52b17fcba253385",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "source": "src/assets/lottie/nav/playlists.json",
+      "bytes": 6648,
+      "sha256": "dcee522d64a1a62bc5199f21a2f9f705370e7c843e5dabf7ce69bacea5914d11",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "source": "src/assets/lottie/nav/settings.json",
+      "bytes": 5735,
+      "sha256": "f0c8d84aa47d36b8d8a4fb372b6c1dcbcab809c7587de10358a3e3c01a9bade5",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "source": "src/assets/lottie/nav/shows.json",
+      "bytes": 17559,
+      "sha256": "8c8ffc14a5db5d372a9c3b047f66014ad3a48fbe47095d5f3b5c2054e3392c20",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "source": "src/assets/lottie/nav/sports/baseball-basketball.json",
+      "bytes": 25760,
+      "sha256": "42932c1e8a7dca6af7feb27c129b5b18f5ee0636905812334730a1727bd5c794",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "source": "src/assets/lottie/nav/sports/boxing-tennis.json",
+      "bytes": 16040,
+      "sha256": "3add29244ddeff0a00e78ecdb0040ca1ce00fdd6eaa1e12ab27d7c1a97e44ae2",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "source": "src/assets/lottie/nav/sports/soccer-hockey.json",
+      "bytes": 20433,
+      "sha256": "928ee8396c2218f8f32e65c453f22b1820bae053c40590ca41c99dea623fabe2",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "source": "src/assets/lottie/screensaver/cat-boat.json",
+      "bytes": 266927,
+      "sha256": "b4db09288ea1b94c678556e408c659aac5e50683e877afe12b782ba4e185eed1",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "source": "src/assets/lottie/screensaver/halloween.json",
+      "bytes": 691017,
+      "sha256": "5fa2c93549da02209fec83ff330f916fa439b212d3e00538d7547349ddcf6fb4",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "source": "src/assets/lottie/voyage-boat.json",
+      "bytes": 136614,
+      "sha256": "299268fa82937a4aaa2153b9329d91db73c99e82b7acd5f2bb49f174119a3aa6",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "source": "src/assets/lottie/wt-waiting-dark.json",
+      "bytes": 13710,
+      "sha256": "da45f4a89cc42b87b60772053be83f921d617de8d17d50796c28e74018aee6cc",
+      "status": "pending_native_and_visual_review"
+    },
+    {
+      "source": "src/assets/lottie/wt-waiting-white.json",
+      "bytes": 13437,
+      "sha256": "814beb31f514517bc2564cb3769b36cda18990a6fcb88917381e7de0e2333a0c",
+      "status": "pending_native_and_visual_review"
+    }
+  ]
+}

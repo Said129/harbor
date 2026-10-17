@@ -1,0 +1,17 @@
+{
+  "publicCheckpointCommit": "19ddc311a397eb3483b5c978d2cf2bbb3f7f479f",
+  "files": {
+    "src-tauri/src/music.rs": "1bc4c996d3b8679eed3525f2319fa5245357e2cffda929d61ddcd352e4416d24",
+    "src-tauri/src/music/connectors/local/tags.rs": "f010a3cac761188440a5f199d42d22f66a4c2431f919a513cb13d5297d75f805",
+    "src-tauri/src/music/commands/playback.rs": "164e3b96f17af64fd04fe6235f19ece37e697ab3aed9ed93fad56331cfdc051b",
+    "src-tauri/src/music/engine.rs": "c5615dcacb40234065db0b0f78bd71403c2846357e4e536a9bc2749776236cac",
+    "src-tauri/src/music/library.rs": "e6397c0a5e31a024b9838c22897a982869a29504463c8105f710ef66afb9bb26",
+    "src-tauri/src/music/connectors/local/scan.rs": "9f65e0906bae1fa26d8e475c58f3af287c5e3a28d88272bd6ed5b67aef63e7cb",
+    "src/lib/music/playlist-filters.ts": "d69d7a373d193eee84ca60583afc8595ef440a0c2a56c90c502c123794ba0b24",
+    "src/components/music/music-playlist-toolbar.tsx": "c90a64f834fe06d170d78d0b8eca50bbfe2b7b826e5dccf60a32d0efe8d120fb",
+    "src/components/music/music-track-menu.tsx": "e4cf8195a19a22c7821beb94bfddb741f0e5e9e883dd9624b1241910042c6e14",
+    "src/lib/music/library.ts": "4ab18026d911676962bfe85929cb73b9b4cf6942910e0f378355ca1502ef121c",
+    "src-tauri/src/music/migrations.rs": "a7fe82364aaef59e9751b8fa4566e707d736cc5e036ecfc42cfb67ecf3c8c420"
+  },
+  "scope": "Original pure MusicTrack/FNV/tag/group/duration and playlist name/move arithmetic in shared Rust. Swift adapts protected owned audio, original depth/no-link folder scanning, listening filters/native locale sorting, duplicate-name suffixes, Apple controls and account-specific playlist references/timestamps in Keychain. Persistent source watching, genres, connected providers and the full Desktop deck remain incomplete."
+}

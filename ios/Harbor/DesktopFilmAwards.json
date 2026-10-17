@@ -1,0 +1,1872 @@
+{
+  "reference": "19ddc311a397eb3483b5c978d2cf2bbb3f7f479f",
+  "sourceSha256": "e34fa070bdd2c773103b472d1aa028473abed8c14439569f39ae4bc8d7f2baa8",
+  "winners": [
+    {
+      "id": "tt35410859",
+      "title": "Fjord",
+      "year": 2026,
+      "source": "cannes"
+    },
+    {
+      "id": "tt30144839",
+      "title": "One Battle After Another",
+      "year": 2025,
+      "source": "oscar"
+    },
+    {
+      "id": "tt36491653",
+      "title": "It Was Just an Accident",
+      "year": 2025,
+      "source": "cannes"
+    },
+    {
+      "id": "tt14905854",
+      "title": "Hamnet",
+      "year": 2025,
+      "source": "golden_globe"
+    },
+    {
+      "id": "tt31189315",
+      "title": "Father Mother Sister Brother",
+      "year": 2025,
+      "source": "venice"
+    },
+    {
+      "id": "tt28607951",
+      "title": "Anora",
+      "year": 2024,
+      "source": "oscar"
+    },
+    {
+      "id": "tt20215234",
+      "title": "Conclave",
+      "year": 2024,
+      "source": "bafta"
+    },
+    {
+      "id": "tt8999762",
+      "title": "The Brutalist",
+      "year": 2024,
+      "source": "golden_globe"
+    },
+    {
+      "id": "tt29439114",
+      "title": "The Room Next Door",
+      "year": 2024,
+      "source": "venice"
+    },
+    {
+      "id": "tt15398776",
+      "title": "Oppenheimer",
+      "year": 2023,
+      "source": "oscar"
+    },
+    {
+      "id": "tt17009710",
+      "title": "Anatomy of a Fall",
+      "year": 2023,
+      "source": "cannes"
+    },
+    {
+      "id": "tt14230458",
+      "title": "Poor Things",
+      "year": 2023,
+      "source": "venice"
+    },
+    {
+      "id": "tt6710474",
+      "title": "Everything Everywhere All at Once",
+      "year": 2022,
+      "source": "oscar"
+    },
+    {
+      "id": "tt1016150",
+      "title": "All Quiet on the Western Front",
+      "year": 2022,
+      "source": "bafta"
+    },
+    {
+      "id": "tt7322224",
+      "title": "Triangle of Sadness",
+      "year": 2022,
+      "source": "cannes"
+    },
+    {
+      "id": "tt14208870",
+      "title": "The Fabelmans",
+      "year": 2022,
+      "source": "golden_globe"
+    },
+    {
+      "id": "tt21374850",
+      "title": "All the Beauty and the Bloodshed",
+      "year": 2022,
+      "source": "venice"
+    },
+    {
+      "id": "tt10366460",
+      "title": "CODA",
+      "year": 2021,
+      "source": "oscar"
+    },
+    {
+      "id": "tt10293406",
+      "title": "The Power of the Dog",
+      "year": 2021,
+      "source": "bafta"
+    },
+    {
+      "id": "tt10944760",
+      "title": "Titane",
+      "year": 2021,
+      "source": "cannes"
+    },
+    {
+      "id": "tt13880104",
+      "title": "Happening",
+      "year": 2021,
+      "source": "venice"
+    },
+    {
+      "id": "tt9770150",
+      "title": "Nomadland",
+      "year": 2020,
+      "source": "oscar"
+    },
+    {
+      "id": "tt6751668",
+      "title": "Parasite",
+      "year": 2019,
+      "source": "oscar"
+    },
+    {
+      "id": "tt8579674",
+      "title": "1917",
+      "year": 2019,
+      "source": "bafta"
+    },
+    {
+      "id": "tt7286456",
+      "title": "Joker",
+      "year": 2019,
+      "source": "venice"
+    },
+    {
+      "id": "tt6966692",
+      "title": "Green Book",
+      "year": 2018,
+      "source": "oscar"
+    },
+    {
+      "id": "tt6155172",
+      "title": "Roma",
+      "year": 2018,
+      "source": "bafta"
+    },
+    {
+      "id": "tt8075192",
+      "title": "Shoplifters",
+      "year": 2018,
+      "source": "cannes"
+    },
+    {
+      "id": "tt1727824",
+      "title": "Bohemian Rhapsody",
+      "year": 2018,
+      "source": "golden_globe"
+    },
+    {
+      "id": "tt5580390",
+      "title": "The Shape of Water",
+      "year": 2017,
+      "source": "oscar"
+    },
+    {
+      "id": "tt5027774",
+      "title": "Three Billboards Outside Ebbing, Missouri",
+      "year": 2017,
+      "source": "bafta"
+    },
+    {
+      "id": "tt4995790",
+      "title": "The Square",
+      "year": 2017,
+      "source": "cannes"
+    },
+    {
+      "id": "tt4975722",
+      "title": "Moonlight",
+      "year": 2016,
+      "source": "oscar"
+    },
+    {
+      "id": "tt3783958",
+      "title": "La La Land",
+      "year": 2016,
+      "source": "bafta"
+    },
+    {
+      "id": "tt5168192",
+      "title": "I, Daniel Blake",
+      "year": 2016,
+      "source": "cannes"
+    },
+    {
+      "id": "tt5843990",
+      "title": "The Woman Who Left",
+      "year": 2016,
+      "source": "venice"
+    },
+    {
+      "id": "tt1895587",
+      "title": "Spotlight",
+      "year": 2015,
+      "source": "oscar"
+    },
+    {
+      "id": "tt1663202",
+      "title": "The Revenant",
+      "year": 2015,
+      "source": "bafta"
+    },
+    {
+      "id": "tt4082068",
+      "title": "Dheepan",
+      "year": 2015,
+      "source": "cannes"
+    },
+    {
+      "id": "tt4721400",
+      "title": "From Afar",
+      "year": 2015,
+      "source": "venice"
+    },
+    {
+      "id": "tt2562232",
+      "title": "Birdman or (The Unexpected Virtue of Ignorance)",
+      "year": 2014,
+      "source": "oscar"
+    },
+    {
+      "id": "tt1065073",
+      "title": "Boyhood",
+      "year": 2014,
+      "source": "bafta"
+    },
+    {
+      "id": "tt2758880",
+      "title": "Winter Sleep",
+      "year": 2014,
+      "source": "cannes"
+    },
+    {
+      "id": "tt1883180",
+      "title": "A Pigeon Sat on a Branch Reflecting on Existence",
+      "year": 2014,
+      "source": "venice"
+    },
+    {
+      "id": "tt2024544",
+      "title": "12 Years a Slave",
+      "year": 2013,
+      "source": "oscar"
+    },
+    {
+      "id": "tt2278871",
+      "title": "Blue Is the Warmest Colour",
+      "year": 2013,
+      "source": "cannes"
+    },
+    {
+      "id": "tt3172520",
+      "title": "Sacro GRA",
+      "year": 2013,
+      "source": "venice"
+    },
+    {
+      "id": "tt1024648",
+      "title": "Argo",
+      "year": 2012,
+      "source": "oscar"
+    },
+    {
+      "id": "tt1602620",
+      "title": "Amour",
+      "year": 2012,
+      "source": "cannes"
+    },
+    {
+      "id": "tt2299842",
+      "title": "Pietà",
+      "year": 2012,
+      "source": "venice"
+    },
+    {
+      "id": "tt1655442",
+      "title": "The Artist",
+      "year": 2011,
+      "source": "oscar"
+    },
+    {
+      "id": "tt0478304",
+      "title": "The Tree of Life",
+      "year": 2011,
+      "source": "cannes"
+    },
+    {
+      "id": "tt1033575",
+      "title": "The Descendants",
+      "year": 2011,
+      "source": "golden_globe"
+    },
+    {
+      "id": "tt1437357",
+      "title": "Faust",
+      "year": 2011,
+      "source": "venice"
+    },
+    {
+      "id": "tt1504320",
+      "title": "The King's Speech",
+      "year": 2010,
+      "source": "oscar"
+    },
+    {
+      "id": "tt1588895",
+      "title": "Uncle Boonmee Who Can Recall His Past Lives",
+      "year": 2010,
+      "source": "cannes"
+    },
+    {
+      "id": "tt1285016",
+      "title": "The Social Network",
+      "year": 2010,
+      "source": "golden_globe"
+    },
+    {
+      "id": "tt1421051",
+      "title": "Somewhere",
+      "year": 2010,
+      "source": "venice"
+    },
+    {
+      "id": "tt0887912",
+      "title": "The Hurt Locker",
+      "year": 2009,
+      "source": "oscar"
+    },
+    {
+      "id": "tt1149362",
+      "title": "The White Ribbon",
+      "year": 2009,
+      "source": "cannes"
+    },
+    {
+      "id": "tt0499549",
+      "title": "Avatar",
+      "year": 2009,
+      "source": "golden_globe"
+    },
+    {
+      "id": "tt1483831",
+      "title": "Lebanon",
+      "year": 2009,
+      "source": "venice"
+    },
+    {
+      "id": "tt1010048",
+      "title": "Slumdog Millionaire",
+      "year": 2008,
+      "source": "oscar"
+    },
+    {
+      "id": "tt1068646",
+      "title": "The Class",
+      "year": 2008,
+      "source": "cannes"
+    },
+    {
+      "id": "tt1125849",
+      "title": "The Wrestler",
+      "year": 2008,
+      "source": "venice"
+    },
+    {
+      "id": "tt0477348",
+      "title": "No Country for Old Men",
+      "year": 2007,
+      "source": "oscar"
+    },
+    {
+      "id": "tt0783233",
+      "title": "Atonement",
+      "year": 2007,
+      "source": "bafta"
+    },
+    {
+      "id": "tt1032846",
+      "title": "4 Months, 3 Weeks and 2 Days",
+      "year": 2007,
+      "source": "cannes"
+    },
+    {
+      "id": "tt0808357",
+      "title": "Lust, Caution",
+      "year": 2007,
+      "source": "venice"
+    },
+    {
+      "id": "tt0407887",
+      "title": "The Departed",
+      "year": 2006,
+      "source": "oscar"
+    },
+    {
+      "id": "tt0436697",
+      "title": "The Queen",
+      "year": 2006,
+      "source": "bafta"
+    },
+    {
+      "id": "tt0460989",
+      "title": "The Wind That Shakes the Barley",
+      "year": 2006,
+      "source": "cannes"
+    },
+    {
+      "id": "tt0449467",
+      "title": "Babel",
+      "year": 2006,
+      "source": "golden_globe"
+    },
+    {
+      "id": "tt0859765",
+      "title": "Still Life",
+      "year": 2006,
+      "source": "venice"
+    },
+    {
+      "id": "tt0375679",
+      "title": "Crash",
+      "year": 2005,
+      "source": "oscar"
+    },
+    {
+      "id": "tt0388795",
+      "title": "Brokeback Mountain",
+      "year": 2005,
+      "source": "bafta"
+    },
+    {
+      "id": "tt0456396",
+      "title": "L'Enfant",
+      "year": 2005,
+      "source": "cannes"
+    },
+    {
+      "id": "tt0405159",
+      "title": "Million Dollar Baby",
+      "year": 2004,
+      "source": "oscar"
+    },
+    {
+      "id": "tt0338751",
+      "title": "The Aviator",
+      "year": 2004,
+      "source": "bafta"
+    },
+    {
+      "id": "tt0361596",
+      "title": "Fahrenheit 9/11",
+      "year": 2004,
+      "source": "cannes"
+    },
+    {
+      "id": "tt0383694",
+      "title": "Vera Drake",
+      "year": 2004,
+      "source": "venice"
+    },
+    {
+      "id": "tt0167260",
+      "title": "The Lord of the Rings: The Return of the King",
+      "year": 2003,
+      "source": "oscar"
+    },
+    {
+      "id": "tt0363589",
+      "title": "Elephant",
+      "year": 2003,
+      "source": "cannes"
+    },
+    {
+      "id": "tt0376968",
+      "title": "The Return",
+      "year": 2003,
+      "source": "venice"
+    },
+    {
+      "id": "tt0299658",
+      "title": "Chicago",
+      "year": 2002,
+      "source": "oscar"
+    },
+    {
+      "id": "tt0253474",
+      "title": "The Pianist",
+      "year": 2002,
+      "source": "bafta"
+    },
+    {
+      "id": "tt0274558",
+      "title": "The Hours",
+      "year": 2002,
+      "source": "golden_globe"
+    },
+    {
+      "id": "tt0318411",
+      "title": "The Magdalene Sisters",
+      "year": 2002,
+      "source": "venice"
+    },
+    {
+      "id": "tt0268978",
+      "title": "A Beautiful Mind",
+      "year": 2001,
+      "source": "oscar"
+    },
+    {
+      "id": "tt0120737",
+      "title": "The Lord of the Rings: The Fellowship of the Ring",
+      "year": 2001,
+      "source": "bafta"
+    },
+    {
+      "id": "tt0208990",
+      "title": "The Son's Room",
+      "year": 2001,
+      "source": "cannes"
+    },
+    {
+      "id": "tt0265343",
+      "title": "Monsoon Wedding",
+      "year": 2001,
+      "source": "venice"
+    },
+    {
+      "id": "tt0172495",
+      "title": "Gladiator",
+      "year": 2000,
+      "source": "oscar"
+    },
+    {
+      "id": "tt0168629",
+      "title": "Dancer in the Dark",
+      "year": 2000,
+      "source": "cannes"
+    },
+    {
+      "id": "tt0255094",
+      "title": "The Circle",
+      "year": 2000,
+      "source": "venice"
+    },
+    {
+      "id": "tt0169547",
+      "title": "American Beauty",
+      "year": 1999,
+      "source": "oscar"
+    },
+    {
+      "id": "tt0200071",
+      "title": "Rosetta",
+      "year": 1999,
+      "source": "cannes"
+    },
+    {
+      "id": "tt0209189",
+      "title": "Not One Less",
+      "year": 1999,
+      "source": "venice"
+    },
+    {
+      "id": "tt0138097",
+      "title": "Shakespeare in Love",
+      "year": 1998,
+      "source": "oscar"
+    },
+    {
+      "id": "tt0156794",
+      "title": "Eternity and a Day",
+      "year": 1998,
+      "source": "cannes"
+    },
+    {
+      "id": "tt0120815",
+      "title": "Saving Private Ryan",
+      "year": 1998,
+      "source": "golden_globe"
+    },
+    {
+      "id": "tt0139951",
+      "title": "The Way We Laughed",
+      "year": 1998,
+      "source": "venice"
+    },
+    {
+      "id": "tt0120338",
+      "title": "Titanic",
+      "year": 1997,
+      "source": "oscar"
+    },
+    {
+      "id": "tt0119164",
+      "title": "The Full Monty",
+      "year": 1997,
+      "source": "bafta"
+    },
+    {
+      "id": "tt0120408",
+      "title": "The Eel",
+      "year": 1997,
+      "source": "cannes"
+    },
+    {
+      "id": "tt0119250",
+      "title": "Hana-bi",
+      "year": 1997,
+      "source": "venice"
+    },
+    {
+      "id": "tt0116209",
+      "title": "The English Patient",
+      "year": 1996,
+      "source": "oscar"
+    },
+    {
+      "id": "tt0117589",
+      "title": "Secrets & Lies",
+      "year": 1996,
+      "source": "cannes"
+    },
+    {
+      "id": "tt0117039",
+      "title": "Michael Collins",
+      "year": 1996,
+      "source": "venice"
+    },
+    {
+      "id": "tt0112573",
+      "title": "Braveheart",
+      "year": 1995,
+      "source": "oscar"
+    },
+    {
+      "id": "tt0114388",
+      "title": "Sense and Sensibility",
+      "year": 1995,
+      "source": "bafta"
+    },
+    {
+      "id": "tt0114787",
+      "title": "Underground",
+      "year": 1995,
+      "source": "cannes"
+    },
+    {
+      "id": "tt0112767",
+      "title": "Cyclo",
+      "year": 1995,
+      "source": "venice"
+    },
+    {
+      "id": "tt0109830",
+      "title": "Forrest Gump",
+      "year": 1994,
+      "source": "oscar"
+    },
+    {
+      "id": "tt0109831",
+      "title": "Four Weddings and a Funeral",
+      "year": 1994,
+      "source": "bafta"
+    },
+    {
+      "id": "tt0110912",
+      "title": "Pulp Fiction",
+      "year": 1994,
+      "source": "cannes"
+    },
+    {
+      "id": "tt0110882",
+      "title": "Before the Rain",
+      "year": 1994,
+      "source": "venice"
+    },
+    {
+      "id": "tt0108052",
+      "title": "Schindler's List",
+      "year": 1993,
+      "source": "oscar"
+    },
+    {
+      "id": "tt0106332",
+      "title": "Farewell My Concubine",
+      "year": 1993,
+      "source": "cannes"
+    },
+    {
+      "id": "tt0108122",
+      "title": "Short Cuts",
+      "year": 1993,
+      "source": "venice"
+    },
+    {
+      "id": "tt0105695",
+      "title": "Unforgiven",
+      "year": 1992,
+      "source": "oscar"
+    },
+    {
+      "id": "tt0104454",
+      "title": "Howards End",
+      "year": 1992,
+      "source": "bafta"
+    },
+    {
+      "id": "tt0104350",
+      "title": "The Best Intentions",
+      "year": 1992,
+      "source": "cannes"
+    },
+    {
+      "id": "tt0105323",
+      "title": "Scent of a Woman",
+      "year": 1992,
+      "source": "golden_globe"
+    },
+    {
+      "id": "tt0105197",
+      "title": "The Story of Qiu Ju",
+      "year": 1992,
+      "source": "venice"
+    },
+    {
+      "id": "tt0102926",
+      "title": "The Silence of the Lambs",
+      "year": 1991,
+      "source": "oscar"
+    },
+    {
+      "id": "tt0101605",
+      "title": "The Commitments",
+      "year": 1991,
+      "source": "bafta"
+    },
+    {
+      "id": "tt0101410",
+      "title": "Barton Fink",
+      "year": 1991,
+      "source": "cannes"
+    },
+    {
+      "id": "tt0101516",
+      "title": "Bugsy",
+      "year": 1991,
+      "source": "golden_globe"
+    },
+    {
+      "id": "tt0103176",
+      "title": "Close to Eden",
+      "year": 1991,
+      "source": "venice"
+    },
+    {
+      "id": "tt0099348",
+      "title": "Dances With Wolves",
+      "year": 1990,
+      "source": "oscar"
+    },
+    {
+      "id": "tt0099685",
+      "title": "Goodfellas",
+      "year": 1990,
+      "source": "bafta"
+    },
+    {
+      "id": "tt0100935",
+      "title": "Wild at Heart",
+      "year": 1990,
+      "source": "cannes"
+    },
+    {
+      "id": "tt0100519",
+      "title": "Rosencrantz & Guildenstern Are Dead",
+      "year": 1990,
+      "source": "venice"
+    },
+    {
+      "id": "tt0097239",
+      "title": "Driving Miss Daisy",
+      "year": 1989,
+      "source": "oscar"
+    },
+    {
+      "id": "tt0097165",
+      "title": "Dead Poets Society",
+      "year": 1989,
+      "source": "bafta"
+    },
+    {
+      "id": "tt0098724",
+      "title": "Sex, Lies, and Videotape",
+      "year": 1989,
+      "source": "cannes"
+    },
+    {
+      "id": "tt0096969",
+      "title": "Born on the Fourth of July",
+      "year": 1989,
+      "source": "golden_globe"
+    },
+    {
+      "id": "tt0096908",
+      "title": "A City of Sadness",
+      "year": 1989,
+      "source": "venice"
+    },
+    {
+      "id": "tt0095953",
+      "title": "Rain Man",
+      "year": 1988,
+      "source": "oscar"
+    },
+    {
+      "id": "tt0093389",
+      "title": "The Last Emperor",
+      "year": 1988,
+      "source": "bafta"
+    },
+    {
+      "id": "tt0093713",
+      "title": "Pelle the Conqueror",
+      "year": 1988,
+      "source": "cannes"
+    },
+    {
+      "id": "tt0095513",
+      "title": "The Legend of the Holy Drinker",
+      "year": 1988,
+      "source": "venice"
+    },
+    {
+      "id": "tt0091288",
+      "title": "Jean de Florette",
+      "year": 1987,
+      "source": "bafta"
+    },
+    {
+      "id": "tt0094011",
+      "title": "Under the Sun of Satan",
+      "year": 1987,
+      "source": "cannes"
+    },
+    {
+      "id": "tt0092593",
+      "title": "Au revoir les enfants",
+      "year": 1987,
+      "source": "venice"
+    },
+    {
+      "id": "tt0091763",
+      "title": "Platoon",
+      "year": 1986,
+      "source": "oscar"
+    },
+    {
+      "id": "tt0091867",
+      "title": "A Room with a View",
+      "year": 1986,
+      "source": "bafta"
+    },
+    {
+      "id": "tt0091530",
+      "title": "The Mission",
+      "year": 1986,
+      "source": "cannes"
+    },
+    {
+      "id": "tt0091830",
+      "title": "The Green Ray",
+      "year": 1986,
+      "source": "venice"
+    },
+    {
+      "id": "tt0089755",
+      "title": "Out of Africa",
+      "year": 1985,
+      "source": "oscar"
+    },
+    {
+      "id": "tt0089853",
+      "title": "The Purple Rose of Cairo",
+      "year": 1985,
+      "source": "bafta"
+    },
+    {
+      "id": "tt0089748",
+      "title": "When Father Was Away on Business",
+      "year": 1985,
+      "source": "cannes"
+    },
+    {
+      "id": "tt0089960",
+      "title": "Vagabond",
+      "year": 1985,
+      "source": "venice"
+    },
+    {
+      "id": "tt0086879",
+      "title": "Amadeus",
+      "year": 1984,
+      "source": "oscar"
+    },
+    {
+      "id": "tt0087553",
+      "title": "The Killing Fields",
+      "year": 1984,
+      "source": "bafta"
+    },
+    {
+      "id": "tt0087884",
+      "title": "Paris, Texas",
+      "year": 1984,
+      "source": "cannes"
+    },
+    {
+      "id": "tt0088009",
+      "title": "A Year of the Quiet Sun",
+      "year": 1984,
+      "source": "venice"
+    },
+    {
+      "id": "tt0086425",
+      "title": "Terms of Endearment",
+      "year": 1983,
+      "source": "oscar"
+    },
+    {
+      "id": "tt0085478",
+      "title": "Educating Rita",
+      "year": 1983,
+      "source": "bafta"
+    },
+    {
+      "id": "tt0084390",
+      "title": "The Ballad of Narayama",
+      "year": 1983,
+      "source": "cannes"
+    },
+    {
+      "id": "tt0086153",
+      "title": "First Name: Carmen",
+      "year": 1983,
+      "source": "venice"
+    },
+    {
+      "id": "tt0083987",
+      "title": "Gandhi",
+      "year": 1982,
+      "source": "oscar"
+    },
+    {
+      "id": "tt0084335",
+      "title": "Missing",
+      "year": 1982,
+      "source": "cannes"
+    },
+    {
+      "id": "tt0083866",
+      "title": "E.T. the Extra-Terrestrial",
+      "year": 1982,
+      "source": "golden_globe"
+    },
+    {
+      "id": "tt0084725",
+      "title": "The State of Things",
+      "year": 1982,
+      "source": "venice"
+    },
+    {
+      "id": "tt0082158",
+      "title": "Chariots of Fire",
+      "year": 1981,
+      "source": "oscar"
+    },
+    {
+      "id": "tt0082222",
+      "title": "Man of Iron",
+      "year": 1981,
+      "source": "cannes"
+    },
+    {
+      "id": "tt0082846",
+      "title": "On Golden Pond",
+      "year": 1981,
+      "source": "golden_globe"
+    },
+    {
+      "id": "tt0082081",
+      "title": "Marianne and Juliane",
+      "year": 1981,
+      "source": "venice"
+    },
+    {
+      "id": "tt0081283",
+      "title": "Ordinary People",
+      "year": 1980,
+      "source": "oscar"
+    },
+    {
+      "id": "tt0080678",
+      "title": "The Elephant Man",
+      "year": 1980,
+      "source": "bafta"
+    },
+    {
+      "id": "tt0078754",
+      "title": "All That Jazz",
+      "year": 1980,
+      "source": "cannes"
+    },
+    {
+      "id": "tt0080388",
+      "title": "Atlantic City",
+      "year": 1980,
+      "source": "venice"
+    },
+    {
+      "id": "tt0079417",
+      "title": "Kramer vs. Kramer",
+      "year": 1979,
+      "source": "oscar"
+    },
+    {
+      "id": "tt0079522",
+      "title": "Manhattan",
+      "year": 1979,
+      "source": "bafta"
+    },
+    {
+      "id": "tt0078788",
+      "title": "Apocalypse Now",
+      "year": 1979,
+      "source": "cannes"
+    },
+    {
+      "id": "tt0077416",
+      "title": "The Deer Hunter",
+      "year": 1978,
+      "source": "oscar"
+    },
+    {
+      "id": "tt0076245",
+      "title": "Julia",
+      "year": 1978,
+      "source": "bafta"
+    },
+    {
+      "id": "tt0077138",
+      "title": "The Tree of Wooden Clogs",
+      "year": 1978,
+      "source": "cannes"
+    },
+    {
+      "id": "tt0077928",
+      "title": "Midnight Express",
+      "year": 1978,
+      "source": "golden_globe"
+    },
+    {
+      "id": "tt0075686",
+      "title": "Annie Hall",
+      "year": 1977,
+      "source": "oscar"
+    },
+    {
+      "id": "tt0076517",
+      "title": "Padre Padrone",
+      "year": 1977,
+      "source": "cannes"
+    },
+    {
+      "id": "tt0076843",
+      "title": "The Turning Point",
+      "year": 1977,
+      "source": "golden_globe"
+    },
+    {
+      "id": "tt0075148",
+      "title": "Rocky",
+      "year": 1976,
+      "source": "oscar"
+    },
+    {
+      "id": "tt0073486",
+      "title": "One Flew Over the Cuckoo's Nest",
+      "year": 1976,
+      "source": "bafta"
+    },
+    {
+      "id": "tt0075314",
+      "title": "Taxi Driver",
+      "year": 1976,
+      "source": "cannes"
+    },
+    {
+      "id": "tt0071115",
+      "title": "Alice Doesn't Live Here Anymore",
+      "year": 1975,
+      "source": "bafta"
+    },
+    {
+      "id": "tt0072782",
+      "title": "Chronicle of the Years of Fire",
+      "year": 1975,
+      "source": "cannes"
+    },
+    {
+      "id": "tt0071562",
+      "title": "The Godfather Part II",
+      "year": 1974,
+      "source": "oscar"
+    },
+    {
+      "id": "tt0071733",
+      "title": "Lacombe, Lucien",
+      "year": 1974,
+      "source": "bafta"
+    },
+    {
+      "id": "tt0071360",
+      "title": "The Conversation",
+      "year": 1974,
+      "source": "cannes"
+    },
+    {
+      "id": "tt0071315",
+      "title": "Chinatown",
+      "year": 1974,
+      "source": "golden_globe"
+    },
+    {
+      "id": "tt0070735",
+      "title": "The Sting",
+      "year": 1973,
+      "source": "oscar"
+    },
+    {
+      "id": "tt0070460",
+      "title": "Day for Night",
+      "year": 1973,
+      "source": "bafta"
+    },
+    {
+      "id": "tt0070180",
+      "title": "The Hireling",
+      "year": 1973,
+      "source": "cannes"
+    },
+    {
+      "id": "tt0070047",
+      "title": "The Exorcist",
+      "year": 1973,
+      "source": "golden_globe"
+    },
+    {
+      "id": "tt0068646",
+      "title": "The Godfather",
+      "year": 1972,
+      "source": "oscar"
+    },
+    {
+      "id": "tt0068327",
+      "title": "Cabaret",
+      "year": 1972,
+      "source": "bafta"
+    },
+    {
+      "id": "tt0068346",
+      "title": "The Mattei Affair",
+      "year": 1972,
+      "source": "cannes"
+    },
+    {
+      "id": "tt0067116",
+      "title": "The French Connection",
+      "year": 1971,
+      "source": "oscar"
+    },
+    {
+      "id": "tt0067805",
+      "title": "Sunday Bloody Sunday",
+      "year": 1971,
+      "source": "bafta"
+    },
+    {
+      "id": "tt0067144",
+      "title": "The Go-Between",
+      "year": 1971,
+      "source": "cannes"
+    },
+    {
+      "id": "tt0066206",
+      "title": "Patton",
+      "year": 1970,
+      "source": "oscar"
+    },
+    {
+      "id": "tt0064115",
+      "title": "Butch Cassidy and the Sundance Kid",
+      "year": 1970,
+      "source": "bafta"
+    },
+    {
+      "id": "tt0066026",
+      "title": "M*A*S*H",
+      "year": 1970,
+      "source": "cannes"
+    },
+    {
+      "id": "tt0066011",
+      "title": "Love Story",
+      "year": 1970,
+      "source": "golden_globe"
+    },
+    {
+      "id": "tt0064665",
+      "title": "Midnight Cowboy",
+      "year": 1969,
+      "source": "oscar"
+    },
+    {
+      "id": "tt0063850",
+      "title": "If....",
+      "year": 1969,
+      "source": "cannes"
+    },
+    {
+      "id": "tt0064030",
+      "title": "Anne of the Thousand Days",
+      "year": 1969,
+      "source": "golden_globe"
+    },
+    {
+      "id": "tt0063385",
+      "title": "Oliver!",
+      "year": 1968,
+      "source": "oscar"
+    },
+    {
+      "id": "tt0061722",
+      "title": "The Graduate",
+      "year": 1968,
+      "source": "bafta"
+    },
+    {
+      "id": "tt0063227",
+      "title": "The Lion in Winter",
+      "year": 1968,
+      "source": "golden_globe"
+    },
+    {
+      "id": "tt0062679",
+      "title": "Artists Under the Big Top: Perplexed",
+      "year": 1968,
+      "source": "venice"
+    },
+    {
+      "id": "tt0061811",
+      "title": "In the Heat of the Night",
+      "year": 1967,
+      "source": "oscar"
+    },
+    {
+      "id": "tt0060665",
+      "title": "A Man For All Seasons",
+      "year": 1967,
+      "source": "bafta"
+    },
+    {
+      "id": "tt0060176",
+      "title": "Blowup",
+      "year": 1967,
+      "source": "cannes"
+    },
+    {
+      "id": "tt0061395",
+      "title": "Belle de Jour",
+      "year": 1967,
+      "source": "venice"
+    },
+    {
+      "id": "tt0061184",
+      "title": "Who's Afraid of Virginia Woolf?",
+      "year": 1966,
+      "source": "bafta"
+    },
+    {
+      "id": "tt0062271",
+      "title": "The Birds, the Bees and the Italians",
+      "year": 1966,
+      "source": "cannes"
+    },
+    {
+      "id": "tt0058946",
+      "title": "The Battle of Algiers",
+      "year": 1966,
+      "source": "venice"
+    },
+    {
+      "id": "tt0059742",
+      "title": "The Sound of Music",
+      "year": 1965,
+      "source": "oscar"
+    },
+    {
+      "id": "tt0058385",
+      "title": "My Fair Lady",
+      "year": 1965,
+      "source": "bafta"
+    },
+    {
+      "id": "tt0059362",
+      "title": "The Knack ...and How to Get It",
+      "year": 1965,
+      "source": "cannes"
+    },
+    {
+      "id": "tt0059113",
+      "title": "Doctor Zhivago",
+      "year": 1965,
+      "source": "golden_globe"
+    },
+    {
+      "id": "tt0059856",
+      "title": "Sandra",
+      "year": 1965,
+      "source": "venice"
+    },
+    {
+      "id": "tt0057012",
+      "title": "Dr. Strangelove",
+      "year": 1964,
+      "source": "bafta"
+    },
+    {
+      "id": "tt0058450",
+      "title": "The Umbrellas of Cherbourg",
+      "year": 1964,
+      "source": "cannes"
+    },
+    {
+      "id": "tt0057877",
+      "title": "Becket",
+      "year": 1964,
+      "source": "golden_globe"
+    },
+    {
+      "id": "tt0058003",
+      "title": "Red Desert",
+      "year": 1964,
+      "source": "venice"
+    },
+    {
+      "id": "tt0057590",
+      "title": "Tom Jones",
+      "year": 1963,
+      "source": "oscar"
+    },
+    {
+      "id": "tt0057091",
+      "title": "The Leopard",
+      "year": 1963,
+      "source": "cannes"
+    },
+    {
+      "id": "tt0056907",
+      "title": "The Cardinal",
+      "year": 1963,
+      "source": "golden_globe"
+    },
+    {
+      "id": "tt0057286",
+      "title": "Hands over the City",
+      "year": 1963,
+      "source": "venice"
+    },
+    {
+      "id": "tt0056172",
+      "title": "Lawrence of Arabia",
+      "year": 1962,
+      "source": "oscar"
+    },
+    {
+      "id": "tt0056322",
+      "title": "O Pagador de Promessas",
+      "year": 1962,
+      "source": "cannes"
+    },
+    {
+      "id": "tt0056966",
+      "title": "Family Diary",
+      "year": 1962,
+      "source": "venice"
+    },
+    {
+      "id": "tt0055614",
+      "title": "West Side Story",
+      "year": 1961,
+      "source": "oscar"
+    },
+    {
+      "id": "tt0052600",
+      "title": "Ballad of a Soldier",
+      "year": 1961,
+      "source": "bafta"
+    },
+    {
+      "id": "tt0054426",
+      "title": "The Long Absence",
+      "year": 1961,
+      "source": "cannes"
+    },
+    {
+      "id": "tt0054953",
+      "title": "The Guns of Navarone",
+      "year": 1961,
+      "source": "golden_globe"
+    },
+    {
+      "id": "tt0054632",
+      "title": "Last Year at Marienbad",
+      "year": 1961,
+      "source": "venice"
+    },
+    {
+      "id": "tt0053604",
+      "title": "The Apartment",
+      "year": 1960,
+      "source": "oscar"
+    },
+    {
+      "id": "tt0053779",
+      "title": "La dolce vita",
+      "year": 1960,
+      "source": "cannes"
+    },
+    {
+      "id": "tt0054331",
+      "title": "Spartacus",
+      "year": 1960,
+      "source": "golden_globe"
+    },
+    {
+      "id": "tt0054161",
+      "title": "Tomorrow Is My Turn",
+      "year": 1960,
+      "source": "venice"
+    },
+    {
+      "id": "tt0052618",
+      "title": "Ben-Hur",
+      "year": 1959,
+      "source": "oscar"
+    },
+    {
+      "id": "tt0053146",
+      "title": "Black Orpheus",
+      "year": 1959,
+      "source": "cannes"
+    },
+    {
+      "id": "tt0053856",
+      "title": "General Della Rovere",
+      "year": 1959,
+      "source": "venice"
+    },
+    {
+      "id": "tt0051658",
+      "title": "Gigi",
+      "year": 1958,
+      "source": "oscar"
+    },
+    {
+      "id": "tt0053226",
+      "title": "Room at the Top",
+      "year": 1958,
+      "source": "bafta"
+    },
+    {
+      "id": "tt0050634",
+      "title": "The Cranes Are Flying",
+      "year": 1958,
+      "source": "cannes"
+    },
+    {
+      "id": "tt0051525",
+      "title": "The Defiant Ones",
+      "year": 1958,
+      "source": "golden_globe"
+    },
+    {
+      "id": "tt0051955",
+      "title": "Rickshaw Man",
+      "year": 1958,
+      "source": "venice"
+    },
+    {
+      "id": "tt0050212",
+      "title": "The Bridge on the River Kwai",
+      "year": 1957,
+      "source": "oscar"
+    },
+    {
+      "id": "tt0049233",
+      "title": "Friendly Persuasion",
+      "year": 1957,
+      "source": "cannes"
+    },
+    {
+      "id": "tt0048956",
+      "title": "Aparajito",
+      "year": 1957,
+      "source": "venice"
+    },
+    {
+      "id": "tt0048960",
+      "title": "Around the World in 80 Days",
+      "year": 1956,
+      "source": "oscar"
+    },
+    {
+      "id": "tt0049259",
+      "title": "Gervaise",
+      "year": 1956,
+      "source": "bafta"
+    },
+    {
+      "id": "tt0049518",
+      "title": "The Silent World",
+      "year": 1956,
+      "source": "cannes"
+    },
+    {
+      "id": "tt0048356",
+      "title": "Marty",
+      "year": 1955,
+      "source": "oscar"
+    },
+    {
+      "id": "tt0049674",
+      "title": "Richard III",
+      "year": 1955,
+      "source": "bafta"
+    },
+    {
+      "id": "tt0048028",
+      "title": "East of Eden",
+      "year": 1955,
+      "source": "golden_globe"
+    },
+    {
+      "id": "tt0048452",
+      "title": "Ordet",
+      "year": 1955,
+      "source": "venice"
+    },
+    {
+      "id": "tt0047296",
+      "title": "On the Waterfront",
+      "year": 1954,
+      "source": "oscar"
+    },
+    {
+      "id": "tt0046268",
+      "title": "The Wages of Fear",
+      "year": 1954,
+      "source": "bafta"
+    },
+    {
+      "id": "tt0045935",
+      "title": "Gate of Hell",
+      "year": 1954,
+      "source": "cannes"
+    },
+    {
+      "id": "tt0047029",
+      "title": "Romeo and Juliet",
+      "year": 1954,
+      "source": "venice"
+    },
+    {
+      "id": "tt0045793",
+      "title": "From Here to Eternity",
+      "year": 1953,
+      "source": "oscar"
+    },
+    {
+      "id": "tt0043686",
+      "title": "Forbidden Games",
+      "year": 1953,
+      "source": "bafta"
+    },
+    {
+      "id": "tt0046247",
+      "title": "The Robe",
+      "year": 1953,
+      "source": "golden_globe"
+    },
+    {
+      "id": "tt0044672",
+      "title": "The Greatest Show on Earth",
+      "year": 1952,
+      "source": "oscar"
+    },
+    {
+      "id": "tt0044446",
+      "title": "The Sound Barrier",
+      "year": 1952,
+      "source": "bafta"
+    },
+    {
+      "id": "tt0045251",
+      "title": "Othello",
+      "year": 1952,
+      "source": "cannes"
+    },
+    {
+      "id": "tt0043278",
+      "title": "An American in Paris",
+      "year": 1951,
+      "source": "oscar"
+    },
+    {
+      "id": "tt0042906",
+      "title": "La Ronde",
+      "year": 1951,
+      "source": "bafta"
+    },
+    {
+      "id": "tt0043809",
+      "title": "Miracle in Milan",
+      "year": 1951,
+      "source": "cannes"
+    },
+    {
+      "id": "tt0043924",
+      "title": "A Place in the Sun",
+      "year": 1951,
+      "source": "golden_globe"
+    },
+    {
+      "id": "tt0042876",
+      "title": "Rashomon",
+      "year": 1951,
+      "source": "venice"
+    },
+    {
+      "id": "tt0042192",
+      "title": "All About Eve",
+      "year": 1950,
+      "source": "oscar"
+    },
+    {
+      "id": "tt0043014",
+      "title": "Sunset Boulevard",
+      "year": 1950,
+      "source": "golden_globe"
+    },
+    {
+      "id": "tt0042625",
+      "title": "Justice Is Done",
+      "year": 1950,
+      "source": "venice"
+    },
+    {
+      "id": "tt0041113",
+      "title": "All the King's Men",
+      "year": 1949,
+      "source": "oscar"
+    },
+    {
+      "id": "tt0040522",
+      "title": "Bicycle Thieves",
+      "year": 1949,
+      "source": "bafta"
+    },
+    {
+      "id": "tt0041959",
+      "title": "The Third Man",
+      "year": 1949,
+      "source": "cannes"
+    },
+    {
+      "id": "tt0041634",
+      "title": "Manon",
+      "year": 1949,
+      "source": "venice"
+    },
+    {
+      "id": "tt0040416",
+      "title": "Hamlet",
+      "year": 1948,
+      "source": "oscar"
+    },
+    {
+      "id": "tt0040495",
+      "title": "Johnny Belinda",
+      "year": 1948,
+      "source": "golden_globe"
+    },
+    {
+      "id": "tt0039416",
+      "title": "Gentleman's Agreement",
+      "year": 1947,
+      "source": "oscar"
+    },
+    {
+      "id": "tt0036868",
+      "title": "The Best Years of Our Lives",
+      "year": 1947,
+      "source": "bafta"
+    },
+    {
+      "id": "tt0039155",
+      "title": "Antoine and Antoinette",
+      "year": 1947,
+      "source": "cannes"
+    },
+    {
+      "id": "tt0037558",
+      "title": "Brief Encounter",
+      "year": 1946,
+      "source": "cannes"
+    },
+    {
+      "id": "tt0037884",
+      "title": "The Lost Weekend",
+      "year": 1945,
+      "source": "oscar"
+    },
+    {
+      "id": "tt0036872",
+      "title": "Going My Way",
+      "year": 1944,
+      "source": "oscar"
+    },
+    {
+      "id": "tt0034583",
+      "title": "Casablanca",
+      "year": 1943,
+      "source": "oscar"
+    },
+    {
+      "id": "tt0036377",
+      "title": "The Song of Bernadette",
+      "year": 1943,
+      "source": "golden_globe"
+    },
+    {
+      "id": "tt0035093",
+      "title": "Mrs. Miniver",
+      "year": 1942,
+      "source": "oscar"
+    },
+    {
+      "id": "tt0033729",
+      "title": "How Green Was My Valley",
+      "year": 1941,
+      "source": "oscar"
+    },
+    {
+      "id": "tt0032976",
+      "title": "Rebecca",
+      "year": 1940,
+      "source": "oscar"
+    },
+    {
+      "id": "tt0031381",
+      "title": "Gone with the Wind",
+      "year": 1939,
+      "source": "oscar"
+    },
+    {
+      "id": "tt0030993",
+      "title": "You Can't Take It with You",
+      "year": 1938,
+      "source": "oscar"
+    },
+    {
+      "id": "tt0029146",
+      "title": "The Life of Emile Zola",
+      "year": 1937,
+      "source": "oscar"
+    },
+    {
+      "id": "tt0027698",
+      "title": "The Great Ziegfeld",
+      "year": 1936,
+      "source": "oscar"
+    },
+    {
+      "id": "tt0026752",
+      "title": "Mutiny on the Bounty",
+      "year": 1935,
+      "source": "oscar"
+    },
+    {
+      "id": "tt0025316",
+      "title": "It Happened One Night",
+      "year": 1934,
+      "source": "oscar"
+    },
+    {
+      "id": "tt0023876",
+      "title": "Cavalcade",
+      "year": 1932,
+      "source": "oscar"
+    },
+    {
+      "id": "tt0022958",
+      "title": "Grand Hotel",
+      "year": 1931,
+      "source": "oscar"
+    },
+    {
+      "id": "tt0021746",
+      "title": "Cimarron",
+      "year": 1930,
+      "source": "oscar"
+    },
+    {
+      "id": "tt0020629",
+      "title": "All Quiet on the Western Front",
+      "year": 1929,
+      "source": "oscar"
+    },
+    {
+      "id": "tt0019729",
+      "title": "The Broadway Melody",
+      "year": 1928,
+      "source": "oscar"
+    },
+    {
+      "id": "tt0018578",
+      "title": "Wings",
+      "year": 1927,
+      "source": "oscar"
+    }
+  ]
+}
