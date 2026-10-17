@@ -131,7 +131,8 @@ new_tests = tests - {name, 'ios/HarborUITests/LanguageReferenceNavigationTests.s
 assert sum(len(re.findall(r'\bfunc test\w+\(', text('HEAD', name))) for name in new_tests) == 12
 proof = dict(source=os.environ.get('GITHUB_SHA'), previous_source=previous, scope='onboarding-desktop',
              local_source_review_only=a.working_tree, prior_evidence_verified=False, expected_actual_executions=16,
-             native_methods=9, public_integration_methods=1, ui_methods=6, expected_new_images=32,
+             native_methods=9, public_integration_methods=1, ui_methods=6, required_new_images=30, transient_splash_images_up_to=2,
+             required_recordings=['setup-iphone.mp4', 'setup-ipad.mp4'],
              ipa_created=False, full_desktop_parity_complete=False, physical_device_validation=False)
 if not a.working_tree:
     run_ids = os.environ.get('HARBOR_PREVIOUS_RUNS', '').split(',')
