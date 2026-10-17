@@ -28,12 +28,12 @@ before, after = blob(previous, path), blob('HEAD', path)
 old = b'group.addTask { @MainActor in'
 new = b'group.addTask { @MainActor @Sendable in'
 assert before.count(old) == 1 and after == before.replace(old, new, 1)
-guards = {}
-for name in subprocess.check_output(['git', 'ls-tree', '-r', '--name-only', previous, '--', *roots], text=True).splitlines():
-    if name != path:
-        data = blob('HEAD', name)
-        assert data == blob(previous, name), 'Changed application/test/shared source: ' + name
-        guards[name] = hashlib.sha256(data).hexdigest()
+def tree(ref):
+    entries = subprocess.check_output(['git', 'ls-tree', '-r', ref, '--', *roots], text=True).splitlines()
+    return {name: identity for identity, name in (entry.split('\t', 1) for entry in entries) if name != path}
+
+guards = tree('HEAD')
+assert guards == tree(previous), 'Changed application/test/shared Git blobs or file modes'
 
 headers = {'Accept': 'application/vnd.github+json', 'Authorization': 'Bearer ' + os.environ['GH_TOKEN'], 'User-Agent': 'Harbor-reviewed-concurrency-fix'}
 api = 'https://api.github.com/repos/' + os.environ['GITHUB_REPOSITORY']
@@ -83,7 +83,7 @@ proof = dict(application_source=source, workflow_source=os.environ['GITHUB_SHA']
              compiler_annotation_only=True, reuse_authorized=True, complete=True, pending_ui=[],
              approved_results={r['name']: r for r in rows}, actual_executions_this_run=0,
              runs=[{k: run[k] for k in ['id', 'head_sha', 'conclusion', 'html_url', 'created_at']}],
-             unchanged_guards_sha256=guards, reviewed_change={'path': path, 'before_sha256': hashlib.sha256(before).hexdigest(), 'after_sha256': hashlib.sha256(after).hexdigest(), 'change': 'Explicit @Sendable on the existing @MainActor closure; no scheduling, control flow, data or test changes.'},
+             unchanged_git_blobs=guards, reviewed_change={'path': path, 'before_sha256': hashlib.sha256(before).hexdigest(), 'after_sha256': hashlib.sha256(after).hexdigest(), 'change': 'Explicit @Sendable on the existing @MainActor closure; no scheduling, control flow, data or test changes.'},
              original_evidence_sha256='495cd32c4419c6855ddb238bdf79af30e423c5f922f28a8643bbb71e4ea62b69',
              physical_device_validation=False, full_desktop_parity_complete=False)
 a.output.parent.mkdir(parents=True, exist_ok=True)
