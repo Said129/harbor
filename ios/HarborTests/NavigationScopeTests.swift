@@ -119,7 +119,8 @@ import XCTest
         XCTAssertEqual(packet["writes"].array.first?["baseRev"], .integer(41))
         if case .accepted(let revision) = try document.result(.object(["results": .array([.object(["ok": .bool(true), "rev": .integer(42)])])])) { XCTAssertEqual(revision, 42) }
         else { XCTFail("The server accepted this revision") }
-        XCTAssertThrowsError(try document.result(.object(["results": .array([.object(["ok": .bool(true), "rev": .integer(41)])])]))
+        let staleResponse: JSONValue = .object(["results": .array([.object(["ok": .bool(true), "rev": .integer(41)])])])
+        XCTAssertThrowsError(try document.result(staleResponse))
         XCTAssertThrowsError(try HarborLayoutDocument.revision(.number(41.5)))
         XCTAssertThrowsError(try HarborLayoutDocument.revision(.integer(-1)))
         XCTAssertThrowsError(try HarborLayoutDocument.revision(.integer(HarborLayoutDocument.maximumRevision + 1)))
@@ -128,7 +129,8 @@ import XCTest
         let doc: JSONValue = .object(["key": .string("one:nav"), "rev": .integer(12), "value": .object([:])])
         XCTAssertThrowsError(try HarborLayoutDocument.state(.object(["rev": .integer(12), "docs": .array([doc, doc])]), key: "one:nav"))
         let current = HarborLayoutDocument(key: "two:nav", rev: 10, value: .object([:]))
-        XCTAssertThrowsError(try current.result(.object(["results": .array([.object(["ok": .bool(false), "current": doc])])]))
+        let crossProfileResponse: JSONValue = .object(["results": .array([.object(["ok": .bool(false), "current": doc])])])
+        XCTAssertThrowsError(try current.result(crossProfileResponse))
         XCTAssertNil(try HarborLayoutDocument.state(.object(["rev": .integer(12), "docs": .array([doc])]), key: "missing:nav"))
     }
 }
