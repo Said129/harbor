@@ -40,15 +40,16 @@ private actor HeldProfileCredentialCheck: ProfileCredentialChecking {
     private func roster(_ profiles: [DesktopHouseholdProfile], extra: [String: JSONValue] = [:]) throws -> DesktopHouseholdRoster {
         var fields = extra; fields["profiles"] = .array(profiles.map(\.raw)); return try DesktopHouseholdRoster(.object(fields))
     }
-    private func setup(_ memory: HouseholdMemory = HouseholdMemory(), scope: HouseholdProfileScope = .local(owner: "synthetic-owner")) -> (HouseholdMemory, HouseholdProfileStore) {
-        (memory, HouseholdProfileStore(scope: scope, persistence: memory))
+    private func setup(_ existing: HouseholdMemory? = nil, scope: HouseholdProfileScope = .local(owner: "synthetic-owner")) -> (HouseholdMemory, HouseholdProfileStore) {
+        let memory = existing ?? HouseholdMemory()
+        return (memory, HouseholdProfileStore(scope: scope, persistence: memory))
     }
     private func knownCredential() -> DeviceProfileCredential {
         let hex = "d938e11b043abdde026737f0df28d9bcac9d97718aa2c8b7bf623cebf016eef2"
         let bytes = stride(from: 0, to: hex.count, by: 2).map { offset in
             UInt8(hex[hex.index(hex.startIndex, offsetBy: offset)..<hex.index(hex.startIndex, offsetBy: offset + 2)], radix: 16)!
         }
-        return DeviceProfileCredential(version: 1, salt: Data((0..<32).map(UInt8.init)), rounds: 600_000, digest: Data(bytes))
+        return DeviceProfileCredential(version: 1, salt: Data((0..<32).map { UInt8($0) }), rounds: 600_000, digest: Data(bytes))
     }
 
     func testPortableRosterRetainsFutureFieldsAndDropsAllDeviceSecrets() throws {
