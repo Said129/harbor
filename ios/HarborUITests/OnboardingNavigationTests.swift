@@ -7,21 +7,24 @@ import XCTest
     private func verifyGuide(device: String) {
         continueAfterFailure = false
         let app = XCUIApplication()
-        app.launchArguments = ["-uiLanguage", "es", "-nativeGuide.initialized.v1", "YES", "-nativeGuide.completed.v1", "YES"]
+        let fresh = device == "iphone"
+        app.launchArguments = ["-uiLanguage", "es", "-nativeGuide.initialized.v1", "YES", "-nativeGuide.completed.v1", fresh ? "NO" : "YES"]
         app.launch(); defer { app.terminate() }
-        XCTAssertTrue(app.buttons["main-menu"].waitForExistence(timeout: 45)); app.buttons["main-menu"].tap()
-        let navigation = app.descendants(matching: .any).matching(identifier: "navigation-scroll").firstMatch
-        let settings = app.buttons["nav-settings"]
-        for _ in 0..<10 { if settings.isHittable { break }; navigation.swipeUp() }
-        XCTAssertTrue(settings.isHittable); settings.press(forDuration: 0.6)
-        let search = app.textFields.firstMatch
-        XCTAssertTrue(search.waitForExistence(timeout: 10)); search.tap(); search.typeText("About")
-        let about = app.buttons["settings-about"]
-        XCTAssertTrue(about.waitForExistence(timeout: 5)); about.tap()
         let replay = app.buttons["about-replay"]
-        XCTAssertTrue(replay.waitForExistence(timeout: 10)); replay.tap()
+        if !fresh {
+            XCTAssertTrue(app.buttons["main-menu"].waitForExistence(timeout: 45)); app.buttons["main-menu"].tap()
+            let navigation = app.descendants(matching: .any).matching(identifier: "navigation-scroll").firstMatch
+            let settings = app.buttons["nav-settings"]
+            for _ in 0..<10 { if settings.isHittable { break }; navigation.swipeUp() }
+            XCTAssertTrue(settings.isHittable); settings.press(forDuration: 0.6)
+            let search = app.textFields.firstMatch
+            XCTAssertTrue(search.waitForExistence(timeout: 10)); search.tap(); search.typeText("About")
+            let about = app.buttons["settings-about"]
+            XCTAssertTrue(about.waitForExistence(timeout: 5)); about.tap()
+            XCTAssertTrue(replay.waitForExistence(timeout: 10)); replay.tap()
+        }
         let splash = app.descendants(matching: .any).matching(identifier: "guide-splash").firstMatch
-        XCTAssertTrue(splash.waitForExistence(timeout: 5)); capture(app, name: "setup-\(device)-splash")
+        XCTAssertTrue(splash.waitForExistence(timeout: fresh ? 45 : 5)); capture(app, name: "setup-\(device)-splash")
         stage("language", in: app); capture(app, name: "setup-\(device)-language")
         let language = app.buttons["guide-language-es"]
         reveal(language, in: app); language.tap()
@@ -64,7 +67,9 @@ import XCTest
         // The reference check finishes drawing after 840 ms; inspect its end state.
         Thread.sleep(forTimeInterval: 0.9)
         capture(app, name: "setup-\(device)-done")
-        next(app); XCTAssertTrue(replay.waitForExistence(timeout: 10))
+        next(app)
+        if fresh { XCTAssertTrue(app.buttons["main-menu"].waitForExistence(timeout: 10)) }
+        else { XCTAssertTrue(replay.waitForExistence(timeout: 10)) }
     }
     private func next(_ app: XCUIApplication) {
         let button = app.buttons["guide-next"]
