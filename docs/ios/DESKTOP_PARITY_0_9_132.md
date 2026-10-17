@@ -15,6 +15,8 @@ La referencia de código es `0834340cec5531650bfe78cd628628702e636987`, identifi
 
 ## Trabajo y evidencia
 
+El propietario pidió una **única próxima IPA con todos los cambios pendientes del port**, sin generar una IPA por cada añadido. Las comprobaciones parciales de desarrollo conservan sus resultados y capturas, y se ejecutan sin empaquetado de IPA. La siguiente entrega instalable queda reservada a la integración completa y validada del alcance 1:1; los avances parciales no cambian ese criterio.
+
 El inventario reproducible de esta referencia se registra por separado de las matrices históricas. Los estados anteriores conservan su evidencia original: no se convierten automáticamente en equivalencia con 0.9.132. La estimación conversacional del 75–80 % no es una medición auditada ni un criterio de finalización.
 
 Orden de trabajo: continuidad y episodios; cuenta y sincronización; fuentes y plugins; reproducción y subtítulos; biblioteca, descubrimiento y personalización; TV/VOD y deportes; música y lectura; almacenamiento, copias, avisos y ayuda. Esta agrupación organiza el trabajo y no reduce el alcance.

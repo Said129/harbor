@@ -42,8 +42,8 @@ targets:
       properties:
         CFBundleDisplayName: Harbor
         CFBundleShortVersionString: "0.1.0"
-        CFBundleVersion: "92"
-        CFBundleLocalizations: [en, es, ar, pt, ru]
+        CFBundleVersion: "93"
+        CFBundleLocalizations: [en, ar, zh, fr, de, hi, id, it, ja, ko, pl, pt, ru, es, tr, vi]
         CFBundleDocumentTypes:
           - CFBundleTypeName: eBook
             CFBundleTypeRole: Viewer

@@ -1,62 +1,79 @@
-"""Share the exact Desktop language inventory/catalogs with native iOS labels."""
+"""Generate native labels from the owner's pinned Desktop 0.9.132 reference."""
+import argparse
+import hashlib
 import json
 from pathlib import Path
 import re
+import subprocess
+import tempfile
 
-root = Path(__file__).resolve().parents[2]
-native = root / 'ios/Harbor'
-desktop = root / 'src/lib/i18n'
-inventory = (desktop / 'index.ts').read_text('utf-8').split('] as const;', 1)[0]
-languages = [dict(code=code, nativeLabel=label) for code, label in re.findall(r'code: "([a-z]+)"[^\n]*nativeLabel: "([^"]+)"', inventory)]
-assert languages and len({item['code'] for item in languages}) == len(languages)
-languages.insert(1, dict(code='es', nativeLabel='Español'))
-(native / 'DesktopLanguages.json').write_text(json.dumps(languages, ensure_ascii=False, indent=2) + '\n', 'utf-8')
+p = argparse.ArgumentParser(description=__doc__)
+p.add_argument('--reference', type=Path, required=True)
+p.add_argument('--output', type=Path)
+p.add_argument('--report', type=Path)
+a = p.parse_args()
+repository = Path(__file__).resolve().parents[2]
+native = repository / 'ios/Harbor'
+output = a.output or native
+base = a.reference.resolve() / 'src/lib/i18n'
+assert json.loads((a.reference / 'package.json').read_text('utf-8'))['version'] == '0.9.132'
+modules = sorted([base / 'languages.ts', *(base / 'locales').rglob('*.ts')], key=lambda path: path.relative_to(base).as_posix())
+digest = hashlib.sha256()
+for path in modules:
+    digest.update(path.relative_to(base).as_posix().encode())
+    digest.update(b'\0')
+    digest.update(hashlib.sha256(path.read_bytes()).digest())
+assert len(modules) == 2034 and digest.hexdigest() == '29cb962ce80adbd8e771396351dddeda9c74fd45b2ed13d0e8367603824eebaf', 'Review changed reference catalogs before generating native resources'
+with tempfile.TemporaryDirectory(prefix='harbor-locales-') as temp:
+    catalog_path = Path(temp) / 'catalogs.json'
+    subprocess.run(['node', str(Path(__file__).with_name('extract-desktop-locales.mjs')), str(a.reference.resolve()), str(catalog_path)], check=True, capture_output=True, text=True)
+    reference = json.loads(catalog_path.read_text('utf-8'))
 spanish = json.loads((native / 'DesktopInterfaceSpanish.json').read_text('utf-8'))
 aliases = json.loads((native / 'NativeInterfaceAliases.json').read_text('utf-8'))
 extras = json.loads((native / 'NativeInterfaceTranslations.json').read_text('utf-8'))
-english = json.loads((desktop / 'locales/en.json').read_text('utf-8'))
+english = reference['catalogs']['en']
 source_by_value = {value: key for key, value in english.items()}
-native_spanish = {english_key: label for label, english_key in aliases.items()}
 used = set(spanish) | set(aliases) | set(aliases.values())
-for catalog in extras.values():
-    used.update(catalog)
+for catalog in extras.values(): used.update(catalog)
 for path in native.rglob('*.swift'):
     used.update(re.findall(r'"([^"\n]*)"', path.read_text('utf-8')))
 
 def resource_labels(value):
-    if isinstance(value, str):
-        used.add(value)
+    if isinstance(value, str): used.add(value)
     elif isinstance(value, list):
-        for item in value:
-            resource_labels(item)
+        for item in value: resource_labels(item)
     elif isinstance(value, dict):
-        for key, item in value.items():
-            used.add(key)
-            resource_labels(item)
+        for key, item in value.items(): used.add(key); resource_labels(item)
 
+resource_labels([{key: item[key] for key in ['code', 'nativeLabel']} for item in reference['languages']])
 for path in native.rglob('*.json'):
-    resource_labels(json.loads(path.read_text('utf-8')))
-
-def quoted(value):
-    return json.dumps(value, ensure_ascii=False)
-
+    if path.name != 'DesktopLanguages.json':
+        resource_labels(json.loads(path.read_text('utf-8')))
+native_spanish = {key: label for label, key in aliases.items()}
+languages = [{key: item[key] for key in ['code', 'nativeLabel']} for item in reference['languages']]
+output.mkdir(parents=True, exist_ok=True)
+(output / 'DesktopLanguages.json').write_text(json.dumps(languages, ensure_ascii=False, indent=2) + '\n', 'utf-8')
+report = {}
 for language in languages:
-    code = language['code']
-    catalog = spanish if code == 'es' else json.loads((desktop / f'locales/{code}.json').read_text('utf-8'))
-    # Include the shared labels used by native code, with their English fallback.
-    # Desktop-only tools do not need localization resources in the mobile IPA.
-    values = {key: catalog.get(key, value) for key, value in english.items() if key in used or value in used}
-    for key in set(aliases.values()) | set(spanish):
+    code = language['code']; catalog = reference['catalogs'][code]
+    values = {}
+    for key in used | set(aliases.values()) | set(spanish):
         source_key = source_by_value.get(key, key)
-        values[key] = (spanish.get(key) or native_spanish.get(key) or key) if code == 'es' else catalog.get(source_key, key)
+        translated = catalog.get(key, catalog.get(source_key))
+        if translated is not None: values[key] = translated
+        elif key in spanish or key in aliases.values() or key in extras.get('es', {}): values[key] = english.get(source_key, key)
+    # Native Spanish and mobile-only wording preserve the owner's accepted UI.
+    if code == 'es': values.update(native_spanish); values.update(spanish)
     values.update(extras.get(code, {}))
-    for label, key in aliases.items():
-        values[label] = values.get(key, label if code == 'es' else key)
-    for key, label in spanish.items():
-        values.setdefault(label, values.get(key, label if code == 'es' else key))
-    folder = native / f'{code}.lproj'
-    folder.mkdir(exist_ok=True)
-    text = '// Generated by scripts/ios/sync-interface-locales.py.\n'
-    text += '\n'.join(f'{quoted(key)} = {quoted(value)};' for key, value in sorted(values.items())) + '\n'
-    (folder / 'Localizable.strings').write_text(text, 'utf-8')
-print('Native interface languages: ' + ', '.join(item['code'] for item in languages))
+    for label, key in aliases.items(): values[label] = values.get(key, label if code == 'es' else key)
+    for key, label in spanish.items(): values.setdefault(label, values.get(key, label if code == 'es' else key))
+    folder = output / f'{code}.lproj'; folder.mkdir(exist_ok=True)
+    text = '// Generated by scripts/ios/sync-interface-locales.py from Desktop 0.9.132.\n'
+    text += '\n'.join(f'{json.dumps(key, ensure_ascii=False)} = {json.dumps(value, ensure_ascii=False)};' for key, value in sorted(values.items())) + '\n'
+    path = folder / 'Localizable.strings'; path.write_text(text, 'utf-8')
+    fallback = sorted(key for key in set(spanish) | set(aliases.values()) | set(extras['es']) if key not in catalog and source_by_value.get(key, key) not in catalog and key not in extras.get(code, {}) and code not in ['en', 'es'])
+    report[code] = dict(entries=len(values), sha256=hashlib.sha256(path.read_bytes()).hexdigest(), mobile_only_english_fallback=fallback)
+target = a.report or repository / 'docs/ios/desktop-locales-0.9.132.json'
+target.parent.mkdir(parents=True, exist_ok=True)
+target.write_text(json.dumps(dict(reference='0834340cec5531650bfe78cd628628702e636987', reference_version='0.9.132', module_count=len(modules), module_tree_sha256=digest.hexdigest(), language_count=len(languages), coverage_note='This report inventories generated Desktop-derived labels and known mobile-only English fallbacks. It is not a certification of complete translation of every native message or of overall functional parity.', languages=report), ensure_ascii=False, indent=2) + '\n', 'utf-8')
+print('Native interface catalogs: ' + ', '.join(item['code'] for item in languages))

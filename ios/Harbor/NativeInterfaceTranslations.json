@@ -126,5 +126,38 @@
     "Could not analyze this source. Playback continues; you can retry.": "تعذر تحليل هذا المصدر. تستمر المشاهدة ويمكنك المحاولة مجددًا.",
     "Select an external SRT/VTT subtitle without dual subtitles, in a video at least one minute long.": "اختر ترجمة خارجية SRT/VTT دون ترجمة مزدوجة، لفيديو مدته دقيقة على الأقل.",
     "Analysis stopped to prioritize playback. Retry after buffering finishes.": "توقف التحليل لإعطاء الأولوية للمشاهدة. أعد المحاولة بعد اكتمال التحميل."
+  },
+  "zh": {
+    "Couldn't auto-sync": "无法自动同步"
+  },
+  "fr": {
+    "Couldn't auto-sync": "Synchronisation automatique impossible"
+  },
+  "de": {
+    "Couldn't auto-sync": "Automatische Synchronisierung nicht möglich"
+  },
+  "hi": {
+    "Couldn't auto-sync": "अपने-आप सिंक नहीं हो सका"
+  },
+  "id": {
+    "Couldn't auto-sync": "Tidak dapat menyinkronkan otomatis"
+  },
+  "it": {
+    "Couldn't auto-sync": "Sincronizzazione automatica non riuscita"
+  },
+  "ja": {
+    "Couldn't auto-sync": "自動同期できませんでした"
+  },
+  "ko": {
+    "Couldn't auto-sync": "자동 동기화하지 못했습니다"
+  },
+  "pl": {
+    "Couldn't auto-sync": "Nie udało się zsynchronizować automatycznie"
+  },
+  "tr": {
+    "Couldn't auto-sync": "Otomatik eşitlenemedi"
+  },
+  "vi": {
+    "Couldn't auto-sync": "Không thể tự động đồng bộ"
   }
 }

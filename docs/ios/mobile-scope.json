@@ -506,13 +506,10 @@
     "Physical Continue Watching, Submanhwa remembered access and video/settings verification"
   ],
   "deliveryPolicy": {
-    "singleFinalIpa": true,
-    "intermediateAppleBuilds": false,
-    "intermediateCommitsSkipCI": true,
-    "finalValidationScope": "Affected source/search/account/subtitle cases; accepted unchanged build 86 evidence preserved at owner request",
-    "finalPublicServices": true,
-    "finalUIJourney": true,
-    "keepPreviousVerifiedIpa": true
+    "authority": "Explicit owner instruction in the current conversation on 2026-10-17",
+    "nextInstallableDelivery": "One consolidated IPA after completing and validating the remaining full Desktop 0.9.132 parity scope",
+    "perFeatureIPAs": false,
+    "partialValidation": "Affected checks and evidence may run during development without IPA packaging; approved unchanged results are preserved."
   },
   "remainingVerification": [
     "IPA sin firmar para iPhone con iOS 17 o posterior. La instalación exige firma válida del propietario; para conservar datos se debe usar la misma identidad y bundle ID e instalar sobre la app anterior.",

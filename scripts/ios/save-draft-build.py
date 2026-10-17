@@ -14,7 +14,7 @@ def main():
     parser.add_argument("--report", type=Path, required=True)
     parser.add_argument("--commit", required=True)
     parser.add_argument("--evidence", type=Path)
-    parser.add_argument("--validation-scope", choices=["full", "affected", "sources-search-subtitles", "mobile-sources-subtitles", "stable-mobile", "stable-tablet-ui", "reading-intro", "reading-followup", "reading-final", "reading-tablet-final", "anime-episodes", "anime-episodes-ui", "continuation-parity"], default="full")
+    parser.add_argument("--validation-scope", choices=["full", "affected", "sources-search-subtitles", "mobile-sources-subtitles", "stable-mobile", "stable-tablet-ui", "reading-intro", "reading-followup", "reading-final", "reading-tablet-final", "anime-episodes", "anime-episodes-ui", "continuation-parity", "language-reference"], default="full")
     parser.add_argument("--native-selection", default="")
     parser.add_argument("--previous-runs", default="")
     args = parser.parse_args()
@@ -40,7 +40,7 @@ def main():
         assets.append(str(args.evidence))
     # A rerun must not replace an existing review artifact silently.
     existing = subprocess.run(["gh", "release", "view", tag, "--repo", args.repo], capture_output=True, text=True)
-    reserved = args.validation_scope in ["sources-search-subtitles", "mobile-sources-subtitles", "stable-mobile", "stable-tablet-ui", "reading-intro", "reading-followup", "reading-final", "reading-tablet-final", "anime-episodes", "anime-episodes-ui", "continuation-parity"] and existing.returncode == 0
+    reserved = args.validation_scope in ["sources-search-subtitles", "mobile-sources-subtitles", "stable-mobile", "stable-tablet-ui", "reading-intro", "reading-followup", "reading-final", "reading-tablet-final", "anime-episodes", "anime-episodes-ui", "continuation-parity", "language-reference"] and existing.returncode == 0
     if existing.returncode == 0 and not reserved:
         raise SystemExit(f"Draft build tag already exists: {tag}; review the existing asset before replacing it")
     if reserved:
@@ -135,13 +135,22 @@ def main():
             "Games is excluded by the owner. The complete 1:1 parity goal is still in progress. "
             "Requires iOS/iPadOS 17+ and valid signing. No personal accounts, signing material or test data are included. Physical-device validation remains pending."
         )
+    if args.validation_scope == "language-reference":
+        notes = (
+            f"Harbor {report['build']} iPhone/iPad, unsigned. Reference Desktop 0.9.132 language inventory.\n\n"
+            f"Commit: `{args.commit}`\n\nSHA-256: `{digest}`\n\n"
+            "Includes the 16 Desktop interface language catalogs. Some mobile-only wording still uses its existing fallback language; complete native translation coverage remains in progress. "
+            "Only the expanded native language case and ordinary language switching on iPhone and iPad run. "
+            "Unchanged code and approved continuity/reading/playback/account behavior retain their recorded provenance. "
+            "The complete 1:1 parity goal remains in progress, with Games excluded. Minimum iOS/iPadOS 17; valid signing required. Physical validation is pending."
+        )
     with tempfile.TemporaryDirectory(prefix="harbor-draft-") as temporary:
         body = Path(temporary) / "notes.md"
         body.write_text(notes, encoding="utf-8")
         if reserved:
             subprocess.run(["gh", "release", "upload", tag, *assets, "--repo", args.repo], check=True)
             title = "Harbor iPhone 88 — unsigned reviewed candidate" if args.validation_scope == "mobile-sources-subtitles" else "Harbor iPhone 87 — unsigned reviewed candidate"
-            if args.validation_scope in ["stable-mobile", "stable-tablet-ui", "reading-intro", "reading-followup", "reading-final", "reading-tablet-final", "anime-episodes", "anime-episodes-ui", "continuation-parity"]: title = f"Harbor {report['build']} iPhone and iPad — unsigned reviewed candidate"
+            if args.validation_scope in ["stable-mobile", "stable-tablet-ui", "reading-intro", "reading-followup", "reading-final", "reading-tablet-final", "anime-episodes", "anime-episodes-ui", "continuation-parity", "language-reference"]: title = f"Harbor {report['build']} iPhone and iPad — unsigned reviewed candidate"
             subprocess.run(["gh", "release", "edit", tag, "--repo", args.repo, "--title", title, "--notes-file", str(body)], check=True)
             return
         subprocess.run([
