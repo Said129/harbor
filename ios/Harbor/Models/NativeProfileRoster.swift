@@ -119,11 +119,14 @@ struct HouseholdProfileRouting: Equatable, Sendable {
         func source(_ row: DeviceHouseholdProfile) -> String {
             profiles.contains { $0.id == row.shareStremioWith } ? row.shareStremioWith! : row.id
         }
-        personal = "profile-" + HouseholdProfileScope.hash([scope.key, profile.id])
+        // Existing iOS shelves, favourites and trackers keep their namespace. Only
+        // the explicitly migrated profile can hold this device-local alias.
+        personal = profile.legacyOwner ?? "profile-" + HouseholdProfileScope.hash([scope.key, profile.id])
         settings = profile.desktop.settingsLinked ? "settings-shared-" + scope.key : personal
         let sourceID = source(profile)
         let isPrivate = cwPerProfile && profiles.contains { $0.id != profile.id && source($0) == sourceID }
         stremioSourceID = sourceID; privateContinuing = isPrivate
-        continuing = isPrivate ? personal : "continuing-" + HouseholdProfileScope.hash([scope.key, sourceID])
+        let sourceOwner = profiles.first(where: { $0.id == sourceID })?.legacyOwner
+        continuing = isPrivate ? personal : sourceOwner ?? "continuing-" + HouseholdProfileScope.hash([scope.key, sourceID])
     }
 }

@@ -13,7 +13,9 @@ struct HouseholdProfileState: Codable, Equatable, Sendable {
         guard version == 1, Set(profiles.map(\.id)).count == profiles.count,
               Set(profiles.map(\.syncID)).count == profiles.count,
               profiles.allSatisfy({ !$0.id.isEmpty && $0.id.utf8.count <= 256 && !$0.desktop.deleted
-                  && ($0.credential?.valid ?? true) && ($0.parentCredential?.valid ?? true) }),
+                  && ($0.credential?.valid ?? true) && ($0.parentCredential?.valid ?? true)
+                  && ($0.legacyOwner.map { !$0.isEmpty && $0.utf8.count <= 512 } ?? true) }),
+              Set(profiles.compactMap(\.legacyOwner)).count == profiles.compactMap(\.legacyOwner).count,
               tombstones.count <= 64, tombstones.allSatisfy(\.deleted),
               selectedID == nil || profiles.contains(where: { $0.id == selectedID }),
               serverRevision == nil || (serverRevision! >= 0 && serverRevision! <= 9_007_199_254_740_991),

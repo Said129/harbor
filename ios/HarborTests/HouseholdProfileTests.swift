@@ -91,6 +91,8 @@ private actor HeldProfileCredentialCheck: ProfileCredentialChecking {
         let sharedOne = HouseholdProfileRouting(profile: one, profiles: store.profiles, scope: store.scope, cwPerProfile: false)
         let sharedTwo = HouseholdProfileRouting(profile: two, profiles: store.profiles, scope: store.scope, cwPerProfile: false)
         XCTAssertNotEqual(sharedOne.personal, sharedTwo.personal); XCTAssertEqual(sharedOne.settings, sharedTwo.settings)
+        XCTAssertEqual(sharedOne.personal, "synthetic-old-owner", "Existing shelves and tracker sessions retain their real iOS namespace")
+        XCTAssertEqual(sharedTwo.continuing, "synthetic-old-owner", "An explicitly shared primary source retains existing playback progress")
         XCTAssertEqual(sharedOne.continuing, sharedTwo.continuing); XCTAssertEqual(sharedTwo.stremioSourceID, one.id)
         let privateTwo = HouseholdProfileRouting(profile: two, profiles: store.profiles, scope: store.scope, cwPerProfile: true)
         XCTAssertTrue(privateTwo.privateContinuing); XCTAssertEqual(privateTwo.continuing, privateTwo.personal)

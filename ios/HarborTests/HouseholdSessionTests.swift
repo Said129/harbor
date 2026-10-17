@@ -91,4 +91,40 @@ import XCTest
         _ = try vault.bind(profile: first, profiles: profiles.profiles, scope: profiles.scope)
         XCTAssertEqual(vault.current, account)
     }
+
+    func testSigningIntoASharedProfilePreparesItsOwnSessionWithoutReplacingThePrimary() throws {
+        let (profiles, first, second) = try makeProfiles(); let memory = HouseholdSessionMemory(), vault = HouseholdSessionVault(persistence: memory)
+        let initial = try vault.bind(profile: first, profiles: profiles.profiles, scope: profiles.scope)
+        try vault.save(account, using: initial)
+        let shared = try vault.bind(profile: second, profiles: profiles.profiles, scope: profiles.scope)
+        let other = HouseholdSourceAccount(account: SavedAccount(session: AccountSession(authKey: "synthetic-second-token",
+            user: AccountUser(id: "synthetic-second-owner", email: nil, fullname: nil)), collection: AccountCollection(addons: [], records: [])), guestAddons: nil)
+        memory.failWrite = true
+        XCTAssertThrowsError(try vault.prepareOwnAccount(other, profile: second, profiles: profiles.profiles, scope: profiles.scope, using: shared))
+        XCTAssertEqual(vault.current, account); XCTAssertEqual(profiles.profiles.first { $0.id == second.id }?.shareStremioWith, first.id)
+        memory.failWrite = false
+        try vault.prepareOwnAccount(other, profile: second, profiles: profiles.profiles, scope: profiles.scope, using: shared)
+        XCTAssertEqual(vault.current, account, "A prepared account must not change the still-shared visible source")
+        try profiles.shareStremio(second.id, with: nil)
+        let detached = try XCTUnwrap(profiles.profiles.first { $0.id == second.id })
+        _ = try vault.bind(profile: detached, profiles: profiles.profiles, scope: profiles.scope)
+        XCTAssertEqual(vault.current, other)
+        _ = try vault.bind(profile: first, profiles: profiles.profiles, scope: profiles.scope)
+        XCTAssertEqual(vault.current, account)
+    }
+
+    func testSigningOutASharedProfileLeavesTheSharedSourceAndOtherProfilesSignedIn() throws {
+        let (profiles, first, second) = try makeProfiles(); let vault = HouseholdSessionVault(persistence: HouseholdSessionMemory())
+        let initial = try vault.bind(profile: first, profiles: profiles.profiles, scope: profiles.scope)
+        try vault.save(account, using: initial)
+        let shared = try vault.bind(profile: second, profiles: profiles.profiles, scope: profiles.scope)
+        try vault.prepareOwnAccount(HouseholdSourceAccount(account: nil, guestAddons: []), profile: second, profiles: profiles.profiles, scope: profiles.scope, using: shared)
+        XCTAssertEqual(vault.current, account)
+        try profiles.shareStremio(second.id, with: nil)
+        let detached = try XCTUnwrap(profiles.profiles.first { $0.id == second.id })
+        _ = try vault.bind(profile: detached, profiles: profiles.profiles, scope: profiles.scope)
+        XCTAssertNil(vault.current?.account)
+        _ = try vault.bind(profile: first, profiles: profiles.profiles, scope: profiles.scope)
+        XCTAssertEqual(vault.current, account)
+    }
 }

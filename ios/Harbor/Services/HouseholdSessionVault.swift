@@ -26,9 +26,10 @@ struct HouseholdSessionState: Codable, Equatable, Sendable {
     var migratedOwners: [String: HouseholdAccountRoute] = [:]
     func validated() throws -> Self {
         guard version == 1, sources.allSatisfy({ key, value in
-            key == value.route.key && !value.route.household.isEmpty && !value.route.sourceID.isEmpty
+            key == value.route.key && !value.route.household.isEmpty && value.route.household.utf8.count <= 256
+                && !value.route.sourceID.isEmpty && value.route.sourceID.utf8.count <= 256
                 && (value.configuration.account.map { $0.version == 1 && !$0.session.authKey.isEmpty && !$0.session.user.id.isEmpty } ?? true)
-        }), migratedOwners.keys.allSatisfy({ !$0.isEmpty }),
+        }), migratedOwners.keys.allSatisfy({ !$0.isEmpty && $0.utf8.count <= 512 }),
               try JSONEncoder().encode(self).count <= 16 * 1_024 * 1_024 else { throw HarborError(code: "household-sessions") }
         return self
     }
@@ -76,11 +77,29 @@ struct HouseholdSessionState: Codable, Equatable, Sendable {
         return Lease(route: target, generation: generation, version: record?.version, configuration: record?.configuration)
     }
     func unbind() { generation += 1; route = nil }
-    func save(_ configuration: HouseholdSourceAccount, using lease: Lease) throws {
+    private func validate(_ lease: Lease) throws {
         guard ready, lease.generation == generation, route == lease.route,
               state.sources[lease.route.key]?.version == lease.version else { throw HarborError(code: "profile-account-changed") }
+    }
+    /// Refreshing addons or a source session updates profiles that deliberately share it.
+    func save(_ configuration: HouseholdSourceAccount, using lease: Lease) throws {
+        try validate(lease)
         var next = state
         next.sources[lease.route.key] = HouseholdAccountRecord(route: lease.route, version: UUID(), configuration: configuration)
+        try commit(next)
+    }
+    /// Desktop sign-in/sign-out detaches the active profile from a shared Stremio
+    /// source. Persist its own configuration BEFORE committing that routing change.
+    /// Until the caller commits shareStremioWith=nil and binds again, the shared
+    /// account stays active. A failed roster write cannot sign other profiles out.
+    func prepareOwnAccount(_ configuration: HouseholdSourceAccount, profile: DeviceHouseholdProfile,
+                           profiles: [DeviceHouseholdProfile], scope: HouseholdProfileScope, using lease: Lease) throws {
+        try validate(lease)
+        guard profiles.contains(where: { $0 == profile }), lease.route.household == scope.key,
+              HouseholdProfileRouting(profile: profile, profiles: profiles, scope: scope, cwPerProfile: false).stremioSourceID == lease.route.sourceID else { throw HarborError(code: "profile-account-scope") }
+        let own = HouseholdAccountRoute(household: scope.key, sourceID: profile.id)
+        var next = state
+        next.sources[own.key] = HouseholdAccountRecord(route: own, version: UUID(), configuration: configuration)
         try commit(next)
     }
     /// Source Stremio accounts are private even when a new profile shares settings.
