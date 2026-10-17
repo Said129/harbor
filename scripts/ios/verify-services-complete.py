@@ -41,7 +41,13 @@ def changes(roots):
     result = set(subprocess.check_output(command, text=True).splitlines())
     if a.working_tree: result.update(subprocess.check_output(['git', 'ls-files', '--others', '--exclude-standard', '--', *roots], text=True).splitlines())
     return result
-assert changes(['ios/Harbor', 'ios/project.yml', 'harbor-core', 'harbor-ios-bridge']) == {'ios/Harbor/Views/OnboardingSteps.swift', 'ios/Harbor/Views/StreamingCatalogView.swift'}
+assert changes(['ios/Harbor', 'ios/project.yml', 'harbor-core', 'harbor-ios-bridge']) == {'ios/Harbor/Views/OnboardingSteps.swift', 'ios/Harbor/Views/StreamingCatalogView.swift', 'ios/Harbor/Services/HarborStreamingSync.swift'}
+name = 'ios/Harbor/Services/HarborStreamingSync.swift'
+expected = blob(sync_source, name)
+before = '} catch { error = "Could not restore your services. The saved version is kept." }'
+assert expected.count(before) == 1
+expected = expected.replace(before, '} catch { self.error = "Could not restore your services. The saved version is kept." }', 1)
+assert blob('HEAD', name) == expected, 'Only the observed catch-shadowing compiler correction is allowed'
 name = 'ios/Harbor/Views/OnboardingSteps.swift'
 expected = blob(sync_source, name)
 expected = expected.replace('''                Label(DesktopInterfaceText.value(app.user == nil ? "Sign in" : "Manage"), image: "account-stremio").frame(minHeight: 44)''', '''                Label { Text(DesktopInterfaceText.value(app.user == nil ? "Sign in" : "Manage")) } icon: {
