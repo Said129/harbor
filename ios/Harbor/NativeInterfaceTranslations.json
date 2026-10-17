@@ -54,7 +54,14 @@
     "Resume from Continue watching. During playback, choose sources, audio and subtitles, synchronize an external subtitle or skip an intro when timing is available.": "Retoma el contenido desde Continuar viendo. Durante la reproducción, elige fuentes, audio y subtítulos, sincroniza un subtítulo externo o salta la introducción cuando haya información de sus tiempos.",
     "Dismiss tip": "Ocultar consejo",
     "Restored": "Restaurado",
-    "Sidebar icons animate when pressed or hovered with a pointer. Turn this off to keep them static.": "Los iconos del menú se animan al mantenerlos pulsados o al pasar el puntero. Desactívalo para que permanezcan estáticos."
+    "Sidebar icons animate when pressed or hovered with a pointer. Turn this off to keep them static.": "Los iconos del menú se animan al mantenerlos pulsados o al pasar el puntero. Desactívalo para que permanezcan estáticos.",
+    "Could not load navigation settings. Saved settings are kept.": "No se pudo cargar la navegación. Se conserva la configuración guardada.",
+    "Could not save navigation settings. Your previous settings are kept.": "No se pudo guardar la navegación. Se conserva tu configuración anterior.",
+    "Could not restore your navigation. The saved version is kept.": "No se pudo restaurar tu navegación. Se conserva la versión guardada.",
+    "Your navigation is saved locally. Cloud sync will retry.": "Tu navegación está guardada en el dispositivo. Se volverá a intentar sincronizarla.",
+    "Another device changed navigation. Your previous version is saved on this device.": "Otro dispositivo cambió la navegación. Tu versión anterior sigue guardada en este dispositivo.",
+    "Restore my version": "Restaurar mi versión",
+    "Navigation changes waiting to sync": "Cambios de navegación pendientes de sincronizar"
   },
   "pt": {
     "Auto-sync": "Sincronização automática",

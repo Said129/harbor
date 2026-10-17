@@ -113,6 +113,7 @@
 "Anime en tendencia" = "أنمي رائج";
 "Anime of the Year" = "أنمي العام";
 "Anime popular" = "أنمي شائع";
+"Another device changed navigation. Your previous version is saved on this device." = "Another device changed navigation. Your previous version is saved on this device.";
 "Anterior" = "السابق";
 "Anular estilos integrados" = "تجاوز الأنماط المضمّنة";
 "Análisis detenido para priorizar la reproducción. Puedes reintentarlo cuando termine de cargar." = "توقف التحليل لإعطاء الأولوية للمشاهدة. أعد المحاولة بعد اكتمال التحميل.";
@@ -379,8 +380,11 @@
 "Correo y contraseña" = "Email and password";
 "Could not analyze this source. Playback continues; you can retry." = "تعذر تحليل هذا المصدر. تستمر المشاهدة ويمكنك المحاولة مجددًا.";
 "Could not apply the timing. The original subtitle is kept." = "تعذر تطبيق التوقيت. تم الاحتفاظ بالترجمة الأصلية.";
+"Could not load navigation settings. Saved settings are kept." = "Could not load navigation settings. Saved settings are kept.";
 "Could not measure storage. Try again." = "Could not measure storage. Try again.";
 "Could not open book" = "تعذر فتح الكتاب";
+"Could not restore your navigation. The saved version is kept." = "Could not restore your navigation. The saved version is kept.";
+"Could not save navigation settings. Your previous settings are kept." = "Could not save navigation settings. Your previous settings are kept.";
 "Couldn't auto-sync" = "تعذرت المزامنة التلقائية";
 "Crash" = "تعطّل";
 "Crea tu propia paleta" = "أنشئ لوحة ألوانك الخاصة";
@@ -860,6 +864,7 @@
 "Name" = "الاسم";
 "Navegación" = "التنقل";
 "Navigation" = "التنقل";
+"Navigation changes waiting to sync" = "Navigation changes waiting to sync";
 "Navigation items" = "عناصر التنقل";
 "Needs artwork-rich titles to feed the hero" = "يحتاج إلى عناوين غنية بالصور لتغذية العرض الرئيسي";
 "Needs at least 10 titles for the Top 10 look" = "يحتاج إلى 10 عناوين على الأقل لمظهر أفضل 10";
@@ -1176,6 +1181,7 @@
 "Restart" = "إعادة التشغيل";
 "Restaurar subtítulo original" = "Restore original subtitle";
 "Restore dismissed hints" = "استعادة التلميحات المرفوضة";
+"Restore my version" = "Restore my version";
 "Restore original subtitle" = "Restore original subtitle";
 "Restored" = "تمت الاستعادة";
 "Resultados" = "النتائج";
@@ -1604,6 +1610,7 @@
 "Your library" = "مكتبتك";
 "Your library and watch history are kept." = "ستبقى مكتبتك وسجل المشاهدة محفوظين.";
 "Your lists" = "Your lists";
+"Your navigation is saved locally. Cloud sync will retry." = "Your navigation is saved locally. Cloud sync will retry.";
 "Your profile" = "ملفك الشخصي";
 "Zoom" = "تكبير";
 "anime" = "أنمي";
@@ -1619,6 +1626,7 @@
 "estrellas" = "نجوم";
 "guest" = "ضيف";
 "h" = "س";
+"hidden" = "مخفي";
 "hr" = "ساعة";
 "item" = "عنصر";
 "language" = "اللغة";

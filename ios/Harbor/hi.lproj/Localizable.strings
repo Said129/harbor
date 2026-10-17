@@ -103,6 +103,7 @@
 "Anime en tendencia" = "ट्रेंडिंग एनीमे";
 "Anime of the Year" = "वर्ष का ऐनिमे";
 "Anime popular" = "लोकप्रिय ऐनिमे";
+"Another device changed navigation. Your previous version is saved on this device." = "Another device changed navigation. Your previous version is saved on this device.";
 "Anterior" = "पिछला";
 "Anular estilos integrados" = "एम्बेडेड स्टाइल ओवरराइड करें";
 "Análisis detenido para priorizar la reproducción. Puedes reintentarlo cuando termine de cargar." = "Analysis stopped to prioritize playback. Retry after buffering finishes.";
@@ -355,8 +356,11 @@
 "Correo y contraseña" = "Email and password";
 "Could not analyze this source. Playback continues; you can retry." = "Could not analyze this source. Playback continues; you can retry.";
 "Could not apply the timing. The original subtitle is kept." = "Could not apply the timing. The original subtitle is kept.";
+"Could not load navigation settings. Saved settings are kept." = "Could not load navigation settings. Saved settings are kept.";
 "Could not measure storage. Try again." = "Could not measure storage. Try again.";
 "Could not open book" = "Could not open book";
+"Could not restore your navigation. The saved version is kept." = "Could not restore your navigation. The saved version is kept.";
+"Could not save navigation settings. Your previous settings are kept." = "Could not save navigation settings. Your previous settings are kept.";
 "Couldn't auto-sync" = "अपने-आप सिंक नहीं हो सका";
 "Crash" = "क्रैश";
 "Crea tu propia paleta" = "अपना पैलेट बनाएँ";
@@ -833,6 +837,7 @@
 "Name" = "नाम";
 "Navegación" = "नेविगेशन";
 "Navigation" = "नेविगेशन";
+"Navigation changes waiting to sync" = "Navigation changes waiting to sync";
 "Navigation items" = "नेविगेशन आइटम";
 "Needs artwork-rich titles to feed the hero" = "हीरो सेक्शन में दिखाने के लिए भरपूर आर्टवर्क वाले टाइटल चाहिए";
 "Needs at least 10 titles for the Top 10 look" = "Top 10 लुक के लिए कम से कम 10 शीर्षक चाहिए";
@@ -1144,6 +1149,7 @@
 "Restart" = "रीस्टार्ट करें";
 "Restaurar subtítulo original" = "Restore original subtitle";
 "Restore dismissed hints" = "हटाए गए संकेत फिर दिखाएँ";
+"Restore my version" = "Restore my version";
 "Restore original subtitle" = "Restore original subtitle";
 "Restored" = "बहाल किया गया";
 "Resultados" = "नतीजे";
@@ -1564,6 +1570,7 @@
 "Your library" = "आपकी लाइब्रेरी";
 "Your library and watch history are kept." = "Your library and watch history are kept.";
 "Your lists" = "Your lists";
+"Your navigation is saved locally. Cloud sync will retry." = "Your navigation is saved locally. Cloud sync will retry.";
 "Your profile" = "आपकी प्रोफ़ाइल";
 "Zoom" = "ज़ूम";
 "anime" = "ऐनिमे";
@@ -1579,6 +1586,7 @@
 "estrellas" = "स्टार्स";
 "guest" = "अतिथि";
 "h" = "घंटे";
+"hidden" = "छिपा हुआ";
 "hr" = "घं";
 "item" = "आइटम";
 "language" = "भाषा";

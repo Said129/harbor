@@ -54,7 +54,11 @@ actor ArtworkStore {
                 guard data.count < limit else { throw HarborError(code: "artwork-too-large") }
                 data.append(byte)
             }
-            guard CGImageSourceCreateWithData(data as CFData, nil) != nil else { throw HarborError(code: "invalid-artwork") }
+            guard let source = CGImageSourceCreateWithData(data as CFData, nil), CGImageSourceGetType(source) != nil,
+                  CGImageSourceGetCount(source) > 0, CGImageSourceGetStatus(source) == .statusComplete else {
+                session.configuration.urlCache?.removeCachedResponse(for: request)
+                throw HarborError(code: "invalid-artwork")
+            }
             return data
         }
         pending[raw] = Pending(id: requestID, task: task)

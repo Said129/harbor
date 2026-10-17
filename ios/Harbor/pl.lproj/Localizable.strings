@@ -103,6 +103,7 @@
 "Anime en tendencia" = "Popularne teraz anime";
 "Anime of the Year" = "Anime roku";
 "Anime popular" = "Popularne anime";
+"Another device changed navigation. Your previous version is saved on this device." = "Another device changed navigation. Your previous version is saved on this device.";
 "Anterior" = "Wstecz";
 "Anular estilos integrados" = "Zastąp osadzone style";
 "Análisis detenido para priorizar la reproducción. Puedes reintentarlo cuando termine de cargar." = "Analysis stopped to prioritize playback. Retry after buffering finishes.";
@@ -355,8 +356,11 @@
 "Correo y contraseña" = "Email and password";
 "Could not analyze this source. Playback continues; you can retry." = "Could not analyze this source. Playback continues; you can retry.";
 "Could not apply the timing. The original subtitle is kept." = "Could not apply the timing. The original subtitle is kept.";
+"Could not load navigation settings. Saved settings are kept." = "Could not load navigation settings. Saved settings are kept.";
 "Could not measure storage. Try again." = "Could not measure storage. Try again.";
 "Could not open book" = "Could not open book";
+"Could not restore your navigation. The saved version is kept." = "Could not restore your navigation. The saved version is kept.";
+"Could not save navigation settings. Your previous settings are kept." = "Could not save navigation settings. Your previous settings are kept.";
 "Couldn't auto-sync" = "Nie udało się zsynchronizować automatycznie";
 "Crash" = "Awaria";
 "Crea tu propia paleta" = "Utwórz własną paletę";
@@ -833,6 +837,7 @@
 "Name" = "Nazwa";
 "Navegación" = "Nawigacja";
 "Navigation" = "Nawigacja";
+"Navigation changes waiting to sync" = "Navigation changes waiting to sync";
 "Navigation items" = "Elementy nawigacji";
 "Needs artwork-rich titles to feed the hero" = "Do zasilania głównej karuzeli potrzebne są tytuły z bogatą oprawą graficzną";
 "Needs at least 10 titles for the Top 10 look" = "Układ Top 10 wymaga co najmniej 10 tytułów";
@@ -1144,6 +1149,7 @@
 "Restart" = "Uruchom ponownie";
 "Restaurar subtítulo original" = "Restore original subtitle";
 "Restore dismissed hints" = "Przywróć odrzucone wskazówki";
+"Restore my version" = "Restore my version";
 "Restore original subtitle" = "Restore original subtitle";
 "Restored" = "Przywrócono";
 "Resultados" = "Wyniki";
@@ -1564,6 +1570,7 @@
 "Your library" = "Twoja biblioteka";
 "Your library and watch history are kept." = "Your library and watch history are kept.";
 "Your lists" = "Your lists";
+"Your navigation is saved locally. Cloud sync will retry." = "Your navigation is saved locally. Cloud sync will retry.";
 "Your profile" = "Twój profil";
 "Zoom" = "Powiększenie";
 "anime" = "anime";
@@ -1579,6 +1586,7 @@
 "estrellas" = "gwiazdki";
 "guest" = "gość";
 "h" = "godz.";
+"hidden" = "ukryty";
 "hr" = "godz.";
 "item" = "element";
 "language" = "język";

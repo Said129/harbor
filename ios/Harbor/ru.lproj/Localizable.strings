@@ -106,6 +106,7 @@
 "Anime en tendencia" = "Аниме в тренде";
 "Anime of the Year" = "Аниме года";
 "Anime popular" = "Популярное аниме";
+"Another device changed navigation. Your previous version is saved on this device." = "Another device changed navigation. Your previous version is saved on this device.";
 "Anterior" = "Предыдущее";
 "Anular estilos integrados" = "Переопределять встроенные стили";
 "Análisis detenido para priorizar la reproducción. Puedes reintentarlo cuando termine de cargar." = "Анализ остановлен ради воспроизведения. Повторите попытку после буферизации.";
@@ -359,8 +360,11 @@
 "Correo y contraseña" = "Email and password";
 "Could not analyze this source. Playback continues; you can retry." = "Не удалось проанализировать источник. Просмотр продолжается; можно повторить попытку.";
 "Could not apply the timing. The original subtitle is kept." = "Не удалось применить синхронизацию. Исходные субтитры сохранены.";
+"Could not load navigation settings. Saved settings are kept." = "Could not load navigation settings. Saved settings are kept.";
 "Could not measure storage. Try again." = "Could not measure storage. Try again.";
 "Could not open book" = "Не удалось открыть книгу";
+"Could not restore your navigation. The saved version is kept." = "Could not restore your navigation. The saved version is kept.";
+"Could not save navigation settings. Your previous settings are kept." = "Could not save navigation settings. Your previous settings are kept.";
 "Couldn't auto-sync" = "Не удалось синхронизировать";
 "Crash" = "Сбой";
 "Crea tu propia paleta" = "Создать свою палитру";
@@ -840,6 +844,7 @@
 "Name" = "Название";
 "Navegación" = "Навигация";
 "Navigation" = "Навигация";
+"Navigation changes waiting to sync" = "Navigation changes waiting to sync";
 "Navigation items" = "Элементы навигации";
 "Needs artwork-rich titles to feed the hero" = "Для главного баннера нужны материалы с качественными изображениями";
 "Needs at least 10 titles for the Top 10 look" = "Для вида Топ-10 нужно минимум 10 материалов";
@@ -1156,6 +1161,7 @@
 "Restart" = "Перезапустить";
 "Restaurar subtítulo original" = "Restore original subtitle";
 "Restore dismissed hints" = "Восстановить скрытые подсказки";
+"Restore my version" = "Restore my version";
 "Restore original subtitle" = "Restore original subtitle";
 "Restored" = "Восстановлено";
 "Resultados" = "Результаты";
@@ -1577,6 +1583,7 @@
 "Your library" = "Ваша библиотека";
 "Your library and watch history are kept." = "Библиотека и история просмотра сохранятся.";
 "Your lists" = "Your lists";
+"Your navigation is saved locally. Cloud sync will retry." = "Your navigation is saved locally. Cloud sync will retry.";
 "Your profile" = "Ваш профиль";
 "Zoom" = "Масштаб";
 "anime" = "аниме";
@@ -1592,6 +1599,7 @@
 "estrellas" = "звёзд";
 "guest" = "гость";
 "h" = "ч";
+"hidden" = "скрытых";
 "hr" = "ч";
 "item" = "элемент";
 "language" = "язык";

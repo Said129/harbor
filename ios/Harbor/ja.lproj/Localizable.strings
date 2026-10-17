@@ -103,6 +103,7 @@
 "Anime en tendencia" = "トレンドアニメ";
 "Anime of the Year" = "アニメ・オブ・ザ・イヤー";
 "Anime popular" = "人気アニメ";
+"Another device changed navigation. Your previous version is saved on this device." = "Another device changed navigation. Your previous version is saved on this device.";
 "Anterior" = "前へ";
 "Anular estilos integrados" = "埋め込みスタイルを上書き";
 "Análisis detenido para priorizar la reproducción. Puedes reintentarlo cuando termine de cargar." = "Analysis stopped to prioritize playback. Retry after buffering finishes.";
@@ -355,8 +356,11 @@
 "Correo y contraseña" = "Email and password";
 "Could not analyze this source. Playback continues; you can retry." = "Could not analyze this source. Playback continues; you can retry.";
 "Could not apply the timing. The original subtitle is kept." = "Could not apply the timing. The original subtitle is kept.";
+"Could not load navigation settings. Saved settings are kept." = "Could not load navigation settings. Saved settings are kept.";
 "Could not measure storage. Try again." = "Could not measure storage. Try again.";
 "Could not open book" = "Could not open book";
+"Could not restore your navigation. The saved version is kept." = "Could not restore your navigation. The saved version is kept.";
+"Could not save navigation settings. Your previous settings are kept." = "Could not save navigation settings. Your previous settings are kept.";
 "Couldn't auto-sync" = "自動同期できませんでした";
 "Crash" = "クラッシュ";
 "Crea tu propia paleta" = "独自のパレットを作成";
@@ -833,6 +837,7 @@
 "Name" = "名前";
 "Navegación" = "ナビゲーション";
 "Navigation" = "ナビゲーション";
+"Navigation changes waiting to sync" = "Navigation changes waiting to sync";
 "Navigation items" = "ナビゲーション項目";
 "Needs artwork-rich titles to feed the hero" = "ヒーロー表示には画像が豊富な作品が必要です";
 "Needs at least 10 titles for the Top 10 look" = "トップ10表示には10作品以上が必要です";
@@ -1144,6 +1149,7 @@
 "Restart" = "最初から再生";
 "Restaurar subtítulo original" = "Restore original subtitle";
 "Restore dismissed hints" = "非表示にしたヒントを復元";
+"Restore my version" = "Restore my version";
 "Restore original subtitle" = "Restore original subtitle";
 "Restored" = "復元しました";
 "Resultados" = "結果";
@@ -1564,6 +1570,7 @@
 "Your library" = "あなたのライブラリ";
 "Your library and watch history are kept." = "Your library and watch history are kept.";
 "Your lists" = "Your lists";
+"Your navigation is saved locally. Cloud sync will retry." = "Your navigation is saved locally. Cloud sync will retry.";
 "Your profile" = "あなたのプロフィール";
 "Zoom" = "ズーム";
 "anime" = "アニメ";
@@ -1579,6 +1586,7 @@
 "estrellas" = "スター";
 "guest" = "ゲスト";
 "h" = "時間";
+"hidden" = "非表示";
 "hr" = "時間";
 "item" = "項目";
 "language" = "言語";

@@ -47,6 +47,12 @@ final class HarborProfileSync {
         let value = HarborProfileSync(owner: owner, profile: profile); models[owner] = value; return value
     }
     private let key: String
+    private let owner: String
+    @ObservationIgnored lazy var navigation: HarborNavigationSync = {
+        let preferences = InterfacePreferences.shared
+        let ids = Set(HarborSection.allCases.map(\.rawValue)).subtracting(["search"])
+        return HarborNavigationSync(owner: self.owner, preferences: preferences.navigation, defaultOrder: preferences.defaultNavigationOrder, knownIDs: ids)
+    }()
     private weak var profile: ProfilePreferences?
     private var stored = Stored()
     private var generation = 0
@@ -60,8 +66,9 @@ final class HarborProfileSync {
     var username: String? { stored.session?.username }
     var accountID: String? { stored.session?.id }
     var handle: String? { stored.session?.handle }
-    var hasPendingChanges: Bool { stored.pending != nil }
+    var hasPendingChanges: Bool { stored.pending != nil || navigation.hasPendingChanges }
     private init(owner: String, profile: ProfilePreferences) {
+        self.owner = owner
         key = "harbor-identity-" + EBookShelf.hash(owner); self.profile = profile
         reload()
     }
@@ -84,7 +91,12 @@ final class HarborProfileSync {
             if let pending = stored.pending, pending.account != id { parked[pending.account] = pending }
             let pending = stored.pending?.account == id ? stored.pending : parked.removeValue(forKey: id)
             let next = Stored(session: session, pending: pending, parked: parked)
+            let changedAccount = stored.session?.id != id
             try persist(next); stored = next; selectedID = nil; hydrated = false
+            if changedAccount {
+                navigation.unbind()
+                if InterfacePreferences.shared.navigation.scope?.owner == owner { InterfacePreferences.shared.navigation.bind(.local(owner: owner)) }
+            }
             try await synchronize(scope: scope)
         } catch is CancellationError { return }
         catch { if scope == generation { self.error = safeMessage(error) } }
@@ -97,6 +109,8 @@ final class HarborProfileSync {
             // Keep unacknowledged changes bound to their original account for a later login.
             let next = Stored(session: nil, pending: stored.pending, parked: stored.parked); try persist(next); stored = next
             hydrated = false; selectedID = nil; error = nil
+            navigation.unbind()
+            if InterfacePreferences.shared.navigation.scope?.owner == owner { InterfacePreferences.shared.navigation.bind(.local(owner: owner)) }
         } catch { self.error = "No se pudo cerrar la sesión. Vuelve a intentarlo."; return }
         if let token { _ = try? await HTTPClient().harbor("/auth/logout", method: "POST", body: .object([:]), token: token) }
     }
@@ -124,6 +138,9 @@ final class HarborProfileSync {
         pending?.version = UUID()
         do { var next = stored; next.pending = pending; try persist(next); stored = next; error = nil }
         catch { self.error = "No se pudieron guardar los cambios para sincronizar. Vuelve a intentarlo."; return }
+        scheduleSync()
+    }
+    private func scheduleSync() {
         scheduled?.cancel()
         scheduled = Task { [weak self] in
             do { try await Task.sleep(for: .milliseconds(600)); try Task.checkCancellation() } catch { return }
@@ -149,7 +166,8 @@ final class HarborProfileSync {
         }
     }
     private func synchronize(scope: Int) async throws {
-        var roster = try HarborRoster.state(try await request("/sync/v1/state", scope: scope))
+        let state = try await request("/sync/v1/state", scope: scope)
+        var roster = try HarborRoster.state(state)
         guard scope == generation, let session = stored.session else { return }
         let target = stored.pending?.account == session.id ? stored.pending?.syncId : selectedID
         if let target, roster.profile(target) == nil { hydrated = false; throw HarborError(code: "profile-sync-target") }
@@ -185,5 +203,10 @@ final class HarborProfileSync {
         if let pending = stored.pending, pending.account == session.id { roster = try roster.applying(pending.fields, to: pending.syncId) }
         guard let final = roster.profile(selectedID ?? id) else { throw HarborError(code: "profile-sync-target") }
         try profile?.adopt(final, accountID: session.id)
+        navigation.requestSync = { [weak self] in self?.scheduleSync() }
+        try await navigation.synchronize(state: state, account: session.id, profile: final) { [weak self] body in
+            guard let self, scope == self.generation, self.stored.session?.id == session.id else { throw HarborError(code: "account-changed") }
+            return try await self.request("/sync/v1/push", method: "POST", body: body, scope: scope)
+        }
     }
 }

@@ -408,6 +408,42 @@
       }
     }
   ],
+  "crossCuttingInterfaces": [
+    {
+      "id": "navigation",
+      "desktop": ["src/chrome/nav-items.tsx", "src/components/icons/nav-lottie.tsx"],
+      "native": [
+        "ios/Harbor/Views/HarborShell.swift",
+        "ios/Harbor/Views/SidebarNavigationIcon.swift",
+        "ios/Harbor/Views/InterfaceSettingsView.swift"
+      ],
+      "status": "pending_complete_reference_comparison"
+    },
+    {
+      "id": "onboarding",
+      "desktop": ["src/components/onboarding.tsx"],
+      "native": ["ios/Harbor/Views/AppWalkthroughView.swift"],
+      "status": "partial_native_walkthrough_requires_the_desktop_configuration_steps"
+    },
+    {
+      "id": "account_and_profiles",
+      "desktop": ["src/views/profile"],
+      "native": ["ios/Harbor/Views/AccountView.swift"],
+      "status": "pending_complete_reference_comparison"
+    },
+    {
+      "id": "player",
+      "desktop": ["src/views/player"],
+      "native": ["ios/Harbor/Player/PlayerView.swift"],
+      "status": "pending_complete_reference_comparison"
+    },
+    {
+      "id": "details",
+      "desktop": ["src/views/detail"],
+      "native": ["ios/Harbor/Views/DetailView.swift"],
+      "status": "pending_complete_reference_comparison"
+    }
+  ],
   "cssAnimations": [
     {
       "name": "ebook-nav-page-flip",

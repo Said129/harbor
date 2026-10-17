@@ -108,9 +108,49 @@ const report = {
   note: "This reproducible index is a review checklist, not proof of visual or functional parity. Existing native views and imported vectors still need complete flow and motion comparison on iPhone/iPad. Exclusions require a concrete PC dependency, not implementation difficulty.",
   excludedSections: ["games"],
   sections,
+  crossCuttingInterfaces: [
+    {
+      id: "navigation",
+      desktop: ["src/chrome/nav-items.tsx", "src/components/icons/nav-lottie.tsx"],
+      native: [
+        "ios/Harbor/Views/HarborShell.swift",
+        "ios/Harbor/Views/SidebarNavigationIcon.swift",
+        "ios/Harbor/Views/InterfaceSettingsView.swift",
+      ],
+      status: "pending_complete_reference_comparison",
+    },
+    {
+      id: "onboarding",
+      desktop: ["src/components/onboarding.tsx"],
+      native: ["ios/Harbor/Views/AppWalkthroughView.swift"],
+      status: "partial_native_walkthrough_requires_the_desktop_configuration_steps",
+    },
+    {
+      id: "account_and_profiles",
+      desktop: ["src/views/profile"],
+      native: ["ios/Harbor/Views/AccountView.swift"],
+      status: "pending_complete_reference_comparison",
+    },
+    {
+      id: "player",
+      desktop: ["src/views/player"],
+      native: ["ios/Harbor/Player/PlayerView.swift"],
+      status: "pending_complete_reference_comparison",
+    },
+    {
+      id: "details",
+      desktop: ["src/views/detail"],
+      native: ["ios/Harbor/Views/DetailView.swift"],
+      status: "pending_complete_reference_comparison",
+    },
+  ],
   cssAnimations: animations,
   vectorAnimations: vectors,
 };
+for (const entry of report.crossCuttingInterfaces) {
+  for (const path of entry.desktop) assert.ok(statSync(join(reference, path)));
+  for (const path of entry.native) assert.ok(statSync(join(root, path)).isFile());
+}
 writeFileSync(output, `${JSON.stringify(report, null, 2)}\n`);
 process.stdout.write(
   `Indexed compatible section review targets and original CSS/vector animation definitions. No completion percentage is inferred.\n`,

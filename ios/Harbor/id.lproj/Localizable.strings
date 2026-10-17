@@ -103,6 +103,7 @@
 "Anime en tendencia" = "Anime yang sedang tren";
 "Anime of the Year" = "Anime Terbaik Tahun Ini";
 "Anime popular" = "Anime Populer";
+"Another device changed navigation. Your previous version is saved on this device." = "Another device changed navigation. Your previous version is saved on this device.";
 "Anterior" = "Sebelumnya";
 "Anular estilos integrados" = "Abaikan gaya tersemat";
 "Análisis detenido para priorizar la reproducción. Puedes reintentarlo cuando termine de cargar." = "Analysis stopped to prioritize playback. Retry after buffering finishes.";
@@ -355,8 +356,11 @@
 "Correo y contraseña" = "Email and password";
 "Could not analyze this source. Playback continues; you can retry." = "Could not analyze this source. Playback continues; you can retry.";
 "Could not apply the timing. The original subtitle is kept." = "Could not apply the timing. The original subtitle is kept.";
+"Could not load navigation settings. Saved settings are kept." = "Could not load navigation settings. Saved settings are kept.";
 "Could not measure storage. Try again." = "Could not measure storage. Try again.";
 "Could not open book" = "Could not open book";
+"Could not restore your navigation. The saved version is kept." = "Could not restore your navigation. The saved version is kept.";
+"Could not save navigation settings. Your previous settings are kept." = "Could not save navigation settings. Your previous settings are kept.";
 "Couldn't auto-sync" = "Tidak dapat menyinkronkan otomatis";
 "Crash" = "Crash";
 "Crea tu propia paleta" = "Buat palet Anda sendiri";
@@ -833,6 +837,7 @@
 "Name" = "Nama";
 "Navegación" = "Navigasi";
 "Navigation" = "Navigasi";
+"Navigation changes waiting to sync" = "Navigation changes waiting to sync";
 "Navigation items" = "Item navigasi";
 "Needs artwork-rich titles to feed the hero" = "Memerlukan judul dengan materi visual lengkap untuk mengisi banner utama";
 "Needs at least 10 titles for the Top 10 look" = "Memerlukan setidaknya 10 judul untuk tampilan Top 10";
@@ -1144,6 +1149,7 @@
 "Restart" = "Mulai ulang";
 "Restaurar subtítulo original" = "Restore original subtitle";
 "Restore dismissed hints" = "Pulihkan petunjuk yang ditutup";
+"Restore my version" = "Restore my version";
 "Restore original subtitle" = "Restore original subtitle";
 "Restored" = "Dipulihkan";
 "Resultados" = "Hasil";
@@ -1564,6 +1570,7 @@
 "Your library" = "Perpustakaan Anda";
 "Your library and watch history are kept." = "Your library and watch history are kept.";
 "Your lists" = "Your lists";
+"Your navigation is saved locally. Cloud sync will retry." = "Your navigation is saved locally. Cloud sync will retry.";
 "Your profile" = "Profil Anda";
 "Zoom" = "Perbesar";
 "anime" = "anime";
@@ -1579,6 +1586,7 @@
 "estrellas" = "bintang";
 "guest" = "tamu";
 "h" = "j";
+"hidden" = "tersembunyi";
 "hr" = "jam";
 "item" = "item";
 "language" = "bahasa";

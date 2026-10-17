@@ -85,6 +85,7 @@
 "Anime" = "Anime";
 "Anime en tendencia" = "Trending Anime";
 "Anime popular" = "Popular Anime";
+"Another device changed navigation. Your previous version is saved on this device." = "Another device changed navigation. Your previous version is saved on this device.";
 "Anterior" = "Previous";
 "Anular estilos integrados" = "Override embedded styles";
 "Análisis detenido para priorizar la reproducción. Puedes reintentarlo cuando termine de cargar." = "Analysis stopped to prioritize playback. Retry after buffering finishes.";
@@ -297,8 +298,11 @@
 "Correo y contraseña" = "Email and password";
 "Could not analyze this source. Playback continues; you can retry." = "Could not analyze this source. Playback continues; you can retry.";
 "Could not apply the timing. The original subtitle is kept." = "Could not apply the timing. The original subtitle is kept.";
+"Could not load navigation settings. Saved settings are kept." = "Could not load navigation settings. Saved settings are kept.";
 "Could not measure storage. Try again." = "Could not measure storage. Try again.";
 "Could not open book" = "Could not open book";
+"Could not restore your navigation. The saved version is kept." = "Could not restore your navigation. The saved version is kept.";
+"Could not save navigation settings. Your previous settings are kept." = "Could not save navigation settings. Your previous settings are kept.";
 "Couldn't auto-sync" = "Couldn't auto-sync";
 "Crea tu propia paleta" = "Build your own palette";
 "Crime Series" = "Crime Series";
@@ -713,6 +717,7 @@
 "Name" = "Name";
 "Navegación" = "Navigation";
 "Navigation" = "Navigation";
+"Navigation changes waiting to sync" = "Navigation changes waiting to sync";
 "Navigation items" = "Navigation items";
 "Needs artwork-rich titles to feed the hero" = "Needs artwork-rich titles to feed the hero";
 "Needs at least 10 titles for the Top 10 look" = "Needs at least 10 titles for the Top 10 look";
@@ -994,6 +999,7 @@
 "Restablecer zoom" = "Reset zoom";
 "Restart" = "Restart";
 "Restaurar subtítulo original" = "Restore original subtitle";
+"Restore my version" = "Restore my version";
 "Restore original subtitle" = "Restore original subtitle";
 "Restored" = "Restored";
 "Resultados" = "Results";
@@ -1362,6 +1368,7 @@
 "Your library" = "Your library";
 "Your library and watch history are kept." = "Your library and watch history are kept.";
 "Your lists" = "Your lists";
+"Your navigation is saved locally. Cloud sync will retry." = "Your navigation is saved locally. Cloud sync will retry.";
 "Your profile" = "Your profile";
 "Zoom" = "Zoom";
 "code" = "code";

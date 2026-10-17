@@ -62,9 +62,25 @@ struct NavigationSettingsView: View {
                     Button { preferences.resetNavigation(); resetRevision += 1 } label: {
                         Label(DesktopInterfaceText.value("Reset"), image: "audio-reset-sync")
                             .font(HarborTheme.font(13, weight: .medium)).padding(.horizontal, 10).frame(minHeight: 44)
-                    }.buttonStyle(.plain).accessibilityIdentifier("navigation-reset")
+                    }.buttonStyle(.plain).disabled(!preferences.navigation.ready).accessibilityIdentifier("navigation-reset")
                 }
-                ForEach(preferences.orderedSections) { section in NavigationSettingRow(section: section, preferences: preferences, resetRevision: resetRevision) }
+                if let error = preferences.navigation.error {
+                    Text(DesktopInterfaceText.value(error)).font(.caption).foregroundStyle(.orange)
+                    if !preferences.navigation.ready { Button(DesktopInterfaceText.value("Retry")) { preferences.navigation.reload() }.buttonStyle(HarborAccountButtonStyle()) }
+                }
+                if let owner = preferences.navigation.scope?.owner {
+                    let cloud = ProfilePreferences.forOwner(owner).cloud
+                    if cloud.signedIn {
+                        if let error = cloud.navigation.error ?? cloud.error { Text(DesktopInterfaceText.value(error)).font(.caption).foregroundStyle(.orange) }
+                        if cloud.navigation.hasParkedVersion {
+                            Text(DesktopInterfaceText.value("Another device changed navigation. Your previous version is saved on this device.")).font(.caption).foregroundStyle(.secondary)
+                            Button(DesktopInterfaceText.value("Restore my version")) { cloud.navigation.restoreMyVersion() }
+                                .buttonStyle(HarborAccountButtonStyle()).disabled(cloud.busy || cloud.navigation.hasPendingChanges).accessibilityIdentifier("navigation-restore-version")
+                        }
+                        if cloud.navigation.hasPendingChanges { Text(DesktopInterfaceText.value("Navigation changes waiting to sync")).font(.caption).foregroundStyle(.secondary) }
+                    }
+                }
+                ForEach(preferences.orderedSections) { section in NavigationSettingRow(section: section, preferences: preferences, resetRevision: resetRevision).disabled(!preferences.navigation.ready) }
             }.padding(20)
         }.background(HarborTheme.background).navigationTitle(DesktopInterfaceText.value("Navigation"))
             .navigationBarTitleDisplayMode(.inline).tint(HarborTheme.accent)
@@ -103,6 +119,7 @@ private struct NavigationSettingRow: View {
     @Bindable var preferences: InterfacePreferences
     let resetRevision: Int
     @State private var draft = ""
+    @State private var draftScope: NavigationScope?
     @FocusState private var editing: Bool
     private var hidden: Bool { preferences.navigationHidden.contains(section.rawValue) }
     private var name: String { preferences.label(section) }
@@ -136,8 +153,9 @@ private struct NavigationSettingRow: View {
         }.padding(.horizontal, 8).padding(.vertical, 6).background(HarborTheme.background, in: .rect(cornerRadius: 6))
             .overlay { RoundedRectangle(cornerRadius: 6).stroke(ThemePreferences.shared.color("edge-soft"), lineWidth: 1) }
             .opacity(hidden ? 0.6 : 1)
-            .onAppear { draft = name }.onChange(of: name) { _, value in if !editing { draft = value } }
-            .onChange(of: editing) { _, focused in if !focused { commit() } }
+            .onAppear { draft = name; draftScope = preferences.navigation.scope }.onChange(of: name) { _, value in if !editing { draft = value } }
+            .onChange(of: editing) { _, focused in if focused { draftScope = preferences.navigation.scope } else { commit() } }
+            .onChange(of: preferences.navigation.scope) { _, _ in draftScope = nil; editing = false; draft = name }
             .onChange(of: resetRevision) { _, _ in draft = name; editing = false }
     }
     private func moveButton(_ offset: Int, icon: String, label: String) -> some View {
@@ -153,8 +171,9 @@ private struct NavigationSettingRow: View {
             .accessibilityLabel(text(label)).accessibilityIdentifier("navigation-\(offset < 0 ? "up" : "down")-\(section.rawValue)")
     }
     private func commit() {
+        guard let draftScope, draftScope == preferences.navigation.scope else { draft = name; return }
         let clean = String(draft.trimmingCharacters(in: .whitespacesAndNewlines).prefix(120))
-        preferences.navigationNames[section.rawValue] = clean.isEmpty || clean == section.title ? nil : clean
+        preferences.navigation.change(in: draftScope) { $0.renamed[section.rawValue] = clean.isEmpty || clean == section.title ? nil : clean }
         draft = name
     }
 }
