@@ -17,6 +17,7 @@
 "A continuación" = "다음 콘텐츠";
 "Abajo a la derecha" = "오른쪽 아래";
 "Abajo a la izquierda" = "왼쪽 아래";
+"About" = "정보";
 "Above the main line" = "기본 자막 위";
 "Abriendo libro…" = "Opening book…";
 "Abrir en Safari" = "Open in Safari";
@@ -139,6 +140,7 @@
 "Automática" = "자동";
 "Automático" = "자동";
 "Automático (coincidir con el video)" = "자동(동영상에 맞춤)";
+"Available on device" = "Available on device";
 "Avatar" = "아바타";
 "Avatar aleatorio" = "무작위 아바타";
 "Aventura" = "어드벤처";
@@ -216,6 +218,7 @@
 "Brighten dark movies" = "어두운 영화 밝게";
 "Brightness" = "밝기";
 "Brillo" = "밝기";
+"Brings back the small in-app tips you've dismissed without redoing the welcome flow." = "환영 절차를 다시 진행하지 않고 닫았던 작은 앱 내 팁을 다시 표시합니다.";
 "Browse" = "탐색";
 "Browse Gutenberg by title, author or language. Open a book to save it to your shelf. The reader offers font, spacing, background, bookmarks and read-aloud controls." = "Browse Gutenberg by title, author or language. Open a book to save it to your shelf. The reader offers font, spacing, background, bookmarks and read-aloud controls.";
 "Browse addons" = "애드온 탐색";
@@ -223,6 +226,7 @@
 "Browse by category" = "카테고리별 탐색";
 "Browse your catalogs" = "내 카탈로그 둘러보기";
 "Buffer" = "Buffer";
+"Build" = "빌드";
 "Build your own palette" = "나만의 팔레트 만들기";
 "Busca por título o autor, o cambia el idioma." = "Search by title or author, or change the language.";
 "Buscar" = "검색";
@@ -233,6 +237,7 @@
 "Búfer" = "Buffer";
 "Búsquedas recientes" = "최근 검색어";
 "Cached" = "캐시됨";
+"Caches" = "캐시";
 "Calendar" = "캘린더";
 "Calendario" = "캘린더";
 "Cam Recording" = "Cam Recording";
@@ -278,6 +283,7 @@
 "Chinese" = "중국어";
 "Choose an avatar" = "아바타 선택";
 "Choose the frame rate the subtitle was authored for." = "자막 제작 시 기준으로 사용한 프레임 레이트를 선택하세요.";
+"Choose your language. Your accounts and sources can be configured from your profile and Addons." = "Choose your language. Your accounts and sources can be configured from your profile and Addons.";
 "Ciencia ficción y fantasía" = "SF & 판타지";
 "Claro" = "라이트";
 "Clasificación" = "순위";
@@ -287,7 +293,9 @@
 "Clave de API de TMDB (v3)" = "TMDB API 키(v3)";
 "Clave de API v3" = "v3 API 키";
 "Clear all" = "모두 삭제";
+"Clear caches" = "캐시 삭제";
 "Clear filters" = "필터 초기화";
+"Clear image cache" = "Clear image cache";
 "Clear search" = "검색어 지우기";
 "Close" = "닫기";
 "Close navigation" = "Close navigation";
@@ -314,6 +322,7 @@
 "Compacta" = "작게";
 "Compartir" = "공유";
 "Compartir archivo" = "Share file";
+"Compatibility" = "Compatibility";
 "Con serifas" = "명조체";
 "Concentración" = "Focus";
 "Conectando" = "연결 중";
@@ -346,6 +355,7 @@
 "Correo y contraseña" = "Email and password";
 "Could not analyze this source. Playback continues; you can retry." = "Could not analyze this source. Playback continues; you can retry.";
 "Could not apply the timing. The original subtitle is kept." = "Could not apply the timing. The original subtitle is kept.";
+"Could not measure storage. Try again." = "Could not measure storage. Try again.";
 "Could not open book" = "Could not open book";
 "Couldn't auto-sync" = "자동 동기화하지 못했습니다";
 "Crash" = "충돌";
@@ -401,6 +411,7 @@
 "Desenfocar spoilers" = "스포일러 흐리게 표시";
 "Desenfocar títulos" = "제목 흐리게 표시";
 "Desfase de sincronización" = "동기화 오프셋";
+"Desktop reference" = "Desktop reference";
 "Destacar este catálogo en el carrusel principal" = "이 카탈로그를 히어로 캐러셀에 추천";
 "Details" = "상세 정보";
 "Detalles" = "상세 정보";
@@ -414,6 +425,7 @@
 "Discovery Queue" = "발견 대기열";
 "Diseño de Inicio" = "홈 레이아웃";
 "Dismiss" = "닫기";
+"Dismiss tip" = "Dismiss tip";
 "Disney+ Originals" = "Disney+ 오리지널";
 "Display name" = "표시 이름";
 "Distance from bottom" = "하단에서의 거리";
@@ -421,11 +433,14 @@
 "Documentales" = "다큐멘터리";
 "Documentaries" = "다큐멘터리";
 "Documentary" = "다큐멘터리";
+"Documents" = "Documents";
+"Documents, saved app data and caches on this device. Sizes exclude the app bundle and system Keychain." = "Documents, saved app data and caches on this device. Sizes exclude the app bundle and system Keychain.";
 "Done" = "완료";
 "Done editing" = "편집 완료";
 "Download" = "다운로드";
 "Download progress" = "Download progress";
 "Download started" = "다운로드 시작됨";
+"Downloaded image cache" = "Downloaded image cache";
 "Downloads" = "다운로드";
 "Dracula" = "Dracula";
 "Drama" = "드라마";
@@ -581,6 +596,7 @@
 "Harbor cannot list the private Apple Books library. Import an unprotected EPUB or PDF from Files or choose Harbor when opening a compatible file in another app. A store link is not a book file; protected purchases stay in Apple Books." = "Harbor cannot list the private Apple Books library. Import an unprotected EPUB or PDF from Files or choose Harbor when opening a compatible file in another app. A store link is not a book file; protected purchases stay in Apple Books.";
 "Harbor curated" = "Harbor 큐레이션";
 "Harbor default" = "Harbor 기본값";
+"Harbor is an independent, open-source client for iPhone and iPad." = "Harbor is an independent, open-source client for iPhone and iPad.";
 "Harbor looks for subtitles in this order. Put your preferred language first." = "Harbor는 이 순서로 자막을 찾습니다. 선호하는 언어를 맨 위에 두세요.";
 "Hard stroke around each letter. High contrast." = "각 글자 주변의 선명한 외곽선입니다. 대비가 높습니다.";
 "Harvey Award Winners" = "Harvey Award 수상작";
@@ -624,6 +640,7 @@
 "Idiomas de audio" = "오디오 언어";
 "Idiomas de subtítulos" = "자막 언어";
 "Idiomas y subtítulos" = "언어 및 자막";
+"Image cache cleared." = "Image cache cleared.";
 "Imagen" = "사진";
 "Imagen en imagen" = "화면 속 화면";
 "Imagen más intensa y vívida, con un poco más de contraste." = "대비를 약간 높여 더 풍부하고 생생한 화면을 만듭니다.";
@@ -646,6 +663,7 @@
 "Imported books and reading progress are stored separately for each Harbor account on this device. Importing the same file again keeps its saved reading position. These files are not uploaded to Stremio." = "Imported books and reading progress are stored separately for each Harbor account on this device. Importing the same file again keeps its saved reading position. These files are not uploaded to Stremio.";
 "Importing book…" = "Importing book…";
 "In Theaters Now" = "현재 극장 상영작";
+"In eBook, search Gutenberg or import EPUB and PDF files. In Manga, import PDF, CBZ, ZIP or image folders, or connect your Suwayomi server." = "In eBook, search Gutenberg or import EPUB and PDF files. In Manga, import PDF, CBZ, ZIP or image folders, or connect your Suwayomi server.";
 "Indonesian" = "인도네시아어";
 "Información" = "정보";
 "Information" = "정보";
@@ -665,6 +683,8 @@
 "Interface" = "인터페이스";
 "Interfaz" = "인터페이스";
 "Interfaz del sistema" = "시스템 UI";
+"It is not affiliated with the maker of {product}, or with any company, addon author, or trademark holder referenced inside the app." = "{product} 제작사 또는 앱 내에서 언급된 회사, 애드온 제작자, 상표권자와 제휴 관계가 없습니다.";
+"It is not affiliated with, endorsed by, sponsored by, or in any way associated with {company}." = "{company}와 제휴하거나, 보증 또는 후원을 받거나, 어떠한 방식으로도 관련되어 있지 않습니다.";
 "Italian" = "이탈리아어";
 "Izquierda" = "왼쪽";
 "Izquierda a derecha" = "왼쪽에서 오른쪽";
@@ -675,6 +695,7 @@
 "Keep original" = "원본 유지";
 "Keep same source on next episode" = "다음 에피소드에서 같은 소스 유지";
 "Keep screen awake" = "Keep screen awake";
+"Keep watching" = "이어서 시청";
 "Kitsu, MAL, con reconocimiento de temporadas" = "Kitsu, MAL, 시즌 인식";
 "Kitsu, MAL, season-aware" = "Kitsu, MAL, 시즌 인식";
 "Korean" = "한국어";
@@ -689,6 +710,7 @@
 "Lectura" = "읽는 중";
 "Left" = "왼쪽";
 "Left to right" = "왼쪽에서 오른쪽";
+"Legal" = "법적 고지";
 "Letter spacing" = "자간";
 "Library" = "라이브러리";
 "Libros" = "도서";
@@ -715,6 +737,7 @@
 "Load more" = "더 불러오기";
 "Loading…" = "불러오는 중…";
 "Local" = "로컬";
+"Local app files" = "Local app files";
 "Logos" = "로고";
 "Los FPS de los subtítulos no están disponibles en este entorno de ejecución de libmpv." = "이 libmpv 런타임에서는 자막 FPS를 사용할 수 없습니다.";
 "Los FPS de los subtítulos no están disponibles mientras haya un subtítulo secundario activo." = "보조 자막이 활성화된 동안에는 자막 FPS를 사용할 수 없습니다.";
@@ -725,6 +748,7 @@
 "M3U playlist" = "M3U 재생목록";
 "MAL" = "MAL";
 "MLB" = "MLB";
+"Make it yours" = "나만의 공간으로 꾸미기";
 "Manage" = "관리";
 "Manga" = "만화";
 "Manga connection" = "Manga connection";
@@ -902,6 +926,7 @@
 "On The Air" = "방영 중";
 "On Tonight" = "오늘 밤 방송";
 "On start" = "On start";
+"Onboarding" = "시작 안내";
 "Opacidad" = "불투명도";
 "Opacidad del fondo" = "배경 불투명도";
 "Opacity" = "불투명도";
@@ -1032,6 +1057,8 @@
 "Raised" = "돌출형";
 "Random avatar" = "무작위 아바타";
 "Ranked by the {site} community from their public index." = "{site} 커뮤니티의 공개 지수를 기준으로 매긴 순위입니다.";
+"Re-runs the welcome flow and clears every dismissed tip." = "환영 절차를 다시 실행하고 닫은 모든 팁을 초기화합니다.";
+"Read on iPhone and iPad" = "Read on iPhone and iPad";
 "Reader options" = "Reader options";
 "Reading" = "읽는 중";
 "Reading help" = "Reading help";
@@ -1085,6 +1112,8 @@
 "Renombrar" = "이름 변경";
 "Repeat" = "반복";
 "Repetición" = "반복";
+"Replay the walkthrough or unhide every dismissed tip in the app." = "둘러보기를 다시 진행하거나 앱에서 닫은 팁을 모두 다시 표시합니다.";
+"Replay walkthrough" = "시작 안내 다시 보기";
 "Reproducción" = "재생";
 "Reproducir" = "재생";
 "Reproducir ahora" = "지금 재생";
@@ -1114,11 +1143,14 @@
 "Restablecer zoom" = "확대/축소 초기화";
 "Restart" = "다시 시작";
 "Restaurar subtítulo original" = "Restore original subtitle";
+"Restore dismissed hints" = "닫은 도움말 복원";
 "Restore original subtitle" = "Restore original subtitle";
+"Restored" = "복원됨";
 "Resultados" = "결과";
 "Results" = "결과";
 "Resume" = "이어서 재생";
 "Resume after an audio interruption" = "Resume after an audio interruption";
+"Resume from Continue watching. During playback, choose sources, audio and subtitles, synchronize an external subtitle or skip an intro when timing is available." = "Resume from Continue watching. During playback, choose sources, audio and subtitles, synchronize an external subtitle or skip an intro when timing is available.";
 "Resume from {time}" = "{time}부터 이어서 재생";
 "Resume when returning to the app" = "Resume when returning to the app";
 "Resume where you left off" = "중단한 지점부터 이어 보기";
@@ -1157,6 +1189,7 @@
 "Save settings" = "Save settings";
 "Save to this library" = "Save to this library";
 "Saved" = "저장됨";
+"Saved app data" = "Saved app data";
 "Saving" = "저장 중";
 "Sci-Fi" = "SF";
 "Sci-Fi & Fantasy" = "SF & 판타지";
@@ -1233,6 +1266,7 @@
 "Shows" = "프로그램";
 "Shows the episode synopsis on the cards. Turn it off to hide it." = "카드에 에피소드 줄거리를 표시합니다. 숨기려면 이 옵션을 끄세요.";
 "Shuffle" = "무작위";
+"Sidebar icons animate when pressed or hovered with a pointer. Turn this off to keep them static." = "Sidebar icons animate when pressed or hovered with a pointer. Turn this off to keep them static.";
 "Sides" = "양면";
 "Sign in" = "로그인";
 "Sign in with Stremio" = "Stremio로 로그인";
@@ -1295,6 +1329,7 @@
 "Stop feeding the hero carousel (back to automatic)" = "히어로 캐러셀에 더 이상 제공하지 않기(자동으로 되돌리기)";
 "Stop playback" = "Stop playback";
 "Stop showing as second subtitle" = "두 번째 자막 표시 중지";
+"Storage overview" = "저장 공간 개요";
 "Stream" = "스트리밍";
 "Streaming" = "스트리밍";
 "Stremio" = "Stremio";
@@ -1361,6 +1396,7 @@
 "Temporada" = "시즌";
 "Temporada {n}" = "시즌 {n}";
 "Temporadas y episodios" = "Seasons and episodes";
+"Temporary files" = "임시 파일";
 "Tendencias" = "인기 급상승";
 "Tendencias de esta semana" = "이번 주 인기 급상승";
 "Tendencias en {site}" = "{site} 인기 콘텐츠";
@@ -1388,6 +1424,7 @@
 "This is how your subtitles will look." = "자막은 이렇게 표시됩니다.";
 "Thriller" = "스릴러";
 "Thrillers" = "스릴러";
+"Thumbnails download again when needed. Books, downloads, accounts and watch progress are kept." = "Thumbnails download again when needed. Books, downloads, accounts and watch progress are kept.";
 "Thumbs down hides this title from Featured. Thumbs up helps surface similar picks." = "싫어요를 누르면 이 작품이 추천에서 숨겨집니다. 좋아요를 누르면 비슷한 작품이 더 많이 추천됩니다.";
 "Tiempo reproducido" = "Playback time";
 "Tipo" = "유형";
@@ -1476,6 +1513,7 @@
 "Usa la clave v3, no el token de acceso de lectura." = "읽기 액세스 토큰이 아닌 v3 키를 사용하세요.";
 "Usar mi estilo" = "내 스타일 사용";
 "Use my style" = "내 스타일 사용";
+"Use the navigation menu to open each section. Personalize the sidebar, home rows, colors and playback from Settings." = "Use the navigation menu to open each section. Personalize the sidebar, home rows, colors and playback from Settings.";
 "Use the v3 key, not the read access token." = "읽기 액세스 토큰이 아닌 v3 키를 사용하세요.";
 "Use your configured Harbor server. Allow local network access when iOS asks." = "Use your configured Harbor server. Allow local network access when iOS asks.";
 "Used at 55% / 25% alpha." = "55% / 25% 알파로 사용됩니다.";
@@ -1502,6 +1540,7 @@
 "Vídeo" = "동영상";
 "War" = "전쟁";
 "Watched" = "시청함";
+"Welcome to Harbor" = "Harbor에 오신 것을 환영합니다";
 "What everyone is reading" = "지금 모두가 읽는 작품";
 "When a release ships multiple audio tracks, Harbor selects the first match from this list." = "릴리스에 오디오 트랙이 여러 개 있으면 Harbor가 이 목록에서 처음 일치하는 트랙을 선택합니다.";
 "When an episode ends, automatically start the next one. Off lets the episode finish and stop." = "에피소드가 끝나면 다음 에피소드를 자동으로 재생합니다. 끄면 해당 에피소드가 끝난 뒤 재생이 중지됩니다.";
@@ -1534,6 +1573,7 @@
 "center" = "가운데";
 "code" = "코드";
 "default" = "기본값";
+"downloads" = "다운로드";
 "eBook" = "eBook";
 "episodes" = "에피소드";
 "estrellas" = "별";
@@ -1560,6 +1600,7 @@
 "results" = "결과";
 "right" = "오른쪽";
 "seeders" = "시더";
+"service" = "서비스";
 "speed" = "속도";
 "star" = "별";
 "stars" = "별";
@@ -1574,10 +1615,12 @@
 "v3 API key" = "v3 API 키";
 "watched" = "시청함";
 "yes" = "예";
+"{app} itself does not host, distribute, or index any media. All streams come from third-party addons, debrid services, or your own {service} account that you configure yourself. You are responsible for what you choose to play and for complying with the laws of your jurisdiction." = "{app} 자체는 어떠한 미디어도 호스팅, 배포 또는 색인하지 않습니다. 모든 스트림은 서드 파티 애드온, Debrid 서비스 또는 사용자가 직접 구성한 {service} 계정에서 제공됩니다. 재생할 콘텐츠를 선택하고 관할 지역의 법률을 준수할 책임은 사용자에게 있습니다.";
 "{count} picks ready" = "추천 {count}개 준비됨";
 "{h}h left" = "{h}시간 남음";
 "{h}h {m}m left" = "{h}시간 {m}분 남음";
 "{m}m left" = "{m}분 남음";
+"{names}, and all other names, logos, and brand references are property of their respective owners and are used here only for compatibility and identification." = "{names} 및 기타 모든 이름, 로고, 브랜드 표시는 각 소유자의 자산이며 호환성과 식별 목적으로만 사용됩니다.";
 "{name} + {n} more" = "{name} 외 {n}개";
 "{name} + {n} más" = "{name} 외 {n}개";
 "{n} min" = "{n}분";

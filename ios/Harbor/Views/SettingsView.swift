@@ -62,15 +62,27 @@ struct SettingsView: View {
                         NavigationLink { ThemeSettingsView().toolbar(.visible, for: .navigationBar) } label: { SettingsRow(title: DesktopInterfaceText.value("Colors"), icon: "desktop-palette") }.accessibilityIdentifier("settings-theme")
                     }
                 }
-                if matches("Downloads", group: "System") {
+                if matches("Downloads", group: "System") || matches("Storage overview", group: "System") || matches("Caches", group: "System") {
                     group("System") {
-                        NavigationLink { DownloadsView(app: app).toolbar(.visible, for: .navigationBar) } label: {
-                            SettingsRow(title: DesktopInterfaceText.value("Downloads"), icon: "nav-download")
-                        }.accessibilityIdentifier("settings-downloads")
+                        if matches("Downloads", group: "System") {
+                            NavigationLink { DownloadsView(app: app).toolbar(.visible, for: .navigationBar) } label: {
+                                SettingsRow(title: DesktopInterfaceText.value("Downloads"), icon: "nav-download")
+                            }.accessibilityIdentifier("settings-downloads")
+                        }
+                        if matches("Storage overview", group: "System") || matches("Caches", group: "System") {
+                            NavigationLink { SystemStorageView().toolbar(.visible, for: .navigationBar) } label: {
+                                SettingsRow(title: DesktopInterfaceText.value("Storage overview"), icon: "nav-download")
+                            }.accessibilityIdentifier("settings-storage")
+                        }
                     }
                 }
-                if matches("Export log", group: "Help & about") || matches("Share", group: "Help & about") || matches("Version", group: "Help & about") {
+                if matches("Export log", group: "Help & about") || matches("Share", group: "Help & about") || matches("Version", group: "Help & about") || matches("About", group: "Help & about") || matches("Onboarding", group: "Help & about") {
                     group("Help & about") {
+                        if matches("About", group: "Help & about") || matches("Onboarding", group: "Help & about") {
+                            NavigationLink { SystemAboutView().toolbar(.visible, for: .navigationBar) } label: {
+                                SettingsRow(title: DesktopInterfaceText.value("About"), icon: "desktop-info")
+                            }.accessibilityIdentifier("settings-about")
+                        }
                         if matches("Export log", group: "Help & about") {
                             Button { do { export = try Diagnostics.shared.export() } catch { self.error = safeMessage(error) } } label: { SettingsRow(title: DesktopInterfaceText.value("Export log"), icon: "ui-help") }
                         }

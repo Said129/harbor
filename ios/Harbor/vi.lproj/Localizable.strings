@@ -17,6 +17,7 @@
 "A continuación" = "Tiếp theo";
 "Abajo a la derecha" = "Dưới cùng bên phải";
 "Abajo a la izquierda" = "Dưới cùng bên trái";
+"About" = "Giới thiệu";
 "Above the main line" = "Phía trên dòng chính";
 "Abriendo libro…" = "Opening book…";
 "Abrir en Safari" = "Open in Safari";
@@ -139,6 +140,7 @@
 "Automática" = "Tự động";
 "Automático" = "Tự động";
 "Automático (coincidir con el video)" = "Tự động (khớp video)";
+"Available on device" = "Available on device";
 "Avatar" = "Ảnh đại diện";
 "Avatar aleatorio" = "Ảnh đại diện ngẫu nhiên";
 "Aventura" = "Phiêu lưu";
@@ -216,6 +218,7 @@
 "Brighten dark movies" = "Làm sáng phim tối";
 "Brightness" = "Độ sáng";
 "Brillo" = "Độ sáng";
+"Brings back the small in-app tips you've dismissed without redoing the welcome flow." = "Hiển thị lại các mẹo nhỏ trong ứng dụng mà bạn đã ẩn mà không cần thực hiện lại quy trình chào mừng.";
 "Browse" = "Duyệt";
 "Browse Gutenberg by title, author or language. Open a book to save it to your shelf. The reader offers font, spacing, background, bookmarks and read-aloud controls." = "Browse Gutenberg by title, author or language. Open a book to save it to your shelf. The reader offers font, spacing, background, bookmarks and read-aloud controls.";
 "Browse addons" = "Duyệt tiện ích bổ sung";
@@ -223,6 +226,7 @@
 "Browse by category" = "Duyệt theo danh mục";
 "Browse your catalogs" = "Duyệt các danh mục";
 "Buffer" = "Buffer";
+"Build" = "Tạo";
 "Build your own palette" = "Tạo bảng màu riêng";
 "Busca por título o autor, o cambia el idioma." = "Search by title or author, or change the language.";
 "Buscar" = "Tìm kiếm";
@@ -233,6 +237,7 @@
 "Búfer" = "Buffer";
 "Búsquedas recientes" = "Tìm kiếm gần đây";
 "Cached" = "Đã lưu vào bộ nhớ đệm";
+"Caches" = "Bộ nhớ đệm";
 "Calendar" = "Lịch";
 "Calendario" = "Lịch";
 "Cam Recording" = "Cam Recording";
@@ -278,6 +283,7 @@
 "Chinese" = "Tiếng Trung";
 "Choose an avatar" = "Chọn ảnh đại diện";
 "Choose the frame rate the subtitle was authored for." = "Chọn tốc độ khung hình dùng khi tạo phụ đề.";
+"Choose your language. Your accounts and sources can be configured from your profile and Addons." = "Choose your language. Your accounts and sources can be configured from your profile and Addons.";
 "Ciencia ficción y fantasía" = "Khoa học viễn tưởng & kỳ ảo";
 "Claro" = "Sáng";
 "Clasificación" = "Bảng xếp hạng";
@@ -287,7 +293,9 @@
 "Clave de API de TMDB (v3)" = "Khóa API TMDB (v3)";
 "Clave de API v3" = "Khóa API v3";
 "Clear all" = "Xóa tất cả";
+"Clear caches" = "Xóa bộ nhớ đệm";
 "Clear filters" = "Xóa bộ lọc";
+"Clear image cache" = "Clear image cache";
 "Clear search" = "Xóa tìm kiếm";
 "Close" = "Đóng";
 "Close navigation" = "Close navigation";
@@ -314,6 +322,7 @@
 "Compacta" = "Gọn";
 "Compartir" = "Chia sẻ";
 "Compartir archivo" = "Share file";
+"Compatibility" = "Compatibility";
 "Con serifas" = "Có chân";
 "Concentración" = "Focus";
 "Conectando" = "Đang kết nối";
@@ -346,6 +355,7 @@
 "Correo y contraseña" = "Email and password";
 "Could not analyze this source. Playback continues; you can retry." = "Could not analyze this source. Playback continues; you can retry.";
 "Could not apply the timing. The original subtitle is kept." = "Could not apply the timing. The original subtitle is kept.";
+"Could not measure storage. Try again." = "Could not measure storage. Try again.";
 "Could not open book" = "Could not open book";
 "Couldn't auto-sync" = "Không thể tự động đồng bộ";
 "Crash" = "Sự cố";
@@ -401,6 +411,7 @@
 "Desenfocar spoilers" = "Làm mờ nội dung tiết lộ";
 "Desenfocar títulos" = "Làm mờ tiêu đề";
 "Desfase de sincronización" = "Độ lệch đồng bộ";
+"Desktop reference" = "Desktop reference";
 "Destacar este catálogo en el carrusel principal" = "Đưa danh mục này lên băng chuyền nổi bật";
 "Details" = "Chi tiết";
 "Detalles" = "Chi tiết";
@@ -414,6 +425,7 @@
 "Discovery Queue" = "Hàng chờ khám phá";
 "Diseño de Inicio" = "Bố cục trang chủ";
 "Dismiss" = "Đóng";
+"Dismiss tip" = "Dismiss tip";
 "Disney+ Originals" = "Nội dung gốc Disney+";
 "Display name" = "Tên hiển thị";
 "Distance from bottom" = "Khoảng cách từ cạnh dưới";
@@ -421,11 +433,14 @@
 "Documentales" = "Phim tài liệu";
 "Documentaries" = "Phim tài liệu";
 "Documentary" = "Phim tài liệu";
+"Documents" = "Documents";
+"Documents, saved app data and caches on this device. Sizes exclude the app bundle and system Keychain." = "Documents, saved app data and caches on this device. Sizes exclude the app bundle and system Keychain.";
 "Done" = "Xong";
 "Done editing" = "Chỉnh sửa xong";
 "Download" = "Tải xuống";
 "Download progress" = "Download progress";
 "Download started" = "Đã bắt đầu tải xuống";
+"Downloaded image cache" = "Downloaded image cache";
 "Downloads" = "Nội dung tải xuống";
 "Dracula" = "Dracula";
 "Drama" = "Chính kịch";
@@ -581,6 +596,7 @@
 "Harbor cannot list the private Apple Books library. Import an unprotected EPUB or PDF from Files or choose Harbor when opening a compatible file in another app. A store link is not a book file; protected purchases stay in Apple Books." = "Harbor cannot list the private Apple Books library. Import an unprotected EPUB or PDF from Files or choose Harbor when opening a compatible file in another app. A store link is not a book file; protected purchases stay in Apple Books.";
 "Harbor curated" = "Do Harbor tuyển chọn";
 "Harbor default" = "Mặc định của Harbor";
+"Harbor is an independent, open-source client for iPhone and iPad." = "Harbor is an independent, open-source client for iPhone and iPad.";
 "Harbor looks for subtitles in this order. Put your preferred language first." = "Harbor tìm phụ đề theo thứ tự này. Đặt ngôn ngữ bạn muốn ở đầu.";
 "Hard stroke around each letter. High contrast." = "Viền đậm quanh từng chữ. Độ tương phản cao.";
 "Harvey Award Winners" = "Tác phẩm đoạt giải Harvey";
@@ -624,6 +640,7 @@
 "Idiomas de audio" = "Ngôn ngữ âm thanh";
 "Idiomas de subtítulos" = "Ngôn ngữ phụ đề";
 "Idiomas y subtítulos" = "Ngôn ngữ & phụ đề";
+"Image cache cleared." = "Image cache cleared.";
 "Imagen" = "Hình ảnh";
 "Imagen en imagen" = "Hình trong hình";
 "Imagen más intensa y vívida, con un poco más de contraste." = "Hình ảnh đậm đà, sống động hơn với độ tương phản cao hơn một chút.";
@@ -646,6 +663,7 @@
 "Imported books and reading progress are stored separately for each Harbor account on this device. Importing the same file again keeps its saved reading position. These files are not uploaded to Stremio." = "Imported books and reading progress are stored separately for each Harbor account on this device. Importing the same file again keeps its saved reading position. These files are not uploaded to Stremio.";
 "Importing book…" = "Importing book…";
 "In Theaters Now" = "Đang chiếu tại rạp";
+"In eBook, search Gutenberg or import EPUB and PDF files. In Manga, import PDF, CBZ, ZIP or image folders, or connect your Suwayomi server." = "In eBook, search Gutenberg or import EPUB and PDF files. In Manga, import PDF, CBZ, ZIP or image folders, or connect your Suwayomi server.";
 "Indonesian" = "Tiếng Indonesia";
 "Información" = "Thông tin";
 "Information" = "Thông tin";
@@ -665,6 +683,8 @@
 "Interface" = "Giao diện";
 "Interfaz" = "Giao diện";
 "Interfaz del sistema" = "Giao diện hệ thống";
+"It is not affiliated with the maker of {product}, or with any company, addon author, or trademark holder referenced inside the app." = "Ứng dụng này không liên kết với nhà sản xuất {product}, hay bất kỳ công ty, tác giả tiện ích bổ sung hoặc chủ sở hữu nhãn hiệu nào được đề cập trong ứng dụng.";
+"It is not affiliated with, endorsed by, sponsored by, or in any way associated with {company}." = "Ứng dụng này không liên kết, được chứng thực, tài trợ hay có bất kỳ quan hệ nào với {company}.";
 "Italian" = "Tiếng Ý";
 "Izquierda" = "Trái";
 "Izquierda a derecha" = "Từ trái sang phải";
@@ -675,6 +695,7 @@
 "Keep original" = "Giữ nguyên bản";
 "Keep same source on next episode" = "Giữ nguyên nguồn cho tập tiếp theo";
 "Keep screen awake" = "Keep screen awake";
+"Keep watching" = "Xem tiếp";
 "Kitsu, MAL, con reconocimiento de temporadas" = "Kitsu, MAL, nhận biết mùa";
 "Kitsu, MAL, season-aware" = "Kitsu, MAL, nhận biết mùa";
 "Korean" = "Tiếng Hàn";
@@ -689,6 +710,7 @@
 "Lectura" = "Đang đọc";
 "Left" = "Trái";
 "Left to right" = "Từ trái sang phải";
+"Legal" = "Pháp lý";
 "Letter spacing" = "Khoảng cách chữ";
 "Library" = "Thư viện";
 "Libros" = "Sách";
@@ -715,6 +737,7 @@
 "Load more" = "Tải thêm";
 "Loading…" = "Đang tải…";
 "Local" = "Cục bộ";
+"Local app files" = "Local app files";
 "Logos" = "Logo";
 "Los FPS de los subtítulos no están disponibles en este entorno de ejecución de libmpv." = "FPS phụ đề không khả dụng trong môi trường chạy libmpv này.";
 "Los FPS de los subtítulos no están disponibles mientras haya un subtítulo secundario activo." = "FPS phụ đề không khả dụng khi đang bật phụ đề thứ hai.";
@@ -725,6 +748,7 @@
 "M3U playlist" = "Danh sách phát M3U";
 "MAL" = "MAL";
 "MLB" = "MLB";
+"Make it yours" = "Tùy biến theo ý bạn";
 "Manage" = "Quản lý";
 "Manga" = "Manga";
 "Manga connection" = "Manga connection";
@@ -902,6 +926,7 @@
 "On The Air" = "Đang phát sóng";
 "On Tonight" = "Chiếu tối nay";
 "On start" = "On start";
+"Onboarding" = "Hướng dẫn ban đầu";
 "Opacidad" = "Độ mờ";
 "Opacidad del fondo" = "Độ mờ nền";
 "Opacity" = "Độ mờ";
@@ -1032,6 +1057,8 @@
 "Raised" = "Nổi";
 "Random avatar" = "Ảnh đại diện ngẫu nhiên";
 "Ranked by the {site} community from their public index." = "Do cộng đồng {site} xếp hạng dựa trên bảng xếp hạng công khai của họ.";
+"Re-runs the welcome flow and clears every dismissed tip." = "Chạy lại quy trình chào mừng và đặt lại mọi mẹo đã ẩn.";
+"Read on iPhone and iPad" = "Read on iPhone and iPad";
 "Reader options" = "Reader options";
 "Reading" = "Đang đọc";
 "Reading help" = "Reading help";
@@ -1085,6 +1112,8 @@
 "Renombrar" = "Đổi tên";
 "Repeat" = "Lặp lại";
 "Repetición" = "Lặp lại";
+"Replay the walkthrough or unhide every dismissed tip in the app." = "Xem lại hướng dẫn hoặc hiện lại mọi mẹo đã ẩn trong ứng dụng.";
+"Replay walkthrough" = "Xem lại hướng dẫn";
 "Reproducción" = "Phát";
 "Reproducir" = "Phát";
 "Reproducir ahora" = "Phát ngay";
@@ -1114,11 +1143,14 @@
 "Restablecer zoom" = "Đặt lại thu phóng";
 "Restart" = "Khởi động lại";
 "Restaurar subtítulo original" = "Restore original subtitle";
+"Restore dismissed hints" = "Khôi phục gợi ý đã ẩn";
 "Restore original subtitle" = "Restore original subtitle";
+"Restored" = "Đã khôi phục";
 "Resultados" = "Kết quả";
 "Results" = "Kết quả";
 "Resume" = "Tiếp tục";
 "Resume after an audio interruption" = "Resume after an audio interruption";
+"Resume from Continue watching. During playback, choose sources, audio and subtitles, synchronize an external subtitle or skip an intro when timing is available." = "Resume from Continue watching. During playback, choose sources, audio and subtitles, synchronize an external subtitle or skip an intro when timing is available.";
 "Resume from {time}" = "Tiếp tục từ {time}";
 "Resume when returning to the app" = "Resume when returning to the app";
 "Resume where you left off" = "Tiếp tục từ chỗ đã dừng";
@@ -1157,6 +1189,7 @@
 "Save settings" = "Save settings";
 "Save to this library" = "Save to this library";
 "Saved" = "Đã lưu";
+"Saved app data" = "Saved app data";
 "Saving" = "Đang lưu";
 "Sci-Fi" = "Khoa học viễn tưởng";
 "Sci-Fi & Fantasy" = "Khoa học viễn tưởng & kỳ ảo";
@@ -1233,6 +1266,7 @@
 "Shows" = "Phim bộ";
 "Shows the episode synopsis on the cards. Turn it off to hide it." = "Hiển thị tóm tắt nội dung tập trên thẻ. Tắt để ẩn.";
 "Shuffle" = "Ngẫu nhiên";
+"Sidebar icons animate when pressed or hovered with a pointer. Turn this off to keep them static." = "Sidebar icons animate when pressed or hovered with a pointer. Turn this off to keep them static.";
 "Sides" = "Hai bên";
 "Sign in" = "Đăng nhập";
 "Sign in with Stremio" = "Đăng nhập bằng Stremio";
@@ -1295,6 +1329,7 @@
 "Stop feeding the hero carousel (back to automatic)" = "Ngừng đưa nội dung vào băng chuyền nổi bật (trở lại tự động)";
 "Stop playback" = "Stop playback";
 "Stop showing as second subtitle" = "Dừng hiển thị làm phụ đề thứ hai";
+"Storage overview" = "Tổng quan bộ nhớ";
 "Stream" = "Luồng";
 "Streaming" = "Phát trực tuyến";
 "Stremio" = "Stremio";
@@ -1361,6 +1396,7 @@
 "Temporada" = "Mùa";
 "Temporada {n}" = "Mùa {n}";
 "Temporadas y episodios" = "Seasons and episodes";
+"Temporary files" = "Tệp tạm thời";
 "Tendencias" = "Thịnh hành";
 "Tendencias de esta semana" = "Thịnh hành tuần này";
 "Tendencias en {site}" = "Thịnh hành trên {site}";
@@ -1388,6 +1424,7 @@
 "This is how your subtitles will look." = "Phụ đề của bạn sẽ hiển thị như thế này.";
 "Thriller" = "Giật gân";
 "Thrillers" = "Phim giật gân";
+"Thumbnails download again when needed. Books, downloads, accounts and watch progress are kept." = "Thumbnails download again when needed. Books, downloads, accounts and watch progress are kept.";
 "Thumbs down hides this title from Featured. Thumbs up helps surface similar picks." = "Không thích sẽ ẩn tựa phim này khỏi mục Nổi bật. Thích sẽ giúp hiển thị các lựa chọn tương tự.";
 "Tiempo reproducido" = "Playback time";
 "Tipo" = "Loại";
@@ -1476,6 +1513,7 @@
 "Usa la clave v3, no el token de acceso de lectura." = "Dùng khóa v3, không dùng mã truy cập đọc.";
 "Usar mi estilo" = "Dùng kiểu của tôi";
 "Use my style" = "Dùng kiểu của tôi";
+"Use the navigation menu to open each section. Personalize the sidebar, home rows, colors and playback from Settings." = "Use the navigation menu to open each section. Personalize the sidebar, home rows, colors and playback from Settings.";
 "Use the v3 key, not the read access token." = "Dùng khóa v3, không dùng mã truy cập đọc.";
 "Use your configured Harbor server. Allow local network access when iOS asks." = "Use your configured Harbor server. Allow local network access when iOS asks.";
 "Used at 55% / 25% alpha." = "Dùng ở độ trong suốt 55% / 25%.";
@@ -1502,6 +1540,7 @@
 "Vídeo" = "Video";
 "War" = "Chiến tranh";
 "Watched" = "Đã xem";
+"Welcome to Harbor" = "Chào mừng đến với Harbor";
 "What everyone is reading" = "Mọi người đang đọc gì";
 "When a release ships multiple audio tracks, Harbor selects the first match from this list." = "Khi một bản phát hành có nhiều rãnh âm thanh, Harbor sẽ chọn kết quả khớp đầu tiên trong danh sách này.";
 "When an episode ends, automatically start the next one. Off lets the episode finish and stop." = "Khi một tập kết thúc, tự động bắt đầu tập tiếp theo. Nếu tắt, tập sẽ phát hết rồi dừng.";
@@ -1534,6 +1573,7 @@
 "center" = "giữa";
 "code" = "mã";
 "default" = "mặc định";
+"downloads" = "nội dung tải xuống";
 "eBook" = "Sách điện tử";
 "episodes" = "tập";
 "estrellas" = "sao";
@@ -1560,6 +1600,7 @@
 "results" = "kết quả";
 "right" = "phải";
 "seeders" = "người chia sẻ";
+"service" = "dịch vụ";
 "speed" = "tốc độ";
 "star" = "sao";
 "stars" = "sao";
@@ -1574,10 +1615,12 @@
 "v3 API key" = "Khóa API v3";
 "watched" = "đã xem";
 "yes" = "có";
+"{app} itself does not host, distribute, or index any media. All streams come from third-party addons, debrid services, or your own {service} account that you configure yourself. You are responsible for what you choose to play and for complying with the laws of your jurisdiction." = "Bản thân {app} không lưu trữ, phân phối hay lập chỉ mục bất kỳ nội dung nghe nhìn nào. Mọi luồng phát đều đến từ tiện ích bổ sung của bên thứ ba, dịch vụ debrid hoặc tài khoản {service} do chính bạn cấu hình. Bạn chịu trách nhiệm về nội dung mình chọn phát và việc tuân thủ luật pháp tại nơi mình sinh sống.";
 "{count} picks ready" = "{count} lựa chọn đã sẵn sàng";
 "{h}h left" = "còn {h} giờ";
 "{h}h {m}m left" = "còn {h} giờ {m} phút";
 "{m}m left" = "còn {m} phút";
+"{names}, and all other names, logos, and brand references are property of their respective owners and are used here only for compatibility and identification." = "{names} và mọi tên, logo cùng thông tin tham chiếu thương hiệu khác đều thuộc sở hữu của chủ sở hữu tương ứng và chỉ được sử dụng tại đây để đảm bảo khả năng tương thích và nhận diện.";
 "{name} + {n} more" = "{name} + thêm {n}";
 "{name} + {n} más" = "{name} + thêm {n}";
 "{n} min" = "{n} phút";

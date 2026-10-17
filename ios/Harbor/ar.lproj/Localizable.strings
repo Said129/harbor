@@ -24,6 +24,7 @@
 "AFC Women's Asian Cup" = "كأس آسيا للسيدات";
 "Abajo a la derecha" = "أسفل اليمين";
 "Abajo a la izquierda" = "أسفل اليسار";
+"About" = "حول";
 "Above the main line" = "فوق السطر الأساسي";
 "Abriendo libro…" = "جارٍ فتح الكتاب…";
 "Abrir en Safari" = "Open in Safari";
@@ -105,6 +106,7 @@
 "AniList" = "أني ليست (AniList)";
 "Animals" = "Animals";
 "Animated Movies" = "أفلام الرسوم المتحركة";
+"Animated sidebar icons" = "Animated sidebar icons";
 "Animation" = "أنميشن";
 "Anime" = "أنمي";
 "Anime Expo" = "معرض Anime Expo";
@@ -149,6 +151,7 @@
 "Automática" = "تلقائي";
 "Automático" = "تلقائي";
 "Automático (coincidir con el video)" = "تلقائي (مطابقة الفيديو)";
+"Available on device" = "Available on device";
 "Avatar" = "الصورة الرمزية";
 "Avatar aleatorio" = "صورة رمزية عشوائية";
 "Aventura" = "مغامرة";
@@ -229,6 +232,7 @@
 "Brighten dark movies" = "تفتيح الأفلام المظلمة";
 "Brightness" = "السطوع";
 "Brillo" = "السطوع";
+"Brings back the small in-app tips you've dismissed without redoing the welcome flow." = "يعيد التلميحات الصغيرة داخل التطبيق التي رفضتها دون إعادة تدفّق الترحيب.";
 "Browse" = "تصفّح";
 "Browse Gutenberg by title, author or language. Open a book to save it to your shelf. The reader offers font, spacing, background, bookmarks and read-aloud controls." = "ابحث في غوتنبرغ بالعنوان أو المؤلف أو اللغة. افتح كتابًا لحفظه على رفك. يتيح القارئ تغيير الخط والتباعد والخلفية وإضافة العلامات والقراءة بصوت عالٍ.";
 "Browse addons" = "تصفح الإضافات";
@@ -236,6 +240,7 @@
 "Browse by category" = "تصفّح حسب الفئة";
 "Browse your catalogs" = "تصفّح كتالوجاتك";
 "Buffer" = "Buffer";
+"Build" = "البناء";
 "Build your own palette" = "أنشئ لوحة ألوانك الخاصة";
 "Busca por título o autor, o cambia el idioma." = "Search by title or author, or change the language.";
 "Buscar" = "بحث";
@@ -248,6 +253,7 @@
 "CAF Champions League" = "دوري أبطال أفريقيا";
 "CAF Confederation Cup" = "كأس الكونفدرالية الأفريقية";
 "Cached" = "مخزن مؤقتا";
+"Caches" = "الذواكر المؤقتة";
 "Calendar" = "التقويم";
 "Calendario" = "التقويم";
 "Cam Recording" = "Cam Recording";
@@ -297,6 +303,7 @@
 "Chinese" = "الصينية";
 "Choose an avatar" = "اختر صورة رمزية";
 "Choose the frame rate the subtitle was authored for." = "اختر معدل الإطارات الذي أُنشئت الترجمة على أساسه.";
+"Choose your language. Your accounts and sources can be configured from your profile and Addons." = "Choose your language. Your accounts and sources can be configured from your profile and Addons.";
 "Ciencia ficción y fantasía" = "خيال علمي وفانتازيا";
 "Claro" = "فاتح";
 "Clasificación" = "الترتيب";
@@ -306,7 +313,9 @@
 "Clave de API de TMDB (v3)" = "مفتاح API لـ TMDB (v3)";
 "Clave de API v3" = "مفتاح API الإصدار 3";
 "Clear all" = "مسح الكل";
+"Clear caches" = "مسح الذواكر المؤقتة";
 "Clear filters" = "مسح المرشّحات";
+"Clear image cache" = "Clear image cache";
 "Clear search" = "مسح البحث";
 "Close" = "إغلاق";
 "Close navigation" = "Close navigation";
@@ -333,6 +342,7 @@
 "Compacta" = "مضغوط";
 "Compartir" = "مشاركة";
 "Compartir archivo" = "Share file";
+"Compatibility" = "Compatibility";
 "Con serifas" = "مذيل";
 "Concentración" = "Focus";
 "Conectando" = "جارٍ الاتصال";
@@ -369,6 +379,7 @@
 "Correo y contraseña" = "Email and password";
 "Could not analyze this source. Playback continues; you can retry." = "تعذر تحليل هذا المصدر. تستمر المشاهدة ويمكنك المحاولة مجددًا.";
 "Could not apply the timing. The original subtitle is kept." = "تعذر تطبيق التوقيت. تم الاحتفاظ بالترجمة الأصلية.";
+"Could not measure storage. Try again." = "Could not measure storage. Try again.";
 "Could not open book" = "تعذر فتح الكتاب";
 "Couldn't auto-sync" = "تعذرت المزامنة التلقائية";
 "Crash" = "تعطّل";
@@ -424,6 +435,7 @@
 "Desenfocar spoilers" = "تمويه الحرق";
 "Desenfocar títulos" = "تمويه العناوين";
 "Desfase de sincronización" = "إزاحة المزامنة";
+"Desktop reference" = "Desktop reference";
 "Destacar este catálogo en el carrusel principal" = "إبراز هذا الكتالوج في شريط العرض الرئيسي";
 "Details" = "التفاصيل";
 "Detalles" = "التفاصيل";
@@ -437,6 +449,7 @@
 "Discovery Queue" = "قائمة الاكتشاف";
 "Diseño de Inicio" = "تخطيط الرئيسية";
 "Dismiss" = "تجاهل";
+"Dismiss tip" = "Dismiss tip";
 "Disney+ Originals" = "أعمال ديزني+ الأصلية";
 "Display name" = "الاسم";
 "Distance from bottom" = "المسافة من الأسفل";
@@ -444,11 +457,14 @@
 "Documentales" = "أفلام وثائقية";
 "Documentaries" = "أفلام وثائقية";
 "Documentary" = "وثائقي";
+"Documents" = "Documents";
+"Documents, saved app data and caches on this device. Sizes exclude the app bundle and system Keychain." = "Documents, saved app data and caches on this device. Sizes exclude the app bundle and system Keychain.";
 "Done" = "تم";
 "Done editing" = "انتهاء التعديل";
 "Download" = "تنزيل";
 "Download progress" = "Download progress";
 "Download started" = "بدأ التنزيل";
+"Downloaded image cache" = "Downloaded image cache";
 "Downloads" = "التحميلات";
 "Dracula" = "Dracula";
 "Drama" = "دراما";
@@ -605,6 +621,7 @@
 "Harbor cannot list the private Apple Books library. Import an unprotected EPUB or PDF from Files or choose Harbor when opening a compatible file in another app. A store link is not a book file; protected purchases stay in Apple Books." = "لا يستطيع Harbor عرض مكتبة Apple Books الخاصة. استورد EPUB أو PDF غير محمي من الملفات، أو اختر Harbor عند فتح ملف متوافق في تطبيق آخر. رابط المتجر ليس ملف كتاب؛ تبقى المشتريات المحمية في Apple Books.";
 "Harbor curated" = "اختيار Harbor";
 "Harbor default" = "الافتراضي في Harbor";
+"Harbor is an independent, open-source client for iPhone and iPad." = "Harbor is an independent, open-source client for iPhone and iPad.";
 "Harbor looks for subtitles in this order. Put your preferred language first." = "يبحث Harbor عن الترجمات بهذا الترتيب. ضع لغتك المفضّلة أولًا.";
 "Hard stroke around each letter. High contrast." = "حد صلب حول كل حرف. تباين عالٍ.";
 "Harvey Award Winners" = "الفائزون بجائزة Harvey";
@@ -648,6 +665,7 @@
 "Idiomas de audio" = "لغات الصوت";
 "Idiomas de subtítulos" = "لغات الترجمة";
 "Idiomas y subtítulos" = "اللغات والترجمات";
+"Image cache cleared." = "Image cache cleared.";
 "Imagen" = "الصورة";
 "Imagen en imagen" = "صورة داخل صورة";
 "Imagen más intensa y vívida, con un poco más de contraste." = "صورة أغنى وأكثر حيوية مع القليل من التباين الإضافي.";
@@ -670,6 +688,7 @@
 "Imported books and reading progress are stored separately for each Harbor account on this device. Importing the same file again keeps its saved reading position. These files are not uploaded to Stremio." = "تُحفظ الكتب المستوردة وتقدّم القراءة بشكل منفصل لكل حساب Harbor على هذا الجهاز. يحتفظ استيراد الملف نفسه مجددًا بموضع القراءة. لا تُرفع هذه الملفات إلى Stremio.";
 "Importing book…" = "جارٍ استيراد الكتاب…";
 "In Theaters Now" = "في دور العرض الآن";
+"In eBook, search Gutenberg or import EPUB and PDF files. In Manga, import PDF, CBZ, ZIP or image folders, or connect your Suwayomi server." = "In eBook, search Gutenberg or import EPUB and PDF files. In Manga, import PDF, CBZ, ZIP or image folders, or connect your Suwayomi server.";
 "Indonesian" = "الإندونيسية";
 "Información" = "معلومات";
 "Information" = "معلومات";
@@ -689,6 +708,8 @@
 "Interface" = "الواجهة";
 "Interfaz" = "الواجهة";
 "Interfaz del sistema" = "واجهة النظام";
+"It is not affiliated with the maker of {product}, or with any company, addon author, or trademark holder referenced inside the app." = "لا يرتبط بصانع {product} ولا بأي شركة أو مطوّر إضافة أو مالك علامة تجارية مذكور داخل التطبيق.";
+"It is not affiliated with, endorsed by, sponsored by, or in any way associated with {company}." = "لا يرتبط بـ {company} ولا يحظى بتأييدها أو رعايتها أو بأي صلة بها.";
 "Italian" = "الإيطالية";
 "Izquierda" = "يسار";
 "Izquierda a derecha" = "من اليسار إلى اليمين";
@@ -699,6 +720,7 @@
 "Keep original" = "الاحتفاظ بالأصل";
 "Keep same source on next episode" = "الإبقاء على المصدر نفسه في الحلقة التالية";
 "Keep screen awake" = "Keep screen awake";
+"Keep watching" = "متابعة المشاهدة";
 "Kitsu, MAL, con reconocimiento de temporadas" = "Kitsu وMAL، مدركة للمواسم";
 "Kitsu, MAL, season-aware" = "Kitsu وMAL، مدركة للمواسم";
 "Korean" = "الكورية";
@@ -713,6 +735,7 @@
 "Lectura" = "جارٍ القراءة";
 "Left" = "يسار";
 "Left to right" = "من اليسار إلى اليمين";
+"Legal" = "إشعار قانوني";
 "Letter spacing" = "تباعد الأحرف";
 "Library" = "المكتبة";
 "Libros" = "الكتب";
@@ -739,6 +762,7 @@
 "Load more" = "تحميل المزيد";
 "Loading…" = "جارٍ التحميل…";
 "Local" = "المحلّي";
+"Local app files" = "Local app files";
 "Logos" = "الشعارات";
 "Los FPS de los subtítulos no están disponibles en este entorno de ejecución de libmpv." = "معدل إطارات الترجمة غير متوفر في إصدار libmpv الحالي.";
 "Los FPS de los subtítulos no están disponibles mientras haya un subtítulo secundario activo." = "لا يتوفر تعديل معدل إطارات الترجمة أثناء تفعيل ترجمة ثانوية.";
@@ -749,6 +773,7 @@
 "M3U playlist" = "قائمة M3U";
 "MAL" = "MAL";
 "MLB" = "MLB";
+"Make it yours" = "اجعلها تخصّك";
 "Manage" = "إدارة";
 "Manga" = "المانغا";
 "Manga connection" = "Manga connection";
@@ -930,6 +955,7 @@
 "On The Air" = "تُعرض حاليًا";
 "On Tonight" = "يعرض الليلة";
 "On start" = "On start";
+"Onboarding" = "الإعداد الأولي";
 "Opacidad" = "الشفافية";
 "Opacidad del fondo" = "شفافية الخلفية";
 "Opacity" = "الشفافية";
@@ -1062,6 +1088,8 @@
 "Raised" = "بارز";
 "Random avatar" = "صورة رمزية عشوائية";
 "Ranked by the {site} community from their public index." = "مرتّب حسب مجتمع {site} استنادًا إلى فهرسه العام.";
+"Re-runs the welcome flow and clears every dismissed tip." = "يعيد تشغيل تدفّق الترحيب ويمسح كل تلميح مرفوض.";
+"Read on iPhone and iPad" = "Read on iPhone and iPad";
 "Reader options" = "Reader options";
 "Reading" = "جارٍ القراءة";
 "Reading help" = "كيفية استخدام المانغا والكتب الإلكترونية";
@@ -1116,6 +1144,8 @@
 "Renombrar" = "إعادة تسمية";
 "Repeat" = "تكرار";
 "Repetición" = "تكرار";
+"Replay the walkthrough or unhide every dismissed tip in the app." = "أعِد تشغيل الجولة التعريفية أو أظهر كل تلميح رفضته.";
+"Replay walkthrough" = "إعادة تشغيل الجولة التعريفية";
 "Reproducción" = "التشغيل";
 "Reproducir" = "تشغيل";
 "Reproducir ahora" = "التشغيل الآن";
@@ -1145,11 +1175,14 @@
 "Restablecer zoom" = "إعادة تعيين التكبير";
 "Restart" = "إعادة التشغيل";
 "Restaurar subtítulo original" = "Restore original subtitle";
+"Restore dismissed hints" = "استعادة التلميحات المرفوضة";
 "Restore original subtitle" = "Restore original subtitle";
+"Restored" = "تمت الاستعادة";
 "Resultados" = "النتائج";
 "Results" = "النتائج";
 "Resume" = "استئناف";
 "Resume after an audio interruption" = "Resume after an audio interruption";
+"Resume from Continue watching. During playback, choose sources, audio and subtitles, synchronize an external subtitle or skip an intro when timing is available." = "Resume from Continue watching. During playback, choose sources, audio and subtitles, synchronize an external subtitle or skip an intro when timing is available.";
 "Resume from {time}" = "المتابعة من {time}";
 "Resume when returning to the app" = "Resume when returning to the app";
 "Resume where you left off" = "المتابعة من حيث توقّفت";
@@ -1190,6 +1223,7 @@
 "Save settings" = "Save settings";
 "Save to this library" = "Save to this library";
 "Saved" = "محفوظ";
+"Saved app data" = "Saved app data";
 "Saving" = "جارٍ الحفظ";
 "Sci-Fi" = "خيال علمي";
 "Sci-Fi & Fantasy" = "خيال علمي وفانتازيا";
@@ -1266,6 +1300,7 @@
 "Shows" = "مسلسلات";
 "Shows the episode synopsis on the cards. Turn it off to hide it." = "يعرض ملخّص الحلقة على البطاقات. عطّله لإخفائه.";
 "Shuffle" = "تشغيل عشوائي";
+"Sidebar icons animate when pressed or hovered with a pointer. Turn this off to keep them static." = "Sidebar icons animate when pressed or hovered with a pointer. Turn this off to keep them static.";
 "Sides" = "الجوانب";
 "Sign in" = "تسجيل الدخول";
 "Sign in with Stremio" = "تسجيل الدخول باستخدام Stremio";
@@ -1329,6 +1364,7 @@
 "Stop feeding the hero carousel (back to automatic)" = "إيقاف تغذية شريط العرض الرئيسي (العودة إلى التلقائي)";
 "Stop playback" = "Stop playback";
 "Stop showing as second subtitle" = "إيقاف عرضها كترجمة ثانية";
+"Storage overview" = "نظرة عامة على التخزين";
 "Stream" = "بث";
 "Streaming" = "البث";
 "Stremio" = "Stremio";
@@ -1396,6 +1432,7 @@
 "Temporada" = "الموسم";
 "Temporada {n}" = "موسم {n}";
 "Temporadas y episodios" = "Seasons and episodes";
+"Temporary files" = "الملفات المؤقتة";
 "Tendencias" = "رائج";
 "Tendencias de esta semana" = "الشائع هذا الأسبوع";
 "Tendencias en {site}" = "الرائج على {site}";
@@ -1423,6 +1460,7 @@
 "This is how your subtitles will look." = "هكذا ستبدو الترجمة.";
 "Thriller" = "إثارة";
 "Thrillers" = "أعمال التشويق";
+"Thumbnails download again when needed. Books, downloads, accounts and watch progress are kept." = "Thumbnails download again when needed. Books, downloads, accounts and watch progress are kept.";
 "Thumbs down hides this title from Featured. Thumbs up helps surface similar picks." = "التقييم السلبي يخفي هذا العنوان من قائمة المميزة. التقييم الإيجابي يساعد في إظهار اختيارات مشابهة.";
 "Tiempo reproducido" = "Playback time";
 "Tipo" = "النوع";
@@ -1511,6 +1549,7 @@
 "Usa la clave v3, no el token de acceso de lectura." = "استخدم مفتاح v3، وليس رمز وصول القراءة.";
 "Usar mi estilo" = "استخدام التنسيق الخاص بي";
 "Use my style" = "استخدام التنسيق الخاص بي";
+"Use the navigation menu to open each section. Personalize the sidebar, home rows, colors and playback from Settings." = "Use the navigation menu to open each section. Personalize the sidebar, home rows, colors and playback from Settings.";
 "Use the v3 key, not the read access token." = "استخدم مفتاح v3، وليس رمز وصول القراءة.";
 "Use your configured Harbor server. Allow local network access when iOS asks." = "Use your configured Harbor server. Allow local network access when iOS asks.";
 "Used at 55% / 25% alpha." = "يُستخدم بقيمة ألفا 55% / 25%.";
@@ -1537,6 +1576,7 @@
 "Vídeo" = "فيديو";
 "War" = "حرب";
 "Watched" = "تمت المشاهدة";
+"Welcome to Harbor" = "مرحبًا بك في Harbor";
 "What everyone is reading" = "ما يقرؤه الجميع";
 "When a release ships multiple audio tracks, Harbor selects the first match from this list." = "عندما يأتي إصدار بمسارات صوت متعددة، يختار Harbor أول مطابقة من هذه القائمة.";
 "When an episode ends, automatically start the next one. Off lets the episode finish and stop." = "عندما تنتهي الحلقة، ابدأ الحلقة التالية تلقائياً. 'إيقاف' يتيح للحلقة أن تنتهي ثم يتوقف التشغيل.";
@@ -1573,6 +1613,7 @@
 "center" = "الوسط";
 "code" = "الكود";
 "default" = "افتراضي";
+"downloads" = "تنزيلات";
 "eBook" = "كتاب إلكتروني";
 "episodes" = "حلقات";
 "estrellas" = "نجوم";
@@ -1599,6 +1640,7 @@
 "results" = "نتائج";
 "right" = "اليمين";
 "seeders" = "مزوّدون (Seeders)";
+"service" = "خدمة";
 "speed" = "السرعة";
 "star" = "نجمة";
 "stars" = "نجوم";
@@ -1613,10 +1655,12 @@
 "v3 API key" = "مفتاح API الإصدار 3";
 "watched" = "شاهد";
 "yes" = "نعم";
+"{app} itself does not host, distribute, or index any media. All streams come from third-party addons, debrid services, or your own {service} account that you configure yourself. You are responsible for what you choose to play and for complying with the laws of your jurisdiction." = "لا يستضيف {app} نفسه أي وسائط أو يوزعها أو يفهرسها. تأتي جميع عمليات البث من إضافات تابعة لجهات خارجية أو خدمات debrid أو حسابك في {service} الذي تضبطه بنفسك. أنت مسؤول عما تختار تشغيله وعن الامتثال لقوانين نطاقك القضائي.";
 "{count} picks ready" = "{count} اختيارات جاهزة";
 "{h}h left" = "بقي {h}س";
 "{h}h {m}m left" = "بقي {h}س {m}د";
 "{m}m left" = "بقي {m}د";
+"{names}, and all other names, logos, and brand references are property of their respective owners and are used here only for compatibility and identification." = "إن {names}، وجميع الأسماء والشعارات والإشارات إلى العلامات التجارية الأخرى، ملك لأصحابها المعنيين، ولا تُستخدم هنا إلا لأغراض التوافق والتعريف.";
 "{name} + {n} more" = "{name} و{n} آخرين";
 "{name} + {n} más" = "{name} و{n} آخرين";
 "{n} min" = "{n} دقيقة";

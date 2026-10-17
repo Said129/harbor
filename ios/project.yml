@@ -18,14 +18,20 @@ packages:
   ZIPFoundation:
     url: https://github.com/weichsel/ZIPFoundation.git
     revision: 22787ffb59de99e5dc1fbfe80b19c97a904ad48d
+  Lottie:
+    url: https://github.com/airbnb/lottie-spm.git
+    revision: 0aff16288f8dc1e3dab35cbf5cf45979673fd3df
 targets:
   Harbor:
     type: application
     platform: iOS
     sources:
       - path: Harbor
-        excludes: [HarborLoader]
+        excludes: [HarborLoader, DesktopAnimations]
       - path: Harbor/HarborLoader
+        type: folder
+        buildPhase: resources
+      - path: Harbor/DesktopAnimations
         type: folder
         buildPhase: resources
     settings:
@@ -76,6 +82,8 @@ targets:
         product: MPVKit
       - package: ZIPFoundation
         product: ZIPFoundation
+      - package: Lottie
+        product: Lottie
       - sdk: GLKit.framework
       - sdk: OpenGLES.framework
       - sdk: Security.framework
@@ -99,6 +107,8 @@ targets:
         GENERATE_INFOPLIST_FILE: YES
     dependencies:
       - target: Harbor
+      - package: Lottie
+        product: Lottie
       - framework: Frameworks/HarborCore.xcframework
         embed: false
   HarborIntegrationTests:

@@ -3,3 +3,6 @@ ios/Harbor/HarborLoader/harbor-loader.json
 ios/Harbor/HarborLoader/animation.js
 ios/Harbor/HarborLoader/lottie.min.js
 ios/Harbor/HarborLoader/LICENSE.md
+
+# Original Desktop vectors keep their source hashes and keyframes.
+ios/Harbor/DesktopAnimations/nav/*.json

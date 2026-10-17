@@ -17,6 +17,7 @@
 "A continuación" = "Sıradaki";
 "Abajo a la derecha" = "Sağ alt";
 "Abajo a la izquierda" = "Sol alt";
+"About" = "Hakkında";
 "Above the main line" = "Ana satırın üstü";
 "Abriendo libro…" = "Opening book…";
 "Abrir en Safari" = "Open in Safari";
@@ -139,6 +140,7 @@
 "Automática" = "Otomatik";
 "Automático" = "Otomatik";
 "Automático (coincidir con el video)" = "Otomatik (videoyla eşleştir)";
+"Available on device" = "Available on device";
 "Avatar" = "Avatar";
 "Avatar aleatorio" = "Rastgele avatar";
 "Aventura" = "Macera";
@@ -216,6 +218,7 @@
 "Brighten dark movies" = "Karanlık filmleri aydınlat";
 "Brightness" = "Parlaklık";
 "Brillo" = "Parlaklık";
+"Brings back the small in-app tips you've dismissed without redoing the welcome flow." = "Karşılama akışını yeniden başlatmadan, kapattığınız küçük uygulama içi ipuçlarını geri getirir.";
 "Browse" = "Göz at";
 "Browse Gutenberg by title, author or language. Open a book to save it to your shelf. The reader offers font, spacing, background, bookmarks and read-aloud controls." = "Browse Gutenberg by title, author or language. Open a book to save it to your shelf. The reader offers font, spacing, background, bookmarks and read-aloud controls.";
 "Browse addons" = "Eklentilere göz at";
@@ -223,6 +226,7 @@
 "Browse by category" = "Kategoriye göre göz at";
 "Browse your catalogs" = "Kataloglarınıza göz atın";
 "Buffer" = "Buffer";
+"Build" = "Derleme";
 "Build your own palette" = "Kendi paletinizi oluşturun";
 "Busca por título o autor, o cambia el idioma." = "Search by title or author, or change the language.";
 "Buscar" = "Ara";
@@ -233,6 +237,7 @@
 "Búfer" = "Buffer";
 "Búsquedas recientes" = "Son aramalar";
 "Cached" = "Önbelleğe alınmış";
+"Caches" = "Önbellekler";
 "Calendar" = "Takvim";
 "Calendario" = "Takvim";
 "Cam Recording" = "Cam Recording";
@@ -278,6 +283,7 @@
 "Chinese" = "Çince";
 "Choose an avatar" = "Bir avatar seçin";
 "Choose the frame rate the subtitle was authored for." = "Altyazının hazırlandığı kare hızını seçin.";
+"Choose your language. Your accounts and sources can be configured from your profile and Addons." = "Choose your language. Your accounts and sources can be configured from your profile and Addons.";
 "Ciencia ficción y fantasía" = "Bilim Kurgu ve Fantastik";
 "Claro" = "Açık";
 "Clasificación" = "Puan durumu";
@@ -287,7 +293,9 @@
 "Clave de API de TMDB (v3)" = "TMDB API anahtarı (v3)";
 "Clave de API v3" = "v3 API anahtarı";
 "Clear all" = "Tümünü temizle";
+"Clear caches" = "Önbellekleri temizle";
 "Clear filters" = "Filtreleri temizle";
+"Clear image cache" = "Clear image cache";
 "Clear search" = "Aramayı temizle";
 "Close" = "Kapat";
 "Close navigation" = "Close navigation";
@@ -314,6 +322,7 @@
 "Compacta" = "Kompakt";
 "Compartir" = "Paylaş";
 "Compartir archivo" = "Share file";
+"Compatibility" = "Compatibility";
 "Con serifas" = "Serif";
 "Concentración" = "Focus";
 "Conectando" = "Bağlanıyor";
@@ -346,6 +355,7 @@
 "Correo y contraseña" = "Email and password";
 "Could not analyze this source. Playback continues; you can retry." = "Could not analyze this source. Playback continues; you can retry.";
 "Could not apply the timing. The original subtitle is kept." = "Could not apply the timing. The original subtitle is kept.";
+"Could not measure storage. Try again." = "Could not measure storage. Try again.";
 "Could not open book" = "Could not open book";
 "Couldn't auto-sync" = "Otomatik eşitlenemedi";
 "Crash" = "Çökme";
@@ -401,6 +411,7 @@
 "Desenfocar spoilers" = "Spoilerları bulanıklaştır";
 "Desenfocar títulos" = "Başlıkları bulanıklaştır";
 "Desfase de sincronización" = "Senkronizasyon farkı";
+"Desktop reference" = "Desktop reference";
 "Destacar este catálogo en el carrusel principal" = "Bu kataloğu vitrin karuselinde öne çıkar";
 "Details" = "Ayrıntılar";
 "Detalles" = "Ayrıntılar";
@@ -414,6 +425,7 @@
 "Discovery Queue" = "Keşif Kuyruğu";
 "Diseño de Inicio" = "Ana sayfa düzeni";
 "Dismiss" = "Kapat";
+"Dismiss tip" = "Dismiss tip";
 "Disney+ Originals" = "Disney+ Orijinal Yapımları";
 "Display name" = "Görünen ad";
 "Distance from bottom" = "Alttan uzaklık";
@@ -421,11 +433,14 @@
 "Documentales" = "Belgeseller";
 "Documentaries" = "Belgeseller";
 "Documentary" = "Belgesel";
+"Documents" = "Documents";
+"Documents, saved app data and caches on this device. Sizes exclude the app bundle and system Keychain." = "Documents, saved app data and caches on this device. Sizes exclude the app bundle and system Keychain.";
 "Done" = "Bitti";
 "Done editing" = "Düzenlemeyi bitir";
 "Download" = "İndir";
 "Download progress" = "Download progress";
 "Download started" = "İndirme başladı";
+"Downloaded image cache" = "Downloaded image cache";
 "Downloads" = "İndirilenler";
 "Dracula" = "Dracula";
 "Drama" = "Dram";
@@ -581,6 +596,7 @@
 "Harbor cannot list the private Apple Books library. Import an unprotected EPUB or PDF from Files or choose Harbor when opening a compatible file in another app. A store link is not a book file; protected purchases stay in Apple Books." = "Harbor cannot list the private Apple Books library. Import an unprotected EPUB or PDF from Files or choose Harbor when opening a compatible file in another app. A store link is not a book file; protected purchases stay in Apple Books.";
 "Harbor curated" = "Harbor seçkisi";
 "Harbor default" = "Harbor varsayılanı";
+"Harbor is an independent, open-source client for iPhone and iPad." = "Harbor is an independent, open-source client for iPhone and iPad.";
 "Harbor looks for subtitles in this order. Put your preferred language first." = "Harbor altyazıları bu sırayla arar. Tercih ettiğiniz dili ilk sıraya koyun.";
 "Hard stroke around each letter. High contrast." = "Her harfin çevresinde keskin bir kontur. Yüksek kontrast.";
 "Harvey Award Winners" = "Harvey Ödülü Kazananlar";
@@ -624,6 +640,7 @@
 "Idiomas de audio" = "Ses dilleri";
 "Idiomas de subtítulos" = "Altyazı dilleri";
 "Idiomas y subtítulos" = "Diller ve altyazılar";
+"Image cache cleared." = "Image cache cleared.";
 "Imagen" = "Resim";
 "Imagen en imagen" = "Resim İçinde Resim";
 "Imagen más intensa y vívida, con un poco más de contraste." = "Biraz daha fazla kontrastla daha zengin ve canlı bir görüntü sunar.";
@@ -646,6 +663,7 @@
 "Imported books and reading progress are stored separately for each Harbor account on this device. Importing the same file again keeps its saved reading position. These files are not uploaded to Stremio." = "Imported books and reading progress are stored separately for each Harbor account on this device. Importing the same file again keeps its saved reading position. These files are not uploaded to Stremio.";
 "Importing book…" = "Importing book…";
 "In Theaters Now" = "Şu Anda Sinemalarda";
+"In eBook, search Gutenberg or import EPUB and PDF files. In Manga, import PDF, CBZ, ZIP or image folders, or connect your Suwayomi server." = "In eBook, search Gutenberg or import EPUB and PDF files. In Manga, import PDF, CBZ, ZIP or image folders, or connect your Suwayomi server.";
 "Indonesian" = "Endonezce";
 "Información" = "Bilgiler";
 "Information" = "Bilgiler";
@@ -665,6 +683,8 @@
 "Interface" = "Arayüz";
 "Interfaz" = "Arayüz";
 "Interfaz del sistema" = "Sistem arayüzü";
+"It is not affiliated with the maker of {product}, or with any company, addon author, or trademark holder referenced inside the app." = "{product} geliştiricisiyle veya uygulamada adı geçen herhangi bir şirket, eklenti geliştiricisi ya da ticari marka sahibiyle bağlantılı değildir.";
+"It is not affiliated with, endorsed by, sponsored by, or in any way associated with {company}." = "{company} ile bağlantılı değildir; bu şirket tarafından onaylanmaz, desteklenmez veya hiçbir şekilde bu şirketle ilişkili değildir.";
 "Italian" = "İtalyanca";
 "Izquierda" = "Sol";
 "Izquierda a derecha" = "Soldan sağa";
@@ -675,6 +695,7 @@
 "Keep original" = "Özgün biçimi koru";
 "Keep same source on next episode" = "Sonraki bölümde aynı kaynağı kullan";
 "Keep screen awake" = "Keep screen awake";
+"Keep watching" = "İzlemeye devam et";
 "Kitsu, MAL, con reconocimiento de temporadas" = "Kitsu, MAL, sezon uyumlu";
 "Kitsu, MAL, season-aware" = "Kitsu, MAL, sezon uyumlu";
 "Korean" = "Korece";
@@ -689,6 +710,7 @@
 "Lectura" = "Okunuyor";
 "Left" = "Sol";
 "Left to right" = "Soldan sağa";
+"Legal" = "Yasal bilgiler";
 "Letter spacing" = "Harf aralığı";
 "Library" = "Kütüphane";
 "Libros" = "Kitaplar";
@@ -715,6 +737,7 @@
 "Load more" = "Daha fazla yükle";
 "Loading…" = "Yükleniyor…";
 "Local" = "Yerel";
+"Local app files" = "Local app files";
 "Logos" = "Logolar";
 "Los FPS de los subtítulos no están disponibles en este entorno de ejecución de libmpv." = "Altyazı FPS'si bu libmpv çalışma ortamında kullanılamıyor.";
 "Los FPS de los subtítulos no están disponibles mientras haya un subtítulo secundario activo." = "İkincil altyazı etkinken altyazı FPS'si kullanılamaz.";
@@ -725,6 +748,7 @@
 "M3U playlist" = "M3U oynatma listesi";
 "MAL" = "MAL";
 "MLB" = "MLB";
+"Make it yours" = "Kendinize göre düzenleyin";
 "Manage" = "Yönet";
 "Manga" = "Manga";
 "Manga connection" = "Manga connection";
@@ -902,6 +926,7 @@
 "On The Air" = "Yayındaki Diziler";
 "On Tonight" = "Bu Akşam Yayında";
 "On start" = "On start";
+"Onboarding" = "Başlangıç rehberi";
 "Opacidad" = "Opaklık";
 "Opacidad del fondo" = "Arka plan opaklığı";
 "Opacity" = "Opaklık";
@@ -1032,6 +1057,8 @@
 "Raised" = "Yükseltilmiş";
 "Random avatar" = "Rastgele avatar";
 "Ranked by the {site} community from their public index." = "{site} topluluğu tarafından herkese açık endeksine göre sıralanmıştır.";
+"Re-runs the welcome flow and clears every dismissed tip." = "Karşılama akışını yeniden çalıştırır ve kapattığınız tüm ipuçlarını sıfırlar.";
+"Read on iPhone and iPad" = "Read on iPhone and iPad";
 "Reader options" = "Reader options";
 "Reading" = "Okunuyor";
 "Reading help" = "Reading help";
@@ -1085,6 +1112,8 @@
 "Renombrar" = "Yeniden adlandır";
 "Repeat" = "Tekrarla";
 "Repetición" = "Tekrarla";
+"Replay the walkthrough or unhide every dismissed tip in the app." = "Tanıtım turunu yeniden oynatın veya uygulamada kapattığınız tüm ipuçlarını tekrar gösterin.";
+"Replay walkthrough" = "Tanıtımı yeniden oynat";
 "Reproducción" = "Oynatma";
 "Reproducir" = "Oynat";
 "Reproducir ahora" = "Şimdi oynat";
@@ -1114,11 +1143,14 @@
 "Restablecer zoom" = "Yakınlaştırma düzeyini sıfırla";
 "Restart" = "Yeniden başlat";
 "Restaurar subtítulo original" = "Restore original subtitle";
+"Restore dismissed hints" = "Kapatılan ipuçlarını geri getir";
 "Restore original subtitle" = "Restore original subtitle";
+"Restored" = "Geri yüklendi";
 "Resultados" = "Sonuçlar";
 "Results" = "Sonuçlar";
 "Resume" = "Devam et";
 "Resume after an audio interruption" = "Resume after an audio interruption";
+"Resume from Continue watching. During playback, choose sources, audio and subtitles, synchronize an external subtitle or skip an intro when timing is available." = "Resume from Continue watching. During playback, choose sources, audio and subtitles, synchronize an external subtitle or skip an intro when timing is available.";
 "Resume from {time}" = "{time} konumundan devam et";
 "Resume when returning to the app" = "Resume when returning to the app";
 "Resume where you left off" = "Kaldığınız yerden devam edin";
@@ -1157,6 +1189,7 @@
 "Save settings" = "Save settings";
 "Save to this library" = "Save to this library";
 "Saved" = "Kaydedildi";
+"Saved app data" = "Saved app data";
 "Saving" = "Kaydediliyor";
 "Sci-Fi" = "Bilim Kurgu";
 "Sci-Fi & Fantasy" = "Bilim Kurgu ve Fantastik";
@@ -1233,6 +1266,7 @@
 "Shows" = "Diziler";
 "Shows the episode synopsis on the cards. Turn it off to hide it." = "Bölüm özetini kartlarda gösterir. Gizlemek için kapatın.";
 "Shuffle" = "Karıştır";
+"Sidebar icons animate when pressed or hovered with a pointer. Turn this off to keep them static." = "Sidebar icons animate when pressed or hovered with a pointer. Turn this off to keep them static.";
 "Sides" = "Kenarlar";
 "Sign in" = "Oturum aç";
 "Sign in with Stremio" = "Stremio ile oturum aç";
@@ -1295,6 +1329,7 @@
 "Stop feeding the hero carousel (back to automatic)" = "Vitrin karuseline içerik sağlamayı durdur (otomatik seçime dön)";
 "Stop playback" = "Stop playback";
 "Stop showing as second subtitle" = "İkinci altyazı olarak göstermeyi bırak";
+"Storage overview" = "Depolama alanına genel bakış";
 "Stream" = "Yayın";
 "Streaming" = "Yayın";
 "Stremio" = "Stremio";
@@ -1361,6 +1396,7 @@
 "Temporada" = "Sezon";
 "Temporada {n}" = "Sezon {n}";
 "Temporadas y episodios" = "Seasons and episodes";
+"Temporary files" = "Geçici dosyalar";
 "Tendencias" = "Trendler";
 "Tendencias de esta semana" = "Bu Haftanın Gündemindekiler";
 "Tendencias en {site}" = "{site} gündemindekiler";
@@ -1388,6 +1424,7 @@
 "This is how your subtitles will look." = "Altyazılarınız böyle görünecek.";
 "Thriller" = "Gerilim";
 "Thrillers" = "Gerilim Filmleri";
+"Thumbnails download again when needed. Books, downloads, accounts and watch progress are kept." = "Thumbnails download again when needed. Books, downloads, accounts and watch progress are kept.";
 "Thumbs down hides this title from Featured. Thumbs up helps surface similar picks." = "Beğenmeme düğmesi bu içeriği Öne Çıkanlar bölümünden kaldırır. Beğenme düğmesi ise benzer önerilerin gösterilmesine yardımcı olur.";
 "Tiempo reproducido" = "Playback time";
 "Tipo" = "Tür";
@@ -1476,6 +1513,7 @@
 "Usa la clave v3, no el token de acceso de lectura." = "Okuma erişimi tokenını değil, v3 anahtarını kullanın.";
 "Usar mi estilo" = "Benim stilimi kullan";
 "Use my style" = "Benim stilimi kullan";
+"Use the navigation menu to open each section. Personalize the sidebar, home rows, colors and playback from Settings." = "Use the navigation menu to open each section. Personalize the sidebar, home rows, colors and playback from Settings.";
 "Use the v3 key, not the read access token." = "Okuma erişimi tokenını değil, v3 anahtarını kullanın.";
 "Use your configured Harbor server. Allow local network access when iOS asks." = "Use your configured Harbor server. Allow local network access when iOS asks.";
 "Used at 55% / 25% alpha." = "%55 / %25 alfa ile kullanılır.";
@@ -1502,6 +1540,7 @@
 "Vídeo" = "Video";
 "War" = "Savaş";
 "Watched" = "İzlendi";
+"Welcome to Harbor" = "Harbor'a hoş geldiniz";
 "What everyone is reading" = "Herkesin okudukları";
 "When a release ships multiple audio tracks, Harbor selects the first match from this list." = "Bir sürüm birden fazla ses parçasıyla geldiğinde Harbor bu listedeki ilk eşleşmeyi seçer.";
 "When an episode ends, automatically start the next one. Off lets the episode finish and stop." = "Bir bölüm bittiğinde sonrakini otomatik olarak başlatır. Kapalı olduğunda bölüm biter ve oynatma durur.";
@@ -1534,6 +1573,7 @@
 "center" = "orta";
 "code" = "kod";
 "default" = "varsayılan";
+"downloads" = "indirilenler";
 "eBook" = "e-Kitap";
 "episodes" = "bölümler";
 "estrellas" = "yıldız";
@@ -1560,6 +1600,7 @@
 "results" = "sonuç";
 "right" = "sağ";
 "seeders" = "seed edenler";
+"service" = "hizmet";
 "speed" = "hız";
 "star" = "yıldız";
 "stars" = "yıldız";
@@ -1574,10 +1615,12 @@
 "v3 API key" = "v3 API anahtarı";
 "watched" = "izlendi";
 "yes" = "evet";
+"{app} itself does not host, distribute, or index any media. All streams come from third-party addons, debrid services, or your own {service} account that you configure yourself. You are responsible for what you choose to play and for complying with the laws of your jurisdiction." = "{app} hiçbir medyayı barındırmaz, dağıtmaz veya dizine eklemez. Tüm yayınlar üçüncü taraf eklentilerden, debrid hizmetlerinden veya kendi yapılandırdığınız {service} hesabınızdan gelir. Oynatmayı seçtiğiniz içeriklerden ve bulunduğunuz yargı alanındaki yasalara uymaktan siz sorumlusunuz.";
 "{count} picks ready" = "{count} öneri hazır";
 "{h}h left" = "{h} sa kaldı";
 "{h}h {m}m left" = "{h} sa {m} dk kaldı";
 "{m}m left" = "{m} dk kaldı";
+"{names}, and all other names, logos, and brand references are property of their respective owners and are used here only for compatibility and identification." = "{names} ve diğer tüm adlar, logolar ve marka referansları ilgili sahiplerinin mülkiyetindedir ve burada yalnızca uyumluluk ve tanımlama amacıyla kullanılır.";
 "{name} + {n} more" = "{name} + {n} tane daha";
 "{name} + {n} más" = "{name} + {n} tane daha";
 "{n} min" = "{n} dk";

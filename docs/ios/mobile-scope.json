@@ -832,5 +832,19 @@
     "source": "7c904bac067752f5ce16ad22e4b4f75b47c71859",
     "run": 39026561340,
     "fullParityComplete": false
+  },
+  "progressReporting": {
+    "authority": "Explicit owner instruction in the current conversation on 2026-10-17",
+    "eachUpdate": "Include the estimated overall iOS/iPadOS parity percentage and concrete additions, validations or remaining work. Update estimates from completed behavior, not from number of buttons, files or test executions.",
+    "currentEstimatePercent": 75,
+    "estimateIsAudited": false,
+    "denominator": "Only Desktop 0.9.132 functions applicable to iPhone/iPad; exclude Games and individually justified PC-only functions."
+  },
+  "visualParity": {
+    "authority": "Explicit owner clarification on 2026-10-17",
+    "scope": "All compatible Desktop 0.9.132 interfaces, animations, transitions, sections, controls and loading/empty/error states, adapted to iPhone and iPad.",
+    "validation": "Compare actual navigation and rendered screens against the pinned reference. Respect Reduce Motion; do not equate a present button or passing logic test with visual parity.",
+    "auditStatus": "pending",
+    "excludedSections": ["games"]
   }
 }

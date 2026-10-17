@@ -17,6 +17,7 @@
 "A continuación" = "次のエピソード";
 "Abajo a la derecha" = "右下";
 "Abajo a la izquierda" = "左下";
+"About" = "Harborについて";
 "Above the main line" = "メイン字幕の上";
 "Abriendo libro…" = "Opening book…";
 "Abrir en Safari" = "Open in Safari";
@@ -139,6 +140,7 @@
 "Automática" = "自動";
 "Automático" = "自動";
 "Automático (coincidir con el video)" = "自動（動画に合わせる）";
+"Available on device" = "Available on device";
 "Avatar" = "アバター";
 "Avatar aleatorio" = "ランダムなアバター";
 "Aventura" = "アドベンチャー";
@@ -216,6 +218,7 @@
 "Brighten dark movies" = "暗い映画を明るく";
 "Brightness" = "明るさ";
 "Brillo" = "明るさ";
+"Brings back the small in-app tips you've dismissed without redoing the welcome flow." = "ウェルカムガイドをやり直さずに、閉じたアプリ内のヒントを再表示します。";
 "Browse" = "一覧";
 "Browse Gutenberg by title, author or language. Open a book to save it to your shelf. The reader offers font, spacing, background, bookmarks and read-aloud controls." = "Browse Gutenberg by title, author or language. Open a book to save it to your shelf. The reader offers font, spacing, background, bookmarks and read-aloud controls.";
 "Browse addons" = "アドオンを見る";
@@ -223,6 +226,7 @@
 "Browse by category" = "カテゴリーから探す";
 "Browse your catalogs" = "カタログを見る";
 "Buffer" = "Buffer";
+"Build" = "ビルド";
 "Build your own palette" = "独自のパレットを作成";
 "Busca por título o autor, o cambia el idioma." = "Search by title or author, or change the language.";
 "Buscar" = "検索";
@@ -233,6 +237,7 @@
 "Búfer" = "Buffer";
 "Búsquedas recientes" = "最近の検索";
 "Cached" = "キャッシュ済み";
+"Caches" = "キャッシュ";
 "Calendar" = "カレンダー";
 "Calendario" = "カレンダー";
 "Cam Recording" = "Cam Recording";
@@ -278,6 +283,7 @@
 "Chinese" = "中国語";
 "Choose an avatar" = "アバターを選択";
 "Choose the frame rate the subtitle was authored for." = "字幕の作成時に使用されたフレームレートを選択してください。";
+"Choose your language. Your accounts and sources can be configured from your profile and Addons." = "Choose your language. Your accounts and sources can be configured from your profile and Addons.";
 "Ciencia ficción y fantasía" = "SF＆ファンタジー";
 "Claro" = "ライト";
 "Clasificación" = "順位表";
@@ -287,7 +293,9 @@
 "Clave de API de TMDB (v3)" = "TMDB APIキー（v3）";
 "Clave de API v3" = "v3 APIキー";
 "Clear all" = "すべて消去";
+"Clear caches" = "キャッシュを消去";
 "Clear filters" = "フィルターをクリア";
+"Clear image cache" = "Clear image cache";
 "Clear search" = "検索をクリア";
 "Close" = "閉じる";
 "Close navigation" = "Close navigation";
@@ -314,6 +322,7 @@
 "Compacta" = "コンパクト";
 "Compartir" = "共有";
 "Compartir archivo" = "Share file";
+"Compatibility" = "Compatibility";
 "Con serifas" = "セリフ体";
 "Concentración" = "Focus";
 "Conectando" = "接続中";
@@ -346,6 +355,7 @@
 "Correo y contraseña" = "Email and password";
 "Could not analyze this source. Playback continues; you can retry." = "Could not analyze this source. Playback continues; you can retry.";
 "Could not apply the timing. The original subtitle is kept." = "Could not apply the timing. The original subtitle is kept.";
+"Could not measure storage. Try again." = "Could not measure storage. Try again.";
 "Could not open book" = "Could not open book";
 "Couldn't auto-sync" = "自動同期できませんでした";
 "Crash" = "クラッシュ";
@@ -401,6 +411,7 @@
 "Desenfocar spoilers" = "ネタバレをぼかす";
 "Desenfocar títulos" = "タイトルをぼかす";
 "Desfase de sincronización" = "同期オフセット";
+"Desktop reference" = "Desktop reference";
 "Destacar este catálogo en el carrusel principal" = "このカタログをヒーローカルーセルに表示";
 "Details" = "詳細";
 "Detalles" = "詳細";
@@ -414,6 +425,7 @@
 "Discovery Queue" = "発見キュー";
 "Diseño de Inicio" = "ホームのレイアウト";
 "Dismiss" = "閉じる";
+"Dismiss tip" = "Dismiss tip";
 "Disney+ Originals" = "Disney+オリジナル";
 "Display name" = "表示名";
 "Distance from bottom" = "下端からの距離";
@@ -421,11 +433,14 @@
 "Documentales" = "ドキュメンタリー";
 "Documentaries" = "ドキュメンタリー";
 "Documentary" = "ドキュメンタリー";
+"Documents" = "Documents";
+"Documents, saved app data and caches on this device. Sizes exclude the app bundle and system Keychain." = "Documents, saved app data and caches on this device. Sizes exclude the app bundle and system Keychain.";
 "Done" = "完了";
 "Done editing" = "編集を完了";
 "Download" = "ダウンロード";
 "Download progress" = "Download progress";
 "Download started" = "ダウンロードを開始しました";
+"Downloaded image cache" = "Downloaded image cache";
 "Downloads" = "ダウンロード";
 "Dracula" = "Dracula";
 "Drama" = "ドラマ";
@@ -581,6 +596,7 @@
 "Harbor cannot list the private Apple Books library. Import an unprotected EPUB or PDF from Files or choose Harbor when opening a compatible file in another app. A store link is not a book file; protected purchases stay in Apple Books." = "Harbor cannot list the private Apple Books library. Import an unprotected EPUB or PDF from Files or choose Harbor when opening a compatible file in another app. A store link is not a book file; protected purchases stay in Apple Books.";
 "Harbor curated" = "Harborセレクト";
 "Harbor default" = "Harborのデフォルト";
+"Harbor is an independent, open-source client for iPhone and iPad." = "Harbor is an independent, open-source client for iPhone and iPad.";
 "Harbor looks for subtitles in this order. Put your preferred language first." = "Harbor はこの順序で字幕を探します。優先する言語を先頭にしてください。";
 "Hard stroke around each letter. High contrast." = "各文字をくっきり縁取ります。高コントラストです。";
 "Harvey Award Winners" = "ハーベイ賞受賞作";
@@ -624,6 +640,7 @@
 "Idiomas de audio" = "音声言語";
 "Idiomas de subtítulos" = "字幕言語";
 "Idiomas y subtítulos" = "言語と字幕";
+"Image cache cleared." = "Image cache cleared.";
 "Imagen" = "映像";
 "Imagen en imagen" = "ピクチャ・イン・ピクチャ";
 "Imagen más intensa y vívida, con un poco más de contraste." = "コントラストを少し上げ、より深みのある鮮やかな映像にします。";
@@ -646,6 +663,7 @@
 "Imported books and reading progress are stored separately for each Harbor account on this device. Importing the same file again keeps its saved reading position. These files are not uploaded to Stremio." = "Imported books and reading progress are stored separately for each Harbor account on this device. Importing the same file again keeps its saved reading position. These files are not uploaded to Stremio.";
 "Importing book…" = "Importing book…";
 "In Theaters Now" = "現在上映中";
+"In eBook, search Gutenberg or import EPUB and PDF files. In Manga, import PDF, CBZ, ZIP or image folders, or connect your Suwayomi server." = "In eBook, search Gutenberg or import EPUB and PDF files. In Manga, import PDF, CBZ, ZIP or image folders, or connect your Suwayomi server.";
 "Indonesian" = "インドネシア語";
 "Información" = "情報";
 "Information" = "情報";
@@ -665,6 +683,8 @@
 "Interface" = "インターフェース";
 "Interfaz" = "インターフェース";
 "Interfaz del sistema" = "システムUI";
+"It is not affiliated with the maker of {product}, or with any company, addon author, or trademark holder referenced inside the app." = "本アプリは、{product}の開発元、およびアプリ内で言及される企業、アドオン作者、商標権者とは提携していません。";
+"It is not affiliated with, endorsed by, sponsored by, or in any way associated with {company}." = "本アプリは{company}との提携、承認、スポンサー関係など、一切の関係がありません。";
 "Italian" = "イタリア語";
 "Izquierda" = "左揃え";
 "Izquierda a derecha" = "左から右";
@@ -675,6 +695,7 @@
 "Keep original" = "オリジナルを維持";
 "Keep same source on next episode" = "次のエピソードでも同じソースを使用";
 "Keep screen awake" = "Keep screen awake";
+"Keep watching" = "続きを見る";
 "Kitsu, MAL, con reconocimiento de temporadas" = "Kitsu、MAL、シーズン対応";
 "Kitsu, MAL, season-aware" = "Kitsu、MAL、シーズン対応";
 "Korean" = "韓国語";
@@ -689,6 +710,7 @@
 "Lectura" = "読書中";
 "Left" = "左揃え";
 "Left to right" = "左から右";
+"Legal" = "法的情報";
 "Letter spacing" = "文字間隔";
 "Library" = "ライブラリ";
 "Libros" = "書籍";
@@ -715,6 +737,7 @@
 "Load more" = "さらに読み込む";
 "Loading…" = "読み込み中…";
 "Local" = "ローカル";
+"Local app files" = "Local app files";
 "Logos" = "ロゴ";
 "Los FPS de los subtítulos no están disponibles en este entorno de ejecución de libmpv." = "このlibmpvランタイムでは字幕FPSを使用できません。";
 "Los FPS de los subtítulos no están disponibles mientras haya un subtítulo secundario activo." = "第2字幕が有効な間は字幕FPSを使用できません。";
@@ -725,6 +748,7 @@
 "M3U playlist" = "M3Uプレイリスト";
 "MAL" = "MAL";
 "MLB" = "MLB";
+"Make it yours" = "自分好みにカスタマイズ";
 "Manage" = "管理";
 "Manga" = "マンガ";
 "Manga connection" = "Manga connection";
@@ -902,6 +926,7 @@
 "On The Air" = "放送中";
 "On Tonight" = "今夜放送";
 "On start" = "On start";
+"Onboarding" = "初期ガイド";
 "Opacidad" = "不透明度";
 "Opacidad del fondo" = "背景の不透明度";
 "Opacity" = "不透明度";
@@ -1032,6 +1057,8 @@
 "Raised" = "浮き出し";
 "Random avatar" = "ランダムなアバター";
 "Ranked by the {site} community from their public index." = "{site}コミュニティの公開インデックスに基づくランキングです。";
+"Re-runs the welcome flow and clears every dismissed tip." = "ウェルカムガイドをもう一度開始し、非表示にしたヒントをすべて元に戻します。";
+"Read on iPhone and iPad" = "Read on iPhone and iPad";
 "Reader options" = "Reader options";
 "Reading" = "読書中";
 "Reading help" = "Reading help";
@@ -1085,6 +1112,8 @@
 "Renombrar" = "名前を変更";
 "Repeat" = "リピート";
 "Repetición" = "リピート";
+"Replay the walkthrough or unhide every dismissed tip in the app." = "チュートリアルをもう一度再生するか、閉じたすべてのヒントを再表示します。";
+"Replay walkthrough" = "ガイドをもう一度見る";
 "Reproducción" = "再生";
 "Reproducir" = "再生";
 "Reproducir ahora" = "今すぐ再生";
@@ -1114,11 +1143,14 @@
 "Restablecer zoom" = "ズームをリセット";
 "Restart" = "最初から再生";
 "Restaurar subtítulo original" = "Restore original subtitle";
+"Restore dismissed hints" = "非表示にしたヒントを復元";
 "Restore original subtitle" = "Restore original subtitle";
+"Restored" = "復元しました";
 "Resultados" = "結果";
 "Results" = "結果";
 "Resume" = "再開";
 "Resume after an audio interruption" = "Resume after an audio interruption";
+"Resume from Continue watching. During playback, choose sources, audio and subtitles, synchronize an external subtitle or skip an intro when timing is available." = "Resume from Continue watching. During playback, choose sources, audio and subtitles, synchronize an external subtitle or skip an intro when timing is available.";
 "Resume from {time}" = "{time}から再開";
 "Resume when returning to the app" = "Resume when returning to the app";
 "Resume where you left off" = "続きから再生";
@@ -1157,6 +1189,7 @@
 "Save settings" = "Save settings";
 "Save to this library" = "Save to this library";
 "Saved" = "保存済み";
+"Saved app data" = "Saved app data";
 "Saving" = "保存中";
 "Sci-Fi" = "SF";
 "Sci-Fi & Fantasy" = "SF＆ファンタジー";
@@ -1233,6 +1266,7 @@
 "Shows" = "番組";
 "Shows the episode synopsis on the cards. Turn it off to hide it." = "カードにエピソードのあらすじを表示します。非表示にするにはオフにしてください。";
 "Shuffle" = "シャッフル";
+"Sidebar icons animate when pressed or hovered with a pointer. Turn this off to keep them static." = "Sidebar icons animate when pressed or hovered with a pointer. Turn this off to keep them static.";
 "Sides" = "見開き";
 "Sign in" = "サインイン";
 "Sign in with Stremio" = "Stremioでサインイン";
@@ -1295,6 +1329,7 @@
 "Stop feeding the hero carousel (back to automatic)" = "ヒーローカルーセルへの表示をやめる（自動選択に戻す）";
 "Stop playback" = "Stop playback";
 "Stop showing as second subtitle" = "第2字幕の表示を停止";
+"Storage overview" = "ストレージ概要";
 "Stream" = "ストリーム";
 "Streaming" = "ストリーミング";
 "Stremio" = "Stremio";
@@ -1361,6 +1396,7 @@
 "Temporada" = "シーズン";
 "Temporada {n}" = "シーズン{n}";
 "Temporadas y episodios" = "Seasons and episodes";
+"Temporary files" = "一時ファイル";
 "Tendencias" = "トレンド";
 "Tendencias de esta semana" = "今週のトレンド";
 "Tendencias en {site}" = "{site}でトレンド";
@@ -1388,6 +1424,7 @@
 "This is how your subtitles will look." = "字幕はこのように表示されます。";
 "Thriller" = "スリラー";
 "Thrillers" = "スリラー";
+"Thumbnails download again when needed. Books, downloads, accounts and watch progress are kept." = "Thumbnails download again when needed. Books, downloads, accounts and watch progress are kept.";
 "Thumbs down hides this title from Featured. Thumbs up helps surface similar picks." = "低評価にするとこの作品が注目作品から非表示になり、高評価にすると似た作品がおすすめに表示されやすくなります。";
 "Tiempo reproducido" = "Playback time";
 "Tipo" = "タイプ";
@@ -1476,6 +1513,7 @@
 "Usa la clave v3, no el token de acceso de lectura." = "読み取りアクセストークンではなく、v3キーを使用してください。";
 "Usar mi estilo" = "自分のスタイルを使用";
 "Use my style" = "自分のスタイルを使用";
+"Use the navigation menu to open each section. Personalize the sidebar, home rows, colors and playback from Settings." = "Use the navigation menu to open each section. Personalize the sidebar, home rows, colors and playback from Settings.";
 "Use the v3 key, not the read access token." = "読み取りアクセストークンではなく、v3キーを使用してください。";
 "Use your configured Harbor server. Allow local network access when iOS asks." = "Use your configured Harbor server. Allow local network access when iOS asks.";
 "Used at 55% / 25% alpha." = "55% / 25%のアルファ値で使用。";
@@ -1502,6 +1540,7 @@
 "Vídeo" = "動画";
 "War" = "戦争";
 "Watched" = "視聴済み";
+"Welcome to Harbor" = "Harborへようこそ";
 "What everyone is reading" = "みんなが読んでいる作品";
 "When a release ships multiple audio tracks, Harbor selects the first match from this list." = "リリースに複数の音声トラックがある場合、Harborはこのリストで最初に一致するものを選びます。";
 "When an episode ends, automatically start the next one. Off lets the episode finish and stop." = "エピソードの終了後、次のエピソードを自動的に再生します。オフの場合は、そのエピソードの終了時に再生が停止します。";
@@ -1534,6 +1573,7 @@
 "center" = "中央";
 "code" = "コード";
 "default" = "デフォルト";
+"downloads" = "ダウンロード";
 "eBook" = "電子書籍";
 "episodes" = "話";
 "estrellas" = "スター";
@@ -1560,6 +1600,7 @@
 "results" = "件";
 "right" = "右";
 "seeders" = "シーダー";
+"service" = "サービス";
 "speed" = "速度";
 "star" = "スター";
 "stars" = "スター";
@@ -1574,10 +1615,12 @@
 "v3 API key" = "v3 APIキー";
 "watched" = "視聴済み";
 "yes" = "はい";
+"{app} itself does not host, distribute, or index any media. All streams come from third-party addons, debrid services, or your own {service} account that you configure yourself. You are responsible for what you choose to play and for complying with the laws of your jurisdiction." = "{app}自体がメディアをホスト、配信、インデックス化することはありません。すべてのストリームは、サードパーティー製アドオン、デブリッドサービス、またはご自身で設定した{service}アカウントから提供されます。何を再生するかを判断し、お住まいの地域の法律を順守する責任はお客様にあります。";
 "{count} picks ready" = "おすすめ{count}件を用意しました";
 "{h}h left" = "残り{h}時間";
 "{h}h {m}m left" = "残り{h}時間{m}分";
 "{m}m left" = "残り{m}分";
+"{names}, and all other names, logos, and brand references are property of their respective owners and are used here only for compatibility and identification." = "{names}をはじめ、その他すべての名称、ロゴ、ブランド表記は各所有者に帰属し、互換性の確保と識別のみを目的として使用されています。";
 "{name} + {n} more" = "{name}ほか{n}件";
 "{name} + {n} más" = "{name}ほか{n}件";
 "{n} min" = "{n}分";

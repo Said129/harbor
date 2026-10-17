@@ -7,6 +7,7 @@ La referencia de código es `0834340cec5531650bfe78cd628628702e636987`, identifi
 ## Criterios de equivalencia
 
 - Comparar recorridos y resultados completos, además de pantallas y nombres de opciones. Un interruptor sin un comportamiento real no completa una función.
+- Incluir todas las interfaces, animaciones, transiciones, secciones y estados de carga, vacío y error que correspondan al alcance compatible. Esta ampliación fue confirmada expresamente por el propietario el 17 de octubre. Revisar la composición visual y el movimiento frente a la referencia, además de la lógica, adaptando el tamaño y la interacción a iPhone/iPad y respetando Reducir movimiento.
 - Adaptar la interacción a pantalla táctil, iPad, selector de documentos, compartir, audio y ciclo de vida de iOS. Conservar la identidad de Harbor.
 - Registrar cada exclusión adicional con el comportamiento Desktop afectado, su dependencia concreta de PC y el motivo de que carezca de aplicación móvil. Una función pendiente o difícil de implementar no se excluye automáticamente.
 - Conservar cuentas, configuraciones, fuentes, identificadores y progreso. Diferenciar coordenadas internas de reproducción y numeración visible de anime.
@@ -17,7 +18,7 @@ La referencia de código es `0834340cec5531650bfe78cd628628702e636987`, identifi
 
 El propietario pidió una **única próxima IPA con todos los cambios pendientes del port**, sin generar una IPA por cada añadido. Las comprobaciones parciales de desarrollo conservan sus resultados y capturas, y se ejecutan sin empaquetado de IPA. La siguiente entrega instalable queda reservada a la integración completa y validada del alcance 1:1; los avances parciales no cambian ese criterio.
 
-El inventario reproducible de esta referencia se registra por separado de las matrices históricas. Los estados anteriores conservan su evidencia original: no se convierten automáticamente en equivalencia con 0.9.132. La estimación conversacional del 75–80 % no es una medición auditada ni un criterio de finalización.
+El inventario reproducible de esta referencia se registra por separado de las matrices históricas. Los estados anteriores conservan su evidencia original: no se convierten automáticamente en equivalencia con 0.9.132. La estimación conversacional actual, aproximadamente 75 %, es provisional: no es una medición auditada ni un criterio de finalización. Cada actualización al propietario debe incluir el porcentaje estimado y los cambios concretos, con la revisión visual y de animaciones dentro del mismo alcance.
 
 Orden de trabajo: continuidad y episodios; cuenta y sincronización; fuentes y plugins; reproducción y subtítulos; biblioteca, descubrimiento y personalización; TV/VOD y deportes; música y lectura; almacenamiento, copias, avisos y ayuda. Esta agrupación organiza el trabajo y no reduce el alcance.
 

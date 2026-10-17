@@ -7,6 +7,7 @@ struct InterfaceSettingsView: View {
             VStack(alignment: .leading, spacing: 30) {
                 HarborSettingsSection(DesktopInterfaceText.value("Motion")) {
                     HarborSettingsToggle(DesktopInterfaceText.value("Rotate featured banners automatically"), isOn: $preferences.autoRotateBanners)
+                    HarborSettingsToggle(DesktopInterfaceText.value("Animated sidebar icons"), note: DesktopInterfaceText.value("Sidebar icons animate when pressed or hovered with a pointer. Turn this off to keep them static."), isOn: $preferences.navIconAnimations)
                 }
                 HarborSettingsSection(DesktopInterfaceText.value("Home layout")) {
                     Text(DesktopInterfaceText.value("The shape of the whole Home page. Everything below tunes the rows inside it."))

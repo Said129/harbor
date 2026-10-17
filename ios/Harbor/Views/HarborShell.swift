@@ -77,6 +77,8 @@ struct HarborShell: View {
     @State private var path = NavigationPath()
     @State private var navigationID = UUID()
     @State private var menu = false
+    @State private var hoveredSection: HarborSection?
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var document: IncomingBook?
     @State private var pendingDocument: URL?
     @AppStorage("uiLanguage") private var uiLanguage = "es"
@@ -100,12 +102,13 @@ struct HarborShell: View {
                                     select(item); closeMenu()
                                 } label: {
                                     HStack(spacing: 16) {
-                                        Image("nav-\(item.icon)").resizable().scaledToFit().frame(width: 23, height: 23)
+                                        SidebarNavigationIcon(section: item, hovered: hoveredSection == item, tint: item == section ? HarborTheme.ink : HarborTheme.ink.opacity(0.65))
                                         Text(InterfacePreferences.shared.label(item)).font(HarborTheme.font(15, weight: item == section ? .semibold : .regular))
                                         Spacer()
                                     }.foregroundStyle(item == section ? HarborTheme.ink : HarborTheme.ink.opacity(0.65)).padding(.horizontal, 18).frame(minHeight: 52)
                                         .background(item == section ? HarborTheme.surface : .clear, in: .rect(cornerRadius: 12))
-                                }.buttonStyle(.plain).accessibilityIdentifier("nav-\(item.rawValue)")
+                                        .onHover { hovering in if hovering { hoveredSection = item } else if hoveredSection == item { hoveredSection = nil } }
+                                }.buttonStyle(HarborNavigationButtonStyle()).accessibilityIdentifier("nav-\(item.rawValue)")
                             }
                         }.padding(.horizontal, 12)
                     }.accessibilityIdentifier("navigation-scroll")
@@ -132,6 +135,9 @@ struct HarborShell: View {
                     }.preferredColorScheme(.dark)
                 }
             }
+            .sheet(isPresented: Binding(get: {
+                app.storageReady && document == nil && !app.showAccount && AppGuidePreferences.shared.presentationRequested
+            }, set: { if !$0 { AppGuidePreferences.shared.finish() } })) { AppWalkthroughView() }
     }
     private func presentPendingDocument() {
         guard app.storageReady, let url = pendingDocument else { return }
@@ -140,7 +146,7 @@ struct HarborShell: View {
     }
     private var header: some View {
         HStack(spacing: 6) {
-            Button { withAnimation(.easeOut(duration: 0.18)) { menu = true } } label: { Image(systemName: "line.3.horizontal").frame(width: 40, height: 44) }.accessibilityLabel("Abrir navegación").accessibilityIdentifier("main-menu")
+            Button { withAnimation(reduceMotion ? nil : .easeOut(duration: 0.18)) { menu = true } } label: { Image(systemName: "line.3.horizontal").frame(width: 40, height: 44) }.accessibilityLabel("Abrir navegación").accessibilityIdentifier("main-menu")
             Spacer(minLength: 0)
             HarborBrand(size: 26)
             Spacer(minLength: 0)
@@ -178,7 +184,7 @@ struct HarborShell: View {
         // Destination-based links are not stored in path; recreate the stack on reselection too.
         navigationID = UUID()
     }
-    private func closeMenu() { withAnimation(.easeOut(duration: 0.18)) { menu = false } }
+    private func closeMenu() { hoveredSection = nil; withAnimation(reduceMotion ? nil : .easeOut(duration: 0.18)) { menu = false } }
 }
 
 private struct IncomingBook: Identifiable {

@@ -13,11 +13,18 @@ final class ArtworkRefresh {
 
 actor ArtworkStore {
     static let shared = ArtworkStore()
+    private struct Pending {
+        let id: UUID
+        let task: Task<Data, Error>
+    }
     private let cache = NSCache<NSString, NSData>()
-    private var pending: [String: Task<Data, Error>] = [:]
-    private let session: URLSession
-    init() {
-        let config = URLSessionConfiguration.ephemeral
+    private var pending: [String: Pending] = [:]
+    private var cachedKeys = Set<String>()
+    private var generation = 0
+    private var session: URLSession
+
+    init(configuration: URLSessionConfiguration? = nil) {
+        let config = configuration ?? URLSessionConfiguration.ephemeral
         config.httpMaximumConnectionsPerHost = 4
         config.timeoutIntervalForRequest = 25
         config.httpCookieStorage = nil
@@ -26,11 +33,13 @@ actor ArtworkStore {
         session = URLSession(configuration: config)
         cache.totalCostLimit = 24 * 1024 * 1024
     }
+    deinit { session.invalidateAndCancel() }
+
     func data(_ raw: String) async throws -> Data {
         guard let url = URL(string: raw), ["http", "https"].contains(url.scheme?.lowercased() ?? "") else { throw HarborError(code: "invalid-artwork") }
         if let found = cache.object(forKey: raw as NSString) { return found as Data }
-        if let task = pending[raw] { return try await task.value }
-        let session = session
+        if let entry = pending[raw] { return try await entry.task.value }
+        let session = session, epoch = generation, requestID = UUID()
         let task = Task<Data, Error> {
             var request = URLRequest(url: url, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 25)
             request.setValue("image/*", forHTTPHeaderField: "Accept")
@@ -45,14 +54,36 @@ actor ArtworkStore {
                 guard data.count < limit else { throw HarborError(code: "artwork-too-large") }
                 data.append(byte)
             }
+            guard CGImageSourceCreateWithData(data as CFData, nil) != nil else { throw HarborError(code: "invalid-artwork") }
             return data
         }
-        pending[raw] = task
-        defer { pending[raw] = nil }
+        pending[raw] = Pending(id: requestID, task: task)
+        defer { if pending[raw]?.id == requestID { pending[raw] = nil } }
         let data = try await task.value
-        guard CGImageSourceCreateWithData(data as CFData, nil) != nil else { throw HarborError(code: "invalid-artwork") }
-        cache.setObject(data as NSData, forKey: raw as NSString, cost: data.count)
+        if epoch == generation {
+            cache.setObject(data as NSData, forKey: raw as NSString, cost: data.count)
+            cachedKeys.insert(raw)
+            if cachedKeys.count > 256 { cachedKeys = cachedKeys.filter { cache.object(forKey: $0 as NSString) != nil } }
+        }
         return data
+    }
+
+    func cachedBytes() -> Int64 {
+        cachedKeys = cachedKeys.filter { cache.object(forKey: $0 as NSString) != nil }
+        let encoded = cachedKeys.reduce(Int64(0)) { $0 + Int64(cache.object(forKey: $1 as NSString)?.length ?? 0) }
+        return encoded + Int64(max(0, session.configuration.urlCache?.currentMemoryUsage ?? 0))
+    }
+
+    func clearCache() {
+        generation &+= 1
+        cache.removeAllObjects(); cachedKeys.removeAll(); pending.removeAll()
+        let old = session, configuration = old.configuration
+        old.configuration.urlCache?.removeAllCachedResponses()
+        // In-flight views finish against their old session. Its responses cannot
+        // refill the new session's HTTP cache or erase a newer pending request.
+        configuration.urlCache = URLCache(memoryCapacity: 16 * 1024 * 1024, diskCapacity: 0)
+        session = URLSession(configuration: configuration)
+        old.finishTasksAndInvalidate()
     }
 }
 

@@ -5,6 +5,7 @@ import Observation
 final class InterfacePreferences {
     static let shared = InterfacePreferences()
     private let storage = UserDefaults.standard
+    var navIconAnimations = UserDefaults.standard.object(forKey: "navIconAnimations") as? Bool ?? true { didSet { storage.set(navIconAnimations, forKey: "navIconAnimations") } }
     var autoRotateBanners = UserDefaults.standard.object(forKey: "interface.autoRotateBanners") as? Bool ?? true { didSet { storage.set(autoRotateBanners, forKey: "interface.autoRotateBanners") } }
     var homeMode = UserDefaults.standard.string(forKey: "homeMode") ?? "harbor" { didSet { storage.set(homeMode, forKey: "homeMode") } }
     var showImdbBadge = UserDefaults.standard.object(forKey: "showImdbBadge") as? Bool ?? true { didSet { storage.set(showImdbBadge, forKey: "showImdbBadge") } }

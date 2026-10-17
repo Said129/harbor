@@ -17,6 +17,7 @@
 "A continuación" = "इसके बाद";
 "Abajo a la derecha" = "नीचे दाएँ";
 "Abajo a la izquierda" = "नीचे बाएँ";
+"About" = "इसके बारे में";
 "Above the main line" = "मुख्य पंक्ति के ऊपर";
 "Abriendo libro…" = "Opening book…";
 "Abrir en Safari" = "Open in Safari";
@@ -139,6 +140,7 @@
 "Automática" = "स्वचालित";
 "Automático" = "स्वचालित";
 "Automático (coincidir con el video)" = "ऑटो (वीडियो के अनुरूप)";
+"Available on device" = "Available on device";
 "Avatar" = "अवतार";
 "Avatar aleatorio" = "रैंडम अवतार";
 "Aventura" = "रोमांच";
@@ -216,6 +218,7 @@
 "Brighten dark movies" = "डार्क फ़िल्मों को उजला करें";
 "Brightness" = "ब्राइटनेस";
 "Brillo" = "ब्राइटनेस";
+"Brings back the small in-app tips you've dismissed without redoing the welcome flow." = "वेलकम फ़्लो दोबारा चलाए बिना, आपके पहले बंद किए गए छोटे इन-ऐप सुझाव वापस लाता है।";
 "Browse" = "ब्राउज़ करें";
 "Browse Gutenberg by title, author or language. Open a book to save it to your shelf. The reader offers font, spacing, background, bookmarks and read-aloud controls." = "Browse Gutenberg by title, author or language. Open a book to save it to your shelf. The reader offers font, spacing, background, bookmarks and read-aloud controls.";
 "Browse addons" = "ऐडऑन ब्राउज़ करें";
@@ -223,6 +226,7 @@
 "Browse by category" = "कैटेगरी के अनुसार ब्राउज़ करें";
 "Browse your catalogs" = "अपने कैटलॉग ब्राउज़ करें";
 "Buffer" = "Buffer";
+"Build" = "बिल्ड";
 "Build your own palette" = "अपना पैलेट बनाएँ";
 "Busca por título o autor, o cambia el idioma." = "Search by title or author, or change the language.";
 "Buscar" = "खोजें";
@@ -233,6 +237,7 @@
 "Búfer" = "Buffer";
 "Búsquedas recientes" = "हाल की खोजें";
 "Cached" = "कैश में सहेजा गया";
+"Caches" = "कैश";
 "Calendar" = "कैलेंडर";
 "Calendario" = "कैलेंडर";
 "Cam Recording" = "Cam Recording";
@@ -278,6 +283,7 @@
 "Chinese" = "चीनी";
 "Choose an avatar" = "कोई अवतार चुनें";
 "Choose the frame rate the subtitle was authored for." = "वह फ़्रेम रेट चुनें जिसके लिए सबटाइटल बनाया गया था।";
+"Choose your language. Your accounts and sources can be configured from your profile and Addons." = "Choose your language. Your accounts and sources can be configured from your profile and Addons.";
 "Ciencia ficción y fantasía" = "साइंस फ़िक्शन और फ़ैंटेसी";
 "Claro" = "हल्का";
 "Clasificación" = "अंक तालिका";
@@ -287,7 +293,9 @@
 "Clave de API de TMDB (v3)" = "TMDB API कुंजी (v3)";
 "Clave de API v3" = "v3 API कुंजी";
 "Clear all" = "सभी साफ़ करें";
+"Clear caches" = "कैश साफ़ करें";
 "Clear filters" = "फ़िल्टर हटाएँ";
+"Clear image cache" = "Clear image cache";
 "Clear search" = "खोज मिटाएँ";
 "Close" = "बंद करें";
 "Close navigation" = "Close navigation";
@@ -314,6 +322,7 @@
 "Compacta" = "कॉम्पैक्ट";
 "Compartir" = "साझा करें";
 "Compartir archivo" = "Share file";
+"Compatibility" = "Compatibility";
 "Con serifas" = "सेरिफ़";
 "Concentración" = "Focus";
 "Conectando" = "कनेक्ट हो रहा है";
@@ -346,6 +355,7 @@
 "Correo y contraseña" = "Email and password";
 "Could not analyze this source. Playback continues; you can retry." = "Could not analyze this source. Playback continues; you can retry.";
 "Could not apply the timing. The original subtitle is kept." = "Could not apply the timing. The original subtitle is kept.";
+"Could not measure storage. Try again." = "Could not measure storage. Try again.";
 "Could not open book" = "Could not open book";
 "Couldn't auto-sync" = "अपने-आप सिंक नहीं हो सका";
 "Crash" = "क्रैश";
@@ -401,6 +411,7 @@
 "Desenfocar spoilers" = "स्पॉइलर ब्लर करें";
 "Desenfocar títulos" = "शीर्षक ब्लर करें";
 "Desfase de sincronización" = "सिंक ऑफ़सेट";
+"Desktop reference" = "Desktop reference";
 "Destacar este catálogo en el carrusel principal" = "इस कैटलॉग को हीरो कैरोसेल में प्रमुखता दें";
 "Details" = "विवरण";
 "Detalles" = "विवरण";
@@ -414,6 +425,7 @@
 "Discovery Queue" = "डिस्कवरी क्यू";
 "Diseño de Inicio" = "होम लेआउट";
 "Dismiss" = "बंद करें";
+"Dismiss tip" = "Dismiss tip";
 "Disney+ Originals" = "Disney+ ओरिजिनल्स";
 "Display name" = "दिखाया जाने वाला नाम";
 "Distance from bottom" = "नीचे से दूरी";
@@ -421,11 +433,14 @@
 "Documentales" = "डॉक्यूमेंट्री";
 "Documentaries" = "डॉक्यूमेंट्री";
 "Documentary" = "डॉक्यूमेंट्री";
+"Documents" = "Documents";
+"Documents, saved app data and caches on this device. Sizes exclude the app bundle and system Keychain." = "Documents, saved app data and caches on this device. Sizes exclude the app bundle and system Keychain.";
 "Done" = "हो गया";
 "Done editing" = "संपादन पूरा करें";
 "Download" = "डाउनलोड करें";
 "Download progress" = "Download progress";
 "Download started" = "डाउनलोड शुरू हुआ";
+"Downloaded image cache" = "Downloaded image cache";
 "Downloads" = "डाउनलोड";
 "Dracula" = "ड्रैकुला";
 "Drama" = "ड्रामा";
@@ -581,6 +596,7 @@
 "Harbor cannot list the private Apple Books library. Import an unprotected EPUB or PDF from Files or choose Harbor when opening a compatible file in another app. A store link is not a book file; protected purchases stay in Apple Books." = "Harbor cannot list the private Apple Books library. Import an unprotected EPUB or PDF from Files or choose Harbor when opening a compatible file in another app. A store link is not a book file; protected purchases stay in Apple Books.";
 "Harbor curated" = "Harbor द्वारा चयनित";
 "Harbor default" = "Harbor डिफ़ॉल्ट";
+"Harbor is an independent, open-source client for iPhone and iPad." = "Harbor is an independent, open-source client for iPhone and iPad.";
 "Harbor looks for subtitles in this order. Put your preferred language first." = "Harbor इस क्रम में उपशीर्षक खोजता है। पसंदीदा भाषा सबसे पहले रखें।";
 "Hard stroke around each letter. High contrast." = "हर अक्षर के चारों ओर मोटी रेखा। अधिक कंट्रास्ट।";
 "Harvey Award Winners" = "हार्वे पुरस्कार विजेता";
@@ -624,6 +640,7 @@
 "Idiomas de audio" = "ऑडियो भाषाएँ";
 "Idiomas de subtítulos" = "सबटाइटल भाषाएँ";
 "Idiomas y subtítulos" = "भाषाएँ और सबटाइटल";
+"Image cache cleared." = "Image cache cleared.";
 "Imagen" = "चित्र";
 "Imagen en imagen" = "पिक्चर इन पिक्चर";
 "Imagen más intensa y vívida, con un poco más de contraste." = "थोड़े अधिक कंट्रास्ट के साथ अधिक समृद्ध और चटख तस्वीर।";
@@ -646,6 +663,7 @@
 "Imported books and reading progress are stored separately for each Harbor account on this device. Importing the same file again keeps its saved reading position. These files are not uploaded to Stremio." = "Imported books and reading progress are stored separately for each Harbor account on this device. Importing the same file again keeps its saved reading position. These files are not uploaded to Stremio.";
 "Importing book…" = "Importing book…";
 "In Theaters Now" = "अभी सिनेमाघरों में";
+"In eBook, search Gutenberg or import EPUB and PDF files. In Manga, import PDF, CBZ, ZIP or image folders, or connect your Suwayomi server." = "In eBook, search Gutenberg or import EPUB and PDF files. In Manga, import PDF, CBZ, ZIP or image folders, or connect your Suwayomi server.";
 "Indonesian" = "इंडोनेशियाई";
 "Información" = "जानकारी";
 "Information" = "जानकारी";
@@ -665,6 +683,8 @@
 "Interface" = "इंटरफ़ेस";
 "Interfaz" = "इंटरफ़ेस";
 "Interfaz del sistema" = "सिस्टम UI";
+"It is not affiliated with the maker of {product}, or with any company, addon author, or trademark holder referenced inside the app." = "यह {product} के निर्माता या ऐप में संदर्भित किसी भी कंपनी, ऐडऑन लेखक या ट्रेडमार्क धारक से संबद्ध नहीं है।";
+"It is not affiliated with, endorsed by, sponsored by, or in any way associated with {company}." = "यह {company} से संबद्ध नहीं है, न ही उसके द्वारा अनुमोदित या प्रायोजित है और न ही किसी भी तरह उससे जुड़ा है।";
 "Italian" = "इतालवी";
 "Izquierda" = "बायाँ";
 "Izquierda a derecha" = "बाएँ से दाएँ";
@@ -675,6 +695,7 @@
 "Keep original" = "मूल रखें";
 "Keep same source on next episode" = "अगले एपिसोड में भी वही स्रोत रखें";
 "Keep screen awake" = "Keep screen awake";
+"Keep watching" = "देखते रहें";
 "Kitsu, MAL, con reconocimiento de temporadas" = "Kitsu, MAL, सीज़न के हिसाब से";
 "Kitsu, MAL, season-aware" = "Kitsu, MAL, सीज़न के हिसाब से";
 "Korean" = "कोरियाई";
@@ -689,6 +710,7 @@
 "Lectura" = "पढ़ा जा रहा है";
 "Left" = "बायाँ";
 "Left to right" = "बाएँ से दाएँ";
+"Legal" = "कानूनी";
 "Letter spacing" = "अक्षरों के बीच की दूरी";
 "Library" = "लाइब्रेरी";
 "Libros" = "किताबें";
@@ -715,6 +737,7 @@
 "Load more" = "और लोड करें";
 "Loading…" = "लोड हो रहा है…";
 "Local" = "लोकल";
+"Local app files" = "Local app files";
 "Logos" = "लोगो";
 "Los FPS de los subtítulos no están disponibles en este entorno de ejecución de libmpv." = "इस libmpv रनटाइम में सबटाइटल FPS उपलब्ध नहीं है।";
 "Los FPS de los subtítulos no están disponibles mientras haya un subtítulo secundario activo." = "दूसरा सबटाइटल सक्रिय होने पर सबटाइटल FPS उपलब्ध नहीं है।";
@@ -725,6 +748,7 @@
 "M3U playlist" = "M3U प्लेलिस्ट";
 "MAL" = "MAL";
 "MLB" = "MLB";
+"Make it yours" = "इसे अपना बनाएँ";
 "Manage" = "मैनेज करें";
 "Manga" = "मंगा";
 "Manga connection" = "Manga connection";
@@ -902,6 +926,7 @@
 "On The Air" = "प्रसारण जारी है";
 "On Tonight" = "आज रात प्रसारण में";
 "On start" = "On start";
+"Onboarding" = "शुरुआती सेटअप";
 "Opacidad" = "अपारदर्शिता";
 "Opacidad del fondo" = "बैकग्राउंड की अपारदर्शिता";
 "Opacity" = "अपारदर्शिता";
@@ -1032,6 +1057,8 @@
 "Raised" = "ऊँचा";
 "Random avatar" = "रैंडम अवतार";
 "Ranked by the {site} community from their public index." = "{site} समुदाय के सार्वजनिक इंडेक्स के आधार पर रैंक किया गया।";
+"Re-runs the welcome flow and clears every dismissed tip." = "स्वागत प्रक्रिया फिर से चलाता है और खारिज की गई हर टिप मिटा देता है।";
+"Read on iPhone and iPad" = "Read on iPhone and iPad";
 "Reader options" = "Reader options";
 "Reading" = "पढ़ा जा रहा है";
 "Reading help" = "Reading help";
@@ -1085,6 +1112,8 @@
 "Renombrar" = "नाम बदलें";
 "Repeat" = "दोहराएँ";
 "Repetición" = "दोहराएँ";
+"Replay the walkthrough or unhide every dismissed tip in the app." = "वॉकथ्रू फिर चलाएँ या ऐप में हटाए गए सभी सुझाव फिर दिखाएँ।";
+"Replay walkthrough" = "वॉकथ्रू फिर चलाएँ";
 "Reproducción" = "प्लेबैक";
 "Reproducir" = "चलाएँ";
 "Reproducir ahora" = "अभी चलाएँ";
@@ -1114,11 +1143,14 @@
 "Restablecer zoom" = "ज़ूम रीसेट करें";
 "Restart" = "रीस्टार्ट करें";
 "Restaurar subtítulo original" = "Restore original subtitle";
+"Restore dismissed hints" = "हटाए गए संकेत फिर दिखाएँ";
 "Restore original subtitle" = "Restore original subtitle";
+"Restored" = "बहाल किया गया";
 "Resultados" = "नतीजे";
 "Results" = "नतीजे";
 "Resume" = "जारी रखें";
 "Resume after an audio interruption" = "Resume after an audio interruption";
+"Resume from Continue watching. During playback, choose sources, audio and subtitles, synchronize an external subtitle or skip an intro when timing is available." = "Resume from Continue watching. During playback, choose sources, audio and subtitles, synchronize an external subtitle or skip an intro when timing is available.";
 "Resume from {time}" = "{time} से जारी रखें";
 "Resume when returning to the app" = "Resume when returning to the app";
 "Resume where you left off" = "जहाँ छोड़ा था, वहीं से शुरू करें";
@@ -1157,6 +1189,7 @@
 "Save settings" = "Save settings";
 "Save to this library" = "Save to this library";
 "Saved" = "सेव किया गया";
+"Saved app data" = "Saved app data";
 "Saving" = "सेव हो रहा है";
 "Sci-Fi" = "साइंस फ़िक्शन";
 "Sci-Fi & Fantasy" = "साइंस फ़िक्शन और फ़ैंटेसी";
@@ -1233,6 +1266,7 @@
 "Shows" = "शो";
 "Shows the episode synopsis on the cards. Turn it off to hide it." = "कार्ड पर एपिसोड का सारांश दिखाता है। इसे छिपाने के लिए बंद कर दें।";
 "Shuffle" = "शफ़ल करें";
+"Sidebar icons animate when pressed or hovered with a pointer. Turn this off to keep them static." = "Sidebar icons animate when pressed or hovered with a pointer. Turn this off to keep them static.";
 "Sides" = "किनारे";
 "Sign in" = "साइन इन करें";
 "Sign in with Stremio" = "Stremio से साइन इन करें";
@@ -1295,6 +1329,7 @@
 "Stop feeding the hero carousel (back to automatic)" = "हीरो कैरोसेल पर असर डालना बंद करें (फिर से ऑटोमैटिक)";
 "Stop playback" = "Stop playback";
 "Stop showing as second subtitle" = "दूसरे सबटाइटल के रूप में दिखाना बंद करें";
+"Storage overview" = "स्टोरेज की जानकारी";
 "Stream" = "स्ट्रीम";
 "Streaming" = "स्ट्रीमिंग";
 "Stremio" = "Stremio";
@@ -1361,6 +1396,7 @@
 "Temporada" = "सीज़न";
 "Temporada {n}" = "सीज़न {n}";
 "Temporadas y episodios" = "Seasons and episodes";
+"Temporary files" = "अस्थायी फ़ाइलें";
 "Tendencias" = "ट्रेंडिंग";
 "Tendencias de esta semana" = "इस हफ़्ते ट्रेंडिंग";
 "Tendencias en {site}" = "{site} पर ट्रेंडिंग";
@@ -1388,6 +1424,7 @@
 "This is how your subtitles will look." = "आपके सबटाइटल ऐसे दिखेंगे।";
 "Thriller" = "थ्रिलर";
 "Thrillers" = "थ्रिलर";
+"Thumbnails download again when needed. Books, downloads, accounts and watch progress are kept." = "Thumbnails download again when needed. Books, downloads, accounts and watch progress are kept.";
 "Thumbs down hides this title from Featured. Thumbs up helps surface similar picks." = "थम्ब्स डाउन इस टाइटल को फ़ीचर्ड से छिपाता है। थम्ब्स अप इससे मिलते-जुलते सुझाव दिखाने में मदद करता है।";
 "Tiempo reproducido" = "Playback time";
 "Tipo" = "प्रकार";
@@ -1476,6 +1513,7 @@
 "Usa la clave v3, no el token de acceso de lectura." = "रीड एक्सेस टोकन नहीं, v3 कुंजी इस्तेमाल करें।";
 "Usar mi estilo" = "मेरी शैली इस्तेमाल करें";
 "Use my style" = "मेरी शैली इस्तेमाल करें";
+"Use the navigation menu to open each section. Personalize the sidebar, home rows, colors and playback from Settings." = "Use the navigation menu to open each section. Personalize the sidebar, home rows, colors and playback from Settings.";
 "Use the v3 key, not the read access token." = "रीड एक्सेस टोकन नहीं, v3 कुंजी इस्तेमाल करें।";
 "Use your configured Harbor server. Allow local network access when iOS asks." = "Use your configured Harbor server. Allow local network access when iOS asks.";
 "Used at 55% / 25% alpha." = "55% / 25% अल्फ़ा पर इस्तेमाल होता है।";
@@ -1502,6 +1540,7 @@
 "Vídeo" = "वीडियो";
 "War" = "युद्ध";
 "Watched" = "देख लिया";
+"Welcome to Harbor" = "Harbor में आपका स्वागत है";
 "What everyone is reading" = "हर कोई क्या पढ़ रहा है";
 "When a release ships multiple audio tracks, Harbor selects the first match from this list." = "जब किसी रिलीज़ में कई ऑडियो ट्रैक हों, तो Harbor इस सूची से पहला मेल चुनता है।";
 "When an episode ends, automatically start the next one. Off lets the episode finish and stop." = "एपिसोड खत्म होने पर अगला एपिसोड अपने-आप शुरू करें। बंद होने पर एपिसोड पूरा होकर रुक जाता है।";
@@ -1534,6 +1573,7 @@
 "center" = "बीच में";
 "code" = "कोड";
 "default" = "डिफ़ॉल्ट";
+"downloads" = "डाउनलोड";
 "eBook" = "ई-बुक";
 "episodes" = "एपिसोड";
 "estrellas" = "स्टार्स";
@@ -1560,6 +1600,7 @@
 "results" = "नतीजे";
 "right" = "दायाँ";
 "seeders" = "सीडर्स";
+"service" = "सेवा";
 "speed" = "गति";
 "star" = "स्टार";
 "stars" = "स्टार्स";
@@ -1574,10 +1615,12 @@
 "v3 API key" = "v3 API कुंजी";
 "watched" = "देखा गया";
 "yes" = "हाँ";
+"{app} itself does not host, distribute, or index any media. All streams come from third-party addons, debrid services, or your own {service} account that you configure yourself. You are responsible for what you choose to play and for complying with the laws of your jurisdiction." = "{app} स्वयं किसी मीडिया को होस्ट, वितरित या इंडेक्स नहीं करता। सभी स्ट्रीम तृतीय-पक्ष ऐडऑन, डीब्रिड सेवाओं या आपके अपने {service} अकाउंट से आती हैं, जिसे आप स्वयं कॉन्फ़िगर करते हैं। आप क्या चलाना चुनते हैं और अपने अधिकार क्षेत्र के कानूनों का पालन करते हैं, इसकी ज़िम्मेदारी आपकी है।";
 "{count} picks ready" = "{count} चुने हुए विकल्प तैयार हैं";
 "{h}h left" = "{h} घंटे बाकी";
 "{h}h {m}m left" = "{h} घंटे {m} मिनट बाकी";
 "{m}m left" = "{m} मिनट बाकी";
+"{names}, and all other names, logos, and brand references are property of their respective owners and are used here only for compatibility and identification." = "{names}, और अन्य सभी नाम, लोगो व ब्रांड संदर्भ उनके संबंधित स्वामियों की संपत्ति हैं और यहां केवल संगतता व पहचान के लिए इस्तेमाल किए गए हैं।";
 "{name} + {n} more" = "{name} + {n} और";
 "{name} + {n} más" = "{name} + {n} और";
 "{n} min" = "{n} मिनट";

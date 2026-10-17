@@ -85,9 +85,14 @@ final class AppModel {
                 guard account.version == 1 else { throw HarborError(code: "invalid-account-store") }
                 savedAccount = account
                 addons = account.collection.addons
+                AppGuidePreferences.shared.prepare(hasSavedConfiguration: true)
             }
-            else if let saved = try keychain.read("addons.v1", as: [Addon].self) { addons = saved }
+            else if let saved = try keychain.read("addons.v1", as: [Addon].self) {
+                addons = saved
+                AppGuidePreferences.shared.prepare(hasSavedConfiguration: true)
+            }
             else {
+                AppGuidePreferences.shared.prepare(hasSavedConfiguration: false)
                 let fallback = try await service.install(HarborService.cinemetaManifest)
                 guard savedAccount == nil else { return }
                 try keychain.write([fallback], key: "addons.v1")

@@ -17,6 +17,7 @@
 "A continuación" = "À suivre";
 "Abajo a la derecha" = "En bas à droite";
 "Abajo a la izquierda" = "En bas à gauche";
+"About" = "À propos";
 "Above the main line" = "Au-dessus de la ligne principale";
 "Abriendo libro…" = "Opening book…";
 "Abrir en Safari" = "Open in Safari";
@@ -139,6 +140,7 @@
 "Automática" = "Automatique";
 "Automático" = "Automatique";
 "Automático (coincidir con el video)" = "Automatique (adapté à la vidéo)";
+"Available on device" = "Available on device";
 "Avatar" = "Avatar";
 "Avatar aleatorio" = "Avatar aléatoire";
 "Aventura" = "Aventure";
@@ -216,6 +218,7 @@
 "Brighten dark movies" = "Éclaircir les films sombres";
 "Brightness" = "Luminosité";
 "Brillo" = "Luminosité";
+"Brings back the small in-app tips you've dismissed without redoing the welcome flow." = "Rétablit les petites astuces dans l’application que vous avez ignorées, sans relancer le parcours de bienvenue.";
 "Browse" = "Parcourir";
 "Browse Gutenberg by title, author or language. Open a book to save it to your shelf. The reader offers font, spacing, background, bookmarks and read-aloud controls." = "Browse Gutenberg by title, author or language. Open a book to save it to your shelf. The reader offers font, spacing, background, bookmarks and read-aloud controls.";
 "Browse addons" = "Parcourir les extensions";
@@ -223,6 +226,7 @@
 "Browse by category" = "Parcourir par catégorie";
 "Browse your catalogs" = "Parcourir vos catalogues";
 "Buffer" = "Buffer";
+"Build" = "Version";
 "Build your own palette" = "Créez votre propre palette";
 "Busca por título o autor, o cambia el idioma." = "Search by title or author, or change the language.";
 "Buscar" = "Rechercher";
@@ -233,6 +237,7 @@
 "Búfer" = "Buffer";
 "Búsquedas recientes" = "Recherches récentes";
 "Cached" = "En cache";
+"Caches" = "Caches";
 "Calendar" = "Calendrier";
 "Calendario" = "Calendrier";
 "Cam Recording" = "Cam Recording";
@@ -278,6 +283,7 @@
 "Chinese" = "Chinois";
 "Choose an avatar" = "Choisir un avatar";
 "Choose the frame rate the subtitle was authored for." = "Choisissez la fréquence d’images pour laquelle les sous-titres ont été créés.";
+"Choose your language. Your accounts and sources can be configured from your profile and Addons." = "Choose your language. Your accounts and sources can be configured from your profile and Addons.";
 "Ciencia ficción y fantasía" = "Science-fiction et fantastique";
 "Claro" = "Léger";
 "Clasificación" = "Classement";
@@ -287,7 +293,9 @@
 "Clave de API de TMDB (v3)" = "Clé API TMDB (v3)";
 "Clave de API v3" = "clé API v3";
 "Clear all" = "Tout effacer";
+"Clear caches" = "Vider les caches";
 "Clear filters" = "Effacer les filtres";
+"Clear image cache" = "Clear image cache";
 "Clear search" = "Effacer la recherche";
 "Close" = "Fermer";
 "Close navigation" = "Close navigation";
@@ -314,6 +322,7 @@
 "Compacta" = "Compact";
 "Compartir" = "Partager";
 "Compartir archivo" = "Share file";
+"Compatibility" = "Compatibility";
 "Con serifas" = "Avec empattements";
 "Concentración" = "Focus";
 "Conectando" = "Connexion en cours";
@@ -346,6 +355,7 @@
 "Correo y contraseña" = "Email and password";
 "Could not analyze this source. Playback continues; you can retry." = "Could not analyze this source. Playback continues; you can retry.";
 "Could not apply the timing. The original subtitle is kept." = "Could not apply the timing. The original subtitle is kept.";
+"Could not measure storage. Try again." = "Could not measure storage. Try again.";
 "Could not open book" = "Could not open book";
 "Couldn't auto-sync" = "Synchronisation automatique impossible";
 "Crash" = "Plantage";
@@ -401,6 +411,7 @@
 "Desenfocar spoilers" = "Flouter les spoilers";
 "Desenfocar títulos" = "Flouter les titres";
 "Desfase de sincronización" = "Décalage de synchronisation";
+"Desktop reference" = "Desktop reference";
 "Destacar este catálogo en el carrusel principal" = "Mettre ce catalogue en avant dans le carrousel principal";
 "Details" = "Détails";
 "Detalles" = "Détails";
@@ -414,6 +425,7 @@
 "Discovery Queue" = "File de découvertes";
 "Diseño de Inicio" = "Mise en page de l’accueil";
 "Dismiss" = "Ignorer";
+"Dismiss tip" = "Dismiss tip";
 "Disney+ Originals" = "Créations originales Disney+";
 "Display name" = "Nom affiché";
 "Distance from bottom" = "Distance par rapport au bas";
@@ -421,11 +433,14 @@
 "Documentales" = "Documentaires";
 "Documentaries" = "Documentaires";
 "Documentary" = "Documentaire";
+"Documents" = "Documents";
+"Documents, saved app data and caches on this device. Sizes exclude the app bundle and system Keychain." = "Documents, saved app data and caches on this device. Sizes exclude the app bundle and system Keychain.";
 "Done" = "Terminé";
 "Done editing" = "Terminer la modification";
 "Download" = "Télécharger";
 "Download progress" = "Download progress";
 "Download started" = "Téléchargement démarré";
+"Downloaded image cache" = "Downloaded image cache";
 "Downloads" = "Téléchargements";
 "Dracula" = "Dracula";
 "Drama" = "Drame";
@@ -581,6 +596,7 @@
 "Harbor cannot list the private Apple Books library. Import an unprotected EPUB or PDF from Files or choose Harbor when opening a compatible file in another app. A store link is not a book file; protected purchases stay in Apple Books." = "Harbor cannot list the private Apple Books library. Import an unprotected EPUB or PDF from Files or choose Harbor when opening a compatible file in another app. A store link is not a book file; protected purchases stay in Apple Books.";
 "Harbor curated" = "Sélection Harbor";
 "Harbor default" = "Par défaut de Harbor";
+"Harbor is an independent, open-source client for iPhone and iPad." = "Harbor is an independent, open-source client for iPhone and iPad.";
 "Harbor looks for subtitles in this order. Put your preferred language first." = "Harbor recherche les sous-titres dans cet ordre. Placez votre langue préférée en premier.";
 "Hard stroke around each letter. High contrast." = "Trait net autour de chaque lettre. Contraste élevé.";
 "Harvey Award Winners" = "Lauréats des prix Harvey";
@@ -624,6 +640,7 @@
 "Idiomas de audio" = "Langues audio";
 "Idiomas de subtítulos" = "Langues des sous-titres";
 "Idiomas y subtítulos" = "Langues et sous-titres";
+"Image cache cleared." = "Image cache cleared.";
 "Imagen" = "Image";
 "Imagen en imagen" = "Incrustation d’image";
 "Imagen más intensa y vívida, con un poco más de contraste." = "Image plus riche et plus vive, avec un peu plus de contraste.";
@@ -646,6 +663,7 @@
 "Imported books and reading progress are stored separately for each Harbor account on this device. Importing the same file again keeps its saved reading position. These files are not uploaded to Stremio." = "Imported books and reading progress are stored separately for each Harbor account on this device. Importing the same file again keeps its saved reading position. These files are not uploaded to Stremio.";
 "Importing book…" = "Importing book…";
 "In Theaters Now" = "Actuellement au cinéma";
+"In eBook, search Gutenberg or import EPUB and PDF files. In Manga, import PDF, CBZ, ZIP or image folders, or connect your Suwayomi server." = "In eBook, search Gutenberg or import EPUB and PDF files. In Manga, import PDF, CBZ, ZIP or image folders, or connect your Suwayomi server.";
 "Indonesian" = "Indonésien";
 "Información" = "Informations";
 "Information" = "Informations";
@@ -665,6 +683,8 @@
 "Interface" = "Interface";
 "Interfaz" = "Interface";
 "Interfaz del sistema" = "Interface système";
+"It is not affiliated with the maker of {product}, or with any company, addon author, or trademark holder referenced inside the app." = "L’application n’est affiliée ni au créateur de {product}, ni à aucune entreprise, aucun auteur d’extension ou détenteur de marque mentionné dans l’application.";
+"It is not affiliated with, endorsed by, sponsored by, or in any way associated with {company}." = "L’application n’est ni affiliée à {company}, ni approuvée, sponsorisée ou associée de quelque manière que ce soit à cette entreprise.";
 "Italian" = "Italien";
 "Izquierda" = "Gauche";
 "Izquierda a derecha" = "De gauche à droite";
@@ -675,6 +695,7 @@
 "Keep original" = "Conserver l’original";
 "Keep same source on next episode" = "Conserver la même source pour l’épisode suivant";
 "Keep screen awake" = "Keep screen awake";
+"Keep watching" = "Continuer à regarder";
 "Kitsu, MAL, con reconocimiento de temporadas" = "Kitsu, MAL, prise en compte des saisons";
 "Kitsu, MAL, season-aware" = "Kitsu, MAL, prise en compte des saisons";
 "Korean" = "Coréen";
@@ -689,6 +710,7 @@
 "Lectura" = "Lecture";
 "Left" = "Gauche";
 "Left to right" = "De gauche à droite";
+"Legal" = "Mentions légales";
 "Letter spacing" = "Espacement des lettres";
 "Library" = "Bibliothèque";
 "Libros" = "Livres";
@@ -715,6 +737,7 @@
 "Load more" = "Charger plus";
 "Loading…" = "Chargement…";
 "Local" = "Local";
+"Local app files" = "Local app files";
 "Logos" = "Logos";
 "Los FPS de los subtítulos no están disponibles en este entorno de ejecución de libmpv." = "Les FPS des sous-titres ne sont pas disponibles dans cet environnement d’exécution libmpv.";
 "Los FPS de los subtítulos no están disponibles mientras haya un subtítulo secundario activo." = "Les FPS des sous-titres ne sont pas disponibles lorsqu’un sous-titre secondaire est actif.";
@@ -725,6 +748,7 @@
 "M3U playlist" = "Playlist M3U";
 "MAL" = "MAL";
 "MLB" = "MLB";
+"Make it yours" = "Personnalisez-le";
 "Manage" = "Gérer";
 "Manga" = "Manga";
 "Manga connection" = "Manga connection";
@@ -902,6 +926,7 @@
 "On The Air" = "En cours de diffusion";
 "On Tonight" = "Ce soir";
 "On start" = "On start";
+"Onboarding" = "Prise en main";
 "Opacidad" = "Opacité";
 "Opacidad del fondo" = "Opacité de l’arrière-plan";
 "Opacity" = "Opacité";
@@ -1032,6 +1057,8 @@
 "Raised" = "Surélevé";
 "Random avatar" = "Avatar aléatoire";
 "Ranked by the {site} community from their public index." = "Classement établi par la communauté de {site} à partir de son index public.";
+"Re-runs the welcome flow and clears every dismissed tip." = "Relance le parcours de bienvenue et réaffiche toutes les astuces masquées.";
+"Read on iPhone and iPad" = "Read on iPhone and iPad";
 "Reader options" = "Reader options";
 "Reading" = "Lecture";
 "Reading help" = "Reading help";
@@ -1085,6 +1112,8 @@
 "Renombrar" = "Renommer";
 "Repeat" = "Répéter";
 "Repetición" = "Répéter";
+"Replay the walkthrough or unhide every dismissed tip in the app." = "Relancez le guide de prise en main ou réaffichez toutes les astuces masquées dans l’application.";
+"Replay walkthrough" = "Relancer le guide de prise en main";
 "Reproducción" = "Lecture";
 "Reproducir" = "Lire";
 "Reproducir ahora" = "Lire maintenant";
@@ -1114,11 +1143,14 @@
 "Restablecer zoom" = "Réinitialiser le zoom";
 "Restart" = "Redémarrer";
 "Restaurar subtítulo original" = "Restore original subtitle";
+"Restore dismissed hints" = "Rétablir les conseils masqués";
 "Restore original subtitle" = "Restore original subtitle";
+"Restored" = "Restauré";
 "Resultados" = "Résultats";
 "Results" = "Résultats";
 "Resume" = "Reprendre";
 "Resume after an audio interruption" = "Resume after an audio interruption";
+"Resume from Continue watching. During playback, choose sources, audio and subtitles, synchronize an external subtitle or skip an intro when timing is available." = "Resume from Continue watching. During playback, choose sources, audio and subtitles, synchronize an external subtitle or skip an intro when timing is available.";
 "Resume from {time}" = "Reprendre à {time}";
 "Resume when returning to the app" = "Resume when returning to the app";
 "Resume where you left off" = "Reprendre là où vous vous étiez arrêté";
@@ -1157,6 +1189,7 @@
 "Save settings" = "Save settings";
 "Save to this library" = "Save to this library";
 "Saved" = "Enregistré";
+"Saved app data" = "Saved app data";
 "Saving" = "Enregistrement";
 "Sci-Fi" = "Science-fiction";
 "Sci-Fi & Fantasy" = "Science-fiction et fantastique";
@@ -1233,6 +1266,7 @@
 "Shows" = "Séries";
 "Shows the episode synopsis on the cards. Turn it off to hide it." = "Affiche le synopsis de l’épisode sur les fiches. Désactivez cette option pour le masquer.";
 "Shuffle" = "Lecture aléatoire";
+"Sidebar icons animate when pressed or hovered with a pointer. Turn this off to keep them static." = "Sidebar icons animate when pressed or hovered with a pointer. Turn this off to keep them static.";
 "Sides" = "Côtés";
 "Sign in" = "Se connecter";
 "Sign in with Stremio" = "Se connecter avec Stremio";
@@ -1295,6 +1329,7 @@
 "Stop feeding the hero carousel (back to automatic)" = "Ne plus alimenter le carrousel principal (retour au mode automatique)";
 "Stop playback" = "Stop playback";
 "Stop showing as second subtitle" = "Ne plus afficher comme deuxième sous-titre";
+"Storage overview" = "Vue d’ensemble du stockage";
 "Stream" = "Flux";
 "Streaming" = "Streaming";
 "Stremio" = "Stremio";
@@ -1361,6 +1396,7 @@
 "Temporada" = "Saison";
 "Temporada {n}" = "Saison {n}";
 "Temporadas y episodios" = "Seasons and episodes";
+"Temporary files" = "Fichiers temporaires";
 "Tendencias" = "Tendances";
 "Tendencias de esta semana" = "Tendances de la semaine";
 "Tendencias en {site}" = "Tendances sur {site}";
@@ -1388,6 +1424,7 @@
 "This is how your subtitles will look." = "Voici l’apparence de vos sous-titres.";
 "Thriller" = "Thriller";
 "Thrillers" = "Thrillers";
+"Thumbnails download again when needed. Books, downloads, accounts and watch progress are kept." = "Thumbnails download again when needed. Books, downloads, accounts and watch progress are kept.";
 "Thumbs down hides this title from Featured. Thumbs up helps surface similar picks." = "Un pouce vers le bas masque ce titre dans À la une. Un pouce vers le haut aide à proposer des titres similaires.";
 "Tiempo reproducido" = "Playback time";
 "Tipo" = "Type";
@@ -1476,6 +1513,7 @@
 "Usa la clave v3, no el token de acceso de lectura." = "Utilisez la clé v3, pas le jeton d’accès en lecture.";
 "Usar mi estilo" = "Utiliser mon style";
 "Use my style" = "Utiliser mon style";
+"Use the navigation menu to open each section. Personalize the sidebar, home rows, colors and playback from Settings." = "Use the navigation menu to open each section. Personalize the sidebar, home rows, colors and playback from Settings.";
 "Use the v3 key, not the read access token." = "Utilisez la clé v3, pas le jeton d’accès en lecture.";
 "Use your configured Harbor server. Allow local network access when iOS asks." = "Use your configured Harbor server. Allow local network access when iOS asks.";
 "Used at 55% / 25% alpha." = "Utilisé avec un alpha de 55% / 25%.";
@@ -1502,6 +1540,7 @@
 "Vídeo" = "Vidéo";
 "War" = "Guerre";
 "Watched" = "Vu";
+"Welcome to Harbor" = "Bienvenue sur Harbor";
 "What everyone is reading" = "Ce que tout le monde lit";
 "When a release ships multiple audio tracks, Harbor selects the first match from this list." = "Lorsqu’une version propose plusieurs pistes audio, Harbor sélectionne la première langue correspondante dans cette liste.";
 "When an episode ends, automatically start the next one. Off lets the episode finish and stop." = "À la fin d’un épisode, lance automatiquement le suivant. Si l’option est désactivée, la lecture s’arrête à la fin de l’épisode.";
@@ -1534,6 +1573,7 @@
 "center" = "centre";
 "code" = "code";
 "default" = "par défaut";
+"downloads" = "téléchargements";
 "eBook" = "livre numérique";
 "episodes" = "épisodes";
 "estrellas" = "étoiles";
@@ -1560,6 +1600,7 @@
 "results" = "résultats";
 "right" = "droite";
 "seeders" = "sources";
+"service" = "service";
 "speed" = "vitesse";
 "star" = "étoile";
 "stars" = "étoiles";
@@ -1574,10 +1615,12 @@
 "v3 API key" = "clé API v3";
 "watched" = "vu";
 "yes" = "oui";
+"{app} itself does not host, distribute, or index any media. All streams come from third-party addons, debrid services, or your own {service} account that you configure yourself. You are responsible for what you choose to play and for complying with the laws of your jurisdiction." = "{app} n’héberge, ne distribue et n’indexe aucun média. Tous les flux proviennent d’extensions tierces, de services de débridage ou de votre propre compte {service}, que vous configurez vous-même. Vous êtes responsable des contenus que vous choisissez de lire et du respect des lois de votre juridiction.";
 "{count} picks ready" = "{count} choix prêts";
 "{h}h left" = "reste {h} h";
 "{h}h {m}m left" = "reste {h} h {m} min";
 "{m}m left" = "{m} min restantes";
+"{names}, and all other names, logos, and brand references are property of their respective owners and are used here only for compatibility and identification." = "{names}, ainsi que tous les autres noms, logos et marques mentionnés, appartiennent à leurs propriétaires respectifs et ne sont utilisés ici qu’à des fins de compatibilité et d’identification.";
 "{name} + {n} more" = "{name} + {n} autres";
 "{name} + {n} más" = "{name} + {n} autres";
 "{n} min" = "{n} min";
