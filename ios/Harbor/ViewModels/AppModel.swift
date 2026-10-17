@@ -58,7 +58,7 @@ final class AppModel {
         let records = library.continuing
         await withTaskGroup(of: Void.self) { group in
             for worker in 0..<min(3, records.count) {
-                group.addTask { @MainActor in
+                group.addTask { @MainActor @Sendable in
                     for index in stride(from: worker, to: records.count, by: 3) {
                         guard !Task.isCancelled, owner == self.library.owner else { return }
                         guard let media = records[index].media else { continue }
