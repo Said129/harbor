@@ -11,7 +11,7 @@ Este trabajo pertenece a la única próxima IPA del port completo de Desktop **0
 
 Los vectores y sus hashes están en [el manifiesto de animaciones](desktop-navigation-animations-0.9.132.json). El renderizador nativo Lottie 4.6.1 se fija al commit `0aff16288f8dc1e3dab35cbf5cf45979673fd3df`; SwiftPM verifica el hash de su artefacto publicado. La configuración mantiene iOS/iPadOS 17 y ambos tipos de dispositivo.
 
-Los JSON originales de `DesktopAnimations/nav` se excluyen del formateador, igual que la animación original de carga: deben conservar exactamente los bytes cuyos hashes verifican las pruebas. El resto del código y de los manifiestos sigue pasando por las comprobaciones habituales.
+Los JSON originales de `DesktopAnimations/nav` se excluyen del formateador, igual que la animación original de carga: deben conservar exactamente los bytes cuyos hashes verifican las pruebas. Git conserva también sus finales de línea originales, incluido el vector de música. El resto del código y de los manifiestos sigue pasando por las comprobaciones habituales.
 
 ## Lo que esta integración todavía no demuestra
 
