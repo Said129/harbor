@@ -21,7 +21,8 @@ def previous(path):
     return subprocess.check_output(['git', 'show', a.source + ':' + path])
 
 def current(path):
-    return Path(path).read_bytes().replace(b'\r\n', b'\n')
+    # Git blobs preserve binary fixtures and avoid platform newline conversion.
+    return subprocess.check_output(['git', 'show', 'HEAD:' + path])
 
 guards = {}
 for path in subprocess.check_output(['git', 'ls-tree', '-r', '--name-only', a.source, '--', 'ios/HarborTests', 'ios/HarborIntegrationTests', 'ios/HarborUITests'], text=True).splitlines():
