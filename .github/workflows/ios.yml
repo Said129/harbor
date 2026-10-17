@@ -351,13 +351,13 @@ jobs:
           gh release create "iphone-native-render-evidence-$GITHUB_RUN_ID" ios/build/iphone-native-render-evidence.zip --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" --draft --prerelease --title "iPhone native test evidence $GITHUB_RUN_ID" --notes "Offline native test attachments, logs and crash diagnostics. No private account, configured addon URL or installable app."
       - name: Run real addon services on iPhone simulator
         id: live_services
-        if: ${{ inputs.run_live_integration == true && inputs.validation_scope != 'language-reference' && inputs.validation_scope != 'system-maintenance' && inputs.validation_scope != 'navigation-sync' && inputs.validation_scope != 'service-browser' && inputs.validation_scope != 'streaming-sync' && inputs.validation_scope != 'services-complete' && inputs.validation_scope != 'anime-episodes-ui' && inputs.validation_scope != 'reading-final' && inputs.validation_scope != 'reading-tablet-final' && inputs.validation_scope != 'affected' && inputs.validation_scope != 'stable-mobile' && inputs.validation_scope != 'stable-tablet-ui' && inputs.validation_scope != 'stable-tablet-rotation' }}
+        if: ${{ inputs.run_live_integration == true && inputs.validation_scope != 'language-reference' && inputs.validation_scope != 'system-maintenance' && inputs.validation_scope != 'navigation-sync' && inputs.validation_scope != 'service-browser' && inputs.validation_scope != 'streaming-sync' && inputs.validation_scope != 'anime-episodes-ui' && inputs.validation_scope != 'reading-final' && inputs.validation_scope != 'reading-tablet-final' && inputs.validation_scope != 'affected' && inputs.validation_scope != 'stable-mobile' && inputs.validation_scope != 'stable-tablet-ui' && inputs.validation_scope != 'stable-tablet-rotation' }}
         timeout-minutes: 10
         shell: bash
         run: |
           set -euo pipefail
           selection=(-only-testing:HarborIntegrationTests)
-          if [[ "${{ inputs.validation_scope }}" == "onboarding-desktop" ]]; then
+          if [[ "${{ inputs.validation_scope }}" == "onboarding-desktop" || "${{ inputs.validation_scope }}" == "services-complete" ]]; then
             selection=(-only-testing:HarborIntegrationTests/OnboardingLiveTests)
           elif [[ "${{ inputs.validation_scope }}" == "continuation-parity" ]]; then
             selection=(-only-testing:HarborIntegrationTests/ContinuationParityLiveTests)
@@ -371,6 +371,9 @@ jobs:
             selection=(-only-testing:HarborIntegrationTests/LiveServicesTests/testSubtitleAddonsReturnMovieSeriesAndMappedAnimeResults)
           fi
           xcodebuild -project ios/Harbor.xcodeproj -scheme HarborLive -configuration Debug -destination "platform=iOS Simulator,id=$IOS_SIMULATOR,arch=$IOS_SIMULATOR_ARCH" -derivedDataPath ios/build/DerivedData -clonedSourcePackagesDirPath ios/build/SourcePackages -resultBundlePath ios/build/ServicesTests.xcresult "${selection[@]}" -parallel-testing-enabled NO CODE_SIGNING_ALLOWED=YES CODE_SIGN_IDENTITY=- test 2>&1 | tee ios/build/logs/live-services.log
+          if [[ "${{ inputs.validation_scope }}" == "services-complete" ]]; then
+            python3 scripts/ios/record-live-test-result.py --bundle ios/build/ServicesTests.xcresult --output ios/build/canonical/services-live-outcome.json --target HarborIntegrationTests --suite OnboardingLiveTests --method testNativeTasteSetupLoadsActualPublicTitlesWithCoversWithoutBundledKeys
+          fi
       - name: Verify the affected bundled Manga font in its native reader
         id: manga_font_tests
         if: ${{ inputs.validation_scope == 'stable-tablet-ui' }}
@@ -444,7 +447,7 @@ jobs:
           fi
           selection=(-only-testing:HarborUITests)
           if [[ "${{ inputs.validation_scope }}" == "services-complete" ]]; then
-            selection=(-only-testing:HarborUITests/ServiceCatalogNavigationTests/testServiceIndexFiltersAndMetadataSetupWorkInTheIPhoneInterface -only-testing:HarborUITests/StreamingSelectionNavigationTests/testOrdinaryIPhoneServiceSelectionSurvivesRelaunch)
+            selection=(-only-testing:HarborUITests/ServiceCatalogNavigationTests/testServiceIndexFiltersAndMetadataSetupWorkInTheIPhoneInterface -only-testing:HarborUITests/StreamingSelectionNavigationTests/testOrdinaryIPhoneServiceSelectionSurvivesRelaunch -only-testing:HarborUITests/OnboardingNavigationTests/testTenStepSetupUsesRealControlsInTheIPhoneInterface)
           elif [[ "${{ inputs.validation_scope }}" == "streaming-sync" ]]; then
             selection=(-only-testing:HarborUITests/StreamingSelectionNavigationTests/testOrdinaryIPhoneServiceSelectionSurvivesRelaunch)
           elif [[ "${{ inputs.validation_scope }}" == "service-browser" ]]; then
@@ -564,7 +567,7 @@ jobs:
           xcrun simctl shutdown "$tablet"
       - name: Run the full service browser on iPad
         id: service_tablet_tests
-        if: ${{ (inputs.validation_scope == 'service-browser' || inputs.validation_scope == 'services-complete') && steps.live_tests.conclusion == 'success' }}
+        if: ${{ !cancelled() && (inputs.validation_scope == 'service-browser' || inputs.validation_scope == 'services-complete') && steps.live_tests.conclusion == 'success' }}
         timeout-minutes: 20
         shell: bash
         run: |
@@ -579,7 +582,7 @@ jobs:
           trap finish_service_recording EXIT
           selection=(-only-testing:HarborUITests/ServiceCatalogNavigationTests/testServiceIndexFiltersAndMetadataSetupWorkInTheIPadInterface)
           if [[ "${{ inputs.validation_scope }}" == "services-complete" ]]; then
-            selection+=(-only-testing:HarborUITests/StreamingSelectionNavigationTests/testOrdinaryIPadServiceSelectionSurvivesRelaunch)
+            selection+=(-only-testing:HarborUITests/StreamingSelectionNavigationTests/testOrdinaryIPadServiceSelectionSurvivesRelaunch -only-testing:HarborUITests/OnboardingNavigationTests/testTenStepSetupUsesRealControlsInTheIPadInterface -only-testing:HarborUITests/LanguageReferenceNavigationTests/testReferenceLanguagesSwitchInTheOrdinaryIPadSettings -only-testing:HarborUITests/SystemMaintenanceNavigationTests/testStorageAndAboutWorkInTheOrdinaryIPadInterface)
           fi
           xcodebuild -project ios/Harbor.xcodeproj -scheme HarborLive -configuration Debug -destination "platform=iOS Simulator,id=$tablet,arch=$IOS_SIMULATOR_ARCH" -derivedDataPath ios/build/DerivedData -clonedSourcePackagesDirPath ios/build/SourcePackages -resultBundlePath ios/build/ServiceTabletUI.xcresult "${selection[@]}" -parallel-testing-enabled NO CODE_SIGNING_ALLOWED=YES CODE_SIGN_IDENTITY=- test 2>&1 | tee ios/build/logs/service-tablet-ui.log
           finish_service_recording
@@ -614,6 +617,7 @@ jobs:
           done
           if [[ -d ios/build/setup-recordings ]]; then cp -R ios/build/setup-recordings ios/build/attachments/; fi
           if [[ -d ios/build/service-recordings ]]; then cp -R ios/build/service-recordings ios/build/attachments/; fi
+          if [[ -d ios/build/canonical ]]; then cp -R ios/build/canonical ios/build/attachments/; fi
           ditto -c -k --keepParent ios/build/attachments ios/build/iphone-test-evidence.zip
           gh release create "iphone-test-evidence-$GITHUB_RUN_ID" ios/build/iphone-test-evidence.zip --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" --draft --prerelease --title "iPhone public integration evidence $GITHUB_RUN_ID" --notes "Failed native integration test screenshots from public Cinemeta and the official Stremio example addon. This is diagnostic evidence, not an installable app."
       - name: Save tablet rotation evidence without rebuilding the accepted IPA
@@ -646,6 +650,7 @@ jobs:
           done
           if [[ -d ios/build/setup-recordings ]]; then cp -R ios/build/setup-recordings ios/build/validation-evidence/; fi
           if [[ -d ios/build/service-recordings ]]; then cp -R ios/build/service-recordings ios/build/validation-evidence/; fi
+          if [[ -d ios/build/canonical ]]; then cp -R ios/build/canonical ios/build/validation-evidence/; fi
           for report in ios/build/preserved*.json; do
             if [[ -f "$report" ]]; then cp "$report" ios/build/validation-evidence/; fi
           done

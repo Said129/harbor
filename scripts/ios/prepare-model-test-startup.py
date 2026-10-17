@@ -19,7 +19,8 @@ values = plistlib.loads(target.read_bytes()) if target.exists() else {}
 assert isinstance(values, dict)
 values['nativeGuide.initialized.v1'] = True
 values['nativeGuide.completed.v1'] = True
+values.setdefault('homeMode', 'classic')
 temporary = folder / 'harbor-model-startup.tmp'
 temporary.write_bytes(plistlib.dumps(values, fmt=plistlib.FMT_BINARY))
 temporary.replace(target)
-print(json.dumps(dict(ordinary_preferences=['nativeGuide.initialized.v1', 'nativeGuide.completed.v1'], guide_replay_ui_test='required separately', production_test_mode_added=False)))
+print(json.dumps(dict(ordinary_preferences=['nativeGuide.initialized.v1', 'nativeGuide.completed.v1', 'homeMode'], guide_replay_ui_test='required separately', production_test_mode_added=False)))

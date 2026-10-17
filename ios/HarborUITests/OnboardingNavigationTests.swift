@@ -29,9 +29,11 @@ import XCTest
             let observation = XCTAttachment(string: "The synchronized XCTest action returned after the transient splash. Inspect the real setup-\(device).mp4 recording; the next screen is checked below.")
             observation.name = "setup-\(device)-transient-splash-observation"; observation.lifetime = .keepAlways; add(observation)
         }
-        stage("language", in: app, timeout: fresh ? 45 : 10); capture(app, name: "setup-\(device)-language")
+        stage("language", in: app, timeout: fresh ? 45 : 10)
         let language = app.buttons["guide-language-es"]
         reveal(language, in: app); language.tap()
+        XCTAssertTrue(language.isSelected)
+        capture(app, name: "setup-\(device)-language")
         next(app); stage("welcome", in: app); capture(app, name: "setup-\(device)-welcome")
         next(app); stage("layout", in: app)
         let classic = app.buttons["home-style-classic"]
@@ -63,8 +65,11 @@ import XCTest
         capture(app, name: "setup-\(device)-subtitles")
         next(app); stage("taste", in: app)
         let title = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH %@", "guide-taste-")).firstMatch
-        XCTAssertTrue(title.waitForExistence(timeout: 60)); reveal(title, in: app); title.tap()
-        XCTAssertTrue(title.isSelected)
+        XCTAssertTrue(title.waitForExistence(timeout: 60)); reveal(title, in: app)
+        let titleID = title.identifier
+        title.tap()
+        let selected = XCTNSPredicateExpectation(predicate: NSPredicate(format: "selected == true"), object: app.buttons[titleID])
+        XCTAssertEqual(XCTWaiter.wait(for: [selected], timeout: 10), .completed)
         capture(app, name: "setup-\(device)-taste")
         app.buttons["guide-skip-step"].tap()
         stage("done", in: app)

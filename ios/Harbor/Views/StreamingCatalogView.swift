@@ -38,7 +38,9 @@ struct StreamingCatalogView: View {
                     categories
                     if MetadataPreferences.shared.tmdbKey.isEmpty {
                         ContentUnavailableView {
-                            Label(DesktopInterfaceText.value("Connect TMDB"), image: "metadata-tmdb")
+                            Label { Text(DesktopInterfaceText.value("Connect TMDB")) } icon: {
+                                Image("metadata-tmdb").resizable().scaledToFit().frame(width: 32, height: 32).accessibilityHidden(true)
+                            }
                         } description: {
                             Text(DesktopInterfaceText.value("Add your TMDB key in Settings to load these catalogs."))
                         } actions: {

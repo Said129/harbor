@@ -112,7 +112,9 @@ struct OnboardingAccountStep: View {
                     .frame(maxWidth: .infinity, alignment: .leading).background(HarborTheme.background, in: .rect(cornerRadius: 12))
             }
             NavigationLink { AccountView(app: app).toolbar(.visible, for: .navigationBar) } label: {
-                Label(DesktopInterfaceText.value(app.user == nil ? "Sign in" : "Manage"), image: "account-stremio").frame(minHeight: 44)
+                Label { Text(DesktopInterfaceText.value(app.user == nil ? "Sign in" : "Manage")) } icon: {
+                    Image("account-stremio").resizable().scaledToFit().frame(width: 24, height: 24).accessibilityHidden(true)
+                }.frame(minHeight: 44)
             }.buttonStyle(HarborAccountButtonStyle()).accessibilityIdentifier("guide-stremio-account")
             Link(DesktopInterfaceText.value("Create account"), destination: URL(string: "https://www.stremio.com/register")!).frame(minHeight: 44)
         }
@@ -133,12 +135,14 @@ struct OnboardingTasteStep: View {
                         let selected = picks.values.contains { $0.id == media.id }
                         let atLimit = !selected && picks.values.count >= OnboardingTastePicks.maximum
                         Button { withAnimation(reduceMotion ? nil : .easeOut(duration: 0.2)) { picks.toggle(media) } } label: {
-                            Artwork(url: media.poster, maxPixels: 360).aspectRatio(2.0 / 3, contentMode: .fit)
-                                .overlay {
-                                    Color.black.opacity(selected ? 0.45 : 0)
-                                    Image("onboarding-thumbsup").resizable().scaledToFit().padding(22).shadow(radius: 5)
-                                        .scaleEffect(selected ? 1 : 0.75).opacity(selected ? 1 : 0)
-                                }.clipShape(.rect(cornerRadius: 12)).opacity(atLimit ? 0.4 : 1)
+                            ZStack {
+                                Rectangle().fill(HarborTheme.surface)
+                                Artwork(url: media.poster, maxPixels: 360)
+                                Color.black.opacity(selected ? 0.45 : 0).allowsHitTesting(false)
+                                Image("onboarding-thumbsup").resizable().scaledToFit().padding(22).shadow(radius: 5)
+                                    .scaleEffect(selected ? 1 : 0.75).opacity(selected ? 1 : 0).allowsHitTesting(false).accessibilityHidden(true)
+                            }.aspectRatio(2.0 / 3, contentMode: .fit)
+                                .clipShape(.rect(cornerRadius: 12)).contentShape(.rect(cornerRadius: 12)).opacity(atLimit ? 0.4 : 1)
                         }.buttonStyle(OnboardingPosterButtonStyle()).disabled(atLimit).accessibilityLabel(media.name).accessibilityAddTraits(selected ? [.isSelected] : [])
                             .accessibilityIdentifier("guide-taste-" + media.id)
                     }
