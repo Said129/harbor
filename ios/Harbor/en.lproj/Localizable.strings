@@ -38,6 +38,7 @@
 "Add source" = "Add source";
 "Add to Suwayomi library" = "Add to Suwayomi library";
 "Add to favorites" = "Add to favorites";
+"Add your TMDB key in Settings to load these catalogs." = "Add your TMDB key in Settings to load these catalogs.";
 "Add {language}" = "Add {language}";
 "Addon order" = "Addon order";
 "Addons" = "Addons";
@@ -136,6 +137,7 @@
 "Añadir {language}" = "Add {language}";
 "Aún no hay catálogos" = "No catalogs yet";
 "Back" = "Back";
+"Back to top" = "Back to top";
 "Background" = "Background";
 "Background opacity" = "Background opacity";
 "Bajar {name}" = "Move {name} down";
@@ -175,6 +177,7 @@
 "Browse Gutenberg by title, author or language. Open a book to save it to your shelf. The reader offers font, spacing, background, bookmarks and read-aloud controls." = "Browse Gutenberg by title, author or language. Open a book to save it to your shelf. The reader offers font, spacing, background, bookmarks and read-aloud controls.";
 "Browse addons" = "Browse addons";
 "Browse by category" = "Browse by category";
+"Browse services" = "Browse services";
 "Buffer" = "Buffer";
 "Build your own palette" = "Build your own palette";
 "Busca por título o autor, o cambia el idioma." = "Search by title or author, or change the language.";
@@ -301,6 +304,7 @@
 "Could not apply the timing. The original subtitle is kept." = "Could not apply the timing. The original subtitle is kept.";
 "Could not load navigation settings. Saved settings are kept." = "Could not load navigation settings. Saved settings are kept.";
 "Could not load streaming preferences. Saved settings are kept." = "Could not load streaming preferences. Saved settings are kept.";
+"Could not load this page. Try again." = "Could not load this page. Try again.";
 "Could not measure storage. Try again." = "Could not measure storage. Try again.";
 "Could not open book" = "Could not open book";
 "Could not restore your navigation. The saved version is kept." = "Could not restore your navigation. The saved version is kept.";

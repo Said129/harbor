@@ -52,6 +52,7 @@
 "Add source" = "Kaynak ekle";
 "Add to Suwayomi library" = "Add to Suwayomi library";
 "Add to favorites" = "Favorilere ekle";
+"Add your TMDB key in Settings to load these catalogs." = "Bu katalogları yüklemek için Ayarlar'a TMDB anahtarınızı ekleyin.";
 "Add {language}" = "{language} ekle";
 "Addon" = "Eklenti";
 "Addon order" = "Eklenti sırası";
@@ -159,6 +160,7 @@
 "Añadir {language}" = "{language} ekle";
 "Aún no hay catálogos" = "Henüz katalog yok";
 "Back" = "Geri";
+"Back to top" = "Başa dön";
 "Background" = "Arka plan";
 "Background opacity" = "Arka plan opaklığı";
 "Bajar {name}" = "{name} öğesini aşağı taşı";
@@ -230,6 +232,7 @@
 "Browse addons" = "Eklentilere göz at";
 "Browse by Genre" = "Türe göre göz at";
 "Browse by category" = "Kategoriye göre göz at";
+"Browse services" = "Hizmetlere göz at";
 "Browse your catalogs" = "Kataloglarınıza göz atın";
 "Buffer" = "Buffer";
 "Build" = "Derleme";
@@ -274,6 +277,7 @@
 "Cargar más" = "Daha fazla yükle";
 "Catalog" = "Katalog";
 "Catalogs" = "Kataloglar";
+"Categories" = "Kategoriler";
 "Category" = "Kategori";
 "Categoría" = "Kategori";
 "Cats" = "Cats";
@@ -369,6 +373,7 @@
 "Could not apply the timing. The original subtitle is kept." = "Could not apply the timing. The original subtitle is kept.";
 "Could not load navigation settings. Saved settings are kept." = "Could not load navigation settings. Saved settings are kept.";
 "Could not load streaming preferences. Saved settings are kept." = "Could not load streaming preferences. Saved settings are kept.";
+"Could not load this page. Try again." = "Bu sayfa yüklenemedi. Tekrar deneyin.";
 "Could not measure storage. Try again." = "Could not measure storage. Try again.";
 "Could not open book" = "Could not open book";
 "Could not restore your navigation. The saved version is kept." = "Could not restore your navigation. The saved version is kept.";
@@ -732,6 +737,7 @@
 "Keep same source on next episode" = "Sonraki bölümde aynı kaynağı kullan";
 "Keep screen awake" = "Keep screen awake";
 "Keep watching" = "İzlemeye devam et";
+"Kids & Family" = "Çocuk ve Aile";
 "Kitsu, MAL, con reconocimiento de temporadas" = "Kitsu, MAL, sezon uyumlu";
 "Kitsu, MAL, season-aware" = "Kitsu, MAL, sezon uyumlu";
 "Korean" = "Korece";
@@ -822,6 +828,8 @@
 "Modo de concentración" = "Odak modu";
 "Modo de lectura" = "Okuma modu";
 "Momento en que aparece la etiqueta A continuación antes de que termine un episodio. Automático se ajusta a la duración del episodio, para que en los episodios cortos no aparezca tan pronto. Desactivado la oculta." = "Bölüm bitmeden önce Sıradaki rozetinin ne zaman görüneceğini belirler. Otomatik seçeneği bölüm uzunluğuna göre ayarlanır, böylece kısa bölümlerde bildirim çok erken gösterilmez. Kapalı seçeneği bildirimi gizler.";
+"More Movies" = "Daha Fazla Film";
+"More Series" = "Daha Fazla Dizi";
 "Most Popular" = "En Popüler";
 "Most Popular on MAL" = "MAL'deki En Popülerler";
 "Mostrar" = "Göster";
@@ -852,6 +860,7 @@
 "Mover hacia arriba" = "Yukarı taşı";
 "Movie" = "Film";
 "Movies" = "Filmler";
+"Movies on {name}" = "{name} filmleri";
 "Muestra Saltar intro o Saltar créditos cuando se detecta un intervalo. Puedes desactivarlo o tocar su X para ocultarlo durante ese episodio." = "Harbor algıladığında Jeneriği Atla / Kapanış Jeneriğini Atla düğmesini gösterir. Hiç gösterilmemesi için bunu kapatın. Hatalı bir düğmeyi bölümün geri kalanında gizlemek için düğmedeki X'e de dokunabilirsiniz.";
 "Muestra la sinopsis del episodio en las tarjetas. Desactívalo para ocultarla." = "Bölüm özetini kartlarda gösterir. Gizlemek için kapatın.";
 "Muestra nombres traducidos al idioma seleccionado arriba. Desactívalo para mantener los títulos originales." = "Çevrilmiş adları yukarıda seçilen dilde gösterin. Özgün adları korumak için kapatın.";
@@ -942,6 +951,7 @@
 "Not interested" = "İlgilenmiyorum";
 "Not now" = "Şimdi değil";
 "Not set" = "Ayarlanmadı";
+"Nothing matched this filter. Try another category or change your region in Settings." = "Bu filtreyle eşleşen bir şey yok. Başka bir kategori deneyin veya Ayarlar'dan bölgenizi değiştirin.";
 "Notify me" = "Notify me";
 "Now" = "Şimdi";
 "Now Playing" = "Şimdi oynatılıyor";
@@ -1057,6 +1067,7 @@
 "Popular Movies" = "Popüler Filmler";
 "Popular Series" = "Popüler Diziler";
 "Popular manga" = "Popular manga";
+"Popular on" = "Şurada popüler:";
 "Popular reads" = "Popular reads";
 "Portuguese" = "Portekizce";
 "Portuguese (Brazil)" = "Portekizce (Brezilya)";
@@ -1117,6 +1128,7 @@
 "Reading help" = "Reading help";
 "Reading mode" = "Okuma modu";
 "Reading options" = "Reading options";
+"Reality" = "Reality programları";
 "Reanudar" = "Devam et";
 "Reanudar al volver a la app" = "Resume when returning to the app";
 "Reanudar desde donde lo dejaste" = "Kaldığınız yerden devam edin";
@@ -1286,9 +1298,11 @@
 "Series en tendencia" = "Gündemdeki Diziler";
 "Series for the part of the day you actually look forward to." = "Günün gerçekten iple çektiğiniz kısmına uygun diziler.";
 "Series mejor valoradas" = "En Yüksek Puanlı Diziler";
+"Series on {name}" = "{name} dizileri";
 "Series para esa parte del día que de verdad esperas con ganas." = "Günün gerçekten iple çektiğiniz kısmına uygun diziler.";
 "Series populares" = "Popüler Diziler";
 "Serif" = "Serif";
+"Services" = "Hizmetler";
 "Servidor Xtream" = "Xtream server";
 "Sesión iniciada en Stremio" = "Stremio oturumu açık";
 "Settings" = "Ayarlar";
@@ -1448,6 +1462,7 @@
 "TMDB · catalogs and rails" = "TMDB · kataloglar ve raflar";
 "TMDB · catálogos y filas" = "TMDB · kataloglar ve raflar";
 "TV" = "TV";
+"TV Shows" = "Diziler";
 "Table of contents" = "Table of contents";
 "Tamaño" = "Boyut";
 "Tamil" = "Tamilce";
@@ -1483,6 +1498,7 @@
 "The Roku Channel" = "The Roku Channel";
 "The comics industry's highest honor" = "Çizgi roman sektörünün en büyük onuru";
 "The filled part of the timeline. Default follows your Harbor accent." = "The filled part of the timeline. Default follows your Harbor accent.";
+"The most-watched movies and series on {name} right now in {region}." = "Şu anda {region} bölgesinde {name} platformunda en çok izlenen filmler ve diziler.";
 "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it." = "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it.";
 "The quick brown fox jumps over the lazy dog" = "Pijamalı hasta yağız şoföre çabucak güvendi";
 "The shape of the whole Home page. Everything below tunes the rows inside it." = "Ana Sayfanın genel düzeni. Aşağıdaki seçeneklerin tümü içindeki satırları ayarlar.";
@@ -1517,7 +1533,9 @@
 "Top 10 Comedy" = "En İyi 10 Komedi";
 "Top 10 Drama" = "En İyi 10 Dram";
 "Top 10 Movies Today" = "Bugünün en iyi 10 filmi";
+"Top 10 Movies on {name}" = "{name} Platformunda En Çok İzlenen 10 Film";
 "Top 10 Series Today" = "Bugünün en iyi 10 dizisi";
+"Top 10 Series on {name}" = "{name} Platformunda En Çok İzlenen 10 Dizi";
 "Top 10 de comedia" = "En İyi 10 Komedi";
 "Top 10 de drama" = "En İyi 10 Dram";
 "Top 10 en Stremio" = "Stremio'da İlk 10";

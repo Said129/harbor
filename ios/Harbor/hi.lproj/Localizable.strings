@@ -52,6 +52,7 @@
 "Add source" = "स्रोत जोड़ें";
 "Add to Suwayomi library" = "Add to Suwayomi library";
 "Add to favorites" = "पसंदीदा में जोड़ें";
+"Add your TMDB key in Settings to load these catalogs." = "इन कैटलॉग को लोड करने के लिए सेटिंग्स में अपनी TMDB कुंजी जोड़ें।";
 "Add {language}" = "{language} जोड़ें";
 "Addon" = "ऐडऑन";
 "Addon order" = "ऐडऑन क्रम";
@@ -159,6 +160,7 @@
 "Añadir {language}" = "{language} जोड़ें";
 "Aún no hay catálogos" = "अभी तक कोई कैटलॉग नहीं है";
 "Back" = "वापस";
+"Back to top" = "सबसे ऊपर जाएँ";
 "Background" = "बैकग्राउंड";
 "Background opacity" = "बैकग्राउंड की अपारदर्शिता";
 "Bajar {name}" = "{name} नीचे ले जाएँ";
@@ -230,6 +232,7 @@
 "Browse addons" = "ऐडऑन ब्राउज़ करें";
 "Browse by Genre" = "शैली के अनुसार ब्राउज़ करें";
 "Browse by category" = "कैटेगरी के अनुसार ब्राउज़ करें";
+"Browse services" = "सेवाएँ देखें";
 "Browse your catalogs" = "अपने कैटलॉग ब्राउज़ करें";
 "Buffer" = "Buffer";
 "Build" = "बिल्ड";
@@ -274,6 +277,7 @@
 "Cargar más" = "और लोड करें";
 "Catalog" = "कैटलॉग";
 "Catalogs" = "कैटलॉग";
+"Categories" = "श्रेणियाँ";
 "Category" = "श्रेणी";
 "Categoría" = "श्रेणी";
 "Cats" = "Cats";
@@ -369,6 +373,7 @@
 "Could not apply the timing. The original subtitle is kept." = "Could not apply the timing. The original subtitle is kept.";
 "Could not load navigation settings. Saved settings are kept." = "Could not load navigation settings. Saved settings are kept.";
 "Could not load streaming preferences. Saved settings are kept." = "Could not load streaming preferences. Saved settings are kept.";
+"Could not load this page. Try again." = "यह पेज लोड नहीं हो सका। फिर से कोशिश करें।";
 "Could not measure storage. Try again." = "Could not measure storage. Try again.";
 "Could not open book" = "Could not open book";
 "Could not restore your navigation. The saved version is kept." = "Could not restore your navigation. The saved version is kept.";
@@ -732,6 +737,7 @@
 "Keep same source on next episode" = "अगले एपिसोड में भी वही स्रोत रखें";
 "Keep screen awake" = "Keep screen awake";
 "Keep watching" = "देखते रहें";
+"Kids & Family" = "बच्चे और परिवार";
 "Kitsu, MAL, con reconocimiento de temporadas" = "Kitsu, MAL, सीज़न के हिसाब से";
 "Kitsu, MAL, season-aware" = "Kitsu, MAL, सीज़न के हिसाब से";
 "Korean" = "कोरियाई";
@@ -822,6 +828,8 @@
 "Modo de concentración" = "फ़ोकस मोड";
 "Modo de lectura" = "पढ़ने का मोड";
 "Momento en que aparece la etiqueta A continuación antes de que termine un episodio. Automático se ajusta a la duración del episodio, para que en los episodios cortos no aparezca tan pronto. Desactivado la oculta." = "एपिसोड खत्म होने से कितनी देर पहले अगला पिल दिखाई दे। ऑटो इसे एपिसोड की अवधि के अनुसार समायोजित करता है, ताकि छोटे एपिसोड में यह बहुत जल्दी न दिखे। बंद करने पर यह छिप जाता है।";
+"More Movies" = "और फ़िल्में";
+"More Series" = "और सीरीज़";
 "Most Popular" = "सबसे लोकप्रिय";
 "Most Popular on MAL" = "MAL पर सबसे लोकप्रिय";
 "Mostrar" = "दिखाएँ";
@@ -852,6 +860,7 @@
 "Mover hacia arriba" = "ऊपर ले जाएँ";
 "Movie" = "फ़िल्म";
 "Movies" = "फ़िल्में";
+"Movies on {name}" = "{name} पर फ़िल्में";
 "Muestra Saltar intro o Saltar créditos cuando se detecta un intervalo. Puedes desactivarlo o tocar su X para ocultarlo durante ese episodio." = "Harbor को इंट्रो या क्रेडिट मिलने पर इंट्रो छोड़ें / क्रेडिट छोड़ें बटन दिखाएँ। इसे कभी न दिखाने के लिए यह विकल्प बंद करें। अगर पहचान गलत हो, तो बाकी एपिसोड के लिए इसे हटाने हेतु बटन पर मौजूद X टैप करें।";
 "Muestra la sinopsis del episodio en las tarjetas. Desactívalo para ocultarla." = "कार्ड पर एपिसोड का सारांश दिखाता है। इसे छिपाने के लिए बंद कर दें।";
 "Muestra nombres traducidos al idioma seleccionado arriba. Desactívalo para mantener los títulos originales." = "ऊपर चुनी भाषा में अनूदित नाम दिखाएँ। मूल शीर्षक रखने के लिए बंद करें।";
@@ -942,6 +951,7 @@
 "Not interested" = "दिलचस्पी नहीं है";
 "Not now" = "अभी नहीं";
 "Not set" = "सेट नहीं है";
+"Nothing matched this filter. Try another category or change your region in Settings." = "इस फ़िल्टर से कुछ भी मेल नहीं खाया। कोई दूसरी कैटेगरी आज़माएँ या सेटिंग्स में अपना क्षेत्र बदलें।";
 "Notify me" = "Notify me";
 "Now" = "अभी";
 "Now Playing" = "अभी चल रहा है";
@@ -1057,6 +1067,7 @@
 "Popular Movies" = "लोकप्रिय फ़िल्में";
 "Popular Series" = "लोकप्रिय सीरीज़";
 "Popular manga" = "Popular manga";
+"Popular on" = "इस पर लोकप्रिय";
 "Popular reads" = "Popular reads";
 "Portuguese" = "पुर्तगाली";
 "Portuguese (Brazil)" = "पुर्तगाली (ब्राज़ील)";
@@ -1117,6 +1128,7 @@
 "Reading help" = "Reading help";
 "Reading mode" = "पढ़ने का मोड";
 "Reading options" = "Reading options";
+"Reality" = "रियलिटी";
 "Reanudar" = "जारी रखें";
 "Reanudar al volver a la app" = "Resume when returning to the app";
 "Reanudar desde donde lo dejaste" = "जहाँ छोड़ा था, वहीं से शुरू करें";
@@ -1286,9 +1298,11 @@
 "Series en tendencia" = "ट्रेंडिंग सीरीज़";
 "Series for the part of the day you actually look forward to." = "दिन के उस हिस्से के लिए सीरीज़, जिसका आप सच में इंतज़ार करते हैं।";
 "Series mejor valoradas" = "सर्वाधिक रेटिंग वाली सीरीज़";
+"Series on {name}" = "{name} पर सीरीज़";
 "Series para esa parte del día que de verdad esperas con ganas." = "दिन के उस हिस्से के लिए सीरीज़, जिसका आप सच में इंतज़ार करते हैं।";
 "Series populares" = "लोकप्रिय सीरीज़";
 "Serif" = "सेरिफ़";
+"Services" = "सेवाएँ";
 "Servidor Xtream" = "Xtream server";
 "Sesión iniciada en Stremio" = "Stremio में साइन इन हैं";
 "Settings" = "सेटिंग्स";
@@ -1448,6 +1462,7 @@
 "TMDB · catalogs and rails" = "TMDB · कैटलॉग और पंक्तियाँ";
 "TMDB · catálogos y filas" = "TMDB · कैटलॉग और पंक्तियाँ";
 "TV" = "TV";
+"TV Shows" = "TV शो";
 "Table of contents" = "Table of contents";
 "Tamaño" = "आकार";
 "Tamil" = "तमिल";
@@ -1483,6 +1498,7 @@
 "The Roku Channel" = "The Roku Channel";
 "The comics industry's highest honor" = "कॉमिक्स उद्योग का सर्वोच्च सम्मान";
 "The filled part of the timeline. Default follows your Harbor accent." = "The filled part of the timeline. Default follows your Harbor accent.";
+"The most-watched movies and series on {name} right now in {region}." = "{region} में इस समय {name} पर सबसे ज़्यादा देखी जा रही फ़िल्में और सीरीज़।";
 "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it." = "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it.";
 "The quick brown fox jumps over the lazy dog" = "तेज़ भूरी लोमड़ी आलसी कुत्ते के ऊपर से कूदती है";
 "The shape of the whole Home page. Everything below tunes the rows inside it." = "पूरे होम पेज की बनावट। नीचे की सभी सेटिंग्स इसके अंदर की पंक्तियों को सँवारती हैं।";
@@ -1517,7 +1533,9 @@
 "Top 10 Comedy" = "शीर्ष 10 कॉमेडी";
 "Top 10 Drama" = "शीर्ष 10 ड्रामा";
 "Top 10 Movies Today" = "आज की शीर्ष 10 फ़िल्में";
+"Top 10 Movies on {name}" = "{name} पर शीर्ष 10 फ़िल्में";
 "Top 10 Series Today" = "आज की शीर्ष 10 सीरीज़";
+"Top 10 Series on {name}" = "{name} पर शीर्ष 10 सीरीज़";
 "Top 10 de comedia" = "शीर्ष 10 कॉमेडी";
 "Top 10 de drama" = "शीर्ष 10 ड्रामा";
 "Top 10 en Stremio" = "Stremio पर शीर्ष 10";

@@ -8,6 +8,9 @@ struct StreamingSettingsView: View {
                 Text(DesktopInterfaceText.value("Pick what you actually use")).font(HarborTheme.displayFont(30)).accessibilityAddTraits(.isHeader)
                 Text(DesktopInterfaceText.value("Harbor pulls the most popular titles each service has right now. Toggle off anything you don't subscribe to.")).foregroundStyle(.secondary)
                 StreamingServicePicker(preferences: StreamingPreferences.forOwner(app.user?.id ?? "guest"))
+                NavigationLink { StreamingServicesView(app: app) } label: {
+                    Label(DesktopInterfaceText.value("Browse services"), systemImage: "square.grid.3x3").frame(minHeight: 44)
+                }.buttonStyle(HarborAccountButtonStyle()).accessibilityIdentifier("streaming-browse-services")
             }.padding(20)
         }.background(HarborTheme.background).foregroundStyle(HarborTheme.ink).navigationTitle(DesktopInterfaceText.value("Streaming services")).navigationBarTitleDisplayMode(.inline)
     }
@@ -47,8 +50,10 @@ struct StreamingServicePicker: View {
 
 struct StreamingServiceLogo: View {
     let service: StreamingServiceDefinition
+    var height: CGFloat = 22
+    var horizontalPadding: CGFloat = 12
     var body: some View {
         Image(service.asset).renderingMode(.template).resizable().scaledToFit()
-            .frame(maxWidth: 110, maxHeight: service.logoHeight).padding(.horizontal, 12).foregroundStyle(HarborTheme.ink).accessibilityHidden(true)
+            .frame(maxWidth: height * 5, maxHeight: CGFloat(service.logoHeight) * height / 22).padding(.horizontal, horizontalPadding).foregroundStyle(HarborTheme.ink).accessibilityHidden(true)
     }
 }

@@ -54,6 +54,7 @@
 "Add source" = "Добавить источник";
 "Add to Suwayomi library" = "Add to Suwayomi library";
 "Add to favorites" = "Добавить в избранное";
+"Add your TMDB key in Settings to load these catalogs." = "Добавьте ключ TMDB в настройках, чтобы загрузить эти каталоги.";
 "Add {language}" = "Добавить язык: {language}";
 "Addon" = "Дополнение";
 "Addon order" = "Порядок дополнений";
@@ -163,6 +164,7 @@
 "Aún no hay catálogos" = "Каталогов пока нет";
 "Back" = "Назад";
 "Back in two weeks" = "Back in two weeks";
+"Back to top" = "Наверх";
 "Background" = "Фон";
 "Background opacity" = "Непрозрачность фона";
 "Bajar {name}" = "Переместить «{name}» вниз";
@@ -234,6 +236,7 @@
 "Browse addons" = "Обзор дополнений";
 "Browse by Genre" = "По жанрам";
 "Browse by category" = "По категориям";
+"Browse services" = "Просмотр сервисов";
 "Browse your catalogs" = "Обзор ваших каталогов";
 "Buffer" = "Buffer";
 "Build" = "Сборка";
@@ -278,6 +281,7 @@
 "Cargar más" = "Показать ещё";
 "Catalog" = "Каталог";
 "Catalogs" = "Каталоги";
+"Categories" = "Категории";
 "Category" = "Категория";
 "Categoría" = "Категория";
 "Cats" = "Cats";
@@ -373,6 +377,7 @@
 "Could not apply the timing. The original subtitle is kept." = "Не удалось применить синхронизацию. Исходные субтитры сохранены.";
 "Could not load navigation settings. Saved settings are kept." = "Could not load navigation settings. Saved settings are kept.";
 "Could not load streaming preferences. Saved settings are kept." = "Could not load streaming preferences. Saved settings are kept.";
+"Could not load this page. Try again." = "Не удалось загрузить эту страницу. Повторите попытку.";
 "Could not measure storage. Try again." = "Could not measure storage. Try again.";
 "Could not open book" = "Не удалось открыть книгу";
 "Could not restore your navigation. The saved version is kept." = "Could not restore your navigation. The saved version is kept.";
@@ -737,6 +742,7 @@
 "Keep same source on next episode" = "Сохранять источник для следующей серии";
 "Keep screen awake" = "Keep screen awake";
 "Keep watching" = "Продолжить просмотр";
+"Kids & Family" = "Детям и семье";
 "Kitsu, MAL, con reconocimiento de temporadas" = "Kitsu, MAL, учёт сезонов";
 "Kitsu, MAL, season-aware" = "Kitsu, MAL, учёт сезонов";
 "Korean" = "Корейский";
@@ -827,6 +833,8 @@
 "Modo de concentración" = "Режим фокуса";
 "Modo de lectura" = "Режим чтения";
 "Momento en que aparece la etiqueta A continuación antes de que termine un episodio. Automático se ajusta a la duración del episodio, para que en los episodios cortos no aparezca tan pronto. Desactivado la oculta." = "Когда плашка «Далее» появляется перед концом серии. «Авто» подстраивается под длину серии, чтобы короткие серии не предлагали переход слишком рано. «Выкл.» скрывает её.";
+"More Movies" = "Ещё фильмы";
+"More Series" = "Ещё сериалы";
 "Most Popular" = "Самое популярное";
 "Most Popular on MAL" = "Самое популярное на MAL";
 "Mostrar" = "Показать";
@@ -857,6 +865,7 @@
 "Mover hacia arriba" = "Вверх";
 "Movie" = "Фильм";
 "Movies" = "Фильмы";
+"Movies on {name}" = "Фильмы на {name}";
 "Muestra Saltar intro o Saltar créditos cuando se detecta un intervalo. Puedes desactivarlo o tocar su X para ocultarlo durante ese episodio." = "Показывать кнопку «Пропустить заставку» / «Пропустить титры», когда Harbor их находит. Отключите, чтобы никогда её не показывать. Нажмите X на кнопке, чтобы скрыть ошибочную до конца серии.";
 "Muestra la sinopsis del episodio en las tarjetas. Desactívalo para ocultarla." = "Показывает краткое содержание серии на карточках. Отключите, чтобы скрыть.";
 "Muestra nombres traducidos al idioma seleccionado arriba. Desactívalo para mantener los títulos originales." = "Показывать переведённые названия на выбранном выше языке. Выключите, чтобы сохранить оригинальные названия.";
@@ -950,6 +959,7 @@
 "Not interested" = "Не интересует";
 "Not now" = "Не сейчас";
 "Not set" = "Не задано";
+"Nothing matched this filter. Try another category or change your region in Settings." = "По этому фильтру ничего не найдено. Попробуйте другую категорию или измените регион в настройках.";
 "Notify me" = "Notify me";
 "Now" = "Сейчас";
 "Now Playing" = "Сейчас воспроизводится";
@@ -1068,6 +1078,7 @@
 "Popular Movies" = "Популярные фильмы";
 "Popular Series" = "Популярные сериалы";
 "Popular manga" = "Popular manga";
+"Popular on" = "Популярное на";
 "Popular reads" = "Popular reads";
 "Portuguese" = "Португальский";
 "Portuguese (Brazil)" = "Португальский (Бразилия)";
@@ -1128,6 +1139,7 @@
 "Reading help" = "Как пользоваться Manga и eBook";
 "Reading mode" = "Режим чтения";
 "Reading options" = "Reading options";
+"Reality" = "Реалити";
 "Reanudar" = "Продолжить";
 "Reanudar al volver a la app" = "Resume when returning to the app";
 "Reanudar desde donde lo dejaste" = "Продолжить с места остановки";
@@ -1298,9 +1310,11 @@
 "Series en tendencia" = "Сериалы в тренде";
 "Series for the part of the day you actually look forward to." = "Сериалы для той части дня, которую действительно ждёшь.";
 "Series mejor valoradas" = "Сериалы с высоким рейтингом";
+"Series on {name}" = "Сериалы на {name}";
 "Series para esa parte del día que de verdad esperas con ganas." = "Сериалы для той части дня, которую действительно ждёшь.";
 "Series populares" = "Популярные сериалы";
 "Serif" = "С засечками";
+"Services" = "Сервисы";
 "Servidor Xtream" = "Xtream server";
 "Sesión iniciada en Stremio" = "Вход в Stremio выполнен";
 "Settings" = "Настройки";
@@ -1461,6 +1475,7 @@
 "TMDB · catalogs and rails" = "TMDB · каталоги и ряды";
 "TMDB · catálogos y filas" = "TMDB · каталоги и ряды";
 "TV" = "ТВ";
+"TV Shows" = "Сериалы";
 "Table of contents" = "Table of contents";
 "Tamaño" = "Размер";
 "Tamil" = "Тамильский";
@@ -1496,6 +1511,7 @@
 "The Roku Channel" = "The Roku Channel";
 "The comics industry's highest honor" = "Высшая награда индустрии комиксов";
 "The filled part of the timeline. Default follows your Harbor accent." = "The filled part of the timeline. Default follows your Harbor accent.";
+"The most-watched movies and series on {name} right now in {region}." = "Самые просматриваемые фильмы и сериалы на {name} сейчас в регионе {region}.";
 "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it." = "Оригинал сохранён. Для синхронизации экспортируйте субтитры в UTF-8 или UTF-16.";
 "The quick brown fox jumps over the lazy dog" = "Съешь же ещё этих мягких французских булок да выпей чаю";
 "The shape of the whole Home page. Everything below tunes the rows inside it." = "Общий вид всей главной страницы. Всё ниже настраивает ряды внутри неё.";
@@ -1530,7 +1546,9 @@
 "Top 10 Comedy" = "Топ-10 комедий";
 "Top 10 Drama" = "Топ-10 драм";
 "Top 10 Movies Today" = "Топ-10 фильмов за сегодня";
+"Top 10 Movies on {name}" = "Топ-10 фильмов на {name}";
 "Top 10 Series Today" = "Топ-10 сериалов сегодня";
+"Top 10 Series on {name}" = "Топ-10 сериалов на {name}";
 "Top 10 de comedia" = "Топ-10 комедий";
 "Top 10 de drama" = "Топ-10 драм";
 "Top 10 en Stremio" = "Топ-10 в Stremio";

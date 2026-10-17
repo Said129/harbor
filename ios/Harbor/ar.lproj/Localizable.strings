@@ -59,6 +59,7 @@
 "Add source" = "إضافة مصدر";
 "Add to Suwayomi library" = "Add to Suwayomi library";
 "Add to favorites" = "إضافة إلى المفضّلة";
+"Add your TMDB key in Settings to load these catalogs." = "أضف مفتاح TMDB في الإعدادات لتحميل هذه الكتالوجات.";
 "Add {language}" = "إضافة {language}";
 "Addon" = "إضافة";
 "Addon order" = "ترتيب الإضافة";
@@ -171,6 +172,7 @@
 "Aún no hay catálogos" = "لا توجد كتالوجات بعد";
 "Back" = "رجوع";
 "Back in two weeks" = "يعود بعد أسبوعين";
+"Back to top" = "العودة إلى الأعلى";
 "Background" = "الخلفية";
 "Background opacity" = "شفافية الخلفية";
 "Bajar {name}" = "نقل {name} لأسفل";
@@ -244,6 +246,7 @@
 "Browse addons" = "تصفح الإضافات";
 "Browse by Genre" = "تصفح حسب التصنيف";
 "Browse by category" = "تصفّح حسب الفئة";
+"Browse services" = "استعراض الخدمات";
 "Browse your catalogs" = "تصفّح كتالوجاتك";
 "Buffer" = "Buffer";
 "Build" = "البناء";
@@ -294,6 +297,7 @@
 "Cargar más" = "تحميل المزيد";
 "Catalog" = "الكتالوج";
 "Catalogs" = "الكتالوجات";
+"Categories" = "الفئات";
 "Category" = "الفئة";
 "Categoría" = "الفئة";
 "Cats" = "Cats";
@@ -393,6 +397,7 @@
 "Could not apply the timing. The original subtitle is kept." = "تعذر تطبيق التوقيت. تم الاحتفاظ بالترجمة الأصلية.";
 "Could not load navigation settings. Saved settings are kept." = "Could not load navigation settings. Saved settings are kept.";
 "Could not load streaming preferences. Saved settings are kept." = "Could not load streaming preferences. Saved settings are kept.";
+"Could not load this page. Try again." = "تعذر تحميل هذه الصفحة. حاول مرة أخرى.";
 "Could not measure storage. Try again." = "Could not measure storage. Try again.";
 "Could not open book" = "تعذر فتح الكتاب";
 "Could not restore your navigation. The saved version is kept." = "Could not restore your navigation. The saved version is kept.";
@@ -757,6 +762,7 @@
 "Keep same source on next episode" = "الإبقاء على المصدر نفسه في الحلقة التالية";
 "Keep screen awake" = "Keep screen awake";
 "Keep watching" = "متابعة المشاهدة";
+"Kids & Family" = "الأطفال والعائلة";
 "Kitsu, MAL, con reconocimiento de temporadas" = "Kitsu وMAL، مدركة للمواسم";
 "Kitsu, MAL, season-aware" = "Kitsu وMAL، مدركة للمواسم";
 "Korean" = "الكورية";
@@ -847,6 +853,8 @@
 "Modo de concentración" = "وضع التركيز";
 "Modo de lectura" = "وضع القراءة";
 "Momento en que aparece la etiqueta A continuación antes de que termine un episodio. Automático se ajusta a la duración del episodio, para que en los episodios cortos no aparezca tan pronto. Desactivado la oculta." = "متى يظهر تنبيه الحلقة القادمة قبل انتهاء الحلقة. يتم ضبطه تلقائياً بناءً على طول الحلقة. 'إيقاف' يخفيه تماماً.";
+"More Movies" = "المزيد من الأفلام";
+"More Series" = "المزيد من المسلسلات";
 "Most Popular" = "الأكثر رواجًا";
 "Most Popular on MAL" = "الأكثر شعبية على MAL";
 "Mostrar" = "إظهار";
@@ -877,6 +885,7 @@
 "Mover hacia arriba" = "نقل لأعلى";
 "Movie" = "فيلم";
 "Movies" = "الأفلام";
+"Movies on {name}" = "أفلام على {name}";
 "Muestra Saltar intro o Saltar créditos cuando se detecta un intervalo. Puedes desactivarlo o tocar su X para ocultarlo durante ese episodio." = "إظهار زر تخطّي المقدمة / تخطّي الشارة عندما يكتشف Harbor واحداً منها. عطّل هذا الخيار لعدم إظهاره أبداً. يمكنك أيضاً النقر على X على الزر لتجاهل زر خاطئ لبقية الحلقة.";
 "Muestra la sinopsis del episodio en las tarjetas. Desactívalo para ocultarla." = "يعرض ملخّص الحلقة على البطاقات. عطّله لإخفائه.";
 "Muestra nombres traducidos al idioma seleccionado arriba. Desactívalo para mantener los títulos originales." = "اعرض الأسماء المترجمة باللغة المحدّدة أعلاه. عطّل هذا الخيار للاحتفاظ بالعناوين الأصلية.";
@@ -970,6 +979,7 @@
 "Not interested" = "غير مهتم";
 "Not now" = "ليس الآن";
 "Not set" = "غير محدد";
+"Nothing matched this filter. Try another category or change your region in Settings." = "لا شيء يطابق هذا الفلتر. جرّب فئة أخرى أو غيّر منطقتك من الإعدادات.";
 "Notify me" = "Notify me";
 "Now" = "الآن";
 "Now Playing" = "قيد التشغيل الآن";
@@ -1088,6 +1098,7 @@
 "Popular Movies" = "أفلام شائعة";
 "Popular Series" = "مسلسلات شائعة";
 "Popular manga" = "Popular manga";
+"Popular on" = "شائع على";
 "Popular reads" = "Popular reads";
 "Portuguese" = "البرتغالية";
 "Portuguese (Brazil)" = "البرتغالية (البرازيل)";
@@ -1148,6 +1159,7 @@
 "Reading help" = "كيفية استخدام المانغا والكتب الإلكترونية";
 "Reading mode" = "وضع القراءة";
 "Reading options" = "Reading options";
+"Reality" = "تلفزيون الواقع";
 "Reanudar" = "استئناف";
 "Reanudar al volver a la app" = "Resume when returning to the app";
 "Reanudar desde donde lo dejaste" = "المتابعة من حيث توقّفت";
@@ -1320,9 +1332,11 @@
 "Series en tendencia" = "مسلسلات رائجة";
 "Series for the part of the day you actually look forward to." = "مسلسلات للجزء الذي تنتظره حقاً من اليوم.";
 "Series mejor valoradas" = "أعلى المسلسلات تقييمًا";
+"Series on {name}" = "مسلسلات على {name}";
 "Series para esa parte del día que de verdad esperas con ganas." = "مسلسلات للجزء الذي تنتظره حقاً من اليوم.";
 "Series populares" = "مسلسلات شائعة";
 "Serif" = "مذيل";
+"Services" = "الخدمات";
 "Servidor Xtream" = "Xtream server";
 "Sesión iniciada en Stremio" = "تم تسجيل الدخول إلى Stremio";
 "Settings" = "الإعدادات";
@@ -1484,6 +1498,7 @@
 "TMDB · catalogs and rails" = "TMDB · البيانات الوصفية الأساسية";
 "TMDB · catálogos y filas" = "TMDB · البيانات الوصفية الأساسية";
 "TV" = "المسلسلات";
+"TV Shows" = "مسلسلات تلفزيونية";
 "Table of contents" = "Table of contents";
 "Tamaño" = "الحجم";
 "Tamil" = "التاميلية";
@@ -1519,6 +1534,7 @@
 "The Roku Channel" = "The Roku Channel";
 "The comics industry's highest honor" = "أرفع تكريم في صناعة القصص المصوّرة";
 "The filled part of the timeline. Default follows your Harbor accent." = "The filled part of the timeline. Default follows your Harbor accent.";
+"The most-watched movies and series on {name} right now in {region}." = "أكثر الأفلام والمسلسلات مشاهدةً على {name} الآن في {region}.";
 "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it." = "تم الاحتفاظ بالأصل. صدّر الترجمة بترميز UTF-8 أو UTF-16 لمزامنتها.";
 "The quick brown fox jumps over the lazy dog" = "أبجد هوز حطي كلمن سعفص قرشت ثخذ ضظغ";
 "The shape of the whole Home page. Everything below tunes the rows inside it." = "شكل صفحة الرئيسية بأكملها. كل ما بالأسفل يضبط الصفوف داخلها.";
@@ -1553,7 +1569,9 @@
 "Top 10 Comedy" = "أفضل 10 كوميديا";
 "Top 10 Drama" = "أفضل 10 دراما";
 "Top 10 Movies Today" = "أفضل 10 أفلام اليوم";
+"Top 10 Movies on {name}" = "أفضل 10 أفلام على {name}";
 "Top 10 Series Today" = "أفضل 10 مسلسلات اليوم";
+"Top 10 Series on {name}" = "أفضل 10 مسلسلات على {name}";
 "Top 10 de comedia" = "أفضل 10 كوميديا";
 "Top 10 de drama" = "أفضل 10 دراما";
 "Top 10 en Stremio" = "أفضل 10 على Stremio";

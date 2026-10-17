@@ -52,6 +52,7 @@
 "Add source" = "ソースを追加";
 "Add to Suwayomi library" = "Add to Suwayomi library";
 "Add to favorites" = "お気に入りに追加";
+"Add your TMDB key in Settings to load these catalogs." = "設定に TMDB キーを追加すると、これらのカタログを読み込めます。";
 "Add {language}" = "{language}を追加";
 "Addon" = "アドオン";
 "Addon order" = "アドオン順";
@@ -159,6 +160,7 @@
 "Añadir {language}" = "{language}を追加";
 "Aún no hay catálogos" = "カタログはまだありません";
 "Back" = "戻る";
+"Back to top" = "ページ上部へ";
 "Background" = "背景";
 "Background opacity" = "背景の不透明度";
 "Bajar {name}" = "{name}を下に移動";
@@ -230,6 +232,7 @@
 "Browse addons" = "アドオンを見る";
 "Browse by Genre" = "ジャンルから探す";
 "Browse by category" = "カテゴリーから探す";
+"Browse services" = "サービスを見る";
 "Browse your catalogs" = "カタログを見る";
 "Buffer" = "Buffer";
 "Build" = "ビルド";
@@ -274,6 +277,7 @@
 "Cargar más" = "さらに読み込む";
 "Catalog" = "カタログ";
 "Catalogs" = "カタログ";
+"Categories" = "カテゴリー";
 "Category" = "カテゴリー";
 "Categoría" = "カテゴリー";
 "Cats" = "Cats";
@@ -369,6 +373,7 @@
 "Could not apply the timing. The original subtitle is kept." = "Could not apply the timing. The original subtitle is kept.";
 "Could not load navigation settings. Saved settings are kept." = "Could not load navigation settings. Saved settings are kept.";
 "Could not load streaming preferences. Saved settings are kept." = "Could not load streaming preferences. Saved settings are kept.";
+"Could not load this page. Try again." = "このページを読み込めませんでした。もう一度お試しください。";
 "Could not measure storage. Try again." = "Could not measure storage. Try again.";
 "Could not open book" = "Could not open book";
 "Could not restore your navigation. The saved version is kept." = "Could not restore your navigation. The saved version is kept.";
@@ -732,6 +737,7 @@
 "Keep same source on next episode" = "次のエピソードでも同じソースを使用";
 "Keep screen awake" = "Keep screen awake";
 "Keep watching" = "続きを見る";
+"Kids & Family" = "キッズ＆ファミリー";
 "Kitsu, MAL, con reconocimiento de temporadas" = "Kitsu、MAL、シーズン対応";
 "Kitsu, MAL, season-aware" = "Kitsu、MAL、シーズン対応";
 "Korean" = "韓国語";
@@ -822,6 +828,8 @@
 "Modo de concentración" = "集中モード";
 "Modo de lectura" = "閲覧モード";
 "Momento en que aparece la etiqueta A continuación antes de que termine un episodio. Automático se ajusta a la duración del episodio, para que en los episodios cortos no aparezca tan pronto. Desactivado la oculta." = "エピソード終了の何秒前に「次のエピソード」を表示するかを設定します。自動ではエピソードの長さに合わせて調整し、短いエピソードで早く表示されすぎないようにします。オフにすると非表示になります。";
+"More Movies" = "その他の映画";
+"More Series" = "その他のシリーズ";
 "Most Popular" = "人気トップ";
 "Most Popular on MAL" = "MALで最も人気";
 "Mostrar" = "表示";
@@ -852,6 +860,7 @@
 "Mover hacia arriba" = "上へ移動";
 "Movie" = "映画";
 "Movies" = "映画";
+"Movies on {name}" = "{name}の映画";
 "Muestra Saltar intro o Saltar créditos cuando se detecta un intervalo. Puedes desactivarlo o tocar su X para ocultarlo durante ese episodio." = "Harborが検出したときに「イントロをスキップ」/「クレジットをスキップ」ボタンを表示します。今後一切表示しない場合はオフにしてください。誤検出の場合はボタンのXをタップすると、そのエピソード中は非表示にできます。";
 "Muestra la sinopsis del episodio en las tarjetas. Desactívalo para ocultarla." = "カードにエピソードのあらすじを表示します。非表示にするにはオフにしてください。";
 "Muestra nombres traducidos al idioma seleccionado arriba. Desactívalo para mantener los títulos originales." = "上で選んだ言語の翻訳タイトルを表示します。原題を使う場合はオフにしてください。";
@@ -942,6 +951,7 @@
 "Not interested" = "興味なし";
 "Not now" = "今はしない";
 "Not set" = "未設定";
+"Nothing matched this filter. Try another category or change your region in Settings." = "このフィルターに一致する作品はありません。別のカテゴリーを試すか、設定で地域を変更してください。";
 "Notify me" = "Notify me";
 "Now" = "現在";
 "Now Playing" = "再生中";
@@ -1057,6 +1067,7 @@
 "Popular Movies" = "人気の映画";
 "Popular Series" = "人気のシリーズ";
 "Popular manga" = "Popular manga";
+"Popular on" = "人気の配信先";
 "Popular reads" = "Popular reads";
 "Portuguese" = "ポルトガル語";
 "Portuguese (Brazil)" = "ポルトガル語（ブラジル）";
@@ -1117,6 +1128,7 @@
 "Reading help" = "Reading help";
 "Reading mode" = "閲覧モード";
 "Reading options" = "Reading options";
+"Reality" = "リアリティ番組";
 "Reanudar" = "再開";
 "Reanudar al volver a la app" = "Resume when returning to the app";
 "Reanudar desde donde lo dejaste" = "続きから再生";
@@ -1286,9 +1298,11 @@
 "Series en tendencia" = "トレンドのシリーズ";
 "Series for the part of the day you actually look forward to." = "一日の中でいちばん楽しみな時間に観たい作品。";
 "Series mejor valoradas" = "高評価のシリーズ";
+"Series on {name}" = "{name}のシリーズ";
 "Series para esa parte del día que de verdad esperas con ganas." = "一日の中でいちばん楽しみな時間に観たい作品。";
 "Series populares" = "人気のシリーズ";
 "Serif" = "セリフ体";
+"Services" = "サービス";
 "Servidor Xtream" = "Xtream server";
 "Sesión iniciada en Stremio" = "Stremioにログイン済み";
 "Settings" = "設定";
@@ -1448,6 +1462,7 @@
 "TMDB · catalogs and rails" = "TMDB・カタログとレール";
 "TMDB · catálogos y filas" = "TMDB・カタログとレール";
 "TV" = "TVシリーズ";
+"TV Shows" = "テレビ番組";
 "Table of contents" = "Table of contents";
 "Tamaño" = "サイズ";
 "Tamil" = "タミル語";
@@ -1483,6 +1498,7 @@
 "The Roku Channel" = "The Roku Channel";
 "The comics industry's highest honor" = "コミック業界最高の栄誉";
 "The filled part of the timeline. Default follows your Harbor accent." = "The filled part of the timeline. Default follows your Harbor accent.";
+"The most-watched movies and series on {name} right now in {region}." = "現在{region}の{name}で最も視聴されている映画とシリーズです。";
 "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it." = "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it.";
 "The quick brown fox jumps over the lazy dog" = "素早い茶色のキツネが、のろまな犬を飛び越える";
 "The shape of the whole Home page. Everything below tunes the rows inside it." = "ホームページ全体のレイアウトです。以下の項目では、その中の各行を調整します。";
@@ -1517,7 +1533,9 @@
 "Top 10 Comedy" = "コメディ トップ10";
 "Top 10 Drama" = "ドラマ トップ10";
 "Top 10 Movies Today" = "今日の映画トップ10";
+"Top 10 Movies on {name}" = "{name}の映画トップ10";
 "Top 10 Series Today" = "今日のシリーズトップ10";
+"Top 10 Series on {name}" = "{name}のシリーズトップ10";
 "Top 10 de comedia" = "コメディ トップ10";
 "Top 10 de drama" = "ドラマ トップ10";
 "Top 10 en Stremio" = "Stremioのトップ10";

@@ -52,6 +52,7 @@
 "Add source" = "添加来源";
 "Add to Suwayomi library" = "Add to Suwayomi library";
 "Add to favorites" = "添加到收藏";
+"Add your TMDB key in Settings to load these catalogs." = "请在设置中添加 TMDB 密钥以加载这些目录。";
 "Add {language}" = "添加{language}";
 "Addon" = "插件";
 "Addon order" = "插件顺序";
@@ -159,6 +160,7 @@
 "Añadir {language}" = "添加{language}";
 "Aún no hay catálogos" = "暂无目录";
 "Back" = "返回";
+"Back to top" = "返回顶部";
 "Background" = "背景";
 "Background opacity" = "背景不透明度";
 "Bajar {name}" = "下移{name}";
@@ -230,6 +232,7 @@
 "Browse addons" = "浏览插件";
 "Browse by Genre" = "按类型浏览";
 "Browse by category" = "按类别浏览";
+"Browse services" = "浏览服务";
 "Browse your catalogs" = "浏览你的内容目录";
 "Buffer" = "Buffer";
 "Build" = "构建版本";
@@ -274,6 +277,7 @@
 "Cargar más" = "加载更多";
 "Catalog" = "目录";
 "Catalogs" = "目录";
+"Categories" = "分类";
 "Category" = "分类";
 "Categoría" = "分类";
 "Cats" = "Cats";
@@ -369,6 +373,7 @@
 "Could not apply the timing. The original subtitle is kept." = "Could not apply the timing. The original subtitle is kept.";
 "Could not load navigation settings. Saved settings are kept." = "Could not load navigation settings. Saved settings are kept.";
 "Could not load streaming preferences. Saved settings are kept." = "Could not load streaming preferences. Saved settings are kept.";
+"Could not load this page. Try again." = "无法加载此页面。请重试。";
 "Could not measure storage. Try again." = "Could not measure storage. Try again.";
 "Could not open book" = "Could not open book";
 "Could not restore your navigation. The saved version is kept." = "Could not restore your navigation. The saved version is kept.";
@@ -732,6 +737,7 @@
 "Keep same source on next episode" = "下一集沿用相同来源";
 "Keep screen awake" = "Keep screen awake";
 "Keep watching" = "继续观看";
+"Kids & Family" = "儿童与家庭";
 "Kitsu, MAL, con reconocimiento de temporadas" = "Kitsu、MAL、支持按季匹配";
 "Kitsu, MAL, season-aware" = "Kitsu、MAL、支持按季匹配";
 "Korean" = "韩语";
@@ -822,6 +828,8 @@
 "Modo de concentración" = "专注模式";
 "Modo de lectura" = "阅读模式";
 "Momento en que aparece la etiqueta A continuación antes de que termine un episodio. Automático se ajusta a la duración del episodio, para que en los episodios cortos no aparezca tan pronto. Desactivado la oculta." = "设置本集结束前显示“接下来播放”提示的时间。“自动”会根据剧集时长调整，避免短剧集过早提示。“关闭”会隐藏提示。";
+"More Movies" = "更多电影";
+"More Series" = "更多剧集";
 "Most Popular" = "最受欢迎";
 "Most Popular on MAL" = "MAL 人气榜";
 "Mostrar" = "显示";
@@ -852,6 +860,7 @@
 "Mover hacia arriba" = "上移";
 "Movie" = "电影";
 "Movies" = "电影";
+"Movies on {name}" = "{name} 上的电影";
 "Muestra Saltar intro o Saltar créditos cuando se detecta un intervalo. Puedes desactivarlo o tocar su X para ocultarlo durante ese episodio." = "Harbor 检测到片头或片尾时，显示“跳过片头”或“跳过片尾”按钮。关闭后将不再显示。也可点按按钮上的 X，在本集剩余时间内忽略错误识别。";
 "Muestra la sinopsis del episodio en las tarjetas. Desactívalo para ocultarla." = "在卡片上显示单集简介。关闭后隐藏。";
 "Muestra nombres traducidos al idioma seleccionado arriba. Desactívalo para mantener los títulos originales." = "以上方所选语言显示译名。关闭则保留原始标题。";
@@ -942,6 +951,7 @@
 "Not interested" = "不感兴趣";
 "Not now" = "暂不";
 "Not set" = "未设置";
+"Nothing matched this filter. Try another category or change your region in Settings." = "没有符合此筛选器的内容。请尝试其他类别，或在“设置”中更改你的地区。";
 "Notify me" = "Notify me";
 "Now" = "现在";
 "Now Playing" = "正在播放";
@@ -1057,6 +1067,7 @@
 "Popular Movies" = "热门电影";
 "Popular Series" = "热门剧集";
 "Popular manga" = "Popular manga";
+"Popular on" = "以下平台的热门内容";
 "Popular reads" = "Popular reads";
 "Portuguese" = "葡萄牙语";
 "Portuguese (Brazil)" = "葡萄牙语（巴西）";
@@ -1117,6 +1128,7 @@
 "Reading help" = "Reading help";
 "Reading mode" = "阅读模式";
 "Reading options" = "Reading options";
+"Reality" = "真人秀";
 "Reanudar" = "继续播放";
 "Reanudar al volver a la app" = "Resume when returning to the app";
 "Reanudar desde donde lo dejaste" = "从上次停止的位置继续播放";
@@ -1286,9 +1298,11 @@
 "Series en tendencia" = "热门剧集";
 "Series for the part of the day you actually look forward to." = "献给一天中最令人期待的时光。";
 "Series mejor valoradas" = "高分剧集";
+"Series on {name}" = "{name} 上的剧集";
 "Series para esa parte del día que de verdad esperas con ganas." = "献给一天中最令人期待的时光。";
 "Series populares" = "热门剧集";
 "Serif" = "衬线体";
+"Services" = "服务";
 "Servidor Xtream" = "Xtream server";
 "Sesión iniciada en Stremio" = "已登录 Stremio";
 "Settings" = "设置";
@@ -1448,6 +1462,7 @@
 "TMDB · catalogs and rails" = "TMDB · 目录和内容栏";
 "TMDB · catálogos y filas" = "TMDB · 目录和内容栏";
 "TV" = "电视剧";
+"TV Shows" = "电视剧";
 "Table of contents" = "Table of contents";
 "Tamaño" = "大小";
 "Tamil" = "泰米尔语";
@@ -1483,6 +1498,7 @@
 "The Roku Channel" = "The Roku Channel";
 "The comics industry's highest honor" = "漫画行业的最高荣誉";
 "The filled part of the timeline. Default follows your Harbor accent." = "The filled part of the timeline. Default follows your Harbor accent.";
+"The most-watched movies and series on {name} right now in {region}." = "{region} 当前在 {name} 上观看人数最多的电影和剧集。";
 "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it." = "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it.";
 "The quick brown fox jumps over the lazy dog" = "敏捷的棕狐跃过懒狗";
 "The shape of the whole Home page. Everything below tunes the rows inside it." = "整个首页的布局。下方各项用于调整其中的内容行。";
@@ -1517,7 +1533,9 @@
 "Top 10 Comedy" = "十大热门喜剧片";
 "Top 10 Drama" = "十大热门剧情片";
 "Top 10 Movies Today" = "今日电影前 10 名";
+"Top 10 Movies on {name}" = "{name} 十大热门电影";
 "Top 10 Series Today" = "今日剧集前 10 名";
+"Top 10 Series on {name}" = "{name} 十大热门剧集";
 "Top 10 de comedia" = "十大热门喜剧片";
 "Top 10 de drama" = "十大热门剧情片";
 "Top 10 en Stremio" = "Stremio 热门榜前 10 名";

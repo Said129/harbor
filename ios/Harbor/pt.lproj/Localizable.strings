@@ -57,6 +57,7 @@
 "Add source" = "Adicionar fonte";
 "Add to Suwayomi library" = "Add to Suwayomi library";
 "Add to favorites" = "Adicionar aos favoritos";
+"Add your TMDB key in Settings to load these catalogs." = "Adicione sua chave do TMDB nas Configurações para carregar estes catálogos.";
 "Add {language}" = "Adicionar {language}";
 "Addon" = "Addon";
 "Addon order" = "Ordem dos addons";
@@ -167,6 +168,7 @@
 "Añadir {language}" = "Adicionar {language}";
 "Aún no hay catálogos" = "Nenhum catálogo ainda";
 "Back" = "Voltar";
+"Back to top" = "Voltar ao topo";
 "Background" = "Plano de fundo";
 "Background opacity" = "Opacidade do plano de fundo";
 "Bajar {name}" = "Mover {name} para baixo";
@@ -240,6 +242,7 @@
 "Browse addons" = "Navegar pelos addons";
 "Browse by Genre" = "Explorar por gênero";
 "Browse by category" = "Navegar por categoria";
+"Browse services" = "Explorar serviços";
 "Browse your catalogs" = "Navegar pelos seus catálogos";
 "Buffer" = "Buffer";
 "Build" = "Build";
@@ -290,6 +293,7 @@
 "Cargar más" = "Carregar mais";
 "Catalog" = "Catálogo";
 "Catalogs" = "Catálogos";
+"Categories" = "Categorias";
 "Category" = "Categoria";
 "Categoría" = "Categoria";
 "Cats" = "Cats";
@@ -389,6 +393,7 @@
 "Could not apply the timing. The original subtitle is kept." = "Não foi possível aplicar o ajuste. A legenda original foi mantida.";
 "Could not load navigation settings. Saved settings are kept." = "Could not load navigation settings. Saved settings are kept.";
 "Could not load streaming preferences. Saved settings are kept." = "Could not load streaming preferences. Saved settings are kept.";
+"Could not load this page. Try again." = "Não foi possível carregar esta página. Tente novamente.";
 "Could not measure storage. Try again." = "Could not measure storage. Try again.";
 "Could not open book" = "Não foi possível abrir o livro";
 "Could not restore your navigation. The saved version is kept." = "Could not restore your navigation. The saved version is kept.";
@@ -752,6 +757,7 @@
 "Keep same source on next episode" = "Manter a mesma fonte no próximo episódio";
 "Keep screen awake" = "Keep screen awake";
 "Keep watching" = "Continuar assistindo";
+"Kids & Family" = "Infantil e família";
 "Kitsu, MAL, con reconocimiento de temporadas" = "Kitsu, MAL, reconhece temporadas";
 "Kitsu, MAL, season-aware" = "Kitsu, MAL, reconhece temporadas";
 "Korean" = "Coreano";
@@ -842,6 +848,8 @@
 "Modo de concentración" = "Modo foco";
 "Modo de lectura" = "Modo de leitura";
 "Momento en que aparece la etiqueta A continuación antes de que termine un episodio. Automático se ajusta a la duración del episodio, para que en los episodios cortos no aparezca tan pronto. Desactivado la oculta." = "Quando o indicador Próximo aparece antes do episódio terminar. Automático se ajusta à duração do episódio, então episódios curtos param de avisar tão cedo. Desativado o oculta.";
+"More Movies" = "Mais filmes";
+"More Series" = "Mais séries";
 "Most Popular" = "Mais populares";
 "Most Popular on MAL" = "Mais Populares no MAL";
 "Mostrar" = "Mostrar";
@@ -872,6 +880,7 @@
 "Mover hacia arriba" = "Mover para cima";
 "Movie" = "Filme";
 "Movies" = "Filmes";
+"Movies on {name}" = "Filmes em {name}";
 "Muestra Saltar intro o Saltar créditos cuando se detecta un intervalo. Puedes desactivarlo o tocar su X para ocultarlo durante ese episodio." = "Mostra um botão Pular Abertura / Pular Créditos quando o Harbor detecta um. Desative para nunca mostrar. Você também pode tocar no X do botão para dispensar um errado pelo resto do episódio.";
 "Muestra la sinopsis del episodio en las tarjetas. Desactívalo para ocultarla." = "Mostra a sinopse do episódio nos cartões. Desative para ocultá-la.";
 "Muestra nombres traducidos al idioma seleccionado arriba. Desactívalo para mantener los títulos originales." = "Mostre nomes traduzidos no idioma selecionado acima. Desative para manter os títulos originais.";
@@ -962,6 +971,7 @@
 "Not interested" = "Não tenho interesse";
 "Not now" = "Agora não";
 "Not set" = "Não definido";
+"Nothing matched this filter. Try another category or change your region in Settings." = "Nada corresponde a este filtro. Tente outra categoria ou mude sua região nas Configurações.";
 "Notify me" = "Notify me";
 "Now" = "Agora";
 "Now Playing" = "Tocando Agora";
@@ -1077,6 +1087,7 @@
 "Popular Movies" = "Filmes Populares";
 "Popular Series" = "Séries Populares";
 "Popular manga" = "Popular manga";
+"Popular on" = "Popular em";
 "Popular reads" = "Popular reads";
 "Portuguese" = "Português";
 "Portuguese (Brazil)" = "Português (Brasil)";
@@ -1137,6 +1148,7 @@
 "Reading help" = "Como usar Manga e eBook";
 "Reading mode" = "Modo de leitura";
 "Reading options" = "Reading options";
+"Reality" = "Reality";
 "Reanudar" = "Retomar";
 "Reanudar al volver a la app" = "Resume when returning to the app";
 "Reanudar desde donde lo dejaste" = "Retomar de onde parou";
@@ -1308,9 +1320,11 @@
 "Series en tendencia" = "Séries em Alta";
 "Series for the part of the day you actually look forward to." = "Séries para a parte do dia que você realmente espera com ansiedade.";
 "Series mejor valoradas" = "Séries Mais Bem Avaliadas";
+"Series on {name}" = "Séries em {name}";
 "Series para esa parte del día que de verdad esperas con ganas." = "Séries para a parte do dia que você realmente espera com ansiedade.";
 "Series populares" = "Séries Populares";
 "Serif" = "Serifada";
+"Services" = "Serviços";
 "Servidor Xtream" = "Xtream server";
 "Sesión iniciada en Stremio" = "Conectado ao Stremio";
 "Settings" = "Configurações";
@@ -1471,6 +1485,7 @@
 "TMDB · catalogs and rails" = "TMDB · catálogos e faixas";
 "TMDB · catálogos y filas" = "TMDB · catálogos e faixas";
 "TV" = "TV";
+"TV Shows" = "Séries";
 "Table of contents" = "Table of contents";
 "Tamaño" = "Tamanho";
 "Tamil" = "Tâmil";
@@ -1506,6 +1521,7 @@
 "The Roku Channel" = "The Roku Channel";
 "The comics industry's highest honor" = "A maior honraria da indústria de quadrinhos";
 "The filled part of the timeline. Default follows your Harbor accent." = "The filled part of the timeline. Default follows your Harbor accent.";
+"The most-watched movies and series on {name} right now in {region}." = "Os filmes e séries mais assistidos no {name} agora em {region}.";
 "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it." = "O original foi mantido. Exporte a legenda em UTF-8 ou UTF-16 para sincronizá-la.";
 "The quick brown fox jumps over the lazy dog" = "Um pequeno jabuti xereta viu dez cegonhas felizes";
 "The shape of the whole Home page. Everything below tunes the rows inside it." = "O formato de toda a página Início. Tudo abaixo ajusta as fileiras dentro dela.";
@@ -1540,7 +1556,9 @@
 "Top 10 Comedy" = "Top 10 Comédia";
 "Top 10 Drama" = "Top 10 Drama";
 "Top 10 Movies Today" = "Top 10 Filmes Hoje";
+"Top 10 Movies on {name}" = "Top 10 Filmes na {name}";
 "Top 10 Series Today" = "Top 10 Séries Hoje";
+"Top 10 Series on {name}" = "Top 10 Séries na {name}";
 "Top 10 de comedia" = "Top 10 Comédia";
 "Top 10 de drama" = "Top 10 Drama";
 "Top 10 en Stremio" = "Top 10 no Stremio";

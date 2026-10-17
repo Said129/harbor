@@ -66,7 +66,10 @@
     "Streaming services": "Servicios de streaming",
     "Could not load streaming preferences. Saved settings are kept.": "No se pudieron cargar los servicios. Se conserva la configuración guardada.",
     "Could not save streaming preferences. Your previous settings are kept.": "No se pudieron guardar los servicios. Se conserva tu configuración anterior.",
-    "Could not save your choices. Try again.": "No se pudieron guardar tus elecciones. Vuelve a intentarlo."
+    "Could not save your choices. Try again.": "No se pudieron guardar tus elecciones. Vuelve a intentarlo.",
+    "Browse services": "Explorar servicios",
+    "Add your TMDB key in Settings to load these catalogs.": "Añade tu clave de TMDB en Ajustes para cargar estos catálogos.",
+    "Could not load this page. Try again.": "No se pudo cargar esta página. Vuelve a intentarlo."
   },
   "pt": {
     "Auto-sync": "Sincronização automática",
@@ -98,7 +101,10 @@
     "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it.": "O original foi mantido. Exporte a legenda em UTF-8 ou UTF-16 para sincronizá-la.",
     "Could not analyze this source. Playback continues; you can retry.": "Não foi possível analisar esta fonte. A reprodução continua; você pode tentar novamente.",
     "Select an external SRT/VTT subtitle without dual subtitles, in a video at least one minute long.": "Selecione uma legenda SRT/VTT externa, sem legendas duplas, em um vídeo de pelo menos um minuto.",
-    "Analysis stopped to prioritize playback. Retry after buffering finishes.": "A análise parou para priorizar a reprodução. Tente novamente após o carregamento."
+    "Analysis stopped to prioritize playback. Retry after buffering finishes.": "A análise parou para priorizar a reprodução. Tente novamente após o carregamento.",
+    "Browse services": "Explorar serviços",
+    "Add your TMDB key in Settings to load these catalogs.": "Adicione sua chave do TMDB nas Configurações para carregar estes catálogos.",
+    "Could not load this page. Try again.": "Não foi possível carregar esta página. Tente novamente."
   },
   "ru": {
     "Auto-sync": "Автосинхронизация",
@@ -130,7 +136,10 @@
     "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it.": "Оригинал сохранён. Для синхронизации экспортируйте субтитры в UTF-8 или UTF-16.",
     "Could not analyze this source. Playback continues; you can retry.": "Не удалось проанализировать источник. Просмотр продолжается; можно повторить попытку.",
     "Select an external SRT/VTT subtitle without dual subtitles, in a video at least one minute long.": "Выберите внешние SRT/VTT без двойных субтитров в видео продолжительностью не менее минуты.",
-    "Analysis stopped to prioritize playback. Retry after buffering finishes.": "Анализ остановлен ради воспроизведения. Повторите попытку после буферизации."
+    "Analysis stopped to prioritize playback. Retry after buffering finishes.": "Анализ остановлен ради воспроизведения. Повторите попытку после буферизации.",
+    "Browse services": "Просмотр сервисов",
+    "Add your TMDB key in Settings to load these catalogs.": "Добавьте ключ TMDB в настройках, чтобы загрузить эти каталоги.",
+    "Could not load this page. Try again.": "Не удалось загрузить эту страницу. Повторите попытку."
   },
   "ar": {
     "Auto-sync": "مزامنة تلقائية",
@@ -162,39 +171,80 @@
     "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it.": "تم الاحتفاظ بالأصل. صدّر الترجمة بترميز UTF-8 أو UTF-16 لمزامنتها.",
     "Could not analyze this source. Playback continues; you can retry.": "تعذر تحليل هذا المصدر. تستمر المشاهدة ويمكنك المحاولة مجددًا.",
     "Select an external SRT/VTT subtitle without dual subtitles, in a video at least one minute long.": "اختر ترجمة خارجية SRT/VTT دون ترجمة مزدوجة، لفيديو مدته دقيقة على الأقل.",
-    "Analysis stopped to prioritize playback. Retry after buffering finishes.": "توقف التحليل لإعطاء الأولوية للمشاهدة. أعد المحاولة بعد اكتمال التحميل."
+    "Analysis stopped to prioritize playback. Retry after buffering finishes.": "توقف التحليل لإعطاء الأولوية للمشاهدة. أعد المحاولة بعد اكتمال التحميل.",
+    "Browse services": "استعراض الخدمات",
+    "Add your TMDB key in Settings to load these catalogs.": "أضف مفتاح TMDB في الإعدادات لتحميل هذه الكتالوجات.",
+    "Could not load this page. Try again.": "تعذر تحميل هذه الصفحة. حاول مرة أخرى."
   },
   "zh": {
-    "Couldn't auto-sync": "无法自动同步"
+    "Couldn't auto-sync": "无法自动同步",
+    "Browse services": "浏览服务",
+    "Add your TMDB key in Settings to load these catalogs.": "请在设置中添加 TMDB 密钥以加载这些目录。",
+    "Could not load this page. Try again.": "无法加载此页面。请重试。"
   },
   "fr": {
-    "Couldn't auto-sync": "Synchronisation automatique impossible"
+    "Couldn't auto-sync": "Synchronisation automatique impossible",
+    "Browse services": "Parcourir les services",
+    "Add your TMDB key in Settings to load these catalogs.": "Ajoutez votre clé TMDB dans les paramètres pour charger ces catalogues.",
+    "Could not load this page. Try again.": "Impossible de charger cette page. Réessayez."
   },
   "de": {
-    "Couldn't auto-sync": "Automatische Synchronisierung nicht möglich"
+    "Couldn't auto-sync": "Automatische Synchronisierung nicht möglich",
+    "Browse services": "Dienste durchsuchen",
+    "Add your TMDB key in Settings to load these catalogs.": "Füge deinen TMDB-Schlüssel in den Einstellungen hinzu, um diese Kataloge zu laden.",
+    "Could not load this page. Try again.": "Diese Seite konnte nicht geladen werden. Versuche es erneut."
   },
   "hi": {
-    "Couldn't auto-sync": "अपने-आप सिंक नहीं हो सका"
+    "Couldn't auto-sync": "अपने-आप सिंक नहीं हो सका",
+    "Browse services": "सेवाएँ देखें",
+    "Add your TMDB key in Settings to load these catalogs.": "इन कैटलॉग को लोड करने के लिए सेटिंग्स में अपनी TMDB कुंजी जोड़ें।",
+    "Could not load this page. Try again.": "यह पेज लोड नहीं हो सका। फिर से कोशिश करें।"
   },
   "id": {
-    "Couldn't auto-sync": "Tidak dapat menyinkronkan otomatis"
+    "Couldn't auto-sync": "Tidak dapat menyinkronkan otomatis",
+    "Browse services": "Jelajahi layanan",
+    "Add your TMDB key in Settings to load these catalogs.": "Tambahkan kunci TMDB di Pengaturan untuk memuat katalog ini.",
+    "Could not load this page. Try again.": "Halaman ini tidak dapat dimuat. Coba lagi."
   },
   "it": {
-    "Couldn't auto-sync": "Sincronizzazione automatica non riuscita"
+    "Couldn't auto-sync": "Sincronizzazione automatica non riuscita",
+    "Browse services": "Esplora i servizi",
+    "Add your TMDB key in Settings to load these catalogs.": "Aggiungi la tua chiave TMDB nelle Impostazioni per caricare questi cataloghi.",
+    "Could not load this page. Try again.": "Impossibile caricare questa pagina. Riprova."
   },
   "ja": {
-    "Couldn't auto-sync": "自動同期できませんでした"
+    "Couldn't auto-sync": "自動同期できませんでした",
+    "Browse services": "サービスを見る",
+    "Add your TMDB key in Settings to load these catalogs.": "設定に TMDB キーを追加すると、これらのカタログを読み込めます。",
+    "Could not load this page. Try again.": "このページを読み込めませんでした。もう一度お試しください。"
   },
   "ko": {
-    "Couldn't auto-sync": "자동 동기화하지 못했습니다"
+    "Couldn't auto-sync": "자동 동기화하지 못했습니다",
+    "Browse services": "서비스 둘러보기",
+    "Add your TMDB key in Settings to load these catalogs.": "설정에서 TMDB 키를 추가하면 카탈로그를 불러올 수 있습니다.",
+    "Could not load this page. Try again.": "이 페이지를 불러오지 못했습니다. 다시 시도해 주세요."
   },
   "pl": {
-    "Couldn't auto-sync": "Nie udało się zsynchronizować automatycznie"
+    "Couldn't auto-sync": "Nie udało się zsynchronizować automatycznie",
+    "Browse services": "Przeglądaj serwisy",
+    "Add your TMDB key in Settings to load these catalogs.": "Dodaj klucz TMDB w ustawieniach, aby wczytać te katalogi.",
+    "Could not load this page. Try again.": "Nie udało się wczytać tej strony. Spróbuj ponownie."
   },
   "tr": {
-    "Couldn't auto-sync": "Otomatik eşitlenemedi"
+    "Couldn't auto-sync": "Otomatik eşitlenemedi",
+    "Browse services": "Hizmetlere göz at",
+    "Add your TMDB key in Settings to load these catalogs.": "Bu katalogları yüklemek için Ayarlar'a TMDB anahtarınızı ekleyin.",
+    "Could not load this page. Try again.": "Bu sayfa yüklenemedi. Tekrar deneyin."
   },
   "vi": {
-    "Couldn't auto-sync": "Không thể tự động đồng bộ"
+    "Couldn't auto-sync": "Không thể tự động đồng bộ",
+    "Browse services": "Duyệt dịch vụ",
+    "Add your TMDB key in Settings to load these catalogs.": "Thêm khóa TMDB trong Cài đặt để tải các danh mục này.",
+    "Could not load this page. Try again.": "Không thể tải trang này. Vui lòng thử lại."
+  },
+  "en": {
+    "Browse services": "Browse services",
+    "Add your TMDB key in Settings to load these catalogs.": "Add your TMDB key in Settings to load these catalogs.",
+    "Could not load this page. Try again.": "Could not load this page. Try again."
   }
 }

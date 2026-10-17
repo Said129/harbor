@@ -31,6 +31,11 @@ struct DiscoveryGrid: View {
     @State private var finished = false
     @State private var error: String?
     var body: some View {
+        if let service = StreamingServiceDefinition.all.first(where: { rail.path == "streaming:" + $0.key }) {
+            StreamingCatalogView(service: service, app: app)
+        } else { grid }
+    }
+    private var grid: some View {
         ScrollView {
             LazyVStack(spacing: 18) {
                 LazyVGrid(columns: [GridItem(.adaptive(minimum: 106), spacing: 12, alignment: .top)], spacing: 22) {
@@ -50,9 +55,6 @@ struct DiscoveryGrid: View {
         do {
             let next: [Media]
             if ["anime:picks", "home:fixed"].contains(rail.path) { next = page == 1 ? rail.metas : [] }
-            else if let service = StreamingServiceDefinition.all.first(where: { rail.path == "streaming:" + $0.key }) {
-                next = try await StreamingCatalog.page(service, page: page, configuration: MetadataPreferences.shared.configuration())
-            }
             else if rail.kind == "anime" { next = try await AnimeService.shared.page(rail, page: page) }
             else { next = try await TMDBService().page(rail, page: page, configuration: MetadataPreferences.shared.configuration()) }
             try Task.checkCancellation()

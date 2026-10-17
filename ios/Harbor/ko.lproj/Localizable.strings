@@ -52,6 +52,7 @@
 "Add source" = "소스 추가";
 "Add to Suwayomi library" = "Add to Suwayomi library";
 "Add to favorites" = "즐겨찾기에 추가";
+"Add your TMDB key in Settings to load these catalogs." = "설정에서 TMDB 키를 추가하면 카탈로그를 불러올 수 있습니다.";
 "Add {language}" = "{language} 추가";
 "Addon" = "애드온";
 "Addon order" = "애드온 순서";
@@ -159,6 +160,7 @@
 "Añadir {language}" = "{language} 추가";
 "Aún no hay catálogos" = "아직 카탈로그가 없습니다";
 "Back" = "뒤로";
+"Back to top" = "맨 위로";
 "Background" = "배경";
 "Background opacity" = "배경 불투명도";
 "Bajar {name}" = "{name} 아래로 이동";
@@ -230,6 +232,7 @@
 "Browse addons" = "애드온 탐색";
 "Browse by Genre" = "장르별 탐색";
 "Browse by category" = "카테고리별 탐색";
+"Browse services" = "서비스 둘러보기";
 "Browse your catalogs" = "내 카탈로그 둘러보기";
 "Buffer" = "Buffer";
 "Build" = "빌드";
@@ -274,6 +277,7 @@
 "Cargar más" = "더 불러오기";
 "Catalog" = "카탈로그";
 "Catalogs" = "카탈로그";
+"Categories" = "카테고리";
 "Category" = "카테고리";
 "Categoría" = "카테고리";
 "Cats" = "Cats";
@@ -369,6 +373,7 @@
 "Could not apply the timing. The original subtitle is kept." = "Could not apply the timing. The original subtitle is kept.";
 "Could not load navigation settings. Saved settings are kept." = "Could not load navigation settings. Saved settings are kept.";
 "Could not load streaming preferences. Saved settings are kept." = "Could not load streaming preferences. Saved settings are kept.";
+"Could not load this page. Try again." = "이 페이지를 불러오지 못했습니다. 다시 시도해 주세요.";
 "Could not measure storage. Try again." = "Could not measure storage. Try again.";
 "Could not open book" = "Could not open book";
 "Could not restore your navigation. The saved version is kept." = "Could not restore your navigation. The saved version is kept.";
@@ -732,6 +737,7 @@
 "Keep same source on next episode" = "다음 에피소드에서 같은 소스 유지";
 "Keep screen awake" = "Keep screen awake";
 "Keep watching" = "이어서 시청";
+"Kids & Family" = "키즈 및 가족";
 "Kitsu, MAL, con reconocimiento de temporadas" = "Kitsu, MAL, 시즌 인식";
 "Kitsu, MAL, season-aware" = "Kitsu, MAL, 시즌 인식";
 "Korean" = "한국어";
@@ -822,6 +828,8 @@
 "Modo de concentración" = "집중 모드";
 "Modo de lectura" = "읽기 모드";
 "Momento en que aparece la etiqueta A continuación antes de que termine un episodio. Automático se ajusta a la duración del episodio, para que en los episodios cortos no aparezca tan pronto. Desactivado la oculta." = "에피소드가 끝나기 전에 다음 재생 알림을 표시할 시점을 설정합니다. 자동은 에피소드 길이에 맞춰 조절하므로 짧은 에피소드에서 너무 일찍 표시되지 않습니다. 끄면 숨깁니다.";
+"More Movies" = "영화 더 보기";
+"More Series" = "시리즈 더 보기";
 "Most Popular" = "최고 인기작";
 "Most Popular on MAL" = "MAL 최고 인기작";
 "Mostrar" = "표시";
@@ -852,6 +860,7 @@
 "Mover hacia arriba" = "위로 이동";
 "Movie" = "영화";
 "Movies" = "영화";
+"Movies on {name}" = "{name}의 영화";
 "Muestra Saltar intro o Saltar créditos cuando se detecta un intervalo. Puedes desactivarlo o tocar su X para ocultarlo durante ese episodio." = "Harbor가 오프닝 또는 엔딩을 감지하면 오프닝 건너뛰기 / 엔딩 건너뛰기 버튼을 표시합니다. 표시하지 않으려면 이 옵션을 끄세요. 잘못 감지된 경우 버튼의 X를 눌러 해당 에피소드가 끝날 때까지 숨길 수도 있습니다.";
 "Muestra la sinopsis del episodio en las tarjetas. Desactívalo para ocultarla." = "카드에 에피소드 줄거리를 표시합니다. 숨기려면 이 옵션을 끄세요.";
 "Muestra nombres traducidos al idioma seleccionado arriba. Desactívalo para mantener los títulos originales." = "위에서 선택한 언어로 번역된 제목을 표시합니다. 원제를 유지하려면 끄세요.";
@@ -942,6 +951,7 @@
 "Not interested" = "관심 없음";
 "Not now" = "나중에";
 "Not set" = "설정되지 않음";
+"Nothing matched this filter. Try another category or change your region in Settings." = "이 필터와 일치하는 항목이 없습니다. 다른 카테고리를 선택하거나 설정에서 지역을 변경해 보세요.";
 "Notify me" = "Notify me";
 "Now" = "지금";
 "Now Playing" = "현재 재생 중";
@@ -1057,6 +1067,7 @@
 "Popular Movies" = "인기 영화";
 "Popular Series" = "인기 시리즈";
 "Popular manga" = "Popular manga";
+"Popular on" = "인기 플랫폼";
 "Popular reads" = "Popular reads";
 "Portuguese" = "포르투갈어";
 "Portuguese (Brazil)" = "포르투갈어(브라질)";
@@ -1117,6 +1128,7 @@
 "Reading help" = "Reading help";
 "Reading mode" = "읽기 모드";
 "Reading options" = "Reading options";
+"Reality" = "리얼리티";
 "Reanudar" = "이어서 재생";
 "Reanudar al volver a la app" = "Resume when returning to the app";
 "Reanudar desde donde lo dejaste" = "중단한 지점부터 이어 보기";
@@ -1286,9 +1298,11 @@
 "Series en tendencia" = "인기 급상승 시리즈";
 "Series for the part of the day you actually look forward to." = "하루 중 가장 기다려지는 시간을 위한 시리즈입니다.";
 "Series mejor valoradas" = "평점 높은 시리즈";
+"Series on {name}" = "{name}의 시리즈";
 "Series para esa parte del día que de verdad esperas con ganas." = "하루 중 가장 기다려지는 시간을 위한 시리즈입니다.";
 "Series populares" = "인기 시리즈";
 "Serif" = "명조체";
+"Services" = "서비스";
 "Servidor Xtream" = "Xtream server";
 "Sesión iniciada en Stremio" = "Stremio에 로그인됨";
 "Settings" = "설정";
@@ -1448,6 +1462,7 @@
 "TMDB · catalogs and rails" = "TMDB · 카탈로그 및 콘텐츠 행";
 "TMDB · catálogos y filas" = "TMDB · 카탈로그 및 콘텐츠 행";
 "TV" = "TV";
+"TV Shows" = "TV 프로그램";
 "Table of contents" = "Table of contents";
 "Tamaño" = "크기";
 "Tamil" = "타밀어";
@@ -1483,6 +1498,7 @@
 "The Roku Channel" = "The Roku Channel";
 "The comics industry's highest honor" = "만화계 최고 권위의 상";
 "The filled part of the timeline. Default follows your Harbor accent." = "The filled part of the timeline. Default follows your Harbor accent.";
+"The most-watched movies and series on {name} right now in {region}." = "현재 {region}의 {name}에서 가장 많이 시청한 영화와 시리즈입니다.";
 "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it." = "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it.";
 "The quick brown fox jumps over the lazy dog" = "다람쥐 헌 쳇바퀴에 타고파";
 "The shape of the whole Home page. Everything below tunes the rows inside it." = "홈 페이지 전체의 구성입니다. 아래의 모든 설정은 그 안의 행을 조정합니다.";
@@ -1517,7 +1533,9 @@
 "Top 10 Comedy" = "코미디 Top 10";
 "Top 10 Drama" = "드라마 Top 10";
 "Top 10 Movies Today" = "오늘의 영화 상위 10개";
+"Top 10 Movies on {name}" = "{name} 영화 Top 10";
 "Top 10 Series Today" = "오늘의 시리즈 상위 10개";
+"Top 10 Series on {name}" = "{name} 시리즈 Top 10";
 "Top 10 de comedia" = "코미디 Top 10";
 "Top 10 de drama" = "드라마 Top 10";
 "Top 10 en Stremio" = "Stremio 인기 10선";

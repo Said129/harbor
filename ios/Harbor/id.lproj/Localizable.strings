@@ -52,6 +52,7 @@
 "Add source" = "Tambah sumber";
 "Add to Suwayomi library" = "Add to Suwayomi library";
 "Add to favorites" = "Tambahkan ke favorit";
+"Add your TMDB key in Settings to load these catalogs." = "Tambahkan kunci TMDB di Pengaturan untuk memuat katalog ini.";
 "Add {language}" = "Tambahkan {language}";
 "Addon" = "Addon";
 "Addon order" = "Urutan addon";
@@ -159,6 +160,7 @@
 "Añadir {language}" = "Tambahkan {language}";
 "Aún no hay catálogos" = "Belum ada katalog";
 "Back" = "Kembali";
+"Back to top" = "Kembali ke atas";
 "Background" = "Latar belakang";
 "Background opacity" = "Opasitas latar belakang";
 "Bajar {name}" = "Pindahkan {name} ke bawah";
@@ -230,6 +232,7 @@
 "Browse addons" = "Jelajahi addon";
 "Browse by Genre" = "Jelajahi berdasarkan Genre";
 "Browse by category" = "Jelajahi berdasarkan kategori";
+"Browse services" = "Jelajahi layanan";
 "Browse your catalogs" = "Jelajahi katalog Anda";
 "Buffer" = "Buffer";
 "Build" = "Build";
@@ -274,6 +277,7 @@
 "Cargar más" = "Muat lebih banyak";
 "Catalog" = "Katalog";
 "Catalogs" = "Katalog";
+"Categories" = "Kategori";
 "Category" = "Kategori";
 "Categoría" = "Kategori";
 "Cats" = "Cats";
@@ -369,6 +373,7 @@
 "Could not apply the timing. The original subtitle is kept." = "Could not apply the timing. The original subtitle is kept.";
 "Could not load navigation settings. Saved settings are kept." = "Could not load navigation settings. Saved settings are kept.";
 "Could not load streaming preferences. Saved settings are kept." = "Could not load streaming preferences. Saved settings are kept.";
+"Could not load this page. Try again." = "Halaman ini tidak dapat dimuat. Coba lagi.";
 "Could not measure storage. Try again." = "Could not measure storage. Try again.";
 "Could not open book" = "Could not open book";
 "Could not restore your navigation. The saved version is kept." = "Could not restore your navigation. The saved version is kept.";
@@ -732,6 +737,7 @@
 "Keep same source on next episode" = "Gunakan sumber yang sama pada episode berikutnya";
 "Keep screen awake" = "Keep screen awake";
 "Keep watching" = "Lanjutkan menonton";
+"Kids & Family" = "Anak & Keluarga";
 "Kitsu, MAL, con reconocimiento de temporadas" = "Kitsu, MAL, mengenali musim";
 "Kitsu, MAL, season-aware" = "Kitsu, MAL, mengenali musim";
 "Korean" = "Bahasa Korea";
@@ -822,6 +828,8 @@
 "Modo de concentración" = "Mode fokus";
 "Modo de lectura" = "Mode baca";
 "Momento en que aparece la etiqueta A continuación antes de que termine un episodio. Automático se ajusta a la duración del episodio, para que en los episodios cortos no aparezca tan pronto. Desactivado la oculta." = "Waktu munculnya label Berikutnya sebelum episode berakhir. Otomatis menyesuaikan dengan durasi episode agar episode pendek tidak memunculkannya terlalu dini. Jika dinonaktifkan, label akan disembunyikan.";
+"More Movies" = "Film Lainnya";
+"More Series" = "Serial Lainnya";
 "Most Popular" = "Paling Populer";
 "Most Popular on MAL" = "Paling Populer di MAL";
 "Mostrar" = "Tampilkan";
@@ -852,6 +860,7 @@
 "Mover hacia arriba" = "Pindahkan ke atas";
 "Movie" = "Film";
 "Movies" = "Film";
+"Movies on {name}" = "Film di {name}";
 "Muestra Saltar intro o Saltar créditos cuando se detecta un intervalo. Puedes desactivarlo o tocar su X para ocultarlo durante ese episodio." = "Tampilkan tombol Lewati Intro / Lewati Kredit saat Harbor mendeteksinya. Nonaktifkan ini agar tombol tidak pernah ditampilkan. Anda juga dapat mengetuk X pada tombol untuk menutup tombol yang keliru selama sisa episode.";
 "Muestra la sinopsis del episodio en las tarjetas. Desactívalo para ocultarla." = "Menampilkan sinopsis episode pada kartu. Nonaktifkan untuk menyembunyikannya.";
 "Muestra nombres traducidos al idioma seleccionado arriba. Desactívalo para mantener los títulos originales." = "Tampilkan nama terjemahan dalam bahasa yang dipilih di atas. Nonaktifkan untuk mempertahankan judul asli.";
@@ -942,6 +951,7 @@
 "Not interested" = "Tidak tertarik";
 "Not now" = "Jangan sekarang";
 "Not set" = "Belum diatur";
+"Nothing matched this filter. Try another category or change your region in Settings." = "Tidak ada yang cocok dengan filter ini. Coba kategori lain atau ubah wilayah Anda di Pengaturan.";
 "Notify me" = "Notify me";
 "Now" = "Sekarang";
 "Now Playing" = "Sedang Diputar";
@@ -1057,6 +1067,7 @@
 "Popular Movies" = "Film Populer";
 "Popular Series" = "Serial Populer";
 "Popular manga" = "Popular manga";
+"Popular on" = "Populer di";
 "Popular reads" = "Popular reads";
 "Portuguese" = "Portugis";
 "Portuguese (Brazil)" = "Portugis (Brasil)";
@@ -1117,6 +1128,7 @@
 "Reading help" = "Reading help";
 "Reading mode" = "Mode baca";
 "Reading options" = "Reading options";
+"Reality" = "Realitas";
 "Reanudar" = "Lanjutkan";
 "Reanudar al volver a la app" = "Resume when returning to the app";
 "Reanudar desde donde lo dejaste" = "Lanjutkan dari posisi terakhir";
@@ -1286,9 +1298,11 @@
 "Series en tendencia" = "Serial yang sedang tren";
 "Series for the part of the day you actually look forward to." = "Serial untuk waktu yang benar-benar Anda nantikan.";
 "Series mejor valoradas" = "Serial Berperingkat Tertinggi";
+"Series on {name}" = "Serial di {name}";
 "Series para esa parte del día que de verdad esperas con ganas." = "Serial untuk waktu yang benar-benar Anda nantikan.";
 "Series populares" = "Serial Populer";
 "Serif" = "Serif";
+"Services" = "Layanan";
 "Servidor Xtream" = "Xtream server";
 "Sesión iniciada en Stremio" = "Sudah masuk ke Stremio";
 "Settings" = "Pengaturan";
@@ -1448,6 +1462,7 @@
 "TMDB · catalogs and rails" = "TMDB · katalog dan deretan";
 "TMDB · catálogos y filas" = "TMDB · katalog dan deretan";
 "TV" = "TV";
+"TV Shows" = "Acara TV";
 "Table of contents" = "Table of contents";
 "Tamaño" = "Ukuran";
 "Tamil" = "Tamil";
@@ -1483,6 +1498,7 @@
 "The Roku Channel" = "The Roku Channel";
 "The comics industry's highest honor" = "Penghargaan tertinggi industri komik";
 "The filled part of the timeline. Default follows your Harbor accent." = "The filled part of the timeline. Default follows your Harbor accent.";
+"The most-watched movies and series on {name} right now in {region}." = "Film dan serial yang paling banyak ditonton di {name} saat ini di {region}.";
 "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it." = "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it.";
 "The quick brown fox jumps over the lazy dog" = "Rubah cokelat yang gesit melompati anjing malas";
 "The shape of the whole Home page. Everything below tunes the rows inside it." = "Bentuk keseluruhan halaman Beranda. Semua pengaturan di bawah menyesuaikan baris di dalamnya.";
@@ -1517,7 +1533,9 @@
 "Top 10 Comedy" = "10 Komedi Teratas";
 "Top 10 Drama" = "10 Drama Teratas";
 "Top 10 Movies Today" = "10 Film Teratas Hari Ini";
+"Top 10 Movies on {name}" = "10 Film Teratas di {name}";
 "Top 10 Series Today" = "10 Serial Teratas Hari Ini";
+"Top 10 Series on {name}" = "10 Serial Teratas di {name}";
 "Top 10 de comedia" = "10 Komedi Teratas";
 "Top 10 de drama" = "10 Drama Teratas";
 "Top 10 en Stremio" = "10 Teratas di Stremio";
