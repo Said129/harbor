@@ -90,12 +90,12 @@ on:
 permissions:
   contents: read
 concurrency:
-  group: iphone-${{ github.event.pull_request.head.repo.full_name || github.repository }}-${{ github.head_ref || github.ref_name }}
+  group: iphone-${{ github.event_name }}-${{ github.event.pull_request.head.repo.full_name || github.repository }}-${{ github.head_ref || github.ref_name }}
   cancel-in-progress: true
 jobs:
   apple:
     name: Apple SDK / Swift / iPhone
-    if: ${{ github.event.repository.private == false && inputs.validation_scope != 'reuse' && inputs.validation_scope != 'continuation-sendable' }}
+    if: ${{ github.event_name == 'workflow_dispatch' && github.event.repository.private == false && inputs.validation_scope != 'reuse' && inputs.validation_scope != 'continuation-sendable' }}
     runs-on: macos-15-intel
     timeout-minutes: 120
     permissions:
@@ -735,7 +735,7 @@ jobs:
 
   package-reviewed:
     name: Package iPhone from preserved validation
-    if: ${{ github.event.repository.private == false && inputs.validation_only == false && (inputs.validation_scope == 'reuse' || inputs.validation_scope == 'continuation-sendable') }}
+    if: ${{ github.event_name == 'workflow_dispatch' && github.event.repository.private == false && inputs.validation_only == false && (inputs.validation_scope == 'reuse' || inputs.validation_scope == 'continuation-sendable') }}
     runs-on: macos-15-intel
     timeout-minutes: 90
     permissions:
