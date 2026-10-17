@@ -179,7 +179,7 @@ private struct ServiceEntrance: ViewModifier {
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     func body(content: Content) -> some View {
         content.opacity(entered || reduceMotion ? 1 : 0).offset(y: entered || reduceMotion ? 0 : distance)
-            .onAppear { withAnimation(reduceMotion ? nil : .easeOut(duration: 0.32)) { entered = true } }
+            .onAppear { withAnimation(reduceMotion ? nil : .timingCurve(0.16, 1, 0.3, 1, duration: 0.32)) { entered = true } }
     }
 }
 
