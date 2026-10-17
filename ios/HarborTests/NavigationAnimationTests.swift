@@ -1,5 +1,6 @@
 import CryptoKit
 import Lottie
+import UIKit
 import XCTest
 @testable import Harbor
 

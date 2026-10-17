@@ -65,7 +65,7 @@ struct SystemStorageView: View {
             guard !Task.isCancelled, revision == refreshRevision else { return }
             report = result; imageBytes = bytes
         } catch is CancellationError { return }
-        catch { if revision == refreshRevision { error = "Could not measure storage. Try again." } }
+        catch { if revision == refreshRevision { self.error = "Could not measure storage. Try again." } }
     }
 
     private func metric(_ title: String, bytes: Int64) -> some View {
