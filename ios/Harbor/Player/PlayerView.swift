@@ -405,7 +405,9 @@ struct PlayerView: View {
                             HStack(spacing: 6) { PlayerGlyph(name: "prev-episode", size: 17); Text("Anterior") }
                         }.frame(minHeight: 44).disabled(adjacent.previous == nil || episodeChanging).accessibilityIdentifier("player-previous-episode")
                         Spacer()
-                        Text("T\(session.target.season ?? 0) · E\(session.target.episode ?? 0)").foregroundStyle(.secondary)
+                        if let coordinates = EpisodePresentation.coordinates(in: media, target: session.target) {
+                            Text(coordinates.caption).foregroundStyle(.secondary).accessibilityIdentifier("player-episode-caption")
+                        }
                         Spacer()
                         Button { if let next = adjacent.next { requestEpisode(next) } } label: {
                             HStack(spacing: 6) { Text("Siguiente"); PlayerGlyph(name: "next-episode", size: 17) }

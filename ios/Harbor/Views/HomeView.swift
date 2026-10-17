@@ -68,6 +68,7 @@ struct HomeView: View {
             .background(HarborTheme.background).navigationBarTitleDisplayMode(.inline)
             .safeAreaInset(edge: .bottom) { PageEditingFooter(customization: customization) }
             .refreshable { await refresh() }
+            .task(id: model.continuingDetectionSignature) { await model.detectContinuingAnime() }
             .task(id: contentSignature) {
                 guard model.storageReady, !classic else { return }
                 async let curated: Void = model.home.load(app: model)

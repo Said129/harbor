@@ -8,6 +8,7 @@ final class AppModel {
     private(set) var resume = ResumeStore()
     let library = LibraryModel()
     let home = HomeContentModel()
+    let animeDetection = AnimeLibraryDetection()
     private let keychain = KeychainStore()
     private let accounts = AccountService()
     private var savedAccount: SavedAccount?
@@ -33,13 +34,43 @@ final class AppModel {
         let selectedAddons = addons
         let key = try MediaMetadataStore.key(media, owner: library.owner, addons: selectedAddons, configuration: configuration)
         let service = service
-        return try await continuationMetadataStore.value(for: key) {
+        let result = try await continuationMetadataStore.value(for: key) {
             try await service.metadata(media, addons: selectedAddons, configuration: configuration)
         }
+        animeDetection.observe(result)
+        return result
     }
     func pageModel(_ kind: String) -> ContentPageModel {
         if let model = pages[kind] { return model }
         let model = ContentPageModel(); pages[kind] = model; return model
+    }
+
+    var continuingDetectionSignature: String {
+        let configuration = MetadataPreferences.shared.configuration()
+        return [library.owner, String(storageReady), EBookShelf.hash(configuration.tmdbKey), configuration.language,
+                addons.filter(\.enabled).map(\.id).joined(separator: "|"),
+                library.continuing.map { $0.id + $0.modified }.joined(separator: "|")].joined(separator: "|")
+    }
+
+    func detectContinuingAnime() async {
+        guard storageReady else { return }
+        let owner = library.owner
+        let records = library.continuing
+        await withTaskGroup(of: Void.self) { group in
+            for worker in 0..<min(3, records.count) {
+                group.addTask { @MainActor in
+                    for index in stride(from: worker, to: records.count, by: 3) {
+                        guard !Task.isCancelled, owner == self.library.owner else { return }
+                        guard let media = records[index].media else { continue }
+                        self.animeDetection.observe(media)
+                        if records[index].raw["isAnime"] == .bool(true) || self.animeDetection.identifiers.contains(media.id) { continue }
+                        guard media.id.range(of: "^tt[0-9]{7,}$", options: .regularExpression) != nil else { continue }
+                        guard let metadata = try? await self.continuationMetadata(media), !Task.isCancelled, owner == self.library.owner else { continue }
+                        await self.animeDetection.detect(metadata)
+                    }
+                }
+            }
+        }
     }
 
     func start() async {

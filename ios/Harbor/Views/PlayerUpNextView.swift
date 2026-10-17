@@ -10,7 +10,7 @@ struct PlayerUpNextView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             Text(automatic ? "Siguiente en \(Int(remaining.isFinite ? min(300, max(0, remaining.rounded(.up))) : 0)) s" : "Siguiente episodio").font(.caption.weight(.semibold)).monospacedDigit()
-            Text(hideSpoiler ? "T\(episode.season ?? 0) · E\(episode.episode ?? 0)" : episode.name ?? episode.title ?? "Episodio \(episode.episode ?? 0)").font(.subheadline.weight(.semibold)).lineLimit(2)
+            Text(hideSpoiler ? EpisodePresentation.coordinates(episode: episode)?.caption ?? "Siguiente episodio" : episode.name ?? episode.title ?? "Episodio \(episode.listedEpisode ?? 0)").font(.subheadline.weight(.semibold)).lineLimit(2)
             HStack(spacing: 12) {
                 Button(action: play) {
                     Label { Text("Reproducir ahora") } icon: { Image("player-next-episode").resizable().scaledToFit().frame(width: 16, height: 16) }

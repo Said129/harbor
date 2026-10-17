@@ -71,12 +71,17 @@ struct StreamPickerView: View {
             .frame(width: 48, height: 48).background(ThemePreferences.shared.color("elevated").opacity(0.7), in: .circle)
             .overlay { Circle().stroke(ThemePreferences.shared.color("edge-soft"), lineWidth: 1) }.accessibilityHidden(true)
     }
+    private var presentedEpisode: Episode? {
+        guard let episode else { return nil }
+        let target = ResumeTarget(id: model.media.id, season: episode.season, episode: episode.episode, videoId: episode.id)
+        return EpisodePresentation.episode(in: model.media, target: target) ?? episode
+    }
     private var header: some View {
         VStack(alignment: .leading, spacing: 12) {
-            if let episode {
+            if let episode = presentedEpisode {
                 Text(episodeEyebrow(episode)).font(HarborTheme.font(11, weight: .semibold)).tracking(2.5)
                     .textCase(.uppercase).foregroundStyle(ThemePreferences.shared.color("ink-subtle"))
-                Text(episode.name ?? episode.title ?? "\(DesktopInterfaceText.value("Episode")) \(episode.episode ?? 0)")
+                Text(episode.name ?? episode.title ?? "\(DesktopInterfaceText.value("Episode")) \(episode.listedEpisode ?? 0)")
                     .font(HarborTheme.displayFont(34)).accessibilityIdentifier("stream-picker-title")
                 if let overview = episode.overview, !overview.isEmpty { overviewView(overview) }
             } else {
@@ -90,8 +95,8 @@ struct StreamPickerView: View {
         }.frame(maxWidth: .infinity, alignment: .leading)
     }
     private func episodeEyebrow(_ episode: Episode) -> String {
-        let season = "\(DesktopInterfaceText.value("Season")) \(episode.season ?? 1)"
-        let number = "\(DesktopInterfaceText.value("Episode")) \(String(format: "%02d", episode.episode ?? 0))"
+        let season = "\(DesktopInterfaceText.value("Season")) \(episode.listedSeason ?? 1)"
+        let number = "\(DesktopInterfaceText.value("Episode")) \(String(format: "%02d", episode.listedEpisode ?? 0))"
         return [model.media.name, season, number].joined(separator: " · ")
     }
     private func overviewView(_ text: String) -> some View {

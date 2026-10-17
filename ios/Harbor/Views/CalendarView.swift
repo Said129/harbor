@@ -49,7 +49,7 @@ struct CalendarView: View {
                             Artwork(url: event.media.poster, maxPixels: 240).frame(width: 64, height: 96).clipShape(.rect(cornerRadius: 8))
                             VStack(alignment: .leading, spacing: 8) {
                                 Text(event.media.name).font(HarborTheme.font(14, weight: .medium))
-                                if let episode = event.episode { Text("T\(episode.season ?? 0) · E\(episode.episode ?? 0) · \(episode.name ?? episode.title ?? "")").font(HarborTheme.font(12)).foregroundStyle(.secondary) }
+                                if let episode = event.episode { Text("\(EpisodePresentation.coordinates(episode: episode)?.caption ?? "") · \(episode.name ?? episode.title ?? "")").font(HarborTheme.font(12)).foregroundStyle(.secondary) }
                                 Text(event.date, style: .time).font(HarborTheme.font(12)).foregroundStyle(.secondary)
                             }.frame(maxWidth: .infinity, alignment: .leading)
                         }

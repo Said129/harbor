@@ -1,3 +1,9 @@
+# Alcance vigente desde el 17 de octubre de 2026
+
+El propietario solicita el port funcional **1:1 de Harbor Desktop 0.9.132 (Beta) para iPhone y iPad**, excluyendo Games y funciones incompatibles o sin aplicación móvil justificada. Este objetivo sustituye el alcance reducido del 6 de octubre. La [definición vigente](DESKTOP_PARITY_0_9_132.md), la [referencia exacta](desktop-reference-0.9.132.json) y el [inventario en curso](desktop-parity-0.9.132.json) gobiernan el trabajo. La build 91 queda como entrega anterior, no como finalización del nuevo objetivo.
+
+El texto siguiente conserva el historial de entregas y decisiones anteriores; sus restricciones de alcance han quedado sustituidas.
+
 # Versión universal 91 — episodios de anime
 
 La build 91 corrige las temporadas artificiales y las imágenes de episodios de anime, con Dragon Ball Super como caso público verificado. [Compilación](https://github.com/Said129/harbor/actions/runs/38822918265), fuente `77385750b1f8d7c80b34b04a8123d0a2c32725b5`. La validación reúne siete casos afectados: este seguimiento ejecutó 1 y conservó 6 aprobados con la aplicación idéntica. Las validaciones de las áreas intactas se mantienen. iOS/iPadOS 17+, IPA sin firmar. Paquete, procedencia y límites: [entrega 91](DELIVERY_2026-10-16_91.md).

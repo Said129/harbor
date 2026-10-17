@@ -162,7 +162,7 @@ private struct PlayerEpisodeCard: View {
     @State private var hasArtwork = false
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     private var preferences: InterfacePreferences { .shared }
-    private var fallbackTitle: String { DesktopInterfaceText.value("Episode {n}").replacingOccurrences(of: "{n}", with: String(episode.episode ?? 0)) }
+    private var fallbackTitle: String { DesktopInterfaceText.value("Episode {n}").replacingOccurrences(of: "{n}", with: String(episode.listedEpisode ?? 0)) }
     private var title: String { (episode.name ?? episode.title).flatMap { $0.isEmpty ? nil : $0 } ?? fallbackTitle }
     private var hidesTitle: Bool { hidden && preferences.spoilerHideTitles }
     private var hidesDescription: Bool { hidden && preferences.spoilerHideDescriptions }

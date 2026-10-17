@@ -20,6 +20,7 @@ on:
             reading-followup,
             reading-final,
             reading-tablet-final,
+            continuation-parity,
             anime-episodes,
             anime-episodes-ui,
             stable-tablet-ui,
@@ -95,6 +96,11 @@ jobs:
       HARBOR_PREVIOUS_SOURCE: ${{ inputs.source_sha }}
     steps:
       - uses: actions/checkout@v6
+      - name: Preserve unrelated build 91 validation for Desktop continuity parity
+        if: ${{ inputs.validation_scope == 'continuation-parity' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 scripts/ios/verify-continuation-parity.py --source "$HARBOR_PREVIOUS_SOURCE" --output ios/build/preserved-continuation-parity.json
       - name: Preserve approved anime metadata and native checks before UI follow-up
         if: ${{ inputs.validation_scope == 'anime-episodes-ui' }}
         env:
@@ -134,7 +140,7 @@ jobs:
         if: ${{ (inputs.validation_scope == 'sources-search-subtitles' || inputs.validation_scope == 'mobile-sources-subtitles' || inputs.validation_scope == 'stable-mobile') && inputs.native_test_selection != '' }}
         run: python3 scripts/ios/select-feature-tests.py --selection "$HARBOR_NATIVE_SELECTION" --output ios/build/feature-native-selection.txt
       - name: Check reserved feature delivery draft before compiling
-        if: ${{ (inputs.validation_scope == 'sources-search-subtitles' || inputs.validation_scope == 'mobile-sources-subtitles' || inputs.validation_scope == 'stable-mobile' || inputs.validation_scope == 'stable-tablet-ui' || inputs.validation_scope == 'stable-tablet-rotation' || inputs.validation_scope == 'reading-intro' || inputs.validation_scope == 'reading-followup' || inputs.validation_scope == 'reading-final' || inputs.validation_scope == 'reading-tablet-final' || inputs.validation_scope == 'anime-episodes' || inputs.validation_scope == 'anime-episodes-ui') && inputs.save_draft_build == true }}
+        if: ${{ (inputs.validation_scope == 'sources-search-subtitles' || inputs.validation_scope == 'mobile-sources-subtitles' || inputs.validation_scope == 'stable-mobile' || inputs.validation_scope == 'stable-tablet-ui' || inputs.validation_scope == 'stable-tablet-rotation' || inputs.validation_scope == 'reading-intro' || inputs.validation_scope == 'reading-followup' || inputs.validation_scope == 'reading-final' || inputs.validation_scope == 'reading-tablet-final' || inputs.validation_scope == 'anime-episodes' || inputs.validation_scope == 'anime-episodes-ui' || inputs.validation_scope == 'continuation-parity') && inputs.save_draft_build == true }}
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -166,7 +172,7 @@ jobs:
             harbor-core
             harbor-ios-bridge
       - name: Verify shared Rust on the Apple build host
-        if: ${{ inputs.validation_scope != 'affected' && inputs.validation_scope != 'sources-search-subtitles' && inputs.validation_scope != 'mobile-sources-subtitles' && inputs.validation_scope != 'stable-mobile' && inputs.validation_scope != 'stable-tablet-ui' && inputs.validation_scope != 'stable-tablet-rotation' && inputs.validation_scope != 'reading-intro' && inputs.validation_scope != 'reading-followup' && inputs.validation_scope != 'reading-final' && inputs.validation_scope != 'reading-tablet-final' && inputs.validation_scope != 'anime-episodes' && inputs.validation_scope != 'anime-episodes-ui' }}
+        if: ${{ inputs.validation_scope != 'affected' && inputs.validation_scope != 'sources-search-subtitles' && inputs.validation_scope != 'mobile-sources-subtitles' && inputs.validation_scope != 'stable-mobile' && inputs.validation_scope != 'stable-tablet-ui' && inputs.validation_scope != 'stable-tablet-rotation' && inputs.validation_scope != 'reading-intro' && inputs.validation_scope != 'reading-followup' && inputs.validation_scope != 'reading-final' && inputs.validation_scope != 'reading-tablet-final' && inputs.validation_scope != 'anime-episodes' && inputs.validation_scope != 'anime-episodes-ui' && inputs.validation_scope != 'continuation-parity' }}
         shell: bash
         run: |
           set -euo pipefail
@@ -234,7 +240,9 @@ jobs:
         run: |
           set -euo pipefail
           selection=(-only-testing:HarborTests)
-          if [[ "${{ inputs.validation_scope }}" == "anime-episodes" ]]; then
+          if [[ "${{ inputs.validation_scope }}" == "continuation-parity" ]]; then
+            selection=(-only-testing:HarborTests/ContinuationParityTests)
+          elif [[ "${{ inputs.validation_scope }}" == "anime-episodes" ]]; then
             selection=(-only-testing:HarborTests/AnimeEpisodeTests)
           elif [[ "${{ inputs.validation_scope }}" == "reading-tablet-final" ]]; then
             selection=(-only-testing:HarborTests/ReadingUpdatesTests/testPrepareOrdinaryReadingShelfUIFixtures)
@@ -278,7 +286,9 @@ jobs:
         run: |
           set -euo pipefail
           selection=(-only-testing:HarborIntegrationTests)
-          if [[ "${{ inputs.validation_scope }}" == "anime-episodes" ]]; then
+          if [[ "${{ inputs.validation_scope }}" == "continuation-parity" ]]; then
+            selection=(-only-testing:HarborIntegrationTests/ContinuationParityLiveTests)
+          elif [[ "${{ inputs.validation_scope }}" == "anime-episodes" ]]; then
             selection=(-only-testing:HarborIntegrationTests/AnimeEpisodeLiveTests)
           elif [[ "${{ inputs.validation_scope }}" == "reading-intro" || "${{ inputs.validation_scope }}" == "reading-followup" ]]; then
             selection=(-only-testing:HarborIntegrationTests/ReadingLiveTests)
@@ -318,7 +328,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          if [[ "${{ inputs.validation_scope }}" == "reading-tablet-final" || "${{ inputs.validation_scope }}" == "anime-episodes" ]]; then
+          if [[ "${{ inputs.validation_scope }}" == "reading-tablet-final" || "${{ inputs.validation_scope }}" == "anime-episodes" || "${{ inputs.validation_scope }}" == "continuation-parity" ]]; then
             xcrun simctl terminate "$IOS_SIMULATOR" site.harbor.iphone || true
             exit 0
           fi
@@ -346,7 +356,9 @@ jobs:
             trap finish_rotation_recording EXIT
           fi
           selection=(-only-testing:HarborUITests)
-          if [[ "${{ inputs.validation_scope }}" == "anime-episodes" || "${{ inputs.validation_scope }}" == "anime-episodes-ui" ]]; then
+          if [[ "${{ inputs.validation_scope }}" == "continuation-parity" ]]; then
+            selection=(-only-testing:HarborUITests/ContinuationParityNavigationTests)
+          elif [[ "${{ inputs.validation_scope }}" == "anime-episodes" || "${{ inputs.validation_scope }}" == "anime-episodes-ui" ]]; then
             selection=(-only-testing:HarborUITests/AnimeEpisodesNavigationTests)
           elif [[ "${{ inputs.validation_scope }}" == "reading-tablet-final" ]]; then
             selection=(-only-testing:HarborUITests/ReadingNavigationTests/testLocalShelvesSearchSortCoversAndPDFMangaReader)
@@ -459,6 +471,7 @@ jobs:
           if [[ -f ios/build/preserved-mobile-validation.json ]]; then
             cp ios/build/preserved-mobile-validation.json ios/build/live-attachments/
           fi
+          if [[ -f ios/build/preserved-continuation-parity.json ]]; then cp ios/build/preserved-continuation-parity.json ios/build/live-attachments/; fi
           for preserved in preserved-reading-validation preserved-reading-final preserved-reading-tablet preserved-anime-validation preserved-anime-ui; do
             if [[ -f "ios/build/$preserved.json" ]]; then cp "ios/build/$preserved.json" ios/build/live-attachments/; fi
           done

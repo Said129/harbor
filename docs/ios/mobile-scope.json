@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-14",
+  "updatedAt": "2026-10-17",
   "authority": "Explicit scope change by the repository owner in the current conversation",
-  "status": "delivered_with_physical_and_private_verification_pending",
-  "objective": "Create a native iPhone Harbor faithful to Desktop beta 0.9.130 identity and selected mobile functions. Preserve everything implemented and finish native increments already started. For remaining work implement essential functions and useful mobile settings, without requiring every adaptable Desktop option.",
-  "supersedes": "The earlier active goal instruction requiring every adaptable Desktop feature and setting. This scope override governs ongoing work; it does not mark that work complete.",
-  "scopeDocument": "docs/ios/MOBILE_SCOPE.md",
-  "referenceVersion": "0.9.130",
+  "status": "in_progress_full_desktop_parity",
+  "objective": "Complete a native iPhone/iPad port with functional 1:1 equivalence to Harbor Desktop 0.9.132 Beta. Exclude Games by explicit owner instruction; adapt mobile interactions and document concrete reasons for other incompatible or inapplicable PC functions. Preserve implemented features and approved unchanged tests; finish outstanding behaviors and validate affected increments.",
+  "supersedes": "The narrower selected-mobile-features scope established on 2026-10-06.",
+  "scopeDocument": "docs/ios/DESKTOP_PARITY_0_9_132.md",
+  "referenceVersion": "0.9.132",
   "preservationCheckpoint": "4f01b81476a1a41a57a282e18652b81b51756c58",
   "preservedBetaImplementations": [
     "Home hero and real catalogs",
@@ -820,5 +820,14 @@
     "reviewedNewImages": 3,
     "settingsSync": "Stremio addon/configuration URLs; general preferences remain local",
     "physicalConfirmationPending": true
-  }
+  },
+  "previousScope": {
+    "updatedAt": "2026-10-14",
+    "status": "delivered_with_physical_and_private_verification_pending",
+    "objective": "Create a native iPhone Harbor faithful to Desktop beta 0.9.130 identity and selected mobile functions. Preserve everything implemented and finish native increments already started. For remaining work implement essential functions and useful mobile settings, without requiring every adaptable Desktop option.",
+    "referenceVersion": "0.9.130"
+  },
+  "referenceCommit": "0834340cec5531650bfe78cd628628702e636987",
+  "excludedSections": ["games"],
+  "inventory": "docs/ios/desktop-parity-0.9.132.json"
 }

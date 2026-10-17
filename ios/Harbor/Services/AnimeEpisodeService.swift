@@ -11,6 +11,16 @@ actor AnimeEpisodeService {
     func episodes(for media: Media) async -> [Episode] {
         let original = media.videos ?? []
         guard media.episodic, !original.isEmpty, let query = Self.query(media) else { return original }
+        guard let supplement = await supplement(for: query), !Task.isCancelled else { return original }
+        return Self.applying(supplement.mapping, canonical: supplement.canonical, to: original, animeIdentity: AnimeService.isAnime(media.id))
+    }
+
+    func hasAnimeIdentity(for media: Media) async -> Bool {
+        guard let query = Self.query(media, allowUnknown: true) else { return false }
+        return await supplement(for: query) != nil
+    }
+
+    private func supplement(for query: String) async -> Supplement? {
         let supplement: Supplement?
         if let entry = cache[query], entry.expires > Date() { supplement = entry.value }
         else if let task = pending[query] { supplement = await task.value }
@@ -24,15 +34,14 @@ actor AnimeEpisodeService {
                 cache[query] = Entry(value: supplement, expires: Date().addingTimeInterval(1800))
             }
         }
-        guard !Task.isCancelled, let supplement else { return original }
-        return Self.applying(supplement.mapping, canonical: supplement.canonical, to: original, animeIdentity: AnimeService.isAnime(media.id))
+        return supplement
     }
 
-    private static func query(_ media: Media) -> String? {
+    private static func query(_ media: Media, allowUnknown: Bool = false) -> String? {
         let providers = ["kitsu": "kitsu_id", "mal": "mal_id", "anilist": "anilist_id", "anidb": "anidb_id"]
         let components = media.id.split(separator: ":")
         if components.count == 2, let key = providers[String(components[0])], let number = Int64(components[1]), number > 0 { return "\(key)=\(number)" }
-        guard media.type == "anime" || media.genres?.contains(where: { ["anime", "animation"].contains($0.lowercased()) }) == true,
+        guard allowUnknown || media.type == "anime" || media.genres?.contains(where: { ["anime", "animation"].contains($0.lowercased()) }) == true,
               media.id.range(of: "^tt[0-9]{7,}$", options: .regularExpression) != nil else { return nil }
         return "imdb_id=\(media.id)"
     }

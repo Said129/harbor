@@ -123,12 +123,7 @@ struct ContinueWatching: View {
     var kind: String? = nil
     var title = "Continuar viendo"
     private var items: [LibraryRecord] {
-        app.library.continuing.filter { record in
-            guard let kind else { return true }
-            guard let media = record.media else { return false }
-            if kind == "anime" { return AnimeService.isAnime(media.id) }
-            return media.type == kind && !AnimeService.isAnime(media.id)
-        }
+        app.library.continuing.filter { ContinueWatchingSelection.includes($0, kind: kind, detectedAnime: app.animeDetection.identifiers) }
     }
     var body: some View {
         if !items.isEmpty || app.library.presentationError != nil {
@@ -165,7 +160,7 @@ private struct ContinueWatchingCard: View {
             NavigationLink { DetailView(media: detailed, app: app, playImmediately: true, metadataLoaded: hydrated != nil) } label: {
                 ContinueWatchingArtwork(record: record, media: detailed, presentation: presentation)
             }.accessibilityIdentifier("continue-watching-resume").accessibilityLabel("Continuar viendo \(detailed.name)")
-                .accessibilityValue(presentation.upNext ? DesktopInterfaceText.value("Up Next") : "\(record.playbackCaption ?? "") · \(Int(presentation.progress * 100)) por ciento")
+                .accessibilityValue(presentation.upNext ? DesktopInterfaceText.value("Up Next") : "\(presentation.coordinates(record: record, media: detailed)?.caption ?? record.playbackCaption ?? "") · \(Int(presentation.progress * 100)) por ciento")
                 .overlay(alignment: .topTrailing) {
                     Button { app.library.hideContinuing(record, owner: app.library.owner) } label: {
                         Image(systemName: "xmark").font(.system(size: 12, weight: .bold))
@@ -184,12 +179,17 @@ private struct ContinueWatchingCard: View {
         }.frame(width: 260, alignment: .leading).foregroundStyle(HarborTheme.ink).buttonStyle(.plain)
             .contextMenu { LibraryActions(app: app, record: record, media: detailed, owner: app.library.owner) }
             .onChange(of: record.raw, initial: true) { _, _ in updatePresentation() }
-            .task {
+            .task(id: record.raw) {
                 let owner = app.library.owner
                 guard var result = try? await app.continuationMetadata(media), !Task.isCancelled, owner == app.library.owner else { return }
                 // Artwork and episodes can be enriched without changing the
                 // cloud library identity used for resume and dismissal.
                 result.id = media.id
+                hydrated = result
+                updatePresentation()
+                let episodes = await AnimeEpisodeService.shared.episodes(for: result)
+                guard !Task.isCancelled, owner == app.library.owner else { return }
+                result.videos = episodes
                 hydrated = result
                 updatePresentation()
             }
@@ -205,10 +205,8 @@ private struct ContinueWatchingArtwork: View {
     let media: Media
     let presentation: ContinueWatchingPresentation
     private var episodeCaption: String? {
-        let season = presentation.episode?.season ?? record.playbackCoordinates.season
-        let episode = presentation.episode?.episode ?? record.playbackCoordinates.episode
-        guard media.episodic, let season, let episode else { return nil }
-        return AnimeService.isAnime(media.id) && season == 1 ? "Ep \(episode)" : "S\(season)E\(episode)"
+        guard media.episodic, let coordinates = presentation.coordinates(record: record, media: media) else { return nil }
+        return AnimeService.isAnime(media.id) && coordinates.season == 1 ? "Ep \(coordinates.episode)" : coordinates.compactCaption
     }
     private var remainingCaption: String? {
         let duration = record.raw["state"]["duration"].numericValue ?? 0
