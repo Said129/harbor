@@ -16,6 +16,8 @@ p.add_argument('--working-tree', action='store_true', help='Local static review 
 a = p.parse_args()
 assert not (a.working_tree and os.environ.get('GITHUB_ACTIONS')), 'CI must verify committed source and prior results'
 previous = 'eeb006f5747ace59a65e8191104eaaeed38e15b2'
+if subprocess.run(['git', 'cat-file', '-e', previous + '^{commit}'], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL).returncode:
+    subprocess.run(['git', 'fetch', '--no-tags', '--depth=1', 'origin', previous], check=True)
 codes = ['en', 'ar', 'zh', 'fr', 'de', 'hi', 'id', 'it', 'ja', 'ko', 'pl', 'pt', 'ru', 'es', 'tr', 'vi']
 allowed = {
     'ios/Harbor/HarborApp.swift', 'ios/Harbor/NativeInterfaceTranslations.json',
