@@ -129,7 +129,7 @@ struct StreamingSyncRecord: Codable, Sendable {
             let selection = try codec(parked.value).selection
             try preferences.apply(selection, to: scope)
             try enqueue(selection, force: true)
-        } catch { error = "Could not restore your services. The saved version is kept." }
+        } catch { self.error = "Could not restore your services. The saved version is kept." }
     }
     private func validate(_ record: StreamingSyncRecord, key: String) throws {
         guard record.version == 1 else { throw HarborError(code: "streaming-sync-store") }
