@@ -53,6 +53,7 @@ final class HarborProfileSync {
         let ids = Set(HarborSection.allCases.map(\.rawValue)).subtracting(["search"])
         return HarborNavigationSync(owner: self.owner, preferences: preferences.navigation, defaultOrder: preferences.defaultNavigationOrder, knownIDs: ids)
     }()
+    @ObservationIgnored lazy var services = HarborStreamingSync(owner: owner, preferences: StreamingPreferences.forOwner(owner))
     private weak var profile: ProfilePreferences?
     private var stored = Stored()
     private var generation = 0
@@ -66,7 +67,7 @@ final class HarborProfileSync {
     var username: String? { stored.session?.username }
     var accountID: String? { stored.session?.id }
     var handle: String? { stored.session?.handle }
-    var hasPendingChanges: Bool { stored.pending != nil || navigation.hasPendingChanges }
+    var hasPendingChanges: Bool { stored.pending != nil || navigation.hasPendingChanges || services.hasPendingChanges }
     private init(owner: String, profile: ProfilePreferences) {
         self.owner = owner
         key = "harbor-identity-" + EBookShelf.hash(owner); self.profile = profile
@@ -95,6 +96,8 @@ final class HarborProfileSync {
             try persist(next); stored = next; selectedID = nil; hydrated = false
             if changedAccount {
                 navigation.unbind()
+                services.unbind()
+                StreamingPreferences.forOwner(owner).bind(.local(owner: owner))
                 if InterfacePreferences.shared.navigation.scope?.owner == owner { InterfacePreferences.shared.navigation.bind(.local(owner: owner)) }
             }
             try await synchronize(scope: scope)
@@ -110,6 +113,8 @@ final class HarborProfileSync {
             let next = Stored(session: nil, pending: stored.pending, parked: stored.parked); try persist(next); stored = next
             hydrated = false; selectedID = nil; error = nil
             navigation.unbind()
+            services.unbind()
+            StreamingPreferences.forOwner(owner).bind(.local(owner: owner))
             if InterfacePreferences.shared.navigation.scope?.owner == owner { InterfacePreferences.shared.navigation.bind(.local(owner: owner)) }
         } catch { self.error = "No se pudo cerrar la sesión. Vuelve a intentarlo."; return }
         if let token { _ = try? await HTTPClient().harbor("/auth/logout", method: "POST", body: .object([:]), token: token) }
@@ -204,9 +209,12 @@ final class HarborProfileSync {
         guard let final = roster.profile(selectedID ?? id) else { throw HarborError(code: "profile-sync-target") }
         try profile?.adopt(final, accountID: session.id)
         navigation.requestSync = { [weak self] in self?.scheduleSync() }
-        try await navigation.synchronize(state: state, account: session.id, profile: final) { [weak self] body in
+        services.requestSync = { [weak self] in self?.scheduleSync() }
+        let send: @MainActor (JSONValue) async throws -> JSONValue = { [weak self] body in
             guard let self, scope == self.generation, self.stored.session?.id == session.id else { throw HarborError(code: "account-changed") }
             return try await self.request("/sync/v1/push", method: "POST", body: body, scope: scope)
         }
+        try await navigation.synchronize(state: state, account: session.id, profile: final, send: send)
+        try await services.synchronize(state: state, account: session.id, profile: final, send: send)
     }
 }

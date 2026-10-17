@@ -14,4 +14,6 @@ Se prepararon cinco métodos de modelo y dos recorridos reales de interfaz (iPho
 
 La validación preparada ejecutará esos siete métodos, guardará seis capturas y dos grabaciones de los recorridos para revisar los estados y movimientos reales. Conservará los resultados del asistente inicial únicamente cuando su ejecución haya terminado con éxito. No repetirá las pruebas anteriores de áreas intactas.
 
+El navegador y su sincronización se comprobarán juntos en `services-complete`: 24 ejecuciones afectadas, diez capturas y dos grabaciones, con una sola compilación. Los siete casos del navegador forman parte de ese total. Las dos revisiones de código intermedias se etiquetan como revisiones de fuente; no se presentan como ejecuciones previas aprobadas. La referencia validada que se conserva es el asistente inicial.
+
 El mosaico específico de servicios y toda su personalización dentro del inicio de Desktop siguen pendientes del bloque de inicio y sincronización. Este navegador no completa por sí solo el port 1:1 ni la sincronización de todos los ajustes.

@@ -108,6 +108,7 @@
 "Anime of the Year" = "Anime de l’année";
 "Anime popular" = "Anime populaires";
 "Another device changed navigation. Your previous version is saved on this device." = "Another device changed navigation. Your previous version is saved on this device.";
+"Another device changed services. Your previous version is saved on this device." = "Un autre appareil a modifié les services. Votre version précédente est conservée sur cet appareil.";
 "Anterior" = "Précédent";
 "Anular estilos integrados" = "Remplacer les styles intégrés";
 "Análisis detenido para priorizar la reproducción. Puedes reintentarlo cuando termine de cargar." = "Analysis stopped to prioritize playback. Retry after buffering finishes.";
@@ -377,6 +378,7 @@
 "Could not measure storage. Try again." = "Could not measure storage. Try again.";
 "Could not open book" = "Could not open book";
 "Could not restore your navigation. The saved version is kept." = "Could not restore your navigation. The saved version is kept.";
+"Could not restore your services. The saved version is kept." = "Impossible de restaurer vos services. La version enregistrée est conservée.";
 "Could not save navigation settings. Your previous settings are kept." = "Could not save navigation settings. Your previous settings are kept.";
 "Could not save streaming preferences. Your previous settings are kept." = "Could not save streaming preferences. Your previous settings are kept.";
 "Could not save your choices. Try again." = "Could not save your choices. Try again.";
@@ -1303,6 +1305,7 @@
 "Series populares" = "Séries populaires";
 "Serif" = "Avec empattements";
 "Services" = "Services";
+"Services changes waiting to sync" = "Modifications des services en attente de synchronisation";
 "Servidor Xtream" = "Xtream server";
 "Sesión iniciada en Stremio" = "Connecté à Stremio";
 "Settings" = "Paramètres";
@@ -1660,6 +1663,7 @@
 "Your lists" = "Your lists";
 "Your navigation is saved locally. Cloud sync will retry." = "Your navigation is saved locally. Cloud sync will retry.";
 "Your profile" = "Votre profil";
+"Your services are saved locally. Cloud sync will retry." = "Vos services sont enregistrés sur cet appareil. La synchronisation sera réessayée.";
 "Yours" = "Les vôtres";
 "Zoom" = "Zoom";
 "anime" = "animé";

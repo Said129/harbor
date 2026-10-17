@@ -120,6 +120,7 @@ final class AppModel {
 
     private func setProgressOwner(_ owner: String) async {
         InterfacePreferences.shared.navigation.bind(.local(owner: owner))
+        StreamingPreferences.forOwner(owner).bind(.local(owner: owner))
         resume = ResumeStore(owner: owner)
         await reloadProgress()
     }
@@ -197,7 +198,11 @@ final class AppModel {
         // requests succeed. A rejected login/sync preserves the previous account.
         try keychain.write(next, key: "account.v1")
         let previousOwner = savedAccount?.session.user.id ?? "guest"
-        if previousOwner != session.user.id { InterfacePreferences.shared.navigation.bind(.local(owner: session.user.id)) }
+        if previousOwner != session.user.id {
+            StreamingPreferences.forOwner(previousOwner).suspend()
+            InterfacePreferences.shared.navigation.bind(.local(owner: session.user.id))
+            StreamingPreferences.forOwner(session.user.id).bind(.local(owner: session.user.id))
+        }
         savedAccount = next
         addons = collection.addons
         Task { await library.setSession(session) }
@@ -261,7 +266,9 @@ final class AppModel {
         if let saved = try keychain.read("addons.v1", as: [Addon].self) { guest = saved }
         else { guest = [try await service.install(HarborService.cinemetaManifest)] }
         try keychain.remove("account.v1")
+        StreamingPreferences.forOwner(savedAccount?.session.user.id ?? "guest").suspend()
         InterfacePreferences.shared.navigation.bind(.local(owner: "guest"))
+        StreamingPreferences.forOwner("guest").bind(.local(owner: "guest"))
         savedAccount = nil; addons = guest; rows = []; heroes = []; warnings = []; accountError = nil
         homeGeneration += 1; pages = [:]; home.reset()
         Task { await library.setSession(nil) }

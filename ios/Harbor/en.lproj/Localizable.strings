@@ -87,6 +87,7 @@
 "Anime en tendencia" = "Trending Anime";
 "Anime popular" = "Popular Anime";
 "Another device changed navigation. Your previous version is saved on this device." = "Another device changed navigation. Your previous version is saved on this device.";
+"Another device changed services. Your previous version is saved on this device." = "Another device changed services. Your previous version is saved on this device.";
 "Anterior" = "Previous";
 "Anular estilos integrados" = "Override embedded styles";
 "Análisis detenido para priorizar la reproducción. Puedes reintentarlo cuando termine de cargar." = "Analysis stopped to prioritize playback. Retry after buffering finishes.";
@@ -308,6 +309,7 @@
 "Could not measure storage. Try again." = "Could not measure storage. Try again.";
 "Could not open book" = "Could not open book";
 "Could not restore your navigation. The saved version is kept." = "Could not restore your navigation. The saved version is kept.";
+"Could not restore your services. The saved version is kept." = "Could not restore your services. The saved version is kept.";
 "Could not save navigation settings. Your previous settings are kept." = "Could not save navigation settings. Your previous settings are kept.";
 "Could not save streaming preferences. Your previous settings are kept." = "Could not save streaming preferences. Your previous settings are kept.";
 "Could not save your choices. Try again." = "Could not save your choices. Try again.";
@@ -1091,6 +1093,7 @@
 "Series para esa parte del día que de verdad esperas con ganas." = "Series for the part of the day you actually look forward to.";
 "Series populares" = "Popular Series";
 "Serif" = "Serif";
+"Services changes waiting to sync" = "Services changes waiting to sync";
 "Servidor Xtream" = "Xtream server";
 "Sesión iniciada en Stremio" = "Signed in to Stremio";
 "Settings" = "Settings";
@@ -1380,6 +1383,7 @@
 "Your lists" = "Your lists";
 "Your navigation is saved locally. Cloud sync will retry." = "Your navigation is saved locally. Cloud sync will retry.";
 "Your profile" = "Your profile";
+"Your services are saved locally. Cloud sync will retry." = "Your services are saved locally. Cloud sync will retry.";
 "Zoom" = "Zoom";
 "code" = "code";
 "eBook" = "eBook";

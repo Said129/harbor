@@ -13,19 +13,26 @@ import urllib.request
 p = argparse.ArgumentParser(description=__doc__)
 p.add_argument('--output', type=Path, required=True)
 p.add_argument('--working-tree', action='store_true')
+p.add_argument('--source-review-only', action='store_true', help='Review an intermediate source slice without claiming prior Apple execution')
 a = p.parse_args()
 assert not (a.working_tree and os.environ.get('GITHUB_ACTIONS'))
 previous = os.environ.get('HARBOR_PREVIOUS_SOURCE') or 'e9592c4b18eaea6698a7f5dac5de02a0822fd4b2'
+current = os.environ.get('HARBOR_CURRENT_SOURCE', 'HEAD')
+assert current == 'HEAD' or re.fullmatch('[a-f0-9]{40}', current)
+assert not a.working_tree or current == 'HEAD'
 assert re.fullmatch('[a-f0-9]{40}', previous)
 if subprocess.run(['git', 'cat-file', '-e', previous + '^{commit}'], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL).returncode:
     subprocess.run(['git', 'fetch', '--no-tags', '--depth=1', 'origin', previous], check=True)
+if current != 'HEAD' and subprocess.run(['git', 'cat-file', '-e', current + '^{commit}'], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL).returncode:
+    subprocess.run(['git', 'fetch', '--no-tags', '--depth=1', 'origin', current], check=True)
 
 def blob(ref, name):
     if a.working_tree and ref == 'HEAD': return Path(name).read_text('utf-8').replace('\r\n', '\n')
+    if ref == 'HEAD': ref = current
     return subprocess.check_output(['git', 'show', ref + ':' + name]).decode('utf-8')
 
 def changes(roots):
-    command = ['git', 'diff', '--name-only', previous] + ([] if a.working_tree else ['HEAD']) + ['--', *roots]
+    command = ['git', 'diff', '--name-only', previous] + ([] if a.working_tree else [current]) + ['--', *roots]
     result = set(subprocess.check_output(command, text=True).splitlines())
     if a.working_tree: result.update(subprocess.check_output(['git', 'ls-files', '--others', '--exclude-standard', '--', *roots], text=True).splitlines())
     return result
@@ -77,10 +84,11 @@ assert changes(['ios/HarborTests', 'ios/HarborIntegrationTests', 'ios/HarborUITe
 assert sum(len(re.findall(r'\bfunc test\w+\(', blob('HEAD', name))) for name in tests) == 7
 proof = dict(source=os.environ.get('GITHUB_SHA'), previous_source=previous, scope='service-browser',
              local_source_review_only=a.working_tree, prior_evidence_verified=False, expected_actual_executions=7,
+             intermediate_source_review_only=a.source_review_only,
              native_methods=5, ui_methods=2, expected_new_images=6, ipa_created=False,
              required_recordings=['service-iphone.mp4', 'service-ipad.mp4'],
              personal_tmdb_account_test=False, full_desktop_parity_complete=False, physical_device_validation=False)
-if not a.working_tree:
+if not a.working_tree and not a.source_review_only:
     api = 'https://api.github.com/repos/' + os.environ['GITHUB_REPOSITORY']
     headers = {'Accept': 'application/vnd.github+json', 'Authorization': 'Bearer ' + os.environ['GH_TOKEN'], 'User-Agent': 'Harbor-service-browser-validation'}
     def get(path):
@@ -106,4 +114,4 @@ if not a.working_tree:
     proof.update(prior_evidence_verified=True, preserved_setup_run=run['id'], preserved_actual_cases=['/'.join(row[:2]) for row in outcomes], previous_job_log_sha256=hashlib.sha256(data).hexdigest())
 a.output.parent.mkdir(parents=True, exist_ok=True)
 a.output.write_text(json.dumps(proof, indent=2) + '\n', 'utf-8')
-print('Service browser source scope reviewed; ' + ('Apple validation pending.' if a.working_tree else 'actual approved setup outcomes preserved.'))
+print('Service browser source scope reviewed; ' + ('Apple validation pending.' if a.working_tree or a.source_review_only else 'actual approved setup outcomes preserved.'))

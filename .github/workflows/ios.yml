@@ -30,6 +30,8 @@ on:
             navigation-sync,
             onboarding-desktop,
             service-browser,
+            streaming-sync,
+            services-complete,
             continuation-sendable,
             anime-episodes,
             anime-episodes-ui,
@@ -107,6 +109,16 @@ jobs:
       HARBOR_VALIDATION_SCOPE: ${{ inputs.validation_scope }}
     steps:
       - uses: actions/checkout@v6
+      - name: Preserve actual setup while reviewing both new service slices
+        if: ${{ inputs.validation_scope == 'services-complete' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 scripts/ios/verify-services-complete.py --output ios/build/preserved-services-complete.json
+      - name: Preserve accepted browser and account behavior before service synchronization
+        if: ${{ inputs.validation_scope == 'streaming-sync' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 scripts/ios/verify-streaming-sync.py --output ios/build/preserved-streaming-sync.json
       - name: Preserve approved setup before the full service browser
         if: ${{ inputs.validation_scope == 'service-browser' }}
         env:
@@ -208,7 +220,7 @@ jobs:
             harbor-core
             harbor-ios-bridge
       - name: Verify shared Rust on the Apple build host
-        if: ${{ inputs.validation_scope != 'affected' && inputs.validation_scope != 'sources-search-subtitles' && inputs.validation_scope != 'mobile-sources-subtitles' && inputs.validation_scope != 'stable-mobile' && inputs.validation_scope != 'stable-tablet-ui' && inputs.validation_scope != 'stable-tablet-rotation' && inputs.validation_scope != 'reading-intro' && inputs.validation_scope != 'reading-followup' && inputs.validation_scope != 'reading-final' && inputs.validation_scope != 'reading-tablet-final' && inputs.validation_scope != 'anime-episodes' && inputs.validation_scope != 'anime-episodes-ui' && inputs.validation_scope != 'continuation-parity' && inputs.validation_scope != 'language-reference' && inputs.validation_scope != 'system-maintenance' && inputs.validation_scope != 'navigation-sync' && inputs.validation_scope != 'onboarding-desktop' && inputs.validation_scope != 'service-browser' }}
+        if: ${{ inputs.validation_scope != 'affected' && inputs.validation_scope != 'sources-search-subtitles' && inputs.validation_scope != 'mobile-sources-subtitles' && inputs.validation_scope != 'stable-mobile' && inputs.validation_scope != 'stable-tablet-ui' && inputs.validation_scope != 'stable-tablet-rotation' && inputs.validation_scope != 'reading-intro' && inputs.validation_scope != 'reading-followup' && inputs.validation_scope != 'reading-final' && inputs.validation_scope != 'reading-tablet-final' && inputs.validation_scope != 'anime-episodes' && inputs.validation_scope != 'anime-episodes-ui' && inputs.validation_scope != 'continuation-parity' && inputs.validation_scope != 'language-reference' && inputs.validation_scope != 'system-maintenance' && inputs.validation_scope != 'navigation-sync' && inputs.validation_scope != 'onboarding-desktop' && inputs.validation_scope != 'service-browser' && inputs.validation_scope != 'streaming-sync' && inputs.validation_scope != 'services-complete' }}
         shell: bash
         run: |
           set -euo pipefail
@@ -269,7 +281,7 @@ jobs:
             gh release create "iphone-compiler-evidence-$GITHUB_RUN_ID" ios/build/iphone-compiler-evidence.zip --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" --draft --prerelease --title "iPhone compiler evidence $GITHUB_RUN_ID" --notes "Public build diagnostics only. No private account, configured addon URL or installable app."
           fi
       - name: Prepare a clean host for isolated setup model tests
-        if: ${{ inputs.validation_scope == 'onboarding-desktop' || inputs.validation_scope == 'service-browser' }}
+        if: ${{ inputs.validation_scope == 'onboarding-desktop' || inputs.validation_scope == 'service-browser' || inputs.validation_scope == 'streaming-sync' || inputs.validation_scope == 'services-complete' }}
         timeout-minutes: 8
         shell: bash
         run: |
@@ -288,7 +300,11 @@ jobs:
         run: |
           set -euo pipefail
           selection=(-only-testing:HarborTests)
-          if [[ "${{ inputs.validation_scope }}" == "service-browser" ]]; then
+          if [[ "${{ inputs.validation_scope }}" == "services-complete" ]]; then
+            selection=(-only-testing:HarborTests/ServiceCatalogTests -only-testing:HarborTests/StreamingSyncTests -only-testing:HarborTests/StreamingPreferencesTests/testOwnerIsolationPersistenceAndFailedWritesKeepThePublishedSelection -only-testing:HarborTests/StreamingPreferencesTests/testUnreadablePreferencesCannotBeOverwrittenByFallbackDefaults)
+          elif [[ "${{ inputs.validation_scope }}" == "streaming-sync" ]]; then
+            selection=(-only-testing:HarborTests/StreamingSyncTests -only-testing:HarborTests/StreamingPreferencesTests/testOwnerIsolationPersistenceAndFailedWritesKeepThePublishedSelection -only-testing:HarborTests/StreamingPreferencesTests/testUnreadablePreferencesCannotBeOverwrittenByFallbackDefaults)
+          elif [[ "${{ inputs.validation_scope }}" == "service-browser" ]]; then
             selection=(-only-testing:HarborTests/ServiceCatalogTests)
           elif [[ "${{ inputs.validation_scope }}" == "onboarding-desktop" ]]; then
             selection=(-only-testing:HarborTests/OnboardingContentTests -only-testing:HarborTests/StreamingPreferencesTests)
@@ -335,7 +351,7 @@ jobs:
           gh release create "iphone-native-render-evidence-$GITHUB_RUN_ID" ios/build/iphone-native-render-evidence.zip --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" --draft --prerelease --title "iPhone native test evidence $GITHUB_RUN_ID" --notes "Offline native test attachments, logs and crash diagnostics. No private account, configured addon URL or installable app."
       - name: Run real addon services on iPhone simulator
         id: live_services
-        if: ${{ inputs.run_live_integration == true && inputs.validation_scope != 'language-reference' && inputs.validation_scope != 'system-maintenance' && inputs.validation_scope != 'navigation-sync' && inputs.validation_scope != 'service-browser' && inputs.validation_scope != 'anime-episodes-ui' && inputs.validation_scope != 'reading-final' && inputs.validation_scope != 'reading-tablet-final' && inputs.validation_scope != 'affected' && inputs.validation_scope != 'stable-mobile' && inputs.validation_scope != 'stable-tablet-ui' && inputs.validation_scope != 'stable-tablet-rotation' }}
+        if: ${{ inputs.run_live_integration == true && inputs.validation_scope != 'language-reference' && inputs.validation_scope != 'system-maintenance' && inputs.validation_scope != 'navigation-sync' && inputs.validation_scope != 'service-browser' && inputs.validation_scope != 'streaming-sync' && inputs.validation_scope != 'services-complete' && inputs.validation_scope != 'anime-episodes-ui' && inputs.validation_scope != 'reading-final' && inputs.validation_scope != 'reading-tablet-final' && inputs.validation_scope != 'affected' && inputs.validation_scope != 'stable-mobile' && inputs.validation_scope != 'stable-tablet-ui' && inputs.validation_scope != 'stable-tablet-rotation' }}
         timeout-minutes: 10
         shell: bash
         run: |
@@ -419,7 +435,7 @@ jobs:
             finish_setup_recording() { kill -INT "$setup_recording_pid" 2>/dev/null || true; wait "$setup_recording_pid" || true; }
             trap finish_setup_recording EXIT
           fi
-          if [[ "${{ inputs.validation_scope }}" == "service-browser" ]]; then
+          if [[ "${{ inputs.validation_scope }}" == "service-browser" || "${{ inputs.validation_scope }}" == "services-complete" ]]; then
             mkdir -p ios/build/service-recordings
             xcrun simctl io "$IOS_SIMULATOR" recordVideo --codec=h264 ios/build/service-recordings/service-iphone.mp4 > ios/build/logs/service-iphone-recording.log 2>&1 &
             service_recording_pid=$!
@@ -427,7 +443,11 @@ jobs:
             trap finish_service_recording EXIT
           fi
           selection=(-only-testing:HarborUITests)
-          if [[ "${{ inputs.validation_scope }}" == "service-browser" ]]; then
+          if [[ "${{ inputs.validation_scope }}" == "services-complete" ]]; then
+            selection=(-only-testing:HarborUITests/ServiceCatalogNavigationTests/testServiceIndexFiltersAndMetadataSetupWorkInTheIPhoneInterface -only-testing:HarborUITests/StreamingSelectionNavigationTests/testOrdinaryIPhoneServiceSelectionSurvivesRelaunch)
+          elif [[ "${{ inputs.validation_scope }}" == "streaming-sync" ]]; then
+            selection=(-only-testing:HarborUITests/StreamingSelectionNavigationTests/testOrdinaryIPhoneServiceSelectionSurvivesRelaunch)
+          elif [[ "${{ inputs.validation_scope }}" == "service-browser" ]]; then
             selection=(-only-testing:HarborUITests/ServiceCatalogNavigationTests/testServiceIndexFiltersAndMetadataSetupWorkInTheIPhoneInterface)
           elif [[ "${{ inputs.validation_scope }}" == "onboarding-desktop" ]]; then
             selection=(-only-testing:HarborUITests/OnboardingNavigationTests/testTenStepSetupUsesRealControlsInTheIPhoneInterface -only-testing:HarborUITests/LanguageReferenceNavigationTests/testReferenceLanguagesSwitchInTheOrdinaryIPhoneSettings -only-testing:HarborUITests/SystemMaintenanceNavigationTests/testStorageAndAboutWorkInTheOrdinaryIPhoneInterface)
@@ -544,7 +564,7 @@ jobs:
           xcrun simctl shutdown "$tablet"
       - name: Run the full service browser on iPad
         id: service_tablet_tests
-        if: ${{ inputs.validation_scope == 'service-browser' && steps.live_tests.conclusion == 'success' }}
+        if: ${{ (inputs.validation_scope == 'service-browser' || inputs.validation_scope == 'services-complete') && steps.live_tests.conclusion == 'success' }}
         timeout-minutes: 20
         shell: bash
         run: |
@@ -557,19 +577,35 @@ jobs:
           service_recording_pid=$!
           finish_service_recording() { kill -INT "$service_recording_pid" 2>/dev/null || true; wait "$service_recording_pid" || true; }
           trap finish_service_recording EXIT
-          xcodebuild -project ios/Harbor.xcodeproj -scheme HarborLive -configuration Debug -destination "platform=iOS Simulator,id=$tablet,arch=$IOS_SIMULATOR_ARCH" -derivedDataPath ios/build/DerivedData -clonedSourcePackagesDirPath ios/build/SourcePackages -resultBundlePath ios/build/ServiceTabletUI.xcresult -only-testing:HarborUITests/ServiceCatalogNavigationTests/testServiceIndexFiltersAndMetadataSetupWorkInTheIPadInterface -parallel-testing-enabled NO CODE_SIGNING_ALLOWED=YES CODE_SIGN_IDENTITY=- test 2>&1 | tee ios/build/logs/service-tablet-ui.log
+          selection=(-only-testing:HarborUITests/ServiceCatalogNavigationTests/testServiceIndexFiltersAndMetadataSetupWorkInTheIPadInterface)
+          if [[ "${{ inputs.validation_scope }}" == "services-complete" ]]; then
+            selection+=(-only-testing:HarborUITests/StreamingSelectionNavigationTests/testOrdinaryIPadServiceSelectionSurvivesRelaunch)
+          fi
+          xcodebuild -project ios/Harbor.xcodeproj -scheme HarborLive -configuration Debug -destination "platform=iOS Simulator,id=$tablet,arch=$IOS_SIMULATOR_ARCH" -derivedDataPath ios/build/DerivedData -clonedSourcePackagesDirPath ios/build/SourcePackages -resultBundlePath ios/build/ServiceTabletUI.xcresult "${selection[@]}" -parallel-testing-enabled NO CODE_SIGNING_ALLOWED=YES CODE_SIGN_IDENTITY=- test 2>&1 | tee ios/build/logs/service-tablet-ui.log
           finish_service_recording
           trap - EXIT
           xcrun simctl shutdown "$tablet"
+      - name: Run scoped service selection on iPad
+        id: streaming_sync_tablet_tests
+        if: ${{ inputs.validation_scope == 'streaming-sync' && steps.live_tests.conclusion == 'success' }}
+        timeout-minutes: 20
+        shell: bash
+        run: |
+          set -euo pipefail
+          xcrun simctl shutdown "$IOS_SIMULATOR"
+          tablet=$(python3 -c 'import json; d=json.load(open("ios/build/devices.json")); print(next(x["udid"] for runtime, values in d["devices"].items() if "iOS" in runtime for x in values if x["name"].startswith("iPad")))')
+          xcrun simctl bootstatus "$tablet" -b
+          xcodebuild -project ios/Harbor.xcodeproj -scheme HarborLive -configuration Debug -destination "platform=iOS Simulator,id=$tablet,arch=$IOS_SIMULATOR_ARCH" -derivedDataPath ios/build/DerivedData -clonedSourcePackagesDirPath ios/build/SourcePackages -resultBundlePath ios/build/StreamingSyncTabletUI.xcresult -only-testing:HarborUITests/StreamingSelectionNavigationTests/testOrdinaryIPadServiceSelectionSurvivesRelaunch -parallel-testing-enabled NO CODE_SIGNING_ALLOWED=YES CODE_SIGN_IDENTITY=- test 2>&1 | tee ios/build/logs/streaming-sync-tablet-ui.log
+          xcrun simctl shutdown "$tablet"
       - name: Preserve failed public integration screenshots in a draft Release
-        if: ${{ always() && inputs.validation_scope != 'stable-tablet-rotation' && inputs.save_draft_build == true && (steps.live_tests.conclusion == 'failure' || steps.live_tests.conclusion == 'cancelled' || steps.live_services.conclusion == 'failure' || steps.live_services.conclusion == 'cancelled' || steps.tablet_tests.conclusion == 'failure' || steps.manga_font_tests.conclusion == 'failure' || steps.reading_tablet_tests.conclusion == 'failure' || steps.language_tablet_tests.conclusion == 'failure' || steps.language_tablet_tests.conclusion == 'cancelled' || steps.system_tablet_tests.conclusion == 'failure' || steps.system_tablet_tests.conclusion == 'cancelled' || steps.navigation_tablet_tests.conclusion == 'failure' || steps.navigation_tablet_tests.conclusion == 'cancelled' || steps.onboarding_tablet_tests.conclusion == 'failure' || steps.onboarding_tablet_tests.conclusion == 'cancelled' || steps.service_tablet_tests.conclusion == 'failure' || steps.service_tablet_tests.conclusion == 'cancelled') }}
+        if: ${{ always() && inputs.validation_scope != 'stable-tablet-rotation' && inputs.save_draft_build == true && (steps.live_tests.conclusion == 'failure' || steps.live_tests.conclusion == 'cancelled' || steps.live_services.conclusion == 'failure' || steps.live_services.conclusion == 'cancelled' || steps.tablet_tests.conclusion == 'failure' || steps.manga_font_tests.conclusion == 'failure' || steps.reading_tablet_tests.conclusion == 'failure' || steps.language_tablet_tests.conclusion == 'failure' || steps.language_tablet_tests.conclusion == 'cancelled' || steps.system_tablet_tests.conclusion == 'failure' || steps.system_tablet_tests.conclusion == 'cancelled' || steps.navigation_tablet_tests.conclusion == 'failure' || steps.navigation_tablet_tests.conclusion == 'cancelled' || steps.onboarding_tablet_tests.conclusion == 'failure' || steps.onboarding_tablet_tests.conclusion == 'cancelled' || steps.service_tablet_tests.conclusion == 'failure' || steps.service_tablet_tests.conclusion == 'cancelled' || steps.streaming_sync_tablet_tests.conclusion == 'failure' || steps.streaming_sync_tablet_tests.conclusion == 'cancelled') }}
         env:
           GH_TOKEN: ${{ github.token }}
         shell: bash
         run: |
           set -euo pipefail
           mkdir -p ios/build/attachments
-          for name in Tests ServicesTests LiveTests TabletTests TabletUITests MangaFontTests ReadingTabletSeed ReadingTabletUI LanguageTabletUI SystemTabletUI NavigationTabletUI OnboardingTabletUI ServiceTabletUI; do
+          for name in Tests ServicesTests LiveTests TabletTests TabletUITests MangaFontTests ReadingTabletSeed ReadingTabletUI LanguageTabletUI SystemTabletUI NavigationTabletUI OnboardingTabletUI ServiceTabletUI StreamingSyncTabletUI; do
             if [ -d "ios/build/$name.xcresult" ]; then
               if ! xcrun xcresulttool export attachments --path "ios/build/$name.xcresult" --output-path "ios/build/attachments/$name"; then
                 echo "$name.xcresult: attachment export failed; result may be incomplete" >> ios/build/attachments/export-failures.txt
@@ -603,7 +639,7 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p ios/build/validation-evidence/attachments
-          for name in Tests ServicesTests LiveTests TabletTests TabletUITests MangaFontTests ReadingTabletSeed ReadingTabletUI LanguageTabletUI SystemTabletUI NavigationTabletUI OnboardingTabletUI ServiceTabletUI; do
+          for name in Tests ServicesTests LiveTests TabletTests TabletUITests MangaFontTests ReadingTabletSeed ReadingTabletUI LanguageTabletUI SystemTabletUI NavigationTabletUI OnboardingTabletUI ServiceTabletUI StreamingSyncTabletUI; do
             if [[ -d "ios/build/$name.xcresult" ]]; then
               xcrun xcresulttool export attachments --path "ios/build/$name.xcresult" --output-path "ios/build/validation-evidence/attachments/$name"
             fi
@@ -658,7 +694,7 @@ jobs:
           for preserved in preserved-language-reference preserved-reading-validation preserved-reading-final preserved-reading-tablet preserved-anime-validation preserved-anime-ui; do
             if [[ -f "ios/build/$preserved.json" ]]; then cp "ios/build/$preserved.json" ios/build/live-attachments/; fi
           done
-          for name in TabletTests TabletUITests MangaFontTests ReadingTabletSeed ReadingTabletUI LanguageTabletUI SystemTabletUI NavigationTabletUI OnboardingTabletUI ServiceTabletUI; do
+          for name in TabletTests TabletUITests MangaFontTests ReadingTabletSeed ReadingTabletUI LanguageTabletUI SystemTabletUI NavigationTabletUI OnboardingTabletUI ServiceTabletUI StreamingSyncTabletUI; do
             if [[ -d "ios/build/$name.xcresult" ]]; then
               xcrun xcresulttool export attachments --path "ios/build/$name.xcresult" --output-path "ios/build/live-attachments/$name"
             fi

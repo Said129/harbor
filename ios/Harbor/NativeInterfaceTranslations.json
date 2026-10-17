@@ -69,7 +69,11 @@
     "Could not save your choices. Try again.": "No se pudieron guardar tus elecciones. Vuelve a intentarlo.",
     "Browse services": "Explorar servicios",
     "Add your TMDB key in Settings to load these catalogs.": "Añade tu clave de TMDB en Ajustes para cargar estos catálogos.",
-    "Could not load this page. Try again.": "No se pudo cargar esta página. Vuelve a intentarlo."
+    "Could not load this page. Try again.": "No se pudo cargar esta página. Vuelve a intentarlo.",
+    "Could not restore your services. The saved version is kept.": "No se pudieron restaurar tus servicios. Se conserva la versión guardada.",
+    "Your services are saved locally. Cloud sync will retry.": "Tus servicios se han guardado en este dispositivo. Se reintentará la sincronización.",
+    "Another device changed services. Your previous version is saved on this device.": "Otro dispositivo cambió los servicios. Tu versión anterior está guardada en este dispositivo.",
+    "Services changes waiting to sync": "Cambios de servicios pendientes de sincronizar"
   },
   "pt": {
     "Auto-sync": "Sincronização automática",
@@ -104,7 +108,11 @@
     "Analysis stopped to prioritize playback. Retry after buffering finishes.": "A análise parou para priorizar a reprodução. Tente novamente após o carregamento.",
     "Browse services": "Explorar serviços",
     "Add your TMDB key in Settings to load these catalogs.": "Adicione sua chave do TMDB nas Configurações para carregar estes catálogos.",
-    "Could not load this page. Try again.": "Não foi possível carregar esta página. Tente novamente."
+    "Could not load this page. Try again.": "Não foi possível carregar esta página. Tente novamente.",
+    "Could not restore your services. The saved version is kept.": "Não foi possível restaurar os seus serviços. A versão guardada é mantida.",
+    "Your services are saved locally. Cloud sync will retry.": "Os seus serviços estão guardados neste dispositivo. A sincronização será tentada novamente.",
+    "Another device changed services. Your previous version is saved on this device.": "Outro dispositivo alterou os serviços. A sua versão anterior está guardada neste dispositivo.",
+    "Services changes waiting to sync": "Alterações nos serviços à espera de sincronização"
   },
   "ru": {
     "Auto-sync": "Автосинхронизация",
@@ -139,7 +147,11 @@
     "Analysis stopped to prioritize playback. Retry after buffering finishes.": "Анализ остановлен ради воспроизведения. Повторите попытку после буферизации.",
     "Browse services": "Просмотр сервисов",
     "Add your TMDB key in Settings to load these catalogs.": "Добавьте ключ TMDB в настройках, чтобы загрузить эти каталоги.",
-    "Could not load this page. Try again.": "Не удалось загрузить эту страницу. Повторите попытку."
+    "Could not load this page. Try again.": "Не удалось загрузить эту страницу. Повторите попытку.",
+    "Could not restore your services. The saved version is kept.": "Не удалось восстановить сервисы. Сохранённая версия не удалена.",
+    "Your services are saved locally. Cloud sync will retry.": "Сервисы сохранены на этом устройстве. Синхронизация будет повторена.",
+    "Another device changed services. Your previous version is saved on this device.": "Другое устройство изменило сервисы. Предыдущая версия сохранена на этом устройстве.",
+    "Services changes waiting to sync": "Изменения сервисов ожидают синхронизации"
   },
   "ar": {
     "Auto-sync": "مزامنة تلقائية",
@@ -174,77 +186,129 @@
     "Analysis stopped to prioritize playback. Retry after buffering finishes.": "توقف التحليل لإعطاء الأولوية للمشاهدة. أعد المحاولة بعد اكتمال التحميل.",
     "Browse services": "استعراض الخدمات",
     "Add your TMDB key in Settings to load these catalogs.": "أضف مفتاح TMDB في الإعدادات لتحميل هذه الكتالوجات.",
-    "Could not load this page. Try again.": "تعذر تحميل هذه الصفحة. حاول مرة أخرى."
+    "Could not load this page. Try again.": "تعذر تحميل هذه الصفحة. حاول مرة أخرى.",
+    "Could not restore your services. The saved version is kept.": "تعذّرت استعادة خدماتك. تم الاحتفاظ بالنسخة المحفوظة.",
+    "Your services are saved locally. Cloud sync will retry.": "تم حفظ خدماتك على هذا الجهاز. ستتم إعادة محاولة المزامنة.",
+    "Another device changed services. Your previous version is saved on this device.": "غيّر جهاز آخر الخدمات. نسختك السابقة محفوظة على هذا الجهاز.",
+    "Services changes waiting to sync": "تغييرات الخدمات بانتظار المزامنة"
   },
   "zh": {
     "Couldn't auto-sync": "无法自动同步",
     "Browse services": "浏览服务",
     "Add your TMDB key in Settings to load these catalogs.": "请在设置中添加 TMDB 密钥以加载这些目录。",
-    "Could not load this page. Try again.": "无法加载此页面。请重试。"
+    "Could not load this page. Try again.": "无法加载此页面。请重试。",
+    "Could not restore your services. The saved version is kept.": "无法恢复你的服务。已保留保存的版本。",
+    "Your services are saved locally. Cloud sync will retry.": "你的服务已保存在本机。稍后将重试云端同步。",
+    "Another device changed services. Your previous version is saved on this device.": "另一台设备更改了服务。你的旧版本已保存在本机。",
+    "Services changes waiting to sync": "服务更改等待同步"
   },
   "fr": {
     "Couldn't auto-sync": "Synchronisation automatique impossible",
     "Browse services": "Parcourir les services",
     "Add your TMDB key in Settings to load these catalogs.": "Ajoutez votre clé TMDB dans les paramètres pour charger ces catalogues.",
-    "Could not load this page. Try again.": "Impossible de charger cette page. Réessayez."
+    "Could not load this page. Try again.": "Impossible de charger cette page. Réessayez.",
+    "Could not restore your services. The saved version is kept.": "Impossible de restaurer vos services. La version enregistrée est conservée.",
+    "Your services are saved locally. Cloud sync will retry.": "Vos services sont enregistrés sur cet appareil. La synchronisation sera réessayée.",
+    "Another device changed services. Your previous version is saved on this device.": "Un autre appareil a modifié les services. Votre version précédente est conservée sur cet appareil.",
+    "Services changes waiting to sync": "Modifications des services en attente de synchronisation"
   },
   "de": {
     "Couldn't auto-sync": "Automatische Synchronisierung nicht möglich",
     "Browse services": "Dienste durchsuchen",
     "Add your TMDB key in Settings to load these catalogs.": "Füge deinen TMDB-Schlüssel in den Einstellungen hinzu, um diese Kataloge zu laden.",
-    "Could not load this page. Try again.": "Diese Seite konnte nicht geladen werden. Versuche es erneut."
+    "Could not load this page. Try again.": "Diese Seite konnte nicht geladen werden. Versuche es erneut.",
+    "Could not restore your services. The saved version is kept.": "Deine Dienste konnten nicht wiederhergestellt werden. Die gespeicherte Version bleibt erhalten.",
+    "Your services are saved locally. Cloud sync will retry.": "Deine Dienste sind lokal gespeichert. Die Synchronisierung wird erneut versucht.",
+    "Another device changed services. Your previous version is saved on this device.": "Ein anderes Gerät hat die Dienste geändert. Deine vorherige Version ist auf diesem Gerät gespeichert.",
+    "Services changes waiting to sync": "Änderungen an Diensten warten auf Synchronisierung"
   },
   "hi": {
     "Couldn't auto-sync": "अपने-आप सिंक नहीं हो सका",
     "Browse services": "सेवाएँ देखें",
     "Add your TMDB key in Settings to load these catalogs.": "इन कैटलॉग को लोड करने के लिए सेटिंग्स में अपनी TMDB कुंजी जोड़ें।",
-    "Could not load this page. Try again.": "यह पेज लोड नहीं हो सका। फिर से कोशिश करें।"
+    "Could not load this page. Try again.": "यह पेज लोड नहीं हो सका। फिर से कोशिश करें।",
+    "Could not restore your services. The saved version is kept.": "आपकी सेवाएँ बहाल नहीं हो सकीं। सहेजा गया संस्करण सुरक्षित है।",
+    "Your services are saved locally. Cloud sync will retry.": "आपकी सेवाएँ इस डिवाइस पर सहेजी गई हैं। क्लाउड सिंक फिर से किया जाएगा।",
+    "Another device changed services. Your previous version is saved on this device.": "किसी दूसरे डिवाइस ने सेवाएँ बदली हैं। आपका पिछला संस्करण इस डिवाइस पर सुरक्षित है।",
+    "Services changes waiting to sync": "सेवाओं के बदलाव सिंक होने की प्रतीक्षा में हैं"
   },
   "id": {
     "Couldn't auto-sync": "Tidak dapat menyinkronkan otomatis",
     "Browse services": "Jelajahi layanan",
     "Add your TMDB key in Settings to load these catalogs.": "Tambahkan kunci TMDB di Pengaturan untuk memuat katalog ini.",
-    "Could not load this page. Try again.": "Halaman ini tidak dapat dimuat. Coba lagi."
+    "Could not load this page. Try again.": "Halaman ini tidak dapat dimuat. Coba lagi.",
+    "Could not restore your services. The saved version is kept.": "Layanan Anda tidak dapat dipulihkan. Versi yang tersimpan tetap disimpan.",
+    "Your services are saved locally. Cloud sync will retry.": "Layanan Anda tersimpan di perangkat ini. Sinkronisasi cloud akan dicoba lagi.",
+    "Another device changed services. Your previous version is saved on this device.": "Perangkat lain mengubah layanan. Versi sebelumnya tersimpan di perangkat ini.",
+    "Services changes waiting to sync": "Perubahan layanan menunggu sinkronisasi"
   },
   "it": {
     "Couldn't auto-sync": "Sincronizzazione automatica non riuscita",
     "Browse services": "Esplora i servizi",
     "Add your TMDB key in Settings to load these catalogs.": "Aggiungi la tua chiave TMDB nelle Impostazioni per caricare questi cataloghi.",
-    "Could not load this page. Try again.": "Impossibile caricare questa pagina. Riprova."
+    "Could not load this page. Try again.": "Impossibile caricare questa pagina. Riprova.",
+    "Could not restore your services. The saved version is kept.": "Impossibile ripristinare i tuoi servizi. La versione salvata viene conservata.",
+    "Your services are saved locally. Cloud sync will retry.": "I tuoi servizi sono salvati su questo dispositivo. La sincronizzazione verrà ritentata.",
+    "Another device changed services. Your previous version is saved on this device.": "Un altro dispositivo ha modificato i servizi. La versione precedente è salvata su questo dispositivo.",
+    "Services changes waiting to sync": "Modifiche ai servizi in attesa di sincronizzazione"
   },
   "ja": {
     "Couldn't auto-sync": "自動同期できませんでした",
     "Browse services": "サービスを見る",
     "Add your TMDB key in Settings to load these catalogs.": "設定に TMDB キーを追加すると、これらのカタログを読み込めます。",
-    "Could not load this page. Try again.": "このページを読み込めませんでした。もう一度お試しください。"
+    "Could not load this page. Try again.": "このページを読み込めませんでした。もう一度お試しください。",
+    "Could not restore your services. The saved version is kept.": "サービスを復元できませんでした。保存済みのバージョンは保持されます。",
+    "Your services are saved locally. Cloud sync will retry.": "サービスはこのデバイスに保存されています。クラウド同期を再試行します。",
+    "Another device changed services. Your previous version is saved on this device.": "別のデバイスでサービスが変更されました。以前のバージョンはこのデバイスに保存されています。",
+    "Services changes waiting to sync": "サービスの変更は同期待ちです"
   },
   "ko": {
     "Couldn't auto-sync": "자동 동기화하지 못했습니다",
     "Browse services": "서비스 둘러보기",
     "Add your TMDB key in Settings to load these catalogs.": "설정에서 TMDB 키를 추가하면 카탈로그를 불러올 수 있습니다.",
-    "Could not load this page. Try again.": "이 페이지를 불러오지 못했습니다. 다시 시도해 주세요."
+    "Could not load this page. Try again.": "이 페이지를 불러오지 못했습니다. 다시 시도해 주세요.",
+    "Could not restore your services. The saved version is kept.": "서비스를 복원하지 못했습니다. 저장된 버전은 유지됩니다.",
+    "Your services are saved locally. Cloud sync will retry.": "서비스가 이 기기에 저장되었습니다. 클라우드 동기화를 다시 시도합니다.",
+    "Another device changed services. Your previous version is saved on this device.": "다른 기기에서 서비스를 변경했습니다. 이전 버전은 이 기기에 저장되어 있습니다.",
+    "Services changes waiting to sync": "서비스 변경 사항 동기화 대기 중"
   },
   "pl": {
     "Couldn't auto-sync": "Nie udało się zsynchronizować automatycznie",
     "Browse services": "Przeglądaj serwisy",
     "Add your TMDB key in Settings to load these catalogs.": "Dodaj klucz TMDB w ustawieniach, aby wczytać te katalogi.",
-    "Could not load this page. Try again.": "Nie udało się wczytać tej strony. Spróbuj ponownie."
+    "Could not load this page. Try again.": "Nie udało się wczytać tej strony. Spróbuj ponownie.",
+    "Could not restore your services. The saved version is kept.": "Nie udało się przywrócić usług. Zapisana wersja została zachowana.",
+    "Your services are saved locally. Cloud sync will retry.": "Usługi są zapisane na tym urządzeniu. Synchronizacja zostanie ponowiona.",
+    "Another device changed services. Your previous version is saved on this device.": "Inne urządzenie zmieniło usługi. Poprzednia wersja jest zapisana na tym urządzeniu.",
+    "Services changes waiting to sync": "Zmiany usług oczekują na synchronizację"
   },
   "tr": {
     "Couldn't auto-sync": "Otomatik eşitlenemedi",
     "Browse services": "Hizmetlere göz at",
     "Add your TMDB key in Settings to load these catalogs.": "Bu katalogları yüklemek için Ayarlar'a TMDB anahtarınızı ekleyin.",
-    "Could not load this page. Try again.": "Bu sayfa yüklenemedi. Tekrar deneyin."
+    "Could not load this page. Try again.": "Bu sayfa yüklenemedi. Tekrar deneyin.",
+    "Could not restore your services. The saved version is kept.": "Hizmetleriniz geri yüklenemedi. Kayıtlı sürüm korunuyor.",
+    "Your services are saved locally. Cloud sync will retry.": "Hizmetleriniz bu cihazda kaydedildi. Bulut eşitlemesi yeniden denenecek.",
+    "Another device changed services. Your previous version is saved on this device.": "Başka bir cihaz hizmetleri değiştirdi. Önceki sürümünüz bu cihazda kayıtlı.",
+    "Services changes waiting to sync": "Hizmet değişiklikleri eşitlenmeyi bekliyor"
   },
   "vi": {
     "Couldn't auto-sync": "Không thể tự động đồng bộ",
     "Browse services": "Duyệt dịch vụ",
     "Add your TMDB key in Settings to load these catalogs.": "Thêm khóa TMDB trong Cài đặt để tải các danh mục này.",
-    "Could not load this page. Try again.": "Không thể tải trang này. Vui lòng thử lại."
+    "Could not load this page. Try again.": "Không thể tải trang này. Vui lòng thử lại.",
+    "Could not restore your services. The saved version is kept.": "Không thể khôi phục các dịch vụ của bạn. Phiên bản đã lưu vẫn được giữ lại.",
+    "Your services are saved locally. Cloud sync will retry.": "Các dịch vụ đã được lưu trên thiết bị này. Đồng bộ đám mây sẽ được thử lại.",
+    "Another device changed services. Your previous version is saved on this device.": "Một thiết bị khác đã thay đổi các dịch vụ. Phiên bản trước được lưu trên thiết bị này.",
+    "Services changes waiting to sync": "Các thay đổi dịch vụ đang chờ đồng bộ"
   },
   "en": {
     "Browse services": "Browse services",
     "Add your TMDB key in Settings to load these catalogs.": "Add your TMDB key in Settings to load these catalogs.",
-    "Could not load this page. Try again.": "Could not load this page. Try again."
+    "Could not load this page. Try again.": "Could not load this page. Try again.",
+    "Could not restore your services. The saved version is kept.": "Could not restore your services. The saved version is kept.",
+    "Your services are saved locally. Cloud sync will retry.": "Your services are saved locally. Cloud sync will retry.",
+    "Another device changed services. Your previous version is saved on this device.": "Another device changed services. Your previous version is saved on this device.",
+    "Services changes waiting to sync": "Services changes waiting to sync"
   }
 }

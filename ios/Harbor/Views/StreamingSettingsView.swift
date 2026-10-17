@@ -11,6 +11,20 @@ struct StreamingSettingsView: View {
                 NavigationLink { StreamingServicesView(app: app) } label: {
                     Label(DesktopInterfaceText.value("Browse services"), systemImage: "square.grid.3x3").frame(minHeight: 44)
                 }.buttonStyle(HarborAccountButtonStyle()).accessibilityIdentifier("streaming-browse-services")
+                let cloud = ProfilePreferences.forOwner(app.user?.id ?? "guest").cloud
+                if cloud.signedIn {
+                    HarborSettingsSection(DesktopInterfaceText.value("Sync")) {
+                        if let error = cloud.services.error ?? cloud.error { Text(DesktopInterfaceText.value(error)).font(.caption).foregroundStyle(.orange) }
+                        if cloud.services.hasParkedVersion {
+                            Text(DesktopInterfaceText.value("Another device changed services. Your previous version is saved on this device.")).font(.caption).foregroundStyle(.secondary)
+                            Button(DesktopInterfaceText.value("Restore my version")) { cloud.services.restoreMyVersion() }
+                                .buttonStyle(HarborAccountButtonStyle()).disabled(cloud.busy || cloud.services.hasPendingChanges || StreamingPreferences.forOwner(app.user?.id ?? "guest").cloudWritePending).accessibilityIdentifier("services-restore-version")
+                        }
+                        if cloud.services.hasPendingChanges { Text(DesktopInterfaceText.value("Services changes waiting to sync")).font(.caption).foregroundStyle(.secondary) }
+                        Button(DesktopInterfaceText.value("Sync")) { Task { await cloud.sync() } }
+                            .buttonStyle(HarborAccountButtonStyle()).disabled(cloud.busy).accessibilityIdentifier("services-sync-now")
+                    }
+                }
             }.padding(20)
         }.background(HarborTheme.background).foregroundStyle(HarborTheme.ink).navigationTitle(DesktopInterfaceText.value("Streaming services")).navigationBarTitleDisplayMode(.inline)
     }
@@ -24,7 +38,8 @@ struct StreamingServicePicker: View {
             LazyVGrid(columns: [GridItem(.adaptive(minimum: 100), spacing: 8)], spacing: 8) {
                 ForEach(StreamingServiceDefinition.all) { service in
                     let enabled = preferences.isEnabled(service.key)
-                    Button { preferences.setEnabled(!enabled, for: service.key) } label: {
+                    let scope = preferences.scope
+                    Button { preferences.setEnabled(!enabled, for: service.key, in: scope) } label: {
                         StreamingServiceLogo(service: service).frame(maxWidth: .infinity).frame(height: 72)
                             .opacity(enabled ? 1 : 0.55)
                             .background(enabled ? HarborTheme.surface : HarborTheme.background, in: .rect(cornerRadius: 12))
@@ -36,7 +51,7 @@ struct StreamingServicePicker: View {
                         .accessibilityValue(DesktopInterfaceText.value(enabled ? "On" : "Off"))
                         .accessibilityAddTraits(enabled ? [.isSelected] : []).accessibilityIdentifier("streaming-" + service.key)
                 }
-            }.disabled(!preferences.ready).animation(reduceMotion ? nil : .easeOut(duration: 0.2), value: preferences.signature)
+            }.disabled(!preferences.ready || preferences.cloudWritePending).animation(reduceMotion ? nil : .easeOut(duration: 0.2), value: preferences.signature)
             if let error = preferences.error {
                 Text(DesktopInterfaceText.value(error)).font(.caption).foregroundStyle(.orange)
                 if !preferences.ready { Button(DesktopInterfaceText.value("Retry")) { preferences.reload() } }

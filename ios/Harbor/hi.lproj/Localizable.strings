@@ -108,6 +108,7 @@
 "Anime of the Year" = "वर्ष का ऐनिमे";
 "Anime popular" = "लोकप्रिय ऐनिमे";
 "Another device changed navigation. Your previous version is saved on this device." = "Another device changed navigation. Your previous version is saved on this device.";
+"Another device changed services. Your previous version is saved on this device." = "किसी दूसरे डिवाइस ने सेवाएँ बदली हैं। आपका पिछला संस्करण इस डिवाइस पर सुरक्षित है।";
 "Anterior" = "पिछला";
 "Anular estilos integrados" = "एम्बेडेड स्टाइल ओवरराइड करें";
 "Análisis detenido para priorizar la reproducción. Puedes reintentarlo cuando termine de cargar." = "Analysis stopped to prioritize playback. Retry after buffering finishes.";
@@ -377,6 +378,7 @@
 "Could not measure storage. Try again." = "Could not measure storage. Try again.";
 "Could not open book" = "Could not open book";
 "Could not restore your navigation. The saved version is kept." = "Could not restore your navigation. The saved version is kept.";
+"Could not restore your services. The saved version is kept." = "आपकी सेवाएँ बहाल नहीं हो सकीं। सहेजा गया संस्करण सुरक्षित है।";
 "Could not save navigation settings. Your previous settings are kept." = "Could not save navigation settings. Your previous settings are kept.";
 "Could not save streaming preferences. Your previous settings are kept." = "Could not save streaming preferences. Your previous settings are kept.";
 "Could not save your choices. Try again." = "Could not save your choices. Try again.";
@@ -1303,6 +1305,7 @@
 "Series populares" = "लोकप्रिय सीरीज़";
 "Serif" = "सेरिफ़";
 "Services" = "सेवाएँ";
+"Services changes waiting to sync" = "सेवाओं के बदलाव सिंक होने की प्रतीक्षा में हैं";
 "Servidor Xtream" = "Xtream server";
 "Sesión iniciada en Stremio" = "Stremio में साइन इन हैं";
 "Settings" = "सेटिंग्स";
@@ -1660,6 +1663,7 @@
 "Your lists" = "Your lists";
 "Your navigation is saved locally. Cloud sync will retry." = "Your navigation is saved locally. Cloud sync will retry.";
 "Your profile" = "आपकी प्रोफ़ाइल";
+"Your services are saved locally. Cloud sync will retry." = "आपकी सेवाएँ इस डिवाइस पर सहेजी गई हैं। क्लाउड सिंक फिर से किया जाएगा।";
 "Yours" = "आपका";
 "Zoom" = "ज़ूम";
 "anime" = "ऐनिमे";

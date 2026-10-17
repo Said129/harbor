@@ -108,6 +108,7 @@
 "Anime of the Year" = "Yılın animesi";
 "Anime popular" = "Popüler Animeler";
 "Another device changed navigation. Your previous version is saved on this device." = "Another device changed navigation. Your previous version is saved on this device.";
+"Another device changed services. Your previous version is saved on this device." = "Başka bir cihaz hizmetleri değiştirdi. Önceki sürümünüz bu cihazda kayıtlı.";
 "Anterior" = "Önceki";
 "Anular estilos integrados" = "Gömülü stilleri geçersiz kıl";
 "Análisis detenido para priorizar la reproducción. Puedes reintentarlo cuando termine de cargar." = "Analysis stopped to prioritize playback. Retry after buffering finishes.";
@@ -377,6 +378,7 @@
 "Could not measure storage. Try again." = "Could not measure storage. Try again.";
 "Could not open book" = "Could not open book";
 "Could not restore your navigation. The saved version is kept." = "Could not restore your navigation. The saved version is kept.";
+"Could not restore your services. The saved version is kept." = "Hizmetleriniz geri yüklenemedi. Kayıtlı sürüm korunuyor.";
 "Could not save navigation settings. Your previous settings are kept." = "Could not save navigation settings. Your previous settings are kept.";
 "Could not save streaming preferences. Your previous settings are kept." = "Could not save streaming preferences. Your previous settings are kept.";
 "Could not save your choices. Try again." = "Could not save your choices. Try again.";
@@ -1303,6 +1305,7 @@
 "Series populares" = "Popüler Diziler";
 "Serif" = "Serif";
 "Services" = "Hizmetler";
+"Services changes waiting to sync" = "Hizmet değişiklikleri eşitlenmeyi bekliyor";
 "Servidor Xtream" = "Xtream server";
 "Sesión iniciada en Stremio" = "Stremio oturumu açık";
 "Settings" = "Ayarlar";
@@ -1660,6 +1663,7 @@
 "Your lists" = "Your lists";
 "Your navigation is saved locally. Cloud sync will retry." = "Your navigation is saved locally. Cloud sync will retry.";
 "Your profile" = "Profiliniz";
+"Your services are saved locally. Cloud sync will retry." = "Hizmetleriniz bu cihazda kaydedildi. Bulut eşitlemesi yeniden denenecek.";
 "Yours" = "Size ait";
 "Zoom" = "Yakınlaştırma";
 "anime" = "anime";
