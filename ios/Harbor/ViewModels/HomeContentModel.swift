@@ -29,7 +29,9 @@ final class HomeContentModel {
 
     func load(app: AppModel, refresh: Bool = false) async {
         let configuration = MetadataPreferences.shared.configuration()
-        let signature = [app.user?.id ?? "guest", EBookShelf.hash(configuration.tmdbKey), configuration.language, configuration.region, String(configuration.translateTitles), app.addons.filter(\.enabled).map(\.id).joined(separator: "|")].joined(separator: "|")
+        let services = StreamingPreferences.forOwner(app.user?.id ?? "guest")
+        let enabledServices = services.ready ? services.enabled : []
+        let signature = [app.user?.id ?? "guest", EBookShelf.hash(configuration.tmdbKey), configuration.language, configuration.region, String(configuration.translateTitles), services.signature, app.addons.filter(\.enabled).map(\.id).joined(separator: "|")].joined(separator: "|")
         guard refresh || loadedSignature != signature else { return }
         generation += 1
         let current = generation
@@ -39,16 +41,25 @@ final class HomeContentModel {
         defer { if generation == current { loading = false } }
         do {
             if !configuration.tmdbKey.isEmpty {
-                let definitions = TMDBService().homeDefinitions()
+                let definitions = TMDBService().homeDefinitions() + enabledServices.map(StreamingCatalog.rail)
                 await withTaskGroup(of: DiscoveryRail?.self) { group in
-                    for definition in definitions {
+                    var iterator = definitions.makeIterator()
+                    func enqueue(_ definition: DiscoveryRail) {
                         group.addTask {
-                            do { var row = definition; row.metas = try await TMDBService().page(row, page: 1, configuration: configuration); return row }
+                            do {
+                                var row = definition
+                                if let service = enabledServices.first(where: { row.path == "streaming:" + $0.key }) {
+                                    row.metas = try await StreamingCatalog.page(service, page: 1, configuration: configuration, preview: true)
+                                } else { row.metas = try await TMDBService().page(row, page: 1, configuration: configuration) }
+                                return row
+                            }
                             catch { return nil }
                         }
                     }
+                    for _ in 0..<4 { if let definition = iterator.next() { enqueue(definition) } }
                     var received: [DiscoveryRail] = []
                     for await row in group {
+                        if let definition = iterator.next(), !Task.isCancelled { enqueue(definition) }
                         guard current == generation, !Task.isCancelled, let row else { continue }
                         received.append(row)
                         rows = CatalogRefresh.merge(order: definitions.map(\.id), received: received, previous: previous)

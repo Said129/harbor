@@ -39,16 +39,7 @@ import XCTest
         XCTAssertTrue(restore.waitForExistence(timeout: 10)); restore.tap()
         XCTAssertTrue(restore.label.contains("Restaurad"))
         capture(app, name: "system-about-" + device)
-        app.buttons["about-replay"].tap()
-        let next = app.buttons["guide-next"]
-        XCTAssertTrue(next.waitForExistence(timeout: 10))
-        let headings = ["Te damos la bienvenida a Harbor", "A tu gusto", "Lee en iPhone y iPad", "Continúa viendo"]
-        for (index, heading) in headings.enumerated() {
-            XCTAssertTrue(app.staticTexts[heading].waitForExistence(timeout: 5))
-            capture(app, name: "system-walkthrough-\(device)-\(index + 1)")
-            XCTAssertTrue(next.isHittable); next.tap()
-        }
-        XCTAssertTrue(app.buttons["about-replay"].waitForExistence(timeout: 10))
+        // The complete ten-stage replay is covered by OnboardingNavigationTests.
     }
     private func capture(_ app: XCUIApplication, name: String) {
         let attachment = XCTAttachment(screenshot: app.screenshot()); attachment.name = name; attachment.lifetime = .keepAlways; add(attachment)

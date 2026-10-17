@@ -45,12 +45,12 @@ def resource_labels(value):
     elif isinstance(value, dict):
         for key, item in value.items(): used.add(key); resource_labels(item)
 
-resource_labels([{key: item[key] for key in ['code', 'nativeLabel']} for item in reference['languages']])
+resource_labels(reference['languages'])
 for path in native.rglob('*.json'):
     if path.name != 'DesktopLanguages.json':
         resource_labels(json.loads(path.read_text('utf-8')))
 native_spanish = {key: label for label, key in aliases.items()}
-languages = [{key: item[key] for key in ['code', 'nativeLabel']} for item in reference['languages']]
+languages = reference['languages']
 output.mkdir(parents=True, exist_ok=True)
 (output / 'DesktopLanguages.json').write_text(json.dumps(languages, ensure_ascii=False, indent=2) + '\n', 'utf-8')
 report = {}

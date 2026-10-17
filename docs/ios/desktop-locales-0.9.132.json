@@ -7,13 +7,13 @@
   "coverage_note": "This report inventories generated Desktop-derived labels and known mobile-only English fallbacks. It is not a certification of complete translation of every native message or of overall functional parity.",
   "languages": {
     "en": {
-      "entries": 1399,
-      "sha256": "e1449213ad729ef965676a21483ed0dbfd0cad168b044cfe8a7a2157a5cd3eae",
+      "entries": 1405,
+      "sha256": "28e423293f82d3ba474569f176803a7f0d6c68cfc1e823b50107eabfd530d1d1",
       "mobile_only_english_fallback": []
     },
     "ar": {
-      "entries": 1683,
-      "sha256": "6f94a40533a838793df3d50a9d3f4faaa85a3f9f6af118773755c9788e395937",
+      "entries": 1755,
+      "sha256": "78cc399b09b65c3b3f58225aaa3d2f663e401ea7b7d63f7a08264e0933ade58d",
       "mobile_only_english_fallback": [
         "Accents",
         "Add bookmark",
@@ -45,9 +45,12 @@
         "Configure addon",
         "Continue to next chapter",
         "Could not load navigation settings. Saved settings are kept.",
+        "Could not load streaming preferences. Saved settings are kept.",
         "Could not measure storage. Try again.",
         "Could not restore your navigation. The saved version is kept.",
         "Could not save navigation settings. Your previous settings are kept.",
+        "Could not save streaming preferences. Your previous settings are kept.",
+        "Could not save your choices. Try again.",
         "Delete file",
         "Desktop reference",
         "Dismiss tip",
@@ -179,8 +182,8 @@
       ]
     },
     "zh": {
-      "entries": 1643,
-      "sha256": "005c013d54dc3cceab13bf4f0a5c7119f89deee0f753d72ec4fc97580198d4fc",
+      "entries": 1715,
+      "sha256": "fec871fc8e92bd7a3af8e9969a1ff249dd76456eb98b7fe9194d82d2d7be69d5",
       "mobile_only_english_fallback": [
         "Accents",
         "Add bookmark",
@@ -221,10 +224,13 @@
         "Could not analyze this source. Playback continues; you can retry.",
         "Could not apply the timing. The original subtitle is kept.",
         "Could not load navigation settings. Saved settings are kept.",
+        "Could not load streaming preferences. Saved settings are kept.",
         "Could not measure storage. Try again.",
         "Could not open book",
         "Could not restore your navigation. The saved version is kept.",
         "Could not save navigation settings. Your previous settings are kept.",
+        "Could not save streaming preferences. Your previous settings are kept.",
+        "Could not save your choices. Try again.",
         "Delete file",
         "Desktop reference",
         "Dismiss tip",
@@ -381,8 +387,8 @@
       ]
     },
     "fr": {
-      "entries": 1643,
-      "sha256": "de078f534942e865e61bdc5b143f37ed317f2a9bcdb78d25e918946b74ba963b",
+      "entries": 1715,
+      "sha256": "6f86f5b89e2def1e159639ac6911ded6562e538891b1d98b40e0e924ca4e3eea",
       "mobile_only_english_fallback": [
         "Accents",
         "Add bookmark",
@@ -423,10 +429,13 @@
         "Could not analyze this source. Playback continues; you can retry.",
         "Could not apply the timing. The original subtitle is kept.",
         "Could not load navigation settings. Saved settings are kept.",
+        "Could not load streaming preferences. Saved settings are kept.",
         "Could not measure storage. Try again.",
         "Could not open book",
         "Could not restore your navigation. The saved version is kept.",
         "Could not save navigation settings. Your previous settings are kept.",
+        "Could not save streaming preferences. Your previous settings are kept.",
+        "Could not save your choices. Try again.",
         "Delete file",
         "Desktop reference",
         "Dismiss tip",
@@ -583,8 +592,8 @@
       ]
     },
     "de": {
-      "entries": 1643,
-      "sha256": "b02e56b4c41ef89c768ee6ef537d011b07ef90670c82589ebcad558a8abd1bbd",
+      "entries": 1715,
+      "sha256": "cde1a2ab833179133386f59ca21046955d24dfda5022b83ecaac81bcafa00d8b",
       "mobile_only_english_fallback": [
         "Accents",
         "Add bookmark",
@@ -625,10 +634,13 @@
         "Could not analyze this source. Playback continues; you can retry.",
         "Could not apply the timing. The original subtitle is kept.",
         "Could not load navigation settings. Saved settings are kept.",
+        "Could not load streaming preferences. Saved settings are kept.",
         "Could not measure storage. Try again.",
         "Could not open book",
         "Could not restore your navigation. The saved version is kept.",
         "Could not save navigation settings. Your previous settings are kept.",
+        "Could not save streaming preferences. Your previous settings are kept.",
+        "Could not save your choices. Try again.",
         "Delete file",
         "Desktop reference",
         "Dismiss tip",
@@ -785,8 +797,8 @@
       ]
     },
     "hi": {
-      "entries": 1643,
-      "sha256": "d83ce13a6aecca969a3cc416a2fcb168833bea3f9d1cefbbf2ea4b0ce19adae3",
+      "entries": 1715,
+      "sha256": "818725ca4bcc29b2e29f39d58473c65856965ded461697a5380e595a2bd30d0c",
       "mobile_only_english_fallback": [
         "Accents",
         "Add bookmark",
@@ -827,10 +839,13 @@
         "Could not analyze this source. Playback continues; you can retry.",
         "Could not apply the timing. The original subtitle is kept.",
         "Could not load navigation settings. Saved settings are kept.",
+        "Could not load streaming preferences. Saved settings are kept.",
         "Could not measure storage. Try again.",
         "Could not open book",
         "Could not restore your navigation. The saved version is kept.",
         "Could not save navigation settings. Your previous settings are kept.",
+        "Could not save streaming preferences. Your previous settings are kept.",
+        "Could not save your choices. Try again.",
         "Delete file",
         "Desktop reference",
         "Dismiss tip",
@@ -987,8 +1002,8 @@
       ]
     },
     "id": {
-      "entries": 1643,
-      "sha256": "2eb47d7bbf11910f087d8ad415d6ca0990cd5b04f1077e19f5d4b7a32b97bb36",
+      "entries": 1715,
+      "sha256": "e9f518cae1109fe84d877c292505641c6e0ee4118dbace885bcb25bb55753e22",
       "mobile_only_english_fallback": [
         "Accents",
         "Add bookmark",
@@ -1029,10 +1044,13 @@
         "Could not analyze this source. Playback continues; you can retry.",
         "Could not apply the timing. The original subtitle is kept.",
         "Could not load navigation settings. Saved settings are kept.",
+        "Could not load streaming preferences. Saved settings are kept.",
         "Could not measure storage. Try again.",
         "Could not open book",
         "Could not restore your navigation. The saved version is kept.",
         "Could not save navigation settings. Your previous settings are kept.",
+        "Could not save streaming preferences. Your previous settings are kept.",
+        "Could not save your choices. Try again.",
         "Delete file",
         "Desktop reference",
         "Dismiss tip",
@@ -1189,8 +1207,8 @@
       ]
     },
     "it": {
-      "entries": 1643,
-      "sha256": "fec1eae0fbbeb5f077b27c1575ae28191a7e43743b2acc46ca387ed2d6921a35",
+      "entries": 1715,
+      "sha256": "c429610b483054d71bae7389070d845c25b95fbcd04625eda7120d5946607bd6",
       "mobile_only_english_fallback": [
         "Accents",
         "Add bookmark",
@@ -1231,10 +1249,13 @@
         "Could not analyze this source. Playback continues; you can retry.",
         "Could not apply the timing. The original subtitle is kept.",
         "Could not load navigation settings. Saved settings are kept.",
+        "Could not load streaming preferences. Saved settings are kept.",
         "Could not measure storage. Try again.",
         "Could not open book",
         "Could not restore your navigation. The saved version is kept.",
         "Could not save navigation settings. Your previous settings are kept.",
+        "Could not save streaming preferences. Your previous settings are kept.",
+        "Could not save your choices. Try again.",
         "Delete file",
         "Desktop reference",
         "Dismiss tip",
@@ -1391,8 +1412,8 @@
       ]
     },
     "ja": {
-      "entries": 1643,
-      "sha256": "38a09d3ac033f382425863f9c1fcb10b775eba4147282823489e7aec002a809a",
+      "entries": 1715,
+      "sha256": "c3ed4de6a322cd625a80768612a69cf2e5ccdb64c3a057acde951949a09c8da6",
       "mobile_only_english_fallback": [
         "Accents",
         "Add bookmark",
@@ -1433,10 +1454,13 @@
         "Could not analyze this source. Playback continues; you can retry.",
         "Could not apply the timing. The original subtitle is kept.",
         "Could not load navigation settings. Saved settings are kept.",
+        "Could not load streaming preferences. Saved settings are kept.",
         "Could not measure storage. Try again.",
         "Could not open book",
         "Could not restore your navigation. The saved version is kept.",
         "Could not save navigation settings. Your previous settings are kept.",
+        "Could not save streaming preferences. Your previous settings are kept.",
+        "Could not save your choices. Try again.",
         "Delete file",
         "Desktop reference",
         "Dismiss tip",
@@ -1593,8 +1617,8 @@
       ]
     },
     "ko": {
-      "entries": 1643,
-      "sha256": "7fe7b1a5c26ed2c2392f35d5c34823134f9c6c5b19d3241a56bc50b6c357a815",
+      "entries": 1715,
+      "sha256": "248862459d343b678426328c400041cce9691b90d47770f52e94cf84c4c59997",
       "mobile_only_english_fallback": [
         "Accents",
         "Add bookmark",
@@ -1635,10 +1659,13 @@
         "Could not analyze this source. Playback continues; you can retry.",
         "Could not apply the timing. The original subtitle is kept.",
         "Could not load navigation settings. Saved settings are kept.",
+        "Could not load streaming preferences. Saved settings are kept.",
         "Could not measure storage. Try again.",
         "Could not open book",
         "Could not restore your navigation. The saved version is kept.",
         "Could not save navigation settings. Your previous settings are kept.",
+        "Could not save streaming preferences. Your previous settings are kept.",
+        "Could not save your choices. Try again.",
         "Delete file",
         "Desktop reference",
         "Dismiss tip",
@@ -1795,8 +1822,8 @@
       ]
     },
     "pl": {
-      "entries": 1643,
-      "sha256": "b33fa1fd1d65574bc1f3a747e95e9e6c078bc6b018eb82e02eed390b917d87a1",
+      "entries": 1715,
+      "sha256": "3042601b9a73505d5c901acce0bc948e99c4c417dfea47bfab36775d07728783",
       "mobile_only_english_fallback": [
         "Accents",
         "Add bookmark",
@@ -1837,10 +1864,13 @@
         "Could not analyze this source. Playback continues; you can retry.",
         "Could not apply the timing. The original subtitle is kept.",
         "Could not load navigation settings. Saved settings are kept.",
+        "Could not load streaming preferences. Saved settings are kept.",
         "Could not measure storage. Try again.",
         "Could not open book",
         "Could not restore your navigation. The saved version is kept.",
         "Could not save navigation settings. Your previous settings are kept.",
+        "Could not save streaming preferences. Your previous settings are kept.",
+        "Could not save your choices. Try again.",
         "Delete file",
         "Desktop reference",
         "Dismiss tip",
@@ -1997,8 +2027,8 @@
       ]
     },
     "pt": {
-      "entries": 1670,
-      "sha256": "40a7aae72b99511f937843281fd678bb6d9d4419d8fed5dbae3c0ce303055f39",
+      "entries": 1742,
+      "sha256": "2fca0943c91da31f4b4086b4a5eb99bce4e3156ae997f800e44ce105ab9a4551",
       "mobile_only_english_fallback": [
         "Accents",
         "Add bookmark",
@@ -2031,9 +2061,12 @@
         "Configure addon",
         "Continue to next chapter",
         "Could not load navigation settings. Saved settings are kept.",
+        "Could not load streaming preferences. Saved settings are kept.",
         "Could not measure storage. Try again.",
         "Could not restore your navigation. The saved version is kept.",
         "Could not save navigation settings. Your previous settings are kept.",
+        "Could not save streaming preferences. Your previous settings are kept.",
+        "Could not save your choices. Try again.",
         "Delete file",
         "Desktop reference",
         "Dismiss tip",
@@ -2173,8 +2206,8 @@
       ]
     },
     "ru": {
-      "entries": 1656,
-      "sha256": "d2fdbd9ee2323c5b9a24fd1b41207c1ad5f05d47034d771687921cb1fef316a1",
+      "entries": 1728,
+      "sha256": "afecf25b16e6a27de45fad0652a62646859e0902b9bc3720f9ccbdd14076db36",
       "mobile_only_english_fallback": [
         "Accents",
         "Add bookmark",
@@ -2206,9 +2239,12 @@
         "Configure addon",
         "Continue to next chapter",
         "Could not load navigation settings. Saved settings are kept.",
+        "Could not load streaming preferences. Saved settings are kept.",
         "Could not measure storage. Try again.",
         "Could not restore your navigation. The saved version is kept.",
         "Could not save navigation settings. Your previous settings are kept.",
+        "Could not save streaming preferences. Your previous settings are kept.",
+        "Could not save your choices. Try again.",
         "Delete file",
         "Desktop reference",
         "Dismiss tip",
@@ -2340,13 +2376,13 @@
       ]
     },
     "es": {
-      "entries": 1643,
-      "sha256": "f772397d8435065ee2561a2627f96f525c2217e111fc4f7d88e05e07918d9eae",
+      "entries": 1715,
+      "sha256": "ce453324a4449699d3b4c94a025f4be2190257ec007b3850eaa8ccb9f758dc60",
       "mobile_only_english_fallback": []
     },
     "tr": {
-      "entries": 1643,
-      "sha256": "592f2e3a19845b1372d7a02314ff7fd99b1529474f82e0607e8a9419bf692abd",
+      "entries": 1715,
+      "sha256": "55f4465011bb923b4a65a0157e3e5d57680dce051a393eca981b27beb7ebf0a1",
       "mobile_only_english_fallback": [
         "Accents",
         "Add bookmark",
@@ -2387,10 +2423,13 @@
         "Could not analyze this source. Playback continues; you can retry.",
         "Could not apply the timing. The original subtitle is kept.",
         "Could not load navigation settings. Saved settings are kept.",
+        "Could not load streaming preferences. Saved settings are kept.",
         "Could not measure storage. Try again.",
         "Could not open book",
         "Could not restore your navigation. The saved version is kept.",
         "Could not save navigation settings. Your previous settings are kept.",
+        "Could not save streaming preferences. Your previous settings are kept.",
+        "Could not save your choices. Try again.",
         "Delete file",
         "Desktop reference",
         "Dismiss tip",
@@ -2547,8 +2586,8 @@
       ]
     },
     "vi": {
-      "entries": 1643,
-      "sha256": "e3fc00744766ecc08f9a64517ae6de87aa738caa23619a4d5dde19eae0533148",
+      "entries": 1715,
+      "sha256": "94d52241f89803e53c9c3ccddd40a7d82d8202c6eed3a77406d821e2b41e2d9e",
       "mobile_only_english_fallback": [
         "Accents",
         "Add bookmark",
@@ -2589,10 +2628,13 @@
         "Could not analyze this source. Playback continues; you can retry.",
         "Could not apply the timing. The original subtitle is kept.",
         "Could not load navigation settings. Saved settings are kept.",
+        "Could not load streaming preferences. Saved settings are kept.",
         "Could not measure storage. Try again.",
         "Could not open book",
         "Could not restore your navigation. The saved version is kept.",
         "Could not save navigation settings. Your previous settings are kept.",
+        "Could not save streaming preferences. Your previous settings are kept.",
+        "Could not save your choices. Try again.",
         "Delete file",
         "Desktop reference",
         "Dismiss tip",

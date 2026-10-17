@@ -1,66 +1,114 @@
 [
   {
     "code": "en",
-    "nativeLabel": "English"
+    "label": "English",
+    "nativeLabel": "English",
+    "greeting": "Hello",
+    "rtl": false
   },
   {
     "code": "ar",
-    "nativeLabel": "العربية"
+    "label": "Arabic",
+    "nativeLabel": "العربية",
+    "greeting": "مرحبا",
+    "rtl": true
   },
   {
     "code": "zh",
-    "nativeLabel": "简体中文"
+    "label": "Chinese (Simplified)",
+    "nativeLabel": "简体中文",
+    "greeting": "你好",
+    "rtl": false
   },
   {
     "code": "fr",
-    "nativeLabel": "Français"
+    "label": "French",
+    "nativeLabel": "Français",
+    "greeting": "Bonjour",
+    "rtl": false
   },
   {
     "code": "de",
-    "nativeLabel": "Deutsch"
+    "label": "German",
+    "nativeLabel": "Deutsch",
+    "greeting": "Hallo",
+    "rtl": false
   },
   {
     "code": "hi",
-    "nativeLabel": "हिन्दी"
+    "label": "Hindi",
+    "nativeLabel": "हिन्दी",
+    "greeting": "नमस्ते",
+    "rtl": false
   },
   {
     "code": "id",
-    "nativeLabel": "Bahasa Indonesia"
+    "label": "Indonesian",
+    "nativeLabel": "Bahasa Indonesia",
+    "greeting": "Halo",
+    "rtl": false
   },
   {
     "code": "it",
-    "nativeLabel": "Italiano"
+    "label": "Italian",
+    "nativeLabel": "Italiano",
+    "greeting": "Ciao",
+    "rtl": false
   },
   {
     "code": "ja",
-    "nativeLabel": "日本語"
+    "label": "Japanese",
+    "nativeLabel": "日本語",
+    "greeting": "こんにちは",
+    "rtl": false
   },
   {
     "code": "ko",
-    "nativeLabel": "한국어"
+    "label": "Korean",
+    "nativeLabel": "한국어",
+    "greeting": "안녕하세요",
+    "rtl": false
   },
   {
     "code": "pl",
-    "nativeLabel": "Polski"
+    "label": "Polish",
+    "nativeLabel": "Polski",
+    "greeting": "Cześć",
+    "rtl": false
   },
   {
     "code": "pt",
-    "nativeLabel": "Português"
+    "label": "Portuguese (Brazil)",
+    "nativeLabel": "Português",
+    "greeting": "Olá",
+    "rtl": false
   },
   {
     "code": "ru",
-    "nativeLabel": "Русский"
+    "label": "Russian",
+    "nativeLabel": "Русский",
+    "greeting": "Привет",
+    "rtl": false
   },
   {
     "code": "es",
-    "nativeLabel": "Español"
+    "label": "Spanish",
+    "nativeLabel": "Español",
+    "greeting": "Hola",
+    "rtl": false
   },
   {
     "code": "tr",
-    "nativeLabel": "Türkçe"
+    "label": "Turkish",
+    "nativeLabel": "Türkçe",
+    "greeting": "Merhaba",
+    "rtl": false
   },
   {
     "code": "vi",
-    "nativeLabel": "Tiếng Việt"
+    "label": "Vietnamese",
+    "nativeLabel": "Tiếng Việt",
+    "greeting": "Xin chào",
+    "rtl": false
   }
 ]

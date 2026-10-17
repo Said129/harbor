@@ -75,6 +75,17 @@ final class DiscoveryPreferences {
         } catch { self.error = "No se pudieron recuperar las preferencias de recomendaciones. Los datos guardados se conservan." }
     }
     func vote(for media: Media) -> Vote? { stored.votes[media.id]?.vote }
+    @discardableResult func seedTaste(_ media: [Media], now: Date = Date()) -> Bool {
+        guard ready, media.count <= OnboardingTastePicks.maximum, media.allSatisfy({ Stored.validID($0.id) }) else { return false }
+        guard !media.isEmpty else { return true }
+        var next = stored
+        for title in media where next.votes[title.id]?.vote != .up {
+            next.votes[title.id] = Entry(vote: .up, timestamp: now.timeIntervalSince1970 * 1_000, name: title.name, type: title.type)
+            Self.append(.voteUp, media: title, now: now, to: &next)
+        }
+        next.hintDismissed = true
+        return persist(next)
+    }
     func isQueueItemHidden(_ id: String, now: Date = Date()) -> Bool {
         let key = Self.queueKey(id)
         return stored.queueBlocked?.contains(key) == true || (stored.queueSnoozed?[key] ?? 0) > now.timeIntervalSince1970 * 1_000

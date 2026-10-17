@@ -88,13 +88,16 @@ struct NavigationSettingsView: View {
     }
 }
 
-private struct HomeStylePicker: View {
+struct HomeStylePicker: View {
     @Binding var selection: String
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
-    private let choices = [("harbor", "Harbor curated", "home-style-harbor"), ("classic", "Classic Stremio", "home-style-classic")]
+    private let choices = [
+        ("harbor", "Harbor curated", "home-style-harbor", "Hero, Top 10, Trending, In Theaters, per-service rails. Your addons append underneath."),
+        ("classic", "Classic Stremio", "home-style-classic", "Continue Watching, then your addon catalogs in install order. No hero, no Harbor rails.")
+    ]
     var body: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            ForEach(choices, id: \.0) { value, title, artwork in
+        LazyVGrid(columns: [GridItem(.adaptive(minimum: 220), spacing: 16, alignment: .top)], alignment: .leading, spacing: 16) {
+            ForEach(choices, id: \.0) { value, title, artwork, description in
                 Button { selection = value } label: {
                     VStack(alignment: .leading, spacing: 10) {
                         Image(artwork).resizable().aspectRatio(16.0 / 10, contentMode: .fill)
@@ -102,9 +105,10 @@ private struct HomeStylePicker: View {
                             .overlay { RoundedRectangle(cornerRadius: 10).stroke(selection == value ? HarborTheme.accent : ThemePreferences.shared.color("edge-soft"), lineWidth: 1) }
                             .accessibilityHidden(true)
                         HStack(spacing: 8) {
+                            Image(systemName: selection == value ? "largecircle.fill.circle" : "circle").accessibilityHidden(true)
                             Text(DesktopInterfaceText.value(title)).font(HarborTheme.font(14, weight: .semibold))
-                            if selection == value { Image("desktop-check").resizable().scaledToFit().frame(width: 18, height: 18).foregroundStyle(HarborTheme.accent).accessibilityHidden(true) }
                         }.frame(minHeight: 44, alignment: .leading)
+                        Text(DesktopInterfaceText.value(description)).font(HarborTheme.font(12.5)).foregroundStyle(.secondary).fixedSize(horizontal: false, vertical: true)
                     }.contentShape(Rectangle()).foregroundStyle(HarborTheme.ink)
                 }.buttonStyle(.plain).accessibilityAddTraits(selection == value ? [.isSelected] : [])
                     .accessibilityIdentifier("home-style-\(value)")

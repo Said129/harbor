@@ -11,12 +11,17 @@ struct ProfileAccountButton: View {
                 ProfileAvatar(profile: profile, size: expanded ? 38 : 28)
                 if expanded {
                     VStack(alignment: .leading, spacing: 4) {
-                        Text(profile.value.name.isEmpty ? app.user?.displayName ?? "Invitado" : profile.value.name).font(HarborTheme.font(13, weight: .semibold)).lineLimit(1)
+                        accountName(profile).font(HarborTheme.font(13, weight: .semibold)).lineLimit(1)
                         if app.user != nil { Text(DesktopInterfaceText.value("profile.signedIn")).font(HarborTheme.font(11)).foregroundStyle(.secondary) }
                     }
                 }
             }.frame(minHeight: 44)
-        }.buttonStyle(.plain).accessibilityLabel(DesktopInterfaceText.value("Account")).accessibilityIdentifier("main-account")
+        }.buttonStyle(.plain).accessibilityLabel(DesktopInterfaceText.value("Account")).accessibilityValue(accountName(profile)).accessibilityIdentifier("main-account")
+    }
+    private func accountName(_ profile: ProfilePreferences) -> Text {
+        if !profile.value.name.isEmpty { return Text(verbatim: profile.value.name) }
+        if let user = app.user { return Text(verbatim: user.displayName) }
+        return Text("Guest")
     }
 }
 

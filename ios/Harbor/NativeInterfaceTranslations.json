@@ -61,7 +61,12 @@
     "Your navigation is saved locally. Cloud sync will retry.": "Tu navegación está guardada en el dispositivo. Se volverá a intentar sincronizarla.",
     "Another device changed navigation. Your previous version is saved on this device.": "Otro dispositivo cambió la navegación. Tu versión anterior sigue guardada en este dispositivo.",
     "Restore my version": "Restaurar mi versión",
-    "Navigation changes waiting to sync": "Cambios de navegación pendientes de sincronizar"
+    "Navigation changes waiting to sync": "Cambios de navegación pendientes de sincronizar",
+    "Connect TMDB": "Conecta TMDB",
+    "Streaming services": "Servicios de streaming",
+    "Could not load streaming preferences. Saved settings are kept.": "No se pudieron cargar los servicios. Se conserva la configuración guardada.",
+    "Could not save streaming preferences. Your previous settings are kept.": "No se pudieron guardar los servicios. Se conserva tu configuración anterior.",
+    "Could not save your choices. Try again.": "No se pudieron guardar tus elecciones. Vuelve a intentarlo."
   },
   "pt": {
     "Auto-sync": "Sincronização automática",

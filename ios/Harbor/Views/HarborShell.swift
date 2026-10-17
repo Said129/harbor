@@ -57,10 +57,17 @@ enum HarborSection: String, CaseIterable, Identifiable {
 
 struct HarborBrand: View {
     var size: CGFloat = 30
+    var tiltedO = false
     var body: some View {
         HStack(spacing: 1) {
             Image("harbor-mark").resizable().scaledToFit().frame(width: size * 0.9, height: size)
-            Text("Harbor").font(wordmarkFont).tracking(-1)
+            if tiltedO {
+                HStack(spacing: 0) {
+                    Text("Harb")
+                    Text("o").rotationEffect(.degrees(7), anchor: UnitPoint(x: 0.5, y: 0.65))
+                    Text("r")
+                }.font(wordmarkFont).tracking(-1)
+            } else { Text("Harbor").font(wordmarkFont).tracking(-1) }
         }.foregroundStyle(.white).accessibilityElement(children: .ignore).accessibilityLabel("Harbor")
     }
     private var wordmarkFont: Font {
@@ -137,7 +144,7 @@ struct HarborShell: View {
             }
             .sheet(isPresented: Binding(get: {
                 app.storageReady && document == nil && !app.showAccount && AppGuidePreferences.shared.presentationRequested
-            }, set: { if !$0 { AppGuidePreferences.shared.finish() } })) { AppWalkthroughView() }
+            }, set: { if !$0 { AppGuidePreferences.shared.finish() } })) { AppWalkthroughView(app: app) }
     }
     private func presentPendingDocument() {
         guard app.storageReady, let url = pendingDocument else { return }

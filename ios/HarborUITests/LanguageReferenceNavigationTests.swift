@@ -20,8 +20,8 @@ import XCTest
         XCTAssertTrue(navigation.waitForExistence(timeout: 10))
         for _ in 0..<10 { if destination.isHittable { break }; navigation.swipeUp() }
         XCTAssertTrue(destination.isHittable); destination.tap()
-        let cases = [("Français", "Paramètres", "fr"), ("日本語", "設定", "ja"), ("العربية", "الإعدادات", "ar"), ("Español", "Configuración", "es")]
-        for (name, heading, code) in cases {
+        let cases = [("Français", "Paramètres", "fr", "Invité"), ("日本語", "設定", "ja", "ゲスト"), ("العربية", "الإعدادات", "ar", "ضيف"), ("Español", "Configuración", "es", "Invitado")]
+        for (name, heading, code, guest) in cases {
             let picker = app.buttons["settings-app-language"]
             XCTAssertTrue(picker.waitForExistence(timeout: 10)); picker.tap()
             let option = app.buttons[name].firstMatch
@@ -33,6 +33,9 @@ import XCTest
             XCTAssertTrue(option.waitForExistence(timeout: 5)); XCTAssertTrue(option.isHittable); option.tap()
             XCTAssertTrue(app.staticTexts[heading].firstMatch.waitForExistence(timeout: 10))
             XCTAssertEqual(picker.value as? String, name)
+            let account = app.buttons.matching(identifier: "main-account").firstMatch
+            let localizedGuest = XCTNSPredicateExpectation(predicate: NSPredicate(format: "value == %@", guest), object: account)
+            XCTAssertEqual(XCTWaiter.wait(for: [localizedGuest], timeout: 5), .completed)
             let attachment = XCTAttachment(screenshot: app.screenshot())
             attachment.name = "reference-language-\(device)-\(code)"; attachment.lifetime = .keepAlways; add(attachment)
         }

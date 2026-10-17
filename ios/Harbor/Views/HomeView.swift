@@ -29,7 +29,7 @@ struct HomeView: View {
     private var homeError: String? { (!classic ? model.home.error : nil) ?? model.error }
     private var contentSignature: String {
         let configuration = MetadataPreferences.shared.configuration()
-        return [model.user?.id ?? "guest", String(model.storageReady), String(classic), EBookShelf.hash(configuration.tmdbKey), configuration.language, configuration.region, String(configuration.translateTitles), model.addons.filter(\.enabled).map(\.id).joined(separator: "|")].joined(separator: "|")
+        return [model.user?.id ?? "guest", String(model.storageReady), String(classic), EBookShelf.hash(configuration.tmdbKey), configuration.language, configuration.region, String(configuration.translateTitles), StreamingPreferences.forOwner(model.user?.id ?? "guest").signature, model.addons.filter(\.enabled).map(\.id).joined(separator: "|")].joined(separator: "|")
     }
     var body: some View {
         ScrollView {

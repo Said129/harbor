@@ -276,6 +276,7 @@
 "Configurar addon" = "Configure addon";
 "Configure Sports" = "Configure Sports";
 "Configure addon" = "Configure addon";
+"Connect TMDB" = "Connect TMDB";
 "Connecting" = "Connecting";
 "Conservar original" = "Keep original";
 "Contenido" = "Content";
@@ -299,10 +300,13 @@
 "Could not analyze this source. Playback continues; you can retry." = "Could not analyze this source. Playback continues; you can retry.";
 "Could not apply the timing. The original subtitle is kept." = "Could not apply the timing. The original subtitle is kept.";
 "Could not load navigation settings. Saved settings are kept." = "Could not load navigation settings. Saved settings are kept.";
+"Could not load streaming preferences. Saved settings are kept." = "Could not load streaming preferences. Saved settings are kept.";
 "Could not measure storage. Try again." = "Could not measure storage. Try again.";
 "Could not open book" = "Could not open book";
 "Could not restore your navigation. The saved version is kept." = "Could not restore your navigation. The saved version is kept.";
 "Could not save navigation settings. Your previous settings are kept." = "Could not save navigation settings. Your previous settings are kept.";
+"Could not save streaming preferences. Your previous settings are kept." = "Could not save streaming preferences. Your previous settings are kept.";
+"Could not save your choices. Try again." = "Could not save your choices. Try again.";
 "Couldn't auto-sync" = "Couldn't auto-sync";
 "Crea tu propia paleta" = "Build your own palette";
 "Crime Series" = "Crime Series";
@@ -313,6 +317,7 @@
 "Cuenta" = "Account";
 "Cuenta de Harbor" = "Harbor account";
 "Cuenta y configuración" = "Account & setup";
+"Current" = "Current";
 "Custom" = "Custom";
 "Custom subtitle FPS" = "Custom subtitle FPS";
 "Custom..." = "Custom...";
@@ -1169,6 +1174,7 @@
 "Stop playback" = "Stop playback";
 "Stop showing as second subtitle" = "Stop showing as second subtitle";
 "Streaming" = "Streaming";
+"Streaming services" = "Streaming services";
 "Stremio clásico" = "Classic Stremio";
 "Stretch" = "Stretch";
 "Strict filters dropped everything" = "Strict filters dropped everything";

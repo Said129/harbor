@@ -52,7 +52,7 @@ struct SystemStorageView: View {
                     .buttonStyle(HarborAccountButtonStyle()).disabled(loading || clearing).accessibilityIdentifier("storage-refresh")
             }.padding(20)
         }.background(HarborTheme.background).foregroundStyle(HarborTheme.ink)
-            .navigationTitle(DesktopInterfaceText.value("Storage overview"))
+            .navigationTitle(DesktopInterfaceText.value("Storage overview")).navigationBarTitleDisplayMode(.inline)
             .accessibilityIdentifier("system-storage").task(id: refreshRevision) { await refresh(revision: refreshRevision) }
     }
 
@@ -72,7 +72,7 @@ struct SystemStorageView: View {
         HStack(alignment: .firstTextBaseline, spacing: 12) {
             Text(DesktopInterfaceText.value(title))
             Spacer(minLength: 8)
-            Text(ByteCountFormatter.string(fromByteCount: max(0, bytes), countStyle: .file)).foregroundStyle(.secondary).monospacedDigit()
+            Text(bytes <= 0 ? "0 KB" : ByteCountFormatter.string(fromByteCount: bytes, countStyle: .file)).foregroundStyle(.secondary).monospacedDigit()
         }.font(HarborTheme.font(14)).frame(minHeight: 36)
     }
 }

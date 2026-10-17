@@ -30,7 +30,7 @@ struct SystemAboutView: View {
                 }
             }.padding(20).frame(maxWidth: 900).frame(maxWidth: .infinity)
         }.background(HarborTheme.background).foregroundStyle(HarborTheme.ink)
-            .navigationTitle(DesktopInterfaceText.value("About")).accessibilityIdentifier("system-about")
+            .navigationTitle(DesktopInterfaceText.value("About")).navigationBarTitleDisplayMode(.inline).accessibilityIdentifier("system-about")
     }
     private func action(_ title: String, description: String) -> some View {
         VStack(alignment: .leading, spacing: 6) {

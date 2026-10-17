@@ -1,50 +1,144 @@
 import SwiftUI
 
 struct AppWalkthroughView: View {
+    let app: AppModel
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @AppStorage("uiLanguage") private var language = "es"
-    @State private var step = 0
-    private let steps: [(title: String, message: String, icon: String)] = [
-        ("Welcome to Harbor", "Choose your language. Your accounts and sources can be configured from your profile and Addons.", "harbor-mark"),
-        ("Make it yours", "Use the navigation menu to open each section. Personalize the sidebar, home rows, colors and playback from Settings.", "nav-settings"),
-        ("Read on iPhone and iPad", "In eBook, search Gutenberg or import EPUB and PDF files. In Manga, import PDF, CBZ, ZIP or image folders, or connect your Suwayomi server.", "nav-ebook"),
-        ("Keep watching", "Resume from Continue watching. During playback, choose sources, audio and subtitles, synchronize an external subtitle or skip an intro when timing is available.", "nav-movies")
-    ]
+    @State private var step = OnboardingStep.splash
+    @State private var picks = OnboardingTastePicks()
+    @State private var taste: [Media]?
+    @State private var tasteError: String?
+    @State private var editingKey = false
+    @State private var closing = false
+    private var owner: String { app.user?.id ?? "guest" }
+    private var tasteSignature: String { step == .taste ? owner + "|" + EBookShelf.hash(MetadataPreferences.shared.tmdbKey) : "" }
     var body: some View {
         NavigationStack {
-            ScrollView {
-                VStack(spacing: 24) {
-                    HarborBrand(size: 42).padding(.top, 20)
-                    HStack(spacing: 8) {
-                        ForEach(steps.indices, id: \.self) { index in
-                            Capsule().fill(index == step ? HarborTheme.ink : HarborTheme.ink.opacity(0.25)).frame(width: index == step ? 30 : 8, height: 6)
-                        }
-                    }.accessibilityElement(children: .ignore).accessibilityLabel("\(step + 1) / \(steps.count)")
-                    VStack(spacing: 22) {
-                        Image(steps[step].icon).resizable().scaledToFit().frame(width: 68, height: 68).accessibilityHidden(true)
-                        Text(DesktopInterfaceText.value(steps[step].title)).font(HarborTheme.font(28, weight: .semibold)).multilineTextAlignment(.center).accessibilityAddTraits(.isHeader)
-                        Text(DesktopInterfaceText.value(steps[step].message)).font(HarborTheme.font(16)).foregroundStyle(.secondary).multilineTextAlignment(.center)
-                    }.id(step).transition(reduceMotion ? .identity : .opacity.combined(with: .offset(y: 12)))
-                    if step == 0 {
-                        HarborSettingsChoice(DesktopInterfaceText.value("Language"), selection: $language, choices: InterfaceLanguage.all.map { ($0.nativeLabel, $0.code) }, localizeChoices: false, identifier: "guide-language")
+            VStack(spacing: 0) {
+                if step == .splash {
+                    OnboardingSplash(app: app) { changeStep(.language) }.frame(maxHeight: 528)
+                } else {
+                    ScrollView {
+                        content.padding(24).frame(maxWidth: .infinity, alignment: .leading)
+                            .accessibilityElement(children: .contain).accessibilityIdentifier("guide-stage-" + step.rawValue)
+                            .id(step).transition(reduceMotion ? .identity : .opacity.combined(with: .offset(y: 12)))
                     }
-                    HStack(spacing: 16) {
-                        if step > 0 { Button(DesktopInterfaceText.value("Back")) { changeStep(-1) }.buttonStyle(HarborAccountButtonStyle()).accessibilityIdentifier("guide-back") }
-                        Button(DesktopInterfaceText.value(step == steps.count - 1 ? "Done" : "Next")) {
-                            if step == steps.count - 1 { AppGuidePreferences.shared.finish() } else { changeStep(1) }
-                        }.buttonStyle(HarborAccountButtonStyle()).accessibilityIdentifier("guide-next")
-                    }.padding(.top, 8)
-                }.padding(24).frame(maxWidth: 650).frame(maxWidth: .infinity)
-            }.background(HarborTheme.background).foregroundStyle(HarborTheme.ink)
-                .toolbar { ToolbarItem(placement: .cancellationAction) { Button(DesktopInterfaceText.value("Skip")) { AppGuidePreferences.shared.finish() }.accessibilityIdentifier("guide-skip") } }
-                .navigationTitle(DesktopInterfaceText.value("Onboarding")).navigationBarTitleDisplayMode(.inline)
+                    .scrollDismissesKeyboard(.interactively).accessibilityIdentifier("guide-content")
+                    footer
+                }
+            }.frame(maxWidth: step == .taste ? 640 : 580, maxHeight: step == .splash ? 528 : 720)
+                .background(HarborTheme.surface.opacity(0.7), in: .rect(cornerRadius: 20))
+                .overlay { RoundedRectangle(cornerRadius: 20).stroke(HarborTheme.ink.opacity(0.08), lineWidth: 1).allowsHitTesting(false) }
+                .padding(.horizontal, 12).padding(.vertical, 8).frame(maxWidth: .infinity, maxHeight: .infinity)
+                .background(HarborTheme.background).foregroundStyle(HarborTheme.ink)
+                .scaleEffect(closing && !reduceMotion ? 0.97 : 1).opacity(closing ? 0 : 1)
+                .toolbar {
+                    if step != .splash {
+                        ToolbarItem(placement: .cancellationAction) {
+                            Button { finish() } label: { Image(systemName: "xmark").frame(width: 44, height: 44) }
+                                .accessibilityLabel(DesktopInterfaceText.value("Skip setup")).accessibilityIdentifier("guide-skip")
+                        }
+                    }
+                }.navigationTitle(DesktopInterfaceText.value("Onboarding")).navigationBarTitleDisplayMode(.inline)
         }.tint(HarborTheme.accent).preferredColorScheme(.dark)
             .environment(\.locale, Locale(identifier: InterfaceLanguage.resolve(language)))
             .environment(\.layoutDirection, InterfaceLanguage.resolve(language) == "ar" ? .rightToLeft : .leftToRight)
             .accessibilityIdentifier("app-walkthrough")
+            .sheet(isPresented: $editingKey) { MetadataKeyEditor(preferences: .shared) }
+            .task(id: tasteSignature) {
+                guard step == .taste else { return }
+                let expectedOwner = owner
+                taste = nil; tasteError = nil
+                do {
+                    let titles = try await OnboardingContent().taste(configuration: MetadataPreferences.shared.configuration(), service: app.service)
+                    try Task.checkCancellation()
+                    guard owner == expectedOwner else { return }
+                    taste = titles
+                } catch is CancellationError {} catch { if owner == expectedOwner { taste = []; tasteError = safeMessage(error) } }
+            }
+            .onChange(of: owner) { _, _ in picks.reset(); taste = nil; tasteError = nil }
+            .task(id: closing) {
+                guard closing else { return }
+                if !reduceMotion { do { try await Task.sleep(for: .milliseconds(320)) } catch { return } }
+                AppGuidePreferences.shared.finish()
+            }
     }
-    private func changeStep(_ amount: Int) {
-        withAnimation(reduceMotion ? nil : .easeInOut(duration: 0.2)) { step = min(steps.count - 1, max(0, step + amount)) }
+    @ViewBuilder private var content: some View {
+        switch step {
+        case .splash: EmptyView()
+        case .language: OnboardingLanguageStep(language: $language)
+        case .welcome: OnboardingWelcomeStep()
+        case .layout:
+            VStack(alignment: .leading, spacing: 22) {
+                OnboardingHeading("Pick a home layout", message: "You can switch later in Settings under Library & metadata.")
+                HomeStylePicker(selection: Binding(get: { InterfacePreferences.shared.homeMode }, set: { InterfacePreferences.shared.homeMode = $0 }))
+            }
+        case .tmdb: OnboardingMetadataStep { editingKey = true }
+        case .stremio: OnboardingAccountStep(app: app)
+        case .streaming:
+            VStack(alignment: .leading, spacing: 22) {
+                OnboardingHeading("Pick what you actually use", message: "Harbor pulls the most popular titles each service has right now. Toggle off anything you don't subscribe to.", eyebrow: "Step 3 · Streaming")
+                StreamingServicePicker(preferences: .forOwner(owner))
+            }
+        case .subtitles:
+            VStack(alignment: .leading, spacing: 22) {
+                OnboardingHeading("Pick your subtitle languages", message: "When playback starts, Harbor finds and loads a subtitle in one of these languages automatically. The first available match wins, so put your main language first.", eyebrow: "Step 4 · Subtitles")
+                HarborLanguagesPicker(value: Binding(get: { PlaybackPreferences.shared.options.subtitleLanguage }, set: { PlaybackPreferences.shared.options.subtitleLanguage = $0 }), identifier: "guide-subtitle-languages")
+            }
+        case .taste:
+            OnboardingTasteStep(items: taste, picks: $picks)
+            if let tasteError { Text(DesktopInterfaceText.value(tasteError)).font(.caption).foregroundStyle(.orange) }
+        case .done: OnboardingDoneStep(owner: owner)
+        }
+    }
+    private var footer: some View {
+        VStack(spacing: 12) {
+            ViewThatFits(in: .horizontal) {
+                progressDots
+                ScrollView(.horizontal) { progressDots }.scrollIndicators(.hidden)
+            }
+            ViewThatFits(in: .horizontal) {
+                HStack(spacing: 8) { actions }
+                VStack(spacing: 8) { actions }
+            }
+        }.padding(.horizontal, 16).padding(.bottom, 16)
+            .background(HarborTheme.background.opacity(0.5)).disabled(closing)
+    }
+    private var progressDots: some View {
+        HStack(spacing: 7) {
+            ForEach(OnboardingStep.allCases.filter { $0 != .splash }) { item in
+                Button { changeStep(item) } label: {
+                    Capsule().fill(item == step ? HarborTheme.ink : HarborTheme.ink.opacity(0.22))
+                        .frame(width: item == step ? 24 : 6, height: 6).frame(minWidth: 26, minHeight: 44)
+                }.buttonStyle(.plain).accessibilityLabel("\(item.index) / 9")
+                    .accessibilityAddTraits(item == step ? [.isSelected] : []).accessibilityIdentifier("guide-step-" + item.rawValue)
+            }
+        }
+    }
+    @ViewBuilder private var actions: some View {
+        if step.canSkip {
+            Button(DesktopInterfaceText.value("Skip for now")) { changeStep(step.next) }.frame(minHeight: 44).font(HarborTheme.font(13))
+                .foregroundStyle(.secondary).accessibilityIdentifier("guide-skip-step")
+        }
+        if step.index > 1 && step != .done {
+            Button(DesktopInterfaceText.value("Back")) { changeStep(step.previous) }.buttonStyle(HarborAccountButtonStyle()).accessibilityIdentifier("guide-back")
+        }
+        Button(DesktopInterfaceText.value(step == .done ? "Enter Harbor" : step == .welcome ? "Get Started" : "Continue")) { advance() }
+            .buttonStyle(HarborAccountButtonStyle(primary: true)).accessibilityIdentifier("guide-next")
+    }
+    private func advance() {
+        if step == .done { finish(); return }
+        if step == .taste {
+            let preferences = DiscoveryPreferences(owner: owner)
+            guard preferences.seedTaste(picks.values) else { tasteError = preferences.error ?? "Could not save your choices. Try again."; return }
+        }
+        changeStep(step.next)
+    }
+    private func changeStep(_ next: OnboardingStep) {
+        withAnimation(reduceMotion ? nil : .timingCurve(0.16, 1, 0.3, 1, duration: 0.42)) { step = next }
+    }
+    private func finish() {
+        withAnimation(reduceMotion ? nil : .easeOut(duration: 0.32)) { closing = true }
     }
 }
 

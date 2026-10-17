@@ -28,6 +28,7 @@ on:
             language-reference,
             system-maintenance,
             navigation-sync,
+            onboarding-desktop,
             continuation-sendable,
             anime-episodes,
             anime-episodes-ui,
@@ -105,6 +106,11 @@ jobs:
       HARBOR_VALIDATION_SCOPE: ${{ inputs.validation_scope }}
     steps:
       - uses: actions/checkout@v6
+      - name: Preserve approved unrelated behavior before the complete setup flow
+        if: ${{ inputs.validation_scope == 'onboarding-desktop' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 scripts/ios/verify-onboarding-desktop.py --output ios/build/preserved-onboarding-desktop.json
       - name: Preserve approved unrelated behavior before navigation synchronization
         if: ${{ inputs.validation_scope == 'navigation-sync' }}
         env:
@@ -196,7 +202,7 @@ jobs:
             harbor-core
             harbor-ios-bridge
       - name: Verify shared Rust on the Apple build host
-        if: ${{ inputs.validation_scope != 'affected' && inputs.validation_scope != 'sources-search-subtitles' && inputs.validation_scope != 'mobile-sources-subtitles' && inputs.validation_scope != 'stable-mobile' && inputs.validation_scope != 'stable-tablet-ui' && inputs.validation_scope != 'stable-tablet-rotation' && inputs.validation_scope != 'reading-intro' && inputs.validation_scope != 'reading-followup' && inputs.validation_scope != 'reading-final' && inputs.validation_scope != 'reading-tablet-final' && inputs.validation_scope != 'anime-episodes' && inputs.validation_scope != 'anime-episodes-ui' && inputs.validation_scope != 'continuation-parity' && inputs.validation_scope != 'language-reference' && inputs.validation_scope != 'system-maintenance' && inputs.validation_scope != 'navigation-sync' }}
+        if: ${{ inputs.validation_scope != 'affected' && inputs.validation_scope != 'sources-search-subtitles' && inputs.validation_scope != 'mobile-sources-subtitles' && inputs.validation_scope != 'stable-mobile' && inputs.validation_scope != 'stable-tablet-ui' && inputs.validation_scope != 'stable-tablet-rotation' && inputs.validation_scope != 'reading-intro' && inputs.validation_scope != 'reading-followup' && inputs.validation_scope != 'reading-final' && inputs.validation_scope != 'reading-tablet-final' && inputs.validation_scope != 'anime-episodes' && inputs.validation_scope != 'anime-episodes-ui' && inputs.validation_scope != 'continuation-parity' && inputs.validation_scope != 'language-reference' && inputs.validation_scope != 'system-maintenance' && inputs.validation_scope != 'navigation-sync' && inputs.validation_scope != 'onboarding-desktop' }}
         shell: bash
         run: |
           set -euo pipefail
@@ -264,7 +270,9 @@ jobs:
         run: |
           set -euo pipefail
           selection=(-only-testing:HarborTests)
-          if [[ "${{ inputs.validation_scope }}" == "navigation-sync" ]]; then
+          if [[ "${{ inputs.validation_scope }}" == "onboarding-desktop" ]]; then
+            selection=(-only-testing:HarborTests/OnboardingContentTests -only-testing:HarborTests/StreamingPreferencesTests)
+          elif [[ "${{ inputs.validation_scope }}" == "navigation-sync" ]]; then
             selection=(-only-testing:HarborTests/NavigationScopeTests -only-testing:HarborTests/NavigationSyncTests -only-testing:HarborTests/ArtworkMaintenanceTests)
           elif [[ "${{ inputs.validation_scope }}" == "system-maintenance" ]]; then
             selection=(-only-testing:HarborTests/SystemStorageTests -only-testing:HarborTests/ArtworkMaintenanceTests -only-testing:HarborTests/AppGuideTests -only-testing:HarborTests/NavigationAnimationTests)
@@ -316,7 +324,9 @@ jobs:
         run: |
           set -euo pipefail
           selection=(-only-testing:HarborIntegrationTests)
-          if [[ "${{ inputs.validation_scope }}" == "continuation-parity" ]]; then
+          if [[ "${{ inputs.validation_scope }}" == "onboarding-desktop" ]]; then
+            selection=(-only-testing:HarborIntegrationTests/OnboardingLiveTests)
+          elif [[ "${{ inputs.validation_scope }}" == "continuation-parity" ]]; then
             selection=(-only-testing:HarborIntegrationTests/ContinuationParityLiveTests)
           elif [[ "${{ inputs.validation_scope }}" == "anime-episodes" ]]; then
             selection=(-only-testing:HarborIntegrationTests/AnimeEpisodeLiveTests)
@@ -386,7 +396,9 @@ jobs:
             trap finish_rotation_recording EXIT
           fi
           selection=(-only-testing:HarborUITests)
-          if [[ "${{ inputs.validation_scope }}" == "navigation-sync" ]]; then
+          if [[ "${{ inputs.validation_scope }}" == "onboarding-desktop" ]]; then
+            selection=(-only-testing:HarborUITests/OnboardingNavigationTests/testTenStepSetupUsesRealControlsInTheIPhoneInterface -only-testing:HarborUITests/LanguageReferenceNavigationTests/testReferenceLanguagesSwitchInTheOrdinaryIPhoneSettings -only-testing:HarborUITests/SystemMaintenanceNavigationTests/testStorageAndAboutWorkInTheOrdinaryIPhoneInterface)
+          elif [[ "${{ inputs.validation_scope }}" == "navigation-sync" ]]; then
             selection=(-only-testing:HarborUITests/NavigationCustomizationTests/testOrdinaryIPhoneNavigationEditsPersistAfterRelaunch -only-testing:HarborUITests/SystemMaintenanceNavigationTests/testStorageAndAboutWorkInTheOrdinaryIPhoneInterface -only-testing:HarborUITests/LanguageReferenceNavigationTests/testReferenceLanguagesSwitchInTheOrdinaryIPhoneSettings)
           elif [[ "${{ inputs.validation_scope }}" == "system-maintenance" ]]; then
             selection=(-only-testing:HarborUITests/SystemMaintenanceNavigationTests/testStorageAndAboutWorkInTheOrdinaryIPhoneInterface -only-testing:HarborUITests/LanguageReferenceNavigationTests/testReferenceLanguagesSwitchInTheOrdinaryIPhoneSettings)
@@ -478,15 +490,27 @@ jobs:
           xcrun simctl bootstatus "$tablet" -b
           xcodebuild -project ios/Harbor.xcodeproj -scheme HarborLive -configuration Debug -destination "platform=iOS Simulator,id=$tablet,arch=$IOS_SIMULATOR_ARCH" -derivedDataPath ios/build/DerivedData -clonedSourcePackagesDirPath ios/build/SourcePackages -resultBundlePath ios/build/NavigationTabletUI.xcresult -only-testing:HarborUITests/NavigationCustomizationTests/testOrdinaryIPadNavigationEditsPersistAfterRelaunch -only-testing:HarborUITests/SystemMaintenanceNavigationTests/testStorageAndAboutWorkInTheOrdinaryIPadInterface -only-testing:HarborUITests/LanguageReferenceNavigationTests/testReferenceLanguagesSwitchInTheOrdinaryIPadSettings -parallel-testing-enabled NO CODE_SIGNING_ALLOWED=YES CODE_SIGN_IDENTITY=- test 2>&1 | tee ios/build/logs/navigation-tablet-ui.log
           xcrun simctl shutdown "$tablet"
+      - name: Run the complete setup flow on iPad
+        id: onboarding_tablet_tests
+        if: ${{ inputs.validation_scope == 'onboarding-desktop' && steps.live_tests.conclusion == 'success' }}
+        timeout-minutes: 20
+        shell: bash
+        run: |
+          set -euo pipefail
+          xcrun simctl shutdown "$IOS_SIMULATOR"
+          tablet=$(python3 -c 'import json; d=json.load(open("ios/build/devices.json")); print(next(x["udid"] for runtime, values in d["devices"].items() if "iOS" in runtime for x in values if x["name"].startswith("iPad")))')
+          xcrun simctl bootstatus "$tablet" -b
+          xcodebuild -project ios/Harbor.xcodeproj -scheme HarborLive -configuration Debug -destination "platform=iOS Simulator,id=$tablet,arch=$IOS_SIMULATOR_ARCH" -derivedDataPath ios/build/DerivedData -clonedSourcePackagesDirPath ios/build/SourcePackages -resultBundlePath ios/build/OnboardingTabletUI.xcresult -only-testing:HarborUITests/OnboardingNavigationTests/testTenStepSetupUsesRealControlsInTheIPadInterface -only-testing:HarborUITests/LanguageReferenceNavigationTests/testReferenceLanguagesSwitchInTheOrdinaryIPadSettings -only-testing:HarborUITests/SystemMaintenanceNavigationTests/testStorageAndAboutWorkInTheOrdinaryIPadInterface -parallel-testing-enabled NO CODE_SIGNING_ALLOWED=YES CODE_SIGN_IDENTITY=- test 2>&1 | tee ios/build/logs/onboarding-tablet-ui.log
+          xcrun simctl shutdown "$tablet"
       - name: Preserve failed public integration screenshots in a draft Release
-        if: ${{ always() && inputs.validation_scope != 'stable-tablet-rotation' && inputs.save_draft_build == true && (steps.live_tests.conclusion == 'failure' || steps.live_tests.conclusion == 'cancelled' || steps.live_services.conclusion == 'failure' || steps.live_services.conclusion == 'cancelled' || steps.tablet_tests.conclusion == 'failure' || steps.manga_font_tests.conclusion == 'failure' || steps.reading_tablet_tests.conclusion == 'failure' || steps.language_tablet_tests.conclusion == 'failure' || steps.language_tablet_tests.conclusion == 'cancelled' || steps.system_tablet_tests.conclusion == 'failure' || steps.system_tablet_tests.conclusion == 'cancelled' || steps.navigation_tablet_tests.conclusion == 'failure' || steps.navigation_tablet_tests.conclusion == 'cancelled') }}
+        if: ${{ always() && inputs.validation_scope != 'stable-tablet-rotation' && inputs.save_draft_build == true && (steps.live_tests.conclusion == 'failure' || steps.live_tests.conclusion == 'cancelled' || steps.live_services.conclusion == 'failure' || steps.live_services.conclusion == 'cancelled' || steps.tablet_tests.conclusion == 'failure' || steps.manga_font_tests.conclusion == 'failure' || steps.reading_tablet_tests.conclusion == 'failure' || steps.language_tablet_tests.conclusion == 'failure' || steps.language_tablet_tests.conclusion == 'cancelled' || steps.system_tablet_tests.conclusion == 'failure' || steps.system_tablet_tests.conclusion == 'cancelled' || steps.navigation_tablet_tests.conclusion == 'failure' || steps.navigation_tablet_tests.conclusion == 'cancelled' || steps.onboarding_tablet_tests.conclusion == 'failure' || steps.onboarding_tablet_tests.conclusion == 'cancelled') }}
         env:
           GH_TOKEN: ${{ github.token }}
         shell: bash
         run: |
           set -euo pipefail
           mkdir -p ios/build/attachments
-          for name in Tests ServicesTests LiveTests TabletTests TabletUITests MangaFontTests ReadingTabletSeed ReadingTabletUI LanguageTabletUI SystemTabletUI NavigationTabletUI; do
+          for name in Tests ServicesTests LiveTests TabletTests TabletUITests MangaFontTests ReadingTabletSeed ReadingTabletUI LanguageTabletUI SystemTabletUI NavigationTabletUI OnboardingTabletUI; do
             if [ -d "ios/build/$name.xcresult" ]; then
               if ! xcrun xcresulttool export attachments --path "ios/build/$name.xcresult" --output-path "ios/build/attachments/$name"; then
                 echo "$name.xcresult: attachment export failed; result may be incomplete" >> ios/build/attachments/export-failures.txt
@@ -518,7 +542,7 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p ios/build/validation-evidence/attachments
-          for name in Tests ServicesTests LiveTests TabletTests TabletUITests MangaFontTests ReadingTabletSeed ReadingTabletUI LanguageTabletUI SystemTabletUI NavigationTabletUI; do
+          for name in Tests ServicesTests LiveTests TabletTests TabletUITests MangaFontTests ReadingTabletSeed ReadingTabletUI LanguageTabletUI SystemTabletUI NavigationTabletUI OnboardingTabletUI; do
             if [[ -d "ios/build/$name.xcresult" ]]; then
               xcrun xcresulttool export attachments --path "ios/build/$name.xcresult" --output-path "ios/build/validation-evidence/attachments/$name"
             fi
@@ -571,7 +595,7 @@ jobs:
           for preserved in preserved-language-reference preserved-reading-validation preserved-reading-final preserved-reading-tablet preserved-anime-validation preserved-anime-ui; do
             if [[ -f "ios/build/$preserved.json" ]]; then cp "ios/build/$preserved.json" ios/build/live-attachments/; fi
           done
-          for name in TabletTests TabletUITests MangaFontTests ReadingTabletSeed ReadingTabletUI LanguageTabletUI SystemTabletUI NavigationTabletUI; do
+          for name in TabletTests TabletUITests MangaFontTests ReadingTabletSeed ReadingTabletUI LanguageTabletUI SystemTabletUI NavigationTabletUI OnboardingTabletUI; do
             if [[ -d "ios/build/$name.xcresult" ]]; then
               xcrun xcresulttool export attachments --path "ios/build/$name.xcresult" --output-path "ios/build/live-attachments/$name"
             fi
