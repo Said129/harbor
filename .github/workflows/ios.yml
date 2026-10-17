@@ -379,7 +379,7 @@ jobs:
           fi
           selection=(-only-testing:HarborUITests)
           if [[ "${{ inputs.validation_scope }}" == "system-maintenance" ]]; then
-            selection=(-only-testing:HarborUITests/SystemMaintenanceNavigationTests/testStorageAndAboutWorkInTheOrdinaryIPhoneInterface)
+            selection=(-only-testing:HarborUITests/SystemMaintenanceNavigationTests/testStorageAndAboutWorkInTheOrdinaryIPhoneInterface -only-testing:HarborUITests/LanguageReferenceNavigationTests/testReferenceLanguagesSwitchInTheOrdinaryIPhoneSettings)
           elif [[ "${{ inputs.validation_scope }}" == "language-reference" ]]; then
             selection=(-only-testing:HarborUITests/LanguageReferenceNavigationTests/testReferenceLanguagesSwitchInTheOrdinaryIPhoneSettings)
           elif [[ "${{ inputs.validation_scope }}" == "continuation-parity" ]]; then
@@ -454,7 +454,7 @@ jobs:
           xcrun simctl shutdown "$IOS_SIMULATOR"
           tablet=$(python3 -c 'import json; d=json.load(open("ios/build/devices.json")); print(next(x["udid"] for runtime, values in d["devices"].items() if "iOS" in runtime for x in values if x["name"].startswith("iPad")))')
           xcrun simctl bootstatus "$tablet" -b
-          xcodebuild -project ios/Harbor.xcodeproj -scheme HarborLive -configuration Debug -destination "platform=iOS Simulator,id=$tablet,arch=$IOS_SIMULATOR_ARCH" -derivedDataPath ios/build/DerivedData -clonedSourcePackagesDirPath ios/build/SourcePackages -resultBundlePath ios/build/SystemTabletUI.xcresult -only-testing:HarborUITests/SystemMaintenanceNavigationTests/testStorageAndAboutWorkInTheOrdinaryIPadInterface -parallel-testing-enabled NO CODE_SIGNING_ALLOWED=YES CODE_SIGN_IDENTITY=- test 2>&1 | tee ios/build/logs/system-tablet-ui.log
+          xcodebuild -project ios/Harbor.xcodeproj -scheme HarborLive -configuration Debug -destination "platform=iOS Simulator,id=$tablet,arch=$IOS_SIMULATOR_ARCH" -derivedDataPath ios/build/DerivedData -clonedSourcePackagesDirPath ios/build/SourcePackages -resultBundlePath ios/build/SystemTabletUI.xcresult -only-testing:HarborUITests/SystemMaintenanceNavigationTests/testStorageAndAboutWorkInTheOrdinaryIPadInterface -only-testing:HarborUITests/LanguageReferenceNavigationTests/testReferenceLanguagesSwitchInTheOrdinaryIPadSettings -parallel-testing-enabled NO CODE_SIGNING_ALLOWED=YES CODE_SIGN_IDENTITY=- test 2>&1 | tee ios/build/logs/system-tablet-ui.log
           xcrun simctl shutdown "$tablet"
       - name: Preserve failed public integration screenshots in a draft Release
         if: ${{ always() && inputs.validation_scope != 'stable-tablet-rotation' && inputs.save_draft_build == true && (steps.live_tests.conclusion == 'failure' || steps.live_tests.conclusion == 'cancelled' || steps.live_services.conclusion == 'failure' || steps.live_services.conclusion == 'cancelled' || steps.tablet_tests.conclusion == 'failure' || steps.manga_font_tests.conclusion == 'failure' || steps.reading_tablet_tests.conclusion == 'failure' || steps.language_tablet_tests.conclusion == 'failure' || steps.language_tablet_tests.conclusion == 'cancelled' || steps.system_tablet_tests.conclusion == 'failure' || steps.system_tablet_tests.conclusion == 'cancelled') }}

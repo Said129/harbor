@@ -6,6 +6,8 @@ import os
 from pathlib import Path
 import re
 import subprocess
+import urllib.error
+import urllib.parse
 import urllib.request
 
 p = argparse.ArgumentParser(description=__doc__)
@@ -89,14 +91,46 @@ tests = {
     'ios/HarborTests/SystemStorageTests.swift', 'ios/HarborTests/ArtworkMaintenanceTests.swift',
     'ios/HarborTests/AppGuideTests.swift', 'ios/HarborUITests/SystemMaintenanceNavigationTests.swift',
     'ios/HarborTests/NavigationAnimationTests.swift', 'ios/HarborTests/Fixtures/navigation-animation-hashes.json',
+    'ios/HarborUITests/LanguageReferenceNavigationTests.swift',
 }
+name = 'ios/HarborUITests/LanguageReferenceNavigationTests.swift'
+before, after = (blob(ref, name) for ref in [previous, 'HEAD'])
+assert after == before.replace('app.launchArguments = ["-uiLanguage", "es"]', 'app.launchArguments = ["-nativeGuide.initialized.v1", "YES", "-nativeGuide.completed.v1", "YES"]', 1), 'Only remove the forced-language argument and use ordinary completed-guide preferences'
 test_roots = ['ios/HarborTests', 'ios/HarborIntegrationTests', 'ios/HarborUITests']
 assert set(subprocess.check_output(['git', 'diff', '--name-only', previous, 'HEAD', '--', *test_roots], text=True).splitlines()) == tests
 headers = {'Accept': 'application/vnd.github+json', 'Authorization': 'Bearer ' + os.environ['GH_TOKEN'], 'User-Agent': 'Harbor-system-maintenance'}
 api = 'https://api.github.com/repos/' + os.environ['GITHUB_REPOSITORY']
 with urllib.request.urlopen(urllib.request.Request(api + '/actions/runs/39028548982', headers=headers), timeout=45) as response:
     run = json.load(response)
-assert run['head_sha'] == previous and run['status'] == 'completed' and run['conclusion'] == 'success'
+assert run['head_sha'] == previous and run['status'] == 'completed' and run['conclusion'] == 'failure'
+with urllib.request.urlopen(urllib.request.Request(api + '/actions/runs/39028548982/jobs?per_page=100', headers=headers), timeout=45) as response:
+    jobs = json.load(response)['jobs']
+job = next(item for item in jobs if item['id'] == 117384252565)
+steps = {step['name']: step['conclusion'] for step in job['steps']}
+assert steps['Build simulator'] == steps['Run bridge and model tests on iPhone simulator'] == 'success'
+assert steps['Run native UI on the selected simulator'] == 'failure'
+assert steps['Run the expanded reference language UI on iPad'] == 'skipped'
+assert all(steps[name] == 'skipped' for name in ['Build device without signing', 'Package and verify unsigned iPhone IPA', 'Save verified unsigned IPA in a draft Release'])
+
+class NoRedirect(urllib.request.HTTPRedirectHandler):
+    def redirect_request(self, request, file, code, message, response_headers, new_url): return None
+
+try:
+    logs = urllib.request.build_opener(NoRedirect).open(urllib.request.Request(api + '/actions/jobs/117384252565/logs', headers=headers), timeout=45)
+except urllib.error.HTTPError as redirect:
+    if redirect.code != 302: raise
+    location = redirect.headers['Location']
+    parsed = urllib.parse.urlparse(location)
+    assert parsed.scheme == 'https' and parsed.hostname
+    # Never forward the GitHub credential to temporary log storage.
+    logs = urllib.request.urlopen(location, timeout=45)
+with logs: log_bytes = logs.read(32 * 1024 * 1024 + 1)
+assert len(log_bytes) <= 32 * 1024 * 1024
+log = log_bytes.decode('utf-8', errors='replace')
+outcomes = re.findall(r"Test Case '-\[([^ ]+) ([^\]]+)\]' (passed|failed|skipped) \(", log)
+approved = ('HarborTests.StableMobileTests', 'testDesktopLanguagesAndNativeFeedbackUseTheSelectedCatalog', 'passed')
+reviewed_failure = ('HarborUITests.LanguageReferenceNavigationTests', 'testReferenceLanguagesSwitchInTheOrdinaryIPhoneSettings', 'failed')
+assert outcomes == [approved, reviewed_failure], 'Preserve only the actual approved native language case; both UI methods still need execution'
 guards = {}
 for row in subprocess.check_output(['git', 'ls-tree', '-r', 'HEAD', '--', *roots], text=True).splitlines():
     identity, name = row.split('\t', 1)
@@ -104,6 +138,9 @@ for row in subprocess.check_output(['git', 'ls-tree', '-r', 'HEAD', '--', *roots
 proof = dict(source=os.environ['GITHUB_SHA'], previous_source=previous, previous_run=39028548982,
              unchanged_git_blobs=guards, unchanged_artwork_render_tail_sha256=hashlib.sha256(new_tail.encode()).hexdigest(),
              actual_affected_selection=['SystemStorageTests', 'ArtworkMaintenanceTests', 'AppGuideTests', 'NavigationAnimationTests', 'SystemMaintenanceNavigationTests'],
+             preserved_native_language_case='/'.join(approved[:2]), previous_log_sha256=hashlib.sha256(log_bytes).hexdigest(),
+             prior_run_conclusion='failure', prior_reviewed_failure='/'.join(reviewed_failure[:2]),
+             pending_language_ui=['testReferenceLanguagesSwitchInTheOrdinaryIPhoneSettings', 'testReferenceLanguagesSwitchInTheOrdinaryIPadSettings'],
              scope='System storage measurement, image-cache maintenance, About, native walkthrough state, Desktop variable interpolation and original navigation animations. Existing locale values, account/addon operations, playback, reading, sources, Rust and bundle identity remain unchanged. Run affected native methods and ordinary system UI on iPhone/iPad only.',
              full_desktop_parity_complete=False, visual_parity_audit_complete=False, physical_device_validation=False, ipa_created=False)
 a.output.parent.mkdir(parents=True, exist_ok=True)

@@ -11,7 +11,7 @@ import XCTest
 
     private func verifyLanguages(device: String) {
         continueAfterFailure = false
-        let app = XCUIApplication(); app.launchArguments = ["-uiLanguage", "es"]; app.launch()
+        let app = XCUIApplication(); app.launchArguments = ["-nativeGuide.initialized.v1", "YES", "-nativeGuide.completed.v1", "YES"]; app.launch()
         defer { app.terminate() }
         XCTAssertTrue(app.buttons["main-menu"].waitForExistence(timeout: 45))
         app.buttons["main-menu"].tap()
