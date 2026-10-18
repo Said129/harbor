@@ -259,7 +259,7 @@ private struct HouseholdUnlockTarget: Identifiable {
             draft.photo = .replace(try ProfilePhotoStore.normalized(data), account: app.harborIdentity.cloud.accountID)
             draft.avatar = .null; error = nil
         } catch is CancellationError { return }
-        catch { error = safeMessage(error) }
+        catch { self.error = safeMessage(error) }
     }
     private func pin(_ action: String) -> some View {
         let verifying = action == "change" || action == "remove"
