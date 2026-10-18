@@ -29,7 +29,11 @@ def changed(roots):
         result.update(subprocess.check_output(['git', 'ls-files', '--others', '--exclude-standard', '--', *roots], text=True).splitlines())
     return result
 
-assert not changed(['ios/Harbor', 'ios/project.yml', 'harbor-core', 'harbor-ios-bridge']), 'The entire production application must remain byte-identical'
+layout = 'ios/Harbor/Views/StreamingCatalogView.swift'
+assert changed(['ios/Harbor', 'ios/project.yml', 'harbor-core', 'harbor-ios-bridge']) == {layout}, 'Only the observed floating-control accessibility repair may change production'
+layout_source = Path(layout).read_text('utf-8') if a.working_tree else subprocess.check_output(['git', 'show', 'HEAD:' + layout]).decode('utf-8')
+layout_sha256 = hashlib.sha256(layout_source.encode('utf-8')).hexdigest()
+assert layout_sha256 == '071a8d244c8ba5d450d16f85fbb6d814dffc9eb840de96029ae2a11acbabac51', 'Require the reviewed sibling control layout, with all catalog and provider behavior unchanged'
 test = 'ios/HarborUITests/ServiceCatalogNavigationTests.swift'
 assert changed(['ios/HarborTests', 'ios/HarborIntegrationTests', 'ios/HarborUITests']) == {test}
 old = subprocess.check_output(['git', 'show', baseline + ':' + test]).decode('utf-8')
@@ -66,7 +70,10 @@ pending = cases('HarborUITests', 'ServiceCatalogNavigationTests') | {
     'HarborUITests.SystemMaintenanceNavigationTests/testStorageAndAboutWorkInTheOrdinaryIPadInterface'}
 assert len(pending) == 6 and not (expected & pending)
 proof = dict(source=source, previous_source=baseline, scope='services-ui', prior_run=prior_run,
-             application_byte_identical=True, prior_evidence_verified=False,
+             application_byte_identical=False, preserved_case_producers_unchanged=True,
+             changed_production_layout=layout, changed_layout_sha256=layout_sha256,
+             layout_repair='Floating controls are siblings of the vertical scroll view, preserving their existing actions, labels and position',
+             prior_evidence_verified=False,
              local_source_review_only=a.working_tree, preserved_cases=sorted(expected), pending_ui_cases=sorted(pending),
              expected_actual_executions=6, expected_new_images_minimum=23, optional_transient_images=1,
              required_recordings=['service-iphone.mp4', 'service-ipad.mp4'],
@@ -108,4 +115,4 @@ if not a.working_tree:
                  actual_prior_passes=23, new_native_executions=0, new_public_service_executions=0)
 a.output.parent.mkdir(parents=True, exist_ok=True)
 a.output.write_text(json.dumps(proof, indent=2) + '\n', 'utf-8')
-print('Unchanged application verified; ' + ('prior execution review pending.' if a.working_tree else '23 actual passes preserved. Six pending UI routes only; no IPA.'))
+print('Catalog control layout repair reviewed; other producers unchanged. ' + ('Prior execution review pending.' if a.working_tree else '23 actual passes preserved. Six pending UI routes only; no IPA.'))
