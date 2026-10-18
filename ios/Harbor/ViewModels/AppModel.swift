@@ -37,7 +37,13 @@ final class AppModel {
     var showProfiles = false
     private var profilesAfterAccount = false
     var choosingProfile: Bool { showProfiles || profilesAfterAccount || profileContext.requiresSelection }
+    func prepareProfileAppearances() {
+        for profile in profileContext.profiles.profiles where !profile.desktop.isKid {
+            ProfilePreferences.forOwner(profileContext.profiles.appearanceOwner(profile)).bindHousehold(profileContext.profiles, id: profile.id)
+        }
+    }
     func openProfiles() {
+        prepareProfileAppearances()
         if showAccount { profilesAfterAccount = true; showAccount = false }
         else { showProfiles = true }
     }
@@ -54,6 +60,7 @@ final class AppModel {
         let previous = profileContext.binding
         do { try profileContext.refreshRouting() }
         catch { storageReady = false; throw error }
+        prepareProfileAppearances()
         if storageReady && profileContext.ready && previous == profileContext.binding { return }
         storageReady = false
         if let active = profileContext.profiles.active {
@@ -177,6 +184,9 @@ final class AppModel {
 
     private func setProgressOwner(_ owner: String) async throws {
         guard let binding = profileContext.binding else { throw HarborError(code: "profile-settings") }
+        if let active = profileContext.profiles.active {
+            ProfilePreferences.forOwner(binding.personalOwner).bindHousehold(profileContext.profiles, id: active.id)
+        }
         let migrateLegacy: Bool
         switch profileContext.profiles.scope {
         case .local: migrateLegacy = profileContext.profiles.profiles.contains { $0.legacyOwner == binding.identityOwner }

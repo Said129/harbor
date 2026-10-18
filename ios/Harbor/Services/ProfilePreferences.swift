@@ -1,6 +1,5 @@
 import SwiftUI
 import Observation
-import ImageIO
 
 struct DesktopAvatar: Decodable, Identifiable, Sendable {
     let id: String
@@ -33,6 +32,15 @@ struct MobileProfile: Codable, Sendable {
     }
 }
 
+@MainActor protocol ProfileAppearancePersistence {
+    func readAppearance(_ key: String) throws -> MobileProfile?
+    func writeAppearance(_ value: MobileProfile, key: String) throws
+}
+@MainActor private struct KeychainProfileAppearance: ProfileAppearancePersistence {
+    func readAppearance(_ key: String) throws -> MobileProfile? { try KeychainStore().read(key, as: MobileProfile.self) }
+    func writeAppearance(_ value: MobileProfile, key: String) throws { try KeychainStore().write(value, key: key) }
+}
+
 @MainActor @Observable
 final class ProfilePreferences {
     private static var profiles: [String: ProfilePreferences] = [:]
@@ -41,39 +49,60 @@ final class ProfilePreferences {
         let profile = ProfilePreferences(owner: owner); profiles[owner] = profile; return profile
     }
     static let colors = ["7dd3fc", "60a5fa", "a78bfa", "f472b6", "fb7185", "fb923c", "fbbf24", "a3e635", "34d399", "22d3ee"]
-    private(set) var value = MobileProfile()
-    private(set) var ready = false
-    var error: String?
+    private var legacyValue = MobileProfile()
+    private var legacyReady = false
+    private var legacyError: String?
+    private var household: HouseholdAppearanceBinding?
+    private var binding: HouseholdAppearanceBinding? { household?.exists == true ? household : nil }
+    var value: MobileProfile { binding?.value ?? legacyValue }
+    var ready: Bool { binding?.ready ?? legacyReady }
+    var error: String? { binding?.error ?? legacyError }
     private let key: String
     private let owner: String
+    private let persistence: any ProfileAppearancePersistence
+    private let photos: ProfilePhotoStore
+    private let didChange: ((MobileProfile, MobileProfile) -> Void)?
     var cloud: HarborProfileSync { HarborProfileSync.forOwner(owner, profile: self) }
-    private init(owner: String) {
+    init(owner: String, persistence: (any ProfileAppearancePersistence)? = nil, photos: ProfilePhotoStore? = nil, didChange: ((MobileProfile, MobileProfile) -> Void)? = nil) {
         self.owner = owner
+        self.persistence = persistence ?? KeychainProfileAppearance(); self.photos = photos ?? .shared
+        self.didChange = didChange
         key = "mobile-profile-" + EBookShelf.hash(owner)
         reload()
     }
+    func bindHousehold(_ profiles: HouseholdProfileStore, id: String) {
+        if household?.matches(profiles, id: id) != true {
+            household = HouseholdAppearanceBinding(profiles: profiles, profileID: id, owner: owner, photos: photos)
+        }
+        household?.reload(legacy: legacyValue, legacyReady: legacyReady)
+    }
     func reload() {
+        if let binding { binding.reload(legacy: legacyValue, legacyReady: legacyReady); if binding.ready { legacyError = nil }; return }
         do {
-            let profile = try KeychainStore().read(key, as: MobileProfile.self) ?? MobileProfile()
+            let profile = try persistence.readAppearance(key) ?? MobileProfile()
             guard profile.valid else { throw HarborError(code: "profile-data") }
-            value = profile; ready = true; error = nil
-        } catch { ready = false; self.error = "No se pudo recuperar este perfil. Los datos guardados se conservan." }
+            legacyValue = profile; legacyReady = true; legacyError = nil
+        } catch { legacyReady = false; legacyError = "No se pudo recuperar este perfil. Los datos guardados se conservan." }
     }
     func update(_ edit: (inout MobileProfile) -> Void) {
         guard ready else { return }
         var next = value; edit(&next)
-        do {
-            guard next.valid else { throw HarborError(code: "profile-data") }
-            let previous = value
-            try KeychainStore().write(next, key: key); value = next; error = nil
-            cloud.enqueue(before: previous, after: next)
-        } catch { self.error = "No se pudo guardar el perfil. Los datos anteriores se conservan." }
+        do { try persist(next) }
+        catch { legacyError = "No se pudo guardar el perfil. Los datos anteriores se conservan." }
+    }
+    private func persist(_ next: MobileProfile) throws {
+        guard ready, next.valid else { throw HarborError(code: "profile-data") }
+        let previous = value
+        if let binding { try binding.update(next); legacyValue = binding.value }
+        else { try persistence.writeAppearance(next, key: key); legacyValue = next }
+        legacyReady = true; legacyError = nil
+        if let didChange { didChange(previous, value) } else { cloud.enqueue(before: previous, after: value) }
     }
     func adopt(_ wire: JSONValue, accountID: String) throws {
         guard ready, let name = wire["name"].string else { throw HarborError(code: "profile-data") }
         var next = value; next.name = String(name.prefix(32))
         if next.photo != nil, next.photoAccountID != accountID {
-            try KeychainStore().write(value, key: key + "-before-harbor")
+            try persistence.writeAppearance(value, key: key + "-before-harbor")
             next.photo = nil
         }
         let hex = (wire["color"].string ?? "").replacingOccurrences(of: "#", with: "")
@@ -85,13 +114,16 @@ final class ProfilePreferences {
             else if path.count <= 512, !path.contains(".."), let url = URL(string: "https://harbor.site" + path), url.host == "harbor.site" { next.remoteAvatar = url.absoluteString; next.photo = nil }
         } else if next.photo == nil { next.initialsAvatar = true }
         guard next.valid else { throw HarborError(code: "profile-data") }
-        try KeychainStore().write(next, key: key); value = next; error = nil
+        if let binding { try binding.adopt(next, avatar: wire["avatar"], account: accountID); legacyValue = binding.value }
+        else { try persistence.writeAppearance(next, key: key); legacyValue = next }
+        legacyReady = true; legacyError = nil
     }
     func setPhoto(_ data: Data) throws {
-        guard data.count <= 20 * 1_024 * 1_024, let source = CGImageSourceCreateWithData(data as CFData, nil),
-              let thumbnail = CGImageSourceCreateThumbnailAtIndex(source, 0, [kCGImageSourceCreateThumbnailFromImageAlways: true, kCGImageSourceThumbnailMaxPixelSize: 384, kCGImageSourceCreateThumbnailWithTransform: true] as CFDictionary),
-              let jpeg = UIImage(cgImage: thumbnail).jpegData(compressionQuality: 0.85), jpeg.count <= 512 * 1_024 else { throw HarborError(code: "profile-photo") }
-        update { $0.photo = jpeg; $0.photoAccountID = cloud.accountID; $0.remoteAvatar = nil; $0.initialsAvatar = false }
+        var next = value
+        next.photo = try ProfilePhotoStore.normalized(data); next.photoAccountID = cloud.accountID
+        next.remoteAvatar = nil; next.initialsAvatar = false
+        do { try persist(next) }
+        catch { legacyError = "No se pudo guardar el perfil. Los datos anteriores se conservan."; throw error }
     }
     var color: Color { Self.color(value.color) }
     static func color(_ hex: String) -> Color {
@@ -108,12 +140,18 @@ final class ProfilePreferences {
 struct ProfileAvatar: View {
     let profile: ProfilePreferences
     var size: CGFloat = 72
+    var body: some View { MobileProfileAvatar(value: profile.value, size: size) }
+}
+
+struct MobileProfileAvatar: View {
+    let value: MobileProfile
+    var size: CGFloat = 72
     var body: some View {
         Group {
-            if let data = profile.value.photo, let image = UIImage(data: data) { Image(uiImage: image).resizable().scaledToFill() }
-            else if let remote = profile.value.remoteAvatar { Artwork(url: remote, maxPixels: 384) }
-            else if profile.value.initialsAvatar == true { Text(String(profile.value.name.prefix(1))).font(HarborTheme.displayFont(size * 0.45)).frame(maxWidth: .infinity, maxHeight: .infinity).background(HarborTheme.surface) }
-            else { Image(DesktopAvatar.catalog.first { $0.id == profile.value.avatar }?.asset ?? "avatar-harbor_animal_01").resizable().scaledToFill() }
-        }.frame(width: size, height: size).clipShape(.circle).overlay { Circle().stroke(profile.color, lineWidth: 2) }.accessibilityHidden(true)
+            if let data = value.photo, let image = UIImage(data: data) { Image(uiImage: image).resizable().scaledToFill() }
+            else if let remote = value.remoteAvatar { Artwork(url: remote, maxPixels: 384) }
+            else if value.initialsAvatar == true { Text(String(value.name.prefix(1))).font(HarborTheme.displayFont(size * 0.45)).frame(maxWidth: .infinity, maxHeight: .infinity).background(HarborTheme.surface) }
+            else { Image(DesktopAvatar.catalog.first { $0.id == value.avatar }?.asset ?? "avatar-harbor_animal_01").resizable().scaledToFill() }
+        }.frame(width: size, height: size).clipShape(.circle).overlay { Circle().stroke(ProfilePreferences.color(value.color), lineWidth: 2) }.accessibilityHidden(true)
     }
 }

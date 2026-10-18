@@ -4,6 +4,7 @@ import Foundation
 /// persistence receives only the derived device credential.
 struct HouseholdProfileDraft: Sendable {
     enum PINChange: Equatable, Sendable { case keep, remove, set(String) }
+    enum PhotoChange: Equatable, Sendable { case keep, remove, replace(Data, account: String?) }
     let original: DeviceHouseholdProfile?
     var name: String
     var avatar: JSONValue
@@ -15,6 +16,7 @@ struct HouseholdProfileDraft: Sendable {
     var sharingWith: String?
     var pin: PINChange = .keep
     var parentPIN: PINChange = .keep
+    var photo: PhotoChange = .keep
 
     init(profile: DeviceHouseholdProfile) {
         original = profile; name = profile.desktop.name; avatar = profile.desktop.raw["avatar"]
@@ -29,6 +31,7 @@ struct HouseholdProfileDraft: Sendable {
     var portableChanges: [String: JSONValue] {
         var fields: [String: JSONValue] = ["name": .string(name), "avatar": avatar, "color": .string(color),
             "kid": kid, "hideContent": hideContent, "lockedTabs": lockedTabs, "settingsLinked": .bool(settingsLinked)]
+        if case .replace = photo { fields["avatar"] = .null }
         if let original {
             fields = fields.filter { key, value in
                 if key == "settingsLinked" { return settingsLinked != original.desktop.settingsLinked }

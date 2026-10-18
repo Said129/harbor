@@ -96,6 +96,8 @@ struct DeviceHouseholdProfile: Codable, Equatable, Identifiable, Sendable {
     var parentCredential: DeviceProfileCredential?
     /// Set only for an explicit, transactional migration of an existing iOS owner.
     var legacyOwner: String?
+    var localPhotoID: String? = nil
+    var appearanceInitialized: Bool? = nil
     var syncID: String { desktop.syncID }
 }
 

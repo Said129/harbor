@@ -22,6 +22,8 @@ struct HouseholdProfileState: Codable, Equatable, Sendable {
               Set(profiles.map(\.syncID)).count == profiles.count,
               profiles.allSatisfy({ !$0.id.isEmpty && $0.id.utf8.count <= 256 && !$0.desktop.deleted
                   && ($0.credential?.valid ?? true) && ($0.parentCredential?.valid ?? true)
+                  && ($0.localPhotoID.map(ProfilePhotoStore.validDigest) ?? true)
+                  && ($0.localPhotoID == nil || $0.appearanceInitialized == true)
                   && ($0.legacyOwner.map { !$0.isEmpty && $0.utf8.count <= 512 } ?? true) }),
               Set(profiles.compactMap(\.legacyOwner)).count == profiles.compactMap(\.legacyOwner).count,
               tombstones.count <= 64, tombstones.allSatisfy(\.deleted),
@@ -65,6 +67,7 @@ struct HouseholdProfileState: Codable, Equatable, Sendable {
     private let persistence: any HouseholdProfilePersistence
     private let credentials: any ProfileCredentialChecking
     private let derivation: any ProfileCredentialDeriving
+    private let photos: ProfilePhotoStore
     private(set) var state = HouseholdProfileState()
     private(set) var ready = false
     private(set) var error: String?
@@ -96,8 +99,8 @@ struct HouseholdProfileState: Codable, Equatable, Sendable {
     }
     var needsUpload: Bool { ready && (!profiles.isEmpty || !state.tombstones.isEmpty) && state.wireValue != state.serverValue }
 
-    init(scope: HouseholdProfileScope, persistence: (any HouseholdProfilePersistence)? = nil, credentials: any ProfileCredentialChecking = DeviceProfileCredentialChecker(), derivation: any ProfileCredentialDeriving = DeviceProfileCredentialDeriver()) {
-        self.scope = scope; self.persistence = persistence ?? KeychainHouseholdProfiles(); self.credentials = credentials; self.derivation = derivation; reload()
+    init(scope: HouseholdProfileScope, persistence: (any HouseholdProfilePersistence)? = nil, credentials: any ProfileCredentialChecking = DeviceProfileCredentialChecker(), derivation: any ProfileCredentialDeriving = DeviceProfileCredentialDeriver(), photos: ProfilePhotoStore? = nil) {
+        self.scope = scope; self.persistence = persistence ?? KeychainHouseholdProfiles(); self.credentials = credentials; self.derivation = derivation; self.photos = photos ?? .shared; reload()
     }
     func reload() {
         generation += 1; ready = false; verifying = false; unlocked = []; parentUnlocked = []
@@ -138,7 +141,8 @@ struct HouseholdProfileState: Codable, Equatable, Sendable {
             "createdAt": .number(now), "updatedAt": .number(now), "deletedAt": .null])
         let desktop = try DesktopHouseholdProfile(fields).editing(["name": .string(name)], at: now)
         return DeviceHouseholdProfile(id: "p_" + UUID().uuidString.lowercased(), desktop: desktop,
-            shareStremioWith: profiles.first(where: { $0.desktop.isPrimary })?.id, legacyOwner: legacyOwner)
+            shareStremioWith: profiles.first(where: { $0.desktop.isPrimary })?.id, legacyOwner: legacyOwner,
+            appearanceInitialized: legacyOwner == nil ? true : nil)
     }
     /// Commit an editor form, both locks and the initial selection together. A
     /// failed PIN derivation or write cannot leave a newly created profile open.
@@ -164,6 +168,7 @@ struct HouseholdProfileState: Codable, Equatable, Sendable {
         if let original { result = original }
         else { result = try newProfile(name: draft.name, avatar: draft.avatar.string, color: draft.color, kid: draft.kid) }
         result.desktop = try result.desktop.editing(draft.portableChanges, at: Date().timeIntervalSince1970 * 1_000)
+        if let original, draft.avatar != original.desktop.raw["avatar"] { result.localPhotoID = nil; result.appearanceInitialized = true }
         guard !result.desktop.isPrimary || (draft.sharingWith == nil && !result.desktop.isKid),
               draft.sharingWith == nil || profiles.contains(where: { $0.desktop.isPrimary && $0.id == draft.sharingWith && $0.id != result.id }) else { throw HarborError(code: "profile-sharing-target") }
         result.shareStremioWith = draft.sharingWith
@@ -177,6 +182,12 @@ struct HouseholdProfileState: Codable, Equatable, Sendable {
         else { result.parentCredential = nil }
         try Task.checkCancellation()
         guard generation == expected else { throw HarborError(code: "profile-editor-changed") }
+        switch draft.photo {
+        case .keep: break
+        case .remove: result.localPhotoID = nil; result.appearanceInitialized = true
+        case .replace(let data, let account):
+            result.localPhotoID = try photos.stage(data, account: account); result.appearanceInitialized = true
+        }
         var next = state
         if let original {
             guard let index = next.profiles.firstIndex(of: original) else { throw HarborError(code: "profile-editor-changed") }
@@ -193,6 +204,41 @@ struct HouseholdProfileState: Codable, Equatable, Sendable {
         try requireEdit(id)
         guard let index = state.profiles.firstIndex(where: { $0.id == id }), fields["isPrimary"] == nil else { throw HarborError(code: "household-profile-edit") }
         var next = state; next.profiles[index].desktop = try next.profiles[index].desktop.editing(fields, at: Date().timeIntervalSince1970 * 1_000)
+        if let avatar = fields["avatar"], avatar != state.profiles[index].desktop.raw["avatar"] {
+            next.profiles[index].localPhotoID = nil; next.profiles[index].appearanceInitialized = true
+        }
+        try commit(next)
+    }
+    func appearanceOwner(_ profile: DeviceHouseholdProfile) -> String {
+        HouseholdProfileRouting(profile: profile, profiles: profiles, scope: scope, cwPerProfile: false).personal
+    }
+    func initializeAppearance(_ original: DeviceHouseholdProfile, avatar: JSONValue, photoID: String?) throws {
+        guard ready, !verifying, original.appearanceInitialized != true, original.localPhotoID == nil else { throw HarborError(code: "profile-appearance-migration") }
+        try commitAppearance(original, fields: avatar == original.desktop.raw["avatar"] ? [:] : ["avatar": avatar], photoID: photoID)
+    }
+    func updateAppearance(_ original: DeviceHouseholdProfile, fields: [String: JSONValue], photoID: String?) throws {
+        try requireEdit(original.id)
+        guard active?.id == original.id else { throw HarborError(code: "profile-editor-changed") }
+        try commitAppearance(original, fields: fields, photoID: photoID)
+    }
+    /// Called only after the existing Harbor transport has validated its session.
+    /// The local migration anchor retains that account's original appearance;
+    /// other local people cannot receive an identity from this legacy bridge.
+    func adoptIdentityAppearance(_ original: DeviceHouseholdProfile, account: String, fields: [String: JSONValue], photoID: String?) throws {
+        guard ready, !verifying, !account.isEmpty, account.utf8.count <= 256 else { throw HarborError(code: "profile-account-scope") }
+        switch scope {
+        case .harbor(let owner): guard owner == account else { throw HarborError(code: "profile-account-scope") }
+        case .local: guard original.legacyOwner != nil else { throw HarborError(code: "profile-account-scope") }
+        }
+        try commitAppearance(original, fields: fields, photoID: photoID)
+    }
+    private func commitAppearance(_ original: DeviceHouseholdProfile, fields: [String: JSONValue], photoID: String?) throws {
+        guard !original.desktop.isKid, Set(fields.keys).isSubset(of: ["name", "avatar", "color"]),
+              photoID.map(ProfilePhotoStore.validDigest) ?? true,
+              let index = profiles.firstIndex(of: original) else { throw HarborError(code: "profile-editor-changed") }
+        var next = state
+        next.profiles[index].desktop = try original.desktop.editing(fields, at: Date().timeIntervalSince1970 * 1_000)
+        next.profiles[index].localPhotoID = photoID; next.profiles[index].appearanceInitialized = true
         try commit(next)
     }
     func shareStremio(_ id: String, with sourceID: String?) throws {
@@ -294,8 +340,13 @@ struct HouseholdProfileState: Codable, Equatable, Sendable {
         let removed = Set(roster.profiles.filter(\.deleted).map(\.syncID))
         var adopted: [DeviceHouseholdProfile] = []
         for remote in roster.profiles where !remote.deleted && !locallyDeleted.contains(remote.syncID) {
-            if var previous = local[remote.syncID] { previous.desktop = remote; adopted.append(previous) }
-            else { adopted.append(DeviceHouseholdProfile(id: "p_" + UUID().uuidString.lowercased(), desktop: remote)) }
+            if var previous = local[remote.syncID] {
+                if remote.raw["avatar"] != .null && remote.raw["avatar"] != previous.desktop.raw["avatar"] {
+                    previous.localPhotoID = nil; previous.appearanceInitialized = true
+                }
+                previous.desktop = remote; adopted.append(previous)
+            }
+            else { adopted.append(DeviceHouseholdProfile(id: "p_" + UUID().uuidString.lowercased(), desktop: remote, appearanceInitialized: true)) }
         }
         let adoptedIDs = Set(adopted.map(\.syncID))
         for var previous in profiles where !adoptedIDs.contains(previous.syncID) && !removed.contains(previous.syncID) {
