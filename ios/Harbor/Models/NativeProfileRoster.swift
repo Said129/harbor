@@ -38,7 +38,10 @@ struct DesktopHouseholdProfile: Codable, Equatable, Sendable {
             fields["kid"] = .object(details)
         }
         for key in ["id", "passwordHash", "shareStremioWith"] { fields.removeValue(forKey: key) }
-        raw = .object(fields)
+        // JSON decoding normalizes integral numbers. Use the same representation
+        // before persistence and POST comparison so an acknowledged write is not
+        // mistaken for another local edit after a restart.
+        raw = try JSONValue.encoded(JSONValue.object(fields))
     }
     init(from decoder: Decoder) throws { try self.init(JSONValue(from: decoder)) }
     func encode(to encoder: Encoder) throws { try raw.encode(to: encoder) }
@@ -81,7 +84,7 @@ struct DesktopHouseholdRoster: Equatable, Sendable {
         let profiles = try rows.map(DesktopHouseholdProfile.init)
         guard Set(profiles.map(\.syncID)).count == profiles.count else { throw HarborError(code: "household-roster-value") }
         fields["profiles"] = .array(profiles.map(\.portable))
-        self.profiles = profiles; raw = .object(fields)
+        self.profiles = profiles; raw = try JSONValue.encoded(JSONValue.object(fields))
     }
 }
 

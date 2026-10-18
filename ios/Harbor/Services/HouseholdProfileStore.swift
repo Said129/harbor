@@ -1,6 +1,12 @@
 import Foundation
 import Observation
 
+struct HouseholdRosterAttempt: Codable, Equatable, Sendable {
+    let version: UUID
+    let baseRevision: Int64
+    let value: JSONValue
+}
+
 struct HouseholdProfileState: Codable, Equatable, Sendable {
     var version = 1
     var profiles: [DeviceHouseholdProfile] = []
@@ -8,6 +14,8 @@ struct HouseholdProfileState: Codable, Equatable, Sendable {
     var tombstones: [DesktopHouseholdProfile] = []
     var serverValue: JSONValue?
     var serverRevision: Int64?
+    var synchronizationAccount: String?
+    var rosterAttempt: HouseholdRosterAttempt?
 
     func validated() throws -> Self {
         guard version == 1, Set(profiles.map(\.id)).count == profiles.count,
@@ -19,11 +27,17 @@ struct HouseholdProfileState: Codable, Equatable, Sendable {
               tombstones.count <= 64, tombstones.allSatisfy(\.deleted),
               selectedID == nil || profiles.contains(where: { $0.id == selectedID }),
               serverRevision == nil || (serverRevision! >= 0 && serverRevision! <= 9_007_199_254_740_991),
+              synchronizationAccount == nil || (!synchronizationAccount!.isEmpty && synchronizationAccount!.utf8.count <= 256),
               try JSONEncoder().encode(self).count <= 384 * 1_024 else { throw HarborError(code: "household-store") }
         // Revalidate injected persistence implementations as well as decoded data.
         for row in profiles { _ = try DesktopHouseholdProfile(row.desktop.raw) }
         for row in tombstones { _ = try DesktopHouseholdProfile(row.raw) }
         if let serverValue { _ = try DesktopHouseholdRoster(serverValue) }
+        if let attempt = rosterAttempt {
+            guard synchronizationAccount != nil, serverRevision == attempt.baseRevision,
+                  attempt.baseRevision >= 0, attempt.baseRevision <= HarborLayoutDocument.maximumRevision,
+                  try DesktopHouseholdRoster(attempt.value).raw == attempt.value else { throw HarborError(code: "household-sync-store") }
+        }
         _ = try DesktopHouseholdRoster(wireValue)
         return self
     }
@@ -63,7 +77,7 @@ struct HouseholdProfileState: Codable, Equatable, Sendable {
         guard let profile = requestedProfile, profile.credential == nil || unlocked.contains(profile.id) else { return nil }
         return profile
     }
-    var needsUpload: Bool { ready && !profiles.isEmpty && state.wireValue != state.serverValue }
+    var needsUpload: Bool { ready && (!profiles.isEmpty || !state.tombstones.isEmpty) && state.wireValue != state.serverValue }
 
     init(scope: HouseholdProfileScope, persistence: (any HouseholdProfilePersistence)? = nil, credentials: any ProfileCredentialChecking = DeviceProfileCredentialChecker()) {
         self.scope = scope; self.persistence = persistence ?? KeychainHouseholdProfiles(); self.credentials = credentials; reload()
@@ -198,7 +212,7 @@ struct HouseholdProfileState: Codable, Equatable, Sendable {
     }
 
     /// A missing server row is never a deletion. Only explicit tombstones retire it.
-    func adopt(_ roster: DesktopHouseholdRoster, revision: Int64) throws {
+    func adopt(_ roster: DesktopHouseholdRoster, revision: Int64, clearingAttempt: Bool = false) throws {
         guard ready, revision >= 0, revision <= 9_007_199_254_740_991,
               state.serverRevision == nil || revision >= state.serverRevision! else { throw HarborError(code: "household-roster-revision") }
         if state.serverRevision == revision {
@@ -216,7 +230,7 @@ struct HouseholdProfileState: Codable, Equatable, Sendable {
         }
         let adoptedIDs = Set(adopted.map(\.syncID))
         for var previous in profiles where !adoptedIDs.contains(previous.syncID) && !removed.contains(previous.syncID) {
-            if state.serverRevision == nil && previous.desktop.isPrimary && adopted.contains(where: { $0.desktop.isPrimary }) {
+            if previous.desktop.isPrimary && adopted.contains(where: { $0.desktop.isPrimary }) {
                 previous.desktop = try previous.desktop.editing(["isPrimary": .bool(false)], at: Date().timeIntervalSince1970 * 1_000)
             }
             adopted.append(previous)
@@ -229,7 +243,46 @@ struct HouseholdProfileState: Codable, Equatable, Sendable {
         next.tombstones = Array((serverStones + state.tombstones.filter { !serverIDs.contains($0.syncID) }).suffix(64))
         if !localIDs.contains(next.selectedID ?? "") { next.selectedID = adopted.first(where: { $0.desktop.isPrimary })?.id ?? adopted.first?.id }
         next.serverValue = roster.raw; next.serverRevision = revision
+        if clearingAttempt { next.rosterAttempt = nil }
         try commit(next)
         unlocked.formIntersection(localIDs); parentUnlocked.formIntersection(localIDs)
+    }
+    /// A server account is explicit; a local device roster cannot accidentally be
+    /// uploaded while the coordinator is still choosing the household to bind.
+    func bindSynchronization(account: String) throws {
+        guard ready, case .harbor(let expected) = scope, expected == account,
+              !account.isEmpty, account.utf8.count <= 256 else { throw HarborError(code: "household-sync-account") }
+        if let bound = state.synchronizationAccount {
+            guard bound == account else { throw HarborError(code: "household-sync-account") }; return
+        }
+        guard state.serverRevision == nil, state.serverValue == nil else { throw HarborError(code: "household-sync-account") }
+        var next = state; next.synchronizationAccount = account; try commit(next)
+    }
+    func noteMissingServerRoster(account: String) throws {
+        guard ready, state.synchronizationAccount == account else { throw HarborError(code: "household-sync-account") }
+        var next = state
+        next.serverRevision = 0; next.serverValue = .object(["profiles": .array([])])
+        if next.rosterAttempt?.baseRevision != 0 { next.rosterAttempt = nil }
+        try commit(next)
+    }
+    func prepareRosterAttempt(account: String) throws -> HouseholdRosterAttempt? {
+        guard ready, state.synchronizationAccount == account, let revision = state.serverRevision else { throw HarborError(code: "household-sync-unhydrated") }
+        if !needsUpload {
+            if state.rosterAttempt != nil { var next = state; next.rosterAttempt = nil; try commit(next) }
+            return nil
+        }
+        let value = try DesktopHouseholdRoster(state.wireValue).raw
+        if let pending = state.rosterAttempt, pending.baseRevision == revision, pending.value == value { return pending }
+        let pending = HouseholdRosterAttempt(version: UUID(), baseRevision: revision, value: value)
+        var next = state; next.rosterAttempt = pending; try commit(next); return pending
+    }
+    func acknowledgeRosterAttempt(_ sent: HouseholdRosterAttempt, revision: Int64, account: String) throws {
+        guard ready, state.synchronizationAccount == account, state.rosterAttempt == sent,
+              revision > sent.baseRevision, revision <= HarborLayoutDocument.maximumRevision else { throw HarborError(code: "household-sync-response") }
+        var next = state
+        next.serverValue = sent.value; next.serverRevision = revision; next.rosterAttempt = nil
+        // Current profiles may contain an edit made while POST was suspended.
+        // Updating only the shadow leaves that edit durably different and queued.
+        try commit(next)
     }
 }

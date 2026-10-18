@@ -24,10 +24,18 @@ final class HarborAppDelegate: NSObject, UIApplicationDelegate, UNUserNotificati
 struct HarborApp: App {
     @UIApplicationDelegateAdaptor(HarborAppDelegate.self) private var delegate
     @State private var model = AppModel()
+    var body: some Scene { WindowGroup { HarborRootView(model: model) } }
+}
+
+@MainActor private struct HarborRootView: View {
+    @Bindable var model: AppModel
     @AppStorage("uiLanguage") private var uiLanguage = "es"
     @Environment(\.scenePhase) private var scenePhase
-    var body: some Scene {
-        WindowGroup {
+    var body: some View {
+        synchronization
+            .sheet(isPresented: $model.showAccount) { accountSheet }
+    }
+    private var content: some View {
             ZStack {
                 if model.storageReady && model.profileContext.ready {
                     HarborShell(app: model).id(model.interfaceProfileScope)
@@ -43,14 +51,23 @@ struct HarborApp: App {
                     }.padding(30)
                 }
             }.font(HarborTheme.font()).foregroundStyle(HarborTheme.ink).tint(HarborTheme.accent).preferredColorScheme(.dark)
+    }
+    private var persistence: some View {
+        content
                 .onOpenURL { model.openDocument($0) }
                 .onReceive(NotificationCenter.default.publisher(for: UserDefaults.didChangeNotification).debounce(for: .milliseconds(250), scheduler: RunLoop.main)) { _ in
                     ProfileSettingsStore.shared.saveCurrent()
                 }
                 .onChange(of: scenePhase) { _, phase in if phase != .active { ProfileSettingsStore.shared.saveCurrent() } }
+    }
+    private var lifecycle: some View {
+        persistence
                 .task { await model.start() }
                 .task(id: String(model.storageReady) + "|" + model.settingsOwner) { if model.storageReady { await SportsReminderService.shared.removeOtherAccounts(owner: model.settingsOwner) } }
                 .task(id: model.personalOwner) { MusicPlayback.shared.stopForAccount(model.personalOwner) }
+    }
+    private var synchronization: some View {
+        lifecycle
                 .task(id: model.harborIdentityOwner + "|" + model.interfaceProfileScope + "|" + String(model.storageReady) + "|" + String(describing: scenePhase)) {
                     guard scenePhase == .active, model.storageReady else { return }
                     let profile = model.harborIdentity
@@ -64,9 +81,10 @@ struct HarborApp: App {
                     await model.library.sync()
                     await model.refreshAddons()
                 }
-                .sheet(isPresented: $model.showAccount) { NavigationStack { AccountView(app: model) }.font(HarborTheme.font()).foregroundStyle(HarborTheme.ink).tint(HarborTheme.accent).preferredColorScheme(.dark)
+    }
+    private var accountSheet: some View {
+        NavigationStack { AccountView(app: model) }.font(HarborTheme.font()).foregroundStyle(HarborTheme.ink).tint(HarborTheme.accent).preferredColorScheme(.dark)
                         .environment(\.locale, Locale(identifier: InterfaceLanguage.resolve(uiLanguage)))
-                        .environment(\.layoutDirection, InterfaceLanguage.resolve(uiLanguage) == "ar" ? .rightToLeft : .leftToRight) }
-        }
+                        .environment(\.layoutDirection, InterfaceLanguage.resolve(uiLanguage) == "ar" ? .rightToLeft : .leftToRight)
     }
 }
