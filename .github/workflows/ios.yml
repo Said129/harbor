@@ -37,6 +37,7 @@ on:
             profile-editor,
             profile-gate,
             profile-appearance,
+            profile-ui,
             player-caption,
             continuation-sendable,
             anime-episodes,
@@ -118,6 +119,14 @@ jobs:
       - name: Verify the unchanged app and test-only player fixture
         if: ${{ inputs.validation_scope == 'player-caption' }}
         run: python3 scripts/ios/verify-player-caption.py --output ios/build/preserved-player-caption.json
+      - name: Preserve actual appearance and gate results before normal profile UI
+        if: ${{ inputs.validation_scope == 'profile-ui' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          test "${{ inputs.validation_only }}" = "true"
+          test "${{ inputs.run_live_integration }}" = "false"
+          python3 scripts/ios/verify-profile-ui.py --output ios/build/preserved-profile-ui.json
       - name: Preserve unchanged profile evidence before appearance integration
         if: ${{ inputs.validation_scope == 'profile-appearance' }}
         env:
@@ -253,7 +262,7 @@ jobs:
             harbor-core
             harbor-ios-bridge
       - name: Verify shared Rust on the Apple build host
-        if: ${{ inputs.validation_scope != 'affected' && inputs.validation_scope != 'sources-search-subtitles' && inputs.validation_scope != 'mobile-sources-subtitles' && inputs.validation_scope != 'stable-mobile' && inputs.validation_scope != 'stable-tablet-ui' && inputs.validation_scope != 'stable-tablet-rotation' && inputs.validation_scope != 'reading-intro' && inputs.validation_scope != 'reading-followup' && inputs.validation_scope != 'reading-final' && inputs.validation_scope != 'reading-tablet-final' && inputs.validation_scope != 'anime-episodes' && inputs.validation_scope != 'anime-episodes-ui' && inputs.validation_scope != 'continuation-parity' && inputs.validation_scope != 'language-reference' && inputs.validation_scope != 'system-maintenance' && inputs.validation_scope != 'navigation-sync' && inputs.validation_scope != 'onboarding-desktop' && inputs.validation_scope != 'service-browser' && inputs.validation_scope != 'streaming-sync' && inputs.validation_scope != 'services-complete' && inputs.validation_scope != 'services-ui' && inputs.validation_scope != 'profile-context' && inputs.validation_scope != 'profile-editor' && inputs.validation_scope != 'profile-gate' && inputs.validation_scope != 'profile-appearance' && inputs.validation_scope != 'player-caption' }}
+        if: ${{ inputs.validation_scope != 'affected' && inputs.validation_scope != 'sources-search-subtitles' && inputs.validation_scope != 'mobile-sources-subtitles' && inputs.validation_scope != 'stable-mobile' && inputs.validation_scope != 'stable-tablet-ui' && inputs.validation_scope != 'stable-tablet-rotation' && inputs.validation_scope != 'reading-intro' && inputs.validation_scope != 'reading-followup' && inputs.validation_scope != 'reading-final' && inputs.validation_scope != 'reading-tablet-final' && inputs.validation_scope != 'anime-episodes' && inputs.validation_scope != 'anime-episodes-ui' && inputs.validation_scope != 'continuation-parity' && inputs.validation_scope != 'language-reference' && inputs.validation_scope != 'system-maintenance' && inputs.validation_scope != 'navigation-sync' && inputs.validation_scope != 'onboarding-desktop' && inputs.validation_scope != 'service-browser' && inputs.validation_scope != 'streaming-sync' && inputs.validation_scope != 'services-complete' && inputs.validation_scope != 'services-ui' && inputs.validation_scope != 'profile-context' && inputs.validation_scope != 'profile-editor' && inputs.validation_scope != 'profile-gate' && inputs.validation_scope != 'profile-appearance' && inputs.validation_scope != 'profile-ui' && inputs.validation_scope != 'player-caption' }}
         shell: bash
         run: |
           set -euo pipefail
@@ -327,7 +336,7 @@ jobs:
           python3 scripts/ios/prepare-model-test-startup.py --container "$container"
       - name: Run bridge and model tests on iPhone simulator
         id: offline_tests
-        if: ${{ inputs.validation_scope != 'stable-tablet-ui' && inputs.validation_scope != 'stable-tablet-rotation' && inputs.validation_scope != 'anime-episodes-ui' && inputs.validation_scope != 'services-ui' }}
+        if: ${{ inputs.validation_scope != 'stable-tablet-ui' && inputs.validation_scope != 'stable-tablet-rotation' && inputs.validation_scope != 'anime-episodes-ui' && inputs.validation_scope != 'services-ui' && inputs.validation_scope != 'profile-ui' }}
         timeout-minutes: 25
         shell: bash
         run: |
@@ -394,6 +403,30 @@ jobs:
           python3 scripts/ios/collect-native-startup-diagnostics.py --simulator "$IOS_SIMULATOR"
           ditto -c -k --keepParent ios/build/failed-native-render ios/build/iphone-native-render-evidence.zip
           gh release create "iphone-native-render-evidence-$GITHUB_RUN_ID" ios/build/iphone-native-render-evidence.zip --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" --draft --prerelease --title "iPhone native test evidence $GITHUB_RUN_ID" --notes "Offline native test attachments, logs and crash diagnostics. No private account, configured addon URL or installable app."
+      - name: Run only new and affected normal-profile interfaces
+        id: profile_ui_tests
+        if: ${{ inputs.validation_scope == 'profile-ui' }}
+        timeout-minutes: 45
+        run: python3 scripts/ios/run-profile-ui.py
+      - name: Preserve failed normal-profile UI evidence
+        if: ${{ failure() && inputs.validation_scope == 'profile-ui' && steps.profile_ui_tests.conclusion == 'failure' && inputs.save_draft_build == true }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ios/build/profile-ui-evidence/attachments
+          for name in ProfileIPhoneLanguage ProfileIPhoneUI ProfileIPadLanguage ProfileIPadUI; do
+            if [[ -d "ios/build/$name.xcresult" ]]; then
+              xcrun xcresulttool export attachments --path "ios/build/$name.xcresult" --output-path "ios/build/profile-ui-evidence/attachments/$name" || true
+            fi
+          done
+          cp -R ios/build/logs ios/build/profile-ui-evidence/
+          cp ios/build/preserved-profile-ui.json ios/build/profile-ui-evidence/
+          if [[ -d ios/build/canonical ]]; then cp -R ios/build/canonical ios/build/profile-ui-evidence/; fi
+          if [[ -d ios/build/profile-recordings ]]; then cp -R ios/build/profile-recordings ios/build/profile-ui-evidence/; fi
+          ditto -c -k --keepParent ios/build/profile-ui-evidence ios/build/iphone-profile-ui-evidence.zip
+          gh release create "iphone-profile-ui-evidence-$GITHUB_RUN_ID" ios/build/iphone-profile-ui-evidence.zip --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" --draft --prerelease --title "Normal profile UI diagnostics $GITHUB_RUN_ID" --notes "Actual normal-profile UI diagnostics. No IPA, private account or configured private addon."
       - name: Run real addon services on iPhone simulator
         id: live_services
         if: ${{ inputs.run_live_integration == true && inputs.validation_scope != 'player-caption' && inputs.validation_scope != 'language-reference' && inputs.validation_scope != 'system-maintenance' && inputs.validation_scope != 'navigation-sync' && inputs.validation_scope != 'services-ui' && inputs.validation_scope != 'service-browser' && inputs.validation_scope != 'streaming-sync' && inputs.validation_scope != 'anime-episodes-ui' && inputs.validation_scope != 'reading-final' && inputs.validation_scope != 'reading-tablet-final' && inputs.validation_scope != 'affected' && inputs.validation_scope != 'stable-mobile' && inputs.validation_scope != 'stable-tablet-ui' && inputs.validation_scope != 'stable-tablet-rotation' }}
@@ -682,7 +715,7 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p ios/build/attachments
-          for name in Tests ServicesTests LiveTests TabletTests TabletUITests MangaFontTests ReadingTabletSeed ReadingTabletUI LanguageTabletUI SystemTabletUI NavigationTabletUI OnboardingTabletUI ServiceTabletUI StreamingSyncTabletUI PlayerCaptionTabletSeed PlayerCaptionTabletUI; do
+          for name in Tests ServicesTests LiveTests TabletTests TabletUITests MangaFontTests ReadingTabletSeed ReadingTabletUI LanguageTabletUI SystemTabletUI NavigationTabletUI OnboardingTabletUI ServiceTabletUI StreamingSyncTabletUI PlayerCaptionTabletSeed PlayerCaptionTabletUI ProfileIPhoneLanguage ProfileIPhoneUI ProfileIPadLanguage ProfileIPadUI; do
             if [ -d "ios/build/$name.xcresult" ]; then
               if ! xcrun xcresulttool export attachments --path "ios/build/$name.xcresult" --output-path "ios/build/attachments/$name"; then
                 echo "$name.xcresult: attachment export failed; result may be incomplete" >> ios/build/attachments/export-failures.txt
@@ -718,7 +751,7 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p ios/build/validation-evidence/attachments
-          for name in Tests ServicesTests LiveTests TabletTests TabletUITests MangaFontTests ReadingTabletSeed ReadingTabletUI LanguageTabletUI SystemTabletUI NavigationTabletUI OnboardingTabletUI ServiceTabletUI StreamingSyncTabletUI PlayerCaptionTabletSeed PlayerCaptionTabletUI; do
+          for name in Tests ServicesTests LiveTests TabletTests TabletUITests MangaFontTests ReadingTabletSeed ReadingTabletUI LanguageTabletUI SystemTabletUI NavigationTabletUI OnboardingTabletUI ServiceTabletUI StreamingSyncTabletUI PlayerCaptionTabletSeed PlayerCaptionTabletUI ProfileIPhoneLanguage ProfileIPhoneUI ProfileIPadLanguage ProfileIPadUI; do
             if [[ -d "ios/build/$name.xcresult" ]]; then
               xcrun xcresulttool export attachments --path "ios/build/$name.xcresult" --output-path "ios/build/validation-evidence/attachments/$name"
             fi
@@ -726,6 +759,7 @@ jobs:
           if [[ -d ios/build/setup-recordings ]]; then cp -R ios/build/setup-recordings ios/build/validation-evidence/; fi
           if [[ -d ios/build/service-recordings ]]; then cp -R ios/build/service-recordings ios/build/validation-evidence/; fi
           if [[ -d ios/build/canonical ]]; then cp -R ios/build/canonical ios/build/validation-evidence/; fi
+          if [[ -d ios/build/profile-recordings ]]; then cp -R ios/build/profile-recordings ios/build/validation-evidence/; fi
           for report in ios/build/preserved*.json; do
             if [[ -f "$report" ]]; then cp "$report" ios/build/validation-evidence/; fi
           done
