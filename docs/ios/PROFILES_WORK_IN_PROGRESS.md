@@ -58,4 +58,6 @@ Selection uses the reference 340/680 ms exit sequence and 360/440 ms heading/til
 
 Do not call this full profile parity: the manager's roster identity and the older appearance editor's `ProfilePreferences` projection still need a single consistent authority, including uploaded/custom avatars. Picker backgrounds, data import/overlap handling, deletion data cleanup and the authenticated full-roster/realm transport remain unfinished. These are required follow-up work before the consolidated IPA, not exclusions or a reduced success criterion.
 
+A later presentation guard keeps queued EPUB/PDF imports and the walkthrough closed while the profile picker is opening or visible. An incoming document for a locked selected profile retains that person's owner instead of becoming an unowned request. Closing the picker retries presentation only for the matching ready owner. This later source is not in the frozen two-case editing-gate run and still requires its focused UI verification.
+
 The original foundation-only review is historical. The updated context routing inventory and exact source hashes are saved outside the app in `work/harbor-revision/parity132/profiles/context-routing-review.json`. These are implementation inventories, not a completion percentage or runtime proof.

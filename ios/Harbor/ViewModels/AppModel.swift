@@ -36,6 +36,7 @@ final class AppModel {
     var showAccount = false
     var showProfiles = false
     private var profilesAfterAccount = false
+    var choosingProfile: Bool { showProfiles || profilesAfterAccount || profileContext.requiresSelection }
     func openProfiles() {
         if showAccount { profilesAfterAccount = true; showAccount = false }
         else { showProfiles = true }
@@ -69,14 +70,14 @@ final class AppModel {
     var accountOperationScope: String { profileContext.activationID.uuidString + "|" + (profileContext.profiles.active?.id ?? "locked") }
     var interfaceProfileScope: String { profileContext.profiles.active?.id ?? "unbound" }
     private var documentOwner: String? {
-        profileContext.profiles.active.map { HouseholdProfileScope.hash([profileContext.profiles.scope.key, $0.id]) }
+        (profileContext.profiles.active ?? profileContext.profiles.requestedProfile).map { HouseholdProfileScope.hash([profileContext.profiles.scope.key, $0.id]) }
     }
     func openDocument(_ url: URL) {
         guard url.isFileURL, ["epub", "pdf"].contains(url.pathExtension.lowercased()) else { return }
         pendingDocument = PendingProfileDocument(url: url, profile: documentOwner)
     }
     func takePendingDocument() -> URL? {
-        guard storageReady, profileContext.ready, let pendingDocument,
+        guard storageReady, profileContext.ready, !choosingProfile, let pendingDocument,
               pendingDocument.profile == nil || pendingDocument.profile == documentOwner else { return nil }
         self.pendingDocument = nil; return pendingDocument.url
     }

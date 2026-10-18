@@ -128,6 +128,7 @@ struct HarborShell: View {
             .onAppear { presentPendingDocument() }
             .onChange(of: app.pendingDocument?.id) { _, _ in presentPendingDocument() }
             .onChange(of: app.storageReady) { _, ready in if ready { presentPendingDocument() } }
+            .onChange(of: app.choosingProfile) { _, choosing in if !choosing { presentPendingDocument() } }
             .onChange(of: app.personalOwner) { _, _ in document = nil }
             .sheet(item: $document) { incoming in
                 if incoming.owner == app.personalOwner {
@@ -138,7 +139,7 @@ struct HarborShell: View {
                 }
             }
             .sheet(isPresented: Binding(get: {
-                app.storageReady && document == nil && !app.showAccount && AppGuidePreferences.shared.presentationRequested
+                app.storageReady && document == nil && !app.showAccount && !app.choosingProfile && AppGuidePreferences.shared.presentationRequested
             }, set: { if !$0 { AppGuidePreferences.shared.finish() } })) { AppWalkthroughView(app: app) }
     }
     private func presentPendingDocument() {
