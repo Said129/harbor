@@ -10,7 +10,7 @@ p = argparse.ArgumentParser(description=__doc__)
 p.add_argument('--output', type=Path, required=True)
 a = p.parse_args()
 application = '49110c6786903d6480c2febe101d8210f2a4fb9b'
-test_source = '2e279610c2d3bfd11383ca414ba65279418d12b9'
+test_source = 'd7e311a4f5c61aa1b3e13c10e701fd369d0438df'
 for revision in [application, test_source]:
     if subprocess.run(['git', 'cat-file', '-e', revision + '^{commit}'], capture_output=True).returncode != 0:
         subprocess.run(['git', 'fetch', '--no-tags', '--depth=1', 'origin', revision], check=True)
@@ -20,7 +20,7 @@ allowed = {'ios/HarborTests/PlayerCaptionSeedTests.swift', 'ios/HarborUITests/Pl
 changed = set(subprocess.check_output(['git', 'diff', '--name-only', application, 'HEAD', '--', *roots], text=True).splitlines())
 assert changed == allowed, sorted(changed ^ allowed)
 assert not subprocess.check_output(['git', 'diff', '--name-only', test_source, 'HEAD', '--',
-    'ios/HarborTests/PlayerCaptionSeedTests.swift', 'ios/HarborUITests/PlayerCaptionNavigationTests.swift'], text=True).strip(), 'Require the reviewed actual menu, rendered frame, caption and original request assertions'
+    'ios/HarborTests/PlayerCaptionSeedTests.swift', 'ios/HarborUITests/PlayerCaptionNavigationTests.swift'], text=True).strip(), 'Require the reviewed rendered frame, caption, manual next action and original request assertions'
 project = Path('ios/project.yml').read_text('utf-8')
 original = subprocess.check_output(['git', 'show', application + ':ios/project.yml']).decode('utf-8')
 before = '    sources: [HarborUITests]\n'
@@ -41,6 +41,8 @@ proof = dict(source=os.environ.get('GITHUB_SHA') or subprocess.check_output(['gi
     fixture_target='HarborUITests', application_resource_configuration_unchanged=True,
     expected_native_seed_executions=2, expected_actual_ui_executions=2, expected_synthetic_screenshots=4,
     native_seed_case='HarborTests.PlayerCaptionSeedTests/testPrepareOrdinaryGuestForSyntheticPlayerCaptionUI',
+    ordinary_guest_setting='autoHideControls=false; caption and manual next assertions require visible controls',
+    previous_failed_run=39121115983,
     actual_ui_cases=['HarborUITests.PlayerCaptionNavigationTests/testActualIPhonePlayerShowsAbsoluteNinetyNineAndAdvancesToOneHundred',
         'HarborUITests.PlayerCaptionNavigationTests/testActualIPadPlayerShowsAbsoluteNinetyNineAndAdvancesToOneHundred'],
     actual_execution_results='pending', physical_device_validation=False,
