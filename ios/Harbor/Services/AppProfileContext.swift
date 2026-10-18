@@ -26,6 +26,7 @@ struct ActiveProfileBinding: Equatable, Sendable {
     let profileID: String
     let personalOwner: String
     let settingsOwner: String
+    let sharedSettingsOwner: String
     let stremioSourceID: String
     let progressOwner: String
     let identityOwner: String
@@ -51,7 +52,7 @@ struct ActiveProfileBinding: Equatable, Sendable {
         guard profiles.ready, sessions.ready, let binding, let active = profiles.active, active.id == binding.profileID else { return false }
         let source = active.shareStremioWith.flatMap { id in profiles.profiles.contains(where: { $0.id == id }) ? id : nil } ?? active.id
         return binding.stremioSourceID == source
-            && binding.settingsOwner == (active.desktop.settingsLinked ? binding.identityOwner : binding.personalOwner)
+            && binding.settingsOwner == (active.desktop.settingsLinked ? sharedSettingsOwner(identityOwner: binding.identityOwner) : binding.personalOwner)
     }
     var configuration: HouseholdSourceAccount? { ready ? sessions.current : nil }
 
@@ -88,7 +89,16 @@ struct ActiveProfileBinding: Equatable, Sendable {
                       try sessions.migrateLegacy(previous.configuration, to: profile, scope: profiles.scope) else { throw HarborError(code: "profile-account-migration") }
             }
         }
+        if sessions.identityOwner == nil, let original = profiles.profiles.first(where: { $0.legacyOwner != nil }) {
+            try sessions.preserveIdentityOwner(from: original, scope: profiles.scope)
+        }
         try refreshBinding()
+    }
+    private func sharedSettingsOwner(identityOwner: String) -> String {
+        switch profiles.scope {
+        case .local: identityOwner
+        case .harbor: "settings-shared-" + profiles.scope.key
+        }
     }
     private func refreshBinding() throws {
         guard let profile = profiles.active else {
@@ -98,14 +108,15 @@ struct ActiveProfileBinding: Equatable, Sendable {
         }
         let lease = try sessions.bind(profile: profile, profiles: profiles.profiles, scope: profiles.scope)
         let routing = HouseholdProfileRouting(profile: profile, profiles: profiles.profiles, scope: profiles.scope, cwPerProfile: false)
-        let identityOwner = profiles.profiles.compactMap(\.legacyOwner).first ?? "identity-" + profiles.scope.key
+        let identityOwner = sessions.identityOwner ?? profiles.profiles.compactMap(\.legacyOwner).first ?? "identity-" + profiles.scope.key
+        let sharedOwner = sharedSettingsOwner(identityOwner: identityOwner)
         let accountID = lease.configuration?.account?.session.user.id
         let source = profiles.profiles.first { $0.id == routing.stremioSourceID }
         let progressOwner: String
         if let old = source?.legacyOwner, old == (accountID ?? "guest") { progressOwner = old }
         else { progressOwner = "source-progress-" + HouseholdProfileScope.hash([profiles.scope.key, routing.stremioSourceID, accountID ?? "guest"]) }
         let next = ActiveProfileBinding(profileID: profile.id, personalOwner: routing.personal,
-            settingsOwner: profile.desktop.settingsLinked ? identityOwner : routing.personal,
+            settingsOwner: profile.desktop.settingsLinked ? sharedOwner : routing.personal, sharedSettingsOwner: sharedOwner,
             stremioSourceID: routing.stremioSourceID, progressOwner: progressOwner,
             identityOwner: identityOwner, accountID: accountID)
         if binding != next { playback.stopForProfileChange(); activationID = UUID(); binding = next }

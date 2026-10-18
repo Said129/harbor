@@ -38,6 +38,8 @@ final class AppModel {
     var user: AccountUser? { savedAccount?.session.user }
     var personalOwner: String { profileContext.binding?.personalOwner ?? user?.id ?? "guest" }
     var settingsOwner: String { profileContext.binding?.settingsOwner ?? user?.id ?? "guest" }
+    var harborIdentityOwner: String { profileContext.binding?.identityOwner ?? profileContext.sessions.identityOwner ?? "guest" }
+    var harborIdentity: ProfilePreferences { ProfilePreferences.forOwner(harborIdentityOwner) }
     var progressOwner: String { profileContext.binding?.progressOwner ?? user?.id ?? "guest" }
     var accountOperationScope: String { profileContext.activationID.uuidString + "|" + (profileContext.profiles.active?.id ?? "locked") }
     var interfaceProfileScope: String { profileContext.profiles.active?.id ?? "unbound" }
@@ -155,14 +157,14 @@ final class AppModel {
         case .harbor: migrateLegacy = false
         }
         if ProfileSettingsStore.shared.owner != binding.settingsOwner {
-            try ProfileSettingsStore.shared.activate(owner: binding.settingsOwner, sharedOwner: binding.identityOwner, migrateLegacy: migrateLegacy,
+            try ProfileSettingsStore.shared.activate(owner: binding.settingsOwner, sharedOwner: binding.sharedSettingsOwner, migrateLegacy: migrateLegacy,
                 legacyTMDB: { try KeychainStore().read("metadata.tmdb.v1", as: String.self) })
             InterfacePreferences.shared.reloadPreferences(); ThemePreferences.shared.reloadPreferences()
             PlaybackPreferences.shared.reloadPreferences(); StreamPreferences.shared.reloadPreferences()
             MetadataPreferences.shared.reloadPreferences(); MusicPlayback.shared.reloadPreferences()
         }
         try MetadataPreferences.shared.bind(ProfileSettingsStore.shared)
-        ProfilePreferences.forOwner(user?.id ?? "guest").cloud.bindLayoutOwner(settingsOwner)
+        harborIdentity.cloud.bindLayoutOwner(settingsOwner)
         InterfacePreferences.shared.navigation.bind(.local(owner: settingsOwner))
         StreamingPreferences.forOwner(settingsOwner).bind(.local(owner: settingsOwner))
         resume = ResumeStore(owner: owner)
@@ -286,7 +288,7 @@ final class AppModel {
         let next = SavedAccount(session: session, collection: collection)
         // Commit the token and downloaded collection together, only after both
         // requests succeed. A rejected login/sync preserves the previous account.
-        let previousProgressOwner = progressOwner, previousIdentityOwner = user?.id ?? "guest"
+        let previousProgressOwner = progressOwner, previousIdentityOwner = harborIdentityOwner
         try profileContext.save(HouseholdSourceAccount(account: next, guestAddons: profileContext.configuration?.guestAddons), explicitAuthenticationChange: true)
         ProfilePreferences.forOwner(previousIdentityOwner).cloud.suspendForProfileChange()
         savedAccount = next
@@ -363,7 +365,7 @@ final class AppModel {
         else { guest = [try await service.install(HarborService.cinemetaManifest)] }
         try Task.checkCancellation()
         guard scope == accountOperationScope else { throw HarborError(code: "account-cancelled") }
-        let previousIdentityOwner = user?.id ?? "guest"
+        let previousIdentityOwner = harborIdentityOwner
         try profileContext.save(HouseholdSourceAccount(account: nil, guestAddons: guest), explicitAuthenticationChange: true)
         ProfilePreferences.forOwner(previousIdentityOwner).cloud.suspendForProfileChange()
         savedAccount = nil; addons = guest; rows = []; heroes = []; warnings = []; accountError = nil

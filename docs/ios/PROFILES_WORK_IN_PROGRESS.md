@@ -3,7 +3,7 @@
 Reference: Desktop 0.9.132, source `0834340cec5531650bfe78cd628628702e636987`.
 This belongs to the existing full iPhone/iPad port. It does not reserve or create another IPA.
 
-The local foundation and initial application routing have been written, with 44 affected native tests prepared: 15 roster/lock/routing cases, seven session migration cases, seven context cases, three library binding cases, three playback ownership cases and nine settings cases. **Apple compilation and execution of this profile block are still pending. Startup now binds the migrated primary profile, but the multi-profile selector is not yet exposed.**
+The local foundation and initial application routing have been written, with 46 affected native tests prepared: 15 roster/lock/routing cases, eight session migration cases, eight context cases, three library binding cases, three playback ownership cases and nine settings cases. **Apple compilation and execution of this profile block are still pending. Startup now binds the migrated primary profile, but the multi-profile selector is not yet exposed.**
 
 `NativeProfileRoster.swift` separates the portable Desktop roster from device identity, Stremio sharing, migration ownership and credentials. Unknown Desktop fields survive adoption and editing. Portable output omits device IDs, passwords, parent PINs and Stremio sharing IDs. Profile names alone never establish that existing user data is disposable.
 
@@ -26,6 +26,8 @@ Open EPUB/PDF requests are queued at the stable application root, including cold
 `ProfilePlaybackRegistry` closes registered video/PiP controllers during a context change and rejects late surface creation. A rejected controller cannot initialize its renderer or audio session later. The context changes its operation token even when two people share Stremio; addon refresh completions cannot clear a newer task or publish an old error. These paths have prepared focused cases but have not run on Apple yet.
 
 Signing in or out of a shared profile follows Desktop's `auth.tsx`: detach that profile from its shared source. `prepareOwnAccount` durably stages its own account before the caller changes `shareStremioWith` and binds the new source. Refreshing the deliberately shared addon/source configuration remains a shared update. The primary source is never replaced or signed out by a secondary profile's explicit sign-in/sign-out.
+
+The device's Harbor identity is anchored with the original session migration and survives later Stremio logins or deletion of the original profile. Backfilling an older session record requires the exact original migration route and an atomic write. Account UI, synchronization polling, navigation and service settings use this stable identity; personal appearance remains in the active person's namespace. Harbor-scoped households use separate shared settings owners. This prepares the global identity routing only: full household roster adoption, profile metadata editing and account transitions still require integration and verification.
 
 Before claiming profile parity, complete and verify:
 

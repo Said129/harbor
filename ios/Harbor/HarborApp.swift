@@ -51,9 +51,9 @@ struct HarborApp: App {
                 .task { await model.start() }
                 .task(id: String(model.storageReady) + "|" + model.settingsOwner) { if model.storageReady { await SportsReminderService.shared.removeOtherAccounts(owner: model.settingsOwner) } }
                 .task(id: model.personalOwner) { MusicPlayback.shared.stopForAccount(model.personalOwner) }
-                .task(id: (model.user?.id ?? "guest") + "|" + String(model.storageReady) + "|" + String(describing: scenePhase)) {
+                .task(id: model.harborIdentityOwner + "|" + model.interfaceProfileScope + "|" + String(model.storageReady) + "|" + String(describing: scenePhase)) {
                     guard scenePhase == .active, model.storageReady else { return }
-                    let profile = ProfilePreferences.forOwner(model.user?.id ?? "guest")
+                    let profile = model.harborIdentity
                     while !Task.isCancelled {
                         await profile.cloud.sync()
                         do { try await Task.sleep(for: .seconds(30)) } catch { return }

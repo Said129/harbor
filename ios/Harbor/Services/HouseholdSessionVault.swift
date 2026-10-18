@@ -24,12 +24,15 @@ struct HouseholdSessionState: Codable, Equatable, Sendable {
     var version = 1
     var sources: [String: HouseholdAccountRecord] = [:]
     var migratedOwners: [String: HouseholdAccountRoute] = [:]
+    var identityOwner: String?
     func validated() throws -> Self {
         guard version == 1, sources.allSatisfy({ key, value in
             key == value.route.key && !value.route.household.isEmpty && value.route.household.utf8.count <= 256
                 && !value.route.sourceID.isEmpty && value.route.sourceID.utf8.count <= 256
                 && (value.configuration.account.map { $0.version == 1 && !$0.session.authKey.isEmpty && !$0.session.user.id.isEmpty } ?? true)
         }), migratedOwners.keys.allSatisfy({ !$0.isEmpty && $0.utf8.count <= 512 }),
+              migratedOwners.values.allSatisfy({ sources[$0.key]?.route == $0 }),
+              identityOwner == nil || migratedOwners[identityOwner!] != nil,
               try JSONEncoder().encode(self).count <= 16 * 1_024 * 1_024 else { throw HarborError(code: "household-sessions") }
         return self
     }
@@ -60,6 +63,7 @@ struct HouseholdSessionState: Codable, Equatable, Sendable {
     private(set) var ready = false
     private(set) var error: String?
     var current: HouseholdSourceAccount? { ready ? route.flatMap { state.sources[$0.key]?.configuration } : nil }
+    var identityOwner: String? { ready ? state.identityOwner : nil }
     init(persistence: (any HouseholdSessionPersistence)? = nil) {
         self.persistence = persistence ?? KeychainHouseholdSessions(); reload()
     }
@@ -120,7 +124,17 @@ struct HouseholdSessionState: Codable, Equatable, Sendable {
         var next = state
         next.sources[target.key] = HouseholdAccountRecord(route: target, version: UUID(), configuration: configuration)
         next.migratedOwners[owner] = target
+        if next.identityOwner == nil { next.identityOwner = owner }
         try commit(next); return true
+    }
+    /// The Harbor identity belongs to this device's household, independently of
+    /// later Stremio logins or deletion of the profile that migrated it.
+    func preserveIdentityOwner(from profile: DeviceHouseholdProfile, scope: HouseholdProfileScope) throws {
+        guard ready else { throw HarborError(code: "household-unavailable") }
+        guard state.identityOwner == nil else { return }
+        guard let owner = profile.legacyOwner,
+              state.migratedOwners[owner] == HouseholdAccountRoute(household: scope.key, sourceID: profile.id) else { throw HarborError(code: "profile-account-migration") }
+        var next = state; next.identityOwner = owner; try commit(next)
     }
     private func commit(_ next: HouseholdSessionState) throws {
         let value = try next.validated()

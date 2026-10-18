@@ -56,7 +56,7 @@ struct SettingsView: View {
                             }.accessibilityIdentifier("settings-metadata")
                         }
                         if matches("Library", group: "Sources & library") {
-                            NavigationLink { InterfaceSettingsView().toolbar(.visible, for: .navigationBar) } label: {
+                            NavigationLink { InterfaceSettingsView(identity: app.harborIdentity).toolbar(.visible, for: .navigationBar) } label: {
                                 SettingsRow(title: DesktopInterfaceText.value("Library"), icon: "nav-library")
                             }.accessibilityIdentifier("settings-interface")
                         }

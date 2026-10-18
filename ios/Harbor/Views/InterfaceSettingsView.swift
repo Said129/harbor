@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct InterfaceSettingsView: View {
+    let identity: ProfilePreferences
     @Bindable var preferences = InterfacePreferences.shared
     var body: some View {
         ScrollView {
@@ -13,7 +14,7 @@ struct InterfaceSettingsView: View {
                     Text(DesktopInterfaceText.value("The shape of the whole Home page. Everything below tunes the rows inside it."))
                         .font(HarborTheme.font(13)).foregroundStyle(.secondary)
                     HomeStylePicker(selection: $preferences.homeMode)
-                    NavigationLink { NavigationSettingsView() } label: {
+                    NavigationLink { NavigationSettingsView(identity: identity) } label: {
                         HStack {
                             Text(DesktopInterfaceText.value("Navigation items")).font(HarborTheme.font(14, weight: .semibold))
                             Spacer()
@@ -51,6 +52,7 @@ struct InterfaceSettingsView: View {
 }
 
 struct NavigationSettingsView: View {
+    let identity: ProfilePreferences
     @Bindable var preferences = InterfacePreferences.shared
     @State private var resetRevision = 0
     var body: some View {
@@ -68,8 +70,8 @@ struct NavigationSettingsView: View {
                     Text(DesktopInterfaceText.value(error)).font(.caption).foregroundStyle(.orange)
                     if !preferences.navigation.ready { Button(DesktopInterfaceText.value("Retry")) { preferences.navigation.reload() }.buttonStyle(HarborAccountButtonStyle()) }
                 }
-                if let owner = preferences.navigation.scope?.owner {
-                    let cloud = ProfilePreferences.forOwner(owner).cloud
+                if preferences.navigation.scope != nil {
+                    let cloud = identity.cloud
                     if cloud.signedIn {
                         if let error = cloud.navigation.error ?? cloud.error { Text(DesktopInterfaceText.value(error)).font(.caption).foregroundStyle(.orange) }
                         if cloud.navigation.hasParkedVersion {

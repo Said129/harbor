@@ -25,9 +25,9 @@ struct AccountView: View {
                 HarborPill(title: DesktopInterfaceText.value("Harbor account"), selected: section == "harbor", icon: "harbor-brand") { section = "harbor" }.accessibilityIdentifier("account-tab-harbor")
             } }.scrollIndicators(.hidden)
             if section == "profile" {
-                ProfileEditor(user: app.user, profile: ProfilePreferences.forOwner(app.user?.id ?? "guest")).id(app.user?.id ?? "guest")
+                ProfileEditor(user: app.user, profile: ProfilePreferences.forOwner(app.personalOwner), identity: app.harborIdentity).id(app.interfaceProfileScope)
             } else if section == "harbor" {
-                HarborIdentityPanel(profile: ProfilePreferences.forOwner(app.user?.id ?? "guest")).id(app.user?.id ?? "guest")
+                HarborIdentityPanel(profile: app.harborIdentity).id(app.harborIdentityOwner)
             } else if let user = app.user {
                 VStack(alignment: .leading, spacing: 14) {
                     HStack(spacing: 10) {

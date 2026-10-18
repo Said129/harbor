@@ -68,6 +68,23 @@ import XCTest
         let restored = try restart.bind(profile: first, profiles: profiles.profiles, scope: profiles.scope)
         XCTAssertNil(restored.configuration?.account)
     }
+    func testIdentityAnchorBackfillRequiresTheOriginalMigrationAndPersistsAtomically() throws {
+        let (profiles, first, second) = try makeProfiles(), memory = HouseholdSessionMemory()
+        let vault = HouseholdSessionVault(persistence: memory)
+        XCTAssertThrowsError(try vault.preserveIdentityOwner(from: first, scope: profiles.scope))
+        XCTAssertNil(vault.identityOwner)
+        XCTAssertTrue(try vault.migrateLegacy(account, to: first, scope: profiles.scope))
+        XCTAssertEqual(vault.identityOwner, "synthetic-stremio-owner")
+        memory.value?.identityOwner = nil
+        let restart = HouseholdSessionVault(persistence: memory)
+        XCTAssertThrowsError(try restart.preserveIdentityOwner(from: second, scope: profiles.scope))
+        XCTAssertThrowsError(try restart.preserveIdentityOwner(from: first, scope: .harbor(account: "other-household")))
+        memory.failWrite = true
+        XCTAssertThrowsError(try restart.preserveIdentityOwner(from: first, scope: profiles.scope))
+        XCTAssertNil(restart.identityOwner)
+        memory.failWrite = false; try restart.preserveIdentityOwner(from: first, scope: profiles.scope)
+        XCTAssertEqual(restart.identityOwner, "synthetic-stremio-owner")
+    }
     func testWriteCompareAndSwapKeepsNewerAccountAndCompleteUnknownCloudRecords() throws {
         let (profiles, first, _) = try makeProfiles(); let memory = HouseholdSessionMemory(), vault = HouseholdSessionVault(persistence: memory)
         let initial = try vault.bind(profile: first, profiles: profiles.profiles, scope: profiles.scope)

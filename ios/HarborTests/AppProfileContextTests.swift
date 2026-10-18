@@ -127,4 +127,22 @@ import XCTest
         XCTAssertFalse(context.ready)
         let correct = try await context.select(first.id, password: "4826"); XCTAssertTrue(correct); XCTAssertTrue(context.ready)
     }
+    func testHarborIdentitySurvivesChangingStremioAndRemovingTheOriginalProfile() async throws {
+        let memory = ProfileContextMemory(); memory.legacy = LegacyProfileConfiguration(configuration: account("original-source"))
+        let context = make(memory); try context.prepare()
+        let original = try XCTUnwrap(context.profiles.active)
+        let identity = try XCTUnwrap(context.binding?.identityOwner)
+        let next = try context.profiles.create(name: "Second person")
+        try context.profiles.makePrimary(next.id)
+        _ = try await context.select(next.id)
+        try context.save(account("different-source"), explicitAuthenticationChange: true)
+        try context.profiles.remove(original.id); try context.refreshRouting()
+        XCTAssertEqual(context.binding?.identityOwner, identity)
+        XCTAssertEqual(context.binding?.sharedSettingsOwner, identity)
+        XCTAssertNotEqual(context.binding?.personalOwner, identity)
+        context.reload(); try context.prepare()
+        XCTAssertEqual(context.binding?.identityOwner, identity)
+        XCTAssertEqual(context.configuration?.account?.session.user.id, "different-source")
+        XCTAssertTrue(context.profiles.profiles.allSatisfy { $0.legacyOwner == nil })
+    }
 }
