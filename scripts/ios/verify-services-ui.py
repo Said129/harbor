@@ -19,6 +19,8 @@ baseline = '8bcd1a004202b08fb2b97726a5e5d10ab8fa3ac8'
 prior_run = 39073293767
 assert os.environ.get('HARBOR_PREVIOUS_SOURCE', baseline) == baseline
 source = os.environ.get('GITHUB_SHA') or subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip()
+if subprocess.run(['git', 'cat-file', '-e', baseline + '^{commit}'], capture_output=True).returncode != 0:
+    subprocess.run(['git', 'fetch', '--no-tags', '--depth=1', 'origin', baseline], check=True)
 
 def changed(roots):
     args = ['git', 'diff', '--name-only', baseline] + ([] if a.working_tree else ['HEAD']) + ['--', *roots]
