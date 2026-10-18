@@ -33,10 +33,11 @@ final class AppModel {
     var progressError: String?
     var accountError: String?
     var accountBusy = false
+    private(set) var switchingProfile = false
     var showAccount = false
     var showProfiles = false
     private var profilesAfterAccount = false
-    var choosingProfile: Bool { showProfiles || profilesAfterAccount || profileContext.requiresSelection }
+    var choosingProfile: Bool { showProfiles || profilesAfterAccount || profileContext.requiresSelection || switchingProfile }
     func prepareProfileAppearances() {
         for profile in profileContext.profiles.profiles where !profile.desktop.isKid {
             ProfilePreferences.forOwner(profileContext.profiles.appearanceOwner(profile)).bindHousehold(profileContext.profiles, id: profile.id)
@@ -217,9 +218,9 @@ final class AppModel {
     @discardableResult func selectProfile(_ id: String, password: String? = nil, parentPassword: String? = nil) async throws -> Bool {
         guard !accountBusy else { throw HarborError(code: "account-busy") }
         let wasReady = storageReady
-        accountBusy = true; showAccount = false; error = nil
+        accountBusy = true; switchingProfile = true; showAccount = false; error = nil
         addonRefresh?.task.cancel(); addonRefresh = nil
-        defer { accountBusy = false }
+        defer { accountBusy = false; switchingProfile = false }
         do {
             let accepted = try await profileContext.select(id, password: password, parentPassword: parentPassword)
             guard accepted else { storageReady = wasReady && profileContext.ready; return false }

@@ -40,8 +40,8 @@ struct HarborApp: App {
             ZStack {
                 if model.storageReady && model.profileContext.ready {
                     HarborShell(app: model).id(model.interfaceProfileScope)
-                } else if model.profileContext.requiresSelection {
-                    HouseholdProfilesView(app: model)
+                } else if model.profileContext.requiresSelection || model.switchingProfile {
+                    profilesContent
                 } else {
                     HarborTheme.background.ignoresSafeArea()
                     VStack(spacing: 20) {
@@ -91,7 +91,10 @@ struct HarborApp: App {
                         .environment(\.layoutDirection, InterfaceLanguage.resolve(uiLanguage) == "ar" ? .rightToLeft : .leftToRight)
     }
     private var profilesSheet: some View {
-        HouseholdProfilesView(app: model).presentationBackground(.clear)
+        profilesContent.presentationBackground(.clear)
+    }
+    private var profilesContent: some View {
+        HouseholdProfilesView(app: model)
             .preferredColorScheme(.dark)
             .environment(\.locale, Locale(identifier: InterfaceLanguage.resolve(uiLanguage)))
             .environment(\.layoutDirection, InterfaceLanguage.resolve(uiLanguage) == "ar" ? .rightToLeft : .leftToRight)
