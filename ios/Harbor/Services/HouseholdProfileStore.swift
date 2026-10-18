@@ -64,6 +64,7 @@ struct HouseholdProfileState: Codable, Equatable, Sendable {
     let scope: HouseholdProfileScope
     private let persistence: any HouseholdProfilePersistence
     private let credentials: any ProfileCredentialChecking
+    private let derivation: any ProfileCredentialDeriving
     private(set) var state = HouseholdProfileState()
     private(set) var ready = false
     private(set) var error: String?
@@ -79,8 +80,8 @@ struct HouseholdProfileState: Codable, Equatable, Sendable {
     }
     var needsUpload: Bool { ready && (!profiles.isEmpty || !state.tombstones.isEmpty) && state.wireValue != state.serverValue }
 
-    init(scope: HouseholdProfileScope, persistence: (any HouseholdProfilePersistence)? = nil, credentials: any ProfileCredentialChecking = DeviceProfileCredentialChecker()) {
-        self.scope = scope; self.persistence = persistence ?? KeychainHouseholdProfiles(); self.credentials = credentials; reload()
+    init(scope: HouseholdProfileScope, persistence: (any HouseholdProfilePersistence)? = nil, credentials: any ProfileCredentialChecking = DeviceProfileCredentialChecker(), derivation: any ProfileCredentialDeriving = DeviceProfileCredentialDeriver()) {
+        self.scope = scope; self.persistence = persistence ?? KeychainHouseholdProfiles(); self.credentials = credentials; self.derivation = derivation; reload()
     }
     func reload() {
         generation += 1; ready = false; verifying = false; unlocked = []; parentUnlocked = []
@@ -106,6 +107,12 @@ struct HouseholdProfileState: Codable, Equatable, Sendable {
     }
     @discardableResult func create(name: String, avatar: String? = nil, color: String = "#7dd3fc", kid: JSONValue = .null, legacyOwner: String? = nil) throws -> DeviceHouseholdProfile {
         try requireEdit()
+        let profile = try newProfile(name: name, avatar: avatar, color: color, kid: kid, legacyOwner: legacyOwner)
+        var next = state; next.profiles.append(profile)
+        if next.selectedID == nil { next.selectedID = profile.id }
+        try commit(next); return profile
+    }
+    private func newProfile(name: String, avatar: String?, color: String, kid: JSONValue, legacyOwner: String? = nil) throws -> DeviceHouseholdProfile {
         guard legacyOwner == nil || profiles.isEmpty else { throw HarborError(code: "profile-migration-target") }
         guard !profiles.isEmpty || kid == .null else { throw HarborError(code: "profile-primary-target") }
         let now = Date().timeIntervalSince1970 * 1_000
@@ -114,11 +121,57 @@ struct HouseholdProfileState: Codable, Equatable, Sendable {
             "kid": kid, "hideContent": .null, "lockedTabs": .null, "settingsLinked": .bool(true),
             "createdAt": .number(now), "updatedAt": .number(now), "deletedAt": .null])
         let desktop = try DesktopHouseholdProfile(fields).editing(["name": .string(name)], at: now)
-        let profile = DeviceHouseholdProfile(id: "p_" + UUID().uuidString.lowercased(), desktop: desktop,
+        return DeviceHouseholdProfile(id: "p_" + UUID().uuidString.lowercased(), desktop: desktop,
             shareStremioWith: profiles.first(where: { $0.desktop.isPrimary })?.id, legacyOwner: legacyOwner)
-        var next = state; next.profiles.append(profile)
-        if next.selectedID == nil { next.selectedID = profile.id }
-        try commit(next); return profile
+    }
+    /// Commit an editor form, both locks and the initial selection together. A
+    /// failed PIN derivation or write cannot leave a newly created profile open.
+    @discardableResult func saveEditor(_ draft: HouseholdProfileDraft) async throws -> DeviceHouseholdProfile {
+        try requireEdit(draft.original?.id)
+        if let original = draft.original {
+            guard profiles.contains(original) else { throw HarborError(code: "profile-editor-changed") }
+            guard let current = active, current.desktop.isPrimary || current.id == original.id else { throw HarborError(code: "profile-editor-permission") }
+            let parentEditing = current.desktop.isKid && parentUnlocked.contains(current.id) && current.id == original.id
+            guard !draft.changesAdvancedSettings || current.desktop.isPrimary || parentEditing else { throw HarborError(code: "profile-editor-permission") }
+        } else {
+            guard profiles.isEmpty || active != nil else { throw HarborError(code: "profile-editor-permission") }
+        }
+        for change in [draft.pin, draft.parentPIN] {
+            if case .set(let pin) = change, !DeviceProfileCredential.validPIN(pin) { throw HarborError(code: "profile-password-format") }
+        }
+        guard !draft.name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty,
+              draft.color.range(of: "^#[0-9a-fA-F]{6}$", options: .regularExpression) != nil,
+              draft.avatar == .null || draft.avatar.string != nil,
+              draft.kid != .null || draft.parentPIN == .keep || draft.parentPIN == .remove else { throw HarborError(code: "household-profile-edit") }
+        let original = draft.original
+        var result: DeviceHouseholdProfile
+        if let original { result = original }
+        else { result = try newProfile(name: draft.name, avatar: draft.avatar.string, color: draft.color, kid: draft.kid) }
+        result.desktop = try result.desktop.editing(draft.portableChanges, at: Date().timeIntervalSince1970 * 1_000)
+        guard !result.desktop.isPrimary || (draft.sharingWith == nil && !result.desktop.isKid),
+              draft.sharingWith == nil || profiles.contains(where: { $0.desktop.isPrimary && $0.id == draft.sharingWith && $0.id != result.id }) else { throw HarborError(code: "profile-sharing-target") }
+        result.shareStremioWith = draft.sharingWith
+        verifying = true; let expected = generation
+        defer { if generation == expected { verifying = false } }
+        func credential(_ change: HouseholdProfileDraft.PINChange, previous: DeviceProfileCredential?) async throws -> DeviceProfileCredential? {
+            switch change { case .keep: return previous; case .remove: return nil; case .set(let pin): return try await derivation.derive(pin) }
+        }
+        result.credential = try await credential(draft.pin, previous: original?.credential)
+        if result.desktop.isKid { result.parentCredential = try await credential(draft.parentPIN, previous: original?.parentCredential) }
+        else { result.parentCredential = nil }
+        try Task.checkCancellation()
+        guard generation == expected else { throw HarborError(code: "profile-editor-changed") }
+        var next = state
+        if let original {
+            guard let index = next.profiles.firstIndex(of: original) else { throw HarborError(code: "profile-editor-changed") }
+            next.profiles[index] = result
+        } else { next.profiles.append(result); next.selectedID = result.id }
+        try commit(next)
+        if original == nil || draft.pin != .keep { unlocked.insert(result.id) }
+        if original != nil && result.desktop.isKid && draft.parentPIN != .keep { parentUnlocked.insert(result.id) }
+        if original == nil { parentUnlocked.remove(result.id) }
+        verifying = false
+        return result
     }
     func edit(_ id: String, fields: [String: JSONValue]) throws {
         try requireEdit(id)

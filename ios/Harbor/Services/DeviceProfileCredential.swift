@@ -8,6 +8,12 @@ protocol ProfileCredentialChecking: Sendable {
 struct DeviceProfileCredentialChecker: ProfileCredentialChecking {
     func verifies(_ password: String, credential: DeviceProfileCredential) async throws -> Bool { try await credential.verifies(password) }
 }
+protocol ProfileCredentialDeriving: Sendable {
+    func derive(_ password: String) async throws -> DeviceProfileCredential
+}
+struct DeviceProfileCredentialDeriver: ProfileCredentialDeriving {
+    func derive(_ password: String) async throws -> DeviceProfileCredential { try await DeviceProfileCredential.create(password) }
+}
 
 /// Device-only PIN/password derivation. Never part of the Desktop roster document.
 struct DeviceProfileCredential: Codable, Equatable, Sendable {
