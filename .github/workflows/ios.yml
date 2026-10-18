@@ -33,6 +33,7 @@ on:
             streaming-sync,
             services-complete,
             services-ui,
+            profile-context,
             continuation-sendable,
             anime-episodes,
             anime-episodes-ui,
@@ -110,6 +111,9 @@ jobs:
       HARBOR_VALIDATION_SCOPE: ${{ inputs.validation_scope }}
     steps:
       - uses: actions/checkout@v6
+      - name: Verify the frozen profile context before its first native execution
+        if: ${{ inputs.validation_scope == 'profile-context' }}
+        run: python3 scripts/ios/verify-profile-context.py --output ios/build/preserved-profile-source.json
       - name: Preserve actual passes before the six pending service UI routes
         id: services_ui_preserved
         if: ${{ inputs.validation_scope == 'services-ui' }}
@@ -227,7 +231,7 @@ jobs:
             harbor-core
             harbor-ios-bridge
       - name: Verify shared Rust on the Apple build host
-        if: ${{ inputs.validation_scope != 'affected' && inputs.validation_scope != 'sources-search-subtitles' && inputs.validation_scope != 'mobile-sources-subtitles' && inputs.validation_scope != 'stable-mobile' && inputs.validation_scope != 'stable-tablet-ui' && inputs.validation_scope != 'stable-tablet-rotation' && inputs.validation_scope != 'reading-intro' && inputs.validation_scope != 'reading-followup' && inputs.validation_scope != 'reading-final' && inputs.validation_scope != 'reading-tablet-final' && inputs.validation_scope != 'anime-episodes' && inputs.validation_scope != 'anime-episodes-ui' && inputs.validation_scope != 'continuation-parity' && inputs.validation_scope != 'language-reference' && inputs.validation_scope != 'system-maintenance' && inputs.validation_scope != 'navigation-sync' && inputs.validation_scope != 'onboarding-desktop' && inputs.validation_scope != 'service-browser' && inputs.validation_scope != 'streaming-sync' && inputs.validation_scope != 'services-complete' && inputs.validation_scope != 'services-ui' }}
+        if: ${{ inputs.validation_scope != 'affected' && inputs.validation_scope != 'sources-search-subtitles' && inputs.validation_scope != 'mobile-sources-subtitles' && inputs.validation_scope != 'stable-mobile' && inputs.validation_scope != 'stable-tablet-ui' && inputs.validation_scope != 'stable-tablet-rotation' && inputs.validation_scope != 'reading-intro' && inputs.validation_scope != 'reading-followup' && inputs.validation_scope != 'reading-final' && inputs.validation_scope != 'reading-tablet-final' && inputs.validation_scope != 'anime-episodes' && inputs.validation_scope != 'anime-episodes-ui' && inputs.validation_scope != 'continuation-parity' && inputs.validation_scope != 'language-reference' && inputs.validation_scope != 'system-maintenance' && inputs.validation_scope != 'navigation-sync' && inputs.validation_scope != 'onboarding-desktop' && inputs.validation_scope != 'service-browser' && inputs.validation_scope != 'streaming-sync' && inputs.validation_scope != 'services-complete' && inputs.validation_scope != 'services-ui' && inputs.validation_scope != 'profile-context' }}
         shell: bash
         run: |
           set -euo pipefail
@@ -288,7 +292,7 @@ jobs:
             gh release create "iphone-compiler-evidence-$GITHUB_RUN_ID" ios/build/iphone-compiler-evidence.zip --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" --draft --prerelease --title "iPhone compiler evidence $GITHUB_RUN_ID" --notes "Public build diagnostics only. No private account, configured addon URL or installable app."
           fi
       - name: Prepare a clean host for isolated setup model tests
-        if: ${{ inputs.validation_scope == 'onboarding-desktop' || inputs.validation_scope == 'service-browser' || inputs.validation_scope == 'streaming-sync' || inputs.validation_scope == 'services-complete' || inputs.validation_scope == 'services-ui' }}
+        if: ${{ inputs.validation_scope == 'onboarding-desktop' || inputs.validation_scope == 'service-browser' || inputs.validation_scope == 'streaming-sync' || inputs.validation_scope == 'services-complete' || inputs.validation_scope == 'services-ui' || inputs.validation_scope == 'profile-context' }}
         timeout-minutes: 8
         shell: bash
         run: |
@@ -307,7 +311,9 @@ jobs:
         run: |
           set -euo pipefail
           selection=(-only-testing:HarborTests)
-          if [[ "${{ inputs.validation_scope }}" == "services-complete" ]]; then
+          if [[ "${{ inputs.validation_scope }}" == "profile-context" ]]; then
+            selection=(-only-testing:HarborTests/HouseholdProfileTests -only-testing:HarborTests/HouseholdSessionTests -only-testing:HarborTests/AppProfileContextTests -only-testing:HarborTests/ProfileLibraryBindingTests -only-testing:HarborTests/ProfilePlaybackRegistryTests -only-testing:HarborTests/ProfileSettingsTests -only-testing:HarborTests/PlaybackControlTests/testPausedResumeAndBackwardJumpReachTheRequestedPosition -only-testing:HarborTests/PlaybackControlTests/testPictureInPictureStartsFromPausedVideoAndRestoresTheSameSession)
+          elif [[ "${{ inputs.validation_scope }}" == "services-complete" ]]; then
             selection=(-only-testing:HarborTests/ServiceCatalogTests -only-testing:HarborTests/StreamingSyncTests -only-testing:HarborTests/StreamingPreferencesTests/testOwnerIsolationPersistenceAndFailedWritesKeepThePublishedSelection -only-testing:HarborTests/StreamingPreferencesTests/testUnreadablePreferencesCannotBeOverwrittenByFallbackDefaults)
           elif [[ "${{ inputs.validation_scope }}" == "streaming-sync" ]]; then
             selection=(-only-testing:HarborTests/StreamingSyncTests -only-testing:HarborTests/StreamingPreferencesTests/testOwnerIsolationPersistenceAndFailedWritesKeepThePublishedSelection -only-testing:HarborTests/StreamingPreferencesTests/testUnreadablePreferencesCannotBeOverwrittenByFallbackDefaults)
