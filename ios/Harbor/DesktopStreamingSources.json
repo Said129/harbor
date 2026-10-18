@@ -1,0 +1,145 @@
+{
+  "reference": "0834340cec5531650bfe78cd628628702e636987",
+  "sources": {
+    "src/lib/providers/streaming.ts": "76bac21cf5002b7744068d992dc8cb736769a029d8f36f780b6c3061eccfc6d3",
+    "src/components/service-logo.tsx": "a4a947d5eb55b60c4c90d29ce351a19d1f5433d3dfb6e13aad941e6f4fe65900",
+    "src/lib/settings/defaults.ts": "de88ea089fa75d49d5b36461f205be151ccb49f1810f0753705575fcb665fe38"
+  },
+  "assets": [
+    {
+      "file": "public/services/netflix.svg",
+      "sha256": "0c12d5374247e16fced565a207d010bf39f1eb55ee0394581ced67b2e6fa7b92",
+      "asset": "streaming-netflix"
+    },
+    {
+      "file": "public/services/disney.svg",
+      "sha256": "be10e24015c0581b3d4e5d9c4a7705740427e1469e2c4b55abb0e17c42a2b869",
+      "asset": "streaming-disney"
+    },
+    {
+      "file": "public/services/hulu.svg",
+      "sha256": "f0f8f52ff96a1f140dc4fdd81ba2b53d7763e15e89199b7098f5ef53a5934ff3",
+      "asset": "streaming-hulu"
+    },
+    {
+      "file": "public/services/prime.svg",
+      "sha256": "8aaa625b2e8a8ba5247e1035e111b73feb312df08c9ff04e2ef59240595f29a2",
+      "asset": "streaming-prime"
+    },
+    {
+      "file": "public/services/apple.svg",
+      "sha256": "83f524f4a8e66d9571d248b6501081faa8ccd6f4285c1a2a78241f20339a28f9",
+      "asset": "streaming-apple"
+    },
+    {
+      "file": "public/services/max.svg",
+      "sha256": "b5422f4bab7b1a110715686fa25ad92ef60d11a9f22a36a0519dc7f48c990f70",
+      "asset": "streaming-max"
+    },
+    {
+      "file": "public/services/paramount.svg",
+      "sha256": "34dcaa884c594746f23e6df02951f90541dd7192e02c9192138fdfb44a957285",
+      "asset": "streaming-paramount"
+    },
+    {
+      "file": "public/services/peacock.svg",
+      "sha256": "0a9e4eb005936d7b61bdcfcd1dbd19bf6e96f3e043e6b79e98bcad0814bf3f49",
+      "asset": "streaming-peacock"
+    },
+    {
+      "file": "public/services/crunchyroll.svg",
+      "sha256": "fc3e6f09292a0bda03a37b1c3315ab3cc62768aa89c72bc5074c094fa02ed5b8",
+      "asset": "streaming-crunchyroll"
+    },
+    {
+      "file": "public/services/amcplus.svg",
+      "sha256": "a2235261e01e3274635394c0e34880e3e979377d1622453bd94e68c2c30a16e9",
+      "asset": "streaming-amcplus"
+    },
+    {
+      "file": "public/services/starz.svg",
+      "sha256": "738b94c528854dcd35e6b45fb69d86e7f718a990ae69f587d0165562e091ff01",
+      "asset": "streaming-starz"
+    },
+    {
+      "file": "public/services/shudder.svg",
+      "sha256": "f7f39ad8a0d7d5fde712d57165deb386bf6c7b7a35dfff894f582a765f98fb2a",
+      "asset": "streaming-shudder"
+    },
+    {
+      "file": "public/services/tubi.svg",
+      "sha256": "70f533687243604317a49a03ebf4ecb8a0a1f72bc878fb3c006d837aeeda8cf6",
+      "asset": "streaming-tubi"
+    },
+    {
+      "file": "public/services/plutotv.svg",
+      "sha256": "c3fe82861085f31042f93954b90a2d77b7b65ba17e3d1ec815b71d3efd99885d",
+      "asset": "streaming-plutotv"
+    },
+    {
+      "file": "public/services/roku.svg",
+      "sha256": "850c2b3106769f1d94f1b603272f4c09e73b1c695545d6ca5a757cfd58d338af",
+      "asset": "streaming-roku"
+    },
+    {
+      "file": "public/services/fubo.svg",
+      "sha256": "5e63c46e07efef567e0ee345f3565ce2faa17e1f661cfd09144e796d14a953d2",
+      "asset": "streaming-fubo"
+    },
+    {
+      "file": "public/services/mgmplus.svg",
+      "sha256": "20628e3113f7e268e4bda93a4bb19d8b29ab020f3d85a054c3d082489cff87ad",
+      "asset": "streaming-mgmplus"
+    },
+    {
+      "file": "public/services/philo.svg",
+      "sha256": "92a90fd1dce5e45f83e721bb09ddc2f775dfc2c73889b1203f01d6921f559eec",
+      "asset": "streaming-philo"
+    },
+    {
+      "file": "public/services/britbox.svg",
+      "sha256": "ca2f5041722370b63da6e487a2675eface90dd3e2ee9cc79ff7cf1f0d7795750",
+      "asset": "streaming-britbox"
+    },
+    {
+      "file": "public/services/acorntv.svg",
+      "sha256": "438c1c173700d153462bd86086bb4faec3d0ed8fe4c321623b2cfc971f80ecd4",
+      "asset": "streaming-acorntv"
+    },
+    {
+      "file": "public/services/mubi.svg",
+      "sha256": "8e75c2b54f58cae2c1a9518ed4348c89066f4bcb76cc8be751ef5ff859e24d2b",
+      "asset": "streaming-mubi"
+    },
+    {
+      "file": "public/services/curiositystream.svg",
+      "sha256": "32cea63e7a92061501b49cf00670d894450959f751774b0419d85467851b6938",
+      "asset": "streaming-curiositystream"
+    },
+    {
+      "file": "public/services/kanopy.png",
+      "sha256": "21f86cbe0139735a188a78500632e463ee7d4c5decc0fdd662fc6046c7eac910",
+      "asset": "streaming-kanopy"
+    },
+    {
+      "file": "public/services/hoopla.svg",
+      "sha256": "03a089f14e536bdecc524bdd073531afa3b59a1c9fddf62b7ed0e89dfe9504e8",
+      "asset": "streaming-hoopla"
+    },
+    {
+      "file": "public/services/pbs.svg",
+      "sha256": "36de375395b3d57e421ae14c811f8762b87c16c8011ffe30524386229007ef98",
+      "asset": "streaming-pbs"
+    },
+    {
+      "file": "public/services/cw.svg",
+      "sha256": "8d86316694cd5e8db1423da34cf655cea73233cd04976f6595daab23397b17d7",
+      "asset": "streaming-cw"
+    },
+    {
+      "file": "public/services/hidive.png",
+      "sha256": "7153da4c8ea14f28798521f313756673c5e7dd6a8403fb4206f2e51e21134609",
+      "asset": "streaming-hidive"
+    }
+  ]
+}

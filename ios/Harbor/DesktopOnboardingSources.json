@@ -1,0 +1,23 @@
+{
+  "reference": "0834340cec5531650bfe78cd628628702e636987",
+  "assets": [
+    {
+      "file": "src/assets/onboarding/harborstyle.webp",
+      "source_sha256": "9a042555d6184a365c5364ba5acbc248cd26b1a26ce3cb8f61bf9c7e6423a469",
+      "asset": "home-style-harbor",
+      "output_sha256": "2c7bdbdcbeb6bcf89d594492da67cf6df6ae9c0baaf7648fe22c6e01187a137e"
+    },
+    {
+      "file": "src/assets/onboarding/traditional.webp",
+      "source_sha256": "3eeb31fa6477b74e6e61301a0226a10e64efae4dd0b8965a7bcbba6270a04d3a",
+      "asset": "home-style-classic",
+      "output_sha256": "9915b970fcbef97bb5c67384549f1cbdcbaf5d1016d4ae66341964b77a70fdfe"
+    },
+    {
+      "file": "public/thumbsup.png",
+      "source_sha256": "502b42f3af3793f34d83dd366948104e56d12c52417a90e0c504779fe4432f4a",
+      "asset": "onboarding-thumbsup",
+      "output_sha256": "0e942fc61f0a0e1276f6d8cad6f426d26d69cdf4f067f50ae447a5c6f95a6801"
+    }
+  ]
+}

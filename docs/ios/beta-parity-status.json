@@ -1,0 +1,1072 @@
+{
+  "Home hero and real catalogs": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Views/HomeView.swift`; `Services/HarborService.swift`; `harbor-core/src/addons.rs`; ios/Harbor/ViewModels/AppModel.swift; Services/HarborService.swift; HarborTests/NativeDataTests.swift",
+    "notes": "Cinemeta and installed example catalogs load through native services. UI checks actual hero/catalog bounds within the iPhone viewport and the full real-service navigation path. Personalized Desktop rails/options and physical behavior remain incomplete. Build 15 preserves each prior Home row when that current request fails, clears valid empty responses, drops removed plans, keeps current-plan order and no longer clears rows before same-owner addon sync. Partial failures show a short message; an original offline regression covers these cases. Expanded Apple UI/physical evidence remains pending."
+  },
+  "Series catalogs": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Views/CatalogsView.swift`; `Services/HarborService.swift`",
+    "notes": "Movie/series catalog selection, one-catalog requests, manifest genres, supported skip pagination and detail navigation. Personalized Desktop rooms/rails and required-genre-only catalog discovery remain incomplete. Apple simulator/device build and native UI checks pass; full physical feature coverage remains pending."
+  },
+  "Addon catalog discovery": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Views/CatalogsView.swift`; `Services/HarborService.swift`",
+    "notes": "Movie/series catalog selection, one-catalog requests, manifest genres, supported skip pagination and detail navigation. Personalized Desktop rooms/rails and required-genre-only catalog discovery remain incomplete. Apple simulator/device build and native UI checks pass; full physical feature coverage remains pending."
+  },
+  "Global search": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Views/SearchView.swift`; `Services/HarborService.swift`",
+    "notes": "Cinemeta search executes through native services/Rust. UI waits for the complete Interstellar query and opens its exact real movie result. Full Desktop aggregation, series-specific interaction and physical validation remain incomplete."
+  },
+  "Movie search": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Views/SearchView.swift`; `Services/HarborService.swift`",
+    "notes": "Cinemeta search executes through native services/Rust. UI waits for the complete Interstellar query and opens its exact real movie result. Full Desktop aggregation, series-specific interaction and physical validation remain incomplete."
+  },
+  "Series search": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Views/SearchView.swift`; `Services/HarborService.swift`",
+    "notes": "Real addon catalog search with cancellation/debounce. Cinemeta live search passed from Windows; full Desktop search aggregation pending."
+  },
+  "Real content details": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Views/DetailView.swift`; `Models/Media.swift`; `Services/HarborService.swift`",
+    "notes": "Swift services retrieve remote metadata; UI opens real movie details. Logo/ratings enrichment and complete series behavior remain incomplete; screenshots and physical playback are separate evidence."
+  },
+  "Poster / backdrop / logo": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Views/DetailView.swift`; `Models/Media.swift`; `Services/HarborService.swift`",
+    "notes": "Remote artwork and synopsis appear in real native screenshots. Logo/ratings enrichment and complete presentation options remain incomplete; physical iPhone validation is pending."
+  },
+  "Synopsis / genres / ratings": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Views/DetailView.swift`; `Models/Media.swift`; `Services/HarborService.swift`",
+    "notes": "Remote artwork and synopsis appear in real native screenshots. Logo/ratings enrichment and complete presentation options remain incomplete; physical iPhone validation is pending."
+  },
+  "Seasons": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/EpisodeList.swift",
+    "notes": "Native season picker and ordered metadata episodes; code compiles in 16be61de. Physical validation pending."
+  },
+  "Episode details": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/EpisodeList.swift",
+    "notes": "Real thumbnails, overview, release date and playback selection. Full Desktop actions remain incomplete."
+  },
+  "Episode selection": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Views/DetailView.swift`; `ViewModels/DetailModel.swift`",
+    "notes": "Real manifest-provided episode IDs and labels; native episode selection. Season grouping, merge/order and watched behavior pending."
+  },
+  "Install addon URL": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Views/AddonsView.swift`; `ViewModels/AppModel.swift`; `harbor-core/src/addons.rs`",
+    "notes": "Official example URL is entered normally, fetched and persisted in Keychain; its catalog then appears in Home. Restart/order/uninstall and physical iPhone tests remain pending."
+  },
+  "Validate and fetch manifest": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Views/AddonsView.swift`; `ViewModels/AppModel.swift`; `harbor-core/src/addons.rs`",
+    "notes": "Official example URL is entered normally, fetched and persisted in Keychain; its catalog then appears in Home. Restart/order/uninstall and physical iPhone tests remain pending."
+  },
+  "Uninstall addon": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Views/AddonsView.swift`; `ViewModels/AppModel.swift`; `harbor-core/src/addons.rs`",
+    "notes": "Real manifest transport; atomic Keychain persistence before UI mutation. Host protocol tests pass; Keychain/UI restart and order tests on iPhone pending. Account-connected edits now write the cloud collection, preserving configured records; real account edits remain unverified."
+  },
+  "Enable / disable addon": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Views/AddonsView.swift`; `ViewModels/AppModel.swift`; `harbor-core/src/addons.rs`",
+    "notes": "Real manifest transport; atomic Keychain persistence before UI mutation. Host protocol tests pass; Keychain/UI restart and order tests on iPhone pending."
+  },
+  "Addon order": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Views/AddonsView.swift`; `ViewModels/AppModel.swift`; `harbor-core/src/addons.rs`",
+    "notes": "Real manifest transport; atomic Keychain persistence before UI mutation. Host protocol tests pass; Keychain/UI restart and order tests on iPhone pending. Account-connected edits now write the cloud collection, preserving configured records; real account edits remain unverified."
+  },
+  "Installed addons management": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Models/AddonConfiguration.swift; Account.swift; Views/AddonsView.swift; AddonDetailView.swift; AddonConfigurationView.swift; ViewModels/AppModel.swift",
+    "notes": "Build 25 adds native addon details, manifest logos/description/version, local activation and the selected addon configuration journey. The provider page uses a nonpersistent WebKit sheet with no native credential/script bridge; main-frame stremio/manifest navigation captures a candidate and returns to the native secure field. Only the explicit native Save action fetches/validates the real manifest and updates the same manifest identity in place. Account/target guards retain activation, order, other configured instances, full cloud flags/unknown records and the fetched complete manifest. Mismatched identities, removed targets and collisions are rejected before mutation. Safari/manual-link fallback is available. Existing account-record and real addon-navigation methods are extended; Apple execution, actual configurable provider interaction and physical account changes remain pending."
+  },
+  "Configure addon URL": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Models/AddonConfiguration.swift; Account.swift; Views/AddonsView.swift; AddonDetailView.swift; AddonConfigurationView.swift; ViewModels/AppModel.swift",
+    "notes": "Build 25 adds native addon details, manifest logos/description/version, local activation and the selected addon configuration journey. The provider page uses a nonpersistent WebKit sheet with no native credential/script bridge; main-frame stremio/manifest navigation captures a candidate and returns to the native secure field. Only the explicit native Save action fetches/validates the real manifest and updates the same manifest identity in place. Account/target guards retain activation, order, other configured instances, full cloud flags/unknown records and the fetched complete manifest. Mismatched identities, removed targets and collisions are rejected before mutation. Safari/manual-link fallback is available. Existing account-record and real addon-navigation methods are extended; Apple execution, actual configurable provider interaction and physical account changes remain pending."
+  },
+  "Configured addon credentials persistence": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Models/AddonConfiguration.swift; Account.swift; Views/AddonsView.swift; AddonDetailView.swift; AddonConfigurationView.swift; ViewModels/AppModel.swift",
+    "notes": "Build 25 adds native addon details, manifest logos/description/version, local activation and the selected addon configuration journey. The provider page uses a nonpersistent WebKit sheet with no native credential/script bridge; main-frame stremio/manifest navigation captures a candidate and returns to the native secure field. Only the explicit native Save action fetches/validates the real manifest and updates the same manifest identity in place. Account/target guards retain activation, order, other configured instances, full cloud flags/unknown records and the fetched complete manifest. Mismatched identities, removed targets and collisions are rejected before mutation. Safari/manual-link fallback is available. Existing account-record and real addon-navigation methods are extended; Apple execution, actual configurable provider interaction and physical account changes remain pending."
+  },
+  "Catalog extras / filters": {
+    "state": "Partial",
+    "implementation": "`harbor-core/src/addons.rs`; `tests/addon_protocol.rs`",
+    "notes": "Rust plans search/genre/skip and matches specific resources/types/prefixes. Contracts tested; pagination/filter UI not implemented."
+  },
+  "Catalog pages": {
+    "state": "Partial",
+    "implementation": "`harbor-core/src/addons.rs`; `tests/addon_protocol.rs`",
+    "notes": "Rust plans search/genre/skip and matches specific resources/types/prefixes. Contracts tested; pagination/filter UI not implemented."
+  },
+  "Addon resource matching": {
+    "state": "Partial",
+    "implementation": "`harbor-core/src/addons.rs`; `tests/addon_protocol.rs`",
+    "notes": "Rust plans search/genre/skip and matches specific resources/types/prefixes. Contracts tested; pagination/filter UI not implemented."
+  },
+  "Real addon stream requests": {
+    "state": "Partial",
+    "implementation": "`harbor-core/src/addons.rs`; `ios/Harbor/Services/HarborService.swift`",
+    "notes": "Real addon catalog/meta/stream requests, mapping/ranking and direct resolution pass through Swift URLSession and embedded Rust on iPhone simulator. Media delivery and physical playback remain separate gates."
+  },
+  "Concurrent addon requests": {
+    "state": "Partial",
+    "implementation": "`harbor-core/src/addons.rs`; `ios/Harbor/Services/HarborService.swift`",
+    "notes": "Real requests mapped with addon identity/order and unknown-field preservation; 8/22 s plans and concurrent transport. Windows live stream test passes; Apple network/runtime pending."
+  },
+  "Addon timeouts": {
+    "state": "Partial",
+    "implementation": "`harbor-core/src/addons.rs`; `ios/Harbor/Services/HarborService.swift`",
+    "notes": "Real requests mapped with addon identity/order and unknown-field preservation; 8/22 s plans and concurrent transport. Windows live stream test passes; Apple network/runtime pending."
+  },
+  "Addon priority / return index": {
+    "state": "Partial",
+    "implementation": "`harbor-core/src/addons.rs`; `ios/Harbor/Services/HarborService.swift`",
+    "notes": "Real requests mapped with addon identity/order and unknown-field preservation; 8/22 s plans and concurrent transport. Windows live stream test passes; Apple network/runtime pending."
+  },
+  "Tracker preservation": {
+    "state": "Partial",
+    "implementation": "`harbor-core/src/addons.rs`; `ios/Harbor/Services/HarborService.swift`",
+    "notes": "Real requests mapped with addon identity/order and unknown-field preservation; 8/22 s plans and concurrent transport. Windows live stream test passes; Apple network/runtime pending."
+  },
+  "Direct stream resolution": {
+    "state": "Partial",
+    "implementation": "`harbor-ios-bridge/src/dispatch.rs`; `ios/Harbor/Player/MPVController.swift`",
+    "notes": "HTTP(S)/headers/subtitles preserved; injection tests pass. Real addon resolves through Rust; UI waits for actual player engine/render initialization and closes back to the picker. Old sample host returned HTTP 403 from Windows; image/audio unverified."
+  },
+  "Playback request headers": {
+    "state": "Partial",
+    "implementation": "`harbor-ios-bridge/src/dispatch.rs`; `ios/Harbor/Player/MPVController.swift`",
+    "notes": "HTTP(S) source/header/subtitle contract preserved; CR/LF/NUL header injection rejected in tests. Real direct URL resolved from remote addon; media probe returned HTTP 403 for its old video host; playback unverified."
+  },
+  "Embedded addon subtitle URLs": {
+    "state": "Partial",
+    "implementation": "`harbor-ios-bridge/src/dispatch.rs`; `ios/Harbor/Player/MPVController.swift`",
+    "notes": "HTTP(S) source/header/subtitle contract preserved; CR/LF/NUL header injection rejected in tests. Real direct URL resolved from remote addon; media probe returned HTTP 403 for its old video host; playback unverified."
+  },
+  "Touch-equivalent transport controls": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Player/MPVController.swift`; `PlayerView.swift`; `PlayerState.swift`",
+    "notes": "Pinned MPVKit and these controls compile/link on Apple. The app-owned native mpv factory passes its initialization test. Media-dependent controls, events, decoding and physical playback require runtime validation; no codec claims."
+  },
+  "Custom seek bar": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Player/MPVController.swift`; `PlayerView.swift`; `PlayerState.swift`",
+    "notes": "Pinned MPVKit and these controls compile/link on Apple. The app-owned native mpv factory passes its initialization test. Media-dependent controls, events, decoding and physical playback require runtime validation; no codec claims."
+  },
+  "Player resilience / errors": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Player/PlayerView.swift; PlayerState.swift; MPVController.swift; HarborTests/SubtitlePlaybackTests.swift; HarborUITests/LiveNavigationTests.swift",
+    "notes": "Pinned MPVKit and these controls compile/link on Apple. The app-owned native mpv factory passes its initialization test. Media-dependent controls, events, decoding and physical playback require runtime validation; no codec claims. Build 24 adds the normal options -> change source -> real addon picker journey. An owner/episode-scoped live checkpoint overrides the ordinary completed-video restart policy only for that handoff; the actual mpv duration handler preserves its timestamp inside the final 20 seconds. Audio interruptions and unplugged output pause real mpv; automatic return requires shouldResume and a saved preference. The foreground preference defaults to paused. UIKit suspension drains GL work synchronously and continues only non-GL acknowledgements; background close defers renderer destruction until active. Existing data/native subtitle/UI tests are extended, not duplicated. Native Apple verification and physical calls/headphone/background/source interaction remain pending. Build 27: Retry preserves checkpoints; real source picker and Close remain available. Reload acknowledgements; see VALIDATION.md. Apple/physical pending."
+  },
+  "External SRT": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Player/MPVController.swift; Services/SubtitleFileService.swift; Views/SubtitleTracksView.swift",
+    "notes": "Actual addon URLs remain supported. Build 22 adds Files imports for original SRT/ASS/SSA/VTT/SUB extensions, bounded 8 MiB security-scoped streaming copy, private protected per-player storage, acknowledged sub-add/select and observed track IDs. A failed accepted import removes its native track before discarding the copy; close destroys mpv before cleanup. Existing real subtitle playback regression adds original-file preservation, actual imported text and cleanup checks. SRT import Apple gate pending; all encodings/formats and physical Files UI are not yet certified."
+  },
+  "External ASS / SSA": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Player/MPVController.swift; Services/SubtitleFileService.swift; Views/SubtitleTracksView.swift",
+    "notes": "Actual addon URLs remain supported. Build 22 adds Files imports for original SRT/ASS/SSA/VTT/SUB extensions, bounded 8 MiB security-scoped streaming copy, private protected per-player storage, acknowledged sub-add/select and observed track IDs. A failed accepted import removes its native track before discarding the copy; close destroys mpv before cleanup. Existing real subtitle playback regression adds original-file preservation, actual imported text and cleanup checks. SRT import Apple gate pending; all encodings/formats and physical Files UI are not yet certified."
+  },
+  "External WebVTT": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Player/MPVController.swift; Services/SubtitleFileService.swift; Views/SubtitleTracksView.swift",
+    "notes": "Actual addon URLs remain supported. Build 22 adds Files imports for original SRT/ASS/SSA/VTT/SUB extensions, bounded 8 MiB security-scoped streaming copy, private protected per-player storage, acknowledged sub-add/select and observed track IDs. A failed accepted import removes its native track before discarding the copy; close destroys mpv before cleanup. Existing real subtitle playback regression adds original-file preservation, actual imported text and cleanup checks. SRT import Apple gate pending; all encodings/formats and physical Files UI are not yet certified."
+  },
+  "Cinemeta metadata": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Services/HarborService.swift`",
+    "notes": "Actual Cinemeta manifest, catalog/search/meta pass from Windows and through Swift URLSession / embedded C ABI in native LiveServicesTests. Additional provider enrichment remains incomplete."
+  },
+  "Harbor visual identity": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Views/HarborTheme.swift`",
+    "notes": "Upstream cool-grey canvas/accent tokens mapped to sRGB; native dark surfaces/posters/backdrops. Typography/themes and device screenshot review pending."
+  },
+  "Remote streaming server": {
+    "state": "Investigating",
+    "implementation": "Extraction target: `src-tauri/src/torrent_engine.rs` and `torrent_engine/stream_route.rs`",
+    "notes": "Upstream already uses librqbit/Axum instead of Node stremio-server. Apple dependency/link/lifecycle experiment and extraction still required; no claim that iOS forbids torrents."
+  },
+  "P2P fallback": {
+    "state": "Investigating",
+    "implementation": "Extraction target: `src-tauri/src/torrent_engine.rs` and `torrent_engine/stream_route.rs`",
+    "notes": "Upstream already uses librqbit/Axum instead of Node stremio-server. Apple dependency/link/lifecycle experiment and extraction still required; no claim that iOS forbids torrents."
+  },
+  "Real-Debrid account": {
+    "state": "Investigating",
+    "implementation": "Shared Rust service boundary planned; clients currently `src/lib/debrid`",
+    "notes": "Actual clients are TypeScript, not harbor-core. Preserve five providers; port shared request/auth/cache contracts to Rust, validate parity before migrating Desktop. No native account client implemented."
+  },
+  "AllDebrid account": {
+    "state": "Investigating",
+    "implementation": "Shared Rust service boundary planned; clients currently `src/lib/debrid`",
+    "notes": "Actual clients are TypeScript, not harbor-core. Preserve five providers; port shared request/auth/cache contracts to Rust, validate parity before migrating Desktop. No native account client implemented."
+  },
+  "Premiumize account": {
+    "state": "Investigating",
+    "implementation": "Shared Rust service boundary planned; clients currently `src/lib/debrid`",
+    "notes": "Actual clients are TypeScript, not harbor-core. Preserve five providers; port shared request/auth/cache contracts to Rust, validate parity before migrating Desktop. No native account client implemented."
+  },
+  "TorBox account": {
+    "state": "Investigating",
+    "implementation": "Shared Rust service boundary planned; clients currently `src/lib/debrid`",
+    "notes": "Actual clients are TypeScript, not harbor-core. Preserve five providers; port shared request/auth/cache contracts to Rust, validate parity before migrating Desktop. No native account client implemented."
+  },
+  "Debrid-Link account": {
+    "state": "Investigating",
+    "implementation": "Shared Rust service boundary planned; clients currently `src/lib/debrid`",
+    "notes": "Actual clients are TypeScript, not harbor-core. Preserve five providers; port shared request/auth/cache contracts to Rust, validate parity before migrating Desktop. No native account client implemented."
+  },
+  "Local playback resume": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Services/ResumeStore.swift`; `ViewModels/LibraryModel.swift`; `ViewModels/DetailModel.swift`; `Models/Library.swift`; `harbor-ios-bridge/src/dispatch.rs`; ios/Harbor/Player/PlayerView.swift; MPVController.swift; PlaybackPreferences.swift; Models/Resume.swift; ViewModels/DetailModel.swift; Views/DetailView.swift; PlayerSettingsView.swift",
+    "notes": "Native local checkpoints scoped by account; fresh matching cloud episode/movie position wins only when newer. Existing Rust start/prompt/key rules remain authoritative. Original unscoped file preserved; automatic legacy migration and full physical/cloud coverage pending. Build 24 adds the normal options -> change source -> real addon picker journey. An owner/episode-scoped live checkpoint overrides the ordinary completed-video restart policy only for that handoff; the actual mpv duration handler preserves its timestamp inside the final 20 seconds. Audio interruptions and unplugged output pause real mpv; automatic return requires shouldResume and a saved preference. The foreground preference defaults to paused. UIKit suspension drains GL work synchronously and continues only non-GL acknowledgements; background close defers renderer destruction until active. Existing data/native subtitle/UI tests are extended, not duplicated. Native Apple verification and physical calls/headphone/background/source interaction remain pending."
+  },
+  "Setting: resumePlayback": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Services/ResumeStore.swift`; `ViewModels/LibraryModel.swift`; `ViewModels/DetailModel.swift`; `Models/Library.swift`; `harbor-ios-bridge/src/dispatch.rs`",
+    "notes": "Native local checkpoints scoped by account; fresh matching cloud episode/movie position wins only when newer. Existing Rust start/prompt/key rules remain authoritative. Original unscoped file preserved; automatic legacy migration and full physical/cloud coverage pending."
+  },
+  "Setting: resumePrompt": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Services/ResumeStore.swift`; `ViewModels/LibraryModel.swift`; `ViewModels/DetailModel.swift`; `Models/Library.swift`; `harbor-ios-bridge/src/dispatch.rs`",
+    "notes": "Native local checkpoints scoped by account; fresh matching cloud episode/movie position wins only when newer. Existing Rust start/prompt/key rules remain authoritative. Original unscoped file preserved; automatic legacy migration and full physical/cloud coverage pending."
+  },
+  "Stremio login / logout": {
+    "state": "Partial",
+    "implementation": "`harbor-core/src/account.rs`; `ios/Harbor/Services/AccountService.swift`; `Services/StremioWebLogin.swift`; `ViewModels/AppModel.swift`; `Views/AccountView.swift`",
+    "notes": "Owner confirms login succeeds on iPhone 14 with the corrected build. The native account/Rust nullable-field regression and CI 37321248984 pass. Both flows exist; this report does not separately verify browser restart, logout or every collection edit. Session and collection remain atomic in Keychain; no credentials in CI."
+  },
+  "Stremio user profile": {
+    "state": "Partial",
+    "implementation": "`harbor-core/src/account.rs`; `ios/Harbor/Services/AccountService.swift`; `Services/StremioWebLogin.swift`; `ViewModels/AppModel.swift`; `Views/AccountView.swift`",
+    "notes": "Displays the real login/getUser profile, without a fabricated account. Basic identity only; full profile features and physical authentication remain incomplete."
+  },
+  "Stremio addon collection sync": {
+    "state": "Partial",
+    "implementation": "`harbor-core/src/account.rs`; `ios/Harbor/Services/AccountService.swift`; `Services/StremioWebLogin.swift`; `ViewModels/AppModel.swift`; `Views/AccountView.swift`",
+    "notes": "Pulls account addons at login/startup and on request; explicit edits use addonCollectionSet. Accepts optional null manifest prefixes, resource types, catalog names and extra options as Desktop does, retaining complete original cloud records for edits. A regression reproduces the previous recovery error; fixed physical account roundtrip and conflict reconciliation remain incomplete. Disabled stays local; malformed sync preserves previous data."
+  },
+  "Setting: mpvHwdec": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Player/MPVConfiguration.swift`; `PlayerView.swift`; `Views/SettingsView.swift`",
+    "notes": "Same auto/on/off values as Desktop. iPhone auto/on use VideoToolbox copy-back; off selects software. Next playback reads the saved option; player changes call mpv asynchronously without reloading the source. Default falls back to CPU when acceleration is unavailable. Physical controls and image recovery remain unverified. Simulator uses software for all modes; physical iPhone mode selection and performance still require device confirmation."
+  },
+  "Subtitle styling": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Player/PlayerView.swift`; `Player/MPVController.swift`; `Views/PlayerSettingsView.swift`; `Player/PlaybackPreferences.swift`",
+    "notes": "Persisted native settings, active playback sheets, observed transport/audio state and chapters. Desktop language ordering, arbitrary colors/fonts/properties and full physical option coverage remain incomplete. Apple simulator/device build, real mpv option initialization and native UI checks pass; full physical option coverage remains pending."
+  },
+  "Setting: mpvDownmixStereo": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Player/PlayerView.swift`; `Player/MPVController.swift`; `Views/PlayerSettingsView.swift`; `Player/PlaybackPreferences.swift`",
+    "notes": "Persisted native settings, active playback sheets, observed transport/audio state and chapters. Desktop language ordering, arbitrary colors/fonts/properties and full physical option coverage remain incomplete. Apple simulator/device build, real mpv option initialization and native UI checks pass; full physical option coverage remains pending."
+  },
+  "Setting: mpvTweaks": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Player/PlayerView.swift`; `Player/MPVController.swift`; `Views/PlayerSettingsView.swift`; `Player/PlaybackPreferences.swift`",
+    "notes": "Persisted native settings, active playback sheets, observed transport/audio state and chapters. Desktop language ordering, arbitrary colors/fonts/properties and full physical option coverage remain incomplete. Apple simulator/device build, real mpv option initialization and native UI checks pass; full physical option coverage remains pending."
+  },
+  "Setting: preferredSubLangs": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Player/PlayerView.swift`; `Player/MPVController.swift`; `Views/PlayerSettingsView.swift`; `Player/PlaybackPreferences.swift`",
+    "notes": "Persisted native settings, active playback sheets, observed transport/audio state and chapters. Desktop language ordering, arbitrary colors/fonts/properties and full physical option coverage remain incomplete. Apple simulator/device build, real mpv option initialization and native UI checks pass; full physical option coverage remains pending."
+  },
+  "Setting: preferredAudioLangs": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Player/PlayerView.swift`; `Player/MPVController.swift`; `Views/PlayerSettingsView.swift`; `Player/PlaybackPreferences.swift`",
+    "notes": "Persisted native settings, active playback sheets, observed transport/audio state and chapters. Desktop language ordering, arbitrary colors/fonts/properties and full physical option coverage remain incomplete. Apple simulator/device build, real mpv option initialization and native UI checks pass; full physical option coverage remains pending."
+  },
+  "Setting: subFontSize": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Player/PlayerView.swift`; `Player/MPVController.swift`; `Views/PlayerSettingsView.swift`; `Player/PlaybackPreferences.swift`",
+    "notes": "Persisted native settings, active playback sheets, observed transport/audio state and chapters. Desktop language ordering, arbitrary colors/fonts/properties and full physical option coverage remain incomplete. Apple simulator/device build, real mpv option initialization and native UI checks pass; full physical option coverage remains pending."
+  },
+  "Setting: subFontColor": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Player/PlaybackPreferences.swift`; `Player/BufferSize.swift`; `Player/MPVConfiguration.swift`; `Views/PlayerSettingsView.swift`",
+    "notes": "Native persistent control with real mpv consumer. Original bundled subtitle fonts; iPhone buffer memory cap preserves Desktop durations. Apple build and physical playback/style coverage pending."
+  },
+  "Setting: subBorderColor": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Player/PlaybackPreferences.swift`; `Player/BufferSize.swift`; `Player/MPVConfiguration.swift`; `Views/PlayerSettingsView.swift`",
+    "notes": "Native persistent control with real mpv consumer. Original bundled subtitle fonts; iPhone buffer memory cap preserves Desktop durations. Apple build and physical playback/style coverage pending."
+  },
+  "Setting: subBorderSize": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Player/PlayerView.swift`; `Player/MPVController.swift`; `Views/PlayerSettingsView.swift`; `Player/PlaybackPreferences.swift`",
+    "notes": "Persisted native settings, active playback sheets, observed transport/audio state and chapters. Desktop language ordering, arbitrary colors/fonts/properties and full physical option coverage remain incomplete. Apple simulator/device build, real mpv option initialization and native UI checks pass; full physical option coverage remains pending."
+  },
+  "Setting: subMarginY": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Player/PlayerView.swift`; `Player/MPVController.swift`; `Views/PlayerSettingsView.swift`; `Player/PlaybackPreferences.swift`",
+    "notes": "Persisted native settings, active playback sheets, observed transport/audio state and chapters. Desktop language ordering, arbitrary colors/fonts/properties and full physical option coverage remain incomplete. Apple simulator/device build, real mpv option initialization and native UI checks pass; full physical option coverage remains pending."
+  },
+  "Setting: subAlignX": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Player/PlayerView.swift`; `Player/MPVController.swift`; `Views/PlayerSettingsView.swift`; `Player/PlaybackPreferences.swift`",
+    "notes": "Persisted native settings, active playback sheets, observed transport/audio state and chapters. Desktop language ordering, arbitrary colors/fonts/properties and full physical option coverage remain incomplete. Apple simulator/device build, real mpv option initialization and native UI checks pass; full physical option coverage remains pending."
+  },
+  "Setting: subAssOverride": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Player/PlaybackPreferences.swift`; `Player/BufferSize.swift`; `Player/MPVConfiguration.swift`; `Views/PlayerSettingsView.swift`",
+    "notes": "Native persistent control with real mpv consumer. Original bundled subtitle fonts; iPhone buffer memory cap preserves Desktop durations. Apple build and physical playback/style coverage pending."
+  },
+  "Setting: subStyle": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Player/PlayerView.swift`; `Player/MPVController.swift`; `Views/PlayerSettingsView.swift`; `Player/PlaybackPreferences.swift`",
+    "notes": "Persisted native settings, active playback sheets, observed transport/audio state and chapters. Desktop language ordering, arbitrary colors/fonts/properties and full physical option coverage remain incomplete. Apple simulator/device build, real mpv option initialization and native UI checks pass; full physical option coverage remains pending."
+  },
+  "Setting: subBold": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Player/PlayerView.swift`; `Player/MPVController.swift`; `Views/PlayerSettingsView.swift`; `Player/PlaybackPreferences.swift`",
+    "notes": "Persisted native settings, active playback sheets, observed transport/audio state and chapters. Desktop language ordering, arbitrary colors/fonts/properties and full physical option coverage remain incomplete. Apple simulator/device build, real mpv option initialization and native UI checks pass; full physical option coverage remains pending."
+  },
+  "Setting: subBoxOpacity": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Player/PlayerView.swift`; `Player/MPVController.swift`; `Views/PlayerSettingsView.swift`; `Player/PlaybackPreferences.swift`",
+    "notes": "Persisted native settings, active playback sheets, observed transport/audio state and chapters. Desktop language ordering, arbitrary colors/fonts/properties and full physical option coverage remain incomplete. Apple simulator/device build, real mpv option initialization and native UI checks pass; full physical option coverage remains pending."
+  },
+  "Setting: subOpacity": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Player/PlayerView.swift`; `Player/MPVController.swift`; `Views/PlayerSettingsView.swift`; `Player/PlaybackPreferences.swift`",
+    "notes": "Persisted native settings, active playback sheets, observed transport/audio state and chapters. Desktop language ordering, arbitrary colors/fonts/properties and full physical option coverage remain incomplete. Apple simulator/device build, real mpv option initialization and native UI checks pass; full physical option coverage remains pending."
+  },
+  "Setting: seekBackStepSec": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Player/PlayerView.swift`; `Player/MPVController.swift`; `Views/PlayerSettingsView.swift`; `Player/PlaybackPreferences.swift`",
+    "notes": "Persisted native settings, active playback sheets, observed transport/audio state and chapters. Desktop language ordering, arbitrary colors/fonts/properties and full physical option coverage remain incomplete. Apple simulator/device build, real mpv option initialization and native UI checks pass; full physical option coverage remains pending."
+  },
+  "Setting: seekForwardStepSec": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Player/PlayerView.swift`; `Player/MPVController.swift`; `Views/PlayerSettingsView.swift`; `Player/PlaybackPreferences.swift`",
+    "notes": "Persisted native settings, active playback sheets, observed transport/audio state and chapters. Desktop language ordering, arbitrary colors/fonts/properties and full physical option coverage remain incomplete. Apple simulator/device build, real mpv option initialization and native UI checks pass; full physical option coverage remains pending."
+  },
+  "Setting: subtitlesOffByDefault": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Player/PlayerView.swift`; `Player/MPVController.swift`; `Views/PlayerSettingsView.swift`; `Player/PlaybackPreferences.swift`",
+    "notes": "Persisted native settings, active playback sheets, observed transport/audio state and chapters. Desktop language ordering, arbitrary colors/fonts/properties and full physical option coverage remain incomplete. Apple simulator/device build, real mpv option initialization and native UI checks pass; full physical option coverage remains pending."
+  },
+  "Movies room": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/ViewModels/ContentPageModel.swift",
+    "notes": "Direct Cinemeta genre fallback and own-key TMDB rails. Beta batch build pending; full curation parity remains incomplete."
+  },
+  "Movie catalog pagination": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Views/CatalogsView.swift`; `Services/HarborService.swift`",
+    "notes": "Movie/series catalog selection, one-catalog requests, manifest genres, supported skip pagination and detail navigation. Personalized Desktop rooms/rails and required-genre-only catalog discovery remain incomplete. Apple simulator/device build and native UI checks pass; full physical feature coverage remains pending."
+  },
+  "Room: home": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/HarborShell.swift; ios/Harbor/ViewModels/AppModel.swift; Services/HarborService.swift; HarborTests/NativeDataTests.swift",
+    "notes": "Native route and real service UI implemented. Current beta increment and full physical fidelity are not yet certified. Build 15 preserves each prior Home row when that current request fails, clears valid empty responses, drops removed plans, keeps current-plan order and no longer clears rows before same-owner addon sync. Partial failures show a short message; an original offline regression covers these cases. Expanded Apple UI/physical evidence remains pending."
+  },
+  "Room: discover": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/HarborShell.swift",
+    "notes": "Native route and real service UI implemented. Current beta increment and full physical fidelity are not yet certified."
+  },
+  "Room: catalogs": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/HarborShell.swift",
+    "notes": "Native route and real service UI implemented. Current beta increment and full physical fidelity are not yet certified."
+  },
+  "Room: movies": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/HarborShell.swift",
+    "notes": "Native route and real service UI implemented. Current beta increment and full physical fidelity are not yet certified."
+  },
+  "Room: shows": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/HarborShell.swift",
+    "notes": "Native route and real service UI implemented. Current beta increment and full physical fidelity are not yet certified."
+  },
+  "Room: kids": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/HarborShell.swift",
+    "notes": "Native route and real service UI implemented. Current beta increment and full physical fidelity are not yet certified. Build 30: all 20 navigation icons resolve; Downloads uses the original asset and Kids imports original Popcorn geometry/stroke with license/provenance. Apple/physical pending."
+  },
+  "Room: anime": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/HarborShell.swift",
+    "notes": "Native route and real service UI implemented. Current beta increment and full physical fidelity are not yet certified."
+  },
+  "Room: live": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/LiveTVView.swift; Models/LiveTV.swift; Services/M3UParser.swift; LivePlaylistService.swift",
+    "notes": "Native M3U URL/file import, actual channels/categories/search/favorites, owner-isolated protected six-hour cache and account-scoped Keychain source settings. VLC/pipe headers pass through the unchanged Rust resolver; unsupported DRM remains explicit. Sports opens the configured Live TV search. Public Spanish playlist returned HTTP 200 and 327 entries on Windows; native cache/isolation/resolution test is pending Apple. XMLTV, catchup playback, Xtream API/VOD and full Desktop layouts remain in scope."
+  },
+  "Room: calendar": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/HarborShell.swift",
+    "notes": "Native route and real service UI implemented. Current beta increment and full physical fidelity are not yet certified."
+  },
+  "Room: library": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Models/LibraryPresentation.swift; Models/Library.swift; ViewModels/LibraryModel.swift; Views/LibraryView.swift; Player/PlayerView.swift",
+    "notes": "Native route and real service UI implemented. Current beta increment and full physical fidelity are not yet certified. Build 26 adds account-scoped library search, type filters and original Recent/A-Z/Year sorting. Continuing cards show real episode/time/progress. Explicit iPhone-only hide/restore preserves resume/cloud/watched data and releases on newer activity, forward episodes or committed local playback. Data/Keychain assertions are extended. See VALIDATION; Apple/private/physical verification pending."
+  },
+  "Room: collections": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/HarborShell.swift",
+    "notes": "Native route and real service UI implemented. Current beta increment and full physical fidelity are not yet certified."
+  },
+  "Room: addons": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/HarborShell.swift",
+    "notes": "Native route and real service UI implemented. Current beta increment and full physical fidelity are not yet certified."
+  },
+  "Room: settings": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/HarborShell.swift",
+    "notes": "Native route and real service UI implemented. Current beta increment and full physical fidelity are not yet certified."
+  },
+  "Continue Watching on Home": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Models/LibraryPresentation.swift; Models/Library.swift; ViewModels/LibraryModel.swift; Views/LibraryView.swift; Player/PlayerView.swift",
+    "notes": "Native local checkpoints scoped by account; fresh matching cloud episode/movie position wins only when newer. Existing Rust start/prompt/key rules remain authoritative. Original unscoped file preserved; automatic legacy migration and full physical/cloud coverage pending. Build 26 adds account-scoped library search, type filters and original Recent/A-Z/Year sorting. Continuing cards show real episode/time/progress. Explicit iPhone-only hide/restore preserves resume/cloud/watched data and releases on newer activity, forward episodes or committed local playback. Data/Keychain assertions are extended. See VALIDATION; Apple/private/physical verification pending."
+  },
+  "Cinema hero": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/ContentPageView.swift",
+    "notes": "Five real titles, artwork/logo, metadata and actions. Layout in Apple UI gate; personalized Desktop rotation/awards still pending."
+  },
+  "Episode watched state": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Services/WatchedCodec.swift",
+    "notes": "Canonical Stremio bitfield/zlib interoperability regression passes Apple gate 37356816568; private account mutations not physically confirmed."
+  },
+  "Release Calendar": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/CalendarView.swift",
+    "notes": "Native month grid and real library release events implemented locally. Global TMDB, Trakt and Simkl calendar sources remain pending."
+  },
+  "Library release calendar": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/ViewModels/CalendarModel.swift",
+    "notes": "Real metadata episode/movie dates, four concurrent fetches and month/type filters. Beta batch compile pending."
+  },
+  "Setting: tmdbKey": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Services/MetadataPreferences.swift",
+    "notes": "Explicit own-key input, real API validation and Keychain; no embedded third-party key. Full provider UX remains incomplete."
+  },
+  "Setting: region": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/MetadataSettingsView.swift",
+    "notes": "Persisted region used by TMDB discovery; all region/locale consumers remain incomplete."
+  },
+  "Setting: homeMode": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Services/InterfacePreferences.swift; ios/Harbor/Views/InterfaceSettingsView.swift",
+    "notes": "Persisted native control with a real consumer. Build 5 compiler/UI gate pending; full Desktop personalization and account sync remain incomplete."
+  },
+  "Setting: showImdbBadge": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Services/InterfacePreferences.swift; ios/Harbor/Views/InterfaceSettingsView.swift",
+    "notes": "Persisted native control with a real consumer. Build 5 compiler/UI gate pending; full Desktop personalization and account sync remain incomplete."
+  },
+  "Setting: showTmdbBadge": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Services/InterfacePreferences.swift; ios/Harbor/Views/InterfaceSettingsView.swift",
+    "notes": "Persisted native control with a real consumer. Build 5 compiler/UI gate pending; full Desktop personalization and account sync remain incomplete."
+  },
+  "Setting: showWatchedButton": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Services/InterfacePreferences.swift; ios/Harbor/Views/InterfaceSettingsView.swift",
+    "notes": "Persisted native control with a real consumer. Build 5 compiler/UI gate pending; full Desktop personalization and account sync remain incomplete."
+  },
+  "Setting: showEpisodeDescription": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Services/InterfacePreferences.swift; ios/Harbor/Views/InterfaceSettingsView.swift",
+    "notes": "Persisted native control with a real consumer. Build 5 compiler/UI gate pending; full Desktop personalization and account sync remain incomplete."
+  },
+  "Setting: hideSpoilers": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Services/InterfacePreferences.swift; ios/Harbor/Views/InterfaceSettingsView.swift",
+    "notes": "Persisted native control with a real consumer. Build 5 compiler/UI gate pending; full Desktop personalization and account sync remain incomplete."
+  },
+  "Setting: blurEpisodes": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Services/InterfacePreferences.swift; ios/Harbor/Views/InterfaceSettingsView.swift",
+    "notes": "Persisted native control with a real consumer. Build 5 compiler/UI gate pending; full Desktop personalization and account sync remain incomplete."
+  },
+  "Setting: navCustomization": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Services/InterfacePreferences.swift; ios/Harbor/Views/InterfaceSettingsView.swift",
+    "notes": "Persisted native control with a real consumer. Build 5 compiler/UI gate pending; full Desktop personalization and account sync remain incomplete."
+  },
+  "Setting: mpvBufferSize": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Player/PlaybackPreferences.swift`; `Player/BufferSize.swift`; `Player/MPVConfiguration.swift`; `Views/PlayerSettingsView.swift`",
+    "notes": "Native persistent control with real mpv consumer. Original bundled subtitle fonts; iPhone buffer memory cap preserves Desktop durations. Apple build and physical playback/style coverage pending."
+  },
+  "Setting: subFontFamily": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Player/PlaybackPreferences.swift`; `Player/BufferSize.swift`; `Player/MPVConfiguration.swift`; `Views/PlayerSettingsView.swift`",
+    "notes": "Native persistent control with real mpv consumer. Original bundled subtitle fonts; iPhone buffer memory cap preserves Desktop durations. Apple build and physical playback/style coverage pending."
+  },
+  "Setting: subBoxColor": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Player/PlaybackPreferences.swift`; `Player/BufferSize.swift`; `Player/MPVConfiguration.swift`; `Views/PlayerSettingsView.swift`",
+    "notes": "Native persistent control with real mpv consumer. Original bundled subtitle fonts; iPhone buffer memory cap preserves Desktop durations. Apple build and physical playback/style coverage pending."
+  },
+  "Setting: subLineSpacing": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Player/PlaybackPreferences.swift`; `Player/BufferSize.swift`; `Player/MPVConfiguration.swift`; `Views/PlayerSettingsView.swift`",
+    "notes": "Native persistent control with real mpv consumer. Original bundled subtitle fonts; iPhone buffer memory cap preserves Desktop durations. Apple build and physical playback/style coverage pending."
+  },
+  "Setting: subHideSdh": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Player/PlaybackPreferences.swift`; `Player/BufferSize.swift`; `Player/MPVConfiguration.swift`; `Views/PlayerSettingsView.swift`",
+    "notes": "Native persistent control with real mpv consumer. Original bundled subtitle fonts; iPhone buffer memory cap preserves Desktop durations. Apple build and physical playback/style coverage pending."
+  },
+  "Room: downloads": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Services/DownloadManager.swift; Views/DownloadsView.swift; Views/DetailView.swift; Views/VODView.swift; Views/SettingsView.swift; HarborIntegrationTests/LiveServicesTests.swift",
+    "notes": "Real HTTP/S file transfers with progress/pause/resume, protected index, account filtering, sharing and mpv local playback. Background non-credentialed and ephemeral foreground credentialed sessions. Build 24 verifies Apple compilation and exact public file bytes/hash/removal. Physical background behavior and current source remain pending. HLS/DASH, torrent and automatic downloads remain incomplete. Build 21 live start fails download-index on a fresh sandbox. Build 22 creates the support directory and compares canonical paths instead of directory-hint URL equality, retaining before/after no-symlink guards. The existing exact-byte/hash/account/removal gate remains unchanged and pending. Build 28: active-first owner-scoped list, search/filter counts, saved bytes, actual pause/cancel actions, failed-source route and original download icon restored. Apple/physical pending. Build 30: all 20 navigation icons resolve; Downloads uses the original asset and Kids imports original Popcorn geometry/stroke with license/provenance. Apple/physical pending."
+  },
+  "User committed uncached downloads": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Services/DownloadManager.swift; Views/DownloadsView.swift; Views/DetailView.swift; Views/VODView.swift; Views/SettingsView.swift; HarborIntegrationTests/LiveServicesTests.swift",
+    "notes": "Real HTTP/S file transfers with progress/pause/resume, protected index, account filtering, sharing and mpv local playback. Background non-credentialed and ephemeral foreground credentialed sessions. Build 24 verifies Apple compilation and exact public file bytes/hash/removal. Physical background behavior and current source remain pending. HLS/DASH, torrent and automatic downloads remain incomplete. Build 28: active-first owner-scoped list, search/filter counts, saved bytes, actual pause/cancel actions, failed-source route and original download icon restored. Apple/physical pending."
+  },
+  "Room: ebook": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Services/EBookService.swift; GutenbergCatalog.swift; EPUBReader.swift; Views/EBooksView.swift; HarborIntegrationTests/LiveServicesTests.swift",
+    "notes": "Real Gutendex catalog/search/pages, local/remote EPUB, native spine/index/text/illustrations, per-owner shelf/progress/bookmarks, reading options and native narration. New offline archive and opt-in original Gutenberg checks await Apple compilation. CSS/full EPUB, fragment chapters, plugins, translations and annotations remain incomplete. Build 29: one fresh-session retry for EPUB connection loss/timeout; bounded streaming, cancellation and validation before atomic storage preserved. Current Apple/physical pending. Build 30 merges actual reading position into the latest shelf record, preserves new bookmarks/read state and flushes on background/exit. Actual Keychain/EPUB assertions extended; Apple/physical pending."
+  },
+  "Theme presets": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/DesktopThemes.json; Services/ThemePreferences.swift; Views/ThemeSettingsView.swift",
+    "notes": "Eight original base color palettes converted to sRGB; canvas/accent/navigation surfaces/text and custom colors persist. Full layout/card/button/CSS/background parity and Theme Studio remain incomplete. Apple build pending."
+  },
+  "Setting: theme": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/DesktopThemes.json; Services/ThemePreferences.swift; Views/ThemeSettingsView.swift",
+    "notes": "Eight original base color palettes converted to sRGB; canvas/accent/navigation surfaces/text and custom colors persist. Full layout/card/button/CSS/background parity and Theme Studio remain incomplete. Apple build pending."
+  },
+  "Font pairings": {
+    "state": "Partial",
+    "implementation": "scripts/ios/fetch-interface-font.py; ios/Harbor/Views/HarborTheme.swift",
+    "notes": "Original Switzer variable fetched from Fontshare directly for app embedding, with fixed checksum and FFL; Inter/system body selection; original Fraunces brand and Oswald rankings. Remaining display/sans pairs and full semantic text scale pending. Requires Apple font-registration gate."
+  },
+  "Room: manga": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/MangaView.swift; MangaDetailView.swift; MangaReaderView.swift; Services/MangaArchive.swift; SuwayomiClient.swift",
+    "notes": "Native CBZ/ZIP and image-folder imports; natural page order/CRC; per-account protected files and Keychain library/progress. Real Desktop Suwayomi GraphQL/REST source browse/search/library/chapters/pages/extensions/progress; credentials only in Keychain, no cross-origin auth. Five reading modes, fit/zoom/RTL, backgrounds/navigation/focus/gap, next chapter and original page export. Swift compilation/physical UI and a real user Suwayomi server still require validation. Advanced source filters/repositories/community/plugin providers and original flip sound remain pending. Build 30 flushes the actual page locally before background suspension and schedules ordinary server sync after returning active. Apple/physical pending."
+  },
+  "Manga Suwayomi connection": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/MangaView.swift; MangaDetailView.swift; MangaReaderView.swift; Services/MangaArchive.swift; SuwayomiClient.swift",
+    "notes": "Native CBZ/ZIP and image-folder imports; natural page order/CRC; per-account protected files and Keychain library/progress. Real Desktop Suwayomi GraphQL/REST source browse/search/library/chapters/pages/extensions/progress; credentials only in Keychain, no cross-origin auth. Five reading modes, fit/zoom/RTL, backgrounds/navigation/focus/gap, next chapter and original page export. Swift compilation/physical UI and a real user Suwayomi server still require validation. Advanced source filters/repositories/community/plugin providers and original flip sound remain pending."
+  },
+  "Manga Suwayomi source discovery": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/MangaView.swift; MangaDetailView.swift; MangaReaderView.swift; Services/MangaArchive.swift; SuwayomiClient.swift",
+    "notes": "Native CBZ/ZIP and image-folder imports; natural page order/CRC; per-account protected files and Keychain library/progress. Real Desktop Suwayomi GraphQL/REST source browse/search/library/chapters/pages/extensions/progress; credentials only in Keychain, no cross-origin auth. Five reading modes, fit/zoom/RTL, backgrounds/navigation/focus/gap, next chapter and original page export. Swift compilation/physical UI and a real user Suwayomi server still require validation. Advanced source filters/repositories/community/plugin providers and original flip sound remain pending."
+  },
+  "Manga popular/latest/search pagination": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/MangaView.swift; MangaDetailView.swift; MangaReaderView.swift; Services/MangaArchive.swift; SuwayomiClient.swift",
+    "notes": "Native CBZ/ZIP and image-folder imports; natural page order/CRC; per-account protected files and Keychain library/progress. Real Desktop Suwayomi GraphQL/REST source browse/search/library/chapters/pages/extensions/progress; credentials only in Keychain, no cross-origin auth. Five reading modes, fit/zoom/RTL, backgrounds/navigation/focus/gap, next chapter and original page export. Swift compilation/physical UI and a real user Suwayomi server still require validation. Advanced source filters/repositories/community/plugin providers and original flip sound remain pending."
+  },
+  "Manga Suwayomi library": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/MangaView.swift; MangaDetailView.swift; MangaReaderView.swift; Services/MangaArchive.swift; SuwayomiClient.swift",
+    "notes": "Native CBZ/ZIP and image-folder imports; natural page order/CRC; per-account protected files and Keychain library/progress. Real Desktop Suwayomi GraphQL/REST source browse/search/library/chapters/pages/extensions/progress; credentials only in Keychain, no cross-origin auth. Five reading modes, fit/zoom/RTL, backgrounds/navigation/focus/gap, next chapter and original page export. Swift compilation/physical UI and a real user Suwayomi server still require validation. Advanced source filters/repositories/community/plugin providers and original flip sound remain pending."
+  },
+  "Manga extension install/update/remove": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/MangaView.swift; MangaDetailView.swift; MangaReaderView.swift; Services/MangaArchive.swift; SuwayomiClient.swift",
+    "notes": "Native CBZ/ZIP and image-folder imports; natural page order/CRC; per-account protected files and Keychain library/progress. Real Desktop Suwayomi GraphQL/REST source browse/search/library/chapters/pages/extensions/progress; credentials only in Keychain, no cross-origin auth. Five reading modes, fit/zoom/RTL, backgrounds/navigation/focus/gap, next chapter and original page export. Swift compilation/physical UI and a real user Suwayomi server still require validation. Advanced source filters/repositories/community/plugin providers and original flip sound remain pending."
+  },
+  "Manga local CBZ/ZIP": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/MangaView.swift; MangaDetailView.swift; MangaReaderView.swift; Services/MangaArchive.swift; SuwayomiClient.swift",
+    "notes": "Native CBZ/ZIP and image-folder imports; natural page order/CRC; per-account protected files and Keychain library/progress. Real Desktop Suwayomi GraphQL/REST source browse/search/library/chapters/pages/extensions/progress; credentials only in Keychain, no cross-origin auth. Five reading modes, fit/zoom/RTL, backgrounds/navigation/focus/gap, next chapter and original page export. Swift compilation/physical UI and a real user Suwayomi server still require validation. Advanced source filters/repositories/community/plugin providers and original flip sound remain pending."
+  },
+  "Manga image-folder chapters": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/MangaView.swift; MangaDetailView.swift; MangaReaderView.swift; Services/MangaArchive.swift; SuwayomiClient.swift",
+    "notes": "Native CBZ/ZIP and image-folder imports; natural page order/CRC; per-account protected files and Keychain library/progress. Real Desktop Suwayomi GraphQL/REST source browse/search/library/chapters/pages/extensions/progress; credentials only in Keychain, no cross-origin auth. Five reading modes, fit/zoom/RTL, backgrounds/navigation/focus/gap, next chapter and original page export. Swift compilation/physical UI and a real user Suwayomi server still require validation. Advanced source filters/repositories/community/plugin providers and original flip sound remain pending."
+  },
+  "Manga natural page ordering": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/MangaView.swift; MangaDetailView.swift; MangaReaderView.swift; Services/MangaArchive.swift; SuwayomiClient.swift",
+    "notes": "Native CBZ/ZIP and image-folder imports; natural page order/CRC; per-account protected files and Keychain library/progress. Real Desktop Suwayomi GraphQL/REST source browse/search/library/chapters/pages/extensions/progress; credentials only in Keychain, no cross-origin auth. Five reading modes, fit/zoom/RTL, backgrounds/navigation/focus/gap, next chapter and original page export. Swift compilation/physical UI and a real user Suwayomi server still require validation. Advanced source filters/repositories/community/plugin providers and original flip sound remain pending."
+  },
+  "Manga vertical/horizontal strips": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/MangaView.swift; MangaDetailView.swift; MangaReaderView.swift; Services/MangaArchive.swift; SuwayomiClient.swift",
+    "notes": "Native CBZ/ZIP and image-folder imports; natural page order/CRC; per-account protected files and Keychain library/progress. Real Desktop Suwayomi GraphQL/REST source browse/search/library/chapters/pages/extensions/progress; credentials only in Keychain, no cross-origin auth. Five reading modes, fit/zoom/RTL, backgrounds/navigation/focus/gap, next chapter and original page export. Swift compilation/physical UI and a real user Suwayomi server still require validation. Advanced source filters/repositories/community/plugin providers and original flip sound remain pending."
+  },
+  "Manga single/double pages": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/MangaView.swift; MangaDetailView.swift; MangaReaderView.swift; Services/MangaArchive.swift; SuwayomiClient.swift",
+    "notes": "Native CBZ/ZIP and image-folder imports; natural page order/CRC; per-account protected files and Keychain library/progress. Real Desktop Suwayomi GraphQL/REST source browse/search/library/chapters/pages/extensions/progress; credentials only in Keychain, no cross-origin auth. Five reading modes, fit/zoom/RTL, backgrounds/navigation/focus/gap, next chapter and original page export. Swift compilation/physical UI and a real user Suwayomi server still require validation. Advanced source filters/repositories/community/plugin providers and original flip sound remain pending."
+  },
+  "Manga book page turns": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/MangaView.swift; MangaDetailView.swift; MangaReaderView.swift; Services/MangaArchive.swift; SuwayomiClient.swift",
+    "notes": "Native CBZ/ZIP and image-folder imports; natural page order/CRC; per-account protected files and Keychain library/progress. Real Desktop Suwayomi GraphQL/REST source browse/search/library/chapters/pages/extensions/progress; credentials only in Keychain, no cross-origin auth. Five reading modes, fit/zoom/RTL, backgrounds/navigation/focus/gap, next chapter and original page export. Swift compilation/physical UI and a real user Suwayomi server still require validation. Advanced source filters/repositories/community/plugin providers and original flip sound remain pending."
+  },
+  "Manga width/height/original fit": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/MangaView.swift; MangaDetailView.swift; MangaReaderView.swift; Services/MangaArchive.swift; SuwayomiClient.swift",
+    "notes": "Native CBZ/ZIP and image-folder imports; natural page order/CRC; per-account protected files and Keychain library/progress. Real Desktop Suwayomi GraphQL/REST source browse/search/library/chapters/pages/extensions/progress; credentials only in Keychain, no cross-origin auth. Five reading modes, fit/zoom/RTL, backgrounds/navigation/focus/gap, next chapter and original page export. Swift compilation/physical UI and a real user Suwayomi server still require validation. Advanced source filters/repositories/community/plugin providers and original flip sound remain pending."
+  },
+  "Manga zoom": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/MangaView.swift; MangaDetailView.swift; MangaReaderView.swift; Services/MangaArchive.swift; SuwayomiClient.swift",
+    "notes": "Native CBZ/ZIP and image-folder imports; natural page order/CRC; per-account protected files and Keychain library/progress. Real Desktop Suwayomi GraphQL/REST source browse/search/library/chapters/pages/extensions/progress; credentials only in Keychain, no cross-origin auth. Five reading modes, fit/zoom/RTL, backgrounds/navigation/focus/gap, next chapter and original page export. Swift compilation/physical UI and a real user Suwayomi server still require validation. Advanced source filters/repositories/community/plugin providers and original flip sound remain pending."
+  },
+  "Manga RTL direction": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/MangaView.swift; MangaDetailView.swift; MangaReaderView.swift; Services/MangaArchive.swift; SuwayomiClient.swift",
+    "notes": "Native CBZ/ZIP and image-folder imports; natural page order/CRC; per-account protected files and Keychain library/progress. Real Desktop Suwayomi GraphQL/REST source browse/search/library/chapters/pages/extensions/progress; credentials only in Keychain, no cross-origin auth. Five reading modes, fit/zoom/RTL, backgrounds/navigation/focus/gap, next chapter and original page export. Swift compilation/physical UI and a real user Suwayomi server still require validation. Advanced source filters/repositories/community/plugin providers and original flip sound remain pending."
+  },
+  "Manga backgrounds": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/MangaView.swift; MangaDetailView.swift; MangaReaderView.swift; Services/MangaArchive.swift; SuwayomiClient.swift",
+    "notes": "Native CBZ/ZIP and image-folder imports; natural page order/CRC; per-account protected files and Keychain library/progress. Real Desktop Suwayomi GraphQL/REST source browse/search/library/chapters/pages/extensions/progress; credentials only in Keychain, no cross-origin auth. Five reading modes, fit/zoom/RTL, backgrounds/navigation/focus/gap, next chapter and original page export. Swift compilation/physical UI and a real user Suwayomi server still require validation. Advanced source filters/repositories/community/plugin providers and original flip sound remain pending."
+  },
+  "Manga navigation placement": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/MangaView.swift; MangaDetailView.swift; MangaReaderView.swift; Services/MangaArchive.swift; SuwayomiClient.swift",
+    "notes": "Native CBZ/ZIP and image-folder imports; natural page order/CRC; per-account protected files and Keychain library/progress. Real Desktop Suwayomi GraphQL/REST source browse/search/library/chapters/pages/extensions/progress; credentials only in Keychain, no cross-origin auth. Five reading modes, fit/zoom/RTL, backgrounds/navigation/focus/gap, next chapter and original page export. Swift compilation/physical UI and a real user Suwayomi server still require validation. Advanced source filters/repositories/community/plugin providers and original flip sound remain pending."
+  },
+  "Manga double-page gap": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/MangaView.swift; MangaDetailView.swift; MangaReaderView.swift; Services/MangaArchive.swift; SuwayomiClient.swift",
+    "notes": "Native CBZ/ZIP and image-folder imports; natural page order/CRC; per-account protected files and Keychain library/progress. Real Desktop Suwayomi GraphQL/REST source browse/search/library/chapters/pages/extensions/progress; credentials only in Keychain, no cross-origin auth. Five reading modes, fit/zoom/RTL, backgrounds/navigation/focus/gap, next chapter and original page export. Swift compilation/physical UI and a real user Suwayomi server still require validation. Advanced source filters/repositories/community/plugin providers and original flip sound remain pending."
+  },
+  "Manga focus mode": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/MangaView.swift; MangaDetailView.swift; MangaReaderView.swift; Services/MangaArchive.swift; SuwayomiClient.swift",
+    "notes": "Native CBZ/ZIP and image-folder imports; natural page order/CRC; per-account protected files and Keychain library/progress. Real Desktop Suwayomi GraphQL/REST source browse/search/library/chapters/pages/extensions/progress; credentials only in Keychain, no cross-origin auth. Five reading modes, fit/zoom/RTL, backgrounds/navigation/focus/gap, next chapter and original page export. Swift compilation/physical UI and a real user Suwayomi server still require validation. Advanced source filters/repositories/community/plugin providers and original flip sound remain pending."
+  },
+  "Manga automatic next chapter": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/MangaView.swift; MangaDetailView.swift; MangaReaderView.swift; Services/MangaArchive.swift; SuwayomiClient.swift",
+    "notes": "Native CBZ/ZIP and image-folder imports; natural page order/CRC; per-account protected files and Keychain library/progress. Real Desktop Suwayomi GraphQL/REST source browse/search/library/chapters/pages/extensions/progress; credentials only in Keychain, no cross-origin auth. Five reading modes, fit/zoom/RTL, backgrounds/navigation/focus/gap, next chapter and original page export. Swift compilation/physical UI and a real user Suwayomi server still require validation. Advanced source filters/repositories/community/plugin providers and original flip sound remain pending."
+  },
+  "Manga chapter-end hint": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/MangaView.swift; MangaDetailView.swift; MangaReaderView.swift; Services/MangaArchive.swift; SuwayomiClient.swift",
+    "notes": "Native CBZ/ZIP and image-folder imports; natural page order/CRC; per-account protected files and Keychain library/progress. Real Desktop Suwayomi GraphQL/REST source browse/search/library/chapters/pages/extensions/progress; credentials only in Keychain, no cross-origin auth. Five reading modes, fit/zoom/RTL, backgrounds/navigation/focus/gap, next chapter and original page export. Swift compilation/physical UI and a real user Suwayomi server still require validation. Advanced source filters/repositories/community/plugin providers and original flip sound remain pending."
+  },
+  "Manga page download": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/MangaView.swift; MangaDetailView.swift; MangaReaderView.swift; Services/MangaArchive.swift; SuwayomiClient.swift",
+    "notes": "Native CBZ/ZIP and image-folder imports; natural page order/CRC; per-account protected files and Keychain library/progress. Real Desktop Suwayomi GraphQL/REST source browse/search/library/chapters/pages/extensions/progress; credentials only in Keychain, no cross-origin auth. Five reading modes, fit/zoom/RTL, backgrounds/navigation/focus/gap, next chapter and original page export. Swift compilation/physical UI and a real user Suwayomi server still require validation. Advanced source filters/repositories/community/plugin providers and original flip sound remain pending."
+  },
+  "Manga chapter progress sync": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/MangaView.swift; MangaDetailView.swift; MangaReaderView.swift; Services/MangaArchive.swift; SuwayomiClient.swift",
+    "notes": "Native CBZ/ZIP and image-folder imports; natural page order/CRC; per-account protected files and Keychain library/progress. Real Desktop Suwayomi GraphQL/REST source browse/search/library/chapters/pages/extensions/progress; credentials only in Keychain, no cross-origin auth. Five reading modes, fit/zoom/RTL, backgrounds/navigation/focus/gap, next chapter and original page export. Swift compilation/physical UI and a real user Suwayomi server still require validation. Advanced source filters/repositories/community/plugin providers and original flip sound remain pending."
+  },
+  "Room: sports": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/SportsView.swift; SportsEventView.swift; Services/SportsService.swift; SportsReminderService.swift; Models/Sports.swift",
+    "notes": "Native ESPN schedules/scores/statistics, 161 literal original league definitions, date/status/sport/favorite filters, foreground refresh and per-account preferences. Versioned external-service notice precedes requests. Native local reminders are an iPhone adaptation; Desktop messaging destinations, other providers/generated leagues, standings and advanced match layouts remain pending. Windows observed the public NBA response (5 events/10 competitors); native Apple and physical behavior are not yet verified."
+  },
+  "Sports original league catalog": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/SportsView.swift; SportsEventView.swift; Services/SportsService.swift; SportsReminderService.swift; Models/Sports.swift",
+    "notes": "Native ESPN schedules/scores/statistics, 161 literal original league definitions, date/status/sport/favorite filters, foreground refresh and per-account preferences. Versioned external-service notice precedes requests. Native local reminders are an iPhone adaptation; Desktop messaging destinations, other providers/generated leagues, standings and advanced match layouts remain pending. Windows observed the public NBA response (5 events/10 competitors); native Apple and physical behavior are not yet verified."
+  },
+  "Sports calendar and scores": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/SportsView.swift; SportsEventView.swift; Services/SportsService.swift; SportsReminderService.swift; Models/Sports.swift",
+    "notes": "Native ESPN schedules/scores/statistics, 161 literal original league definitions, date/status/sport/favorite filters, foreground refresh and per-account preferences. Versioned external-service notice precedes requests. Native local reminders are an iPhone adaptation; Desktop messaging destinations, other providers/generated leagues, standings and advanced match layouts remain pending. Windows observed the public NBA response (5 events/10 competitors); native Apple and physical behavior are not yet verified. Actual provider timestamps omit seconds (2025-10-25T23:00Z); build 22 normalizes minute precision before Foundation parsing so valid events are retained. Existing live score/boxscore/standings gate remains unchanged and pending."
+  },
+  "Sports live/upcoming/final filtering": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/SportsView.swift; SportsEventView.swift; Services/SportsService.swift; SportsReminderService.swift; Models/Sports.swift",
+    "notes": "Native ESPN schedules/scores/statistics, 161 literal original league definitions, date/status/sport/favorite filters, foreground refresh and per-account preferences. Versioned external-service notice precedes requests. Native local reminders are an iPhone adaptation; Desktop messaging destinations, other providers/generated leagues, standings and advanced match layouts remain pending. Windows observed the public NBA response (5 events/10 competitors); native Apple and physical behavior are not yet verified."
+  },
+  "Sports live score refresh": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/SportsView.swift; SportsEventView.swift; Services/SportsService.swift; SportsReminderService.swift; Models/Sports.swift",
+    "notes": "Native ESPN schedules/scores/statistics, 161 literal original league definitions, date/status/sport/favorite filters, foreground refresh and per-account preferences. Versioned external-service notice precedes requests. Native local reminders are an iPhone adaptation; Desktop messaging destinations, other providers/generated leagues, standings and advanced match layouts remain pending. Windows observed the public NBA response (5 events/10 competitors); native Apple and physical behavior are not yet verified."
+  },
+  "Sports score periods and statistics": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/SportsView.swift; SportsEventView.swift; Services/SportsService.swift; SportsReminderService.swift; Models/Sports.swift",
+    "notes": "Native ESPN schedules/scores/statistics, 161 literal original league definitions, date/status/sport/favorite filters, foreground refresh and per-account preferences. Versioned external-service notice precedes requests. Native local reminders are an iPhone adaptation; Desktop messaging destinations, other providers/generated leagues, standings and advanced match layouts remain pending. Windows observed the public NBA response (5 events/10 competitors); native Apple and physical behavior are not yet verified."
+  },
+  "Sports event commentary": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/SportsView.swift; SportsEventView.swift; Services/SportsService.swift; SportsReminderService.swift; Models/Sports.swift",
+    "notes": "Native ESPN schedules/scores/statistics, 161 literal original league definitions, date/status/sport/favorite filters, foreground refresh and per-account preferences. Versioned external-service notice precedes requests. Native local reminders are an iPhone adaptation; Desktop messaging destinations, other providers/generated leagues, standings and advanced match layouts remain pending. Windows observed the public NBA response (5 events/10 competitors); native Apple and physical behavior are not yet verified."
+  },
+  "Sports favorite leagues and teams": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/SportsView.swift; SportsEventView.swift; Services/SportsService.swift; SportsReminderService.swift; Models/Sports.swift",
+    "notes": "Native ESPN schedules/scores/statistics, 161 literal original league definitions, date/status/sport/favorite filters, foreground refresh and per-account preferences. Versioned external-service notice precedes requests. Native local reminders are an iPhone adaptation; Desktop messaging destinations, other providers/generated leagues, standings and advanced match layouts remain pending. Windows observed the public NBA response (5 events/10 competitors); native Apple and physical behavior are not yet verified."
+  },
+  "Sports external-service consent": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/SportsView.swift; SportsEventView.swift; Services/SportsService.swift; SportsReminderService.swift; Models/Sports.swift",
+    "notes": "Native ESPN schedules/scores/statistics, 161 literal original league definitions, date/status/sport/favorite filters, foreground refresh and per-account preferences. Versioned external-service notice precedes requests. Native local reminders are an iPhone adaptation; Desktop messaging destinations, other providers/generated leagues, standings and advanced match layouts remain pending. Windows observed the public NBA response (5 events/10 competitors); native Apple and physical behavior are not yet verified."
+  },
+  "Sports event reminders": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/SportsView.swift; SportsEventView.swift; Services/SportsService.swift; SportsReminderService.swift; Models/Sports.swift",
+    "notes": "Native ESPN schedules/scores/statistics, 161 literal original league definitions, date/status/sport/favorite filters, foreground refresh and per-account preferences. Versioned external-service notice precedes requests. Native local reminders are an iPhone adaptation; Desktop messaging destinations, other providers/generated leagues, standings and advanced match layouts remain pending. Windows observed the public NBA response (5 events/10 competitors); native Apple and physical behavior are not yet verified."
+  },
+  "M3U import": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/LiveTVView.swift; Models/LiveTV.swift; Services/M3UParser.swift; LivePlaylistService.swift",
+    "notes": "Native M3U URL/file import, actual channels/categories/search/favorites, owner-isolated protected six-hour cache and account-scoped Keychain source settings. VLC/pipe headers pass through the unchanged Rust resolver; unsupported DRM remains explicit. Sports opens the configured Live TV search. Public Spanish playlist returned HTTP 200 and 327 entries on Windows; native cache/isolation/resolution test is pending Apple. XMLTV, catchup playback, Xtream API/VOD and full Desktop layouts remain in scope."
+  },
+  "Live channel catalogs": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/LiveTVView.swift; Models/LiveTV.swift; Services/M3UParser.swift; LivePlaylistService.swift",
+    "notes": "Native M3U URL/file import, actual channels/categories/search/favorites, owner-isolated protected six-hour cache and account-scoped Keychain source settings. VLC/pipe headers pass through the unchanged Rust resolver; unsupported DRM remains explicit. Sports opens the configured Live TV search. Public Spanish playlist returned HTTP 200 and 327 entries on Windows; native cache/isolation/resolution test is pending Apple. XMLTV, catchup playback, Xtream API/VOD and full Desktop layouts remain in scope."
+  },
+  "Channel categories": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/LiveTVView.swift; Models/LiveTV.swift; Services/M3UParser.swift; LivePlaylistService.swift",
+    "notes": "Native M3U URL/file import, actual channels/categories/search/favorites, owner-isolated protected six-hour cache and account-scoped Keychain source settings. VLC/pipe headers pass through the unchanged Rust resolver; unsupported DRM remains explicit. Sports opens the configured Live TV search. Public Spanish playlist returned HTTP 200 and 327 entries on Windows; native cache/isolation/resolution test is pending Apple. XMLTV, catchup playback, Xtream API/VOD and full Desktop layouts remain in scope."
+  },
+  "Live favorites": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/LiveTVView.swift; Models/LiveTV.swift; Services/M3UParser.swift; LivePlaylistService.swift",
+    "notes": "Native M3U URL/file import, actual channels/categories/search/favorites, owner-isolated protected six-hour cache and account-scoped Keychain source settings. VLC/pipe headers pass through the unchanged Rust resolver; unsupported DRM remains explicit. Sports opens the configured Live TV search. Public Spanish playlist returned HTTP 200 and 327 entries on Windows; native cache/isolation/resolution test is pending Apple. XMLTV, catchup playback, Xtream API/VOD and full Desktop layouts remain in scope."
+  },
+  "Live text search": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/LiveTVView.swift; Models/LiveTV.swift; Services/M3UParser.swift; LivePlaylistService.swift",
+    "notes": "Native M3U URL/file import, actual channels/categories/search/favorites, owner-isolated protected six-hour cache and account-scoped Keychain source settings. VLC/pipe headers pass through the unchanged Rust resolver; unsupported DRM remains explicit. Sports opens the configured Live TV search. Public Spanish playlist returned HTTP 200 and 327 entries on Windows; native cache/isolation/resolution test is pending Apple. XMLTV, catchup playback, Xtream API/VOD and full Desktop layouts remain in scope."
+  },
+  "Persistent IPTV cache": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/LiveTVView.swift; Models/LiveTV.swift; Services/M3UParser.swift; LivePlaylistService.swift",
+    "notes": "Native M3U URL/file import, actual channels/categories/search/favorites, owner-isolated protected six-hour cache and account-scoped Keychain source settings. VLC/pipe headers pass through the unchanged Rust resolver; unsupported DRM remains explicit. Sports opens the configured Live TV search. Public Spanish playlist returned HTTP 200 and 327 entries on Windows; native cache/isolation/resolution test is pending Apple. XMLTV, catchup playback, Xtream API/VOD and full Desktop layouts remain in scope. Xtream JSON responses also have six-hour TTL, a 32 MiB response cap and per-source 48-file/128 MiB protected cache, with response validation before replacement."
+  },
+  "Channel headers": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/LiveTVView.swift; Models/LiveTV.swift; Services/M3UParser.swift; LivePlaylistService.swift",
+    "notes": "Native M3U URL/file import, actual channels/categories/search/favorites, owner-isolated protected six-hour cache and account-scoped Keychain source settings. VLC/pipe headers pass through the unchanged Rust resolver; unsupported DRM remains explicit. Sports opens the configured Live TV search. Public Spanish playlist returned HTTP 200 and 327 entries on Windows; native cache/isolation/resolution test is pending Apple. XMLTV, catchup playback, Xtream API/VOD and full Desktop layouts remain in scope."
+  },
+  "Sports standings": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Services/SportsStandingsService.swift; Views/SportsStandingsView.swift",
+    "notes": "Real ESPN flat/conference/division tables, published season/team/athlete/statistics data, original sport-specific column selections and per-account favorite highlighting. Protected actor cache keeps prior successful data on refresh failure. Windows observed NBA season 2025-26, two groups, 30 teams and 23 statistics per first row; actual Swift/physical behavior is unverified. Team profiles, history and further providers remain incomplete."
+  },
+  "Sports configured broadcast sources": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/SportsEventView.swift; LiveTVView.swift",
+    "notes": "Event broadcast name opens a normal configured Live TV query and native channel playback; addon search remains available. No unconfigured streams are invented. Automatic Desktop alias matching and availability checks remain pending."
+  },
+  "Manga page-turn sound": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Views/MangaReaderView.swift; ReaderAudio/turnPage.mp3; scripts/ios/import-reader-audio.py",
+    "notes": "AVAudioPlayer uses the exact original 23,839-byte MP3 from Desktop book-view, SHA256 15dd78185f6470770354597a74bc625d8ebc80c4a4fe0aa25ac9991ed20fb5a7. Default true and mute toggle in book mode. Runtime sound and physical reader interaction remain pending."
+  },
+  "Home row ordering": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Models/PageCustomization.swift; Views/PageCustomizationView.swift; HomeView.swift; ContentPageView.swift",
+    "notes": "Native per-owner/per-page Keychain customization: reorder/hide/rename rows, original Top 10 numerals, select hero catalog, rectangular/capsule Play, More Info/watchlist secondary button and Home Continue Watching placement. Uses actual catalog/TMDB metadata and original Desktop pencil geometry. Custom source folders and list rows remain pending; expanded Apple compilation and physical behavior are not yet verified."
+  },
+  "Home row visibility": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Models/PageCustomization.swift; Views/PageCustomizationView.swift; HomeView.swift; ContentPageView.swift",
+    "notes": "Native per-owner/per-page Keychain customization: reorder/hide/rename rows, original Top 10 numerals, select hero catalog, rectangular/capsule Play, More Info/watchlist secondary button and Home Continue Watching placement. Uses actual catalog/TMDB metadata and original Desktop pencil geometry. Custom source folders and list rows remain pending; expanded Apple compilation and physical behavior are not yet verified."
+  },
+  "Home row titles": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Models/PageCustomization.swift; Views/PageCustomizationView.swift; HomeView.swift; ContentPageView.swift",
+    "notes": "Native per-owner/per-page Keychain customization: reorder/hide/rename rows, original Top 10 numerals, select hero catalog, rectangular/capsule Play, More Info/watchlist secondary button and Home Continue Watching placement. Uses actual catalog/TMDB metadata and original Desktop pencil geometry. Custom source folders and list rows remain pending; expanded Apple compilation and physical behavior are not yet verified."
+  },
+  "Home Top 10 numerals": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Models/PageCustomization.swift; Views/PageCustomizationView.swift; HomeView.swift; ContentPageView.swift",
+    "notes": "Native per-owner/per-page Keychain customization: reorder/hide/rename rows, original Top 10 numerals, select hero catalog, rectangular/capsule Play, More Info/watchlist secondary button and Home Continue Watching placement. Uses actual catalog/TMDB metadata and original Desktop pencil geometry. Custom source folders and list rows remain pending; expanded Apple compilation and physical behavior are not yet verified."
+  },
+  "Home hero source selection": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Models/PageCustomization.swift; Views/PageCustomizationView.swift; HomeView.swift; ContentPageView.swift",
+    "notes": "Native per-owner/per-page Keychain customization: reorder/hide/rename rows, original Top 10 numerals, select hero catalog, rectangular/capsule Play, More Info/watchlist secondary button and Home Continue Watching placement. Uses actual catalog/TMDB metadata and original Desktop pencil geometry. Custom source folders and list rows remain pending; expanded Apple compilation and physical behavior are not yet verified."
+  },
+  "Home play button shape": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Models/PageCustomization.swift; Views/PageCustomizationView.swift; HomeView.swift; ContentPageView.swift",
+    "notes": "Native per-owner/per-page Keychain customization: reorder/hide/rename rows, original Top 10 numerals, select hero catalog, rectangular/capsule Play, More Info/watchlist secondary button and Home Continue Watching placement. Uses actual catalog/TMDB metadata and original Desktop pencil geometry. Custom source folders and list rows remain pending; expanded Apple compilation and physical behavior are not yet verified."
+  },
+  "Home secondary button selection": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Models/PageCustomization.swift; Views/PageCustomizationView.swift; HomeView.swift; ContentPageView.swift",
+    "notes": "Native per-owner/per-page Keychain customization: reorder/hide/rename rows, original Top 10 numerals, select hero catalog, rectangular/capsule Play, More Info/watchlist secondary button and Home Continue Watching placement. Uses actual catalog/TMDB metadata and original Desktop pencil geometry. Custom source folders and list rows remain pending; expanded Apple compilation and physical behavior are not yet verified."
+  },
+  "Home Continue Watching placement": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Models/PageCustomization.swift; Views/PageCustomizationView.swift; HomeView.swift; ContentPageView.swift",
+    "notes": "Native per-owner/per-page Keychain customization: reorder/hide/rename rows, original Top 10 numerals, select hero catalog, rectangular/capsule Play, More Info/watchlist secondary button and Home Continue Watching placement. Uses actual catalog/TMDB metadata and original Desktop pencil geometry. Custom source folders and list rows remain pending; expanded Apple compilation and physical behavior are not yet verified."
+  },
+  "Home row customization": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Models/PageCustomization.swift; Views/PageCustomizationView.swift; HomeView.swift; ContentPageView.swift",
+    "notes": "Native per-owner/per-page Keychain customization: reorder/hide/rename rows, original Top 10 numerals, select hero catalog, rectangular/capsule Play, More Info/watchlist secondary button and Home Continue Watching placement. Uses actual catalog/TMDB metadata and original Desktop pencil geometry. Custom source folders and list rows remain pending; expanded Apple compilation and physical behavior are not yet verified."
+  },
+  "Setting: homeRows": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Models/PageCustomization.swift; Views/PageCustomizationView.swift; HomeView.swift; ContentPageView.swift",
+    "notes": "Native per-owner/per-page Keychain customization: reorder/hide/rename rows, original Top 10 numerals, select hero catalog, rectangular/capsule Play, More Info/watchlist secondary button and Home Continue Watching placement. Uses actual catalog/TMDB metadata and original Desktop pencil geometry. Custom source folders and list rows remain pending; expanded Apple compilation and physical behavior are not yet verified."
+  },
+  "Room: vod": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Models/VOD.swift; Xtream.swift; Services/XtreamClient.swift; Views/VODView.swift; LiveTVView.swift",
+    "notes": "Native source/category/search VOD grids, Desktop M3U classification/title/episode grouping, actual Xtream account/live/movie/series/episode operations, original UA and output-format negotiation, short EPG, direct Rust/mpv playback, local owner-scoped resume and HTTP downloads. Credentials are in owner-scoped Keychain; API caches are protected/hashed and keep prior valid responses after network or shape failures. EPG number/string timestamps are accepted. One offline test checks conflicting M3U hints, natural episode order/non-Latin identity and credential URL encoding. Apple build/test and real configured Xtream/provider behavior remain unverified. XMLTV/time offsets/catchup, source editing/export, advanced layouts remain pending. Build 15 adds TMDB artwork/overview, Arabic search and episode resume bars, pending Apple/physical evidence."
+  },
+  "Xtream credentials": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Models/VOD.swift; Xtream.swift; Services/XtreamClient.swift; Views/VODView.swift; LiveTVView.swift",
+    "notes": "Native source/category/search VOD grids, Desktop M3U classification/title/episode grouping, actual Xtream account/live/movie/series/episode operations, original UA and output-format negotiation, short EPG, direct Rust/mpv playback, local owner-scoped resume and HTTP downloads. Credentials are in owner-scoped Keychain; API caches are protected/hashed and keep prior valid responses after network or shape failures. EPG number/string timestamps are accepted. One offline test checks conflicting M3U hints, natural episode order/non-Latin identity and credential URL encoding. Apple build/test and real configured Xtream/provider behavior remain unverified. XMLTV/time offsets/catchup, source editing/export, advanced layouts remain pending. Build 15 adds TMDB artwork/overview, Arabic search and episode resume bars, pending Apple/physical evidence."
+  },
+  "Xtream VOD movies": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Models/VOD.swift; Xtream.swift; Services/XtreamClient.swift; Views/VODView.swift; LiveTVView.swift",
+    "notes": "Native source/category/search VOD grids, Desktop M3U classification/title/episode grouping, actual Xtream account/live/movie/series/episode operations, original UA and output-format negotiation, short EPG, direct Rust/mpv playback, local owner-scoped resume and HTTP downloads. Credentials are in owner-scoped Keychain; API caches are protected/hashed and keep prior valid responses after network or shape failures. EPG number/string timestamps are accepted. One offline test checks conflicting M3U hints, natural episode order/non-Latin identity and credential URL encoding. Apple build/test and real configured Xtream/provider behavior remain unverified. XMLTV/time offsets/catchup, source editing/export, advanced layouts remain pending. Build 15 adds TMDB artwork/overview, Arabic search and episode resume bars, pending Apple/physical evidence."
+  },
+  "Xtream VOD series": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Models/VOD.swift; Xtream.swift; Services/XtreamClient.swift; Views/VODView.swift; LiveTVView.swift",
+    "notes": "Native source/category/search VOD grids, Desktop M3U classification/title/episode grouping, actual Xtream account/live/movie/series/episode operations, original UA and output-format negotiation, short EPG, direct Rust/mpv playback, local owner-scoped resume and HTTP downloads. Credentials are in owner-scoped Keychain; API caches are protected/hashed and keep prior valid responses after network or shape failures. EPG number/string timestamps are accepted. One offline test checks conflicting M3U hints, natural episode order/non-Latin identity and credential URL encoding. Apple build/test and real configured Xtream/provider behavior remain unverified. XMLTV/time offsets/catchup, source editing/export, advanced layouts remain pending. Build 15 adds TMDB artwork/overview, Arabic search and episode resume bars, pending Apple/physical evidence."
+  },
+  "Setting: iptvPlaylists": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Models/VOD.swift; Xtream.swift; Services/XtreamClient.swift; Views/VODView.swift; LiveTVView.swift",
+    "notes": "Native source/category/search VOD grids, Desktop M3U classification/title/episode grouping, actual Xtream account/live/movie/series/episode operations, original UA and output-format negotiation, short EPG, direct Rust/mpv playback, local owner-scoped resume and HTTP downloads. Credentials are in owner-scoped Keychain; API caches are protected/hashed and keep prior valid responses after network or shape failures. EPG number/string timestamps are accepted. One offline test checks conflicting M3U hints, natural episode order/non-Latin identity and credential URL encoding. Apple build/test and real configured Xtream/provider behavior remain unverified. XMLTV/time offsets/catchup, source editing/export, advanced layouts remain pending. Build 15 adds TMDB artwork/overview, Arabic search and episode resume bars, pending Apple/physical evidence."
+  },
+  "Setting: iptvLiveContainer": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Models/VOD.swift; Xtream.swift; Services/XtreamClient.swift; Views/VODView.swift; LiveTVView.swift",
+    "notes": "Native source/category/search VOD grids, Desktop M3U classification/title/episode grouping, actual Xtream account/live/movie/series/episode operations, original UA and output-format negotiation, short EPG, direct Rust/mpv playback, local owner-scoped resume and HTTP downloads. Credentials are in owner-scoped Keychain; API caches are protected/hashed and keep prior valid responses after network or shape failures. EPG number/string timestamps are accepted. One offline test checks conflicting M3U hints, natural episode order/non-Latin identity and credential URL encoding. Apple build/test and real configured Xtream/provider behavior remain unverified. XMLTV/time offsets/catchup, source editing/export, advanced layouts remain pending. Build 15 adds TMDB artwork/overview, Arabic search and episode resume bars, pending Apple/physical evidence."
+  },
+  "M3U VOD classification": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Models/VOD.swift; Xtream.swift; Services/XtreamClient.swift; Views/VODView.swift; LiveTVView.swift",
+    "notes": "Native source/category/search VOD grids, Desktop M3U classification/title/episode grouping, actual Xtream account/live/movie/series/episode operations, original UA and output-format negotiation, short EPG, direct Rust/mpv playback, local owner-scoped resume and HTTP downloads. Credentials are in owner-scoped Keychain; API caches are protected/hashed and keep prior valid responses after network or shape failures. EPG number/string timestamps are accepted. One offline test checks conflicting M3U hints, natural episode order/non-Latin identity and credential URL encoding. Apple build/test and real configured Xtream/provider behavior remain unverified. XMLTV/time offsets/catchup, source editing/export, advanced layouts remain pending. Build 15 adds TMDB artwork/overview, Arabic search and episode resume bars, pending Apple/physical evidence."
+  },
+  "VOD M3U episode grouping": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Models/VOD.swift; Xtream.swift; Services/XtreamClient.swift; Views/VODView.swift; LiveTVView.swift",
+    "notes": "Native source/category/search VOD grids, Desktop M3U classification/title/episode grouping, actual Xtream account/live/movie/series/episode operations, original UA and output-format negotiation, short EPG, direct Rust/mpv playback, local owner-scoped resume and HTTP downloads. Credentials are in owner-scoped Keychain; API caches are protected/hashed and keep prior valid responses after network or shape failures. EPG number/string timestamps are accepted. One offline test checks conflicting M3U hints, natural episode order/non-Latin identity and credential URL encoding. Apple build/test and real configured Xtream/provider behavior remain unverified. XMLTV/time offsets/catchup, source editing/export, advanced layouts remain pending. Build 15 adds TMDB artwork/overview, Arabic search and episode resume bars, pending Apple/physical evidence."
+  },
+  "VOD title normalization": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Models/VOD.swift; Xtream.swift; Services/XtreamClient.swift; Views/VODView.swift; LiveTVView.swift",
+    "notes": "Native source/category/search VOD grids, Desktop M3U classification/title/episode grouping, actual Xtream account/live/movie/series/episode operations, original UA and output-format negotiation, short EPG, direct Rust/mpv playback, local owner-scoped resume and HTTP downloads. Credentials are in owner-scoped Keychain; API caches are protected/hashed and keep prior valid responses after network or shape failures. EPG number/string timestamps are accepted. One offline test checks conflicting M3U hints, natural episode order/non-Latin identity and credential URL encoding. Apple build/test and real configured Xtream/provider behavior remain unverified. XMLTV/time offsets/catchup, source editing/export, advanced layouts remain pending. Build 15 adds TMDB artwork/overview, Arabic search and episode resume bars, pending Apple/physical evidence."
+  },
+  "Xtream short EPG": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Models/VOD.swift; Xtream.swift; Services/XtreamClient.swift; Views/VODView.swift; LiveTVView.swift",
+    "notes": "Native source/category/search VOD grids, Desktop M3U classification/title/episode grouping, actual Xtream account/live/movie/series/episode operations, original UA and output-format negotiation, short EPG, direct Rust/mpv playback, local owner-scoped resume and HTTP downloads. Credentials are in owner-scoped Keychain; API caches are protected/hashed and keep prior valid responses after network or shape failures. EPG number/string timestamps are accepted. One offline test checks conflicting M3U hints, natural episode order/non-Latin identity and credential URL encoding. Apple build/test and real configured Xtream/provider behavior remain unverified. XMLTV/time offsets/catchup, source editing/export, advanced layouts remain pending. Build 15 adds TMDB artwork/overview, Arabic search and episode resume bars, pending Apple/physical evidence."
+  },
+  "Xtream live container selection": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Models/VOD.swift; Xtream.swift; Services/XtreamClient.swift; Views/VODView.swift; LiveTVView.swift",
+    "notes": "Native source/category/search VOD grids, Desktop M3U classification/title/episode grouping, actual Xtream account/live/movie/series/episode operations, original UA and output-format negotiation, short EPG, direct Rust/mpv playback, local owner-scoped resume and HTTP downloads. Credentials are in owner-scoped Keychain; API caches are protected/hashed and keep prior valid responses after network or shape failures. EPG number/string timestamps are accepted. One offline test checks conflicting M3U hints, natural episode order/non-Latin identity and credential URL encoding. Apple build/test and real configured Xtream/provider behavior remain unverified. XMLTV/time offsets/catchup, source editing/export, advanced layouts remain pending. Build 15 adds TMDB artwork/overview, Arabic search and episode resume bars, pending Apple/physical evidence."
+  },
+  "VOD metadata enrichment": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Services/VODMetadataService.swift; HTTPClient.swift; TMDBService.swift; ResumeStore.swift; Models/VOD.swift; Views/VODView.swift",
+    "notes": "Native TMDB enrichment uses the user's key, original title/kind/year query and first actual provider result. It keeps the playlist's private playback/resume identity and preserves source artwork if enrichment fails. Owner/configuration-keyed SHA256 memory caches bound 512 results, four requests and six-hour metadata TTL; credentialed TMDB requests use ephemeral sessions without cookies/disk caches/redirects. Arabic NFKC/diacritic/invisible/alef/letter/digit normalization is precomputed for catalogs; episode bars/time remaining/watched >=90% read the actual owner resume entry through the existing Rust key operation, including positions which automatic resume restarts near completion. No provider stream or cloud identity is replaced. Offline assertions cover normalization, unchanged identity and raw resume reads; expanded Apple/physical evidence remains pending."
+  },
+  "VOD Arabic-aware search": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Services/VODMetadataService.swift; HTTPClient.swift; TMDBService.swift; ResumeStore.swift; Models/VOD.swift; Views/VODView.swift",
+    "notes": "Native TMDB enrichment uses the user's key, original title/kind/year query and first actual provider result. It keeps the playlist's private playback/resume identity and preserves source artwork if enrichment fails. Owner/configuration-keyed SHA256 memory caches bound 512 results, four requests and six-hour metadata TTL; credentialed TMDB requests use ephemeral sessions without cookies/disk caches/redirects. Arabic NFKC/diacritic/invisible/alef/letter/digit normalization is precomputed for catalogs; episode bars/time remaining/watched >=90% read the actual owner resume entry through the existing Rust key operation, including positions which automatic resume restarts near completion. No provider stream or cloud identity is replaced. Offline assertions cover normalization, unchanged identity and raw resume reads; expanded Apple/physical evidence remains pending."
+  },
+  "VOD episode progress display": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Services/VODMetadataService.swift; HTTPClient.swift; TMDBService.swift; ResumeStore.swift; Models/VOD.swift; Views/VODView.swift",
+    "notes": "Native TMDB enrichment uses the user's key, original title/kind/year query and first actual provider result. It keeps the playlist's private playback/resume identity and preserves source artwork if enrichment fails. Owner/configuration-keyed SHA256 memory caches bound 512 results, four requests and six-hour metadata TTL; credentialed TMDB requests use ephemeral sessions without cookies/disk caches/redirects. Arabic NFKC/diacritic/invisible/alef/letter/digit normalization is precomputed for catalogs; episode bars/time remaining/watched >=90% read the actual owner resume entry through the existing Rust key operation, including positions which automatic resume restarts near completion. No provider stream or cloud identity is replaced. Offline assertions cover normalization, unchanged identity and raw resume reads; expanded Apple/physical evidence remains pending."
+  },
+  "Spooktober native detail navigation": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Models/Spooktober.swift`; `Views/SpooktoberView.swift`; `Views/HomeView.swift`; `scripts/ios/import-spooktober.py`",
+    "notes": "Original 71 published selections, pumpkin/seven collection vectors/three posters/two hill paths imported with SHA256. October availability and September 28–30 launch only in 2026 use local calendar; foreground/midnight refresh, account-scoped Keychain dismissal. Native shelves/search/type filters open real IMDb movie/series IDs in the ordinary addon detail/player; books/manga and three ID-less coming releases retain original source links. Music/playlists/editorial worlds and Nightmare typography remain incomplete. Apple/physical evidence pending; no WebView/runtime or fabricated streams."
+  },
+  "Spooktober original curated selections": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Models/Spooktober.swift`; `Views/SpooktoberView.swift`; `Views/HomeView.swift`; `scripts/ios/import-spooktober.py`",
+    "notes": "Original 71 published selections, pumpkin/seven collection vectors/three posters/two hill paths imported with SHA256. October availability and September 28–30 launch only in 2026 use local calendar; foreground/midnight refresh, account-scoped Keychain dismissal. Native shelves/search/type filters open real IMDb movie/series IDs in the ordinary addon detail/player; books/manga and three ID-less coming releases retain original source links. Music/playlists/editorial worlds and Nightmare typography remain incomplete. Apple/physical evidence pending; no WebView/runtime or fabricated streams."
+  },
+  "Spooktober seasonal availability": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Models/Spooktober.swift`; `Views/SpooktoberView.swift`; `Views/HomeView.swift`; `scripts/ios/import-spooktober.py`",
+    "notes": "Original 71 published selections, pumpkin/seven collection vectors/three posters/two hill paths imported with SHA256. October availability and September 28–30 launch only in 2026 use local calendar; foreground/midnight refresh, account-scoped Keychain dismissal. Native shelves/search/type filters open real IMDb movie/series IDs in the ordinary addon detail/player; books/manga and three ID-less coming releases retain original source links. Music/playlists/editorial worlds and Nightmare typography remain incomplete. Apple/physical evidence pending; no WebView/runtime or fabricated streams."
+  },
+  "Spooktober invitation and dismissal": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Models/Spooktober.swift`; `Views/SpooktoberView.swift`; `Views/HomeView.swift`; `scripts/ios/import-spooktober.py`",
+    "notes": "Original 71 published selections, pumpkin/seven collection vectors/three posters/two hill paths imported with SHA256. October availability and September 28–30 launch only in 2026 use local calendar; foreground/midnight refresh, account-scoped Keychain dismissal. Native shelves/search/type filters open real IMDb movie/series IDs in the ordinary addon detail/player; books/manga and three ID-less coming releases retain original source links. Music/playlists/editorial worlds and Nightmare typography remain incomplete. Apple/physical evidence pending; no WebView/runtime or fabricated streams."
+  },
+  "Local music file import": {
+    "state": "Partial",
+    "implementation": "`harbor-core/src/music.rs`; `harbor-ios-bridge/src/dispatch.rs`; `ios/Harbor/Models/Music.swift`; `Services/MusicFileService.swift`; `Player/MusicPlayback.swift`; `Views/MusicView.swift`",
+    "notes": "Original pure track/group identity and tag/duration mapping reused in shared Rust. Native Files imports inspect actual audio with mpv, bounded SHA256 copy/private protected owner cache and Keychain index; songs/albums/artists, search, queue, actual time/seek/pause, shuffle/repeat, MiniPlayer and system remote controls. Embedded covers use native AVFoundation/ImageIO; formats without native artwork extraction retain the original Music icon. Account switches stop previous-owner playback; video pauses music with explicit resume. One original CC0 PCM fixture checks real import/bridge/time/pause/seek, never included in product. Rust tests/clippy pass; Apple/physical evidence pending. Connected music providers, playlists, lyrics, discovery, gapless transitions and full original transport artwork remain incomplete. Build 19 Apple simulator passes the actual PCM import/playback/time/pause/seek and Keychain playlist restoration/owner isolation/deletion-preserving-audio regression; this is narrow evidence, not full feature/physical parity."
+  },
+  "Music album and artist grouping": {
+    "state": "Partial",
+    "implementation": "`harbor-core/src/music.rs`; `harbor-ios-bridge/src/dispatch.rs`; `ios/Harbor/Models/Music.swift`; `Services/MusicFileService.swift`; `Player/MusicPlayback.swift`; `Views/MusicView.swift`",
+    "notes": "17 original MusicGlyph vectors preserve Desktop geometry and theme ink. Original pure track/group identity and tag/duration mapping reused in shared Rust. Native Files imports inspect actual audio with mpv, bounded SHA256 copy/private protected owner cache and Keychain index; songs/albums/artists, search, queue, actual time/seek/pause, shuffle/repeat, MiniPlayer and system remote controls. Embedded covers use native AVFoundation/ImageIO; formats without native artwork extraction retain the original Music icon. Account switches stop previous-owner playback; video pauses music with explicit resume. One original CC0 PCM fixture checks real import/bridge/time/pause/seek, never included in product. Rust tests/clippy pass; Apple/physical evidence pending. Local playlist creation/rename/membership/order/delete and queue edits added, with original pure Rust name/move rules; Apple evidence pending. Connected music providers, advanced playlists, lyrics, discovery, gapless transitions and the rest of the original Music deck remain incomplete."
+  },
+  "Music audio cover import": {
+    "state": "Partial",
+    "implementation": "`harbor-core/src/music.rs`; `harbor-ios-bridge/src/dispatch.rs`; `ios/Harbor/Models/Music.swift`; `Services/MusicFileService.swift`; `Player/MusicPlayback.swift`; `Views/MusicView.swift`",
+    "notes": "17 original MusicGlyph vectors preserve Desktop geometry and theme ink. Original pure track/group identity and tag/duration mapping reused in shared Rust. Native Files imports inspect actual audio with mpv, bounded SHA256 copy/private protected owner cache and Keychain index; songs/albums/artists, search, queue, actual time/seek/pause, shuffle/repeat, MiniPlayer and system remote controls. Embedded covers use native AVFoundation/ImageIO; formats without native artwork extraction retain the original Music icon. Account switches stop previous-owner playback; video pauses music with explicit resume. One original CC0 PCM fixture checks real import/bridge/time/pause/seek, never included in product. Rust tests/clippy pass; Apple/physical evidence pending. Local playlist creation/rename/membership/order/delete and queue edits added, with original pure Rust name/move rules; Apple evidence pending. Connected music providers, advanced playlists, lyrics, discovery, gapless transitions and the rest of the original Music deck remain incomplete."
+  },
+  "Music native audio playback": {
+    "state": "Partial",
+    "implementation": "`harbor-core/src/music.rs`; `harbor-ios-bridge/src/dispatch.rs`; `ios/Harbor/Models/Music.swift`; `Services/MusicFileService.swift`; `Player/MusicPlayback.swift`; `Views/MusicView.swift`",
+    "notes": "17 original MusicGlyph vectors preserve Desktop geometry and theme ink. Original pure track/group identity and tag/duration mapping reused in shared Rust. Native Files imports inspect actual audio with mpv, bounded SHA256 copy/private protected owner cache and Keychain index; songs/albums/artists, search, queue, actual time/seek/pause, shuffle/repeat, MiniPlayer and system remote controls. Embedded covers use native AVFoundation/ImageIO; formats without native artwork extraction retain the original Music icon. Account switches stop previous-owner playback; video pauses music with explicit resume. One original CC0 PCM fixture checks real import/bridge/time/pause/seek, never included in product. Rust tests/clippy pass; Apple/physical evidence pending. Local playlist creation/rename/membership/order/delete and queue edits added, with original pure Rust name/move rules; Apple evidence pending. Connected music providers, advanced playlists, lyrics, discovery, gapless transitions and the rest of the original Music deck remain incomplete. Build 19 Apple simulator passes the actual PCM import/playback/time/pause/seek and Keychain playlist restoration/owner isolation/deletion-preserving-audio regression; this is narrow evidence, not full feature/physical parity."
+  },
+  "Music playback queue": {
+    "state": "Partial",
+    "implementation": "`harbor-core/src/music.rs`; `harbor-ios-bridge/src/dispatch.rs`; `ios/Harbor/Models/Music.swift`; `Services/MusicFileService.swift`; `Player/MusicPlayback.swift`; `Views/MusicView.swift`",
+    "notes": "17 original MusicGlyph vectors preserve Desktop geometry and theme ink. Original pure track/group identity and tag/duration mapping reused in shared Rust. Native Files imports inspect actual audio with mpv, bounded SHA256 copy/private protected owner cache and Keychain index; songs/albums/artists, search, queue, actual time/seek/pause, shuffle/repeat, MiniPlayer and system remote controls. Embedded covers use native AVFoundation/ImageIO; formats without native artwork extraction retain the original Music icon. Account switches stop previous-owner playback; video pauses music with explicit resume. One original CC0 PCM fixture checks real import/bridge/time/pause/seek, never included in product. Rust tests/clippy pass; Apple/physical evidence pending. Local playlist creation/rename/membership/order/delete and queue edits added, with original pure Rust name/move rules; Apple evidence pending. Connected music providers, advanced playlists, lyrics, discovery, gapless transitions and the rest of the original Music deck remain incomplete."
+  },
+  "Music system controls": {
+    "state": "Partial",
+    "implementation": "`harbor-core/src/music.rs`; `harbor-ios-bridge/src/dispatch.rs`; `ios/Harbor/Models/Music.swift`; `Services/MusicFileService.swift`; `Player/MusicPlayback.swift`; `Views/MusicView.swift`",
+    "notes": "17 original MusicGlyph vectors preserve Desktop geometry and theme ink. Original pure track/group identity and tag/duration mapping reused in shared Rust. Native Files imports inspect actual audio with mpv, bounded SHA256 copy/private protected owner cache and Keychain index; songs/albums/artists, search, queue, actual time/seek/pause, shuffle/repeat, MiniPlayer and system remote controls. Embedded covers use native AVFoundation/ImageIO; formats without native artwork extraction retain the original Music icon. Account switches stop previous-owner playback; video pauses music with explicit resume. One original CC0 PCM fixture checks real import/bridge/time/pause/seek, never included in product. Rust tests/clippy pass; Apple/physical evidence pending. Local playlist creation/rename/membership/order/delete and queue edits added, with original pure Rust name/move rules; Apple evidence pending. Connected music providers, advanced playlists, lyrics, discovery, gapless transitions and the rest of the original Music deck remain incomplete."
+  },
+  "Music and video coordination": {
+    "state": "Partial",
+    "implementation": "`harbor-core/src/music.rs`; `harbor-ios-bridge/src/dispatch.rs`; `ios/Harbor/Models/Music.swift`; `Services/MusicFileService.swift`; `Player/MusicPlayback.swift`; `Views/MusicView.swift`",
+    "notes": "17 original MusicGlyph vectors preserve Desktop geometry and theme ink. Original pure track/group identity and tag/duration mapping reused in shared Rust. Native Files imports inspect actual audio with mpv, bounded SHA256 copy/private protected owner cache and Keychain index; songs/albums/artists, search, queue, actual time/seek/pause, shuffle/repeat, MiniPlayer and system remote controls. Embedded covers use native AVFoundation/ImageIO; formats without native artwork extraction retain the original Music icon. Account switches stop previous-owner playback; video pauses music with explicit resume. One original CC0 PCM fixture checks real import/bridge/time/pause/seek, never included in product. Rust tests/clippy pass; Apple/physical evidence pending. Local playlist creation/rename/membership/order/delete and queue edits added, with original pure Rust name/move rules; Apple evidence pending. Connected music providers, advanced playlists, lyrics, discovery, gapless transitions and the rest of the original Music deck remain incomplete."
+  },
+  "Room: music": {
+    "state": "Partial",
+    "implementation": "`harbor-core/src/music.rs`; `harbor-ios-bridge/src/dispatch.rs`; `ios/Harbor/Models/Music.swift`; `Services/MusicFileService.swift`; `Player/MusicPlayback.swift`; `Views/MusicView.swift`",
+    "notes": "17 original MusicGlyph vectors preserve Desktop geometry and theme ink. Original pure track/group identity and tag/duration mapping reused in shared Rust. Native Files imports inspect actual audio with mpv, bounded SHA256 copy/private protected owner cache and Keychain index; songs/albums/artists, search, queue, actual time/seek/pause, shuffle/repeat, MiniPlayer and system remote controls. Embedded covers use native AVFoundation/ImageIO; formats without native artwork extraction retain the original Music icon. Account switches stop previous-owner playback; video pauses music with explicit resume. One original CC0 PCM fixture checks real import/bridge/time/pause/seek, never included in product. Rust tests/clippy pass; Apple/physical evidence pending. Local playlist creation/rename/membership/order/delete and queue edits added, with original pure Rust name/move rules; Apple evidence pending. Connected music providers, advanced playlists, lyrics, discovery, gapless transitions and the rest of the original Music deck remain incomplete. Build 20 adds actual nested folder imports/progress/cancel, listening filters/sorts and compact view, with original menu vectors. Apple/physical verification pending; full provider/deck parity remains incomplete."
+  },
+  "Music playlist creation and rename": {
+    "state": "Partial",
+    "implementation": "`harbor-core/src/music.rs`; `harbor-ios-bridge/src/dispatch.rs`; `ios/Harbor/Models/MusicPlaylists.swift`; `Views/MusicPlaylistsView.swift`; `Player/MusicPlayback.swift`",
+    "notes": "Original Desktop name limits and single-track move index arithmetic reused in Rust. Native Keychain playlists use original UUID/millisecond timestamp concepts, store owned track references without duplicating audio and support create/rename/add/deduplicate/remove/reorder/delete. Queue supports play-next/append/remove, bounded to 500 tracks. Product names/settings are real and account-specific; read/write failures preserve previous data. The existing actual PCM regression additionally restores playlists from Keychain, checks owner isolation and deletion preserving the file. Connected-provider playlists, custom cover editing/export/import/filters remain incomplete. Rust 74 tests, bridge six and clippy pass; Apple/physical evidence pending. Build 19 Apple simulator passes the actual PCM import/playback/time/pause/seek and Keychain playlist restoration/owner isolation/deletion-preserving-audio regression; this is narrow evidence, not full feature/physical parity."
+  },
+  "Music playlist track membership": {
+    "state": "Partial",
+    "implementation": "`harbor-core/src/music.rs`; `harbor-ios-bridge/src/dispatch.rs`; `ios/Harbor/Models/MusicPlaylists.swift`; `Views/MusicPlaylistsView.swift`; `Player/MusicPlayback.swift`",
+    "notes": "Original Desktop name limits and single-track move index arithmetic reused in Rust. Native Keychain playlists use original UUID/millisecond timestamp concepts, store owned track references without duplicating audio and support create/rename/add/deduplicate/remove/reorder/delete. Queue supports play-next/append/remove, bounded to 500 tracks. Product names/settings are real and account-specific; read/write failures preserve previous data. The existing actual PCM regression additionally restores playlists from Keychain, checks owner isolation and deletion preserving the file. Connected-provider playlists, custom cover editing/export/import/filters remain incomplete. Rust 74 tests, bridge six and clippy pass; Apple/physical evidence pending. Build 19 Apple simulator passes the actual PCM import/playback/time/pause/seek and Keychain playlist restoration/owner isolation/deletion-preserving-audio regression; this is narrow evidence, not full feature/physical parity."
+  },
+  "Music playlist track ordering": {
+    "state": "Partial",
+    "implementation": "`harbor-core/src/music.rs`; `harbor-ios-bridge/src/dispatch.rs`; `ios/Harbor/Models/MusicPlaylists.swift`; `Views/MusicPlaylistsView.swift`; `Player/MusicPlayback.swift`",
+    "notes": "Original Desktop name limits and single-track move index arithmetic reused in Rust. Native Keychain playlists use original UUID/millisecond timestamp concepts, store owned track references without duplicating audio and support create/rename/add/deduplicate/remove/reorder/delete. Queue supports play-next/append/remove, bounded to 500 tracks. Product names/settings are real and account-specific; read/write failures preserve previous data. The existing actual PCM regression additionally restores playlists from Keychain, checks owner isolation and deletion preserving the file. Connected-provider playlists, custom cover editing/export/import/filters remain incomplete. Rust 74 tests, bridge six and clippy pass; Apple/physical evidence pending."
+  },
+  "Music playlist deletion preserving library": {
+    "state": "Partial",
+    "implementation": "`harbor-core/src/music.rs`; `harbor-ios-bridge/src/dispatch.rs`; `ios/Harbor/Models/MusicPlaylists.swift`; `Views/MusicPlaylistsView.swift`; `Player/MusicPlayback.swift`",
+    "notes": "Original Desktop name limits and single-track move index arithmetic reused in Rust. Native Keychain playlists use original UUID/millisecond timestamp concepts, store owned track references without duplicating audio and support create/rename/add/deduplicate/remove/reorder/delete. Queue supports play-next/append/remove, bounded to 500 tracks. Product names/settings are real and account-specific; read/write failures preserve previous data. The existing actual PCM regression additionally restores playlists from Keychain, checks owner isolation and deletion preserving the file. Connected-provider playlists, custom cover editing/export/import/filters remain incomplete. Rust 74 tests, bridge six and clippy pass; Apple/physical evidence pending. Build 19 Apple simulator passes the actual PCM import/playback/time/pause/seek and Keychain playlist restoration/owner isolation/deletion-preserving-audio regression; this is narrow evidence, not full feature/physical parity."
+  },
+  "Music local folder scanning": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Services/MusicFolderScan.swift`; `Models/Music.swift`; `Models/MusicFilters.swift`; `Models/MusicPlaylists.swift`; `Views/MusicView.swift`; `Views/MusicFilterTools.swift`; `Views/MusicPlaylistsView.swift`",
+    "notes": "Native folder picker holds access for the complete scan/import, follows the original depth-12/no-link traversal, imports up to 500 actual audio files and deduplicates owned SHA256 identities. Progress/cancel preserves already saved tracks; scan/read/write failures preserve existing data. Native listening filters adapt original NFKD/term/source/explicit policies, all six sorts, numeric/locale text order and unknown values last in either direction. Sorting never changes stored playlist order; move is disabled while filtered/sorted and deletion uses the displayed IDs. Original compact/list preference, copy title, duplicate-name suffix and six new original vectors included. Existing PCM regression extends to actual nested Files scan/import, symlink exclusion, duplicate content and Keychain restoration, without another playback test. Build 20 Apple/physical evidence pending. Folder watching/persistent folder sources, genres and connected providers remain incomplete. Build 20 Apple exposed a skipped sibling after a file symlink (one of two nested audio files); build 21 restricts skipDescendants to real directories. Original two-folder/symlink counts remain required; corrected Apple result pending."
+  },
+  "Music playlist search and content filters": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Services/MusicFolderScan.swift`; `Models/Music.swift`; `Models/MusicFilters.swift`; `Models/MusicPlaylists.swift`; `Views/MusicView.swift`; `Views/MusicFilterTools.swift`; `Views/MusicPlaylistsView.swift`",
+    "notes": "Native folder picker holds access for the complete scan/import, follows the original depth-12/no-link traversal, imports up to 500 actual audio files and deduplicates owned SHA256 identities. Progress/cancel preserves already saved tracks; scan/read/write failures preserve existing data. Native listening filters adapt original NFKD/term/source/explicit policies, all six sorts, numeric/locale text order and unknown values last in either direction. Sorting never changes stored playlist order; move is disabled while filtered/sorted and deletion uses the displayed IDs. Original compact/list preference, copy title, duplicate-name suffix and six new original vectors included. Existing PCM regression extends to actual nested Files scan/import, symlink exclusion, duplicate content and Keychain restoration, without another playback test. Build 20 Apple/physical evidence pending. Folder watching/persistent folder sources, genres and connected providers remain incomplete."
+  },
+  "Music playlist listening order": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Services/MusicFolderScan.swift`; `Models/Music.swift`; `Models/MusicFilters.swift`; `Models/MusicPlaylists.swift`; `Views/MusicView.swift`; `Views/MusicFilterTools.swift`; `Views/MusicPlaylistsView.swift`",
+    "notes": "Native folder picker holds access for the complete scan/import, follows the original depth-12/no-link traversal, imports up to 500 actual audio files and deduplicates owned SHA256 identities. Progress/cancel preserves already saved tracks; scan/read/write failures preserve existing data. Native listening filters adapt original NFKD/term/source/explicit policies, all six sorts, numeric/locale text order and unknown values last in either direction. Sorting never changes stored playlist order; move is disabled while filtered/sorted and deletion uses the displayed IDs. Original compact/list preference, copy title, duplicate-name suffix and six new original vectors included. Existing PCM regression extends to actual nested Files scan/import, symlink exclusion, duplicate content and Keychain restoration, without another playback test. Build 20 Apple/physical evidence pending. Folder watching/persistent folder sources, genres and connected providers remain incomplete."
+  },
+  "Music playlist compact view": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Services/MusicFolderScan.swift`; `Models/Music.swift`; `Models/MusicFilters.swift`; `Models/MusicPlaylists.swift`; `Views/MusicView.swift`; `Views/MusicFilterTools.swift`; `Views/MusicPlaylistsView.swift`",
+    "notes": "Native folder picker holds access for the complete scan/import, follows the original depth-12/no-link traversal, imports up to 500 actual audio files and deduplicates owned SHA256 identities. Progress/cancel preserves already saved tracks; scan/read/write failures preserve existing data. Native listening filters adapt original NFKD/term/source/explicit policies, all six sorts, numeric/locale text order and unknown values last in either direction. Sorting never changes stored playlist order; move is disabled while filtered/sorted and deletion uses the displayed IDs. Original compact/list preference, copy title, duplicate-name suffix and six new original vectors included. Existing PCM regression extends to actual nested Files scan/import, symlink exclusion, duplicate content and Keychain restoration, without another playback test. Build 20 Apple/physical evidence pending. Folder watching/persistent folder sources, genres and connected providers remain incomplete."
+  },
+  "Music track title copying": {
+    "state": "Partial",
+    "implementation": "`ios/Harbor/Services/MusicFolderScan.swift`; `Models/Music.swift`; `Models/MusicFilters.swift`; `Models/MusicPlaylists.swift`; `Views/MusicView.swift`; `Views/MusicFilterTools.swift`; `Views/MusicPlaylistsView.swift`",
+    "notes": "Native folder picker holds access for the complete scan/import, follows the original depth-12/no-link traversal, imports up to 500 actual audio files and deduplicates owned SHA256 identities. Progress/cancel preserves already saved tracks; scan/read/write failures preserve existing data. Native listening filters adapt original NFKD/term/source/explicit policies, all six sorts, numeric/locale text order and unknown values last in either direction. Sorting never changes stored playlist order; move is disabled while filtered/sorted and deletion uses the displayed IDs. Original compact/list preference, copy title, duplicate-name suffix and six new original vectors included. Existing PCM regression extends to actual nested Files scan/import, symlink exclusion, duplicate content and Keychain restoration, without another playback test. Build 20 Apple/physical evidence pending. Folder watching/persistent folder sources, genres and connected providers remain incomplete."
+  },
+  "Dual subtitle tracks": {
+    "state": "Partial",
+    "implementation": "PlayerState / MPVController / PlayerSettingsView",
+    "notes": "Actual main-selection 0/1 distinguishes primary and secondary tracks; text-compatible second track uses native mpv rendering, manual/off selection and persistent preferences for language/top-bottom position. Serialized acknowledged writes reset source FPS before transitions; failures remain local to subtitles. Separate secondary scale, full style fidelity, all formats and physical playback remain pending; Apple regression candidate build 21. Build 21 actual native dual text/FPS/replay regression passes. Build 22 incorporates filtered primary/secondary choices and local file import; new native gate pending."
+  },
+  "Subtitle source FPS correction": {
+    "state": "Partial",
+    "implementation": "SubtitleTiming / SubtitleTimingView / MPVController",
+    "notes": "Original rational presets 23.976/24/25/29.97/30/50/59.94/60, default 0, actual video-FPS matching and custom finite 1-240. Availability follows actual text codec/source, primary selection, video FPS/runtime property and inactive second track. Nonzero request IDs await mpv replies with timeout/close cleanup, serial reset before selection/replay, media revision guard and original FPS icon. Real libass/mpv regression added; Apple/device/UI/physical results pending."
+  },
+  "Setting: secondarySubLang": {
+    "state": "Partial",
+    "implementation": "PlaybackOptions / PlayerSettingsView / MPVController",
+    "notes": "Defaults retained: empty preferred language and top placement. Native persistent preference selects a compatible actual secondary track once per video; manual choice prevents automatic reselection. Top/bottom maps the original native secondary-sub-pos policy; old preference documents merge defaults. Apple and physical behavior pending."
+  },
+  "Setting: subSecondaryPlacement": {
+    "state": "Partial",
+    "implementation": "PlaybackOptions / PlayerSettingsView / MPVController",
+    "notes": "Defaults retained: empty preferred language and top placement. Native persistent preference selects a compatible actual secondary track once per video; manual choice prevents automatic reselection. Top/bottom maps the original native secondary-sub-pos policy; old preference documents merge defaults. Apple and physical behavior pending."
+  },
+  "SDH / forced flags": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Player/PlayerState.swift; Player/MPVController.swift; Player/SubtitleLanguages.swift; Views/SubtitleTracksView.swift; SubtitleLanguages.json",
+    "notes": "Actual track-list external/forced/hearing-impaired/default flags drive language/source/HI/forced filters and counts. Original 100 ISO aliases, 82 names and regional policies are extracted from the beta source with SHA256 provenance. Imported status uses observed track IDs, not matching titles. No provider rank or compatibility percentage is invented. Apple/UI/physical verification pending for build 22."
+  },
+  "Player episode panel": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Player/EpisodeSequence.swift; PlayerView.swift; Views/PlayerEpisodesView.swift; PlayerUpNextView.swift; DetailView.swift; ViewModels/DetailModel.swift",
+    "notes": "Native previous/next and in-player season/episode selection use actual metadata IDs, availability and the original player vectors. Normal seasons cross boundaries without entering specials; duplicate coordinates and unaired episodes are excluded from adjacent playback. A configurable original lead policy offers play-now/cancel, and auto-next requires natural mpv EOF, an active scene, the same owner, no error and no short-video/near-end resume. Handoff waits for full-screen dismissal, saves the old checkpoint and queries real addon streams with previous addon/binge-group preference and the ordinary resume policy. Apple compilation, presentation lifecycle and physical behavior remain pending."
+  },
+  "Setting: autoPlayNextEpisode": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Player/EpisodeSequence.swift; PlayerView.swift; Views/PlayerEpisodesView.swift; PlayerUpNextView.swift; DetailView.swift; ViewModels/DetailModel.swift",
+    "notes": "Native previous/next and in-player season/episode selection use actual metadata IDs, availability and the original player vectors. Normal seasons cross boundaries without entering specials; duplicate coordinates and unaired episodes are excluded from adjacent playback. A configurable original lead policy offers play-now/cancel, and auto-next requires natural mpv EOF, an active scene, the same owner, no error and no short-video/near-end resume. Handoff waits for full-screen dismissal, saves the old checkpoint and queries real addon streams with previous addon/binge-group preference and the ordinary resume policy. Apple compilation, presentation lifecycle and physical behavior remain pending."
+  },
+  "Setting: nextEpisodeLeadSec": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Player/EpisodeSequence.swift; PlayerView.swift; Views/PlayerEpisodesView.swift; PlayerUpNextView.swift; DetailView.swift; ViewModels/DetailModel.swift",
+    "notes": "Native previous/next and in-player season/episode selection use actual metadata IDs, availability and the original player vectors. Normal seasons cross boundaries without entering specials; duplicate coordinates and unaired episodes are excluded from adjacent playback. A configurable original lead policy offers play-now/cancel, and auto-next requires natural mpv EOF, an active scene, the same owner, no error and no short-video/near-end resume. Handoff waits for full-screen dismissal, saves the old checkpoint and queries real addon streams with previous addon/binge-group preference and the ordinary resume policy. Apple compilation, presentation lifecycle and physical behavior remain pending."
+  },
+  "Addon configuration viewport": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Models/AddonConfiguration.swift; Account.swift; Views/AddonsView.swift; AddonDetailView.swift; AddonConfigurationView.swift; ViewModels/AppModel.swift",
+    "notes": "Build 25 adds native addon details, manifest logos/description/version, local activation and the selected addon configuration journey. The provider page uses a nonpersistent WebKit sheet with no native credential/script bridge; main-frame stremio/manifest navigation captures a candidate and returns to the native secure field. Only the explicit native Save action fetches/validates the real manifest and updates the same manifest identity in place. Account/target guards retain activation, order, other configured instances, full cloud flags/unknown records and the fetched complete manifest. Mismatched identities, removed targets and collisions are rejected before mutation. Safari/manual-link fallback is available. Existing account-record and real addon-navigation methods are extended; Apple execution, actual configurable provider interaction and physical account changes remain pending."
+  },
+  "Cloud library": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Models/LibraryPresentation.swift; Models/Library.swift; ViewModels/LibraryModel.swift; Views/LibraryView.swift; Player/PlayerView.swift",
+    "notes": "Build 26 adds account-scoped library search, type filters and original Recent/A-Z/Year sorting. Continuing cards show real episode/time/progress. Explicit iPhone-only hide/restore preserves resume/cloud/watched data and releases on newer activity, forward episodes or committed local playback. Data/Keychain assertions are extended. See VALIDATION; Apple/private/physical verification pending."
+  },
+  "Continue Watching merge": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Models/LibraryPresentation.swift; Models/Library.swift; ViewModels/LibraryModel.swift; Views/LibraryView.swift; Player/PlayerView.swift",
+    "notes": "Build 26 adds account-scoped library search, type filters and original Recent/A-Z/Year sorting. Continuing cards show real episode/time/progress. Explicit iPhone-only hide/restore preserves resume/cloud/watched data and releases on newer activity, forward episodes or committed local playback. Data/Keychain assertions are extended. See VALIDATION; Apple/private/physical verification pending."
+  },
+  "Setting: librarySort": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Models/LibraryPresentation.swift; Models/Library.swift; ViewModels/LibraryModel.swift; Views/LibraryView.swift; Player/PlayerView.swift",
+    "notes": "Build 26 adds account-scoped library search, type filters and original Recent/A-Z/Year sorting. Continuing cards show real episode/time/progress. Explicit iPhone-only hide/restore preserves resume/cloud/watched data and releases on newer activity, forward episodes or committed local playback. Data/Keychain assertions are extended. See VALIDATION; Apple/private/physical verification pending."
+  },
+  "Stream switcher": {
+    "state": "Partial",
+    "implementation": "ios/Harbor/Player/PlayerView.swift; PlayerState.swift; MPVController.swift; HarborTests/SubtitlePlaybackTests.swift; HarborUITests/LiveNavigationTests.swift",
+    "notes": "Build 27: Retry preserves checkpoints; real source picker and Close remain available. Reload acknowledgements; see VALIDATION.md. Apple/physical pending."
+  }
+}

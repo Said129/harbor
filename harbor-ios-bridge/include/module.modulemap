@@ -1,0 +1,4 @@
+module HarborCore {
+    header "harbor_ios.h"
+    export *
+}

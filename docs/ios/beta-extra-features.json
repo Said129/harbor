@@ -1,0 +1,185 @@
+[
+  {
+    "source": "src/lib/manga/sources/suwayomi/api.ts",
+    "features": [
+      "Manga Suwayomi connection",
+      "Manga Suwayomi source discovery",
+      "Manga popular/latest/search pagination",
+      "Manga Suwayomi library"
+    ]
+  },
+  {
+    "source": "src/lib/manga/sources/suwayomi/graphql.ts",
+    "features": ["Manga extension install/update/remove", "Manga extension repositories"]
+  },
+  {
+    "source": "src/lib/manga/sources/local.ts",
+    "features": [
+      "Manga local CBZ/ZIP",
+      "Manga image-folder chapters",
+      "Manga natural page ordering"
+    ]
+  },
+  {
+    "source": "src/views/manga/manga-reader/reader-prefs.ts",
+    "features": [
+      "Manga vertical/horizontal strips",
+      "Manga single/double pages",
+      "Manga book page turns",
+      "Manga width/height/original fit",
+      "Manga zoom",
+      "Manga RTL direction",
+      "Manga backgrounds",
+      "Manga navigation placement",
+      "Manga double-page gap",
+      "Manga focus mode",
+      "Manga automatic next chapter",
+      "Manga chapter-end hint",
+      "Manga page download",
+      "Manga page-turn sound"
+    ]
+  },
+  {
+    "source": "src/lib/manga/sources/suwayomi/sync.ts",
+    "features": ["Manga chapter progress sync"]
+  },
+  {
+    "source": "src/lib/manga/sources/suwayomi/rest.ts",
+    "features": ["Manga source filters"]
+  },
+  {
+    "source": "src/lib/sports/espn-leagues.ts",
+    "features": ["Sports original league catalog"]
+  },
+  {
+    "source": "src/lib/sports/espn-scoreboard.ts",
+    "features": [
+      "Sports calendar and scores",
+      "Sports live/upcoming/final filtering",
+      "Sports live score refresh"
+    ]
+  },
+  {
+    "source": "src/lib/sports/espn-summary.ts",
+    "features": ["Sports score periods and statistics", "Sports event commentary"]
+  },
+  {
+    "source": "src/lib/sports/favourites.ts",
+    "features": ["Sports favorite leagues and teams"]
+  },
+  {
+    "source": "src/lib/sports/usage-notice.ts",
+    "features": ["Sports external-service consent"]
+  },
+  {
+    "source": "src/lib/sports/reminders.ts",
+    "features": ["Sports event reminders"]
+  },
+  {
+    "source": "src/lib/sports/standings.ts",
+    "features": ["Sports standings"]
+  },
+  {
+    "source": "src/lib/sports/stream-resolver.ts",
+    "features": ["Sports configured broadcast sources"]
+  },
+  {
+    "source": "src/lib/home-customization.ts",
+    "features": [
+      "Home row ordering",
+      "Home row visibility",
+      "Home row titles",
+      "Home Top 10 numerals",
+      "Home hero source selection",
+      "Home play button shape",
+      "Home secondary button selection",
+      "Home Continue Watching placement"
+    ]
+  },
+  {
+    "source": "src/lib/iptv/vod.ts",
+    "features": ["M3U VOD classification", "VOD M3U episode grouping"]
+  },
+  {
+    "source": "src/lib/iptv/vod-title.ts",
+    "features": ["VOD title normalization"]
+  },
+  {
+    "source": "src/lib/iptv/xtream.ts",
+    "features": ["Xtream short EPG", "Xtream live container selection"]
+  },
+  {
+    "source": "src/lib/iptv/vod-enrich.ts",
+    "features": ["VOD metadata enrichment"]
+  },
+  {
+    "source": "src/lib/iptv/rtl.ts",
+    "features": ["VOD Arabic-aware search"]
+  },
+  {
+    "source": "src/views/playlist-vod/episode-row.tsx",
+    "features": ["VOD episode progress display"]
+  },
+  {
+    "source": "src/lib/spooktober-season.ts",
+    "features": ["Spooktober seasonal availability"]
+  },
+  {
+    "source": "src/views/spooktober/spooktober-entry.tsx",
+    "features": ["Spooktober invitation and dismissal"]
+  },
+  {
+    "source": "public/spooktober/content.json",
+    "features": ["Spooktober original curated selections"]
+  },
+  {
+    "source": "src/views/spooktober/spooktober-view.tsx",
+    "features": ["Spooktober native detail navigation"]
+  },
+  {
+    "source": "src-tauri/src/music/connectors/local/tags.rs",
+    "features": [
+      "Local music file import",
+      "Music album and artist grouping",
+      "Music audio cover import"
+    ]
+  },
+  {
+    "source": "src-tauri/src/music/commands/playback.rs",
+    "features": [
+      "Music native audio playback",
+      "Music playback queue",
+      "Music system controls",
+      "Music and video coordination"
+    ]
+  },
+  {
+    "source": "src-tauri/src/music/library.rs",
+    "features": [
+      "Music playlist creation and rename",
+      "Music playlist track membership",
+      "Music playlist track ordering",
+      "Music playlist deletion preserving library"
+    ]
+  },
+  {
+    "source": "src-tauri/src/music/connectors/local/scan.rs",
+    "features": ["Music local folder scanning"]
+  },
+  {
+    "source": "src/lib/music/playlist-filters.ts",
+    "features": ["Music playlist search and content filters", "Music playlist listening order"]
+  },
+  {
+    "source": "src/components/music/music-playlist-toolbar.tsx",
+    "features": ["Music playlist compact view"]
+  },
+  {
+    "source": "src/components/music/music-track-menu.tsx",
+    "features": ["Music track title copying"]
+  },
+  {
+    "source": "src/lib/player/subtitle-fps.ts",
+    "features": ["Subtitle source FPS correction"]
+  }
+]

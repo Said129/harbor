@@ -1,0 +1,51 @@
+{
+  "reference": "19ddc311a397eb3483b5c978d2cf2bbb3f7f479f",
+  "interfaces": [
+    "src/components/anime-hero.tsx",
+    "src/components/peek-hero.tsx",
+    "src/views/shows.tsx",
+    "src/views/discover/surprise-me.tsx"
+  ],
+  "art": {
+    "source": "public/anime-hero-art.json",
+    "sha256": "d5b3b2d45a9d51687a5c5f643234d3493b910892817554b1ce091a437a16d5f8",
+    "version": 1,
+    "count": 6249,
+    "update": "https://harbor.site/anime-hero-art.json",
+    "bundleSha256": "7a51bf28bd593baff1d796d78d3c2fdd5ad6cbb15c814468303e4009de2127f9",
+    "notes": "The source JSON is formatted by the repository checker; its decoded content is identical."
+  },
+  "icons": {
+    "package": "lucide-react",
+    "version": "0.460.0",
+    "desktopDeclaredVersion": "^0.460.0",
+    "notes": "Geometry from the original beta-declared dependency. The reference has no resolved lockfile; the exact installed beta dependency version is not claimed.",
+    "files": {
+      "trending-up": {
+        "source": "package/dist/esm/icons/trending-up.js",
+        "sourceSha256": "d38552fbbb64b4247a33402603030c11104f14eb4ddaf0fbc47231301e24d93c",
+        "svgSha256": "20004249f2d8ab8637bee3702e9699e78f60ea1a276898129436372bc5600fa8"
+      },
+      "dices": {
+        "source": "package/dist/esm/icons/dices.js",
+        "sourceSha256": "59ebfba83f7c8ac5e0c287388a02feaadc80c4c00fe34523e979eee68214aa68",
+        "svgSha256": "9a5c8cb904e187437e74f8a4a9f41a506fd624a77e8e486739feb542e6d6d0a5"
+      },
+      "plus": {
+        "source": "package/dist/esm/icons/plus.js",
+        "sourceSha256": "f99e0ba5bcf145e578d05904d1b5a768fcc94c93eea5793de5002edc02b90887",
+        "svgSha256": "18b3f7c75224cfcc5ae8556e6ee64f573b8aa2039772d4bcb80846f63c1ba964"
+      },
+      "check": {
+        "source": "package/dist/esm/icons/check.js",
+        "sourceSha256": "942041f985f610b080af1db8958a1338705d3303330e9fd6615ac8c95c1fa438",
+        "svgSha256": "71ce317514b38dcd9994e6ffd873478e3902f86c20645153b6086f0676da1bba"
+      },
+      "info": {
+        "source": "package/dist/esm/icons/info.js",
+        "sourceSha256": "f72050f3464c58d9dba51cff16c2fe91b2097cf41eede1bd7062ac0e72dd99fe",
+        "svgSha256": "83d30cdbeff923b7d4e1be3280f3e00bfa52650b6ad70cbe55928ad90d22bc88"
+      }
+    }
+  }
+}

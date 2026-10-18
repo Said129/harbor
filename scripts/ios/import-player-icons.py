@@ -1,0 +1,89 @@
+"""Preserve Desktop player vectors and exact-duration PNGs in native assets."""
+import argparse
+import hashlib
+import json
+from pathlib import Path
+import re
+import xml.etree.ElementTree as ET
+
+parser = argparse.ArgumentParser(description=__doc__)
+parser.add_argument("--reference", required=True, type=Path)
+reference = parser.parse_args().reference.resolve(strict=True)
+root = Path(__file__).resolve().parents[2]
+provenance_path = root / "docs/ios/beta-vector-provenance.json"
+provenance = json.loads(provenance_path.read_text(encoding="utf-8"))
+assets = root / "ios/Harbor/Assets.xcassets"
+
+
+def image(name, data, extension, template):
+    target = assets / f"player-{name}.imageset"
+    target.mkdir(exist_ok=True)
+    filename = "icon." + extension
+    if extension == "svg":
+        data = ("\n".join(line.rstrip() for line in data.decode("utf-8").splitlines()) + "\n").encode("utf-8")
+    (target / filename).write_bytes(data)
+    contents = {"images": [{"idiom": "universal", "filename": filename}], "info": {"version": 1, "author": "xcode"}, "properties": {"template-rendering-intent": "template" if template else "original"}}
+    if extension == "svg":
+        contents["properties"]["preserves-vector-representation"] = True
+    (target / "Contents.json").write_bytes((json.dumps(contents, indent=2) + "\n").encode("utf-8"))
+
+
+names = "back audio subtitle aspect speed volume volume--mute play-pause--paused play-pause--playing seek-back seek-forward prev-episode next-episode".split()
+for name in names:
+    relative = f"public/player-icons/{name}.svg"
+    data = (reference / relative).read_bytes()
+    parsed = ET.fromstring(data)
+    if parsed.attrib.get("viewBox") != "0 0 512 512" or any(element.tag.rsplit("}", 1)[-1] not in {"svg", "g", "path"} for element in parsed.iter()):
+        raise ValueError(f"Unexpected original player geometry: {name}")
+    image(name, data, "svg", True)
+    if name in {"seek-back", "seek-forward"}:
+        # The default master contains a baked-in 10. Keep its exact arrow path
+        # for native custom intervals; supported intervals use untouched PNGs.
+        arrow = parsed.find("{http://www.w3.org/2000/svg}path")
+        if arrow is None:
+            raise ValueError("Missing original seek arrow")
+        svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="#ffffff" d="' + arrow.attrib["d"] + '"/></svg>\n'
+        image(name + "-custom", svg.encode("utf-8"), "svg", True)
+    provenance["files"][relative] = hashlib.sha256(data).hexdigest()
+for direction in ["back", "forward"]:
+    for seconds in [1, 3, 5, 10, 15, 30, 60, 90]:
+        name = f"seek-{direction}-{seconds}"
+        relative = f"public/player-icons/{name}.png"
+        data = (reference / relative).read_bytes()
+        if not data.startswith(b"\x89PNG\r\n\x1a\n"):
+            raise ValueError("Expected original seek PNG")
+        image(name, data, "png", False)
+        provenance["files"][relative] = hashlib.sha256(data).hexdigest()
+relative = "src/components/player/subtitle-menu/subtitle-fps-icon.tsx"
+source = (reference / relative).read_text(encoding="utf-8")
+paths = re.findall(r'<path d="([^"]+)"\s*/>', source)
+if len(paths) != 3 or 'viewBox="0 0 512 512"' not in source:
+    raise ValueError("Unexpected original SubtitleFpsIcon geometry")
+svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">' + "".join(f'<path fill="#ffffff" d="{path}"/>' for path in paths) + "</svg>\n"
+image("subtitle-fps", svg.encode("utf-8"), "svg", True)
+provenance["files"][relative] = hashlib.sha256((reference / relative).read_bytes()).hexdigest()
+for relative in ["src/lib/player/subtitle-fps.ts", "src/lib/player/sub-format.ts", "src/lib/player/secondary-sub.ts", "src/lib/player/sub-style.ts", "src/components/player/subtitle-menu/subtitle-fps-panel.tsx"]:
+    provenance["files"][relative] = hashlib.sha256((reference / relative).read_bytes()).hexdigest()
+relative = "src/lib/subtitles/language.ts"
+source = (reference / relative).read_text(encoding="utf-8")
+language = {}
+for name, key in [("ISO_3_TO_1", "iso3"), ("NAMES", "names")]:
+    block = re.search(r"const " + name + r"[^=]*=\s*\{([\s\S]*?)\n\};", source)
+    if block is None:
+        raise ValueError("Missing original language map: " + name)
+    language[key] = {quoted or bare: value for quoted, bare, value in re.findall(r'\s*(?:"([a-z0-9-]+)"|([a-z0-9_]+)):\s*"([^"]+)"', block[1])}
+    if len(language[key]) < 70:
+        raise ValueError("Incomplete original language map: " + name)
+for name, key in [("LATAM_ALIASES", "latamAliases"), ("LATAM_REGIONS", "latamRegions"), ("BRAZIL_ALIASES", "brazilAliases")]:
+    block = re.search(r"const " + name + r" = new Set\(\[([\s\S]*?)\]\);", source)
+    if block is None:
+        raise ValueError("Missing original language aliases: " + name)
+    language[key] = re.findall(r'"([^"]+)"', block[1])
+(root / "ios/Harbor/SubtitleLanguages.json").write_bytes((json.dumps(language, ensure_ascii=False, indent=2) + "\n").encode("utf-8"))
+provenance["files"][relative] = hashlib.sha256((reference / relative).read_bytes()).hexdigest()
+for relative in ["src/lib/subtitles/track-label.ts", "src/components/player/subtitle-menu/menu-body.tsx", "src/components/player/subtitle-menu/utils.ts"]:
+    provenance["files"][relative] = hashlib.sha256((reference / relative).read_bytes()).hexdigest()
+for relative in ["src/views/player/hooks/use-auto-next-episode.ts", "src/views/player/hooks/use-started-near-end.ts", "src/views/player/hooks/use-episode-navigation.ts", "src/views/player/skip-pill-container.tsx", "src/lib/series-episodes.ts"]:
+    provenance["files"][relative] = hashlib.sha256((reference / relative).read_bytes()).hexdigest()
+provenance_path.write_bytes((json.dumps(provenance, indent=2) + "\n").encode("utf-8"))
+print("Preserved 30 original player assets and two original-arrow adaptations for custom intervals")

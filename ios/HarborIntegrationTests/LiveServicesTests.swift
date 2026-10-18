@@ -1,0 +1,292 @@
+import XCTest
+import CryptoKit
+import GLKit
+import SwiftUI
+import UIKit
+@testable import Harbor
+
+/// Opt-in network integration. These use the production service and embedded
+/// C ABI; no catalog, metadata, stream or player response is substituted.
+@MainActor
+final class LiveServicesTests: XCTestCase {
+    private let service = HarborService()
+    private let publicAddon = "https://raw.githubusercontent.com/Stremio/stremio-static-addon-example/master/manifest.json"
+
+    private func requireOptIn() throws {
+        guard ProcessInfo.processInfo.environment["HARBOR_LIVE_INTEGRATION"] == "1" else {
+            throw XCTSkip("Live integration requires explicit opt-in")
+        }
+    }
+    func testDanmachiSeasonOneEpisodeSevenUsesDesktopAliases() async throws {
+        try requireOptIn()
+        let media = try await AnimeService.metadata(id: "mal:28121", kind: "series")
+        let episode = try XCTUnwrap(media.videos?.first { $0.season == 1 && $0.episode == 7 })
+        XCTAssertEqual(episode.id, "kitsu:9962:7")
+        XCTAssertEqual(StreamRequestPolicy.ids(media, videoID: episode.id, season: 1, episode: 7), ["kitsu:9962:7", "tt4728568:1:7"])
+        print("Live Danmachi S1E7: verified Kitsu and IMDb request identities from actual provider metadata")
+    }
+    @available(iOS, deprecated: 12.0)
+    func testSubtitleAddonsReturnMovieSeriesAndMappedAnimeResults() async throws {
+        try requireOptIn()
+        let addon = try await service.install("https://opensubtitles-v3.strem.io/manifest.json")
+        let movie = Media(id: "tt15398776", type: "movie", name: "Oppenheimer")
+        let series = Media(id: "tt0903747", type: "series", name: "Breaking Bad")
+        let anime = try await AnimeService.metadata(id: "mal:28121", kind: "series")
+        let episode = try XCTUnwrap(anime.videos?.first { $0.season == 1 && $0.episode == 7 })
+        let requests = [
+            SubtitleRequest(media: movie, videoID: movie.id, season: nil, episode: nil, addons: [addon], stream: .null),
+            SubtitleRequest(media: series, videoID: "tt0903747:1:1", season: 1, episode: 1, addons: [addon], stream: .null),
+            SubtitleRequest(media: anime, videoID: episode.id, season: 1, episode: 7, addons: [addon], stream: .null)
+        ]
+        for request in requests {
+            let result = try await SubtitleAddonService().search(request)
+            XCTAssertGreaterThan(result.subtitles.count, 0, "The production subtitle addon query returned no results for \(request.media.name)")
+            XCTAssertEqual(result.failures, 0)
+            XCTAssertEqual(result.providers, 1)
+            XCTAssertTrue(result.subtitles.allSatisfy { $0.title?.contains("OpenSubtitles") == true && $0.lang?.isEmpty == false })
+            print("Actual subtitle addon: \(request.media.name), subtitles=\(result.subtitles.count)")
+        }
+        // The public example's video URL has been retired. Use the existing
+        // native video fixture, with the real production PlayerView and real
+        // addon responses/downloads, rather than substituting network results.
+        let scene = try XCTUnwrap(UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }.first)
+        let previous = scene.windows.first { $0.isKeyWindow }
+        let window = UIWindow(windowScene: scene); window.frame = CGRect(x: 0, y: 0, width: 402, height: 874)
+        defer { window.isHidden = true; window.rootViewController = nil; previous?.makeKeyAndVisible() }
+        let video = try XCTUnwrap(Bundle(for: Self.self).url(forResource: "render-8bit", withExtension: "mp4", subdirectory: "Fixtures"))
+        let bunny = Media(id: "tt1254207", type: "movie", name: "Big Buck Bunny")
+        var playback = PlaybackSession(source: PlaybackSource(url: video.absoluteString, headers: nil, subtitles: nil, via: "test-fixture"), target: ResumeTarget(id: bunny.id), startMs: 0, storageWarning: nil, progressEnabled: false)
+        playback.subtitleRequest = SubtitleRequest(media: bunny, videoID: bunny.id, season: nil, episode: nil, addons: [addon], stream: .null)
+        let host = UIHostingController(rootView: PlayerView(session: playback, resume: ResumeStore(owner: "subtitle-integration"), title: "Vídeo de prueba · addon real").preferredColorScheme(.dark))
+        window.rootViewController = host; window.makeKeyAndVisible()
+        func findPlayer(_ container: UIViewController) -> MPVController? {
+            if let player = container as? MPVController { return player }
+            return container.children.compactMap { findPlayer($0) }.first
+        }
+        let deadline = Date().addingTimeInterval(45)
+        var loaded: MPVController?
+        while Date() < deadline {
+            host.view.layoutIfNeeded()
+            if let player = findPlayer(host) {
+                (player.view as? GLKView)?.display()
+                if player.state.loaded, !player.state.addonSubtitles.isEmpty { loaded = player; break }
+                XCTAssertNil(player.state.error)
+            }
+            try await Task.sleep(for: .milliseconds(100))
+        }
+        let player = try XCTUnwrap(loaded, "The actual PlayerView lifecycle must discover installed addon subtitles")
+        defer { player.close() }
+        let state = player.state
+        let chosen = try XCTUnwrap(state.addonSubtitles.first)
+        player.loadAddonSubtitle(chosen)
+        let downloadDeadline = Date().addingTimeInterval(35)
+        while Date() < downloadDeadline, !state.addonSubtitleSelected(chosen) {
+            (player.view as? GLKView)?.display()
+            try await Task.sleep(for: .milliseconds(100))
+        }
+        XCTAssertTrue(state.addonSubtitleSelected(chosen), "Real addon download must be acknowledged as the actual selected mpv track")
+        XCTAssertNil(state.subtitleIssue); XCTAssertNil(state.error)
+        let selected = try XCTUnwrap(state.primarySubtitle)
+        XCTAssertTrue(selected.external)
+        XCTAssertTrue(selected.externalFilename.hasPrefix("file:") || selected.externalFilename.hasPrefix("/"), "mpv must receive a protected local copy, never the addon URL with video headers")
+        let panel = UIHostingController(rootView: NavigationStack { SubtitleTracksView(state: state) }.preferredColorScheme(.dark))
+        player.addChild(panel); player.view.addSubview(panel.view); panel.didMove(toParent: player); panel.view.frame = player.view.bounds
+        defer { panel.willMove(toParent: nil); panel.view.removeFromSuperview(); panel.removeFromParent() }
+        try await Task.sleep(for: .milliseconds(400)); panel.view.layoutIfNeeded()
+        let image = UIGraphicsImageRenderer(bounds: panel.view.bounds).image { _ in _ = panel.view.drawHierarchy(in: panel.view.bounds, afterScreenUpdates: true) }
+        let attachment = XCTAttachment(image: image); attachment.name = "native-live-addon-subtitle-selected-with-local-video-fixture"; attachment.lifetime = .keepAlways; add(attachment)
+    }
+    func testAniListRailsAndCanonicalEpisodeMetadata() async throws {
+        try requireOptIn()
+        let definition = try XCTUnwrap(AnimeService.definitions().first { $0.id == "anilist-top100" })
+        let first = try await AnimeService.shared.page(definition, page: 1)
+        let second = try await AnimeService.shared.page(definition, page: 2)
+        XCTAssertEqual(first.count + second.count, 100, "The original Top 100 rail must fetch both actual AniList pages")
+        XCTAssertTrue(first.allSatisfy { AnimeService.isAnime($0.id) && $0.poster?.hasPrefix("https://") == true && $0.ratingSource == "AniList" })
+        XCTAssertTrue(Set(first.map(\.id)).isDisjoint(with: second.map(\.id)))
+        let detail = try await AnimeService.metadata(id: "mal:1", kind: "series")
+        XCTAssertFalse(detail.name.isEmpty)
+        XCTAssertFalse(detail.videos?.isEmpty ?? true, "Anime details must use the provider's canonical episode identities")
+        XCTAssertTrue(detail.videos?.allSatisfy { !$0.id.isEmpty } == true)
+        let anilistDetail = try await AnimeService.metadata(id: "anilist:1", kind: "series")
+        XCTAssertEqual(anilistDetail.id, detail.id, "Provider IDs must resolve to the same canonical playback metadata")
+        XCTAssertEqual(anilistDetail.videos?.map(\.id), detail.videos?.map(\.id))
+        print("Harbor live Anime: AniList=\(first.count + second.count), canonical episodes=\(detail.videos?.count ?? 0)")
+    }
+    func testMALRecommendationsAndDesktopAwardCatalog() async throws {
+        try requireOptIn()
+        let definition = try XCTUnwrap(AnimeService.definitions().first { $0.id == "anime-popular" })
+        let popular = try await AnimeService.shared.page(definition, page: 1)
+        XCTAssertFalse(popular.isEmpty)
+        XCTAssertTrue(popular.allSatisfy { $0.id.hasPrefix("mal:") && $0.ratingSource == "MAL" && $0.poster?.hasPrefix("https://") == true })
+        let second = try await AnimeService.shared.page(definition, page: 2)
+        XCTAssertFalse(second.isEmpty)
+        XCTAssertTrue(Set(popular.map(\.id)).isDisjoint(with: second.map(\.id)), "Public MAL pagination must advance rather than repeat its first page")
+        let award = try XCTUnwrap(AnimeService.definitions().first { $0.id == "anime-awards" })
+        let winners = try await AnimeService.shared.page(award, page: 1)
+        XCTAssertFalse(winners.isEmpty)
+        XCTAssertTrue(winners.allSatisfy { AnimeService.isAnime($0.id) && $0.poster != nil })
+        let home = await AnimeService.shared.homeRows()
+        XCTAssertFalse(home.isEmpty, "Home must retain its real public anime sources")
+        XCTAssertTrue(home.contains { $0.id == "anime-airing" && !$0.metas.isEmpty })
+        XCTAssertTrue(home.contains { $0.id == "anime-popular" && !$0.metas.isEmpty })
+        XCTAssertTrue(home.allSatisfy { (6...60).contains($0.metas.count) && $0.path == "home:fixed" && $0.metas.allSatisfy { AnimeService.isAnime($0.id) && $0.ratingSource == "MAL" } })
+        print("Harbor live Home anime: loaded=\(home.map(\.id).joined(separator: ",")), items=\(home.reduce(0) { $0 + $1.metas.count })")
+        print("Harbor live Anime: MAL=\(popular.count + second.count), original award winners resolved=\(winners.count)")
+    }
+    func testNativeSportsLoadsPublishedScoresAndActualBoxscore() async throws {
+        try requireOptIn()
+        let league = try XCTUnwrap(try SportsLeague.catalog().first { $0.id == "NBA" })
+        let events = try await SportsService.shared.events(league, date: "20251025", refresh: true)
+        XCTAssertFalse(events.isEmpty)
+        let event = try XCTUnwrap(events.first)
+        XCTAssertEqual(event.league.path, "basketball/nba")
+        XCTAssertEqual(event.sides.count, 2)
+        XCTAssertTrue(event.sides.allSatisfy { !$0.name.isEmpty && $0.score != nil })
+        let summary = try await SportsService.shared.summary(event)
+        XCTAssertFalse(summary.groups.isEmpty, "Published team/player statistics must survive native parsing")
+        let standings = try await SportsStandingsService.shared.table(league, season: 2026)
+        XCTAssertFalse(standings.groups.isEmpty)
+        XCTAssertTrue(standings.groups.flatMap(\.rows).contains { !$0.side.name.isEmpty && !$0.cells.isEmpty })
+        print("Harbor live Sports: events=\(events.count), statisticGroups=\(summary.groups.count)")
+    }
+
+    func testPublishedM3UIsCachedPrivatelyAndChannelsResolveWithNativeCore() async throws {
+        try requireOptIn()
+        let source = LivePlaylistSource(id: UUID().uuidString.lowercased(), name: "Public playlist integration", url: "https://iptv-org.github.io/iptv/countries/es.m3u")
+        let cached = LivePlaylistSource(id: source.id, name: source.name, url: nil)
+        let owner = "iptv-test-" + UUID().uuidString
+        do {
+            let channels = try await LivePlaylistService.shared.load(source, owner: owner, refresh: true)
+            let channel = try XCTUnwrap(channels.first { $0.url.hasPrefix("https://") && !$0.drm })
+            let headers = JSONValue.object(channel.headers.mapValues(JSONValue.string))
+            let offer = StreamOffer(id: 0, raw: .object(["addonId": .string("iptv:" + source.id), "addonName": .string("Live TV"), "url": .string(channel.url), "behaviorHints": .object(["proxyHeaders": .object(["request": headers])])]))
+            let playback = try await service.resolve(offer)
+            XCTAssertEqual(playback.url, channel.url)
+            let reloaded = try await LivePlaylistService.shared.load(cached, owner: owner, refresh: false)
+            XCTAssertEqual(reloaded, channels)
+            do { _ = try await LivePlaylistService.shared.load(cached, owner: owner + "-other", refresh: false); XCTFail("An unrelated account must not open the private playlist copy") }
+            catch let error as HarborError { XCTAssertEqual(error.code, "iptv-url") }
+            try await LivePlaylistService.shared.remove(source, owner: owner)
+            print("Harbor live M3U: channels=\(channels.count), native resolution/cache/isolation=passed; media transport unverified")
+        } catch { try? await LivePlaylistService.shared.remove(source, owner: owner); throw error }
+    }
+
+    func testCinemetaCatalogSearchAndMetadataThroughNativeService() async throws {
+        try requireOptIn()
+        let addon = try await service.install(HarborService.cinemetaManifest)
+        let (catalogs, _) = try await service.catalogs([addon])
+        XCTAssertFalse(catalogs.isEmpty)
+        let preview = try XCTUnwrap(catalogs.flatMap(\.metas).first)
+        let metadata = try await service.metadata(preview, addons: [addon])
+        XCTAssertEqual(metadata.id, preview.id)
+        XCTAssertFalse(metadata.name.isEmpty)
+        let (results, _) = try await service.catalogs([addon], search: "Interstellar")
+        let count = results.reduce(0) { $0 + $1.metas.count }
+        XCTAssertGreaterThan(count, 0)
+        let match = try XCTUnwrap(results.flatMap(\.metas).first { $0.id == "tt0816692" && $0.name == "Interstellar" }, "The real movie query must return its matching metadata identity")
+        let detail = try await service.metadata(match, addons: [addon])
+        XCTAssertFalse(detail.writer?.isEmpty ?? true, "The native detail must preserve writers returned by the real addon")
+        let trailers = try XCTUnwrap(detail.details?.trailers)
+        XCTAssertFalse(trailers.isEmpty, "Addon trailers must be available without a TMDB key")
+        XCTAssertTrue(trailers.allSatisfy { URL(string: $0.url)?.host == "www.youtube.com" })
+        let related = try await service.related(detail, addons: [addon])
+        XCTAssertFalse(related.isEmpty, "The native detail must retain Desktop's real Cinemeta genre discovery")
+        XCTAssertFalse(related.contains { $0.identity == detail.identity })
+        var disabled = addon; disabled.enabled = false
+        let disabledRelated = try await service.related(detail, addons: [disabled])
+        XCTAssertTrue(disabledRelated.isEmpty, "Related titles must respect an explicitly disabled catalog provider")
+        let homeApp = AppModel()
+        XCTAssertTrue(MetadataPreferences.shared.configuration().tmdbKey.isEmpty, "The public Home gate must exercise the real no-key fallback")
+        await homeApp.home.load(app: homeApp)
+        XCTAssertNil(homeApp.home.error)
+        XCTAssertEqual(homeApp.home.rows.count, 18, "Home must load the original Cinemeta rows rather than only installed addon rows")
+        let ranked = try XCTUnwrap(homeApp.home.rows.first { $0.id == "cm-top-movies" })
+        XCTAssertEqual(ranked.metas.count, 10)
+        XCTAssertEqual(ranked.path, "home:fixed", "View all must retain the original bounded Top 10")
+        let popular = try XCTUnwrap(homeApp.home.rows.first { $0.id == "cm-popular" })
+        XCTAssertTrue(Set(ranked.metas.map(\.identity)).isDisjoint(with: popular.metas.map(\.identity)), "Popular must begin after the Top 10 from the same real response")
+        XCTAssertFalse(homeApp.home.heroes.isEmpty)
+        print("Harbor live Home: Cinemeta rows=\(homeApp.home.rows.count), ranked=\(ranked.metas.count), heroes=\(homeApp.home.heroes.count)")
+        print("Harbor live Cinemeta: catalogs=\(catalogs.count) searchItems=\(count) trailers=\(trailers.count) related=\(related.count) metadata=passed")
+    }
+
+    func testOfficialAddonCatalogMetadataStreamsAndResolution() async throws {
+        try requireOptIn()
+        let directory = try await AddonDirectory.shared.load(refresh: true)
+        XCTAssertFalse(directory.addons.isEmpty, "Public discovery must load real manifests through the native client")
+        XCTAssertTrue(directory.addons.allSatisfy { !$0.name.isEmpty && $0.manifest["id"].string != nil && URL(string: $0.transportUrl)?.scheme == "https" })
+        print("Harbor live addon directory: entries=\(directory.addons.count) unavailableSources=\(directory.failedSources)")
+        let community = try await CommunityAddons.shared.list(.stars, allowAdult: false, refresh: true)
+        XCTAssertFalse(community.isEmpty, "The original community index must load through the actual native parser")
+        XCTAssertTrue(community.allSatisfy { !$0.adult && $0.stars >= 0 && $0.siteURL?.host == "stremio-addons.net" })
+        let spotlight = try await CommunityAddons.shared.spotlight(allowAdult: false)
+        XCTAssertNotNil(spotlight, "A spotlight must resolve from public rising or rated entries")
+        print("Harbor live community addon index: entries=\(community.count) spotlight=\(spotlight == nil ? "missing" : "passed")")
+        // This addon is installed within the test only; it is not an app default.
+        let addon = try await service.install(publicAddon)
+        let (catalogs, _) = try await service.catalogs([addon])
+        let preview = try XCTUnwrap(catalogs.flatMap(\.metas).first)
+        let metadata = try await service.metadata(preview, addons: [addon])
+        let videoID = metadata.behaviorHints?.defaultVideoId ?? metadata.id
+        let (offers, _) = try await service.streams(metadata, videoID: videoID, addons: [addon])
+        let offer = try XCTUnwrap(offers.first)
+        let source = try await service.resolve(offer)
+        XCTAssertTrue(["http", "https"].contains(URL(string: source.url)?.scheme ?? ""))
+        XCTAssertEqual(source.via, "direct")
+        print("Harbor live official addon: catalogs=\(catalogs.count) offers=\(offers.count) resolution=passed; media transport unverified")
+    }
+
+    func testNativeDownloadPersistsExactPublicBytesAndRemainsAccountScoped() async throws {
+        try requireOptIn()
+        let downloads = DownloadManager.shared
+        let owner = "download-test-\(UUID().uuidString)"
+        defer { for item in downloads.list(owner: owner) { downloads.remove(item, owner: owner) } }
+        // Original CC0 fixture hosted at a fixed public commit, test input only.
+        let source = PlaybackSource(url: "https://raw.githubusercontent.com/Said129/harbor/1f4d5d99282b2eda816cbe0d544cb33b5bc7ee21/ios/HarborTests/Fixtures/render-8bit.mp4", headers: nil, subtitles: nil, via: "direct")
+        let media = Media(id: "download-test", type: "movie", name: "Native download test")
+        try downloads.start(source: source, media: media, episode: nil, owner: owner, cellular: false)
+        let active = try XCTUnwrap(downloads.list(owner: owner).first)
+        downloads.toggle(active, owner: "other-\(owner)")
+        XCTAssertEqual(downloads.list(owner: owner).first?.status, .downloading)
+        downloads.toggle(active, owner: owner)
+        XCTAssertEqual(downloads.list(owner: owner).first?.status, .paused)
+        downloads.toggle(active, owner: owner)
+        XCTAssertEqual(downloads.list(owner: owner).first?.status, .downloading, "Resume must use the current stored state even when the rendered row is older")
+        let deadline = Date().addingTimeInterval(45)
+        while Date() < deadline, let item = downloads.list(owner: owner).first, item.status == .downloading {
+            try await Task.sleep(for: .milliseconds(250))
+        }
+        let item = try XCTUnwrap(downloads.list(owner: owner).first)
+        XCTAssertEqual(item.status, .complete, item.message ?? "The background download did not complete")
+        let file = try downloads.file(item)
+        let data = try Data(contentsOf: file)
+        let hash = SHA256.hash(data: data).map { String(format: "%02x", $0) }.joined()
+        XCTAssertEqual(hash, "27335d1dbe06c76690517ccbf65e26aaa341ca38a3f3cbf71e98e79e50508c59")
+        XCTAssertEqual(item.received, Int64(data.count))
+        XCTAssertTrue(downloads.list(owner: "other-\(owner)").isEmpty)
+        downloads.remove(item, owner: "other-\(owner)")
+        XCTAssertTrue(FileManager.default.fileExists(atPath: file.path), "An action from another account must preserve the actual downloaded bytes")
+        XCTAssertEqual(downloads.list(owner: owner).first?.id, item.id)
+        downloads.remove(item, owner: owner)
+        XCTAssertFalse(FileManager.default.fileExists(atPath: file.path))
+    }
+
+    func testRealGutenbergEPUBLoadsNativeChapters() async throws {
+        try requireOptIn()
+        let (books, _) = try await EBookService.shared.catalog(query: "Pride and Prejudice", language: "en", page: 1)
+        let book = try XCTUnwrap(books.first { $0.id == "gutendex:1342" }, "The production catalog must return the requested Gutenberg book")
+        XCTAssertTrue(book.title.localizedCaseInsensitiveContains("Pride and Prejudice"))
+        XCTAssertNotNil(book.epub)
+        let owner = "ebook-test-\(UUID().uuidString)"
+        do {
+            let publication = try await EBookService.shared.open(book, owner: owner)
+            XCTAssertTrue(publication.title.localizedCaseInsensitiveContains("Pride and Prejudice"))
+            XCTAssertGreaterThan(publication.chapters.count, 1)
+            let blocks = try await EBookService.shared.blocks(book, owner: owner, chapter: 1)
+            XCTAssertFalse(blocks.isEmpty)
+            XCTAssertTrue(blocks.contains { !$0.text.isEmpty })
+            try await EBookService.shared.remove(book, owner: owner)
+        } catch { try? await EBookService.shared.remove(book, owner: owner); throw error }
+    }
+}

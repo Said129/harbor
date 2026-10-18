@@ -1,0 +1,518 @@
+{
+  "reference": "19ddc311",
+  "flagIconsVersion": "7.5.0",
+  "flagIconsIntegrity": "sha512-kd+MNXviFIg5hijH766tt+3x76ele1AXlo4zDdCxIvqWZhKt4T83bOtxUOOMlTx/EcFdUMH5yvQgYlFh1EqqFg==",
+  "assets": {
+    "en": {
+      "source": "src/assets/flags/flag-eng.svg",
+      "sha256": "2dcb2dd87211f21777b1a920706029a76cb61ae5c5564c22aaf9cabf5220e5e5",
+      "output": "ios/Harbor/Assets.xcassets/language-flag-en.imageset/flag.svg"
+    },
+    "es": {
+      "source": "src/assets/flags/flag-spa.svg",
+      "sha256": "224ad7eb5edd06413be68dbf960d49d6c053ca6a2c8835ba82ac627baf9cc4b9",
+      "output": "ios/Harbor/Assets.xcassets/language-flag-es.imageset/flag.svg"
+    },
+    "es-419": {
+      "source": "src/assets/flags/flag-spa.svg",
+      "sha256": "224ad7eb5edd06413be68dbf960d49d6c053ca6a2c8835ba82ac627baf9cc4b9",
+      "output": "ios/Harbor/Assets.xcassets/language-flag-es-419.imageset/flag.svg"
+    },
+    "fr": {
+      "source": "src/assets/flags/flag-fra.svg",
+      "sha256": "3ec6221997138c236071d326ef6657e0c18f8f33dccf31a8fad1ec86513ef238",
+      "output": "ios/Harbor/Assets.xcassets/language-flag-fr.imageset/flag.svg"
+    },
+    "de": {
+      "source": "src/assets/flags/flag-deu.svg",
+      "sha256": "b1bf7e2fc516cfd122eb8d5609e522558db754ac3acd3e3447119b37b1e1fe25",
+      "output": "ios/Harbor/Assets.xcassets/language-flag-de.imageset/flag.svg"
+    },
+    "it": {
+      "source": "src/assets/flags/flag-ita.svg",
+      "sha256": "20d8c1409f5ec4717f962556e84dcd2c761cffb3a98993101e43dedd283a0302",
+      "output": "ios/Harbor/Assets.xcassets/language-flag-it.imageset/flag.svg"
+    },
+    "ja": {
+      "source": "src/assets/flags/flag-jpn.svg",
+      "sha256": "eeb426177e6d3ab4b059c0dd359640d88925ba355c81c2793565424d5455396b",
+      "output": "ios/Harbor/Assets.xcassets/language-flag-ja.imageset/flag.svg"
+    },
+    "ko": {
+      "source": "src/assets/flags/flag-kor.svg",
+      "sha256": "f7b83559de7b80921f826f0fe9557ae9870415d5e484f8ae92772dd6de72061e",
+      "output": "ios/Harbor/Assets.xcassets/language-flag-ko.imageset/flag.svg"
+    },
+    "zh": {
+      "source": "src/assets/flags/flag-zho.svg",
+      "sha256": "36355cfd7c1bcb48ad7b81268c9852d5ddc5198a0ad9e17d70137c399f973c3b",
+      "output": "ios/Harbor/Assets.xcassets/language-flag-zh.imageset/flag.svg"
+    },
+    "ru": {
+      "source": "src/assets/flags/flag-rus.svg",
+      "sha256": "7585992490079a13f826354ebe24702d805e10f7fc1df3efa89a8b4a94889e38",
+      "output": "ios/Harbor/Assets.xcassets/language-flag-ru.imageset/flag.svg"
+    },
+    "pt": {
+      "source": "src/assets/flags/flag-prt.svg",
+      "sha256": "77bc469287bac682f713c1590dac442ce185d912d096e1052f5b438c1d7e394f",
+      "output": "ios/Harbor/Assets.xcassets/language-flag-pt.imageset/flag.svg"
+    },
+    "pt-br": {
+      "source": "src/assets/flags/flag-bra.svg",
+      "sha256": "aa93cdd3e49584f39ab721e09504ca01ca4712d31352bf3bf3dbe9cfe0cd5f8c",
+      "output": "ios/Harbor/Assets.xcassets/language-flag-pt-br.imageset/flag.svg"
+    },
+    "ar": {
+      "source": "src/assets/flags/flag-ara.svg",
+      "sha256": "d06aa9f87ee08ee9c5bbef8ce7b8cec671d94158abe1050f4501e94eb9e60f3c",
+      "output": "ios/Harbor/Assets.xcassets/language-flag-ar.imageset/flag.svg"
+    },
+    "hi": {
+      "source": "src/assets/flags/flag-hin.svg",
+      "sha256": "930756ed4f6e24c636f85155f243d4fec3122d30fd3e02648372fdeaa9839be1",
+      "output": "ios/Harbor/Assets.xcassets/language-flag-hi.imageset/flag.svg"
+    },
+    "th": {
+      "source": "src/assets/flags/flag-tha.svg",
+      "sha256": "f56a67a10d3c47d12a59773e58518075f157a416e0b0c8e162828e600007224a",
+      "output": "ios/Harbor/Assets.xcassets/language-flag-th.imageset/flag.svg"
+    },
+    "vi": {
+      "source": "src/assets/flags/flag-vie.svg",
+      "sha256": "822ee31c02afcf0315341da8ab1e0528a1dc90e088076789e2c4a24427a31147",
+      "output": "ios/Harbor/Assets.xcassets/language-flag-vi.imageset/flag.svg"
+    },
+    "tr": {
+      "source": "src/assets/flags/flag-tur.svg",
+      "sha256": "a7eaacd4d1a6d0b3f211a84a7a1959f5383cc83ddd72e5a76ecb22a85b525649",
+      "output": "ios/Harbor/Assets.xcassets/language-flag-tr.imageset/flag.svg"
+    },
+    "pl": {
+      "source": "src/assets/flags/flag-pol.svg",
+      "sha256": "db77748af06354f04153f5241d1f846cd89615b6fe4a1f46c1dd6e4b2190dbd6",
+      "output": "ios/Harbor/Assets.xcassets/language-flag-pl.imageset/flag.svg"
+    },
+    "nl": {
+      "source": "src/assets/flags/flag-nld.svg",
+      "sha256": "db26019e0fbc89cac4f9d3c625798d0f9ec5f18eaead3ee56d630589598f39a7",
+      "output": "ios/Harbor/Assets.xcassets/language-flag-nl.imageset/flag.svg"
+    },
+    "sv": {
+      "source": "src/assets/flags/flag-swe.svg",
+      "sha256": "b3dc539c7254a0cf9f6d6b113d32bd8f7f88c336936e621bf1a9155814624bd7",
+      "output": "ios/Harbor/Assets.xcassets/language-flag-sv.imageset/flag.svg"
+    },
+    "no": {
+      "source": "src/assets/flags/flag-nor.svg",
+      "sha256": "243cff005f6aa5277a7f605649613ff26bcd556648ba6ec3f2de87df3f467690",
+      "output": "ios/Harbor/Assets.xcassets/language-flag-no.imageset/flag.svg"
+    },
+    "da": {
+      "source": "src/assets/flags/flag-dan.svg",
+      "sha256": "a745e9cb226f94a82aedf0e7b79c7a55b149b400444005d4e36a2f68cbc548bb",
+      "output": "ios/Harbor/Assets.xcassets/language-flag-da.imageset/flag.svg"
+    },
+    "fi": {
+      "source": "src/assets/flags/flag-fin.svg",
+      "sha256": "1713170149dca9bfbb287c300cda00473a7a75417f16f0b04c6b657bca3827b4",
+      "output": "ios/Harbor/Assets.xcassets/language-flag-fi.imageset/flag.svg"
+    },
+    "he": {
+      "source": "src/assets/flags/flag-heb.svg",
+      "sha256": "9cd8ea9460cabc942f1c75adcf57fad91d11316ee3d0c658e57dbdf6950dbbbb",
+      "output": "ios/Harbor/Assets.xcassets/language-flag-he.imageset/flag.svg"
+    },
+    "id": {
+      "source": "package/flags/4x3/id.svg",
+      "package": "flag-icons",
+      "version": "7.5.0",
+      "sha256": "5cd3acc4939dd7eae6318c8d75df8c0d1733f650e2504a2635b0dbf3dfabb040",
+      "output": "ios/Harbor/Assets.xcassets/language-flag-id.imageset/flag.svg"
+    },
+    "cs": {
+      "source": "src/assets/flags/flag-ces.svg",
+      "sha256": "c1214c7808cdff324d5649cb130a82a96870c1f234e4d306d70ea9b98ebdfc4b",
+      "output": "ios/Harbor/Assets.xcassets/language-flag-cs.imageset/flag.svg"
+    },
+    "el": {
+      "source": "package/flags/4x3/gr.svg",
+      "package": "flag-icons",
+      "version": "7.5.0",
+      "sha256": "a184070f7678b06777be8ac38cb05ba41829591a6dac9b64b2b72db66aec82f5",
+      "output": "ios/Harbor/Assets.xcassets/language-flag-el.imageset/flag.svg"
+    },
+    "hu": {
+      "source": "src/assets/flags/flag-hun.svg",
+      "sha256": "6a51e688fc1748340c4577c9a8c14a7ccc90efe60c8596c05e1204d653628f5b",
+      "output": "ios/Harbor/Assets.xcassets/language-flag-hu.imageset/flag.svg"
+    },
+    "ro": {
+      "source": "src/assets/flags/flag-ron.svg",
+      "sha256": "d332c43769a71dd00b313833a84529b928e4eaf98abe08afa3c3b5ddc7601615",
+      "output": "ios/Harbor/Assets.xcassets/language-flag-ro.imageset/flag.svg"
+    },
+    "uk": {
+      "source": "src/assets/flags/flag-ukr.svg",
+      "sha256": "dbb88df79f655104403fed5acd7884c155dfa9d16abd90f6c9f16b43f0b97d79",
+      "output": "ios/Harbor/Assets.xcassets/language-flag-uk.imageset/flag.svg"
+    },
+    "ta": {
+      "source": "package/flags/4x3/in.svg",
+      "package": "flag-icons",
+      "version": "7.5.0",
+      "sha256": "91185efa1a9b52cdc0e470712518efeefc4e4d6a6555bae9de997ba71885bb98",
+      "output": "ios/Harbor/Assets.xcassets/language-flag-ta.imageset/flag.svg"
+    },
+    "te": {
+      "source": "package/flags/4x3/in.svg",
+      "package": "flag-icons",
+      "version": "7.5.0",
+      "sha256": "91185efa1a9b52cdc0e470712518efeefc4e4d6a6555bae9de997ba71885bb98",
+      "output": "ios/Harbor/Assets.xcassets/language-flag-te.imageset/flag.svg"
+    },
+    "ml": {
+      "source": "package/flags/4x3/in.svg",
+      "package": "flag-icons",
+      "version": "7.5.0",
+      "sha256": "91185efa1a9b52cdc0e470712518efeefc4e4d6a6555bae9de997ba71885bb98",
+      "output": "ios/Harbor/Assets.xcassets/language-flag-ml.imageset/flag.svg"
+    },
+    "kn": {
+      "source": "package/flags/4x3/in.svg",
+      "package": "flag-icons",
+      "version": "7.5.0",
+      "sha256": "91185efa1a9b52cdc0e470712518efeefc4e4d6a6555bae9de997ba71885bb98",
+      "output": "ios/Harbor/Assets.xcassets/language-flag-kn.imageset/flag.svg"
+    },
+    "bn": {
+      "source": "package/flags/4x3/bd.svg",
+      "package": "flag-icons",
+      "version": "7.5.0",
+      "sha256": "1aabb4a772651fb9a673660233d5bc6f3d78dfc71df09d567769bc97b9eb554f",
+      "output": "ios/Harbor/Assets.xcassets/language-flag-bn.imageset/flag.svg"
+    },
+    "mr": {
+      "source": "package/flags/4x3/in.svg",
+      "package": "flag-icons",
+      "version": "7.5.0",
+      "sha256": "91185efa1a9b52cdc0e470712518efeefc4e4d6a6555bae9de997ba71885bb98",
+      "output": "ios/Harbor/Assets.xcassets/language-flag-mr.imageset/flag.svg"
+    },
+    "gu": {
+      "source": "package/flags/4x3/in.svg",
+      "package": "flag-icons",
+      "version": "7.5.0",
+      "sha256": "91185efa1a9b52cdc0e470712518efeefc4e4d6a6555bae9de997ba71885bb98",
+      "output": "ios/Harbor/Assets.xcassets/language-flag-gu.imageset/flag.svg"
+    },
+    "pa": {
+      "source": "package/flags/4x3/in.svg",
+      "package": "flag-icons",
+      "version": "7.5.0",
+      "sha256": "91185efa1a9b52cdc0e470712518efeefc4e4d6a6555bae9de997ba71885bb98",
+      "output": "ios/Harbor/Assets.xcassets/language-flag-pa.imageset/flag.svg"
+    },
+    "ur": {
+      "source": "package/flags/4x3/pk.svg",
+      "package": "flag-icons",
+      "version": "7.5.0",
+      "sha256": "89e851c0d541d8166b297e13bed97e0cb500bdb4ae48fd83a86b606a078352a8",
+      "output": "ios/Harbor/Assets.xcassets/language-flag-ur.imageset/flag.svg"
+    },
+    "or": {
+      "source": "package/flags/4x3/in.svg",
+      "package": "flag-icons",
+      "version": "7.5.0",
+      "sha256": "91185efa1a9b52cdc0e470712518efeefc4e4d6a6555bae9de997ba71885bb98",
+      "output": "ios/Harbor/Assets.xcassets/language-flag-or.imageset/flag.svg"
+    },
+    "as": {
+      "source": "package/flags/4x3/in.svg",
+      "package": "flag-icons",
+      "version": "7.5.0",
+      "sha256": "91185efa1a9b52cdc0e470712518efeefc4e4d6a6555bae9de997ba71885bb98",
+      "output": "ios/Harbor/Assets.xcassets/language-flag-as.imageset/flag.svg"
+    },
+    "ne": {
+      "source": "package/flags/4x3/np.svg",
+      "package": "flag-icons",
+      "version": "7.5.0",
+      "sha256": "b84c02e2fa659d0be6fc6b5963d5e9fbd25c3a6ab4d469aa61f1e3cdbd3f4637",
+      "output": "ios/Harbor/Assets.xcassets/language-flag-ne.imageset/flag.svg"
+    },
+    "si": {
+      "source": "package/flags/4x3/lk.svg",
+      "package": "flag-icons",
+      "version": "7.5.0",
+      "sha256": "ed3eee24d19872d6adcecd589513c057c6ecfe4997af36e8d25ef9ed58660d23",
+      "output": "ios/Harbor/Assets.xcassets/language-flag-si.imageset/flag.svg"
+    },
+    "ms": {
+      "source": "package/flags/4x3/my.svg",
+      "package": "flag-icons",
+      "version": "7.5.0",
+      "sha256": "bb30e84a099d2d9dc286ab091bdd40ae7a8e332eb49827f2df4f11803e613667",
+      "output": "ios/Harbor/Assets.xcassets/language-flag-ms.imageset/flag.svg"
+    },
+    "tl": {
+      "source": "package/flags/4x3/ph.svg",
+      "package": "flag-icons",
+      "version": "7.5.0",
+      "sha256": "c3bd5e08ddc5f6dbdfa899af9efb45577e3841402e6a7f5d00fef754816b2884",
+      "output": "ios/Harbor/Assets.xcassets/language-flag-tl.imageset/flag.svg"
+    },
+    "my": {
+      "source": "package/flags/4x3/mm.svg",
+      "package": "flag-icons",
+      "version": "7.5.0",
+      "sha256": "c0b2e23a7e202ff2ad69421ea1b528e58af4e541fc2f4b986479a9cdef7f18e0",
+      "output": "ios/Harbor/Assets.xcassets/language-flag-my.imageset/flag.svg"
+    },
+    "km": {
+      "source": "package/flags/4x3/kh.svg",
+      "package": "flag-icons",
+      "version": "7.5.0",
+      "sha256": "21a9681682a2158cab294bd1826a2dda2e3edf17aff891d692c6c976c3d9c874",
+      "output": "ios/Harbor/Assets.xcassets/language-flag-km.imageset/flag.svg"
+    },
+    "lo": {
+      "source": "package/flags/4x3/la.svg",
+      "package": "flag-icons",
+      "version": "7.5.0",
+      "sha256": "da591b989d90a90d03c736d8515fe567832eb9f24dcfa7a2870b1cf3196fdb05",
+      "output": "ios/Harbor/Assets.xcassets/language-flag-lo.imageset/flag.svg"
+    },
+    "fa": {
+      "source": "package/flags/4x3/ir.svg",
+      "package": "flag-icons",
+      "version": "7.5.0",
+      "sha256": "cb363e09bafbff6de7c2fba6a002ca33f0563dc83a2328d34adb492cf80ca629",
+      "output": "ios/Harbor/Assets.xcassets/language-flag-fa.imageset/flag.svg"
+    },
+    "ps": {
+      "source": "package/flags/4x3/af.svg",
+      "package": "flag-icons",
+      "version": "7.5.0",
+      "sha256": "313a7dd89f3d4bdceae673908ede1bca4a2f1aa0ea3562d8e96fe430d3b4c690",
+      "output": "ios/Harbor/Assets.xcassets/language-flag-ps.imageset/flag.svg"
+    },
+    "az": {
+      "source": "package/flags/4x3/az.svg",
+      "package": "flag-icons",
+      "version": "7.5.0",
+      "sha256": "33ad245b2125c36fbf0f863b0edd5c85cbef37587900e101db3a615870504502",
+      "output": "ios/Harbor/Assets.xcassets/language-flag-az.imageset/flag.svg"
+    },
+    "ka": {
+      "source": "package/flags/4x3/ge.svg",
+      "package": "flag-icons",
+      "version": "7.5.0",
+      "sha256": "0280a1279c3d1d772f1e885ee821e37a1cdb4aa085ca2870825fe10bad8d7ff1",
+      "output": "ios/Harbor/Assets.xcassets/language-flag-ka.imageset/flag.svg"
+    },
+    "hy": {
+      "source": "package/flags/4x3/am.svg",
+      "package": "flag-icons",
+      "version": "7.5.0",
+      "sha256": "efb6cdaad5658ae5024c86b099a96c4e3769028894240f4015cbc090a0e90e0f",
+      "output": "ios/Harbor/Assets.xcassets/language-flag-hy.imageset/flag.svg"
+    },
+    "kk": {
+      "source": "package/flags/4x3/kz.svg",
+      "package": "flag-icons",
+      "version": "7.5.0",
+      "sha256": "381b22e4c287b13e191c208bccfc2cfb9156cd657de248f033b920a0c713a1f3",
+      "output": "ios/Harbor/Assets.xcassets/language-flag-kk.imageset/flag.svg"
+    },
+    "uz": {
+      "source": "package/flags/4x3/uz.svg",
+      "package": "flag-icons",
+      "version": "7.5.0",
+      "sha256": "62ce6f1073416e8d3d599639ec8b105f4de167c0730f036e47c650e686c4ff5d",
+      "output": "ios/Harbor/Assets.xcassets/language-flag-uz.imageset/flag.svg"
+    },
+    "bg": {
+      "source": "package/flags/4x3/bg.svg",
+      "package": "flag-icons",
+      "version": "7.5.0",
+      "sha256": "b6d979fc96dc6b46c1697a5e05ecfe1fac1fa912ed480ca7a2a9b450f087faf6",
+      "output": "ios/Harbor/Assets.xcassets/language-flag-bg.imageset/flag.svg"
+    },
+    "sr": {
+      "source": "package/flags/4x3/rs.svg",
+      "package": "flag-icons",
+      "version": "7.5.0",
+      "sha256": "b6e08e2eca1ec4c287e5d5d7c36d7d4ad9503ad030133b04cf315f95ab49961c",
+      "output": "ios/Harbor/Assets.xcassets/language-flag-sr.imageset/flag.svg"
+    },
+    "hr": {
+      "source": "package/flags/4x3/hr.svg",
+      "package": "flag-icons",
+      "version": "7.5.0",
+      "sha256": "3c98eae5ee93f0d75e10170beb96e26908830e2e6f7f7af2a4b281a097aeb946",
+      "output": "ios/Harbor/Assets.xcassets/language-flag-hr.imageset/flag.svg"
+    },
+    "bs": {
+      "source": "package/flags/4x3/ba.svg",
+      "package": "flag-icons",
+      "version": "7.5.0",
+      "sha256": "b321fe9b47c1cd741c61b330aee66cf00550622a6a9e740161a9f240a14e0787",
+      "output": "ios/Harbor/Assets.xcassets/language-flag-bs.imageset/flag.svg"
+    },
+    "sk": {
+      "source": "package/flags/4x3/sk.svg",
+      "package": "flag-icons",
+      "version": "7.5.0",
+      "sha256": "578d0693bc95214334248b47c5719dd01cfc9839bd909a726df045d499fabbb6",
+      "output": "ios/Harbor/Assets.xcassets/language-flag-sk.imageset/flag.svg"
+    },
+    "sl": {
+      "source": "package/flags/4x3/si.svg",
+      "package": "flag-icons",
+      "version": "7.5.0",
+      "sha256": "3a5e0cac44baaea6b6d8e91054844b6ea72764f6dbe363c11ea11fd81203733a",
+      "output": "ios/Harbor/Assets.xcassets/language-flag-sl.imageset/flag.svg"
+    },
+    "lt": {
+      "source": "package/flags/4x3/lt.svg",
+      "package": "flag-icons",
+      "version": "7.5.0",
+      "sha256": "dc0401993f6e14b3a58fa496d874b95dfcb58614052a868b14492166782c1006",
+      "output": "ios/Harbor/Assets.xcassets/language-flag-lt.imageset/flag.svg"
+    },
+    "lv": {
+      "source": "package/flags/4x3/lv.svg",
+      "package": "flag-icons",
+      "version": "7.5.0",
+      "sha256": "15d4e812a30208a1caaba6922a3f585db17827d67afae81626ffe4e1e9344ea7",
+      "output": "ios/Harbor/Assets.xcassets/language-flag-lv.imageset/flag.svg"
+    },
+    "et": {
+      "source": "package/flags/4x3/ee.svg",
+      "package": "flag-icons",
+      "version": "7.5.0",
+      "sha256": "25642310e287fbdc02e1ac3e0e08fadca9a32eae195f67b6863bf0fc6247176b",
+      "output": "ios/Harbor/Assets.xcassets/language-flag-et.imageset/flag.svg"
+    },
+    "is": {
+      "source": "package/flags/4x3/is.svg",
+      "package": "flag-icons",
+      "version": "7.5.0",
+      "sha256": "4ef2de6fb25ff5a16789e8ffc3b68894527e68c89dce3b4e1118f5bbcc0bb7ae",
+      "output": "ios/Harbor/Assets.xcassets/language-flag-is.imageset/flag.svg"
+    },
+    "ga": {
+      "source": "package/flags/4x3/ie.svg",
+      "package": "flag-icons",
+      "version": "7.5.0",
+      "sha256": "f82568d70bd1624ff7ce3ced8712a718a224ff2424fd2ade2da4339be3bba463",
+      "output": "ios/Harbor/Assets.xcassets/language-flag-ga.imageset/flag.svg"
+    },
+    "ca": {
+      "source": "package/flags/4x3/es-ct.svg",
+      "package": "flag-icons",
+      "version": "7.5.0",
+      "sha256": "11229703126cc831021cf10b69552e3e5ed4534efadc44fa9aec151d2d4cca00",
+      "output": "ios/Harbor/Assets.xcassets/language-flag-ca.imageset/flag.svg"
+    },
+    "eu": {
+      "source": "package/flags/4x3/es-pv.svg",
+      "package": "flag-icons",
+      "version": "7.5.0",
+      "sha256": "df3beb6c83af9f45226eeef3f43a2c5b9d2c52017d3b26f57c656632cc6ee1d8",
+      "output": "ios/Harbor/Assets.xcassets/language-flag-eu.imageset/flag.svg"
+    },
+    "gl": {
+      "source": "package/flags/4x3/es-ga.svg",
+      "package": "flag-icons",
+      "version": "7.5.0",
+      "sha256": "4e2fb46264a7998aa7e769327209344be630f75e514c5fc22e957590ae5e8cc1",
+      "output": "ios/Harbor/Assets.xcassets/language-flag-gl.imageset/flag.svg"
+    },
+    "cy": {
+      "source": "package/flags/4x3/gb-wls.svg",
+      "package": "flag-icons",
+      "version": "7.5.0",
+      "sha256": "61ad944644250599da53b344e16bb40529677a7f35b84aaf6bc81fd18eb09e24",
+      "output": "ios/Harbor/Assets.xcassets/language-flag-cy.imageset/flag.svg"
+    },
+    "mt": {
+      "source": "package/flags/4x3/mt.svg",
+      "package": "flag-icons",
+      "version": "7.5.0",
+      "sha256": "a2ad157eeb5f1bb92dc9706ad90faa111dd39ec019586bc5d12e67c5a6aa6cd5",
+      "output": "ios/Harbor/Assets.xcassets/language-flag-mt.imageset/flag.svg"
+    },
+    "sq": {
+      "source": "package/flags/4x3/al.svg",
+      "package": "flag-icons",
+      "version": "7.5.0",
+      "sha256": "4ae4d2950f6a08528639700e48d19930b964478a2548cb9bf41b898c2b757b11",
+      "output": "ios/Harbor/Assets.xcassets/language-flag-sq.imageset/flag.svg"
+    },
+    "mk": {
+      "source": "package/flags/4x3/mk.svg",
+      "package": "flag-icons",
+      "version": "7.5.0",
+      "sha256": "22488dc890fe1e5f7a8bea423dfe2e74f8ccf04402e75090cdeca030b12ca010",
+      "output": "ios/Harbor/Assets.xcassets/language-flag-mk.imageset/flag.svg"
+    },
+    "be": {
+      "source": "package/flags/4x3/by.svg",
+      "package": "flag-icons",
+      "version": "7.5.0",
+      "sha256": "a1efa44ad1167d6d77abbe59ce85aa3a68ff4bd57af79454c08a3ade5c178578",
+      "output": "ios/Harbor/Assets.xcassets/language-flag-be.imageset/flag.svg"
+    },
+    "sw": {
+      "source": "package/flags/4x3/tz.svg",
+      "package": "flag-icons",
+      "version": "7.5.0",
+      "sha256": "fd317abae009fa3629c51b82a6b9f1c529a7254406478047734bb52de83611cd",
+      "output": "ios/Harbor/Assets.xcassets/language-flag-sw.imageset/flag.svg"
+    },
+    "am": {
+      "source": "package/flags/4x3/et.svg",
+      "package": "flag-icons",
+      "version": "7.5.0",
+      "sha256": "43d5922fff81ae1accda75ed99b1b6e68dbebaa3d88a5d87f10a744f17cba34c",
+      "output": "ios/Harbor/Assets.xcassets/language-flag-am.imageset/flag.svg"
+    },
+    "af": {
+      "source": "package/flags/4x3/za.svg",
+      "package": "flag-icons",
+      "version": "7.5.0",
+      "sha256": "1755a5e16f1c9f5120e4871e8454bdee663beb4fb4827012bcd02cb9044249c2",
+      "output": "ios/Harbor/Assets.xcassets/language-flag-af.imageset/flag.svg"
+    },
+    "ha": {
+      "source": "package/flags/4x3/ng.svg",
+      "package": "flag-icons",
+      "version": "7.5.0",
+      "sha256": "b7a2a45a6499095efce41592428ff558ec5bd83d2751858dfe5fa4589334b66f",
+      "output": "ios/Harbor/Assets.xcassets/language-flag-ha.imageset/flag.svg"
+    },
+    "yo": {
+      "source": "package/flags/4x3/ng.svg",
+      "package": "flag-icons",
+      "version": "7.5.0",
+      "sha256": "b7a2a45a6499095efce41592428ff558ec5bd83d2751858dfe5fa4589334b66f",
+      "output": "ios/Harbor/Assets.xcassets/language-flag-yo.imageset/flag.svg"
+    },
+    "ig": {
+      "source": "package/flags/4x3/ng.svg",
+      "package": "flag-icons",
+      "version": "7.5.0",
+      "sha256": "b7a2a45a6499095efce41592428ff558ec5bd83d2751858dfe5fa4589334b66f",
+      "output": "ios/Harbor/Assets.xcassets/language-flag-ig.imageset/flag.svg"
+    },
+    "zu": {
+      "source": "package/flags/4x3/za.svg",
+      "package": "flag-icons",
+      "version": "7.5.0",
+      "sha256": "1755a5e16f1c9f5120e4871e8454bdee663beb4fb4827012bcd02cb9044249c2",
+      "output": "ios/Harbor/Assets.xcassets/language-flag-zu.imageset/flag.svg"
+    }
+  }
+}

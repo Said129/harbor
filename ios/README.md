@@ -1,0 +1,120 @@
+# Incremento universal 92 — continuidad; port 1:1 en curso
+
+Referencia Desktop 0.9.132 Beta, con Games excluido. La build 92 unifica la presentación del episodio 99 y reconoce anime IMDb en Continuar viendo de Anime/Shows. [Compilación](https://github.com/Said129/harbor/actions/runs/39026561340), fuente `7c904bac067752f5ce16ad22e4b4f75b47c71859`, siete casos afectados aprobados y tres imágenes revisadas. La evidencia de las áreas intactas se conserva. El port completo 1:1 sigue en curso. [Entrega y límites](../docs/ios/DELIVERY_2026-10-17_92.md).
+
+# Versión universal 91 — episodios de anime
+
+La build 91 corrige las temporadas artificiales y las imágenes de episodios de anime, con Dragon Ball Super como caso público verificado. [Compilación](https://github.com/Said129/harbor/actions/runs/38822918265), fuente `77385750b1f8d7c80b34b04a8123d0a2c32725b5`. La validación reúne siete casos afectados: este seguimiento ejecutó 1 y conservó 6 aprobados con la aplicación idéntica. Las validaciones de las áreas intactas se mantienen. iOS/iPadOS 17+, IPA sin firmar. Paquete, procedencia y límites: [entrega 91](../docs/ios/DELIVERY_2026-10-16_91.md).
+
+# Versión universal 90 — lectura y Saltar intro
+
+La build 90 añade Saltar intro con referencias de Desktop, PDF Manga, portadas y orden natural de las estanterías, y corrige la búsqueda/apertura de Gutenberg y la búsqueda local. Fuente `1593af9c24fbad3513fbd192f7aa0e053be3e9ba`; [validación](https://github.com/Said129/harbor/actions/runs/38755836388), 2 ejecuciones en el seguimiento, 9 nativas, 2 consultas públicas y 2 recorridos UI de iPhone conservados, 14 métodos 90 únicos y 29 métodos conservados de otras áreas intactas. Universal iPhone/iPad, iOS/iPadOS 17+. Paquete, hashes, límites y procedencia: [entrega 90](../docs/ios/DELIVERY_2026-10-15_90.md).
+
+# Harbor para iPhone y iPad
+
+La build 89 está entregada en `C:/Users/Said/Downloads/Harbor-iPhone-iPad-89.ipa` y como `Harbor-unsigned.ipa`. Es universal para iPhone y iPad con iOS/iPadOS 17+. Añade Auto Sync al pulsar con carga/resultado sobre el vídeo, X en Continuar viendo, importación EPUB/PDF, idiomas Desktop y ajustes de presentación móvil. Fuente `ef0d6b8def04bf91ed69419a6a2916a2589de74f`, [compilación 38649513761](https://github.com/Said129/harbor/actions/runs/38649513761) aprobada. Se conservan trece comprobaciones aprobadas de las validaciones 89 y se ejecutan el recorrido pendiente de iPad y el lector de Manga afectado por su tipografía: quince ejecuciones, doce métodos únicos. Una comprobación adicional de rotación de iPad, con el producto idéntico, completa dieciséis ejecuciones y trece métodos únicos. Las áreas intactas conservan la evidencia de 88/87/86. Guía: [READING_GUIDE.md](../docs/ios/READING_GUIDE.md); procedencia y límites: [DELIVERY_2026-10-15_89.md](../docs/ios/DELIVERY_2026-10-15_89.md).
+
+Port nativo SwiftUI universal para iPhone y iPad (device families 1 y 2), con iOS/iPadOS 17 como mínimo. El alcance vigente conserva las funciones móviles esenciales y todos los incrementos iniciados; no exige paridad con todas las herramientas Desktop. El fork de trabajo es Said129/harbor; el CI ya ejecuta etapas Apple. El estado observado de compilación, tests y reproducción se registra en la [evidencia](../docs/ios/VALIDATION.md) y la [matriz de 706 entradas](../docs/ios/FEATURE_PARITY.md).
+
+La app consulta manifests, catálogos, búsqueda, metadata y streams reales. Instala Cinemeta sólo cuando no existe un registro de addons en Keychain; los catálogos se descubren del manifest. Una lista intencionalmente vacía permanece vacía. Se pueden instalar URLs configuradas de addons, habilitar/deshabilitar, reordenar y desinstalar. El parsing, trust y ranking ejecutan el código original de harbor-core mediante una ABI C versionada. La reproducción usa libmpv integrado mediante MPVKit fijado a una revisión concreta, sin proceso mpv externo. WebKit se reserva para el barco original y la web Submanhwa persistente por cuenta.
+
+Home y Ajustes permiten iniciar sesión con la misma cuenta Stremio usada en Harbor Desktop. Hay formulario nativo de correo/contraseña y acceso oficial mediante ASWebAuthenticationSession. Antes de completar el acceso se descarga la colección real de addons: conserva URLs configuradas, orden y flags, y guarda sesión/colección juntas en Keychain. Home se carga con esos addons. Al volver a abrir la app se sincronizan; un fallo conserva la copia anterior. Instalar, eliminar o reordenar conectado actualiza la colección de Stremio; activar/desactivar sigue siendo local. Cerrar sesión elimina la sesión de este iPhone y recupera la lista de invitado, sin revocar otros dispositivos. El propietario confirma que el login corregido funciona en iPhone 14; callback, reinicio y ediciones completas de cuenta siguen pendientes de comprobación física. No se incluyen credenciales en CI.
+
+Actualmente se resuelven fuentes HTTP(S) directas, con biblioteca y progreso local/cloud compatibles con Stremio, aislados por cuenta. No hay todavía motor P2P local ni clientes completos de los cinco proveedores Debrid; una URL directa de un addon configurado con Debrid puede funcionar sin equivaler a esos clientes. La compatibilidad necesaria para el recorrido móvil se prioriza según [MOBILE_SCOPE.md](../docs/ios/MOBILE_SCOPE.md), con limitaciones concretas y sin convertir todos los paneles Desktop en requisitos.
+
+Objetivo actualizado por el propietario el 2026-10-06: conservar todo lo portado, terminar lo empezado y completar funciones esenciales y configuraciones útiles en iPhone, manteniendo la identidad original. [MOBILE_SCOPE.md](../docs/ios/MOBILE_SCOPE.md) define el alcance vigente; la matriz completa de Desktop queda como referencia, no como requisito de portar todas sus opciones.
+
+## Desde Windows
+
+El inventario de referencia beta se conserva en la [matriz de 859 entradas](../docs/ios/BETA_FEATURE_PARITY.md). Añade navegación/activos originales, rooms con catálogos directos, biblioteca y progreso cloud, metadata TMDB con clave del propietario, calendarios, colecciones, descargas de archivos, lectores eBook/Manga y Sports. Los incrementos conservados están reunidos en la build 86, con la compilación de dispositivo verificada y la procedencia de las comprobaciones y revisión visual conservadas indicadas arriba. Las pruebas físicas y privadas permanecen explícitamente pendientes. Home/búsqueda usan Cinemeta como proveedor de contenido si no está declarado en la colección; no alteran la colección cloud y respetan una entrada Cinemeta desactivada. Se distinguen datos de producto, fixtures originales de tests y evidencia física en VALIDATION.md.
+
+Para generar el proyecto actual en Mac, ejecutar primero `python3 scripts/ios/fetch-interface-font.py`. Obtiene Switzer original directamente de Fontshare para embedding en esta app, verifica SHA256 e incorpora la licencia. El archivo de fuente no se publica por separado en el repositorio. EPUB y Manga CBZ/ZIP/carpetas usan ZIPFoundation fijado a una revisión; el contenido se muestra en vistas nativas y nunca se ejecuta como una página web.
+
+Instalar Git, Node/pnpm, Rust estable y MSVC Build Tools. Para reproducir los checks portables, desde la raíz:
+
+```powershell
+cargo test --manifest-path harbor-core/Cargo.toml --locked
+cargo test --manifest-path harbor-core/Cargo.toml --locked --no-default-features
+cargo test --manifest-path harbor-ios-bridge/Cargo.toml --locked
+cargo clippy --manifest-path harbor-ios-bridge/Cargo.toml --locked --all-targets -- -D warnings
+rustup target add aarch64-apple-ios aarch64-apple-ios-sim x86_64-apple-ios wasm32-unknown-unknown
+cargo check --manifest-path harbor-ios-bridge/Cargo.toml --locked --target aarch64-apple-ios
+cargo check --manifest-path harbor-core/Cargo.toml --locked --target wasm32-unknown-unknown
+```
+
+El cargo check Apple desde Windows sólo verifica Rust; no prueba el linker/SDK Apple ni SwiftUI. La feature WASM sigue habilitada por defecto para Desktop/Web; el bridge la deshabilita explícitamente.
+
+Prueba opt-in con servicios reales, separada de unit tests:
+
+```powershell
+cargo build --manifest-path harbor-ios-bridge/Cargo.toml --locked
+python scripts/ios/integration-live.py
+```
+
+Usa Cinemeta y el [addon de ejemplo oficial Stremio](https://github.com/Stremio/stremio-static-addon-example), instalado únicamente dentro de la prueba. Lee catálogos/metadata/streams remotos y resuelve la URL pasando por Rust. El vídeo antiguo de ese addon devolvió HTTP 403 en la prueba de transporte de esta máquina; no se reemplaza por una URL inventada ni se certifica playback. Para exigir además una respuesta HTTP 206 con un rango de 1024 bytes, ejecutar con `--probe-media`. Se puede indicar un addon con streams directos accesibles mediante la variable de entorno `HARBOR_IOS_TEST_ADDON`; evitar secretos en el historial del shell. Nunca se imprimen payloads ni URLs de reproducción y no se guarda un archivo de vídeo.
+
+Los logs exportables se comparten desde Ajustes dentro de la app. Incluyen fecha/evento/count y códigos de fallo permitidos o números HTTP/mpv/Keychain validados; excluyen manifests, tokens, URLs y logs crudos de mpv.
+
+## Progreso local y reanudación
+
+La implementación nativa guarda claves de película/episodio, posición y timestamp en documentos versionados de Application Support separados por owner, sin URLs de streams ni secretos; también recupera el progreso cloud de la biblioteca de la cuenta. Usa un actor, escrituras atómicas y protección de archivos tras el primer desbloqueo. Un fallo de lectura no sobrescribe datos anteriores; las incidencias se muestran y registran mediante códigos seguros.
+
+El core comparte las reglas portadas de Desktop: autosave cada 4 s con posición mínima de 5 s, exclusión de stubs cortos, posiciones independientes por episodio y specials, reanudación automática activada por defecto y aviso opcional desactivado. Ajustes permite cambiar ambas opciones. Guarda también snapshots al pausar/terminar/salir y cambiar lifecycle; el cierre forzado puede perder el último intervalo.
+
+Validar el contrato desde Windows, después de construir el bridge:
+
+```powershell
+python scripts/ios/test-resume-contract.py
+```
+
+Compara el módulo TypeScript Desktop real con la DLL/C ABI, sin red. La suite nativa actual comprueba cuatro casos de ResumeStore, seis de continuidad, Keychain, colección de addons, roster y el reloj/seek real de libmpv. Continue Watching y la escritura/lectura compatible con Stremio están implementados; su continuidad real PC/iPhone con credenciales privadas requiere la prueba del propietario. Los resultados de la fuente entregada están en VALIDATION.
+
+## CI Apple sin Mac local
+
+El workflow [iPhone Native](../.github/workflows/ios.yml) utiliza el runner estándar `macos-15-intel`, que ejecuta los checks shared y compila para iPhone ARM64 y ambos simuladores. La matriz del workflow Harbor Core conserva Windows/macOS/Linux. Sólo ejecuta jobs en repositorios públicos. GitHub documenta [runners estándar gratuitos en repositorios públicos](https://docs.github.com/en/actions/reference/runners/github-hosted-runners). No utiliza runners large/xlarge ni cambia planes, pagos, presupuestos o límites de caché.
+
+El propietario ha solicitado no gastar dinero. Por ello los uploads de artefactos están deshabilitados por defecto; los logs de pasos permanecen en Actions. El almacenamiento de artefactos tiene una [cuota independiente](https://docs.github.com/en/billing/concepts/product-billing/github-actions), compartida con otros usos de la cuenta. Sólo activar `upload_artifacts` en una ejecución manual después de comprobar almacenamiento gratuito disponible y bloqueo de uso facturable; se conservan un día. No habilitarlo para resolver un error de facturación.
+
+```powershell
+git push origin ios/native-iphone
+gh run list --repo Said129/harbor --workflow ios.yml
+gh run view RUN_ID --repo Said129/harbor --log-failed
+gh workflow run ios.yml --repo Said129/harbor --ref ios/native-iphone -f run_live_integration=true
+```
+
+El PR abierto ejecuta el workflow al actualizar la rama. Los pushes directos sólo lo ejecutan en `main`, evitando duplicar cada build del PR. Sin un PR abierto, lanzar manualmente con `gh workflow run ios.yml --repo Said129/harbor --ref ios/native-iphone`.
+
+Stages: tests/clippy core/bridge en el mismo Mac estándar → cargo Apple sin WASM → framework dinámico device arm64 y simulator arm64/x86_64 → validación de exports/install name → XCFramework → fuente original/XcodeGen → dependencias SPM fijadas → build Swift/simulator → tests de ABI/modelos en iPhone simulator → integración real opt-in → build device unsigned → empaquetado/verificación de IPA unsigned. El workflow Harbor Core conserva la matriz Windows/macOS/Linux para cambios compartidos; no se repite toda esa matriz para cada edición exclusiva de Swift/activos. El runtime Rust del bridge queda dentro de su framework para evitar la colisión con Libdovi; ver ADR 0002. El primer gate Apple ocurre antes de compilar Swift. Si se autoriza el upload dentro de la cuota, produce logs, xcresult, XCFramework, apps simulator/device e IPA unsigned.
+
+`HarborLive` es un scheme separado que activa explícitamente ocho tests de servicios reales y tres recorridos XCTest UI. Usa URLSession, Codable, el framework Rust embebido, Keychain y la interfaz normal: no hay launch mode especial, estado inyectado ni respuestas falsas. Cinemeta y el addon de ejemplo oficial sólo son inputs de la prueba. El test UI conserva capturas en `LiveTests.xcresult` y comprueba límites del viewport, la consulta completa de búsqueda e inicialización real de mpv/render antes de cerrar el player; no certifica imagen/audio ni disponibilidad del servidor de vídeo. Las pruebas de modelos, WebKit, lectura y render usan fixtures locales; las tres regresiones EPUB usan HTTP loopback. El host normal de la app puede refrescar sus catálogos públicos, sin sustituir las respuestas de la suite de integración. Uno de ellos usa el controlador libmpv/GLKView real con dos vídeos de prueba de 8/10 bits y verifica píxeles distintos y avance del tiempo; esas imágenes también se conservan con la evidencia. Los builds simulator usan firma ad hoc local (`CODE_SIGN_IDENTITY=-`) para comprobar Keychain, sin cuenta Apple ni certificado; el build device sigue sin firmar. PR y dispatch de la misma rama comparten concurrency para evitar builds duplicados.
+
+`scripts/ios/package-ipa.py` exige un build iPhoneOS/arm64, device families 1/2 y HarborCore embebido. Conserva permisos/symlinks, verifica la integridad de `Payload/Harbor.app` y genera un informe con commit, tamaño y SHA-256. No firma ni instala. Por defecto la IPA sólo existe temporalmente en el runner y no se sube a GitHub.
+
+Para conservar la IPA, su informe y las capturas de integración, una ejecución manual puede activar además `save_draft_build=true`. Requiere el gate de integración real, verifica de nuevo hash/commit y crea un borrador de Release dirigido a ese commit. No publica una release final ni habilita uploads de Actions. Los [assets de Releases](https://docs.github.com/en/repositories/releasing-projects-on-github/about-releases) tienen límites distintos: cada archivo debe ser menor de 2 GiB, sin límite total de storage/bandwidth. El job Apple dispone de permiso contents write para ese paso; sólo se ejecuta por dispatch explícito, nunca al actualizar un PR.
+
+Para ejecutar las mismas etapas en un Mac disponible en el futuro: `bash scripts/ios/build-rust.sh`, `xcodegen generate --spec ios/project.yml` y los comandos xcodebuild del workflow. `project.yml` es la fuente; el proyecto Xcode, Info.plist y frameworks son generados.
+
+## Gate de iPhone físico
+
+El propietario confirma en iPhone 14 el acceso, el vídeo corregido y la interfaz del reproductor en build 3. El default físico usa VideoToolbox copy-back; las nuevas secciones y opciones de builds posteriores siguen pendientes de comprobación. Los builds de CI siguen sin firmar: comprobar código/enlace no permite instalarlos directamente. Firmar cada actualización localmente sin guardar certificados o provisioning en Git. No se extiende esa confirmación a todas las fuentes, formatos ni opciones nuevas.
+
+La [guía de prueba desde Windows](SIDELOAD.md) describe la comprobación del hash y la firma local con cuenta Apple gratuita. Para actualizar la app se conserva la misma identidad de firma y bundle; no se necesita borrar los datos para aplicar la actualización de vídeo. Ajustes → Reproducción y el menú de vídeo del player permiten elegir Automática, Activada o Software; conservan la opción Desktop `mpvHwdec`.
+
+Después del gate de CI, instalar una build válidamente firmada, añadir un addon real con una fuente disponible y comprobar Home → búsqueda → ficha → selector → reproducción. Registrar dispositivo/iOS/fuente, avance de time-pos, imagen/audio, seeking, subs/tracks, headers/ranges, rotación, cierres repetidos, memoria/temperatura y red interrumpida. No marcar el milestone completo hasta observar vídeo real en iPhone.
+
+OpenGL ES es la superficie inicial para comprobar libmpv. El demo de MPVKit advierte de problemas con vídeo de 10 bits; Metal es una alternativa todavía experimental. HDR/DV/AV1/PiP/AirPlay y formatos de subtítulos necesitan pruebas específicas, no se deducen de la lista de dependencias.
+
+## Mantener la paridad y upstream
+
+Actualizar `docs/ios/parity-status.json` con estado, implementación y evidencia. Después:
+
+```powershell
+python scripts/ios/update-inventory.py
+python scripts/ios/update-parity.py
+```
+
+La regeneración conserva el progreso del JSON y rechaza claves desconocidas. `features.json` registra grupos de funcionalidades reales y la matriz incluye además cada campo de Settings. Las entradas pendientes de las matrices Desktop conservan su estado; el alcance de entrega vigente es el definido en MOBILE_SCOPE.md.
+
+El repositorio conserva `upstream` para Harbor oficial y `origin` para el fork. Mantener los módulos iOS aislados y comparar cambios compartidos con tests antes de integrar `upstream/main`.
+
+El incremento histórico de build 22 (subtítulos, descargas, fechas de Deportes y cabecera) se conserva en la build 86. La entrega actual, su fuente y sus límites son los indicados al principio de este documento.

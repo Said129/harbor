@@ -1,0 +1,245 @@
+[
+  {
+    "key": "netflix",
+    "name": "Netflix",
+    "providerIds": [8],
+    "enabledByDefault": true,
+    "asset": "streaming-netflix",
+    "tint": "#E50914",
+    "logoHeight": 22
+  },
+  {
+    "key": "disney",
+    "name": "Disney+",
+    "providerIds": [337],
+    "enabledByDefault": true,
+    "asset": "streaming-disney",
+    "tint": "#0E47A1",
+    "logoHeight": 32
+  },
+  {
+    "key": "hulu",
+    "name": "Hulu",
+    "providerIds": [15],
+    "enabledByDefault": true,
+    "asset": "streaming-hulu",
+    "tint": "#1CE783",
+    "logoHeight": 22
+  },
+  {
+    "key": "prime",
+    "name": "Prime Video",
+    "providerIds": [9, 119],
+    "enabledByDefault": true,
+    "asset": "streaming-prime",
+    "tint": "#00A8E1",
+    "logoHeight": 22
+  },
+  {
+    "key": "apple",
+    "name": "Apple TV+",
+    "providerIds": [350],
+    "enabledByDefault": true,
+    "asset": "streaming-apple",
+    "tint": "#FFFFFF",
+    "logoHeight": 22
+  },
+  {
+    "key": "max",
+    "name": "Max",
+    "providerIds": [1899, 384],
+    "enabledByDefault": true,
+    "asset": "streaming-max",
+    "tint": "#9B6CFF",
+    "logoHeight": 22
+  },
+  {
+    "key": "paramount",
+    "name": "Paramount+",
+    "providerIds": [531, 582, 1715, 1854],
+    "enabledByDefault": true,
+    "asset": "streaming-paramount",
+    "tint": "#0064FF",
+    "logoHeight": 22
+  },
+  {
+    "key": "peacock",
+    "name": "Peacock",
+    "providerIds": [386, 387],
+    "enabledByDefault": true,
+    "asset": "streaming-peacock",
+    "tint": "#FF7112",
+    "logoHeight": 22
+  },
+  {
+    "key": "crunchyroll",
+    "name": "Crunchyroll",
+    "providerIds": [283],
+    "enabledByDefault": true,
+    "asset": "streaming-crunchyroll",
+    "tint": "#F47521",
+    "logoHeight": 22
+  },
+  {
+    "key": "amcplus",
+    "name": "AMC+",
+    "providerIds": [526],
+    "enabledByDefault": true,
+    "asset": "streaming-amcplus",
+    "tint": "#0A9BD8",
+    "logoHeight": 22
+  },
+  {
+    "key": "starz",
+    "name": "STARZ",
+    "providerIds": [43],
+    "enabledByDefault": true,
+    "asset": "streaming-starz",
+    "tint": "#FFFFFF",
+    "logoHeight": 22
+  },
+  {
+    "key": "shudder",
+    "name": "Shudder",
+    "providerIds": [99],
+    "enabledByDefault": true,
+    "asset": "streaming-shudder",
+    "tint": "#E4181C",
+    "logoHeight": 22
+  },
+  {
+    "key": "tubi",
+    "name": "Tubi",
+    "providerIds": [73],
+    "enabledByDefault": false,
+    "asset": "streaming-tubi",
+    "tint": "#7C3AED",
+    "logoHeight": 22
+  },
+  {
+    "key": "plutotv",
+    "name": "Pluto TV",
+    "providerIds": [300],
+    "enabledByDefault": false,
+    "asset": "streaming-plutotv",
+    "tint": "#2B2D7C",
+    "logoHeight": 22
+  },
+  {
+    "key": "roku",
+    "name": "The Roku Channel",
+    "providerIds": [207],
+    "enabledByDefault": false,
+    "asset": "streaming-roku",
+    "tint": "#662D91",
+    "logoHeight": 22
+  },
+  {
+    "key": "fubo",
+    "name": "Fubo",
+    "providerIds": [257],
+    "enabledByDefault": false,
+    "asset": "streaming-fubo",
+    "tint": "#FA4616",
+    "logoHeight": 22
+  },
+  {
+    "key": "mgmplus",
+    "name": "MGM+",
+    "providerIds": [34, 583, 636],
+    "enabledByDefault": false,
+    "asset": "streaming-mgmplus",
+    "tint": "#C6A15B",
+    "logoHeight": 22
+  },
+  {
+    "key": "philo",
+    "name": "Philo",
+    "providerIds": [2383],
+    "enabledByDefault": false,
+    "asset": "streaming-philo",
+    "tint": "#E5177E",
+    "logoHeight": 22
+  },
+  {
+    "key": "britbox",
+    "name": "BritBox",
+    "providerIds": [151],
+    "enabledByDefault": false,
+    "asset": "streaming-britbox",
+    "tint": "#163BD6",
+    "logoHeight": 22
+  },
+  {
+    "key": "acorntv",
+    "name": "Acorn TV",
+    "providerIds": [87],
+    "enabledByDefault": false,
+    "asset": "streaming-acorntv",
+    "tint": "#6E9F4B",
+    "logoHeight": 22
+  },
+  {
+    "key": "mubi",
+    "name": "MUBI",
+    "providerIds": [11],
+    "enabledByDefault": false,
+    "asset": "streaming-mubi",
+    "tint": "#2563C9",
+    "logoHeight": 22
+  },
+  {
+    "key": "curiositystream",
+    "name": "CuriosityStream",
+    "providerIds": [190],
+    "enabledByDefault": false,
+    "asset": "streaming-curiositystream",
+    "tint": "#0089CF",
+    "logoHeight": 22
+  },
+  {
+    "key": "kanopy",
+    "name": "Kanopy",
+    "providerIds": [191],
+    "enabledByDefault": false,
+    "asset": "streaming-kanopy",
+    "tint": "#E4552A",
+    "logoHeight": 22
+  },
+  {
+    "key": "hoopla",
+    "name": "Hoopla",
+    "providerIds": [212],
+    "enabledByDefault": false,
+    "asset": "streaming-hoopla",
+    "tint": "#0077C8",
+    "logoHeight": 22
+  },
+  {
+    "key": "pbs",
+    "name": "PBS",
+    "providerIds": [209],
+    "enabledByDefault": false,
+    "asset": "streaming-pbs",
+    "tint": "#2638C4",
+    "logoHeight": 22
+  },
+  {
+    "key": "cw",
+    "name": "The CW",
+    "providerIds": [83],
+    "enabledByDefault": false,
+    "asset": "streaming-cw",
+    "tint": "#2BA84A",
+    "logoHeight": 22
+  },
+  {
+    "key": "hidive",
+    "name": "HIDIVE",
+    "providerIds": [430],
+    "enabledByDefault": false,
+    "asset": "streaming-hidive",
+    "tint": "#00AEEF",
+    "logoHeight": 22
+  }
+]

@@ -1,0 +1,17 @@
+{
+  "version": "0.9.132",
+  "commit": "0834340cec5531650bfe78cd628628702e636987",
+  "authority": "Owner screenshot and explicit 1:1 scope, 2026-10-17",
+  "official_release": "https://github.com/harborstremio-linux/harbor-linux-builds/releases/tag/beta-v0.9.132",
+  "recovered_source": "https://github.com/Said129/harbor/tree/0834340cec5531650bfe78cd628628702e636987",
+  "files": {
+    "package.json": "6d5a77cbbcc7c7100908235e0995eef0fba202d0bab1daa27de6467de15a47a8",
+    "src/lib/settings/types.ts": "60f2823f350c0d6bfba067e2f8ebe855d50da2b54a74b734388185ac1a6df003",
+    "src/chrome/nav-items.tsx": "081e45cb670acc2658615d23b7a4bd8d4376bb18581afc706fcfb849262b3340",
+    "src/views/anime.tsx": "9d44efe0b8b3d698fb4d73ec35a689b0b4eb5dbd84e1a1aa75d667ec0bc2a121",
+    "src/views/shows.tsx": "e97d9ff012b3833e9ed73ceecc69a5de9939c34bcd0a54a2e64213f39ad94fa6",
+    "src/lib/stremio.ts": "dd785247ba25a37bd0a03ce577e117dd38fe75c6d4dcdc1c607cdf3095b8272b",
+    "src/lib/anime-detect.ts": "4cb3efc3c9548e02971fba46c6674d8bbc3eff3ad480c8709cff6486f109f381",
+    "src/views/settings/groups.ts": "75ab5def6de52c2f11a3b47962f7a6c0faae68afb204a46b9bfc4df672272069"
+  }
+}

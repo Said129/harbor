@@ -1,0 +1,819 @@
+{
+  "mappings": {
+    "animeplanet_id": "dragon-ball-super",
+    "kitsu_id": 10879,
+    "mal_id": 30694,
+    "type": "TV",
+    "anilist_id": 21175,
+    "anisearch_id": 10383,
+    "anidb_id": 11210,
+    "notifymoe_id": null,
+    "livechart_id": 1576,
+    "thetvdb_id": 295068,
+    "imdb_id": "tt4644488",
+    "themoviedb_id": "62715"
+  },
+  "episodeCount": 131,
+  "episodes": {
+    "1": {
+      "seasonNumber": 1,
+      "episodeNumber": 1,
+      "absoluteEpisodeNumber": 1,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/5238715.jpg"
+    },
+    "2": {
+      "seasonNumber": 1,
+      "episodeNumber": 2,
+      "absoluteEpisodeNumber": 2,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/5268569.jpg"
+    },
+    "3": {
+      "seasonNumber": 1,
+      "episodeNumber": 3,
+      "absoluteEpisodeNumber": 3,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/5271551.jpg"
+    },
+    "4": {
+      "seasonNumber": 1,
+      "episodeNumber": 4,
+      "absoluteEpisodeNumber": 4,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/5271559.jpg"
+    },
+    "5": {
+      "seasonNumber": 1,
+      "episodeNumber": 5,
+      "absoluteEpisodeNumber": 5,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/5271567.jpg"
+    },
+    "6": {
+      "seasonNumber": 1,
+      "episodeNumber": 6,
+      "absoluteEpisodeNumber": 6,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/5271575.jpg"
+    },
+    "7": {
+      "seasonNumber": 1,
+      "episodeNumber": 7,
+      "absoluteEpisodeNumber": 7,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/5287939.jpg"
+    },
+    "8": {
+      "seasonNumber": 1,
+      "episodeNumber": 8,
+      "absoluteEpisodeNumber": 8,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/5287940.jpg"
+    },
+    "9": {
+      "seasonNumber": 1,
+      "episodeNumber": 9,
+      "absoluteEpisodeNumber": 9,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/5287941.jpg"
+    },
+    "10": {
+      "seasonNumber": 1,
+      "episodeNumber": 10,
+      "absoluteEpisodeNumber": 10,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/5287942.jpg"
+    },
+    "11": {
+      "seasonNumber": 1,
+      "episodeNumber": 11,
+      "absoluteEpisodeNumber": 11,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/5341605.jpg"
+    },
+    "12": {
+      "seasonNumber": 1,
+      "episodeNumber": 12,
+      "absoluteEpisodeNumber": 12,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/5287944.jpg"
+    },
+    "13": {
+      "seasonNumber": 1,
+      "episodeNumber": 13,
+      "absoluteEpisodeNumber": 13,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/5287945.jpg"
+    },
+    "14": {
+      "seasonNumber": 1,
+      "episodeNumber": 14,
+      "absoluteEpisodeNumber": 14,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/5345647.jpg"
+    },
+    "15": {
+      "seasonNumber": 2,
+      "episodeNumber": 1,
+      "absoluteEpisodeNumber": 15,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/5345648.jpg"
+    },
+    "16": {
+      "seasonNumber": 2,
+      "episodeNumber": 2,
+      "absoluteEpisodeNumber": 16,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/5345649.jpg"
+    },
+    "17": {
+      "seasonNumber": 2,
+      "episodeNumber": 3,
+      "absoluteEpisodeNumber": 17,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/5368641.jpg"
+    },
+    "18": {
+      "seasonNumber": 2,
+      "episodeNumber": 4,
+      "absoluteEpisodeNumber": 18,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/5368642.jpg"
+    },
+    "19": {
+      "seasonNumber": 2,
+      "episodeNumber": 5,
+      "absoluteEpisodeNumber": 19,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/5396344.jpg"
+    },
+    "20": {
+      "seasonNumber": 2,
+      "episodeNumber": 6,
+      "absoluteEpisodeNumber": 20,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/5396362.jpg"
+    },
+    "21": {
+      "seasonNumber": 2,
+      "episodeNumber": 7,
+      "absoluteEpisodeNumber": 21,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/5396364.jpg"
+    },
+    "22": {
+      "seasonNumber": 2,
+      "episodeNumber": 8,
+      "absoluteEpisodeNumber": 22,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/5411784.jpg"
+    },
+    "23": {
+      "seasonNumber": 2,
+      "episodeNumber": 9,
+      "absoluteEpisodeNumber": 23,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/5411785.jpg"
+    },
+    "24": {
+      "seasonNumber": 2,
+      "episodeNumber": 10,
+      "absoluteEpisodeNumber": 24,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/5434172.jpg"
+    },
+    "25": {
+      "seasonNumber": 2,
+      "episodeNumber": 11,
+      "absoluteEpisodeNumber": 25,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/5434173.jpg"
+    },
+    "26": {
+      "seasonNumber": 2,
+      "episodeNumber": 12,
+      "absoluteEpisodeNumber": 26,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/5434174.jpg"
+    },
+    "27": {
+      "seasonNumber": 2,
+      "episodeNumber": 13,
+      "absoluteEpisodeNumber": 27,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/5441392.jpg"
+    },
+    "28": {
+      "seasonNumber": 3,
+      "episodeNumber": 1,
+      "absoluteEpisodeNumber": 28,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/5463233.jpg"
+    },
+    "29": {
+      "seasonNumber": 3,
+      "episodeNumber": 2,
+      "absoluteEpisodeNumber": 29,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/5463234.jpg"
+    },
+    "30": {
+      "seasonNumber": 3,
+      "episodeNumber": 3,
+      "absoluteEpisodeNumber": 30,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/5469589.jpg"
+    },
+    "31": {
+      "seasonNumber": 3,
+      "episodeNumber": 4,
+      "absoluteEpisodeNumber": 31,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/5507092.jpg"
+    },
+    "32": {
+      "seasonNumber": 3,
+      "episodeNumber": 5,
+      "absoluteEpisodeNumber": 32,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/5507099.jpg"
+    },
+    "33": {
+      "seasonNumber": 3,
+      "episodeNumber": 6,
+      "absoluteEpisodeNumber": 33,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/5507101.jpg"
+    },
+    "34": {
+      "seasonNumber": 3,
+      "episodeNumber": 7,
+      "absoluteEpisodeNumber": 34,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/5507102.jpg"
+    },
+    "35": {
+      "seasonNumber": 3,
+      "episodeNumber": 8,
+      "absoluteEpisodeNumber": 35,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/5540069.jpg"
+    },
+    "36": {
+      "seasonNumber": 3,
+      "episodeNumber": 9,
+      "absoluteEpisodeNumber": 36,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/5540071.jpg"
+    },
+    "37": {
+      "seasonNumber": 3,
+      "episodeNumber": 10,
+      "absoluteEpisodeNumber": 37,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/5540074.jpg"
+    },
+    "38": {
+      "seasonNumber": 3,
+      "episodeNumber": 11,
+      "absoluteEpisodeNumber": 38,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/5544252.jpg"
+    },
+    "39": {
+      "seasonNumber": 3,
+      "episodeNumber": 12,
+      "absoluteEpisodeNumber": 39,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/5574387.jpg"
+    },
+    "40": {
+      "seasonNumber": 3,
+      "episodeNumber": 13,
+      "absoluteEpisodeNumber": 40,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/5574388.jpg"
+    },
+    "41": {
+      "seasonNumber": 3,
+      "episodeNumber": 14,
+      "absoluteEpisodeNumber": 41,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/5576555.jpg"
+    },
+    "42": {
+      "seasonNumber": 3,
+      "episodeNumber": 15,
+      "absoluteEpisodeNumber": 42,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/5583991.jpg"
+    },
+    "43": {
+      "seasonNumber": 3,
+      "episodeNumber": 16,
+      "absoluteEpisodeNumber": 43,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/5607607.jpg"
+    },
+    "44": {
+      "seasonNumber": 3,
+      "episodeNumber": 17,
+      "absoluteEpisodeNumber": 44,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/5607608.jpg"
+    },
+    "45": {
+      "seasonNumber": 3,
+      "episodeNumber": 18,
+      "absoluteEpisodeNumber": 45,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/5607609.jpg"
+    },
+    "46": {
+      "seasonNumber": 3,
+      "episodeNumber": 19,
+      "absoluteEpisodeNumber": 46,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/5607610.jpg"
+    },
+    "47": {
+      "seasonNumber": 4,
+      "episodeNumber": 1,
+      "absoluteEpisodeNumber": 47,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/5623198.jpg"
+    },
+    "48": {
+      "seasonNumber": 4,
+      "episodeNumber": 2,
+      "absoluteEpisodeNumber": 48,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/5645478.jpg"
+    },
+    "49": {
+      "seasonNumber": 4,
+      "episodeNumber": 3,
+      "absoluteEpisodeNumber": 49,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/5653003.jpg"
+    },
+    "50": {
+      "seasonNumber": 4,
+      "episodeNumber": 4,
+      "absoluteEpisodeNumber": 50,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/5656824.jpg"
+    },
+    "51": {
+      "seasonNumber": 4,
+      "episodeNumber": 5,
+      "absoluteEpisodeNumber": 51,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/5656825.jpg"
+    },
+    "52": {
+      "seasonNumber": 4,
+      "episodeNumber": 6,
+      "absoluteEpisodeNumber": 52,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/5656826.jpg"
+    },
+    "53": {
+      "seasonNumber": 4,
+      "episodeNumber": 7,
+      "absoluteEpisodeNumber": 53,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/5656827.jpg"
+    },
+    "54": {
+      "seasonNumber": 4,
+      "episodeNumber": 8,
+      "absoluteEpisodeNumber": 54,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/5667110.jpg"
+    },
+    "55": {
+      "seasonNumber": 4,
+      "episodeNumber": 9,
+      "absoluteEpisodeNumber": 55,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/5695493.jpg"
+    },
+    "56": {
+      "seasonNumber": 4,
+      "episodeNumber": 10,
+      "absoluteEpisodeNumber": 56,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/5674162.jpg"
+    },
+    "57": {
+      "seasonNumber": 4,
+      "episodeNumber": 11,
+      "absoluteEpisodeNumber": 57,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/5672934.jpg"
+    },
+    "58": {
+      "seasonNumber": 4,
+      "episodeNumber": 12,
+      "absoluteEpisodeNumber": 58,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/5705939.jpg"
+    },
+    "59": {
+      "seasonNumber": 4,
+      "episodeNumber": 13,
+      "absoluteEpisodeNumber": 59,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/5763071.jpg"
+    },
+    "60": {
+      "seasonNumber": 4,
+      "episodeNumber": 14,
+      "absoluteEpisodeNumber": 60,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/5763072.jpg"
+    },
+    "61": {
+      "seasonNumber": 4,
+      "episodeNumber": 15,
+      "absoluteEpisodeNumber": 61,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/5763073.jpg"
+    },
+    "62": {
+      "seasonNumber": 4,
+      "episodeNumber": 16,
+      "absoluteEpisodeNumber": 62,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/5763103.jpg"
+    },
+    "63": {
+      "seasonNumber": 4,
+      "episodeNumber": 17,
+      "absoluteEpisodeNumber": 63,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/5763104.jpg"
+    },
+    "64": {
+      "seasonNumber": 4,
+      "episodeNumber": 18,
+      "absoluteEpisodeNumber": 64,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/5775462.jpg"
+    },
+    "65": {
+      "seasonNumber": 4,
+      "episodeNumber": 19,
+      "absoluteEpisodeNumber": 65,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/5782302.jpg"
+    },
+    "66": {
+      "seasonNumber": 4,
+      "episodeNumber": 20,
+      "absoluteEpisodeNumber": 66,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/5785021.jpg"
+    },
+    "67": {
+      "seasonNumber": 4,
+      "episodeNumber": 21,
+      "absoluteEpisodeNumber": 67,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/5785022.jpg"
+    },
+    "68": {
+      "seasonNumber": 4,
+      "episodeNumber": 22,
+      "absoluteEpisodeNumber": 68,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/5785023.jpg"
+    },
+    "69": {
+      "seasonNumber": 4,
+      "episodeNumber": 23,
+      "absoluteEpisodeNumber": 69,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/5844200.jpg"
+    },
+    "70": {
+      "seasonNumber": 4,
+      "episodeNumber": 24,
+      "absoluteEpisodeNumber": 70,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/5844201.jpg"
+    },
+    "71": {
+      "seasonNumber": 4,
+      "episodeNumber": 25,
+      "absoluteEpisodeNumber": 71,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/5844202.jpg"
+    },
+    "72": {
+      "seasonNumber": 4,
+      "episodeNumber": 26,
+      "absoluteEpisodeNumber": 72,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/5851180.jpg"
+    },
+    "73": {
+      "seasonNumber": 4,
+      "episodeNumber": 27,
+      "absoluteEpisodeNumber": 73,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/5880351.jpg"
+    },
+    "74": {
+      "seasonNumber": 4,
+      "episodeNumber": 28,
+      "absoluteEpisodeNumber": 74,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/5880381.jpg"
+    },
+    "75": {
+      "seasonNumber": 4,
+      "episodeNumber": 29,
+      "absoluteEpisodeNumber": 75,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/5880397.jpg"
+    },
+    "76": {
+      "seasonNumber": 4,
+      "episodeNumber": 30,
+      "absoluteEpisodeNumber": 76,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/5880400.jpg"
+    },
+    "77": {
+      "seasonNumber": 5,
+      "episodeNumber": 1,
+      "absoluteEpisodeNumber": 77,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/5880403.jpg"
+    },
+    "78": {
+      "seasonNumber": 5,
+      "episodeNumber": 2,
+      "absoluteEpisodeNumber": 78,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/5938324.jpg"
+    },
+    "79": {
+      "seasonNumber": 5,
+      "episodeNumber": 3,
+      "absoluteEpisodeNumber": 79,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/5938437.jpg"
+    },
+    "80": {
+      "seasonNumber": 5,
+      "episodeNumber": 4,
+      "absoluteEpisodeNumber": 80,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/5938436.jpg"
+    },
+    "81": {
+      "seasonNumber": 5,
+      "episodeNumber": 5,
+      "absoluteEpisodeNumber": 81,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/5938435.jpg"
+    },
+    "82": {
+      "seasonNumber": 5,
+      "episodeNumber": 6,
+      "absoluteEpisodeNumber": 82,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/5993243.jpg"
+    },
+    "83": {
+      "seasonNumber": 5,
+      "episodeNumber": 7,
+      "absoluteEpisodeNumber": 83,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/5999381.jpg"
+    },
+    "84": {
+      "seasonNumber": 5,
+      "episodeNumber": 8,
+      "absoluteEpisodeNumber": 84,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/5999382.jpg"
+    },
+    "85": {
+      "seasonNumber": 5,
+      "episodeNumber": 9,
+      "absoluteEpisodeNumber": 85,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/5999383.jpg"
+    },
+    "86": {
+      "seasonNumber": 5,
+      "episodeNumber": 10,
+      "absoluteEpisodeNumber": 86,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/6035368.jpg"
+    },
+    "87": {
+      "seasonNumber": 5,
+      "episodeNumber": 11,
+      "absoluteEpisodeNumber": 87,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/6038082.jpg"
+    },
+    "88": {
+      "seasonNumber": 5,
+      "episodeNumber": 12,
+      "absoluteEpisodeNumber": 88,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/6038083.jpg"
+    },
+    "89": {
+      "seasonNumber": 5,
+      "episodeNumber": 13,
+      "absoluteEpisodeNumber": 89,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/6038085.jpg"
+    },
+    "90": {
+      "seasonNumber": 5,
+      "episodeNumber": 14,
+      "absoluteEpisodeNumber": 90,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/6057544.jpg"
+    },
+    "91": {
+      "seasonNumber": 5,
+      "episodeNumber": 15,
+      "absoluteEpisodeNumber": 91,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/6057545.jpg"
+    },
+    "92": {
+      "seasonNumber": 5,
+      "episodeNumber": 16,
+      "absoluteEpisodeNumber": 92,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/6057546.jpg"
+    },
+    "93": {
+      "seasonNumber": 5,
+      "episodeNumber": 17,
+      "absoluteEpisodeNumber": 93,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/6081060.jpg"
+    },
+    "94": {
+      "seasonNumber": 5,
+      "episodeNumber": 18,
+      "absoluteEpisodeNumber": 94,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/6114467.jpg"
+    },
+    "95": {
+      "seasonNumber": 5,
+      "episodeNumber": 19,
+      "absoluteEpisodeNumber": 95,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/6118890.jpg"
+    },
+    "96": {
+      "seasonNumber": 5,
+      "episodeNumber": 20,
+      "absoluteEpisodeNumber": 96,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/6118891.jpg"
+    },
+    "97": {
+      "seasonNumber": 5,
+      "episodeNumber": 21,
+      "absoluteEpisodeNumber": 97,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/6118892.jpg"
+    },
+    "98": {
+      "seasonNumber": 5,
+      "episodeNumber": 22,
+      "absoluteEpisodeNumber": 98,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/6152293.jpg"
+    },
+    "99": {
+      "seasonNumber": 5,
+      "episodeNumber": 23,
+      "absoluteEpisodeNumber": 99,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/6152299.jpg"
+    },
+    "100": {
+      "seasonNumber": 5,
+      "episodeNumber": 24,
+      "absoluteEpisodeNumber": 100,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/6152300.jpg"
+    },
+    "101": {
+      "seasonNumber": 5,
+      "episodeNumber": 25,
+      "absoluteEpisodeNumber": 101,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/6152304.jpg"
+    },
+    "102": {
+      "seasonNumber": 5,
+      "episodeNumber": 26,
+      "absoluteEpisodeNumber": 102,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/6221833.jpg"
+    },
+    "103": {
+      "seasonNumber": 5,
+      "episodeNumber": 27,
+      "absoluteEpisodeNumber": 103,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/6235874.jpg"
+    },
+    "104": {
+      "seasonNumber": 5,
+      "episodeNumber": 28,
+      "absoluteEpisodeNumber": 104,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/6235876.jpg"
+    },
+    "105": {
+      "seasonNumber": 5,
+      "episodeNumber": 29,
+      "absoluteEpisodeNumber": 105,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/6241912.jpg"
+    },
+    "106": {
+      "seasonNumber": 5,
+      "episodeNumber": 30,
+      "absoluteEpisodeNumber": 106,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/6245675.jpg"
+    },
+    "107": {
+      "seasonNumber": 5,
+      "episodeNumber": 31,
+      "absoluteEpisodeNumber": 107,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/6292916.jpg"
+    },
+    "108": {
+      "seasonNumber": 5,
+      "episodeNumber": 32,
+      "absoluteEpisodeNumber": 108,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/6292919.jpg"
+    },
+    "109": {
+      "seasonNumber": 5,
+      "episodeNumber": 33,
+      "absoluteEpisodeNumber": 109,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/6292920.jpg"
+    },
+    "110": {
+      "seasonNumber": 5,
+      "episodeNumber": 34,
+      "absoluteEpisodeNumber": 110,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/6292925.jpg"
+    },
+    "111": {
+      "seasonNumber": 5,
+      "episodeNumber": 35,
+      "absoluteEpisodeNumber": 111,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/6326255.jpg"
+    },
+    "112": {
+      "seasonNumber": 5,
+      "episodeNumber": 36,
+      "absoluteEpisodeNumber": 112,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/6326256.jpg"
+    },
+    "113": {
+      "seasonNumber": 5,
+      "episodeNumber": 37,
+      "absoluteEpisodeNumber": 113,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/6326257.jpg"
+    },
+    "114": {
+      "seasonNumber": 5,
+      "episodeNumber": 38,
+      "absoluteEpisodeNumber": 114,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/6348942.jpg"
+    },
+    "115": {
+      "seasonNumber": 5,
+      "episodeNumber": 39,
+      "absoluteEpisodeNumber": 115,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/6376965.jpg"
+    },
+    "116": {
+      "seasonNumber": 5,
+      "episodeNumber": 40,
+      "absoluteEpisodeNumber": 116,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/6395089.jpg"
+    },
+    "117": {
+      "seasonNumber": 5,
+      "episodeNumber": 41,
+      "absoluteEpisodeNumber": 117,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/6399001.jpg"
+    },
+    "118": {
+      "seasonNumber": 5,
+      "episodeNumber": 42,
+      "absoluteEpisodeNumber": 118,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/6399013.jpg"
+    },
+    "119": {
+      "seasonNumber": 5,
+      "episodeNumber": 43,
+      "absoluteEpisodeNumber": 119,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/6399881.jpg"
+    },
+    "120": {
+      "seasonNumber": 5,
+      "episodeNumber": 44,
+      "absoluteEpisodeNumber": 120,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/6440373.jpg"
+    },
+    "121": {
+      "seasonNumber": 5,
+      "episodeNumber": 45,
+      "absoluteEpisodeNumber": 121,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/6443991.jpg"
+    },
+    "122": {
+      "seasonNumber": 5,
+      "episodeNumber": 46,
+      "absoluteEpisodeNumber": 122,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/6443992.jpg"
+    },
+    "123": {
+      "seasonNumber": 5,
+      "episodeNumber": 47,
+      "absoluteEpisodeNumber": 123,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/6449963.jpg"
+    },
+    "124": {
+      "seasonNumber": 5,
+      "episodeNumber": 48,
+      "absoluteEpisodeNumber": 124,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/6470356.jpg"
+    },
+    "125": {
+      "seasonNumber": 5,
+      "episodeNumber": 49,
+      "absoluteEpisodeNumber": 125,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/6470365.jpg"
+    },
+    "126": {
+      "seasonNumber": 5,
+      "episodeNumber": 50,
+      "absoluteEpisodeNumber": 126,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/6470444.jpg"
+    },
+    "127": {
+      "seasonNumber": 5,
+      "episodeNumber": 51,
+      "absoluteEpisodeNumber": 127,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/6511234.jpg"
+    },
+    "128": {
+      "seasonNumber": 5,
+      "episodeNumber": 52,
+      "absoluteEpisodeNumber": 128,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/6511235.jpg"
+    },
+    "129": {
+      "seasonNumber": 5,
+      "episodeNumber": 53,
+      "absoluteEpisodeNumber": 129,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/6511236.jpg"
+    },
+    "130": {
+      "seasonNumber": 5,
+      "episodeNumber": 54,
+      "absoluteEpisodeNumber": 130,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/6511237.jpg"
+    },
+    "131": {
+      "seasonNumber": 5,
+      "episodeNumber": 55,
+      "absoluteEpisodeNumber": 131,
+      "image": "https://artworks.thetvdb.com/banners/episodes/295068/6511238.jpg"
+    },
+    "S1": {},
+    "S2": {},
+    "S3": {},
+    "S4": {},
+    "S5": {},
+    "S6": {},
+    "S7": {},
+    "S8": {},
+    "S9": {},
+    "S10": {},
+    "S11": {},
+    "S12": {},
+    "S13": {},
+    "S14": {}
+  }
+}
