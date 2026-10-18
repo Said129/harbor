@@ -3,8 +3,11 @@ import Observation
 
 struct ProfileSettingsDocument: Codable, Equatable, Sendable {
     var values: [String: Data] = [:]
+    var tmdbKey: String?
     func validated() throws -> Self {
-        guard Set(values.keys).isSubset(of: ProfileSettingsStore.keys), try JSONEncoder().encode(self).count <= 3 * 1_024 * 1_024 else { throw HarborError(code: "profile-settings") }
+        guard Set(values.keys).isSubset(of: ProfileSettingsStore.keys),
+              tmdbKey.map({ $0.utf8.count <= 8192 && $0.rangeOfCharacter(from: .controlCharacters) == nil }) ?? true,
+              try JSONEncoder().encode(self).count <= 3 * 1_024 * 1_024 else { throw HarborError(code: "profile-settings") }
         for data in values.values { _ = try Self.value(data) }
         return self
     }
@@ -70,8 +73,8 @@ struct ProfileSettingsState: Codable, Equatable, Sendable {
         do { state = try (self.persistence.readProfileSettings() ?? ProfileSettingsState()).validated(); ready = true }
         catch { self.error = "Could not load profile settings. Saved settings are kept." }
     }
-    private func capture() throws -> ProfileSettingsDocument {
-        var document = ProfileSettingsDocument()
+    private func capture(preserving previous: ProfileSettingsDocument? = nil) throws -> ProfileSettingsDocument {
+        var document = previous ?? ProfileSettingsDocument(); document.values = [:]
         for key in Self.keys {
             if let value = defaults.object(forKey: key) {
                 document.values[key] = try PropertyListSerialization.data(fromPropertyList: ["value": value], format: .binary, options: 0)
@@ -83,13 +86,14 @@ struct ProfileSettingsState: Codable, Equatable, Sendable {
         let next = try next.validated()
         if state != next { try persistence.writeProfileSettings(next); state = next }
     }
-    func activate(owner nextOwner: String, sharedOwner: String, migrateLegacy: Bool) throws {
+    func activate(owner nextOwner: String, sharedOwner: String, migrateLegacy: Bool, legacyTMDB: (() throws -> String?)? = nil) throws {
         guard ready, !nextOwner.isEmpty, nextOwner.utf8.count <= 512, !sharedOwner.isEmpty, sharedOwner.utf8.count <= 512 else { throw HarborError(code: "profile-settings") }
         do {
             var next = state
-            if let owner { next.documents[owner] = try capture() }
+            if let owner { next.documents[owner] = try capture(preserving: next.documents[owner]) }
             if migrateLegacy && next.legacyOwner == nil && next.documents[sharedOwner] == nil {
-                next.documents[sharedOwner] = try capture(); next.legacyOwner = sharedOwner
+                var document = try capture(); document.tmdbKey = try legacyTMDB?()
+                next.documents[sharedOwner] = try document.validated(); next.legacyOwner = sharedOwner
             }
             if next.documents[nextOwner] == nil { next.documents[nextOwner] = next.documents[sharedOwner] ?? ProfileSettingsDocument() }
             let target = try next.documents[nextOwner]!.validated()
@@ -106,7 +110,18 @@ struct ProfileSettingsState: Codable, Equatable, Sendable {
     }
     @discardableResult func saveCurrent() -> Bool {
         guard ready, !applying, let owner else { return false }
-        do { var next = state; next.documents[owner] = try capture(); try commit(next); error = nil; return true }
+        do { var next = state; next.documents[owner] = try capture(preserving: next.documents[owner]); try commit(next); error = nil; return true }
         catch { self.error = "Could not save profile settings. The previous saved values are kept."; return false }
+    }
+    func tmdbKey(expectedOwner: String) throws -> String {
+        guard ready, owner == expectedOwner, let document = state.documents[expectedOwner] else { throw HarborError(code: "profile-settings-changed") }
+        return document.tmdbKey ?? ""
+    }
+    func setTMDBKey(_ value: String, expectedOwner: String) throws {
+        guard ready, owner == expectedOwner, let previous = state.documents[expectedOwner] else { throw HarborError(code: "profile-settings-changed") }
+        var next = state, document = try capture(preserving: previous)
+        document.tmdbKey = value.trimmingCharacters(in: .whitespacesAndNewlines)
+        next.documents[expectedOwner] = try document.validated()
+        try commit(next); error = nil
     }
 }

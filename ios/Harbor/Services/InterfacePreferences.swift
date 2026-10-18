@@ -4,7 +4,6 @@ import Observation
 @MainActor @Observable
 final class InterfacePreferences {
     static let shared = InterfacePreferences()
-    private let storage = UserDefaults.standard
     let navigation = ScopedNavigationPreferences()
     var navIconAnimations = UserDefaults.standard.object(forKey: "navIconAnimations") as? Bool ?? true { didSet { persist(navIconAnimations, forKey: "navIconAnimations") } }
     var autoRotateBanners = UserDefaults.standard.object(forKey: "interface.autoRotateBanners") as? Bool ?? true { didSet { persist(autoRotateBanners, forKey: "interface.autoRotateBanners") } }

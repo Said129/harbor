@@ -11,7 +11,8 @@ struct MetadataConfiguration: Sendable {
 @MainActor @Observable
 final class MetadataPreferences {
     static let shared = MetadataPreferences()
-    private let keychain = KeychainStore()
+    private var scopedSettings: ProfileSettingsStore?
+    private(set) var settingsOwner: String?
     private(set) var tmdbKey = ""
     var error: String?
     var region = UserDefaults.standard.string(forKey: "metadata.region") ?? "US" {
@@ -23,14 +24,15 @@ final class MetadataPreferences {
     var translateTitles = UserDefaults.standard.object(forKey: "metadata.translateTitles") as? Bool ?? true {
         didSet { persist(translateTitles, forKey: "metadata.translateTitles") }
     }
-    func load() {
-        do { tmdbKey = try keychain.read("metadata.tmdb.v1", as: String.self) ?? ""; error = nil }
-        catch { self.error = safeMessage(error) }
+    func bind(_ settings: ProfileSettingsStore) throws {
+        guard let owner = settings.owner else { throw HarborError(code: "profile-settings") }
+        let key = try settings.tmdbKey(expectedOwner: owner)
+        scopedSettings = settings; settingsOwner = owner; tmdbKey = key; error = nil
     }
-    func save(_ value: String) throws {
+    func save(_ value: String, expectedOwner: String) throws {
+        guard let scopedSettings, settingsOwner == expectedOwner else { throw HarborError(code: "profile-settings-changed") }
         let key = value.trimmingCharacters(in: .whitespacesAndNewlines)
-        if key.isEmpty { try keychain.remove("metadata.tmdb.v1") }
-        else { try keychain.write(key, key: "metadata.tmdb.v1") }
+        try scopedSettings.setTMDBKey(key, expectedOwner: expectedOwner)
         tmdbKey = key; error = nil
     }
     func configuration() -> MetadataConfiguration { MetadataConfiguration(tmdbKey: tmdbKey, region: region, language: language, translateTitles: translateTitles) }

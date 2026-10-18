@@ -9,6 +9,7 @@ struct MetadataKeyEditor: View {
     @State private var busy = false
     @State private var error: String?
     @State private var verification: Task<Void, Never>?
+    @State private var settingsOwner: String?
     @FocusState private var focused: Bool
     private var dirty: Bool { key.trimmingCharacters(in: .whitespacesAndNewlines) != preferences.tmdbKey }
     private var saved: Bool { !dirty && !preferences.tmdbKey.isEmpty }
@@ -25,7 +26,10 @@ struct MetadataKeyEditor: View {
             }.padding(20)
         }.background(HarborTheme.background).foregroundStyle(HarborTheme.ink).presentationDragIndicator(.visible)
             .accessibilityIdentifier("metadata-key-editor")
-            .onAppear { key = preferences.tmdbKey }
+            .onAppear { settingsOwner = preferences.settingsOwner; key = preferences.tmdbKey }
+            .onChange(of: preferences.settingsOwner) { _, owner in
+                if owner != settingsOwner { verification?.cancel(); key = ""; revealed = false; dismiss() }
+            }
             .onDisappear { verification?.cancel(); verification = nil }
     }
 
@@ -93,7 +97,7 @@ struct MetadataKeyEditor: View {
 
     private func save() {
         let candidate = key.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard !busy, dirty, !candidate.isEmpty else { return }
+        guard !busy, dirty, !candidate.isEmpty, let expectedOwner = settingsOwner, expectedOwner == preferences.settingsOwner else { return }
         focused = false; busy = true; error = nil
         verification = Task { @MainActor in
             defer { busy = false; verification = nil }
@@ -103,14 +107,14 @@ struct MetadataKeyEditor: View {
                 let service = TMDBService()
                 _ = try await service.page(service.definitions("movie")[0], page: 1, configuration: configuration)
                 try Task.checkCancellation()
-                try preferences.save(candidate)
+                try preferences.save(candidate, expectedOwner: expectedOwner)
                 key = candidate
             } catch is CancellationError {} catch { self.error = safeMessage(error) }
         }
     }
 
     private func remove() {
-        guard !busy else { return }
-        do { try preferences.save(""); key = ""; error = nil } catch { self.error = safeMessage(error) }
+        guard !busy, let expectedOwner = settingsOwner else { return }
+        do { try preferences.save("", expectedOwner: expectedOwner); key = ""; error = nil } catch { self.error = safeMessage(error) }
     }
 }

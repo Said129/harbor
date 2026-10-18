@@ -43,7 +43,10 @@ struct OnboardingLanguageStep: View {
                             VStack(alignment: .leading, spacing: 4) {
                                 Text(option.nativeLabel).font(HarborTheme.font(15, weight: .semibold))
                                     .environment(\.layoutDirection, option.rtl == true ? .rightToLeft : .leftToRight)
-                                if let label = option.label { Text(DesktopInterfaceText.value(label)).font(HarborTheme.font(12.5)).foregroundStyle(.secondary) }
+                                if let label = option.label {
+                                    Text((Locale(identifier: language).localizedString(forLanguageCode: option.code) ?? label).capitalized(with: Locale(identifier: language)))
+                                        .font(HarborTheme.font(12.5)).foregroundStyle(.secondary)
+                                }
                             }.frame(maxWidth: .infinity, alignment: .leading)
                         }.padding(14).frame(maxWidth: .infinity, minHeight: 76, alignment: .leading)
                             .background(selected ? HarborTheme.surface : HarborTheme.background.opacity(0.4), in: .rect(cornerRadius: 16))

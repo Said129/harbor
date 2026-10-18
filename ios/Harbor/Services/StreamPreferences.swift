@@ -43,6 +43,20 @@ final class StreamPreferences {
         if keepSourceNextEpisode, let previous, let matched = preferred(offers.filter { previous.matches($0) }) { return matched }
         return preferred(offers)
     }
+    private var reloading = false
+    private func persist(_ value: Any?, forKey key: String) {
+        if !reloading { UserDefaults.standard.set(value, forKey: key) }
+    }
+    func reloadPreferences() {
+        reloading = true; defer { reloading = false }
+        filterLevel = UserDefaults.standard.string(forKey: "streamFilterLevel") ?? "strict"
+        addonOrder = UserDefaults.standard.object(forKey: "streams.addonOrder") as? Bool ?? true
+        automatic = UserDefaults.standard.object(forKey: "streams.automatic") as? Bool ?? true
+        keepSourceNextEpisode = UserDefaults.standard.object(forKey: "keepSourceNextEpisode") as? Bool ?? false
+        excludeCamera = UserDefaults.standard.object(forKey: "streams.excludeCamera") as? Bool ?? true
+        maximum = UserDefaults.standard.object(forKey: "streams.maximum") as? Int ?? 2160
+        minimum = UserDefaults.standard.object(forKey: "streams.minimum") as? Int ?? 0
+    }
 }
 
 struct StreamFilterConfiguration: Sendable {
@@ -102,18 +116,4 @@ extension StreamOffer {
         return text.range(of: "(?i)(?:^|[^a-z0-9])(?:hdcam|camrip|cam|hdts|telesync|telecine|tsrip|ts|tc)(?:$|[^a-z0-9])", options: .regularExpression) != nil
     }
 
-    private var reloading = false
-    private func persist(_ value: Any?, forKey key: String) {
-        if !reloading { UserDefaults.standard.set(value, forKey: key) }
-    }
-    func reloadPreferences() {
-        reloading = true; defer { reloading = false }
-        filterLevel = UserDefaults.standard.string(forKey: "streamFilterLevel") ?? "strict"
-        addonOrder = UserDefaults.standard.object(forKey: "streams.addonOrder") as? Bool ?? true
-        automatic = UserDefaults.standard.object(forKey: "streams.automatic") as? Bool ?? true
-        keepSourceNextEpisode = UserDefaults.standard.object(forKey: "keepSourceNextEpisode") as? Bool ?? false
-        excludeCamera = UserDefaults.standard.object(forKey: "streams.excludeCamera") as? Bool ?? true
-        maximum = UserDefaults.standard.object(forKey: "streams.maximum") as? Int ?? 2160
-        minimum = UserDefaults.standard.object(forKey: "streams.minimum") as? Int ?? 0
-    }
 }

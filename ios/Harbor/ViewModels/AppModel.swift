@@ -102,7 +102,6 @@ final class AppModel {
         started = true
         loading = true
         Diagnostics.shared.record(.startup)
-        MetadataPreferences.shared.load()
         do {
             try profileContext.prepare()
             guard profileContext.ready else { throw HarborError(code: "profile-selection-required") }
@@ -156,11 +155,13 @@ final class AppModel {
         case .harbor: migrateLegacy = false
         }
         if ProfileSettingsStore.shared.owner != binding.settingsOwner {
-            try ProfileSettingsStore.shared.activate(owner: binding.settingsOwner, sharedOwner: binding.identityOwner, migrateLegacy: migrateLegacy)
+            try ProfileSettingsStore.shared.activate(owner: binding.settingsOwner, sharedOwner: binding.identityOwner, migrateLegacy: migrateLegacy,
+                legacyTMDB: { try KeychainStore().read("metadata.tmdb.v1", as: String.self) })
             InterfacePreferences.shared.reloadPreferences(); ThemePreferences.shared.reloadPreferences()
             PlaybackPreferences.shared.reloadPreferences(); StreamPreferences.shared.reloadPreferences()
             MetadataPreferences.shared.reloadPreferences(); MusicPlayback.shared.reloadPreferences()
         }
+        try MetadataPreferences.shared.bind(ProfileSettingsStore.shared)
         ProfilePreferences.forOwner(user?.id ?? "guest").cloud.bindLayoutOwner(settingsOwner)
         InterfacePreferences.shared.navigation.bind(.local(owner: settingsOwner))
         StreamingPreferences.forOwner(settingsOwner).bind(.local(owner: settingsOwner))

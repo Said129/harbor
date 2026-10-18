@@ -97,4 +97,54 @@ import XCTest
         XCTAssertEqual(preferences.options.speed, PlaybackOptions().speed)
         XCTAssertEqual(defaults.data(forKey: "iphone.player-options.v1"), unreadable)
     }
+    func testMetadataKeyForksWithIndependentSettingsAndTheLegacyKeyIsReadOnlyOnce() throws {
+        let (defaults, suite) = try defaults(); defer { defaults.removePersistentDomain(forName: suite) }
+        let memory = ProfileSettingsMemory(), store = ProfileSettingsStore(defaults: defaults, persistence: memory)
+        var reads = 0
+        try store.activate(owner: "shared", sharedOwner: "shared", migrateLegacy: true, legacyTMDB: { reads += 1; return "synthetic-legacy" })
+        let preferences = MetadataPreferences(); try preferences.bind(store)
+        XCTAssertEqual(preferences.tmdbKey, "synthetic-legacy"); XCTAssertEqual(reads, 1)
+        try preferences.save("synthetic-shared", expectedOwner: "shared")
+        defaults.set("fr", forKey: "uiLanguage"); XCTAssertTrue(store.saveCurrent())
+        try store.activate(owner: "one", sharedOwner: "shared", migrateLegacy: false); try preferences.bind(store)
+        XCTAssertEqual(preferences.tmdbKey, "synthetic-shared")
+        try preferences.save("synthetic-independent", expectedOwner: "one")
+        try store.activate(owner: "shared", sharedOwner: "shared", migrateLegacy: true, legacyTMDB: { reads += 1; return "must-not-import" })
+        try preferences.bind(store)
+        XCTAssertEqual(preferences.tmdbKey, "synthetic-shared"); XCTAssertEqual(reads, 1)
+        let restarted = ProfileSettingsStore(defaults: defaults, persistence: memory)
+        try restarted.activate(owner: "one", sharedOwner: "shared", migrateLegacy: true, legacyTMDB: { reads += 1; return "must-not-import" })
+        try preferences.bind(restarted)
+        XCTAssertEqual(preferences.tmdbKey, "synthetic-independent"); XCTAssertEqual(reads, 1)
+    }
+    func testLateMetadataEditorCannotWriteAnotherRoleAndFailedSavesKeepThePreviousKey() throws {
+        let (defaults, suite) = try defaults(); defer { defaults.removePersistentDomain(forName: suite) }
+        let memory = ProfileSettingsMemory(), store = ProfileSettingsStore(defaults: defaults, persistence: memory)
+        try store.activate(owner: "shared", sharedOwner: "shared", migrateLegacy: true)
+        let preferences = MetadataPreferences(); try preferences.bind(store)
+        try preferences.save("synthetic-shared", expectedOwner: "shared")
+        try store.activate(owner: "one", sharedOwner: "shared", migrateLegacy: false)
+        XCTAssertThrowsError(try preferences.save("stale-editor", expectedOwner: "shared"))
+        try preferences.bind(store)
+        XCTAssertThrowsError(try preferences.save("stale-after-rebind", expectedOwner: "shared"))
+        memory.failWrite = true
+        XCTAssertThrowsError(try preferences.save("new-unsaved-key", expectedOwner: "one"))
+        XCTAssertEqual(preferences.tmdbKey, "synthetic-shared")
+        XCTAssertEqual(try store.tmdbKey(expectedOwner: "one"), "synthetic-shared")
+        memory.failWrite = false; try preferences.save("", expectedOwner: "one")
+        try store.activate(owner: "shared", sharedOwner: "shared", migrateLegacy: false); try preferences.bind(store)
+        XCTAssertEqual(preferences.tmdbKey, "synthetic-shared")
+        try store.activate(owner: "one", sharedOwner: "shared", migrateLegacy: false); try preferences.bind(store)
+        XCTAssertTrue(preferences.tmdbKey.isEmpty)
+    }
+    func testAnotherHouseholdDoesNotReadOrInheritTheLegacyMetadataSecret() throws {
+        let (defaults, suite) = try defaults(); defer { defaults.removePersistentDomain(forName: suite) }
+        let memory = ProfileSettingsMemory(), store = ProfileSettingsStore(defaults: defaults, persistence: memory)
+        try store.activate(owner: "household-a", sharedOwner: "household-a", migrateLegacy: true, legacyTMDB: { "synthetic-private-a" })
+        var reads = 0
+        try store.activate(owner: "household-b", sharedOwner: "household-b", migrateLegacy: false, legacyTMDB: { reads += 1; return "must-not-read" })
+        XCTAssertEqual(reads, 0); XCTAssertTrue(try store.tmdbKey(expectedOwner: "household-b").isEmpty)
+        try store.activate(owner: "household-a", sharedOwner: "household-a", migrateLegacy: false)
+        XCTAssertEqual(try store.tmdbKey(expectedOwner: "household-a"), "synthetic-private-a")
+    }
 }
