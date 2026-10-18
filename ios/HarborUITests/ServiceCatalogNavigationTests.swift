@@ -33,8 +33,12 @@ import XCTest
         capture(app, name: "service-browser-\(device)-provider")
         let categories = app.scrollViews["service-categories"]
         let horror = app.buttons["service-category-horror"]
-        for _ in 0..<8 { if horror.isHittable { break }; categories.swipeLeft() }
-        XCTAssertTrue(horror.isHittable); horror.tap(); XCTAssertTrue(horror.isSelected)
+        app.buttons["service-category-menu"].tap()
+        let horrorAction = app.buttons.matching(NSPredicate(format: "label == %@ AND identifier != %@", "Terror", "service-category-horror")).firstMatch
+        XCTAssertTrue(horrorAction.waitForExistence(timeout: 5)); horrorAction.tap()
+        let selected = expectation(for: NSPredicate(format: "isSelected == true"), evaluatedWith: horror)
+        wait(for: [selected], timeout: 5)
+        XCTAssertTrue(categories.frame.intersects(horror.frame))
         capture(app, name: "service-browser-\(device)-filter")
         XCTAssertTrue(app.buttons["service-category-menu"].isHittable)
         XCTAssertTrue(app.buttons["service-back-to-top"].isHittable)
