@@ -1,6 +1,7 @@
 import Foundation
 import Network
 import XCTest
+import UIKit
 
 @MainActor final class PlayerCaptionNavigationTests: XCTestCase {
     func testActualIPhonePlayerShowsAbsoluteNinetyNineAndAdvancesToOneHundred() async throws { try await verifyPlayer(device: "iphone") }
@@ -62,12 +63,18 @@ import XCTest
     }
     private func verifyCaption(_ text: String, app: XCUIApplication) async throws {
         let caption = app.staticTexts["player-episode-caption"]
-        let correct = XCTNSPredicateExpectation(predicate: NSPredicate(format: "label == %@", text), object: caption)
+        let correct = XCTNSPredicateExpectation(predicate: NSPredicate(format: "label == %@ AND hittable == true", text), object: caption)
         let result = await XCTWaiter.fulfillment(of: [correct], timeout: 45)
         XCTAssertEqual(result, .completed)
     }
     private func capture(_ app: XCUIApplication, name: String) {
-        let attachment = XCTAttachment(screenshot: app.screenshot()); attachment.name = name; attachment.lifetime = .keepAlways; add(attachment)
+        // The application-scoped capture crops the rotated window on this
+        // simulator. Capture the physical display and retain its geometry.
+        let screenshot = XCUIScreen.main.screenshot()
+        let caption = app.staticTexts["player-episode-caption"]
+        let geometry = XCTAttachment(string: "app=\(app.frame); caption=\(caption.frame); pixels=\(screenshot.image.size); orientation=\(screenshot.image.imageOrientation.rawValue)")
+        geometry.name = name + "-geometry"; geometry.lifetime = .keepAlways; add(geometry)
+        let attachment = XCTAttachment(screenshot: screenshot); attachment.name = name; attachment.lifetime = .keepAlways; add(attachment)
     }
 }
 
