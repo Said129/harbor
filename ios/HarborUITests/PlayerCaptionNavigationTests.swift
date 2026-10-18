@@ -46,10 +46,14 @@ import UIKit
         capture(app, name: "synthetic-player-\(device)-episode-100")
     }
     private func showPlayer(_ app: XCUIApplication) async throws {
-        let surface = app.descendants(matching: .any).matching(identifier: "player-surface").firstMatch
+        let surface = app.buttons["player-surface"]
         if !surface.waitForExistence(timeout: 30) {
-            let offer = app.buttons["stream-offer"].firstMatch
-            XCTAssertTrue(offer.waitForExistence(timeout: 15)); offer.tap()
+            // The rotated player can already be above the disabled source
+            // picker. Never try to activate that background button.
+            if !app.buttons["player-close"].exists {
+                let offer = app.buttons["stream-offer"].firstMatch
+                XCTAssertTrue(offer.waitForExistence(timeout: 15)); XCTAssertTrue(offer.isEnabled); offer.tap()
+            }
         }
         XCTAssertTrue(surface.waitForExistence(timeout: 30))
         let ready = XCTNSPredicateExpectation(predicate: NSPredicate(format: "value == 'Preparado'"), object: surface)
