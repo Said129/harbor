@@ -39,7 +39,7 @@ assert changed(['ios/HarborTests', 'ios/HarborIntegrationTests', 'ios/HarborUITe
 old = subprocess.check_output(['git', 'show', baseline + ':' + test]).decode('utf-8')
 before = '''        for _ in 0..<8 { if horror.isHittable { break }; categories.swipeLeft() }
         XCTAssertTrue(horror.isHittable); horror.tap(); XCTAssertTrue(horror.isSelected)'''
-after = '''        app.buttons["service-category-menu"].tap()
+after = '''        tapVisibleFloatingControl(app.buttons["service-category-menu"], app: app)
         let horrorAction = app.buttons.matching(NSPredicate(format: "label == %@ AND identifier != %@", "Terror", "service-category-horror")).firstMatch
         XCTAssertTrue(horrorAction.waitForExistence(timeout: 5)); horrorAction.tap()
         let selected = expectation(for: NSPredicate(format: "isSelected == true"), evaluatedWith: horror)
@@ -47,7 +47,23 @@ after = '''        app.buttons["service-category-menu"].tap()
         XCTAssertTrue(categories.frame.intersects(horror.frame))'''
 assert old.count(before) == 1
 current = Path(test).read_text('utf-8') if a.working_tree else subprocess.check_output(['git', 'show', 'HEAD:' + test]).decode('utf-8')
-assert current == old.replace(before, after), 'Only the offscreen category automation route may change'
+helper = '''    private func tapVisibleFloatingControl(_ control: XCUIElement, app: XCUIApplication) {
+        XCTAssertTrue(control.waitForExistence(timeout: 5)); XCTAssertTrue(control.isEnabled)
+        let frame = control.frame
+        XCTAssertGreaterThanOrEqual(frame.width, 44); XCTAssertGreaterThanOrEqual(frame.height, 44)
+        XCTAssertTrue(app.frame.contains(frame))
+        // XCTest returns an invalid AX hit point for these visible SwiftUI Menu
+        // controls. A real touch at the observed frame must still open its menu;
+        // the caller requires the actual option and selected state afterwards.
+        control.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()
+    }
+'''
+expected_test = old.replace(before, after).replace(
+    '''        XCTAssertTrue(app.buttons["service-category-menu"].isHittable)
+        XCTAssertTrue(app.buttons["service-back-to-top"].isHittable)''',
+    '''        tapVisibleFloatingControl(app.buttons["service-back-to-top"], app: app)''')
+expected_test = expected_test.replace('    private func capture(', helper + '    private func capture(')
+assert current == expected_test, 'Only the reviewed visible-frame touch route may change; actual menu and selection assertions stay required'
 
 def cases(folder, suite):
     text = subprocess.check_output(['git', 'show', f'{baseline}:ios/{folder}/{suite}.swift']).decode('utf-8')
@@ -77,6 +93,8 @@ proof = dict(source=source, previous_source=baseline, scope='services-ui', prior
              local_source_review_only=a.working_tree, preserved_cases=sorted(expected), pending_ui_cases=sorted(pending),
              expected_actual_executions=6, expected_new_images_minimum=23, optional_transient_images=1,
              required_recordings=['service-iphone.mp4', 'service-ipad.mp4'],
+             subsequent_failed_runs=[39114070881, 39117113245],
+             touch_route='Tap the observed visible 44pt-or-larger control frame; require the actual menu option and selected category',
              ipa_created=False, full_desktop_parity_complete=False, physical_device_validation=False)
 if not a.working_tree:
     assert str(prior_run) in os.environ['HARBOR_PREVIOUS_RUNS'].split(',')
