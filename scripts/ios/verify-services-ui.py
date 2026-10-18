@@ -33,7 +33,7 @@ layout = 'ios/Harbor/Views/StreamingCatalogView.swift'
 assert changed(['ios/Harbor', 'ios/project.yml', 'harbor-core', 'harbor-ios-bridge']) == {layout}, 'Only the observed floating-control accessibility repair may change production'
 layout_source = Path(layout).read_text('utf-8') if a.working_tree else subprocess.check_output(['git', 'show', 'HEAD:' + layout]).decode('utf-8')
 layout_sha256 = hashlib.sha256(layout_source.encode('utf-8')).hexdigest()
-assert layout_sha256 == '071a8d244c8ba5d450d16f85fbb6d814dffc9eb840de96029ae2a11acbabac51', 'Require the reviewed sibling control layout, with all catalog and provider behavior unchanged'
+assert layout_sha256 == '9f3707470e8a865ba6d249ccb9588840f70d26f7fbb96790944d9d7b4bcf9fe4', 'Require the reviewed sibling controls and leaf-only status identifier, with catalog and provider behavior unchanged'
 test = 'ios/HarborUITests/ServiceCatalogNavigationTests.swift'
 assert changed(['ios/HarborTests', 'ios/HarborIntegrationTests', 'ios/HarborUITests']) == {test}
 old = subprocess.check_output(['git', 'show', baseline + ':' + test]).decode('utf-8')
@@ -88,12 +88,12 @@ assert len(pending) == 6 and not (expected & pending)
 proof = dict(source=source, previous_source=baseline, scope='services-ui', prior_run=prior_run,
              application_byte_identical=False, preserved_case_producers_unchanged=True,
              changed_production_layout=layout, changed_layout_sha256=layout_sha256,
-             layout_repair='Floating controls are siblings of the vertical scroll view, preserving their existing actions, labels and position',
+             layout_repair='Floating controls are scroll siblings; the TMDB status identifier belongs to its text and cannot overwrite the settings link identifier',
              prior_evidence_verified=False,
              local_source_review_only=a.working_tree, preserved_cases=sorted(expected), pending_ui_cases=sorted(pending),
              expected_actual_executions=6, expected_new_images_minimum=23, optional_transient_images=1,
              required_recordings=['service-iphone.mp4', 'service-ipad.mp4'],
-             subsequent_failed_runs=[39114070881, 39117113245],
+             subsequent_failed_runs=[39114070881, 39117113245, 39119864306],
              touch_route='Tap the observed visible 44pt-or-larger control frame; require the actual menu option and selected category',
              ipa_created=False, full_desktop_parity_complete=False, physical_device_validation=False)
 if not a.working_tree:
