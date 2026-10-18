@@ -289,6 +289,7 @@
 "Cerrar navegación" = "Close navigation";
 "Cerrar reproductor" = "Đóng trình phát";
 "Cerrar sesión" = "Đăng xuất";
+"Change" = "Thay đổi";
 "Change chapter order" = "Change chapter order";
 "Channel format" = "Channel format";
 "Chapters" = "Các chương";
@@ -347,6 +348,9 @@
 "Configurar addon" = "Configure addon";
 "Configure Sports" = "Configure Sports";
 "Configure addon" = "Configure addon";
+"Confirm your PIN" = "Xác nhận mã PIN";
+"Confirm your current PIN to remove the lock." = "Xác nhận mã PIN hiện tại để bỏ khóa.";
+"Confirm your current PIN, then pick a new one." = "Xác nhận mã PIN hiện tại, rồi chọn mã mới.";
 "Connect TMDB" = "Kết nối TMDB";
 "Connecting" = "Đang kết nối";
 "Conservar original" = "Giữ nguyên bản";
@@ -424,6 +428,8 @@
 "Delete" = "Xóa";
 "Delete file" = "Delete file";
 "Delete list" = "Xóa danh sách";
+"Delete profile" = "Xóa hồ sơ";
+"Delete this profile?" = "Xóa hồ sơ này?";
 "Deporte" = "Sport";
 "Derecha" = "Phải";
 "Derecha a izquierda" = "Từ phải sang trái";
@@ -486,6 +492,8 @@
 "Easy on the eyes" = "Dịu mắt";
 "Edición terminada" = "Chỉnh sửa xong";
 "Edit custom theme" = "Chỉnh sửa chủ đề tùy chỉnh";
+"Edit profile" = "Chỉnh sửa hồ sơ";
+"Edit {name}" = "Chỉnh sửa {name}";
 "Editar tema personalizado" = "Chỉnh sửa chủ đề tùy chỉnh";
 "Editor" = "Biên tập viên";
 "Eisner Award Winners" = "Tác phẩm đoạt giải Eisner";
@@ -517,6 +525,7 @@
 "English" = "Tiếng Anh";
 "Enter Harbor" = "Vào Harbor";
 "Enter an FPS from 1 to 240." = "Nhập FPS từ 1 đến 240.";
+"Enter current PIN" = "Nhập mã PIN hiện tại";
 "Episode" = "Tập";
 "Episode cards" = "Thẻ tập";
 "Episode {n}" = "Tập {n}";
@@ -796,6 +805,7 @@
 "MUBI" = "MUBI";
 "Make it yours" = "Tùy biến theo ý bạn";
 "Manage" = "Quản lý";
+"Manage profiles" = "Quản lý hồ sơ";
 "Manga" = "Manga";
 "Manga connection" = "Manga connection";
 "Manga extension" = "Manga extension";
@@ -891,6 +901,7 @@
 "Netflix Originals" = "Nội dung gốc Netflix";
 "New Anime Releases" = "Anime mới phát hành";
 "New Face Award" = "Giải Gương mặt mới";
+"New profile" = "Hồ sơ mới";
 "New voyage" = "Hải trình mới";
 "Next" = "Tiếp theo";
 "Next chapter" = "Chương tiếp theo";
@@ -1011,6 +1022,8 @@
 "P2P" = "P2P";
 "P2P sources, debrid-ready" = "Nguồn P2P, hỗ trợ debrid";
 "PBS" = "PBS";
+"PIN" = "PIN";
+"PINs didn't match. Start over." = "Mã PIN không khớp. Hãy bắt đầu lại.";
 "Page" = "Trang";
 "Page base." = "Nền trang.";
 "Page turn sound" = "Page turn sound";
@@ -1036,9 +1049,11 @@
 "Personalizar página" = "Tùy chỉnh trang";
 "Personas" = "Người";
 "Philo" = "Philo";
+"Pick a 4-digit PIN. You'll be asked for it before this profile opens." = "Chọn mã PIN 4 chữ số. Bạn sẽ được yêu cầu nhập mã này trước khi mở hồ sơ.";
 "Pick a direction. You steer from there, one film at a time." = "Chọn một hướng. Từ đó, bạn cầm lái qua từng bộ phim.";
 "Pick a few you love" = "Chọn vài phim bạn yêu thích";
 "Pick a home layout" = "Chọn bố cục trang chủ";
+"Pick a profile to continue." = "Chọn một hồ sơ để tiếp tục.";
 "Pick a random title" = "Chọn ngẫu nhiên một phim";
 "Pick a source" = "Chọn nguồn";
 "Pick up partly-watched episodes and movies at your saved spot. Anything watched past 80% always restarts. Turn this off to always start from the beginning, handy if you rewatch shows." = "Tiếp tục phát các tập và phim đang xem dở từ vị trí đã lưu. Nội dung đã xem quá 80% luôn phát lại từ đầu. Tắt tùy chọn này để luôn phát từ đầu, tiện khi xem lại phim bộ.";
@@ -1093,6 +1108,8 @@
 "Primero selecciona una pista de subtítulos." = "Trước tiên, hãy chọn một rãnh phụ đề.";
 "Priorizar {language}" = "Tăng ưu tiên cho {language}";
 "Producer" = "Nhà sản xuất";
+"Profile PIN" = "Mã PIN hồ sơ";
+"Profile is locked. Enter the 4-digit PIN to continue." = "Hồ sơ đã bị khóa. Nhập mã PIN 4 chữ số để tiếp tục.";
 "Progreso" = "Progress";
 "Progreso de descarga" = "Download progress";
 "Progress" = "Progress";
@@ -1253,6 +1270,7 @@
 "Saturation" = "Độ bão hòa";
 "Save" = "Lưu";
 "Save and share pages" = "Save and share pages";
+"Save changes" = "Lưu thay đổi";
 "Save for later" = "Lưu để xem sau";
 "Save page" = "Save page";
 "Save reminder" = "Lưu nhắc nhở";
@@ -1308,9 +1326,11 @@
 "Services changes waiting to sync" = "Các thay đổi dịch vụ đang chờ đồng bộ";
 "Servidor Xtream" = "Xtream server";
 "Sesión iniciada en Stremio" = "Đã đăng nhập vào Stremio";
+"Set a PIN" = "Đặt mã PIN";
 "Settings" = "Cài đặt";
 "Share" = "Chia sẻ";
 "Share file" = "Share file";
+"Share with {name}" = "Chia sẻ với {name}";
 "Sharpen" = "Độ sắc nét";
 "Sharper lines and a little more pop." = "Đường nét rõ hơn và hình ảnh nổi bật hơn một chút.";
 "Short of the Year" = "Phim ngắn của năm";
@@ -1451,6 +1471,7 @@
 "Swedish" = "Tiếng Thụy Điển";
 "Switch quality" = "Switch quality";
 "Switch stream" = "Đổi luồng phát";
+"Switch to {name}" = "Chuyển sang {name}";
 "Sync" = "Đồng bộ";
 "Sync Offset" = "Độ lệch đồng bộ";
 "Sync addons" = "Sync addons";
@@ -1559,6 +1580,7 @@
 "Torrents" = "Torrent";
 "Track" = "Bản nhạc";
 "Traducir títulos" = "Dịch tiêu đề";
+"Transfer primary" = "Chuyển hồ sơ chính";
 "Translate titles" = "Dịch tiêu đề";
 "Trazo grueso alrededor de cada letra. Alto contraste." = "Viền đậm quanh từng chữ. Độ tương phản cao.";
 "Trending" = "Thịnh hành";
@@ -1581,6 +1603,8 @@
 "Tus ligas" = "Your leagues";
 "Tus listas" = "Your lists";
 "Type" = "Loại";
+"Type on your keyboard or tap the digits above." = "Nhập bằng bàn phím hoặc chạm vào các chữ số phía trên.";
+"Type the same 4-digit PIN again." = "Nhập lại cùng mã PIN 4 chữ số.";
 "Typography" = "Kiểu chữ";
 "Títulos ocultos" = "Hidden titles";
 "Títulos y descripciones" = "Tiêu đề và mô tả";
@@ -1605,6 +1629,7 @@
 "Usa la clave v3, no el token de acceso de lectura." = "Dùng khóa v3, không dùng mã truy cập đọc.";
 "Usar mi estilo" = "Dùng kiểu của tôi";
 "Use my style" = "Dùng kiểu của tôi";
+"Use shared settings" = "Dùng cài đặt chung";
 "Use the navigation menu to open each section. Personalize the sidebar, home rows, colors and playback from Settings." = "Use the navigation menu to open each section. Personalize the sidebar, home rows, colors and playback from Settings.";
 "Use the v3 key, not the read access token." = "Dùng khóa v3, không dùng mã truy cập đọc.";
 "Use your configured Harbor server. Allow local network access when iOS asks." = "Use your configured Harbor server. Allow local network access when iOS asks.";
@@ -1645,7 +1670,9 @@
 "Where to today?" = "Hôm nay đi đâu?";
 "Where to watch" = "Xem ở đâu";
 "Where your video comes from" = "Nguồn video";
+"Who's watching?" = "Ai đang xem?";
 "Writer" = "Biên kịch";
+"Wrong PIN" = "Sai mã PIN";
 "Xtream" = "Xtream";
 "Xtream server" = "Xtream server";
 "You can switch later in Settings under Library & metadata." = "Bạn có thể đổi sau trong Cài đặt, tại Thư viện & siêu dữ liệu.";
@@ -1672,6 +1699,7 @@
 "category" = "danh mục";
 "center" = "giữa";
 "code" = "mã";
+"common.back" = "Quay lại";
 "default" = "mặc định";
 "downloads" = "nội dung tải xuống";
 "eBook" = "Sách điện tử";
@@ -1696,6 +1724,7 @@
 "or use one of our avatars" = "hoặc dùng một trong các ảnh đại diện của chúng tôi";
 "plays" = "lượt phát";
 "profile" = "hồ sơ";
+"profile.primary" = "Chính";
 "profile.signedIn" = "Đã đăng nhập vào Stremio";
 "result" = "kết quả";
 "results" = "kết quả";

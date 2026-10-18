@@ -289,6 +289,7 @@
 "Cerrar navegación" = "Close navigation";
 "Cerrar reproductor" = "प्लेयर बंद करें";
 "Cerrar sesión" = "साइन आउट करें";
+"Change" = "बदलें";
 "Change chapter order" = "Change chapter order";
 "Channel format" = "Channel format";
 "Chapters" = "अध्याय";
@@ -347,6 +348,9 @@
 "Configurar addon" = "Configure addon";
 "Configure Sports" = "Configure Sports";
 "Configure addon" = "Configure addon";
+"Confirm your PIN" = "अपने PIN की पुष्टि करें";
+"Confirm your current PIN to remove the lock." = "लॉक हटाने के लिए अपने मौजूदा PIN की पुष्टि करें।";
+"Confirm your current PIN, then pick a new one." = "अपने मौजूदा PIN की पुष्टि करें, फिर नया PIN चुनें।";
 "Connect TMDB" = "TMDB कनेक्ट करें";
 "Connecting" = "कनेक्ट हो रहा है";
 "Conservar original" = "मूल रखें";
@@ -424,6 +428,8 @@
 "Delete" = "हटाएँ";
 "Delete file" = "Delete file";
 "Delete list" = "लिस्ट हटाएँ";
+"Delete profile" = "प्रोफ़ाइल हटाएँ";
+"Delete this profile?" = "यह प्रोफ़ाइल हटाएँ?";
 "Deporte" = "Sport";
 "Derecha" = "दायाँ";
 "Derecha a izquierda" = "दाएँ से बाएँ";
@@ -486,6 +492,8 @@
 "Easy on the eyes" = "आँखों के लिए आरामदायक";
 "Edición terminada" = "संपादन पूरा करें";
 "Edit custom theme" = "कस्टम थीम संपादित करें";
+"Edit profile" = "प्रोफ़ाइल संपादित करें";
+"Edit {name}" = "{name} को संपादित करें";
 "Editar tema personalizado" = "कस्टम थीम संपादित करें";
 "Editor" = "संपादक";
 "Eisner Award Winners" = "आइज़नर पुरस्कार विजेता";
@@ -517,6 +525,7 @@
 "English" = "अंग्रेज़ी";
 "Enter Harbor" = "Harbor में प्रवेश करें";
 "Enter an FPS from 1 to 240." = "1 से 240 तक का FPS दर्ज करें।";
+"Enter current PIN" = "मौजूदा PIN दर्ज करें";
 "Episode" = "एपिसोड";
 "Episode cards" = "एपिसोड कार्ड";
 "Episode {n}" = "एपिसोड {n}";
@@ -796,6 +805,7 @@
 "MUBI" = "MUBI";
 "Make it yours" = "इसे अपना बनाएँ";
 "Manage" = "मैनेज करें";
+"Manage profiles" = "प्रोफ़ाइल मैनेज करें";
 "Manga" = "मंगा";
 "Manga connection" = "Manga connection";
 "Manga extension" = "Manga extension";
@@ -891,6 +901,7 @@
 "Netflix Originals" = "Netflix ओरिजिनल्स";
 "New Anime Releases" = "नई एनीमे रिलीज़";
 "New Face Award" = "नया चेहरा पुरस्कार";
+"New profile" = "नई प्रोफ़ाइल";
 "New voyage" = "नई यात्रा";
 "Next" = "अगला";
 "Next chapter" = "अगला अध्याय";
@@ -1011,6 +1022,8 @@
 "P2P" = "P2P";
 "P2P sources, debrid-ready" = "P2P स्रोत, debrid के लिए तैयार";
 "PBS" = "PBS";
+"PIN" = "PIN";
+"PINs didn't match. Start over." = "PIN मेल नहीं खाए। फिर से शुरू करें।";
 "Page" = "पेज";
 "Page base." = "पेज का आधार।";
 "Page turn sound" = "Page turn sound";
@@ -1036,9 +1049,11 @@
 "Personalizar página" = "पेज को कस्टमाइज़ करें";
 "Personas" = "लोग";
 "Philo" = "Philo";
+"Pick a 4-digit PIN. You'll be asked for it before this profile opens." = "4 अंकों का PIN चुनें। यह प्रोफ़ाइल खोलने से पहले आपसे PIN पूछा जाएगा।";
 "Pick a direction. You steer from there, one film at a time." = "एक दिशा चुनें। फिर वहाँ से एक-एक फ़िल्म करके आगे बढ़ें।";
 "Pick a few you love" = "अपनी पसंद की कुछ चीज़ें चुनें";
 "Pick a home layout" = "होम लेआउट चुनें";
+"Pick a profile to continue." = "जारी रखने के लिए प्रोफ़ाइल चुनें।";
 "Pick a random title" = "कोई रैंडम शीर्षक चुनें";
 "Pick a source" = "स्रोत चुनें";
 "Pick up partly-watched episodes and movies at your saved spot. Anything watched past 80% always restarts. Turn this off to always start from the beginning, handy if you rewatch shows." = "अधूरे देखे एपिसोड और फ़िल्में सेव की गई जगह से शुरू करें। 80% से ज़्यादा देखी गई कोई भी चीज़ हमेशा शुरू से चलेगी। हमेशा शुरुआत से चलाने के लिए इसे बंद करें, जो शो दोबारा देखते समय उपयोगी है।";
@@ -1093,6 +1108,8 @@
 "Primero selecciona una pista de subtítulos." = "पहले एक सबटाइटल ट्रैक चुनें।";
 "Priorizar {language}" = "{language} की प्राथमिकता बढ़ाएँ";
 "Producer" = "निर्माता";
+"Profile PIN" = "प्रोफ़ाइल PIN";
+"Profile is locked. Enter the 4-digit PIN to continue." = "प्रोफ़ाइल लॉक है। जारी रखने के लिए 4 अंकों का PIN दर्ज करें।";
 "Progreso" = "Progress";
 "Progreso de descarga" = "Download progress";
 "Progress" = "Progress";
@@ -1253,6 +1270,7 @@
 "Saturation" = "सैचुरेशन";
 "Save" = "सेव करें";
 "Save and share pages" = "Save and share pages";
+"Save changes" = "बदलाव सेव करें";
 "Save for later" = "बाद के लिए सेव करें";
 "Save page" = "Save page";
 "Save reminder" = "रिमाइंडर सहेजें";
@@ -1308,9 +1326,11 @@
 "Services changes waiting to sync" = "सेवाओं के बदलाव सिंक होने की प्रतीक्षा में हैं";
 "Servidor Xtream" = "Xtream server";
 "Sesión iniciada en Stremio" = "Stremio में साइन इन हैं";
+"Set a PIN" = "PIN सेट करें";
 "Settings" = "सेटिंग्स";
 "Share" = "साझा करें";
 "Share file" = "Share file";
+"Share with {name}" = "{name} के साथ साझा करें";
 "Sharpen" = "शार्प करें";
 "Sharper lines and a little more pop." = "ज़्यादा शार्प लाइनें और थोड़ी ज़्यादा स्पष्टता।";
 "Short of the Year" = "वर्ष की सर्वश्रेष्ठ लघु फ़िल्म";
@@ -1451,6 +1471,7 @@
 "Swedish" = "स्वीडिश";
 "Switch quality" = "Switch quality";
 "Switch stream" = "स्ट्रीम बदलें";
+"Switch to {name}" = "{name} पर जाएँ";
 "Sync" = "सिंक";
 "Sync Offset" = "सिंक ऑफ़सेट";
 "Sync addons" = "Sync addons";
@@ -1559,6 +1580,7 @@
 "Torrents" = "टोरेंट";
 "Track" = "ट्रैक करें";
 "Traducir títulos" = "टाइटल का अनुवाद करें";
+"Transfer primary" = "मुख्य प्रोफ़ाइल ट्रांसफ़र करें";
 "Translate titles" = "टाइटल का अनुवाद करें";
 "Trazo grueso alrededor de cada letra. Alto contraste." = "हर अक्षर के चारों ओर मोटी रेखा। अधिक कंट्रास्ट।";
 "Trending" = "ट्रेंडिंग";
@@ -1581,6 +1603,8 @@
 "Tus ligas" = "Your leagues";
 "Tus listas" = "Your lists";
 "Type" = "प्रकार";
+"Type on your keyboard or tap the digits above." = "अपने कीबोर्ड पर टाइप करें या ऊपर दिए गए अंकों पर टैप करें।";
+"Type the same 4-digit PIN again." = "वही 4-अंकों का PIN फिर से टाइप करें।";
 "Typography" = "टाइपोग्राफ़ी";
 "Títulos ocultos" = "Hidden titles";
 "Títulos y descripciones" = "शीर्षक और विवरण";
@@ -1605,6 +1629,7 @@
 "Usa la clave v3, no el token de acceso de lectura." = "रीड एक्सेस टोकन नहीं, v3 कुंजी इस्तेमाल करें।";
 "Usar mi estilo" = "मेरी शैली इस्तेमाल करें";
 "Use my style" = "मेरी शैली इस्तेमाल करें";
+"Use shared settings" = "साझा सेटिंग इस्तेमाल करें";
 "Use the navigation menu to open each section. Personalize the sidebar, home rows, colors and playback from Settings." = "Use the navigation menu to open each section. Personalize the sidebar, home rows, colors and playback from Settings.";
 "Use the v3 key, not the read access token." = "रीड एक्सेस टोकन नहीं, v3 कुंजी इस्तेमाल करें।";
 "Use your configured Harbor server. Allow local network access when iOS asks." = "Use your configured Harbor server. Allow local network access when iOS asks.";
@@ -1645,7 +1670,9 @@
 "Where to today?" = "आज कहाँ चलें?";
 "Where to watch" = "कहाँ देखें";
 "Where your video comes from" = "आपका वीडियो कहाँ से आता है";
+"Who's watching?" = "कौन देख रहा है?";
 "Writer" = "लेखक";
+"Wrong PIN" = "गलत PIN";
 "Xtream" = "Xtream";
 "Xtream server" = "Xtream server";
 "You can switch later in Settings under Library & metadata." = "आप बाद में सेटिंग्स में लाइब्रेरी और मेटाडेटा के अंतर्गत इसे बदल सकते हैं।";
@@ -1672,6 +1699,7 @@
 "category" = "श्रेणी";
 "center" = "बीच में";
 "code" = "कोड";
+"common.back" = "वापस";
 "default" = "डिफ़ॉल्ट";
 "downloads" = "डाउनलोड";
 "eBook" = "ई-बुक";
@@ -1696,6 +1724,7 @@
 "or use one of our avatars" = "या हमारे अवतारों में से कोई चुनें";
 "plays" = "प्ले";
 "profile" = "प्रोफ़ाइल";
+"profile.primary" = "प्राथमिक";
 "profile.signedIn" = "Stremio में साइन इन हैं";
 "result" = "नतीजा";
 "results" = "नतीजे";

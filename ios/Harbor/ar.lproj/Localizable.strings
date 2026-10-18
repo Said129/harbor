@@ -309,6 +309,7 @@
 "Cerrar navegación" = "Close navigation";
 "Cerrar reproductor" = "إغلاق المشغل";
 "Cerrar sesión" = "تسجيل الخروج";
+"Change" = "تغيير";
 "Change chapter order" = "Change chapter order";
 "Channel format" = "Channel format";
 "Chapters" = "الفصول";
@@ -367,6 +368,9 @@
 "Configurar addon" = "Configure addon";
 "Configure Sports" = "Configure Sports";
 "Configure addon" = "Configure addon";
+"Confirm your PIN" = "أكّد رمز PIN الخاص بك";
+"Confirm your current PIN to remove the lock." = "أكّد رمز PIN الحالي لإزالة القفل.";
+"Confirm your current PIN, then pick a new one." = "أكّد رمز PIN الحالي، ثم اختر رمزًا جديدًا.";
 "Connect TMDB" = "ربط TMDB";
 "Connecting" = "جارٍ الاتصال";
 "Conservar original" = "الاحتفاظ بالأصل";
@@ -448,6 +452,8 @@
 "Delete" = "حذف";
 "Delete file" = "Delete file";
 "Delete list" = "حذف القائمة";
+"Delete profile" = "حذف الملف الشخصي";
+"Delete this profile?" = "حذف هذا الملف الشخصي؟";
 "Deporte" = "Sport";
 "Derecha" = "يمين";
 "Derecha a izquierda" = "من اليمين إلى اليسار";
@@ -510,6 +516,8 @@
 "Easy on the eyes" = "مريح للعين";
 "Edición terminada" = "انتهاء التعديل";
 "Edit custom theme" = "تعديل السمة المخصصة";
+"Edit profile" = "تعديل الملف الشخصي";
+"Edit {name}" = "تعديل {name}";
 "Editar tema personalizado" = "تعديل السمة المخصصة";
 "Editor" = "المونتير";
 "Eisner Award Winners" = "الفائزون بجائزة Eisner";
@@ -541,6 +549,7 @@
 "English" = "الإنجليزية";
 "Enter Harbor" = "ادخل إلى Harbor";
 "Enter an FPS from 1 to 240." = "أدخل معدل إطارات من 1 إلى 240.";
+"Enter current PIN" = "أدخل رمز PIN الحالي";
 "Episode" = "حلقة";
 "Episode cards" = "بطاقات الحلقات";
 "Episode {n}" = "الحلقة {n}";
@@ -821,6 +830,7 @@
 "MUBI" = "MUBI";
 "Make it yours" = "اجعلها تخصّك";
 "Manage" = "إدارة";
+"Manage profiles" = "إدارة الملفات الشخصية";
 "Manga" = "المانغا";
 "Manga connection" = "Manga connection";
 "Manga extension" = "Manga extension";
@@ -919,6 +929,7 @@
 "Never shown again" = "لن يظهر مجددًا";
 "New Anime Releases" = "أحدث إصدارات الأنمي";
 "New Face Award" = "جائزة الوجه الجديد";
+"New profile" = "ملف شخصي جديد";
 "New voyage" = "رحلة جديدة";
 "Next" = "التالي";
 "Next chapter" = "الفصل التالي";
@@ -1041,6 +1052,8 @@
 "P2P" = "P2P";
 "P2P sources, debrid-ready" = "مصادر P2P، جاهزة لـ debrid";
 "PBS" = "PBS";
+"PIN" = "رمز PIN";
+"PINs didn't match. Start over." = "رمزا PIN غير متطابقين. ابدأ من جديد.";
 "PTS" = "PTS";
 "Page" = "الصفحة";
 "Page base." = "أساس الصفحة.";
@@ -1067,9 +1080,11 @@
 "Personalizar página" = "تخصيص الصفحة";
 "Personas" = "أشخاص";
 "Philo" = "Philo";
+"Pick a 4-digit PIN. You'll be asked for it before this profile opens." = "اختر رمز PIN مكوّنًا من 4 أرقام. سيُطلب منك إدخاله قبل فتح هذا الملف الشخصي.";
 "Pick a direction. You steer from there, one film at a time." = "اختر اتجاهًا. ومن هناك تتولّى القيادة، فيلمًا تلو الآخر.";
 "Pick a few you love" = "اختر بعضًا مما تحب";
 "Pick a home layout" = "اختر تخطيط الصفحة الرئيسية";
+"Pick a profile to continue." = "اختر ملفاً شخصياً للمتابعة.";
 "Pick a random title" = "اختر عنواناً عشوائياً";
 "Pick a source" = "اختر مصدرًا";
 "Pick up partly-watched episodes and movies at your saved spot. Anything watched past 80% always restarts. Turn this off to always start from the beginning, handy if you rewatch shows." = "تابع الحلقات والأفلام المُشاهَدة جزئيًا من موضعك المحفوظ. أي شيء تمت مشاهدة أكثر من 80% منه يُعاد تشغيله من البداية دائمًا. عطّل هذا الخيار لتبدأ من البداية دائمًا، وهو مفيد إذا كنت تعيد مشاهدة المسلسلات.";
@@ -1124,6 +1139,8 @@
 "Primero selecciona una pista de subtítulos." = "اختر مسار ترجمة أولًا.";
 "Priorizar {language}" = "رفع أولوية {language}";
 "Producer" = "منتج";
+"Profile PIN" = "رمز PIN للملف الشخصي";
+"Profile is locked. Enter the 4-digit PIN to continue." = "الملف الشخصي مقفل. أدخل رمز PIN المكوّن من 4 أرقام للمتابعة.";
 "Progreso" = "Progress";
 "Progreso de descarga" = "Download progress";
 "Progress" = "Progress";
@@ -1287,6 +1304,7 @@
 "Saudi Pro League" = "الدوري السعودي للمحترفين";
 "Save" = "حفظ";
 "Save and share pages" = "Save and share pages";
+"Save changes" = "حفظ التغييرات";
 "Save for later" = "حفظ لوقت لاحق";
 "Save page" = "Save page";
 "Save reminder" = "حفظ التذكير";
@@ -1342,9 +1360,11 @@
 "Services changes waiting to sync" = "تغييرات الخدمات بانتظار المزامنة";
 "Servidor Xtream" = "Xtream server";
 "Sesión iniciada en Stremio" = "تم تسجيل الدخول إلى Stremio";
+"Set a PIN" = "تعيين رمز PIN";
 "Settings" = "الإعدادات";
 "Share" = "مشاركة";
 "Share file" = "Share file";
+"Share with {name}" = "مشاركة مع {name}";
 "Sharpen" = "الحدة";
 "Sharper lines and a little more pop." = "خطوط أكثر حدة وقليل من البروز.";
 "Short of the Year" = "الفيلم القصير للعام";
@@ -1487,6 +1507,7 @@
 "Swedish" = "السويدية";
 "Switch quality" = "Switch quality";
 "Switch stream" = "تبديل البث";
+"Switch to {name}" = "التبديل إلى {name}";
 "Sync" = "مزامنة";
 "Sync Offset" = "إزاحة المزامنة";
 "Sync addons" = "Sync addons";
@@ -1595,6 +1616,7 @@
 "Torrents" = "التورنت";
 "Track" = "المسار";
 "Traducir títulos" = "ترجمة العناوين";
+"Transfer primary" = "نقل الأساسي";
 "Translate titles" = "ترجمة العناوين";
 "Trazo grueso alrededor de cada letra. Alto contraste." = "حد صلب حول كل حرف. تباين عالٍ.";
 "Trending" = "رائج";
@@ -1617,6 +1639,8 @@
 "Tus ligas" = "Your leagues";
 "Tus listas" = "Your lists";
 "Type" = "النوع";
+"Type on your keyboard or tap the digits above." = "اكتب باستخدام لوحة المفاتيح أو انقر الأرقام أعلاه.";
+"Type the same 4-digit PIN again." = "اكتب رمز PIN نفسه المكوّن من 4 أرقام مرة أخرى.";
 "Typography" = "الخطوط";
 "Títulos ocultos" = "Hidden titles";
 "Títulos y descripciones" = "العناوين والأوصاف";
@@ -1641,6 +1665,7 @@
 "Usa la clave v3, no el token de acceso de lectura." = "استخدم مفتاح v3، وليس رمز وصول القراءة.";
 "Usar mi estilo" = "استخدام التنسيق الخاص بي";
 "Use my style" = "استخدام التنسيق الخاص بي";
+"Use shared settings" = "استخدام الإعدادات المشتركة";
 "Use the navigation menu to open each section. Personalize the sidebar, home rows, colors and playback from Settings." = "Use the navigation menu to open each section. Personalize the sidebar, home rows, colors and playback from Settings.";
 "Use the v3 key, not the read access token." = "استخدم مفتاح v3، وليس رمز وصول القراءة.";
 "Use your configured Harbor server. Allow local network access when iOS asks." = "Use your configured Harbor server. Allow local network access when iOS asks.";
@@ -1681,11 +1706,13 @@
 "Where to today?" = "إلى أين اليوم؟";
 "Where to watch" = "أين تشاهد";
 "Where your video comes from" = "من أين يأتي الفيديو الخاص بك";
+"Who's watching?" = "من يشاهد؟";
 "Women's Africa Cup of Nations" = "كأس الأمم الأفريقية للسيدات";
 "World Cup Qualifying: AFC" = "تصفيات كأس العالم: آسيا";
 "World Cup Qualifying: CAF" = "تصفيات كأس العالم: أفريقيا";
 "World Cup Qualifying: CONMEBOL" = "تصفيات كأس العالم: أمريكا الجنوبية";
 "Writer" = "الكاتب";
+"Wrong PIN" = "رمز PIN خاطئ";
 "Xtream" = "Xtream";
 "Xtream server" = "Xtream server";
 "You can switch later in Settings under Library & metadata." = "يمكنك التبديل لاحقًا من الإعدادات ضمن المكتبة والبيانات الوصفية.";
@@ -1712,6 +1739,7 @@
 "category" = "فئة";
 "center" = "الوسط";
 "code" = "الكود";
+"common.back" = "رجوع";
 "default" = "افتراضي";
 "downloads" = "تنزيلات";
 "eBook" = "كتاب إلكتروني";
@@ -1736,6 +1764,7 @@
 "or use one of our avatars" = "أو استخدم إحدى صورنا الرمزية";
 "plays" = "مرات التشغيل";
 "profile" = "تفاصيل المصارعين";
+"profile.primary" = "أساسي";
 "profile.signedIn" = "تم تسجيل الدخول إلى Stremio";
 "result" = "نتيجة";
 "results" = "نتائج";

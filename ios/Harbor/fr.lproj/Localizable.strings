@@ -289,6 +289,7 @@
 "Cerrar navegación" = "Close navigation";
 "Cerrar reproductor" = "Fermer le lecteur";
 "Cerrar sesión" = "Se déconnecter";
+"Change" = "Modifier";
 "Change chapter order" = "Change chapter order";
 "Channel format" = "Channel format";
 "Chapters" = "Chapitres";
@@ -347,6 +348,9 @@
 "Configurar addon" = "Configure addon";
 "Configure Sports" = "Configure Sports";
 "Configure addon" = "Configure addon";
+"Confirm your PIN" = "Confirmez votre code PIN";
+"Confirm your current PIN to remove the lock." = "Saisissez votre code PIN actuel pour supprimer le verrouillage.";
+"Confirm your current PIN, then pick a new one." = "Saisissez votre code PIN actuel, puis choisissez-en un nouveau.";
 "Connect TMDB" = "Connecter TMDB";
 "Connecting" = "Connexion en cours";
 "Conservar original" = "Conserver l’original";
@@ -424,6 +428,8 @@
 "Delete" = "Supprimer";
 "Delete file" = "Delete file";
 "Delete list" = "Supprimer la liste";
+"Delete profile" = "Supprimer le profil";
+"Delete this profile?" = "Supprimer ce profil ?";
 "Deporte" = "Sport";
 "Derecha" = "Droite";
 "Derecha a izquierda" = "De droite à gauche";
@@ -486,6 +492,8 @@
 "Easy on the eyes" = "Agréable à regarder";
 "Edición terminada" = "Terminer la modification";
 "Edit custom theme" = "Modifier le thème personnalisé";
+"Edit profile" = "Modifier le profil";
+"Edit {name}" = "Modifier {name}";
 "Editar tema personalizado" = "Modifier le thème personnalisé";
 "Editor" = "Éditeur";
 "Eisner Award Winners" = "Lauréats des prix Eisner";
@@ -517,6 +525,7 @@
 "English" = "Anglais";
 "Enter Harbor" = "Accéder à Harbor";
 "Enter an FPS from 1 to 240." = "Saisissez une fréquence d’images comprise entre 1 et 240 FPS.";
+"Enter current PIN" = "Saisissez le code PIN actuel";
 "Episode" = "Épisode";
 "Episode cards" = "Vignettes d’épisode";
 "Episode {n}" = "Épisode {n}";
@@ -796,6 +805,7 @@
 "MUBI" = "MUBI";
 "Make it yours" = "Personnalisez-le";
 "Manage" = "Gérer";
+"Manage profiles" = "Gérer les profils";
 "Manga" = "Manga";
 "Manga connection" = "Manga connection";
 "Manga extension" = "Manga extension";
@@ -891,6 +901,7 @@
 "Netflix Originals" = "Productions originales Netflix";
 "New Anime Releases" = "Nouvelles sorties d’anime";
 "New Face Award" = "Prix du nouveau visage";
+"New profile" = "Nouveau profil";
 "New voyage" = "Nouveau voyage";
 "Next" = "Suivant";
 "Next chapter" = "Chapitre suivant";
@@ -1011,6 +1022,8 @@
 "P2P" = "P2P";
 "P2P sources, debrid-ready" = "Sources P2P, compatibles avec le débridage";
 "PBS" = "PBS";
+"PIN" = "PIN";
+"PINs didn't match. Start over." = "Les PIN ne correspondent pas. Recommencez.";
 "Page" = "Page";
 "Page base." = "Base de la page.";
 "Page turn sound" = "Page turn sound";
@@ -1036,9 +1049,11 @@
 "Personalizar página" = "Personnaliser la page";
 "Personas" = "Personnes";
 "Philo" = "Philo";
+"Pick a 4-digit PIN. You'll be asked for it before this profile opens." = "Choisissez un PIN à 4 chiffres. Il vous sera demandé avant l’ouverture de ce profil.";
 "Pick a direction. You steer from there, one film at a time." = "Choisissez une direction. À partir de là, vous avancez un film à la fois.";
 "Pick a few you love" = "Choisissez-en quelques-uns que vous adorez";
 "Pick a home layout" = "Choisissez la disposition de l’accueil";
+"Pick a profile to continue." = "Choisissez un profil pour continuer.";
 "Pick a random title" = "Choisir un titre au hasard";
 "Pick a source" = "Choisissez une source";
 "Pick up partly-watched episodes and movies at your saved spot. Anything watched past 80% always restarts. Turn this off to always start from the beginning, handy if you rewatch shows." = "Reprenez les épisodes et les films partiellement visionnés à l’endroit enregistré. Tout contenu visionné à plus de 80% redémarre toujours du début. Désactivez cette option pour toujours commencer au début, ce qui est pratique lorsque vous re regardez une série.";
@@ -1093,6 +1108,8 @@
 "Primero selecciona una pista de subtítulos." = "Sélectionnez d’abord une piste de sous-titres.";
 "Priorizar {language}" = "Remonter {language}";
 "Producer" = "Producteur";
+"Profile PIN" = "PIN du profil";
+"Profile is locked. Enter the 4-digit PIN to continue." = "Le profil est verrouillé. Saisissez le PIN à 4 chiffres pour continuer.";
 "Progreso" = "Progress";
 "Progreso de descarga" = "Download progress";
 "Progress" = "Progress";
@@ -1253,6 +1270,7 @@
 "Saturation" = "Saturation";
 "Save" = "Enregistrer";
 "Save and share pages" = "Save and share pages";
+"Save changes" = "Enregistrer les modifications";
 "Save for later" = "Garder pour plus tard";
 "Save page" = "Save page";
 "Save reminder" = "Enregistrer le rappel";
@@ -1308,9 +1326,11 @@
 "Services changes waiting to sync" = "Modifications des services en attente de synchronisation";
 "Servidor Xtream" = "Xtream server";
 "Sesión iniciada en Stremio" = "Connecté à Stremio";
+"Set a PIN" = "Définir un code PIN";
 "Settings" = "Paramètres";
 "Share" = "Partager";
 "Share file" = "Share file";
+"Share with {name}" = "Partager avec {name}";
 "Sharpen" = "Accentuer la netteté";
 "Sharper lines and a little more pop." = "Des contours plus nets et une image un peu plus éclatante.";
 "Short of the Year" = "Court métrage de l’année";
@@ -1451,6 +1471,7 @@
 "Swedish" = "Suédois";
 "Switch quality" = "Switch quality";
 "Switch stream" = "Changer de flux";
+"Switch to {name}" = "Passer à {name}";
 "Sync" = "Synchroniser";
 "Sync Offset" = "Décalage de synchronisation";
 "Sync addons" = "Sync addons";
@@ -1559,6 +1580,7 @@
 "Torrents" = "Torrents";
 "Track" = "Piste";
 "Traducir títulos" = "Traduire les titres";
+"Transfer primary" = "Transférer le profil principal";
 "Translate titles" = "Traduire les titres";
 "Trazo grueso alrededor de cada letra. Alto contraste." = "Trait net autour de chaque lettre. Contraste élevé.";
 "Trending" = "Tendances";
@@ -1581,6 +1603,8 @@
 "Tus ligas" = "Your leagues";
 "Tus listas" = "Your lists";
 "Type" = "Type";
+"Type on your keyboard or tap the digits above." = "Utilisez votre clavier ou appuyez sur les chiffres ci-dessus.";
+"Type the same 4-digit PIN again." = "Saisissez à nouveau le même code PIN à 4 chiffres.";
 "Typography" = "Typographie";
 "Títulos ocultos" = "Hidden titles";
 "Títulos y descripciones" = "Titres et descriptions";
@@ -1605,6 +1629,7 @@
 "Usa la clave v3, no el token de acceso de lectura." = "Utilisez la clé v3, pas le jeton d’accès en lecture.";
 "Usar mi estilo" = "Utiliser mon style";
 "Use my style" = "Utiliser mon style";
+"Use shared settings" = "Utiliser les réglages partagés";
 "Use the navigation menu to open each section. Personalize the sidebar, home rows, colors and playback from Settings." = "Use the navigation menu to open each section. Personalize the sidebar, home rows, colors and playback from Settings.";
 "Use the v3 key, not the read access token." = "Utilisez la clé v3, pas le jeton d’accès en lecture.";
 "Use your configured Harbor server. Allow local network access when iOS asks." = "Use your configured Harbor server. Allow local network access when iOS asks.";
@@ -1645,7 +1670,9 @@
 "Where to today?" = "Où aller aujourd’hui ?";
 "Where to watch" = "Où regarder";
 "Where your video comes from" = "D’où vient votre vidéo";
+"Who's watching?" = "Qui regarde ?";
 "Writer" = "Scénariste";
+"Wrong PIN" = "Code PIN incorrect";
 "Xtream" = "Xtream";
 "Xtream server" = "Xtream server";
 "You can switch later in Settings under Library & metadata." = "Vous pourrez changer ce choix plus tard dans les Paramètres, sous Bibliothèque et métadonnées.";
@@ -1672,6 +1699,7 @@
 "category" = "catégorie";
 "center" = "centre";
 "code" = "code";
+"common.back" = "Retour";
 "default" = "par défaut";
 "downloads" = "téléchargements";
 "eBook" = "livre numérique";
@@ -1696,6 +1724,7 @@
 "or use one of our avatars" = "ou utiliser l’un de nos avatars";
 "plays" = "lectures";
 "profile" = "profil";
+"profile.primary" = "Principal";
 "profile.signedIn" = "Connecté à Stremio";
 "result" = "résultat";
 "results" = "résultats";

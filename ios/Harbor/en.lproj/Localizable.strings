@@ -228,6 +228,7 @@
 "Cerrar navegación" = "Close navigation";
 "Cerrar reproductor" = "Close player";
 "Cerrar sesión" = "Sign out";
+"Change" = "Change";
 "Change chapter order" = "Change chapter order";
 "Channel format" = "Channel format";
 "Chapters" = "Chapters";
@@ -733,6 +734,7 @@
 "Needs artwork-rich titles to feed the hero" = "Needs artwork-rich titles to feed the hero";
 "Needs at least 10 titles for the Top 10 look" = "Needs at least 10 titles for the Top 10 look";
 "New Anime Releases" = "New Anime Releases";
+"New profile" = "New profile";
 "Next" = "Next";
 "Next chapter" = "Next chapter";
 "Next day" = "Next day";
@@ -1046,6 +1048,7 @@
 "Saturation" = "Saturation";
 "Save" = "Save";
 "Save and share pages" = "Save and share pages";
+"Save changes" = "Save changes";
 "Save for later" = "Save for later";
 "Save page" = "Save page";
 "Save reminder" = "Save reminder";
@@ -1337,6 +1340,7 @@
 "Usa la clave v3, no el token de acceso de lectura." = "Use the v3 key, not the read access token.";
 "Usar mi estilo" = "Use my style";
 "Use my style" = "Use my style";
+"Use shared settings" = "Use shared settings";
 "Use the navigation menu to open each section. Personalize the sidebar, home rows, colors and playback from Settings." = "Use the navigation menu to open each section. Personalize the sidebar, home rows, colors and playback from Settings.";
 "Use the v3 key, not the read access token." = "Use the v3 key, not the read access token.";
 "Use your configured Harbor server. Allow local network access when iOS asks." = "Use your configured Harbor server. Allow local network access when iOS asks.";
@@ -1386,12 +1390,14 @@
 "Your services are saved locally. Cloud sync will retry." = "Your services are saved locally. Cloud sync will retry.";
 "Zoom" = "Zoom";
 "code" = "code";
+"common.back" = "Back";
 "eBook" = "eBook";
 "estrellas" = "stars";
 "h" = "h";
 "music.volume" = "Music volume";
 "o usa uno de nuestros avatares" = "or use one of our avatars";
 "or use one of our avatars" = "or use one of our avatars";
+"profile.primary" = "Primary";
 "profile.signedIn" = "Signed in to Stremio";
 "stars" = "stars";
 "username" = "username";

@@ -289,6 +289,7 @@
 "Cerrar navegación" = "Close navigation";
 "Cerrar reproductor" = "プレイヤーを閉じる";
 "Cerrar sesión" = "サインアウト";
+"Change" = "変更";
 "Change chapter order" = "Change chapter order";
 "Channel format" = "Channel format";
 "Chapters" = "話";
@@ -347,6 +348,9 @@
 "Configurar addon" = "Configure addon";
 "Configure Sports" = "Configure Sports";
 "Configure addon" = "Configure addon";
+"Confirm your PIN" = "PINを確認";
+"Confirm your current PIN to remove the lock." = "ロックを解除するには、現在のPINを確認してください。";
+"Confirm your current PIN, then pick a new one." = "現在のPINを確認してから、新しいPINを設定してください。";
 "Connect TMDB" = "TMDBに接続";
 "Connecting" = "接続中";
 "Conservar original" = "オリジナルを維持";
@@ -424,6 +428,8 @@
 "Delete" = "削除";
 "Delete file" = "Delete file";
 "Delete list" = "リストを削除";
+"Delete profile" = "プロフィールを削除";
+"Delete this profile?" = "このプロフィールを削除しますか？";
 "Deporte" = "Sport";
 "Derecha" = "右揃え";
 "Derecha a izquierda" = "右から左";
@@ -486,6 +492,8 @@
 "Easy on the eyes" = "目にやさしい";
 "Edición terminada" = "編集を完了";
 "Edit custom theme" = "カスタムテーマを編集";
+"Edit profile" = "プロフィールを編集";
+"Edit {name}" = "{name}を編集";
 "Editar tema personalizado" = "カスタムテーマを編集";
 "Editor" = "編集";
 "Eisner Award Winners" = "アイズナー賞受賞作";
@@ -517,6 +525,7 @@
 "English" = "英語";
 "Enter Harbor" = "Harborをはじめる";
 "Enter an FPS from 1 to 240." = "1から240までのFPSを入力してください。";
+"Enter current PIN" = "現在のPINを入力";
 "Episode" = "エピソード";
 "Episode cards" = "エピソードカード";
 "Episode {n}" = "エピソード{n}";
@@ -796,6 +805,7 @@
 "MUBI" = "MUBI";
 "Make it yours" = "自分好みにカスタマイズ";
 "Manage" = "管理";
+"Manage profiles" = "プロフィールを管理";
 "Manga" = "マンガ";
 "Manga connection" = "Manga connection";
 "Manga extension" = "Manga extension";
@@ -891,6 +901,7 @@
 "Netflix Originals" = "Netflixオリジナル";
 "New Anime Releases" = "新作アニメ";
 "New Face Award" = "新人賞";
+"New profile" = "新しいプロフィール";
 "New voyage" = "新しい航海";
 "Next" = "次へ";
 "Next chapter" = "次の話";
@@ -1011,6 +1022,8 @@
 "P2P" = "P2P";
 "P2P sources, debrid-ready" = "P2Pソース、debrid対応";
 "PBS" = "PBS";
+"PIN" = "PIN";
+"PINs didn't match. Start over." = "PINが一致しません。最初からやり直してください。";
 "Page" = "ページ";
 "Page base." = "ページのベース。";
 "Page turn sound" = "Page turn sound";
@@ -1036,9 +1049,11 @@
 "Personalizar página" = "ページをカスタマイズ";
 "Personas" = "人物";
 "Philo" = "Philo";
+"Pick a 4-digit PIN. You'll be asked for it before this profile opens." = "4桁のPINを決めてください。このプロフィールを開く前に入力を求められます。";
 "Pick a direction. You steer from there, one film at a time." = "方向を選びましょう。あとは1作品ずつ、自分で舵を取れます。";
 "Pick a few you love" = "お気に入りをいくつか選択";
 "Pick a home layout" = "ホームのレイアウトを選択";
+"Pick a profile to continue." = "続行するプロフィールを選択してください。";
 "Pick a random title" = "ランダムに作品を選ぶ";
 "Pick a source" = "ソースを選択";
 "Pick up partly-watched episodes and movies at your saved spot. Anything watched past 80% always restarts. Turn this off to always start from the beginning, handy if you rewatch shows." = "途中まで視聴したエピソードや映画を、保存した位置から再開します。80%を超えて視聴した作品は常に最初から再生されます。番組を見直す場合など、常に最初から再生したいときはオフにしてください。";
@@ -1093,6 +1108,8 @@
 "Primero selecciona una pista de subtítulos." = "先に字幕トラックを選択してください。";
 "Priorizar {language}" = "{language}の優先順位を上げる";
 "Producer" = "プロデューサー";
+"Profile PIN" = "プロフィールPIN";
+"Profile is locked. Enter the 4-digit PIN to continue." = "プロフィールはロックされています。続行するには4桁のPINを入力してください。";
 "Progreso" = "Progress";
 "Progreso de descarga" = "Download progress";
 "Progress" = "Progress";
@@ -1253,6 +1270,7 @@
 "Saturation" = "彩度";
 "Save" = "保存";
 "Save and share pages" = "Save and share pages";
+"Save changes" = "変更を保存";
 "Save for later" = "あとで見るに保存";
 "Save page" = "Save page";
 "Save reminder" = "リマインダーを保存";
@@ -1308,9 +1326,11 @@
 "Services changes waiting to sync" = "サービスの変更は同期待ちです";
 "Servidor Xtream" = "Xtream server";
 "Sesión iniciada en Stremio" = "Stremioにログイン済み";
+"Set a PIN" = "PINを設定";
 "Settings" = "設定";
 "Share" = "共有";
 "Share file" = "Share file";
+"Share with {name}" = "{name}と共有";
 "Sharpen" = "シャープネス";
 "Sharper lines and a little more pop." = "線をよりくっきりさせ、少しメリハリを加えます。";
 "Short of the Year" = "年間最優秀短編";
@@ -1451,6 +1471,7 @@
 "Swedish" = "スウェーデン語";
 "Switch quality" = "Switch quality";
 "Switch stream" = "ストリームを切り替え";
+"Switch to {name}" = "{name}に切り替え";
 "Sync" = "同期";
 "Sync Offset" = "同期オフセット";
 "Sync addons" = "Sync addons";
@@ -1559,6 +1580,7 @@
 "Torrents" = "トレント";
 "Track" = "トラック";
 "Traducir títulos" = "タイトルを翻訳";
+"Transfer primary" = "メインプロフィールを移行";
 "Translate titles" = "タイトルを翻訳";
 "Trazo grueso alrededor de cada letra. Alto contraste." = "各文字をくっきり縁取ります。高コントラストです。";
 "Trending" = "トレンド";
@@ -1581,6 +1603,8 @@
 "Tus ligas" = "Your leagues";
 "Tus listas" = "Your lists";
 "Type" = "タイプ";
+"Type on your keyboard or tap the digits above." = "キーボードで入力するか、上の数字をタップしてください。";
+"Type the same 4-digit PIN again." = "同じ4桁のPINをもう一度入力してください。";
 "Typography" = "タイポグラフィ";
 "Títulos ocultos" = "Hidden titles";
 "Títulos y descripciones" = "タイトルと説明";
@@ -1605,6 +1629,7 @@
 "Usa la clave v3, no el token de acceso de lectura." = "読み取りアクセストークンではなく、v3キーを使用してください。";
 "Usar mi estilo" = "自分のスタイルを使用";
 "Use my style" = "自分のスタイルを使用";
+"Use shared settings" = "共有設定を使う";
 "Use the navigation menu to open each section. Personalize the sidebar, home rows, colors and playback from Settings." = "Use the navigation menu to open each section. Personalize the sidebar, home rows, colors and playback from Settings.";
 "Use the v3 key, not the read access token." = "読み取りアクセストークンではなく、v3キーを使用してください。";
 "Use your configured Harbor server. Allow local network access when iOS asks." = "Use your configured Harbor server. Allow local network access when iOS asks.";
@@ -1645,7 +1670,9 @@
 "Where to today?" = "今日はどこへ？";
 "Where to watch" = "視聴方法";
 "Where your video comes from" = "動画の配信元";
+"Who's watching?" = "どなたが視聴しますか？";
 "Writer" = "脚本家";
+"Wrong PIN" = "PINが違います";
 "Xtream" = "Xtream";
 "Xtream server" = "Xtream server";
 "You can switch later in Settings under Library & metadata." = "後で「設定」の「ライブラリとメタデータ」から変更できます。";
@@ -1672,6 +1699,7 @@
 "category" = "カテゴリ";
 "center" = "中央";
 "code" = "コード";
+"common.back" = "戻る";
 "default" = "デフォルト";
 "downloads" = "ダウンロード";
 "eBook" = "電子書籍";
@@ -1696,6 +1724,7 @@
 "or use one of our avatars" = "または用意されたアバターを使用";
 "plays" = "再生回数";
 "profile" = "プロフィール";
+"profile.primary" = "メイン";
 "profile.signedIn" = "Stremioにログイン済み";
 "result" = "件";
 "results" = "件";

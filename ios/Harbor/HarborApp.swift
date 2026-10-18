@@ -33,12 +33,15 @@ struct HarborApp: App {
     @Environment(\.scenePhase) private var scenePhase
     var body: some View {
         synchronization
-            .sheet(isPresented: $model.showAccount) { accountSheet }
+            .sheet(isPresented: $model.showAccount, onDismiss: { model.accountDidDismiss() }) { accountSheet }
+            .fullScreenCover(isPresented: $model.showProfiles) { profilesSheet }
     }
     private var content: some View {
             ZStack {
                 if model.storageReady && model.profileContext.ready {
                     HarborShell(app: model).id(model.interfaceProfileScope)
+                } else if model.profileContext.requiresSelection {
+                    HouseholdProfilesView(app: model)
                 } else {
                     HarborTheme.background.ignoresSafeArea()
                     VStack(spacing: 20) {
@@ -86,5 +89,11 @@ struct HarborApp: App {
         NavigationStack { AccountView(app: model) }.font(HarborTheme.font()).foregroundStyle(HarborTheme.ink).tint(HarborTheme.accent).preferredColorScheme(.dark)
                         .environment(\.locale, Locale(identifier: InterfaceLanguage.resolve(uiLanguage)))
                         .environment(\.layoutDirection, InterfaceLanguage.resolve(uiLanguage) == "ar" ? .rightToLeft : .leftToRight)
+    }
+    private var profilesSheet: some View {
+        HouseholdProfilesView(app: model).presentationBackground(.clear)
+            .preferredColorScheme(.dark)
+            .environment(\.locale, Locale(identifier: InterfaceLanguage.resolve(uiLanguage)))
+            .environment(\.layoutDirection, InterfaceLanguage.resolve(uiLanguage) == "ar" ? .rightToLeft : .leftToRight)
     }
 }

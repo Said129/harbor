@@ -78,6 +78,22 @@ struct HouseholdProfileState: Codable, Equatable, Sendable {
         guard let profile = requestedProfile, profile.credential == nil || unlocked.contains(profile.id) else { return nil }
         return profile
     }
+    func requiresPIN(_ id: String) -> Bool {
+        profiles.contains { $0.id == id && $0.credential != nil && !unlocked.contains(id) }
+    }
+    /// Editing another protected profile must verify its credential without
+    /// selecting it or changing the primary editor's permissions.
+    @discardableResult func verifyForEditing(_ id: String, password: String) async throws -> Bool {
+        guard ready, !verifying, let current = active, current.desktop.isPrimary || current.id == id,
+              let target = profiles.first(where: { $0.id == id && !$0.desktop.isKid }),
+              let credential = target.credential else { return false }
+        verifying = true; let expected = generation
+        defer { if expected == generation { verifying = false } }
+        guard try await credentials.verifies(password, credential: credential) else { return false }
+        try Task.checkCancellation()
+        guard generation == expected, profiles.contains(target) else { throw HarborError(code: "profile-selection-changed") }
+        unlocked.insert(id); return true
+    }
     var needsUpload: Bool { ready && (!profiles.isEmpty || !state.tombstones.isEmpty) && state.wireValue != state.serverValue }
 
     init(scope: HouseholdProfileScope, persistence: (any HouseholdProfilePersistence)? = nil, credentials: any ProfileCredentialChecking = DeviceProfileCredentialChecker(), derivation: any ProfileCredentialDeriving = DeviceProfileCredentialDeriver()) {

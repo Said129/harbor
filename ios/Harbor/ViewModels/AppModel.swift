@@ -34,6 +34,31 @@ final class AppModel {
     var accountError: String?
     var accountBusy = false
     var showAccount = false
+    var showProfiles = false
+    private var profilesAfterAccount = false
+    func openProfiles() {
+        if showAccount { profilesAfterAccount = true; showAccount = false }
+        else { showProfiles = true }
+    }
+    func accountDidDismiss() {
+        if profilesAfterAccount { profilesAfterAccount = false; showProfiles = true }
+    }
+    func saveProfile(_ draft: HouseholdProfileDraft) async throws {
+        guard !accountBusy, draft.kid == .null else { throw HarborError(code: "profile-editor-permission") }
+        let result = try await profileContext.profiles.saveEditor(draft)
+        if result.id == profileContext.profiles.state.selectedID { try await refreshSelectedProfile() }
+    }
+    func refreshSelectedProfile() async throws {
+        guard !accountBusy else { throw HarborError(code: "account-busy") }
+        let previous = profileContext.binding
+        do { try profileContext.refreshRouting() }
+        catch { storageReady = false; throw error }
+        if storageReady && profileContext.ready && previous == profileContext.binding { return }
+        storageReady = false
+        if let active = profileContext.profiles.active {
+            guard try await selectProfile(active.id) else { throw HarborError(code: "profile-locked") }
+        } else { showProfiles = true }
+    }
     private(set) var pendingDocument: PendingProfileDocument?
     var user: AccountUser? { savedAccount?.session.user }
     var personalOwner: String { profileContext.binding?.personalOwner ?? user?.id ?? "guest" }

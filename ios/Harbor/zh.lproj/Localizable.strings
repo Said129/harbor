@@ -289,6 +289,7 @@
 "Cerrar navegación" = "Close navigation";
 "Cerrar reproductor" = "关闭播放器";
 "Cerrar sesión" = "退出登录";
+"Change" = "更改";
 "Change chapter order" = "Change chapter order";
 "Channel format" = "Channel format";
 "Chapters" = "章节";
@@ -347,6 +348,9 @@
 "Configurar addon" = "Configure addon";
 "Configure Sports" = "Configure Sports";
 "Configure addon" = "Configure addon";
+"Confirm your PIN" = "确认 PIN";
+"Confirm your current PIN to remove the lock." = "确认当前 PIN 以解除锁定。";
+"Confirm your current PIN, then pick a new one." = "确认当前 PIN，然后设置新 PIN。";
 "Connect TMDB" = "连接 TMDB";
 "Connecting" = "正在连接";
 "Conservar original" = "保留原样";
@@ -424,6 +428,8 @@
 "Delete" = "删除";
 "Delete file" = "Delete file";
 "Delete list" = "删除片单";
+"Delete profile" = "删除个人资料";
+"Delete this profile?" = "删除此个人资料？";
 "Deporte" = "Sport";
 "Derecha" = "右对齐";
 "Derecha a izquierda" = "从右到左";
@@ -486,6 +492,8 @@
 "Easy on the eyes" = "护眼";
 "Edición terminada" = "完成编辑";
 "Edit custom theme" = "编辑自定义主题";
+"Edit profile" = "编辑个人资料";
+"Edit {name}" = "编辑 {name}";
 "Editar tema personalizado" = "编辑自定义主题";
 "Editor" = "剪辑";
 "Eisner Award Winners" = "艾斯纳奖获奖作品";
@@ -517,6 +525,7 @@
 "English" = "英语";
 "Enter Harbor" = "进入 Harbor";
 "Enter an FPS from 1 to 240." = "请输入 1 到 240 之间的 FPS。";
+"Enter current PIN" = "输入当前 PIN";
 "Episode" = "剧集";
 "Episode cards" = "单集卡片";
 "Episode {n}" = "第 {n} 集";
@@ -796,6 +805,7 @@
 "MUBI" = "MUBI";
 "Make it yours" = "打造专属风格";
 "Manage" = "管理";
+"Manage profiles" = "管理个人资料";
 "Manga" = "漫画";
 "Manga connection" = "Manga connection";
 "Manga extension" = "Manga extension";
@@ -891,6 +901,7 @@
 "Netflix Originals" = "Netflix 原创";
 "New Anime Releases" = "动漫新作";
 "New Face Award" = "新人奖";
+"New profile" = "新建个人资料";
 "New voyage" = "新航程";
 "Next" = "下一个";
 "Next chapter" = "下一章";
@@ -1011,6 +1022,8 @@
 "P2P" = "P2P";
 "P2P sources, debrid-ready" = "P2P 来源，支持 debrid";
 "PBS" = "PBS";
+"PIN" = "PIN";
+"PINs didn't match. Start over." = "PIN 不一致。请重新开始。";
 "Page" = "页面";
 "Page base." = "页面底色。";
 "Page turn sound" = "Page turn sound";
@@ -1036,9 +1049,11 @@
 "Personalizar página" = "自定义页面";
 "Personas" = "人物";
 "Philo" = "Philo";
+"Pick a 4-digit PIN. You'll be asked for it before this profile opens." = "选择一个 4 位 PIN。打开此个人资料前需要输入该 PIN。";
 "Pick a direction. You steer from there, one film at a time." = "选个方向。接下来由你掌舵，一次选一部电影。";
 "Pick a few you love" = "选择几部你喜爱的作品";
 "Pick a home layout" = "选择首页布局";
+"Pick a profile to continue." = "选择个人资料以继续。";
 "Pick a random title" = "随机选一部";
 "Pick a source" = "选择来源";
 "Pick up partly-watched episodes and movies at your saved spot. Anything watched past 80% always restarts. Turn this off to always start from the beginning, handy if you rewatch shows." = "从保存的位置继续播放未看完的剧集和电影。观看进度超过 80% 的内容始终会从头播放。关闭此项后所有内容都会从头播放，适合重看剧集。";
@@ -1093,6 +1108,8 @@
 "Primero selecciona una pista de subtítulos." = "请先选择字幕轨道。";
 "Priorizar {language}" = "提高{language}的优先级";
 "Producer" = "制片人";
+"Profile PIN" = "个人资料 PIN";
+"Profile is locked. Enter the 4-digit PIN to continue." = "个人资料已锁定。请输入 4 位 PIN 以继续。";
 "Progreso" = "Progress";
 "Progreso de descarga" = "Download progress";
 "Progress" = "Progress";
@@ -1253,6 +1270,7 @@
 "Saturation" = "饱和度";
 "Save" = "保存";
 "Save and share pages" = "Save and share pages";
+"Save changes" = "保存更改";
 "Save for later" = "保存以便稍后查看";
 "Save page" = "Save page";
 "Save reminder" = "保存提醒";
@@ -1308,9 +1326,11 @@
 "Services changes waiting to sync" = "服务更改等待同步";
 "Servidor Xtream" = "Xtream server";
 "Sesión iniciada en Stremio" = "已登录 Stremio";
+"Set a PIN" = "设置 PIN";
 "Settings" = "设置";
 "Share" = "分享";
 "Share file" = "Share file";
+"Share with {name}" = "与 {name} 共享";
 "Sharpen" = "锐化";
 "Sharper lines and a little more pop." = "线条更锐利，画面更有活力。";
 "Short of the Year" = "年度短片奖";
@@ -1451,6 +1471,7 @@
 "Swedish" = "瑞典语";
 "Switch quality" = "Switch quality";
 "Switch stream" = "切换视频流";
+"Switch to {name}" = "切换到 {name}";
 "Sync" = "同步";
 "Sync Offset" = "同步偏移量";
 "Sync addons" = "Sync addons";
@@ -1559,6 +1580,7 @@
 "Torrents" = "种子";
 "Track" = "轨道";
 "Traducir títulos" = "翻译标题";
+"Transfer primary" = "转移主个人资料";
 "Translate titles" = "翻译标题";
 "Trazo grueso alrededor de cada letra. Alto contraste." = "为每个字符添加硬边描边，对比度高。";
 "Trending" = "趋势";
@@ -1581,6 +1603,8 @@
 "Tus ligas" = "Your leagues";
 "Tus listas" = "Your lists";
 "Type" = "类型";
+"Type on your keyboard or tap the digits above." = "使用键盘输入，或点击上方数字。";
+"Type the same 4-digit PIN again." = "再次输入相同的 4 位 PIN。";
 "Typography" = "字体排版";
 "Títulos ocultos" = "Hidden titles";
 "Títulos y descripciones" = "标题和简介";
@@ -1605,6 +1629,7 @@
 "Usa la clave v3, no el token de acceso de lectura." = "请使用 v3 密钥，而不是读取访问令牌。";
 "Usar mi estilo" = "使用我的样式";
 "Use my style" = "使用我的样式";
+"Use shared settings" = "使用共享设置";
 "Use the navigation menu to open each section. Personalize the sidebar, home rows, colors and playback from Settings." = "Use the navigation menu to open each section. Personalize the sidebar, home rows, colors and playback from Settings.";
 "Use the v3 key, not the read access token." = "请使用 v3 密钥，而不是读取访问令牌。";
 "Use your configured Harbor server. Allow local network access when iOS asks." = "Use your configured Harbor server. Allow local network access when iOS asks.";
@@ -1645,7 +1670,9 @@
 "Where to today?" = "今天去哪儿？";
 "Where to watch" = "观看平台";
 "Where your video comes from" = "视频来源";
+"Who's watching?" = "谁在看？";
 "Writer" = "编剧";
+"Wrong PIN" = "PIN 错误";
 "Xtream" = "Xtream";
 "Xtream server" = "Xtream server";
 "You can switch later in Settings under Library & metadata." = "之后可在“设置”的“媒体库与元数据”中切换。";
@@ -1672,6 +1699,7 @@
 "category" = "类别";
 "center" = "居中";
 "code" = "代码";
+"common.back" = "返回";
 "default" = "默认";
 "downloads" = "下载";
 "eBook" = "电子书";
@@ -1696,6 +1724,7 @@
 "or use one of our avatars" = "或使用我们提供的头像";
 "plays" = "播放次数";
 "profile" = "个人资料";
+"profile.primary" = "主个人资料";
 "profile.signedIn" = "已登录 Stremio";
 "result" = "条结果";
 "results" = "条结果";

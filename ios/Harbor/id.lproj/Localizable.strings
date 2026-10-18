@@ -289,6 +289,7 @@
 "Cerrar navegación" = "Close navigation";
 "Cerrar reproductor" = "Tutup pemutar";
 "Cerrar sesión" = "Keluar";
+"Change" = "Ubah";
 "Change chapter order" = "Change chapter order";
 "Channel format" = "Channel format";
 "Chapters" = "Bab";
@@ -347,6 +348,9 @@
 "Configurar addon" = "Configure addon";
 "Configure Sports" = "Configure Sports";
 "Configure addon" = "Configure addon";
+"Confirm your PIN" = "Konfirmasi PIN Anda";
+"Confirm your current PIN to remove the lock." = "Konfirmasikan PIN Anda saat ini untuk menonaktifkan kunci.";
+"Confirm your current PIN, then pick a new one." = "Konfirmasikan PIN saat ini, lalu pilih PIN baru.";
 "Connect TMDB" = "Hubungkan TMDB";
 "Connecting" = "Menghubungkan";
 "Conservar original" = "Pertahankan yang asli";
@@ -424,6 +428,8 @@
 "Delete" = "Hapus";
 "Delete file" = "Delete file";
 "Delete list" = "Hapus daftar";
+"Delete profile" = "Hapus profil";
+"Delete this profile?" = "Hapus profil ini?";
 "Deporte" = "Sport";
 "Derecha" = "Kanan";
 "Derecha a izquierda" = "Kanan ke kiri";
@@ -486,6 +492,8 @@
 "Easy on the eyes" = "Nyaman di mata";
 "Edición terminada" = "Selesai mengedit";
 "Edit custom theme" = "Edit tema khusus";
+"Edit profile" = "Edit profil";
+"Edit {name}" = "Edit {name}";
 "Editar tema personalizado" = "Edit tema khusus";
 "Editor" = "Editor";
 "Eisner Award Winners" = "Pemenang Eisner Award";
@@ -517,6 +525,7 @@
 "English" = "Inggris";
 "Enter Harbor" = "Masuk ke Harbor";
 "Enter an FPS from 1 to 240." = "Masukkan FPS dari 1 hingga 240.";
+"Enter current PIN" = "Masukkan PIN saat ini";
 "Episode" = "Episode";
 "Episode cards" = "Kartu episode";
 "Episode {n}" = "Episode {n}";
@@ -796,6 +805,7 @@
 "MUBI" = "MUBI";
 "Make it yours" = "Jadikan milik Anda";
 "Manage" = "Kelola";
+"Manage profiles" = "Kelola profil";
 "Manga" = "Manga";
 "Manga connection" = "Manga connection";
 "Manga extension" = "Manga extension";
@@ -891,6 +901,7 @@
 "Netflix Originals" = "Netflix Originals";
 "New Anime Releases" = "Rilisan Anime Baru";
 "New Face Award" = "Penghargaan Wajah Baru";
+"New profile" = "Profil baru";
 "New voyage" = "Pelayaran baru";
 "Next" = "Berikutnya";
 "Next chapter" = "Bab berikutnya";
@@ -1011,6 +1022,8 @@
 "P2P" = "P2P";
 "P2P sources, debrid-ready" = "Sumber P2P, siap untuk debrid";
 "PBS" = "PBS";
+"PIN" = "PIN";
+"PINs didn't match. Start over." = "PIN tidak cocok. Mulai lagi.";
 "Page" = "Halaman";
 "Page base." = "Dasar halaman.";
 "Page turn sound" = "Page turn sound";
@@ -1036,9 +1049,11 @@
 "Personalizar página" = "Sesuaikan halaman";
 "Personas" = "Orang";
 "Philo" = "Philo";
+"Pick a 4-digit PIN. You'll be asked for it before this profile opens." = "Pilih PIN 4 digit. Anda akan diminta memasukkannya sebelum profil ini dibuka.";
 "Pick a direction. You steer from there, one film at a time." = "Pilih arah. Setelah itu, Anda menentukan jalannya, satu film setiap kali.";
 "Pick a few you love" = "Pilih beberapa yang Anda sukai";
 "Pick a home layout" = "Pilih tata letak beranda";
+"Pick a profile to continue." = "Pilih profil untuk melanjutkan.";
 "Pick a random title" = "Pilih judul secara acak";
 "Pick a source" = "Pilih sumber";
 "Pick up partly-watched episodes and movies at your saved spot. Anything watched past 80% always restarts. Turn this off to always start from the beginning, handy if you rewatch shows." = "Lanjutkan episode dan film yang belum selesai dari posisi tersimpan. Apa pun yang telah ditonton lebih dari 80% akan selalu dimulai ulang. Nonaktifkan ini agar selalu memulai dari awal, cocok jika Anda menonton ulang acara.";
@@ -1093,6 +1108,8 @@
 "Primero selecciona una pista de subtítulos." = "Pilih trek subtitle terlebih dahulu.";
 "Priorizar {language}" = "Prioritaskan {language}";
 "Producer" = "Produser";
+"Profile PIN" = "PIN profil";
+"Profile is locked. Enter the 4-digit PIN to continue." = "Profil terkunci. Masukkan PIN 4 digit untuk melanjutkan.";
 "Progreso" = "Progress";
 "Progreso de descarga" = "Download progress";
 "Progress" = "Progress";
@@ -1253,6 +1270,7 @@
 "Saturation" = "Saturasi";
 "Save" = "Simpan";
 "Save and share pages" = "Save and share pages";
+"Save changes" = "Simpan perubahan";
 "Save for later" = "Simpan untuk nanti";
 "Save page" = "Save page";
 "Save reminder" = "Simpan pengingat";
@@ -1308,9 +1326,11 @@
 "Services changes waiting to sync" = "Perubahan layanan menunggu sinkronisasi";
 "Servidor Xtream" = "Xtream server";
 "Sesión iniciada en Stremio" = "Sudah masuk ke Stremio";
+"Set a PIN" = "Atur PIN";
 "Settings" = "Pengaturan";
 "Share" = "Bagikan";
 "Share file" = "Share file";
+"Share with {name}" = "Bagikan dengan {name}";
 "Sharpen" = "Pertajam";
 "Sharper lines and a little more pop." = "Garis lebih tajam dan tampilan sedikit lebih menonjol.";
 "Short of the Year" = "Film Pendek Terbaik Tahun Ini";
@@ -1451,6 +1471,7 @@
 "Swedish" = "Swedia";
 "Switch quality" = "Switch quality";
 "Switch stream" = "Ganti stream";
+"Switch to {name}" = "Beralih ke {name}";
 "Sync" = "Sinkronkan";
 "Sync Offset" = "Offset Sinkronisasi";
 "Sync addons" = "Sync addons";
@@ -1559,6 +1580,7 @@
 "Torrents" = "Torrent";
 "Track" = "Lacak";
 "Traducir títulos" = "Terjemahkan judul";
+"Transfer primary" = "Alihkan profil utama";
 "Translate titles" = "Terjemahkan judul";
 "Trazo grueso alrededor de cada letra. Alto contraste." = "Garis tegas di sekeliling setiap huruf. Kontras tinggi.";
 "Trending" = "Sedang tren";
@@ -1581,6 +1603,8 @@
 "Tus ligas" = "Your leagues";
 "Tus listas" = "Your lists";
 "Type" = "Jenis";
+"Type on your keyboard or tap the digits above." = "Ketik dengan keyboard atau ketuk angka di atas.";
+"Type the same 4-digit PIN again." = "Ketik lagi PIN 4 digit yang sama.";
 "Typography" = "Tipografi";
 "Títulos ocultos" = "Hidden titles";
 "Títulos y descripciones" = "Judul dan deskripsi";
@@ -1605,6 +1629,7 @@
 "Usa la clave v3, no el token de acceso de lectura." = "Gunakan kunci v3, bukan token akses baca.";
 "Usar mi estilo" = "Gunakan gaya saya";
 "Use my style" = "Gunakan gaya saya";
+"Use shared settings" = "Gunakan pengaturan bersama";
 "Use the navigation menu to open each section. Personalize the sidebar, home rows, colors and playback from Settings." = "Use the navigation menu to open each section. Personalize the sidebar, home rows, colors and playback from Settings.";
 "Use the v3 key, not the read access token." = "Gunakan kunci v3, bukan token akses baca.";
 "Use your configured Harbor server. Allow local network access when iOS asks." = "Use your configured Harbor server. Allow local network access when iOS asks.";
@@ -1645,7 +1670,9 @@
 "Where to today?" = "Ke mana hari ini?";
 "Where to watch" = "Tempat menonton";
 "Where your video comes from" = "Sumber video Anda";
+"Who's watching?" = "Siapa yang menonton?";
 "Writer" = "Penulis";
+"Wrong PIN" = "PIN salah";
 "Xtream" = "Xtream";
 "Xtream server" = "Xtream server";
 "You can switch later in Settings under Library & metadata." = "Anda dapat beralih nanti di Pengaturan, bagian Perpustakaan & metadata.";
@@ -1672,6 +1699,7 @@
 "category" = "kategori";
 "center" = "tengah";
 "code" = "kode";
+"common.back" = "Kembali";
 "default" = "bawaan";
 "downloads" = "unduhan";
 "eBook" = "eBook";
@@ -1696,6 +1724,7 @@
 "or use one of our avatars" = "atau gunakan salah satu avatar kami";
 "plays" = "pemutaran";
 "profile" = "profil";
+"profile.primary" = "Utama";
 "profile.signedIn" = "Sudah masuk ke Stremio";
 "result" = "hasil";
 "results" = "hasil";

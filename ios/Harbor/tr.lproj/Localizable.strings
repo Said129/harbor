@@ -289,6 +289,7 @@
 "Cerrar navegación" = "Close navigation";
 "Cerrar reproductor" = "Oynatıcıyı kapat";
 "Cerrar sesión" = "Oturumu kapat";
+"Change" = "Değiştir";
 "Change chapter order" = "Change chapter order";
 "Channel format" = "Channel format";
 "Chapters" = "Bölümler";
@@ -347,6 +348,9 @@
 "Configurar addon" = "Configure addon";
 "Configure Sports" = "Configure Sports";
 "Configure addon" = "Configure addon";
+"Confirm your PIN" = "PIN'inizi doğrulayın";
+"Confirm your current PIN to remove the lock." = "Kilidi kaldırmak için geçerli PIN'inizi doğrulayın.";
+"Confirm your current PIN, then pick a new one." = "Geçerli PIN'inizi doğrulayın, ardından yeni bir PIN seçin.";
 "Connect TMDB" = "TMDB'yi bağla";
 "Connecting" = "Bağlanıyor";
 "Conservar original" = "Özgün biçimi koru";
@@ -424,6 +428,8 @@
 "Delete" = "Sil";
 "Delete file" = "Delete file";
 "Delete list" = "Listeyi sil";
+"Delete profile" = "Profili sil";
+"Delete this profile?" = "Bu profil silinsin mi?";
 "Deporte" = "Sport";
 "Derecha" = "Sağ";
 "Derecha a izquierda" = "Sağdan sola";
@@ -486,6 +492,8 @@
 "Easy on the eyes" = "Gözleri yormaz";
 "Edición terminada" = "Düzenlemeyi bitir";
 "Edit custom theme" = "Özel temayı düzenle";
+"Edit profile" = "Profili düzenle";
+"Edit {name}" = "{name} profilini düzenle";
 "Editar tema personalizado" = "Özel temayı düzenle";
 "Editor" = "Kurgucu";
 "Eisner Award Winners" = "Eisner Ödülü Kazananlar";
@@ -517,6 +525,7 @@
 "English" = "İngilizce";
 "Enter Harbor" = "Harbor'a gir";
 "Enter an FPS from 1 to 240." = "1 ile 240 arasında bir FPS girin.";
+"Enter current PIN" = "Geçerli PIN'i girin";
 "Episode" = "Bölüm";
 "Episode cards" = "Bölüm kartları";
 "Episode {n}" = "Bölüm {n}";
@@ -796,6 +805,7 @@
 "MUBI" = "MUBI";
 "Make it yours" = "Kendinize göre düzenleyin";
 "Manage" = "Yönet";
+"Manage profiles" = "Profilleri yönet";
 "Manga" = "Manga";
 "Manga connection" = "Manga connection";
 "Manga extension" = "Manga extension";
@@ -891,6 +901,7 @@
 "Netflix Originals" = "Netflix Orijinal Yapımları";
 "New Anime Releases" = "Yeni Çıkan Animeler";
 "New Face Award" = "Yeni Yüz Ödülü";
+"New profile" = "Yeni profil";
 "New voyage" = "Yeni yolculuk";
 "Next" = "Sonraki";
 "Next chapter" = "Sonraki bölüm";
@@ -1011,6 +1022,8 @@
 "P2P" = "P2P";
 "P2P sources, debrid-ready" = "P2P kaynakları, debrid uyumlu";
 "PBS" = "PBS";
+"PIN" = "PIN";
+"PINs didn't match. Start over." = "PIN'ler eşleşmedi. Baştan başlayın.";
 "Page" = "Sayfa";
 "Page base." = "Sayfa tabanı.";
 "Page turn sound" = "Page turn sound";
@@ -1036,9 +1049,11 @@
 "Personalizar página" = "Sayfayı özelleştir";
 "Personas" = "Kişiler";
 "Philo" = "Philo";
+"Pick a 4-digit PIN. You'll be asked for it before this profile opens." = "4 haneli bir PIN seçin. Bu profil açılmadan önce PIN'i girmeniz istenir.";
 "Pick a direction. You steer from there, one film at a time." = "Bir yön seçin. Sonrasında rotayı her seferinde bir film seçerek siz belirleyin.";
 "Pick a few you love" = "Sevdiklerinizden birkaçını seçin";
 "Pick a home layout" = "Ana sayfa düzenini seçin";
+"Pick a profile to continue." = "Devam etmek için bir profil seçin.";
 "Pick a random title" = "Rastgele bir yapım seç";
 "Pick a source" = "Bir kaynak seçin";
 "Pick up partly-watched episodes and movies at your saved spot. Anything watched past 80% always restarts. Turn this off to always start from the beginning, handy if you rewatch shows." = "Kısmen izlenmiş bölümlere ve filmlere kaldığınız yerden devam edin. %80'den fazlası izlenen içerikler her zaman baştan başlar. Dizileri yeniden izliyorsanız her zaman baştan başlatmak için bunu kapatın.";
@@ -1093,6 +1108,8 @@
 "Primero selecciona una pista de subtítulos." = "Önce bir altyazı parçası seçin.";
 "Priorizar {language}" = "{language} dilini öne taşı";
 "Producer" = "Yapımcı";
+"Profile PIN" = "Profil PIN'i";
+"Profile is locked. Enter the 4-digit PIN to continue." = "Profil kilitli. Devam etmek için 4 haneli PIN'i girin.";
 "Progreso" = "Progress";
 "Progreso de descarga" = "Download progress";
 "Progress" = "Progress";
@@ -1253,6 +1270,7 @@
 "Saturation" = "Doygunluk";
 "Save" = "Kaydet";
 "Save and share pages" = "Save and share pages";
+"Save changes" = "Değişiklikleri kaydet";
 "Save for later" = "Daha sonrası için kaydet";
 "Save page" = "Save page";
 "Save reminder" = "Hatırlatıcıyı kaydet";
@@ -1308,9 +1326,11 @@
 "Services changes waiting to sync" = "Hizmet değişiklikleri eşitlenmeyi bekliyor";
 "Servidor Xtream" = "Xtream server";
 "Sesión iniciada en Stremio" = "Stremio oturumu açık";
+"Set a PIN" = "PIN belirle";
 "Settings" = "Ayarlar";
 "Share" = "Paylaş";
 "Share file" = "Share file";
+"Share with {name}" = "{name} ile paylaş";
 "Sharpen" = "Keskinlik";
 "Sharper lines and a little more pop." = "Daha keskin çizgiler ve biraz daha canlı bir görünüm sunar.";
 "Short of the Year" = "Short of the Year";
@@ -1451,6 +1471,7 @@
 "Swedish" = "İsveççe";
 "Switch quality" = "Switch quality";
 "Switch stream" = "Yayını değiştir";
+"Switch to {name}" = "{name} profiline geç";
 "Sync" = "Senkronize et";
 "Sync Offset" = "Senkronizasyon farkı";
 "Sync addons" = "Sync addons";
@@ -1559,6 +1580,7 @@
 "Torrents" = "Torrentler";
 "Track" = "Parça";
 "Traducir títulos" = "Başlıkları çevir";
+"Transfer primary" = "Birincil profili aktar";
 "Translate titles" = "Başlıkları çevir";
 "Trazo grueso alrededor de cada letra. Alto contraste." = "Her harfin çevresinde keskin bir kontur. Yüksek kontrast.";
 "Trending" = "Trendler";
@@ -1581,6 +1603,8 @@
 "Tus ligas" = "Your leagues";
 "Tus listas" = "Your lists";
 "Type" = "Tür";
+"Type on your keyboard or tap the digits above." = "Klavyenizden yazın veya yukarıdaki rakamlara dokunun.";
+"Type the same 4-digit PIN again." = "Aynı 4 haneli PIN'i tekrar girin.";
 "Typography" = "Tipografi";
 "Títulos ocultos" = "Hidden titles";
 "Títulos y descripciones" = "Başlıklar ve açıklamalar";
@@ -1605,6 +1629,7 @@
 "Usa la clave v3, no el token de acceso de lectura." = "Okuma erişimi tokenını değil, v3 anahtarını kullanın.";
 "Usar mi estilo" = "Benim stilimi kullan";
 "Use my style" = "Benim stilimi kullan";
+"Use shared settings" = "Paylaşılan ayarları kullan";
 "Use the navigation menu to open each section. Personalize the sidebar, home rows, colors and playback from Settings." = "Use the navigation menu to open each section. Personalize the sidebar, home rows, colors and playback from Settings.";
 "Use the v3 key, not the read access token." = "Okuma erişimi tokenını değil, v3 anahtarını kullanın.";
 "Use your configured Harbor server. Allow local network access when iOS asks." = "Use your configured Harbor server. Allow local network access when iOS asks.";
@@ -1645,7 +1670,9 @@
 "Where to today?" = "Bugün nereye?";
 "Where to watch" = "Nerede izlenir";
 "Where your video comes from" = "Video kaynakları";
+"Who's watching?" = "Kim izliyor?";
 "Writer" = "Senarist";
+"Wrong PIN" = "Yanlış PIN";
 "Xtream" = "Xtream";
 "Xtream server" = "Xtream server";
 "You can switch later in Settings under Library & metadata." = "Bunu daha sonra Ayarlar'daki Kütüphane ve meta veriler bölümünden değiştirebilirsiniz.";
@@ -1672,6 +1699,7 @@
 "category" = "kategori";
 "center" = "orta";
 "code" = "kod";
+"common.back" = "Geri";
 "default" = "varsayılan";
 "downloads" = "indirilenler";
 "eBook" = "e-Kitap";
@@ -1696,6 +1724,7 @@
 "or use one of our avatars" = "veya avatarlarımızdan birini kullanın";
 "plays" = "oynatma";
 "profile" = "profil";
+"profile.primary" = "Birincil";
 "profile.signedIn" = "Stremio oturumu açık";
 "result" = "sonuç";
 "results" = "sonuç";

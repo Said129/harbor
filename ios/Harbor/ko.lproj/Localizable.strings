@@ -289,6 +289,7 @@
 "Cerrar navegación" = "Close navigation";
 "Cerrar reproductor" = "플레이어 닫기";
 "Cerrar sesión" = "로그아웃";
+"Change" = "변경";
 "Change chapter order" = "Change chapter order";
 "Channel format" = "Channel format";
 "Chapters" = "챕터";
@@ -347,6 +348,9 @@
 "Configurar addon" = "Configure addon";
 "Configure Sports" = "Configure Sports";
 "Configure addon" = "Configure addon";
+"Confirm your PIN" = "PIN 확인";
+"Confirm your current PIN to remove the lock." = "잠금을 해제하려면 현재 PIN을 확인하세요.";
+"Confirm your current PIN, then pick a new one." = "현재 PIN을 확인한 후 새 PIN을 선택하세요.";
 "Connect TMDB" = "TMDB 연결";
 "Connecting" = "연결 중";
 "Conservar original" = "원본 유지";
@@ -424,6 +428,8 @@
 "Delete" = "삭제";
 "Delete file" = "Delete file";
 "Delete list" = "목록 삭제";
+"Delete profile" = "프로필 삭제";
+"Delete this profile?" = "이 프로필을 삭제할까요?";
 "Deporte" = "Sport";
 "Derecha" = "오른쪽";
 "Derecha a izquierda" = "오른쪽에서 왼쪽";
@@ -486,6 +492,8 @@
 "Easy on the eyes" = "눈이 편안하게";
 "Edición terminada" = "편집 완료";
 "Edit custom theme" = "사용자 지정 테마 편집";
+"Edit profile" = "프로필 편집";
+"Edit {name}" = "{name} 편집";
 "Editar tema personalizado" = "사용자 지정 테마 편집";
 "Editor" = "편집자";
 "Eisner Award Winners" = "Eisner Award 수상작";
@@ -517,6 +525,7 @@
 "English" = "영어";
 "Enter Harbor" = "Harbor 입장";
 "Enter an FPS from 1 to 240." = "1~240 사이의 FPS를 입력하세요.";
+"Enter current PIN" = "현재 PIN 입력";
 "Episode" = "에피소드";
 "Episode cards" = "에피소드 카드";
 "Episode {n}" = "에피소드 {n}";
@@ -796,6 +805,7 @@
 "MUBI" = "MUBI";
 "Make it yours" = "나만의 공간으로 꾸미기";
 "Manage" = "관리";
+"Manage profiles" = "프로필 관리";
 "Manga" = "만화";
 "Manga connection" = "Manga connection";
 "Manga extension" = "Manga extension";
@@ -891,6 +901,7 @@
 "Netflix Originals" = "Netflix 오리지널";
 "New Anime Releases" = "최신 애니메이션";
 "New Face Award" = "신인상";
+"New profile" = "새 프로필";
 "New voyage" = "새 여정";
 "Next" = "다음";
 "Next chapter" = "다음 챕터";
@@ -1011,6 +1022,8 @@
 "P2P" = "P2P";
 "P2P sources, debrid-ready" = "P2P 소스, Debrid 지원";
 "PBS" = "PBS";
+"PIN" = "PIN";
+"PINs didn't match. Start over." = "PIN이 일치하지 않습니다. 처음부터 다시 시작하세요.";
 "Page" = "페이지";
 "Page base." = "페이지 기본.";
 "Page turn sound" = "Page turn sound";
@@ -1036,9 +1049,11 @@
 "Personalizar página" = "페이지 사용자 지정";
 "Personas" = "인물";
 "Philo" = "Philo";
+"Pick a 4-digit PIN. You'll be asked for it before this profile opens." = "4자리 PIN을 선택하세요. 이 프로필을 열기 전에 PIN을 입력해야 합니다.";
 "Pick a direction. You steer from there, one film at a time." = "방향을 선택하세요. 이후에는 영화 한 편씩 직접 항로를 정합니다.";
 "Pick a few you love" = "좋아하는 작품을 골라보세요";
 "Pick a home layout" = "홈 레이아웃 선택";
+"Pick a profile to continue." = "계속하려면 프로필을 선택하세요.";
 "Pick a random title" = "작품 무작위 선택";
 "Pick a source" = "소스 선택";
 "Pick up partly-watched episodes and movies at your saved spot. Anything watched past 80% always restarts. Turn this off to always start from the beginning, handy if you rewatch shows." = "보다 만 에피소드와 영화를 저장된 위치부터 이어서 재생합니다. 80% 넘게 본 콘텐츠는 항상 처음부터 다시 시작합니다. 프로그램을 다시 볼 때처럼 항상 처음부터 시작하려면 끄세요.";
@@ -1093,6 +1108,8 @@
 "Primero selecciona una pista de subtítulos." = "먼저 자막 트랙을 선택하세요.";
 "Priorizar {language}" = "{language} 우선순위 높이기";
 "Producer" = "프로듀서";
+"Profile PIN" = "프로필 PIN";
+"Profile is locked. Enter the 4-digit PIN to continue." = "프로필이 잠겨 있습니다. 계속하려면 4자리 PIN을 입력하세요.";
 "Progreso" = "Progress";
 "Progreso de descarga" = "Download progress";
 "Progress" = "Progress";
@@ -1253,6 +1270,7 @@
 "Saturation" = "채도";
 "Save" = "저장";
 "Save and share pages" = "Save and share pages";
+"Save changes" = "변경 사항 저장";
 "Save for later" = "나중에 보기";
 "Save page" = "Save page";
 "Save reminder" = "알림 저장";
@@ -1308,9 +1326,11 @@
 "Services changes waiting to sync" = "서비스 변경 사항 동기화 대기 중";
 "Servidor Xtream" = "Xtream server";
 "Sesión iniciada en Stremio" = "Stremio에 로그인됨";
+"Set a PIN" = "PIN 설정";
 "Settings" = "설정";
 "Share" = "공유";
 "Share file" = "Share file";
+"Share with {name}" = "{name}과(와) 공유";
 "Sharpen" = "선명도";
 "Sharper lines and a little more pop." = "선을 더 선명하게 하고 생동감을 약간 높입니다.";
 "Short of the Year" = "Short of the Year";
@@ -1451,6 +1471,7 @@
 "Swedish" = "스웨덴어";
 "Switch quality" = "Switch quality";
 "Switch stream" = "스트림 전환";
+"Switch to {name}" = "{name}(으)로 전환";
 "Sync" = "동기화";
 "Sync Offset" = "동기화 오프셋";
 "Sync addons" = "Sync addons";
@@ -1559,6 +1580,7 @@
 "Torrents" = "토렌트";
 "Track" = "트랙";
 "Traducir títulos" = "제목 번역";
+"Transfer primary" = "기본 프로필 이전";
 "Translate titles" = "제목 번역";
 "Trazo grueso alrededor de cada letra. Alto contraste." = "각 글자 주변의 선명한 외곽선입니다. 대비가 높습니다.";
 "Trending" = "인기 급상승";
@@ -1581,6 +1603,8 @@
 "Tus ligas" = "Your leagues";
 "Tus listas" = "Your lists";
 "Type" = "유형";
+"Type on your keyboard or tap the digits above." = "키보드로 입력하거나 위의 숫자를 탭하세요.";
+"Type the same 4-digit PIN again." = "같은 4자리 PIN을 다시 입력하세요.";
 "Typography" = "타이포그래피";
 "Títulos ocultos" = "Hidden titles";
 "Títulos y descripciones" = "제목 및 설명";
@@ -1605,6 +1629,7 @@
 "Usa la clave v3, no el token de acceso de lectura." = "읽기 액세스 토큰이 아닌 v3 키를 사용하세요.";
 "Usar mi estilo" = "내 스타일 사용";
 "Use my style" = "내 스타일 사용";
+"Use shared settings" = "공유 설정 사용";
 "Use the navigation menu to open each section. Personalize the sidebar, home rows, colors and playback from Settings." = "Use the navigation menu to open each section. Personalize the sidebar, home rows, colors and playback from Settings.";
 "Use the v3 key, not the read access token." = "읽기 액세스 토큰이 아닌 v3 키를 사용하세요.";
 "Use your configured Harbor server. Allow local network access when iOS asks." = "Use your configured Harbor server. Allow local network access when iOS asks.";
@@ -1645,7 +1670,9 @@
 "Where to today?" = "오늘은 어디로 갈까요?";
 "Where to watch" = "시청 가능한 곳";
 "Where your video comes from" = "동영상 제공 출처";
+"Who's watching?" = "누가 시청하나요?";
 "Writer" = "작가";
+"Wrong PIN" = "PIN이 올바르지 않습니다";
 "Xtream" = "Xtream";
 "Xtream server" = "Xtream server";
 "You can switch later in Settings under Library & metadata." = "나중에 설정의 보관함 및 메타데이터에서 변경할 수 있습니다.";
@@ -1672,6 +1699,7 @@
 "category" = "카테고리";
 "center" = "가운데";
 "code" = "코드";
+"common.back" = "뒤로";
 "default" = "기본값";
 "downloads" = "다운로드";
 "eBook" = "eBook";
@@ -1696,6 +1724,7 @@
 "or use one of our avatars" = "또는 Harbor 아바타 사용";
 "plays" = "재생";
 "profile" = "프로필";
+"profile.primary" = "기본";
 "profile.signedIn" = "Stremio에 로그인됨";
 "result" = "결과";
 "results" = "결과";

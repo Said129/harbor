@@ -73,7 +73,8 @@
     "Could not restore your services. The saved version is kept.": "No se pudieron restaurar tus servicios. Se conserva la versión guardada.",
     "Your services are saved locally. Cloud sync will retry.": "Tus servicios se han guardado en este dispositivo. Se reintentará la sincronización.",
     "Another device changed services. Your previous version is saved on this device.": "Otro dispositivo cambió los servicios. Tu versión anterior está guardada en este dispositivo.",
-    "Services changes waiting to sync": "Cambios de servicios pendientes de sincronizar"
+    "Services changes waiting to sync": "Cambios de servicios pendientes de sincronizar",
+    "Use shared settings": "Usar ajustes compartidos"
   },
   "pt": {
     "Auto-sync": "Sincronização automática",
@@ -112,7 +113,8 @@
     "Could not restore your services. The saved version is kept.": "Não foi possível restaurar os seus serviços. A versão guardada é mantida.",
     "Your services are saved locally. Cloud sync will retry.": "Os seus serviços estão guardados neste dispositivo. A sincronização será tentada novamente.",
     "Another device changed services. Your previous version is saved on this device.": "Outro dispositivo alterou os serviços. A sua versão anterior está guardada neste dispositivo.",
-    "Services changes waiting to sync": "Alterações nos serviços à espera de sincronização"
+    "Services changes waiting to sync": "Alterações nos serviços à espera de sincronização",
+    "Use shared settings": "Usar configurações compartilhadas"
   },
   "ru": {
     "Auto-sync": "Автосинхронизация",
@@ -151,7 +153,8 @@
     "Could not restore your services. The saved version is kept.": "Не удалось восстановить сервисы. Сохранённая версия не удалена.",
     "Your services are saved locally. Cloud sync will retry.": "Сервисы сохранены на этом устройстве. Синхронизация будет повторена.",
     "Another device changed services. Your previous version is saved on this device.": "Другое устройство изменило сервисы. Предыдущая версия сохранена на этом устройстве.",
-    "Services changes waiting to sync": "Изменения сервисов ожидают синхронизации"
+    "Services changes waiting to sync": "Изменения сервисов ожидают синхронизации",
+    "Use shared settings": "Использовать общие настройки"
   },
   "ar": {
     "Auto-sync": "مزامنة تلقائية",
@@ -190,7 +193,8 @@
     "Could not restore your services. The saved version is kept.": "تعذّرت استعادة خدماتك. تم الاحتفاظ بالنسخة المحفوظة.",
     "Your services are saved locally. Cloud sync will retry.": "تم حفظ خدماتك على هذا الجهاز. ستتم إعادة محاولة المزامنة.",
     "Another device changed services. Your previous version is saved on this device.": "غيّر جهاز آخر الخدمات. نسختك السابقة محفوظة على هذا الجهاز.",
-    "Services changes waiting to sync": "تغييرات الخدمات بانتظار المزامنة"
+    "Services changes waiting to sync": "تغييرات الخدمات بانتظار المزامنة",
+    "Use shared settings": "استخدام الإعدادات المشتركة"
   },
   "zh": {
     "Couldn't auto-sync": "无法自动同步",
@@ -200,7 +204,8 @@
     "Could not restore your services. The saved version is kept.": "无法恢复你的服务。已保留保存的版本。",
     "Your services are saved locally. Cloud sync will retry.": "你的服务已保存在本机。稍后将重试云端同步。",
     "Another device changed services. Your previous version is saved on this device.": "另一台设备更改了服务。你的旧版本已保存在本机。",
-    "Services changes waiting to sync": "服务更改等待同步"
+    "Services changes waiting to sync": "服务更改等待同步",
+    "Use shared settings": "使用共享设置"
   },
   "fr": {
     "Couldn't auto-sync": "Synchronisation automatique impossible",
@@ -210,7 +215,8 @@
     "Could not restore your services. The saved version is kept.": "Impossible de restaurer vos services. La version enregistrée est conservée.",
     "Your services are saved locally. Cloud sync will retry.": "Vos services sont enregistrés sur cet appareil. La synchronisation sera réessayée.",
     "Another device changed services. Your previous version is saved on this device.": "Un autre appareil a modifié les services. Votre version précédente est conservée sur cet appareil.",
-    "Services changes waiting to sync": "Modifications des services en attente de synchronisation"
+    "Services changes waiting to sync": "Modifications des services en attente de synchronisation",
+    "Use shared settings": "Utiliser les réglages partagés"
   },
   "de": {
     "Couldn't auto-sync": "Automatische Synchronisierung nicht möglich",
@@ -220,7 +226,8 @@
     "Could not restore your services. The saved version is kept.": "Deine Dienste konnten nicht wiederhergestellt werden. Die gespeicherte Version bleibt erhalten.",
     "Your services are saved locally. Cloud sync will retry.": "Deine Dienste sind lokal gespeichert. Die Synchronisierung wird erneut versucht.",
     "Another device changed services. Your previous version is saved on this device.": "Ein anderes Gerät hat die Dienste geändert. Deine vorherige Version ist auf diesem Gerät gespeichert.",
-    "Services changes waiting to sync": "Änderungen an Diensten warten auf Synchronisierung"
+    "Services changes waiting to sync": "Änderungen an Diensten warten auf Synchronisierung",
+    "Use shared settings": "Gemeinsame Einstellungen verwenden"
   },
   "hi": {
     "Couldn't auto-sync": "अपने-आप सिंक नहीं हो सका",
@@ -230,7 +237,8 @@
     "Could not restore your services. The saved version is kept.": "आपकी सेवाएँ बहाल नहीं हो सकीं। सहेजा गया संस्करण सुरक्षित है।",
     "Your services are saved locally. Cloud sync will retry.": "आपकी सेवाएँ इस डिवाइस पर सहेजी गई हैं। क्लाउड सिंक फिर से किया जाएगा।",
     "Another device changed services. Your previous version is saved on this device.": "किसी दूसरे डिवाइस ने सेवाएँ बदली हैं। आपका पिछला संस्करण इस डिवाइस पर सुरक्षित है।",
-    "Services changes waiting to sync": "सेवाओं के बदलाव सिंक होने की प्रतीक्षा में हैं"
+    "Services changes waiting to sync": "सेवाओं के बदलाव सिंक होने की प्रतीक्षा में हैं",
+    "Use shared settings": "साझा सेटिंग इस्तेमाल करें"
   },
   "id": {
     "Couldn't auto-sync": "Tidak dapat menyinkronkan otomatis",
@@ -240,7 +248,8 @@
     "Could not restore your services. The saved version is kept.": "Layanan Anda tidak dapat dipulihkan. Versi yang tersimpan tetap disimpan.",
     "Your services are saved locally. Cloud sync will retry.": "Layanan Anda tersimpan di perangkat ini. Sinkronisasi cloud akan dicoba lagi.",
     "Another device changed services. Your previous version is saved on this device.": "Perangkat lain mengubah layanan. Versi sebelumnya tersimpan di perangkat ini.",
-    "Services changes waiting to sync": "Perubahan layanan menunggu sinkronisasi"
+    "Services changes waiting to sync": "Perubahan layanan menunggu sinkronisasi",
+    "Use shared settings": "Gunakan pengaturan bersama"
   },
   "it": {
     "Couldn't auto-sync": "Sincronizzazione automatica non riuscita",
@@ -250,7 +259,8 @@
     "Could not restore your services. The saved version is kept.": "Impossibile ripristinare i tuoi servizi. La versione salvata viene conservata.",
     "Your services are saved locally. Cloud sync will retry.": "I tuoi servizi sono salvati su questo dispositivo. La sincronizzazione verrà ritentata.",
     "Another device changed services. Your previous version is saved on this device.": "Un altro dispositivo ha modificato i servizi. La versione precedente è salvata su questo dispositivo.",
-    "Services changes waiting to sync": "Modifiche ai servizi in attesa di sincronizzazione"
+    "Services changes waiting to sync": "Modifiche ai servizi in attesa di sincronizzazione",
+    "Use shared settings": "Usa le impostazioni condivise"
   },
   "ja": {
     "Couldn't auto-sync": "自動同期できませんでした",
@@ -260,7 +270,8 @@
     "Could not restore your services. The saved version is kept.": "サービスを復元できませんでした。保存済みのバージョンは保持されます。",
     "Your services are saved locally. Cloud sync will retry.": "サービスはこのデバイスに保存されています。クラウド同期を再試行します。",
     "Another device changed services. Your previous version is saved on this device.": "別のデバイスでサービスが変更されました。以前のバージョンはこのデバイスに保存されています。",
-    "Services changes waiting to sync": "サービスの変更は同期待ちです"
+    "Services changes waiting to sync": "サービスの変更は同期待ちです",
+    "Use shared settings": "共有設定を使う"
   },
   "ko": {
     "Couldn't auto-sync": "자동 동기화하지 못했습니다",
@@ -270,7 +281,8 @@
     "Could not restore your services. The saved version is kept.": "서비스를 복원하지 못했습니다. 저장된 버전은 유지됩니다.",
     "Your services are saved locally. Cloud sync will retry.": "서비스가 이 기기에 저장되었습니다. 클라우드 동기화를 다시 시도합니다.",
     "Another device changed services. Your previous version is saved on this device.": "다른 기기에서 서비스를 변경했습니다. 이전 버전은 이 기기에 저장되어 있습니다.",
-    "Services changes waiting to sync": "서비스 변경 사항 동기화 대기 중"
+    "Services changes waiting to sync": "서비스 변경 사항 동기화 대기 중",
+    "Use shared settings": "공유 설정 사용"
   },
   "pl": {
     "Couldn't auto-sync": "Nie udało się zsynchronizować automatycznie",
@@ -280,7 +292,8 @@
     "Could not restore your services. The saved version is kept.": "Nie udało się przywrócić usług. Zapisana wersja została zachowana.",
     "Your services are saved locally. Cloud sync will retry.": "Usługi są zapisane na tym urządzeniu. Synchronizacja zostanie ponowiona.",
     "Another device changed services. Your previous version is saved on this device.": "Inne urządzenie zmieniło usługi. Poprzednia wersja jest zapisana na tym urządzeniu.",
-    "Services changes waiting to sync": "Zmiany usług oczekują na synchronizację"
+    "Services changes waiting to sync": "Zmiany usług oczekują na synchronizację",
+    "Use shared settings": "Używaj wspólnych ustawień"
   },
   "tr": {
     "Couldn't auto-sync": "Otomatik eşitlenemedi",
@@ -290,7 +303,8 @@
     "Could not restore your services. The saved version is kept.": "Hizmetleriniz geri yüklenemedi. Kayıtlı sürüm korunuyor.",
     "Your services are saved locally. Cloud sync will retry.": "Hizmetleriniz bu cihazda kaydedildi. Bulut eşitlemesi yeniden denenecek.",
     "Another device changed services. Your previous version is saved on this device.": "Başka bir cihaz hizmetleri değiştirdi. Önceki sürümünüz bu cihazda kayıtlı.",
-    "Services changes waiting to sync": "Hizmet değişiklikleri eşitlenmeyi bekliyor"
+    "Services changes waiting to sync": "Hizmet değişiklikleri eşitlenmeyi bekliyor",
+    "Use shared settings": "Paylaşılan ayarları kullan"
   },
   "vi": {
     "Couldn't auto-sync": "Không thể tự động đồng bộ",
@@ -300,7 +314,8 @@
     "Could not restore your services. The saved version is kept.": "Không thể khôi phục các dịch vụ của bạn. Phiên bản đã lưu vẫn được giữ lại.",
     "Your services are saved locally. Cloud sync will retry.": "Các dịch vụ đã được lưu trên thiết bị này. Đồng bộ đám mây sẽ được thử lại.",
     "Another device changed services. Your previous version is saved on this device.": "Một thiết bị khác đã thay đổi các dịch vụ. Phiên bản trước được lưu trên thiết bị này.",
-    "Services changes waiting to sync": "Các thay đổi dịch vụ đang chờ đồng bộ"
+    "Services changes waiting to sync": "Các thay đổi dịch vụ đang chờ đồng bộ",
+    "Use shared settings": "Dùng cài đặt chung"
   },
   "en": {
     "Browse services": "Browse services",
@@ -309,6 +324,7 @@
     "Could not restore your services. The saved version is kept.": "Could not restore your services. The saved version is kept.",
     "Your services are saved locally. Cloud sync will retry.": "Your services are saved locally. Cloud sync will retry.",
     "Another device changed services. Your previous version is saved on this device.": "Another device changed services. Your previous version is saved on this device.",
-    "Services changes waiting to sync": "Services changes waiting to sync"
+    "Services changes waiting to sync": "Services changes waiting to sync",
+    "Use shared settings": "Use shared settings"
   }
 }

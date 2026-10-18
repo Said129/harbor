@@ -293,6 +293,7 @@
 "Cerrar navegación" = "Close navigation";
 "Cerrar reproductor" = "Закрыть плеер";
 "Cerrar sesión" = "Выйти";
+"Change" = "Изменить";
 "Change chapter order" = "Change chapter order";
 "Channel format" = "Channel format";
 "Chapters" = "Главы";
@@ -351,6 +352,9 @@
 "Configurar addon" = "Configure addon";
 "Configure Sports" = "Configure Sports";
 "Configure addon" = "Configure addon";
+"Confirm your PIN" = "Подтвердите PIN";
+"Confirm your current PIN to remove the lock." = "Подтвердите текущий PIN, чтобы снять блокировку.";
+"Confirm your current PIN, then pick a new one." = "Подтвердите текущий PIN, затем задайте новый.";
 "Connect TMDB" = "Подключить TMDB";
 "Connecting" = "Подключение";
 "Conservar original" = "Оставить оригинал";
@@ -428,6 +432,8 @@
 "Delete" = "Удалить";
 "Delete file" = "Delete file";
 "Delete list" = "Удалить список";
+"Delete profile" = "Удалить профиль";
+"Delete this profile?" = "Удалить этот профиль?";
 "Deporte" = "Sport";
 "Derecha" = "Справа";
 "Derecha a izquierda" = "Справа налево";
@@ -490,6 +496,8 @@
 "Easy on the eyes" = "Мягче для глаз";
 "Edición terminada" = "Готово";
 "Edit custom theme" = "Изменить свою тему";
+"Edit profile" = "Изменить профиль";
+"Edit {name}" = "Изменить {name}";
 "Editar tema personalizado" = "Изменить свою тему";
 "Editor" = "Монтажёр";
 "Eisner Award Winners" = "Лауреаты премии Айснера";
@@ -521,6 +529,7 @@
 "English" = "Английский";
 "Enter Harbor" = "Войти в Harbor";
 "Enter an FPS from 1 to 240." = "Введите частоту кадров от 1 до 240.";
+"Enter current PIN" = "Введите текущий PIN";
 "Episode" = "Серия";
 "Episode cards" = "Карточки серий";
 "Episode {n}" = "Серия {n}";
@@ -801,6 +810,7 @@
 "MUBI" = "MUBI";
 "Make it yours" = "Настройте под себя";
 "Manage" = "Управление";
+"Manage profiles" = "Управление профилями";
 "Manga" = "Манга";
 "Manga connection" = "Manga connection";
 "Manga extension" = "Manga extension";
@@ -899,6 +909,7 @@
 "Never shown again" = "Never shown again";
 "New Anime Releases" = "Новинки аниме";
 "New Face Award" = "Премия «Новое лицо»";
+"New profile" = "Новый профиль";
 "New voyage" = "Новое плавание";
 "Next" = "Далее";
 "Next chapter" = "Следующая глава";
@@ -1021,6 +1032,8 @@
 "P2P" = "P2P";
 "P2P sources, debrid-ready" = "P2P-источники, поддержка debrid";
 "PBS" = "PBS";
+"PIN" = "PIN-код";
+"PINs didn't match. Start over." = "PIN-коды не совпали. Начните заново.";
 "PTS" = "PTS";
 "Page" = "Страница";
 "Page base." = "Основа страницы.";
@@ -1047,9 +1060,11 @@
 "Personalizar página" = "Настроить страницу";
 "Personas" = "Люди";
 "Philo" = "Philo";
+"Pick a 4-digit PIN. You'll be asked for it before this profile opens." = "Придумайте 4-значный PIN. Он потребуется при открытии этого профиля.";
 "Pick a direction. You steer from there, one film at a time." = "Выберите направление. Дальше вы у руля, фильм за фильмом.";
 "Pick a few you love" = "Выберите несколько любимых";
 "Pick a home layout" = "Выберите вид главной";
+"Pick a profile to continue." = "Выберите профиль, чтобы продолжить.";
 "Pick a random title" = "Выбрать случайное";
 "Pick a source" = "Выберите источник";
 "Pick up partly-watched episodes and movies at your saved spot. Anything watched past 80% always restarts. Turn this off to always start from the beginning, handy if you rewatch shows." = "Продолжайте недосмотренные серии и фильмы с сохранённого места. Всё, просмотренное более чем на 80%, всегда начинается заново. Отключите, чтобы всегда начинать с начала, удобно при пересмотре сериалов.";
@@ -1104,6 +1119,8 @@
 "Primero selecciona una pista de subtítulos." = "Сначала выберите дорожку субтитров.";
 "Priorizar {language}" = "Повысить приоритет языка: {language}";
 "Producer" = "Продюсер";
+"Profile PIN" = "PIN профиля";
+"Profile is locked. Enter the 4-digit PIN to continue." = "Профиль заблокирован. Введите 4-значный PIN, чтобы продолжить.";
 "Progreso" = "Progress";
 "Progreso de descarga" = "Download progress";
 "Progress" = "Progress";
@@ -1265,6 +1282,7 @@
 "Saturation" = "Насыщенность";
 "Save" = "Сохранить";
 "Save and share pages" = "Save and share pages";
+"Save changes" = "Сохранить изменения";
 "Save for later" = "Сохранить на потом";
 "Save page" = "Save page";
 "Save reminder" = "Сохранить напоминание";
@@ -1320,9 +1338,11 @@
 "Services changes waiting to sync" = "Изменения сервисов ожидают синхронизации";
 "Servidor Xtream" = "Xtream server";
 "Sesión iniciada en Stremio" = "Вход в Stremio выполнен";
+"Set a PIN" = "Задать PIN";
 "Settings" = "Настройки";
 "Share" = "Поделиться";
 "Share file" = "Share file";
+"Share with {name}" = "Общий доступ с {name}";
 "Sharpen" = "Повысить резкость";
 "Sharper lines and a little more pop." = "Более чёткие линии и чуть больше выразительности.";
 "Short of the Year" = "Короткометражка года";
@@ -1464,6 +1484,7 @@
 "Swedish" = "Шведский";
 "Switch quality" = "Switch quality";
 "Switch stream" = "Сменить поток";
+"Switch to {name}" = "Переключиться на {name}";
 "Sync" = "Синхронизация";
 "Sync Offset" = "Смещение синхронизации";
 "Sync addons" = "Sync addons";
@@ -1572,6 +1593,7 @@
 "Torrents" = "Торренты";
 "Track" = "Дорожка";
 "Traducir títulos" = "Переводить названия";
+"Transfer primary" = "Передать основной профиль";
 "Translate titles" = "Переводить названия";
 "Trazo grueso alrededor de cada letra. Alto contraste." = "Жёсткая обводка каждой буквы. Высокий контраст.";
 "Trending" = "В тренде";
@@ -1594,6 +1616,8 @@
 "Tus ligas" = "Your leagues";
 "Tus listas" = "Your lists";
 "Type" = "Тип";
+"Type on your keyboard or tap the digits above." = "Печатайте на клавиатуре или нажимайте цифры выше.";
+"Type the same 4-digit PIN again." = "Введите тот же 4-значный PIN ещё раз.";
 "Typography" = "Типографика";
 "Títulos ocultos" = "Hidden titles";
 "Títulos y descripciones" = "Названия и описания";
@@ -1618,6 +1642,7 @@
 "Usa la clave v3, no el token de acceso de lectura." = "Используйте ключ v3, а не токен доступа для чтения.";
 "Usar mi estilo" = "Мой стиль";
 "Use my style" = "Мой стиль";
+"Use shared settings" = "Использовать общие настройки";
 "Use the navigation menu to open each section. Personalize the sidebar, home rows, colors and playback from Settings." = "Use the navigation menu to open each section. Personalize the sidebar, home rows, colors and playback from Settings.";
 "Use the v3 key, not the read access token." = "Используйте ключ v3, а не токен доступа для чтения.";
 "Use your configured Harbor server. Allow local network access when iOS asks." = "Use your configured Harbor server. Allow local network access when iOS asks.";
@@ -1658,7 +1683,9 @@
 "Where to today?" = "Куда сегодня?";
 "Where to watch" = "Где смотреть";
 "Where your video comes from" = "Источники видео";
+"Who's watching?" = "Кто смотрит?";
 "Writer" = "Сценарист";
+"Wrong PIN" = "Неверный PIN";
 "Xtream" = "Xtream";
 "Xtream server" = "Xtream server";
 "You can switch later in Settings under Library & metadata." = "Переключить можно позже в Настройках, раздел «Библиотека и метаданные».";
@@ -1685,6 +1712,7 @@
 "category" = "категория";
 "center" = "по центру";
 "code" = "код";
+"common.back" = "Назад";
 "default" = "по умолчанию";
 "downloads" = "загрузок";
 "eBook" = "Электронная книга";
@@ -1709,6 +1737,7 @@
 "or use one of our avatars" = "или выберите один из наших аватаров";
 "plays" = "просмотров";
 "profile" = "профиль";
+"profile.primary" = "Основной";
 "profile.signedIn" = "Вход в Stremio выполнен";
 "result" = "результат";
 "results" = "результатов";
