@@ -29,7 +29,7 @@ struct ContentPageView: View {
             .safeAreaInset(edge: .bottom) { PageEditingFooter(customization: customization) }
             .task(id: app.continuingDetectionSignature) { await app.detectContinuingAnime() }
             .task(id: "\(app.storageReady)|\(app.addons.filter(\.enabled).map(\.id).joined())|\(MetadataPreferences.shared.tmdbKey)|\(MetadataPreferences.shared.region)|\(MetadataPreferences.shared.language)|\(MetadataPreferences.shared.translateTitles)") { if app.storageReady { await model.load(kind: kind, app: app) } }
-            .onChange(of: app.rows.count) { _, _ in if !["movie", "series", "kids"].contains(kind) { Task { await model.load(kind: kind, app: app, refresh: true) } } }
+            .onChange(of: app.rows.count) { _, _ in if !["movie", "series"].contains(kind) { Task { await model.load(kind: kind, app: app, refresh: true) } } }
             .onChange(of: app.library.items.map { $0.id + $0.modified }) { _, _ in if kind == "anime" { Task { await model.refreshAnimePicks(app: app) } } }
             .refreshable { ArtworkRefresh.shared.retryFailedImages(); await model.load(kind: kind, app: app, refresh: true) }
     }

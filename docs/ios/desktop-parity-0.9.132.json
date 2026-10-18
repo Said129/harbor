@@ -49,8 +49,8 @@
     },
     {
       "id": "kids",
-      "status": "pending_reference_review",
-      "reason": null
+      "status": "excluded_by_owner",
+      "reason": "Owner explicitly excluded the Kids section and child profiles on 2026-10-18."
     },
     {
       "id": "anime",
@@ -2711,7 +2711,7 @@
       "id": "Parental PIN gates",
       "desktop_source": "src/lib/parental.tsx",
       "source_present": true,
-      "review": "pending_reference_review",
+      "review": "excluded_by_owner_2026_10_18",
       "historical_evidence": null
     },
     {
@@ -2725,14 +2725,14 @@
       "id": "Age restrictions",
       "desktop_source": "src/lib/parental.tsx",
       "source_present": true,
-      "review": "pending_reference_review",
+      "review": "excluded_by_owner_2026_10_18",
       "historical_evidence": null
     },
     {
       "id": "Curfew controls",
       "desktop_source": "src/lib/curfew.ts",
       "source_present": true,
-      "review": "pending_reference_review",
+      "review": "excluded_by_owner_2026_10_18",
       "historical_evidence": null
     },
     {

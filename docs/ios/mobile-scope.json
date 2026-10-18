@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-17",
+  "updatedAt": "2026-10-18",
   "authority": "Explicit scope change by the repository owner in the current conversation",
   "status": "in_progress_full_desktop_parity",
-  "objective": "Complete a native iPhone/iPad port with functional 1:1 equivalence to Harbor Desktop 0.9.132 Beta. Exclude Games by explicit owner instruction; adapt mobile interactions and document concrete reasons for other incompatible or inapplicable PC functions. Preserve implemented features and approved unchanged tests; finish outstanding behaviors and validate affected increments.",
+  "objective": "Complete a native iPhone/iPad port with functional and visual 1:1 equivalence to Harbor Desktop 0.9.132 Beta. Exclude Games, child profiles and the Kids section by explicit owner instruction; adapt mobile interactions and document concrete reasons for other incompatible or inapplicable PC functions. Preserve implemented features within the current scope and approved unchanged tests; finish outstanding behaviors and validate affected increments.",
   "supersedes": "The narrower selected-mobile-features scope established on 2026-10-06.",
   "scopeDocument": "docs/ios/DESKTOP_PARITY_0_9_132.md",
   "referenceVersion": "0.9.132",
@@ -81,7 +81,6 @@
     "Room: catalogs",
     "Room: movies",
     "Room: shows",
-    "Room: kids",
     "Room: anime",
     "Room: live",
     "Room: calendar",
@@ -825,7 +824,14 @@
     "referenceVersion": "0.9.130"
   },
   "referenceCommit": "0834340cec5531650bfe78cd628628702e636987",
-  "excludedSections": ["games"],
+  "excludedSections": ["games", "kids"],
+  "excludedFeatures": ["Child profiles", "Parental controls", "Child daily playback limits"],
+  "latestScopeChange": {
+    "date": "2026-10-18",
+    "authority": "Owner: olvida lo de los perfiles infantiles no añadas eso. no hagas una seccion infantil.",
+    "preserve": "Normal household profiles and their account/settings isolation remain in scope. Preserve unsupported Desktop wire fields without exposing child creation or a Kids destination on iOS.",
+    "implementation": "Removed native Kids navigation and dedicated catalogs, plus the unintegrated daily-budget model and its pending tests. No budget validation was dispatched and no IPA was generated."
+  },
   "inventory": "docs/ios/desktop-parity-0.9.132.json",
   "lastValidatedIncrement": {
     "build": 92,
@@ -838,13 +844,13 @@
     "eachUpdate": "Include the estimated overall iOS/iPadOS parity percentage and concrete additions, validations or remaining work. Update estimates from completed behavior, not from number of buttons, files or test executions.",
     "currentEstimatePercent": 75,
     "estimateIsAudited": false,
-    "denominator": "Only Desktop 0.9.132 functions applicable to iPhone/iPad; exclude Games and individually justified PC-only functions."
+    "denominator": "Only Desktop 0.9.132 functions applicable to iPhone/iPad; exclude Games, child profiles, the Kids section and individually justified PC-only functions."
   },
   "visualParity": {
     "authority": "Explicit owner clarification on 2026-10-17",
     "scope": "All compatible Desktop 0.9.132 interfaces, animations, transitions, sections, controls and loading/empty/error states, adapted to iPhone and iPad.",
     "validation": "Compare actual navigation and rendered screens against the pinned reference. Respect Reduce Motion; do not equate a present button or passing logic test with visual parity.",
     "auditStatus": "pending",
-    "excludedSections": ["games"]
+    "excludedSections": ["games", "kids"]
   }
 }

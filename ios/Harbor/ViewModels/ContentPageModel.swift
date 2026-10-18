@@ -26,9 +26,9 @@ final class ContentPageModel {
         // Desktop's Movies/Shows fallback is Cinemeta top plus genre rails.
         // It is a content provider, independent of the installed stream addons.
         do {
-            if ["movie", "series", "kids"].contains(kind) {
+            if ["movie", "series"].contains(kind) {
                 if !configuration.tmdbKey.isEmpty {
-                    let definitions = kind == "kids" ? TMDBService().kidsDefinitions() : TMDBService().definitions(kind)
+                    let definitions = TMDBService().definitions(kind)
                     await withTaskGroup(of: (Int, DiscoveryRail?).self) { group in
                         for (index, rail) in definitions.enumerated() {
                             group.addTask {
@@ -50,10 +50,10 @@ final class ContentPageModel {
                 if !curated.contains(where: { !$0.metas.isEmpty }) {
                     let addon = try await app.service.install(HarborService.cinemetaManifest)
                     let plans: [RequestPlan] = try await app.service.core.call("catalogs", ["addons": try .encoded([addon])])
-                    let providerKind = kind == "kids" ? "movie" : kind
+                    let providerKind = kind
                     guard let top = plans.first(where: { $0.kind == providerKind && $0.catalog?.id == "top" }) else { throw HarborError(code: "catalog-unavailable") }
-                    let genres = kind == "kids" ? ["Animation", "Family"] : ["Action", "Drama", "Comedy", "Sci-Fi", "Thriller", "Horror", "Romance", "Animation", "Adventure", "Crime", "Mystery", "Fantasy", "Documentary"]
-                    let definitions: [(String, String?)] = (kind == "kids" ? [] : [(kind == "movie" ? "Top Movies" : "Top Series", nil)]) + genres.map { ("Top " + $0, Optional($0)) }
+                    let genres = ["Action", "Drama", "Comedy", "Sci-Fi", "Thriller", "Horror", "Romance", "Animation", "Adventure", "Crime", "Mystery", "Fantasy", "Documentary"]
+                    let definitions: [(String, String?)] = [(kind == "movie" ? "Top Movies" : "Top Series", nil)] + genres.map { ("Top " + $0, Optional($0)) }
                     await withTaskGroup(of: (Int, CatalogRow?).self) { group in
                         for (index, definition) in definitions.enumerated() {
                             let service = app.service
@@ -61,7 +61,7 @@ final class ContentPageModel {
                                 do {
                                     let fetched = try await service.catalog(top, genre: definition.1, skip: 0)
                                     let plan = RequestPlan(key: "native-\(kind)-\(index)", url: top.url, title: definition.0, kind: providerKind, addon: top.addon, addonPriority: 0, timeoutMs: top.timeoutMs, catalog: top.catalog)
-                                    return (index, CatalogRow(plan: plan, metas: kind == "kids" ? fetched.metas.filter(\.safeForKids) : fetched.metas, selectedGenre: definition.1, receivedCount: fetched.receivedCount))
+                                    return (index, CatalogRow(plan: plan, metas: fetched.metas, selectedGenre: definition.1, receivedCount: fetched.receivedCount))
                                 } catch { return (index, nil) }
                             }
                         }

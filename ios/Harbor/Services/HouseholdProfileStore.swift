@@ -70,7 +70,6 @@ struct HouseholdProfileState: Codable, Equatable, Sendable {
     private(set) var error: String?
     private(set) var verifying = false
     private var generation = 0
-    var securityVersion: Int { generation }
     private var unlocked: Set<String> = []
     private var parentUnlocked: Set<String> = []
     var profiles: [DeviceHouseholdProfile] { ready ? state.profiles : [] }

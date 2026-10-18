@@ -4,8 +4,8 @@
   "version": "0.9.132",
   "authority": "Owner explicitly requires all compatible interfaces, animations, transitions and sections.",
   "countedAsCompletion": false,
-  "note": "This reproducible index is a review checklist, not proof of visual or functional parity. Existing native views and imported vectors still need complete flow and motion comparison on iPhone/iPad. Exclusions require a concrete PC dependency, not implementation difficulty.",
-  "excludedSections": ["games"],
+  "note": "This reproducible index is a review checklist, not proof of visual or functional parity. Existing native views and imported vectors still need complete flow and motion comparison on iPhone/iPad. Exclusions follow explicit owner instructions or a concrete PC dependency, not implementation difficulty. The owner excluded the Kids section and child profiles on 2026-10-18.",
+  "excludedSections": ["games", "kids"],
   "sections": [
     {
       "id": "home",
@@ -149,8 +149,8 @@
     },
     {
       "id": "kids",
-      "nativeEntry": "ios/Harbor/Views/ContentPageView.swift",
-      "status": "pending_complete_reference_comparison",
+      "nativeEntry": null,
+      "status": "excluded_by_owner_2026_10_18",
       "requiredStates": [
         "normal",
         "loading",
@@ -842,70 +842,70 @@
       "source": "src/index.css",
       "line": 172,
       "definitionSha256": "c31e998c8bd1b82b76453b365d3fc65b61d72478e01cc2de0387da119617d911",
-      "status": "pending_native_and_visual_review"
+      "status": "excluded_by_owner_2026_10_18"
     },
     {
       "name": "kids-twinkle",
       "source": "src/index.css",
       "line": 194,
       "definitionSha256": "1ca6fa63b46581fd11d8fe0c6ba6d296a48c5035eeca3c23bba22bb1b4d23ce7",
-      "status": "pending_native_and_visual_review"
+      "status": "excluded_by_owner_2026_10_18"
     },
     {
       "name": "kids-pop-in",
       "source": "src/index.css",
       "line": 206,
       "definitionSha256": "656586c7bf975bb9ffd5fb6396c1a368a71b1ed69657e650bf96d44fecf6ebae",
-      "status": "pending_native_and_visual_review"
+      "status": "excluded_by_owner_2026_10_18"
     },
     {
       "name": "kid-confetti-fall",
       "source": "src/index.css",
       "line": 344,
       "definitionSha256": "d6f217cf142eb35654b9fd75bb4179086eb6907f706b690820d34d97aa66037d",
-      "status": "pending_native_and_visual_review"
+      "status": "excluded_by_owner_2026_10_18"
     },
     {
       "name": "kid-bubble-rise",
       "source": "src/index.css",
       "line": 358,
       "definitionSha256": "c60097d1dbf25276de73bad253f1fff3b87c1e552c9d4cc25bef5bdc574a1a9c",
-      "status": "pending_native_and_visual_review"
+      "status": "excluded_by_owner_2026_10_18"
     },
     {
       "name": "curfew-sail",
       "source": "src/index.css",
       "line": 375,
       "definitionSha256": "54a47535cb6589e833ebfd9863c3275102eb7a7435fc190c8834e8e738f4243f",
-      "status": "pending_native_and_visual_review"
+      "status": "excluded_by_owner_2026_10_18"
     },
     {
       "name": "curfew-drift",
       "source": "src/index.css",
       "line": 388,
       "definitionSha256": "f0b921af44c855eeb2bf52ec25dd797cbff4984be82a2cb8dde366ef446fceb4",
-      "status": "pending_native_and_visual_review"
+      "status": "excluded_by_owner_2026_10_18"
     },
     {
       "name": "curfew-bob",
       "source": "src/index.css",
       "line": 401,
       "definitionSha256": "6936be0901b765a4beaa8cfa96314d78bb62f427937620043efcf92018b0b5ef",
-      "status": "pending_native_and_visual_review"
+      "status": "excluded_by_owner_2026_10_18"
     },
     {
       "name": "curfew-bubble",
       "source": "src/index.css",
       "line": 414,
       "definitionSha256": "828a1d4e5b1d6a605163ef150eefc45956781e5017884dbac80e567d2f1f46ca",
-      "status": "pending_native_and_visual_review"
+      "status": "excluded_by_owner_2026_10_18"
     },
     {
       "name": "curfew-shake",
       "source": "src/index.css",
       "line": 431,
       "definitionSha256": "82ae96036a6f371f8d53bf48bb66b7b531cabf202b3dd08f968471759668d352",
-      "status": "pending_native_and_visual_review"
+      "status": "excluded_by_owner_2026_10_18"
     },
     {
       "name": "harbor-fade-in",

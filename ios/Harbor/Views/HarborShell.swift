@@ -2,7 +2,7 @@ import SwiftUI
 import CoreText
 
 enum HarborSection: String, CaseIterable, Identifiable {
-    case home, discover, catalogs, movies, shows, kids, anime, live, sports, manga, ebook, music, vod, calendar, library, collections, downloads, search, addons, settings
+    case home, discover, catalogs, movies, shows, anime, live, sports, manga, ebook, music, vod, calendar, library, collections, downloads, search, addons, settings
     var id: String { rawValue }
     var title: String { DesktopInterfaceText.value(sourceTitle) }
     private var sourceTitle: String {
@@ -12,7 +12,6 @@ enum HarborSection: String, CaseIterable, Identifiable {
         case .catalogs: "Catálogos"
         case .movies: "Películas"
         case .shows: "Series"
-        case .kids: "Kids"
         case .anime: "Anime"
         case .live: "Live TV"
         case .sports: "Sports"
@@ -36,7 +35,6 @@ enum HarborSection: String, CaseIterable, Identifiable {
         case .catalogs: "catalogs"
         case .movies: "movies"
         case .shows: "tv"
-        case .kids: "kids"
         case .anime: "anime"
         case .live: "livetv"
         case .sports: "sports"
@@ -164,7 +162,6 @@ struct HarborShell: View {
         case .catalogs: CatalogsView(app: app).id(app.user?.id ?? "guest")
         case .movies: ContentPageView(app: app, kind: "movie", title: section.title).id(app.user?.id ?? "guest")
         case .shows: ContentPageView(app: app, kind: "series", title: section.title).id(app.user?.id ?? "guest")
-        case .kids: ContentPageView(app: app, kind: "kids", title: section.title).id(app.user?.id ?? "guest")
         case .anime: ContentPageView(app: app, kind: "anime", title: section.title).id(app.user?.id ?? "guest")
         case .live: LiveTVView(app: app).id(app.user?.id ?? "guest")
         case .sports: SportsView(app: app).id(app.user?.id ?? "guest")

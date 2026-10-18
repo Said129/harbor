@@ -32,16 +32,6 @@ struct Media: Codable, Identifiable, Hashable, Sendable {
         return "https://images.metahub.space/\(kind)/medium/\(id)/img"
     }
     var episodic: Bool { type == "series" || type == "anime" || videos?.contains(where: { $0.season != nil && $0.episode != nil }) == true }
-    var safeForKids: Bool {
-        guard adult != true else { return false }
-        let labels = Set((genres ?? []).map { $0.lowercased() })
-        let excluded: Set<String> = ["action", "biography", "crime", "history", "horror", "romance", "thriller", "war"]
-        guard labels.isDisjoint(with: excluded), labels.contains("family") || (labels.contains("animation") && labels.contains("comedy")) else { return false }
-        if let released, let date = Episode(id: "release", released: released).releaseDate { return date <= Date() }
-        if let year = releaseInfo.flatMap({ Int($0.prefix(4)) }) { return year <= Calendar.current.component(.year, from: Date()) }
-        return true
-    }
-
     static func parse(_ value: JSONValue, kind: String) -> Media? {
         guard let id = value["id"].string, !id.isEmpty,
               let name = value["name"].string, !name.isEmpty else { return nil }

@@ -125,7 +125,7 @@ struct CatalogBrowserView: View {
             items.append(contentsOf: additions)
             let count = result.receivedCount ?? result.metas.count
             offset += count
-            reachedEnd = count == 0 || (!initial.plan.key.hasPrefix("native-kids-") && additions.isEmpty)
+            reachedEnd = count == 0 || additions.isEmpty
         } catch is CancellationError { return }
         catch { if requestGeneration == generation { self.error = safeMessage(error) } }
     }

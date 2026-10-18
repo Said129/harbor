@@ -23,17 +23,6 @@ struct TMDBService: Sendable {
             DiscoveryRail(id: "tmdb-top-rated-movies", title: DesktopInterfaceText.value("Top Rated Movies"), kind: "movie", path: "movie/top_rated")
         ]
     }
-    func kidsDefinitions() -> [DiscoveryRail] {
-        let movies = ["certification_country": "US", "certification.lte": "PG", "without_genres": "27,53", "include_adult": "false", "sort_by": "popularity.desc"]
-        let television = ["without_genres": "27,53", "include_adult": "false", "sort_by": "popularity.desc"]
-        return [("Tendencias para peques", "10751,16"), ("Películas de animación", "16"), ("Películas familiares", "10751"), ("Aventuras", "12,10751")].enumerated().map { index, definition in
-            var parameters = movies; parameters["with_genres"] = definition.1; parameters["vote_count.gte"] = "100"
-            return DiscoveryRail(id: "kids-movie-\(index)", title: definition.0, kind: "movie", path: "discover/movie", parameters: parameters)
-        } + [("Series infantiles", "10762"), ("Noches en familia", "10751")].enumerated().map { index, definition in
-            var parameters = television; parameters["with_genres"] = definition.1
-            return DiscoveryRail(id: "kids-tv-\(index)", title: definition.0, kind: "series", path: "discover/tv", parameters: parameters)
-        }
-    }
     func definitions(_ kind: String) -> [DiscoveryRail] {
         let providerKind = kind == "movie" ? "movie" : "tv"
         var rows = [

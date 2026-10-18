@@ -122,9 +122,8 @@ struct HarborService: Sendable {
         guard case .array(let values) = response["metas"] else { throw HarborError(code: "invalid-catalog-response") }
         var seen = Set<String>()
         let parsed = values.compactMap { Media.parse($0, kind: plan.kind) }.filter { seen.insert($0.identity).inserted }
-        let metas = plan.key.hasPrefix("native-kids-") ? parsed.filter(\.safeForKids) : parsed
         guard values.isEmpty || !parsed.isEmpty else { throw HarborError(code: "invalid-catalog-response") }
-        return CatalogRow(plan: plan, metas: metas, receivedCount: values.count)
+        return CatalogRow(plan: plan, metas: parsed, receivedCount: values.count)
     }
 
     func streams(_ media: Media, videoID: String, addons: [Addon], season: Int? = nil, episode: Int? = nil, unfiltered: Bool = false) async throws -> ([StreamOffer], [String]) {
