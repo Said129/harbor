@@ -130,7 +130,12 @@ targets:
   HarborUITests:
     type: bundle.ui-testing
     platform: iOS
-    sources: [HarborUITests]
+    sources:
+      - path: HarborUITests
+        excludes: [Fixtures]
+      - path: HarborUITests/Fixtures
+        type: folder
+        buildPhase: resources
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: site.harbor.iphone.ui-tests
