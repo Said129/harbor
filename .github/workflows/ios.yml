@@ -416,7 +416,7 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p ios/build/profile-ui-evidence/attachments
-          for name in ProfileIPhoneLanguage ProfileIPhoneUI ProfileIPadLanguage ProfileIPadUI; do
+          for name in ProfileAppearanceRetry ProfileIPhoneLanguage ProfileIPhoneUI ProfileIPadLanguage ProfileIPadUI; do
             if [[ -d "ios/build/$name.xcresult" ]]; then
               xcrun xcresulttool export attachments --path "ios/build/$name.xcresult" --output-path "ios/build/profile-ui-evidence/attachments/$name" || true
             fi
@@ -715,7 +715,7 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p ios/build/attachments
-          for name in Tests ServicesTests LiveTests TabletTests TabletUITests MangaFontTests ReadingTabletSeed ReadingTabletUI LanguageTabletUI SystemTabletUI NavigationTabletUI OnboardingTabletUI ServiceTabletUI StreamingSyncTabletUI PlayerCaptionTabletSeed PlayerCaptionTabletUI ProfileIPhoneLanguage ProfileIPhoneUI ProfileIPadLanguage ProfileIPadUI; do
+          for name in Tests ServicesTests LiveTests TabletTests TabletUITests MangaFontTests ReadingTabletSeed ReadingTabletUI LanguageTabletUI SystemTabletUI NavigationTabletUI OnboardingTabletUI ServiceTabletUI StreamingSyncTabletUI PlayerCaptionTabletSeed PlayerCaptionTabletUI ProfileAppearanceRetry ProfileIPhoneLanguage ProfileIPhoneUI ProfileIPadLanguage ProfileIPadUI; do
             if [ -d "ios/build/$name.xcresult" ]; then
               if ! xcrun xcresulttool export attachments --path "ios/build/$name.xcresult" --output-path "ios/build/attachments/$name"; then
                 echo "$name.xcresult: attachment export failed; result may be incomplete" >> ios/build/attachments/export-failures.txt
@@ -751,7 +751,7 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p ios/build/validation-evidence/attachments
-          for name in Tests ServicesTests LiveTests TabletTests TabletUITests MangaFontTests ReadingTabletSeed ReadingTabletUI LanguageTabletUI SystemTabletUI NavigationTabletUI OnboardingTabletUI ServiceTabletUI StreamingSyncTabletUI PlayerCaptionTabletSeed PlayerCaptionTabletUI ProfileIPhoneLanguage ProfileIPhoneUI ProfileIPadLanguage ProfileIPadUI; do
+          for name in Tests ServicesTests LiveTests TabletTests TabletUITests MangaFontTests ReadingTabletSeed ReadingTabletUI LanguageTabletUI SystemTabletUI NavigationTabletUI OnboardingTabletUI ServiceTabletUI StreamingSyncTabletUI PlayerCaptionTabletSeed PlayerCaptionTabletUI ProfileAppearanceRetry ProfileIPhoneLanguage ProfileIPhoneUI ProfileIPadLanguage ProfileIPadUI; do
             if [[ -d "ios/build/$name.xcresult" ]]; then
               xcrun xcresulttool export attachments --path "ios/build/$name.xcresult" --output-path "ios/build/validation-evidence/attachments/$name"
             fi

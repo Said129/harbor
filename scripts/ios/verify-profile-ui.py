@@ -13,7 +13,7 @@ import urllib.request
 p = argparse.ArgumentParser(description=__doc__)
 p.add_argument('--output', type=Path, required=True)
 a = p.parse_args()
-application = 'b0ff47bf7c6a08bbbece2539c8697a8bba1ea3fa'
+application = '6a7242b3da0c8cec63a0c4fe566af4e2a5ec6e59'
 appearance = 'b0251a2f39abb93e3ed7a8a96e75e33ca8475932'
 native_source = '4be6de4249331f04f9960137672b80e9526dc724'
 gate_source = '7294a055f693619267228dfde094a1035c31d44d'
@@ -26,6 +26,8 @@ roots = ['ios/Harbor', 'ios/HarborTests', 'ios/HarborIntegrationTests', 'ios/Har
 assert not subprocess.check_output(['git', 'diff', '--name-only', application, 'HEAD', '--', *roots], text=True).strip(), 'Freeze the reviewed picker application and UI tests'
 assert set(subprocess.check_output(['git', 'diff', '--name-only', appearance, application, '--', *roots], text=True).splitlines()) == {
     'ios/Harbor/HarborApp.swift', 'ios/Harbor/ViewModels/AppModel.swift',
+    'ios/Harbor/Services/ProfilePreferences.swift', 'ios/Harbor/Services/HouseholdAppearanceBinding.swift',
+    'ios/HarborTests/ProfileAppearanceTests.swift',
     'ios/HarborUITests/HouseholdProfilesNavigationTests.swift', 'ios/HarborUITests/LanguageReferenceNavigationTests.swift'}
 model = 'ios/Harbor/ViewModels/AppModel.swift'
 expected = show(appearance, model).replace('    var accountBusy = false\n', '    var accountBusy = false\n    private(set) var switchingProfile = false\n')
@@ -38,7 +40,29 @@ assert expected == show(application, model), 'Only the activation-lifetime flag 
 new_tests = {'HarborUITests.HouseholdProfilesNavigationTests/' + name for name in re.findall(r'\bfunc (test\w+)\(', show(application, 'ios/HarborUITests/HouseholdProfilesNavigationTests.swift'))}
 affected_ui = {'HarborUITests.LanguageReferenceNavigationTests/' + name for name in re.findall(r'\bfunc (test\w+)\(', show(application, 'ios/HarborUITests/LanguageReferenceNavigationTests.swift'))}
 assert len(new_tests) == len(affected_ui) == 2
-appearance_cases = {'HarborTests.ProfileAppearanceTests/' + name for name in re.findall(r'\bfunc (test\w+)\(', show(application, 'ios/HarborTests/ProfileAppearanceTests.swift'))}
+appearance_path = 'ios/HarborTests/ProfileAppearanceTests.swift'
+recovery_method = 'testUnreadableLegacyAppearanceCanRecoverOnExplicitRetryAndIsIgnoredAfterMigration'
+appearance_tests = show(application, appearance_path)
+start = appearance_tests.index('    func ' + recovery_method + '(')
+end = appearance_tests.index('    func testInitializedProfilesIgnoreAnUnreadableLegacyCopy', start)
+assert appearance_tests[:start] + appearance_tests[end:] == show(appearance, appearance_path), 'The eleven previously executed cases stay byte-identical'
+appearance_cases = {'HarborTests.ProfileAppearanceTests/' + name for name in re.findall(r'\bfunc (test\w+)\(', show(appearance, appearance_path))}
+recovery_case = 'HarborTests.ProfileAppearanceTests/' + recovery_method
+binding = 'ios/Harbor/Services/HouseholdAppearanceBinding.swift'
+assert show(application, binding).replace('    var needsLegacyAppearance: Bool { profile?.appearanceInitialized != true }\n', '') == show(appearance, binding)
+preferences = 'ios/Harbor/Services/ProfilePreferences.swift'
+current = show(application, preferences).replace('        if household?.ready == true { legacyError = nil }\n', '')
+prologue = '''        if let binding {
+            if binding.needsLegacyAppearance && !legacyReady { reloadLegacy() }
+            binding.reload(legacy: legacyValue, legacyReady: legacyReady)
+            if binding.ready { legacyError = nil }; return
+        }
+        reloadLegacy()
+    }
+    private func reloadLegacy() {
+'''
+assert prologue in current
+assert current.replace(prologue, '        if let binding { binding.reload(legacy: legacyValue, legacyReady: legacyReady); if binding.ready { legacyError = nil }; return }\n') == show(appearance, preferences)
 editor = {'HarborTests.ProfileEditorTransactionTests/' + name for name in re.findall(r'\bfunc (test\w+)\(', show(application, 'ios/HarborTests/ProfileEditorTransactionTests.swift'))}
 affected = editor | {'HarborTests.HouseholdProfileTests/' + name for name in [
     'testServerAdoptionPreservesDevicePINParentPINSharingAndMigrationOwner', 'testMissingRowsAreKeptButExplicitTombstonesRetireProfilesWithoutResurrection',
@@ -48,6 +72,7 @@ affected.add('HarborTests.HouseholdRosterSyncTests/testPullAdoptsTheFullRosterWi
 gates = {'HarborTests.ProfileEditingGateTests/' + name for name in re.findall(r'\bfunc (test\w+)\(', show(application, 'ios/HarborTests/ProfileEditingGateTests.swift'))}
 assert len(appearance_cases | affected) == 23 and len(gates) == 2
 headers = {'Accept': 'application/vnd.github+json', 'Authorization': 'Bearer ' + os.environ['GH_TOKEN'], 'User-Agent': 'Harbor-normal-profile-interface'}
+assert os.environ.get('GITHUB_SHA', subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip()) == subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip(), 'Review the same commit which will be dispatched'
 api = 'https://api.github.com/repos/' + os.environ['GITHUB_REPOSITORY']
 def get(path):
     with urllib.request.urlopen(urllib.request.Request(api + path, headers=headers), timeout=45) as response: return json.load(response)
@@ -70,9 +95,9 @@ for number, source, expected in [(39170580752, native_source, appearance_cases |
     prior.append(dict(run=number, source=source, actual_passed=sorted(expected), sha256=hashlib.sha256(data).hexdigest()))
 proof = dict(source=os.environ.get('GITHUB_SHA') or subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip(), application_source=application,
     scope='profile-ui', actual_prior_logs=prior, pending_new_ui_cases=sorted(new_tests), affected_previous_ui_cases=sorted(affected_ui),
-    expected_actual_cases=sorted(new_tests | affected_ui), expected_actual_executions=4, prior_native_tests_repeated=False,
+    expected_actual_cases=sorted(new_tests | affected_ui | {recovery_case}), expected_actual_executions=5, pending_new_native_cases=[recovery_case], prior_native_tests_repeated=False,
     prior_skipped_required=['HarborTests.PlaybackControlTests/testPictureInPictureStartsFromPausedVideoAndRestoresTheSameSession'],
     photos_picker_ui_verification='pending', child_features_excluded=True, full_profile_parity=False, full_desktop_parity_complete=False, ipa_created=False)
 a.output.parent.mkdir(parents=True, exist_ok=True)
 a.output.write_text(json.dumps(proof, indent=2) + '\n', 'utf-8')
-print('Actual native appearance and gate results retained. Only two new picker routes and two affected language routes remain; no IPA.')
+print('Actual appearance and gate results retained. One new read-recovery case and four affected/new UI routes; no approved native repetitions or IPA.')
