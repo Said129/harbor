@@ -29,9 +29,9 @@ final class HomeContentModel {
 
     func load(app: AppModel, refresh: Bool = false) async {
         let configuration = MetadataPreferences.shared.configuration()
-        let services = StreamingPreferences.forOwner(app.user?.id ?? "guest")
+        let services = StreamingPreferences.forOwner(app.settingsOwner)
         let enabledServices = services.ready ? services.enabled : []
-        let signature = [app.user?.id ?? "guest", EBookShelf.hash(configuration.tmdbKey), configuration.language, configuration.region, String(configuration.translateTitles), services.signature, app.addons.filter(\.enabled).map(\.id).joined(separator: "|")].joined(separator: "|")
+        let signature = [app.accountOperationScope, EBookShelf.hash(configuration.tmdbKey), configuration.language, configuration.region, String(configuration.translateTitles), services.signature, app.addons.filter(\.enabled).map(\.id).joined(separator: "|")].joined(separator: "|")
         guard refresh || loadedSignature != signature else { return }
         generation += 1
         let current = generation

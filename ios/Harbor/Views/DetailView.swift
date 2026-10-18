@@ -211,10 +211,10 @@ struct DetailView: View {
         guard !downloading else { return }
         downloading = true; downloadMessage = nil
         defer { downloading = false }
-        let owner = app.user?.id ?? "guest", media = model.media, episode = selectedEpisode
+        let owner = app.personalOwner, scope = app.accountOperationScope, media = model.media, episode = selectedEpisode
         do {
             let source = try await app.service.resolve(offer)
-            guard owner == (app.user?.id ?? "guest") else { return }
+            guard owner == app.personalOwner, scope == app.accountOperationScope else { return }
             try DownloadManager.shared.start(source: source, media: media, episode: episode, owner: owner, cellular: cellularDownloads)
             downloadMessage = DesktopInterfaceText.value("Download started")
         } catch { downloadMessage = safeMessage(error) }

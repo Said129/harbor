@@ -13,10 +13,10 @@ struct DiscoveryQueueView: View {
 
     @MainActor init(items: [Media], app: AppModel) {
         self.items = items; self.app = app
-        _owner = State(initialValue: app.library.owner)
+        _owner = State(initialValue: app.personalOwner)
     }
     private var pool: [Media] {
-        guard owner == app.library.owner else { return [] }
+        guard owner == app.personalOwner else { return [] }
         let watched = Set(app.library.items.filter { $0.watched || $0.continuing }.map(\.id))
         return items.filter { !watched.contains($0.id) && app.library.discovery.vote(for: $0) == nil && !app.library.discovery.isQueueItemHidden($0.id) }
     }
@@ -49,13 +49,13 @@ struct DiscoveryQueueView: View {
             }.scrollIndicators(.hidden).accessibilityIdentifier("discovery-queue-scroll")
         }.background(HarborTheme.background)
             .navigationTitle("").navigationBarTitleDisplayMode(.inline).toolbar(.visible, for: .navigationBar)
-            .onChange(of: app.library.owner) { _, _ in enriched = [:]; activeID = nil; hint = nil; dismiss() }
+            .onChange(of: app.personalOwner) { _, _ in enriched = [:]; activeID = nil; hint = nil; dismiss() }
             .task(id: current?.identity) {
                 guard let media = current, enriched[media.identity] == nil else { return }
                 do {
                     let detailed = try await app.service.metadata(media, addons: app.addons)
                     try Task.checkCancellation()
-                    guard owner == app.library.owner else { return }
+                    guard owner == app.personalOwner else { return }
                     enriched[media.identity] = detailed
                 } catch {}
             }
@@ -106,7 +106,7 @@ struct DiscoveryQueueView: View {
         withAnimation(reduceMotion ? nil : .easeInOut(duration: 0.2)) { activeID = pool[next].identity }
     }
     private func removeCurrent(permanently: Bool) {
-        guard let media = current, owner == app.library.owner else { return }
+        guard let media = current, owner == app.personalOwner else { return }
         let remaining = pool.filter { $0.id != media.id }
         let next = remaining.isEmpty ? nil : remaining[min(index, remaining.count - 1)].identity
         let preferences = app.library.discovery
@@ -205,8 +205,8 @@ private struct DiscoveryQueueHero: View {
         Button {
             if app.user == nil { app.showAccount = true }
             else {
-                let owner = app.library.owner
-                Task { await app.library.toggleBookmark(media); if owner == app.library.owner, app.library.error == nil { onSaved() } }
+                let owner = app.personalOwner
+                Task { await app.library.toggleBookmark(media); if owner == app.personalOwner, app.library.error == nil { onSaved() } }
             }
         } label: { chip(saved ? "Saved" : "Save", asset: "ui-save-banner", active: saved) }
             .buttonStyle(.plain).disabled(app.library.busy || app.library.loading).accessibilityIdentifier("discovery-queue-save")

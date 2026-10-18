@@ -13,12 +13,12 @@ struct AddonDetailView: View {
     @State private var message: String?
     @Environment(\.dismiss) private var dismiss
     @MainActor init(app: AppModel, addon: Addon) {
-        self.app = app; original = addon; owner = app.user?.id ?? "guest"
+        self.app = app; original = addon; owner = app.accountOperationScope
         _currentID = State(initialValue: addon.id)
     }
     private var addon: Addon { app.addons.first { $0.id == currentID } ?? original }
     private var installed: Bool { app.addons.contains { $0.id == currentID } }
-    private var blocked: Bool { saving || app.accountBusy || !app.storageReady || owner != (app.user?.id ?? "guest") }
+    private var blocked: Bool { saving || app.accountBusy || !app.storageReady || owner != (app.accountOperationScope) }
     private var stats: [(String, String)] {
         [("Versión", addon.manifest["version"].string ?? "—"), ("Recursos", addon.resources.joined(separator: ", ")),
          ("Tipos", addon.types.joined(separator: ", ")), ("Prefijos de ID", addon.manifest["idPrefixes"].array.compactMap(\.string).prefix(3).joined(separator: ", ")),
@@ -60,7 +60,7 @@ struct AddonDetailView: View {
                 if let url = addon.configurationURL {
                     NavigationStack {
                         AddonConfigurationView(name: addon.name, url: url) { value in
-                            guard owner == (app.user?.id ?? "guest") else { return }
+                            guard owner == (app.accountOperationScope) else { return }
                             configurationLink = value; message = "Enlace recibido. Pulsa Guardar configuración para aplicarlo."; error = nil
                         }
                     }.font(HarborTheme.font()).tint(HarborTheme.accent)
@@ -108,15 +108,15 @@ struct AddonDetailView: View {
             do {
                 if wasInstalled {
                     let updated = try await app.reconfigure(id, url: link)
-                    guard owner == (app.user?.id ?? "guest") else { return }
+                    guard owner == (app.accountOperationScope) else { return }
                     currentID = updated.id
                 } else {
                     try await app.install(link, expectedManifestID: manifestID)
-                    guard owner == (app.user?.id ?? "guest") else { return }
+                    guard owner == (app.accountOperationScope) else { return }
                     if let updated = app.addons.last(where: { $0.manifest["id"].string == manifestID }) { currentID = updated.id }
                 }
                 configurationLink = ""; message = wasInstalled ? "Configuración guardada." : "Addon instalado."
-            } catch { guard owner == (app.user?.id ?? "guest") else { return }; self.error = safeMessage(error) }
+            } catch { guard owner == (app.accountOperationScope) else { return }; self.error = safeMessage(error) }
         }
     }
     private func remove() {
@@ -126,12 +126,12 @@ struct AddonDetailView: View {
         Task {
             defer { saving = false }
             do {
-                guard owner == (app.user?.id ?? "guest"), let index = app.addons.firstIndex(where: { $0.id == id }) else { return }
+                guard owner == (app.accountOperationScope), let index = app.addons.firstIndex(where: { $0.id == id }) else { return }
                 try await app.remove(IndexSet(integer: index))
-                guard owner == (app.user?.id ?? "guest") else { return }
+                guard owner == (app.accountOperationScope) else { return }
                 dismiss()
             }
-            catch { guard owner == (app.user?.id ?? "guest") else { return }; self.error = safeMessage(error) }
+            catch { guard owner == (app.accountOperationScope) else { return }; self.error = safeMessage(error) }
         }
     }
 }

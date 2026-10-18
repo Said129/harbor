@@ -8,6 +8,8 @@ final class LibraryModel {
     private let cache = LibraryCache()
     private let service = LibraryService()
     private var session: AccountSession?
+    private var guestOwner = "guest"
+    private(set) var personalOwner = "guest"
     private var generation = 0
     private var mutation = 0
     private var syncing = false
@@ -22,7 +24,7 @@ final class LibraryModel {
     var loading = false
     var busy = false
     var error: String?
-    var owner: String { session?.user.id ?? "guest" }
+    var owner: String { session?.user.id ?? guestOwner }
     var items: [LibraryRecord] { snapshot.items }
     var continuing: [LibraryRecord] {
         snapshot.continuing.filter { presentation.dismissed[$0.id]?.hides($0) != true }
@@ -99,22 +101,28 @@ final class LibraryModel {
             fields["state"] = .object(state)
         }
     }
-    func setSession(_ session: AccountSession?) async {
+    func matchesSession(_ session: AccountSession?, personalOwner: String, guestOwner: String) -> Bool {
+        writable && presentationReady && self.session?.authKey == session?.authKey
+            && owner == (session?.user.id ?? guestOwner) && self.personalOwner == personalOwner
+    }
+    func setSession(_ session: AccountSession?, personalOwner: String? = nil, guestOwner: String = "guest", synchronize: Bool = true) async {
         generation += 1
         let current = generation
-        self.session = session; snapshot = LibrarySnapshot([]); syncing = false; error = nil; writable = false; loading = true
-        favorites = MediaFavorites(owner: session?.user.id ?? "guest")
-        discovery = DiscoveryPreferences(owner: session?.user.id ?? "guest")
+        self.session = session; self.guestOwner = guestOwner
+        self.personalOwner = personalOwner ?? session?.user.id ?? guestOwner
+        snapshot = LibrarySnapshot([]); syncing = false; busy = false; error = nil; writable = false; loading = true
+        favorites = MediaFavorites(owner: self.personalOwner)
+        discovery = DiscoveryPreferences(owner: self.personalOwner)
         presentation = LibraryPresentation(); reloadPresentation()
         lastProgressWrite = [:]
         defer { if current == generation { loading = false } }
-        let owner = session?.user.id ?? "guest"
+        let owner = self.owner
         do {
             let saved = try await cache.readSnapshot(owner: owner)
             guard current == generation else { return }
             snapshot = saved; writable = true
         } catch { self.error = safeMessage(error); return }
-        await sync()
+        if synchronize { await sync() }
     }
     func sync() async {
         guard let session, !busy, !syncing else { return }
@@ -140,7 +148,7 @@ final class LibraryModel {
             let state = fields["state"] ?? .null
             fields["temp"] = .bool(wasSaved && ((state["timeOffset"].numericValue ?? 0) > 0 || (state["flaggedWatched"].numericValue ?? 0) > 0))
         }
-        if success, taste.owner == owner, bookmarked(media) { taste.track(.watchlist, media: media) }
+        if success, taste.owner == personalOwner, bookmarked(media) { taste.track(.watchlist, media: media) }
     }
     func toggleWatched(_ media: Media) async {
         let taste = discovery
@@ -163,7 +171,7 @@ final class LibraryModel {
             state["timeOffset"] = .integer(0)
             fields["state"] = .object(state)
         }
-        if success, taste.owner == owner, watched(media) { taste.track(.watched, media: media) }
+        if success, taste.owner == personalOwner, watched(media) { taste.track(.watched, media: media) }
     }
     func resume(for target: ResumeTarget, refresh: Bool = true) async -> CloudResume? {
         let current = generation
@@ -181,15 +189,16 @@ final class LibraryModel {
         guard expectedOwner == owner else { return }
         guard snapshot.timestampMs > (lastProgressWrite[media.id] ?? 0) else { return }
         guard snapshot.exiting || snapshot.timestampMs >= (lastProgressWrite[media.id] ?? 0) + 15_000 else { return }
+        let current = generation
         let success = await update(media, progress: true) { fields in
             try LibraryPlayback.apply(snapshot, target: target, media: media, to: &fields)
         }
-        if success { lastProgressWrite[media.id] = snapshot.timestampMs }
+        if success, current == generation { lastProgressWrite[media.id] = snapshot.timestampMs }
     }
     @discardableResult private func update(_ media: Media, progress: Bool = false, change: (inout [String: JSONValue]) throws -> Void) async -> Bool {
         guard writable, !busy else { return false }
-        busy = true; mutation += 1; let current = generation; let activeSession = session
-        defer { busy = false }
+        busy = true; mutation += 1; let current = generation; let activeSession = session; let activeOwner = owner
+        defer { if current == generation { busy = false } }
         do {
             // Read the current cloud item before changing it. Unknown provider
             // fields and progress from another device survive every mutation.
@@ -208,7 +217,7 @@ final class LibraryModel {
             if let activeSession { try await service.save(record, session: activeSession) }
             guard current == generation else { return false }
             var next = records.filter { $0["_id"].string != media.id }; next.append(record)
-            let prepared = try await cache.saveSnapshot(next, owner: activeSession?.user.id ?? "guest")
+            let prepared = try await cache.saveSnapshot(next, owner: activeOwner)
             guard current == generation else { return false }
             snapshot = prepared; error = nil; return true
         } catch is CancellationError { return false }

@@ -1,6 +1,12 @@
 import Foundation
 import Observation
 
+struct PendingProfileDocument: Identifiable {
+    let id = UUID()
+    let url: URL
+    let profile: String?
+}
+
 @MainActor @Observable
 final class AppModel {
     let service = HarborService()
@@ -9,12 +15,12 @@ final class AppModel {
     let library = LibraryModel()
     let home = HomeContentModel()
     let animeDetection = AnimeLibraryDetection()
-    private let keychain = KeychainStore()
+    let profileContext = AppProfileContext.shared
     private let accounts = AccountService()
     private var savedAccount: SavedAccount?
     private var homeGeneration = 0
     private var started = false
-    @ObservationIgnored private var addonRefresh: Task<AccountCollection, Error>?
+    @ObservationIgnored private var addonRefresh: (id: UUID, task: Task<AccountCollection, Error>)?
     private var lastAddonRefresh = Date.distantPast
     @ObservationIgnored private var pages: [String: ContentPageModel] = [:]
     private(set) var storageReady = false
@@ -28,7 +34,25 @@ final class AppModel {
     var accountError: String?
     var accountBusy = false
     var showAccount = false
+    private(set) var pendingDocument: PendingProfileDocument?
     var user: AccountUser? { savedAccount?.session.user }
+    var personalOwner: String { profileContext.binding?.personalOwner ?? user?.id ?? "guest" }
+    var settingsOwner: String { profileContext.binding?.settingsOwner ?? user?.id ?? "guest" }
+    var progressOwner: String { profileContext.binding?.progressOwner ?? user?.id ?? "guest" }
+    var accountOperationScope: String { profileContext.activationID.uuidString + "|" + (profileContext.profiles.active?.id ?? "locked") }
+    var interfaceProfileScope: String { profileContext.profiles.active?.id ?? "unbound" }
+    private var documentOwner: String? {
+        profileContext.profiles.active.map { HouseholdProfileScope.hash([profileContext.profiles.scope.key, $0.id]) }
+    }
+    func openDocument(_ url: URL) {
+        guard url.isFileURL, ["epub", "pdf"].contains(url.pathExtension.lowercased()) else { return }
+        pendingDocument = PendingProfileDocument(url: url, profile: documentOwner)
+    }
+    func takePendingDocument() -> URL? {
+        guard storageReady, profileContext.ready, let pendingDocument,
+              pendingDocument.profile == nil || pendingDocument.profile == documentOwner else { return nil }
+        self.pendingDocument = nil; return pendingDocument.url
+    }
     func continuationMetadata(_ media: Media) async throws -> Media {
         let configuration = MetadataPreferences.shared.configuration()
         let selectedAddons = addons
@@ -80,38 +104,43 @@ final class AppModel {
         Diagnostics.shared.record(.startup)
         MetadataPreferences.shared.load()
         do {
-            // A Keychain error is not an empty store and must never overwrite it.
-            if let account = try keychain.read("account.v1", as: SavedAccount.self) {
-                guard account.version == 1 else { throw HarborError(code: "invalid-account-store") }
+            try profileContext.prepare()
+            guard profileContext.ready else { throw HarborError(code: "profile-selection-required") }
+            let configuration = profileContext.configuration
+            if let account = configuration?.account {
                 savedAccount = account
                 addons = account.collection.addons
                 AppGuidePreferences.shared.prepare(hasSavedConfiguration: true)
             }
-            else if let saved = try keychain.read("addons.v1", as: [Addon].self) {
+            else if let saved = configuration?.guestAddons {
                 addons = saved
                 AppGuidePreferences.shared.prepare(hasSavedConfiguration: true)
             }
             else {
                 AppGuidePreferences.shared.prepare(hasSavedConfiguration: false)
+                let scope = accountOperationScope
                 let fallback = try await service.install(HarborService.cinemetaManifest)
-                guard savedAccount == nil else { return }
-                try keychain.write([fallback], key: "addons.v1")
+                try Task.checkCancellation()
+                guard savedAccount == nil, scope == accountOperationScope else { throw CancellationError() }
+                try profileContext.save(HouseholdSourceAccount(account: nil, guestAddons: [fallback]))
                 addons = [fallback]
             }
-            await setProgressOwner(savedAccount?.session.user.id ?? "guest")
+            await setProgressOwner(progressOwner)
+            await bindLibrary(savedAccount?.session)
             storageReady = true
-            if savedAccount == nil { Task { await library.setSession(nil) } }
             Diagnostics.shared.record(.coreReady)
             if savedAccount != nil {
                 do { try await syncAccount() }
-                catch { accountError = safeMessage(error); Task { await library.setSession(savedAccount?.session) }; await loadHome() }
+                catch { accountError = safeMessage(error); await loadHome() }
             } else { await loadHome() }
         } catch is CancellationError { started = false }
         catch { self.error = safeMessage(error); Diagnostics.shared.recordFailure(error) }
         loading = false
     }
 
-    func retryStartup() async { started = false; error = nil; await start() }
+    func retryStartup() async {
+        storageReady = false; profileContext.reload(); started = false; error = nil; await start()
+    }
 
     func reloadProgress() async {
         do { try await resume.load(); progressError = nil }
@@ -119,10 +148,53 @@ final class AppModel {
     }
 
     private func setProgressOwner(_ owner: String) async {
-        InterfacePreferences.shared.navigation.bind(.local(owner: owner))
-        StreamingPreferences.forOwner(owner).bind(.local(owner: owner))
+        ProfilePreferences.forOwner(user?.id ?? "guest").cloud.bindLayoutOwner(settingsOwner)
+        InterfacePreferences.shared.navigation.bind(.local(owner: settingsOwner))
+        StreamingPreferences.forOwner(settingsOwner).bind(.local(owner: settingsOwner))
         resume = ResumeStore(owner: owner)
         await reloadProgress()
+    }
+
+    private func bindLibrary(_ session: AccountSession?) async {
+        if !library.matchesSession(session, personalOwner: personalOwner, guestOwner: progressOwner) {
+            await library.setSession(session, personalOwner: personalOwner, guestOwner: progressOwner, synchronize: false)
+        }
+        Task { await library.sync() }
+    }
+
+    @discardableResult func selectProfile(_ id: String, password: String? = nil, parentPassword: String? = nil) async throws -> Bool {
+        guard !accountBusy else { throw HarborError(code: "account-busy") }
+        let wasReady = storageReady
+        accountBusy = true; showAccount = false; error = nil
+        addonRefresh?.task.cancel(); addonRefresh = nil
+        defer { accountBusy = false }
+        do {
+            let accepted = try await profileContext.select(id, password: password, parentPassword: parentPassword)
+            guard accepted else { storageReady = wasReady && profileContext.ready; return false }
+            storageReady = false
+            MusicPlayback.shared.stopForAccount(personalOwner)
+            let configuration = profileContext.configuration
+            savedAccount = configuration?.account
+            if let account = savedAccount { addons = account.collection.addons }
+            else if let saved = configuration?.guestAddons { addons = saved }
+            else {
+                let scope = accountOperationScope
+                let fallback = try await service.install(HarborService.cinemetaManifest)
+                try Task.checkCancellation()
+                guard scope == accountOperationScope else { throw HarborError(code: "account-cancelled") }
+                try profileContext.save(HouseholdSourceAccount(account: nil, guestAddons: [fallback])); addons = [fallback]
+            }
+            homeGeneration += 1; rows = []; heroes = []; warnings = []; pages = [:]; home.reset()
+            error = nil; accountError = nil; lastAddonRefresh = .distantPast
+            await setProgressOwner(progressOwner); await bindLibrary(savedAccount?.session)
+            storageReady = true
+            Task { await loadHome(); await refreshAddons() }
+            return true
+        } catch {
+            // A failed account binding stays hidden; never expose the previous
+            // profile's in-memory library under the newly selected identity.
+            self.error = safeMessage(error); storageReady = false; throw error
+        }
     }
 
     func loadHome() async {
@@ -178,38 +250,38 @@ final class AppModel {
     }
 
     func signIn(email: String, password: String) async throws {
-        guard !accountBusy else { throw HarborError(code: "account-busy") }
+        guard !accountBusy, profileContext.ready else { throw HarborError(code: "account-busy") }
         accountBusy = true
         defer { accountBusy = false }
-        try await accept(try await accounts.login(email: email, password: password))
+        let scope = accountOperationScope
+        try await accept(try await accounts.login(email: email, password: password), scope: scope)
     }
 
     func signIn(authKey: String) async throws {
-        guard !accountBusy else { throw HarborError(code: "account-busy") }
+        guard !accountBusy, profileContext.ready else { throw HarborError(code: "account-busy") }
         accountBusy = true
         defer { accountBusy = false }
-        try await accept(try await accounts.session(authKey: authKey))
+        let scope = accountOperationScope
+        try await accept(try await accounts.session(authKey: authKey), scope: scope)
     }
 
-    private func accept(_ session: AccountSession) async throws {
+    private func accept(_ session: AccountSession, scope: String) async throws {
         let collection = try await accounts.addons(session)
+        try Task.checkCancellation()
+        guard scope == accountOperationScope else { throw HarborError(code: "account-cancelled") }
         let next = SavedAccount(session: session, collection: collection)
         // Commit the token and downloaded collection together, only after both
         // requests succeed. A rejected login/sync preserves the previous account.
-        try keychain.write(next, key: "account.v1")
-        let previousOwner = savedAccount?.session.user.id ?? "guest"
-        if previousOwner != session.user.id {
-            StreamingPreferences.forOwner(previousOwner).suspend()
-            InterfacePreferences.shared.navigation.bind(.local(owner: session.user.id))
-            StreamingPreferences.forOwner(session.user.id).bind(.local(owner: session.user.id))
-        }
+        let previousProgressOwner = progressOwner, previousIdentityOwner = user?.id ?? "guest"
+        try profileContext.save(HouseholdSourceAccount(account: next, guestAddons: profileContext.configuration?.guestAddons), explicitAuthenticationChange: true)
+        ProfilePreferences.forOwner(previousIdentityOwner).cloud.suspendForProfileChange()
         savedAccount = next
         addons = collection.addons
-        Task { await library.setSession(session) }
+        await bindLibrary(session)
         storageReady = true
         rows = []; heroes = []; warnings = []; accountError = nil
         homeGeneration += 1; pages = [:]; home.reset()
-        if previousOwner != session.user.id { await setProgressOwner(session.user.id) }
+        if previousProgressOwner != progressOwner { await setProgressOwner(progressOwner) }
         Diagnostics.shared.record(.accountSignedIn, count: addons.count)
         await loadHome()
     }
@@ -218,43 +290,52 @@ final class AppModel {
         guard !accountBusy, let old = savedAccount else { throw HarborError(code: "account-busy") }
         accountBusy = true
         defer { accountBusy = false }
+        let scope = accountOperationScope
         var collection = try await accounts.addons(old.session)
         let enabled = Dictionary(old.collection.addons.map { ($0.transportUrl, $0.enabled) }, uniquingKeysWith: { first, _ in first })
         for index in collection.addons.indices {
             collection.addons[index].enabled = enabled[collection.addons[index].transportUrl] ?? true
         }
         let next = SavedAccount(session: old.session, collection: collection)
-        try keychain.write(next, key: "account.v1")
+        try Task.checkCancellation()
+        guard scope == accountOperationScope else { throw HarborError(code: "account-cancelled") }
+        try profileContext.save(HouseholdSourceAccount(account: next, guestAddons: profileContext.configuration?.guestAddons))
         savedAccount = next; addons = collection.addons
         lastAddonRefresh = Date()
-        Task { await library.setSession(next.session) }
+        await bindLibrary(next.session)
         warnings = []; accountError = nil
         Diagnostics.shared.record(.accountSynced, count: addons.count)
         await loadHome()
     }
 
     func refreshAddons(force: Bool = false) async {
-        guard !accountBusy, let old = savedAccount, force || Date().timeIntervalSince(lastAddonRefresh) > 30 else { return }
+        guard storageReady, !accountBusy, let old = savedAccount, force || Date().timeIntervalSince(lastAddonRefresh) > 30 else { return }
+        let scope = accountOperationScope
         let task: Task<AccountCollection, Error>
-        if let existing = addonRefresh { task = existing }
+        let requestID: UUID
+        if let existing = addonRefresh { task = existing.task; requestID = existing.id }
         else {
             let accounts = accounts
+            requestID = UUID()
             task = Task { try await accounts.addons(old.session, timeout: 5) }
-            addonRefresh = task
+            addonRefresh = (requestID, task)
         }
-        defer { addonRefresh = nil }
+        defer { if addonRefresh?.id == requestID { addonRefresh = nil } }
         do {
             var collection = try await task.value
-            guard !Task.isCancelled, !accountBusy, savedAccount?.session.authKey == old.session.authKey else { return }
+            guard !Task.isCancelled, !accountBusy, scope == accountOperationScope, savedAccount?.session.authKey == old.session.authKey else { return }
             let enabled = Dictionary(addons.map { ($0.id, $0.enabled) }, uniquingKeysWith: { first, _ in first })
             for index in collection.addons.indices { collection.addons[index].enabled = enabled[collection.addons[index].id] ?? true }
             let changed = addons.count != collection.addons.count || zip(addons, collection.addons).contains { $0.0.id != $0.1.id || $0.0.manifest != $0.1.manifest }
             let next = SavedAccount(session: old.session, collection: collection)
-            try keychain.write(next, key: "account.v1")
+            try profileContext.save(HouseholdSourceAccount(account: next, guestAddons: profileContext.configuration?.guestAddons))
             savedAccount = next; addons = collection.addons; lastAddonRefresh = Date(); accountError = nil
             if changed { pages = [:]; home.reset(); Task { await loadHome() } }
         } catch is CancellationError { return }
-        catch { accountError = "No se pudieron actualizar los addons de la cuenta. Se conservan los últimos guardados; vuelve a actualizar las fuentes." }
+        catch {
+            guard scope == accountOperationScope else { return }
+            accountError = "No se pudieron actualizar los addons de la cuenta. Se conservan los últimos guardados; vuelve a actualizar las fuentes."
+        }
     }
 
     func signOut() async throws {
@@ -263,16 +344,18 @@ final class AppModel {
         defer { accountBusy = false }
         // Desktop sign-out removes the local session, without revoking other devices.
         let guest: [Addon]
-        if let saved = try keychain.read("addons.v1", as: [Addon].self) { guest = saved }
+        let scope = accountOperationScope
+        if let saved = profileContext.configuration?.guestAddons { guest = saved }
         else { guest = [try await service.install(HarborService.cinemetaManifest)] }
-        try keychain.remove("account.v1")
-        StreamingPreferences.forOwner(savedAccount?.session.user.id ?? "guest").suspend()
-        InterfacePreferences.shared.navigation.bind(.local(owner: "guest"))
-        StreamingPreferences.forOwner("guest").bind(.local(owner: "guest"))
+        try Task.checkCancellation()
+        guard scope == accountOperationScope else { throw HarborError(code: "account-cancelled") }
+        let previousIdentityOwner = user?.id ?? "guest"
+        try profileContext.save(HouseholdSourceAccount(account: nil, guestAddons: guest), explicitAuthenticationChange: true)
+        ProfilePreferences.forOwner(previousIdentityOwner).cloud.suspendForProfileChange()
         savedAccount = nil; addons = guest; rows = []; heroes = []; warnings = []; accountError = nil
         homeGeneration += 1; pages = [:]; home.reset()
-        Task { await library.setSession(nil) }
-        await setProgressOwner("guest")
+        await bindLibrary(nil)
+        await setProgressOwner(progressOwner)
         Diagnostics.shared.record(.accountSignedOut)
         await loadHome()
     }
@@ -280,12 +363,12 @@ final class AppModel {
     func install(_ url: String, expectedManifestID: String? = nil) async throws {
         guard storageReady else { throw HarborError(code: "storage-unavailable") }
         guard !accountBusy else { throw HarborError(code: "account-busy") }
-        let owner = user?.id ?? "guest"
+        let owner = accountOperationScope
         accountBusy = true
         defer { accountBusy = false }
         let addon = try await service.install(url)
         try Task.checkCancellation()
-        guard owner == (user?.id ?? "guest") else { throw HarborError(code: "account-cancelled") }
+        guard owner == accountOperationScope else { throw HarborError(code: "account-cancelled") }
         if let expectedManifestID, addon.manifest["id"].string != expectedManifestID { throw HarborError(code: "addon-reconfigure-mismatch") }
         let next = addons.filter { $0.transportUrl != addon.transportUrl } + [addon]
         try await saveCollection(next)
@@ -304,12 +387,12 @@ final class AppModel {
     func reconfigure(_ id: String, url: String) async throws -> Addon {
         guard storageReady else { throw HarborError(code: "storage-unavailable") }
         guard !accountBusy else { throw HarborError(code: "account-busy") }
-        let owner = user?.id ?? "guest"
+        let owner = accountOperationScope
         accountBusy = true
         defer { accountBusy = false }
         let replacement = try await service.install(url)
         try Task.checkCancellation()
-        guard owner == (user?.id ?? "guest") else { throw HarborError(code: "account-cancelled") }
+        guard owner == accountOperationScope else { throw HarborError(code: "account-cancelled") }
         let next = try AddonReplacement.apply(replacement, replacing: id, in: addons)
         try await saveCollection(next, replacing: [replacement.id: id])
         Diagnostics.shared.record(.addonInstalled, count: addons.count)
@@ -339,12 +422,17 @@ final class AppModel {
 
     private func saveCollection(_ next: [Addon], replacing replacements: [String: String] = [:]) async throws {
         if let account = savedAccount {
+            let scope = accountOperationScope
             let fresh = try await accounts.addons(account.session)
+            try Task.checkCancellation()
+            guard scope == accountOperationScope else { throw HarborError(code: "account-cancelled") }
             let merged = account.collection.merging(next, into: fresh.addons)
             let collection = AccountCollection(addons: merged, records: fresh.records(for: merged, replacing: replacements))
             try await accounts.save(collection, session: account.session)
+            try Task.checkCancellation()
+            guard scope == accountOperationScope else { throw HarborError(code: "account-cancelled") }
             let saved = SavedAccount(session: account.session, collection: collection)
-            do { try keychain.write(saved, key: "account.v1") }
+            do { try profileContext.save(HouseholdSourceAccount(account: saved, guestAddons: profileContext.configuration?.guestAddons)) }
             catch { throw HarborError(code: "account-local-save-failed") }
             savedAccount = saved; addons = merged; lastAddonRefresh = Date()
         } else { try persist(next) }
@@ -354,9 +442,9 @@ final class AppModel {
         guard storageReady else { throw HarborError(code: "storage-unavailable") }
         if var account = savedAccount {
             account.collection.addons = next
-            try keychain.write(account, key: "account.v1")
+            try profileContext.save(HouseholdSourceAccount(account: account, guestAddons: profileContext.configuration?.guestAddons))
             savedAccount = account
-        } else { try keychain.write(next, key: "addons.v1") }
+        } else { try profileContext.save(HouseholdSourceAccount(account: nil, guestAddons: next)) }
         addons = next
     }
 }

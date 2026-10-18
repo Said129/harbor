@@ -48,12 +48,22 @@ final class HarborProfileSync {
     }
     private let key: String
     private let owner: String
-    @ObservationIgnored lazy var navigation: HarborNavigationSync = {
+    private var boundLayoutOwner: String?
+    private var layoutOwner: String { boundLayoutOwner ?? owner }
+    @ObservationIgnored private var navigationBindings: [String: HarborNavigationSync] = [:]
+    @ObservationIgnored private var serviceBindings: [String: HarborStreamingSync] = [:]
+    var navigation: HarborNavigationSync {
+        if let value = navigationBindings[layoutOwner] { return value }
         let preferences = InterfacePreferences.shared
         let ids = Set(HarborSection.allCases.map(\.rawValue)).subtracting(["search"])
-        return HarborNavigationSync(owner: self.owner, preferences: preferences.navigation, defaultOrder: preferences.defaultNavigationOrder, knownIDs: ids)
-    }()
-    @ObservationIgnored lazy var services = HarborStreamingSync(owner: owner, preferences: StreamingPreferences.forOwner(owner))
+        let value = HarborNavigationSync(owner: layoutOwner, preferences: preferences.navigation, defaultOrder: preferences.defaultNavigationOrder, knownIDs: ids)
+        navigationBindings[layoutOwner] = value; return value
+    }
+    var services: HarborStreamingSync {
+        if let value = serviceBindings[layoutOwner] { return value }
+        let value = HarborStreamingSync(owner: layoutOwner, preferences: StreamingPreferences.forOwner(layoutOwner))
+        serviceBindings[layoutOwner] = value; return value
+    }
     private weak var profile: ProfilePreferences?
     private var stored = Stored()
     private var generation = 0
@@ -72,6 +82,16 @@ final class HarborProfileSync {
         self.owner = owner
         key = "harbor-identity-" + EBookShelf.hash(owner); self.profile = profile
         reload()
+    }
+    func bindLayoutOwner(_ next: String) {
+        guard next != layoutOwner else { return }
+        suspendForProfileChange(); boundLayoutOwner = next
+    }
+    /// Keep sessions and durable queues; invalidate late replies from a source
+    /// which no longer owns the visible interface and preference bindings.
+    func suspendForProfileChange() {
+        generation += 1; scheduled?.cancel(); scheduled = nil; busy = false; hydrated = false
+        navigation.unbind(); services.unbind()
     }
     func reload() {
         guard !busy else { return }
@@ -97,8 +117,8 @@ final class HarborProfileSync {
             if changedAccount {
                 navigation.unbind()
                 services.unbind()
-                StreamingPreferences.forOwner(owner).bind(.local(owner: owner))
-                if InterfacePreferences.shared.navigation.scope?.owner == owner { InterfacePreferences.shared.navigation.bind(.local(owner: owner)) }
+                StreamingPreferences.forOwner(layoutOwner).bind(.local(owner: layoutOwner))
+                if InterfacePreferences.shared.navigation.scope?.owner == layoutOwner { InterfacePreferences.shared.navigation.bind(.local(owner: layoutOwner)) }
             }
             try await synchronize(scope: scope)
         } catch is CancellationError { return }
@@ -114,8 +134,8 @@ final class HarborProfileSync {
             hydrated = false; selectedID = nil; error = nil
             navigation.unbind()
             services.unbind()
-            StreamingPreferences.forOwner(owner).bind(.local(owner: owner))
-            if InterfacePreferences.shared.navigation.scope?.owner == owner { InterfacePreferences.shared.navigation.bind(.local(owner: owner)) }
+            StreamingPreferences.forOwner(layoutOwner).bind(.local(owner: layoutOwner))
+            if InterfacePreferences.shared.navigation.scope?.owner == layoutOwner { InterfacePreferences.shared.navigation.bind(.local(owner: layoutOwner)) }
         } catch { self.error = "No se pudo cerrar la sesión. Vuelve a intentarlo."; return }
         if let token { _ = try? await HTTPClient().harbor("/auth/logout", method: "POST", body: .object([:]), token: token) }
     }

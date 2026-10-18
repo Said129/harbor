@@ -35,7 +35,7 @@ struct MangaView: View {
     @Environment(\.scenePhase) private var scenePhase
     @MainActor init(app: AppModel) {
         self.app = app
-        let owner = app.user?.id ?? "guest"
+        let owner = app.personalOwner
         _shelf = State(initialValue: MangaShelf(owner: owner)); _connection = State(initialValue: MangaConnection(owner: owner))
     }
     private var visibleSources: [MangaSource] { sources.filter { (adult || !$0.adult) && (language == "all" || $0.language == language) } }
@@ -389,7 +389,7 @@ struct MangaView: View {
             else if file.pathExtension.lowercased() == "pdf" { book = try await MangaLocalStore.shared.importPDF(file, owner: shelf.owner) }
             else { book = try await MangaLocalStore.shared.importArchive(file, owner: shelf.owner) }
             try Task.checkCancellation()
-            guard shelf.owner == (app.user?.id ?? "guest") else { try? await MangaLocalStore.shared.remove(book, owner: shelf.owner); return }
+            guard shelf.owner == (app.personalOwner) else { try? await MangaLocalStore.shared.remove(book, owner: shelf.owner); return }
             do { try shelf.save(MangaRecord(book: book)) }
             catch { try? await MangaLocalStore.shared.remove(book, owner: shelf.owner); throw error }
             screen = "shelf"; imported = book

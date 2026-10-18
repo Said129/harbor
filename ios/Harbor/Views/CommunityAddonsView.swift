@@ -177,12 +177,12 @@ struct CommunityInstallButton: View {
             Button {
                 guard !installed, !busy else { return }
                 if item.addon.configurable { open(item.addon); return }
-                let owner = app.user?.id ?? "guest"
+                let owner = app.accountOperationScope
                 busy = true; error = nil
                 Task {
                     defer { busy = false }
                     do { try await app.install(item.addon.transportUrl, expectedManifestID: item.addon.manifest["id"].string) }
-                    catch { if owner == (app.user?.id ?? "guest") { self.error = safeMessage(error) } }
+                    catch { if owner == (app.accountOperationScope) { self.error = safeMessage(error) } }
                 }
             } label: {
                 HStack(spacing: 6) {

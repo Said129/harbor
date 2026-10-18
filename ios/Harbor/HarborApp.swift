@@ -27,10 +27,25 @@ struct HarborApp: App {
     @Environment(\.scenePhase) private var scenePhase
     var body: some Scene {
         WindowGroup {
-            HarborShell(app: model).font(HarborTheme.font()).foregroundStyle(HarborTheme.ink).tint(HarborTheme.accent).preferredColorScheme(.dark)
+            ZStack {
+                if model.storageReady && model.profileContext.ready {
+                    HarborShell(app: model).id(model.interfaceProfileScope)
+                } else {
+                    HarborTheme.background.ignoresSafeArea()
+                    VStack(spacing: 20) {
+                        HarborBrand(size: 36)
+                        if let error = model.error {
+                            Text(error).font(HarborTheme.font(14)).multilineTextAlignment(.center).foregroundStyle(.secondary)
+                            Button(DesktopInterfaceText.value("Retry")) { Task { await model.retryStartup() } }
+                                .buttonStyle(HarborAccountButtonStyle()).accessibilityIdentifier("profile-startup-retry")
+                        } else { HarborLoader().frame(width: 64, height: 64).accessibilityIdentifier("profile-startup-loader") }
+                    }.padding(30)
+                }
+            }.font(HarborTheme.font()).foregroundStyle(HarborTheme.ink).tint(HarborTheme.accent).preferredColorScheme(.dark)
+                .onOpenURL { model.openDocument($0) }
                 .task { await model.start() }
-                .task(id: String(model.storageReady) + "|" + (model.user?.id ?? "guest")) { if model.storageReady { await SportsReminderService.shared.removeOtherAccounts(owner: model.user?.id ?? "guest") } }
-                .task(id: model.user?.id ?? "guest") { MusicPlayback.shared.stopForAccount(model.user?.id ?? "guest") }
+                .task(id: String(model.storageReady) + "|" + model.settingsOwner) { if model.storageReady { await SportsReminderService.shared.removeOtherAccounts(owner: model.settingsOwner) } }
+                .task(id: model.personalOwner) { MusicPlayback.shared.stopForAccount(model.personalOwner) }
                 .task(id: (model.user?.id ?? "guest") + "|" + String(model.storageReady) + "|" + String(describing: scenePhase)) {
                     guard scenePhase == .active, model.storageReady else { return }
                     let profile = ProfilePreferences.forOwner(model.user?.id ?? "guest")

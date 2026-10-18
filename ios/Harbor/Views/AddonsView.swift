@@ -136,12 +136,12 @@ struct AddonsView: View {
     private func install() {
         guard !installing else { return }
         editingURL = false
-        let link = url, owner = app.user?.id ?? "guest"
+        let link = url, owner = app.accountOperationScope
         installing = true; error = nil; tab = .installed; query = ""; category = .all
         Task {
             defer { installing = false }
-            do { try await app.install(link); guard owner == (app.user?.id ?? "guest") else { return }; url = "" }
-            catch { guard owner == (app.user?.id ?? "guest") else { return }; self.error = safeMessage(error) }
+            do { try await app.install(link); guard owner == (app.accountOperationScope) else { return }; url = "" }
+            catch { guard owner == (app.accountOperationScope) else { return }; self.error = safeMessage(error) }
         }
     }
     private func loadDirectory(refresh: Bool = false) async {

@@ -45,8 +45,8 @@ final class DiscoverModel {
         recommended = FeaturedRanking.select(pool, preferences: app.library.discovery, excluded: excluded)
     }
     func load(app: AppModel, refresh: Bool = false) async {
-        synchronizeOwner(app.library.owner)
-        let owner = app.library.owner
+        synchronizeOwner(app.personalOwner)
+        let owner = app.personalOwner
         let configuration = MetadataPreferences.shared.configuration()
         let currentSignature = configuration.tmdbKey + configuration.language + owner
         guard !loading, refresh || signature != currentSignature else { return }
@@ -59,13 +59,13 @@ final class DiscoverModel {
             for rail in definitions {
                 do {
                     let items = try await TMDBService().page(rail, page: 1, configuration: configuration)
-                    try Task.checkCancellation(); guard current == generation, owner == app.library.owner else { return }
+                    try Task.checkCancellation(); guard current == generation, owner == app.personalOwner else { return }
                     if rail.id == "discover-trending" { trending = items; refreshRecommendations(app: app) }
                     else { topRated = items; refreshRecommendations(app: app) }
-                } catch is CancellationError { return } catch { if current == generation, owner == app.library.owner { self.error = safeMessage(error) } }
+                } catch is CancellationError { return } catch { if current == generation, owner == app.personalOwner { self.error = safeMessage(error) } }
             }
         } else { trending = []; topRated = [] }
-        guard current == generation, owner == app.library.owner else { return }
+        guard current == generation, owner == app.personalOwner else { return }
         do {
             struct Winners: Decodable { struct Entry: Decodable { let id: String; let title: String }; let winners: [Entry] }
             guard let url = Bundle.main.url(forResource: "DesktopFilmAwards", withExtension: "json") else { throw HarborError(code: "awards-catalog") }
@@ -82,11 +82,11 @@ final class DiscoverModel {
                     }
                     for await (index, media) in group { if let media { items.append((index, media)) } }
                 }
-                try Task.checkCancellation(); guard current == generation, owner == app.library.owner else { return }
+                try Task.checkCancellation(); guard current == generation, owner == app.personalOwner else { return }
                 awards = items.sorted { $0.0 < $1.0 }.map(\.1)
                 refreshRecommendations(app: app)
             }
-        } catch is CancellationError { return } catch { if current == generation, owner == app.library.owner { self.error = safeMessage(error) } }
+        } catch is CancellationError { return } catch { if current == generation, owner == app.personalOwner { self.error = safeMessage(error) } }
         if !recommended.isEmpty || !awards.isEmpty { signature = currentSignature }
     }
 }
@@ -132,7 +132,7 @@ struct DiscoverView: View {
             }.padding(.top, 20).padding(.bottom, 32)
         }.background(HarborTheme.background).navigationTitle("").toolbar(.hidden, for: .navigationBar)
             .accessibilityIdentifier("discover-original")
-            .task(id: "\(app.storageReady)|\(app.library.owner)") { if app.storageReady { await model.load(app: app) } }
+            .task(id: "\(app.storageReady)|\(app.personalOwner)") { if app.storageReady { await model.load(app: app) } }
             .refreshable { await model.load(app: app, refresh: true) }
             .onChange(of: kind) { _, _ in catalog = ""; genre = "" }
             .onChange(of: catalog) { _, _ in genre = "" }
@@ -140,7 +140,7 @@ struct DiscoverView: View {
             .onChange(of: app.library.items.filter(\.watched).map(\.id)) { _, _ in model.refreshRecommendations(app: app) }
             .onChange(of: app.library.continuing.map(\.id)) { _, _ in model.refreshRecommendations(app: app) }
             .onChange(of: app.library.discovery.revision) { _, _ in model.refreshRecommendations(app: app) }
-            .onChange(of: app.library.owner) { _, owner in voteUndo = nil; model.synchronizeOwner(owner); model.refreshRecommendations(app: app) }
+            .onChange(of: app.personalOwner) { _, owner in voteUndo = nil; model.synchronizeOwner(owner); model.refreshRecommendations(app: app) }
             .onChange(of: scenePhase) { _, phase in if phase == .active { model.refreshRecommendations(app: app) } }
             .safeAreaInset(edge: .bottom) {
                 if let change = voteUndo {
@@ -300,18 +300,18 @@ private struct DiscoverFeatured: View {
             if let item = current { feedback(item).padding(.horizontal) }
             HarborHeroPips(count: slides.count, selected: selected) { jump($0) }
         }.onChange(of: items.map(\.identity)) { _, _ in if selected >= slides.count { selected = 0 } }
-            .onChange(of: app.library.owner) { _, _ in enriched = [:]; expandedImage = nil; selected = 0 }
+            .onChange(of: app.personalOwner) { _, _ in enriched = [:]; expandedImage = nil; selected = 0 }
             .task(id: voteRevision) {
                 guard voteHint != nil else { return }
                 do { try await Task.sleep(for: .seconds(1.8)); withAnimation(reduceMotion ? nil : .easeOut(duration: 0.2)) { voteHint = nil } } catch {}
             }
             .task(id: current?.identity) {
                 guard let item = current, enriched[item.identity] == nil else { return }
-                let owner = app.library.owner
+                let owner = app.personalOwner
                 do {
                     let detailed = try await app.service.metadata(item, addons: app.addons)
                     try Task.checkCancellation()
-                    guard owner == app.library.owner else { return }
+                    guard owner == app.personalOwner else { return }
                     enriched[item.identity] = detailed
                 } catch {}
             }

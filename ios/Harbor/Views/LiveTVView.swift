@@ -18,7 +18,7 @@ struct LiveTVView: View {
     @State private var playback: PlaybackSession?
     @State private var playing: LiveChannel?
     @MainActor init(app: AppModel, initialQuery: String = "") {
-        self.app = app; _preferences = State(initialValue: LiveTVPreferences(owner: app.user?.id ?? "guest")); _query = State(initialValue: initialQuery)
+        self.app = app; _preferences = State(initialValue: LiveTVPreferences(owner: app.settingsOwner)); _query = State(initialValue: initialQuery)
     }
     private var selectedChannels: [LiveChannel] { channels.filter { source == "all" || $0.source == source } }
     private var groups: [String] { Array(Set(selectedChannels.compactMap(\.group))).sorted { $0.localizedStandardCompare($1) == .orderedAscending } }
@@ -89,13 +89,13 @@ struct LiveTVView: View {
         if sources.isEmpty { providers = true }
     }
     private func play(_ channel: LiveChannel) async {
-        let owner = app.user?.id ?? "guest"
+        let owner = app.accountOperationScope
         do {
             guard !channel.drm else { throw HarborError(code: "iptv-drm") }
             let headers = JSONValue.object(channel.headers.mapValues(JSONValue.string))
             let stream: JSONValue = .object(["addonId": .string("iptv:" + channel.source), "addonName": .string("Live TV"), "url": .string(channel.url), "behaviorHints": .object(["proxyHeaders": .object(["request": headers])])])
             let resolved = try await app.service.resolve(StreamOffer(id: 0, raw: stream))
-            guard owner == (app.user?.id ?? "guest"), owner == preferences.owner else { return }
+            guard owner == app.accountOperationScope, app.settingsOwner == preferences.owner else { return }
             playing = channel
             playback = PlaybackSession(source: resolved, target: ResumeTarget(id: "iptv:" + channel.id), startMs: 0, storageWarning: nil, progressEnabled: false, owner: owner)
         } catch { self.error = safeMessage(error) }

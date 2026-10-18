@@ -10,7 +10,7 @@ struct AppWalkthroughView: View {
     @State private var tasteError: String?
     @State private var editingKey = false
     @State private var closing = false
-    private var owner: String { app.user?.id ?? "guest" }
+    private var owner: String { app.personalOwner }
     private var tasteSignature: String { step == .taste ? owner + "|" + EBookShelf.hash(MetadataPreferences.shared.tmdbKey) : "" }
     var body: some View {
         NavigationStack {
@@ -78,7 +78,7 @@ struct AppWalkthroughView: View {
         case .streaming:
             VStack(alignment: .leading, spacing: 22) {
                 OnboardingHeading("Pick what you actually use", message: "Harbor pulls the most popular titles each service has right now. Toggle off anything you don't subscribe to.", eyebrow: "Step 3 · Streaming")
-                StreamingServicePicker(preferences: .forOwner(owner))
+                StreamingServicePicker(preferences: .forOwner(app.settingsOwner))
             }
         case .subtitles:
             VStack(alignment: .leading, spacing: 22) {
@@ -88,7 +88,7 @@ struct AppWalkthroughView: View {
         case .taste:
             OnboardingTasteStep(items: taste, picks: $picks)
             if let tasteError { Text(DesktopInterfaceText.value(tasteError)).font(.caption).foregroundStyle(.orange) }
-        case .done: OnboardingDoneStep(owner: owner)
+        case .done: OnboardingDoneStep(owner: app.settingsOwner)
         }
     }
     private var footer: some View {

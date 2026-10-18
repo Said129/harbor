@@ -13,7 +13,7 @@ struct VODView: View {
     @State private var loading = false
     @State private var error: String?
     @State private var generation = UUID()
-    @MainActor init(app: AppModel) { self.app = app; _preferences = State(initialValue: LiveTVPreferences(owner: app.user?.id ?? "guest")) }
+    @MainActor init(app: AppModel) { self.app = app; _preferences = State(initialValue: LiveTVPreferences(owner: app.settingsOwner)) }
     private var groups: [String] {
         let names: [String] = series ? library.series.compactMap(\.group) : library.movies.compactMap { $0.channel.group }
         return Array(Set(names)).sorted { $0.localizedStandardCompare($1) == .orderedAscending }
@@ -150,7 +150,7 @@ private struct VODDetailView: View {
     @AppStorage("downloadsCellular") private var cellularDownloads = false
     private var original: Media { movie?.media ?? series?.media ?? Media(id: "vod", type: "movie", name: "VOD") }
     private var media: Media { enriched ?? original }
-    private var owner: String { app.user?.id ?? "guest" }
+    private var owner: String { app.personalOwner }
     private var seasons: [Int] { Array(Set(episodes.map(\.season))).sorted() }
     private var metadataSignature: String { vodMetadataSignature(original, owner: owner) }
     private var cover: some View {
@@ -209,12 +209,12 @@ private struct VODDetailView: View {
     }
     private func load(refresh: Bool) async {
         guard let series, !loading else { return }; loading = true; error = nil; defer { loading = false }
-        let owner = app.user?.id ?? "guest"
+        let owner = app.personalOwner
         do {
             let next: [VODEpisode]
             if series.xtreamID != nil, let source { next = try await XtreamClient(source: source, owner: owner).episodes(series, refresh: refresh) }
             else { next = series.episodes }
-            try Task.checkCancellation(); guard owner == (app.user?.id ?? "guest") else { return }
+            try Task.checkCancellation(); guard owner == (app.personalOwner) else { return }
             episodes = next; if !seasons.contains(season) { season = seasons.first ?? 1 }
         } catch is CancellationError { return }
         catch { self.error = safeMessage(error) }
@@ -226,14 +226,14 @@ private struct VODDetailView: View {
     }
     private func play(_ channel: LiveChannel, episode: VODEpisode? = nil) async {
         guard !resolving else { return }; resolving = true; error = nil; defer { resolving = false }
-        let owner = app.user?.id ?? "guest", resume = app.resume
+        let owner = app.personalOwner, resume = app.resume
         do {
             let resolved = try await resolve(channel)
             let target = vodResumeTarget(media.id, episode: episode)
             var start = ResumeStart(ms: 0, prompt: false), warning: String?
             do { start = try await resume.position(target, durationMs: channel.duration.flatMap { $0.isFinite ? $0 * 1_000 : nil } ?? 0, playback: UserDefaults.standard.object(forKey: "resumePlayback") as? Bool ?? true, prompt: UserDefaults.standard.object(forKey: "resumePrompt") as? Bool ?? false) }
             catch { warning = safeMessage(error) }
-            try Task.checkCancellation(); guard owner == (app.user?.id ?? "guest") else { return }
+            try Task.checkCancellation(); guard owner == (app.personalOwner) else { return }
             currentEpisode = episode
             playback = PlaybackSession(source: resolved, target: target, startMs: start.ms, storageWarning: warning, progressEnabled: true, owner: owner, resumeStore: resume, promptForResume: start.prompt)
         } catch is CancellationError { return }
@@ -241,9 +241,9 @@ private struct VODDetailView: View {
     }
     private func download(_ channel: LiveChannel, episode: VODEpisode? = nil) async {
         guard !downloading else { return }; downloading = true; downloadMessage = nil; defer { downloading = false }
-        let owner = app.user?.id ?? "guest"
+        let owner = app.personalOwner
         do {
-            let resolved = try await resolve(channel); guard owner == (app.user?.id ?? "guest") else { return }
+            let resolved = try await resolve(channel); guard owner == (app.personalOwner) else { return }
             let selected = episode.map { Episode(id: "vod-episode:" + EBookShelf.hash($0.id), season: $0.season, episode: $0.episode, title: $0.title, thumbnail: $0.channel.logo, overview: $0.plot) }
             try DownloadManager.shared.start(source: resolved, media: media, episode: selected, owner: owner, cellular: cellularDownloads)
             downloadMessage = "Descarga añadida. Puedes verla en Descargas."

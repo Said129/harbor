@@ -19,7 +19,7 @@ struct EBooksView: View {
     @State private var importingDocument = false
     @State private var help = false
     @State private var imported: EBook?
-    @MainActor init(app: AppModel, initialFile: URL? = nil) { self.app = app; self.initialFile = initialFile; _screen = State(initialValue: initialFile == nil ? "browse" : "shelf"); _shelf = State(initialValue: EBookShelf(owner: app.user?.id ?? "guest")) }
+    @MainActor init(app: AppModel, initialFile: URL? = nil) { self.app = app; self.initialFile = initialFile; _screen = State(initialValue: initialFile == nil ? "browse" : "shelf"); _shelf = State(initialValue: EBookShelf(owner: app.personalOwner)) }
     private var signature: String { query + "|" + language }
     var body: some View {
         ScrollView {
@@ -121,7 +121,7 @@ struct EBooksView: View {
         do {
             let book = try await EBookService.shared.importDocument(file, owner: shelf.owner)
             try Task.checkCancellation()
-            guard shelf.owner == (app.user?.id ?? "guest") else { return }
+            guard shelf.owner == (app.personalOwner) else { return }
             try shelf.addImported(book)
             screen = "shelf"
             if open { imported = book }

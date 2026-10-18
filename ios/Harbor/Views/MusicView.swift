@@ -12,8 +12,8 @@ struct MusicView: View {
     @State private var selectFolder = false
     @MainActor init(app: AppModel) {
         self.app = app
-        _library = State(initialValue: MusicLibrary(owner: app.user?.id ?? "guest"))
-        _playlists = State(initialValue: MusicPlaylistStore(owner: app.user?.id ?? "guest"))
+        _library = State(initialValue: MusicLibrary(owner: app.personalOwner))
+        _playlists = State(initialValue: MusicPlaylistStore(owner: app.personalOwner))
     }
     private var query: String { filters.query }
     private var records: [MusicRecord] { filters.apply(library.records) }
@@ -57,7 +57,7 @@ struct MusicView: View {
                 case .failure: library.error = "No se pudo abrir la selección de archivos."
                 }
             }
-            .onDisappear { if library.owner != (app.user?.id ?? "guest") { library.cancelImport() } }
+            .onDisappear { if library.owner != (app.personalOwner) { library.cancelImport() } }
             .accessibilityIdentifier("music-library")
     }
     @ViewBuilder private var importStatus: some View {

@@ -21,7 +21,7 @@ struct SportsView: View {
     @State private var generation = UUID()
     @Environment(\.scenePhase) private var scenePhase
     @AppStorage("harbor-sports-consent") private var consent = ""
-    @MainActor init(app: AppModel) { self.app = app; _preferences = State(initialValue: SportsPreferences(owner: app.user?.id ?? "guest")) }
+    @MainActor init(app: AppModel) { self.app = app; _preferences = State(initialValue: SportsPreferences(owner: app.settingsOwner)) }
     private var accepted: Bool { guard let data = consent.data(using: .utf8), let receipt = try? JSONDecoder().decode(SportsConsent.self, from: data) else { return false }; return receipt.version == 1 && receipt.status == "accepted" && receipt.acceptedAt != nil }
     private var day: String { let parts = Calendar.current.dateComponents([.year, .month, .day], from: date); return String(format: "%04d%02d%02d", parts.year ?? 0, parts.month ?? 0, parts.day ?? 0) }
     private var signature: String { day + "|" + preferences.leagues.joined(separator: ",") + "|" + String(accepted) }

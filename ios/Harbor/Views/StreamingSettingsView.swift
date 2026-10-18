@@ -7,7 +7,7 @@ struct StreamingSettingsView: View {
             VStack(alignment: .leading, spacing: 24) {
                 Text(DesktopInterfaceText.value("Pick what you actually use")).font(HarborTheme.displayFont(30)).accessibilityAddTraits(.isHeader)
                 Text(DesktopInterfaceText.value("Harbor pulls the most popular titles each service has right now. Toggle off anything you don't subscribe to.")).foregroundStyle(.secondary)
-                StreamingServicePicker(preferences: StreamingPreferences.forOwner(app.user?.id ?? "guest"))
+                StreamingServicePicker(preferences: StreamingPreferences.forOwner(app.settingsOwner))
                 NavigationLink { StreamingServicesView(app: app) } label: {
                     Label(DesktopInterfaceText.value("Browse services"), systemImage: "square.grid.3x3").frame(minHeight: 44)
                 }.buttonStyle(HarborAccountButtonStyle()).accessibilityIdentifier("streaming-browse-services")
@@ -18,7 +18,7 @@ struct StreamingSettingsView: View {
                         if cloud.services.hasParkedVersion {
                             Text(DesktopInterfaceText.value("Another device changed services. Your previous version is saved on this device.")).font(.caption).foregroundStyle(.secondary)
                             Button(DesktopInterfaceText.value("Restore my version")) { cloud.services.restoreMyVersion() }
-                                .buttonStyle(HarborAccountButtonStyle()).disabled(cloud.busy || cloud.services.hasPendingChanges || StreamingPreferences.forOwner(app.user?.id ?? "guest").cloudWritePending).accessibilityIdentifier("services-restore-version")
+                                .buttonStyle(HarborAccountButtonStyle()).disabled(cloud.busy || cloud.services.hasPendingChanges || StreamingPreferences.forOwner(app.settingsOwner).cloudWritePending).accessibilityIdentifier("services-restore-version")
                         }
                         if cloud.services.hasPendingChanges { Text(DesktopInterfaceText.value("Services changes waiting to sync")).font(.caption).foregroundStyle(.secondary) }
                         Button(DesktopInterfaceText.value("Sync")) { Task { await cloud.sync() } }

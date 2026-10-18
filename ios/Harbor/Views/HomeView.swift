@@ -9,8 +9,8 @@ struct HomeView: View {
     @Environment(\.scenePhase) private var scenePhase
     @MainActor init(model: AppModel) {
         self.model = model
-        let owner = model.user?.id ?? "guest"
-        _customization = State(initialValue: PageCustomization(owner: owner, page: "home"))
+        let owner = model.personalOwner
+        _customization = State(initialValue: PageCustomization(owner: model.settingsOwner, page: "home"))
         _seasonalPreferences = State(initialValue: SpooktoberInvitationPreferences(owner: owner))
     }
     private var rails: [PageRail] {
@@ -29,7 +29,7 @@ struct HomeView: View {
     private var homeError: String? { (!classic ? model.home.error : nil) ?? model.error }
     private var contentSignature: String {
         let configuration = MetadataPreferences.shared.configuration()
-        return [model.user?.id ?? "guest", String(model.storageReady), String(classic), EBookShelf.hash(configuration.tmdbKey), configuration.language, configuration.region, String(configuration.translateTitles), StreamingPreferences.forOwner(model.user?.id ?? "guest").signature, model.addons.filter(\.enabled).map(\.id).joined(separator: "|")].joined(separator: "|")
+        return [model.accountOperationScope, String(model.storageReady), String(classic), EBookShelf.hash(configuration.tmdbKey), configuration.language, configuration.region, String(configuration.translateTitles), StreamingPreferences.forOwner(model.settingsOwner).signature, model.addons.filter(\.enabled).map(\.id).joined(separator: "|")].joined(separator: "|")
     }
     var body: some View {
         ScrollView {
@@ -72,7 +72,7 @@ struct HomeView: View {
             .task(id: contentSignature) {
                 guard model.storageReady, !classic else { return }
                 async let curated: Void = model.home.load(app: model)
-                async let anime: Void = model.home.loadAnime(owner: model.user?.id ?? "guest")
+                async let anime: Void = model.home.loadAnime(owner: model.personalOwner)
                 _ = await (curated, anime)
             }
             .sheet(isPresented: $showSpooktober) {

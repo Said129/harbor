@@ -19,7 +19,7 @@ struct DownloadsView: View {
     @State private var playback: PlaybackSession?
     @State private var playbackMedia: Media?
     @State private var error: String?
-    private var owner: String { app.user?.id ?? "guest" }
+    private var owner: String { app.personalOwner }
     private var allItems: [DownloadItem] { downloads.list(owner: owner) }
     private var items: [DownloadItem] {
         let search = query.trimmingCharacters(in: .whitespacesAndNewlines)

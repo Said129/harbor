@@ -77,6 +77,14 @@ struct HouseholdSessionState: Codable, Equatable, Sendable {
         return Lease(route: target, generation: generation, version: record?.version, configuration: record?.configuration)
     }
     func unbind() { generation += 1; route = nil }
+    func needsLegacyMigration(_ profile: DeviceHouseholdProfile, scope: HouseholdProfileScope) throws -> Bool {
+        guard ready else { throw HarborError(code: "household-unavailable") }
+        guard let owner = profile.legacyOwner else { return false }
+        if state.migratedOwners[owner] != nil { return false }
+        let target = HouseholdAccountRoute(household: scope.key, sourceID: profile.id)
+        guard state.sources[target.key] == nil else { throw HarborError(code: "profile-account-migration") }
+        return true
+    }
     private func validate(_ lease: Lease) throws {
         guard ready, lease.generation == generation, route == lease.route,
               state.sources[lease.route.key]?.version == lease.version else { throw HarborError(code: "profile-account-changed") }

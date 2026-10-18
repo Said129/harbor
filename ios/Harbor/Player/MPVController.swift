@@ -9,7 +9,7 @@ import Libmpv
 /// properties use mpv's asynchronous API: the render thread must not wait for
 /// the mpv core. No escaping C callbacks reference UIKit objects.
 @MainActor
-final class MPVController: GLKViewController {
+final class MPVController: GLKViewController, ProfilePlaybackControlling {
     let state: PlayerState
     private let source: PlaybackSource
     private let startMs: Double
@@ -53,6 +53,7 @@ final class MPVController: GLKViewController {
     private var renderSwitching = false
     private var inlineRestorePending = false
     private var videoOutputName = ""
+    private var activatedAudioSession = false
     var sampleFrame: CVPixelBuffer? { pictureInPicture?.lastFrame }
     var sampleRenderCalls: Int { pictureInPicture?.renderedFrames ?? 0 }
 
@@ -68,6 +69,7 @@ final class MPVController: GLKViewController {
     required init?(coder: NSCoder) { return nil }
 
     override func loadView() {
+        guard !didClose else { view = UIView(); return }
 #if targetEnvironment(simulator)
         // Use MPVKit's GLES2 demo path on the Intel software renderer. Its
         // GLES3 path intermittently produces grid-shaped missing pixels.
@@ -90,6 +92,7 @@ final class MPVController: GLKViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        guard !didClose else { return }
         do { try initialize() } catch { state.error = safeMessage(error); close() }
     }
 
@@ -110,6 +113,7 @@ final class MPVController: GLKViewController {
         MusicPlayback.shared.pauseForVideo()
         try AVAudioSession.sharedInstance().setCategory(.playback, mode: .moviePlayback)
         try AVAudioSession.sharedInstance().setActive(true)
+        activatedAudioSession = true
         updateAudioRoute()
         let mpv = try MPVConfiguration.createHandle(startMs: startMs, startPaused: startPaused)
         handle = mpv
@@ -1095,8 +1099,11 @@ final class MPVController: GLKViewController {
             }
         } else { finishClosing() }
         state.controller = nil
-        do { try AVAudioSession.sharedInstance().setActive(false, options: .notifyOthersOnDeactivation) }
-        catch { state.playbackIssue = "No se pudo cerrar la sesión de audio." }
+        if activatedAudioSession {
+            activatedAudioSession = false
+            do { try AVAudioSession.sharedInstance().setActive(false, options: .notifyOthersOnDeactivation) }
+            catch { state.playbackIssue = "No se pudo cerrar la sesión de audio." }
+        }
     }
 
     private func finishClosing() {

@@ -87,7 +87,6 @@ struct HarborShell: View {
     @State private var hoveredSection: HarborSection?
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var document: IncomingBook?
-    @State private var pendingDocument: URL?
     @AppStorage("uiLanguage") private var uiLanguage = "es"
     var body: some View {
         ZStack(alignment: .leading) {
@@ -127,15 +126,13 @@ struct HarborShell: View {
             .environment(\.locale, Locale(identifier: InterfaceLanguage.resolve(uiLanguage)))
             .environment(\.layoutDirection, InterfaceLanguage.resolve(uiLanguage) == "ar" ? .rightToLeft : .leftToRight)
             .onChange(of: uiLanguage) { _, _ in navigationID = UUID() }
-            .onOpenURL { url in
-                guard url.isFileURL, ["epub", "pdf"].contains(url.pathExtension.lowercased()) else { return }
-                pendingDocument = url
-                presentPendingDocument()
-            }
+            .onChange(of: app.settingsOwner) { _, _ in path = NavigationPath(); navigationID = UUID() }
+            .onAppear { presentPendingDocument() }
+            .onChange(of: app.pendingDocument?.id) { _, _ in presentPendingDocument() }
             .onChange(of: app.storageReady) { _, ready in if ready { presentPendingDocument() } }
-            .onChange(of: app.user?.id) { _, _ in document = nil }
+            .onChange(of: app.personalOwner) { _, _ in document = nil }
             .sheet(item: $document) { incoming in
-                if incoming.owner == (app.user?.id ?? "guest") {
+                if incoming.owner == app.personalOwner {
                     NavigationStack {
                         EBooksView(app: app, initialFile: incoming.url)
                             .toolbar { ToolbarItem(placement: .confirmationAction) { Button("Listo") { document = nil } } }
@@ -147,9 +144,9 @@ struct HarborShell: View {
             }, set: { if !$0 { AppGuidePreferences.shared.finish() } })) { AppWalkthroughView(app: app) }
     }
     private func presentPendingDocument() {
-        guard app.storageReady, let url = pendingDocument else { return }
-        pendingDocument = nil; app.showAccount = false
-        document = IncomingBook(url: url, owner: app.user?.id ?? "guest")
+        guard let url = app.takePendingDocument() else { return }
+        app.showAccount = false
+        document = IncomingBook(url: url, owner: app.personalOwner)
     }
     private var header: some View {
         HStack(spacing: 6) {

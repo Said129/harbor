@@ -6,9 +6,18 @@ private struct PlayerSurface: UIViewControllerRepresentable {
     let preservePosition: Bool
     let startPaused: Bool
     let state: PlayerState
-    func makeUIViewController(context: Context) -> MPVController { MPVController(source: source, state: state, startMs: startMs, preservePosition: preservePosition, startPaused: startPaused) }
-    func updateUIViewController(_ controller: MPVController, context: Context) {}
-    static func dismantleUIViewController(_ controller: MPVController, coordinator: ()) { controller.close() }
+    let playback: ProfilePlaybackRegistry
+    let generation: UUID
+    func makeCoordinator() -> ProfilePlaybackRegistry { playback }
+    func makeUIViewController(context: Context) -> MPVController {
+        let controller = MPVController(source: source, state: state, startMs: startMs, preservePosition: preservePosition, startPaused: startPaused)
+        playback.register(controller, generation: generation)
+        return controller
+    }
+    func updateUIViewController(_ controller: MPVController, context: Context) {
+        if generation != playback.generation { controller.close() }
+    }
+    static func dismantleUIViewController(_ controller: MPVController, coordinator: ProfilePlaybackRegistry) { coordinator.remove(controller); controller.close() }
 }
 
 private struct PlayerGlyph: View {
@@ -46,6 +55,7 @@ struct PlayerView: View {
     var changeEpisode: ((Episode) -> Void)? = nil
     var changeSource: ((ResumeSnapshot?) -> Void)? = nil
     @State private var state = PlayerState()
+    @State private var playbackGeneration = AppProfileContext.shared.playback.generation
     @State private var editingSeek = false
     @State private var progressError: String?
     @State private var lastSavedMs: Double = 0
@@ -107,7 +117,7 @@ struct PlayerView: View {
     private var surface: some View {
         ZStack {
             Color.black.ignoresSafeArea()
-            PlayerSurface(source: session.source, startMs: session.promptForResume ? 0 : session.startMs, preservePosition: session.preservePosition, startPaused: session.promptForResume, state: state).ignoresSafeArea().accessibilityHidden(true)
+            PlayerSurface(source: session.source, startMs: session.promptForResume ? 0 : session.startMs, preservePosition: session.preservePosition, startPaused: session.promptForResume, state: state, playback: AppProfileContext.shared.playback, generation: playbackGeneration).ignoresSafeArea().accessibilityHidden(true)
             // This sibling receives taps only on the video, so a transport
             // button or a slider never also toggles the entire interface.
             Color.clear.ignoresSafeArea().contentShape(Rectangle())
@@ -310,6 +320,7 @@ struct PlayerView: View {
         }
         .onChange(of: scenePhase) { _, phase in if phase != .active { saveCheckpoint(exiting: false) }; restartHideTimer(); updateIdleTimer() }
         .onChange(of: library?.owner) { _, owner in if let owner, owner != session.owner { dismiss() } }
+        .onChange(of: AppProfileContext.shared.activationID) { _, _ in dismiss() }
         .onAppear {
             adjacent = EpisodeSequence.adjacent(media?.videos ?? [], current: session.target)
             previousIdleTimer = UIApplication.shared.isIdleTimerDisabled; active = true; updateIdleTimer()
