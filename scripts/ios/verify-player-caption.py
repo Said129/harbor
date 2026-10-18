@@ -10,7 +10,7 @@ p = argparse.ArgumentParser(description=__doc__)
 p.add_argument('--output', type=Path, required=True)
 a = p.parse_args()
 application = '49110c6786903d6480c2febe101d8210f2a4fb9b'
-test_source = 'd7e311a4f5c61aa1b3e13c10e701fd369d0438df'
+test_source = '6a0368faf6a8310e0cb59e2bc4759e611c110eaf'
 for revision in [application, test_source]:
     if subprocess.run(['git', 'cat-file', '-e', revision + '^{commit}'], capture_output=True).returncode != 0:
         subprocess.run(['git', 'fetch', '--no-tags', '--depth=1', 'origin', revision], check=True)
@@ -43,6 +43,9 @@ proof = dict(source=os.environ.get('GITHUB_SHA') or subprocess.check_output(['gi
     native_seed_case='HarborTests.PlayerCaptionSeedTests/testPrepareOrdinaryGuestForSyntheticPlayerCaptionUI',
     ordinary_guest_setting='autoHideControls=false; caption and manual next assertions require visible controls',
     previous_failed_run=39121115983,
+    previous_functional_pass_run=39145147124,
+    visual_followup='Application-scoped rotated images were cropped. Require a hittable caption, capture XCUIScreen.main and retain application/caption/image geometry. Earlier functional passes remain valid.',
+    screen_capture_api='XCUIScreen.main.screenshot', expected_geometry_attachments=4,
     actual_ui_cases=['HarborUITests.PlayerCaptionNavigationTests/testActualIPhonePlayerShowsAbsoluteNinetyNineAndAdvancesToOneHundred',
         'HarborUITests.PlayerCaptionNavigationTests/testActualIPadPlayerShowsAbsoluteNinetyNineAndAdvancesToOneHundred'],
     actual_execution_results='pending', physical_device_validation=False,
