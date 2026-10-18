@@ -32,69 +32,53 @@ struct StreamingCatalogView: View {
     }
     var body: some View {
         ScrollViewReader { scroll in
-            ScrollView {
-                LazyVStack(alignment: .leading, spacing: 28) {
-                    header.id("service-top")
-                    categories
-                    if MetadataPreferences.shared.tmdbKey.isEmpty {
-                        ContentUnavailableView {
-                            Label { Text(DesktopInterfaceText.value("Connect TMDB")) } icon: {
-                                Image("metadata-tmdb").resizable().scaledToFit().frame(width: 32, height: 32).accessibilityHidden(true)
-                            }
-                        } description: {
-                            Text(DesktopInterfaceText.value("Add your TMDB key in Settings to load these catalogs."))
-                        } actions: {
-                            NavigationLink(DesktopInterfaceText.value("Metadata providers")) { MetadataSettingsView() }
-                                .buttonStyle(HarborAccountButtonStyle()).accessibilityIdentifier("service-configure-metadata")
-                        }.padding(.vertical, 28).accessibilityIdentifier("service-missing-key")
-                    } else {
-                        titles
-                        if model.loading {
-                            if model.allTitles.isEmpty { ServiceCatalogSkeleton() }
-                            else { HarborLoader().frame(maxWidth: .infinity).padding(24) }
-                        }
-                        if let error = model.error {
-                            VStack(spacing: 12) {
-                                Text(DesktopInterfaceText.value(error)).font(.caption).foregroundStyle(.secondary)
-                                Button(DesktopInterfaceText.value("Retry")) { Task { await load(more: true) } }.buttonStyle(HarborAccountButtonStyle())
-                            }.frame(maxWidth: .infinity)
-                        } else if model.allTitles.isEmpty && !model.loading {
+            ZStack(alignment: .bottomTrailing) {
+                ScrollView {
+                    LazyVStack(alignment: .leading, spacing: 28) {
+                        header.id("service-top")
+                        categories
+                        if MetadataPreferences.shared.tmdbKey.isEmpty {
                             ContentUnavailableView {
-                                Label(DesktopInterfaceText.value("No results"), systemImage: "film")
+                                Label { Text(DesktopInterfaceText.value("Connect TMDB")) } icon: {
+                                    Image("metadata-tmdb").resizable().scaledToFit().frame(width: 32, height: 32).accessibilityHidden(true)
+                                }
                             } description: {
-                                Text(DesktopInterfaceText.value("Nothing matched this filter. Try another category or change your region in Settings."))
+                                Text(DesktopInterfaceText.value("Add your TMDB key in Settings to load these catalogs."))
                             } actions: {
-                                NavigationLink(DesktopInterfaceText.value("Region & language")) { MetadataSettingsView() }
-                                    .buttonStyle(HarborAccountButtonStyle())
+                                NavigationLink(DesktopInterfaceText.value("Metadata providers")) { MetadataSettingsView() }
+                                    .buttonStyle(HarborAccountButtonStyle()).accessibilityIdentifier("service-configure-metadata")
+                            }.padding(.vertical, 28).accessibilityIdentifier("service-missing-key")
+                        } else {
+                            titles
+                            if model.loading {
+                                if model.allTitles.isEmpty { ServiceCatalogSkeleton() }
+                                else { HarborLoader().frame(maxWidth: .infinity).padding(24) }
                             }
-                        }
-                        if model.hasMore && !model.loading && model.error == nil && !model.allTitles.isEmpty {
-                            Button(DesktopInterfaceText.value("Load more")) { Task { await load(more: true) } }
-                                .buttonStyle(HarborAccountButtonStyle()).frame(maxWidth: .infinity).accessibilityIdentifier("service-load-more")
-                        }
-                        Color.clear.frame(height: 1).onAppear { nearEnd = true }.onDisappear { nearEnd = false }
-                    }
-                }.padding(.bottom, 90)
-            }.accessibilityIdentifier("service-catalog-scroll")
-                .overlay(alignment: .bottomTrailing) {
-                    HStack(spacing: 10) {
-                        Menu {
-                            ForEach(ServiceCatalogCategory.all) { option in
-                                Button { select(option) } label: {
-                                    if category.id == option.id { Label(DesktopInterfaceText.value(option.label), systemImage: "checkmark") }
-                                    else { Text(DesktopInterfaceText.value(option.label)) }
+                            if let error = model.error {
+                                VStack(spacing: 12) {
+                                    Text(DesktopInterfaceText.value(error)).font(.caption).foregroundStyle(.secondary)
+                                    Button(DesktopInterfaceText.value("Retry")) { Task { await load(more: true) } }.buttonStyle(HarborAccountButtonStyle())
+                                }.frame(maxWidth: .infinity)
+                            } else if model.allTitles.isEmpty && !model.loading {
+                                ContentUnavailableView {
+                                    Label(DesktopInterfaceText.value("No results"), systemImage: "film")
+                                } description: {
+                                    Text(DesktopInterfaceText.value("Nothing matched this filter. Try another category or change your region in Settings."))
+                                } actions: {
+                                    NavigationLink(DesktopInterfaceText.value("Region & language")) { MetadataSettingsView() }
+                                        .buttonStyle(HarborAccountButtonStyle())
                                 }
                             }
-                        } label: { Image(systemName: "slider.horizontal.3").frame(width: 48, height: 48) }
-                            .background(HarborTheme.surface, in: .circle).accessibilityLabel(DesktopInterfaceText.value("Categories"))
-                            .accessibilityIdentifier("service-category-menu")
-                        Button {
-                            withAnimation(reduceMotion ? nil : .easeOut(duration: 0.3)) { scroll.scrollTo("service-top", anchor: .top) }
-                        } label: { Image(systemName: "arrow.up").frame(width: 48, height: 48) }
-                            .background(HarborTheme.surface, in: .circle).accessibilityLabel(DesktopInterfaceText.value("Back to top"))
-                            .accessibilityIdentifier("service-back-to-top")
-                    }.padding(18)
-                }
+                            if model.hasMore && !model.loading && model.error == nil && !model.allTitles.isEmpty {
+                                Button(DesktopInterfaceText.value("Load more")) { Task { await load(more: true) } }
+                                    .buttonStyle(HarborAccountButtonStyle()).frame(maxWidth: .infinity).accessibilityIdentifier("service-load-more")
+                            }
+                            Color.clear.frame(height: 1).onAppear { nearEnd = true }.onDisappear { nearEnd = false }
+                        }
+                    }.padding(.bottom, 90)
+                }.accessibilityIdentifier("service-catalog-scroll")
+                floatingControls(scroll)
+            }
         }.modifier(ServiceEntrance(distance: 14)).background(HarborTheme.background).foregroundStyle(HarborTheme.ink)
             .navigationTitle(service.name).navigationBarTitleDisplayMode(.inline).toolbar(.visible, for: .navigationBar)
             .task(id: signature + "|" + String(describing: scenePhase)) {
@@ -106,6 +90,25 @@ struct StreamingCatalogView: View {
                       !model.allTitles.isEmpty else { return }
                 await load(more: true)
             }
+    }
+    private func floatingControls(_ scroll: ScrollViewProxy) -> some View {
+        HStack(spacing: 10) {
+            Menu {
+                ForEach(ServiceCatalogCategory.all) { option in
+                    Button { select(option) } label: {
+                        if category.id == option.id { Label(DesktopInterfaceText.value(option.label), systemImage: "checkmark") }
+                        else { Text(DesktopInterfaceText.value(option.label)) }
+                    }
+                }
+            } label: { Image(systemName: "slider.horizontal.3").frame(width: 48, height: 48) }
+                .background(HarborTheme.surface, in: .circle).accessibilityLabel(DesktopInterfaceText.value("Categories"))
+                .accessibilityIdentifier("service-category-menu")
+            Button {
+                withAnimation(reduceMotion ? nil : .easeOut(duration: 0.3)) { scroll.scrollTo("service-top", anchor: .top) }
+            } label: { Image(systemName: "arrow.up").frame(width: 48, height: 48) }
+                .background(HarborTheme.surface, in: .circle).accessibilityLabel(DesktopInterfaceText.value("Back to top"))
+                .accessibilityIdentifier("service-back-to-top")
+        }.padding(18)
     }
     private var header: some View {
         VStack(alignment: .leading, spacing: 16) {
