@@ -55,8 +55,8 @@ import XCTest
         let rendered = await XCTWaiter.fulfillment(of: [ready], timeout: 30)
         XCTAssertEqual(rendered, .completed, "A rendered frame is required, not only an opened player")
         XCTAssertFalse(app.descendants(matching: .any).matching(identifier: "player-error").firstMatch.exists)
-        if !app.buttons["player-pause"].isHittable { surface.tap() }
         let pause = app.buttons["player-pause"]
+        if !pause.exists || !pause.isHittable { surface.tap() }
         XCTAssertTrue(pause.waitForExistence(timeout: 5))
         if pause.label == "Pausar" { pause.tap() }
     }

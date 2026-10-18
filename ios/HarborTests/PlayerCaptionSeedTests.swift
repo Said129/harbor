@@ -54,6 +54,9 @@ final class PlayerCaptionSeedTests: XCTestCase {
         defaults.set("es", forKey: "uiLanguage")
         defaults.set(true, forKey: "nativeGuide.initialized.v1"); defaults.set(true, forKey: "nativeGuide.completed.v1")
         defaults.set(false, forKey: "interface.autoRotateBanners")
+        // Use the ordinary player setting so the controls remain visible while
+        // XCTest reads captions and taps next; no application test mode is used.
+        PlaybackPreferences.shared.options.autoHideControls = false
         XCTAssertTrue(ProfileSettingsStore.shared.saveCurrent())
     }
 }
