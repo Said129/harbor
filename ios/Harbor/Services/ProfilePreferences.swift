@@ -75,9 +75,17 @@ final class ProfilePreferences {
             household = HouseholdAppearanceBinding(profiles: profiles, profileID: id, owner: owner, photos: photos)
         }
         household?.reload(legacy: legacyValue, legacyReady: legacyReady)
+        if household?.ready == true { legacyError = nil }
     }
     func reload() {
-        if let binding { binding.reload(legacy: legacyValue, legacyReady: legacyReady); if binding.ready { legacyError = nil }; return }
+        if let binding {
+            if binding.needsLegacyAppearance && !legacyReady { reloadLegacy() }
+            binding.reload(legacy: legacyValue, legacyReady: legacyReady)
+            if binding.ready { legacyError = nil }; return
+        }
+        reloadLegacy()
+    }
+    private func reloadLegacy() {
         do {
             let profile = try persistence.readAppearance(key) ?? MobileProfile()
             guard profile.valid else { throw HarborError(code: "profile-data") }

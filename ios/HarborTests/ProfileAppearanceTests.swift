@@ -196,6 +196,23 @@ import UIKit
         XCTAssertNil(decoded.profiles[0].localPhotoID); XCTAssertNil(decoded.profiles[0].appearanceInitialized)
         XCTAssertEqual(try decoded.validated().profiles[0].id, row.id)
     }
+    func testUnreadableLegacyAppearanceCanRecoverOnExplicitRetryAndIsIgnoredAfterMigration() throws {
+        let memory = AppearanceRosterMemory(), blobs = AppearancePhotoMemory(), legacy = AppearanceLegacyMemory()
+        let photos = ProfilePhotoStore(persistence: blobs), profiles = store(memory, photos: photos)
+        let row = try profiles.create(name: "Preserved name", legacyOwner: "synthetic-old-owner"), before = profiles.state
+        legacy.failRead = true
+        let appearance = facade(profiles, row: row, photos: photos, legacy: legacy)
+        XCTAssertFalse(appearance.ready); XCTAssertEqual(profiles.state, before)
+        var old = MobileProfile(); old.photo = try image(); legacy.value = old; legacy.failRead = false
+        appearance.reload()
+        XCTAssertTrue(appearance.ready); XCTAssertNil(appearance.error); XCTAssertEqual(appearance.value.photo, old.photo)
+        XCTAssertEqual(legacy.reads, 2); XCTAssertEqual(legacy.writes, 0); XCTAssertEqual(profiles.profiles.count, 1)
+        let digest = profiles.active?.localPhotoID; legacy.failRead = true
+        let again = facade(profiles, row: try XCTUnwrap(profiles.active), photos: photos, legacy: legacy)
+        XCTAssertTrue(again.ready); XCTAssertNil(again.error); XCTAssertEqual(again.value.photo, old.photo)
+        again.reload()
+        XCTAssertTrue(again.ready); XCTAssertEqual(legacy.reads, 3); XCTAssertEqual(profiles.active?.localPhotoID, digest)
+    }
     func testInitializedProfilesIgnoreAnUnreadableLegacyCopyAndRemoteAvatarsDoNotMasqueradeAsBundledAssets() throws {
         let memory = AppearanceRosterMemory(), blobs = AppearancePhotoMemory(), legacy = AppearanceLegacyMemory()
         let photos = ProfilePhotoStore(persistence: blobs), profiles = store(memory, photos: photos)

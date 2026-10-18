@@ -11,6 +11,7 @@ import Observation
     private(set) var error: String?
     private var profile: DeviceHouseholdProfile? { profiles.profiles.first { $0.id == profileID && !$0.desktop.isKid } }
     var exists: Bool { profile != nil }
+    var needsLegacyAppearance: Bool { profile?.appearanceInitialized != true }
     var ready: Bool {
         guard error == nil, let profile, profiles.appearanceOwner(profile) == owner, profile.appearanceInitialized == true else { return false }
         return profile.localPhotoID == nil || photos.cachedPhoto(profile.localPhotoID!) != nil
