@@ -12,6 +12,7 @@ import Foundation
     }
     private var entries: [ObjectIdentifier: Entry] = [:]
     private(set) var generation = UUID()
+    var hasOpenPlayers: Bool { entries.values.contains { $0.controller != nil } }
     @discardableResult func register(_ controller: any ProfilePlaybackControlling, generation: UUID) -> Bool {
         guard generation == self.generation else { controller.close(); return false }
         entries = entries.filter { $0.value.controller != nil }
