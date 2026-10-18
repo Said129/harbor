@@ -10,7 +10,7 @@ p = argparse.ArgumentParser(description=__doc__)
 p.add_argument('--output', type=Path, required=True)
 a = p.parse_args()
 application = '49110c6786903d6480c2febe101d8210f2a4fb9b'
-test_source = '6a0368faf6a8310e0cb59e2bc4759e611c110eaf'
+test_source = 'a4d6092e8902c07a260ece290e21ff0bed294759'
 for revision in [application, test_source]:
     if subprocess.run(['git', 'cat-file', '-e', revision + '^{commit}'], capture_output=True).returncode != 0:
         subprocess.run(['git', 'fetch', '--no-tags', '--depth=1', 'origin', revision], check=True)
@@ -44,6 +44,8 @@ proof = dict(source=os.environ.get('GITHUB_SHA') or subprocess.check_output(['gi
     ordinary_guest_setting='autoHideControls=false; caption and manual next assertions require visible controls',
     previous_failed_run=39121115983,
     previous_functional_pass_run=39145147124,
+    latest_failed_visual_run=39150071547,
+    observed_failure='The actual AX dump contains player-surface as a Button with Preparado; the any-type firstMatch query missed it and attempted the disabled source picker underneath. Use the observed Button type and never tap the hidden picker while player-close exists.',
     visual_followup='Application-scoped rotated images were cropped. Require a hittable caption, capture XCUIScreen.main and retain application/caption/image geometry. Earlier functional passes remain valid.',
     screen_capture_api='XCUIScreen.main.screenshot', expected_geometry_attachments=4,
     actual_ui_cases=['HarborUITests.PlayerCaptionNavigationTests/testActualIPhonePlayerShowsAbsoluteNinetyNineAndAdvancesToOneHundred',
