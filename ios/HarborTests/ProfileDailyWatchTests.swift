@@ -35,7 +35,7 @@ private actor HeldWatchCredential: ProfileCredentialChecking {
 }
 
 @MainActor final class ProfileDailyWatchTests: XCTestCase {
-    private func profiles() throws -> HouseholdProfileStore {
+    private func makeProfiles() throws -> HouseholdProfileStore {
         let value = HouseholdProfileStore(scope: .local(owner: "synthetic-daily-watch"), persistence: WatchProfileMemory())
         _ = try value.create(name: "Primary"); return value
     }
@@ -55,7 +55,7 @@ private actor HeldWatchCredential: ProfileCredentialChecking {
         return "\(value.year!)-\(value.month!)-\(value.day!)"
     }
     func testAdultsNeedNoCounterIOAndOnlyOpenPlayerRegistrationsAccrueTime() async throws {
-        let profiles = try profiles(), memory = WatchTimeMemory(), clock = WatchClock(), playback = ProfilePlaybackRegistry()
+        let profiles = try makeProfiles(), memory = WatchTimeMemory(), clock = WatchClock(), playback = ProfilePlaybackRegistry()
         let budget = store(memory, clock: clock)
         await budget.activate(profiles: profiles)
         XCTAssertTrue(budget.permitsPlayback(profiles: profiles)); XCTAssertEqual(memory.reads, 0); XCTAssertEqual(memory.writes, 0)
@@ -72,7 +72,7 @@ private actor HeldWatchCredential: ProfileCredentialChecking {
         XCTAssertEqual(budget.elapsedSeconds, 1)
     }
     func testLimitClosesRegisteredVideoAndSurvivesReopeningAndSwitchingPeople() async throws {
-        let profiles = try profiles(), memory = WatchTimeMemory(), clock = WatchClock(), playback = ProfilePlaybackRegistry()
+        let profiles = try makeProfiles(), memory = WatchTimeMemory(), clock = WatchClock(), playback = ProfilePlaybackRegistry()
         let one = try child(profiles, name: "One"), two = try child(profiles, name: "Two")
         let firstOwner = owner(one, profiles)
         memory.values[firstOwner] = ProfileDailyWatchRecord(date: day(clock), seconds: 59, unlocked: false)
@@ -82,6 +82,9 @@ private actor HeldWatchCredential: ProfileCredentialChecking {
         await budget.sampleOpenPlayerSecond(profiles: profiles, playback: playback)
         XCTAssertTrue(budget.blocked); XCTAssertEqual(controller.closed, 1)
         XCTAssertFalse(budget.permitsPlayback(profiles: profiles)); XCTAssertEqual(memory.values[firstOwner]?.seconds, 60)
+        let stopped = playback.generation
+        await budget.sampleOpenPlayerSecond(profiles: profiles, playback: playback)
+        XCTAssertEqual(playback.generation, stopped); XCTAssertEqual(controller.closed, 1)
         let restart = store(memory, clock: clock); await restart.activate(profiles: profiles)
         XCTAssertTrue(restart.blocked)
         _ = try await profiles.select(two.id); await restart.activate(profiles: profiles)
@@ -90,7 +93,7 @@ private actor HeldWatchCredential: ProfileCredentialChecking {
         XCTAssertEqual(restart.elapsedSeconds, 60); XCTAssertTrue(restart.blocked)
     }
     func testUnreadableInvalidOrUnwritableCountersCannotEnablePlaybackOrOverwriteFallbacks() async throws {
-        let profiles = try profiles(), memory = WatchTimeMemory(), clock = WatchClock(), playback = ProfilePlaybackRegistry()
+        let profiles = try makeProfiles(), memory = WatchTimeMemory(), clock = WatchClock(), playback = ProfilePlaybackRegistry()
         let row = try child(profiles); _ = try await profiles.select(row.id)
         let key = owner(row, profiles), budget = store(memory, clock: clock)
         memory.failRead = true; await budget.activate(profiles: profiles)
@@ -110,7 +113,7 @@ private actor HeldWatchCredential: ProfileCredentialChecking {
         XCTAssertEqual(memory.values[key]?.seconds, 59)
     }
     func testARealParentPINAllowsTodayWithoutUnlockingEditingOrExitingTheChild() async throws {
-        let profiles = try profiles(), memory = WatchTimeMemory(), clock = WatchClock()
+        let profiles = try makeProfiles(), memory = WatchTimeMemory(), clock = WatchClock()
         let adult = try XCTUnwrap(profiles.active), row = try child(profiles)
         try await profiles.setCredential(row.id, password: "4826", parent: true)
         _ = try await profiles.select(row.id)
@@ -128,7 +131,7 @@ private actor HeldWatchCredential: ProfileCredentialChecking {
         XCTAssertTrue(restart.unlockedToday)
     }
     func testNewLocalDayResetsTimeAndRevokesYesterdayOverrideEvenWithoutAnOpenPlayer() async throws {
-        let profiles = try profiles(), memory = WatchTimeMemory(), clock = WatchClock(), playback = ProfilePlaybackRegistry()
+        let profiles = try makeProfiles(), memory = WatchTimeMemory(), clock = WatchClock(), playback = ProfilePlaybackRegistry()
         let row = try child(profiles); _ = try await profiles.select(row.id)
         let key = owner(row, profiles)
         memory.values[key] = ProfileDailyWatchRecord(date: day(clock), seconds: 60, unlocked: true)
@@ -140,7 +143,7 @@ private actor HeldWatchCredential: ProfileCredentialChecking {
         XCTAssertEqual(memory.values[key]?.date, day(clock)); XCTAssertEqual(memory.values[key]?.unlocked, false)
     }
     func testLockingTheSameChildInvalidatesAnInFlightParentOverride() async throws {
-        let profiles = try profiles(), memory = WatchTimeMemory(), clock = WatchClock(), held = HeldWatchCredential()
+        let profiles = try makeProfiles(), memory = WatchTimeMemory(), clock = WatchClock(), held = HeldWatchCredential()
         let row = try child(profiles)
         try await profiles.setCredential(row.id, password: "4826", parent: true); _ = try await profiles.select(row.id)
         let key = owner(row, profiles)
@@ -152,7 +155,7 @@ private actor HeldWatchCredential: ProfileCredentialChecking {
         XCTAssertFalse(accepted); XCTAssertTrue(budget.blocked); XCTAssertEqual(memory.values[key]?.unlocked, false)
     }
     func testLocalMidnightStartsANewDayBeforeUTCMidnight() async throws {
-        let profiles = try profiles(), memory = WatchTimeMemory(), clock = WatchClock(), playback = ProfilePlaybackRegistry()
+        let profiles = try makeProfiles(), memory = WatchTimeMemory(), clock = WatchClock(), playback = ProfilePlaybackRegistry()
         let row = try child(profiles); _ = try await profiles.select(row.id)
         clock.date = try XCTUnwrap(ISO8601DateFormatter().date(from: "2026-10-18T21:59:59Z"))
         var calendar = Calendar(identifier: .gregorian); calendar.timeZone = TimeZone(secondsFromGMT: 7_200)!

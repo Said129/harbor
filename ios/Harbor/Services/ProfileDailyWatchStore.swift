@@ -108,7 +108,9 @@ struct ProfileDailyWatchRecord: Codable, Equatable, Sendable {
         let expected = generation
         guard var value = record else { return }
         if value.date != today { value = ProfileDailyWatchRecord(date: today, seconds: 0, unlocked: false) }
-        if !value.unlocked && value.seconds >= target.minutes * 60 { playback.stopForProfileChange(); return }
+        if !value.unlocked && value.seconds >= target.minutes * 60 {
+            if playback.hasOpenPlayers { playback.stopForProfileChange() }; return
+        }
         if playback.hasOpenPlayers { value.seconds = min(172_800, value.seconds + 1) }
         guard value != record else { return }
         busy = true
@@ -127,7 +129,7 @@ struct ProfileDailyWatchRecord: Codable, Equatable, Sendable {
     /// Verify the selected child's actual credential, without granting an
     /// editing/exit unlock. UI code cannot submit a Boolean claiming success.
     func unlockToday(pin: String, profiles: HouseholdProfileStore) async throws -> Bool {
-        guard !busy, ready, let target = binding, scope(profiles) == target,
+        guard !busy, ready, blocked, let target = binding, scope(profiles) == target,
               let active = profiles.active, let credential = active.parentCredential,
               DeviceProfileCredential.validPIN(pin), let previous = record, previous.date == today else { return false }
         let expected = generation, security = profiles.securityVersion, date = today
