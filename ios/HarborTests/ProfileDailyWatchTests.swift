@@ -168,4 +168,18 @@ private actor HeldWatchCredential: ProfileCredentialChecking {
         XCTAssertEqual(memory.values[key]?.date, "2026-10-19")
         XCTAssertEqual(budget.elapsedSeconds, 0); XCTAssertFalse(budget.unlockedToday)
     }
+    func testAValidParentPINCannotGrantExtraTimeWhenTheOverrideCannotBeSaved() async throws {
+        let profiles = try makeProfiles(), memory = WatchTimeMemory(), clock = WatchClock()
+        let row = try child(profiles)
+        try await profiles.setCredential(row.id, password: "4826", parent: true); _ = try await profiles.select(row.id)
+        let key = owner(row, profiles)
+        memory.values[key] = ProfileDailyWatchRecord(date: day(clock), seconds: 60, unlocked: false)
+        let budget = store(memory, clock: clock); await budget.activate(profiles: profiles)
+        memory.failWrite = true
+        do { _ = try await budget.unlockToday(pin: "4826", profiles: profiles); XCTFail("The override must be durable before more time is allowed") } catch {}
+        XCTAssertFalse(budget.ready); XCTAssertTrue(budget.blocked); XCTAssertFalse(budget.permitsPlayback(profiles: profiles))
+        XCTAssertEqual(memory.values[key]?.unlocked, false)
+        memory.failWrite = false; await budget.activate(profiles: profiles)
+        XCTAssertTrue(budget.blocked); XCTAssertFalse(budget.unlockedToday)
+    }
 }
