@@ -30,7 +30,8 @@ private actor HeldEditingGate: ProfileCredentialChecking {
         XCTAssertTrue(right); XCTAssertFalse(profiles.requiresPIN(secondary.id))
         XCTAssertEqual(profiles.state, state); XCTAssertEqual(memory.writes, writes)
         XCTAssertEqual(profiles.active?.id, primary.id)
-        var draft = HouseholdProfileDraft(profile: secondary); draft.name = "Protected edited"
+        let editable = try XCTUnwrap(profiles.profiles.first { $0.id == secondary.id })
+        var draft = HouseholdProfileDraft(profile: editable); draft.name = "Protected edited"
         _ = try await profiles.saveEditor(draft)
         XCTAssertEqual(profiles.active?.id, primary.id)
         let selected = try await profiles.select(secondary.id)
