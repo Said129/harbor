@@ -1,4 +1,5 @@
 import SwiftUI
+import Combine
 import UIKit
 import UserNotifications
 
@@ -43,6 +44,10 @@ struct HarborApp: App {
                 }
             }.font(HarborTheme.font()).foregroundStyle(HarborTheme.ink).tint(HarborTheme.accent).preferredColorScheme(.dark)
                 .onOpenURL { model.openDocument($0) }
+                .onReceive(NotificationCenter.default.publisher(for: UserDefaults.didChangeNotification).debounce(for: .milliseconds(250), scheduler: RunLoop.main)) { _ in
+                    ProfileSettingsStore.shared.saveCurrent()
+                }
+                .onChange(of: scenePhase) { _, phase in if phase != .active { ProfileSettingsStore.shared.saveCurrent() } }
                 .task { await model.start() }
                 .task(id: String(model.storageReady) + "|" + model.settingsOwner) { if model.storageReady { await SportsReminderService.shared.removeOtherAccounts(owner: model.settingsOwner) } }
                 .task(id: model.personalOwner) { MusicPlayback.shared.stopForAccount(model.personalOwner) }

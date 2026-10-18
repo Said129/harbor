@@ -13,10 +13,10 @@ final class ThemePreferences {
     static let shared = ThemePreferences()
     private let storage = UserDefaults.standard
     let palettes: [NativePalette]
-    var preset = UserDefaults.standard.string(forKey: "iphone.theme.preset") ?? "cool-grey" { didSet { storage.set(preset, forKey: "iphone.theme.preset") } }
-    var custom = UserDefaults.standard.bool(forKey: "iphone.theme.custom") { didSet { storage.set(custom, forKey: "iphone.theme.custom") } }
-    var font = UserDefaults.standard.string(forKey: "iphone.theme.font") ?? "switzer" { didSet { storage.set(font, forKey: "iphone.theme.font") } }
-    var seekBarColor = UserDefaults.standard.string(forKey: "seekBarColor") ?? "" { didSet { storage.set(seekBarColor, forKey: "seekBarColor") } }
+    var preset = UserDefaults.standard.string(forKey: "iphone.theme.preset") ?? "cool-grey" { didSet { persist(preset, forKey: "iphone.theme.preset") } }
+    var custom = UserDefaults.standard.bool(forKey: "iphone.theme.custom") { didSet { persist(custom, forKey: "iphone.theme.custom") } }
+    var font = UserDefaults.standard.string(forKey: "iphone.theme.font") ?? "switzer" { didSet { persist(font, forKey: "iphone.theme.font") } }
+    var seekBarColor = UserDefaults.standard.string(forKey: "seekBarColor") ?? "" { didSet { persist(seekBarColor, forKey: "seekBarColor") } }
     var seekColor: Color {
         guard seekBarColor.range(of: "^#[0-9a-fA-F]{6}$", options: .regularExpression) != nil else { return color("accent") }
         return ProfilePreferences.color(String(seekBarColor.dropFirst()))
@@ -26,7 +26,7 @@ final class ThemePreferences {
         guard UIColor(color).getRed(&red, green: &green, blue: &blue, alpha: &alpha) else { return }
         seekBarColor = String(format: "#%02x%02x%02x", Int((red * 255).rounded()), Int((green * 255).rounded()), Int((blue * 255).rounded()))
     }
-    var customColors: [String: [Double]] = [:] { didSet { if let data = try? JSONEncoder().encode(customColors) { storage.set(data, forKey: "iphone.theme.colors") } } }
+    var customColors: [String: [Double]] = [:] { didSet { if let data = try? JSONEncoder().encode(customColors) { persist(data, forKey: "iphone.theme.colors") } } }
     init() {
         struct Document: Decodable { let palettes: [NativePalette] }
         palettes = Bundle.main.url(forResource: "DesktopThemes", withExtension: "json").flatMap { try? Data(contentsOf: $0) }.flatMap { try? JSONDecoder().decode(Document.self, from: $0).palettes } ?? []
@@ -48,4 +48,17 @@ final class ThemePreferences {
         return (selected?.tokens ?? [:]).merging(customColors) { _, saved in saved }
     }
     func reset() { preset = "cool-grey"; custom = false; customColors = [:]; font = "switzer"; seekBarColor = "" }
+
+    private var reloading = false
+    private func persist(_ value: Any?, forKey key: String) {
+        if !reloading { UserDefaults.standard.set(value, forKey: key) }
+    }
+    func reloadPreferences() {
+        reloading = true; defer { reloading = false }
+        preset = UserDefaults.standard.string(forKey: "iphone.theme.preset") ?? "cool-grey"
+        custom = UserDefaults.standard.bool(forKey: "iphone.theme.custom")
+        font = UserDefaults.standard.string(forKey: "iphone.theme.font") ?? "switzer"
+        seekBarColor = UserDefaults.standard.string(forKey: "seekBarColor") ?? ""
+        customColors = storage.data(forKey: "iphone.theme.colors").flatMap { try? JSONDecoder().decode([String: [Double]].self, from: $0) } ?? [:]
+    }
 }

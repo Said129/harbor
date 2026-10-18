@@ -127,6 +127,11 @@ final class MusicPlayback {
         } else { queue = remaining; played.remove(record.id) }
     }
     func stopForAccount(_ owner: String) { if self.owner != owner { stop(); self.owner = owner } }
+    func reloadPreferences() {
+        shuffle = UserDefaults.standard.bool(forKey: "music.shuffle")
+        repeatMode = MusicRepeat(rawValue: UserDefaults.standard.string(forKey: "music.repeat") ?? "off") ?? .off
+        changeVolume(Self.savedVolume())
+    }
     func stop() {
         poller?.cancel(); poller = nil
         if let handle { mpv_terminate_destroy(handle) }

@@ -158,8 +158,10 @@ final class PlaybackPreferences {
     static let shared = PlaybackPreferences()
     private let storage: UserDefaults
     private static let key = "iphone.player-options.v1"
+    private var reloading = false
     var options: PlaybackOptions {
         didSet {
+            guard !reloading else { return }
             if let data = try? JSONEncoder().encode(options) { storage.set(data, forKey: Self.key) }
         }
     }
@@ -171,5 +173,9 @@ final class PlaybackPreferences {
         var merged = (try? JSONSerialization.jsonObject(with: JSONEncoder().encode(PlaybackOptions()))) as? [String: Any] ?? [:]
         if let data = storage.data(forKey: Self.key), let saved = (try? JSONSerialization.jsonObject(with: data)) as? [String: Any] { merged.merge(saved) { _, saved in saved } }
         options = (try? JSONSerialization.data(withJSONObject: merged)).flatMap { try? JSONDecoder().decode(PlaybackOptions.self, from: $0) } ?? PlaybackOptions()
+    }
+    func reloadPreferences() {
+        reloading = true; defer { reloading = false }
+        options = PlaybackPreferences(storage: storage).options
     }
 }

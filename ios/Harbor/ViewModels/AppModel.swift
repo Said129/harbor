@@ -125,7 +125,7 @@ final class AppModel {
                 try profileContext.save(HouseholdSourceAccount(account: nil, guestAddons: [fallback]))
                 addons = [fallback]
             }
-            await setProgressOwner(progressOwner)
+            try await setProgressOwner(progressOwner)
             await bindLibrary(savedAccount?.session)
             storageReady = true
             Diagnostics.shared.record(.coreReady)
@@ -139,6 +139,7 @@ final class AppModel {
     }
 
     func retryStartup() async {
+        ProfileSettingsStore.shared.reloadIfUnavailable()
         storageReady = false; profileContext.reload(); started = false; error = nil; await start()
     }
 
@@ -147,7 +148,19 @@ final class AppModel {
         catch { progressError = safeMessage(error); Diagnostics.shared.recordFailure(error) }
     }
 
-    private func setProgressOwner(_ owner: String) async {
+    private func setProgressOwner(_ owner: String) async throws {
+        guard let binding = profileContext.binding else { throw HarborError(code: "profile-settings") }
+        let migrateLegacy: Bool
+        switch profileContext.profiles.scope {
+        case .local: migrateLegacy = profileContext.profiles.profiles.contains { $0.legacyOwner == binding.identityOwner }
+        case .harbor: migrateLegacy = false
+        }
+        if ProfileSettingsStore.shared.owner != binding.settingsOwner {
+            try ProfileSettingsStore.shared.activate(owner: binding.settingsOwner, sharedOwner: binding.identityOwner, migrateLegacy: migrateLegacy)
+            InterfacePreferences.shared.reloadPreferences(); ThemePreferences.shared.reloadPreferences()
+            PlaybackPreferences.shared.reloadPreferences(); StreamPreferences.shared.reloadPreferences()
+            MetadataPreferences.shared.reloadPreferences(); MusicPlayback.shared.reloadPreferences()
+        }
         ProfilePreferences.forOwner(user?.id ?? "guest").cloud.bindLayoutOwner(settingsOwner)
         InterfacePreferences.shared.navigation.bind(.local(owner: settingsOwner))
         StreamingPreferences.forOwner(settingsOwner).bind(.local(owner: settingsOwner))
@@ -186,7 +199,7 @@ final class AppModel {
             }
             homeGeneration += 1; rows = []; heroes = []; warnings = []; pages = [:]; home.reset()
             error = nil; accountError = nil; lastAddonRefresh = .distantPast
-            await setProgressOwner(progressOwner); await bindLibrary(savedAccount?.session)
+            try await setProgressOwner(progressOwner); await bindLibrary(savedAccount?.session)
             storageReady = true
             Task { await loadHome(); await refreshAddons() }
             return true
@@ -281,7 +294,7 @@ final class AppModel {
         storageReady = true
         rows = []; heroes = []; warnings = []; accountError = nil
         homeGeneration += 1; pages = [:]; home.reset()
-        if previousProgressOwner != progressOwner { await setProgressOwner(progressOwner) }
+        if previousProgressOwner != progressOwner { try await setProgressOwner(progressOwner) }
         Diagnostics.shared.record(.accountSignedIn, count: addons.count)
         await loadHome()
     }
@@ -355,7 +368,7 @@ final class AppModel {
         savedAccount = nil; addons = guest; rows = []; heroes = []; warnings = []; accountError = nil
         homeGeneration += 1; pages = [:]; home.reset()
         await bindLibrary(nil)
-        await setProgressOwner(progressOwner)
+        try await setProgressOwner(progressOwner)
         Diagnostics.shared.record(.accountSignedOut)
         await loadHome()
     }

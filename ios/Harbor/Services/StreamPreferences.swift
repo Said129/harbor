@@ -5,26 +5,26 @@ import Observation
 final class StreamPreferences {
     static let shared = StreamPreferences()
     var filterLevel = UserDefaults.standard.string(forKey: "streamFilterLevel") ?? "strict" {
-        didSet { UserDefaults.standard.set(filterLevel, forKey: "streamFilterLevel") }
+        didSet { persist(filterLevel, forKey: "streamFilterLevel") }
     }
     var addonOrder = UserDefaults.standard.object(forKey: "streams.addonOrder") as? Bool ?? true {
-        didSet { UserDefaults.standard.set(addonOrder, forKey: "streams.addonOrder") }
+        didSet { persist(addonOrder, forKey: "streams.addonOrder") }
     }
     func configuration() -> StreamFilterConfiguration { .init(level: filterLevel, addonOrder: addonOrder) }
     var automatic = UserDefaults.standard.object(forKey: "streams.automatic") as? Bool ?? true {
-        didSet { UserDefaults.standard.set(automatic, forKey: "streams.automatic") }
+        didSet { persist(automatic, forKey: "streams.automatic") }
     }
     var keepSourceNextEpisode = UserDefaults.standard.object(forKey: "keepSourceNextEpisode") as? Bool ?? false {
-        didSet { UserDefaults.standard.set(keepSourceNextEpisode, forKey: "keepSourceNextEpisode") }
+        didSet { persist(keepSourceNextEpisode, forKey: "keepSourceNextEpisode") }
     }
     var excludeCamera = UserDefaults.standard.object(forKey: "streams.excludeCamera") as? Bool ?? true {
-        didSet { UserDefaults.standard.set(excludeCamera, forKey: "streams.excludeCamera") }
+        didSet { persist(excludeCamera, forKey: "streams.excludeCamera") }
     }
     var maximum = UserDefaults.standard.object(forKey: "streams.maximum") as? Int ?? 2160 {
-        didSet { UserDefaults.standard.set(maximum, forKey: "streams.maximum") }
+        didSet { persist(maximum, forKey: "streams.maximum") }
     }
     var minimum = UserDefaults.standard.object(forKey: "streams.minimum") as? Int ?? 0 {
-        didSet { UserDefaults.standard.set(minimum, forKey: "streams.minimum") }
+        didSet { persist(minimum, forKey: "streams.minimum") }
     }
     func filter(_ offers: [StreamOffer]) -> [StreamOffer] {
         offers.filter { offer in
@@ -100,5 +100,20 @@ extension StreamOffer {
         if ["cam", "ts", "hdts", "tc", "telesync", "telecine", "workprint"].contains(source) { return true }
         let text = [raw["name"].string, raw["title"].string, raw["description"].string].compactMap { $0 }.joined(separator: " ")
         return text.range(of: "(?i)(?:^|[^a-z0-9])(?:hdcam|camrip|cam|hdts|telesync|telecine|tsrip|ts|tc)(?:$|[^a-z0-9])", options: .regularExpression) != nil
+    }
+
+    private var reloading = false
+    private func persist(_ value: Any?, forKey key: String) {
+        if !reloading { UserDefaults.standard.set(value, forKey: key) }
+    }
+    func reloadPreferences() {
+        reloading = true; defer { reloading = false }
+        filterLevel = UserDefaults.standard.string(forKey: "streamFilterLevel") ?? "strict"
+        addonOrder = UserDefaults.standard.object(forKey: "streams.addonOrder") as? Bool ?? true
+        automatic = UserDefaults.standard.object(forKey: "streams.automatic") as? Bool ?? true
+        keepSourceNextEpisode = UserDefaults.standard.object(forKey: "keepSourceNextEpisode") as? Bool ?? false
+        excludeCamera = UserDefaults.standard.object(forKey: "streams.excludeCamera") as? Bool ?? true
+        maximum = UserDefaults.standard.object(forKey: "streams.maximum") as? Int ?? 2160
+        minimum = UserDefaults.standard.object(forKey: "streams.minimum") as? Int ?? 0
     }
 }

@@ -15,13 +15,13 @@ final class MetadataPreferences {
     private(set) var tmdbKey = ""
     var error: String?
     var region = UserDefaults.standard.string(forKey: "metadata.region") ?? "US" {
-        didSet { UserDefaults.standard.set(region, forKey: "metadata.region") }
+        didSet { persist(region, forKey: "metadata.region") }
     }
     var language = UserDefaults.standard.string(forKey: "metadata.language") ?? "es-ES" {
-        didSet { UserDefaults.standard.set(language, forKey: "metadata.language") }
+        didSet { persist(language, forKey: "metadata.language") }
     }
     var translateTitles = UserDefaults.standard.object(forKey: "metadata.translateTitles") as? Bool ?? true {
-        didSet { UserDefaults.standard.set(translateTitles, forKey: "metadata.translateTitles") }
+        didSet { persist(translateTitles, forKey: "metadata.translateTitles") }
     }
     func load() {
         do { tmdbKey = try keychain.read("metadata.tmdb.v1", as: String.self) ?? ""; error = nil }
@@ -34,4 +34,15 @@ final class MetadataPreferences {
         tmdbKey = key; error = nil
     }
     func configuration() -> MetadataConfiguration { MetadataConfiguration(tmdbKey: tmdbKey, region: region, language: language, translateTitles: translateTitles) }
+
+    private var reloading = false
+    private func persist(_ value: Any?, forKey key: String) {
+        if !reloading { UserDefaults.standard.set(value, forKey: key) }
+    }
+    func reloadPreferences() {
+        reloading = true; defer { reloading = false }
+        region = UserDefaults.standard.string(forKey: "metadata.region") ?? "US"
+        language = UserDefaults.standard.string(forKey: "metadata.language") ?? "es-ES"
+        translateTitles = UserDefaults.standard.object(forKey: "metadata.translateTitles") as? Bool ?? true
+    }
 }
