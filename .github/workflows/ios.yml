@@ -36,6 +36,7 @@ on:
             profile-context,
             profile-editor,
             profile-gate,
+            profile-appearance,
             player-caption,
             continuation-sendable,
             anime-episodes,
@@ -117,6 +118,11 @@ jobs:
       - name: Verify the unchanged app and test-only player fixture
         if: ${{ inputs.validation_scope == 'player-caption' }}
         run: python3 scripts/ios/verify-player-caption.py --output ios/build/preserved-player-caption.json
+      - name: Preserve unchanged profile evidence before appearance integration
+        if: ${{ inputs.validation_scope == 'profile-appearance' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 scripts/ios/verify-profile-appearance.py --output ios/build/preserved-profile-appearance.json
       - name: Preserve 62 actual passes before the new normal-profile editing gates
         if: ${{ inputs.validation_scope == 'profile-gate' }}
         env:
@@ -247,7 +253,7 @@ jobs:
             harbor-core
             harbor-ios-bridge
       - name: Verify shared Rust on the Apple build host
-        if: ${{ inputs.validation_scope != 'affected' && inputs.validation_scope != 'sources-search-subtitles' && inputs.validation_scope != 'mobile-sources-subtitles' && inputs.validation_scope != 'stable-mobile' && inputs.validation_scope != 'stable-tablet-ui' && inputs.validation_scope != 'stable-tablet-rotation' && inputs.validation_scope != 'reading-intro' && inputs.validation_scope != 'reading-followup' && inputs.validation_scope != 'reading-final' && inputs.validation_scope != 'reading-tablet-final' && inputs.validation_scope != 'anime-episodes' && inputs.validation_scope != 'anime-episodes-ui' && inputs.validation_scope != 'continuation-parity' && inputs.validation_scope != 'language-reference' && inputs.validation_scope != 'system-maintenance' && inputs.validation_scope != 'navigation-sync' && inputs.validation_scope != 'onboarding-desktop' && inputs.validation_scope != 'service-browser' && inputs.validation_scope != 'streaming-sync' && inputs.validation_scope != 'services-complete' && inputs.validation_scope != 'services-ui' && inputs.validation_scope != 'profile-context' && inputs.validation_scope != 'profile-editor' && inputs.validation_scope != 'profile-gate' && inputs.validation_scope != 'player-caption' }}
+        if: ${{ inputs.validation_scope != 'affected' && inputs.validation_scope != 'sources-search-subtitles' && inputs.validation_scope != 'mobile-sources-subtitles' && inputs.validation_scope != 'stable-mobile' && inputs.validation_scope != 'stable-tablet-ui' && inputs.validation_scope != 'stable-tablet-rotation' && inputs.validation_scope != 'reading-intro' && inputs.validation_scope != 'reading-followup' && inputs.validation_scope != 'reading-final' && inputs.validation_scope != 'reading-tablet-final' && inputs.validation_scope != 'anime-episodes' && inputs.validation_scope != 'anime-episodes-ui' && inputs.validation_scope != 'continuation-parity' && inputs.validation_scope != 'language-reference' && inputs.validation_scope != 'system-maintenance' && inputs.validation_scope != 'navigation-sync' && inputs.validation_scope != 'onboarding-desktop' && inputs.validation_scope != 'service-browser' && inputs.validation_scope != 'streaming-sync' && inputs.validation_scope != 'services-complete' && inputs.validation_scope != 'services-ui' && inputs.validation_scope != 'profile-context' && inputs.validation_scope != 'profile-editor' && inputs.validation_scope != 'profile-gate' && inputs.validation_scope != 'profile-appearance' && inputs.validation_scope != 'player-caption' }}
         shell: bash
         run: |
           set -euo pipefail
@@ -308,7 +314,7 @@ jobs:
             gh release create "iphone-compiler-evidence-$GITHUB_RUN_ID" ios/build/iphone-compiler-evidence.zip --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" --draft --prerelease --title "iPhone compiler evidence $GITHUB_RUN_ID" --notes "Public build diagnostics only. No private account, configured addon URL or installable app."
           fi
       - name: Prepare a clean host for isolated setup model tests
-        if: ${{ inputs.validation_scope == 'onboarding-desktop' || inputs.validation_scope == 'service-browser' || inputs.validation_scope == 'streaming-sync' || inputs.validation_scope == 'services-complete' || inputs.validation_scope == 'services-ui' || inputs.validation_scope == 'profile-context' || inputs.validation_scope == 'profile-editor' || inputs.validation_scope == 'profile-gate' || inputs.validation_scope == 'player-caption' }}
+        if: ${{ inputs.validation_scope == 'onboarding-desktop' || inputs.validation_scope == 'service-browser' || inputs.validation_scope == 'streaming-sync' || inputs.validation_scope == 'services-complete' || inputs.validation_scope == 'services-ui' || inputs.validation_scope == 'profile-context' || inputs.validation_scope == 'profile-editor' || inputs.validation_scope == 'profile-gate' || inputs.validation_scope == 'profile-appearance' || inputs.validation_scope == 'player-caption' }}
         timeout-minutes: 8
         shell: bash
         run: |
@@ -329,6 +335,10 @@ jobs:
           selection=(-only-testing:HarborTests)
           if [[ "${{ inputs.validation_scope }}" == "player-caption" ]]; then
             selection=(-only-testing:HarborTests/PlayerCaptionSeedTests/testPrepareOrdinaryGuestForSyntheticPlayerCaptionUI)
+          elif [[ "${{ inputs.validation_scope }}" == "profile-appearance" ]]; then
+            selection=()
+            while IFS= read -r identifier; do selection+=("-only-testing:$identifier"); done < ios/build/profile-appearance-selection.txt
+            test ${#selection[@]} -eq 23
           elif [[ "${{ inputs.validation_scope }}" == "profile-gate" ]]; then
             selection=(-only-testing:HarborTests/ProfileEditingGateTests)
           elif [[ "${{ inputs.validation_scope }}" == "profile-editor" ]]; then
