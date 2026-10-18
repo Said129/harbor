@@ -39,7 +39,7 @@ struct StreamingCatalogView: View {
                         categories
                         if MetadataPreferences.shared.tmdbKey.isEmpty {
                             ContentUnavailableView {
-                                Label { Text(DesktopInterfaceText.value("Connect TMDB")) } icon: {
+                                Label { Text(DesktopInterfaceText.value("Connect TMDB")).accessibilityIdentifier("service-missing-key") } icon: {
                                     Image("metadata-tmdb").resizable().scaledToFit().frame(width: 32, height: 32).accessibilityHidden(true)
                                 }
                             } description: {
@@ -47,7 +47,7 @@ struct StreamingCatalogView: View {
                             } actions: {
                                 NavigationLink(DesktopInterfaceText.value("Metadata providers")) { MetadataSettingsView() }
                                     .buttonStyle(HarborAccountButtonStyle()).accessibilityIdentifier("service-configure-metadata")
-                            }.padding(.vertical, 28).accessibilityIdentifier("service-missing-key")
+                            }.padding(.vertical, 28)
                         } else {
                             titles
                             if model.loading {
