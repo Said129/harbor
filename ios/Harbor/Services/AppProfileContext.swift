@@ -55,6 +55,9 @@ struct ActiveProfileBinding: Equatable, Sendable {
             && binding.settingsOwner == (active.desktop.settingsLinked ? sharedSettingsOwner(identityOwner: binding.identityOwner) : binding.personalOwner)
     }
     var configuration: HouseholdSourceAccount? { ready ? sessions.current : nil }
+    var householdSettingsOwner: String {
+        sharedSettingsOwner(identityOwner: sessions.identityOwner ?? profiles.profiles.compactMap(\.legacyOwner).first ?? "identity-" + profiles.scope.key)
+    }
 
     init(profiles: HouseholdProfileStore? = nil, sessions: HouseholdSessionVault? = nil, legacy: (any LegacyProfileLoading)? = nil) {
         self.profiles = profiles ?? HouseholdProfileStore(scope: .local(owner: "device-v1"))

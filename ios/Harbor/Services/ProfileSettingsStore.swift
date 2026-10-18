@@ -51,6 +51,7 @@ struct ProfileSettingsState: Codable, Equatable, Sendable {
         "iphone.player-options.v1", "mpvHwdec", "resumePlayback", "resumePrompt", "subtitleAutoSync",
         "streamFilterLevel", "streams.addonOrder", "streams.automatic", "keepSourceNextEpisode", "streams.excludeCamera", "streams.maximum", "streams.minimum",
         "metadata.region", "metadata.language", "metadata.translateTitles", "cwPerProfile", "downloadsCellular",
+        "profilePromptInterval", "defaultProfileId",
         "calendar.monday", "calendar.large", "ebook.fontSize", "ebook.lineHeight", "ebook.margin", "ebook.background", "ebook.font", "ebook.direction",
         "ebook.narrationRate", "ebook.shelfSort", "ebook.pdf.horizontal", "manga.reader.mode", "manga.reader.fit", "manga.reader.background",
         "manga.reader.rtl", "manga.reader.zoom", "manga.reader.autoNextChapter", "manga.reader.navPos", "manga.reader.doubleGap", "manga.reader.focusMode",
@@ -112,6 +113,31 @@ struct ProfileSettingsState: Codable, Equatable, Sendable {
         guard ready, !applying, let owner else { return false }
         do { var next = state; next.documents[owner] = try capture(preserving: next.documents[owner]); try commit(next); error = nil; return true }
         catch { self.error = "Could not save profile settings. The previous saved values are kept."; return false }
+    }
+    func launchPreferences(sharedOwner: String) throws -> ProfileLaunchPreferences {
+        guard ready, !sharedOwner.isEmpty, sharedOwner.utf8.count <= 512 else { throw HarborError(code: "profile-settings") }
+        let document = owner == sharedOwner ? try capture(preserving: state.documents[sharedOwner]) : state.documents[sharedOwner]
+        let values = try document?.values.mapValues(ProfileSettingsDocument.value) ?? [:]
+        let interval = (values["profilePromptInterval"] as? String).flatMap(ProfileLaunchPreferences.Interval.init(rawValue:)) ?? .launch
+        let result = ProfileLaunchPreferences(interval: interval, defaultID: values["defaultProfileId"] as? String ?? "")
+        return result.valid ? result : ProfileLaunchPreferences(interval: interval)
+    }
+    func setLaunchPreferences(_ preferences: ProfileLaunchPreferences, sharedOwner: String, expectedOwner: String) throws {
+        guard ready, owner == expectedOwner, !sharedOwner.isEmpty, sharedOwner.utf8.count <= 512, preferences.valid else { throw HarborError(code: "profile-settings-changed") }
+        var next = state
+        var document = owner == sharedOwner ? try capture(preserving: next.documents[sharedOwner]) : next.documents[sharedOwner] ?? ProfileSettingsDocument()
+        for (key, value) in ["profilePromptInterval": preferences.interval.rawValue, "defaultProfileId": preferences.defaultID] {
+            document.values[key] = try PropertyListSerialization.data(fromPropertyList: ["value": value], format: .binary, options: 0)
+        }
+        next.documents[sharedOwner] = try document.validated()
+        try commit(next)
+        if owner == sharedOwner {
+            applying = true
+            defaults.set(preferences.interval.rawValue, forKey: "profilePromptInterval")
+            defaults.set(preferences.defaultID, forKey: "defaultProfileId")
+            applying = false
+        }
+        error = nil
     }
     func tmdbKey(expectedOwner: String) throws -> String {
         guard ready, owner == expectedOwner, let document = state.documents[expectedOwner] else { throw HarborError(code: "profile-settings-changed") }

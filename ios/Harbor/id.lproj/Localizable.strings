@@ -298,6 +298,7 @@
 "Choose an avatar" = "Pilih avatar";
 "Choose the frame rate the subtitle was authored for." = "Pilih frame rate yang digunakan saat subtitle dibuat.";
 "Choose up to 5 movies or shows you already like. Harbor uses them to tune your featured picks and recommendations. Totally optional." = "Pilih hingga 5 film atau acara yang sudah Anda sukai. Harbor menggunakannya untuk menyesuaikan pilihan unggulan dan rekomendasi Anda. Sepenuhnya opsional.";
+"Choose when Harbor asks you to pick a profile. Timed prompts appear when you return to Harbor." = "Pilih kapan Harbor meminta Anda memilih profil. Pengingat berkala muncul saat Anda kembali ke Harbor.";
 "Choose your language. Your accounts and sources can be configured from your profile and Addons." = "Choose your language. Your accounts and sources can be configured from your profile and Addons.";
 "Ciencia ficción y fantasía" = "Fiksi Ilmiah & Fantasi";
 "Claro" = "Terang";
@@ -390,6 +391,7 @@
 "Crash" = "Crash";
 "Crea tu propia paleta" = "Buat palet Anda sendiri";
 "Create account" = "Buat akun";
+"Create profiles for the people who use Harbor. Each can have its own appearance, settings, and PIN." = "Buat profil untuk orang yang menggunakan Harbor. Masing-masing dapat memiliki tampilan, pengaturan, dan PIN sendiri.";
 "Crime" = "Kriminal";
 "Crime Series" = "Serial Kriminal";
 "Crisp (anime & cartoons)" = "Tajam (anime & kartun)";
@@ -548,6 +550,9 @@
 "Estirar" = "Bentangkan";
 "Event timeline" = "Event timeline";
 "Evento principal de esta noche" = "Acara utama malam ini";
+"Every 15 min" = "Setiap 15 menit";
+"Every 30 min" = "Setiap 30 menit";
+"Every launch" = "Setiap peluncuran";
 "Everything your addons offer, shown as posters. Scroll, search, or filter to what you want." = "Semua yang ditawarkan addon Anda, ditampilkan sebagai poster. Gulir, cari, atau filter untuk menemukan yang Anda inginkan.";
 "Excellence Prize" = "Penghargaan Keunggulan";
 "Exit Picture in Picture" = "Keluar dari Picture in Picture";
@@ -899,6 +904,7 @@
 "Needs at least 10 titles for the Top 10 look" = "Memerlukan setidaknya 10 judul untuk tampilan Top 10";
 "Netflix" = "Netflix";
 "Netflix Originals" = "Netflix Originals";
+"Never" = "Tidak pernah";
 "New Anime Releases" = "Rilisan Anime Baru";
 "New Face Award" = "Penghargaan Wajah Baru";
 "New profile" = "Profil baru";
@@ -923,6 +929,7 @@
 "No catalogs yet" = "Belum ada katalog";
 "No correction" = "Tanpa koreksi";
 "No correction (default)" = "Tanpa koreksi (default)";
+"No default profile" = "Tidak ada profil default";
 "No description available." = "Deskripsi tidak tersedia.";
 "No episodes found for this season." = "Tidak ditemukan episode untuk musim ini.";
 "No extensions are available on this server." = "No extensions are available on this server.";
@@ -1005,6 +1012,7 @@
 "Open in browser" = "Buka di browser";
 "Open music player" = "Open music player";
 "Open navigation" = "Open navigation";
+"Open this profile at launch. Timed prompts can still appear later. Profiles with a PIN cannot be a default." = "Buka profil ini saat aplikasi dimulai. Permintaan terjadwal tetap dapat muncul nanti. Profil dengan PIN tidak dapat dijadikan default.";
 "Opening book…" = "Opening book…";
 "Options" = "Opsi";
 "Orden de addons" = "Urutan addon";
@@ -1110,6 +1118,7 @@
 "Producer" = "Produser";
 "Profile PIN" = "PIN profil";
 "Profile is locked. Enter the 4-digit PIN to continue." = "Profil terkunci. Masukkan PIN 4 digit untuk melanjutkan.";
+"Profiles" = "Profil";
 "Progreso" = "Progress";
 "Progreso de descarga" = "Download progress";
 "Progress" = "Progress";
@@ -1421,7 +1430,9 @@
 "Standings" = "Klasemen";
 "Start Over" = "Mulai dari Awal";
 "Start Watching" = "Mulai Menonton";
+"Start as" = "Mulai sebagai";
 "Start with subtitles off" = "Mulai dengan subtitle nonaktif";
+"Startup & default" = "Mulai & bawaan";
 "Status" = "Status";
 "Step 1 · Metadata" = "Langkah 1 · Metadata";
 "Step 2 · Stremio" = "Langkah 2 · Stremio";
@@ -1670,6 +1681,7 @@
 "Where to today?" = "Ke mana hari ini?";
 "Where to watch" = "Tempat menonton";
 "Where your video comes from" = "Sumber video Anda";
+"Who's watching" = "Siapa yang menonton";
 "Who's watching?" = "Siapa yang menonton?";
 "Writer" = "Penulis";
 "Wrong PIN" = "PIN salah";

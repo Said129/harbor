@@ -298,6 +298,7 @@
 "Choose an avatar" = "Elige un avatar";
 "Choose the frame rate the subtitle was authored for." = "Elige la velocidad de fotogramas para la que se crearon los subtítulos.";
 "Choose up to 5 movies or shows you already like. Harbor uses them to tune your featured picks and recommendations. Totally optional." = "Elige hasta 5 películas o series que ya te gusten. Harbor las usa para ajustar tus selecciones destacadas y recomendaciones. Es totalmente opcional.";
+"Choose when Harbor asks you to pick a profile. Timed prompts appear when you return to Harbor." = "Elige cuándo Harbor te pide que selecciones un perfil. Los avisos programados aparecen cuando vuelves a Harbor.";
 "Choose your language. Your accounts and sources can be configured from your profile and Addons." = "Elige tu idioma. Puedes configurar tus cuentas y fuentes desde tu perfil y la sección Addons.";
 "Ciencia ficción y fantasía" = "Ciencia ficción y fantasía";
 "Claro" = "Claro";
@@ -390,6 +391,7 @@
 "Crash" = "Cierre inesperado";
 "Crea tu propia paleta" = "Crea tu propia paleta";
 "Create account" = "Crear cuenta";
+"Create profiles for the people who use Harbor. Each can have its own appearance, settings, and PIN." = "Crea perfiles para quienes usan Harbor. Cada uno puede tener su propia apariencia, ajustes y PIN.";
 "Crime" = "Crimen";
 "Crime Series" = "Series de crimen";
 "Crisp (anime & cartoons)" = "Nítido (anime y caricaturas)";
@@ -548,6 +550,9 @@
 "Estirar" = "Estirar";
 "Event timeline" = "Desarrollo del evento";
 "Evento principal de esta noche" = "Evento principal de esta noche";
+"Every 15 min" = "Cada 15 min";
+"Every 30 min" = "Cada 30 min";
+"Every launch" = "En cada inicio";
 "Everything your addons offer, shown as posters. Scroll, search, or filter to what you want." = "Todo lo que ofrecen tus complementos, mostrado como pósteres. Desplázate, busca o filtra hasta encontrar lo que quieras.";
 "Excellence Prize" = "Premio a la excelencia";
 "Exit Picture in Picture" = "Salir de imagen en imagen";
@@ -899,6 +904,7 @@
 "Needs at least 10 titles for the Top 10 look" = "Requiere al menos 10 títulos para el estilo de Top 10";
 "Netflix" = "Netflix";
 "Netflix Originals" = "Originales de Netflix";
+"Never" = "Nunca";
 "New Anime Releases" = "Nuevos estrenos de anime";
 "New Face Award" = "Premio al nuevo rostro";
 "New profile" = "Nuevo perfil";
@@ -923,6 +929,7 @@
 "No catalogs yet" = "Aún no hay catálogos";
 "No correction" = "Sin corrección";
 "No correction (default)" = "Sin corrección (predeterminado)";
+"No default profile" = "Sin perfil predeterminado";
 "No description available." = "No hay descripción disponible.";
 "No episodes found for this season." = "No se encontraron episodios para esta temporada.";
 "No extensions are available on this server." = "No hay extensiones disponibles en este servidor.";
@@ -1005,6 +1012,7 @@
 "Open in browser" = "Abrir en el navegador";
 "Open music player" = "Abrir reproductor de Música";
 "Open navigation" = "Abrir navegación";
+"Open this profile at launch. Timed prompts can still appear later. Profiles with a PIN cannot be a default." = "Abre este perfil al iniciar. Los avisos programados pueden seguir apareciendo más tarde. Los perfiles con PIN no pueden ser predeterminados.";
 "Opening book…" = "Abriendo libro…";
 "Options" = "Opciones";
 "Orden de addons" = "Orden de addons";
@@ -1110,6 +1118,7 @@
 "Producer" = "Productor";
 "Profile PIN" = "PIN del perfil";
 "Profile is locked. Enter the 4-digit PIN to continue." = "El perfil está bloqueado. Ingresa el PIN de 4 dígitos para continuar.";
+"Profiles" = "Perfiles";
 "Progreso" = "Progreso";
 "Progreso de descarga" = "Progreso de descarga";
 "Progress" = "Progreso";
@@ -1421,7 +1430,9 @@
 "Standings" = "Clasificación";
 "Start Over" = "Volver a empezar";
 "Start Watching" = "Comenzar a ver";
+"Start as" = "Iniciar como";
 "Start with subtitles off" = "Comenzar con los subtítulos desactivados";
+"Startup & default" = "Inicio y valores predeterminados";
 "Status" = "Estado";
 "Step 1 · Metadata" = "Paso 1 · Metadatos";
 "Step 2 · Stremio" = "Paso 2 · Stremio";
@@ -1670,6 +1681,7 @@
 "Where to today?" = "¿A dónde vamos hoy?";
 "Where to watch" = "Dónde se emite";
 "Where your video comes from" = "De dónde viene tu video";
+"Who's watching" = "Quién está viendo";
 "Who's watching?" = "¿Quién está viendo?";
 "Writer" = "Guionista";
 "Wrong PIN" = "PIN incorrecto";

@@ -298,6 +298,7 @@
 "Choose an avatar" = "아바타 선택";
 "Choose the frame rate the subtitle was authored for." = "자막 제작 시 기준으로 사용한 프레임 레이트를 선택하세요.";
 "Choose up to 5 movies or shows you already like. Harbor uses them to tune your featured picks and recommendations. Totally optional." = "이미 좋아하는 영화 또는 프로그램을 최대 5개 선택하세요. Harbor가 이를 활용해 추천 콘텐츠와 맞춤 추천을 조정합니다. 선택 사항입니다.";
+"Choose when Harbor asks you to pick a profile. Timed prompts appear when you return to Harbor." = "Harbor에서 프로필 선택을 요청할 시점을 정하세요. 시간 설정에 따른 요청은 Harbor로 돌아올 때 표시됩니다.";
 "Choose your language. Your accounts and sources can be configured from your profile and Addons." = "Choose your language. Your accounts and sources can be configured from your profile and Addons.";
 "Ciencia ficción y fantasía" = "SF & 판타지";
 "Claro" = "라이트";
@@ -390,6 +391,7 @@
 "Crash" = "충돌";
 "Crea tu propia paleta" = "나만의 팔레트 만들기";
 "Create account" = "계정 만들기";
+"Create profiles for the people who use Harbor. Each can have its own appearance, settings, and PIN." = "Harbor를 사용하는 사람마다 프로필을 만드세요. 각자 별도의 모양, 설정, PIN을 사용할 수 있습니다.";
 "Crime" = "범죄";
 "Crime Series" = "범죄 시리즈";
 "Crisp (anime & cartoons)" = "또렷하게(애니메이션 및 만화)";
@@ -548,6 +550,9 @@
 "Estirar" = "늘이기";
 "Event timeline" = "Event timeline";
 "Evento principal de esta noche" = "오늘 밤의 메인 이벤트";
+"Every 15 min" = "15분마다";
+"Every 30 min" = "30분마다";
+"Every launch" = "실행할 때마다";
 "Everything your addons offer, shown as posters. Scroll, search, or filter to what you want." = "애드온에서 제공하는 모든 콘텐츠를 포스터로 표시합니다. 스크롤하거나 검색 또는 필터링해 원하는 콘텐츠를 찾으세요.";
 "Excellence Prize" = "우수상";
 "Exit Picture in Picture" = "화면 속 화면 종료";
@@ -899,6 +904,7 @@
 "Needs at least 10 titles for the Top 10 look" = "상위 10개 스타일에는 작품이 10개 이상 필요합니다";
 "Netflix" = "Netflix";
 "Netflix Originals" = "Netflix 오리지널";
+"Never" = "안 함";
 "New Anime Releases" = "최신 애니메이션";
 "New Face Award" = "신인상";
 "New profile" = "새 프로필";
@@ -923,6 +929,7 @@
 "No catalogs yet" = "아직 카탈로그가 없습니다";
 "No correction" = "보정 안 함";
 "No correction (default)" = "보정 안 함(기본값)";
+"No default profile" = "기본 프로필 없음";
 "No description available." = "설명이 없습니다.";
 "No episodes found for this season." = "이 시즌의 에피소드를 찾을 수 없습니다.";
 "No extensions are available on this server." = "No extensions are available on this server.";
@@ -1005,6 +1012,7 @@
 "Open in browser" = "브라우저에서 열기";
 "Open music player" = "Open music player";
 "Open navigation" = "Open navigation";
+"Open this profile at launch. Timed prompts can still appear later. Profiles with a PIN cannot be a default." = "시작할 때 이 프로필을 엽니다. 이후에도 시간에 따른 확인 메시지가 표시될 수 있습니다. PIN이 있는 프로필은 기본으로 설정할 수 없습니다.";
 "Opening book…" = "Opening book…";
 "Options" = "옵션";
 "Orden de addons" = "애드온 순서";
@@ -1110,6 +1118,7 @@
 "Producer" = "프로듀서";
 "Profile PIN" = "프로필 PIN";
 "Profile is locked. Enter the 4-digit PIN to continue." = "프로필이 잠겨 있습니다. 계속하려면 4자리 PIN을 입력하세요.";
+"Profiles" = "프로필";
 "Progreso" = "Progress";
 "Progreso de descarga" = "Download progress";
 "Progress" = "Progress";
@@ -1421,7 +1430,9 @@
 "Standings" = "순위";
 "Start Over" = "처음부터 재생";
 "Start Watching" = "시청 시작";
+"Start as" = "시작 프로필";
 "Start with subtitles off" = "자막을 끈 상태로 시작";
+"Startup & default" = "시작 및 기본값";
 "Status" = "상태";
 "Step 1 · Metadata" = "1단계 · 메타데이터";
 "Step 2 · Stremio" = "2단계 · Stremio";
@@ -1670,6 +1681,7 @@
 "Where to today?" = "오늘은 어디로 갈까요?";
 "Where to watch" = "시청 가능한 곳";
 "Where your video comes from" = "동영상 제공 출처";
+"Who's watching" = "시청자 선택";
 "Who's watching?" = "누가 시청하나요?";
 "Writer" = "작가";
 "Wrong PIN" = "PIN이 올바르지 않습니다";

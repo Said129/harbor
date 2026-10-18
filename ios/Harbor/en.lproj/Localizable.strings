@@ -234,6 +234,7 @@
 "Chapters" = "Chapters";
 "Choose an avatar" = "Choose an avatar";
 "Choose the frame rate the subtitle was authored for." = "Choose the frame rate the subtitle was authored for.";
+"Choose when Harbor asks you to pick a profile. Timed prompts appear when you return to Harbor." = "Choose when Harbor asks you to pick a profile. Timed prompts appear when you return to Harbor.";
 "Choose your language. Your accounts and sources can be configured from your profile and Addons." = "Choose your language. Your accounts and sources can be configured from your profile and Addons.";
 "Ciencia ficción y fantasía" = "Sci-Fi & Fantasy";
 "Claro" = "Light";
@@ -316,6 +317,7 @@
 "Could not save your choices. Try again." = "Could not save your choices. Try again.";
 "Couldn't auto-sync" = "Couldn't auto-sync";
 "Crea tu propia paleta" = "Build your own palette";
+"Create profiles for the people who use Harbor. Each can have its own appearance, settings, and PIN." = "Create profiles for the people who use Harbor. Each can have its own appearance, settings, and PIN.";
 "Crime Series" = "Crime Series";
 "Crisp (anime & cartoons)" = "Crisp (anime & cartoons)";
 "Cuando presionas Reproducir" = "When you press Play";
@@ -754,6 +756,7 @@
 "No catalogs yet" = "No catalogs yet";
 "No correction" = "No correction";
 "No correction (default)" = "No correction (default)";
+"No default profile" = "No default profile";
 "No description available." = "No description available.";
 "No episodes found for this season." = "No episodes found for this season.";
 "No extensions are available on this server." = "No extensions are available on this server.";
@@ -825,6 +828,7 @@
 "Open in browser" = "Open in browser";
 "Open music player" = "Open music player";
 "Open navigation" = "Open navigation";
+"Open this profile at launch. Timed prompts can still appear later. Profiles with a PIN cannot be a default." = "Open this profile at launch. Timed prompts can still appear later. Profiles with a PIN cannot be a default.";
 "Opening book…" = "Opening book…";
 "Options" = "Options";
 "Orden de addons" = "Addon order";
@@ -1375,6 +1379,7 @@
 "Where it shows" = "Where it shows";
 "Where to watch" = "Where to watch";
 "Where your video comes from" = "Where your video comes from";
+"Who's watching" = "Who's watching";
 "Writer" = "Writer";
 "Xtream server" = "Xtream server";
 "You've reached the end · {n} addons" = "You've reached the end · {n} addons";

@@ -302,6 +302,7 @@
 "Choose an avatar" = "Выберите аватар";
 "Choose the frame rate the subtitle was authored for." = "Выберите частоту кадров, для которой были созданы субтитры.";
 "Choose up to 5 movies or shows you already like. Harbor uses them to tune your featured picks and recommendations. Totally optional." = "Выберите до 5 фильмов или сериалов, которые вам нравятся. Harbor учтёт их в подборках и рекомендациях. Это необязательно.";
+"Choose when Harbor asks you to pick a profile. Timed prompts appear when you return to Harbor." = "Выберите, когда Harbor предлагает выбрать профиль. Запросы по таймеру появляются при возвращении в Harbor.";
 "Choose your language. Your accounts and sources can be configured from your profile and Addons." = "Choose your language. Your accounts and sources can be configured from your profile and Addons.";
 "Ciencia ficción y fantasía" = "Фантастика и фэнтези";
 "Claro" = "Светлая";
@@ -394,6 +395,7 @@
 "Crash" = "Сбой";
 "Crea tu propia paleta" = "Создать свою палитру";
 "Create account" = "Создать аккаунт";
+"Create profiles for the people who use Harbor. Each can have its own appearance, settings, and PIN." = "Создайте профили для пользователей Harbor. У каждого могут быть свои оформление, настройки и PIN-код.";
 "Crime" = "Криминал";
 "Crime Series" = "Криминальные сериалы";
 "Crisp (anime & cartoons)" = "Чётко (аниме и мультфильмы)";
@@ -552,6 +554,9 @@
 "Estirar" = "Растянуть";
 "Event timeline" = "Event timeline";
 "Evento principal de esta noche" = "Главное событие вечера";
+"Every 15 min" = "Каждые 15 мин";
+"Every 30 min" = "Каждые 30 мин";
+"Every launch" = "При каждом запуске";
 "Everything your addons offer, shown as posters. Scroll, search, or filter to what you want." = "Всё, что предлагают ваши дополнения, в виде постеров. Прокручивайте, ищите или фильтруйте.";
 "Excellence Prize" = "Приз за выдающиеся достижения";
 "Exit Picture in Picture" = "Выйти из картинки в картинке";
@@ -906,6 +911,7 @@
 "Needs at least 10 titles for the Top 10 look" = "Для вида Топ-10 нужно минимум 10 материалов";
 "Netflix" = "Netflix";
 "Netflix Originals" = "Оригиналы Netflix";
+"Never" = "Никогда";
 "Never shown again" = "Never shown again";
 "New Anime Releases" = "Новинки аниме";
 "New Face Award" = "Премия «Новое лицо»";
@@ -931,6 +937,7 @@
 "No catalogs yet" = "Каталогов пока нет";
 "No correction" = "Без коррекции";
 "No correction (default)" = "Без коррекции (по умолчанию)";
+"No default profile" = "Нет профиля по умолчанию";
 "No description available." = "Описание недоступно.";
 "No episodes found for this season." = "Для этого сезона серии не найдены.";
 "No extensions are available on this server." = "No extensions are available on this server.";
@@ -1014,6 +1021,7 @@
 "Open in browser" = "Открыть в браузере";
 "Open music player" = "Open music player";
 "Open navigation" = "Open navigation";
+"Open this profile at launch. Timed prompts can still appear later. Profiles with a PIN cannot be a default." = "Открывать этот профиль при запуске. Запросы по таймеру могут появляться и позже. Профиль с PIN-кодом нельзя сделать профилем по умолчанию.";
 "Opening book…" = "Открытие книги…";
 "Options" = "Параметры";
 "Orden de addons" = "Порядок дополнений";
@@ -1121,6 +1129,7 @@
 "Producer" = "Продюсер";
 "Profile PIN" = "PIN профиля";
 "Profile is locked. Enter the 4-digit PIN to continue." = "Профиль заблокирован. Введите 4-значный PIN, чтобы продолжить.";
+"Profiles" = "Профили";
 "Progreso" = "Progress";
 "Progreso de descarga" = "Download progress";
 "Progress" = "Progress";
@@ -1434,7 +1443,9 @@
 "Standings" = "Турнирная таблица";
 "Start Over" = "Начать сначала";
 "Start Watching" = "Начать просмотр";
+"Start as" = "Запускать как";
 "Start with subtitles off" = "Запускать с выключенными субтитрами";
+"Startup & default" = "Запуск и профиль по умолчанию";
 "Status" = "Статус";
 "Step 1 · Metadata" = "Шаг 1 · Метаданные";
 "Step 2 · Stremio" = "Шаг 2 · Stremio";
@@ -1683,6 +1694,7 @@
 "Where to today?" = "Куда сегодня?";
 "Where to watch" = "Где смотреть";
 "Where your video comes from" = "Источники видео";
+"Who's watching" = "Кто смотрит";
 "Who's watching?" = "Кто смотрит?";
 "Writer" = "Сценарист";
 "Wrong PIN" = "Неверный PIN";

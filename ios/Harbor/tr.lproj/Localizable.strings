@@ -298,6 +298,7 @@
 "Choose an avatar" = "Bir avatar seçin";
 "Choose the frame rate the subtitle was authored for." = "Altyazının hazırlandığı kare hızını seçin.";
 "Choose up to 5 movies or shows you already like. Harbor uses them to tune your featured picks and recommendations. Totally optional." = "Sevdiğiniz en fazla 5 film veya diziyi seçin. Harbor bunları öne çıkan içerikleri ve önerileri size göre kişiselleştirmek için kullanır. Tamamen isteğe bağlıdır.";
+"Choose when Harbor asks you to pick a profile. Timed prompts appear when you return to Harbor." = "Harbor'ın ne zaman profil seçmenizi isteyeceğini belirleyin. Zamanlanmış istemler Harbor'a döndüğünüzde görünür.";
 "Choose your language. Your accounts and sources can be configured from your profile and Addons." = "Choose your language. Your accounts and sources can be configured from your profile and Addons.";
 "Ciencia ficción y fantasía" = "Bilim Kurgu ve Fantastik";
 "Claro" = "Açık";
@@ -390,6 +391,7 @@
 "Crash" = "Çökme";
 "Crea tu propia paleta" = "Kendi paletinizi oluşturun";
 "Create account" = "Hesap oluştur";
+"Create profiles for the people who use Harbor. Each can have its own appearance, settings, and PIN." = "Harbor'ı kullanan kişiler için profiller oluşturun. Her birinin kendi görünümü, ayarları ve PIN'i olabilir.";
 "Crime" = "Suç";
 "Crime Series" = "Suç Dizileri";
 "Crisp (anime & cartoons)" = "Net (anime ve çizgi film)";
@@ -548,6 +550,9 @@
 "Estirar" = "Esnet";
 "Event timeline" = "Event timeline";
 "Evento principal de esta noche" = "Bu gecenin büyük olayı";
+"Every 15 min" = "15 dakikada bir";
+"Every 30 min" = "30 dakikada bir";
+"Every launch" = "Her açılışta";
 "Everything your addons offer, shown as posters. Scroll, search, or filter to what you want." = "Eklentilerinizin sunduğu her şey posterlerle gösterilir. Kaydırın, arayın veya istediğinizi bulmak için filtreleyin.";
 "Excellence Prize" = "Mükemmellik Ödülü";
 "Exit Picture in Picture" = "Resim İçinde Resim modundan çık";
@@ -899,6 +904,7 @@
 "Needs at least 10 titles for the Top 10 look" = "İlk 10 görünümü için en az 10 içerik gerekir";
 "Netflix" = "Netflix";
 "Netflix Originals" = "Netflix Orijinal Yapımları";
+"Never" = "Asla";
 "New Anime Releases" = "Yeni Çıkan Animeler";
 "New Face Award" = "Yeni Yüz Ödülü";
 "New profile" = "Yeni profil";
@@ -923,6 +929,7 @@
 "No catalogs yet" = "Henüz katalog yok";
 "No correction" = "Düzeltme yok";
 "No correction (default)" = "Düzeltme yok (varsayılan)";
+"No default profile" = "Varsayılan profil yok";
 "No description available." = "Açıklama yok.";
 "No episodes found for this season." = "Bu sezon için bölüm bulunamadı.";
 "No extensions are available on this server." = "No extensions are available on this server.";
@@ -1005,6 +1012,7 @@
 "Open in browser" = "Tarayıcıda aç";
 "Open music player" = "Open music player";
 "Open navigation" = "Open navigation";
+"Open this profile at launch. Timed prompts can still appear later. Profiles with a PIN cannot be a default." = "Başlangıçta bu profili açın. Süreli profil istemleri daha sonra yine görünebilir. PIN korumalı profiller varsayılan yapılamaz.";
 "Opening book…" = "Opening book…";
 "Options" = "Seçenekler";
 "Orden de addons" = "Eklenti sırası";
@@ -1110,6 +1118,7 @@
 "Producer" = "Yapımcı";
 "Profile PIN" = "Profil PIN'i";
 "Profile is locked. Enter the 4-digit PIN to continue." = "Profil kilitli. Devam etmek için 4 haneli PIN'i girin.";
+"Profiles" = "Profiller";
 "Progreso" = "Progress";
 "Progreso de descarga" = "Download progress";
 "Progress" = "Progress";
@@ -1421,7 +1430,9 @@
 "Standings" = "Puan durumu";
 "Start Over" = "Baştan Başlat";
 "Start Watching" = "İzlemeye Başla";
+"Start as" = "Başlangıç profili";
 "Start with subtitles off" = "Altyazıları kapalı başlat";
+"Startup & default" = "Başlangıç ve varsayılan";
 "Status" = "Durum";
 "Step 1 · Metadata" = "1. Adım · Meta veriler";
 "Step 2 · Stremio" = "2. Adım · Stremio";
@@ -1670,6 +1681,7 @@
 "Where to today?" = "Bugün nereye?";
 "Where to watch" = "Nerede izlenir";
 "Where your video comes from" = "Video kaynakları";
+"Who's watching" = "Kim izliyor?";
 "Who's watching?" = "Kim izliyor?";
 "Writer" = "Senarist";
 "Wrong PIN" = "Yanlış PIN";

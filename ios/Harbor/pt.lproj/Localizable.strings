@@ -314,6 +314,7 @@
 "Choose an avatar" = "Escolha um avatar";
 "Choose the frame rate the subtitle was authored for." = "Escolha a taxa de fotogramas para a qual a legenda foi criada.";
 "Choose up to 5 movies or shows you already like. Harbor uses them to tune your featured picks and recommendations. Totally optional." = "Escolha até 5 filmes ou séries que você já gosta. O Harbor os usa para ajustar seus destaques e recomendações. Totalmente opcional.";
+"Choose when Harbor asks you to pick a profile. Timed prompts appear when you return to Harbor." = "Escolha quando o Harbor deve pedir que você selecione um perfil. Os pedidos programados aparecem quando você volta ao Harbor.";
 "Choose your language. Your accounts and sources can be configured from your profile and Addons." = "Choose your language. Your accounts and sources can be configured from your profile and Addons.";
 "Ciencia ficción y fantasía" = "Ficção Científica e Fantasia";
 "Claro" = "Claro";
@@ -410,6 +411,7 @@
 "Crash" = "Falha";
 "Crea tu propia paleta" = "Crie sua própria paleta";
 "Create account" = "Criar conta";
+"Create profiles for the people who use Harbor. Each can have its own appearance, settings, and PIN." = "Crie perfis para quem usa o Harbor. Cada um pode ter sua própria aparência, configurações e PIN.";
 "Crime" = "Crime";
 "Crime Series" = "Séries de Crime";
 "Crisp (anime & cartoons)" = "Nítido (anime e desenhos)";
@@ -568,6 +570,9 @@
 "Estirar" = "Esticar";
 "Event timeline" = "Event timeline";
 "Evento principal de esta noche" = "O evento principal da noite";
+"Every 15 min" = "A cada 15 min";
+"Every 30 min" = "A cada 30 min";
+"Every launch" = "A cada inicialização";
 "Everything your addons offer, shown as posters. Scroll, search, or filter to what you want." = "Tudo o que seus complementos oferecem, exibido como pôsteres. Role, pesquise ou filtre para encontrar o que você quer.";
 "Excellence Prize" = "Prêmio de Excelência";
 "Exit Picture in Picture" = "Sair do Picture in Picture";
@@ -919,6 +924,7 @@
 "Needs at least 10 titles for the Top 10 look" = "Precisa de pelo menos 10 títulos para o visual Top 10";
 "Netflix" = "Netflix";
 "Netflix Originals" = "Originais Netflix";
+"Never" = "Nunca";
 "New Anime Releases" = "Novos Lançamentos de Anime";
 "New Face Award" = "Prêmio Novo Talento";
 "New profile" = "Novo perfil";
@@ -943,6 +949,7 @@
 "No catalogs yet" = "Nenhum catálogo ainda";
 "No correction" = "Sem correção";
 "No correction (default)" = "Sem correção (padrão)";
+"No default profile" = "Nenhum perfil padrão";
 "No description available." = "Nenhuma descrição disponível.";
 "No episodes found for this season." = "Nenhum episódio encontrado para esta temporada.";
 "No extensions are available on this server." = "No extensions are available on this server.";
@@ -1025,6 +1032,7 @@
 "Open in browser" = "Abrir no navegador";
 "Open music player" = "Open music player";
 "Open navigation" = "Open navigation";
+"Open this profile at launch. Timed prompts can still appear later. Profiles with a PIN cannot be a default." = "Abra este perfil ao iniciar. Os pedidos programados ainda podem aparecer depois. Perfis com PIN não podem ser definidos como padrão.";
 "Opening book…" = "Abrindo livro…";
 "Options" = "Opções";
 "Orden de addons" = "Ordem dos addons";
@@ -1130,6 +1138,7 @@
 "Producer" = "Produtor";
 "Profile PIN" = "PIN do perfil";
 "Profile is locked. Enter the 4-digit PIN to continue." = "O perfil está bloqueado. Digite o PIN de 4 dígitos para continuar.";
+"Profiles" = "Perfis";
 "Progreso" = "Progress";
 "Progreso de descarga" = "Download progress";
 "Progress" = "Progress";
@@ -1443,7 +1452,9 @@
 "Standings" = "Classificação";
 "Start Over" = "Começar de Novo";
 "Start Watching" = "Começar a Assistir";
+"Start as" = "Iniciar como";
 "Start with subtitles off" = "Iniciar com legendas desativadas";
+"Startup & default" = "Inicialização e padrão";
 "Status" = "Status";
 "Step 1 · Metadata" = "Etapa 1 · Metadados";
 "Step 2 · Stremio" = "Etapa 2 · Stremio";
@@ -1693,6 +1704,7 @@
 "Where to today?" = "Para onde hoje?";
 "Where to watch" = "Onde assistir";
 "Where your video comes from" = "De onde vem o seu vídeo";
+"Who's watching" = "Quem está assistindo";
 "Who's watching?" = "Quem está assistindo?";
 "Women's Africa Cup of Nations" = "Copa Africana de Nações Feminina";
 "World Cup Qualifying: AFC" = "Eliminatórias da Copa do Mundo: Ásia";

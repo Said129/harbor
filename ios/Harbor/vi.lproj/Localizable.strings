@@ -298,6 +298,7 @@
 "Choose an avatar" = "Chọn ảnh đại diện";
 "Choose the frame rate the subtitle was authored for." = "Chọn tốc độ khung hình dùng khi tạo phụ đề.";
 "Choose up to 5 movies or shows you already like. Harbor uses them to tune your featured picks and recommendations. Totally optional." = "Chọn tối đa 5 phim lẻ hoặc phim bộ bạn đã thích. Harbor sẽ dùng chúng để điều chỉnh các đề xuất nổi bật và nội dung gợi ý. Hoàn toàn không bắt buộc.";
+"Choose when Harbor asks you to pick a profile. Timed prompts appear when you return to Harbor." = "Chọn khi nào Harbor yêu cầu chọn hồ sơ. Lời nhắc theo thời gian xuất hiện khi bạn quay lại Harbor.";
 "Choose your language. Your accounts and sources can be configured from your profile and Addons." = "Choose your language. Your accounts and sources can be configured from your profile and Addons.";
 "Ciencia ficción y fantasía" = "Khoa học viễn tưởng & kỳ ảo";
 "Claro" = "Sáng";
@@ -390,6 +391,7 @@
 "Crash" = "Sự cố";
 "Crea tu propia paleta" = "Tạo bảng màu riêng";
 "Create account" = "Tạo tài khoản";
+"Create profiles for the people who use Harbor. Each can have its own appearance, settings, and PIN." = "Tạo hồ sơ cho những người dùng Harbor. Mỗi hồ sơ có thể có giao diện, cài đặt và mã PIN riêng.";
 "Crime" = "Tội phạm";
 "Crime Series" = "Phim bộ tội phạm";
 "Crisp (anime & cartoons)" = "Sắc nét (anime & hoạt hình)";
@@ -548,6 +550,9 @@
 "Estirar" = "Kéo giãn";
 "Event timeline" = "Event timeline";
 "Evento principal de esta noche" = "Sự kiện chính tối nay";
+"Every 15 min" = "Mỗi 15 phút";
+"Every 30 min" = "Mỗi 30 phút";
+"Every launch" = "Mỗi lần khởi chạy";
 "Everything your addons offer, shown as posters. Scroll, search, or filter to what you want." = "Mọi nội dung từ các tiện ích bổ sung của bạn đều được hiển thị dưới dạng áp phích. Cuộn, tìm kiếm hoặc lọc để tìm nội dung bạn muốn.";
 "Excellence Prize" = "Giải Xuất sắc";
 "Exit Picture in Picture" = "Thoát chế độ Hình trong hình";
@@ -899,6 +904,7 @@
 "Needs at least 10 titles for the Top 10 look" = "Cần ít nhất 10 tựa phim để hiển thị theo dạng Top 10";
 "Netflix" = "Netflix";
 "Netflix Originals" = "Nội dung gốc Netflix";
+"Never" = "Không bao giờ";
 "New Anime Releases" = "Anime mới phát hành";
 "New Face Award" = "Giải Gương mặt mới";
 "New profile" = "Hồ sơ mới";
@@ -923,6 +929,7 @@
 "No catalogs yet" = "Chưa có danh mục";
 "No correction" = "Không hiệu chỉnh";
 "No correction (default)" = "Không hiệu chỉnh (mặc định)";
+"No default profile" = "Không có hồ sơ mặc định";
 "No description available." = "Không có mô tả.";
 "No episodes found for this season." = "Không tìm thấy tập nào cho mùa này.";
 "No extensions are available on this server." = "No extensions are available on this server.";
@@ -1005,6 +1012,7 @@
 "Open in browser" = "Mở trong trình duyệt";
 "Open music player" = "Open music player";
 "Open navigation" = "Open navigation";
+"Open this profile at launch. Timed prompts can still appear later. Profiles with a PIN cannot be a default." = "Mở hồ sơ này khi khởi động. Lời nhắc theo thời gian vẫn có thể xuất hiện sau đó. Không thể đặt hồ sơ có mã PIN làm mặc định.";
 "Opening book…" = "Opening book…";
 "Options" = "Tùy chọn";
 "Orden de addons" = "Thứ tự tiện ích bổ sung";
@@ -1110,6 +1118,7 @@
 "Producer" = "Nhà sản xuất";
 "Profile PIN" = "Mã PIN hồ sơ";
 "Profile is locked. Enter the 4-digit PIN to continue." = "Hồ sơ đã bị khóa. Nhập mã PIN 4 chữ số để tiếp tục.";
+"Profiles" = "Hồ sơ";
 "Progreso" = "Progress";
 "Progreso de descarga" = "Download progress";
 "Progress" = "Progress";
@@ -1421,7 +1430,9 @@
 "Standings" = "Bảng xếp hạng";
 "Start Over" = "Phát lại từ đầu";
 "Start Watching" = "Bắt đầu xem";
+"Start as" = "Bắt đầu với";
 "Start with subtitles off" = "Tắt phụ đề khi bắt đầu";
+"Startup & default" = "Khởi động và mặc định";
 "Status" = "Trạng thái";
 "Step 1 · Metadata" = "Bước 1 · Siêu dữ liệu";
 "Step 2 · Stremio" = "Bước 2 · Stremio";
@@ -1670,6 +1681,7 @@
 "Where to today?" = "Hôm nay đi đâu?";
 "Where to watch" = "Xem ở đâu";
 "Where your video comes from" = "Nguồn video";
+"Who's watching" = "Ai đang xem";
 "Who's watching?" = "Ai đang xem?";
 "Writer" = "Biên kịch";
 "Wrong PIN" = "Sai mã PIN";

@@ -298,6 +298,7 @@
 "Choose an avatar" = "アバターを選択";
 "Choose the frame rate the subtitle was authored for." = "字幕の作成時に使用されたフレームレートを選択してください。";
 "Choose up to 5 movies or shows you already like. Harbor uses them to tune your featured picks and recommendations. Totally optional." = "好きな映画や番組を最大5作品選んでください。Harborが注目作品やおすすめを好みに合わせて調整します。選択は任意です。";
+"Choose when Harbor asks you to pick a profile. Timed prompts appear when you return to Harbor." = "Harborでプロフィールの選択を求めるタイミングを選びます。時間に基づく確認は、Harborに戻ったときに表示されます。";
 "Choose your language. Your accounts and sources can be configured from your profile and Addons." = "Choose your language. Your accounts and sources can be configured from your profile and Addons.";
 "Ciencia ficción y fantasía" = "SF＆ファンタジー";
 "Claro" = "ライト";
@@ -390,6 +391,7 @@
 "Crash" = "クラッシュ";
 "Crea tu propia paleta" = "独自のパレットを作成";
 "Create account" = "アカウントを作成";
+"Create profiles for the people who use Harbor. Each can have its own appearance, settings, and PIN." = "Harbor を使う人ごとにプロフィールを作成します。外観、設定、PIN を個別に設定できます。";
 "Crime" = "犯罪";
 "Crime Series" = "犯罪シリーズ";
 "Crisp (anime & cartoons)" = "くっきり（アニメ・カートゥーン）";
@@ -548,6 +550,9 @@
 "Estirar" = "引き伸ばす";
 "Event timeline" = "Event timeline";
 "Evento principal de esta noche" = "今夜のメイン";
+"Every 15 min" = "15分ごと";
+"Every 30 min" = "30分ごと";
+"Every launch" = "起動するたび";
 "Everything your addons offer, shown as posters. Scroll, search, or filter to what you want." = "アドオンが提供するすべてのコンテンツをポスター形式で表示します。スクロール、検索、フィルターで見たいものを探せます。";
 "Excellence Prize" = "優秀賞";
 "Exit Picture in Picture" = "ピクチャ・イン・ピクチャを終了";
@@ -899,6 +904,7 @@
 "Needs at least 10 titles for the Top 10 look" = "トップ10表示には10作品以上が必要です";
 "Netflix" = "Netflix";
 "Netflix Originals" = "Netflixオリジナル";
+"Never" = "しない";
 "New Anime Releases" = "新作アニメ";
 "New Face Award" = "新人賞";
 "New profile" = "新しいプロフィール";
@@ -923,6 +929,7 @@
 "No catalogs yet" = "カタログはまだありません";
 "No correction" = "補正なし";
 "No correction (default)" = "補正なし（デフォルト）";
+"No default profile" = "既定のプロフィールなし";
 "No description available." = "説明はありません。";
 "No episodes found for this season." = "このシーズンのエピソードが見つかりません。";
 "No extensions are available on this server." = "No extensions are available on this server.";
@@ -1005,6 +1012,7 @@
 "Open in browser" = "ブラウザで開く";
 "Open music player" = "Open music player";
 "Open navigation" = "Open navigation";
+"Open this profile at launch. Timed prompts can still appear later. Profiles with a PIN cannot be a default." = "起動時にこのプロフィールを開きます。その後も時間による確認は表示される場合があります。PIN 付きのプロフィールは既定にできません。";
 "Opening book…" = "Opening book…";
 "Options" = "オプション";
 "Orden de addons" = "アドオン順";
@@ -1110,6 +1118,7 @@
 "Producer" = "プロデューサー";
 "Profile PIN" = "プロフィールPIN";
 "Profile is locked. Enter the 4-digit PIN to continue." = "プロフィールはロックされています。続行するには4桁のPINを入力してください。";
+"Profiles" = "プロフィール";
 "Progreso" = "Progress";
 "Progreso de descarga" = "Download progress";
 "Progress" = "Progress";
@@ -1421,7 +1430,9 @@
 "Standings" = "順位表";
 "Start Over" = "最初から再生";
 "Start Watching" = "視聴を開始";
+"Start as" = "起動プロフィール";
 "Start with subtitles off" = "字幕をオフで再生開始";
+"Startup & default" = "起動とデフォルト";
 "Status" = "ステータス";
 "Step 1 · Metadata" = "ステップ1 · メタデータ";
 "Step 2 · Stremio" = "ステップ2 · Stremio";
@@ -1670,6 +1681,7 @@
 "Where to today?" = "今日はどこへ？";
 "Where to watch" = "視聴方法";
 "Where your video comes from" = "動画の配信元";
+"Who's watching" = "視聴する人";
 "Who's watching?" = "どなたが視聴しますか？";
 "Writer" = "脚本家";
 "Wrong PIN" = "PINが違います";

@@ -1,11 +1,12 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-18",
+  "updatedAt": "2026-10-19",
   "authority": "Explicit scope change by the repository owner in the current conversation",
   "status": "in_progress_full_desktop_parity",
   "objective": "Complete a native iPhone/iPad port with functional and visual 1:1 equivalence to Harbor Desktop 0.9.132 Beta. Exclude Games, child profiles and the Kids section by explicit owner instruction; adapt mobile interactions and document concrete reasons for other incompatible or inapplicable PC functions. Preserve implemented features within the current scope and approved unchanged tests; finish outstanding behaviors and validate affected increments.",
   "supersedes": "The narrower selected-mobile-features scope established on 2026-10-06.",
   "scopeDocument": "docs/ios/DESKTOP_PARITY_0_9_132.md",
+  "animeEpisodeGrouping": "Preserve Desktop season and continuous presentations according to provider order. The owner's 2026-10-19 correction supersedes the earlier request to always flatten anime into a single season. Never rewrite playback, watched or resume identities when changing the visible grouping.",
   "referenceVersion": "0.9.132",
   "preservationCheckpoint": "4f01b81476a1a41a57a282e18652b81b51756c58",
   "preservedBetaImplementations": [

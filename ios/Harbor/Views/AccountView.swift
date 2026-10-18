@@ -21,8 +21,9 @@ struct AccountView: View {
             Text(DesktopInterfaceText.value("Account")).font(HarborTheme.font(30, weight: .semibold)).accessibilityAddTraits(.isHeader)
             ScrollView(.horizontal) { HStack(spacing: 8) {
                 HarborPill(title: DesktopInterfaceText.value("Your profile"), selected: section == "profile") { section = "profile" }.accessibilityIdentifier("account-tab-profile")
-                HarborPill(title: "Stremio", selected: section == "stremio", icon: "account-stremio") { section = "stremio" }.accessibilityIdentifier("account-tab-stremio")
+                HarborPill(title: DesktopInterfaceText.value("Profiles"), selected: section == "profiles") { section = "profiles" }.accessibilityIdentifier("account-tab-profiles")
                 HarborPill(title: DesktopInterfaceText.value("Harbor account"), selected: section == "harbor", icon: "harbor-brand") { section = "harbor" }.accessibilityIdentifier("account-tab-harbor")
+                HarborPill(title: "Stremio", selected: section == "stremio", icon: "account-stremio") { section = "stremio" }.accessibilityIdentifier("account-tab-stremio")
             } }.scrollIndicators(.hidden)
             Button { app.openProfiles() } label: {
                 Label(DesktopInterfaceText.value("Manage profiles"), systemImage: "person.2")
@@ -30,6 +31,10 @@ struct AccountView: View {
             }.buttonStyle(HarborAccountButtonStyle()).accessibilityIdentifier("account-manage-profiles")
             if section == "profile" {
                 ProfileEditor(user: app.user, profile: ProfilePreferences.forOwner(app.personalOwner), identity: app.harborIdentity).id(app.interfaceProfileScope)
+            } else if section == "profiles" {
+                HarborSettingsSection("Profiles", note: "Create profiles for the people who use Harbor. Each can have its own appearance, settings, and PIN.") {
+                    ProfileLaunchSettingsView(app: app)
+                }
             } else if section == "harbor" {
                 HarborIdentityPanel(profile: app.harborIdentity).id(app.harborIdentityOwner)
             } else if let user = app.user {

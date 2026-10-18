@@ -36,6 +36,7 @@ final class AppModel {
     private(set) var switchingProfile = false
     var showAccount = false
     var showProfiles = false
+    private(set) var automaticProfilePromptPending = false
     private var profilesAfterAccount = false
     var choosingProfile: Bool { showProfiles || profilesAfterAccount || profileContext.requiresSelection || switchingProfile }
     func prepareProfileAppearances() {
@@ -44,6 +45,7 @@ final class AppModel {
         }
     }
     func openProfiles() {
+        automaticProfilePromptPending = false
         prepareProfileAppearances()
         if showAccount { profilesAfterAccount = true; showAccount = false }
         else { showProfiles = true }
@@ -51,12 +53,46 @@ final class AppModel {
     func accountDidDismiss() {
         if profilesAfterAccount { profilesAfterAccount = false; showProfiles = true }
     }
+    func profileLaunchPreferences() throws -> ProfileLaunchPreferences {
+        try ProfileSettingsStore.shared.launchPreferences(sharedOwner: profileContext.householdSettingsOwner)
+    }
+    func updateProfileLaunchPreferences(_ preferences: ProfileLaunchPreferences) throws {
+        guard !accountBusy, storageReady, profileContext.ready,
+              preferences.defaultID.isEmpty || preferences.defaultProfile(in: profileContext.profiles.profiles) != nil else { throw HarborError(code: "profile-settings-changed") }
+        try ProfileSettingsStore.shared.setLaunchPreferences(preferences, sharedOwner: profileContext.householdSettingsOwner, expectedOwner: settingsOwner)
+        if preferences.interval.seconds == nil { automaticProfilePromptPending = false }
+    }
+    func closeProfiles() async throws {
+        if !storageReady {
+            guard let active = profileContext.profiles.active, !active.desktop.isKid,
+                  try await selectProfile(active.id, recordSelection: false) else { throw HarborError(code: "profile-selection-required") }
+        }
+        showProfiles = false
+    }
+    func requestProfilePromptOnReturn() {
+        guard storageReady, profileContext.ready, !choosingProfile else { return }
+        do {
+            automaticProfilePromptPending = try profileLaunchPreferences().promptOnReturn(profiles: profileContext.profiles.profiles,
+                lastSelected: ProfileSelectionClock(scope: profileContext.profiles.scope).lastSelected, now: Date().timeIntervalSince1970)
+        } catch { Diagnostics.shared.recordFailure(error) }
+    }
+    @discardableResult func presentDeferredProfilePrompt() -> Bool {
+        guard automaticProfilePromptPending, storageReady, profileContext.ready, !accountBusy, !showAccount,
+              !choosingProfile, !profileContext.playback.hasActivePlayback else { return false }
+        do {
+            let due = try profileLaunchPreferences().promptOnReturn(profiles: profileContext.profiles.profiles,
+                lastSelected: ProfileSelectionClock(scope: profileContext.profiles.scope).lastSelected, now: Date().timeIntervalSince1970)
+            automaticProfilePromptPending = false
+            if due { openProfiles() }
+            return due
+        } catch { automaticProfilePromptPending = false; Diagnostics.shared.recordFailure(error); return false }
+    }
     func saveProfile(_ draft: HouseholdProfileDraft) async throws {
         guard !accountBusy, draft.kid == .null else { throw HarborError(code: "profile-editor-permission") }
         let result = try await profileContext.profiles.saveEditor(draft)
-        if result.id == profileContext.profiles.state.selectedID { try await refreshSelectedProfile() }
+        if result.id == profileContext.profiles.state.selectedID { try await refreshSelectedProfile(recordSelection: draft.original == nil) }
     }
-    func refreshSelectedProfile() async throws {
+    func refreshSelectedProfile(recordSelection: Bool = false) async throws {
         guard !accountBusy else { throw HarborError(code: "account-busy") }
         let previous = profileContext.binding
         do { try profileContext.refreshRouting() }
@@ -65,7 +101,7 @@ final class AppModel {
         if storageReady && profileContext.ready && previous == profileContext.binding { return }
         storageReady = false
         if let active = profileContext.profiles.active {
-            guard try await selectProfile(active.id) else { throw HarborError(code: "profile-locked") }
+            guard try await selectProfile(active.id, recordSelection: recordSelection) else { throw HarborError(code: "profile-locked") }
         } else { showProfiles = true }
     }
     private(set) var pendingDocument: PendingProfileDocument?
@@ -140,6 +176,19 @@ final class AppModel {
         Diagnostics.shared.record(.startup)
         do {
             try profileContext.prepare()
+            let action = try profileLaunchPreferences().launchAction(profiles: profileContext.profiles.profiles,
+                selectedID: profileContext.profiles.state.selectedID, selectedUnlocked: profileContext.profiles.active != nil,
+                lastSelected: ProfileSelectionClock(scope: profileContext.profiles.scope).lastSelected, now: Date().timeIntervalSince1970)
+            switch action {
+            case .useDefault(let id):
+                guard try await profileContext.select(id) else { throw HarborError(code: "profile-selection-required") }
+            case .choose:
+                prepareProfileAppearances()
+                if profileContext.ready { showProfiles = true }
+                else if !profileContext.requiresSelection { throw HarborError(code: "profile-selection-required") }
+                loading = false; return
+            case .resume: break
+            }
             guard profileContext.ready else { throw HarborError(code: "profile-selection-required") }
             let configuration = profileContext.configuration
             if let account = configuration?.account {
@@ -215,7 +264,7 @@ final class AppModel {
         Task { await library.sync() }
     }
 
-    @discardableResult func selectProfile(_ id: String, password: String? = nil, parentPassword: String? = nil) async throws -> Bool {
+    @discardableResult func selectProfile(_ id: String, password: String? = nil, parentPassword: String? = nil, recordSelection: Bool = true) async throws -> Bool {
         guard !accountBusy else { throw HarborError(code: "account-busy") }
         let wasReady = storageReady
         accountBusy = true; switchingProfile = true; showAccount = false; error = nil
@@ -241,6 +290,8 @@ final class AppModel {
             error = nil; accountError = nil; lastAddonRefresh = .distantPast
             try await setProgressOwner(progressOwner); await bindLibrary(savedAccount?.session)
             storageReady = true
+            if recordSelection { ProfileSelectionClock(scope: profileContext.profiles.scope).recordSelection() }
+            automaticProfilePromptPending = false
             Task { await loadHome(); await refreshAddons() }
             return true
         } catch {

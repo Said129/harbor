@@ -298,6 +298,7 @@
 "Choose an avatar" = "कोई अवतार चुनें";
 "Choose the frame rate the subtitle was authored for." = "वह फ़्रेम रेट चुनें जिसके लिए सबटाइटल बनाया गया था।";
 "Choose up to 5 movies or shows you already like. Harbor uses them to tune your featured picks and recommendations. Totally optional." = "अपनी पसंद की अधिकतम 5 फ़िल्में या शो चुनें। Harbor इनके आधार पर आपके फ़ीचर्ड पिक्स और सुझाव बेहतर बनाता है। यह पूरी तरह वैकल्पिक है।";
+"Choose when Harbor asks you to pick a profile. Timed prompts appear when you return to Harbor." = "चुनें कि Harbor कब प्रोफ़ाइल चुनने को कहे। समय के आधार पर आने वाले संकेत Harbor पर लौटने पर दिखते हैं।";
 "Choose your language. Your accounts and sources can be configured from your profile and Addons." = "Choose your language. Your accounts and sources can be configured from your profile and Addons.";
 "Ciencia ficción y fantasía" = "साइंस फ़िक्शन और फ़ैंटेसी";
 "Claro" = "हल्का";
@@ -390,6 +391,7 @@
 "Crash" = "क्रैश";
 "Crea tu propia paleta" = "अपना पैलेट बनाएँ";
 "Create account" = "अकाउंट बनाएँ";
+"Create profiles for the people who use Harbor. Each can have its own appearance, settings, and PIN." = "Harbor इस्तेमाल करने वाले हर व्यक्ति के लिए प्रोफ़ाइल बनाएँ। हर प्रोफ़ाइल का अपना रूप, सेटिंग और PIN हो सकता है।";
 "Crime" = "अपराध";
 "Crime Series" = "अपराध सीरीज़";
 "Crisp (anime & cartoons)" = "शार्प (एनीमे और कार्टून)";
@@ -548,6 +550,9 @@
 "Estirar" = "फैलाएँ";
 "Event timeline" = "Event timeline";
 "Evento principal de esta noche" = "आज रात का मुख्य आकर्षण";
+"Every 15 min" = "हर 15 मिनट";
+"Every 30 min" = "हर 30 मिनट";
+"Every launch" = "हर बार शुरू होने पर";
 "Everything your addons offer, shown as posters. Scroll, search, or filter to what you want." = "आपके ऐडऑन जो कुछ भी पेश करते हैं, वह पोस्टर के रूप में दिखाया जाता है। जो चाहिए, उस तक पहुँचने के लिए स्क्रॉल करें, खोजें या फ़िल्टर करें।";
 "Excellence Prize" = "उत्कृष्टता पुरस्कार";
 "Exit Picture in Picture" = "पिक्चर इन पिक्चर से बाहर निकलें";
@@ -899,6 +904,7 @@
 "Needs at least 10 titles for the Top 10 look" = "Top 10 लुक के लिए कम से कम 10 शीर्षक चाहिए";
 "Netflix" = "Netflix";
 "Netflix Originals" = "Netflix ओरिजिनल्स";
+"Never" = "कभी नहीं";
 "New Anime Releases" = "नई एनीमे रिलीज़";
 "New Face Award" = "नया चेहरा पुरस्कार";
 "New profile" = "नई प्रोफ़ाइल";
@@ -923,6 +929,7 @@
 "No catalogs yet" = "अभी तक कोई कैटलॉग नहीं है";
 "No correction" = "कोई सुधार नहीं";
 "No correction (default)" = "कोई सुधार नहीं (डिफ़ॉल्ट)";
+"No default profile" = "कोई डिफ़ॉल्ट प्रोफ़ाइल नहीं";
 "No description available." = "कोई विवरण उपलब्ध नहीं है।";
 "No episodes found for this season." = "इस सीज़न के लिए कोई एपिसोड नहीं मिला।";
 "No extensions are available on this server." = "No extensions are available on this server.";
@@ -1005,6 +1012,7 @@
 "Open in browser" = "ब्राउज़र में खोलें";
 "Open music player" = "Open music player";
 "Open navigation" = "Open navigation";
+"Open this profile at launch. Timed prompts can still appear later. Profiles with a PIN cannot be a default." = "शुरू होने पर यह प्रोफ़ाइल खोलें। समय पर आने वाले संकेत बाद में भी दिख सकते हैं। PIN वाली प्रोफ़ाइल डिफ़ॉल्ट नहीं बन सकती।";
 "Opening book…" = "Opening book…";
 "Options" = "विकल्प";
 "Orden de addons" = "ऐडऑन क्रम";
@@ -1110,6 +1118,7 @@
 "Producer" = "निर्माता";
 "Profile PIN" = "प्रोफ़ाइल PIN";
 "Profile is locked. Enter the 4-digit PIN to continue." = "प्रोफ़ाइल लॉक है। जारी रखने के लिए 4 अंकों का PIN दर्ज करें।";
+"Profiles" = "प्रोफ़ाइलें";
 "Progreso" = "Progress";
 "Progreso de descarga" = "Download progress";
 "Progress" = "Progress";
@@ -1421,7 +1430,9 @@
 "Standings" = "अंक तालिका";
 "Start Over" = "फिर से शुरू करें";
 "Start Watching" = "देखना शुरू करें";
+"Start as" = "इस रूप में शुरू करें";
 "Start with subtitles off" = "सबटाइटल बंद रखकर शुरू करें";
+"Startup & default" = "स्टार्टअप और डिफ़ॉल्ट";
 "Status" = "स्थिति";
 "Step 1 · Metadata" = "चरण 1 · मेटाडेटा";
 "Step 2 · Stremio" = "चरण 2 · Stremio";
@@ -1670,6 +1681,7 @@
 "Where to today?" = "आज कहाँ चलें?";
 "Where to watch" = "कहाँ देखें";
 "Where your video comes from" = "आपका वीडियो कहाँ से आता है";
+"Who's watching" = "कौन देख रहा है";
 "Who's watching?" = "कौन देख रहा है?";
 "Writer" = "लेखक";
 "Wrong PIN" = "गलत PIN";

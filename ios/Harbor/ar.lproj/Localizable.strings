@@ -318,6 +318,7 @@
 "Choose an avatar" = "اختر صورة رمزية";
 "Choose the frame rate the subtitle was authored for." = "اختر معدل الإطارات الذي أُنشئت الترجمة على أساسه.";
 "Choose up to 5 movies or shows you already like. Harbor uses them to tune your featured picks and recommendations. Totally optional." = "اختر حتى 5 أفلام أو مسلسلات تحبها بالفعل. يستخدمها Harbor لضبط مختاراتك المميزة وتوصياتك. اختياري تمامًا.";
+"Choose when Harbor asks you to pick a profile. Timed prompts appear when you return to Harbor." = "اختر متى يطلب Harbor اختيار ملف شخصي. تظهر المطالبات المؤقّتة عند العودة إلى Harbor.";
 "Choose your language. Your accounts and sources can be configured from your profile and Addons." = "Choose your language. Your accounts and sources can be configured from your profile and Addons.";
 "Ciencia ficción y fantasía" = "خيال علمي وفانتازيا";
 "Claro" = "فاتح";
@@ -414,6 +415,7 @@
 "Crash" = "تعطّل";
 "Crea tu propia paleta" = "أنشئ لوحة ألوانك الخاصة";
 "Create account" = "إنشاء حساب";
+"Create profiles for the people who use Harbor. Each can have its own appearance, settings, and PIN." = "أنشئ ملفات شخصية لمستخدمي Harbor. يمكن أن يكون لكل منها مظهر وإعدادات ورمز PIN خاص.";
 "Crime" = "جريمة";
 "Crime Series" = "مسلسلات جريمة";
 "Crisp (anime & cartoons)" = "واضح (أنمي وكرتون)";
@@ -572,6 +574,9 @@
 "Estirar" = "تمديد";
 "Event timeline" = "Event timeline";
 "Evento principal de esta noche" = "الحدث الرئيسي الليلة";
+"Every 15 min" = "كل 15 دقيقة";
+"Every 30 min" = "كل 30 دقيقة";
+"Every launch" = "عند كل تشغيل";
 "Everything your addons offer, shown as posters. Scroll, search, or filter to what you want." = "كل ما تقدّمه إضافاتك، معروضًا على شكل ملصقات. مرّر أو ابحث أو صفِّ للوصول إلى ما تريد.";
 "Excellence Prize" = "جائزة التميّز";
 "Exit Picture in Picture" = "الخروج من صورة داخل صورة";
@@ -926,6 +931,7 @@
 "Needs at least 10 titles for the Top 10 look" = "يحتاج إلى 10 عناوين على الأقل لمظهر أفضل 10";
 "Netflix" = "Netflix";
 "Netflix Originals" = "أعمال نتفليكس الأصلية";
+"Never" = "أبدًا";
 "Never shown again" = "لن يظهر مجددًا";
 "New Anime Releases" = "أحدث إصدارات الأنمي";
 "New Face Award" = "جائزة الوجه الجديد";
@@ -951,6 +957,7 @@
 "No catalogs yet" = "لا توجد كتالوجات بعد";
 "No correction" = "بلا تصحيح";
 "No correction (default)" = "بلا تصحيح (الافتراضي)";
+"No default profile" = "لا يوجد ملف شخصي افتراضي";
 "No description available." = "لا يوجد وصف متاح.";
 "No episodes found for this season." = "لم يُعثر على حلقات لهذا الموسم.";
 "No extensions are available on this server." = "No extensions are available on this server.";
@@ -1034,6 +1041,7 @@
 "Open in browser" = "فتح في المتصفح";
 "Open music player" = "Open music player";
 "Open navigation" = "Open navigation";
+"Open this profile at launch. Timed prompts can still appear later. Profiles with a PIN cannot be a default." = "افتح هذا الملف الشخصي عند بدء التشغيل. قد تظهر المطالبات الموقّتة لاحقًا. لا يمكن تعيين ملف شخصي محمي برمز PIN كملف افتراضي.";
 "Opening book…" = "جارٍ فتح الكتاب…";
 "Options" = "خيارات";
 "Orden de addons" = "ترتيب الإضافة";
@@ -1141,6 +1149,7 @@
 "Producer" = "منتج";
 "Profile PIN" = "رمز PIN للملف الشخصي";
 "Profile is locked. Enter the 4-digit PIN to continue." = "الملف الشخصي مقفل. أدخل رمز PIN المكوّن من 4 أرقام للمتابعة.";
+"Profiles" = "الملفات الشخصية";
 "Progreso" = "Progress";
 "Progreso de descarga" = "Download progress";
 "Progress" = "Progress";
@@ -1456,7 +1465,9 @@
 "Standings" = "الترتيب";
 "Start Over" = "البدء من جديد";
 "Start Watching" = "بدء المشاهدة";
+"Start as" = "البدء كـ";
 "Start with subtitles off" = "البدء مع إيقاف الترجمة";
+"Startup & default" = "بدء التشغيل والافتراضي";
 "Status" = "الحالة";
 "Step 1 · Metadata" = "الخطوة 1 · البيانات الوصفية";
 "Step 2 · Stremio" = "الخطوة 2 · Stremio";
@@ -1706,6 +1717,7 @@
 "Where to today?" = "إلى أين اليوم؟";
 "Where to watch" = "أين تشاهد";
 "Where your video comes from" = "من أين يأتي الفيديو الخاص بك";
+"Who's watching" = "من يشاهد";
 "Who's watching?" = "من يشاهد؟";
 "Women's Africa Cup of Nations" = "كأس الأمم الأفريقية للسيدات";
 "World Cup Qualifying: AFC" = "تصفيات كأس العالم: آسيا";

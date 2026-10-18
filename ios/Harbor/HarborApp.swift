@@ -66,6 +66,10 @@ struct HarborApp: App {
     private var lifecycle: some View {
         persistence
                 .task { await model.start() }
+                .onChange(of: scenePhase) { _, phase in if phase == .active { model.requestProfilePromptOnReturn() } }
+                .task(id: String(model.automaticProfilePromptPending) + "|" + String(describing: scenePhase) + "|" + String(model.profileContext.playback.hasActivePlayback)) {
+                    await presentAutomaticProfilePrompt()
+                }
                 .task(id: String(model.storageReady) + "|" + model.settingsOwner) { if model.storageReady { await SportsReminderService.shared.removeOtherAccounts(owner: model.settingsOwner) } }
                 .task(id: model.personalOwner) { MusicPlayback.shared.stopForAccount(model.personalOwner) }
     }
@@ -89,6 +93,15 @@ struct HarborApp: App {
         NavigationStack { AccountView(app: model) }.font(HarborTheme.font()).foregroundStyle(HarborTheme.ink).tint(HarborTheme.accent).preferredColorScheme(.dark)
                         .environment(\.locale, Locale(identifier: InterfaceLanguage.resolve(uiLanguage)))
                         .environment(\.layoutDirection, InterfaceLanguage.resolve(uiLanguage) == "ar" ? .rightToLeft : .leftToRight)
+    }
+    private func presentAutomaticProfilePrompt() async {
+        guard scenePhase == .active, model.automaticProfilePromptPending, !model.profileContext.playback.hasActivePlayback else { return }
+        while !Task.isCancelled && model.automaticProfilePromptPending {
+            let scene = UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }.first { $0.activationState == .foregroundActive }
+            let root = scene?.windows.first(where: \.isKeyWindow)?.rootViewController
+            if root?.viewIfLoaded?.window != nil, root?.presentedViewController == nil, model.presentDeferredProfilePrompt() { return }
+            do { try await Task.sleep(for: .seconds(1)) } catch { return }
+        }
     }
     private var profilesSheet: some View {
         profilesContent.presentationBackground(.clear)

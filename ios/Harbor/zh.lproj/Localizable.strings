@@ -298,6 +298,7 @@
 "Choose an avatar" = "选择头像";
 "Choose the frame rate the subtitle was authored for." = "选择制作此字幕时使用的帧率。";
 "Choose up to 5 movies or shows you already like. Harbor uses them to tune your featured picks and recommendations. Totally optional." = "最多选择 5 部你已经喜欢的电影或剧集。Harbor 会用它们来优化精选内容和推荐。完全可选。";
+"Choose when Harbor asks you to pick a profile. Timed prompts appear when you return to Harbor." = "选择 Harbor 何时要求选择个人资料。定时提示会在你返回 Harbor 时出现。";
 "Choose your language. Your accounts and sources can be configured from your profile and Addons." = "Choose your language. Your accounts and sources can be configured from your profile and Addons.";
 "Ciencia ficción y fantasía" = "科幻与奇幻";
 "Claro" = "浅色";
@@ -390,6 +391,7 @@
 "Crash" = "崩溃";
 "Crea tu propia paleta" = "创建自己的配色方案";
 "Create account" = "创建账号";
+"Create profiles for the people who use Harbor. Each can have its own appearance, settings, and PIN." = "为使用 Harbor 的人创建个人资料。每份资料都可拥有独立的外观、设置和 PIN。";
 "Crime" = "犯罪";
 "Crime Series" = "犯罪剧集";
 "Crisp (anime & cartoons)" = "清晰（动漫和卡通）";
@@ -548,6 +550,9 @@
 "Estirar" = "拉伸";
 "Event timeline" = "Event timeline";
 "Evento principal de esta noche" = "今晚重头戏";
+"Every 15 min" = "每 15 分钟";
+"Every 30 min" = "每 30 分钟";
+"Every launch" = "每次启动";
 "Everything your addons offer, shown as posters. Scroll, search, or filter to what you want." = "插件提供的所有内容都会以海报形式显示。滚动、搜索或筛选即可找到所需内容。";
 "Excellence Prize" = "优秀奖";
 "Exit Picture in Picture" = "退出画中画";
@@ -899,6 +904,7 @@
 "Needs at least 10 titles for the Top 10 look" = "至少需要 10 部作品才能使用前 10 名样式";
 "Netflix" = "Netflix";
 "Netflix Originals" = "Netflix 原创";
+"Never" = "从不";
 "New Anime Releases" = "动漫新作";
 "New Face Award" = "新人奖";
 "New profile" = "新建个人资料";
@@ -923,6 +929,7 @@
 "No catalogs yet" = "暂无目录";
 "No correction" = "不校正";
 "No correction (default)" = "不校正（默认）";
+"No default profile" = "无默认个人资料";
 "No description available." = "暂无简介。";
 "No episodes found for this season." = "未找到本季剧集。";
 "No extensions are available on this server." = "No extensions are available on this server.";
@@ -1005,6 +1012,7 @@
 "Open in browser" = "在浏览器中打开";
 "Open music player" = "Open music player";
 "Open navigation" = "Open navigation";
+"Open this profile at launch. Timed prompts can still appear later. Profiles with a PIN cannot be a default." = "启动时打开此个人资料。之后仍可能显示定时提示。设置了 PIN 的资料不能设为默认。";
 "Opening book…" = "Opening book…";
 "Options" = "选项";
 "Orden de addons" = "插件顺序";
@@ -1110,6 +1118,7 @@
 "Producer" = "制片人";
 "Profile PIN" = "个人资料 PIN";
 "Profile is locked. Enter the 4-digit PIN to continue." = "个人资料已锁定。请输入 4 位 PIN 以继续。";
+"Profiles" = "个人资料";
 "Progreso" = "Progress";
 "Progreso de descarga" = "Download progress";
 "Progress" = "Progress";
@@ -1421,7 +1430,9 @@
 "Standings" = "积分榜";
 "Start Over" = "从头播放";
 "Start Watching" = "开始观看";
+"Start as" = "启动时为";
 "Start with subtitles off" = "开始播放时关闭字幕";
+"Startup & default" = "启动与默认设置";
 "Status" = "状态";
 "Step 1 · Metadata" = "第 1 步 · 元数据";
 "Step 2 · Stremio" = "第 2 步 · Stremio";
@@ -1670,6 +1681,7 @@
 "Where to today?" = "今天去哪儿？";
 "Where to watch" = "观看平台";
 "Where your video comes from" = "视频来源";
+"Who's watching" = "谁在观看";
 "Who's watching?" = "谁在看？";
 "Writer" = "编剧";
 "Wrong PIN" = "PIN 错误";

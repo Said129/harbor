@@ -40,7 +40,7 @@ private struct HouseholdUnlockTarget: Identifiable {
         }.font(HarborTheme.font()).foregroundStyle(HarborTheme.ink).tint(HarborTheme.accent)
             .opacity(exiting ? 0 : 1)
             .animation(reduceMotion ? nil : .timingCurve(0.16, 1, 0.3, 1, duration: 0.34), value: exiting)
-            .interactiveDismissDisabled(busy || !app.profileContext.ready)
+            .interactiveDismissDisabled(busy || !app.storageReady || !app.profileContext.ready)
             .task(id: selecting) { await selectPending() }
             .task { app.prepareProfileAppearances() }
             .accessibilityIdentifier("household-profiles")
@@ -50,7 +50,12 @@ private struct HouseholdUnlockTarget: Identifiable {
             HStack {
                 Spacer()
                 if app.profileContext.ready {
-                    Button { app.showProfiles = false } label: { Image(systemName: "xmark").frame(width: 44, height: 44) }
+                    Button {
+                        Task {
+                            do { try await app.closeProfiles() }
+                            catch { self.error = safeMessage(error) }
+                        }
+                    } label: { Image(systemName: "xmark").frame(width: 44, height: 44) }
                         .buttonStyle(.plain).accessibilityLabel(DesktopInterfaceText.value("Close")).disabled(busy)
                 }
             }
