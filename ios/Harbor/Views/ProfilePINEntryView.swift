@@ -27,7 +27,6 @@ import UIKit
 
     var body: some View {
         keyboardInput
-            .accessibilityIdentifier("profile-pin-screen")
             .task(id: inputRevision) { await submitIfComplete() }
             .onAppear { visible = true; reset(); keyboardFocused = true }
             .onChange(of: requestID) { _, _ in reset(); keyboardFocused = true }
