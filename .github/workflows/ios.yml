@@ -365,7 +365,7 @@ jobs:
           if [[ "${{ inputs.validation_scope }}" == "tvdb-proxy" ]]; then
             selection=()
             while IFS= read -r identifier; do selection+=("-only-testing:$identifier"); done < ios/build/tvdb-proxy-selection.txt
-            test ${#selection[@]} -eq 7
+            test ${#selection[@]} -eq 6
           elif [[ "${{ inputs.validation_scope }}" == "startup-anime" ]]; then
             selection=()
             while IFS= read -r identifier; do selection+=("-only-testing:$identifier"); done < ios/build/startup-anime-selection.txt
@@ -421,14 +421,32 @@ jobs:
             fi
           fi
           xcodebuild -project ios/Harbor.xcodeproj -scheme Harbor -configuration Debug -destination "platform=iOS Simulator,id=$IOS_SIMULATOR,arch=$IOS_SIMULATOR_ARCH" -derivedDataPath ios/build/DerivedData -clonedSourcePackagesDirPath ios/build/SourcePackages -resultBundlePath ios/build/Tests.xcresult "${selection[@]}" -parallel-testing-enabled NO CODE_SIGNING_ALLOWED=YES CODE_SIGN_IDENTITY=- test 2>&1 | tee ios/build/logs/tests.log
+      - name: Authenticate the actual TVDB model results
+        id: tvdb_proxy_models
+        if: ${{ always() && inputs.validation_scope == 'tvdb-proxy' && (steps.offline_tests.conclusion == 'success' || steps.offline_tests.conclusion == 'failure') }}
+        run: python3 scripts/ios/record-profile-model-results.py --bundle ios/build/Tests.xcresult --expected ios/build/preserved-tvdb-models.json --count 6 --output ios/build/canonical/TVDBProxyModels.json
+      - name: Run the one new public TVDB case in its live scheme
+        id: tvdb_proxy_live
+        if: ${{ always() && inputs.validation_scope == 'tvdb-proxy' && (steps.offline_tests.conclusion == 'success' || steps.offline_tests.conclusion == 'failure') }}
+        timeout-minutes: 15
+        shell: bash
+        run: |
+          set -euo pipefail
+          identifier=$(cat ios/build/tvdb-proxy-live-selection.txt)
+          test "$identifier" = "HarborIntegrationTests/TVDBProxyLiveTests/testCommunityProxyReturnsSuperSeasonsEpisodesAndAnActualStill"
+          xcodebuild -project ios/Harbor.xcodeproj -scheme HarborLive -configuration Debug -destination "platform=iOS Simulator,id=$IOS_SIMULATOR,arch=$IOS_SIMULATOR_ARCH" -derivedDataPath ios/build/DerivedData -clonedSourcePackagesDirPath ios/build/SourcePackages -resultBundlePath ios/build/TVDBProxyLive.xcresult "-only-testing:$identifier" -parallel-testing-enabled NO CODE_SIGNING_ALLOWED=YES CODE_SIGN_IDENTITY=- test 2>&1 | tee ios/build/logs/tvdb-proxy-live.log
+      - name: Authenticate the actual public TVDB result
+        id: tvdb_proxy_live_result
+        if: ${{ always() && inputs.validation_scope == 'tvdb-proxy' && (steps.tvdb_proxy_live.conclusion == 'success' || steps.tvdb_proxy_live.conclusion == 'failure') }}
+        run: python3 scripts/ios/record-live-test-result.py --bundle ios/build/TVDBProxyLive.xcresult --output ios/build/canonical/TVDBProxyLive.json --target HarborIntegrationTests --suite TVDBProxyLiveTests --method testCommunityProxyReturnsSuperSeasonsEpisodesAndAnActualStill
       - name: Authenticate the actual TVDB contract and live results
-        if: ${{ inputs.validation_scope == 'tvdb-proxy' }}
-        run: python3 scripts/ios/record-profile-model-results.py --bundle ios/build/Tests.xcresult --expected ios/build/preserved-tvdb-proxy.json --count 7 --output ios/build/canonical/TVDBProxy.json
+        if: ${{ always() && inputs.validation_scope == 'tvdb-proxy' && steps.tvdb_proxy_models.conclusion == 'success' && steps.tvdb_proxy_live_result.conclusion == 'success' }}
+        run: python3 scripts/ios/record-tvdb-proxy-results.py
       - name: Authenticate the eleven actual startup and anime model results
         if: ${{ inputs.validation_scope == 'startup-anime' }}
         run: python3 scripts/ios/record-profile-model-results.py --bundle ios/build/Tests.xcresult --expected ios/build/preserved-startup-anime.json --count 11 --output ios/build/canonical/StartupAnimeModels.json
       - name: Preserve failed native render evidence in a draft Release
-        if: ${{ failure() && inputs.save_draft_build == true && steps.offline_tests.conclusion == 'failure' }}
+        if: ${{ failure() && inputs.save_draft_build == true && steps.offline_tests.conclusion == 'failure' && inputs.validation_scope != 'tvdb-proxy' }}
         env:
           GH_TOKEN: ${{ github.token }}
         shell: bash
@@ -788,14 +806,14 @@ jobs:
           ditto -c -k --keepParent ios/build/rotation-evidence ios/build/tablet-rotation-evidence.zip
           gh release upload "iphone-rotation-${GITHUB_SHA:0:12}" ios/build/tablet-rotation-evidence.zip --repo "$GITHUB_REPOSITORY"
       - name: Save affected simulator evidence without an IPA
-        if: ${{ success() && github.event_name == 'workflow_dispatch' && inputs.validation_only == true && inputs.save_draft_build == true && inputs.validation_scope != 'stable-tablet-rotation' && inputs.validation_scope != 'startup-anime-ui' }}
+        if: ${{ always() && github.event_name == 'workflow_dispatch' && inputs.validation_only == true && inputs.save_draft_build == true && inputs.validation_scope != 'stable-tablet-rotation' && inputs.validation_scope != 'startup-anime-ui' && (success() || (inputs.validation_scope == 'tvdb-proxy' && (steps.offline_tests.conclusion == 'success' || steps.offline_tests.conclusion == 'failure'))) }}
         env:
           GH_TOKEN: ${{ github.token }}
         shell: bash
         run: |
           set -euo pipefail
           mkdir -p ios/build/validation-evidence/attachments
-          for name in Tests ServicesTests LiveTests TabletTests TabletUITests MangaFontTests ReadingTabletSeed ReadingTabletUI LanguageTabletUI SystemTabletUI NavigationTabletUI OnboardingTabletUI ServiceTabletUI StreamingSyncTabletUI PlayerCaptionTabletSeed PlayerCaptionTabletUI ProfileModels ProfileIPhoneLanguage ProfileIPhoneUI ProfileIPadLanguage ProfileIPadUI; do
+          for name in Tests TVDBProxyLive ServicesTests LiveTests TabletTests TabletUITests MangaFontTests ReadingTabletSeed ReadingTabletUI LanguageTabletUI SystemTabletUI NavigationTabletUI OnboardingTabletUI ServiceTabletUI StreamingSyncTabletUI PlayerCaptionTabletSeed PlayerCaptionTabletUI ProfileModels ProfileIPhoneLanguage ProfileIPhoneUI ProfileIPadLanguage ProfileIPadUI; do
             if [[ -d "ios/build/$name.xcresult" ]]; then
               xcrun xcresulttool export attachments --path "ios/build/$name.xcresult" --output-path "ios/build/validation-evidence/attachments/$name"
             fi
