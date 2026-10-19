@@ -1,6 +1,6 @@
 # Sistema e interfaces — integración en curso
 
-Este trabajo pertenece a la única próxima IPA del port completo de Desktop **0.9.132** para iPhone/iPad. No autoriza una entrega intermedia ni completa la auditoría general. La estimación comunicada sigue siendo **aproximadamente 75 %**, provisional.
+Este trabajo pertenece a la única próxima IPA del port completo de Desktop **0.9.132** para iPhone/iPad. No autoriza una entrega intermedia ni completa la auditoría general. El 19 de octubre se retiró la estimación conversacional del 75 % porque no se había recalculado frente al alcance completo. El [estado vigente](DESKTOP_PARITY_0_9_132.md) distingue implementación, comprobación y pendientes; no hay un porcentaje auditado.
 
 ## Código incorporado, pendiente de Apple
 

@@ -24,6 +24,18 @@ El inventario reproducible de esta referencia se registra por separado de las ma
 
 Orden de trabajo: continuidad y episodios; cuenta y sincronización; fuentes y plugins; reproducción y subtítulos; biblioteca, descubrimiento y personalización; TV/VOD y deportes; música y lectura; almacenamiento, copias, avisos y ayuda. Esta agrupación organiza el trabajo y no reduce el alcance.
 
+### Estado observado el 19 de octubre, 21:24 UTC
+
+Los apartados posteriores conservan la historia de cada incremento. Este estado sustituye sus resultados que todavía figuraban como pendientes:
+
+- Conexión pública de TVDB: los seis contratos nativos y la consulta real con imagen aprobaron en [39239642918](https://github.com/Said129/harbor/actions/runs/39239642918). Se conservan los dos árboles originales de Xcode y los siete resultados reales.
+- Motor de órdenes de episodios: los nueve casos nativos nuevos aprobaron en [39241847884](https://github.com/Said129/harbor/actions/runs/39241847884). Están implementados los seis modos de la referencia. Ese resultado no certifica por sí solo las vistas ni las franquicias completas.
+- Panel de órdenes conectado a ficha y reproductor: la aplicación compiló y el paso que autentica sus diez casos nativos terminó correctamente en [39320374824](https://github.com/Said129/harbor/actions/runs/39320374824). Los recorridos nuevos de iPhone/iPad siguen ejecutándose; falta recoger sus resultados y revisar las imágenes y el movimiento.
+- Franquicias de anime: detección de relaciones y raíces, selector de entradas reales, caché pública acotada y protección ante cambios de perfil incorporados en `ee03d0a4b2fee30f9e9db9bb5a770e04c67f5dff`. Se inició [39327069185](https://github.com/Said129/harbor/actions/runs/39327069185) con nueve casos nativos nuevos, un contrato público nuevo y un adaptador real afectado. Aún no tiene aprobación de ejecución. [Alcance y pendientes del incremento](ANIME_FRANCHISE_0_9_132.md).
+- Perfiles e inicio: [39237920401](https://github.com/Said129/harbor/actions/runs/39237920401) conservó siete recorridos de interfaz aprobados y tres preparaciones aprobadas; falló el regreso con sesión expirada en iPhone. No se repiten los aprobados. El fallo y la revisión visual pendiente impiden dar por cerrado el bloque.
+
+Siguen abiertos la combinación de episodios entre entradas con reproducción y vistos asociados a su fuente real; la sincronización completa de cuentas, perfiles y ajustes; las opciones y secciones restantes de Desktop; y la revisión completa de interfaces, estados y animaciones. No se ha generado una IPA nueva. Este registro es evidencia de avances concretos y no un porcentaje de equivalencia global. El inventario de 0.9.132 sigue siendo un índice de auditoría, no un denominador de funciones terminadas.
+
 Incidencias comunicadas al fijar el objetivo: el reproductor todavía muestra `T5 · E23` para el episodio absoluto 99 de Super; «Continuar viendo» debe incluir el anime guardado con identificador IMDb en Anime, además de su presencia en Shows. La ficha y su lista de episodios ya tienen la presentación continua de la build 91, cuya evidencia se conserva.
 
 El objetivo permanece **en curso**. Ni la build 91 ni la existencia de un inventario significan que el port 1:1 esté terminado.
