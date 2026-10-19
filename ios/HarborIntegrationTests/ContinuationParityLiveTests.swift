@@ -9,7 +9,7 @@ final class ContinuationParityLiveTests: XCTestCase {
         let service = AnimeEpisodeService()
         let matched = await service.hasAnimeIdentity(for: media)
         XCTAssertTrue(matched)
-        media.videos = await service.episodes(for: media)
+        media.videos = await service.episodes(for: media, grouping: .continuous)
         let target = ResumeTarget(id: media.id, season: 5, episode: 23, videoId: "tt4644488:5:23")
         XCTAssertEqual(EpisodePresentation.coordinates(in: media, target: target)?.caption, "T1 · E99")
         let episode = try XCTUnwrap(EpisodePresentation.episode(in: media, target: target))

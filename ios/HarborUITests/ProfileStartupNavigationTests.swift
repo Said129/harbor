@@ -90,7 +90,8 @@ import XCTest
         }
         XCTAssertTrue(create.waitForExistence(timeout: 10)); create.tap()
         let field = app.textFields["household-profile-name"]
-        XCTAssertTrue(field.waitForExistence(timeout: 10)); field.tap(); field.typeText(name + "\n")
+        XCTAssertTrue(field.waitForExistence(timeout: 10)); field.tap()
+        XCTAssertTrue(app.keyboards.firstMatch.waitForExistence(timeout: 10)); field.typeText(name + "\n")
         if pin {
             let setPIN = app.buttons["Establecer un PIN"]
             reveal(setPIN, app: app); setPIN.tap(); enterPIN("4826", app: app)

@@ -22,6 +22,9 @@ final class DetailModel {
     private let service: HarborService
     private var metadataLoaded: Bool
     private var animeEpisodesLoaded = false
+    private var animeEpisodeVariants: AnimeEpisodeVariants?
+    var animeEpisodeGrouping = AnimeEpisodeGrouping.saved
+    var allowsContinuousAnimeEpisodes: Bool { animeEpisodeVariants?.allowsContinuous == true }
     private var streamRequest = UUID()
     private var resolutionRequest = UUID()
     private var sourceContinuation: SourceContinuation?
@@ -69,10 +72,18 @@ final class DetailModel {
     func loadAnimeEpisodes(owner: String, library: LibraryModel) async {
         guard !animeEpisodesLoaded, !loadingMetadata, media.videos?.isEmpty == false, library.owner == owner else { return }
         let selected = media
-        let episodes = await AnimeEpisodeService.shared.episodes(for: selected)
+        let variants = await AnimeEpisodeService.shared.variants(for: selected)
         guard !Task.isCancelled, library.owner == owner, media.identity == selected.identity else { return }
-        media.videos = episodes
+        animeEpisodeVariants = variants
+        media.videos = variants.episodes(animeEpisodeGrouping)
         animeEpisodesLoaded = true
+    }
+
+    func setAnimeEpisodeGrouping(_ grouping: AnimeEpisodeGrouping) {
+        guard let variants = animeEpisodeVariants, variants.allowsContinuous else { return }
+        animeEpisodeGrouping = grouping
+        media.videos = variants.episodes(grouping)
+        UserDefaults.standard.set(grouping.rawValue, forKey: AnimeEpisodeGrouping.preferenceKey)
     }
 
     func findStreams(_ addons: [Addon], episode: Episode? = nil) async {

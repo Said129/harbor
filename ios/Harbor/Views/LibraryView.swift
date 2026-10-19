@@ -148,6 +148,7 @@ private struct ContinueWatchingCard: View {
     let app: AppModel
     let record: LibraryRecord
     let media: Media
+    @AppStorage(AnimeEpisodeGrouping.preferenceKey) private var episodeGrouping = AnimeEpisodeGrouping.seasons.rawValue
     @State private var hydrated: Media?
     @State private var cardPresentation: ContinueWatchingPresentation?
     private var detailed: Media { hydrated ?? media }
@@ -179,15 +180,16 @@ private struct ContinueWatchingCard: View {
         }.frame(width: 260, alignment: .leading).foregroundStyle(HarborTheme.ink).buttonStyle(.plain)
             .contextMenu { LibraryActions(app: app, record: record, media: detailed, owner: app.library.owner) }
             .onChange(of: record.raw, initial: true) { _, _ in updatePresentation() }
-            .task(id: record.raw) {
+            .task(id: [record.raw, .string(episodeGrouping)]) {
                 let owner = app.library.owner
+                let grouping = AnimeEpisodeGrouping(rawValue: episodeGrouping) ?? .seasons
                 guard var result = try? await app.continuationMetadata(media), !Task.isCancelled, owner == app.library.owner else { return }
                 // Artwork and episodes can be enriched without changing the
                 // cloud library identity used for resume and dismissal.
                 result.id = media.id
                 hydrated = result
                 updatePresentation()
-                let episodes = await AnimeEpisodeService.shared.episodes(for: result)
+                let episodes = await AnimeEpisodeService.shared.episodes(for: result, grouping: grouping)
                 guard !Task.isCancelled, owner == app.library.owner else { return }
                 result.videos = episodes
                 hydrated = result

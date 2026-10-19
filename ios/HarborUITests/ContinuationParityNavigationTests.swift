@@ -3,7 +3,7 @@ import XCTest
 @MainActor final class ContinuationParityNavigationTests: XCTestCase {
     func testIMDbAnimeContinuesInAnimeAndShowsWithAbsoluteEpisodeNumber() {
         continueAfterFailure = false
-        let app = XCUIApplication(); app.launchArguments = ["-uiLanguage", "es"]; app.launch()
+        let app = XCUIApplication(); app.launchArguments = ["-uiLanguage", "es", "-tvdbSeasonType", "absolute"]; app.launch()
         defer { app.terminate() }
         XCTAssertTrue(app.buttons["main-menu"].waitForExistence(timeout: 45))
         for section in ["anime", "shows"] {

@@ -13,7 +13,7 @@ import XCTest
         defer { server.stop() }
         try await server.start()
         let app = XCUIApplication()
-        app.launchArguments = ["-uiLanguage", "es", "-nativeGuide.initialized.v1", "YES", "-nativeGuide.completed.v1", "YES"]
+        app.launchArguments = ["-uiLanguage", "es", "-tvdbSeasonType", "absolute", "-nativeGuide.initialized.v1", "YES", "-nativeGuide.completed.v1", "YES"]
         app.launch(); defer { app.terminate(); XCUIDevice.shared.orientation = .portrait }
         XCTAssertTrue(app.buttons["main-menu"].waitForExistence(timeout: 45))
         let card = app.buttons.matching(NSPredicate(format: "identifier == 'continue-watching-resume' AND label == 'Continuar viendo Dragon Ball Super'")).firstMatch

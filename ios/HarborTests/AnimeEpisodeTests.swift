@@ -61,5 +61,6 @@ final class AnimeEpisodeTests: XCTestCase {
     @MainActor func testPrepareOrdinaryAnimeUISettings() {
         UserDefaults.standard.set(false, forKey: "interface.autoRotateBanners")
         UserDefaults.standard.set(false, forKey: "hideSpoilers")
+        UserDefaults.standard.set(AnimeEpisodeGrouping.seasons.rawValue, forKey: AnimeEpisodeGrouping.preferenceKey)
     }
 }

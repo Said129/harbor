@@ -19,7 +19,7 @@ import XCTest
         capture(name: "profiles-\(device)-list")
         create.tap()
         let field = app.textFields["household-profile-name"]
-        XCTAssertTrue(field.waitForExistence(timeout: 10)); replace(field, with: "Perfil " + name)
+        XCTAssertTrue(field.waitForExistence(timeout: 10)); replace(field, with: "Perfil " + name, in: app)
         let avatar = app.buttons["Elige un avatar"]
         reveal(avatar, in: app); avatar.tap()
         let person = app.buttons["Person 1"]
@@ -42,7 +42,7 @@ import XCTest
         account.tap(); app.buttons["account-tab-profile"].tap()
         let profileName = app.textFields["profile-name"]
         XCTAssertTrue(profileName.waitForExistence(timeout: 10)); expectValue("Perfil " + name, of: profileName)
-        replace(profileName, with: "Cuenta " + name)
+        replace(profileName, with: "Cuenta " + name, in: app)
         expectValue("Cuenta " + name, of: profileName)
         capture(name: "profiles-\(device)-account")
         app.buttons["account-manage-profiles"].tap()
@@ -65,10 +65,11 @@ import XCTest
         XCTAssertFalse(app.buttons["profile-pin-digit-4"].exists)
         capture(name: "profiles-\(device)-reopened")
     }
-    private func replace(_ field: XCUIElement, with value: String) {
+    private func replace(_ field: XCUIElement, with value: String, in app: XCUIApplication) {
         XCTAssertTrue(field.isHittable)
         let previous = field.value as? String ?? ""
         field.coordinate(withNormalizedOffset: CGVector(dx: 0.95, dy: 0.5)).tap()
+        XCTAssertTrue(app.keyboards.firstMatch.waitForExistence(timeout: 10), "The full name field, including its padding, must focus the keyboard")
         field.typeText(String(repeating: XCUIKeyboardKey.delete.rawValue, count: previous.count) + value + "\n")
     }
     private func expectValue(_ value: String, of element: XCUIElement) {

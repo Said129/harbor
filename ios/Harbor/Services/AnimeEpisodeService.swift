@@ -8,11 +8,37 @@ actor AnimeEpisodeService {
     private var cache: [String: Entry] = [:]
     private var pending: [String: Task<Supplement?, Never>] = [:]
 
-    func episodes(for media: Media) async -> [Episode] {
+    func episodes(for media: Media, grouping: AnimeEpisodeGrouping = .seasons) async -> [Episode] {
+        await variants(for: media).episodes(grouping)
+    }
+
+    func variants(for media: Media) async -> AnimeEpisodeVariants {
         let original = media.videos ?? []
-        guard media.episodic, !original.isEmpty, let query = Self.query(media) else { return original }
-        guard let supplement = await supplement(for: query), !Task.isCancelled else { return original }
-        return Self.applying(supplement.mapping, canonical: supplement.canonical, to: original, animeIdentity: AnimeService.isAnime(media.id))
+        guard media.episodic, !original.isEmpty, let query = Self.query(media) else {
+            return AnimeEpisodeVariants(seasons: original, continuous: original)
+        }
+        guard let supplement = await supplement(for: query), !Task.isCancelled else {
+            let source = Self.providerEpisodes(original)
+            return AnimeEpisodeVariants(seasons: source, continuous: source)
+        }
+        return Self.variants(mapping: supplement.mapping, canonical: supplement.canonical, original: original, animeIdentity: AnimeService.isAnime(media.id))
+    }
+
+    static func variants(mapping: JSONValue, canonical: [Episode], original: [Episode], animeIdentity: Bool) -> AnimeEpisodeVariants {
+        let source = providerEpisodes(original)
+        let continuous = applying(mapping, canonical: canonical, to: source, animeIdentity: animeIdentity)
+        let seasons = continuous.map { episode in
+            var value = episode; value.displaySeason = nil; value.displayEpisode = nil; return value
+        }
+        return AnimeEpisodeVariants(seasons: seasons, continuous: continuous)
+    }
+
+    private static func providerEpisodes(_ original: [Episode]) -> [Episode] {
+        // A previous build may have persisted its forced continuous presentation.
+        // Restore the provider's coordinates before choosing either visible order.
+        original.map { episode in
+            var value = episode; value.displaySeason = nil; value.displayEpisode = nil; return value
+        }
     }
 
     func hasAnimeIdentity(for media: Media) async -> Bool {

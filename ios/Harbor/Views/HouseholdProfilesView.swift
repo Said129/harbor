@@ -160,6 +160,7 @@ private struct HouseholdUnlockTarget: Identifiable {
     @State private var saving = false
     @State private var saveRequest: UUID?
     @State private var deleteConfirmation = false
+    @FocusState private var nameFocused: Bool
     private var profiles: HouseholdProfileStore { app.profileContext.profiles }
     private var advanced: Bool { draft.original == nil || profiles.active?.desktop.isPrimary == true }
     init(app: AppModel, profile: DeviceHouseholdProfile?, done: @escaping () -> Void) {
@@ -186,7 +187,10 @@ private struct HouseholdUnlockTarget: Identifiable {
                     MobileProfileAvatar(value: preview, size: 88)
                 }.buttonStyle(.plain).accessibilityLabel(DesktopInterfaceText.value("Choose an avatar"))
                 TextField(DesktopInterfaceText.value("Name"), text: $draft.name).textFieldStyle(.plain)
-                    .padding(14).background(HarborTheme.surface, in: .rect(cornerRadius: 10)).accessibilityIdentifier("household-profile-name")
+                    .focused($nameFocused).submitLabel(.done).onSubmit { nameFocused = false }
+                    .padding(14).background(HarborTheme.surface, in: .rect(cornerRadius: 10))
+                    .contentShape(Rectangle()).onTapGesture { nameFocused = true }
+                    .accessibilityIdentifier("household-profile-name")
             }
             HStack(spacing: 18) {
                 PhotosPicker(selection: $chosenPhoto, matching: .images) { Text(DesktopInterfaceText.value("Upload photo")) }

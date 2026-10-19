@@ -3,6 +3,7 @@ import SwiftUI
 struct EpisodeList: View {
     let media: Media
     let library: LibraryModel
+    var animeGrouping: Binding<AnimeEpisodeGrouping>? = nil
     let play: (Episode?) -> Void
     @State private var season = 1
     @State private var revealed = Set<String>()
@@ -15,6 +16,12 @@ struct EpisodeList: View {
     }
     var body: some View {
         LazyVStack(alignment: .leading, spacing: 18) {
+            if let animeGrouping {
+                Picker(DesktopInterfaceText.value("Episodes"), selection: animeGrouping) {
+                    Text(DesktopInterfaceText.value("Seasons")).tag(AnimeEpisodeGrouping.seasons)
+                    Text(DesktopInterfaceText.value("All")).tag(AnimeEpisodeGrouping.continuous)
+                }.pickerStyle(.segmented).accessibilityIdentifier("anime-episode-grouping")
+            }
             HStack {
                 Text("Episodios").font(.title2.bold()).accessibilityIdentifier("detail-episode-summary")
                     .accessibilityValue(episodeSummary)

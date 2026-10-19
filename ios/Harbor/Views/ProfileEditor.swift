@@ -52,6 +52,7 @@ struct ProfileEditor: View {
                     TextField(DesktopInterfaceText.value("Name"), text: $name).textFieldStyle(.plain).font(HarborTheme.font(17, weight: .medium))
                         .padding(.horizontal, 12).frame(minHeight: 48).background(HarborTheme.surface, in: .rect(cornerRadius: 10))
                         .overlay { RoundedRectangle(cornerRadius: 10).stroke(HarborTheme.ink.opacity(0.06), lineWidth: 1) }
+                        .contentShape(Rectangle()).onTapGesture { editingName = true }
                         .accessibilityIdentifier("profile-name")
                         .focused($editingName).onSubmit { saveName() }.disabled(!editable)
                 }

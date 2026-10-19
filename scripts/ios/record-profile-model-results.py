@@ -1,4 +1,4 @@
-"""Authenticate all 25 selected model outcomes from the actual Xcode result tree."""
+"""Authenticate the selected model outcomes from the actual Xcode result tree."""
 import argparse
 import hashlib
 import json
@@ -12,8 +12,9 @@ p = argparse.ArgumentParser(description=__doc__)
 p.add_argument('--bundle', type=Path, required=True)
 p.add_argument('--expected', type=Path, required=True)
 p.add_argument('--output', type=Path, required=True)
+p.add_argument('--count', type=int, choices=[11, 25], default=25)
 a = p.parse_args()
-expected = set(json.loads(a.expected.read_text())['pending_native_cases']); assert len(expected) == 25
+expected = set(json.loads(a.expected.read_text())['pending_native_cases']); assert len(expected) == a.count
 raw = subprocess.run(['xcrun', 'xcresulttool', 'get', 'test-results', 'tests', '--path', str(a.bundle)], capture_output=True, timeout=60, check=True)
 a.output.parent.mkdir(parents=True, exist_ok=True)
 tree_file = a.output.with_name(a.output.stem + '-tree.json'); tree_file.write_bytes(raw.stdout)
@@ -29,14 +30,14 @@ def walk(value, context=()):
             for child in value.values():
                 if isinstance(child, (dict, list)): walk(child, context)
 walk(json.loads(raw.stdout))
-assert len(cases) == 25
+assert len(cases) == a.count
 actual = []
 for node, context in cases:
     matches = [case for case in expected if case.split('.', 1)[1].split('/')[0] in context and case.split('/')[-1] in context]
     assert len(matches) == 1 and str(node.get('result', '')).lower() == 'passed'
     actual.append(matches[0])
-assert len(set(actual)) == 25 and set(actual) == expected
-proof = dict(source=os.environ['GITHUB_SHA'], evidence='xcresulttool-test-results-tests', selected_actual_case_count=25,
+assert len(set(actual)) == a.count and set(actual) == expected
+proof = dict(source=os.environ['GITHUB_SHA'], evidence='xcresulttool-test-results-tests', selected_actual_case_count=a.count,
     actual_passed_cases=sorted(actual), raw_tree_file=tree_file.name, raw_tree_sha256=hashlib.sha256(raw.stdout).hexdigest(), bundle=str(a.bundle))
 a.output.write_text(json.dumps(proof, indent=2) + '\n', 'utf-8')
 print('HARBOR_PROFILE_MODEL_RESULTS ' + json.dumps(proof), flush=True)

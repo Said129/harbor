@@ -32,7 +32,9 @@ struct DetailView: View {
                     if let error = app.library.error { Text(error).font(.caption).foregroundStyle(.orange) }
                     if let error = model.error { Text(error).foregroundStyle(.orange) }
                     if model.loading { ProgressView() }
-                    if model.media.episodic { EpisodeList(media: model.media, library: app.library, play: { openStreams($0, automatic: StreamPreferences.shared.automatic) }) }
+                    if model.media.episodic { EpisodeList(media: model.media, library: app.library,
+                        animeGrouping: model.allowsContinuousAnimeEpisodes ? Binding(get: { model.animeEpisodeGrouping }, set: { model.setAnimeEpisodeGrouping($0) }) : nil,
+                        play: { openStreams($0, automatic: StreamPreferences.shared.automatic) }) }
                 }.padding()
                 DetailMetadataView(media: model.media, app: app)
             }
