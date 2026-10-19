@@ -4,14 +4,23 @@ struct EpisodeList: View {
     let media: Media
     let library: LibraryModel
     var animeGrouping: Binding<AnimeEpisodeGrouping>? = nil
+    var ordering: EpisodeOrderProjection? = nil
+    var orderOptions: [TVDBEpisodeOrderOption] = []
+    var selectOrder: (TVDBEpisodeOrderKind) -> Void = { _ in }
+    var richOrderPanel = true
+    var orderLoading = false
     let play: (Episode?) -> Void
     @State private var season = 1
+    @State private var orderSection = ""
     @State private var revealed = Set<String>()
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     private var videos: [Episode] { WatchedCodec.ordered(media.videos ?? []) }
     private var seasons: [Int] { Array(Set(videos.compactMap(\.listedSeason))).sorted() }
+    private var sections: [EpisodeOrderSection] { ordering?.sections ?? [] }
+    private var currentSection: EpisodeOrderSection? { sections.first { $0.id == orderSection } ?? sections.first }
+    private var visible: [Episode] { currentSection?.episodes ?? videos.filter { ($0.listedSeason ?? season) == season } }
     private var episodeSummary: String {
-        let count = seasons.filter { $0 > 0 }.count
+        let count = ordering == nil ? seasons.filter { $0 > 0 }.count : sections.filter { !$0.extra }.count
         return "\(videos.filter { ($0.listedSeason ?? 1) > 0 }.count) episodios · \(count) \(count == 1 ? "temporada" : "temporadas")"
     }
     var body: some View {
@@ -26,11 +35,18 @@ struct EpisodeList: View {
                 Text("Episodios").font(.title2.bold()).accessibilityIdentifier("detail-episode-summary")
                     .accessibilityValue(episodeSummary)
                 Spacer()
-                if seasons.count > 1 { Picker("Temporada", selection: $season) {
+                if let ordering, richOrderPanel {
+                    TVDBOrderPanel(sections: sections, options: orderOptions, activeKind: ordering.kind,
+                        selection: Binding(get: { currentSection?.id ?? "" }, set: { orderSection = $0 }), selectOrder: selectOrder, loading: orderLoading)
+                } else if ordering != nil {
+                    Picker(DesktopInterfaceText.value("Seasons"), selection: Binding(get: { currentSection?.id ?? "" }, set: { orderSection = $0 })) {
+                        ForEach(sections) { Text($0.label).tag($0.id) }
+                    }.pickerStyle(.menu).accessibilityIdentifier("episode-season")
+                } else if seasons.count > 1 { Picker("Temporada", selection: $season) {
                     ForEach(seasons, id: \.self) { Text($0 == 0 ? "Especiales" : "Temporada \($0)").tag($0) }
                 }.pickerStyle(.menu).accessibilityIdentifier("episode-season") }
             }
-            ForEach(videos.filter { ($0.listedSeason ?? season) == season }) { episode in
+            ForEach(visible) { episode in
                 let hidden = spoilerHidden(episode)
                 let episodeLabel = DesktopInterfaceText.value("Episode {n}").replacingOccurrences(of: "{n}", with: String(episode.listedEpisode ?? 0))
                 VStack(alignment: .leading, spacing: 9) {
@@ -73,6 +89,13 @@ struct EpisodeList: View {
         }.animation(reduceMotion ? nil : .easeOut(duration: 0.2), value: revealed)
             .task(id: media.identity) { if !seasons.contains(season) { season = seasons.first(where: { $0 > 0 }) ?? seasons.first ?? 1 } }
             .onChange(of: seasons) { _, _ in if !seasons.contains(season) { season = seasons.first(where: { $0 > 0 }) ?? seasons.first ?? 1 } }
+            .onChange(of: sections.map(\.id)) { _, ids in
+                if !ids.contains(orderSection) {
+                    let record = library.items.first { $0.id == media.id }
+                    let next = EpisodeSequence.startingEpisode(media.videos ?? [], record: record, watched: library.watchedEpisodes(media), presentation: ordering)
+                    orderSection = sections.first(where: { $0.episodes.contains(where: { $0.id == next?.id }) })?.id ?? ids.first ?? ""
+                }
+            }
     }
     private func spoilerHidden(_ episode: Episode) -> Bool { InterfacePreferences.shared.hideSpoilers && !library.watchedEpisodes(media).contains(episode.watchedKey) && !revealed.contains(episode.id) }
 }

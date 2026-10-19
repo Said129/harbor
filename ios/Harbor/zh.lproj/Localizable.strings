@@ -27,6 +27,7 @@
 "Abrir imagen" = "打开图片";
 "Abrir navegación" = "Open navigation";
 "Abrir reproductor de Música" = "Open music player";
+"Absolute" = "绝对";
 "Accent" = "强调色";
 "Accents" = "Accents";
 "Accept" = "接受";
@@ -68,6 +69,7 @@
 "Ahora" = "现在";
 "Ahora en cines" = "正在热映";
 "Ahora no" = "暂不";
+"Aired" = "已播出";
 "Airing Now" = "正在播出";
 "Ajusta el texto y el fondo. La vista previa muestra los cambios al hacerlos." = "调整文字和背景。预览会实时显示更改。";
 "Ajustar" = "适应";
@@ -95,6 +97,7 @@
 "All-Time Great Series" = "史上经典剧集";
 "All-Time Greats" = "影史经典";
 "Allow cellular data" = "Allow cellular data";
+"Alternate" = "备选";
 "Analizando el audio… Puedes seguir viendo." = "Analyzing audio… Keep watching.";
 "Analysis stopped to prioritize playback. Retry after buffering finishes." = "Analysis stopped to prioritize playback. Retry after buffering finishes.";
 "Analyzing audio… Keep watching." = "Analyzing audio… Keep watching.";
@@ -416,6 +419,7 @@
 "Customize page" = "自定义页面";
 "Czech" = "捷克语";
 "Cómo leer tus libros" = "Reading help";
+"DVD" = "DVD";
 "Da color a tu nombre, al cursor en Ver juntos y al anillo alrededor de tu avatar." = "为你的名字、一起看中的光标和头像周围的圆环设置颜色。";
 "Danger" = "危险";
 "Danish" = "丹麦语";
@@ -530,6 +534,7 @@
 "Enter current PIN" = "输入当前 PIN";
 "Episode" = "剧集";
 "Episode cards" = "单集卡片";
+"Episode ordering" = "单集排序";
 "Episode {n}" = "第 {n} 集";
 "Episodes" = "剧集";
 "Episodio" = "剧集";
@@ -570,6 +575,7 @@
 "External" = "外部";
 "External subtitle" = "外部字幕";
 "Externo" = "外部";
+"Extras" = "花絮";
 "FPS de los subtítulos" = "字幕 FPS";
 "FPS de origen de los subtítulos" = "字幕源 FPS";
 "FPS del video" = "视频 FPS";
@@ -877,6 +883,7 @@
 "Mover hacia arriba" = "上移";
 "Movie" = "电影";
 "Movies" = "电影";
+"Movies & Specials" = "电影与特别篇";
 "Movies on {name}" = "{name} 上的电影";
 "Muestra Saltar intro o Saltar créditos cuando se detecta un intervalo. Puedes desactivarlo o tocar su X para ocultarlo durante ese episodio." = "Harbor 检测到片头或片尾时，显示“跳过片头”或“跳过片尾”按钮。关闭后将不再显示。也可点按按钮上的 X，在本集剩余时间内忽略错误识别。";
 "Muestra la sinopsis del episodio en las tarjetas. Desactívalo para ocultarla." = "在卡片上显示单集简介。关闭后隐藏。";
@@ -999,6 +1006,7 @@
 "On Tonight" = "今晚播出";
 "On start" = "On start";
 "Onboarding" = "新手引导";
+"Ongoing" = "连载中";
 "Opacidad" = "不透明度";
 "Opacidad del fondo" = "背景不透明度";
 "Opacity" = "不透明度";
@@ -1257,6 +1265,7 @@
 "Retry statistics" = "Retry statistics";
 "Reveal" = "显示";
 "Reverse order" = "Reverse order";
+"Rich season and order panel" = "功能丰富的季与播放顺序面板";
 "Richer, more vivid picture with a touch more contrast." = "画面色彩更饱满、更鲜艳，并略微提高对比度。";
 "Right" = "右对齐";
 "Right to left" = "从右到左";
@@ -1539,6 +1548,7 @@
 "The quick brown fox jumps over the lazy dog" = "敏捷的棕狐跃过懒狗";
 "The shape of the whole Home page. Everything below tunes the rows inside it." = "整个首页的布局。下方各项用于调整其中的内容行。";
 "The subtitle already matches the audio." = "The subtitle already matches the audio.";
+"TheTVDB" = "TheTVDB";
 "Theater Capture" = "Theater Capture";
 "These rails activate once a TMDB key is set. You can come back to this anytime in Settings." = "设置 TMDB 密钥后，这些内容栏便会启用。你随时可以在“设置”中返回这里。";
 "This file has one audio track." = "此文件只有一条音轨。";
@@ -1682,6 +1692,7 @@
 "Where to today?" = "今天去哪儿？";
 "Where to watch" = "观看平台";
 "Where your video comes from" = "视频来源";
+"Which order" = "排序方式";
 "Who's watching" = "谁在观看";
 "Who's watching?" = "谁在看？";
 "Writer" = "编剧";

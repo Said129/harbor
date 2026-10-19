@@ -27,6 +27,7 @@
 "Abrir imagen" = "चित्र खोलें";
 "Abrir navegación" = "Open navigation";
 "Abrir reproductor de Música" = "Open music player";
+"Absolute" = "पूर्ण";
 "Accent" = "एक्सेंट";
 "Accents" = "Accents";
 "Accept" = "स्वीकार करें";
@@ -68,6 +69,7 @@
 "Ahora" = "अभी";
 "Ahora en cines" = "अभी सिनेमाघरों में";
 "Ahora no" = "अभी नहीं";
+"Aired" = "प्रसारित";
 "Airing Now" = "अभी प्रसारित हो रहा है";
 "Ajusta el texto y el fondo. La vista previa muestra los cambios al hacerlos." = "टेक्स्ट और पृष्ठभूमि समायोजित करें। बदलाव करते ही पूर्वावलोकन में दिखते हैं।";
 "Ajustar" = "फ़िट करें";
@@ -95,6 +97,7 @@
 "All-Time Great Series" = "सर्वकालिक महान सीरीज़";
 "All-Time Greats" = "सर्वकालिक महान कृतियाँ";
 "Allow cellular data" = "Allow cellular data";
+"Alternate" = "वैकल्पिक";
 "Analizando el audio… Puedes seguir viendo." = "Analyzing audio… Keep watching.";
 "Analysis stopped to prioritize playback. Retry after buffering finishes." = "Analysis stopped to prioritize playback. Retry after buffering finishes.";
 "Analyzing audio… Keep watching." = "Analyzing audio… Keep watching.";
@@ -416,6 +419,7 @@
 "Customize page" = "पेज को कस्टमाइज़ करें";
 "Czech" = "चेक";
 "Cómo leer tus libros" = "Reading help";
+"DVD" = "DVD";
 "Da color a tu nombre, al cursor en Ver juntos y al anillo alrededor de tu avatar." = "आपके नाम, साथ में देखें में आपके कर्सर और आपके अवतार के चारों ओर के घेरे का रंग बदलता है।";
 "Danger" = "खतरा";
 "Danish" = "डेनिश";
@@ -530,6 +534,7 @@
 "Enter current PIN" = "मौजूदा PIN दर्ज करें";
 "Episode" = "एपिसोड";
 "Episode cards" = "एपिसोड कार्ड";
+"Episode ordering" = "एपिसोड क्रम";
 "Episode {n}" = "एपिसोड {n}";
 "Episodes" = "एपिसोड";
 "Episodio" = "एपिसोड";
@@ -570,6 +575,7 @@
 "External" = "बाहरी";
 "External subtitle" = "बाहरी सबटाइटल";
 "Externo" = "बाहरी";
+"Extras" = "अतिरिक्त सामग्री";
 "FPS de los subtítulos" = "सबटाइटल FPS";
 "FPS de origen de los subtítulos" = "सबटाइटल स्रोत का FPS";
 "FPS del video" = "वीडियो FPS";
@@ -877,6 +883,7 @@
 "Mover hacia arriba" = "ऊपर ले जाएँ";
 "Movie" = "फ़िल्म";
 "Movies" = "फ़िल्में";
+"Movies & Specials" = "फ़िल्में और स्पेशल";
 "Movies on {name}" = "{name} पर फ़िल्में";
 "Muestra Saltar intro o Saltar créditos cuando se detecta un intervalo. Puedes desactivarlo o tocar su X para ocultarlo durante ese episodio." = "Harbor को इंट्रो या क्रेडिट मिलने पर इंट्रो छोड़ें / क्रेडिट छोड़ें बटन दिखाएँ। इसे कभी न दिखाने के लिए यह विकल्प बंद करें। अगर पहचान गलत हो, तो बाकी एपिसोड के लिए इसे हटाने हेतु बटन पर मौजूद X टैप करें।";
 "Muestra la sinopsis del episodio en las tarjetas. Desactívalo para ocultarla." = "कार्ड पर एपिसोड का सारांश दिखाता है। इसे छिपाने के लिए बंद कर दें।";
@@ -999,6 +1006,7 @@
 "On Tonight" = "आज रात प्रसारण में";
 "On start" = "On start";
 "Onboarding" = "शुरुआती सेटअप";
+"Ongoing" = "जारी";
 "Opacidad" = "अपारदर्शिता";
 "Opacidad del fondo" = "बैकग्राउंड की अपारदर्शिता";
 "Opacity" = "अपारदर्शिता";
@@ -1257,6 +1265,7 @@
 "Retry statistics" = "Retry statistics";
 "Reveal" = "दिखाएँ";
 "Reverse order" = "Reverse order";
+"Rich season and order panel" = "विस्तृत सीज़न और क्रम पैनल";
 "Richer, more vivid picture with a touch more contrast." = "थोड़े अधिक कंट्रास्ट के साथ अधिक समृद्ध और चटख तस्वीर।";
 "Right" = "दायाँ";
 "Right to left" = "दाएँ से बाएँ";
@@ -1539,6 +1548,7 @@
 "The quick brown fox jumps over the lazy dog" = "तेज़ भूरी लोमड़ी आलसी कुत्ते के ऊपर से कूदती है";
 "The shape of the whole Home page. Everything below tunes the rows inside it." = "पूरे होम पेज की बनावट। नीचे की सभी सेटिंग्स इसके अंदर की पंक्तियों को सँवारती हैं।";
 "The subtitle already matches the audio." = "The subtitle already matches the audio.";
+"TheTVDB" = "TheTVDB";
 "Theater Capture" = "Theater Capture";
 "These rails activate once a TMDB key is set. You can come back to this anytime in Settings." = "TMDB कुंजी सेट होते ही ये पंक्तियाँ सक्रिय हो जाती हैं। आप सेटिंग्स में कभी भी इस पर वापस आ सकते हैं।";
 "This file has one audio track." = "इस फ़ाइल में एक ऑडियो ट्रैक है।";
@@ -1682,6 +1692,7 @@
 "Where to today?" = "आज कहाँ चलें?";
 "Where to watch" = "कहाँ देखें";
 "Where your video comes from" = "आपका वीडियो कहाँ से आता है";
+"Which order" = "किस क्रम में";
 "Who's watching" = "कौन देख रहा है";
 "Who's watching?" = "कौन देख रहा है?";
 "Writer" = "लेखक";

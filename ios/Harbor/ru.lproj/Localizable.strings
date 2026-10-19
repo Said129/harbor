@@ -29,6 +29,7 @@
 "Abrir imagen" = "Открыть изображение";
 "Abrir navegación" = "Open navigation";
 "Abrir reproductor de Música" = "Open music player";
+"Absolute" = "Абсолютная";
 "Accent" = "Акцент";
 "Accents" = "Accents";
 "Accept" = "Принять";
@@ -70,6 +71,7 @@
 "Ahora" = "Сейчас";
 "Ahora en cines" = "Сейчас в кино";
 "Ahora no" = "Не сейчас";
+"Aired" = "Вышло";
 "Airing Now" = "Сейчас в эфире";
 "Ajusta el texto y el fondo. La vista previa muestra los cambios al hacerlos." = "Настройте текст и фон. Изменения сразу видны в предпросмотре.";
 "Ajustar" = "Вписать";
@@ -97,6 +99,7 @@
 "All-Time Great Series" = "Великие сериалы всех времён";
 "All-Time Greats" = "Лучшее за всё время";
 "Allow cellular data" = "Allow cellular data";
+"Alternate" = "Альтернативный";
 "Analizando el audio… Puedes seguir viendo." = "Анализ звука… Продолжайте просмотр.";
 "Analysis stopped to prioritize playback. Retry after buffering finishes." = "Анализ остановлен ради воспроизведения. Повторите попытку после буферизации.";
 "Analyzing audio… Keep watching." = "Анализ звука… Продолжайте просмотр.";
@@ -420,6 +423,7 @@
 "Customize page" = "Настроить страницу";
 "Czech" = "Чешский";
 "Cómo leer tus libros" = "Как пользоваться Manga и eBook";
+"DVD" = "DVD";
 "Da color a tu nombre, al cursor en Ver juntos y al anillo alrededor de tu avatar." = "Задаёт цвет имени, курсора в Совместном просмотре и кольца вокруг аватара.";
 "Danger" = "Опасно";
 "Danish" = "Датский";
@@ -534,6 +538,7 @@
 "Enter current PIN" = "Введите текущий PIN";
 "Episode" = "Серия";
 "Episode cards" = "Карточки серий";
+"Episode ordering" = "Порядок серий";
 "Episode {n}" = "Серия {n}";
 "Episodes" = "Серии";
 "Episodio" = "Серия";
@@ -574,6 +579,7 @@
 "External" = "Внешние";
 "External subtitle" = "Внешние субтитры";
 "Externo" = "Внешние";
+"Extras" = "Дополнительные материалы";
 "FPS de los subtítulos" = "Частота кадров субтитров";
 "FPS de origen de los subtítulos" = "Исходная частота кадров субтитров";
 "FPS del video" = "Частота кадров видео";
@@ -882,6 +888,7 @@
 "Mover hacia arriba" = "Вверх";
 "Movie" = "Фильм";
 "Movies" = "Фильмы";
+"Movies & Specials" = "Фильмы и спецвыпуски";
 "Movies on {name}" = "Фильмы на {name}";
 "Muestra Saltar intro o Saltar créditos cuando se detecta un intervalo. Puedes desactivarlo o tocar su X para ocultarlo durante ese episodio." = "Показывать кнопку «Пропустить заставку» / «Пропустить титры», когда Harbor их находит. Отключите, чтобы никогда её не показывать. Нажмите X на кнопке, чтобы скрыть ошибочную до конца серии.";
 "Muestra la sinopsis del episodio en las tarjetas. Desactívalo para ocultarla." = "Показывает краткое содержание серии на карточках. Отключите, чтобы скрыть.";
@@ -1008,6 +1015,7 @@
 "On Tonight" = "Сегодня в эфире";
 "On start" = "On start";
 "Onboarding" = "Начало работы";
+"Ongoing" = "Продолжается";
 "Opacidad" = "Непрозрачность";
 "Opacidad del fondo" = "Непрозрачность фона";
 "Opacity" = "Непрозрачность";
@@ -1269,6 +1277,7 @@
 "Retry statistics" = "Retry statistics";
 "Reveal" = "Показать";
 "Reverse order" = "Reverse order";
+"Rich season and order panel" = "Расширенная панель сезонов и порядка";
 "Richer, more vivid picture with a touch more contrast." = "Более сочная картинка с чуть большим контрастом.";
 "Right" = "Справа";
 "Right to left" = "Справа налево";
@@ -1552,6 +1561,7 @@
 "The quick brown fox jumps over the lazy dog" = "Съешь же ещё этих мягких французских булок да выпей чаю";
 "The shape of the whole Home page. Everything below tunes the rows inside it." = "Общий вид всей главной страницы. Всё ниже настраивает ряды внутри неё.";
 "The subtitle already matches the audio." = "Субтитры уже совпадают со звуком.";
+"TheTVDB" = "TheTVDB";
 "Theater Capture" = "Theater Capture";
 "These rails activate once a TMDB key is set. You can come back to this anytime in Settings." = "Эти ряды заработают после добавления ключа TMDB. Вернуться к этому можно в любой момент в Настройках.";
 "This file has one audio track." = "В этом файле одна аудиодорожка.";
@@ -1695,6 +1705,7 @@
 "Where to today?" = "Куда сегодня?";
 "Where to watch" = "Где смотреть";
 "Where your video comes from" = "Источники видео";
+"Which order" = "Какой порядок";
 "Who's watching" = "Кто смотрит";
 "Who's watching?" = "Кто смотрит?";
 "Writer" = "Сценарист";

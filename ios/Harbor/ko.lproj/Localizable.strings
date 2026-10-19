@@ -27,6 +27,7 @@
 "Abrir imagen" = "이미지 열기";
 "Abrir navegación" = "Open navigation";
 "Abrir reproductor de Música" = "Open music player";
+"Absolute" = "절대값";
 "Accent" = "강조색";
 "Accents" = "Accents";
 "Accept" = "수락";
@@ -68,6 +69,7 @@
 "Ahora" = "지금";
 "Ahora en cines" = "현재 극장 상영작";
 "Ahora no" = "나중에";
+"Aired" = "방영됨";
 "Airing Now" = "현재 방영 중";
 "Ajusta el texto y el fondo. La vista previa muestra los cambios al hacerlos." = "텍스트와 배경을 조정합니다. 변경 사항이 바로 미리보기에 표시됩니다.";
 "Ajustar" = "맞춤";
@@ -95,6 +97,7 @@
 "All-Time Great Series" = "역대 명작 시리즈";
 "All-Time Greats" = "시대를 초월한 명작";
 "Allow cellular data" = "Allow cellular data";
+"Alternate" = "대체";
 "Analizando el audio… Puedes seguir viendo." = "Analyzing audio… Keep watching.";
 "Analysis stopped to prioritize playback. Retry after buffering finishes." = "Analysis stopped to prioritize playback. Retry after buffering finishes.";
 "Analyzing audio… Keep watching." = "Analyzing audio… Keep watching.";
@@ -416,6 +419,7 @@
 "Customize page" = "페이지 사용자 지정";
 "Czech" = "체코어";
 "Cómo leer tus libros" = "Reading help";
+"DVD" = "DVD";
 "Da color a tu nombre, al cursor en Ver juntos y al anillo alrededor de tu avatar." = "이름, 같이 보기의 커서, 아바타 주변 테두리에 색을 적용합니다.";
 "Danger" = "위험";
 "Danish" = "덴마크어";
@@ -530,6 +534,7 @@
 "Enter current PIN" = "현재 PIN 입력";
 "Episode" = "에피소드";
 "Episode cards" = "에피소드 카드";
+"Episode ordering" = "에피소드 순서";
 "Episode {n}" = "에피소드 {n}";
 "Episodes" = "에피소드";
 "Episodio" = "에피소드";
@@ -570,6 +575,7 @@
 "External" = "외부";
 "External subtitle" = "외부 자막";
 "Externo" = "외부";
+"Extras" = "부가 콘텐츠";
 "FPS de los subtítulos" = "자막 FPS";
 "FPS de origen de los subtítulos" = "자막 소스 FPS";
 "FPS del video" = "동영상 FPS";
@@ -877,6 +883,7 @@
 "Mover hacia arriba" = "위로 이동";
 "Movie" = "영화";
 "Movies" = "영화";
+"Movies & Specials" = "영화 및 스페셜";
 "Movies on {name}" = "{name}의 영화";
 "Muestra Saltar intro o Saltar créditos cuando se detecta un intervalo. Puedes desactivarlo o tocar su X para ocultarlo durante ese episodio." = "Harbor가 오프닝 또는 엔딩을 감지하면 오프닝 건너뛰기 / 엔딩 건너뛰기 버튼을 표시합니다. 표시하지 않으려면 이 옵션을 끄세요. 잘못 감지된 경우 버튼의 X를 눌러 해당 에피소드가 끝날 때까지 숨길 수도 있습니다.";
 "Muestra la sinopsis del episodio en las tarjetas. Desactívalo para ocultarla." = "카드에 에피소드 줄거리를 표시합니다. 숨기려면 이 옵션을 끄세요.";
@@ -999,6 +1006,7 @@
 "On Tonight" = "오늘 밤 방송";
 "On start" = "On start";
 "Onboarding" = "시작 안내";
+"Ongoing" = "연재 중";
 "Opacidad" = "불투명도";
 "Opacidad del fondo" = "배경 불투명도";
 "Opacity" = "불투명도";
@@ -1257,6 +1265,7 @@
 "Retry statistics" = "Retry statistics";
 "Reveal" = "표시";
 "Reverse order" = "Reverse order";
+"Rich season and order panel" = "상세 시즌 및 순서 패널";
 "Richer, more vivid picture with a touch more contrast." = "대비를 약간 높여 더 풍부하고 생생한 화면을 만듭니다.";
 "Right" = "오른쪽";
 "Right to left" = "오른쪽에서 왼쪽";
@@ -1539,6 +1548,7 @@
 "The quick brown fox jumps over the lazy dog" = "다람쥐 헌 쳇바퀴에 타고파";
 "The shape of the whole Home page. Everything below tunes the rows inside it." = "홈 페이지 전체의 구성입니다. 아래의 모든 설정은 그 안의 행을 조정합니다.";
 "The subtitle already matches the audio." = "The subtitle already matches the audio.";
+"TheTVDB" = "TheTVDB";
 "Theater Capture" = "Theater Capture";
 "These rails activate once a TMDB key is set. You can come back to this anytime in Settings." = "TMDB 키를 설정하면 이 콘텐츠 줄이 활성화됩니다. 설정에서 언제든 다시 변경할 수 있습니다.";
 "This file has one audio track." = "이 파일에는 오디오 트랙이 하나 있습니다.";
@@ -1682,6 +1692,7 @@
 "Where to today?" = "오늘은 어디로 갈까요?";
 "Where to watch" = "시청 가능한 곳";
 "Where your video comes from" = "동영상 제공 출처";
+"Which order" = "정렬 순서";
 "Who's watching" = "시청자 선택";
 "Who's watching?" = "누가 시청하나요?";
 "Writer" = "작가";

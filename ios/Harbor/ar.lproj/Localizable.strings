@@ -34,6 +34,7 @@
 "Abrir imagen" = "فتح الصورة";
 "Abrir navegación" = "Open navigation";
 "Abrir reproductor de Música" = "Open music player";
+"Absolute" = "مطلق";
 "Accent" = "لون مميز";
 "Accents" = "Accents";
 "Accept" = "قبول";
@@ -77,6 +78,7 @@
 "Ahora" = "الآن";
 "Ahora en cines" = "في دور العرض الآن";
 "Ahora no" = "ليس الآن";
+"Aired" = "حسب العرض";
 "Airing Now" = "يُعرض الآن";
 "Ajusta el texto y el fondo. La vista previa muestra los cambios al hacerlos." = "اضبط النص والخلفية. تُظهر المعاينة تغييراتك فور إجرائها.";
 "Ajustar" = "ملاءمة";
@@ -104,6 +106,7 @@
 "All-Time Great Series" = "أعظم المسلسلات على الإطلاق";
 "All-Time Greats" = "روائع كل العصور";
 "Allow cellular data" = "Allow cellular data";
+"Alternate" = "بديل";
 "Analizando el audio… Puedes seguir viendo." = "جارٍ تحليل الصوت… يمكنك متابعة المشاهدة.";
 "Analysis stopped to prioritize playback. Retry after buffering finishes." = "توقف التحليل لإعطاء الأولوية للمشاهدة. أعد المحاولة بعد اكتمال التحميل.";
 "Analyzing audio… Keep watching." = "جارٍ تحليل الصوت… يمكنك متابعة المشاهدة.";
@@ -440,6 +443,7 @@
 "Customize page" = "تخصيص الصفحة";
 "Czech" = "التشيكية";
 "Cómo leer tus libros" = "كيفية استخدام المانغا والكتب الإلكترونية";
+"DVD" = "DVD";
 "Da color a tu nombre, al cursor en Ver juntos y al anillo alrededor de tu avatar." = "يلوّن اسمك ومؤشرك في المشاهدة معاً والحلقة المحيطة بصورتك الرمزية.";
 "Danger" = "خطر";
 "Danish" = "الدنماركية";
@@ -554,6 +558,7 @@
 "Enter current PIN" = "أدخل رمز PIN الحالي";
 "Episode" = "حلقة";
 "Episode cards" = "بطاقات الحلقات";
+"Episode ordering" = "ترتيب الحلقات";
 "Episode {n}" = "الحلقة {n}";
 "Episodes" = "الحلقات";
 "Episodio" = "حلقة";
@@ -594,6 +599,7 @@
 "External" = "خارجي";
 "External subtitle" = "ترجمة خارجية";
 "Externo" = "خارجي";
+"Extras" = "الإضافات";
 "FPS de los subtítulos" = "معدل إطارات الترجمة";
 "FPS de origen de los subtítulos" = "معدل إطارات مصدر الترجمة";
 "FPS del video" = "معدل إطارات الفيديو";
@@ -902,6 +908,7 @@
 "Mover hacia arriba" = "نقل لأعلى";
 "Movie" = "فيلم";
 "Movies" = "الأفلام";
+"Movies & Specials" = "الأفلام والحلقات الخاصة";
 "Movies on {name}" = "أفلام على {name}";
 "Muestra Saltar intro o Saltar créditos cuando se detecta un intervalo. Puedes desactivarlo o tocar su X para ocultarlo durante ese episodio." = "إظهار زر تخطّي المقدمة / تخطّي الشارة عندما يكتشف Harbor واحداً منها. عطّل هذا الخيار لعدم إظهاره أبداً. يمكنك أيضاً النقر على X على الزر لتجاهل زر خاطئ لبقية الحلقة.";
 "Muestra la sinopsis del episodio en las tarjetas. Desactívalo para ocultarla." = "يعرض ملخّص الحلقة على البطاقات. عطّله لإخفائه.";
@@ -1028,6 +1035,7 @@
 "On Tonight" = "يعرض الليلة";
 "On start" = "On start";
 "Onboarding" = "الإعداد الأولي";
+"Ongoing" = "مستمر";
 "Opacidad" = "الشفافية";
 "Opacidad del fondo" = "شفافية الخلفية";
 "Opacity" = "الشفافية";
@@ -1289,6 +1297,7 @@
 "Retry statistics" = "Retry statistics";
 "Reveal" = "إظهار";
 "Reverse order" = "Reverse order";
+"Rich season and order panel" = "لوحة المواسم والترتيب التفصيلية";
 "Richer, more vivid picture with a touch more contrast." = "صورة أغنى وأكثر حيوية مع القليل من التباين الإضافي.";
 "Right" = "يمين";
 "Right to left" = "من اليمين إلى اليسار";
@@ -1575,6 +1584,7 @@
 "The quick brown fox jumps over the lazy dog" = "أبجد هوز حطي كلمن سعفص قرشت ثخذ ضظغ";
 "The shape of the whole Home page. Everything below tunes the rows inside it." = "شكل صفحة الرئيسية بأكملها. كل ما بالأسفل يضبط الصفوف داخلها.";
 "The subtitle already matches the audio." = "تتطابق الترجمة مع الصوت بالفعل.";
+"TheTVDB" = "TheTVDB";
 "Theater Capture" = "Theater Capture";
 "These rails activate once a TMDB key is set. You can come back to this anytime in Settings." = "تُفعَّل هذه الصفوف بمجرد تعيين مفتاح TMDB. يمكنك العودة إلى هذا في أي وقت من الإعدادات.";
 "This file has one audio track." = "هذا الملف يحتوي على مسار صوتي واحد.";
@@ -1718,6 +1728,7 @@
 "Where to today?" = "إلى أين اليوم؟";
 "Where to watch" = "أين تشاهد";
 "Where your video comes from" = "من أين يأتي الفيديو الخاص بك";
+"Which order" = "أي ترتيب";
 "Who's watching" = "من يشاهد";
 "Who's watching?" = "من يشاهد؟";
 "Women's Africa Cup of Nations" = "كأس الأمم الأفريقية للسيدات";

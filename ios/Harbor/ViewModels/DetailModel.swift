@@ -23,10 +23,16 @@ final class DetailModel {
     private var metadataLoaded: Bool
     private var animeEpisodesLoaded = false
     private var animeEpisodeVariants: AnimeEpisodeVariants?
+    private var tvdbOrder: TVDBEpisodeOrder?
+    private var orderRequest = UUID()
+    var episodeOrderProjection: EpisodeOrderProjection?
+    var episodeOrderOptions: [TVDBEpisodeOrderOption] = []
+    var episodeOrderLoading = false
+    var canLoadEpisodeOrder: Bool { animeEpisodesLoaded && !loadingMetadata && media.episodic }
     var animeEpisodeGrouping = AnimeEpisodeGrouping.saved
     var allowsContinuousAnimeEpisodes: Bool { animeEpisodeVariants?.allowsContinuous == true }
     var episodeMetadataURL: URL? {
-        guard let id = animeEpisodeVariants?.tvdbSeriesID else { return nil }
+        guard let id = tvdbOrder?.seriesID ?? animeEpisodeVariants?.tvdbSeriesID else { return nil }
         return URL(string: "https://thetvdb.com/?tab=series&id=\(id)")
     }
     private var streamRequest = UUID()
@@ -85,7 +91,41 @@ final class DetailModel {
         let supplemented = await TVDBService.shared.supplement(variants, for: selected)
         guard !Task.isCancelled, library.owner == owner, media.identity == selected.identity else { return }
         animeEpisodeVariants = supplemented
-        media.videos = supplemented.episodes(animeEpisodeGrouping)
+        applyEpisodeOrder()
+    }
+
+    func loadEpisodeOrder(setting: String, language: String, owner: String, library: LibraryModel, tvdb: TVDBService = .shared) async {
+        guard canLoadEpisodeOrder, library.owner == owner else { return }
+        let request = UUID(), selected = media
+        orderRequest = request; episodeOrderLoading = true
+        defer { if orderRequest == request { episodeOrderLoading = false } }
+        do {
+            var seriesID = animeEpisodeVariants?.tvdbSeriesID
+            if seriesID == nil {
+                let imdb = selected.imdbID ?? selected.id
+                guard imdb.range(of: "^tt[0-9]{7,12}$", options: .regularExpression) != nil else { return }
+                let hits = try await tvdb.data(.remote(imdb))
+                let ids = Set(hits.array.compactMap { $0["series"]["id"].integer }.filter { $0 > 0 })
+                guard ids.count == 1 else { return }
+                seriesID = ids.first
+            }
+            guard let seriesID else { return }
+            let options = try await tvdb.orderOptions(series: seriesID)
+            let requested = TVDBEpisodeOrderKind(setting: setting) ?? .aired
+            guard let effective = options.first(where: { $0.kind == requested })?.kind
+                ?? options.first(where: { $0.kind == .aired })?.kind ?? options.first?.kind else { return }
+            let order = try await tvdb.episodeOrder(series: seriesID, kind: effective, language: language)
+            try Task.checkCancellation()
+            guard orderRequest == request, library.owner == owner, media.identity == selected.identity else { return }
+            tvdbOrder = order; episodeOrderOptions = options
+            applyEpisodeOrder()
+        } catch { return } // Keep the available provider list usable during optional metadata failures.
+    }
+
+    private func applyEpisodeOrder() {
+        guard let variants = animeEpisodeVariants else { return }
+        episodeOrderProjection = tvdbOrder.flatMap { EpisodeOrderProjection.build($0, source: variants.seasons, animeIdentity: AnimeService.isAnime(media.id)) }
+        media.videos = episodeOrderProjection?.videos ?? variants.episodes(animeEpisodeGrouping)
     }
 
     func setAnimeEpisodeGrouping(_ grouping: AnimeEpisodeGrouping) {

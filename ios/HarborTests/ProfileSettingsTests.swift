@@ -47,6 +47,21 @@ import XCTest
         try store.activate(owner: "household-a", sharedOwner: "household-a", migrateLegacy: false)
         XCTAssertEqual(defaults.string(forKey: "iphone.theme.preset"), "private-custom-preset")
     }
+    func testEpisodeOrderAndRichPanelRemainIndependentAcrossProfilesAndRestart() throws {
+        let (defaults, suite) = try defaults(); defer { defaults.removePersistentDomain(forName: suite) }
+        defaults.set("dvd", forKey: "tvdbSeasonType"); defaults.set(false, forKey: "tvdbOrderPanel")
+        let memory = ProfileSettingsMemory(), store = ProfileSettingsStore(defaults: defaults, persistence: memory)
+        try store.activate(owner: "first", sharedOwner: "first", migrateLegacy: true)
+        try store.activate(owner: "second", sharedOwner: "second", migrateLegacy: false)
+        XCTAssertNil(defaults.object(forKey: "tvdbSeasonType")); XCTAssertNil(defaults.object(forKey: "tvdbOrderPanel"))
+        defaults.set("regional", forKey: "tvdbSeasonType"); defaults.set(true, forKey: "tvdbOrderPanel")
+        XCTAssertTrue(store.saveCurrent())
+        try store.activate(owner: "first", sharedOwner: "first", migrateLegacy: false)
+        XCTAssertEqual(defaults.string(forKey: "tvdbSeasonType"), "dvd"); XCTAssertEqual(defaults.object(forKey: "tvdbOrderPanel") as? Bool, false)
+        let restarted = ProfileSettingsStore(defaults: defaults, persistence: memory)
+        try restarted.activate(owner: "second", sharedOwner: "second", migrateLegacy: false)
+        XCTAssertEqual(defaults.string(forKey: "tvdbSeasonType"), "regional"); XCTAssertEqual(defaults.object(forKey: "tvdbOrderPanel") as? Bool, true)
+    }
     func testFailedSwitchKeepsThePublishedOwnerAndMirrorAndRetrySavesTheLastEdits() throws {
         let (defaults, suite) = try defaults(); defer { defaults.removePersistentDomain(forName: suite) }
         let memory = ProfileSettingsMemory(), store = ProfileSettingsStore(defaults: defaults, persistence: memory)

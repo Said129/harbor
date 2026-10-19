@@ -27,6 +27,7 @@
 "Abrir imagen" = "Görseli aç";
 "Abrir navegación" = "Open navigation";
 "Abrir reproductor de Música" = "Open music player";
+"Absolute" = "Mutlak";
 "Accent" = "Vurgu";
 "Accents" = "Accents";
 "Accept" = "Kabul et";
@@ -68,6 +69,7 @@
 "Ahora" = "Şimdi";
 "Ahora en cines" = "Şu Anda Sinemalarda";
 "Ahora no" = "Şimdi değil";
+"Aired" = "Yayınlandı";
 "Airing Now" = "Şu Anda Yayında";
 "Ajusta el texto y el fondo. La vista previa muestra los cambios al hacerlos." = "Metni ve arka planı ayarlayın. Önizleme yaptığınız değişiklikleri anında gösterir.";
 "Ajustar" = "Sığdır";
@@ -95,6 +97,7 @@
 "All-Time Great Series" = "Tüm Zamanların En İyi Dizileri";
 "All-Time Greats" = "Tüm Zamanların En İyileri";
 "Allow cellular data" = "Allow cellular data";
+"Alternate" = "Alternatif";
 "Analizando el audio… Puedes seguir viendo." = "Analyzing audio… Keep watching.";
 "Analysis stopped to prioritize playback. Retry after buffering finishes." = "Analysis stopped to prioritize playback. Retry after buffering finishes.";
 "Analyzing audio… Keep watching." = "Analyzing audio… Keep watching.";
@@ -416,6 +419,7 @@
 "Customize page" = "Sayfayı özelleştir";
 "Czech" = "Çekçe";
 "Cómo leer tus libros" = "Reading help";
+"DVD" = "DVD";
 "Da color a tu nombre, al cursor en Ver juntos y al anillo alrededor de tu avatar." = "Adını, Birlikte İzle içindeki imlecini ve avatarının çevresindeki halkayı renklendirir.";
 "Danger" = "Tehlike";
 "Danish" = "Danca";
@@ -530,6 +534,7 @@
 "Enter current PIN" = "Geçerli PIN'i girin";
 "Episode" = "Bölüm";
 "Episode cards" = "Bölüm kartları";
+"Episode ordering" = "Bölüm sıralaması";
 "Episode {n}" = "Bölüm {n}";
 "Episodes" = "Bölümler";
 "Episodio" = "Bölüm";
@@ -570,6 +575,7 @@
 "External" = "Harici";
 "External subtitle" = "Harici altyazı";
 "Externo" = "Harici";
+"Extras" = "Ekstralar";
 "FPS de los subtítulos" = "Altyazı FPS'si";
 "FPS de origen de los subtítulos" = "Altyazı kaynak FPS'si";
 "FPS del video" = "Video FPS'si";
@@ -877,6 +883,7 @@
 "Mover hacia arriba" = "Yukarı taşı";
 "Movie" = "Film";
 "Movies" = "Filmler";
+"Movies & Specials" = "Filmler ve Özel Bölümler";
 "Movies on {name}" = "{name} filmleri";
 "Muestra Saltar intro o Saltar créditos cuando se detecta un intervalo. Puedes desactivarlo o tocar su X para ocultarlo durante ese episodio." = "Harbor algıladığında Jeneriği Atla / Kapanış Jeneriğini Atla düğmesini gösterir. Hiç gösterilmemesi için bunu kapatın. Hatalı bir düğmeyi bölümün geri kalanında gizlemek için düğmedeki X'e de dokunabilirsiniz.";
 "Muestra la sinopsis del episodio en las tarjetas. Desactívalo para ocultarla." = "Bölüm özetini kartlarda gösterir. Gizlemek için kapatın.";
@@ -999,6 +1006,7 @@
 "On Tonight" = "Bu Akşam Yayında";
 "On start" = "On start";
 "Onboarding" = "Başlangıç rehberi";
+"Ongoing" = "Devam ediyor";
 "Opacidad" = "Opaklık";
 "Opacidad del fondo" = "Arka plan opaklığı";
 "Opacity" = "Opaklık";
@@ -1257,6 +1265,7 @@
 "Retry statistics" = "Retry statistics";
 "Reveal" = "Göster";
 "Reverse order" = "Reverse order";
+"Rich season and order panel" = "Ayrıntılı sezon ve sıralama paneli";
 "Richer, more vivid picture with a touch more contrast." = "Biraz daha fazla kontrastla daha zengin ve canlı bir görüntü sunar.";
 "Right" = "Sağ";
 "Right to left" = "Sağdan sola";
@@ -1539,6 +1548,7 @@
 "The quick brown fox jumps over the lazy dog" = "Pijamalı hasta yağız şoföre çabucak güvendi";
 "The shape of the whole Home page. Everything below tunes the rows inside it." = "Ana Sayfanın genel düzeni. Aşağıdaki seçeneklerin tümü içindeki satırları ayarlar.";
 "The subtitle already matches the audio." = "The subtitle already matches the audio.";
+"TheTVDB" = "TheTVDB";
 "Theater Capture" = "Theater Capture";
 "These rails activate once a TMDB key is set. You can come back to this anytime in Settings." = "Bu satırlar, bir TMDB anahtarı ayarlandığında etkinleşir. Bu bölüme dilediğiniz zaman Ayarlar'dan dönebilirsiniz.";
 "This file has one audio track." = "Bu dosyada tek bir ses parçası var.";
@@ -1682,6 +1692,7 @@
 "Where to today?" = "Bugün nereye?";
 "Where to watch" = "Nerede izlenir";
 "Where your video comes from" = "Video kaynakları";
+"Which order" = "Sıralama";
 "Who's watching" = "Kim izliyor?";
 "Who's watching?" = "Kim izliyor?";
 "Writer" = "Senarist";

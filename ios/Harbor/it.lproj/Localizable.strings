@@ -27,6 +27,7 @@
 "Abrir imagen" = "Apri immagine";
 "Abrir navegación" = "Open navigation";
 "Abrir reproductor de Música" = "Open music player";
+"Absolute" = "Assoluto";
 "Accent" = "Colore principale";
 "Accents" = "Accents";
 "Accept" = "Accetta";
@@ -68,6 +69,7 @@
 "Ahora" = "Ora";
 "Ahora en cines" = "Ora al cinema";
 "Ahora no" = "Non ora";
+"Aired" = "Trasmesso";
 "Airing Now" = "In onda ora";
 "Ajusta el texto y el fondo. La vista previa muestra los cambios al hacerlos." = "Regola testo e sfondo. L’anteprima mostra le modifiche mentre le apporti.";
 "Ajustar" = "Adatta";
@@ -95,6 +97,7 @@
 "All-Time Great Series" = "Le migliori serie di sempre";
 "All-Time Greats" = "I migliori di sempre";
 "Allow cellular data" = "Allow cellular data";
+"Alternate" = "Alternativo";
 "Analizando el audio… Puedes seguir viendo." = "Analyzing audio… Keep watching.";
 "Analysis stopped to prioritize playback. Retry after buffering finishes." = "Analysis stopped to prioritize playback. Retry after buffering finishes.";
 "Analyzing audio… Keep watching." = "Analyzing audio… Keep watching.";
@@ -416,6 +419,7 @@
 "Customize page" = "Personalizza la pagina";
 "Czech" = "Ceco";
 "Cómo leer tus libros" = "Reading help";
+"DVD" = "DVD";
 "Da color a tu nombre, al cursor en Ver juntos y al anillo alrededor de tu avatar." = "Colora il tuo nome, il cursore in Guarda insieme e l’anello intorno al tuo avatar.";
 "Danger" = "Pericolo";
 "Danish" = "Danese";
@@ -530,6 +534,7 @@
 "Enter current PIN" = "Inserisci il PIN attuale";
 "Episode" = "Episodio";
 "Episode cards" = "Schede degli episodi";
+"Episode ordering" = "Ordinamento degli episodi";
 "Episode {n}" = "Episodio {n}";
 "Episodes" = "Episodi";
 "Episodio" = "Episodio";
@@ -570,6 +575,7 @@
 "External" = "Esterno";
 "External subtitle" = "Sottotitolo esterno";
 "Externo" = "Esterno";
+"Extras" = "Extra";
 "FPS de los subtítulos" = "FPS dei sottotitoli";
 "FPS de origen de los subtítulos" = "FPS della fonte dei sottotitoli";
 "FPS del video" = "FPS video";
@@ -877,6 +883,7 @@
 "Mover hacia arriba" = "Sposta in alto";
 "Movie" = "Film";
 "Movies" = "Film";
+"Movies & Specials" = "Film e speciali";
 "Movies on {name}" = "Film su {name}";
 "Muestra Saltar intro o Saltar créditos cuando se detecta un intervalo. Puedes desactivarlo o tocar su X para ocultarlo durante ese episodio." = "Mostra un pulsante Salta intro / Salta titoli di coda quando Harbor ne rileva uno. Disattiva questa opzione per non mostrarlo mai. Puoi anche toccare la X sul pulsante per ignorare un rilevamento errato per il resto dell'episodio.";
 "Muestra la sinopsis del episodio en las tarjetas. Desactívalo para ocultarla." = "Mostra la trama dell'Episodio sulle schede. Disattiva per nasconderla.";
@@ -999,6 +1006,7 @@
 "On Tonight" = "In onda stasera";
 "On start" = "On start";
 "Onboarding" = "Configurazione iniziale";
+"Ongoing" = "In corso";
 "Opacidad" = "Opacità";
 "Opacidad del fondo" = "Opacità dello sfondo";
 "Opacity" = "Opacità";
@@ -1257,6 +1265,7 @@
 "Retry statistics" = "Retry statistics";
 "Reveal" = "Mostra";
 "Reverse order" = "Reverse order";
+"Rich season and order panel" = "Pannello dettagliato per stagioni e ordine";
 "Richer, more vivid picture with a touch more contrast." = "Immagine più ricca e vivida, con un po' più di contrasto.";
 "Right" = "Destra";
 "Right to left" = "Da destra a sinistra";
@@ -1539,6 +1548,7 @@
 "The quick brown fox jumps over the lazy dog" = "La rapida volpe marrone salta sopra il cane pigro";
 "The shape of the whole Home page. Everything below tunes the rows inside it." = "La struttura dell'intera pagina Home. Le opzioni qui sotto regolano le righe al suo interno.";
 "The subtitle already matches the audio." = "The subtitle already matches the audio.";
+"TheTVDB" = "TheTVDB";
 "Theater Capture" = "Theater Capture";
 "These rails activate once a TMDB key is set. You can come back to this anytime in Settings." = "Queste righe si attivano dopo aver impostato una chiave TMDB. Puoi farlo in qualsiasi momento nelle Impostazioni.";
 "This file has one audio track." = "Questo file contiene una sola traccia audio.";
@@ -1682,6 +1692,7 @@
 "Where to today?" = "Dove si va oggi?";
 "Where to watch" = "Dove guardarlo";
 "Where your video comes from" = "Da dove proviene il video";
+"Which order" = "In quale ordine";
 "Who's watching" = "Chi sta guardando";
 "Who's watching?" = "Chi sta guardando?";
 "Writer" = "Sceneggiatore";

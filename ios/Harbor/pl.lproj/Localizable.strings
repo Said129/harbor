@@ -27,6 +27,7 @@
 "Abrir imagen" = "Otwórz obraz";
 "Abrir navegación" = "Open navigation";
 "Abrir reproductor de Música" = "Open music player";
+"Absolute" = "Bezwzględna";
 "Accent" = "Akcentowany";
 "Accents" = "Accents";
 "Accept" = "Akceptuj";
@@ -68,6 +69,7 @@
 "Ahora" = "Teraz";
 "Ahora en cines" = "Teraz w kinach";
 "Ahora no" = "Nie teraz";
+"Aired" = "Data emisji";
 "Airing Now" = "Obecnie emitowane";
 "Ajusta el texto y el fondo. La vista previa muestra los cambios al hacerlos." = "Dostosuj tekst i tło. Podgląd pokazuje zmiany na bieżąco.";
 "Ajustar" = "Dopasuj";
@@ -95,6 +97,7 @@
 "All-Time Great Series" = "Najlepsze seriale wszech czasów";
 "All-Time Greats" = "Najlepsze wszech czasów";
 "Allow cellular data" = "Allow cellular data";
+"Alternate" = "Alternatywna";
 "Analizando el audio… Puedes seguir viendo." = "Analyzing audio… Keep watching.";
 "Analysis stopped to prioritize playback. Retry after buffering finishes." = "Analysis stopped to prioritize playback. Retry after buffering finishes.";
 "Analyzing audio… Keep watching." = "Analyzing audio… Keep watching.";
@@ -416,6 +419,7 @@
 "Customize page" = "Dostosuj stronę";
 "Czech" = "czeski";
 "Cómo leer tus libros" = "Reading help";
+"DVD" = "DVD";
 "Da color a tu nombre, al cursor en Ver juntos y al anillo alrededor de tu avatar." = "Nadaje kolor Twojej nazwie, kursorowi w Watch Together i obwódce awatara.";
 "Danger" = "Niebezpieczeństwo";
 "Danish" = "duński";
@@ -530,6 +534,7 @@
 "Enter current PIN" = "Wprowadź obecny PIN";
 "Episode" = "Odcinek";
 "Episode cards" = "Karty odcinków";
+"Episode ordering" = "Kolejność odcinków";
 "Episode {n}" = "Odcinek {n}";
 "Episodes" = "Odcinki";
 "Episodio" = "Odcinek";
@@ -570,6 +575,7 @@
 "External" = "Zewnętrzne";
 "External subtitle" = "Zewnętrzne napisy";
 "Externo" = "Zewnętrzne";
+"Extras" = "Dodatki";
 "FPS de los subtítulos" = "FPS napisów";
 "FPS de origen de los subtítulos" = "Źródłowe FPS napisów";
 "FPS del video" = "FPS filmu";
@@ -877,6 +883,7 @@
 "Mover hacia arriba" = "Przenieś wyżej";
 "Movie" = "Film";
 "Movies" = "Filmy";
+"Movies & Specials" = "Filmy i odcinki specjalne";
 "Movies on {name}" = "Filmy w {name}";
 "Muestra Saltar intro o Saltar créditos cuando se detecta un intervalo. Puedes desactivarlo o tocar su X para ocultarlo durante ese episodio." = "Pokazuj przycisk Pomiń intro / Pomiń napisy końcowe, gdy Harbor je wykryje. Wyłącz tę opcję, aby nigdy go nie wyświetlać. Możesz też nacisnąć X na przycisku, aby ukryć błędną sugestię do końca odcinka.";
 "Muestra la sinopsis del episodio en las tarjetas. Desactívalo para ocultarla." = "Pokazuje opis odcinka na kartach. Wyłącz tę opcję, aby go ukryć.";
@@ -999,6 +1006,7 @@
 "On Tonight" = "Dziś wieczorem";
 "On start" = "On start";
 "Onboarding" = "Wprowadzenie";
+"Ongoing" = "Trwające";
 "Opacidad" = "Krycie";
 "Opacidad del fondo" = "Krycie tła";
 "Opacity" = "Krycie";
@@ -1257,6 +1265,7 @@
 "Retry statistics" = "Retry statistics";
 "Reveal" = "Pokaż";
 "Reverse order" = "Reverse order";
+"Rich season and order panel" = "Rozbudowany panel sezonów i kolejności";
 "Richer, more vivid picture with a touch more contrast." = "Bogatszy, żywszy obraz z nieco większym kontrastem.";
 "Right" = "Do prawej";
 "Right to left" = "Od prawej do lewej";
@@ -1539,6 +1548,7 @@
 "The quick brown fox jumps over the lazy dog" = "Pchnąć w tę łódź jeża lub ośm skrzyń fig";
 "The shape of the whole Home page. Everything below tunes the rows inside it." = "Układ całej strony głównej. Poniższe ustawienia dostosowują znajdujące się na niej wiersze.";
 "The subtitle already matches the audio." = "The subtitle already matches the audio.";
+"TheTVDB" = "TheTVDB";
 "Theater Capture" = "Theater Capture";
 "These rails activate once a TMDB key is set. You can come back to this anytime in Settings." = "Te sekcje zostaną włączone po ustawieniu klucza TMDB. Możesz do tego wrócić w dowolnej chwili w Ustawieniach.";
 "This file has one audio track." = "Ten plik ma jedną ścieżkę audio.";
@@ -1682,6 +1692,7 @@
 "Where to today?" = "Dokąd dziś?";
 "Where to watch" = "Gdzie oglądać";
 "Where your video comes from" = "Skąd pochodzi obraz wideo";
+"Which order" = "Kolejność";
 "Who's watching" = "Kto ogląda";
 "Who's watching?" = "Kto ogląda?";
 "Writer" = "Scenarzysta";

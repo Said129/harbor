@@ -27,6 +27,7 @@
 "Abrir imagen" = "Mở ảnh";
 "Abrir navegación" = "Open navigation";
 "Abrir reproductor de Música" = "Open music player";
+"Absolute" = "Tuyệt đối";
 "Accent" = "Màu nhấn";
 "Accents" = "Accents";
 "Accept" = "Chấp nhận";
@@ -68,6 +69,7 @@
 "Ahora" = "Bây giờ";
 "Ahora en cines" = "Đang chiếu tại rạp";
 "Ahora no" = "Để sau";
+"Aired" = "Đã phát sóng";
 "Airing Now" = "Đang phát sóng";
 "Ajusta el texto y el fondo. La vista previa muestra los cambios al hacerlos." = "Điều chỉnh chữ và nền. Bản xem trước hiển thị ngay các thay đổi của bạn.";
 "Ajustar" = "Vừa khung";
@@ -95,6 +97,7 @@
 "All-Time Great Series" = "Phim bộ vĩ đại nhất mọi thời đại";
 "All-Time Greats" = "Những tác phẩm vĩ đại nhất mọi thời đại";
 "Allow cellular data" = "Allow cellular data";
+"Alternate" = "Thay thế";
 "Analizando el audio… Puedes seguir viendo." = "Analyzing audio… Keep watching.";
 "Analysis stopped to prioritize playback. Retry after buffering finishes." = "Analysis stopped to prioritize playback. Retry after buffering finishes.";
 "Analyzing audio… Keep watching." = "Analyzing audio… Keep watching.";
@@ -416,6 +419,7 @@
 "Customize page" = "Tùy chỉnh trang";
 "Czech" = "Tiếng Séc";
 "Cómo leer tus libros" = "Reading help";
+"DVD" = "DVD";
 "Da color a tu nombre, al cursor en Ver juntos y al anillo alrededor de tu avatar." = "Tô màu tên, con trỏ trong Xem cùng nhau và vòng quanh ảnh đại diện của bạn.";
 "Danger" = "Nguy hiểm";
 "Danish" = "Tiếng Đan Mạch";
@@ -530,6 +534,7 @@
 "Enter current PIN" = "Nhập mã PIN hiện tại";
 "Episode" = "Tập";
 "Episode cards" = "Thẻ tập";
+"Episode ordering" = "Thứ tự tập";
 "Episode {n}" = "Tập {n}";
 "Episodes" = "Các tập";
 "Episodio" = "Tập";
@@ -570,6 +575,7 @@
 "External" = "Bên ngoài";
 "External subtitle" = "Phụ đề ngoài";
 "Externo" = "Bên ngoài";
+"Extras" = "Nội dung bổ sung";
 "FPS de los subtítulos" = "FPS phụ đề";
 "FPS de origen de los subtítulos" = "FPS nguồn phụ đề";
 "FPS del video" = "FPS video";
@@ -877,6 +883,7 @@
 "Mover hacia arriba" = "Di chuyển lên";
 "Movie" = "Phim điện ảnh";
 "Movies" = "Phim điện ảnh";
+"Movies & Specials" = "Phim điện ảnh & tập đặc biệt";
 "Movies on {name}" = "Phim điện ảnh trên {name}";
 "Muestra Saltar intro o Saltar créditos cuando se detecta un intervalo. Puedes desactivarlo o tocar su X para ocultarlo durante ese episodio." = "Hiển thị nút Bỏ qua phần mở đầu / Bỏ qua phần giới thiệu cuối phim khi Harbor phát hiện. Tắt tùy chọn này để không bao giờ hiển thị. Bạn cũng có thể nhấn X trên nút để ẩn mục bị nhận diện sai trong phần còn lại của tập.";
 "Muestra la sinopsis del episodio en las tarjetas. Desactívalo para ocultarla." = "Hiển thị tóm tắt nội dung tập trên thẻ. Tắt để ẩn.";
@@ -999,6 +1006,7 @@
 "On Tonight" = "Chiếu tối nay";
 "On start" = "On start";
 "Onboarding" = "Hướng dẫn ban đầu";
+"Ongoing" = "Đang phát hành";
 "Opacidad" = "Độ mờ";
 "Opacidad del fondo" = "Độ mờ nền";
 "Opacity" = "Độ mờ";
@@ -1257,6 +1265,7 @@
 "Retry statistics" = "Retry statistics";
 "Reveal" = "Hiện";
 "Reverse order" = "Reverse order";
+"Rich season and order panel" = "Bảng mùa và thứ tự chi tiết";
 "Richer, more vivid picture with a touch more contrast." = "Hình ảnh đậm đà, sống động hơn với độ tương phản cao hơn một chút.";
 "Right" = "Phải";
 "Right to left" = "Từ phải sang trái";
@@ -1539,6 +1548,7 @@
 "The quick brown fox jumps over the lazy dog" = "Con cáo nâu nhanh nhẹn nhảy qua chú chó lười biếng";
 "The shape of the whole Home page. Everything below tunes the rows inside it." = "Bố cục tổng thể của trang chủ. Mọi tùy chọn bên dưới điều chỉnh các hàng trong trang.";
 "The subtitle already matches the audio." = "The subtitle already matches the audio.";
+"TheTVDB" = "TheTVDB";
 "Theater Capture" = "Theater Capture";
 "These rails activate once a TMDB key is set. You can come back to this anytime in Settings." = "Các hàng này sẽ được kích hoạt sau khi đặt khóa TMDB. Bạn có thể quay lại đây bất cứ lúc nào trong Cài đặt.";
 "This file has one audio track." = "Tệp này có một rãnh âm thanh.";
@@ -1682,6 +1692,7 @@
 "Where to today?" = "Hôm nay đi đâu?";
 "Where to watch" = "Xem ở đâu";
 "Where your video comes from" = "Nguồn video";
+"Which order" = "Thứ tự nào";
 "Who's watching" = "Ai đang xem";
 "Who's watching?" = "Ai đang xem?";
 "Writer" = "Biên kịch";

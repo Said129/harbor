@@ -3,6 +3,8 @@ import SwiftUI
 struct InterfaceSettingsView: View {
     let identity: ProfilePreferences
     @Bindable var preferences = InterfacePreferences.shared
+    @AppStorage("tvdbOrderPanel") private var richEpisodeOrderPanel = true
+    @AppStorage("tvdbSeasonType") private var episodeOrder = "aired"
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 30) {
@@ -29,6 +31,15 @@ struct InterfaceSettingsView: View {
                 }
                 HarborSettingsSection(DesktopInterfaceText.value("Show pages")) {
                     HarborSettingsToggle(DesktopInterfaceText.value("Mark watched button"), isOn: $preferences.showWatchedButton)
+                }
+                HarborSettingsSection(DesktopInterfaceText.value("Episode ordering")) {
+                    HarborSettingsToggle(DesktopInterfaceText.value("Rich season and order panel"), isOn: $richEpisodeOrderPanel)
+                        .accessibilityIdentifier("settings-rich-episode-order")
+                    if !richEpisodeOrderPanel {
+                        HarborSettingsChoice(DesktopInterfaceText.value("Which order"),
+                            selection: Binding(get: { (TVDBEpisodeOrderKind(setting: episodeOrder) ?? .aired).rawValue }, set: { episodeOrder = $0 }),
+                            choices: TVDBEpisodeOrderKind.allCases.map { ($0.localizedLabel, $0.rawValue) }, identifier: "settings-episode-order")
+                    }
                 }
                 HarborSettingsSection(DesktopInterfaceText.value("Episode cards")) {
                     HarborSettingsToggle(DesktopInterfaceText.value("Show episode description"), note: DesktopInterfaceText.value("Shows the episode synopsis on the cards. Turn it off to hide it."), isOn: $preferences.showEpisodeDescription)

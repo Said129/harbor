@@ -51,7 +51,7 @@ struct ProfileSettingsState: Codable, Equatable, Sendable {
         "iphone.player-options.v1", "mpvHwdec", "resumePlayback", "resumePrompt", "subtitleAutoSync",
         "streamFilterLevel", "streams.addonOrder", "streams.automatic", "keepSourceNextEpisode", "streams.excludeCamera", "streams.maximum", "streams.minimum",
         "metadata.region", "metadata.language", "metadata.translateTitles", "cwPerProfile", "downloadsCellular",
-        "profilePromptInterval", "defaultProfileId", "tvdbSeasonType",
+        "profilePromptInterval", "defaultProfileId", "tvdbSeasonType", "tvdbOrderPanel",
         "calendar.monday", "calendar.large", "ebook.fontSize", "ebook.lineHeight", "ebook.margin", "ebook.background", "ebook.font", "ebook.direction",
         "ebook.narrationRate", "ebook.shelfSort", "ebook.pdf.horizontal", "manga.reader.mode", "manga.reader.fit", "manga.reader.background",
         "manga.reader.rtl", "manga.reader.zoom", "manga.reader.autoNextChapter", "manga.reader.navPos", "manga.reader.doubleGap", "manga.reader.focusMode",

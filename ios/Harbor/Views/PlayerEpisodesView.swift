@@ -4,18 +4,26 @@ struct PlayerEpisodesView: View {
     let media: Media
     let current: ResumeTarget
     let library: LibraryModel?
+    var episodeOrder: EpisodeOrderProjection? = nil
     let canRestart: Bool
     let restart: () -> Void
     let close: () -> Void
     let play: (Episode) -> Void
     @State private var season = 1
+    @State private var orderSection = ""
     @State private var seasonOpen = false
     @State private var expanded: String?
     @State private var revealed = Set<String>()
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
-    private var episodes: [Episode] { EpisodeSequence.ordered(media.videos ?? []) }
+    private var episodes: [Episode] { EpisodeSequence.ordered(media.videos ?? [], presentation: episodeOrder) }
     private var seasons: [Int] { Array(Set(episodes.compactMap(\.listedSeason))).sorted() }
-    private var visible: [Episode] { episodes.filter { ($0.listedSeason ?? season) == season } }
+    private var sections: [EpisodeOrderSection] { episodeOrder?.sections ?? [] }
+    private var currentSection: EpisodeOrderSection? { sections.first { $0.id == orderSection } ?? sections.first }
+    private var visible: [Episode] { currentSection?.episodes ?? episodes.filter { ($0.listedSeason ?? season) == season } }
+    private var nextOrderSection: EpisodeOrderSection? {
+        guard let currentSection, let index = sections.firstIndex(where: { $0.id == currentSection.id }), index + 1 < sections.count else { return nil }
+        return sections[index + 1]
+    }
     private var currentEpisode: Episode? { episodes.first(where: isCurrent) }
     private var nextSeason: Int? { seasons.first { $0 > season } }
     private var subtle: Color { ThemePreferences.shared.color("ink-subtle") }
@@ -38,7 +46,10 @@ struct PlayerEpisodesView: View {
                     .font(HarborTheme.font(12.5)).foregroundStyle(subtle).lineLimit(1)
             }
             Spacer(minLength: 0)
-            if seasons.count > 1 { seasonPicker }
+            if let episodeOrder {
+                TVDBOrderPanel(sections: sections, options: [], activeKind: episodeOrder.kind,
+                    selection: Binding(get: { currentSection?.id ?? "" }, set: { expanded = nil; orderSection = $0 }), selectOrder: { _ in })
+            } else if seasons.count > 1 { seasonPicker }
         }.padding(.horizontal, 24).padding(.bottom, 12)
     }
 
@@ -57,8 +68,10 @@ struct PlayerEpisodesView: View {
                 }.padding(.horizontal, 16).padding(.top, 8).padding(.bottom, 32)
             }.accessibilityIdentifier("player-episodes-scroll")
                 .onChange(of: season) { _, _ in if let first = visible.first { scroll.scrollTo(first.id, anchor: .top) } }
+                .onChange(of: orderSection) { _, _ in if let first = visible.first { scroll.scrollTo(first.id, anchor: .top) } }
                 .task {
                     season = currentEpisode?.listedSeason ?? seasons.first(where: { $0 > 0 }) ?? seasons.first ?? 1
+                    orderSection = sections.first(where: { $0.episodes.contains(where: isCurrent) })?.id ?? sections.first?.id ?? ""
                     if let episode = currentEpisode { scroll.scrollTo(episode.id, anchor: .top) }
                 }
                 .onChange(of: seasons) { _, _ in if !seasons.contains(season) { season = currentEpisode?.listedSeason ?? seasons.first ?? 1 } }
@@ -78,7 +91,14 @@ struct PlayerEpisodesView: View {
     }
 
     @ViewBuilder private var nextSeasonButton: some View {
-        if let nextSeason {
+        if let next = nextOrderSection {
+            Button { expanded = nil; orderSection = next.id } label: {
+                HStack(spacing: 6) {
+                    Text(next.label); episodeGlyph("episode-next-season", size: 16)
+                }.font(HarborTheme.font(13.5, weight: .semibold)).frame(maxWidth: .infinity, minHeight: 48)
+                    .background(ThemePreferences.shared.color("elevated"), in: .rect(cornerRadius: 16))
+            }.buttonStyle(.plain).accessibilityIdentifier("player-next-season")
+        } else if episodeOrder == nil, let nextSeason {
             Button { changeSeason(nextSeason) } label: {
                 HStack(spacing: 6) {
                     Text(seasonLabel(nextSeason))

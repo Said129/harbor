@@ -52,6 +52,7 @@ struct PlayerView: View {
     let title: String
     var media: Media? = nil
     var library: LibraryModel? = nil
+    var episodeOrder: EpisodeOrderProjection? = nil
     var changeEpisode: ((Episode) -> Void)? = nil
     var changeSource: ((ResumeSnapshot?) -> Void)? = nil
     @State private var state = PlayerState()
@@ -228,7 +229,7 @@ struct PlayerView: View {
 
     @ViewBuilder private var episodePanel: some View {
         if let media {
-            PlayerEpisodesView(media: media, current: session.target, library: library,
+            PlayerEpisodesView(media: media, current: session.target, library: library, episodeOrder: episodeOrder,
                 canRestart: canRestartEpisode, restart: restartEpisode, close: { showEpisodes = false }) { episode in
                 pendingEpisode = episode
                 showEpisodes = false
@@ -322,7 +323,7 @@ struct PlayerView: View {
         .onChange(of: library?.owner) { _, owner in if let owner, owner != session.owner { dismiss() } }
         .onChange(of: AppProfileContext.shared.activationID) { _, _ in dismiss() }
         .onAppear {
-            adjacent = EpisodeSequence.adjacent(media?.videos ?? [], current: session.target)
+            adjacent = EpisodeSequence.adjacent(media?.videos ?? [], current: session.target, presentation: episodeOrder)
             previousIdleTimer = UIApplication.shared.isIdleTimerDisabled; active = true; updateIdleTimer()
         }
         .onDisappear { active = false; UIApplication.shared.isIdleTimerDisabled = previousIdleTimer; saveCheckpoint(exiting: true) }

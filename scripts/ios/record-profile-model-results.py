@@ -12,7 +12,7 @@ p = argparse.ArgumentParser(description=__doc__)
 p.add_argument('--bundle', type=Path, required=True)
 p.add_argument('--expected', type=Path, required=True)
 p.add_argument('--output', type=Path, required=True)
-p.add_argument('--count', type=int, choices=[6, 7, 9, 11, 25], default=25)
+p.add_argument('--count', type=int, choices=[6, 7, 9, 10, 11, 25], default=25)
 a = p.parse_args()
 expected = set(json.loads(a.expected.read_text())['pending_native_cases']); assert len(expected) == a.count
 raw = subprocess.run(['xcrun', 'xcresulttool', 'get', 'test-results', 'tests', '--path', str(a.bundle)], capture_output=True, timeout=60, check=True)

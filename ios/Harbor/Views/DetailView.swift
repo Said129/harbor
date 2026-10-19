@@ -19,6 +19,8 @@ struct DetailView: View {
     @State private var selectionRevision = 0
     @Environment(\.openURL) private var openURL
     @AppStorage("downloadsCellular") private var cellularDownloads = false
+    @AppStorage("tvdbSeasonType") private var episodeOrderSetting = "aired"
+    @AppStorage("tvdbOrderPanel") private var richEpisodeOrderPanel = true
     private let playImmediately: Bool
     init(media: Media, app: AppModel, playImmediately: Bool = false, metadataLoaded: Bool = false) { self.app = app; self.playImmediately = playImmediately; _model = State(initialValue: DetailModel(media, service: app.service, metadataLoaded: metadataLoaded)) }
 
@@ -33,7 +35,9 @@ struct DetailView: View {
                     if let error = model.error { Text(error).foregroundStyle(.orange) }
                     if model.loading { ProgressView() }
                     if model.media.episodic { EpisodeList(media: model.media, library: app.library,
-                        animeGrouping: model.allowsContinuousAnimeEpisodes ? Binding(get: { model.animeEpisodeGrouping }, set: { model.setAnimeEpisodeGrouping($0) }) : nil,
+                        animeGrouping: model.episodeOrderProjection == nil && model.allowsContinuousAnimeEpisodes ? Binding(get: { model.animeEpisodeGrouping }, set: { model.setAnimeEpisodeGrouping($0) }) : nil,
+                        ordering: model.episodeOrderProjection, orderOptions: model.episodeOrderOptions,
+                        selectOrder: { episodeOrderSetting = $0.rawValue }, richOrderPanel: richEpisodeOrderPanel, orderLoading: model.episodeOrderLoading,
                         play: { openStreams($0, automatic: StreamPreferences.shared.automatic) })
                         if let source = model.episodeMetadataURL {
                             Link("TheTVDB", destination: source).font(.caption).foregroundStyle(.secondary)
@@ -60,6 +64,9 @@ struct DetailView: View {
         .task(id: "\(model.media.identity):\(model.loadingMetadata):\(model.media.videos?.count ?? 0)") {
             await model.loadAnimeEpisodes(owner: app.library.owner, library: app.library)
         }
+        .task(id: "\(model.media.identity):\(model.canLoadEpisodeOrder):\(episodeOrderSetting):\(MetadataPreferences.shared.language)") {
+            await model.loadEpisodeOrder(setting: episodeOrderSetting, language: MetadataPreferences.shared.language, owner: app.library.owner, library: app.library)
+        }
         .onChange(of: model.playback?.id) { _, _ in
             if let session = model.playback, session.owner == app.library.owner { app.library.discovery.track(.play, media: model.media) }
         }
@@ -72,7 +79,7 @@ struct DetailView: View {
                     }
                 }
                 .fullScreenCover(item: $model.playback, onDismiss: playerDismissed) { session in
-                    PlayerView(session: session, resume: session.resumeStore ?? app.resume, title: model.media.name, media: model.media, library: app.library, changeEpisode: { episode in
+                    PlayerView(session: session, resume: session.resumeStore ?? app.resume, title: model.media.name, media: model.media, library: app.library, episodeOrder: model.episodeOrderProjection, changeEpisode: { episode in
                         guard session.owner == app.library.owner else { return }
                         pendingEpisode = episode; pendingEpisodeOwner = session.owner
                         model.playback = nil
@@ -210,7 +217,7 @@ struct DetailView: View {
         if !model.media.episodic { openStreams(automatic: StreamPreferences.shared.automatic); return }
         let record = app.library.items.first { $0.id == model.media.id }
         let watched = app.library.watchedEpisodes(model.media)
-        if let episode = EpisodeSequence.startingEpisode(model.media.videos ?? [], record: record, watched: watched) {
+        if let episode = EpisodeSequence.startingEpisode(model.media.videos ?? [], record: record, watched: watched, presentation: model.episodeOrderProjection) {
             openStreams(episode, automatic: StreamPreferences.shared.automatic)
         }
     }

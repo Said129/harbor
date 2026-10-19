@@ -27,6 +27,7 @@
 "Abrir imagen" = "画像を開く";
 "Abrir navegación" = "Open navigation";
 "Abrir reproductor de Música" = "Open music player";
+"Absolute" = "通算話数";
 "Accent" = "アクセント";
 "Accents" = "Accents";
 "Accept" = "承認";
@@ -68,6 +69,7 @@
 "Ahora" = "現在";
 "Ahora en cines" = "現在上映中";
 "Ahora no" = "今はしない";
+"Aired" = "放送順";
 "Airing Now" = "放送中";
 "Ajusta el texto y el fondo. La vista previa muestra los cambios al hacerlos." = "文字と背景を調整します。変更がその場でプレビューに反映されます。";
 "Ajustar" = "全体を表示";
@@ -95,6 +97,7 @@
 "All-Time Great Series" = "史上最高のシリーズ";
 "All-Time Greats" = "不朽の名作";
 "Allow cellular data" = "Allow cellular data";
+"Alternate" = "別名";
 "Analizando el audio… Puedes seguir viendo." = "Analyzing audio… Keep watching.";
 "Analysis stopped to prioritize playback. Retry after buffering finishes." = "Analysis stopped to prioritize playback. Retry after buffering finishes.";
 "Analyzing audio… Keep watching." = "Analyzing audio… Keep watching.";
@@ -416,6 +419,7 @@
 "Customize page" = "ページをカスタマイズ";
 "Czech" = "チェコ語";
 "Cómo leer tus libros" = "Reading help";
+"DVD" = "DVD";
 "Da color a tu nombre, al cursor en Ver juntos y al anillo alrededor de tu avatar." = "名前、同時視聴中のカーソル、アバターの周囲のリングの色を設定します。";
 "Danger" = "危険";
 "Danish" = "デンマーク語";
@@ -530,6 +534,7 @@
 "Enter current PIN" = "現在のPINを入力";
 "Episode" = "エピソード";
 "Episode cards" = "エピソードカード";
+"Episode ordering" = "エピソードの順序";
 "Episode {n}" = "エピソード{n}";
 "Episodes" = "エピソード";
 "Episodio" = "エピソード";
@@ -570,6 +575,7 @@
 "External" = "外部";
 "External subtitle" = "外部字幕";
 "Externo" = "外部";
+"Extras" = "特典映像";
 "FPS de los subtítulos" = "字幕FPS";
 "FPS de origen de los subtítulos" = "字幕のソースFPS";
 "FPS del video" = "動画FPS";
@@ -877,6 +883,7 @@
 "Mover hacia arriba" = "上へ移動";
 "Movie" = "映画";
 "Movies" = "映画";
+"Movies & Specials" = "映画・スペシャル";
 "Movies on {name}" = "{name}の映画";
 "Muestra Saltar intro o Saltar créditos cuando se detecta un intervalo. Puedes desactivarlo o tocar su X para ocultarlo durante ese episodio." = "Harborが検出したときに「イントロをスキップ」/「クレジットをスキップ」ボタンを表示します。今後一切表示しない場合はオフにしてください。誤検出の場合はボタンのXをタップすると、そのエピソード中は非表示にできます。";
 "Muestra la sinopsis del episodio en las tarjetas. Desactívalo para ocultarla." = "カードにエピソードのあらすじを表示します。非表示にするにはオフにしてください。";
@@ -999,6 +1006,7 @@
 "On Tonight" = "今夜放送";
 "On start" = "On start";
 "Onboarding" = "初期ガイド";
+"Ongoing" = "連載中";
 "Opacidad" = "不透明度";
 "Opacidad del fondo" = "背景の不透明度";
 "Opacity" = "不透明度";
@@ -1257,6 +1265,7 @@
 "Retry statistics" = "Retry statistics";
 "Reveal" = "表示";
 "Reverse order" = "Reverse order";
+"Rich season and order panel" = "詳細なシーズン／視聴順パネル";
 "Richer, more vivid picture with a touch more contrast." = "コントラストを少し上げ、より深みのある鮮やかな映像にします。";
 "Right" = "右揃え";
 "Right to left" = "右から左";
@@ -1539,6 +1548,7 @@
 "The quick brown fox jumps over the lazy dog" = "素早い茶色のキツネが、のろまな犬を飛び越える";
 "The shape of the whole Home page. Everything below tunes the rows inside it." = "ホームページ全体のレイアウトです。以下の項目では、その中の各行を調整します。";
 "The subtitle already matches the audio." = "The subtitle already matches the audio.";
+"TheTVDB" = "TheTVDB";
 "Theater Capture" = "Theater Capture";
 "These rails activate once a TMDB key is set. You can come back to this anytime in Settings." = "TMDBキーを設定すると、これらのレールが有効になります。後からいつでも「設定」で変更できます。";
 "This file has one audio track." = "このファイルには音声トラックが1つあります。";
@@ -1682,6 +1692,7 @@
 "Where to today?" = "今日はどこへ？";
 "Where to watch" = "視聴方法";
 "Where your video comes from" = "動画の配信元";
+"Which order" = "並び順";
 "Who's watching" = "視聴する人";
 "Who's watching?" = "どなたが視聴しますか？";
 "Writer" = "脚本家";

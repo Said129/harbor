@@ -108,18 +108,23 @@ struct TVDBEpisodeOrder: Sendable {
         guard seriesID > 0, !alternative.isEmpty else { return nil }
         // Like Desktop, later canonical/translation rows replace earlier rows;
         // the ordered list itself uses only the first occurrence of each ID.
-        var byID: [Int: TVDBOrderEpisode] = [:], localized: [Int: TVDBOrderEpisode] = [:], en: [Int: TVDBOrderEpisode] = [:]
-        for row in canonical where row.season >= 1 { byID[row.id] = row }
+        var byID: [Int: TVDBOrderEpisode] = [:], identityByID: [Int: TVDBOrderEpisode] = [:]
+        var localized: [Int: TVDBOrderEpisode] = [:], en: [Int: TVDBOrderEpisode] = [:]
+        for row in canonical {
+            identityByID[row.id] = row
+            if row.season >= 1 { byID[row.id] = row }
+        }
         for row in translated { localized[row.id] = row }
         for row in english { en[row.id] = row }
         var buckets: [Int: [TVDBOrderSlot]] = [:], seen = Set<Int>()
         for row in alternative where seen.insert(row.id).inserted {
             let reference = byID[row.id] ?? row
+            let identity = identityByID[row.id] ?? reference
             if kind == .absolute, reference.season < 1 { continue }
             let bucket = kind.joined ? 1 : row.season
             let translation = localized[row.id], fallback = en[row.id]
             buckets[bucket, default: []].append(TVDBOrderSlot(id: row.id,
-                canonicalSeason: reference.season, canonicalEpisode: reference.number,
+                canonicalSeason: identity.season, canonicalEpisode: identity.number,
                 alternativeSeason: row.season, alternativeEpisode: row.number,
                 season: reference.season, number: reference.number, absolute: row.absolute,
                 name: firstText(translation?.name, fallback?.name, row.name) ?? "",

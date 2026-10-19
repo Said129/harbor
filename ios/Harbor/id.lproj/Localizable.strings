@@ -27,6 +27,7 @@
 "Abrir imagen" = "Buka gambar";
 "Abrir navegación" = "Open navigation";
 "Abrir reproductor de Música" = "Open music player";
+"Absolute" = "Absolut";
 "Accent" = "Aksen";
 "Accents" = "Accents";
 "Accept" = "Terima";
@@ -68,6 +69,7 @@
 "Ahora" = "Sekarang";
 "Ahora en cines" = "Sedang Tayang di Bioskop";
 "Ahora no" = "Jangan sekarang";
+"Aired" = "Telah Tayang";
 "Airing Now" = "Sedang Tayang";
 "Ajusta el texto y el fondo. La vista previa muestra los cambios al hacerlos." = "Sesuaikan teks dan latar belakang. Pratinjau langsung menunjukkan perubahan Anda.";
 "Ajustar" = "Sesuaikan";
@@ -95,6 +97,7 @@
 "All-Time Great Series" = "Serial Terbaik Sepanjang Masa";
 "All-Time Greats" = "Karya Terbaik Sepanjang Masa";
 "Allow cellular data" = "Allow cellular data";
+"Alternate" = "Alternatif";
 "Analizando el audio… Puedes seguir viendo." = "Analyzing audio… Keep watching.";
 "Analysis stopped to prioritize playback. Retry after buffering finishes." = "Analysis stopped to prioritize playback. Retry after buffering finishes.";
 "Analyzing audio… Keep watching." = "Analyzing audio… Keep watching.";
@@ -416,6 +419,7 @@
 "Customize page" = "Sesuaikan halaman";
 "Czech" = "Ceko";
 "Cómo leer tus libros" = "Reading help";
+"DVD" = "DVD";
 "Da color a tu nombre, al cursor en Ver juntos y al anillo alrededor de tu avatar." = "Mewarnai nama, kursor di Nonton Bersama, dan lingkaran di sekeliling avatar Anda.";
 "Danger" = "Bahaya";
 "Danish" = "Denmark";
@@ -530,6 +534,7 @@
 "Enter current PIN" = "Masukkan PIN saat ini";
 "Episode" = "Episode";
 "Episode cards" = "Kartu episode";
+"Episode ordering" = "Pengurutan episode";
 "Episode {n}" = "Episode {n}";
 "Episodes" = "Episode";
 "Episodio" = "Episode";
@@ -570,6 +575,7 @@
 "External" = "Eksternal";
 "External subtitle" = "Subtitle eksternal";
 "Externo" = "Eksternal";
+"Extras" = "Ekstra";
 "FPS de los subtítulos" = "FPS subtitle";
 "FPS de origen de los subtítulos" = "FPS sumber subtitle";
 "FPS del video" = "FPS video";
@@ -877,6 +883,7 @@
 "Mover hacia arriba" = "Pindahkan ke atas";
 "Movie" = "Film";
 "Movies" = "Film";
+"Movies & Specials" = "Film & Acara Spesial";
 "Movies on {name}" = "Film di {name}";
 "Muestra Saltar intro o Saltar créditos cuando se detecta un intervalo. Puedes desactivarlo o tocar su X para ocultarlo durante ese episodio." = "Tampilkan tombol Lewati Intro / Lewati Kredit saat Harbor mendeteksinya. Nonaktifkan ini agar tombol tidak pernah ditampilkan. Anda juga dapat mengetuk X pada tombol untuk menutup tombol yang keliru selama sisa episode.";
 "Muestra la sinopsis del episodio en las tarjetas. Desactívalo para ocultarla." = "Menampilkan sinopsis episode pada kartu. Nonaktifkan untuk menyembunyikannya.";
@@ -999,6 +1006,7 @@
 "On Tonight" = "Tayang Malam Ini";
 "On start" = "On start";
 "Onboarding" = "Pengenalan awal";
+"Ongoing" = "Berlanjut";
 "Opacidad" = "Opasitas";
 "Opacidad del fondo" = "Opasitas latar belakang";
 "Opacity" = "Opasitas";
@@ -1257,6 +1265,7 @@
 "Retry statistics" = "Retry statistics";
 "Reveal" = "Tampilkan";
 "Reverse order" = "Reverse order";
+"Rich season and order panel" = "Panel musim dan urutan yang lengkap";
 "Richer, more vivid picture with a touch more contrast." = "Gambar lebih kaya dan hidup dengan sedikit tambahan kontras.";
 "Right" = "Kanan";
 "Right to left" = "Kanan ke kiri";
@@ -1539,6 +1548,7 @@
 "The quick brown fox jumps over the lazy dog" = "Rubah cokelat yang gesit melompati anjing malas";
 "The shape of the whole Home page. Everything below tunes the rows inside it." = "Bentuk keseluruhan halaman Beranda. Semua pengaturan di bawah menyesuaikan baris di dalamnya.";
 "The subtitle already matches the audio." = "The subtitle already matches the audio.";
+"TheTVDB" = "TheTVDB";
 "Theater Capture" = "Theater Capture";
 "These rails activate once a TMDB key is set. You can come back to this anytime in Settings." = "Deretan ini akan aktif setelah kunci TMDB ditetapkan. Anda dapat kembali ke sini kapan saja melalui Pengaturan.";
 "This file has one audio track." = "File ini memiliki satu trek audio.";
@@ -1682,6 +1692,7 @@
 "Where to today?" = "Ke mana hari ini?";
 "Where to watch" = "Tempat menonton";
 "Where your video comes from" = "Sumber video Anda";
+"Which order" = "Urutannya";
 "Who's watching" = "Siapa yang menonton";
 "Who's watching?" = "Siapa yang menonton?";
 "Writer" = "Penulis";

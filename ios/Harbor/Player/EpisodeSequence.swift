@@ -1,13 +1,16 @@
 import Foundation
 
 enum EpisodeSequence {
-    static func ordered(_ videos: [Episode]) -> [Episode] {
+    static func ordered(_ videos: [Episode], presentation: EpisodeOrderProjection? = nil) -> [Episode] {
+        if let ordered = presentation?.ordered(videos) { return ordered }
         var identifiers = Set<String>()
         return WatchedCodec.ordered(videos).filter { identifiers.insert($0.id).inserted }
     }
 
-    static func startingEpisode(_ videos: [Episode], record: LibraryRecord?, watched: Set<String>, now: Date = Date()) -> Episode? {
-        let available = ordered(videos).filter { $0.releaseDate.map { $0 <= now } ?? true }
+    static func startingEpisode(_ videos: [Episode], record: LibraryRecord?, watched: Set<String>, now: Date = Date(), presentation: EpisodeOrderProjection? = nil) -> Episode? {
+        let selected = presentation.flatMap { $0.applies(to: videos) ? $0 : nil }
+        let available = ordered(videos, presentation: selected).filter { $0.releaseDate.map { $0 <= now } ?? true }
+        func regular(_ episode: Episode, defaultSeason: Int = 0) -> Bool { selected?.isRegular(episode.id) ?? ((episode.season ?? defaultSeason) > 0) }
         let coordinates = record?.playbackCoordinates
         let resumed = available.first {
             if let videoID = record?.raw["state"]["video_id"].string, $0.id == videoID { return true }
@@ -15,7 +18,7 @@ enum EpisodeSequence {
             return $0.season == season && $0.episode == episode
         }
         guard let resumed else {
-            return available.first { ($0.season ?? 1) > 0 && !watched.contains($0.watchedKey) } ?? available.first
+            return available.first { regular($0, defaultSeason: 1) && !watched.contains($0.watchedKey) } ?? available.first
         }
         let offset = record?.raw["state"]["timeOffset"].numericValue ?? 0
         let duration = record?.raw["state"]["duration"].numericValue ?? 0
@@ -25,25 +28,27 @@ enum EpisodeSequence {
         if offset.isFinite, offset > 0, (record?.progress ?? 0) < 0.9, duration > 0 || !flagged { return resumed }
         let finished = watched.contains(resumed.watchedKey) || (record?.progress ?? 0) >= 0.9
             || flagged
-        guard finished, let season = resumed.season, season > 0,
+        guard finished, regular(resumed),
               let index = available.firstIndex(where: { $0.watchedKey == resumed.watchedKey }) else { return resumed }
         // Desktop advances past finished ordinary episodes and retains the
         // original point when no following unwatched episode is available.
         return available.dropFirst(index + 1).first {
-            ($0.season ?? 0) > 0 && ($0.episode ?? 0) > 0 && !watched.contains($0.watchedKey)
+            regular($0) && ($0.episode ?? 0) > 0 && !watched.contains($0.watchedKey)
         } ?? resumed
     }
 
-    static func adjacent(_ videos: [Episode], current: ResumeTarget, now: Date = Date()) -> (previous: Episode?, next: Episode?) {
-        let ordered = ordered(videos)
+    static func adjacent(_ videos: [Episode], current: ResumeTarget, now: Date = Date(), presentation: EpisodeOrderProjection? = nil) -> (previous: Episode?, next: Episode?) {
+        let selected = presentation.flatMap { $0.applies(to: videos) ? $0 : nil }
+        let ordered = ordered(videos, presentation: selected)
         guard let playing = ordered.first(where: { $0.id == current.videoId }) ?? ordered.first(where: { $0.season == current.season && $0.episode == current.episode }),
               let season = playing.season, let episode = playing.episode, season >= 0, episode > 0 else { return (nil, nil) }
         var coordinates = Set<String>()
+        let sequence = selected?.sequence(containing: playing.id)
         // Specials have their own sequence. Ordinary episodes cross season
         // boundaries without entering specials or unaired episodes.
         let available = ordered.filter {
             guard let candidateSeason = $0.season, let number = $0.episode, number > 0,
-                  (season == 0 ? candidateSeason == 0 : candidateSeason > 0),
+                  (sequence?.contains($0.id) ?? (season == 0 ? candidateSeason == 0 : candidateSeason > 0)),
                   ($0.releaseDate.map({ $0 <= now }) ?? true) else { return false }
             return coordinates.insert($0.watchedKey).inserted
         }
