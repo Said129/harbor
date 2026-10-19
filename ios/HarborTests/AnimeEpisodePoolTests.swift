@@ -110,11 +110,13 @@ final class AnimeEpisodePoolTests: XCTestCase {
         first.videos?[1].tvdbEpisodeID = 101
         var foreign = media(3, season: 2, count: 1); foreign.videos?[0].tvdbSeriesID = 999
         let pool = AnimeEpisodePool(current: first, others: [foreign])
-        let projected = try XCTUnwrap(EpisodeOrderProjection.build(order([(101, 1, 1, 1), (102, 1, 2, 2), (201, 2, 1, 3)]), source: pool.episodes, animeIdentity: true))
+        let projected = try XCTUnwrap(EpisodeOrderProjection.build(order([(101, 1, 1, 1), (102, 1, 2, 2), (201, 2, 1, 3)]), source: pool.episodes, animeIdentity: true, currentSourceID: first.id))
         XCTAssertEqual(projected.sections[0].episodes.map(\.id), ["kitsu:1:1", "kitsu:1:2"])
         XCTAssertEqual(projected.unmatchedProviderIDs, [201])
-        XCTAssertEqual(projected.sections.last?.id, "extras")
-        XCTAssertEqual(projected.sections.last?.episodes.first?.sourceMetaID, foreign.id)
+        XCTAssertEqual(projected.sections.count, 1)
+        XCTAssertEqual(projected.unmatchedFranchiseSourceKeys, ["kitsu:3|kitsu:3:1"])
+        XCTAssertTrue(projected.applies(to: projected.videos)); XCTAssertFalse(projected.applies(to: pool.episodes))
+        XCTAssertEqual(pool.sources[foreign.id]?.videos?.count, 1, "The sibling remains accessible through its own real metadata")
     }
 
     func testExplicitFranchiseAbsoluteNumbersAreUsedWithoutBorrowingCourLocalNumbers() throws {

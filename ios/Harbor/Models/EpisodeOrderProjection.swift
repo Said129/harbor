@@ -18,6 +18,7 @@ struct EpisodeOrderProjection: Sendable {
     let sections: [EpisodeOrderSection]
     let videos: [Episode]
     let unmatchedProviderIDs: [Int]
+    let unmatchedFranchiseSourceKeys: [String]
     private let orderedIDs: [String]
     private let regularIDs: Set<String>
     private let sequences: [String: [String]]
@@ -32,7 +33,7 @@ struct EpisodeOrderProjection: Sendable {
     func isRegular(_ id: String) -> Bool { regularIDs.contains(id) }
     func sequence(containing id: String) -> Set<String>? { sequences[id].map { Set($0) } }
 
-    static func build(_ order: TVDBEpisodeOrder, source: [Episode], animeIdentity: Bool) -> Self? {
+    static func build(_ order: TVDBEpisodeOrder, source: [Episode], animeIdentity: Bool, currentSourceID: String? = nil) -> Self? {
         var byID: [String: Episode] = [:]
         for episode in source where byID[episode.routingKey] == nil { byID[episode.routingKey] = episode }
         let distinct = source.filter { byID.removeValue(forKey: $0.routingKey) != nil }
@@ -93,7 +94,14 @@ struct EpisodeOrderProjection: Sendable {
             }
         }
         guard !claimed.isEmpty else { return nil }
-        let leftovers = WatchedCodec.ordered(distinct.filter { !claimed.contains($0.routingKey) })
+        let unmatched = distinct.filter { !claimed.contains($0.routingKey) }
+        // Desktop's Extras bucket keeps the current source's unmatched rows.
+        // Unplaced siblings belong to their own entry, not this TVDB show's Extras.
+        let leftovers = WatchedCodec.ordered(unmatched.filter { episode in
+            currentSourceID == nil || episode.sourceMetaID == nil || episode.sourceMetaID == currentSourceID
+        })
+        let leftoverKeys = Set(leftovers.map(\.routingKey))
+        let unplacedFranchise = unmatched.filter { !leftoverKeys.contains($0.routingKey) }.map(\.routingKey)
         if !leftovers.isEmpty {
             let dates = leftovers.compactMap(\.released).filter { !$0.isEmpty }
             sections.append(EpisodeOrderSection(id: "extras", number: 0, name: nil, joined: false, extra: true,
@@ -106,7 +114,8 @@ struct EpisodeOrderProjection: Sendable {
             let ids = section.episodes.map(\.routingKey)
             for id in ids { sequences[id] = ids }
         }
-        return Self(kind: order.kind, sections: sections, videos: source.map { projected[$0.routingKey] ?? $0 }, unmatchedProviderIDs: missing,
+        let videos = source.compactMap { episode in projected[episode.routingKey] ?? (leftoverKeys.contains(episode.routingKey) ? episode : nil) }
+        return Self(kind: order.kind, sections: sections, videos: videos, unmatchedProviderIDs: missing, unmatchedFranchiseSourceKeys: unplacedFranchise,
             orderedIDs: sections.flatMap(\.episodes).map(\.routingKey), regularIDs: Set(main), sequences: sequences)
     }
 }

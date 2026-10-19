@@ -240,7 +240,7 @@ final class DetailModel {
             episodePool = AnimeEpisodePool(current: current, others: pool.sources.values.filter { $0.id != current.id }.sorted { $0.id < $1.id }, missingEntryIDs: pool.missingEntryIDs)
         }
         let source = episodePool?.episodes ?? variants.seasons
-        episodeOrderProjection = tvdbOrder.flatMap { EpisodeOrderProjection.build($0, source: source, animeIdentity: AnimeService.isAnime(media.id)) }
+        episodeOrderProjection = tvdbOrder.flatMap { EpisodeOrderProjection.build($0, source: source, animeIdentity: AnimeService.isAnime(media.id), currentSourceID: episodePool == nil ? nil : media.id) }
         if let pool = episodePool, let projection = episodeOrderProjection,
            let current = pool.episodes.first(where: { $0.sourceMetaID == media.id }), let source = pool.source(for: current, presentation: projection) {
             media.videos = source.videos
