@@ -155,7 +155,8 @@ final class AnimeFranchiseTests: XCTestCase {
         await transport.replace(.related(1), with: related([("sequel", resource(2))]))
         await transport.replace(.related(2), with: related([]))
         let library = LibraryModel(), root = Media(id: "kitsu:1", type: "series", name: "Root", videos: [Episode(id: "kitsu:1:1", season: 1, episode: 1)])
-        let model = DetailModel(root, service: HarborService(), metadataLoaded: true)
+        var context = UUID()
+        let model = DetailModel(root, service: HarborService(), metadataLoaded: true, contextRevision: { context })
         await model.loadFranchise(owner: "guest", library: library, provider: AnimeFranchiseService(transport: transport, anilistSpacing: 0))
         XCTAssertEqual(model.activeFranchiseEntryID, "kitsu:1")
         model.selectedEpisode = root.videos?.first
@@ -167,6 +168,10 @@ final class AnimeFranchiseTests: XCTestCase {
         let cancelled = await model.selectFranchiseEntry("kitsu:2", owner: "guest", library: library, fetch: { _ in throw CancellationError() })
         XCTAssertFalse(cancelled); XCTAssertEqual(model.selectedEpisode?.id, "kitsu:1:1")
         XCTAssertEqual(model.franchiseSelectionRevision, 0)
+        let stale = await model.selectFranchiseEntry("kitsu:2", owner: "guest", library: library, fetch: { entry in
+            context = UUID(); return entry.media
+        })
+        XCTAssertFalse(stale); XCTAssertEqual(model.media.id, root.id); XCTAssertEqual(model.franchiseSelectionRevision, 0)
         let selected = await model.selectFranchiseEntry("kitsu:2", owner: "guest", library: library, fetch: { entry in
             var media = entry.media; media.videos = [Episode(id: "kitsu:2:1", season: 1, episode: 1)]; return media
         })
@@ -185,7 +190,8 @@ final class AnimeFranchiseTests: XCTestCase {
             ("sequel", resource(46903, name: "Bleach Thousand Year Blood War Part 2"))]))
         await transport.replace(.related(244), with: related([("sequel", resource(43078))]))
         await transport.replace(.related(46903), with: related([]))
-        let model = DetailModel(Media(id: "kitsu:43078", type: "series", name: "TYBW"), service: HarborService(), metadataLoaded: true)
+        let context = UUID()
+        let model = DetailModel(Media(id: "kitsu:43078", type: "series", name: "TYBW"), service: HarborService(), metadataLoaded: true, contextRevision: { context })
         await model.loadFranchise(owner: "guest", library: LibraryModel(), provider: AnimeFranchiseService(transport: transport, anilistSpacing: 0))
         XCTAssertEqual(model.franchise?.rootID, "kitsu:244")
         XCTAssertTrue(model.soloFranchiseEntry); XCTAssertEqual(model.episodeOrderScope, "solo")

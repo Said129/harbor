@@ -20,6 +20,7 @@ final class DetailModel {
         StreamPreferences.shared.preferredContinuation(automaticOffers, previous: lastPlayedSource)
     }
     private let service: HarborService
+    private let contextRevision: @MainActor () -> UUID
     private var metadataLoaded: Bool
     var metadataReady: Bool { metadataLoaded && !loadingMetadata }
     private var franchiseLoaded = false
@@ -65,7 +66,9 @@ final class DetailModel {
     func clearSourceChange() { sourceContinuation = nil }
     func cancelResolution() { resolutionRequest = UUID(); resolving = false }
 
-    init(_ media: Media, service: HarborService, metadataLoaded: Bool = false) { self.media = media; self.service = service; self.metadataLoaded = metadataLoaded }
+    init(_ media: Media, service: HarborService, metadataLoaded: Bool = false, contextRevision: @escaping @MainActor () -> UUID = { AppProfileContext.shared.activationID }) {
+        self.media = media; self.service = service; self.metadataLoaded = metadataLoaded; self.contextRevision = contextRevision
+    }
 
     func load(_ addons: [Addon], owner: String, library: LibraryModel, fetch: (@MainActor () async throws -> Media)? = nil) async {
         guard !metadataLoaded else { return }
@@ -99,14 +102,14 @@ final class DetailModel {
 
     func loadFranchise(owner: String, library: LibraryModel, provider: AnimeFranchiseService = .shared) async {
         guard canLoadFranchise, !franchiseLoaded, owner == library.owner else { return }
-        let request = UUID(), selected = media, context = AppProfileContext.shared.activationID
+        let request = UUID(), selected = media, context = contextRevision()
         franchiseRequest = request; loadingFranchise = true
         defer { if franchiseRequest == request { loadingFranchise = false } }
         do {
             let value = try await provider.franchise(for: selected.id)
             try Task.checkCancellation()
             guard franchiseRequest == request, library.owner == owner, media.identity == selected.identity,
-                  AppProfileContext.shared.activationID == context else { return }
+                  contextRevision() == context else { return }
             franchise = value; activeFranchiseEntryID = value?.currentID; franchiseLoaded = value != nil
         } catch { return }
     }
@@ -114,7 +117,7 @@ final class DetailModel {
     @discardableResult
     func selectFranchiseEntry(_ id: String, owner: String, library: LibraryModel, fetch: (@MainActor (AnimeFranchiseEntry) async throws -> Media)? = nil) async -> Bool {
         guard owner == library.owner, id != activeFranchiseEntryID, let entry = franchise?.entries.first(where: { $0.id == id }) else { return false }
-        let request = UUID(), previous = media.identity, context = AppProfileContext.shared.activationID
+        let request = UUID(), previous = media.identity, context = contextRevision()
         franchiseSelectionRequest = request; loadingMetadata = true
         defer { if franchiseSelectionRequest == request { loadingMetadata = false } }
         do {
@@ -123,7 +126,7 @@ final class DetailModel {
             else { selected = try await AnimeService.metadata(id: entry.id, kind: entry.media.type) }
             try Task.checkCancellation()
             guard library.owner == owner, franchiseSelectionRequest == request, media.identity == previous,
-                  AppProfileContext.shared.activationID == context else { return false }
+                  contextRevision() == context else { return false }
             guard !selected.name.isEmpty, selected.id == entry.id || (entry.id.hasPrefix("anilist:") && selected.id.hasPrefix("mal:") && AnimeService.isAnime(selected.id)) else { throw HarborError(code: "no-metadata") }
             streamRequest = UUID(); resolutionRequest = UUID(); orderRequest = UUID()
             resolving = false; loadingStreams = false; episodeOrderLoading = false
@@ -136,7 +139,7 @@ final class DetailModel {
             return true
         } catch is CancellationError { return false }
         catch {
-            if !Task.isCancelled, franchiseSelectionRequest == request, library.owner == owner, AppProfileContext.shared.activationID == context { self.error = safeMessage(error) }
+            if !Task.isCancelled, franchiseSelectionRequest == request, library.owner == owner, contextRevision() == context { self.error = safeMessage(error) }
             return false
         }
     }
