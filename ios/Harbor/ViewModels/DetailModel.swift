@@ -25,6 +25,10 @@ final class DetailModel {
     private var animeEpisodeVariants: AnimeEpisodeVariants?
     var animeEpisodeGrouping = AnimeEpisodeGrouping.saved
     var allowsContinuousAnimeEpisodes: Bool { animeEpisodeVariants?.allowsContinuous == true }
+    var episodeMetadataURL: URL? {
+        guard let id = animeEpisodeVariants?.tvdbSeriesID else { return nil }
+        return URL(string: "https://thetvdb.com/?tab=series&id=\(id)")
+    }
     private var streamRequest = UUID()
     private var resolutionRequest = UUID()
     private var sourceContinuation: SourceContinuation?
@@ -77,6 +81,11 @@ final class DetailModel {
         animeEpisodeVariants = variants
         media.videos = variants.episodes(animeEpisodeGrouping)
         animeEpisodesLoaded = true
+        // Publish the provider list first. Optional stills never delay playback.
+        let supplemented = await TVDBService.shared.supplement(variants, for: selected)
+        guard !Task.isCancelled, library.owner == owner, media.identity == selected.identity else { return }
+        animeEpisodeVariants = supplemented
+        media.videos = supplemented.episodes(animeEpisodeGrouping)
     }
 
     func setAnimeEpisodeGrouping(_ grouping: AnimeEpisodeGrouping) {

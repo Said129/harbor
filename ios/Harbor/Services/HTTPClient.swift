@@ -21,6 +21,14 @@ struct HTTPClient: Sendable {
         configuration.urlCache = nil
         return URLSession(configuration: configuration, delegate: AccountRedirectPolicy(), delegateQueue: nil)
     }()
+    private static let publicTVDBSession: URLSession = {
+        let configuration = URLSessionConfiguration.ephemeral
+        configuration.httpShouldSetCookies = false
+        configuration.httpCookieStorage = nil
+        configuration.urlCredentialStorage = nil
+        configuration.urlCache = nil
+        return URLSession(configuration: configuration, delegate: AccountRedirectPolicy(), delegateQueue: nil)
+    }()
 
     func post(_ value: String, body: JSONValue, timeout: TimeInterval = 30) async throws -> JSONValue {
         let allowed = ["login", "getUser", "addonCollectionGet", "addonCollectionSet", "datastoreMeta", "datastoreGet", "datastorePut"].map { "https://api.strem.io/api/\($0)" }
@@ -78,7 +86,26 @@ struct HTTPClient: Sendable {
         return try await receive(request, session: Self.accountSession)
     }
 
-    private func receive(_ input: URLRequest, session: URLSession) async throws -> JSONValue {
+    static func tvdbRequest(_ endpoint: TVDBRequest) throws -> URLRequest {
+        let base = "https://harborcommunity.site/api/tvdb/v4"
+        let path = try endpoint.path
+        guard let url = URL(string: base + path) else { throw HarborError(code: "tvdb-request") }
+        return URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 15)
+    }
+
+    func tvdb(_ endpoint: TVDBRequest) async throws -> JSONValue {
+        let request = try Self.tvdbRequest(endpoint)
+        for attempt in 0..<2 {
+            do { return try await receive(request, session: Self.publicTVDBSession, requireJSON: true) }
+            catch let error as HarborError {
+                guard attempt == 0, error.code == "network" || error.code == "http-429" || error.code.hasPrefix("http-5") else { throw error }
+                try await Task.sleep(for: .milliseconds(350))
+            }
+        }
+        throw HarborError(code: "network")
+    }
+
+    private func receive(_ input: URLRequest, session: URLSession, requireJSON: Bool = false) async throws -> JSONValue {
         var request = input
         if request.value(forHTTPHeaderField: "Accept") == nil { request.setValue("application/json", forHTTPHeaderField: "Accept") }
         request.setValue("Harbor-iOS/0.1", forHTTPHeaderField: "User-Agent")
@@ -88,6 +115,7 @@ struct HTTPClient: Sendable {
             let (bytes, response) = try await session.bytes(for: request)
             guard let response = response as? HTTPURLResponse else { throw HarborError(code: "invalid-http-response") }
             guard (200..<300).contains(response.statusCode) else { throw HarborError(code: "http-\(response.statusCode)") }
+            if requireJSON, response.mimeType?.lowercased() != "application/json" { throw HarborError(code: "tvdb-response") }
             let limit = 8 * 1024 * 1024
             guard response.expectedContentLength <= Int64(limit) else { throw HarborError(code: "response-too-large") }
             var data = Data()

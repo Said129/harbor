@@ -34,7 +34,12 @@ struct DetailView: View {
                     if model.loading { ProgressView() }
                     if model.media.episodic { EpisodeList(media: model.media, library: app.library,
                         animeGrouping: model.allowsContinuousAnimeEpisodes ? Binding(get: { model.animeEpisodeGrouping }, set: { model.setAnimeEpisodeGrouping($0) }) : nil,
-                        play: { openStreams($0, automatic: StreamPreferences.shared.automatic) }) }
+                        play: { openStreams($0, automatic: StreamPreferences.shared.automatic) })
+                        if let source = model.episodeMetadataURL {
+                            Link("TheTVDB", destination: source).font(.caption).foregroundStyle(.secondary)
+                                .frame(minHeight: 44).accessibilityIdentifier("episode-metadata-source")
+                        }
+                    }
                 }.padding()
                 DetailMetadataView(media: model.media, app: app)
             }

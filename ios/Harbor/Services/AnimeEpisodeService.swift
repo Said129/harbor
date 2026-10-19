@@ -30,7 +30,7 @@ actor AnimeEpisodeService {
         let seasons = continuous.map { episode in
             var value = episode; value.displaySeason = nil; value.displayEpisode = nil; return value
         }
-        return AnimeEpisodeVariants(seasons: seasons, continuous: continuous)
+        return AnimeEpisodeVariants(seasons: seasons, continuous: continuous, tvdbSeriesID: mapping["mappings"]["thetvdb_id"].integer.flatMap { $0 > 0 ? $0 : nil })
     }
 
     private static func providerEpisodes(_ original: [Episode]) -> [Episode] {

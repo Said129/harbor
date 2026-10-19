@@ -9,9 +9,11 @@ enum AnimeEpisodeGrouping: String, CaseIterable, Sendable {
 struct AnimeEpisodeVariants: Sendable {
     let seasons: [Episode]
     let continuous: [Episode]
+    let tvdbSeriesID: Int?
     let allowsContinuous: Bool
-    init(seasons: [Episode], continuous: [Episode]) {
+    init(seasons: [Episode], continuous: [Episode], tvdbSeriesID: Int? = nil) {
         self.seasons = seasons; self.continuous = continuous
+        self.tvdbSeriesID = tvdbSeriesID
         allowsContinuous = Self.supportsContinuous(seasons: seasons, continuous: continuous)
     }
     private static func supportsContinuous(seasons: [Episode], continuous: [Episode]) -> Bool {
