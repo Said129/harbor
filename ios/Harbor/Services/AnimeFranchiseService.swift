@@ -258,7 +258,7 @@ actor AnimeFranchiseService {
             var iterator = inputs.enumerated().makeIterator(), results: [Int: Output] = [:]
             for _ in 0..<min(4, inputs.count) { if let (index, value) = iterator.next() { group.addTask { (index, await operation(value)) } } }
             for await (index, result) in group {
-                results[index] = result
+                results.updateValue(result, forKey: index)
                 if let (next, value) = iterator.next() { group.addTask { (next, await operation(value)) } }
             }
             return inputs.indices.compactMap { results[$0] }

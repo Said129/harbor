@@ -127,6 +127,8 @@ final class AnimeFranchiseTests: XCTestCase {
         let values = try await [first, second]
         XCTAssertEqual(values.compactMap { $0?.complete }, [false, false])
         await transport.replace(.related(1), with: related([("sequel", resource(2))]))
+        let missingChild = try await loadedGraph(service, id: "kitsu:1")
+        XCTAssertFalse(missingChild.complete, "A failed descendant request must not disappear from the bounded collection")
         await transport.replace(.related(2), with: related([]))
         let recovered = try await loadedGraph(service, id: "kitsu:1")
         XCTAssertTrue(recovered.complete); XCTAssertEqual(recovered.entries.count, 2)
