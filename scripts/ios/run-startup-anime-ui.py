@@ -45,6 +45,7 @@ def execute(device, row):
     run(sys.executable, 'scripts/ios/record-live-test-result.py', '--bundle', str(build / (row['bundle'] + '.xcresult')),
         '--output', str(canonical / (row['bundle'] + '.json')), '--target', row['target'], '--suite', row['suite'], '--method', row['method'])
 
+failures = []
 for group in dict.fromkeys(row['group'] for row in rows):
     if group not in selected:
         info, runtime = (phone_info, phone_runtime) if group.endswith('iphone') else (tablet_info, tablet_runtime)
@@ -61,10 +62,16 @@ for group in dict.fromkeys(row['group'] for row in rows):
         try:
             for row in rows:
                 if row['group'] == group: execute(device, row)
+        except (RuntimeError, subprocess.CalledProcessError) as error:
+            failures.append(dict(group=group, case=row['target'] + '.' + row['suite'] + '/' + row['method'], error=str(error)))
+            (canonical / 'StartupAnimeGroupFailures.json').write_text(json.dumps(failures, indent=2) + '\n')
+            print('Group failed; preserving its originals and continuing independent devices: ' + group, flush=True)
         finally:
             if recorder.poll() is None: recorder.send_signal(signal.SIGINT)
             try: recorder.wait(timeout=30)
             except subprocess.TimeoutExpired: recorder.terminate(); recorder.wait(timeout=10)
     assert video.is_file() and video.stat().st_size > 1_024
     run('xcrun', 'simctl', 'shutdown', device)
+if failures:
+    raise RuntimeError('Pending groups failed; independent groups were still attempted: ' + ', '.join(row['group'] for row in failures))
 print('Nine UI journeys and four necessary setup executions recorded; approved model methods were not repeated. Full parity remains in progress.')

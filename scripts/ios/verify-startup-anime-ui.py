@@ -15,13 +15,21 @@ p = argparse.ArgumentParser(description=__doc__)
 p.add_argument('--output', type=Path, required=True)
 p.add_argument('--source-only', action='store_true', help='Inspect frozen source/selection only; does not approve prerequisites or dispatch')
 a = p.parse_args()
-application = '7ec9a586e571d2ee6c42accc0bfeb1e56aa95b24'
+application = 'c81bd5c8503e31f2bec973e70c2dfb23eedb4259'
+native_source = '7ec9a586e571d2ee6c42accc0bfeb1e56aa95b24'
+previous_ui = 'c6793804c5abf25538c24a826e5fa5e5b7aca40e'
 old_source = '5efc1179df26a80c59b9b5cbf858b214335246e2'
-for revision in [application, old_source]:
+for revision in [application, native_source, previous_ui, old_source]:
     if subprocess.run(['git', 'cat-file', '-e', revision + '^{commit}'], capture_output=True).returncode:
         subprocess.run(['git', 'fetch', '--no-tags', '--depth=1', 'origin', revision], check=True)
 roots = ['ios', 'harbor-core', 'harbor-ios-bridge', 'src-tauri']
 assert not subprocess.check_output(['git', 'diff', '--name-only', application, '--', *roots], text=True).strip(), 'Freeze the actual application, test cases and dependencies before UI'
+for folder in ['ios/HarborTests', 'ios/HarborUITests', 'ios/HarborIntegrationTests']:
+    changed = subprocess.check_output(['git', 'diff', '--name-only', native_source, application, '--', folder], text=True).splitlines()
+    assert set(changed).issubset({'ios/HarborTests/TVDBProxyTests.swift', 'ios/HarborIntegrationTests/TVDBProxyLiveTests.swift'})
+pin_path = 'ios/Harbor/Views/ProfilePINEntryView.swift'
+old_pin = subprocess.check_output(['git', 'show', native_source + ':' + pin_path], text=True)
+assert Path(pin_path).read_text('utf-8') == old_pin.replace('            .accessibilityIdentifier("profile-pin-screen")\n', '')
 executions = execution_plan()
 for row in executions:
     source = (Path('ios') / row['target'] / (row['suite'] + '.swift')).read_text('utf-8')
@@ -44,7 +52,7 @@ if not a.source_only:
         with urllib.request.urlopen(urllib.request.Request(api + path, headers=headers), timeout=45) as response: return json.load(response)
     class NoRedirect(urllib.request.HTTPRedirectHandler):
         def redirect_request(self, request, fp, code, message, response_headers, newurl): return None
-    for number, source, conclusion in [(39172205813, old_source, 'failure'), (39229215940, application, 'success')]:
+    for number, source, conclusion in [(39172205813, old_source, 'failure'), (39229215940, native_source, 'success'), (39233004336, previous_ui, 'failure')]:
         metadata = get(f'/actions/runs/{number}')
         assert metadata['head_sha'] == source and metadata['status'] == 'completed' and metadata['conclusion'] == conclusion, 'Collect or repair the actual prerequisite before this UI dispatch'
         job = next(row for row in get(f'/actions/runs/{number}/jobs?per_page=100')['jobs'] if row['name'] == 'Apple SDK / Swift / iPhone')
@@ -62,15 +70,22 @@ if not a.source_only:
         if number == 39229215940:
             assert len(actual) == 11 and actual == {case: 'passed' for case in models}
             assert next(step for step in job['steps'] if step['name'] == 'Authenticate the eleven actual startup and anime model results')['conclusion'] == 'success'
-        else:
+        elif number == 39172205813:
             assert len(actual) == 27 and sum(result == 'passed' for result in actual.values()) == 26
             assert actual[preserved_language] == 'passed'
             assert actual['HarborUITests.HouseholdProfilesNavigationTests/testNormalProfileCreationIdentityAndRestartPINWorkOnIPhone'] == 'failed'
             assert sum(case.startswith('HarborTests.') and result == 'passed' for case, result in actual.items()) == 25
             assert 'Neither element nor any descendant has keyboard focus' in text
+        else:
+            failed_case = 'HarborUITests.HouseholdProfilesNavigationTests/testNormalProfileCreationIdentityAndRestartPINWorkOnIPhone'
+            assert actual == {failed_case: 'failed'}, 'Preserve any new successful predecessors instead of repeating them'
+            assert 'HouseholdProfilesNavigationTests.swift:81: error:' in text and 'profile-pin-entry' in text
+            assert 'Neither element nor any descendant has keyboard focus' not in text
+            assert next(step for step in job['steps'] if step['name'] == 'Preserve original startup and anime UI results')['conclusion'] == 'success'
         prior.append(dict(run=number, source=source, actual_outcomes=actual, raw_job_log_sha256=hashlib.sha256(data).hexdigest()))
 proof = dict(source=os.environ.get('GITHUB_SHA') or subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip(),
-    application_source=application, scope='startup-anime-ui', source_only=a.source_only, prior_runs_checked=not a.source_only,
+    application_source=application, approved_native_source=native_source, pin_identifier_repair_only=True,
+    scope='startup-anime-ui', source_only=a.source_only, prior_runs_checked=not a.source_only,
     actual_prior_logs=prior, preserved_new_model_methods=sorted(models), preserved_phone_language=preserved_language,
     executions=executions, expected_actual_ui_cases=sorted(ui_cases), expected_ui_executions=9, required_setup_executions=4,
     expected_original_capture_count=40, prior_approved_methods_repeated=False, child_features_excluded=True,
