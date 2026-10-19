@@ -2,6 +2,7 @@ import Foundation
 import Network
 import XCTest
 import UIKit
+import CryptoKit
 
 @MainActor final class PlayerCaptionNavigationTests: XCTestCase {
     func testActualIPhonePlayerShowsAbsoluteNinetyNineAndAdvancesToOneHundred() async throws { try await verifyPlayer(device: "iphone") }
@@ -30,7 +31,7 @@ import UIKit
         try await verifyCaption("T1 · E99", app: app)
         XCTAssertTrue(server.paths.contains("/stream/series/tt4644488:5:23.json"))
         XCTAssertTrue(server.paths.contains { $0.hasPrefix("/clip/") })
-        capture(app, name: "synthetic-player-\(device)-episode-99")
+        try await capture(app, server: server, name: "synthetic-player-\(device)-episode-99")
         let next = app.buttons["player-next-episode"]
         XCTAssertTrue(next.exists)
         let enabled = XCTNSPredicateExpectation(predicate: NSPredicate(format: "enabled == true"), object: next)
@@ -43,7 +44,7 @@ import UIKit
         try await showPlayer(app)
         try await verifyCaption("T1 · E100", app: app)
         XCTAssertTrue(server.paths.contains("/stream/series/tt4644488:5:24.json"))
-        capture(app, name: "synthetic-player-\(device)-episode-100")
+        try await capture(app, server: server, name: "synthetic-player-\(device)-episode-100")
     }
     private func showPlayer(_ app: XCUIApplication) async throws {
         let surface = app.buttons["player-surface"]
@@ -71,27 +72,55 @@ import UIKit
         let result = await XCTWaiter.fulfillment(of: [correct], timeout: 45)
         XCTAssertEqual(result, .completed)
     }
-    private func capture(_ app: XCUIApplication, name: String) {
-        // The application-scoped capture crops the rotated window on this
-        // simulator. Capture the physical display and retain its geometry.
-        let screenshot = XCUIScreen.main.screenshot()
+    private func capture(_ app: XCUIApplication, server: CaptionAddonServer, name: String) async throws {
+        let deadline = Date().addingTimeInterval(15)
+        while app.frame.width <= app.frame.height && Date() < deadline { try await Task.sleep(for: .milliseconds(200)) }
+        XCTAssertGreaterThan(app.frame.width, app.frame.height)
         let caption = app.staticTexts["player-episode-caption"]
-        let geometry = XCTAttachment(string: "app=\(app.frame); caption=\(caption.frame); pixels=\(screenshot.image.size); orientation=\(screenshot.image.imageOrientation.rawValue)")
+        XCTAssertTrue(caption.isHittable)
+        let token = try server.requestCapture(name: name, app: app.frame, caption: caption.frame)
+        let ready = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in server.captureReceipt(token) != nil }, object: nil)
+        let result = await XCTWaiter.fulfillment(of: [ready], timeout: 45)
+        XCTAssertEqual(result, .completed, "The host must preserve a real full-display PNG before advancing")
+        guard result == .completed, let receipt = server.captureReceipt(token) else { throw URLError(.timedOut) }
+        XCTAssertGreaterThan(receipt.width, receipt.height); XCTAssertGreaterThan(receipt.height, 100)
+        let geometry = XCTAttachment(string: "token=\(token); app=\(app.frame); caption=\(caption.frame); pixels=\(receipt.width)x\(receipt.height); png_sha256=\(receipt.sha256)")
         geometry.name = name + "-geometry"; geometry.lifetime = .keepAlways; add(geometry)
-        let attachment = XCTAttachment(screenshot: screenshot); attachment.name = name; attachment.lifetime = .keepAlways; add(attachment)
+        let attachment = XCTAttachment(data: receipt.png, uniformTypeIdentifier: "public.png")
+        attachment.name = name; attachment.lifetime = .keepAlways; add(attachment)
     }
 }
 
 /// Ordinary Stremio addon and real HTTP byte ranges, bound to loopback only.
 private final class CaptionAddonServer: @unchecked Sendable {
+    struct CaptureRequest: Codable {
+        let token: String
+        let name: String
+        let app: [Double]
+        let caption: [Double]
+    }
+    struct CaptureReceipt { let width: Int; let height: Int; let sha256: String; let png: Data }
     private let listener: NWListener
     private let queue = DispatchQueue(label: "harbor.player-caption-fixture")
     private let lock = NSLock()
     private let clip: Data
     private var received: [String] = []
+    private var pendingCapture: CaptureRequest?
+    private var captured: [String: CaptureReceipt] = [:]
     private var connections: [UUID: NWConnection] = [:] // Serial queue only.
     private var startupFinished = false // Serial queue only.
     var paths: [String] { lock.lock(); defer { lock.unlock() }; return received }
+    func requestCapture(name: String, app: CGRect, caption: CGRect) throws -> String {
+        guard name.range(of: #"^synthetic-player-(iphone|ipad)-episode-(99|100)$"#, options: .regularExpression) != nil else { throw URLError(.badURL) }
+        lock.lock(); defer { lock.unlock() }
+        guard pendingCapture == nil else { throw URLError(.resourceUnavailable) }
+        let token = UUID().uuidString
+        pendingCapture = CaptureRequest(token: token, name: name,
+            app: [Double(app.minX), Double(app.minY), Double(app.width), Double(app.height)],
+            caption: [Double(caption.minX), Double(caption.minY), Double(caption.width), Double(caption.height)])
+        return token
+    }
+    func captureReceipt(_ token: String) -> CaptureReceipt? { lock.lock(); defer { lock.unlock() }; return captured[token] }
     init(clip: Data) throws {
         self.clip = clip
         let parameters = NWParameters.tcp
@@ -124,16 +153,48 @@ private final class CaptionAddonServer: @unchecked Sendable {
     private func receive(_ connection: NWConnection, id: UUID, request: Data) {
         connection.receive(minimumIncompleteLength: 1, maximumLength: 16 * 1024) { [self] data, _, ended, error in
             var request = request; if let data { request.append(data) }
-            guard error == nil, request.count <= 16 * 1024 else { close(connection, id: id); return }
-            guard request.range(of: Data("\r\n\r\n".utf8)) != nil else {
-                if ended { close(connection, id: id) } else { receive(connection, id: id, request: request) }; return
+            guard error == nil, request.count <= 16 * 1024 * 1024 + 16 * 1024 else { close(connection, id: id); return }
+            guard let headers = request.range(of: Data("\r\n\r\n".utf8)), headers.upperBound <= 16 * 1024 else {
+                if ended || request.count > 16 * 1024 { close(connection, id: id) } else { receive(connection, id: id, request: request) }; return
             }
-            let lines = String(decoding: request, as: UTF8.self).components(separatedBy: "\r\n")
+            let lines = String(decoding: request[..<headers.lowerBound], as: UTF8.self).components(separatedBy: "\r\n")
             let first = (lines.first ?? "").components(separatedBy: " ")
-            guard first.count >= 2, ["GET", "HEAD"].contains(first[0]) else { close(connection, id: id); return }
+            guard first.count >= 2, ["GET", "HEAD", "POST"].contains(first[0]) else { close(connection, id: id); return }
             let path = (first[1].components(separatedBy: "?").first ?? "").removingPercentEncoding ?? first[1]
+            if first[0] == "POST" {
+                guard path.hasPrefix("/qa/ack/"),
+                      let raw = lines.first(where: { $0.lowercased().hasPrefix("content-length:") }),
+                      let size = Int(raw.dropFirst("Content-Length:".count).trimmingCharacters(in: .whitespaces)), (32...16 * 1024 * 1024).contains(size) else { close(connection, id: id); return }
+                if request.count < headers.upperBound + size {
+                    if ended { close(connection, id: id) } else { receive(connection, id: id, request: request) }; return
+                }
+                guard request.count == headers.upperBound + size else { close(connection, id: id); return }
+            }
             lock.lock(); received.append(path); lock.unlock()
-            if path.hasPrefix("/clip/") {
+            if path == "/qa/capture" {
+                lock.lock(); let pending = pendingCapture; lock.unlock()
+                let data = pending.flatMap { try? JSONEncoder().encode($0) } ?? Data("null".utf8)
+                respond(connection, id: id, status: 200, type: "application/json", length: data.count, body: first[0] == "HEAD" ? Data() : data)
+            } else if path.hasPrefix("/qa/ack/") {
+                let token = String(path.dropFirst("/qa/ack/".count))
+                let query = URLComponents(string: "http://127.0.0.1:48192" + first[1])?.queryItems ?? []
+                let fields = Dictionary(query.map { ($0.name, $0.value ?? "") }, uniquingKeysWith: { first, _ in first })
+                let png = Data(request[headers.upperBound...])
+                guard first[0] == "POST", UUID(uuidString: token) != nil,
+                      let width = Int(fields["width"] ?? ""), let height = Int(fields["height"] ?? ""), width > height, height > 100,
+                      let sha = fields["sha256"], sha.range(of: "^[a-f0-9]{64}$", options: .regularExpression) != nil,
+                      png.count >= 32, png.starts(with: [137, 80, 78, 71, 13, 10, 26, 10]),
+                      png[16..<20].reduce(0, { $0 << 8 | Int($1) }) == width,
+                      png[20..<24].reduce(0, { $0 << 8 | Int($1) }) == height,
+                      SHA256.hash(data: png).map({ String(format: "%02x", $0) }).joined() == sha else {
+                    respond(connection, id: id, status: 400, type: "text/plain", length: 0, body: Data()); return
+                }
+                lock.lock()
+                let accepted = pendingCapture?.token == token
+                if accepted { captured[token] = CaptureReceipt(width: width, height: height, sha256: sha, png: png); pendingCapture = nil }
+                lock.unlock()
+                respond(connection, id: id, status: accepted ? 200 : 409, type: "text/plain", length: 0, body: Data())
+            } else if path.hasPrefix("/clip/") {
                 sendClip(connection, id: id, head: first[0] == "HEAD", range: lines.first { $0.lowercased().hasPrefix("range:") })
             } else if path.hasPrefix("/stream/series/tt4644488:"), path.hasSuffix(".json") {
                 let video = path.dropFirst("/stream/series/".count).dropLast(5)
