@@ -500,7 +500,12 @@ jobs:
           elif [[ "${{ inputs.validation_scope }}" == "stable-mobile" || "${{ inputs.validation_scope }}" == "stable-tablet-ui" ]]; then
             selection=(-only-testing:HarborUITests/StableMobileNavigationTests)
           fi
-          xcodebuild -project ios/Harbor.xcodeproj -scheme HarborLive -configuration Debug -destination "platform=iOS Simulator,id=$IOS_SIMULATOR,arch=$IOS_SIMULATOR_ARCH" -derivedDataPath ios/build/DerivedData -clonedSourcePackagesDirPath ios/build/SourcePackages -resultBundlePath ios/build/LiveTests.xcresult "${selection[@]}" -parallel-testing-enabled NO CODE_SIGNING_ALLOWED=YES CODE_SIGN_IDENTITY=- test 2>&1 | tee ios/build/logs/live-tests.log
+          if [[ "${{ inputs.validation_scope }}" == "player-caption" ]]; then
+            python3 scripts/ios/run-player-caption-ui.py --device "$IOS_SIMULATOR" --family iphone --bundle LiveTests
+            python3 scripts/ios/record-live-test-result.py --bundle ios/build/LiveTests.xcresult --output ios/build/canonical/LiveTests-player-case.json --target HarborUITests --suite PlayerCaptionNavigationTests --method testActualIPhonePlayerShowsAbsoluteNinetyNineAndAdvancesToOneHundred
+          else
+            xcodebuild -project ios/Harbor.xcodeproj -scheme HarborLive -configuration Debug -destination "platform=iOS Simulator,id=$IOS_SIMULATOR,arch=$IOS_SIMULATOR_ARCH" -derivedDataPath ios/build/DerivedData -clonedSourcePackagesDirPath ios/build/SourcePackages -resultBundlePath ios/build/LiveTests.xcresult "${selection[@]}" -parallel-testing-enabled NO CODE_SIGNING_ALLOWED=YES CODE_SIGN_IDENTITY=- test 2>&1 | tee ios/build/logs/live-tests.log
+          fi
       - name: Verify native iPad layouts, rotation and ordinary app interactions
         id: tablet_tests
         if: ${{ inputs.validation_scope == 'stable-mobile' && success() }}
@@ -532,7 +537,8 @@ jobs:
           xcodebuild -project ios/Harbor.xcodeproj -scheme Harbor -configuration Debug -destination "platform=iOS Simulator,id=$tablet,arch=$IOS_SIMULATOR_ARCH" -derivedDataPath ios/build/DerivedData -clonedSourcePackagesDirPath ios/build/SourcePackages -resultBundlePath ios/build/PlayerCaptionTabletSeed.xcresult -only-testing:HarborTests/PlayerCaptionSeedTests/testPrepareOrdinaryGuestForSyntheticPlayerCaptionUI -parallel-testing-enabled NO CODE_SIGNING_ALLOWED=YES CODE_SIGN_IDENTITY=- test 2>&1 | tee ios/build/logs/player-caption-tablet-seed.log
           xcrun simctl shutdown "$tablet"
           xcrun simctl bootstatus "$tablet" -b
-          xcodebuild -project ios/Harbor.xcodeproj -scheme HarborLive -configuration Debug -destination "platform=iOS Simulator,id=$tablet,arch=$IOS_SIMULATOR_ARCH" -derivedDataPath ios/build/DerivedData -clonedSourcePackagesDirPath ios/build/SourcePackages -resultBundlePath ios/build/PlayerCaptionTabletUI.xcresult -only-testing:HarborUITests/PlayerCaptionNavigationTests/testActualIPadPlayerShowsAbsoluteNinetyNineAndAdvancesToOneHundred -parallel-testing-enabled NO CODE_SIGNING_ALLOWED=YES CODE_SIGN_IDENTITY=- test 2>&1 | tee ios/build/logs/player-caption-tablet-ui.log
+          python3 scripts/ios/run-player-caption-ui.py --device "$tablet" --family ipad --bundle PlayerCaptionTabletUI
+          python3 scripts/ios/record-live-test-result.py --bundle ios/build/PlayerCaptionTabletUI.xcresult --output ios/build/canonical/PlayerCaptionTabletUI-player-case.json --target HarborUITests --suite PlayerCaptionNavigationTests --method testActualIPadPlayerShowsAbsoluteNinetyNineAndAdvancesToOneHundred
           python3 - <<'PY'
           import hashlib
           from pathlib import Path

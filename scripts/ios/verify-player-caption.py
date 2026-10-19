@@ -10,8 +10,9 @@ p = argparse.ArgumentParser(description=__doc__)
 p.add_argument('--output', type=Path, required=True)
 a = p.parse_args()
 application = '49110c6786903d6480c2febe101d8210f2a4fb9b'
-test_source = 'a4d6092e8902c07a260ece290e21ff0bed294759'
-for revision in [application, test_source]:
+test_source = '96c6a84ab35d43880fa20a2186ebb3dcc8d45621'
+previous_test_source = 'a4d6092e8902c07a260ece290e21ff0bed294759'
+for revision in [application, test_source, previous_test_source]:
     if subprocess.run(['git', 'cat-file', '-e', revision + '^{commit}'], capture_output=True).returncode != 0:
         subprocess.run(['git', 'fetch', '--no-tags', '--depth=1', 'origin', revision], check=True)
 roots = ['ios/Harbor', 'ios/HarborTests', 'ios/HarborIntegrationTests', 'ios/HarborUITests', 'ios/project.yml', 'harbor-core', 'harbor-ios-bridge', 'src-tauri']
@@ -20,7 +21,20 @@ allowed = {'ios/HarborTests/PlayerCaptionSeedTests.swift', 'ios/HarborUITests/Pl
 changed = set(subprocess.check_output(['git', 'diff', '--name-only', application, 'HEAD', '--', *roots], text=True).splitlines())
 assert changed == allowed, sorted(changed ^ allowed)
 assert not subprocess.check_output(['git', 'diff', '--name-only', test_source, 'HEAD', '--',
-    'ios/HarborTests/PlayerCaptionSeedTests.swift', 'ios/HarborUITests/PlayerCaptionNavigationTests.swift'], text=True).strip(), 'Require the reviewed rendered frame, caption, manual next action and original request assertions'
+    'ios/HarborTests/PlayerCaptionSeedTests.swift', 'ios/HarborUITests/PlayerCaptionNavigationTests.swift',
+    'scripts/ios/capture-player-display.py', 'scripts/ios/run-player-caption-ui.py'], text=True).strip(), 'Freeze the reviewed assertions and real display capture handoff'
+path = 'ios/HarborUITests/PlayerCaptionNavigationTests.swift'
+old = subprocess.check_output(['git', 'show', previous_test_source + ':' + path]).decode('utf-8')
+current = Path(path).read_text('utf-8')
+begin, end = '    private func verifyPlayer(', '    private func capture('
+expected = old[old.index(begin):old.index(end)].replace('        capture(app, name:', '        try await capture(app, server: server, name:')
+assert current[current.index(begin):current.index(end)] == expected, 'Preserve render-ready, pause, hittable captions, original IDs and manual next assertions'
+begin, end = '    func start() async throws', '    private func receive('
+assert old[old.index(begin):old.index(end)] == current[current.index(begin):current.index(end)]
+begin = '    private func sendClip('
+assert old[old.index(begin):] == current[current.index(begin):], 'Byte-range playback and socket cleanup remain unchanged'
+assert 'XCUIScreen.main.screenshot()' not in current and 'XCTAttachment(data: receipt.png' in current
+assert 'SHA256.hash(data: png)' in current and 'width > height, height > 100' in current
 project = Path('ios/project.yml').read_text('utf-8')
 original = subprocess.check_output(['git', 'show', application + ':ios/project.yml']).decode('utf-8')
 before = '    sources: [HarborUITests]\n'
@@ -44,10 +58,11 @@ proof = dict(source=os.environ.get('GITHUB_SHA') or subprocess.check_output(['gi
     ordinary_guest_setting='autoHideControls=false; caption and manual next assertions require visible controls',
     previous_failed_run=39121115983,
     previous_functional_pass_run=39145147124,
-    latest_failed_visual_run=39150071547,
-    observed_failure='The actual AX dump contains player-surface as a Button with Preparado; the any-type firstMatch query missed it and attempted the disabled source picker underneath. Use the observed Button type and never tap the hidden picker while player-close exists.',
-    visual_followup='Application-scoped rotated images were cropped. Require a hittable caption, capture XCUIScreen.main and retain application/caption/image geometry. Earlier functional passes remain valid.',
-    screen_capture_api='XCUIScreen.main.screenshot', expected_geometry_attachments=4,
+    latest_failed_visual_run=39168430737,
+    observed_failure='The real player reached a hittable E99 caption after rendering and pause, but XCUIScreen.main.screenshot timed out and returned a1x1 PNG. The route stopped before next; the tablet did not execute.',
+    visual_followup='Keep the real player assertions. The test-only listener requests a host simctl full-display PNG, validates the exact returned bytes/hash/dimensions and attaches those original bytes before advancing. No app/production screenshot hook is added.',
+    screen_capture_api='xcrun simctl io DEVICE screenshot --type=png; original PNG attached by XCTest after byte/hash verification', expected_geometry_attachments=4,
+    expected_host_capture_manifests=4, host_capture_synthetic_protocol_check='external mocked companion check only; actual simulator capture still pending',
     actual_ui_cases=['HarborUITests.PlayerCaptionNavigationTests/testActualIPhonePlayerShowsAbsoluteNinetyNineAndAdvancesToOneHundred',
         'HarborUITests.PlayerCaptionNavigationTests/testActualIPadPlayerShowsAbsoluteNinetyNineAndAdvancesToOneHundred'],
     actual_execution_results='pending', physical_device_validation=False,
