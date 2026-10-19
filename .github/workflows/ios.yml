@@ -41,6 +41,7 @@ on:
             startup-anime,
             startup-anime-ui,
             tvdb-proxy,
+            episode-order,
             player-caption,
             continuation-sendable,
             anime-episodes,
@@ -279,7 +280,7 @@ jobs:
             harbor-core
             harbor-ios-bridge
       - name: Verify shared Rust on the Apple build host
-        if: ${{ inputs.validation_scope != 'affected' && inputs.validation_scope != 'sources-search-subtitles' && inputs.validation_scope != 'mobile-sources-subtitles' && inputs.validation_scope != 'stable-mobile' && inputs.validation_scope != 'stable-tablet-ui' && inputs.validation_scope != 'stable-tablet-rotation' && inputs.validation_scope != 'reading-intro' && inputs.validation_scope != 'reading-followup' && inputs.validation_scope != 'reading-final' && inputs.validation_scope != 'reading-tablet-final' && inputs.validation_scope != 'anime-episodes' && inputs.validation_scope != 'anime-episodes-ui' && inputs.validation_scope != 'continuation-parity' && inputs.validation_scope != 'language-reference' && inputs.validation_scope != 'system-maintenance' && inputs.validation_scope != 'navigation-sync' && inputs.validation_scope != 'onboarding-desktop' && inputs.validation_scope != 'service-browser' && inputs.validation_scope != 'streaming-sync' && inputs.validation_scope != 'services-complete' && inputs.validation_scope != 'services-ui' && inputs.validation_scope != 'profile-context' && inputs.validation_scope != 'profile-editor' && inputs.validation_scope != 'profile-gate' && inputs.validation_scope != 'profile-appearance' && inputs.validation_scope != 'profile-ui' && inputs.validation_scope != 'player-caption' && inputs.validation_scope != 'startup-anime' && inputs.validation_scope != 'startup-anime-ui' && inputs.validation_scope != 'tvdb-proxy' }}
+        if: ${{ inputs.validation_scope != 'affected' && inputs.validation_scope != 'sources-search-subtitles' && inputs.validation_scope != 'mobile-sources-subtitles' && inputs.validation_scope != 'stable-mobile' && inputs.validation_scope != 'stable-tablet-ui' && inputs.validation_scope != 'stable-tablet-rotation' && inputs.validation_scope != 'reading-intro' && inputs.validation_scope != 'reading-followup' && inputs.validation_scope != 'reading-final' && inputs.validation_scope != 'reading-tablet-final' && inputs.validation_scope != 'anime-episodes' && inputs.validation_scope != 'anime-episodes-ui' && inputs.validation_scope != 'continuation-parity' && inputs.validation_scope != 'language-reference' && inputs.validation_scope != 'system-maintenance' && inputs.validation_scope != 'navigation-sync' && inputs.validation_scope != 'onboarding-desktop' && inputs.validation_scope != 'service-browser' && inputs.validation_scope != 'streaming-sync' && inputs.validation_scope != 'services-complete' && inputs.validation_scope != 'services-ui' && inputs.validation_scope != 'profile-context' && inputs.validation_scope != 'profile-editor' && inputs.validation_scope != 'profile-gate' && inputs.validation_scope != 'profile-appearance' && inputs.validation_scope != 'profile-ui' && inputs.validation_scope != 'player-caption' && inputs.validation_scope != 'startup-anime' && inputs.validation_scope != 'startup-anime-ui' && inputs.validation_scope != 'tvdb-proxy' && inputs.validation_scope != 'episode-order' }}
         shell: bash
         run: |
           set -euo pipefail
@@ -340,7 +341,7 @@ jobs:
             gh release create "iphone-compiler-evidence-$GITHUB_RUN_ID" ios/build/iphone-compiler-evidence.zip --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" --draft --prerelease --title "iPhone compiler evidence $GITHUB_RUN_ID" --notes "Public build diagnostics only. No private account, configured addon URL or installable app."
           fi
       - name: Prepare a clean host for isolated setup model tests
-        if: ${{ inputs.validation_scope == 'onboarding-desktop' || inputs.validation_scope == 'service-browser' || inputs.validation_scope == 'streaming-sync' || inputs.validation_scope == 'services-complete' || inputs.validation_scope == 'services-ui' || inputs.validation_scope == 'profile-context' || inputs.validation_scope == 'profile-editor' || inputs.validation_scope == 'profile-gate' || inputs.validation_scope == 'profile-appearance' || inputs.validation_scope == 'player-caption' || inputs.validation_scope == 'startup-anime' || inputs.validation_scope == 'tvdb-proxy' }}
+        if: ${{ inputs.validation_scope == 'onboarding-desktop' || inputs.validation_scope == 'service-browser' || inputs.validation_scope == 'streaming-sync' || inputs.validation_scope == 'services-complete' || inputs.validation_scope == 'services-ui' || inputs.validation_scope == 'profile-context' || inputs.validation_scope == 'profile-editor' || inputs.validation_scope == 'profile-gate' || inputs.validation_scope == 'profile-appearance' || inputs.validation_scope == 'player-caption' || inputs.validation_scope == 'startup-anime' || inputs.validation_scope == 'tvdb-proxy' || inputs.validation_scope == 'episode-order' }}
         timeout-minutes: 8
         shell: bash
         run: |
@@ -351,6 +352,14 @@ jobs:
           xcrun simctl install "$IOS_SIMULATOR" ios/build/DerivedData/Build/Products/Debug-iphonesimulator/Harbor.app
           container=$(xcrun simctl get_app_container "$IOS_SIMULATOR" site.harbor.iphone data)
           python3 scripts/ios/prepare-model-test-startup.py --container "$container"
+      - name: Select only the new Desktop episode-order engine cases
+        if: ${{ inputs.validation_scope == 'episode-order' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "${{ inputs.validation_only }}" = "true"
+          test "${{ inputs.run_live_integration }}" = "false"
+          python3 scripts/ios/prepare-episode-order-selection.py
       - name: Select only the new TVDB replacement checks
         if: ${{ inputs.validation_scope == 'tvdb-proxy' }}
         run: python3 scripts/ios/prepare-tvdb-proxy-selection.py --output ios/build/preserved-tvdb-proxy.json
@@ -362,7 +371,11 @@ jobs:
         run: |
           set -euo pipefail
           selection=(-only-testing:HarborTests)
-          if [[ "${{ inputs.validation_scope }}" == "tvdb-proxy" ]]; then
+          if [[ "${{ inputs.validation_scope }}" == "episode-order" ]]; then
+            selection=()
+            while IFS= read -r identifier; do selection+=("-only-testing:$identifier"); done < ios/build/episode-order-selection.txt
+            test ${#selection[@]} -eq 9
+          elif [[ "${{ inputs.validation_scope }}" == "tvdb-proxy" ]]; then
             selection=()
             while IFS= read -r identifier; do selection+=("-only-testing:$identifier"); done < ios/build/tvdb-proxy-selection.txt
             test ${#selection[@]} -eq 6
@@ -421,6 +434,9 @@ jobs:
             fi
           fi
           xcodebuild -project ios/Harbor.xcodeproj -scheme Harbor -configuration Debug -destination "platform=iOS Simulator,id=$IOS_SIMULATOR,arch=$IOS_SIMULATOR_ARCH" -derivedDataPath ios/build/DerivedData -clonedSourcePackagesDirPath ios/build/SourcePackages -resultBundlePath ios/build/Tests.xcresult "${selection[@]}" -parallel-testing-enabled NO CODE_SIGNING_ALLOWED=YES CODE_SIGN_IDENTITY=- test 2>&1 | tee ios/build/logs/tests.log
+      - name: Authenticate the nine actual Desktop order engine results
+        if: ${{ always() && inputs.validation_scope == 'episode-order' && (steps.offline_tests.conclusion == 'success' || steps.offline_tests.conclusion == 'failure') }}
+        run: python3 scripts/ios/record-profile-model-results.py --bundle ios/build/Tests.xcresult --expected ios/build/preserved-episode-order.json --count 9 --output ios/build/canonical/EpisodeOrderModels.json
       - name: Authenticate the actual TVDB model results
         id: tvdb_proxy_models
         if: ${{ always() && inputs.validation_scope == 'tvdb-proxy' && (steps.offline_tests.conclusion == 'success' || steps.offline_tests.conclusion == 'failure') }}
@@ -446,7 +462,7 @@ jobs:
         if: ${{ inputs.validation_scope == 'startup-anime' }}
         run: python3 scripts/ios/record-profile-model-results.py --bundle ios/build/Tests.xcresult --expected ios/build/preserved-startup-anime.json --count 11 --output ios/build/canonical/StartupAnimeModels.json
       - name: Preserve failed native render evidence in a draft Release
-        if: ${{ failure() && inputs.save_draft_build == true && steps.offline_tests.conclusion == 'failure' && inputs.validation_scope != 'tvdb-proxy' }}
+        if: ${{ failure() && inputs.save_draft_build == true && steps.offline_tests.conclusion == 'failure' && inputs.validation_scope != 'tvdb-proxy' && inputs.validation_scope != 'episode-order' }}
         env:
           GH_TOKEN: ${{ github.token }}
         shell: bash
@@ -806,7 +822,7 @@ jobs:
           ditto -c -k --keepParent ios/build/rotation-evidence ios/build/tablet-rotation-evidence.zip
           gh release upload "iphone-rotation-${GITHUB_SHA:0:12}" ios/build/tablet-rotation-evidence.zip --repo "$GITHUB_REPOSITORY"
       - name: Save affected simulator evidence without an IPA
-        if: ${{ always() && github.event_name == 'workflow_dispatch' && inputs.validation_only == true && inputs.save_draft_build == true && inputs.validation_scope != 'stable-tablet-rotation' && inputs.validation_scope != 'startup-anime-ui' && (success() || (inputs.validation_scope == 'tvdb-proxy' && (steps.offline_tests.conclusion == 'success' || steps.offline_tests.conclusion == 'failure'))) }}
+        if: ${{ always() && github.event_name == 'workflow_dispatch' && inputs.validation_only == true && inputs.save_draft_build == true && inputs.validation_scope != 'stable-tablet-rotation' && inputs.validation_scope != 'startup-anime-ui' && (success() || ((inputs.validation_scope == 'tvdb-proxy' || inputs.validation_scope == 'episode-order') && (steps.offline_tests.conclusion == 'success' || steps.offline_tests.conclusion == 'failure'))) }}
         env:
           GH_TOKEN: ${{ github.token }}
         shell: bash
