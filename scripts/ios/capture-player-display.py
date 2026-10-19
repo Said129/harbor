@@ -2,6 +2,7 @@
 import argparse
 import hashlib
 import json
+import math
 import os
 from pathlib import Path
 import re
@@ -45,6 +46,8 @@ while not stopping:
     assert re.fullmatch('[A-Fa-f0-9-]{36}', token)
     assert re.fullmatch('synthetic-player-' + a.family + '-episode-(99|100)', name)
     assert len(request['app']) == len(request['caption']) == 4
+    assert request['deviceOrientation'] in ['landscapeLeft', 'landscapeRight']
+    assert all(isinstance(value, (int, float)) and math.isfinite(value) for value in request['app'] + request['caption'])
     if token in seen:
         time.sleep(0.25); continue
     seen.add(token)
@@ -61,15 +64,22 @@ while not stopping:
         image = png.read_bytes()
         assert image[:8] == b'\x89PNG\r\n\x1a\n' and image[12:16] == b'IHDR'
         width, height = struct.unpack('>II', image[16:24])
-        assert 100 < height < width <= 16_384
+        assert 100 < min(width, height) <= max(width, height) <= 16_384
         app_width, app_height = request['app'][2:]
-        assert app_width > app_height > 0 and abs(width / height - app_width / app_height) < 0.03
+        assert app_width > app_height > 0
+        # simctl may preserve the physical portrait pixel buffer while UIKit's
+        # window is landscape. Keep the PNG bytes untouched and state exactly
+        # how its full display coordinates map to the actual device orientation.
+        rotation = 0 if width > height else -90 if request['deviceOrientation'] == 'landscapeLeft' else 90
+        display_width, display_height = (width, height) if rotation == 0 else (height, width)
+        assert display_width > display_height and abs(display_width / display_height - app_width / app_height) < 0.03
         digest = hashlib.sha256(image).hexdigest()
-        record.update(status='captured', file=png.name, bytes=len(image), width=width, height=height, sha256=digest)
+        record.update(status='captured', file=png.name, bytes=len(image), width=width, height=height,
+            display_width=display_width, display_height=display_height, display_rotation=rotation, sha256=digest, pixels_modified=False)
         # Retain the real file and its association before acknowledging it. The
         # XCTest server validates these exact bytes and attaches the same PNG.
         manifest.write_text(json.dumps(record, indent=2) + '\n')
-        query = urllib.parse.urlencode(dict(width=width, height=height, sha256=digest))
+        query = urllib.parse.urlencode(dict(width=width, height=height, rotation=rotation, sha256=digest))
         upload = urllib.request.Request(base + '/qa/ack/' + token + '?' + query, data=image,
             headers={'Content-Type': 'image/png'}, method='POST')
         with urllib.request.urlopen(upload, timeout=8) as response:

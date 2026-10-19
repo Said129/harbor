@@ -78,13 +78,19 @@ import CryptoKit
         XCTAssertGreaterThan(app.frame.width, app.frame.height)
         let caption = app.staticTexts["player-episode-caption"]
         XCTAssertTrue(caption.isHittable)
-        let token = try server.requestCapture(name: name, app: app.frame, caption: caption.frame)
+        let orientation: String
+        switch XCUIDevice.shared.orientation {
+        case .landscapeLeft: orientation = "landscapeLeft"
+        case .landscapeRight: orientation = "landscapeRight"
+        default: throw URLError(.cannotDecodeContentData)
+        }
+        let token = try server.requestCapture(name: name, app: app.frame, caption: caption.frame, orientation: orientation)
         let ready = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in server.captureReceipt(token) != nil }, object: nil)
         let result = await XCTWaiter.fulfillment(of: [ready], timeout: 45)
         XCTAssertEqual(result, .completed, "The host must preserve a real full-display PNG before advancing")
         guard result == .completed, let receipt = server.captureReceipt(token) else { throw URLError(.timedOut) }
-        XCTAssertGreaterThan(receipt.width, receipt.height); XCTAssertGreaterThan(receipt.height, 100)
-        let geometry = XCTAttachment(string: "token=\(token); app=\(app.frame); caption=\(caption.frame); pixels=\(receipt.width)x\(receipt.height); png_sha256=\(receipt.sha256)")
+        XCTAssertGreaterThan(receipt.displayWidth, receipt.displayHeight); XCTAssertGreaterThan(receipt.displayHeight, 100)
+        let geometry = XCTAttachment(string: "token=\(token); app=\(app.frame); caption=\(caption.frame); pixels=\(receipt.width)x\(receipt.height); display=\(receipt.displayWidth)x\(receipt.displayHeight); display_rotation=\(receipt.rotation); device_orientation=\(orientation); png_sha256=\(receipt.sha256)")
         geometry.name = name + "-geometry"; geometry.lifetime = .keepAlways; add(geometry)
         let attachment = XCTAttachment(data: receipt.png, uniformTypeIdentifier: "public.png")
         attachment.name = name; attachment.lifetime = .keepAlways; add(attachment)
@@ -98,8 +104,13 @@ private final class CaptionAddonServer: @unchecked Sendable {
         let name: String
         let app: [Double]
         let caption: [Double]
+        let deviceOrientation: String
     }
-    struct CaptureReceipt { let width: Int; let height: Int; let sha256: String; let png: Data }
+    struct CaptureReceipt {
+        let width: Int; let height: Int; let rotation: Int; let sha256: String; let png: Data
+        var displayWidth: Int { rotation == 0 ? width : height }
+        var displayHeight: Int { rotation == 0 ? height : width }
+    }
     private let listener: NWListener
     private let queue = DispatchQueue(label: "harbor.player-caption-fixture")
     private let lock = NSLock()
@@ -110,14 +121,16 @@ private final class CaptionAddonServer: @unchecked Sendable {
     private var connections: [UUID: NWConnection] = [:] // Serial queue only.
     private var startupFinished = false // Serial queue only.
     var paths: [String] { lock.lock(); defer { lock.unlock() }; return received }
-    func requestCapture(name: String, app: CGRect, caption: CGRect) throws -> String {
-        guard name.range(of: #"^synthetic-player-(iphone|ipad)-episode-(99|100)$"#, options: .regularExpression) != nil else { throw URLError(.badURL) }
+    func requestCapture(name: String, app: CGRect, caption: CGRect, orientation: String) throws -> String {
+        guard name.range(of: #"^synthetic-player-(iphone|ipad)-episode-(99|100)$"#, options: .regularExpression) != nil,
+              ["landscapeLeft", "landscapeRight"].contains(orientation), app.width > app.height, app.height > 0,
+              app.contains(caption), caption.width > 0, caption.height > 0 else { throw URLError(.badURL) }
         lock.lock(); defer { lock.unlock() }
         guard pendingCapture == nil else { throw URLError(.resourceUnavailable) }
         let token = UUID().uuidString
         pendingCapture = CaptureRequest(token: token, name: name,
             app: [Double(app.minX), Double(app.minY), Double(app.width), Double(app.height)],
-            caption: [Double(caption.minX), Double(caption.minY), Double(caption.width), Double(caption.height)])
+            caption: [Double(caption.minX), Double(caption.minY), Double(caption.width), Double(caption.height)], deviceOrientation: orientation)
         return token
     }
     func captureReceipt(_ token: String) -> CaptureReceipt? { lock.lock(); defer { lock.unlock() }; return captured[token] }
@@ -181,7 +194,8 @@ private final class CaptionAddonServer: @unchecked Sendable {
                 let fields = Dictionary(query.map { ($0.name, $0.value ?? "") }, uniquingKeysWith: { first, _ in first })
                 let png = Data(request[headers.upperBound...])
                 guard first[0] == "POST", UUID(uuidString: token) != nil,
-                      let width = Int(fields["width"] ?? ""), let height = Int(fields["height"] ?? ""), width > height, height > 100,
+                      let width = Int(fields["width"] ?? ""), let height = Int(fields["height"] ?? ""),
+                      (101...16384).contains(width), (101...16384).contains(height), let rotation = Int(fields["rotation"] ?? ""),
                       let sha = fields["sha256"], sha.range(of: "^[a-f0-9]{64}$", options: .regularExpression) != nil,
                       png.count >= 32, png.starts(with: [137, 80, 78, 71, 13, 10, 26, 10]),
                       png[16..<20].reduce(0, { $0 << 8 | Int($1) }) == width,
@@ -190,8 +204,9 @@ private final class CaptionAddonServer: @unchecked Sendable {
                     respond(connection, id: id, status: 400, type: "text/plain", length: 0, body: Data()); return
                 }
                 lock.lock()
-                let accepted = pendingCapture?.token == token
-                if accepted { captured[token] = CaptureReceipt(width: width, height: height, sha256: sha, png: png); pendingCapture = nil }
+                let pending = pendingCapture
+                let accepted = pending?.token == token && pending.map { Self.captureRotation(width: width, height: height, request: $0) == rotation } == true
+                if accepted { captured[token] = CaptureReceipt(width: width, height: height, rotation: rotation, sha256: sha, png: png); pendingCapture = nil }
                 lock.unlock()
                 respond(connection, id: id, status: accepted ? 200 : 409, type: "text/plain", length: 0, body: Data())
             } else if path.hasPrefix("/clip/") {
@@ -209,6 +224,15 @@ private final class CaptionAddonServer: @unchecked Sendable {
                 sendJSON(["id": "harbor.synthetic.caption", "version": "1.0.0", "name": "Owned synthetic test clip", "types": ["series"], "catalogs": [], "resources": [["name": "stream", "types": ["series"], "idPrefixes": ["tt4644488"]]]], connection: connection, id: id, head: first[0] == "HEAD")
             } else { respond(connection, id: id, status: 404, type: "text/plain", length: 0, body: Data()) }
         }
+    }
+    private static func captureRotation(width: Int, height: Int, request: CaptureRequest) -> Int? {
+        let ratio = request.app[2] / request.app[3]
+        if width > height, abs(Double(width) / Double(height) - ratio) < 0.03 { return 0 }
+        if height > width, abs(Double(height) / Double(width) - ratio) < 0.03 {
+            if request.deviceOrientation == "landscapeLeft" { return -90 }
+            if request.deviceOrientation == "landscapeRight" { return 90 }
+        }
+        return nil
     }
     private func sendJSON(_ object: [String: Any], connection: NWConnection, id: UUID, head: Bool) {
         guard let data = try? JSONSerialization.data(withJSONObject: object) else { close(connection, id: id); return }
