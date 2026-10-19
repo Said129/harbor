@@ -22,11 +22,11 @@ struct EpisodeOrderProjection: Sendable {
     private let regularIDs: Set<String>
     private let sequences: [String: [String]]
 
-    func applies(to source: [Episode]) -> Bool { Set(source.map(\.id)) == Set(orderedIDs) }
+    func applies(to source: [Episode]) -> Bool { Set(source.map(\.routingKey)) == Set(orderedIDs) }
     func ordered(_ source: [Episode]) -> [Episode]? {
         guard applies(to: source) else { return nil }
         var byID: [String: Episode] = [:]
-        for episode in source where byID[episode.id] == nil { byID[episode.id] = episode }
+        for episode in source where byID[episode.routingKey] == nil { byID[episode.routingKey] = episode }
         return orderedIDs.compactMap { byID[$0] }
     }
     func isRegular(_ id: String) -> Bool { regularIDs.contains(id) }
@@ -34,28 +34,45 @@ struct EpisodeOrderProjection: Sendable {
 
     static func build(_ order: TVDBEpisodeOrder, source: [Episode], animeIdentity: Bool) -> Self? {
         var byID: [String: Episode] = [:]
-        for episode in source where byID[episode.id] == nil { byID[episode.id] = episode }
-        let distinct = source.filter { byID.removeValue(forKey: $0.id) != nil }
-        let pairs = Dictionary(grouping: distinct.compactMap { episode -> (String, Episode)? in
+        for episode in source where byID[episode.routingKey] == nil { byID[episode.routingKey] = episode }
+        let distinct = source.filter { byID.removeValue(forKey: $0.routingKey) != nil }
+        let compatible = distinct.filter { $0.tvdbSeriesID == nil || $0.tvdbSeriesID == order.seriesID }
+        let pairs = Dictionary(grouping: compatible.compactMap { episode -> (String, Episode)? in
             if let season = episode.imdbSeason, let number = episode.imdbEpisode { return ("\(season):\(number)", episode) }
             guard !animeIdentity, let season = episode.season, let number = episode.episode else { return nil }
             return ("\(season):\(number)", episode)
         }, by: { $0.0 })
-        let regular = distinct.filter { ($0.season ?? 1) > 0 }
+        let regular = compatible.filter { ($0.season ?? 1) > 0 }
         let slots = order.seasons.flatMap(\.episodes).filter { $0.canonicalSeason > 0 }
         let numbers = regular.compactMap(\.episode), absolute = slots.compactMap(\.absolute)
         // A cour's local 1...12 must not be mistaken for the franchise's 1...131.
-        let wholeAbsoluteIdentity = animeIdentity && !regular.isEmpty && Set(regular.compactMap(\.season)).count == 1
+        let wholeAbsoluteIdentity = animeIdentity && !regular.isEmpty && Set(regular.compactMap(\.sourceMetaID)).count <= 1 && Set(regular.compactMap(\.season)).count == 1
             && numbers.count == regular.count && Set(numbers).count == regular.count
             && absolute.count == regular.count && Set(absolute) == Set(numbers)
         let byAbsolute = Dictionary(grouping: regular, by: { $0.episode ?? 0 })
+        let explicitAbsolute = Dictionary(grouping: compatible.compactMap { episode in episode.absoluteNumber.map { ($0, episode) } }, by: { $0.0 })
+        let tvdbIDs = Dictionary(grouping: compatible.compactMap { episode in episode.tvdbEpisodeID.map { ($0, episode) } }, by: { $0.0 })
         var claimed = Set<String>(), projected: [String: Episode] = [:], sections: [EpisodeOrderSection] = [], missing: [Int] = []
+        func candidate(_ values: [Episode]?) -> Episode? {
+            guard let values, !values.isEmpty else { return nil }
+            // Overlapping franchise entries retain insertion priority. Two
+            // conflicting rows inside one source remain ambiguous.
+            guard values.count == 1 || (values.allSatisfy { $0.sourceMetaID != nil }
+                && Set(values.compactMap(\.sourceMetaID)).count == values.count) else { return nil }
+            return values.first { !claimed.contains($0.routingKey) }
+        }
         for season in order.seasons where season.id >= 0 {
             var episodes: [Episode] = []
             for (index, slot) in season.episodes.enumerated() {
-                let pair = pairs["\(slot.canonicalSeason):\(slot.canonicalEpisode)"]?.map { $0.1 }
-                let candidates = pair ?? (wholeAbsoluteIdentity ? slot.absolute.flatMap { byAbsolute[$0] } : nil)
-                guard let candidates, candidates.count == 1, var episode = candidates.first, claimed.insert(episode.id).inserted else {
+                let pair = candidate(pairs["\(slot.canonicalSeason):\(slot.canonicalEpisode)"]?.map { $0.1 })
+                let tvdb = candidate(tvdbIDs[slot.id]?.map { $0.1 })
+                let absolute = candidate(slot.absolute.flatMap { explicitAbsolute[$0]?.map { $0.1 } }
+                    ?? (wholeAbsoluteIdentity ? slot.absolute.flatMap { byAbsolute[$0] } : nil))
+                let pairCorrectsStaleID = pair != nil && tvdb != nil && pair?.routingKey != tvdb?.routingKey
+                    && (pair?.imdbEpisode ?? pair?.episode) == slot.canonicalEpisode
+                    && (tvdb?.imdbEpisode ?? tvdb?.episode) != slot.canonicalEpisode
+                guard var episode = (pairCorrectsStaleID ? pair : tvdb) ?? pair ?? absolute,
+                      claimed.insert(episode.routingKey).inserted else {
                     missing.append(slot.id); continue
                 }
                 if order.kind.joined {
@@ -68,7 +85,7 @@ struct EpisodeOrderProjection: Sendable {
                 if episode.thumbnail == nil || host == "images.metahub.space", let image = slot.image { episode.thumbnail = image }
                 if episode.released == nil { episode.released = slot.aired }
                 if episode.runtime == nil { episode.runtime = slot.runtime.map(Double.init) }
-                projected[episode.id] = episode; episodes.append(episode)
+                projected[episode.routingKey] = episode; episodes.append(episode)
             }
             if !episodes.isEmpty {
                 sections.append(EpisodeOrderSection(id: String(season.id), number: season.id, name: season.name, joined: season.joined,
@@ -76,20 +93,20 @@ struct EpisodeOrderProjection: Sendable {
             }
         }
         guard !claimed.isEmpty else { return nil }
-        let leftovers = WatchedCodec.ordered(distinct.filter { !claimed.contains($0.id) })
+        let leftovers = WatchedCodec.ordered(distinct.filter { !claimed.contains($0.routingKey) })
         if !leftovers.isEmpty {
             let dates = leftovers.compactMap(\.released).filter { !$0.isEmpty }
             sections.append(EpisodeOrderSection(id: "extras", number: 0, name: nil, joined: false, extra: true,
                 episodes: leftovers, from: dates.min(), to: dates.max()))
         }
-        let main = sections.filter { !$0.extra }.flatMap(\.episodes).map(\.id)
+        let main = sections.filter { !$0.extra }.flatMap(\.episodes).map(\.routingKey)
         var sequences: [String: [String]] = [:]
         for id in main { sequences[id] = main }
         for section in sections where section.extra {
-            let ids = section.episodes.map(\.id)
+            let ids = section.episodes.map(\.routingKey)
             for id in ids { sequences[id] = ids }
         }
-        return Self(kind: order.kind, sections: sections, videos: source.map { projected[$0.id] ?? $0 }, unmatchedProviderIDs: missing,
-            orderedIDs: sections.flatMap(\.episodes).map(\.id), regularIDs: Set(main), sequences: sequences)
+        return Self(kind: order.kind, sections: sections, videos: source.map { projected[$0.routingKey] ?? $0 }, unmatchedProviderIDs: missing,
+            orderedIDs: sections.flatMap(\.episodes).map(\.routingKey), regularIDs: Set(main), sequences: sequences)
     }
 }

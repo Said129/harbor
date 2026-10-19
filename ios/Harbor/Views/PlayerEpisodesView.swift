@@ -5,6 +5,7 @@ struct PlayerEpisodesView: View {
     let current: ResumeTarget
     let library: LibraryModel?
     var episodeOrder: EpisodeOrderProjection? = nil
+    var episodePool: AnimeEpisodePool? = nil
     let canRestart: Bool
     let restart: () -> Void
     let close: () -> Void
@@ -15,7 +16,7 @@ struct PlayerEpisodesView: View {
     @State private var expanded: String?
     @State private var revealed = Set<String>()
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
-    private var episodes: [Episode] { EpisodeSequence.ordered(media.videos ?? [], presentation: episodeOrder) }
+    private var episodes: [Episode] { EpisodeSequence.ordered(episodeOrder?.videos ?? media.videos ?? [], presentation: episodeOrder) }
     private var seasons: [Int] { Array(Set(episodes.compactMap(\.listedSeason))).sorted() }
     private var sections: [EpisodeOrderSection] { episodeOrder?.sections ?? [] }
     private var currentSection: EpisodeOrderSection? { sections.first { $0.id == orderSection } ?? sections.first }
@@ -58,7 +59,7 @@ struct PlayerEpisodesView: View {
         return ScrollViewReader { scroll in
             ScrollView {
                 LazyVStack(spacing: 12) {
-                    ForEach(visible) { episode in episodeCard(episode, thumbnailWidth: thumbnailWidth) }
+                    ForEach(visible, id: \.routingKey) { episode in episodeCard(episode, thumbnailWidth: thumbnailWidth) }
                     if visible.isEmpty {
                         Text(DesktopInterfaceText.value("No episodes found for this season."))
                             .font(HarborTheme.font(13.5)).foregroundStyle(ThemePreferences.shared.color("ink-muted"))
@@ -67,12 +68,12 @@ struct PlayerEpisodesView: View {
                     nextSeasonButton
                 }.padding(.horizontal, 16).padding(.top, 8).padding(.bottom, 32)
             }.accessibilityIdentifier("player-episodes-scroll")
-                .onChange(of: season) { _, _ in if let first = visible.first { scroll.scrollTo(first.id, anchor: .top) } }
-                .onChange(of: orderSection) { _, _ in if let first = visible.first { scroll.scrollTo(first.id, anchor: .top) } }
+                .onChange(of: season) { _, _ in if let first = visible.first { scroll.scrollTo(first.routingKey, anchor: .top) } }
+                .onChange(of: orderSection) { _, _ in if let first = visible.first { scroll.scrollTo(first.routingKey, anchor: .top) } }
                 .task {
                     season = currentEpisode?.listedSeason ?? seasons.first(where: { $0 > 0 }) ?? seasons.first ?? 1
                     orderSection = sections.first(where: { $0.episodes.contains(where: isCurrent) })?.id ?? sections.first?.id ?? ""
-                    if let episode = currentEpisode { scroll.scrollTo(episode.id, anchor: .top) }
+                    if let episode = currentEpisode { scroll.scrollTo(episode.routingKey, anchor: .top) }
                 }
                 .onChange(of: seasons) { _, _ in if !seasons.contains(season) { season = currentEpisode?.listedSeason ?? seasons.first ?? 1 } }
         }
@@ -80,14 +81,15 @@ struct PlayerEpisodesView: View {
 
     private func episodeCard(_ episode: Episode, thumbnailWidth: CGFloat) -> some View {
         let playing = isCurrent(episode)
-        let watched = library?.watchedEpisodes(media).contains(episode.watchedKey) == true
-        let hidden = InterfacePreferences.shared.hideSpoilers && !playing && !watched && !revealed.contains(episode.id)
+        let source = episodePool?.source(for: episode) ?? media
+        let watched = library?.watchedEpisodes(source).contains(episode.watchedKey) == true
+        let hidden = InterfacePreferences.shared.hideSpoilers && !playing && !watched && !revealed.contains(episode.routingKey)
         return PlayerEpisodeCard(episode: episode, playing: playing, watched: watched, hidden: hidden,
-            expanded: expanded == episode.id, canRestart: canRestart, thumbnailWidth: thumbnailWidth,
+            expanded: expanded == episode.routingKey, canRestart: canRestart, thumbnailWidth: thumbnailWidth,
             activate: { if playing { restart(); close() } else { play(episode) } },
-            toggle: { withAnimation(reduceMotion ? nil : .easeOut(duration: 0.3)) { expanded = expanded == episode.id ? nil : episode.id } },
-            reveal: { withAnimation(reduceMotion ? nil : .easeOut(duration: 0.2)) { _ = revealed.insert(episode.id) } })
-            .id(episode.id)
+            toggle: { withAnimation(reduceMotion ? nil : .easeOut(duration: 0.3)) { expanded = expanded == episode.routingKey ? nil : episode.routingKey } },
+            reveal: { withAnimation(reduceMotion ? nil : .easeOut(duration: 0.2)) { _ = revealed.insert(episode.routingKey) } })
+            .id(episode.routingKey)
     }
 
     @ViewBuilder private var nextSeasonButton: some View {
@@ -164,7 +166,7 @@ struct PlayerEpisodesView: View {
         return (episode.name ?? episode.title).flatMap { $0.isEmpty ? nil : $0 }.map { label + " · " + $0 } ?? label
     }
     private func isCurrent(_ episode: Episode) -> Bool {
-        episode.id == current.videoId || (episode.season != nil && episode.episode != nil && episode.season == current.season && episode.episode == current.episode)
+        episode.belongs(to: current)
     }
 }
 

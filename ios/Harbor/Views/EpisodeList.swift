@@ -5,6 +5,7 @@ struct EpisodeList: View {
     let library: LibraryModel
     var animeGrouping: Binding<AnimeEpisodeGrouping>? = nil
     var ordering: EpisodeOrderProjection? = nil
+    var pool: AnimeEpisodePool? = nil
     var orderOptions: [TVDBEpisodeOrderOption] = []
     var selectOrder: (TVDBEpisodeOrderKind) -> Void = { _ in }
     var richOrderPanel = true
@@ -18,7 +19,7 @@ struct EpisodeList: View {
     @State private var orderSection = ""
     @State private var revealed = Set<String>()
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
-    private var videos: [Episode] { WatchedCodec.ordered(media.videos ?? []) }
+    private var videos: [Episode] { ordering?.videos ?? WatchedCodec.ordered(media.videos ?? []) }
     private var seasons: [Int] { Array(Set(videos.compactMap(\.listedSeason))).sorted() }
     private var sections: [EpisodeOrderSection] { ordering?.sections ?? [] }
     private var currentSection: EpisodeOrderSection? { sections.first { $0.id == orderSection } ?? sections.first }
@@ -28,6 +29,7 @@ struct EpisodeList: View {
         return "\(videos.filter { ($0.listedSeason ?? 1) > 0 }.count) episodios · \(count) \(count == 1 ? "temporada" : "temporadas")"
     }
     var body: some View {
+        let watched = pool?.watched(in: library) ?? [media.id: library.watchedEpisodes(media)]
         LazyVStack(alignment: .leading, spacing: 18) {
             if let animeGrouping {
                 Picker(DesktopInterfaceText.value("Episodes"), selection: animeGrouping) {
@@ -53,15 +55,17 @@ struct EpisodeList: View {
                     AnimeSeasonPicker(entries: franchise, activeID: activeFranchiseID, select: selectFranchise, loading: franchiseLoading)
                 }
             }
-            ForEach(visible) { episode in
-                let hidden = spoilerHidden(episode)
+            ForEach(visible, id: \.routingKey) { episode in
+                let source = pool?.source(for: episode) ?? media
+                let seen = watched[source.id]?.contains(episode.watchedKey) == true
+                let hidden = InterfacePreferences.shared.hideSpoilers && !seen && !revealed.contains(episode.routingKey)
                 let episodeLabel = DesktopInterfaceText.value("Episode {n}").replacingOccurrences(of: "{n}", with: String(episode.listedEpisode ?? 0))
                 VStack(alignment: .leading, spacing: 9) {
                     HStack(alignment: .top, spacing: 0) {
                         Button { play(episode) } label: {
                             VStack(alignment: .leading, spacing: 9) {
                                 HStack(alignment: .top, spacing: 12) {
-                                    Artwork(url: episode.thumbnail, fallback: media.background, maxPixels: 400)
+                                    Artwork(url: episode.thumbnail, fallback: source.background, maxPixels: 400)
                                         .blur(radius: hidden && InterfacePreferences.shared.blurEpisodes ? 14 : 0)
                                         .scaleEffect(hidden && InterfacePreferences.shared.blurEpisodes ? 1.04 : 1)
                                         .frame(width: 125, height: 74).overlay { Image("ui-play-filled").resizable().scaledToFit().frame(width: 24, height: 24).foregroundStyle(.white).shadow(radius: 5) }.clipShape(.rect(cornerRadius: 8))
@@ -82,12 +86,12 @@ struct EpisodeList: View {
                         }.buttonStyle(.plain).disabled(!episode.available)
                             .accessibilityLabel("Reproducir episodio \(episode.listedEpisode ?? 0)")
                             .accessibilityIdentifier("detail-episode-\(episode.id)")
-                        Button { Task { await library.toggleEpisode(media, episode: episode) } } label: {
-                            Image(library.watchedEpisodes(media).contains(episode.watchedKey) ? "ui-mark-unwatched" : "ui-mark-watched").resizable().scaledToFit().frame(width: 23, height: 23).frame(width: 44, height: 44).contentShape(Rectangle())
-                        }.buttonStyle(.plain).disabled(library.busy || !episode.available).accessibilityLabel(library.watchedEpisodes(media).contains(episode.watchedKey) ? "Marcar episodio como no visto" : "Marcar episodio como visto")
+                        Button { Task { await library.toggleEpisode(source, episode: episode) } } label: {
+                            Image(seen ? "ui-mark-unwatched" : "ui-mark-watched").resizable().scaledToFit().frame(width: 23, height: 23).frame(width: 44, height: 44).contentShape(Rectangle())
+                        }.buttonStyle(.plain).disabled(library.busy || !episode.available).accessibilityLabel(seen ? "Marcar episodio como no visto" : "Marcar episodio como visto")
                     }
                     if hidden && (InterfacePreferences.shared.blurEpisodes || InterfacePreferences.shared.spoilerHideTitles || InterfacePreferences.shared.spoilerHideDescriptions) {
-                        Button(DesktopInterfaceText.value("Reveal")) { revealed.insert(episode.id) }.font(.caption).frame(minHeight: 44)
+                        Button(DesktopInterfaceText.value("Reveal")) { revealed.insert(episode.routingKey) }.font(.caption).frame(minHeight: 44)
                     }
                     if !episode.available { Text("Próximamente").font(.caption).foregroundStyle(HarborTheme.accent) }
                     Divider()
@@ -99,10 +103,10 @@ struct EpisodeList: View {
             .onChange(of: sections.map(\.id)) { _, ids in
                 if !ids.contains(orderSection) {
                     let record = library.items.first { $0.id == media.id }
-                    let next = EpisodeSequence.startingEpisode(media.videos ?? [], record: record, watched: library.watchedEpisodes(media), presentation: ordering)
+                    let next = ordering.flatMap { pool?.startingEpisode(in: library, presentation: $0) }
+                        ?? EpisodeSequence.startingEpisode(media.videos ?? [], record: record, watched: library.watchedEpisodes(media), presentation: ordering)
                     orderSection = sections.first(where: { $0.episodes.contains(where: { $0.id == next?.id }) })?.id ?? ids.first ?? ""
                 }
             }
     }
-    private func spoilerHidden(_ episode: Episode) -> Bool { InterfacePreferences.shared.hideSpoilers && !library.watchedEpisodes(media).contains(episode.watchedKey) && !revealed.contains(episode.id) }
 }

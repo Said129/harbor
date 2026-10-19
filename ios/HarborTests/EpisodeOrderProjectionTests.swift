@@ -59,7 +59,7 @@ final class EpisodeOrderProjectionTests: XCTestCase {
 
     func testPartialAnimeCourNeverBorrowsFranchiseAbsoluteNumbersButVerifiedPairsRemainPlayable() throws {
         let rows = try (1...24).map { number in try row(number, number <= 12 ? 1 : 2, (number - 1) % 12 + 1, absolute: number) }
-        let source = (1...12).map { Episode(id: "kitsu:123:\($0)", season: 1, episode: $0) }
+        let source = (1...12).map { (number: Int) in Episode(id: "kitsu:123:\(number)", season: 1, episode: number) }
         let provider = try order(.aired, rows)
         XCTAssertNil(EpisodeOrderProjection.build(provider, source: source, animeIdentity: true), "Local cour numbers cannot identify another cour's slots")
         let verified = source.map { episode in
@@ -70,7 +70,7 @@ final class EpisodeOrderProjectionTests: XCTestCase {
         XCTAssertEqual(projected.sections[0].episodes.map(\.id), source.map(\.id))
         XCTAssertEqual(projected.videos.map(\.watchedKey), source.map(\.watchedKey))
         XCTAssertEqual(projected.unmatchedProviderIDs, Array(1...12), "Unresolved franchise episodes are recorded, never fabricated or counted as full parity")
-        let whole = (1...24).map { Episode(id: "kitsu:321:\($0)", season: 1, episode: $0) }
+        let whole = (1...24).map { (number: Int) in Episode(id: "kitsu:321:\(number)", season: 1, episode: number) }
         let complete = try XCTUnwrap(EpisodeOrderProjection.build(provider, source: whole, animeIdentity: true))
         XCTAssertEqual(complete.sections.map(\.id), ["1", "2"])
         XCTAssertTrue(complete.unmatchedProviderIDs.isEmpty)

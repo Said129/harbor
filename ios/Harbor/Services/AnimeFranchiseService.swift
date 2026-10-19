@@ -1,6 +1,6 @@
 import Foundation
 
-private actor AnimeMetadataGate {
+actor AnimeMetadataGate {
     private var active = 0
     private var waiting: [CheckedContinuation<Void, Never>] = []
     func run<Value: Sendable>(_ operation: @Sendable () async throws -> Value) async throws -> Value {

@@ -1,4 +1,5 @@
 """Keep independent actual results for the two public franchise contracts."""
+import argparse
 import json
 import os
 from pathlib import Path
@@ -7,8 +8,11 @@ import sys
 
 build = Path('ios/build')
 (build / 'canonical').mkdir(parents=True, exist_ok=True)
-plan = json.loads((build / 'preserved-anime-franchise.json').read_text())
-assert len(plan['public_contracts']) == 2
+p = argparse.ArgumentParser(description=__doc__)
+p.add_argument('--plan', choices=['preserved-anime-franchise.json', 'preserved-anime-episode-pool.json'], default='preserved-anime-franchise.json')
+a = p.parse_args()
+plan = json.loads((build / a.plan).read_text())
+assert len(plan['public_contracts']) == (2 if a.plan == 'preserved-anime-franchise.json' else 1)
 failures = []
 for row in plan['public_contracts']:
     bundle = build / (row['bundle'] + '.xcresult')
@@ -29,4 +33,4 @@ for row in plan['public_contracts']:
         failures.append(dict(case=row['case'], xcode=execution.returncode, proof=proof.returncode))
     (build / 'canonical/FranchisePublicFailures.json').write_text(json.dumps(failures, indent=2) + '\n')
 if failures: raise RuntimeError('Actual public contract failures preserved; do not repeat independent passes: ' + str(failures))
-print('New Kitsu contract and affected real episode-mapping adapter both passed. This does not approve a franchise UI or the full port.')
+print('Selected public contracts passed. This does not approve a franchise UI or the full port.')

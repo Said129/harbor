@@ -37,7 +37,7 @@ struct DetailView: View {
                     if model.loading { ProgressView() }
                     if model.media.episodic { EpisodeList(media: model.media, library: app.library,
                         animeGrouping: model.episodeOrderProjection == nil && model.allowsContinuousAnimeEpisodes ? Binding(get: { model.animeEpisodeGrouping }, set: { model.setAnimeEpisodeGrouping($0) }) : nil,
-                        ordering: model.episodeOrderProjection, orderOptions: model.episodeOrderOptions,
+                        ordering: model.episodeOrderProjection, pool: model.episodePool, orderOptions: model.episodeOrderOptions,
                         selectOrder: { episodeOrderSetting = $0.rawValue }, richOrderPanel: richEpisodeOrderPanel, orderLoading: model.episodeOrderLoading,
                         franchise: model.franchiseChoices, activeFranchiseID: model.activeFranchiseEntryID, selectFranchise: selectFranchise,
                         franchiseLoading: model.loadingFranchise || model.loadingMetadata,
@@ -78,8 +78,11 @@ struct DetailView: View {
         .task(id: "\(model.media.identity):\(model.canLoadEpisodeOrder):\(model.episodeOrderScope):\(episodeOrderSetting):\(MetadataPreferences.shared.language)") {
             await model.loadEpisodeOrder(setting: episodeOrderSetting, language: MetadataPreferences.shared.language, owner: app.library.owner, library: app.library)
         }
+        .task(id: episodePoolTaskID) {
+            await model.loadFranchiseEpisodes(language: MetadataPreferences.shared.language, owner: app.library.owner, library: app.library)
+        }
         .onChange(of: model.playback?.id) { _, _ in
-            if let session = model.playback, session.owner == app.library.owner { app.library.discovery.track(.play, media: model.media) }
+            if let session = model.playback, session.owner == app.library.owner { app.library.discovery.track(.play, media: session.media ?? model.media) }
         }
         .onChange(of: model.franchiseSelectionRevision) { _, _ in
             selectionRevision &+= 1; actionHintRevision &+= 1
@@ -93,11 +96,12 @@ struct DetailView: View {
                 streamPicker
                 .overlay {
                     if model.resolving || (showConnecting && model.loadingStreams) {
-                        HarborPlaybackConnecting(media: model.media, cancel: chooseSourcesManually)
+                        HarborPlaybackConnecting(media: model.playbackContextMedia, cancel: chooseSourcesManually)
                     }
                 }
                 .fullScreenCover(item: $model.playback, onDismiss: playerDismissed) { session in
-                    PlayerView(session: session, resume: session.resumeStore ?? app.resume, title: model.media.name, media: model.media, library: app.library, episodeOrder: model.episodeOrderProjection, changeEpisode: { episode in
+                    let source = session.media ?? model.media
+                    PlayerView(session: session, resume: session.resumeStore ?? app.resume, title: source.name, media: source, library: app.library, episodeOrder: model.episodeOrderProjection, episodePool: model.episodePool, changeEpisode: { episode in
                         guard session.owner == app.library.owner else { return }
                         pendingEpisode = episode; pendingEpisodeOwner = session.owner
                         model.playback = nil
@@ -106,7 +110,7 @@ struct DetailView: View {
                         model.prepareSourceChange(session, snapshot: snapshot)
                     })
                 }
-                .task(id: selectedEpisode?.id ?? model.media.id) {
+                .task(id: selectedEpisode?.routingKey ?? model.media.id) {
                     let owner = app.library.owner
                     let shouldAutoplay = autoplayEpisode
                     let isContinuation = continuingEpisode
@@ -128,6 +132,10 @@ struct DetailView: View {
                 }
             }.presentationDetents([.large])
         }
+    }
+    private var episodePoolTaskID: String {
+        let entries = model.franchiseChoices.map(\.id).joined(separator: ",")
+        return "pool:\(model.media.identity):\(model.canLoadEpisodePool):\(model.activeFranchiseEntryID ?? ""):\(entries):\(MetadataPreferences.shared.language)"
     }
     private var streamPicker: StreamPickerView {
         StreamPickerView(model: model, addons: app.addons, episode: selectedEpisode, downloading: downloading, downloadMessage: downloadMessage,
@@ -242,6 +250,10 @@ struct DetailView: View {
     }
     private func playTitle() {
         if !model.media.episodic { openStreams(automatic: StreamPreferences.shared.automatic); return }
+        if let pool = model.episodePool, let projection = model.episodeOrderProjection,
+           let episode = pool.startingEpisode(in: app.library, presentation: projection) {
+            openStreams(episode, automatic: StreamPreferences.shared.automatic); return
+        }
         let record = app.library.items.first { $0.id == model.media.id }
         let watched = app.library.watchedEpisodes(model.media)
         if let episode = EpisodeSequence.startingEpisode(model.media.videos ?? [], record: record, watched: watched, presentation: model.episodeOrderProjection) {
@@ -252,12 +264,12 @@ struct DetailView: View {
         guard !downloading else { return }
         downloading = true; downloadMessage = nil
         defer { downloading = false }
-        let owner = app.personalOwner, scope = app.accountOperationScope, media = model.media, episode = selectedEpisode
+        let owner = app.personalOwner, scope = app.accountOperationScope, media = model.playbackContextMedia, episode = selectedEpisode
         do {
             let source = try await app.service.resolve(offer)
             guard owner == app.personalOwner, scope == app.accountOperationScope else { return }
             try DownloadManager.shared.start(source: source, media: media, episode: episode, owner: owner, cellular: cellularDownloads)
-            if media.identity == model.media.identity { downloadMessage = DesktopInterfaceText.value("Download started") }
-        } catch { if owner == app.personalOwner, scope == app.accountOperationScope, media.identity == model.media.identity { downloadMessage = safeMessage(error) } }
+            if media.identity == model.playbackContextMedia.identity { downloadMessage = DesktopInterfaceText.value("Download started") }
+        } catch { if owner == app.personalOwner, scope == app.accountOperationScope, media.identity == model.playbackContextMedia.identity { downloadMessage = safeMessage(error) } }
     }
 }

@@ -12,7 +12,7 @@ enum StreamRequestPolicy {
             if let episode {
                 let mappedEpisode = selected?.imdbEpisode
                 let mappedSeason = selected?.imdbSeason
-                if !anime || (mappedEpisode == episode && mappedSeason != nil) {
+                if !anime || (mappedSeason != nil && (mappedEpisode == episode || selected?.verifiedIMDBCoordinates == true)) {
                     result.append("\(imdb):\(mappedSeason ?? season ?? 1):\(mappedEpisode ?? episode)")
                 }
             } else { result.append(imdb) }

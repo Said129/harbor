@@ -53,6 +53,7 @@ struct PlayerView: View {
     var media: Media? = nil
     var library: LibraryModel? = nil
     var episodeOrder: EpisodeOrderProjection? = nil
+    var episodePool: AnimeEpisodePool? = nil
     var changeEpisode: ((Episode) -> Void)? = nil
     var changeSource: ((ResumeSnapshot?) -> Void)? = nil
     @State private var state = PlayerState()
@@ -155,7 +156,7 @@ struct PlayerView: View {
                     HStack {
                         Spacer(minLength: 0)
                         PlayerUpNextView(episode: next, remaining: max(0, state.duration - state.position), automatic: automaticAdvanceEnabled,
-                            hideSpoiler: InterfacePreferences.shared.hideSpoilers && library?.watchedEpisodes(media ?? Media(id: session.target.id, type: "series", name: title)).contains(next.watchedKey) != true,
+                            hideSpoiler: InterfacePreferences.shared.hideSpoilers && library?.watchedEpisodes(episodePool?.source(for: next) ?? media ?? Media(id: session.target.id, type: "series", name: title)).contains(next.watchedKey) != true,
                             play: { requestEpisode(next) }, cancel: { autoNextCancelled = true })
                     }
                 }.padding(.horizontal, 12).padding(.bottom, controlsVisible ? 160 : 24).transition(.opacity)
@@ -229,7 +230,7 @@ struct PlayerView: View {
 
     @ViewBuilder private var episodePanel: some View {
         if let media {
-            PlayerEpisodesView(media: media, current: session.target, library: library, episodeOrder: episodeOrder,
+            PlayerEpisodesView(media: media, current: session.target, library: library, episodeOrder: episodeOrder, episodePool: episodePool,
                 canRestart: canRestartEpisode, restart: restartEpisode, close: { showEpisodes = false }) { episode in
                 pendingEpisode = episode
                 showEpisodes = false
@@ -321,9 +322,10 @@ struct PlayerView: View {
         }
         .onChange(of: scenePhase) { _, phase in if phase != .active { saveCheckpoint(exiting: false) }; restartHideTimer(); updateIdleTimer() }
         .onChange(of: library?.owner) { _, owner in if let owner, owner != session.owner { dismiss() } }
+        .onChange(of: episodeNavigationIdentity) { _, _ in updateAdjacentEpisodes() }
         .onChange(of: AppProfileContext.shared.activationID) { _, _ in dismiss() }
         .onAppear {
-            adjacent = EpisodeSequence.adjacent(media?.videos ?? [], current: session.target, presentation: episodeOrder)
+            updateAdjacentEpisodes()
             previousIdleTimer = UIApplication.shared.isIdleTimerDisabled; active = true; updateIdleTimer()
         }
         .onDisappear { active = false; UIApplication.shared.isIdleTimerDisabled = previousIdleTimer; saveCheckpoint(exiting: true) }
@@ -332,7 +334,11 @@ struct PlayerView: View {
     private var canAutoHide: Bool {
         !resumePending && controlsVisible && preferences.options.autoHideControls && state.loaded && !state.paused && !state.buffering && !state.ended && state.error == nil && !editingSeek && !state.choosingAudioRoute && !state.pictureInPictureChanging && settingsPage == nil && !showEpisodes && !episodeChanging && !sourceChanging && !retrying && !state.restarting && !voiceOver && scenePhase == .active
     }
-    private var canChangeEpisode: Bool { changeEpisode != nil && media?.episodic == true && !(media?.videos?.isEmpty ?? true) && (library.map { $0.owner == session.owner } ?? true) }
+    private var episodeNavigationIdentity: [String] { episodeOrder?.sections.flatMap(\.episodes).map(\.routingKey) ?? (media?.videos ?? []).map(\.routingKey) }
+    private func updateAdjacentEpisodes() {
+        adjacent = EpisodeSequence.adjacent(episodeOrder?.videos ?? media?.videos ?? [], current: session.target, presentation: episodeOrder)
+    }
+    private var canChangeEpisode: Bool { changeEpisode != nil && media?.episodic == true && !(episodeOrder?.videos ?? media?.videos ?? []).isEmpty && (library.map { $0.owner == session.owner } ?? true) }
     private var automaticAdvanceEnabled: Bool {
         !resumePending && preferences.options.autoPlayNextEpisode && !autoNextCancelled && EpisodeSequence.permitsAutomaticAdvance(duration: state.duration, startedAtMs: restartStartedAtMs ?? session.advanceStartedAtMs ?? session.startMs, ended: true, hasError: state.error != nil)
     }

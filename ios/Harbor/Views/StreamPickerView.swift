@@ -15,6 +15,7 @@ struct StreamPickerView: View {
     @State private var provider: String?
     @State private var overviewExpanded = false
 
+    private var contextMedia: Media { model.sourceMedia(for: episode) ?? model.playbackContextMedia }
     private var busy: Bool { model.resolving || model.playback != nil }
     private var selected: StreamOffer? {
         model.offers.first { $0.id == selectedID } ?? StreamPreferences.shared.preferred(model.offers) ?? model.offers.first
@@ -73,8 +74,8 @@ struct StreamPickerView: View {
     }
     private var presentedEpisode: Episode? {
         guard let episode else { return nil }
-        let target = ResumeTarget(id: model.media.id, season: episode.season, episode: episode.episode, videoId: episode.id)
-        return EpisodePresentation.episode(in: model.media, target: target) ?? episode
+        let target = ResumeTarget(id: contextMedia.id, season: episode.season, episode: episode.episode, videoId: episode.id)
+        return EpisodePresentation.episode(in: contextMedia, target: target) ?? episode
     }
     private var header: some View {
         VStack(alignment: .leading, spacing: 12) {
@@ -85,19 +86,19 @@ struct StreamPickerView: View {
                     .font(HarborTheme.displayFont(34)).accessibilityIdentifier("stream-picker-title")
                 if let overview = episode.overview, !overview.isEmpty { overviewView(overview) }
             } else {
-                if let release = model.media.releaseInfo {
-                    Text(([release] + Array((model.media.genres ?? []).prefix(2))).joined(separator: " · "))
+                if let release = contextMedia.releaseInfo {
+                    Text(([release] + Array((contextMedia.genres ?? []).prefix(2))).joined(separator: " · "))
                         .font(HarborTheme.font(11, weight: .semibold)).tracking(2.5).textCase(.uppercase)
                         .foregroundStyle(ThemePreferences.shared.color("ink-subtle"))
                 }
-                Text(model.media.name).font(HarborTheme.displayFont(36)).accessibilityIdentifier("stream-picker-title")
+                Text(contextMedia.name).font(HarborTheme.displayFont(36)).accessibilityIdentifier("stream-picker-title")
             }
         }.frame(maxWidth: .infinity, alignment: .leading)
     }
     private func episodeEyebrow(_ episode: Episode) -> String {
         let season = "\(DesktopInterfaceText.value("Season")) \(episode.listedSeason ?? 1)"
         let number = "\(DesktopInterfaceText.value("Episode")) \(String(format: "%02d", episode.listedEpisode ?? 0))"
-        return [model.media.name, season, number].joined(separator: " · ")
+        return [contextMedia.name, season, number].joined(separator: " · ")
     }
     private func overviewView(_ text: String) -> some View {
         VStack(alignment: .leading, spacing: 6) {
@@ -117,7 +118,7 @@ struct StreamPickerView: View {
         } else if let offer = selected {
             if let error = model.error { Text(error).font(HarborTheme.font(14)).foregroundStyle(.orange) }
             if let downloadMessage { Text(downloadMessage).font(HarborTheme.font(13)).foregroundStyle(ThemePreferences.shared.color("ink-muted")) }
-            StreamPrimaryCard(media: model.media, episode: episode, offer: offer, addonLogo: logo(offer), busy: busy, downloading: downloading,
+            StreamPrimaryCard(media: contextMedia, episode: episode, offer: offer, addonLogo: logo(offer), busy: busy, downloading: downloading,
                               play: { play(offer) }, download: download.map { action in { action(offer) } })
             qualityStrip
             sourceDrawer
@@ -166,7 +167,7 @@ struct StreamPickerView: View {
             LazyVStack(spacing: 0) {
                 ForEach(Array(sources.enumerated()), id: \.element.id) { index, offer in
                     if index > 0 { Divider().overlay(ThemePreferences.shared.color("edge-soft").opacity(0.3)) }
-                    StreamSourceRow(media: model.media, episode: episode, offer: offer, addonLogo: logo(offer), busy: busy, downloading: downloading,
+                    StreamSourceRow(media: contextMedia, episode: episode, offer: offer, addonLogo: logo(offer), busy: busy, downloading: downloading,
                                     play: { play(offer) }, download: download.map { action in { action(offer) } })
                 }
             }.background(HarborTheme.background.opacity(0.8), in: .rect(cornerRadius: 16))

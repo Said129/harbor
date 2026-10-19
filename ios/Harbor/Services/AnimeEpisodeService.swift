@@ -124,10 +124,43 @@ actor AnimeEpisodeService {
         let resolved = numbers.compactMap { $0 }
         let complete = !regular.isEmpty && ordinaryCount == regular.count && resolved.count == ordinaryCount && Set(resolved) == Set(byNumber.keys)
         let singleSeason = Set(regular.compactMap(\.season)) == [1]
+        let mappingIDs = mapping["mappings"]
+        let hunter = mappingIDs["kitsu_id"].integer == 6448 || mappingIDs["mal_id"].integer == 11061
+            || mappingIDs["anilist_id"].integer == 11061 || mappingIDs["anidb_id"].integer == 8550
+            || mappingIDs["thetvdb_id"].integer == 252322 || mappingIDs["imdb_id"].string == "tt2098220"
+            || mappingIDs["themoviedb_id"].textValue == "46298"
+        var usedTVDB = Set(original.compactMap(\.tvdbEpisodeID)), usedAbsolute = Set(original.compactMap(\.absoluteNumber))
         return zip(original, numbers).map { source, number in
             guard let number, let reference = byNumber[number], let entry = entries[String(number)] else { return source }
             var result = source
             if complete && singleSeason { result.displaySeason = 1; result.displayEpisode = number }
+            let absolute = entry["absoluteEpisodeNumber"].integer.flatMap { $0 > 0 ? $0 : nil }
+            // Preserve the reference's scoped defense against the known HxH
+            // mapping whose titles and episode identities refer to different arcs.
+            if hunter, let absolute, absolute != number {
+                if result.runtime == nil { result.runtime = entry["runtime"].numericValue }
+                return result
+            }
+            let mappedSeason = entry["seasonNumber"].integer, mappedNumber = entry["episodeNumber"].integer
+            let sourceSeason = source.imdbSeason ?? source.season ?? 1, sourceNumber = source.imdbEpisode ?? source.episode
+            let shifted = (mappedSeason == 0 && sourceSeason > 0)
+                || (mappedSeason == sourceSeason && (mappedSeason ?? 0) > 0 && mappedNumber != nil && mappedNumber != sourceNumber)
+            let tvdbID = entry["tvdbId"].integer.flatMap { $0 > 0 ? $0 : nil }
+            let duplicateTVDB = tvdbID.map { usedTVDB.contains($0) && source.tvdbEpisodeID != $0 } ?? false
+            let duplicateAbsolute = absolute.map { usedAbsolute.contains($0) && source.absoluteNumber != $0 } ?? false
+            if !shifted && !duplicateTVDB && !duplicateAbsolute {
+                if let tvdbID { result.tvdbEpisodeID = tvdbID; usedTVDB.insert(tvdbID) }
+                if let absolute { result.absoluteNumber = absolute; usedAbsolute.insert(absolute) }
+            }
+            result.tvdbSeriesID = mappingIDs["thetvdb_id"].integer.flatMap { $0 > 0 ? $0 : nil }
+            if !shifted, let mappedSeason, mappedSeason >= 0, let mappedNumber, mappedNumber > 0 {
+                if result.imdbSeason == nil { result.imdbSeason = mappedSeason }
+                if result.imdbEpisode == nil { result.imdbEpisode = mappedNumber }
+                if let imdb = mappingIDs["imdb_id"].string, imdb.range(of: "^tt[0-9]{7,12}$", options: .regularExpression) != nil {
+                    result.imdbID = imdb
+                    result.verifiedIMDBCoordinates = result.imdbSeason == mappedSeason && result.imdbEpisode == mappedNumber
+                }
+            }
             // Actual episode artwork takes precedence over generated Metahub
             // URLs whose older season mapping may now return 404.
             if let image = imageURL(entry["image"].string) { result.thumbnail = image }

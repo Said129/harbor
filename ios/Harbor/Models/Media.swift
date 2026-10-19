@@ -138,6 +138,19 @@ struct Episode: Codable, Identifiable, Hashable, Sendable {
     var imdbEpisode: Int?
     var displaySeason: Int?
     var displayEpisode: Int?
+    var sourceMetaID: String?
+    var tvdbEpisodeID: Int?
+    var tvdbSeriesID: Int?
+    var absoluteNumber: Int?
+    var verifiedIMDBCoordinates: Bool?
+    // A franchise may contain several raw S1E1s, or overlapping video IDs.
+    // These keys are for navigation only; watched bitsets keep watchedKey.
+    var routingKey: String { sourceMetaID.map { $0 + "|" + id } ?? id }
+    var navigationKey: String { sourceMetaID.map { $0 + "|" + watchedKey } ?? watchedKey }
+    func belongs(to target: ResumeTarget) -> Bool {
+        guard sourceMetaID == nil || sourceMetaID == target.id else { return false }
+        return id == target.videoId || (season != nil && episode != nil && season == target.season && episode == target.episode)
+    }
     var listedSeason: Int? { displaySeason ?? season }
     var listedEpisode: Int? { displayEpisode ?? episode }
     var watchedKey: String { "\(season ?? 0):\(episode ?? 0)" }
