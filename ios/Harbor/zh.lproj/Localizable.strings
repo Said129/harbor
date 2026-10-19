@@ -1778,6 +1778,8 @@
 "{names}, and all other names, logos, and brand references are property of their respective owners and are used here only for compatibility and identification." = "{names} 以及所有其他名称、徽标和品牌标识均为其各自所有者的财产，此处仅用于兼容和识别。";
 "{name} + {n} more" = "{name} + 另 {n} 个";
 "{name} + {n} más" = "{name} + 另 {n} 个";
+"{n} ep" = "{n} 集";
+"{n} eps" = "{n} 集";
 "{n} min" = "{n} 分钟";
 "{n} seeds" = "{n} 个做种者";
 "{n} semillas" = "{n} 个做种者";

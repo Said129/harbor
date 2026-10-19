@@ -1818,6 +1818,8 @@
 "{names}, and all other names, logos, and brand references are property of their respective owners and are used here only for compatibility and identification." = "إن {names}، وجميع الأسماء والشعارات والإشارات إلى العلامات التجارية الأخرى، ملك لأصحابها المعنيين، ولا تُستخدم هنا إلا لأغراض التوافق والتعريف.";
 "{name} + {n} more" = "{name} و{n} آخرين";
 "{name} + {n} más" = "{name} و{n} آخرين";
+"{n} ep" = "{n} حلقة";
+"{n} eps" = "{n} حلقة";
 "{n} min" = "{n} دقيقة";
 "{n} seeds" = "{n} موزع";
 "{n} semillas" = "{n} موزع";

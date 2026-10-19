@@ -1778,6 +1778,8 @@
 "{names}, and all other names, logos, and brand references are property of their respective owners and are used here only for compatibility and identification." = "{names}, और अन्य सभी नाम, लोगो व ब्रांड संदर्भ उनके संबंधित स्वामियों की संपत्ति हैं और यहां केवल संगतता व पहचान के लिए इस्तेमाल किए गए हैं।";
 "{name} + {n} more" = "{name} + {n} और";
 "{name} + {n} más" = "{name} + {n} और";
+"{n} ep" = "{n} एपिसोड";
+"{n} eps" = "{n} एपिसोड";
 "{n} min" = "{n} मिनट";
 "{n} seeds" = "{n} सीड";
 "{n} semillas" = "{n} सीड";

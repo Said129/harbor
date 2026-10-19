@@ -1778,6 +1778,8 @@
 "{names}, and all other names, logos, and brand references are property of their respective owners and are used here only for compatibility and identification." = "{names} và mọi tên, logo cùng thông tin tham chiếu thương hiệu khác đều thuộc sở hữu của chủ sở hữu tương ứng và chỉ được sử dụng tại đây để đảm bảo khả năng tương thích và nhận diện.";
 "{name} + {n} more" = "{name} + thêm {n}";
 "{name} + {n} más" = "{name} + thêm {n}";
+"{n} ep" = "{n} tập";
+"{n} eps" = "{n} tập";
 "{n} min" = "{n} phút";
 "{n} seeds" = "{n} seed";
 "{n} semillas" = "{n} seed";

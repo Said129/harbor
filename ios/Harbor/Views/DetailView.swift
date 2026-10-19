@@ -10,6 +10,7 @@ struct DetailView: View {
     @State private var autoplayEpisode = false
     @State private var continuingEpisode = false
     @State private var resolutionTask: Task<Void, Never>?
+    @State private var franchiseSwitchTask: Task<Void, Never>?
     @State private var downloading = false
     @State private var downloadMessage: String?
     @State private var logoLoaded = false
@@ -38,11 +39,16 @@ struct DetailView: View {
                         animeGrouping: model.episodeOrderProjection == nil && model.allowsContinuousAnimeEpisodes ? Binding(get: { model.animeEpisodeGrouping }, set: { model.setAnimeEpisodeGrouping($0) }) : nil,
                         ordering: model.episodeOrderProjection, orderOptions: model.episodeOrderOptions,
                         selectOrder: { episodeOrderSetting = $0.rawValue }, richOrderPanel: richEpisodeOrderPanel, orderLoading: model.episodeOrderLoading,
+                        franchise: model.franchiseChoices, activeFranchiseID: model.activeFranchiseEntryID, selectFranchise: selectFranchise,
+                        franchiseLoading: model.loadingFranchise || model.loadingMetadata,
                         play: { openStreams($0, automatic: StreamPreferences.shared.automatic) })
                         if let source = model.episodeMetadataURL {
                             Link("TheTVDB", destination: source).font(.caption).foregroundStyle(.secondary)
                                 .frame(minHeight: 44).accessibilityIdentifier("episode-metadata-source")
                         }
+                    } else if model.franchiseChoices.count > 1 {
+                        AnimeSeasonPicker(entries: model.franchiseChoices, activeID: model.activeFranchiseEntryID, select: selectFranchise,
+                            loading: model.loadingFranchise || model.loadingMetadata)
                     }
                 }.padding()
                 DetailMetadataView(media: model.media, app: app)
@@ -58,18 +64,30 @@ struct DetailView: View {
             guard !Task.isCancelled, owner == app.library.owner else { return }
             app.library.discovery.track(.open, media: model.media)
             if playImmediately { playTitle() }
-            await model.loadRelated(app.addons, owner: owner, library: app.library)
+        }
+        .task(id: "related:\(model.media.identity):\(model.metadataReady)") {
+            if model.metadataReady { await model.loadRelated(app.addons, owner: app.library.owner, library: app.library) }
+        }
+        .task(id: "franchise:\(model.media.identity):\(model.canLoadFranchise)") {
+            await model.loadFranchise(owner: app.library.owner, library: app.library)
         }
         .onChange(of: model.media.logo) { _, _ in logoLoaded = false }
         .task(id: "\(model.media.identity):\(model.loadingMetadata):\(model.media.videos?.count ?? 0)") {
             await model.loadAnimeEpisodes(owner: app.library.owner, library: app.library)
         }
-        .task(id: "\(model.media.identity):\(model.canLoadEpisodeOrder):\(episodeOrderSetting):\(MetadataPreferences.shared.language)") {
+        .task(id: "\(model.media.identity):\(model.canLoadEpisodeOrder):\(model.episodeOrderScope):\(episodeOrderSetting):\(MetadataPreferences.shared.language)") {
             await model.loadEpisodeOrder(setting: episodeOrderSetting, language: MetadataPreferences.shared.language, owner: app.library.owner, library: app.library)
         }
         .onChange(of: model.playback?.id) { _, _ in
             if let session = model.playback, session.owner == app.library.owner { app.library.discovery.track(.play, media: model.media) }
         }
+        .onChange(of: model.franchiseSelectionRevision) { _, _ in
+            selectionRevision &+= 1; actionHintRevision &+= 1
+            resolutionTask?.cancel(); selectedEpisode = nil; pendingEpisode = nil; pendingEpisodeOwner = nil
+            showStreams = false; autoplayEpisode = false; continuingEpisode = false; showConnecting = false
+            downloadMessage = nil; actionHint = nil
+        }
+        .onDisappear { franchiseSwitchTask?.cancel() }
         .sheet(isPresented: $showStreams, onDismiss: { resolutionTask?.cancel(); model.cancelResolution(); pendingEpisode = nil; pendingEpisodeOwner = nil; autoplayEpisode = false; showConnecting = false; model.clearSourceChange() }) {
             NavigationStack {
                 streamPicker
@@ -115,6 +133,15 @@ struct DetailView: View {
         StreamPickerView(model: model, addons: app.addons, episode: selectedEpisode, downloading: downloading, downloadMessage: downloadMessage,
                          play: { offer in playOffer(offer) }, download: streamDownloadAction,
                          refresh: { refreshStreams() }, back: { showStreams = false })
+    }
+    private func selectFranchise(_ entry: AnimeFranchiseEntry) {
+        franchiseSwitchTask?.cancel()
+        let owner = app.library.owner
+        franchiseSwitchTask = Task {
+            if await model.selectFranchiseEntry(entry.id, owner: owner, library: app.library) {
+                app.library.discovery.track(.open, media: model.media)
+            }
+        }
     }
     private var streamDownloadAction: ((StreamOffer) -> Void)? {
         guard ["movie", "series", "anime", "music"].contains(model.media.type) else { return nil }
@@ -230,7 +257,7 @@ struct DetailView: View {
             let source = try await app.service.resolve(offer)
             guard owner == app.personalOwner, scope == app.accountOperationScope else { return }
             try DownloadManager.shared.start(source: source, media: media, episode: episode, owner: owner, cellular: cellularDownloads)
-            downloadMessage = DesktopInterfaceText.value("Download started")
-        } catch { downloadMessage = safeMessage(error) }
+            if media.identity == model.media.identity { downloadMessage = DesktopInterfaceText.value("Download started") }
+        } catch { if owner == app.personalOwner, scope == app.accountOperationScope, media.identity == model.media.identity { downloadMessage = safeMessage(error) } }
     }
 }

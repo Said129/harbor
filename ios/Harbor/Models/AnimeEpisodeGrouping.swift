@@ -10,10 +10,12 @@ struct AnimeEpisodeVariants: Sendable {
     let seasons: [Episode]
     let continuous: [Episode]
     let tvdbSeriesID: Int?
+    let kitsuID: Int?
     let allowsContinuous: Bool
-    init(seasons: [Episode], continuous: [Episode], tvdbSeriesID: Int? = nil) {
+    init(seasons: [Episode], continuous: [Episode], tvdbSeriesID: Int? = nil, kitsuID: Int? = nil) {
         self.seasons = seasons; self.continuous = continuous
         self.tvdbSeriesID = tvdbSeriesID
+        self.kitsuID = kitsuID
         allowsContinuous = Self.supportsContinuous(seasons: seasons, continuous: continuous)
     }
     private static func supportsContinuous(seasons: [Episode], continuous: [Episode]) -> Bool {

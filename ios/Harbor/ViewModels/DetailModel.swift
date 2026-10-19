@@ -21,6 +21,24 @@ final class DetailModel {
     }
     private let service: HarborService
     private var metadataLoaded: Bool
+    var metadataReady: Bool { metadataLoaded && !loadingMetadata }
+    private var franchiseLoaded = false
+    private var franchiseRequest = UUID()
+    private var franchiseSelectionRequest = UUID()
+    var franchise: AnimeFranchise?
+    var loadingFranchise = false
+    var activeFranchiseEntryID: String?
+    private(set) var franchiseSelectionRevision = 0
+    var soloFranchiseEntry: Bool { franchise?.scopedSplit == true && activeFranchiseEntryID != nil && activeFranchiseEntryID != franchise?.rootID }
+    var episodeOrderScope: String { soloFranchiseEntry ? "solo" : "shared" }
+    var canLoadFranchise: Bool { metadataReady && (AnimeLibraryDetection.hasDirectEvidence(media) || animeEpisodeVariants?.kitsuID != nil) }
+    var franchiseChoices: [AnimeFranchiseEntry] {
+        guard let franchise else { return [] }
+        if franchise.scopedSplit, activeFranchiseEntryID != franchise.rootID {
+            return franchise.entries.filter { $0.id != franchise.rootID && !$0.extra }
+        }
+        return franchise.entries
+    }
     private var animeEpisodesLoaded = false
     private var animeEpisodeVariants: AnimeEpisodeVariants?
     private var tvdbOrder: TVDBEpisodeOrder?
@@ -79,6 +97,50 @@ final class DetailModel {
         } catch { return } // Optional discovery must not prevent opening or playing the title.
     }
 
+    func loadFranchise(owner: String, library: LibraryModel, provider: AnimeFranchiseService = .shared) async {
+        guard canLoadFranchise, !franchiseLoaded, owner == library.owner else { return }
+        let request = UUID(), selected = media, context = AppProfileContext.shared.activationID
+        franchiseRequest = request; loadingFranchise = true
+        defer { if franchiseRequest == request { loadingFranchise = false } }
+        do {
+            let value = try await provider.franchise(for: selected.id)
+            try Task.checkCancellation()
+            guard franchiseRequest == request, library.owner == owner, media.identity == selected.identity,
+                  AppProfileContext.shared.activationID == context else { return }
+            franchise = value; activeFranchiseEntryID = value?.currentID; franchiseLoaded = value != nil
+        } catch { return }
+    }
+
+    @discardableResult
+    func selectFranchiseEntry(_ id: String, owner: String, library: LibraryModel, fetch: (@MainActor (AnimeFranchiseEntry) async throws -> Media)? = nil) async -> Bool {
+        guard owner == library.owner, id != activeFranchiseEntryID, let entry = franchise?.entries.first(where: { $0.id == id }) else { return false }
+        let request = UUID(), previous = media.identity, context = AppProfileContext.shared.activationID
+        franchiseSelectionRequest = request; loadingMetadata = true
+        defer { if franchiseSelectionRequest == request { loadingMetadata = false } }
+        do {
+            let selected: Media
+            if let fetch { selected = try await fetch(entry) }
+            else { selected = try await AnimeService.metadata(id: entry.id, kind: entry.media.type) }
+            try Task.checkCancellation()
+            guard library.owner == owner, franchiseSelectionRequest == request, media.identity == previous,
+                  AppProfileContext.shared.activationID == context else { return false }
+            guard !selected.name.isEmpty, selected.id == entry.id || (entry.id.hasPrefix("anilist:") && selected.id.hasPrefix("mal:") && AnimeService.isAnime(selected.id)) else { throw HarborError(code: "no-metadata") }
+            streamRequest = UUID(); resolutionRequest = UUID(); orderRequest = UUID()
+            resolving = false; loadingStreams = false; episodeOrderLoading = false
+            offers = []; automaticOffers = []; warnings = []; filteredSources = false; error = nil
+            playback = nil; selectedEpisode = nil; lastPlayedSource = nil; sourceContinuation = nil; streamAddons = []
+            animeEpisodesLoaded = false; animeEpisodeVariants = nil; tvdbOrder = nil
+            episodeOrderProjection = nil; episodeOrderOptions = []
+            activeFranchiseEntryID = id; media = selected; metadataLoaded = true
+            franchiseSelectionRevision &+= 1
+            return true
+        } catch is CancellationError { return false }
+        catch {
+            if !Task.isCancelled, franchiseSelectionRequest == request, library.owner == owner, AppProfileContext.shared.activationID == context { self.error = safeMessage(error) }
+            return false
+        }
+    }
+
     func loadAnimeEpisodes(owner: String, library: LibraryModel) async {
         guard !animeEpisodesLoaded, !loadingMetadata, media.videos?.isEmpty == false, library.owner == owner else { return }
         let selected = media
@@ -96,6 +158,10 @@ final class DetailModel {
 
     func loadEpisodeOrder(setting: String, language: String, owner: String, library: LibraryModel, tvdb: TVDBService = .shared) async {
         guard canLoadEpisodeOrder, library.owner == owner else { return }
+        if soloFranchiseEntry {
+            orderRequest = UUID(); tvdbOrder = nil; episodeOrderProjection = nil; episodeOrderOptions = []; episodeOrderLoading = false
+            applyEpisodeOrder(); return
+        }
         let request = UUID(), selected = media
         orderRequest = request; episodeOrderLoading = true
         defer { if orderRequest == request { episodeOrderLoading = false } }

@@ -9,6 +9,10 @@ struct EpisodeList: View {
     var selectOrder: (TVDBEpisodeOrderKind) -> Void = { _ in }
     var richOrderPanel = true
     var orderLoading = false
+    var franchise: [AnimeFranchiseEntry] = []
+    var activeFranchiseID: String? = nil
+    var selectFranchise: (AnimeFranchiseEntry) -> Void = { _ in }
+    var franchiseLoading = false
     let play: (Episode?) -> Void
     @State private var season = 1
     @State private var orderSection = ""
@@ -45,6 +49,9 @@ struct EpisodeList: View {
                 } else if seasons.count > 1 { Picker("Temporada", selection: $season) {
                     ForEach(seasons, id: \.self) { Text($0 == 0 ? "Especiales" : "Temporada \($0)").tag($0) }
                 }.pickerStyle(.menu).accessibilityIdentifier("episode-season") }
+                else if franchise.count > 1 {
+                    AnimeSeasonPicker(entries: franchise, activeID: activeFranchiseID, select: selectFranchise, loading: franchiseLoading)
+                }
             }
             ForEach(visible) { episode in
                 let hidden = spoilerHidden(episode)

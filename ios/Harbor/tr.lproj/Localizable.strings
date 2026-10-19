@@ -1778,6 +1778,8 @@
 "{names}, and all other names, logos, and brand references are property of their respective owners and are used here only for compatibility and identification." = "{names} ve diğer tüm adlar, logolar ve marka referansları ilgili sahiplerinin mülkiyetindedir ve burada yalnızca uyumluluk ve tanımlama amacıyla kullanılır.";
 "{name} + {n} more" = "{name} + {n} tane daha";
 "{name} + {n} más" = "{name} + {n} tane daha";
+"{n} ep" = "{n} blm";
+"{n} eps" = "{n} blm";
 "{n} min" = "{n} dk";
 "{n} seeds" = "{n} seed";
 "{n} semillas" = "{n} seed";

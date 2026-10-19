@@ -78,7 +78,7 @@ actor TVDBService {
             try Task.checkCancellation()
             return AnimeEpisodeVariants(
                 seasons: TVDBEpisodeMetadata.applying(rows, to: variants.seasons, animeIdentity: AnimeService.isAnime(media.id)),
-                continuous: TVDBEpisodeMetadata.applying(rows, to: variants.continuous, animeIdentity: AnimeService.isAnime(media.id)), tvdbSeriesID: series)
+                continuous: TVDBEpisodeMetadata.applying(rows, to: variants.continuous, animeIdentity: AnimeService.isAnime(media.id)), tvdbSeriesID: series, kitsuID: variants.kitsuID)
         } catch { return variants }
     }
 }

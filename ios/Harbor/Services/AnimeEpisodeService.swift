@@ -30,7 +30,8 @@ actor AnimeEpisodeService {
         let seasons = continuous.map { episode in
             var value = episode; value.displaySeason = nil; value.displayEpisode = nil; return value
         }
-        return AnimeEpisodeVariants(seasons: seasons, continuous: continuous, tvdbSeriesID: mapping["mappings"]["thetvdb_id"].integer.flatMap { $0 > 0 ? $0 : nil })
+        return AnimeEpisodeVariants(seasons: seasons, continuous: continuous, tvdbSeriesID: mapping["mappings"]["thetvdb_id"].integer.flatMap { $0 > 0 ? $0 : nil },
+            kitsuID: mapping["mappings"]["kitsu_id"].integer.flatMap { $0 > 0 ? $0 : nil })
     }
 
     private static func providerEpisodes(_ original: [Episode]) -> [Episode] {
@@ -74,9 +75,12 @@ actor AnimeEpisodeService {
 
     private static func fetch(_ query: String) async -> Supplement? {
         do {
-            let mapping = try await HTTPClient().json("https://api.ani.zip/mappings?" + query)
             let requested = query.split(separator: "=", maxSplits: 1)
-            guard requested.count == 2, mapping["mappings"][String(requested[0])].textValue == String(requested[1]) else { return nil }
+            let providers = ["kitsu_id": "kitsu", "mal_id": "mal", "anilist_id": "anilist", "anidb_id": "anidb", "imdb_id": "imdb"]
+            guard requested.count == 2, let provider = providers[String(requested[0])] else { return nil }
+            let identity = provider == "imdb" ? String(requested[1]) : provider + ":" + String(requested[1])
+            let mapping = try await AnimeFranchiseService.shared.response(.mapping(identity))
+            guard mapping["mappings"][String(requested[0])].textValue == String(requested[1]) else { return nil }
             guard let kitsu = mapping["mappings"]["kitsu_id"].integer, kitsu > 0 else { return nil }
             // A Kitsu entry supplies the anime's own episode order. TV/IMDb
             // seasons in the mapping are retained only as lookup coordinates.

@@ -1778,6 +1778,8 @@
 "{names}, and all other names, logos, and brand references are property of their respective owners and are used here only for compatibility and identification." = "{names}, ainsi que tous les autres noms, logos et marques mentionnés, appartiennent à leurs propriétaires respectifs et ne sont utilisés ici qu’à des fins de compatibilité et d’identification.";
 "{name} + {n} more" = "{name} + {n} autres";
 "{name} + {n} más" = "{name} + {n} autres";
+"{n} ep" = "{n} ép.";
+"{n} eps" = "{n} ép.";
 "{n} min" = "{n} min";
 "{n} seeds" = "{n} sources complètes";
 "{n} semillas" = "{n} sources complètes";

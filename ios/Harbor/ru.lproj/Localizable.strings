@@ -1791,6 +1791,8 @@
 "{names}, and all other names, logos, and brand references are property of their respective owners and are used here only for compatibility and identification." = "{names}, а также все прочие названия, логотипы и упоминания брендов принадлежат их соответствующим владельцам и используются здесь исключительно для обеспечения совместимости и идентификации.";
 "{name} + {n} more" = "{name} и ещё {n}";
 "{name} + {n} más" = "{name} и ещё {n}";
+"{n} ep" = "{n} эп";
+"{n} eps" = "{n} эп";
 "{n} min" = "{n} мин";
 "{n} seeds" = "Сидов: {n}";
 "{n} semillas" = "Сидов: {n}";
