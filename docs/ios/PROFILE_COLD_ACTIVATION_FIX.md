@@ -2,6 +2,8 @@
 
 The initial targeted run 39409591059/source `0dcd455` was stopped before its test step began because it inherited the same proven `DetailModel` compiler failure as run 39406575431. Its two new lifecycle cases, necessary fresh-device setup and failed phone journey remain unexecuted and are combined in `mobile-integration` after the compiler repair. No approved older journey is repeated for that compiler error.
 
+Preflight of the combined runner found that its native seed selected the `HarborLive` scheme, which includes integration/UI targets and excludes `HarborTests`. Run 39410867608 was stopped while its test step was still pending. The helper now follows the established startup runner: `Harbor` for the native seed, `HarborLive` for the interface. The selection and the assertions remain unchanged; neither attempt executed an XCTest case.
+
 Run 39237920401 passed the other seven interface journeys and three necessary setups, but its phone expired-return journey failed before pressing Home. Inspection of frame 19s from the original failure recording confirms that the profile picker was already open above the correctly selected default profile. The assertion is valid; it is not weakened or replaced with a longer wait.
 
 The root view previously called `requestProfilePromptOnReturn` for every transition to `.active`, including the cold launch's first activation. When normal startup finished before that event, an expired selection clock could reopen the picker immediately after the default profile was accepted. Timing explains why the existing iPad journey could pass while the phone failed.

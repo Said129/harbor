@@ -14,7 +14,8 @@ assert plan['selected_case_count'] == 2 and not plan['approved_profile_creation_
 device = os.environ['IOS_SIMULATOR']
 
 def execute(case, name):
-    command = ['xcodebuild', '-project', 'ios/Harbor.xcodeproj', '-scheme', 'HarborLive', '-configuration', 'Debug',
+    scheme = 'Harbor' if case.startswith('HarborTests.') else 'HarborLive'
+    command = ['xcodebuild', '-project', 'ios/Harbor.xcodeproj', '-scheme', scheme, '-configuration', 'Debug',
         '-destination', f'platform=iOS Simulator,id={device},arch={os.environ["IOS_SIMULATOR_ARCH"]}',
         '-derivedDataPath', str(build / 'DerivedData'), '-clonedSourcePackagesDirPath', str(build / 'SourcePackages'),
         '-resultBundlePath', str(build / (name + '.xcresult')), '-only-testing:' + case.replace('.', '/', 1),

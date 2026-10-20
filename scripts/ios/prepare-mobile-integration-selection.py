@@ -16,7 +16,7 @@ assert len(cases) == len(set(cases)) == 23
 assert not any(plan['unrelated_approved_cases_selected'] or plan['ipa_requested'] for plan in plans)
 plan = dict(source=os.environ.get('GITHUB_SHA', 'working-tree'), selected_case_count=23, pending_native_cases=cases,
     public_case=plans[0]['public_contracts'][0]['case'], setup_case=plans[2]['setup_case'], ui_case=plans[2]['ui_case'],
-    combined_unexecuted_scopes=scopes, compile_failure_run=39406575431, cancelled_before_tests=[39408467770, 39409591059],
+    combined_unexecuted_scopes=scopes, compile_failure_run=39406575431, cancelled_before_tests=[39408467770, 39409591059, 39410867608],
     unrelated_approved_cases_selected=False, approved_profile_creation_ui_repeated=False, expected_original_images=3,
     full_desktop_parity_complete=False, ipa_requested=False)
 (directory / 'preserved-mobile-integration.json').write_text(json.dumps(plan, indent=2) + '\n', 'utf-8')
