@@ -74,6 +74,23 @@ actor ResumeStore {
         if let existing = document.entries[checkpoint.key], existing.t >= checkpoint.entry.t { return false }
         var next = document
         next.entries[checkpoint.key] = checkpoint.entry
+        return try commit(next)
+    }
+
+    /// An explicit Start Over is different from an initial zero-position autosave.
+    /// Keep a newer zero checkpoint so legacy movie aliases and older cloud values cannot return.
+    @discardableResult
+    func restart(_ target: ResumeTarget, timestampMs: UInt64) throws -> Bool {
+        guard ready else { throw HarborError(code: "resume-store-unavailable") }
+        struct Key: Decodable { let key: String }
+        let result = try invoke("resumeKey", ["target": try .encoded(target)], as: Key.self)
+        guard !target.id.hasPrefix("iptv:") else { return false }
+        if let current = document.entries[result.key], current.t >= timestampMs { return false }
+        var next = document; next.entries[result.key] = ResumeEntry(ms: 0, t: timestampMs)
+        return try commit(next)
+    }
+
+    private func commit(_ next: ResumeDocument) throws -> Bool {
         do {
             let data = try JSONEncoder().encode(next)
             guard data.count <= limit else { throw HarborError(code: "resume-store-too-large") }

@@ -202,6 +202,13 @@ struct PlayerView: View {
                 let position = continuing ? session.startMs : 0
                 let actualPosition = try await controller.seekForResume(position)
                 guard active, scenePhase == .active, library.map({ $0.owner == session.owner }) ?? true else { return }
+                if !continuing && session.progressEnabled {
+                    do {
+                        try await resume.restart(session.target, timestampMs: UInt64(max(0, Date().timeIntervalSince1970 * 1000)))
+                        lastSavedMs = 0; progressError = nil
+                    } catch { progressError = safeMessage(error) }
+                }
+                guard active, scenePhase == .active, library.map({ $0.owner == session.owner }) ?? true else { return }
                 restartStartedAtMs = actualPosition
                 controller.set("pause", "no")
                 resumeAcknowledged = true

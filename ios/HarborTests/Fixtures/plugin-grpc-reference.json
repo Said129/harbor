@@ -1,0 +1,330 @@
+{
+  "schema": 1,
+  "reference": "0834340cec5531650bfe78cd628628702e636987",
+  "inputs": {
+    "src/lib/manga/plugins/host-http.ts": "9f88ca743ef87f50d820fb4ca2573d1837d5418279f1284839bf34410245f589"
+  },
+  "networkExecuted": false,
+  "headerPolicyValidated": false,
+  "requests": [
+    {
+      "input": "",
+      "expected": {
+        "frame": "AAAAAAA=",
+        "timeout": 20000
+      }
+    },
+    {
+      "input": "AA==",
+      "expected": {
+        "frame": "AAAAAAEA",
+        "timeout": 20000
+      }
+    },
+    {
+      "input": "AQID",
+      "expected": {
+        "frame": "AAAAAAMBAgM=",
+        "timeout": 20000
+      }
+    },
+    {
+      "input": "AQI",
+      "expected": {
+        "frame": "AAAAAAIBAg==",
+        "timeout": 20000
+      }
+    },
+    {
+      "input": " AB ",
+      "expected": {
+        "frame": "AAAAAAEA",
+        "timeout": 20000
+      }
+    },
+    {
+      "input": "﻿AQID\n",
+      "expected": {
+        "frame": "AAAAAAMBAgM=",
+        "timeout": 20000
+      }
+    },
+    {
+      "input": "A",
+      "error": "invalid base64 protobuf request"
+    },
+    {
+      "input": "AA=",
+      "error": "invalid base64 protobuf request"
+    },
+    {
+      "input": "AA===",
+      "error": "invalid base64 protobuf request"
+    },
+    {
+      "input": "!!!!",
+      "error": "invalid base64 protobuf request"
+    },
+    {
+      "input": "éééé",
+      "error": "invalid base64 protobuf request"
+    },
+    {
+      "input": "AA-_",
+      "error": "invalid base64 protobuf request"
+    },
+    {
+      "input": "A=AA",
+      "error": "invalid base64 protobuf request"
+    },
+    {
+      "input": "AQID",
+      "error": "invalid base64 protobuf request"
+    }
+  ],
+  "timeouts": [
+    {
+      "value": null,
+      "expected": 20000
+    },
+    {
+      "value": 0,
+      "expected": 20000
+    },
+    {
+      "value": -1,
+      "expected": 1000
+    },
+    {
+      "value": 25,
+      "expected": 1000
+    },
+    {
+      "value": 1000,
+      "expected": 1000
+    },
+    {
+      "value": 20000,
+      "expected": 20000
+    },
+    {
+      "value": 60000,
+      "expected": 45000
+    }
+  ],
+  "responses": [
+    {
+      "status": 200,
+      "headers": {},
+      "bytes": "AAAAAAMBAgM=",
+      "expected": {
+        "status": 200,
+        "ok": true,
+        "headers": {},
+        "body": "AQID",
+        "messages": ["AQID"],
+        "trailers": {}
+      }
+    },
+    {
+      "status": 200,
+      "headers": {},
+      "bytes": "AAAAAAA=",
+      "expected": {
+        "status": 200,
+        "ok": true,
+        "headers": {},
+        "body": "",
+        "messages": [""],
+        "trailers": {}
+      }
+    },
+    {
+      "status": 200,
+      "headers": {},
+      "bytes": "",
+      "expected": {
+        "status": 200,
+        "ok": false,
+        "headers": {},
+        "body": "",
+        "messages": [],
+        "trailers": {}
+      }
+    },
+    {
+      "status": 200,
+      "headers": {},
+      "bytes": "AAAAAAMBAgMAAAAAAgQFgAAAADhncnBjLXN0YXR1czogMA0KZ3JwYy1tZXNzYWdlOiBjYWYlQzMlQTklMjAlRjAlOUYlOTMlOUENCg==",
+      "expected": {
+        "status": 200,
+        "ok": true,
+        "headers": {},
+        "body": "AQID",
+        "messages": ["AQID", "BAU="],
+        "trailers": {
+          "grpc-status": "0",
+          "grpc-message": "caf%C3%A9%20%F0%9F%93%9A"
+        },
+        "grpcStatus": 0,
+        "grpcMessage": "café 📚"
+      }
+    },
+    {
+      "status": 200,
+      "headers": {
+        "grpc-status": "7",
+        "grpc-message": "Permission%20denied"
+      },
+      "bytes": "AAAAAAMBAgM=",
+      "expected": {
+        "status": 200,
+        "ok": false,
+        "headers": {
+          "grpc-message": "Permission%20denied",
+          "grpc-status": "7"
+        },
+        "body": "AQID",
+        "messages": ["AQID"],
+        "trailers": {},
+        "grpcStatus": 7,
+        "grpcMessage": "Permission denied"
+      }
+    },
+    {
+      "status": 200,
+      "headers": {
+        "grpc-status": "7"
+      },
+      "bytes": "AAAAAAMBAgOAAAAAKGdycGMtc3RhdHVzOiAwCmdycGMtbWVzc2FnZTogaW52YWxpZCVaWgo=",
+      "expected": {
+        "status": 200,
+        "ok": true,
+        "headers": {
+          "grpc-status": "7"
+        },
+        "body": "AQID",
+        "messages": ["AQID"],
+        "trailers": {
+          "grpc-status": "0",
+          "grpc-message": "invalid%ZZ"
+        },
+        "grpcStatus": 0,
+        "grpcMessage": "invalid%ZZ"
+      }
+    },
+    {
+      "status": 200,
+      "headers": {
+        "grpc-status": "0x0"
+      },
+      "bytes": "AAAAAAMBAgM=",
+      "expected": {
+        "status": 200,
+        "ok": true,
+        "headers": {
+          "grpc-status": "0x0"
+        },
+        "body": "AQID",
+        "messages": ["AQID"],
+        "trailers": {},
+        "grpcStatus": 0
+      }
+    },
+    {
+      "status": 200,
+      "headers": {
+        "grpc-status": "bogus"
+      },
+      "bytes": "AAAAAAMBAgM=",
+      "expected": {
+        "status": 200,
+        "ok": false,
+        "headers": {
+          "grpc-status": "bogus"
+        },
+        "body": "AQID",
+        "messages": ["AQID"],
+        "trailers": {}
+      }
+    },
+    {
+      "status": 200,
+      "headers": {
+        "grpc-status": "Infinity"
+      },
+      "bytes": "AAAAAAMBAgM=",
+      "expected": {
+        "status": 200,
+        "ok": false,
+        "headers": {
+          "grpc-status": "Infinity"
+        },
+        "body": "AQID",
+        "messages": ["AQID"],
+        "trailers": {}
+      }
+    },
+    {
+      "status": 200,
+      "headers": {
+        "grpc-status": ""
+      },
+      "bytes": "AAAAAAMBAgM=",
+      "expected": {
+        "status": 200,
+        "ok": true,
+        "headers": {
+          "grpc-status": ""
+        },
+        "body": "AQID",
+        "messages": ["AQID"],
+        "trailers": {},
+        "grpcStatus": 0
+      }
+    },
+    {
+      "status": 503,
+      "headers": {},
+      "bytes": "AAAAAAMBAgM=",
+      "expected": {
+        "status": 503,
+        "ok": false,
+        "headers": {},
+        "body": "AQID",
+        "messages": ["AQID"],
+        "trailers": {}
+      }
+    },
+    {
+      "status": 200,
+      "headers": {},
+      "bytes": "AA==",
+      "error": "incomplete gRPC frame header"
+    },
+    {
+      "status": 200,
+      "headers": {},
+      "bytes": "AAAAAAQBAg==",
+      "error": "incomplete gRPC frame payload"
+    },
+    {
+      "status": 200,
+      "headers": {},
+      "bytes": "AQAAAAEB",
+      "error": "compressed gRPC responses are not supported"
+    },
+    {
+      "status": 200,
+      "headers": {},
+      "bytes": "AgAAAAEB",
+      "error": "invalid gRPC message frame flags"
+    },
+    {
+      "status": 200,
+      "headers": {},
+      "bytes": "gQAAAA5ncnBjLXN0YXR1czogMA==",
+      "error": "invalid gRPC trailer frame flags"
+    }
+  ]
+}

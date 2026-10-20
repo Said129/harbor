@@ -64,7 +64,7 @@ actor HarborPluginCatalogStore {
 
     init(namespace: String, file: URL? = nil, write: (@Sendable (Data, URL) throws -> Void)? = nil) throws {
         guard !namespace.isEmpty else { throw HarborPluginRepositoryError("plugin-store-namespace") }
-        self.namespace = namespace; self.write = write ?? HarborPluginCatalogStore.writeFile
+        self.namespace = namespace; self.write = write ?? { data, target in try HarborPluginCatalogStore.writeFile(data, target) }
         document = .init(namespace: namespace)
         if let file { self.file = file }
         else {

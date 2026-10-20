@@ -79,6 +79,39 @@ function worker(
   return { next, send: (message) => self.onmessage({ data: message }), messages };
 }
 
+test("initialization diagnostics retain the message when a WebKit stack omits it", async () => {
+  const host = worker(
+    'var failure = new Error("owned initialization message"); failure.stack = "owned stack only"; throw failure;',
+  );
+  const result = await host.next("initError");
+  assert.match(result.error, /owned initialization message/);
+  assert.match(result.error, /owned stack only/);
+});
+
+test("reference HElement exposes text() for serialized HTML nodes", async () => {
+  const host = worker(
+    'var plugin={id:"owned.dom",name:"Owned DOM",search:async function(){var doc=await harbor.parseHtml("owned HTML");return {title:doc.querySelector("a.item").text(),path:doc.querySelector("a.item").getAttribute("href")};}};',
+  );
+  await host.next("ready");
+  host.send({ type: "call", id: "owned-dom", method: "search", args: [] });
+  const request = await host.next("parse");
+  host.send({
+    type: "bridgeResult",
+    id: request.id,
+    ok: true,
+    value: {
+      t: "body",
+      a: {},
+      x: "",
+      c: [{ t: "a", a: { class: "item", href: "/owned" }, x: "", c: [{ x: "Owned title" }] }],
+    },
+  });
+  assert.deepEqual((await host.next("result", "owned-dom")).value, {
+    title: "Owned title",
+    path: "/owned",
+  });
+});
+
 test("pinned Harbor worker returns declared methods and preserves actual request arguments", async () => {
   const program = composer.harbor(
     `var plugin = { id: "owned.raw", name: "Owned", search: function (query, page) { return { query: query, page: page, directFetch: typeof fetch }; }, settings: function () { return [{ key: "quality", type: "select", label: "Quality", options: ["FHD"] }]; } };`,

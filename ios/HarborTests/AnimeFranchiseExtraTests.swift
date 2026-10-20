@@ -149,7 +149,7 @@ final class AnimeFranchiseExtraTests: XCTestCase {
         await model.play(StreamOffer(id: 0, raw: .object(["addonId": .string("owned-test-source"), "addonName": .string("Owned synthetic source"), "url": .string("https://example.invalid/owned-movie.mkv")])), resume: resume, library: library)
         let session = try XCTUnwrap(model.playback, model.error ?? "No playback session was published")
         XCTAssertEqual(session.target.id, item.id); XCTAssertNil(session.target.videoId); XCTAssertEqual(session.startMs, 60_000)
-        _ = try await resume.save(ResumeTarget(id: item.id), snapshot: ResumeSnapshot(positionMs: 0, durationMs: 6_000_000, timestampMs: 4, exiting: true))
+        _ = try await resume.restart(ResumeTarget(id: item.id), timestampMs: 4)
         let reset = try await resume.position(session.target, media: selected.media)
         XCTAssertEqual(reset.ms, 0, "A newer restart must beat the preserved legacy movie key")
         let request = try XCTUnwrap(session.subtitleRequest)

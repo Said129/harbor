@@ -1,0 +1,21 @@
+# Resultados recogidos y correcciones de integración
+
+La [ejecución 39414339731](https://github.com/Said129/harbor/actions/runs/39414339731), fuente `679b6290e55a19f0ae75c29e883304c6f19b3aa2`, compiló y ejecutó el bloque pendiente. El árbol original de Xcode y los registros conservan 24 casos nativos aprobados, tres fallidos y otros tres que terminaron con el cierre de la aplicación. También aprobaron la consulta pública de la película, la preparación necesaria del perfil y el recorrido de regreso de iPhone. Las tres imágenes originales muestran Inicio en el arranque con perfil predeterminado y el regreso reciente, y el selector en el regreso con tiempo expirado. Se revisaron esas imágenes; la grabación no certifica por sí sola el movimiento ni un dispositivo físico. No aparecieron advertencias nuevas en esa fuente.
+
+La [ejecución 39417458336](https://github.com/Said129/harbor/actions/runs/39417458336), fuente `fbdb2c62bae375b9df45d1a8987a1e9f50b8341b`, aprobó las ocho pruebas nativas nuevas de manifiestos y almacenamiento de plugins. Se autentican contra sus ocho filas originales, su árbol de Xcode y los SHA-256 de los archivos descargados. La compilación introdujo una advertencia al convertir una función en un cierre `@Sendable`; esos ocho resultados se conservan y la corrección de la advertencia necesita compilación posterior.
+
+## Correcciones incorporadas, todavía pendientes de ejecución Apple
+
+- La guarda de idioma conserva los mismos bloques Unicode de Desktop mediante comparación de escalares. La conversión de la expresión regular concatenada provocó los tres cierres al procesar sinopsis, por lo que se retira de ese recorrido. No se relajan las comprobaciones de traducciones ni de aislamiento.
+- «Empezar de nuevo» dispone de una escritura explícita de posición cero con fecha, diferente del guardado automático inicial. La elección desde el aviso del reproductor la utiliza después de confirmar el salto. Una posición antigua de película que usaba S1E1 y un dato remoto anterior ya no deben reaparecer por delante de ese reinicio. Se mantienen la protección frente a escrituras tardías y el comportamiento del guardado automático en cero. El caso fallido emplea ahora esa operación explícita; conserva la misma expectativa de que el reinicio gane a la posición antigua.
+- La prueba de HTML usa `HElement.text()`, la API real del sandbox de Desktop. La propiedad de navegador `textContent` no pertenece a ese objeto. Se conserva la expectativa del título, la ruta y los nodos ocultos eliminados.
+- El generador adapta únicamente el diagnóstico de inicialización del sandbox: incluye `String(error)` además de su pila, porque JavaScriptCore puede omitir el mensaje en `Error.stack`. Los seis módulos originales siguen fijados por hash; los programas del parser y del compositor no cambian. El caso fallido sigue exigiendo el mensaje del proveedor y los errores de métodos reales.
+- El escritor predeterminado del catálogo usa un cierre explícito sin capturas para resolver la advertencia de concurrencia. No cambia la transacción aprobada.
+
+## Formato gRPC añadido
+
+`HarborPluginGRPC` codifica la cabecera binaria de cinco bytes y decodifica mensajes, trailers, estado y mensajes de error. Conserva los límites de 8 MB, base64 sin relleno admitido por `atob`, espacios de ECMAScript, límites de tiempo y los errores de mensajes incompletos, comprimidos o con flags incorrectos.
+
+`build-plugin-grpc-fixtures.mjs` ejecuta el módulo original `manga/plugins/host-http.ts` de 0.9.132 después de comprobar su hash. El transporte de las pruebas devuelve únicamente respuestas propias en memoria. Produce resultados esperados de 14 solicitudes, siete tiempos y 16 respuestas. No comprueba red, DNS ni políticas de cabeceras. Cuatro casos Swift nuevos los comparan con el codec y su límite de tamaño; todavía necesitan ejecución con Apple.
+
+La selección siguiente contiene los seis casos fallidos o cerrados, cuatro casos gRPC nuevos, dos de reinicio explícito nuevos y un caso afectado de escritura. No repite las 35 aprobaciones recientes de partes intactas. Continúan pendientes el transporte real HTTP/gRPC, el gestor de repositorios y contraseñas, los productores y las pantallas de Plugins, además del resto del alcance completo de Desktop. No hay una IPA nueva ni una aprobación de estabilidad global.

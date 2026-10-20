@@ -52,6 +52,14 @@ vm.runInNewContext(
   { timeout: 1000 },
 );
 assert.equal(typeof exported.SANDBOX_SOURCE, "string");
+// JavaScriptCore's Error.stack omits the message that Chromium includes.
+// Adapt only initialization diagnostics, leaving execution and host policies intact.
+const initializationError = "String(err && err.stack ? err.stack : err)";
+assert.equal(exported.SANDBOX_SOURCE.split(initializationError).length, 2);
+const sandbox = exported.SANDBOX_SOURCE.replace(
+  initializationError,
+  'String(err) + (err && err.stack ? "\\n" + String(err.stack) : "")',
+);
 const parser = `(function () { const exports = {};\n${compiled.get("src/lib/manga/plugins/host-parse.ts")}\nreturn exports.serializeHtml; })()`;
 const modules = [
   ["@/lib/manga/sources/mangayomi/prelude/dom", "src/lib/manga/sources/mangayomi/prelude/dom.ts"],
@@ -70,7 +78,7 @@ const factories = modules
   .join(",\n");
 const composer = `(function () {\nconst factories = {${factories}}; const cache = Object.create(null);\nfunction require(id) { if (cache[id]) return cache[id]; if (!Object.hasOwn(factories, id)) throw new Error("Unknown bundled module"); const exports = {}; cache[id] = exports; factories[id](exports, require); return exports; }\nconst entry = require("entry"); return { harbor: entry.composeHarborSource, provider: entry.composeProviderSource }; })()`;
 const programs = Object.fromEntries(
-  Object.entries({ sandbox: exported.SANDBOX_SOURCE, parser, composer }).map(([name, source]) => {
+  Object.entries({ sandbox, parser, composer }).map(([name, source]) => {
     const script = new vm.Script(name === "sandbox" ? source : `void ${source}`);
     assert(script);
     return [name, { source, sha256: sha256(source) }];
@@ -83,6 +91,7 @@ const asset = {
   compiler: `typescript@${ts.version}`,
   inputHashConvention: "UTF-8 with CRLF normalized to LF",
   inputs,
+  adaptations: ["Preserve initialization error message with JavaScriptCore stacks"],
   programs,
 };
 const target = path.join(root, "ios/Harbor/PluginRuntimeAssets.json");

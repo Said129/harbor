@@ -51,18 +51,29 @@ struct AnimeSeasonArtwork: Hashable, Sendable {
 
 /// The same script guard as Desktop's anime-episode-build.ts; it rejects untranslated fallbacks.
 enum LocalizedMetadataText {
+    private static let arabic: [ClosedRange<UInt32>] = [0x0600...0x06ff, 0x0750...0x077f]
+    private static let cyrillic: [ClosedRange<UInt32>] = [0x0400...0x04ff]
+    private static let devanagari: [ClosedRange<UInt32>] = [0x0900...0x097f]
+    private static let hebrew: [ClosedRange<UInt32>] = [0x0590...0x05ff]
+    private static let korean: [ClosedRange<UInt32>] = [0xac00...0xd7af, 0x1100...0x11ff]
+    private static let chinese: [ClosedRange<UInt32>] = [0x3400...0x4dbf, 0x4e00...0x9fff]
+    private static let japanese: [ClosedRange<UInt32>] = [0x3040...0x30ff] + chinese
+    private static let greek: [ClosedRange<UInt32>] = [0x0370...0x03ff]
+    private static let thai: [ClosedRange<UInt32>] = [0x0e00...0x0e7f]
+    private static let ranges: [String: [ClosedRange<UInt32>]] = ["ar": arabic, "fa": arabic, "ur": arabic, "ru": cyrillic, "uk": cyrillic, "bg": cyrillic,
+        "sr": cyrillic, "mk": cyrillic, "be": cyrillic, "el": greek, "hi": devanagari, "mr": devanagari, "ne": devanagari, "th": thai,
+        "he": hebrew, "yi": hebrew, "ko": korean, "zh": chinese, "ja": japanese]
+    private static let foreign: [ClosedRange<UInt32>] = [arabic, cyrillic, greek, devanagari, thai, hebrew, korean, japanese].flatMap { $0 }
+
     static func accepts(_ text: String?, language: String) -> Bool {
         guard let text, !text.isEmpty else { return false }
         let base = language.trimmingCharacters(in: .whitespacesAndNewlines).lowercased().split(separator: "-").first.map(String.init) ?? ""
         if base.isEmpty || base == "en" { return true }
-        let arabic = #"[\u0600-\u06FF\u0750-\u077F]"#, cyrillic = #"[\u0400-\u04FF]"#
-        let devanagari = #"[\u0900-\u097F]"#, hebrew = #"[\u0590-\u05FF]"#, korean = #"[\uAC00-\uD7AF\u1100-\u11FF]"#
-        let ranges = ["ar": arabic, "fa": arabic, "ur": arabic, "ru": cyrillic, "uk": cyrillic, "bg": cyrillic, "sr": cyrillic, "mk": cyrillic, "be": cyrillic,
-            "el": #"[\u0370-\u03FF]"#, "hi": devanagari, "mr": devanagari, "ne": devanagari, "th": #"[\u0E00-\u0E7F]"#,
-            "he": hebrew, "yi": hebrew, "ko": korean, "zh": #"[\u3400-\u4DBF\u4E00-\u9FFF]"#, "ja": #"[\u3040-\u30FF\u3400-\u4DBF\u4E00-\u9FFF]"#]
-        if let range = ranges[base] { return text.range(of: range, options: .regularExpression) != nil }
-        let foreign = #"[\u0600-\u06FF\u0750-\u077F\u0400-\u04FF\u0370-\u03FF\u0900-\u097F\u0E00-\u0E7F\u0590-\u05FF\uAC00-\uD7AF\u1100-\u11FF\u3400-\u4DBF\u4E00-\u9FFF\u3040-\u30FF]"#
-        return text.range(of: foreign, options: .regularExpression) == nil
+        // Swift's regex conversion traps on the concatenated JavaScript \u ranges.
+        // Scalar membership preserves Desktop's exact blocks without compiling a regex.
+        let contains: ([ClosedRange<UInt32>]) -> Bool = { blocks in text.unicodeScalars.contains { scalar in blocks.contains { $0.contains(scalar.value) } } }
+        if let blocks = ranges[base] { return contains(blocks) }
+        return !contains(foreign)
     }
     static func apply(_ response: JSONValue, language: String, to details: inout MediaDetails) {
         details.overviewLanguage = language
