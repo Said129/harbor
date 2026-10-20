@@ -4,6 +4,7 @@ struct StreamPickerView: View {
     let model: DetailModel
     let addons: [Addon]
     let episode: Episode?
+    var selection: MediaPlaybackSelection? = nil
     let downloading: Bool
     let downloadMessage: String?
     let play: (StreamOffer) -> Void
@@ -15,7 +16,7 @@ struct StreamPickerView: View {
     @State private var provider: String?
     @State private var overviewExpanded = false
 
-    private var contextMedia: Media { model.sourceMedia(for: episode) ?? model.playbackContextMedia }
+    private var contextMedia: Media { selection?.media ?? model.sourceMedia(for: episode) ?? model.playbackContextMedia }
     private var busy: Bool { model.resolving || model.playback != nil }
     private var selected: StreamOffer? {
         model.offers.first { $0.id == selectedID } ?? StreamPreferences.shared.preferred(model.offers) ?? model.offers.first
@@ -47,7 +48,7 @@ struct StreamPickerView: View {
                 if !model.offers.contains(where: { $0.pickerQualityGroup == quality }) { quality = nil }
                 if !providers.contains(where: { $0.pickerInstance == provider }) { provider = nil }
             }
-            .onChange(of: episode?.id) { _, _ in selectedID = nil; overviewExpanded = false; provider = nil; quality = nil }
+            .onChange(of: selection?.key ?? episode?.routingKey ?? model.media.identity) { _, _ in selectedID = nil; overviewExpanded = false; provider = nil; quality = nil }
     }
     private var navigation: some View {
         HStack(spacing: 12) {

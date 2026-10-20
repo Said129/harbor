@@ -5,6 +5,10 @@ struct DetailView: View {
     @State private var model: DetailModel
     @State private var showStreams = false
     @State private var selectedEpisode: Episode?
+    @State private var streamSelection: MediaPlaybackSelection?
+    @State private var pendingExtra: AnimeFranchiseExtra?
+    @State private var resolvingExtra = false
+    @State private var extraTask: Task<Void, Never>?
     @State private var pendingEpisode: Episode?
     @State private var pendingEpisodeOwner: String?
     @State private var autoplayEpisode = false
@@ -35,12 +39,15 @@ struct DetailView: View {
                     if let error = app.library.error { Text(error).font(.caption).foregroundStyle(.orange) }
                     if let error = model.error { Text(error).foregroundStyle(.orange) }
                     if model.loading { ProgressView() }
-                    if model.media.episodic { EpisodeList(media: model.media, library: app.library,
+                    if model.isAnimeOneOff {
+                        animeMovieSection
+                    } else if model.media.type != "movie" && model.media.episodic { EpisodeList(media: model.media, library: app.library,
                         animeGrouping: model.episodeOrderProjection == nil && model.allowsContinuousAnimeEpisodes ? Binding(get: { model.animeEpisodeGrouping }, set: { model.setAnimeEpisodeGrouping($0) }) : nil,
                         ordering: model.episodeOrderProjection, pool: model.episodePool, orderOptions: model.episodeOrderOptions,
                         selectOrder: { episodeOrderSetting = $0.rawValue }, richOrderPanel: richEpisodeOrderPanel, orderLoading: model.episodeOrderLoading,
                         franchise: model.franchiseChoices, activeFranchiseID: model.activeFranchiseEntryID, selectFranchise: selectFranchise,
-                        franchiseLoading: model.loadingFranchise || model.loadingMetadata,
+                        franchiseLoading: model.loadingFranchise || model.loadingMetadata, loadingExtras: model.loadingExtraEntries,
+                        playExtra: { openExtra($0) }, toggleExtraWatched: toggleExtraWatched,
                         play: { openStreams($0, automatic: StreamPreferences.shared.automatic) })
                         if let source = model.episodeMetadataURL {
                             Link("TheTVDB", destination: source).font(.caption).foregroundStyle(.secondary)
@@ -87,21 +94,27 @@ struct DetailView: View {
         .onChange(of: model.franchiseSelectionRevision) { _, _ in
             selectionRevision &+= 1; actionHintRevision &+= 1
             resolutionTask?.cancel(); selectedEpisode = nil; pendingEpisode = nil; pendingEpisodeOwner = nil
+            extraTask?.cancel(); streamSelection = nil; pendingExtra = nil; resolvingExtra = false
             showStreams = false; autoplayEpisode = false; continuingEpisode = false; showConnecting = false
             downloadMessage = nil; actionHint = nil
         }
-        .onDisappear { franchiseSwitchTask?.cancel() }
-        .sheet(isPresented: $showStreams, onDismiss: { resolutionTask?.cancel(); model.cancelResolution(); pendingEpisode = nil; pendingEpisodeOwner = nil; autoplayEpisode = false; showConnecting = false; model.clearSourceChange() }) {
+        .onDisappear { franchiseSwitchTask?.cancel(); extraTask?.cancel() }
+        .sheet(isPresented: $showStreams, onDismiss: { resolutionTask?.cancel(); extraTask?.cancel(); model.cancelResolution(); pendingEpisode = nil; pendingExtra = nil; pendingEpisodeOwner = nil; streamSelection = nil; resolvingExtra = false; autoplayEpisode = false; showConnecting = false; model.clearSourceChange() }) {
             NavigationStack {
                 streamPicker
                 .overlay {
-                    if model.resolving || (showConnecting && model.loadingStreams) {
-                        HarborPlaybackConnecting(media: model.playbackContextMedia, cancel: chooseSourcesManually)
+                    if model.resolving || resolvingExtra || (showConnecting && model.loadingStreams) {
+                        HarborPlaybackConnecting(media: streamSelection?.media ?? model.playbackContextMedia, cancel: chooseSourcesManually)
                     }
                 }
                 .fullScreenCover(item: $model.playback, onDismiss: playerDismissed) { session in
                     let source = session.media ?? model.media
-                    PlayerView(session: session, resume: session.resumeStore ?? app.resume, title: source.name, media: source, library: app.library, episodeOrder: model.episodeOrderProjection, episodePool: model.episodePool, changeEpisode: { episode in
+                    PlayerView(session: session, resume: session.resumeStore ?? app.resume, title: source.name, media: source, library: app.library,
+                        episodeOrder: streamSelection == nil ? model.episodeOrderProjection : nil, episodePool: streamSelection == nil ? model.episodePool : nil,
+                        loadingExtraEntries: model.loadingExtraEntries, changeExtra: { extra in
+                            guard session.owner == app.library.owner else { return }
+                            pendingExtra = extra; pendingEpisode = nil; pendingEpisodeOwner = session.owner; model.playback = nil
+                        }, toggleExtraWatched: toggleExtraWatched, changeEpisode: { episode in
                         guard session.owner == app.library.owner else { return }
                         pendingEpisode = episode; pendingEpisodeOwner = session.owner
                         model.playback = nil
@@ -110,8 +123,9 @@ struct DetailView: View {
                         model.prepareSourceChange(session, snapshot: snapshot)
                     })
                 }
-                .task(id: selectedEpisode?.routingKey ?? model.media.id) {
-                    let owner = app.library.owner
+                .task(id: streamSelection?.key ?? selectedEpisode?.routingKey ?? model.media.id) {
+                    guard !resolvingExtra else { return }
+                    let owner = app.library.owner, scope = app.accountOperationScope
                     let shouldAutoplay = autoplayEpisode
                     let isContinuation = continuingEpisode
                     let revision = selectionRevision
@@ -120,9 +134,9 @@ struct DetailView: View {
                     let task = Task {
                         defer { if revision == selectionRevision, model.playback == nil { showConnecting = false } }
                         await app.refreshAddons()
-                        guard !Task.isCancelled, owner == app.library.owner else { return }
-                        await model.findStreams(app.addons, episode: selectedEpisode)
-                        guard !Task.isCancelled, owner == app.library.owner, shouldAutoplay, revision == selectionRevision else { return }
+                        guard !Task.isCancelled, owner == app.library.owner, scope == app.accountOperationScope else { return }
+                        await model.findStreams(app.addons, episode: selectedEpisode, selection: streamSelection)
+                        guard !Task.isCancelled, owner == app.library.owner, scope == app.accountOperationScope, shouldAutoplay, revision == selectionRevision else { return }
                         if let offer = isContinuation ? model.continuationOffer : StreamPreferences.shared.preferred(model.automaticOffers) {
                             await model.play(offer, resume: app.resume, library: app.library)
                         }
@@ -138,9 +152,44 @@ struct DetailView: View {
         return "pool:\(model.media.identity):\(model.canLoadEpisodePool):\(model.activeFranchiseEntryID ?? ""):\(entries):\(MetadataPreferences.shared.language)"
     }
     private var streamPicker: StreamPickerView {
-        StreamPickerView(model: model, addons: app.addons, episode: selectedEpisode, downloading: downloading, downloadMessage: downloadMessage,
+        StreamPickerView(model: model, addons: app.addons, episode: selectedEpisode, selection: streamSelection, downloading: downloading, downloadMessage: downloadMessage,
                          play: { offer in playOffer(offer) }, download: streamDownloadAction,
                          refresh: { refreshStreams() }, back: { showStreams = false })
+    }
+    private var animeMovieSection: some View {
+        VStack(alignment: .leading, spacing: 16) {
+            HStack {
+                Text(DesktopInterfaceText.value("Movie")).font(HarborTheme.displayFont(22))
+                Spacer()
+                AnimeSeasonPicker(entries: model.franchiseChoices, activeID: model.activeFranchiseEntryID, select: selectFranchise,
+                    loading: model.loadingFranchise || model.loadingMetadata)
+            }
+            AnimeMovieEntryCard(media: model.media, watched: app.library.watched(model.media) || app.library.items.first(where: { $0.id == model.media.id })?.watched == true) {
+                openStreams(AnimeOneOffPresentation.playbackEpisode(model.media), automatic: StreamPreferences.shared.automatic)
+            }
+        }
+    }
+    private func openExtra(_ extra: AnimeFranchiseExtra, automatic: Bool? = nil) {
+        extraTask?.cancel(); resolutionTask?.cancel(); model.cancelResolution()
+        selectionRevision &+= 1
+        let revision = selectionRevision, owner = app.library.owner, scope = app.accountOperationScope
+        resolvingExtra = true; showConnecting = true; showStreams = true
+        extraTask = Task {
+            let selected = await model.resolveFranchiseExtra(extra, language: MetadataPreferences.shared.language, owner: owner, library: app.library)
+            guard !Task.isCancelled, owner == app.library.owner, scope == app.accountOperationScope, revision == selectionRevision else { return }
+            resolvingExtra = false
+            if let selected { openStreams(selected.episode, automatic: automatic ?? StreamPreferences.shared.automatic, selection: selected) }
+            else { showConnecting = false; showStreams = false }
+        }
+    }
+    private func toggleExtraWatched(_ extra: AnimeFranchiseExtra) {
+        let owner = app.library.owner, scope = app.accountOperationScope
+        Task {
+            guard owner == app.library.owner, scope == app.accountOperationScope else { return }
+            if let selected = await model.resolveFranchiseExtra(extra, language: MetadataPreferences.shared.language, owner: owner, library: app.library), owner == app.library.owner, scope == app.accountOperationScope {
+                await app.library.toggleWatched(selected.media)
+            }
+        }
     }
     private func selectFranchise(_ entry: AnimeFranchiseEntry) {
         franchiseSwitchTask?.cancel()
@@ -158,17 +207,27 @@ struct DetailView: View {
     private func playOffer(_ offer: StreamOffer) {
         guard !model.resolving, model.playback == nil else { return }
         if let url = offer.pickerExternalURL { openURL(url); return }
-        resolutionTask = Task { await model.play(offer, resume: app.resume, library: app.library) }
+        let owner = app.library.owner, scope = app.accountOperationScope
+        resolutionTask = Task {
+            guard owner == app.library.owner, scope == app.accountOperationScope else { return }
+            await model.play(offer, resume: app.resume, library: app.library)
+        }
     }
     private func chooseSourcesManually() {
         selectionRevision &+= 1
+        if resolvingExtra { extraTask?.cancel(); resolvingExtra = false; showStreams = false }
         autoplayEpisode = false; showConnecting = false
         if model.resolving { resolutionTask?.cancel(); model.cancelResolution() }
     }
     private func refreshStreams() {
         guard !model.loadingStreams, !model.resolving, model.playback == nil else { return }
         resolutionTask?.cancel()
-        resolutionTask = Task { await app.refreshAddons(force: true); await model.findStreams(app.addons, episode: selectedEpisode) }
+        let owner = app.library.owner, scope = app.accountOperationScope
+        resolutionTask = Task {
+            await app.refreshAddons(force: true)
+            guard owner == app.library.owner, scope == app.accountOperationScope else { return }
+            await model.findStreams(app.addons, episode: selectedEpisode, selection: streamSelection)
+        }
     }
     private func startDownload(_ offer: StreamOffer) { Task { await download(offer) } }
     private var hero: some View {
@@ -225,17 +284,24 @@ struct DetailView: View {
     private func ratingBadge(_ rating: String) -> some View {
         HStack(spacing: 6) { Text(model.media.ratingSource ?? "IMDb").font(.system(size: 9, weight: .black)).foregroundStyle(.black).padding(.horizontal, 3).padding(.vertical, 2).background(model.media.ratingSource == "TMDB" ? Color.mint : .yellow, in: .rect(cornerRadius: 2)); Text(rating).font(HarborTheme.font(12, weight: .semibold)) }.padding(.horizontal, 10).padding(.vertical, 5).background(HarborTheme.background.opacity(0.85), in: .capsule)
     }
-    private func openStreams(_ episode: Episode? = nil, automatic: Bool = false) {
+    private func openStreams(_ episode: Episode? = nil, automatic: Bool = false, selection: MediaPlaybackSelection? = nil) {
         selectionRevision &+= 1
         model.clearSourceChange()
         autoplayEpisode = automatic
         showConnecting = automatic
         continuingEpisode = false
-        selectedEpisode = episode
+        streamSelection = selection
+        selectedEpisode = selection == nil ? episode : selection?.episode
         showStreams = true
     }
     private func playerDismissed() {
         showConnecting = false
+        if let extra = pendingExtra {
+            let owner = pendingEpisodeOwner
+            pendingExtra = nil; pendingEpisodeOwner = nil
+            guard showStreams, owner == app.library.owner else { return }
+            openExtra(extra, automatic: true); return
+        }
         guard let episode = pendingEpisode else { return }
         let owner = pendingEpisodeOwner
         pendingEpisode = nil; pendingEpisodeOwner = nil
@@ -247,8 +313,10 @@ struct DetailView: View {
         showConnecting = true
         continuingEpisode = true
         selectedEpisode = episode
+        if let selection = streamSelection { streamSelection = MediaPlaybackSelection(media: selection.media, episode: episode) }
     }
     private func playTitle() {
+        if model.isAnimeOneOff { openStreams(AnimeOneOffPresentation.playbackEpisode(model.media), automatic: StreamPreferences.shared.automatic); return }
         if !model.media.episodic { openStreams(automatic: StreamPreferences.shared.automatic); return }
         if let pool = model.episodePool, let projection = model.episodeOrderProjection,
            let episode = pool.startingEpisode(in: app.library, presentation: projection) {

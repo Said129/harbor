@@ -6,6 +6,9 @@ struct PlayerEpisodesView: View {
     let library: LibraryModel?
     var episodeOrder: EpisodeOrderProjection? = nil
     var episodePool: AnimeEpisodePool? = nil
+    var loadingExtraEntries = Set<String>()
+    var playExtra: ((AnimeFranchiseExtra) -> Void)? = nil
+    var toggleExtraWatched: ((AnimeFranchiseExtra) -> Void)? = nil
     let canRestart: Bool
     let restart: () -> Void
     let close: () -> Void
@@ -21,6 +24,7 @@ struct PlayerEpisodesView: View {
     private var sections: [EpisodeOrderSection] { episodeOrder?.sections ?? [] }
     private var currentSection: EpisodeOrderSection? { sections.first { $0.id == orderSection } ?? sections.first }
     private var visible: [Episode] { currentSection?.episodes ?? episodes.filter { ($0.listedSeason ?? season) == season } }
+    private var visibleRows: [EpisodeOrderRow] { currentSection?.rows ?? visible.map(EpisodeOrderRow.episode) }
     private var nextOrderSection: EpisodeOrderSection? {
         guard let currentSection, let index = sections.firstIndex(where: { $0.id == currentSection.id }), index + 1 < sections.count else { return nil }
         return sections[index + 1]
@@ -59,8 +63,16 @@ struct PlayerEpisodesView: View {
         return ScrollViewReader { scroll in
             ScrollView {
                 LazyVStack(spacing: 12) {
-                    ForEach(visible, id: \.routingKey) { episode in episodeCard(episode, thumbnailWidth: thumbnailWidth) }
-                    if visible.isEmpty {
+                    ForEach(visibleRows) { row in
+                        switch row {
+                        case .episode(let episode): episodeCard(episode, thumbnailWidth: thumbnailWidth)
+                        case .franchise(let extra):
+                            AnimeFranchiseExtraRow(extra: extra, watched: library?.items.first(where: { $0.id == extra.entry.id })?.watched == true,
+                                loading: loadingExtraEntries.contains(extra.entry.id), canPlay: playExtra != nil, play: { playExtra?(extra) },
+                                toggleWatched: toggleExtraWatched.map { action in { action(extra) } })
+                        }
+                    }
+                    if visibleRows.isEmpty {
                         Text(DesktopInterfaceText.value("No episodes found for this season."))
                             .font(HarborTheme.font(13.5)).foregroundStyle(ThemePreferences.shared.color("ink-muted"))
                             .multilineTextAlignment(.center).padding(.vertical, 40).padding(.horizontal, 8)

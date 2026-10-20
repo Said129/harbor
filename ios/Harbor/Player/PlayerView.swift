@@ -54,6 +54,9 @@ struct PlayerView: View {
     var library: LibraryModel? = nil
     var episodeOrder: EpisodeOrderProjection? = nil
     var episodePool: AnimeEpisodePool? = nil
+    var loadingExtraEntries = Set<String>()
+    var changeExtra: ((AnimeFranchiseExtra) -> Void)? = nil
+    var toggleExtraWatched: ((AnimeFranchiseExtra) -> Void)? = nil
     var changeEpisode: ((Episode) -> Void)? = nil
     var changeSource: ((ResumeSnapshot?) -> Void)? = nil
     @State private var state = PlayerState()
@@ -231,6 +234,7 @@ struct PlayerView: View {
     @ViewBuilder private var episodePanel: some View {
         if let media {
             PlayerEpisodesView(media: media, current: session.target, library: library, episodeOrder: episodeOrder, episodePool: episodePool,
+                loadingExtraEntries: loadingExtraEntries, playExtra: changeExtra == nil ? nil : requestExtra, toggleExtraWatched: toggleExtraWatched,
                 canRestart: canRestartEpisode, restart: restartEpisode, close: { showEpisodes = false }) { episode in
                 pendingEpisode = episode
                 showEpisodes = false
@@ -338,7 +342,15 @@ struct PlayerView: View {
     private func updateAdjacentEpisodes() {
         adjacent = EpisodeSequence.adjacent(episodeOrder?.videos ?? media?.videos ?? [], current: session.target, presentation: episodeOrder)
     }
-    private var canChangeEpisode: Bool { changeEpisode != nil && media?.episodic == true && !(episodeOrder?.videos ?? media?.videos ?? []).isEmpty && (library.map { $0.owner == session.owner } ?? true) }
+    private var canChangeEpisode: Bool {
+        let oneOff = media.map { $0.type == "movie" || AnimeOneOffPresentation.isOneOff($0) } ?? false
+        return !oneOff && changeEpisode != nil && media?.episodic == true && !(episodeOrder?.videos ?? media?.videos ?? []).isEmpty && (library.map { $0.owner == session.owner } ?? true)
+    }
+    private func requestExtra(_ extra: AnimeFranchiseExtra) {
+        guard active, !episodeChanging, !sourceChanging, !retrying, !state.restarting, scenePhase == .active,
+              library.map({ $0.owner == session.owner }) ?? true, let changeExtra else { return }
+        episodeChanging = true; saveCheckpoint(exiting: true); changeExtra(extra)
+    }
     private var automaticAdvanceEnabled: Bool {
         !resumePending && preferences.options.autoPlayNextEpisode && !autoNextCancelled && EpisodeSequence.permitsAutomaticAdvance(duration: state.duration, startedAtMs: restartStartedAtMs ?? session.advanceStartedAtMs ?? session.startMs, ended: true, hasError: state.error != nil)
     }

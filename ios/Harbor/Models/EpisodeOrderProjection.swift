@@ -9,6 +9,12 @@ struct EpisodeOrderSection: Identifiable, Sendable {
     let episodes: [Episode]
     let from: String?
     let to: String?
+    let rows: [EpisodeOrderRow]
+    var count: Int { rows.count }
+    init(id: String, number: Int, name: String?, joined: Bool, extra: Bool, episodes: [Episode], from: String?, to: String?, rows: [EpisodeOrderRow]? = nil) {
+        self.id = id; self.number = number; self.name = name; self.joined = joined; self.extra = extra
+        self.episodes = episodes; self.from = from; self.to = to; self.rows = rows ?? episodes.map(EpisodeOrderRow.episode)
+    }
 }
 
 /// Presentation and navigation reference real provider IDs. The source array
@@ -33,7 +39,7 @@ struct EpisodeOrderProjection: Sendable {
     func isRegular(_ id: String) -> Bool { regularIDs.contains(id) }
     func sequence(containing id: String) -> Set<String>? { sequences[id].map { Set($0) } }
 
-    static func build(_ order: TVDBEpisodeOrder, source: [Episode], animeIdentity: Bool, currentSourceID: String? = nil) -> Self? {
+    static func build(_ order: TVDBEpisodeOrder, source: [Episode], animeIdentity: Bool, currentSourceID: String? = nil, franchise: [AnimeFranchiseEntry] = []) -> Self? {
         var byID: [String: Episode] = [:]
         for episode in source where byID[episode.routingKey] == nil { byID[episode.routingKey] = episode }
         let distinct = source.filter { byID.removeValue(forKey: $0.routingKey) != nil }
@@ -54,6 +60,7 @@ struct EpisodeOrderProjection: Sendable {
         let explicitAbsolute = Dictionary(grouping: compatible.compactMap { episode in episode.absoluteNumber.map { ($0, episode) } }, by: { $0.0 })
         let tvdbIDs = Dictionary(grouping: compatible.compactMap { episode in episode.tvdbEpisodeID.map { ($0, episode) } }, by: { $0.0 })
         var claimed = Set<String>(), projected: [String: Episode] = [:], sections: [EpisodeOrderSection] = [], missing: [Int] = []
+        var claimedExtras = Set<String>()
         func candidate(_ values: [Episode]?) -> Episode? {
             guard let values, !values.isEmpty else { return nil }
             // Overlapping franchise entries retain insertion priority. Two
@@ -63,17 +70,21 @@ struct EpisodeOrderProjection: Sendable {
             return values.first { !claimed.contains($0.routingKey) }
         }
         for season in order.seasons where season.id >= 0 {
-            var episodes: [Episode] = []
+            var episodes: [Episode] = [], rows: [EpisodeOrderRow] = []
             for (index, slot) in season.episodes.enumerated() {
                 let pair = candidate(pairs["\(slot.canonicalSeason):\(slot.canonicalEpisode)"]?.map { $0.1 })
                 let tvdb = candidate(tvdbIDs[slot.id]?.map { $0.1 })
                 let absolute = candidate(slot.absolute.flatMap { explicitAbsolute[$0]?.map { $0.1 } }
                     ?? (wholeAbsoluteIdentity ? slot.absolute.flatMap { byAbsolute[$0] } : nil))
+                let pairNumber: Int? = pair?.imdbEpisode ?? pair?.episode
+                let tvdbNumber: Int? = tvdb?.imdbEpisode ?? tvdb?.episode
                 let pairCorrectsStaleID = pair != nil && tvdb != nil && pair?.routingKey != tvdb?.routingKey
-                    && (pair?.imdbEpisode ?? pair?.episode) == slot.canonicalEpisode
-                    && (tvdb?.imdbEpisode ?? tvdb?.episode) != slot.canonicalEpisode
+                    && pairNumber == slot.canonicalEpisode && tvdbNumber != slot.canonicalEpisode
                 guard var episode = (pairCorrectsStaleID ? pair : tvdb) ?? pair ?? absolute,
                       claimed.insert(episode.routingKey).inserted else {
+                    if let extra = AnimeFranchiseExtra.match(slot, entries: franchise, claimed: claimedExtras) {
+                        claimedExtras.insert(extra.entry.id); rows.append(.franchise(extra)); continue
+                    }
                     missing.append(slot.id); continue
                 }
                 if order.kind.joined {
@@ -86,14 +97,14 @@ struct EpisodeOrderProjection: Sendable {
                 if episode.thumbnail == nil || host == "images.metahub.space", let image = slot.image { episode.thumbnail = image }
                 if episode.released == nil { episode.released = slot.aired }
                 if episode.runtime == nil { episode.runtime = slot.runtime.map(Double.init) }
-                projected[episode.routingKey] = episode; episodes.append(episode)
+                projected[episode.routingKey] = episode; episodes.append(episode); rows.append(.episode(episode))
             }
-            if !episodes.isEmpty {
+            if !rows.isEmpty {
                 sections.append(EpisodeOrderSection(id: String(season.id), number: season.id, name: season.name, joined: season.joined,
-                    extra: season.id == 0, episodes: episodes, from: season.from, to: season.to))
+                    extra: season.id == 0, episodes: episodes, from: season.from, to: season.to, rows: rows))
             }
         }
-        guard !claimed.isEmpty else { return nil }
+        guard !claimed.isEmpty || !claimedExtras.isEmpty else { return nil }
         let unmatched = distinct.filter { !claimed.contains($0.routingKey) }
         // Desktop's Extras bucket keeps the current source's unmatched rows.
         // Unplaced siblings belong to their own entry, not this TVDB show's Extras.

@@ -117,7 +117,7 @@ struct TVDBOrderPanel: View {
                         Text(DesktopInterfaceText.value("Ongoing")).font(HarborTheme.font(10.5))
                     }.foregroundStyle(HarborTheme.accent)
                 }
-                Text(String(section.episodes.count)).font(HarborTheme.font(13)).monospacedDigit().foregroundStyle(ThemePreferences.shared.color("ink-subtle"))
+                Text(String(section.count)).font(HarborTheme.font(13)).monospacedDigit().foregroundStyle(ThemePreferences.shared.color("ink-subtle"))
             }.padding(.horizontal, 16).padding(.vertical, 10).frame(minHeight: 52)
                 .background(section.id == selection ? HarborTheme.ink.opacity(0.1) : .clear).contentShape(Rectangle())
         }.buttonStyle(.plain).accessibilityElement(children: .combine)

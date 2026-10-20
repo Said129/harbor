@@ -77,7 +77,9 @@ struct LibraryRecord: Identifiable, Sendable {
             let sameVideo = target.videoId != nil && state["video_id"].string == target.videoId
             let coordinates = playbackCoordinates
             let sameCoordinates = target.season != nil && target.episode != nil && coordinates.season == target.season && coordinates.episode == target.episode
-            guard sameVideo || sameCoordinates else { return nil }
+            let sameMovie = media.type == "movie" && target.season == nil && target.episode == nil
+                && state["video_id"].string == (target.videoId ?? media.behaviorHints?.defaultVideoId ?? media.id)
+            guard sameVideo || sameCoordinates || sameMovie else { return nil }
         }
         guard let offset = state["timeOffset"].numericValue, offset.isFinite, offset >= 0 else { return nil }
         let finished = media.type == "movie" && currentMovieFinished

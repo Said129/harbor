@@ -13,6 +13,7 @@ actor AnimeFranchiseEpisodeService {
 
     init(fetch: @escaping Fetch = { entry in
         let raw = try await AnimeService.metadata(id: entry.id, kind: entry.media.type)
+        if raw.type == "movie" { return raw }
         let variants = await AnimeEpisodeService.shared.variants(for: raw)
         let supplemented = await TVDBService.shared.supplement(variants, for: raw)
         var media = raw; media.videos = supplemented.seasons; return media
@@ -35,6 +36,13 @@ actor AnimeFranchiseEpisodeService {
 
     private func entry(_ entry: AnimeFranchiseEntry, language: String) async throws -> Media {
         guard !entry.extra, entry.id.hasPrefix("kitsu:"), AnimeService.isAnime(entry.id) else { throw HarborError(code: "anime-id") }
+        let media = try await metadata(for: entry, language: language)
+        guard media.episodic, media.videos?.isEmpty == false else { throw HarborError(code: "no-metadata") }
+        return media
+    }
+
+    func metadata(for entry: AnimeFranchiseEntry, language: String) async throws -> Media {
+        guard AnimeService.isAnime(entry.id) else { throw HarborError(code: "anime-id") }
         let key = entry.id + "|" + language
         if let value = cache[key], value.expires > Date() { return value.media }
         if let task = pending[key] { return try await task.value }
@@ -42,7 +50,7 @@ actor AnimeFranchiseEpisodeService {
         let task = Task {
             try await gate.run {
                 let media = try await fetch(entry)
-                guard media.id == entry.id, media.episodic, media.videos?.isEmpty == false else { throw HarborError(code: "no-metadata") }
+                guard media.id == entry.id, media.type == "movie" || media.videos?.isEmpty == false || media.behaviorHints?.defaultVideoId != nil else { throw HarborError(code: "no-metadata") }
                 return media
             }
         }

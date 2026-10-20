@@ -7,7 +7,7 @@ final class AnimeLibraryDetection {
     @ObservationIgnored private var checked: [String: Date] = [:]
     @ObservationIgnored private var pending: [String: Task<Bool, Never>] = [:]
 
-    static func hasDirectEvidence(_ media: Media) -> Bool {
+    nonisolated static func hasDirectEvidence(_ media: Media) -> Bool {
         if AnimeService.isAnime(media.id) || media.type == "anime" { return true }
         let genres = Set((media.genres ?? []).map { $0.lowercased() })
         if genres.contains("anime") { return true }

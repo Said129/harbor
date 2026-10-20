@@ -32,6 +32,9 @@ final class DetailModel {
     private var loadedEpisodePoolKey: String?
     private(set) var loadingEpisodePool = false
     private(set) var selectedPlaybackMedia: Media?
+    private var extraSources: [String: Media] = [:]
+    private var extraRequests: [String: UUID] = [:]
+    private(set) var loadingExtraEntries = Set<String>()
     var playbackContextMedia: Media { selectedPlaybackMedia ?? sourceMedia(for: selectedEpisode) ?? media }
     var loadingFranchise = false
     var activeFranchiseEntryID: String?
@@ -39,6 +42,10 @@ final class DetailModel {
     var soloFranchiseEntry: Bool { franchise?.scopedSplit == true && activeFranchiseEntryID != nil && activeFranchiseEntryID != franchise?.rootID }
     var episodeOrderScope: String { soloFranchiseEntry ? "solo" : "shared" }
     var canLoadFranchise: Bool { metadataReady && (AnimeLibraryDetection.hasDirectEvidence(media) || animeEpisodeVariants?.kitsuID != nil) }
+    var isAnimeOneOff: Bool {
+        let count = franchise?.entries.first(where: { $0.id == activeFranchiseEntryID })?.episodeCount
+        return metadataReady && AnimeOneOffPresentation.isOneOff(media, knownAnime: animeEpisodeVariants?.kitsuID != nil, declaredEpisodes: count)
+    }
     var franchiseChoices: [AnimeFranchiseEntry] {
         guard let franchise else { return [] }
         if franchise.scopedSplit, activeFranchiseEntryID != franchise.rootID {
@@ -53,7 +60,7 @@ final class DetailModel {
     var episodeOrderProjection: EpisodeOrderProjection?
     var episodeOrderOptions: [TVDBEpisodeOrderOption] = []
     var episodeOrderLoading = false
-    var canLoadEpisodeOrder: Bool { animeEpisodesLoaded && !loadingMetadata && media.episodic }
+    var canLoadEpisodeOrder: Bool { animeEpisodesLoaded && !loadingMetadata && media.type != "movie" && media.episodic && !isAnimeOneOff }
     var canLoadEpisodePool: Bool { canLoadEpisodeOrder && !soloFranchiseEntry && franchiseChoices.count > 1
         && franchise?.entries.first(where: { $0.id == activeFranchiseEntryID })?.extra != true }
     var animeEpisodeGrouping = AnimeEpisodeGrouping.saved
@@ -119,6 +126,7 @@ final class DetailModel {
             guard franchiseRequest == request, library.owner == owner, media.identity == selected.identity,
                   contextRevision() == context else { return }
             franchise = value; activeFranchiseEntryID = value?.currentID; franchiseLoaded = value != nil
+            applyEpisodeOrder()
         } catch { return }
     }
 
@@ -141,6 +149,7 @@ final class DetailModel {
             offers = []; automaticOffers = []; warnings = []; filteredSources = false; error = nil
             playback = nil; selectedEpisode = nil; lastPlayedSource = nil; sourceContinuation = nil; streamAddons = []
             selectedPlaybackMedia = nil; episodePool = nil; loadedEpisodePoolKey = nil; episodePoolRequest = UUID(); loadingEpisodePool = false
+            extraSources = [:]; extraRequests = [:]; loadingExtraEntries = []
             animeEpisodesLoaded = false; animeEpisodeVariants = nil; tvdbOrder = nil
             episodeOrderProjection = nil; episodeOrderOptions = []
             activeFranchiseEntryID = id; media = selected; metadataLoaded = true
@@ -173,6 +182,7 @@ final class DetailModel {
     func sourceMedia(for episode: Episode?) -> Media? {
         guard let episode else { return media }
         if let source = episode.sourceMetaID {
+            if let extra = extraSources[source], extra.videos?.contains(where: { $0.id == episode.id && $0.watchedKey == episode.watchedKey }) == true { return extra }
             if let value = episodePool?.source(for: episode, presentation: episodeOrderProjection) { return value }
             guard source == media.id else { return nil }
         }
@@ -180,10 +190,47 @@ final class DetailModel {
         return media
     }
 
+    func resolveFranchiseExtra(_ extra: AnimeFranchiseExtra, language: String, owner: String, library: LibraryModel, provider: AnimeFranchiseEpisodeService = .shared) async -> MediaPlaybackSelection? {
+        guard owner == library.owner, let entry = franchise?.entries.first(where: { $0.id == extra.entry.id && $0.extra }),
+              !loadingExtraEntries.contains(entry.id) else { return nil }
+        let request = UUID(), anchor = media.identity, context = contextRevision()
+        extraRequests[entry.id] = request; loadingExtraEntries.insert(entry.id)
+        defer { if extraRequests[entry.id] == request { extraRequests[entry.id] = nil; loadingExtraEntries.remove(entry.id) } }
+        do {
+            var source = try await provider.metadata(for: entry, language: language)
+            try Task.checkCancellation()
+            guard owner == library.owner, contextRevision() == context, media.identity == anchor, extraRequests[entry.id] == request else { return nil }
+            let sourceID = source.id
+            source.videos = source.videos?.map { episode in var value = episode; value.sourceMetaID = sourceID; return value }
+            let episode: Episode?
+            if AnimeOneOffPresentation.isOneOff(source, knownAnime: true, declaredEpisodes: entry.episodeCount) {
+                if var selected = AnimeOneOffPresentation.playbackEpisode(source) {
+                    selected.displaySeason = extra.slot.season; selected.displayEpisode = extra.slot.number
+                    source.videos = source.videos?.map { $0.id == selected.id ? selected : $0 }
+                    episode = selected
+                } else { episode = nil }
+            }
+            else {
+                episode = EpisodeSequence.startingEpisode(source.videos ?? [], record: library.items.first { $0.id == source.id }, watched: library.watchedEpisodes(source))
+            }
+            extraSources[source.id] = source
+            return MediaPlaybackSelection(media: source, episode: episode)
+        } catch is CancellationError { return nil }
+        catch {
+            if !Task.isCancelled, owner == library.owner, contextRevision() == context, media.identity == anchor { error = safeMessage(error) }
+            return nil
+        }
+    }
+
     func loadAnimeEpisodes(owner: String, library: LibraryModel,
         fetch: (@Sendable (Media) async -> AnimeEpisodeVariants)? = nil,
         supplement: (@Sendable (AnimeEpisodeVariants, Media) async -> AnimeEpisodeVariants)? = nil) async {
         guard !animeEpisodesLoaded, !loadingMetadata, media.videos?.isEmpty == false, library.owner == owner else { return }
+        if media.type == "movie" {
+            let videos = media.videos ?? []
+            animeEpisodeVariants = AnimeEpisodeVariants(seasons: videos, continuous: videos)
+            animeEpisodesLoaded = true; return
+        }
         let selected = media
         let variants: AnimeEpisodeVariants
         if let fetch { variants = await fetch(selected) }
@@ -240,7 +287,7 @@ final class DetailModel {
             episodePool = AnimeEpisodePool(current: current, others: pool.sources.values.filter { $0.id != current.id }.sorted { $0.id < $1.id }, missingEntryIDs: pool.missingEntryIDs)
         }
         let source = episodePool?.episodes ?? variants.seasons
-        episodeOrderProjection = tvdbOrder.flatMap { EpisodeOrderProjection.build($0, source: source, animeIdentity: AnimeService.isAnime(media.id), currentSourceID: episodePool == nil ? nil : media.id) }
+        episodeOrderProjection = tvdbOrder.flatMap { EpisodeOrderProjection.build($0, source: source, animeIdentity: AnimeService.isAnime(media.id), currentSourceID: episodePool == nil ? nil : media.id, franchise: franchise?.entries ?? []) }
         if let pool = episodePool, let projection = episodeOrderProjection,
            let current = pool.episodes.first(where: { $0.sourceMetaID == media.id }), let source = pool.source(for: current, presentation: projection) {
             media.videos = source.videos
@@ -254,7 +301,7 @@ final class DetailModel {
         UserDefaults.standard.set(grouping.rawValue, forKey: AnimeEpisodeGrouping.preferenceKey)
     }
 
-    func findStreams(_ addons: [Addon], episode: Episode? = nil) async {
+    func findStreams(_ addons: [Addon], episode: Episode? = nil, selection: MediaPlaybackSelection? = nil) async {
         let request = UUID(), context = contextRevision()
         streamRequest = request
         loadingStreams = true
@@ -265,8 +312,14 @@ final class DetailModel {
         warnings = []
         filteredSources = false
         playback = nil
+        let episode = selection == nil ? episode : selection?.episode
         selectedEpisode = episode
-        let selected = sourceMedia(for: episode)
+        let selected: Media?
+        if let selection {
+            let validSource = extraSources[selection.media.id] == selection.media
+            let validEpisode = selection.episode.map { selected in selection.media.videos?.contains(where: { $0.id == selected.id && $0.watchedKey == selected.watchedKey }) == true } ?? true
+            selected = validSource && validEpisode ? selection.media : nil
+        } else { selected = sourceMedia(for: episode) }
         selectedPlaybackMedia = selected
         defer { if streamRequest == request { loadingStreams = false } }
         do {
@@ -314,7 +367,7 @@ final class DetailModel {
                     let cloud = await library.resume(for: target)
                     guard owner == library.owner, contextRevision() == context, request == streamRequest, resolution == resolutionRequest else { return }
                     let duration = (episode?.runtime ?? 0) > 0 ? (episode?.runtime ?? 0) * 60_000 : cloud?.durationMs ?? 0
-                    start = try await resume.position(target, durationMs: duration, playback: UserDefaults.standard.object(forKey: "resumePlayback") as? Bool ?? true, prompt: UserDefaults.standard.object(forKey: "resumePrompt") as? Bool ?? false, cloud: cloud?.entry)
+                    start = try await resume.position(target, durationMs: duration, playback: UserDefaults.standard.object(forKey: "resumePlayback") as? Bool ?? true, prompt: UserDefaults.standard.object(forKey: "resumePrompt") as? Bool ?? false, cloud: cloud?.entry, media: selected)
                 } catch {
                     warning = safeMessage(error)
                     Diagnostics.shared.recordFailure(error)

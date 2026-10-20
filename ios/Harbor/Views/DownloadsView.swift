@@ -103,7 +103,7 @@ struct DownloadsView: View {
             let file = try downloads.file(item)
             guard FileManager.default.fileExists(atPath: file.path) else { throw HarborError(code: "download-missing") }
             let cloud = await app.library.resume(for: item.target, refresh: false)
-            let start = try await store.position(item.target, durationMs: cloud?.durationMs ?? 0, playback: UserDefaults.standard.object(forKey: "resumePlayback") as? Bool ?? true, prompt: UserDefaults.standard.object(forKey: "resumePrompt") as? Bool ?? false, cloud: cloud?.entry)
+            let start = try await store.position(item.target, durationMs: cloud?.durationMs ?? 0, playback: UserDefaults.standard.object(forKey: "resumePlayback") as? Bool ?? true, prompt: UserDefaults.standard.object(forKey: "resumePrompt") as? Bool ?? false, cloud: cloud?.entry, media: item.media)
             guard expectedOwner == owner, preparation == operation, allItems.contains(where: { $0.id == item.id && $0.status == .complete }), FileManager.default.fileExists(atPath: file.path) else { return }
             playbackMedia = item.media
             playback = PlaybackSession(source: PlaybackSource(url: file.path, headers: nil, subtitles: nil, via: "download"), target: item.target, startMs: start.ms, storageWarning: nil, progressEnabled: true, owner: expectedOwner, resumeStore: store, promptForResume: start.prompt)

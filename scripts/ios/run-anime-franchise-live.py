@@ -9,7 +9,7 @@ import sys
 build = Path('ios/build')
 (build / 'canonical').mkdir(parents=True, exist_ok=True)
 p = argparse.ArgumentParser(description=__doc__)
-p.add_argument('--plan', choices=['preserved-anime-franchise.json', 'preserved-anime-episode-pool.json'], default='preserved-anime-franchise.json')
+p.add_argument('--plan', choices=['preserved-anime-franchise.json', 'preserved-anime-episode-pool.json', 'preserved-franchise-extras.json'], default='preserved-anime-franchise.json')
 a = p.parse_args()
 plan = json.loads((build / a.plan).read_text())
 assert len(plan['public_contracts']) == (2 if a.plan == 'preserved-anime-franchise.json' else 1)

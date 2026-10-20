@@ -32,12 +32,23 @@ actor ResumeStore {
         catch { throw HarborError(code: "resume-read-failed") }
     }
 
-    func position(_ target: ResumeTarget, durationMs: Double = 0, playback: Bool = true, prompt: Bool = false, cloud: ResumeEntry? = nil) throws -> ResumeStart {
+    func position(_ target: ResumeTarget, durationMs: Double = 0, playback: Bool = true, prompt: Bool = false, cloud: ResumeEntry? = nil, media: Media? = nil) throws -> ResumeStart {
         guard ready else { throw HarborError(code: "resume-store-unavailable") }
         var merged = document
+        struct Key: Decodable { let key: String }
+        let result = try invoke("resumeKey", ["target": try .encoded(target)], as: Key.self)
+        // Earlier builds treated the provider's single movie video as S1E1.
+        // Reuse that position only for the exact same real movie/video; keep
+        // newer resets and leave the original key intact for older builds.
+        if let media, media.type == "movie", media.id == target.id, target.season == nil, target.episode == nil {
+            let videoID = target.videoId ?? media.behaviorHints?.defaultVideoId ?? media.id
+            for episode in media.videos ?? [] where episode.id == videoID {
+                let previous = ResumeTarget(id: media.id, season: episode.season, episode: episode.episode, videoId: episode.id)
+                let key = try invoke("resumeKey", ["target": try .encoded(previous)], as: Key.self)
+                if let entry = document.entries[key.key], entry.t > (merged.entries[result.key]?.t ?? 0) { merged.entries[result.key] = entry }
+            }
+        }
         if let cloud {
-            struct Key: Decodable { let key: String }
-            let result = try invoke("resumeKey", ["target": try .encoded(target)], as: Key.self)
             if cloud.t >= (merged.entries[result.key]?.t ?? 0) { merged.entries[result.key] = cloud }
         }
         return try invoke("resumePosition", ["target": try .encoded(target), "document": try .encoded(merged), "durationMs": .number(durationMs), "playback": .bool(playback), "prompt": .bool(prompt)], as: ResumeStart.self)
