@@ -1,0 +1,491 @@
+{
+  "schema": 1,
+  "reference": "0834340cec5531650bfe78cd628628702e636987",
+  "inputs": {
+    "src/lib/streams/plugins/manifest.ts": "f45b89c28dcf022ebb65400e6d94eee333d80a450de00935fd2a63d0ce346e1a",
+    "src/lib/streams/plugins/types.ts": "f81d773a2d015a4dcdbf031ba477515131c676fc4c01f1100690f408975121dc"
+  },
+  "urls": [
+    {
+      "input": "example.org",
+      "expected": {
+        "url": "https://example.org/manifest.json",
+        "candidates": ["https://example.org/manifest.json"],
+        "name": "example.org"
+      }
+    },
+    {
+      "input": " https://EXAMPLE.org:443/plugins/ ",
+      "expected": {
+        "url": "https://example.org/plugins/manifest.json",
+        "candidates": ["https://example.org/plugins/manifest.json"],
+        "name": "example.org"
+      }
+    },
+    {
+      "input": "example.org/REPO.JSON?key=owned#fragment",
+      "expected": {
+        "url": "https://example.org/REPO.JSON?key=owned",
+        "candidates": ["https://example.org/REPO.JSON?key=owned"],
+        "name": "example.org"
+      }
+    },
+    {
+      "input": "github.com/owned/repository",
+      "expected": {
+        "url": "https://raw.githubusercontent.com/owned/repository/HEAD/manifest.json",
+        "candidates": [
+          "https://raw.githubusercontent.com/owned/repository/main/manifest.json",
+          "https://raw.githubusercontent.com/owned/repository/master/manifest.json",
+          "https://raw.githubusercontent.com/owned/repository/HEAD/manifest.json"
+        ],
+        "name": "owned/repository"
+      }
+    },
+    {
+      "input": "https://github.com/owned/repository.git",
+      "expected": {
+        "url": "https://raw.githubusercontent.com/owned/repository/HEAD/manifest.json",
+        "candidates": [
+          "https://raw.githubusercontent.com/owned/repository/main/manifest.json",
+          "https://raw.githubusercontent.com/owned/repository/master/manifest.json",
+          "https://raw.githubusercontent.com/owned/repository/HEAD/manifest.json"
+        ],
+        "name": "owned/repository"
+      }
+    },
+    {
+      "input": "https://github.com/owned/repository/tree/develop/nested",
+      "expected": {
+        "url": "https://raw.githubusercontent.com/owned/repository/develop/nested/manifest.json",
+        "candidates": [
+          "https://raw.githubusercontent.com/owned/repository/develop/nested/manifest.json"
+        ],
+        "name": "owned/repository"
+      }
+    },
+    {
+      "input": "https://github.com/owned/repository/blob/main/list.json?raw=1#ignored",
+      "expected": {
+        "url": "https://raw.githubusercontent.com/owned/repository/main/list.json?raw=1",
+        "candidates": ["https://raw.githubusercontent.com/owned/repository/main/list.json?raw=1"],
+        "name": "owned/repository"
+      }
+    },
+    {
+      "input": "https://raw.githubusercontent.com/owned/repository/HEAD/manifest.json",
+      "expected": {
+        "url": "https://raw.githubusercontent.com/owned/repository/HEAD/manifest.json",
+        "candidates": [
+          "https://raw.githubusercontent.com/owned/repository/main/manifest.json",
+          "https://raw.githubusercontent.com/owned/repository/master/manifest.json",
+          "https://raw.githubusercontent.com/owned/repository/HEAD/manifest.json"
+        ],
+        "name": "owned/repository"
+      }
+    },
+    {
+      "input": "https://example.org/a/../plugins",
+      "expected": {
+        "url": "https://example.org/plugins/manifest.json",
+        "candidates": ["https://example.org/plugins/manifest.json"],
+        "name": "example.org"
+      }
+    },
+    {
+      "input": "https://example.org/a%20b?configured=true",
+      "expected": {
+        "url": "https://example.org/a%20b/manifest.json?configured=true",
+        "candidates": ["https://example.org/a%20b/manifest.json?configured=true"],
+        "name": "example.org"
+      }
+    },
+    {
+      "input": "",
+      "error": "only-https"
+    },
+    {
+      "input": "http://example.org/manifest.json",
+      "error": "only-https"
+    },
+    {
+      "input": "cloudstreamrepo://owned",
+      "error": "android-extensions"
+    },
+    {
+      "input": "https://",
+      "error": "only-https"
+    }
+  ],
+  "manifests": [
+    {
+      "input": {
+        "type": "stream",
+        "plugins": [
+          {
+            "id": "owned.one",
+            "name": " Owned One ",
+            "entry": "scripts/one.js",
+            "version": " 2.1 ",
+            "sha256": "ABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABAB",
+            "lang": [" en ", "", "ja", 8],
+            "types": ["FILM", "other", "movie"],
+            "idPrefixes": ["tmdb:"],
+            "hosts": ["CDN.Example.ORG"],
+            "settings": true,
+            "nsfw": true,
+            "platforms": ["ios", "desktop"],
+            "minHarbor": "0.9",
+            "timeoutMs": 90000
+          },
+          {
+            "id": "owned.two",
+            "name": "Owned Two",
+            "entry": "../two.js",
+            "version": 7,
+            "timeoutMs": -1,
+            "enabled": false,
+            "sha256": "invalid"
+          },
+          {
+            "id": "missing.name",
+            "entry": "missing.js"
+          },
+          null
+        ]
+      },
+      "url": "https://example.org/plugins/manifest.json",
+      "expected": {
+        "name": "example.org",
+        "format": "harbor",
+        "entries": [
+          {
+            "id": "owned.one",
+            "name": "Owned One",
+            "version": "2.1",
+            "entry": "https://example.org/plugins/scripts/one.js",
+            "sha256": "abababababababababababababababababababababababababababababababab",
+            "lang": [" en ", "ja"],
+            "types": ["movie", "series"],
+            "idPrefixes": ["tmdb:"],
+            "hosts": ["cdn.example.org"],
+            "settings": true,
+            "nsfw": true,
+            "enabled": true,
+            "platforms": ["ios", "desktop"],
+            "minHarbor": "0.9",
+            "timeoutMs": 60000,
+            "format": "harbor"
+          },
+          {
+            "id": "owned.two",
+            "name": "Owned Two",
+            "version": "0",
+            "entry": "https://example.org/two.js",
+            "lang": [],
+            "types": ["movie", "series"],
+            "idPrefixes": ["tt", "tmdb:"],
+            "hosts": [],
+            "settings": false,
+            "nsfw": false,
+            "enabled": false,
+            "format": "harbor"
+          }
+        ]
+      }
+    },
+    {
+      "input": {
+        "name": "Repository",
+        "homepage": " https://example.org ",
+        "scrapers": [
+          {
+            "filename": "folder/owned.js",
+            "version": "3",
+            "logo": "logo.png",
+            "contentLanguage": "es",
+            "supportedTypes": ["shows"],
+            "hasSettings": true,
+            "adult": true,
+            "supportedPlatforms": ["mobile"],
+            "supportedFormats": ["hls", "dash"],
+            "limited": true,
+            "notes": " owned note "
+          },
+          {
+            "id": "explicit",
+            "name": "Explicit",
+            "filename": "https://cdn.example.org/explicit.js",
+            "enabled": false
+          }
+        ]
+      },
+      "url": "https://example.org/plugins/manifest.json",
+      "expected": {
+        "name": "example.org",
+        "homepage": "https://example.org",
+        "format": "provider-script",
+        "entries": [
+          {
+            "id": "folder/owned",
+            "name": "folder/owned",
+            "version": "3",
+            "entry": "https://example.org/plugins/folder/owned.js",
+            "icon": "logo.png",
+            "lang": ["es"],
+            "types": ["series"],
+            "idPrefixes": ["tt", "tmdb:"],
+            "hosts": [],
+            "settings": true,
+            "nsfw": true,
+            "enabled": true,
+            "platforms": ["mobile"],
+            "format": "provider-script",
+            "note": "hls, dash · limited · owned note"
+          },
+          {
+            "id": "explicit",
+            "name": "Explicit",
+            "version": "0",
+            "entry": "https://cdn.example.org/explicit.js",
+            "lang": [],
+            "types": ["movie", "series"],
+            "idPrefixes": ["tt", "tmdb:"],
+            "hosts": [],
+            "settings": false,
+            "nsfw": false,
+            "enabled": false,
+            "format": "provider-script"
+          }
+        ]
+      }
+    },
+    {
+      "input": [
+        {
+          "filename": "folder/owned.js",
+          "version": "3",
+          "logo": "logo.png",
+          "contentLanguage": "es",
+          "supportedTypes": ["shows"],
+          "hasSettings": true,
+          "adult": true,
+          "supportedPlatforms": ["mobile"],
+          "supportedFormats": ["hls", "dash"],
+          "limited": true,
+          "notes": " owned note "
+        },
+        {
+          "id": "explicit",
+          "name": "Explicit",
+          "filename": "https://cdn.example.org/explicit.js",
+          "enabled": false
+        }
+      ],
+      "url": "https://example.org/plugins/manifest.json",
+      "expected": {
+        "name": "example.org",
+        "format": "provider-script",
+        "entries": [
+          {
+            "id": "folder/owned",
+            "name": "folder/owned",
+            "version": "3",
+            "entry": "https://example.org/plugins/folder/owned.js",
+            "icon": "logo.png",
+            "lang": ["es"],
+            "types": ["series"],
+            "idPrefixes": ["tt", "tmdb:"],
+            "hosts": [],
+            "settings": true,
+            "nsfw": true,
+            "enabled": true,
+            "platforms": ["mobile"],
+            "format": "provider-script",
+            "note": "hls, dash · limited · owned note"
+          },
+          {
+            "id": "explicit",
+            "name": "Explicit",
+            "version": "0",
+            "entry": "https://cdn.example.org/explicit.js",
+            "lang": [],
+            "types": ["movie", "series"],
+            "idPrefixes": ["tt", "tmdb:"],
+            "hosts": [],
+            "settings": false,
+            "nsfw": false,
+            "enabled": false,
+            "format": "provider-script"
+          }
+        ]
+      }
+    },
+    {
+      "input": [
+        {
+          "internalName": "owned.android",
+          "name": "Owned Android",
+          "url": "owned.cs3",
+          "apiVersion": 2,
+          "version": 5,
+          "status": 3,
+          "tvTypes": ["AnimeMovie", "Tv Series", "NSFW"],
+          "authors": ["One", "Two"],
+          "language": "en"
+        },
+        {
+          "internalName": "owned.android",
+          "url": "duplicate.cs3"
+        },
+        {
+          "url": "down.cs3?key=owned",
+          "status": 0
+        }
+      ],
+      "url": "https://example.org/plugins/manifest.json",
+      "expected": {
+        "name": "example.org",
+        "format": "android-extension",
+        "entries": [
+          {
+            "id": "owned.android",
+            "name": "Owned Android",
+            "version": "5",
+            "entry": "https://example.org/plugins/owned.cs3",
+            "author": "One, Two",
+            "lang": ["en"],
+            "types": ["movie", "series"],
+            "idPrefixes": ["tt", "tmdb:"],
+            "hosts": [],
+            "settings": false,
+            "nsfw": true,
+            "enabled": true,
+            "format": "android-extension",
+            "note": "beta · api 2"
+          },
+          {
+            "id": "down.cs3?key=owned",
+            "name": "down.cs3?key=owned",
+            "version": "0",
+            "entry": "https://example.org/plugins/down.cs3?key=owned",
+            "lang": [],
+            "types": ["movie", "series"],
+            "idPrefixes": ["tt", "tmdb:"],
+            "hosts": [],
+            "settings": false,
+            "nsfw": false,
+            "enabled": false,
+            "format": "android-extension",
+            "note": "down"
+          }
+        ],
+        "lists": []
+      }
+    },
+    {
+      "input": {
+        "name": "Native",
+        "pluginLists": [
+          "lists/one.json",
+          {
+            "url": "lists/one.json"
+          },
+          {
+            "url": "../two.json"
+          },
+          ""
+        ]
+      },
+      "url": "https://example.org/plugins/manifest.json",
+      "expected": {
+        "name": "Native",
+        "format": "android-extension",
+        "entries": [],
+        "lists": ["https://example.org/plugins/lists/one.json", "https://example.org/two.json"]
+      }
+    },
+    {
+      "input": {
+        "type": "ebook",
+        "plugins": []
+      },
+      "url": "https://example.org/plugins/manifest.json",
+      "error": "ebook-repo"
+    },
+    {
+      "input": {
+        "type": "manga",
+        "plugins": []
+      },
+      "url": "https://example.org/plugins/manifest.json",
+      "error": "manga-repo"
+    },
+    {
+      "input": {
+        "id": "owned.addon",
+        "version": "1",
+        "resources": ["stream"],
+        "types": ["movie"]
+      },
+      "url": "https://example.org/plugins/manifest.json",
+      "error": "stremio-addon"
+    },
+    {
+      "input": {
+        "sources": [
+          {
+            "sourceCodeUrl": "owned.js"
+          }
+        ]
+      },
+      "url": "https://example.org/plugins/manifest.json",
+      "error": "manga-repo"
+    },
+    {
+      "input": {
+        "mangayomiSources": [
+          {
+            "pkgPath": "owned.js"
+          }
+        ]
+      },
+      "url": "https://example.org/plugins/manifest.json",
+      "error": "manga-repo"
+    },
+    {
+      "input": {
+        "type": "ebook"
+      },
+      "url": "https://example.org/plugins/manifest.json",
+      "error": "manga-repo"
+    },
+    {
+      "input": {},
+      "url": "https://example.org/plugins/manifest.json",
+      "error": "not-a-repo"
+    },
+    {
+      "input": [],
+      "url": "https://example.org/plugins/manifest.json",
+      "error": "not-a-repo"
+    }
+  ],
+  "ids": [
+    {
+      "repository": "https://example.org/plugins/manifest.json",
+      "entry": "owned.entry",
+      "expected": "plugin:cm1j2z.owned.entry"
+    },
+    {
+      "repository": "https://example.org/📚/manifest.json",
+      "entry": "owned.entry",
+      "expected": "plugin:1uwwoca.owned.entry"
+    },
+    {
+      "repository": "https://example.org/café/manifest.json",
+      "entry": "owned.entry",
+      "expected": "plugin:1c00wvg.owned.entry"
+    }
+  ]
+}
