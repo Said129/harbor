@@ -29,6 +29,7 @@ struct HarborApp: App {
 
 @MainActor private struct HarborRootView: View {
     @Bindable var model: AppModel
+    @State private var profileForeground = ProfileForegroundCycle()
     @AppStorage("uiLanguage") private var uiLanguage = "es"
     @Environment(\.scenePhase) private var scenePhase
     var body: some View {
@@ -65,8 +66,10 @@ struct HarborApp: App {
     }
     private var lifecycle: some View {
         persistence
-                .task { await model.start() }
-                .onChange(of: scenePhase) { _, phase in if phase == .active { model.requestProfilePromptOnReturn() } }
+                .task { _ = profileForeground.observe(active: scenePhase == .active); await model.start() }
+                .onChange(of: scenePhase) { _, phase in
+                    if profileForeground.observe(active: phase == .active) { model.requestProfilePromptOnReturn() }
+                }
                 .task(id: String(model.automaticProfilePromptPending) + "|" + String(describing: scenePhase) + "|" + String(model.profileContext.playback.hasActivePlayback)) {
                     await presentAutomaticProfilePrompt()
                 }

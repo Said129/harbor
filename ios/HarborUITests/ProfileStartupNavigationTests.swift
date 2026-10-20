@@ -57,6 +57,7 @@ import XCTest
         let normal = "Inicio " + name, account = app.buttons["main-account"].firstMatch
         waitValue(normal, element: account)
         XCTAssertFalse(profile(normal, app: app).exists)
+        capture("startup-\(device)-cold-default")
         XCUIDevice.shared.press(.home); app.activate()
         let choice = profile(normal, app: app)
         XCTAssertTrue(choice.waitForExistence(timeout: 20)); reveal(choice, app: app)

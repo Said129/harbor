@@ -1,5 +1,17 @@
 import Foundation
 
+/// Initial scene activation belongs to launch; later focus cycles belong to return.
+struct ProfileForegroundCycle: Sendable {
+    private var activated = false
+    private var departed = false
+    mutating func observe(active: Bool) -> Bool {
+        guard active else { if activated { departed = true }; return false }
+        let returning = activated && departed
+        activated = true; departed = false
+        return returning
+    }
+}
+
 struct ProfileLaunchPreferences: Equatable, Sendable {
     enum Interval: String, CaseIterable, Sendable {
         case launch, fifteenMinutes = "15m", thirtyMinutes = "30m", never
