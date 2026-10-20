@@ -44,7 +44,7 @@ where
     let Some(runtime) = runtime() else {
         return 0;
     };
-    let Ok(id) = NEXT_ID.fetch_update(Ordering::Relaxed, Ordering::Relaxed, |id| id.checked_add(1))
+    let Ok(id) = NEXT_ID.try_update(Ordering::Relaxed, Ordering::Relaxed, |id| id.checked_add(1))
     else {
         return 0;
     };

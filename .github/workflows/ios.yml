@@ -309,7 +309,7 @@ jobs:
           python3 scripts/ios/prepare-plugin-network-selection.py
           cargo check --manifest-path harbor-ios-bridge/Cargo.toml --locked 2>&1 | tee ios/build/logs/plugin-network-rust-check.log
           set +e
-          cargo test --manifest-path harbor-ios-bridge/Cargo.toml --locked --lib plugin_ -- --test-threads=1 2>&1 | tee ios/build/logs/plugin-network-rust-tests.log
+          cargo test --manifest-path harbor-ios-bridge/Cargo.toml --locked --lib plugin_network::tests:: -- --test-threads=1 2>&1 | tee ios/build/logs/plugin-network-rust-tests.log
           test_status=${PIPESTATUS[0]}
           set -e
           python3 scripts/ios/record-plugin-network-rust.py
@@ -459,7 +459,7 @@ jobs:
           if [[ "${{ inputs.validation_scope }}" == "plugin-network" ]]; then
             selection=()
             while IFS= read -r identifier; do selection+=("-only-testing:$identifier"); done < ios/build/plugin-network-selection.txt
-            test ${#selection[@]} -eq 9
+            test ${#selection[@]} -eq 13
           elif [[ "${{ inputs.validation_scope }}" == "plugin-followup" ]]; then
             selection=()
             while IFS= read -r identifier; do selection+=("-only-testing:$identifier"); done < ios/build/plugin-followup-selection.txt
@@ -559,9 +559,9 @@ jobs:
             fi
           fi
           xcodebuild -project ios/Harbor.xcodeproj -scheme Harbor -configuration Debug -destination "platform=iOS Simulator,id=$IOS_SIMULATOR,arch=$IOS_SIMULATOR_ARCH" -derivedDataPath ios/build/DerivedData -clonedSourcePackagesDirPath ios/build/SourcePackages -resultBundlePath ios/build/Tests.xcresult "${selection[@]}" -parallel-testing-enabled NO CODE_SIGNING_ALLOWED=YES CODE_SIGN_IDENTITY=- test 2>&1 | tee ios/build/logs/tests.log
-      - name: Authenticate the nine actual native network model results
+      - name: Authenticate the thirteen actual native network model results
         if: ${{ always() && inputs.validation_scope == 'plugin-network' && (steps.offline_tests.conclusion == 'success' || steps.offline_tests.conclusion == 'failure') }}
-        run: python3 scripts/ios/record-profile-model-results.py --bundle ios/build/Tests.xcresult --expected ios/build/preserved-plugin-network.json --count 9 --output ios/build/canonical/PluginNetworkModels.json
+        run: python3 scripts/ios/record-profile-model-results.py --bundle ios/build/Tests.xcresult --expected ios/build/preserved-plugin-network.json --count 13 --output ios/build/canonical/PluginNetworkModels.json
       - name: Run the one new native TLS and HTTP2 contract
         id: plugin_network_public
         if: ${{ always() && inputs.validation_scope == 'plugin-network' && (steps.offline_tests.conclusion == 'success' || steps.offline_tests.conclusion == 'failure') }}
