@@ -73,6 +73,34 @@ final class DetailModel {
     private var resolutionRequest = UUID()
     private var sourceContinuation: SourceContinuation?
     private var streamAddons: [Addon] = []
+    private var seasonMetadataRequest = UUID()
+    private var loadedSeasonMetadataKey: String?
+
+    func loadSeasonArtworkMetadata(configuration: MetadataConfiguration, owner: String, library: LibraryModel,
+        fetch: (@Sendable (Media, MetadataConfiguration) async throws -> Media)? = nil) async {
+        let request = UUID(); seasonMetadataRequest = request
+        guard metadataReady, owner == library.owner, franchiseChoices.count > 1,
+              !configuration.tmdbKey.isEmpty else { return }
+        let selected = media, context = contextRevision()
+        let imdb = selected.imdbID ?? selected.videos?.compactMap(\.imdbID).first ?? selected.id
+        guard imdb.range(of: "^tt[0-9]{7,12}$", options: .regularExpression) != nil else { return }
+        let key = selected.identity + "|" + imdb + "|" + configuration.language + "|" + EBookShelf.hash(configuration.tmdbKey)
+        guard key != loadedSeasonMetadataKey else { return }
+        var lookup = selected; lookup.id = imdb
+        do {
+            let enriched: Media
+            if let fetch { enriched = try await fetch(lookup, configuration) }
+            else { enriched = try await TMDBService().detail(lookup, configuration: configuration) }
+            try Task.checkCancellation()
+            guard seasonMetadataRequest == request, owner == library.owner, contextRevision() == context,
+                  media.identity == selected.identity, enriched.id == imdb, let supplied = enriched.details,
+                  supplied.overviewLanguage == configuration.language else { return }
+            var details = media.details ?? MediaDetails()
+            details.overviewLanguage = supplied.overviewLanguage; details.localizedOverview = supplied.localizedOverview
+            details.seasonOverviews = supplied.seasonOverviews
+            media.details = details; loadedSeasonMetadataKey = key
+        } catch { return } // Optional artwork metadata must not delay or prevent playback.
+    }
 
     func prepareSourceChange(_ session: PlaybackSession, snapshot: ResumeSnapshot?) {
         sourceContinuation = snapshot.map { SourceContinuation(target: session.target, owner: session.owner, snapshot: $0, advanceStartedAtMs: session.advanceStartedAtMs ?? session.startMs) }

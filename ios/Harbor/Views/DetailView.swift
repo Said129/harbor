@@ -18,6 +18,8 @@ struct DetailView: View {
     @State private var downloading = false
     @State private var downloadMessage: String?
     @State private var logoLoaded = false
+    @State private var artworkSection: EpisodeOrderSection?
+    @State private var artworkSectionOwner: String?
     @State private var actionHint: String?
     @State private var actionHintRevision = 0
     @State private var showConnecting = false
@@ -35,7 +37,7 @@ struct DetailView: View {
             LazyVStack(alignment: .leading, spacing: 24) {
                 hero
                 VStack(alignment: .leading, spacing: 16) {
-                    Text(model.media.description ?? "").font(HarborTheme.font(16)).lineSpacing(5).foregroundStyle(HarborTheme.ink.opacity(0.7)).textSelection(.enabled).accessibilityIdentifier("detail-description")
+                    Text(seasonArtwork?.description ?? model.media.description ?? "").font(HarborTheme.font(16)).lineSpacing(5).foregroundStyle(HarborTheme.ink.opacity(0.7)).textSelection(.enabled).accessibilityIdentifier("detail-description")
                     if let error = app.library.error { Text(error).font(.caption).foregroundStyle(.orange) }
                     if let error = model.error { Text(error).foregroundStyle(.orange) }
                     if model.loading { ProgressView() }
@@ -47,6 +49,7 @@ struct DetailView: View {
                         selectOrder: { episodeOrderSetting = $0.rawValue }, richOrderPanel: richEpisodeOrderPanel, orderLoading: model.episodeOrderLoading,
                         franchise: model.franchiseChoices, activeFranchiseID: model.activeFranchiseEntryID, selectFranchise: selectFranchise,
                         franchiseLoading: model.loadingFranchise || model.loadingMetadata, loadingExtras: model.loadingExtraEntries,
+                        selectSeasonArtwork: { section in artworkSectionOwner = model.media.identity; artworkSection = section },
                         playExtra: { openExtra($0) }, toggleExtraWatched: toggleExtraWatched,
                         play: { openStreams($0, automatic: StreamPreferences.shared.automatic) })
                         if let source = model.episodeMetadataURL {
@@ -78,7 +81,7 @@ struct DetailView: View {
         .task(id: "franchise:\(model.media.identity):\(model.canLoadFranchise)") {
             await model.loadFranchise(owner: app.library.owner, library: app.library)
         }
-        .onChange(of: model.media.logo) { _, _ in logoLoaded = false }
+        .onChange(of: heroLogo) { _, _ in logoLoaded = false }
         .task(id: "\(model.media.identity):\(model.loadingMetadata):\(model.media.videos?.count ?? 0)") {
             await model.loadAnimeEpisodes(owner: app.library.owner, library: app.library)
         }
@@ -88,6 +91,9 @@ struct DetailView: View {
         .task(id: episodePoolTaskID) {
             await model.loadFranchiseEpisodes(language: MetadataPreferences.shared.language, owner: app.library.owner, library: app.library)
         }
+        .task(id: seasonMetadataTaskID) {
+            await model.loadSeasonArtworkMetadata(configuration: MetadataPreferences.shared.configuration(), owner: app.library.owner, library: app.library)
+        }
         .onChange(of: model.playback?.id) { _, _ in
             if let session = model.playback, session.owner == app.library.owner { app.library.discovery.track(.play, media: session.media ?? model.media) }
         }
@@ -95,6 +101,7 @@ struct DetailView: View {
             selectionRevision &+= 1; actionHintRevision &+= 1
             resolutionTask?.cancel(); selectedEpisode = nil; pendingEpisode = nil; pendingEpisodeOwner = nil
             extraTask?.cancel(); streamSelection = nil; pendingExtra = nil; resolvingExtra = false
+            artworkSection = nil; artworkSectionOwner = nil
             showStreams = false; autoplayEpisode = false; continuingEpisode = false; showConnecting = false
             downloadMessage = nil; actionHint = nil
         }
@@ -150,6 +157,10 @@ struct DetailView: View {
     private var episodePoolTaskID: String {
         let entries = model.franchiseChoices.map(\.id).joined(separator: ",")
         return "pool:\(model.media.identity):\(model.canLoadEpisodePool):\(model.activeFranchiseEntryID ?? ""):\(entries):\(MetadataPreferences.shared.language)"
+    }
+    private var seasonMetadataTaskID: String {
+        [model.media.identity, model.media.imdbID ?? "", model.media.videos?.first?.imdbID ?? "", String(model.franchiseChoices.count),
+            MetadataPreferences.shared.language, EBookShelf.hash(MetadataPreferences.shared.tmdbKey)].joined(separator: "|")
     }
     private var streamPicker: StreamPickerView {
         StreamPickerView(model: model, addons: app.addons, episode: selectedEpisode, selection: streamSelection, downloading: downloading, downloadMessage: downloadMessage,
@@ -230,9 +241,19 @@ struct DetailView: View {
         }
     }
     private func startDownload(_ offer: StreamOffer) { Task { await download(offer) } }
+    private var seasonArtwork: AnimeSeasonArtwork? {
+        guard artworkSectionOwner == model.media.identity, let section = artworkSection else { return nil }
+        let entries = model.franchiseChoices.map { entry in
+            var value = entry; value.current = entry.id == (model.activeFranchiseEntryID ?? model.media.id); return value
+        }
+        guard var entry = AnimeSeasonArtwork.entry(from: section.from, franchise: entries, anchorID: model.activeFranchiseEntryID ?? model.media.id) else { return nil }
+        entry.media.logo = model.episodePool?.sources[entry.id]?.logo ?? entry.media.logo
+        return AnimeSeasonArtwork.presentation(entry, root: model.media, episodes: model.episodePool?.episodes ?? model.media.videos ?? [], language: MetadataPreferences.shared.language)
+    }
+    private var heroLogo: String? { seasonArtwork?.logo ?? model.media.logo }
     private var hero: some View {
         ZStack(alignment: .bottomLeading) {
-            Artwork(url: model.media.background, fallback: model.media.fallbackBackground, fallbacks: [model.media.poster].compactMap { $0 }, maxPixels: 1400).frame(height: 370).clipped()
+            Artwork(url: seasonArtwork?.background ?? model.media.background, fallback: model.media.fallbackBackground, fallbacks: [model.media.poster].compactMap { $0 }, maxPixels: 1400).frame(height: 370).clipped()
             LinearGradient(colors: [.black.opacity(0.12), HarborTheme.background.opacity(0.45), HarborTheme.background], startPoint: .top, endPoint: .bottom).allowsHitTesting(false)
             VStack(alignment: .leading, spacing: 18) {
                 if let tagline = model.media.details?.tagline, !tagline.isEmpty { Text(tagline.uppercased()).font(HarborTheme.font(10, weight: .medium)).tracking(2).foregroundStyle(.secondary).lineLimit(2) }
@@ -254,7 +275,7 @@ struct DetailView: View {
     private var titlePlate: some View {
         ZStack(alignment: .bottomLeading) {
             Text(model.media.name).font(.custom("Fraunces-9ptBlack", size: 34).weight(.medium)).lineLimit(3).foregroundStyle(logoLoaded ? Color.clear : HarborTheme.ink).accessibilityIdentifier("detail-title").accessibilityAddTraits(.isHeader)
-            if let logo = model.media.logo { Artwork(url: logo, fit: .fit, maxPixels: 800, showsPlaceholder: false, onImageAvailability: { logoLoaded = $0 }).frame(maxWidth: 310).frame(height: 96).accessibilityHidden(true) }
+            if let logo = heroLogo { Artwork(url: logo, fit: .fit, maxPixels: 800, showsPlaceholder: false, onImageAvailability: { logoLoaded = $0 }).frame(maxWidth: 310).frame(height: 96).accessibilityHidden(true) }
         }.frame(minHeight: 96, alignment: .bottomLeading)
     }
     private var primaryActions: some View {

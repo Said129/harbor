@@ -15,6 +15,7 @@ struct EpisodeList: View {
     var selectFranchise: (AnimeFranchiseEntry) -> Void = { _ in }
     var franchiseLoading = false
     var loadingExtras = Set<String>()
+    var selectSeasonArtwork: (EpisodeOrderSection?) -> Void = { _ in }
     var playExtra: (AnimeFranchiseExtra) -> Void = { _ in }
     var toggleExtraWatched: (AnimeFranchiseExtra) -> Void = { _ in }
     let play: (Episode?) -> Void
@@ -68,6 +69,9 @@ struct EpisodeList: View {
                 }
             }
         }.animation(reduceMotion ? nil : .easeOut(duration: 0.2), value: revealed)
+            .task(id: [media.identity, ordering?.kind.rawValue ?? "", currentSection?.id ?? "", currentSection?.from ?? "", currentSection?.to ?? ""].joined(separator: "|")) {
+                selectSeasonArtwork(currentSection)
+            }
             .task(id: media.identity) { if !seasons.contains(season) { season = seasons.first(where: { $0 > 0 }) ?? seasons.first ?? 1 } }
             .onChange(of: seasons) { _, _ in if !seasons.contains(season) { season = seasons.first(where: { $0 > 0 }) ?? seasons.first ?? 1 } }
             .onChange(of: sections.map(\.id)) { _, ids in

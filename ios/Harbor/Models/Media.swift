@@ -87,6 +87,9 @@ struct MediaDetails: Codable, Hashable, Sendable {
         }
     }
     var tagline: String?
+    var overviewLanguage: String?
+    var localizedOverview: String?
+    var seasonOverviews: [Int: String]?
     var status: String?
     var language: String?
     var countries: [String] = []

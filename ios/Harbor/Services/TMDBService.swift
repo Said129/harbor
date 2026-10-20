@@ -109,6 +109,7 @@ struct TMDBService: Sendable {
         result.director = value["credits"]["crew"].array.filter { $0["job"].string == "Director" }.compactMap { $0["name"].string }
         if let minutes = value["runtime"].integer { result.runtime = "\(minutes) min" }
         var details = MediaDetails()
+        LocalizedMetadataText.apply(value, language: configuration.language, to: &details)
         details.tagline = value["tagline"].string
         details.status = value["status"].string
         details.language = value["original_language"].string
