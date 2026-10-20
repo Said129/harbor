@@ -1,9 +1,9 @@
 """Select new network behavior, its three affected worker paths and the actual CRLF failure."""
 import json
+import hashlib
 import os
 from pathlib import Path
 import re
-import subprocess
 
 methods = re.findall(r'\bfunc (test\w+)\(', Path('ios/HarborTests/HarborNativeNetworkTests.swift').read_text('utf-8'))
 assert len(methods) == len(set(methods)) == 5
@@ -21,7 +21,8 @@ cases += ['HarborTests.HarborPluginGRPCTests/testMessagesTrailersStatusAndPercen
 assert len(cases) == len(set(cases)) == 13
 previous_source = '78e6adef5168e14fb12005f13790430f2bcd4542'
 http_source = Path('harbor-ios-bridge/src/plugin_http.rs').read_bytes()
-assert http_source.replace(b'\r\n', b'\n') == subprocess.check_output(['git', 'show', previous_source + ':harbor-ios-bridge/src/plugin_http.rs']).replace(b'\r\n', b'\n')
+previous_http_sha256 = 'b3ae8d6e4c69325ba37dcab0d1597d7f1fe3c594b3aba318cb19b9d19c977a56'
+assert hashlib.sha256(http_source.replace(b'\r\n', b'\n')).hexdigest() == previous_http_sha256
 rust_cases = []
 for module in ['plugin_network']:
     source = Path(f'harbor-ios-bridge/src/{module}.rs').read_text('utf-8')
@@ -33,6 +34,7 @@ plan = dict(source=os.environ.get('GITHUB_SHA', 'working-tree'), selected_case_c
     selected_rust_cases=rust_cases, public_case=live, new_native_cases=5, affected_worker_cases=3, failed_crlf_case=1,
     preserved_runs=[39414339731, 39417458336, 39504615361, 39510296663], unrelated_approved_cases_selected=False,
     retained_http_cases=6, retained_rust_source=previous_source, new_repository_cases=4,
+    retained_http_source_sha256=previous_http_sha256,
     approved_profile_ui_repeated=False, all_preexisting_rust_tests_repeated=False,
     plugin_room_complete=False, full_desktop_parity_complete=False, ipa_requested=False)
 directory = Path('ios/build'); directory.mkdir(parents=True, exist_ok=True)
