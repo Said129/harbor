@@ -1,5 +1,7 @@
 # Season artwork — native implementation awaiting Apple execution
 
+The initial run 39408467770/source `c7479e9` was stopped before its test step began after the preceding source's shared `DetailModel` compiler error was proven. Its source contains that same faulty assignment. The repair and the eight unexecuted cases are included in `mobile-integration`; no actual result is discarded or promoted to a pass by cancelling the redundant compilation.
+
 The pinned Desktop 0.9.132 reference connects `anime-season-art.ts`, the selected TVDB season, and `detail.tsx` through `onSeasonArt`. This increment ports that presentation behavior. Selecting a season updates the background, its available logo and its synopsis while keeping the actual root media, stream IDs, watched arrays and resume identities intact. The season selection belongs to the open detail view and does not mutate the account library.
 
 The native matcher follows the reference: require multiple franchise entries and a usable season date, ignore the current entry and side formats, require a background, and choose the nearest start date within 150 days. A year-only date means June 30. Ties retain franchise order; the anchor entry cannot replace its own presentation. Current flags are projected from the actively selected franchise entry so switching back is supported. Selecting another order or a season without a suitable match restores the root presentation. A logo already supplied by the resolved source metadata is reused when available.

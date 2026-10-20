@@ -245,7 +245,7 @@ final class DetailModel {
             return MediaPlaybackSelection(media: source, episode: episode)
         } catch is CancellationError { return nil }
         catch {
-            if !Task.isCancelled, owner == library.owner, contextRevision() == context, media.identity == anchor { error = safeMessage(error) }
+            if !Task.isCancelled, owner == library.owner, contextRevision() == context, media.identity == anchor { self.error = safeMessage(error) }
             return nil
         }
     }
