@@ -24,7 +24,15 @@ El inventario reproducible de esta referencia se registra por separado de las ma
 
 Orden de trabajo: continuidad y episodios; cuenta y sincronización; fuentes y plugins; reproducción y subtítulos; biblioteca, descubrimiento y personalización; TV/VOD y deportes; música y lectura; almacenamiento, copias, avisos y ayuda. Esta agrupación organiza el trabajo y no reduce el alcance.
 
-### Estado observado el 20 de octubre, 10:18 UTC
+### Actualización del 21 de octubre
+
+La integración `679b6290e55a19f0ae75c29e883304c6f19b3aa2` conserva 24 casos nativos aprobados y tres aprobaciones adicionales: consulta pública de película, preparación del perfil y regreso de iPhone. También dejó tres casos fallidos y tres cierres por una expresión regular al procesar traducciones. Las tres imágenes originales del regreso se revisaron; las animaciones y la validación física siguen abiertas. El catálogo de plugins `fbdb2c62bae375b9df45d1a8987a1e9f50b8341b` aprobó sus ocho casos nuevos, con una advertencia de concurrencia pendiente de recompilar.
+
+La fuente `a488db07303df8a59993a42abc85c494dfc3efd4` incorpora los arreglos de esos fallos, la operación explícita de reinicio de reproducción, la corrección de la advertencia y el codec gRPC. La [validación 39504615361](https://github.com/Said129/harbor/actions/runs/39504615361), iniciada una sola vez, selecciona seis casos fallidos o cerrados, seis nuevos y uno afectado; todavía no tiene resultados. Se conservan las 35 aprobaciones recientes de los dos bloques anteriores. [Resultados, causas y límites](PLUGIN_FOLLOWUP_0_9_132.md).
+
+Plugins aún necesita transporte de red real, gestor, productores y pantallas. Continúan todos los demás pendientes compatibles de funciones, sincronización, interfaces y animaciones. No hay una IPA nueva ni un porcentaje global auditado. El registro siguiente conserva la historia de los incrementos y queda sustituido por esta actualización en los puntos que todavía figuraban como pendientes.
+
+### Registro anterior, 20 de octubre, 10:18 UTC
 
 Los apartados posteriores conservan la historia de cada incremento. Este estado sustituye sus resultados que todavía figuraban como pendientes:
 
