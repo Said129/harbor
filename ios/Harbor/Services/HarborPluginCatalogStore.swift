@@ -35,13 +35,14 @@ struct HarborInstalledStreamPlugin: Codable, Equatable, Sendable, Identifiable {
     // Password values live in the owner-bound Keychain, never this document.
     var settingsValues: [String: JSONValue] = [:]
     var secretKeys: [String] = []
+    var secretRevision: String? = nil
     var autoPaused = false
     var failures = 0
     var listed = true
     var filesChanged = false
     var updateVersion: String?
 
-    var runnable: Bool { enabled && !repoDisabled && !autoPaused && entry.format != .androidExtension }
+    var runnable: Bool { enabled && !repoDisabled && !autoPaused && listed && entry.format != .androidExtension }
 }
 
 struct HarborPluginCatalogDocument: Codable, Equatable, Sendable {
@@ -132,6 +133,7 @@ actor HarborPluginCatalogStore {
         installed.previous = prior.map { .init(version: $0.entry.version, code: $0.code, hash: $0.hash, etag: $0.etag, sha256: $0.entry.sha256) }
         installed.learnedHosts = prior?.learnedHosts ?? []; installed.limitHosts = prior?.limitHosts ?? false
         installed.settingsValues = prior?.settingsValues ?? [:]; installed.secretKeys = prior?.secretKeys ?? []
+        installed.secretRevision = prior?.secretRevision
         if installed.entry.icon == nil { installed.entry.icon = prior?.entry.icon }
         next.plugins.removeAll { $0.id == id }; next.plugins.append(installed)
         try commit(next)
@@ -158,6 +160,16 @@ actor HarborPluginCatalogStore {
 
     func removePlugin(_ id: String, revision: UInt64) throws {
         var next = try current(revision); next.plugins.removeAll { $0.id == id }; try commit(next)
+    }
+
+    func saveSettings(_ id: String, values: [String: JSONValue], secretKeys: [String], secretRevision: String?, revision: UInt64) throws {
+        var next = try current(revision)
+        guard let index = next.plugins.firstIndex(where: { $0.id == id }) else { throw HarborPluginRepositoryError("plugin-not-installed") }
+        guard Set(secretKeys).count == secretKeys.count, secretKeys.allSatisfy({ values[$0] == nil }),
+              secretKeys.isEmpty || !(secretRevision ?? "").isEmpty else { throw HarborPluginRepositoryError("plugin-settings") }
+        next.plugins[index].settingsValues = values; next.plugins[index].secretKeys = secretKeys
+        next.plugins[index].secretRevision = secretRevision
+        try commit(next)
     }
 
     func removeRepository(_ url: String, revision: UInt64) throws {

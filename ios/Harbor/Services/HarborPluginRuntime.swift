@@ -80,7 +80,7 @@ private struct PluginRuntimeAssets: Decodable {
     private let source: String
     private let configuration: JSONValue
     private let format: HarborPluginCodeFormat
-    private let pluginID: String
+    private let sourceID: String
     private let name: String
     private let instance = UUID().uuidString
     private let messageHandler = PluginMessageHandler()
@@ -93,8 +93,9 @@ private struct PluginRuntimeAssets: Decodable {
     private(set) var logs: [String] = []
 
     init(id: String, name: String, source: String, format: HarborPluginCodeFormat, configuration: JSONValue = .object([:]),
-        scope: PluginExecutionScope, currentScope: @escaping @MainActor () -> PluginExecutionScope, transport: any HarborPluginHostTransport) {
-        self.pluginID = id; self.name = name; self.source = source; self.format = format; self.configuration = configuration
+        scope: PluginExecutionScope, currentScope: @escaping @MainActor () -> PluginExecutionScope, transport: any HarborPluginHostTransport, sourceID: String? = nil) {
+        self.name = name; self.source = source; self.format = format; self.configuration = configuration
+        self.sourceID = sourceID ?? id
         self.scope = scope; self.currentScope = currentScope; self.transport = transport
         super.init(); messageHandler.runtime = self
     }
@@ -218,7 +219,7 @@ private struct PluginRuntimeAssets: Decodable {
         switch message["type"].string {
         case "hostReady":
             send("initialize", .object(["source": .string(source), "format": .string(format.rawValue), "configuration": configuration,
-                "meta": .object(["id": .string(pluginID), "name": .string(name), "settings": configuration])]))
+                "meta": .object(["id": .string(sourceID), "name": .string(name), "settings": configuration])]))
         case "ready": finish("ready", result: .success(message["meta"]))
         case "initError", "fatal": fail(HarborPluginRuntimeError("plugin-runtime", message["error"].string ?? ""))
         case "result": if let id = message["id"].string { finish(id, result: .success(message["value"])) }
