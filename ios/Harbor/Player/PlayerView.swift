@@ -233,13 +233,21 @@ struct PlayerView: View {
 
     @ViewBuilder private var episodePanel: some View {
         if let media {
-            PlayerEpisodesView(media: media, current: session.target, library: library, episodeOrder: episodeOrder, episodePool: episodePool,
-                loadingExtraEntries: loadingExtraEntries, playExtra: changeExtra == nil ? nil : requestExtra, toggleExtraWatched: toggleExtraWatched,
-                canRestart: canRestartEpisode, restart: restartEpisode, close: { showEpisodes = false }) { episode in
-                pendingEpisode = episode
-                showEpisodes = false
-            }.tint(HarborTheme.accent).preferredColorScheme(.dark)
+            makeEpisodePanel(media).tint(HarborTheme.accent).preferredColorScheme(.dark)
         }
+    }
+
+    private var extraSelectionAction: ((AnimeFranchiseExtra) -> Void)? {
+        guard changeExtra != nil else { return nil }
+        return { extra in requestExtra(extra) }
+    }
+
+    private func makeEpisodePanel(_ media: Media) -> PlayerEpisodesView {
+        PlayerEpisodesView(media: media, current: session.target, library: library, episodeOrder: episodeOrder, episodePool: episodePool,
+            loadingExtraEntries: loadingExtraEntries, playExtra: extraSelectionAction, toggleExtraWatched: toggleExtraWatched,
+            canRestart: canRestartEpisode, restart: { restartEpisode() }, close: { showEpisodes = false }, play: { episode in
+                pendingEpisode = episode; showEpisodes = false
+            })
     }
 
     private func withSkipIntro<V: View>(_ content: V) -> some View {

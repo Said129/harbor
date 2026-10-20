@@ -422,7 +422,7 @@ jobs:
           if [[ "${{ inputs.validation_scope }}" == "mobile-integration" ]]; then
             selection=()
             while IFS= read -r identifier; do selection+=("-only-testing:$identifier"); done < ios/build/mobile-integration-selection.txt
-            test ${#selection[@]} -eq 23
+            test ${#selection[@]} -eq 30
           elif [[ "${{ inputs.validation_scope }}" == "profile-return" ]]; then
             selection=()
             while IFS= read -r identifier; do selection+=("-only-testing:$identifier"); done < ios/build/profile-return-selection.txt
@@ -510,9 +510,9 @@ jobs:
             fi
           fi
           xcodebuild -project ios/Harbor.xcodeproj -scheme Harbor -configuration Debug -destination "platform=iOS Simulator,id=$IOS_SIMULATOR,arch=$IOS_SIMULATOR_ARCH" -derivedDataPath ios/build/DerivedData -clonedSourcePackagesDirPath ios/build/SourcePackages -resultBundlePath ios/build/Tests.xcresult "${selection[@]}" -parallel-testing-enabled NO CODE_SIGNING_ALLOWED=YES CODE_SIGN_IDENTITY=- test 2>&1 | tee ios/build/logs/tests.log
-      - name: Authenticate the 23 actual selected integration results
+      - name: Authenticate the 30 actual selected integration results
         if: ${{ always() && inputs.validation_scope == 'mobile-integration' && (steps.offline_tests.conclusion == 'success' || steps.offline_tests.conclusion == 'failure') }}
-        run: python3 scripts/ios/record-profile-model-results.py --bundle ios/build/Tests.xcresult --expected ios/build/preserved-mobile-integration.json --count 23 --output ios/build/canonical/MobileIntegrationModels.json
+        run: python3 scripts/ios/record-profile-model-results.py --bundle ios/build/Tests.xcresult --expected ios/build/preserved-mobile-integration.json --count 30 --output ios/build/canonical/MobileIntegrationModels.json
       - name: Authenticate the two actual foreground lifecycle results
         if: ${{ always() && inputs.validation_scope == 'profile-return' && (steps.offline_tests.conclusion == 'success' || steps.offline_tests.conclusion == 'failure') }}
         run: python3 scripts/ios/record-profile-model-results.py --bundle ios/build/Tests.xcresult --expected ios/build/preserved-profile-return.json --count 2 --output ios/build/canonical/ProfileForegroundModels.json
