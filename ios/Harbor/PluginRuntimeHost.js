@@ -6,7 +6,7 @@
     let worker = null;
     let sourceURL = null;
     const encoder = new TextEncoder();
-    const maximum = 8 * 1024 * 1024;
+    const maximum = 64 * 1024 * 1024;
     function post(message) {
       const value = JSON.stringify({ ...message, instance });
       if (encoder.encode(value).byteLength > maximum) throw new Error("plugin message too large");

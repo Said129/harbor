@@ -191,7 +191,7 @@ private struct PluginRuntimeAssets: Decodable {
 
     private func json(_ value: JSONValue) throws -> String {
         let data = try JSONEncoder().encode(value)
-        guard data.count <= 8 * 1024 * 1024, let text = String(data: data, encoding: .utf8) else { throw HarborPluginRuntimeError("plugin-message") }
+        guard data.count <= 64 * 1024 * 1024, let text = String(data: data, encoding: .utf8) else { throw HarborPluginRuntimeError("plugin-message") }
         return text
     }
 
@@ -212,7 +212,7 @@ private struct PluginRuntimeAssets: Decodable {
     }
 
     fileprivate func receive(_ text: String) {
-        guard text.utf8.count <= 8 * 1024 * 1024, let data = text.data(using: .utf8),
+        guard text.utf8.count <= 64 * 1024 * 1024, let data = text.data(using: .utf8),
               let message = try? JSONDecoder().decode(JSONValue.self, from: data), message["instance"].string == instance else { return }
         do { try validate() } catch { return }
         switch message["type"].string {
@@ -244,12 +244,27 @@ private struct PluginRuntimeAssets: Decodable {
                 do {
                     let value = try await PluginBridgeGate.shared.run { try await transport.perform(kind, payload: payload) }
                     try Task.checkCancellation(); try self?.validate()
-                    self?.send("bridgeResult", .object(["id": .string(id), "ok": .bool(true), "value": value]))
+                    try await self?.sendHostResult(.object(["id": .string(id), "ok": .bool(true), "value": value]))
                 } catch {
                     guard !Task.isCancelled else { return }
-                    self?.send("bridgeResult", .object(["id": .string(id), "ok": .bool(false), "error": .string("plugin host request failed")]))
+                    let detail = (error as? HarborPluginGRPCError)?.rawValue ?? (error as? HarborError)?.code ?? "plugin host request failed"
+                    try? await self?.sendHostResult(.object(["id": .string(id), "ok": .bool(false), "error": .string(detail)]))
                 }
             }
+        }
+    }
+
+    /// An 8 MiB protobuf response becomes over 22 MiB when body/messages share base64 in JSON.
+    /// Encode that bounded envelope off the UI actor, then revalidate the owning activation.
+    private func sendHostResult(_ value: JSONValue) async throws {
+        let script = try await Task.detached(priority: .utility) {
+            let data = try JSONEncoder().encode(value)
+            guard data.count <= 64 * 1024 * 1024, let text = String(data: data, encoding: .utf8) else { throw HarborPluginRuntimeError("plugin-message") }
+            return "globalThis.harborPluginHost.bridgeResult(" + text + ")"
+        }.value
+        try Task.checkCancellation(); try validate()
+        web?.evaluateJavaScript(script) { [weak self] _, error in
+            if error != nil { self?.fail(HarborPluginRuntimeError("plugin-bridge")) }
         }
     }
 

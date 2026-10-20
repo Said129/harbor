@@ -55,7 +55,8 @@ enum HarborPluginGRPC {
                 guard flags == 0x80 else { throw HarborPluginGRPCError.trailerFlags }
                 var text = String(decoding: payload, as: UTF8.self)
                 if text.hasPrefix("\u{feff}") { text.removeFirst() }
-                for line in text.split(separator: "\n", omittingEmptySubsequences: false) {
+                // Swift treats CRLF as one Character; normalize it before splitting on LF.
+                for line in text.replacingOccurrences(of: "\r\n", with: "\n").split(separator: "\n", omittingEmptySubsequences: false) {
                     guard let colon = line.firstIndex(of: ":"), colon != line.startIndex else { continue }
                     let key = String(line[..<colon]).trimmingCharacters(in: whitespace).lowercased()
                     let value = String(line[line.index(after: colon)...]).trimmingCharacters(in: whitespace)

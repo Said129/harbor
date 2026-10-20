@@ -1,5 +1,11 @@
-//! Synchronous pure operations only. No Rust-owned object crosses the ABI.
+//! Pure synchronous operations and a separate cancellable asynchronous network ABI.
+//! No Rust-owned object crosses either boundary.
 mod dispatch;
+mod plugin_http;
+mod plugin_network;
+pub use plugin_network::{
+    harbor_ios_network_abi_version, harbor_ios_network_cancel, harbor_ios_network_start,
+};
 use std::ffi::{c_char, CString};
 
 pub const MAX_REQUEST_BYTES: usize = 8 * 1024 * 1024;
