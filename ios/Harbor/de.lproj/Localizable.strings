@@ -458,6 +458,7 @@
 "Descargas" = "Downloads";
 "Desconectar" = "Verbindung trennen";
 "Desconocido" = "Unbekannt";
+"Describe the site's lists, details and chapters using CSS selectors. Use {query} and {page} in the search and browse paths." = "Beschreibe Listen, Details und Kapitel der Website mit CSS-Selektoren. Verwende {query} und {page} in den Such- und Katalogpfaden.";
 "Desde" = "Von";
 "Desenfocar las descripciones" = "Beschreibungen weichzeichnen";
 "Desenfocar miniaturas" = "Vorschaubilder weichzeichnen";
@@ -509,6 +510,7 @@
 "Earth" = "Erde";
 "Easy on the eyes" = "Angenehm für die Augen";
 "Edición terminada" = "Bearbeitung abschließen";
+"Edit" = "Bearbeiten";
 "Edit custom theme" = "Benutzerdefiniertes Design bearbeiten";
 "Edit profile" = "Profil bearbeiten";
 "Edit {name}" = "{name} bearbeiten";
@@ -827,6 +829,7 @@
 "Loading…" = "Wird geladen…";
 "Local" = "Lokal";
 "Local app files" = "Local app files";
+"Logo URL (optional, auto-detected if blank)" = "Logo-URL (optional, wird bei leerem Feld automatisch erkannt)";
 "Logos" = "Logos";
 "Los FPS de los subtítulos no están disponibles en este entorno de ejecución de libmpv." = "Untertitel-FPS sind in dieser libmpv-Laufzeitumgebung nicht verfügbar.";
 "Los FPS de los subtítulos no están disponibles mientras haya un subtítulo secundario activo." = "Untertitel-FPS sind nicht verfügbar, solange eine zweite Untertitelspur aktiv ist.";
@@ -1474,6 +1477,7 @@
 "Sort" = "Sortieren";
 "Sort by" = "Sortieren nach";
 "Source" = "Quelle";
+"Source name" = "Quellenname";
 "Sources" = "Quellen";
 "Sources & library" = "Quellen & Mediathek";
 "Sources and quality" = "Sources and quality";
@@ -1594,6 +1598,7 @@
 "Texto sutil" = "Dezenter Text";
 "Textos auxiliares y antetítulos." = "Bildunterschriften, Überzeilen.";
 "Thai" = "Thailändisch";
+"That config is not valid. Check baseUrl, popularPath, list, chapters, and pages." = "Diese Konfiguration ist ungültig. Prüfe baseUrl, popularPath, list, chapters und pages.";
 "That link did not answer." = "Dieser Link hat nicht geantwortet.";
 "That route wouldn't chart. Try a different direction." = "Diese Route lässt sich nicht darstellen. Probiere eine andere Richtung.";
 "The CW" = "The CW";

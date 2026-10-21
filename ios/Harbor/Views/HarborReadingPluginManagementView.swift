@@ -9,12 +9,14 @@ struct HarborReadingPluginManagementView: View {
     @State private var query = ""
     @State private var failure: String?
     @State private var removal: Removal?
+    @State private var htmlDraft: HarborReadingHTMLDraft?
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     var body: some View {
         ScrollView {
             LazyVStack(alignment: .leading, spacing: 24) {
                 HarborSettingsSegmented(selection: $tab, choices: [(text("Plugins"), "plugins"), (text("Repositories"), "repositories")])
                 HarborSearchField(prompt: text("Search"), text: $query)
+                Button(text("Add source")) { htmlDraft = .init() }.buttonStyle(HarborAccountButtonStyle()).disabled(manager.busy).accessibilityIdentifier("reading-html-add")
                 if let failure { Text(failure).font(HarborTheme.font(14)).foregroundStyle(ThemePreferences.shared.color("danger")) }
                 if manager.busy { ProgressView() }
                 if tab == "plugins" { installed }
@@ -36,7 +38,8 @@ struct HarborReadingPluginManagementView: View {
                     }.accessibilityIdentifier("reading-plugin-confirm-remove")
                 }
                 Button(text("Cancel"), role: .cancel) { removal = nil }
-            }.onChange(of: manager.ready) { _, ready in if !ready { link = ""; failure = nil; removal = nil } }
+            }.onChange(of: manager.ready) { _, ready in if !ready { link = ""; failure = nil; removal = nil; htmlDraft = nil } }
+            .sheet(item: $htmlDraft) { draft in HarborReadingHTMLEditor(manager: manager, kind: kind, draft: draft) }
     }
     private var installed: some View {
         Group {
@@ -44,7 +47,10 @@ struct HarborReadingPluginManagementView: View {
             if plugins.isEmpty { Text(text("Nothing installed yet")).foregroundStyle(.secondary).accessibilityIdentifier("reading-plugin-empty") }
             ForEach(plugins) { plugin in
                 VStack(alignment: .leading, spacing: 14) {
-                    heading(plugin.entry, repository: plugin.repositoryName)
+                    heading(plugin.entry, repository: plugin.manualHTML ? text("Custom sources") : plugin.repositoryName)
+                    if plugin.manualHTML {
+                        Button(text("Edit")) { htmlDraft = .init(plugin: plugin) }.buttonStyle(HarborAccountButtonStyle()).disabled(manager.busy).accessibilityIdentifier("reading-html-edit-" + plugin.entry.id)
+                    }
                     Toggle(text("Enabled"), isOn: Binding(get: { plugin.enabled }, set: { value in act { try await manager.setEnabled(plugin, value) } }))
                         .tint(HarborTheme.accent).frame(minHeight: 44).disabled(manager.busy)
                         .accessibilityIdentifier("reading-plugin-enabled-" + plugin.entry.id)
@@ -80,7 +86,7 @@ struct HarborReadingPluginManagementView: View {
         }
     }
     private var repositories: some View {
-        ForEach(manager.document.repositories.filter { $0.kind == kind }) { repository in
+        ForEach(manager.document.repositories.filter { $0.kind == kind && $0.foreign != "manual-html" }) { repository in
             VStack(alignment: .leading, spacing: 16) {
                 Text(repository.name).font(HarborTheme.font(19, weight: .semibold))
                 Text(repository.url).font(HarborTheme.font(12)).foregroundStyle(.secondary).textSelection(.enabled).privacySensitive()
@@ -142,7 +148,8 @@ struct HarborReadingPluginManagementView: View {
                 .frame(width: 44, height: 44).background(HarborTheme.background, in: .rect(cornerRadius: 8)).accessibilityHidden(true)
             VStack(alignment: .leading, spacing: 5) {
                 Text(entry.name).font(HarborTheme.font(16, weight: .semibold))
-                Text([repository, entry.version, entry.language.uppercased(), entry.mangayomi ? "Mangayomi" : nil].compactMap { $0 }.joined(separator: " · "))
+                let details: [String?] = entry.manualHTML ? [repository, text("Site"), entry.language == "all" ? text("All languages") : entry.language.uppercased()] : [repository, entry.version, entry.language.uppercased(), entry.mangayomi ? "Mangayomi" : nil]
+                Text(details.compactMap { $0 }.joined(separator: " · "))
                     .font(HarborTheme.font(12)).foregroundStyle(.secondary)
             }
         }.frame(maxWidth: .infinity, alignment: .leading)

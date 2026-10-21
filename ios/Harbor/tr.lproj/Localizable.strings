@@ -458,6 +458,7 @@
 "Descargas" = "İndirilenler";
 "Desconectar" = "Bağlantıyı kes";
 "Desconocido" = "Bilinmiyor";
+"Describe the site's lists, details and chapters using CSS selectors. Use {query} and {page} in the search and browse paths." = "Sitenin listelerini, ayrıntılarını ve bölümlerini CSS seçicileriyle tanımlayın. Arama ve gezinme yollarında {query} ve {page} kullanın.";
 "Desde" = "Kaynak";
 "Desenfocar las descripciones" = "Açıklamaları bulanıklaştır";
 "Desenfocar miniaturas" = "Küçük görselleri bulanıklaştır";
@@ -509,6 +510,7 @@
 "Earth" = "Dünya";
 "Easy on the eyes" = "Gözleri yormaz";
 "Edición terminada" = "Düzenlemeyi bitir";
+"Edit" = "Düzenle";
 "Edit custom theme" = "Özel temayı düzenle";
 "Edit profile" = "Profili düzenle";
 "Edit {name}" = "{name} profilini düzenle";
@@ -827,6 +829,7 @@
 "Loading…" = "Yükleniyor…";
 "Local" = "Yerel";
 "Local app files" = "Local app files";
+"Logo URL (optional, auto-detected if blank)" = "Logo URL'si (isteğe bağlı, boş bırakılırsa otomatik algılanır)";
 "Logos" = "Logolar";
 "Los FPS de los subtítulos no están disponibles en este entorno de ejecución de libmpv." = "Altyazı FPS'si bu libmpv çalışma ortamında kullanılamıyor.";
 "Los FPS de los subtítulos no están disponibles mientras haya un subtítulo secundario activo." = "İkincil altyazı etkinken altyazı FPS'si kullanılamaz.";
@@ -1474,6 +1477,7 @@
 "Sort" = "Sırala";
 "Sort by" = "Sıralama ölçütü";
 "Source" = "Kaynak";
+"Source name" = "Kaynak adı";
 "Sources" = "Kaynaklar";
 "Sources & library" = "Kaynaklar ve kütüphane";
 "Sources and quality" = "Sources and quality";
@@ -1594,6 +1598,7 @@
 "Texto sutil" = "İkincil metin";
 "Textos auxiliares y antetítulos." = "Açıklamalar, üst başlıklar.";
 "Thai" = "Tayca";
+"That config is not valid. Check baseUrl, popularPath, list, chapters, and pages." = "Bu yapılandırma geçerli değil. baseUrl, popularPath, list, chapters ve pages alanlarını kontrol edin.";
 "That link did not answer." = "Bu bağlantı yanıt vermedi.";
 "That route wouldn't chart. Try a different direction." = "Bu rota çizilemedi. Farklı bir yön deneyin.";
 "The CW" = "The CW";

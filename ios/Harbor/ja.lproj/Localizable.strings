@@ -458,6 +458,7 @@
 "Descargas" = "ダウンロード";
 "Desconectar" = "接続解除";
 "Desconocido" = "不明";
+"Describe the site's lists, details and chapters using CSS selectors. Use {query} and {page} in the search and browse paths." = "CSS セレクターでサイトの一覧、詳細、章を指定します。検索と閲覧のパスでは {query} と {page} を使用します。";
 "Desde" = "提供元";
 "Desenfocar las descripciones" = "説明をぼかす";
 "Desenfocar miniaturas" = "サムネイルをぼかす";
@@ -509,6 +510,7 @@
 "Earth" = "地球";
 "Easy on the eyes" = "目にやさしい";
 "Edición terminada" = "編集を完了";
+"Edit" = "編集";
 "Edit custom theme" = "カスタムテーマを編集";
 "Edit profile" = "プロフィールを編集";
 "Edit {name}" = "{name}を編集";
@@ -827,6 +829,7 @@
 "Loading…" = "読み込み中…";
 "Local" = "ローカル";
 "Local app files" = "Local app files";
+"Logo URL (optional, auto-detected if blank)" = "ロゴのURL（任意、空欄の場合は自動検出）";
 "Logos" = "ロゴ";
 "Los FPS de los subtítulos no están disponibles en este entorno de ejecución de libmpv." = "このlibmpvランタイムでは字幕FPSを使用できません。";
 "Los FPS de los subtítulos no están disponibles mientras haya un subtítulo secundario activo." = "第2字幕が有効な間は字幕FPSを使用できません。";
@@ -1474,6 +1477,7 @@
 "Sort" = "並べ替え";
 "Sort by" = "並べ替え";
 "Source" = "ソース";
+"Source name" = "配信元名";
 "Sources" = "情報源";
 "Sources & library" = "ソースとライブラリ";
 "Sources and quality" = "Sources and quality";
@@ -1594,6 +1598,7 @@
 "Texto sutil" = "控えめなテキスト";
 "Textos auxiliares y antetítulos." = "キャプション、アイブロウ。";
 "Thai" = "タイ語";
+"That config is not valid. Check baseUrl, popularPath, list, chapters, and pages." = "この設定は無効です。baseUrl、popularPath、list、chapters、pagesを確認してください。";
 "That link did not answer." = "そのリンクは応答しませんでした。";
 "That route wouldn't chart. Try a different direction." = "そのルートは作成できませんでした。別の方向をお試しください。";
 "The CW" = "The CW";

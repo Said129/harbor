@@ -10,8 +10,8 @@ import runpy
 build = Path('ios/build'); canonical = build / 'canonical'; canonical.mkdir(parents=True, exist_ok=True)
 recordings = build / 'service-recordings'; recordings.mkdir(parents=True, exist_ok=True)
 plan = json.loads((build / 'preserved-plugin-integration.json').read_text())
-assert len(plan['ui_cases']) == 2 and plan['expected_original_images'] in (4, 8, 10, 16, 34)
-if plan.get('block') in ('reading-plugins', 'reading-repair', 'ebook-catalog', 'reading-bulk', 'reading-consolidated'):
+assert len(plan['ui_cases']) == 2 and plan['expected_original_images'] in (4, 8, 10, 12, 16, 34)
+if plan.get('block') in ('reading-plugins', 'reading-repair', 'ebook-catalog', 'reading-bulk', 'reading-consolidated', 'reading-html'):
     runpy.run_path('scripts/ios/reading-plugin-fixture-server.py')['start'](build)
 assert (canonical / 'PluginIntegrationModels-tree.json').is_file(), 'The model bundle did not execute; do not repeat its compilation on two UI devices.'
 devices = json.loads((build / 'devices.json').read_text())['devices']

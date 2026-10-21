@@ -462,6 +462,7 @@
 "Descargas" = "Загрузки";
 "Desconectar" = "Отключить";
 "Desconocido" = "Неизвестно";
+"Describe the site's lists, details and chapters using CSS selectors. Use {query} and {page} in the search and browse paths." = "Опишите списки, сведения и главы сайта с помощью CSS-селекторов. Используйте {query} и {page} в путях поиска и просмотра.";
 "Desde" = "Источник";
 "Desenfocar las descripciones" = "Размывать описания";
 "Desenfocar miniaturas" = "Размывать миниатюры";
@@ -513,6 +514,7 @@
 "Earth" = "Земля";
 "Easy on the eyes" = "Мягче для глаз";
 "Edición terminada" = "Готово";
+"Edit" = "Изменить";
 "Edit custom theme" = "Изменить свою тему";
 "Edit profile" = "Изменить профиль";
 "Edit {name}" = "Изменить {name}";
@@ -832,6 +834,7 @@
 "Loading…" = "Загрузка…";
 "Local" = "Локальные";
 "Local app files" = "Local app files";
+"Logo URL (optional, auto-detected if blank)" = "URL логотипа (необязательно, определится автоматически)";
 "Logos" = "Логотипы";
 "Los FPS de los subtítulos no están disponibles en este entorno de ejecución de libmpv." = "Настройка частоты кадров субтитров недоступна в этой версии libmpv.";
 "Los FPS de los subtítulos no están disponibles mientras haya un subtítulo secundario activo." = "Настройка частоты кадров недоступна, пока включены вторые субтитры.";
@@ -1488,6 +1491,7 @@
 "Sort" = "Сортировка";
 "Sort by" = "Сортировать по";
 "Source" = "Источник";
+"Source name" = "Название источника";
 "Sources" = "Источники";
 "Sources & library" = "Источники и библиотека";
 "Sources and quality" = "Sources and quality";
@@ -1608,6 +1612,7 @@
 "Texto sutil" = "Приглушённый текст";
 "Textos auxiliares y antetítulos." = "Подписи, надзаголовки.";
 "Thai" = "Тайский";
+"That config is not valid. Check baseUrl, popularPath, list, chapters, and pages." = "Эта конфигурация некорректна. Проверьте baseUrl, popularPath, list, chapters и pages.";
 "That link did not answer." = "Эта ссылка не ответила.";
 "That route wouldn't chart. Try a different direction." = "Не удалось проложить маршрут. Попробуйте другое направление.";
 "The CW" = "The CW";

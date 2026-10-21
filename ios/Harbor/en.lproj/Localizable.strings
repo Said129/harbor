@@ -360,6 +360,7 @@
 "Descargas" = "Downloads";
 "Desconectar" = "Disconnect";
 "Desconocido" = "Unknown";
+"Describe the site's lists, details and chapters using CSS selectors. Use {query} and {page} in the search and browse paths." = "Describe the site's lists, details and chapters using CSS selectors. Use {query} and {page} in the search and browse paths.";
 "Desde" = "From";
 "Desenfocar las descripciones" = "Blur descriptions";
 "Desenfocar miniaturas" = "Blur thumbnails";
@@ -404,6 +405,7 @@
 "Earth" = "Earth";
 "Easy on the eyes" = "Easy on the eyes";
 "Edición terminada" = "Done editing";
+"Edit" = "Edit";
 "Edit custom theme" = "Edit custom theme";
 "Editar tema personalizado" = "Edit custom theme";
 "El selector muestra todas las fuentes. Estos filtros y límites de calidad se aplican a la reproducción automática." = "All sources are shown in the picker. These filters and quality limits apply to automatic playback.";

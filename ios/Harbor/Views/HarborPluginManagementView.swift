@@ -9,6 +9,9 @@ struct HarborPluginManagementView: View {
     @State private var kind = "streams"
     @State private var reading: HarborReadingPluginManager?
     @State private var readingFailure: String?
+    @MainActor init(app: AppModel, kind: HarborReadingPluginKind? = nil) {
+        self.app = app; _kind = State(initialValue: kind?.rawValue ?? "streams")
+    }
     var body: some View {
         VStack(spacing: 0) {
             HarborSettingsSegmented(selection: $kind, choices: [(DesktopInterfaceText.value("Streams"), "streams"), ("Manga", "manga"), (DesktopInterfaceText.value("Books"), "ebook")])

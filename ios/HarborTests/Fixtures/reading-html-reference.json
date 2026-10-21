@@ -1,0 +1,433 @@
+{
+  "fixtures": [
+    {
+      "name": "manga complete CSS list and relative cover",
+      "kind": "manga",
+      "config": {
+        "name": "Owned HTML",
+        "baseUrl": "https://example.org/",
+        "popularPath": "/popular?page={page}",
+        "searchPath": "/search?q={query}&page={page}",
+        "list": {
+          "item": "section > article.card:nth-child(1)",
+          "title": "a.title",
+          "link": "a@href",
+          "cover": "img@missing|img@data-src"
+        },
+        "detail": {
+          "title": "h1",
+          "author": "a.author",
+          "description": "p.summary",
+          "status": "span.status"
+        },
+        "chapters": {
+          "item": ".chapters > a:not(.hidden)",
+          "link": "@href",
+          "title": "span.name",
+          "number": "span.num",
+          "chapter": "span.num"
+        },
+        "headers": {
+          "Referer": "https://example.org/"
+        },
+        "pages": {
+          "image": ".reader img@data-src",
+          "pathSuffix": "?images"
+        }
+      },
+      "method": "popular",
+      "args": [0],
+      "expected": [
+        {
+          "id": "/book/one",
+          "title": "The Book",
+          "cover": "https://example.org/cover.png"
+        }
+      ]
+    },
+    {
+      "name": "manga search query and page",
+      "kind": "manga",
+      "config": {
+        "name": "Owned HTML",
+        "baseUrl": "https://example.org/",
+        "popularPath": "/popular?page={page}",
+        "searchPath": "/search?q={query}&page={page}",
+        "list": {
+          "item": "section > article.card:nth-child(1)",
+          "title": "a.title",
+          "link": "a@href",
+          "cover": "img@missing|img@data-src"
+        },
+        "detail": {
+          "title": "h1",
+          "author": "a.author",
+          "description": "p.summary",
+          "status": "span.status"
+        },
+        "chapters": {
+          "item": ".chapters > a:not(.hidden)",
+          "link": "@href",
+          "title": "span.name",
+          "number": "span.num",
+          "chapter": "span.num"
+        },
+        "headers": {
+          "Referer": "https://example.org/"
+        },
+        "pages": {
+          "image": ".reader img@data-src",
+          "pathSuffix": "?images"
+        }
+      },
+      "method": "search",
+      "args": ["A + B", 48],
+      "expected": [
+        {
+          "id": "/book/one",
+          "title": "The Book",
+          "cover": "https://example.org/cover.png"
+        }
+      ]
+    },
+    {
+      "name": "manga full detail",
+      "kind": "manga",
+      "config": {
+        "name": "Owned HTML",
+        "baseUrl": "https://example.org/",
+        "popularPath": "/popular?page={page}",
+        "searchPath": "/search?q={query}&page={page}",
+        "list": {
+          "item": "section > article.card:nth-child(1)",
+          "title": "a.title",
+          "link": "a@href",
+          "cover": "img@missing|img@data-src"
+        },
+        "detail": {
+          "title": "h1",
+          "author": "a.author",
+          "description": "p.summary",
+          "status": "span.status"
+        },
+        "chapters": {
+          "item": ".chapters > a:not(.hidden)",
+          "link": "@href",
+          "title": "span.name",
+          "number": "span.num",
+          "chapter": "span.num"
+        },
+        "headers": {
+          "Referer": "https://example.org/"
+        },
+        "pages": {
+          "image": ".reader img@data-src",
+          "pathSuffix": "?images"
+        }
+      },
+      "method": "detail",
+      "args": ["/book/one"],
+      "expected": {
+        "id": "/book/one",
+        "title": "The Book",
+        "description": "Owned description",
+        "author": "Owned author",
+        "status": "Ongoing"
+      }
+    },
+    {
+      "name": "manga chapter selectors and fractional numbers",
+      "kind": "manga",
+      "config": {
+        "name": "Owned HTML",
+        "baseUrl": "https://example.org/",
+        "popularPath": "/popular?page={page}",
+        "searchPath": "/search?q={query}&page={page}",
+        "list": {
+          "item": "section > article.card:nth-child(1)",
+          "title": "a.title",
+          "link": "a@href",
+          "cover": "img@missing|img@data-src"
+        },
+        "detail": {
+          "title": "h1",
+          "author": "a.author",
+          "description": "p.summary",
+          "status": "span.status"
+        },
+        "chapters": {
+          "item": ".chapters > a:not(.hidden)",
+          "link": "@href",
+          "title": "span.name",
+          "number": "span.num",
+          "chapter": "span.num"
+        },
+        "headers": {
+          "Referer": "https://example.org/"
+        },
+        "pages": {
+          "image": ".reader img@data-src",
+          "pathSuffix": "?images"
+        }
+      },
+      "method": "chapters",
+      "args": ["/book/one"],
+      "expected": [
+        {
+          "id": "/chapter/one",
+          "chapter": "1.5",
+          "title": "Chapter One",
+          "pages": 0,
+          "language": "en"
+        },
+        {
+          "id": "/chapter/two",
+          "chapter": "2",
+          "title": "Chapter Two",
+          "pages": 0,
+          "language": "en"
+        }
+      ]
+    },
+    {
+      "name": "manga image attribute fallback",
+      "kind": "manga",
+      "config": {
+        "name": "Owned HTML",
+        "baseUrl": "https://example.org/",
+        "popularPath": "/popular?page={page}",
+        "searchPath": "/search?q={query}&page={page}",
+        "list": {
+          "item": "section > article.card:nth-child(1)",
+          "title": "a.title",
+          "link": "a@href",
+          "cover": "img@missing|img@data-src"
+        },
+        "detail": {
+          "title": "h1",
+          "author": "a.author",
+          "description": "p.summary",
+          "status": "span.status"
+        },
+        "chapters": {
+          "item": ".chapters > a:not(.hidden)",
+          "link": "@href",
+          "title": "span.name",
+          "number": "span.num",
+          "chapter": "span.num"
+        },
+        "headers": {
+          "Referer": "https://example.org/"
+        },
+        "pages": {
+          "image": ".reader img@data-src",
+          "pathSuffix": "?images"
+        }
+      },
+      "method": "pageUrls",
+      "args": ["/chapter/one"],
+      "expected": ["https://example.org/page1.png", "https://example.org/page2.png"]
+    },
+    {
+      "name": "ebook source identity and CSS list",
+      "kind": "ebook",
+      "config": {
+        "name": "Owned HTML",
+        "baseUrl": "https://example.org/",
+        "popularPath": "/popular?page={page}",
+        "searchPath": "/search?q={query}&page={page}",
+        "list": {
+          "item": "section > article.card:nth-child(1)",
+          "title": "a.title",
+          "link": "a@href",
+          "cover": "img@missing|img@data-src"
+        },
+        "detail": {
+          "title": "h1",
+          "author": "a.author",
+          "description": "p.summary",
+          "status": "span.status"
+        },
+        "chapters": {
+          "item": ".chapters > a:not(.hidden)",
+          "link": "@href",
+          "title": "span.name",
+          "number": "span.num",
+          "chapter": "span.num"
+        },
+        "headers": {
+          "Referer": "https://example.org/"
+        },
+        "content": {
+          "body": "main.reader"
+        }
+      },
+      "method": "popular",
+      "args": [0],
+      "expected": [
+        {
+          "id": "source:html%3A1n7lmeo:%2Fbook%2Fone",
+          "source": "source",
+          "providerId": "html:1n7lmeo",
+          "sourceItemId": "/book/one",
+          "providerName": "Owned HTML",
+          "title": "The Book",
+          "authors": [],
+          "cover": "https://example.org/cover.png",
+          "description": "",
+          "genres": []
+        }
+      ]
+    },
+    {
+      "name": "ebook detail retains source route",
+      "kind": "ebook",
+      "config": {
+        "name": "Owned HTML",
+        "baseUrl": "https://example.org/",
+        "popularPath": "/popular?page={page}",
+        "searchPath": "/search?q={query}&page={page}",
+        "list": {
+          "item": "section > article.card:nth-child(1)",
+          "title": "a.title",
+          "link": "a@href",
+          "cover": "img@missing|img@data-src"
+        },
+        "detail": {
+          "title": "h1",
+          "author": "a.author",
+          "description": "p.summary",
+          "status": "span.status"
+        },
+        "chapters": {
+          "item": ".chapters > a:not(.hidden)",
+          "link": "@href",
+          "title": "span.name",
+          "number": "span.num",
+          "chapter": "span.num"
+        },
+        "headers": {
+          "Referer": "https://example.org/"
+        },
+        "content": {
+          "body": "main.reader"
+        }
+      },
+      "method": "detail",
+      "args": ["/book/one"],
+      "expected": {
+        "id": "source:html%3A1n7lmeo:%2Fbook%2Fone",
+        "source": "source",
+        "providerId": "html:1n7lmeo",
+        "sourceItemId": "/book/one",
+        "providerName": "Owned HTML",
+        "title": "The Book",
+        "authors": ["Owned author"],
+        "description": "Owned description",
+        "status": "Ongoing",
+        "genres": []
+      }
+    },
+    {
+      "name": "ebook chapter metadata and order",
+      "kind": "ebook",
+      "config": {
+        "name": "Owned HTML",
+        "baseUrl": "https://example.org/",
+        "popularPath": "/popular?page={page}",
+        "searchPath": "/search?q={query}&page={page}",
+        "list": {
+          "item": "section > article.card:nth-child(1)",
+          "title": "a.title",
+          "link": "a@href",
+          "cover": "img@missing|img@data-src"
+        },
+        "detail": {
+          "title": "h1",
+          "author": "a.author",
+          "description": "p.summary",
+          "status": "span.status"
+        },
+        "chapters": {
+          "item": ".chapters > a:not(.hidden)",
+          "link": "@href",
+          "title": "span.name",
+          "number": "span.num",
+          "chapter": "span.num"
+        },
+        "headers": {
+          "Referer": "https://example.org/"
+        },
+        "content": {
+          "body": "main.reader"
+        }
+      },
+      "method": "chapters",
+      "args": ["/book/one"],
+      "expected": [
+        {
+          "id": "/chapter/one",
+          "title": "Chapter One",
+          "chapter": "1.5",
+          "position": 0
+        },
+        {
+          "id": "/chapter/two",
+          "title": "Chapter Two",
+          "chapter": "2",
+          "position": 1
+        }
+      ]
+    },
+    {
+      "name": "ebook content paragraph boundaries",
+      "kind": "ebook",
+      "config": {
+        "name": "Owned HTML",
+        "baseUrl": "https://example.org/",
+        "popularPath": "/popular?page={page}",
+        "searchPath": "/search?q={query}&page={page}",
+        "list": {
+          "item": "section > article.card:nth-child(1)",
+          "title": "a.title",
+          "link": "a@href",
+          "cover": "img@missing|img@data-src"
+        },
+        "detail": {
+          "title": "h1",
+          "author": "a.author",
+          "description": "p.summary",
+          "status": "span.status"
+        },
+        "chapters": {
+          "item": ".chapters > a:not(.hidden)",
+          "link": "@href",
+          "title": "span.name",
+          "number": "span.num",
+          "chapter": "span.num"
+        },
+        "headers": {
+          "Referer": "https://example.org/"
+        },
+        "content": {
+          "body": "main.reader"
+        }
+      },
+      "method": "content",
+      "args": ["/chapter/one"],
+      "expected": {
+        "text": "Owned heading\n\nFirst paragraph.\n\nSecond paragraph."
+      }
+    }
+  ],
+  "documents": {
+    "catalog": "<section><article class=\"card\"><a class=\"title\" href=\"/book/one\">The Book</a><img data-src=\"/cover.png\"></article><article class=\"card\"><a class=\"title\" href=\"/book/two\">Second Book</a></article></section>",
+    "detail": "<h1>The Book</h1><a class=\"author\">Owned author</a><p class=\"summary\">Owned description</p><span class=\"status\">Ongoing</span><div class=\"chapters\"><a href=\"/chapter/one\"><span class=\"num\">1.5</span><span class=\"name\">Chapter One</span></a><a href=\"/chapter/two\"><span class=\"num\">2</span><span class=\"name\">Chapter Two</span></a></div>",
+    "chapter": "<main class=\"reader\"><h1>Owned heading</h1><p>First paragraph.</p><p>Second paragraph.</p><img data-src=\"/page1.png\"><img src=\"/page2.png\"></main>",
+    "favicon": "<link rel=\"shortcut icon\" href=\"/small.ico\"><link rel=\"icon\" href=\"/mark.svg\"><link rel=\"apple-touch-icon\" href=\"/touch.png\">"
+  },
+  "faviconCases": 2,
+  "requestCases": 2,
+  "paginationCases": 2,
+  "invalidCases": 3
+}

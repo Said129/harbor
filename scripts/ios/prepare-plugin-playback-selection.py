@@ -5,6 +5,34 @@ from pathlib import Path
 import re
 
 requested = os.environ.get('HARBOR_NATIVE_SELECTION', '').strip()
+html = ['HarborTests.HarborReadingHTMLTests/' + method for method in [
+    'testActualWebKitDOMMatchesAllNineOriginalManualHTMLProviderCases',
+    'testManualSourceSaveReadEditDisableAndRemovalKeepDesktopRoutesAndCleanConfiguration',
+    'testInvalidManualConfigurationNeverChangesTheInstalledDocument',
+    'testCancellingTrustedHTMLCallDoesNotPublishItsLatePageOrBlockOtherCallsAndScopeRetirement']]
+if requested and set(item.strip().replace('HarborTests/', 'HarborTests.', 1) for item in requested.split(',')) == set(html):
+    selected = [item.strip().replace('HarborTests/', 'HarborTests.', 1) for item in requested.split(',')]
+    assert len(selected) == len(set(selected)) == 4
+    seed = 'HarborTests.HarborReadingHTMLInterfaceSeedTests/testPrepareOwnedManualSourcesForTheOrdinaryPhoneAndTabletReaders'
+    ui = ['HarborUITests.HarborReadingHTMLNavigationTests/testManualSourceEditorValidationAndActualMangaAndBookReadersOn' + device for device in ['IPhone', 'IPad']]
+    for case in html + [seed] + ui:
+        target, tail = case.split('.', 1); suite, method = tail.split('/')
+        assert re.search(r'\bfunc ' + method + r'\(', Path('ios/' + target + '/' + suite + '.swift').read_text('utf-8'))
+    plan = dict(source=os.environ.get('GITHUB_SHA', 'working-tree'), block='reading-html', selected_case_count=4,
+        pending_native_cases=html, new_native_cases=4, native_preparation_case=seed, ui_cases=ui,
+        expected_total_executions=8, expected_original_images=12,
+        required_original_captures=['reading-html-' + state + '-' + device for device in ['iphone', 'ipad'] for state in [
+            'editor', 'saved', 'invalid', 'manga-reader', 'book-catalog', 'book-reader']],
+        approved_predecessor_cases_repeated=False, prior_preparation_repeated_only_for_fresh_devices=True,
+        unrelated_approved_cases_selected=False, existing_rust_tests_repeated=False, full_desktop_parity_complete=False, ipa_requested=False)
+    directory = Path('ios/build'); directory.mkdir(parents=True, exist_ok=True)
+    (directory / 'preserved-plugin-integration.json').write_text(json.dumps(plan, indent=2) + '\n', 'utf-8')
+    (directory / 'plugin-integration-selection.txt').write_text('\n'.join(case.replace('.', '/', 1) for case in html) + '\n', 'utf-8')
+    if os.environ.get('GITHUB_ENV'):
+        with open(os.environ['GITHUB_ENV'], 'a', encoding='utf-8') as output: output.write('HARBOR_PLUGIN_UI_REQUIRED=true\n')
+    print('4 new manual HTML models, 2 fresh preparations, 2 new phone/tablet routes and 12 captures. No existing worker/reading suite replay. No IPA.')
+    raise SystemExit(0)
+
 bulk = ['HarborTests.HarborReadingBulkTests/' + method for method in [
     'testBulkContinuesAfterOneFailureReportsRealProgressUpdatesAndRemovesOnlyInstalledEntries',
     'testAllFailedBulkShowsFailureAndCanRetryWithoutDuplicatingSources',

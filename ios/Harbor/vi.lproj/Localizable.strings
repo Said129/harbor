@@ -458,6 +458,7 @@
 "Descargas" = "Nội dung tải xuống";
 "Desconectar" = "Ngắt kết nối";
 "Desconocido" = "Không xác định";
+"Describe the site's lists, details and chapters using CSS selectors. Use {query} and {page} in the search and browse paths." = "Mô tả danh sách, thông tin và chương của trang web bằng bộ chọn CSS. Dùng {query} và {page} trong đường dẫn tìm kiếm và duyệt.";
 "Desde" = "Từ";
 "Desenfocar las descripciones" = "Làm mờ mô tả";
 "Desenfocar miniaturas" = "Làm mờ ảnh thu nhỏ";
@@ -509,6 +510,7 @@
 "Earth" = "Trái Đất";
 "Easy on the eyes" = "Dịu mắt";
 "Edición terminada" = "Chỉnh sửa xong";
+"Edit" = "Chỉnh sửa";
 "Edit custom theme" = "Chỉnh sửa chủ đề tùy chỉnh";
 "Edit profile" = "Chỉnh sửa hồ sơ";
 "Edit {name}" = "Chỉnh sửa {name}";
@@ -827,6 +829,7 @@
 "Loading…" = "Đang tải…";
 "Local" = "Cục bộ";
 "Local app files" = "Local app files";
+"Logo URL (optional, auto-detected if blank)" = "URL logo (không bắt buộc, tự động phát hiện nếu để trống)";
 "Logos" = "Logo";
 "Los FPS de los subtítulos no están disponibles en este entorno de ejecución de libmpv." = "FPS phụ đề không khả dụng trong môi trường chạy libmpv này.";
 "Los FPS de los subtítulos no están disponibles mientras haya un subtítulo secundario activo." = "FPS phụ đề không khả dụng khi đang bật phụ đề thứ hai.";
@@ -1474,6 +1477,7 @@
 "Sort" = "Sắp xếp";
 "Sort by" = "Sắp xếp theo";
 "Source" = "Nguồn";
+"Source name" = "Tên nguồn";
 "Sources" = "Nguồn";
 "Sources & library" = "Nguồn & thư viện";
 "Sources and quality" = "Sources and quality";
@@ -1594,6 +1598,7 @@
 "Texto sutil" = "Văn bản phụ";
 "Textos auxiliares y antetítulos." = "Chú thích, tiêu đề phụ.";
 "Thai" = "Tiếng Thái";
+"That config is not valid. Check baseUrl, popularPath, list, chapters, and pages." = "Cấu hình này không hợp lệ. Hãy kiểm tra baseUrl, popularPath, list, chapters và pages.";
 "That link did not answer." = "Liên kết đó không phản hồi.";
 "That route wouldn't chart. Try a different direction." = "Không thể lập hải trình đó. Hãy thử một hướng khác.";
 "The CW" = "The CW";

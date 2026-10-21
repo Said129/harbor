@@ -458,6 +458,7 @@
 "Descargas" = "डाउनलोड";
 "Desconectar" = "डिस्कनेक्ट करें";
 "Desconocido" = "अज्ञात";
+"Describe the site's lists, details and chapters using CSS selectors. Use {query} and {page} in the search and browse paths." = "CSS चयनकर्ताओं से साइट की सूचियाँ, विवरण और अध्याय बताएँ। खोज और ब्राउज़ पथों में {query} और {page} का उपयोग करें।";
 "Desde" = "से";
 "Desenfocar las descripciones" = "विवरण ब्लर करें";
 "Desenfocar miniaturas" = "थंबनेल ब्लर करें";
@@ -509,6 +510,7 @@
 "Earth" = "पृथ्वी";
 "Easy on the eyes" = "आँखों के लिए आरामदायक";
 "Edición terminada" = "संपादन पूरा करें";
+"Edit" = "संपादित करें";
 "Edit custom theme" = "कस्टम थीम संपादित करें";
 "Edit profile" = "प्रोफ़ाइल संपादित करें";
 "Edit {name}" = "{name} को संपादित करें";
@@ -827,6 +829,7 @@
 "Loading…" = "लोड हो रहा है…";
 "Local" = "लोकल";
 "Local app files" = "Local app files";
+"Logo URL (optional, auto-detected if blank)" = "लोगो URL (वैकल्पिक, खाली होने पर अपने-आप पता लगाया जाएगा)";
 "Logos" = "लोगो";
 "Los FPS de los subtítulos no están disponibles en este entorno de ejecución de libmpv." = "इस libmpv रनटाइम में सबटाइटल FPS उपलब्ध नहीं है।";
 "Los FPS de los subtítulos no están disponibles mientras haya un subtítulo secundario activo." = "दूसरा सबटाइटल सक्रिय होने पर सबटाइटल FPS उपलब्ध नहीं है।";
@@ -1474,6 +1477,7 @@
 "Sort" = "क्रमबद्ध करें";
 "Sort by" = "इसके अनुसार क्रमबद्ध करें";
 "Source" = "स्रोत";
+"Source name" = "स्रोत का नाम";
 "Sources" = "स्रोत";
 "Sources & library" = "स्रोत और लाइब्रेरी";
 "Sources and quality" = "Sources and quality";
@@ -1594,6 +1598,7 @@
 "Texto sutil" = "हल्का टेक्स्ट";
 "Textos auxiliares y antetítulos." = "कैप्शन, आइब्रो टेक्स्ट।";
 "Thai" = "थाई";
+"That config is not valid. Check baseUrl, popularPath, list, chapters, and pages." = "वह कॉन्फ़िग मान्य नहीं है। baseUrl, popularPath, list, chapters और pages जाँचें।";
 "That link did not answer." = "उस लिंक ने जवाब नहीं दिया।";
 "That route wouldn't chart. Try a different direction." = "उस रूट का चार्ट नहीं बन सका। कोई दूसरी दिशा आज़माएँ।";
 "The CW" = "The CW";

@@ -16,6 +16,7 @@ struct HarborReadingPluginEntry: Codable, Equatable, Sendable, Identifiable {
     var icon: String? { raw["icon"].string }
     var location: String { raw["entry"].string ?? "" }
     var mangayomi: Bool { raw["format"].string == "mangayomi" }
+    var manualHTML: Bool { raw["format"].string == "manual-html" }
     var baseURL: String? { raw["baseUrl"].string }
 }
 struct HarborReadingPluginRepository: Codable, Equatable, Sendable, Identifiable {
@@ -38,6 +39,7 @@ struct HarborInstalledReadingPlugin: Codable, Equatable, Sendable, Identifiable 
     var hasTags = false
     var configuration: JSONValue = .object([:])
     var id: String { kind.rawValue + "|" + entry.id }
+    var manualHTML: Bool { entry.manualHTML && repository == "harbor://manual-html/" + kind.rawValue }
 }
 struct HarborReadingPluginDocument: Codable, Equatable, Sendable {
     var schema = 1

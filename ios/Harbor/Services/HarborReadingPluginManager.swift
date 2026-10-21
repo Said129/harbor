@@ -139,7 +139,52 @@ import Observation
     func remove(_ plugin: HarborInstalledReadingPlugin) async throws {
         try await mutate {
             var next = self.document; next.plugins.removeAll { $0.id == plugin.id }
+            if plugin.manualHTML, let index = next.repositories.firstIndex(where: { $0.kind == plugin.kind && $0.url == plugin.repository }) {
+                next.repositories[index].entries.removeAll { $0.id == plugin.entry.id }
+                if next.repositories[index].entries.isEmpty { next.repositories.remove(at: index) }
+            }
             try await self.save(next); self.invalidate(plugin.id)
+        }
+    }
+    func saveHTML(kind: HarborReadingPluginKind, raw: String, name: String = "", logo: String = "", language: String = "all", replacing previous: HarborInstalledReadingPlugin? = nil) async throws {
+        try await mutate {
+            guard raw.utf8.count <= 256 * 1024 else { throw HarborPluginRepositoryError("too-large") }
+            if let previous {
+                guard previous.kind == kind, previous.manualHTML, self.document.plugins.contains(previous) else { throw HarborPluginRepositoryError("plugin-store-conflict") }
+            }
+            var object = try JSONDecoder().decode(JSONValue.self, from: Data(raw.utf8)).objectValue
+            if !name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty { object["name"] = .string(name.trimmingCharacters(in: .whitespacesAndNewlines)) }
+            if !logo.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty { object["iconUrl"] = .string(logo.trimmingCharacters(in: .whitespacesAndNewlines)) }
+            let text = String(decoding: try JSONEncoder().encode(JSONValue.object(object)), as: UTF8.self)
+            let input: JSONValue = .object(["kind": .string(kind.rawValue), "raw": .string(text), "resolveIcon": .bool(kind == .manga && logo.isEmpty)])
+            let encoded = String(decoding: try JSONEncoder().encode(input), as: UTF8.self)
+            let probe = HarborPluginRuntime(id: "manual-html-validation", name: "Harbor", source: encoded, format: .trustedHTML,
+                scope: self.scope, currentScope: self.currentScope, transport: HarborNativePluginTransport(policy: .reading(baseURL: nil, blockedHosts: []), network: self.network))
+            defer { probe.dispose() }
+            let meta = try await probe.metadata()
+            try self.validate()
+            guard let id = meta["id"].string, let title = meta["name"].string, let base = meta["config"]["baseUrl"].string else { throw HarborPluginRepositoryError("reading-html-config") }
+            guard !self.document.plugins.contains(where: { $0.kind == kind && $0.entry.id == id && !$0.manualHTML }) else { throw HarborPluginRepositoryError("already-added") }
+            let config = meta["config"]
+            let normalized = String(decoding: try JSONEncoder().encode(config), as: UTF8.self)
+            let source = String(decoding: try JSONEncoder().encode(["kind": kind.rawValue, "raw": normalized]), as: UTF8.self)
+            let repositoryURL = "harbor://manual-html/" + kind.rawValue
+            var fields: [String: JSONValue] = ["id": .string(id), "name": .string(title), "format": .string("manual-html"), "lang": .string(language), "baseUrl": .string(base), "htmlConfig": config]
+            if let icon = meta["icon"].string { fields["icon"] = .string(icon) }
+            let entry = HarborReadingPluginEntry(raw: .object(fields))
+            var next = self.document
+            next.plugins.removeAll { ($0.kind == kind && $0.entry.id == id) || $0.id == previous?.id }
+            var plugin = HarborInstalledReadingPlugin(kind: kind, entry: entry, repository: repositoryURL, repositoryName: "Manual sources", source: source, hash: HarborReadingPluginStore.digest(source))
+            plugin.enabled = previous?.enabled ?? true
+            next.plugins.append(plugin)
+            if let index = next.repositories.firstIndex(where: { $0.kind == kind && $0.url == repositoryURL }) {
+                next.repositories[index].entries.removeAll { $0.id == id || $0.id == previous?.entry.id }
+                next.repositories[index].entries.append(entry)
+            } else {
+                next.repositories.append(.init(kind: kind, url: repositoryURL, name: "Manual sources", entries: [entry], foreign: "manual-html", checkedAt: Date()))
+            }
+            try await self.save(next)
+            if let previous { self.invalidate(previous.id) }; self.invalidate(plugin.id)
         }
     }
     func setEnabled(_ plugin: HarborInstalledReadingPlugin, _ enabled: Bool) async throws {
@@ -220,7 +265,7 @@ import Observation
             source = try await adapter.apply("mangayomi-source", raw: .object(record)).string ?? ""
         }
         try validate()
-        return HarborPluginRuntime(id: plugin.id, name: plugin.entry.name, source: source, format: .raw, configuration: plugin.configuration,
+        return HarborPluginRuntime(id: plugin.id, name: plugin.entry.name, source: source, format: plugin.manualHTML ? .trustedHTML : .raw, configuration: plugin.configuration,
             scope: scope, currentScope: currentScope, transport: HarborNativePluginTransport(policy: .reading(baseURL: plugin.entry.baseURL, blockedHosts: []), network: network))
     }
     private func fetchRepository(_ url: String, kind: HarborReadingPluginKind) async throws -> HarborReadingPluginRepository {
@@ -254,7 +299,7 @@ import Observation
     func image(_ path: String, pluginID: String) async throws -> Data {
         try validate()
         guard let plugin = document.plugins.first(where: { $0.id == pluginID }), plugin.enabled else { throw HarborPluginRepositoryError("plugin-unavailable") }
-        let headers = pageHeaders[pluginID + "|" + path] ?? [:]
+        let headers = pageHeaders[pluginID + "|" + path] ?? (plugin.manualHTML ? plugin.entry.raw["htmlConfig"]["headers"].objectValue.compactMapValues(\.string) : [:])
         let headerKey = headers.keys.sorted().map { $0 + ":" + (headers[$0] ?? "") }.joined(separator: "\n")
         let key = pluginID + "|" + plugin.hash + "|" + path + "|" + headerKey
         if let cached = imageCache.object(forKey: key as NSString) { return cached as Data }
@@ -375,7 +420,9 @@ import Observation
         return detail
     }
     private func ebookValues(_ raw: JSONValue, plugin: HarborInstalledReadingPlugin) async throws -> [EBook] {
-        let values = try await adapter.apply("ebook-books", raw: raw, extra: ["provider": .object(["id": .string("plugin:" + plugin.entry.id), "name": .string(plugin.entry.name)])])
+        let values: JSONValue
+        if plugin.manualHTML { values = raw }
+        else { values = try await adapter.apply("ebook-books", raw: raw, extra: ["provider": .object(["id": .string("plugin:" + plugin.entry.id), "name": .string(plugin.entry.name)])]) }
         let declared = plugin.entry.language.lowercased()
         return values.array.compactMap { value in
             guard let id = value["id"].string, let title = value["title"].string, let item = value["sourceItemId"].string else { return nil }

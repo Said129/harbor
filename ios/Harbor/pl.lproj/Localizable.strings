@@ -458,6 +458,7 @@
 "Descargas" = "Pobrane";
 "Desconectar" = "Odłącz";
 "Desconocido" = "Nieznane";
+"Describe the site's lists, details and chapters using CSS selectors. Use {query} and {page} in the search and browse paths." = "Opisz listy, szczegóły i rozdziały witryny za pomocą selektorów CSS. Użyj {query} i {page} w ścieżkach wyszukiwania i przeglądania.";
 "Desde" = "Z serwisu";
 "Desenfocar las descripciones" = "Rozmywaj opisy";
 "Desenfocar miniaturas" = "Rozmywaj miniatury";
@@ -509,6 +510,7 @@
 "Earth" = "Ziemia";
 "Easy on the eyes" = "Łagodny dla oczu";
 "Edición terminada" = "Zakończ edycję";
+"Edit" = "Edytuj";
 "Edit custom theme" = "Edytuj motyw niestandardowy";
 "Edit profile" = "Edytuj profil";
 "Edit {name}" = "Edytuj profil {name}";
@@ -827,6 +829,7 @@
 "Loading…" = "Wczytywanie…";
 "Local" = "Lokalne";
 "Local app files" = "Local app files";
+"Logo URL (optional, auto-detected if blank)" = "URL logo (opcjonalny, wykrywany automatycznie, jeśli pole jest puste)";
 "Logos" = "Logo";
 "Los FPS de los subtítulos no están disponibles en este entorno de ejecución de libmpv." = "Zmiana FPS napisów jest niedostępna w tym środowisku wykonawczym libmpv.";
 "Los FPS de los subtítulos no están disponibles mientras haya un subtítulo secundario activo." = "Zmiana FPS napisów jest niedostępna, gdy aktywne są dodatkowe napisy.";
@@ -1474,6 +1477,7 @@
 "Sort" = "Sortuj";
 "Sort by" = "Sortuj według";
 "Source" = "Źródło";
+"Source name" = "Nazwa źródła";
 "Sources" = "Źródła";
 "Sources & library" = "Źródła i biblioteka";
 "Sources and quality" = "Sources and quality";
@@ -1594,6 +1598,7 @@
 "Texto sutil" = "Dyskretny tekst";
 "Textos auxiliares y antetítulos." = "Podpisy, nadtytuły.";
 "Thai" = "tajski";
+"That config is not valid. Check baseUrl, popularPath, list, chapters, and pages." = "Ta konfiguracja jest nieprawidłowa. Sprawdź baseUrl, popularPath, list, chapters i pages.";
 "That link did not answer." = "Ten link nie odpowiedział.";
 "That route wouldn't chart. Try a different direction." = "Nie udało się wytyczyć tej trasy. Wybierz inny kierunek.";
 "The CW" = "The CW";

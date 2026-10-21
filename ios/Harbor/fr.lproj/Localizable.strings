@@ -458,6 +458,7 @@
 "Descargas" = "Téléchargements";
 "Desconectar" = "Déconnecter";
 "Desconocido" = "Inconnu";
+"Describe the site's lists, details and chapters using CSS selectors. Use {query} and {page} in the search and browse paths." = "Décrivez les listes, les fiches et les chapitres du site avec des sélecteurs CSS. Utilisez {query} et {page} dans les chemins de recherche et de navigation.";
 "Desde" = "De";
 "Desenfocar las descripciones" = "Flouter les descriptions";
 "Desenfocar miniaturas" = "Flouter les miniatures";
@@ -509,6 +510,7 @@
 "Earth" = "Terre";
 "Easy on the eyes" = "Agréable à regarder";
 "Edición terminada" = "Terminer la modification";
+"Edit" = "Modifier";
 "Edit custom theme" = "Modifier le thème personnalisé";
 "Edit profile" = "Modifier le profil";
 "Edit {name}" = "Modifier {name}";
@@ -827,6 +829,7 @@
 "Loading…" = "Chargement…";
 "Local" = "Local";
 "Local app files" = "Local app files";
+"Logo URL (optional, auto-detected if blank)" = "URL du logo (facultative, détectée automatiquement si le champ est vide)";
 "Logos" = "Logos";
 "Los FPS de los subtítulos no están disponibles en este entorno de ejecución de libmpv." = "Les FPS des sous-titres ne sont pas disponibles dans cet environnement d’exécution libmpv.";
 "Los FPS de los subtítulos no están disponibles mientras haya un subtítulo secundario activo." = "Les FPS des sous-titres ne sont pas disponibles lorsqu’un sous-titre secondaire est actif.";
@@ -1474,6 +1477,7 @@
 "Sort" = "Trier";
 "Sort by" = "Trier par";
 "Source" = "Source";
+"Source name" = "Nom de la source";
 "Sources" = "Sources";
 "Sources & library" = "Sources et médiathèque";
 "Sources and quality" = "Sources and quality";
@@ -1594,6 +1598,7 @@
 "Texto sutil" = "Texte discret";
 "Textos auxiliares y antetítulos." = "Sous-titres, sourcils.";
 "Thai" = "Thaï";
+"That config is not valid. Check baseUrl, popularPath, list, chapters, and pages." = "Cette configuration n’est pas valide. Vérifiez baseUrl, popularPath, list, chapters et pages.";
 "That link did not answer." = "Ce lien n'a pas répondu.";
 "That route wouldn't chart. Try a different direction." = "Impossible de tracer cet itinéraire. Essayez une autre direction.";
 "The CW" = "The CW";

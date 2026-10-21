@@ -458,6 +458,7 @@
 "Descargas" = "下载";
 "Desconectar" = "断开连接";
 "Desconocido" = "未知";
+"Describe the site's lists, details and chapters using CSS selectors. Use {query} and {page} in the search and browse paths." = "使用 CSS 选择器描述网站的列表、详情和章节。在搜索和浏览路径中使用 {query} 和 {page}。";
 "Desde" = "来源";
 "Desenfocar las descripciones" = "模糊简介";
 "Desenfocar miniaturas" = "模糊缩略图";
@@ -509,6 +510,7 @@
 "Earth" = "地球";
 "Easy on the eyes" = "护眼";
 "Edición terminada" = "完成编辑";
+"Edit" = "编辑";
 "Edit custom theme" = "编辑自定义主题";
 "Edit profile" = "编辑个人资料";
 "Edit {name}" = "编辑 {name}";
@@ -827,6 +829,7 @@
 "Loading…" = "正在加载…";
 "Local" = "本地";
 "Local app files" = "Local app files";
+"Logo URL (optional, auto-detected if blank)" = "Logo URL（可选，留空则自动检测）";
 "Logos" = "徽标";
 "Los FPS de los subtítulos no están disponibles en este entorno de ejecución de libmpv." = "此 libmpv 运行时不支持字幕 FPS。";
 "Los FPS de los subtítulos no están disponibles mientras haya un subtítulo secundario activo." = "启用第二字幕时，字幕 FPS 不可用。";
@@ -1474,6 +1477,7 @@
 "Sort" = "排序";
 "Sort by" = "排序方式";
 "Source" = "来源";
+"Source name" = "来源名称";
 "Sources" = "来源";
 "Sources & library" = "来源与媒体库";
 "Sources and quality" = "Sources and quality";
@@ -1594,6 +1598,7 @@
 "Texto sutil" = "弱化文本";
 "Textos auxiliares y antetítulos." = "说明文字、眉题。";
 "Thai" = "泰语";
+"That config is not valid. Check baseUrl, popularPath, list, chapters, and pages." = "该配置无效。请检查 baseUrl、popularPath、list、chapters 和 pages。";
 "That link did not answer." = "该链接没有响应。";
 "That route wouldn't chart. Try a different direction." = "这条航线走不通。换个方向试试。";
 "The CW" = "The CW";

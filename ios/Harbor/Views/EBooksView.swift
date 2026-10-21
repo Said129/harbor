@@ -70,7 +70,7 @@ struct EBooksView: View {
             }.padding(.vertical, 16)
         }.scrollDismissesKeyboard(.interactively).background(HarborTheme.background).navigationTitle("eBook").navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .topBarTrailing) { NavigationLink { HarborPluginManagementView(app: app) } label: { Image(systemName: "puzzlepiece.extension") }.accessibilityLabel(DesktopInterfaceText.value("Plugins")) }
+                ToolbarItem(placement: .topBarTrailing) { NavigationLink { HarborPluginManagementView(app: app, kind: .ebook) } label: { Image(systemName: "puzzlepiece.extension") }.accessibilityLabel(DesktopInterfaceText.value("Plugins")) }
                 ToolbarItem(placement: .topBarTrailing) { Button { help = true } label: { Image(systemName: "questionmark.circle") }.accessibilityLabel("Cómo leer tus libros").accessibilityIdentifier("ebook-reading-help") }
             }
             .sheet(isPresented: $help) { ReadingHelpView() }

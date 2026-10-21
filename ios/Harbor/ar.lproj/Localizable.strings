@@ -482,6 +482,7 @@
 "Descargas" = "التحميلات";
 "Desconectar" = "إلغاء الارتباط";
 "Desconocido" = "غير معروف";
+"Describe the site's lists, details and chapters using CSS selectors. Use {query} and {page} in the search and browse paths." = "صِف قوائم الموقع وتفاصيله وفصوله باستخدام محددات CSS. استخدم {query} و{page} في مسارات البحث والتصفح.";
 "Desde" = "من";
 "Desenfocar las descripciones" = "تمويه الأوصاف";
 "Desenfocar miniaturas" = "تمويه الصور المصغّرة";
@@ -533,6 +534,7 @@
 "Earth" = "الأرض";
 "Easy on the eyes" = "مريح للعين";
 "Edición terminada" = "انتهاء التعديل";
+"Edit" = "تعديل";
 "Edit custom theme" = "تعديل السمة المخصصة";
 "Edit profile" = "تعديل الملف الشخصي";
 "Edit {name}" = "تعديل {name}";
@@ -852,6 +854,7 @@
 "Loading…" = "جارٍ التحميل…";
 "Local" = "المحلّي";
 "Local app files" = "Local app files";
+"Logo URL (optional, auto-detected if blank)" = "عنوان URL للشعار (اختياري، يُكتشف تلقائيًا إن تُرك فارغًا)";
 "Logos" = "الشعارات";
 "Los FPS de los subtítulos no están disponibles en este entorno de ejecución de libmpv." = "معدل إطارات الترجمة غير متوفر في إصدار libmpv الحالي.";
 "Los FPS de los subtítulos no están disponibles mientras haya un subtítulo secundario activo." = "لا يتوفر تعديل معدل إطارات الترجمة أثناء تفعيل ترجمة ثانوية.";
@@ -1510,6 +1513,7 @@
 "Sort" = "ترتيب";
 "Sort by" = "الترتيب حسب";
 "Source" = "المصدر";
+"Source name" = "اسم المصدر";
 "Sources" = "المصادر";
 "Sources & library" = "المصادر والمكتبة";
 "Sources and quality" = "Sources and quality";
@@ -1631,6 +1635,7 @@
 "Texto sutil" = "نص خافت";
 "Textos auxiliares y antetítulos." = "التسميات التوضيحية، العناوين العلوية.";
 "Thai" = "التايلندية";
+"That config is not valid. Check baseUrl, popularPath, list, chapters, and pages." = "هذا الإعداد غير صالح. تحقّق من baseUrl وpopularPath وlist وchapters وpages.";
 "That link did not answer." = "لم يستجب هذا الرابط.";
 "That route wouldn't chart. Try a different direction." = "تعذّر رسم هذا المسار. جرّب اتجاهًا آخر.";
 "The CW" = "The CW";

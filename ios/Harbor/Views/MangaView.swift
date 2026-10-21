@@ -155,7 +155,7 @@ struct MangaView: View {
             Button(DesktopInterfaceText.value("Reading help")) { readingHelp = true }
             Button("Importar PDF, CBZ/ZIP o carpeta") { importing = true }.disabled(importingDocument)
             Button("Conexión Suwayomi") { configuring = true }
-            NavigationLink(DesktopInterfaceText.value("Plugins")) { HarborPluginManagementView(app: app) }
+            NavigationLink(DesktopInterfaceText.value("Plugins")) { HarborPluginManagementView(app: app, kind: .manga) }
             if client != nil { Button("Extensiones") { extensions = true } }
             Button("Submanhwa") { submanhwa = true }
             Toggle("Fuentes para adultos", isOn: $adult)

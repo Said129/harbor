@@ -458,6 +458,7 @@
 "Descargas" = "Descargas";
 "Desconectar" = "Desconectar";
 "Desconocido" = "Desconocido";
+"Describe the site's lists, details and chapters using CSS selectors. Use {query} and {page} in the search and browse paths." = "Describe las listas, las fichas y los capítulos del sitio con selectores CSS. Usa {query} y {page} en las rutas de búsqueda y exploración.";
 "Desde" = "Desde";
 "Desenfocar las descripciones" = "Desenfocar las descripciones";
 "Desenfocar miniaturas" = "Desenfocar miniaturas";
@@ -509,6 +510,7 @@
 "Earth" = "Tierra";
 "Easy on the eyes" = "Agradable a la vista";
 "Edición terminada" = "Edición terminada";
+"Edit" = "Editar";
 "Edit custom theme" = "Editar tema personalizado";
 "Edit profile" = "Editar perfil";
 "Edit {name}" = "Editar {name}";
@@ -827,6 +829,7 @@
 "Loading…" = "Cargando…";
 "Local" = "Local";
 "Local app files" = "Archivos de la app";
+"Logo URL (optional, auto-detected if blank)" = "URL del logo (opcional; se detecta automáticamente si se deja en blanco)";
 "Logos" = "Logos";
 "Los FPS de los subtítulos no están disponibles en este entorno de ejecución de libmpv." = "Los FPS de los subtítulos no están disponibles en este entorno de ejecución de libmpv.";
 "Los FPS de los subtítulos no están disponibles mientras haya un subtítulo secundario activo." = "Los FPS de los subtítulos no están disponibles mientras haya un subtítulo secundario activo.";
@@ -1474,6 +1477,7 @@
 "Sort" = "Ordenar";
 "Sort by" = "Ordenar por";
 "Source" = "Fuente";
+"Source name" = "Nombre de la fuente";
 "Sources" = "Fuentes";
 "Sources & library" = "Fuentes y biblioteca";
 "Sources and quality" = "Fuentes y calidad";
@@ -1594,6 +1598,7 @@
 "Texto sutil" = "Texto sutil";
 "Textos auxiliares y antetítulos." = "Textos auxiliares y antetítulos.";
 "Thai" = "Tailandés";
+"That config is not valid. Check baseUrl, popularPath, list, chapters, and pages." = "Esa configuración no es válida. Revisa baseUrl, popularPath, list, chapters y pages.";
 "That link did not answer." = "Ese enlace no respondió.";
 "That route wouldn't chart. Try a different direction." = "Esa ruta no se pudo trazar. Prueba otra dirección.";
 "The CW" = "The CW";

@@ -478,6 +478,7 @@
 "Descargas" = "Downloads";
 "Desconectar" = "Desconectar";
 "Desconocido" = "Desconhecido";
+"Describe the site's lists, details and chapters using CSS selectors. Use {query} and {page} in the search and browse paths." = "Descreva listas, detalhes e capítulos do site com seletores CSS. Use {query} e {page} nos caminhos de pesquisa e navegação.";
 "Desde" = "De";
 "Desenfocar las descripciones" = "Desfocar descrições";
 "Desenfocar miniaturas" = "Desfocar miniaturas";
@@ -529,6 +530,7 @@
 "Earth" = "Terra";
 "Easy on the eyes" = "Suave para os olhos";
 "Edición terminada" = "Edição concluída";
+"Edit" = "Editar";
 "Edit custom theme" = "Editar tema personalizado";
 "Edit profile" = "Editar perfil";
 "Edit {name}" = "Editar {name}";
@@ -847,6 +849,7 @@
 "Loading…" = "Carregando…";
 "Local" = "Local";
 "Local app files" = "Local app files";
+"Logo URL (optional, auto-detected if blank)" = "URL do logo (opcional, detectada automaticamente se em branco)";
 "Logos" = "Logos";
 "Los FPS de los subtítulos no están disponibles en este entorno de ejecución de libmpv." = "O FPS da legenda não está disponível nesta versão do libmpv.";
 "Los FPS de los subtítulos no están disponibles mientras haya un subtítulo secundario activo." = "O FPS da legenda não está disponível enquanto houver uma legenda secundária ativa.";
@@ -1496,6 +1499,7 @@
 "Sort" = "Ordenar";
 "Sort by" = "Ordenar por";
 "Source" = "Fonte";
+"Source name" = "Nome da fonte";
 "Sources" = "Fontes";
 "Sources & library" = "Fontes e biblioteca";
 "Sources and quality" = "Sources and quality";
@@ -1617,6 +1621,7 @@
 "Texto sutil" = "Texto discreto";
 "Textos auxiliares y antetítulos." = "Legendas, sobretítulos.";
 "Thai" = "Tailandês";
+"That config is not valid. Check baseUrl, popularPath, list, chapters, and pages." = "Essa configuração não é válida. Verifique baseUrl, popularPath, list, chapters e pages.";
 "That link did not answer." = "Esse link não respondeu.";
 "That route wouldn't chart. Try a different direction." = "Não foi possível traçar essa rota. Tente outra direção.";
 "The CW" = "The CW";

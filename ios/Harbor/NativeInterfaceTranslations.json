@@ -76,7 +76,8 @@
     "Services changes waiting to sync": "Cambios de servicios pendientes de sincronizar",
     "Use shared settings": "Usar ajustes compartidos",
     "Settings changed. Please reopen this page.": "La configuración ha cambiado. Vuelve a abrir esta página.",
-    "Could not complete this action. Try again.": "No se pudo completar la acción. Inténtalo de nuevo."
+    "Could not complete this action. Try again.": "No se pudo completar la acción. Inténtalo de nuevo.",
+    "Describe the site's lists, details and chapters using CSS selectors. Use {query} and {page} in the search and browse paths.": "Describe las listas, las fichas y los capítulos del sitio con selectores CSS. Usa {query} y {page} en las rutas de búsqueda y exploración."
   },
   "pt": {
     "Auto-sync": "Sincronização automática",
@@ -118,7 +119,8 @@
     "Services changes waiting to sync": "Alterações nos serviços à espera de sincronização",
     "Use shared settings": "Usar configurações compartilhadas",
     "Settings changed. Please reopen this page.": "As definições foram alteradas. Volta a abrir esta página.",
-    "Could not complete this action. Try again.": "Não foi possível concluir esta ação. Tenta novamente."
+    "Could not complete this action. Try again.": "Não foi possível concluir esta ação. Tenta novamente.",
+    "Describe the site's lists, details and chapters using CSS selectors. Use {query} and {page} in the search and browse paths.": "Descreva listas, detalhes e capítulos do site com seletores CSS. Use {query} e {page} nos caminhos de pesquisa e navegação."
   },
   "ru": {
     "Auto-sync": "Автосинхронизация",
@@ -160,7 +162,8 @@
     "Services changes waiting to sync": "Изменения сервисов ожидают синхронизации",
     "Use shared settings": "Использовать общие настройки",
     "Settings changed. Please reopen this page.": "Настройки изменились. Откройте эту страницу заново.",
-    "Could not complete this action. Try again.": "Не удалось выполнить действие. Попробуйте ещё раз."
+    "Could not complete this action. Try again.": "Не удалось выполнить действие. Попробуйте ещё раз.",
+    "Describe the site's lists, details and chapters using CSS selectors. Use {query} and {page} in the search and browse paths.": "Опишите списки, сведения и главы сайта с помощью CSS-селекторов. Используйте {query} и {page} в путях поиска и просмотра."
   },
   "ar": {
     "Auto-sync": "مزامنة تلقائية",
@@ -202,7 +205,8 @@
     "Services changes waiting to sync": "تغييرات الخدمات بانتظار المزامنة",
     "Use shared settings": "استخدام الإعدادات المشتركة",
     "Settings changed. Please reopen this page.": "تغيّرت الإعدادات. أعد فتح هذه الصفحة.",
-    "Could not complete this action. Try again.": "تعذّر إكمال هذا الإجراء. حاول مجددًا."
+    "Could not complete this action. Try again.": "تعذّر إكمال هذا الإجراء. حاول مجددًا.",
+    "Describe the site's lists, details and chapters using CSS selectors. Use {query} and {page} in the search and browse paths.": "صِف قوائم الموقع وتفاصيله وفصوله باستخدام محددات CSS. استخدم {query} و{page} في مسارات البحث والتصفح."
   },
   "zh": {
     "Couldn't auto-sync": "无法自动同步",
@@ -215,7 +219,8 @@
     "Services changes waiting to sync": "服务更改等待同步",
     "Use shared settings": "使用共享设置",
     "Settings changed. Please reopen this page.": "设置已更改。请重新打开此页面。",
-    "Could not complete this action. Try again.": "无法完成此操作。请重试。"
+    "Could not complete this action. Try again.": "无法完成此操作。请重试。",
+    "Describe the site's lists, details and chapters using CSS selectors. Use {query} and {page} in the search and browse paths.": "使用 CSS 选择器描述网站的列表、详情和章节。在搜索和浏览路径中使用 {query} 和 {page}。"
   },
   "fr": {
     "Couldn't auto-sync": "Synchronisation automatique impossible",
@@ -228,7 +233,8 @@
     "Services changes waiting to sync": "Modifications des services en attente de synchronisation",
     "Use shared settings": "Utiliser les réglages partagés",
     "Settings changed. Please reopen this page.": "Les paramètres ont changé. Rouvrez cette page.",
-    "Could not complete this action. Try again.": "Impossible de terminer cette action. Réessayez."
+    "Could not complete this action. Try again.": "Impossible de terminer cette action. Réessayez.",
+    "Describe the site's lists, details and chapters using CSS selectors. Use {query} and {page} in the search and browse paths.": "Décrivez les listes, les fiches et les chapitres du site avec des sélecteurs CSS. Utilisez {query} et {page} dans les chemins de recherche et de navigation."
   },
   "de": {
     "Couldn't auto-sync": "Automatische Synchronisierung nicht möglich",
@@ -241,7 +247,8 @@
     "Services changes waiting to sync": "Änderungen an Diensten warten auf Synchronisierung",
     "Use shared settings": "Gemeinsame Einstellungen verwenden",
     "Settings changed. Please reopen this page.": "Die Einstellungen wurden geändert. Öffne diese Seite erneut.",
-    "Could not complete this action. Try again.": "Diese Aktion konnte nicht abgeschlossen werden. Versuche es erneut."
+    "Could not complete this action. Try again.": "Diese Aktion konnte nicht abgeschlossen werden. Versuche es erneut.",
+    "Describe the site's lists, details and chapters using CSS selectors. Use {query} and {page} in the search and browse paths.": "Beschreibe Listen, Details und Kapitel der Website mit CSS-Selektoren. Verwende {query} und {page} in den Such- und Katalogpfaden."
   },
   "hi": {
     "Couldn't auto-sync": "अपने-आप सिंक नहीं हो सका",
@@ -254,7 +261,8 @@
     "Services changes waiting to sync": "सेवाओं के बदलाव सिंक होने की प्रतीक्षा में हैं",
     "Use shared settings": "साझा सेटिंग इस्तेमाल करें",
     "Settings changed. Please reopen this page.": "सेटिंग बदल गई हैं। कृपया यह पेज फिर से खोलें।",
-    "Could not complete this action. Try again.": "यह कार्रवाई पूरी नहीं हो सकी। फिर से कोशिश करें।"
+    "Could not complete this action. Try again.": "यह कार्रवाई पूरी नहीं हो सकी। फिर से कोशिश करें।",
+    "Describe the site's lists, details and chapters using CSS selectors. Use {query} and {page} in the search and browse paths.": "CSS चयनकर्ताओं से साइट की सूचियाँ, विवरण और अध्याय बताएँ। खोज और ब्राउज़ पथों में {query} और {page} का उपयोग करें।"
   },
   "id": {
     "Couldn't auto-sync": "Tidak dapat menyinkronkan otomatis",
@@ -267,7 +275,8 @@
     "Services changes waiting to sync": "Perubahan layanan menunggu sinkronisasi",
     "Use shared settings": "Gunakan pengaturan bersama",
     "Settings changed. Please reopen this page.": "Pengaturan telah berubah. Buka kembali halaman ini.",
-    "Could not complete this action. Try again.": "Tindakan ini tidak dapat diselesaikan. Coba lagi."
+    "Could not complete this action. Try again.": "Tindakan ini tidak dapat diselesaikan. Coba lagi.",
+    "Describe the site's lists, details and chapters using CSS selectors. Use {query} and {page} in the search and browse paths.": "Jelaskan daftar, detail, dan bab situs dengan selektor CSS. Gunakan {query} dan {page} pada jalur pencarian dan penelusuran."
   },
   "it": {
     "Couldn't auto-sync": "Sincronizzazione automatica non riuscita",
@@ -280,7 +289,8 @@
     "Services changes waiting to sync": "Modifiche ai servizi in attesa di sincronizzazione",
     "Use shared settings": "Usa le impostazioni condivise",
     "Settings changed. Please reopen this page.": "Le impostazioni sono cambiate. Riapri questa pagina.",
-    "Could not complete this action. Try again.": "Impossibile completare questa azione. Riprova."
+    "Could not complete this action. Try again.": "Impossibile completare questa azione. Riprova.",
+    "Describe the site's lists, details and chapters using CSS selectors. Use {query} and {page} in the search and browse paths.": "Descrivi elenchi, dettagli e capitoli del sito con selettori CSS. Usa {query} e {page} nei percorsi di ricerca e navigazione."
   },
   "ja": {
     "Couldn't auto-sync": "自動同期できませんでした",
@@ -293,7 +303,8 @@
     "Services changes waiting to sync": "サービスの変更は同期待ちです",
     "Use shared settings": "共有設定を使う",
     "Settings changed. Please reopen this page.": "設定が変更されました。このページを開き直してください。",
-    "Could not complete this action. Try again.": "この操作を完了できませんでした。もう一度お試しください。"
+    "Could not complete this action. Try again.": "この操作を完了できませんでした。もう一度お試しください。",
+    "Describe the site's lists, details and chapters using CSS selectors. Use {query} and {page} in the search and browse paths.": "CSS セレクターでサイトの一覧、詳細、章を指定します。検索と閲覧のパスでは {query} と {page} を使用します。"
   },
   "ko": {
     "Couldn't auto-sync": "자동 동기화하지 못했습니다",
@@ -306,7 +317,8 @@
     "Services changes waiting to sync": "서비스 변경 사항 동기화 대기 중",
     "Use shared settings": "공유 설정 사용",
     "Settings changed. Please reopen this page.": "설정이 변경되었습니다. 이 페이지를 다시 여세요.",
-    "Could not complete this action. Try again.": "이 작업을 완료하지 못했습니다. 다시 시도하세요."
+    "Could not complete this action. Try again.": "이 작업을 완료하지 못했습니다. 다시 시도하세요.",
+    "Describe the site's lists, details and chapters using CSS selectors. Use {query} and {page} in the search and browse paths.": "CSS 선택자로 사이트의 목록, 상세 정보, 장을 지정하세요. 검색 및 탐색 경로에 {query}와 {page}를 사용하세요."
   },
   "pl": {
     "Couldn't auto-sync": "Nie udało się zsynchronizować automatycznie",
@@ -319,7 +331,8 @@
     "Services changes waiting to sync": "Zmiany usług oczekują na synchronizację",
     "Use shared settings": "Używaj wspólnych ustawień",
     "Settings changed. Please reopen this page.": "Ustawienia zostały zmienione. Otwórz tę stronę ponownie.",
-    "Could not complete this action. Try again.": "Nie udało się wykonać tej czynności. Spróbuj ponownie."
+    "Could not complete this action. Try again.": "Nie udało się wykonać tej czynności. Spróbuj ponownie.",
+    "Describe the site's lists, details and chapters using CSS selectors. Use {query} and {page} in the search and browse paths.": "Opisz listy, szczegóły i rozdziały witryny za pomocą selektorów CSS. Użyj {query} i {page} w ścieżkach wyszukiwania i przeglądania."
   },
   "tr": {
     "Couldn't auto-sync": "Otomatik eşitlenemedi",
@@ -332,7 +345,8 @@
     "Services changes waiting to sync": "Hizmet değişiklikleri eşitlenmeyi bekliyor",
     "Use shared settings": "Paylaşılan ayarları kullan",
     "Settings changed. Please reopen this page.": "Ayarlar değişti. Lütfen bu sayfayı yeniden açın.",
-    "Could not complete this action. Try again.": "Bu işlem tamamlanamadı. Tekrar deneyin."
+    "Could not complete this action. Try again.": "Bu işlem tamamlanamadı. Tekrar deneyin.",
+    "Describe the site's lists, details and chapters using CSS selectors. Use {query} and {page} in the search and browse paths.": "Sitenin listelerini, ayrıntılarını ve bölümlerini CSS seçicileriyle tanımlayın. Arama ve gezinme yollarında {query} ve {page} kullanın."
   },
   "vi": {
     "Couldn't auto-sync": "Không thể tự động đồng bộ",
@@ -345,7 +359,8 @@
     "Services changes waiting to sync": "Các thay đổi dịch vụ đang chờ đồng bộ",
     "Use shared settings": "Dùng cài đặt chung",
     "Settings changed. Please reopen this page.": "Cài đặt đã thay đổi. Vui lòng mở lại trang này.",
-    "Could not complete this action. Try again.": "Không thể hoàn tất thao tác này. Hãy thử lại."
+    "Could not complete this action. Try again.": "Không thể hoàn tất thao tác này. Hãy thử lại.",
+    "Describe the site's lists, details and chapters using CSS selectors. Use {query} and {page} in the search and browse paths.": "Mô tả danh sách, thông tin và chương của trang web bằng bộ chọn CSS. Dùng {query} và {page} trong đường dẫn tìm kiếm và duyệt."
   },
   "en": {
     "Browse services": "Browse services",
@@ -357,6 +372,7 @@
     "Services changes waiting to sync": "Services changes waiting to sync",
     "Use shared settings": "Use shared settings",
     "Settings changed. Please reopen this page.": "Settings changed. Please reopen this page.",
-    "Could not complete this action. Try again.": "Could not complete this action. Try again."
+    "Could not complete this action. Try again.": "Could not complete this action. Try again.",
+    "Describe the site's lists, details and chapters using CSS selectors. Use {query} and {page} in the search and browse paths.": "Describe the site's lists, details and chapters using CSS selectors. Use {query} and {page} in the search and browse paths."
   }
 }

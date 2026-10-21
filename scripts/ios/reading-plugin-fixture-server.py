@@ -21,6 +21,14 @@ def start(build):
     (bulk / 'repo.json').write_text(json.dumps(dict(name='Owned bulk repository', type='ebook', plugins=entries)), 'utf-8')
     for name in ['a', 'b']:
         (bulk / (name + '.js')).write_text("var plugin={id:'owned.ui.reading.bulk." + name + "',name:'Owned bulk " + name + "',popular:function(){return [];}};", 'utf-8')
+    html = Path(folder.name) / 'html'; html.mkdir()
+    documents = json.loads(Path('ios/HarborTests/Fixtures/reading-html-reference.json').read_text('utf-8'))['documents']
+    for directory in ['book', 'chapter']: (html / directory).mkdir()
+    for target, key in [('popular', 'catalog'), ('search', 'catalog'), ('book/one', 'detail'), ('chapter/one', 'chapter'), ('chapter/two', 'chapter')]:
+        text = documents[key].replace('href="/book/', 'href="/html/book/').replace('href="/chapter/', 'href="/html/chapter/').replace('src="/', 'src="/html/')
+        if key == 'detail': text += '<img class="poster" src="/html/cover.png">'
+        (html / target).write_text(text, 'utf-8')
+    for name in ['cover.png', 'page1.png', 'page2.png']: shutil.copy2(source, html / name)
     requests = []
     log_lock = threading.Lock()
 

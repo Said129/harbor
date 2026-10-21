@@ -458,6 +458,7 @@
 "Descargas" = "Unduhan";
 "Desconectar" = "Putuskan koneksi";
 "Desconocido" = "Tidak diketahui";
+"Describe the site's lists, details and chapters using CSS selectors. Use {query} and {page} in the search and browse paths." = "Jelaskan daftar, detail, dan bab situs dengan selektor CSS. Gunakan {query} dan {page} pada jalur pencarian dan penelusuran.";
 "Desde" = "Dari";
 "Desenfocar las descripciones" = "Buramkan deskripsi";
 "Desenfocar miniaturas" = "Buramkan gambar mini";
@@ -509,6 +510,7 @@
 "Earth" = "Bumi";
 "Easy on the eyes" = "Nyaman di mata";
 "Edición terminada" = "Selesai mengedit";
+"Edit" = "Edit";
 "Edit custom theme" = "Edit tema khusus";
 "Edit profile" = "Edit profil";
 "Edit {name}" = "Edit {name}";
@@ -827,6 +829,7 @@
 "Loading…" = "Memuat…";
 "Local" = "Lokal";
 "Local app files" = "Local app files";
+"Logo URL (optional, auto-detected if blank)" = "URL logo (opsional, terdeteksi otomatis jika kosong)";
 "Logos" = "Logo";
 "Los FPS de los subtítulos no están disponibles en este entorno de ejecución de libmpv." = "FPS subtitle tidak tersedia di runtime libmpv ini.";
 "Los FPS de los subtítulos no están disponibles mientras haya un subtítulo secundario activo." = "FPS subtitle tidak tersedia saat subtitle sekunder aktif.";
@@ -1474,6 +1477,7 @@
 "Sort" = "Urutkan";
 "Sort by" = "Urutkan berdasarkan";
 "Source" = "Sumber";
+"Source name" = "Nama sumber";
 "Sources" = "Sumber";
 "Sources & library" = "Sumber & perpustakaan";
 "Sources and quality" = "Sources and quality";
@@ -1594,6 +1598,7 @@
 "Texto sutil" = "Teks samar";
 "Textos auxiliares y antetítulos." = "Teks keterangan, teks pengantar.";
 "Thai" = "Thai";
+"That config is not valid. Check baseUrl, popularPath, list, chapters, and pages." = "Konfigurasi itu tidak valid. Periksa baseUrl, popularPath, list, chapters, dan pages.";
 "That link did not answer." = "Tautan itu tidak merespons.";
 "That route wouldn't chart. Try a different direction." = "Rute itu tidak dapat dipetakan. Coba arah lain.";
 "The CW" = "The CW";

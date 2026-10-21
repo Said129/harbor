@@ -7,7 +7,7 @@ struct PluginExecutionScope: Equatable, Sendable {
     let activation: UUID
 }
 
-enum HarborPluginCodeFormat: String, Sendable { case raw, harbor, providerScript = "provider-script" }
+enum HarborPluginCodeFormat: String, Sendable { case raw, harbor, providerScript = "provider-script", trustedHTML = "trusted-html" }
 enum HarborPluginBridgeKind: String, Sendable { case http, grpc }
 
 /// Implemented by an owner-scoped host; the worker never receives account stores or native objects.
@@ -156,7 +156,9 @@ private struct PluginRuntimeAssets: Decodable {
         guard let sandbox = assets.programs["sandbox"], let parser = assets.programs["parser"], let composer = assets.programs["composer"] else { throw HarborPluginRuntimeError("plugin-assets") }
         let host = try String(contentsOf: hostURL, encoding: .utf8)
         let sandboxJSON = try json(.string(sandbox.source)), instanceJSON = try json(.string(instance))
-        let script = host + "\ninstallHarborPluginHost(" + sandboxJSON + "," + parser.source + "," + composer.source + "," + instanceJSON + ");"
+        let html: String
+        if format == .trustedHTML { html = try HarborReadingHTMLAssets.source() } else { html = "null" }
+        let script = host + "\ninstallHarborPluginHost(" + sandboxJSON + "," + parser.source + "," + composer.source + "," + instanceJSON + "," + html + ");"
         let preferences = WKWebViewConfiguration()
         preferences.websiteDataStore = .nonPersistent()
         preferences.preferences.javaScriptCanOpenWindowsAutomatically = false

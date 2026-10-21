@@ -458,6 +458,7 @@
 "Descargas" = "Download";
 "Desconectar" = "Disconnetti";
 "Desconocido" = "Sconosciuto";
+"Describe the site's lists, details and chapters using CSS selectors. Use {query} and {page} in the search and browse paths." = "Descrivi elenchi, dettagli e capitoli del sito con selettori CSS. Usa {query} e {page} nei percorsi di ricerca e navigazione.";
 "Desde" = "Da";
 "Desenfocar las descripciones" = "Sfoca le descrizioni";
 "Desenfocar miniaturas" = "Sfoca le miniature";
@@ -509,6 +510,7 @@
 "Earth" = "Terra";
 "Easy on the eyes" = "Riposante per gli occhi";
 "Edición terminada" = "Termina modifica";
+"Edit" = "Modifica";
 "Edit custom theme" = "Modifica tema personalizzato";
 "Edit profile" = "Modifica profilo";
 "Edit {name}" = "Modifica {name}";
@@ -827,6 +829,7 @@
 "Loading…" = "Caricamento…";
 "Local" = "Locale";
 "Local app files" = "Local app files";
+"Logo URL (optional, auto-detected if blank)" = "URL del logo (facoltativo, rilevato automaticamente se vuoto)";
 "Logos" = "Loghi";
 "Los FPS de los subtítulos no están disponibles en este entorno de ejecución de libmpv." = "Gli FPS dei sottotitoli non sono disponibili in questo runtime di libmpv.";
 "Los FPS de los subtítulos no están disponibles mientras haya un subtítulo secundario activo." = "Gli FPS dei sottotitoli non sono disponibili mentre è attivo un sottotitolo secondario.";
@@ -1474,6 +1477,7 @@
 "Sort" = "Ordina";
 "Sort by" = "Ordina per";
 "Source" = "Fonte";
+"Source name" = "Nome della fonte";
 "Sources" = "Fonti";
 "Sources & library" = "Fonti e libreria";
 "Sources and quality" = "Sources and quality";
@@ -1594,6 +1598,7 @@
 "Texto sutil" = "Testo discreto";
 "Textos auxiliares y antetítulos." = "Didascalie, sopratitoli.";
 "Thai" = "Thailandese";
+"That config is not valid. Check baseUrl, popularPath, list, chapters, and pages." = "La configurazione non è valida. Controlla baseUrl, popularPath, list, chapters e pages.";
 "That link did not answer." = "Quel link non ha risposto.";
 "That route wouldn't chart. Try a different direction." = "Non è stato possibile tracciare la rotta. Prova un'altra direzione.";
 "The CW" = "The CW";

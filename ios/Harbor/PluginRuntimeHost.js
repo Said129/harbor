@@ -2,8 +2,19 @@
   "use strict";
 
   // Trusted, pinned programs are injected by the native host. Installed code runs only in the worker.
-  globalThis.installHarborPluginHost = function (sandbox, parseHtml, compose, instance) {
+  globalThis.installHarborPluginHost = function (
+    sandbox,
+    parseHtml,
+    compose,
+    instance,
+    createHTML,
+  ) {
     let worker = null;
+    let trustedHTML = null;
+    let closed = false;
+    let htmlSequence = 0;
+    const htmlBridges = new Map();
+    const htmlCalls = new Set();
     let sourceURL = null;
     const jsonCalls = new Set();
     const encoder = new TextEncoder();
@@ -14,9 +25,21 @@
       globalThis.webkit.messageHandlers.harborPlugin.postMessage(value);
     }
     function bridge(id, ok, value, error) {
+      const html = htmlBridges.get(id);
+      if (html) {
+        htmlBridges.delete(id);
+        if (ok) html.resolve(value);
+        else html.reject(new Error(String(error || "HTML source request failed")));
+        return;
+      }
       worker?.postMessage({ type: "bridgeResult", id, ok, value, error });
     }
     function dispose() {
+      closed = true;
+      htmlCalls.clear();
+      for (const pending of htmlBridges.values()) pending.reject(new Error("HTML source disposed"));
+      htmlBridges.clear();
+      trustedHTML = null;
       jsonCalls.clear();
       worker?.terminate();
       worker = null;
@@ -25,7 +48,36 @@
     }
     const api = {
       initialize(payload) {
-        if (worker) throw new Error("plugin already initialized");
+        if (worker || trustedHTML) throw new Error("plugin already initialized");
+        if (payload.format === "trusted-html") {
+          try {
+            if (typeof createHTML !== "function")
+              throw new Error("HTML source program unavailable");
+            trustedHTML = createHTML(
+              payload,
+              (payload) =>
+                new Promise((resolve, reject) => {
+                  if (closed) {
+                    reject(new Error("HTML source disposed"));
+                    return;
+                  }
+                  const id = "html-http-" + ++htmlSequence;
+                  htmlBridges.set(id, { resolve, reject });
+                  post({ type: "http", id, payload });
+                }),
+            );
+            Promise.resolve(trustedHTML.prepare?.())
+              .then(() => {
+                if (!closed) post({ type: "ready", meta: trustedHTML.meta });
+              })
+              .catch((error) => {
+                if (!closed) post({ type: "initError", error: String(error.message) });
+              });
+          } catch (error) {
+            post({ type: "initError", error: String(error.message) });
+          }
+          return;
+        }
         const source =
           payload.format === "provider-script"
             ? compose.provider(payload.source, payload.meta)
@@ -76,6 +128,24 @@
         worker.postMessage({ type: "init", source, config: payload.configuration ?? {} });
       },
       call(message) {
+        if (trustedHTML) {
+          htmlCalls.add(message.id);
+          Promise.resolve()
+            .then(() => trustedHTML.call(message.method, message.args ?? []))
+            .then((value) => {
+              if (!htmlCalls.delete(message.id) || closed) return;
+              post({
+                type: "result",
+                id: message.id,
+                value: message.jsonResult === true ? (JSON.stringify(value) ?? "null") : value,
+              });
+            })
+            .catch((error) => {
+              if (htmlCalls.delete(message.id) && !closed)
+                post({ type: "error", id: message.id, error: String(error.message) });
+            });
+          return;
+        }
         if (!worker) throw new Error("plugin worker unavailable");
         if (message.jsonResult === true) jsonCalls.add(message.id);
         worker.postMessage({
@@ -86,6 +156,7 @@
         });
       },
       cancel(id) {
+        if (htmlCalls.delete(id)) post({ type: "cancelled", id });
         jsonCalls.delete(id);
         worker?.postMessage({ type: "cancel", id });
       },
