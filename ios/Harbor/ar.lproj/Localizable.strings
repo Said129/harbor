@@ -52,7 +52,9 @@
 "Actualizar" = "تحديث";
 "Actualizar episodios" = "Refresh episodes";
 "Actualizar fuentes" = "تحديث المصادر";
+"Add" = "إضافة";
 "Add a TMDB key in Settings to unlock the full discovery feed." = "أضف مفتاح TMDB في الإعدادات لفتح موجز الاكتشاف الكامل.";
+"Add a repository" = "إضافة مستودع";
 "Add bookmark" = "Add bookmark";
 "Add key" = "إضافة مفتاح";
 "Add language" = "إضافة لغة";
@@ -106,6 +108,7 @@
 "All-Time Great Series" = "أعظم المسلسلات على الإطلاق";
 "All-Time Greats" = "روائع كل العصور";
 "Allow cellular data" = "Allow cellular data";
+"Already added." = "مضاف مسبقًا.";
 "Alternate" = "بديل";
 "Analizando el audio… Puedes seguir viendo." = "جارٍ تحليل الصوت… يمكنك متابعة المشاهدة.";
 "Analysis stopped to prioritize playback. Retry after buffering finishes." = "توقف التحليل لإعطاء الأولوية للمشاهدة. أعد المحاولة بعد اكتمال التحميل.";
@@ -124,6 +127,7 @@
 "Another device changed services. Your previous version is saved on this device." = "غيّر جهاز آخر الخدمات. نسختك السابقة محفوظة على هذا الجهاز.";
 "Anterior" = "السابق";
 "Anular estilos integrados" = "تجاوز الأنماط المضمّنة";
+"Any public website. This plugin did not say which sites it uses." = "أي موقع عام. لم يحدد هذا المكوّن الإضافي المواقع التي يستخدمها.";
 "Análisis detenido para priorizar la reproducción. Puedes reintentarlo cuando termine de cargar." = "توقف التحليل لإعطاء الأولوية للمشاهدة. أعد المحاولة بعد اكتمال التحميل.";
 "Apariencia" = "المظهر";
 "Apariencia de los subtítulos" = "مظهر الترجمة";
@@ -316,6 +320,9 @@
 "Change chapter order" = "Change chapter order";
 "Channel format" = "Channel format";
 "Chapters" = "الفصول";
+"Check it works" = "التحقق من عمله";
+"Checking…" = "جارٍ التحقق…";
+"Checksum did not match the manifest." = "المجموع الاختباري لا يطابق ملف manifest.";
 "Chinese" = "الصينية";
 "Chinese (Simplified)" = "الصينية (المبسّطة)";
 "Choose an avatar" = "اختر صورة رمزية";
@@ -404,6 +411,7 @@
 "Correo y contraseña" = "Email and password";
 "Could not analyze this source. Playback continues; you can retry." = "تعذر تحليل هذا المصدر. تستمر المشاهدة ويمكنك المحاولة مجددًا.";
 "Could not apply the timing. The original subtitle is kept." = "تعذر تطبيق التوقيت. تم الاحتفاظ بالترجمة الأصلية.";
+"Could not complete this action. Try again." = "تعذّر إكمال هذا الإجراء. حاول مجددًا.";
 "Could not load navigation settings. Saved settings are kept." = "Could not load navigation settings. Saved settings are kept.";
 "Could not load streaming preferences. Saved settings are kept." = "Could not load streaming preferences. Saved settings are kept.";
 "Could not load this page. Try again." = "تعذر تحميل هذه الصفحة. حاول مرة أخرى.";
@@ -551,6 +559,7 @@
 "En reproducción" = "قيد التشغيل الآن";
 "En reproducción: {label}" = "يُعرض الآن: {label}";
 "Enable addon" = "Enable addon";
+"Enabled" = "مُفعّلة";
 "Enfocar" = "الحدة";
 "English" = "الإنجليزية";
 "Enter Harbor" = "ادخل إلى Harbor";
@@ -615,6 +624,7 @@
 "Featured" = "مختارة";
 "Featured at Anime Expo" = "مختارات Anime Expo";
 "Fecha" = "التاريخ";
+"File is larger than 2 MB." = "حجم الملف أكبر من 2 م.ب.";
 "Fill" = "تعبئة";
 "Film" = "فيلم";
 "Finnish" = "الفنلندية";
@@ -629,6 +639,8 @@
 "Forest" = "غابة";
 "Formato de canales" = "Channel format";
 "Forzado" = "إجباري";
+"Found {count} streams for {title} in {seconds}s" = "عُثر على {count} بثًا لـ {title} خلال {seconds} ث";
+"Found {count} streams in {seconds}s." = "عُثر على {count} بثًا خلال {seconds} ث.";
 "Free, two-minute signup. Unlocks Trending, In Theaters Now, Top Rated, and per-streaming catalogs (Netflix, Disney+, Hulu, …). Your key stays on this machine." = "تسجيل مجاني في دقيقتين. يفتح الرائج، وفي دور السينما الآن، والأعلى تقييمًا، وكتالوجات كل خدمة بث (Netflix و Disney+ و Hulu، …). يبقى مفتاحك على هذا الجهاز.";
 "French" = "الفرنسية";
 "From" = "من";
@@ -657,6 +669,7 @@
 "Green" = "أخضر";
 "Gris" = "Gray";
 "Grosor del contorno" = "سُمك الإطار";
+"Group by repository" = "التجميع حسب المستودع";
 "Guardado" = "محفوظ";
 "Guardando" = "جارٍ الحفظ";
 "Guardar" = "حفظ";
@@ -759,8 +772,10 @@
 "Iniciar sesión con Stremio" = "تسجيل الدخول باستخدام Stremio";
 "Instala un complemento de Stremio y sus catálogos aparecerán aquí como filas de pósteres, listos para explorar." = "ثبّت إضافة Stremio وستظهر كتالوجاتها هنا على هيئة صفوف من الملصقات جاهزة للتصفح.";
 "Instalar addon" = "تثبيت إضافة";
+"Install" = "تثبيت";
 "Install a Stremio addon and its catalogs show up here as poster rails, ready to browse." = "ثبّت إضافة Stremio وستظهر كتالوجاتها هنا على هيئة صفوف من الملصقات جاهزة للتصفح.";
 "Install addon" = "تثبيت إضافة";
+"Installed" = "مثبّتة";
 "Instant" = "فوري";
 "Instant starts the best-ranked stream straight away. Pick a source opens the stream list every time, so you choose the release, quality and provider yourself." = "يبدأ الخيار الفوري أفضل بث ترتيبًا مباشرة. يفتح خيار اختيار مصدر قائمة البث كل مرة لتختار الإصدار والجودة والمزوّد بنفسك.";
 "Instantáneo" = "فوري";
@@ -824,6 +839,7 @@
 "Llegaste al final · {n} complementos" = "لقد وصلت إلى النهاية · {n} إضافة";
 "Load file" = "تحميل ملف";
 "Load more" = "تحميل المزيد";
+"Loading plugins..." = "جارٍ تحميل الإضافات...";
 "Loading…" = "جارٍ التحميل…";
 "Local" = "المحلّي";
 "Local app files" = "Local app files";
@@ -975,6 +991,7 @@
 "No hay subtítulos que coincidan con tu búsqueda." = "No subtitles match your search.";
 "No installed addon matches that." = "لا توجد إضافة مثبّتة تطابق ذلك.";
 "No language matches that search." = "لا توجد لغة تطابق هذا البحث.";
+"No longer listed by its repository." = "لم يعد مدرجًا في مستودعه.";
 "No manga found" = "لم يُعثر على مانجا";
 "No matches." = "لا توجد نتائج.";
 "No picks loaded. TMDB might be unreachable." = "لم تُحمّل أي اختيارات. قد يتعذّر الوصول إلى TMDB.";
@@ -989,6 +1006,8 @@
 "No se pudo aplicar el ajuste. Se conserva el subtítulo original." = "تعذر تطبيق التوقيت. تم الاحتفاظ بالترجمة الأصلية.";
 "No source returned a stream" = "لم يرجع أي مصدر نتائج";
 "No sources match your filter" = "لا توجد مصادر تطابق عامل التصفية";
+"No streams came back." = "لم يُعَد أي بث.";
+"No streams for {title}" = "لا بثوث لـ {title}";
 "No styling" = "بلا تنسيق";
 "No subtitles found." = "لم يُعثر على ترجمات.";
 "No subtitles match your search." = "No subtitles match your search.";
@@ -1003,9 +1022,11 @@
 "Nord" = "Nord";
 "Normal" = "عادية";
 "Norwegian" = "النرويجية";
+"Not a stream plugin: it exports no getStreams or streams function." = "ليس مكوّنًا إضافيًا للبث: لا يصدّر دالة getStreams أو streams.";
 "Not interested" = "غير مهتم";
 "Not now" = "ليس الآن";
 "Not set" = "غير محدد";
+"Nothing installed yet" = "لم يُثبَّت شيء بعد";
 "Nothing matched this filter. Try another category or change your region in Settings." = "لا شيء يطابق هذا الفلتر. جرّب فئة أخرى أو غيّر منطقتك من الإعدادات.";
 "Notify me" = "Notify me";
 "Now" = "الآن";
@@ -1036,6 +1057,7 @@
 "On start" = "On start";
 "Onboarding" = "الإعداد الأولي";
 "Ongoing" = "مستمر";
+"Only https links are accepted." = "تُقبل روابط https فقط.";
 "Opacidad" = "الشفافية";
 "Opacidad del fondo" = "شفافية الخلفية";
 "Opacity" = "الشفافية";
@@ -1126,6 +1148,10 @@
 "Player options" = "Player options";
 "Playlists" = "قوائم التشغيل";
 "Playlists and servers" = "Playlists and servers";
+"Plugin files" = "ملفات المكوّن الإضافي";
+"Plugin files changed on disk. Reinstall it from its repository." = "تغيّرت ملفات المكوّن الإضافي على القرص. أعد تثبيته من مستودعه.";
+"Plugins" = "المكوّنات الإضافية";
+"Plugins are paused. Turn on Use plugins above to run them." = "المكوّنات الإضافية متوقفة مؤقتًا. فعّل «استخدام المكوّنات الإضافية» أعلاه لتشغيلها.";
 "Pluto TV" = "Pluto TV";
 "Polish" = "البولندية";
 "Popular Anime" = "أنمي شائع";
@@ -1190,6 +1216,7 @@
 "Random avatar" = "صورة رمزية عشوائية";
 "Ranked by the {site} community from their public index." = "مرتّب حسب مجتمع {site} استنادًا إلى فهرسه العام.";
 "Re-runs the welcome flow and clears every dismissed tip." = "يعيد تشغيل تدفّق الترحيب ويمسح كل تلميح مرفوض.";
+"Reaches" = "يتصل بـ";
 "Read on iPhone and iPad" = "Read on iPhone and iPad";
 "Reader options" = "Reader options";
 "Reading" = "جارٍ القراءة";
@@ -1202,6 +1229,7 @@
 "Reanudar desde donde lo dejaste" = "المتابعة من حيث توقّفت";
 "Reanudar desde {time}" = "المتابعة من {time}";
 "Reanudar tras una interrupción de audio" = "Resume after an audio interruption";
+"Recent activity" = "النشاط الأخير";
 "Recent searches" = "عمليات البحث الأخيرة";
 "Recién agregado" = "أُضيف حديثًا";
 "Recomendado" = "موصى به";
@@ -1248,6 +1276,8 @@
 "Repetición" = "تكرار";
 "Replay the walkthrough or unhide every dismissed tip in the app." = "أعِد تشغيل الجولة التعريفية أو أظهر كل تلميح رفضته.";
 "Replay walkthrough" = "إعادة تشغيل الجولة التعريفية";
+"Repositories" = "المستودعات";
+"Repository link" = "رابط المستودع";
 "Reproducción" = "التشغيل";
 "Reproducir" = "تشغيل";
 "Reproducir ahora" = "التشغيل الآن";
@@ -1298,6 +1328,7 @@
 "Retry statistics" = "Retry statistics";
 "Reveal" = "إظهار";
 "Reverse order" = "Reverse order";
+"Revert" = "تراجع";
 "Rich season and order panel" = "لوحة المواسم والترتيب التفصيلية";
 "Richer, more vivid picture with a touch more contrast." = "صورة أغنى وأكثر حيوية مع القليل من التباين الإضافي.";
 "Right" = "يمين";
@@ -1311,6 +1342,7 @@
 "Royal" = "ملكي";
 "Rugby" = "الرغبي";
 "Running on Cinemeta for now. Add a TMDB key from Settings whenever you're ready." = "يعمل على Cinemeta حاليًا. أضف مفتاح TMDB من الإعدادات متى كنت مستعدًا.";
+"Runs this plugin on a real title and shows what came back." = "يشغّل هذا المكوّن الإضافي على عنوان حقيقي ويعرض ما أعاده.";
 "Russian" = "الروسية";
 "STARZ" = "STARZ";
 "Salir de imagen en imagen" = "الخروج من صورة داخل صورة";
@@ -1354,6 +1386,7 @@
 "Secondary copy." = "نص ثانوي.";
 "See details" = "عرض التفاصيل";
 "Seek bar" = "شريط التقدم";
+"Seen so far: {hosts}" = "شوهد حتى الآن: {hosts}";
 "Seguir viendo en la parte superior" = "متابعة المشاهدة في الأعلى";
 "Segundo idioma de subtítulos" = "لغة الترجمة الثانية";
 "Seis lugares para comenzar. Toca uno y filtraremos el catálogo para ti." = "ستة أماكن للبدء. اضغط على واحد وسنُرشّح الكتالوج لك.";
@@ -1382,6 +1415,7 @@
 "Sesión iniciada en Stremio" = "تم تسجيل الدخول إلى Stremio";
 "Set a PIN" = "تعيين رمز PIN";
 "Settings" = "الإعدادات";
+"Settings changed. Please reopen this page." = "تغيّرت الإعدادات. أعد فتح هذه الصفحة.";
 "Share" = "مشاركة";
 "Share file" = "Share file";
 "Share with {name}" = "مشاركة مع {name}";
@@ -1403,6 +1437,7 @@
 "Show me more like this" = "عرض المزيد من هذا القبيل";
 "Show more channels" = "Show more channels";
 "Show more titles" = "Show more titles";
+"Show one source per repository in the picker instead of one per plugin. Useful when a repository ships many small providers." = "اعرض مصدرًا واحدًا لكل مستودع في قائمة اختيار البث بدلًا من مصدر لكل مكوّن إضافي. مفيد عندما يضم المستودع كثيرًا من المزوّدين الصغار.";
 "Show pages" = "صفحات المسلسلات";
 "Show row" = "إظهار الصف";
 "Show the Skip button" = "إظهار زر التخطّي";
@@ -1443,6 +1478,7 @@
 "Skip Recap" = "تخطّي الملخص";
 "Skip for now" = "تخطّي الآن";
 "Skip setup" = "تخطّي الإعداد";
+"Skipped: {reason}" = "تم التخطي: {reason}";
 "Slice of Life" = "شريحة من الحياة";
 "Slightly lighter than background." = "أفتح قليلًا من الخلفية.";
 "Sobre la línea principal" = "فوق السطر الأساسي";
@@ -1487,6 +1523,7 @@
 "Stop feeding the hero carousel (back to automatic)" = "إيقاف تغذية شريط العرض الرئيسي (العودة إلى التلقائي)";
 "Stop playback" = "Stop playback";
 "Stop showing as second subtitle" = "إيقاف عرضها كترجمة ثانية";
+"Stopped with: {error}" = "توقف مع الخطأ: {error}";
 "Storage overview" = "نظرة عامة على التخزين";
 "Stream" = "بث";
 "Streaming" = "البث";
@@ -1575,6 +1612,7 @@
 "Texto sutil" = "نص خافت";
 "Textos auxiliares y antetítulos." = "التسميات التوضيحية، العناوين العلوية.";
 "Thai" = "التايلندية";
+"That link did not answer." = "لم يستجب هذا الرابط.";
 "That route wouldn't chart. Try a different direction." = "تعذّر رسم هذا المسار. جرّب اتجاهًا آخر.";
 "The CW" = "The CW";
 "The Roku Channel" = "The Roku Channel";
@@ -1589,6 +1627,8 @@
 "Theater Capture" = "Theater Capture";
 "These rails activate once a TMDB key is set. You can come back to this anytime in Settings." = "تُفعَّل هذه الصفوف بمجرد تعيين مفتاح TMDB. يمكنك العودة إلى هذا في أي وقت من الإعدادات.";
 "This file has one audio track." = "هذا الملف يحتوي على مسار صوتي واحد.";
+"This is a Stremio addon manifest. Add it from the Addons page instead." = "هذا ملف تعريف إضافة Stremio. أضفها من صفحة الإضافات بدلاً من ذلك.";
+"This is a manga repository. Add it from the Manga page." = "هذا مستودع مانغا. أضفه من صفحة المانغا.";
 "This is how your subtitles will look." = "هكذا ستبدو الترجمة.";
 "Thriller" = "إثارة";
 "Thrillers" = "أعمال التشويق";
@@ -1651,6 +1691,7 @@
 "Trending on {source}" = "الرائج على {source}";
 "Trending, Popular, In Theaters, and the per service rails." = "صفوف «الرائج» و«الشائع» و«في دور العرض» وصفوف كل خدمة.";
 "Trending, in theaters, what's on every streamer." = "الرائج، وما يُعرض في السينما، وما هو متاح على كل منصّة بث.";
+"Try again" = "حاول مرة أخرى";
 "Tu avatar, nombre e identificador en Harbor." = "صورتك الرمزية واسمك ومُعرِّفك في جميع أنحاء Harbor.";
 "Tu color" = "لونك";
 "Tu perfil" = "ملفك الشخصي";
@@ -1682,12 +1723,14 @@
 "Upcoming" = "قادم";
 "Upcoming Anime" = "أنمي قادم";
 "Upcoming Season" = "الموسم القادم";
+"Update" = "تحديث";
 "Upload a picture of your own, or pick one from the Harbor catalog." = "ارفع صورتك الخاصة أو اختر صورة من كتالوج Harbor.";
 "Upload photo" = "رفع صورة";
 "Usa el servidor que ya tienes configurado en Harbor. En la red local, permite el acceso cuando iOS lo solicite." = "Use your configured Harbor server. Allow local network access when iOS asks.";
 "Usa la clave v3, no el token de acceso de lectura." = "استخدم مفتاح v3، وليس رمز وصول القراءة.";
 "Usar mi estilo" = "استخدام التنسيق الخاص بي";
 "Use my style" = "استخدام التنسيق الخاص بي";
+"Use plugins" = "استخدام المكوّنات الإضافية";
 "Use shared settings" = "استخدام الإعدادات المشتركة";
 "Use the navigation menu to open each section. Personalize the sidebar, home rows, colors and playback from Settings." = "Use the navigation menu to open each section. Personalize the sidebar, home rows, colors and playback from Settings.";
 "Use the v3 key, not the read access token." = "استخدم مفتاح v3، وليس رمز وصول القراءة.";
@@ -1824,6 +1867,7 @@
 "{n} min" = "{n} دقيقة";
 "{n} seeds" = "{n} موزع";
 "{n} semillas" = "{n} موزع";
+"{requests} requests" = "{requests} طلبًا";
 "{watched} de {total} vistos ({pct}%)." = "تمت مشاهدة {watched} من {total} ({pct}%).";
 "{watched} of {total} watched ({pct}%)." = "تمت مشاهدة {watched} من {total} ({pct}%).";
 "Álbumes" = "الألبومات";
@@ -1832,27 +1876,3 @@
 "Índice" = "Table of contents";
 "Índice de la comunidad" = "فهرس المجتمع";
 "العربية" = "العربية";
-
-"Add" = "إضافة";
-"Add a repository" = "إضافة مستودع";
-"Already added." = "مضاف مسبقًا.";
-"Checksum did not match the manifest." = "المجموع الاختباري لا يطابق ملف manifest.";
-"Could not complete this action. Try again." = "تعذّر إكمال هذا الإجراء. حاول مجددًا.";
-"Enabled" = "مُفعّلة";
-"File is larger than 2 MB." = "حجم الملف أكبر من 2 م.ب.";
-"Install" = "تثبيت";
-"Installed" = "مثبّتة";
-"Loading plugins..." = "جارٍ تحميل الإضافات...";
-"No longer listed by its repository." = "لم يعد مدرجًا في مستودعه.";
-"Not a stream plugin: it exports no getStreams or streams function." = "ليس مكوّنًا إضافيًا للبث: لا يصدّر دالة getStreams أو streams.";
-"Nothing installed yet" = "لم يُثبَّت شيء بعد";
-"Only https links are accepted." = "تُقبل روابط https فقط.";
-"Plugins" = "المكوّنات الإضافية";
-"Repositories" = "المستودعات";
-"Repository link" = "رابط المستودع";
-"Revert" = "تراجع";
-"Settings changed. Please reopen this page." = "تغيّرت الإعدادات. أعد فتح هذه الصفحة.";
-"That link did not answer." = "لم يستجب هذا الرابط.";
-"This is a Stremio addon manifest. Add it from the Addons page instead." = "هذا ملف تعريف إضافة Stremio. أضفها من صفحة الإضافات بدلاً من ذلك.";
-"This is a manga repository. Add it from the Manga page." = "هذا مستودع مانغا. أضفه من صفحة المانغا.";
-"Update" = "تحديث";

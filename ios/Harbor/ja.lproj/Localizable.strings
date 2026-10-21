@@ -45,7 +45,9 @@
 "Actualizar" = "更新";
 "Actualizar episodios" = "Refresh episodes";
 "Actualizar fuentes" = "ソースを更新";
+"Add" = "追加";
 "Add a TMDB key in Settings to unlock the full discovery feed." = "すべての発見フィードを利用するには、設定でTMDBキーを追加してください。";
+"Add a repository" = "リポジトリを追加";
 "Add bookmark" = "Add bookmark";
 "Add key" = "キーを追加";
 "Add language" = "言語を追加";
@@ -97,6 +99,7 @@
 "All-Time Great Series" = "史上最高のシリーズ";
 "All-Time Greats" = "不朽の名作";
 "Allow cellular data" = "Allow cellular data";
+"Already added." = "すでに追加されています。";
 "Alternate" = "別名";
 "Analizando el audio… Puedes seguir viendo." = "Analyzing audio… Keep watching.";
 "Analysis stopped to prioritize playback. Retry after buffering finishes." = "Analysis stopped to prioritize playback. Retry after buffering finishes.";
@@ -114,6 +117,7 @@
 "Another device changed services. Your previous version is saved on this device." = "別のデバイスでサービスが変更されました。以前のバージョンはこのデバイスに保存されています。";
 "Anterior" = "前へ";
 "Anular estilos integrados" = "埋め込みスタイルを上書き";
+"Any public website. This plugin did not say which sites it uses." = "すべての公開サイト。このプラグインは使用するサイトを申告していません。";
 "Análisis detenido para priorizar la reproducción. Puedes reintentarlo cuando termine de cargar." = "Analysis stopped to prioritize playback. Retry after buffering finishes.";
 "Apariencia" = "外観";
 "Apariencia de los subtítulos" = "字幕の表示";
@@ -296,6 +300,9 @@
 "Change chapter order" = "Change chapter order";
 "Channel format" = "Channel format";
 "Chapters" = "話";
+"Check it works" = "動作を確認";
+"Checking…" = "確認中…";
+"Checksum did not match the manifest." = "チェックサムがマニフェストと一致しませんでした。";
 "Chinese" = "中国語";
 "Chinese (Simplified)" = "中国語（簡体字）";
 "Choose an avatar" = "アバターを選択";
@@ -380,6 +387,7 @@
 "Correo y contraseña" = "Email and password";
 "Could not analyze this source. Playback continues; you can retry." = "Could not analyze this source. Playback continues; you can retry.";
 "Could not apply the timing. The original subtitle is kept." = "Could not apply the timing. The original subtitle is kept.";
+"Could not complete this action. Try again." = "この操作を完了できませんでした。もう一度お試しください。";
 "Could not load navigation settings. Saved settings are kept." = "Could not load navigation settings. Saved settings are kept.";
 "Could not load streaming preferences. Saved settings are kept." = "Could not load streaming preferences. Saved settings are kept.";
 "Could not load this page. Try again." = "このページを読み込めませんでした。もう一度お試しください。";
@@ -527,6 +535,7 @@
 "En reproducción" = "再生中";
 "En reproducción: {label}" = "再生中: {label}";
 "Enable addon" = "Enable addon";
+"Enabled" = "有効";
 "Enfocar" = "シャープネス";
 "English" = "英語";
 "Enter Harbor" = "Harborをはじめる";
@@ -591,6 +600,7 @@
 "Featured" = "注目";
 "Featured at Anime Expo" = "Anime Expo注目作";
 "Fecha" = "日付";
+"File is larger than 2 MB." = "ファイルが2 MBを超えています。";
 "Fill" = "画面いっぱいに表示";
 "Film" = "映画";
 "Finnish" = "フィンランド語";
@@ -605,6 +615,8 @@
 "Forest" = "森";
 "Formato de canales" = "Channel format";
 "Forzado" = "強制字幕";
+"Found {count} streams for {title} in {seconds}s" = "{title}のストリームを{seconds}秒で{count}件見つけました";
+"Found {count} streams in {seconds}s." = "{seconds}秒で{count}件のストリームを見つけました。";
 "Free, two-minute signup. Unlocks Trending, In Theaters Now, Top Rated, and per-streaming catalogs (Netflix, Disney+, Hulu, …). Your key stays on this machine." = "無料で、登録は2分ほどです。トレンド、劇場公開中、高評価、配信サービス別のカタログ（Netflix、Disney+、Hulu、…）を利用できます。キーはこのデバイスにのみ保存されます。";
 "French" = "フランス語";
 "From" = "提供元";
@@ -632,6 +644,7 @@
 "Green" = "緑";
 "Gris" = "Gray";
 "Grosor del contorno" = "縁取りの太さ";
+"Group by repository" = "リポジトリごとにまとめる";
 "Guardado" = "保存済み";
 "Guardando" = "保存中";
 "Guardar" = "保存";
@@ -734,8 +747,10 @@
 "Iniciar sesión con Stremio" = "Stremioでサインイン";
 "Instala un complemento de Stremio y sus catálogos aparecerán aquí como filas de pósteres, listos para explorar." = "Stremioアドオンをインストールすると、そのカタログがポスターの一覧としてここに表示され、すぐに閲覧できます。";
 "Instalar addon" = "アドオンをインストール";
+"Install" = "インストール";
 "Install a Stremio addon and its catalogs show up here as poster rails, ready to browse." = "Stremioアドオンをインストールすると、そのカタログがポスターの一覧としてここに表示され、すぐに閲覧できます。";
 "Install addon" = "アドオンをインストール";
+"Installed" = "インストール済み";
 "Instant" = "即時";
 "Instant starts the best-ranked stream straight away. Pick a source opens the stream list every time, so you choose the release, quality and provider yourself." = "即時再生では最上位のストリームをすぐ再生します。ソース選択では毎回一覧を開き、リリース、画質、プロバイダーを自分で選べます。";
 "Instantáneo" = "即時";
@@ -799,6 +814,7 @@
 "Llegaste al final · {n} complementos" = "以上です・アドオン{n}件";
 "Load file" = "ファイルを読み込む";
 "Load more" = "さらに読み込む";
+"Loading plugins..." = "プラグインを読み込み中...";
 "Loading…" = "読み込み中…";
 "Local" = "ローカル";
 "Local app files" = "Local app files";
@@ -947,6 +963,7 @@
 "No hay subtítulos que coincidan con tu búsqueda." = "No subtitles match your search.";
 "No installed addon matches that." = "一致するインストール済みアドオンはありません。";
 "No language matches that search." = "検索に一致する言語がありません。";
+"No longer listed by its repository." = "リポジトリに掲載されなくなりました。";
 "No manga found" = "マンガが見つかりません";
 "No matches." = "一致する項目はありません。";
 "No picks loaded. TMDB might be unreachable." = "おすすめを読み込めませんでした。TMDBに接続できない可能性があります。";
@@ -961,6 +978,8 @@
 "No se pudo aplicar el ajuste. Se conserva el subtítulo original." = "Could not apply the timing. The original subtitle is kept.";
 "No source returned a stream" = "どのソースからもストリームが返されませんでした";
 "No sources match your filter" = "フィルターに一致するソースはありません";
+"No streams came back." = "ストリームは返ってきませんでした。";
+"No streams for {title}" = "{title}のストリームはありません";
 "No styling" = "スタイルなし";
 "No subtitles found." = "字幕が見つかりません。";
 "No subtitles match your search." = "No subtitles match your search.";
@@ -975,9 +994,11 @@
 "Nord" = "Nord";
 "Normal" = "標準";
 "Norwegian" = "ノルウェー語";
+"Not a stream plugin: it exports no getStreams or streams function." = "ストリームプラグインではありません: getStreamsまたはstreams関数をエクスポートしていません。";
 "Not interested" = "興味なし";
 "Not now" = "今はしない";
 "Not set" = "未設定";
+"Nothing installed yet" = "まだ何もインストールされていません";
 "Nothing matched this filter. Try another category or change your region in Settings." = "このフィルターに一致する作品はありません。別のカテゴリーを試すか、設定で地域を変更してください。";
 "Notify me" = "Notify me";
 "Now" = "現在";
@@ -1007,6 +1028,7 @@
 "On start" = "On start";
 "Onboarding" = "初期ガイド";
 "Ongoing" = "連載中";
+"Only https links are accepted." = "httpsのリンクのみ使用できます。";
 "Opacidad" = "不透明度";
 "Opacidad del fondo" = "背景の不透明度";
 "Opacity" = "不透明度";
@@ -1095,6 +1117,10 @@
 "Player options" = "Player options";
 "Playlists" = "プレイリスト";
 "Playlists and servers" = "Playlists and servers";
+"Plugin files" = "プラグインファイル";
+"Plugin files changed on disk. Reinstall it from its repository." = "ディスク上のプラグインファイルが変更されています。リポジトリから再インストールしてください。";
+"Plugins" = "プラグイン";
+"Plugins are paused. Turn on Use plugins above to run them." = "プラグインは一時停止中です。実行するには上の「プラグインを使う」をオンにしてください。";
 "Pluto TV" = "Pluto TV";
 "Polish" = "ポーランド語";
 "Popular Anime" = "人気アニメ";
@@ -1159,6 +1185,7 @@
 "Random avatar" = "ランダムなアバター";
 "Ranked by the {site} community from their public index." = "{site}コミュニティの公開インデックスに基づくランキングです。";
 "Re-runs the welcome flow and clears every dismissed tip." = "ウェルカムガイドをもう一度開始し、非表示にしたヒントをすべて元に戻します。";
+"Reaches" = "接続先";
 "Read on iPhone and iPad" = "Read on iPhone and iPad";
 "Reader options" = "Reader options";
 "Reading" = "読書中";
@@ -1171,6 +1198,7 @@
 "Reanudar desde donde lo dejaste" = "続きから再生";
 "Reanudar desde {time}" = "{time}から再開";
 "Reanudar tras una interrupción de audio" = "Resume after an audio interruption";
+"Recent activity" = "最近のアクティビティ";
 "Recent searches" = "最近の検索";
 "Recién agregado" = "新着";
 "Recomendado" = "おすすめ";
@@ -1216,6 +1244,8 @@
 "Repetición" = "リピート";
 "Replay the walkthrough or unhide every dismissed tip in the app." = "チュートリアルをもう一度再生するか、閉じたすべてのヒントを再表示します。";
 "Replay walkthrough" = "ガイドをもう一度見る";
+"Repositories" = "リポジトリ";
+"Repository link" = "リポジトリのリンク";
 "Reproducción" = "再生";
 "Reproducir" = "再生";
 "Reproducir ahora" = "今すぐ再生";
@@ -1266,6 +1296,7 @@
 "Retry statistics" = "Retry statistics";
 "Reveal" = "表示";
 "Reverse order" = "Reverse order";
+"Revert" = "元に戻す";
 "Rich season and order panel" = "詳細なシーズン／視聴順パネル";
 "Richer, more vivid picture with a touch more contrast." = "コントラストを少し上げ、より深みのある鮮やかな映像にします。";
 "Right" = "右揃え";
@@ -1279,6 +1310,7 @@
 "Royal" = "ロイヤル";
 "Rugby" = "ラグビー";
 "Running on Cinemeta for now. Add a TMDB key from Settings whenever you're ready." = "現在はCinemetaを使用しています。準備ができたら、いつでも「設定」からTMDBキーを追加できます。";
+"Runs this plugin on a real title and shows what came back." = "実際のタイトルでこのプラグインを実行し、返ってきた結果を表示します。";
 "Russian" = "ロシア語";
 "STARZ" = "STARZ";
 "Salir de imagen en imagen" = "ピクチャ・イン・ピクチャを終了";
@@ -1320,6 +1352,7 @@
 "Secondary copy." = "補足テキスト。";
 "See details" = "詳細を見る";
 "Seek bar" = "シークバー";
+"Seen so far: {hosts}" = "これまでの接続先: {hosts}";
 "Seguir viendo en la parte superior" = "「視聴を続ける」を一番上に表示";
 "Segundo idioma de subtítulos" = "第2字幕の言語";
 "Seis lugares para comenzar. Toca uno y filtraremos el catálogo para ti." = "6つのカテゴリーから選べます。1つタップすると、カタログを絞り込みます。";
@@ -1348,6 +1381,7 @@
 "Sesión iniciada en Stremio" = "Stremioにログイン済み";
 "Set a PIN" = "PINを設定";
 "Settings" = "設定";
+"Settings changed. Please reopen this page." = "設定が変更されました。このページを開き直してください。";
 "Share" = "共有";
 "Share file" = "Share file";
 "Share with {name}" = "{name}と共有";
@@ -1369,6 +1403,7 @@
 "Show me more like this" = "このような作品をもっと表示";
 "Show more channels" = "Show more channels";
 "Show more titles" = "Show more titles";
+"Show one source per repository in the picker instead of one per plugin. Useful when a repository ships many small providers." = "ストリーム選択で、プラグインごとではなくリポジトリごとに1つのソースを表示します。小さなプロバイダーを多数含むリポジトリで便利です。";
 "Show pages" = "作品ページ";
 "Show row" = "行を表示";
 "Show the Skip button" = "「スキップ」ボタンを表示";
@@ -1452,6 +1487,7 @@
 "Stop feeding the hero carousel (back to automatic)" = "ヒーローカルーセルへの表示をやめる（自動選択に戻す）";
 "Stop playback" = "Stop playback";
 "Stop showing as second subtitle" = "第2字幕の表示を停止";
+"Stopped with: {error}" = "次のエラーで停止: {error}";
 "Storage overview" = "ストレージ概要";
 "Stream" = "ストリーム";
 "Streaming" = "ストリーミング";
@@ -1539,6 +1575,7 @@
 "Texto sutil" = "控えめなテキスト";
 "Textos auxiliares y antetítulos." = "キャプション、アイブロウ。";
 "Thai" = "タイ語";
+"That link did not answer." = "そのリンクは応答しませんでした。";
 "That route wouldn't chart. Try a different direction." = "そのルートは作成できませんでした。別の方向をお試しください。";
 "The CW" = "The CW";
 "The Roku Channel" = "The Roku Channel";
@@ -1553,6 +1590,7 @@
 "Theater Capture" = "Theater Capture";
 "These rails activate once a TMDB key is set. You can come back to this anytime in Settings." = "TMDBキーを設定すると、これらのレールが有効になります。後からいつでも「設定」で変更できます。";
 "This file has one audio track." = "このファイルには音声トラックが1つあります。";
+"This is a manga repository. Add it from the Manga page." = "これはマンガのリポジトリです。マンガページから追加してください。";
 "This is how your subtitles will look." = "字幕はこのように表示されます。";
 "Thriller" = "スリラー";
 "Thrillers" = "スリラー";
@@ -1615,6 +1653,7 @@
 "Trending on {source}" = "{source}でトレンド";
 "Trending, Popular, In Theaters, and the per service rails." = "「トレンド」「人気」「上映中」と、サービス別のレール。";
 "Trending, in theaters, what's on every streamer." = "トレンド、劇場公開中、各配信サービスの話題作。";
+"Try again" = "再試行";
 "Tu avatar, nombre e identificador en Harbor." = "Harbor全体で使用するアバター、名前、ハンドルネームです。";
 "Tu color" = "あなたのカラー";
 "Tu perfil" = "あなたのプロフィール";
@@ -1646,12 +1685,14 @@
 "Upcoming" = "開催予定";
 "Upcoming Anime" = "近日公開アニメ";
 "Upcoming Season" = "来シーズン";
+"Update" = "更新";
 "Upload a picture of your own, or pick one from the Harbor catalog." = "自分の画像をアップロードするか、Harbor のカタログから選んでください。";
 "Upload photo" = "写真をアップロード";
 "Usa el servidor que ya tienes configurado en Harbor. En la red local, permite el acceso cuando iOS lo solicite." = "Use your configured Harbor server. Allow local network access when iOS asks.";
 "Usa la clave v3, no el token de acceso de lectura." = "読み取りアクセストークンではなく、v3キーを使用してください。";
 "Usar mi estilo" = "自分のスタイルを使用";
 "Use my style" = "自分のスタイルを使用";
+"Use plugins" = "プラグインを使う";
 "Use shared settings" = "共有設定を使う";
 "Use the navigation menu to open each section. Personalize the sidebar, home rows, colors and playback from Settings." = "Use the navigation menu to open each section. Personalize the sidebar, home rows, colors and playback from Settings.";
 "Use the v3 key, not the read access token." = "読み取りアクセストークンではなく、v3キーを使用してください。";
@@ -1784,6 +1825,7 @@
 "{n} min" = "{n}分";
 "{n} seeds" = "シード数: {n}";
 "{n} semillas" = "シード数: {n}";
+"{requests} requests" = "{requests}件のリクエスト";
 "{watched} de {total} vistos ({pct}%)." = "{total}中{watched}を視聴済み（{pct}%）。";
 "{watched} of {total} watched ({pct}%)." = "{total}中{watched}を視聴済み（{pct}%）。";
 "Álbumes" = "アルバム";
@@ -1792,26 +1834,3 @@
 "Índice" = "Table of contents";
 "Índice de la comunidad" = "コミュニティインデックス";
 "العربية" = "アラビア語";
-
-"Add" = "追加";
-"Add a repository" = "リポジトリを追加";
-"Already added." = "すでに追加されています。";
-"Checksum did not match the manifest." = "チェックサムがマニフェストと一致しませんでした。";
-"Could not complete this action. Try again." = "この操作を完了できませんでした。もう一度お試しください。";
-"Enabled" = "有効";
-"File is larger than 2 MB." = "ファイルが2 MBを超えています。";
-"Install" = "インストール";
-"Installed" = "インストール済み";
-"Loading plugins..." = "プラグインを読み込み中...";
-"No longer listed by its repository." = "リポジトリに掲載されなくなりました。";
-"Not a stream plugin: it exports no getStreams or streams function." = "ストリームプラグインではありません: getStreamsまたはstreams関数をエクスポートしていません。";
-"Nothing installed yet" = "まだ何もインストールされていません";
-"Only https links are accepted." = "httpsのリンクのみ使用できます。";
-"Plugins" = "プラグイン";
-"Repositories" = "リポジトリ";
-"Repository link" = "リポジトリのリンク";
-"Revert" = "元に戻す";
-"Settings changed. Please reopen this page." = "設定が変更されました。このページを開き直してください。";
-"That link did not answer." = "そのリンクは応答しませんでした。";
-"This is a manga repository. Add it from the Manga page." = "これはマンガのリポジトリです。マンガページから追加してください。";
-"Update" = "更新";

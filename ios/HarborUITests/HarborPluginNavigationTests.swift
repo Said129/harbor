@@ -5,6 +5,30 @@ import XCTest
     func testRealPluginSettingsAndRepositoryControlsOnIPad() { verify(device: "ipad") }
     func testNewPluginPlaybackOptionsPersistOnIPhone() { verifyOptions(device: "iphone") }
     func testNewPluginPlaybackOptionsPersistOnIPad() { verifyOptions(device: "ipad") }
+    func testPluginActivityCheckOnIPhone() { verifyActivity(device: "iphone") }
+    func testPluginActivityCheckOnIPad() { verifyActivity(device: "ipad") }
+
+    private func verifyActivity(device: String) {
+        continueAfterFailure = false
+        let app = XCUIApplication()
+        app.launchArguments = ["-uiLanguage", "es", "-nativeGuide.initialized.v1", "YES", "-nativeGuide.completed.v1", "YES"]
+        app.launch(); defer { app.terminate() }
+        open(app)
+        let activity = app.buttons["plugin-activity-owned.ui.form"]
+        XCTAssertTrue(activity.waitForExistence(timeout: 15)); reveal(activity, in: app); activity.tap()
+        let check = app.buttons["plugin-check-now"]
+        XCTAssertTrue(check.waitForExistence(timeout: 10)); reveal(check, in: app)
+        capture(app, "plugin-activity-before-" + device)
+        check.tap()
+        let result = app.staticTexts["plugin-check-result"]
+        let completed = XCTNSPredicateExpectation(predicate: NSPredicate(format: "label == %@", "No se recibió ninguna fuente."), object: result)
+        // The source is an owned empty provider. Assert its translated result, then its actual runtime log.
+        XCTAssertEqual(XCTWaiter.wait(for: [completed], timeout: 45), .completed)
+        let log = app.staticTexts["plugin-activity-log"]
+        XCTAssertTrue(log.waitForExistence(timeout: 10)); reveal(log, in: app)
+        XCTAssertTrue(log.label.contains("0 streams")); XCTAssertTrue(log.label.contains("0 requests"))
+        capture(app, "plugin-activity-after-" + device)
+    }
 
     private func verifyOptions(device: String) {
         continueAfterFailure = false

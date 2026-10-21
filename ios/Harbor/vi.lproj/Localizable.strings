@@ -45,7 +45,9 @@
 "Actualizar" = "Làm mới";
 "Actualizar episodios" = "Refresh episodes";
 "Actualizar fuentes" = "Làm mới nguồn";
+"Add" = "Thêm";
 "Add a TMDB key in Settings to unlock the full discovery feed." = "Thêm khóa TMDB trong Cài đặt để mở khóa toàn bộ nguồn cấp khám phá.";
+"Add a repository" = "Thêm kho lưu trữ";
 "Add bookmark" = "Add bookmark";
 "Add key" = "Thêm khóa";
 "Add language" = "Thêm ngôn ngữ";
@@ -97,6 +99,7 @@
 "All-Time Great Series" = "Phim bộ vĩ đại nhất mọi thời đại";
 "All-Time Greats" = "Những tác phẩm vĩ đại nhất mọi thời đại";
 "Allow cellular data" = "Allow cellular data";
+"Already added." = "Đã thêm rồi.";
 "Alternate" = "Thay thế";
 "Analizando el audio… Puedes seguir viendo." = "Analyzing audio… Keep watching.";
 "Analysis stopped to prioritize playback. Retry after buffering finishes." = "Analysis stopped to prioritize playback. Retry after buffering finishes.";
@@ -114,6 +117,7 @@
 "Another device changed services. Your previous version is saved on this device." = "Một thiết bị khác đã thay đổi các dịch vụ. Phiên bản trước được lưu trên thiết bị này.";
 "Anterior" = "Trước";
 "Anular estilos integrados" = "Ghi đè kiểu nhúng";
+"Any public website. This plugin did not say which sites it uses." = "Bất kỳ trang web công khai nào. Plugin này không cho biết nó dùng những trang nào.";
 "Análisis detenido para priorizar la reproducción. Puedes reintentarlo cuando termine de cargar." = "Analysis stopped to prioritize playback. Retry after buffering finishes.";
 "Apariencia" = "Giao diện";
 "Apariencia de los subtítulos" = "Giao diện phụ đề";
@@ -296,6 +300,9 @@
 "Change chapter order" = "Change chapter order";
 "Channel format" = "Channel format";
 "Chapters" = "Các chương";
+"Check it works" = "Kiểm tra hoạt động";
+"Checking…" = "Đang kiểm tra…";
+"Checksum did not match the manifest." = "Tổng kiểm tra không khớp với manifest.";
 "Chinese" = "Tiếng Trung";
 "Chinese (Simplified)" = "Tiếng Trung (Giản thể)";
 "Choose an avatar" = "Chọn ảnh đại diện";
@@ -380,6 +387,7 @@
 "Correo y contraseña" = "Email and password";
 "Could not analyze this source. Playback continues; you can retry." = "Could not analyze this source. Playback continues; you can retry.";
 "Could not apply the timing. The original subtitle is kept." = "Could not apply the timing. The original subtitle is kept.";
+"Could not complete this action. Try again." = "Không thể hoàn tất thao tác này. Hãy thử lại.";
 "Could not load navigation settings. Saved settings are kept." = "Could not load navigation settings. Saved settings are kept.";
 "Could not load streaming preferences. Saved settings are kept." = "Could not load streaming preferences. Saved settings are kept.";
 "Could not load this page. Try again." = "Không thể tải trang này. Vui lòng thử lại.";
@@ -527,6 +535,7 @@
 "En reproducción" = "Đang phát";
 "En reproducción: {label}" = "Đang phát: {label}";
 "Enable addon" = "Enable addon";
+"Enabled" = "Đã bật";
 "Enfocar" = "Độ sắc nét";
 "English" = "Tiếng Anh";
 "Enter Harbor" = "Vào Harbor";
@@ -591,6 +600,7 @@
 "Featured" = "Nổi bật";
 "Featured at Anime Expo" = "Nổi bật tại Anime Expo";
 "Fecha" = "Ngày";
+"File is larger than 2 MB." = "Tệp lớn hơn 2 MB.";
 "Fill" = "Lấp đầy";
 "Film" = "Phim điện ảnh";
 "Finnish" = "Tiếng Phần Lan";
@@ -605,6 +615,8 @@
 "Forest" = "Rừng xanh";
 "Formato de canales" = "Channel format";
 "Forzado" = "Bắt buộc";
+"Found {count} streams for {title} in {seconds}s" = "Tìm thấy {count} luồng phát cho {title} trong {seconds} giây";
+"Found {count} streams in {seconds}s." = "Tìm thấy {count} luồng phát trong {seconds} giây.";
 "Free, two-minute signup. Unlocks Trending, In Theaters Now, Top Rated, and per-streaming catalogs (Netflix, Disney+, Hulu, …). Your key stays on this machine." = "Đăng ký miễn phí trong hai phút. Mở khóa Thịnh hành, Đang chiếu rạp, Được đánh giá cao nhất và danh mục theo từng dịch vụ phát trực tuyến (Netflix, Disney+, Hulu, …). Khóa của bạn chỉ được lưu trên thiết bị này.";
 "French" = "Tiếng Pháp";
 "From" = "Từ";
@@ -632,6 +644,7 @@
 "Green" = "Xanh lá";
 "Gris" = "Gray";
 "Grosor del contorno" = "Độ dày đường viền";
+"Group by repository" = "Nhóm theo kho lưu trữ";
 "Guardado" = "Đã lưu";
 "Guardando" = "Đang lưu";
 "Guardar" = "Lưu";
@@ -734,8 +747,10 @@
 "Iniciar sesión con Stremio" = "Đăng nhập bằng Stremio";
 "Instala un complemento de Stremio y sus catálogos aparecerán aquí como filas de pósteres, listos para explorar." = "Cài đặt một tiện ích bổ sung Stremio để các danh mục của tiện ích xuất hiện tại đây dưới dạng các hàng áp phích, sẵn sàng để duyệt.";
 "Instalar addon" = "Cài đặt tiện ích bổ sung";
+"Install" = "Cài đặt";
 "Install a Stremio addon and its catalogs show up here as poster rails, ready to browse." = "Cài đặt một tiện ích bổ sung Stremio để các danh mục của tiện ích xuất hiện tại đây dưới dạng các hàng áp phích, sẵn sàng để duyệt.";
 "Install addon" = "Cài đặt tiện ích bổ sung";
+"Installed" = "Đã cài đặt";
 "Instant" = "Tức thì";
 "Instant starts the best-ranked stream straight away. Pick a source opens the stream list every time, so you choose the release, quality and provider yourself." = "Phát ngay bắt đầu luồng được xếp hạng cao nhất. Chọn nguồn mở danh sách luồng mỗi lần để bạn tự chọn bản phát hành, chất lượng và nhà cung cấp.";
 "Instantáneo" = "Tức thì";
@@ -799,6 +814,7 @@
 "Llegaste al final · {n} complementos" = "Bạn đã xem hết · {n} tiện ích bổ sung";
 "Load file" = "Tải tệp";
 "Load more" = "Tải thêm";
+"Loading plugins..." = "Đang tải plugin...";
 "Loading…" = "Đang tải…";
 "Local" = "Cục bộ";
 "Local app files" = "Local app files";
@@ -947,6 +963,7 @@
 "No hay subtítulos que coincidan con tu búsqueda." = "No subtitles match your search.";
 "No installed addon matches that." = "Không có tiện ích bổ sung đã cài đặt nào khớp.";
 "No language matches that search." = "Không có ngôn ngữ nào khớp với nội dung tìm kiếm.";
+"No longer listed by its repository." = "Kho lưu trữ không còn liệt kê plugin này.";
 "No manga found" = "Không tìm thấy manga";
 "No matches." = "Không có kết quả.";
 "No picks loaded. TMDB might be unreachable." = "Chưa tải được đề xuất. Có thể không kết nối được với TMDB.";
@@ -961,6 +978,8 @@
 "No se pudo aplicar el ajuste. Se conserva el subtítulo original." = "Could not apply the timing. The original subtitle is kept.";
 "No source returned a stream" = "Không nguồn nào trả về luồng phát";
 "No sources match your filter" = "Không có nguồn nào khớp với bộ lọc";
+"No streams came back." = "Không có luồng phát nào trả về.";
+"No streams for {title}" = "Không có luồng phát cho {title}";
 "No styling" = "Không định dạng";
 "No subtitles found." = "Không tìm thấy phụ đề.";
 "No subtitles match your search." = "No subtitles match your search.";
@@ -975,9 +994,11 @@
 "Nord" = "Nord";
 "Normal" = "Bình thường";
 "Norwegian" = "Tiếng Na Uy";
+"Not a stream plugin: it exports no getStreams or streams function." = "Không phải plugin luồng phát: không xuất hàm getStreams hay streams.";
 "Not interested" = "Không quan tâm";
 "Not now" = "Để sau";
 "Not set" = "Chưa đặt";
+"Nothing installed yet" = "Chưa cài gì";
 "Nothing matched this filter. Try another category or change your region in Settings." = "Không có nội dung nào khớp với bộ lọc này. Hãy thử danh mục khác hoặc đổi khu vực trong Cài đặt.";
 "Notify me" = "Notify me";
 "Now" = "Bây giờ";
@@ -1007,6 +1028,7 @@
 "On start" = "On start";
 "Onboarding" = "Hướng dẫn ban đầu";
 "Ongoing" = "Đang phát hành";
+"Only https links are accepted." = "Chỉ chấp nhận liên kết https.";
 "Opacidad" = "Độ mờ";
 "Opacidad del fondo" = "Độ mờ nền";
 "Opacity" = "Độ mờ";
@@ -1095,6 +1117,10 @@
 "Player options" = "Player options";
 "Playlists" = "Danh sách phát";
 "Playlists and servers" = "Playlists and servers";
+"Plugin files" = "Tệp plugin";
+"Plugin files changed on disk. Reinstall it from its repository." = "Tệp plugin trên đĩa đã thay đổi. Cài lại từ kho lưu trữ của nó.";
+"Plugins" = "Plugin";
+"Plugins are paused. Turn on Use plugins above to run them." = "Plugin đang tạm dừng. Bật Dùng plugin ở trên để chạy.";
 "Pluto TV" = "Pluto TV";
 "Polish" = "Tiếng Ba Lan";
 "Popular Anime" = "Anime phổ biến";
@@ -1159,6 +1185,7 @@
 "Random avatar" = "Ảnh đại diện ngẫu nhiên";
 "Ranked by the {site} community from their public index." = "Do cộng đồng {site} xếp hạng dựa trên bảng xếp hạng công khai của họ.";
 "Re-runs the welcome flow and clears every dismissed tip." = "Chạy lại quy trình chào mừng và đặt lại mọi mẹo đã ẩn.";
+"Reaches" = "Truy cập";
 "Read on iPhone and iPad" = "Read on iPhone and iPad";
 "Reader options" = "Reader options";
 "Reading" = "Đang đọc";
@@ -1171,6 +1198,7 @@
 "Reanudar desde donde lo dejaste" = "Tiếp tục từ chỗ đã dừng";
 "Reanudar desde {time}" = "Tiếp tục từ {time}";
 "Reanudar tras una interrupción de audio" = "Resume after an audio interruption";
+"Recent activity" = "Hoạt động gần đây";
 "Recent searches" = "Tìm kiếm gần đây";
 "Recién agregado" = "Mới thêm";
 "Recomendado" = "Đề xuất";
@@ -1216,6 +1244,8 @@
 "Repetición" = "Lặp lại";
 "Replay the walkthrough or unhide every dismissed tip in the app." = "Xem lại hướng dẫn hoặc hiện lại mọi mẹo đã ẩn trong ứng dụng.";
 "Replay walkthrough" = "Xem lại hướng dẫn";
+"Repositories" = "Kho lưu trữ";
+"Repository link" = "Liên kết kho lưu trữ";
 "Reproducción" = "Phát";
 "Reproducir" = "Phát";
 "Reproducir ahora" = "Phát ngay";
@@ -1266,6 +1296,7 @@
 "Retry statistics" = "Retry statistics";
 "Reveal" = "Hiện";
 "Reverse order" = "Reverse order";
+"Revert" = "Hoàn nguyên";
 "Rich season and order panel" = "Bảng mùa và thứ tự chi tiết";
 "Richer, more vivid picture with a touch more contrast." = "Hình ảnh đậm đà, sống động hơn với độ tương phản cao hơn một chút.";
 "Right" = "Phải";
@@ -1279,6 +1310,7 @@
 "Royal" = "Hoàng gia";
 "Rugby" = "Bóng bầu dục";
 "Running on Cinemeta for now. Add a TMDB key from Settings whenever you're ready." = "Hiện đang dùng Cinemeta. Bạn có thể thêm khóa TMDB trong Cài đặt bất cứ khi nào sẵn sàng.";
+"Runs this plugin on a real title and shows what came back." = "Chạy plugin này với một tiêu đề thật và hiển thị kết quả trả về.";
 "Russian" = "Tiếng Nga";
 "STARZ" = "STARZ";
 "Salir de imagen en imagen" = "Thoát chế độ Hình trong hình";
@@ -1320,6 +1352,7 @@
 "Secondary copy." = "Bản sao phụ.";
 "See details" = "Xem chi tiết";
 "Seek bar" = "Thanh tua";
+"Seen so far: {hosts}" = "Đã thấy đến nay: {hosts}";
 "Seguir viendo en la parte superior" = "Đưa mục Xem tiếp lên đầu";
 "Segundo idioma de subtítulos" = "Ngôn ngữ phụ đề thứ hai";
 "Seis lugares para comenzar. Toca uno y filtraremos el catálogo para ti." = "Sáu điểm để bắt đầu. Nhấn vào một mục để lọc danh mục.";
@@ -1348,6 +1381,7 @@
 "Sesión iniciada en Stremio" = "Đã đăng nhập vào Stremio";
 "Set a PIN" = "Đặt mã PIN";
 "Settings" = "Cài đặt";
+"Settings changed. Please reopen this page." = "Cài đặt đã thay đổi. Vui lòng mở lại trang này.";
 "Share" = "Chia sẻ";
 "Share file" = "Share file";
 "Share with {name}" = "Chia sẻ với {name}";
@@ -1369,6 +1403,7 @@
 "Show me more like this" = "Hiển thị thêm nội dung tương tự";
 "Show more channels" = "Show more channels";
 "Show more titles" = "Show more titles";
+"Show one source per repository in the picker instead of one per plugin. Useful when a repository ships many small providers." = "Hiển thị một nguồn cho mỗi kho lưu trữ trong trình chọn luồng thay vì một nguồn cho mỗi plugin. Hữu ích khi một kho có nhiều nhà cung cấp nhỏ.";
 "Show pages" = "Trang phim";
 "Show row" = "Hiển thị hàng";
 "Show the Skip button" = "Hiển thị nút Bỏ qua";
@@ -1452,6 +1487,7 @@
 "Stop feeding the hero carousel (back to automatic)" = "Ngừng đưa nội dung vào băng chuyền nổi bật (trở lại tự động)";
 "Stop playback" = "Stop playback";
 "Stop showing as second subtitle" = "Dừng hiển thị làm phụ đề thứ hai";
+"Stopped with: {error}" = "Dừng với lỗi: {error}";
 "Storage overview" = "Tổng quan bộ nhớ";
 "Stream" = "Luồng";
 "Streaming" = "Phát trực tuyến";
@@ -1539,6 +1575,7 @@
 "Texto sutil" = "Văn bản phụ";
 "Textos auxiliares y antetítulos." = "Chú thích, tiêu đề phụ.";
 "Thai" = "Tiếng Thái";
+"That link did not answer." = "Liên kết đó không phản hồi.";
 "That route wouldn't chart. Try a different direction." = "Không thể lập hải trình đó. Hãy thử một hướng khác.";
 "The CW" = "The CW";
 "The Roku Channel" = "The Roku Channel";
@@ -1553,6 +1590,7 @@
 "Theater Capture" = "Theater Capture";
 "These rails activate once a TMDB key is set. You can come back to this anytime in Settings." = "Các hàng này sẽ được kích hoạt sau khi đặt khóa TMDB. Bạn có thể quay lại đây bất cứ lúc nào trong Cài đặt.";
 "This file has one audio track." = "Tệp này có một rãnh âm thanh.";
+"This is a manga repository. Add it from the Manga page." = "Đây là kho lưu trữ manga. Hãy thêm từ trang Manga.";
 "This is how your subtitles will look." = "Phụ đề của bạn sẽ hiển thị như thế này.";
 "Thriller" = "Giật gân";
 "Thrillers" = "Phim giật gân";
@@ -1615,6 +1653,7 @@
 "Trending on {source}" = "Đang thịnh hành trên {source}";
 "Trending, Popular, In Theaters, and the per service rails." = "Thịnh hành, Phổ biến, Đang chiếu rạp và các hàng nội dung theo từng dịch vụ.";
 "Trending, in theaters, what's on every streamer." = "Thịnh hành, đang chiếu rạp và nội dung trên mọi dịch vụ phát trực tuyến.";
+"Try again" = "Thử lại";
 "Tu avatar, nombre e identificador en Harbor." = "Ảnh đại diện, tên và tên người dùng của bạn trên Harbor.";
 "Tu color" = "Màu của bạn";
 "Tu perfil" = "Hồ sơ của bạn";
@@ -1646,12 +1685,14 @@
 "Upcoming" = "Sắp tới";
 "Upcoming Anime" = "Anime sắp ra mắt";
 "Upcoming Season" = "Mùa sắp tới";
+"Update" = "Cập nhật";
 "Upload a picture of your own, or pick one from the Harbor catalog." = "Tải lên ảnh của bạn hoặc chọn một ảnh từ danh mục Harbor.";
 "Upload photo" = "Tải ảnh lên";
 "Usa el servidor que ya tienes configurado en Harbor. En la red local, permite el acceso cuando iOS lo solicite." = "Use your configured Harbor server. Allow local network access when iOS asks.";
 "Usa la clave v3, no el token de acceso de lectura." = "Dùng khóa v3, không dùng mã truy cập đọc.";
 "Usar mi estilo" = "Dùng kiểu của tôi";
 "Use my style" = "Dùng kiểu của tôi";
+"Use plugins" = "Dùng plugin";
 "Use shared settings" = "Dùng cài đặt chung";
 "Use the navigation menu to open each section. Personalize the sidebar, home rows, colors and playback from Settings." = "Use the navigation menu to open each section. Personalize the sidebar, home rows, colors and playback from Settings.";
 "Use the v3 key, not the read access token." = "Dùng khóa v3, không dùng mã truy cập đọc.";
@@ -1784,6 +1825,7 @@
 "{n} min" = "{n} phút";
 "{n} seeds" = "{n} seed";
 "{n} semillas" = "{n} seed";
+"{requests} requests" = "{requests} yêu cầu";
 "{watched} de {total} vistos ({pct}%)." = "đã xem {watched}/{total} ({pct}%).";
 "{watched} of {total} watched ({pct}%)." = "đã xem {watched}/{total} ({pct}%).";
 "Álbumes" = "Album";
@@ -1792,26 +1834,3 @@
 "Índice" = "Table of contents";
 "Índice de la comunidad" = "Bảng xếp hạng cộng đồng";
 "العربية" = "Tiếng Ả Rập";
-
-"Add" = "Thêm";
-"Add a repository" = "Thêm kho lưu trữ";
-"Already added." = "Đã thêm rồi.";
-"Checksum did not match the manifest." = "Tổng kiểm tra không khớp với manifest.";
-"Could not complete this action. Try again." = "Không thể hoàn tất thao tác này. Hãy thử lại.";
-"Enabled" = "Đã bật";
-"File is larger than 2 MB." = "Tệp lớn hơn 2 MB.";
-"Install" = "Cài đặt";
-"Installed" = "Đã cài đặt";
-"Loading plugins..." = "Đang tải plugin...";
-"No longer listed by its repository." = "Kho lưu trữ không còn liệt kê plugin này.";
-"Not a stream plugin: it exports no getStreams or streams function." = "Không phải plugin luồng phát: không xuất hàm getStreams hay streams.";
-"Nothing installed yet" = "Chưa cài gì";
-"Only https links are accepted." = "Chỉ chấp nhận liên kết https.";
-"Plugins" = "Plugin";
-"Repositories" = "Kho lưu trữ";
-"Repository link" = "Liên kết kho lưu trữ";
-"Revert" = "Hoàn nguyên";
-"Settings changed. Please reopen this page." = "Cài đặt đã thay đổi. Vui lòng mở lại trang này.";
-"That link did not answer." = "Liên kết đó không phản hồi.";
-"This is a manga repository. Add it from the Manga page." = "Đây là kho lưu trữ manga. Hãy thêm từ trang Manga.";
-"Update" = "Cập nhật";

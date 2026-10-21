@@ -45,7 +45,9 @@
 "Actualizar" = "Segarkan";
 "Actualizar episodios" = "Refresh episodes";
 "Actualizar fuentes" = "Segarkan sumber";
+"Add" = "Tambah";
 "Add a TMDB key in Settings to unlock the full discovery feed." = "Tambahkan kunci TMDB di Pengaturan untuk membuka seluruh feed penemuan.";
+"Add a repository" = "Tambah repositori";
 "Add bookmark" = "Add bookmark";
 "Add key" = "Tambah kunci";
 "Add language" = "Tambahkan bahasa";
@@ -97,6 +99,7 @@
 "All-Time Great Series" = "Serial Terbaik Sepanjang Masa";
 "All-Time Greats" = "Karya Terbaik Sepanjang Masa";
 "Allow cellular data" = "Allow cellular data";
+"Already added." = "Sudah ditambahkan.";
 "Alternate" = "Alternatif";
 "Analizando el audio… Puedes seguir viendo." = "Analyzing audio… Keep watching.";
 "Analysis stopped to prioritize playback. Retry after buffering finishes." = "Analysis stopped to prioritize playback. Retry after buffering finishes.";
@@ -114,6 +117,7 @@
 "Another device changed services. Your previous version is saved on this device." = "Perangkat lain mengubah layanan. Versi sebelumnya tersimpan di perangkat ini.";
 "Anterior" = "Sebelumnya";
 "Anular estilos integrados" = "Abaikan gaya tersemat";
+"Any public website. This plugin did not say which sites it uses." = "Situs publik mana pun. Plugin ini tidak menyebutkan situs yang digunakannya.";
 "Análisis detenido para priorizar la reproducción. Puedes reintentarlo cuando termine de cargar." = "Analysis stopped to prioritize playback. Retry after buffering finishes.";
 "Apariencia" = "Tampilan";
 "Apariencia de los subtítulos" = "Tampilan subtitle";
@@ -296,6 +300,9 @@
 "Change chapter order" = "Change chapter order";
 "Channel format" = "Channel format";
 "Chapters" = "Bab";
+"Check it works" = "Periksa apakah berfungsi";
+"Checking…" = "Memeriksa…";
+"Checksum did not match the manifest." = "Checksum tidak cocok dengan manifest.";
 "Chinese" = "Bahasa Tionghoa";
 "Chinese (Simplified)" = "Bahasa Tionghoa (Sederhana)";
 "Choose an avatar" = "Pilih avatar";
@@ -380,6 +387,7 @@
 "Correo y contraseña" = "Email and password";
 "Could not analyze this source. Playback continues; you can retry." = "Could not analyze this source. Playback continues; you can retry.";
 "Could not apply the timing. The original subtitle is kept." = "Could not apply the timing. The original subtitle is kept.";
+"Could not complete this action. Try again." = "Tindakan ini tidak dapat diselesaikan. Coba lagi.";
 "Could not load navigation settings. Saved settings are kept." = "Could not load navigation settings. Saved settings are kept.";
 "Could not load streaming preferences. Saved settings are kept." = "Could not load streaming preferences. Saved settings are kept.";
 "Could not load this page. Try again." = "Halaman ini tidak dapat dimuat. Coba lagi.";
@@ -527,6 +535,7 @@
 "En reproducción" = "Sedang Diputar";
 "En reproducción: {label}" = "Sedang diputar: {label}";
 "Enable addon" = "Enable addon";
+"Enabled" = "Diaktifkan";
 "Enfocar" = "Pertajam";
 "English" = "Inggris";
 "Enter Harbor" = "Masuk ke Harbor";
@@ -591,6 +600,7 @@
 "Featured" = "Unggulan";
 "Featured at Anime Expo" = "Ditampilkan di Anime Expo";
 "Fecha" = "Tanggal";
+"File is larger than 2 MB." = "File lebih besar dari 2 MB.";
 "Fill" = "Penuhi";
 "Film" = "Film";
 "Finnish" = "Bahasa Finlandia";
@@ -605,6 +615,8 @@
 "Forest" = "Hutan";
 "Formato de canales" = "Channel format";
 "Forzado" = "Paksa";
+"Found {count} streams for {title} in {seconds}s" = "Ditemukan {count} stream untuk {title} dalam {seconds} dtk";
+"Found {count} streams in {seconds}s." = "Ditemukan {count} stream dalam {seconds} dtk.";
 "Free, two-minute signup. Unlocks Trending, In Theaters Now, Top Rated, and per-streaming catalogs (Netflix, Disney+, Hulu, …). Your key stays on this machine." = "Pendaftaran gratis selama dua menit. Membuka Sedang Tren, Sedang Tayang di Bioskop, Berperingkat Teratas, dan katalog per layanan streaming (Netflix, Disney+, Hulu, …). Kunci Anda tetap tersimpan di perangkat ini.";
 "French" = "Bahasa Prancis";
 "From" = "Dari";
@@ -632,6 +644,7 @@
 "Green" = "Hijau";
 "Gris" = "Gray";
 "Grosor del contorno" = "Ketebalan garis tepi";
+"Group by repository" = "Kelompokkan per repositori";
 "Guardado" = "Tersimpan";
 "Guardando" = "Menyimpan";
 "Guardar" = "Simpan";
@@ -734,8 +747,10 @@
 "Iniciar sesión con Stremio" = "Masuk dengan Stremio";
 "Instala un complemento de Stremio y sus catálogos aparecerán aquí como filas de pósteres, listos para explorar." = "Instal addon Stremio dan katalognya akan muncul di sini sebagai deretan poster yang siap dijelajahi.";
 "Instalar addon" = "Instal addon";
+"Install" = "Instal";
 "Install a Stremio addon and its catalogs show up here as poster rails, ready to browse." = "Instal addon Stremio dan katalognya akan muncul di sini sebagai deretan poster yang siap dijelajahi.";
 "Install addon" = "Instal addon";
+"Installed" = "Terinstal";
 "Instant" = "Instan";
 "Instant starts the best-ranked stream straight away. Pick a source opens the stream list every time, so you choose the release, quality and provider yourself." = "Instan langsung memutar stream dengan peringkat terbaik. Pilih sumber membuka daftar stream setiap kali, sehingga Anda dapat memilih sendiri rilis, kualitas, dan penyedianya.";
 "Instantáneo" = "Instan";
@@ -799,6 +814,7 @@
 "Llegaste al final · {n} complementos" = "Anda telah mencapai akhir · {n} addon";
 "Load file" = "Muat file";
 "Load more" = "Muat lebih banyak";
+"Loading plugins..." = "Memuat plugin...";
 "Loading…" = "Memuat…";
 "Local" = "Lokal";
 "Local app files" = "Local app files";
@@ -947,6 +963,7 @@
 "No hay subtítulos que coincidan con tu búsqueda." = "No subtitles match your search.";
 "No installed addon matches that." = "Tidak ada addon terinstal yang cocok dengan itu.";
 "No language matches that search." = "Tidak ada bahasa yang cocok dengan pencarian itu.";
+"No longer listed by its repository." = "Tidak lagi terdaftar di repositorinya.";
 "No manga found" = "Manga tidak ditemukan";
 "No matches." = "Tidak ada yang cocok.";
 "No picks loaded. TMDB might be unreachable." = "Tidak ada pilihan yang dimuat. TMDB mungkin tidak dapat dijangkau.";
@@ -961,6 +978,8 @@
 "No se pudo aplicar el ajuste. Se conserva el subtítulo original." = "Could not apply the timing. The original subtitle is kept.";
 "No source returned a stream" = "Tidak ada sumber yang memberikan stream";
 "No sources match your filter" = "Tidak ada sumber yang cocok dengan filter Anda";
+"No streams came back." = "Tidak ada stream yang kembali.";
+"No streams for {title}" = "Tidak ada stream untuk {title}";
 "No styling" = "Tanpa gaya";
 "No subtitles found." = "Subtitle tidak ditemukan.";
 "No subtitles match your search." = "No subtitles match your search.";
@@ -975,9 +994,11 @@
 "Nord" = "Nord";
 "Normal" = "Normal";
 "Norwegian" = "Norwegia";
+"Not a stream plugin: it exports no getStreams or streams function." = "Bukan plugin stream: tidak mengekspor fungsi getStreams atau streams.";
 "Not interested" = "Tidak tertarik";
 "Not now" = "Jangan sekarang";
 "Not set" = "Belum diatur";
+"Nothing installed yet" = "Belum ada yang terpasang";
 "Nothing matched this filter. Try another category or change your region in Settings." = "Tidak ada yang cocok dengan filter ini. Coba kategori lain atau ubah wilayah Anda di Pengaturan.";
 "Notify me" = "Notify me";
 "Now" = "Sekarang";
@@ -1007,6 +1028,7 @@
 "On start" = "On start";
 "Onboarding" = "Pengenalan awal";
 "Ongoing" = "Berlanjut";
+"Only https links are accepted." = "Hanya tautan https yang diterima.";
 "Opacidad" = "Opasitas";
 "Opacidad del fondo" = "Opasitas latar belakang";
 "Opacity" = "Opasitas";
@@ -1095,6 +1117,10 @@
 "Player options" = "Player options";
 "Playlists" = "Daftar putar";
 "Playlists and servers" = "Playlists and servers";
+"Plugin files" = "File plugin";
+"Plugin files changed on disk. Reinstall it from its repository." = "File plugin berubah di disk. Pasang ulang dari repositorinya.";
+"Plugins" = "Plugin";
+"Plugins are paused. Turn on Use plugins above to run them." = "Plugin dijeda. Nyalakan Gunakan plugin di atas untuk menjalankannya.";
 "Pluto TV" = "Pluto TV";
 "Polish" = "Polandia";
 "Popular Anime" = "Anime Populer";
@@ -1159,6 +1185,7 @@
 "Random avatar" = "Avatar acak";
 "Ranked by the {site} community from their public index." = "Diurutkan oleh komunitas {site} berdasarkan indeks publik mereka.";
 "Re-runs the welcome flow and clears every dismissed tip." = "Menjalankan ulang alur sambutan dan menghapus semua tip yang sebelumnya ditutup.";
+"Reaches" = "Mengakses";
 "Read on iPhone and iPad" = "Read on iPhone and iPad";
 "Reader options" = "Reader options";
 "Reading" = "Sedang membaca";
@@ -1171,6 +1198,7 @@
 "Reanudar desde donde lo dejaste" = "Lanjutkan dari posisi terakhir";
 "Reanudar desde {time}" = "Lanjutkan dari {time}";
 "Reanudar tras una interrupción de audio" = "Resume after an audio interruption";
+"Recent activity" = "Aktivitas terbaru";
 "Recent searches" = "Pencarian terbaru";
 "Recién agregado" = "Baru ditambahkan";
 "Recomendado" = "Direkomendasikan";
@@ -1216,6 +1244,8 @@
 "Repetición" = "Ulangi";
 "Replay the walkthrough or unhide every dismissed tip in the app." = "Putar ulang panduan atau tampilkan kembali semua kiat yang telah ditutup di aplikasi.";
 "Replay walkthrough" = "Putar ulang panduan";
+"Repositories" = "Repositori";
+"Repository link" = "Tautan repositori";
 "Reproducción" = "Pemutaran";
 "Reproducir" = "Putar";
 "Reproducir ahora" = "Putar sekarang";
@@ -1266,6 +1296,7 @@
 "Retry statistics" = "Retry statistics";
 "Reveal" = "Tampilkan";
 "Reverse order" = "Reverse order";
+"Revert" = "Kembalikan";
 "Rich season and order panel" = "Panel musim dan urutan yang lengkap";
 "Richer, more vivid picture with a touch more contrast." = "Gambar lebih kaya dan hidup dengan sedikit tambahan kontras.";
 "Right" = "Kanan";
@@ -1279,6 +1310,7 @@
 "Royal" = "Kerajaan";
 "Rugby" = "Rugbi";
 "Running on Cinemeta for now. Add a TMDB key from Settings whenever you're ready." = "Untuk saat ini menggunakan Cinemeta. Tambahkan kunci TMDB dari Pengaturan kapan pun Anda siap.";
+"Runs this plugin on a real title and shows what came back." = "Menjalankan plugin ini pada judul sungguhan dan menampilkan hasilnya.";
 "Russian" = "Rusia";
 "STARZ" = "STARZ";
 "Salir de imagen en imagen" = "Keluar dari Picture in Picture";
@@ -1320,6 +1352,7 @@
 "Secondary copy." = "Teks sekunder.";
 "See details" = "Lihat detail";
 "Seek bar" = "Bilah waktu";
+"Seen so far: {hosts}" = "Terlihat sejauh ini: {hosts}";
 "Seguir viendo en la parte superior" = "Lanjutkan Menonton di bagian atas";
 "Segundo idioma de subtítulos" = "Bahasa subtitle kedua";
 "Seis lugares para comenzar. Toca uno y filtraremos el catálogo para ti." = "Enam pilihan untuk memulai. Ketuk salah satunya dan kami akan memfilter katalog untuk Anda.";
@@ -1348,6 +1381,7 @@
 "Sesión iniciada en Stremio" = "Sudah masuk ke Stremio";
 "Set a PIN" = "Atur PIN";
 "Settings" = "Pengaturan";
+"Settings changed. Please reopen this page." = "Pengaturan telah berubah. Buka kembali halaman ini.";
 "Share" = "Bagikan";
 "Share file" = "Share file";
 "Share with {name}" = "Bagikan dengan {name}";
@@ -1369,6 +1403,7 @@
 "Show me more like this" = "Tampilkan lebih banyak konten seperti ini";
 "Show more channels" = "Show more channels";
 "Show more titles" = "Show more titles";
+"Show one source per repository in the picker instead of one per plugin. Useful when a repository ships many small providers." = "Tampilkan satu sumber per repositori di pemilih stream, bukan satu per plugin. Berguna saat sebuah repositori berisi banyak penyedia kecil.";
 "Show pages" = "Tampilkan halaman";
 "Show row" = "Tampilkan baris";
 "Show the Skip button" = "Tampilkan tombol Lewati";
@@ -1452,6 +1487,7 @@
 "Stop feeding the hero carousel (back to automatic)" = "Berhenti mengisi karusel utama (kembali ke otomatis)";
 "Stop playback" = "Stop playback";
 "Stop showing as second subtitle" = "Hentikan penayangan sebagai subtitle kedua";
+"Stopped with: {error}" = "Berhenti dengan: {error}";
 "Storage overview" = "Ringkasan penyimpanan";
 "Stream" = "Stream";
 "Streaming" = "Streaming";
@@ -1539,6 +1575,7 @@
 "Texto sutil" = "Teks samar";
 "Textos auxiliares y antetítulos." = "Teks keterangan, teks pengantar.";
 "Thai" = "Thai";
+"That link did not answer." = "Tautan itu tidak merespons.";
 "That route wouldn't chart. Try a different direction." = "Rute itu tidak dapat dipetakan. Coba arah lain.";
 "The CW" = "The CW";
 "The Roku Channel" = "The Roku Channel";
@@ -1553,6 +1590,7 @@
 "Theater Capture" = "Theater Capture";
 "These rails activate once a TMDB key is set. You can come back to this anytime in Settings." = "Deretan ini akan aktif setelah kunci TMDB ditetapkan. Anda dapat kembali ke sini kapan saja melalui Pengaturan.";
 "This file has one audio track." = "File ini memiliki satu trek audio.";
+"This is a manga repository. Add it from the Manga page." = "Ini repositori manga. Tambahkan dari halaman Manga.";
 "This is how your subtitles will look." = "Beginilah tampilan subtitle Anda.";
 "Thriller" = "Thriller";
 "Thrillers" = "Thriller";
@@ -1615,6 +1653,7 @@
 "Trending on {source}" = "Sedang tren di {source}";
 "Trending, Popular, In Theaters, and the per service rails." = "Sedang tren, Populer, Sedang Tayang di Bioskop, dan deretan per layanan.";
 "Trending, in theaters, what's on every streamer." = "Yang sedang tren, sedang tayang di bioskop, dan tersedia di setiap layanan streaming.";
+"Try again" = "Coba lagi";
 "Tu avatar, nombre e identificador en Harbor." = "Avatar, nama, dan nama pengguna Anda di seluruh Harbor.";
 "Tu color" = "Warna Anda";
 "Tu perfil" = "Profil Anda";
@@ -1646,12 +1685,14 @@
 "Upcoming" = "Mendatang";
 "Upcoming Anime" = "Anime Mendatang";
 "Upcoming Season" = "Musim Mendatang";
+"Update" = "Perbarui";
 "Upload a picture of your own, or pick one from the Harbor catalog." = "Unggah gambar Anda sendiri atau pilih dari katalog Harbor.";
 "Upload photo" = "Unggah foto";
 "Usa el servidor que ya tienes configurado en Harbor. En la red local, permite el acceso cuando iOS lo solicite." = "Use your configured Harbor server. Allow local network access when iOS asks.";
 "Usa la clave v3, no el token de acceso de lectura." = "Gunakan kunci v3, bukan token akses baca.";
 "Usar mi estilo" = "Gunakan gaya saya";
 "Use my style" = "Gunakan gaya saya";
+"Use plugins" = "Gunakan plugin";
 "Use shared settings" = "Gunakan pengaturan bersama";
 "Use the navigation menu to open each section. Personalize the sidebar, home rows, colors and playback from Settings." = "Use the navigation menu to open each section. Personalize the sidebar, home rows, colors and playback from Settings.";
 "Use the v3 key, not the read access token." = "Gunakan kunci v3, bukan token akses baca.";
@@ -1784,6 +1825,7 @@
 "{n} min" = "{n} mnt";
 "{n} seeds" = "{n} seed";
 "{n} semillas" = "{n} seed";
+"{requests} requests" = "{requests} permintaan";
 "{watched} de {total} vistos ({pct}%)." = "{watched} dari {total} ditonton ({pct}%).";
 "{watched} of {total} watched ({pct}%)." = "{watched} dari {total} ditonton ({pct}%).";
 "Álbumes" = "Album";
@@ -1792,26 +1834,3 @@
 "Índice" = "Table of contents";
 "Índice de la comunidad" = "Indeks komunitas";
 "العربية" = "Arab";
-
-"Add" = "Tambah";
-"Add a repository" = "Tambah repositori";
-"Already added." = "Sudah ditambahkan.";
-"Checksum did not match the manifest." = "Checksum tidak cocok dengan manifest.";
-"Could not complete this action. Try again." = "Tindakan ini tidak dapat diselesaikan. Coba lagi.";
-"Enabled" = "Diaktifkan";
-"File is larger than 2 MB." = "File lebih besar dari 2 MB.";
-"Install" = "Instal";
-"Installed" = "Terinstal";
-"Loading plugins..." = "Memuat plugin...";
-"No longer listed by its repository." = "Tidak lagi terdaftar di repositorinya.";
-"Not a stream plugin: it exports no getStreams or streams function." = "Bukan plugin stream: tidak mengekspor fungsi getStreams atau streams.";
-"Nothing installed yet" = "Belum ada yang terpasang";
-"Only https links are accepted." = "Hanya tautan https yang diterima.";
-"Plugins" = "Plugin";
-"Repositories" = "Repositori";
-"Repository link" = "Tautan repositori";
-"Revert" = "Kembalikan";
-"Settings changed. Please reopen this page." = "Pengaturan telah berubah. Buka kembali halaman ini.";
-"That link did not answer." = "Tautan itu tidak merespons.";
-"This is a manga repository. Add it from the Manga page." = "Ini repositori manga. Tambahkan dari halaman Manga.";
-"Update" = "Perbarui";

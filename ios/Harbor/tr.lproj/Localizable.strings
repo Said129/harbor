@@ -45,7 +45,9 @@
 "Actualizar" = "Yenile";
 "Actualizar episodios" = "Refresh episodes";
 "Actualizar fuentes" = "Kaynakları yenile";
+"Add" = "Ekle";
 "Add a TMDB key in Settings to unlock the full discovery feed." = "Tam keşif akışının kilidini açmak için Ayarlar'a bir TMDB anahtarı ekleyin.";
+"Add a repository" = "Depo ekle";
 "Add bookmark" = "Add bookmark";
 "Add key" = "Anahtar ekle";
 "Add language" = "Dil ekle";
@@ -97,6 +99,7 @@
 "All-Time Great Series" = "Tüm Zamanların En İyi Dizileri";
 "All-Time Greats" = "Tüm Zamanların En İyileri";
 "Allow cellular data" = "Allow cellular data";
+"Already added." = "Zaten eklendi.";
 "Alternate" = "Alternatif";
 "Analizando el audio… Puedes seguir viendo." = "Analyzing audio… Keep watching.";
 "Analysis stopped to prioritize playback. Retry after buffering finishes." = "Analysis stopped to prioritize playback. Retry after buffering finishes.";
@@ -114,6 +117,7 @@
 "Another device changed services. Your previous version is saved on this device." = "Başka bir cihaz hizmetleri değiştirdi. Önceki sürümünüz bu cihazda kayıtlı.";
 "Anterior" = "Önceki";
 "Anular estilos integrados" = "Gömülü stilleri geçersiz kıl";
+"Any public website. This plugin did not say which sites it uses." = "Herhangi bir herkese açık site. Bu uzantı hangi siteleri kullandığını belirtmedi.";
 "Análisis detenido para priorizar la reproducción. Puedes reintentarlo cuando termine de cargar." = "Analysis stopped to prioritize playback. Retry after buffering finishes.";
 "Apariencia" = "Görünüm";
 "Apariencia de los subtítulos" = "Altyazı görünümü";
@@ -296,6 +300,9 @@
 "Change chapter order" = "Change chapter order";
 "Channel format" = "Channel format";
 "Chapters" = "Bölümler";
+"Check it works" = "Çalıştığını denetle";
+"Checking…" = "Denetleniyor…";
+"Checksum did not match the manifest." = "Sağlama toplamı manifest ile eşleşmedi.";
 "Chinese" = "Çince";
 "Chinese (Simplified)" = "Basitleştirilmiş Çince";
 "Choose an avatar" = "Bir avatar seçin";
@@ -380,6 +387,7 @@
 "Correo y contraseña" = "Email and password";
 "Could not analyze this source. Playback continues; you can retry." = "Could not analyze this source. Playback continues; you can retry.";
 "Could not apply the timing. The original subtitle is kept." = "Could not apply the timing. The original subtitle is kept.";
+"Could not complete this action. Try again." = "Bu işlem tamamlanamadı. Tekrar deneyin.";
 "Could not load navigation settings. Saved settings are kept." = "Could not load navigation settings. Saved settings are kept.";
 "Could not load streaming preferences. Saved settings are kept." = "Could not load streaming preferences. Saved settings are kept.";
 "Could not load this page. Try again." = "Bu sayfa yüklenemedi. Tekrar deneyin.";
@@ -527,6 +535,7 @@
 "En reproducción" = "Şimdi oynatılıyor";
 "En reproducción: {label}" = "Şimdi oynatılıyor: {label}";
 "Enable addon" = "Enable addon";
+"Enabled" = "Etkin";
 "Enfocar" = "Keskinlik";
 "English" = "İngilizce";
 "Enter Harbor" = "Harbor'a gir";
@@ -591,6 +600,7 @@
 "Featured" = "Öne Çıkan";
 "Featured at Anime Expo" = "Anime Expo'da Öne Çıkanlar";
 "Fecha" = "Tarih";
+"File is larger than 2 MB." = "Dosya 2 MB'tan büyük.";
 "Fill" = "Doldur";
 "Film" = "Film";
 "Finnish" = "Fince";
@@ -605,6 +615,8 @@
 "Forest" = "Orman";
 "Formato de canales" = "Channel format";
 "Forzado" = "Zorunlu";
+"Found {count} streams for {title} in {seconds}s" = "{title} için {seconds} sn içinde {count} yayın bulundu";
+"Found {count} streams in {seconds}s." = "{seconds} sn içinde {count} yayın bulundu.";
 "Free, two-minute signup. Unlocks Trending, In Theaters Now, Top Rated, and per-streaming catalogs (Netflix, Disney+, Hulu, …). Your key stays on this machine." = "Ücretsizdir, kaydolmak iki dakika sürer. Gündemdekiler, Şimdi Vizyonda, En Yüksek Puanlılar ve yayın hizmetine özel katalogların (Netflix, Disney+, Hulu, …) kilidini açar. Anahtarınız bu cihazda kalır.";
 "French" = "Fransızca";
 "From" = "Kaynak";
@@ -632,6 +644,7 @@
 "Green" = "Yeşil";
 "Gris" = "Gray";
 "Grosor del contorno" = "Kontur kalınlığı";
+"Group by repository" = "Depoya göre grupla";
 "Guardado" = "Kaydedildi";
 "Guardando" = "Kaydediliyor";
 "Guardar" = "Kaydet";
@@ -734,8 +747,10 @@
 "Iniciar sesión con Stremio" = "Stremio ile oturum aç";
 "Instala un complemento de Stremio y sus catálogos aparecerán aquí como filas de pósteres, listos para explorar." = "Bir Stremio eklentisi yüklediğinizde eklentinin katalogları, göz atmaya hazır poster şeritleri olarak burada görünür.";
 "Instalar addon" = "Eklentiyi yükle";
+"Install" = "Yükle";
 "Install a Stremio addon and its catalogs show up here as poster rails, ready to browse." = "Bir Stremio eklentisi yüklediğinizde eklentinin katalogları, göz atmaya hazır poster şeritleri olarak burada görünür.";
 "Install addon" = "Eklentiyi yükle";
+"Installed" = "Yüklü";
 "Instant" = "Anında";
 "Instant starts the best-ranked stream straight away. Pick a source opens the stream list every time, so you choose the release, quality and provider yourself." = "Anında, en üst sıradaki yayını hemen başlatır. Kaynak seç, her seferinde yayın listesini açarak sürümü, kaliteyi ve sağlayıcıyı kendiniz seçmenizi sağlar.";
 "Instantáneo" = "Anında";
@@ -799,6 +814,7 @@
 "Llegaste al final · {n} complementos" = "Sona ulaştınız · {n} eklenti";
 "Load file" = "Dosya yükle";
 "Load more" = "Daha fazla yükle";
+"Loading plugins..." = "Eklentiler yükleniyor...";
 "Loading…" = "Yükleniyor…";
 "Local" = "Yerel";
 "Local app files" = "Local app files";
@@ -947,6 +963,7 @@
 "No hay subtítulos que coincidan con tu búsqueda." = "No subtitles match your search.";
 "No installed addon matches that." = "Yüklü eklentiler arasında bununla eşleşen yok.";
 "No language matches that search." = "Bu aramayla eşleşen dil yok.";
+"No longer listed by its repository." = "Artık deposunda listelenmiyor.";
 "No manga found" = "Manga bulunamadı";
 "No matches." = "Eşleşme yok.";
 "No picks loaded. TMDB might be unreachable." = "Hiçbir öneri yüklenmedi. TMDB'ye ulaşılamıyor olabilir.";
@@ -961,6 +978,8 @@
 "No se pudo aplicar el ajuste. Se conserva el subtítulo original." = "Could not apply the timing. The original subtitle is kept.";
 "No source returned a stream" = "Hiçbir kaynak yayın döndürmedi";
 "No sources match your filter" = "Filtrenizle eşleşen kaynak yok";
+"No streams came back." = "Hiç yayın dönmedi.";
+"No streams for {title}" = "{title} için yayın yok";
 "No styling" = "Stil yok";
 "No subtitles found." = "Altyazı bulunamadı.";
 "No subtitles match your search." = "No subtitles match your search.";
@@ -975,9 +994,11 @@
 "Nord" = "Nord";
 "Normal" = "Normal";
 "Norwegian" = "Norveççe";
+"Not a stream plugin: it exports no getStreams or streams function." = "Yayın uzantısı değil: getStreams veya streams işlevi dışa aktarmıyor.";
 "Not interested" = "İlgilenmiyorum";
 "Not now" = "Şimdi değil";
 "Not set" = "Ayarlanmadı";
+"Nothing installed yet" = "Henüz bir şey yüklenmedi";
 "Nothing matched this filter. Try another category or change your region in Settings." = "Bu filtreyle eşleşen bir şey yok. Başka bir kategori deneyin veya Ayarlar'dan bölgenizi değiştirin.";
 "Notify me" = "Notify me";
 "Now" = "Şimdi";
@@ -1007,6 +1028,7 @@
 "On start" = "On start";
 "Onboarding" = "Başlangıç rehberi";
 "Ongoing" = "Devam ediyor";
+"Only https links are accepted." = "Yalnızca https bağlantıları kabul edilir.";
 "Opacidad" = "Opaklık";
 "Opacidad del fondo" = "Arka plan opaklığı";
 "Opacity" = "Opaklık";
@@ -1095,6 +1117,10 @@
 "Player options" = "Player options";
 "Playlists" = "Oynatma Listeleri";
 "Playlists and servers" = "Playlists and servers";
+"Plugin files" = "Uzantı dosyaları";
+"Plugin files changed on disk. Reinstall it from its repository." = "Uzantı dosyaları diskte değişti. Deposundan yeniden yükleyin.";
+"Plugins" = "Uzantılar";
+"Plugins are paused. Turn on Use plugins above to run them." = "Uzantılar duraklatıldı. Çalıştırmak için yukarıdaki Uzantıları kullan seçeneğini açın.";
 "Pluto TV" = "Pluto TV";
 "Polish" = "Lehçe";
 "Popular Anime" = "Popüler Animeler";
@@ -1159,6 +1185,7 @@
 "Random avatar" = "Rastgele avatar";
 "Ranked by the {site} community from their public index." = "{site} topluluğu tarafından herkese açık endeksine göre sıralanmıştır.";
 "Re-runs the welcome flow and clears every dismissed tip." = "Karşılama akışını yeniden çalıştırır ve kapattığınız tüm ipuçlarını sıfırlar.";
+"Reaches" = "Eriştiği alan adları";
 "Read on iPhone and iPad" = "Read on iPhone and iPad";
 "Reader options" = "Reader options";
 "Reading" = "Okunuyor";
@@ -1171,6 +1198,7 @@
 "Reanudar desde donde lo dejaste" = "Kaldığınız yerden devam edin";
 "Reanudar desde {time}" = "{time} konumundan devam et";
 "Reanudar tras una interrupción de audio" = "Resume after an audio interruption";
+"Recent activity" = "Son etkinlik";
 "Recent searches" = "Son aramalar";
 "Recién agregado" = "Yeni eklenenler";
 "Recomendado" = "Önerilen";
@@ -1216,6 +1244,8 @@
 "Repetición" = "Tekrarla";
 "Replay the walkthrough or unhide every dismissed tip in the app." = "Tanıtım turunu yeniden oynatın veya uygulamada kapattığınız tüm ipuçlarını tekrar gösterin.";
 "Replay walkthrough" = "Tanıtımı yeniden oynat";
+"Repositories" = "Depolar";
+"Repository link" = "Depo bağlantısı";
 "Reproducción" = "Oynatma";
 "Reproducir" = "Oynat";
 "Reproducir ahora" = "Şimdi oynat";
@@ -1266,6 +1296,7 @@
 "Retry statistics" = "Retry statistics";
 "Reveal" = "Göster";
 "Reverse order" = "Reverse order";
+"Revert" = "Geri al";
 "Rich season and order panel" = "Ayrıntılı sezon ve sıralama paneli";
 "Richer, more vivid picture with a touch more contrast." = "Biraz daha fazla kontrastla daha zengin ve canlı bir görüntü sunar.";
 "Right" = "Sağ";
@@ -1279,6 +1310,7 @@
 "Royal" = "Asil";
 "Rugby" = "Ragbi";
 "Running on Cinemeta for now. Add a TMDB key from Settings whenever you're ready." = "Şimdilik Cinemeta kullanılıyor. Hazır olduğunuzda Ayarlar'dan bir TMDB anahtarı ekleyebilirsiniz.";
+"Runs this plugin on a real title and shows what came back." = "Bu uzantıyı gerçek bir başlıkta çalıştırır ve dönen sonucu gösterir.";
 "Russian" = "Rusça";
 "STARZ" = "STARZ";
 "Salir de imagen en imagen" = "Resim İçinde Resim modundan çık";
@@ -1320,6 +1352,7 @@
 "Secondary copy." = "İkincil metin.";
 "See details" = "Ayrıntıları gör";
 "Seek bar" = "İlerleme çubuğu";
+"Seen so far: {hosts}" = "Şimdiye kadar görülenler: {hosts}";
 "Seguir viendo en la parte superior" = "İzlemeye Devam Et bölümü en üstte";
 "Segundo idioma de subtítulos" = "İkinci altyazı dili";
 "Seis lugares para comenzar. Toca uno y filtraremos el catálogo para ti." = "Başlamak için altı seçenek. Birini seçin, kataloğu sizin için filtreleyelim.";
@@ -1348,6 +1381,7 @@
 "Sesión iniciada en Stremio" = "Stremio oturumu açık";
 "Set a PIN" = "PIN belirle";
 "Settings" = "Ayarlar";
+"Settings changed. Please reopen this page." = "Ayarlar değişti. Lütfen bu sayfayı yeniden açın.";
 "Share" = "Paylaş";
 "Share file" = "Share file";
 "Share with {name}" = "{name} ile paylaş";
@@ -1369,6 +1403,7 @@
 "Show me more like this" = "Buna benzer daha fazla içerik göster";
 "Show more channels" = "Show more channels";
 "Show more titles" = "Show more titles";
+"Show one source per repository in the picker instead of one per plugin. Useful when a repository ships many small providers." = "Yayın seçicide uzantı başına değil depo başına bir kaynak gösterir. Bir depo çok sayıda küçük sağlayıcı içerdiğinde kullanışlıdır.";
 "Show pages" = "İçerik sayfaları";
 "Show row" = "Satırı göster";
 "Show the Skip button" = "Atla düğmesini göster";
@@ -1452,6 +1487,7 @@
 "Stop feeding the hero carousel (back to automatic)" = "Vitrin karuseline içerik sağlamayı durdur (otomatik seçime dön)";
 "Stop playback" = "Stop playback";
 "Stop showing as second subtitle" = "İkinci altyazı olarak göstermeyi bırak";
+"Stopped with: {error}" = "Şu hatayla durdu: {error}";
 "Storage overview" = "Depolama alanına genel bakış";
 "Stream" = "Yayın";
 "Streaming" = "Yayın";
@@ -1539,6 +1575,7 @@
 "Texto sutil" = "İkincil metin";
 "Textos auxiliares y antetítulos." = "Açıklamalar, üst başlıklar.";
 "Thai" = "Tayca";
+"That link did not answer." = "Bu bağlantı yanıt vermedi.";
 "That route wouldn't chart. Try a different direction." = "Bu rota çizilemedi. Farklı bir yön deneyin.";
 "The CW" = "The CW";
 "The Roku Channel" = "The Roku Channel";
@@ -1553,6 +1590,7 @@
 "Theater Capture" = "Theater Capture";
 "These rails activate once a TMDB key is set. You can come back to this anytime in Settings." = "Bu satırlar, bir TMDB anahtarı ayarlandığında etkinleşir. Bu bölüme dilediğiniz zaman Ayarlar'dan dönebilirsiniz.";
 "This file has one audio track." = "Bu dosyada tek bir ses parçası var.";
+"This is a manga repository. Add it from the Manga page." = "Bu bir manga deposu. Manga sayfasından ekleyin.";
 "This is how your subtitles will look." = "Altyazılarınız böyle görünecek.";
 "Thriller" = "Gerilim";
 "Thrillers" = "Gerilim Filmleri";
@@ -1615,6 +1653,7 @@
 "Trending on {source}" = "{source} üzerinde trend olanlar";
 "Trending, Popular, In Theaters, and the per service rails." = "Trendler, Popüler, Vizyondakiler ve hizmetlere özel satırlar.";
 "Trending, in theaters, what's on every streamer." = "Gündemdekiler, vizyondakiler ve tüm yayın hizmetlerindeki içerikler.";
+"Try again" = "Tekrar dene";
 "Tu avatar, nombre e identificador en Harbor." = "Harbor genelinde avatarınız, adınız ve kullanıcı adınız.";
 "Tu color" = "Renginiz";
 "Tu perfil" = "Profiliniz";
@@ -1646,12 +1685,14 @@
 "Upcoming" = "Yaklaşan";
 "Upcoming Anime" = "Yakında Çıkacak Animeler";
 "Upcoming Season" = "Gelecek Sezon";
+"Update" = "Güncelle";
 "Upload a picture of your own, or pick one from the Harbor catalog." = "Kendi resminizi yükleyin veya Harbor kataloğundan bir tane seçin.";
 "Upload photo" = "Fotoğraf yükle";
 "Usa el servidor que ya tienes configurado en Harbor. En la red local, permite el acceso cuando iOS lo solicite." = "Use your configured Harbor server. Allow local network access when iOS asks.";
 "Usa la clave v3, no el token de acceso de lectura." = "Okuma erişimi tokenını değil, v3 anahtarını kullanın.";
 "Usar mi estilo" = "Benim stilimi kullan";
 "Use my style" = "Benim stilimi kullan";
+"Use plugins" = "Uzantıları kullan";
 "Use shared settings" = "Paylaşılan ayarları kullan";
 "Use the navigation menu to open each section. Personalize the sidebar, home rows, colors and playback from Settings." = "Use the navigation menu to open each section. Personalize the sidebar, home rows, colors and playback from Settings.";
 "Use the v3 key, not the read access token." = "Okuma erişimi tokenını değil, v3 anahtarını kullanın.";
@@ -1784,6 +1825,7 @@
 "{n} min" = "{n} dk";
 "{n} seeds" = "{n} seed";
 "{n} semillas" = "{n} seed";
+"{requests} requests" = "{requests} istek";
 "{watched} de {total} vistos ({pct}%)." = "{total} içinden {watched} izlendi (%{pct}).";
 "{watched} of {total} watched ({pct}%)." = "{total} içinden {watched} izlendi (%{pct}).";
 "Álbumes" = "Albümler";
@@ -1792,26 +1834,3 @@
 "Índice" = "Table of contents";
 "Índice de la comunidad" = "Topluluk endeksi";
 "العربية" = "العربية";
-
-"Add" = "Ekle";
-"Add a repository" = "Depo ekle";
-"Already added." = "Zaten eklendi.";
-"Checksum did not match the manifest." = "Sağlama toplamı manifest ile eşleşmedi.";
-"Could not complete this action. Try again." = "Bu işlem tamamlanamadı. Tekrar deneyin.";
-"Enabled" = "Etkin";
-"File is larger than 2 MB." = "Dosya 2 MB'tan büyük.";
-"Install" = "Yükle";
-"Installed" = "Yüklü";
-"Loading plugins..." = "Eklentiler yükleniyor...";
-"No longer listed by its repository." = "Artık deposunda listelenmiyor.";
-"Not a stream plugin: it exports no getStreams or streams function." = "Yayın uzantısı değil: getStreams veya streams işlevi dışa aktarmıyor.";
-"Nothing installed yet" = "Henüz bir şey yüklenmedi";
-"Only https links are accepted." = "Yalnızca https bağlantıları kabul edilir.";
-"Plugins" = "Uzantılar";
-"Repositories" = "Depolar";
-"Repository link" = "Depo bağlantısı";
-"Revert" = "Geri al";
-"Settings changed. Please reopen this page." = "Ayarlar değişti. Lütfen bu sayfayı yeniden açın.";
-"That link did not answer." = "Bu bağlantı yanıt vermedi.";
-"This is a manga repository. Add it from the Manga page." = "Bu bir manga deposu. Manga sayfasından ekleyin.";
-"Update" = "Güncelle";

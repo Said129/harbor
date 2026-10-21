@@ -31,6 +31,7 @@
 "Actualizar" = "Refresh";
 "Actualizar episodios" = "Refresh episodes";
 "Actualizar fuentes" = "Refresh sources";
+"Add" = "Add";
 "Add bookmark" = "Add bookmark";
 "Add key" = "Add key";
 "Add language" = "Add language";
@@ -305,6 +306,7 @@
 "Correo y contraseña" = "Email and password";
 "Could not analyze this source. Playback continues; you can retry." = "Could not analyze this source. Playback continues; you can retry.";
 "Could not apply the timing. The original subtitle is kept." = "Could not apply the timing. The original subtitle is kept.";
+"Could not complete this action. Try again." = "Could not complete this action. Try again.";
 "Could not load navigation settings. Saved settings are kept." = "Could not load navigation settings. Saved settings are kept.";
 "Could not load streaming preferences. Saved settings are kept." = "Could not load streaming preferences. Saved settings are kept.";
 "Could not load this page. Try again." = "Could not load this page. Try again.";
@@ -425,6 +427,7 @@
 "En reproducción" = "Now Playing";
 "En reproducción: {label}" = "Now playing: {label}";
 "Enable addon" = "Enable addon";
+"Enabled" = "Enabled";
 "Enfocar" = "Sharpen";
 "English" = "English";
 "Enter an FPS from 1 to 240." = "Enter an FPS from 1 to 240.";
@@ -592,8 +595,10 @@
 "Iniciar sesión con Stremio" = "Sign in with Stremio";
 "Instala un complemento de Stremio y sus catálogos aparecerán aquí como filas de pósteres, listos para explorar." = "Install a Stremio addon and its catalogs show up here as poster rails, ready to browse.";
 "Instalar addon" = "Install addon";
+"Install" = "Install";
 "Install a Stremio addon and its catalogs show up here as poster rails, ready to browse." = "Install a Stremio addon and its catalogs show up here as poster rails, ready to browse.";
 "Install addon" = "Install addon";
+"Installed" = "Installed";
 "Instant" = "Instant";
 "Instant starts the best-ranked stream straight away. Pick a source opens the stream list every time, so you choose the release, quality and provider yourself." = "Instant starts the best-ranked stream straight away. Pick a source opens the stream list every time, so you choose the release, quality and provider yourself.";
 "Instantáneo" = "Instant";
@@ -883,6 +888,7 @@
 "Player options" = "Player options";
 "Playlists" = "Playlists";
 "Playlists and servers" = "Playlists and servers";
+"Plugins" = "Plugins";
 "Popular Anime" = "Popular Anime";
 "Popular Movies" = "Popular Movies";
 "Popular Series" = "Popular Series";
@@ -1104,6 +1110,7 @@
 "Servidor Xtream" = "Xtream server";
 "Sesión iniciada en Stremio" = "Signed in to Stremio";
 "Settings" = "Settings";
+"Settings changed. Please reopen this page." = "Settings changed. Please reopen this page.";
 "Share" = "Share";
 "Share file" = "Share file";
 "Sharpen" = "Sharpen";
@@ -1315,6 +1322,7 @@
 "Trending on {site}" = "Trending on {site}";
 "Trending on {source}" = "Trending on {source}";
 "Trending, Popular, In Theaters, and the per service rails." = "Trending, Popular, In Theaters, and the per service rails.";
+"Try again" = "Try again";
 "Tu avatar, nombre e identificador en Harbor." = "Your avatar, name, and handle across Harbor.";
 "Tu color" = "Your color";
 "Tu perfil" = "Your profile";
@@ -1338,6 +1346,7 @@
 "Up Next" = "Up Next";
 "Upcoming" = "Upcoming";
 "Upcoming Anime" = "Upcoming Anime";
+"Update" = "Update";
 "Upload a picture of your own, or pick one from the Harbor catalog." = "Upload a picture of your own, or pick one from the Harbor catalog.";
 "Upload photo" = "Upload photo";
 "Usa el servidor que ya tienes configurado en Harbor. En la red local, permite el acceso cuando iOS lo solicite." = "Use your configured Harbor server. Allow local network access when iOS asks.";
@@ -1423,12 +1432,3 @@
 "Índice" = "Table of contents";
 "Índice de la comunidad" = "Community index";
 "العربية" = "العربية";
-
-"Add" = "Add";
-"Could not complete this action. Try again." = "Could not complete this action. Try again.";
-"Enabled" = "Enabled";
-"Install" = "Install";
-"Installed" = "Installed";
-"Plugins" = "Plugins";
-"Settings changed. Please reopen this page." = "Settings changed. Please reopen this page.";
-"Update" = "Update";

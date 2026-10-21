@@ -45,7 +45,9 @@
 "Actualizar" = "रिफ़्रेश करें";
 "Actualizar episodios" = "Refresh episodes";
 "Actualizar fuentes" = "स्रोत रिफ़्रेश करें";
+"Add" = "जोड़ें";
 "Add a TMDB key in Settings to unlock the full discovery feed." = "पूरी डिस्कवरी फ़ीड अनलॉक करने के लिए सेटिंग्स में TMDB कुंजी जोड़ें।";
+"Add a repository" = "रिपॉज़िटरी जोड़ें";
 "Add bookmark" = "Add bookmark";
 "Add key" = "कुंजी जोड़ें";
 "Add language" = "भाषा जोड़ें";
@@ -97,6 +99,7 @@
 "All-Time Great Series" = "सर्वकालिक महान सीरीज़";
 "All-Time Greats" = "सर्वकालिक महान कृतियाँ";
 "Allow cellular data" = "Allow cellular data";
+"Already added." = "पहले से जोड़ा गया है।";
 "Alternate" = "वैकल्पिक";
 "Analizando el audio… Puedes seguir viendo." = "Analyzing audio… Keep watching.";
 "Analysis stopped to prioritize playback. Retry after buffering finishes." = "Analysis stopped to prioritize playback. Retry after buffering finishes.";
@@ -114,6 +117,7 @@
 "Another device changed services. Your previous version is saved on this device." = "किसी दूसरे डिवाइस ने सेवाएँ बदली हैं। आपका पिछला संस्करण इस डिवाइस पर सुरक्षित है।";
 "Anterior" = "पिछला";
 "Anular estilos integrados" = "एम्बेडेड स्टाइल ओवरराइड करें";
+"Any public website. This plugin did not say which sites it uses." = "कोई भी सार्वजनिक वेबसाइट। इस प्लगइन ने नहीं बताया कि यह किन साइटों का उपयोग करता है।";
 "Análisis detenido para priorizar la reproducción. Puedes reintentarlo cuando termine de cargar." = "Analysis stopped to prioritize playback. Retry after buffering finishes.";
 "Apariencia" = "दिखावट";
 "Apariencia de los subtítulos" = "सबटाइटल की दिखावट";
@@ -296,6 +300,9 @@
 "Change chapter order" = "Change chapter order";
 "Channel format" = "Channel format";
 "Chapters" = "अध्याय";
+"Check it works" = "जाँचें कि यह काम करता है";
+"Checking…" = "जाँच हो रही है…";
+"Checksum did not match the manifest." = "चेकसम मैनिफ़ेस्ट से मेल नहीं खाया।";
 "Chinese" = "चीनी";
 "Chinese (Simplified)" = "चीनी (सरलीकृत)";
 "Choose an avatar" = "कोई अवतार चुनें";
@@ -380,6 +387,7 @@
 "Correo y contraseña" = "Email and password";
 "Could not analyze this source. Playback continues; you can retry." = "Could not analyze this source. Playback continues; you can retry.";
 "Could not apply the timing. The original subtitle is kept." = "Could not apply the timing. The original subtitle is kept.";
+"Could not complete this action. Try again." = "यह कार्रवाई पूरी नहीं हो सकी। फिर से कोशिश करें।";
 "Could not load navigation settings. Saved settings are kept." = "Could not load navigation settings. Saved settings are kept.";
 "Could not load streaming preferences. Saved settings are kept." = "Could not load streaming preferences. Saved settings are kept.";
 "Could not load this page. Try again." = "यह पेज लोड नहीं हो सका। फिर से कोशिश करें।";
@@ -527,6 +535,7 @@
 "En reproducción" = "अभी चल रहा है";
 "En reproducción: {label}" = "अभी चल रहा है: {label}";
 "Enable addon" = "Enable addon";
+"Enabled" = "सक्षम";
 "Enfocar" = "शार्प करें";
 "English" = "अंग्रेज़ी";
 "Enter Harbor" = "Harbor में प्रवेश करें";
@@ -591,6 +600,7 @@
 "Featured" = "चुनिंदा";
 "Featured at Anime Expo" = "एनीमे एक्सपो में प्रदर्शित";
 "Fecha" = "तारीख";
+"File is larger than 2 MB." = "फ़ाइल 2 MB से बड़ी है।";
 "Fill" = "भरें";
 "Film" = "फ़िल्म";
 "Finnish" = "फ़िनिश";
@@ -605,6 +615,8 @@
 "Forest" = "वन";
 "Formato de canales" = "Channel format";
 "Forzado" = "फ़ोर्स्ड";
+"Found {count} streams for {title} in {seconds}s" = "{title} के लिए {seconds}s में {count} स्ट्रीम मिलीं";
+"Found {count} streams in {seconds}s." = "{seconds}s में {count} स्ट्रीम मिलीं।";
 "Free, two-minute signup. Unlocks Trending, In Theaters Now, Top Rated, and per-streaming catalogs (Netflix, Disney+, Hulu, …). Your key stays on this machine." = "मुफ़्त, दो मिनट का साइनअप। ट्रेंडिंग, अभी सिनेमाघरों में, शीर्ष रेटेड और हर स्ट्रीमिंग सेवा के कैटलॉग (Netflix, Disney+, Hulu, …) अनलॉक करता है। आपकी कुंजी इसी मशीन पर रहती है।";
 "French" = "फ़्रेंच";
 "From" = "से";
@@ -632,6 +644,7 @@
 "Green" = "हरा";
 "Gris" = "Gray";
 "Grosor del contorno" = "आउटलाइन की मोटाई";
+"Group by repository" = "रिपॉज़िटरी के अनुसार समूह बनाएँ";
 "Guardado" = "सेव किया गया";
 "Guardando" = "सेव हो रहा है";
 "Guardar" = "सेव करें";
@@ -734,8 +747,10 @@
 "Iniciar sesión con Stremio" = "Stremio से साइन इन करें";
 "Instala un complemento de Stremio y sus catálogos aparecerán aquí como filas de pósteres, listos para explorar." = "कोई Stremio ऐडऑन इंस्टॉल करें। उसके कैटलॉग यहाँ ब्राउज़ करने के लिए तैयार पोस्टर रेल्स के रूप में दिखेंगे।";
 "Instalar addon" = "ऐडऑन इंस्टॉल करें";
+"Install" = "इंस्टॉल करें";
 "Install a Stremio addon and its catalogs show up here as poster rails, ready to browse." = "कोई Stremio ऐडऑन इंस्टॉल करें। उसके कैटलॉग यहाँ ब्राउज़ करने के लिए तैयार पोस्टर रेल्स के रूप में दिखेंगे।";
 "Install addon" = "ऐडऑन इंस्टॉल करें";
+"Installed" = "इंस्टॉल हो गया";
 "Instant" = "तुरंत";
 "Instant starts the best-ranked stream straight away. Pick a source opens the stream list every time, so you choose the release, quality and provider yourself." = "तुरंत प्ले सबसे ऊपर वाली स्ट्रीम सीधे शुरू करता है। स्रोत चुनें हर बार स्ट्रीम सूची खोलता है, ताकि आप रिलीज़, गुणवत्ता और प्रदाता खुद चुन सकें।";
 "Instantáneo" = "तुरंत";
@@ -799,6 +814,7 @@
 "Llegaste al final · {n} complementos" = "आप अंत तक पहुँच गए हैं · {n} ऐडऑन";
 "Load file" = "फ़ाइल लोड करें";
 "Load more" = "और लोड करें";
+"Loading plugins..." = "प्लगइन लोड हो रहे हैं...";
 "Loading…" = "लोड हो रहा है…";
 "Local" = "लोकल";
 "Local app files" = "Local app files";
@@ -947,6 +963,7 @@
 "No hay subtítulos que coincidan con tu búsqueda." = "No subtitles match your search.";
 "No installed addon matches that." = "कोई इंस्टॉल किया गया ऐडऑन उससे मेल नहीं खाता।";
 "No language matches that search." = "उस खोज से मेल खाने वाली कोई भाषा नहीं मिली।";
+"No longer listed by its repository." = "अब इसकी रिपॉज़िटरी में सूचीबद्ध नहीं है।";
 "No manga found" = "कोई मंगा नहीं मिला";
 "No matches." = "कोई मेल नहीं।";
 "No picks loaded. TMDB might be unreachable." = "कोई सुझाव लोड नहीं हुआ। हो सकता है TMDB उपलब्ध न हो।";
@@ -961,6 +978,8 @@
 "No se pudo aplicar el ajuste. Se conserva el subtítulo original." = "Could not apply the timing. The original subtitle is kept.";
 "No source returned a stream" = "किसी स्रोत से कोई स्ट्रीम नहीं मिली";
 "No sources match your filter" = "आपके फ़िल्टर से मेल खाने वाला कोई स्रोत नहीं";
+"No streams came back." = "कोई स्ट्रीम वापस नहीं आई।";
+"No streams for {title}" = "{title} के लिए कोई स्ट्रीम नहीं";
 "No styling" = "कोई स्टाइलिंग नहीं";
 "No subtitles found." = "कोई सबटाइटल नहीं मिला।";
 "No subtitles match your search." = "No subtitles match your search.";
@@ -975,9 +994,11 @@
 "Nord" = "Nord";
 "Normal" = "सामान्य";
 "Norwegian" = "नॉर्वेजियन";
+"Not a stream plugin: it exports no getStreams or streams function." = "स्ट्रीम प्लगइन नहीं है: यह कोई getStreams या streams फ़ंक्शन एक्सपोर्ट नहीं करता।";
 "Not interested" = "दिलचस्पी नहीं है";
 "Not now" = "अभी नहीं";
 "Not set" = "सेट नहीं है";
+"Nothing installed yet" = "अभी तक कुछ इंस्टॉल नहीं है";
 "Nothing matched this filter. Try another category or change your region in Settings." = "इस फ़िल्टर से कुछ भी मेल नहीं खाया। कोई दूसरी कैटेगरी आज़माएँ या सेटिंग्स में अपना क्षेत्र बदलें।";
 "Notify me" = "Notify me";
 "Now" = "अभी";
@@ -1007,6 +1028,7 @@
 "On start" = "On start";
 "Onboarding" = "शुरुआती सेटअप";
 "Ongoing" = "जारी";
+"Only https links are accepted." = "सिर्फ़ https लिंक स्वीकार किए जाते हैं।";
 "Opacidad" = "अपारदर्शिता";
 "Opacidad del fondo" = "बैकग्राउंड की अपारदर्शिता";
 "Opacity" = "अपारदर्शिता";
@@ -1095,6 +1117,10 @@
 "Player options" = "Player options";
 "Playlists" = "प्लेलिस्ट";
 "Playlists and servers" = "Playlists and servers";
+"Plugin files" = "प्लगइन फ़ाइलें";
+"Plugin files changed on disk. Reinstall it from its repository." = "डिस्क पर प्लगइन की फ़ाइलें बदल गई हैं। इसे इसकी रिपॉज़िटरी से दोबारा इंस्टॉल करें।";
+"Plugins" = "प्लगइन";
+"Plugins are paused. Turn on Use plugins above to run them." = "प्लगइन रुके हुए हैं। इन्हें चलाने के लिए ऊपर प्लगइन इस्तेमाल करें चालू करें।";
 "Pluto TV" = "Pluto TV";
 "Polish" = "पोलिश";
 "Popular Anime" = "लोकप्रिय ऐनिमे";
@@ -1159,6 +1185,7 @@
 "Random avatar" = "रैंडम अवतार";
 "Ranked by the {site} community from their public index." = "{site} समुदाय के सार्वजनिक इंडेक्स के आधार पर रैंक किया गया।";
 "Re-runs the welcome flow and clears every dismissed tip." = "स्वागत प्रक्रिया फिर से चलाता है और खारिज की गई हर टिप मिटा देता है।";
+"Reaches" = "संपर्क करता है";
 "Read on iPhone and iPad" = "Read on iPhone and iPad";
 "Reader options" = "Reader options";
 "Reading" = "पढ़ा जा रहा है";
@@ -1171,6 +1198,7 @@
 "Reanudar desde donde lo dejaste" = "जहाँ छोड़ा था, वहीं से शुरू करें";
 "Reanudar desde {time}" = "{time} से जारी रखें";
 "Reanudar tras una interrupción de audio" = "Resume after an audio interruption";
+"Recent activity" = "हाल की गतिविधि";
 "Recent searches" = "हाल की खोजें";
 "Recién agregado" = "हाल ही में जोड़ा गया";
 "Recomendado" = "सुझाए गए";
@@ -1216,6 +1244,8 @@
 "Repetición" = "दोहराएँ";
 "Replay the walkthrough or unhide every dismissed tip in the app." = "वॉकथ्रू फिर चलाएँ या ऐप में हटाए गए सभी सुझाव फिर दिखाएँ।";
 "Replay walkthrough" = "वॉकथ्रू फिर चलाएँ";
+"Repositories" = "रिपॉज़िटरी";
+"Repository link" = "रिपॉज़िटरी लिंक";
 "Reproducción" = "प्लेबैक";
 "Reproducir" = "चलाएँ";
 "Reproducir ahora" = "अभी चलाएँ";
@@ -1266,6 +1296,7 @@
 "Retry statistics" = "Retry statistics";
 "Reveal" = "दिखाएँ";
 "Reverse order" = "Reverse order";
+"Revert" = "पहले जैसा करें";
 "Rich season and order panel" = "विस्तृत सीज़न और क्रम पैनल";
 "Richer, more vivid picture with a touch more contrast." = "थोड़े अधिक कंट्रास्ट के साथ अधिक समृद्ध और चटख तस्वीर।";
 "Right" = "दायाँ";
@@ -1279,6 +1310,7 @@
 "Royal" = "शाही";
 "Rugby" = "रग्बी";
 "Running on Cinemeta for now. Add a TMDB key from Settings whenever you're ready." = "फ़िलहाल Cinemeta पर चल रहा है। जब आप तैयार हों, सेटिंग्स से TMDB कुंजी जोड़ें।";
+"Runs this plugin on a real title and shows what came back." = "इस प्लगइन को असली शीर्षक पर चलाता है और दिखाता है कि क्या वापस आया।";
 "Russian" = "रूसी";
 "STARZ" = "STARZ";
 "Salir de imagen en imagen" = "पिक्चर इन पिक्चर से बाहर निकलें";
@@ -1320,6 +1352,7 @@
 "Secondary copy." = "द्वितीयक टेक्स्ट।";
 "See details" = "विवरण देखें";
 "Seek bar" = "सीक बार";
+"Seen so far: {hosts}" = "अब तक देखे गए: {hosts}";
 "Seguir viendo en la parte superior" = "देखना जारी रखें को सबसे ऊपर रखें";
 "Segundo idioma de subtítulos" = "दूसरी सबटाइटल भाषा";
 "Seis lugares para comenzar. Toca uno y filtraremos el catálogo para ti." = "शुरू करने के छह विकल्प। किसी एक पर टैप करें और हम आपके लिए कैटलॉग फ़िल्टर कर देंगे।";
@@ -1348,6 +1381,7 @@
 "Sesión iniciada en Stremio" = "Stremio में साइन इन हैं";
 "Set a PIN" = "PIN सेट करें";
 "Settings" = "सेटिंग्स";
+"Settings changed. Please reopen this page." = "सेटिंग बदल गई हैं। कृपया यह पेज फिर से खोलें।";
 "Share" = "साझा करें";
 "Share file" = "Share file";
 "Share with {name}" = "{name} के साथ साझा करें";
@@ -1369,6 +1403,7 @@
 "Show me more like this" = "इस तरह का और कंटेंट दिखाएँ";
 "Show more channels" = "Show more channels";
 "Show more titles" = "Show more titles";
+"Show one source per repository in the picker instead of one per plugin. Useful when a repository ships many small providers." = "स्ट्रीम चयन में हर प्लगइन के बजाय हर रिपॉज़िटरी के लिए एक स्रोत दिखाएँ। तब उपयोगी जब किसी रिपॉज़िटरी में कई छोटे प्रोवाइडर हों।";
 "Show pages" = "पेज दिखाएँ";
 "Show row" = "पंक्ति दिखाएँ";
 "Show the Skip button" = "स्किप बटन दिखाएँ";
@@ -1452,6 +1487,7 @@
 "Stop feeding the hero carousel (back to automatic)" = "हीरो कैरोसेल पर असर डालना बंद करें (फिर से ऑटोमैटिक)";
 "Stop playback" = "Stop playback";
 "Stop showing as second subtitle" = "दूसरे सबटाइटल के रूप में दिखाना बंद करें";
+"Stopped with: {error}" = "इस त्रुटि के साथ रुका: {error}";
 "Storage overview" = "स्टोरेज की जानकारी";
 "Stream" = "स्ट्रीम";
 "Streaming" = "स्ट्रीमिंग";
@@ -1539,6 +1575,7 @@
 "Texto sutil" = "हल्का टेक्स्ट";
 "Textos auxiliares y antetítulos." = "कैप्शन, आइब्रो टेक्स्ट।";
 "Thai" = "थाई";
+"That link did not answer." = "उस लिंक ने जवाब नहीं दिया।";
 "That route wouldn't chart. Try a different direction." = "उस रूट का चार्ट नहीं बन सका। कोई दूसरी दिशा आज़माएँ।";
 "The CW" = "The CW";
 "The Roku Channel" = "The Roku Channel";
@@ -1553,6 +1590,7 @@
 "Theater Capture" = "Theater Capture";
 "These rails activate once a TMDB key is set. You can come back to this anytime in Settings." = "TMDB कुंजी सेट होते ही ये पंक्तियाँ सक्रिय हो जाती हैं। आप सेटिंग्स में कभी भी इस पर वापस आ सकते हैं।";
 "This file has one audio track." = "इस फ़ाइल में एक ऑडियो ट्रैक है।";
+"This is a manga repository. Add it from the Manga page." = "यह मांगा रिपॉज़िटरी है। इसे मांगा पेज से जोड़ें।";
 "This is how your subtitles will look." = "आपके सबटाइटल ऐसे दिखेंगे।";
 "Thriller" = "थ्रिलर";
 "Thrillers" = "थ्रिलर";
@@ -1615,6 +1653,7 @@
 "Trending on {source}" = "{source} पर ट्रेंडिंग";
 "Trending, Popular, In Theaters, and the per service rails." = "ट्रेंडिंग, लोकप्रिय, सिनेमाघरों में और हर सेवा की अलग-अलग पंक्तियाँ।";
 "Trending, in theaters, what's on every streamer." = "ट्रेंडिंग, सिनेमाघरों में चल रही फ़िल्में और हर स्ट्रीमिंग सेवा पर उपलब्ध टाइटल।";
+"Try again" = "फिर कोशिश करें";
 "Tu avatar, nombre e identificador en Harbor." = "पूरे Harbor में आपका अवतार, नाम और हैंडल।";
 "Tu color" = "आपका रंग";
 "Tu perfil" = "आपकी प्रोफ़ाइल";
@@ -1646,12 +1685,14 @@
 "Upcoming" = "आगामी";
 "Upcoming Anime" = "आगामी ऐनिमे";
 "Upcoming Season" = "आगामी सीज़न";
+"Update" = "अपडेट करें";
 "Upload a picture of your own, or pick one from the Harbor catalog." = "अपना चित्र अपलोड करें या Harbor कैटलॉग से चुनें।";
 "Upload photo" = "फ़ोटो अपलोड करें";
 "Usa el servidor que ya tienes configurado en Harbor. En la red local, permite el acceso cuando iOS lo solicite." = "Use your configured Harbor server. Allow local network access when iOS asks.";
 "Usa la clave v3, no el token de acceso de lectura." = "रीड एक्सेस टोकन नहीं, v3 कुंजी इस्तेमाल करें।";
 "Usar mi estilo" = "मेरी शैली इस्तेमाल करें";
 "Use my style" = "मेरी शैली इस्तेमाल करें";
+"Use plugins" = "प्लगइन इस्तेमाल करें";
 "Use shared settings" = "साझा सेटिंग इस्तेमाल करें";
 "Use the navigation menu to open each section. Personalize the sidebar, home rows, colors and playback from Settings." = "Use the navigation menu to open each section. Personalize the sidebar, home rows, colors and playback from Settings.";
 "Use the v3 key, not the read access token." = "रीड एक्सेस टोकन नहीं, v3 कुंजी इस्तेमाल करें।";
@@ -1784,6 +1825,7 @@
 "{n} min" = "{n} मिनट";
 "{n} seeds" = "{n} सीड";
 "{n} semillas" = "{n} सीड";
+"{requests} requests" = "{requests} अनुरोध";
 "{watched} de {total} vistos ({pct}%)." = "{total} में से {watched} देखे गए ({pct}%)।";
 "{watched} of {total} watched ({pct}%)." = "{total} में से {watched} देखे गए ({pct}%)।";
 "Álbumes" = "एल्बम";
@@ -1792,26 +1834,3 @@
 "Índice" = "Table of contents";
 "Índice de la comunidad" = "कम्युनिटी इंडेक्स";
 "العربية" = "अरबी";
-
-"Add" = "जोड़ें";
-"Add a repository" = "रिपॉज़िटरी जोड़ें";
-"Already added." = "पहले से जोड़ा गया है।";
-"Checksum did not match the manifest." = "चेकसम मैनिफ़ेस्ट से मेल नहीं खाया।";
-"Could not complete this action. Try again." = "यह कार्रवाई पूरी नहीं हो सकी। फिर से कोशिश करें।";
-"Enabled" = "सक्षम";
-"File is larger than 2 MB." = "फ़ाइल 2 MB से बड़ी है।";
-"Install" = "इंस्टॉल करें";
-"Installed" = "इंस्टॉल हो गया";
-"Loading plugins..." = "प्लगइन लोड हो रहे हैं...";
-"No longer listed by its repository." = "अब इसकी रिपॉज़िटरी में सूचीबद्ध नहीं है।";
-"Not a stream plugin: it exports no getStreams or streams function." = "स्ट्रीम प्लगइन नहीं है: यह कोई getStreams या streams फ़ंक्शन एक्सपोर्ट नहीं करता।";
-"Nothing installed yet" = "अभी तक कुछ इंस्टॉल नहीं है";
-"Only https links are accepted." = "सिर्फ़ https लिंक स्वीकार किए जाते हैं।";
-"Plugins" = "प्लगइन";
-"Repositories" = "रिपॉज़िटरी";
-"Repository link" = "रिपॉज़िटरी लिंक";
-"Revert" = "पहले जैसा करें";
-"Settings changed. Please reopen this page." = "सेटिंग बदल गई हैं। कृपया यह पेज फिर से खोलें।";
-"That link did not answer." = "उस लिंक ने जवाब नहीं दिया।";
-"This is a manga repository. Add it from the Manga page." = "यह मांगा रिपॉज़िटरी है। इसे मांगा पेज से जोड़ें।";
-"Update" = "अपडेट करें";

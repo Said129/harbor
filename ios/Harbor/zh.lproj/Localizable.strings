@@ -45,7 +45,9 @@
 "Actualizar" = "刷新";
 "Actualizar episodios" = "Refresh episodes";
 "Actualizar fuentes" = "刷新来源";
+"Add" = "添加";
 "Add a TMDB key in Settings to unlock the full discovery feed." = "在设置中添加 TMDB 密钥，即可解锁完整的探索信息流。";
+"Add a repository" = "添加仓库";
 "Add bookmark" = "Add bookmark";
 "Add key" = "添加密钥";
 "Add language" = "添加语言";
@@ -97,6 +99,7 @@
 "All-Time Great Series" = "史上经典剧集";
 "All-Time Greats" = "影史经典";
 "Allow cellular data" = "Allow cellular data";
+"Already added." = "已经添加过了。";
 "Alternate" = "备选";
 "Analizando el audio… Puedes seguir viendo." = "Analyzing audio… Keep watching.";
 "Analysis stopped to prioritize playback. Retry after buffering finishes." = "Analysis stopped to prioritize playback. Retry after buffering finishes.";
@@ -114,6 +117,7 @@
 "Another device changed services. Your previous version is saved on this device." = "另一台设备更改了服务。你的旧版本已保存在本机。";
 "Anterior" = "上一个";
 "Anular estilos integrados" = "覆盖内嵌样式";
+"Any public website. This plugin did not say which sites it uses." = "任何公开网站。此脚本插件未说明它使用哪些网站。";
 "Análisis detenido para priorizar la reproducción. Puedes reintentarlo cuando termine de cargar." = "Analysis stopped to prioritize playback. Retry after buffering finishes.";
 "Apariencia" = "外观";
 "Apariencia de los subtítulos" = "字幕外观";
@@ -296,6 +300,9 @@
 "Change chapter order" = "Change chapter order";
 "Channel format" = "Channel format";
 "Chapters" = "章节";
+"Check it works" = "检查是否可用";
+"Checking…" = "正在检查…";
+"Checksum did not match the manifest." = "校验和与清单不匹配。";
 "Chinese" = "中文";
 "Chinese (Simplified)" = "简体中文";
 "Choose an avatar" = "选择头像";
@@ -380,6 +387,7 @@
 "Correo y contraseña" = "Email and password";
 "Could not analyze this source. Playback continues; you can retry." = "Could not analyze this source. Playback continues; you can retry.";
 "Could not apply the timing. The original subtitle is kept." = "Could not apply the timing. The original subtitle is kept.";
+"Could not complete this action. Try again." = "无法完成此操作。请重试。";
 "Could not load navigation settings. Saved settings are kept." = "Could not load navigation settings. Saved settings are kept.";
 "Could not load streaming preferences. Saved settings are kept." = "Could not load streaming preferences. Saved settings are kept.";
 "Could not load this page. Try again." = "无法加载此页面。请重试。";
@@ -527,6 +535,7 @@
 "En reproducción" = "正在播放";
 "En reproducción: {label}" = "正在播放：{label}";
 "Enable addon" = "Enable addon";
+"Enabled" = "已启用";
 "Enfocar" = "锐化";
 "English" = "英语";
 "Enter Harbor" = "进入 Harbor";
@@ -591,6 +600,7 @@
 "Featured" = "精选";
 "Featured at Anime Expo" = "Anime Expo 精选作品";
 "Fecha" = "日期";
+"File is larger than 2 MB." = "文件大于 2 MB。";
 "Fill" = "填充";
 "Film" = "电影";
 "Finnish" = "芬兰语";
@@ -605,6 +615,8 @@
 "Forest" = "森林";
 "Formato de canales" = "Channel format";
 "Forzado" = "强制";
+"Found {count} streams for {title} in {seconds}s" = "在 {seconds} 秒内为 {title} 找到 {count} 个播放源";
+"Found {count} streams in {seconds}s." = "在 {seconds} 秒内找到 {count} 个播放源。";
 "Free, two-minute signup. Unlocks Trending, In Theaters Now, Top Rated, and per-streaming catalogs (Netflix, Disney+, Hulu, …). Your key stays on this machine." = "免费注册，仅需两分钟。可解锁“热门趋势”、“正在上映”、“高分内容”和各流媒体平台目录（Netflix、Disney+、Hulu 等）。密钥仅保存在此设备上。";
 "French" = "法语";
 "From" = "来源";
@@ -632,6 +644,7 @@
 "Green" = "绿色";
 "Gris" = "Gray";
 "Grosor del contorno" = "描边粗细";
+"Group by repository" = "按仓库分组";
 "Guardado" = "已保存";
 "Guardando" = "正在保存";
 "Guardar" = "保存";
@@ -734,8 +747,10 @@
 "Iniciar sesión con Stremio" = "使用 Stremio 登录";
 "Instala un complemento de Stremio y sus catálogos aparecerán aquí como filas de pósteres, listos para explorar." = "安装 Stremio 插件后，其目录会以海报横栏显示在这里，供你浏览。";
 "Instalar addon" = "安装插件";
+"Install" = "安装";
 "Install a Stremio addon and its catalogs show up here as poster rails, ready to browse." = "安装 Stremio 插件后，其目录会以海报横栏显示在这里，供你浏览。";
 "Install addon" = "安装插件";
+"Installed" = "已安装";
 "Instant" = "立即显示";
 "Instant starts the best-ranked stream straight away. Pick a source opens the stream list every time, so you choose the release, quality and provider yourself." = "即时播放会立即启动排名最高的播放源。选择播放源则每次都打开列表，让你自行选择版本、画质和服务商。";
 "Instantáneo" = "立即显示";
@@ -799,6 +814,7 @@
 "Llegaste al final · {n} complementos" = "已到底 · 共 {n} 个插件";
 "Load file" = "加载文件";
 "Load more" = "加载更多";
+"Loading plugins..." = "正在加载插件…";
 "Loading…" = "正在加载…";
 "Local" = "本地";
 "Local app files" = "Local app files";
@@ -947,6 +963,7 @@
 "No hay subtítulos que coincidan con tu búsqueda." = "No subtitles match your search.";
 "No installed addon matches that." = "没有已安装的插件与其匹配。";
 "No language matches that search." = "没有与该搜索匹配的语言。";
+"No longer listed by its repository." = "其仓库已不再列出此插件。";
 "No manga found" = "未找到漫画";
 "No matches." = "无匹配结果。";
 "No picks loaded. TMDB might be unreachable." = "未加载任何推荐。可能无法连接 TMDB。";
@@ -961,6 +978,8 @@
 "No se pudo aplicar el ajuste. Se conserva el subtítulo original." = "Could not apply the timing. The original subtitle is kept.";
 "No source returned a stream" = "没有任何来源返回视频流";
 "No sources match your filter" = "没有符合筛选条件的内容源";
+"No streams came back." = "没有返回任何播放源。";
+"No streams for {title}" = "{title} 没有播放源";
 "No styling" = "无样式";
 "No subtitles found." = "未找到字幕。";
 "No subtitles match your search." = "No subtitles match your search.";
@@ -975,9 +994,11 @@
 "Nord" = "Nord";
 "Normal" = "正常";
 "Norwegian" = "挪威语";
+"Not a stream plugin: it exports no getStreams or streams function." = "不是播放源脚本插件：它没有导出 getStreams 或 streams 函数。";
 "Not interested" = "不感兴趣";
 "Not now" = "暂不";
 "Not set" = "未设置";
+"Nothing installed yet" = "尚未安装任何内容";
 "Nothing matched this filter. Try another category or change your region in Settings." = "没有符合此筛选器的内容。请尝试其他类别，或在“设置”中更改你的地区。";
 "Notify me" = "Notify me";
 "Now" = "现在";
@@ -1007,6 +1028,7 @@
 "On start" = "On start";
 "Onboarding" = "新手引导";
 "Ongoing" = "连载中";
+"Only https links are accepted." = "只接受 https 链接。";
 "Opacidad" = "不透明度";
 "Opacidad del fondo" = "背景不透明度";
 "Opacity" = "不透明度";
@@ -1095,6 +1117,10 @@
 "Player options" = "Player options";
 "Playlists" = "播放列表";
 "Playlists and servers" = "Playlists and servers";
+"Plugin files" = "脚本插件文件";
+"Plugin files changed on disk. Reinstall it from its repository." = "磁盘上的脚本插件文件已更改。请从其仓库重新安装。";
+"Plugins" = "脚本插件";
+"Plugins are paused. Turn on Use plugins above to run them." = "脚本插件已暂停。打开上方的“使用脚本插件”以运行它们。";
 "Pluto TV" = "Pluto TV";
 "Polish" = "波兰语";
 "Popular Anime" = "热门动漫";
@@ -1159,6 +1185,7 @@
 "Random avatar" = "随机头像";
 "Ranked by the {site} community from their public index." = "根据{site}社区的公开指数排名。";
 "Re-runs the welcome flow and clears every dismissed tip." = "重新运行欢迎流程，并恢复所有已忽略的提示。";
+"Reaches" = "访问范围";
 "Read on iPhone and iPad" = "Read on iPhone and iPad";
 "Reader options" = "Reader options";
 "Reading" = "正在读取";
@@ -1171,6 +1198,7 @@
 "Reanudar desde donde lo dejaste" = "从上次停止的位置继续播放";
 "Reanudar desde {time}" = "从 {time} 继续播放";
 "Reanudar tras una interrupción de audio" = "Resume after an audio interruption";
+"Recent activity" = "近期活动";
 "Recent searches" = "最近搜索";
 "Recién agregado" = "最新添加";
 "Recomendado" = "推荐";
@@ -1216,6 +1244,8 @@
 "Repetición" = "循环";
 "Replay the walkthrough or unhide every dismissed tip in the app." = "重新播放使用指南，或重新显示应用中所有已关闭的提示。";
 "Replay walkthrough" = "重新播放使用引导";
+"Repositories" = "仓库";
+"Repository link" = "仓库链接";
 "Reproducción" = "播放";
 "Reproducir" = "播放";
 "Reproducir ahora" = "立即播放";
@@ -1266,6 +1296,7 @@
 "Retry statistics" = "Retry statistics";
 "Reveal" = "显示";
 "Reverse order" = "Reverse order";
+"Revert" = "还原";
 "Rich season and order panel" = "功能丰富的季与播放顺序面板";
 "Richer, more vivid picture with a touch more contrast." = "画面色彩更饱满、更鲜艳，并略微提高对比度。";
 "Right" = "右对齐";
@@ -1279,6 +1310,7 @@
 "Royal" = "皇家";
 "Rugby" = "英式橄榄球";
 "Running on Cinemeta for now. Add a TMDB key from Settings whenever you're ready." = "目前使用 Cinemeta。准备好后，可随时在“设置”中添加 TMDB 密钥。";
+"Runs this plugin on a real title and shows what came back." = "用一个真实标题运行此脚本插件，并显示返回的结果。";
 "Russian" = "俄语";
 "STARZ" = "STARZ";
 "Salir de imagen en imagen" = "退出画中画";
@@ -1320,6 +1352,7 @@
 "Secondary copy." = "备用副本。";
 "See details" = "查看详情";
 "Seek bar" = "进度条";
+"Seen so far: {hosts}" = "目前已见：{hosts}";
 "Seguir viendo en la parte superior" = "将“继续观看”置顶";
 "Segundo idioma de subtítulos" = "第二字幕语言";
 "Seis lugares para comenzar. Toca uno y filtraremos el catálogo para ti." = "有六个入口可供选择。点选一个，我们会为你筛选目录。";
@@ -1348,6 +1381,7 @@
 "Sesión iniciada en Stremio" = "已登录 Stremio";
 "Set a PIN" = "设置 PIN";
 "Settings" = "设置";
+"Settings changed. Please reopen this page." = "设置已更改。请重新打开此页面。";
 "Share" = "分享";
 "Share file" = "Share file";
 "Share with {name}" = "与 {name} 共享";
@@ -1369,6 +1403,7 @@
 "Show me more like this" = "多推荐此类内容";
 "Show more channels" = "Show more channels";
 "Show more titles" = "Show more titles";
+"Show one source per repository in the picker instead of one per plugin. Useful when a repository ships many small providers." = "在播放源选择器中按仓库显示一个来源，而不是每个脚本插件一个。当仓库包含许多小型提供源时很有用。";
 "Show pages" = "作品页面";
 "Show row" = "显示内容栏";
 "Show the Skip button" = "显示“跳过”按钮";
@@ -1452,6 +1487,7 @@
 "Stop feeding the hero carousel (back to automatic)" = "停止将此目录用于焦点轮播（恢复自动选择）";
 "Stop playback" = "Stop playback";
 "Stop showing as second subtitle" = "不再显示为第二字幕";
+"Stopped with: {error}" = "因以下错误停止：{error}";
 "Storage overview" = "存储空间概览";
 "Stream" = "播放源";
 "Streaming" = "流媒体";
@@ -1539,6 +1575,7 @@
 "Texto sutil" = "弱化文本";
 "Textos auxiliares y antetítulos." = "说明文字、眉题。";
 "Thai" = "泰语";
+"That link did not answer." = "该链接没有响应。";
 "That route wouldn't chart. Try a different direction." = "这条航线走不通。换个方向试试。";
 "The CW" = "The CW";
 "The Roku Channel" = "The Roku Channel";
@@ -1553,6 +1590,7 @@
 "Theater Capture" = "Theater Capture";
 "These rails activate once a TMDB key is set. You can come back to this anytime in Settings." = "设置 TMDB 密钥后，这些内容栏便会启用。你随时可以在“设置”中返回这里。";
 "This file has one audio track." = "此文件只有一条音轨。";
+"This is a manga repository. Add it from the Manga page." = "这是漫画仓库。请在漫画页面添加。";
 "This is how your subtitles will look." = "字幕将显示为这样。";
 "Thriller" = "惊悚";
 "Thrillers" = "惊悚片";
@@ -1615,6 +1653,7 @@
 "Trending on {source}" = "{source} 上的热门内容";
 "Trending, Popular, In Theaters, and the per service rails." = "趋势、热门、院线热映以及各服务的内容栏。";
 "Trending, in theaters, what's on every streamer." = "热门趋势、正在上映，以及各流媒体平台的内容。";
+"Try again" = "重试";
 "Tu avatar, nombre e identificador en Harbor." = "你在 Harbor 中使用的头像、名称和账号名。";
 "Tu color" = "你的颜色";
 "Tu perfil" = "你的个人资料";
@@ -1646,12 +1685,14 @@
 "Upcoming" = "即将开始";
 "Upcoming Anime" = "即将上线的动漫";
 "Upcoming Season" = "下一季新番";
+"Update" = "更新";
 "Upload a picture of your own, or pick one from the Harbor catalog." = "上传自己的图片，或从 Harbor 图库中选择。";
 "Upload photo" = "上传照片";
 "Usa el servidor que ya tienes configurado en Harbor. En la red local, permite el acceso cuando iOS lo solicite." = "Use your configured Harbor server. Allow local network access when iOS asks.";
 "Usa la clave v3, no el token de acceso de lectura." = "请使用 v3 密钥，而不是读取访问令牌。";
 "Usar mi estilo" = "使用我的样式";
 "Use my style" = "使用我的样式";
+"Use plugins" = "使用脚本插件";
 "Use shared settings" = "使用共享设置";
 "Use the navigation menu to open each section. Personalize the sidebar, home rows, colors and playback from Settings." = "Use the navigation menu to open each section. Personalize the sidebar, home rows, colors and playback from Settings.";
 "Use the v3 key, not the read access token." = "请使用 v3 密钥，而不是读取访问令牌。";
@@ -1784,6 +1825,7 @@
 "{n} min" = "{n} 分钟";
 "{n} seeds" = "{n} 个做种者";
 "{n} semillas" = "{n} 个做种者";
+"{requests} requests" = "{requests} 次请求";
 "{watched} de {total} vistos ({pct}%)." = "已观看 {watched}/{total}（{pct}%）。";
 "{watched} of {total} watched ({pct}%)." = "已观看 {watched}/{total}（{pct}%）。";
 "Álbumes" = "专辑";
@@ -1792,26 +1834,3 @@
 "Índice" = "Table of contents";
 "Índice de la comunidad" = "社区指数";
 "العربية" = "阿拉伯语";
-
-"Add" = "添加";
-"Add a repository" = "添加仓库";
-"Already added." = "已经添加过了。";
-"Checksum did not match the manifest." = "校验和与清单不匹配。";
-"Could not complete this action. Try again." = "无法完成此操作。请重试。";
-"Enabled" = "已启用";
-"File is larger than 2 MB." = "文件大于 2 MB。";
-"Install" = "安装";
-"Installed" = "已安装";
-"Loading plugins..." = "正在加载插件…";
-"No longer listed by its repository." = "其仓库已不再列出此插件。";
-"Not a stream plugin: it exports no getStreams or streams function." = "不是播放源脚本插件：它没有导出 getStreams 或 streams 函数。";
-"Nothing installed yet" = "尚未安装任何内容";
-"Only https links are accepted." = "只接受 https 链接。";
-"Plugins" = "脚本插件";
-"Repositories" = "仓库";
-"Repository link" = "仓库链接";
-"Revert" = "还原";
-"Settings changed. Please reopen this page." = "设置已更改。请重新打开此页面。";
-"That link did not answer." = "该链接没有响应。";
-"This is a manga repository. Add it from the Manga page." = "这是漫画仓库。请在漫画页面添加。";
-"Update" = "更新";

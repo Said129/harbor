@@ -5,6 +5,34 @@ from pathlib import Path
 import re
 
 requested = os.environ.get('HARBOR_NATIVE_SELECTION', '').strip()
+activity = ['HarborTests.HarborPluginActivityTests/' + method for method in [
+    'testRealCheckUsesDesktopSampleFreshConfigurationAndLastTitleWithVisibleActivity',
+    'testExplicitActivityCheckRecoversAnAlreadyPausedInstallationAndPersistsIt',
+    'testPausedMasterBlocksChecksAndFailedCheckShowsOnlySafeRuntimeCode',
+    'testClosingActivityCancelsRealRequestWithoutLateResultOrFailure']]
+if requested and set(item.strip().replace('HarborTests/', 'HarborTests.', 1) for item in requested.split(',')) == set(activity):
+    selected = [item.strip().replace('HarborTests/', 'HarborTests.', 1) for item in requested.split(',')]
+    assert len(selected) == len(set(selected)) == 4
+    seed = 'HarborTests.HarborPluginInterfaceSeedTests/testPrepareOwnedPluginInTheOrdinaryLocalInstallation'
+    ui = ['HarborUITests.HarborPluginNavigationTests/testPluginActivityCheckOn' + device for device in ['IPhone', 'IPad']]
+    for case in activity + [seed] + ui:
+        target, tail = case.split('.', 1); suite, method = tail.split('/')
+        assert re.search(r'\bfunc ' + method + r'\(', Path('ios/' + target + '/' + suite + '.swift').read_text('utf-8'))
+    plan = dict(source=os.environ.get('GITHUB_SHA', 'working-tree'), block='plugin-activity', selected_case_count=4,
+        pending_native_cases=activity, new_native_cases=4, native_preparation_case=seed, ui_cases=ui,
+        expected_total_executions=8, expected_original_images=4,
+        required_original_captures=['plugin-activity-' + state + '-' + device for device in ['iphone', 'ipad'] for state in ['before', 'after']],
+        approved_predecessor_cases_repeated=False, prior_preparation_repeated_only_for_fresh_devices=True,
+        unrelated_approved_cases_selected=False, existing_rust_tests_repeated=False,
+        full_desktop_parity_complete=False, ipa_requested=False)
+    directory = Path('ios/build'); directory.mkdir(parents=True, exist_ok=True)
+    (directory / 'preserved-plugin-integration.json').write_text(json.dumps(plan, indent=2) + '\n', 'utf-8')
+    (directory / 'plugin-integration-selection.txt').write_text('\n'.join(case.replace('.', '/', 1) for case in activity) + '\n', 'utf-8')
+    if os.environ.get('GITHUB_ENV'):
+        with open(os.environ['GITHUB_ENV'], 'a', encoding='utf-8') as output: output.write('HARBOR_PLUGIN_UI_REQUIRED=true\n')
+    print('4 new activity models, 2 fresh preparations and 2 new activity routes. No prior playback or manager suite replay. No IPA.')
+    raise SystemExit(0)
+
 if requested:
     startup = ['HarborTests.HarborNativeNetworkTests/testMaximumRPCResponseCrossesActualWebKitWorkerBridge',
         'HarborTests.HarborPluginRuntimeTests/testWorkerInitializationKeepsItsTenSecondBudgetAfterTheNativeHostIsReady',

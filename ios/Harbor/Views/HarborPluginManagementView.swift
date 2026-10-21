@@ -8,7 +8,7 @@ struct HarborPluginManagementView: View {
     @State private var failure: String?
     var body: some View {
         Group {
-            if let manager, manager.ready { HarborPluginCatalogSettings(manager: manager, pause: { app.plugins.runtime?.cancelCalls() }) }
+            if let manager, manager.ready, let runtime = app.plugins.runtime { HarborPluginCatalogSettings(manager: manager, runtime: runtime, pause: { app.plugins.runtime?.cancelCalls() }) }
             else {
                 VStack(spacing: 18) {
                     if let failure {
@@ -42,6 +42,7 @@ private struct HarborPluginCatalogSettings: View {
         case plugin(HarborInstalledStreamPlugin)
     }
     @Bindable var manager: HarborStreamPluginManager
+    let runtime: HarborStreamPluginPool
     let pause: @MainActor () -> Void
     @AppStorage("pluginsEnabled") private var enabled = true
     @AppStorage("pluginsGroupByRepo") private var groupByRepository = false
@@ -51,6 +52,7 @@ private struct HarborPluginCatalogSettings: View {
     @State private var failure: String?
     @State private var running = false
     @State private var editing: HarborInstalledStreamPlugin?
+    @State private var activity: HarborInstalledStreamPlugin?
     @State private var remove: Removal?
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
@@ -68,6 +70,7 @@ private struct HarborPluginCatalogSettings: View {
         }.scrollDismissesKeyboard(.interactively)
             .animation(reduceMotion ? nil : .easeOut(duration: 0.2), value: tab)
             .sheet(item: $editing) { plugin in HarborPluginSettingsView(manager: manager, plugin: plugin) }
+            .sheet(item: $activity) { plugin in HarborPluginActivityView(plugin: plugin, manager: manager, runtime: runtime) }
             .onChange(of: enabled) { _, value in if !value { pause() } }
             .confirmationDialog(text("Remove"), isPresented: Binding(get: { remove != nil }, set: { if !$0 { remove = nil } }), titleVisibility: .visible) {
                 if let target = remove {
@@ -82,7 +85,7 @@ private struct HarborPluginCatalogSettings: View {
                     }.accessibilityIdentifier("plugin-confirm-remove")
                 }
                 Button(text("Cancel"), role: .cancel) { remove = nil }
-            }.onChange(of: manager.ready) { _, ready in if !ready { editing = nil; link = ""; failure = nil } }
+            }.onChange(of: manager.ready) { _, ready in if !ready { editing = nil; activity = nil; link = ""; failure = nil } }
     }
     private var options: some View {
         HarborSettingsSection("Use plugins") {
@@ -129,6 +132,7 @@ private struct HarborPluginCatalogSettings: View {
                 VStack(alignment: .leading, spacing: 14) {
                     pluginHeading(plugin.entry, repository: plugin.repoName)
                     if !plugin.listed { Text(text("No longer listed by its repository.")).font(HarborTheme.font(13)).foregroundStyle(.secondary) }
+                    if plugin.autoPaused { Text(DesktopInterfaceText.value("Stopped after {n} failures.", variables: ["n": "3"])).font(HarborTheme.font(13)).foregroundStyle(ThemePreferences.shared.color("danger")) }
                     Toggle(text("Enabled"), isOn: Binding(get: { plugin.enabled }, set: { enabled in act { try await manager.setEnabled(plugin.id, enabled) } }))
                         .tint(HarborTheme.accent).frame(minHeight: 44).disabled(running)
                     ViewThatFits(in: .horizontal) {
@@ -140,6 +144,9 @@ private struct HarborPluginCatalogSettings: View {
         }
     }
     @ViewBuilder private func actions(_ plugin: HarborInstalledStreamPlugin) -> some View {
+        Button(text(plugin.autoPaused ? "Try again" : "Recent activity")) { editing = nil; activity = plugin }
+            .buttonStyle(HarborAccountButtonStyle()).disabled(running)
+            .accessibilityIdentifier("plugin-activity-" + plugin.entry.id)
         if plugin.entry.settings {
             Button(text("Settings")) { editing = plugin }.buttonStyle(HarborAccountButtonStyle()).disabled(running)
                 .accessibilityIdentifier("plugin-configure-" + plugin.entry.id)

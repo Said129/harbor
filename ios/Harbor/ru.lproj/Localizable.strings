@@ -47,7 +47,9 @@
 "Actualizar" = "Обновить";
 "Actualizar episodios" = "Refresh episodes";
 "Actualizar fuentes" = "Обновить источники";
+"Add" = "Добавить";
 "Add a TMDB key in Settings to unlock the full discovery feed." = "Добавьте ключ TMDB в настройках, чтобы открыть полную ленту рекомендаций.";
+"Add a repository" = "Добавить репозиторий";
 "Add bookmark" = "Add bookmark";
 "Add key" = "Добавить ключ";
 "Add language" = "Добавить язык";
@@ -99,6 +101,7 @@
 "All-Time Great Series" = "Великие сериалы всех времён";
 "All-Time Greats" = "Лучшее за всё время";
 "Allow cellular data" = "Allow cellular data";
+"Already added." = "Уже добавлен.";
 "Alternate" = "Альтернативный";
 "Analizando el audio… Puedes seguir viendo." = "Анализ звука… Продолжайте просмотр.";
 "Analysis stopped to prioritize playback. Retry after buffering finishes." = "Анализ остановлен ради воспроизведения. Повторите попытку после буферизации.";
@@ -117,6 +120,7 @@
 "Another device changed services. Your previous version is saved on this device." = "Другое устройство изменило сервисы. Предыдущая версия сохранена на этом устройстве.";
 "Anterior" = "Предыдущее";
 "Anular estilos integrados" = "Переопределять встроенные стили";
+"Any public website. This plugin did not say which sites it uses." = "Любой публичный сайт. Этот плагин не указал, какие сайты использует.";
 "Análisis detenido para priorizar la reproducción. Puedes reintentarlo cuando termine de cargar." = "Анализ остановлен ради воспроизведения. Повторите попытку после буферизации.";
 "Apariencia" = "Оформление";
 "Apariencia de los subtítulos" = "Вид субтитров";
@@ -300,6 +304,9 @@
 "Change chapter order" = "Change chapter order";
 "Channel format" = "Channel format";
 "Chapters" = "Главы";
+"Check it works" = "Проверить работу";
+"Checking…" = "Проверка…";
+"Checksum did not match the manifest." = "Контрольная сумма не совпадает с манифестом.";
 "Chinese" = "Китайский";
 "Chinese (Simplified)" = "Китайский (упрощённый)";
 "Choose an avatar" = "Выберите аватар";
@@ -384,6 +391,7 @@
 "Correo y contraseña" = "Email and password";
 "Could not analyze this source. Playback continues; you can retry." = "Не удалось проанализировать источник. Просмотр продолжается; можно повторить попытку.";
 "Could not apply the timing. The original subtitle is kept." = "Не удалось применить синхронизацию. Исходные субтитры сохранены.";
+"Could not complete this action. Try again." = "Не удалось выполнить действие. Попробуйте ещё раз.";
 "Could not load navigation settings. Saved settings are kept." = "Could not load navigation settings. Saved settings are kept.";
 "Could not load streaming preferences. Saved settings are kept." = "Could not load streaming preferences. Saved settings are kept.";
 "Could not load this page. Try again." = "Не удалось загрузить эту страницу. Повторите попытку.";
@@ -531,6 +539,7 @@
 "En reproducción" = "Сейчас воспроизводится";
 "En reproducción: {label}" = "Сейчас в эфире: {label}";
 "Enable addon" = "Enable addon";
+"Enabled" = "Включено";
 "Enfocar" = "Повысить резкость";
 "English" = "Английский";
 "Enter Harbor" = "Войти в Harbor";
@@ -595,6 +604,7 @@
 "Featured" = "Избранное";
 "Featured at Anime Expo" = "Представлено на Anime Expo";
 "Fecha" = "Дата";
+"File is larger than 2 MB." = "Файл больше 2 МБ.";
 "Fill" = "Заполнить";
 "Film" = "Фильм";
 "Finnish" = "Финский";
@@ -609,6 +619,8 @@
 "Forest" = "Лес";
 "Formato de canales" = "Channel format";
 "Forzado" = "Форсированные";
+"Found {count} streams for {title} in {seconds}s" = "Найдено {count} потоков для {title} за {seconds} с";
+"Found {count} streams in {seconds}s." = "Найдено {count} потоков за {seconds} с.";
 "Free, two-minute signup. Unlocks Trending, In Theaters Now, Top Rated, and per-streaming catalogs (Netflix, Disney+, Hulu, …). Your key stays on this machine." = "Бесплатная регистрация за две минуты. Открывает «В тренде», «Сейчас в кино», «Лучшее по рейтингу» и каталоги сервисов (Netflix, Disney+, Hulu, …). Ключ остаётся на этом компьютере.";
 "French" = "Французский";
 "From" = "Источник";
@@ -637,6 +649,7 @@
 "Green" = "Зелёный";
 "Gris" = "Gray";
 "Grosor del contorno" = "Толщина обводки";
+"Group by repository" = "Группировать по репозиторию";
 "Guardado" = "Сохранено";
 "Guardando" = "Сохранение";
 "Guardar" = "Сохранить";
@@ -739,8 +752,10 @@
 "Iniciar sesión con Stremio" = "Войти через Stremio";
 "Instala un complemento de Stremio y sus catálogos aparecerán aquí como filas de pósteres, listos para explorar." = "Установите дополнение Stremio – его каталоги появятся здесь рядами постеров, готовые к просмотру.";
 "Instalar addon" = "Установить дополнение";
+"Install" = "Установить";
 "Install a Stremio addon and its catalogs show up here as poster rails, ready to browse." = "Установите дополнение Stremio – его каталоги появятся здесь рядами постеров, готовые к просмотру.";
 "Install addon" = "Установить дополнение";
+"Installed" = "Установлено";
 "Instant" = "Мгновенно";
 "Instant starts the best-ranked stream straight away. Pick a source opens the stream list every time, so you choose the release, quality and provider yourself." = "Мгновенный запуск сразу включает поток с наивысшим рейтингом. Выбор источника каждый раз открывает список, где вы сами выбираете версию, качество и провайдера.";
 "Instantáneo" = "Мгновенно";
@@ -804,6 +819,7 @@
 "Llegaste al final · {n} complementos" = "Это всё · {n} дополнений";
 "Load file" = "Загрузить файл";
 "Load more" = "Показать ещё";
+"Loading plugins..." = "Загрузка плагинов...";
 "Loading…" = "Загрузка…";
 "Local" = "Локальные";
 "Local app files" = "Local app files";
@@ -955,6 +971,7 @@
 "No hay subtítulos que coincidan con tu búsqueda." = "No subtitles match your search.";
 "No installed addon matches that." = "Нет установленных дополнений по этому запросу.";
 "No language matches that search." = "По этому запросу язык не найден.";
+"No longer listed by its repository." = "Больше не значится в репозитории.";
 "No manga found" = "Манга не найдена";
 "No matches." = "Совпадений нет.";
 "No picks loaded. TMDB might be unreachable." = "Подборки не загружены. Возможно, TMDB недоступен.";
@@ -969,6 +986,8 @@
 "No se pudo aplicar el ajuste. Se conserva el subtítulo original." = "Не удалось применить синхронизацию. Исходные субтитры сохранены.";
 "No source returned a stream" = "Ни один источник не вернул поток";
 "No sources match your filter" = "Нет источников по этому фильтру";
+"No streams came back." = "Потоки не вернулись.";
+"No streams for {title}" = "Нет потоков для {title}";
 "No styling" = "Без оформления";
 "No subtitles found." = "Субтитры не найдены.";
 "No subtitles match your search." = "No subtitles match your search.";
@@ -983,9 +1002,11 @@
 "Nord" = "Nord";
 "Normal" = "Обычный";
 "Norwegian" = "Норвежский";
+"Not a stream plugin: it exports no getStreams or streams function." = "Не плагин потоков: не экспортирует функцию getStreams или streams.";
 "Not interested" = "Не интересует";
 "Not now" = "Не сейчас";
 "Not set" = "Не задано";
+"Nothing installed yet" = "Пока ничего не установлено";
 "Nothing matched this filter. Try another category or change your region in Settings." = "По этому фильтру ничего не найдено. Попробуйте другую категорию или измените регион в настройках.";
 "Notify me" = "Notify me";
 "Now" = "Сейчас";
@@ -1016,6 +1037,7 @@
 "On start" = "On start";
 "Onboarding" = "Начало работы";
 "Ongoing" = "Продолжается";
+"Only https links are accepted." = "Принимаются только ссылки https.";
 "Opacidad" = "Непрозрачность";
 "Opacidad del fondo" = "Непрозрачность фона";
 "Opacity" = "Непрозрачность";
@@ -1106,6 +1128,10 @@
 "Player options" = "Player options";
 "Playlists" = "Плейлисты";
 "Playlists and servers" = "Playlists and servers";
+"Plugin files" = "Файлы плагина";
+"Plugin files changed on disk. Reinstall it from its repository." = "Файлы плагина на диске изменились. Переустановите его из репозитория.";
+"Plugins" = "Плагины";
+"Plugins are paused. Turn on Use plugins above to run them." = "Плагины приостановлены. Включите «Использовать плагины» выше, чтобы запустить их.";
 "Pluto TV" = "Pluto TV";
 "Polish" = "Польский";
 "Popular Anime" = "Популярное аниме";
@@ -1170,6 +1196,7 @@
 "Random avatar" = "Случайный аватар";
 "Ranked by the {site} community from their public index." = "Рейтинг составлен сообществом {site} на основе его открытого индекса.";
 "Re-runs the welcome flow and clears every dismissed tip." = "Запускает приветственный тур заново и сбрасывает все скрытые подсказки.";
+"Reaches" = "Обращается к";
 "Read on iPhone and iPad" = "Read on iPhone and iPad";
 "Reader options" = "Reader options";
 "Reading" = "Чтение";
@@ -1182,6 +1209,7 @@
 "Reanudar desde donde lo dejaste" = "Продолжить с места остановки";
 "Reanudar desde {time}" = "Продолжить с {time}";
 "Reanudar tras una interrupción de audio" = "Resume after an audio interruption";
+"Recent activity" = "Недавняя активность";
 "Recent searches" = "Недавние запросы";
 "Recién agregado" = "Только что добавлены";
 "Recomendado" = "Рекомендуемое";
@@ -1228,6 +1256,8 @@
 "Repetición" = "Повтор";
 "Replay the walkthrough or unhide every dismissed tip in the app." = "Пройти обучение заново или вернуть все скрытые подсказки.";
 "Replay walkthrough" = "Пройти обучение заново";
+"Repositories" = "Репозитории";
+"Repository link" = "Ссылка на репозиторий";
 "Reproducción" = "Воспроизведение";
 "Reproducir" = "Воспроизвести";
 "Reproducir ahora" = "Смотреть сейчас";
@@ -1278,6 +1308,7 @@
 "Retry statistics" = "Retry statistics";
 "Reveal" = "Показать";
 "Reverse order" = "Reverse order";
+"Revert" = "Вернуть";
 "Rich season and order panel" = "Расширенная панель сезонов и порядка";
 "Richer, more vivid picture with a touch more contrast." = "Более сочная картинка с чуть большим контрастом.";
 "Right" = "Справа";
@@ -1291,6 +1322,7 @@
 "Royal" = "Королевский";
 "Rugby" = "Регби";
 "Running on Cinemeta for now. Add a TMDB key from Settings whenever you're ready." = "Пока используется Cinemeta. Добавьте ключ TMDB в Настройках, когда будете готовы.";
+"Runs this plugin on a real title and shows what came back." = "Запускает плагин на реальном названии и показывает, что он вернул.";
 "Russian" = "Русский";
 "STARZ" = "STARZ";
 "Salir de imagen en imagen" = "Выйти из картинки в картинке";
@@ -1332,6 +1364,7 @@
 "Secondary copy." = "Второстепенный текст.";
 "See details" = "Подробности";
 "Seek bar" = "Полоса перемотки";
+"Seen so far: {hosts}" = "Замечено: {hosts}";
 "Seguir viendo en la parte superior" = "\"Продолжить просмотр\" сверху";
 "Segundo idioma de subtítulos" = "Язык вторых субтитров";
 "Seis lugares para comenzar. Toca uno y filtraremos el catálogo para ti." = "Шесть точек старта. Выберите одну – отфильтруем каталог.";
@@ -1360,6 +1393,7 @@
 "Sesión iniciada en Stremio" = "Вход в Stremio выполнен";
 "Set a PIN" = "Задать PIN";
 "Settings" = "Настройки";
+"Settings changed. Please reopen this page." = "Настройки изменились. Откройте эту страницу заново.";
 "Share" = "Поделиться";
 "Share file" = "Share file";
 "Share with {name}" = "Общий доступ с {name}";
@@ -1381,6 +1415,7 @@
 "Show me more like this" = "Показывать больше такого";
 "Show more channels" = "Show more channels";
 "Show more titles" = "Show more titles";
+"Show one source per repository in the picker instead of one per plugin. Useful when a repository ships many small providers." = "Показывать в списке потоков один источник на репозиторий вместо одного на плагин. Удобно, когда репозиторий содержит много мелких провайдеров.";
 "Show pages" = "Страницы сериалов";
 "Show row" = "Показывать ряд";
 "Show the Skip button" = "Показывать кнопку «Пропустить»";
@@ -1421,6 +1456,7 @@
 "Skip Recap" = "Пропустить пересказ";
 "Skip for now" = "Пропустить пока";
 "Skip setup" = "Пропустить настройку";
+"Skipped: {reason}" = "Skipped: {reason}";
 "Slice of Life" = "Повседневность";
 "Slightly lighter than background." = "Чуть светлее фона.";
 "Sobre la línea principal" = "Над основной строкой";
@@ -1465,6 +1501,7 @@
 "Stop feeding the hero carousel (back to automatic)" = "Убрать из главной карусели (снова автоматически)";
 "Stop playback" = "Stop playback";
 "Stop showing as second subtitle" = "Не показывать как вторые субтитры";
+"Stopped with: {error}" = "Остановлен с ошибкой: {error}";
 "Storage overview" = "Обзор хранилища";
 "Stream" = "Поток";
 "Streaming" = "Стриминг";
@@ -1552,6 +1589,7 @@
 "Texto sutil" = "Приглушённый текст";
 "Textos auxiliares y antetítulos." = "Подписи, надзаголовки.";
 "Thai" = "Тайский";
+"That link did not answer." = "Эта ссылка не ответила.";
 "That route wouldn't chart. Try a different direction." = "Не удалось проложить маршрут. Попробуйте другое направление.";
 "The CW" = "The CW";
 "The Roku Channel" = "The Roku Channel";
@@ -1566,6 +1604,8 @@
 "Theater Capture" = "Theater Capture";
 "These rails activate once a TMDB key is set. You can come back to this anytime in Settings." = "Эти ряды заработают после добавления ключа TMDB. Вернуться к этому можно в любой момент в Настройках.";
 "This file has one audio track." = "В этом файле одна аудиодорожка.";
+"This is a Stremio addon manifest. Add it from the Addons page instead." = "This is a Stremio addon manifest. Add it from the Addons page instead.";
+"This is a manga repository. Add it from the Manga page." = "Это репозиторий манги. Добавьте его на странице «Манга».";
 "This is how your subtitles will look." = "Так будут выглядеть ваши субтитры.";
 "Thriller" = "Триллер";
 "Thrillers" = "Триллеры";
@@ -1628,6 +1668,7 @@
 "Trending on {source}" = "В тренде на {source}";
 "Trending, Popular, In Theaters, and the per service rails." = "Ряды «В тренде», «Популярное», «В кино» и ряды сервисов.";
 "Trending, in theaters, what's on every streamer." = "В тренде, в кино и что идёт на каждом сервисе.";
+"Try again" = "Повторить";
 "Tu avatar, nombre e identificador en Harbor." = "Ваш аватар, имя и ник во всём Harbor.";
 "Tu color" = "Ваш цвет";
 "Tu perfil" = "Ваш профиль";
@@ -1659,12 +1700,14 @@
 "Upcoming" = "Скоро";
 "Upcoming Anime" = "Ожидаемое аниме";
 "Upcoming Season" = "Следующий сезон";
+"Update" = "Обновить";
 "Upload a picture of your own, or pick one from the Harbor catalog." = "Загрузите своё изображение или выберите одно из каталога Harbor.";
 "Upload photo" = "Загрузить фото";
 "Usa el servidor que ya tienes configurado en Harbor. En la red local, permite el acceso cuando iOS lo solicite." = "Use your configured Harbor server. Allow local network access when iOS asks.";
 "Usa la clave v3, no el token de acceso de lectura." = "Используйте ключ v3, а не токен доступа для чтения.";
 "Usar mi estilo" = "Мой стиль";
 "Use my style" = "Мой стиль";
+"Use plugins" = "Использовать плагины";
 "Use shared settings" = "Использовать общие настройки";
 "Use the navigation menu to open each section. Personalize the sidebar, home rows, colors and playback from Settings." = "Use the navigation menu to open each section. Personalize the sidebar, home rows, colors and playback from Settings.";
 "Use the v3 key, not the read access token." = "Используйте ключ v3, а не токен доступа для чтения.";
@@ -1797,6 +1840,7 @@
 "{n} min" = "{n} мин";
 "{n} seeds" = "Сидов: {n}";
 "{n} semillas" = "Сидов: {n}";
+"{requests} requests" = "{requests} запросов";
 "{watched} de {total} vistos ({pct}%)." = "Просмотрено {watched} из {total} ({pct}%).";
 "{watched} of {total} watched ({pct}%)." = "Просмотрено {watched} из {total} ({pct}%).";
 "Álbumes" = "Альбомы";
@@ -1805,27 +1849,3 @@
 "Índice" = "Table of contents";
 "Índice de la comunidad" = "Рейтинг сообщества";
 "العربية" = "العربية";
-
-"Add" = "Добавить";
-"Add a repository" = "Добавить репозиторий";
-"Already added." = "Уже добавлен.";
-"Checksum did not match the manifest." = "Контрольная сумма не совпадает с манифестом.";
-"Could not complete this action. Try again." = "Не удалось выполнить действие. Попробуйте ещё раз.";
-"Enabled" = "Включено";
-"File is larger than 2 MB." = "Файл больше 2 МБ.";
-"Install" = "Установить";
-"Installed" = "Установлено";
-"Loading plugins..." = "Загрузка плагинов...";
-"No longer listed by its repository." = "Больше не значится в репозитории.";
-"Not a stream plugin: it exports no getStreams or streams function." = "Не плагин потоков: не экспортирует функцию getStreams или streams.";
-"Nothing installed yet" = "Пока ничего не установлено";
-"Only https links are accepted." = "Принимаются только ссылки https.";
-"Plugins" = "Плагины";
-"Repositories" = "Репозитории";
-"Repository link" = "Ссылка на репозиторий";
-"Revert" = "Вернуть";
-"Settings changed. Please reopen this page." = "Настройки изменились. Откройте эту страницу заново.";
-"That link did not answer." = "Эта ссылка не ответила.";
-"This is a Stremio addon manifest. Add it from the Addons page instead." = "This is a Stremio addon manifest. Add it from the Addons page instead.";
-"This is a manga repository. Add it from the Manga page." = "Это репозиторий манги. Добавьте его на странице «Манга».";
-"Update" = "Обновить";

@@ -45,7 +45,9 @@
 "Actualizar" = "Actualizar";
 "Actualizar episodios" = "Actualizar episodios";
 "Actualizar fuentes" = "Actualizar fuentes";
+"Add" = "Agregar";
 "Add a TMDB key in Settings to unlock the full discovery feed." = "Agrega una clave de TMDB en Configuración para acceder a toda la sección de descubrimiento.";
+"Add a repository" = "Agregar un repositorio";
 "Add bookmark" = "Añadir marcador";
 "Add key" = "Agregar clave";
 "Add language" = "Añadir idioma";
@@ -97,6 +99,7 @@
 "All-Time Great Series" = "Grandes series de todos los tiempos";
 "All-Time Greats" = "Los mejores de todos los tiempos";
 "Allow cellular data" = "Permitir datos móviles";
+"Already added." = "Ya está agregado.";
 "Alternate" = "Alternativo";
 "Analizando el audio… Puedes seguir viendo." = "Analizando el audio… Puedes seguir viendo.";
 "Analysis stopped to prioritize playback. Retry after buffering finishes." = "Análisis detenido para priorizar la reproducción. Puedes reintentarlo cuando termine de cargar.";
@@ -114,6 +117,7 @@
 "Another device changed services. Your previous version is saved on this device." = "Otro dispositivo cambió los servicios. Tu versión anterior está guardada en este dispositivo.";
 "Anterior" = "Anterior";
 "Anular estilos integrados" = "Anular estilos integrados";
+"Any public website. This plugin did not say which sites it uses." = "Cualquier sitio público. Este plugin no indicó qué sitios usa.";
 "Análisis detenido para priorizar la reproducción. Puedes reintentarlo cuando termine de cargar." = "Análisis detenido para priorizar la reproducción. Puedes reintentarlo cuando termine de cargar.";
 "Apariencia" = "Apariencia";
 "Apariencia de los subtítulos" = "Apariencia de los subtítulos";
@@ -296,6 +300,9 @@
 "Change chapter order" = "Cambiar orden de capítulos";
 "Channel format" = "Formato de canales";
 "Chapters" = "Capítulos";
+"Check it works" = "Comprobar que funciona";
+"Checking…" = "Comprobando…";
+"Checksum did not match the manifest." = "La suma de verificación no coincide con el manifiesto.";
 "Chinese" = "Chino";
 "Chinese (Simplified)" = "Chino (simplificado)";
 "Choose an avatar" = "Elige un avatar";
@@ -380,6 +387,7 @@
 "Correo y contraseña" = "Correo y contraseña";
 "Could not analyze this source. Playback continues; you can retry." = "No se pudo analizar esta fuente. La reproducción continúa; puedes reintentarlo.";
 "Could not apply the timing. The original subtitle is kept." = "No se pudo aplicar el ajuste. Se conserva el subtítulo original.";
+"Could not complete this action. Try again." = "No se pudo completar la acción. Inténtalo de nuevo.";
 "Could not load navigation settings. Saved settings are kept." = "No se pudo cargar la navegación. Se conserva la configuración guardada.";
 "Could not load streaming preferences. Saved settings are kept." = "No se pudieron cargar los servicios. Se conserva la configuración guardada.";
 "Could not load this page. Try again." = "No se pudo cargar esta página. Vuelve a intentarlo.";
@@ -527,6 +535,7 @@
 "En reproducción" = "En reproducción";
 "En reproducción: {label}" = "En reproducción: {label}";
 "Enable addon" = "Activar addon";
+"Enabled" = "Activado";
 "Enfocar" = "Enfocar";
 "English" = "Inglés";
 "Enter Harbor" = "Entrar a Harbor";
@@ -591,6 +600,7 @@
 "Featured" = "Destacado";
 "Featured at Anime Expo" = "Destacado en Anime Expo";
 "Fecha" = "Fecha";
+"File is larger than 2 MB." = "El archivo supera los 2 MB.";
 "Fill" = "Rellenar";
 "Film" = "Película";
 "Finnish" = "Finés";
@@ -605,6 +615,8 @@
 "Forest" = "Bosque";
 "Formato de canales" = "Formato de canales";
 "Forzado" = "Forzado";
+"Found {count} streams for {title} in {seconds}s" = "{count} fuentes encontradas para {title} en {seconds}s";
+"Found {count} streams in {seconds}s." = "{count} fuentes encontradas en {seconds}s.";
 "Free, two-minute signup. Unlocks Trending, In Theaters Now, Top Rated, and per-streaming catalogs (Netflix, Disney+, Hulu, …). Your key stays on this machine." = "Registro gratis de dos minutos. Desbloquea Tendencias, Ahora en cines, Mejor valorados y los catálogos de cada servicio de streaming (Netflix, Disney+, Hulu, …). Tu clave permanece en esta computadora.";
 "French" = "Francés";
 "From" = "Desde";
@@ -632,6 +644,7 @@
 "Green" = "Verde";
 "Gris" = "Gris";
 "Grosor del contorno" = "Grosor del contorno";
+"Group by repository" = "Agrupar por repositorio";
 "Guardado" = "Guardado";
 "Guardando" = "Guardando";
 "Guardar" = "Guardar";
@@ -734,8 +747,10 @@
 "Iniciar sesión con Stremio" = "Iniciar sesión con Stremio";
 "Instala un complemento de Stremio y sus catálogos aparecerán aquí como filas de pósteres, listos para explorar." = "Instala un complemento de Stremio y sus catálogos aparecerán aquí como filas de pósteres, listos para explorar.";
 "Instalar addon" = "Instalar addon";
+"Install" = "Instalar";
 "Install a Stremio addon and its catalogs show up here as poster rails, ready to browse." = "Instala un complemento de Stremio y sus catálogos aparecerán aquí como filas de pósteres, listos para explorar.";
 "Install addon" = "Instalar addon";
+"Installed" = "Instalado";
 "Instant" = "Instantáneo";
 "Instant starts the best-ranked stream straight away. Pick a source opens the stream list every time, so you choose the release, quality and provider yourself." = "Instantáneo inicia de inmediato el stream mejor valorado. Elegir fuente abre siempre la lista para que elijas la versión, calidad y proveedor.";
 "Instantáneo" = "Instantáneo";
@@ -799,6 +814,7 @@
 "Llegaste al final · {n} complementos" = "Llegaste al final · {n} complementos";
 "Load file" = "Cargar archivo";
 "Load more" = "Cargar más";
+"Loading plugins..." = "Cargando plugins...";
 "Loading…" = "Cargando…";
 "Local" = "Local";
 "Local app files" = "Archivos de la app";
@@ -947,6 +963,7 @@
 "No hay subtítulos que coincidan con tu búsqueda." = "No hay subtítulos que coincidan con tu búsqueda.";
 "No installed addon matches that." = "Ningún complemento instalado coincide con eso.";
 "No language matches that search." = "Ningún idioma coincide con esa búsqueda.";
+"No longer listed by its repository." = "Su repositorio ya no lo incluye.";
 "No manga found" = "No se encontró ningún manga";
 "No matches." = "No hay coincidencias.";
 "No picks loaded. TMDB might be unreachable." = "No se cargaron selecciones. Es posible que TMDB no esté disponible.";
@@ -961,6 +978,8 @@
 "No se pudo aplicar el ajuste. Se conserva el subtítulo original." = "No se pudo aplicar el ajuste. Se conserva el subtítulo original.";
 "No source returned a stream" = "Ningún proveedor devolvió una fuente";
 "No sources match your filter" = "Ninguna fuente coincide con tu filtro";
+"No streams came back." = "No se recibió ninguna fuente.";
+"No streams for {title}" = "Sin fuentes para {title}";
 "No styling" = "Sin estilos";
 "No subtitles found." = "No se encontraron subtítulos.";
 "No subtitles match your search." = "No hay subtítulos que coincidan con tu búsqueda.";
@@ -975,9 +994,11 @@
 "Nord" = "Nord";
 "Normal" = "Normal";
 "Norwegian" = "Noruego";
+"Not a stream plugin: it exports no getStreams or streams function." = "No es un plugin de fuentes: no exporta ninguna función getStreams ni streams.";
 "Not interested" = "No me interesa";
 "Not now" = "Ahora no";
 "Not set" = "Sin configurar";
+"Nothing installed yet" = "Aún no hay nada instalado";
 "Nothing matched this filter. Try another category or change your region in Settings." = "Nada coincidió con este filtro. Prueba otra categoría o cambia tu región en Configuración.";
 "Notify me" = "Avisarme";
 "Now" = "Ahora";
@@ -1007,6 +1028,7 @@
 "On start" = "Al empezar";
 "Onboarding" = "Primeros pasos";
 "Ongoing" = "En curso";
+"Only https links are accepted." = "Solo se aceptan enlaces https.";
 "Opacidad" = "Opacidad";
 "Opacidad del fondo" = "Opacidad del fondo";
 "Opacity" = "Opacidad";
@@ -1095,6 +1117,10 @@
 "Player options" = "Opciones del reproductor";
 "Playlists" = "Listas";
 "Playlists and servers" = "Listas y servidores";
+"Plugin files" = "Archivos del plugin";
+"Plugin files changed on disk. Reinstall it from its repository." = "Los archivos del plugin cambiaron en el disco. Reinstálalo desde su repositorio.";
+"Plugins" = "Plugins";
+"Plugins are paused. Turn on Use plugins above to run them." = "Los plugins están en pausa. Activa Usar plugins arriba para ejecutarlos.";
 "Pluto TV" = "Pluto TV";
 "Polish" = "Polaco";
 "Popular Anime" = "Anime popular";
@@ -1159,6 +1185,7 @@
 "Random avatar" = "Avatar aleatorio";
 "Ranked by the {site} community from their public index." = "Clasificación de la comunidad de {site} según su índice público.";
 "Re-runs the welcome flow and clears every dismissed tip." = "Vuelve a ejecutar el proceso de bienvenida y borra todos los consejos descartados.";
+"Reaches" = "Accede a";
 "Read on iPhone and iPad" = "Lee en iPhone y iPad";
 "Reader options" = "Opciones del lector";
 "Reading" = "Lectura";
@@ -1171,6 +1198,7 @@
 "Reanudar desde donde lo dejaste" = "Reanudar desde donde lo dejaste";
 "Reanudar desde {time}" = "Reanudar desde {time}";
 "Reanudar tras una interrupción de audio" = "Reanudar tras una interrupción de audio";
+"Recent activity" = "Actividad reciente";
 "Recent searches" = "Búsquedas recientes";
 "Recién agregado" = "Recién agregado";
 "Recomendado" = "Recomendado";
@@ -1216,6 +1244,8 @@
 "Repetición" = "Repetición";
 "Replay the walkthrough or unhide every dismissed tip in the app." = "Repite el tutorial o vuelve a mostrar todos los consejos ocultos de la app.";
 "Replay walkthrough" = "Repetir tutorial";
+"Repositories" = "Repositorios";
+"Repository link" = "Enlace del repositorio";
 "Reproducción" = "Reproducción";
 "Reproducir" = "Reproducir";
 "Reproducir ahora" = "Reproducir ahora";
@@ -1266,6 +1296,7 @@
 "Retry statistics" = "Reintentar estadísticas";
 "Reveal" = "Mostrar";
 "Reverse order" = "Orden inverso";
+"Revert" = "Revertir";
 "Rich season and order panel" = "Panel detallado de temporadas y orden";
 "Richer, more vivid picture with a touch more contrast." = "Imagen más intensa y vívida, con un poco más de contraste.";
 "Right" = "Derecha";
@@ -1279,6 +1310,7 @@
 "Royal" = "Real";
 "Rugby" = "Rugby";
 "Running on Cinemeta for now. Add a TMDB key from Settings whenever you're ready." = "Funciona con Cinemeta. Agrega una clave de TMDB en Configuración cuando quieras.";
+"Runs this plugin on a real title and shows what came back." = "Ejecuta este plugin con un título real y muestra lo que devolvió.";
 "Russian" = "Animación rusa";
 "STARZ" = "STARZ";
 "Salir de imagen en imagen" = "Salir de imagen en imagen";
@@ -1320,6 +1352,7 @@
 "Secondary copy." = "Copia secundaria.";
 "See details" = "Ver detalles";
 "Seek bar" = "Barra de búsqueda";
+"Seen so far: {hosts}" = "Vistos hasta ahora: {hosts}";
 "Seguir viendo en la parte superior" = "Seguir viendo en la parte superior";
 "Segundo idioma de subtítulos" = "Segundo idioma de subtítulos";
 "Seis lugares para comenzar. Toca uno y filtraremos el catálogo para ti." = "Seis lugares para comenzar. Toca uno y filtraremos el catálogo para ti.";
@@ -1348,6 +1381,7 @@
 "Sesión iniciada en Stremio" = "Sesión iniciada en Stremio";
 "Set a PIN" = "Establecer un PIN";
 "Settings" = "Configuración";
+"Settings changed. Please reopen this page." = "La configuración ha cambiado. Vuelve a abrir esta página.";
 "Share" = "Compartir";
 "Share file" = "Compartir archivo";
 "Share with {name}" = "Compartir con {name}";
@@ -1369,6 +1403,7 @@
 "Show me more like this" = "Mostrarme más contenido como este";
 "Show more channels" = "Mostrar más canales";
 "Show more titles" = "Mostrar más títulos";
+"Show one source per repository in the picker instead of one per plugin. Useful when a repository ships many small providers." = "Muestra una fuente por repositorio en el selector en lugar de una por plugin. Útil cuando un repositorio incluye muchos proveedores pequeños.";
 "Show pages" = "Mostrar páginas";
 "Show row" = "Mostrar fila";
 "Show the Skip button" = "Mostrar el botón Saltar";
@@ -1452,6 +1487,7 @@
 "Stop feeding the hero carousel (back to automatic)" = "Dejar de mostrarlo en el carrusel destacado (volver al modo automático)";
 "Stop playback" = "Detener reproducción";
 "Stop showing as second subtitle" = "Dejar de mostrarlo como segundo subtítulo";
+"Stopped with: {error}" = "Se detuvo con: {error}";
 "Storage overview" = "Resumen del almacenamiento";
 "Stream" = "Fuente";
 "Streaming" = "Streaming";
@@ -1539,6 +1575,7 @@
 "Texto sutil" = "Texto sutil";
 "Textos auxiliares y antetítulos." = "Textos auxiliares y antetítulos.";
 "Thai" = "Tailandés";
+"That link did not answer." = "Ese enlace no respondió.";
 "That route wouldn't chart. Try a different direction." = "Esa ruta no se pudo trazar. Prueba otra dirección.";
 "The CW" = "The CW";
 "The Roku Channel" = "The Roku Channel";
@@ -1553,6 +1590,7 @@
 "Theater Capture" = "Theater Capture";
 "These rails activate once a TMDB key is set. You can come back to this anytime in Settings." = "Estas filas se activan cuando se configura una clave de TMDB. Puedes volver a esto cuando quieras desde Configuración.";
 "This file has one audio track." = "Este archivo tiene una pista de audio.";
+"This is a manga repository. Add it from the Manga page." = "Este es un repositorio de manga. Agrégalo desde la página de Manga.";
 "This is how your subtitles will look." = "Así se verán tus subtítulos.";
 "Thriller" = "Suspenso";
 "Thrillers" = "Suspenso";
@@ -1615,6 +1653,7 @@
 "Trending on {source}" = "Tendencias en {source}";
 "Trending, Popular, In Theaters, and the per service rails." = "Tendencias, Populares, En cines y las filas de cada servicio.";
 "Trending, in theaters, what's on every streamer." = "Tendencias, en cines y qué hay en cada servicio de streaming.";
+"Try again" = "Inténtalo de nuevo";
 "Tu avatar, nombre e identificador en Harbor." = "Tu avatar, nombre e identificador en Harbor.";
 "Tu color" = "Tu color";
 "Tu perfil" = "Tu perfil";
@@ -1646,12 +1685,14 @@
 "Upcoming" = "Próximos";
 "Upcoming Anime" = "Próximos animes";
 "Upcoming Season" = "Próxima temporada";
+"Update" = "Actualizar";
 "Upload a picture of your own, or pick one from the Harbor catalog." = "Sube una imagen tuya o elige una del catálogo de Harbor.";
 "Upload photo" = "Subir foto";
 "Usa el servidor que ya tienes configurado en Harbor. En la red local, permite el acceso cuando iOS lo solicite." = "Usa el servidor que ya tienes configurado en Harbor. En la red local, permite el acceso cuando iOS lo solicite.";
 "Usa la clave v3, no el token de acceso de lectura." = "Usa la clave v3, no el token de acceso de lectura.";
 "Usar mi estilo" = "Usar mi estilo";
 "Use my style" = "Usar mi estilo";
+"Use plugins" = "Usar plugins";
 "Use shared settings" = "Usar ajustes compartidos";
 "Use the navigation menu to open each section. Personalize the sidebar, home rows, colors and playback from Settings." = "Abre cada sección desde el menú de navegación. Personaliza el menú, las filas del inicio, los colores y la reproducción desde Ajustes.";
 "Use the v3 key, not the read access token." = "Usa la clave v3, no el token de acceso de lectura.";
@@ -1784,6 +1825,7 @@
 "{n} min" = "{n} min";
 "{n} seeds" = "{n} semillas";
 "{n} semillas" = "{n} semillas";
+"{requests} requests" = "{requests} solicitudes";
 "{watched} de {total} vistos ({pct}%)." = "{watched} de {total} vistos ({pct}%).";
 "{watched} of {total} watched ({pct}%)." = "{watched} de {total} vistos ({pct}%).";
 "Álbumes" = "Álbumes";
@@ -1792,26 +1834,3 @@
 "Índice" = "Índice";
 "Índice de la comunidad" = "Índice de la comunidad";
 "العربية" = "العربية";
-
-"Add" = "Agregar";
-"Add a repository" = "Agregar un repositorio";
-"Already added." = "Ya está agregado.";
-"Checksum did not match the manifest." = "La suma de verificación no coincide con el manifiesto.";
-"Could not complete this action. Try again." = "No se pudo completar la acción. Inténtalo de nuevo.";
-"Enabled" = "Activado";
-"File is larger than 2 MB." = "El archivo supera los 2 MB.";
-"Install" = "Instalar";
-"Installed" = "Instalado";
-"Loading plugins..." = "Cargando plugins...";
-"No longer listed by its repository." = "Su repositorio ya no lo incluye.";
-"Not a stream plugin: it exports no getStreams or streams function." = "No es un plugin de fuentes: no exporta ninguna función getStreams ni streams.";
-"Nothing installed yet" = "Aún no hay nada instalado";
-"Only https links are accepted." = "Solo se aceptan enlaces https.";
-"Plugins" = "Plugins";
-"Repositories" = "Repositorios";
-"Repository link" = "Enlace del repositorio";
-"Revert" = "Revertir";
-"Settings changed. Please reopen this page." = "La configuración ha cambiado. Vuelve a abrir esta página.";
-"That link did not answer." = "Ese enlace no respondió.";
-"This is a manga repository. Add it from the Manga page." = "Este es un repositorio de manga. Agrégalo desde la página de Manga.";
-"Update" = "Actualizar";
