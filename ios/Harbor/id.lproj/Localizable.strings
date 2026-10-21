@@ -750,6 +750,7 @@
 "Install" = "Instal";
 "Install a Stremio addon and its catalogs show up here as poster rails, ready to browse." = "Instal addon Stremio dan katalognya akan muncul di sini sebagai deretan poster yang siap dijelajahi.";
 "Install addon" = "Instal addon";
+"Install all" = "Pasang semua";
 "Installed" = "Terinstal";
 "Instant" = "Instan";
 "Instant starts the best-ranked stream straight away. Pick a source opens the stream list every time, so you choose the release, quality and provider yourself." = "Instan langsung memutar stream dengan peringkat terbaik. Pilih sumber membuka daftar stream setiap kali, sehingga Anda dapat memilih sendiri rilis, kualitas, dan penyedianya.";
@@ -1457,6 +1458,7 @@
 "Sonido al pasar página" = "Page turn sound";
 "Sort" = "Urutkan";
 "Sort by" = "Urutkan berdasarkan";
+"Source" = "Sumber";
 "Sources" = "Sumber";
 "Sources & library" = "Sumber & perpustakaan";
 "Sources and quality" = "Sources and quality";
@@ -1492,6 +1494,7 @@
 "Stream" = "Stream";
 "Streaming" = "Streaming";
 "Streaming services" = "Layanan streaming";
+"Streams" = "Stream";
 "Stremio" = "Stremio";
 "Stremio clásico" = "Stremio Klasik";
 "Stretch" = "Bentangkan";

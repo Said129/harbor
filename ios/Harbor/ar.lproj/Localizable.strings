@@ -775,6 +775,7 @@
 "Install" = "تثبيت";
 "Install a Stremio addon and its catalogs show up here as poster rails, ready to browse." = "ثبّت إضافة Stremio وستظهر كتالوجاتها هنا على هيئة صفوف من الملصقات جاهزة للتصفح.";
 "Install addon" = "تثبيت إضافة";
+"Install all" = "تثبيت الكل";
 "Installed" = "مثبّتة";
 "Instant" = "فوري";
 "Instant starts the best-ranked stream straight away. Pick a source opens the stream list every time, so you choose the release, quality and provider yourself." = "يبدأ الخيار الفوري أفضل بث ترتيبًا مباشرة. يفتح خيار اختيار مصدر قائمة البث كل مرة لتختار الإصدار والجودة والمزوّد بنفسك.";
@@ -1493,6 +1494,7 @@
 "Sonido al pasar página" = "Page turn sound";
 "Sort" = "ترتيب";
 "Sort by" = "الترتيب حسب";
+"Source" = "المصدر";
 "Sources" = "المصادر";
 "Sources & library" = "المصادر والمكتبة";
 "Sources and quality" = "Sources and quality";
@@ -1528,6 +1530,7 @@
 "Stream" = "بث";
 "Streaming" = "البث";
 "Streaming services" = "خدمات البث";
+"Streams" = "البثوث";
 "Stremio" = "Stremio";
 "Stremio clásico" = "Stremio الكلاسيكي";
 "Stretch" = "تمديد";

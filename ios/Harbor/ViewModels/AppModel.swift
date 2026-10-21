@@ -16,6 +16,7 @@ final class AppModel {
     let home = HomeContentModel()
     let animeDetection = AnimeLibraryDetection()
     let plugins = HarborPluginSession()
+    let readingPlugins = HarborReadingPluginSession()
     let profileContext = AppProfileContext.shared
     private let accounts = AccountService()
     private var savedAccount: SavedAccount?

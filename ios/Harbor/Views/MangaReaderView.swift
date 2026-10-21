@@ -8,6 +8,7 @@ struct MangaReaderView: View {
     let chapters: [MangaChapter]
     let shelf: MangaShelf
     let client: SuwayomiClient?
+    @Environment(\.readingPlugins) private var reading
     @State private var chapter: MangaChapter
     @State private var pages: [MangaPage] = []
     @State private var visible: Int? = 0
@@ -61,7 +62,7 @@ struct MangaReaderView: View {
             .toolbar(focus ? .hidden : .visible, for: .navigationBar)
             .toolbar { ToolbarItemGroup(placement: .topBarTrailing) { Button { contents = true } label: { readerIcon("file-list", size: 24) }.accessibilityLabel("Capítulos"); Button { settings = true } label: { readerIcon("settings", size: 24) }.accessibilityLabel("Opciones del lector") } }
             .overlay(alignment: .topTrailing) { if focus { Button { focus = false } label: { Image(systemName: "eye").padding(12).background(.ultraThinMaterial, in: .circle) }.accessibilityLabel("Mostrar controles").padding(8) } }
-            .task { await load(chapter) }
+            .task(id: book.pluginID == nil ? "local" : String(reading?.ready ?? false)) { await load(chapter) }
             .onChange(of: visible) { _, _ in scheduleProgress() }
             .onChange(of: spread) { _, value in if !loading { visible = min(pages.count - 1, value * (double ? 2 : 1)) } }
             .onChange(of: mode) { _, _ in spread = current / (double ? 2 : 1) }
@@ -206,7 +207,10 @@ struct MangaReaderView: View {
         defer { loading = false }
         do {
             let loaded: [MangaPage]
-            if book.server == nil { loaded = try await MangaLocalStore.shared.pages(book, owner: shelf.owner, chapter: selected.id) }
+            if book.pluginID != nil {
+                guard let reading else { throw HarborError(code: "manga-connection") }
+                loaded = try await reading.mangaPages(book, chapter: selected)
+            } else if book.server == nil { loaded = try await MangaLocalStore.shared.pages(book, owner: shelf.owner, chapter: selected.id) }
             else { guard let client else { throw HarborError(code: "manga-connection") }; loaded = try await client.pages(book, chapter: selected) }
             try Task.checkCancellation(); guard !loaded.isEmpty else { throw HarborError(code: "manga-pages") }
             let saved = shelf.record(book)?.progress[selected.id]
@@ -265,7 +269,9 @@ struct MangaReaderView: View {
         guard pages.indices.contains(current) else { return }
         do {
             let path = pages[current].path, data: Data
-            if book.server == nil { data = try await MangaLocalStore.shared.data(book, owner: shelf.owner, path: path) }
+            if let pluginID = book.pluginID {
+                guard let reading else { throw HarborError(code: "manga-connection") }; data = try await reading.image(path, pluginID: pluginID)
+            } else if book.server == nil { data = try await MangaLocalStore.shared.data(book, owner: shelf.owner, path: path) }
             else { guard let client else { throw HarborError(code: "manga-connection") }; data = try await client.image(path) }
             guard let source = CGImageSourceCreateWithData(data as CFData, nil), let type = CGImageSourceGetType(source), let ext = UTType(type as String)?.preferredFilenameExtension else { throw HarborError(code: "manga-format") }
             let file = FileManager.default.temporaryDirectory.appendingPathComponent("Harbor-page-" + UUID().uuidString + "." + ext)

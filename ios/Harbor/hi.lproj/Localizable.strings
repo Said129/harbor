@@ -750,6 +750,7 @@
 "Install" = "इंस्टॉल करें";
 "Install a Stremio addon and its catalogs show up here as poster rails, ready to browse." = "कोई Stremio ऐडऑन इंस्टॉल करें। उसके कैटलॉग यहाँ ब्राउज़ करने के लिए तैयार पोस्टर रेल्स के रूप में दिखेंगे।";
 "Install addon" = "ऐडऑन इंस्टॉल करें";
+"Install all" = "सभी इंस्टॉल करें";
 "Installed" = "इंस्टॉल हो गया";
 "Instant" = "तुरंत";
 "Instant starts the best-ranked stream straight away. Pick a source opens the stream list every time, so you choose the release, quality and provider yourself." = "तुरंत प्ले सबसे ऊपर वाली स्ट्रीम सीधे शुरू करता है। स्रोत चुनें हर बार स्ट्रीम सूची खोलता है, ताकि आप रिलीज़, गुणवत्ता और प्रदाता खुद चुन सकें।";
@@ -1457,6 +1458,7 @@
 "Sonido al pasar página" = "Page turn sound";
 "Sort" = "क्रमबद्ध करें";
 "Sort by" = "इसके अनुसार क्रमबद्ध करें";
+"Source" = "स्रोत";
 "Sources" = "स्रोत";
 "Sources & library" = "स्रोत और लाइब्रेरी";
 "Sources and quality" = "Sources and quality";
@@ -1492,6 +1494,7 @@
 "Stream" = "स्ट्रीम";
 "Streaming" = "स्ट्रीमिंग";
 "Streaming services" = "स्ट्रीमिंग सेवाएँ";
+"Streams" = "स्ट्रीम्स";
 "Stremio" = "Stremio";
 "Stremio clásico" = "क्लासिक Stremio";
 "Stretch" = "फैलाएँ";

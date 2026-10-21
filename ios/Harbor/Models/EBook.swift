@@ -12,7 +12,11 @@ struct EBook: Codable, Identifiable, Hashable, Sendable {
     var epub: String?
     var source = "Project Gutenberg"
     var format: String?
+    var pluginID: String?
+    var itemID: String?
+    var metadata: JSONValue?
     var isPDF: Bool { format == "pdf" }
+    func hash(into hasher: inout Hasher) { hasher.combine(id) }
 }
 
 struct EBookBookmark: Codable, Identifiable, Sendable {
@@ -87,4 +91,5 @@ struct EBookBlock: Identifiable, Sendable {
     let text: String
     var heading = false
     var image: Data?
+    var imageURL: String?
 }

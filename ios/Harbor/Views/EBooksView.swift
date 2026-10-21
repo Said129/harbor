@@ -6,6 +6,9 @@ struct EBooksView: View {
     let initialFile: URL?
     @State private var shelf: EBookShelf
     @State private var books: [EBook] = []
+    @State private var reading: HarborReadingPluginManager?
+    @State private var source = "gutenberg"
+    @State private var pluginOffset = 0
     @State private var query = ""
     @State private var screen = "browse"
     @State private var language = ""
@@ -20,19 +23,23 @@ struct EBooksView: View {
     @State private var help = false
     @State private var imported: EBook?
     @MainActor init(app: AppModel, initialFile: URL? = nil) { self.app = app; self.initialFile = initialFile; _screen = State(initialValue: initialFile == nil ? "browse" : "shelf"); _shelf = State(initialValue: EBookShelf(owner: app.personalOwner)) }
-    private var signature: String { query + "|" + language }
+    private var signature: String { query + "|" + language + "|" + source + "|" + String(reading?.document.revision ?? 0) }
+    private var providers: [HarborInstalledReadingPlugin] { reading?.installed(.ebook) ?? [] }
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
                 Picker("eBook", selection: $screen) { Text("Explorar").tag("browse"); Text("Estantería").tag("shelf") }.pickerStyle(.segmented).padding(.horizontal).accessibilityIdentifier("ebook-screen")
-                HarborSearchField(prompt: screen == "browse" ? "Buscar en Gutenberg…" : "Buscar en tu estantería…", text: $query, dismissOnSubmit: true)
+                HarborSearchField(prompt: screen == "browse" ? source == "gutenberg" ? "Buscar en Gutenberg…" : DesktopInterfaceText.value("Search") + "…" : "Buscar en tu estantería…", text: $query, dismissOnSubmit: true)
                     .padding(.horizontal).accessibilityIdentifier("ebook-search")
                 if let message = error ?? shelf.error { Text(message).font(.caption).foregroundStyle(.orange).padding(.horizontal) }
                 Button { importing = true } label: { Label("Importar desde Archivos · EPUB / PDF", systemImage: "square.and.arrow.down").frame(maxWidth: .infinity, minHeight: 44) }.padding(.horizontal).disabled(importingDocument).accessibilityIdentifier("ebook-import")
                 if importingDocument { ProgressView("Importando libro…").frame(maxWidth: .infinity) }
                 if screen == "browse" {
                     HStack {
-                        Text("Project Gutenberg").font(.headline)
+                        Picker(DesktopInterfaceText.value("Source"), selection: $source) {
+                            Text("Project Gutenberg").tag("gutenberg")
+                            ForEach(providers) { Text($0.entry.name).tag($0.id) }
+                        }.accessibilityIdentifier("ebook-source")
                         Spacer()
                         Picker("Idioma", selection: $language) { Text("English").tag("en"); Text("Español").tag("es"); Text("Français").tag("fr"); Text("Deutsch").tag("de"); Text("Todos").tag("") }
                     }.padding(.horizontal)
@@ -48,9 +55,18 @@ struct EBooksView: View {
                 }
             }.padding(.vertical, 16)
         }.scrollDismissesKeyboard(.interactively).background(HarborTheme.background).navigationTitle("eBook").navigationBarTitleDisplayMode(.inline)
-            .toolbar { ToolbarItem(placement: .topBarTrailing) { Button { help = true } label: { Image(systemName: "questionmark.circle") }.accessibilityLabel("Cómo leer tus libros").accessibilityIdentifier("ebook-reading-help") } }
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) { NavigationLink { HarborPluginManagementView(app: app) } label: { Image(systemName: "puzzlepiece.extension") }.accessibilityLabel(DesktopInterfaceText.value("Plugins")) }
+                ToolbarItem(placement: .topBarTrailing) { Button { help = true } label: { Image(systemName: "questionmark.circle") }.accessibilityLabel("Cómo leer tus libros").accessibilityIdentifier("ebook-reading-help") }
+            }
             .sheet(isPresented: $help) { ReadingHelpView() }
             .task { if let initialFile { await importBook(initialFile) } }
+            .task(id: app.accountOperationScope) {
+                do { reading = try await app.openReadingPlugins() }
+                catch is CancellationError { return }
+                catch { error = HarborPluginMessages.error(error) }
+            }
+            .onChange(of: providers.map(\.id)) { _, ids in if source != "gutenberg", !ids.contains(source) { source = "gutenberg" } }
             .task(id: signature + "|" + screen) { if screen == "browse" && !importingDocument { await load(next: false) } }
             .refreshable { if screen == "browse" { await load(next: false) } }
             .fileImporter(isPresented: $importing, allowedContentTypes: [UTType(filenameExtension: "epub") ?? .data, .pdf], allowsMultipleSelection: true) { result in
@@ -67,6 +83,7 @@ struct EBooksView: View {
                 }
             }
             .navigationDestination(item: $imported) { book in BookReaderDestination(book: book, shelf: shelf) }
+            .environment(\.readingPlugins, reading)
     }
     private var savedBooks: [EBook] {
         let order = ReadingShelfSort(rawValue: shelfSort) ?? .title
@@ -106,13 +123,22 @@ struct EBooksView: View {
         defer { if generation == token { loading = false } }
         do {
             if !next { try await Task.sleep(for: .milliseconds(350)) }
-            let result = try await EBookService.shared.catalog(query: term, language: selectedLanguage, page: requestedPage)
+            let result: ([EBook], Bool)
+            let nextOffset: Int
+            if source == "gutenberg" {
+                result = try await EBookService.shared.catalog(query: term, language: selectedLanguage, page: requestedPage); nextOffset = 0
+            } else {
+                guard let reading, let plugin = providers.first(where: { $0.id == source }) else { throw HarborPluginRepositoryError("plugin-unavailable") }
+                let offset = next ? pluginOffset : 0
+                let rows = try await reading.ebookBrowse(plugin, query: term, offset: offset)
+                result = (rows, !rows.isEmpty); nextOffset = offset + rows.count
+            }
             try Task.checkCancellation()
             guard token == generation else { return }
             var seen = Set<String>()
-            books = ((next ? books : []) + result.0).filter { seen.insert($0.id).inserted }; more = result.1; page = requestedPage
+            books = ((next ? books : []) + result.0).filter { seen.insert($0.id).inserted }; more = result.1; page = requestedPage; pluginOffset = nextOffset
         } catch is CancellationError { return }
-        catch { if token == generation { self.error = "No se pudo cargar Project Gutenberg. Vuelve a intentarlo." } }
+        catch { if token == generation { self.error = source == "gutenberg" ? "No se pudo cargar Project Gutenberg. Vuelve a intentarlo." : HarborPluginMessages.error(error) } }
     }
     private func importBook(_ file: URL, open: Bool = true) async {
         guard shelf.ready else { error = "La estantería no está disponible. Los libros guardados se conservan."; return }

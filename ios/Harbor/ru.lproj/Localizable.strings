@@ -755,6 +755,7 @@
 "Install" = "Установить";
 "Install a Stremio addon and its catalogs show up here as poster rails, ready to browse." = "Установите дополнение Stremio – его каталоги появятся здесь рядами постеров, готовые к просмотру.";
 "Install addon" = "Установить дополнение";
+"Install all" = "Установить все";
 "Installed" = "Установлено";
 "Instant" = "Мгновенно";
 "Instant starts the best-ranked stream straight away. Pick a source opens the stream list every time, so you choose the release, quality and provider yourself." = "Мгновенный запуск сразу включает поток с наивысшим рейтингом. Выбор источника каждый раз открывает список, где вы сами выбираете версию, качество и провайдера.";
@@ -1471,6 +1472,7 @@
 "Sonido al pasar página" = "Page turn sound";
 "Sort" = "Сортировка";
 "Sort by" = "Сортировать по";
+"Source" = "Источник";
 "Sources" = "Источники";
 "Sources & library" = "Источники и библиотека";
 "Sources and quality" = "Sources and quality";
@@ -1506,6 +1508,7 @@
 "Stream" = "Поток";
 "Streaming" = "Стриминг";
 "Streaming services" = "Стриминговые сервисы";
+"Streams" = "Потоки";
 "Stremio" = "Stremio";
 "Stremio clásico" = "Классический Stremio";
 "Stretch" = "Растянуть";

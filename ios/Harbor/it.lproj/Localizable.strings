@@ -750,6 +750,7 @@
 "Install" = "Installa";
 "Install a Stremio addon and its catalogs show up here as poster rails, ready to browse." = "Installa un Add-on Stremio e i suoi cataloghi appariranno qui come caroselli di poster pronti da sfogliare.";
 "Install addon" = "Installa Add-on";
+"Install all" = "Installa tutto";
 "Installed" = "Installato";
 "Instant" = "Immediato";
 "Instant starts the best-ranked stream straight away. Pick a source opens the stream list every time, so you choose the release, quality and provider yourself." = "Istantaneo avvia subito il flusso meglio classificato. Scegli una fonte apre ogni volta la lista per scegliere versione, qualità e fornitore.";
@@ -1457,6 +1458,7 @@
 "Sonido al pasar página" = "Page turn sound";
 "Sort" = "Ordina";
 "Sort by" = "Ordina per";
+"Source" = "Fonte";
 "Sources" = "Fonti";
 "Sources & library" = "Fonti e libreria";
 "Sources and quality" = "Sources and quality";
@@ -1492,6 +1494,7 @@
 "Stream" = "Stream";
 "Streaming" = "Streaming";
 "Streaming services" = "Servizi di streaming";
+"Streams" = "Stream";
 "Stremio" = "Stremio";
 "Stremio clásico" = "Stremio classico";
 "Stretch" = "Allunga";

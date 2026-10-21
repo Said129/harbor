@@ -11,9 +11,10 @@ struct MangaImage: View {
     let client: SuwayomiClient?
     var maxPixels = 2200
     var onSize: ((CGSize) -> Void)?
+    @Environment(\.readingPlugins) private var reading
     @State private var image: UIImage?
     @State private var failed = false
-    private var signature: String { [owner, book.id, path ?? "cover", String(maxPixels)].joined(separator: "|") }
+    private var signature: String { [owner, book.id, path ?? "cover", String(maxPixels), book.pluginID == nil ? "local" : String(reading?.ready ?? false)].joined(separator: "|") }
     var body: some View {
         Group {
             if let image { Image(uiImage: image).resizable().scaledToFit().accessibilityLabel(book.title) }
@@ -29,7 +30,10 @@ struct MangaImage: View {
         failed = false; image = nil
         do {
             let data: Data
-            if book.server == nil {
+            if let pluginID = book.pluginID {
+                guard let reading, let path else { throw HarborError(code: "manga-connection") }
+                data = try await reading.image(path, pluginID: pluginID)
+            } else if book.server == nil {
                 let selected: String
                 if let path { selected = path }
                 else {

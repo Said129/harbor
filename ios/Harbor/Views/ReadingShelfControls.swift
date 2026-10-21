@@ -14,11 +14,12 @@ struct ReadingSortMenu: View {
 struct EBookCover: View {
     let book: EBook
     let owner: String
+    @Environment(\.readingPlugins) private var reading
     @State private var image: UIImage?
     var body: some View {
         Group {
             if let image { Image(uiImage: image).resizable().scaledToFit() }
-            else if let cover = book.cover, !book.id.hasPrefix("local:") { Artwork(url: cover, maxPixels: 600) }
+            else if let cover = book.cover, !book.id.hasPrefix("local:"), book.pluginID == nil { Artwork(url: cover, maxPixels: 600) }
             else {
                 ZStack {
                     LinearGradient(colors: [HarborTheme.accent.opacity(0.45), HarborTheme.surface], startPoint: .topLeading, endPoint: .bottomTrailing)
@@ -26,7 +27,15 @@ struct EBookCover: View {
                 }
             }
         }.accessibilityLabel(book.title).accessibilityIdentifier("ebook-cover")
-            .task(id: owner + "|" + book.id) {
+            .task(id: owner + "|" + book.id + "|" + (book.pluginID == nil ? "local" : String(reading?.ready ?? false))) {
+                if let pluginID = book.pluginID, let cover = book.cover, let reading {
+                    do {
+                        let data = try await reading.image(cover, pluginID: pluginID)
+                        let thumbnail = try await Task.detached(priority: .utility) { try ReadingArtwork.thumbnail(data) }.value
+                        try Task.checkCancellation(); image = UIImage(data: thumbnail)
+                    } catch {}
+                    return
+                }
                 guard book.id.hasPrefix("local:") || book.cover == nil else { return }
                 do { if let data = try await EBookService.shared.cover(book, owner: owner) { try Task.checkCancellation(); image = UIImage(data: data) } } catch {}
             }

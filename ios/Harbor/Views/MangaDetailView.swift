@@ -4,6 +4,7 @@ struct MangaDetailView: View {
     let book: MangaBook
     let shelf: MangaShelf
     let client: SuwayomiClient?
+    @Environment(\.readingPlugins) private var reading
     @State private var detail: MangaBook?
     @State private var chapters: [MangaChapter] = []
     @State private var selection: MangaChapter?
@@ -53,7 +54,7 @@ struct MangaDetailView: View {
                     if let client { Button("Añadir a biblioteca Suwayomi") { Task { do { try await client.setLibrary(book, enabled: true) } catch { self.error = safeMessage(error) } } }; Button("Quitar de biblioteca Suwayomi", role: .destructive) { Task { do { try await client.setLibrary(book, enabled: false) } catch { self.error = safeMessage(error) } } } }
                 } label: { glyph("desktop-bookmark", size: 19).frame(width: 44, height: 44) }.accessibilityLabel("Biblioteca de Manga")
             } }
-            .task { await load() }
+            .task(id: book.pluginID == nil ? "local" : String(reading?.ready ?? false)) { await load() }
             .navigationDestination(item: $selection) { chapter in MangaReaderView(book: displayed, initialChapter: chapter, chapters: chapters, shelf: shelf, client: client) }
     }
     private var hero: some View {
@@ -113,7 +114,13 @@ struct MangaDetailView: View {
     private func load() async {
         loading = true; error = nil; defer { loading = false }
         do {
-            if book.server == nil {
+            if book.pluginID != nil {
+                guard let reading else { throw HarborError(code: "manga-connection") }
+                do { detail = try await reading.mangaDetail(book) }
+                catch is CancellationError { return }
+                catch { self.error = safeMessage(error) }
+                chapters = try await reading.mangaChapters(book)
+            } else if book.server == nil {
                 chapters = try await MangaLocalStore.shared.chapters(book, owner: shelf.owner)
             } else {
                 guard let client else { throw HarborError(code: "manga-connection") }

@@ -750,6 +750,7 @@
 "Install" = "설치";
 "Install a Stremio addon and its catalogs show up here as poster rails, ready to browse." = "Stremio 애드온을 설치하면 해당 카탈로그가 포스터 목록으로 여기에 표시되어 바로 둘러볼 수 있습니다.";
 "Install addon" = "애드온 설치";
+"Install all" = "모두 설치";
 "Installed" = "설치됨";
 "Instant" = "즉시";
 "Instant starts the best-ranked stream straight away. Pick a source opens the stream list every time, so you choose the release, quality and provider yourself." = "즉시 재생은 순위가 가장 높은 스트림을 바로 시작합니다. 소스 선택은 매번 스트림 목록을 열어 릴리스, 화질, 제공업체를 직접 고르게 합니다.";
@@ -1457,6 +1458,7 @@
 "Sonido al pasar página" = "Page turn sound";
 "Sort" = "정렬";
 "Sort by" = "정렬 기준";
+"Source" = "소스";
 "Sources" = "출처";
 "Sources & library" = "소스 및 라이브러리";
 "Sources and quality" = "Sources and quality";
@@ -1492,6 +1494,7 @@
 "Stream" = "스트리밍";
 "Streaming" = "스트리밍";
 "Streaming services" = "스트리밍 서비스";
+"Streams" = "스트림";
 "Stremio" = "Stremio";
 "Stremio clásico" = "클래식 Stremio";
 "Stretch" = "늘이기";

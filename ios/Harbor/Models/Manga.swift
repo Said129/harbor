@@ -12,7 +12,10 @@ struct MangaBook: Codable, Identifiable, Hashable, Sendable {
     var sourceID: String?
     var folderChapters: Bool?
     var format: String?
+    var pluginID: String?
+    var metadata: JSONValue?
     var isPDF: Bool { format == "pdf" }
+    func hash(into hasher: inout Hasher) { hasher.combine(id) }
 }
 struct MangaSource: Identifiable, Sendable {
     let id: String

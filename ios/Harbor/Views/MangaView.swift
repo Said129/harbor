@@ -6,7 +6,8 @@ struct MangaView: View {
     @State private var shelf: MangaShelf
     @State private var connection: MangaConnection
     @State private var client: SuwayomiClient?
-    @State private var sources: [MangaSource] = []
+    @State private var serverSources: [MangaSource] = []
+    @State private var reading: HarborReadingPluginManager?
     @State private var selected = "all"
     @State private var screen = "browse"
     @State private var latest = false
@@ -39,8 +40,13 @@ struct MangaView: View {
         _shelf = State(initialValue: MangaShelf(owner: owner)); _connection = State(initialValue: MangaConnection(owner: owner))
     }
     private var visibleSources: [MangaSource] { sources.filter { (adult || !$0.adult) && (language == "all" || $0.language == language) } }
+    private var sources: [MangaSource] {
+        serverSources + (reading?.installed(.manga, includeAdult: adult) ?? []).map {
+            MangaSource(id: $0.id, name: $0.entry.name, language: $0.entry.language, latest: false, adult: $0.entry.adult)
+        }
+    }
     private var highlights: [MangaBook] { Array((screen == "shelf" ? savedBooks : books.isEmpty ? savedBooks : books).prefix(6)) }
-    private var signature: String { selected + "|" + query + "|" + String(latest) + "|" + String(adult) + "|" + language }
+    private var signature: String { selected + "|" + query + "|" + String(latest) + "|" + String(adult) + "|" + language + "|" + sources.map(\.id).joined(separator: ",") + "|" + String(reading?.document.revision ?? 0) }
     private var canAnimate: Bool { scenePhase == .active && !reduceMotion && InterfacePreferences.shared.autoRotateBanners }
     private var editorialSources: [MangaSource] { visibleSources.filter { selected == "all" || $0.id == selected } }
     private var allSavedBooks: [MangaBook] {
@@ -92,6 +98,11 @@ struct MangaView: View {
             }.padding(.vertical, 16)
         }.background(HarborTheme.background).navigationTitle("").toolbar(.hidden, for: .navigationBar)
             .task(id: connection.server) { await connect() }
+            .task(id: app.accountOperationScope) {
+                do { reading = try await app.openReadingPlugins() }
+                catch is CancellationError { return }
+                catch { error = HarborPluginMessages.error(error) }
+            }
             .task(id: signature) { await browse(next: false) }
             .onChange(of: adult) { _, _ in
                 if selected != "all" && !visibleSources.contains(where: { $0.id == selected }) { books = []; selected = "all" }
@@ -104,6 +115,7 @@ struct MangaView: View {
             .onChange(of: selected) { _, source in
                 if source != "all" && sources.first(where: { $0.id == source })?.latest != true { latest = false }
             }
+            .onChange(of: sources.map(\.id)) { _, ids in if selected != "all", !ids.contains(selected) { selected = "all" } }
             .onChange(of: highlights.map(\.id)) { _, _ in featured = 0 }
             .task(id: canAnimate) {
                 guard canAnimate else { return }
@@ -131,12 +143,14 @@ struct MangaView: View {
                 else if case .failure = result { error = "No se pudo abrir el archivo elegido." }
             }
             .navigationDestination(item: $imported) { book in MangaDetailView(book: book, shelf: shelf, client: matchingClient(book)).toolbar(.visible, for: .navigationBar) }
+            .environment(\.readingPlugins, reading)
     }
     private var mangaOptions: some View {
         Menu {
             Button(DesktopInterfaceText.value("Reading help")) { readingHelp = true }
             Button("Importar PDF, CBZ/ZIP o carpeta") { importing = true }.disabled(importingDocument)
             Button("Conexión Suwayomi") { configuring = true }
+            NavigationLink(DesktopInterfaceText.value("Plugins")) { HarborPluginManagementView(app: app) }
             if client != nil { Button("Extensiones") { extensions = true } }
             Button("Submanhwa") { submanhwa = true }
             Toggle("Fuentes para adultos", isOn: $adult)
@@ -305,22 +319,21 @@ struct MangaView: View {
                     Button("Quitar de esta biblioteca", role: .destructive) {
                         do { try shelf.remove(book) } catch { self.error = safeMessage(error) }
                     }
-                    if book.server == nil { Button("Eliminar archivo", role: .destructive) { Task { do { try await MangaLocalStore.shared.remove(book, owner: shelf.owner); try shelf.remove(book) } catch { self.error = safeMessage(error) } } } }
+                    if book.server == nil && book.pluginID == nil { Button("Eliminar archivo", role: .destructive) { Task { do { try await MangaLocalStore.shared.remove(book, owner: shelf.owner); try shelf.remove(book) } catch { self.error = safeMessage(error) } } } }
                 }
             }
         }.padding(.horizontal)
     }
     private func connect() async {
-        generation = UUID(); client = nil; sources = []; books = []; serverLibrary = []; more = false; sourcePages = [:]; sourceMore = [:]
+        generation = UUID(); client = nil; serverSources = []; books = []; serverLibrary = []; more = false; sourcePages = [:]; sourceMore = [:]
         guard let server = connection.server else { loading = false; return }
         let service = SuwayomiClient(server: server); client = service; loading = true; error = nil
         do {
             let loaded = try await service.sources(); try Task.checkCancellation()
             guard connection.server == server else { return }
-            sources = loaded
+            serverSources = loaded
             if selected != "all", !visibleSources.contains(where: { $0.id == selected }) { selected = "all" }
             if !visibleSources.contains(where: \.latest) { latest = false }
-            if !visibleSources.isEmpty { await browse(next: false) }
             do { let library = try await service.library(); guard connection.server == server else { return }; serverLibrary = library }
             catch is CancellationError { return }
             catch { if books.isEmpty { self.error = safeMessage(error) } }
@@ -329,7 +342,8 @@ struct MangaView: View {
         if connection.server == server { loading = false }
     }
     private func browse(next: Bool) async {
-        guard let client else { return }
+        let client = client, reading = reading
+        let plugins = Dictionary(uniqueKeysWithValues: (reading?.installed(.manga, includeAdult: adult) ?? []).map { ($0.id, $0) })
         let choices = visibleSources.filter { (selected == "all" || $0.id == selected) && (selected != "all" || !latest || $0.latest) }
         guard !choices.isEmpty else { books = []; more = false; return }
         if next && loading { return }
@@ -349,7 +363,14 @@ struct MangaView: View {
                     for request in batch {
                         group.addTask {
                             do {
-                                let page = try await client.browse(source: request.source.id, latest: useLatest && request.source.latest, query: term, page: request.page)
+                                let page: ([MangaBook], Bool)
+                                if let plugin = plugins[request.source.id], let reading {
+                                    let rows = try await reading.mangaBrowse(plugin, query: term, offset: (request.page - 1) * 48)
+                                    page = (rows, !rows.isEmpty)
+                                } else {
+                                    guard let client else { throw HarborError(code: "manga-connection") }
+                                    page = try await client.browse(source: request.source.id, latest: useLatest && request.source.latest, query: term, page: request.page)
+                                }
                                 return MangaBrowsePage(source: request.source.id, page: request.page, books: page.0, more: page.1, error: nil)
                             } catch {
                                 return MangaBrowsePage(source: request.source.id, page: request.page, books: [], more: true, error: safeMessage(error))
@@ -373,7 +394,7 @@ struct MangaView: View {
             var seen = Set<String>()
             books = ((next ? books : []) + added).filter { seen.insert($0.id).inserted }; more = sourceMore.values.contains(true)
             let failures = received.filter { $0.error != nil }
-            if !failures.isEmpty { error = failures.count == received.count ? failures[0].error : "\(failures.count) extensiones no respondieron. Puedes reintentar; los resultados disponibles se conservan." }
+            if failures.count == received.count { error = failures.first?.error }
         } catch is CancellationError { return }
         catch { if generation == token { self.error = safeMessage(error) } }
     }

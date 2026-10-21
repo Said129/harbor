@@ -750,6 +750,7 @@
 "Install" = "Installer";
 "Install a Stremio addon and its catalogs show up here as poster rails, ready to browse." = "Installez une extension Stremio pour afficher ici ses catalogues sous forme de carrousels d’affiches prêts à parcourir.";
 "Install addon" = "Installer l’extension";
+"Install all" = "Tout installer";
 "Installed" = "Installé";
 "Instant" = "Instantané";
 "Instant starts the best-ranked stream straight away. Pick a source opens the stream list every time, so you choose the release, quality and provider yourself." = "Instantané lance immédiatement le flux le mieux classé. Choisir une source ouvre la liste à chaque fois pour choisir la version, la qualité et le fournisseur.";
@@ -1457,6 +1458,7 @@
 "Sonido al pasar página" = "Page turn sound";
 "Sort" = "Trier";
 "Sort by" = "Trier par";
+"Source" = "Source";
 "Sources" = "Sources";
 "Sources & library" = "Sources et médiathèque";
 "Sources and quality" = "Sources and quality";
@@ -1492,6 +1494,7 @@
 "Stream" = "Flux";
 "Streaming" = "Streaming";
 "Streaming services" = "Services de streaming";
+"Streams" = "Flux";
 "Stremio" = "Stremio";
 "Stremio clásico" = "Stremio classique";
 "Stretch" = "Étirer";

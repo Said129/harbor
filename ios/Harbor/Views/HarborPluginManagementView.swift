@@ -6,9 +6,22 @@ struct HarborPluginManagementView: View {
     let app: AppModel
     @State private var manager: HarborStreamPluginManager?
     @State private var failure: String?
+    @State private var kind = "streams"
+    @State private var reading: HarborReadingPluginManager?
+    @State private var readingFailure: String?
     var body: some View {
-        Group {
-            if let manager, manager.ready, let runtime = app.plugins.runtime { HarborPluginCatalogSettings(manager: manager, runtime: runtime, pause: { app.plugins.runtime?.cancelCalls() }) }
+        VStack(spacing: 0) {
+            HarborSettingsSegmented(selection: $kind, choices: [(DesktopInterfaceText.value("Streams"), "streams"), ("Manga", "manga"), (DesktopInterfaceText.value("Books"), "ebook")])
+                .padding(.horizontal, 20).padding(.vertical, 12).accessibilityIdentifier("plugin-kind")
+            if let selected = HarborReadingPluginKind(rawValue: kind) {
+                if let reading, reading.ready { HarborReadingPluginManagementView(manager: reading, kind: selected).id(selected) }
+                else {
+                    VStack(spacing: 18) {
+                        if let readingFailure { Text(readingFailure); Button(DesktopInterfaceText.value("Retry")) { Task { await openReading() } } }
+                        else { ProgressView(DesktopInterfaceText.value("Loading plugins...")) }
+                    }.padding(24).frame(maxWidth: .infinity, maxHeight: .infinity)
+                }
+            } else if let manager, manager.ready, let runtime = app.plugins.runtime { HarborPluginCatalogSettings(manager: manager, runtime: runtime, pause: { app.plugins.runtime?.cancelCalls() }) }
             else {
                 VStack(spacing: 18) {
                     if let failure {
@@ -21,6 +34,7 @@ struct HarborPluginManagementView: View {
             .navigationTitle(DesktopInterfaceText.value("Plugins")).navigationBarTitleDisplayMode(.inline)
             .accessibilityIdentifier("plugin-management")
             .task(id: app.accountOperationScope + "|" + String(app.storageReady)) { await open() }
+            .task(id: kind + "|" + app.accountOperationScope) { if kind != "streams" { await openReading() } }
     }
     private func open() async {
         manager = nil; failure = nil
@@ -33,6 +47,11 @@ struct HarborPluginManagementView: View {
             guard app.pluginExecutionScope == scope else { return }
             manager = next
         } catch { if !Task.isCancelled, app.pluginExecutionScope == scope { failure = HarborPluginMessages.error(error) } }
+    }
+    private func openReading() async {
+        reading = nil; readingFailure = nil
+        do { reading = try await app.openReadingPlugins() }
+        catch { if !Task.isCancelled { readingFailure = HarborPluginMessages.error(error) } }
     }
 }
 

@@ -5,11 +5,14 @@ from pathlib import Path
 import signal
 import subprocess
 import sys
+import runpy
 
 build = Path('ios/build'); canonical = build / 'canonical'; canonical.mkdir(parents=True, exist_ok=True)
 recordings = build / 'service-recordings'; recordings.mkdir(parents=True, exist_ok=True)
 plan = json.loads((build / 'preserved-plugin-integration.json').read_text())
-assert len(plan['ui_cases']) == 2 and plan['expected_original_images'] in (4, 10)
+assert len(plan['ui_cases']) == 2 and plan['expected_original_images'] in (4, 10, 16)
+if plan.get('block') == 'reading-plugins':
+    runpy.run_path('scripts/ios/reading-plugin-fixture-server.py')['start'](build)
 assert (canonical / 'PluginIntegrationModels-tree.json').is_file(), 'The model bundle did not execute; do not repeat its compilation on two UI devices.'
 devices = json.loads((build / 'devices.json').read_text())['devices']
 runtime, phone = next((runtime, row) for runtime, values in devices.items() for row in values if row['udid'] == os.environ['IOS_SIMULATOR'])

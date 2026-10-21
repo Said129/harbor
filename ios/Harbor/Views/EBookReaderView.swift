@@ -22,6 +22,7 @@ private final class BookNarrator: NSObject, AVSpeechSynthesizerDelegate {
 struct EBookReaderView: View {
     let book: EBook
     let shelf: EBookShelf
+    @Environment(\.readingPlugins) private var reading
     @State private var publication: EBookPublication?
     @State private var blocks: [EBookBlock] = []
     @State private var chapter = 0
@@ -58,6 +59,8 @@ struct EBookReaderView: View {
                         Group {
                             if let image = block.image {
                                 BookIllustration(data: image, label: block.text).accessibilityIdentifier("ebook-reader-image")
+                            } else if let url = block.imageURL, let pluginID = book.pluginID {
+                                RemoteBookIllustration(url: url, pluginID: pluginID, label: block.text).accessibilityIdentifier("ebook-reader-image")
                             } else {
                                 Text(block.text).font(block.heading ? readerFont.weight(.bold) : readerFont).lineSpacing(fontSize * (lineHeight - 1)).textSelection(.enabled).accessibilityIdentifier("ebook-reader-text")
                             }
@@ -95,7 +98,7 @@ struct EBookReaderView: View {
                     } label: { Image(systemName: "ellipsis.circle") }.accessibilityLabel("Opciones de lectura")
                 }
             }
-            .task { await open() }
+            .task(id: book.pluginID == nil ? "local" : String(reading?.ready ?? false)) { await open() }
             .onChange(of: visible) { _, line in
                 guard let line, !loading, scenePhase == .active, blocks.contains(where: { $0.id == line }) else { return }
                 saveTask?.cancel()
@@ -146,10 +149,14 @@ struct EBookReaderView: View {
         loading = true; error = nil
         defer { loading = false }
         do {
-            let publication = try await EBookService.shared.open(book, owner: shelf.owner)
+            let publication: EBookPublication
+            if book.pluginID != nil {
+                guard let reading else { throw HarborPluginRepositoryError("plugin-unavailable") }
+                publication = try await reading.ebookPublication(book)
+            } else { publication = try await EBookService.shared.open(book, owner: shelf.owner) }
             let saved = record
             let selected = max(0, min(saved.chapter, publication.chapters.count - 1))
-            let loaded = try await EBookService.shared.blocks(book, owner: shelf.owner, chapter: selected)
+            let loaded = try await loadBlocks(publication, selected)
             try Task.checkCancellation()
             self.publication = publication; chapter = selected; blocks = loaded
             visible = loaded.contains(where: { $0.id == saved.block }) ? saved.block : loaded.first?.id
@@ -163,7 +170,7 @@ struct EBookReaderView: View {
         chapterTask = Task {
             defer { loading = false }
             do {
-                let loaded = try await EBookService.shared.blocks(book, owner: shelf.owner, chapter: selected)
+                let loaded = try await loadBlocks(publication, selected)
                 try Task.checkCancellation()
                 chapter = selected; blocks = loaded; visible = loaded.contains(where: { $0.id == block }) ? block : loaded.first?.id
                 saveCurrentPosition()
@@ -174,6 +181,13 @@ struct EBookReaderView: View {
     private func saveCurrentPosition() {
         guard let publication, publication.chapters.indices.contains(chapter), let block = blocks.first(where: { $0.id == visible }) ?? blocks.first else { return }
         persistPosition(chapter: chapter, block: block.id)
+    }
+    private func loadBlocks(_ publication: EBookPublication, _ chapter: Int) async throws -> [EBookBlock] {
+        if book.pluginID != nil {
+            guard let reading, publication.chapters.indices.contains(chapter) else { throw HarborPluginRepositoryError("plugin-unavailable") }
+            return try await reading.ebookBlocks(book, chapter: publication.chapters[chapter])
+        }
+        return try await EBookService.shared.blocks(book, owner: shelf.owner, chapter: chapter)
     }
     private func persistPosition(chapter: Int, block: Int) {
         do { try shelf.savePosition(book, chapter: chapter, block: block) }
@@ -187,6 +201,27 @@ struct EBookReaderView: View {
         guard let block = blocks.first(where: { $0.id == visible }) ?? blocks.first else { return }
         var next = record
         if !next.bookmarks.contains(where: { $0.chapter == chapter && $0.block == block.id }) { next.bookmarks.append(EBookBookmark(id: UUID(), chapter: chapter, block: block.id, preview: String(block.text.prefix(180)))); persist(next) }
+    }
+}
+
+private struct RemoteBookIllustration: View {
+    let url: String
+    let pluginID: String
+    let label: String
+    @Environment(\.readingPlugins) private var reading
+    @State private var data: Data?
+    @State private var failed = false
+    var body: some View {
+        Group {
+            if let data { BookIllustration(data: data, label: label) }
+            else if failed { Text(label).font(.caption).foregroundStyle(.secondary) }
+            else { ProgressView().frame(minHeight: 100) }
+        }.task(id: url) {
+            do {
+                guard let reading else { return }
+                let value = try await reading.image(url, pluginID: pluginID); try Task.checkCancellation(); data = value
+            } catch { if !Task.isCancelled { failed = true } }
+        }
     }
 }
 

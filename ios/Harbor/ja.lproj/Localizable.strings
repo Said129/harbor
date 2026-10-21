@@ -750,6 +750,7 @@
 "Install" = "インストール";
 "Install a Stremio addon and its catalogs show up here as poster rails, ready to browse." = "Stremioアドオンをインストールすると、そのカタログがポスターの一覧としてここに表示され、すぐに閲覧できます。";
 "Install addon" = "アドオンをインストール";
+"Install all" = "すべてインストール";
 "Installed" = "インストール済み";
 "Instant" = "即時";
 "Instant starts the best-ranked stream straight away. Pick a source opens the stream list every time, so you choose the release, quality and provider yourself." = "即時再生では最上位のストリームをすぐ再生します。ソース選択では毎回一覧を開き、リリース、画質、プロバイダーを自分で選べます。";
@@ -1457,6 +1458,7 @@
 "Sonido al pasar página" = "Page turn sound";
 "Sort" = "並べ替え";
 "Sort by" = "並べ替え";
+"Source" = "ソース";
 "Sources" = "情報源";
 "Sources & library" = "ソースとライブラリ";
 "Sources and quality" = "Sources and quality";
@@ -1492,6 +1494,7 @@
 "Stream" = "ストリーム";
 "Streaming" = "ストリーミング";
 "Streaming services" = "ストリーミングサービス";
+"Streams" = "ストリーム";
 "Stremio" = "Stremio";
 "Stremio clásico" = "クラシックStremio";
 "Stretch" = "引き伸ばす";

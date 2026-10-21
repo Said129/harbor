@@ -750,6 +750,7 @@
 "Install" = "Yükle";
 "Install a Stremio addon and its catalogs show up here as poster rails, ready to browse." = "Bir Stremio eklentisi yüklediğinizde eklentinin katalogları, göz atmaya hazır poster şeritleri olarak burada görünür.";
 "Install addon" = "Eklentiyi yükle";
+"Install all" = "Tümünü yükle";
 "Installed" = "Yüklü";
 "Instant" = "Anında";
 "Instant starts the best-ranked stream straight away. Pick a source opens the stream list every time, so you choose the release, quality and provider yourself." = "Anında, en üst sıradaki yayını hemen başlatır. Kaynak seç, her seferinde yayın listesini açarak sürümü, kaliteyi ve sağlayıcıyı kendiniz seçmenizi sağlar.";
@@ -1457,6 +1458,7 @@
 "Sonido al pasar página" = "Page turn sound";
 "Sort" = "Sırala";
 "Sort by" = "Sıralama ölçütü";
+"Source" = "Kaynak";
 "Sources" = "Kaynaklar";
 "Sources & library" = "Kaynaklar ve kütüphane";
 "Sources and quality" = "Sources and quality";
@@ -1492,6 +1494,7 @@
 "Stream" = "Yayın";
 "Streaming" = "Yayın";
 "Streaming services" = "Yayın hizmetleri";
+"Streams" = "Yayınlar";
 "Stremio" = "Stremio";
 "Stremio clásico" = "Klasik Stremio";
 "Stretch" = "Esnet";

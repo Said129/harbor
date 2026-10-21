@@ -750,6 +750,7 @@
 "Install" = "Cài đặt";
 "Install a Stremio addon and its catalogs show up here as poster rails, ready to browse." = "Cài đặt một tiện ích bổ sung Stremio để các danh mục của tiện ích xuất hiện tại đây dưới dạng các hàng áp phích, sẵn sàng để duyệt.";
 "Install addon" = "Cài đặt tiện ích bổ sung";
+"Install all" = "Cài tất cả";
 "Installed" = "Đã cài đặt";
 "Instant" = "Tức thì";
 "Instant starts the best-ranked stream straight away. Pick a source opens the stream list every time, so you choose the release, quality and provider yourself." = "Phát ngay bắt đầu luồng được xếp hạng cao nhất. Chọn nguồn mở danh sách luồng mỗi lần để bạn tự chọn bản phát hành, chất lượng và nhà cung cấp.";
@@ -1457,6 +1458,7 @@
 "Sonido al pasar página" = "Page turn sound";
 "Sort" = "Sắp xếp";
 "Sort by" = "Sắp xếp theo";
+"Source" = "Nguồn";
 "Sources" = "Nguồn";
 "Sources & library" = "Nguồn & thư viện";
 "Sources and quality" = "Sources and quality";
@@ -1492,6 +1494,7 @@
 "Stream" = "Luồng";
 "Streaming" = "Phát trực tuyến";
 "Streaming services" = "Dịch vụ phát trực tuyến";
+"Streams" = "Luồng phát";
 "Stremio" = "Stremio";
 "Stremio clásico" = "Stremio cổ điển";
 "Stretch" = "Kéo giãn";

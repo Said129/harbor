@@ -750,6 +750,7 @@
 "Install" = "安装";
 "Install a Stremio addon and its catalogs show up here as poster rails, ready to browse." = "安装 Stremio 插件后，其目录会以海报横栏显示在这里，供你浏览。";
 "Install addon" = "安装插件";
+"Install all" = "全部安装";
 "Installed" = "已安装";
 "Instant" = "立即显示";
 "Instant starts the best-ranked stream straight away. Pick a source opens the stream list every time, so you choose the release, quality and provider yourself." = "即时播放会立即启动排名最高的播放源。选择播放源则每次都打开列表，让你自行选择版本、画质和服务商。";
@@ -1457,6 +1458,7 @@
 "Sonido al pasar página" = "Page turn sound";
 "Sort" = "排序";
 "Sort by" = "排序方式";
+"Source" = "来源";
 "Sources" = "来源";
 "Sources & library" = "来源与媒体库";
 "Sources and quality" = "Sources and quality";
@@ -1492,6 +1494,7 @@
 "Stream" = "播放源";
 "Streaming" = "流媒体";
 "Streaming services" = "流媒体服务";
+"Streams" = "播放源";
 "Stremio" = "Stremio";
 "Stremio clásico" = "经典 Stremio";
 "Stretch" = "拉伸";
