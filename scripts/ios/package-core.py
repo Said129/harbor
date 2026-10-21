@@ -16,8 +16,14 @@ def main():
     parser.add_argument("--binary", type=Path, required=True)
     parser.add_argument("--framework", type=Path, required=True)
     parser.add_argument("--platform", choices=["iPhoneOS", "iPhoneSimulator"], required=True)
+    parser.add_argument("--simulator-architecture", choices=["arm64", "x86_64"])
     args = parser.parse_args()
-    architectures = ["arm64"] if args.platform == "iPhoneOS" else ["arm64", "x86_64"]
+    if args.simulator_architecture and args.platform != "iPhoneSimulator":
+        parser.error("--simulator-architecture requires iPhoneSimulator")
+    architectures = ["arm64"] if args.platform == "iPhoneOS" else ([args.simulator_architecture] if args.simulator_architecture else ["arm64", "x86_64"])
+    actual_architectures = subprocess.check_output(["xcrun", "lipo", "-archs", str(args.binary)], text=True).split()
+    if set(actual_architectures) != set(architectures):
+        raise SystemExit("HarborCore architecture set does not match the requested package")
     # Validate every slice before exposing it to Xcode. Runtime symbols must stay
     # private: MPVKit's Libdovi also includes Rust, with a different toolchain.
     for architecture in architectures:

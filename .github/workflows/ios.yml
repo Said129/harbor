@@ -339,7 +339,11 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p ios/build/logs
-          bash scripts/ios/build-rust.sh 2>&1 | tee ios/build/logs/rust.log
+          if [[ "${{ inputs.validation_only }}" == "true" && ( "${{ inputs.validation_scope }}" == "plugin-integration" || "${{ inputs.validation_scope }}" == "plugin-playback" ) ]]; then
+            bash scripts/ios/build-rust.sh --simulator-only 2>&1 | tee ios/build/logs/rust.log
+          else
+            bash scripts/ios/build-rust.sh 2>&1 | tee ios/build/logs/rust.log
+          fi
       - name: Cache Swift dependencies
         uses: actions/cache@v6
         with:
