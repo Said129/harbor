@@ -1792,3 +1792,26 @@
 "Índice" = "Table of contents";
 "Índice de la comunidad" = "커뮤니티 지수";
 "العربية" = "العربية";
+
+"Add" = "추가";
+"Add a repository" = "저장소 추가";
+"Already added." = "이미 추가되었습니다.";
+"Checksum did not match the manifest." = "체크섬이 매니페스트와 일치하지 않습니다.";
+"Could not complete this action. Try again." = "이 작업을 완료하지 못했습니다. 다시 시도하세요.";
+"Enabled" = "사용";
+"File is larger than 2 MB." = "파일이 2 MB보다 큽니다.";
+"Install" = "설치";
+"Installed" = "설치됨";
+"Loading plugins..." = "플러그인 불러오는 중...";
+"No longer listed by its repository." = "저장소 목록에서 사라졌습니다.";
+"Not a stream plugin: it exports no getStreams or streams function." = "스트림 플러그인이 아닙니다: getStreams 또는 streams 함수를 내보내지 않습니다.";
+"Nothing installed yet" = "아직 설치된 것이 없습니다";
+"Only https links are accepted." = "https 링크만 사용할 수 있습니다.";
+"Plugins" = "플러그인";
+"Repositories" = "저장소";
+"Repository link" = "저장소 링크";
+"Revert" = "되돌리기";
+"Settings changed. Please reopen this page." = "설정이 변경되었습니다. 이 페이지를 다시 여세요.";
+"That link did not answer." = "해당 링크가 응답하지 않았습니다.";
+"This is a manga repository. Add it from the Manga page." = "만화 저장소입니다. 만화 페이지에서 추가하세요.";
+"Update" = "업데이트";

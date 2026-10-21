@@ -1792,3 +1792,26 @@
 "Índice" = "Table of contents";
 "Índice de la comunidad" = "कम्युनिटी इंडेक्स";
 "العربية" = "अरबी";
+
+"Add" = "जोड़ें";
+"Add a repository" = "रिपॉज़िटरी जोड़ें";
+"Already added." = "पहले से जोड़ा गया है।";
+"Checksum did not match the manifest." = "चेकसम मैनिफ़ेस्ट से मेल नहीं खाया।";
+"Could not complete this action. Try again." = "यह कार्रवाई पूरी नहीं हो सकी। फिर से कोशिश करें।";
+"Enabled" = "सक्षम";
+"File is larger than 2 MB." = "फ़ाइल 2 MB से बड़ी है।";
+"Install" = "इंस्टॉल करें";
+"Installed" = "इंस्टॉल हो गया";
+"Loading plugins..." = "प्लगइन लोड हो रहे हैं...";
+"No longer listed by its repository." = "अब इसकी रिपॉज़िटरी में सूचीबद्ध नहीं है।";
+"Not a stream plugin: it exports no getStreams or streams function." = "स्ट्रीम प्लगइन नहीं है: यह कोई getStreams या streams फ़ंक्शन एक्सपोर्ट नहीं करता।";
+"Nothing installed yet" = "अभी तक कुछ इंस्टॉल नहीं है";
+"Only https links are accepted." = "सिर्फ़ https लिंक स्वीकार किए जाते हैं।";
+"Plugins" = "प्लगइन";
+"Repositories" = "रिपॉज़िटरी";
+"Repository link" = "रिपॉज़िटरी लिंक";
+"Revert" = "पहले जैसा करें";
+"Settings changed. Please reopen this page." = "सेटिंग बदल गई हैं। कृपया यह पेज फिर से खोलें।";
+"That link did not answer." = "उस लिंक ने जवाब नहीं दिया।";
+"This is a manga repository. Add it from the Manga page." = "यह मांगा रिपॉज़िटरी है। इसे मांगा पेज से जोड़ें।";
+"Update" = "अपडेट करें";

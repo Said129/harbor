@@ -165,9 +165,10 @@ import Observation
         }
     }
 
-    func saveSettings(_ id: String, values: [String: JSONValue], passwordKeys: Set<String>) async throws {
+    func saveSettings(_ id: String, values: [String: JSONValue], passwordKeys: Set<String>, expected: HarborInstalledStreamPlugin? = nil) async throws {
         try await perform("plugin:" + id) {
             guard let prior = try await self.snapshot().plugins.first(where: { $0.id == id }) else { throw HarborPluginRepositoryError("plugin-not-installed") }
+            guard expected == nil || expected == prior else { throw HarborPluginRepositoryError("plugin-candidate-changed") }
             guard values.values.allSatisfy({ if case .string = $0 { return true }; if case .bool = $0 { return true }; return false }) else { throw HarborPluginRepositoryError("plugin-settings") }
             var secretValues: [String: String] = [:]
             if let revision = prior.secretRevision { secretValues = try await self.secrets.read(plugin: id, revision: revision) }

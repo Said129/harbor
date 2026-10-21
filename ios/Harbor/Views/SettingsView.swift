@@ -43,8 +43,13 @@ struct SettingsView: View {
                         }.accessibilityIdentifier("settings-subtitles")
                     }
                 }
-                if matches("Metadata providers", group: "Sources & library") || matches("Library", group: "Sources & library") || matches("Streaming services", group: "Sources & library") {
+                if matches("Metadata providers", group: "Sources & library") || matches("Library", group: "Sources & library") || matches("Streaming services", group: "Sources & library") || matches("Plugins", group: "Sources & library") {
                     group("Sources & library") {
+                        if matches("Plugins", group: "Sources & library") {
+                            NavigationLink { HarborPluginManagementView(app: app).toolbar(.visible, for: .navigationBar) } label: {
+                                SettingsRow(title: DesktopInterfaceText.value("Plugins"), icon: "nav-addons")
+                            }.accessibilityIdentifier("settings-plugins")
+                        }
                         if matches("Streaming services", group: "Sources & library") {
                             NavigationLink { StreamingSettingsView(app: app).toolbar(.visible, for: .navigationBar) } label: {
                                 SettingsRow(title: DesktopInterfaceText.value("Streaming services"), icon: "nav-movies")

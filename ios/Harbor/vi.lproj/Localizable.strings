@@ -1792,3 +1792,26 @@
 "Índice" = "Table of contents";
 "Índice de la comunidad" = "Bảng xếp hạng cộng đồng";
 "العربية" = "Tiếng Ả Rập";
+
+"Add" = "Thêm";
+"Add a repository" = "Thêm kho lưu trữ";
+"Already added." = "Đã thêm rồi.";
+"Checksum did not match the manifest." = "Tổng kiểm tra không khớp với manifest.";
+"Could not complete this action. Try again." = "Không thể hoàn tất thao tác này. Hãy thử lại.";
+"Enabled" = "Đã bật";
+"File is larger than 2 MB." = "Tệp lớn hơn 2 MB.";
+"Install" = "Cài đặt";
+"Installed" = "Đã cài đặt";
+"Loading plugins..." = "Đang tải plugin...";
+"No longer listed by its repository." = "Kho lưu trữ không còn liệt kê plugin này.";
+"Not a stream plugin: it exports no getStreams or streams function." = "Không phải plugin luồng phát: không xuất hàm getStreams hay streams.";
+"Nothing installed yet" = "Chưa cài gì";
+"Only https links are accepted." = "Chỉ chấp nhận liên kết https.";
+"Plugins" = "Plugin";
+"Repositories" = "Kho lưu trữ";
+"Repository link" = "Liên kết kho lưu trữ";
+"Revert" = "Hoàn nguyên";
+"Settings changed. Please reopen this page." = "Cài đặt đã thay đổi. Vui lòng mở lại trang này.";
+"That link did not answer." = "Liên kết đó không phản hồi.";
+"This is a manga repository. Add it from the Manga page." = "Đây là kho lưu trữ manga. Hãy thêm từ trang Manga.";
+"Update" = "Cập nhật";

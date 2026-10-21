@@ -1423,3 +1423,12 @@
 "Índice" = "Table of contents";
 "Índice de la comunidad" = "Community index";
 "العربية" = "العربية";
+
+"Add" = "Add";
+"Could not complete this action. Try again." = "Could not complete this action. Try again.";
+"Enabled" = "Enabled";
+"Install" = "Install";
+"Installed" = "Installed";
+"Plugins" = "Plugins";
+"Settings changed. Please reopen this page." = "Settings changed. Please reopen this page.";
+"Update" = "Update";

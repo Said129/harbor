@@ -1792,3 +1792,26 @@
 "Índice" = "Table of contents";
 "Índice de la comunidad" = "Indeks społeczności";
 "العربية" = "العربية";
+
+"Add" = "Dodaj";
+"Add a repository" = "Dodaj repozytorium";
+"Already added." = "Już dodano.";
+"Checksum did not match the manifest." = "Suma kontrolna nie zgadza się z manifestem.";
+"Could not complete this action. Try again." = "Nie udało się wykonać tej czynności. Spróbuj ponownie.";
+"Enabled" = "Włączone";
+"File is larger than 2 MB." = "Plik jest większy niż 2 MB.";
+"Install" = "Zainstaluj";
+"Installed" = "Zainstalowane";
+"Loading plugins..." = "Wczytywanie wtyczek...";
+"No longer listed by its repository." = "Repozytorium już jej nie wymienia.";
+"Not a stream plugin: it exports no getStreams or streams function." = "To nie wtyczka strumieni: nie eksportuje funkcji getStreams ani streams.";
+"Nothing installed yet" = "Nic jeszcze nie zainstalowano";
+"Only https links are accepted." = "Akceptowane są tylko linki https.";
+"Plugins" = "Wtyczki";
+"Repositories" = "Repozytoria";
+"Repository link" = "Link do repozytorium";
+"Revert" = "Cofnij zmiany";
+"Settings changed. Please reopen this page." = "Ustawienia zostały zmienione. Otwórz tę stronę ponownie.";
+"That link did not answer." = "Ten link nie odpowiedział.";
+"This is a manga repository. Add it from the Manga page." = "To repozytorium mangi. Dodaj je na stronie Manga.";
+"Update" = "Aktualizuj";

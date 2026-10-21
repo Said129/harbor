@@ -75,6 +75,7 @@ struct HarborApp: App {
                 }
                 .task(id: String(model.storageReady) + "|" + model.settingsOwner) { if model.storageReady { await SportsReminderService.shared.removeOtherAccounts(owner: model.settingsOwner) } }
                 .task(id: model.personalOwner) { MusicPlayback.shared.stopForAccount(model.personalOwner) }
+                .onChange(of: model.accountOperationScope + "|" + String(model.storageReady)) { _, _ in model.plugins.invalidate() }
     }
     private var synchronization: some View {
         lifecycle

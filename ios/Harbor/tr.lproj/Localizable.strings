@@ -1792,3 +1792,26 @@
 "Índice" = "Table of contents";
 "Índice de la comunidad" = "Topluluk endeksi";
 "العربية" = "العربية";
+
+"Add" = "Ekle";
+"Add a repository" = "Depo ekle";
+"Already added." = "Zaten eklendi.";
+"Checksum did not match the manifest." = "Sağlama toplamı manifest ile eşleşmedi.";
+"Could not complete this action. Try again." = "Bu işlem tamamlanamadı. Tekrar deneyin.";
+"Enabled" = "Etkin";
+"File is larger than 2 MB." = "Dosya 2 MB'tan büyük.";
+"Install" = "Yükle";
+"Installed" = "Yüklü";
+"Loading plugins..." = "Eklentiler yükleniyor...";
+"No longer listed by its repository." = "Artık deposunda listelenmiyor.";
+"Not a stream plugin: it exports no getStreams or streams function." = "Yayın uzantısı değil: getStreams veya streams işlevi dışa aktarmıyor.";
+"Nothing installed yet" = "Henüz bir şey yüklenmedi";
+"Only https links are accepted." = "Yalnızca https bağlantıları kabul edilir.";
+"Plugins" = "Uzantılar";
+"Repositories" = "Depolar";
+"Repository link" = "Depo bağlantısı";
+"Revert" = "Geri al";
+"Settings changed. Please reopen this page." = "Ayarlar değişti. Lütfen bu sayfayı yeniden açın.";
+"That link did not answer." = "Bu bağlantı yanıt vermedi.";
+"This is a manga repository. Add it from the Manga page." = "Bu bir manga deposu. Manga sayfasından ekleyin.";
+"Update" = "Güncelle";

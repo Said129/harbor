@@ -1792,3 +1792,26 @@
 "Índice" = "Table of contents";
 "Índice de la comunidad" = "Indeks komunitas";
 "العربية" = "Arab";
+
+"Add" = "Tambah";
+"Add a repository" = "Tambah repositori";
+"Already added." = "Sudah ditambahkan.";
+"Checksum did not match the manifest." = "Checksum tidak cocok dengan manifest.";
+"Could not complete this action. Try again." = "Tindakan ini tidak dapat diselesaikan. Coba lagi.";
+"Enabled" = "Diaktifkan";
+"File is larger than 2 MB." = "File lebih besar dari 2 MB.";
+"Install" = "Instal";
+"Installed" = "Terinstal";
+"Loading plugins..." = "Memuat plugin...";
+"No longer listed by its repository." = "Tidak lagi terdaftar di repositorinya.";
+"Not a stream plugin: it exports no getStreams or streams function." = "Bukan plugin stream: tidak mengekspor fungsi getStreams atau streams.";
+"Nothing installed yet" = "Belum ada yang terpasang";
+"Only https links are accepted." = "Hanya tautan https yang diterima.";
+"Plugins" = "Plugin";
+"Repositories" = "Repositori";
+"Repository link" = "Tautan repositori";
+"Revert" = "Kembalikan";
+"Settings changed. Please reopen this page." = "Pengaturan telah berubah. Buka kembali halaman ini.";
+"That link did not answer." = "Tautan itu tidak merespons.";
+"This is a manga repository. Add it from the Manga page." = "Ini repositori manga. Tambahkan dari halaman Manga.";
+"Update" = "Perbarui";

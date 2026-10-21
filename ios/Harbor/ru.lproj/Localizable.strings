@@ -1805,3 +1805,27 @@
 "Índice" = "Table of contents";
 "Índice de la comunidad" = "Рейтинг сообщества";
 "العربية" = "العربية";
+
+"Add" = "Добавить";
+"Add a repository" = "Добавить репозиторий";
+"Already added." = "Уже добавлен.";
+"Checksum did not match the manifest." = "Контрольная сумма не совпадает с манифестом.";
+"Could not complete this action. Try again." = "Не удалось выполнить действие. Попробуйте ещё раз.";
+"Enabled" = "Включено";
+"File is larger than 2 MB." = "Файл больше 2 МБ.";
+"Install" = "Установить";
+"Installed" = "Установлено";
+"Loading plugins..." = "Загрузка плагинов...";
+"No longer listed by its repository." = "Больше не значится в репозитории.";
+"Not a stream plugin: it exports no getStreams or streams function." = "Не плагин потоков: не экспортирует функцию getStreams или streams.";
+"Nothing installed yet" = "Пока ничего не установлено";
+"Only https links are accepted." = "Принимаются только ссылки https.";
+"Plugins" = "Плагины";
+"Repositories" = "Репозитории";
+"Repository link" = "Ссылка на репозиторий";
+"Revert" = "Вернуть";
+"Settings changed. Please reopen this page." = "Настройки изменились. Откройте эту страницу заново.";
+"That link did not answer." = "Эта ссылка не ответила.";
+"This is a Stremio addon manifest. Add it from the Addons page instead." = "This is a Stremio addon manifest. Add it from the Addons page instead.";
+"This is a manga repository. Add it from the Manga page." = "Это репозиторий манги. Добавьте его на странице «Манга».";
+"Update" = "Обновить";

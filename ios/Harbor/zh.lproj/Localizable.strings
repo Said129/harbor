@@ -1792,3 +1792,26 @@
 "Índice" = "Table of contents";
 "Índice de la comunidad" = "社区指数";
 "العربية" = "阿拉伯语";
+
+"Add" = "添加";
+"Add a repository" = "添加仓库";
+"Already added." = "已经添加过了。";
+"Checksum did not match the manifest." = "校验和与清单不匹配。";
+"Could not complete this action. Try again." = "无法完成此操作。请重试。";
+"Enabled" = "已启用";
+"File is larger than 2 MB." = "文件大于 2 MB。";
+"Install" = "安装";
+"Installed" = "已安装";
+"Loading plugins..." = "正在加载插件…";
+"No longer listed by its repository." = "其仓库已不再列出此插件。";
+"Not a stream plugin: it exports no getStreams or streams function." = "不是播放源脚本插件：它没有导出 getStreams 或 streams 函数。";
+"Nothing installed yet" = "尚未安装任何内容";
+"Only https links are accepted." = "只接受 https 链接。";
+"Plugins" = "脚本插件";
+"Repositories" = "仓库";
+"Repository link" = "仓库链接";
+"Revert" = "还原";
+"Settings changed. Please reopen this page." = "设置已更改。请重新打开此页面。";
+"That link did not answer." = "该链接没有响应。";
+"This is a manga repository. Add it from the Manga page." = "这是漫画仓库。请在漫画页面添加。";
+"Update" = "更新";

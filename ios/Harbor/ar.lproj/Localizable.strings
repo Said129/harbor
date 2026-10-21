@@ -1832,3 +1832,27 @@
 "Índice" = "Table of contents";
 "Índice de la comunidad" = "فهرس المجتمع";
 "العربية" = "العربية";
+
+"Add" = "إضافة";
+"Add a repository" = "إضافة مستودع";
+"Already added." = "مضاف مسبقًا.";
+"Checksum did not match the manifest." = "المجموع الاختباري لا يطابق ملف manifest.";
+"Could not complete this action. Try again." = "تعذّر إكمال هذا الإجراء. حاول مجددًا.";
+"Enabled" = "مُفعّلة";
+"File is larger than 2 MB." = "حجم الملف أكبر من 2 م.ب.";
+"Install" = "تثبيت";
+"Installed" = "مثبّتة";
+"Loading plugins..." = "جارٍ تحميل الإضافات...";
+"No longer listed by its repository." = "لم يعد مدرجًا في مستودعه.";
+"Not a stream plugin: it exports no getStreams or streams function." = "ليس مكوّنًا إضافيًا للبث: لا يصدّر دالة getStreams أو streams.";
+"Nothing installed yet" = "لم يُثبَّت شيء بعد";
+"Only https links are accepted." = "تُقبل روابط https فقط.";
+"Plugins" = "المكوّنات الإضافية";
+"Repositories" = "المستودعات";
+"Repository link" = "رابط المستودع";
+"Revert" = "تراجع";
+"Settings changed. Please reopen this page." = "تغيّرت الإعدادات. أعد فتح هذه الصفحة.";
+"That link did not answer." = "لم يستجب هذا الرابط.";
+"This is a Stremio addon manifest. Add it from the Addons page instead." = "هذا ملف تعريف إضافة Stremio. أضفها من صفحة الإضافات بدلاً من ذلك.";
+"This is a manga repository. Add it from the Manga page." = "هذا مستودع مانغا. أضفه من صفحة المانغا.";
+"Update" = "تحديث";
