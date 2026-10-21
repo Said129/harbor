@@ -3,6 +3,11 @@ import json
 import os
 from pathlib import Path
 import re
+import runpy
+
+if os.environ.get('HARBOR_VALIDATION_SCOPE') == 'plugin-playback':
+    runpy.run_path('scripts/ios/prepare-plugin-playback-selection.py', run_name='__main__')
+    raise SystemExit(0)
 
 cases = []
 for suite, expected in [('HarborStreamPluginManagerTests', 8), ('HarborPluginSettingsTests', 3),

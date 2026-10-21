@@ -3,6 +3,28 @@ import XCTest
 @MainActor final class HarborPluginNavigationTests: XCTestCase {
     func testRealPluginSettingsAndRepositoryControlsOnIPhone() { verify(device: "iphone") }
     func testRealPluginSettingsAndRepositoryControlsOnIPad() { verify(device: "ipad") }
+    func testNewPluginPlaybackOptionsPersistOnIPhone() { verifyOptions(device: "iphone") }
+    func testNewPluginPlaybackOptionsPersistOnIPad() { verifyOptions(device: "ipad") }
+
+    private func verifyOptions(device: String) {
+        continueAfterFailure = false
+        let app = XCUIApplication()
+        app.launchArguments = ["-uiLanguage", "es", "-nativeGuide.initialized.v1", "YES", "-nativeGuide.completed.v1", "YES"]
+        app.launch(); defer { app.terminate() }
+        open(app)
+        let enabled = app.switches["plugin-use-all"], grouped = app.switches["plugin-group-repository"]
+        XCTAssertTrue(enabled.waitForExistence(timeout: 15)); reveal(enabled, in: app)
+        XCTAssertEqual(enabled.value as? String, "1"); enabled.tap()
+        XCTAssertEqual(enabled.value as? String, "0")
+        reveal(grouped, in: app); grouped.tap(); XCTAssertEqual(grouped.value as? String, "1")
+        capture(app, "plugin-options-paused-" + device)
+        app.terminate(); app.launch(); open(app)
+        XCTAssertTrue(enabled.waitForExistence(timeout: 15)); reveal(enabled, in: app)
+        XCTAssertEqual(enabled.value as? String, "0"); XCTAssertEqual(grouped.value as? String, "1")
+        enabled.tap(); XCTAssertEqual(enabled.value as? String, "1")
+        capture(app, "plugin-options-restored-" + device)
+        XCTAssertTrue(app.buttons["plugin-configure-owned.ui.form"].exists)
+    }
 
     private func verify(device: String) {
         continueAfterFailure = false

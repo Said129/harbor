@@ -20,6 +20,7 @@ final class DetailModel {
         StreamPreferences.shared.preferredContinuation(automaticOffers, previous: lastPlayedSource)
     }
     private let service: HarborService
+    private let pluginStreams: HarborPluginStreamProvider?
     private let contextRevision: @MainActor () -> UUID
     private var metadataLoaded: Bool
     var metadataReady: Bool { metadataLoaded && !loadingMetadata }
@@ -109,8 +110,10 @@ final class DetailModel {
     func clearSourceChange() { sourceContinuation = nil }
     func cancelResolution() { resolutionRequest = UUID(); resolving = false }
 
-    init(_ media: Media, service: HarborService, metadataLoaded: Bool = false, contextRevision: @escaping @MainActor () -> UUID = { AppProfileContext.shared.activationID }) {
+    init(_ media: Media, service: HarborService, metadataLoaded: Bool = false, contextRevision: @escaping @MainActor () -> UUID = { AppProfileContext.shared.activationID },
+        pluginStreams: HarborPluginStreamProvider? = nil) {
         self.media = media; self.service = service; self.metadataLoaded = metadataLoaded; self.contextRevision = contextRevision
+        self.pluginStreams = pluginStreams
     }
 
     func load(_ addons: [Addon], owner: String, library: LibraryModel, fetch: (@MainActor () async throws -> Media)? = nil) async {
@@ -353,7 +356,12 @@ final class DetailModel {
         do {
             guard let selected else { throw HarborError(code: "no-metadata") }
             let videoID = episode?.id ?? selected.behaviorHints?.defaultVideoId ?? selected.id
-            let result = try await service.streams(selected, videoID: videoID, addons: addons, season: episode?.season, episode: episode?.episode, unfiltered: true)
+            let provider = pluginStreams, startingPriority = addons.count
+            let plugins: (@Sendable () async throws -> HarborPluginStreamBatch)? = provider.map { provider in
+                { try await provider(selected, videoID, episode, startingPriority) }
+            }
+            let result = try await service.streams(selected, videoID: videoID, addons: addons, season: episode?.season, episode: episode?.episode,
+                unfiltered: true, pluginSource: plugins)
             let automatic = try await service.automaticStreams(result.0, media: selected, season: episode?.season, episode: episode?.episode)
             try Task.checkCancellation()
             guard streamRequest == request, contextRevision() == context else { return }

@@ -1,0 +1,3485 @@
+{
+  "reference": "0834340cec5531650bfe78cd628628702e636987",
+  "programSha256": "7722b054e0951a2c1c6cbc6b325e56538169132b68d25e3fb937f2e95b8fa2bc",
+  "cases": [
+    {
+      "name": "direct-quality-language-size-headers-and-subtitles",
+      "input": {
+        "raw": [
+          {
+            "url": "https://cdn.example.org/movie.m3u8",
+            "quality": "FHD",
+            "language": ["English", "Japanese"],
+            "size": "1,5 GB",
+            "provider": "Owned",
+            "headers": {
+              "Referer": "https://video.example.org/page",
+              "Origin": "https://example.org",
+              "Authorization": "owned",
+              "Connection": "close",
+              "X-Harbor-Key": "drop"
+            },
+            "subtitles": [
+              {
+                "url": "https://cdn.example.org/owned.srt",
+                "language": "es",
+                "id": 7
+              }
+            ]
+          }
+        ],
+        "context": {
+          "req": {
+            "type": "movie",
+            "id": "tt0133093",
+            "ids": ["tt0133093"],
+            "imdbId": "tt0133093",
+            "tmdb": null,
+            "title": "The Matrix",
+            "year": 1999,
+            "season": null,
+            "episode": null,
+            "absoluteEpisode": null,
+            "settings": {}
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin",
+          "pluginName": "Owned plugin"
+        }
+      },
+      "expected": [
+        {
+          "name": "Owned",
+          "title": "Owned",
+          "description": "1080p English Japanese Owned 1.50 GB",
+          "url": "https://cdn.example.org/movie.m3u8",
+          "subtitles": [
+            {
+              "url": "https://cdn.example.org/owned.srt",
+              "lang": "es",
+              "id": "7"
+            }
+          ],
+          "behaviorHints": {
+            "filename": "The Matrix (1999) 1080p English Japanese",
+            "videoSize": 1610612736,
+            "proxyHeaders": {
+              "request": {
+                "Referer": "https://video.example.org/page",
+                "Origin": "https://example.org",
+                "Authorization": "owned"
+              }
+            },
+            "notWebReady": true
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        }
+      ]
+    },
+    {
+      "name": "private-and-invalid-protocols-are-rejected",
+      "input": {
+        "raw": [
+          {
+            "url": "http://127.1/a"
+          },
+          {
+            "url": "http://localhost/a"
+          },
+          {
+            "url": "http://[::1]/a"
+          },
+          {
+            "url": "http://[::ffff:127.0.0.1]/a"
+          },
+          {
+            "url": "http://[64:ff9b::7f00:1]/a"
+          },
+          {
+            "url": "file:///owned"
+          },
+          {
+            "url": "javascript:owned"
+          },
+          {
+            "url": "https://owned.local/a"
+          }
+        ],
+        "context": {
+          "req": {
+            "type": "movie",
+            "id": "tt0133093",
+            "ids": ["tt0133093"],
+            "imdbId": "tt0133093",
+            "tmdb": null,
+            "title": "The Matrix",
+            "year": 1999,
+            "season": null,
+            "episode": null,
+            "absoluteEpisode": null,
+            "settings": {}
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin",
+          "pluginName": "Owned plugin"
+        }
+      },
+      "expected": []
+    },
+    {
+      "name": "tracking-default-block",
+      "input": {
+        "raw": [
+          {
+            "url": "https://google-analytics.com/owned"
+          }
+        ],
+        "context": {
+          "req": {
+            "type": "movie",
+            "id": "tt0133093",
+            "ids": ["tt0133093"],
+            "imdbId": "tt0133093",
+            "tmdb": null,
+            "title": "The Matrix",
+            "year": 1999,
+            "season": null,
+            "episode": null,
+            "absoluteEpisode": null,
+            "settings": {}
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin",
+          "pluginName": "Owned plugin"
+        }
+      },
+      "expected": []
+    },
+    {
+      "name": "tracking-user-disabled",
+      "input": {
+        "raw": [
+          {
+            "url": "https://google-analytics.com/owned"
+          }
+        ],
+        "context": {
+          "req": {
+            "type": "movie",
+            "id": "tt0133093",
+            "ids": ["tt0133093"],
+            "imdbId": "tt0133093",
+            "tmdb": null,
+            "title": "The Matrix",
+            "year": 1999,
+            "season": null,
+            "episode": null,
+            "absoluteEpisode": null,
+            "settings": {}
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin",
+          "pluginName": "Owned plugin"
+        },
+        "blockTrackers": false
+      },
+      "expected": [
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://google-analytics.com/owned",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        }
+      ]
+    },
+    {
+      "name": "tracking-default-restored-after-previous-call",
+      "input": {
+        "raw": [
+          {
+            "url": "https://google-analytics.com/owned"
+          }
+        ],
+        "context": {
+          "req": {
+            "type": "movie",
+            "id": "tt0133093",
+            "ids": ["tt0133093"],
+            "imdbId": "tt0133093",
+            "tmdb": null,
+            "title": "The Matrix",
+            "year": 1999,
+            "season": null,
+            "episode": null,
+            "absoluteEpisode": null,
+            "settings": {}
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin",
+          "pluginName": "Owned plugin"
+        }
+      },
+      "expected": []
+    },
+    {
+      "name": "private-public-suffix-headers",
+      "input": {
+        "raw": [
+          {
+            "url": "https://one.github.io/owned",
+            "headers": {
+              "Referer": "https://two.github.io/page",
+              "Origin": "https://two.github.io",
+              "User-Agent": "owned",
+              "Cookie": "owned=1"
+            }
+          }
+        ],
+        "context": {
+          "req": {
+            "type": "movie",
+            "id": "tt0133093",
+            "ids": ["tt0133093"],
+            "imdbId": "tt0133093",
+            "tmdb": null,
+            "title": "The Matrix",
+            "year": 1999,
+            "season": null,
+            "episode": null,
+            "absoluteEpisode": null,
+            "settings": {}
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin",
+          "pluginName": "Owned plugin"
+        }
+      },
+      "expected": [
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://one.github.io/owned",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)",
+            "proxyHeaders": {
+              "request": {
+                "User-Agent": "owned",
+                "Cookie": "owned=1"
+              }
+            },
+            "notWebReady": true
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        }
+      ]
+    },
+    {
+      "name": "ordinary-public-suffix-shares-site",
+      "input": {
+        "raw": [
+          {
+            "url": "https://cdn.example.co.uk/owned",
+            "headers": {
+              "Referer": "https://video.example.co.uk/page",
+              "Origin": "https://example.co.uk"
+            }
+          }
+        ],
+        "context": {
+          "req": {
+            "type": "movie",
+            "id": "tt0133093",
+            "ids": ["tt0133093"],
+            "imdbId": "tt0133093",
+            "tmdb": null,
+            "title": "The Matrix",
+            "year": 1999,
+            "season": null,
+            "episode": null,
+            "absoluteEpisode": null,
+            "settings": {}
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin",
+          "pluginName": "Owned plugin"
+        }
+      },
+      "expected": [
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://cdn.example.co.uk/owned",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)",
+            "proxyHeaders": {
+              "request": {
+                "Referer": "https://video.example.co.uk/page",
+                "Origin": "https://example.co.uk"
+              }
+            },
+            "notWebReady": true
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        }
+      ]
+    },
+    {
+      "name": "header-values-controls-commas-and-limit",
+      "input": {
+        "raw": [
+          {
+            "url": "https://example.org/owned",
+            "headers": {
+              "Host": "drop",
+              "Content-Length": "5",
+              "X-Bad": "a,b",
+              "X-Control": "before\r\nafter",
+              "X-Owned-0": "v0",
+              "X-Owned-1": "v1",
+              "X-Owned-2": "v2",
+              "X-Owned-3": "v3",
+              "X-Owned-4": "v4",
+              "X-Owned-5": "v5",
+              "X-Owned-6": "v6",
+              "X-Owned-7": "v7",
+              "X-Owned-8": "v8",
+              "X-Owned-9": "v9",
+              "X-Owned-10": "v10",
+              "X-Owned-11": "v11",
+              "X-Owned-12": "v12",
+              "X-Owned-13": "v13",
+              "X-Owned-14": "v14",
+              "X-Owned-15": "v15",
+              "X-Owned-16": "v16",
+              "X-Owned-17": "v17",
+              "X-Owned-18": "v18",
+              "X-Owned-19": "v19",
+              "X-Owned-20": "v20",
+              "X-Owned-21": "v21",
+              "X-Owned-22": "v22",
+              "X-Owned-23": "v23",
+              "X-Owned-24": "v24",
+              "X-Owned-25": "v25",
+              "X-Owned-26": "v26",
+              "X-Owned-27": "v27",
+              "X-Owned-28": "v28",
+              "X-Owned-29": "v29"
+            }
+          }
+        ],
+        "context": {
+          "req": {
+            "type": "movie",
+            "id": "tt0133093",
+            "ids": ["tt0133093"],
+            "imdbId": "tt0133093",
+            "tmdb": null,
+            "title": "The Matrix",
+            "year": 1999,
+            "season": null,
+            "episode": null,
+            "absoluteEpisode": null,
+            "settings": {}
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin",
+          "pluginName": "Owned plugin"
+        }
+      },
+      "expected": [
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/owned",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)",
+            "proxyHeaders": {
+              "request": {
+                "X-Control": "beforeafter",
+                "X-Owned-0": "v0",
+                "X-Owned-1": "v1",
+                "X-Owned-2": "v2",
+                "X-Owned-3": "v3",
+                "X-Owned-4": "v4",
+                "X-Owned-5": "v5",
+                "X-Owned-6": "v6",
+                "X-Owned-7": "v7",
+                "X-Owned-8": "v8",
+                "X-Owned-9": "v9",
+                "X-Owned-10": "v10",
+                "X-Owned-11": "v11",
+                "X-Owned-12": "v12",
+                "X-Owned-13": "v13",
+                "X-Owned-14": "v14",
+                "X-Owned-15": "v15",
+                "X-Owned-16": "v16",
+                "X-Owned-17": "v17",
+                "X-Owned-18": "v18",
+                "X-Owned-19": "v19",
+                "X-Owned-20": "v20",
+                "X-Owned-21": "v21",
+                "X-Owned-22": "v22"
+              }
+            },
+            "notWebReady": true
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        }
+      ]
+    },
+    {
+      "name": "magnet-trackers-dht-and-file-index",
+      "input": {
+        "raw": [
+          {
+            "url": "magnet:?xt=urn:btih:0123456789abcdef0123456789abcdef01234567&tr=udp%3A%2F%2Ftracker.example.org%3A80%2Fannounce",
+            "fileIdx": 2,
+            "seeders": 7.6
+          }
+        ],
+        "context": {
+          "req": {
+            "type": "movie",
+            "id": "tt0133093",
+            "ids": ["tt0133093"],
+            "imdbId": "tt0133093",
+            "tmdb": null,
+            "title": "The Matrix",
+            "year": 1999,
+            "season": null,
+            "episode": null,
+            "absoluteEpisode": null,
+            "settings": {}
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin",
+          "pluginName": "Owned plugin"
+        }
+      },
+      "expected": [
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin\n👤 8",
+          "infoHash": "0123456789abcdef0123456789abcdef01234567",
+          "fileIdx": 2,
+          "sources": [
+            "tracker:udp://tracker.example.org:80/announce",
+            "dht:0123456789abcdef0123456789abcdef01234567"
+          ],
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        }
+      ]
+    },
+    {
+      "name": "base32-magnet",
+      "input": {
+        "raw": [
+          {
+            "url": "magnet:?xt=urn:btih:ABCDEFGHIJKLMNOPQRSTUVWXYZ234567"
+          }
+        ],
+        "context": {
+          "req": {
+            "type": "movie",
+            "id": "tt0133093",
+            "ids": ["tt0133093"],
+            "imdbId": "tt0133093",
+            "tmdb": null,
+            "title": "The Matrix",
+            "year": 1999,
+            "season": null,
+            "episode": null,
+            "absoluteEpisode": null,
+            "settings": {}
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin",
+          "pluginName": "Owned plugin"
+        }
+      },
+      "expected": [
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "infoHash": "00443214c74254b635cf84653a56d7c675be77df",
+          "sources": ["dht:00443214c74254b635cf84653a56d7c675be77df"],
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        }
+      ]
+    },
+    {
+      "name": "infohash-priority-over-direct-and-sources",
+      "input": {
+        "raw": [
+          {
+            "url": "https://example.org/owned.mkv",
+            "infoHash": "0123456789ABCDEF0123456789ABCDEF01234567",
+            "fileIdx": 0,
+            "sources": ["tracker:udp://tracker.example.org:80"]
+          }
+        ],
+        "context": {
+          "req": {
+            "type": "movie",
+            "id": "tt0133093",
+            "ids": ["tt0133093"],
+            "imdbId": "tt0133093",
+            "tmdb": null,
+            "title": "The Matrix",
+            "year": 1999,
+            "season": null,
+            "episode": null,
+            "absoluteEpisode": null,
+            "settings": {}
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin",
+          "pluginName": "Owned plugin"
+        }
+      },
+      "expected": [
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "infoHash": "0123456789abcdef0123456789abcdef01234567",
+          "fileIdx": 0,
+          "sources": [
+            "tracker:udp://tracker.example.org:80",
+            "dht:0123456789abcdef0123456789abcdef01234567"
+          ],
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        }
+      ]
+    },
+    {
+      "name": "hash-in-sources-and-external-youtube",
+      "input": {
+        "raw": [
+          {
+            "sources": ["dht:0123456789abcdef0123456789abcdef01234567"]
+          },
+          {
+            "externalUrl": "https://example.org/owned"
+          },
+          {
+            "ytId": "dQw4w9WgXcQ"
+          }
+        ],
+        "context": {
+          "req": {
+            "type": "movie",
+            "id": "tt0133093",
+            "ids": ["tt0133093"],
+            "imdbId": "tt0133093",
+            "tmdb": null,
+            "title": "The Matrix",
+            "year": 1999,
+            "season": null,
+            "episode": null,
+            "absoluteEpisode": null,
+            "settings": {}
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin",
+          "pluginName": "Owned plugin"
+        }
+      },
+      "expected": [
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "infoHash": "0123456789abcdef0123456789abcdef01234567",
+          "sources": ["dht:0123456789abcdef0123456789abcdef01234567"],
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "externalUrl": "https://example.org/owned",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "ytId": "dQw4w9WgXcQ",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        }
+      ]
+    },
+    {
+      "name": "object-stream-envelope-and-malformed-items",
+      "input": {
+        "raw": {
+          "streams": [
+            null,
+            7,
+            "owned",
+            {},
+            {
+              "url": "https://example.org/owned",
+              "name": {
+                "x": 1
+              },
+              "title": 12,
+              "description": ["one", "two"]
+            }
+          ]
+        },
+        "context": {
+          "req": {
+            "type": "movie",
+            "id": "tt0133093",
+            "ids": ["tt0133093"],
+            "imdbId": "tt0133093",
+            "tmdb": null,
+            "title": "The Matrix",
+            "year": 1999,
+            "season": null,
+            "episode": null,
+            "absoluteEpisode": null,
+            "settings": {}
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin",
+          "pluginName": "Owned plugin"
+        }
+      },
+      "expected": [
+        {
+          "name": "Owned plugin",
+          "title": "12",
+          "description": "one,two",
+          "url": "https://example.org/owned",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        }
+      ]
+    },
+    {
+      "name": "first-150-valid-streams",
+      "input": {
+        "raw": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {
+            "url": "https://example.org/10"
+          },
+          {
+            "url": "https://example.org/11"
+          },
+          {
+            "url": "https://example.org/12"
+          },
+          {
+            "url": "https://example.org/13"
+          },
+          {
+            "url": "https://example.org/14"
+          },
+          {
+            "url": "https://example.org/15"
+          },
+          {
+            "url": "https://example.org/16"
+          },
+          {
+            "url": "https://example.org/17"
+          },
+          {
+            "url": "https://example.org/18"
+          },
+          {
+            "url": "https://example.org/19"
+          },
+          {
+            "url": "https://example.org/20"
+          },
+          {
+            "url": "https://example.org/21"
+          },
+          {
+            "url": "https://example.org/22"
+          },
+          {
+            "url": "https://example.org/23"
+          },
+          {
+            "url": "https://example.org/24"
+          },
+          {
+            "url": "https://example.org/25"
+          },
+          {
+            "url": "https://example.org/26"
+          },
+          {
+            "url": "https://example.org/27"
+          },
+          {
+            "url": "https://example.org/28"
+          },
+          {
+            "url": "https://example.org/29"
+          },
+          {
+            "url": "https://example.org/30"
+          },
+          {
+            "url": "https://example.org/31"
+          },
+          {
+            "url": "https://example.org/32"
+          },
+          {
+            "url": "https://example.org/33"
+          },
+          {
+            "url": "https://example.org/34"
+          },
+          {
+            "url": "https://example.org/35"
+          },
+          {
+            "url": "https://example.org/36"
+          },
+          {
+            "url": "https://example.org/37"
+          },
+          {
+            "url": "https://example.org/38"
+          },
+          {
+            "url": "https://example.org/39"
+          },
+          {
+            "url": "https://example.org/40"
+          },
+          {
+            "url": "https://example.org/41"
+          },
+          {
+            "url": "https://example.org/42"
+          },
+          {
+            "url": "https://example.org/43"
+          },
+          {
+            "url": "https://example.org/44"
+          },
+          {
+            "url": "https://example.org/45"
+          },
+          {
+            "url": "https://example.org/46"
+          },
+          {
+            "url": "https://example.org/47"
+          },
+          {
+            "url": "https://example.org/48"
+          },
+          {
+            "url": "https://example.org/49"
+          },
+          {
+            "url": "https://example.org/50"
+          },
+          {
+            "url": "https://example.org/51"
+          },
+          {
+            "url": "https://example.org/52"
+          },
+          {
+            "url": "https://example.org/53"
+          },
+          {
+            "url": "https://example.org/54"
+          },
+          {
+            "url": "https://example.org/55"
+          },
+          {
+            "url": "https://example.org/56"
+          },
+          {
+            "url": "https://example.org/57"
+          },
+          {
+            "url": "https://example.org/58"
+          },
+          {
+            "url": "https://example.org/59"
+          },
+          {
+            "url": "https://example.org/60"
+          },
+          {
+            "url": "https://example.org/61"
+          },
+          {
+            "url": "https://example.org/62"
+          },
+          {
+            "url": "https://example.org/63"
+          },
+          {
+            "url": "https://example.org/64"
+          },
+          {
+            "url": "https://example.org/65"
+          },
+          {
+            "url": "https://example.org/66"
+          },
+          {
+            "url": "https://example.org/67"
+          },
+          {
+            "url": "https://example.org/68"
+          },
+          {
+            "url": "https://example.org/69"
+          },
+          {
+            "url": "https://example.org/70"
+          },
+          {
+            "url": "https://example.org/71"
+          },
+          {
+            "url": "https://example.org/72"
+          },
+          {
+            "url": "https://example.org/73"
+          },
+          {
+            "url": "https://example.org/74"
+          },
+          {
+            "url": "https://example.org/75"
+          },
+          {
+            "url": "https://example.org/76"
+          },
+          {
+            "url": "https://example.org/77"
+          },
+          {
+            "url": "https://example.org/78"
+          },
+          {
+            "url": "https://example.org/79"
+          },
+          {
+            "url": "https://example.org/80"
+          },
+          {
+            "url": "https://example.org/81"
+          },
+          {
+            "url": "https://example.org/82"
+          },
+          {
+            "url": "https://example.org/83"
+          },
+          {
+            "url": "https://example.org/84"
+          },
+          {
+            "url": "https://example.org/85"
+          },
+          {
+            "url": "https://example.org/86"
+          },
+          {
+            "url": "https://example.org/87"
+          },
+          {
+            "url": "https://example.org/88"
+          },
+          {
+            "url": "https://example.org/89"
+          },
+          {
+            "url": "https://example.org/90"
+          },
+          {
+            "url": "https://example.org/91"
+          },
+          {
+            "url": "https://example.org/92"
+          },
+          {
+            "url": "https://example.org/93"
+          },
+          {
+            "url": "https://example.org/94"
+          },
+          {
+            "url": "https://example.org/95"
+          },
+          {
+            "url": "https://example.org/96"
+          },
+          {
+            "url": "https://example.org/97"
+          },
+          {
+            "url": "https://example.org/98"
+          },
+          {
+            "url": "https://example.org/99"
+          },
+          {
+            "url": "https://example.org/100"
+          },
+          {
+            "url": "https://example.org/101"
+          },
+          {
+            "url": "https://example.org/102"
+          },
+          {
+            "url": "https://example.org/103"
+          },
+          {
+            "url": "https://example.org/104"
+          },
+          {
+            "url": "https://example.org/105"
+          },
+          {
+            "url": "https://example.org/106"
+          },
+          {
+            "url": "https://example.org/107"
+          },
+          {
+            "url": "https://example.org/108"
+          },
+          {
+            "url": "https://example.org/109"
+          },
+          {
+            "url": "https://example.org/110"
+          },
+          {
+            "url": "https://example.org/111"
+          },
+          {
+            "url": "https://example.org/112"
+          },
+          {
+            "url": "https://example.org/113"
+          },
+          {
+            "url": "https://example.org/114"
+          },
+          {
+            "url": "https://example.org/115"
+          },
+          {
+            "url": "https://example.org/116"
+          },
+          {
+            "url": "https://example.org/117"
+          },
+          {
+            "url": "https://example.org/118"
+          },
+          {
+            "url": "https://example.org/119"
+          },
+          {
+            "url": "https://example.org/120"
+          },
+          {
+            "url": "https://example.org/121"
+          },
+          {
+            "url": "https://example.org/122"
+          },
+          {
+            "url": "https://example.org/123"
+          },
+          {
+            "url": "https://example.org/124"
+          },
+          {
+            "url": "https://example.org/125"
+          },
+          {
+            "url": "https://example.org/126"
+          },
+          {
+            "url": "https://example.org/127"
+          },
+          {
+            "url": "https://example.org/128"
+          },
+          {
+            "url": "https://example.org/129"
+          },
+          {
+            "url": "https://example.org/130"
+          },
+          {
+            "url": "https://example.org/131"
+          },
+          {
+            "url": "https://example.org/132"
+          },
+          {
+            "url": "https://example.org/133"
+          },
+          {
+            "url": "https://example.org/134"
+          },
+          {
+            "url": "https://example.org/135"
+          },
+          {
+            "url": "https://example.org/136"
+          },
+          {
+            "url": "https://example.org/137"
+          },
+          {
+            "url": "https://example.org/138"
+          },
+          {
+            "url": "https://example.org/139"
+          },
+          {
+            "url": "https://example.org/140"
+          },
+          {
+            "url": "https://example.org/141"
+          },
+          {
+            "url": "https://example.org/142"
+          },
+          {
+            "url": "https://example.org/143"
+          },
+          {
+            "url": "https://example.org/144"
+          },
+          {
+            "url": "https://example.org/145"
+          },
+          {
+            "url": "https://example.org/146"
+          },
+          {
+            "url": "https://example.org/147"
+          },
+          {
+            "url": "https://example.org/148"
+          },
+          {
+            "url": "https://example.org/149"
+          },
+          {
+            "url": "https://example.org/150"
+          },
+          {
+            "url": "https://example.org/151"
+          },
+          {
+            "url": "https://example.org/152"
+          },
+          {
+            "url": "https://example.org/153"
+          },
+          {
+            "url": "https://example.org/154"
+          },
+          {
+            "url": "https://example.org/155"
+          },
+          {
+            "url": "https://example.org/156"
+          },
+          {
+            "url": "https://example.org/157"
+          },
+          {
+            "url": "https://example.org/158"
+          },
+          {
+            "url": "https://example.org/159"
+          },
+          {
+            "url": "https://example.org/160"
+          },
+          {
+            "url": "https://example.org/161"
+          },
+          {
+            "url": "https://example.org/162"
+          },
+          {
+            "url": "https://example.org/163"
+          },
+          {
+            "url": "https://example.org/164"
+          },
+          {
+            "url": "https://example.org/165"
+          },
+          {
+            "url": "https://example.org/166"
+          },
+          {
+            "url": "https://example.org/167"
+          },
+          {
+            "url": "https://example.org/168"
+          },
+          {
+            "url": "https://example.org/169"
+          }
+        ],
+        "context": {
+          "req": {
+            "type": "movie",
+            "id": "tt0133093",
+            "ids": ["tt0133093"],
+            "imdbId": "tt0133093",
+            "tmdb": null,
+            "title": "The Matrix",
+            "year": 1999,
+            "season": null,
+            "episode": null,
+            "absoluteEpisode": null,
+            "settings": {}
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin",
+          "pluginName": "Owned plugin"
+        }
+      },
+      "expected": [
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/10",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/11",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/12",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/13",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/14",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/15",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/16",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/17",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/18",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/19",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/20",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/21",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/22",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/23",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/24",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/25",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/26",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/27",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/28",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/29",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/30",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/31",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/32",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/33",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/34",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/35",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/36",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/37",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/38",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/39",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/40",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/41",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/42",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/43",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/44",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/45",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/46",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/47",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/48",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/49",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/50",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/51",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/52",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/53",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/54",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/55",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/56",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/57",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/58",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/59",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/60",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/61",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/62",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/63",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/64",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/65",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/66",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/67",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/68",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/69",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/70",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/71",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/72",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/73",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/74",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/75",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/76",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/77",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/78",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/79",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/80",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/81",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/82",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/83",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/84",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/85",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/86",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/87",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/88",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/89",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/90",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/91",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/92",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/93",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/94",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/95",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/96",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/97",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/98",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/99",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/100",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/101",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/102",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/103",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/104",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/105",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/106",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/107",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/108",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/109",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/110",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/111",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/112",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/113",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/114",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/115",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/116",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/117",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/118",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/119",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/120",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/121",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/122",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/123",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/124",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/125",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/126",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/127",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/128",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/129",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/130",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/131",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/132",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/133",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/134",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/135",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/136",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/137",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/138",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/139",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/140",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/141",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/142",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/143",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/144",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/145",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/146",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/147",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/148",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/149",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/150",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/151",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/152",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/153",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/154",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/155",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/156",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/157",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/158",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        },
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/159",
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        }
+      ]
+    },
+    {
+      "name": "continuous-anime-visible-filename",
+      "input": {
+        "raw": [
+          {
+            "url": "https://example.org/owned",
+            "quality": "1080p",
+            "language": "Japanese"
+          }
+        ],
+        "context": {
+          "req": {
+            "type": "series",
+            "id": "tt0133093",
+            "ids": ["tt0133093"],
+            "imdbId": "tt0133093",
+            "tmdb": null,
+            "title": "Owned anime",
+            "year": null,
+            "season": null,
+            "episode": null,
+            "absoluteEpisode": 99,
+            "settings": {}
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin",
+          "pluginName": "Owned plugin"
+        }
+      },
+      "expected": [
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "description": "1080p Japanese",
+          "url": "https://example.org/owned",
+          "behaviorHints": {
+            "filename": "Owned anime E99 1080p Japanese"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        }
+      ]
+    },
+    {
+      "name": "actual-source-season-and-episode-filename",
+      "input": {
+        "raw": [
+          {
+            "url": "https://example.org/owned",
+            "quality": "720p"
+          }
+        ],
+        "context": {
+          "req": {
+            "type": "series",
+            "id": "tt0133093",
+            "ids": ["tt0133093"],
+            "imdbId": "tt0133093",
+            "tmdb": null,
+            "title": "Owned series",
+            "year": 1999,
+            "season": 5,
+            "episode": 23,
+            "absoluteEpisode": 99,
+            "settings": {}
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin",
+          "pluginName": "Owned plugin"
+        }
+      },
+      "expected": [
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "description": "720p",
+          "url": "https://example.org/owned",
+          "behaviorHints": {
+            "filename": "Owned series S05E23 720p"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        }
+      ]
+    },
+    {
+      "name": "subtitle-limit-and-safe-urls",
+      "input": {
+        "raw": [
+          {
+            "url": "https://example.org/owned",
+            "subtitles": [
+              {
+                "url": "http://127.0.0.1/secret.srt"
+              },
+              {
+                "url": "https://example.org/0.vtt",
+                "lang": "es"
+              },
+              {
+                "url": "https://example.org/1.vtt",
+                "lang": "es"
+              },
+              {
+                "url": "https://example.org/2.vtt",
+                "lang": "es"
+              },
+              {
+                "url": "https://example.org/3.vtt",
+                "lang": "es"
+              },
+              {
+                "url": "https://example.org/4.vtt",
+                "lang": "es"
+              },
+              {
+                "url": "https://example.org/5.vtt",
+                "lang": "es"
+              },
+              {
+                "url": "https://example.org/6.vtt",
+                "lang": "es"
+              },
+              {
+                "url": "https://example.org/7.vtt",
+                "lang": "es"
+              },
+              {
+                "url": "https://example.org/8.vtt",
+                "lang": "es"
+              },
+              {
+                "url": "https://example.org/9.vtt",
+                "lang": "es"
+              },
+              {
+                "url": "https://example.org/10.vtt",
+                "lang": "es"
+              },
+              {
+                "url": "https://example.org/11.vtt",
+                "lang": "es"
+              },
+              {
+                "url": "https://example.org/12.vtt",
+                "lang": "es"
+              },
+              {
+                "url": "https://example.org/13.vtt",
+                "lang": "es"
+              },
+              {
+                "url": "https://example.org/14.vtt",
+                "lang": "es"
+              },
+              {
+                "url": "https://example.org/15.vtt",
+                "lang": "es"
+              },
+              {
+                "url": "https://example.org/16.vtt",
+                "lang": "es"
+              },
+              {
+                "url": "https://example.org/17.vtt",
+                "lang": "es"
+              },
+              {
+                "url": "https://example.org/18.vtt",
+                "lang": "es"
+              },
+              {
+                "url": "https://example.org/19.vtt",
+                "lang": "es"
+              },
+              {
+                "url": "https://example.org/20.vtt",
+                "lang": "es"
+              },
+              {
+                "url": "https://example.org/21.vtt",
+                "lang": "es"
+              },
+              {
+                "url": "https://example.org/22.vtt",
+                "lang": "es"
+              },
+              {
+                "url": "https://example.org/23.vtt",
+                "lang": "es"
+              },
+              {
+                "url": "https://example.org/24.vtt",
+                "lang": "es"
+              },
+              {
+                "url": "https://example.org/25.vtt",
+                "lang": "es"
+              },
+              {
+                "url": "https://example.org/26.vtt",
+                "lang": "es"
+              },
+              {
+                "url": "https://example.org/27.vtt",
+                "lang": "es"
+              },
+              {
+                "url": "https://example.org/28.vtt",
+                "lang": "es"
+              },
+              {
+                "url": "https://example.org/29.vtt",
+                "lang": "es"
+              },
+              {
+                "url": "https://example.org/30.vtt",
+                "lang": "es"
+              },
+              {
+                "url": "https://example.org/31.vtt",
+                "lang": "es"
+              },
+              {
+                "url": "https://example.org/32.vtt",
+                "lang": "es"
+              },
+              {
+                "url": "https://example.org/33.vtt",
+                "lang": "es"
+              },
+              {
+                "url": "https://example.org/34.vtt",
+                "lang": "es"
+              },
+              {
+                "url": "https://example.org/35.vtt",
+                "lang": "es"
+              },
+              {
+                "url": "https://example.org/36.vtt",
+                "lang": "es"
+              },
+              {
+                "url": "https://example.org/37.vtt",
+                "lang": "es"
+              },
+              {
+                "url": "https://example.org/38.vtt",
+                "lang": "es"
+              },
+              {
+                "url": "https://example.org/39.vtt",
+                "lang": "es"
+              },
+              {
+                "url": "https://example.org/40.vtt",
+                "lang": "es"
+              },
+              {
+                "url": "https://example.org/41.vtt",
+                "lang": "es"
+              },
+              {
+                "url": "https://example.org/42.vtt",
+                "lang": "es"
+              },
+              {
+                "url": "https://example.org/43.vtt",
+                "lang": "es"
+              },
+              {
+                "url": "https://example.org/44.vtt",
+                "lang": "es"
+              }
+            ]
+          }
+        ],
+        "context": {
+          "req": {
+            "type": "movie",
+            "id": "tt0133093",
+            "ids": ["tt0133093"],
+            "imdbId": "tt0133093",
+            "tmdb": null,
+            "title": "The Matrix",
+            "year": 1999,
+            "season": null,
+            "episode": null,
+            "absoluteEpisode": null,
+            "settings": {}
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin",
+          "pluginName": "Owned plugin"
+        }
+      },
+      "expected": [
+        {
+          "name": "Owned plugin",
+          "title": "Owned plugin",
+          "url": "https://example.org/owned",
+          "subtitles": [
+            {
+              "url": "https://example.org/0.vtt",
+              "lang": "es"
+            },
+            {
+              "url": "https://example.org/1.vtt",
+              "lang": "es"
+            },
+            {
+              "url": "https://example.org/2.vtt",
+              "lang": "es"
+            },
+            {
+              "url": "https://example.org/3.vtt",
+              "lang": "es"
+            },
+            {
+              "url": "https://example.org/4.vtt",
+              "lang": "es"
+            },
+            {
+              "url": "https://example.org/5.vtt",
+              "lang": "es"
+            },
+            {
+              "url": "https://example.org/6.vtt",
+              "lang": "es"
+            },
+            {
+              "url": "https://example.org/7.vtt",
+              "lang": "es"
+            },
+            {
+              "url": "https://example.org/8.vtt",
+              "lang": "es"
+            },
+            {
+              "url": "https://example.org/9.vtt",
+              "lang": "es"
+            },
+            {
+              "url": "https://example.org/10.vtt",
+              "lang": "es"
+            },
+            {
+              "url": "https://example.org/11.vtt",
+              "lang": "es"
+            },
+            {
+              "url": "https://example.org/12.vtt",
+              "lang": "es"
+            },
+            {
+              "url": "https://example.org/13.vtt",
+              "lang": "es"
+            },
+            {
+              "url": "https://example.org/14.vtt",
+              "lang": "es"
+            },
+            {
+              "url": "https://example.org/15.vtt",
+              "lang": "es"
+            },
+            {
+              "url": "https://example.org/16.vtt",
+              "lang": "es"
+            },
+            {
+              "url": "https://example.org/17.vtt",
+              "lang": "es"
+            },
+            {
+              "url": "https://example.org/18.vtt",
+              "lang": "es"
+            },
+            {
+              "url": "https://example.org/19.vtt",
+              "lang": "es"
+            },
+            {
+              "url": "https://example.org/20.vtt",
+              "lang": "es"
+            },
+            {
+              "url": "https://example.org/21.vtt",
+              "lang": "es"
+            },
+            {
+              "url": "https://example.org/22.vtt",
+              "lang": "es"
+            },
+            {
+              "url": "https://example.org/23.vtt",
+              "lang": "es"
+            },
+            {
+              "url": "https://example.org/24.vtt",
+              "lang": "es"
+            },
+            {
+              "url": "https://example.org/25.vtt",
+              "lang": "es"
+            },
+            {
+              "url": "https://example.org/26.vtt",
+              "lang": "es"
+            },
+            {
+              "url": "https://example.org/27.vtt",
+              "lang": "es"
+            },
+            {
+              "url": "https://example.org/28.vtt",
+              "lang": "es"
+            },
+            {
+              "url": "https://example.org/29.vtt",
+              "lang": "es"
+            },
+            {
+              "url": "https://example.org/30.vtt",
+              "lang": "es"
+            },
+            {
+              "url": "https://example.org/31.vtt",
+              "lang": "es"
+            },
+            {
+              "url": "https://example.org/32.vtt",
+              "lang": "es"
+            },
+            {
+              "url": "https://example.org/33.vtt",
+              "lang": "es"
+            },
+            {
+              "url": "https://example.org/34.vtt",
+              "lang": "es"
+            },
+            {
+              "url": "https://example.org/35.vtt",
+              "lang": "es"
+            },
+            {
+              "url": "https://example.org/36.vtt",
+              "lang": "es"
+            },
+            {
+              "url": "https://example.org/37.vtt",
+              "lang": "es"
+            },
+            {
+              "url": "https://example.org/38.vtt",
+              "lang": "es"
+            }
+          ],
+          "behaviorHints": {
+            "filename": "The Matrix (1999)"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        }
+      ]
+    },
+    {
+      "name": "title-evidence-keeps-original-filename",
+      "input": {
+        "raw": [
+          {
+            "url": "https://example.org/owned",
+            "filename": "The.Matrix.1999.1080p.mkv",
+            "size": 1000,
+            "bingeGroup": "owned",
+            "expiresAt": 12345
+          }
+        ],
+        "context": {
+          "req": {
+            "type": "movie",
+            "id": "tt0133093",
+            "ids": ["tt0133093"],
+            "imdbId": "tt0133093",
+            "tmdb": null,
+            "title": "The Matrix",
+            "year": 1999,
+            "season": null,
+            "episode": null,
+            "absoluteEpisode": null,
+            "settings": {}
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin",
+          "pluginName": "Owned plugin"
+        }
+      },
+      "expected": [
+        {
+          "name": "Owned plugin",
+          "title": "The.Matrix.1999.1080p.mkv",
+          "url": "https://example.org/owned",
+          "behaviorHints": {
+            "filename": "The.Matrix.1999.1080p.mkv",
+            "videoSize": 1000,
+            "bingeGroup": "owned",
+            "pluginExpiresAt": 12345
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        }
+      ]
+    },
+    {
+      "name": "text-and-language-bounds",
+      "input": {
+        "raw": [
+          {
+            "url": "https://example.org/owned",
+            "name": "nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn",
+            "title": "tttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt",
+            "description": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+            "language": ["es", "en", "ja", "fr", "de"]
+          }
+        ],
+        "context": {
+          "req": {
+            "type": "movie",
+            "id": "tt0133093",
+            "ids": ["tt0133093"],
+            "imdbId": "tt0133093",
+            "tmdb": null,
+            "title": "The Matrix",
+            "year": 1999,
+            "season": null,
+            "episode": null,
+            "absoluteEpisode": null,
+            "settings": {}
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin",
+          "pluginName": "Owned plugin"
+        }
+      },
+      "expected": [
+        {
+          "name": "nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn",
+          "title": "tttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt",
+          "description": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+          "url": "https://example.org/owned",
+          "behaviorHints": {
+            "filename": "The Matrix (1999) es en ja fr"
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin"
+        }
+      ]
+    },
+    {
+      "name": "absent-or-malformed-envelope",
+      "input": {
+        "raw": {
+          "streams": "owned"
+        },
+        "context": {
+          "req": {
+            "type": "movie",
+            "id": "tt0133093",
+            "ids": ["tt0133093"],
+            "imdbId": "tt0133093",
+            "tmdb": null,
+            "title": "The Matrix",
+            "year": 1999,
+            "season": null,
+            "episode": null,
+            "absoluteEpisode": null,
+            "settings": {}
+          },
+          "addonId": "owned.plugin",
+          "addonName": "Owned repository",
+          "addonUrl": "harbor-plugin://owned.plugin",
+          "pluginName": "Owned plugin"
+        }
+      },
+      "expected": []
+    }
+  ]
+}

@@ -29,7 +29,13 @@ struct DetailView: View {
     @AppStorage("tvdbSeasonType") private var episodeOrderSetting = "aired"
     @AppStorage("tvdbOrderPanel") private var richEpisodeOrderPanel = true
     private let playImmediately: Bool
-    init(media: Media, app: AppModel, playImmediately: Bool = false, metadataLoaded: Bool = false) { self.app = app; self.playImmediately = playImmediately; _model = State(initialValue: DetailModel(media, service: app.service, metadataLoaded: metadataLoaded)) }
+    init(media: Media, app: AppModel, playImmediately: Bool = false, metadataLoaded: Bool = false) {
+        self.app = app; self.playImmediately = playImmediately
+        _model = State(initialValue: DetailModel(media, service: app.service, metadataLoaded: metadataLoaded, pluginStreams: { [weak app] media, videoID, episode, priority in
+            guard let app else { throw CancellationError() }
+            return try await app.pluginStreams(media: media, videoID: videoID, episode: episode, startingPriority: priority)
+        }))
+    }
 
     var body: some View {
         @Bindable var model = model

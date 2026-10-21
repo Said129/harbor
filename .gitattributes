@@ -1,2 +1,3 @@
 # Keep the pinned Desktop vector bytes, including original line endings.
 ios/Harbor/DesktopAnimations/nav/*.json -text
+ios/Harbor/TLDTS-LICENSE.txt -text

@@ -8,7 +8,7 @@ struct HarborPluginManagementView: View {
     @State private var failure: String?
     var body: some View {
         Group {
-            if let manager, manager.ready { HarborPluginCatalogSettings(manager: manager) }
+            if let manager, manager.ready { HarborPluginCatalogSettings(manager: manager, pause: { app.plugins.runtime?.cancelCalls() }) }
             else {
                 VStack(spacing: 18) {
                     if let failure {
@@ -42,6 +42,9 @@ private struct HarborPluginCatalogSettings: View {
         case plugin(HarborInstalledStreamPlugin)
     }
     @Bindable var manager: HarborStreamPluginManager
+    let pause: @MainActor () -> Void
+    @AppStorage("pluginsEnabled") private var enabled = true
+    @AppStorage("pluginsGroupByRepo") private var groupByRepository = false
     @State private var tab = "plugins"
     @State private var link = ""
     @State private var query = ""
@@ -59,12 +62,13 @@ private struct HarborPluginCatalogSettings: View {
                 if let failure { Text(failure).font(HarborTheme.font(14)).foregroundStyle(ThemePreferences.shared.color("danger")) }
                 if running { ProgressView() }
                 if tab == "repositories" { repositoryForm }
-                if tab == "plugins" { installed }
+                if tab == "plugins" { options; installed }
                 else { repositories }
             }.padding(20).frame(maxWidth: 960, alignment: .leading).frame(maxWidth: .infinity)
         }.scrollDismissesKeyboard(.interactively)
             .animation(reduceMotion ? nil : .easeOut(duration: 0.2), value: tab)
             .sheet(item: $editing) { plugin in HarborPluginSettingsView(manager: manager, plugin: plugin) }
+            .onChange(of: enabled) { _, value in if !value { pause() } }
             .confirmationDialog(text("Remove"), isPresented: Binding(get: { remove != nil }, set: { if !$0 { remove = nil } }), titleVisibility: .visible) {
                 if let target = remove {
                     Button(text("Remove"), role: .destructive) {
@@ -79,6 +83,19 @@ private struct HarborPluginCatalogSettings: View {
                 }
                 Button(text("Cancel"), role: .cancel) { remove = nil }
             }.onChange(of: manager.ready) { _, ready in if !ready { editing = nil; link = ""; failure = nil } }
+    }
+    private var options: some View {
+        HarborSettingsSection("Use plugins") {
+            Toggle(text("Use plugins"), isOn: $enabled).tint(HarborTheme.accent).frame(minHeight: 44)
+                .accessibilityIdentifier("plugin-use-all")
+            Text(text("Plugins look for streams on sites Harbor does not know about. Everything here was installed by you, from repositories you chose."))
+                .font(HarborTheme.font(13)).foregroundStyle(.secondary)
+            if !enabled { Text(text("Plugins are paused. Turn on Use plugins above to run them.")).font(HarborTheme.font(13)).foregroundStyle(.secondary) }
+            Toggle(text("Group by repository"), isOn: $groupByRepository).tint(HarborTheme.accent).frame(minHeight: 44)
+                .accessibilityIdentifier("plugin-group-repository")
+            Text(text("Show one source per repository in the picker instead of one per plugin. Useful when a repository ships many small providers."))
+                .font(HarborTheme.font(13)).foregroundStyle(.secondary)
+        }
     }
     private var repositoryForm: some View {
         HarborSettingsSection("Add a repository") {

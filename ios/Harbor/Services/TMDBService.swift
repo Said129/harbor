@@ -143,6 +143,21 @@ struct TMDBService: Sendable {
         result.details = details.includingTrailers(from: media.details)
         return result
     }
+    func pluginReference(imdb: String, type: String, key: String) async throws -> HarborPluginTMDBReference? {
+        guard imdb.range(of: "^tt[0-9]+$", options: .regularExpression) != nil, ["movie", "series"].contains(type) else { return nil }
+        let configuration = MetadataConfiguration(tmdbKey: key, region: "US", language: "en-US", translateTitles: false)
+        let found = try await get("find/\(imdb)", parameters: ["external_source": "imdb_id"], configuration: configuration)
+        return Self.pluginReference(found, type: type)
+    }
+    static func pluginReference(_ found: JSONValue, type: String) -> HarborPluginTMDBReference? {
+        let movie = found["movie_results"].array.first?["id"].integer.flatMap { $0 > 0 ? $0 : nil }
+        let tv = found["tv_results"].array.first?["id"].integer.flatMap { $0 > 0 ? $0 : nil }
+        if type == "series", let tv { return .init(id: tv, kind: "tv") }
+        if type == "movie", let movie { return .init(id: movie, kind: "movie") }
+        if let tv, movie == nil { return .init(id: tv, kind: "tv") }
+        if let movie { return .init(id: movie, kind: "movie") }
+        return tv.map { .init(id: $0, kind: "tv") }
+    }
     private func get(_ path: String, parameters: [String: String] = [:], configuration: MetadataConfiguration) async throws -> JSONValue {
         guard !configuration.tmdbKey.isEmpty, var url = URLComponents(string: "https://api.themoviedb.org/3/\(path)") else { throw HarborError(code: "metadata-not-configured") }
         url.queryItems = [URLQueryItem(name: "api_key", value: configuration.tmdbKey), URLQueryItem(name: "language", value: configuration.language)] + parameters.sorted { $0.key < $1.key }.map { URLQueryItem(name: $0.key, value: $0.value) }

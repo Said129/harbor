@@ -90,10 +90,13 @@ enum HarborPluginManifest {
     }
 
     static func pluginID(repository: String, entry: String) -> String {
+        "plugin:" + repositoryKey(repository) + "." + entry
+    }
+    static func repositoryKey(_ repository: String) -> String {
         var hash: UInt32 = 0x811c9dc5
         // JavaScript charCodeAt hashes UTF-16 code units, not Swift graphemes or UTF-8.
         for unit in repository.utf16 { hash = (hash ^ UInt32(unit)) &* 0x01000193 }
-        return "plugin:" + String(hash, radix: 36) + "." + entry
+        return String(hash, radix: 36)
     }
 
     static func parse(_ value: JSONValue, url: String) throws -> HarborParsedStreamRepository {

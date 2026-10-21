@@ -1,0 +1,444 @@
+{
+  "reference": "0834340cec5531650bfe78cd628628702e636987",
+  "input": "src/lib/streams/plugins/request.ts",
+  "sourceHash": "cdfe17a2ba63ccd0e44f774cd498fb538d66823360c8928844798d6131af49b0",
+  "cases": [
+    {
+      "name": "movie-public-tmdb-without-personal-key",
+      "input": {
+        "media": {
+          "id": "tt0133093",
+          "type": "movie",
+          "name": "The Matrix",
+          "releaseInfo": "1999"
+        },
+        "ids": ["tt0133093"],
+        "pickedID": "tt0133093",
+        "episode": null,
+        "meta": {
+          "moviedb_id": 603
+        },
+        "tmdb": null,
+        "key": ""
+      },
+      "expected": {
+        "type": "movie",
+        "id": "tt0133093",
+        "ids": ["tt0133093"],
+        "imdbId": "tt0133093",
+        "tmdb": {
+          "id": 603,
+          "kind": "movie"
+        },
+        "title": "The Matrix",
+        "year": 1999,
+        "season": null,
+        "episode": null,
+        "absoluteEpisode": null,
+        "settings": {}
+      }
+    },
+    {
+      "name": "raw-season-five-episode-23-and-absolute-99",
+      "input": {
+        "media": {
+          "id": "tt3398540",
+          "type": "series",
+          "name": "Dragon Ball Super",
+          "releaseInfo": "2015–2018"
+        },
+        "ids": ["kitsu:9979:99", "tt3398540:5:23"],
+        "pickedID": "kitsu:9979:99",
+        "episode": {
+          "id": "kitsu:9979:99",
+          "season": 5,
+          "episode": 23,
+          "displaySeason": 1,
+          "displayEpisode": 99,
+          "absoluteNumber": 99
+        },
+        "meta": {
+          "moviedb_id": 62715
+        },
+        "tmdb": null,
+        "key": ""
+      },
+      "expected": {
+        "type": "series",
+        "id": "kitsu:9979:99",
+        "ids": ["kitsu:9979:99", "tt3398540:5:23"],
+        "imdbId": "tt3398540",
+        "tmdb": {
+          "id": 62715,
+          "kind": "tv"
+        },
+        "title": "Dragon Ball Super",
+        "year": 2015,
+        "season": 5,
+        "episode": 23,
+        "absoluteEpisode": 99,
+        "settings": {}
+      }
+    },
+    {
+      "name": "special-season-zero",
+      "input": {
+        "media": {
+          "id": "tt3398540",
+          "type": "series",
+          "name": "Dragon Ball Super",
+          "releaseInfo": "2015–2018"
+        },
+        "ids": ["tt3398540:0:2"],
+        "pickedID": "tt3398540:0:2",
+        "episode": null,
+        "meta": {
+          "moviedb_id": 62715
+        },
+        "tmdb": null,
+        "key": ""
+      },
+      "expected": {
+        "type": "series",
+        "id": "tt3398540:0:2",
+        "ids": ["tt3398540:0:2"],
+        "imdbId": "tt3398540",
+        "tmdb": {
+          "id": 62715,
+          "kind": "tv"
+        },
+        "title": "Dragon Ball Super",
+        "year": 2015,
+        "season": 0,
+        "episode": 2,
+        "absoluteEpisode": null,
+        "settings": {}
+      }
+    },
+    {
+      "name": "explicit-tv-tmdb",
+      "input": {
+        "media": {
+          "id": "tt3398540",
+          "type": "series",
+          "name": "Dragon Ball Super",
+          "releaseInfo": "2015–2018"
+        },
+        "ids": ["tmdb:tv:62715:5:23"],
+        "pickedID": "tmdb:tv:62715:5:23",
+        "episode": null,
+        "meta": {},
+        "tmdb": null,
+        "key": ""
+      },
+      "expected": {
+        "type": "series",
+        "id": "tmdb:tv:62715:5:23",
+        "ids": ["tmdb:tv:62715:5:23"],
+        "imdbId": null,
+        "tmdb": {
+          "id": 62715,
+          "kind": "tv"
+        },
+        "title": "Dragon Ball Super",
+        "year": 2015,
+        "season": 5,
+        "episode": 23,
+        "absoluteEpisode": null,
+        "settings": {}
+      }
+    },
+    {
+      "name": "implicit-movie-tmdb",
+      "input": {
+        "media": {
+          "id": "tt0133093",
+          "type": "movie",
+          "name": "The Matrix",
+          "releaseInfo": "1999"
+        },
+        "ids": ["tmdb:603"],
+        "pickedID": "tmdb:603",
+        "episode": null,
+        "meta": {},
+        "tmdb": null,
+        "key": ""
+      },
+      "expected": {
+        "type": "movie",
+        "id": "tmdb:603",
+        "ids": ["tmdb:603"],
+        "imdbId": null,
+        "tmdb": {
+          "id": 603,
+          "kind": "movie"
+        },
+        "title": "The Matrix",
+        "year": 1999,
+        "season": null,
+        "episode": null,
+        "absoluteEpisode": null,
+        "settings": {}
+      }
+    },
+    {
+      "name": "explicit-tmdb-kind-overrides-surface",
+      "input": {
+        "media": {
+          "id": "tt3398540",
+          "type": "series",
+          "name": "Dragon Ball Super",
+          "releaseInfo": "2015–2018"
+        },
+        "ids": ["tmdb:movie:603"],
+        "pickedID": "tmdb:movie:603",
+        "episode": null,
+        "meta": {},
+        "tmdb": null,
+        "key": ""
+      },
+      "expected": {
+        "type": "series",
+        "id": "tmdb:movie:603",
+        "ids": ["tmdb:movie:603"],
+        "imdbId": null,
+        "tmdb": {
+          "id": 603,
+          "kind": "movie"
+        },
+        "title": "Dragon Ball Super",
+        "year": 2015,
+        "season": null,
+        "episode": null,
+        "absoluteEpisode": null,
+        "settings": {}
+      }
+    },
+    {
+      "name": "declared-prefix-parses-numeric-leading-part",
+      "input": {
+        "media": {
+          "id": "tt0133093",
+          "type": "movie",
+          "name": "The Matrix",
+          "releaseInfo": "1999"
+        },
+        "ids": ["tmdb:movie:603extra"],
+        "pickedID": "tmdb:movie:603extra",
+        "episode": null,
+        "meta": {},
+        "tmdb": null,
+        "key": ""
+      },
+      "expected": {
+        "type": "movie",
+        "id": "tmdb:movie:603extra",
+        "ids": ["tmdb:movie:603extra"],
+        "imdbId": null,
+        "tmdb": {
+          "id": 603,
+          "kind": "movie"
+        },
+        "title": "The Matrix",
+        "year": 1999,
+        "season": null,
+        "episode": null,
+        "absoluteEpisode": null,
+        "settings": {}
+      }
+    },
+    {
+      "name": "empty-title-falls-back-to-cinemeta",
+      "input": {
+        "media": {
+          "id": "tt0133093",
+          "type": "movie",
+          "name": "  ",
+          "releaseInfo": null
+        },
+        "ids": ["tt0133093"],
+        "pickedID": "tt0133093",
+        "episode": null,
+        "meta": {
+          "moviedb_id": 603,
+          "name": "  The Matrix  ",
+          "releaseInfo": "1999–"
+        },
+        "tmdb": null,
+        "key": ""
+      },
+      "expected": {
+        "type": "movie",
+        "id": "tt0133093",
+        "ids": ["tt0133093"],
+        "imdbId": "tt0133093",
+        "tmdb": {
+          "id": 603,
+          "kind": "movie"
+        },
+        "title": "The Matrix",
+        "year": 1999,
+        "season": null,
+        "episode": null,
+        "absoluteEpisode": null,
+        "settings": {}
+      }
+    },
+    {
+      "name": "configured-tmdb-find-precedes-cinemeta-mapping",
+      "input": {
+        "media": {
+          "id": "tt0133093",
+          "type": "movie",
+          "name": "The Matrix",
+          "releaseInfo": "1999"
+        },
+        "ids": ["tt0133093"],
+        "pickedID": "tt0133093",
+        "episode": null,
+        "meta": {
+          "moviedb_id": 999
+        },
+        "tmdb": {
+          "id": 603,
+          "kind": "movie"
+        },
+        "key": "owned-fixture-key"
+      },
+      "expected": {
+        "type": "movie",
+        "id": "tt0133093",
+        "ids": ["tt0133093"],
+        "imdbId": "tt0133093",
+        "tmdb": {
+          "id": 603,
+          "kind": "movie"
+        },
+        "title": "The Matrix",
+        "year": 1999,
+        "season": null,
+        "episode": null,
+        "absoluteEpisode": null,
+        "settings": {}
+      }
+    },
+    {
+      "name": "anime-name-and-verified-imdb-context",
+      "input": {
+        "media": {
+          "id": "kitsu:9979",
+          "type": "anime",
+          "name": "Dragon Ball Super",
+          "releaseInfo": "2015–2018",
+          "imdbID": "tt3398540"
+        },
+        "ids": ["kitsu:9979:99", "tt3398540:5:23"],
+        "pickedID": "kitsu:9979:99",
+        "episode": {
+          "id": "kitsu:9979:99",
+          "season": 5,
+          "episode": 23,
+          "name": "Episode name",
+          "absoluteNumber": 99
+        },
+        "meta": {
+          "moviedb_id": 62715
+        },
+        "tmdb": null,
+        "key": ""
+      },
+      "expected": {
+        "type": "series",
+        "id": "kitsu:9979:99",
+        "ids": ["kitsu:9979:99", "tt3398540:5:23"],
+        "imdbId": "tt3398540",
+        "tmdb": {
+          "id": 62715,
+          "kind": "tv"
+        },
+        "title": "Dragon Ball Super",
+        "year": 2015,
+        "season": 5,
+        "episode": 23,
+        "absoluteEpisode": 99,
+        "settings": {}
+      }
+    },
+    {
+      "name": "unmapped-kitsu-keeps-raw-coordinates",
+      "input": {
+        "media": {
+          "id": "kitsu:9979",
+          "type": "anime",
+          "name": "Dragon Ball Super",
+          "releaseInfo": "2015–2018"
+        },
+        "ids": ["kitsu:9979:99"],
+        "pickedID": "kitsu:9979:99",
+        "episode": {
+          "id": "kitsu:9979:99",
+          "season": 1,
+          "episode": 99,
+          "absoluteNumber": 99
+        },
+        "meta": {},
+        "tmdb": null,
+        "key": ""
+      },
+      "expected": {
+        "type": "series",
+        "id": "kitsu:9979:99",
+        "ids": ["kitsu:9979:99"],
+        "imdbId": null,
+        "tmdb": null,
+        "title": "Dragon Ball Super",
+        "year": 2015,
+        "season": 1,
+        "episode": 99,
+        "absoluteEpisode": 99,
+        "settings": {}
+      }
+    },
+    {
+      "name": "selected-episode-imdb-context-precedes-series",
+      "input": {
+        "media": {
+          "id": "tt3398540",
+          "type": "series",
+          "name": "Dragon Ball Super",
+          "releaseInfo": "2015–2018",
+          "imdbID": "tt1111111"
+        },
+        "ids": ["tt3398540:5:23"],
+        "pickedID": "tt3398540:5:23",
+        "episode": {
+          "id": "tt3398540:5:23",
+          "season": 5,
+          "episode": 23,
+          "imdbID": "tt3398540"
+        },
+        "meta": {
+          "moviedb_id": 62715
+        },
+        "tmdb": null,
+        "key": ""
+      },
+      "expected": {
+        "type": "series",
+        "id": "tt3398540:5:23",
+        "ids": ["tt3398540:5:23"],
+        "imdbId": "tt3398540",
+        "tmdb": {
+          "id": 62715,
+          "kind": "tv"
+        },
+        "title": "Dragon Ball Super",
+        "year": 2015,
+        "season": 5,
+        "episode": 23,
+        "absoluteEpisode": null,
+        "settings": {}
+      }
+    }
+  ]
+}

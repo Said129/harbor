@@ -6,6 +6,7 @@ struct HarborPluginHealth: Equatable, Sendable {
     var milliseconds: Int?
     var count: Int?
     var error: String?
+    var skipped: String?
     var title: String?
     var requests = 0
     var seenHosts: [String] = []
@@ -71,6 +72,15 @@ private struct HarborObservedPluginTransport: HarborPluginHostTransport {
         for (_, value) in operations where value.0 == id { value.1.cancel() }
         slots.removeValue(forKey: id)?.runtime.dispose()
         stopEmptySweep()
+    }
+    func cancelCalls() { operations.values.forEach { $0.1.cancel() } }
+    func recordSkip(_ id: String, title: String?, reason: String) {
+        guard !disposed, manager.ready, scope == currentScope() else { return }
+        var status = health[id] ?? .init()
+        status.lastAt = Date().timeIntervalSince1970 * 1000; status.milliseconds = 0; status.count = 0
+        status.error = nil; status.skipped = reason; status.title = title.map { String($0.prefix(500)) }; status.requests = 0
+        health[id] = status
+        log(id, level: "info", text: reason)
     }
     func dispose() {
         guard !disposed else { return }; disposed = true
@@ -145,7 +155,9 @@ private struct HarborObservedPluginTransport: HarborPluginHostTransport {
             guard sameInstallation(plugin, checking: checking) else { throw CancellationError() }
             var status = health[id] ?? .init()
             status.lastAt = Date().timeIntervalSince1970 * 1000; status.milliseconds = elapsed(started)
-            status.count = value.array.count; status.error = nil; status.title = request["title"].string
+            if case .array(let streams) = value { status.count = streams.count }
+            else { status.count = value["streams"].array.count }
+            status.error = nil; status.skipped = nil; status.title = request["title"].string
             status.requests = max(0, slot.requests - requestsBefore); health[id] = status
             log(id, level: "info", text: "\(status.count ?? 0) streams · \(status.milliseconds ?? 0) ms · \(status.requests) requests")
             do { try await manager.recordRuntimeOutcome(id, expected: plugin, succeeded: true) }
@@ -158,7 +170,7 @@ private struct HarborObservedPluginTransport: HarborPluginHostTransport {
             let code = (error as? HarborPluginRuntimeError)?.code ?? (error as? HarborPluginRepositoryError)?.code ?? "plugin-runtime"
             var status = health[id] ?? .init()
             status.lastAt = Date().timeIntervalSince1970 * 1000; status.milliseconds = elapsed(started)
-            status.count = nil; status.error = code; status.title = request["title"].string
+            status.count = nil; status.error = code; status.skipped = nil; status.title = request["title"].string
             status.requests = max(0, slot.requests - requestsBefore); health[id] = status
             log(id, level: "error", text: code)
             do { try await manager.recordRuntimeOutcome(id, expected: plugin, succeeded: false) }

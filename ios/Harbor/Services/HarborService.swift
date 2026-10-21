@@ -126,7 +126,9 @@ struct HarborService: Sendable {
         return CatalogRow(plan: plan, metas: parsed, receivedCount: values.count)
     }
 
-    func streams(_ media: Media, videoID: String, addons: [Addon], season: Int? = nil, episode: Int? = nil, unfiltered: Bool = false) async throws -> ([StreamOffer], [String]) {
+    func streams(_ media: Media, videoID: String, addons: [Addon], season: Int? = nil, episode: Int? = nil, unfiltered: Bool = false,
+        pluginSource: (@Sendable () async throws -> HarborPluginStreamBatch)? = nil) async throws -> ([StreamOffer], [String]) {
+        async let pluginResponse = Self.pluginResponse(pluginSource)
         var requested: [RequestPlan] = []
         let kind = media.type == "anime" ? "series" : media.type
         for id in StreamRequestPolicy.ids(media, videoID: videoID, season: season, episode: episode) {
@@ -142,10 +144,20 @@ struct HarborService: Sendable {
                 raw.append(contentsOf: streams)
             } catch { errors.append("stream-response") }
         }
+        let plugins = try await pluginResponse
+        raw.append(contentsOf: plugins.streams); errors.append(contentsOf: plugins.errors)
+        try Task.checkCancellation()
         let preferences = await StreamPreferences.shared.configuration()
         let trust = (unfiltered ? StreamFilterConfiguration(level: "off", addonOrder: preferences.addonOrder) : preferences).trust(media, season: season, episode: episode)
         let result: JSONValue = try await core.call("rank", ["streams": .array(StreamRequestPolicy.deduplicated(raw)), "trust": trust, "score": .object(["mediaKind": .string(kind), "respectAddonOrder": .bool(preferences.addonOrder)])])
         return (result["picker"]["all"].array.enumerated().map { StreamOffer(id: $0.offset, raw: $0.element) }, errors)
+    }
+
+    private static func pluginResponse(_ provider: (@Sendable () async throws -> HarborPluginStreamBatch)?) async throws -> HarborPluginStreamBatch {
+        guard let provider else { return .init() }
+        do { return try await provider() }
+        catch is CancellationError { throw CancellationError() }
+        catch { try Task.checkCancellation(); return .init(errors: ["plugin-source"]) }
     }
 
     func resolve(_ offer: StreamOffer) async throws -> PlaybackSource {
