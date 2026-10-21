@@ -18,7 +18,9 @@ Los valores normales permanecen en el documento del catálogo. `HarborPluginSecr
 
 Una configuración nueva se prepara en una revisión inmutable de Keychain. La escritura atómica del catálogo selecciona esa revisión y sus nombres de claves secretas, sin incluir los valores. Si la escritura falla, se conserva la configuración anterior y se elimina únicamente la revisión preparada que no llegó a confirmarse. Si la escritura ya terminó y después cambió el perfil, se conserva la revisión confirmada aunque se rechace su publicación en la interfaz antigua. La desinstalación y la eliminación del repositorio limpian las referencias activas. Un fallo de limpieza queda señalado en `secretCleanupPending`; todavía falta conectar el reintento persistente al mantenimiento del gestor.
 
-La configuración completa solo se reconstruye para el worker del espacio y la activación vigentes. Los campos ausentes conservan sus secretos anteriores; un campo de contraseña vacío lo elimina. Los campos y sus tipos deben proceder del método `settings` real al conectar el editor. No hay todavía un editor nuevo ni se presentan interruptores sin comportamiento.
+La configuración completa solo se reconstruye para el worker del espacio y la activación vigentes. Los campos ausentes conservan sus secretos anteriores; un campo de contraseña vacío lo elimina. `settingsFields` lee el método `settings` del worker real en una instancia desechable. Conserva la denegación de HTTP de Desktop y su ruta gRPC separada. Desechar el gestor cancela también esta lectura. No hay todavía un editor nuevo ni se presentan interruptores sin comportamiento.
+
+`build-plugin-settings.mjs` verifica el hash del módulo original y extrae su función pura `normalizeField`. Se conserva como un programa con hash y referencia comprobados, separado del worker. JavaScriptCore lo ejecuta fuera del hilo de interfaz usando únicamente JSON como entrada; no ejecuta código del plugin ni recibe objetos nativos. Así mantiene las conversiones de valores, contraseñas, selectores, interruptores, cabeceras y mensajes informativos del módulo original. El generador ya ejecutó 14 entradas propias de referencia en Node. Esa ejecución no demuestra aún la ejecución nativa.
 
 ## Comprobaciones nuevas
 
@@ -34,5 +36,7 @@ Ocho casos nativos preparados cubren:
 - Revisiones reales de Keychain, aislamiento por espacio y plugin, y eliminación de una revisión sin afectar a otra.
 
 Los documentos y respuestas de red de estas pruebas son propios. Varias sondas utilizan el worker real; el caso de Keychain utiliza el almacén real. Todavía no se han ejecutado con el SDK de Apple y no prueban un proveedor público instalado, la interfaz de administración ni rendimiento físico.
+
+Otros tres casos nuevos comprueban las 14 entradas del normalizador en JavaScriptCore, la lectura de campos mediante el worker real con denegación HTTP y la ruta gRPC original, y la cancelación de esa lectura al desechar el gestor sin modificar lo instalado. La selección contiene once casos nuevos y cuatro casos afectados por la corrección de entrega asíncrona a WebKit. Todos siguen pendientes de su ejecución Apple. Los otros diez resultados nativos y los dos de Rust de la validación de red se conservan; no se repiten la consulta pública ni las pruebas de áreas intactas.
 
 Siguen pendientes el enlace definitivo con el contexto del hogar/perfil, el editor de campos reales, el pool, la salud y pausa automática, los productores de streams y subtítulos, los adaptadores de manga y ebook y las pantallas completas. Continúa el resto del alcance funcional, visual y de animaciones de Desktop. No hay una IPA nueva ni una aprobación global del port.

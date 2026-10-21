@@ -31,7 +31,7 @@ import Observation
     private let secrets: any HarborPluginSecrets
     private let probe: any HarborStreamPluginProbing
     private let namespace: String
-    private var operations: [String: Task<Void, Error>] = [:]
+    private var operations: [String: @Sendable () -> Void] = [:]
     private var disposed = false
     private(set) var document: HarborPluginCatalogDocument
     private(set) var ready = false
@@ -54,7 +54,7 @@ import Observation
 
     func dispose() {
         guard !disposed else { return }; disposed = true
-        operations.values.forEach { $0.cancel() }; operations = [:]
+        operations.values.forEach { $0() }; operations = [:]
         document.plugins.forEach { invalidateRuntime($0.id) }
         document = .init(namespace: namespace); ready = false
     }
@@ -203,6 +203,26 @@ import Observation
         return try await configuration(plugin)
     }
 
+    func settingsFields(_ id: String) async throws -> [HarborPluginSettingsField] {
+        try await perform("settings:" + id) {
+            guard let plugin = try await self.snapshot().plugins.first(where: { $0.id == id }) else { throw HarborPluginRepositoryError("plugin-not-installed") }
+            let settings = try await self.configuration(plugin)
+            let transport = HarborPluginSettingsTransport(wrapped: HarborNativePluginTransport(
+                policy: .reading(baseURL: nil, blockedHosts: self.client.blockedHosts), network: self.client.network))
+            let runtime = HarborPluginRuntime(id: id, name: plugin.entry.name, source: plugin.code,
+                format: plugin.entry.format == .providerScript ? .providerScript : .harbor, configuration: .object(settings),
+                scope: self.scope, currentScope: self.currentScope, transport: transport, sourceID: plugin.entry.id)
+            defer { runtime.dispose() }
+            let metadata = try await runtime.metadata()
+            guard metadata["methods"].array.compactMap(\.string).contains("settings") else { return [] }
+            let raw = try await runtime.call("settings", timeout: 10)
+            let fields = try await HarborPluginSettings.fields(raw)
+            try self.validate()
+            guard try await self.snapshot().plugins.first(where: { $0.id == id }) == plugin else { throw HarborPluginRepositoryError("plugin-candidate-changed") }
+            return fields
+        }
+    }
+
     private func configuration(_ plugin: HarborInstalledStreamPlugin?) async throws -> [String: JSONValue] {
         try validate(); guard let plugin else { return [:] }
         var values = plugin.settingsValues
@@ -241,11 +261,11 @@ import Observation
             catch let error as HarborPluginRepositoryError where error.code == "plugin-store-changed" && attempt < 3 { continue }
         }
     }
-    private func perform(_ key: String, operation: @escaping @MainActor () async throws -> Void) async throws {
+    private func perform<Value: Sendable>(_ key: String, operation: @escaping @MainActor () async throws -> Value) async throws -> Value {
         try validate(); guard ready else { throw HarborPluginRepositoryError("plugin-store-unavailable") }
         guard operations[key] == nil else { throw HarborPluginRepositoryError("plugin-busy") }
-        let task = Task { try await operation(); try self.validate() }
-        operations[key] = task; defer { operations.removeValue(forKey: key) }
-        try await withTaskCancellationHandler { try await task.value } onCancel: { task.cancel() }
+        let task = Task { let value = try await operation(); try self.validate(); return value }
+        operations[key] = { task.cancel() }; defer { operations.removeValue(forKey: key) }
+        return try await withTaskCancellationHandler { try await task.value } onCancel: { task.cancel() }
     }
 }

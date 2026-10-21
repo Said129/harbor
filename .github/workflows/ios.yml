@@ -316,7 +316,7 @@ jobs:
           python3 scripts/ios/record-plugin-network-rust.py
           test "$test_status" -eq 0
           cargo clippy --manifest-path harbor-ios-bridge/Cargo.toml --locked --all-targets -- -D warnings 2>&1 | tee ios/build/logs/plugin-network-rust-clippy.log
-      - name: Select only the new stream plugin manager contracts
+      - name: Select new plugin manager contracts and affected asynchronous delivery
         if: ${{ inputs.validation_scope == 'plugin-manager' }}
         shell: bash
         run: |
@@ -468,7 +468,7 @@ jobs:
           if [[ "${{ inputs.validation_scope }}" == "plugin-manager" ]]; then
             selection=()
             while IFS= read -r identifier; do selection+=("-only-testing:$identifier"); done < ios/build/plugin-manager-selection.txt
-            test ${#selection[@]} -eq 8
+            test ${#selection[@]} -eq 11
           elif [[ "${{ inputs.validation_scope }}" == "plugin-network" ]]; then
             selection=()
             while IFS= read -r identifier; do selection+=("-only-testing:$identifier"); done < ios/build/plugin-network-selection.txt
@@ -572,9 +572,9 @@ jobs:
             fi
           fi
           xcodebuild -project ios/Harbor.xcodeproj -scheme Harbor -configuration Debug -destination "platform=iOS Simulator,id=$IOS_SIMULATOR,arch=$IOS_SIMULATOR_ARCH" -derivedDataPath ios/build/DerivedData -clonedSourcePackagesDirPath ios/build/SourcePackages -resultBundlePath ios/build/Tests.xcresult "${selection[@]}" -parallel-testing-enabled NO CODE_SIGNING_ALLOWED=YES CODE_SIGN_IDENTITY=- test 2>&1 | tee ios/build/logs/tests.log
-      - name: Authenticate the eight actual stream plugin manager results
+      - name: Authenticate the fifteen actual manager settings and affected delivery results
         if: ${{ always() && inputs.validation_scope == 'plugin-manager' && (steps.offline_tests.conclusion == 'success' || steps.offline_tests.conclusion == 'failure') }}
-        run: python3 scripts/ios/record-profile-model-results.py --bundle ios/build/Tests.xcresult --expected ios/build/preserved-plugin-manager.json --count 8 --output ios/build/canonical/PluginManagerModels.json
+        run: python3 scripts/ios/record-profile-model-results.py --bundle ios/build/Tests.xcresult --expected ios/build/preserved-plugin-manager.json --count 15 --output ios/build/canonical/PluginManagerModels.json
       - name: Authenticate the thirteen actual native network model results
         if: ${{ always() && inputs.validation_scope == 'plugin-network' && (steps.offline_tests.conclusion == 'success' || steps.offline_tests.conclusion == 'failure') }}
         run: python3 scripts/ios/record-profile-model-results.py --bundle ios/build/Tests.xcresult --expected ios/build/preserved-plugin-network.json --count 13 --output ios/build/canonical/PluginNetworkModels.json

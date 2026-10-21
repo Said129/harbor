@@ -1,5 +1,11 @@
 # Transporte nativo de plugins
 
+## Resultado real y corrección de advertencia, 21 de octubre
+
+La ejecución `39511608179`, fuente `e5cb4c979974d73a0ca377364e36fd41fa99fc2e`, terminó y aprobó sus trece casos Swift, dos casos Rust y la consulta pública mediante TLS/HTTP2: dieciséis ejecuciones reales. Se autenticaron los árboles originales de Xcode, el registro público archivado y el registro Rust. El registro público contiene la ejecución de 0,552 segundos que no aparece en el log agregado de GitHub; la recogida conserva esa procedencia por separado.
+
+La puerta de advertencias detectó `consider using asynchronous alternative function` en `HarborPluginRuntime.swift:266`, al entregar una respuesta al worker. La fuente siguiente usa `await evaluateJavaScript`, conserva el tratamiento de fallos y selecciona únicamente sus cuatro recorridos afectados junto a los once casos nuevos de gestor y ajustes. La compilación corregida todavía debe demostrar la eliminación de la advertencia. No se modifica el resultado histórico ni se presenta la puerta anterior como aprobada. No hay una IPA nueva ni una aprobación global del port.
+
 La referencia sigue siendo Harbor Desktop 0.9.132, `0834340cec5531650bfe78cd628628702e636987`: `manga/plugins/host-http.ts`, `worker-host.ts`, `same-site-host.ts`, `streams/plugins/runtime.ts` y las reglas de redirección y red pública de `src-tauri/src/http_fetch.rs`.
 
 ## Implementación en validación
@@ -28,4 +34,4 @@ Se adquirieron Cargo, rustc y rustfmt oficiales en una carpeta de herramientas d
 
 `HarborPluginRepositoryClient` conecta el transporte con las descargas de manifiestos, listas, fuentes e iconos. Conserva las alternativas de GitHub, la detección previa de duplicados, la deduplicación de listas, las listas útiles cuando otra falla, el tamaño UTF-16 de fuentes, ETag y los bytes binarios de iconos. La cancelación se propaga sin iniciar la alternativa siguiente. Estos cuatro contratos nuevos siguen pendientes de ejecución Apple. El cliente devuelve candidatos; aún no los instala ni sustituye al gestor y su sonda real.
 
-El [gestor de streams](PLUGIN_MANAGER_0_9_132.md) ya conecta estos componentes con la sonda de instalación, el catálogo y las revisiones de contraseñas de Keychain; sus ocho casos nuevos todavía necesitan ejecución Apple. Siguen pendientes el enlace definitivo con el contexto del hogar/perfil, el editor, el pool y los productores reales. Las pantallas de Plugins y el resto del alcance completo siguen pendientes. No hay una IPA nueva ni una aprobación global de estabilidad, compatibilidad visual o rendimiento físico.
+El [gestor de streams](PLUGIN_MANAGER_0_9_132.md) ya conecta estos componentes con la sonda de instalación, el catálogo y las revisiones de contraseñas de Keychain; sus ocho casos nuevos y tres adicionales de lectura de campos todavía necesitan ejecución Apple. Siguen pendientes el enlace definitivo con el contexto del hogar/perfil, el editor, el pool y los productores reales. Las pantallas de Plugins y el resto del alcance completo siguen pendientes. No hay una IPA nueva ni una aprobación global de estabilidad, compatibilidad visual o rendimiento físico.

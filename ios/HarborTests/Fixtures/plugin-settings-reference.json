@@ -1,0 +1,326 @@
+{
+  "schema": 1,
+  "reference": "0834340cec5531650bfe78cd628628702e636987",
+  "inputs": {
+    "src/lib/streams/plugins/runtime.ts": "9b41fb8a2c012b136efd9bef927f6e9626f4f8f2371b80999a087c71dae7bdf2"
+  },
+  "cases": [
+    {
+      "input": null,
+      "expected": []
+    },
+    {
+      "input": {},
+      "expected": []
+    },
+    {
+      "input": [],
+      "expected": []
+    },
+    {
+      "input": {
+        "fields": "invalid"
+      },
+      "expected": []
+    },
+    {
+      "input": [
+        {
+          "type": "header",
+          "label": "Account"
+        },
+        {
+          "type": "info",
+          "label": "Owned information",
+          "description": "ignored"
+        }
+      ],
+      "expected": [
+        {
+          "type": "header",
+          "label": "Account"
+        },
+        {
+          "type": "info",
+          "label": "Owned information"
+        }
+      ]
+    },
+    {
+      "input": [
+        {
+          "type": "header",
+          "label": ""
+        },
+        {
+          "type": "info",
+          "label": 2
+        },
+        {
+          "type": "unknown",
+          "key": "x"
+        },
+        null,
+        "bad",
+        []
+      ],
+      "expected": []
+    },
+    {
+      "input": [
+        {
+          "type": "text",
+          "key": "token",
+          "label": "Token",
+          "isPassword": true,
+          "placeholder": "Owned placeholder",
+          "description": "Owned description",
+          "defaultValue": ""
+        }
+      ],
+      "expected": [
+        {
+          "type": "text",
+          "key": "token",
+          "label": "Token",
+          "placeholder": "Owned placeholder",
+          "description": "Owned description",
+          "isPassword": true,
+          "defaultValue": ""
+        }
+      ]
+    },
+    {
+      "input": [
+        {
+          "type": "text",
+          "key": "secret",
+          "secret": true
+        },
+        {
+          "type": "text",
+          "key": "plain",
+          "defaultValue": false
+        },
+        {
+          "type": "text",
+          "key": "",
+          "label": "Missing key"
+        }
+      ],
+      "expected": [
+        {
+          "type": "text",
+          "key": "secret",
+          "label": "secret",
+          "isPassword": true
+        },
+        {
+          "type": "text",
+          "key": "plain",
+          "label": "plain",
+          "isPassword": false
+        }
+      ]
+    },
+    {
+      "input": {
+        "fields": [
+          {
+            "type": "toggle",
+            "key": "one",
+            "defaultValue": false
+          },
+          {
+            "type": "boolean",
+            "key": "two",
+            "defaultValue": true
+          },
+          {
+            "type": "checkbox",
+            "key": "three",
+            "defaultValue": 1
+          }
+        ]
+      },
+      "expected": [
+        {
+          "type": "toggle",
+          "key": "one",
+          "label": "one",
+          "defaultValue": false
+        },
+        {
+          "type": "toggle",
+          "key": "two",
+          "label": "two",
+          "defaultValue": true
+        },
+        {
+          "type": "toggle",
+          "key": "three",
+          "label": "three",
+          "defaultValue": false
+        }
+      ]
+    },
+    {
+      "input": [
+        {
+          "type": "select",
+          "key": "quality",
+          "options": [
+            {
+              "value": 1080,
+              "label": "Full HD"
+            },
+            {
+              "value": 720
+            },
+            {
+              "value": 0
+            },
+            {
+              "value": false
+            },
+            {
+              "value": null
+            },
+            {
+              "value": ""
+            },
+            "bad"
+          ],
+          "defaultValue": 720
+        }
+      ],
+      "expected": [
+        {
+          "type": "select",
+          "key": "quality",
+          "label": "quality",
+          "options": [
+            {
+              "label": "Full HD",
+              "value": "1080"
+            },
+            {
+              "label": "720",
+              "value": "720"
+            },
+            {
+              "label": "0",
+              "value": "0"
+            },
+            {
+              "label": "false",
+              "value": "false"
+            }
+          ],
+          "defaultValue": "720"
+        }
+      ]
+    },
+    {
+      "input": [
+        {
+          "type": "select",
+          "key": "coercion",
+          "options": [
+            {
+              "value": 1e-7
+            },
+            {
+              "value": 100000000000000000000
+            },
+            {
+              "value": [1, null, "x"]
+            },
+            {
+              "value": {}
+            },
+            {
+              "value": []
+            }
+          ],
+          "defaultValue": false
+        }
+      ],
+      "expected": [
+        {
+          "type": "select",
+          "key": "coercion",
+          "label": "coercion",
+          "options": [
+            {
+              "label": "1e-7",
+              "value": "1e-7"
+            },
+            {
+              "label": "100000000000000000000",
+              "value": "100000000000000000000"
+            },
+            {
+              "label": "1,,x",
+              "value": "1,,x"
+            },
+            {
+              "label": "[object Object]",
+              "value": "[object Object]"
+            }
+          ],
+          "defaultValue": "false"
+        }
+      ]
+    },
+    {
+      "input": [
+        {
+          "type": "select",
+          "key": "empty",
+          "options": []
+        },
+        {
+          "type": "select",
+          "key": "missing"
+        }
+      ],
+      "expected": []
+    },
+    {
+      "input": [
+        {
+          "type": "text",
+          "key": " white space ",
+          "label": " ",
+          "defaultValue": "العربية 日本語"
+        }
+      ],
+      "expected": [
+        {
+          "type": "text",
+          "key": " white space ",
+          "label": " ",
+          "isPassword": false,
+          "defaultValue": "العربية 日本語"
+        }
+      ]
+    },
+    {
+      "input": [
+        {
+          "type": "select",
+          "key": "invalid-coercion",
+          "options": [
+            {
+              "value": {
+                "toString": 7
+              }
+            }
+          ]
+        }
+      ],
+      "error": "plugin-settings-normalization"
+    }
+  ]
+}

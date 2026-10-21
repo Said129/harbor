@@ -264,9 +264,8 @@ private struct PluginRuntimeAssets: Decodable {
             return "globalThis.harborPluginHost.bridgeResult(" + text + ")"
         }.value
         try Task.checkCancellation(); try validate()
-        web?.evaluateJavaScript(script) { [weak self] _, error in
-            if error != nil { self?.fail(HarborPluginRuntimeError("plugin-bridge")) }
-        }
+        do { _ = try await web?.evaluateJavaScript(script) }
+        catch { fail(HarborPluginRuntimeError("plugin-bridge")) }
     }
 
     func webViewWebContentProcessDidTerminate(_ webView: WKWebView) { fail(HarborPluginRuntimeError("plugin-process")) }
