@@ -5,6 +5,33 @@ from pathlib import Path
 import re
 
 requested = os.environ.get('HARBOR_NATIVE_SELECTION', '').strip()
+bulk = ['HarborTests.HarborReadingBulkTests/' + method for method in [
+    'testBulkContinuesAfterOneFailureReportsRealProgressUpdatesAndRemovesOnlyInstalledEntries',
+    'testAllFailedBulkShowsFailureAndCanRetryWithoutDuplicatingSources',
+    'testCancellingBulkRejectsTheHeldDownloadAndLeavesThePreviousCatalog']]
+if requested and set(item.strip().replace('HarborTests/', 'HarborTests.', 1) for item in requested.split(',')) == set(bulk):
+    selected = [item.strip().replace('HarborTests/', 'HarborTests.', 1) for item in requested.split(',')]
+    assert len(selected) == len(set(selected)) == 3
+    seed = 'HarborTests.HarborReadingPluginInterfaceSeedTests/testPrepareOwnedBulkRepositoryWithoutInstallingItsEntries'
+    ui = ['HarborUITests.HarborReadingBulkNavigationTests/testReadingBulkProgressPartialFailureAndConfirmedUninstallOn' + device for device in ['IPhone', 'IPad']]
+    for case in bulk + [seed] + ui:
+        target, tail = case.split('.', 1); suite, method = tail.split('/')
+        assert re.search(r'\bfunc ' + method + r'\(', Path('ios/' + target + '/' + suite + '.swift').read_text('utf-8'))
+    plan = dict(source=os.environ.get('GITHUB_SHA', 'working-tree'), block='reading-bulk', selected_case_count=3,
+        pending_native_cases=bulk, new_native_cases=3, native_preparation_case=seed, ui_cases=ui,
+        expected_total_executions=7, expected_original_images=8,
+        required_original_captures=['reading-bulk-' + state + '-' + device for device in ['iphone', 'ipad'] for state in [
+            'before', 'progress', 'partial', 'uninstalled']],
+        approved_predecessor_cases_repeated=False, prior_preparation_repeated_only_for_fresh_devices=True,
+        unrelated_approved_cases_selected=False, existing_rust_tests_repeated=False, full_desktop_parity_complete=False, ipa_requested=False)
+    directory = Path('ios/build'); directory.mkdir(parents=True, exist_ok=True)
+    (directory / 'preserved-plugin-integration.json').write_text(json.dumps(plan, indent=2) + '\n', 'utf-8')
+    (directory / 'plugin-integration-selection.txt').write_text('\n'.join(case.replace('.', '/', 1) for case in bulk) + '\n', 'utf-8')
+    if os.environ.get('GITHUB_ENV'):
+        with open(os.environ['GITHUB_ENV'], 'a', encoding='utf-8') as output: output.write('HARBOR_PLUGIN_UI_REQUIRED=true\n')
+    print('3 new reading bulk models, 2 fresh preparations, 2 new phone/tablet routes and 8 captures. No approved suite replay. No IPA.')
+    raise SystemExit(0)
+
 catalog = ['HarborTests.EBookCatalogTests/' + method for method in [
     'testActualJavaScriptCoreMatchesAllTwentyOnePinnedDesktopCatalogCases',
     'testGroupedNativeBooksKeepEveryPlayableRouteAndPersistOldShelves',
@@ -43,6 +70,34 @@ activity_retries = ['HarborTests.HarborPluginActivityTests/' + method for method
     'testRealCheckUsesDesktopSampleFreshConfigurationAndLastTitleWithVisibleActivity']]
 requested_set = set(item.strip().replace('HarborTests/', 'HarborTests.', 1) for item in requested.split(',')) if requested else set()
 reading_repair = requested_set == set(reading + activity_retries)
+if requested and requested_set == set(reading + activity_retries + catalog + bulk):
+    cases = reading + activity_retries + catalog + bulk
+    assert len(cases) == 13 and len(requested.split(',')) == 13
+    seed = 'HarborTests.HarborReadingPluginInterfaceSeedTests/testPrepareAllPendingReadingInterfacesInOneFreshInstallation'
+    ui = ['HarborUITests.HarborCombinedReadingNavigationTests/testAllPendingReadingCatalogAndBulkInterfacesOn' + device for device in ['IPhone', 'IPad']]
+    for case in cases + [seed] + ui:
+        target, tail = case.split('.', 1); suite, method = tail.split('/')
+        assert re.search(r'\bfunc ' + method + r'\(', Path('ios/' + target + '/' + suite + '.swift').read_text('utf-8'))
+    captures = []
+    for device in ['iphone', 'ipad']:
+        captures += ['reading-plugin-' + state + '-' + device for state in ['manga-installed', 'manga-repository', 'books-installed', 'manga-search', 'manga-reader', 'book-search', 'book-reader', 'book-next']]
+        captures += ['ebook-catalog-' + state + '-' + device for state in ['grouped', 'detail', 'alternate-reader', 'filters', 'manga-tag']]
+        captures += ['reading-bulk-' + state + '-' + device for state in ['before', 'progress', 'partial', 'uninstalled']]
+    plan = dict(source=os.environ.get('GITHUB_SHA', 'working-tree'), block='reading-consolidated', selected_case_count=13,
+        pending_native_cases=cases, native_preparation_case=seed, ui_cases=ui, expected_total_executions=17,
+        expected_original_images=34, required_original_captures=captures,
+        reading_predecessor_run=39666426032, reading_predecessor_actual_executions=0,
+        cancelled_catalog_run=39670150636, failed_activity_cases=activity_retries,
+        approved_predecessor_cases_repeated=False, prior_preparation_repeated_only_for_fresh_devices=True,
+        unrelated_approved_cases_selected=False, existing_rust_tests_repeated=False, full_desktop_parity_complete=False, ipa_requested=False)
+    directory = Path('ios/build'); directory.mkdir(parents=True, exist_ok=True)
+    (directory / 'preserved-plugin-integration.json').write_text(json.dumps(plan, indent=2) + '\n', 'utf-8')
+    (directory / 'plugin-integration-selection.txt').write_text('\n'.join(case.replace('.', '/', 1) for case in cases) + '\n', 'utf-8')
+    if os.environ.get('GITHUB_ENV'):
+        with open(os.environ['GITHUB_ENV'], 'a', encoding='utf-8') as output: output.write('HARBOR_PLUGIN_UI_REQUIRED=true\n')
+    print('Consolidated: 13 unexecuted/new/actually failed models, 2 fresh preparations, 2 complete reading routes and 34 captures. Retain all previously passed unrelated behavior. No IPA.')
+    raise SystemExit(0)
+
 if requested and (requested_set == set(reading) or reading_repair):
     cases = reading + activity_retries if reading_repair else reading
     selected = [item.strip().replace('HarborTests/', 'HarborTests.', 1) for item in requested.split(',')]

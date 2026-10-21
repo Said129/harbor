@@ -79,7 +79,7 @@ struct EBooksView: View {
             .task(id: app.accountOperationScope) {
                 do { reading = try await app.openReadingPlugins() }
                 catch is CancellationError { return }
-                catch { error = HarborPluginMessages.error(error) }
+                catch { self.error = HarborPluginMessages.error(error) }
             }
             .onChange(of: providers.map(\.id)) { _, ids in if !["gutenberg", "all"].contains(source), !ids.contains(source) { source = "all" } }
             .task(id: titleLanguage) { try? await updateCatalog(token: generation) }

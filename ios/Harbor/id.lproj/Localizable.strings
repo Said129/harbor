@@ -758,6 +758,7 @@
 "Install addon" = "Instal addon";
 "Install all" = "Pasang semua";
 "Installed" = "Terinstal";
+"Installing {done} of {total}" = "Memasang {done} dari {total}";
 "Instant" = "Instan";
 "Instant starts the best-ranked stream straight away. Pick a source opens the stream list every time, so you choose the release, quality and provider yourself." = "Instan langsung memutar stream dengan peringkat terbaik. Pilih sumber membuka daftar stream setiap kali, sehingga Anda dapat memilih sendiri rilis, kualitas, dan penyedianya.";
 "Instantáneo" = "Instan";
@@ -1240,6 +1241,7 @@
 "Reminder" = "Reminder";
 "Remove" = "Hapus";
 "Remove addon" = "Remove addon";
+"Remove all" = "Hapus semua";
 "Remove from Continue Watching" = "Hapus dari Lanjutkan Menonton";
 "Remove from Suwayomi library" = "Remove from Suwayomi library";
 "Remove from continue watching" = "Remove from continue watching";
@@ -1704,6 +1706,7 @@
 "Upcoming Anime" = "Anime Mendatang";
 "Upcoming Season" = "Musim Mendatang";
 "Update" = "Perbarui";
+"Update all" = "Perbarui semua";
 "Upload a picture of your own, or pick one from the Harbor catalog." = "Unggah gambar Anda sendiri atau pilih dari katalog Harbor.";
 "Upload photo" = "Unggah foto";
 "Usa el servidor que ya tienes configurado en Harbor. En la red local, permite el acceso cuando iOS lo solicite." = "Use your configured Harbor server. Allow local network access when iOS asks.";

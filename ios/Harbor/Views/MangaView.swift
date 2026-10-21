@@ -104,7 +104,7 @@ struct MangaView: View {
             .task(id: app.accountOperationScope) {
                 do { reading = try await app.openReadingPlugins() }
                 catch is CancellationError { return }
-                catch { error = HarborPluginMessages.error(error) }
+                catch { self.error = HarborPluginMessages.error(error) }
             }
             .task(id: signature) { await browse(next: false) }
             .task(id: tagSignature) { await loadTags() }

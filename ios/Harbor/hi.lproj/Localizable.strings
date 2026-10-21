@@ -758,6 +758,7 @@
 "Install addon" = "ऐडऑन इंस्टॉल करें";
 "Install all" = "सभी इंस्टॉल करें";
 "Installed" = "इंस्टॉल हो गया";
+"Installing {done} of {total}" = "{total} में से {done} इंस्टॉल हो रहे हैं";
 "Instant" = "तुरंत";
 "Instant starts the best-ranked stream straight away. Pick a source opens the stream list every time, so you choose the release, quality and provider yourself." = "तुरंत प्ले सबसे ऊपर वाली स्ट्रीम सीधे शुरू करता है। स्रोत चुनें हर बार स्ट्रीम सूची खोलता है, ताकि आप रिलीज़, गुणवत्ता और प्रदाता खुद चुन सकें।";
 "Instantáneo" = "तुरंत";
@@ -1240,6 +1241,7 @@
 "Reminder" = "Reminder";
 "Remove" = "हटाएँ";
 "Remove addon" = "Remove addon";
+"Remove all" = "सभी हटाएँ";
 "Remove from Continue Watching" = "देखना जारी रखें से हटाएँ";
 "Remove from Suwayomi library" = "Remove from Suwayomi library";
 "Remove from continue watching" = "Remove from continue watching";
@@ -1704,6 +1706,7 @@
 "Upcoming Anime" = "आगामी ऐनिमे";
 "Upcoming Season" = "आगामी सीज़न";
 "Update" = "अपडेट करें";
+"Update all" = "सभी अपडेट करें";
 "Upload a picture of your own, or pick one from the Harbor catalog." = "अपना चित्र अपलोड करें या Harbor कैटलॉग से चुनें।";
 "Upload photo" = "फ़ोटो अपलोड करें";
 "Usa el servidor que ya tienes configurado en Harbor. En la red local, permite el acceso cuando iOS lo solicite." = "Use your configured Harbor server. Allow local network access when iOS asks.";

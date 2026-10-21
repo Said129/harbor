@@ -1,10 +1,14 @@
 import XCTest
 
 @MainActor final class EBookCatalogNavigationTests: XCTestCase {
-    func testCombinedBooksFiltersSourceSelectionAndDetailReaderOnIPhone() { verify("iphone") }
-    func testCombinedBooksFiltersSourceSelectionAndDetailReaderOnIPad() { verify("ipad") }
-    private func verify(_ device: String) {
-        continueAfterFailure = false
+    func testCombinedBooksFiltersSourceSelectionAndDetailReaderOnIPhone() { EBookCatalogUIRoute(owner: self).verify("iphone") }
+    func testCombinedBooksFiltersSourceSelectionAndDetailReaderOnIPad() { EBookCatalogUIRoute(owner: self).verify("ipad") }
+}
+
+@MainActor struct EBookCatalogUIRoute {
+    let owner: XCTestCase
+    func verify(_ device: String) {
+        owner.continueAfterFailure = false
         let app = XCUIApplication()
         app.launchArguments = ["-uiLanguage", "es", "-nativeGuide.initialized.v1", "YES", "-nativeGuide.completed.v1", "YES"]
         app.launch(); defer { app.terminate() }
@@ -62,6 +66,6 @@ import XCTest
         XCTAssertTrue(element.isHittable)
     }
     private func capture(_ app: XCUIApplication, _ name: String) {
-        let attachment = XCTAttachment(screenshot: app.screenshot()); attachment.name = name; attachment.lifetime = .keepAlways; add(attachment)
+        let attachment = XCTAttachment(screenshot: app.screenshot()); attachment.name = name; attachment.lifetime = .keepAlways; owner.add(attachment)
     }
 }

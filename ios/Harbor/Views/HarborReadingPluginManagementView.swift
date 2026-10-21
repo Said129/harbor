@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct HarborReadingPluginManagementView: View {
-    private enum Removal { case plugin(HarborInstalledReadingPlugin), repository(HarborReadingPluginRepository) }
+    private enum Removal { case plugin(HarborInstalledReadingPlugin), repository(HarborReadingPluginRepository), installed(HarborReadingPluginRepository) }
     @Bindable var manager: HarborReadingPluginManager
     let kind: HarborReadingPluginKind
     @State private var tab = "plugins"
@@ -30,6 +30,7 @@ struct HarborReadingPluginManagementView: View {
                             switch removal {
                             case .plugin(let plugin): try await manager.remove(plugin)
                             case .repository(let repository): try await manager.removeRepository(repository)
+                            case .installed(let repository): try await manager.removeInstalled(in: repository)
                             }
                         }; self.removal = nil
                     }.accessibilityIdentifier("reading-plugin-confirm-remove")
@@ -83,6 +84,12 @@ struct HarborReadingPluginManagementView: View {
             VStack(alignment: .leading, spacing: 16) {
                 Text(repository.name).font(HarborTheme.font(19, weight: .semibold))
                 Text(repository.url).font(HarborTheme.font(12)).foregroundStyle(.secondary).textSelection(.enabled).privacySensitive()
+                if let progress = manager.bulkProgress, progress.repository == repository.id {
+                    ProgressView(value: Double(progress.completed), total: Double(max(1, progress.total))) {
+                        Text(DesktopInterfaceText.value("Installing {done} of {total}", variables: ["done": String(progress.completed), "total": String(progress.total)]))
+                    }.accessibilityIdentifier("reading-plugin-bulk-progress")
+                    Button(text("Cancel")) { manager.cancelBulk() }.accessibilityIdentifier("reading-plugin-bulk-cancel")
+                }
                 ViewThatFits(in: .horizontal) {
                     HStack { repositoryActions(repository) }
                     VStack(alignment: .leading, spacing: 8) { repositoryActions(repository) }
@@ -95,6 +102,7 @@ struct HarborReadingPluginManagementView: View {
                 ForEach(repository.entries.filter { matches($0.name) }) { entry in
                     VStack(alignment: .leading, spacing: 12) {
                         heading(entry, repository: nil)
+                        if let error = manager.entryFailures[repository.id + "|" + entry.id] { Text(error).font(.caption).foregroundStyle(ThemePreferences.shared.color("danger")) }
                         let installed = manager.document.plugins.first(where: { $0.kind == kind && $0.entry.id == entry.id })
                         let current = installed?.entry.version == entry.version
                         Button(text(current ? "Installed" : installed == nil ? "Install" : "Update")) { act { try await manager.install(entry, repository: repository) } }
@@ -107,11 +115,23 @@ struct HarborReadingPluginManagementView: View {
         }
     }
     @ViewBuilder private func repositoryActions(_ repository: HarborReadingPluginRepository) -> some View {
+        let installed = manager.document.plugins.filter { $0.kind == kind && $0.repository == repository.url }
+        let installedIDs = Set(installed.map { $0.entry.id })
+        let pending = repository.entries.contains { !installedIDs.contains($0.id) }
+        let updates = repository.entries.contains { entry in installed.contains { $0.entry.id == entry.id && $0.entry.version != entry.version } }
         Button(text("Refresh")) { act { try await manager.refresh(repository) } }.buttonStyle(HarborAccountButtonStyle()).disabled(manager.busy)
-        if repository.entries.contains(where: { $0.mangayomi }) {
+        if updates {
+            Button(text("Update all")) { act { try await manager.installAll(repository, updatesOnly: true) } }
+                .buttonStyle(HarborAccountButtonStyle()).disabled(manager.busy).accessibilityIdentifier("reading-plugin-update-all-" + repository.id)
+        }
+        if pending && (repository.foreign == nil || repository.entries.contains(where: { $0.mangayomi })) {
             Button(text("Install all")) {
-                act { for entry in repository.entries { try Task.checkCancellation(); try await manager.install(entry, repository: repository) } }
-            }.buttonStyle(HarborAccountButtonStyle()).disabled(manager.busy)
+                act { try await manager.installAll(repository) }
+            }.buttonStyle(HarborAccountButtonStyle()).disabled(manager.busy).accessibilityIdentifier("reading-plugin-install-all-" + repository.id)
+        }
+        if !installed.isEmpty {
+            Button(text("Remove all"), role: .destructive) { removal = .installed(repository) }
+                .buttonStyle(HarborAccountButtonStyle()).disabled(manager.busy).accessibilityIdentifier("reading-plugin-remove-all-" + repository.id)
         }
         Button(text("Remove"), role: .destructive) { removal = .repository(repository) }.buttonStyle(HarborAccountButtonStyle()).disabled(manager.busy)
     }

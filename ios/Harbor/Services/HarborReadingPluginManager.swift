@@ -2,6 +2,13 @@ import Foundation
 import Observation
 
 @MainActor @Observable final class HarborReadingPluginManager {
+    struct BulkProgress {
+        let repository: String
+        let total: Int
+        var completed = 0
+        var installed = 0
+        var failed = 0
+    }
     private final class Worker {
         let plugin: HarborInstalledReadingPlugin
         let runtime: HarborPluginRuntime
@@ -28,6 +35,8 @@ import Observation
     private(set) var document = HarborReadingPluginDocument()
     private(set) var ready = false
     private(set) var busy = false
+    private(set) var bulkProgress: BulkProgress?
+    private(set) var entryFailures: [String: String] = [:]
 
     init(scope: PluginExecutionScope, currentScope: @escaping @MainActor () -> PluginExecutionScope,
          store: HarborReadingPluginStore, network: any HarborNativeNetworkCalling = HarborNativeNetwork()) {
@@ -73,24 +82,59 @@ import Observation
         }
     }
     func install(_ entry: HarborReadingPluginEntry, repository: HarborReadingPluginRepository) async throws {
+        try await mutate { try await self.installEntry(entry, repository: repository) }
+    }
+    func installAll(_ repository: HarborReadingPluginRepository, updatesOnly: Bool = false) async throws {
         try await mutate {
-            guard self.document.repositories.contains(where: { $0.id == repository.id && $0.entries.contains(entry) }),
-                  let url = URL(string: entry.location, relativeTo: URL(string: repository.url))?.absoluteURL else { throw HarborPluginRepositoryError("not-a-repo") }
-            let payload = try await self.fetch(url.absoluteString)
-            var source = String(decoding: payload, as: UTF8.self)
-            if source.hasPrefix("\u{feff}") { source.removeFirst() }
-            guard source.utf16.count <= 2 * 1024 * 1024 else { throw HarborPluginRepositoryError("too-large") }
-            var plugin = HarborInstalledReadingPlugin(kind: repository.kind, entry: entry, repository: repository.url,
-                repositoryName: repository.name, source: source, hash: HarborReadingPluginStore.digest(source))
-            let runtime = try await self.makeWorker(plugin)
-            defer { runtime.dispose() }
-            // Desktop retains a downloaded reading source if its optional metadata probe fails.
-            do { let meta = try await runtime.metadata(); plugin.hasTags = meta["hasTags"] == .bool(true) }
-            catch is CancellationError { throw CancellationError() } catch { plugin.hasTags = false }
-            try self.validate()
-            var next = self.document; next.plugins.removeAll { $0.id == plugin.id }; next.plugins.append(plugin)
-            try await self.save(next); self.invalidate(plugin.id)
+            guard self.document.repositories.contains(repository) else { throw HarborPluginRepositoryError("not-a-repo") }
+            let entries = repository.entries.filter { entry in
+                let installed = self.document.plugins.first { $0.kind == repository.kind && $0.repository == repository.url && $0.entry.id == entry.id }
+                return updatesOnly ? installed != nil && installed?.entry.version != entry.version : entry.mangayomi || installed == nil
+            }
+            self.bulkProgress = .init(repository: repository.id, total: entries.count)
+            defer { self.bulkProgress = nil }
+            var firstFailure: Error?
+            for entry in entries {
+                try self.validate()
+                do { try await self.installEntry(entry, repository: repository); self.bulkProgress?.installed += 1 }
+                catch is CancellationError { throw CancellationError() }
+                catch {
+                    try self.validate()
+                    firstFailure = firstFailure ?? error
+                    self.entryFailures[repository.id + "|" + entry.id] = HarborPluginMessages.error(error)
+                    self.bulkProgress?.failed += 1
+                }
+                self.bulkProgress?.completed += 1
+            }
+            if self.bulkProgress?.installed == 0, let firstFailure { throw firstFailure }
         }
+    }
+    func removeInstalled(in repository: HarborReadingPluginRepository) async throws {
+        try await mutate {
+            guard self.document.repositories.contains(repository) else { throw HarborPluginRepositoryError("not-a-repo") }
+            let removed = self.document.plugins.filter { $0.kind == repository.kind && $0.repository == repository.url }
+            var next = self.document; next.plugins.removeAll { $0.kind == repository.kind && $0.repository == repository.url }
+            try await self.save(next); removed.forEach { self.invalidate($0.id) }
+        }
+    }
+    func cancelBulk() { if bulkProgress != nil { mutation?.cancel() } }
+    private func installEntry(_ entry: HarborReadingPluginEntry, repository: HarborReadingPluginRepository) async throws {
+        guard document.repositories.contains(where: { $0.id == repository.id && $0.entries.contains(entry) }),
+              let url = URL(string: entry.location, relativeTo: URL(string: repository.url))?.absoluteURL else { throw HarborPluginRepositoryError("not-a-repo") }
+        let payload = try await fetch(url.absoluteString)
+        var source = String(decoding: payload, as: UTF8.self)
+        if source.hasPrefix("\u{feff}") { source.removeFirst() }
+        guard source.utf16.count <= 2 * 1024 * 1024 else { throw HarborPluginRepositoryError("too-large") }
+        var plugin = HarborInstalledReadingPlugin(kind: repository.kind, entry: entry, repository: repository.url,
+            repositoryName: repository.name, source: source, hash: HarborReadingPluginStore.digest(source))
+        let runtime = try await makeWorker(plugin)
+        defer { runtime.dispose() }
+        // Desktop retains a downloaded reading source if its optional metadata probe fails.
+        do { let meta = try await runtime.metadata(); plugin.hasTags = meta["hasTags"] == .bool(true) }
+        catch is CancellationError { throw CancellationError() } catch { plugin.hasTags = false }
+        try validate()
+        var next = document; next.plugins.removeAll { $0.id == plugin.id }; next.plugins.append(plugin)
+        try await save(next); invalidate(plugin.id); entryFailures[repository.id + "|" + entry.id] = nil
     }
     func remove(_ plugin: HarborInstalledReadingPlugin) async throws {
         try await mutate {
@@ -128,6 +172,7 @@ import Observation
     func dispose() {
         guard !disposed else { return }; disposed = true; ready = false
         mutation?.cancel(); mutation = nil
+        bulkProgress = nil; entryFailures = [:]
         images.values.forEach { $0.task.cancel() }; images = [:]; imageCache.removeAllObjects()
         operations.values.forEach { $0.cancel() }; operations = [:]
         ebookTagLoads.values.forEach { $0.cancel() }; ebookTagLoads = [:]; ebookTags = [:]

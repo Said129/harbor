@@ -758,6 +758,7 @@
 "Install addon" = "アドオンをインストール";
 "Install all" = "すべてインストール";
 "Installed" = "インストール済み";
+"Installing {done} of {total}" = "{total}件中{done}件をインストール中";
 "Instant" = "即時";
 "Instant starts the best-ranked stream straight away. Pick a source opens the stream list every time, so you choose the release, quality and provider yourself." = "即時再生では最上位のストリームをすぐ再生します。ソース選択では毎回一覧を開き、リリース、画質、プロバイダーを自分で選べます。";
 "Instantáneo" = "即時";
@@ -1240,6 +1241,7 @@
 "Reminder" = "Reminder";
 "Remove" = "削除";
 "Remove addon" = "Remove addon";
+"Remove all" = "すべて削除";
 "Remove from Continue Watching" = "「視聴を続ける」から削除";
 "Remove from Suwayomi library" = "Remove from Suwayomi library";
 "Remove from continue watching" = "Remove from continue watching";
@@ -1704,6 +1706,7 @@
 "Upcoming Anime" = "近日公開アニメ";
 "Upcoming Season" = "来シーズン";
 "Update" = "更新";
+"Update all" = "すべて更新";
 "Upload a picture of your own, or pick one from the Harbor catalog." = "自分の画像をアップロードするか、Harbor のカタログから選んでください。";
 "Upload photo" = "写真をアップロード";
 "Usa el servidor que ya tienes configurado en Harbor. En la red local, permite el acceso cuando iOS lo solicite." = "Use your configured Harbor server. Allow local network access when iOS asks.";

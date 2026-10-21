@@ -1,10 +1,14 @@
 import XCTest
 
 @MainActor final class HarborReadingPluginNavigationTests: XCTestCase {
-    func testOwnedReadingSourcesManagementSearchAndReadersOnIPhone() { verify("iphone") }
-    func testOwnedReadingSourcesManagementSearchAndReadersOnIPad() { verify("ipad") }
-    private func verify(_ device: String) {
-        continueAfterFailure = false
+    func testOwnedReadingSourcesManagementSearchAndReadersOnIPhone() { ReadingPluginUIRoute(owner: self).verify("iphone") }
+    func testOwnedReadingSourcesManagementSearchAndReadersOnIPad() { ReadingPluginUIRoute(owner: self).verify("ipad") }
+}
+
+@MainActor struct ReadingPluginUIRoute {
+    let owner: XCTestCase
+    func verify(_ device: String) {
+        owner.continueAfterFailure = false
         let app = XCUIApplication()
         app.launchArguments = ["-uiLanguage", "es", "-nativeGuide.initialized.v1", "YES", "-nativeGuide.completed.v1", "YES"]
         app.launch(); defer { app.terminate() }
@@ -34,7 +38,7 @@ import XCTest
         navigate("ebook", app)
         let provider = app.buttons["ebook-source"]; XCTAssertTrue(provider.waitForExistence(timeout: 20)); reveal(provider, app); provider.tap()
         let owned = app.buttons["Owned UI Books"].firstMatch; XCTAssertTrue(owned.waitForExistence(timeout: 10)); owned.tap()
-        let bookSearch = app.textFields["ebook-search"]; XCTAssertTrue(bookSearch.waitForExistence(timeout: 10)); bookSearch.tap(); bookSearch.typeText("Owned\n")
+        let bookSearch = app.textFields.firstMatch; XCTAssertTrue(bookSearch.waitForExistence(timeout: 10)); bookSearch.tap(); bookSearch.typeText("Owned\n")
         let book = app.buttons["ebook-card-source:plugin%3Aowned.ui.reading.books:owned"]
         XCTAssertTrue(book.waitForExistence(timeout: 30)); reveal(book, app)
         capture(app, "reading-plugin-book-search-" + device); book.tap()
@@ -68,6 +72,6 @@ import XCTest
         XCTAssertTrue(element.isHittable)
     }
     private func capture(_ app: XCUIApplication, _ name: String) {
-        let attachment = XCTAttachment(screenshot: app.screenshot()); attachment.name = name; attachment.lifetime = .keepAlways; add(attachment)
+        let attachment = XCTAttachment(screenshot: app.screenshot()); attachment.name = name; attachment.lifetime = .keepAlways; owner.add(attachment)
     }
 }

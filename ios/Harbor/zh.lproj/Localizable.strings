@@ -758,6 +758,7 @@
 "Install addon" = "安装插件";
 "Install all" = "全部安装";
 "Installed" = "已安装";
+"Installing {done} of {total}" = "正在安装 {done}/{total}";
 "Instant" = "立即显示";
 "Instant starts the best-ranked stream straight away. Pick a source opens the stream list every time, so you choose the release, quality and provider yourself." = "即时播放会立即启动排名最高的播放源。选择播放源则每次都打开列表，让你自行选择版本、画质和服务商。";
 "Instantáneo" = "立即显示";
@@ -1240,6 +1241,7 @@
 "Reminder" = "Reminder";
 "Remove" = "移除";
 "Remove addon" = "Remove addon";
+"Remove all" = "全部移除";
 "Remove from Continue Watching" = "从“继续观看”中移除";
 "Remove from Suwayomi library" = "Remove from Suwayomi library";
 "Remove from continue watching" = "Remove from continue watching";
@@ -1704,6 +1706,7 @@
 "Upcoming Anime" = "即将上线的动漫";
 "Upcoming Season" = "下一季新番";
 "Update" = "更新";
+"Update all" = "全部更新";
 "Upload a picture of your own, or pick one from the Harbor catalog." = "上传自己的图片，或从 Harbor 图库中选择。";
 "Upload photo" = "上传照片";
 "Usa el servidor que ya tienes configurado en Harbor. En la red local, permite el acceso cuando iOS lo solicite." = "Use your configured Harbor server. Allow local network access when iOS asks.";

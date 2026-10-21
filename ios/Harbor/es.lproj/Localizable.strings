@@ -758,6 +758,7 @@
 "Install addon" = "Instalar addon";
 "Install all" = "Instalar todo";
 "Installed" = "Instalado";
+"Installing {done} of {total}" = "Instalando {done} de {total}";
 "Instant" = "Instantáneo";
 "Instant starts the best-ranked stream straight away. Pick a source opens the stream list every time, so you choose the release, quality and provider yourself." = "Instantáneo inicia de inmediato el stream mejor valorado. Elegir fuente abre siempre la lista para que elijas la versión, calidad y proveedor.";
 "Instantáneo" = "Instantáneo";
@@ -1240,6 +1241,7 @@
 "Reminder" = "Recordatorio";
 "Remove" = "Quitar";
 "Remove addon" = "Eliminar addon";
+"Remove all" = "Quitar todo";
 "Remove from Continue Watching" = "Quitar de Seguir viendo";
 "Remove from Suwayomi library" = "Quitar de biblioteca Suwayomi";
 "Remove from continue watching" = "Quitar de Continuar viendo";
@@ -1704,6 +1706,7 @@
 "Upcoming Anime" = "Próximos animes";
 "Upcoming Season" = "Próxima temporada";
 "Update" = "Actualizar";
+"Update all" = "Actualizar todo";
 "Upload a picture of your own, or pick one from the Harbor catalog." = "Sube una imagen tuya o elige una del catálogo de Harbor.";
 "Upload photo" = "Subir foto";
 "Usa el servidor que ya tienes configurado en Harbor. En la red local, permite el acceso cuando iOS lo solicite." = "Usa el servidor que ya tienes configurado en Harbor. En la red local, permite el acceso cuando iOS lo solicite.";

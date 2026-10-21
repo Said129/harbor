@@ -758,6 +758,7 @@
 "Install addon" = "애드온 설치";
 "Install all" = "모두 설치";
 "Installed" = "설치됨";
+"Installing {done} of {total}" = "{total}개 중 {done}개 설치 중";
 "Instant" = "즉시";
 "Instant starts the best-ranked stream straight away. Pick a source opens the stream list every time, so you choose the release, quality and provider yourself." = "즉시 재생은 순위가 가장 높은 스트림을 바로 시작합니다. 소스 선택은 매번 스트림 목록을 열어 릴리스, 화질, 제공업체를 직접 고르게 합니다.";
 "Instantáneo" = "즉시";
@@ -1240,6 +1241,7 @@
 "Reminder" = "Reminder";
 "Remove" = "제거";
 "Remove addon" = "Remove addon";
+"Remove all" = "모두 제거";
 "Remove from Continue Watching" = "이어보기에서 삭제";
 "Remove from Suwayomi library" = "Remove from Suwayomi library";
 "Remove from continue watching" = "Remove from continue watching";
@@ -1704,6 +1706,7 @@
 "Upcoming Anime" = "공개 예정 애니메이션";
 "Upcoming Season" = "다음 시즌 공개 예정작";
 "Update" = "업데이트";
+"Update all" = "모두 업데이트";
 "Upload a picture of your own, or pick one from the Harbor catalog." = "내 사진을 업로드하거나 Harbor 카탈로그에서 선택하세요.";
 "Upload photo" = "사진 업로드";
 "Usa el servidor que ya tienes configurado en Harbor. En la red local, permite el acceso cuando iOS lo solicite." = "Use your configured Harbor server. Allow local network access when iOS asks.";
