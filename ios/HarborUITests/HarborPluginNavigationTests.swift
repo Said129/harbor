@@ -17,7 +17,8 @@ import XCTest
         let token = app.secureTextFields["Token"]
         XCTAssertTrue(token.waitForExistence(timeout: 15)); token.tap(); token.typeText("owned-ui-secret")
         let quality = app.buttons["Quality"]
-        reveal(quality, in: app); quality.tap(); app.buttons["HD"].tap()
+        reveal(quality, in: app); quality.tap()
+        let hd = app.buttons["HD"]; XCTAssertTrue(hd.waitForExistence(timeout: 5)); hd.tap()
         let name = app.textFields["Name"]
         reveal(name, in: app); name.tap()
         if let value = name.value as? String { name.typeText(String(repeating: XCUIKeyboardKey.delete.rawValue, count: value.count)) }
@@ -57,7 +58,7 @@ import XCTest
         XCTAssertTrue(navigation.waitForExistence(timeout: 10))
         let settings = app.buttons["nav-settings"]
         for _ in 0..<10 { if settings.isHittable { break }; navigation.swipeUp() }
-        XCTAssertTrue(settings.isHittable); settings.tap()
+        XCTAssertTrue(settings.isHittable); settings.press(forDuration: 0.6)
         let search = app.textFields.firstMatch
         XCTAssertTrue(search.waitForExistence(timeout: 10)); search.tap(); search.typeText("Plugins")
         let plugins = app.buttons["settings-plugins"]

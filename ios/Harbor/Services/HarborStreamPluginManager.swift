@@ -204,6 +204,17 @@ import Observation
         return try await configuration(plugin)
     }
 
+    func runtimeTransport() throws -> HarborNativePluginTransport {
+        try validate()
+        return .init(policy: .stream(installing: false, blockedHosts: client.blockedHosts), network: client.network)
+    }
+    func recordRuntimeOutcome(_ id: String, expected: HarborInstalledStreamPlugin, succeeded: Bool) async throws {
+        try validate()
+        try await commit { current in
+            try await self.store.recordRuntimeOutcome(id, expected: expected, succeeded: succeeded, revision: current.revision)
+        }
+    }
+
     func settingsFields(_ id: String) async throws -> [HarborPluginSettingsField] {
         try await perform("settings:" + id) {
             guard let plugin = try await self.snapshot().plugins.first(where: { $0.id == id }) else { throw HarborPluginRepositoryError("plugin-not-installed") }

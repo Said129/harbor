@@ -69,6 +69,7 @@ struct HarborApp: App {
                 .task { _ = profileForeground.observe(active: scenePhase == .active); await model.start() }
                 .onChange(of: scenePhase) { _, phase in
                     if profileForeground.observe(active: phase == .active) { model.requestProfilePromptOnReturn() }
+                    if phase == .background { model.plugins.runtime?.sweep(trimIdle: true) }
                 }
                 .task(id: String(model.automaticProfilePromptPending) + "|" + String(describing: scenePhase) + "|" + String(model.profileContext.playback.hasActivePlayback)) {
                     await presentAutomaticProfilePrompt()

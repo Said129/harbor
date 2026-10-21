@@ -53,6 +53,7 @@ on:
             plugin-followup,
             plugin-network,
             plugin-manager,
+            plugin-integration,
             player-caption,
             continuation-sendable,
             anime-episodes,
@@ -291,7 +292,7 @@ jobs:
             harbor-core
             harbor-ios-bridge
       - name: Verify shared Rust on the Apple build host
-        if: ${{ inputs.validation_scope != 'affected' && inputs.validation_scope != 'sources-search-subtitles' && inputs.validation_scope != 'mobile-sources-subtitles' && inputs.validation_scope != 'stable-mobile' && inputs.validation_scope != 'stable-tablet-ui' && inputs.validation_scope != 'stable-tablet-rotation' && inputs.validation_scope != 'reading-intro' && inputs.validation_scope != 'reading-followup' && inputs.validation_scope != 'reading-final' && inputs.validation_scope != 'reading-tablet-final' && inputs.validation_scope != 'anime-episodes' && inputs.validation_scope != 'anime-episodes-ui' && inputs.validation_scope != 'continuation-parity' && inputs.validation_scope != 'language-reference' && inputs.validation_scope != 'system-maintenance' && inputs.validation_scope != 'navigation-sync' && inputs.validation_scope != 'onboarding-desktop' && inputs.validation_scope != 'service-browser' && inputs.validation_scope != 'streaming-sync' && inputs.validation_scope != 'services-complete' && inputs.validation_scope != 'services-ui' && inputs.validation_scope != 'profile-context' && inputs.validation_scope != 'profile-editor' && inputs.validation_scope != 'profile-gate' && inputs.validation_scope != 'profile-appearance' && inputs.validation_scope != 'profile-ui' && inputs.validation_scope != 'player-caption' && inputs.validation_scope != 'startup-anime' && inputs.validation_scope != 'startup-anime-ui' && inputs.validation_scope != 'tvdb-proxy' && inputs.validation_scope != 'episode-order' && inputs.validation_scope != 'episode-panel' && inputs.validation_scope != 'anime-franchise' && inputs.validation_scope != 'anime-episode-pool' && inputs.validation_scope != 'franchise-extras' && inputs.validation_scope != 'season-artwork' && inputs.validation_scope != 'profile-return' && inputs.validation_scope != 'mobile-integration' && inputs.validation_scope != 'plugin-catalog' && inputs.validation_scope != 'plugin-followup' && inputs.validation_scope != 'plugin-network' && inputs.validation_scope != 'plugin-manager' }}
+        if: ${{ inputs.validation_scope != 'affected' && inputs.validation_scope != 'sources-search-subtitles' && inputs.validation_scope != 'mobile-sources-subtitles' && inputs.validation_scope != 'stable-mobile' && inputs.validation_scope != 'stable-tablet-ui' && inputs.validation_scope != 'stable-tablet-rotation' && inputs.validation_scope != 'reading-intro' && inputs.validation_scope != 'reading-followup' && inputs.validation_scope != 'reading-final' && inputs.validation_scope != 'reading-tablet-final' && inputs.validation_scope != 'anime-episodes' && inputs.validation_scope != 'anime-episodes-ui' && inputs.validation_scope != 'continuation-parity' && inputs.validation_scope != 'language-reference' && inputs.validation_scope != 'system-maintenance' && inputs.validation_scope != 'navigation-sync' && inputs.validation_scope != 'onboarding-desktop' && inputs.validation_scope != 'service-browser' && inputs.validation_scope != 'streaming-sync' && inputs.validation_scope != 'services-complete' && inputs.validation_scope != 'services-ui' && inputs.validation_scope != 'profile-context' && inputs.validation_scope != 'profile-editor' && inputs.validation_scope != 'profile-gate' && inputs.validation_scope != 'profile-appearance' && inputs.validation_scope != 'profile-ui' && inputs.validation_scope != 'player-caption' && inputs.validation_scope != 'startup-anime' && inputs.validation_scope != 'startup-anime-ui' && inputs.validation_scope != 'tvdb-proxy' && inputs.validation_scope != 'episode-order' && inputs.validation_scope != 'episode-panel' && inputs.validation_scope != 'anime-franchise' && inputs.validation_scope != 'anime-episode-pool' && inputs.validation_scope != 'franchise-extras' && inputs.validation_scope != 'season-artwork' && inputs.validation_scope != 'profile-return' && inputs.validation_scope != 'mobile-integration' && inputs.validation_scope != 'plugin-catalog' && inputs.validation_scope != 'plugin-followup' && inputs.validation_scope != 'plugin-network' && inputs.validation_scope != 'plugin-manager' && inputs.validation_scope != 'plugin-integration' }}
         shell: bash
         run: |
           set -euo pipefail
@@ -324,6 +325,14 @@ jobs:
           test "${{ inputs.validation_only }}" = "true"
           test "${{ inputs.run_live_integration }}" = "false"
           python3 scripts/ios/prepare-plugin-manager-selection.py
+      - name: Select unexecuted plugin models and new interface integration
+        if: ${{ inputs.validation_scope == 'plugin-integration' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "${{ inputs.validation_only }}" = "true"
+          test "${{ inputs.run_live_integration }}" = "false"
+          python3 scripts/ios/prepare-plugin-integration-selection.py
       - name: Build and package Rust before Swift
         shell: bash
         run: |
@@ -465,10 +474,15 @@ jobs:
         run: |
           set -euo pipefail
           selection=(-only-testing:HarborTests)
-          if [[ "${{ inputs.validation_scope }}" == "plugin-manager" ]]; then
+          if [[ "${{ inputs.validation_scope }}" == "plugin-integration" ]]; then
+            selection=()
+            while IFS= read -r identifier; do selection+=("-only-testing:$identifier"); done < ios/build/plugin-integration-selection.txt
+            expected=$(python3 -c 'import json; print(json.load(open("ios/build/preserved-plugin-integration.json"))["selected_case_count"])')
+            test ${#selection[@]} -eq "$expected"
+          elif [[ "${{ inputs.validation_scope }}" == "plugin-manager" ]]; then
             selection=()
             while IFS= read -r identifier; do selection+=("-only-testing:$identifier"); done < ios/build/plugin-manager-selection.txt
-            test ${#selection[@]} -eq 11
+            test ${#selection[@]} -eq 15
           elif [[ "${{ inputs.validation_scope }}" == "plugin-network" ]]; then
             selection=()
             while IFS= read -r identifier; do selection+=("-only-testing:$identifier"); done < ios/build/plugin-network-selection.txt
@@ -575,6 +589,17 @@ jobs:
       - name: Authenticate the fifteen actual manager settings and affected delivery results
         if: ${{ always() && inputs.validation_scope == 'plugin-manager' && (steps.offline_tests.conclusion == 'success' || steps.offline_tests.conclusion == 'failure') }}
         run: python3 scripts/ios/record-profile-model-results.py --bundle ios/build/Tests.xcresult --expected ios/build/preserved-plugin-manager.json --count 15 --output ios/build/canonical/PluginManagerModels.json
+      - name: Authenticate the actual selected plugin integration models
+        if: ${{ always() && inputs.validation_scope == 'plugin-integration' && (steps.offline_tests.conclusion == 'success' || steps.offline_tests.conclusion == 'failure') }}
+        shell: bash
+        run: |
+          expected=$(python3 -c 'import json; print(json.load(open("ios/build/preserved-plugin-integration.json"))["selected_case_count"])')
+          python3 scripts/ios/record-profile-model-results.py --bundle ios/build/Tests.xcresult --expected ios/build/preserved-plugin-integration.json --count "$expected" --output ios/build/canonical/PluginIntegrationModels.json
+      - name: Run both new plugin management interfaces on fresh guests
+        id: plugin_integration_ui
+        if: ${{ always() && inputs.validation_scope == 'plugin-integration' && (steps.offline_tests.conclusion == 'success' || steps.offline_tests.conclusion == 'failure') }}
+        timeout-minutes: 40
+        run: python3 scripts/ios/run-plugin-integration-ui.py
       - name: Authenticate the thirteen actual native network model results
         if: ${{ always() && inputs.validation_scope == 'plugin-network' && (steps.offline_tests.conclusion == 'success' || steps.offline_tests.conclusion == 'failure') }}
         run: python3 scripts/ios/record-profile-model-results.py --bundle ios/build/Tests.xcresult --expected ios/build/preserved-plugin-network.json --count 13 --output ios/build/canonical/PluginNetworkModels.json
@@ -668,7 +693,7 @@ jobs:
         if: ${{ inputs.validation_scope == 'startup-anime' }}
         run: python3 scripts/ios/record-profile-model-results.py --bundle ios/build/Tests.xcresult --expected ios/build/preserved-startup-anime.json --count 11 --output ios/build/canonical/StartupAnimeModels.json
       - name: Preserve failed native render evidence in a draft Release
-        if: ${{ failure() && inputs.save_draft_build == true && steps.offline_tests.conclusion == 'failure' && inputs.validation_scope != 'tvdb-proxy' && inputs.validation_scope != 'episode-order' && inputs.validation_scope != 'episode-panel' && inputs.validation_scope != 'anime-franchise' && inputs.validation_scope != 'anime-episode-pool' && inputs.validation_scope != 'franchise-extras' && inputs.validation_scope != 'season-artwork' && inputs.validation_scope != 'profile-return' && inputs.validation_scope != 'mobile-integration' && inputs.validation_scope != 'plugin-catalog' && inputs.validation_scope != 'plugin-followup' && inputs.validation_scope != 'plugin-network' && inputs.validation_scope != 'plugin-manager' }}
+        if: ${{ failure() && inputs.save_draft_build == true && steps.offline_tests.conclusion == 'failure' && inputs.validation_scope != 'tvdb-proxy' && inputs.validation_scope != 'episode-order' && inputs.validation_scope != 'episode-panel' && inputs.validation_scope != 'anime-franchise' && inputs.validation_scope != 'anime-episode-pool' && inputs.validation_scope != 'franchise-extras' && inputs.validation_scope != 'season-artwork' && inputs.validation_scope != 'profile-return' && inputs.validation_scope != 'mobile-integration' && inputs.validation_scope != 'plugin-catalog' && inputs.validation_scope != 'plugin-followup' && inputs.validation_scope != 'plugin-network' && inputs.validation_scope != 'plugin-manager' && inputs.validation_scope != 'plugin-integration' }}
         env:
           GH_TOKEN: ${{ github.token }}
         shell: bash
@@ -1028,7 +1053,7 @@ jobs:
           ditto -c -k --keepParent ios/build/rotation-evidence ios/build/tablet-rotation-evidence.zip
           gh release upload "iphone-rotation-${GITHUB_SHA:0:12}" ios/build/tablet-rotation-evidence.zip --repo "$GITHUB_REPOSITORY"
       - name: Save affected simulator evidence without an IPA
-        if: ${{ always() && github.event_name == 'workflow_dispatch' && inputs.validation_only == true && inputs.save_draft_build == true && inputs.validation_scope != 'stable-tablet-rotation' && inputs.validation_scope != 'startup-anime-ui' && (success() || (inputs.validation_scope == 'plugin-network' && steps.plugin_network_rust.conclusion == 'failure') || ((inputs.validation_scope == 'tvdb-proxy' || inputs.validation_scope == 'episode-order' || inputs.validation_scope == 'episode-panel' || inputs.validation_scope == 'anime-franchise' || inputs.validation_scope == 'anime-episode-pool' || inputs.validation_scope == 'franchise-extras' || inputs.validation_scope == 'season-artwork' || inputs.validation_scope == 'profile-return' || inputs.validation_scope == 'mobile-integration' || inputs.validation_scope == 'plugin-catalog' || inputs.validation_scope == 'plugin-followup' || inputs.validation_scope == 'plugin-network' || inputs.validation_scope == 'plugin-manager') && (steps.offline_tests.conclusion == 'success' || steps.offline_tests.conclusion == 'failure'))) }}
+        if: ${{ always() && github.event_name == 'workflow_dispatch' && inputs.validation_only == true && inputs.save_draft_build == true && inputs.validation_scope != 'stable-tablet-rotation' && inputs.validation_scope != 'startup-anime-ui' && (success() || (inputs.validation_scope == 'plugin-network' && steps.plugin_network_rust.conclusion == 'failure') || ((inputs.validation_scope == 'tvdb-proxy' || inputs.validation_scope == 'episode-order' || inputs.validation_scope == 'episode-panel' || inputs.validation_scope == 'anime-franchise' || inputs.validation_scope == 'anime-episode-pool' || inputs.validation_scope == 'franchise-extras' || inputs.validation_scope == 'season-artwork' || inputs.validation_scope == 'profile-return' || inputs.validation_scope == 'mobile-integration' || inputs.validation_scope == 'plugin-catalog' || inputs.validation_scope == 'plugin-followup' || inputs.validation_scope == 'plugin-network' || inputs.validation_scope == 'plugin-manager' || inputs.validation_scope == 'plugin-integration') && (steps.offline_tests.conclusion == 'success' || steps.offline_tests.conclusion == 'failure'))) }}
         env:
           GH_TOKEN: ${{ github.token }}
         shell: bash
@@ -1036,7 +1061,7 @@ jobs:
           set -euo pipefail
           mkdir -p ios/build/validation-evidence/attachments
           if [[ "${{ inputs.validation_scope }}" == "episode-panel" || "${{ inputs.validation_scope }}" == "anime-franchise" || "${{ inputs.validation_scope }}" == "anime-episode-pool" || "${{ inputs.validation_scope }}" == "franchise-extras" || "${{ inputs.validation_scope }}" == "season-artwork" || "${{ inputs.validation_scope }}" == "profile-return" || "${{ inputs.validation_scope }}" == "mobile-integration" || "${{ inputs.validation_scope }}" == "plugin-catalog" || "${{ inputs.validation_scope }}" == "plugin-followup" || "${{ inputs.validation_scope }}" == "plugin-network" || "${{ inputs.validation_scope }}" == "plugin-manager" ]]; then cp -R ios/build/logs ios/build/validation-evidence/; fi
-          for name in Tests PluginNetworkPublic ProfileReturnSeed ProfileReturnPhoneUI TVDBProxyLive FranchisePublicContract FranchiseMappingIntegration PoolMappingIntegration FranchiseExtrasPublicContract EpisodeOrderIPhoneUI EpisodeOrderIPadUI ServicesTests LiveTests TabletTests TabletUITests MangaFontTests ReadingTabletSeed ReadingTabletUI LanguageTabletUI SystemTabletUI NavigationTabletUI OnboardingTabletUI ServiceTabletUI StreamingSyncTabletUI PlayerCaptionTabletSeed PlayerCaptionTabletUI ProfileModels ProfileIPhoneLanguage ProfileIPhoneUI ProfileIPadLanguage ProfileIPadUI; do
+          for name in Tests PluginSeedIPhone PluginSeedIPad PluginUIIPhone PluginUIIPad PluginNetworkPublic ProfileReturnSeed ProfileReturnPhoneUI TVDBProxyLive FranchisePublicContract FranchiseMappingIntegration PoolMappingIntegration FranchiseExtrasPublicContract EpisodeOrderIPhoneUI EpisodeOrderIPadUI ServicesTests LiveTests TabletTests TabletUITests MangaFontTests ReadingTabletSeed ReadingTabletUI LanguageTabletUI SystemTabletUI NavigationTabletUI OnboardingTabletUI ServiceTabletUI StreamingSyncTabletUI PlayerCaptionTabletSeed PlayerCaptionTabletUI ProfileModels ProfileIPhoneLanguage ProfileIPhoneUI ProfileIPadLanguage ProfileIPadUI; do
             if [[ -d "ios/build/$name.xcresult" ]]; then
               xcrun xcresulttool export attachments --path "ios/build/$name.xcresult" --output-path "ios/build/validation-evidence/attachments/$name"
             fi

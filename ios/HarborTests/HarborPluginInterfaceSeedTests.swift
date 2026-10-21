@@ -12,6 +12,9 @@ final class HarborPluginInterfaceSeedTests: XCTestCase {
               context.profiles.active?.desktop.isKid == false, context.configuration?.account == nil else {
             XCTFail("Refuse to seed configured or locked profiles"); return
         }
+        if context.configuration?.guestAddons == nil {
+            try context.save(HouseholdSourceAccount(account: nil, guestAddons: []))
+        }
         let store = try HarborPluginCatalogStore(namespace: "device-stream-plugins-v1")
         try await store.load()
         var current = try await store.snapshot()

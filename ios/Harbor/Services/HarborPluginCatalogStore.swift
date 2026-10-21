@@ -162,6 +162,22 @@ actor HarborPluginCatalogStore {
         var next = try current(revision); next.plugins.removeAll { $0.id == id }; try commit(next)
     }
 
+    func recordRuntimeOutcome(_ id: String, expected: HarborInstalledStreamPlugin, succeeded: Bool, revision: UInt64) throws {
+        var next = try current(revision)
+        guard let index = next.plugins.firstIndex(where: { $0.id == id }) else { return }
+        let value = next.plugins[index]
+        guard value.hash == expected.hash, value.secretRevision == expected.secretRevision, value.settingsValues == expected.settingsValues,
+              value.entry == expected.entry, value.enabled, !value.repoDisabled, value.listed else { return }
+        if succeeded {
+            guard value.failures != 0 || value.autoPaused else { return }
+            next.plugins[index].failures = 0; next.plugins[index].autoPaused = false
+        } else {
+            next.plugins[index].failures = value.failures == Int.max ? Int.max : max(0, value.failures) + 1
+            next.plugins[index].autoPaused = next.plugins[index].failures >= 3
+        }
+        try commit(next)
+    }
+
     func saveSettings(_ id: String, values: [String: JSONValue], secretKeys: [String], secretRevision: String?, revision: UInt64) throws {
         var next = try current(revision)
         guard let index = next.plugins.firstIndex(where: { $0.id == id }) else { throw HarborPluginRepositoryError("plugin-not-installed") }

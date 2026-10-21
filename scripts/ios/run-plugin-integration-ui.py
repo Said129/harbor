@@ -1,0 +1,69 @@
+"""Exercise actual plugin management on separate fresh iPhone/iPad guests and retain independent outcomes."""
+import json
+import os
+from pathlib import Path
+import signal
+import subprocess
+import sys
+
+build = Path('ios/build'); canonical = build / 'canonical'; canonical.mkdir(parents=True, exist_ok=True)
+recordings = build / 'service-recordings'; recordings.mkdir(parents=True, exist_ok=True)
+plan = json.loads((build / 'preserved-plugin-integration.json').read_text())
+assert len(plan['ui_cases']) == 2 and plan['expected_original_images'] == 10
+assert (canonical / 'PluginIntegrationModels-tree.json').is_file(), 'The model bundle did not execute; do not repeat its compilation on two UI devices.'
+devices = json.loads((build / 'devices.json').read_text())['devices']
+runtime, phone = next((runtime, row) for runtime, values in devices.items() for row in values if row['udid'] == os.environ['IOS_SIMULATOR'])
+tablet = next(row for row in devices[runtime] if row['name'].startswith('iPad') and row.get('isAvailable', True))
+types = json.loads(subprocess.check_output(['xcrun', 'simctl', 'list', 'devicetypes', '--json'], text=True))['devicetypes']
+subprocess.run(['xcrun', 'simctl', 'shutdown', os.environ['IOS_SIMULATOR']], check=True)
+failures, selected = [], {}
+
+def execute(device, prefix, scheme, case):
+    bundle = build / (prefix + '.xcresult')
+    command = ['xcodebuild', '-project', 'ios/Harbor.xcodeproj', '-scheme', scheme, '-configuration', 'Debug',
+        '-destination', f'platform=iOS Simulator,id={device},arch={os.environ["IOS_SIMULATOR_ARCH"]}',
+        '-derivedDataPath', str(build / 'DerivedData'), '-clonedSourcePackagesDirPath', str(build / 'SourcePackages'),
+        '-resultBundlePath', str(bundle), '-only-testing:' + case.replace('.', '/', 1), '-parallel-testing-enabled', 'NO',
+        'CODE_SIGNING_ALLOWED=YES', 'CODE_SIGN_IDENTITY=-', 'test']
+    log_path = build / 'logs' / (prefix + '.log')
+    with log_path.open('w') as log: result = subprocess.run(command, stdout=log, stderr=subprocess.STDOUT)
+    for line in log_path.read_text('utf-8', errors='replace').splitlines():
+        if "Test Case '" in line or 'error:' in line or '** TEST ' in line: print(line, flush=True)
+    target, tail = case.split('.', 1); suite, method = tail.split('/')
+    proof = subprocess.run([sys.executable, 'scripts/ios/record-live-test-result.py', '--bundle', str(bundle),
+        '--output', str(canonical / (prefix + '.json')), '--target', target, '--suite', suite, '--method', method])
+    if result.returncode or proof.returncode:
+        failures.append(dict(device=device, case=case, xcode=result.returncode, proof=proof.returncode))
+        return False
+    return True
+
+for label, info, case in zip(['IPhone', 'IPad'], [phone, tablet], plan['ui_cases']):
+    kind = info.get('deviceTypeIdentifier') or next(row['identifier'] for row in types if row['name'] == info['name'])
+    device = subprocess.check_output(['xcrun', 'simctl', 'create', 'Harbor Plugin UI ' + label, kind, runtime], text=True).strip()
+    selected[label] = device
+    (canonical / 'PluginIntegrationDevices.json').write_text(json.dumps(selected, indent=2) + '\n')
+    recorder = None
+    try:
+        subprocess.run(['xcrun', 'simctl', 'bootstatus', device, '-b'], check=True)
+        subprocess.run(['xcrun', 'simctl', 'install', device, str(build / 'DerivedData/Build/Products/Debug-iphonesimulator/Harbor.app')], check=True)
+        container = subprocess.check_output(['xcrun', 'simctl', 'get_app_container', device, 'site.harbor.iphone', 'data'], text=True).strip()
+        subprocess.run([sys.executable, 'scripts/ios/prepare-model-test-startup.py', '--container', container], check=True)
+        if not execute(device, 'PluginSeed' + label, 'Harbor', plan['native_preparation_case']): continue
+        video = recordings / ('plugin-' + label.lower() + '.mp4')
+        with (build / 'logs' / ('plugin-' + label.lower() + '-recording.log')).open('w') as recording_log:
+            recorder = subprocess.Popen(['xcrun', 'simctl', 'io', device, 'recordVideo', '--codec=h264', str(video)], stdout=recording_log, stderr=subprocess.STDOUT)
+            try: execute(device, 'PluginUI' + label, 'HarborLive', case)
+            finally:
+                if recorder.poll() is None: recorder.send_signal(signal.SIGINT)
+                try: recorder.wait(timeout=30)
+                except subprocess.TimeoutExpired: recorder.terminate(); recorder.wait(timeout=10)
+                recorder = None
+        if not video.is_file() or video.stat().st_size <= 1024: failures.append(dict(device=device, recording='missing-or-incomplete'))
+    except (subprocess.SubprocessError, OSError) as error:
+        failures.append(dict(device=device, setup_error=type(error).__name__))
+    finally:
+        if recorder is not None and recorder.poll() is None: recorder.terminate(); recorder.wait(timeout=10)
+        subprocess.run(['xcrun', 'simctl', 'shutdown', device], check=False)
+        (canonical / 'PluginIntegrationUIFailures.json').write_text(json.dumps(failures, indent=2) + '\n')
+if failures: raise RuntimeError('Original partial plugin interface outcomes retained: ' + json.dumps(failures))
+print('Both new real plugin management routes completed. Captures still require inspection. No IPA or full-port approval.')

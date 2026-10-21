@@ -91,6 +91,9 @@ private struct PluginRuntimeAssets: Decodable {
     private var queuedBridges: [(String, HarborPluginBridgeKind, JSONValue)] = []
     private var disposed = false
     private(set) var logs: [String] = []
+    var isDisposed: Bool { disposed }
+    var redactLog: @MainActor (String) -> String = { $0 }
+    var onLog: @MainActor (String, String) -> Void = { _, _ in }
 
     init(id: String, name: String, source: String, format: HarborPluginCodeFormat, configuration: JSONValue = .object([:]),
         scope: PluginExecutionScope, currentScope: @escaping @MainActor () -> PluginExecutionScope, transport: any HarborPluginHostTransport, sourceID: String? = nil) {
@@ -226,7 +229,8 @@ private struct PluginRuntimeAssets: Decodable {
         case "error": if let id = message["id"].string { finish(id, result: .failure(HarborPluginRuntimeError("plugin-call", message["error"].string ?? ""))) }
         case "cancelled": if let id = message["id"].string { finish(id, result: .failure(CancellationError())) }
         case "log":
-            logs.append(String(message["args"].array.compactMap(\.string).joined(separator: " ").prefix(600)))
+            let text = String(redactLog(message["args"].array.compactMap(\.string).joined(separator: " ")).prefix(600))
+            logs.append(text); onLog(message["level"].string ?? "info", text)
             if logs.count > 200 { logs.removeFirst(logs.count - 200) }
         case "http", "grpc":
             guard let id = message["id"].string, bridges[id] == nil, !queuedBridges.contains(where: { $0.0 == id }),

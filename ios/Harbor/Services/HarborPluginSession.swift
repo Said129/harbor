@@ -10,13 +10,14 @@ import Observation
     private var loading: (scope: PluginExecutionScope, task: Task<HarborStreamPluginManager, Error>)?
     private var generation = UUID()
     private(set) var manager: HarborStreamPluginManager?
+    private(set) var runtime: HarborStreamPluginPool?
 
     init(namespace: String = "device-stream-plugins-v1", file: URL? = nil) {
         self.namespace = namespace; self.file = file
     }
     func open(scope: PluginExecutionScope, currentScope: @escaping @MainActor () -> PluginExecutionScope) async throws -> HarborStreamPluginManager {
         guard scope == currentScope() else { throw HarborPluginRepositoryError("plugin-scope") }
-        if let manager, manager.scope == scope, manager.ready { return manager }
+        if let manager, manager.scope == scope, manager.ready, runtime != nil { return manager }
         if let loading, loading.scope == scope { return try await loading.task.value }
         invalidate()
         let ticket = generation
@@ -29,6 +30,9 @@ import Observation
             do {
                 try await next.load(); try Task.checkCancellation()
                 guard ticket == self.generation, scope == currentScope() else { throw HarborPluginRepositoryError("plugin-scope") }
+                let runtime = HarborStreamPluginPool(manager: next, currentScope: currentScope)
+                next.invalidateRuntime = { [weak runtime] id in runtime?.invalidate(id) }
+                self.runtime = runtime
                 return next
             } catch {
                 next.dispose()
@@ -42,6 +46,7 @@ import Observation
     }
     func invalidate() {
         generation = UUID(); loading?.task.cancel(); loading = nil
+        runtime?.dispose(); runtime = nil
         manager?.dispose(); manager = nil
     }
 }
