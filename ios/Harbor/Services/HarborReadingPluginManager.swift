@@ -162,10 +162,11 @@ import Observation
         var source = plugin.source
         if plugin.entry.mangayomi {
             let entry = plugin.entry
-            source = try await adapter.apply("mangayomi-source", raw: .object([
+            var record: [String: JSONValue] = [
                 "id": .string(entry.id), "name": .string(entry.name), "lang": .string(entry.language), "baseUrl": .string(entry.baseURL ?? ""),
-                "apiUrl": entry.raw["apiUrl"], "version": .string(entry.version), "isNsfw": .bool(entry.adult),
-                "iconUrl": entry.raw["icon"], "source": .string(source)])).string ?? ""
+                "apiUrl": .string(entry.raw["apiUrl"].string ?? ""), "version": .string(entry.version), "isNsfw": .bool(entry.adult), "source": .string(source)]
+            if let icon = entry.icon { record["iconUrl"] = .string(icon) }
+            source = try await adapter.apply("mangayomi-source", raw: .object(record)).string ?? ""
         }
         try validate()
         return HarborPluginRuntime(id: plugin.id, name: plugin.entry.name, source: source, format: .raw, configuration: plugin.configuration,
