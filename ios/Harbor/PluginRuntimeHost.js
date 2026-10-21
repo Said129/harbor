@@ -5,6 +5,7 @@
   globalThis.installHarborPluginHost = function (sandbox, parseHtml, compose, instance) {
     let worker = null;
     let sourceURL = null;
+    const jsonCalls = new Set();
     const encoder = new TextEncoder();
     const maximum = 64 * 1024 * 1024;
     function post(message) {
@@ -16,6 +17,7 @@
       worker?.postMessage({ type: "bridgeResult", id, ok, value, error });
     }
     function dispose() {
+      jsonCalls.clear();
       worker?.terminate();
       worker = null;
       if (sourceURL) URL.revokeObjectURL(sourceURL);
@@ -33,9 +35,14 @@
         sourceURL = URL.createObjectURL(new Blob([sandbox], { type: "text/javascript" }));
         worker = new Worker(sourceURL);
         worker.onmessage = function (event) {
-          const message = event.data;
+          let message = event.data;
           if (!message || typeof message !== "object") return;
           try {
+            if (["result", "error", "cancelled"].includes(message.type)) {
+              const jsonResult = jsonCalls.delete(message.id);
+              if (jsonResult && message.type === "result")
+                message = { ...message, value: JSON.stringify(message.value) ?? "null" };
+            }
             if (message.type === "parse") {
               const html = String(message.payload?.html ?? "");
               if (encoder.encode(html).byteLength > 6 * 1024 * 1024)
@@ -70,6 +77,7 @@
       },
       call(message) {
         if (!worker) throw new Error("plugin worker unavailable");
+        if (message.jsonResult === true) jsonCalls.add(message.id);
         worker.postMessage({
           type: "call",
           id: message.id,
@@ -78,6 +86,7 @@
         });
       },
       cancel(id) {
+        jsonCalls.delete(id);
         worker?.postMessage({ type: "cancel", id });
       },
       bridgeResult(message) {

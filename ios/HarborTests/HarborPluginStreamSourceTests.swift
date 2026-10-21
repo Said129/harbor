@@ -29,6 +29,18 @@ private actor StreamSourceNetwork: HarborNativeNetworkCalling {
 @MainActor final class HarborPluginStreamSourceTests: XCTestCase {
     private let direct = #"var plugin={id:'owned',name:'Owned',streams:function(req){return {streams:[{url:'https://files.example.org/owned.m3u8',name:'Owned FHD',quality:'1080p',headers:{Referer:'https://files.example.org/player'},subtitles:[{url:'https://files.example.org/owned.srt',lang:'spa',title:'Owned Spanish'}]}]};}};"#
 
+    func testOriginalWorkerHeaderOrderSurvivesThePoolAndAdapterHeaderLimit() async throws {
+        let (source, _, _, _) = try await prepared([#"var plugin={id:'owned',name:'Owned',streams:function(){var h={Referer:'https://files.example.org/player','X-First':'owned'};for(var i=0;i<30;i++)h['X-N'+i]='v'+i;return [{url:'https://files.example.org/owned.m3u8',headers:h}];}};"#])
+        defer { source.runtime.dispose(); source.manager.dispose(); source.adapter.clear() }
+        let media = Media(id: "tt0137523", type: "movie", name: "Owned")
+        let response = try await source.streams(media: media, videoID: media.id, episode: nil, startingPriority: 0, options: .init(), tmdbKey: "")
+        let row = try XCTUnwrap(response.streams.first), headers = row["behaviorHints"]["proxyHeaders"]["request"]
+        XCTAssertEqual(headers.objectValue.count, 24); XCTAssertEqual(headers["Referer"].string, "https://files.example.org/player")
+        XCTAssertEqual(headers["X-First"].string, "owned"); XCTAssertEqual(headers["X-N21"].string, "v21"); XCTAssertEqual(headers["X-N22"], .null)
+        let id = try XCTUnwrap(source.manager.document.plugins.first?.id)
+        XCTAssertEqual(source.runtime.health[id]?.count, 1); XCTAssertEqual(source.manager.document.plugins.first?.failures, 0)
+    }
+
     private func prepared(_ codes: [String], providerIndex: Int? = nil) async throws
         -> (HarborPluginStreamSource, StreamSourceContext, StreamSourceNetwork, URL) {
         let context = StreamSourceContext(), network = StreamSourceNetwork()

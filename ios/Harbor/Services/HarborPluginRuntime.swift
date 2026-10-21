@@ -113,7 +113,7 @@ private struct PluginRuntimeAssets: Decodable {
         try validate(); return result
     }
 
-    func call(_ method: String, arguments: [JSONValue] = [], timeout: TimeInterval = 20) async throws -> JSONValue {
+    func call(_ method: String, arguments: [JSONValue] = [], timeout: TimeInterval = 20, jsonResult: Bool = false) async throws -> JSONValue {
         try Task.checkCancellation()
         _ = try await metadata()
         try validate(); try Task.checkCancellation()
@@ -122,7 +122,9 @@ private struct PluginRuntimeAssets: Decodable {
         let id = UUID().uuidString
         let deadline = timeout.isFinite && timeout > 0 ? max(0.05, min(120, timeout)) : 20
         return try await request(id: id, timeout: deadline) {
-            self.send("call", .object(["id": .string(id), "method": .string(method), "args": .array(arguments)]))
+            var message: [String: JSONValue] = ["id": .string(id), "method": .string(method), "args": .array(arguments)]
+            if jsonResult { message["jsonResult"] = .bool(true) }
+            self.send("call", .object(message))
         }
     }
 

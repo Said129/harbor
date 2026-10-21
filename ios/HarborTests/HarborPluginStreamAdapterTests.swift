@@ -18,7 +18,7 @@ import XCTest
         XCTAssertEqual(fixture["cases"].array.count, 20)
         for row in fixture["cases"].array {
             let input = row["input"]
-            let actual = try await adapter.map(input["raw"], context: context(input["context"]), blockTrackers: input["blockTrackers"] != .bool(false))
+            let actual = try await adapter.mapJSON(XCTUnwrap(input["rawJSON"].string), context: context(input["context"]), blockTrackers: input["blockTrackers"] != .bool(false))
             XCTAssertEqual(JSONValue.array(actual), row["expected"], row["name"].string ?? "Owned adapter case")
         }
     }

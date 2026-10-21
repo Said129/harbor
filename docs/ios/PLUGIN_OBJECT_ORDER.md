@@ -1,0 +1,7 @@
+# Preserve provider object order through the native bridge
+
+Run 39623835388 compiled and completed thirteen executions: twelve passed and one failed, with no introduced compiler or appearance warnings. The remaining failure was the original adapter fixture `header-values-controls-commas-and-limit`: decoding its headers into a Swift Dictionary and encoding them again reordered the keys before the Desktop adapter selected its first twenty-four headers.
+
+Source results now optionally cross the native host as their original `JSON.stringify` text. This happens in the trusted host after the worker replies; installed code and the pinned sandbox are unchanged. The pool decodes a separate copy for health counts and forwards the original text to the pure stream adapter. Normal callers keep their structured result. Cancellation and disposal clear the host's per-call encoding selection.
+
+The twenty reference inputs now retain their original raw JSON strings in the fixture. Expected adapter outputs and the Desktop normalization rules are unchanged. The updated Node reference cases passed; native approval requires the failed adapter case, the two affected encoding/cancellation cases, a new mixed-call/cancellation contract, and the new complete worker → pool → header-limit path. Approved source selection, metadata, startup/RPC, and iPhone/iPad option routes remain unselected. No IPA is requested.

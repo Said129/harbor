@@ -63,8 +63,16 @@ private struct PluginStreamAdapterAsset: Decodable {
     private var generation = UUID()
 
     func map(_ raw: JSONValue, context: HarborPluginStreamContext, blockTrackers: Bool = true) async throws -> [JSONValue] {
+        let json = try await Task.detached(priority: .utility) {
+            let data = try JSONEncoder().encode(raw)
+            guard data.count <= 64 * 1024 * 1024, let text = String(data: data, encoding: .utf8) else { throw HarborPluginRuntimeError("plugin-adapter-message") }
+            return text
+        }.value
+        return try await mapJSON(json, context: context, blockTrackers: blockTrackers)
+    }
+    func mapJSON(_ raw: String, context: HarborPluginStreamContext, blockTrackers: Bool = true) async throws -> [JSONValue] {
         try Task.checkCancellation()
-        let input = JSONValue.object(["raw": raw, "context": context.json, "blockTrackers": .bool(blockTrackers)])
+        let input = JSONValue.object(["rawJSON": .string(raw), "context": context.json, "blockTrackers": .bool(blockTrackers)])
         let encoded = try await Task.detached(priority: .utility) {
             let data = try JSONEncoder().encode(input)
             guard data.count <= 64 * 1024 * 1024, let text = String(data: data, encoding: .utf8) else { throw HarborPluginRuntimeError("plugin-adapter-message") }

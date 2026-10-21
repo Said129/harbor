@@ -89,7 +89,7 @@ const {parseMagnet,infoHashFromSources}=magnet; ${adapter}\nreturn {toStreams}; 
 globalThis.harborAdaptPluginStreams = function(text) {
  const input=JSON.parse(text);
  privacy.setTrackerBlocking(input.blockTrackers !== false);
- return JSON.stringify(adapter.toStreams(input.raw,input.context));
+ return JSON.stringify(adapter.toStreams(input.rawJSON === undefined ? input.raw : JSON.parse(input.rawJSON),input.context));
 };
 })();`;
 const context = vm.createContext({ URL });
@@ -282,8 +282,10 @@ const cases = [
   ]),
   row("absent-or-malformed-envelope", { streams: "owned" }),
 ];
-for (const test of cases)
+for (const test of cases) {
+  test.input.rawJSON = JSON.stringify(test.input.raw);
   test.expected = JSON.parse(context.harborAdaptPluginStreams(JSON.stringify(test.input)));
+}
 assert.equal(cases.length, 20);
 assert.deepEqual(cases[1].expected, []);
 assert.deepEqual(cases[2].expected, []);

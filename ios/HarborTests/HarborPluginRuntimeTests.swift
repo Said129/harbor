@@ -40,6 +40,23 @@ private actor OwnedPluginTransport: HarborPluginHostTransport {
     }
     private let httpSource = #"var plugin = { id: "owned.http", name: "Owned HTTP", search: async function () { return await harbor.http("https://example.invalid/owned", { responseType: "json" }); } };"#
 
+    func testOptionalOrderedJSONRepliesPreserveNestedOrderWithoutChangingConcurrentNormalCallsOrCancellation() async throws {
+        let transport = OwnedPluginTransport(holdFirst: true)
+        let worker = runtime(#"var plugin={id:'owned.order',name:'Owned',streams:async function(r){if(r.hold)await harbor.http('https://example.invalid/hold');return [{headers:{Z:'first',A:'second',M:'third'},url:'https://example.org/owned'}];}};"#, transport: transport)
+        defer { worker.dispose(); Task { await transport.release() } }
+        let cancelled = Task { try await worker.call("streams", arguments: [.object(["hold": .bool(true)])], jsonResult: true) }
+        try await transport.waitUntilStarted()
+        async let ordered = worker.call("streams", arguments: [.object([:])], jsonResult: true)
+        async let normal = worker.call("streams", arguments: [.object([:])])
+        let (text, object) = try await (ordered, normal)
+        XCTAssertTrue(text.string?.contains(#""headers":{"Z":"first","A":"second","M":"third"}"#) == true)
+        XCTAssertEqual(object.array.first?["headers"]["Z"].string, "first"); XCTAssertNil(object.string)
+        cancelled.cancel(); await transport.release()
+        do { _ = try await cancelled.value; XCTFail("Cancelled ordered call returned") } catch { XCTAssertTrue(error is CancellationError) }
+        let following = try await worker.call("streams", arguments: [.object([:])], jsonResult: true)
+        XCTAssertEqual(following, text)
+    }
+
     func testPinnedHarborWorkerParsesActualHTMLAndExposesDeclaredMethods() async throws {
         let source = #"var plugin = { id: "owned.html", name: "Owned HTML", search: async function (query, page) { var document = await harbor.parseHtml('<style>.hidden{display:none}</style><a class="item" href="/owned">Owned title</a><a class="item hidden" href="/hidden">Hidden</a><script>throw new Error("not executable")</script>'); return { query: query, page: page, title: document.querySelector('a.item').text(), path: document.querySelector('a.item').getAttribute('href'), count: document.querySelectorAll('a.item').length, scripts: document.querySelectorAll('script').length, directFetch: typeof fetch }; }, settings: function () { return [{key:"quality",type:"select",label:"Quality",options:["FHD"]}]; } };"#
         let worker = runtime(source, format: .harbor); defer { worker.dispose() }

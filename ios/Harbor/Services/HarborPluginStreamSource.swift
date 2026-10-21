@@ -115,12 +115,13 @@ enum HarborPluginSourceSelection {
         }
         do {
             let timeout = min(22, (plugin.entry.timeoutMs ?? 22_000) / 1000)
-            let raw = try await runtime.run(plugin.id, request: request, timeout: timeout)
+            let reply = try await runtime.run(plugin.id, request: request, timeout: timeout, jsonResult: true)
+            guard let raw = reply.string else { throw HarborPluginRuntimeError("plugin-adapter-result") }
             try validate()
             guard sameInstallation(plugin) else { return .init() }
             let context = HarborPluginStreamContext(request: request, addonID: group.addonID, addonName: group.name,
                 addonURL: group.url, pluginName: plugin.entry.name)
-            let streams = try await adapter.map(raw, context: context, blockTrackers: options.blockTrackers)
+            let streams = try await adapter.mapJSON(raw, context: context, blockTrackers: options.blockTrackers)
             try validate()
             guard sameInstallation(plugin) else { return .init() }
             return .init(streams: streams)

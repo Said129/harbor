@@ -60,10 +60,10 @@ private struct HarborObservedPluginTransport: HarborPluginHostTransport {
         self.manager = manager; self.scope = manager.scope; self.currentScope = currentScope
         self.gate = gate ?? .shared; self.now = now
     }
-    func run(_ id: String, request: JSONValue, timeout: TimeInterval = 30, checking: Bool = false) async throws -> JSONValue {
+    func run(_ id: String, request: JSONValue, timeout: TimeInterval = 30, checking: Bool = false, jsonResult: Bool = false) async throws -> JSONValue {
         try validate()
         let operationID = UUID()
-        let task = Task { try await self.execute(id, request: request, timeout: timeout, checking: checking) }
+        let task = Task { try await self.execute(id, request: request, timeout: timeout, checking: checking, jsonResult: jsonResult) }
         operations[operationID] = (id, task)
         defer { operations[operationID] = nil }
         return try await withTaskCancellationHandler { try await task.value } onCancel: { task.cancel() }
@@ -141,7 +141,7 @@ private struct HarborObservedPluginTransport: HarborPluginHostTransport {
         }
         slots[plugin.id] = result; startSweep(); return result
     }
-    private func execute(_ id: String, request: JSONValue, timeout: TimeInterval, checking: Bool) async throws -> JSONValue {
+    private func execute(_ id: String, request: JSONValue, timeout: TimeInterval, checking: Bool, jsonResult: Bool) async throws -> JSONValue {
         try await gate.acquire(); defer { gate.release() }
         try validate()
         guard let plugin = manager.document.plugins.first(where: { $0.id == id }), eligible(plugin, checking: checking) else {
@@ -156,13 +156,18 @@ private struct HarborObservedPluginTransport: HarborPluginHostTransport {
         defer { slot.calls -= 1; slot.lastUsed = now(); if !disposed { sweep() } }
         var arguments = request.objectValue; arguments["settings"] = .object(configuration)
         do {
-            let value = try await slot.runtime.call("streams", arguments: [.object(arguments)], timeout: timeout)
+            let value = try await slot.runtime.call("streams", arguments: [.object(arguments)], timeout: timeout, jsonResult: jsonResult)
             try validate()
             guard sameInstallation(plugin, checking: checking) else { throw CancellationError() }
             var status = health[id] ?? .init()
             status.lastAt = Date().timeIntervalSince1970 * 1000; status.milliseconds = elapsed(started)
-            if case .array(let streams) = value { status.count = streams.count }
-            else { status.count = value["streams"].array.count }
+            let counted: JSONValue
+            if jsonResult, let text = value.string {
+                counted = try await Task.detached(priority: .utility) { try JSONDecoder().decode(JSONValue.self, from: Data(text.utf8)) }.value
+                try validate(); guard sameInstallation(plugin, checking: checking) else { throw CancellationError() }
+            } else { counted = value }
+            if case .array(let streams) = counted { status.count = streams.count }
+            else { status.count = counted["streams"].array.count }
             status.error = nil; status.skipped = nil; status.title = request["title"].string
             status.requests = max(0, slot.requests - requestsBefore); health[id] = status
             log(id, level: "info", text: "\(status.count ?? 0) streams · \(status.milliseconds ?? 0) ms · \(status.requests) requests")

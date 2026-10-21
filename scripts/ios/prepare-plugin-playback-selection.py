@@ -5,6 +5,31 @@ from pathlib import Path
 import re
 
 requested = os.environ.get('HARBOR_NATIVE_SELECTION', '').strip()
+ordered = ['HarborTests.HarborPluginRuntimeTests/testOptionalOrderedJSONRepliesPreserveNestedOrderWithoutChangingConcurrentNormalCallsOrCancellation',
+    'HarborTests.HarborPluginStreamSourceTests/testOriginalWorkerHeaderOrderSurvivesThePoolAndAdapterHeaderLimit']
+ordered += ['HarborTests.HarborPluginStreamAdapterTests/' + method for method in [
+    'testActualWebKitRunsAllTwentyOriginalStreamAdapterReferenceCases',
+    'testCancellingOneCallerDoesNotRetireAnotherCallOrTheSharedPureContext',
+    'testConcurrentCallsKeepEachTrackingPolicyAndSubsequentDefaultIndependent']]
+if requested and set(item.strip().replace('HarborTests/', 'HarborTests.', 1) for item in requested.split(',')) == set(ordered):
+    selected = [item.strip().replace('HarborTests/', 'HarborTests.', 1) for item in requested.split(',')]
+    assert len(selected) == len(set(selected)) == 5
+    for case in ordered:
+        suite, method = case.split('.', 1)[1].split('/')
+        assert re.search(r'\bfunc ' + method + r'\(', Path('ios/HarborTests/' + suite + '.swift').read_text('utf-8'))
+    plan = dict(source=os.environ.get('GITHUB_SHA', 'working-tree'), block='plugin-object-order', selected_case_count=5,
+        pending_native_cases=ordered, expected_total_executions=5, expected_original_images=0, ui_cases=[], required_original_captures=[],
+        predecessor_run=39623835388, predecessor_source='611784ae29de26991c5aba30c72e288a9b43ad6e', predecessor_actual_executions=13,
+        predecessor_passed_executions_retained=12, failed_native_cases=1, new_native_cases=2, affected_native_cases=2,
+        unrelated_approved_cases_selected=False, existing_rust_tests_repeated=False, full_desktop_parity_complete=False, ipa_requested=False)
+    directory = Path('ios/build'); directory.mkdir(parents=True, exist_ok=True)
+    (directory / 'preserved-plugin-integration.json').write_text(json.dumps(plan, indent=2) + '\n', 'utf-8')
+    (directory / 'plugin-integration-selection.txt').write_text('\n'.join(case.replace('.', '/', 1) for case in ordered) + '\n', 'utf-8')
+    if os.environ.get('GITHUB_ENV'):
+        with open(os.environ['GITHUB_ENV'], 'a', encoding='utf-8') as output: output.write('HARBOR_PLUGIN_UI_REQUIRED=false\n')
+    print('1 failed adapter, 2 affected encoding/cancellation models and 2 new ordered delivery contracts. No passed source/UI/startup replay. No IPA.')
+    raise SystemExit(0)
+
 activity = ['HarborTests.HarborPluginActivityTests/' + method for method in [
     'testRealCheckUsesDesktopSampleFreshConfigurationAndLastTitleWithVisibleActivity',
     'testExplicitActivityCheckRecoversAnAlreadyPausedInstallationAndPersistsIt',
@@ -78,19 +103,19 @@ if requested:
     raise SystemExit(0)
 
 cases = []
-for suite, count in [('HarborPluginStreamAdapterTests', 3), ('HarborPluginStreamRequestTests', 3), ('HarborPluginStreamSourceTests', 4)]:
+for suite, count in [('HarborPluginStreamAdapterTests', 3), ('HarborPluginStreamRequestTests', 3), ('HarborPluginStreamSourceTests', 5)]:
     methods = re.findall(r'\bfunc (test\w+)\(', Path('ios/HarborTests/' + suite + '.swift').read_text('utf-8'))
     assert len(methods) == len(set(methods)) == count
     cases += ['HarborTests.' + suite + '/' + method for method in methods]
-assert len(cases) == len(set(cases)) == 10
+assert len(cases) == len(set(cases)) == 11
 seed = 'HarborTests.HarborPluginInterfaceSeedTests/testPrepareOwnedPluginInTheOrdinaryLocalInstallation'
 ui = ['HarborUITests.HarborPluginNavigationTests/testNewPluginPlaybackOptionsPersistOn' + device for device in ['IPhone', 'IPad']]
 for case in cases + [seed] + ui:
     target, tail = case.split('.', 1); suite, method = tail.split('/')
     assert re.search(r'\bfunc ' + method + r'\(', Path('ios/' + target + '/' + suite + '.swift').read_text('utf-8'))
 plan = dict(source=os.environ.get('GITHUB_SHA', 'working-tree'), block='plugin-playback', selected_case_count=len(cases),
-    pending_native_cases=cases, new_native_cases=10, native_preparation_case=seed, ui_cases=ui,
-    expected_total_executions=14, expected_original_images=4,
+    pending_native_cases=cases, new_native_cases=11, native_preparation_case=seed, ui_cases=ui,
+    expected_total_executions=15, expected_original_images=4,
     required_original_captures=['plugin-options-' + state + '-' + device for device in ['iphone', 'ipad'] for state in ['paused', 'restored']],
     predecessor_run=39587372660, predecessor_source='cfe4160368baf1c33299aec06ddf8ec365f6e38b',
     predecessor_results_assumed=False, predecessor_tests_repeated=False, unrelated_approved_cases_selected=False,
@@ -100,4 +125,4 @@ directory = Path('ios/build'); directory.mkdir(parents=True, exist_ok=True)
 (directory / 'plugin-integration-selection.txt').write_text('\n'.join(case.replace('.', '/', 1) for case in cases) + '\n', 'utf-8')
 if os.environ.get('GITHUB_ENV'):
     with open(os.environ['GITHUB_ENV'], 'a', encoding='utf-8') as output: output.write('HARBOR_PLUGIN_UI_REQUIRED=true\n')
-print('10 new playback models, 2 fresh device preparations and 2 new option routes. Previous-run outcomes remain independent. No IPA.')
+print('11 playback models, 2 fresh device preparations and 2 option routes. Previous-run outcomes remain independent. No IPA.')

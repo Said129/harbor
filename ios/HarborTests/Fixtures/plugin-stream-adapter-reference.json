@@ -1,6 +1,6 @@
 {
   "reference": "0834340cec5531650bfe78cd628628702e636987",
-  "programSha256": "7722b054e0951a2c1c6cbc6b325e56538169132b68d25e3fb937f2e95b8fa2bc",
+  "programSha256": "6aba6fdffef01c0919a631c57f217492cef52d9f2f16455d30f496236b8ca503",
   "cases": [
     {
       "name": "direct-quality-language-size-headers-and-subtitles",
@@ -46,7 +46,8 @@
           "addonName": "Owned repository",
           "addonUrl": "harbor-plugin://owned.plugin",
           "pluginName": "Owned plugin"
-        }
+        },
+        "rawJSON": "[{\"url\":\"https://cdn.example.org/movie.m3u8\",\"quality\":\"FHD\",\"language\":[\"English\",\"Japanese\"],\"size\":\"1,5 GB\",\"provider\":\"Owned\",\"headers\":{\"Referer\":\"https://video.example.org/page\",\"Origin\":\"https://example.org\",\"Authorization\":\"owned\",\"Connection\":\"close\",\"X-Harbor-Key\":\"drop\"},\"subtitles\":[{\"url\":\"https://cdn.example.org/owned.srt\",\"language\":\"es\",\"id\":7}]}]"
       },
       "expected": [
         {
@@ -126,7 +127,8 @@
           "addonName": "Owned repository",
           "addonUrl": "harbor-plugin://owned.plugin",
           "pluginName": "Owned plugin"
-        }
+        },
+        "rawJSON": "[{\"url\":\"http://127.1/a\"},{\"url\":\"http://localhost/a\"},{\"url\":\"http://[::1]/a\"},{\"url\":\"http://[::ffff:127.0.0.1]/a\"},{\"url\":\"http://[64:ff9b::7f00:1]/a\"},{\"url\":\"file:///owned\"},{\"url\":\"javascript:owned\"},{\"url\":\"https://owned.local/a\"}]"
       },
       "expected": []
     },
@@ -156,7 +158,8 @@
           "addonName": "Owned repository",
           "addonUrl": "harbor-plugin://owned.plugin",
           "pluginName": "Owned plugin"
-        }
+        },
+        "rawJSON": "[{\"url\":\"https://google-analytics.com/owned\"}]"
       },
       "expected": []
     },
@@ -187,7 +190,8 @@
           "addonUrl": "harbor-plugin://owned.plugin",
           "pluginName": "Owned plugin"
         },
-        "blockTrackers": false
+        "blockTrackers": false,
+        "rawJSON": "[{\"url\":\"https://google-analytics.com/owned\"}]"
       },
       "expected": [
         {
@@ -229,7 +233,8 @@
           "addonName": "Owned repository",
           "addonUrl": "harbor-plugin://owned.plugin",
           "pluginName": "Owned plugin"
-        }
+        },
+        "rawJSON": "[{\"url\":\"https://google-analytics.com/owned\"}]"
       },
       "expected": []
     },
@@ -265,7 +270,8 @@
           "addonName": "Owned repository",
           "addonUrl": "harbor-plugin://owned.plugin",
           "pluginName": "Owned plugin"
-        }
+        },
+        "rawJSON": "[{\"url\":\"https://one.github.io/owned\",\"headers\":{\"Referer\":\"https://two.github.io/page\",\"Origin\":\"https://two.github.io\",\"User-Agent\":\"owned\",\"Cookie\":\"owned=1\"}}]"
       },
       "expected": [
         {
@@ -318,7 +324,8 @@
           "addonName": "Owned repository",
           "addonUrl": "harbor-plugin://owned.plugin",
           "pluginName": "Owned plugin"
-        }
+        },
+        "rawJSON": "[{\"url\":\"https://cdn.example.co.uk/owned\",\"headers\":{\"Referer\":\"https://video.example.co.uk/page\",\"Origin\":\"https://example.co.uk\"}}]"
       },
       "expected": [
         {
@@ -403,7 +410,8 @@
           "addonName": "Owned repository",
           "addonUrl": "harbor-plugin://owned.plugin",
           "pluginName": "Owned plugin"
-        }
+        },
+        "rawJSON": "[{\"url\":\"https://example.org/owned\",\"headers\":{\"Host\":\"drop\",\"Content-Length\":\"5\",\"X-Bad\":\"a,b\",\"X-Control\":\"before\\r\\nafter\",\"X-Owned-0\":\"v0\",\"X-Owned-1\":\"v1\",\"X-Owned-2\":\"v2\",\"X-Owned-3\":\"v3\",\"X-Owned-4\":\"v4\",\"X-Owned-5\":\"v5\",\"X-Owned-6\":\"v6\",\"X-Owned-7\":\"v7\",\"X-Owned-8\":\"v8\",\"X-Owned-9\":\"v9\",\"X-Owned-10\":\"v10\",\"X-Owned-11\":\"v11\",\"X-Owned-12\":\"v12\",\"X-Owned-13\":\"v13\",\"X-Owned-14\":\"v14\",\"X-Owned-15\":\"v15\",\"X-Owned-16\":\"v16\",\"X-Owned-17\":\"v17\",\"X-Owned-18\":\"v18\",\"X-Owned-19\":\"v19\",\"X-Owned-20\":\"v20\",\"X-Owned-21\":\"v21\",\"X-Owned-22\":\"v22\",\"X-Owned-23\":\"v23\",\"X-Owned-24\":\"v24\",\"X-Owned-25\":\"v25\",\"X-Owned-26\":\"v26\",\"X-Owned-27\":\"v27\",\"X-Owned-28\":\"v28\",\"X-Owned-29\":\"v29\"}}]"
       },
       "expected": [
         {
@@ -476,7 +484,8 @@
           "addonName": "Owned repository",
           "addonUrl": "harbor-plugin://owned.plugin",
           "pluginName": "Owned plugin"
-        }
+        },
+        "rawJSON": "[{\"url\":\"magnet:?xt=urn:btih:0123456789abcdef0123456789abcdef01234567&tr=udp%3A%2F%2Ftracker.example.org%3A80%2Fannounce\",\"fileIdx\":2,\"seeders\":7.6}]"
       },
       "expected": [
         {
@@ -523,7 +532,8 @@
           "addonName": "Owned repository",
           "addonUrl": "harbor-plugin://owned.plugin",
           "pluginName": "Owned plugin"
-        }
+        },
+        "rawJSON": "[{\"url\":\"magnet:?xt=urn:btih:ABCDEFGHIJKLMNOPQRSTUVWXYZ234567\"}]"
       },
       "expected": [
         {
@@ -569,7 +579,8 @@
           "addonName": "Owned repository",
           "addonUrl": "harbor-plugin://owned.plugin",
           "pluginName": "Owned plugin"
-        }
+        },
+        "rawJSON": "[{\"url\":\"https://example.org/owned.mkv\",\"infoHash\":\"0123456789ABCDEF0123456789ABCDEF01234567\",\"fileIdx\":0,\"sources\":[\"tracker:udp://tracker.example.org:80\"]}]"
       },
       "expected": [
         {
@@ -622,7 +633,8 @@
           "addonName": "Owned repository",
           "addonUrl": "harbor-plugin://owned.plugin",
           "pluginName": "Owned plugin"
-        }
+        },
+        "rawJSON": "[{\"sources\":[\"dht:0123456789abcdef0123456789abcdef01234567\"]},{\"externalUrl\":\"https://example.org/owned\"},{\"ytId\":\"dQw4w9WgXcQ\"}]"
       },
       "expected": [
         {
@@ -698,7 +710,8 @@
           "addonName": "Owned repository",
           "addonUrl": "harbor-plugin://owned.plugin",
           "pluginName": "Owned plugin"
-        }
+        },
+        "rawJSON": "{\"streams\":[null,7,\"owned\",{},{\"url\":\"https://example.org/owned\",\"name\":{\"x\":1},\"title\":12,\"description\":[\"one\",\"two\"]}]}"
       },
       "expected": [
         {
@@ -1228,7 +1241,8 @@
           "addonName": "Owned repository",
           "addonUrl": "harbor-plugin://owned.plugin",
           "pluginName": "Owned plugin"
-        }
+        },
+        "rawJSON": "[{},{},{},{},{},{},{},{},{},{},{\"url\":\"https://example.org/10\"},{\"url\":\"https://example.org/11\"},{\"url\":\"https://example.org/12\"},{\"url\":\"https://example.org/13\"},{\"url\":\"https://example.org/14\"},{\"url\":\"https://example.org/15\"},{\"url\":\"https://example.org/16\"},{\"url\":\"https://example.org/17\"},{\"url\":\"https://example.org/18\"},{\"url\":\"https://example.org/19\"},{\"url\":\"https://example.org/20\"},{\"url\":\"https://example.org/21\"},{\"url\":\"https://example.org/22\"},{\"url\":\"https://example.org/23\"},{\"url\":\"https://example.org/24\"},{\"url\":\"https://example.org/25\"},{\"url\":\"https://example.org/26\"},{\"url\":\"https://example.org/27\"},{\"url\":\"https://example.org/28\"},{\"url\":\"https://example.org/29\"},{\"url\":\"https://example.org/30\"},{\"url\":\"https://example.org/31\"},{\"url\":\"https://example.org/32\"},{\"url\":\"https://example.org/33\"},{\"url\":\"https://example.org/34\"},{\"url\":\"https://example.org/35\"},{\"url\":\"https://example.org/36\"},{\"url\":\"https://example.org/37\"},{\"url\":\"https://example.org/38\"},{\"url\":\"https://example.org/39\"},{\"url\":\"https://example.org/40\"},{\"url\":\"https://example.org/41\"},{\"url\":\"https://example.org/42\"},{\"url\":\"https://example.org/43\"},{\"url\":\"https://example.org/44\"},{\"url\":\"https://example.org/45\"},{\"url\":\"https://example.org/46\"},{\"url\":\"https://example.org/47\"},{\"url\":\"https://example.org/48\"},{\"url\":\"https://example.org/49\"},{\"url\":\"https://example.org/50\"},{\"url\":\"https://example.org/51\"},{\"url\":\"https://example.org/52\"},{\"url\":\"https://example.org/53\"},{\"url\":\"https://example.org/54\"},{\"url\":\"https://example.org/55\"},{\"url\":\"https://example.org/56\"},{\"url\":\"https://example.org/57\"},{\"url\":\"https://example.org/58\"},{\"url\":\"https://example.org/59\"},{\"url\":\"https://example.org/60\"},{\"url\":\"https://example.org/61\"},{\"url\":\"https://example.org/62\"},{\"url\":\"https://example.org/63\"},{\"url\":\"https://example.org/64\"},{\"url\":\"https://example.org/65\"},{\"url\":\"https://example.org/66\"},{\"url\":\"https://example.org/67\"},{\"url\":\"https://example.org/68\"},{\"url\":\"https://example.org/69\"},{\"url\":\"https://example.org/70\"},{\"url\":\"https://example.org/71\"},{\"url\":\"https://example.org/72\"},{\"url\":\"https://example.org/73\"},{\"url\":\"https://example.org/74\"},{\"url\":\"https://example.org/75\"},{\"url\":\"https://example.org/76\"},{\"url\":\"https://example.org/77\"},{\"url\":\"https://example.org/78\"},{\"url\":\"https://example.org/79\"},{\"url\":\"https://example.org/80\"},{\"url\":\"https://example.org/81\"},{\"url\":\"https://example.org/82\"},{\"url\":\"https://example.org/83\"},{\"url\":\"https://example.org/84\"},{\"url\":\"https://example.org/85\"},{\"url\":\"https://example.org/86\"},{\"url\":\"https://example.org/87\"},{\"url\":\"https://example.org/88\"},{\"url\":\"https://example.org/89\"},{\"url\":\"https://example.org/90\"},{\"url\":\"https://example.org/91\"},{\"url\":\"https://example.org/92\"},{\"url\":\"https://example.org/93\"},{\"url\":\"https://example.org/94\"},{\"url\":\"https://example.org/95\"},{\"url\":\"https://example.org/96\"},{\"url\":\"https://example.org/97\"},{\"url\":\"https://example.org/98\"},{\"url\":\"https://example.org/99\"},{\"url\":\"https://example.org/100\"},{\"url\":\"https://example.org/101\"},{\"url\":\"https://example.org/102\"},{\"url\":\"https://example.org/103\"},{\"url\":\"https://example.org/104\"},{\"url\":\"https://example.org/105\"},{\"url\":\"https://example.org/106\"},{\"url\":\"https://example.org/107\"},{\"url\":\"https://example.org/108\"},{\"url\":\"https://example.org/109\"},{\"url\":\"https://example.org/110\"},{\"url\":\"https://example.org/111\"},{\"url\":\"https://example.org/112\"},{\"url\":\"https://example.org/113\"},{\"url\":\"https://example.org/114\"},{\"url\":\"https://example.org/115\"},{\"url\":\"https://example.org/116\"},{\"url\":\"https://example.org/117\"},{\"url\":\"https://example.org/118\"},{\"url\":\"https://example.org/119\"},{\"url\":\"https://example.org/120\"},{\"url\":\"https://example.org/121\"},{\"url\":\"https://example.org/122\"},{\"url\":\"https://example.org/123\"},{\"url\":\"https://example.org/124\"},{\"url\":\"https://example.org/125\"},{\"url\":\"https://example.org/126\"},{\"url\":\"https://example.org/127\"},{\"url\":\"https://example.org/128\"},{\"url\":\"https://example.org/129\"},{\"url\":\"https://example.org/130\"},{\"url\":\"https://example.org/131\"},{\"url\":\"https://example.org/132\"},{\"url\":\"https://example.org/133\"},{\"url\":\"https://example.org/134\"},{\"url\":\"https://example.org/135\"},{\"url\":\"https://example.org/136\"},{\"url\":\"https://example.org/137\"},{\"url\":\"https://example.org/138\"},{\"url\":\"https://example.org/139\"},{\"url\":\"https://example.org/140\"},{\"url\":\"https://example.org/141\"},{\"url\":\"https://example.org/142\"},{\"url\":\"https://example.org/143\"},{\"url\":\"https://example.org/144\"},{\"url\":\"https://example.org/145\"},{\"url\":\"https://example.org/146\"},{\"url\":\"https://example.org/147\"},{\"url\":\"https://example.org/148\"},{\"url\":\"https://example.org/149\"},{\"url\":\"https://example.org/150\"},{\"url\":\"https://example.org/151\"},{\"url\":\"https://example.org/152\"},{\"url\":\"https://example.org/153\"},{\"url\":\"https://example.org/154\"},{\"url\":\"https://example.org/155\"},{\"url\":\"https://example.org/156\"},{\"url\":\"https://example.org/157\"},{\"url\":\"https://example.org/158\"},{\"url\":\"https://example.org/159\"},{\"url\":\"https://example.org/160\"},{\"url\":\"https://example.org/161\"},{\"url\":\"https://example.org/162\"},{\"url\":\"https://example.org/163\"},{\"url\":\"https://example.org/164\"},{\"url\":\"https://example.org/165\"},{\"url\":\"https://example.org/166\"},{\"url\":\"https://example.org/167\"},{\"url\":\"https://example.org/168\"},{\"url\":\"https://example.org/169\"}]"
       },
       "expected": [
         {
@@ -2911,7 +2925,8 @@
           "addonName": "Owned repository",
           "addonUrl": "harbor-plugin://owned.plugin",
           "pluginName": "Owned plugin"
-        }
+        },
+        "rawJSON": "[{\"url\":\"https://example.org/owned\",\"quality\":\"1080p\",\"language\":\"Japanese\"}]"
       },
       "expected": [
         {
@@ -2955,7 +2970,8 @@
           "addonName": "Owned repository",
           "addonUrl": "harbor-plugin://owned.plugin",
           "pluginName": "Owned plugin"
-        }
+        },
+        "rawJSON": "[{\"url\":\"https://example.org/owned\",\"quality\":\"720p\"}]"
       },
       "expected": [
         {
@@ -3183,7 +3199,8 @@
           "addonName": "Owned repository",
           "addonUrl": "harbor-plugin://owned.plugin",
           "pluginName": "Owned plugin"
-        }
+        },
+        "rawJSON": "[{\"url\":\"https://example.org/owned\",\"subtitles\":[{\"url\":\"http://127.0.0.1/secret.srt\"},{\"url\":\"https://example.org/0.vtt\",\"lang\":\"es\"},{\"url\":\"https://example.org/1.vtt\",\"lang\":\"es\"},{\"url\":\"https://example.org/2.vtt\",\"lang\":\"es\"},{\"url\":\"https://example.org/3.vtt\",\"lang\":\"es\"},{\"url\":\"https://example.org/4.vtt\",\"lang\":\"es\"},{\"url\":\"https://example.org/5.vtt\",\"lang\":\"es\"},{\"url\":\"https://example.org/6.vtt\",\"lang\":\"es\"},{\"url\":\"https://example.org/7.vtt\",\"lang\":\"es\"},{\"url\":\"https://example.org/8.vtt\",\"lang\":\"es\"},{\"url\":\"https://example.org/9.vtt\",\"lang\":\"es\"},{\"url\":\"https://example.org/10.vtt\",\"lang\":\"es\"},{\"url\":\"https://example.org/11.vtt\",\"lang\":\"es\"},{\"url\":\"https://example.org/12.vtt\",\"lang\":\"es\"},{\"url\":\"https://example.org/13.vtt\",\"lang\":\"es\"},{\"url\":\"https://example.org/14.vtt\",\"lang\":\"es\"},{\"url\":\"https://example.org/15.vtt\",\"lang\":\"es\"},{\"url\":\"https://example.org/16.vtt\",\"lang\":\"es\"},{\"url\":\"https://example.org/17.vtt\",\"lang\":\"es\"},{\"url\":\"https://example.org/18.vtt\",\"lang\":\"es\"},{\"url\":\"https://example.org/19.vtt\",\"lang\":\"es\"},{\"url\":\"https://example.org/20.vtt\",\"lang\":\"es\"},{\"url\":\"https://example.org/21.vtt\",\"lang\":\"es\"},{\"url\":\"https://example.org/22.vtt\",\"lang\":\"es\"},{\"url\":\"https://example.org/23.vtt\",\"lang\":\"es\"},{\"url\":\"https://example.org/24.vtt\",\"lang\":\"es\"},{\"url\":\"https://example.org/25.vtt\",\"lang\":\"es\"},{\"url\":\"https://example.org/26.vtt\",\"lang\":\"es\"},{\"url\":\"https://example.org/27.vtt\",\"lang\":\"es\"},{\"url\":\"https://example.org/28.vtt\",\"lang\":\"es\"},{\"url\":\"https://example.org/29.vtt\",\"lang\":\"es\"},{\"url\":\"https://example.org/30.vtt\",\"lang\":\"es\"},{\"url\":\"https://example.org/31.vtt\",\"lang\":\"es\"},{\"url\":\"https://example.org/32.vtt\",\"lang\":\"es\"},{\"url\":\"https://example.org/33.vtt\",\"lang\":\"es\"},{\"url\":\"https://example.org/34.vtt\",\"lang\":\"es\"},{\"url\":\"https://example.org/35.vtt\",\"lang\":\"es\"},{\"url\":\"https://example.org/36.vtt\",\"lang\":\"es\"},{\"url\":\"https://example.org/37.vtt\",\"lang\":\"es\"},{\"url\":\"https://example.org/38.vtt\",\"lang\":\"es\"},{\"url\":\"https://example.org/39.vtt\",\"lang\":\"es\"},{\"url\":\"https://example.org/40.vtt\",\"lang\":\"es\"},{\"url\":\"https://example.org/41.vtt\",\"lang\":\"es\"},{\"url\":\"https://example.org/42.vtt\",\"lang\":\"es\"},{\"url\":\"https://example.org/43.vtt\",\"lang\":\"es\"},{\"url\":\"https://example.org/44.vtt\",\"lang\":\"es\"}]}]"
       },
       "expected": [
         {
@@ -3387,7 +3404,8 @@
           "addonName": "Owned repository",
           "addonUrl": "harbor-plugin://owned.plugin",
           "pluginName": "Owned plugin"
-        }
+        },
+        "rawJSON": "[{\"url\":\"https://example.org/owned\",\"filename\":\"The.Matrix.1999.1080p.mkv\",\"size\":1000,\"bingeGroup\":\"owned\",\"expiresAt\":12345}]"
       },
       "expected": [
         {
@@ -3436,7 +3454,8 @@
           "addonName": "Owned repository",
           "addonUrl": "harbor-plugin://owned.plugin",
           "pluginName": "Owned plugin"
-        }
+        },
+        "rawJSON": "[{\"url\":\"https://example.org/owned\",\"name\":\"nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn\",\"title\":\"tttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt\",\"description\":\"dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd\",\"language\":[\"es\",\"en\",\"ja\",\"fr\",\"de\"]}]"
       },
       "expected": [
         {
@@ -3477,7 +3496,8 @@
           "addonName": "Owned repository",
           "addonUrl": "harbor-plugin://owned.plugin",
           "pluginName": "Owned plugin"
-        }
+        },
+        "rawJSON": "{\"streams\":\"owned\"}"
       },
       "expected": []
     }
