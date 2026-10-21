@@ -29,6 +29,8 @@ struct MangaView: View {
     @State private var featured = 0
     @State private var universe = 0
     @State private var language = "all"
+    @State private var tag = ""
+    @State private var tags: [MangaPluginBrowseTag] = []
     @State private var error: String?
     @AppStorage("manga.adultSources") private var adult = false
     @AppStorage("manga.shelfSort") private var shelfSort = "title"
@@ -46,7 +48,8 @@ struct MangaView: View {
         }
     }
     private var highlights: [MangaBook] { Array((screen == "shelf" ? savedBooks : books.isEmpty ? savedBooks : books).prefix(6)) }
-    private var signature: String { selected + "|" + query + "|" + String(latest) + "|" + String(adult) + "|" + language + "|" + sources.map(\.id).joined(separator: ",") + "|" + String(reading?.document.revision ?? 0) }
+    private var tagSignature: String { selected + "|" + String(adult) + "|" + language + "|" + visibleSources.map(\.id).joined(separator: ",") + "|" + String(reading?.document.revision ?? 0) }
+    private var signature: String { tagSignature + "|" + query + "|" + String(latest) + "|" + tag }
     private var canAnimate: Bool { scenePhase == .active && !reduceMotion && InterfacePreferences.shared.autoRotateBanners }
     private var editorialSources: [MangaSource] { visibleSources.filter { selected == "all" || $0.id == selected } }
     private var allSavedBooks: [MangaBook] {
@@ -104,6 +107,7 @@ struct MangaView: View {
                 catch { error = HarborPluginMessages.error(error) }
             }
             .task(id: signature) { await browse(next: false) }
+            .task(id: tagSignature) { await loadTags() }
             .onChange(of: adult) { _, _ in
                 if selected != "all" && !visibleSources.contains(where: { $0.id == selected }) { books = []; selected = "all" }
                 if !visibleSources.contains(where: \.latest) { latest = false }
@@ -115,6 +119,7 @@ struct MangaView: View {
             .onChange(of: selected) { _, source in
                 if source != "all" && sources.first(where: { $0.id == source })?.latest != true { latest = false }
             }
+            .onChange(of: tag) { _, value in if !value.isEmpty { latest = false } }
             .onChange(of: sources.map(\.id)) { _, ids in if selected != "all", !ids.contains(selected) { selected = "all" } }
             .onChange(of: highlights.map(\.id)) { _, _ in featured = 0 }
             .task(id: canAnimate) {
@@ -257,6 +262,15 @@ struct MangaView: View {
                     }
                 } label: { filterLabel(language == "all" ? "Todos los idiomas" : Locale.current.localizedString(forLanguageCode: language) ?? language.uppercased(), icon: "player-audio") }
                     .accessibilityLabel("Idioma de manga").accessibilityIdentifier("manga-language-filter")
+                if !tags.isEmpty {
+                    Menu {
+                        Picker(DesktopInterfaceText.value("Tags"), selection: $tag) {
+                            Text(DesktopInterfaceText.value("All tags")).tag("")
+                            ForEach(tags) { option in Text(option.label).tag(option.id) }
+                        }
+                    } label: { filterLabel(tags.first(where: { $0.id == tag })?.label ?? DesktopInterfaceText.value("All tags"), icon: "desktop-layers") }
+                        .accessibilityIdentifier("manga-tag-filter")
+                }
                 if selected == "all" ? visibleSources.contains(where: \.latest) : sources.first(where: { $0.id == selected })?.latest == true {
                     HarborPill(title: "Novedades", selected: latest) { latest.toggle() }
                 }
@@ -344,7 +358,8 @@ struct MangaView: View {
     private func browse(next: Bool) async {
         let client = client, reading = reading
         let plugins = Dictionary(uniqueKeysWithValues: (reading?.installed(.manga, includeAdult: adult) ?? []).map { ($0.id, $0) })
-        let choices = visibleSources.filter { (selected == "all" || $0.id == selected) && (selected != "all" || !latest || $0.latest) }
+        let selectedTag = tags.first { $0.id == tag }
+        let choices = visibleSources.filter { (selected == "all" || $0.id == selected) && (selectedTag == nil || selectedTag?.source == $0.id) && (selected != "all" || !latest || $0.latest) }
         guard !choices.isEmpty else { books = []; more = false; return }
         if next && loading { return }
         let token = UUID(); generation = token; loading = true; error = nil
@@ -365,7 +380,7 @@ struct MangaView: View {
                             do {
                                 let page: ([MangaBook], Bool)
                                 if let plugin = plugins[request.source.id], let reading {
-                                    let rows = try await reading.mangaBrowse(plugin, query: term, offset: (request.page - 1) * 48)
+                                    let rows = try await reading.mangaBrowse(plugin, query: term, offset: (request.page - 1) * 48, tag: selectedTag?.remote)
                                     page = (rows, !rows.isEmpty)
                                 } else {
                                     guard let client else { throw HarborError(code: "manga-connection") }
@@ -397,6 +412,45 @@ struct MangaView: View {
             if failures.count == received.count { error = failures.first?.error }
         } catch is CancellationError { return }
         catch { if generation == token { self.error = safeMessage(error) } }
+    }
+    private struct MangaPluginBrowseTag: Identifiable, Sendable {
+        let source: String
+        let remote: String
+        let label: String
+        var id: String { source + "::" + remote }
+    }
+    private func loadTags() async {
+        let expected = tagSignature
+        tags = []; tag = ""
+        guard let reading else { return }
+        let ids = Set(visibleSources.filter { selected == "all" || $0.id == selected }.map(\.id))
+        let plugins = reading.installed(.manga, includeAdult: adult).filter { ids.contains($0.id) && $0.hasTags }
+        var options: [MangaPluginBrowseTag] = []
+        let includeName = selected == "all"
+        for start in stride(from: 0, to: plugins.count, by: 4) {
+            if Task.isCancelled || expected != tagSignature { return }
+            let batch = Array(plugins[start..<min(start + 4, plugins.count)])
+            let results = await withTaskGroup(of: [MangaPluginBrowseTag].self, returning: [[MangaPluginBrowseTag]].self) { group in
+                for plugin in batch {
+                    group.addTask {
+                        do {
+                            let values = try await reading.tags(plugin)
+                            try Task.checkCancellation()
+                            return values.array.compactMap { value in
+                                guard let id = value["id"].string, let name = value["name"].string else { return nil }
+                                let category = value["group"].string ?? ""
+                                let label = (includeName ? plugin.entry.name + " · " : "") + (category.isEmpty ? "" : category + " · ") + name
+                                return .init(source: plugin.id, remote: id, label: label)
+                            }
+                        } catch { return [] }
+                    }
+                }
+                var result: [[MangaPluginBrowseTag]] = []; for await value in group { result.append(value) }; return result
+            }
+            options += results.flatMap { $0 }
+        }
+        guard !Task.isCancelled, expected == tagSignature else { return }
+        var seen = Set<String>(); tags = options.sorted { $0.label.localizedStandardCompare($1.label) == .orderedAscending }.filter { seen.insert($0.id).inserted }
     }
     private func importBook(_ file: URL) async {
         guard shelf.ready else { error = "La biblioteca no está disponible. Los archivos guardados se conservan."; return }

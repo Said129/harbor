@@ -96,6 +96,7 @@
 "All sources" = "所有来源";
 "All sources are shown in the picker. These filters and quality limits apply to automatic playback." = "All sources are shown in the picker. These filters and quality limits apply to automatic playback.";
 "All sports" = "所有运动";
+"All tags" = "所有标签";
 "All-Time Great Series" = "史上经典剧集";
 "All-Time Greats" = "影史经典";
 "Allow cellular data" = "Allow cellular data";
@@ -117,6 +118,7 @@
 "Another device changed services. Your previous version is saved on this device." = "另一台设备更改了服务。你的旧版本已保存在本机。";
 "Anterior" = "上一个";
 "Anular estilos integrados" = "覆盖内嵌样式";
+"Any" = "不限";
 "Any public website. This plugin did not say which sites it uses." = "任何公开网站。此脚本插件未说明它使用哪些网站。";
 "Análisis detenido para priorizar la reproducción. Puedes reintentarlo cuando termine de cargar." = "Analysis stopped to prioritize playback. Retry after buffering finishes.";
 "Apariencia" = "外观";
@@ -127,6 +129,7 @@
 "App language" = "应用语言";
 "Appearance" = "外观";
 "Apple TV+" = "Apple TV+";
+"Apply" = "应用";
 "Apply custom subtitle FPS" = "应用自定义字幕 FPS";
 "Apply custom theme" = "应用自定义主题";
 "Applying subtitle timing…" = "Applying subtitle timing…";
@@ -373,6 +376,7 @@
 "Continue Watching" = "继续观看";
 "Continue Watching at top" = "将“继续观看”置顶";
 "Continue Watching, then your addon catalogs in install order. No hero, no Harbor rails." = "先显示“继续观看”，再按安装顺序显示插件目录。不显示焦点推荐和 Harbor 内容栏。";
+"Continue reading" = "继续阅读";
 "Continue to next chapter" = "Continue to next chapter";
 "Continúa donde lo dejaste" = "从上次停下的位置继续";
 "Continúa los episodios y las películas que viste en parte desde el punto guardado. Todo lo que hayas visto más del 80% siempre se reinicia. Desactiva esta opción para comenzar siempre desde el principio; es útil si vuelves a ver series." = "从保存的位置继续播放未看完的剧集和电影。观看进度超过 80% 的内容始终会从头播放。关闭此项后所有内容都会从头播放，适合重看剧集。";
@@ -600,6 +604,7 @@
 "Featured" = "精选";
 "Featured at Anime Expo" = "Anime Expo 精选作品";
 "Fecha" = "日期";
+"Fiction" = "虚构类";
 "File is larger than 2 MB." = "文件大于 2 MB。";
 "Fill" = "填充";
 "Film" = "电影";
@@ -695,6 +700,7 @@
 "Highlight, progress." = "高亮、进度。";
 "Highlighted blocks." = "高亮区块。";
 "Hindi" = "印地语";
+"History" = "历史";
 "Hockey" = "曲棍球";
 "Home" = "首页";
 "Home layout" = "首页布局";
@@ -815,6 +821,7 @@
 "Llegaste al final · {n} complementos" = "已到底 · 共 {n} 个插件";
 "Load file" = "加载文件";
 "Load more" = "加载更多";
+"Loading" = "正在加载";
 "Loading plugins..." = "正在加载插件…";
 "Loading…" = "正在加载…";
 "Local" = "本地";
@@ -992,6 +999,7 @@
 "Nombre cambiado" = "已重命名";
 "Nombre de usuario" = "用户名";
 "Nombre para mostrar" = "显示名称";
+"Non-fiction" = "非虚构类";
 "Nord" = "Nord";
 "Normal" = "正常";
 "Norwegian" = "挪威语";
@@ -1052,6 +1060,7 @@
 "Ordenar" = "排序";
 "Ordenar por" = "排序方式";
 "Original" = "原图";
+"Original language" = "原始语言";
 "Oscuro" = "深色";
 "Other" = "其他";
 "Outline" = "描边";
@@ -1066,6 +1075,7 @@
 "Page" = "页面";
 "Page base." = "页面底色。";
 "Page turn sound" = "Page turn sound";
+"Pages" = "页面";
 "Panel de fondo redondeado detrás del texto. La opción más legible." = "文字后方的圆角背景面板，可读性最佳。";
 "Para personas con discapacidad auditiva" = "听障字幕";
 "Para subtítulos externos SRT/VTT en UTF-8 o UTF-16. Solo se aplica un cambio si el análisis encuentra una coincidencia fiable." = "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found.";
@@ -1185,8 +1195,11 @@
 "Raised" = "凸起";
 "Random avatar" = "随机头像";
 "Ranked by the {site} community from their public index." = "根据{site}社区的公开指数排名。";
+"Rating" = "评分";
 "Re-runs the welcome flow and clears every dismissed tip." = "重新运行欢迎流程，并恢复所有已忽略的提示。";
 "Reaches" = "访问范围";
+"Read" = "读取";
+"Read more" = "展开阅读";
 "Read on iPhone and iPad" = "Read on iPhone and iPad";
 "Reader options" = "Reader options";
 "Reading" = "正在读取";
@@ -1549,6 +1562,7 @@
 "TV" = "电视剧";
 "TV Shows" = "电视剧";
 "Table of contents" = "Table of contents";
+"Tags" = "标签";
 "Tamaño" = "大小";
 "Tamil" = "泰米尔语";
 "Tap a subtitle to load it. Keep watching while other providers are searched." = "Tap a subtitle to load it. Keep watching while other providers are searched.";
@@ -1602,6 +1616,7 @@
 "Tiempo reproducido" = "Playback time";
 "Tipo" = "类型";
 "Tipografía" = "字体排版";
+"Titles" = "片名";
 "Titles and descriptions" = "标题和简介";
 "Toca un subtítulo para cargarlo. Puedes seguir viendo mientras se buscan los demás." = "Tap a subtitle to load it. Keep watching while other providers are searched.";
 "Todas" = "全部";
@@ -1720,6 +1735,7 @@
 "Visto" = "已观看";
 "Volume" = "音量";
 "Volumen" = "音量";
+"Volumes" = "分卷";
 "Volver a empezar" = "从头播放";
 "Vídeo" = "视频";
 "War" = "战争";
@@ -1744,6 +1760,7 @@
 "Wrong PIN" = "PIN 错误";
 "Xtream" = "Xtream";
 "Xtream server" = "Xtream server";
+"Year" = "年份";
 "You can switch later in Settings under Library & metadata." = "之后可在“设置”的“媒体库与元数据”中切换。";
 "You're set." = "设置完成。";
 "You've reached the end · {n} addons" = "已到底 · 共 {n} 个插件";
@@ -1795,6 +1812,7 @@
 "profile" = "个人资料";
 "profile.primary" = "主个人资料";
 "profile.signedIn" = "已登录 Stremio";
+"rating" = "条评分";
 "result" = "条结果";
 "results" = "条结果";
 "right" = "右";

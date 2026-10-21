@@ -16,13 +16,14 @@ struct EBookCover: View {
     let owner: String
     @Environment(\.readingPlugins) private var reading
     @State private var image: UIImage?
+    @State private var requestedIdentity: String?
     var body: some View {
         cover.accessibilityLabel(book.title).accessibilityIdentifier("ebook-cover")
             .task(id: loadIdentity) { await loadCover() }
     }
     private var loadIdentity: String {
         let context = book.pluginID == nil ? "local" : String(reading?.ready ?? false)
-        return owner + "|" + book.id + "|" + context
+        return owner + "|" + book.id + "|" + (book.cover ?? "") + "|" + context
     }
     @ViewBuilder private var cover: some View {
         Group {
@@ -37,6 +38,8 @@ struct EBookCover: View {
         }
     }
     private func loadCover() async {
+        if requestedIdentity != loadIdentity { image = nil; requestedIdentity = loadIdentity }
+        else if image != nil { return }
         if let pluginID = book.pluginID, let cover = book.cover, let reading {
             do {
                 let data = try await reading.image(cover, pluginID: pluginID)

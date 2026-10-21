@@ -98,6 +98,7 @@
 "All sources" = "Все источники";
 "All sources are shown in the picker. These filters and quality limits apply to automatic playback." = "All sources are shown in the picker. These filters and quality limits apply to automatic playback.";
 "All sports" = "Все виды спорта";
+"All tags" = "Все теги";
 "All-Time Great Series" = "Великие сериалы всех времён";
 "All-Time Greats" = "Лучшее за всё время";
 "Allow cellular data" = "Allow cellular data";
@@ -120,6 +121,7 @@
 "Another device changed services. Your previous version is saved on this device." = "Другое устройство изменило сервисы. Предыдущая версия сохранена на этом устройстве.";
 "Anterior" = "Предыдущее";
 "Anular estilos integrados" = "Переопределять встроенные стили";
+"Any" = "Любой";
 "Any public website. This plugin did not say which sites it uses." = "Любой публичный сайт. Этот плагин не указал, какие сайты использует.";
 "Análisis detenido para priorizar la reproducción. Puedes reintentarlo cuando termine de cargar." = "Анализ остановлен ради воспроизведения. Повторите попытку после буферизации.";
 "Apariencia" = "Оформление";
@@ -130,6 +132,7 @@
 "App language" = "Язык приложения";
 "Appearance" = "Оформление";
 "Apple TV+" = "Apple TV+";
+"Apply" = "Применить";
 "Apply custom subtitle FPS" = "Применить другую частоту кадров субтитров";
 "Apply custom theme" = "Применить свою тему";
 "Applying subtitle timing…" = "Применение синхронизации…";
@@ -377,6 +380,7 @@
 "Continue Watching" = "Продолжить просмотр";
 "Continue Watching at top" = "\"Продолжить просмотр\" сверху";
 "Continue Watching, then your addon catalogs in install order. No hero, no Harbor rails." = "Продолжить просмотр, затем каталоги дополнений в порядке установки. Без баннера и рядов Harbor.";
+"Continue reading" = "Продолжить чтение";
 "Continue to next chapter" = "Continue to next chapter";
 "Continúa donde lo dejaste" = "Продолжить с того же места";
 "Continúa los episodios y las películas que viste en parte desde el punto guardado. Todo lo que hayas visto más del 80% siempre se reinicia. Desactiva esta opción para comenzar siempre desde el principio; es útil si vuelves a ver series." = "Продолжайте недосмотренные серии и фильмы с сохранённого места. Всё, просмотренное более чем на 80%, всегда начинается заново. Отключите, чтобы всегда начинать с начала, удобно при пересмотре сериалов.";
@@ -604,6 +608,7 @@
 "Featured" = "Избранное";
 "Featured at Anime Expo" = "Представлено на Anime Expo";
 "Fecha" = "Дата";
+"Fiction" = "Художественная литература";
 "File is larger than 2 MB." = "Файл больше 2 МБ.";
 "Fill" = "Заполнить";
 "Film" = "Фильм";
@@ -700,6 +705,7 @@
 "Highlight, progress." = "Выделение, прогресс.";
 "Highlighted blocks." = "Выделенные блоки.";
 "Hindi" = "Хинди";
+"History" = "История";
 "Hockey" = "Хоккей";
 "Home" = "Главная";
 "Home layout" = "Макет главной";
@@ -820,6 +826,7 @@
 "Llegaste al final · {n} complementos" = "Это всё · {n} дополнений";
 "Load file" = "Загрузить файл";
 "Load more" = "Показать ещё";
+"Loading" = "Загрузка";
 "Loading plugins..." = "Загрузка плагинов...";
 "Loading…" = "Загрузка…";
 "Local" = "Локальные";
@@ -1000,6 +1007,7 @@
 "Nombre cambiado" = "Переименовано";
 "Nombre de usuario" = "Имя пользователя";
 "Nombre para mostrar" = "Отображаемое имя";
+"Non-fiction" = "Нон-фикшн";
 "Nord" = "Nord";
 "Normal" = "Обычный";
 "Norwegian" = "Норвежский";
@@ -1061,6 +1069,7 @@
 "Ordenar" = "Сортировка";
 "Ordenar por" = "Сортировать по";
 "Original" = "Оригинал";
+"Original language" = "Язык оригинала";
 "Oscuro" = "Тёмная";
 "Other" = "Прочее";
 "Outline" = "Обводка";
@@ -1077,6 +1086,7 @@
 "Page" = "Страница";
 "Page base." = "Основа страницы.";
 "Page turn sound" = "Page turn sound";
+"Pages" = "Страницы";
 "Panel de fondo redondeado detrás del texto. La opción más legible." = "Скруглённая подложка за текстом. Максимальная читаемость.";
 "Para personas con discapacidad auditiva" = "Для слабослышащих";
 "Para subtítulos externos SRT/VTT en UTF-8 o UTF-16. Solo se aplica un cambio si el análisis encuentra una coincidencia fiable." = "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found.";
@@ -1196,8 +1206,11 @@
 "Raised" = "Приподнятый";
 "Random avatar" = "Случайный аватар";
 "Ranked by the {site} community from their public index." = "Рейтинг составлен сообществом {site} на основе его открытого индекса.";
+"Rating" = "Рейтинг";
 "Re-runs the welcome flow and clears every dismissed tip." = "Запускает приветственный тур заново и сбрасывает все скрытые подсказки.";
 "Reaches" = "Обращается к";
+"Read" = "Прочитать";
+"Read more" = "Читать далее";
 "Read on iPhone and iPad" = "Read on iPhone and iPad";
 "Reader options" = "Reader options";
 "Reading" = "Чтение";
@@ -1563,6 +1576,7 @@
 "TV" = "ТВ";
 "TV Shows" = "Сериалы";
 "Table of contents" = "Table of contents";
+"Tags" = "Теги";
 "Tamaño" = "Размер";
 "Tamil" = "Тамильский";
 "Tap a subtitle to load it. Keep watching while other providers are searched." = "Tap a subtitle to load it. Keep watching while other providers are searched.";
@@ -1617,6 +1631,7 @@
 "Tiempo reproducido" = "Playback time";
 "Tipo" = "Тип";
 "Tipografía" = "Типографика";
+"Titles" = "Названия";
 "Titles and descriptions" = "Названия и описания";
 "Toca un subtítulo para cargarlo. Puedes seguir viendo mientras se buscan los demás." = "Tap a subtitle to load it. Keep watching while other providers are searched.";
 "Todas" = "Все";
@@ -1735,6 +1750,7 @@
 "Visto" = "Просмотрено";
 "Volume" = "Громкость";
 "Volumen" = "Громкость";
+"Volumes" = "Тома";
 "Volver a empezar" = "Начать сначала";
 "Vídeo" = "Видео";
 "War" = "Военный";
@@ -1759,6 +1775,7 @@
 "Wrong PIN" = "Неверный PIN";
 "Xtream" = "Xtream";
 "Xtream server" = "Xtream server";
+"Year" = "Год";
 "You can switch later in Settings under Library & metadata." = "Переключить можно позже в Настройках, раздел «Библиотека и метаданные».";
 "You're set." = "Всё готово.";
 "You've reached the end · {n} addons" = "Это всё · {n} дополнений";
@@ -1810,6 +1827,7 @@
 "profile" = "профиль";
 "profile.primary" = "Основной";
 "profile.signedIn" = "Вход в Stremio выполнен";
+"rating" = "оценка";
 "result" = "результат";
 "results" = "результатов";
 "right" = "справа";

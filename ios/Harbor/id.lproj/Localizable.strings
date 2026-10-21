@@ -96,6 +96,7 @@
 "All sources" = "Semua sumber";
 "All sources are shown in the picker. These filters and quality limits apply to automatic playback." = "All sources are shown in the picker. These filters and quality limits apply to automatic playback.";
 "All sports" = "Semua olahraga";
+"All tags" = "Semua tag";
 "All-Time Great Series" = "Serial Terbaik Sepanjang Masa";
 "All-Time Greats" = "Karya Terbaik Sepanjang Masa";
 "Allow cellular data" = "Allow cellular data";
@@ -117,6 +118,7 @@
 "Another device changed services. Your previous version is saved on this device." = "Perangkat lain mengubah layanan. Versi sebelumnya tersimpan di perangkat ini.";
 "Anterior" = "Sebelumnya";
 "Anular estilos integrados" = "Abaikan gaya tersemat";
+"Any" = "Apa saja";
 "Any public website. This plugin did not say which sites it uses." = "Situs publik mana pun. Plugin ini tidak menyebutkan situs yang digunakannya.";
 "Análisis detenido para priorizar la reproducción. Puedes reintentarlo cuando termine de cargar." = "Analysis stopped to prioritize playback. Retry after buffering finishes.";
 "Apariencia" = "Tampilan";
@@ -127,6 +129,7 @@
 "App language" = "Bahasa aplikasi";
 "Appearance" = "Tampilan";
 "Apple TV+" = "Apple TV+";
+"Apply" = "Terapkan";
 "Apply custom subtitle FPS" = "Terapkan FPS subtitle khusus";
 "Apply custom theme" = "Terapkan tema khusus";
 "Applying subtitle timing…" = "Applying subtitle timing…";
@@ -373,6 +376,7 @@
 "Continue Watching" = "Lanjutkan Menonton";
 "Continue Watching at top" = "Lanjutkan Menonton di bagian atas";
 "Continue Watching, then your addon catalogs in install order. No hero, no Harbor rails." = "Lanjutkan Menonton, lalu katalog addon Anda sesuai urutan pemasangan. Tanpa hero, tanpa baris Harbor.";
+"Continue reading" = "Lanjutkan membaca";
 "Continue to next chapter" = "Continue to next chapter";
 "Continúa donde lo dejaste" = "Lanjutkan dari bagian terakhir yang Anda tonton";
 "Continúa los episodios y las películas que viste en parte desde el punto guardado. Todo lo que hayas visto más del 80% siempre se reinicia. Desactiva esta opción para comenzar siempre desde el principio; es útil si vuelves a ver series." = "Lanjutkan episode dan film yang belum selesai dari posisi tersimpan. Apa pun yang telah ditonton lebih dari 80% akan selalu dimulai ulang. Nonaktifkan ini agar selalu memulai dari awal, cocok jika Anda menonton ulang acara.";
@@ -600,6 +604,7 @@
 "Featured" = "Unggulan";
 "Featured at Anime Expo" = "Ditampilkan di Anime Expo";
 "Fecha" = "Tanggal";
+"Fiction" = "Fiksi";
 "File is larger than 2 MB." = "File lebih besar dari 2 MB.";
 "Fill" = "Penuhi";
 "Film" = "Film";
@@ -695,6 +700,7 @@
 "Highlight, progress." = "Sorotan, progres.";
 "Highlighted blocks." = "Blok yang disorot.";
 "Hindi" = "Hindi";
+"History" = "Sejarah";
 "Hockey" = "Hoki";
 "Home" = "Beranda";
 "Home layout" = "Tata letak Beranda";
@@ -815,6 +821,7 @@
 "Llegaste al final · {n} complementos" = "Anda telah mencapai akhir · {n} addon";
 "Load file" = "Muat file";
 "Load more" = "Muat lebih banyak";
+"Loading" = "Memuat";
 "Loading plugins..." = "Memuat plugin...";
 "Loading…" = "Memuat…";
 "Local" = "Lokal";
@@ -992,6 +999,7 @@
 "Nombre cambiado" = "Nama diubah";
 "Nombre de usuario" = "Nama pengguna";
 "Nombre para mostrar" = "Nama tampilan";
+"Non-fiction" = "Nonfiksi";
 "Nord" = "Nord";
 "Normal" = "Normal";
 "Norwegian" = "Norwegia";
@@ -1052,6 +1060,7 @@
 "Ordenar" = "Urutkan";
 "Ordenar por" = "Urutkan berdasarkan";
 "Original" = "Asli";
+"Original language" = "Bahasa asli";
 "Oscuro" = "Gelap";
 "Other" = "Lainnya";
 "Outline" = "Garis tepi";
@@ -1066,6 +1075,7 @@
 "Page" = "Halaman";
 "Page base." = "Dasar halaman.";
 "Page turn sound" = "Page turn sound";
+"Pages" = "Halaman";
 "Panel de fondo redondeado detrás del texto. La opción más legible." = "Panel latar bersudut membulat di belakang teks. Paling mudah dibaca.";
 "Para personas con discapacidad auditiva" = "Untuk gangguan pendengaran";
 "Para subtítulos externos SRT/VTT en UTF-8 o UTF-16. Solo se aplica un cambio si el análisis encuentra una coincidencia fiable." = "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found.";
@@ -1185,8 +1195,11 @@
 "Raised" = "Dinaikkan";
 "Random avatar" = "Avatar acak";
 "Ranked by the {site} community from their public index." = "Diurutkan oleh komunitas {site} berdasarkan indeks publik mereka.";
+"Rating" = "Rating";
 "Re-runs the welcome flow and clears every dismissed tip." = "Menjalankan ulang alur sambutan dan menghapus semua tip yang sebelumnya ditutup.";
 "Reaches" = "Mengakses";
+"Read" = "Baca";
+"Read more" = "Baca selengkapnya";
 "Read on iPhone and iPad" = "Read on iPhone and iPad";
 "Reader options" = "Reader options";
 "Reading" = "Sedang membaca";
@@ -1549,6 +1562,7 @@
 "TV" = "TV";
 "TV Shows" = "Acara TV";
 "Table of contents" = "Table of contents";
+"Tags" = "Tag";
 "Tamaño" = "Ukuran";
 "Tamil" = "Tamil";
 "Tap a subtitle to load it. Keep watching while other providers are searched." = "Tap a subtitle to load it. Keep watching while other providers are searched.";
@@ -1602,6 +1616,7 @@
 "Tiempo reproducido" = "Playback time";
 "Tipo" = "Jenis";
 "Tipografía" = "Tipografi";
+"Titles" = "Judul";
 "Titles and descriptions" = "Judul dan deskripsi";
 "Toca un subtítulo para cargarlo. Puedes seguir viendo mientras se buscan los demás." = "Tap a subtitle to load it. Keep watching while other providers are searched.";
 "Todas" = "Semua";
@@ -1720,6 +1735,7 @@
 "Visto" = "Sudah ditonton";
 "Volume" = "Volume";
 "Volumen" = "Volume";
+"Volumes" = "Volume";
 "Volver a empezar" = "Mulai dari Awal";
 "Vídeo" = "Video";
 "War" = "Perang";
@@ -1744,6 +1760,7 @@
 "Wrong PIN" = "PIN salah";
 "Xtream" = "Xtream";
 "Xtream server" = "Xtream server";
+"Year" = "Tahun";
 "You can switch later in Settings under Library & metadata." = "Anda dapat beralih nanti di Pengaturan, bagian Perpustakaan & metadata.";
 "You're set." = "Anda siap.";
 "You've reached the end · {n} addons" = "Anda telah mencapai akhir · {n} addon";
@@ -1795,6 +1812,7 @@
 "profile" = "profil";
 "profile.primary" = "Utama";
 "profile.signedIn" = "Sudah masuk ke Stremio";
+"rating" = "peringkat";
 "result" = "hasil";
 "results" = "hasil";
 "right" = "kanan";

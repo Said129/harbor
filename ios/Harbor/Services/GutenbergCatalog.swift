@@ -50,8 +50,10 @@ enum GutenbergCatalog {
             let id = entry.url.lastPathComponent.replacingOccurrences(of: ".opds", with: "")
             let authors = node.elements.filter { $0.name == "author" }.compactMap { $0.elements.first(where: { $0.name == "name" })?.text.trimmingCharacters(in: .whitespacesAndNewlines) }
             let cover = links.first(where: { $0.attributes["rel"] == "http://opds-spec.org/image" })?.attributes["href"].flatMap(publisherURL)
+            let subjects = node.elements.filter { $0.name == "category" }.compactMap { $0.attributes["term"] }
             return EBook(id: "gutendex:" + id, title: node.elements.first(where: { $0.name == "title" })?.text ?? entry.title, authors: authors,
-                cover: cover?.absoluteString, language: languages.first, epub: epub.absoluteString)
+                description: subjects.joined(separator: ", "), cover: cover?.absoluteString, language: languages.first, epub: epub.absoluteString,
+                metadata: .object(["source": .string("source"), "genres": .array(subjects.map(JSONValue.string))]))
         }
         return nil
     }

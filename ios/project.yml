@@ -89,6 +89,7 @@ targets:
       - sdk: GLKit.framework
       - sdk: OpenGLES.framework
       - sdk: Security.framework
+      - sdk: JavaScriptCore.framework
       - sdk: AVFoundation.framework
       - sdk: MediaPlayer.framework
       - sdk: UserNotifications.framework

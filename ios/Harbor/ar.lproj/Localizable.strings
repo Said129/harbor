@@ -105,6 +105,7 @@
 "All sources" = "كل المصادر";
 "All sources are shown in the picker. These filters and quality limits apply to automatic playback." = "All sources are shown in the picker. These filters and quality limits apply to automatic playback.";
 "All sports" = "كل الرياضات";
+"All tags" = "كل الوسوم";
 "All-Time Great Series" = "أعظم المسلسلات على الإطلاق";
 "All-Time Greats" = "روائع كل العصور";
 "Allow cellular data" = "Allow cellular data";
@@ -127,6 +128,7 @@
 "Another device changed services. Your previous version is saved on this device." = "غيّر جهاز آخر الخدمات. نسختك السابقة محفوظة على هذا الجهاز.";
 "Anterior" = "السابق";
 "Anular estilos integrados" = "تجاوز الأنماط المضمّنة";
+"Any" = "أي";
 "Any public website. This plugin did not say which sites it uses." = "أي موقع عام. لم يحدد هذا المكوّن الإضافي المواقع التي يستخدمها.";
 "Análisis detenido para priorizar la reproducción. Puedes reintentarlo cuando termine de cargar." = "توقف التحليل لإعطاء الأولوية للمشاهدة. أعد المحاولة بعد اكتمال التحميل.";
 "Apariencia" = "المظهر";
@@ -137,6 +139,7 @@
 "App language" = "لغة التطبيق";
 "Appearance" = "المظهر";
 "Apple TV+" = "أبل تي في+";
+"Apply" = "تطبيق";
 "Apply custom subtitle FPS" = "تطبيق معدل الإطارات المخصص للترجمة";
 "Apply custom theme" = "تطبيق سمة مخصصة";
 "Applying subtitle timing…" = "جارٍ تطبيق توقيت الترجمة…";
@@ -393,6 +396,7 @@
 "Continue Watching" = "متابعة المشاهدة";
 "Continue Watching at top" = "متابعة المشاهدة في الأعلى";
 "Continue Watching, then your addon catalogs in install order. No hero, no Harbor rails." = "متابعة المشاهدة، ثم كتالوجات إضافاتك بترتيب التثبيت. بلا واجهة بارزة، وبلا صفوف Harbor.";
+"Continue reading" = "متابعة القراءة";
 "Continue to next chapter" = "Continue to next chapter";
 "Continúa donde lo dejaste" = "أكمل من حيث توقفت";
 "Continúa los episodios y las películas que viste en parte desde el punto guardado. Todo lo que hayas visto más del 80% siempre se reinicia. Desactiva esta opción para comenzar siempre desde el principio; es útil si vuelves a ver series." = "تابع الحلقات والأفلام المُشاهَدة جزئيًا من موضعك المحفوظ. أي شيء تمت مشاهدة أكثر من 80% منه يُعاد تشغيله من البداية دائمًا. عطّل هذا الخيار لتبدأ من البداية دائمًا، وهو مفيد إذا كنت تعيد مشاهدة المسلسلات.";
@@ -624,6 +628,7 @@
 "Featured" = "مختارة";
 "Featured at Anime Expo" = "مختارات Anime Expo";
 "Fecha" = "التاريخ";
+"Fiction" = "أدب روائي";
 "File is larger than 2 MB." = "حجم الملف أكبر من 2 م.ب.";
 "Fill" = "تعبئة";
 "Film" = "فيلم";
@@ -720,6 +725,7 @@
 "Highlight, progress." = "التمييز والتقدّم.";
 "Highlighted blocks." = "كتل مميّزة.";
 "Hindi" = "الهندية";
+"History" = "تاريخ";
 "Hockey" = "الهوكي";
 "Home" = "الرئيسية";
 "Home layout" = "تخطيط الرئيسية";
@@ -840,6 +846,7 @@
 "Llegaste al final · {n} complementos" = "لقد وصلت إلى النهاية · {n} إضافة";
 "Load file" = "تحميل ملف";
 "Load more" = "تحميل المزيد";
+"Loading" = "جارٍ التحميل";
 "Loading plugins..." = "جارٍ تحميل الإضافات...";
 "Loading…" = "جارٍ التحميل…";
 "Local" = "المحلّي";
@@ -1020,6 +1027,7 @@
 "Nombre cambiado" = "تمت إعادة التسمية";
 "Nombre de usuario" = "اسم المستخدم";
 "Nombre para mostrar" = "الاسم";
+"Non-fiction" = "غير خيالي";
 "Nord" = "Nord";
 "Normal" = "عادية";
 "Norwegian" = "النرويجية";
@@ -1081,6 +1089,7 @@
 "Ordenar" = "ترتيب";
 "Ordenar por" = "الترتيب حسب";
 "Original" = "الأصلية";
+"Original language" = "اللغة الأصلية";
 "Oscuro" = "داكن";
 "Other" = "أخرى";
 "Outline" = "إطار";
@@ -1097,6 +1106,7 @@
 "Page" = "الصفحة";
 "Page base." = "أساس الصفحة.";
 "Page turn sound" = "Page turn sound";
+"Pages" = "الصفحات";
 "Panel de fondo redondeado detrás del texto. La opción más legible." = "لوحة خلفية دائرية خلف النص. الأكثر قابلية للقراءة.";
 "Para personas con discapacidad auditiva" = "للصمّ وضعاف السمع";
 "Para subtítulos externos SRT/VTT en UTF-8 o UTF-16. Solo se aplica un cambio si el análisis encuentra una coincidencia fiable." = "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found.";
@@ -1216,8 +1226,11 @@
 "Raised" = "بارز";
 "Random avatar" = "صورة رمزية عشوائية";
 "Ranked by the {site} community from their public index." = "مرتّب حسب مجتمع {site} استنادًا إلى فهرسه العام.";
+"Rating" = "التقييم";
 "Re-runs the welcome flow and clears every dismissed tip." = "يعيد تشغيل تدفّق الترحيب ويمسح كل تلميح مرفوض.";
 "Reaches" = "يتصل بـ";
+"Read" = "قراءة";
+"Read more" = "قراءة المزيد";
 "Read on iPhone and iPad" = "Read on iPhone and iPad";
 "Reader options" = "Reader options";
 "Reading" = "جارٍ القراءة";
@@ -1586,6 +1599,7 @@
 "TV" = "المسلسلات";
 "TV Shows" = "مسلسلات تلفزيونية";
 "Table of contents" = "Table of contents";
+"Tags" = "الوسوم";
 "Tamaño" = "الحجم";
 "Tamil" = "التاميلية";
 "Tap a subtitle to load it. Keep watching while other providers are searched." = "Tap a subtitle to load it. Keep watching while other providers are searched.";
@@ -1640,6 +1654,7 @@
 "Tiempo reproducido" = "Playback time";
 "Tipo" = "النوع";
 "Tipografía" = "الخطوط";
+"Titles" = "العناوين";
 "Titles and descriptions" = "العناوين والأوصاف";
 "Toca un subtítulo para cargarlo. Puedes seguir viendo mientras se buscan los demás." = "Tap a subtitle to load it. Keep watching while other providers are searched.";
 "Todas" = "الكل";
@@ -1758,6 +1773,7 @@
 "Visto" = "تمت المشاهدة";
 "Volume" = "الصوت";
 "Volumen" = "الصوت";
+"Volumes" = "المجلدات";
 "Volver a empezar" = "البدء من جديد";
 "Vídeo" = "فيديو";
 "War" = "حرب";
@@ -1786,6 +1802,7 @@
 "Wrong PIN" = "رمز PIN خاطئ";
 "Xtream" = "Xtream";
 "Xtream server" = "Xtream server";
+"Year" = "السنة";
 "You can switch later in Settings under Library & metadata." = "يمكنك التبديل لاحقًا من الإعدادات ضمن المكتبة والبيانات الوصفية.";
 "You're set." = "أنت جاهز.";
 "You've reached the end · {n} addons" = "لقد وصلت إلى النهاية · {n} إضافة";
@@ -1837,6 +1854,7 @@
 "profile" = "تفاصيل المصارعين";
 "profile.primary" = "أساسي";
 "profile.signedIn" = "تم تسجيل الدخول إلى Stremio";
+"rating" = "تقييم";
 "result" = "نتيجة";
 "results" = "نتائج";
 "right" = "اليمين";

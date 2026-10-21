@@ -15,6 +15,8 @@ import UIKit
         XCTAssertTrue(result.isHittable)
         capture("gutenberg-frankenstein-results")
         result.tap()
+        let read = app.buttons["ebook-detail-read"]
+        XCTAssertTrue(read.waitForExistence(timeout: 15)); read.tap()
         let next = app.buttons["ebook-next-section"]
         let opened = next.waitForExistence(timeout: 90)
         capture("gutenberg-after-open")

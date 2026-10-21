@@ -103,6 +103,7 @@
 "All sources" = "Todas as fontes";
 "All sources are shown in the picker. These filters and quality limits apply to automatic playback." = "All sources are shown in the picker. These filters and quality limits apply to automatic playback.";
 "All sports" = "Todos os esportes";
+"All tags" = "Todas as tags";
 "All-Time Great Series" = "Melhores Séries de Todos os Tempos";
 "All-Time Greats" = "Os Melhores de Todos os Tempos";
 "Allow cellular data" = "Allow cellular data";
@@ -124,6 +125,7 @@
 "Another device changed services. Your previous version is saved on this device." = "Outro dispositivo alterou os serviços. A sua versão anterior está guardada neste dispositivo.";
 "Anterior" = "Anterior";
 "Anular estilos integrados" = "Substituir estilos incorporados";
+"Any" = "Qualquer";
 "Any public website. This plugin did not say which sites it uses." = "Qualquer site público. Este plugin não informou quais sites usa.";
 "Análisis detenido para priorizar la reproducción. Puedes reintentarlo cuando termine de cargar." = "A análise parou para priorizar a reprodução. Tente novamente após o carregamento.";
 "Apariencia" = "Aparência";
@@ -134,6 +136,7 @@
 "App language" = "Idioma do aplicativo";
 "Appearance" = "Aparência";
 "Apple TV+" = "Apple TV+";
+"Apply" = "Aplicar";
 "Apply custom subtitle FPS" = "Aplicar FPS personalizado da legenda";
 "Apply custom theme" = "Aplicar tema personalizado";
 "Applying subtitle timing…" = "Aplicando a sincronização…";
@@ -389,6 +392,7 @@
 "Continue Watching" = "Continuar Assistindo";
 "Continue Watching at top" = "Continuar assistindo no topo";
 "Continue Watching, then your addon catalogs in install order. No hero, no Harbor rails." = "Continuar Assistindo, depois os catálogos dos seus addons na ordem de instalação. Sem destaque, sem faixas do Harbor.";
+"Continue reading" = "Continuar lendo";
 "Continue to next chapter" = "Continue to next chapter";
 "Continúa donde lo dejaste" = "Continue de onde parou";
 "Continúa los episodios y las películas que viste en parte desde el punto guardado. Todo lo que hayas visto más del 80% siempre se reinicia. Desactiva esta opción para comenzar siempre desde el principio; es útil si vuelves a ver series." = "Retome episódios e filmes assistidos parcialmente do ponto salvo. Qualquer item assistido além de 80% sempre reinicia. Desative para sempre começar do início, útil se você reassiste séries.";
@@ -620,6 +624,7 @@
 "Featured" = "Em destaque";
 "Featured at Anime Expo" = "Destaques da Anime Expo";
 "Fecha" = "Data";
+"Fiction" = "Ficção";
 "File is larger than 2 MB." = "O arquivo tem mais de 2 MB.";
 "Fill" = "Preencher";
 "Film" = "Filme";
@@ -715,6 +720,7 @@
 "Highlight, progress." = "Destaque, progresso.";
 "Highlighted blocks." = "Blocos destacados.";
 "Hindi" = "Híndi";
+"History" = "Histórico";
 "Hockey" = "Hóquei";
 "Home" = "Início";
 "Home layout" = "Layout do Início";
@@ -835,6 +841,7 @@
 "Llegaste al final · {n} complementos" = "Você chegou ao fim · {n} addons";
 "Load file" = "Carregar arquivo";
 "Load more" = "Carregar mais";
+"Loading" = "Carregando";
 "Loading plugins..." = "Carregando plugins...";
 "Loading…" = "Carregando…";
 "Local" = "Local";
@@ -1012,6 +1019,7 @@
 "Nombre cambiado" = "Renomeado";
 "Nombre de usuario" = "Nome de usuário";
 "Nombre para mostrar" = "Nome de exibição";
+"Non-fiction" = "Não ficção";
 "Nord" = "Nord";
 "Normal" = "Normal";
 "Norwegian" = "Norueguês";
@@ -1072,6 +1080,7 @@
 "Ordenar" = "Ordenar";
 "Ordenar por" = "Ordenar por";
 "Original" = "Original";
+"Original language" = "Idioma original";
 "Oscuro" = "Escuro";
 "Other" = "Outro";
 "Outline" = "Contorno";
@@ -1086,6 +1095,7 @@
 "Page" = "Página";
 "Page base." = "Base da página.";
 "Page turn sound" = "Page turn sound";
+"Pages" = "Páginas";
 "Panel de fondo redondeado detrás del texto. La opción más legible." = "Painel de fundo arredondado atrás do texto. Mais legível.";
 "Para personas con discapacidad auditiva" = "Para pessoas com deficiência auditiva";
 "Para subtítulos externos SRT/VTT en UTF-8 o UTF-16. Solo se aplica un cambio si el análisis encuentra una coincidencia fiable." = "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found.";
@@ -1205,8 +1215,11 @@
 "Raised" = "Elevado";
 "Random avatar" = "Avatar aleatório";
 "Ranked by the {site} community from their public index." = "Classificação feita pela comunidade do {site} com base no índice público.";
+"Rating" = "Classificação";
 "Re-runs the welcome flow and clears every dismissed tip." = "Executa novamente o fluxo de boas-vindas e limpa todas as dicas dispensadas.";
 "Reaches" = "Acessa";
+"Read" = "Ler";
+"Read more" = "Ler mais";
 "Read on iPhone and iPad" = "Read on iPhone and iPad";
 "Reader options" = "Reader options";
 "Reading" = "Lendo";
@@ -1572,6 +1585,7 @@
 "TV" = "TV";
 "TV Shows" = "Séries";
 "Table of contents" = "Table of contents";
+"Tags" = "Tags";
 "Tamaño" = "Tamanho";
 "Tamil" = "Tâmil";
 "Tap a subtitle to load it. Keep watching while other providers are searched." = "Tap a subtitle to load it. Keep watching while other providers are searched.";
@@ -1625,6 +1639,7 @@
 "Tiempo reproducido" = "Playback time";
 "Tipo" = "Tipo";
 "Tipografía" = "Tipografia";
+"Titles" = "Títulos";
 "Titles and descriptions" = "Títulos e descrições";
 "Toca un subtítulo para cargarlo. Puedes seguir viendo mientras se buscan los demás." = "Tap a subtitle to load it. Keep watching while other providers are searched.";
 "Todas" = "Todos";
@@ -1743,6 +1758,7 @@
 "Visto" = "Assistido";
 "Volume" = "Volume";
 "Volumen" = "Volume";
+"Volumes" = "Volumes";
 "Volver a empezar" = "Começar de Novo";
 "Vídeo" = "Vídeo";
 "War" = "Guerra";
@@ -1771,6 +1787,7 @@
 "Wrong PIN" = "PIN incorreto";
 "Xtream" = "Xtream";
 "Xtream server" = "Xtream server";
+"Year" = "Ano";
 "You can switch later in Settings under Library & metadata." = "Você pode mudar isso depois em Configurações, em Biblioteca e metadados.";
 "You're set." = "Tudo pronto.";
 "You've reached the end · {n} addons" = "Você chegou ao fim · {n} addons";
@@ -1822,6 +1839,7 @@
 "profile" = "perfil";
 "profile.primary" = "Principal";
 "profile.signedIn" = "Conectado ao Stremio";
+"rating" = "avaliação";
 "result" = "resultado";
 "results" = "resultados";
 "right" = "direita";

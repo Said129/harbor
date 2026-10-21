@@ -96,6 +96,7 @@
 "All sources" = "すべてのソース";
 "All sources are shown in the picker. These filters and quality limits apply to automatic playback." = "All sources are shown in the picker. These filters and quality limits apply to automatic playback.";
 "All sports" = "すべてのスポーツ";
+"All tags" = "すべてのタグ";
 "All-Time Great Series" = "史上最高のシリーズ";
 "All-Time Greats" = "不朽の名作";
 "Allow cellular data" = "Allow cellular data";
@@ -117,6 +118,7 @@
 "Another device changed services. Your previous version is saved on this device." = "別のデバイスでサービスが変更されました。以前のバージョンはこのデバイスに保存されています。";
 "Anterior" = "前へ";
 "Anular estilos integrados" = "埋め込みスタイルを上書き";
+"Any" = "指定なし";
 "Any public website. This plugin did not say which sites it uses." = "すべての公開サイト。このプラグインは使用するサイトを申告していません。";
 "Análisis detenido para priorizar la reproducción. Puedes reintentarlo cuando termine de cargar." = "Analysis stopped to prioritize playback. Retry after buffering finishes.";
 "Apariencia" = "外観";
@@ -127,6 +129,7 @@
 "App language" = "アプリの言語";
 "Appearance" = "外観";
 "Apple TV+" = "Apple TV+";
+"Apply" = "適用";
 "Apply custom subtitle FPS" = "カスタム字幕FPSを適用";
 "Apply custom theme" = "カスタムテーマを適用";
 "Applying subtitle timing…" = "Applying subtitle timing…";
@@ -373,6 +376,7 @@
 "Continue Watching" = "続きを見る";
 "Continue Watching at top" = "「視聴を続ける」を一番上に表示";
 "Continue Watching, then your addon catalogs in install order. No hero, no Harbor rails." = "「視聴を続ける」の後に、アドオンのカタログをインストール順で表示します。ヒーローやHarborのレールはありません。";
+"Continue reading" = "続きを読む";
 "Continue to next chapter" = "Continue to next chapter";
 "Continúa donde lo dejaste" = "続きから見る";
 "Continúa los episodios y las películas que viste en parte desde el punto guardado. Todo lo que hayas visto más del 80% siempre se reinicia. Desactiva esta opción para comenzar siempre desde el principio; es útil si vuelves a ver series." = "途中まで視聴したエピソードや映画を、保存した位置から再開します。80%を超えて視聴した作品は常に最初から再生されます。番組を見直す場合など、常に最初から再生したいときはオフにしてください。";
@@ -600,6 +604,7 @@
 "Featured" = "注目";
 "Featured at Anime Expo" = "Anime Expo注目作";
 "Fecha" = "日付";
+"Fiction" = "フィクション";
 "File is larger than 2 MB." = "ファイルが2 MBを超えています。";
 "Fill" = "画面いっぱいに表示";
 "Film" = "映画";
@@ -695,6 +700,7 @@
 "Highlight, progress." = "ハイライト、進捗。";
 "Highlighted blocks." = "ハイライトされたブロック。";
 "Hindi" = "ヒンディー語";
+"History" = "歴史";
 "Hockey" = "ホッケー";
 "Home" = "ホーム";
 "Home layout" = "ホームのレイアウト";
@@ -815,6 +821,7 @@
 "Llegaste al final · {n} complementos" = "以上です・アドオン{n}件";
 "Load file" = "ファイルを読み込む";
 "Load more" = "さらに読み込む";
+"Loading" = "読み込み中";
 "Loading plugins..." = "プラグインを読み込み中...";
 "Loading…" = "読み込み中…";
 "Local" = "ローカル";
@@ -992,6 +999,7 @@
 "Nombre cambiado" = "名前を変更しました";
 "Nombre de usuario" = "ユーザー名";
 "Nombre para mostrar" = "表示名";
+"Non-fiction" = "ノンフィクション";
 "Nord" = "Nord";
 "Normal" = "標準";
 "Norwegian" = "ノルウェー語";
@@ -1052,6 +1060,7 @@
 "Ordenar" = "並べ替え";
 "Ordenar por" = "並べ替え";
 "Original" = "オリジナル";
+"Original language" = "原語";
 "Oscuro" = "ダーク";
 "Other" = "その他";
 "Outline" = "縁取り";
@@ -1066,6 +1075,7 @@
 "Page" = "ページ";
 "Page base." = "ページのベース。";
 "Page turn sound" = "Page turn sound";
+"Pages" = "ページ";
 "Panel de fondo redondeado detrás del texto. La opción más legible." = "テキストの背後に角丸の背景を表示します。最も読みやすい設定です。";
 "Para personas con discapacidad auditiva" = "聴覚障害者向け";
 "Para subtítulos externos SRT/VTT en UTF-8 o UTF-16. Solo se aplica un cambio si el análisis encuentra una coincidencia fiable." = "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found.";
@@ -1185,8 +1195,11 @@
 "Raised" = "浮き出し";
 "Random avatar" = "ランダムなアバター";
 "Ranked by the {site} community from their public index." = "{site}コミュニティの公開インデックスに基づくランキングです。";
+"Rating" = "レーティング";
 "Re-runs the welcome flow and clears every dismissed tip." = "ウェルカムガイドをもう一度開始し、非表示にしたヒントをすべて元に戻します。";
 "Reaches" = "接続先";
+"Read" = "読む";
+"Read more" = "もっと読む";
 "Read on iPhone and iPad" = "Read on iPhone and iPad";
 "Reader options" = "Reader options";
 "Reading" = "読書中";
@@ -1549,6 +1562,7 @@
 "TV" = "TVシリーズ";
 "TV Shows" = "テレビ番組";
 "Table of contents" = "Table of contents";
+"Tags" = "タグ";
 "Tamaño" = "サイズ";
 "Tamil" = "タミル語";
 "Tap a subtitle to load it. Keep watching while other providers are searched." = "Tap a subtitle to load it. Keep watching while other providers are searched.";
@@ -1602,6 +1616,7 @@
 "Tiempo reproducido" = "Playback time";
 "Tipo" = "タイプ";
 "Tipografía" = "タイポグラフィ";
+"Titles" = "作品";
 "Titles and descriptions" = "タイトルと説明";
 "Toca un subtítulo para cargarlo. Puedes seguir viendo mientras se buscan los demás." = "Tap a subtitle to load it. Keep watching while other providers are searched.";
 "Todas" = "すべて";
@@ -1720,6 +1735,7 @@
 "Visto" = "視聴済み";
 "Volume" = "音量";
 "Volumen" = "音量";
+"Volumes" = "巻";
 "Volver a empezar" = "最初から再生";
 "Vídeo" = "動画";
 "War" = "戦争";
@@ -1744,6 +1760,7 @@
 "Wrong PIN" = "PINが違います";
 "Xtream" = "Xtream";
 "Xtream server" = "Xtream server";
+"Year" = "年";
 "You can switch later in Settings under Library & metadata." = "後で「設定」の「ライブラリとメタデータ」から変更できます。";
 "You're set." = "準備完了です。";
 "You've reached the end · {n} addons" = "以上です・アドオン{n}件";
@@ -1795,6 +1812,7 @@
 "profile" = "プロフィール";
 "profile.primary" = "メイン";
 "profile.signedIn" = "Stremioにログイン済み";
+"rating" = "評価";
 "result" = "件";
 "results" = "件";
 "right" = "右";

@@ -22,6 +22,8 @@ import Observation
     private let imageCache = NSCache<NSString, NSData>()
     private var images: [String: (id: UUID, task: Task<Data, Error>)] = [:]
     private var operations: [UUID: Task<JSONValue, Error>] = [:]
+    private var ebookTags: [String: Set<String>] = [:]
+    private var ebookTagLoads: [String: Task<Set<String>, Error>] = [:]
     private var disposed = false
     private(set) var document = HarborReadingPluginDocument()
     private(set) var ready = false
@@ -128,16 +130,20 @@ import Observation
         mutation?.cancel(); mutation = nil
         images.values.forEach { $0.task.cancel() }; images = [:]; imageCache.removeAllObjects()
         operations.values.forEach { $0.cancel() }; operations = [:]
+        ebookTagLoads.values.forEach { $0.cancel() }; ebookTagLoads = [:]; ebookTags = [:]
         starting.values.forEach { $0.task.cancel() }; starting = [:]
         workers.values.forEach { $0.runtime.dispose() }; workers = [:]; pageHeaders = [:]; headerOrder = []; adapter.dispose(); document = .init()
     }
-    private func invalidate(_ id: String) { starting.removeValue(forKey: id)?.task.cancel(); workers.removeValue(forKey: id)?.runtime.dispose() }
+    private func invalidate(_ id: String, discardTags: Bool = true) {
+        starting.removeValue(forKey: id)?.task.cancel(); workers.removeValue(forKey: id)?.runtime.dispose()
+        if discardTags { ebookTagLoads.removeValue(forKey: id)?.cancel(); ebookTags[id] = nil }
+    }
     private func workerFor(_ plugin: HarborInstalledReadingPlugin) async throws -> Worker {
         if let old = workers[plugin.id], old.plugin == plugin, !old.runtime.isDisposed { return old }
         let ticket: UUID, task: Task<HarborPluginRuntime, Error>
         if let pending = starting[plugin.id] { ticket = pending.id; task = pending.task }
         else {
-            invalidate(plugin.id); ticket = UUID()
+            invalidate(plugin.id, discardTags: false); ticket = UUID()
             task = Task {
                 let runtime = try await self.makeWorker(plugin)
                 do {
@@ -156,7 +162,7 @@ import Observation
     }
     private func trim() {
         let idle = workers.values.filter { $0.active == 0 }.sorted { $0.used < $1.used }
-        for worker in idle.prefix(max(0, idle.count - 4)) { invalidate(worker.plugin.id) }
+        for worker in idle.prefix(max(0, idle.count - 4)) { invalidate(worker.plugin.id, discardTags: false) }
     }
     private func makeWorker(_ plugin: HarborInstalledReadingPlugin) async throws -> HarborPluginRuntime {
         var source = plugin.source
@@ -228,9 +234,10 @@ import Observation
         imageCache.setObject(data as NSData, forKey: key as NSString, cost: data.count); return data
     }
     func mangaBrowse(_ plugin: HarborInstalledReadingPlugin, query: String, offset: Int, tag: String? = nil) async throws -> [MangaBook] {
-        let args: [JSONValue] = query.isEmpty ? [.integer(Int64(max(0, offset))), tag.map(JSONValue.string) ?? .null]
+        let popular = query.isEmpty && tag == nil
+        let args: [JSONValue] = popular ? [.integer(Int64(max(0, offset))), .null]
             : [.string(query), .integer(Int64(max(0, offset))), tag.map(JSONValue.string) ?? .null]
-        let raw = try await call(plugin, query.isEmpty ? "popular" : "search", arguments: args, timeout: 20)
+        let raw = try await call(plugin, popular ? "popular" : "search", arguments: args, timeout: 20)
         let values = try await adapter.apply("manga-books", raw: raw)
         return values.array.compactMap { mangaBook($0, plugin: plugin) }
     }
@@ -288,14 +295,47 @@ import Observation
         let raw = try await call(plugin, "tags", arguments: [], timeout: 15)
         return try await adapter.apply("manga-tags", raw: raw)
     }
-    func ebookBrowse(_ plugin: HarborInstalledReadingPlugin, query: String, offset: Int) async throws -> [EBook] {
-        let args: [JSONValue] = query.isEmpty ? [.integer(Int64(max(0, offset))), .null] : [.string(query), .integer(Int64(max(0, offset))), .null]
+    private func ebookSupportedTag(_ tag: String?, plugin: HarborInstalledReadingPlugin) async throws -> JSONValue {
+        guard let tag, plugin.hasTags else { return .null }
+        if let known = ebookTags[plugin.id] { return known.contains(tag) ? .string(tag) : .null }
+        let task: Task<Set<String>, Error>
+        if let pending = ebookTagLoads[plugin.id] { task = pending }
+        else {
+            task = Task {
+                do {
+                    let raw = try await self.call(plugin, "tags", arguments: [], timeout: 25)
+                    return Set(raw.array.compactMap { $0["id"].string }.filter { !$0.isEmpty })
+                } catch is CancellationError { throw CancellationError() }
+                catch { return [] }
+            }
+            ebookTagLoads[plugin.id] = task
+        }
+        let supported = try await task.value
+        try validate(); try Task.checkCancellation()
+        guard document.plugins.contains(plugin) else { throw CancellationError() }
+        ebookTags[plugin.id] = supported; ebookTagLoads[plugin.id] = nil
+        return supported.contains(tag) ? .string(tag) : .null
+    }
+    func ebookBrowse(_ plugin: HarborInstalledReadingPlugin, query: String, offset: Int, tag: String? = nil) async throws -> [EBook] {
+        let supported = try await ebookSupportedTag(tag, plugin: plugin)
+        let args: [JSONValue] = query.isEmpty ? [.integer(Int64(max(0, offset))), supported] : [.string(query), .integer(Int64(max(0, offset))), supported]
         let raw = try await call(plugin, query.isEmpty ? "popular" : "search", arguments: args, timeout: 25)
+        return try await ebookValues(raw, plugin: plugin)
+    }
+    func ebookDetail(_ book: EBook) async throws -> EBook {
+        let plugin = try readingPlugin(book.pluginID, kind: .ebook)
+        guard let item = book.itemID else { throw HarborPluginRuntimeError("plugin-item") }
+        let raw = try await call(plugin, "detail", arguments: [.string(item)], timeout: 25)
+        guard let detail = try await ebookValues(.array([raw]), plugin: plugin).first else { throw HarborPluginRuntimeError("plugin-item") }
+        return detail
+    }
+    private func ebookValues(_ raw: JSONValue, plugin: HarborInstalledReadingPlugin) async throws -> [EBook] {
         let values = try await adapter.apply("ebook-books", raw: raw, extra: ["provider": .object(["id": .string("plugin:" + plugin.entry.id), "name": .string(plugin.entry.name)])])
+        let declared = plugin.entry.language.lowercased()
         return values.array.compactMap { value in
             guard let id = value["id"].string, let title = value["title"].string, let item = value["sourceItemId"].string else { return nil }
             return .init(id: id, title: title, authors: value["authors"].array.compactMap(\.string), description: value["description"].string ?? "",
-                cover: value["cover"].string, language: value["originalLanguage"].string ?? plugin.entry.language, source: plugin.entry.name,
+                cover: value["cover"].string, language: ["", "all", "multi"].contains(declared) ? value["originalLanguage"].string : plugin.entry.language, source: plugin.entry.name,
                 pluginID: plugin.id, itemID: item, metadata: value)
         }
     }

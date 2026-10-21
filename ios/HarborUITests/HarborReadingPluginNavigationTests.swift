@@ -38,6 +38,8 @@ import XCTest
         let book = app.buttons["ebook-card-source:plugin%3Aowned.ui.reading.books:owned"]
         XCTAssertTrue(book.waitForExistence(timeout: 30)); reveal(book, app)
         capture(app, "reading-plugin-book-search-" + device); book.tap()
+        let readBook = app.buttons["ebook-detail-read"]
+        XCTAssertTrue(readBook.waitForExistence(timeout: 15)); readBook.tap()
         let paragraph = app.staticTexts.matching(identifier: "ebook-reader-text").firstMatch
         XCTAssertTrue(paragraph.waitForExistence(timeout: 30)); XCTAssertTrue(paragraph.label.contains("Owned first chapter paragraph."))
         capture(app, "reading-plugin-book-reader-" + device)

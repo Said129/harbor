@@ -1,0 +1,1059 @@
+{
+  "reference": "0834340cec5531650bfe78cd628628702e636987",
+  "cases": [
+    {
+      "name": "all routes survive normalized duplicate titles",
+      "input": {
+        "books": [
+          {
+            "id": "a",
+            "title": "The Hobbit",
+            "source": "source",
+            "authors": [],
+            "genres": [],
+            "description": ""
+          },
+          {
+            "id": "b",
+            "title": "Hobbit",
+            "source": "source",
+            "authors": [],
+            "genres": [],
+            "description": ""
+          }
+        ],
+        "filters": {
+          "group": "All",
+          "genre": "",
+          "status": "any",
+          "language": "any",
+          "sort": "popular"
+        },
+        "titleLanguage": "auto"
+      },
+      "expected": [
+        {
+          "id": "a",
+          "title": "The Hobbit",
+          "routes": ["a", "b"]
+        }
+      ]
+    },
+    {
+      "name": "different named authors are not merged",
+      "input": {
+        "books": [
+          {
+            "id": "a",
+            "title": "Home",
+            "source": "source",
+            "authors": ["Author One"],
+            "genres": [],
+            "description": ""
+          },
+          {
+            "id": "b",
+            "title": "Home",
+            "source": "source",
+            "authors": ["Writer Two"],
+            "genres": [],
+            "description": ""
+          }
+        ],
+        "filters": {
+          "group": "All",
+          "genre": "",
+          "status": "any",
+          "language": "any",
+          "sort": "popular"
+        },
+        "titleLanguage": "auto"
+      },
+      "expected": [
+        {
+          "id": "a",
+          "title": "Home",
+          "routes": ["a"]
+        },
+        {
+          "id": "b",
+          "title": "Home",
+          "routes": ["b"]
+        }
+      ]
+    },
+    {
+      "name": "author token order is equivalent",
+      "input": {
+        "books": [
+          {
+            "id": "a",
+            "title": "Home",
+            "source": "source",
+            "authors": ["Doe John"],
+            "genres": [],
+            "description": ""
+          },
+          {
+            "id": "b",
+            "title": "Home",
+            "source": "source",
+            "authors": ["John Doe"],
+            "genres": [],
+            "description": ""
+          }
+        ],
+        "filters": {
+          "group": "All",
+          "genre": "",
+          "status": "any",
+          "language": "any",
+          "sort": "popular"
+        },
+        "titleLanguage": "auto"
+      },
+      "expected": [
+        {
+          "id": "a",
+          "title": "Home",
+          "routes": ["a", "b"]
+        }
+      ]
+    },
+    {
+      "name": "stable source identities merge renamed editions",
+      "input": {
+        "books": [
+          {
+            "id": "a",
+            "title": "Old",
+            "source": "source",
+            "authors": [],
+            "genres": [],
+            "description": "",
+            "sourceIdentity": {
+              "isbn": "123"
+            }
+          },
+          {
+            "id": "b",
+            "title": "New",
+            "source": "source",
+            "authors": [],
+            "genres": [],
+            "description": "",
+            "sourceIdentity": {
+              "isbn": "123"
+            }
+          }
+        ],
+        "filters": {
+          "group": "All",
+          "genre": "",
+          "status": "any",
+          "language": "any",
+          "sort": "popular"
+        },
+        "titleLanguage": "auto"
+      },
+      "expected": [
+        {
+          "id": "a",
+          "title": "Old",
+          "routes": ["a", "b"]
+        }
+      ]
+    },
+    {
+      "name": "trusted Arabic alias prefers readable Latin primary",
+      "input": {
+        "books": [
+          {
+            "id": "a",
+            "title": "الكتاب",
+            "source": "source",
+            "authors": [],
+            "genres": [],
+            "description": "",
+            "sourceAliases": ["The Book"]
+          },
+          {
+            "id": "b",
+            "title": "The Book",
+            "source": "source",
+            "authors": [],
+            "genres": [],
+            "description": ""
+          }
+        ],
+        "filters": {
+          "group": "All",
+          "genre": "",
+          "status": "any",
+          "language": "any",
+          "sort": "popular"
+        },
+        "titleLanguage": "auto"
+      },
+      "expected": [
+        {
+          "id": "b",
+          "title": "The Book",
+          "routes": ["b", "a"]
+        }
+      ]
+    },
+    {
+      "name": "unrelated Arabic source remains distinct",
+      "input": {
+        "books": [
+          {
+            "id": "a",
+            "title": "الكتاب",
+            "source": "source",
+            "authors": [],
+            "genres": [],
+            "description": ""
+          },
+          {
+            "id": "b",
+            "title": "The Book",
+            "source": "source",
+            "authors": [],
+            "genres": [],
+            "description": ""
+          }
+        ],
+        "filters": {
+          "group": "All",
+          "genre": "",
+          "status": "any",
+          "language": "any",
+          "sort": "popular"
+        },
+        "titleLanguage": "auto"
+      },
+      "expected": [
+        {
+          "id": "a",
+          "title": "الكتاب",
+          "routes": ["a"]
+        },
+        {
+          "id": "b",
+          "title": "The Book",
+          "routes": ["b"]
+        }
+      ]
+    },
+    {
+      "name": "Arabic diacritics and alef normalize",
+      "input": {
+        "books": [
+          {
+            "id": "a",
+            "title": "إِنْسَان",
+            "source": "source",
+            "authors": [],
+            "genres": [],
+            "description": ""
+          },
+          {
+            "id": "b",
+            "title": "انسان",
+            "source": "source",
+            "authors": [],
+            "genres": [],
+            "description": ""
+          }
+        ],
+        "filters": {
+          "group": "All",
+          "genre": "",
+          "status": "any",
+          "language": "any",
+          "sort": "popular"
+        },
+        "titleLanguage": "auto"
+      },
+      "expected": [
+        {
+          "id": "a",
+          "title": "إِنْسَان",
+          "routes": ["a", "b"]
+        }
+      ]
+    },
+    {
+      "name": "duplicate route uses freshest record",
+      "input": {
+        "books": [
+          {
+            "id": "a",
+            "title": "Old",
+            "source": "source",
+            "authors": [],
+            "genres": [],
+            "description": ""
+          },
+          {
+            "id": "a",
+            "title": "New",
+            "source": "source",
+            "authors": [],
+            "genres": [],
+            "description": ""
+          }
+        ],
+        "filters": {
+          "group": "All",
+          "genre": "",
+          "status": "any",
+          "language": "any",
+          "sort": "popular"
+        },
+        "titleLanguage": "auto"
+      },
+      "expected": [
+        {
+          "id": "a",
+          "title": "New",
+          "routes": ["a"]
+        }
+      ]
+    },
+    {
+      "name": "nested groups flatten without losing provider",
+      "input": {
+        "books": [
+          {
+            "id": "a",
+            "title": "Same",
+            "source": "source",
+            "authors": [],
+            "genres": [],
+            "description": "",
+            "books": [
+              {
+                "id": "a",
+                "title": "Same",
+                "source": "source",
+                "authors": [],
+                "genres": [],
+                "description": ""
+              },
+              {
+                "id": "b",
+                "title": "Same",
+                "source": "source",
+                "authors": [],
+                "genres": [],
+                "description": ""
+              }
+            ]
+          },
+          {
+            "id": "c",
+            "title": "Same",
+            "source": "source",
+            "authors": [],
+            "genres": [],
+            "description": ""
+          }
+        ],
+        "filters": {
+          "group": "All",
+          "genre": "",
+          "status": "any",
+          "language": "any",
+          "sort": "popular"
+        },
+        "titleLanguage": "auto"
+      },
+      "expected": [
+        {
+          "id": "a",
+          "title": "Same",
+          "routes": ["a", "b", "c"]
+        }
+      ]
+    },
+    {
+      "name": "completed status aliases",
+      "input": {
+        "books": [
+          {
+            "id": "a",
+            "title": "Zulu",
+            "source": "source",
+            "authors": [],
+            "genres": ["Science fiction"],
+            "description": "",
+            "status": "FINISHED",
+            "originalLanguage": "jpn",
+            "chapters": 10,
+            "score": 80
+          },
+          {
+            "id": "b",
+            "title": "Alpha",
+            "source": "source",
+            "authors": [],
+            "genres": ["Fantasy"],
+            "description": "",
+            "status": "CURRENT",
+            "originalLanguage": "ko",
+            "chapters": 30,
+            "score": 60,
+            "trendingScore": 99
+          },
+          {
+            "id": "c",
+            "title": "Beta",
+            "source": "source",
+            "authors": [],
+            "genres": ["History"],
+            "description": "",
+            "status": "on break",
+            "originalLanguage": "zh"
+          }
+        ],
+        "filters": {
+          "group": "All",
+          "genre": "",
+          "status": "completed",
+          "language": "any",
+          "sort": "popular"
+        },
+        "titleLanguage": "auto"
+      },
+      "expected": [
+        {
+          "id": "a",
+          "title": "Zulu",
+          "routes": ["a"]
+        }
+      ]
+    },
+    {
+      "name": "ongoing status aliases",
+      "input": {
+        "books": [
+          {
+            "id": "a",
+            "title": "Zulu",
+            "source": "source",
+            "authors": [],
+            "genres": ["Science fiction"],
+            "description": "",
+            "status": "FINISHED",
+            "originalLanguage": "jpn",
+            "chapters": 10,
+            "score": 80
+          },
+          {
+            "id": "b",
+            "title": "Alpha",
+            "source": "source",
+            "authors": [],
+            "genres": ["Fantasy"],
+            "description": "",
+            "status": "CURRENT",
+            "originalLanguage": "ko",
+            "chapters": 30,
+            "score": 60,
+            "trendingScore": 99
+          },
+          {
+            "id": "c",
+            "title": "Beta",
+            "source": "source",
+            "authors": [],
+            "genres": ["History"],
+            "description": "",
+            "status": "on break",
+            "originalLanguage": "zh"
+          }
+        ],
+        "filters": {
+          "group": "All",
+          "genre": "",
+          "status": "ongoing",
+          "language": "any",
+          "sort": "popular"
+        },
+        "titleLanguage": "auto"
+      },
+      "expected": [
+        {
+          "id": "b",
+          "title": "Alpha",
+          "routes": ["b"]
+        }
+      ]
+    },
+    {
+      "name": "hiatus status aliases",
+      "input": {
+        "books": [
+          {
+            "id": "a",
+            "title": "Zulu",
+            "source": "source",
+            "authors": [],
+            "genres": ["Science fiction"],
+            "description": "",
+            "status": "FINISHED",
+            "originalLanguage": "jpn",
+            "chapters": 10,
+            "score": 80
+          },
+          {
+            "id": "b",
+            "title": "Alpha",
+            "source": "source",
+            "authors": [],
+            "genres": ["Fantasy"],
+            "description": "",
+            "status": "CURRENT",
+            "originalLanguage": "ko",
+            "chapters": 30,
+            "score": 60,
+            "trendingScore": 99
+          },
+          {
+            "id": "c",
+            "title": "Beta",
+            "source": "source",
+            "authors": [],
+            "genres": ["History"],
+            "description": "",
+            "status": "on break",
+            "originalLanguage": "zh"
+          }
+        ],
+        "filters": {
+          "group": "All",
+          "genre": "",
+          "status": "hiatus",
+          "language": "any",
+          "sort": "popular"
+        },
+        "titleLanguage": "auto"
+      },
+      "expected": [
+        {
+          "id": "c",
+          "title": "Beta",
+          "routes": ["c"]
+        }
+      ]
+    },
+    {
+      "name": "original language differs from content language",
+      "input": {
+        "books": [
+          {
+            "id": "a",
+            "title": "Zulu",
+            "source": "source",
+            "authors": [],
+            "genres": ["Science fiction"],
+            "description": "",
+            "status": "FINISHED",
+            "originalLanguage": "jpn",
+            "chapters": 10,
+            "score": 80
+          },
+          {
+            "id": "b",
+            "title": "Alpha",
+            "source": "source",
+            "authors": [],
+            "genres": ["Fantasy"],
+            "description": "",
+            "status": "CURRENT",
+            "originalLanguage": "ko",
+            "chapters": 30,
+            "score": 60,
+            "trendingScore": 99
+          },
+          {
+            "id": "c",
+            "title": "Beta",
+            "source": "source",
+            "authors": [],
+            "genres": ["History"],
+            "description": "",
+            "status": "on break",
+            "originalLanguage": "zh"
+          }
+        ],
+        "filters": {
+          "group": "All",
+          "genre": "",
+          "status": "any",
+          "language": "japanese",
+          "sort": "popular"
+        },
+        "titleLanguage": "auto"
+      },
+      "expected": [
+        {
+          "id": "a",
+          "title": "Zulu",
+          "routes": ["a"]
+        }
+      ]
+    },
+    {
+      "name": "genre aliases",
+      "input": {
+        "books": [
+          {
+            "id": "a",
+            "title": "Zulu",
+            "source": "source",
+            "authors": [],
+            "genres": ["Science fiction"],
+            "description": "",
+            "status": "FINISHED",
+            "originalLanguage": "jpn",
+            "chapters": 10,
+            "score": 80
+          },
+          {
+            "id": "b",
+            "title": "Alpha",
+            "source": "source",
+            "authors": [],
+            "genres": ["Fantasy"],
+            "description": "",
+            "status": "CURRENT",
+            "originalLanguage": "ko",
+            "chapters": 30,
+            "score": 60,
+            "trendingScore": 99
+          },
+          {
+            "id": "c",
+            "title": "Beta",
+            "source": "source",
+            "authors": [],
+            "genres": ["History"],
+            "description": "",
+            "status": "on break",
+            "originalLanguage": "zh"
+          }
+        ],
+        "filters": {
+          "group": "All",
+          "genre": "Sci-fi",
+          "status": "any",
+          "language": "any",
+          "sort": "popular"
+        },
+        "titleLanguage": "auto"
+      },
+      "expected": [
+        {
+          "id": "a",
+          "title": "Zulu",
+          "routes": ["a"]
+        }
+      ]
+    },
+    {
+      "name": "category group preserves Desktop partial genre matches",
+      "input": {
+        "books": [
+          {
+            "id": "a",
+            "title": "Zulu",
+            "source": "source",
+            "authors": [],
+            "genres": ["Science fiction"],
+            "description": "",
+            "status": "FINISHED",
+            "originalLanguage": "jpn",
+            "chapters": 10,
+            "score": 80
+          },
+          {
+            "id": "b",
+            "title": "Alpha",
+            "source": "source",
+            "authors": [],
+            "genres": ["Fantasy"],
+            "description": "",
+            "status": "CURRENT",
+            "originalLanguage": "ko",
+            "chapters": 30,
+            "score": 60,
+            "trendingScore": 99
+          },
+          {
+            "id": "c",
+            "title": "Beta",
+            "source": "source",
+            "authors": [],
+            "genres": ["History"],
+            "description": "",
+            "status": "on break",
+            "originalLanguage": "zh"
+          }
+        ],
+        "filters": {
+          "group": "Non-fiction",
+          "genre": "",
+          "status": "any",
+          "language": "any",
+          "sort": "popular"
+        },
+        "titleLanguage": "auto"
+      },
+      "expected": [
+        {
+          "id": "a",
+          "title": "Zulu",
+          "routes": ["a"]
+        },
+        {
+          "id": "c",
+          "title": "Beta",
+          "routes": ["c"]
+        }
+      ]
+    },
+    {
+      "name": "name ordering",
+      "input": {
+        "books": [
+          {
+            "id": "a",
+            "title": "Zulu",
+            "source": "source",
+            "authors": [],
+            "genres": ["Science fiction"],
+            "description": "",
+            "status": "FINISHED",
+            "originalLanguage": "jpn",
+            "chapters": 10,
+            "score": 80
+          },
+          {
+            "id": "b",
+            "title": "Alpha",
+            "source": "source",
+            "authors": [],
+            "genres": ["Fantasy"],
+            "description": "",
+            "status": "CURRENT",
+            "originalLanguage": "ko",
+            "chapters": 30,
+            "score": 60,
+            "trendingScore": 99
+          },
+          {
+            "id": "c",
+            "title": "Beta",
+            "source": "source",
+            "authors": [],
+            "genres": ["History"],
+            "description": "",
+            "status": "on break",
+            "originalLanguage": "zh"
+          }
+        ],
+        "filters": {
+          "group": "All",
+          "genre": "",
+          "status": "any",
+          "language": "any",
+          "sort": "name"
+        },
+        "titleLanguage": "auto"
+      },
+      "expected": [
+        {
+          "id": "b",
+          "title": "Alpha",
+          "routes": ["b"]
+        },
+        {
+          "id": "c",
+          "title": "Beta",
+          "routes": ["c"]
+        },
+        {
+          "id": "a",
+          "title": "Zulu",
+          "routes": ["a"]
+        }
+      ]
+    },
+    {
+      "name": "chapter ordering with missing values",
+      "input": {
+        "books": [
+          {
+            "id": "a",
+            "title": "Zulu",
+            "source": "source",
+            "authors": [],
+            "genres": ["Science fiction"],
+            "description": "",
+            "status": "FINISHED",
+            "originalLanguage": "jpn",
+            "chapters": 10,
+            "score": 80
+          },
+          {
+            "id": "b",
+            "title": "Alpha",
+            "source": "source",
+            "authors": [],
+            "genres": ["Fantasy"],
+            "description": "",
+            "status": "CURRENT",
+            "originalLanguage": "ko",
+            "chapters": 30,
+            "score": 60,
+            "trendingScore": 99
+          },
+          {
+            "id": "c",
+            "title": "Beta",
+            "source": "source",
+            "authors": [],
+            "genres": ["History"],
+            "description": "",
+            "status": "on break",
+            "originalLanguage": "zh"
+          }
+        ],
+        "filters": {
+          "group": "All",
+          "genre": "",
+          "status": "any",
+          "language": "any",
+          "sort": "chapters"
+        },
+        "titleLanguage": "auto"
+      },
+      "expected": [
+        {
+          "id": "b",
+          "title": "Alpha",
+          "routes": ["b"]
+        },
+        {
+          "id": "a",
+          "title": "Zulu",
+          "routes": ["a"]
+        },
+        {
+          "id": "c",
+          "title": "Beta",
+          "routes": ["c"]
+        }
+      ]
+    },
+    {
+      "name": "rating ordering",
+      "input": {
+        "books": [
+          {
+            "id": "a",
+            "title": "Zulu",
+            "source": "source",
+            "authors": [],
+            "genres": ["Science fiction"],
+            "description": "",
+            "status": "FINISHED",
+            "originalLanguage": "jpn",
+            "chapters": 10,
+            "score": 80
+          },
+          {
+            "id": "b",
+            "title": "Alpha",
+            "source": "source",
+            "authors": [],
+            "genres": ["Fantasy"],
+            "description": "",
+            "status": "CURRENT",
+            "originalLanguage": "ko",
+            "chapters": 30,
+            "score": 60,
+            "trendingScore": 99
+          },
+          {
+            "id": "c",
+            "title": "Beta",
+            "source": "source",
+            "authors": [],
+            "genres": ["History"],
+            "description": "",
+            "status": "on break",
+            "originalLanguage": "zh"
+          }
+        ],
+        "filters": {
+          "group": "All",
+          "genre": "",
+          "status": "any",
+          "language": "any",
+          "sort": "rating"
+        },
+        "titleLanguage": "auto"
+      },
+      "expected": [
+        {
+          "id": "a",
+          "title": "Zulu",
+          "routes": ["a"]
+        },
+        {
+          "id": "b",
+          "title": "Alpha",
+          "routes": ["b"]
+        },
+        {
+          "id": "c",
+          "title": "Beta",
+          "routes": ["c"]
+        }
+      ]
+    },
+    {
+      "name": "trending fallback ordering",
+      "input": {
+        "books": [
+          {
+            "id": "a",
+            "title": "Zulu",
+            "source": "source",
+            "authors": [],
+            "genres": ["Science fiction"],
+            "description": "",
+            "status": "FINISHED",
+            "originalLanguage": "jpn",
+            "chapters": 10,
+            "score": 80
+          },
+          {
+            "id": "b",
+            "title": "Alpha",
+            "source": "source",
+            "authors": [],
+            "genres": ["Fantasy"],
+            "description": "",
+            "status": "CURRENT",
+            "originalLanguage": "ko",
+            "chapters": 30,
+            "score": 60,
+            "trendingScore": 99
+          },
+          {
+            "id": "c",
+            "title": "Beta",
+            "source": "source",
+            "authors": [],
+            "genres": ["History"],
+            "description": "",
+            "status": "on break",
+            "originalLanguage": "zh"
+          }
+        ],
+        "filters": {
+          "group": "All",
+          "genre": "",
+          "status": "any",
+          "language": "any",
+          "sort": "trending"
+        },
+        "titleLanguage": "auto"
+      },
+      "expected": [
+        {
+          "id": "b",
+          "title": "Alpha",
+          "routes": ["b"]
+        },
+        {
+          "id": "a",
+          "title": "Zulu",
+          "routes": ["a"]
+        },
+        {
+          "id": "c",
+          "title": "Beta",
+          "routes": ["c"]
+        }
+      ]
+    },
+    {
+      "name": "Arabic display title retains route",
+      "input": {
+        "books": [
+          {
+            "id": "a",
+            "title": "Book",
+            "source": "source",
+            "authors": [],
+            "genres": [],
+            "description": "",
+            "altTitle": "本|الكتاب"
+          }
+        ],
+        "filters": {
+          "group": "All",
+          "genre": "",
+          "status": "any",
+          "language": "any",
+          "sort": "popular"
+        },
+        "titleLanguage": "ar"
+      },
+      "expected": [
+        {
+          "id": "a",
+          "title": "الكتاب",
+          "routes": ["a"]
+        }
+      ]
+    },
+    {
+      "name": "English display title retains route",
+      "input": {
+        "books": [
+          {
+            "id": "a",
+            "title": "本",
+            "source": "source",
+            "authors": [],
+            "genres": [],
+            "description": "",
+            "altTitle": "Book|الكتاب"
+          }
+        ],
+        "filters": {
+          "group": "All",
+          "genre": "",
+          "status": "any",
+          "language": "any",
+          "sort": "popular"
+        },
+        "titleLanguage": "en"
+      },
+      "expected": [
+        {
+          "id": "a",
+          "title": "Book",
+          "routes": ["a"]
+        }
+      ]
+    }
+  ]
+}

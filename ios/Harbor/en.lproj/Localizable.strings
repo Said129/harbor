@@ -91,6 +91,7 @@
 "Another device changed services. Your previous version is saved on this device." = "Another device changed services. Your previous version is saved on this device.";
 "Anterior" = "Previous";
 "Anular estilos integrados" = "Override embedded styles";
+"Any" = "Any";
 "Análisis detenido para priorizar la reproducción. Puedes reintentarlo cuando termine de cargar." = "Analysis stopped to prioritize playback. Retry after buffering finishes.";
 "Apariencia" = "Appearance";
 "Apariencia de los subtítulos" = "Subtitle appearance";
@@ -99,6 +100,7 @@
 "Aplicar tema personalizado" = "Apply custom theme";
 "App language" = "App language";
 "Appearance" = "Appearance";
+"Apply" = "Apply";
 "Apply custom subtitle FPS" = "Apply custom subtitle FPS";
 "Apply custom theme" = "Apply custom theme";
 "Applying subtitle timing…" = "Applying subtitle timing…";
@@ -652,6 +654,7 @@
 "Llegaste al final · {n} complementos" = "You've reached the end · {n} addons";
 "Load file" = "Load file";
 "Load more" = "Load more";
+"Loading" = "Loading";
 "Local app files" = "Local app files";
 "Los FPS de los subtítulos no están disponibles en este entorno de ejecución de libmpv." = "Subtitle FPS is unavailable in this libmpv runtime.";
 "Los FPS de los subtítulos no están disponibles mientras haya un subtítulo secundario activo." = "Subtitle FPS is unavailable while a secondary subtitle is active.";
@@ -849,6 +852,7 @@
 "P2P sources, debrid-ready" = "P2P sources, debrid-ready";
 "Page base." = "Page base.";
 "Page turn sound" = "Page turn sound";
+"Pages" = "Pages";
 "Panel de fondo redondeado detrás del texto. La opción más legible." = "Rounded background panel behind the text. Most readable.";
 "Para personas con discapacidad auditiva" = "Hearing impaired";
 "Para subtítulos externos SRT/VTT en UTF-8 o UTF-16. Solo se aplica un cambio si el análisis encuentra una coincidencia fiable." = "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found.";
@@ -939,6 +943,7 @@
 "Raised" = "Raised";
 "Random avatar" = "Random avatar";
 "Ranked by the {site} community from their public index." = "Ranked by the {site} community from their public index.";
+"Read more" = "Read more";
 "Read on iPhone and iPad" = "Read on iPhone and iPad";
 "Reader options" = "Reader options";
 "Reading" = "Reading";
@@ -1244,6 +1249,7 @@
 "TMDB · catalogs and rails" = "TMDB · catalogs and rails";
 "TMDB · catálogos y filas" = "TMDB · catalogs and rails";
 "Table of contents" = "Table of contents";
+"Tags" = "Tags";
 "Tamaño" = "Size";
 "Tap a subtitle to load it. Keep watching while other providers are searched." = "Tap a subtitle to load it. Keep watching while other providers are searched.";
 "Tarjetas de carteles" = "Poster cards";
@@ -1283,6 +1289,7 @@
 "Tiempo reproducido" = "Playback time";
 "Tipo" = "Type";
 "Tipografía" = "Typography";
+"Titles" = "Titles";
 "Titles and descriptions" = "Titles and descriptions";
 "Toca un subtítulo para cargarlo. Puedes seguir viendo mientras se buscan los demás." = "Tap a subtitle to load it. Keep watching while other providers are searched.";
 "Todas" = "All";
@@ -1392,6 +1399,7 @@
 "Who's watching" = "Who's watching";
 "Writer" = "Writer";
 "Xtream server" = "Xtream server";
+"Year" = "Year";
 "You've reached the end · {n} addons" = "You've reached the end · {n} addons";
 "Your addons" = "Your addons";
 "Your avatar, name, and handle across Harbor." = "Your avatar, name, and handle across Harbor.";

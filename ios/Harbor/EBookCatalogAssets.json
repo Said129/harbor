@@ -1,0 +1,64 @@
+{
+  "schema": 1,
+  "reference": "0834340cec5531650bfe78cd628628702e636987",
+  "inputs": {
+    "src/lib/ebook/api.ts": "2920911a9a3ea5f361523111eadbcd5cdfe7ebd239d920d36a821002ec050882",
+    "src/lib/ebook/browse-filters.ts": "bd8219456dc736787ec47e4188a0b0682c99eb6d84c99ec29bc2728e3aa75dad",
+    "src/views/ebook.tsx": "5a4c1e436eaa0936c4de72f8253c66a90ae4c71958cef63bbdf5323f3dd763dc"
+  },
+  "program": {
+    "source": "\"use strict\";\nconst EBOOK_CATEGORIES = {\n    Fiction: [\n        \"Novel\",\n        \"Novella\",\n        \"Short story\",\n        \"Fantasy\",\n        \"Science fiction\",\n        \"Romance\",\n        \"Mystery / Detective\",\n        \"Thriller / Suspense\",\n        \"Horror\",\n        \"Historical fiction\",\n        \"Adventure\",\n        \"Literary fiction\",\n        \"Young Adult (YA)\",\n    ],\n    \"Non-fiction\": [\n        \"Self-help / Personal development\",\n        \"Psychology\",\n        \"Philosophy\",\n        \"Biography / Autobiography / Memoir\",\n        \"History\",\n        \"Business & Finance\",\n        \"Science\",\n        \"Technology\",\n        \"Health & Fitness\",\n        \"Politics & Society\",\n        \"True crime\",\n        \"Travel\",\n        \"Education / Textbooks\",\n        \"Reference / Guides\",\n        \"Essays\",\n        \"Religion & Spirituality\",\n        \"Cookbooks\",\n    ],\n};\nfunction titleKey(value) {\n    return value\n        .normalize(\"NFKC\")\n        .toLowerCase()\n        .replace(/[\\u0610-\\u061a\\u0640\\u064b-\\u065f\\u0670\\u06d6-\\u06ed]/g, \"\")\n        .replace(/[أإآٱ]/g, \"ا\")\n        .replace(/ى/g, \"ي\")\n        .replace(/[^\\p{L}\\p{N}]+/gu, \" \")\n        .trim();\n}\nfunction identityTitleKey(value) {\n    return titleKey(value)\n        .replace(/\\b(?:a|an|the)\\b/g, \" \")\n        .replace(/\\s+/g, \" \")\n        .trim();\n}\nfunction authorListsMatch(left, right) {\n    return left.some((a) => right.some((b) => {\n        const x = titleKey(a);\n        const y = titleKey(b);\n        const tokenKey = (value) => value.split(\" \").filter(Boolean).sort().join(\" \");\n        return (x === y ||\n            tokenKey(x) === tokenKey(y) ||\n            (x.length > 4 && y.length > 4 && (x.includes(y) || y.includes(x))));\n    }));\n}\nfunction identityAliases(ebook) {\n    return new Set([\n        ebook.title,\n        ...(ebook.sourceAliases ??\n            (ebook.source === \"source\" ? (ebook.altTitle?.split(\"|\") ?? []) : [])),\n        ...(ebook.verifiedAliases ?? []),\n    ]\n        .filter((title) => Boolean(title?.trim()))\n        .map(identityTitleKey)\n        .filter(Boolean));\n}\nfunction explicitSourceIdentityMatch(left, right) {\n    const a = left.sourceIdentity;\n    const b = right.sourceIdentity;\n    if (!a || !b)\n        return false;\n    return Boolean((a.anilistId && a.anilistId === b.anilistId) ||\n        (a.googleBooksId && a.googleBooksId === b.googleBooksId) ||\n        (a.openLibraryId && a.openLibraryId === b.openLibraryId) ||\n        (a.wikidataId && a.wikidataId === b.wikidataId) ||\n        (a.isbn && a.isbn === b.isbn));\n}\nfunction eBooksMatch(left, right) {\n    if (left.id === right.id)\n        return true;\n    if (explicitSourceIdentityMatch(left, right))\n        return true;\n    const leftAliases = identityAliases(left);\n    const sharedAliases = [...identityAliases(right)].filter((alias) => leftAliases.has(alias));\n    if (!sharedAliases.length)\n        return false;\n    const leftPrimary = identityTitleKey(left.title);\n    const rightPrimary = identityTitleKey(right.title);\n    const crossLanguage = /\\p{Script=Arabic}/u.test(left.title) !== /\\p{Script=Arabic}/u.test(right.title);\n    const leftExplicitAliases = new Set((left.sourceAliases ?? []).map(identityTitleKey));\n    const rightExplicitAliases = new Set((right.sourceAliases ?? []).map(identityTitleKey));\n    const leftVerifiedAliases = new Set((left.verifiedAliases ?? []).map(identityTitleKey));\n    const rightVerifiedAliases = new Set((right.verifiedAliases ?? []).map(identityTitleKey));\n    const leftTrustedAliases = new Set([...leftExplicitAliases, ...leftVerifiedAliases]);\n    const rightTrustedAliases = new Set([...rightExplicitAliases, ...rightVerifiedAliases]);\n    const crossLanguageAlias = crossLanguage &&\n        sharedAliases.some((alias) => (leftTrustedAliases.has(alias) && alias === rightPrimary) ||\n            (rightTrustedAliases.has(alias) && alias === leftPrimary) ||\n            (leftTrustedAliases.has(alias) && rightTrustedAliases.has(alias)));\n    if (crossLanguageAlias)\n        return true;\n    if (left.authors.length && right.authors.length)\n        return authorListsMatch(left.authors, right.authors);\n    return true;\n}\nfunction dedupeEBooks(ebooks) {\n    const unique = new Map();\n    for (const ebook of ebooks.flatMap((item) => item.books ?? [item]))\n        unique.set(ebook.id, ebook);\n    const groups = [];\n    for (const ebook of unique.values()) {\n        const group = groups.find((items) => items.some((item) => eBooksMatch(item, ebook)));\n        if (group)\n            group.push(ebook);\n        else\n            groups.push([ebook]);\n    }\n    return groups.map((items) => {\n        const primary = items.find((item) => /\\p{Script=Latin}/u.test(item.title) && !/\\p{Script=Arabic}/u.test(item.title)) ?? items[0];\n        const ordered = [primary, ...items.filter((item) => item.id !== primary.id)];\n        return {\n            ...primary,\n            books: ordered.length > 1 ? ordered : undefined,\n        };\n    });\n}\n\"use strict\";\nconst EBOOK_FILTER_GENRES = [\n    \"Cheat system\",\n    \"Comedy\",\n    \"Cultivation\",\n    \"Fantasy\",\n    \"LitRPG\",\n    \"Mystery\",\n    \"Romance\",\n    \"Sci-fi\",\n    \"Slice of Life\",\n    \"Sports\",\n    \"Thriller\",\n];\nconst normalizedStatus = (value) => {\n    const status = value?.toLocaleLowerCase() ?? \"\";\n    if (/complete|finished/.test(status))\n        return \"completed\";\n    if (/hiatus|paused|break/.test(status))\n        return \"hiatus\";\n    if (/ongoing|releasing|publishing|current/.test(status))\n        return \"ongoing\";\n    return \"\";\n};\nconst normalizedLanguage = (value) => {\n    const language = value?.trim().toLocaleLowerCase() ?? \"\";\n    if ([\"zh\", \"zho\", \"chi\", \"cn\", \"chinese\"].includes(language))\n        return \"chinese\";\n    if ([\"ko\", \"kor\", \"kr\", \"korean\"].includes(language))\n        return \"korean\";\n    if ([\"ja\", \"jpn\", \"jp\", \"japanese\"].includes(language))\n        return \"japanese\";\n    return \"\";\n};\nconst GENRE_ALIASES = {\n    \"cheat system\": [\"cheat system\", \"system\"],\n    \"sci fi\": [\"sci fi\", \"science fiction\"],\n    mystery: [\"mystery\", \"detective\"],\n    thriller: [\"thriller\", \"suspense\"],\n};\nconst normalizedGenre = (value) => value\n    .normalize(\"NFKD\")\n    .toLocaleLowerCase()\n    .replace(/[^\\p{L}\\p{N}]+/gu, \" \")\n    .trim();\nfunction ebookMatchesGenre(genres, selected) {\n    const wanted = normalizedGenre(selected);\n    if (!wanted)\n        return true;\n    const aliases = GENRE_ALIASES[wanted] ?? [wanted];\n    return genres.some((genre) => {\n        const candidate = normalizedGenre(genre);\n        return aliases.some((alias) => candidate === alias || candidate.includes(alias) || alias.includes(candidate));\n    });\n}\nfunction ebookSourceBrowseTag(status, sort) {\n    if (status !== \"any\")\n        return `status:${status}`;\n    return `sort:${sort}`;\n}\nfunction applyEBookBrowseFilters(books, filters) {\n    const filtered = books.filter((book) => (filters.status === \"any\" || normalizedStatus(book.status) === filters.status) &&\n        (filters.language === \"any\" ||\n            normalizedLanguage(book.originalLanguage) === filters.language));\n    if (filters.sort === \"popular\")\n        return filtered;\n    return [...filtered].sort((left, right) => {\n        if (filters.sort === \"name\")\n            return left.title.localeCompare(right.title);\n        if (filters.sort === \"chapters\")\n            return (right.chapters ?? -1) - (left.chapters ?? -1);\n        if (filters.sort === \"rating\")\n            return (right.score ?? -1) - (left.score ?? -1);\n        return ((right.trendingScore ?? right.score ?? right.chapters ?? -1) -\n            (left.trendingScore ?? left.score ?? left.chapters ?? -1));\n    });\n}\n\"use strict\";\nfunction ebookTitleForLanguage(ebook, language) {\n    if (language === \"auto\" || language === \"original\")\n        return ebook.title;\n    const candidates = [ebook.title, ...(ebook.altTitle?.split(\"|\") ?? [])]\n        .map((title) => title.trim())\n        .filter(Boolean);\n    const match = language === \"ar\"\n        ? candidates.find((title) => /[\\u0600-\\u06ff]/.test(title))\n        : candidates.find((title) => /[a-z]/i.test(title) && !/[\\u0600-\\u06ff\\u3040-\\u30ff\\u3400-\\u9fff]/.test(title));\n    return match ?? ebook.title;\n}\n\nfunction harborEBookCatalog(text) {\n  const input = JSON.parse(text);\n  if (input.operation === \"definitions\") return JSON.stringify({categories:EBOOK_CATEGORIES,genres:EBOOK_FILTER_GENRES});\n  if (input.operation === \"tag\") return JSON.stringify(ebookSourceBrowseTag(input.status,input.sort));\n  const grouped = dedupeEBooks(input.books);\n  const filtered = applyEBookBrowseFilters(grouped,input.filters);\n  const wanted = input.filters.genre || (input.filters.group === \"All\" ? \"\" : input.filters.group);\n  const genres = !wanted ? [] : input.filters.genre ? [wanted] : [wanted,...(EBOOK_CATEGORIES[input.filters.group]??[])];\n  return JSON.stringify(filtered.filter(book => !wanted || genres.some(genre => ebookMatchesGenre(book.genres??[],genre)))\n    .map(book=>({id:book.id,title:ebookTitleForLanguage(book,input.titleLanguage),routes:(book.books??[book]).map(item=>item.id)})));\n}\n",
+    "sha256": "53346856ad401229d174d033c070b0bddfa6aea1536a96541b11c346f63d41b1"
+  },
+  "definitions": {
+    "categories": {
+      "Fiction": [
+        "Novel",
+        "Novella",
+        "Short story",
+        "Fantasy",
+        "Science fiction",
+        "Romance",
+        "Mystery / Detective",
+        "Thriller / Suspense",
+        "Horror",
+        "Historical fiction",
+        "Adventure",
+        "Literary fiction",
+        "Young Adult (YA)"
+      ],
+      "Non-fiction": [
+        "Self-help / Personal development",
+        "Psychology",
+        "Philosophy",
+        "Biography / Autobiography / Memoir",
+        "History",
+        "Business & Finance",
+        "Science",
+        "Technology",
+        "Health & Fitness",
+        "Politics & Society",
+        "True crime",
+        "Travel",
+        "Education / Textbooks",
+        "Reference / Guides",
+        "Essays",
+        "Religion & Spirituality",
+        "Cookbooks"
+      ]
+    },
+    "genres": [
+      "Cheat system",
+      "Comedy",
+      "Cultivation",
+      "Fantasy",
+      "LitRPG",
+      "Mystery",
+      "Romance",
+      "Sci-fi",
+      "Slice of Life",
+      "Sports",
+      "Thriller"
+    ]
+  }
+}

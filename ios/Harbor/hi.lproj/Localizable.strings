@@ -96,6 +96,7 @@
 "All sources" = "सभी स्रोत";
 "All sources are shown in the picker. These filters and quality limits apply to automatic playback." = "All sources are shown in the picker. These filters and quality limits apply to automatic playback.";
 "All sports" = "सभी खेल";
+"All tags" = "सभी टैग";
 "All-Time Great Series" = "सर्वकालिक महान सीरीज़";
 "All-Time Greats" = "सर्वकालिक महान कृतियाँ";
 "Allow cellular data" = "Allow cellular data";
@@ -117,6 +118,7 @@
 "Another device changed services. Your previous version is saved on this device." = "किसी दूसरे डिवाइस ने सेवाएँ बदली हैं। आपका पिछला संस्करण इस डिवाइस पर सुरक्षित है।";
 "Anterior" = "पिछला";
 "Anular estilos integrados" = "एम्बेडेड स्टाइल ओवरराइड करें";
+"Any" = "कोई भी";
 "Any public website. This plugin did not say which sites it uses." = "कोई भी सार्वजनिक वेबसाइट। इस प्लगइन ने नहीं बताया कि यह किन साइटों का उपयोग करता है।";
 "Análisis detenido para priorizar la reproducción. Puedes reintentarlo cuando termine de cargar." = "Analysis stopped to prioritize playback. Retry after buffering finishes.";
 "Apariencia" = "दिखावट";
@@ -127,6 +129,7 @@
 "App language" = "ऐप की भाषा";
 "Appearance" = "दिखावट";
 "Apple TV+" = "Apple TV+";
+"Apply" = "लागू करें";
 "Apply custom subtitle FPS" = "कस्टम सबटाइटल FPS लागू करें";
 "Apply custom theme" = "कस्टम थीम लागू करें";
 "Applying subtitle timing…" = "Applying subtitle timing…";
@@ -373,6 +376,7 @@
 "Continue Watching" = "देखना जारी रखें";
 "Continue Watching at top" = "देखना जारी रखें को सबसे ऊपर रखें";
 "Continue Watching, then your addon catalogs in install order. No hero, no Harbor rails." = "‘देखना जारी रखें’, फिर इंस्टॉल क्रम में आपके ऐडऑन कैटलॉग। न हीरो सेक्शन, न Harbor की पंक्तियाँ।";
+"Continue reading" = "पढ़ना जारी रखें";
 "Continue to next chapter" = "Continue to next chapter";
 "Continúa donde lo dejaste" = "वहीं से जारी रखें जहाँ आपने छोड़ा था";
 "Continúa los episodios y las películas que viste en parte desde el punto guardado. Todo lo que hayas visto más del 80% siempre se reinicia. Desactiva esta opción para comenzar siempre desde el principio; es útil si vuelves a ver series." = "अधूरे देखे एपिसोड और फ़िल्में सेव की गई जगह से शुरू करें। 80% से ज़्यादा देखी गई कोई भी चीज़ हमेशा शुरू से चलेगी। हमेशा शुरुआत से चलाने के लिए इसे बंद करें, जो शो दोबारा देखते समय उपयोगी है।";
@@ -600,6 +604,7 @@
 "Featured" = "चुनिंदा";
 "Featured at Anime Expo" = "एनीमे एक्सपो में प्रदर्शित";
 "Fecha" = "तारीख";
+"Fiction" = "कथा-साहित्य";
 "File is larger than 2 MB." = "फ़ाइल 2 MB से बड़ी है।";
 "Fill" = "भरें";
 "Film" = "फ़िल्म";
@@ -695,6 +700,7 @@
 "Highlight, progress." = "हाइलाइट, प्रगति।";
 "Highlighted blocks." = "हाइलाइट किए गए ब्लॉक।";
 "Hindi" = "हिंदी";
+"History" = "इतिहास";
 "Hockey" = "हॉकी";
 "Home" = "होम";
 "Home layout" = "होम लेआउट";
@@ -815,6 +821,7 @@
 "Llegaste al final · {n} complementos" = "आप अंत तक पहुँच गए हैं · {n} ऐडऑन";
 "Load file" = "फ़ाइल लोड करें";
 "Load more" = "और लोड करें";
+"Loading" = "लोड हो रहा है";
 "Loading plugins..." = "प्लगइन लोड हो रहे हैं...";
 "Loading…" = "लोड हो रहा है…";
 "Local" = "लोकल";
@@ -992,6 +999,7 @@
 "Nombre cambiado" = "नाम बदला गया";
 "Nombre de usuario" = "यूज़रनेम";
 "Nombre para mostrar" = "दिखाया जाने वाला नाम";
+"Non-fiction" = "गैर-कथा साहित्य";
 "Nord" = "Nord";
 "Normal" = "सामान्य";
 "Norwegian" = "नॉर्वेजियन";
@@ -1052,6 +1060,7 @@
 "Ordenar" = "क्रमबद्ध करें";
 "Ordenar por" = "इसके अनुसार क्रमबद्ध करें";
 "Original" = "मूल";
+"Original language" = "मूल भाषा";
 "Oscuro" = "डार्क";
 "Other" = "अन्य";
 "Outline" = "आउटलाइन";
@@ -1066,6 +1075,7 @@
 "Page" = "पेज";
 "Page base." = "पेज का आधार।";
 "Page turn sound" = "Page turn sound";
+"Pages" = "पेज";
 "Panel de fondo redondeado detrás del texto. La opción más legible." = "टेक्स्ट के पीछे गोल कोनों वाला बैकग्राउंड पैनल। पढ़ने में सबसे आसान।";
 "Para personas con discapacidad auditiva" = "श्रवण-बाधित";
 "Para subtítulos externos SRT/VTT en UTF-8 o UTF-16. Solo se aplica un cambio si el análisis encuentra una coincidencia fiable." = "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found.";
@@ -1185,8 +1195,11 @@
 "Raised" = "ऊँचा";
 "Random avatar" = "रैंडम अवतार";
 "Ranked by the {site} community from their public index." = "{site} समुदाय के सार्वजनिक इंडेक्स के आधार पर रैंक किया गया।";
+"Rating" = "रेटिंग";
 "Re-runs the welcome flow and clears every dismissed tip." = "स्वागत प्रक्रिया फिर से चलाता है और खारिज की गई हर टिप मिटा देता है।";
 "Reaches" = "संपर्क करता है";
+"Read" = "पढ़ें";
+"Read more" = "और पढ़ें";
 "Read on iPhone and iPad" = "Read on iPhone and iPad";
 "Reader options" = "Reader options";
 "Reading" = "पढ़ा जा रहा है";
@@ -1549,6 +1562,7 @@
 "TV" = "TV";
 "TV Shows" = "TV शो";
 "Table of contents" = "Table of contents";
+"Tags" = "टैग";
 "Tamaño" = "आकार";
 "Tamil" = "तमिल";
 "Tap a subtitle to load it. Keep watching while other providers are searched." = "Tap a subtitle to load it. Keep watching while other providers are searched.";
@@ -1602,6 +1616,7 @@
 "Tiempo reproducido" = "Playback time";
 "Tipo" = "प्रकार";
 "Tipografía" = "टाइपोग्राफ़ी";
+"Titles" = "शीर्षक";
 "Titles and descriptions" = "शीर्षक और विवरण";
 "Toca un subtítulo para cargarlo. Puedes seguir viendo mientras se buscan los demás." = "Tap a subtitle to load it. Keep watching while other providers are searched.";
 "Todas" = "सभी";
@@ -1720,6 +1735,7 @@
 "Visto" = "देख लिया";
 "Volume" = "वॉल्यूम";
 "Volumen" = "वॉल्यूम";
+"Volumes" = "खंड";
 "Volver a empezar" = "फिर से शुरू करें";
 "Vídeo" = "वीडियो";
 "War" = "युद्ध";
@@ -1744,6 +1760,7 @@
 "Wrong PIN" = "गलत PIN";
 "Xtream" = "Xtream";
 "Xtream server" = "Xtream server";
+"Year" = "वर्ष";
 "You can switch later in Settings under Library & metadata." = "आप बाद में सेटिंग्स में लाइब्रेरी और मेटाडेटा के अंतर्गत इसे बदल सकते हैं।";
 "You're set." = "सब तैयार है।";
 "You've reached the end · {n} addons" = "आप अंत तक पहुँच गए हैं · {n} ऐडऑन";
@@ -1795,6 +1812,7 @@
 "profile" = "प्रोफ़ाइल";
 "profile.primary" = "प्राथमिक";
 "profile.signedIn" = "Stremio में साइन इन हैं";
+"rating" = "रेटिंग";
 "result" = "नतीजा";
 "results" = "नतीजे";
 "right" = "दायाँ";
