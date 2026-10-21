@@ -73,7 +73,13 @@ private struct HarborObservedPluginTransport: HarborPluginHostTransport {
         slots.removeValue(forKey: id)?.runtime.dispose()
         stopEmptySweep()
     }
-    func cancelCalls() { operations.values.forEach { $0.1.cancel() } }
+    func cancelCalls() {
+        operations.values.forEach { $0.1.cancel() }
+        // A master pause stops bridge work as well as its consumer. Resuming creates fresh
+        // workers from the retained installation/configuration instead of reusing aborted code.
+        slots.values.forEach { $0.runtime.dispose() }; slots = [:]
+        sweeper?.cancel(); sweeper = nil
+    }
     func recordSkip(_ id: String, title: String?, reason: String) {
         guard !disposed, manager.ready, scope == currentScope() else { return }
         var status = health[id] ?? .init()

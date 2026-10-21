@@ -113,10 +113,16 @@ private actor StreamSourceNetwork: HarborNativeNetworkCalling {
         try await network.waitUntilHeld(); source.runtime.cancelCalls(); await network.release()
         do { _ = try await pending.value; XCTFail("Paused plugin returned") } catch { XCTAssertTrue(error is CancellationError) }
         XCTAssertEqual(source.manager.document.plugins.count, 1); XCTAssertEqual(source.manager.document.plugins.first?.failures, 0)
-        let paused = try await source.streams(media: media, videoID: media.id, episode: nil, startingPriority: 0, options: .init(enabled: false), tmdbKey: "")
-        XCTAssertTrue(paused.streams.isEmpty)
-        let resumed = try await source.streams(media: media, videoID: media.id, episode: nil, startingPriority: 0, options: .init(), tmdbKey: "")
-        XCTAssertEqual(resumed.streams.count, 1); XCTAssertTrue(resumed.errors.isEmpty)
+        XCTAssertFalse(Task.isCancelled); XCTAssertTrue(source.manager.ready)
+        XCTAssertEqual(source.runtime.residentWorkerCount, 0)
+        do {
+            let paused = try await source.streams(media: media, videoID: media.id, episode: nil, startingPriority: 0, options: .init(enabled: false), tmdbKey: "")
+            XCTAssertTrue(paused.streams.isEmpty)
+        } catch { XCTFail("The paused source lookup failed: \(error)"); return }
+        do {
+            let resumed = try await source.streams(media: media, videoID: media.id, episode: nil, startingPriority: 0, options: .init(), tmdbKey: "")
+            XCTAssertEqual(resumed.streams.count, 1); XCTAssertTrue(resumed.errors.isEmpty)
+        } catch { XCTFail("The fresh source lookup after resuming failed: \(error)") }
     }
 
     func testRetiringProfileWhileARealPluginRequestIsHeldCannotPublishSourcesOrPersistFailure() async throws {

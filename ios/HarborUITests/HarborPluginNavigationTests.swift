@@ -14,16 +14,28 @@ import XCTest
         open(app)
         let enabled = app.switches["plugin-use-all"], grouped = app.switches["plugin-group-repository"]
         XCTAssertTrue(enabled.waitForExistence(timeout: 15)); reveal(enabled, in: app)
-        XCTAssertEqual(enabled.value as? String, "1"); enabled.tap()
-        XCTAssertEqual(enabled.value as? String, "0")
-        reveal(grouped, in: app); grouped.tap(); XCTAssertEqual(grouped.value as? String, "1")
+        XCTAssertEqual(enabled.value as? String, "1"); setSwitch(enabled, on: false, in: app)
+        setSwitch(grouped, on: true, in: app)
         capture(app, "plugin-options-paused-" + device)
         app.terminate(); app.launch(); open(app)
         XCTAssertTrue(enabled.waitForExistence(timeout: 15)); reveal(enabled, in: app)
         XCTAssertEqual(enabled.value as? String, "0"); XCTAssertEqual(grouped.value as? String, "1")
-        enabled.tap(); XCTAssertEqual(enabled.value as? String, "1")
+        setSwitch(enabled, on: true, in: app)
         capture(app, "plugin-options-restored-" + device)
         XCTAssertTrue(app.buttons["plugin-configure-owned.ui.form"].exists)
+    }
+
+    private func setSwitch(_ element: XCUIElement, on: Bool, in app: XCUIApplication) {
+        reveal(element, in: app)
+        let expected = on ? "1" : "0"
+        if element.value as? String != expected {
+            // SwiftUI exposes a switch row including its label. Hit the actual trailing
+            // control, then wait for its published accessibility state rather than a gap.
+            element.coordinate(withNormalizedOffset: CGVector(dx: 1, dy: 0.5)).withOffset(CGVector(dx: -20, dy: 0)).tap()
+        }
+        let changed = XCTNSPredicateExpectation(predicate: NSPredicate(format: "value == %@", expected), object: element)
+        XCTAssertEqual(XCTWaiter.wait(for: [changed], timeout: 5), .completed)
+        XCTAssertEqual(element.value as? String, expected)
     }
 
     private func verify(device: String) {

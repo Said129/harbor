@@ -129,6 +129,19 @@ private actor OwnedPluginTransport: HarborPluginHostTransport {
         XCTAssertLessThan(Date().timeIntervalSince(started), 10)
     }
 
+    func testWorkerInitializationKeepsItsTenSecondBudgetAfterTheNativeHostIsReady() async throws {
+        let busy = runtime(#"var started=Date.now();while(Date.now()-started<14000){};var plugin={id:'owned.init',name:'Slow initialization',search:function(){return [];}};"#)
+        defer { busy.dispose() }
+        do { _ = try await busy.metadata(); XCTFail("Slow plugin initialization exceeded its worker budget") }
+        catch let error as HarborPluginRuntimeError {
+            XCTAssertEqual(error.code, "plugin-timeout"); XCTAssertEqual(error.detail, "worker-ready")
+        }
+        XCTAssertTrue(busy.isDisposed)
+        let normal = runtime(#"var plugin={id:'owned.recovery',name:'Recovery',search:function(){return {ready:true};}};"#)
+        defer { normal.dispose() }
+        let value = try await normal.call("search"); XCTAssertEqual(value["ready"], .bool(true))
+    }
+
     func testInitializationAndMissingMethodsReportRealFailuresInsteadOfEmptyResults() async throws {
         let bad = runtime("throw new Error('owned broken provider');")
         defer { bad.dispose() }

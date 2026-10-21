@@ -598,7 +598,7 @@ jobs:
           python3 scripts/ios/record-profile-model-results.py --bundle ios/build/Tests.xcresult --expected ios/build/preserved-plugin-integration.json --count "$expected" --output ios/build/canonical/PluginIntegrationModels.json
       - name: Run both new plugin management interfaces on fresh guests
         id: plugin_integration_ui
-        if: ${{ always() && (inputs.validation_scope == 'plugin-integration' || inputs.validation_scope == 'plugin-playback') && (steps.offline_tests.conclusion == 'success' || steps.offline_tests.conclusion == 'failure') }}
+        if: ${{ always() && (inputs.validation_scope == 'plugin-integration' || inputs.validation_scope == 'plugin-playback') && (inputs.validation_scope != 'plugin-playback' || env.HARBOR_PLUGIN_UI_REQUIRED == 'true') && (steps.offline_tests.conclusion == 'success' || steps.offline_tests.conclusion == 'failure') }}
         timeout-minutes: 40
         run: python3 scripts/ios/run-plugin-integration-ui.py
       - name: Authenticate the thirteen actual native network model results

@@ -357,9 +357,9 @@ final class DetailModel {
             guard let selected else { throw HarborError(code: "no-metadata") }
             let videoID = episode?.id ?? selected.behaviorHints?.defaultVideoId ?? selected.id
             let provider = pluginStreams, startingPriority = addons.count
-            let plugins: (@Sendable () async throws -> HarborPluginStreamBatch)? = provider.map { provider in
-                { try await provider(selected, videoID, episode, startingPriority) }
-            }
+            let plugins: (@Sendable () async throws -> HarborPluginStreamBatch)?
+            if let provider { plugins = { try await provider(selected, videoID, episode, startingPriority) } }
+            else { plugins = nil }
             let result = try await service.streams(selected, videoID: videoID, addons: addons, season: episode?.season, episode: episode?.episode,
                 unfiltered: true, pluginSource: plugins)
             let automatic = try await service.automaticStreams(result.0, media: selected, season: episode?.season, episode: episode?.episode)

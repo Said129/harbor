@@ -75,9 +75,16 @@ private struct PluginStreamAdapterAsset: Decodable {
         let epoch = generation
         let output: String
         do {
-            let value = try await web.callAsyncJavaScript("return globalThis.harborAdaptPluginStreams(input)", arguments: ["input": encoded], in: nil, in: .page)
-            guard let text = value as? String else { throw HarborPluginRuntimeError("plugin-adapter-result") }
-            output = text
+            output = try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<String, Error>) in
+                web.callAsyncJavaScript("return globalThis.harborAdaptPluginStreams(input)", arguments: ["input": encoded], in: nil, in: .page) { result in
+                    switch result {
+                    case .success(let value):
+                        guard let text = value as? String else { continuation.resume(throwing: HarborPluginRuntimeError("plugin-adapter-result")); return }
+                        continuation.resume(returning: text)
+                    case .failure: continuation.resume(throwing: HarborPluginRuntimeError("plugin-adapter-result"))
+                    }
+                }
+            }
         } catch {
             try Task.checkCancellation()
             throw HarborPluginRuntimeError("plugin-adapter-result")

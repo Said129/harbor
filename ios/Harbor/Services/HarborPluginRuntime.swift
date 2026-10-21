@@ -86,6 +86,7 @@ private struct PluginRuntimeAssets: Decodable {
     private let messageHandler = PluginMessageHandler()
     private var web: WKWebView?
     private var initialization: Task<JSONValue, Error>?
+    private var hostReady = false
     private var pending: [String: Pending] = [:]
     private var bridges: [String: Task<Void, Never>] = [:]
     private var queuedBridges: [(String, HarborPluginBridgeKind, JSONValue)] = []
@@ -160,26 +161,39 @@ private struct PluginRuntimeAssets: Decodable {
         preferences.userContentController.add(messageHandler, name: "harborPlugin")
         preferences.userContentController.addUserScript(WKUserScript(source: script, injectionTime: .atDocumentEnd, forMainFrameOnly: true))
         let view = WKWebView(frame: .zero, configuration: preferences); view.navigationDelegate = self; web = view
-        return try await request(id: "ready", timeout: 10) {
+        // Desktop's 10-second worker budget starts in an already running browser. The first
+        // native WebContent process/navigation has its own bounded startup phase.
+        return try await request(id: "ready", timeout: 20, stage: "native-host") {
             view.loadHTMLString("<!doctype html><meta http-equiv='Content-Security-Policy' content=\"default-src 'none'; script-src 'unsafe-eval' blob:; worker-src blob:; connect-src 'none'; img-src 'none'; style-src 'none'\"><title>Harbor plugin worker</title>", baseURL: URL(string: "https://harbor-plugin.invalid/"))
         }
     }
 
-    private func request(id: String, timeout: TimeInterval, start: () -> Void) async throws -> JSONValue {
+    private func request(id: String, timeout: TimeInterval, stage: String = "operation", start: () -> Void) async throws -> JSONValue {
         try validate(); try Task.checkCancellation()
         return try await withTaskCancellationHandler {
             try await withCheckedThrowingContinuation { continuation in
-                let deadline = Task { [weak self] in
-                    do { try await Task.sleep(for: .seconds(timeout)) } catch { return }
-                    guard let self, self.pending[id] != nil else { return }
-                    self.finish(id, result: .failure(HarborPluginRuntimeError("plugin-timeout"))); self.dispose()
-                }
+                let deadline = self.deadline(id: id, timeout: timeout, stage: stage)
                 pending[id] = Pending(continuation: continuation, deadline: deadline)
                 start()
             }
         } onCancel: {
             Task { @MainActor [weak self] in self?.cancel(id) }
         }
+    }
+
+    private func deadline(id: String, timeout: TimeInterval, stage: String) -> Task<Void, Never> {
+        Task { [weak self] in
+            do { try await Task.sleep(for: .seconds(timeout)) } catch { return }
+            guard !Task.isCancelled, let self, self.pending[id] != nil else { return }
+            self.finish(id, result: .failure(HarborPluginRuntimeError("plugin-timeout", stage))); self.dispose()
+        }
+    }
+
+    private func beginWorkerInitialization() -> Bool {
+        guard !hostReady, let ready = pending["ready"] else { return false }
+        hostReady = true; ready.deadline.cancel()
+        pending["ready"] = Pending(continuation: ready.continuation, deadline: deadline(id: "ready", timeout: 10, stage: "worker-ready"))
+        return true
     }
 
     private func cancel(_ id: String) {
@@ -221,9 +235,10 @@ private struct PluginRuntimeAssets: Decodable {
         do { try validate() } catch { return }
         switch message["type"].string {
         case "hostReady":
+            guard beginWorkerInitialization() else { return }
             send("initialize", .object(["source": .string(source), "format": .string(format.rawValue), "configuration": configuration,
                 "meta": .object(["id": .string(sourceID), "name": .string(name), "settings": configuration])]))
-        case "ready": finish("ready", result: .success(message["meta"]))
+        case "ready": if hostReady { finish("ready", result: .success(message["meta"])) }
         case "initError", "fatal": fail(HarborPluginRuntimeError("plugin-runtime", message["error"].string ?? ""))
         case "result": if let id = message["id"].string { finish(id, result: .success(message["value"])) }
         case "error": if let id = message["id"].string { finish(id, result: .failure(HarborPluginRuntimeError("plugin-call", message["error"].string ?? ""))) }
