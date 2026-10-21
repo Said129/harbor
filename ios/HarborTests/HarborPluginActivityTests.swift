@@ -16,7 +16,9 @@ private actor ActivityNetwork: HarborNativeNetworkCalling {
         return .init(status: 200, ok: true, headers: [:], bodyBase64: Data("owned".utf8).base64EncodedString(), url: request.url)
     }
     func waitUntilHeld() async throws {
-        for _ in 0..<250 { if held != nil { return }; try await Task.sleep(for: .milliseconds(20)) }
+        // Wait for the real bridge request, including the unchanged host/worker startup
+        // allowance. The cancellation under test begins only after that request is held.
+        for _ in 0..<900 { if held != nil { return }; try await Task.sleep(for: .milliseconds(50)) }
         throw HarborPluginRepositoryError("owned-activity-timeout")
     }
     func release() { held?.resume(); held = nil }
@@ -63,12 +65,12 @@ private actor ActivityNetwork: HarborNativeNetworkCalling {
         await model.check()
         XCTAssertEqual(model.result?.count, 1); XCTAssertFalse(model.checking); XCTAssertNil(model.error)
         XCTAssertEqual(model.health?.title, "Fight Club"); XCTAssertEqual(model.result?.requests, 0)
-        XCTAssertTrue(model.logs.contains { $0.text == "checked Fight Club" })
+        XCTAssertTrue(model.logs.contains { $0.text == "log: checked Fight Club" }, model.logs.map(\.text).joined(separator: "\n"))
         model.runtime.recordSkip(model.id, title: "Owned last title", reason: "owned")
         try await model.manager.saveSettings(model.id, values: ["token": .string("second")], passwordKeys: ["token"])
         await model.check()
         XCTAssertEqual(model.result?.count, 2); XCTAssertEqual(model.health?.title, "Owned last title")
-        XCTAssertTrue(model.logs.contains { $0.text == "checked Owned last title" })
+        XCTAssertTrue(model.logs.contains { $0.text == "log: checked Owned last title" }, model.logs.map(\.text).joined(separator: "\n"))
     }
 
     func testExplicitActivityCheckRecoversAnAlreadyPausedInstallationAndPersistsIt() async throws {

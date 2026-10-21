@@ -10,26 +10,37 @@ reading = ['HarborTests.HarborReadingPluginTests/' + method for method in [
     'testNativeReadingSourcesInstallBrowseReadAndRetainDistinctKindsWithSanitizedPageHeaders',
     'testMangayomiJSIndexUsesOriginalPreludeForPageSearchDetailsAndConcurrentSourceReuse',
     'testRetiredProfileCancelsAnInFlightReadingInstallAndKeepsThePreviousCatalog']]
-if requested and set(item.strip().replace('HarborTests/', 'HarborTests.', 1) for item in requested.split(',')) == set(reading):
+activity_retries = ['HarborTests.HarborPluginActivityTests/' + method for method in [
+    'testClosingActivityCancelsRealRequestWithoutLateResultOrFailure',
+    'testRealCheckUsesDesktopSampleFreshConfigurationAndLastTitleWithVisibleActivity']]
+requested_set = set(item.strip().replace('HarborTests/', 'HarborTests.', 1) for item in requested.split(',')) if requested else set()
+reading_repair = requested_set == set(reading + activity_retries)
+if requested and (requested_set == set(reading) or reading_repair):
+    cases = reading + activity_retries if reading_repair else reading
     selected = [item.strip().replace('HarborTests/', 'HarborTests.', 1) for item in requested.split(',')]
-    assert len(selected) == len(set(selected)) == 4
+    assert len(selected) == len(set(selected)) == len(cases)
     seed = 'HarborTests.HarborReadingPluginInterfaceSeedTests/testPrepareOwnedReadingSourcesInTheOrdinaryLocalInstallation'
     ui = ['HarborUITests.HarborReadingPluginNavigationTests/testOwnedReadingSourcesManagementSearchAndReadersOn' + device for device in ['IPhone', 'IPad']]
-    for case in reading + [seed] + ui:
+    for case in cases + [seed] + ui:
         target, tail = case.split('.', 1); suite, method = tail.split('/')
         assert re.search(r'\bfunc ' + method + r'\(', Path('ios/' + target + '/' + suite + '.swift').read_text('utf-8'))
-    plan = dict(source=os.environ.get('GITHUB_SHA', 'working-tree'), block='reading-plugins', selected_case_count=4,
-        pending_native_cases=reading, native_preparation_case=seed, ui_cases=ui, expected_total_executions=8, expected_original_images=16,
+    plan = dict(source=os.environ.get('GITHUB_SHA', 'working-tree'), block='reading-repair' if reading_repair else 'reading-plugins', selected_case_count=len(cases),
+        pending_native_cases=cases, native_preparation_case=seed, ui_cases=ui, expected_total_executions=len(cases) + 4, expected_original_images=16,
         required_original_captures=['reading-plugin-' + state + '-' + device for device in ['iphone', 'ipad'] for state in [
             'manga-installed', 'manga-repository', 'books-installed', 'manga-search', 'manga-reader', 'book-search', 'book-reader', 'book-next']],
         approved_predecessor_cases_repeated=False, prior_preparation_repeated_only_for_fresh_devices=True,
         unrelated_approved_cases_selected=False, existing_rust_tests_repeated=False, full_desktop_parity_complete=False, ipa_requested=False)
+    if reading_repair:
+        plan.update(reading_predecessor_run=39637899685, reading_predecessor_actual_executions=0,
+            activity_predecessor_run=39629636444, activity_predecessor_actual_executions=8,
+            activity_predecessor_passed_executions_retained=6, failed_activity_cases=activity_retries,
+            ordered_predecessor_run=39634418674, ordered_predecessor_actual_passes_retained=5)
     directory = Path('ios/build'); directory.mkdir(parents=True, exist_ok=True)
     (directory / 'preserved-plugin-integration.json').write_text(json.dumps(plan, indent=2) + '\n', 'utf-8')
-    (directory / 'plugin-integration-selection.txt').write_text('\n'.join(case.replace('.', '/', 1) for case in reading) + '\n', 'utf-8')
+    (directory / 'plugin-integration-selection.txt').write_text('\n'.join(case.replace('.', '/', 1) for case in cases) + '\n', 'utf-8')
     if os.environ.get('GITHUB_ENV'):
         with open(os.environ['GITHUB_ENV'], 'a', encoding='utf-8') as output: output.write('HARBOR_PLUGIN_UI_REQUIRED=true\n')
-    print('4 new reading models, 2 fresh source preparations and 2 new reading UI routes. 16 captures; no approved playback/reader suite replay. No IPA.')
+    print(str(len(cases)) + ' new/unexecuted/failed models, 2 fresh reading preparations and 2 new reading UI routes. 16 captures; no passed source, activity UI or ordered-model replay. No IPA.')
     raise SystemExit(0)
 
 ordered = ['HarborTests.HarborPluginRuntimeTests/testOptionalOrderedJSONRepliesPreserveNestedOrderWithoutChangingConcurrentNormalCallsOrCancellation',
