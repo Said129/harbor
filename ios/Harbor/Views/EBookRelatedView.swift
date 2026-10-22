@@ -1,5 +1,9 @@
 import SwiftUI
 
+private enum EBookRelatedResult: Sendable {
+    case recommendations(JSONValue), collections([JSONValue]), adaptations(JSONValue)
+}
+
 struct EBookRelatedView: View {
     let book: EBook
     let shelf: EBookShelf
@@ -50,31 +54,41 @@ struct EBookRelatedView: View {
                 Spacer()
         }
     }
-    private func load() async {
+    @MainActor private func load() async {
         guard let client = try? manager.ebookMetadata() else { return }
         let raw = EBookMetadataMapping.raw(book)
-        await withTaskGroup(of: Void.self) { group in
-            group.addTask { @MainActor in
+        let sources: JSONValue = .array(candidates.map(EBookMetadataMapping.raw))
+        await withTaskGroup(of: EBookRelatedResult.self) { group in
+            group.addTask { @Sendable in
                 do {
                     let value = try await client.query("recommendations", arguments: ["book": raw])
-                    let linked = try await client.query("attach", arguments: ["books": value, "sources": .array(candidates.map(EBookMetadataMapping.raw))])
-                    try Task.checkCancellation(); recommendations = EBookMetadataMapping.books(linked, preserving: candidates)
-                } catch {}
+                    let linked = try await client.query("attach", arguments: ["books": value, "sources": sources])
+                    return .recommendations(linked)
+                } catch { return .recommendations(.array([])) }
             }
-            group.addTask { @MainActor in
+            group.addTask { @Sendable in
                 do {
                     let value = try await client.query("collections", arguments: ["books": .array([raw])])
                     var linked: [JSONValue] = []
                     for row in value.array {
                         var fields = row.objectValue, collection = row["collection"].objectValue
-                        collection["books"] = try await client.query("attach", arguments: ["books": row["collection"]["books"], "sources": .array(candidates.map(EBookMetadataMapping.raw))])
+                        collection["books"] = try await client.query("attach", arguments: ["books": row["collection"]["books"], "sources": sources])
                         fields["collection"] = .object(collection); linked.append(.object(fields))
                     }
-                    try Task.checkCancellation(); collections = linked
-                } catch {}
+                    return .collections(linked)
+                } catch { return .collections([]) }
             }
-            group.addTask { @MainActor in
-                do { let value = try await client.query("adaptations", arguments: ["book": raw]); try Task.checkCancellation(); adaptations = value } catch {}
+            group.addTask { @Sendable in
+                do { return .adaptations(try await client.query("adaptations", arguments: ["book": raw])) }
+                catch { return .adaptations(.null) }
+            }
+            for await result in group {
+                guard !Task.isCancelled else { group.cancelAll(); return }
+                switch result {
+                case .recommendations(let value): recommendations = EBookMetadataMapping.books(value, preserving: candidates)
+                case .collections(let value): collections = value
+                case .adaptations(let value): adaptations = value
+                }
             }
         }
     }
