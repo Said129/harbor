@@ -1,7 +1,7 @@
 import XCTest
 @testable import Harbor
 
-private struct BookChapterNetwork: HarborNativeNetworkCalling {
+struct BookChapterNetwork: HarborNativeNetworkCalling {
     func perform(_ request: HarborNetworkRequest) async throws -> HarborNetworkResponse {
         let text: String
         if request.url.hasSuffix("repo.json") {
@@ -10,6 +10,28 @@ private struct BookChapterNetwork: HarborNativeNetworkCalling {
             text = #"var plugin={id:'chapters',name:'Owned volumes',popular:function(){return [{id:'owned',title:'Owned book'}];},chapters:function(id){if(id==='empty')return [];return [{title:'Volume ۲',volume:'۲',chapters:[{id:'original:3',title:'Third',chapter:'3',position:0,publishAt:'2026-01-01',views:123},{id:'original:2',title:'Second',chapter:'2',position:1}]},{id:'original:1',title:'First',volume:'1',chapter:'1',position:2}];},content:function(id){return 'Actual '+id+' paragraph.';}};"#
         } else { throw HarborPluginRepositoryError("owned-chapter-route") }
         return .init(status: 200, ok: true, headers: [:], bodyBase64: Data(text.utf8).base64EncodedString(), url: request.url)
+    }
+}
+
+final class EBookDetailInterfaceSeedTests: XCTestCase {
+    @MainActor func testPrepareOwnedBookVolumesInOneFreshGuestWithoutAnAccount() async throws {
+        guard try KeychainStore().read("account.v1", as: JSONValue.self) == nil else { XCTFail("Refuse configured account"); return }
+        let context = AppProfileContext.shared; try context.prepare()
+        guard context.profiles.profiles.count == 1, context.profiles.active?.credential == nil,
+              context.configuration?.account == nil, let owner = context.binding?.personalOwner else { XCTFail("Refuse configured profiles"); return }
+        if context.configuration?.guestAddons == nil { try context.save(HouseholdSourceAccount(account: nil, guestAddons: [])) }
+        let store = try HarborReadingPluginStore(), document = try await store.load()
+        guard document.plugins.isEmpty, document.repositories.isEmpty else { XCTFail("Refuse existing reading sources"); return }
+        let scope = PluginExecutionScope(owner: owner, activation: UUID())
+        let manager = HarborReadingPluginManager(scope: scope, currentScope: { scope }, store: store, network: BookChapterNetwork())
+        defer { manager.dispose() }; try await manager.load()
+        try await manager.addRepository("https://example.org/chapters/repo.json", kind: .ebook)
+        let repository = try XCTUnwrap(manager.document.repositories.first)
+        try await manager.install(XCTUnwrap(repository.entries.first), repository: repository)
+        XCTAssertEqual(manager.document.plugins.count, 1)
+        let defaults = UserDefaults.standard
+        defaults.set("en", forKey: "uiLanguage"); defaults.set(true, forKey: "nativeGuide.initialized.v1"); defaults.set(true, forKey: "nativeGuide.completed.v1")
+        defaults.set(false, forKey: "interface.autoRotateBanners")
     }
 }
 
