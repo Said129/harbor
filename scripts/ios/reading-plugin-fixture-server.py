@@ -35,7 +35,8 @@ def start(build):
     class Handler(SimpleHTTPRequestHandler):
         def do_GET(self):
             if self.path.split('?', 1)[0] in ['/bulk/a.js', '/bulk/b.js']:
-                time.sleep(1)
+                # Keep the actual local download pending long enough to observe its progress UI.
+                time.sleep(5)
             super().do_GET()
 
         def log_message(self, format, *args):

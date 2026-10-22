@@ -49,12 +49,11 @@ import XCTest
         XCTAssertTrue(app.staticTexts.matching(identifier: "ebook-reader-text").firstMatch.waitForExistence(timeout: 30))
     }
     private func settings(_ app: XCUIApplication) {
-        let menu = app.buttons["ebook-reader-menu"]; XCTAssertTrue(menu.waitForExistence(timeout: 10)); menu.tap()
+        let menu = app.buttons["ebook-reader-menu"]; XCTAssertTrue(menu.waitForExistence(timeout: 10)); ReadingUIInteraction.tapVisible(menu, in: app)
         let action = app.buttons["ebook-reader-settings-action"]; XCTAssertTrue(action.waitForExistence(timeout: 10)); action.tap()
     }
     private func reveal(_ element: XCUIElement, _ app: XCUIApplication, up: Bool = true) {
-        for _ in 0..<12 { if element.isHittable { return }; if up { app.swipeUp() } else { app.swipeDown() } }
-        XCTAssertTrue(element.isHittable)
+        ReadingUIInteraction.reveal(element, in: app, up: up)
     }
     private func capture(_ app: XCUIApplication, _ name: String) {
         let attachment = XCTAttachment(screenshot: app.screenshot()); attachment.name = name; attachment.lifetime = .keepAlways; add(attachment)

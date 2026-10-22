@@ -21,12 +21,12 @@ import XCTest
         capture(app, "reading-html-saved-" + device)
         let add = app.buttons["reading-html-add"]; reveal(add, app, up: false); add.tap()
         let config = app.textViews["reading-html-config"]; XCTAssertTrue(config.waitForExistence(timeout: 15)); replace(config, with: "{}")
-        app.buttons["reading-html-save"].tap()
+        ReadingUIInteraction.tapVisible(app.buttons["reading-html-save"], in: app)
         let invalid = app.staticTexts["reading-html-error"]; XCTAssertTrue(invalid.waitForExistence(timeout: 30)); reveal(invalid, app)
         capture(app, "reading-html-invalid-" + device)
         app.buttons["reading-html-cancel"].tap()
         navigate("manga", app)
-        let manga = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH 'manga-card-custom-html-' AND label CONTAINS 'The Book'")).firstMatch
+        let manga = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH 'manga-popular-card-custom-html-' AND label CONTAINS 'The Book'")).firstMatch
         XCTAssertTrue(manga.waitForExistence(timeout: 40)); reveal(manga, app); manga.tap()
         let readManga = app.buttons["manga-detail-read"]; XCTAssertTrue(readManga.waitForExistence(timeout: 25)); reveal(readManga, app); readManga.tap()
         XCTAssertTrue(app.images["manga-page-0"].firstMatch.waitForExistence(timeout: 30))
@@ -41,10 +41,7 @@ import XCTest
         capture(app, "reading-html-book-reader-" + device)
     }
     private func replace(_ field: XCUIElement, with value: String) {
-        field.tap()
-        if !XCUIApplication().keyboards.firstMatch.waitForExistence(timeout: 2) { field.tap() }
-        let count = (field.value as? String)?.count ?? 0
-        field.typeText(String(repeating: XCUIKeyboardKey.delete.rawValue, count: count) + value)
+        ReadingUIInteraction.replace(field, with: value, in: XCUIApplication())
     }
     private func navigate(_ section: String, _ app: XCUIApplication) {
         let menu = app.buttons["main-menu"]; XCTAssertTrue(menu.waitForExistence(timeout: 45)); menu.tap()
@@ -55,8 +52,7 @@ import XCTest
         XCTAssertTrue(target.isHittable); target.press(forDuration: 0.6)
     }
     private func reveal(_ element: XCUIElement, _ app: XCUIApplication, up: Bool = true) {
-        for _ in 0..<10 { if element.isHittable { return }; if up { app.swipeUp() } else { app.swipeDown() } }
-        XCTAssertTrue(element.isHittable)
+        ReadingUIInteraction.reveal(element, in: app, up: up)
     }
     private func capture(_ app: XCUIApplication, _ name: String) {
         let attachment = XCTAttachment(screenshot: app.screenshot()); attachment.name = name; attachment.lifetime = .keepAlways; add(attachment)

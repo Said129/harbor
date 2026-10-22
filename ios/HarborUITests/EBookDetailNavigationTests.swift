@@ -60,8 +60,7 @@ import XCTest
         XCTAssertTrue(target.isHittable); target.press(forDuration: 0.6)
     }
     private func reveal(_ element: XCUIElement, _ app: XCUIApplication, up: Bool = true) {
-        for _ in 0..<12 { if element.isHittable { return }; if up { app.swipeUp() } else { app.swipeDown() } }
-        XCTAssertTrue(element.isHittable)
+        ReadingUIInteraction.reveal(element, in: app, up: up)
     }
     private func capture(_ app: XCUIApplication, _ name: String) {
         let attachment = XCTAttachment(screenshot: app.screenshot()); attachment.name = name; attachment.lifetime = .keepAlways; add(attachment)

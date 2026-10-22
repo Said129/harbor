@@ -29,7 +29,7 @@ import XCTest
         capture(app, "reading-plugin-books-installed-" + device)
         navigate("manga", app)
         let mangaSearch = app.textFields["manga-search"]; enter("Owned\n", in: mangaSearch, app: app)
-        let card = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH 'manga-card-' AND label CONTAINS 'Owned Manga'")).firstMatch
+        let card = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH 'manga-popular-card-' AND label CONTAINS 'Owned Manga'")).firstMatch
         XCTAssertTrue(card.waitForExistence(timeout: 30)); reveal(card, app)
         capture(app, "reading-plugin-manga-search-" + device); card.tap()
         let read = app.buttons["manga-detail-read"]; XCTAssertTrue(read.waitForExistence(timeout: 20)); reveal(read, app); read.tap()
@@ -74,8 +74,7 @@ import XCTest
         XCTAssertTrue(target.isHittable); target.press(forDuration: 0.6)
     }
     private func reveal(_ element: XCUIElement, _ app: XCUIApplication) {
-        for _ in 0..<8 { if element.isHittable { return }; app.swipeUp() }
-        XCTAssertTrue(element.isHittable)
+        ReadingUIInteraction.reveal(element, in: app)
     }
     private func capture(_ app: XCUIApplication, _ name: String) {
         let attachment = XCTAttachment(screenshot: app.screenshot()); attachment.name = name; attachment.lifetime = .keepAlways; owner.add(attachment)

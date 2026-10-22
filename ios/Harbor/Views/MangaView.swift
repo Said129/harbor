@@ -147,7 +147,7 @@ struct MangaView: View {
                 if case .success(let file) = result { Task { await importBook(file) } }
                 else if case .failure = result { error = "No se pudo abrir el archivo elegido." }
             }
-            .navigationDestination(item: $imported) { book in MangaDetailView(book: book, shelf: shelf, client: matchingClient(book)).toolbar(.visible, for: .navigationBar) }
+            .navigationDestination(item: $imported) { book in mangaDetail(book) }
             .environment(\.readingPlugins, reading)
     }
     private var mangaOptions: some View {
@@ -234,12 +234,12 @@ struct MangaView: View {
             ScrollView(.horizontal) {
                 LazyHStack(alignment: .top, spacing: 12) {
                     ForEach(Array(books.prefix(12))) { book in
-                        NavigationLink { MangaDetailView(book: book, shelf: shelf, client: matchingClient(book)).toolbar(.visible, for: .navigationBar) } label: {
+                        NavigationLink { mangaDetail(book) } label: {
                             VStack(alignment: .leading, spacing: 7) {
                                 MangaImage(book: book, owner: shelf.owner, path: book.cover, client: matchingClient(book), maxPixels: 500).frame(width: 116, height: 174).clipShape(.rect(cornerRadius: 10))
                                 Text(book.title).font(HarborTheme.font(12, weight: .medium)).lineLimit(2).frame(width: 116, alignment: .leading)
                             }.contentShape(Rectangle())
-                        }.buttonStyle(.plain)
+                        }.buttonStyle(.plain).accessibilityIdentifier("manga-popular-card-" + book.id)
                     }
                 }.padding(.horizontal)
             }.scrollIndicators(.hidden)
@@ -301,9 +301,9 @@ struct MangaView: View {
                     Text(book.title.uppercased()).font(.custom("Oswald-Regular", size: 28)).lineLimit(4).foregroundStyle(.white)
                     if !book.author.isEmpty { Text(book.author).font(HarborTheme.font(12)).foregroundStyle(.white.opacity(0.7)) }
                     if !book.description.isEmpty { Text(book.description).font(HarborTheme.font(12)).foregroundStyle(.white.opacity(0.7)).lineLimit(3) }
-                    NavigationLink { MangaDetailView(book: book, shelf: shelf, client: matchingClient(book)).toolbar(.visible, for: .navigationBar) } label: { Label("Leer ahora", image: "nav-ebook").font(.caption.weight(.semibold)).padding(.horizontal, 16).frame(height: 44).foregroundStyle(.black).background(.white, in: .capsule) }.buttonStyle(.plain)
+                    NavigationLink { mangaDetail(book) } label: { Label("Leer ahora", image: "nav-ebook").font(.caption.weight(.semibold)).padding(.horizontal, 16).frame(height: 44).foregroundStyle(.black).background(.white, in: .capsule) }.buttonStyle(.plain)
                 }.frame(maxWidth: .infinity, alignment: .leading)
-                NavigationLink { MangaDetailView(book: book, shelf: shelf, client: matchingClient(book)).toolbar(.visible, for: .navigationBar) } label: {
+                NavigationLink { mangaDetail(book) } label: {
                     MangaImage(book: book, owner: shelf.owner, path: book.cover, client: matchingClient(book), maxPixels: 600).frame(width: 116, height: 174).clipShape(.rect(cornerRadius: 15))
                         .shadow(color: .black.opacity(0.4), radius: 18, y: 10).contentShape(Rectangle())
                 }.buttonStyle(.plain).accessibilityLabel(book.title)
@@ -320,10 +320,14 @@ struct MangaView: View {
             }.accessibilityIdentifier("manga-featured")
     }
     private func matchingClient(_ book: MangaBook) -> SuwayomiClient? { book.server == connection.server?.id ? client : nil }
+    private func mangaDetail(_ book: MangaBook) -> some View {
+        MangaDetailView(book: book, shelf: shelf, client: matchingClient(book))
+            .environment(\.readingPlugins, reading).toolbar(.visible, for: .navigationBar)
+    }
     private func grid(_ entries: [MangaBook]) -> some View {
         LazyVGrid(columns: [GridItem(.adaptive(minimum: 110, maximum: 180))], alignment: .leading, spacing: 18) {
             ForEach(entries) { book in
-                NavigationLink { MangaDetailView(book: book, shelf: shelf, client: matchingClient(book)).toolbar(.visible, for: .navigationBar) } label: {
+                NavigationLink { mangaDetail(book) } label: {
                     VStack(alignment: .leading, spacing: 6) {
                         MangaImage(book: book, owner: shelf.owner, path: book.cover, client: matchingClient(book), maxPixels: 500).aspectRatio(2.0 / 3.0, contentMode: .fit).clipShape(.rect(cornerRadius: 8))
                         Text(book.title).font(.caption.weight(.medium)).lineLimit(2)

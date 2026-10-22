@@ -36,7 +36,7 @@ struct EBookChaptersView: View {
                 if hasVolumes && selectedVolume == nil { Text(text("Select a volume to see its chapters.")).font(.callout).foregroundStyle(.secondary).padding(.vertical, 20) }
                 else { chapters }
             }
-        }.accessibilityIdentifier("ebook-chapters")
+        }
             .task(id: String(reading?.ready ?? false) + String(loadRequested) + retry.uuidString) {
                 if automatic || loadRequested { await load() }
             }

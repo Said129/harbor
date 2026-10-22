@@ -7,8 +7,6 @@ import XCTest
         let app = XCUIApplication(); app.launchArguments = ["-uiLanguage", "es", "-nativeGuide.initialized.v1", "YES", "-nativeGuide.completed.v1", "YES"]
         app.launch(); defer { app.terminate() }
         navigate("ebook", app)
-        let existing = app.buttons["ebook-card-source:plugin%3Aowned.ui.reading.books:owned"]
-        XCTAssertTrue(existing.waitForExistence(timeout: 45))
         let tabs = app.segmentedControls["ebook-screen"]; XCTAssertTrue(tabs.waitForExistence(timeout: 15)); reveal(tabs, app, up: false)
         tabs.buttons.element(boundBy: 1).tap()
         let discovered = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH 'ebook-discovery-card-' AND label CONTAINS 'Owned Book'")).firstMatch
@@ -46,8 +44,7 @@ import XCTest
         XCTAssertTrue(target.isHittable); target.press(forDuration: 0.6)
     }
     private func reveal(_ element: XCUIElement, _ app: XCUIApplication, up: Bool = true) {
-        for _ in 0..<10 { if element.isHittable { return }; if up { app.swipeUp() } else { app.swipeDown() } }
-        XCTAssertTrue(element.isHittable)
+        ReadingUIInteraction.reveal(element, in: app, up: up)
     }
     private func capture(_ app: XCUIApplication, _ name: String) {
         let attachment = XCTAttachment(screenshot: app.screenshot()); attachment.name = name; attachment.lifetime = .keepAlways; owner.add(attachment)

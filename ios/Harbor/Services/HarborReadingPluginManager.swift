@@ -57,7 +57,7 @@ import Observation
     }
     func addRepository(_ raw: String, kind: HarborReadingPluginKind) async throws {
         try await mutate {
-            let normalized = try HarborPluginManifest.normalizeURL(raw)
+            let normalized = try HarborPluginManifest.normalizeURL(raw, allowHTTP: true)
             guard !self.document.repositories.contains(where: { $0.kind == kind && $0.url == normalized }) else { throw HarborPluginRepositoryError("already-added") }
             var result: HarborReadingPluginRepository?, last: Error = HarborPluginRepositoryError("no-answer")
             for candidate in HarborPluginManifest.candidates(normalized) {
@@ -286,6 +286,7 @@ import Observation
     private func fetch(_ url: String) async throws -> Data {
         try validate()
         var request = HarborNetworkRequest(url: url); request.timeoutMs = 20_000; request.maxResponseBytes = 2 * 1024 * 1024; request.strictLimit = true
+        request.allowLocalNetwork = true
         let response = try await network.perform(request); try validate()
         guard response.ok else { throw HarborPluginRepositoryError("no-answer") }
         return try response.bytes()

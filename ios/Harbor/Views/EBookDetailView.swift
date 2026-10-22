@@ -118,6 +118,7 @@ struct EBookDetailView: View {
                         Image(systemName: current.id == source.id ? "checkmark.circle.fill" : "circle").foregroundStyle(current.id == source.id ? HarborTheme.accent : .secondary)
                     }.padding(14).background(HarborTheme.surface, in: .rect(cornerRadius: 12))
                 }.buttonStyle(.plain).accessibilityIdentifier("ebook-detail-source-" + source.id)
+                    .accessibilityAddTraits(current.id == source.id ? [.isSelected] : [])
             }
         }
     }

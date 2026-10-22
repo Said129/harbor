@@ -85,7 +85,8 @@ struct EBookReaderView: View {
                         }.frame(maxWidth: .infinity, alignment: .leading).id(block.id)
                     }
                 }.scrollTargetLayout().frame(maxWidth: boundedPageWidth).frame(maxWidth: .infinity).padding(.horizontal, margin).padding(.vertical, 24)
-            }.scrollPosition(id: $visible, anchor: .top).environment(\.layoutDirection, rtl ? .rightToLeft : .leftToRight)
+            }.frame(maxWidth: .infinity, maxHeight: .infinity)
+                .scrollPosition(id: $visible, anchor: .top).environment(\.layoutDirection, rtl ? .rightToLeft : .leftToRight)
                 .foregroundStyle(ink)
             if !focus, let publication {
                 VStack(spacing: 8) {
@@ -99,7 +100,7 @@ struct EBookReaderView: View {
                     }
                 }.padding(.horizontal).background(.thinMaterial)
             }
-        }.background(canvas)
+        }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top).background(canvas)
             .colorEffect(ShaderLibrary.harborReadingBrightness(.float(Float(boundedBrightness / 100))), isEnabled: boundedBrightness != 100)
             .navigationTitle(book.title).navigationBarTitleDisplayMode(.inline)
             .toolbar {

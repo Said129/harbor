@@ -45,15 +45,16 @@ enum HarborPluginManifest {
         unique(text.components(separatedBy: .whitespacesAndNewlines.union(CharacterSet(charactersIn: ","))).filter { !$0.isEmpty })
     }
 
-    static func normalizeURL(_ raw: String) throws -> String {
+    static func normalizeURL(_ raw: String, allowHTTP: Bool = false) throws -> String {
         var text = raw.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !text.isEmpty else { throw HarborPluginRepositoryError("only-https") }
         if text.range(of: "^cloudstreamrepo://", options: [.regularExpression, .caseInsensitive]) != nil { throw HarborPluginRepositoryError("android-extensions") }
         if text.range(of: "^[a-z][a-z0-9+.-]*://", options: [.regularExpression, .caseInsensitive]) == nil { text = "https://" + text }
         guard let url = URL(string: text, encodingInvalidCharacters: false), var parts = URLComponents(url: url.standardized, resolvingAgainstBaseURL: false),
-              parts.scheme?.lowercased() == "https", let host = parts.host, !host.isEmpty else { throw HarborPluginRepositoryError("only-https") }
-        parts.scheme = "https"; parts.host = host.lowercased(); parts.fragment = nil
-        if parts.port == 443 { parts.port = nil }
+              let scheme = parts.scheme?.lowercased(), scheme == "https" || (allowHTTP && scheme == "http"),
+              let host = parts.host, !host.isEmpty else { throw HarborPluginRepositoryError("only-https") }
+        parts.scheme = scheme; parts.host = host.lowercased(); parts.fragment = nil
+        if (scheme == "https" && parts.port == 443) || (scheme == "http" && parts.port == 80) { parts.port = nil }
         if host.lowercased() == "github.com" {
             let segments = parts.percentEncodedPath.split(separator: "/").map(String.init)
             if segments.count >= 2 {

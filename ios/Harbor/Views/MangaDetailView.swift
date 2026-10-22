@@ -55,7 +55,9 @@ struct MangaDetailView: View {
                 } label: { glyph("desktop-bookmark", size: 19).frame(width: 44, height: 44) }.accessibilityLabel("Biblioteca de Manga")
             } }
             .task(id: book.pluginID == nil ? "local" : String(reading?.ready ?? false)) { await load() }
-            .navigationDestination(item: $selection) { chapter in MangaReaderView(book: displayed, initialChapter: chapter, chapters: chapters, shelf: shelf, client: client) }
+            .navigationDestination(item: $selection) { chapter in
+                MangaReaderView(book: displayed, initialChapter: chapter, chapters: chapters, shelf: shelf, client: client).environment(\.readingPlugins, reading)
+            }
     }
     private var hero: some View {
         VStack(alignment: .leading, spacing: 18) {

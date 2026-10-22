@@ -25,8 +25,7 @@ import XCTest
         XCTAssertTrue(alternative.waitForExistence(timeout: 20)); reveal(alternative, app)
         capture(app, "ebook-catalog-detail-" + device)
         alternative.tap()
-        let title = app.staticTexts["ebook-detail-title"]
-        let switched = XCTNSPredicateExpectation(predicate: NSPredicate(format: "label == 'The Owned Book'"), object: title)
+        let switched = XCTNSPredicateExpectation(predicate: NSPredicate(format: "selected == true"), object: alternative)
         XCTAssertEqual(XCTWaiter.wait(for: [switched], timeout: 20), .completed)
         let read = app.buttons["ebook-detail-read"]; reveal(read, app, up: false); read.tap()
         let paragraph = app.staticTexts.matching(identifier: "ebook-reader-text").firstMatch
@@ -62,8 +61,7 @@ import XCTest
         XCTAssertTrue(target.isHittable); target.press(forDuration: 0.6)
     }
     private func reveal(_ element: XCUIElement, _ app: XCUIApplication, up: Bool = true) {
-        for _ in 0..<10 { if element.isHittable { return }; if up { app.swipeUp() } else { app.swipeDown() } }
-        XCTAssertTrue(element.isHittable)
+        ReadingUIInteraction.reveal(element, in: app, up: up)
     }
     private func capture(_ app: XCUIApplication, _ name: String) {
         let attachment = XCTAttachment(screenshot: app.screenshot()); attachment.name = name; attachment.lifetime = .keepAlways; owner.add(attachment)
