@@ -30,12 +30,15 @@ struct EBookReaderView: View {
     @State private var blocks: [EBookBlock] = []
     @State private var chapter = 0
     @State private var visible: Int?
+    @State private var settledBlock = 0
+    @State private var contentRevision = UUID()
     @State private var loading = false
     @State private var error: String?
     @State private var settings = false
     @State private var contents = false
     @State private var bookmarks = false
     @AppStorage("ebook.focusMode") private var focus = false
+    @AppStorage("ebook.mode") private var readingMode = "harbor"
     @State private var narrator = BookNarrator()
     @State private var saveTask: Task<Void, Never>?
     @State private var chapterTask: Task<Void, Never>?
@@ -51,6 +54,7 @@ struct EBookReaderView: View {
     @AppStorage("ebook.brightness") private var brightness = 100.0
     @AppStorage("ebook.customFontID") private var customFontID = ""
     @State private var customGraphicFont: CGFont?
+    @State private var customFontData: Data?
     @State private var fontError: String?
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     private var canvas: Color { background == "light" ? Color(.sRGB, red: 0.96, green: 0.94, blue: 0.88) : background == "dim" ? Color(.sRGB, red: 0.21, green: 0.19, blue: 0.17) : HarborTheme.background }
@@ -59,9 +63,20 @@ struct EBookReaderView: View {
     private var record: EBookRecord { shelf.record(book) ?? EBookRecord(book: book) }
     private var boundedPageWidth: Double { pageWidth.isFinite ? min(1080, max(520, pageWidth)) : 768 }
     private var boundedBrightness: Double { brightness.isFinite ? min(120, max(55, brightness)) : 100 }
+    private var boundedFontSize: Double { fontSize.isFinite ? min(36, max(14, fontSize)) : 19 }
+    private var boundedLineHeight: Double { lineHeight.isFinite ? min(2.5, max(1.1, lineHeight)) : 1.85 }
     private var readerFont: Font {
-        if font == "custom", let customGraphicFont { return Font(CTFontCreateWithGraphicsFont(customGraphicFont, fontSize, nil, nil)) }
-        return font == "arabic" ? .custom("Vazirmatn-Regular", size: fontSize) : .system(size: fontSize, design: font == "literary" ? .serif : .default)
+        if font == "custom", let customGraphicFont { return Font(CTFontCreateWithGraphicsFont(customGraphicFont, boundedFontSize, nil, nil)) }
+        return font == "arabic" ? .custom("Vazirmatn-Regular", size: boundedFontSize) : .system(size: boundedFontSize, design: font == "literary" ? .serif : .default)
+    }
+    private var printedReader: some View {
+        let chapterTitle = publication.flatMap { $0.chapters.indices.contains(chapter) ? $0.chapters[chapter].title : nil } ?? book.title
+        return EBookPagedReaderView(book: book, owner: shelf.owner, chapterTitle: chapterTitle,
+            firstChapter: chapter == 0, blocks: blocks, revision: contentRevision,
+            font: .init(face: font, data: font == "custom" ? customFontData : nil), fontIdentity: customFontID,
+            fontSize: boundedFontSize, lineHeight: boundedLineHeight, paper: EBookPaper(rawValue: background) ?? .dark, rtl: rtl, showControls: !focus,
+            block: Binding(get: { settledBlock }, set: { settledBlock = $0; visible = $0 }))
+            .id(contentRevision).environment(\.readingPlugins, reading)
     }
     var body: some View {
         VStack(spacing: 0) {
@@ -71,8 +86,11 @@ struct EBookReaderView: View {
             if font == "custom", !customFontID.isEmpty, customGraphicFont == nil, fontError == nil {
                 ProgressView(DesktopInterfaceText.value("Loading font…")).font(.caption).padding().accessibilityIdentifier("ebook-font-loading")
             }
+            if readingMode == "book" {
+                printedReader
+            } else {
             ScrollView {
-                LazyVStack(alignment: .leading, spacing: fontSize * max(0.5, lineHeight - 0.85)) {
+                LazyVStack(alignment: .leading, spacing: boundedFontSize * max(0.5, boundedLineHeight - 0.85)) {
                     ForEach(blocks) { block in
                         Group {
                             if let image = block.image {
@@ -80,7 +98,7 @@ struct EBookReaderView: View {
                             } else if let url = block.imageURL, let pluginID = book.pluginID {
                                 RemoteBookIllustration(url: url, pluginID: pluginID, label: block.text).accessibilityIdentifier("ebook-reader-image")
                             } else {
-                                Text(block.text).font(block.heading ? readerFont.weight(.bold) : readerFont).lineSpacing(fontSize * (lineHeight - 1)).textSelection(.enabled).accessibilityIdentifier("ebook-reader-text")
+                                Text(block.text).font(block.heading ? readerFont.weight(.bold) : readerFont).lineSpacing(boundedFontSize * (boundedLineHeight - 1)).textSelection(.enabled).accessibilityIdentifier("ebook-reader-text")
                             }
                         }.frame(maxWidth: .infinity, alignment: .leading).id(block.id)
                     }
@@ -88,6 +106,7 @@ struct EBookReaderView: View {
             }.frame(maxWidth: .infinity, maxHeight: .infinity)
                 .scrollPosition(id: $visible, anchor: .top).environment(\.layoutDirection, rtl ? .rightToLeft : .leftToRight)
                 .foregroundStyle(ink)
+            }
             if !focus, let publication {
                 VStack(spacing: 8) {
                     Text(publication.chapters[chapter].title).font(.caption).lineLimit(1)
@@ -121,17 +140,18 @@ struct EBookReaderView: View {
             }
             .task(id: book.pluginID == nil ? "local" : String(reading?.ready ?? false)) { await open() }
             .task(id: font + "|" + customFontID) {
-                customGraphicFont = nil; fontError = nil
+                customGraphicFont = nil; customFontData = nil; fontError = nil
                 guard font == "custom", !customFontID.isEmpty else { return }
                 do {
                     let data = try await ReadingFontStore.shared.data(id: customFontID, owner: shelf.owner)
                     try Task.checkCancellation()
                     guard let provider = CGDataProvider(data: data as CFData), let graphic = CGFont(provider) else { throw HarborError(code: "reading-font-format") }
-                    customGraphicFont = graphic
+                    customGraphicFont = graphic; customFontData = data
                 } catch { if !Task.isCancelled { fontError = DesktopInterfaceText.value("That file is not a valid font.") } }
             }
             .onChange(of: visible) { _, line in
                 guard let line, !loading, scenePhase == .active, blocks.contains(where: { $0.id == line }) else { return }
+                settledBlock = line
                 saveTask?.cancel()
                 let selectedChapter = chapter
                 saveTask = Task {
@@ -142,6 +162,7 @@ struct EBookReaderView: View {
                     } catch {}
                 }
             }
+            .onChange(of: readingMode) { _, _ in narrator.stop(); visible = settledBlock; saveCurrentPosition() }
             .onChange(of: scenePhase) { _, phase in if phase != .active { saveTask?.cancel(); saveCurrentPosition() } }
             .onDisappear { saveTask?.cancel(); chapterTask?.cancel(); narrator.stop(); saveCurrentPosition() }
             .sheet(isPresented: $contents) {
@@ -159,12 +180,17 @@ struct EBookReaderView: View {
             .sheet(isPresented: $settings) {
                 NavigationStack {
                     Form {
+                        Section(DesktopInterfaceText.value("Reading mode")) {
+                            Picker(DesktopInterfaceText.value("Reading mode"), selection: $readingMode) {
+                                Text("Harbor").tag("harbor"); Text(DesktopInterfaceText.value("Book")).tag("book")
+                            }.pickerStyle(.segmented).accessibilityIdentifier("ebook-reading-mode")
+                        }
                         Section("Texto") {
                             Picker("Fuente", selection: $font) { Text("Literaria").tag("literary"); Text("Clásica").tag("classic"); Text("Árabe").tag("arabic"); if !customFontID.isEmpty { Text(DesktopInterfaceText.value("Custom font")).tag("custom") } }
                             NavigationLink { ReadingFontsView(owner: shelf.owner, font: $font, selectedID: $customFontID) } label: { Label(DesktopInterfaceText.value("Import font"), systemImage: "textformat") }
                                 .accessibilityIdentifier("ebook-custom-fonts")
-                            LabeledContent("Tamaño", value: "\(Int(fontSize))"); Slider(value: $fontSize, in: 14...36, step: 1)
-                            LabeledContent("Interlineado", value: lineHeight.formatted(.number.precision(.fractionLength(2)))); Slider(value: $lineHeight, in: 1.1...2.5, step: 0.05)
+                            LabeledContent("Tamaño", value: "\(Int(boundedFontSize))"); Slider(value: Binding(get: { boundedFontSize }, set: { fontSize = $0 }), in: 14...36, step: 1)
+                            LabeledContent("Interlineado", value: boundedLineHeight.formatted(.number.precision(.fractionLength(2)))); Slider(value: Binding(get: { boundedLineHeight }, set: { lineHeight = $0 }), in: 1.1...2.5, step: 0.05)
                             LabeledContent("Márgenes", value: "\(Int(margin))"); Slider(value: $margin, in: 12...48, step: 2)
                             if horizontalSizeClass == .regular {
                                 LabeledContent(DesktopInterfaceText.value("Page width"), value: "\(Int(boundedPageWidth))")
@@ -201,6 +227,7 @@ struct EBookReaderView: View {
             try Task.checkCancellation()
             self.publication = publication; chapter = selected; blocks = loaded
             visible = loaded.contains(where: { $0.id == saved.block }) ? saved.block : loaded.first?.id
+            settledBlock = visible ?? loaded.first?.id ?? 0; contentRevision = UUID()
             if shelf.record(book) == nil { try shelf.save(EBookRecord(book: book)) }
         } catch is CancellationError { return }
         catch { self.error = safeMessage(error) }
@@ -214,13 +241,14 @@ struct EBookReaderView: View {
                 let loaded = try await loadBlocks(publication, selected)
                 try Task.checkCancellation()
                 chapter = selected; blocks = loaded; visible = loaded.contains(where: { $0.id == block }) ? block : loaded.first?.id
+                settledBlock = visible ?? loaded.first?.id ?? 0; contentRevision = UUID()
                 saveCurrentPosition()
             } catch is CancellationError { return }
             catch { self.error = safeMessage(error) }
         }
     }
     private func saveCurrentPosition() {
-        guard let publication, publication.chapters.indices.contains(chapter), let block = blocks.first(where: { $0.id == visible }) ?? blocks.first else { return }
+        guard let publication, publication.chapters.indices.contains(chapter), let block = blocks.first(where: { $0.id == settledBlock }) ?? blocks.first else { return }
         persistPosition(chapter: chapter, block: block.id)
     }
     private func loadBlocks(_ publication: EBookPublication, _ chapter: Int) async throws -> [EBookBlock] {
@@ -239,13 +267,13 @@ struct EBookReaderView: View {
         catch { self.error = "No se pudo guardar tu posición. El progreso anterior se conserva." }
     }
     private func saveBookmark() {
-        guard let block = blocks.first(where: { $0.id == visible }) ?? blocks.first else { return }
+        guard let block = blocks.first(where: { $0.id == settledBlock }) ?? blocks.first else { return }
         var next = record
         if !next.bookmarks.contains(where: { $0.chapter == chapter && $0.block == block.id }) { next.bookmarks.append(EBookBookmark(id: UUID(), chapter: chapter, block: block.id, preview: String(block.text.prefix(180)))); persist(next) }
     }
 }
 
-private struct RemoteBookIllustration: View {
+struct RemoteBookIllustration: View {
     let url: String
     let pluginID: String
     let label: String
@@ -266,7 +294,7 @@ private struct RemoteBookIllustration: View {
     }
 }
 
-private struct BookIllustration: View {
+struct BookIllustration: View {
     let data: Data
     let label: String
     private var image: UIImage? {
