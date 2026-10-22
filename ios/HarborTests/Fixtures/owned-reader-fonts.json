@@ -1,0 +1,27 @@
+{
+  "schema": 1,
+  "ownership": "Original geometric glyph fixtures created for Harbor native tests.",
+  "fonttools": "4.67.0",
+  "records": [
+    {
+      "format": "woff",
+      "filename": "owned-reader-woff.woff",
+      "original": "owned-reader-woff.ttf",
+      "original_sha256": "98860307c8a87952815e01f0635065ddd274f463897e4ecf6c834754b85c0d5b",
+      "sha256": "a99dce2ce564e4a610c1138de58d48c23267bebe2834281a44bf3439455cd2aa",
+      "bytes": 880,
+      "postscript_name": "HarborOwned-woff",
+      "text": "Harbor AB\u00f1\u00e9"
+    },
+    {
+      "format": "woff2",
+      "filename": "owned-reader-woff2.woff2",
+      "original": "owned-reader-woff2.ttf",
+      "original_sha256": "6d9e817d56b9e1a2b8310fa24d75b982749a7b91a92cf81431f2077102f0be30",
+      "sha256": "16c05ad4735b4e5ee5b9505145add8d57fd541000594d14b4241b4ad329cb7a0",
+      "bytes": 536,
+      "postscript_name": "HarborOwned-woff2",
+      "text": "Harbor AB\u00f1\u00e9"
+    }
+  ]
+}

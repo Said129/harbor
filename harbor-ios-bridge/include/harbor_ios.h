@@ -10,6 +10,11 @@ uint32_t harbor_ios_abi_version(void);
 /* Readable input lives for this call. Returned JSON must be freed exactly once. */
 char *harbor_ios_call(const uint8_t *input, size_t length);
 void harbor_ios_response_free(char *response);
+/* Local WOFF/WOFF2 input <=32 MiB; expanded font <=128 MiB. No JSON/network.
+ * Input remains readable during the call. output_length is writable and cannot
+ * alias input. A returned slice is owned and must be freed once with that length. */
+uint8_t *harbor_ios_font_decode(const uint8_t *input, size_t length, size_t *output_length);
+void harbor_ios_font_free(uint8_t *data, size_t length);
 /* Network ABI 1 is separate; existing pure calls remain synchronous and unchanged.
  * A nonzero handle promises one callback on a background thread, including cancellation.
  * Zero means no callback; the caller retains context. Input is copied before return.

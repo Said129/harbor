@@ -19,12 +19,16 @@ keep text readable with the built-in fallback.
 
 Font selection, brightness, page width, focus and chapter presentation belong
 to the existing profile settings document. Font bytes remain local. WOFF/WOFF2
-conversion, Desktop's paginated book renderer, annotations, translation and
+conversion is implemented in the following web-font increment and awaits its
+own native validation. Desktop's paginated book renderer, annotations, translation and
 complete narration controls remain in scope; this increment does not mark the
 reader as complete.
 
-Two new native cases cover actual bundled-font import, Core Text creation,
+Two new native cases passed in original Apple run 39770691335 and cover actual bundled-font import, Core Text creation,
 restoration, duplicate import, deletion, profile isolation, malformed/oversized
-files, invalid identities and cancellation. Apple compilation, shader rendering
-and the new reader/font interfaces still require execution and review. No
+files, invalid identities and cancellation. Apple compilation introduced no new
+warnings. The actual interface run failed and exposed a zero-sized reader scroll
+view on iPad; the following repair adds explicit fill frames and requires a
+positive visible viewport. Shader rendering and the reader/font interfaces still
+require their affected rerun and capture review. No
 previous approved tests or final IPA are produced by this implementation step.

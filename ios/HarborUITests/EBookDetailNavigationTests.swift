@@ -8,6 +8,7 @@ import XCTest
         let app = XCUIApplication(); app.launchArguments = ["-uiLanguage", "en", "-nativeGuide.initialized.v1", "YES", "-nativeGuide.completed.v1", "YES"]
         app.launch(); defer { app.terminate() }
         openBooks(app)
+        ReadingUIInteraction.chooseBookSource("Owned volumes", in: app)
         let card = app.buttons["ebook-card-source:plugin%3Achapters:owned"]
         XCTAssertTrue(card.waitForExistence(timeout: 45)); reveal(card, app); card.tap()
         let volume = app.buttons["ebook-volume-۲"]
@@ -27,6 +28,7 @@ import XCTest
         third.tap()
         let paragraph = app.staticTexts.matching(identifier: "ebook-reader-text").firstMatch
         XCTAssertTrue(paragraph.waitForExistence(timeout: 30)); XCTAssertEqual(paragraph.label, "Actual original:3 paragraph.")
+        ReadingUIInteraction.assertReaderViewport(app)
         capture(app, "ebook-detail-reader-" + device)
         back(app)
         let bookmark = app.buttons["ebook-detail-save"], favorite = app.buttons["ebook-detail-list-favorites"], later = app.buttons["ebook-detail-list-readLater"]

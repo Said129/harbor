@@ -25,7 +25,8 @@ struct ReadingFontsView: View {
                             Spacer()
                             if selectedID == value.id { Image(systemName: "checkmark.circle.fill").foregroundStyle(HarborTheme.accent) }
                         }.frame(minHeight: 44)
-                    }.accessibilityIdentifier("reading-font-" + value.id).accessibilityAddTraits(selectedID == value.id ? [.isSelected] : [])
+                    }.accessibilityIdentifier("reading-font-" + value.id).accessibilityLabel(value.name)
+                        .accessibilityAddTraits(selectedID == value.id ? [.isSelected] : [])
                 }.onDelete { indices in
                     let selected = indices.compactMap { fonts.indices.contains($0) ? fonts[$0] : nil }
                     operation?.cancel()
@@ -41,7 +42,7 @@ struct ReadingFontsView: View {
                 }
                 Button { importing = true } label: { Label(text(busy ? "Importing font…" : "Import font"), systemImage: "square.and.arrow.down").frame(minHeight: 44) }
                     .disabled(busy).accessibilityIdentifier("reading-font-import")
-            } footer: { Text("TTF · OTF · 32 MB") }
+            } footer: { Text("TTF · OTF · WOFF · WOFF2 · 32 MB") }
             if let failure { Section { Text(failure).font(.callout).foregroundStyle(.secondary) } }
             if !selectedID.isEmpty { Section(text("Preview")) { ReadingFontPreview(owner: owner, id: selectedID) } }
         }.navigationTitle(text("Custom font"))
@@ -50,7 +51,7 @@ struct ReadingFontsView: View {
                 catch { if !Task.isCancelled { failure = text("Could not load fonts.") } }
             }
             .onDisappear { operation?.cancel() }
-            .fileImporter(isPresented: $importing, allowedContentTypes: [UTType(filenameExtension: "ttf") ?? .data, UTType(filenameExtension: "otf") ?? .data], allowsMultipleSelection: false) { result in
+            .fileImporter(isPresented: $importing, allowedContentTypes: ["ttf", "otf", "woff", "woff2"].map { UTType(filenameExtension: $0) ?? .data }, allowsMultipleSelection: false) { result in
                 guard case .success(let files) = result, let file = files.first else { return }
                 operation?.cancel()
                 operation = Task {

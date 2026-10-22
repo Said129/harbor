@@ -43,10 +43,12 @@ import XCTest
         for _ in 0..<12 { if target.isHittable { break }; navigation.swipeDown() }
         for _ in 0..<12 { if target.isHittable { break }; navigation.swipeUp() }
         XCTAssertTrue(target.isHittable); target.press(forDuration: 0.6)
+        ReadingUIInteraction.chooseBookSource("Owned volumes", in: app)
         let card = app.buttons["ebook-card-source:plugin%3Achapters:owned"]
         XCTAssertTrue(card.waitForExistence(timeout: 45)); reveal(card, app); card.tap()
         let read = app.buttons["ebook-detail-read"]; XCTAssertTrue(read.waitForExistence(timeout: 20)); reveal(read, app); read.tap()
         XCTAssertTrue(app.staticTexts.matching(identifier: "ebook-reader-text").firstMatch.waitForExistence(timeout: 30))
+        ReadingUIInteraction.assertReaderViewport(app)
     }
     private func settings(_ app: XCUIApplication) {
         let menu = app.buttons["ebook-reader-menu"]; XCTAssertTrue(menu.waitForExistence(timeout: 10)); ReadingUIInteraction.tapVisible(menu, in: app)

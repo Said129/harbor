@@ -1,6 +1,19 @@
 import XCTest
 
 @MainActor enum ReadingUIInteraction {
+    static func chooseBookSource(_ name: String, in app: XCUIApplication) {
+        let picker = app.buttons["ebook-source"]
+        XCTAssertTrue(picker.waitForExistence(timeout: 20)); reveal(picker, in: app, up: false); picker.tap()
+        let source = app.buttons[name].firstMatch
+        XCTAssertTrue(source.waitForExistence(timeout: 10)); source.tap()
+    }
+
+    static func assertReaderViewport(_ app: XCUIApplication) {
+        let scroll = app.scrollViews.firstMatch
+        XCTAssertGreaterThan(scroll.frame.width, 100)
+        XCTAssertGreaterThan(scroll.frame.height, 100, "A text element in a zero-sized scroll view does not prove readable content")
+    }
+
     static func visibleFrame(_ element: XCUIElement, in app: XCUIApplication) -> CGRect? {
         guard element.exists else { return nil }
         let frame = element.frame, window = app.windows.firstMatch.frame

@@ -27,7 +27,9 @@ targets:
     platform: iOS
     sources:
       - path: Harbor
-        excludes: [HarborLoader, DesktopAnimations, PluginRuntimeHost.js]
+        excludes: [HarborLoader, DesktopAnimations, PluginRuntimeHost.js, ReadingFontNotices.txt]
+      - path: Harbor/ReadingFontNotices.txt
+        buildPhase: resources
       - path: Harbor/PluginRuntimeHost.js
         buildPhase: resources
       - path: Harbor/HarborLoader

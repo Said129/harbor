@@ -10,6 +10,11 @@ on:
         description: "Test the native services and UI with real public addons"
         type: boolean
         default: false
+      apple_runner:
+        description: "Apple build host for new affected validation; installed iOS compatibility is unchanged"
+        type: choice
+        options: [macos-15-intel, macos-15]
+        default: macos-15-intel
       validation_scope:
         description: "Full suite, browser/palette regressions, or preserved exact-source validation"
         type: choice
@@ -120,7 +125,7 @@ jobs:
   apple:
     name: Apple SDK / Swift / iPhone
     if: ${{ github.event_name == 'workflow_dispatch' && github.event.repository.private == false && inputs.validation_scope != 'reuse' && inputs.validation_scope != 'continuation-sendable' }}
-    runs-on: macos-15-intel
+    runs-on: ${{ inputs.apple_runner || 'macos-15-intel' }}
     timeout-minutes: 120
     permissions:
       contents: write
@@ -356,6 +361,15 @@ jobs:
           cargo test --manifest-path harbor-ios-bridge/Cargo.toml --locked --lib plugin_http_reading_permission_cannot_override_public_policy_blocked_hosts_or_schemes -- --test-threads=1 2>&1 | tee ios/build/logs/reading-network-policy-test.log
           cargo test --manifest-path harbor-ios-bridge/Cargo.toml --locked --lib plugin_http_rejects_schemes_private_hosts_and_blocked_hops -- --test-threads=1 2>&1 | tee ios/build/logs/reading-network-affected-guard.log
           cargo clippy --manifest-path harbor-ios-bridge/Cargo.toml --locked --all-targets -- -D warnings 2>&1 | tee ios/build/logs/reading-network-clippy.log
+      - name: Verify local web fonts and raw byte ownership on the Apple host
+        if: ${{ inputs.validation_scope == 'plugin-playback' && contains(inputs.native_test_selection, 'ReadingWebFontTests/') }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ios/build/logs
+          cargo check --locked --manifest-path harbor-ios-bridge/Cargo.toml 2>&1 | tee ios/build/logs/webfont-check.log
+          cargo clippy --locked --manifest-path harbor-ios-bridge/Cargo.toml --all-targets -- -D warnings 2>&1 | tee ios/build/logs/webfont-clippy.log
+          cargo test --locked --manifest-path harbor-ios-bridge/Cargo.toml --lib font_decode::tests:: 2>&1 | tee ios/build/logs/webfont-tests.log
       - name: Cache Swift dependencies
         id: swift_dependency_cache
         uses: actions/cache/restore@v6
@@ -615,7 +629,7 @@ jobs:
           expected=$(python3 -c 'import json; print(json.load(open("ios/build/preserved-plugin-integration.json"))["selected_case_count"])')
           python3 scripts/ios/record-profile-model-results.py --bundle ios/build/Tests.xcresult --expected ios/build/preserved-plugin-integration.json --count "$expected" --output ios/build/canonical/PluginIntegrationModels.json
       - name: Preserve original reading model results before independent interface tests
-        if: ${{ always() && inputs.validation_only == true && inputs.save_draft_build == true && inputs.validation_scope == 'plugin-playback' && (contains(inputs.native_test_selection, 'EBookMetadataTests/') || contains(inputs.native_test_selection, 'EBookDetailTests/') || contains(inputs.native_test_selection, 'ReadingFontTests/')) && (steps.offline_tests.conclusion == 'success' || steps.offline_tests.conclusion == 'failure') }}
+        if: ${{ always() && inputs.validation_only == true && inputs.save_draft_build == true && inputs.validation_scope == 'plugin-playback' && (contains(inputs.native_test_selection, 'EBookMetadataTests/') || contains(inputs.native_test_selection, 'EBookDetailTests/') || contains(inputs.native_test_selection, 'ReadingFontTests/') || contains(inputs.native_test_selection, 'ReadingWebFontTests/')) && (steps.offline_tests.conclusion == 'success' || steps.offline_tests.conclusion == 'failure') }}
         env:
           GH_TOKEN: ${{ github.token }}
         shell: bash
@@ -626,7 +640,7 @@ jobs:
             cp ios/build/canonical/PluginIntegrationModels* ios/build/model-evidence/canonical/
             cp ios/build/preserved-plugin-integration.json ios/build/model-evidence/
             cp ios/build/logs/tests.log ios/build/model-evidence/logs/
-            for log in ios/build/logs/reading-network*.log; do
+            for log in ios/build/logs/reading-network*.log ios/build/logs/webfont-*.log; do
               if [[ -f "$log" ]]; then cp "$log" ios/build/model-evidence/logs/; fi
             done
             ditto -c -k --keepParent ios/build/model-evidence ios/build/iphone-model-evidence.zip

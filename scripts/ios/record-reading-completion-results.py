@@ -10,7 +10,9 @@ import urllib.parse
 
 p = argparse.ArgumentParser(description=__doc__)
 p.add_argument('--bundle', type=Path, required=True); p.add_argument('--output', type=Path, required=True); p.add_argument('--cases', required=True)
-a = p.parse_args(); expected = set(json.loads(a.cases)); assert len(expected) == 5
+a = p.parse_args(); expected = set(json.loads(a.cases))
+plan = json.loads(Path('ios/build/preserved-plugin-integration.json').read_text('utf-8'))
+assert len(expected) in (3, 5) and any(set(group) == expected for group in plan['ui_device_cases'])
 raw = subprocess.run(['xcrun', 'xcresulttool', 'get', 'test-results', 'tests', '--path', str(a.bundle)], capture_output=True, timeout=60, check=True)
 tree_file = a.output.with_name(a.output.stem + '-tree.json'); tree_file.write_bytes(raw.stdout)
 rows = []

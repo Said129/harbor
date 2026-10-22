@@ -11,7 +11,7 @@ build = Path('ios/build'); canonical = build / 'canonical'; canonical.mkdir(pare
 recordings = build / 'service-recordings'; recordings.mkdir(parents=True, exist_ok=True)
 plan = json.loads((build / 'preserved-plugin-integration.json').read_text())
 device_cases = plan.get('ui_device_cases', plan['ui_cases'])
-assert len(device_cases) == 2 and plan['expected_original_images'] in (4, 8, 10, 12, 16, 34, 58)
+assert len(device_cases) == 2 and plan['expected_original_images'] in (4, 8, 10, 12, 16, 34, 36, 58)
 if plan.get('block') in ('reading-plugins', 'reading-repair', 'ebook-catalog', 'reading-bulk', 'reading-consolidated', 'reading-html', 'reading-metadata', 'reading-adaptations', 'reading-navigation'):
     runpy.run_path('scripts/ios/reading-plugin-fixture-server.py')['start'](build)
 assert (canonical / 'PluginIntegrationModels-tree.json').is_file(), 'The model bundle did not execute; do not repeat its compilation on two UI devices.'
@@ -19,7 +19,7 @@ devices = json.loads((build / 'devices.json').read_text())['devices']
 runtime, phone = next((runtime, row) for runtime, values in devices.items() for row in values if row['udid'] == os.environ['IOS_SIMULATOR'])
 tablet = next(row for row in devices[runtime] if row['name'].startswith('iPad') and row.get('isAvailable', True))
 types = json.loads(subprocess.check_output(['xcrun', 'simctl', 'list', 'devicetypes', '--json'], text=True))['devicetypes']
-prebuilt = plan.get('block') in ('reading-metadata', 'reading-adaptations', 'ebook-detail', 'reading-display', 'reading-navigation')
+prebuilt = plan.get('block') in ('reading-metadata', 'reading-adaptations', 'ebook-detail', 'reading-display', 'web-fonts', 'reading-navigation')
 if prebuilt:
     command = ['xcodebuild', '-project', 'ios/Harbor.xcodeproj', '-scheme', 'HarborLive', '-configuration', 'Debug',
         '-destination', f'platform=iOS Simulator,id={os.environ["IOS_SIMULATOR"]},arch={os.environ["IOS_SIMULATOR_ARCH"]}',

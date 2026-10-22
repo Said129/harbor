@@ -1,7 +1,9 @@
 //! Pure synchronous operations and a separate cancellable asynchronous network ABI.
 //! No Rust-owned object crosses either boundary.
 mod dispatch;
+mod font_decode;
 mod plugin_http;
+pub use font_decode::{harbor_ios_font_decode, harbor_ios_font_free};
 mod plugin_network;
 pub use plugin_network::{
     harbor_ios_network_abi_version, harbor_ios_network_cancel, harbor_ios_network_start,
