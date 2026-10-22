@@ -1,0 +1,421 @@
+{
+  "reference": "0834340cec5531650bfe78cd628628702e636987",
+  "cases": [
+    {
+      "name": "Arabic and Persian volume digits, titled groups and ungrouped last",
+      "input": {
+        "operation": "groups",
+        "chapters": [
+          {
+            "id": "x",
+            "title": "x"
+          },
+          {
+            "id": "v10",
+            "title": "v10",
+            "volume": "Volume ١٠"
+          },
+          {
+            "id": "v2",
+            "title": "v2",
+            "volume": "Vol ۲",
+            "volumeTitle": "Second book"
+          }
+        ]
+      },
+      "expected": [
+        {
+          "volume": "Vol ۲",
+          "label": "Second book",
+          "number": 2,
+          "chapters": [
+            {
+              "id": "v2",
+              "title": "v2",
+              "volume": "Vol ۲",
+              "volumeTitle": "Second book"
+            }
+          ]
+        },
+        {
+          "volume": "Volume ١٠",
+          "label": "Volume 10",
+          "number": 10,
+          "chapters": [
+            {
+              "id": "v10",
+              "title": "v10",
+              "volume": "Volume ١٠"
+            }
+          ]
+        },
+        {
+          "volume": "",
+          "label": "Chapters",
+          "chapters": [
+            {
+              "id": "x",
+              "title": "x"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Provider positions infer descending numbering without altering chapter identity",
+      "input": {
+        "chapters": [
+          {
+            "id": "c3",
+            "title": "c3",
+            "chapter": "3",
+            "position": 0
+          },
+          {
+            "id": "c2",
+            "title": "c2",
+            "chapter": "2",
+            "position": 1
+          },
+          {
+            "id": "c1",
+            "title": "c1",
+            "chapter": "1",
+            "position": 2
+          }
+        ],
+        "volume": ""
+      },
+      "expected": [
+        {
+          "id": "c1",
+          "title": "c1",
+          "chapter": "1",
+          "position": 2
+        },
+        {
+          "id": "c2",
+          "title": "c2",
+          "chapter": "2",
+          "position": 1
+        },
+        {
+          "id": "c3",
+          "title": "c3",
+          "chapter": "3",
+          "position": 0
+        }
+      ]
+    },
+    {
+      "name": "Newest reverses stable provider positions and preserves decimal chapters",
+      "input": {
+        "chapters": [
+          {
+            "id": "c1",
+            "title": "c1",
+            "chapter": "1",
+            "position": 0
+          },
+          {
+            "id": "c15",
+            "title": "c15",
+            "chapter": "1.5",
+            "position": 1
+          },
+          {
+            "id": "c2",
+            "title": "c2",
+            "chapter": "2",
+            "position": 2
+          }
+        ],
+        "volume": "",
+        "sort": "newest"
+      },
+      "expected": [
+        {
+          "id": "c2",
+          "title": "c2",
+          "chapter": "2",
+          "position": 2
+        },
+        {
+          "id": "c15",
+          "title": "c15",
+          "chapter": "1.5",
+          "position": 1
+        },
+        {
+          "id": "c1",
+          "title": "c1",
+          "chapter": "1",
+          "position": 0
+        }
+      ]
+    },
+    {
+      "name": "Missing position falls back to chapter number then natural title order",
+      "input": {
+        "chapters": [
+          {
+            "id": "Appendix 10",
+            "title": "Appendix 10"
+          },
+          {
+            "id": "c10",
+            "title": "c10",
+            "chapter": "10"
+          },
+          {
+            "id": "c2",
+            "title": "c2",
+            "chapter": "2"
+          },
+          {
+            "id": "Appendix 2",
+            "title": "Appendix 2"
+          }
+        ],
+        "volume": ""
+      },
+      "expected": [
+        {
+          "id": "c2",
+          "title": "c2",
+          "chapter": "2"
+        },
+        {
+          "id": "c10",
+          "title": "c10",
+          "chapter": "10"
+        },
+        {
+          "id": "Appendix 2",
+          "title": "Appendix 2"
+        },
+        {
+          "id": "Appendix 10",
+          "title": "Appendix 10"
+        }
+      ]
+    },
+    {
+      "name": "Search stays in selected volume and matches chapter number",
+      "input": {
+        "chapters": [
+          {
+            "id": "one",
+            "title": "A",
+            "volume": "1",
+            "chapter": "2"
+          },
+          {
+            "id": "two",
+            "title": "two",
+            "volume": "2",
+            "chapter": "2"
+          }
+        ],
+        "volume": "1",
+        "query": " 2 "
+      },
+      "expected": [
+        {
+          "id": "one",
+          "title": "A",
+          "volume": "1",
+          "chapter": "2"
+        }
+      ]
+    },
+    {
+      "name": "Desktop ratings scales, edition facts, bounded people and translation counts",
+      "input": {
+        "operation": "information",
+        "book": {
+          "authors": ["Owned author"],
+          "genres": ["Fantasy"],
+          "score": 85,
+          "publishedAt": "2001-06",
+          "pages": 300,
+          "editionCount": 12,
+          "readerRating": 4.26,
+          "readerRatingCount": 19,
+          "shelvedBy": 25,
+          "people": ["1", "2", "3", "4", "5", "6"],
+          "places": ["A"],
+          "periods": ["a", "b", "c", "d", "e"],
+          "languages": ["en", "es"]
+        }
+      },
+      "expected": [
+        {
+          "label": "Author",
+          "value": "Owned author"
+        },
+        {
+          "label": "First aired",
+          "value": "2001-06"
+        },
+        {
+          "label": "Status",
+          "value": "Not available"
+        },
+        {
+          "label": "Genres",
+          "value": "Fantasy"
+        },
+        {
+          "label": "Rating",
+          "value": "8.5 / 10"
+        },
+        {
+          "label": "Length",
+          "value": "300 pages"
+        },
+        {
+          "label": "Editions",
+          "value": "12 published"
+        },
+        {
+          "label": "Readers",
+          "value": "4.3 / 5 · 19 ratings"
+        },
+        {
+          "label": "Want to read",
+          "value": "25 readers"
+        },
+        {
+          "label": "Characters",
+          "value": "1 · 2 · 3 · 4 · 5"
+        },
+        {
+          "label": "Setting",
+          "value": "A"
+        },
+        {
+          "label": "Period",
+          "value": "a · b · c · d"
+        },
+        {
+          "label": "Translations",
+          "value": "2 languages"
+        }
+      ]
+    },
+    {
+      "name": "Missing optional information stays absent and required information remains explicit",
+      "input": {
+        "operation": "information",
+        "book": {
+          "authors": [],
+          "genres": [],
+          "score": 8
+        }
+      },
+      "expected": [
+        {
+          "label": "Author",
+          "value": "Not available"
+        },
+        {
+          "label": "First aired",
+          "value": "Not available"
+        },
+        {
+          "label": "Status",
+          "value": "Not available"
+        },
+        {
+          "label": "Genres",
+          "value": "Not available"
+        },
+        {
+          "label": "Rating",
+          "value": "8.0 / 10"
+        }
+      ]
+    },
+    {
+      "name": "Existing interface translations interpolate factual counts",
+      "input": {
+        "operation": "information",
+        "book": {
+          "authors": ["Owned author"],
+          "genres": ["Fantasy"],
+          "score": 85,
+          "publishedAt": "2001-06",
+          "pages": 300,
+          "editionCount": 12,
+          "readerRating": 4.26,
+          "readerRatingCount": 19,
+          "shelvedBy": 25,
+          "people": ["1", "2", "3", "4", "5", "6"],
+          "places": ["A"],
+          "periods": ["a", "b", "c", "d", "e"],
+          "languages": ["en", "es"]
+        },
+        "translations": {
+          "{n} pages": "{n} páginas",
+          "Readers": "Lectores",
+          "{n} ratings": "{n} valoraciones"
+        }
+      },
+      "expected": [
+        {
+          "label": "Author",
+          "value": "Owned author"
+        },
+        {
+          "label": "First aired",
+          "value": "2001-06"
+        },
+        {
+          "label": "Status",
+          "value": "Not available"
+        },
+        {
+          "label": "Genres",
+          "value": "Fantasy"
+        },
+        {
+          "label": "Rating",
+          "value": "8.5 / 10"
+        },
+        {
+          "label": "Length",
+          "value": "300 páginas"
+        },
+        {
+          "label": "Editions",
+          "value": "12 published"
+        },
+        {
+          "label": "Lectores",
+          "value": "4.3 / 5 · 19 valoraciones"
+        },
+        {
+          "label": "Want to read",
+          "value": "25 readers"
+        },
+        {
+          "label": "Characters",
+          "value": "1 · 2 · 3 · 4 · 5"
+        },
+        {
+          "label": "Setting",
+          "value": "A"
+        },
+        {
+          "label": "Period",
+          "value": "a · b · c · d"
+        },
+        {
+          "label": "Translations",
+          "value": "2 languages"
+        }
+      ]
+    }
+  ]
+}

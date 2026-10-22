@@ -22,6 +22,8 @@ private final class BookNarrator: NSObject, AVSpeechSynthesizerDelegate {
 struct EBookReaderView: View {
     let book: EBook
     let shelf: EBookShelf
+    var initialChapterID: String? = nil
+    var initialPublication: EBookPublication? = nil
     @Environment(\.readingPlugins) private var reading
     @State private var publication: EBookPublication?
     @State private var blocks: [EBookBlock] = []
@@ -150,12 +152,13 @@ struct EBookReaderView: View {
         defer { loading = false }
         do {
             let publication: EBookPublication
-            if book.pluginID != nil {
+            if let initialPublication { publication = initialPublication }
+            else if book.pluginID != nil {
                 guard let reading else { throw HarborPluginRepositoryError("plugin-unavailable") }
                 publication = try await reading.ebookPublication(book)
             } else { publication = try await EBookService.shared.open(book, owner: shelf.owner) }
             let saved = record
-            let selected = max(0, min(saved.chapter, publication.chapters.count - 1))
+            let selected = try publication.startingChapter(requestedID: initialChapterID, resume: saved.chapter)
             let loaded = try await loadBlocks(publication, selected)
             try Task.checkCancellation()
             self.publication = publication; chapter = selected; blocks = loaded

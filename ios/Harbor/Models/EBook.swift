@@ -85,13 +85,37 @@ final class EBookShelf {
 struct EBookChapter: Identifiable, Sendable {
     let path: String
     let title: String
+    var sourceTitle: String?
+    var number: String?
+    var position: Double?
+    var volume: String?
+    var volumeTitle: String?
+    var publishAt: String?
+    var views: JSONValue?
     var id: String { path }
+    var raw: JSONValue {
+        var fields: [String: JSONValue] = ["id": .string(path), "title": .string(sourceTitle ?? title)]
+        for (key, value) in [("chapter", number), ("volume", volume), ("volumeTitle", volumeTitle), ("publishAt", publishAt)] {
+            if let value { fields[key] = .string(value) }
+        }
+        if let position { fields["position"] = .number(position) }
+        if let views { fields["views"] = views }
+        return .object(fields)
+    }
 }
 struct EBookPublication: Sendable {
     let title: String
     let authors: [String]
     let language: String?
     let chapters: [EBookChapter]
+    func startingChapter(requestedID: String?, resume: Int) throws -> Int {
+        guard !chapters.isEmpty else { throw HarborError(code: "ebook-format") }
+        if let requestedID {
+            guard let index = chapters.firstIndex(where: { $0.path == requestedID }) else { throw HarborError(code: "ebook-format") }
+            return index
+        }
+        return max(0, min(resume, chapters.count - 1))
+    }
 }
 struct EBookBlock: Identifiable, Sendable {
     let id: Int

@@ -439,7 +439,7 @@ import Observation
                 pluginID: plugin.id, itemID: item, metadata: value)
         }
     }
-    func ebookPublication(_ book: EBook) async throws -> EBookPublication {
+    func ebookPublication(_ book: EBook, allowEmpty: Bool = false) async throws -> EBookPublication {
         let plugin = try readingPlugin(book.pluginID, kind: .ebook)
         guard let remote = book.itemID else { throw HarborPluginRuntimeError("plugin-item") }
         let raw = try await call(plugin, "chapters", arguments: [.string(remote)], timeout: 25)
@@ -447,9 +447,18 @@ import Observation
         let chapters: [EBookChapter] = values.array.compactMap { value in
             guard let id = value["id"].string else { return nil }
             let title = value["title"].string ?? id, volume = value["volumeTitle"].string ?? value["volume"].string
-            return .init(path: id, title: volume.map { $0 + " · " + title } ?? title)
+            let position: Double?
+            switch value["position"] {
+            case .number(let number): position = number
+            case .integer(let number): position = Double(number)
+            default: position = nil
+            }
+            return .init(path: id, title: volume.map { $0 + " · " + title } ?? title, sourceTitle: title,
+                number: value["chapter"].string, position: position, volume: value["volume"].string,
+                volumeTitle: value["volumeTitle"].string, publishAt: value["publishAt"].string,
+                views: value["views"] == .null ? nil : value["views"])
         }
-        guard !chapters.isEmpty else { throw HarborPluginRuntimeError("plugin-no-chapters") }
+        guard allowEmpty || !chapters.isEmpty else { throw HarborPluginRuntimeError("plugin-no-chapters") }
         return .init(title: book.title, authors: book.authors, language: book.language ?? plugin.entry.language, chapters: chapters)
     }
     func ebookBlocks(_ book: EBook, chapter: EBookChapter) async throws -> [EBookBlock] {

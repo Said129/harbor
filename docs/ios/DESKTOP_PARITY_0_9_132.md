@@ -18,6 +18,14 @@ La referencia de código es `0834340cec5531650bfe78cd628628702e636987`, identifi
 
 ## Trabajo y evidencia
 
+En integración, 22 de octubre: la ficha de Libros incorpora los volúmenes,
+búsqueda y orden de capítulos, lista/cuadrícula y paginación de Desktop. Abrir
+un capítulo conserva su ruta original aunque se cambie el orden visible. Los
+datos usan las escalas originales de puntuación y los recuentos de ediciones,
+lectores y traducciones. Ocho comprobaciones locales aprobaron; tres casos
+nativos nuevos y sus interfaces Apple siguen pendientes.
+[Alcance y validación de la ficha](ebook-detail-0.9.132.md).
+
 Actualización del 22 de octubre: se integra el motor original de metadatos y
 descubrimiento de libros, su caché y clave opcional por perfil, fuentes de
 lectura verificadas, colecciones y recomendaciones. Se corrigen el acceso a

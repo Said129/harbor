@@ -42,6 +42,7 @@ struct EBookDetailView: View {
                         Button(text(expanded ? "Show less" : "Read more")) { withAnimation(.easeInOut(duration: 0.2)) { expanded.toggle() } }
                     }
                 }
+                if current.readable && !current.isPDF { EBookChaptersView(book: current, shelf: shelf).id(current.id) }
                 metadata
                 if let reading { EBookRelatedView(book: book, shelf: shelf, manager: reading, candidates: candidates + sources, app: app) }
             }.padding(20).frame(maxWidth: 760).frame(maxWidth: .infinity)
@@ -104,27 +105,8 @@ struct EBookDetailView: View {
     }
     @ViewBuilder private var metadata: some View {
         let raw = current.metadata ?? .null
-        let genres = raw["genres"].array.compactMap(\.string)
-        if !genres.isEmpty { Text(genres.map(text).joined(separator: " · ")).font(.subheadline).foregroundStyle(.secondary) }
-        let keys = [("status", "Status"), ("originalLanguage", "Original language"), ("year", "Year"), ("chapters", "Chapters"), ("volumes", "Volumes"), ("score", "Rating"), ("pages", "Pages"), ("editionCount", "Editions"), ("readerRating", "Reader rating"), ("readerRatingCount", "Ratings"), ("shelvedBy", "Readers"), ("archiveCopies", "Archive copies"), ("isbn", "ISBN")]
-        let values = keys.compactMap { attribute(raw, $0.0, name: $0.1) }
-        if !values.isEmpty {
-            VStack(spacing: 12) { ForEach(values, id: \.name) { value in HStack { Text(text(value.name)).foregroundStyle(.secondary); Spacer(); Text(value.value) } } }.font(.subheadline)
-        }
-        ForEach(["people", "places", "periods", "languages"], id: \.self) { key in
-            let values = raw[key].array.compactMap(\.string)
-            if !values.isEmpty { Text(values.joined(separator: " · ")).font(.caption).foregroundStyle(.secondary) }
-        }
+        EBookInformationView(book: current)
         if let value = raw["siteUrl"].string, let url = URL(string: value), ["https", "http"].contains(url.scheme?.lowercased() ?? "") { Link(text("More information"), destination: url) }
-    }
-    private struct Attribute { let name: String; let value: String }
-    private func attribute(_ raw: JSONValue, _ key: String, name: String) -> Attribute? {
-        switch raw[key] {
-        case .string(let value) where !value.isEmpty: return .init(name: name, value: value)
-        case .integer(let value): return .init(name: name, value: String(value))
-        case .number(let value): return .init(name: name, value: value.formatted())
-        default: return nil
-        }
     }
     private func detail() async {
         guard let reading else { return }
