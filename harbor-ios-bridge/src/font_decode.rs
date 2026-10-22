@@ -166,8 +166,10 @@ mod tests {
         assert_eq!(output.len(), 40);
         assert_eq!(&output[..4], &[0, 1, 0, 0]);
         assert_eq!(&output[12..16], b"head");
-        let checksum = output.chunks_exact(4).fold(0_u32, |sum, bytes| {
-            sum.wrapping_add(u32::from_be_bytes(bytes.try_into().unwrap()))
+        let (words, remainder) = output.as_chunks::<4>();
+        assert!(remainder.is_empty());
+        let checksum = words.iter().fold(0_u32, |sum, bytes| {
+            sum.wrapping_add(u32::from_be_bytes(*bytes))
         });
         assert_eq!(checksum, 0xb1b0_afba);
     }

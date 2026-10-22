@@ -32,8 +32,12 @@ restarted or cancelled.
 Local fontTools checks confirmed the original glyph maps and advances through
 both compression formats. These checks are not Apple/Rust execution evidence.
 Local Windows Cargo checks could not link build scripts because MSVC link.exe
-was unavailable. Apple check, clippy, the five new Rust contracts, actual Core
-Text execution and rendered interface review remain required. The workflow offers
+was unavailable. Apple run 39850934986 compiled the production decoder and passed
+`cargo check`; its newer Clippy rejected a constant-sized test iterator before
+any Rust test or XCTest ran. The iterator now uses fixed arrays. Production code
+and Cargo inputs are unchanged, so the successful check is retained. The affected
+Clippy compilation, five unexecuted Rust contracts, actual Core Text execution
+and rendered interface review remain required. The workflow offers
 an Apple ARM host for this new scope; it does not change the app's iOS 17+
 deployment target or claim a measured build-speed improvement.
 

@@ -368,7 +368,10 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p ios/build/logs
-          cargo check --locked --manifest-path harbor-ios-bridge/Cargo.toml 2>&1 | tee ios/build/logs/webfont-check.log
+          # Production font decode/free code and Cargo inputs are unchanged from
+          # the successful check in run39850934986. Check the changed test code
+          # with clippy --all-targets, then run only the five unexecuted contracts.
+          python3 scripts/ios/preserve-webfont-check.py
           cargo clippy --locked --manifest-path harbor-ios-bridge/Cargo.toml --all-targets -- -D warnings 2>&1 | tee ios/build/logs/webfont-clippy.log
           cargo test --locked --manifest-path harbor-ios-bridge/Cargo.toml --lib font_decode::tests:: 2>&1 | tee ios/build/logs/webfont-tests.log
       - name: Cache Swift dependencies

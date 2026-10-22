@@ -28,6 +28,7 @@ plan = dict(source=os.environ.get('GITHUB_SHA', 'working-tree'), block='web-font
     expected_total_executions=10, expected_original_images=36, required_original_captures=captures,
     failed_ui_predecessor_runs=[39768078426, 39770691335], failed_ui_cases_retried=4,
     required_new_rust_cases=5, prior_ttf_otf_native_passes_retained=2,
+    retained_production_cargo_check_run=39850934986,
     approved_predecessor_cases_repeated=False, unrelated_approved_cases_selected=False, existing_rust_tests_repeated=False,
     full_desktop_parity_complete=False, ipa_requested=False)
 directory = Path('ios/build'); directory.mkdir(parents=True, exist_ok=True)
