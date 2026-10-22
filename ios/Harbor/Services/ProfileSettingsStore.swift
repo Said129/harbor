@@ -54,7 +54,7 @@ struct ProfileSettingsState: Codable, Equatable, Sendable {
         "metadata.region", "metadata.language", "metadata.translateTitles", "cwPerProfile", "downloadsCellular",
         "profilePromptInterval", "defaultProfileId", "tvdbSeasonType", "tvdbOrderPanel",
         "calendar.monday", "calendar.large", "ebook.fontSize", "ebook.lineHeight", "ebook.margin", "ebook.background", "ebook.font", "ebook.direction",
-        "ebook.narrationRate", "ebook.shelfSort", "ebook.pdf.horizontal", "harbor.ebook.chapterview", "manga.reader.mode", "manga.reader.fit", "manga.reader.background",
+        "ebook.narrationRate", "ebook.shelfSort", "ebook.pdf.horizontal", "ebook.width", "ebook.brightness", "ebook.focusMode", "ebook.customFontID", "harbor.ebook.chapterview", "manga.reader.mode", "manga.reader.fit", "manga.reader.background",
         "manga.reader.rtl", "manga.reader.zoom", "manga.reader.autoNextChapter", "manga.reader.navPos", "manga.reader.doubleGap", "manga.reader.focusMode",
         "manga.reader.hideChapterEndHint", "manga.reader.enablePageDownload", "manga.reader.flipSound", "manga.adultSources", "manga.shelfSort",
         "harbor.music.playlistView", "music.shuffle", "music.repeat", "music.volume"

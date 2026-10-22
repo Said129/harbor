@@ -18,6 +18,16 @@ La referencia de código es `0834340cec5531650bfe78cd628628702e636987`, identifi
 
 ## Trabajo y evidencia
 
+El lector incorpora brillo, ancho de página en iPad, concentración persistente
+e importación TTF/OTF por perfil, con vista previa y borrado. Las nuevas pruebas
+de Core Text y los recorridos del lector están preparados; la comprobación
+Apple y del resultado visual sigue pendiente. [Estado del lector](ebook-reading-display-0.9.132.md).
+
+La validación `39763655130` aprobó los nueve casos nativos seleccionados de
+metadatos, adaptaciones y EPUB local. Su árbol y registro originales se
+autenticaron y quedan conservados sin repetición. Las interfaces de ese bloque
+siguen en ejecución; no se presenta como cierre visual ni del port completo.
+
 Libros incorpora las listas independientes de Marcados, Favoritos y Leer
 después, además de filtros de lectura y finalizados. Quitar una marca conserva
 el archivo y su progreso. La migración local respeta los perfiles y conserva

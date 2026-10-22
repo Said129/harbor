@@ -15,6 +15,9 @@ struct BookChapterNetwork: HarborNativeNetworkCalling {
 
 final class EBookDetailInterfaceSeedTests: XCTestCase {
     @MainActor func testPrepareOwnedBookVolumesInOneFreshGuestWithoutAnAccount() async throws {
+        try await Self.prepare()
+    }
+    @MainActor static func prepare() async throws {
         guard try KeychainStore().read("account.v1", as: JSONValue.self) == nil else { XCTFail("Refuse configured account"); return }
         let context = AppProfileContext.shared; try context.prepare()
         guard context.profiles.profiles.count == 1, context.profiles.active?.credential == nil,

@@ -86,6 +86,17 @@ the full objective.
 
 ## Native initialization correction and adaptation follow-up
 
+The follow-up `39763655130` executed all nine selected native cases and passed
+all nine. The original model tree and its Xcode log were downloaded and matched
+independently; the early archive SHA-256 is
+`241022399f36eb16ffe665997db769abd237d64ca96023a1d14b2a6ca4668641`,
+and the raw tree is
+`2e2d5796363a122a9eea39189d16bf847e7506f91a25ec000f58be68ef822f46`.
+This confirms the five failed initialization/enrichment/resolution cases, three
+new adaptation contracts and the local/legacy EPUB case. They are retained
+without replay. Phone/tablet UI validation remains running; the later chapter,
+independent-list and display increments require their own new/affected checks.
+
 Run `39757601970` compiled the simulator and passed the new native local HTTP
 contract, the new permission-precedence contract, and the affected public-host
 guard. Its seven model cases produced two passes and five failures. The title

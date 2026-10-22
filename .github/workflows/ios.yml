@@ -615,7 +615,7 @@ jobs:
           expected=$(python3 -c 'import json; print(json.load(open("ios/build/preserved-plugin-integration.json"))["selected_case_count"])')
           python3 scripts/ios/record-profile-model-results.py --bundle ios/build/Tests.xcresult --expected ios/build/preserved-plugin-integration.json --count "$expected" --output ios/build/canonical/PluginIntegrationModels.json
       - name: Preserve original reading model results before independent interface tests
-        if: ${{ always() && inputs.validation_only == true && inputs.save_draft_build == true && inputs.validation_scope == 'plugin-playback' && (contains(inputs.native_test_selection, 'EBookMetadataTests/') || contains(inputs.native_test_selection, 'EBookDetailTests/')) && (steps.offline_tests.conclusion == 'success' || steps.offline_tests.conclusion == 'failure') }}
+        if: ${{ always() && inputs.validation_only == true && inputs.save_draft_build == true && inputs.validation_scope == 'plugin-playback' && (contains(inputs.native_test_selection, 'EBookMetadataTests/') || contains(inputs.native_test_selection, 'EBookDetailTests/') || contains(inputs.native_test_selection, 'ReadingFontTests/')) && (steps.offline_tests.conclusion == 'success' || steps.offline_tests.conclusion == 'failure') }}
         env:
           GH_TOKEN: ${{ github.token }}
         shell: bash

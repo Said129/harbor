@@ -2,6 +2,7 @@ import SwiftUI
 import AVFoundation
 import Observation
 import ImageIO
+import CoreText
 
 @MainActor @Observable
 private final class BookNarrator: NSObject, AVSpeechSynthesizerDelegate {
@@ -34,7 +35,7 @@ struct EBookReaderView: View {
     @State private var settings = false
     @State private var contents = false
     @State private var bookmarks = false
-    @State private var focus = false
+    @AppStorage("ebook.focusMode") private var focus = false
     @State private var narrator = BookNarrator()
     @State private var saveTask: Task<Void, Never>?
     @State private var chapterTask: Task<Void, Never>?
@@ -46,15 +47,30 @@ struct EBookReaderView: View {
     @AppStorage("ebook.font") private var font = "literary"
     @AppStorage("ebook.direction") private var direction = "auto"
     @AppStorage("ebook.narrationRate") private var rate = 0.5
+    @AppStorage("ebook.width") private var pageWidth = 768.0
+    @AppStorage("ebook.brightness") private var brightness = 100.0
+    @AppStorage("ebook.customFontID") private var customFontID = ""
+    @State private var customGraphicFont: CGFont?
+    @State private var fontError: String?
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     private var canvas: Color { background == "light" ? Color(.sRGB, red: 0.96, green: 0.94, blue: 0.88) : background == "dim" ? Color(.sRGB, red: 0.21, green: 0.19, blue: 0.17) : HarborTheme.background }
     private var ink: Color { background == "light" ? Color(.sRGB, red: 0.15, green: 0.13, blue: 0.11) : .white.opacity(0.88) }
     private var rtl: Bool { direction == "rtl" || (direction == "auto" && ["ar", "he", "fa", "ur"].contains(publication?.language?.components(separatedBy: "-").first ?? "")) }
     private var record: EBookRecord { shelf.record(book) ?? EBookRecord(book: book) }
-    private var readerFont: Font { font == "arabic" ? .custom("Vazirmatn-Regular", size: fontSize) : .system(size: fontSize, design: font == "literary" ? .serif : .default) }
+    private var boundedPageWidth: Double { pageWidth.isFinite ? min(1080, max(520, pageWidth)) : 768 }
+    private var boundedBrightness: Double { brightness.isFinite ? min(120, max(55, brightness)) : 100 }
+    private var readerFont: Font {
+        if font == "custom", let customGraphicFont { return Font(CTFontCreateWithGraphicsFont(customGraphicFont, fontSize, nil, nil)) }
+        return font == "arabic" ? .custom("Vazirmatn-Regular", size: fontSize) : .system(size: fontSize, design: font == "literary" ? .serif : .default)
+    }
     var body: some View {
         VStack(spacing: 0) {
             if loading { ProgressView("Abriendo libro…").padding() }
             if let error { Text(error).font(.caption).foregroundStyle(.orange).padding().accessibilityIdentifier("ebook-reader-error"); Button("Reintentar") { Task { await open() } } }
+            if let fontError { Text(fontError).font(.caption).foregroundStyle(.secondary).padding().accessibilityIdentifier("ebook-font-error") }
+            if font == "custom", !customFontID.isEmpty, customGraphicFont == nil, fontError == nil {
+                ProgressView(DesktopInterfaceText.value("Loading font…")).font(.caption).padding().accessibilityIdentifier("ebook-font-loading")
+            }
             ScrollView {
                 LazyVStack(alignment: .leading, spacing: fontSize * max(0.5, lineHeight - 0.85)) {
                     ForEach(blocks) { block in
@@ -68,7 +84,7 @@ struct EBookReaderView: View {
                             }
                         }.frame(maxWidth: .infinity, alignment: .leading).id(block.id)
                     }
-                }.scrollTargetLayout().frame(maxWidth: 800).frame(maxWidth: .infinity).padding(.horizontal, margin).padding(.vertical, 24)
+                }.scrollTargetLayout().frame(maxWidth: boundedPageWidth).frame(maxWidth: .infinity).padding(.horizontal, margin).padding(.vertical, 24)
             }.scrollPosition(id: $visible, anchor: .top).environment(\.layoutDirection, rtl ? .rightToLeft : .leftToRight)
                 .foregroundStyle(ink)
             if !focus, let publication {
@@ -83,7 +99,9 @@ struct EBookReaderView: View {
                     }
                 }.padding(.horizontal).background(.thinMaterial)
             }
-        }.background(canvas).navigationTitle(book.title).navigationBarTitleDisplayMode(.inline)
+        }.background(canvas)
+            .colorEffect(ShaderLibrary.harborReadingBrightness(.float(Float(boundedBrightness / 100))), isEnabled: boundedBrightness != 100)
+            .navigationTitle(book.title).navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItemGroup(placement: .topBarTrailing) {
                     Menu {
@@ -96,11 +114,21 @@ struct EBookReaderView: View {
                         }
                         Button(focus ? "Mostrar controles" : "Modo de concentración") { focus.toggle() }
                         Button(record.completed ? "Marcar como no leído" : "Marcar como leído") { var next = record; next.completed.toggle(); persist(next) }
-                        Button("Opciones de lectura") { settings = true }
-                    } label: { Image(systemName: "ellipsis.circle") }.accessibilityLabel("Opciones de lectura")
+                        Button("Opciones de lectura") { settings = true }.accessibilityIdentifier("ebook-reader-settings-action")
+                    } label: { Image(systemName: "ellipsis.circle") }.accessibilityLabel("Opciones de lectura").accessibilityIdentifier("ebook-reader-menu")
                 }
             }
             .task(id: book.pluginID == nil ? "local" : String(reading?.ready ?? false)) { await open() }
+            .task(id: font + "|" + customFontID) {
+                customGraphicFont = nil; fontError = nil
+                guard font == "custom", !customFontID.isEmpty else { return }
+                do {
+                    let data = try await ReadingFontStore.shared.data(id: customFontID, owner: shelf.owner)
+                    try Task.checkCancellation()
+                    guard let provider = CGDataProvider(data: data as CFData), let graphic = CGFont(provider) else { throw HarborError(code: "reading-font-format") }
+                    customGraphicFont = graphic
+                } catch { if !Task.isCancelled { fontError = DesktopInterfaceText.value("That file is not a valid font.") } }
+            }
             .onChange(of: visible) { _, line in
                 guard let line, !loading, scenePhase == .active, blocks.contains(where: { $0.id == line }) else { return }
                 saveTask?.cancel()
@@ -131,18 +159,27 @@ struct EBookReaderView: View {
                 NavigationStack {
                     Form {
                         Section("Texto") {
-                            Picker("Fuente", selection: $font) { Text("Literaria").tag("literary"); Text("Clásica").tag("classic"); Text("Árabe").tag("arabic") }
+                            Picker("Fuente", selection: $font) { Text("Literaria").tag("literary"); Text("Clásica").tag("classic"); Text("Árabe").tag("arabic"); if !customFontID.isEmpty { Text(DesktopInterfaceText.value("Custom font")).tag("custom") } }
+                            NavigationLink { ReadingFontsView(owner: shelf.owner, font: $font, selectedID: $customFontID) } label: { Label(DesktopInterfaceText.value("Import font"), systemImage: "textformat") }
+                                .accessibilityIdentifier("ebook-custom-fonts")
                             LabeledContent("Tamaño", value: "\(Int(fontSize))"); Slider(value: $fontSize, in: 14...36, step: 1)
                             LabeledContent("Interlineado", value: lineHeight.formatted(.number.precision(.fractionLength(2)))); Slider(value: $lineHeight, in: 1.1...2.5, step: 0.05)
                             LabeledContent("Márgenes", value: "\(Int(margin))"); Slider(value: $margin, in: 12...48, step: 2)
+                            if horizontalSizeClass == .regular {
+                                LabeledContent(DesktopInterfaceText.value("Page width"), value: "\(Int(boundedPageWidth))")
+                                Slider(value: Binding(get: { boundedPageWidth }, set: { pageWidth = $0 }), in: 520...1080, step: 20).accessibilityIdentifier("ebook-page-width")
+                            }
                             Picker("Dirección", selection: $direction) { Text("Automática").tag("auto"); Text("Izquierda a derecha").tag("ltr"); Text("Derecha a izquierda").tag("rtl") }
                         }
                         Section("Lectura") {
                             Picker("Fondo", selection: $background) { Text("Oscuro").tag("dark"); Text("Tenue").tag("dim"); Text("Claro").tag("light") }
+                            LabeledContent(DesktopInterfaceText.value("Brightness"), value: "\(Int(boundedBrightness)) %")
+                            Slider(value: Binding(get: { boundedBrightness }, set: { brightness = $0 }), in: 55...120, step: 1).accessibilityIdentifier("ebook-brightness")
+                                .accessibilityValue("\(Int(boundedBrightness)) %")
                             Toggle("Concentración", isOn: $focus)
                             LabeledContent("Velocidad de narración", value: rate.formatted(.number.precision(.fractionLength(2)))); Slider(value: $rate, in: 0.3...0.65, step: 0.05)
                         }
-                    }.navigationTitle("Opciones de lectura").toolbar { ToolbarItem(placement: .topBarTrailing) { Button("Listo") { settings = false } } }
+                    }.navigationTitle("Opciones de lectura").toolbar { ToolbarItem(placement: .topBarTrailing) { Button("Listo") { settings = false }.accessibilityIdentifier("ebook-reader-settings-done") } }
                 }
             }
     }
