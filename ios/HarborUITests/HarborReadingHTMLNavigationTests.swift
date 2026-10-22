@@ -41,7 +41,8 @@ import XCTest
         capture(app, "reading-html-book-reader-" + device)
     }
     private func replace(_ field: XCUIElement, with value: String) {
-        field.coordinate(withNormalizedOffset: .init(dx: 0.95, dy: 0.5)).tap()
+        field.tap()
+        if !XCUIApplication().keyboards.firstMatch.waitForExistence(timeout: 2) { field.tap() }
         let count = (field.value as? String)?.count ?? 0
         field.typeText(String(repeating: XCUIKeyboardKey.delete.rawValue, count: count) + value)
     }

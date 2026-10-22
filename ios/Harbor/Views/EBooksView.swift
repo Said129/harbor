@@ -7,6 +7,8 @@ struct EBooksView: View {
     @State private var shelf: EBookShelf
     @State private var books: [EBook] = []
     @State private var reading: HarborReadingPluginManager?
+    @State private var metadata: EBookMetadataClient?
+    @State private var enriched: [String: EBook] = [:]
     @State private var source = "all"
     @State private var catalog = EBookCatalogProgram()
     @State private var definitions: EBookCatalogDefinitions?
@@ -33,11 +35,14 @@ struct EBooksView: View {
     @MainActor init(app: AppModel, initialFile: URL? = nil) { self.app = app; self.initialFile = initialFile; _screen = State(initialValue: initialFile == nil ? "browse" : "shelf"); _shelf = State(initialValue: EBookShelf(owner: app.personalOwner)) }
     private var signature: String { [query, language, source, applied.group, applied.genre, applied.status, applied.language, applied.sort, String(reading?.document.revision ?? 0), reload.uuidString].joined(separator: "|") }
     private var providers: [HarborInstalledReadingPlugin] { reading?.installed(.ebook) ?? [] }
+    private var rawBooks: [EBook] { batches.keys.sorted().flatMap { batches[$0] ?? [] } }
+    private var candidates: [EBook] { rawBooks.map { enriched[$0.id] ?? $0 } + shelf.records.map(\.book) }
+    private var enrichmentSignature: String { generation.uuidString + "|" + rawBooks.map(\.id).joined(separator: ",") + "|" + String(metadata?.revision ?? 0) }
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
-                Picker("eBook", selection: $screen) { Text("Explorar").tag("browse"); Text("Estantería").tag("shelf") }.pickerStyle(.segmented).padding(.horizontal).accessibilityIdentifier("ebook-screen")
-                HarborSearchField(prompt: screen == "browse" ? source == "gutenberg" ? "Buscar en Gutenberg…" : DesktopInterfaceText.value("Search") + "…" : "Buscar en tu estantería…", text: $query, dismissOnSubmit: true)
+                Picker("eBook", selection: $screen) { Text("Explorar").tag("browse"); Text(DesktopInterfaceText.value("Discover")).tag("discover"); Text("Estantería").tag("shelf") }.pickerStyle(.segmented).padding(.horizontal).accessibilityIdentifier("ebook-screen")
+                HarborSearchField(prompt: screen == "shelf" ? "Buscar en tu estantería…" : screen == "browse" && source == "gutenberg" ? "Buscar en Gutenberg…" : DesktopInterfaceText.value("Search") + "…", text: $query, dismissOnSubmit: true)
                     .padding(.horizontal).accessibilityIdentifier("ebook-search")
                 if let message = error ?? shelf.error { Text(message).font(.caption).foregroundStyle(.orange).padding(.horizontal) }
                 Button { importing = true } label: { Label("Importar desde Archivos · EPUB / PDF", systemImage: "square.and.arrow.down").frame(maxWidth: .infinity, minHeight: 44) }.padding(.horizontal).disabled(importingDocument).accessibilityIdentifier("ebook-import")
@@ -62,6 +67,9 @@ struct EBooksView: View {
                     else if error != nil { Button("Reintentar búsqueda") { Task { await load(next: false) } }.frame(maxWidth: .infinity, minHeight: 44) }
                     else if books.isEmpty { ContentUnavailableView("Sin resultados", image: "nav-ebook", description: Text("Busca por título o autor, o cambia el idioma.")) }
                     if more { Button("Cargar más") { Task { await load(next: true) } }.disabled(loading).frame(maxWidth: .infinity) }
+                } else if screen == "discover" {
+                    if let reading { EBookDiscoveryView(manager: reading, shelf: shelf, query: query, candidates: candidates, definitions: definitions) }
+                    else { ProgressView().frame(maxWidth: .infinity) }
                 } else {
                     HStack { Text("Tu estantería").font(.headline); Spacer(); ReadingSortMenu(selection: $shelfSort) }.padding(.horizontal)
                     grid(savedBooks)
@@ -70,6 +78,7 @@ struct EBooksView: View {
             }.padding(.vertical, 16)
         }.scrollDismissesKeyboard(.interactively).background(HarborTheme.background).navigationTitle("eBook").navigationBarTitleDisplayMode(.inline)
             .toolbar {
+                ToolbarItem(placement: .topBarTrailing) { if let reading { NavigationLink { EBookMetadataSettingsView(manager: reading) } label: { Image(systemName: "gearshape") }.accessibilityLabel(DesktopInterfaceText.value("Book metadata")).accessibilityIdentifier("ebook-metadata-settings") } }
                 ToolbarItem(placement: .topBarTrailing) { NavigationLink { HarborPluginManagementView(app: app, kind: .ebook) } label: { Image(systemName: "puzzlepiece.extension") }.accessibilityLabel(DesktopInterfaceText.value("Plugins")) }
                 ToolbarItem(placement: .topBarTrailing) { Button { help = true } label: { Image(systemName: "questionmark.circle") }.accessibilityLabel("Cómo leer tus libros").accessibilityIdentifier("ebook-reading-help") }
             }
@@ -77,13 +86,14 @@ struct EBooksView: View {
             .task { if let initialFile { await importBook(initialFile) } }
             .task { do { definitions = try await catalog.filterDefinitions() } catch { self.error = "No se pudieron cargar los filtros de libros." } }
             .task(id: app.accountOperationScope) {
-                do { reading = try await app.openReadingPlugins() }
+                do { let manager = try await app.openReadingPlugins(); reading = manager; metadata = try manager.ebookMetadata() }
                 catch is CancellationError { return }
                 catch { self.error = HarborPluginMessages.error(error) }
             }
             .onChange(of: providers.map(\.id)) { _, ids in if !["gutenberg", "all"].contains(source), !ids.contains(source) { source = "all" } }
             .task(id: titleLanguage) { try? await updateCatalog(token: generation) }
             .task(id: signature + "|" + screen) { if screen == "browse" && !importingDocument { await load(next: false) } }
+            .task(id: enrichmentSignature) { await enrichCatalog() }
             .refreshable { if screen == "browse" { await load(next: false) } }
             .fileImporter(isPresented: $importing, allowedContentTypes: [UTType(filenameExtension: "epub") ?? .data, .pdf], allowsMultipleSelection: true) { result in
                 switch result {
@@ -111,7 +121,7 @@ struct EBooksView: View {
     private func grid(_ entries: [EBook]) -> some View {
         LazyVGrid(columns: [GridItem(.adaptive(minimum: 110, maximum: 180))], alignment: .leading, spacing: 18) {
             ForEach(entries) { book in
-                NavigationLink { EBookDetailView(book: book, shelf: shelf) } label: {
+                NavigationLink { EBookDetailView(book: book, shelf: shelf, candidates: candidates).environment(\.readingPlugins, reading) } label: {
                     VStack(alignment: .leading, spacing: 6) {
                         EBookCover(book: book, owner: shelf.owner).aspectRatio(2.0 / 3.0, contentMode: .fit).clipShape(.rect(cornerRadius: 8))
                         Text(displayTitles[book.id] ?? book.title).font(.caption.weight(.medium)).lineLimit(2)
@@ -138,7 +148,7 @@ struct EBooksView: View {
         let typed = query.trimmingCharacters(in: .whitespacesAndNewlines)
         let term = typed.utf16.count >= 2 ? typed : "", selectedLanguage = language, tag = applied.sourceTag
         loading = true; error = nil
-        if !next { books = []; more = false; batches = [:]; offsets = [:]; continuation = [:]; displayTitles = [:] }
+        if !next { books = []; more = false; batches = [:]; enriched = [:]; offsets = [:]; continuation = [:]; displayTitles = [:] }
         defer { if generation == token { loading = false } }
         do {
             if !next { try await Task.sleep(for: .milliseconds(350)) }
@@ -194,10 +204,22 @@ struct EBooksView: View {
     private func updateCatalog(token: UUID, order: [String]? = nil) async throws {
         let ids = order ?? (["gutenberg"] + providers.map(\.id))
         let rules = applied, titles = titleLanguage
-        let result = try await catalog.filter(ids.flatMap { batches[$0] ?? [] }, filters: rules, titleLanguage: titles)
+        let input = ids.flatMap { batches[$0] ?? [] }.map { enriched[$0.id] ?? $0 }
+        let result = try await catalog.filter(input, filters: rules, titleLanguage: titles)
         try Task.checkCancellation()
         guard token == generation, applied == rules, titleLanguage == titles else { return }
         books = result.books; displayTitles = result.titles
+    }
+    private func enrichCatalog() async {
+        guard let metadata, !rawBooks.isEmpty else { return }
+        let input = rawBooks, token = generation, scope = app.accountOperationScope
+        func publish(_ result: [EBook]) async {
+            guard !Task.isCancelled, generation == token, scope == app.accountOperationScope else { return }
+            for book in result.flatMap({ $0.alternativeSources ?? [$0] }) { enriched[book.id] = book }
+            try? await updateCatalog(token: token)
+        }
+        do { let result = try await metadata.enrich(input, onPartial: publish); await publish(result) }
+        catch { /* Metadata is supplementary; source catalogs and readable routes remain available. */ }
     }
     private func importBook(_ file: URL, open: Bool = true) async {
         guard shelf.ready else { error = "La estantería no está disponible. Los libros guardados se conservan."; return }

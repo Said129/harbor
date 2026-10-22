@@ -34,6 +34,8 @@ pub(crate) struct Request {
     #[serde(default)]
     pub public_network_only: bool,
     #[serde(default)]
+    pub allow_local_network: bool,
+    #[serde(default)]
     pub allow_referer: Option<String>,
     #[serde(default)]
     pub allow_cookie: Option<String>,
@@ -62,9 +64,15 @@ pub(crate) async fn execute(request: Request) -> Result<Response, &'static str> 
             .unwrap_or(20_000)
             .clamp(1_000, 45_000),
     );
-    tokio::time::timeout(timeout, execute_with_resolver(request, resolve_target))
-        .await
-        .map_err(|_| "plugin-network-timeout")?
+    let allow_local = request.allow_local_network && !request.public_network_only;
+    tokio::time::timeout(
+        timeout,
+        execute_with_resolver(request, move |url, public| {
+            resolve_target(url, public, allow_local)
+        }),
+    )
+    .await
+    .map_err(|_| "plugin-network-timeout")?
 }
 
 async fn execute_with_resolver<F, Fut>(
@@ -76,7 +84,7 @@ where
     Fut: Future<Output = Result<Vec<SocketAddr>, &'static str>>,
 {
     let mut target = Url::parse(&request.url).map_err(|_| "plugin-network-url")?;
-    validate_url(&target, &request.blocked_hosts)?;
+    validate_request_url(&target, &request)?;
     let mut method = Method::from_bytes(
         request
             .method
@@ -107,7 +115,7 @@ where
         .min(MAX_BYTES);
     let mut redirects = 0;
     let mut response = loop {
-        validate_url(&target, &request.blocked_hosts)?;
+        validate_request_url(&target, &request)?;
         let addresses = resolve(target.clone(), request.public_network_only).await?;
         if addresses.is_empty() {
             return Err("plugin-network-dns");
@@ -155,7 +163,7 @@ where
         if target.scheme() == "https" && next.scheme() == "http" {
             return Err("plugin-network-downgrade");
         }
-        validate_url(&next, &request.blocked_hosts)?;
+        validate_request_url(&next, &request)?;
         let cross_origin = !same_origin(&target, &next);
         let had_body = body.is_some();
         apply_redirect_method(&mut method, &mut body, status);
@@ -358,6 +366,22 @@ fn response_headers(headers: &HeaderMap) -> BTreeMap<String, String> {
 }
 
 fn validate_url(url: &Url, blocked: &[String]) -> Result<(), &'static str> {
+    validate_url_with_local(url, blocked, false)
+}
+
+fn validate_request_url(url: &Url, request: &Request) -> Result<(), &'static str> {
+    if request.allow_local_network && !request.public_network_only {
+        validate_url_with_local(url, &request.blocked_hosts, true)
+    } else {
+        validate_url(url, &request.blocked_hosts)
+    }
+}
+
+fn validate_url_with_local(
+    url: &Url,
+    blocked: &[String],
+    allow_local: bool,
+) -> Result<(), &'static str> {
     if !matches!(url.scheme(), "http" | "https") {
         return Err("plugin-network-scheme");
     }
@@ -366,15 +390,16 @@ fn validate_url(url: &Url, blocked: &[String]) -> Result<(), &'static str> {
         .ok_or("plugin-network-url")?
         .trim_matches(['[', ']'])
         .to_lowercase();
-    if host == "localhost"
-        || host.ends_with(".localhost")
-        || host.ends_with(".local")
-        || host.ends_with(".internal")
-        || host.starts_with("fc")
-        || host.starts_with("fd")
-        || host.starts_with("fe80:")
-        || host.starts_with("64:ff9b:")
-        || host.parse::<IpAddr>().is_ok_and(is_private_ip)
+    if !allow_local
+        && (host == "localhost"
+            || host.ends_with(".localhost")
+            || host.ends_with(".local")
+            || host.ends_with(".internal")
+            || host.starts_with("fc")
+            || host.starts_with("fd")
+            || host.starts_with("fe80:")
+            || host.starts_with("64:ff9b:")
+            || host.parse::<IpAddr>().is_ok_and(is_private_ip))
     {
         return Err("plugin-network-private");
     }
@@ -473,13 +498,17 @@ fn checked_addresses(
     Ok(values)
 }
 
-async fn resolve_target(url: Url, public_only: bool) -> Result<Vec<SocketAddr>, &'static str> {
+async fn resolve_target(
+    url: Url,
+    public_only: bool,
+    allow_local: bool,
+) -> Result<Vec<SocketAddr>, &'static str> {
     let host = url
         .host_str()
         .ok_or("plugin-network-url")?
         .trim_matches(['[', ']']);
     let port = url.port_or_known_default().ok_or("plugin-network-url")?;
-    let values = if let Ok(ip) = host.parse::<IpAddr>() {
+    let values: Vec<SocketAddr> = if let Ok(ip) = host.parse::<IpAddr>() {
         vec![SocketAddr::new(ip, port)]
     } else {
         tokio::net::lookup_host((host, port))
@@ -487,7 +516,20 @@ async fn resolve_target(url: Url, public_only: bool) -> Result<Vec<SocketAddr>, 
             .map_err(|_| "plugin-network-dns")?
             .collect()
     };
-    checked_addresses(values, public_only)
+    if allow_local && !public_only {
+        if values.is_empty()
+            || values.iter().any(|value| {
+                value.ip().is_unspecified()
+                    || value.ip().is_multicast()
+                    || value.ip() == IpAddr::V4(std::net::Ipv4Addr::BROADCAST)
+            })
+        {
+            return Err("plugin-network-private");
+        }
+        Ok(values)
+    } else {
+        checked_addresses(values, public_only)
+    }
 }
 
 fn same_origin(left: &Url, right: &Url) -> bool {
@@ -719,6 +761,42 @@ mod tests {
         )
         .is_err());
         assert!(validate_url(&Url::parse("https://public.example.org/path").unwrap(), &[]).is_ok());
+    }
+
+    #[test]
+    fn plugin_http_configured_reading_can_use_an_actual_loopback_source() {
+        let (port, received, task) = server(
+            "200 OK",
+            "Content-Type: text/plain\r\n",
+            b"owned local source",
+        );
+        let mut request = request(&format!("http://127.0.0.1:{port}/reading"));
+        request.allow_local_network = true;
+        let response = run(execute(request)).unwrap();
+        assert_eq!(
+            STANDARD.decode(response.body_base64).unwrap(),
+            b"owned local source"
+        );
+        assert!(received
+            .recv()
+            .unwrap()
+            .starts_with(b"GET /reading HTTP/1.1"));
+        task.join().unwrap();
+    }
+
+    #[test]
+    fn plugin_http_reading_permission_cannot_override_public_policy_blocked_hosts_or_schemes() {
+        let target = Url::parse("http://127.0.0.1:18734/page").unwrap();
+        let mut reading = request(target.as_str());
+        assert!(validate_request_url(&target, &reading).is_err());
+        reading.allow_local_network = true;
+        assert!(validate_request_url(&target, &reading).is_ok());
+        reading.public_network_only = true;
+        assert!(validate_request_url(&target, &reading).is_err());
+        reading.public_network_only = false;
+        reading.blocked_hosts.push("127.0.0.1".to_owned());
+        assert!(validate_request_url(&target, &reading).is_err());
+        assert!(validate_request_url(&Url::parse("file:///owned").unwrap(), &reading).is_err());
     }
 
     #[test]

@@ -10,6 +10,7 @@ struct MangaImage: View {
     let path: String?
     let client: SuwayomiClient?
     var maxPixels = 2200
+    var retryOnFailure = false
     var onSize: ((CGSize) -> Void)?
     @Environment(\.readingPlugins) private var reading
     @State private var image: UIImage?
@@ -20,7 +21,8 @@ struct MangaImage: View {
             if let image { Image(uiImage: image).resizable().scaledToFit().accessibilityLabel(book.title) }
             else {
                 Rectangle().fill(HarborTheme.surface).overlay {
-                    if failed { Button { Task { await load() } } label: { Image(systemName: "arrow.clockwise").padding(20) }.accessibilityLabel("Reintentar imagen") }
+                    if failed && retryOnFailure { Button { Task { await load() } } label: { Image(systemName: "arrow.clockwise").padding(20) }.accessibilityLabel("Reintentar imagen") }
+                    else if failed { Image(systemName: "book.closed").foregroundStyle(.secondary).accessibilityHidden(true) }
                     else { ProgressView() }
                 }
             }

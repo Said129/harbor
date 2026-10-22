@@ -3,8 +3,12 @@ import json
 import os
 from pathlib import Path
 import re
+import runpy
 
 requested = os.environ.get('HARBOR_NATIVE_SELECTION', '').strip()
+if 'EBookMetadataTests/' in requested:
+    runpy.run_path('scripts/ios/prepare-reading-metadata-selection.py')
+    raise SystemExit(0)
 html = ['HarborTests.HarborReadingHTMLTests/' + method for method in [
     'testActualWebKitDOMMatchesAllNineOriginalManualHTMLProviderCases',
     'testManualSourceSaveReadEditDisableAndRemovalKeepDesktopRoutesAndCleanConfiguration',

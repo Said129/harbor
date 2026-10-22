@@ -32,6 +32,7 @@ import Observation
     private var ebookTags: [String: Set<String>] = [:]
     private var ebookTagLoads: [String: Task<Set<String>, Error>] = [:]
     private var disposed = false
+    private var metadataClient: EBookMetadataClient?
     private(set) var document = HarborReadingPluginDocument()
     private(set) var ready = false
     private(set) var busy = false
@@ -45,6 +46,12 @@ import Observation
         imageCache.totalCostLimit = 32 * 1024 * 1024; imageCache.countLimit = 80
     }
     func load() async throws { try validate(); document = try await store.load(); try validate(); ready = true }
+    func ebookMetadata() throws -> EBookMetadataClient {
+        try validate()
+        if let metadataClient { return metadataClient }
+        let client = try EBookMetadataClient(scope: scope, currentScope: currentScope, network: network)
+        metadataClient = client; return client
+    }
     func installed(_ kind: HarborReadingPluginKind, includeAdult: Bool = false) -> [HarborInstalledReadingPlugin] {
         document.plugins.filter { $0.kind == kind && $0.enabled && (includeAdult || !$0.entry.adult) }
     }
@@ -216,6 +223,7 @@ import Observation
     }
     func dispose() {
         guard !disposed else { return }; disposed = true; ready = false
+        metadataClient?.dispose(); metadataClient = nil
         mutation?.cancel(); mutation = nil
         bulkProgress = nil; entryFailures = [:]
         images.values.forEach { $0.task.cancel() }; images = [:]; imageCache.removeAllObjects()

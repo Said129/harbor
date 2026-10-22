@@ -344,6 +344,18 @@ jobs:
           else
             bash scripts/ios/build-rust.sh 2>&1 | tee ios/build/logs/rust.log
           fi
+      - name: Verify configured reading network access and unchanged public guards
+        id: reading_network_contracts
+        if: ${{ inputs.validation_scope == 'plugin-playback' && contains(inputs.native_test_selection, 'EBookMetadataTests/') }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "${{ inputs.validation_only }}" = "true"
+          cargo check --manifest-path harbor-ios-bridge/Cargo.toml --locked 2>&1 | tee ios/build/logs/reading-network-check.log
+          cargo test --manifest-path harbor-ios-bridge/Cargo.toml --locked --lib plugin_http_configured_reading_can_use_an_actual_loopback_source -- --test-threads=1 2>&1 | tee ios/build/logs/reading-network-local-test.log
+          cargo test --manifest-path harbor-ios-bridge/Cargo.toml --locked --lib plugin_http_reading_permission_cannot_override_public_policy_blocked_hosts_or_schemes -- --test-threads=1 2>&1 | tee ios/build/logs/reading-network-policy-test.log
+          cargo test --manifest-path harbor-ios-bridge/Cargo.toml --locked --lib plugin_http_rejects_schemes_private_hosts_and_blocked_hops -- --test-threads=1 2>&1 | tee ios/build/logs/reading-network-affected-guard.log
+          cargo clippy --manifest-path harbor-ios-bridge/Cargo.toml --locked --all-targets -- -D warnings 2>&1 | tee ios/build/logs/reading-network-clippy.log
       - name: Cache Swift dependencies
         uses: actions/cache@v6
         with:
@@ -600,10 +612,26 @@ jobs:
         run: |
           expected=$(python3 -c 'import json; print(json.load(open("ios/build/preserved-plugin-integration.json"))["selected_case_count"])')
           python3 scripts/ios/record-profile-model-results.py --bundle ios/build/Tests.xcresult --expected ios/build/preserved-plugin-integration.json --count "$expected" --output ios/build/canonical/PluginIntegrationModels.json
+      - name: Preserve original reading model results before independent interface tests
+        if: ${{ always() && inputs.validation_only == true && inputs.save_draft_build == true && inputs.validation_scope == 'plugin-playback' && contains(inputs.native_test_selection, 'EBookMetadataTests/') && (steps.offline_tests.conclusion == 'success' || steps.offline_tests.conclusion == 'failure') }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -s ios/build/canonical/PluginIntegrationModels-tree.json ]]; then
+            mkdir -p ios/build/model-evidence/canonical ios/build/model-evidence/logs
+            cp ios/build/canonical/PluginIntegrationModels* ios/build/model-evidence/canonical/
+            cp ios/build/preserved-plugin-integration.json ios/build/model-evidence/
+            cp ios/build/logs/tests.log ios/build/model-evidence/logs/
+            cp ios/build/logs/reading-network*.log ios/build/model-evidence/logs/
+            ditto -c -k --keepParent ios/build/model-evidence ios/build/iphone-model-evidence.zip
+            gh release create "iphone-model-evidence-$GITHUB_RUN_ID" ios/build/iphone-model-evidence.zip --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" --draft --prerelease --title "Original reading model results $GITHUB_RUN_ID" --notes "Original affected model results saved before independent UI validation. No IPA."
+          fi
       - name: Run both new plugin management interfaces on fresh guests
         id: plugin_integration_ui
         if: ${{ always() && (inputs.validation_scope == 'plugin-integration' || inputs.validation_scope == 'plugin-playback') && (inputs.validation_scope != 'plugin-playback' || env.HARBOR_PLUGIN_UI_REQUIRED == 'true') && (steps.offline_tests.conclusion == 'success' || steps.offline_tests.conclusion == 'failure') }}
-        timeout-minutes: 40
+        timeout-minutes: ${{ contains(inputs.native_test_selection, 'EBookMetadataTests/') && 65 || 40 }}
         run: python3 scripts/ios/run-plugin-integration-ui.py
       - name: Authenticate the thirteen actual native network model results
         if: ${{ always() && inputs.validation_scope == 'plugin-network' && (steps.offline_tests.conclusion == 'success' || steps.offline_tests.conclusion == 'failure') }}
@@ -1058,7 +1086,7 @@ jobs:
           ditto -c -k --keepParent ios/build/rotation-evidence ios/build/tablet-rotation-evidence.zip
           gh release upload "iphone-rotation-${GITHUB_SHA:0:12}" ios/build/tablet-rotation-evidence.zip --repo "$GITHUB_REPOSITORY"
       - name: Save affected simulator evidence without an IPA
-        if: ${{ always() && github.event_name == 'workflow_dispatch' && inputs.validation_only == true && inputs.save_draft_build == true && inputs.validation_scope != 'stable-tablet-rotation' && inputs.validation_scope != 'startup-anime-ui' && (success() || (inputs.validation_scope == 'plugin-network' && steps.plugin_network_rust.conclusion == 'failure') || ((inputs.validation_scope == 'tvdb-proxy' || inputs.validation_scope == 'episode-order' || inputs.validation_scope == 'episode-panel' || inputs.validation_scope == 'anime-franchise' || inputs.validation_scope == 'anime-episode-pool' || inputs.validation_scope == 'franchise-extras' || inputs.validation_scope == 'season-artwork' || inputs.validation_scope == 'profile-return' || inputs.validation_scope == 'mobile-integration' || inputs.validation_scope == 'plugin-catalog' || inputs.validation_scope == 'plugin-followup' || inputs.validation_scope == 'plugin-network' || inputs.validation_scope == 'plugin-manager' || (inputs.validation_scope == 'plugin-integration' || inputs.validation_scope == 'plugin-playback')) && (steps.offline_tests.conclusion == 'success' || steps.offline_tests.conclusion == 'failure'))) }}
+        if: ${{ always() && github.event_name == 'workflow_dispatch' && inputs.validation_only == true && inputs.save_draft_build == true && inputs.validation_scope != 'stable-tablet-rotation' && inputs.validation_scope != 'startup-anime-ui' && (success() || (inputs.validation_scope == 'plugin-network' && steps.plugin_network_rust.conclusion == 'failure') || (inputs.validation_scope == 'plugin-playback' && steps.reading_network_contracts.conclusion == 'failure') || ((inputs.validation_scope == 'tvdb-proxy' || inputs.validation_scope == 'episode-order' || inputs.validation_scope == 'episode-panel' || inputs.validation_scope == 'anime-franchise' || inputs.validation_scope == 'anime-episode-pool' || inputs.validation_scope == 'franchise-extras' || inputs.validation_scope == 'season-artwork' || inputs.validation_scope == 'profile-return' || inputs.validation_scope == 'mobile-integration' || inputs.validation_scope == 'plugin-catalog' || inputs.validation_scope == 'plugin-followup' || inputs.validation_scope == 'plugin-network' || inputs.validation_scope == 'plugin-manager' || (inputs.validation_scope == 'plugin-integration' || inputs.validation_scope == 'plugin-playback')) && (steps.offline_tests.conclusion == 'success' || steps.offline_tests.conclusion == 'failure'))) }}
         env:
           GH_TOKEN: ${{ github.token }}
         shell: bash
@@ -1068,7 +1096,9 @@ jobs:
           if [[ "${{ inputs.validation_scope }}" == "episode-panel" || "${{ inputs.validation_scope }}" == "anime-franchise" || "${{ inputs.validation_scope }}" == "anime-episode-pool" || "${{ inputs.validation_scope }}" == "franchise-extras" || "${{ inputs.validation_scope }}" == "season-artwork" || "${{ inputs.validation_scope }}" == "profile-return" || "${{ inputs.validation_scope }}" == "mobile-integration" || "${{ inputs.validation_scope }}" == "plugin-catalog" || "${{ inputs.validation_scope }}" == "plugin-followup" || "${{ inputs.validation_scope }}" == "plugin-network" || "${{ inputs.validation_scope }}" == "plugin-manager" || "${{ inputs.validation_scope }}" == "plugin-integration" || "${{ inputs.validation_scope }}" == "plugin-playback" ]]; then cp -R ios/build/logs ios/build/validation-evidence/; fi
           for name in Tests PluginSeedIPhone PluginSeedIPad PluginUIIPhone PluginUIIPad PluginNetworkPublic ProfileReturnSeed ProfileReturnPhoneUI TVDBProxyLive FranchisePublicContract FranchiseMappingIntegration PoolMappingIntegration FranchiseExtrasPublicContract EpisodeOrderIPhoneUI EpisodeOrderIPadUI ServicesTests LiveTests TabletTests TabletUITests MangaFontTests ReadingTabletSeed ReadingTabletUI LanguageTabletUI SystemTabletUI NavigationTabletUI OnboardingTabletUI ServiceTabletUI StreamingSyncTabletUI PlayerCaptionTabletSeed PlayerCaptionTabletUI ProfileModels ProfileIPhoneLanguage ProfileIPhoneUI ProfileIPadLanguage ProfileIPadUI; do
             if [[ -d "ios/build/$name.xcresult" ]]; then
-              xcrun xcresulttool export attachments --path "ios/build/$name.xcresult" --output-path "ios/build/validation-evidence/attachments/$name"
+              if ! xcrun xcresulttool export attachments --path "ios/build/$name.xcresult" --output-path "ios/build/validation-evidence/attachments/$name" > "ios/build/validation-evidence/attachment-export-$name.log" 2>&1; then
+                echo "Partial $name bundle: retain the available original logs and canonical trees."
+              fi
             fi
           done
           if [[ -d ios/build/setup-recordings ]]; then cp -R ios/build/setup-recordings ios/build/validation-evidence/; fi

@@ -76,12 +76,12 @@ final class EBookCatalogTests: XCTestCase {
         async let first = manager.ebookBrowse(plugin, query: "", offset: 0, tag: "status:ongoing")
         async let second = manager.ebookBrowse(plugin, query: "", offset: 24, tag: "sort:rating")
         let results = try await (first, second)
-        XCTAssertEqual(results.0.first?.title, "status:ongoing 0 probes:1")
-        XCTAssertEqual(results.1.first?.title, "sort:rating 24 probes:1")
+        XCTAssertEqual(results.0.first?.title, "status ongoing 0 probes 1")
+        XCTAssertEqual(results.1.first?.title, "sort rating 24 probes 1")
         let book = try XCTUnwrap(results.0.first)
         XCTAssertEqual(book.language, "ar"); XCTAssertEqual(book.metadata?["originalLanguage"].string, "ja")
         let unsupported = try await manager.ebookBrowse(plugin, query: "", offset: 48, tag: "sort:trending")
-        XCTAssertEqual(unsupported.first?.title, "none 48 probes:1")
+        XCTAssertEqual(unsupported.first?.title, "none 48 probes 1")
         let detail = try await manager.ebookDetail(book)
         XCTAssertEqual(detail.itemID, book.itemID); XCTAssertEqual(detail.language, "ar"); XCTAssertEqual(detail.description, "Owned detail")
         try await manager.setEnabled(plugin, false)
@@ -89,7 +89,7 @@ final class EBookCatalogTests: XCTestCase {
         try await manager.setEnabled(disabled, true)
         let enabled = try XCTUnwrap(manager.installed(.ebook).first)
         let fresh = try await manager.ebookBrowse(enabled, query: "", offset: 0, tag: "sort:rating")
-        XCTAssertEqual(fresh.first?.title, "sort:rating 0 probes:1")
+        XCTAssertEqual(fresh.first?.title, "sort rating 0 probes 1")
     }
 
     @MainActor func testMangaTagUsesOriginalSearchContractWithEmptyQueryAndSourceOffset() async throws {

@@ -11,6 +11,7 @@ struct HarborNetworkRequest: Encodable, Sendable {
     var maxResponseBytes = 8 * 1024 * 1024
     var strictLimit = false
     var publicNetworkOnly = false
+    var allowLocalNetwork = false
     var allowReferer: String?
     var allowCookie: String?
     var openHeaders = false
@@ -129,12 +130,13 @@ struct HarborPluginNetworkPolicy: Sendable {
     let baseURL: String?
     let blockedHosts: [String]
     var maxBytes = 8 * 1024 * 1024
+    var allowLocalNetwork = false
 
     static func stream(installing: Bool, blockedHosts: [String]) -> Self {
         .init(sameSiteHeaders: true, publicOnly: true, openHeaders: !installing, baseURL: nil, blockedHosts: blockedHosts)
     }
     static func reading(baseURL: String?, blockedHosts: [String]) -> Self {
-        .init(sameSiteHeaders: false, publicOnly: false, openHeaders: false, baseURL: baseURL, blockedHosts: blockedHosts)
+        .init(sameSiteHeaders: false, publicOnly: false, openHeaders: false, baseURL: baseURL, blockedHosts: blockedHosts, allowLocalNetwork: true)
     }
 }
 
@@ -151,6 +153,7 @@ struct HarborNativePluginTransport: HarborPluginHostTransport {
         request.timeoutMs = UInt64(HarborPluginGRPC.timeoutMilliseconds(try? options["timeoutMs"].decoded(Double.self)))
         request.maxResponseBytes = min(max(0, policy.maxBytes), 8 * 1024 * 1024)
         request.publicNetworkOnly = policy.publicOnly; request.strictLimit = policy.publicOnly
+        request.allowLocalNetwork = policy.allowLocalNetwork
         request.allowReferer = policy.sameSiteHeaders ? url : policy.baseURL
         request.allowCookie = policy.sameSiteHeaders ? url : nil
         request.blockedHosts = policy.blockedHosts

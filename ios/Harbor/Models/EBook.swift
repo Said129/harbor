@@ -17,6 +17,12 @@ struct EBook: Codable, Identifiable, Hashable, Sendable {
     var metadata: JSONValue?
     var alternativeSources: [EBook]?
     var isPDF: Bool { format == "pdf" }
+    var readable: Bool { pluginID != nil || epub != nil || isPDF }
+    var withoutAlternatives: EBook {
+        var book = self; book.alternativeSources = nil
+        if var value = book.metadata?.objectValue { value["books"] = nil; book.metadata = .object(value) }
+        return book
+    }
     func hash(into hasher: inout Hasher) { hasher.combine(id) }
 }
 

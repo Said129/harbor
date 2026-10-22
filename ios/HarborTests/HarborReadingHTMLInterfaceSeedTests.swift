@@ -15,6 +15,13 @@ final class HarborReadingHTMLInterfaceSeedTests: XCTestCase {
         let scope = PluginExecutionScope(owner: "owned-html-ui", activation: UUID())
         let manager = HarborReadingPluginManager(scope: scope, currentScope: { scope }, store: store)
         defer { manager.dispose() }; try await manager.load()
+        try await Self.installManualSources(manager, fixture: fixture)
+        XCTAssertEqual(manager.document.plugins.count, 2)
+        UserDefaults.standard.set("es", forKey: "uiLanguage")
+        UserDefaults.standard.set(true, forKey: "nativeGuide.initialized.v1"); UserDefaults.standard.set(true, forKey: "nativeGuide.completed.v1")
+        UserDefaults.standard.set(false, forKey: "interface.autoRotateBanners")
+    }
+    @MainActor static func installManualSources(_ manager: HarborReadingPluginManager, fixture: JSONValue) async throws {
         for kind in HarborReadingPluginKind.allCases {
             var config = try XCTUnwrap(fixture["fixtures"].array.first { $0["kind"].string == kind.rawValue })["config"].objectValue
             config["baseUrl"] = .string("http://127.0.0.1:18734")
@@ -24,9 +31,5 @@ final class HarborReadingHTMLInterfaceSeedTests: XCTestCase {
             let raw = String(decoding: try JSONEncoder().encode(JSONValue.object(config)), as: UTF8.self)
             try await manager.saveHTML(kind: kind, raw: raw, name: kind == .manga ? "Owned manual Manga" : "Owned manual Books", language: "en")
         }
-        XCTAssertEqual(manager.document.plugins.count, 2)
-        UserDefaults.standard.set("es", forKey: "uiLanguage")
-        UserDefaults.standard.set(true, forKey: "nativeGuide.initialized.v1"); UserDefaults.standard.set(true, forKey: "nativeGuide.completed.v1")
-        UserDefaults.standard.set(false, forKey: "interface.autoRotateBanners")
     }
 }

@@ -101,7 +101,7 @@ struct MangaReaderView: View {
                         ForEach(pages) { page in
                             let ratio = ratios[page.id] ?? 2.0 / 3.0
                             let width = max(40, (fit == "original" ? dimensions[page.id]?.width ?? size.width : fit == "height" ? size.height * ratio : size.width) * zoom)
-                            MangaImage(book: book, owner: shelf.owner, path: page.path, client: client, onSize: { size in if size.height > 0 { ratios[page.id] = size.width / size.height; dimensions[page.id] = size } }).frame(width: width, height: width / ratio).accessibilityIdentifier("manga-page-\(page.id)").id(page.id)
+                            MangaImage(book: book, owner: shelf.owner, path: page.path, client: client, retryOnFailure: true, onSize: { size in if size.height > 0 { ratios[page.id] = size.width / size.height; dimensions[page.id] = size } }).frame(width: width, height: width / ratio).accessibilityIdentifier("manga-page-\(page.id)").id(page.id)
                         }
                         Color.clear.frame(height: 20).background { GeometryReader { proxy in Color.clear.preference(key: MangaEndOffset.self, value: proxy.frame(in: .named("manga-vertical")).minY) } }
                     }.scrollTargetLayout()
@@ -119,7 +119,7 @@ struct MangaReaderView: View {
         let ratio = ratios[page.id] ?? 2.0 / 3.0
         let displayWidth = (fit == "height" ? height * ratio : fit == "original" ? dimensions[page.id]?.width ?? width : width) * zoom
         return ScrollView([.horizontal, .vertical]) {
-            MangaImage(book: book, owner: shelf.owner, path: page.path, client: client, onSize: { size in if size.height > 0 { ratios[page.id] = size.width / size.height; dimensions[page.id] = size } }).frame(width: max(40, displayWidth), height: max(40, displayWidth / ratio)).accessibilityIdentifier("manga-page-\(page.id)")
+            MangaImage(book: book, owner: shelf.owner, path: page.path, client: client, retryOnFailure: true, onSize: { size in if size.height > 0 { ratios[page.id] = size.width / size.height; dimensions[page.id] = size } }).frame(width: max(40, displayWidth), height: max(40, displayWidth / ratio)).accessibilityIdentifier("manga-page-\(page.id)")
         }.frame(width: width, height: height).background(canvas).clipped()
     }
     private var previousButton: some View { Button { turn(-1) } label: { Image(systemName: rtl ? "chevron.right" : "chevron.left").frame(width: 40, height: 40) }.disabled(current == 0 && index == 0 || loading).accessibilityLabel("Página anterior") }

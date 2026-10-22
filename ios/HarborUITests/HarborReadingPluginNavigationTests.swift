@@ -28,7 +28,7 @@ import XCTest
         XCTAssertTrue(app.switches["reading-plugin-enabled-owned.ui.reading.books"].waitForExistence(timeout: 10))
         capture(app, "reading-plugin-books-installed-" + device)
         navigate("manga", app)
-        let mangaSearch = app.textFields.firstMatch; XCTAssertTrue(mangaSearch.waitForExistence(timeout: 20)); reveal(mangaSearch, app); mangaSearch.tap(); mangaSearch.typeText("Owned\n")
+        let mangaSearch = app.textFields["manga-search"]; enter("Owned\n", in: mangaSearch, app: app)
         let card = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH 'manga-card-' AND label CONTAINS 'Owned Manga'")).firstMatch
         XCTAssertTrue(card.waitForExistence(timeout: 30)); reveal(card, app)
         capture(app, "reading-plugin-manga-search-" + device); card.tap()
@@ -38,7 +38,7 @@ import XCTest
         navigate("ebook", app)
         let provider = app.buttons["ebook-source"]; XCTAssertTrue(provider.waitForExistence(timeout: 20)); reveal(provider, app); provider.tap()
         let owned = app.buttons["Owned UI Books"].firstMatch; XCTAssertTrue(owned.waitForExistence(timeout: 10)); owned.tap()
-        let bookSearch = app.textFields.firstMatch; XCTAssertTrue(bookSearch.waitForExistence(timeout: 10)); bookSearch.tap(); bookSearch.typeText("Owned\n")
+        let bookSearch = app.textFields["ebook-search"]; enter("Owned\n", in: bookSearch, app: app)
         let book = app.buttons["ebook-card-source:plugin%3Aowned.ui.reading.books:owned"]
         XCTAssertTrue(book.waitForExistence(timeout: 30)); reveal(book, app)
         capture(app, "reading-plugin-book-search-" + device); book.tap()
@@ -51,6 +51,12 @@ import XCTest
         let updated = XCTNSPredicateExpectation(predicate: NSPredicate(format: "label == %@", "Owned second chapter paragraph."), object: paragraph)
         XCTAssertEqual(XCTWaiter.wait(for: [updated], timeout: 20), .completed)
         capture(app, "reading-plugin-book-next-" + device)
+    }
+    private func enter(_ text: String, in field: XCUIElement, app: XCUIApplication) {
+        XCTAssertTrue(field.waitForExistence(timeout: 20)); reveal(field, app)
+        field.tap()
+        if !app.keyboards.firstMatch.waitForExistence(timeout: 2) { reveal(field, app); field.tap() }
+        field.typeText(text)
     }
     private func set(_ toggle: XCUIElement, _ enabled: Bool) {
         let value = enabled ? "1" : "0"

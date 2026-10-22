@@ -6,6 +6,7 @@ struct HarborReadingHTMLDraft: Identifiable {
 }
 
 struct HarborReadingHTMLEditor: View {
+    private enum Field: Hashable { case name, logo, configuration }
     let manager: HarborReadingPluginManager
     let kind: HarborReadingPluginKind
     let draft: HarborReadingHTMLDraft
@@ -17,6 +18,7 @@ struct HarborReadingHTMLEditor: View {
     @State private var error: String?
     @State private var saving = false
     @State private var operation: Task<Void, Never>?
+    @FocusState private var focused: Field?
     init(manager: HarborReadingPluginManager, kind: HarborReadingPluginKind, draft: HarborReadingHTMLDraft) {
         self.manager = manager; self.kind = kind; self.draft = draft
         let plugin = draft.plugin
@@ -33,8 +35,8 @@ struct HarborReadingHTMLEditor: View {
         NavigationStack {
             Form {
                 Section {
-                    TextField(text("Source name"), text: $name).accessibilityIdentifier("reading-html-name")
-                    TextField(text(kind == .manga ? "Logo URL (optional, auto-detected if blank)" : "Logo URL (optional)"), text: $logo).keyboardType(.URL).textInputAutocapitalization(.never).autocorrectionDisabled()
+                    TextField(text("Source name"), text: $name).frame(minHeight: 44).contentShape(Rectangle()).focused($focused, equals: .name).accessibilityIdentifier("reading-html-name")
+                    TextField(text(kind == .manga ? "Logo URL (optional, auto-detected if blank)" : "Logo URL (optional)"), text: $logo).keyboardType(.URL).textInputAutocapitalization(.never).autocorrectionDisabled().frame(minHeight: 44).focused($focused, equals: .logo)
                     Picker(text("Language"), selection: $language) {
                         Text(text("All languages")).tag("all")
                         ForEach(InterfaceLanguage.all, id: \.code) { item in Text(item.nativeLabel).tag(item.code) }
@@ -42,13 +44,13 @@ struct HarborReadingHTMLEditor: View {
                 }
                 Section {
                     TextEditor(text: $raw).font(.system(.caption, design: .monospaced)).textInputAutocapitalization(.never).autocorrectionDisabled()
-                        .frame(minHeight: 320).privacySensitive().accessibilityIdentifier("reading-html-config")
+                        .frame(minHeight: 320).focused($focused, equals: .configuration).privacySensitive().accessibilityIdentifier("reading-html-config")
                 } header: { Text(text("Configuration")) } footer: {
                     Text(text("Describe the site's lists, details and chapters using CSS selectors. Use {query} and {page} in the search and browse paths."))
                 }
                 if let error { Section { Text(error).foregroundStyle(.orange).accessibilityIdentifier("reading-html-error") } }
                 if saving { Section { ProgressView(text("Saving")) } }
-            }.scrollContentBackground(.hidden).background(HarborTheme.background).tint(HarborTheme.accent)
+            }.scrollContentBackground(.hidden).scrollDismissesKeyboard(.interactively).background(HarborTheme.background).tint(HarborTheme.accent).defaultFocus($focused, .name)
                 .navigationTitle(text(draft.plugin == nil ? "Add source" : "Edit source")).navigationBarTitleDisplayMode(.inline)
                 .toolbar {
                     ToolbarItem(placement: .cancellationAction) { Button(text("Cancel")) { operation?.cancel(); dismiss() }.accessibilityIdentifier("reading-html-cancel") }
@@ -61,7 +63,7 @@ struct HarborReadingHTMLEditor: View {
         }
     }
     private func save() {
-        guard !saving else { return }; saving = true; error = nil
+        guard !saving else { return }; focused = nil; saving = true; error = nil
         operation = Task {
             defer { saving = false; operation = nil }
             do {

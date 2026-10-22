@@ -36,25 +36,28 @@ final class HarborReadingPluginInterfaceSeedTests: XCTestCase {
         if context.configuration?.guestAddons == nil { try context.save(HouseholdSourceAccount(account: nil, guestAddons: [])) }
         let store = try HarborReadingPluginStore(), document = try await store.load()
         guard document.plugins.isEmpty, document.repositories.isEmpty else { XCTFail("Refuse configured reading sources"); return }
-        try await appendBulk(store, document: document)
+        try await Self.appendBulk(store, document: document)
         let defaults = UserDefaults.standard
         defaults.set("es", forKey: "uiLanguage"); defaults.set(true, forKey: "nativeGuide.initialized.v1"); defaults.set(true, forKey: "nativeGuide.completed.v1")
         defaults.set(false, forKey: "interface.autoRotateBanners")
     }
     @MainActor func testPrepareOwnedReadingSourcesInTheOrdinaryLocalInstallation() async throws {
-        try await prepare(catalog: false)
+        try await Self.prepare(catalog: false)
     }
     @MainActor func testPrepareOwnedCombinedBookCatalogInTheOrdinaryLocalInstallation() async throws {
-        try await prepare(catalog: true)
+        try await Self.prepare(catalog: true)
     }
     @MainActor func testPrepareAllPendingReadingInterfacesInOneFreshInstallation() async throws {
+        try await Self.prepareAllPendingReadingInterfaces()
+    }
+    @MainActor static func prepareAllPendingReadingInterfaces() async throws {
         try await prepare(catalog: true)
         let store = try HarborReadingPluginStore(), document = try await store.load()
         guard document.plugins.count == 3, document.plugins.allSatisfy({ $0.entry.id.hasPrefix("owned.ui.reading.") }),
               document.repositories.allSatisfy({ $0.url.hasPrefix("https://example.org/owned-reading/") }) else { XCTFail("Refuse configured reading sources"); return }
         try await appendBulk(store, document: document)
     }
-    @MainActor private func appendBulk(_ store: HarborReadingPluginStore, document: HarborReadingPluginDocument) async throws {
+    @MainActor private static func appendBulk(_ store: HarborReadingPluginStore, document: HarborReadingPluginDocument) async throws {
         let entries = ["bad", "a", "b"].map { name in
             HarborReadingPluginEntry(raw: .object(["id": .string("owned.ui.reading.bulk." + name), "name": .string("Owned bulk " + name), "entry": .string(name + ".js"), "version": .string("1")]))
         }
@@ -62,7 +65,7 @@ final class HarborReadingPluginInterfaceSeedTests: XCTestCase {
         next.repositories.append(.init(kind: .ebook, url: "http://127.0.0.1:18734/bulk/repo.json", name: "Owned bulk repository", entries: entries, checkedAt: Date()))
         _ = try await store.commit(next, expected: document.revision)
     }
-    @MainActor private func prepare(catalog: Bool) async throws {
+    @MainActor private static func prepare(catalog: Bool) async throws {
         guard try KeychainStore().read("account.v1", as: JSONValue.self) == nil else { XCTFail("Refuse to seed an account"); return }
         let context = AppProfileContext.shared; try context.prepare()
         guard context.profiles.profiles.count == 1, context.profiles.active?.credential == nil,

@@ -17,6 +17,7 @@ struct HarborReadingPluginManagementView: View {
                 HarborSettingsSegmented(selection: $tab, choices: [(text("Plugins"), "plugins"), (text("Repositories"), "repositories")])
                 HarborSearchField(prompt: text("Search"), text: $query)
                 Button(text("Add source")) { htmlDraft = .init() }.buttonStyle(HarborAccountButtonStyle()).disabled(manager.busy).accessibilityIdentifier("reading-html-add")
+                if kind == .ebook { NavigationLink { EBookMetadataSettingsView(manager: manager) } label: { Label(text("Book metadata"), systemImage: "books.vertical") } }
                 if let failure { Text(failure).font(HarborTheme.font(14)).foregroundStyle(ThemePreferences.shared.color("danger")) }
                 if manager.busy { ProgressView() }
                 if tab == "plugins" { installed }

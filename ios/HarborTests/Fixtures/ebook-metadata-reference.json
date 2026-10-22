@@ -1,0 +1,402 @@
+{
+  "cases": [
+    {
+      "name": "AniList novel identity authors dates and content",
+      "input": {
+        "operation": "map",
+        "kind": "anilist",
+        "raw": {
+          "id": 42,
+          "title": {
+            "english": "Owned Novel",
+            "romaji": "Owned Romaji",
+            "native": "所有小説"
+          },
+          "coverImage": {
+            "extraLarge": "https://example.org/large.jpg",
+            "large": "https://example.org/small.jpg"
+          },
+          "bannerImage": null,
+          "description": "<p>Owned description<br>Second line</p>",
+          "startDate": {
+            "year": 2020,
+            "month": 2,
+            "day": 3
+          },
+          "status": "FINISHED",
+          "genres": ["Fantasy"],
+          "chapters": 20,
+          "volumes": 2,
+          "averageScore": 85,
+          "countryOfOrigin": "JP",
+          "siteUrl": "https://anilist.co/manga/42",
+          "staff": {
+            "edges": [
+              {
+                "role": "Story",
+                "node": {
+                  "name": {
+                    "full": "Owned Writer"
+                  }
+                }
+              },
+              {
+                "role": "Art",
+                "node": {
+                  "name": {
+                    "full": "Owned Artist"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      },
+      "expected": {
+        "id": "anilist:42",
+        "source": "anilist",
+        "anilistId": 42,
+        "title": "Owned Novel",
+        "altTitle": "Owned Romaji",
+        "authors": ["Owned Writer"],
+        "cover": "https://example.org/large.jpg",
+        "description": "Owned description\nSecond line",
+        "year": 2020,
+        "publishedAt": "2020-02-03",
+        "status": "finished",
+        "originalLanguage": "JP",
+        "genres": ["Fantasy"],
+        "chapters": 20,
+        "volumes": 2,
+        "score": 85,
+        "siteUrl": "https://anilist.co/manga/42"
+      }
+    },
+    {
+      "name": "Google Books chooses ISBN13 and largest HTTPS cover",
+      "input": {
+        "operation": "map",
+        "kind": "googlebooks",
+        "raw": {
+          "id": "owned-google",
+          "volumeInfo": {
+            "title": "Owned Book",
+            "authors": ["Owned Writer"],
+            "publishedDate": "1999-04-01",
+            "description": "<p>Owned</p>",
+            "industryIdentifiers": [
+              {
+                "type": "ISBN_10",
+                "identifier": "0123456789"
+              },
+              {
+                "type": "ISBN_13",
+                "identifier": "9780123456789"
+              }
+            ],
+            "categories": ["Fiction"],
+            "averageRating": 4.5,
+            "imageLinks": {
+              "thumbnail": "http://example.org/thumb.jpg",
+              "large": "http://example.org/large.jpg"
+            },
+            "infoLink": "https://books.google.com/owned"
+          }
+        }
+      },
+      "expected": {
+        "id": "googlebooks:owned-google",
+        "source": "googlebooks",
+        "googleBooksId": "owned-google",
+        "isbn": "9780123456789",
+        "title": "Owned Book",
+        "authors": ["Owned Writer"],
+        "cover": "https://example.org/large.jpg",
+        "description": "Owned",
+        "year": 1999,
+        "publishedAt": "1999-04-01",
+        "genres": ["Fiction"],
+        "score": 90,
+        "siteUrl": "https://books.google.com/owned"
+      }
+    },
+    {
+      "name": "Open Library preserves edition and reading metadata",
+      "input": {
+        "operation": "map",
+        "kind": "openlibrary",
+        "raw": {
+          "key": "/works/OWNED",
+          "title": "Owned library book",
+          "author_name": ["Writer"],
+          "first_sentence": ["Opening."],
+          "first_publish_year": 1900,
+          "subject": ["Fantasy"],
+          "number_of_pages_median": 200,
+          "edition_count": 4,
+          "ratings_average": 4.2,
+          "ratings_count": 12,
+          "want_to_read_count": 50,
+          "subject_people": ["Person"],
+          "subject_places": ["Place"],
+          "subject_times": ["Time"],
+          "language": ["eng", "spa"],
+          "ia": ["copy1", "copy2"],
+          "cover_i": 12,
+          "isbn": ["123"]
+        }
+      },
+      "expected": {
+        "id": "openlibrary:OWNED",
+        "source": "openlibrary",
+        "openLibraryId": "OWNED",
+        "isbn": "123",
+        "title": "Owned library book",
+        "authors": ["Writer"],
+        "cover": "https://covers.openlibrary.org/b/id/12-L.jpg",
+        "description": "Opening.",
+        "year": 1900,
+        "publishedAt": "1900",
+        "genres": ["Fantasy"],
+        "pages": 200,
+        "editionCount": 4,
+        "readerRating": 4.2,
+        "readerRatingCount": 12,
+        "shelvedBy": 50,
+        "people": ["Person"],
+        "places": ["Place"],
+        "periods": ["Time"],
+        "languages": ["eng", "spa"],
+        "archiveCopies": 2,
+        "siteUrl": "https://openlibrary.org/works/OWNED"
+      }
+    },
+    {
+      "name": "Verified metadata enriches without losing readable source",
+      "input": {
+        "operation": "merge",
+        "books": [
+          {
+            "id": "source:owned",
+            "source": "source",
+            "providerId": "plugin:owned",
+            "sourceItemId": "one",
+            "title": "Owned Book",
+            "authors": ["Owned Writer"],
+            "genres": [],
+            "description": "Source description",
+            "chapters": 12,
+            "volumes": 1
+          }
+        ],
+        "metadata": [
+          {
+            "id": "googlebooks:owned-google",
+            "source": "googlebooks",
+            "googleBooksId": "owned-google",
+            "isbn": "9780123456789",
+            "title": "Owned Book",
+            "authors": ["Owned Writer"],
+            "cover": "https://example.org/large.jpg",
+            "description": "Owned",
+            "year": 1999,
+            "publishedAt": "1999-04-01",
+            "genres": ["Fiction"],
+            "score": 90,
+            "siteUrl": "https://books.google.com/owned"
+          }
+        ]
+      },
+      "expected": [
+        {
+          "id": "source:owned",
+          "source": "source",
+          "providerId": "plugin:owned",
+          "sourceItemId": "one",
+          "title": "Owned Book",
+          "authors": ["Owned Writer"],
+          "genres": ["Fiction"],
+          "description": "Owned",
+          "chapters": 12,
+          "volumes": 1,
+          "googleBooksId": "owned-google",
+          "isbn": "9780123456789",
+          "altTitle": "Owned Book",
+          "verifiedAliases": ["Owned Book"],
+          "internalCover": "https://example.org/large.jpg",
+          "cover": "https://example.org/large.jpg",
+          "year": 1999,
+          "publishedAt": "1999-04-01",
+          "score": 90,
+          "siteUrl": "https://books.google.com/owned"
+        }
+      ]
+    },
+    {
+      "name": "Unrelated authors cannot lend another book's metadata",
+      "input": {
+        "operation": "merge",
+        "books": [
+          {
+            "id": "source:owned",
+            "source": "source",
+            "providerId": "plugin:owned",
+            "sourceItemId": "one",
+            "title": "Owned Book",
+            "authors": ["Different Writer"],
+            "genres": [],
+            "description": "Source description",
+            "chapters": 12,
+            "volumes": 1
+          }
+        ],
+        "metadata": [
+          {
+            "id": "googlebooks:owned-google",
+            "source": "googlebooks",
+            "googleBooksId": "owned-google",
+            "isbn": "9780123456789",
+            "title": "Owned Book",
+            "authors": ["Owned Writer"],
+            "cover": "https://example.org/large.jpg",
+            "description": "Owned",
+            "year": 1999,
+            "publishedAt": "1999-04-01",
+            "genres": ["Fiction"],
+            "score": 90,
+            "siteUrl": "https://books.google.com/owned"
+          }
+        ]
+      },
+      "expected": [
+        {
+          "id": "source:owned",
+          "source": "source",
+          "providerId": "plugin:owned",
+          "sourceItemId": "one",
+          "title": "one",
+          "authors": ["Different Writer"],
+          "genres": [],
+          "description": "Source description",
+          "chapters": 12,
+          "volumes": 1
+        }
+      ]
+    }
+  ],
+  "anilist": {
+    "id": 42,
+    "title": {
+      "english": "Owned Novel",
+      "romaji": "Owned Romaji",
+      "native": "所有小説"
+    },
+    "coverImage": {
+      "extraLarge": "https://example.org/large.jpg",
+      "large": "https://example.org/small.jpg"
+    },
+    "bannerImage": null,
+    "description": "<p>Owned description<br>Second line</p>",
+    "startDate": {
+      "year": 2020,
+      "month": 2,
+      "day": 3
+    },
+    "status": "FINISHED",
+    "genres": ["Fantasy"],
+    "chapters": 20,
+    "volumes": 2,
+    "averageScore": 85,
+    "countryOfOrigin": "JP",
+    "siteUrl": "https://anilist.co/manga/42",
+    "staff": {
+      "edges": [
+        {
+          "role": "Story",
+          "node": {
+            "name": {
+              "full": "Owned Writer"
+            }
+          }
+        },
+        {
+          "role": "Art",
+          "node": {
+            "name": {
+              "full": "Owned Artist"
+            }
+          }
+        }
+      ]
+    }
+  },
+  "google": {
+    "id": "owned-google",
+    "volumeInfo": {
+      "title": "Owned Book",
+      "authors": ["Owned Writer"],
+      "publishedDate": "1999-04-01",
+      "description": "<p>Owned</p>",
+      "industryIdentifiers": [
+        {
+          "type": "ISBN_10",
+          "identifier": "0123456789"
+        },
+        {
+          "type": "ISBN_13",
+          "identifier": "9780123456789"
+        }
+      ],
+      "categories": ["Fiction"],
+      "averageRating": 4.5,
+      "imageLinks": {
+        "thumbnail": "http://example.org/thumb.jpg",
+        "large": "http://example.org/large.jpg"
+      },
+      "infoLink": "https://books.google.com/owned"
+    }
+  },
+  "open": {
+    "key": "/works/OWNED",
+    "title": "Owned library book",
+    "author_name": ["Writer"],
+    "first_sentence": ["Opening."],
+    "first_publish_year": 1900,
+    "subject": ["Fantasy"],
+    "number_of_pages_median": 200,
+    "edition_count": 4,
+    "ratings_average": 4.2,
+    "ratings_count": 12,
+    "want_to_read_count": 50,
+    "subject_people": ["Person"],
+    "subject_places": ["Place"],
+    "subject_times": ["Time"],
+    "language": ["eng", "spa"],
+    "ia": ["copy1", "copy2"],
+    "cover_i": 12,
+    "isbn": ["123"]
+  },
+  "base": {
+    "id": "source:owned",
+    "source": "source",
+    "providerId": "plugin:owned",
+    "sourceItemId": "one",
+    "title": "Owned Book",
+    "authors": ["Owned Writer"],
+    "genres": [],
+    "description": "Source description",
+    "chapters": 12,
+    "volumes": 1
+  },
+  "additionalChecks": [
+    "key-validation-request",
+    "anonymous-graphql-request-and-pagination",
+    "Arabic-original-synonym",
+    "actual-network-enrichment-and-verified-source",
+    "incremental-native-progress",
+    "configured-key-excluded-from-cache",
+    "fresh-result-does-not-repeat-network",
+    "exact-six-source-queries",
+    "metadata-links-to-readable-route"
+  ]
+}

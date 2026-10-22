@@ -18,6 +18,15 @@ La referencia de código es `0834340cec5531650bfe78cd628628702e636987`, identifi
 
 ## Trabajo y evidencia
 
+Actualización del 22 de octubre: se integra el motor original de metadatos y
+descubrimiento de libros, su caché y clave opcional por perfil, fuentes de
+lectura verificadas, colecciones y recomendaciones. Se corrigen el acceso a
+fuentes locales de lectura, los toques en portadas y el foco del editor. Se
+conservan doce aprobaciones nativas del bloque conjunto y las cuatro de HTML;
+el incremento nuevo todavía requiere su compilación y recorridos en Apple.
+[Implementación, evidencia y pendientes de Libros](ebook-metadata-0.9.132.md).
+La próxima IPA sigue reservada al alcance completo validado.
+
 El propietario pidió una **única próxima IPA con todos los cambios pendientes del port**, sin generar una IPA por cada añadido. Las comprobaciones parciales de desarrollo conservan sus resultados y capturas, y se ejecutan sin empaquetado de IPA. La siguiente entrega instalable queda reservada a la integración completa y validada del alcance 1:1; los avances parciales no cambian ese criterio.
 
 El inventario reproducible de esta referencia se registra por separado de las matrices históricas. Los estados anteriores conservan su evidencia original: no se convierten automáticamente en equivalencia con 0.9.132. El 19 de octubre se retiró el 75 % conversacional como indicador fiable: se había repetido sin recalcularlo. No hay un porcentaje actual auditado ni una fecha defendible. Las actualizaciones deben distinguir cambios implementados, resultados realmente comprobados y trabajo pendiente; un despacho de CI, un test nuevo o una corrección del sistema de pruebas no equivale automáticamente a más funciones portadas. La revisión visual y de animaciones conserva todo el alcance acordado.
