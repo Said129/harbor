@@ -113,7 +113,11 @@ import UIKit
             let context = try XCTUnwrap(CGContext(data: buffer.baseAddress, width: 80, height: 80, bitsPerComponent: 8, bytesPerRow: 320, space: CGColorSpaceCreateDeviceRGB(), bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue | CGBitmapInfo.byteOrder32Big.rawValue))
             context.draw(crop, in: CGRect(x: 0, y: 0, width: 80, height: 80))
         }
-        let colored = stride(from: 0, to: pixels.count, by: 4).filter { Int(pixels[$0 + 2]) > Int(pixels[$0]) + 40 && Int(pixels[$0 + 2]) > Int(pixels[$0 + 1]) + 40 }.count
+        var colored = 0
+        for offset in stride(from: 0, to: pixels.count, by: 4) {
+            let red = Int(pixels[offset]), green = Int(pixels[offset + 1]), blue = Int(pixels[offset + 2])
+            if blue > red + 40 && blue > green + 40 { colored += 1 }
+        }
         XCTAssertGreaterThan(Double(colored) / 6400, 0.65, "The fixture page must fill the reader image, not remain a small picture in a white canvas")
     }
 }

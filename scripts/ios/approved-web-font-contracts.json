@@ -1,0 +1,40 @@
+{
+  "run": 39852325983,
+  "source": "03a75761c472317bab9ae451ec12ed77a1a46f5d",
+  "archive_sha256": "6a9cff446363432522ef71b1ae37fdbd85a00e74af9552132ccbdde2757b9684",
+  "actual_passed_cases": [
+    "font_decode::tests::raw_abi_returns_one_owned_slice_and_rejects_null_or_oversized_input",
+    "font_decode::tests::rejects_bad_headers_and_inflated_allocations_before_decoding",
+    "font_decode::tests::decodes_the_owned_actual_woff_font_and_keeps_sfnt_table_data",
+    "font_decode::tests::decodes_the_owned_woff2_with_glyf_loca_and_hmtx_transformations",
+    "font_decode::tests::restores_sfnt_directory_and_checksum_from_an_uncompressed_woff_table"
+  ],
+  "clippy_all_targets_passed": true,
+  "original_test_log_sha256": "01e6c9ce6bf4e3621bbc59a8eb2a32b05793631b69a0ee4b6d4f3aa40eca0f2a",
+  "original_clippy_log_sha256": "eb96c495483c2d70f3cc1c60d27baa41f2f621ddb1f43b7ea6e984e552bf4429",
+  "inputs": {
+    "harbor-core/Cargo.toml": "62d69f2c25461096f82ca612ab6ee2040b33c13f6ba9df653b4e4498541f8ca1",
+    "harbor-core/src/account.rs": "451009072af196c3e6bd9128f1ff998157e1f36a45717bc5ee421dd5fc47226a",
+    "harbor-core/src/addons.rs": "45f0efeba869d4684e5abb92e7b2000f059135280138859fa0f5f16fb5f9730e",
+    "harbor-core/src/lib.rs": "04cc32244784272940553565e977f88520bdc62beec36fc880fe4a25aa3cdf0f",
+    "harbor-core/src/music.rs": "8d5cb21ef11d80d4886729226e93bdd40572bfb48e2cfdfec1c5537af7400323",
+    "harbor-core/src/parser.rs": "776ea79e6e0f0f72c91c15d70871543e2bb716908039024b97d88291791dbe62",
+    "harbor-core/src/resume.rs": "18b39c16338d335af7a7bd8d27849badf15e39f840212d6cda077749db3bea47",
+    "harbor-core/src/scoring.rs": "4464b1322e3d35130da8241e7099279dc027be05b85b946fe2f7f63b25e516a6",
+    "harbor-core/src/trust.rs": "861233faf0f0908cfa94c01b5c8cb522e65dbaeb4aa4d0ae9dc685fc3860c7f3",
+    "harbor-core/src/types.rs": "eaa7a454519360a583c990831017f31da6e130c3b403b8431d3340ab7548082b",
+    "harbor-core/src/wasm.rs": "f8ddb74a73e5ae83add2e8c4087c03a987908936f1f7450fad969178d2278699",
+    "harbor-ios-bridge/Cargo.lock": "e30836b00c53796ce98bea3d0091ddc9315b9756d9a55baaa529432d3c470917",
+    "harbor-ios-bridge/Cargo.toml": "628962dea76ac3e95c7f73c323f7203db3a96c6f5664acd64d12e79f925ee57f",
+    "harbor-ios-bridge/include/harbor_ios.h": "ac9c539894a4a46e4092de881e2629c2f451b232d3d9bae1fac53d9d17b54e0f",
+    "harbor-ios-bridge/src/dispatch.rs": "c55995c7567245669e35b3a2f765fc259a693503f29539029ad539f1ba33ff71",
+    "harbor-ios-bridge/src/font_decode.rs": "caceb7d54a2f14e66f4bb23c0a85af2aaf8b7e3b00f6025abc1db3bc6f9c1be1",
+    "harbor-ios-bridge/src/lib.rs": "f3ce4b397d332d8dbc14972657ce6c8c1b67c2610c8de77ab1bdf04cf684250f",
+    "harbor-ios-bridge/src/plugin_http.rs": "ca5460a4ce22735ffab8a559996a3240837c3a8794f0f0b81f9c51238504bf4e",
+    "harbor-ios-bridge/src/plugin_network.rs": "a0ef2c95ad4b397c6e3f64be21537079abaced9c96cdc8f80ea93be4f8e26a23",
+    "ios/HarborTests/Fixtures/owned-reader-woff.ttf": "98860307c8a87952815e01f0635065ddd274f463897e4ecf6c834754b85c0d5b",
+    "ios/HarborTests/Fixtures/owned-reader-woff.woff": "a99dce2ce564e4a610c1138de58d48c23267bebe2834281a44bf3439455cd2aa",
+    "ios/HarborTests/Fixtures/owned-reader-woff2.ttf": "6d9e817d56b9e1a2b8310fa24d75b982749a7b91a92cf81431f2077102f0be30",
+    "ios/HarborTests/Fixtures/owned-reader-woff2.woff2": "16c05ad4735b4e5ee5b9505145add8d57fd541000594d14b4241b4ad329cb7a0"
+  }
+}
