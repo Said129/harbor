@@ -18,6 +18,13 @@ La referencia de código es `0834340cec5531650bfe78cd628628702e636987`, identifi
 
 ## Trabajo y evidencia
 
+Libros incorpora las listas independientes de Marcados, Favoritos y Leer
+después, además de filtros de lectura y finalizados. Quitar una marca conserva
+el archivo y su progreso. La migración local respeta los perfiles y conserva
+los datos ante fallos de almacenamiento; tres comprobaciones nativas nuevas
+están preparadas y pendientes de Apple. No implica sincronización remota ya
+aprobada. [Alcance de las listas](ebook-library-0.9.132.md).
+
 En integración, 22 de octubre: la ficha de Libros incorpora los volúmenes,
 búsqueda y orden de capítulos, lista/cuadrícula y paginación de Desktop. Abrir
 un capítulo conserva su ruta original aunque se cambie el orden visible. Los

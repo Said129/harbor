@@ -22,6 +22,7 @@ struct EBooksView: View {
     @State private var reload = UUID()
     @State private var query = ""
     @State private var screen = "browse"
+    @State private var shelfFilter = "all"
     @State private var language = ""
     @AppStorage("ebook.shelfSort") private var shelfSort = "title"
     @State private var more = false
@@ -72,6 +73,16 @@ struct EBooksView: View {
                     else { ProgressView().frame(maxWidth: .infinity) }
                 } else {
                     HStack { Text("Tu estantería").font(.headline); Spacer(); ReadingSortMenu(selection: $shelfSort) }.padding(.horizontal)
+                    Picker(DesktopInterfaceText.value("Library"), selection: $shelfFilter) {
+                        Text(DesktopInterfaceText.value("All")).tag("all")
+                        ForEach(EBookLibraryList.allCases, id: \.self) { Text(DesktopInterfaceText.value($0.title)).tag($0.rawValue) }
+                        Text(DesktopInterfaceText.value("Continue reading")).tag("reading")
+                        Text(DesktopInterfaceText.value("Completed")).tag("completed")
+                    }.padding(.horizontal).accessibilityIdentifier("ebook-shelf-filter")
+                    if let message = shelf.library.error {
+                        Text(message).font(.caption).foregroundStyle(.secondary).padding(.horizontal)
+                        Button(DesktopInterfaceText.value("Retry")) { shelf.library.reload() }.padding(.horizontal)
+                    }
                     grid(savedBooks)
                     if savedBooks.isEmpty { ContentUnavailableView(query.isEmpty ? "Tu estantería" : "Sin resultados", image: "nav-ebook", description: Text(query.isEmpty ? "Los libros que abras e importes aparecerán aquí." : "Busca por título o autor entre tus libros guardados.")) }
                 }
@@ -113,10 +124,15 @@ struct EBooksView: View {
     }
     private var savedBooks: [EBook] {
         let order = ReadingShelfSort(rawValue: shelfSort) ?? .title
-        return shelf.records.filter { ReadingShelfSort.matches(query, title: $0.book.title, author: $0.book.authors.joined(separator: " ")) }.sorted {
-            order.before(title: $0.book.title, author: $0.book.authors.joined(separator: " "), updated: $0.updated, id: $0.id,
-                         title: $1.book.title, author: $1.book.authors.joined(separator: " "), updated: $1.updated, id: $1.id)
-        }.map(\.book)
+        let entries: [EBook]
+        if let list = EBookLibraryList(rawValue: shelfFilter) { entries = shelf.library.books(list) }
+        else if shelfFilter == "reading" || shelfFilter == "completed" { entries = shelf.records.filter { $0.completed == (shelfFilter == "completed") }.map(\.book) }
+        else { entries = shelf.records.map(\.book) + EBookLibraryList.allCases.flatMap { shelf.library.books($0) } }
+        var seen = Set<String>()
+        return entries.filter { seen.insert($0.id).inserted && ReadingShelfSort.matches(query, title: $0.title, author: $0.authors.joined(separator: " ")) }.sorted {
+            order.before(title: $0.title, author: $0.authors.joined(separator: " "), updated: shelf.record($0)?.updated ?? .distantPast, id: $0.id,
+                         title: $1.title, author: $1.authors.joined(separator: " "), updated: shelf.record($1)?.updated ?? .distantPast, id: $1.id)
+        }
     }
     private func grid(_ entries: [EBook]) -> some View {
         LazyVGrid(columns: [GridItem(.adaptive(minimum: 110, maximum: 180))], alignment: .leading, spacing: 18) {
@@ -132,9 +148,15 @@ struct EBooksView: View {
                         }
                     }.contentShape(Rectangle())
                 }.buttonStyle(.plain).accessibilityIdentifier("ebook-card-" + book.id).contextMenu {
+                    ForEach(EBookLibraryList.allCases, id: \.self) { list in
+                        let selected = shelf.library.contains(book, in: list)
+                        Button {
+                            do { try shelf.library.toggle(book, in: list) } catch { self.error = safeMessage(error) }
+                        } label: { Label(DesktopInterfaceText.value(list.title), systemImage: list.symbol + (selected ? ".fill" : "")) }.disabled(!shelf.library.ready)
+                    }
                     if screen == "shelf" {
                         Button("Eliminar libro guardado", role: .destructive) {
-                            Task { do { try await EBookService.shared.remove(book, owner: shelf.owner); try shelf.remove(book) } catch { self.error = safeMessage(error) } }
+                            Task { do { try await EBookService.shared.remove(book, owner: shelf.owner); try shelf.remove(book); try shelf.library.removeEverywhere(book) } catch { self.error = safeMessage(error) } }
                         }
                     }
                 }
@@ -230,6 +252,7 @@ struct EBooksView: View {
             try Task.checkCancellation()
             guard shelf.owner == (app.personalOwner) else { return }
             try shelf.addImported(book)
+            try shelf.library.add(book, to: .saved)
             screen = "shelf"
             if open { imported = book }
         } catch is CancellationError { return }

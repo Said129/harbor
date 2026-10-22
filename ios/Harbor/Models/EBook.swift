@@ -49,6 +49,11 @@ final class EBookShelf {
     private(set) var records: [EBookRecord] = []
     private(set) var ready = false
     var error: String?
+    @ObservationIgnored private var bookLists: EBookLibraryStore?
+    var library: EBookLibraryStore {
+        if let bookLists { return bookLists }
+        let loaded = EBookLibraryStore(owner: owner, legacy: ready ? records.map(\.book) : nil); bookLists = loaded; return loaded
+    }
     init(owner: String) {
         self.owner = owner
         do { records = try KeychainStore().read(Self.key(owner), as: [EBookRecord].self) ?? []; ready = true }

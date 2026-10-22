@@ -27,6 +27,11 @@ struct EBookDetailView: View {
             VStack(alignment: .leading, spacing: 24) {
                 header
                 actions
+                listActions
+                if let message = shelf.library.error {
+                    Text(message).font(.caption).foregroundStyle(.secondary)
+                    Button(text("Retry")) { shelf.library.reload() }
+                }
                 if sources.count > 1 || !book.readable { sourcePicker }
                 if resolving { ProgressView(text("Finding sources...")).font(.caption).frame(maxWidth: .infinity).accessibilityIdentifier("ebook-resolving-sources") }
                 if !resolving && sources.isEmpty && !current.readable { Text(text("No sources found")).font(.caption).foregroundStyle(.secondary) }
@@ -77,12 +82,25 @@ struct EBookDetailView: View {
     private var save: some View {
         Button {
             do {
-                if shelf.record(current) == nil { try shelf.addImported(current) }
-                else { try shelf.remove(current) }
+                try shelf.library.toggle(current, in: .saved)
             } catch { self.error = safeMessage(error) }
         } label: {
-            Label(text(shelf.record(current) == nil ? "Save to shelf" : "Remove from shelf"), systemImage: shelf.record(current) == nil ? "bookmark" : "bookmark.fill").frame(maxWidth: .infinity, minHeight: 44)
-        }.buttonStyle(.bordered).accessibilityIdentifier("ebook-detail-save")
+            Label(text(shelf.library.contains(current, in: .saved) ? "Bookmarked" : "Bookmark"), systemImage: shelf.library.contains(current, in: .saved) ? "bookmark.fill" : "bookmark").frame(maxWidth: .infinity, minHeight: 44)
+        }.buttonStyle(.bordered).disabled(!shelf.library.ready).accessibilityIdentifier("ebook-detail-save")
+    }
+    private var listActions: some View {
+        HStack(spacing: 14) {
+            ForEach([EBookLibraryList.favorites, .readLater], id: \.self) { list in
+                let selected = shelf.library.contains(current, in: list)
+                Button {
+                    do { try shelf.library.toggle(current, in: list) } catch { self.error = safeMessage(error) }
+                } label: {
+                    Label(text(list.title), systemImage: list.symbol + (selected ? ".fill" : "")).font(.subheadline)
+                        .frame(maxWidth: .infinity, minHeight: 44)
+                }.buttonStyle(.bordered).tint(selected ? HarborTheme.accent : .secondary).disabled(!shelf.library.ready)
+                    .accessibilityAddTraits(selected ? [.isSelected] : []).accessibilityIdentifier("ebook-detail-list-" + list.rawValue)
+            }
+        }
     }
     private var sourcePicker: some View {
         VStack(alignment: .leading, spacing: 10) {
