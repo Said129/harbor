@@ -67,7 +67,7 @@ private struct EBookMetadataTransport: HarborPluginHostTransport {
                 let asset = try JSONDecoder().decode(Asset.self, from: Data(contentsOf: url))
                 let hash = SHA256.hash(data: Data(asset.program.source.utf8)).map { String(format: "%02x", $0) }.joined()
                 guard asset.schema == 1, asset.reference == "0834340cec5531650bfe78cd628628702e636987", asset.inputs.count == 6,
-                      hash == asset.program.sha256, hash == "6084b096042afdcf493c309b77b5885f25481478861c6981baa5afd23615f531" else { throw HarborPluginRuntimeError("ebook-metadata-assets") }
+                      hash == asset.program.sha256, hash == "ca03f3b2e7284dd8662af748694685cc33300c2327308adf06eda3430d8b2829" else { throw HarborPluginRuntimeError("ebook-metadata-assets") }
                 let transport = EBookMetadataTransport(network: self.network) { [weak self] id, value in
                     Task { [weak self] in
                         guard let self else { return }
@@ -77,9 +77,13 @@ private struct EBookMetadataTransport: HarborPluginHostTransport {
                     }
                 }
                 let runtime = HarborPluginRuntime(id: "trusted-ebook-metadata", name: "Harbor Books", source: asset.program.source, format: .raw,
-                    configuration: .object(["language": .string(self.language), "googleKey": .string(self.googleKey), "cache": .object(held.mapValues(JSONValue.string))]),
                     scope: self.scope, currentScope: self.currentScope, transport: transport)
-                do { _ = try await runtime.metadata(); try self.validate(); self.runtime = runtime; return runtime }
+                do {
+                    _ = try await runtime.metadata(); try self.validate()
+                    _ = try await runtime.call("content", arguments: [.object(["operation": .string("configure"), "options": .object([
+                        "language": .string(self.language), "googleKey": .string(self.googleKey), "cache": .object(held.mapValues(JSONValue.string))])])])
+                    try self.validate(); self.runtime = runtime; return runtime
+                }
                 catch { runtime.dispose(); throw error }
             }
             starting = (ticket, task)
@@ -145,6 +149,8 @@ private struct EBookMetadataTransport: HarborPluginHostTransport {
         let result = try await query("enrich", arguments: arguments) { value in
             await onPartial(EBookMetadataMapping.books(value, preserving: books))
         }
-        return EBookMetadataMapping.books(result, preserving: books)
+        let merged = EBookMetadataMapping.books(result, preserving: books)
+        try validate(); await onPartial(merged); try validate()
+        return merged
     }
 }

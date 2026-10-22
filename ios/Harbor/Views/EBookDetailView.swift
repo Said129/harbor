@@ -4,6 +4,7 @@ struct EBookDetailView: View {
     let book: EBook
     let shelf: EBookShelf
     let candidates: [EBook]
+    let app: AppModel?
     @Environment(\.readingPlugins) private var reading
     @State private var current: EBook
     @State private var expanded = false
@@ -12,8 +13,8 @@ struct EBookDetailView: View {
     @State private var retry = UUID()
     @State private var resolved: [EBook] = []
     @State private var resolving = false
-    init(book: EBook, shelf: EBookShelf, candidates: [EBook] = []) {
-        self.book = book; self.shelf = shelf; self.candidates = candidates
+    init(book: EBook, shelf: EBookShelf, candidates: [EBook] = [], app: AppModel? = nil) {
+        self.book = book; self.shelf = shelf; self.candidates = candidates; self.app = app
         _current = State(initialValue: book.withoutAlternatives)
     }
     private var sources: [EBook] {
@@ -42,7 +43,7 @@ struct EBookDetailView: View {
                     }
                 }
                 metadata
-                if let reading { EBookRelatedView(book: book, shelf: shelf, manager: reading, candidates: candidates + sources) }
+                if let reading { EBookRelatedView(book: book, shelf: shelf, manager: reading, candidates: candidates + sources, app: app) }
             }.padding(20).frame(maxWidth: 760).frame(maxWidth: .infinity)
         }.background(HarborTheme.background).navigationTitle(current.title).navigationBarTitleDisplayMode(.inline)
             .task(id: current.id + "|" + String(reading?.ready ?? false) + retry.uuidString) { await detail() }
@@ -159,7 +160,7 @@ struct EBookDetailView: View {
             guard !Task.isCancelled, current.id == id, let value = books.first else { return }
             current = value.withoutAlternatives
         }
-        do { let result = try await client.enrich([selected], onPartial: publish); await publish(result) } catch {}
+        do { _ = try await client.enrich([selected], onPartial: publish) } catch {}
     }
     private func resolveSources() async {
         guard let reading else { return }

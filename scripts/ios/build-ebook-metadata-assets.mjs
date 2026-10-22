@@ -112,7 +112,8 @@ function matchedSources(ebook,resolvedCandidates){${matches}return uniqueMatches
   },
 ).outputText;
 const source = `var plugin=(()=>{
-  const options=config??{};
+  let engine;
+  function create(options={}){
   const cache=new Map(Object.entries(options.cache??{}));
   const localStorage={getItem:key=>cache.get(key)??null,setItem:(key,value)=>cache.set(String(key),String(value)),removeItem:key=>cache.delete(key),key:index=>[...cache.keys()][index]??null,get length(){return cache.size;}};
   const window={setTimeout,clearTimeout,dispatchEvent(){}};
@@ -162,13 +163,18 @@ const source = `var plugin=(()=>{
       default:throw new Error("Unknown book metadata operation");
     }
   }};
+  }
+  return {id:"harbor-book-metadata",name:"Harbor Books",async content(input){
+    if(input.operation==="configure"){engine=create(input.options??{});return {configured:true};}
+    if(!engine)throw new Error("Book metadata has not been configured");
+    return engine.content(input);
+  }};
 })();`;
 new vm.Script(source);
 const fixtureCases = [];
 const requests = [];
-function runtime(options = {}) {
+async function runtime(options = {}) {
   const context = vm.createContext({
-    config: { language: "en", ...options },
     URL,
     URLSearchParams,
     AbortController,
@@ -201,9 +207,21 @@ function runtime(options = {}) {
     },
   });
   vm.runInContext(source, context);
+  assert.equal(context.config, undefined);
+  assert.deepEqual(
+    JSON.parse(
+      JSON.stringify(
+        await context.plugin.content({
+          operation: "configure",
+          options: { language: "en", ...options },
+        }),
+      ),
+    ),
+    { configured: true },
+  );
   return context.plugin;
 }
-const program = runtime();
+const program = await runtime();
 async function check(name, input, expected) {
   const actual = JSON.parse(JSON.stringify(await program.content(input)));
   assert.deepEqual(actual, expected, name);
@@ -391,7 +409,7 @@ const request = requests.find(({ url }) => url.includes("graphql.anilist"));
 assert(request);
 assert.equal(request.opts.headers.Authorization, undefined);
 assert.equal(JSON.parse(request.opts.body).variables.page, 2);
-const arabic = runtime({ language: "ar" });
+const arabic = await runtime({ language: "ar" });
 const localized = await arabic.content({
   operation: "map",
   kind: "anilist",
@@ -400,7 +418,7 @@ const localized = await arabic.content({
 assert.equal(localized.title, "الرواية");
 const keepAlive = setTimeout(() => {}, 10000);
 try {
-  const secret = runtime({ googleKey: "owned-secret-key" });
+  const secret = await runtime({ googleKey: "owned-secret-key" });
   const enriched = await secret.content({
     operation: "enrich",
     books: [base],

@@ -6,6 +6,7 @@ struct EBookDiscoveryView: View {
     let query: String
     let candidates: [EBook]
     let definitions: EBookCatalogDefinitions?
+    var app: AppModel? = nil
     @State private var mode = "popular"
     @State private var category = ""
     @State private var books: [EBook] = []
@@ -34,7 +35,7 @@ struct EBookDiscoveryView: View {
                 }.accessibilityIdentifier("ebook-discovery-category")
             }
             if let failure { Text(failure).font(.caption).foregroundStyle(.secondary); Button(text("Retry")) { Task { await load(next: false) } } }
-            EBookGrid(books: books, shelf: shelf, candidates: candidates)
+            EBookGrid(books: books, shelf: shelf, candidates: candidates, app: app)
             if loading { ProgressView(text("Loading")).frame(maxWidth: .infinity) }
             else if books.isEmpty && failure == nil { ContentUnavailableView(text("No results"), systemImage: "books.vertical") }
             if more { Button(text("Load more")) { Task { await load(next: true) } }.disabled(loading).frame(maxWidth: .infinity, minHeight: 44) }
@@ -70,10 +71,11 @@ struct EBookGrid: View {
     let books: [EBook]
     let shelf: EBookShelf
     var candidates: [EBook] = []
+    var app: AppModel? = nil
     var body: some View {
         LazyVGrid(columns: [GridItem(.adaptive(minimum: 110, maximum: 180))], alignment: .leading, spacing: 18) {
             ForEach(books) { book in
-                NavigationLink { EBookDetailView(book: book, shelf: shelf, candidates: candidates) } label: {
+                NavigationLink { EBookDetailView(book: book, shelf: shelf, candidates: candidates, app: app) } label: {
                     VStack(alignment: .leading, spacing: 7) {
                         EBookCover(book: book, owner: shelf.owner).aspectRatio(2.0 / 3.0, contentMode: .fit).clipShape(.rect(cornerRadius: 8))
                         Text(book.title).font(.caption.weight(.medium)).lineLimit(2)

@@ -5,6 +5,7 @@ struct EBookRelatedView: View {
     let shelf: EBookShelf
     let manager: HarborReadingPluginManager
     let candidates: [EBook]
+    var app: AppModel? = nil
     @State private var recommendations: [EBook] = []
     @State private var collections: [JSONValue] = []
     @State private var adaptations: JSONValue = .null
@@ -14,10 +15,10 @@ struct EBookRelatedView: View {
             ForEach(Array(collections.enumerated()), id: \.offset) { _, row in
                 VStack(alignment: .leading, spacing: 14) {
                     Text(row["collection"]["name"].string ?? text("Collection")).font(.title3.weight(.semibold))
-                    EBookGrid(books: EBookMetadataMapping.books(row["collection"]["books"], preserving: candidates), shelf: shelf, candidates: candidates)
+                    EBookGrid(books: EBookMetadataMapping.books(row["collection"]["books"], preserving: candidates), shelf: shelf, candidates: candidates, app: app)
                 }
             }
-            if !recommendations.isEmpty { Text(text("You may also like")).font(.title3.weight(.semibold)); EBookGrid(books: recommendations, shelf: shelf, candidates: candidates) }
+            if !recommendations.isEmpty { Text(text("You may also like")).font(.title3.weight(.semibold)); EBookGrid(books: recommendations, shelf: shelf, candidates: candidates, app: app) }
             ForEach(["manga", "anime", "liveAction"], id: \.self) { kind in
                 let entries = adaptations[kind].array
                 if !entries.isEmpty {
@@ -29,18 +30,24 @@ struct EBookRelatedView: View {
     }
     @ViewBuilder private func adaptation(_ row: JSONValue) -> some View {
         if let title = row["title"].string {
-            let url = row["siteUrl"].string.flatMap(URL.init(string:))
-            HStack(spacing: 14) {
+            if let app, ["anime", "manga"].contains(row["kind"].string ?? "") {
+                NavigationLink { EBookAdaptationDestination(item: row, book: book, manager: manager, app: app) } label: { adaptationLabel(row, title: title) }
+                    .buttonStyle(.plain).accessibilityIdentifier("ebook-adaptation-" + (row["id"].string ?? title))
+            } else if let value = row["siteUrl"].string, let url = URL(string: value), ["https", "http"].contains(url.scheme?.lowercased() ?? "") {
+                Link(destination: url) { adaptationLabel(row, title: title) }
+            } else { adaptationLabel(row, title: title) }
+        }
+    }
+    private func adaptationLabel(_ row: JSONValue, title: String) -> some View {
+        HStack(spacing: 14) {
                 AsyncImage(url: row["poster"].string.flatMap(URL.init(string:))) { image in image.resizable().scaledToFill() } placeholder: { Rectangle().fill(HarborTheme.surface) }
                     .frame(width: 48, height: 72).clipShape(.rect(cornerRadius: 6))
                 VStack(alignment: .leading, spacing: 6) {
-                    if let url, ["https", "http"].contains(url.scheme?.lowercased() ?? "") { Link(title, destination: url) }
-                    else { Text(title) }
+                    Text(title)
                     let description = [row["format"].string, row["relation"].string, row["year"].integer.map(String.init)].compactMap { $0 }.joined(separator: " · ")
                     if !description.isEmpty { Text(description).font(.caption).foregroundStyle(.secondary) }
                 }
                 Spacer()
-            }
         }
     }
     private func load() async {

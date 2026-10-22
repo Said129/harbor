@@ -68,7 +68,7 @@ struct EBooksView: View {
                     else if books.isEmpty { ContentUnavailableView("Sin resultados", image: "nav-ebook", description: Text("Busca por título o autor, o cambia el idioma.")) }
                     if more { Button("Cargar más") { Task { await load(next: true) } }.disabled(loading).frame(maxWidth: .infinity) }
                 } else if screen == "discover" {
-                    if let reading { EBookDiscoveryView(manager: reading, shelf: shelf, query: query, candidates: candidates, definitions: definitions) }
+                    if let reading { EBookDiscoveryView(manager: reading, shelf: shelf, query: query, candidates: candidates, definitions: definitions, app: app) }
                     else { ProgressView().frame(maxWidth: .infinity) }
                 } else {
                     HStack { Text("Tu estantería").font(.headline); Spacer(); ReadingSortMenu(selection: $shelfSort) }.padding(.horizontal)
@@ -121,7 +121,7 @@ struct EBooksView: View {
     private func grid(_ entries: [EBook]) -> some View {
         LazyVGrid(columns: [GridItem(.adaptive(minimum: 110, maximum: 180))], alignment: .leading, spacing: 18) {
             ForEach(entries) { book in
-                NavigationLink { EBookDetailView(book: book, shelf: shelf, candidates: candidates).environment(\.readingPlugins, reading) } label: {
+                NavigationLink { EBookDetailView(book: book, shelf: shelf, candidates: candidates, app: app).environment(\.readingPlugins, reading) } label: {
                     VStack(alignment: .leading, spacing: 6) {
                         EBookCover(book: book, owner: shelf.owner).aspectRatio(2.0 / 3.0, contentMode: .fit).clipShape(.rect(cornerRadius: 8))
                         Text(displayTitles[book.id] ?? book.title).font(.caption.weight(.medium)).lineLimit(2)
@@ -218,7 +218,7 @@ struct EBooksView: View {
             for book in result.flatMap({ $0.alternativeSources ?? [$0] }) { enriched[book.id] = book }
             try? await updateCatalog(token: token)
         }
-        do { let result = try await metadata.enrich(input, onPartial: publish); await publish(result) }
+        do { _ = try await metadata.enrich(input, onPartial: publish) }
         catch { /* Metadata is supplementary; source catalogs and readable routes remain available. */ }
     }
     private func importBook(_ file: URL, open: Bool = true) async {

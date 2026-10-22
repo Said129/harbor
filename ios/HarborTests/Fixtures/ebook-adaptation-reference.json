@@ -1,0 +1,251 @@
+{
+  "cases": [
+    {
+      "name": "Eight normalized distinct manga queries preserve original order",
+      "input": {
+        "operation": "manga-queries",
+        "item": {
+          "kind": "manga",
+          "title": "Owned Manga",
+          "altTitles": [
+            "OWNED MANGA",
+            "Ｏｗｎｅｄ Ｍａｎｇａ",
+            "Alias",
+            "第二",
+            "Third",
+            "Fourth",
+            "Fifth",
+            "Sixth",
+            "Seventh"
+          ]
+        },
+        "book": {
+          "title": "Owned Novel",
+          "altTitle": "Alias|الثاني",
+          "seriesTitle": "Series"
+        }
+      },
+      "expected": ["Owned Manga", "Alias", "第二", "Third", "Fourth", "Fifth", "Sixth", "Seventh"]
+    },
+    {
+      "name": "Exact manga matches prefer aliases and remove duplicate routes",
+      "input": {
+        "operation": "manga-choices",
+        "queries": ["Owned Manga", "Alias"],
+        "results": [
+          [
+            {
+              "id": "c",
+              "title": "Other"
+            },
+            {
+              "id": "a",
+              "title": "Owned Manga"
+            }
+          ],
+          [
+            {
+              "id": "b",
+              "title": "Different",
+              "altTitle": "Ａｌｉａｓ"
+            },
+            {
+              "id": "a",
+              "title": "Owned Manga"
+            }
+          ]
+        ]
+      },
+      "expected": [
+        {
+          "id": "a",
+          "title": "Owned Manga"
+        },
+        {
+          "id": "b",
+          "title": "Different",
+          "altTitle": "Ａｌｉａｓ"
+        }
+      ]
+    },
+    {
+      "name": "No exact manga match keeps at most three actual source routes",
+      "input": {
+        "operation": "manga-choices",
+        "queries": ["Absent"],
+        "results": [
+          [
+            {
+              "id": "a",
+              "title": "A"
+            },
+            {
+              "id": "b",
+              "title": "B"
+            },
+            {
+              "id": "c",
+              "title": "C"
+            },
+            {
+              "id": "d",
+              "title": "D"
+            }
+          ]
+        ]
+      },
+      "expected": [
+        {
+          "id": "a",
+          "title": "A"
+        },
+        {
+          "id": "b",
+          "title": "B"
+        },
+        {
+          "id": "c",
+          "title": "C"
+        }
+      ]
+    },
+    {
+      "name": "Known AniList adaptation opens its exact anime identity",
+      "input": {
+        "operation": "anime-route",
+        "item": {
+          "kind": "anime",
+          "title": "Owned",
+          "anilistId": 42,
+          "poster": "https://example.org/a.png",
+          "year": 2020,
+          "format": "TV"
+        }
+      },
+      "expected": {
+        "id": "anilist:42",
+        "type": "anime",
+        "name": "Owned",
+        "poster": "https://example.org/a.png",
+        "releaseInfo": "2020",
+        "animeFormat": "TV"
+      }
+    },
+    {
+      "name": "Anime exact normalized name takes precedence over first result",
+      "input": {
+        "operation": "anime-route",
+        "item": {
+          "kind": "anime",
+          "title": "Owned Anime",
+          "poster": "https://example.org/fallback.png"
+        },
+        "matches": [
+          {
+            "name": "Other",
+            "malId": 1,
+            "score": 0
+          },
+          {
+            "name": "OWNED-ANIME",
+            "malId": 2,
+            "kitsuId": 3,
+            "score": 8,
+            "format": "MOVIE"
+          }
+        ]
+      },
+      "expected": {
+        "id": "kitsu:3",
+        "type": "anime",
+        "name": "OWNED-ANIME",
+        "poster": "https://example.org/fallback.png",
+        "background": "https://example.org/fallback.png",
+        "imdbRating": "8.0",
+        "animeFormat": "MOVIE"
+      }
+    },
+    {
+      "name": "No exact anime title keeps original first real result",
+      "input": {
+        "operation": "anime-route",
+        "item": {
+          "kind": "anime",
+          "title": "Absent"
+        },
+        "matches": [
+          {
+            "name": "First",
+            "malId": 1,
+            "score": 0
+          }
+        ]
+      },
+      "expected": {
+        "id": "mal:1",
+        "type": "anime",
+        "name": "First"
+      }
+    },
+    {
+      "name": "No anime match does not manufacture a playable identity",
+      "input": {
+        "operation": "anime-route",
+        "item": {
+          "kind": "anime",
+          "title": "Absent"
+        },
+        "matches": []
+      },
+      "expected": null
+    }
+  ],
+  "anilistRows": [
+    {
+      "id": 10,
+      "idMal": 20,
+      "title": {
+        "english": "Owned Anime"
+      },
+      "seasonYear": 2020,
+      "averageScore": 80,
+      "coverImage": {
+        "large": "https://example.org/a.png"
+      }
+    }
+  ],
+  "jikanRows": [
+    {
+      "mal_id": 20,
+      "title": "Duplicate MAL"
+    },
+    {
+      "mal_id": 30,
+      "title_english": "Jikan Owned",
+      "score": 7
+    }
+  ],
+  "kitsuRows": [
+    {
+      "id": "40",
+      "attributes": {
+        "titles": {
+          "en": "owned anime"
+        }
+      }
+    },
+    {
+      "id": "41",
+      "attributes": {
+        "canonicalTitle": "Kitsu Owned",
+        "subtype": "TV",
+        "startDate": "2021-01-01"
+      }
+    }
+  ],
+  "additionalChecks": [
+    "actual-three-provider-search-and-deduplication",
+    "original-public-provider-endpoint",
+    "anonymous-anilist-query"
+  ]
+}
