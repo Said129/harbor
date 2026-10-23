@@ -6,6 +6,9 @@ import re
 import runpy
 
 requested = os.environ.get('HARBOR_NATIVE_SELECTION', '').strip()
+if requested == 'HarborTests.EBookBookmarkTests/':
+    runpy.run_path('scripts/ios/prepare-reader-bookmarks-selection.py')
+    raise SystemExit(0)
 if requested == 'ui-only:reader-interface-completion':
     runpy.run_path('scripts/ios/prepare-reader-interface-completion-selection.py')
     raise SystemExit(0)

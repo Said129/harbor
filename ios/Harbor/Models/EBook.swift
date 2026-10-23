@@ -31,6 +31,12 @@ struct EBookBookmark: Codable, Identifiable, Sendable {
     let chapter: Int
     let block: Int
     let preview: String
+    var chapterID: String?
+    var chapterTitle: String?
+    var chapterLabel: String?
+    var volumeLabel: String?
+    var line: Int?
+    var createdAt: Date?
 }
 
 struct EBookRecord: Codable, Identifiable, Sendable {

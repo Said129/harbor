@@ -137,8 +137,8 @@ struct EBookReaderView: View {
                     Menu {
                         Button("Índice") { contents = true }.accessibilityIdentifier("ebook-reader-contents-action")
                         Button(DesktopInterfaceText.value("Search chapter")) { passageSearch = true }.accessibilityIdentifier("ebook-passage-search-action")
-                        Button("Añadir marcador") { saveBookmark() }
-                        Button("Marcadores") { bookmarks = true }
+                        Button(DesktopInterfaceText.value("Bookmark current passage")) { saveBookmark() }.accessibilityIdentifier("ebook-bookmark-add-action")
+                        Button(DesktopInterfaceText.value("Bookmarks")) { bookmarks = true }.accessibilityIdentifier("ebook-bookmarks-action")
                         Button(narrator.speaking ? "Detener narración" : "Leer en voz alta") {
                             if narrator.speaking { narrator.stop() }
                             else { narrator.read(blocks.filter { $0.id >= (visible ?? 0) && $0.image == nil }.map(\.text).joined(separator: "\n\n"), language: publication?.language ?? book.language, rate: rate) }
@@ -187,12 +187,16 @@ struct EBookReaderView: View {
                 }
             }
             .sheet(isPresented: $bookmarks) {
-                NavigationStack {
-                    List {
-                        ForEach(record.bookmarks) { bookmark in
-                            Button { bookmarks = false; select(bookmark.chapter, block: bookmark.block) } label: { VStack(alignment: .leading, spacing: 6) { Text(publication?.chapters.indices.contains(bookmark.chapter) == true ? publication!.chapters[bookmark.chapter].title : "Marcador").font(.caption).foregroundStyle(.secondary); Text(bookmark.preview).lineLimit(3) } }
-                        }.onDelete { indices in var next = record; next.bookmarks.remove(atOffsets: indices); persist(next) }
-                    }.navigationTitle("Marcadores").toolbar { ToolbarItem(placement: .topBarTrailing) { Button("Listo") { bookmarks = false } } }
+                if let publication {
+                    EBookBookmarksView(items: record.bookmarks, publication: publication, volumes: readerVolumes) { bookmark, target in
+                        if target == chapter {
+                            guard blocks.contains(where: { $0.id == bookmark.block }) else { return }
+                            narrator.stop(); saveTask?.cancel(); settledBlock = bookmark.block; visible = bookmark.block
+                            passageJump = EBookReadingJump(block: bookmark.block); saveCurrentPosition()
+                        } else { select(target, block: bookmark.block) }
+                    } removed: { id in
+                        var next = record; next.bookmarks.removeAll { $0.id == id }; persist(next)
+                    }
                 }
             }
             .sheet(isPresented: $settings) {
@@ -252,6 +256,9 @@ struct EBookReaderView: View {
             visible = loaded.contains(where: { $0.id == saved.block }) ? saved.block : loaded.first?.id
             settledBlock = visible ?? loaded.first?.id ?? 0; contentRevision = UUID()
             if shelf.record(book) == nil { try shelf.save(EBookRecord(book: book)) }
+            if saved.bookmarks.contains(where: { $0.chapterID == nil && publication.chapters.indices.contains($0.chapter) }) {
+                var next = record; next.bookmarks = EBookBookmarks.upgrading(next.bookmarks, in: publication, volumes: volumes); persist(next)
+            }
         } catch is CancellationError { return }
         catch { self.error = safeMessage(error) }
     }
@@ -291,9 +298,11 @@ struct EBookReaderView: View {
         catch { self.error = "No se pudo guardar tu posición. El progreso anterior se conserva." }
     }
     private func saveBookmark() {
-        guard let block = blocks.first(where: { $0.id == settledBlock }) ?? blocks.first else { return }
-        var next = record
-        if !next.bookmarks.contains(where: { $0.chapter == chapter && $0.block == block.id }) { next.bookmarks.append(EBookBookmark(id: UUID(), chapter: chapter, block: block.id, preview: String(block.text.prefix(180)))); persist(next) }
+        guard let publication, let bookmark = EBookBookmarks.make(chapter: chapter, block: settledBlock,
+            paragraphs: EBookSearchParagraph.make(blocks), publication: publication, volumes: readerVolumes) else { return }
+        var next = record; next.bookmarks = EBookBookmarks.adding(bookmark, to: next.bookmarks, in: publication); next.updated = Date()
+        do { try shelf.save(next); bookmarks = true }
+        catch { self.error = "No se pudo guardar tu marcador. Los marcadores anteriores se conservan." }
     }
 }
 

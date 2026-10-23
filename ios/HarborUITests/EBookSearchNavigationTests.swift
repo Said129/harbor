@@ -48,7 +48,7 @@ import XCTest
         let mode = app.segmentedControls["ebook-reading-mode"]; XCTAssertTrue(mode.waitForExistence(timeout: 15)); mode.buttons["Book"].tap(); app.buttons["ebook-reader-settings-done"].tap()
         XCTAssertTrue(app.staticTexts["ebook-print-position"].waitForExistence(timeout: 30))
         openSearch(app)
-        XCTAssertTrue(field.waitForExistence(timeout: 15)); XCTAssertEqual(field.value as? String, "rEaDaBlE")
+        XCTAssertTrue(field.waitForExistence(timeout: 15)); XCTAssertEqual(field.value as? String, "readable")
         ReadingUIInteraction.replace(field, with: "PARAGRAPH 30.", in: app)
         XCTAssertTrue(reveal.waitForExistence(timeout: 20)); XCTAssertFalse(app.buttons["ebook-passage-result-30"].exists)
         capture(app, "book-search-resealed-" + device)
