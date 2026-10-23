@@ -6,6 +6,9 @@ import re
 import runpy
 
 requested = os.environ.get('HARBOR_NATIVE_SELECTION', '').strip()
+if 'EBookSearchTests/' in requested or 'ReadingBrightnessTests/' in requested:
+    runpy.run_path('scripts/ios/prepare-reader-completion-selection.py')
+    raise SystemExit(0)
 if 'EBookPaginationTests/' in requested:
     runpy.run_path('scripts/ios/prepare-book-pagination-selection.py')
     raise SystemExit(0)

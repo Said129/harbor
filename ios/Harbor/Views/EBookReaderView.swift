@@ -37,6 +37,10 @@ struct EBookReaderView: View {
     @State private var settings = false
     @State private var contents = false
     @State private var bookmarks = false
+    @State private var passageSearch = false
+    @State private var passageJump: EBookReadingJump?
+    @State private var passageQuery = ""
+    @State private var revealFuturePassages = false
     @AppStorage("ebook.focusMode") private var focus = false
     @AppStorage("ebook.mode") private var readingMode = "harbor"
     @State private var narrator = BookNarrator()
@@ -57,12 +61,14 @@ struct EBookReaderView: View {
     @State private var customFontData: Data?
     @State private var fontError: String?
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
-    private var canvas: Color { background == "light" ? Color(.sRGB, red: 0.96, green: 0.94, blue: 0.88) : background == "dim" ? Color(.sRGB, red: 0.21, green: 0.19, blue: 0.17) : HarborTheme.background }
-    private var ink: Color { background == "light" ? Color(.sRGB, red: 0.15, green: 0.13, blue: 0.11) : .white.opacity(0.88) }
+    private var baseCanvas: Color { background == "light" ? Color(.sRGB, red: 0.96, green: 0.94, blue: 0.88) : background == "dim" ? Color(.sRGB, red: 0.21, green: 0.19, blue: 0.17) : HarborTheme.background }
+    private var baseInk: Color { background == "light" ? Color(.sRGB, red: 0.15, green: 0.13, blue: 0.11) : .white.opacity(0.88) }
+    private var canvas: Color { Color(cgColor: ReadingBrightness.color(UIColor(baseCanvas).cgColor, percent: boundedBrightness)) }
+    private var ink: Color { Color(cgColor: ReadingBrightness.color(UIColor(baseInk).cgColor, percent: boundedBrightness)) }
     private var rtl: Bool { direction == "rtl" || (direction == "auto" && ["ar", "he", "fa", "ur"].contains(publication?.language?.components(separatedBy: "-").first ?? "")) }
     private var record: EBookRecord { shelf.record(book) ?? EBookRecord(book: book) }
     private var boundedPageWidth: Double { pageWidth.isFinite ? min(1080, max(520, pageWidth)) : 768 }
-    private var boundedBrightness: Double { brightness.isFinite ? min(120, max(55, brightness)) : 100 }
+    private var boundedBrightness: Double { ReadingBrightness.bounded(brightness) }
     private var boundedFontSize: Double { fontSize.isFinite ? min(36, max(14, fontSize)) : 19 }
     private var boundedLineHeight: Double { lineHeight.isFinite ? min(2.5, max(1.1, lineHeight)) : 1.85 }
     private var readerFont: Font {
@@ -74,7 +80,7 @@ struct EBookReaderView: View {
         return EBookPagedReaderView(book: book, owner: shelf.owner, chapterTitle: chapterTitle,
             firstChapter: chapter == 0, blocks: blocks, revision: contentRevision,
             font: .init(face: font, data: font == "custom" ? customFontData : nil), fontIdentity: customFontID,
-            fontSize: boundedFontSize, lineHeight: boundedLineHeight, paper: EBookPaper(rawValue: background) ?? .dark, rtl: rtl, showControls: !focus,
+            fontSize: boundedFontSize, lineHeight: boundedLineHeight, paper: EBookPaper(rawValue: background) ?? .dark, rtl: rtl, showControls: !focus, brightness: boundedBrightness, jump: passageJump,
             block: Binding(get: { settledBlock }, set: { settledBlock = $0; visible = $0 }))
             .id(contentRevision).environment(\.readingPlugins, reading)
     }
@@ -94,9 +100,9 @@ struct EBookReaderView: View {
                     ForEach(blocks) { block in
                         Group {
                             if let image = block.image {
-                                BookIllustration(data: image, label: block.text).accessibilityIdentifier("ebook-reader-image")
+                                BookIllustration(data: image, label: block.text, brightness: boundedBrightness).accessibilityIdentifier("ebook-reader-image")
                             } else if let url = block.imageURL, let pluginID = book.pluginID {
-                                RemoteBookIllustration(url: url, pluginID: pluginID, label: block.text).accessibilityIdentifier("ebook-reader-image")
+                                RemoteBookIllustration(url: url, pluginID: pluginID, label: block.text, brightness: boundedBrightness).accessibilityIdentifier("ebook-reader-image")
                             } else {
                                 Text(block.text).font(block.heading ? readerFont.weight(.bold) : readerFont).lineSpacing(boundedFontSize * (boundedLineHeight - 1)).textSelection(.enabled).accessibilityIdentifier("ebook-reader-text")
                             }
@@ -104,6 +110,7 @@ struct EBookReaderView: View {
                     }
                 }.scrollTargetLayout().frame(maxWidth: boundedPageWidth).frame(maxWidth: .infinity).padding(.horizontal, margin).padding(.vertical, 24)
             }.frame(maxWidth: .infinity, maxHeight: .infinity)
+                .accessibilityIdentifier("ebook-reader-scroll")
                 .scrollPosition(id: $visible, anchor: .top).environment(\.layoutDirection, rtl ? .rightToLeft : .leftToRight)
                 .foregroundStyle(ink)
             }
@@ -117,15 +124,15 @@ struct EBookReaderView: View {
                         Spacer()
                         Button { select(chapter + 1) } label: { Image(systemName: "chevron.right").frame(width: 44, height: 44) }.disabled(chapter >= publication.chapters.count - 1).accessibilityLabel("Capítulo siguiente").accessibilityIdentifier("ebook-next-section")
                     }
-                }.padding(.horizontal).background(.thinMaterial)
+                }.padding(.horizontal).background(.thinMaterial).foregroundStyle(ink)
             }
         }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top).background(canvas)
-            .colorEffect(ShaderLibrary.harborReadingBrightness(.float(Float(boundedBrightness / 100))), isEnabled: boundedBrightness != 100)
             .navigationTitle(book.title).navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItemGroup(placement: .topBarTrailing) {
                     Menu {
                         Button("Índice") { contents = true }
+                        Button(DesktopInterfaceText.value("Search chapter")) { passageSearch = true }.accessibilityIdentifier("ebook-passage-search-action")
                         Button("Añadir marcador") { saveBookmark() }
                         Button("Marcadores") { bookmarks = true }
                         Button(narrator.speaking ? "Detener narración" : "Leer en voz alta") {
@@ -167,6 +174,13 @@ struct EBookReaderView: View {
             .onDisappear { saveTask?.cancel(); chapterTask?.cancel(); narrator.stop(); saveCurrentPosition() }
             .sheet(isPresented: $contents) {
                 NavigationStack { List { if let publication { ForEach(Array(publication.chapters.enumerated()), id: \.element.id) { index, item in Button(item.title) { contents = false; select(index) } } } }.navigationTitle("Índice").toolbar { ToolbarItem(placement: .topBarTrailing) { Button("Listo") { contents = false } } } }
+            }
+            .sheet(isPresented: $passageSearch) {
+                EBookPassageSearchView(paragraphs: EBookSearchParagraph.make(blocks), currentBlock: settledBlock, query: $passageQuery, revealFuture: $revealFuturePassages) { target in
+                    guard blocks.contains(where: { $0.id == target }) else { return }
+                    narrator.stop(); saveTask?.cancel(); settledBlock = target; visible = target
+                    passageJump = EBookReadingJump(block: target); saveCurrentPosition()
+                }
             }
             .sheet(isPresented: $bookmarks) {
                 NavigationStack {
@@ -277,12 +291,13 @@ struct RemoteBookIllustration: View {
     let url: String
     let pluginID: String
     let label: String
+    var brightness: Double = 100
     @Environment(\.readingPlugins) private var reading
     @State private var data: Data?
     @State private var failed = false
     var body: some View {
         Group {
-            if let data { BookIllustration(data: data, label: label) }
+            if let data { BookIllustration(data: data, label: label, brightness: brightness) }
             else if failed { Text(label).font(.caption).foregroundStyle(.secondary) }
             else { ProgressView().frame(minHeight: 100) }
         }.task(id: url) {
@@ -297,12 +312,16 @@ struct RemoteBookIllustration: View {
 struct BookIllustration: View {
     let data: Data
     let label: String
+    var brightness: Double = 100
     private var image: UIImage? {
         guard let source = CGImageSourceCreateWithData(data as CFData, nil), let cgImage = CGImageSourceCreateThumbnailAtIndex(source, 0, [kCGImageSourceCreateThumbnailFromImageAlways: true, kCGImageSourceCreateThumbnailWithTransform: true, kCGImageSourceThumbnailMaxPixelSize: 1600] as CFDictionary) else { return nil }
         return UIImage(cgImage: cgImage)
     }
     var body: some View {
-        if let image { Image(uiImage: image).resizable().scaledToFit().accessibilityLabel(label) }
+        if let image {
+            Image(uiImage: image).resizable().scaledToFit().accessibilityLabel(label)
+                .colorEffect(ShaderLibrary.harborReadingBrightness(.float(Float(ReadingBrightness.bounded(brightness) / 100))), isEnabled: brightness != 100)
+        }
         else { Text(label).font(.caption).foregroundStyle(.secondary) }
     }
 }

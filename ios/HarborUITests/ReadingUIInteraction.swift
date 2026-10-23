@@ -9,7 +9,19 @@ import XCTest
     }
 
     static func assertReaderViewport(_ app: XCUIApplication) {
-        let scroll = app.scrollViews.firstMatch
+        let scroll = app.scrollViews["ebook-reader-scroll"]
+        XCTAssertTrue(scroll.waitForExistence(timeout: 30))
+        let laidOut = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            guard let frame = visibleFrame(scroll, in: app) else { return false }
+            return frame.width > 100 && frame.height > 100
+        }, object: scroll)
+        if XCTWaiter.wait(for: [laidOut], timeout: 20) != .completed {
+            XCTContext.runActivity(named: "Actual reader viewport failure") { activity in
+                let screenshot = XCTAttachment(screenshot: app.screenshot()); screenshot.name = "reader-viewport-failure"; screenshot.lifetime = .keepAlways; activity.add(screenshot)
+                let hierarchy = XCTAttachment(string: app.debugDescription); hierarchy.name = "reader-viewport-hierarchy"; hierarchy.lifetime = .keepAlways; activity.add(hierarchy)
+            }
+            XCTFail("The actual reader scroll view did not lay out within the visible window")
+        }
         XCTAssertGreaterThan(scroll.frame.width, 100)
         XCTAssertGreaterThan(scroll.frame.height, 100, "A text element in a zero-sized scroll view does not prove readable content")
     }

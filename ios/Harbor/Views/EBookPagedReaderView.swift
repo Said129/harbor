@@ -15,6 +15,8 @@ struct EBookPagedReaderView: View {
     let paper: EBookPaper
     let rtl: Bool
     let showControls: Bool
+    var brightness: Double = 100
+    var jump: EBookReadingJump? = nil
     @Binding var block: Int
     @Environment(\.readingPlugins) private var reading
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
@@ -28,8 +30,8 @@ struct EBookPagedReaderView: View {
     private var hasCover: Bool { firstChapter && (coverBook.cover != nil || book.id.hasPrefix("local:")) }
     private var coverCount: Int { hasCover ? 1 : 0 }
     private var count: Int { coverCount + (document?.layout.pages.count ?? 0) + images.count }
-    private var signature: String { [revision.uuidString, fontIdentity, font.face, String(font.data != nil), String(fontSize), String(lineHeight), paper.rawValue, String(rtl), retry.uuidString].joined(separator: "|") }
-    private var desk: Color { Color(cgColor: EBookPaper.color(paper.desk)) }
+    private var signature: String { [revision.uuidString, fontIdentity, font.face, String(font.data != nil), String(fontSize), String(lineHeight), paper.rawValue, String(rtl), String(brightness), retry.uuidString].joined(separator: "|") }
+    private var desk: Color { Color(cgColor: ReadingBrightness.color(EBookPaper.color(paper.desk), percent: brightness)) }
     private var coverBook: EBook {
         var value = book
         if let internalCover = book.metadata?["internalCover"].string { value.cover = internalCover }
@@ -62,7 +64,7 @@ struct EBookPagedReaderView: View {
                         Spacer()
                         Button { move(1, spread: spread) } label: { Image(systemName: rtl ? "chevron.left" : "chevron.right").frame(width: 44, height: 44) }
                             .disabled(page >= count - (spread ? 2 : 1) || turning).accessibilityLabel(DesktopInterfaceText.value("Next page")).accessibilityIdentifier("ebook-print-next")
-                    }.padding(.horizontal, 12).foregroundStyle(Color(cgColor: EBookPaper.color(paper.ink)))
+                    }.padding(.horizontal, 12).foregroundStyle(Color(cgColor: ReadingBrightness.color(EBookPaper.color(paper.ink), percent: brightness)))
                 }
             }.background(desk)
         }
@@ -71,11 +73,15 @@ struct EBookPagedReaderView: View {
             let expected = signature, target = block
             defer { if signature == expected { preparing = false } }
             do {
-                let next = try await EBookPageRenderer.shared.prepare(blocks: blocks, font: font, fontSize: fontSize, lineHeight: lineHeight, paper: paper, rtl: rtl, title: chapterTitle, owner: owner)
+                let next = try await EBookPageRenderer.shared.prepare(blocks: blocks, font: font, fontSize: fontSize, lineHeight: lineHeight, paper: paper, rtl: rtl, title: chapterTitle, owner: owner, brightness: brightness)
                 try Task.checkCancellation(); guard signature == expected else { return }
-                let targetPage = images.firstIndex(where: { $0.id == target }).map { coverCount + next.layout.pages.count + $0 } ?? coverCount + next.resumePage(block: target)
+                let targetPage = pageForBlock(target, document: next)
                 page = min(max(0, targetPage), max(0, coverCount + next.layout.pages.count + images.count - 1)); document = next
             } catch { if !Task.isCancelled && signature == expected { failure = true } }
+        }
+        .onChange(of: jump?.id) { _, _ in
+            guard let jump, let document, blocks.contains(where: { $0.id == jump.block }), count > 0 else { return }
+            page = min(max(0, pageForBlock(jump.block, document: document)), count - 1)
         }
         .onChange(of: page) { _, value in
             guard let document, !preparing else { return }
@@ -84,6 +90,9 @@ struct EBookPagedReaderView: View {
             else if document.layout.pages.indices.contains(printed) { block = document.block(at: printed) }
             else { let image = printed - document.layout.pages.count; if images.indices.contains(image) { block = images[image].id } }
         }
+    }
+    private func pageForBlock(_ target: Int, document: EBookPrintedDocument) -> Int {
+        images.firstIndex(where: { $0.id == target }).map { coverCount + document.layout.pages.count + $0 } ?? coverCount + document.resumePage(block: target)
     }
     private func move(_ delta: Int, spread: Bool) {
         let step = spread ? 2 : 1
@@ -100,8 +109,8 @@ struct EBookPagedReaderView: View {
                 let image = printed - document.layout.pages.count
                 if images.indices.contains(image) {
                     let item = images[image]
-                    if let data = item.image { BookIllustration(data: data, label: item.text).padding(8) }
-                    else if let url = item.imageURL, let pluginID = book.pluginID { RemoteBookIllustration(url: url, pluginID: pluginID, label: item.text).padding(8) }
+                    if let data = item.image { BookIllustration(data: data, label: item.text, brightness: brightness).padding(8) }
+                    else if let url = item.imageURL, let pluginID = book.pluginID { RemoteBookIllustration(url: url, pluginID: pluginID, label: item.text, brightness: brightness).padding(8) }
                 }
             }
         }

@@ -1,0 +1,1401 @@
+{
+  "reference": "0834340cec5531650bfe78cd628628702e636987",
+  "inputs": {
+    "src/views/ebook/harbor-reader.tsx": "167f062f191238e2bbf016e5902aefc4a47b49a1dd11ce4c5f65608be28871f8"
+  },
+  "cases": [
+    {
+      "name": "empty query",
+      "input": {
+        "paragraphs": ["Harbor"],
+        "query": " \t ",
+        "current": 0,
+        "showFutureResults": false
+      },
+      "expected": {
+        "shown": [],
+        "hidden": 0,
+        "total": 0
+      }
+    },
+    {
+      "name": "Latin decomposition and case",
+      "input": {
+        "paragraphs": ["CAFÉ près du río"],
+        "query": " cafe ",
+        "current": 0,
+        "showFutureResults": false
+      },
+      "expected": {
+        "shown": [
+          {
+            "text": "CAFÉ près du río",
+            "index": 0
+          }
+        ],
+        "hidden": 0,
+        "total": 1
+      }
+    },
+    {
+      "name": "Arabic marks",
+      "input": {
+        "paragraphs": ["هٰذَا كِتَابٌ جَمِيلٌ"],
+        "query": "كتاب",
+        "current": 0,
+        "showFutureResults": false
+      },
+      "expected": {
+        "shown": [
+          {
+            "text": "هٰذَا كِتَابٌ جَمِيلٌ",
+            "index": 0
+          }
+        ],
+        "hidden": 0,
+        "total": 1
+      }
+    },
+    {
+      "name": "future matches stay sealed",
+      "input": {
+        "paragraphs": ["Harbor before", "Harbor now", "Harbor ahead", "Harbor farther"],
+        "query": "harbor",
+        "current": 1,
+        "showFutureResults": false
+      },
+      "expected": {
+        "shown": [
+          {
+            "text": "Harbor before",
+            "index": 0
+          },
+          {
+            "text": "Harbor now",
+            "index": 1
+          }
+        ],
+        "hidden": 2,
+        "total": 4
+      }
+    },
+    {
+      "name": "explicit future reveal",
+      "input": {
+        "paragraphs": ["Harbor before", "Harbor now", "Harbor ahead"],
+        "query": "harbor",
+        "current": 0,
+        "showFutureResults": true
+      },
+      "expected": {
+        "shown": [
+          {
+            "text": "Harbor before",
+            "index": 0
+          },
+          {
+            "text": "Harbor now",
+            "index": 1
+          },
+          {
+            "text": "Harbor ahead",
+            "index": 2
+          }
+        ],
+        "hidden": 0,
+        "total": 3
+      }
+    },
+    {
+      "name": "literal punctuation is not regex",
+      "input": {
+        "paragraphs": ["A.*B", "Another B", "a*b"],
+        "query": ".*",
+        "current": 0,
+        "showFutureResults": false
+      },
+      "expected": {
+        "shown": [
+          {
+            "text": "A.*B",
+            "index": 0
+          }
+        ],
+        "hidden": 0,
+        "total": 1
+      }
+    },
+    {
+      "name": "substring search matches original",
+      "input": {
+        "paragraphs": ["Harbor ship", "warship", "boat"],
+        "query": "ship",
+        "current": 2,
+        "showFutureResults": false
+      },
+      "expected": {
+        "shown": [
+          {
+            "text": "Harbor ship",
+            "index": 0
+          },
+          {
+            "text": "warship",
+            "index": 1
+          }
+        ],
+        "hidden": 0,
+        "total": 2
+      }
+    },
+    {
+      "name": "emoji and astral characters",
+      "input": {
+        "paragraphs": ["Book 😀𐐀", "Another book"],
+        "query": "😀𐐀",
+        "current": 0,
+        "showFutureResults": false
+      },
+      "expected": {
+        "shown": [
+          {
+            "text": "Book 😀𐐀",
+            "index": 0
+          }
+        ],
+        "hidden": 0,
+        "total": 1
+      }
+    },
+    {
+      "name": "no arbitrary result cap",
+      "input": {
+        "paragraphs": [
+          "Harbor 0",
+          "Harbor 1",
+          "Harbor 2",
+          "Harbor 3",
+          "Harbor 4",
+          "Harbor 5",
+          "Harbor 6",
+          "Harbor 7",
+          "Harbor 8",
+          "Harbor 9",
+          "Harbor 10",
+          "Harbor 11",
+          "Harbor 12",
+          "Harbor 13",
+          "Harbor 14",
+          "Harbor 15",
+          "Harbor 16",
+          "Harbor 17",
+          "Harbor 18",
+          "Harbor 19",
+          "Harbor 20",
+          "Harbor 21",
+          "Harbor 22",
+          "Harbor 23",
+          "Harbor 24",
+          "Harbor 25",
+          "Harbor 26",
+          "Harbor 27",
+          "Harbor 28",
+          "Harbor 29",
+          "Harbor 30",
+          "Harbor 31",
+          "Harbor 32",
+          "Harbor 33",
+          "Harbor 34",
+          "Harbor 35",
+          "Harbor 36",
+          "Harbor 37",
+          "Harbor 38",
+          "Harbor 39",
+          "Harbor 40",
+          "Harbor 41",
+          "Harbor 42",
+          "Harbor 43",
+          "Harbor 44",
+          "Harbor 45",
+          "Harbor 46",
+          "Harbor 47",
+          "Harbor 48",
+          "Harbor 49",
+          "Harbor 50",
+          "Harbor 51",
+          "Harbor 52",
+          "Harbor 53",
+          "Harbor 54",
+          "Harbor 55",
+          "Harbor 56",
+          "Harbor 57",
+          "Harbor 58",
+          "Harbor 59",
+          "Harbor 60",
+          "Harbor 61",
+          "Harbor 62",
+          "Harbor 63",
+          "Harbor 64",
+          "Harbor 65",
+          "Harbor 66",
+          "Harbor 67",
+          "Harbor 68",
+          "Harbor 69",
+          "Harbor 70",
+          "Harbor 71",
+          "Harbor 72",
+          "Harbor 73",
+          "Harbor 74",
+          "Harbor 75",
+          "Harbor 76",
+          "Harbor 77",
+          "Harbor 78",
+          "Harbor 79",
+          "Harbor 80",
+          "Harbor 81",
+          "Harbor 82",
+          "Harbor 83",
+          "Harbor 84",
+          "Harbor 85",
+          "Harbor 86",
+          "Harbor 87",
+          "Harbor 88",
+          "Harbor 89",
+          "Harbor 90",
+          "Harbor 91",
+          "Harbor 92",
+          "Harbor 93",
+          "Harbor 94",
+          "Harbor 95",
+          "Harbor 96",
+          "Harbor 97",
+          "Harbor 98",
+          "Harbor 99",
+          "Harbor 100",
+          "Harbor 101",
+          "Harbor 102",
+          "Harbor 103",
+          "Harbor 104",
+          "Harbor 105",
+          "Harbor 106",
+          "Harbor 107",
+          "Harbor 108",
+          "Harbor 109",
+          "Harbor 110",
+          "Harbor 111",
+          "Harbor 112",
+          "Harbor 113",
+          "Harbor 114",
+          "Harbor 115",
+          "Harbor 116",
+          "Harbor 117",
+          "Harbor 118",
+          "Harbor 119",
+          "Harbor 120",
+          "Harbor 121",
+          "Harbor 122",
+          "Harbor 123",
+          "Harbor 124",
+          "Harbor 125",
+          "Harbor 126",
+          "Harbor 127",
+          "Harbor 128",
+          "Harbor 129",
+          "Harbor 130",
+          "Harbor 131",
+          "Harbor 132",
+          "Harbor 133",
+          "Harbor 134",
+          "Harbor 135",
+          "Harbor 136",
+          "Harbor 137",
+          "Harbor 138",
+          "Harbor 139",
+          "Harbor 140",
+          "Harbor 141",
+          "Harbor 142",
+          "Harbor 143",
+          "Harbor 144",
+          "Harbor 145",
+          "Harbor 146",
+          "Harbor 147",
+          "Harbor 148",
+          "Harbor 149",
+          "Harbor 150",
+          "Harbor 151",
+          "Harbor 152",
+          "Harbor 153",
+          "Harbor 154",
+          "Harbor 155",
+          "Harbor 156",
+          "Harbor 157",
+          "Harbor 158",
+          "Harbor 159",
+          "Harbor 160",
+          "Harbor 161",
+          "Harbor 162",
+          "Harbor 163",
+          "Harbor 164",
+          "Harbor 165",
+          "Harbor 166",
+          "Harbor 167",
+          "Harbor 168",
+          "Harbor 169",
+          "Harbor 170",
+          "Harbor 171",
+          "Harbor 172",
+          "Harbor 173",
+          "Harbor 174",
+          "Harbor 175",
+          "Harbor 176",
+          "Harbor 177",
+          "Harbor 178",
+          "Harbor 179",
+          "Harbor 180",
+          "Harbor 181",
+          "Harbor 182",
+          "Harbor 183",
+          "Harbor 184",
+          "Harbor 185",
+          "Harbor 186",
+          "Harbor 187",
+          "Harbor 188",
+          "Harbor 189",
+          "Harbor 190",
+          "Harbor 191",
+          "Harbor 192",
+          "Harbor 193",
+          "Harbor 194",
+          "Harbor 195",
+          "Harbor 196",
+          "Harbor 197",
+          "Harbor 198",
+          "Harbor 199",
+          "Harbor 200",
+          "Harbor 201",
+          "Harbor 202",
+          "Harbor 203",
+          "Harbor 204",
+          "Harbor 205",
+          "Harbor 206",
+          "Harbor 207",
+          "Harbor 208",
+          "Harbor 209",
+          "Harbor 210",
+          "Harbor 211",
+          "Harbor 212",
+          "Harbor 213",
+          "Harbor 214",
+          "Harbor 215",
+          "Harbor 216",
+          "Harbor 217",
+          "Harbor 218",
+          "Harbor 219",
+          "Harbor 220",
+          "Harbor 221",
+          "Harbor 222",
+          "Harbor 223",
+          "Harbor 224",
+          "Harbor 225",
+          "Harbor 226",
+          "Harbor 227",
+          "Harbor 228",
+          "Harbor 229",
+          "Harbor 230",
+          "Harbor 231",
+          "Harbor 232",
+          "Harbor 233",
+          "Harbor 234",
+          "Harbor 235",
+          "Harbor 236",
+          "Harbor 237",
+          "Harbor 238",
+          "Harbor 239"
+        ],
+        "query": "harbor",
+        "current": 239,
+        "showFutureResults": false
+      },
+      "expected": {
+        "shown": [
+          {
+            "text": "Harbor 0",
+            "index": 0
+          },
+          {
+            "text": "Harbor 1",
+            "index": 1
+          },
+          {
+            "text": "Harbor 2",
+            "index": 2
+          },
+          {
+            "text": "Harbor 3",
+            "index": 3
+          },
+          {
+            "text": "Harbor 4",
+            "index": 4
+          },
+          {
+            "text": "Harbor 5",
+            "index": 5
+          },
+          {
+            "text": "Harbor 6",
+            "index": 6
+          },
+          {
+            "text": "Harbor 7",
+            "index": 7
+          },
+          {
+            "text": "Harbor 8",
+            "index": 8
+          },
+          {
+            "text": "Harbor 9",
+            "index": 9
+          },
+          {
+            "text": "Harbor 10",
+            "index": 10
+          },
+          {
+            "text": "Harbor 11",
+            "index": 11
+          },
+          {
+            "text": "Harbor 12",
+            "index": 12
+          },
+          {
+            "text": "Harbor 13",
+            "index": 13
+          },
+          {
+            "text": "Harbor 14",
+            "index": 14
+          },
+          {
+            "text": "Harbor 15",
+            "index": 15
+          },
+          {
+            "text": "Harbor 16",
+            "index": 16
+          },
+          {
+            "text": "Harbor 17",
+            "index": 17
+          },
+          {
+            "text": "Harbor 18",
+            "index": 18
+          },
+          {
+            "text": "Harbor 19",
+            "index": 19
+          },
+          {
+            "text": "Harbor 20",
+            "index": 20
+          },
+          {
+            "text": "Harbor 21",
+            "index": 21
+          },
+          {
+            "text": "Harbor 22",
+            "index": 22
+          },
+          {
+            "text": "Harbor 23",
+            "index": 23
+          },
+          {
+            "text": "Harbor 24",
+            "index": 24
+          },
+          {
+            "text": "Harbor 25",
+            "index": 25
+          },
+          {
+            "text": "Harbor 26",
+            "index": 26
+          },
+          {
+            "text": "Harbor 27",
+            "index": 27
+          },
+          {
+            "text": "Harbor 28",
+            "index": 28
+          },
+          {
+            "text": "Harbor 29",
+            "index": 29
+          },
+          {
+            "text": "Harbor 30",
+            "index": 30
+          },
+          {
+            "text": "Harbor 31",
+            "index": 31
+          },
+          {
+            "text": "Harbor 32",
+            "index": 32
+          },
+          {
+            "text": "Harbor 33",
+            "index": 33
+          },
+          {
+            "text": "Harbor 34",
+            "index": 34
+          },
+          {
+            "text": "Harbor 35",
+            "index": 35
+          },
+          {
+            "text": "Harbor 36",
+            "index": 36
+          },
+          {
+            "text": "Harbor 37",
+            "index": 37
+          },
+          {
+            "text": "Harbor 38",
+            "index": 38
+          },
+          {
+            "text": "Harbor 39",
+            "index": 39
+          },
+          {
+            "text": "Harbor 40",
+            "index": 40
+          },
+          {
+            "text": "Harbor 41",
+            "index": 41
+          },
+          {
+            "text": "Harbor 42",
+            "index": 42
+          },
+          {
+            "text": "Harbor 43",
+            "index": 43
+          },
+          {
+            "text": "Harbor 44",
+            "index": 44
+          },
+          {
+            "text": "Harbor 45",
+            "index": 45
+          },
+          {
+            "text": "Harbor 46",
+            "index": 46
+          },
+          {
+            "text": "Harbor 47",
+            "index": 47
+          },
+          {
+            "text": "Harbor 48",
+            "index": 48
+          },
+          {
+            "text": "Harbor 49",
+            "index": 49
+          },
+          {
+            "text": "Harbor 50",
+            "index": 50
+          },
+          {
+            "text": "Harbor 51",
+            "index": 51
+          },
+          {
+            "text": "Harbor 52",
+            "index": 52
+          },
+          {
+            "text": "Harbor 53",
+            "index": 53
+          },
+          {
+            "text": "Harbor 54",
+            "index": 54
+          },
+          {
+            "text": "Harbor 55",
+            "index": 55
+          },
+          {
+            "text": "Harbor 56",
+            "index": 56
+          },
+          {
+            "text": "Harbor 57",
+            "index": 57
+          },
+          {
+            "text": "Harbor 58",
+            "index": 58
+          },
+          {
+            "text": "Harbor 59",
+            "index": 59
+          },
+          {
+            "text": "Harbor 60",
+            "index": 60
+          },
+          {
+            "text": "Harbor 61",
+            "index": 61
+          },
+          {
+            "text": "Harbor 62",
+            "index": 62
+          },
+          {
+            "text": "Harbor 63",
+            "index": 63
+          },
+          {
+            "text": "Harbor 64",
+            "index": 64
+          },
+          {
+            "text": "Harbor 65",
+            "index": 65
+          },
+          {
+            "text": "Harbor 66",
+            "index": 66
+          },
+          {
+            "text": "Harbor 67",
+            "index": 67
+          },
+          {
+            "text": "Harbor 68",
+            "index": 68
+          },
+          {
+            "text": "Harbor 69",
+            "index": 69
+          },
+          {
+            "text": "Harbor 70",
+            "index": 70
+          },
+          {
+            "text": "Harbor 71",
+            "index": 71
+          },
+          {
+            "text": "Harbor 72",
+            "index": 72
+          },
+          {
+            "text": "Harbor 73",
+            "index": 73
+          },
+          {
+            "text": "Harbor 74",
+            "index": 74
+          },
+          {
+            "text": "Harbor 75",
+            "index": 75
+          },
+          {
+            "text": "Harbor 76",
+            "index": 76
+          },
+          {
+            "text": "Harbor 77",
+            "index": 77
+          },
+          {
+            "text": "Harbor 78",
+            "index": 78
+          },
+          {
+            "text": "Harbor 79",
+            "index": 79
+          },
+          {
+            "text": "Harbor 80",
+            "index": 80
+          },
+          {
+            "text": "Harbor 81",
+            "index": 81
+          },
+          {
+            "text": "Harbor 82",
+            "index": 82
+          },
+          {
+            "text": "Harbor 83",
+            "index": 83
+          },
+          {
+            "text": "Harbor 84",
+            "index": 84
+          },
+          {
+            "text": "Harbor 85",
+            "index": 85
+          },
+          {
+            "text": "Harbor 86",
+            "index": 86
+          },
+          {
+            "text": "Harbor 87",
+            "index": 87
+          },
+          {
+            "text": "Harbor 88",
+            "index": 88
+          },
+          {
+            "text": "Harbor 89",
+            "index": 89
+          },
+          {
+            "text": "Harbor 90",
+            "index": 90
+          },
+          {
+            "text": "Harbor 91",
+            "index": 91
+          },
+          {
+            "text": "Harbor 92",
+            "index": 92
+          },
+          {
+            "text": "Harbor 93",
+            "index": 93
+          },
+          {
+            "text": "Harbor 94",
+            "index": 94
+          },
+          {
+            "text": "Harbor 95",
+            "index": 95
+          },
+          {
+            "text": "Harbor 96",
+            "index": 96
+          },
+          {
+            "text": "Harbor 97",
+            "index": 97
+          },
+          {
+            "text": "Harbor 98",
+            "index": 98
+          },
+          {
+            "text": "Harbor 99",
+            "index": 99
+          },
+          {
+            "text": "Harbor 100",
+            "index": 100
+          },
+          {
+            "text": "Harbor 101",
+            "index": 101
+          },
+          {
+            "text": "Harbor 102",
+            "index": 102
+          },
+          {
+            "text": "Harbor 103",
+            "index": 103
+          },
+          {
+            "text": "Harbor 104",
+            "index": 104
+          },
+          {
+            "text": "Harbor 105",
+            "index": 105
+          },
+          {
+            "text": "Harbor 106",
+            "index": 106
+          },
+          {
+            "text": "Harbor 107",
+            "index": 107
+          },
+          {
+            "text": "Harbor 108",
+            "index": 108
+          },
+          {
+            "text": "Harbor 109",
+            "index": 109
+          },
+          {
+            "text": "Harbor 110",
+            "index": 110
+          },
+          {
+            "text": "Harbor 111",
+            "index": 111
+          },
+          {
+            "text": "Harbor 112",
+            "index": 112
+          },
+          {
+            "text": "Harbor 113",
+            "index": 113
+          },
+          {
+            "text": "Harbor 114",
+            "index": 114
+          },
+          {
+            "text": "Harbor 115",
+            "index": 115
+          },
+          {
+            "text": "Harbor 116",
+            "index": 116
+          },
+          {
+            "text": "Harbor 117",
+            "index": 117
+          },
+          {
+            "text": "Harbor 118",
+            "index": 118
+          },
+          {
+            "text": "Harbor 119",
+            "index": 119
+          },
+          {
+            "text": "Harbor 120",
+            "index": 120
+          },
+          {
+            "text": "Harbor 121",
+            "index": 121
+          },
+          {
+            "text": "Harbor 122",
+            "index": 122
+          },
+          {
+            "text": "Harbor 123",
+            "index": 123
+          },
+          {
+            "text": "Harbor 124",
+            "index": 124
+          },
+          {
+            "text": "Harbor 125",
+            "index": 125
+          },
+          {
+            "text": "Harbor 126",
+            "index": 126
+          },
+          {
+            "text": "Harbor 127",
+            "index": 127
+          },
+          {
+            "text": "Harbor 128",
+            "index": 128
+          },
+          {
+            "text": "Harbor 129",
+            "index": 129
+          },
+          {
+            "text": "Harbor 130",
+            "index": 130
+          },
+          {
+            "text": "Harbor 131",
+            "index": 131
+          },
+          {
+            "text": "Harbor 132",
+            "index": 132
+          },
+          {
+            "text": "Harbor 133",
+            "index": 133
+          },
+          {
+            "text": "Harbor 134",
+            "index": 134
+          },
+          {
+            "text": "Harbor 135",
+            "index": 135
+          },
+          {
+            "text": "Harbor 136",
+            "index": 136
+          },
+          {
+            "text": "Harbor 137",
+            "index": 137
+          },
+          {
+            "text": "Harbor 138",
+            "index": 138
+          },
+          {
+            "text": "Harbor 139",
+            "index": 139
+          },
+          {
+            "text": "Harbor 140",
+            "index": 140
+          },
+          {
+            "text": "Harbor 141",
+            "index": 141
+          },
+          {
+            "text": "Harbor 142",
+            "index": 142
+          },
+          {
+            "text": "Harbor 143",
+            "index": 143
+          },
+          {
+            "text": "Harbor 144",
+            "index": 144
+          },
+          {
+            "text": "Harbor 145",
+            "index": 145
+          },
+          {
+            "text": "Harbor 146",
+            "index": 146
+          },
+          {
+            "text": "Harbor 147",
+            "index": 147
+          },
+          {
+            "text": "Harbor 148",
+            "index": 148
+          },
+          {
+            "text": "Harbor 149",
+            "index": 149
+          },
+          {
+            "text": "Harbor 150",
+            "index": 150
+          },
+          {
+            "text": "Harbor 151",
+            "index": 151
+          },
+          {
+            "text": "Harbor 152",
+            "index": 152
+          },
+          {
+            "text": "Harbor 153",
+            "index": 153
+          },
+          {
+            "text": "Harbor 154",
+            "index": 154
+          },
+          {
+            "text": "Harbor 155",
+            "index": 155
+          },
+          {
+            "text": "Harbor 156",
+            "index": 156
+          },
+          {
+            "text": "Harbor 157",
+            "index": 157
+          },
+          {
+            "text": "Harbor 158",
+            "index": 158
+          },
+          {
+            "text": "Harbor 159",
+            "index": 159
+          },
+          {
+            "text": "Harbor 160",
+            "index": 160
+          },
+          {
+            "text": "Harbor 161",
+            "index": 161
+          },
+          {
+            "text": "Harbor 162",
+            "index": 162
+          },
+          {
+            "text": "Harbor 163",
+            "index": 163
+          },
+          {
+            "text": "Harbor 164",
+            "index": 164
+          },
+          {
+            "text": "Harbor 165",
+            "index": 165
+          },
+          {
+            "text": "Harbor 166",
+            "index": 166
+          },
+          {
+            "text": "Harbor 167",
+            "index": 167
+          },
+          {
+            "text": "Harbor 168",
+            "index": 168
+          },
+          {
+            "text": "Harbor 169",
+            "index": 169
+          },
+          {
+            "text": "Harbor 170",
+            "index": 170
+          },
+          {
+            "text": "Harbor 171",
+            "index": 171
+          },
+          {
+            "text": "Harbor 172",
+            "index": 172
+          },
+          {
+            "text": "Harbor 173",
+            "index": 173
+          },
+          {
+            "text": "Harbor 174",
+            "index": 174
+          },
+          {
+            "text": "Harbor 175",
+            "index": 175
+          },
+          {
+            "text": "Harbor 176",
+            "index": 176
+          },
+          {
+            "text": "Harbor 177",
+            "index": 177
+          },
+          {
+            "text": "Harbor 178",
+            "index": 178
+          },
+          {
+            "text": "Harbor 179",
+            "index": 179
+          },
+          {
+            "text": "Harbor 180",
+            "index": 180
+          },
+          {
+            "text": "Harbor 181",
+            "index": 181
+          },
+          {
+            "text": "Harbor 182",
+            "index": 182
+          },
+          {
+            "text": "Harbor 183",
+            "index": 183
+          },
+          {
+            "text": "Harbor 184",
+            "index": 184
+          },
+          {
+            "text": "Harbor 185",
+            "index": 185
+          },
+          {
+            "text": "Harbor 186",
+            "index": 186
+          },
+          {
+            "text": "Harbor 187",
+            "index": 187
+          },
+          {
+            "text": "Harbor 188",
+            "index": 188
+          },
+          {
+            "text": "Harbor 189",
+            "index": 189
+          },
+          {
+            "text": "Harbor 190",
+            "index": 190
+          },
+          {
+            "text": "Harbor 191",
+            "index": 191
+          },
+          {
+            "text": "Harbor 192",
+            "index": 192
+          },
+          {
+            "text": "Harbor 193",
+            "index": 193
+          },
+          {
+            "text": "Harbor 194",
+            "index": 194
+          },
+          {
+            "text": "Harbor 195",
+            "index": 195
+          },
+          {
+            "text": "Harbor 196",
+            "index": 196
+          },
+          {
+            "text": "Harbor 197",
+            "index": 197
+          },
+          {
+            "text": "Harbor 198",
+            "index": 198
+          },
+          {
+            "text": "Harbor 199",
+            "index": 199
+          },
+          {
+            "text": "Harbor 200",
+            "index": 200
+          },
+          {
+            "text": "Harbor 201",
+            "index": 201
+          },
+          {
+            "text": "Harbor 202",
+            "index": 202
+          },
+          {
+            "text": "Harbor 203",
+            "index": 203
+          },
+          {
+            "text": "Harbor 204",
+            "index": 204
+          },
+          {
+            "text": "Harbor 205",
+            "index": 205
+          },
+          {
+            "text": "Harbor 206",
+            "index": 206
+          },
+          {
+            "text": "Harbor 207",
+            "index": 207
+          },
+          {
+            "text": "Harbor 208",
+            "index": 208
+          },
+          {
+            "text": "Harbor 209",
+            "index": 209
+          },
+          {
+            "text": "Harbor 210",
+            "index": 210
+          },
+          {
+            "text": "Harbor 211",
+            "index": 211
+          },
+          {
+            "text": "Harbor 212",
+            "index": 212
+          },
+          {
+            "text": "Harbor 213",
+            "index": 213
+          },
+          {
+            "text": "Harbor 214",
+            "index": 214
+          },
+          {
+            "text": "Harbor 215",
+            "index": 215
+          },
+          {
+            "text": "Harbor 216",
+            "index": 216
+          },
+          {
+            "text": "Harbor 217",
+            "index": 217
+          },
+          {
+            "text": "Harbor 218",
+            "index": 218
+          },
+          {
+            "text": "Harbor 219",
+            "index": 219
+          },
+          {
+            "text": "Harbor 220",
+            "index": 220
+          },
+          {
+            "text": "Harbor 221",
+            "index": 221
+          },
+          {
+            "text": "Harbor 222",
+            "index": 222
+          },
+          {
+            "text": "Harbor 223",
+            "index": 223
+          },
+          {
+            "text": "Harbor 224",
+            "index": 224
+          },
+          {
+            "text": "Harbor 225",
+            "index": 225
+          },
+          {
+            "text": "Harbor 226",
+            "index": 226
+          },
+          {
+            "text": "Harbor 227",
+            "index": 227
+          },
+          {
+            "text": "Harbor 228",
+            "index": 228
+          },
+          {
+            "text": "Harbor 229",
+            "index": 229
+          },
+          {
+            "text": "Harbor 230",
+            "index": 230
+          },
+          {
+            "text": "Harbor 231",
+            "index": 231
+          },
+          {
+            "text": "Harbor 232",
+            "index": 232
+          },
+          {
+            "text": "Harbor 233",
+            "index": 233
+          },
+          {
+            "text": "Harbor 234",
+            "index": 234
+          },
+          {
+            "text": "Harbor 235",
+            "index": 235
+          },
+          {
+            "text": "Harbor 236",
+            "index": 236
+          },
+          {
+            "text": "Harbor 237",
+            "index": 237
+          },
+          {
+            "text": "Harbor 238",
+            "index": 238
+          },
+          {
+            "text": "Harbor 239",
+            "index": 239
+          }
+        ],
+        "hidden": 0,
+        "total": 240
+      }
+    },
+    {
+      "name": "no matches",
+      "input": {
+        "paragraphs": ["Book", "Chapter"],
+        "query": "missing",
+        "current": 0,
+        "showFutureResults": false
+      },
+      "expected": {
+        "shown": [],
+        "hidden": 0,
+        "total": 0
+      }
+    }
+  ]
+}

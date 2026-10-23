@@ -10,8 +10,15 @@ import runpy
 build = Path('ios/build'); canonical = build / 'canonical'; canonical.mkdir(parents=True, exist_ok=True)
 recordings = build / 'service-recordings'; recordings.mkdir(parents=True, exist_ok=True)
 plan = json.loads((build / 'preserved-plugin-integration.json').read_text())
-device_cases = plan.get('ui_device_cases', plan['ui_cases'])
-assert len(device_cases) == 2 and plan['expected_original_images'] in (4, 8, 10, 12, 13, 16, 34, 36, 58)
+batches = plan.get('ui_batches')
+if not batches:
+    device_cases = plan.get('ui_device_cases', plan['ui_cases'])
+    assert len(device_cases) == 2
+    batches = [dict(id=family, family=family, seed=plan['native_preparation_case'], cases=case) for family, case in zip(['IPhone', 'IPad'], device_cases)]
+else:
+    assert len(batches) == 4 and len({batch['id'] for batch in batches}) == 4
+    assert {batch['family'] for batch in batches} == {'IPhone', 'IPad'}
+assert plan['expected_original_images'] in (4, 8, 10, 12, 13, 16, 34, 36, 58, 61)
 if plan.get('block') in ('reading-plugins', 'reading-repair', 'ebook-catalog', 'reading-bulk', 'reading-consolidated', 'reading-html', 'reading-metadata', 'reading-adaptations', 'reading-navigation'):
     runpy.run_path('scripts/ios/reading-plugin-fixture-server.py')['start'](build)
 assert (canonical / 'PluginIntegrationModels-tree.json').is_file(), 'The model bundle did not execute; do not repeat its compilation on two UI devices.'
@@ -19,7 +26,7 @@ devices = json.loads((build / 'devices.json').read_text())['devices']
 runtime, phone = next((runtime, row) for runtime, values in devices.items() for row in values if row['udid'] == os.environ['IOS_SIMULATOR'])
 tablet = next(row for row in devices[runtime] if row['name'].startswith('iPad') and row.get('isAvailable', True))
 types = json.loads(subprocess.check_output(['xcrun', 'simctl', 'list', 'devicetypes', '--json'], text=True))['devicetypes']
-prebuilt = plan.get('block') in ('reading-metadata', 'reading-adaptations', 'ebook-detail', 'reading-display', 'web-fonts', 'reading-navigation', 'book-pagination')
+prebuilt = plan.get('block') in ('reading-metadata', 'reading-adaptations', 'ebook-detail', 'reading-display', 'web-fonts', 'reading-navigation', 'book-pagination', 'reader-completion')
 if prebuilt:
     command = ['xcodebuild', '-project', 'ios/Harbor.xcodeproj', '-scheme', 'HarborLive', '-configuration', 'Debug',
         '-destination', f'platform=iOS Simulator,id={os.environ["IOS_SIMULATOR"]},arch={os.environ["IOS_SIMULATOR_ARCH"]}',
@@ -54,7 +61,9 @@ def execute(device, prefix, scheme, case):
         return False
     return True
 
-for label, info, case in zip(['IPhone', 'IPad'], [phone, tablet], device_cases):
+for batch in batches:
+    label, case = batch['id'], batch['cases']
+    info = phone if batch['family'] == 'IPhone' else tablet
     kind = info.get('deviceTypeIdentifier') or next(row['identifier'] for row in types if row['name'] == info['name'])
     device = subprocess.check_output(['xcrun', 'simctl', 'create', 'Harbor Plugin UI ' + label, kind, runtime], text=True).strip()
     selected[label] = device
@@ -65,7 +74,7 @@ for label, info, case in zip(['IPhone', 'IPad'], [phone, tablet], device_cases):
         subprocess.run(['xcrun', 'simctl', 'install', device, str(build / 'DerivedData/Build/Products/Debug-iphonesimulator/Harbor.app')], check=True)
         container = subprocess.check_output(['xcrun', 'simctl', 'get_app_container', device, 'site.harbor.iphone', 'data'], text=True).strip()
         subprocess.run([sys.executable, 'scripts/ios/prepare-model-test-startup.py', '--container', container], check=True)
-        if not execute(device, 'PluginSeed' + label, 'Harbor', plan['native_preparation_case']): continue
+        if not execute(device, 'PluginSeed' + label, 'Harbor', batch['seed']): continue
         video = recordings / ('plugin-' + label.lower() + '.mp4')
         with (build / 'logs' / ('plugin-' + label.lower() + '-recording.log')).open('w') as recording_log:
             recorder = subprocess.Popen(['xcrun', 'simctl', 'io', device, 'recordVideo', '--codec=h264', str(video)], stdout=recording_log, stderr=subprocess.STDOUT)

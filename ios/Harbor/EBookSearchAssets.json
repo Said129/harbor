@@ -1,0 +1,11 @@
+{
+  "schema": 1,
+  "reference": "0834340cec5531650bfe78cd628628702e636987",
+  "inputs": {
+    "src/views/ebook/harbor-reader.tsx": "167f062f191238e2bbf016e5902aefc4a47b49a1dd11ce4c5f65608be28871f8"
+  },
+  "program": {
+    "source": "\"use strict\";\nconst marks = /[\\u0300-\\u036f\\u0610-\\u061a\\u064b-\\u065f\\u0670\\u06d6-\\u06ed]/g;\nconst stripMarks = (value) => value.normalize(\"NFD\").replace(marks, \"\").toLocaleLowerCase();\nfunction harborEBookSearch(text) {\n    const input = JSON.parse(text), paragraphs = input.paragraphs, query = input.query, current = input.current, showFutureResults = input.showFutureResults;\n    const results = (() => {\n        const term = stripMarks(query.trim());\n        if (!term)\n            return [];\n        return paragraphs\n            .map((text, index) => ({ text, index }))\n            .filter(({ text }) => stripMarks(text).includes(term));\n    })();\n    const shownResults = showFutureResults\n        ? results\n        : results.filter((result) => result.index <= current);\n    const hiddenResults = results.length - shownResults.length;\n    return JSON.stringify({ shown: shownResults, hidden: hiddenResults, total: results.length });\n}\n",
+    "sha256": "3a0bd21fce10c7499ec64f2e7b754d70f5197ac0f817eb0f9ee99a100a85841a"
+  }
+}

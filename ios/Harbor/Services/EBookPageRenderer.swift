@@ -84,6 +84,7 @@ struct EBookPrintedDocument: Sendable {
     let rtl: Bool
     let title: String
     let blockIDs: [Int]
+    var brightness: Double = 100
     func block(at page: Int) -> Int {
         guard layout.pages.indices.contains(page) else { return blockIDs.first ?? 0 }
         let paragraph = layout.paragraphStarts[page]
@@ -108,7 +109,7 @@ actor EBookPageRenderer {
         ]
         return CTLineCreateWithAttributedString(NSAttributedString(string: text, attributes: attributes))
     }
-    func prepare(blocks: [EBookBlock], font: EBookPrintFont, fontSize: Double, lineHeight: Double, paper: EBookPaper, rtl: Bool, title: String, owner: String) throws -> EBookPrintedDocument {
+    func prepare(blocks: [EBookBlock], font: EBookPrintFont, fontSize: Double, lineHeight: Double, paper: EBookPaper, rtl: Bool, title: String, owner: String, brightness: Double = 100) throws -> EBookPrintedDocument {
         let textBlocks = blocks.filter { $0.image == nil && $0.imageURL == nil }
         let text = textBlocks.map(\.text).joined(separator: "\n\n")
         try EBookPrintRules.validate(text, fontSize: fontSize, lineHeight: lineHeight)
@@ -117,9 +118,9 @@ actor EBookPageRenderer {
         let layout = try EBookPrintRules.layout(text, fontSize: fontSize, lineHeight: lineHeight) { value in
             CTLineGetTypographicBounds(line(value, font: nativeFont, color: ink, rtl: rtl), nil, nil, nil)
         }
-        let identity = [owner, text, title, String(fontSize), String(lineHeight), font.face, font.data.map(EBookShelf.hash) ?? "", paper.rawValue, String(rtl)].joined(separator: "\u{0}")
+        let identity = [owner, text, title, String(fontSize), String(lineHeight), font.face, font.data.map(EBookShelf.hash) ?? "", paper.rawValue, String(rtl), String(ReadingBrightness.bounded(brightness))].joined(separator: "\u{0}")
         let ids = textBlocks.flatMap { block in EBookPrintRules.paragraphs(block.text).map { _ in block.id } }
-        return .init(id: EBookShelf.hash(identity), layout: layout, font: font, paper: paper, rtl: rtl, title: title, blockIDs: ids)
+        return .init(id: EBookShelf.hash(identity), layout: layout, font: font, paper: paper, rtl: rtl, title: title, blockIDs: ids, brightness: ReadingBrightness.bounded(brightness))
     }
     func page(_ document: EBookPrintedDocument, index: Int) throws -> Data {
         try Task.checkCancellation()
@@ -127,7 +128,7 @@ actor EBookPageRenderer {
         let key = (document.id + ":" + String(index)) as NSString
         if let data = cache.object(forKey: key) { return data as Data }
         let width = EBookPrintRules.width, height = EBookPrintRules.height
-        guard let context = CGContext(data: nil, width: width, height: height, bitsPerComponent: 8, bytesPerRow: width * 4, space: CGColorSpaceCreateDeviceRGB(), bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue) else { throw HarborError(code: "ebook-page-layout") }
+        guard let context = CGContext(data: nil, width: width, height: height, bitsPerComponent: 8, bytesPerRow: width * 4, space: CGColorSpaceCreateDeviceRGB(), bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue | CGBitmapInfo.byteOrder32Big.rawValue) else { throw HarborError(code: "ebook-page-layout") }
         context.setFillColor(EBookPaper.color(document.paper.page)); context.fill(CGRect(x: 0, y: 0, width: CGFloat(width), height: CGFloat(height)))
         let colors = document.rtl ? [EBookPaper.color("000000", alpha: 0), EBookPaper.color("000000", alpha: 0.13)] : [EBookPaper.color("000000", alpha: 0.13), EBookPaper.color("000000", alpha: 0)]
         let stops: [CGFloat] = document.rtl ? [0.72, 0.94] : [0.06, 0.28]
@@ -147,6 +148,7 @@ actor EBookPageRenderer {
         context.textPosition = CGPoint(x: (Double(width) - CTLineGetTypographicBounds(footer, nil, nil, nil)) / 2, y: 62 - CTFontGetAscent(try document.font.create(22)))
         CTLineDraw(footer, context)
         try Task.checkCancellation()
+        try ReadingBrightness.apply(context, percent: document.brightness)
         guard let image = context.makeImage() else { throw HarborError(code: "ebook-page-layout") }
         let data = NSMutableData()
         guard let destination = CGImageDestinationCreateWithData(data, UTType.png.identifier as CFString, 1, nil) else { throw HarborError(code: "ebook-page-layout") }
