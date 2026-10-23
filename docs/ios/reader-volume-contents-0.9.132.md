@@ -18,6 +18,8 @@ overall chapter counter. The old native controls used the provider's raw array
 order, which can differ from the displayed volume/chapter order. The stored
 chapter index still refers to the canonical source array, so existing progress
 and chapter requests do not change identity.
+Within each volume, Desktop preserves the provider's order. The owned fixture
+therefore navigates 1, 3, 2, rather than numerically sorting the entire reader.
 
 Two new UI methods exercise the ordinary saved-book route on fresh iPhone and
 iPad guests. They require the current chapter/volume, a different volume without
