@@ -10,34 +10,39 @@ import XCTest
         let paragraph = app.staticTexts.matching(identifier: "ebook-reader-text").firstMatch
         XCTAssertTrue(paragraph.waitForExistence(timeout: 30)); XCTAssertEqual(paragraph.label, "Actual original:3 paragraph.")
         let menu = app.buttons["ebook-reader-menu"], next = app.buttons["ebook-next-section"]
-        XCTAssertTrue(menu.isHittable); XCTAssertTrue(next.isEnabled); capture(app, "reader-focus-initial-" + device)
+        let ready = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in menu.exists && next.exists && menu.isHittable && next.isEnabled }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [ready], timeout: 20), .completed)
+        capture(app, "reader-focus-initial-" + device)
         openSettings(app)
-        let setting = app.switches["ebook-focus-setting"]; ReadingUIInteraction.reveal(setting, in: app)
+        let form = app.descendants(matching: .any).matching(identifier: "ebook-reader-settings-form").firstMatch
+        XCTAssertTrue(form.waitForExistence(timeout: 15))
+        let setting = app.switches["ebook-focus-setting"]; ReadingUIInteraction.reveal(setting, in: app, container: form)
         XCTAssertEqual(setting.value as? String, "0")
         setting.coordinate(withNormalizedOffset: .init(dx: 0.93, dy: 0.5)).tap(); XCTAssertEqual(setting.value as? String, "1")
         let done = app.buttons["ebook-reader-settings-done"]
         // A native sheet remains interactive beyond the Desktop inactivity delay.
         RunLoop.current.run(until: Date(timeIntervalSinceNow: 3))
         XCTAssertTrue(done.isHittable); capture(app, "reader-focus-panel-" + device); ReadingUIInteraction.tapVisible(done, in: app)
-        hidden(menu, next: next); ReadingUIInteraction.assertReaderViewport(app)
+        hidden(menu, next: next, app: app); ReadingUIInteraction.assertReaderViewport(app)
         XCTAssertEqual(paragraph.label, "Actual original:3 paragraph."); capture(app, "reader-focus-hidden-" + device)
         ReadingUIInteraction.tapVisible(paragraph, in: app)
         XCTAssertTrue(menu.waitForExistence(timeout: 10)); capture(app, "reader-focus-revealed-" + device)
         app.terminate(); app.launch(); openBook(app)
-        XCTAssertTrue(paragraph.waitForExistence(timeout: 30)); hidden(menu, next: next)
+        XCTAssertTrue(paragraph.waitForExistence(timeout: 30)); hidden(menu, next: next, app: app)
         XCUIDevice.shared.orientation = .landscapeLeft
+        ReadingUIInteraction.waitForLandscape(app)
         ReadingUIInteraction.assertReaderViewport(app); XCTAssertEqual(paragraph.label, "Actual original:3 paragraph.")
         capture(app, "reader-focus-restored-" + device)
         ReadingUIInteraction.tapVisible(paragraph, in: app); openSettings(app)
-        ReadingUIInteraction.reveal(setting, in: app); XCTAssertEqual(setting.value as? String, "1")
+        ReadingUIInteraction.reveal(setting, in: app, container: form); XCTAssertEqual(setting.value as? String, "1")
         setting.coordinate(withNormalizedOffset: .init(dx: 0.93, dy: 0.5)).tap(); XCTAssertEqual(setting.value as? String, "0")
         ReadingUIInteraction.tapVisible(done, in: app)
         RunLoop.current.run(until: Date(timeIntervalSinceNow: 3))
         XCTAssertTrue(menu.isHittable); XCTAssertTrue(next.isEnabled); XCTAssertEqual(paragraph.label, "Actual original:3 paragraph.")
         capture(app, "reader-focus-disabled-" + device)
     }
-    private func hidden(_ menu: XCUIElement, next: XCUIElement) {
-        let absent = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in !menu.exists && !next.exists }, object: nil)
+    private func hidden(_ menu: XCUIElement, next: XCUIElement, app: XCUIApplication) {
+        let absent = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in !menu.exists && !next.exists && !app.buttons["main-menu"].exists }, object: nil)
         XCTAssertEqual(XCTWaiter.wait(for: [absent], timeout: 15), .completed)
     }
     private func openSettings(_ app: XCUIApplication) {

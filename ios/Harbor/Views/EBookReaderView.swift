@@ -66,8 +66,11 @@ struct EBookReaderView: View {
     @State private var customFontData: Data?
     @State private var fontError: String?
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
-    private var baseCanvas: Color { background == "light" ? Color(.sRGB, red: 0.96, green: 0.94, blue: 0.88) : background == "dim" ? Color(.sRGB, red: 0.21, green: 0.19, blue: 0.17) : HarborTheme.background }
-    private var baseInk: Color { background == "light" ? Color(.sRGB, red: 0.15, green: 0.13, blue: 0.11) : .white.opacity(0.88) }
+    private var paper: EBookPaper { EBookPaper(rawValue: background) ?? .dark }
+    private var baseCanvas: Color { Color(cgColor: EBookPaper.color(paper.desk)) }
+    private var baseInk: Color { Color(cgColor: EBookPaper.color(paper.ink)) }
+    private var pageColor: Color { Color(cgColor: ReadingBrightness.color(EBookPaper.color(paper.page), percent: boundedBrightness)) }
+    private var muted: Color { Color(cgColor: ReadingBrightness.color(EBookPaper.color(paper.muted), percent: boundedBrightness)) }
     private var canvas: Color { Color(cgColor: ReadingBrightness.color(UIColor(baseCanvas).cgColor, percent: boundedBrightness)) }
     private var ink: Color { Color(cgColor: ReadingBrightness.color(UIColor(baseInk).cgColor, percent: boundedBrightness)) }
     private var rtl: Bool { direction == "rtl" || (direction == "auto" && ["ar", "he", "fa", "ur"].contains(publication?.language?.components(separatedBy: "-").first ?? "")) }
@@ -88,17 +91,40 @@ struct EBookReaderView: View {
     private var chromeSuspended: Bool {
         loading || error != nil || settings || contents || bookmarks || passageSearch || narrationOptions || notes.route != nil || scenePhase != .active || voiceOver
     }
-    private var readerFont: Font {
-        if font == "custom", let customGraphicFont { return Font(CTFontCreateWithGraphicsFont(customGraphicFont, boundedFontSize, nil, nil)) }
-        return font == "arabic" ? .custom("Vazirmatn-Regular", size: boundedFontSize) : .system(size: boundedFontSize, design: font == "literary" ? .serif : .default)
+    private var readerFont: Font { readingFont(size: boundedFontSize) }
+    private func readingFont(size: Double) -> Font {
+        if font == "custom", let customGraphicFont { return Font(CTFontCreateWithGraphicsFont(customGraphicFont, size, nil, nil)) }
+        return .custom(font == "classic" ? "Palatino-Roman" : font == "arabic" ? "Vazirmatn-Regular" : "Georgia", size: size)
     }
     private var printedReader: some View {
         return EBookPagedReaderView(book: book, owner: shelf.owner, chapterTitle: displayChapterTitle,
-            firstChapter: chapter == 0, blocks: blocks, revision: contentRevision,
+            firstChapter: chapterPosition == 0, blocks: blocks, revision: contentRevision,
             font: .init(face: font, data: font == "custom" ? customFontData : nil), fontIdentity: customFontID,
             fontSize: boundedFontSize, lineHeight: boundedLineHeight, paper: EBookPaper(rawValue: background) ?? .dark, rtl: rtl, showControls: chrome.visible, brightness: boundedBrightness, jump: passageJump,
             block: Binding(get: { settledBlock }, set: { settledBlock = $0; visible = $0 }))
             .id(contentRevision).environment(\.readingPlugins, reading)
+    }
+    private var chapterHeading: EBookReaderHeading? {
+        guard publication != nil else { return nil }
+        return EBookReaderHeading(book: book, owner: shelf.owner, title: displayChapterTitle,
+            firstChapter: chapterPosition == 0, titleFont: readingFont(size: boundedFontSize * 1.85).weight(.semibold), muted: muted)
+    }
+    private var continuousReader: some View {
+        EBookContinuousReaderView(blocks: blocks, spacing: boundedFontSize * max(0.5, boundedLineHeight - 0.85),
+            pageWidth: boundedPageWidth, margin: margin, jump: passageJump,
+            heading: chapterHeading, pageColor: pageColor,
+            block: Binding(get: { settledBlock }, set: { settledBlock = $0; visible = $0 })) { block in
+                Group {
+                    if let image = block.image {
+                        BookIllustration(data: image, label: block.text, brightness: boundedBrightness).accessibilityIdentifier("ebook-reader-image")
+                    } else if let url = block.imageURL, let pluginID = book.pluginID {
+                        RemoteBookIllustration(url: url, pluginID: pluginID, label: block.text, brightness: boundedBrightness).accessibilityIdentifier("ebook-reader-image")
+                    } else {
+                        passage(block)
+                    }
+                }
+        }.id(contentRevision).environment(\.layoutDirection, rtl ? .rightToLeft : .leftToRight)
+            .foregroundStyle(ink)
     }
     private var readerSurface: some View {
         VStack(spacing: 0) {
@@ -111,20 +137,7 @@ struct EBookReaderView: View {
             if readingMode == "book" {
                 printedReader
             } else {
-                EBookContinuousReaderView(blocks: blocks, spacing: boundedFontSize * max(0.5, boundedLineHeight - 0.85),
-                    pageWidth: boundedPageWidth, margin: margin, jump: passageJump,
-                    block: Binding(get: { settledBlock }, set: { settledBlock = $0; visible = $0 })) { block in
-                        Group {
-                            if let image = block.image {
-                                BookIllustration(data: image, label: block.text, brightness: boundedBrightness).accessibilityIdentifier("ebook-reader-image")
-                            } else if let url = block.imageURL, let pluginID = book.pluginID {
-                                RemoteBookIllustration(url: url, pluginID: pluginID, label: block.text, brightness: boundedBrightness).accessibilityIdentifier("ebook-reader-image")
-                            } else {
-                                passage(block)
-                            }
-                        }
-                }.id(contentRevision).environment(\.layoutDirection, rtl ? .rightToLeft : .leftToRight)
-                    .foregroundStyle(ink)
+                continuousReader
             }
             if chrome.visible, publication != nil {
                 readerFooter.transition(.move(edge: .bottom).combined(with: .opacity))
@@ -158,7 +171,7 @@ struct EBookReaderView: View {
                         }.disabled(translating || originalBlocks.isEmpty).accessibilityLabel(DesktopInterfaceText.value(translationAction)).accessibilityIdentifier("ebook-translate-chapter")
                         Button { if let nextChapter { select(nextChapter) } } label: { Image(systemName: "chevron.right").frame(width: 44, height: 44) }.disabled(nextChapter == nil).accessibilityLabel("Capítulo siguiente").accessibilityIdentifier("ebook-next-section")
                     }
-                }.padding(.horizontal).background(.thinMaterial).foregroundStyle(ink)
+                }.padding(.horizontal).background(canvas.opacity(0.92)).background(.ultraThinMaterial).foregroundStyle(ink)
     }
     private var readerMenu: some View {
                     Menu {
@@ -177,6 +190,8 @@ struct EBookReaderView: View {
     private var readerLifecycle: some View {
         readerSurface
             .navigationTitle(book.title).navigationBarTitleDisplayMode(.inline)
+            .toolbarBackground(canvas, for: .navigationBar).toolbarBackground(.visible, for: .navigationBar)
+            .toolbarColorScheme(paper == .light ? .light : .dark, for: .navigationBar)
             .toolbar {
                 ToolbarItemGroup(placement: .topBarTrailing) {
                     readerMenu
@@ -290,14 +305,15 @@ struct EBookReaderView: View {
                             Picker("Dirección", selection: $direction) { Text("Automática").tag("auto"); Text("Izquierda a derecha").tag("ltr"); Text("Derecha a izquierda").tag("rtl") }
                         }
                         Section("Lectura") {
-                            Picker("Fondo", selection: $background) { Text("Oscuro").tag("dark"); Text("Tenue").tag("dim"); Text("Claro").tag("light") }
+                            Picker("Fondo", selection: $background) { Text("Oscuro").tag("dark"); Text("Tenue").tag("dim"); Text("Claro").tag("light") }.accessibilityIdentifier("ebook-paper")
                             LabeledContent(DesktopInterfaceText.value("Brightness"), value: "\(Int(boundedBrightness)) %")
                             Slider(value: Binding(get: { boundedBrightness }, set: { brightness = $0 }), in: 55...120, step: 1).accessibilityIdentifier("ebook-brightness")
                                 .accessibilityValue("\(Int(boundedBrightness)) %")
                             Toggle(DesktopInterfaceText.value("Focus mode"), isOn: $focus).accessibilityIdentifier("ebook-focus-setting")
                             Button(DesktopInterfaceText.value("Voice")) { narrationAfterSettings = true; settings = false }.accessibilityIdentifier("ebook-narration-settings")
                         }
-                    }.navigationTitle("Opciones de lectura").toolbar { ToolbarItem(placement: .topBarTrailing) { Button("Listo") { settings = false }.accessibilityIdentifier("ebook-reader-settings-done") } }
+                    }.accessibilityIdentifier("ebook-reader-settings-form")
+                        .navigationTitle("Opciones de lectura").toolbar { ToolbarItem(placement: .topBarTrailing) { Button("Listo") { settings = false }.accessibilityIdentifier("ebook-reader-settings-done") } }
                 }
     }
     private func startNarration() {

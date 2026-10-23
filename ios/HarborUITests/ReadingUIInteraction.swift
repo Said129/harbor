@@ -36,13 +36,37 @@ import XCTest
     }
 
     static func reveal(_ element: XCUIElement, in app: XCUIApplication, up: Bool = true, container: XCUIElement? = nil) {
-        for _ in 0..<14 {
+        for _ in 0..<(container == nil ? 14 : 30) {
             // Querying hittability before a lazy cell has a visible frame throws inside XCTest.
             if visibleFrame(element, in: app) != nil, element.isHittable { return }
-            if up { (container ?? app).swipeUp() } else { (container ?? app).swipeDown() }
+            if let container { swipeVisible(container, in: app, up: up) }
+            else if up { app.swipeUp() } else { app.swipeDown() }
         }
         XCTAssertNotNil(visibleFrame(element, in: app), element.description)
         XCTAssertTrue(element.isHittable)
+    }
+
+    private static func swipeVisible(_ container: XCUIElement, in app: XCUIApplication, up: Bool) {
+        let original = container.frame
+        var frame = original.intersection(app.windows.firstMatch.frame)
+        // A List's AX frame can extend behind the keyboard and its safe-area footer.
+        for overlay in [app.keyboards.firstMatch, app.buttons["ebook-passage-close"], app.buttons["ebook-narration-done"]] where overlay.exists {
+            let boundary = overlay.frame
+            if frame.intersects(boundary), boundary.minY > frame.minY { frame.size.height = min(frame.maxY, boundary.minY) - frame.minY }
+        }
+        guard original.minX.isFinite, original.minY.isFinite, !frame.isNull, frame.width > 80, frame.height > 80 else { XCTFail("No visible viewport to scroll: " + container.description); return }
+        let origin = container.coordinate(withNormalizedOffset: .zero)
+        let first = origin.withOffset(.init(dx: frame.midX - original.minX, dy: frame.minY - original.minY + frame.height * (up ? 0.8 : 0.2)))
+        let last = origin.withOffset(.init(dx: frame.midX - original.minX, dy: frame.minY - original.minY + frame.height * (up ? 0.2 : 0.8)))
+        first.press(forDuration: 0.05, thenDragTo: last)
+    }
+
+    static func waitForLandscape(_ app: XCUIApplication) {
+        let settled = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            let frame = app.windows.firstMatch.frame
+            return frame.width > frame.height && !app.keyboards.firstMatch.exists
+        }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [settled], timeout: 20), .completed, "Wait for the actual landscape window and dismissed keyboard before capturing")
     }
 
     static func tapVisible(_ element: XCUIElement, in app: XCUIApplication) {

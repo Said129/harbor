@@ -21,6 +21,9 @@ import XCTest
         XCTAssertTrue(aria.waitForExistence(timeout: 15)); ReadingUIInteraction.reveal(aria, in: app); XCTAssertEqual(aria.value as? String, "Selected")
         capture(app, "reader-narration-restored-" + device)
         XCUIDevice.shared.orientation = .landscapeLeft
+        ReadingUIInteraction.waitForLandscape(app)
+        let voices = app.descendants(matching: .any).matching(identifier: "ebook-narration-list").firstMatch
+        XCTAssertTrue(voices.waitForExistence(timeout: 15)); ReadingUIInteraction.reveal(aria, in: app, container: voices)
         XCTAssertTrue(done.waitForExistence(timeout: 15)); XCTAssertTrue(done.isHittable)
         capture(app, "reader-narration-rotated-" + device); done.tap()
         XCTAssertTrue(app.buttons["ebook-narration-play"].waitForExistence(timeout: 15))

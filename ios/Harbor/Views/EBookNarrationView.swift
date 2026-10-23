@@ -1,4 +1,5 @@
 import SwiftUI
+import UIKit
 
 struct EBookNarrationBar: View {
     let narrator: EBookNarrator
@@ -44,6 +45,7 @@ struct EBookNarrationView: View {
     @Binding var provider: String
     @Binding var speed: Double
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.verticalSizeClass) private var verticalSizeClass
     @State private var query = ""
     @State private var language = ""
     private var available: [EBookNarrationVoice] { provider == "device" ? EBookNarrator.deviceVoices : narrator.voices }
@@ -82,6 +84,7 @@ struct EBookNarrationView: View {
                         HStack(spacing: 12) {
                             Button {
                                 narrator.stop(); if provider == "device" { deviceVoice = item.id } else { voice = item.id }
+                                dismissKeyboard()
                             } label: {
                                 HStack {
                                     VStack(alignment: .leading, spacing: 3) { Text(item.label); Text(item.locale + (item.gender.isEmpty ? "" : " · " + DesktopInterfaceText.value(item.gender))).font(.caption).foregroundStyle(.secondary) }
@@ -105,16 +108,20 @@ struct EBookNarrationView: View {
                     NavigationLink(DesktopInterfaceText.value("Licenses")) { ScrollView { Text(notices).font(.caption).textSelection(.enabled).padding() }.navigationTitle(DesktopInterfaceText.value("Licenses")) }
                 }
             }
-            .searchable(text: $query, prompt: DesktopInterfaceText.value("Search voices"))
+            .accessibilityIdentifier("ebook-narration-list")
+            .searchable(text: $query, placement: .navigationBarDrawer(displayMode: .always), prompt: DesktopInterfaceText.value("Search voices"))
+            .scrollDismissesKeyboard(.immediately)
             .navigationTitle(DesktopInterfaceText.value("Voice"))
             .safeAreaInset(edge: .bottom) { HStack { Spacer(); Button(DesktopInterfaceText.value("Done")) { dismiss() }.buttonStyle(.borderedProminent).accessibilityIdentifier("ebook-narration-done") }.padding().background(.bar) }
             .task { language = selectedLanguage; await narrator.loadVoices() }
             .onChange(of: provider) { _, _ in narrator.stop(); query = ""; language = selectedLanguage }
             .onChange(of: selected) { _, _ in language = selectedLanguage }
             .onChange(of: speed) { _, value in narrator.setSpeed(value) }
+            .onChange(of: verticalSizeClass) { _, _ in dismissKeyboard() }
             .onDisappear { if narrator.previewID != nil { narrator.stop() } }
         }
     }
+    private func dismissKeyboard() { UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil) }
     private var notices: String {
         guard let url = Bundle.main.url(forResource: "EBookNarrationNotices", withExtension: "txt") else { return "" }
         return (try? String(contentsOf: url, encoding: .utf8)) ?? ""

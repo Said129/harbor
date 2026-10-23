@@ -83,17 +83,20 @@ struct HarborShell: View {
     @State private var navigationID = UUID()
     @State private var menu = false
     @State private var hoveredSection: HarborSection?
+    @State private var immersiveReading = false
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var document: IncomingBook?
     @AppStorage("uiLanguage") private var uiLanguage = "es"
     var body: some View {
         ZStack(alignment: .leading) {
             VStack(spacing: 0) {
-                header
+                if !immersiveReading { header.transition(.move(edge: .top).combined(with: .opacity)) }
                 NavigationStack(path: $path) {
                     destination
                         .navigationDestination(for: Media.self) { DetailView(media: $0, app: app) }
                 }.id(navigationID)
+            }.onPreferenceChange(EBookImmersiveChromePreference.self) { hidden in
+                withAnimation(reduceMotion ? nil : .easeInOut(duration: 0.3)) { immersiveReading = hidden }
             }
             if menu {
                 Color.black.opacity(0.6).ignoresSafeArea().onTapGesture { closeMenu() }
