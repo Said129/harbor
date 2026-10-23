@@ -19,7 +19,9 @@ const files = {};
 for (const [file, expected] of Object.entries(inputs)) {
   const bytes = await readFile(path.join(process.argv[argument + 1], file));
   assert.equal(hash(bytes), expected);
-  files[file] = bytes.toString("utf8").replaceAll("\r\n", "\n");
+  files[file] = file.endsWith(".md")
+    ? bytes.toString("utf8")
+    : bytes.toString("utf8").replaceAll("\r\n", "\n");
 }
 const original = files["src/lib/ebook/translation.ts"];
 const tree = ts.createSourceFile("translation.ts", original, ts.ScriptTarget.Latest, true);
@@ -98,6 +100,10 @@ const call = (input) => JSON.parse(context.harborEBookTranslation(JSON.stringify
 const settings = { model: "deepseek-v4-flash", targetLanguage: "es" };
 const sample = { source: "Original 😀 chapter.", title: "Harbor", settings };
 const prepared = call({ operation: "prepare", ...sample });
+assert.equal(
+  hash(prepared.body.messages[0].content),
+  inputs["src/lib/ebook/translation-instructions.md"],
+);
 assert.equal(prepared.body.messages[0].content, files["src/lib/ebook/translation-instructions.md"]);
 assert.equal(prepared.body.thinking.type, "disabled");
 assert.equal(prepared.body.messages[1].content.includes("target_language: Spanish"), true);

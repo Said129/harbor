@@ -69,7 +69,7 @@ actor EBookTranslationProgram {
             guard asset.schema == 1, asset.reference == "0834340cec5531650bfe78cd628628702e636987",
                   asset.inputs == ["src/lib/ebook/translation.ts": "de025486a30e1c271e8420555fa00264f460ce556769769b7b73d0c2a66aae69", "src/lib/ebook/translation-instructions.md": "bccfc4fe67d509f09d292d6c145da0bcbbd366030b1b981822f261c6380d62ba", "src/lib/i18n/languages.ts": "feeab8008569c3108c45b91dedb7c471d34426687ac9e6a800eae4947baa4f68"],
                   EBookShelf.hash(Data(asset.program.source.utf8)) == asset.program.sha256,
-                  asset.program.sha256 == "22eaade87e991fa2766eb2d329d5390f10e385a88d157b660b3ef4e2e57ca0b9", let engine = JSContext() else { throw EBookTranslationError.response }
+                  asset.program.sha256 == "969552f03384e0cf0956b31e18d0a98eaa5e97d65cd799bd660004e412bc3672", let engine = JSContext() else { throw EBookTranslationError.response }
             engine.evaluateScript(asset.program.source)
             guard engine.exception == nil else { throw EBookTranslationError.response }; context = engine
         }
