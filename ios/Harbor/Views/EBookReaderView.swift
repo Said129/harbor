@@ -27,6 +27,9 @@ struct EBookReaderView: View {
     var initialPublication: EBookPublication? = nil
     @Environment(\.readingPlugins) private var reading
     @State private var publication: EBookPublication?
+    @State private var readerProgram = EBookDetailProgram()
+    @State private var readerVolumes: [EBookVolume] = []
+    @State private var chapterOrder: [Int] = []
     @State private var blocks: [EBookBlock] = []
     @State private var chapter = 0
     @State private var visible: Int?
@@ -36,6 +39,7 @@ struct EBookReaderView: View {
     @State private var error: String?
     @State private var settings = false
     @State private var contents = false
+    @State private var contentsVolume: String?
     @State private var bookmarks = false
     @State private var passageSearch = false
     @State private var passageJump: EBookReadingJump?
@@ -67,6 +71,10 @@ struct EBookReaderView: View {
     private var ink: Color { Color(cgColor: ReadingBrightness.color(UIColor(baseInk).cgColor, percent: boundedBrightness)) }
     private var rtl: Bool { direction == "rtl" || (direction == "auto" && ["ar", "he", "fa", "ur"].contains(publication?.language?.components(separatedBy: "-").first ?? "")) }
     private var record: EBookRecord { shelf.record(book) ?? EBookRecord(book: book) }
+    private var orderedChapters: [Int] { chapterOrder.isEmpty ? Array(publication?.chapters.indices ?? 0..<0) : chapterOrder }
+    private var chapterPosition: Int { orderedChapters.firstIndex(of: chapter) ?? 0 }
+    private var previousChapter: Int? { chapterPosition > 0 ? orderedChapters[chapterPosition - 1] : nil }
+    private var nextChapter: Int? { orderedChapters.indices.contains(chapterPosition + 1) ? orderedChapters[chapterPosition + 1] : nil }
     private var boundedPageWidth: Double { pageWidth.isFinite ? min(1080, max(520, pageWidth)) : 768 }
     private var boundedBrightness: Double { ReadingBrightness.bounded(brightness) }
     private var boundedFontSize: Double { fontSize.isFinite ? min(36, max(14, fontSize)) : 19 }
@@ -114,11 +122,11 @@ struct EBookReaderView: View {
                 VStack(spacing: 8) {
                     Text(publication.chapters[chapter].title).font(.caption).lineLimit(1)
                     HStack {
-                        Button { select(chapter - 1) } label: { Image(systemName: "chevron.left").frame(width: 44, height: 40) }.disabled(chapter <= 0).accessibilityLabel("Capítulo anterior")
+                        Button { if let previousChapter { select(previousChapter) } } label: { Image(systemName: "chevron.left").frame(width: 44, height: 40) }.disabled(previousChapter == nil).accessibilityLabel("Capítulo anterior").accessibilityIdentifier("ebook-previous-section")
                         Spacer()
-                        Text("\(chapter + 1) / \(publication.chapters.count)").font(.caption.monospacedDigit())
+                        Text("\(chapterPosition + 1) / \(orderedChapters.count)").font(.caption.monospacedDigit())
                         Spacer()
-                        Button { select(chapter + 1) } label: { Image(systemName: "chevron.right").frame(width: 44, height: 44) }.disabled(chapter >= publication.chapters.count - 1).accessibilityLabel("Capítulo siguiente").accessibilityIdentifier("ebook-next-section")
+                        Button { if let nextChapter { select(nextChapter) } } label: { Image(systemName: "chevron.right").frame(width: 44, height: 44) }.disabled(nextChapter == nil).accessibilityLabel("Capítulo siguiente").accessibilityIdentifier("ebook-next-section")
                     }
                 }.padding(.horizontal).background(.thinMaterial).foregroundStyle(ink)
             }
@@ -127,7 +135,7 @@ struct EBookReaderView: View {
             .toolbar {
                 ToolbarItemGroup(placement: .topBarTrailing) {
                     Menu {
-                        Button("Índice") { contents = true }
+                        Button("Índice") { contents = true }.accessibilityIdentifier("ebook-reader-contents-action")
                         Button(DesktopInterfaceText.value("Search chapter")) { passageSearch = true }.accessibilityIdentifier("ebook-passage-search-action")
                         Button("Añadir marcador") { saveBookmark() }
                         Button("Marcadores") { bookmarks = true }
@@ -169,7 +177,7 @@ struct EBookReaderView: View {
             .onChange(of: scenePhase) { _, phase in if phase != .active { saveTask?.cancel(); saveCurrentPosition() } }
             .onDisappear { saveTask?.cancel(); chapterTask?.cancel(); narrator.stop(); saveCurrentPosition() }
             .sheet(isPresented: $contents) {
-                NavigationStack { List { if let publication { ForEach(Array(publication.chapters.enumerated()), id: \.element.id) { index, item in Button(item.title) { contents = false; select(index) } } } }.navigationTitle("Índice").toolbar { ToolbarItem(placement: .topBarTrailing) { Button("Listo") { contents = false } } } }
+                if let publication { EBookReaderContentsView(publication: publication, volumes: readerVolumes, currentChapter: chapter, selectedVolume: $contentsVolume) { target in select(target) } }
             }
             .sheet(isPresented: $passageSearch) {
                 EBookPassageSearchView(paragraphs: EBookSearchParagraph.make(blocks), currentBlock: settledBlock, query: $passageQuery, revealFuture: $revealFuturePassages) { target in
@@ -233,9 +241,14 @@ struct EBookReaderView: View {
             } else { publication = try await EBookService.shared.open(book, owner: shelf.owner) }
             let saved = record
             let selected = try publication.startingChapter(requestedID: initialChapterID, resume: saved.chapter)
+            let volumes = try await readerProgram.groups(publication.chapters)
+            let known = Dictionary(publication.chapters.enumerated().map { ($0.element.id, $0.offset) }, uniquingKeysWith: { first, _ in first })
+            var seen = Set<Int>()
+            let order = volumes.flatMap(\.chapters).compactMap { $0["id"].string.flatMap { known[$0] } }.filter { seen.insert($0).inserted }
             let loaded = try await loadBlocks(publication, selected)
             try Task.checkCancellation()
-            self.publication = publication; chapter = selected; blocks = loaded
+            self.publication = publication; readerVolumes = volumes; chapterOrder = order; chapter = selected; blocks = loaded
+            contentsVolume = volumes.first { $0.chapters.contains { $0["id"].string == publication.chapters[selected].id } }?.volume
             visible = loaded.contains(where: { $0.id == saved.block }) ? saved.block : loaded.first?.id
             settledBlock = visible ?? loaded.first?.id ?? 0; contentRevision = UUID()
             if shelf.record(book) == nil { try shelf.save(EBookRecord(book: book)) }
@@ -251,6 +264,7 @@ struct EBookReaderView: View {
                 let loaded = try await loadBlocks(publication, selected)
                 try Task.checkCancellation()
                 chapter = selected; blocks = loaded; visible = loaded.contains(where: { $0.id == block }) ? block : loaded.first?.id
+                contentsVolume = readerVolumes.first { $0.chapters.contains { $0["id"].string == publication.chapters[selected].id } }?.volume
                 settledBlock = visible ?? loaded.first?.id ?? 0; contentRevision = UUID()
                 saveCurrentPosition()
             } catch is CancellationError { return }

@@ -512,12 +512,17 @@ jobs:
           set -euo pipefail
           selection=(-only-testing:HarborTests)
           native_scheme=Harbor
+          test_action=test
           if [[ "${{ inputs.validation_scope }}" == "plugin-integration" || "${{ inputs.validation_scope }}" == "plugin-playback" ]]; then
             selection=()
             while IFS= read -r identifier; do selection+=("-only-testing:$identifier"); done < ios/build/plugin-integration-selection.txt
             expected=$(python3 -c 'import json; print(json.load(open("ios/build/preserved-plugin-integration.json"))["selected_case_count"])')
             test ${#selection[@]} -eq "$expected"
             native_scheme=$(python3 -c 'import json; p=json.load(open("ios/build/preserved-plugin-integration.json")); s=p.get("native_scheme", "Harbor"); assert s in ("Harbor", "HarborLive"); assert s != "HarborLive" or (p["block"] == "reading-surface" and p["selected_case_count"] == 1 and all(c.startswith("HarborIntegrationTests.EBookMetadataPublicTests/") for c in p["pending_native_cases"])); print(s)')
+            if [[ "$expected" == 0 ]]; then
+              python3 -c 'import json; p=json.load(open("ios/build/preserved-plugin-integration.json")); assert p["ui_only"] is True and p["block"] == "reader-contents" and p["pending_native_cases"] == []'
+              test_action=build-for-testing
+            fi
           elif [[ "${{ inputs.validation_scope }}" == "plugin-manager" ]]; then
             selection=()
             while IFS= read -r identifier; do selection+=("-only-testing:$identifier"); done < ios/build/plugin-manager-selection.txt
@@ -624,7 +629,7 @@ jobs:
               while IFS= read -r identifier; do selection+=("-only-testing:$identifier"); done < ios/build/feature-native-selection.txt
             fi
           fi
-          xcodebuild -project ios/Harbor.xcodeproj -scheme "$native_scheme" -configuration Debug -destination "platform=iOS Simulator,id=$IOS_SIMULATOR,arch=$IOS_SIMULATOR_ARCH" -derivedDataPath ios/build/DerivedData -clonedSourcePackagesDirPath ios/build/SourcePackages -resultBundlePath ios/build/Tests.xcresult "${selection[@]}" -parallel-testing-enabled NO CODE_SIGNING_ALLOWED=YES CODE_SIGN_IDENTITY=- test 2>&1 | tee ios/build/logs/tests.log
+          xcodebuild -project ios/Harbor.xcodeproj -scheme "$native_scheme" -configuration Debug -destination "platform=iOS Simulator,id=$IOS_SIMULATOR,arch=$IOS_SIMULATOR_ARCH" -derivedDataPath ios/build/DerivedData -clonedSourcePackagesDirPath ios/build/SourcePackages -resultBundlePath ios/build/Tests.xcresult "${selection[@]}" -parallel-testing-enabled NO CODE_SIGNING_ALLOWED=YES CODE_SIGN_IDENTITY=- "$test_action" 2>&1 | tee ios/build/logs/tests.log
       - name: Authenticate the fifteen actual manager settings and affected delivery results
         if: ${{ always() && inputs.validation_scope == 'plugin-manager' && (steps.offline_tests.conclusion == 'success' || steps.offline_tests.conclusion == 'failure') }}
         run: python3 scripts/ios/record-profile-model-results.py --bundle ios/build/Tests.xcresult --expected ios/build/preserved-plugin-manager.json --count 15 --output ios/build/canonical/PluginManagerModels.json
@@ -633,7 +638,11 @@ jobs:
         shell: bash
         run: |
           expected=$(python3 -c 'import json; print(json.load(open("ios/build/preserved-plugin-integration.json"))["selected_case_count"])')
-          python3 scripts/ios/record-profile-model-results.py --bundle ios/build/Tests.xcresult --expected ios/build/preserved-plugin-integration.json --count "$expected" --output ios/build/canonical/PluginIntegrationModels.json
+          if [[ "$expected" -gt 0 ]]; then
+            python3 scripts/ios/record-profile-model-results.py --bundle ios/build/Tests.xcresult --expected ios/build/preserved-plugin-integration.json --count "$expected" --output ios/build/canonical/PluginIntegrationModels.json
+          else
+            python3 -c 'import json; p=json.load(open("ios/build/preserved-plugin-integration.json")); assert p["ui_only"] is True and p["block"] == "reader-contents" and p["pending_native_cases"] == []; print("UI-only build: zero native model tests executed; approve only subsequent original preparation/UI results.")'
+          fi
       - name: Preserve original reading model results before independent interface tests
         if: ${{ always() && inputs.validation_only == true && inputs.save_draft_build == true && inputs.validation_scope == 'plugin-playback' && (contains(inputs.native_test_selection, 'EBookMetadataTests/') || contains(inputs.native_test_selection, 'EBookMetadataPublicTests/') || contains(inputs.native_test_selection, 'EBookDetailTests/') || contains(inputs.native_test_selection, 'ReadingFontTests/') || contains(inputs.native_test_selection, 'ReadingWebFontTests/') || contains(inputs.native_test_selection, 'EBookPaginationTests/') || contains(inputs.native_test_selection, 'EBookSearchTests/') || contains(inputs.native_test_selection, 'ReadingPositionMountTests/')) && (steps.offline_tests.conclusion == 'success' || steps.offline_tests.conclusion == 'failure') }}
         env:
