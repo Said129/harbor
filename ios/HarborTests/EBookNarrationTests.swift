@@ -29,6 +29,8 @@ final class EBookNarrationTests: XCTestCase {
         XCTAssertEqual(EBookEdgeProtocol.binaryAudio(packet), Data([1, 2, 3])); XCTAssertNil(EBookEdgeProtocol.binaryAudio(Data([255, 255, 0])))
         let message = EBookEdgeProtocol.textMessage("Path:audio.metadata\r\n\r\n{\"Metadata\":[{\"Type\":\"WordBoundary\",\"Data\":{\"Offset\":5000000,\"Duration\":2000000,\"text\":{\"Text\":\"Owned\"}}}]}")
         XCTAssertEqual(message.path, "audio.metadata"); XCTAssertEqual(EBookEdgeProtocol.boundaries(message.body), [.init(offsetMs: 500, durationMs: 200, text: "Owned")])
+        let mixed = message.body.replacingOccurrences(of: "\"Metadata\":[", with: "\"Metadata\":[{\"Type\":\"SentenceBoundary\",\"Data\":{}},{\"Type\":\"WordBoundary\",\"Data\":{\"Offset\":\"invalid\"}},")
+        XCTAssertEqual(EBookEdgeProtocol.boundaries(mixed), EBookEdgeProtocol.boundaries(message.body))
         XCTAssertTrue(EBookEdgeProtocol.boundaries("invalid").isEmpty)
     }
     func testOriginalUnicodeChunkLimitsSSMLValidationAndGrowingParagraphWindows() throws {
