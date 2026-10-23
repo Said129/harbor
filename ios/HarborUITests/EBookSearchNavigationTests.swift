@@ -59,7 +59,12 @@ import XCTest
         let closed = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == false"), object: app.buttons["ebook-passage-close"])
         XCTAssertEqual(XCTWaiter.wait(for: [closed], timeout: 20), .completed)
         let visible = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in ReadingUIInteraction.visibleFrame(element, in: app) != nil }, object: element)
-        XCTAssertEqual(XCTWaiter.wait(for: [visible], timeout: 30), .completed)
+        let outcome = XCTWaiter.wait(for: [visible], timeout: 30)
+        if outcome != .completed {
+            let hierarchy = XCTAttachment(string: app.debugDescription); hierarchy.name = "book-search-jump-hierarchy"; hierarchy.lifetime = .keepAlways; add(hierarchy)
+            capture(app, "book-search-jump-failure")
+        }
+        XCTAssertEqual(outcome, .completed)
     }
     private func capture(_ app: XCUIApplication, _ name: String) {
         let attachment = XCTAttachment(screenshot: app.screenshot()); attachment.name = name; attachment.lifetime = .keepAlways; add(attachment)

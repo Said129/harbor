@@ -52,6 +52,13 @@ import XCTest
         app.coordinate(withNormalizedOffset: .zero).withOffset(.init(dx: frame.midX, dy: frame.midY)).tap()
     }
 
+    static func back(from title: String, in app: XCUIApplication) {
+        let bar = app.navigationBars[title]
+        XCTAssertTrue(bar.waitForExistence(timeout: 15))
+        let back = bar.buttons.element(boundBy: 0)
+        XCTAssertTrue(back.waitForExistence(timeout: 10)); tapVisible(back, in: app)
+    }
+
     static func replace(_ field: XCUIElement, with value: String, in app: XCUIApplication) {
         field.tap(); field.press(forDuration: 1.1)
         let predicate = NSPredicate(format: "label IN %@", ["Select All", "Seleccionar todo"])

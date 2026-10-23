@@ -95,9 +95,9 @@ struct EBookReaderView: View {
             if readingMode == "book" {
                 printedReader
             } else {
-            ScrollView {
-                LazyVStack(alignment: .leading, spacing: boundedFontSize * max(0.5, boundedLineHeight - 0.85)) {
-                    ForEach(blocks) { block in
+                EBookContinuousReaderView(blocks: blocks, spacing: boundedFontSize * max(0.5, boundedLineHeight - 0.85),
+                    pageWidth: boundedPageWidth, margin: margin, jump: passageJump,
+                    block: Binding(get: { settledBlock }, set: { settledBlock = $0; visible = $0 })) { block in
                         Group {
                             if let image = block.image {
                                 BookIllustration(data: image, label: block.text, brightness: boundedBrightness).accessibilityIdentifier("ebook-reader-image")
@@ -106,13 +106,9 @@ struct EBookReaderView: View {
                             } else {
                                 Text(block.text).font(block.heading ? readerFont.weight(.bold) : readerFont).lineSpacing(boundedFontSize * (boundedLineHeight - 1)).textSelection(.enabled).accessibilityIdentifier("ebook-reader-text")
                             }
-                        }.frame(maxWidth: .infinity, alignment: .leading).id(block.id)
-                    }
-                }.scrollTargetLayout().frame(maxWidth: boundedPageWidth).frame(maxWidth: .infinity).padding(.horizontal, margin).padding(.vertical, 24)
-            }.frame(maxWidth: .infinity, maxHeight: .infinity)
-                .accessibilityIdentifier("ebook-reader-scroll")
-                .scrollPosition(id: $visible, anchor: .top).environment(\.layoutDirection, rtl ? .rightToLeft : .leftToRight)
-                .foregroundStyle(ink)
+                        }
+                }.id(contentRevision).environment(\.layoutDirection, rtl ? .rightToLeft : .leftToRight)
+                    .foregroundStyle(ink)
             }
             if !focus, let publication {
                 VStack(spacing: 8) {
@@ -169,7 +165,7 @@ struct EBookReaderView: View {
                     } catch {}
                 }
             }
-            .onChange(of: readingMode) { _, _ in narrator.stop(); visible = settledBlock; saveCurrentPosition() }
+            .onChange(of: readingMode) { _, _ in narrator.stop(); saveCurrentPosition() }
             .onChange(of: scenePhase) { _, phase in if phase != .active { saveTask?.cancel(); saveCurrentPosition() } }
             .onDisappear { saveTask?.cancel(); chapterTask?.cancel(); narrator.stop(); saveCurrentPosition() }
             .sheet(isPresented: $contents) {

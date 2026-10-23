@@ -10,7 +10,7 @@ import XCTest
         reader(app)
         capture(app, "reading-display-baseline-" + device)
         settings(app)
-        let brightness = app.sliders["ebook-brightness"]; XCTAssertTrue(brightness.waitForExistence(timeout: 15)); reveal(brightness, app)
+        let brightness = app.sliders["ebook-brightness"]; reveal(brightness, app); XCTAssertTrue(brightness.exists)
         XCTAssertEqual(brightness.value as? String, "100 %")
         capture(app, "reading-display-options-" + device)
         brightness.adjust(toNormalizedSliderPosition: 0)
@@ -24,7 +24,7 @@ import XCTest
         XCTAssertTrue(font.waitForExistence(timeout: 15)); font.tap()
         XCTAssertTrue(app.staticTexts["reading-font-preview"].waitForExistence(timeout: 15))
         capture(app, "reading-display-fonts-" + device)
-        app.navigationBars.buttons.element(boundBy: 0).tap()
+        ReadingUIInteraction.back(from: "Custom font", in: app)
         app.buttons["ebook-reader-settings-done"].tap()
         let paragraph = app.staticTexts.matching(identifier: "ebook-reader-text").firstMatch
         XCTAssertTrue(paragraph.waitForExistence(timeout: 15))

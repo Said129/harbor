@@ -635,7 +635,7 @@ jobs:
           expected=$(python3 -c 'import json; print(json.load(open("ios/build/preserved-plugin-integration.json"))["selected_case_count"])')
           python3 scripts/ios/record-profile-model-results.py --bundle ios/build/Tests.xcresult --expected ios/build/preserved-plugin-integration.json --count "$expected" --output ios/build/canonical/PluginIntegrationModels.json
       - name: Preserve original reading model results before independent interface tests
-        if: ${{ always() && inputs.validation_only == true && inputs.save_draft_build == true && inputs.validation_scope == 'plugin-playback' && (contains(inputs.native_test_selection, 'EBookMetadataTests/') || contains(inputs.native_test_selection, 'EBookMetadataPublicTests/') || contains(inputs.native_test_selection, 'EBookDetailTests/') || contains(inputs.native_test_selection, 'ReadingFontTests/') || contains(inputs.native_test_selection, 'ReadingWebFontTests/') || contains(inputs.native_test_selection, 'EBookPaginationTests/') || contains(inputs.native_test_selection, 'EBookSearchTests/')) && (steps.offline_tests.conclusion == 'success' || steps.offline_tests.conclusion == 'failure') }}
+        if: ${{ always() && inputs.validation_only == true && inputs.save_draft_build == true && inputs.validation_scope == 'plugin-playback' && (contains(inputs.native_test_selection, 'EBookMetadataTests/') || contains(inputs.native_test_selection, 'EBookMetadataPublicTests/') || contains(inputs.native_test_selection, 'EBookDetailTests/') || contains(inputs.native_test_selection, 'ReadingFontTests/') || contains(inputs.native_test_selection, 'ReadingWebFontTests/') || contains(inputs.native_test_selection, 'EBookPaginationTests/') || contains(inputs.native_test_selection, 'EBookSearchTests/') || contains(inputs.native_test_selection, 'ReadingPositionMountTests/')) && (steps.offline_tests.conclusion == 'success' || steps.offline_tests.conclusion == 'failure') }}
         env:
           GH_TOKEN: ${{ github.token }}
         shell: bash
@@ -655,7 +655,7 @@ jobs:
       - name: Run both new plugin management interfaces on fresh guests
         id: plugin_integration_ui
         if: ${{ always() && (inputs.validation_scope == 'plugin-integration' || inputs.validation_scope == 'plugin-playback') && (inputs.validation_scope != 'plugin-playback' || env.HARBOR_PLUGIN_UI_REQUIRED == 'true') && (steps.offline_tests.conclusion == 'success' || steps.offline_tests.conclusion == 'failure') }}
-        timeout-minutes: ${{ (contains(inputs.native_test_selection, 'EBookMetadataTests/') || contains(inputs.native_test_selection, 'EBookMetadataPublicTests/')) && 65 || 40 }}
+        timeout-minutes: ${{ (contains(inputs.native_test_selection, 'EBookMetadataTests/') || contains(inputs.native_test_selection, 'EBookMetadataPublicTests/') || contains(inputs.native_test_selection, 'ReadingPositionMountTests/')) && 65 || 40 }}
         run: python3 scripts/ios/run-plugin-integration-ui.py
       - name: Authenticate the thirteen actual native network model results
         if: ${{ always() && inputs.validation_scope == 'plugin-network' && (steps.offline_tests.conclusion == 'success' || steps.offline_tests.conclusion == 'failure') }}

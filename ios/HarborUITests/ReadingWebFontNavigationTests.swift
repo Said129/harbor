@@ -27,7 +27,7 @@ import XCTest
             let row = app.buttons["owned reader " + format]; XCTAssertTrue(row.waitForExistence(timeout: 15)); row.tap()
             XCTAssertTrue(app.staticTexts["reading-font-preview"].waitForExistence(timeout: 15))
             capture(app, "web-font-choices-" + format + "-" + device)
-            app.navigationBars.buttons.element(boundBy: 0).tap(); app.buttons["ebook-reader-settings-done"].tap()
+            ReadingUIInteraction.back(from: "Custom font", in: app); app.buttons["ebook-reader-settings-done"].tap()
             XCTAssertTrue(paragraph.waitForExistence(timeout: 15))
             let loading = app.descendants(matching: .any).matching(identifier: "ebook-font-loading").firstMatch
             XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == false"), object: loading)], timeout: 15), .completed)
