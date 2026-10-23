@@ -33,7 +33,8 @@ private actor HeldReadingCatalog {
         let stale = try await client.books("cached", arguments: ["books": .array(fresh.map(EBookMetadataMapping.raw))], preserving: fresh)
         XCTAssertEqual(stale.first?.title, "one")
         var open = fixture["open"].objectValue; open["title"] = .string("Owned Book"); open["author_name"] = .array([.string("Owned Writer")])
-        let targets = try await client.books("map", arguments: ["kind": .string("openlibrary"), "raw": .object(open)])
+        let mapped = try await client.query("map", arguments: ["kind": .string("openlibrary"), "raw": .object(open)])
+        let targets = EBookMetadataMapping.books(.array([mapped]))
         let target = try XCTUnwrap(targets.first)
         let gate = HeldReadingCatalog(); var partial: [[EBook]] = []
         let pending = Task { try await manager.resolveEBook(target, candidates: stale, catalog: { await gate.search($0) }) { partial.append($0) } }

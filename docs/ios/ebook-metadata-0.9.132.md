@@ -134,3 +134,22 @@ twenty-one planned XCTest executions and fifty-eight expected captures. The
 two approved native and three approved Rust cases are not repeated. This
 supersedes the earlier nineteen-execution plan for remaining work; that run's
 actual partial results remain independent evidence.
+
+## Fresh source results, 24 October
+
+The resolver now replaces stale metadata for an existing readable route when a
+provider returns fresh results. A previously enriched title could otherwise
+hide the same source found by the current search. Rich fields and identity
+identifiers absent from a search row remain available, and the native chapter
+route stays attached. Independent providers can publish a usable source while
+another catalogue is still loading. Desktop's title fallback program is retained.
+
+The new held-catalogue contract and six previously failed interface routes are
+being checked in run `40033688583`. Its native step failed. Source inspection
+and execution of the bundled program identified a fixture error: the `map`
+operation returns one object, while the test called the list wrapper. The test
+now maps that object explicitly, preserving its original partial-result and
+actual chapter-reading assertions. A separate native-only retry selects that
+single case; it does not restart the six interface routes or repeat approved
+cases. Apple result collection and interface review remain pending. No IPA is
+produced by these checks.

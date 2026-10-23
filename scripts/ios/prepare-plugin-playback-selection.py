@@ -9,7 +9,7 @@ requested = os.environ.get('HARBOR_NATIVE_SELECTION', '').strip()
 if requested == 'HarborTests.EBookReaderChromeTests/':
     runpy.run_path('scripts/ios/prepare-reader-focus-selection.py')
     raise SystemExit(0)
-if requested == 'HarborTests.EBookSourceRefreshTests/':
+if requested in ('HarborTests.EBookSourceRefreshTests/', 'native-only:HarborTests.EBookSourceRefreshTests/'):
     runpy.run_path('scripts/ios/prepare-reading-source-refresh-selection.py')
     raise SystemExit(0)
 if requested == 'HarborTests.EBookEdgeTokenTests/':
