@@ -16,6 +16,7 @@ import XCTest
         let search = app.textFields.firstMatch
         XCTAssertTrue(search.waitForExistence(timeout: 20)); search.tap(); search.typeText("Owned\n")
         let card = app.buttons["ebook-card-source:plugin%3Aowned.ui.reading.books:owned"]
+        XCTAssertTrue(card.waitForExistence(timeout: 30))
         reveal(card, app); XCTAssertTrue(card.exists)
         let grouped = XCTNSPredicateExpectation(predicate: NSPredicate(format: "label CONTAINS '2'"), object: card)
         XCTAssertEqual(XCTWaiter.wait(for: [grouped], timeout: 30), .completed)

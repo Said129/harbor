@@ -13,6 +13,7 @@ import XCTest
         let search = app.textFields["ebook-search"]; reveal(search, app, up: false); search.tap()
         if !app.keyboards.firstMatch.waitForExistence(timeout: 2) { search.tap() }; search.typeText("Owned\n")
         let discovered = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH 'ebook-discovery-card-' AND label CONTAINS 'Owned Book'")).firstMatch
+        XCTAssertTrue(discovered.waitForExistence(timeout: 30))
         reveal(discovered, app); XCTAssertTrue(discovered.exists)
         capture(app, "ebook-metadata-search-" + device)
         discovered.tap()

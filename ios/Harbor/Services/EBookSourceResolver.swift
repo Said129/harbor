@@ -11,6 +11,23 @@ extension HarborReadingPluginManager {
         var known = (book.alternativeSources ?? [book]).filter(\.readable) + candidates.flatMap { $0.alternativeSources ?? [$0] }.filter(\.readable)
         func unique(_ books: [EBook]) -> [EBook] { var seen = Set<String>(); return books.filter { seen.insert($0.id).inserted } }
         known = unique(known)
+        func refresh(_ rows: [EBook]) {
+            var positions = Dictionary(uniqueKeysWithValues: known.enumerated().map { ($0.element.id, $0.offset) })
+            for row in rows {
+                guard let index = positions[row.id] else { positions[row.id] = known.count; known.append(row); continue }
+                let previous = known[index]
+                var fields = EBookMetadataMapping.raw(row).objectValue
+                let oldIdentity = previous.metadata?["sourceIdentity"].objectValue ?? [:]
+                if !oldIdentity.isEmpty {
+                    fields["sourceIdentity"] = .object(oldIdentity.merging(fields["sourceIdentity"]?.objectValue ?? [:], uniquingKeysWith: { _, fresh in fresh }))
+                }
+                let merged = EBookMetadataMapping.detail(.object(fields), preserving: previous)
+                // Keep fresh native routes while retaining rich fields absent from a search row.
+                var value = row
+                value.title = merged.title; value.authors = merged.authors; value.description = merged.description; value.cover = merged.cover; value.metadata = merged.metadata
+                known[index] = value
+            }
+        }
         func matches() async throws -> [EBook] {
             try Task.checkCancellation()
             return try await client.books("source-matches", arguments: ["book": raw, "candidates": .array(known.map(EBookMetadataMapping.raw))], preserving: known)
@@ -41,7 +58,7 @@ extension HarborReadingPluginManager {
             }
             while cursor < min(3, requests.count) { enqueue(cursor); cursor += 1 }
             for try await rows in group {
-                known = unique(known + rows)
+                refresh(rows)
                 await onPartial(try await matches())
                 if cursor < requests.count { enqueue(cursor); cursor += 1 }
             }

@@ -22,8 +22,8 @@ else:
     assert 1 <= expected <= 9 and len(batches) == len({batch['id'] for batch in batches}) == expected
     assert all(re.fullmatch(r'[A-Za-z][A-Za-z0-9]*', batch['id']) and batch['cases'] for batch in batches)
     assert {batch['family'] for batch in batches} == {'IPhone', 'IPad'}
-assert plan['expected_original_images'] in (4, 6, 8, 10, 12, 13, 16, 26, 28, 34, 36, 38, 47, 48, 54, 58, 61)
-if plan.get('block') in ('reading-plugins', 'reading-repair', 'ebook-catalog', 'reading-bulk', 'reading-consolidated', 'reading-html', 'reading-metadata', 'reading-adaptations', 'reading-navigation', 'reading-surface'):
+assert plan['expected_original_images'] in (4, 6, 8, 10, 12, 13, 16, 26, 28, 34, 36, 38, 39, 47, 48, 54, 58, 61)
+if plan.get('block') in ('reading-plugins', 'reading-repair', 'ebook-catalog', 'reading-bulk', 'reading-consolidated', 'reading-html', 'reading-metadata', 'reading-adaptations', 'reading-navigation', 'reading-surface', 'reading-source-refresh'):
     runpy.run_path('scripts/ios/reading-plugin-fixture-server.py')['start'](build)
 if plan['selected_case_count']:
     assert (canonical / 'PluginIntegrationModels-tree.json').is_file(), 'The model bundle did not execute; do not repeat its compilation on two UI devices.'
@@ -33,7 +33,7 @@ devices = json.loads((build / 'devices.json').read_text())['devices']
 runtime, phone = next((runtime, row) for runtime, values in devices.items() for row in values if row['udid'] == os.environ['IOS_SIMULATOR'])
 tablet = next(row for row in devices[runtime] if row['name'].startswith('iPad') and row.get('isAvailable', True))
 types = json.loads(subprocess.check_output(['xcrun', 'simctl', 'list', 'devicetypes', '--json'], text=True))['devicetypes']
-prebuilt = plan.get('block') in ('reading-metadata', 'reading-adaptations', 'ebook-detail', 'reading-display', 'web-fonts', 'reading-navigation', 'book-pagination', 'reader-completion', 'reading-surface', 'reader-position', 'reader-contents', 'reader-interface-completion', 'reader-bookmarks', 'reader-translation', 'reader-annotations', 'reader-narration', 'reader-narration-repair')
+prebuilt = plan.get('block') in ('reading-metadata', 'reading-adaptations', 'ebook-detail', 'reading-display', 'web-fonts', 'reading-navigation', 'book-pagination', 'reader-completion', 'reading-surface', 'reader-position', 'reader-contents', 'reader-interface-completion', 'reader-bookmarks', 'reader-translation', 'reader-annotations', 'reader-narration', 'reader-narration-repair', 'reading-source-refresh')
 if prebuilt:
     # A live metadata selection has not built the separate HarborTests preparation target.
     schemes = ['Harbor', 'HarborLive'] if plan.get('native_scheme') == 'HarborLive' or plan.get('ui_only') else ['HarborLive']

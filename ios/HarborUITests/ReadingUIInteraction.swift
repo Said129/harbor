@@ -3,9 +3,9 @@ import XCTest
 @MainActor enum ReadingUIInteraction {
     static func chooseBookSource(_ name: String, in app: XCUIApplication) {
         let picker = app.buttons["ebook-source"]
-        XCTAssertTrue(picker.waitForExistence(timeout: 20)); reveal(picker, in: app, up: false); picker.tap()
+        XCTAssertTrue(picker.waitForExistence(timeout: 20)); reveal(picker, in: app, up: false); tapVisible(picker, in: app)
         let source = app.buttons[name].firstMatch
-        XCTAssertTrue(source.waitForExistence(timeout: 10)); source.tap()
+        XCTAssertTrue(source.waitForExistence(timeout: 10)); tapVisible(source, in: app)
     }
 
     static func assertReaderViewport(_ app: XCUIApplication) {

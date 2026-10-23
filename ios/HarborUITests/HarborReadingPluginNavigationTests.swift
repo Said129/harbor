@@ -36,14 +36,13 @@ import XCTest
         let page = app.images["manga-page-0"].firstMatch; XCTAssertTrue(page.waitForExistence(timeout: 30))
         capture(app, "reading-plugin-manga-reader-" + device)
         navigate("ebook", app)
-        let provider = app.buttons["ebook-source"]; XCTAssertTrue(provider.waitForExistence(timeout: 20)); reveal(provider, app); provider.tap()
-        let owned = app.buttons["Owned UI Books"].firstMatch; XCTAssertTrue(owned.waitForExistence(timeout: 10)); owned.tap()
+        ReadingUIInteraction.chooseBookSource("Owned UI Books", in: app)
         let bookSearch = app.textFields["ebook-search"]; enter("Owned\n", in: bookSearch, app: app)
         let book = app.buttons["ebook-card-source:plugin%3Aowned.ui.reading.books:owned"]
         XCTAssertTrue(book.waitForExistence(timeout: 30)); reveal(book, app)
         capture(app, "reading-plugin-book-search-" + device); book.tap()
         let readBook = app.buttons["ebook-detail-read"]
-        XCTAssertTrue(readBook.waitForExistence(timeout: 15)); readBook.tap()
+        XCTAssertTrue(readBook.waitForExistence(timeout: 15)); reveal(readBook, app); ReadingUIInteraction.tapVisible(readBook, in: app)
         let paragraph = app.staticTexts.matching(identifier: "ebook-reader-text").firstMatch
         XCTAssertTrue(paragraph.waitForExistence(timeout: 30)); XCTAssertTrue(paragraph.label.contains("Owned first chapter paragraph."))
         capture(app, "reading-plugin-book-reader-" + device)
