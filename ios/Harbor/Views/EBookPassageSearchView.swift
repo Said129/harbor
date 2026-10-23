@@ -46,6 +46,7 @@ struct EBookPassageSearchView: View {
                     }.accessibilityIdentifier("ebook-passage-reveal")
                 }
             }
+            .accessibilityIdentifier("ebook-passage-results")
             .searchable(text: $query, placement: .navigationBarDrawer(displayMode: .always), prompt: DesktopInterfaceText.value("Find a word or passage"))
             .scrollDismissesKeyboard(.interactively)
             .navigationTitle(DesktopInterfaceText.value("Search chapter"))

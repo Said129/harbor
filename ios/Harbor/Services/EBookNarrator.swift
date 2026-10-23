@@ -2,6 +2,11 @@ import AVFoundation
 import Foundation
 import Observation
 
+private final class EBookNarrationObserverTokens {
+    var values: [NSObjectProtocol] = []
+    deinit { for value in values { NotificationCenter.default.removeObserver(value) } }
+}
+
 @MainActor @Observable final class EBookNarrator: NSObject, AVAudioPlayerDelegate, AVSpeechSynthesizerDelegate {
     private(set) var speaking = false
     private(set) var paused = false
@@ -36,20 +41,19 @@ import Observation
     @ObservationIgnored private var utterance: ObjectIdentifier?
     @ObservationIgnored private var deviceLine = 0
     @ObservationIgnored private var audioActive = false
-    @ObservationIgnored private var notifications: [NSObjectProtocol] = []
+    @ObservationIgnored private let notifications = EBookNarrationObserverTokens()
     init(transport: any EBookNarrationTransport = EBookEdgeTransport()) {
         self.transport = transport; super.init(); speech.delegate = self
         let center = NotificationCenter.default
-        notifications.append(center.addObserver(forName: AVAudioSession.interruptionNotification, object: nil, queue: nil) { [weak self] notification in
+        notifications.values.append(center.addObserver(forName: AVAudioSession.interruptionNotification, object: nil, queue: nil) { [weak self] notification in
             let began = (notification.userInfo?[AVAudioSessionInterruptionTypeKey] as? UInt) == AVAudioSession.InterruptionType.began.rawValue
             if began { Task { @MainActor in self?.pause() } }
         })
-        notifications.append(center.addObserver(forName: AVAudioSession.routeChangeNotification, object: nil, queue: nil) { [weak self] notification in
+        notifications.values.append(center.addObserver(forName: AVAudioSession.routeChangeNotification, object: nil, queue: nil) { [weak self] notification in
             let removed = (notification.userInfo?[AVAudioSessionRouteChangeReasonKey] as? UInt) == AVAudioSession.RouteChangeReason.oldDeviceUnavailable.rawValue
             if removed { Task { @MainActor in self?.pause() } }
         })
     }
-    deinit { for token in notifications { NotificationCenter.default.removeObserver(token) } }
     func prepare(owner: String) {
         guard self.owner != owner else { return }; stop(); self.owner = owner; notice = nil; voiceFailure = false; loadingVoices = false; voiceRun = UUID()
         catalog = try? EBookNarrationCatalog.load(); voices = catalog?.voices ?? []

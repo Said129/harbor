@@ -54,6 +54,7 @@ struct EBookNarrationView: View {
         }
     }
     private var languages: [String] { Array(Set(available.map { $0.locale.components(separatedBy: "-")[0] })).sorted() }
+    private var selectedLanguage: String { (available.first { $0.id == selected } ?? available.first)?.locale.components(separatedBy: "-").first ?? "" }
     var body: some View {
         NavigationStack {
             List {
@@ -107,8 +108,9 @@ struct EBookNarrationView: View {
             .searchable(text: $query, prompt: DesktopInterfaceText.value("Search voices"))
             .navigationTitle(DesktopInterfaceText.value("Voice"))
             .safeAreaInset(edge: .bottom) { HStack { Spacer(); Button(DesktopInterfaceText.value("Done")) { dismiss() }.buttonStyle(.borderedProminent).accessibilityIdentifier("ebook-narration-done") }.padding().background(.bar) }
-            .task { await narrator.loadVoices() }
-            .onChange(of: provider) { _, _ in narrator.stop(); query = ""; language = "" }
+            .task { language = selectedLanguage; await narrator.loadVoices() }
+            .onChange(of: provider) { _, _ in narrator.stop(); query = ""; language = selectedLanguage }
+            .onChange(of: selected) { _, _ in language = selectedLanguage }
             .onChange(of: speed) { _, value in narrator.setSpeed(value) }
             .onDisappear { if narrator.previewID != nil { narrator.stop() } }
         }

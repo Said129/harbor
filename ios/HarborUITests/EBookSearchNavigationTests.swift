@@ -20,15 +20,17 @@ import XCTest
         XCTAssertTrue(app.staticTexts.matching(identifier: "ebook-reader-text").firstMatch.waitForExistence(timeout: 30))
         ReadingUIInteraction.assertReaderViewport(app)
         openSearch(app); let field = app.searchFields.firstMatch
+        let results = app.descendants(matching: .any).matching(identifier: "ebook-passage-results").firstMatch
+        XCTAssertTrue(results.waitForExistence(timeout: 15))
         XCTAssertTrue(field.waitForExistence(timeout: 15)); field.tap(); field.typeText("rEaDaBlE")
         let reveal = app.buttons["ebook-passage-reveal"]
         XCTAssertTrue(app.buttons["ebook-passage-result-0"].waitForExistence(timeout: 20))
         XCTAssertFalse(app.buttons["ebook-passage-result-14"].exists)
-        ReadingUIInteraction.reveal(reveal, in: app)
+        ReadingUIInteraction.reveal(reveal, in: app, container: results)
         capture(app, "book-search-sealed-" + device)
         reveal.tap()
         let result = app.buttons["ebook-passage-result-14"]
-        ReadingUIInteraction.reveal(result, in: app)
+        ReadingUIInteraction.reveal(result, in: app, container: results)
         capture(app, "book-search-revealed-" + device); result.tap()
         let paragraph = app.staticTexts.matching(NSPredicate(format: "identifier == %@ AND label BEGINSWITH %@", "ebook-reader-text", "Paragraph 14.")).firstMatch
         waitForJump(paragraph, in: app)
@@ -36,7 +38,7 @@ import XCTest
         app.scrollViews["ebook-reader-scroll"].swipeDown()
         openSearch(app); XCTAssertTrue(field.waitForExistence(timeout: 15))
         ReadingUIInteraction.replace(field, with: "readable", in: app)
-        ReadingUIInteraction.reveal(reveal, in: app)
+        ReadingUIInteraction.reveal(reveal, in: app, container: results)
         let movedBack = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
             guard reveal.exists, let number = reveal.label.split(whereSeparator: { !$0.isNumber }).first.flatMap({ Int($0) }) else { return false }
             return number > 45 && number < 60

@@ -66,3 +66,42 @@ wire's unchanged uppercase keys to native names; non-word or malformed metadata
 entries do not discard valid neighboring word boundaries. Progress crosses to a
 single main-actor method without the nested capture. No test passes are claimed
 from that run, and the affected selection remains unexecuted.
+
+Run 39951962364 compiled successfully and executed all 27 selected cases. Original
+Xcode trees and logs authenticate 20 passes and 7 failures. All five annotation
+contracts and five offline narration contracts passed, including actual native
+MP3 playback, seek/pause/rate, cancellation and durable cache behavior. Both
+translation UI methods also passed. Their results remain retained rather than
+replayed. The live Edge integration failed at its WebSocket handshake; the six
+notes/search/narration UI methods failed before their full flows completed.
+
+The current Edge service rejects the old v1 authentication with HTTP 403. Primary
+`rany2/edge-tts` source documents the current v2 token. The isolated bundled token
+program matches 129 independently computed primary-source vectors. A real local
+WebSocket probe with that program's token returned HTTP 101 and generated 12672
+MP3 bytes and four word boundaries for the owned test phrase. This proves the
+updated authentication/service interaction locally; Apple synthesis remains
+pending. Native networking, existing voices, cache and playback remain the same.
+The v2 program includes LGPLv3 provenance, complete notices and replaceable source.
+
+The native narrator's observer tokens now have a separate lifetime owner, removing
+the cross-actor deinitializer access without suppressing concurrency warnings.
+The mounted highlight test waits for its real appearance callback before removing
+its temporary window. It is the only previously passed method selected again,
+because its changed setup must eliminate the recorded appearance warning.
+Highlighted native text explicitly exposes its static-text accessibility element.
+
+Decoded final recording frames show that notes text did render, while the search
+driver swiped over the keyboard/footer instead of the results list. The search
+list now has a stable accessibility identity used for contained gestures. Voice
+tests search for Ava before asserting its selection, because the live catalogue
+begins with other languages; both original and live voices remain available. The
+voice panel starts with the selected voice's language as Desktop does. Relative
+element taps avoid reusing window coordinates after keyboard/sheet movement.
+
+The repair selection is four native methods: two new token/lifetime contracts,
+the failed live Edge integration and the changed mounted-window setup. Six fresh
+preparations and the six failed UI methods make sixteen executions and thirty-six
+required captures. Forty-five existing native contracts and fourteen reader UI
+passes remain recorded, with only the changed setup case repeated. No IPA is
+requested. Final repair execution and the complete port remain unverified.

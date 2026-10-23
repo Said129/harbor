@@ -13,6 +13,11 @@ private actor AnnotationWriteGate: EBookAnnotationPersistence {
     func allowWrites() { rejects = false }
 }
 
+@MainActor private final class AnnotationAppearanceHost<Content: View>: UIHostingController<Content> {
+    private(set) var appeared = false
+    override func viewDidAppear(_ animated: Bool) { super.viewDidAppear(animated); appeared = true }
+}
+
 final class EBookAnnotationTests: XCTestCase {
     func testActualJavaScriptCoreMatchesElevenOriginalReferenceRangeOverlapAndBatchCases() async throws {
         let file = try XCTUnwrap(Bundle(for: Self.self).url(forResource: "ebook-annotation-reference", withExtension: "json", subdirectory: "Fixtures"))
@@ -84,9 +89,14 @@ final class EBookAnnotationTests: XCTestCase {
         XCTAssertEqual(bridged.fontName, "HarborOwned-woff2")
         let scene = try XCTUnwrap(UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }.first), previous = scene.windows.first(where: \.isKeyWindow)
         let window = UIWindow(windowScene: scene); window.frame = .init(x: 0, y: 0, width: 390, height: 700)
-        let host = UIHostingController(rootView: EBookAnnotatedPassage(text: "ABC ABC", paint: paint, font: font, ink: .white, spacing: 10, rtl: false, brightness: 100) { _ in }.frame(width: 280, height: 120).background(.black))
+        let host = AnnotationAppearanceHost(rootView: EBookAnnotatedPassage(text: "ABC ABC", paint: paint, font: font, ink: .white, spacing: 10, rtl: false, brightness: 100) { _ in }.frame(width: 280, height: 120).background(.black))
         host.view.backgroundColor = .black; window.rootViewController = host; window.makeKeyAndVisible()
         defer { window.isHidden = true; window.rootViewController = nil; previous?.makeKey() }
+        for _ in 0..<100 { if host.appeared { break }; try await Task.sleep(for: .milliseconds(20)) }
+        XCTAssertTrue(host.appeared, "Complete the actual native appearance before detaching its test window")
+        func labels(_ view: UIView) -> [UILabel] { (view as? UILabel).map { [$0] } ?? view.subviews.flatMap(labels) }
+        let label = try XCTUnwrap(labels(host.view).first { $0.accessibilityIdentifier == "ebook-reader-text" })
+        XCTAssertTrue(label.isAccessibilityElement); XCTAssertTrue(label.accessibilityTraits.contains(.staticText)); XCTAssertEqual(label.accessibilityLabel, "ABC ABC")
         var pixels = 0
         for _ in 0..<40 {
             window.layoutIfNeeded()

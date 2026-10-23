@@ -34,10 +34,13 @@ targets:
             PluginRuntimeHost.js,
             ReadingFontNotices.txt,
             EBookNarrationNotices.txt,
+            EBookEdgeTokenV2.js,
           ]
       - path: Harbor/ReadingFontNotices.txt
         buildPhase: resources
       - path: Harbor/EBookNarrationNotices.txt
+        buildPhase: resources
+      - path: Harbor/EBookEdgeTokenV2.js
         buildPhase: resources
       - path: Harbor/PluginRuntimeHost.js
         buildPhase: resources

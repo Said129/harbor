@@ -1,6 +1,7 @@
 import Foundation
 import CryptoKit
 import NaturalLanguage
+import JavaScriptCore
 
 struct EBookNarrationVoice: Codable, Identifiable, Equatable, Sendable {
     let id: String
@@ -33,20 +34,21 @@ enum EBookEdgeProtocol {
     static let version = "1-143.0.3650.75"
     static func validID(_ value: String) -> Bool { !value.isEmpty && value.utf8.count <= 96 && value.utf8.allSatisfy { (48...57).contains($0) || (65...90).contains($0) || (97...122).contains($0) || $0 == 45 || $0 == 95 } }
     static func validLocale(_ value: String) -> Bool { (2...24).contains(value.utf8.count) && value.utf8.allSatisfy { (65...90).contains($0) || (97...122).contains($0) || $0 == 45 } }
-    static func gec(at date: Date, skew: Int = 0) -> String {
+    static func salt(at date: Date, skew: Int = 0) -> String {
         let seconds = UInt64(max(0, date.timeIntervalSince1970 + Double(skew))) + 11_644_473_600
         let ticks = (seconds - seconds % 300) * 10_000_000
-        return SHA256.hash(data: Data((String(ticks) + token).utf8)).map { String(format: "%02X", $0) }.joined()
+        return String(ticks) + token
     }
+    static func gec(at date: Date, skew: Int = 0) -> String { SHA256.hash(data: Data(salt(at: date, skew: skew).utf8)).map { String(format: "%02X", $0) }.joined() }
     static func timestamp(_ date: Date) -> String {
         let formatter = DateFormatter(); formatter.locale = Locale(identifier: "en_US_POSIX"); formatter.timeZone = TimeZone(secondsFromGMT: 0)
         formatter.dateFormat = "EEE MMM dd yyyy HH:mm:ss 'GMT+0000 (Coordinated Universal Time)'"
         return formatter.string(from: date)
     }
-    static func request(voices: Bool, date: Date = Date(), skew: Int = 0) throws -> URLRequest {
+    static func request(voices: Bool, date: Date = Date(), skew: Int = 0, token: String? = nil, protocolVersion: String? = nil) throws -> URLRequest {
         let prefix = voices ? "https" : "wss", path = voices ? "voices/list" : "edge/v1"
         var components = URLComponents(string: "\(prefix)://speech.platform.bing.com/consumer/speech/synthesize/readaloud/\(path)")!
-        components.queryItems = [.init(name: "TrustedClientToken", value: token), .init(name: "Sec-MS-GEC", value: gec(at: date, skew: skew)), .init(name: "Sec-MS-GEC-Version", value: version)]
+        components.queryItems = [.init(name: "TrustedClientToken", value: Self.token), .init(name: "Sec-MS-GEC", value: token ?? gec(at: date, skew: skew)), .init(name: "Sec-MS-GEC-Version", value: protocolVersion ?? version)]
         if !voices { components.queryItems?.append(.init(name: "ConnectionId", value: UUID().uuidString.replacingOccurrences(of: "-", with: ""))) }
         guard let url = components.url else { throw EBookNarrationError.input }
         var request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 30)
@@ -54,6 +56,7 @@ enum EBookEdgeProtocol {
         request.setValue("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0", forHTTPHeaderField: "User-Agent")
         request.setValue("muid=\(UUID().uuidString.replacingOccurrences(of: "-", with: ""));", forHTTPHeaderField: "Cookie")
         request.setValue("no-cache", forHTTPHeaderField: "Cache-Control")
+        request.setValue("no-cache", forHTTPHeaderField: "Pragma")
         request.setValue("en-US,en;q=0.9", forHTTPHeaderField: "Accept-Language")
         return request
     }
@@ -129,6 +132,26 @@ enum EBookEdgeProtocol {
     }
 }
 
+actor EBookEdgeTokenProgram {
+    static let shared = EBookEdgeTokenProgram()
+    private var context: JSContext?
+    private var cached: (salt: String, token: String)?
+    func token(date: Date, skew: Int = 0) throws -> String {
+        let salt = EBookEdgeProtocol.salt(at: date, skew: skew)
+        if let cached, cached.salt == salt { return cached.token }
+        if context == nil {
+            guard let url = Bundle.main.url(forResource: "EBookEdgeTokenV2", withExtension: "js") else { throw EBookNarrationError.response }
+            let data = try Data(contentsOf: url)
+            guard EBookShelf.hash(data) == "1ff7833eb8a428bfb8026afb1f530a42759511e94b99c102dcc9d717872c76dd", let engine = JSContext(), let source = String(data: data, encoding: .utf8) else { throw EBookNarrationError.response }
+            engine.evaluateScript(source); guard engine.exception == nil else { throw EBookNarrationError.response }; context = engine
+        }
+        guard let context else { throw EBookNarrationError.response }; context.exception = nil
+        let token = context.objectForKeyedSubscript("harborEdgeTokenV2")?.call(withArguments: [salt])?.toString()
+        guard context.exception == nil, let token, token.range(of: "^[0-9A-F]{16}-[0-9A-F]{64}$", options: .regularExpression) != nil else { context.exception = nil; throw EBookNarrationError.response }
+        cached = (salt, token); return token
+    }
+}
+
 protocol EBookNarrationTransport: Sendable {
     func voices() async throws -> [EBookNarrationVoice]
     func synthesize(_ text: String, voice: String, locale: String, rate: Int) async throws -> EBookNarrationAudio
@@ -142,7 +165,8 @@ struct EBookEdgeTransport: EBookNarrationTransport {
     }
     func voices() async throws -> [EBookNarrationVoice] {
         struct Voice: Decodable { let ShortName: String; let Locale: String; let Gender: String; let FriendlyName: String }
-        let (data, response) = try await session.data(for: EBookEdgeProtocol.request(voices: true))
+        let date = Date(), token = try await EBookEdgeTokenProgram.shared.token(date: date)
+        let (data, response) = try await session.data(for: EBookEdgeProtocol.request(voices: true, date: date, token: token, protocolVersion: "2-143.0.3650.75"))
         guard (response as? HTTPURLResponse)?.statusCode == 200, data.count <= 2 * 1024 * 1024 else { throw EBookNarrationError.response }
         let voices = try JSONDecoder().decode([Voice].self, from: data).filter { EBookEdgeProtocol.validID($0.ShortName) && EBookEdgeProtocol.validLocale($0.Locale) }
         guard !voices.isEmpty else { throw EBookNarrationError.response }
@@ -153,7 +177,8 @@ struct EBookEdgeTransport: EBookNarrationTransport {
         var skew = 0
         for attempt in 0..<3 {
             try Task.checkCancellation()
-            let socket = session.webSocketTask(with: try EBookEdgeProtocol.request(voices: false, skew: skew))
+            let date = Date(), token = try await EBookEdgeTokenProgram.shared.token(date: date, skew: skew)
+            let socket = session.webSocketTask(with: try EBookEdgeProtocol.request(voices: false, date: date, skew: skew, token: token, protocolVersion: "2-143.0.3650.75"))
             socket.maximumMessageSize = 2 * 1024 * 1024; socket.resume()
             do {
                 return try await withTaskCancellationHandler {

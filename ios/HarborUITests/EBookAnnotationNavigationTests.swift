@@ -62,7 +62,12 @@ import XCTest
         let action = app.buttons["ebook-notes-action"]; XCTAssertTrue(action.waitForExistence(timeout: 10)); action.tap()
     }
     private func expect(_ text: String, _ paragraph: XCUIElement) {
-        XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(predicate: NSPredicate(format: "label == %@", text), object: paragraph)], timeout: 30), .completed)
+        let outcome = XCTWaiter.wait(for: [XCTNSPredicateExpectation(predicate: NSPredicate(format: "label == %@", text), object: paragraph)], timeout: 30)
+        if outcome != .completed {
+            let hierarchy = XCTAttachment(string: XCUIApplication().debugDescription); hierarchy.name = "reader-notes-visible-text-hierarchy"; hierarchy.lifetime = .keepAlways; add(hierarchy)
+            capture(XCUIApplication(), "reader-notes-visible-text-failure")
+        }
+        XCTAssertEqual(outcome, .completed)
     }
     private func value(_ text: String, _ paragraph: XCUIElement) {
         XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(predicate: NSPredicate(format: "value == %@", text), object: paragraph)], timeout: 20), .completed)

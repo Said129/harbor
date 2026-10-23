@@ -31,7 +31,7 @@ struct EBookAnnotatedPassage: UIViewRepresentable {
     func makeCoordinator() -> Coordinator { Coordinator(self) }
     func makeUIView(context: Context) -> UILabel {
         let label = UILabel(); label.numberOfLines = 0; label.lineBreakMode = .byWordWrapping; label.backgroundColor = .clear
-        label.isUserInteractionEnabled = true; label.accessibilityIdentifier = "ebook-reader-text"
+        label.isUserInteractionEnabled = true; label.isAccessibilityElement = true; label.accessibilityTraits = .staticText; label.accessibilityIdentifier = "ebook-reader-text"
         label.addGestureRecognizer(UITapGestureRecognizer(target: context.coordinator, action: #selector(Coordinator.tap(_:))))
         label.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         return label

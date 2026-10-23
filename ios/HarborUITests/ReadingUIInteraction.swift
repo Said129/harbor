@@ -35,21 +35,21 @@ import XCTest
         return frame
     }
 
-    static func reveal(_ element: XCUIElement, in app: XCUIApplication, up: Bool = true) {
+    static func reveal(_ element: XCUIElement, in app: XCUIApplication, up: Bool = true, container: XCUIElement? = nil) {
         for _ in 0..<14 {
             // Querying hittability before a lazy cell has a visible frame throws inside XCTest.
             if visibleFrame(element, in: app) != nil, element.isHittable { return }
-            if up { app.swipeUp() } else { app.swipeDown() }
+            if up { (container ?? app).swipeUp() } else { (container ?? app).swipeDown() }
         }
         XCTAssertNotNil(visibleFrame(element, in: app), element.description)
         XCTAssertTrue(element.isHittable)
     }
 
     static func tapVisible(_ element: XCUIElement, in app: XCUIApplication) {
-        guard let frame = visibleFrame(element, in: app) else { XCTFail("Control is outside the visible window: " + element.description); return }
+        guard visibleFrame(element, in: app) != nil else { XCTFail("Control is outside the visible window: " + element.description); return }
         XCTAssertTrue(element.isEnabled)
         // Use the observed on-screen control; AXScrollToVisible fails on some iPad toolbar buttons.
-        app.coordinate(withNormalizedOffset: .zero).withOffset(.init(dx: frame.midX, dy: frame.midY)).tap()
+        element.coordinate(withNormalizedOffset: .init(dx: 0.5, dy: 0.5)).tap()
     }
 
     static func back(from title: String, in app: XCUIApplication) {

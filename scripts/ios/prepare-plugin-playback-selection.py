@@ -6,6 +6,9 @@ import re
 import runpy
 
 requested = os.environ.get('HARBOR_NATIVE_SELECTION', '').strip()
+if requested == 'HarborTests.EBookEdgeTokenTests/':
+    runpy.run_path('scripts/ios/prepare-reader-narration-repair-selection.py')
+    raise SystemExit(0)
 if requested == 'HarborTests.EBookNarrationTests/':
     runpy.run_path('scripts/ios/prepare-reader-narration-selection.py')
     raise SystemExit(0)

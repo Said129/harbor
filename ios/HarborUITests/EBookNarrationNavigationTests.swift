@@ -8,9 +8,10 @@ import XCTest
         let app = XCUIApplication(); app.launchArguments = ["-uiLanguage", "en", "-nativeGuide.initialized.v1", "YES", "-nativeGuide.completed.v1", "YES"]
         app.launch(); defer { app.terminate(); XCUIDevice.shared.orientation = .portrait }; openBook(app)
         let options = app.buttons["ebook-narration-options"]; XCTAssertTrue(options.waitForExistence(timeout: 20)); options.tap()
-        let ava = app.buttons["ebook-narration-voice-en-US-AvaNeural"]; XCTAssertTrue(ava.waitForExistence(timeout: 15))
+        let search = app.searchFields.firstMatch; XCTAssertTrue(search.waitForExistence(timeout: 15)); search.tap(); search.typeText("Ava")
+        let ava = app.buttons["ebook-narration-voice-en-US-AvaNeural"]; XCTAssertTrue(ava.waitForExistence(timeout: 15)); XCTAssertEqual(ava.value as? String, "Selected")
         capture(app, "reader-narration-voices-" + device)
-        let search = app.searchFields.firstMatch; XCTAssertTrue(search.waitForExistence(timeout: 10)); search.tap(); search.typeText("Aria")
+        ReadingUIInteraction.replace(search, with: "Aria", in: app)
         let aria = app.buttons["ebook-narration-voice-en-US-AriaNeural"]; XCTAssertTrue(aria.waitForExistence(timeout: 15)); XCTAssertFalse(ava.exists)
         capture(app, "reader-narration-search-" + device); aria.tap()
         XCTAssertEqual(aria.value as? String, "Selected"); capture(app, "reader-narration-selected-" + device)
