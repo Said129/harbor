@@ -6,6 +6,9 @@ import re
 import runpy
 
 requested = os.environ.get('HARBOR_NATIVE_SELECTION', '').strip()
+if requested == 'HarborTests.EBookReaderChromeTests/':
+    runpy.run_path('scripts/ios/prepare-reader-focus-selection.py')
+    raise SystemExit(0)
 if requested == 'HarborTests.EBookSourceRefreshTests/':
     runpy.run_path('scripts/ios/prepare-reading-source-refresh-selection.py')
     raise SystemExit(0)

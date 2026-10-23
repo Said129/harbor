@@ -14,6 +14,8 @@ struct EBookReaderView: View {
     @State private var readerProgram = EBookDetailProgram()
     @State private var readerVolumes: [EBookVolume] = []
     @State private var notes = EBookReaderNotes()
+    @State private var chrome = EBookReaderChrome()
+    @Environment(\.accessibilityVoiceOverEnabled) private var voiceOver
     @State private var chapterOrder: [Int] = []
     @State private var blocks: [EBookBlock] = []
     @State private var originalBlocks: [EBookBlock] = []
@@ -83,6 +85,9 @@ struct EBookReaderView: View {
     private var boundedLineHeight: Double { lineHeight.isFinite ? min(2.5, max(1.1, lineHeight)) : 1.85 }
     private var annotationSignature: String { shelf.owner + "|" + book.id + "|" + contentRevision.uuidString + "|" + String(notes.revision) }
     private var canAnnotate: Bool { notes.canSelect(revision: contentRevision) }
+    private var chromeSuspended: Bool {
+        loading || error != nil || settings || contents || bookmarks || passageSearch || narrationOptions || notes.route != nil || scenePhase != .active || voiceOver
+    }
     private var readerFont: Font {
         if font == "custom", let customGraphicFont { return Font(CTFontCreateWithGraphicsFont(customGraphicFont, boundedFontSize, nil, nil)) }
         return font == "arabic" ? .custom("Vazirmatn-Regular", size: boundedFontSize) : .system(size: boundedFontSize, design: font == "literary" ? .serif : .default)
@@ -91,7 +96,7 @@ struct EBookReaderView: View {
         return EBookPagedReaderView(book: book, owner: shelf.owner, chapterTitle: displayChapterTitle,
             firstChapter: chapter == 0, blocks: blocks, revision: contentRevision,
             font: .init(face: font, data: font == "custom" ? customFontData : nil), fontIdentity: customFontID,
-            fontSize: boundedFontSize, lineHeight: boundedLineHeight, paper: EBookPaper(rawValue: background) ?? .dark, rtl: rtl, showControls: !focus, brightness: boundedBrightness, jump: passageJump,
+            fontSize: boundedFontSize, lineHeight: boundedLineHeight, paper: EBookPaper(rawValue: background) ?? .dark, rtl: rtl, showControls: chrome.visible, brightness: boundedBrightness, jump: passageJump,
             block: Binding(get: { settledBlock }, set: { settledBlock = $0; visible = $0 }))
             .id(contentRevision).environment(\.readingPlugins, reading)
     }
@@ -121,10 +126,11 @@ struct EBookReaderView: View {
                 }.id(contentRevision).environment(\.layoutDirection, rtl ? .rightToLeft : .leftToRight)
                     .foregroundStyle(ink)
             }
-            if !focus, publication != nil {
-                readerFooter
+            if chrome.visible, publication != nil {
+                readerFooter.transition(.move(edge: .bottom).combined(with: .opacity))
             }
         }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top).background(canvas)
+            .modifier(EBookReaderChromeModifier(chrome: chrome, focus: focus, suspended: chromeSuspended))
 
     }
     private var readerFooter: some View {
@@ -163,7 +169,7 @@ struct EBookReaderView: View {
                         Button(DesktopInterfaceText.value("Notes & highlights")) { notes.route = .list }.accessibilityIdentifier("ebook-notes-action")
                         Button(DesktopInterfaceText.value("Highlight")) { notes.select(block: settledBlock) }.disabled(!canAnnotate).accessibilityIdentifier("ebook-note-select-action")
                         Button(DesktopInterfaceText.value("Voice")) { narrationOptions = true }.accessibilityIdentifier("ebook-narration-menu")
-                        Button(focus ? "Mostrar controles" : "Modo de concentración") { focus.toggle() }
+                        Toggle(DesktopInterfaceText.value("Focus mode"), isOn: $focus).accessibilityIdentifier("ebook-focus-toggle")
                         Button(record.completed ? "Marcar como no leído" : "Marcar como leído") { var next = record; next.completed.toggle(); persist(next) }
                         Button("Opciones de lectura") { settings = true }.accessibilityIdentifier("ebook-reader-settings-action")
                     } label: { Image(systemName: "ellipsis.circle") }.accessibilityLabel("Opciones de lectura").accessibilityIdentifier("ebook-reader-menu")
@@ -288,7 +294,7 @@ struct EBookReaderView: View {
                             LabeledContent(DesktopInterfaceText.value("Brightness"), value: "\(Int(boundedBrightness)) %")
                             Slider(value: Binding(get: { boundedBrightness }, set: { brightness = $0 }), in: 55...120, step: 1).accessibilityIdentifier("ebook-brightness")
                                 .accessibilityValue("\(Int(boundedBrightness)) %")
-                            Toggle("Concentración", isOn: $focus)
+                            Toggle(DesktopInterfaceText.value("Focus mode"), isOn: $focus).accessibilityIdentifier("ebook-focus-setting")
                             Button(DesktopInterfaceText.value("Voice")) { narrationAfterSettings = true; settings = false }.accessibilityIdentifier("ebook-narration-settings")
                         }
                     }.navigationTitle("Opciones de lectura").toolbar { ToolbarItem(placement: .topBarTrailing) { Button("Listo") { settings = false }.accessibilityIdentifier("ebook-reader-settings-done") } }
