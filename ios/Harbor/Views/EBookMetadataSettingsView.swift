@@ -10,6 +10,10 @@ struct EBookMetadataSettingsView: View {
     private func text(_ value: String) -> String { DesktopInterfaceText.value(value) }
     var body: some View {
         Form {
+            Section(text("Translation")) {
+                NavigationLink { EBookTranslationSettingsView(owner: manager.scope.owner) } label: { Label(text("DeepSeek chapter translation"), systemImage: "character.bubble") }
+                    .accessibilityIdentifier("ebook-translation-settings")
+            }
             Section("Google Books") {
                 SecureField("API key", text: $key).textInputAutocapitalization(.never).autocorrectionDisabled().privacySensitive().accessibilityIdentifier("ebook-google-key")
                 Text("Opcional. La clave se guarda en el llavero de este perfil y se usa para consultar Google Books.").font(.caption).foregroundStyle(.secondary)

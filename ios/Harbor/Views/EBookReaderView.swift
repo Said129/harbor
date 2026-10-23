@@ -31,6 +31,15 @@ struct EBookReaderView: View {
     @State private var readerVolumes: [EBookVolume] = []
     @State private var chapterOrder: [Int] = []
     @State private var blocks: [EBookBlock] = []
+    @State private var originalBlocks: [EBookBlock] = []
+    @State private var translation: EBookTranslation?
+    @State private var showOriginal = true
+    @State private var translationClient: EBookTranslationClient?
+    @State private var translationTask: Task<Void, Never>?
+    @State private var translationRequest = UUID()
+    @State private var translating = false
+    @State private var translationProgress = EBookTranslationProgress(percent: 0, etaMs: nil)
+    @State private var translationFailure: String?
     @State private var chapter = 0
     @State private var visible: Int?
     @State private var settledBlock = 0
@@ -71,6 +80,9 @@ struct EBookReaderView: View {
     private var ink: Color { Color(cgColor: ReadingBrightness.color(UIColor(baseInk).cgColor, percent: boundedBrightness)) }
     private var rtl: Bool { direction == "rtl" || (direction == "auto" && ["ar", "he", "fa", "ur"].contains(publication?.language?.components(separatedBy: "-").first ?? "")) }
     private var record: EBookRecord { shelf.record(book) ?? EBookRecord(book: book) }
+    private var originalChapterTitle: String { publication.flatMap { $0.chapters.indices.contains(chapter) ? $0.chapters[chapter].title : nil } ?? book.title }
+    private var displayChapterTitle: String { !showOriginal ? translation?.title ?? originalChapterTitle : originalChapterTitle }
+    private var translationAction: String { translation == nil ? "Translate chapter" : showOriginal ? "Show translation" : "Show original language" }
     private var orderedChapters: [Int] { chapterOrder.isEmpty ? Array(publication?.chapters.indices ?? 0..<0) : chapterOrder }
     private var chapterPosition: Int { orderedChapters.firstIndex(of: chapter) ?? 0 }
     private var previousChapter: Int? { chapterPosition > 0 ? orderedChapters[chapterPosition - 1] : nil }
@@ -84,8 +96,7 @@ struct EBookReaderView: View {
         return font == "arabic" ? .custom("Vazirmatn-Regular", size: boundedFontSize) : .system(size: boundedFontSize, design: font == "literary" ? .serif : .default)
     }
     private var printedReader: some View {
-        let chapterTitle = publication.flatMap { $0.chapters.indices.contains(chapter) ? $0.chapters[chapter].title : nil } ?? book.title
-        return EBookPagedReaderView(book: book, owner: shelf.owner, chapterTitle: chapterTitle,
+        return EBookPagedReaderView(book: book, owner: shelf.owner, chapterTitle: displayChapterTitle,
             firstChapter: chapter == 0, blocks: blocks, revision: contentRevision,
             font: .init(face: font, data: font == "custom" ? customFontData : nil), fontIdentity: customFontID,
             fontSize: boundedFontSize, lineHeight: boundedLineHeight, paper: EBookPaper(rawValue: background) ?? .dark, rtl: rtl, showControls: !focus, brightness: boundedBrightness, jump: passageJump,
@@ -118,14 +129,26 @@ struct EBookReaderView: View {
                 }.id(contentRevision).environment(\.layoutDirection, rtl ? .rightToLeft : .leftToRight)
                     .foregroundStyle(ink)
             }
-            if !focus, let publication {
+            if !focus, publication != nil {
                 VStack(spacing: 8) {
-                    Text(publication.chapters[chapter].title).font(.caption).lineLimit(1)
+                    Text(displayChapterTitle).font(.caption).lineLimit(1)
+                    if translating {
+                        HStack(spacing: 8) {
+                            ProgressView().controlSize(.small)
+                            Text("≈\(translationProgress.percent)%").monospacedDigit()
+                            if let eta = translationProgress.etaMs { Text(String(format: "%d:%02d", Int(eta / 60000), Int(eta / 1000) % 60)) }
+                            else { Text(DesktopInterfaceText.value("Estimating…")) }
+                        }.font(.caption).accessibilityIdentifier("ebook-translation-progress")
+                    }
+                    if let translationFailure { Text(translationFailure).font(.caption).foregroundStyle(.orange).lineLimit(2).accessibilityIdentifier("ebook-translation-error") }
                     HStack {
                         Button { if let previousChapter { select(previousChapter) } } label: { Image(systemName: "chevron.left").frame(width: 44, height: 40) }.disabled(previousChapter == nil).accessibilityLabel("Capítulo anterior").accessibilityIdentifier("ebook-previous-section")
                         Spacer()
                         Text("\(chapterPosition + 1) / \(orderedChapters.count)").font(.caption.monospacedDigit())
                         Spacer()
+                        Button { if translation == nil { translateChapter(manual: true) } else { showOriginal.toggle(); applyTranslation() } } label: {
+                            Image(systemName: "character.bubble").frame(width: 44, height: 44)
+                        }.disabled(translating || originalBlocks.isEmpty).accessibilityLabel(DesktopInterfaceText.value(translationAction)).accessibilityIdentifier("ebook-translate-chapter")
                         Button { if let nextChapter { select(nextChapter) } } label: { Image(systemName: "chevron.right").frame(width: 44, height: 44) }.disabled(nextChapter == nil).accessibilityLabel("Capítulo siguiente").accessibilityIdentifier("ebook-next-section")
                     }
                 }.padding(.horizontal).background(.thinMaterial).foregroundStyle(ink)
@@ -175,7 +198,7 @@ struct EBookReaderView: View {
             }
             .onChange(of: readingMode) { _, _ in narrator.stop(); saveCurrentPosition() }
             .onChange(of: scenePhase) { _, phase in if phase != .active { saveTask?.cancel(); saveCurrentPosition() } }
-            .onDisappear { saveTask?.cancel(); chapterTask?.cancel(); narrator.stop(); saveCurrentPosition() }
+            .onDisappear { saveTask?.cancel(); chapterTask?.cancel(); translationTask?.cancel(); narrator.stop(); saveCurrentPosition() }
             .sheet(isPresented: $contents) {
                 if let publication { EBookReaderContentsView(publication: publication, volumes: readerVolumes, currentChapter: chapter, selectedVolume: $contentsVolume) { target in select(target) } }
             }
@@ -206,6 +229,10 @@ struct EBookReaderView: View {
                             Picker(DesktopInterfaceText.value("Reading mode"), selection: $readingMode) {
                                 Text("Harbor").tag("harbor"); Text(DesktopInterfaceText.value("Book")).tag("book")
                             }.pickerStyle(.segmented).accessibilityIdentifier("ebook-reading-mode")
+                        }
+                        Section(DesktopInterfaceText.value("Translation")) {
+                            NavigationLink { EBookTranslationSettingsView(owner: shelf.owner) } label: { Label(DesktopInterfaceText.value("DeepSeek chapter translation"), systemImage: "character.bubble") }
+                                .accessibilityIdentifier("ebook-reader-translation-settings")
                         }
                         Section("Texto") {
                             Picker("Fuente", selection: $font) { Text("Literaria").tag("literary"); Text("Clásica").tag("classic"); Text("Árabe").tag("arabic"); if !customFontID.isEmpty { Text(DesktopInterfaceText.value("Custom font")).tag("custom") } }
@@ -252,6 +279,7 @@ struct EBookReaderView: View {
             let loaded = try await loadBlocks(publication, selected)
             try Task.checkCancellation()
             self.publication = publication; readerVolumes = volumes; chapterOrder = order; chapter = selected; blocks = loaded
+            resetTranslation(loaded)
             contentsVolume = volumes.first { $0.chapters.contains { $0["id"].string == publication.chapters[selected].id } }?.volume
             visible = loaded.contains(where: { $0.id == saved.block }) ? saved.block : loaded.first?.id
             settledBlock = visible ?? loaded.first?.id ?? 0; contentRevision = UUID()
@@ -259,21 +287,24 @@ struct EBookReaderView: View {
             if saved.bookmarks.contains(where: { $0.chapterID == nil && publication.chapters.indices.contains($0.chapter) }) {
                 var next = record; next.bookmarks = EBookBookmarks.upgrading(next.bookmarks, in: publication, volumes: volumes); persist(next)
             }
+            translateChapter(manual: false)
         } catch is CancellationError { return }
         catch { self.error = safeMessage(error) }
     }
     private func select(_ selected: Int, block: Int = 0) {
         guard let publication, publication.chapters.indices.contains(selected), !loading else { return }
-        saveTask?.cancel(); saveCurrentPosition(); narrator.stop(); loading = true; error = nil
+        saveTask?.cancel(); saveCurrentPosition(); narrator.stop(); translationTask?.cancel(); translationRequest = UUID(); translating = false; loading = true; error = nil
         chapterTask = Task {
             defer { loading = false }
             do {
                 let loaded = try await loadBlocks(publication, selected)
                 try Task.checkCancellation()
                 chapter = selected; blocks = loaded; visible = loaded.contains(where: { $0.id == block }) ? block : loaded.first?.id
+                resetTranslation(loaded)
                 contentsVolume = readerVolumes.first { $0.chapters.contains { $0["id"].string == publication.chapters[selected].id } }?.volume
                 settledBlock = visible ?? loaded.first?.id ?? 0; contentRevision = UUID()
                 saveCurrentPosition()
+                translateChapter(manual: false)
             } catch is CancellationError { return }
             catch { self.error = safeMessage(error) }
         }
@@ -303,6 +334,40 @@ struct EBookReaderView: View {
         var next = record; next.bookmarks = EBookBookmarks.adding(bookmark, to: next.bookmarks, in: publication); next.updated = Date()
         do { try shelf.save(next); bookmarks = true }
         catch { self.error = "No se pudo guardar tu marcador. Los marcadores anteriores se conservan." }
+    }
+    private func resetTranslation(_ loaded: [EBookBlock]) {
+        translationTask?.cancel(); translationRequest = UUID(); originalBlocks = loaded
+        translation = nil; showOriginal = true; translating = false; translationFailure = nil
+        translationProgress = .init(percent: 0, etaMs: nil)
+    }
+    private func translateChapter(manual: Bool) {
+        guard !translating, translation == nil, !originalBlocks.isEmpty else { return }
+        let source = originalBlocks.filter { $0.image == nil && $0.imageURL == nil }.map(\.text).joined(separator: "\n\n")
+        guard !source.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else { return }
+        let request = UUID(), title = originalChapterTitle; translationRequest = request; translating = true; translationFailure = nil
+        translationTask = Task {
+            defer { if translationRequest == request { translating = false } }
+            do {
+                let settings = try EBookTranslationSettings.load(owner: shelf.owner)
+                if translationClient == nil { translationClient = try EBookTranslationClient(owner: shelf.owner) }
+                guard let translationClient else { throw EBookTranslationError.response }
+                let result = try await translationClient.translate(source: source, title: title, settings: settings, manual: manual) { progress in
+                    if translationRequest == request { translationProgress = progress }
+                }
+                try Task.checkCancellation(); guard translationRequest == request, result.text != source else { return }
+                translation = result; showOriginal = false; applyTranslation()
+            } catch is CancellationError { return }
+            catch { if translationRequest == request { translationFailure = (error as? EBookTranslationError)?.errorDescription ?? DesktopInterfaceText.value("Translation failed") } }
+        }
+    }
+    private func applyTranslation() {
+        narrator.stop(); saveTask?.cancel()
+        if showOriginal { blocks = originalBlocks }
+        else if let translation {
+            blocks = EBookTranslatedChapter.blocks(translation.text, original: originalBlocks)
+        }
+        if !blocks.contains(where: { $0.id == settledBlock }) { settledBlock = blocks.first?.id ?? 0 }
+        visible = settledBlock; contentRevision = UUID(); saveCurrentPosition()
     }
 }
 
