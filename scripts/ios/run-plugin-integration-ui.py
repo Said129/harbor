@@ -7,6 +7,7 @@ import subprocess
 import sys
 import runpy
 import re
+import plistlib
 
 build = Path('ios/build'); canonical = build / 'canonical'; canonical.mkdir(parents=True, exist_ok=True)
 recordings = build / 'service-recordings'; recordings.mkdir(parents=True, exist_ok=True)
@@ -21,21 +22,21 @@ else:
     assert 1 <= expected <= 9 and len(batches) == len({batch['id'] for batch in batches}) == expected
     assert all(re.fullmatch(r'[A-Za-z][A-Za-z0-9]*', batch['id']) and batch['cases'] for batch in batches)
     assert {batch['family'] for batch in batches} == {'IPhone', 'IPad'}
-assert plan['expected_original_images'] in (4, 6, 8, 10, 12, 13, 16, 34, 36, 47, 54, 58, 61)
+assert plan['expected_original_images'] in (4, 6, 8, 10, 12, 13, 16, 28, 34, 36, 47, 54, 58, 61)
 if plan.get('block') in ('reading-plugins', 'reading-repair', 'ebook-catalog', 'reading-bulk', 'reading-consolidated', 'reading-html', 'reading-metadata', 'reading-adaptations', 'reading-navigation', 'reading-surface'):
     runpy.run_path('scripts/ios/reading-plugin-fixture-server.py')['start'](build)
 if plan['selected_case_count']:
     assert (canonical / 'PluginIntegrationModels-tree.json').is_file(), 'The model bundle did not execute; do not repeat its compilation on two UI devices.'
 else:
-    assert plan.get('ui_only') is True and plan['pending_native_cases'] == [] and plan['block'] == 'reader-contents'
+    assert plan.get('ui_only') is True and plan['pending_native_cases'] == [] and plan['block'] in ('reader-contents', 'reader-interface-completion')
 devices = json.loads((build / 'devices.json').read_text())['devices']
 runtime, phone = next((runtime, row) for runtime, values in devices.items() for row in values if row['udid'] == os.environ['IOS_SIMULATOR'])
 tablet = next(row for row in devices[runtime] if row['name'].startswith('iPad') and row.get('isAvailable', True))
 types = json.loads(subprocess.check_output(['xcrun', 'simctl', 'list', 'devicetypes', '--json'], text=True))['devicetypes']
-prebuilt = plan.get('block') in ('reading-metadata', 'reading-adaptations', 'ebook-detail', 'reading-display', 'web-fonts', 'reading-navigation', 'book-pagination', 'reader-completion', 'reading-surface', 'reader-position', 'reader-contents')
+prebuilt = plan.get('block') in ('reading-metadata', 'reading-adaptations', 'ebook-detail', 'reading-display', 'web-fonts', 'reading-navigation', 'book-pagination', 'reader-completion', 'reading-surface', 'reader-position', 'reader-contents', 'reader-interface-completion')
 if prebuilt:
     # A live metadata selection has not built the separate HarborTests preparation target.
-    schemes = ['Harbor', 'HarborLive'] if plan.get('native_scheme') == 'HarborLive' else ['HarborLive']
+    schemes = ['Harbor', 'HarborLive'] if plan.get('native_scheme') == 'HarborLive' or plan.get('ui_only') else ['HarborLive']
     with (build / 'logs' / 'reading-ui-build.log').open('w') as log:
         for scheme in schemes:
             command = ['xcodebuild', '-project', 'ios/Harbor.xcodeproj', '-scheme', scheme, '-configuration', 'Debug',
@@ -43,6 +44,9 @@ if prebuilt:
                 '-derivedDataPath', str(build / 'DerivedData'), '-clonedSourcePackagesDirPath', str(build / 'SourcePackages'),
                 'CODE_SIGNING_ALLOWED=YES', 'CODE_SIGN_IDENTITY=-', 'build-for-testing']
             subprocess.run(command, stdout=log, stderr=subprocess.STDOUT, timeout=900, check=True)
+    native_bundle = build / 'DerivedData/Build/Products/Debug-iphonesimulator/Harbor.app/PlugIns/HarborTests.xctest'
+    with (native_bundle / 'Info.plist').open('rb') as file: native_info = plistlib.load(file)
+    assert (native_bundle / native_info['CFBundleExecutable']).is_file(), 'The fresh preparation bundle must exist before starting either device.'
 subprocess.run(['xcrun', 'simctl', 'shutdown', os.environ['IOS_SIMULATOR']], check=True)
 failures, selected = [], {}
 

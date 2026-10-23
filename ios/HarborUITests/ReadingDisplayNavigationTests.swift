@@ -32,7 +32,7 @@ import XCTest
         XCTAssertFalse(app.staticTexts["ebook-font-error"].exists)
         capture(app, "reading-display-custom-reader-" + device)
         app.terminate(); app.launch(); reader(app); settings(app)
-        XCTAssertTrue(brightness.waitForExistence(timeout: 15)); reveal(brightness, app); XCTAssertEqual(brightness.value as? String, "55 %")
+        reveal(brightness, app); XCTAssertTrue(brightness.exists); XCTAssertEqual(brightness.value as? String, "55 %")
         capture(app, "reading-display-restored-" + device)
         reveal(fonts, app, up: false); fonts.tap(); XCTAssertTrue(font.waitForExistence(timeout: 15)); XCTAssertTrue(font.isSelected)
     }

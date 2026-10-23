@@ -64,7 +64,11 @@ import XCTest
     }
     private func openSearch(_ app: XCUIApplication) {
         let menu = app.buttons["ebook-reader-menu"]; XCTAssertTrue(menu.waitForExistence(timeout: 15)); ReadingUIInteraction.tapVisible(menu, in: app)
-        app.buttons["ebook-passage-search-action"].tap()
+        let action = app.buttons["ebook-passage-search-action"]; XCTAssertTrue(action.waitForExistence(timeout: 10)); ReadingUIInteraction.tapVisible(action, in: app)
+        if !app.searchFields.firstMatch.waitForExistence(timeout: 15) {
+            let hierarchy = XCTAttachment(string: app.debugDescription); hierarchy.name = "book-search-opening-hierarchy"; hierarchy.lifetime = .keepAlways; add(hierarchy)
+            capture(app, "book-search-opening-failure"); XCTFail("The chapter search action did not present its visible search field")
+        }
     }
     private func waitForJump(_ element: XCUIElement, in app: XCUIApplication) {
         let closed = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == false"), object: app.buttons["ebook-passage-close"])
