@@ -94,6 +94,16 @@ struct EBookPrintedDocument: Sendable {
         let paragraph = blockIDs.firstIndex(of: block) ?? 0
         return EBookPrintRules.resumePage(starts: layout.paragraphStarts, paragraph: paragraph)
     }
+    func passageNumbers(at page: Int) -> [Int] {
+        guard layout.pages.indices.contains(page) else { return [] }
+        var known = Set<Int>()
+        let ordinals = Dictionary(uniqueKeysWithValues: blockIDs.filter { known.insert($0).inserted }.enumerated().map { ($0.element, $0.offset + 1) })
+        var seen = Set<Int>()
+        return layout.pages[page].compactMap { row in
+            guard blockIDs.indices.contains(row.paragraph), let ordinal = ordinals[blockIDs[row.paragraph]], seen.insert(ordinal).inserted else { return nil }
+            return ordinal
+        }
+    }
 }
 
 /// Only requested pages are rasterized. The actor keeps at most eight compressed pages, not a chapter of bitmaps.

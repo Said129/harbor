@@ -43,7 +43,7 @@ import XCTest
         capture(app, "book-search-resealed-" + device)
         reveal.tap(); let future = app.buttons["ebook-passage-result-30"]
         XCTAssertTrue(future.waitForExistence(timeout: 20)); future.tap()
-        let printed = app.descendants(matching: .any).matching(NSPredicate(format: "identifier == %@ AND label CONTAINS %@", "ebook-print-page", "Paragraph 30.")).firstMatch
+        let printed = app.descendants(matching: .any).matching(NSPredicate(format: "identifier == %@ AND label CONTAINS %@ AND label CONTAINS %@", "ebook-print-page", "Passage 31", "Harbor pages")).firstMatch
         waitForJump(printed, in: app)
         capture(app, "book-search-book-jump-" + device)
         openSearch(app); XCTAssertTrue(field.waitForExistence(timeout: 15)); XCTAssertEqual(field.value as? String, "PARAGRAPH 30.")

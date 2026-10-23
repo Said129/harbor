@@ -122,9 +122,13 @@ private struct PrintedBookPage: View {
     let index: Int
     @State private var image: UIImage?
     @State private var failed = false
+    private var accessibleText: String {
+        let passages = document.passageNumbers(at: index).map { DesktopInterfaceText.value("Passage {passage}", variables: ["passage": String($0)]) }.joined(separator: ", ")
+        return passages + "\n" + document.layout.pages[index].map(\.text).joined(separator: " ")
+    }
     var body: some View {
         Group {
-            if let image { ReadingPageZoom(image: image, label: document.layout.pages[index].map(\.text).joined(separator: " ")) }
+            if let image { ReadingPageZoom(image: image, label: accessibleText) }
             else if failed { Text("No se pudo dibujar esta página.") }
             else { ProgressView() }
         }.frame(maxWidth: .infinity, maxHeight: .infinity)
