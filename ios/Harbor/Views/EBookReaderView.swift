@@ -4,22 +4,6 @@ import Observation
 import ImageIO
 import CoreText
 
-@MainActor @Observable
-private final class BookNarrator: NSObject, AVSpeechSynthesizerDelegate {
-    var speaking = false
-    @ObservationIgnored private let synth = AVSpeechSynthesizer()
-    override init() { super.init(); synth.delegate = self }
-    func read(_ text: String, language: String?, rate: Double) {
-        synth.stopSpeaking(at: .immediate)
-        let utterance = AVSpeechUtterance(string: text)
-        utterance.voice = AVSpeechSynthesisVoice(language: language ?? "en-US")
-        utterance.rate = Float(min(0.65, max(0.3, rate)))
-        synth.speak(utterance); speaking = true
-    }
-    func stop() { synth.stopSpeaking(at: .immediate); speaking = false }
-    nonisolated func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) { Task { @MainActor in self.speaking = false } }
-}
-
 struct EBookReaderView: View {
     let book: EBook
     let shelf: EBookShelf
@@ -57,7 +41,9 @@ struct EBookReaderView: View {
     @State private var revealFuturePassages = false
     @AppStorage("ebook.focusMode") private var focus = false
     @AppStorage("ebook.mode") private var readingMode = "harbor"
-    @State private var narrator = BookNarrator()
+    @State private var narrator = EBookNarrator()
+    @State private var narrationOptions = false
+    @State private var narrationAfterSettings = false
     @State private var saveTask: Task<Void, Never>?
     @State private var chapterTask: Task<Void, Never>?
     @Environment(\.scenePhase) private var scenePhase
@@ -67,7 +53,10 @@ struct EBookReaderView: View {
     @AppStorage("ebook.background") private var background = "dark"
     @AppStorage("ebook.font") private var font = "literary"
     @AppStorage("ebook.direction") private var direction = "auto"
-    @AppStorage("ebook.narrationRate") private var rate = 0.5
+    @AppStorage("ebook.narrationVoice") private var narrationVoice = "en-US-AvaNeural"
+    @AppStorage("ebook.deviceNarrationVoice") private var deviceNarrationVoice = ""
+    @AppStorage("ebook.narrationProvider") private var narrationProvider = "edge"
+    @AppStorage("ebook.narrationSpeed") private var narrationSpeed = 1.0
     @AppStorage("ebook.width") private var pageWidth = 768.0
     @AppStorage("ebook.brightness") private var brightness = 100.0
     @AppStorage("ebook.customFontID") private var customFontID = ""
@@ -106,7 +95,7 @@ struct EBookReaderView: View {
             block: Binding(get: { settledBlock }, set: { settledBlock = $0; visible = $0 }))
             .id(contentRevision).environment(\.readingPlugins, reading)
     }
-    var body: some View {
+    private var readerSurface: some View {
         VStack(spacing: 0) {
             if loading { ProgressView("Abriendo libro…").padding() }
             if let error { Text(error).font(.caption).foregroundStyle(.orange).padding().accessibilityIdentifier("ebook-reader-error"); Button("Reintentar") { Task { await open() } } }
@@ -133,8 +122,15 @@ struct EBookReaderView: View {
                     .foregroundStyle(ink)
             }
             if !focus, publication != nil {
+                readerFooter
+            }
+        }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top).background(canvas)
+
+    }
+    private var readerFooter: some View {
                 VStack(spacing: 8) {
                     Text(displayChapterTitle).font(.caption).lineLimit(1)
+                    EBookNarrationBar(narrator: narrator, start: startNarration, options: { narrationOptions = true })
                     if translating {
                         HStack(spacing: 8) {
                             ProgressView().controlSize(.small)
@@ -157,11 +153,8 @@ struct EBookReaderView: View {
                         Button { if let nextChapter { select(nextChapter) } } label: { Image(systemName: "chevron.right").frame(width: 44, height: 44) }.disabled(nextChapter == nil).accessibilityLabel("Capítulo siguiente").accessibilityIdentifier("ebook-next-section")
                     }
                 }.padding(.horizontal).background(.thinMaterial).foregroundStyle(ink)
-            }
-        }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top).background(canvas)
-            .navigationTitle(book.title).navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItemGroup(placement: .topBarTrailing) {
+    }
+    private var readerMenu: some View {
                     Menu {
                         Button("Índice") { contents = true }.accessibilityIdentifier("ebook-reader-contents-action")
                         Button(DesktopInterfaceText.value("Search chapter")) { passageSearch = true }.accessibilityIdentifier("ebook-passage-search-action")
@@ -169,18 +162,35 @@ struct EBookReaderView: View {
                         Button(DesktopInterfaceText.value("Bookmarks")) { bookmarks = true }.accessibilityIdentifier("ebook-bookmarks-action")
                         Button(DesktopInterfaceText.value("Notes & highlights")) { notes.route = .list }.accessibilityIdentifier("ebook-notes-action")
                         Button(DesktopInterfaceText.value("Highlight")) { notes.select(block: settledBlock) }.disabled(!canAnnotate).accessibilityIdentifier("ebook-note-select-action")
-                        Button(narrator.speaking ? "Detener narración" : "Leer en voz alta") {
-                            if narrator.speaking { narrator.stop() }
-                            else { narrator.read(blocks.filter { $0.id >= (visible ?? 0) && $0.image == nil }.map(\.text).joined(separator: "\n\n"), language: publication?.language ?? book.language, rate: rate) }
-                        }
+                        Button(DesktopInterfaceText.value("Voice")) { narrationOptions = true }.accessibilityIdentifier("ebook-narration-menu")
                         Button(focus ? "Mostrar controles" : "Modo de concentración") { focus.toggle() }
                         Button(record.completed ? "Marcar como no leído" : "Marcar como leído") { var next = record; next.completed.toggle(); persist(next) }
                         Button("Opciones de lectura") { settings = true }.accessibilityIdentifier("ebook-reader-settings-action")
                     } label: { Image(systemName: "ellipsis.circle") }.accessibilityLabel("Opciones de lectura").accessibilityIdentifier("ebook-reader-menu")
+    }
+    private var readerLifecycle: some View {
+        readerSurface
+            .navigationTitle(book.title).navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItemGroup(placement: .topBarTrailing) {
+                    readerMenu
                 }
             }
             .task(id: book.pluginID == nil ? "local" : String(reading?.ready ?? false)) { await open() }
             .task(id: shelf.owner + "|" + book.id) { await notes.prepare(owner: shelf.owner, book: book.id) }
+            .task(id: shelf.owner) { narrator.prepare(owner: shelf.owner) }
+            .onChange(of: narrator.currentBlock) { _, target in
+                guard let target, blocks.contains(where: { $0.id == target }) else { return }
+                settledBlock = target; visible = target; passageJump = .init(block: target)
+            }
+            .sheet(isPresented: $narrationOptions) {
+                EBookNarrationView(narrator: narrator, fallback: blocks.filter { $0.image == nil && $0.imageURL == nil }.prefix(2).map(\.text).joined(separator: " "),
+                    voice: $narrationVoice, deviceVoice: $deviceNarrationVoice, provider: $narrationProvider, speed: $narrationSpeed)
+            }
+
+    }
+    private var readerPersistence: some View {
+        readerLifecycle
             .task(id: annotationSignature) {
                 guard let publication, publication.chapters.indices.contains(chapter) else { return }
                 let selected = publication.chapters[chapter]
@@ -215,6 +225,10 @@ struct EBookReaderView: View {
             .onChange(of: readingMode) { _, _ in narrator.stop(); saveCurrentPosition() }
             .onChange(of: scenePhase) { _, phase in if phase != .active { saveTask?.cancel(); saveCurrentPosition() } }
             .onDisappear { saveTask?.cancel(); chapterTask?.cancel(); translationTask?.cancel(); narrator.stop(); saveCurrentPosition() }
+
+    }
+    var body: some View {
+        readerPersistence
             .sheet(isPresented: $contents) {
                 if let publication { EBookReaderContentsView(publication: publication, volumes: readerVolumes, currentChapter: chapter, selectedVolume: $contentsVolume) { target in select(target) } }
             }
@@ -238,7 +252,13 @@ struct EBookReaderView: View {
                     }
                 }
             }
-            .sheet(isPresented: $settings) {
+            .sheet(isPresented: $settings, onDismiss: {
+                if narrationAfterSettings { narrationAfterSettings = false; narrationOptions = true }
+            }) {
+                readerSettings
+            }
+    }
+    private var readerSettings: some View {
                 NavigationStack {
                     Form {
                         Section(DesktopInterfaceText.value("Reading mode")) {
@@ -269,11 +289,14 @@ struct EBookReaderView: View {
                             Slider(value: Binding(get: { boundedBrightness }, set: { brightness = $0 }), in: 55...120, step: 1).accessibilityIdentifier("ebook-brightness")
                                 .accessibilityValue("\(Int(boundedBrightness)) %")
                             Toggle("Concentración", isOn: $focus)
-                            LabeledContent("Velocidad de narración", value: rate.formatted(.number.precision(.fractionLength(2)))); Slider(value: $rate, in: 0.3...0.65, step: 0.05)
+                            Button(DesktopInterfaceText.value("Voice")) { narrationAfterSettings = true; settings = false }.accessibilityIdentifier("ebook-narration-settings")
                         }
                     }.navigationTitle("Opciones de lectura").toolbar { ToolbarItem(placement: .topBarTrailing) { Button("Listo") { settings = false }.accessibilityIdentifier("ebook-reader-settings-done") } }
                 }
-            }
+    }
+    private func startNarration() {
+        narrator.prepare(owner: shelf.owner)
+        narrator.start(blocks: blocks, block: settledBlock, voice: narrationProvider == "device" ? deviceNarrationVoice : narrationVoice, device: narrationProvider == "device", speed: narrationSpeed)
     }
     private func open() async {
         guard !loading else { return }
@@ -364,7 +387,7 @@ struct EBookReaderView: View {
                 EBookAnnotatedPassage(text: EBookPrintRules.paragraphs(block.text).joined(separator: "\n\n"), paint: paint,
                     font: annotationFont(heading: block.heading), ink: UIColor(ink), spacing: boundedFontSize * (boundedLineHeight - 1), rtl: rtl, brightness: boundedBrightness, semantic: notes.caption(for: paint)) { notes.edit($0) }
             } else { Text(block.text).font(block.heading ? readerFont.weight(.bold) : readerFont).lineSpacing(boundedFontSize * (boundedLineHeight - 1)).textSelection(.enabled).accessibilityIdentifier("ebook-reader-text") }
-        }
+        }.background(narrator.currentBlock == block.id ? Color.accentColor.opacity(0.1) : Color.clear)
     }
     private func annotationFont(heading: Bool) -> CTFont {
         let selected: CTFont

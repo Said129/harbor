@@ -1,0 +1,162 @@
+{
+  "schema": 1,
+  "reference": "8274f05485554e531cf5654574de84108f16bdb7",
+  "inputs": {
+    "src/views/ebook/harbor-reader.tsx": "f7e467b133daf92e7b8b882a070cf2a3254592ad5d09cbc29a34b6fc3a81679f"
+  },
+  "voices": [
+    {
+      "id": "en-US-AvaNeural",
+      "locale": "en-US",
+      "gender": "Female",
+      "name": "Ava"
+    },
+    {
+      "id": "en-US-AndrewNeural",
+      "locale": "en-US",
+      "gender": "Male",
+      "name": "Andrew"
+    },
+    {
+      "id": "en-US-AriaNeural",
+      "locale": "en-US",
+      "gender": "Female",
+      "name": "Aria"
+    },
+    {
+      "id": "en-US-GuyNeural",
+      "locale": "en-US",
+      "gender": "Male",
+      "name": "Guy"
+    },
+    {
+      "id": "en-US-JennyNeural",
+      "locale": "en-US",
+      "gender": "Female",
+      "name": "Jenny"
+    },
+    {
+      "id": "en-GB-SoniaNeural",
+      "locale": "en-GB",
+      "gender": "Female",
+      "name": "Sonia"
+    },
+    {
+      "id": "en-GB-RyanNeural",
+      "locale": "en-GB",
+      "gender": "Male",
+      "name": "Ryan"
+    },
+    {
+      "id": "en-GB-LibbyNeural",
+      "locale": "en-GB",
+      "gender": "Female",
+      "name": "Libby"
+    },
+    {
+      "id": "en-AU-NatashaNeural",
+      "locale": "en-AU",
+      "gender": "Female",
+      "name": "Natasha"
+    },
+    {
+      "id": "en-AU-WilliamNeural",
+      "locale": "en-AU",
+      "gender": "Male",
+      "name": "William"
+    },
+    {
+      "id": "en-CA-ClaraNeural",
+      "locale": "en-CA",
+      "gender": "Female",
+      "name": "Clara"
+    },
+    {
+      "id": "en-CA-LiamNeural",
+      "locale": "en-CA",
+      "gender": "Male",
+      "name": "Liam"
+    },
+    {
+      "id": "ar-SA-ZariyahNeural",
+      "locale": "ar-SA",
+      "gender": "Female",
+      "name": "زارية"
+    },
+    {
+      "id": "ar-SA-HamedNeural",
+      "locale": "ar-SA",
+      "gender": "Male",
+      "name": "حامد"
+    },
+    {
+      "id": "ar-EG-SalmaNeural",
+      "locale": "ar-EG",
+      "gender": "Female",
+      "name": "سلمى"
+    },
+    {
+      "id": "ar-EG-ShakirNeural",
+      "locale": "ar-EG",
+      "gender": "Male",
+      "name": "شاكر"
+    },
+    {
+      "id": "ar-AE-FatimaNeural",
+      "locale": "ar-AE",
+      "gender": "Female",
+      "name": "فاطمة"
+    },
+    {
+      "id": "ar-AE-HamdanNeural",
+      "locale": "ar-AE",
+      "gender": "Male",
+      "name": "حمدان"
+    },
+    {
+      "id": "ar-KW-NouraNeural",
+      "locale": "ar-KW",
+      "gender": "Female",
+      "name": "نورة"
+    },
+    {
+      "id": "ar-KW-FahedNeural",
+      "locale": "ar-KW",
+      "gender": "Male",
+      "name": "فهد"
+    }
+  ],
+  "samples": {
+    "ar": "مرحباً، هذا نموذج قصير لاختبار نبرة الصوت ووضوح القراءة في هاربور.",
+    "en": "Welcome to Harbor. This short sample helps you compare the voice, tone, and reading clarity.",
+    "es": "Bienvenido a Harbor. Esta breve muestra permite comparar la voz, el tono y la claridad.",
+    "fr": "Bienvenue dans Harbor. Ce court extrait permet de comparer la voix, le ton et la clarté.",
+    "de": "Willkommen bei Harbor. Mit diesem kurzen Beispiel können Sie Stimme und Klarheit vergleichen.",
+    "it": "Benvenuto in Harbor. Questo breve esempio aiuta a confrontare voce, tono e chiarezza.",
+    "pt": "Bem-vindo ao Harbor. Esta breve amostra ajuda a comparar a voz, o tom e a clareza.",
+    "ru": "Добро пожаловать в Harbor. Этот короткий пример поможет сравнить голос и ясность чтения.",
+    "ja": "ハーバーへようこそ。この短いサンプルで、声の調子と読みやすさを比較できます。",
+    "ko": "하버에 오신 것을 환영합니다. 이 짧은 샘플로 목소리와 읽기 명료도를 비교할 수 있습니다.",
+    "zh": "欢迎使用 Harbor。这个简短示例可以帮助你比较声音、语调和朗读清晰度。",
+    "hi": "हार्बर में आपका स्वागत है। यह छोटा नमूना आवाज़ और पढ़ने की स्पष्टता की तुलना करता है।",
+    "tr": "Harbor'a hoş geldiniz. Bu kısa örnek ses tonunu ve okuma netliğini karşılaştırır."
+  },
+  "locales": {
+    "ar-SA": "هلا والله، كيف حالك؟ إن شاء الله أمورك طيبة. هذا صوت تجريبي من هاربور.",
+    "ar-EG": "أهلاً وسهلاً، إزيّك؟ النهارده هنجرب الصوت ده ونشوف وضوحه ونبرته.",
+    "ar-AE": "مرحبا الساع، شحالك؟ عساك بخير. خلّنا نجرّب هالصوت ونسمع نبرته.",
+    "ar-KW": "هلا والله، شلونك؟ عساك بخير. خلّنا نسمع هالصوت ونجرب نبرته.",
+    "ar-BH": "هلا وغلا، شخبارك؟ إن شاء الله بخير. هذا نموذج بسيط لتجربة الصوت.",
+    "ar-DZ": "أهلاً، واش راك؟ اليوم نجرّبوا هاد الصوت ونشوفوا النبرة تاعو.",
+    "ar-IQ": "هلا بيك، شلونك؟ إن شاء الله زين. خلّينا نجرّب هذا الصوت ونسمع نبرته.",
+    "ar-JO": "أهلاً وسهلاً، كيفك؟ إن شاء الله تمام. خلّينا نجرّب هالصوت ونسمع نبرته.",
+    "ar-LB": "أهلا وسهلا، كيفك اليوم؟ خلّينا نجرّب هالصوت ونسمع نبرته ووضوحه.",
+    "ar-LY": "أهلاً بيك، شن حالك؟ إن شاء الله تمام. خلّينا نجربوا الصوت هذا.",
+    "ar-MA": "مرحبا، كيداير؟ لاباس عليك؟ اليوم غادي نجربو هاد الصوت ونسمعو النبرة ديالو.",
+    "ar-OM": "مرحبا، كيف حالك؟ عساك طيب. خلّنا نجرّب هذا الصوت ونسمع نبرته.",
+    "ar-QA": "مرحبا، شلونك؟ عساك بخير. خلّنا نجرّب هالصوت ونسمع نبرته بوضوح.",
+    "ar-SY": "أهلاً وسهلاً، شلونك اليوم؟ خلّينا نجرّب هالصوت ونسمع نبرته.",
+    "ar-TN": "عسلامة، شنوّة أحوالك؟ اليوم باش نجرّبوا الصوت هذا ونسمعوا نبرتو.",
+    "ar-YE": "يا مرحبا، كيف حالك؟ عساك بخير. خلّينا نجرّب هذا الصوت ونسمع نبرته."
+  }
+}
