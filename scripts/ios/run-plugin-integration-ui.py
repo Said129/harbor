@@ -22,7 +22,7 @@ else:
     assert 1 <= expected <= 9 and len(batches) == len({batch['id'] for batch in batches}) == expected
     assert all(re.fullmatch(r'[A-Za-z][A-Za-z0-9]*', batch['id']) and batch['cases'] for batch in batches)
     assert {batch['family'] for batch in batches} == {'IPhone', 'IPad'}
-assert plan['expected_original_images'] in (4, 6, 8, 10, 12, 13, 16, 26, 28, 34, 36, 47, 54, 58, 61)
+assert plan['expected_original_images'] in (4, 6, 8, 10, 12, 13, 16, 26, 28, 34, 36, 38, 47, 54, 58, 61)
 if plan.get('block') in ('reading-plugins', 'reading-repair', 'ebook-catalog', 'reading-bulk', 'reading-consolidated', 'reading-html', 'reading-metadata', 'reading-adaptations', 'reading-navigation', 'reading-surface'):
     runpy.run_path('scripts/ios/reading-plugin-fixture-server.py')['start'](build)
 if plan['selected_case_count']:

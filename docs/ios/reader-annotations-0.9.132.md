@@ -48,14 +48,18 @@ from run 39933605950. Original images showed that iOS hides navigation-bar items
 while the search field is active. The close-panel control now stays in a safe-area
 footer above the keyboard. The earlier corrected expected edited query remains.
 This preserves the requirement to close the actual search panel; no assertion is
-removed to accept an inaccessible button.
+removed to accept an inaccessible button. The two failed translation UI methods
+are also selected. Their original choices images showed the switch still off
+before saving, while all five native translation/storage contracts passed. The
+interaction now targets the observed switch thumb and requires its value to turn
+on before saving; persistence is not changed to force on an unselected option.
 
 Apple compilation/native execution and all new note/search interface results are
 pending until originals are collected. The selection is five new native cases,
-four necessary fresh preparations and four UI methods: thirteen actual cases,
-twenty-six captures, no IPA. Thirty-five recent native contracts, one public
+six necessary fresh preparations and six UI methods: seventeen actual cases,
+thirty-eight captures, no IPA. Thirty-five recent native contracts, one public
 metadata integration, five Rust font tests and twelve reader UI methods stay
-retained. Only two failed methods are retried; no passed predecessor is replayed.
+retained. Only four failed methods are retried; no passed predecessor is replayed.
 
 The broader reader chrome, animations, narration and full Desktop parity audit
 remain open. This increment is not a declaration that the port is complete.
