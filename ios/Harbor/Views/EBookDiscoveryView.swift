@@ -39,7 +39,7 @@ struct EBookDiscoveryView: View {
             if loading { ProgressView(text("Loading")).frame(maxWidth: .infinity) }
             else if books.isEmpty && failure == nil { ContentUnavailableView(text("No results"), systemImage: "books.vertical") }
             if more { Button(text("Load more")) { Task { await load(next: true) } }.disabled(loading).frame(maxWidth: .infinity, minHeight: 44) }
-        }.padding(.horizontal).task(id: signature) { await load(next: false) }.accessibilityIdentifier("ebook-discovery")
+        }.padding(.horizontal).task(id: signature) { await load(next: false) }
     }
     private func load(next: Bool) async {
         guard !next || !loading else { return }

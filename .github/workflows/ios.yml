@@ -511,11 +511,13 @@ jobs:
         run: |
           set -euo pipefail
           selection=(-only-testing:HarborTests)
+          native_scheme=Harbor
           if [[ "${{ inputs.validation_scope }}" == "plugin-integration" || "${{ inputs.validation_scope }}" == "plugin-playback" ]]; then
             selection=()
             while IFS= read -r identifier; do selection+=("-only-testing:$identifier"); done < ios/build/plugin-integration-selection.txt
             expected=$(python3 -c 'import json; print(json.load(open("ios/build/preserved-plugin-integration.json"))["selected_case_count"])')
             test ${#selection[@]} -eq "$expected"
+            native_scheme=$(python3 -c 'import json; p=json.load(open("ios/build/preserved-plugin-integration.json")); s=p.get("native_scheme", "Harbor"); assert s in ("Harbor", "HarborLive"); assert s != "HarborLive" or (p["block"] == "reading-surface" and p["selected_case_count"] == 1 and all(c.startswith("HarborIntegrationTests.EBookMetadataPublicTests/") for c in p["pending_native_cases"])); print(s)')
           elif [[ "${{ inputs.validation_scope }}" == "plugin-manager" ]]; then
             selection=()
             while IFS= read -r identifier; do selection+=("-only-testing:$identifier"); done < ios/build/plugin-manager-selection.txt
@@ -622,7 +624,7 @@ jobs:
               while IFS= read -r identifier; do selection+=("-only-testing:$identifier"); done < ios/build/feature-native-selection.txt
             fi
           fi
-          xcodebuild -project ios/Harbor.xcodeproj -scheme Harbor -configuration Debug -destination "platform=iOS Simulator,id=$IOS_SIMULATOR,arch=$IOS_SIMULATOR_ARCH" -derivedDataPath ios/build/DerivedData -clonedSourcePackagesDirPath ios/build/SourcePackages -resultBundlePath ios/build/Tests.xcresult "${selection[@]}" -parallel-testing-enabled NO CODE_SIGNING_ALLOWED=YES CODE_SIGN_IDENTITY=- test 2>&1 | tee ios/build/logs/tests.log
+          xcodebuild -project ios/Harbor.xcodeproj -scheme "$native_scheme" -configuration Debug -destination "platform=iOS Simulator,id=$IOS_SIMULATOR,arch=$IOS_SIMULATOR_ARCH" -derivedDataPath ios/build/DerivedData -clonedSourcePackagesDirPath ios/build/SourcePackages -resultBundlePath ios/build/Tests.xcresult "${selection[@]}" -parallel-testing-enabled NO CODE_SIGNING_ALLOWED=YES CODE_SIGN_IDENTITY=- test 2>&1 | tee ios/build/logs/tests.log
       - name: Authenticate the fifteen actual manager settings and affected delivery results
         if: ${{ always() && inputs.validation_scope == 'plugin-manager' && (steps.offline_tests.conclusion == 'success' || steps.offline_tests.conclusion == 'failure') }}
         run: python3 scripts/ios/record-profile-model-results.py --bundle ios/build/Tests.xcresult --expected ios/build/preserved-plugin-manager.json --count 15 --output ios/build/canonical/PluginManagerModels.json
@@ -633,7 +635,7 @@ jobs:
           expected=$(python3 -c 'import json; print(json.load(open("ios/build/preserved-plugin-integration.json"))["selected_case_count"])')
           python3 scripts/ios/record-profile-model-results.py --bundle ios/build/Tests.xcresult --expected ios/build/preserved-plugin-integration.json --count "$expected" --output ios/build/canonical/PluginIntegrationModels.json
       - name: Preserve original reading model results before independent interface tests
-        if: ${{ always() && inputs.validation_only == true && inputs.save_draft_build == true && inputs.validation_scope == 'plugin-playback' && (contains(inputs.native_test_selection, 'EBookMetadataTests/') || contains(inputs.native_test_selection, 'EBookDetailTests/') || contains(inputs.native_test_selection, 'ReadingFontTests/') || contains(inputs.native_test_selection, 'ReadingWebFontTests/') || contains(inputs.native_test_selection, 'EBookPaginationTests/') || contains(inputs.native_test_selection, 'EBookSearchTests/')) && (steps.offline_tests.conclusion == 'success' || steps.offline_tests.conclusion == 'failure') }}
+        if: ${{ always() && inputs.validation_only == true && inputs.save_draft_build == true && inputs.validation_scope == 'plugin-playback' && (contains(inputs.native_test_selection, 'EBookMetadataTests/') || contains(inputs.native_test_selection, 'EBookMetadataPublicTests/') || contains(inputs.native_test_selection, 'EBookDetailTests/') || contains(inputs.native_test_selection, 'ReadingFontTests/') || contains(inputs.native_test_selection, 'ReadingWebFontTests/') || contains(inputs.native_test_selection, 'EBookPaginationTests/') || contains(inputs.native_test_selection, 'EBookSearchTests/')) && (steps.offline_tests.conclusion == 'success' || steps.offline_tests.conclusion == 'failure') }}
         env:
           GH_TOKEN: ${{ github.token }}
         shell: bash
@@ -653,7 +655,7 @@ jobs:
       - name: Run both new plugin management interfaces on fresh guests
         id: plugin_integration_ui
         if: ${{ always() && (inputs.validation_scope == 'plugin-integration' || inputs.validation_scope == 'plugin-playback') && (inputs.validation_scope != 'plugin-playback' || env.HARBOR_PLUGIN_UI_REQUIRED == 'true') && (steps.offline_tests.conclusion == 'success' || steps.offline_tests.conclusion == 'failure') }}
-        timeout-minutes: ${{ contains(inputs.native_test_selection, 'EBookMetadataTests/') && 65 || 40 }}
+        timeout-minutes: ${{ (contains(inputs.native_test_selection, 'EBookMetadataTests/') || contains(inputs.native_test_selection, 'EBookMetadataPublicTests/')) && 65 || 40 }}
         run: python3 scripts/ios/run-plugin-integration-ui.py
       - name: Authenticate the thirteen actual native network model results
         if: ${{ always() && inputs.validation_scope == 'plugin-network' && (steps.offline_tests.conclusion == 'success' || steps.offline_tests.conclusion == 'failure') }}
@@ -1116,7 +1118,18 @@ jobs:
           set -euo pipefail
           mkdir -p ios/build/validation-evidence/attachments
           if [[ "${{ inputs.validation_scope }}" == "episode-panel" || "${{ inputs.validation_scope }}" == "anime-franchise" || "${{ inputs.validation_scope }}" == "anime-episode-pool" || "${{ inputs.validation_scope }}" == "franchise-extras" || "${{ inputs.validation_scope }}" == "season-artwork" || "${{ inputs.validation_scope }}" == "profile-return" || "${{ inputs.validation_scope }}" == "mobile-integration" || "${{ inputs.validation_scope }}" == "plugin-catalog" || "${{ inputs.validation_scope }}" == "plugin-followup" || "${{ inputs.validation_scope }}" == "plugin-network" || "${{ inputs.validation_scope }}" == "plugin-manager" || "${{ inputs.validation_scope }}" == "plugin-integration" || "${{ inputs.validation_scope }}" == "plugin-playback" ]]; then cp -R ios/build/logs ios/build/validation-evidence/; fi
-          for name in Tests PluginSeedIPhone PluginSeedIPad PluginUIIPhone PluginUIIPad PluginSeedBookIPhone PluginSeedBookIPad PluginUIBookIPhone PluginUIBookIPad PluginNetworkPublic ProfileReturnSeed ProfileReturnPhoneUI TVDBProxyLive FranchisePublicContract FranchiseMappingIntegration PoolMappingIntegration FranchiseExtrasPublicContract EpisodeOrderIPhoneUI EpisodeOrderIPadUI ServicesTests LiveTests TabletTests TabletUITests MangaFontTests ReadingTabletSeed ReadingTabletUI LanguageTabletUI SystemTabletUI NavigationTabletUI OnboardingTabletUI ServiceTabletUI StreamingSyncTabletUI PlayerCaptionTabletSeed PlayerCaptionTabletUI ProfileModels ProfileIPhoneLanguage ProfileIPhoneUI ProfileIPadLanguage ProfileIPadUI; do
+          # Include every fresh batch in the exact reading plan, retaining earlier bundle names.
+          reading_bundles=$(python3 - <<'PY'
+          import json, re
+          from pathlib import Path
+          path = Path('ios/build/preserved-plugin-integration.json')
+          batches = json.loads(path.read_text()).get('ui_batches', []) if path.is_file() else []
+          for batch in batches:
+              label = batch['id']; assert re.fullmatch(r'[A-Za-z][A-Za-z0-9]*', label)
+              print('PluginSeed' + label, 'PluginUI' + label)
+          PY
+          )
+          for name in Tests PluginSeedIPhone PluginSeedIPad PluginUIIPhone PluginUIIPad PluginSeedBookIPhone PluginSeedBookIPad PluginUIBookIPhone PluginUIBookIPad PluginNetworkPublic ProfileReturnSeed ProfileReturnPhoneUI TVDBProxyLive FranchisePublicContract FranchiseMappingIntegration PoolMappingIntegration FranchiseExtrasPublicContract EpisodeOrderIPhoneUI EpisodeOrderIPadUI ServicesTests LiveTests TabletTests TabletUITests MangaFontTests ReadingTabletSeed ReadingTabletUI LanguageTabletUI SystemTabletUI NavigationTabletUI OnboardingTabletUI ServiceTabletUI StreamingSyncTabletUI PlayerCaptionTabletSeed PlayerCaptionTabletUI ProfileModels ProfileIPhoneLanguage ProfileIPhoneUI ProfileIPadLanguage ProfileIPadUI $reading_bundles; do
             if [[ -d "ios/build/$name.xcresult" ]]; then
               if ! xcrun xcresulttool export attachments --path "ios/build/$name.xcresult" --output-path "ios/build/validation-evidence/attachments/$name" > "ios/build/validation-evidence/attachment-export-$name.log" 2>&1; then
                 echo "Partial $name bundle: retain the available original logs and canonical trees."

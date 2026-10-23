@@ -32,8 +32,9 @@ import XCTest
         XCTAssertTrue(app.images["manga-page-0"].firstMatch.waitForExistence(timeout: 30))
         capture(app, "reading-html-manga-reader-" + device)
         navigate("ebook", app)
+        ReadingUIInteraction.chooseBookSource("Owned manual Books", in: app)
         let book = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH 'ebook-card-source:html' AND label CONTAINS 'The Book'")).firstMatch
-        XCTAssertTrue(book.waitForExistence(timeout: 40)); reveal(book, app)
+        reveal(book, app); XCTAssertTrue(book.exists)
         capture(app, "reading-html-book-catalog-" + device); book.tap()
         let readBook = app.buttons["ebook-detail-read"]; XCTAssertTrue(readBook.waitForExistence(timeout: 25)); readBook.tap()
         let paragraph = app.staticTexts.matching(NSPredicate(format: "identifier == 'ebook-reader-text' AND label == 'First paragraph.'")).firstMatch

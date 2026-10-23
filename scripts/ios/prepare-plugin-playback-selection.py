@@ -6,6 +6,9 @@ import re
 import runpy
 
 requested = os.environ.get('HARBOR_NATIVE_SELECTION', '').strip()
+if 'EBookMetadataPublicTests/' in requested:
+    runpy.run_path('scripts/ios/prepare-reading-surface-selection.py')
+    raise SystemExit(0)
 if 'EBookSearchTests/' in requested or 'ReadingBrightnessTests/' in requested:
     runpy.run_path('scripts/ios/prepare-reader-completion-selection.py')
     raise SystemExit(0)

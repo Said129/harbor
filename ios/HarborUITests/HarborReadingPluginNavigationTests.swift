@@ -29,8 +29,8 @@ import XCTest
         capture(app, "reading-plugin-books-installed-" + device)
         navigate("manga", app)
         let mangaSearch = app.textFields["manga-search"]; enter("Owned\n", in: mangaSearch, app: app)
-        let card = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH 'manga-popular-card-' AND label CONTAINS 'Owned Manga'")).firstMatch
-        XCTAssertTrue(card.waitForExistence(timeout: 30)); reveal(card, app)
+        let card = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH 'manga-card-' AND label CONTAINS 'Owned Manga'")).firstMatch
+        reveal(card, app); XCTAssertTrue(card.exists)
         capture(app, "reading-plugin-manga-search-" + device); card.tap()
         let read = app.buttons["manga-detail-read"]; XCTAssertTrue(read.waitForExistence(timeout: 20)); reveal(read, app); read.tap()
         let page = app.images["manga-page-0"].firstMatch; XCTAssertTrue(page.waitForExistence(timeout: 30))
