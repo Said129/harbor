@@ -58,3 +58,11 @@ separate SwiftUI expressions; their existing actions remain intact. Apple
 compilation and all new native/UI results remain pending. Full reader chrome,
 localization, motion, text-identity migration and the complete app parity audit
 are still open; this increment does not establish a finished port.
+
+Run 39950218830 also stopped before testing. Original Apple diagnostics identify
+the reserved Swift member name `Type` in Edge metadata and two nested weak-self
+concurrency captures in the progress callback. Explicit `CodingKeys` now map the
+wire's unchanged uppercase keys to native names; non-word or malformed metadata
+entries do not discard valid neighboring word boundaries. Progress crosses to a
+single main-actor method without the nested capture. No test passes are claimed
+from that run, and the affected selection remains unexecuted.

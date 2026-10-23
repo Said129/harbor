@@ -148,7 +148,7 @@ import Observation
             }
             else {
                 result = try await client.synthesize(window.text, voice: voice.id, locale: voice.locale) { [weak self] value in
-                    await MainActor.run { if self?.run == id { self?.progress = value.percent } }
+                    await self?.updateProgress(value, run: id)
                 }
             }
             try Task.checkCancellation(); guard id == run else { return }; boundaries = result.boundaries
@@ -169,6 +169,7 @@ import Observation
             }
         }
     }
+    private func updateProgress(_ value: EBookNarrationProgress, run id: UUID) { if run == id { progress = value.percent } }
     private func updatePosition() {
         guard let player else { return }; let time = player.currentTime; if position != time { position = time }
         if let window, previewID == nil {

@@ -105,13 +105,27 @@ enum EBookEdgeProtocol {
     static func boundaries(_ body: String) -> [EBookNarrationBoundary] {
         struct Envelope: Decodable {
             struct Item: Decodable {
-                struct Value: Decodable { struct Word: Decodable { let Text: String }; let Offset: UInt64; let Duration: UInt64; let text: Word }
-                let Type: String; let Data: Value
+                struct Value: Decodable {
+                    struct Word: Decodable { let text: String; enum CodingKeys: String, CodingKey { case text = "Text" } }
+                    let offset: UInt64; let duration: UInt64; let text: Word
+                    enum CodingKeys: String, CodingKey { case offset = "Offset", duration = "Duration", text }
+                }
+                let type: String; let data: Value?
+                enum CodingKeys: String, CodingKey { case type = "Type", data = "Data" }
+                init(from decoder: Decoder) throws {
+                    let values = try decoder.container(keyedBy: CodingKeys.self)
+                    type = (try? values.decode(String.self, forKey: .type)) ?? ""
+                    data = try? values.decode(Value.self, forKey: .data)
+                }
             }
-            let Metadata: [Item]
+            let metadata: [Item]
+            enum CodingKeys: String, CodingKey { case metadata = "Metadata" }
         }
         guard body.utf8.count <= 2 * 1024 * 1024, let envelope = try? JSONDecoder().decode(Envelope.self, from: Data(body.utf8)) else { return [] }
-        return envelope.Metadata.filter { $0.Type == "WordBoundary" }.map { .init(offsetMs: Double($0.Data.Offset) / 10_000, durationMs: Double($0.Data.Duration) / 10_000, text: $0.Data.text.Text) }
+        return envelope.metadata.compactMap { item in
+            guard item.type == "WordBoundary", let value = item.data else { return nil }
+            return .init(offsetMs: Double(value.offset) / 10_000, durationMs: Double(value.duration) / 10_000, text: value.text.text)
+        }
     }
 }
 
