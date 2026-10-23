@@ -1,0 +1,204 @@
+{
+  "palette": [
+    "#f2c867",
+    "#efa862",
+    "#e89991",
+    "#d184a5",
+    "#bba4d9",
+    "#9fc8dd",
+    "#8fc9c2",
+    "#b4cfa2"
+  ],
+  "cases": [
+    {
+      "name": "accent insensitive whole words",
+      "input": { "operation": "reference", "text": "Café cafe CAFÉ cafeteria", "phrase": "cafe" },
+      "expected": [
+        { "start": 0, "end": 4 },
+        { "start": 5, "end": 9 },
+        { "start": 10, "end": 14 }
+      ]
+    },
+    {
+      "name": "Arabic marks retain original offsets",
+      "input": { "operation": "reference", "text": "هٰذَا كِتَابٌ ثم كتاب", "phrase": "كتاب" },
+      "expected": [
+        { "start": 6, "end": 13 },
+        { "start": 17, "end": 21 }
+      ]
+    },
+    {
+      "name": "UTF16 offsets include preceding emoji",
+      "input": { "operation": "reference", "text": "😀 Café 😀 café", "phrase": "cafe" },
+      "expected": [
+        { "start": 3, "end": 7 },
+        { "start": 11, "end": 15 }
+      ]
+    },
+    {
+      "name": "empty phrase",
+      "input": { "operation": "reference", "text": "Harbor", "phrase": "  " },
+      "expected": []
+    },
+    {
+      "name": "same chapter direct range",
+      "input": {
+        "text": "Harbor passage",
+        "line": 2,
+        "chapterId": "source:one",
+        "annotations": [
+          {
+            "id": "one",
+            "chapterId": "source:one",
+            "ranges": [{ "line": 2, "start": 1, "end": 6 }],
+            "color": "#f2c867",
+            "density": 58,
+            "reference": false,
+            "text": ""
+          }
+        ]
+      },
+      "expected": [{ "start": 1, "end": 6, "id": "one", "color": "#f2c867", "density": 58 }]
+    },
+    {
+      "name": "another chapter cannot paint a direct note",
+      "input": {
+        "text": "Harbor passage",
+        "line": 2,
+        "chapterId": "source:other",
+        "annotations": [
+          {
+            "id": "one",
+            "chapterId": "source:one",
+            "ranges": [{ "line": 2, "start": 1, "end": 6 }],
+            "color": "#f2c867",
+            "density": 58,
+            "reference": false,
+            "text": ""
+          }
+        ]
+      },
+      "expected": []
+    },
+    {
+      "name": "reference phrase recurs across chapters",
+      "input": {
+        "text": "Harbor harbor harbors",
+        "line": 0,
+        "chapterId": "source:other",
+        "annotations": [
+          {
+            "id": "one",
+            "chapterId": "source:one",
+            "ranges": [],
+            "color": "#f2c867",
+            "density": 58,
+            "reference": true,
+            "text": "harbor"
+          }
+        ]
+      },
+      "expected": [
+        { "start": 0, "end": 6, "id": "one", "color": "#f2c867", "density": 58 },
+        { "start": 7, "end": 13, "id": "one", "color": "#f2c867", "density": 58 }
+      ]
+    },
+    {
+      "name": "longer overlapping range takes precedence",
+      "input": {
+        "text": "Harbor passage",
+        "line": 0,
+        "chapterId": "source:one",
+        "annotations": [
+          {
+            "id": "small",
+            "chapterId": "source:one",
+            "ranges": [{ "line": 0, "start": 0, "end": 3 }],
+            "color": "#f2c867",
+            "density": 58,
+            "reference": false,
+            "text": ""
+          },
+          {
+            "id": "long",
+            "chapterId": "source:one",
+            "ranges": [{ "line": 0, "start": 0, "end": 8 }],
+            "color": "#f2c867",
+            "density": 58,
+            "reference": false,
+            "text": ""
+          }
+        ]
+      },
+      "expected": [{ "start": 0, "end": 8, "id": "long", "color": "#f2c867", "density": 58 }]
+    },
+    {
+      "name": "clamped end never exceeds the original text",
+      "input": {
+        "text": "Harbor",
+        "line": 0,
+        "chapterId": "source:one",
+        "annotations": [
+          {
+            "id": "one",
+            "chapterId": "source:one",
+            "ranges": [{ "line": 0, "start": 3, "end": 999 }],
+            "color": "#f2c867",
+            "density": 58,
+            "reference": false,
+            "text": ""
+          }
+        ]
+      },
+      "expected": [{ "start": 3, "end": 6, "id": "one", "color": "#f2c867", "density": 58 }]
+    },
+    {
+      "name": "same chapter reference does not paint duplicate overlap",
+      "input": {
+        "text": "Harbor",
+        "line": 0,
+        "chapterId": "source:one",
+        "annotations": [
+          {
+            "id": "one",
+            "chapterId": "source:one",
+            "ranges": [{ "line": 0, "start": 0, "end": 6 }],
+            "color": "#f2c867",
+            "density": 58,
+            "reference": true,
+            "text": "Harbor"
+          }
+        ]
+      },
+      "expected": [{ "start": 0, "end": 6, "id": "one", "color": "#f2c867", "density": 58 }]
+    },
+    {
+      "name": "batch chapter returns only painted lines",
+      "input": {
+        "operation": "chapter",
+        "paragraphs": [
+          { "line": 0, "text": "Harbor" },
+          { "line": 1, "text": "Another passage" }
+        ],
+        "chapterId": "source:one",
+        "annotations": [
+          {
+            "id": "one",
+            "chapterId": "source:one",
+            "ranges": [{ "line": 0, "start": 0, "end": 6 }],
+            "color": "#f2c867",
+            "density": 58,
+            "reference": false,
+            "text": ""
+          }
+        ]
+      },
+      "expected": [
+        {
+          "line": 0,
+          "runs": [{ "start": 0, "end": 6, "id": "one", "color": "#f2c867", "density": 58 }]
+        }
+      ]
+    }
+  ]
+}

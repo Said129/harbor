@@ -49,7 +49,11 @@ struct EBookPassageSearchView: View {
             .searchable(text: $query, placement: .navigationBarDrawer(displayMode: .always), prompt: DesktopInterfaceText.value("Find a word or passage"))
             .scrollDismissesKeyboard(.interactively)
             .navigationTitle(DesktopInterfaceText.value("Search chapter"))
-            .toolbar { ToolbarItem(placement: .topBarTrailing) { Button(DesktopInterfaceText.value("Close panel")) { dismiss() }.accessibilityIdentifier("ebook-passage-close") } }
+            .safeAreaInset(edge: .bottom) {
+                Button(DesktopInterfaceText.value("Close panel")) { dismiss() }.buttonStyle(.bordered)
+                    .frame(maxWidth: .infinity, minHeight: 44).padding(.horizontal).padding(.vertical, 8).background(.regularMaterial)
+                    .accessibilityIdentifier("ebook-passage-close")
+            }
         }
         .onChange(of: query) { _, _ in revealFuture = false }
         .task(id: request) {

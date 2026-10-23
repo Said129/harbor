@@ -29,6 +29,7 @@ struct EBookReaderView: View {
     @State private var publication: EBookPublication?
     @State private var readerProgram = EBookDetailProgram()
     @State private var readerVolumes: [EBookVolume] = []
+    @State private var notes = EBookReaderNotes()
     @State private var chapterOrder: [Int] = []
     @State private var blocks: [EBookBlock] = []
     @State private var originalBlocks: [EBookBlock] = []
@@ -91,6 +92,8 @@ struct EBookReaderView: View {
     private var boundedBrightness: Double { ReadingBrightness.bounded(brightness) }
     private var boundedFontSize: Double { fontSize.isFinite ? min(36, max(14, fontSize)) : 19 }
     private var boundedLineHeight: Double { lineHeight.isFinite ? min(2.5, max(1.1, lineHeight)) : 1.85 }
+    private var annotationSignature: String { shelf.owner + "|" + book.id + "|" + contentRevision.uuidString + "|" + String(notes.revision) }
+    private var canAnnotate: Bool { notes.canSelect(revision: contentRevision) }
     private var readerFont: Font {
         if font == "custom", let customGraphicFont { return Font(CTFontCreateWithGraphicsFont(customGraphicFont, boundedFontSize, nil, nil)) }
         return font == "arabic" ? .custom("Vazirmatn-Regular", size: boundedFontSize) : .system(size: boundedFontSize, design: font == "literary" ? .serif : .default)
@@ -123,7 +126,7 @@ struct EBookReaderView: View {
                             } else if let url = block.imageURL, let pluginID = book.pluginID {
                                 RemoteBookIllustration(url: url, pluginID: pluginID, label: block.text, brightness: boundedBrightness).accessibilityIdentifier("ebook-reader-image")
                             } else {
-                                Text(block.text).font(block.heading ? readerFont.weight(.bold) : readerFont).lineSpacing(boundedFontSize * (boundedLineHeight - 1)).textSelection(.enabled).accessibilityIdentifier("ebook-reader-text")
+                                passage(block)
                             }
                         }
                 }.id(contentRevision).environment(\.layoutDirection, rtl ? .rightToLeft : .leftToRight)
@@ -146,6 +149,8 @@ struct EBookReaderView: View {
                         Spacer()
                         Text("\(chapterPosition + 1) / \(orderedChapters.count)").font(.caption.monospacedDigit())
                         Spacer()
+                        Button { notes.select(block: settledBlock) } label: { Image(systemName: "highlighter").frame(width: 44, height: 44) }
+                            .disabled(!canAnnotate).accessibilityLabel(DesktopInterfaceText.value("Notes & highlights")).accessibilityIdentifier("ebook-note-open-selection")
                         Button { if translation == nil { translateChapter(manual: true) } else { showOriginal.toggle(); applyTranslation() } } label: {
                             Image(systemName: "character.bubble").frame(width: 44, height: 44)
                         }.disabled(translating || originalBlocks.isEmpty).accessibilityLabel(DesktopInterfaceText.value(translationAction)).accessibilityIdentifier("ebook-translate-chapter")
@@ -162,6 +167,8 @@ struct EBookReaderView: View {
                         Button(DesktopInterfaceText.value("Search chapter")) { passageSearch = true }.accessibilityIdentifier("ebook-passage-search-action")
                         Button(DesktopInterfaceText.value("Bookmark current passage")) { saveBookmark() }.accessibilityIdentifier("ebook-bookmark-add-action")
                         Button(DesktopInterfaceText.value("Bookmarks")) { bookmarks = true }.accessibilityIdentifier("ebook-bookmarks-action")
+                        Button(DesktopInterfaceText.value("Notes & highlights")) { notes.route = .list }.accessibilityIdentifier("ebook-notes-action")
+                        Button(DesktopInterfaceText.value("Highlight")) { notes.select(block: settledBlock) }.disabled(!canAnnotate).accessibilityIdentifier("ebook-note-select-action")
                         Button(narrator.speaking ? "Detener narración" : "Leer en voz alta") {
                             if narrator.speaking { narrator.stop() }
                             else { narrator.read(blocks.filter { $0.id >= (visible ?? 0) && $0.image == nil }.map(\.text).joined(separator: "\n\n"), language: publication?.language ?? book.language, rate: rate) }
@@ -173,6 +180,15 @@ struct EBookReaderView: View {
                 }
             }
             .task(id: book.pluginID == nil ? "local" : String(reading?.ready ?? false)) { await open() }
+            .task(id: shelf.owner + "|" + book.id) { await notes.prepare(owner: shelf.owner, book: book.id) }
+            .task(id: annotationSignature) {
+                guard let publication, publication.chapters.indices.contains(chapter) else { return }
+                let selected = publication.chapters[chapter]
+                let label = selected.number.map { DesktopInterfaceText.value("Chapter {chapter}", variables: ["chapter": $0]) } ?? selected.title
+                let volume = readerVolumes.first { $0.chapters.contains { $0["id"].string == selected.id } }?.label ?? DesktopInterfaceText.value("Chapters")
+                await notes.update(blocks: blocks, revision: contentRevision, chapterID: selected.id, chapterLabel: label, volumeLabel: volume)
+            }
+            .modifier(EBookNotesPresentation(notes: notes, bookTitle: book.title, rtl: rtl) { note in jumpToNote(note) })
             .task(id: font + "|" + customFontID) {
                 customGraphicFont = nil; customFontData = nil; fontError = nil
                 guard font == "custom", !customFontID.isEmpty else { return }
@@ -291,7 +307,7 @@ struct EBookReaderView: View {
         } catch is CancellationError { return }
         catch { self.error = safeMessage(error) }
     }
-    private func select(_ selected: Int, block: Int = 0) {
+    private func select(_ selected: Int, block: Int = 0, passageLine: Int? = nil) {
         guard let publication, publication.chapters.indices.contains(selected), !loading else { return }
         saveTask?.cancel(); saveCurrentPosition(); narrator.stop(); translationTask?.cancel(); translationRequest = UUID(); translating = false; loading = true; error = nil
         chapterTask = Task {
@@ -299,7 +315,9 @@ struct EBookReaderView: View {
             do {
                 let loaded = try await loadBlocks(publication, selected)
                 try Task.checkCancellation()
-                chapter = selected; blocks = loaded; visible = loaded.contains(where: { $0.id == block }) ? block : loaded.first?.id
+                let paragraphs = EBookSearchParagraph.make(loaded)
+                let target = passageLine.flatMap { paragraphs.indices.contains($0) ? paragraphs[$0].block : nil } ?? block
+                chapter = selected; blocks = loaded; visible = loaded.contains(where: { $0.id == target }) ? target : loaded.first?.id
                 resetTranslation(loaded)
                 contentsVolume = readerVolumes.first { $0.chapters.contains { $0["id"].string == publication.chapters[selected].id } }?.volume
                 settledBlock = visible ?? loaded.first?.id ?? 0; contentRevision = UUID()
@@ -339,6 +357,35 @@ struct EBookReaderView: View {
         translationTask?.cancel(); translationRequest = UUID(); originalBlocks = loaded
         translation = nil; showOriginal = true; translating = false; translationFailure = nil
         translationProgress = .init(percent: 0, etaMs: nil)
+    }
+    @ViewBuilder private func passage(_ block: EBookBlock) -> some View {
+        Group {
+            if let paint = notes.paint[block.id], !paint.isEmpty {
+                EBookAnnotatedPassage(text: EBookPrintRules.paragraphs(block.text).joined(separator: "\n\n"), paint: paint,
+                    font: annotationFont(heading: block.heading), ink: UIColor(ink), spacing: boundedFontSize * (boundedLineHeight - 1), rtl: rtl, brightness: boundedBrightness, semantic: notes.caption(for: paint)) { notes.edit($0) }
+            } else { Text(block.text).font(block.heading ? readerFont.weight(.bold) : readerFont).lineSpacing(boundedFontSize * (boundedLineHeight - 1)).textSelection(.enabled).accessibilityIdentifier("ebook-reader-text") }
+        }
+    }
+    private func annotationFont(heading: Bool) -> CTFont {
+        let selected: CTFont
+        if font == "custom", let customGraphicFont { selected = CTFontCreateWithGraphicsFont(customGraphicFont, boundedFontSize, nil, nil) }
+        else if font == "arabic" { selected = CTFontCreateWithName("Vazirmatn-Regular" as CFString, boundedFontSize, nil) }
+        else {
+            let descriptor = UIFont.systemFont(ofSize: boundedFontSize).fontDescriptor
+            let face = font == "literary" ? descriptor.withDesign(.serif) ?? descriptor : descriptor
+            let attributes = Dictionary(uniqueKeysWithValues: face.fontAttributes.map { ($0.key.rawValue, $0.value) })
+            selected = CTFontCreateWithFontDescriptor(CTFontDescriptorCreateWithAttributes(attributes as CFDictionary), boundedFontSize, nil)
+        }
+        return heading ? CTFontCreateCopyWithSymbolicTraits(selected, boundedFontSize, nil, .traitBold, .traitBold) ?? selected : selected
+    }
+    private func jumpToNote(_ note: EBookAnnotation) -> Bool {
+        guard let publication, let selected = publication.chapters.firstIndex(where: { $0.id == note.chapterID }), let line = note.ranges.first?.line else { return false }
+        if selected == chapter {
+            let paragraphs = EBookSearchParagraph.make(blocks); guard paragraphs.indices.contains(line) else { return false }
+            narrator.stop(); saveTask?.cancel(); settledBlock = paragraphs[line].block; visible = settledBlock
+            passageJump = .init(block: settledBlock); saveCurrentPosition()
+        } else { select(selected, passageLine: line) }
+        return true
     }
     private func translateChapter(manual: Bool) {
         guard !translating, translation == nil, !originalBlocks.isEmpty else { return }
