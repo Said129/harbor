@@ -156,7 +156,7 @@ actor EBookAnnotationFile: EBookAnnotationPersistence {
         guard !busy, !ready else { return }; busy = true; defer { busy = false }
         do { let values = try await persistence.read(); try Task.checkCancellation(); items = values; ready = true; error = nil; revision += 1 }
         catch is CancellationError { return }
-        catch { error = DesktopInterfaceText.value("Error") }
+        catch { self.error = DesktopInterfaceText.value("Error") }
     }
     func save(_ value: EBookAnnotation) async throws { try await commit(EBookAnnotation.inserting(try value.validated(), in: items)) }
     func remove(_ id: String) async throws { try await commit(items.filter { $0.id != id }) }

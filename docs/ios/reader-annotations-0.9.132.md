@@ -54,8 +54,12 @@ before saving, while all five native translation/storage contracts passed. The
 interaction now targets the observed switch thumb and requires its value to turn
 on before saving; persistence is not changed to force on an unselected option.
 
-Apple compilation/native execution and all new note/search interface results are
-pending until originals are collected. The selection is five new native cases,
+Run 39945488394 stopped during Apple compilation before any test executed. Its
+preserved compiler archive reports a shadowed `error` property in the annotation
+store's load failure handler. The handler now explicitly assigns `self.error`;
+the retry and previous-value behavior are unchanged. No native/UI passes are
+claimed from this run. Apple execution and new note/search interface results
+remain pending. The affected selection is five new native cases,
 six necessary fresh preparations and six UI methods: seventeen actual cases,
 thirty-eight captures, no IPA. Thirty-five recent native contracts, one public
 metadata integration, five Rust font tests and twelve reader UI methods stay
