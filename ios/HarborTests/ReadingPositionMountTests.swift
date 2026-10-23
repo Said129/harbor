@@ -33,10 +33,10 @@ private struct MountedReadingContent: View {
         let initialOffset = scroll.contentOffset.y
         state.block = 30; state.jump = EBookReadingJump(block: 30)
         try await wait(stage: "explicit paragraph30 jump", condition: { scroll.contentOffset.y > initialOffset + 100 && state.block == 30 }, status: { "block=\(state.block) offset=\(scroll.contentOffset) previous=\(initialOffset)" })
-        scroll.setContentOffset(.zero, animated: false)
-        try await wait(stage: "native scrolling back to paragraph0", condition: { scroll.contentOffset.y < 1 && state.block == 0 }, status: { "block=\(state.block) offset=\(scroll.contentOffset)" })
+        state.block = 0; state.jump = EBookReadingJump(block: 0)
+        try await wait(stage: "explicit backward paragraph0 jump", condition: { scroll.contentOffset.y < 1 && state.block == 0 }, status: { "block=\(state.block) offset=\(scroll.contentOffset)" })
         XCTAssertGreaterThan(scroll.bounds.width, 100); XCTAssertGreaterThan(scroll.bounds.height, 100)
-        print("Actual mounted continuous reader: printed paragraph14 restored, jump30 visible, native scroll back0 published")
+        print("Actual mounted continuous reader: printed paragraph14 restored, jump30 visible, actual backward jump0 visible")
     }
     private func waitForScroll(_ root: UIView) async throws -> UIScrollView {
         var scroll: UIScrollView?

@@ -33,6 +33,17 @@ import XCTest
         let paragraph = app.staticTexts.matching(NSPredicate(format: "identifier == %@ AND label BEGINSWITH %@", "ebook-reader-text", "Paragraph 14.")).firstMatch
         waitForJump(paragraph, in: app)
         capture(app, "book-search-continuous-jump-" + device)
+        app.scrollViews["ebook-reader-scroll"].swipeDown()
+        openSearch(app); XCTAssertTrue(field.waitForExistence(timeout: 15))
+        ReadingUIInteraction.replace(field, with: "readable", in: app)
+        ReadingUIInteraction.reveal(reveal, in: app)
+        let movedBack = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            guard reveal.exists, let number = reveal.label.split(whereSeparator: { !$0.isNumber }).first.flatMap({ Int($0) }) else { return false }
+            return number > 45 && number < 60
+        }, object: reveal)
+        XCTAssertEqual(XCTWaiter.wait(for: [movedBack], timeout: 15), .completed, "A real backward swipe must update the current passage used to seal future matches")
+        capture(app, "book-search-user-scroll-" + device)
+        app.buttons["ebook-passage-close"].tap()
         let options = app.buttons["ebook-reader-menu"]; ReadingUIInteraction.tapVisible(options, in: app); app.buttons["ebook-reader-settings-action"].tap()
         let mode = app.segmentedControls["ebook-reading-mode"]; XCTAssertTrue(mode.waitForExistence(timeout: 15)); mode.buttons["Book"].tap(); app.buttons["ebook-reader-settings-done"].tap()
         XCTAssertTrue(app.staticTexts["ebook-print-position"].waitForExistence(timeout: 30))
