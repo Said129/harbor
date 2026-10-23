@@ -9,6 +9,9 @@ requested = os.environ.get('HARBOR_NATIVE_SELECTION', '').strip()
 if requested == 'HarborUITests.EBookReaderContentsNavigationTests/':
     runpy.run_path('scripts/ios/prepare-reader-contents-selection.py')
     raise SystemExit(0)
+if requested == 'native-only:HarborTests.ReadingPositionMountTests/':
+    runpy.run_path('scripts/ios/prepare-reader-position-probe-selection.py')
+    raise SystemExit(0)
 if 'ReadingPositionMountTests/' in requested:
     runpy.run_path('scripts/ios/prepare-reader-position-selection.py')
     raise SystemExit(0)
