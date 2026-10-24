@@ -10,7 +10,12 @@ struct ContentPageView: View {
         self.app = app; self.kind = kind; self.title = title; _model = State(initialValue: app.pageModel(kind))
         _customization = State(initialValue: app.pageCustomization(kind))
     }
-    private var rails: [PageRail] { model.curated.map(PageRail.discovery) + model.rows.map(PageRail.catalog) }
+    private var rails: [PageRail] {
+        let rows = model.curated.map(PageRail.discovery) + model.rows.map(PageRail.catalog)
+        guard kind == "anime" else { return rows }
+        return PageRail.addingContinuation(to: rows, kind: kind, records: app.library.continuing,
+            detectedAnime: app.animeDetection.identifiers, presentationError: app.library.presentationError != nil)
+    }
     private var remainingRails: [PageRail] { kind == "anime" ? rails.filter { $0.id != "discovery-anime-picks" } : rails }
     var body: some View {
         ScrollView {
@@ -22,9 +27,9 @@ struct ContentPageView: View {
                         Button("Reintentar") { Task { ArtworkRefresh.shared.retryFailedImages(); await model.load(kind: kind, app: app, refresh: true) } }
                     }
                 }
-                PageCustomizeButton(rails: rails, customization: customization, cloud: kind == "anime" && app.harborIdentity.cloud.signedIn ? app.harborIdentity.cloud.page("anime") : nil)
+                PageCustomizeButton(rails: remainingRails, customization: customization, cloud: kind == "anime" && app.harborIdentity.cloud.signedIn ? app.harborIdentity.cloud.page("anime") : nil)
                 if let error = customization.error { Text(error).font(.caption).foregroundStyle(.orange).padding(.horizontal) }
-                if ["series", "anime"].contains(kind) { ContinueWatching(app: app, kind: kind, title: kind == "series" ? "Continúa donde lo dejaste" : "Seguir viendo") }
+                if kind == "series" { ContinueWatching(app: app, kind: kind, title: "Continúa donde lo dejaste") }
                 CustomizedRails(rails: remainingRails, app: app, customization: customization)
             }.padding(.bottom, 24)
         }.accessibilityIdentifier("content-\(kind)")

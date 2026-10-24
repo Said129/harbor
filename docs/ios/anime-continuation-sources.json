@@ -1,0 +1,19 @@
+{
+  "reference": "0.9.132 (Beta)",
+  "inputs": {
+    "src/lib/anime-customization.ts": "6d285ab82a36e2b1fee3763dd07652f6ef54cd44f5353b1fe554eb826ab7bd18"
+  },
+  "fixture_canonical_sha256": "e031594d533960e8c850e7f429b5166903ea06c7703eb14a92d391f83e60fca1",
+  "original_customization_functions_executed": true,
+  "native_continue_row": "continueWatching",
+  "new_native_cases": 4,
+  "unexecuted_page_layout_cases_retained": 16,
+  "prior_page_layout_run": 40140794453,
+  "prior_page_layout_actual_executions": 0,
+  "new_ui_routes": 2,
+  "fresh_ui_preparations": 2,
+  "expected_total_executions": 24,
+  "expected_original_images": 12,
+  "full_desktop_parity_complete": false,
+  "ipa_created": false
+}

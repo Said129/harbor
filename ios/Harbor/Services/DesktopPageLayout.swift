@@ -19,12 +19,15 @@ struct DesktopPageRowMap: Equatable, Sendable {
             pairs["discovery-anilist-trending"] = "anilistTrending"
             pairs["discovery-anilist-top100"] = "anilistTop100"
             pairs["discovery-anime-awards"] = "awards"
+            pairs["continueWatching"] = "continueWatching"
         }
         register(rails)
     }
     mutating func register(_ rails: [PageRail]) {
         for rail in rails {
             switch rail {
+            case .continuing:
+                if page == "anime" { pairs[rail.id] = "continueWatching" }
             case .discovery(let row):
                 // Anime's personalized hero is not an animeRows entry on Desktop.
                 if page == "home", Self.safeID(row.id) { pairs[rail.id] = row.id }

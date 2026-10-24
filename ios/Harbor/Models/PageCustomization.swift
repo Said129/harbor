@@ -4,11 +4,18 @@ import Observation
 enum PageRail: Identifiable, Sendable {
     case catalog(CatalogRow)
     case discovery(DiscoveryRail)
-    var id: String { switch self { case .catalog(let row): "catalog-" + EBookShelf.hash(row.id); case .discovery(let row): "discovery-" + row.id } }
-    var title: String { switch self { case .catalog(let row): row.plan.title; case .discovery(let row): row.title } }
-    var kind: String { switch self { case .catalog(let row): row.plan.kind; case .discovery(let row): row.kind } }
-    var metas: [Media] { switch self { case .catalog(let row): row.metas; case .discovery(let row): row.metas } }
-    var defaultNumerals: Bool { switch self { case .catalog: false; case .discovery(let row): row.ranked || row.id.hasSuffix("-top10") || ["cm-top-movies", "cm-drama", "cm-comedy"].contains(row.id) } }
+    case continuing(kind: String)
+    var id: String { switch self { case .catalog(let row): "catalog-" + EBookShelf.hash(row.id); case .discovery(let row): "discovery-" + row.id; case .continuing: "continueWatching" } }
+    var title: String { switch self { case .catalog(let row): row.plan.title; case .discovery(let row): row.title; case .continuing: DesktopInterfaceText.value("Continue Watching") } }
+    var kind: String { switch self { case .catalog(let row): row.plan.kind; case .discovery(let row): row.kind; case .continuing(let kind): kind } }
+    var metas: [Media] { switch self { case .catalog(let row): row.metas; case .discovery(let row): row.metas; case .continuing: [] } }
+    var supportsArtworkCustomization: Bool { if case .continuing = self { return false }; return true }
+    var defaultNumerals: Bool { switch self { case .catalog, .continuing: false; case .discovery(let row): row.ranked || row.id.hasSuffix("-top10") || ["cm-top-movies", "cm-drama", "cm-comedy"].contains(row.id) } }
+    static func addingContinuation(to rails: [PageRail], kind: String, records: [LibraryRecord], detectedAnime: Set<String>, presentationError: Bool) -> [PageRail] {
+        let rows = rails.filter { $0.id != "continueWatching" }
+        guard presentationError || records.contains(where: { $0.continuing && ContinueWatchingSelection.includes($0, kind: kind, detectedAnime: detectedAnime) }) else { return rows }
+        return [.continuing(kind: kind)] + rows
+    }
 }
 struct PageLayout: Codable, Equatable, Sendable {
     var version = 1
@@ -92,7 +99,7 @@ final class PageCustomization {
         if let title = layout.renamed[rail.id] { return title }
         return rail.title
     }
-    func ranked(_ rail: PageRail) -> Bool { layout.numerals.contains(rail.id) || (rail.defaultNumerals && !layout.plain.contains(rail.id)) }
+    func ranked(_ rail: PageRail) -> Bool { rail.supportsArtworkCustomization && (layout.numerals.contains(rail.id) || (rail.defaultNumerals && !layout.plain.contains(rail.id))) }
     func bind(_ next: NavigationScope) {
         guard next.owner == owner else { return }
         if scope == next && ready { return }
@@ -102,7 +109,7 @@ final class PageCustomization {
             guard Self.valid(value) else { throw HarborError(code: "page-layout") }
             layout = value; ready = true; error = nil
             if case .local = next { localLayout = value }
-        } catch { error = "No se pudo recuperar la personalización. Los cambios anteriores se conservan." }
+        } catch { self.error = "No se pudo recuperar la personalización. Los cambios anteriores se conservan." }
     }
     func apply(_ value: PageLayout, to expected: NavigationScope) throws {
         guard ready, scope == expected, Self.valid(value) else { throw HarborError(code: "account-changed") }
@@ -116,6 +123,10 @@ final class PageCustomization {
         guard let first = ids.firstIndex(of: rail.id), let second = ids.firstIndex(of: neighbor.id) else { return }
         ids.swapAt(first, second)
         change { $0.order = ids }
+    }
+    func rename(_ rail: PageRail, to label: String) {
+        let title = String(label.trimmingCharacters(in: .whitespacesAndNewlines).prefix(120))
+        change { $0.renamed[rail.id] = title.isEmpty ? nil : title }
     }
     func change(_ edit: (inout PageLayout) -> Void) {
         guard ready else { return }

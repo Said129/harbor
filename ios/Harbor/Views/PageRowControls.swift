@@ -91,14 +91,16 @@ struct PageRowControls: View {
                 control(hidden ? "page-row-hidden" : "page-row-eye", title: hidden ? "Show row" : "Hide row", selected: hidden, danger: hidden) {
                     customization.change { if hidden { $0.hidden.remove(rail.id) } else { $0.hidden.insert(rail.id) } }
                 }
-                control("page-row-numerals", title: ranked ? "Show as a normal row" : rail.metas.count >= 10 ? "Show as a Top 10 with big numerals" : "Needs at least 10 titles for the Top 10 look", selected: ranked, enabled: ranked || rail.metas.count >= 10) {
-                    customization.change {
-                        if ranked { $0.numerals.remove(rail.id); $0.plain.insert(rail.id) }
-                        else { $0.numerals.insert(rail.id); $0.plain.remove(rail.id) }
+                if rail.supportsArtworkCustomization {
+                    control("page-row-numerals", title: ranked ? "Show as a normal row" : rail.metas.count >= 10 ? "Show as a Top 10 with big numerals" : "Needs at least 10 titles for the Top 10 look", selected: ranked, enabled: ranked || rail.metas.count >= 10) {
+                        customization.change {
+                            if ranked { $0.numerals.remove(rail.id); $0.plain.insert(rail.id) }
+                            else { $0.numerals.insert(rail.id); $0.plain.remove(rail.id) }
+                        }
                     }
-                }
-                control("page-row-hero", title: hero ? "Stop feeding the hero carousel (back to automatic)" : canHero ? "Feature this catalog in the hero carousel" : "Needs artwork-rich titles to feed the hero", selected: hero, enabled: hero || canHero) {
-                    customization.change { $0.heroSource = hero ? nil : rail.id }
+                    control("page-row-hero", title: hero ? "Stop feeding the hero carousel (back to automatic)" : canHero ? "Feature this catalog in the hero carousel" : "Needs artwork-rich titles to feed the hero", selected: hero, enabled: hero || canHero) {
+                        customization.change { $0.heroSource = hero ? nil : rail.id }
+                    }
                 }
                 Spacer(minLength: 0)
             }
@@ -115,7 +117,7 @@ struct PageRowControls: View {
                         .allowsHitTesting(false).transition(.opacity)
                 }
             }.animation(reduceMotion ? nil : .easeOut(duration: 0.2), value: notice)
-            .disabled(!customization.ready).accessibilityIdentifier("page-row-controls-\(rail.id)")
+            .disabled(!customization.ready).accessibilityElement(children: .contain).accessibilityIdentifier("page-row-controls-\(rail.id)")
             .task(id: notice) {
                 guard notice != nil else { return }
                 do { try await Task.sleep(for: .milliseconds(1700)); try Task.checkCancellation(); notice = nil } catch {}
@@ -140,7 +142,8 @@ struct PageRowControls: View {
     }
     private func commit() {
         let clean = String(draft.trimmingCharacters(in: .whitespacesAndNewlines).prefix(120))
-        if !clean.isEmpty {
+        if customization.page == "anime" { customization.rename(rail, to: clean) }
+        else if !clean.isEmpty {
             customization.change { $0.renamed[rail.id] = clean == rail.title ? nil : clean }
         }
         focused = false; renaming = false

@@ -1,0 +1,262 @@
+{
+  "input_sha256": "6d285ab82a36e2b1fee3763dd07652f6ef54cd44f5353b1fe554eb826ab7bd18",
+  "rows": [
+    {
+      "key": "continueWatching",
+      "name": "Continue Watching"
+    },
+    {
+      "key": "airing",
+      "name": "Airing Now"
+    },
+    {
+      "key": "upcoming",
+      "name": "Upcoming Season"
+    }
+  ],
+  "cases": [
+    {
+      "custom": {
+        "order": [],
+        "hidden": [],
+        "renamed": {}
+      },
+      "expected": {
+        "visible": [
+          {
+            "key": "continueWatching",
+            "name": "Continue Watching"
+          },
+          {
+            "key": "airing",
+            "name": "Airing Now"
+          },
+          {
+            "key": "upcoming",
+            "name": "Upcoming Season"
+          }
+        ],
+        "editing": [
+          {
+            "key": "continueWatching",
+            "name": "Continue Watching"
+          },
+          {
+            "key": "airing",
+            "name": "Airing Now"
+          },
+          {
+            "key": "upcoming",
+            "name": "Upcoming Season"
+          }
+        ],
+        "order": ["continueWatching", "airing", "upcoming"]
+      }
+    },
+    {
+      "custom": {
+        "order": ["upcoming", "future-row", "continueWatching"],
+        "hidden": ["airing"],
+        "renamed": {
+          "continueWatching": "Mi continuidad"
+        }
+      },
+      "expected": {
+        "visible": [
+          {
+            "key": "upcoming",
+            "name": "Upcoming Season"
+          },
+          {
+            "key": "continueWatching",
+            "name": "Mi continuidad"
+          }
+        ],
+        "editing": [
+          {
+            "key": "upcoming",
+            "name": "Upcoming Season"
+          },
+          {
+            "key": "continueWatching",
+            "name": "Mi continuidad"
+          },
+          {
+            "key": "airing",
+            "name": "Airing Now"
+          }
+        ],
+        "order": ["upcoming", "continueWatching", "airing"]
+      }
+    },
+    {
+      "custom": {
+        "order": [],
+        "hidden": [],
+        "renamed": {}
+      },
+      "action": {
+        "type": "move",
+        "key": "continueWatching",
+        "delta": 1
+      },
+      "expected": {
+        "visible": [
+          {
+            "key": "airing",
+            "name": "Airing Now"
+          },
+          {
+            "key": "continueWatching",
+            "name": "Continue Watching"
+          },
+          {
+            "key": "upcoming",
+            "name": "Upcoming Season"
+          }
+        ],
+        "editing": [
+          {
+            "key": "airing",
+            "name": "Airing Now"
+          },
+          {
+            "key": "continueWatching",
+            "name": "Continue Watching"
+          },
+          {
+            "key": "upcoming",
+            "name": "Upcoming Season"
+          }
+        ],
+        "order": ["airing", "continueWatching", "upcoming"]
+      }
+    },
+    {
+      "custom": {
+        "order": [],
+        "hidden": [],
+        "renamed": {}
+      },
+      "action": {
+        "type": "hide",
+        "key": "continueWatching"
+      },
+      "expected": {
+        "visible": [
+          {
+            "key": "airing",
+            "name": "Airing Now"
+          },
+          {
+            "key": "upcoming",
+            "name": "Upcoming Season"
+          }
+        ],
+        "editing": [
+          {
+            "key": "continueWatching",
+            "name": "Continue Watching"
+          },
+          {
+            "key": "airing",
+            "name": "Airing Now"
+          },
+          {
+            "key": "upcoming",
+            "name": "Upcoming Season"
+          }
+        ],
+        "order": ["continueWatching", "airing", "upcoming"]
+      }
+    },
+    {
+      "custom": {
+        "order": [],
+        "hidden": [],
+        "renamed": {
+          "continueWatching": "Old name"
+        }
+      },
+      "action": {
+        "type": "rename",
+        "key": "continueWatching",
+        "name": ""
+      },
+      "expected": {
+        "visible": [
+          {
+            "key": "continueWatching",
+            "name": "Continue Watching"
+          },
+          {
+            "key": "airing",
+            "name": "Airing Now"
+          },
+          {
+            "key": "upcoming",
+            "name": "Upcoming Season"
+          }
+        ],
+        "editing": [
+          {
+            "key": "continueWatching",
+            "name": "Continue Watching"
+          },
+          {
+            "key": "airing",
+            "name": "Airing Now"
+          },
+          {
+            "key": "upcoming",
+            "name": "Upcoming Season"
+          }
+        ],
+        "order": ["continueWatching", "airing", "upcoming"]
+      }
+    },
+    {
+      "custom": {
+        "order": [],
+        "hidden": [],
+        "renamed": {}
+      },
+      "action": {
+        "type": "rename",
+        "key": "continueWatching",
+        "name": "  Acabar anime  "
+      },
+      "expected": {
+        "visible": [
+          {
+            "key": "continueWatching",
+            "name": "Acabar anime"
+          },
+          {
+            "key": "airing",
+            "name": "Airing Now"
+          },
+          {
+            "key": "upcoming",
+            "name": "Upcoming Season"
+          }
+        ],
+        "editing": [
+          {
+            "key": "continueWatching",
+            "name": "Acabar anime"
+          },
+          {
+            "key": "airing",
+            "name": "Airing Now"
+          },
+          {
+            "key": "upcoming",
+            "name": "Upcoming Season"
+          }
+        ],
+        "order": ["continueWatching", "airing", "upcoming"]
+      }
+    }
+  ]
+}

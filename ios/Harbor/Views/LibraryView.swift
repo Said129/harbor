@@ -122,13 +122,14 @@ struct ContinueWatching: View {
     let app: AppModel
     var kind: String? = nil
     var title = "Continuar viendo"
+    var titleIsLiteral = false
     private var items: [LibraryRecord] {
         app.library.continuing.filter { ContinueWatchingSelection.includes($0, kind: kind, detectedAnime: app.animeDetection.identifiers) }
     }
     var body: some View {
         if !items.isEmpty || app.library.presentationError != nil {
             VStack(alignment: .leading, spacing: 12) {
-                Text(DesktopInterfaceText.value(title)).font(HarborTheme.font(17, weight: .medium)).padding(.horizontal)
+                Text(titleIsLiteral ? title : DesktopInterfaceText.value(title)).font(HarborTheme.font(17, weight: .medium)).padding(.horizontal)
                 LibraryPresentationFeedback(library: app.library).padding(.horizontal)
                 ScrollView(.horizontal) {
                     LazyHStack(alignment: .top, spacing: 12) {

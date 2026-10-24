@@ -62,18 +62,23 @@ struct CustomizedRails: View {
                             }
                         } else {
                             switch rail {
+                            case .continuing(let kind):
+                                ContinueWatching(app: app, kind: kind, title: title, titleIsLiteral: true)
+                                    .accessibilityElement(children: .contain)
+                                    .accessibilityIdentifier("page-continue-watching-row")
                             case .catalog(let row): CatalogRails(rows: [row], app: app, titleOverrides: [row.id: title])
                             case .discovery(let row):
                                 DiscoveryRails(rows: [row], app: app, titleOverrides: [row.id: title], disableDefaultRanking: true)
                             }
                         }
                     }
-                }
+                }.accessibilityElement(children: .contain).accessibilityIdentifier("page-content-row-" + rail.id)
             }
         }
     }
     @ViewBuilder private func browse(_ rail: PageRail) -> some View {
         switch rail {
+        case .continuing: EmptyView()
         case .catalog(let row): NavigationLink { CatalogBrowserView(app: app, initial: row) } label: { Label(DesktopInterfaceText.value("View all"), image: "desktop-chevron-right").font(.caption).foregroundStyle(.secondary) }.accessibilityIdentifier("catalog-browser-link")
         case .discovery(let row): NavigationLink(DesktopInterfaceText.value("View all")) { DiscoveryGrid(rail: row, app: app) }.font(.caption).foregroundStyle(.secondary)
         }

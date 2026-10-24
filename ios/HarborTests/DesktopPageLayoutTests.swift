@@ -54,10 +54,10 @@ final class DesktopPageLayoutTests: XCTestCase {
             "hidden": .array([.string("yourAnilistLists")]), "renamed": .object(["continueWatching": .string("Continuar")]), "future": .integer(4)])
         let desktop = try DesktopPageLayout(page: "anime", raw: raw)
         var local = desktop.native(preserving: PageLayout(), mapping: map)
-        local.order = ["discovery-anime-airing", "discovery-anilist-top100"]; local.playButtonSquare = true
+        local.order = ["discovery-anime-airing", "continueWatching", "discovery-anilist-top100"]; local.playButtonSquare = true
         local.cwTop = true; local.heroSource = "discovery-anilist-top100"
         let result = try desktop.applying(local, mapping: map).raw
-        XCTAssertEqual(result["order"], .array([.string("continueWatching"), .string("airing"), .string("anilistTop100"), .string("yourMalLists")]))
+        XCTAssertEqual(result["order"], .array([.string("airing"), .string("continueWatching"), .string("anilistTop100"), .string("yourMalLists")]))
         XCTAssertEqual(result["hidden"], raw["hidden"]); XCTAssertEqual(result["renamed"], raw["renamed"])
         XCTAssertEqual(result["future"], .integer(4)); XCTAssertEqual(result["playButtonSquare"], .null)
         XCTAssertEqual(result["cwTop"], .null); XCTAssertEqual(result["heroSource"], .null)
