@@ -339,6 +339,21 @@ jobs:
           test "${{ inputs.validation_only }}" = "true"
           test "${{ inputs.run_live_integration }}" = "false"
           python3 scripts/ios/prepare-plugin-integration-selection.py
+      - name: Check the changed public-address classification and production bridge
+        if: ${{ inputs.validation_scope == 'plugin-playback' && (inputs.native_test_selection == 'affected:music-public-network' || startsWith(inputs.native_test_selection, 'HarborTests.MusicBillboardPublicTests/')) }}
+        shell: bash
+        env:
+          RUSTFLAGS: -D warnings
+        run: |
+          set -euo pipefail
+          mkdir -p ios/build/logs ios/build/canonical
+          cargo check --locked --manifest-path harbor-ios-bridge/Cargo.toml 2>&1 | tee ios/build/logs/music-public-network-check.log
+          set +e
+          cargo test --locked --manifest-path harbor-ios-bridge/Cargo.toml --lib plugin_http::tests::plugin_http_private_mixed_dns_reserved_and_dns64_addresses -- --exact --test-threads=1 2>&1 | tee ios/build/logs/music-public-network-rust.log
+          status=${PIPESTATUS[0]}
+          set -e
+          python3 scripts/ios/record-music-public-network-rust.py
+          test "$status" -eq 0
       - name: Build and package Rust before Swift
         shell: bash
         run: |

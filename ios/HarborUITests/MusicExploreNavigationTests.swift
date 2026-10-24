@@ -15,8 +15,8 @@ import XCTest
         let search = app.searchFields.firstMatch
         ReadingUIInteraction.reveal(search, in: app, up: false, container: scroll); search.tap(); search.typeText("Rock\n")
         let styles = app.buttons["music-genre-style"]
-        ReadingUIInteraction.reveal(styles, in: app, container: scroll); ReadingUIInteraction.tapVisible(styles, in: app)
-        let guitars = app.buttons["Rock & metal"].firstMatch; XCTAssertTrue(guitars.waitForExistence(timeout: 10)); guitars.tap()
+        ReadingUIInteraction.revealWithinViewport(styles, in: app, container: scroll); styles.tap()
+        ReadingUIInteraction.chooseNativeMenuItem("Rock & metal", in: app)
         chooseCountry("United States", app: app, scroll: scroll); chooseCountry("United Kingdom", app: app, scroll: scroll)
         let rock = app.buttons["music-genre-152"]
         ReadingUIInteraction.reveal(rock, in: app, container: scroll)

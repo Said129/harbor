@@ -462,7 +462,7 @@ fn is_public_ip(ip: IpAddr) -> bool {
             let [a, b, c, _] = ip.octets();
             !is_private_ip(IpAddr::V4(ip))
                 && !(a >= 224
-                    || (a == 192 && b == 0)
+                    || (a == 192 && b == 0 && (c == 0 || c == 2))
                     || (a == 192 && b == 88 && c == 99)
                     || (a == 198 && (b == 18 || b == 19))
                     || (a == 198 && b == 51 && c == 100)
@@ -665,6 +665,10 @@ mod tests {
             assert!(is_private_ip(value.parse().unwrap()), "{value}");
         }
         for value in [
+            "192.0.0.1",
+            "192.0.0.255",
+            "192.0.2.1",
+            "192.0.2.254",
             "198.51.100.1",
             "203.0.113.1",
             "224.0.0.1",
@@ -675,6 +679,9 @@ mod tests {
         }
         for value in [
             "8.8.8.8",
+            "192.0.1.1",
+            "192.0.66.69",
+            "192.0.78.1",
             "172.15.1.1",
             "2606:4700:4700::1111",
             "64:ff9b::808:808",
@@ -690,6 +697,15 @@ mod tests {
         )
         .is_err());
         assert!(checked_addresses(vec!["8.8.8.8:443".parse().unwrap()], true).is_ok());
+        assert!(checked_addresses(vec!["192.0.66.69:443".parse().unwrap()], true).is_ok());
+        assert!(checked_addresses(
+            vec![
+                "192.0.66.69:443".parse().unwrap(),
+                "192.0.2.1:443".parse().unwrap()
+            ],
+            true
+        )
+        .is_err());
     }
 
     #[test]

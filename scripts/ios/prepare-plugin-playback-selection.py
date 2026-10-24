@@ -6,6 +6,9 @@ import re
 import runpy
 
 requested = os.environ.get('HARBOR_NATIVE_SELECTION', '').strip()
+if requested in ('affected:music-public-network', 'HarborTests.MusicBillboardPublicTests/testActualPublicHot100KeepsItsPublishedDateRankAndOriginalCatalogIdentity'):
+    runpy.run_path('scripts/ios/prepare-music-public-network-selection.py')
+    raise SystemExit(0)
 if requested == 'affected:music-billboard' or (requested.startswith('HarborTests.MusicBillboardNativeTests/') and 'HarborTests.MusicBillboardPublicTests/' in requested and 'HarborTests.MusicBillboardModelTests/' not in requested):
     runpy.run_path('scripts/ios/prepare-music-billboard-repair-selection.py')
     raise SystemExit(0)

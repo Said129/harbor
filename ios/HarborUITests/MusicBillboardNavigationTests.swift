@@ -12,7 +12,7 @@ import XCTest
         XCTAssertTrue(navigation.waitForExistence(timeout: 10)); let music = app.buttons["nav-music"]
         for _ in 0..<12 { if music.isHittable { break }; navigation.swipeDown() }
         for _ in 0..<12 { if music.isHittable { break }; navigation.swipeUp() }
-        XCTAssertTrue(music.isHittable); music.press(forDuration: 0.6)
+        XCTAssertTrue(music.isHittable); ReadingUIInteraction.tapVisible(music, in: app)
         let explore = app.scrollViews["music-explore-scroll"]
         XCTAssertTrue(explore.waitForExistence(timeout: 20))
         let entry = app.buttons["music-explore-billboard"]; ReadingUIInteraction.revealWithinViewport(entry, in: app, container: explore); ReadingUIInteraction.tapVisible(entry, in: app)
