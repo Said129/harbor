@@ -30,7 +30,7 @@ import XCTest
         XCTAssertFalse(albumTitle.isEmpty); capture("music-open-album-" + device)
         ReadingUIInteraction.back(from: albumTitle, in: app)
         let artist = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH 'music-catalog-item-artist|'")).firstMatch
-        ReadingUIInteraction.reveal(artist, in: app, up: false, container: scroll); ReadingUIInteraction.tapVisible(artist, in: app)
+        ReadingUIInteraction.revealWithinViewport(artist, in: app, container: scroll); ReadingUIInteraction.tapVisible(artist, in: app)
         let kinds = app.segmentedControls["music-artist-catalog-kind"]; XCTAssertTrue(kinds.waitForExistence(timeout: 20))
         ReadingUIInteraction.tapVisible(kinds.buttons.element(boundBy: 1), in: app)
         let artistAlbum = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH 'music-detail-item-album|'")).firstMatch

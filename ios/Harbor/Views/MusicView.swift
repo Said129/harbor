@@ -12,14 +12,29 @@ struct MusicView: View {
     @State private var selectFolder = false
     @AppStorage("harbor.music.tab") private var screen = MusicNativeScreen.forYou
     @State private var catalog: MusicCatalogModel
+    @State private var explore: MusicExploreModel
+    @AppStorage("harbor.music.genres.explore.v1") private var genreFiltersRaw = "{}"
     @MainActor init(app: AppModel) {
         self.app = app
         _library = State(initialValue: MusicLibrary(owner: app.personalOwner))
         _playlists = State(initialValue: MusicPlaylistStore(owner: app.personalOwner))
         _catalog = State(initialValue: MusicCatalogModel())
+        let scope = PluginExecutionScope(owner: app.personalOwner, activation: app.profileContext.activationID)
+        _explore = State(initialValue: MusicExploreModel(client: MusicExploreClient(scope: scope, currentScope: { [weak app] in
+            app?.pluginExecutionScope ?? .init(owner: "locked", activation: scope.activation)
+        })))
         MusicCollections.shared.prepare(owner: app.personalOwner)
     }
     private var query: String { filters.query }
+    private var genreFilters: Binding<MusicGenreFilters> {
+        Binding(get: { MusicGenreFilters.read(genreFiltersRaw, definitions: explore.asset?.definitions) }, set: { genreFiltersRaw = $0.encoded })
+    }
+    private var search: Binding<String> {
+        Binding(get: { screen == .explore ? genreFilters.wrappedValue.query : filters.query }, set: { value in
+            if screen == .explore { var next = genreFilters.wrappedValue; next.query = String(value.prefix(120)); genreFilters.wrappedValue = next }
+            else { filters.query = value }
+        })
+    }
     private var records: [MusicRecord] { filters.apply(library.records) }
     private var groups: [(String, String, [MusicRecord])] {
         let grouped = Dictionary(grouping: records) { record in
@@ -42,9 +57,10 @@ struct MusicView: View {
                 ForEach(MusicNativeScreen.allCases) { Text($0.title).tag($0) }
             }.pickerStyle(.segmented).padding(.horizontal).accessibilityIdentifier("music-screen")
             if screen == .forYou { MusicDiscoveryView(model: catalog, library: library, query: filters.query) }
+            else if screen == .explore { MusicExploreView(model: explore, catalog: catalog.client, filters: genreFilters) }
             else { localLibrary }
         }.background(HarborTheme.background).navigationTitle("Música").navigationBarTitleDisplayMode(.inline)
-            .searchable(text: $filters.query, prompt: screen == .forYou ? DesktopInterfaceText.value("Search music") : "Canciones, álbumes, artistas o listas")
+            .searchable(text: search, prompt: screen == .forYou ? DesktopInterfaceText.value("Search music") : screen == .explore ? DesktopInterfaceText.value("music.taste.search") : "Canciones, álbumes, artistas o listas")
             .task(id: screen.rawValue + "|" + query) {
                 if screen == .forYou { await catalog.load(query: query) }
             }
@@ -65,7 +81,7 @@ struct MusicView: View {
                 case .failure: library.error = "No se pudo abrir la selección de archivos."
                 }
             }
-            .onDisappear { if library.owner != (app.personalOwner) { library.cancelImport() } }
+            .onDisappear { if library.owner != (app.personalOwner) { library.cancelImport(); explore.dispose() } }
             .accessibilityElement(children: .contain).accessibilityIdentifier("music-library")
     }
     private var localLibrary: some View {

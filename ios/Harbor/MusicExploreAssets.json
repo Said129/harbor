@@ -1,0 +1,1605 @@
+{
+  "schema": 1,
+  "reference": "0834340cec5531650bfe78cd628628702e636987",
+  "inputs": {
+    "src/lib/music/genre-catalog.ts": "6eb5559ccf2a8d1f1378f1fb105cbe9b45a6bd5328083e5962663fae75277a2a",
+    "src/lib/music/genre-artwork.ts": "fd08d0d6ed4ea2cb61c80fe6b6feaf831366a302f00b6c70cbfd00470c853144",
+    "src/lib/music/genre-editorial.ts": "91644a9e77986fbfbe36d418e400bde0f87f2bebb01eb5abd6acccb41db2ae3f",
+    "src/lib/music/genre-editorial-loader.ts": "815840c002d6fe8ac82b6e1014421fe695580679c6ae64fdcd88f7e0b33a7d71",
+    "src/lib/music/genre-playlist-pool.ts": "1162fc94fe09c5d90264e32b21a0623888c02e0b5fc76bdd5a78fe6664a52b0c",
+    "src/lib/music/discovery.ts": "6f974f6c5f2670bdb2b756b3232752ed9ce10dc479eedeceb704f5d1e8a74d54"
+  },
+  "definitions": {
+    "genres": [
+      {
+        "id": 132,
+        "slug": "pop",
+        "name": "Pop",
+        "family": "popular",
+        "countries": ["US", "GB"],
+        "aliases": [],
+        "deezerId": 132
+      },
+      {
+        "id": 116,
+        "slug": "hip-hop",
+        "name": "Hip-hop",
+        "family": "popular",
+        "countries": ["US", "FR", "GB"],
+        "aliases": ["Rap"],
+        "deezerId": 116
+      },
+      {
+        "id": 152,
+        "slug": "rock",
+        "name": "Rock",
+        "family": "guitars",
+        "countries": ["US", "GB"],
+        "aliases": [],
+        "deezerId": 152
+      },
+      {
+        "id": 165,
+        "slug": "rnb",
+        "name": "R&B",
+        "family": "popular",
+        "countries": ["US", "GB"],
+        "aliases": ["Rhythm and blues"],
+        "deezerId": 165
+      },
+      {
+        "id": 10001,
+        "slug": "nightcore",
+        "name": "Nightcore",
+        "family": "electronic",
+        "countries": ["NO"],
+        "aliases": ["Sped up"]
+      },
+      {
+        "id": 10002,
+        "slug": "jumpstyle",
+        "name": "Jumpstyle",
+        "family": "electronic",
+        "countries": ["BE", "NL"],
+        "aliases": ["Jump style"]
+      },
+      {
+        "id": 10003,
+        "slug": "hardstyle",
+        "name": "Hardstyle",
+        "family": "electronic",
+        "countries": ["NL", "AU"],
+        "aliases": ["Hard dance"]
+      },
+      {
+        "id": 10004,
+        "slug": "funk-carioca",
+        "name": "Funk carioca",
+        "family": "latin",
+        "countries": ["BR"],
+        "aliases": ["Baile funk", "Brazilian funk", "Funk brasileiro"]
+      },
+      {
+        "id": 10005,
+        "slug": "pagode",
+        "name": "Pagode",
+        "family": "latin",
+        "countries": ["BR"],
+        "aliases": []
+      },
+      {
+        "id": 10006,
+        "slug": "amapiano",
+        "name": "Amapiano",
+        "family": "africa",
+        "countries": ["ZA"],
+        "aliases": []
+      },
+      {
+        "id": 10007,
+        "slug": "k-pop",
+        "name": "K-pop",
+        "family": "asia",
+        "countries": ["KR"],
+        "aliases": ["Korean pop"]
+      },
+      {
+        "id": 10008,
+        "slug": "j-pop",
+        "name": "J-pop",
+        "family": "asia",
+        "countries": ["JP"],
+        "aliases": ["Japanese pop"]
+      },
+      {
+        "id": 122,
+        "slug": "reggaeton",
+        "name": "Reggaetón",
+        "family": "latin",
+        "countries": ["PR", "PA"],
+        "aliases": ["Reggaeton"],
+        "deezerId": 122
+      },
+      {
+        "id": 106,
+        "slug": "electronic",
+        "name": "Electronic",
+        "family": "electronic",
+        "countries": [],
+        "aliases": ["Electro", "Electronica"],
+        "deezerId": 106
+      },
+      {
+        "id": 113,
+        "slug": "dance",
+        "name": "Dance",
+        "family": "electronic",
+        "countries": [],
+        "aliases": ["EDM"],
+        "deezerId": 113
+      },
+      {
+        "id": 85,
+        "slug": "alternative",
+        "name": "Alternative",
+        "family": "guitars",
+        "countries": [],
+        "aliases": ["Alt rock"],
+        "deezerId": 85
+      },
+      {
+        "id": 10009,
+        "slug": "afrobeats",
+        "name": "Afrobeats",
+        "family": "africa",
+        "countries": ["NG", "GH"],
+        "aliases": ["Afro pop"]
+      },
+      {
+        "id": 10010,
+        "slug": "house",
+        "name": "House",
+        "family": "electronic",
+        "countries": ["US", "GB"],
+        "aliases": []
+      },
+      {
+        "id": 10011,
+        "slug": "techno",
+        "name": "Techno",
+        "family": "electronic",
+        "countries": ["US", "DE"],
+        "aliases": []
+      },
+      {
+        "id": 10012,
+        "slug": "drum-and-bass",
+        "name": "Drum & bass",
+        "family": "electronic",
+        "countries": ["GB"],
+        "aliases": ["DnB", "Drum and bass"]
+      },
+      {
+        "id": 10013,
+        "slug": "phonk",
+        "name": "Phonk",
+        "family": "electronic",
+        "countries": ["US"],
+        "aliases": ["Drift phonk"]
+      },
+      {
+        "id": 10014,
+        "slug": "hyperpop",
+        "name": "Hyperpop",
+        "family": "popular",
+        "countries": ["GB", "US"],
+        "aliases": []
+      },
+      {
+        "id": 10015,
+        "slug": "trap",
+        "name": "Trap",
+        "family": "popular",
+        "countries": ["US"],
+        "aliases": []
+      },
+      {
+        "id": 10016,
+        "slug": "indie-pop",
+        "name": "Indie pop",
+        "family": "popular",
+        "countries": [],
+        "aliases": []
+      },
+      {
+        "id": 129,
+        "slug": "jazz",
+        "name": "Jazz",
+        "family": "roots",
+        "countries": ["US"],
+        "aliases": [],
+        "deezerId": 129
+      },
+      {
+        "id": 169,
+        "slug": "soul-funk",
+        "name": "Soul & funk",
+        "family": "roots",
+        "countries": ["US"],
+        "aliases": [],
+        "deezerId": 169
+      },
+      {
+        "id": 98,
+        "slug": "classical",
+        "name": "Classical",
+        "family": "roots",
+        "countries": [],
+        "aliases": ["Orchestral"],
+        "deezerId": 98
+      },
+      {
+        "id": 464,
+        "slug": "metal",
+        "name": "Metal",
+        "family": "guitars",
+        "countries": ["GB", "US"],
+        "aliases": ["Heavy metal"],
+        "deezerId": 464
+      },
+      {
+        "id": 84,
+        "slug": "country",
+        "name": "Country",
+        "family": "roots",
+        "countries": ["US"],
+        "aliases": [],
+        "deezerId": 84
+      },
+      {
+        "id": 153,
+        "slug": "blues",
+        "name": "Blues",
+        "family": "roots",
+        "countries": ["US"],
+        "aliases": [],
+        "deezerId": 153
+      },
+      {
+        "id": 466,
+        "slug": "folk",
+        "name": "Folk",
+        "family": "roots",
+        "countries": [],
+        "aliases": [],
+        "deezerId": 466
+      },
+      {
+        "id": 144,
+        "slug": "reggae",
+        "name": "Reggae",
+        "family": "latin",
+        "countries": ["JM"],
+        "aliases": [],
+        "deezerId": 144
+      },
+      {
+        "id": 10017,
+        "slug": "samba",
+        "name": "Samba",
+        "family": "latin",
+        "countries": ["BR"],
+        "aliases": []
+      },
+      {
+        "id": 10018,
+        "slug": "bossa-nova",
+        "name": "Bossa nova",
+        "family": "latin",
+        "countries": ["BR"],
+        "aliases": []
+      },
+      {
+        "id": 10019,
+        "slug": "sertanejo",
+        "name": "Sertanejo",
+        "family": "latin",
+        "countries": ["BR"],
+        "aliases": ["Sertanejo universitario"]
+      },
+      {
+        "id": 10020,
+        "slug": "forro",
+        "name": "Forró",
+        "family": "latin",
+        "countries": ["BR"],
+        "aliases": ["Forro"]
+      },
+      {
+        "id": 10021,
+        "slug": "mpb",
+        "name": "MPB",
+        "family": "latin",
+        "countries": ["BR"],
+        "aliases": ["Musica popular brasileira"]
+      },
+      {
+        "id": 10022,
+        "slug": "piseiro",
+        "name": "Piseiro",
+        "family": "latin",
+        "countries": ["BR"],
+        "aliases": ["Pisadinha"]
+      },
+      {
+        "id": 10023,
+        "slug": "axe",
+        "name": "Axé",
+        "family": "latin",
+        "countries": ["BR"],
+        "aliases": ["Axe music"]
+      },
+      {
+        "id": 10024,
+        "slug": "brazilian-trap",
+        "name": "Brazilian trap",
+        "family": "latin",
+        "countries": ["BR"],
+        "aliases": ["Trap brasileiro", "Trap BR"]
+      },
+      {
+        "id": 67,
+        "slug": "salsa",
+        "name": "Salsa",
+        "family": "latin",
+        "countries": ["CU", "PR", "US"],
+        "aliases": [],
+        "deezerId": 67
+      },
+      {
+        "id": 71,
+        "slug": "cumbia",
+        "name": "Cumbia",
+        "family": "latin",
+        "countries": ["CO", "MX", "AR"],
+        "aliases": [],
+        "deezerId": 71
+      },
+      {
+        "id": 65,
+        "slug": "regional-mexican",
+        "name": "Regional Mexican",
+        "family": "latin",
+        "countries": ["MX"],
+        "aliases": ["Musica mexicana", "Regional mexicano"],
+        "deezerId": 65
+      },
+      {
+        "id": 10025,
+        "slug": "bachata",
+        "name": "Bachata",
+        "family": "latin",
+        "countries": ["DO"],
+        "aliases": []
+      },
+      {
+        "id": 10026,
+        "slug": "merengue",
+        "name": "Merengue",
+        "family": "latin",
+        "countries": ["DO"],
+        "aliases": []
+      },
+      {
+        "id": 10027,
+        "slug": "dembow",
+        "name": "Dembow",
+        "family": "latin",
+        "countries": ["DO"],
+        "aliases": []
+      },
+      {
+        "id": 10028,
+        "slug": "corridos-tumbados",
+        "name": "Corridos tumbados",
+        "family": "latin",
+        "countries": ["MX"],
+        "aliases": []
+      },
+      {
+        "id": 10029,
+        "slug": "mariachi",
+        "name": "Mariachi",
+        "family": "latin",
+        "countries": ["MX"],
+        "aliases": []
+      },
+      {
+        "id": 10030,
+        "slug": "banda",
+        "name": "Banda",
+        "family": "latin",
+        "countries": ["MX"],
+        "aliases": ["Banda sinaloense"]
+      },
+      {
+        "id": 10031,
+        "slug": "norteno",
+        "name": "Norteño",
+        "family": "latin",
+        "countries": ["MX"],
+        "aliases": ["Norteno"]
+      },
+      {
+        "id": 10032,
+        "slug": "latin-trap",
+        "name": "Latin trap",
+        "family": "latin",
+        "countries": ["PR", "AR"],
+        "aliases": ["Trap latino"]
+      },
+      {
+        "id": 10033,
+        "slug": "reggae-en-espanol",
+        "name": "Reggae en español",
+        "family": "latin",
+        "countries": ["PA"],
+        "aliases": ["Reggae en espanol"]
+      },
+      {
+        "id": 10034,
+        "slug": "dancehall",
+        "name": "Dancehall",
+        "family": "latin",
+        "countries": ["JM"],
+        "aliases": []
+      },
+      {
+        "id": 10035,
+        "slug": "soca",
+        "name": "Soca",
+        "family": "latin",
+        "countries": ["TT"],
+        "aliases": []
+      },
+      {
+        "id": 10036,
+        "slug": "dub",
+        "name": "Dub",
+        "family": "latin",
+        "countries": ["JM", "GB"],
+        "aliases": []
+      },
+      {
+        "id": 10037,
+        "slug": "kompa",
+        "name": "Kompa",
+        "family": "latin",
+        "countries": ["HT"],
+        "aliases": ["Compas"]
+      },
+      {
+        "id": 10038,
+        "slug": "zouk",
+        "name": "Zouk",
+        "family": "latin",
+        "countries": ["GP", "MQ"],
+        "aliases": []
+      },
+      {
+        "id": 10039,
+        "slug": "gqom",
+        "name": "Gqom",
+        "family": "africa",
+        "countries": ["ZA"],
+        "aliases": []
+      },
+      {
+        "id": 10040,
+        "slug": "kwaito",
+        "name": "Kwaito",
+        "family": "africa",
+        "countries": ["ZA"],
+        "aliases": []
+      },
+      {
+        "id": 10041,
+        "slug": "highlife",
+        "name": "Highlife",
+        "family": "africa",
+        "countries": ["GH", "NG"],
+        "aliases": []
+      },
+      {
+        "id": 10042,
+        "slug": "afrobeat",
+        "name": "Afrobeat",
+        "family": "africa",
+        "countries": ["NG", "GH"],
+        "aliases": []
+      },
+      {
+        "id": 10043,
+        "slug": "bongo-flava",
+        "name": "Bongo flava",
+        "family": "africa",
+        "countries": ["TZ"],
+        "aliases": []
+      },
+      {
+        "id": 10044,
+        "slug": "singeli",
+        "name": "Singeli",
+        "family": "africa",
+        "countries": ["TZ"],
+        "aliases": []
+      },
+      {
+        "id": 10045,
+        "slug": "gengetone",
+        "name": "Gengetone",
+        "family": "africa",
+        "countries": ["KE"],
+        "aliases": []
+      },
+      {
+        "id": 10046,
+        "slug": "soukous",
+        "name": "Soukous",
+        "family": "africa",
+        "countries": ["CD", "CG"],
+        "aliases": []
+      },
+      {
+        "id": 10047,
+        "slug": "kuduro",
+        "name": "Kuduro",
+        "family": "africa",
+        "countries": ["AO"],
+        "aliases": []
+      },
+      {
+        "id": 10048,
+        "slug": "kizomba",
+        "name": "Kizomba",
+        "family": "africa",
+        "countries": ["AO"],
+        "aliases": []
+      },
+      {
+        "id": 10049,
+        "slug": "rai",
+        "name": "Raï",
+        "family": "africa",
+        "countries": ["DZ"],
+        "aliases": ["Rai"]
+      },
+      {
+        "id": 10050,
+        "slug": "gnawa",
+        "name": "Gnawa",
+        "family": "africa",
+        "countries": ["MA"],
+        "aliases": ["Gnaoua"]
+      },
+      {
+        "id": 10051,
+        "slug": "mbalax",
+        "name": "Mbalax",
+        "family": "africa",
+        "countries": ["SN"],
+        "aliases": []
+      },
+      {
+        "id": 10052,
+        "slug": "city-pop",
+        "name": "City pop",
+        "family": "asia",
+        "countries": ["JP"],
+        "aliases": []
+      },
+      {
+        "id": 10053,
+        "slug": "j-rock",
+        "name": "J-rock",
+        "family": "asia",
+        "countries": ["JP"],
+        "aliases": ["Japanese rock"]
+      },
+      {
+        "id": 10054,
+        "slug": "anime",
+        "name": "Anime",
+        "family": "asia",
+        "countries": ["JP"],
+        "aliases": ["Anisong"]
+      },
+      {
+        "id": 10055,
+        "slug": "vocaloid",
+        "name": "Vocaloid",
+        "family": "asia",
+        "countries": ["JP"],
+        "aliases": ["Hatsune Miku"]
+      },
+      {
+        "id": 10056,
+        "slug": "cantopop",
+        "name": "Cantopop",
+        "family": "asia",
+        "countries": ["HK"],
+        "aliases": ["Cantonese pop"]
+      },
+      {
+        "id": 10057,
+        "slug": "mandopop",
+        "name": "Mandopop",
+        "family": "asia",
+        "countries": ["TW", "CN"],
+        "aliases": ["Mandarin pop"]
+      },
+      {
+        "id": 10058,
+        "slug": "opm",
+        "name": "OPM",
+        "family": "asia",
+        "countries": ["PH"],
+        "aliases": ["Original Pilipino music", "P-pop"]
+      },
+      {
+        "id": 10059,
+        "slug": "v-pop",
+        "name": "V-pop",
+        "family": "asia",
+        "countries": ["VN"],
+        "aliases": ["Vietnamese pop"]
+      },
+      {
+        "id": 10060,
+        "slug": "thai-pop",
+        "name": "Thai pop",
+        "family": "asia",
+        "countries": ["TH"],
+        "aliases": ["T-pop"]
+      },
+      {
+        "id": 10061,
+        "slug": "dangdut",
+        "name": "Dangdut",
+        "family": "asia",
+        "countries": ["ID"],
+        "aliases": []
+      },
+      {
+        "id": 10062,
+        "slug": "indonesian-pop",
+        "name": "Indonesian pop",
+        "family": "asia",
+        "countries": ["ID"],
+        "aliases": ["Indo pop"]
+      },
+      {
+        "id": 10063,
+        "slug": "bollywood",
+        "name": "Bollywood",
+        "family": "asia",
+        "countries": ["IN"],
+        "aliases": ["Hindi film"]
+      },
+      {
+        "id": 10064,
+        "slug": "punjabi",
+        "name": "Punjabi",
+        "family": "asia",
+        "countries": ["IN", "PK"],
+        "aliases": []
+      },
+      {
+        "id": 10065,
+        "slug": "bhangra",
+        "name": "Bhangra",
+        "family": "asia",
+        "countries": ["IN", "GB"],
+        "aliases": []
+      },
+      {
+        "id": 10066,
+        "slug": "qawwali",
+        "name": "Qawwali",
+        "family": "asia",
+        "countries": ["PK", "IN"],
+        "aliases": []
+      },
+      {
+        "id": 10067,
+        "slug": "carnatic",
+        "name": "Carnatic",
+        "family": "asia",
+        "countries": ["IN"],
+        "aliases": ["Karnatik"]
+      },
+      {
+        "id": 10068,
+        "slug": "hindustani",
+        "name": "Hindustani classical",
+        "family": "asia",
+        "countries": ["IN"],
+        "aliases": []
+      },
+      {
+        "id": 10069,
+        "slug": "uk-garage",
+        "name": "UK garage",
+        "family": "electronic",
+        "countries": ["GB"],
+        "aliases": ["UKG", "2-step"]
+      },
+      {
+        "id": 10116,
+        "slug": "chicago-drill",
+        "name": "Chicago drill",
+        "family": "popular",
+        "countries": ["US"],
+        "aliases": ["Drill Chicago"]
+      },
+      {
+        "id": 10117,
+        "slug": "new-york-drill",
+        "name": "New York drill",
+        "family": "popular",
+        "countries": ["US"],
+        "aliases": ["Brooklyn drill", "NY drill", "Drill New York"]
+      },
+      {
+        "id": 10118,
+        "slug": "east-coast-hip-hop",
+        "name": "East Coast hip hop",
+        "family": "popular",
+        "countries": ["US"],
+        "aliases": ["East Coast rap", "East Coast essentials"]
+      },
+      {
+        "id": 10119,
+        "slug": "west-coast-hip-hop",
+        "name": "West Coast hip hop",
+        "family": "popular",
+        "countries": ["US"],
+        "aliases": ["West Coast rap", "West Coast essentials"]
+      },
+      {
+        "id": 10120,
+        "slug": "southern-hip-hop",
+        "name": "Southern hip hop",
+        "family": "popular",
+        "countries": ["US"],
+        "aliases": ["Southern rap", "Dirty South", "South Side essentials"]
+      },
+      {
+        "id": 10121,
+        "slug": "atlanta-rap",
+        "name": "Atlanta rap",
+        "family": "popular",
+        "countries": ["US"],
+        "aliases": ["Atlanta trap"]
+      },
+      {
+        "id": 10122,
+        "slug": "houston-rap",
+        "name": "Houston rap",
+        "family": "popular",
+        "countries": ["US"],
+        "aliases": []
+      },
+      {
+        "id": 10123,
+        "slug": "memphis-rap",
+        "name": "Memphis rap",
+        "family": "popular",
+        "countries": ["US"],
+        "aliases": ["Memphis underground rap"]
+      },
+      {
+        "id": 10124,
+        "slug": "detroit-rap",
+        "name": "Detroit rap",
+        "family": "popular",
+        "countries": ["US"],
+        "aliases": ["Detroit Flint Michigan rap"]
+      },
+      {
+        "id": 10125,
+        "slug": "bay-area-rap",
+        "name": "Bay Area rap",
+        "family": "popular",
+        "countries": ["US"],
+        "aliases": ["Hyphy"]
+      },
+      {
+        "id": 10126,
+        "slug": "g-funk",
+        "name": "G-funk",
+        "family": "popular",
+        "countries": ["US"],
+        "aliases": ["G funk"]
+      },
+      {
+        "id": 10127,
+        "slug": "boom-bap",
+        "name": "Boom bap",
+        "family": "popular",
+        "countries": ["US"],
+        "aliases": ["Boombap"]
+      },
+      {
+        "id": 10128,
+        "slug": "jazz-rap",
+        "name": "Jazz rap",
+        "family": "popular",
+        "countries": ["US"],
+        "aliases": ["Jazzy hip hop", "Jazz hip hop"]
+      },
+      {
+        "id": 10129,
+        "slug": "conscious-hip-hop",
+        "name": "Conscious hip hop",
+        "family": "popular",
+        "countries": ["US"],
+        "aliases": ["Conscious rap"]
+      },
+      {
+        "id": 10130,
+        "slug": "alternative-hip-hop",
+        "name": "Alternative hip hop",
+        "family": "popular",
+        "countries": ["US"],
+        "aliases": ["Alternative rap"]
+      },
+      {
+        "id": 10131,
+        "slug": "crunk",
+        "name": "Crunk",
+        "family": "popular",
+        "countries": ["US"],
+        "aliases": []
+      },
+      {
+        "id": 10132,
+        "slug": "miami-bass",
+        "name": "Miami bass",
+        "family": "popular",
+        "countries": ["US"],
+        "aliases": ["Miami booty bass"]
+      },
+      {
+        "id": 10133,
+        "slug": "chopped-and-screwed",
+        "name": "Chopped and screwed",
+        "family": "popular",
+        "countries": ["US"],
+        "aliases": ["Chopped & screwed", "Screwed and chopped"]
+      },
+      {
+        "id": 10070,
+        "slug": "grime",
+        "name": "Grime",
+        "family": "popular",
+        "countries": ["GB"],
+        "aliases": []
+      },
+      {
+        "id": 10071,
+        "slug": "uk-drill",
+        "name": "UK drill",
+        "family": "popular",
+        "countries": ["GB"],
+        "aliases": []
+      },
+      {
+        "id": 10072,
+        "slug": "french-rap",
+        "name": "French rap",
+        "family": "popular",
+        "countries": ["FR"],
+        "aliases": ["Rap francais", "Rap français"]
+      },
+      {
+        "id": 10073,
+        "slug": "german-rap",
+        "name": "German rap",
+        "family": "popular",
+        "countries": ["DE"],
+        "aliases": ["Deutschrap"]
+      },
+      {
+        "id": 10110,
+        "slug": "ukrainian-rap",
+        "name": "Ukrainian rap",
+        "family": "popular",
+        "countries": ["UA"],
+        "aliases": ["Український реп", "Ukrainian hip hop"],
+        "searchHints": ["YARMAK", "SKOFKA", "Kalush", "alyona alyona", "ТНМК", "OTOY"]
+      },
+      {
+        "id": 10111,
+        "slug": "ukrainian-wartime",
+        "name": "Ukrainian wartime music",
+        "family": "world",
+        "countries": ["UA"],
+        "aliases": ["Ukrainian war songs", "Пісні війни"],
+        "searchHints": [
+          "OTOY",
+          "YARMAK",
+          "Варнак",
+          "Ницо Потворно",
+          "Третя Штурмова",
+          "хейтспіч",
+          "паліндром",
+          "ЕНЕМІ",
+          "ОКОЛОФРОНТ",
+          "Військовий реп"
+        ]
+      },
+      {
+        "id": 10074,
+        "slug": "turkish-rap",
+        "name": "Turkish rap",
+        "family": "popular",
+        "countries": ["TR"],
+        "aliases": ["Turkce rap", "Türkçe rap"]
+      },
+      {
+        "id": 10075,
+        "slug": "arabic-pop",
+        "name": "Arabic pop",
+        "family": "world",
+        "countries": ["EG", "LB"],
+        "aliases": ["Arab pop"]
+      },
+      {
+        "id": 10076,
+        "slug": "mahraganat",
+        "name": "Mahraganat",
+        "family": "world",
+        "countries": ["EG"],
+        "aliases": ["Electro shaabi"]
+      },
+      {
+        "id": 10077,
+        "slug": "turkish-pop",
+        "name": "Turkish pop",
+        "family": "world",
+        "countries": ["TR"],
+        "aliases": ["Türkçe pop"]
+      },
+      {
+        "id": 10078,
+        "slug": "persian-pop",
+        "name": "Persian pop",
+        "family": "world",
+        "countries": ["IR"],
+        "aliases": ["Farsi pop"]
+      },
+      {
+        "id": 10079,
+        "slug": "flamenco",
+        "name": "Flamenco",
+        "family": "world",
+        "countries": ["ES"],
+        "aliases": []
+      },
+      {
+        "id": 10080,
+        "slug": "fado",
+        "name": "Fado",
+        "family": "world",
+        "countries": ["PT"],
+        "aliases": []
+      },
+      {
+        "id": 10081,
+        "slug": "chanson",
+        "name": "Chanson",
+        "family": "world",
+        "countries": ["FR", "BE"],
+        "aliases": []
+      },
+      {
+        "id": 10082,
+        "slug": "afro-house",
+        "name": "Afro house",
+        "family": "electronic",
+        "countries": ["ZA", "AO"],
+        "aliases": []
+      },
+      {
+        "id": 10083,
+        "slug": "deep-house",
+        "name": "Deep house",
+        "family": "electronic",
+        "countries": ["US", "ZA"],
+        "aliases": []
+      },
+      {
+        "id": 10084,
+        "slug": "tech-house",
+        "name": "Tech house",
+        "family": "electronic",
+        "countries": ["GB"],
+        "aliases": []
+      },
+      {
+        "id": 10085,
+        "slug": "trance",
+        "name": "Trance",
+        "family": "electronic",
+        "countries": ["DE", "NL"],
+        "aliases": []
+      },
+      {
+        "id": 10086,
+        "slug": "psytrance",
+        "name": "Psytrance",
+        "family": "electronic",
+        "countries": ["IN", "IL"],
+        "aliases": ["Psychedelic trance", "Goa trance"]
+      },
+      {
+        "id": 10087,
+        "slug": "hardcore",
+        "name": "Hardcore / gabber",
+        "family": "electronic",
+        "countries": ["NL", "BE"],
+        "aliases": ["Gabber", "Hardcore techno"]
+      },
+      {
+        "id": 10088,
+        "slug": "happy-hardcore",
+        "name": "Happy hardcore",
+        "family": "electronic",
+        "countries": ["GB", "NL"],
+        "aliases": []
+      },
+      {
+        "id": 10089,
+        "slug": "frenchcore",
+        "name": "Frenchcore",
+        "family": "electronic",
+        "countries": ["FR"],
+        "aliases": []
+      },
+      {
+        "id": 10090,
+        "slug": "eurodance",
+        "name": "Eurodance",
+        "family": "electronic",
+        "countries": ["DE", "IT", "SE"],
+        "aliases": []
+      },
+      {
+        "id": 10091,
+        "slug": "hands-up",
+        "name": "Hands up",
+        "family": "electronic",
+        "countries": ["DE"],
+        "aliases": ["Hands up dance"]
+      },
+      {
+        "id": 10092,
+        "slug": "dubstep",
+        "name": "Dubstep",
+        "family": "electronic",
+        "countries": ["GB"],
+        "aliases": []
+      },
+      {
+        "id": 10093,
+        "slug": "breakbeat",
+        "name": "Breakbeat",
+        "family": "electronic",
+        "countries": ["GB", "US"],
+        "aliases": []
+      },
+      {
+        "id": 10094,
+        "slug": "synthwave",
+        "name": "Synthwave",
+        "family": "electronic",
+        "countries": [],
+        "aliases": ["Retrowave"]
+      },
+      {
+        "id": 10108,
+        "slug": "russian-rap",
+        "name": "Russian rap & trap",
+        "family": "popular",
+        "countries": ["RU"],
+        "aliases": ["Russian rap", "Russian trap", "Русский рэп", "Русский трэп"],
+        "searchHints": ["Kai Angel", "9mice", "Big Baby Tape", "kizaru"]
+      },
+      {
+        "id": 10109,
+        "slug": "russian-hyperpop",
+        "name": "Russian hyperpop",
+        "family": "electronic",
+        "countries": ["RU"],
+        "aliases": ["Русский гиперпоп"],
+        "searchHints": ["Kill Eva", "Killeva", "Мэйби Бэйби", "Sqwore"]
+      },
+      {
+        "id": 10095,
+        "slug": "ambient",
+        "name": "Ambient",
+        "family": "electronic",
+        "countries": [],
+        "aliases": []
+      },
+      {
+        "id": 10096,
+        "slug": "lofi",
+        "name": "Lo-fi hip-hop",
+        "family": "electronic",
+        "countries": [],
+        "aliases": ["Lofi", "Lo fi", "Chillhop"]
+      },
+      {
+        "id": 10097,
+        "slug": "punk",
+        "name": "Punk",
+        "family": "guitars",
+        "countries": ["US", "GB"],
+        "aliases": ["Punk rock"]
+      },
+      {
+        "id": 10098,
+        "slug": "shoegaze",
+        "name": "Shoegaze",
+        "family": "guitars",
+        "countries": ["GB"],
+        "aliases": []
+      },
+      {
+        "id": 10112,
+        "slug": "horrorcore",
+        "name": "Horrorcore",
+        "family": "popular",
+        "countries": ["US"],
+        "aliases": ["Horror rap"],
+        "searchHints": ["Gravediggaz", "Insane Clown Posse", "Twiztid", "Esham"]
+      },
+      {
+        "id": 10113,
+        "slug": "goth",
+        "name": "Goth",
+        "family": "guitars",
+        "countries": ["GB", "DE"],
+        "aliases": ["Gothic rock", "Goth rock", "Darkwave"],
+        "searchHints": [
+          "Bauhaus",
+          "The Sisters of Mercy",
+          "Siouxsie and the Banshees",
+          "Lebanon Hanover"
+        ]
+      },
+      {
+        "id": 10099,
+        "slug": "emo",
+        "name": "Emo",
+        "family": "guitars",
+        "countries": ["US"],
+        "aliases": []
+      },
+      {
+        "id": 10100,
+        "slug": "pop-punk",
+        "name": "Pop punk",
+        "family": "guitars",
+        "countries": ["US"],
+        "aliases": []
+      },
+      {
+        "id": 10101,
+        "slug": "metalcore",
+        "name": "Metalcore",
+        "family": "guitars",
+        "countries": ["US", "AU"],
+        "aliases": []
+      },
+      {
+        "id": 10102,
+        "slug": "death-metal",
+        "name": "Death metal",
+        "family": "guitars",
+        "countries": ["US", "SE"],
+        "aliases": []
+      },
+      {
+        "id": 10103,
+        "slug": "black-metal",
+        "name": "Black metal",
+        "family": "guitars",
+        "countries": ["NO"],
+        "aliases": []
+      },
+      {
+        "id": 10104,
+        "slug": "progressive-rock",
+        "name": "Progressive rock",
+        "family": "guitars",
+        "countries": ["GB"],
+        "aliases": ["Prog rock"]
+      },
+      {
+        "id": 10105,
+        "slug": "neo-soul",
+        "name": "Neo soul",
+        "family": "roots",
+        "countries": ["US", "GB"],
+        "aliases": []
+      },
+      {
+        "id": 10106,
+        "slug": "disco",
+        "name": "Disco",
+        "family": "roots",
+        "countries": ["US"],
+        "aliases": []
+      },
+      {
+        "id": 10107,
+        "slug": "gospel",
+        "name": "Gospel",
+        "family": "roots",
+        "countries": ["US"],
+        "aliases": []
+      },
+      {
+        "id": 186,
+        "slug": "christian",
+        "name": "Christian",
+        "family": "roots",
+        "countries": [],
+        "aliases": [],
+        "deezerId": 186
+      },
+      {
+        "id": 173,
+        "slug": "soundtracks",
+        "name": "Film & game scores",
+        "family": "roots",
+        "countries": [],
+        "aliases": ["Soundtracks"],
+        "deezerId": 173
+      },
+      {
+        "id": 75,
+        "slug": "brazilian",
+        "name": "Brazilian music",
+        "family": "latin",
+        "countries": ["BR"],
+        "aliases": [],
+        "deezerId": 75
+      },
+      {
+        "id": 2,
+        "slug": "african",
+        "name": "African music",
+        "family": "africa",
+        "countries": [],
+        "aliases": [],
+        "deezerId": 2
+      },
+      {
+        "id": 16,
+        "slug": "asian",
+        "name": "Asian music",
+        "family": "asia",
+        "countries": [],
+        "aliases": [],
+        "deezerId": 16
+      },
+      {
+        "id": 81,
+        "slug": "indian",
+        "name": "Indian music",
+        "family": "asia",
+        "countries": ["IN"],
+        "aliases": [],
+        "deezerId": 81
+      },
+      {
+        "id": 197,
+        "slug": "latin",
+        "name": "Latin music",
+        "family": "latin",
+        "countries": [],
+        "aliases": [],
+        "deezerId": 197
+      },
+      {
+        "id": 95,
+        "slug": "kids",
+        "name": "Kids & family",
+        "family": "popular",
+        "countries": [],
+        "aliases": ["Children"],
+        "deezerId": 95
+      },
+      {
+        "id": 10115,
+        "slug": "internet-classics",
+        "name": "Internet classics",
+        "family": "popular",
+        "countries": [],
+        "aliases": ["Internet music", "Meme songs"],
+        "searchHints": [
+          "Parry Gripp",
+          "Raining Tacos",
+          "Mr Weebl",
+          "Badgers",
+          "Narwhals",
+          "Lemon Demon",
+          "Numa Numa",
+          "Nyan Cat",
+          "Rickroll",
+          "Tay Zonday",
+          "Chocolate Rain",
+          "Viral songs"
+        ]
+      }
+    ],
+    "artwork": {
+      "2": "https://cdn-images.dzcdn.net/images/misc/703413adf47ad8a6001b438f7608a2be/500x500-000000-80-0-0.jpg",
+      "16": "https://cdn-images.dzcdn.net/images/misc/dd6d2756465b22488dff5d8663e86688/500x500-000000-80-0-0.jpg",
+      "65": "https://cdn-images.dzcdn.net/images/misc/0935a03b26d8a96964920a426de97dae/500x500-000000-80-0-0.jpg",
+      "67": "https://cdn-images.dzcdn.net/images/misc/71860f882f1e1d4950b7544e2d0b61ef/500x500-000000-80-0-0.jpg",
+      "71": "https://cdn-images.dzcdn.net/images/misc/ffd77feba2c8fda79b18183861e4e69f/500x500-000000-80-0-0.jpg",
+      "75": "https://cdn-images.dzcdn.net/images/misc/01b12a3f3582899a13b664cea703a335/500x500-000000-80-0-0.jpg",
+      "81": "https://cdn-images.dzcdn.net/images/misc/b098161d9a824eef314bc38b985594a1/500x500-000000-80-0-0.jpg",
+      "84": "https://cdn-images.dzcdn.net/images/misc/6eca3188f724f04843a15e3e575751a5/500x500-000000-80-0-0.jpg",
+      "85": "https://cdn-images.dzcdn.net/images/misc/fd252ab727d9a3b0b3c29014873f8f57/500x500-000000-80-0-0.jpg",
+      "95": "https://cdn-images.dzcdn.net/images/misc/b0b8efcbc3cb688864ce69da0061e525/500x500-000000-80-0-0.jpg",
+      "98": "https://cdn-images.dzcdn.net/images/misc/609f69b669b242252aa8ee09b5597655/500x500-000000-80-0-0.jpg",
+      "106": "https://cdn-images.dzcdn.net/images/misc/15df4502c1c58137dae5bdd1cc6f0251/500x500-000000-80-0-0.jpg",
+      "113": "https://cdn-images.dzcdn.net/images/misc/bd5fdfa1a23e02e2697818e09e008e69/500x500-000000-80-0-0.jpg",
+      "116": "https://cdn-images.dzcdn.net/images/misc/5c27115d3b797954afff59199dad98d1/500x500-000000-80-0-0.jpg",
+      "122": "https://cdn-images.dzcdn.net/images/misc/44dfebf3cf943dd82759d9bd9063767a/500x500-000000-80-0-0.jpg",
+      "129": "https://cdn-images.dzcdn.net/images/misc/91468ecc5dfdd19c42a43d2cbdf27059/500x500-000000-80-0-0.jpg",
+      "132": "https://cdn-images.dzcdn.net/images/misc/db7a604d9e7634a67d45cfc86b48370a/500x500-000000-80-0-0.jpg",
+      "144": "https://cdn-images.dzcdn.net/images/misc/7b901a98628cf879e1465f1dfd697e00/500x500-000000-80-0-0.jpg",
+      "152": "https://cdn-images.dzcdn.net/images/misc/b36ca681666d617edd0dcb5ab389a6ac/500x500-000000-80-0-0.jpg",
+      "153": "https://cdn-images.dzcdn.net/images/misc/1abb6810098d4015bdc860c91bcfd2b6/500x500-000000-80-0-0.jpg",
+      "165": "https://cdn-images.dzcdn.net/images/misc/68a43aec844708e693cb99f47814153b/500x500-000000-80-0-0.jpg",
+      "169": "https://cdn-images.dzcdn.net/images/misc/3d5e8aab99b95bfa7ac7e9e466e7781e/500x500-000000-80-0-0.jpg",
+      "173": "https://cdn-images.dzcdn.net/images/misc/236d8057751d9c557728400dfe71483a/500x500-000000-80-0-0.jpg",
+      "186": "https://cdn-images.dzcdn.net/images/misc/e658e2ba682088f4d4b44f39c400d69d/500x500-000000-80-0-0.jpg",
+      "197": "https://cdn-images.dzcdn.net/images/misc/069c9888538799748960781f098b5f4b/500x500-000000-80-0-0.jpg",
+      "464": "https://cdn-images.dzcdn.net/images/misc/f14f9fde9feb38ca6d61960f00681860/500x500-000000-80-0-0.jpg",
+      "466": "https://cdn-images.dzcdn.net/images/misc/f9e070848998df8870ba65cd0d22b2b3/500x500-000000-80-0-0.jpg",
+      "10001": "https://cdn-images.dzcdn.net/images/cover/b37055d6988de29e2287f12d3d00b6e1-75741482a9583e602ff9e4a3ff46ade6-e01e98fa502ed4aac5e668a5d405532a-07b946d89aa16aab058b0fdc8dca0e7b/500x500-000000-80-0-0.jpg",
+      "10002": "https://cdn-images.dzcdn.net/images/cover/ab2a6645ddd40d141fd841195e34ec3a-d39cd1093558c516d0090744e6144ee5-1029a43201e16350c7f5add41c09492a-527358edcdb422ce01dd7c748f55a367/500x500-000000-80-0-0.jpg",
+      "10003": "https://cdn-images.dzcdn.net/images/playlist/a65e90900d62508bb4a3e08342a5a10c/500x500-000000-80-0-0.jpg",
+      "10004": "https://cdn-images.dzcdn.net/images/cover/6f75625524f63aae46a96071c5f5d378-418e4f7e928cee36befbc899a84cbf39-f17616c1a5bb42ca40fbc03895a6fede-a04d34a44ad875a1715baa5d2857d331/500x500-000000-80-0-0.jpg",
+      "10005": "https://cdn-images.dzcdn.net/images/playlist/952ecc99bd63cdadc3c28336a512a722/500x500-000000-80-0-0.jpg",
+      "10006": "https://cdn-images.dzcdn.net/images/playlist/54052b07e0c7c8cf4cd417de4c3e3ee0/500x500-000000-80-0-0.jpg",
+      "10007": "https://cdn-images.dzcdn.net/images/playlist/9454911b547a51155a71deedddab0250/500x500-000000-80-0-0.jpg",
+      "10008": "https://cdn-images.dzcdn.net/images/playlist/cd24b643a4e5f8c54f3c32cff249c914/500x500-000000-80-0-0.jpg",
+      "10009": "https://cdn-images.dzcdn.net/images/playlist/fcf0fab13657785633794d73908d9249/500x500-000000-80-0-0.jpg",
+      "10010": "https://cdn-images.dzcdn.net/images/playlist/df70400a4f44e403a676eff6d6e3d033/500x500-000000-80-0-0.jpg",
+      "10011": "https://cdn-images.dzcdn.net/images/playlist/9d11b0b7101f8295ac46d5e0b40640ce/500x500-000000-80-0-0.jpg",
+      "10012": "https://cdn-images.dzcdn.net/images/playlist/f55d252607feab2b775a21063102a8a3/500x500-000000-80-0-0.jpg",
+      "10013": "https://cdn-images.dzcdn.net/images/playlist/b9b5a875c8c164bc06fced7d3b3c1525/500x500-000000-80-0-0.jpg",
+      "10014": "https://cdn-images.dzcdn.net/images/playlist/88ba046848b9673a3a5af8be72186838/500x500-000000-80-0-0.jpg",
+      "10015": "https://cdn-images.dzcdn.net/images/playlist/873e6bfb6994d2e25b0275889138ac47/500x500-000000-80-0-0.jpg",
+      "10016": "https://cdn-images.dzcdn.net/images/playlist/0aadf3d769e5e7259e745ec4f5b55929/500x500-000000-80-0-0.jpg",
+      "10017": "https://cdn-images.dzcdn.net/images/playlist/7877bf78c1c43ad2139af9c42827881c/500x500-000000-80-0-0.jpg",
+      "10018": "https://cdn-images.dzcdn.net/images/playlist/8ed800b0c361413d90e32601cc9e45bb/500x500-000000-80-0-0.jpg",
+      "10019": "https://cdn-images.dzcdn.net/images/playlist/d8440335995106f5bb63568635473c26/500x500-000000-80-0-0.jpg",
+      "10020": "https://cdn-images.dzcdn.net/images/playlist/26a8c2d253d3ef9d0228f03b7440d2ac/500x500-000000-80-0-0.jpg",
+      "10021": "https://cdn-images.dzcdn.net/images/playlist/81a86ec741e046a1c1539fdb7a0ee962/500x500-000000-80-0-0.jpg",
+      "10022": "https://cdn-images.dzcdn.net/images/playlist/e3fefdcbf9ed46a2682450d52267b76d/500x500-000000-80-0-0.jpg",
+      "10023": "https://cdn-images.dzcdn.net/images/playlist/b1e768d9f9bef65df1081148fc95530a/500x500-000000-80-0-0.jpg",
+      "10024": "https://cdn-images.dzcdn.net/images/playlist/7054be62a726f9032225121511bbfc6e/500x500-000000-80-0-0.jpg",
+      "10025": "https://cdn-images.dzcdn.net/images/playlist/78ecab7b5ab61c5a318ae34cff3982c1/500x500-000000-80-0-0.jpg",
+      "10026": "https://cdn-images.dzcdn.net/images/playlist/ce449d6606fbbd104335628cf3565712/500x500-000000-80-0-0.jpg",
+      "10027": "https://cdn-images.dzcdn.net/images/playlist/9f3d6a845b92f283b0ce50044390027d/500x500-000000-80-0-0.jpg",
+      "10028": "https://cdn-images.dzcdn.net/images/cover/e528bb05c81a7cee2c05995afc6a066c-0becb2f843b581fbe324ef7d77ea951c-6a02daf3cbb9ce7ee3bf1fbbb2a9e45b-25d183fdb37bde35f737c9232f468250/500x500-000000-80-0-0.jpg",
+      "10029": "https://cdn-images.dzcdn.net/images/playlist/54a13e696fe55012daf1b87ad81b792f/500x500-000000-80-0-0.jpg",
+      "10030": "https://cdn-images.dzcdn.net/images/playlist/9a782de53d11b9888b9956125421a437/500x500-000000-80-0-0.jpg",
+      "10031": "https://cdn-images.dzcdn.net/images/playlist/13e3051791a8c0c15950725b2461b9ba/500x500-000000-80-0-0.jpg",
+      "10032": "https://cdn-images.dzcdn.net/images/playlist/9526320c0498eef399530d6dd836b654/500x500-000000-80-0-0.jpg",
+      "10033": "https://cdn-images.dzcdn.net/images/cover/dc4689faedbfbb05011d645fc3fa6715-61cb5bf25f082b30b7df5f75b6d77728-dea89139be9b96b24ea7258dd62b2f91-7b79d58b9a961b5ec0a4c27bb0cbd5c6/500x500-000000-80-0-0.jpg",
+      "10034": "https://cdn-images.dzcdn.net/images/playlist/a514a7efec31cf82e72db73e18fcd2fb/500x500-000000-80-0-0.jpg",
+      "10035": "https://cdn-images.dzcdn.net/images/cover/e366619483860fb746464999317111b7-b7a2e2bddd803590fcb9bbbb5952e532-d73ddc275fcb3d42b127468cd643f85c-1cd3084a6e66c73b229a3ec346da3794/500x500-000000-80-0-0.jpg",
+      "10036": "https://cdn-images.dzcdn.net/images/playlist/3949ddb78c41371f4102995fbd195833/500x500-000000-80-0-0.jpg",
+      "10037": "https://cdn-images.dzcdn.net/images/playlist/43eb0ad6076ed82fcb297e4f31ccdb51/500x500-000000-80-0-0.jpg",
+      "10038": "https://cdn-images.dzcdn.net/images/playlist/fb24c0344fbf9c3adc94799f3c9ace9e/500x500-000000-80-0-0.jpg",
+      "10039": "https://cdn-images.dzcdn.net/images/playlist/bf3c90db3e2438bc7277f4bce4158d3e/500x500-000000-80-0-0.jpg",
+      "10040": "https://cdn-images.dzcdn.net/images/cover/d0327d26edf06bc837c06fe7b0ef04de-0b1f448d241c9ff5ff5f760d593bfec7-8f51723a0f4b06ffe9d2e9b9faa39b80-c3bc2d2fd734f1e05b29eab1838dba58/500x500-000000-80-0-0.jpg",
+      "10041": "https://cdn-images.dzcdn.net/images/cover/515bee2c1e26235002c282f2d6ed2917-135d9f2979787e3cc7edcbc92086a766-df3e61b3b53645fb0226305fa067ad06-656b1ef02dd674403ec15c289073629b/500x500-000000-80-0-0.jpg",
+      "10042": "https://cdn-images.dzcdn.net/images/playlist/a2cc3238c13105a5a197cace8ea2f31a/500x500-000000-80-0-0.jpg",
+      "10043": "https://cdn-images.dzcdn.net/images/cover/3e222eb0c5f4d6b6141fea961ee2f14b-07312012ac5fa2b5fc4a9db882472204-ecff24760505f249b0afeba8a800592c-88ee61d7b0b8821c9759bc8f62eb2126/500x500-000000-80-0-0.jpg",
+      "10044": "https://cdn-images.dzcdn.net/images/cover/dcb80e5ae653df7ae66d440b48c66ad2-0677b3be849205ecab453708e667354a-c737059d3fa069fd4a38a3b123f7c9c1-7876e405442a08b6ca669e78cbfce20d/500x500-000000-80-0-0.jpg",
+      "10045": "https://cdn-images.dzcdn.net/images/playlist/b0e625e64f42c6dec379ccc2f75f9a43/500x500-000000-80-0-0.jpg",
+      "10046": "https://cdn-images.dzcdn.net/images/cover/408462707d549648a21c55fd267bca7c-35635462d24bac29d61939b73da1efc6-f267fb5c3e044fafd10a307838dbfe60-3fb826f06f427b6124ca1020252eede5/500x500-000000-80-0-0.jpg",
+      "10047": "https://cdn-images.dzcdn.net/images/cover/bc3b7a8feda154ae5173888ff396a42b-28e1daa6eac211231db55d111183b157-7bf2a21bbb9c858f436e7fa439d9d311-6c2086890b61d3299c3073efe4412ebf/500x500-000000-80-0-0.jpg",
+      "10048": "https://cdn-images.dzcdn.net/images/playlist/ee50e6c19025608edd5825d05644a3e1/500x500-000000-80-0-0.jpg",
+      "10049": "https://cdn-images.dzcdn.net/images/playlist/b768570e3cb9ab3a810e15b211857300/500x500-000000-80-0-0.jpg",
+      "10050": "https://cdn-images.dzcdn.net/images/cover/8090283013633b20e2beac4db34d6086-8a3a15f3d17b0a5f092ab4db2a2c7d05-2ab72bfd2fdd0de740db6644fd2b536c-215751d9282a377e62d4cee70c08413e/500x500-000000-80-0-0.jpg",
+      "10051": "https://cdn-images.dzcdn.net/images/cover/63c18083c5b52d6be4215f3870b80d47-db214eb66135b66e53ddb3e3dad29345-8be8e467cf75c13fa6879939eae36c58-99afef25e7ff94a8d0060fceea9d8fa9/500x500-000000-80-0-0.jpg",
+      "10052": "https://cdn-images.dzcdn.net/images/playlist/529ee8880d52b467fae61e04fdc8e95c/500x500-000000-80-0-0.jpg",
+      "10053": "https://cdn-images.dzcdn.net/images/playlist/5ef8b2bcf22b33f7a45f520f6a6db22f/500x500-000000-80-0-0.jpg",
+      "10054": "https://cdn-images.dzcdn.net/images/playlist/42583b8624dd7b79de28d691081f0b8e/500x500-000000-80-0-0.jpg",
+      "10055": "https://cdn-images.dzcdn.net/images/cover/5d2a60e2012588ae965f803e10b25957-0329704f0935b9a81e1068a4bf63c9ab-7e295c663bbce0990164ad746e67853c-11b3c5416fd999267826bc882951fbba/500x500-000000-80-0-0.jpg",
+      "10056": "https://cdn-images.dzcdn.net/images/playlist/973d9e820f4d60358ffdbda1acbb9d36/500x500-000000-80-0-0.jpg",
+      "10057": "https://cdn-images.dzcdn.net/images/cover/9281e65d0cba1710e32475106578e64d-c28b20c2d62aaf61cdd15cf540571a1f-3c92e5c6e49133f81508c20c2fe87f70-cb908d202d1a05578aab98c929f3470b/500x500-000000-80-0-0.jpg",
+      "10058": "https://cdn-images.dzcdn.net/images/cover/fe61fff7300ef02ce19d766c7e58ad26-c93c039515c9f48057d8472adc7b982f-93ff02b3832cfc4274e3ad27895fb91f-ccfb949c41b9b235e6b908c3dadbf8be/500x500-000000-80-0-0.jpg",
+      "10059": "https://cdn-images.dzcdn.net/images/cover/a15794d75e8aa5dbd425837d6b7e04db-386ce8e46e8027888a3ad93ff5aee286-470e83ca588da9d51d471873c3cae46d-3d3d04972cc0b1f5f040acafca6f6062/500x500-000000-80-0-0.jpg",
+      "10060": "https://cdn-images.dzcdn.net/images/cover/1141271e273c4c794638c8a24d0bcd58-30477fad4a27ef432bc254a5854e0df2-e33c040a8f36cf821ce782a2c2278649-9e93543f349fc2c4ed3ac950dfdb4925/500x500-000000-80-0-0.jpg",
+      "10061": "https://cdn-images.dzcdn.net/images/cover/669713171338a23cc47a9c7f319f36fe-efdfd3a2da2de583af566cfb377d1aff-37c55ad93636da7f15a326acb188682d-9a5a86fa3b81759c8259ad7e54706d24/500x500-000000-80-0-0.jpg",
+      "10062": "https://cdn-images.dzcdn.net/images/misc/dd6d2756465b22488dff5d8663e86688/500x500-000000-80-0-0.jpg",
+      "10063": "https://cdn-images.dzcdn.net/images/playlist/5ba519e87d4ef19ad28dd466d43f65bc/500x500-000000-80-0-0.jpg",
+      "10064": "https://cdn-images.dzcdn.net/images/cover/03ce8497d268da39c193f29b53e2b7cb-82e63e11ab2efb40a59a65578270acef-c2d6332f04f2061da7ad8fbb2a3c160b-8a24c318dc79c0520d0fa79dc801ef0f/500x500-000000-80-0-0.jpg",
+      "10065": "https://cdn-images.dzcdn.net/images/cover/124459ddc433153569e46d74a3da3b59-f6282ee4c992eb6d77aa842c3ab5d83e-74848d163f0d78ff07237cbe1dedbdcd-91a996d8c0298b85736ce0c58f936a3d/500x500-000000-80-0-0.jpg",
+      "10066": "https://cdn-images.dzcdn.net/images/cover/87e5a78fad9a50ab100492999ae12572-b43e8fa20b798a2a7ba91f87b6f0d7ca-a48d64cc51e09a29ee931c6fbb0ebb81-e5462ed8a0ef1332fb65532c827d7ee4/500x500-000000-80-0-0.jpg",
+      "10067": "https://cdn-images.dzcdn.net/images/cover/5f1541dd7b7105193b4a09193398f003-e5fe5e35899d5a59f81e9bb2047f3d5e-66ce634e06f9cc53a01958200dad0dc5-2ade77ee5673a6a897a95705ba30de40/500x500-000000-80-0-0.jpg",
+      "10068": "https://cdn-images.dzcdn.net/images/cover/39c8cfd8bce268db401b6e6ee0bf1b65-3a51303fb113106c12b6b57d429daacf-0173376a2a0699abdb3b02e92558ec4f-4a81d1d16f736f380e3b831febd7de86/500x500-000000-80-0-0.jpg",
+      "10069": "https://cdn-images.dzcdn.net/images/playlist/4a9b4da43b7d944a567db2c48cca444e/500x500-000000-80-0-0.jpg",
+      "10070": "https://cdn-images.dzcdn.net/images/playlist/f294b36a49f5455e58ff640bd0990de5/500x500-000000-80-0-0.jpg",
+      "10071": "https://cdn-images.dzcdn.net/images/playlist/aa484be532bdc80b633db92dedc00515/500x500-000000-80-0-0.jpg",
+      "10072": "https://cdn-images.dzcdn.net/images/playlist/2106988ecd733da0c546e56ff74f4a57/500x500-000000-80-0-0.jpg",
+      "10073": "https://cdn-images.dzcdn.net/images/playlist/10157b56a9231b47e7da3631acbbe480/500x500-000000-80-0-0.jpg",
+      "10074": "https://cdn-images.dzcdn.net/images/playlist/eca437abd8cd896884cdb00eff4e6d9c/500x500-000000-80-0-0.jpg",
+      "10075": "https://cdn-images.dzcdn.net/images/cover/1a414fcc7e38420d819cf3dd5eb0a7ca-1363b0c28fc2e6adbb8427e7774bea36-529d171bcae2e0bfabf7705cdfea6c6e-b075ccf507af5bf075f89c12225c6c04/500x500-000000-80-0-0.jpg",
+      "10076": "https://cdn-images.dzcdn.net/images/cover/8527c34eccd3611806c22b3a643c24c0-daa233c0ba51e25e6db21653ce0ce70e-75210673542ca33019251d4ec1186bbd-5987072631aef42e478330db8048ab2a/500x500-000000-80-0-0.jpg",
+      "10077": "https://cdn-images.dzcdn.net/images/cover/04579748b68ac1c06fd23bbb174913df-4eab8a104d42027920704574d28516af-ec7f970884bda506a234182e2d3a8f36-212e2be7b095b79eb365c86d95a3ebed/500x500-000000-80-0-0.jpg",
+      "10078": "https://cdn-images.dzcdn.net/images/cover/0ed78544b380fe8a86ee66e5e9c20169-fd648c0b1bad3dc2bd2e06c52b1a7cf8-78b773db646be7c9a3ec9f6210eac5e3-2f5ab3b916edabb308ba1b7f41e60353/500x500-000000-80-0-0.jpg",
+      "10079": "https://cdn-images.dzcdn.net/images/playlist/95cfac706ea891ac28579b1ed9b927d0/500x500-000000-80-0-0.jpg",
+      "10080": "https://cdn-images.dzcdn.net/images/cover/14fa44942ed0b746405881b96e0413c0-6f21469d191019be5f25dac1e0315a1b-fff19ab427e6250a116aa7b101eb8ad8-2b4fe2fa53e8f028b3aa50013ae50ebd/500x500-000000-80-0-0.jpg",
+      "10081": "https://cdn-images.dzcdn.net/images/playlist/645ac3c70fb5caf0350300f9ccb0e464/500x500-000000-80-0-0.jpg",
+      "10082": "https://cdn-images.dzcdn.net/images/playlist/821051d158a57d1ad477d233bce3efd4/500x500-000000-80-0-0.jpg",
+      "10083": "https://cdn-images.dzcdn.net/images/playlist/ce07e39e0d8b090b08961aea756b177f/500x500-000000-80-0-0.jpg",
+      "10084": "https://cdn-images.dzcdn.net/images/playlist/9ed167fba1633a6ae6971014273c1e54/500x500-000000-80-0-0.jpg",
+      "10085": "https://cdn-images.dzcdn.net/images/playlist/a55ca61cf766f3c2545082324c6cde48/500x500-000000-80-0-0.jpg",
+      "10086": "https://cdn-images.dzcdn.net/images/playlist/bb2e441aa41dbc47f19c24f646577b1d/500x500-000000-80-0-0.jpg",
+      "10087": "https://cdn-images.dzcdn.net/images/playlist/55413a0ac17f13af7d91cac44cfef357/500x500-000000-80-0-0.jpg",
+      "10088": "https://cdn-images.dzcdn.net/images/cover/76aba70a4e7efa447c4b4a3bbcef4048-264d6de3c0a777e5e0eceb9681e350d2-d0881d8cfab290f549e943d6b5a1b329-5f4f4c489b50b3050aec1721ee9620b1/500x500-000000-80-0-0.jpg",
+      "10089": "https://cdn-images.dzcdn.net/images/cover/d071fd2c525e131b5c69a8d718e75de7-e050b2e727afe793a3946880ec9cec44-a07a4c3bc836245905b2d3ccf97e5830-3962313d3fe3c4d72a149f6f66dd1acd/500x500-000000-80-0-0.jpg",
+      "10090": "https://cdn-images.dzcdn.net/images/playlist/fdfe2bb689754c409bb8ef8f13745fe5/500x500-000000-80-0-0.jpg",
+      "10091": "https://cdn-images.dzcdn.net/images/cover/9553b590f836362c40fcb3985718555f-3de514be608074a813e3aed48d4cf503-4a38a4d2e9be0c926287381a9a248719-d4e397873a3e7439a93aabe38c7e8176/500x500-000000-80-0-0.jpg",
+      "10092": "https://cdn-images.dzcdn.net/images/playlist/1f5618eefa8c84eb501bae80962fcc2a/500x500-000000-80-0-0.jpg",
+      "10093": "https://cdn-images.dzcdn.net/images/cover/39e07046147dd817f51650f1adac4d4c-f548ae492fc11e86fd788058235df25d-30cb69a1b5b33dcee498d13f856d4e41-26208e0f0b5bb81a3635bc4ae3ea9873/500x500-000000-80-0-0.jpg",
+      "10094": "https://cdn-images.dzcdn.net/images/playlist/563cef05ec841602ed8a01ff69fb823c/500x500-000000-80-0-0.jpg",
+      "10095": "https://cdn-images.dzcdn.net/images/playlist/108b773c705fc807a1580197b7bb7e3c/500x500-000000-80-0-0.jpg",
+      "10096": "https://cdn-images.dzcdn.net/images/playlist/c4c228a46df3dc5bf1f5a7fa1e045d73/500x500-000000-80-0-0.jpg",
+      "10097": "https://cdn-images.dzcdn.net/images/playlist/3b7b604b57506cf2b351efdc97f90732/500x500-000000-80-0-0.jpg",
+      "10098": "https://cdn-images.dzcdn.net/images/playlist/92d25cda90a6ed1d3118a3e18e85e48b/500x500-000000-80-0-0.jpg",
+      "10099": "https://cdn-images.dzcdn.net/images/playlist/2783ee159ae48a092d916ebd7e2d14e0/500x500-000000-80-0-0.jpg",
+      "10100": "https://cdn-images.dzcdn.net/images/playlist/3b7b604b57506cf2b351efdc97f90732/500x500-000000-80-0-0.jpg",
+      "10101": "https://cdn-images.dzcdn.net/images/playlist/7de3bc759ce004887b304d6d14709c02/500x500-000000-80-0-0.jpg",
+      "10102": "https://cdn-images.dzcdn.net/images/playlist/e987a4bb65cb129f7381206d71496d8e/500x500-000000-80-0-0.jpg",
+      "10103": "https://cdn-images.dzcdn.net/images/playlist/f0f01931b86bf75acf99a1e62bd129d1/500x500-000000-80-0-0.jpg",
+      "10104": "https://cdn-images.dzcdn.net/images/playlist/46a4e2b54b053de8dc4c6da29845c9ae/500x500-000000-80-0-0.jpg",
+      "10105": "https://cdn-images.dzcdn.net/images/playlist/fe9dc0a89207ecfedd2eaff2c18e182c/500x500-000000-80-0-0.jpg",
+      "10106": "https://cdn-images.dzcdn.net/images/playlist/956fe9dd2c88d57498e6c65cb445877c/500x500-000000-80-0-0.jpg",
+      "10107": "https://cdn-images.dzcdn.net/images/playlist/10190790ec12b385915bbe1eafea05ee/500x500-000000-80-0-0.jpg",
+      "10108": "https://cdn-images.dzcdn.net/images/cover/5f2067a88cb108f4c90a531c86c60ef2/500x500-000000-80-0-0.jpg",
+      "10109": "https://cdn-images.dzcdn.net/images/cover/28863efa522f02d47029c491ced907fb/500x500-000000-80-0-0.jpg",
+      "10110": "https://cdn-images.dzcdn.net/images/cover/997337e784d5460ab07f47cf518cb716/500x500-000000-80-0-0.jpg",
+      "10111": "https://cdn-images.dzcdn.net/images/cover/a6e0853bee54fa066566635eb380cbbb/500x500-000000-80-0-0.jpg",
+      "10112": "https://cdn-images.dzcdn.net/images/cover/30636155c2264a7a5f8b591493926d3a/500x500-000000-80-0-0.jpg",
+      "10113": "https://cdn-images.dzcdn.net/images/cover/5c800a9aecbccb13da8316c9e2ca7493/500x500-000000-80-0-0.jpg",
+      "10115": "https://cdn-images.dzcdn.net/images/cover/5cbce98f2aad4c64583199b1216f7415/500x500-000000-80-0-0.jpg",
+      "10116": "https://cdn-images.dzcdn.net/images/cover/867266ef5195999154c518fd8cf2aea5-e90fa3fce5f916a4e0a3aacac84d17d7-b515bfa82e0f721f4335368def8502f1-cd7a7f292718befa344e13522183bc7d/500x500-000000-80-0-0.jpg",
+      "10117": "https://cdn-images.dzcdn.net/images/cover/aa8f245f2bbcd87fa538f831f620a619-a1ee4b7a520b67fc0effb79255b73b42-816668b12cae7d34382b1d02251719f9-acba3dba7eb04b096f68f6a535eaca25/500x500-000000-80-0-0.jpg",
+      "10118": "https://cdn-images.dzcdn.net/images/playlist/11fb53aaf75072e82fcb3c5e6e2f31b2/500x500-000000-80-0-0.jpg",
+      "10119": "https://cdn-images.dzcdn.net/images/playlist/b542f55151c1843f266bbad01d94c157/500x500-000000-80-0-0.jpg",
+      "10120": "https://cdn-images.dzcdn.net/images/playlist/b33b2adc9a57058194075c6bf1812129/500x500-000000-80-0-0.jpg",
+      "10121": "https://cdn-images.dzcdn.net/images/cover/1ccf81eb45b2d4dd43ed8cb5d9875ddf-5e30fadde8272534627e2ee6b3e60f89-980866f9f8ddc0761eb601cabe12b289-b0d30009357820ddeb7c654d0c3a834c/500x500-000000-80-0-0.jpg",
+      "10122": "https://cdn-images.dzcdn.net/images/playlist/0529660525161f1592bb8903ab937cba/500x500-000000-80-0-0.jpg",
+      "10123": "https://cdn-images.dzcdn.net/images/cover/153871394079e7f1d4713d2bbdb5cbe5-59dcb95f9588f5221dd62bc5ceef6d5e-66a6766d79247720b718a1745ccc90b5-8770fd0c954ab62969d0088078386854/500x500-000000-80-0-0.jpg",
+      "10124": "https://cdn-images.dzcdn.net/images/cover/ae8c72817542458ef13cab8c7ad41177-efe32f2dc70472b2cf2b742e67866121-415d98a2467b8ced5ab447a7d9f9de1f-11c3a0446ca41d3aa9fbfcc7998eba15/500x500-000000-80-0-0.jpg",
+      "10125": "https://cdn-images.dzcdn.net/images/cover/173af46fdd15524a858f33333bf838f5-49d2ba701172077fccd9742cae126ca5-567fbedecf7b63686c3728da5c9d129e-7e0fb983ef47c152d9b484e9f4e5ea7e/500x500-000000-80-0-0.jpg",
+      "10126": "https://cdn-images.dzcdn.net/images/cover/6c71e2dd92f5939ff0d964f781d3a5e4-76e9157379fdce1e5965cd8c65c20923-b17719d8360f9a767a69bdbd72ce9a23-5b3500785090bd17c1fd1b9d5936f3a5/500x500-000000-80-0-0.jpg",
+      "10127": "https://cdn-images.dzcdn.net/images/playlist/566225afdbffc7d71622c2a69a82cd28/500x500-000000-80-0-0.jpg",
+      "10128": "https://cdn-images.dzcdn.net/images/playlist/a39b4e4919e126ca1a3cb6ebcd343aad/500x500-000000-80-0-0.jpg",
+      "10129": "https://cdn-images.dzcdn.net/images/cover/89e28a0a93eff9dc574476710b5c09e2-a84c12ba58c39965cf91c60e99d081a1-4a6046a9fb0238388a92047d789a2530-70710ff6f6be35d8d47c666ab8861209/500x500-000000-80-0-0.jpg",
+      "10130": "https://cdn-images.dzcdn.net/images/cover/765dc8aba0e893fc6d55af08572fc902-e276d1f527dc726a47cb10a87cf90742-6fd634a66363e22bd4e897f2e1c95dce-c42ab7469ac212b3b4a5f51d867a3688/500x500-000000-80-0-0.jpg",
+      "10131": "https://cdn-images.dzcdn.net/images/cover/1ff9feb1899eac4de20b64340c373628-e7a50cb1e9e2e6228a16abd45ebb9caa-df4f6e3d8d8efc59d60113622bd3bf3f-13ea59bc8163ced278f9f7b8e019a750/500x500-000000-80-0-0.jpg",
+      "10132": "https://cdn-images.dzcdn.net/images/cover/d1fa9d73190c4e83b2b9c255c951cfe6-5baa3c0f30605df0edccdfce489edc75-af65f2dd74b8f040aafd452775b556dc-79582eef61c128044590c0fd8f4bf20c/500x500-000000-80-0-0.jpg",
+      "10133": "https://cdn-images.dzcdn.net/images/cover/c12b43edcaa9d51432ebdae0ca291ae8-ff8563a3850c488d0d6aefe2802f875a-9e6781010d5eed2e5dc4f4be76958552-788334f10fc4f0369f85c719d2afccfc/500x500-000000-80-0-0.jpg"
+    },
+    "countries": [
+      "US",
+      "GB",
+      "FR",
+      "NO",
+      "BE",
+      "NL",
+      "AU",
+      "BR",
+      "ZA",
+      "KR",
+      "JP",
+      "PR",
+      "PA",
+      "NG",
+      "GH",
+      "DE",
+      "JM",
+      "CU",
+      "CO",
+      "MX",
+      "AR",
+      "DO",
+      "TT",
+      "HT",
+      "GP",
+      "MQ",
+      "TZ",
+      "KE",
+      "CD",
+      "CG",
+      "AO",
+      "DZ",
+      "MA",
+      "SN",
+      "HK",
+      "TW",
+      "CN",
+      "PH",
+      "VN",
+      "TH",
+      "ID",
+      "IN",
+      "PK",
+      "UA",
+      "TR",
+      "EG",
+      "LB",
+      "IR",
+      "ES",
+      "PT",
+      "IL",
+      "IT",
+      "SE",
+      "RU"
+    ],
+    "families": ["popular", "electronic", "guitars", "roots", "latin", "africa", "asia", "world"],
+    "editorialScenes": [
+      "russian-rap",
+      "russian-hyperpop",
+      "ukrainian-rap",
+      "ukrainian-wartime",
+      "horrorcore",
+      "goth",
+      "emo",
+      "internet-classics"
+    ],
+    "playlistScenes": [
+      "chicago-drill",
+      "new-york-drill",
+      "east-coast-hip-hop",
+      "west-coast-hip-hop",
+      "southern-hip-hop",
+      "atlanta-rap",
+      "houston-rap",
+      "memphis-rap",
+      "detroit-rap",
+      "bay-area-rap",
+      "g-funk",
+      "boom-bap",
+      "jazz-rap",
+      "conscious-hip-hop",
+      "alternative-hip-hop",
+      "crunk",
+      "miami-bass",
+      "chopped-and-screwed",
+      "internet-classics"
+    ]
+  },
+  "mobileExcludedGenreIds": [95],
+  "program": {
+    "source": "var plugin=(()=>{\n  const AbortSignal={timeout(ms){const controller=new AbortController();setTimeout(()=>controller.abort(),ms);return controller.signal;}};\n  async function safeFetch(url,options={}){\n    const signal=options.signal;\n    const value=await new Promise((resolve,reject)=>{\n      const abort=()=>reject(new Error(\"Music discovery request aborted\"));\n      if(signal?.aborted){abort();return;}\n      signal?.addEventListener(\"abort\",abort,{once:true});\n      harbor.http(String(url),{method:\"GET\",responseType:\"text\",timeoutMs:15000})\n        .then(value=>{signal?.removeEventListener(\"abort\",abort);resolve(value);},error=>{signal?.removeEventListener(\"abort\",abort);reject(error);});\n    });\n    return {ok:value.ok===true,status:value.status,json:async()=>JSON.parse(String(value.body??\"\"))};\n  }\n  const factories={\"genre-catalog\":function(require,exports){\n\"use strict\";\nObject.defineProperty(exports, \"__esModule\", { value: true });\nexports.MUSIC_GENRE_COUNTRIES = exports.MUSIC_GENRE_FAMILIES = exports.MUSIC_GENRES = void 0;\nexports.musicGenre = musicGenre;\nexports.musicGenreName = musicGenreName;\nexports.genreSearchKey = genreSearchKey;\nexports.filterMusicGenres = filterMusicGenres;\nexports.relatedMusicGenres = relatedMusicGenres;\n// IDs are persistent taste identities. Never derive them from the array index.\nexports.MUSIC_GENRES = [\n    {\n        \"id\": 132,\n        \"slug\": \"pop\",\n        \"name\": \"Pop\",\n        \"family\": \"popular\",\n        \"countries\": [\n            \"US\",\n            \"GB\"\n        ],\n        \"aliases\": [],\n        \"deezerId\": 132\n    },\n    {\n        \"id\": 116,\n        \"slug\": \"hip-hop\",\n        \"name\": \"Hip-hop\",\n        \"family\": \"popular\",\n        \"countries\": [\n            \"US\",\n            \"FR\",\n            \"GB\"\n        ],\n        \"aliases\": [\n            \"Rap\"\n        ],\n        \"deezerId\": 116\n    },\n    {\n        \"id\": 152,\n        \"slug\": \"rock\",\n        \"name\": \"Rock\",\n        \"family\": \"guitars\",\n        \"countries\": [\n            \"US\",\n            \"GB\"\n        ],\n        \"aliases\": [],\n        \"deezerId\": 152\n    },\n    {\n        \"id\": 165,\n        \"slug\": \"rnb\",\n        \"name\": \"R&B\",\n        \"family\": \"popular\",\n        \"countries\": [\n            \"US\",\n            \"GB\"\n        ],\n        \"aliases\": [\n            \"Rhythm and blues\"\n        ],\n        \"deezerId\": 165\n    },\n    {\n        \"id\": 10001,\n        \"slug\": \"nightcore\",\n        \"name\": \"Nightcore\",\n        \"family\": \"electronic\",\n        \"countries\": [\n            \"NO\"\n        ],\n        \"aliases\": [\n            \"Sped up\"\n        ]\n    },\n    {\n        \"id\": 10002,\n        \"slug\": \"jumpstyle\",\n        \"name\": \"Jumpstyle\",\n        \"family\": \"electronic\",\n        \"countries\": [\n            \"BE\",\n            \"NL\"\n        ],\n        \"aliases\": [\n            \"Jump style\"\n        ]\n    },\n    {\n        \"id\": 10003,\n        \"slug\": \"hardstyle\",\n        \"name\": \"Hardstyle\",\n        \"family\": \"electronic\",\n        \"countries\": [\n            \"NL\",\n            \"AU\"\n        ],\n        \"aliases\": [\n            \"Hard dance\"\n        ]\n    },\n    {\n        \"id\": 10004,\n        \"slug\": \"funk-carioca\",\n        \"name\": \"Funk carioca\",\n        \"family\": \"latin\",\n        \"countries\": [\n            \"BR\"\n        ],\n        \"aliases\": [\n            \"Baile funk\",\n            \"Brazilian funk\",\n            \"Funk brasileiro\"\n        ]\n    },\n    {\n        \"id\": 10005,\n        \"slug\": \"pagode\",\n        \"name\": \"Pagode\",\n        \"family\": \"latin\",\n        \"countries\": [\n            \"BR\"\n        ],\n        \"aliases\": []\n    },\n    {\n        \"id\": 10006,\n        \"slug\": \"amapiano\",\n        \"name\": \"Amapiano\",\n        \"family\": \"africa\",\n        \"countries\": [\n            \"ZA\"\n        ],\n        \"aliases\": []\n    },\n    {\n        \"id\": 10007,\n        \"slug\": \"k-pop\",\n        \"name\": \"K-pop\",\n        \"family\": \"asia\",\n        \"countries\": [\n            \"KR\"\n        ],\n        \"aliases\": [\n            \"Korean pop\"\n        ]\n    },\n    {\n        \"id\": 10008,\n        \"slug\": \"j-pop\",\n        \"name\": \"J-pop\",\n        \"family\": \"asia\",\n        \"countries\": [\n            \"JP\"\n        ],\n        \"aliases\": [\n            \"Japanese pop\"\n        ]\n    },\n    {\n        \"id\": 122,\n        \"slug\": \"reggaeton\",\n        \"name\": \"Reggaetón\",\n        \"family\": \"latin\",\n        \"countries\": [\n            \"PR\",\n            \"PA\"\n        ],\n        \"aliases\": [\n            \"Reggaeton\"\n        ],\n        \"deezerId\": 122\n    },\n    {\n        \"id\": 106,\n        \"slug\": \"electronic\",\n        \"name\": \"Electronic\",\n        \"family\": \"electronic\",\n        \"countries\": [],\n        \"aliases\": [\n            \"Electro\",\n            \"Electronica\"\n        ],\n        \"deezerId\": 106\n    },\n    {\n        \"id\": 113,\n        \"slug\": \"dance\",\n        \"name\": \"Dance\",\n        \"family\": \"electronic\",\n        \"countries\": [],\n        \"aliases\": [\n            \"EDM\"\n        ],\n        \"deezerId\": 113\n    },\n    {\n        \"id\": 85,\n        \"slug\": \"alternative\",\n        \"name\": \"Alternative\",\n        \"family\": \"guitars\",\n        \"countries\": [],\n        \"aliases\": [\n            \"Alt rock\"\n        ],\n        \"deezerId\": 85\n    },\n    {\n        \"id\": 10009,\n        \"slug\": \"afrobeats\",\n        \"name\": \"Afrobeats\",\n        \"family\": \"africa\",\n        \"countries\": [\n            \"NG\",\n            \"GH\"\n        ],\n        \"aliases\": [\n            \"Afro pop\"\n        ]\n    },\n    {\n        \"id\": 10010,\n        \"slug\": \"house\",\n        \"name\": \"House\",\n        \"family\": \"electronic\",\n        \"countries\": [\n            \"US\",\n            \"GB\"\n        ],\n        \"aliases\": []\n    },\n    {\n        \"id\": 10011,\n        \"slug\": \"techno\",\n        \"name\": \"Techno\",\n        \"family\": \"electronic\",\n        \"countries\": [\n            \"US\",\n            \"DE\"\n        ],\n        \"aliases\": []\n    },\n    {\n        \"id\": 10012,\n        \"slug\": \"drum-and-bass\",\n        \"name\": \"Drum & bass\",\n        \"family\": \"electronic\",\n        \"countries\": [\n            \"GB\"\n        ],\n        \"aliases\": [\n            \"DnB\",\n            \"Drum and bass\"\n        ]\n    },\n    {\n        \"id\": 10013,\n        \"slug\": \"phonk\",\n        \"name\": \"Phonk\",\n        \"family\": \"electronic\",\n        \"countries\": [\n            \"US\"\n        ],\n        \"aliases\": [\n            \"Drift phonk\"\n        ]\n    },\n    {\n        \"id\": 10014,\n        \"slug\": \"hyperpop\",\n        \"name\": \"Hyperpop\",\n        \"family\": \"popular\",\n        \"countries\": [\n            \"GB\",\n            \"US\"\n        ],\n        \"aliases\": []\n    },\n    {\n        \"id\": 10015,\n        \"slug\": \"trap\",\n        \"name\": \"Trap\",\n        \"family\": \"popular\",\n        \"countries\": [\n            \"US\"\n        ],\n        \"aliases\": []\n    },\n    {\n        \"id\": 10016,\n        \"slug\": \"indie-pop\",\n        \"name\": \"Indie pop\",\n        \"family\": \"popular\",\n        \"countries\": [],\n        \"aliases\": []\n    },\n    {\n        \"id\": 129,\n        \"slug\": \"jazz\",\n        \"name\": \"Jazz\",\n        \"family\": \"roots\",\n        \"countries\": [\n            \"US\"\n        ],\n        \"aliases\": [],\n        \"deezerId\": 129\n    },\n    {\n        \"id\": 169,\n        \"slug\": \"soul-funk\",\n        \"name\": \"Soul & funk\",\n        \"family\": \"roots\",\n        \"countries\": [\n            \"US\"\n        ],\n        \"aliases\": [],\n        \"deezerId\": 169\n    },\n    {\n        \"id\": 98,\n        \"slug\": \"classical\",\n        \"name\": \"Classical\",\n        \"family\": \"roots\",\n        \"countries\": [],\n        \"aliases\": [\n            \"Orchestral\"\n        ],\n        \"deezerId\": 98\n    },\n    {\n        \"id\": 464,\n        \"slug\": \"metal\",\n        \"name\": \"Metal\",\n        \"family\": \"guitars\",\n        \"countries\": [\n            \"GB\",\n            \"US\"\n        ],\n        \"aliases\": [\n            \"Heavy metal\"\n        ],\n        \"deezerId\": 464\n    },\n    {\n        \"id\": 84,\n        \"slug\": \"country\",\n        \"name\": \"Country\",\n        \"family\": \"roots\",\n        \"countries\": [\n            \"US\"\n        ],\n        \"aliases\": [],\n        \"deezerId\": 84\n    },\n    {\n        \"id\": 153,\n        \"slug\": \"blues\",\n        \"name\": \"Blues\",\n        \"family\": \"roots\",\n        \"countries\": [\n            \"US\"\n        ],\n        \"aliases\": [],\n        \"deezerId\": 153\n    },\n    {\n        \"id\": 466,\n        \"slug\": \"folk\",\n        \"name\": \"Folk\",\n        \"family\": \"roots\",\n        \"countries\": [],\n        \"aliases\": [],\n        \"deezerId\": 466\n    },\n    {\n        \"id\": 144,\n        \"slug\": \"reggae\",\n        \"name\": \"Reggae\",\n        \"family\": \"latin\",\n        \"countries\": [\n            \"JM\"\n        ],\n        \"aliases\": [],\n        \"deezerId\": 144\n    },\n    {\n        \"id\": 10017,\n        \"slug\": \"samba\",\n        \"name\": \"Samba\",\n        \"family\": \"latin\",\n        \"countries\": [\n            \"BR\"\n        ],\n        \"aliases\": []\n    },\n    {\n        \"id\": 10018,\n        \"slug\": \"bossa-nova\",\n        \"name\": \"Bossa nova\",\n        \"family\": \"latin\",\n        \"countries\": [\n            \"BR\"\n        ],\n        \"aliases\": []\n    },\n    {\n        \"id\": 10019,\n        \"slug\": \"sertanejo\",\n        \"name\": \"Sertanejo\",\n        \"family\": \"latin\",\n        \"countries\": [\n            \"BR\"\n        ],\n        \"aliases\": [\n            \"Sertanejo universitario\"\n        ]\n    },\n    {\n        \"id\": 10020,\n        \"slug\": \"forro\",\n        \"name\": \"Forró\",\n        \"family\": \"latin\",\n        \"countries\": [\n            \"BR\"\n        ],\n        \"aliases\": [\n            \"Forro\"\n        ]\n    },\n    {\n        \"id\": 10021,\n        \"slug\": \"mpb\",\n        \"name\": \"MPB\",\n        \"family\": \"latin\",\n        \"countries\": [\n            \"BR\"\n        ],\n        \"aliases\": [\n            \"Musica popular brasileira\"\n        ]\n    },\n    {\n        \"id\": 10022,\n        \"slug\": \"piseiro\",\n        \"name\": \"Piseiro\",\n        \"family\": \"latin\",\n        \"countries\": [\n            \"BR\"\n        ],\n        \"aliases\": [\n            \"Pisadinha\"\n        ]\n    },\n    {\n        \"id\": 10023,\n        \"slug\": \"axe\",\n        \"name\": \"Axé\",\n        \"family\": \"latin\",\n        \"countries\": [\n            \"BR\"\n        ],\n        \"aliases\": [\n            \"Axe music\"\n        ]\n    },\n    {\n        \"id\": 10024,\n        \"slug\": \"brazilian-trap\",\n        \"name\": \"Brazilian trap\",\n        \"family\": \"latin\",\n        \"countries\": [\n            \"BR\"\n        ],\n        \"aliases\": [\n            \"Trap brasileiro\",\n            \"Trap BR\"\n        ]\n    },\n    {\n        \"id\": 67,\n        \"slug\": \"salsa\",\n        \"name\": \"Salsa\",\n        \"family\": \"latin\",\n        \"countries\": [\n            \"CU\",\n            \"PR\",\n            \"US\"\n        ],\n        \"aliases\": [],\n        \"deezerId\": 67\n    },\n    {\n        \"id\": 71,\n        \"slug\": \"cumbia\",\n        \"name\": \"Cumbia\",\n        \"family\": \"latin\",\n        \"countries\": [\n            \"CO\",\n            \"MX\",\n            \"AR\"\n        ],\n        \"aliases\": [],\n        \"deezerId\": 71\n    },\n    {\n        \"id\": 65,\n        \"slug\": \"regional-mexican\",\n        \"name\": \"Regional Mexican\",\n        \"family\": \"latin\",\n        \"countries\": [\n            \"MX\"\n        ],\n        \"aliases\": [\n            \"Musica mexicana\",\n            \"Regional mexicano\"\n        ],\n        \"deezerId\": 65\n    },\n    {\n        \"id\": 10025,\n        \"slug\": \"bachata\",\n        \"name\": \"Bachata\",\n        \"family\": \"latin\",\n        \"countries\": [\n            \"DO\"\n        ],\n        \"aliases\": []\n    },\n    {\n        \"id\": 10026,\n        \"slug\": \"merengue\",\n        \"name\": \"Merengue\",\n        \"family\": \"latin\",\n        \"countries\": [\n            \"DO\"\n        ],\n        \"aliases\": []\n    },\n    {\n        \"id\": 10027,\n        \"slug\": \"dembow\",\n        \"name\": \"Dembow\",\n        \"family\": \"latin\",\n        \"countries\": [\n            \"DO\"\n        ],\n        \"aliases\": []\n    },\n    {\n        \"id\": 10028,\n        \"slug\": \"corridos-tumbados\",\n        \"name\": \"Corridos tumbados\",\n        \"family\": \"latin\",\n        \"countries\": [\n            \"MX\"\n        ],\n        \"aliases\": []\n    },\n    {\n        \"id\": 10029,\n        \"slug\": \"mariachi\",\n        \"name\": \"Mariachi\",\n        \"family\": \"latin\",\n        \"countries\": [\n            \"MX\"\n        ],\n        \"aliases\": []\n    },\n    {\n        \"id\": 10030,\n        \"slug\": \"banda\",\n        \"name\": \"Banda\",\n        \"family\": \"latin\",\n        \"countries\": [\n            \"MX\"\n        ],\n        \"aliases\": [\n            \"Banda sinaloense\"\n        ]\n    },\n    {\n        \"id\": 10031,\n        \"slug\": \"norteno\",\n        \"name\": \"Norteño\",\n        \"family\": \"latin\",\n        \"countries\": [\n            \"MX\"\n        ],\n        \"aliases\": [\n            \"Norteno\"\n        ]\n    },\n    {\n        \"id\": 10032,\n        \"slug\": \"latin-trap\",\n        \"name\": \"Latin trap\",\n        \"family\": \"latin\",\n        \"countries\": [\n            \"PR\",\n            \"AR\"\n        ],\n        \"aliases\": [\n            \"Trap latino\"\n        ]\n    },\n    {\n        \"id\": 10033,\n        \"slug\": \"reggae-en-espanol\",\n        \"name\": \"Reggae en español\",\n        \"family\": \"latin\",\n        \"countries\": [\n            \"PA\"\n        ],\n        \"aliases\": [\n            \"Reggae en espanol\"\n        ]\n    },\n    {\n        \"id\": 10034,\n        \"slug\": \"dancehall\",\n        \"name\": \"Dancehall\",\n        \"family\": \"latin\",\n        \"countries\": [\n            \"JM\"\n        ],\n        \"aliases\": []\n    },\n    {\n        \"id\": 10035,\n        \"slug\": \"soca\",\n        \"name\": \"Soca\",\n        \"family\": \"latin\",\n        \"countries\": [\n            \"TT\"\n        ],\n        \"aliases\": []\n    },\n    {\n        \"id\": 10036,\n        \"slug\": \"dub\",\n        \"name\": \"Dub\",\n        \"family\": \"latin\",\n        \"countries\": [\n            \"JM\",\n            \"GB\"\n        ],\n        \"aliases\": []\n    },\n    {\n        \"id\": 10037,\n        \"slug\": \"kompa\",\n        \"name\": \"Kompa\",\n        \"family\": \"latin\",\n        \"countries\": [\n            \"HT\"\n        ],\n        \"aliases\": [\n            \"Compas\"\n        ]\n    },\n    {\n        \"id\": 10038,\n        \"slug\": \"zouk\",\n        \"name\": \"Zouk\",\n        \"family\": \"latin\",\n        \"countries\": [\n            \"GP\",\n            \"MQ\"\n        ],\n        \"aliases\": []\n    },\n    {\n        \"id\": 10039,\n        \"slug\": \"gqom\",\n        \"name\": \"Gqom\",\n        \"family\": \"africa\",\n        \"countries\": [\n            \"ZA\"\n        ],\n        \"aliases\": []\n    },\n    {\n        \"id\": 10040,\n        \"slug\": \"kwaito\",\n        \"name\": \"Kwaito\",\n        \"family\": \"africa\",\n        \"countries\": [\n            \"ZA\"\n        ],\n        \"aliases\": []\n    },\n    {\n        \"id\": 10041,\n        \"slug\": \"highlife\",\n        \"name\": \"Highlife\",\n        \"family\": \"africa\",\n        \"countries\": [\n            \"GH\",\n            \"NG\"\n        ],\n        \"aliases\": []\n    },\n    {\n        \"id\": 10042,\n        \"slug\": \"afrobeat\",\n        \"name\": \"Afrobeat\",\n        \"family\": \"africa\",\n        \"countries\": [\n            \"NG\",\n            \"GH\"\n        ],\n        \"aliases\": []\n    },\n    {\n        \"id\": 10043,\n        \"slug\": \"bongo-flava\",\n        \"name\": \"Bongo flava\",\n        \"family\": \"africa\",\n        \"countries\": [\n            \"TZ\"\n        ],\n        \"aliases\": []\n    },\n    {\n        \"id\": 10044,\n        \"slug\": \"singeli\",\n        \"name\": \"Singeli\",\n        \"family\": \"africa\",\n        \"countries\": [\n            \"TZ\"\n        ],\n        \"aliases\": []\n    },\n    {\n        \"id\": 10045,\n        \"slug\": \"gengetone\",\n        \"name\": \"Gengetone\",\n        \"family\": \"africa\",\n        \"countries\": [\n            \"KE\"\n        ],\n        \"aliases\": []\n    },\n    {\n        \"id\": 10046,\n        \"slug\": \"soukous\",\n        \"name\": \"Soukous\",\n        \"family\": \"africa\",\n        \"countries\": [\n            \"CD\",\n            \"CG\"\n        ],\n        \"aliases\": []\n    },\n    {\n        \"id\": 10047,\n        \"slug\": \"kuduro\",\n        \"name\": \"Kuduro\",\n        \"family\": \"africa\",\n        \"countries\": [\n            \"AO\"\n        ],\n        \"aliases\": []\n    },\n    {\n        \"id\": 10048,\n        \"slug\": \"kizomba\",\n        \"name\": \"Kizomba\",\n        \"family\": \"africa\",\n        \"countries\": [\n            \"AO\"\n        ],\n        \"aliases\": []\n    },\n    {\n        \"id\": 10049,\n        \"slug\": \"rai\",\n        \"name\": \"Raï\",\n        \"family\": \"africa\",\n        \"countries\": [\n            \"DZ\"\n        ],\n        \"aliases\": [\n            \"Rai\"\n        ]\n    },\n    {\n        \"id\": 10050,\n        \"slug\": \"gnawa\",\n        \"name\": \"Gnawa\",\n        \"family\": \"africa\",\n        \"countries\": [\n            \"MA\"\n        ],\n        \"aliases\": [\n            \"Gnaoua\"\n        ]\n    },\n    {\n        \"id\": 10051,\n        \"slug\": \"mbalax\",\n        \"name\": \"Mbalax\",\n        \"family\": \"africa\",\n        \"countries\": [\n            \"SN\"\n        ],\n        \"aliases\": []\n    },\n    {\n        \"id\": 10052,\n        \"slug\": \"city-pop\",\n        \"name\": \"City pop\",\n        \"family\": \"asia\",\n        \"countries\": [\n            \"JP\"\n        ],\n        \"aliases\": []\n    },\n    {\n        \"id\": 10053,\n        \"slug\": \"j-rock\",\n        \"name\": \"J-rock\",\n        \"family\": \"asia\",\n        \"countries\": [\n            \"JP\"\n        ],\n        \"aliases\": [\n            \"Japanese rock\"\n        ]\n    },\n    {\n        \"id\": 10054,\n        \"slug\": \"anime\",\n        \"name\": \"Anime\",\n        \"family\": \"asia\",\n        \"countries\": [\n            \"JP\"\n        ],\n        \"aliases\": [\n            \"Anisong\"\n        ]\n    },\n    {\n        \"id\": 10055,\n        \"slug\": \"vocaloid\",\n        \"name\": \"Vocaloid\",\n        \"family\": \"asia\",\n        \"countries\": [\n            \"JP\"\n        ],\n        \"aliases\": [\n            \"Hatsune Miku\"\n        ]\n    },\n    {\n        \"id\": 10056,\n        \"slug\": \"cantopop\",\n        \"name\": \"Cantopop\",\n        \"family\": \"asia\",\n        \"countries\": [\n            \"HK\"\n        ],\n        \"aliases\": [\n            \"Cantonese pop\"\n        ]\n    },\n    {\n        \"id\": 10057,\n        \"slug\": \"mandopop\",\n        \"name\": \"Mandopop\",\n        \"family\": \"asia\",\n        \"countries\": [\n            \"TW\",\n            \"CN\"\n        ],\n        \"aliases\": [\n            \"Mandarin pop\"\n        ]\n    },\n    {\n        \"id\": 10058,\n        \"slug\": \"opm\",\n        \"name\": \"OPM\",\n        \"family\": \"asia\",\n        \"countries\": [\n            \"PH\"\n        ],\n        \"aliases\": [\n            \"Original Pilipino music\",\n            \"P-pop\"\n        ]\n    },\n    {\n        \"id\": 10059,\n        \"slug\": \"v-pop\",\n        \"name\": \"V-pop\",\n        \"family\": \"asia\",\n        \"countries\": [\n            \"VN\"\n        ],\n        \"aliases\": [\n            \"Vietnamese pop\"\n        ]\n    },\n    {\n        \"id\": 10060,\n        \"slug\": \"thai-pop\",\n        \"name\": \"Thai pop\",\n        \"family\": \"asia\",\n        \"countries\": [\n            \"TH\"\n        ],\n        \"aliases\": [\n            \"T-pop\"\n        ]\n    },\n    {\n        \"id\": 10061,\n        \"slug\": \"dangdut\",\n        \"name\": \"Dangdut\",\n        \"family\": \"asia\",\n        \"countries\": [\n            \"ID\"\n        ],\n        \"aliases\": []\n    },\n    {\n        \"id\": 10062,\n        \"slug\": \"indonesian-pop\",\n        \"name\": \"Indonesian pop\",\n        \"family\": \"asia\",\n        \"countries\": [\n            \"ID\"\n        ],\n        \"aliases\": [\n            \"Indo pop\"\n        ]\n    },\n    {\n        \"id\": 10063,\n        \"slug\": \"bollywood\",\n        \"name\": \"Bollywood\",\n        \"family\": \"asia\",\n        \"countries\": [\n            \"IN\"\n        ],\n        \"aliases\": [\n            \"Hindi film\"\n        ]\n    },\n    {\n        \"id\": 10064,\n        \"slug\": \"punjabi\",\n        \"name\": \"Punjabi\",\n        \"family\": \"asia\",\n        \"countries\": [\n            \"IN\",\n            \"PK\"\n        ],\n        \"aliases\": []\n    },\n    {\n        \"id\": 10065,\n        \"slug\": \"bhangra\",\n        \"name\": \"Bhangra\",\n        \"family\": \"asia\",\n        \"countries\": [\n            \"IN\",\n            \"GB\"\n        ],\n        \"aliases\": []\n    },\n    {\n        \"id\": 10066,\n        \"slug\": \"qawwali\",\n        \"name\": \"Qawwali\",\n        \"family\": \"asia\",\n        \"countries\": [\n            \"PK\",\n            \"IN\"\n        ],\n        \"aliases\": []\n    },\n    {\n        \"id\": 10067,\n        \"slug\": \"carnatic\",\n        \"name\": \"Carnatic\",\n        \"family\": \"asia\",\n        \"countries\": [\n            \"IN\"\n        ],\n        \"aliases\": [\n            \"Karnatik\"\n        ]\n    },\n    {\n        \"id\": 10068,\n        \"slug\": \"hindustani\",\n        \"name\": \"Hindustani classical\",\n        \"family\": \"asia\",\n        \"countries\": [\n            \"IN\"\n        ],\n        \"aliases\": []\n    },\n    {\n        \"id\": 10069,\n        \"slug\": \"uk-garage\",\n        \"name\": \"UK garage\",\n        \"family\": \"electronic\",\n        \"countries\": [\n            \"GB\"\n        ],\n        \"aliases\": [\n            \"UKG\",\n            \"2-step\"\n        ]\n    },\n    { \"id\": 10116, \"slug\": \"chicago-drill\", \"name\": \"Chicago drill\", \"family\": \"popular\", \"countries\": [\"US\"], \"aliases\": [\"Drill Chicago\"] },\n    { \"id\": 10117, \"slug\": \"new-york-drill\", \"name\": \"New York drill\", \"family\": \"popular\", \"countries\": [\"US\"], \"aliases\": [\"Brooklyn drill\", \"NY drill\", \"Drill New York\"] },\n    { \"id\": 10118, \"slug\": \"east-coast-hip-hop\", \"name\": \"East Coast hip hop\", \"family\": \"popular\", \"countries\": [\"US\"], \"aliases\": [\"East Coast rap\", \"East Coast essentials\"] },\n    { \"id\": 10119, \"slug\": \"west-coast-hip-hop\", \"name\": \"West Coast hip hop\", \"family\": \"popular\", \"countries\": [\"US\"], \"aliases\": [\"West Coast rap\", \"West Coast essentials\"] },\n    { \"id\": 10120, \"slug\": \"southern-hip-hop\", \"name\": \"Southern hip hop\", \"family\": \"popular\", \"countries\": [\"US\"], \"aliases\": [\"Southern rap\", \"Dirty South\", \"South Side essentials\"] },\n    { \"id\": 10121, \"slug\": \"atlanta-rap\", \"name\": \"Atlanta rap\", \"family\": \"popular\", \"countries\": [\"US\"], \"aliases\": [\"Atlanta trap\"] },\n    { \"id\": 10122, \"slug\": \"houston-rap\", \"name\": \"Houston rap\", \"family\": \"popular\", \"countries\": [\"US\"], \"aliases\": [] },\n    { \"id\": 10123, \"slug\": \"memphis-rap\", \"name\": \"Memphis rap\", \"family\": \"popular\", \"countries\": [\"US\"], \"aliases\": [\"Memphis underground rap\"] },\n    { \"id\": 10124, \"slug\": \"detroit-rap\", \"name\": \"Detroit rap\", \"family\": \"popular\", \"countries\": [\"US\"], \"aliases\": [\"Detroit Flint Michigan rap\"] },\n    { \"id\": 10125, \"slug\": \"bay-area-rap\", \"name\": \"Bay Area rap\", \"family\": \"popular\", \"countries\": [\"US\"], \"aliases\": [\"Hyphy\"] },\n    { \"id\": 10126, \"slug\": \"g-funk\", \"name\": \"G-funk\", \"family\": \"popular\", \"countries\": [\"US\"], \"aliases\": [\"G funk\"] },\n    { \"id\": 10127, \"slug\": \"boom-bap\", \"name\": \"Boom bap\", \"family\": \"popular\", \"countries\": [\"US\"], \"aliases\": [\"Boombap\"] },\n    { \"id\": 10128, \"slug\": \"jazz-rap\", \"name\": \"Jazz rap\", \"family\": \"popular\", \"countries\": [\"US\"], \"aliases\": [\"Jazzy hip hop\", \"Jazz hip hop\"] },\n    { \"id\": 10129, \"slug\": \"conscious-hip-hop\", \"name\": \"Conscious hip hop\", \"family\": \"popular\", \"countries\": [\"US\"], \"aliases\": [\"Conscious rap\"] },\n    { \"id\": 10130, \"slug\": \"alternative-hip-hop\", \"name\": \"Alternative hip hop\", \"family\": \"popular\", \"countries\": [\"US\"], \"aliases\": [\"Alternative rap\"] },\n    { \"id\": 10131, \"slug\": \"crunk\", \"name\": \"Crunk\", \"family\": \"popular\", \"countries\": [\"US\"], \"aliases\": [] },\n    { \"id\": 10132, \"slug\": \"miami-bass\", \"name\": \"Miami bass\", \"family\": \"popular\", \"countries\": [\"US\"], \"aliases\": [\"Miami booty bass\"] },\n    { \"id\": 10133, \"slug\": \"chopped-and-screwed\", \"name\": \"Chopped and screwed\", \"family\": \"popular\", \"countries\": [\"US\"], \"aliases\": [\"Chopped & screwed\", \"Screwed and chopped\"] },\n    {\n        \"id\": 10070,\n        \"slug\": \"grime\",\n        \"name\": \"Grime\",\n        \"family\": \"popular\",\n        \"countries\": [\n            \"GB\"\n        ],\n        \"aliases\": []\n    },\n    {\n        \"id\": 10071,\n        \"slug\": \"uk-drill\",\n        \"name\": \"UK drill\",\n        \"family\": \"popular\",\n        \"countries\": [\n            \"GB\"\n        ],\n        \"aliases\": []\n    },\n    {\n        \"id\": 10072,\n        \"slug\": \"french-rap\",\n        \"name\": \"French rap\",\n        \"family\": \"popular\",\n        \"countries\": [\n            \"FR\"\n        ],\n        \"aliases\": [\n            \"Rap francais\",\n            \"Rap français\"\n        ]\n    },\n    {\n        \"id\": 10073,\n        \"slug\": \"german-rap\",\n        \"name\": \"German rap\",\n        \"family\": \"popular\",\n        \"countries\": [\n            \"DE\"\n        ],\n        \"aliases\": [\n            \"Deutschrap\"\n        ]\n    },\n    { id: 10110, slug: 'ukrainian-rap', name: 'Ukrainian rap', family: 'popular', countries: ['UA'], aliases: ['Український реп', 'Ukrainian hip hop'], searchHints: ['YARMAK', 'SKOFKA', 'Kalush', 'alyona alyona', 'ТНМК', 'OTOY'] },\n    { id: 10111, slug: 'ukrainian-wartime', name: 'Ukrainian wartime music', family: 'world', countries: ['UA'], aliases: ['Ukrainian war songs', 'Пісні війни'], searchHints: ['OTOY', 'YARMAK', 'Варнак', 'Ницо Потворно', 'Третя Штурмова', 'хейтспіч', 'паліндром', 'ЕНЕМІ', 'ОКОЛОФРОНТ', 'Військовий реп'] },\n    {\n        \"id\": 10074,\n        \"slug\": \"turkish-rap\",\n        \"name\": \"Turkish rap\",\n        \"family\": \"popular\",\n        \"countries\": [\n            \"TR\"\n        ],\n        \"aliases\": [\n            \"Turkce rap\",\n            \"Türkçe rap\"\n        ]\n    },\n    {\n        \"id\": 10075,\n        \"slug\": \"arabic-pop\",\n        \"name\": \"Arabic pop\",\n        \"family\": \"world\",\n        \"countries\": [\n            \"EG\",\n            \"LB\"\n        ],\n        \"aliases\": [\n            \"Arab pop\"\n        ]\n    },\n    {\n        \"id\": 10076,\n        \"slug\": \"mahraganat\",\n        \"name\": \"Mahraganat\",\n        \"family\": \"world\",\n        \"countries\": [\n            \"EG\"\n        ],\n        \"aliases\": [\n            \"Electro shaabi\"\n        ]\n    },\n    {\n        \"id\": 10077,\n        \"slug\": \"turkish-pop\",\n        \"name\": \"Turkish pop\",\n        \"family\": \"world\",\n        \"countries\": [\n            \"TR\"\n        ],\n        \"aliases\": [\n            \"Türkçe pop\"\n        ]\n    },\n    {\n        \"id\": 10078,\n        \"slug\": \"persian-pop\",\n        \"name\": \"Persian pop\",\n        \"family\": \"world\",\n        \"countries\": [\n            \"IR\"\n        ],\n        \"aliases\": [\n            \"Farsi pop\"\n        ]\n    },\n    {\n        \"id\": 10079,\n        \"slug\": \"flamenco\",\n        \"name\": \"Flamenco\",\n        \"family\": \"world\",\n        \"countries\": [\n            \"ES\"\n        ],\n        \"aliases\": []\n    },\n    {\n        \"id\": 10080,\n        \"slug\": \"fado\",\n        \"name\": \"Fado\",\n        \"family\": \"world\",\n        \"countries\": [\n            \"PT\"\n        ],\n        \"aliases\": []\n    },\n    {\n        \"id\": 10081,\n        \"slug\": \"chanson\",\n        \"name\": \"Chanson\",\n        \"family\": \"world\",\n        \"countries\": [\n            \"FR\",\n            \"BE\"\n        ],\n        \"aliases\": []\n    },\n    {\n        \"id\": 10082,\n        \"slug\": \"afro-house\",\n        \"name\": \"Afro house\",\n        \"family\": \"electronic\",\n        \"countries\": [\n            \"ZA\",\n            \"AO\"\n        ],\n        \"aliases\": []\n    },\n    {\n        \"id\": 10083,\n        \"slug\": \"deep-house\",\n        \"name\": \"Deep house\",\n        \"family\": \"electronic\",\n        \"countries\": [\n            \"US\",\n            \"ZA\"\n        ],\n        \"aliases\": []\n    },\n    {\n        \"id\": 10084,\n        \"slug\": \"tech-house\",\n        \"name\": \"Tech house\",\n        \"family\": \"electronic\",\n        \"countries\": [\n            \"GB\"\n        ],\n        \"aliases\": []\n    },\n    {\n        \"id\": 10085,\n        \"slug\": \"trance\",\n        \"name\": \"Trance\",\n        \"family\": \"electronic\",\n        \"countries\": [\n            \"DE\",\n            \"NL\"\n        ],\n        \"aliases\": []\n    },\n    {\n        \"id\": 10086,\n        \"slug\": \"psytrance\",\n        \"name\": \"Psytrance\",\n        \"family\": \"electronic\",\n        \"countries\": [\n            \"IN\",\n            \"IL\"\n        ],\n        \"aliases\": [\n            \"Psychedelic trance\",\n            \"Goa trance\"\n        ]\n    },\n    {\n        \"id\": 10087,\n        \"slug\": \"hardcore\",\n        \"name\": \"Hardcore / gabber\",\n        \"family\": \"electronic\",\n        \"countries\": [\n            \"NL\",\n            \"BE\"\n        ],\n        \"aliases\": [\n            \"Gabber\",\n            \"Hardcore techno\"\n        ]\n    },\n    {\n        \"id\": 10088,\n        \"slug\": \"happy-hardcore\",\n        \"name\": \"Happy hardcore\",\n        \"family\": \"electronic\",\n        \"countries\": [\n            \"GB\",\n            \"NL\"\n        ],\n        \"aliases\": []\n    },\n    {\n        \"id\": 10089,\n        \"slug\": \"frenchcore\",\n        \"name\": \"Frenchcore\",\n        \"family\": \"electronic\",\n        \"countries\": [\n            \"FR\"\n        ],\n        \"aliases\": []\n    },\n    {\n        \"id\": 10090,\n        \"slug\": \"eurodance\",\n        \"name\": \"Eurodance\",\n        \"family\": \"electronic\",\n        \"countries\": [\n            \"DE\",\n            \"IT\",\n            \"SE\"\n        ],\n        \"aliases\": []\n    },\n    {\n        \"id\": 10091,\n        \"slug\": \"hands-up\",\n        \"name\": \"Hands up\",\n        \"family\": \"electronic\",\n        \"countries\": [\n            \"DE\"\n        ],\n        \"aliases\": [\n            \"Hands up dance\"\n        ]\n    },\n    {\n        \"id\": 10092,\n        \"slug\": \"dubstep\",\n        \"name\": \"Dubstep\",\n        \"family\": \"electronic\",\n        \"countries\": [\n            \"GB\"\n        ],\n        \"aliases\": []\n    },\n    {\n        \"id\": 10093,\n        \"slug\": \"breakbeat\",\n        \"name\": \"Breakbeat\",\n        \"family\": \"electronic\",\n        \"countries\": [\n            \"GB\",\n            \"US\"\n        ],\n        \"aliases\": []\n    },\n    {\n        \"id\": 10094,\n        \"slug\": \"synthwave\",\n        \"name\": \"Synthwave\",\n        \"family\": \"electronic\",\n        \"countries\": [],\n        \"aliases\": [\n            \"Retrowave\"\n        ]\n    },\n    { id: 10108, slug: 'russian-rap', name: 'Russian rap & trap', family: 'popular', countries: ['RU'], aliases: ['Russian rap', 'Russian trap', 'Русский рэп', 'Русский трэп'], searchHints: ['Kai Angel', '9mice', 'Big Baby Tape', 'kizaru'] },\n    { id: 10109, slug: 'russian-hyperpop', name: 'Russian hyperpop', family: 'electronic', countries: ['RU'], aliases: ['Русский гиперпоп'], searchHints: ['Kill Eva', 'Killeva', 'Мэйби Бэйби', 'Sqwore'] },\n    {\n        \"id\": 10095,\n        \"slug\": \"ambient\",\n        \"name\": \"Ambient\",\n        \"family\": \"electronic\",\n        \"countries\": [],\n        \"aliases\": []\n    },\n    {\n        \"id\": 10096,\n        \"slug\": \"lofi\",\n        \"name\": \"Lo-fi hip-hop\",\n        \"family\": \"electronic\",\n        \"countries\": [],\n        \"aliases\": [\n            \"Lofi\",\n            \"Lo fi\",\n            \"Chillhop\"\n        ]\n    },\n    {\n        \"id\": 10097,\n        \"slug\": \"punk\",\n        \"name\": \"Punk\",\n        \"family\": \"guitars\",\n        \"countries\": [\n            \"US\",\n            \"GB\"\n        ],\n        \"aliases\": [\n            \"Punk rock\"\n        ]\n    },\n    {\n        \"id\": 10098,\n        \"slug\": \"shoegaze\",\n        \"name\": \"Shoegaze\",\n        \"family\": \"guitars\",\n        \"countries\": [\n            \"GB\"\n        ],\n        \"aliases\": []\n    },\n    { id: 10112, slug: 'horrorcore', name: 'Horrorcore', family: 'popular', countries: ['US'], aliases: ['Horror rap'], searchHints: ['Gravediggaz', 'Insane Clown Posse', 'Twiztid', 'Esham'] },\n    { id: 10113, slug: 'goth', name: 'Goth', family: 'guitars', countries: ['GB', 'DE'], aliases: ['Gothic rock', 'Goth rock', 'Darkwave'], searchHints: ['Bauhaus', 'The Sisters of Mercy', 'Siouxsie and the Banshees', 'Lebanon Hanover'] },\n    {\n        \"id\": 10099,\n        \"slug\": \"emo\",\n        \"name\": \"Emo\",\n        \"family\": \"guitars\",\n        \"countries\": [\n            \"US\"\n        ],\n        \"aliases\": []\n    },\n    {\n        \"id\": 10100,\n        \"slug\": \"pop-punk\",\n        \"name\": \"Pop punk\",\n        \"family\": \"guitars\",\n        \"countries\": [\n            \"US\"\n        ],\n        \"aliases\": []\n    },\n    {\n        \"id\": 10101,\n        \"slug\": \"metalcore\",\n        \"name\": \"Metalcore\",\n        \"family\": \"guitars\",\n        \"countries\": [\n            \"US\",\n            \"AU\"\n        ],\n        \"aliases\": []\n    },\n    {\n        \"id\": 10102,\n        \"slug\": \"death-metal\",\n        \"name\": \"Death metal\",\n        \"family\": \"guitars\",\n        \"countries\": [\n            \"US\",\n            \"SE\"\n        ],\n        \"aliases\": []\n    },\n    {\n        \"id\": 10103,\n        \"slug\": \"black-metal\",\n        \"name\": \"Black metal\",\n        \"family\": \"guitars\",\n        \"countries\": [\n            \"NO\"\n        ],\n        \"aliases\": []\n    },\n    {\n        \"id\": 10104,\n        \"slug\": \"progressive-rock\",\n        \"name\": \"Progressive rock\",\n        \"family\": \"guitars\",\n        \"countries\": [\n            \"GB\"\n        ],\n        \"aliases\": [\n            \"Prog rock\"\n        ]\n    },\n    {\n        \"id\": 10105,\n        \"slug\": \"neo-soul\",\n        \"name\": \"Neo soul\",\n        \"family\": \"roots\",\n        \"countries\": [\n            \"US\",\n            \"GB\"\n        ],\n        \"aliases\": []\n    },\n    {\n        \"id\": 10106,\n        \"slug\": \"disco\",\n        \"name\": \"Disco\",\n        \"family\": \"roots\",\n        \"countries\": [\n            \"US\"\n        ],\n        \"aliases\": []\n    },\n    {\n        \"id\": 10107,\n        \"slug\": \"gospel\",\n        \"name\": \"Gospel\",\n        \"family\": \"roots\",\n        \"countries\": [\n            \"US\"\n        ],\n        \"aliases\": []\n    },\n    {\n        \"id\": 186,\n        \"slug\": \"christian\",\n        \"name\": \"Christian\",\n        \"family\": \"roots\",\n        \"countries\": [],\n        \"aliases\": [],\n        \"deezerId\": 186\n    },\n    {\n        \"id\": 173,\n        \"slug\": \"soundtracks\",\n        \"name\": \"Film & game scores\",\n        \"family\": \"roots\",\n        \"countries\": [],\n        \"aliases\": [\n            \"Soundtracks\"\n        ],\n        \"deezerId\": 173\n    },\n    {\n        \"id\": 75,\n        \"slug\": \"brazilian\",\n        \"name\": \"Brazilian music\",\n        \"family\": \"latin\",\n        \"countries\": [\n            \"BR\"\n        ],\n        \"aliases\": [],\n        \"deezerId\": 75\n    },\n    {\n        \"id\": 2,\n        \"slug\": \"african\",\n        \"name\": \"African music\",\n        \"family\": \"africa\",\n        \"countries\": [],\n        \"aliases\": [],\n        \"deezerId\": 2\n    },\n    {\n        \"id\": 16,\n        \"slug\": \"asian\",\n        \"name\": \"Asian music\",\n        \"family\": \"asia\",\n        \"countries\": [],\n        \"aliases\": [],\n        \"deezerId\": 16\n    },\n    {\n        \"id\": 81,\n        \"slug\": \"indian\",\n        \"name\": \"Indian music\",\n        \"family\": \"asia\",\n        \"countries\": [\n            \"IN\"\n        ],\n        \"aliases\": [],\n        \"deezerId\": 81\n    },\n    {\n        \"id\": 197,\n        \"slug\": \"latin\",\n        \"name\": \"Latin music\",\n        \"family\": \"latin\",\n        \"countries\": [],\n        \"aliases\": [],\n        \"deezerId\": 197\n    },\n    {\n        \"id\": 95,\n        \"slug\": \"kids\",\n        \"name\": \"Kids & family\",\n        \"family\": \"popular\",\n        \"countries\": [],\n        \"aliases\": [\n            \"Children\"\n        ],\n        \"deezerId\": 95\n    },\n    { id: 10115, slug: 'internet-classics', name: 'Internet classics', family: 'popular', countries: [], aliases: ['Internet music', 'Meme songs'], searchHints: ['Parry Gripp', 'Raining Tacos', 'Mr Weebl', 'Badgers', 'Narwhals', 'Lemon Demon', 'Numa Numa', 'Nyan Cat', 'Rickroll', 'Tay Zonday', 'Chocolate Rain', 'Viral songs'] }\n];\nexports.MUSIC_GENRE_FAMILIES = ['popular', 'electronic', 'guitars', 'roots', 'latin', 'africa', 'asia', 'world'];\nexports.MUSIC_GENRE_COUNTRIES = [...new Set(exports.MUSIC_GENRES.flatMap(genre => genre.countries))];\nfunction musicGenre(id) { return exports.MUSIC_GENRES.find(genre => genre.id === id); }\nfunction musicGenreName(genre, t) {\n    return genre.id >= 10108 && genre.id <= 10133 ? t(`music.genre.${genre.slug}`) : genre.name;\n}\nfunction genreSearchKey(value) {\n    return value.normalize('NFKD').replace(/[\\u0300-\\u036f]/g, '').toLocaleLowerCase().replace(/[^\\p{L}\\p{N}]+/gu, ' ').trim();\n}\nfunction filterMusicGenres(genres, query, countries = [], family = '', regionName = code => code, genreName = genre => genre.name) {\n    const terms = genreSearchKey(query).split(/\\s+/).filter(Boolean);\n    return genres.filter(genre => (!family || genre.family === family) && (!countries.length || countries.some(country => genre.countries.includes(country))) && terms.every(term => genreSearchKey([genre.name, genreName(genre), ...genre.aliases, ...(genre.searchHints ?? []), ...genre.countries.map(regionName)].join(' ')).includes(term)));\n}\nfunction relatedMusicGenres(genre) {\n    return exports.MUSIC_GENRES.filter(item => item.id !== genre.id && item.id >= 10000 && (item.family === genre.family || item.countries.some(code => genre.countries.includes(code))))\n        .sort((a, b) => Number(b.countries.some(code => genre.countries.includes(code))) - Number(a.countries.some(code => genre.countries.includes(code)))).slice(0, 8);\n}\n\n},\n\"genre-artwork\":function(require,exports){\n\"use strict\";\nObject.defineProperty(exports, \"__esModule\", { value: true });\nexports.MUSIC_GENRE_ARTWORK = void 0;\n// Catalog artwork resolved from Deezer genre and matching playlist metadata.\nexports.MUSIC_GENRE_ARTWORK = {\n    10116: \"https://cdn-images.dzcdn.net/images/cover/867266ef5195999154c518fd8cf2aea5-e90fa3fce5f916a4e0a3aacac84d17d7-b515bfa82e0f721f4335368def8502f1-cd7a7f292718befa344e13522183bc7d/500x500-000000-80-0-0.jpg\",\n    10117: \"https://cdn-images.dzcdn.net/images/cover/aa8f245f2bbcd87fa538f831f620a619-a1ee4b7a520b67fc0effb79255b73b42-816668b12cae7d34382b1d02251719f9-acba3dba7eb04b096f68f6a535eaca25/500x500-000000-80-0-0.jpg\",\n    10118: \"https://cdn-images.dzcdn.net/images/playlist/11fb53aaf75072e82fcb3c5e6e2f31b2/500x500-000000-80-0-0.jpg\",\n    10119: \"https://cdn-images.dzcdn.net/images/playlist/b542f55151c1843f266bbad01d94c157/500x500-000000-80-0-0.jpg\",\n    10120: \"https://cdn-images.dzcdn.net/images/playlist/b33b2adc9a57058194075c6bf1812129/500x500-000000-80-0-0.jpg\",\n    10121: \"https://cdn-images.dzcdn.net/images/cover/1ccf81eb45b2d4dd43ed8cb5d9875ddf-5e30fadde8272534627e2ee6b3e60f89-980866f9f8ddc0761eb601cabe12b289-b0d30009357820ddeb7c654d0c3a834c/500x500-000000-80-0-0.jpg\",\n    10122: \"https://cdn-images.dzcdn.net/images/playlist/0529660525161f1592bb8903ab937cba/500x500-000000-80-0-0.jpg\",\n    10123: \"https://cdn-images.dzcdn.net/images/cover/153871394079e7f1d4713d2bbdb5cbe5-59dcb95f9588f5221dd62bc5ceef6d5e-66a6766d79247720b718a1745ccc90b5-8770fd0c954ab62969d0088078386854/500x500-000000-80-0-0.jpg\",\n    10124: \"https://cdn-images.dzcdn.net/images/cover/ae8c72817542458ef13cab8c7ad41177-efe32f2dc70472b2cf2b742e67866121-415d98a2467b8ced5ab447a7d9f9de1f-11c3a0446ca41d3aa9fbfcc7998eba15/500x500-000000-80-0-0.jpg\",\n    10125: \"https://cdn-images.dzcdn.net/images/cover/173af46fdd15524a858f33333bf838f5-49d2ba701172077fccd9742cae126ca5-567fbedecf7b63686c3728da5c9d129e-7e0fb983ef47c152d9b484e9f4e5ea7e/500x500-000000-80-0-0.jpg\",\n    10127: \"https://cdn-images.dzcdn.net/images/playlist/566225afdbffc7d71622c2a69a82cd28/500x500-000000-80-0-0.jpg\",\n    10128: \"https://cdn-images.dzcdn.net/images/playlist/a39b4e4919e126ca1a3cb6ebcd343aad/500x500-000000-80-0-0.jpg\",\n    10129: \"https://cdn-images.dzcdn.net/images/cover/89e28a0a93eff9dc574476710b5c09e2-a84c12ba58c39965cf91c60e99d081a1-4a6046a9fb0238388a92047d789a2530-70710ff6f6be35d8d47c666ab8861209/500x500-000000-80-0-0.jpg\",\n    10130: \"https://cdn-images.dzcdn.net/images/cover/765dc8aba0e893fc6d55af08572fc902-e276d1f527dc726a47cb10a87cf90742-6fd634a66363e22bd4e897f2e1c95dce-c42ab7469ac212b3b4a5f51d867a3688/500x500-000000-80-0-0.jpg\",\n    10131: \"https://cdn-images.dzcdn.net/images/cover/1ff9feb1899eac4de20b64340c373628-e7a50cb1e9e2e6228a16abd45ebb9caa-df4f6e3d8d8efc59d60113622bd3bf3f-13ea59bc8163ced278f9f7b8e019a750/500x500-000000-80-0-0.jpg\",\n    10132: \"https://cdn-images.dzcdn.net/images/cover/d1fa9d73190c4e83b2b9c255c951cfe6-5baa3c0f30605df0edccdfce489edc75-af65f2dd74b8f040aafd452775b556dc-79582eef61c128044590c0fd8f4bf20c/500x500-000000-80-0-0.jpg\",\n    10133: \"https://cdn-images.dzcdn.net/images/cover/c12b43edcaa9d51432ebdae0ca291ae8-ff8563a3850c488d0d6aefe2802f875a-9e6781010d5eed2e5dc4f4be76958552-788334f10fc4f0369f85c719d2afccfc/500x500-000000-80-0-0.jpg\",\n    10126: \"https://cdn-images.dzcdn.net/images/cover/6c71e2dd92f5939ff0d964f781d3a5e4-76e9157379fdce1e5965cd8c65c20923-b17719d8360f9a767a69bdbd72ce9a23-5b3500785090bd17c1fd1b9d5936f3a5/500x500-000000-80-0-0.jpg\",\n    10108: \"https://cdn-images.dzcdn.net/images/cover/5f2067a88cb108f4c90a531c86c60ef2/500x500-000000-80-0-0.jpg\",\n    10109: \"https://cdn-images.dzcdn.net/images/cover/28863efa522f02d47029c491ced907fb/500x500-000000-80-0-0.jpg\",\n    10110: \"https://cdn-images.dzcdn.net/images/cover/997337e784d5460ab07f47cf518cb716/500x500-000000-80-0-0.jpg\",\n    10111: \"https://cdn-images.dzcdn.net/images/cover/a6e0853bee54fa066566635eb380cbbb/500x500-000000-80-0-0.jpg\",\n    10112: \"https://cdn-images.dzcdn.net/images/cover/30636155c2264a7a5f8b591493926d3a/500x500-000000-80-0-0.jpg\",\n    10113: \"https://cdn-images.dzcdn.net/images/cover/5c800a9aecbccb13da8316c9e2ca7493/500x500-000000-80-0-0.jpg\",\n    10115: \"https://cdn-images.dzcdn.net/images/cover/5cbce98f2aad4c64583199b1216f7415/500x500-000000-80-0-0.jpg\",\n    \"2\": \"https://cdn-images.dzcdn.net/images/misc/703413adf47ad8a6001b438f7608a2be/500x500-000000-80-0-0.jpg\",\n    \"16\": \"https://cdn-images.dzcdn.net/images/misc/dd6d2756465b22488dff5d8663e86688/500x500-000000-80-0-0.jpg\",\n    \"65\": \"https://cdn-images.dzcdn.net/images/misc/0935a03b26d8a96964920a426de97dae/500x500-000000-80-0-0.jpg\",\n    \"67\": \"https://cdn-images.dzcdn.net/images/misc/71860f882f1e1d4950b7544e2d0b61ef/500x500-000000-80-0-0.jpg\",\n    \"71\": \"https://cdn-images.dzcdn.net/images/misc/ffd77feba2c8fda79b18183861e4e69f/500x500-000000-80-0-0.jpg\",\n    \"75\": \"https://cdn-images.dzcdn.net/images/misc/01b12a3f3582899a13b664cea703a335/500x500-000000-80-0-0.jpg\",\n    \"81\": \"https://cdn-images.dzcdn.net/images/misc/b098161d9a824eef314bc38b985594a1/500x500-000000-80-0-0.jpg\",\n    \"84\": \"https://cdn-images.dzcdn.net/images/misc/6eca3188f724f04843a15e3e575751a5/500x500-000000-80-0-0.jpg\",\n    \"85\": \"https://cdn-images.dzcdn.net/images/misc/fd252ab727d9a3b0b3c29014873f8f57/500x500-000000-80-0-0.jpg\",\n    \"95\": \"https://cdn-images.dzcdn.net/images/misc/b0b8efcbc3cb688864ce69da0061e525/500x500-000000-80-0-0.jpg\",\n    \"98\": \"https://cdn-images.dzcdn.net/images/misc/609f69b669b242252aa8ee09b5597655/500x500-000000-80-0-0.jpg\",\n    \"106\": \"https://cdn-images.dzcdn.net/images/misc/15df4502c1c58137dae5bdd1cc6f0251/500x500-000000-80-0-0.jpg\",\n    \"113\": \"https://cdn-images.dzcdn.net/images/misc/bd5fdfa1a23e02e2697818e09e008e69/500x500-000000-80-0-0.jpg\",\n    \"116\": \"https://cdn-images.dzcdn.net/images/misc/5c27115d3b797954afff59199dad98d1/500x500-000000-80-0-0.jpg\",\n    \"122\": \"https://cdn-images.dzcdn.net/images/misc/44dfebf3cf943dd82759d9bd9063767a/500x500-000000-80-0-0.jpg\",\n    \"129\": \"https://cdn-images.dzcdn.net/images/misc/91468ecc5dfdd19c42a43d2cbdf27059/500x500-000000-80-0-0.jpg\",\n    \"132\": \"https://cdn-images.dzcdn.net/images/misc/db7a604d9e7634a67d45cfc86b48370a/500x500-000000-80-0-0.jpg\",\n    \"144\": \"https://cdn-images.dzcdn.net/images/misc/7b901a98628cf879e1465f1dfd697e00/500x500-000000-80-0-0.jpg\",\n    \"152\": \"https://cdn-images.dzcdn.net/images/misc/b36ca681666d617edd0dcb5ab389a6ac/500x500-000000-80-0-0.jpg\",\n    \"153\": \"https://cdn-images.dzcdn.net/images/misc/1abb6810098d4015bdc860c91bcfd2b6/500x500-000000-80-0-0.jpg\",\n    \"165\": \"https://cdn-images.dzcdn.net/images/misc/68a43aec844708e693cb99f47814153b/500x500-000000-80-0-0.jpg\",\n    \"169\": \"https://cdn-images.dzcdn.net/images/misc/3d5e8aab99b95bfa7ac7e9e466e7781e/500x500-000000-80-0-0.jpg\",\n    \"173\": \"https://cdn-images.dzcdn.net/images/misc/236d8057751d9c557728400dfe71483a/500x500-000000-80-0-0.jpg\",\n    \"186\": \"https://cdn-images.dzcdn.net/images/misc/e658e2ba682088f4d4b44f39c400d69d/500x500-000000-80-0-0.jpg\",\n    \"197\": \"https://cdn-images.dzcdn.net/images/misc/069c9888538799748960781f098b5f4b/500x500-000000-80-0-0.jpg\",\n    \"464\": \"https://cdn-images.dzcdn.net/images/misc/f14f9fde9feb38ca6d61960f00681860/500x500-000000-80-0-0.jpg\",\n    \"466\": \"https://cdn-images.dzcdn.net/images/misc/f9e070848998df8870ba65cd0d22b2b3/500x500-000000-80-0-0.jpg\",\n    \"10001\": \"https://cdn-images.dzcdn.net/images/cover/b37055d6988de29e2287f12d3d00b6e1-75741482a9583e602ff9e4a3ff46ade6-e01e98fa502ed4aac5e668a5d405532a-07b946d89aa16aab058b0fdc8dca0e7b/500x500-000000-80-0-0.jpg\",\n    \"10002\": \"https://cdn-images.dzcdn.net/images/cover/ab2a6645ddd40d141fd841195e34ec3a-d39cd1093558c516d0090744e6144ee5-1029a43201e16350c7f5add41c09492a-527358edcdb422ce01dd7c748f55a367/500x500-000000-80-0-0.jpg\",\n    \"10003\": \"https://cdn-images.dzcdn.net/images/playlist/a65e90900d62508bb4a3e08342a5a10c/500x500-000000-80-0-0.jpg\",\n    \"10004\": \"https://cdn-images.dzcdn.net/images/cover/6f75625524f63aae46a96071c5f5d378-418e4f7e928cee36befbc899a84cbf39-f17616c1a5bb42ca40fbc03895a6fede-a04d34a44ad875a1715baa5d2857d331/500x500-000000-80-0-0.jpg\",\n    \"10005\": \"https://cdn-images.dzcdn.net/images/playlist/952ecc99bd63cdadc3c28336a512a722/500x500-000000-80-0-0.jpg\",\n    \"10006\": \"https://cdn-images.dzcdn.net/images/playlist/54052b07e0c7c8cf4cd417de4c3e3ee0/500x500-000000-80-0-0.jpg\",\n    \"10007\": \"https://cdn-images.dzcdn.net/images/playlist/9454911b547a51155a71deedddab0250/500x500-000000-80-0-0.jpg\",\n    \"10008\": \"https://cdn-images.dzcdn.net/images/playlist/cd24b643a4e5f8c54f3c32cff249c914/500x500-000000-80-0-0.jpg\",\n    \"10009\": \"https://cdn-images.dzcdn.net/images/playlist/fcf0fab13657785633794d73908d9249/500x500-000000-80-0-0.jpg\",\n    \"10010\": \"https://cdn-images.dzcdn.net/images/playlist/df70400a4f44e403a676eff6d6e3d033/500x500-000000-80-0-0.jpg\",\n    \"10011\": \"https://cdn-images.dzcdn.net/images/playlist/9d11b0b7101f8295ac46d5e0b40640ce/500x500-000000-80-0-0.jpg\",\n    \"10012\": \"https://cdn-images.dzcdn.net/images/playlist/f55d252607feab2b775a21063102a8a3/500x500-000000-80-0-0.jpg\",\n    \"10013\": \"https://cdn-images.dzcdn.net/images/playlist/b9b5a875c8c164bc06fced7d3b3c1525/500x500-000000-80-0-0.jpg\",\n    \"10014\": \"https://cdn-images.dzcdn.net/images/playlist/88ba046848b9673a3a5af8be72186838/500x500-000000-80-0-0.jpg\",\n    \"10015\": \"https://cdn-images.dzcdn.net/images/playlist/873e6bfb6994d2e25b0275889138ac47/500x500-000000-80-0-0.jpg\",\n    \"10016\": \"https://cdn-images.dzcdn.net/images/playlist/0aadf3d769e5e7259e745ec4f5b55929/500x500-000000-80-0-0.jpg\",\n    \"10017\": \"https://cdn-images.dzcdn.net/images/playlist/7877bf78c1c43ad2139af9c42827881c/500x500-000000-80-0-0.jpg\",\n    \"10018\": \"https://cdn-images.dzcdn.net/images/playlist/8ed800b0c361413d90e32601cc9e45bb/500x500-000000-80-0-0.jpg\",\n    \"10019\": \"https://cdn-images.dzcdn.net/images/playlist/d8440335995106f5bb63568635473c26/500x500-000000-80-0-0.jpg\",\n    \"10020\": \"https://cdn-images.dzcdn.net/images/playlist/26a8c2d253d3ef9d0228f03b7440d2ac/500x500-000000-80-0-0.jpg\",\n    \"10021\": \"https://cdn-images.dzcdn.net/images/playlist/81a86ec741e046a1c1539fdb7a0ee962/500x500-000000-80-0-0.jpg\",\n    \"10022\": \"https://cdn-images.dzcdn.net/images/playlist/e3fefdcbf9ed46a2682450d52267b76d/500x500-000000-80-0-0.jpg\",\n    \"10023\": \"https://cdn-images.dzcdn.net/images/playlist/b1e768d9f9bef65df1081148fc95530a/500x500-000000-80-0-0.jpg\",\n    \"10024\": \"https://cdn-images.dzcdn.net/images/playlist/7054be62a726f9032225121511bbfc6e/500x500-000000-80-0-0.jpg\",\n    \"10025\": \"https://cdn-images.dzcdn.net/images/playlist/78ecab7b5ab61c5a318ae34cff3982c1/500x500-000000-80-0-0.jpg\",\n    \"10026\": \"https://cdn-images.dzcdn.net/images/playlist/ce449d6606fbbd104335628cf3565712/500x500-000000-80-0-0.jpg\",\n    \"10027\": \"https://cdn-images.dzcdn.net/images/playlist/9f3d6a845b92f283b0ce50044390027d/500x500-000000-80-0-0.jpg\",\n    \"10028\": \"https://cdn-images.dzcdn.net/images/cover/e528bb05c81a7cee2c05995afc6a066c-0becb2f843b581fbe324ef7d77ea951c-6a02daf3cbb9ce7ee3bf1fbbb2a9e45b-25d183fdb37bde35f737c9232f468250/500x500-000000-80-0-0.jpg\",\n    \"10029\": \"https://cdn-images.dzcdn.net/images/playlist/54a13e696fe55012daf1b87ad81b792f/500x500-000000-80-0-0.jpg\",\n    \"10030\": \"https://cdn-images.dzcdn.net/images/playlist/9a782de53d11b9888b9956125421a437/500x500-000000-80-0-0.jpg\",\n    \"10031\": \"https://cdn-images.dzcdn.net/images/playlist/13e3051791a8c0c15950725b2461b9ba/500x500-000000-80-0-0.jpg\",\n    \"10032\": \"https://cdn-images.dzcdn.net/images/playlist/9526320c0498eef399530d6dd836b654/500x500-000000-80-0-0.jpg\",\n    \"10033\": \"https://cdn-images.dzcdn.net/images/cover/dc4689faedbfbb05011d645fc3fa6715-61cb5bf25f082b30b7df5f75b6d77728-dea89139be9b96b24ea7258dd62b2f91-7b79d58b9a961b5ec0a4c27bb0cbd5c6/500x500-000000-80-0-0.jpg\",\n    \"10034\": \"https://cdn-images.dzcdn.net/images/playlist/a514a7efec31cf82e72db73e18fcd2fb/500x500-000000-80-0-0.jpg\",\n    \"10035\": \"https://cdn-images.dzcdn.net/images/cover/e366619483860fb746464999317111b7-b7a2e2bddd803590fcb9bbbb5952e532-d73ddc275fcb3d42b127468cd643f85c-1cd3084a6e66c73b229a3ec346da3794/500x500-000000-80-0-0.jpg\",\n    \"10036\": \"https://cdn-images.dzcdn.net/images/playlist/3949ddb78c41371f4102995fbd195833/500x500-000000-80-0-0.jpg\",\n    \"10037\": \"https://cdn-images.dzcdn.net/images/playlist/43eb0ad6076ed82fcb297e4f31ccdb51/500x500-000000-80-0-0.jpg\",\n    \"10038\": \"https://cdn-images.dzcdn.net/images/playlist/fb24c0344fbf9c3adc94799f3c9ace9e/500x500-000000-80-0-0.jpg\",\n    \"10039\": \"https://cdn-images.dzcdn.net/images/playlist/bf3c90db3e2438bc7277f4bce4158d3e/500x500-000000-80-0-0.jpg\",\n    \"10040\": \"https://cdn-images.dzcdn.net/images/cover/d0327d26edf06bc837c06fe7b0ef04de-0b1f448d241c9ff5ff5f760d593bfec7-8f51723a0f4b06ffe9d2e9b9faa39b80-c3bc2d2fd734f1e05b29eab1838dba58/500x500-000000-80-0-0.jpg\",\n    \"10041\": \"https://cdn-images.dzcdn.net/images/cover/515bee2c1e26235002c282f2d6ed2917-135d9f2979787e3cc7edcbc92086a766-df3e61b3b53645fb0226305fa067ad06-656b1ef02dd674403ec15c289073629b/500x500-000000-80-0-0.jpg\",\n    \"10042\": \"https://cdn-images.dzcdn.net/images/playlist/a2cc3238c13105a5a197cace8ea2f31a/500x500-000000-80-0-0.jpg\",\n    \"10043\": \"https://cdn-images.dzcdn.net/images/cover/3e222eb0c5f4d6b6141fea961ee2f14b-07312012ac5fa2b5fc4a9db882472204-ecff24760505f249b0afeba8a800592c-88ee61d7b0b8821c9759bc8f62eb2126/500x500-000000-80-0-0.jpg\",\n    \"10044\": \"https://cdn-images.dzcdn.net/images/cover/dcb80e5ae653df7ae66d440b48c66ad2-0677b3be849205ecab453708e667354a-c737059d3fa069fd4a38a3b123f7c9c1-7876e405442a08b6ca669e78cbfce20d/500x500-000000-80-0-0.jpg\",\n    \"10045\": \"https://cdn-images.dzcdn.net/images/playlist/b0e625e64f42c6dec379ccc2f75f9a43/500x500-000000-80-0-0.jpg\",\n    \"10046\": \"https://cdn-images.dzcdn.net/images/cover/408462707d549648a21c55fd267bca7c-35635462d24bac29d61939b73da1efc6-f267fb5c3e044fafd10a307838dbfe60-3fb826f06f427b6124ca1020252eede5/500x500-000000-80-0-0.jpg\",\n    \"10047\": \"https://cdn-images.dzcdn.net/images/cover/bc3b7a8feda154ae5173888ff396a42b-28e1daa6eac211231db55d111183b157-7bf2a21bbb9c858f436e7fa439d9d311-6c2086890b61d3299c3073efe4412ebf/500x500-000000-80-0-0.jpg\",\n    \"10048\": \"https://cdn-images.dzcdn.net/images/playlist/ee50e6c19025608edd5825d05644a3e1/500x500-000000-80-0-0.jpg\",\n    \"10049\": \"https://cdn-images.dzcdn.net/images/playlist/b768570e3cb9ab3a810e15b211857300/500x500-000000-80-0-0.jpg\",\n    \"10050\": \"https://cdn-images.dzcdn.net/images/cover/8090283013633b20e2beac4db34d6086-8a3a15f3d17b0a5f092ab4db2a2c7d05-2ab72bfd2fdd0de740db6644fd2b536c-215751d9282a377e62d4cee70c08413e/500x500-000000-80-0-0.jpg\",\n    \"10051\": \"https://cdn-images.dzcdn.net/images/cover/63c18083c5b52d6be4215f3870b80d47-db214eb66135b66e53ddb3e3dad29345-8be8e467cf75c13fa6879939eae36c58-99afef25e7ff94a8d0060fceea9d8fa9/500x500-000000-80-0-0.jpg\",\n    \"10052\": \"https://cdn-images.dzcdn.net/images/playlist/529ee8880d52b467fae61e04fdc8e95c/500x500-000000-80-0-0.jpg\",\n    \"10053\": \"https://cdn-images.dzcdn.net/images/playlist/5ef8b2bcf22b33f7a45f520f6a6db22f/500x500-000000-80-0-0.jpg\",\n    \"10054\": \"https://cdn-images.dzcdn.net/images/playlist/42583b8624dd7b79de28d691081f0b8e/500x500-000000-80-0-0.jpg\",\n    \"10055\": \"https://cdn-images.dzcdn.net/images/cover/5d2a60e2012588ae965f803e10b25957-0329704f0935b9a81e1068a4bf63c9ab-7e295c663bbce0990164ad746e67853c-11b3c5416fd999267826bc882951fbba/500x500-000000-80-0-0.jpg\",\n    \"10056\": \"https://cdn-images.dzcdn.net/images/playlist/973d9e820f4d60358ffdbda1acbb9d36/500x500-000000-80-0-0.jpg\",\n    \"10057\": \"https://cdn-images.dzcdn.net/images/cover/9281e65d0cba1710e32475106578e64d-c28b20c2d62aaf61cdd15cf540571a1f-3c92e5c6e49133f81508c20c2fe87f70-cb908d202d1a05578aab98c929f3470b/500x500-000000-80-0-0.jpg\",\n    \"10058\": \"https://cdn-images.dzcdn.net/images/cover/fe61fff7300ef02ce19d766c7e58ad26-c93c039515c9f48057d8472adc7b982f-93ff02b3832cfc4274e3ad27895fb91f-ccfb949c41b9b235e6b908c3dadbf8be/500x500-000000-80-0-0.jpg\",\n    \"10059\": \"https://cdn-images.dzcdn.net/images/cover/a15794d75e8aa5dbd425837d6b7e04db-386ce8e46e8027888a3ad93ff5aee286-470e83ca588da9d51d471873c3cae46d-3d3d04972cc0b1f5f040acafca6f6062/500x500-000000-80-0-0.jpg\",\n    \"10060\": \"https://cdn-images.dzcdn.net/images/cover/1141271e273c4c794638c8a24d0bcd58-30477fad4a27ef432bc254a5854e0df2-e33c040a8f36cf821ce782a2c2278649-9e93543f349fc2c4ed3ac950dfdb4925/500x500-000000-80-0-0.jpg\",\n    \"10061\": \"https://cdn-images.dzcdn.net/images/cover/669713171338a23cc47a9c7f319f36fe-efdfd3a2da2de583af566cfb377d1aff-37c55ad93636da7f15a326acb188682d-9a5a86fa3b81759c8259ad7e54706d24/500x500-000000-80-0-0.jpg\",\n    \"10062\": \"https://cdn-images.dzcdn.net/images/misc/dd6d2756465b22488dff5d8663e86688/500x500-000000-80-0-0.jpg\",\n    \"10063\": \"https://cdn-images.dzcdn.net/images/playlist/5ba519e87d4ef19ad28dd466d43f65bc/500x500-000000-80-0-0.jpg\",\n    \"10064\": \"https://cdn-images.dzcdn.net/images/cover/03ce8497d268da39c193f29b53e2b7cb-82e63e11ab2efb40a59a65578270acef-c2d6332f04f2061da7ad8fbb2a3c160b-8a24c318dc79c0520d0fa79dc801ef0f/500x500-000000-80-0-0.jpg\",\n    \"10065\": \"https://cdn-images.dzcdn.net/images/cover/124459ddc433153569e46d74a3da3b59-f6282ee4c992eb6d77aa842c3ab5d83e-74848d163f0d78ff07237cbe1dedbdcd-91a996d8c0298b85736ce0c58f936a3d/500x500-000000-80-0-0.jpg\",\n    \"10066\": \"https://cdn-images.dzcdn.net/images/cover/87e5a78fad9a50ab100492999ae12572-b43e8fa20b798a2a7ba91f87b6f0d7ca-a48d64cc51e09a29ee931c6fbb0ebb81-e5462ed8a0ef1332fb65532c827d7ee4/500x500-000000-80-0-0.jpg\",\n    \"10067\": \"https://cdn-images.dzcdn.net/images/cover/5f1541dd7b7105193b4a09193398f003-e5fe5e35899d5a59f81e9bb2047f3d5e-66ce634e06f9cc53a01958200dad0dc5-2ade77ee5673a6a897a95705ba30de40/500x500-000000-80-0-0.jpg\",\n    \"10068\": \"https://cdn-images.dzcdn.net/images/cover/39c8cfd8bce268db401b6e6ee0bf1b65-3a51303fb113106c12b6b57d429daacf-0173376a2a0699abdb3b02e92558ec4f-4a81d1d16f736f380e3b831febd7de86/500x500-000000-80-0-0.jpg\",\n    \"10069\": \"https://cdn-images.dzcdn.net/images/playlist/4a9b4da43b7d944a567db2c48cca444e/500x500-000000-80-0-0.jpg\",\n    \"10070\": \"https://cdn-images.dzcdn.net/images/playlist/f294b36a49f5455e58ff640bd0990de5/500x500-000000-80-0-0.jpg\",\n    \"10071\": \"https://cdn-images.dzcdn.net/images/playlist/aa484be532bdc80b633db92dedc00515/500x500-000000-80-0-0.jpg\",\n    \"10072\": \"https://cdn-images.dzcdn.net/images/playlist/2106988ecd733da0c546e56ff74f4a57/500x500-000000-80-0-0.jpg\",\n    \"10073\": \"https://cdn-images.dzcdn.net/images/playlist/10157b56a9231b47e7da3631acbbe480/500x500-000000-80-0-0.jpg\",\n    \"10074\": \"https://cdn-images.dzcdn.net/images/playlist/eca437abd8cd896884cdb00eff4e6d9c/500x500-000000-80-0-0.jpg\",\n    \"10075\": \"https://cdn-images.dzcdn.net/images/cover/1a414fcc7e38420d819cf3dd5eb0a7ca-1363b0c28fc2e6adbb8427e7774bea36-529d171bcae2e0bfabf7705cdfea6c6e-b075ccf507af5bf075f89c12225c6c04/500x500-000000-80-0-0.jpg\",\n    \"10076\": \"https://cdn-images.dzcdn.net/images/cover/8527c34eccd3611806c22b3a643c24c0-daa233c0ba51e25e6db21653ce0ce70e-75210673542ca33019251d4ec1186bbd-5987072631aef42e478330db8048ab2a/500x500-000000-80-0-0.jpg\",\n    \"10077\": \"https://cdn-images.dzcdn.net/images/cover/04579748b68ac1c06fd23bbb174913df-4eab8a104d42027920704574d28516af-ec7f970884bda506a234182e2d3a8f36-212e2be7b095b79eb365c86d95a3ebed/500x500-000000-80-0-0.jpg\",\n    \"10078\": \"https://cdn-images.dzcdn.net/images/cover/0ed78544b380fe8a86ee66e5e9c20169-fd648c0b1bad3dc2bd2e06c52b1a7cf8-78b773db646be7c9a3ec9f6210eac5e3-2f5ab3b916edabb308ba1b7f41e60353/500x500-000000-80-0-0.jpg\",\n    \"10079\": \"https://cdn-images.dzcdn.net/images/playlist/95cfac706ea891ac28579b1ed9b927d0/500x500-000000-80-0-0.jpg\",\n    \"10080\": \"https://cdn-images.dzcdn.net/images/cover/14fa44942ed0b746405881b96e0413c0-6f21469d191019be5f25dac1e0315a1b-fff19ab427e6250a116aa7b101eb8ad8-2b4fe2fa53e8f028b3aa50013ae50ebd/500x500-000000-80-0-0.jpg\",\n    \"10081\": \"https://cdn-images.dzcdn.net/images/playlist/645ac3c70fb5caf0350300f9ccb0e464/500x500-000000-80-0-0.jpg\",\n    \"10082\": \"https://cdn-images.dzcdn.net/images/playlist/821051d158a57d1ad477d233bce3efd4/500x500-000000-80-0-0.jpg\",\n    \"10083\": \"https://cdn-images.dzcdn.net/images/playlist/ce07e39e0d8b090b08961aea756b177f/500x500-000000-80-0-0.jpg\",\n    \"10084\": \"https://cdn-images.dzcdn.net/images/playlist/9ed167fba1633a6ae6971014273c1e54/500x500-000000-80-0-0.jpg\",\n    \"10085\": \"https://cdn-images.dzcdn.net/images/playlist/a55ca61cf766f3c2545082324c6cde48/500x500-000000-80-0-0.jpg\",\n    \"10086\": \"https://cdn-images.dzcdn.net/images/playlist/bb2e441aa41dbc47f19c24f646577b1d/500x500-000000-80-0-0.jpg\",\n    \"10087\": \"https://cdn-images.dzcdn.net/images/playlist/55413a0ac17f13af7d91cac44cfef357/500x500-000000-80-0-0.jpg\",\n    \"10088\": \"https://cdn-images.dzcdn.net/images/cover/76aba70a4e7efa447c4b4a3bbcef4048-264d6de3c0a777e5e0eceb9681e350d2-d0881d8cfab290f549e943d6b5a1b329-5f4f4c489b50b3050aec1721ee9620b1/500x500-000000-80-0-0.jpg\",\n    \"10089\": \"https://cdn-images.dzcdn.net/images/cover/d071fd2c525e131b5c69a8d718e75de7-e050b2e727afe793a3946880ec9cec44-a07a4c3bc836245905b2d3ccf97e5830-3962313d3fe3c4d72a149f6f66dd1acd/500x500-000000-80-0-0.jpg\",\n    \"10090\": \"https://cdn-images.dzcdn.net/images/playlist/fdfe2bb689754c409bb8ef8f13745fe5/500x500-000000-80-0-0.jpg\",\n    \"10091\": \"https://cdn-images.dzcdn.net/images/cover/9553b590f836362c40fcb3985718555f-3de514be608074a813e3aed48d4cf503-4a38a4d2e9be0c926287381a9a248719-d4e397873a3e7439a93aabe38c7e8176/500x500-000000-80-0-0.jpg\",\n    \"10092\": \"https://cdn-images.dzcdn.net/images/playlist/1f5618eefa8c84eb501bae80962fcc2a/500x500-000000-80-0-0.jpg\",\n    \"10093\": \"https://cdn-images.dzcdn.net/images/cover/39e07046147dd817f51650f1adac4d4c-f548ae492fc11e86fd788058235df25d-30cb69a1b5b33dcee498d13f856d4e41-26208e0f0b5bb81a3635bc4ae3ea9873/500x500-000000-80-0-0.jpg\",\n    \"10094\": \"https://cdn-images.dzcdn.net/images/playlist/563cef05ec841602ed8a01ff69fb823c/500x500-000000-80-0-0.jpg\",\n    \"10095\": \"https://cdn-images.dzcdn.net/images/playlist/108b773c705fc807a1580197b7bb7e3c/500x500-000000-80-0-0.jpg\",\n    \"10096\": \"https://cdn-images.dzcdn.net/images/playlist/c4c228a46df3dc5bf1f5a7fa1e045d73/500x500-000000-80-0-0.jpg\",\n    \"10097\": \"https://cdn-images.dzcdn.net/images/playlist/3b7b604b57506cf2b351efdc97f90732/500x500-000000-80-0-0.jpg\",\n    \"10098\": \"https://cdn-images.dzcdn.net/images/playlist/92d25cda90a6ed1d3118a3e18e85e48b/500x500-000000-80-0-0.jpg\",\n    \"10099\": \"https://cdn-images.dzcdn.net/images/playlist/2783ee159ae48a092d916ebd7e2d14e0/500x500-000000-80-0-0.jpg\",\n    \"10100\": \"https://cdn-images.dzcdn.net/images/playlist/3b7b604b57506cf2b351efdc97f90732/500x500-000000-80-0-0.jpg\",\n    \"10101\": \"https://cdn-images.dzcdn.net/images/playlist/7de3bc759ce004887b304d6d14709c02/500x500-000000-80-0-0.jpg\",\n    \"10102\": \"https://cdn-images.dzcdn.net/images/playlist/e987a4bb65cb129f7381206d71496d8e/500x500-000000-80-0-0.jpg\",\n    \"10103\": \"https://cdn-images.dzcdn.net/images/playlist/f0f01931b86bf75acf99a1e62bd129d1/500x500-000000-80-0-0.jpg\",\n    \"10104\": \"https://cdn-images.dzcdn.net/images/playlist/46a4e2b54b053de8dc4c6da29845c9ae/500x500-000000-80-0-0.jpg\",\n    \"10105\": \"https://cdn-images.dzcdn.net/images/playlist/fe9dc0a89207ecfedd2eaff2c18e182c/500x500-000000-80-0-0.jpg\",\n    \"10106\": \"https://cdn-images.dzcdn.net/images/playlist/956fe9dd2c88d57498e6c65cb445877c/500x500-000000-80-0-0.jpg\",\n    \"10107\": \"https://cdn-images.dzcdn.net/images/playlist/10190790ec12b385915bbe1eafea05ee/500x500-000000-80-0-0.jpg\"\n};\n\n},\n\"genre-editorial\":function(require,exports){\n\"use strict\";\nObject.defineProperty(exports, \"__esModule\", { value: true });\nexports.SCENE_RECORDINGS_PER_PAGE = exports.EDITORIAL_SCENES = void 0;\nexports.sceneRecordings = sceneRecordings;\nconst songs = (rows) => rows.map(([artist, title]) => ({ artist, title }));\nexports.EDITORIAL_SCENES = {\n    'russian-rap': {\n        artists: ['Kai Angel', '9mice', 'Big Baby Tape', 'kizaru', 'Boulevard Depo', 'MAYOT', 'OG Buda', 'PHARAOH'],\n    },\n    'russian-hyperpop': {\n        artists: ['Kill Eva', 'Мэйби Бэйби', 'GSPD', 'Lida', 'quiizzzmeow', 'Sqwore'],\n    },\n    'ukrainian-rap': {\n        artists: ['YARMAK', 'SKOFKA', 'Kalush', 'alyona alyona', 'ТНМК', 'OTOY', 'ХАС', 'KRECHET'],\n    },\n    'ukrainian-wartime': {\n        artists: ['OTOY', 'YARMAK', 'Варнак', 'Ницо Потворно', 'Третя Штурмова', 'хейтспіч', 'паліндром', 'Лінія Маннергейма', 'SKOFKA'],\n        // Release context and primary artist interviews: work/handoffs/music-scenes-followup.md.\n        // Lead with frontline rap; alternate artists instead of importing their entire catalogs.\n        recordings: songs([\n            ['OTOY', 'ЕНЕМІ'], ['YARMAK', 'ВАВИЛОН'], ['Варнак', 'Чому'], ['Ницо Потворно', 'Покоління 300'],\n            ['Третя Штурмова', 'Крейда'], ['хейтспіч', 'наш дім горить'], ['OTOY', 'ОКОЛОФРОНТ'], ['YARMAK', 'ДИКЕ ПОЛЕ'],\n            ['Варнак', 'Динаміт'], ['Третя Штурмова', 'Кракен'], ['паліндром', 'Як зупинити ранок'], ['OTOY', 'МІЙ БРАТ'],\n            ['YARMAK', 'RAGNAROK'], ['Варнак', 'Приречений'], ['Лінія Маннергейма', 'Де твоя лінія'], ['SKOFKA', 'ЧУТИ ГІМН'],\n            ['OTOY', 'ПОБУТ НОВИЙ'], ['Третя Штурмова', 'Ми тут…'], ['Ницо Потворно', 'Молодість'], ['YARMAK', 'Хай нам брате пощастить'],\n            ['Варнак', 'Задача (Phonk Version)'], ['паліндром', 'Саудаде'], ['Третя Штурмова', 'Балада'], ['OTOY', 'FIND MY COUNTRY'],\n            ['хейтспіч', \"Я вб'ю всіх богів\"], ['Третя Штурмова', 'Дядя'], ['OTOY', 'ДОНЕЦЬК'], ['паліндром', 'Не торкає'],\n            ['Третя Штурмова', 'Гоу таун'], ['Варнак', 'Задача (Dub Version)'], ['Третя Штурмова', 'Колір життя'],\n        ]),\n    },\n    horrorcore: {\n        artists: ['Gravediggaz', 'Geto Boys', 'Insane Clown Posse', 'Twiztid', 'Brotha Lynch Hung', 'Esham', 'Necro', 'Three 6 Mafia'],\n    },\n    goth: {\n        artists: ['Bauhaus', 'The Sisters of Mercy', 'Siouxsie and the Banshees', 'Fields of the Nephilim', 'Christian Death', 'The Cure', 'Lebanon Hanover', 'She Past Away'],\n    },\n    emo: {\n        artists: ['My Chemical Romance', 'Jimmy Eat World', 'American Football', 'Sunny Day Real Estate', 'The Get Up Kids', 'Taking Back Sunday', 'Dashboard Confessional', 'Rites of Spring'],\n    },\n    'internet-classics': {\n        artists: ['Parry Gripp', 'Mr Weebl', 'Lemon Demon', 'The Gregory Brothers', 'Tay Zonday', 'Jonathan Coulton', 'Toby Fox', 'The Living Tombstone', 'Rick Astley', 'Ylvis', 'Caramella Girls'],\n    },\n};\nexports.SCENE_RECORDINGS_PER_PAGE = 16;\nfunction sceneRecordings(slug, page = 0) {\n    const scene = exports.EDITORIAL_SCENES[slug];\n    if (!scene)\n        return [];\n    // Artist searches page through their real results; curated songs page through the list.\n    return scene.recordings?.slice(page * exports.SCENE_RECORDINGS_PER_PAGE, (page + 1) * exports.SCENE_RECORDINGS_PER_PAGE)\n        ?? scene.artists.map(artist => ({ artist }));\n}\n\n},\n\"genre-editorial-loader\":function(require,exports){\n\"use strict\";\nObject.defineProperty(exports, \"__esModule\", { value: true });\nexports.matchesSceneRecording = matchesSceneRecording;\nexports.loadEditorialRecordings = loadEditorialRecordings;\nconst genre_catalog_1 = require(\"./genre-catalog\");\nconst genre_editorial_1 = require(\"./genre-editorial\");\nfunction matchesSceneRecording(value, recording) {\n    if (!value || typeof value !== 'object')\n        return false;\n    const entry = value;\n    const credits = [entry.artist?.name, ...(Array.isArray(entry.contributors) ? entry.contributors.map(artist => artist.name) : [])];\n    if (!credits.some(name => typeof name === 'string' && (0, genre_catalog_1.genreSearchKey)(name) === (0, genre_catalog_1.genreSearchKey)(recording.artist)))\n        return false;\n    return !recording.title || [entry.title_short, entry.title].some(title => typeof title === 'string' && (0, genre_catalog_1.genreSearchKey)(title) === (0, genre_catalog_1.genreSearchKey)(recording.title));\n}\n/** Only opened scenes fetch music. Three concurrent cached searches, no catalog-wide fan-out. */\nasync function loadEditorialRecordings(slug, page, entries) {\n    const scene = genre_editorial_1.EDITORIAL_SCENES[slug];\n    if (!scene || !Number.isSafeInteger(page) || page < 0)\n        throw new Error('Unknown music scene');\n    const recordings = (0, genre_editorial_1.sceneRecordings)(slug, page), lanes = new Array(recordings.length);\n    let next = 0, failures = 0, full = false;\n    await Promise.all(Array.from({ length: Math.min(3, recordings.length) }, async () => {\n        while (next < recordings.length) {\n            const index = next++, recording = recordings[index];\n            // The public endpoint can ignore advanced artist: filters. Plain search plus\n            // exact returned credits prevents unrelated fallback hits entering the scene.\n            const query = `${recording.artist} ${recording.title ?? ''}`.trim();\n            try {\n                const data = await entries(`search?q=${encodeURIComponent(query)}&limit=${recording.title ? 8 : 3}&index=${recording.title ? 0 : page * 3}`);\n                if (!recording.title && data.length === 3)\n                    full = true;\n                lanes[index] = data.filter(value => matchesSceneRecording(value, recording)).slice(0, recording.title ? 1 : 3);\n            }\n            catch {\n                failures++;\n                lanes[index] = [];\n            }\n        }\n    }));\n    if (recordings.length && failures === recordings.length)\n        throw new Error('Music scene unavailable');\n    const data = Array.from({ length: scene.recordings ? 1 : 3 }, (_, index) => lanes.flatMap(lane => lane[index] ? [lane[index]] : [])).flat();\n    return { data, done: scene.recordings ? (page + 1) * genre_editorial_1.SCENE_RECORDINGS_PER_PAGE >= scene.recordings.length : !full && failures === 0 };\n}\n\n},\n\"genre-playlist-pool\":function(require,exports){\n\"use strict\";\nObject.defineProperty(exports, \"__esModule\", { value: true });\nexports.INTERNET_PLAYLISTS = exports.isPlaylistScene = exports.US_HIP_HOP_SCENES = void 0;\nexports.playlistFitsScene = playlistFitsScene;\nexports.loadGenrePlaylistPage = loadGenrePlaylistPage;\nconst genre_catalog_1 = require(\"./genre-catalog\");\nexports.US_HIP_HOP_SCENES = [\n    ['chicago-drill', 'Chicago drill', ['Drill Chicago']],\n    ['new-york-drill', 'New York drill', ['Brooklyn drill', 'NY drill', 'Drill New York']],\n    ['east-coast-hip-hop', 'East Coast hip hop', ['East Coast rap', 'East Coast essentials']],\n    ['west-coast-hip-hop', 'West Coast hip hop', ['West Coast rap', 'West Coast essentials']],\n    ['southern-hip-hop', 'Southern hip hop', ['Southern rap', 'Dirty South', 'South Side essentials']],\n    ['atlanta-rap', 'Atlanta rap', ['Atlanta trap']],\n    ['houston-rap', 'Houston rap', []],\n    ['memphis-rap', 'Memphis rap', ['Memphis underground rap']],\n    ['detroit-rap', 'Detroit rap', ['Detroit Flint Michigan rap']],\n    ['bay-area-rap', 'Bay Area rap', ['Hyphy']],\n    ['g-funk', 'G-funk', ['G funk']],\n    ['boom-bap', 'Boom bap', ['Boombap']],\n    ['jazz-rap', 'Jazz rap', ['Jazzy hip hop', 'Jazz hip hop']],\n    ['conscious-hip-hop', 'Conscious hip hop', ['Conscious rap']],\n    ['alternative-hip-hop', 'Alternative hip hop', ['Alternative rap']],\n    ['crunk', 'Crunk', []],\n    ['miami-bass', 'Miami bass', ['Miami booty bass']],\n    ['chopped-and-screwed', 'Chopped and screwed', ['Chopped & screwed', 'Screwed and chopped']],\n];\nconst isPlaylistScene = (slug) => slug === 'internet-classics' || exports.US_HIP_HOP_SCENES.some(scene => scene[0] === slug);\nexports.isPlaylistScene = isPlaylistScene;\n// Vetted for early web, viral songs and creator music. Contents are fetched live,\n// not bundled into Harbor. See the source review in the task handoff.\nexports.INTERNET_PLAYLISTS = [11799766821, 14978443383, 14478144483, 5389738762, 12658267603];\nconst INTERNET_QUERIES = ['meme songs', 'internet nostalgia', 'Parry Gripp'];\nconst sessions = new WeakMap();\nconst PAGE_SIZE = 24, SOURCE_CHUNK = 12, TTL = 15 * 60000;\nconst object = (value) => value && typeof value === 'object' ? value : {};\nconst word = (value) => typeof value === 'string' ? value.trim() : '';\nfunction playlistFitsScene(title, genre) {\n    const name = ` ${(0, genre_catalog_1.genreSearchKey)(title)} `;\n    return [genre.name, ...genre.aliases].some(term => name.includes(` ${(0, genre_catalog_1.genreSearchKey)(term)} `));\n}\nasync function bounded(items, run) {\n    const results = new Array(items.length);\n    let next = 0;\n    await Promise.all(Array.from({ length: Math.min(3, items.length) }, async () => {\n        while (next < items.length) {\n            const i = next++;\n            try {\n                results[i] = { status: 'fulfilled', value: await run(items[i]) };\n            }\n            catch (reason) {\n                results[i] = { status: 'rejected', reason };\n            }\n        }\n    }));\n    return results;\n}\nasync function sourcesFor(genre, entries) {\n    const internet = genre.slug === 'internet-classics';\n    const queries = internet ? INTERNET_QUERIES : [genre.name];\n    const results = await bounded(queries, query => entries(`search/playlist?q=${encodeURIComponent(query)}&limit=50`));\n    if (results.every(result => result.status === 'rejected'))\n        throw new Error('Genre playlists unavailable');\n    const found = new Map();\n    for (const result of results)\n        if (result.status === 'fulfilled')\n            for (const value of result.value) {\n                const meta = object(value), id = Number(meta.id);\n                if (!Number.isSafeInteger(id) || id <= 0 || found.has(id))\n                    continue;\n                if (internet ? !exports.INTERNET_PLAYLISTS.includes(id) : !playlistFitsScene(word(meta.title), genre))\n                    continue;\n                if (typeof meta.nb_tracks === 'number' && meta.nb_tracks <= 0)\n                    continue;\n                found.set(id, meta);\n            }\n    // Search ranking changes; retained, reviewed lists remain addressable by ID.\n    if (internet) {\n        const titles = ['Memes Songs', \"2000’s Internet Nostalgia\", \"2010’s internet nostalgia\", '100% Parry Gripp', 'old internet nostalgia!'];\n        exports.INTERNET_PLAYLISTS.forEach((id, i) => { if (!found.has(id))\n            found.set(id, { id, title: titles[i] }); });\n    }\n    const rank = (meta) => {\n        const title = (0, genre_catalog_1.genreSearchKey)(word(meta.title)), terms = [genre.name, ...genre.aliases].map(genre_catalog_1.genreSearchKey);\n        return (terms.includes(title) ? 100 : terms.some(term => title.startsWith(term + ' ')) ? 50 : 0)\n            + (/deezer.*editor/i.test(word(object(meta.user).name)) ? 20 : 0);\n    };\n    const selected = internet ? exports.INTERNET_PLAYLISTS.map(id => found.get(id)) : [...found.values()].sort((a, b) => rank(b) - rank(a)).slice(0, 6);\n    return selected.map(meta => ({ meta, offset: 0, ended: false }));\n}\n/** Stable merged pages, fetched only on entry/scroll, with three requests at most in flight. */\nasync function loadGenrePlaylistPage(genre, page, entries) {\n    if (!Number.isSafeInteger(page) || page < 0)\n        throw new Error('Invalid genre page');\n    let cache = sessions.get(entries);\n    if (!cache) {\n        cache = new Map();\n        sessions.set(entries, cache);\n    }\n    let session = cache.get(genre.slug);\n    if (!session || (page === 0 && !session.pending && Date.now() - session.at > TTL)) {\n        session = { at: Date.now(), pages: [], buffer: [], seen: new Set(), ids: new Set() };\n        cache.set(genre.slug, session);\n        if (cache.size > 30)\n            cache.delete(cache.keys().next().value);\n    }\n    const state = session;\n    while (state.pages.length <= page) {\n        if (state.pending) {\n            await state.pending;\n            continue;\n        }\n        state.pending = (async () => {\n            state.sources ?? (state.sources = await sourcesFor(genre, entries));\n            while (state.buffer.length < PAGE_SIZE && state.sources.some(source => !source.ended)) {\n                const active = state.sources.filter(source => !source.ended);\n                const results = await bounded(active, source => entries(`playlist/${source.meta.id}/tracks?limit=${SOURCE_CHUNK}&index=${source.offset}`));\n                results.forEach((result, i) => {\n                    if (result.status !== 'rejected')\n                        return;\n                    const cause = object(object(result.reason).cause);\n                    // A removed/private playlist cannot recover on retry; a network failure can.\n                    if (cause.deezerCode === 800 || cause.status === 404)\n                        active[i].ended = true;\n                });\n                if (results.every(result => result.status === 'rejected')) {\n                    if (state.buffer.length || active.every(source => source.ended))\n                        break;\n                    throw new Error('Genre tracks unavailable');\n                }\n                const lanes = [];\n                results.forEach((result, i) => {\n                    if (result.status === 'fulfilled') {\n                        active[i].offset += result.value.length;\n                        active[i].ended = result.value.length < SOURCE_CHUNK;\n                        lanes.push(result.value);\n                    }\n                });\n                for (let i = 0; i < SOURCE_CHUNK; i++)\n                    for (const lane of lanes) {\n                        const track = object(lane[i]), id = Number(track.id), artist = word(object(track.artist).name), title = word(track.title_short) || word(track.title);\n                        if (!Number.isSafeInteger(id) || id <= 0 || !title || !artist || track.readable === false || state.ids.has(id))\n                            continue;\n                        const key = `${(0, genre_catalog_1.genreSearchKey)(artist)}|${(0, genre_catalog_1.genreSearchKey)(title.replace(/\\s*\\([^)]*remaster[^)]*\\)|\\s*-\\s*\\d{4}\\s*remaster.*$/gi, ''))}`;\n                        if (state.seen.has(key))\n                            continue;\n                        state.seen.add(key);\n                        state.ids.add(id);\n                        state.buffer.push(track);\n                    }\n                // Leave failed sources at their cursor; next request can retry them.\n                if (results.some(result => result.status === 'rejected') && state.buffer.length)\n                    break;\n            }\n            const data = state.buffer.splice(0, PAGE_SIZE);\n            state.pages.push({ data, done: !state.buffer.length && state.sources.every(source => source.ended), playlists: state.sources.map(source => source.meta) });\n        })().finally(() => { state.pending = undefined; });\n        await state.pending;\n        if (state.pages.at(-1)?.done && state.pages.length <= page)\n            return { data: [], done: true, playlists: state.pages.at(-1).playlists };\n    }\n    return state.pages[page];\n}\n\n},\n\"discovery\":function(require,exports){\n\"use strict\";\nObject.defineProperty(exports, \"__esModule\", { value: true });\nexports.loadMusicDiscoveryGenres = loadMusicDiscoveryGenres;\nexports.parseMusicDiscoveryChart = parseMusicDiscoveryChart;\nexports.loadMusicDiscoveryChart = loadMusicDiscoveryChart;\nexports.matchesGenrePlaylist = matchesGenrePlaylist;\nexports.loadMusicGenreSelection = loadMusicGenreSelection;\nexports.loadMusicGenreTracksPage = loadMusicGenreTracksPage;\nexports.loadMusicGenreArtistsPage = loadMusicGenreArtistsPage;\nexports.loadMusicDiscoveryPlaylists = loadMusicDiscoveryPlaylists;\nconst safe_fetch_1 = require(\"@/lib/safe-fetch\");\nconst genre_catalog_1 = require(\"./genre-catalog\");\nconst genre_editorial_1 = require(\"./genre-editorial\");\nconst genre_editorial_loader_1 = require(\"./genre-editorial-loader\");\nconst genre_playlist_pool_1 = require(\"./genre-playlist-pool\");\nconst cache = new Map();\nconst pending = new Map();\nconst CACHE_MS = 15 * 60 * 1000;\nfunction record(value) {\n    return value !== null && typeof value === \"object\" ? value : {};\n}\nfunction label(value) {\n    return typeof value === \"string\" ? value.trim() : \"\";\n}\nfunction image(...values) {\n    return values.map(label).find((value) => value.startsWith(\"https://\")) ?? \"\";\n}\nasync function entries(path) {\n    const stored = cache.get(path);\n    if (stored && Date.now() - stored.at < CACHE_MS)\n        return stored.data;\n    const active = pending.get(path);\n    if (active)\n        return active;\n    const request = (async () => {\n        const response = await (0, safe_fetch_1.safeFetch)(`https://api.deezer.com/${path}`, {\n            signal: AbortSignal.timeout(12000),\n        });\n        if (!response.ok)\n            throw new Error(`Deezer: ${response.status}`, { cause: { status: response.status } });\n        const body = record(await response.json());\n        if (body.error || !Array.isArray(body.data))\n            throw new Error(\"Deezer discovery unavailable\", { cause: { deezerCode: record(body.error).code } });\n        cache.set(path, { at: Date.now(), data: body.data });\n        return body.data;\n    })().finally(() => {\n        pending.delete(path);\n    });\n    pending.set(path, request);\n    return request;\n}\nasync function loadMusicDiscoveryGenres() {\n    return genre_catalog_1.MUSIC_GENRES;\n}\nfunction parseMusicDiscoveryChart(data) {\n    const tracks = [];\n    const positions = [];\n    const artists = new Map();\n    const seen = new Set();\n    const popularity = {};\n    const albums = new Map();\n    for (const value of data) {\n        const entry = record(value);\n        const credit = record(entry.artist);\n        const album = record(entry.album);\n        const id = Number(entry.id);\n        const title = label(entry.title);\n        const artist = label(credit.name);\n        if (!Number.isSafeInteger(id) || id <= 0 || seen.has(id) || !title || !artist)\n            continue;\n        seen.add(id);\n        if (typeof entry.rank === \"number\" && Number.isFinite(entry.rank) && entry.rank > 0)\n            popularity[`deezer:track:${id}`] = entry.rank;\n        const albumId = Number(album.id);\n        if (Number.isSafeInteger(albumId) && albumId > 0 && label(album.title))\n            albums.set(albumId, {\n                kind: \"album\", id: `deezer:album:${albumId}`, connectorId: \"catalog\", title: label(album.title), artist,\n                artwork: image(album.cover_xl, album.cover_big, album.cover_medium),\n            });\n        const duration = typeof entry.duration === \"number\" && Number.isFinite(entry.duration)\n            ? Math.max(0, Math.floor(entry.duration))\n            : 0;\n        tracks.push({\n            id: `deezer:track:${id}`,\n            sourceId: String(id),\n            connectorId: \"catalog\",\n            title,\n            artist,\n            album: label(album.title) || undefined,\n            artwork: image(album.cover_xl, album.cover_big, album.cover_medium),\n            durationSeconds: duration,\n            durationLabel: `${Math.floor(duration / 60)}:${String(duration % 60).padStart(2, \"0\")}`,\n            explicit: entry.explicit_lyrics === true || undefined,\n        });\n        positions.push(typeof entry.position === \"number\" &&\n            Number.isSafeInteger(entry.position) &&\n            entry.position > 0\n            ? entry.position\n            : null);\n        const artistId = Number(credit.id);\n        if (Number.isSafeInteger(artistId) && artistId > 0 && !artists.has(String(artistId))) {\n            artists.set(String(artistId), {\n                kind: \"artist\",\n                id: `deezer:artist:${artistId}`,\n                connectorId: \"catalog\",\n                name: artist,\n                artwork: image(credit.picture_big, credit.picture_medium, credit.picture_xl),\n            });\n        }\n    }\n    return { tracks, positions, artists: [...artists.values()], albums: [...albums.values()], popularity };\n}\nasync function loadMusicDiscoveryChart(genreId = 0) {\n    if (!Number.isSafeInteger(genreId) || genreId < 0)\n        throw new Error(\"Invalid music genre\");\n    const genre = (0, genre_catalog_1.musicGenre)(genreId);\n    if (genre && !genre.deezerId)\n        return loadMusicGenreSelection(genreId);\n    if (genreId !== 0 && !genre)\n        throw new Error(\"Unknown music genre\");\n    // The genre artist endpoint currently ignores its filter. Credits from these genre charts\n    // keep artist browsing relevant and avoid a second provider request.\n    return parseMusicDiscoveryChart(await entries(`chart/${genreId}/tracks?limit=24`));\n}\n/** Match whole genre terms: a search hit alone is not evidence of genre membership. */\nfunction matchesGenrePlaylist(title, terms) {\n    const name = ` ${(0, genre_catalog_1.genreSearchKey)(title)} `;\n    return terms.some(term => name.includes(` ${(0, genre_catalog_1.genreSearchKey)(term)} `));\n}\nasync function loadMusicGenreSelection(genreId) {\n    const genre = (0, genre_catalog_1.musicGenre)(genreId);\n    if (!genre)\n        throw new Error(\"Unknown music genre\");\n    if (genre.deezerId)\n        return { ...await loadMusicDiscoveryChart(genre.deezerId), playlists: [] };\n    if ((0, genre_playlist_pool_1.isPlaylistScene)(genre.slug)) {\n        const page = await (0, genre_playlist_pool_1.loadGenrePlaylistPage)(genre, 0, entries);\n        const playlists = page.playlists.map(value => {\n            const entry = record(value), artwork = image(entry.picture_xl, entry.picture_big, entry.picture_medium);\n            return { kind: \"playlist\", id: `deezer:playlist:${entry.id}`, connectorId: \"catalog\", name: label(entry.title),\n                artwork: artwork ? [artwork] : [], trackCount: typeof entry.nb_tracks === \"number\" ? entry.nb_tracks : undefined,\n                subtitle: label(record(entry.user).name) || \"Deezer\" };\n        });\n        return { ...parseMusicDiscoveryChart(page.data), playlists };\n    }\n    if (genre_editorial_1.EDITORIAL_SCENES[genre.slug]) {\n        const page = await (0, genre_editorial_loader_1.loadEditorialRecordings)(genre.slug, 0, entries);\n        return { ...parseMusicDiscoveryChart(page.data), playlists: [] };\n    }\n    const query = genre.aliases[0] && [\"hardcore\", \"regional-mexican\"].includes(genre.slug)\n        ? genre.aliases[0] : genre.name;\n    const results = await entries(`search/playlist?q=${encodeURIComponent(query)}&limit=50`);\n    const playlists = results.flatMap(value => {\n        const entry = record(value), id = Number(entry.id), name = label(entry.title);\n        if (!Number.isSafeInteger(id) || id <= 0 || !matchesGenrePlaylist(name, [genre.name, ...genre.aliases]))\n            return [];\n        const artwork = image(entry.picture_xl, entry.picture_big, entry.picture_medium);\n        return [{ kind: \"playlist\", id: `deezer:playlist:${id}`, connectorId: \"catalog\", name,\n                artwork: artwork ? [artwork] : [], trackCount: typeof entry.nb_tracks === \"number\" ? entry.nb_tracks : undefined,\n                subtitle: label(record(entry.user).name) || \"Deezer\" }];\n    }).slice(0, 24);\n    // Two playlists give breadth without fan-out for every genre tile or artist.\n    const pages = await Promise.allSettled(playlists.slice(0, 2).map(playlist => entries(`playlist/${playlist.id.split(\":\").at(-1)}/tracks?limit=24`)));\n    if (pages.length && pages.every(page => page.status === \"rejected\"))\n        throw new Error(\"Genre selections unavailable\");\n    const lanes = pages.flatMap(page => page.status === \"fulfilled\" ? [page.value] : []);\n    const mixed = [];\n    for (let index = 0; index < 24; index++)\n        for (const lane of lanes)\n            if (lane[index])\n                mixed.push(lane[index]);\n    const parsed = parseMusicDiscoveryChart(mixed);\n    return { ...parsed, tracks: parsed.tracks.slice(0, 30), positions: parsed.tracks.slice(0, 30).map(() => null), playlists };\n}\nconst DEEP_LIMIT = 50;\nconst DEEP_CHART_START = 24;\nconst DEEP_LIST_START = 2;\nconst DEEP_LIST_STEP = 3;\n/** Deezer serves chart tracks by index and playlist tracks per list, so depth pages differently per genre kind. */\nasync function loadMusicGenreTracksPage(genreId, page) {\n    const genre = (0, genre_catalog_1.musicGenre)(genreId);\n    if (!genre)\n        throw new Error(\"Unknown music genre\");\n    if ((0, genre_playlist_pool_1.isPlaylistScene)(genre.slug)) {\n        const result = await (0, genre_playlist_pool_1.loadGenrePlaylistPage)(genre, page + 1, entries);\n        return { ...parseMusicDiscoveryChart(result.data), done: result.done };\n    }\n    if (genre_editorial_1.EDITORIAL_SCENES[genre.slug]) {\n        const result = await (0, genre_editorial_loader_1.loadEditorialRecordings)(genre.slug, page + 1, entries);\n        return { ...parseMusicDiscoveryChart(result.data), done: result.done };\n    }\n    if (genre.deezerId) {\n        const index = DEEP_CHART_START + page * DEEP_LIMIT;\n        const parsed = parseMusicDiscoveryChart(await entries(`chart/${genre.deezerId}/tracks?limit=${DEEP_LIMIT}&index=${index}`));\n        return { ...parsed, done: parsed.tracks.length < DEEP_LIMIT };\n    }\n    const { playlists } = await loadMusicGenreSelection(genreId);\n    const from = DEEP_LIST_START + page * DEEP_LIST_STEP;\n    const slice = playlists.slice(from, from + DEEP_LIST_STEP);\n    if (slice.length === 0)\n        return { tracks: [], positions: [], artists: [], albums: [], popularity: {}, done: true };\n    const pages = await Promise.allSettled(slice.map((playlist) => entries(`playlist/${playlist.id.split(\":\").at(-1)}/tracks?limit=${DEEP_LIMIT}`)));\n    const lanes = pages.flatMap((page) => (page.status === \"fulfilled\" ? [page.value] : []));\n    const mixed = [];\n    for (let index = 0; index < DEEP_LIMIT; index++)\n        for (const lane of lanes)\n            if (lane[index])\n                mixed.push(lane[index]);\n    const parsed = parseMusicDiscoveryChart(mixed);\n    return { ...parsed, done: from + DEEP_LIST_STEP >= playlists.length };\n}\nconst fanIndexes = new Map();\n/** Deezer's chart artist endpoint ignores the genre filter, so it is only good as a fan lookup. */\nfunction genreFanIndex(genreId) {\n    let held = fanIndexes.get(genreId);\n    if (held)\n        return held;\n    held = entries(`chart/${genreId}/artists?limit=100`)\n        .then((rows) => {\n        const out = {};\n        for (const value of rows) {\n            const entry = record(value);\n            const id = Number(entry.id);\n            if (!Number.isSafeInteger(id) || id <= 0)\n                continue;\n            if (typeof entry.nb_fan === \"number\" && Number.isFinite(entry.nb_fan))\n                out[`deezer:artist:${id}`] = entry.nb_fan;\n        }\n        return out;\n    })\n        .catch(() => ({}));\n    fanIndexes.set(genreId, held);\n    return held;\n}\n/** The artist list comes from this genre's own track credits; only the fan count is borrowed. */\nasync function loadMusicGenreArtistsPage(genreId, page) {\n    const genre = (0, genre_catalog_1.musicGenre)(genreId);\n    if (!genre)\n        throw new Error(\"Unknown music genre\");\n    const [deep, fans] = await Promise.all([\n        loadMusicGenreTracksPage(genreId, page),\n        genreFanIndex(genre.deezerId || 0),\n    ]);\n    const peak = new Map();\n    for (const track of deep.tracks) {\n        const key = track.artist.trim().toLocaleLowerCase();\n        if (!key)\n            continue;\n        const rank = deep.popularity?.[track.id] ?? 0;\n        peak.set(key, Math.max(peak.get(key) ?? 0, rank));\n    }\n    return {\n        artists: (deep.artists ?? []).map((artist) => ({\n            id: artist.id,\n            name: artist.name,\n            artwork: typeof artist.artwork === \"string\" ? artist.artwork : (artist.artwork?.[0] ?? \"\"),\n            fans: fans[artist.id] ?? 0,\n            score: peak.get(artist.name.trim().toLocaleLowerCase()) ?? 0,\n        })),\n        done: deep.done,\n    };\n}\nasync function loadMusicDiscoveryPlaylists(genreId = 0, limit = 50) {\n    return (await entries(`chart/${genreId}/playlists?limit=${limit}`)).flatMap((value) => {\n        const entry = record(value);\n        const id = Number(entry.id);\n        if (!Number.isSafeInteger(id) || id <= 0 || !label(entry.title))\n            return [];\n        const artwork = image(entry.picture_xl, entry.picture_big, entry.picture_medium);\n        return [\n            {\n                kind: \"playlist\",\n                id: `deezer:playlist:${id}`,\n                connectorId: \"catalog\",\n                name: label(entry.title),\n                artwork: artwork ? [artwork] : [],\n                trackCount: typeof entry.nb_tracks === \"number\" ? entry.nb_tracks : undefined,\n                subtitle: label(record(entry.user).name) || \"Deezer\",\n            },\n        ];\n    });\n}\n\n}},instances={};\n  function require(name){\n    if(name===\"@/lib/safe-fetch\")return {safeFetch};\n    const id=name.startsWith(\"./\")?name.slice(2):name;\n    if(instances[id])return instances[id];\n    if(!factories[id])throw new Error(\"Unknown pinned discovery module\");\n    const exports={};instances[id]=exports;factories[id](require,exports);return exports;\n  }\n  const catalog=require(\"genre-catalog\"),art=require(\"genre-artwork\"),discovery=require(\"discovery\");\n  return {id:\"harbor-music-explore\",name:\"Harbor Music Explore\",async content(input){\n    switch(input.operation){\n      case \"definitions\":return {genres:catalog.MUSIC_GENRES,artwork:art.MUSIC_GENRE_ARTWORK,countries:catalog.MUSIC_GENRE_COUNTRIES,families:catalog.MUSIC_GENRE_FAMILIES,editorialScenes:Object.keys(require(\"genre-editorial\").EDITORIAL_SCENES),playlistScenes:catalog.MUSIC_GENRES.filter(value=>require(\"genre-playlist-pool\").isPlaylistScene(value.slug)).map(value=>value.slug)};\n      case \"filter\":return catalog.filterMusicGenres(catalog.MUSIC_GENRES,input.query??\"\",input.countries??[],input.family??\"\",code=>input.countryNames?.[code]??code,genre=>catalog.musicGenreName(genre,key=>input.genreNames?.[key]??key));\n      case \"related\":return catalog.relatedMusicGenres(catalog.musicGenre(input.genre));\n      case \"chart\":return {...await discovery.loadMusicDiscoveryChart(),playlists:[]};\n      case \"selection\":return discovery.loadMusicGenreSelection(input.genre);\n      case \"tracks\":return discovery.loadMusicGenreTracksPage(input.genre,input.page);\n      case \"artists\":return discovery.loadMusicGenreArtistsPage(input.genre,input.page);\n      case \"playlists\":return discovery.loadMusicDiscoveryPlaylists(input.genre??0,input.limit??24);\n      default:throw new Error(\"Unsupported native discovery operation\");\n    }\n  }};\n})();",
+    "sha256": "1994f4118a92cf82eeb2456b5e5b77677bdd1fd92c493dd370212dfa385c6e22"
+  }
+}

@@ -57,7 +57,7 @@ struct ProfileSettingsState: Codable, Equatable, Sendable {
         "ebook.narrationRate", "ebook.narrationVoice", "ebook.deviceNarrationVoice", "ebook.narrationProvider", "ebook.narrationSpeed", "ebook.shelfSort", "ebook.pdf.horizontal", "ebook.width", "ebook.brightness", "ebook.focusMode", "ebook.customFontID", "ebook.mode", "harbor.ebook.chapterview", "manga.reader.mode", "manga.reader.fit", "manga.reader.background",
         "manga.reader.rtl", "manga.reader.zoom", "manga.reader.autoNextChapter", "manga.reader.navPos", "manga.reader.doubleGap", "manga.reader.focusMode",
         "manga.reader.hideChapterEndHint", "manga.reader.enablePageDownload", "manga.reader.flipSound", "manga.adultSources", "manga.shelfSort",
-        "harbor.music.playlistView", "harbor.music.tab", "music.shuffle", "music.repeat", "music.volume"
+        "harbor.music.playlistView", "harbor.music.tab", "harbor.music.genres.explore.v1", "music.shuffle", "music.repeat", "music.volume"
     ]
     private let defaults: UserDefaults
     private let persistence: any ProfileSettingsPersistence

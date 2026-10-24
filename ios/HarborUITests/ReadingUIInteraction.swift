@@ -83,7 +83,7 @@ import XCTest
                 if viewport.intersects(overlay.frame) { viewport.size.height = max(0, min(viewport.maxY, overlay.frame.minY) - viewport.minY) }
             }
             if let frame = visibleFrame(element, in: app), viewport.contains(frame), element.isHittable { return }
-            let above = element.exists && element.frame.maxY < viewport.minY
+            let above = element.exists && element.frame.minY < viewport.minY
             swipeVisible(container, in: app, up: !above)
         }
         let hierarchy = XCTAttachment(string: app.debugDescription); hierarchy.name = "reading-visible-row-hierarchy"; hierarchy.lifetime = .keepAlways

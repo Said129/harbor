@@ -3,6 +3,7 @@ ios/Harbor/DesktopAnimations/nav/*.json -text
 ios/Harbor/TLDTS-LICENSE.txt -text
 # Generated locale hashes must refer to identical bytes on Windows and Apple.
 ios/Harbor/*.lproj/Localizable.strings text eol=lf
+ios/Harbor/Assets.xcassets/music-genre-*.imageset/icon.svg text eol=lf
 # Pinned music provider sources retain their original bytes and source hashes.
 harbor-ios-bridge/src/music/model.rs -text
 harbor-ios-bridge/src/music/UPSTREAM-LICENSE -text

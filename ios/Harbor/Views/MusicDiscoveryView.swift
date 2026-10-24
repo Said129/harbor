@@ -1,9 +1,15 @@
 import SwiftUI
 
 enum MusicNativeScreen: String, CaseIterable, Identifiable {
-    case forYou, library
+    case forYou, explore, library
     var id: String { rawValue }
-    var title: String { DesktopInterfaceText.value(self == .forYou ? "For you" : "Library") }
+    var title: String {
+        switch self {
+        case .forYou: DesktopInterfaceText.value("For you")
+        case .explore: DesktopInterfaceText.value("music.discover")
+        case .library: DesktopInterfaceText.value("Library")
+        }
+    }
 }
 
 @MainActor struct MusicDiscoveryView: View {
