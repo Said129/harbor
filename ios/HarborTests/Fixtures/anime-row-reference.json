@@ -1,0 +1,466 @@
+{
+  "inputs": {
+    "src/views/anime/anime-rows.tsx": "bfc1be74fa1b20e2665ec5b67e1f5a640b1d188dd70bef24af425dabe8628e86",
+    "src/lib/providers/jikan.ts": "b98c228d3db6f7aa0894574e1b06559c69389f0a3f80903ac75c3103f4923c9e"
+  },
+  "payload_sha256": "c93283912307110958fa851758c172629fc2fc8ffa8693d53402a6275adafffb",
+  "rows": [
+    {
+      "key": "airing",
+      "title": "Airing Now",
+      "ranked": false,
+      "pool": "general",
+      "plans": [
+        {
+          "path": "seasons/now",
+          "parameters": {},
+          "factor": 1,
+          "offset": 0
+        }
+      ],
+      "filter": "none"
+    },
+    {
+      "key": "top-airing",
+      "title": "Top Airing on MAL",
+      "ranked": true,
+      "pool": "general",
+      "plans": [
+        {
+          "path": "top/anime",
+          "parameters": {
+            "filter": "airing"
+          },
+          "factor": 1,
+          "offset": 0
+        }
+      ],
+      "filter": "none"
+    },
+    {
+      "key": "upcoming",
+      "title": "Upcoming Season",
+      "ranked": false,
+      "pool": "general",
+      "plans": [
+        {
+          "path": "seasons/upcoming",
+          "parameters": {},
+          "factor": 1,
+          "offset": 0
+        }
+      ],
+      "filter": "none"
+    },
+    {
+      "key": "top-tv",
+      "title": "Top Series on MAL",
+      "ranked": true,
+      "pool": "general",
+      "plans": [
+        {
+          "path": "top/anime",
+          "parameters": {
+            "type": "tv"
+          },
+          "factor": 1,
+          "offset": 0
+        }
+      ],
+      "filter": "none"
+    },
+    {
+      "key": "top-movies",
+      "title": "Top Movies on MAL",
+      "ranked": false,
+      "pool": "general",
+      "plans": [
+        {
+          "path": "top/anime",
+          "parameters": {
+            "type": "movie"
+          },
+          "factor": 1,
+          "offset": 0
+        }
+      ],
+      "filter": "none"
+    },
+    {
+      "key": "popular",
+      "title": "Most Popular on MAL",
+      "ranked": false,
+      "pool": "general",
+      "plans": [
+        {
+          "path": "top/anime",
+          "parameters": {
+            "filter": "bypopularity"
+          },
+          "factor": 1,
+          "offset": 0
+        }
+      ],
+      "filter": "none"
+    },
+    {
+      "key": "all-time",
+      "title": "Top Rated on MAL",
+      "ranked": false,
+      "pool": "general",
+      "plans": [
+        {
+          "path": "top/anime",
+          "parameters": {},
+          "factor": 1,
+          "offset": 0
+        }
+      ],
+      "filter": "none"
+    },
+    {
+      "key": "gems",
+      "title": "Hidden Gems on MAL",
+      "ranked": false,
+      "pool": "general",
+      "plans": [
+        {
+          "path": "anime",
+          "parameters": {
+            "order_by": "members",
+            "sort": "asc",
+            "min_score": "7.8",
+            "sfw": "true",
+            "type": "tv"
+          },
+          "factor": 2,
+          "offset": -1
+        },
+        {
+          "path": "anime",
+          "parameters": {
+            "order_by": "members",
+            "sort": "asc",
+            "min_score": "7.8",
+            "sfw": "true",
+            "type": "tv"
+          },
+          "factor": 2,
+          "offset": 0
+        }
+      ],
+      "filter": "gems"
+    },
+    {
+      "key": "era-2020s",
+      "title": "2020s Hits",
+      "ranked": false,
+      "pool": "era",
+      "plans": [
+        {
+          "path": "anime",
+          "parameters": {
+            "start_date": "2020-01-01",
+            "end_date": "2029-12-31",
+            "order_by": "score",
+            "sort": "desc",
+            "min_score": "7.5",
+            "sfw": "true"
+          },
+          "factor": 1,
+          "offset": 0
+        }
+      ],
+      "filter": "none"
+    },
+    {
+      "key": "era-2010s",
+      "title": "2010s Classics",
+      "ranked": false,
+      "pool": "era",
+      "plans": [
+        {
+          "path": "anime",
+          "parameters": {
+            "start_date": "2010-01-01",
+            "end_date": "2019-12-31",
+            "order_by": "score",
+            "sort": "desc",
+            "min_score": "7.5",
+            "sfw": "true"
+          },
+          "factor": 1,
+          "offset": 0
+        }
+      ],
+      "filter": "none"
+    },
+    {
+      "key": "era-2000s",
+      "title": "2000s Era",
+      "ranked": false,
+      "pool": "era",
+      "plans": [
+        {
+          "path": "anime",
+          "parameters": {
+            "start_date": "2000-01-01",
+            "end_date": "2009-12-31",
+            "order_by": "score",
+            "sort": "desc",
+            "min_score": "7.5",
+            "sfw": "true"
+          },
+          "factor": 1,
+          "offset": 0
+        }
+      ],
+      "filter": "none"
+    },
+    {
+      "key": "era-1990s",
+      "title": "Foundation Years (90s)",
+      "ranked": false,
+      "pool": "era",
+      "plans": [
+        {
+          "path": "anime",
+          "parameters": {
+            "start_date": "1990-01-01",
+            "end_date": "1999-12-31",
+            "order_by": "score",
+            "sort": "desc",
+            "min_score": "7.5",
+            "sfw": "true"
+          },
+          "factor": 1,
+          "offset": 0
+        }
+      ],
+      "filter": "none"
+    },
+    {
+      "key": "genre-action",
+      "title": "Action & Adventure",
+      "ranked": false,
+      "pool": "genre",
+      "plans": [
+        {
+          "path": "anime",
+          "parameters": {
+            "genres": "1",
+            "order_by": "score",
+            "sort": "desc",
+            "min_score": "7",
+            "sfw": "true"
+          },
+          "factor": 1,
+          "offset": 0
+        }
+      ],
+      "filter": "none"
+    },
+    {
+      "key": "genre-romance",
+      "title": "Romance",
+      "ranked": false,
+      "pool": "genre",
+      "plans": [
+        {
+          "path": "anime",
+          "parameters": {
+            "genres": "22",
+            "order_by": "score",
+            "sort": "desc",
+            "min_score": "7",
+            "sfw": "true"
+          },
+          "factor": 1,
+          "offset": 0
+        }
+      ],
+      "filter": "none"
+    },
+    {
+      "key": "genre-slice",
+      "title": "Slice of Life",
+      "ranked": false,
+      "pool": "genre",
+      "plans": [
+        {
+          "path": "anime",
+          "parameters": {
+            "genres": "36",
+            "order_by": "score",
+            "sort": "desc",
+            "min_score": "7",
+            "sfw": "true"
+          },
+          "factor": 1,
+          "offset": 0
+        }
+      ],
+      "filter": "none"
+    },
+    {
+      "key": "genre-mecha",
+      "title": "Mecha",
+      "ranked": false,
+      "pool": "genre",
+      "plans": [
+        {
+          "path": "anime",
+          "parameters": {
+            "genres": "18",
+            "order_by": "score",
+            "sort": "desc",
+            "min_score": "7",
+            "sfw": "true"
+          },
+          "factor": 1,
+          "offset": 0
+        }
+      ],
+      "filter": "none"
+    },
+    {
+      "key": "genre-fantasy",
+      "title": "Fantasy",
+      "ranked": false,
+      "pool": "genre",
+      "plans": [
+        {
+          "path": "anime",
+          "parameters": {
+            "genres": "10",
+            "order_by": "score",
+            "sort": "desc",
+            "min_score": "7",
+            "sfw": "true"
+          },
+          "factor": 1,
+          "offset": 0
+        }
+      ],
+      "filter": "none"
+    },
+    {
+      "key": "genre-scifi",
+      "title": "Sci-Fi",
+      "ranked": false,
+      "pool": "genre",
+      "plans": [
+        {
+          "path": "anime",
+          "parameters": {
+            "genres": "24",
+            "order_by": "score",
+            "sort": "desc",
+            "min_score": "7",
+            "sfw": "true"
+          },
+          "factor": 1,
+          "offset": 0
+        }
+      ],
+      "filter": "none"
+    },
+    {
+      "key": "genre-psych",
+      "title": "Psychological",
+      "ranked": false,
+      "pool": "genre",
+      "plans": [
+        {
+          "path": "anime",
+          "parameters": {
+            "genres": "40",
+            "order_by": "score",
+            "sort": "desc",
+            "min_score": "7",
+            "sfw": "true"
+          },
+          "factor": 1,
+          "offset": 0
+        }
+      ],
+      "filter": "none"
+    },
+    {
+      "key": "genre-horror",
+      "title": "Horror & Supernatural",
+      "ranked": false,
+      "pool": "genre",
+      "plans": [
+        {
+          "path": "anime",
+          "parameters": {
+            "genres": "14",
+            "order_by": "score",
+            "sort": "desc",
+            "min_score": "7",
+            "sfw": "true"
+          },
+          "factor": 1,
+          "offset": 0
+        }
+      ],
+      "filter": "none"
+    }
+  ],
+  "gems": {
+    "input": [
+      {
+        "mal_id": 1,
+        "title": "Owned hidden original",
+        "members": 349999,
+        "scored_by": 4000,
+        "score": 8.1
+      },
+      {
+        "mal_id": 2,
+        "title": "Too popular",
+        "members": 350001,
+        "scored_by": 5000,
+        "score": 9.2
+      },
+      {
+        "mal_id": 3,
+        "title": "Too few ratings",
+        "members": 600,
+        "scored_by": 3999,
+        "score": 9.3
+      },
+      {
+        "mal_id": 4,
+        "title": "Owned Season 2",
+        "members": 600,
+        "scored_by": 5000,
+        "score": 9.4
+      },
+      {
+        "mal_id": 5,
+        "title_english": "Owned II",
+        "title": "Owned alternate",
+        "members": 600,
+        "scored_by": 5000,
+        "score": 9.5
+      },
+      {
+        "mal_id": 6,
+        "title": "Owned at ceiling",
+        "members": 350000,
+        "scored_by": 4000,
+        "score": 8.8
+      },
+      {
+        "mal_id": 7,
+        "title": "Owned oldest",
+        "members": 10000,
+        "scored_by": 6000,
+        "score": 7.8
+      }
+    ],
+    "expectedIDs": [6, 1, 7]
+  }
+}

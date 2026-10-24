@@ -10,6 +10,9 @@
 "2 min" = "2 мин";
 "2.39:1" = "2.39:1";
 "2.º" = "2-е";
+"2000s Era" = "Эпоха 2000-х";
+"2010s Classics" = "Классика 2010-х";
+"2020s Hits" = "Хиты 2020-х";
 "21:9" = "21:9";
 "2nd" = "2-е";
 "30s" = "30 с";
@@ -41,6 +44,7 @@
 "Aclarar películas oscuras" = "Осветлить тёмные фильмы";
 "Acorn TV" = "Acorn TV";
 "Action" = "Боевик";
+"Action & Adventure" = "Боевики и приключения";
 "Action Hits" = "Хиты боевиков";
 "Activado" = "Вкл.";
 "Activar addon" = "Enable addon";
@@ -638,6 +642,7 @@
 "Forzado" = "Форсированные";
 "Found {count} streams for {title} in {seconds}s" = "Найдено {count} потоков для {title} за {seconds} с";
 "Found {count} streams in {seconds}s." = "Найдено {count} потоков за {seconds} с.";
+"Foundation Years (90s)" = "Годы становления (90-е)";
 "Free, two-minute signup. Unlocks Trending, In Theaters Now, Top Rated, and per-streaming catalogs (Netflix, Disney+, Hulu, …). Your key stays on this machine." = "Бесплатная регистрация за две минуты. Открывает «В тренде», «Сейчас в кино», «Лучшее по рейтингу» и каталоги сервисов (Netflix, Disney+, Hulu, …). Ключ остаётся на этом компьютере.";
 "French" = "Французский";
 "From" = "Источник";
@@ -702,6 +707,7 @@
 "Hero, Top 10, Trending, In Theaters, per-service rails. Your addons append underneath." = "Баннер, Топ-10, «В тренде», «В кино», ряды по сервисам. Ваши дополнения – ниже.";
 "Hidden" = "Скрыто";
 "Hidden Gems" = "Скрытые жемчужины";
+"Hidden Gems on MAL" = "Скрытые жемчужины на MAL";
 "Hidden titles" = "Hidden titles";
 "Hide" = "Скрыть";
 "Hide Spooktober invitation" = "Hide Spooktober invitation";
@@ -726,6 +732,7 @@
 "Hoopla" = "Hoopla";
 "Horizontal" = "Горизонтально";
 "Horror" = "Ужасы";
+"Horror & Supernatural" = "Ужасы и мистика";
 "How many films?" = "Сколько фильмов?";
 "Hoy" = "Сегодня";
 "Hulu" = "Hulu";
@@ -1691,13 +1698,16 @@
 "Top 10 de drama" = "Топ-10 драм";
 "Top 10 en Stremio" = "Топ-10 в Stremio";
 "Top 10 on Stremio" = "Топ-10 в Stremio";
+"Top 10 {name}" = "Топ-10 {name}";
 "Top 100 on AniList" = "Топ-100 на AniList";
+"Top Airing on MAL" = "Лучшее в эфире на MAL";
 "Top Movies" = "Лучшие фильмы";
 "Top Movies on MAL" = "Лучшие фильмы на MAL";
 "Top Picks for You" = "Лучшее для вас";
 "Top Rated" = "Лучшие по рейтингу";
 "Top Rated Movies" = "Фильмы с высоким рейтингом";
 "Top Rated Series" = "Сериалы с высоким рейтингом";
+"Top Rated on MAL" = "Высший рейтинг на MAL";
 "Top Series" = "Лучшие сериалы";
 "Top Series on MAL" = "Лучшие сериалы на MAL";
 "Top of the screen" = "Вверху экрана";

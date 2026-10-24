@@ -8,6 +8,9 @@
 "2 min" = "2분";
 "2.39:1" = "2.39:1";
 "2.º" = "두 번째";
+"2000s Era" = "2000년대 작품";
+"2010s Classics" = "2010년대 명작";
+"2020s Hits" = "2020년대 히트작";
 "21:9" = "21:9";
 "2nd" = "두 번째";
 "30s" = "30초";
@@ -39,6 +42,7 @@
 "Aclarar películas oscuras" = "어두운 영화 밝게";
 "Acorn TV" = "Acorn TV";
 "Action" = "액션";
+"Action & Adventure" = "액션 및 어드벤처";
 "Action Hits" = "인기 액션";
 "Activado" = "켬";
 "Activar addon" = "Enable addon";
@@ -634,6 +638,7 @@
 "Forzado" = "강제 자막";
 "Found {count} streams for {title} in {seconds}s" = "{title}의 스트림 {count}개를 {seconds}초 만에 찾았습니다";
 "Found {count} streams in {seconds}s." = "{seconds}초 만에 스트림 {count}개를 찾았습니다.";
+"Foundation Years (90s)" = "태동기의 명작 (90년대)";
 "Free, two-minute signup. Unlocks Trending, In Theaters Now, Top Rated, and per-streaming catalogs (Netflix, Disney+, Hulu, …). Your key stays on this machine." = "무료이며 가입에는 2분 정도 걸립니다. 인기 콘텐츠, 현재 극장 상영작, 높은 평점, 스트리밍 서비스별 카탈로그(Netflix, Disney+, Hulu, …)를 이용할 수 있습니다. 키는 이 기기에만 저장됩니다.";
 "French" = "프랑스어";
 "From" = "출처";
@@ -697,6 +702,7 @@
 "Hero, Top 10, Trending, In Theaters, per-service rails. Your addons append underneath." = "히어로, Top 10, 인기 콘텐츠, 극장 상영작과 서비스별 콘텐츠 줄이 표시됩니다. 그 아래에 애드온 콘텐츠가 추가됩니다.";
 "Hidden" = "숨김";
 "Hidden Gems" = "숨은 명작";
+"Hidden Gems on MAL" = "MAL 숨은 명작";
 "Hidden titles" = "Hidden titles";
 "Hide" = "숨기기";
 "Hide Spooktober invitation" = "Hide Spooktober invitation";
@@ -721,6 +727,7 @@
 "Hoopla" = "Hoopla";
 "Horizontal" = "가로";
 "Horror" = "호러";
+"Horror & Supernatural" = "공포 및 초자연";
 "How many films?" = "영화는 몇 편인가요?";
 "Hoy" = "오늘";
 "Hulu" = "Hulu";
@@ -1676,13 +1683,16 @@
 "Top 10 de drama" = "드라마 Top 10";
 "Top 10 en Stremio" = "Stremio 인기 10선";
 "Top 10 on Stremio" = "Stremio 인기 10선";
+"Top 10 {name}" = "{name} 상위 10개";
 "Top 100 on AniList" = "AniList 인기 100선";
+"Top Airing on MAL" = "MAL 방영작 인기 순위";
 "Top Movies" = "최고의 영화";
 "Top Movies on MAL" = "MAL 영화 인기 순위";
 "Top Picks for You" = "회원님을 위한 인기 추천";
 "Top Rated" = "평점순";
 "Top Rated Movies" = "평점 높은 영화";
 "Top Rated Series" = "평점 높은 시리즈";
+"Top Rated on MAL" = "MAL 최고 평점작";
 "Top Series" = "최고의 시리즈";
 "Top Series on MAL" = "MAL 시리즈 인기 순위";
 "Top of the screen" = "화면 상단";

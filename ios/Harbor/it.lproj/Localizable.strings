@@ -8,6 +8,9 @@
 "2 min" = "2 min";
 "2.39:1" = "2.39:1";
 "2.º" = "2°";
+"2000s Era" = "Anni 2000";
+"2010s Classics" = "Classici degli anni 2010";
+"2020s Hits" = "Successi degli anni 2020";
 "21:9" = "21:9";
 "2nd" = "2°";
 "30s" = "30 s";
@@ -39,6 +42,7 @@
 "Aclarar películas oscuras" = "Schiarisci i film scuri";
 "Acorn TV" = "Acorn TV";
 "Action" = "Azione";
+"Action & Adventure" = "Azione e avventura";
 "Action Hits" = "Successi d'azione";
 "Activado" = "Attivato";
 "Activar addon" = "Enable addon";
@@ -634,6 +638,7 @@
 "Forzado" = "Forzati";
 "Found {count} streams for {title} in {seconds}s" = "Trovati {count} stream per {title} in {seconds}s";
 "Found {count} streams in {seconds}s." = "Trovati {count} stream in {seconds}s.";
+"Foundation Years (90s)" = "Anni della fondazione (anni '90)";
 "Free, two-minute signup. Unlocks Trending, In Theaters Now, Top Rated, and per-streaming catalogs (Netflix, Disney+, Hulu, …). Your key stays on this machine." = "Registrazione gratuita in due minuti. Sblocca Tendenze, Ora al cinema, Più votati e i cataloghi dei singoli servizi di streaming (Netflix, Disney+, Hulu, …). La chiave rimane su questo computer.";
 "French" = "Francese";
 "From" = "Da";
@@ -697,6 +702,7 @@
 "Hero, Top 10, Trending, In Theaters, per-service rails. Your addons append underneath." = "Hero, Top 10, Di tendenza, Al cinema e righe per servizio. I tuoi Add-on vengono aggiunti sotto.";
 "Hidden" = "Nascosto";
 "Hidden Gems" = "Gemme nascoste";
+"Hidden Gems on MAL" = "Gemme nascoste su MAL";
 "Hidden titles" = "Hidden titles";
 "Hide" = "Nascondi";
 "Hide Spooktober invitation" = "Hide Spooktober invitation";
@@ -721,6 +727,7 @@
 "Hoopla" = "Hoopla";
 "Horizontal" = "Orizzontale";
 "Horror" = "Horror";
+"Horror & Supernatural" = "Horror e soprannaturale";
 "How many films?" = "Quanti film?";
 "Hoy" = "Oggi";
 "Hulu" = "Hulu";
@@ -1676,13 +1683,16 @@
 "Top 10 de drama" = "Top 10 drammi";
 "Top 10 en Stremio" = "Top 10 su Stremio";
 "Top 10 on Stremio" = "Top 10 su Stremio";
+"Top 10 {name}" = "Top 10 {name}";
 "Top 100 on AniList" = "Top 100 su AniList";
+"Top Airing on MAL" = "Migliori anime in onda su MAL";
 "Top Movies" = "Migliori film";
 "Top Movies on MAL" = "Migliori film su MAL";
 "Top Picks for You" = "Scelti per te";
 "Top Rated" = "Più apprezzati";
 "Top Rated Movies" = "Film più apprezzati";
 "Top Rated Series" = "Serie più apprezzate";
+"Top Rated on MAL" = "Più apprezzati su MAL";
 "Top Series" = "Migliori serie";
 "Top Series on MAL" = "Migliori serie su MAL";
 "Top of the screen" = "In alto sullo schermo";

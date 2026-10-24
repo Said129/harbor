@@ -10,6 +10,9 @@
 "2 min" = "2 دقيقة";
 "2.39:1" = "2.39:1";
 "2.º" = "الثانية";
+"2000s Era" = "حقبة الألفينات";
+"2010s Classics" = "كلاسيكيات العقد 2010";
+"2020s Hits" = "روائع العقد 2020";
 "21:9" = "21:9";
 "2nd" = "الثانية";
 "30s" = "30 ثانية";
@@ -46,6 +49,7 @@
 "Aclarar películas oscuras" = "تفتيح الأفلام المظلمة";
 "Acorn TV" = "Acorn TV";
 "Action" = "أكشن";
+"Action & Adventure" = "أكشن ومغامرة";
 "Action Hits" = "روائع الأكشن";
 "Activado" = "تشغيل";
 "Activar addon" = "Enable addon";
@@ -658,6 +662,7 @@
 "Forzado" = "إجباري";
 "Found {count} streams for {title} in {seconds}s" = "عُثر على {count} بثًا لـ {title} خلال {seconds} ث";
 "Found {count} streams in {seconds}s." = "عُثر على {count} بثًا خلال {seconds} ث.";
+"Foundation Years (90s)" = "سنوات التأسيس (التسعينيات)";
 "Free, two-minute signup. Unlocks Trending, In Theaters Now, Top Rated, and per-streaming catalogs (Netflix, Disney+, Hulu, …). Your key stays on this machine." = "تسجيل مجاني في دقيقتين. يفتح الرائج، وفي دور السينما الآن، والأعلى تقييمًا، وكتالوجات كل خدمة بث (Netflix و Disney+ و Hulu، …). يبقى مفتاحك على هذا الجهاز.";
 "French" = "الفرنسية";
 "From" = "من";
@@ -722,6 +727,7 @@
 "Hero, Top 10, Trending, In Theaters, per-service rails. Your addons append underneath." = "الواجهة البارزة، وأفضل 10، والرائج، وفي دور السينما، وصفوف كل خدمة. تُضاف إضافاتك في الأسفل.";
 "Hidden" = "مخفي";
 "Hidden Gems" = "جواهر خفية";
+"Hidden Gems on MAL" = "جواهر خفية على MAL";
 "Hidden titles" = "Hidden titles";
 "Hide" = "إخفاء";
 "Hide Spooktober invitation" = "Hide Spooktober invitation";
@@ -746,6 +752,7 @@
 "Hoopla" = "Hoopla";
 "Horizontal" = "أفقي";
 "Horror" = "رعب";
+"Horror & Supernatural" = "رعب وخوارق";
 "How many films?" = "كم عدد الأفلام؟";
 "Hoy" = "اليوم";
 "Hulu" = "Hulu";
@@ -1714,13 +1721,16 @@
 "Top 10 de drama" = "أفضل 10 دراما";
 "Top 10 en Stremio" = "أفضل 10 على Stremio";
 "Top 10 on Stremio" = "أفضل 10 على Stremio";
+"Top 10 {name}" = "أفضل 10 {name}";
 "Top 100 on AniList" = "أفضل 100 على AniList";
+"Top Airing on MAL" = "الأعلى عرضًا على MAL";
 "Top Movies" = "أفضل الأفلام";
 "Top Movies on MAL" = "أفضل الأفلام على MAL";
 "Top Picks for You" = "أفضل اللقطات لك";
 "Top Rated" = "الأعلى تقييماً";
 "Top Rated Movies" = "أعلى الأفلام تقييمًا";
 "Top Rated Series" = "أعلى المسلسلات تقييمًا";
+"Top Rated on MAL" = "الأعلى تقييمًا على MAL";
 "Top Series" = "أفضل المسلسلات";
 "Top Series on MAL" = "أفضل المسلسلات على MAL";
 "Top of the screen" = "أعلى الشاشة";

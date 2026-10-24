@@ -8,6 +8,9 @@
 "2 min" = "2 dk";
 "2.39:1" = "2.39:1";
 "2.º" = "2.";
+"2000s Era" = "2000'ler Dönemi";
+"2010s Classics" = "2010'ların Klasikleri";
+"2020s Hits" = "2020'lerin Hitleri";
 "21:9" = "21:9";
 "2nd" = "2.";
 "30s" = "30 sn";
@@ -39,6 +42,7 @@
 "Aclarar películas oscuras" = "Karanlık filmleri aydınlat";
 "Acorn TV" = "Acorn TV";
 "Action" = "Aksiyon";
+"Action & Adventure" = "Aksiyon ve Macera";
 "Action Hits" = "Aksiyonun Gözde Filmleri";
 "Activado" = "Açık";
 "Activar addon" = "Enable addon";
@@ -634,6 +638,7 @@
 "Forzado" = "Zorunlu";
 "Found {count} streams for {title} in {seconds}s" = "{title} için {seconds} sn içinde {count} yayın bulundu";
 "Found {count} streams in {seconds}s." = "{seconds} sn içinde {count} yayın bulundu.";
+"Foundation Years (90s)" = "Temellerin Atıldığı Yıllar (90'lar)";
 "Free, two-minute signup. Unlocks Trending, In Theaters Now, Top Rated, and per-streaming catalogs (Netflix, Disney+, Hulu, …). Your key stays on this machine." = "Ücretsizdir, kaydolmak iki dakika sürer. Gündemdekiler, Şimdi Vizyonda, En Yüksek Puanlılar ve yayın hizmetine özel katalogların (Netflix, Disney+, Hulu, …) kilidini açar. Anahtarınız bu cihazda kalır.";
 "French" = "Fransızca";
 "From" = "Kaynak";
@@ -697,6 +702,7 @@
 "Hero, Top 10, Trending, In Theaters, per-service rails. Your addons append underneath." = "Öne Çıkanlar, İlk 10, Gündemdekiler, Vizyondakiler ve hizmete özel satırlar. Eklentileriniz bunların altına eklenir.";
 "Hidden" = "Gizli";
 "Hidden Gems" = "Gizli Cevherler";
+"Hidden Gems on MAL" = "MAL'deki Gizli Cevherler";
 "Hidden titles" = "Hidden titles";
 "Hide" = "Gizle";
 "Hide Spooktober invitation" = "Hide Spooktober invitation";
@@ -721,6 +727,7 @@
 "Hoopla" = "Hoopla";
 "Horizontal" = "Yatay";
 "Horror" = "Korku";
+"Horror & Supernatural" = "Korku ve Doğaüstü";
 "How many films?" = "Kaç film?";
 "Hoy" = "Bugün";
 "Hulu" = "Hulu";
@@ -1676,13 +1683,16 @@
 "Top 10 de drama" = "En İyi 10 Dram";
 "Top 10 en Stremio" = "Stremio'da İlk 10";
 "Top 10 on Stremio" = "Stremio'da İlk 10";
+"Top 10 {name}" = "En İyi 10 {name}";
 "Top 100 on AniList" = "AniList'te ilk 100";
+"Top Airing on MAL" = "MAL'de Yayındaki En İyiler";
 "Top Movies" = "En İyi Filmler";
 "Top Movies on MAL" = "MAL'deki En İyi Filmler";
 "Top Picks for You" = "Size Özel Seçimler";
 "Top Rated" = "En Yüksek Puanlı";
 "Top Rated Movies" = "En Yüksek Puanlı Filmler";
 "Top Rated Series" = "En Yüksek Puanlı Diziler";
+"Top Rated on MAL" = "MAL'de En Yüksek Puanlılar";
 "Top Series" = "En İyi Diziler";
 "Top Series on MAL" = "MAL'deki En İyi Diziler";
 "Top of the screen" = "Ekranın üstü";

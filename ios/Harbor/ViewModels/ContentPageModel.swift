@@ -79,6 +79,7 @@ final class ContentPageModel {
             } else if kind == "anime" {
                 rows = app.rows.filter(\.isAnimeCatalog)
                 let definitions = AnimeService.definitions()
+                guard definitions.count == 24 else { throw HarborError(code: "anime-row-assets") }
                 let records = app.library.items
                 await withTaskGroup(of: (Int, DiscoveryRail?).self) { group in
                     for (index, rail) in definitions.enumerated() {

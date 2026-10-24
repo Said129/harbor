@@ -8,6 +8,9 @@
 "2 min" = "2 phút";
 "2.39:1" = "2.39:1";
 "2.º" = "Thứ 2";
+"2000s Era" = "Kỷ nguyên thập niên 2000";
+"2010s Classics" = "Kinh điển thập niên 2010";
+"2020s Hits" = "Phim nổi bật thập niên 2020";
 "21:9" = "21:9";
 "2nd" = "Thứ 2";
 "30s" = "30 giây";
@@ -39,6 +42,7 @@
 "Aclarar películas oscuras" = "Làm sáng phim tối";
 "Acorn TV" = "Acorn TV";
 "Action" = "Hành động";
+"Action & Adventure" = "Hành động và phiêu lưu";
 "Action Hits" = "Phim hành động ăn khách";
 "Activado" = "Bật";
 "Activar addon" = "Enable addon";
@@ -634,6 +638,7 @@
 "Forzado" = "Bắt buộc";
 "Found {count} streams for {title} in {seconds}s" = "Tìm thấy {count} luồng phát cho {title} trong {seconds} giây";
 "Found {count} streams in {seconds}s." = "Tìm thấy {count} luồng phát trong {seconds} giây.";
+"Foundation Years (90s)" = "Những năm định hình (thập niên 90)";
 "Free, two-minute signup. Unlocks Trending, In Theaters Now, Top Rated, and per-streaming catalogs (Netflix, Disney+, Hulu, …). Your key stays on this machine." = "Đăng ký miễn phí trong hai phút. Mở khóa Thịnh hành, Đang chiếu rạp, Được đánh giá cao nhất và danh mục theo từng dịch vụ phát trực tuyến (Netflix, Disney+, Hulu, …). Khóa của bạn chỉ được lưu trên thiết bị này.";
 "French" = "Tiếng Pháp";
 "From" = "Từ";
@@ -697,6 +702,7 @@
 "Hero, Top 10, Trending, In Theaters, per-service rails. Your addons append underneath." = "Nổi bật, Top 10, Thịnh hành, Đang chiếu rạp và các hàng theo từng dịch vụ. Tiện ích bổ sung của bạn sẽ được thêm bên dưới.";
 "Hidden" = "Đã ẩn";
 "Hidden Gems" = "Những viên ngọc ẩn";
+"Hidden Gems on MAL" = "Những viên ngọc ẩn trên MAL";
 "Hidden titles" = "Hidden titles";
 "Hide" = "Ẩn";
 "Hide Spooktober invitation" = "Hide Spooktober invitation";
@@ -721,6 +727,7 @@
 "Hoopla" = "Hoopla";
 "Horizontal" = "Ngang";
 "Horror" = "Kinh dị";
+"Horror & Supernatural" = "Kinh dị và siêu nhiên";
 "How many films?" = "Bao nhiêu phim?";
 "Hoy" = "Hôm nay";
 "Hulu" = "Hulu";
@@ -1676,13 +1683,16 @@
 "Top 10 de drama" = "Top 10 chính kịch";
 "Top 10 en Stremio" = "Top 10 trên Stremio";
 "Top 10 on Stremio" = "Top 10 trên Stremio";
+"Top 10 {name}" = "Top 10 {name}";
 "Top 100 on AniList" = "Top 100 trên AniList";
+"Top Airing on MAL" = "Phim đang chiếu hàng đầu trên MAL";
 "Top Movies" = "Phim điện ảnh hàng đầu";
 "Top Movies on MAL" = "Phim điện ảnh hàng đầu trên MAL";
 "Top Picks for You" = "Lựa chọn hàng đầu dành cho bạn";
 "Top Rated" = "Được đánh giá cao nhất";
 "Top Rated Movies" = "Phim điện ảnh được đánh giá cao nhất";
 "Top Rated Series" = "Phim bộ được đánh giá cao nhất";
+"Top Rated on MAL" = "Được đánh giá cao nhất trên MAL";
 "Top Series" = "Phim bộ hàng đầu";
 "Top Series on MAL" = "Phim bộ hàng đầu trên MAL";
 "Top of the screen" = "Đầu màn hình";

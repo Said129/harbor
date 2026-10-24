@@ -8,6 +8,9 @@
 "2 min" = "2分";
 "2.39:1" = "2.39:1";
 "2.º" = "第2";
+"2000s Era" = "2000年代を彩った作品";
+"2010s Classics" = "2010年代の名作";
+"2020s Hits" = "2020年代のヒット作";
 "21:9" = "21:9";
 "2nd" = "第2";
 "30s" = "30秒";
@@ -39,6 +42,7 @@
 "Aclarar películas oscuras" = "暗い映画を明るく";
 "Acorn TV" = "Acorn TV";
 "Action" = "アクション";
+"Action & Adventure" = "アクション＆アドベンチャー";
 "Action Hits" = "アクション大ヒット";
 "Activado" = "オン";
 "Activar addon" = "Enable addon";
@@ -634,6 +638,7 @@
 "Forzado" = "強制字幕";
 "Found {count} streams for {title} in {seconds}s" = "{title}のストリームを{seconds}秒で{count}件見つけました";
 "Found {count} streams in {seconds}s." = "{seconds}秒で{count}件のストリームを見つけました。";
+"Foundation Years (90s)" = "黎明期（90年代）";
 "Free, two-minute signup. Unlocks Trending, In Theaters Now, Top Rated, and per-streaming catalogs (Netflix, Disney+, Hulu, …). Your key stays on this machine." = "無料で、登録は2分ほどです。トレンド、劇場公開中、高評価、配信サービス別のカタログ（Netflix、Disney+、Hulu、…）を利用できます。キーはこのデバイスにのみ保存されます。";
 "French" = "フランス語";
 "From" = "提供元";
@@ -697,6 +702,7 @@
 "Hero, Top 10, Trending, In Theaters, per-service rails. Your addons append underneath." = "ヒーロー、トップ10、トレンド、劇場公開中、配信サービス別レールを表示します。その下にアドオンのカタログが追加されます。";
 "Hidden" = "非表示";
 "Hidden Gems" = "隠れた名作";
+"Hidden Gems on MAL" = "MALの隠れた名作";
 "Hidden titles" = "Hidden titles";
 "Hide" = "非表示";
 "Hide Spooktober invitation" = "Hide Spooktober invitation";
@@ -721,6 +727,7 @@
 "Hoopla" = "Hoopla";
 "Horizontal" = "横向き";
 "Horror" = "ホラー";
+"Horror & Supernatural" = "ホラー＆超常現象";
 "How many films?" = "映画は何本？";
 "Hoy" = "今日";
 "Hulu" = "Hulu";
@@ -1676,13 +1683,16 @@
 "Top 10 de drama" = "ドラマ トップ10";
 "Top 10 en Stremio" = "Stremioのトップ10";
 "Top 10 on Stremio" = "Stremioのトップ10";
+"Top 10 {name}" = "{name}のトップ10";
 "Top 100 on AniList" = "AniListトップ100";
+"Top Airing on MAL" = "MALで放送中の人気作";
 "Top Movies" = "人気映画";
 "Top Movies on MAL" = "MALの人気映画";
 "Top Picks for You" = "あなたへのおすすめ";
 "Top Rated" = "高評価";
 "Top Rated Movies" = "高評価の映画";
 "Top Rated Series" = "高評価のシリーズ";
+"Top Rated on MAL" = "MALで最高評価";
 "Top Series" = "人気シリーズ";
 "Top Series on MAL" = "MALの人気シリーズ";
 "Top of the screen" = "画面上部";

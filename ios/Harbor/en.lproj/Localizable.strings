@@ -4,6 +4,9 @@
 "1.5 min" = "1.5 min";
 "2 min" = "2 min";
 "2.º" = "2nd";
+"2000s Era" = "2000s Era";
+"2010s Classics" = "2010s Classics";
+"2020s Hits" = "2020s Hits";
 "2nd" = "2nd";
 "A continuación" = "Up Next";
 "API key" = "API key";
@@ -25,6 +28,7 @@
 "Aclara las sombras para que las escenas totalmente oscuras puedan verse." = "Lifts shadows so the pitch-black scenes are actually watchable.";
 "Aclarar películas oscuras" = "Brighten dark movies";
 "Action" = "Action";
+"Action & Adventure" = "Action & Adventure";
 "Action Hits" = "Action Hits";
 "Activado" = "On";
 "Activar addon" = "Enable addon";
@@ -55,6 +59,7 @@
 "Ahora" = "Now";
 "Ahora en cines" = "In Theaters Now";
 "Ahora no" = "Not now";
+"Airing Now" = "Airing Now";
 "Ajusta el texto y el fondo. La vista previa muestra los cambios al hacerlos." = "Adjust the text and background. The preview shows your changes as you make them.";
 "Ajustar" = "Fit";
 "Ajuste de imagen" = "Picture adjustment";
@@ -506,6 +511,7 @@
 "Forced" = "Forced";
 "Formato de canales" = "Channel format";
 "Forzado" = "Forced";
+"Foundation Years (90s)" = "Foundation Years (90s)";
 "From" = "From";
 "Frosts the still image on each unwatched episode in the list." = "Frosts the still image on each unwatched episode in the list.";
 "Fuente" = "Font";
@@ -549,6 +555,7 @@
 "Hearing impaired" = "Hearing impaired";
 "Help & about" = "Help & about";
 "Hidden" = "Hidden";
+"Hidden Gems on MAL" = "Hidden Gems on MAL";
 "Hidden titles" = "Hidden titles";
 "Hide" = "Hide";
 "Hide Spooktober invitation" = "Hide Spooktober invitation";
@@ -568,6 +575,7 @@
 "Home layout" = "Home layout";
 "Home style" = "Home style";
 "Horror" = "Horror";
+"Horror & Supernatural" = "Horror & Supernatural";
 "Hoy" = "Today";
 "IMDb" = "IMDb";
 "Idioma" = "Language";
@@ -696,6 +704,7 @@
 "Margins" = "Margins";
 "Mark as read" = "Mark as read";
 "Mark watched button" = "Mark watched button";
+"Mecha" = "Mecha";
 "Mejor valorado" = "Top rated";
 "Mejor valorado en {site}" = "Top rated on {site}";
 "Mes anterior" = "Previous month";
@@ -713,6 +722,7 @@
 "Modo de concentración" = "Focus mode";
 "Modo de lectura" = "Reading mode";
 "Momento en que aparece la etiqueta A continuación antes de que termine un episodio. Automático se ajusta a la duración del episodio, para que en los episodios cortos no aparezca tan pronto. Desactivado la oculta." = "When the Up Next pill appears before an episode ends. Auto scales to the episode length, so short episodes stop prompting so early. Off hides it.";
+"Most Popular on MAL" = "Most Popular on MAL";
 "Mostrar" = "Reveal";
 "Mostrar botón Más información" = "Show More info button";
 "Mostrar como Top 10 con números grandes" = "Show as a Top 10 with big numerals";
@@ -943,6 +953,7 @@
 "Próximamente" = "Coming soon";
 "Próximos" = "Upcoming";
 "Próximos animes" = "Upcoming Anime";
+"Psychological" = "Psychological";
 "Punchier color" = "Punchier color";
 "Puntuaciones" = "Scores";
 "Página anterior" = "Previous page";
@@ -1097,6 +1108,7 @@
 "Saved" = "Saved";
 "Saved app data" = "Saved app data";
 "Saving" = "Saving";
+"Sci-Fi" = "Sci-Fi";
 "Sci-Fi & Fantasy" = "Sci-Fi & Fantasy";
 "Scores" = "Scores";
 "Screener" = "Screener";
@@ -1195,6 +1207,7 @@
 "Skip Credits" = "Skip Credits";
 "Skip Intro" = "Skip Intro";
 "Skip Recap" = "Skip Recap";
+"Slice of Life" = "Slice of Life";
 "Slightly lighter than background." = "Slightly lighter than background.";
 "Sobre la línea principal" = "Above the main line";
 "Soft halo around the text. Cleanest on most content." = "Soft halo around the text. Cleanest on most content.";
@@ -1340,8 +1353,13 @@
 "Top 10 de drama" = "Top 10 Drama";
 "Top 10 en Stremio" = "Top 10 on Stremio";
 "Top 10 on Stremio" = "Top 10 on Stremio";
+"Top 10 {name}" = "Top 10 {name}";
+"Top Airing on MAL" = "Top Airing on MAL";
+"Top Movies on MAL" = "Top Movies on MAL";
 "Top Rated Movies" = "Top Rated Movies";
 "Top Rated Series" = "Top Rated Series";
+"Top Rated on MAL" = "Top Rated on MAL";
+"Top Series on MAL" = "Top Series on MAL";
 "Top of the screen" = "Top of the screen";
 "Top rated" = "Top rated";
 "Top rated on {site}" = "Top rated on {site}";
@@ -1385,6 +1403,7 @@
 "Up Next" = "Up Next";
 "Upcoming" = "Upcoming";
 "Upcoming Anime" = "Upcoming Anime";
+"Upcoming Season" = "Upcoming Season";
 "Update" = "Update";
 "Upload a picture of your own, or pick one from the Harbor catalog." = "Upload a picture of your own, or pick one from the Harbor catalog.";
 "Upload photo" = "Upload photo";

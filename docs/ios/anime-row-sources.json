@@ -1,0 +1,13 @@
+{
+  "reference_version": "0.9.132",
+  "inputs": {
+    "src/views/anime/anime-rows.tsx": "bfc1be74fa1b20e2665ec5b67e1f5a640b1d188dd70bef24af425dabe8628e86",
+    "src/lib/providers/jikan.ts": "b98c228d3db6f7aa0894574e1b06559c69389f0a3f80903ac75c3103f4923c9e"
+  },
+  "payload_sha256": "c93283912307110958fa851758c172629fc2fc8ffa8693d53402a6275adafffb",
+  "original_row_count": 20,
+  "extracted_original_requests": true,
+  "gems_oracle_executed_without_network": true,
+  "apple_tests_executed": false,
+  "full_anime_parity_complete": false
+}

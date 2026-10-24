@@ -8,6 +8,9 @@
 "2 min" = "2 मिनट";
 "2.39:1" = "2.39:1";
 "2.º" = "दूसरा";
+"2000s Era" = "2000 के दशक का दौर";
+"2010s Classics" = "2010 के दशक के क्लासिक्स";
+"2020s Hits" = "2020 के दशक के हिट";
 "21:9" = "21:9";
 "2nd" = "दूसरा";
 "30s" = "30 सेकंड";
@@ -39,6 +42,7 @@
 "Aclarar películas oscuras" = "डार्क फ़िल्मों को उजला करें";
 "Acorn TV" = "Acorn TV";
 "Action" = "एक्शन";
+"Action & Adventure" = "एक्शन और एडवेंचर";
 "Action Hits" = "एक्शन हिट्स";
 "Activado" = "चालू";
 "Activar addon" = "Enable addon";
@@ -634,6 +638,7 @@
 "Forzado" = "फ़ोर्स्ड";
 "Found {count} streams for {title} in {seconds}s" = "{title} के लिए {seconds}s में {count} स्ट्रीम मिलीं";
 "Found {count} streams in {seconds}s." = "{seconds}s में {count} स्ट्रीम मिलीं।";
+"Foundation Years (90s)" = "शुरुआती दौर (90 का दशक)";
 "Free, two-minute signup. Unlocks Trending, In Theaters Now, Top Rated, and per-streaming catalogs (Netflix, Disney+, Hulu, …). Your key stays on this machine." = "मुफ़्त, दो मिनट का साइनअप। ट्रेंडिंग, अभी सिनेमाघरों में, शीर्ष रेटेड और हर स्ट्रीमिंग सेवा के कैटलॉग (Netflix, Disney+, Hulu, …) अनलॉक करता है। आपकी कुंजी इसी मशीन पर रहती है।";
 "French" = "फ़्रेंच";
 "From" = "से";
@@ -697,6 +702,7 @@
 "Hero, Top 10, Trending, In Theaters, per-service rails. Your addons append underneath." = "हीरो, टॉप 10, ट्रेंडिंग, सिनेमाघरों में, हर सेवा की पंक्तियाँ। आपके ऐडऑन नीचे जुड़ते हैं।";
 "Hidden" = "छिपा हुआ";
 "Hidden Gems" = "छिपे हुए नगीने";
+"Hidden Gems on MAL" = "MAL पर छिपे हुए नगीने";
 "Hidden titles" = "Hidden titles";
 "Hide" = "छिपाएँ";
 "Hide Spooktober invitation" = "Hide Spooktober invitation";
@@ -721,6 +727,7 @@
 "Hoopla" = "Hoopla";
 "Horizontal" = "क्षैतिज";
 "Horror" = "हॉरर";
+"Horror & Supernatural" = "हॉरर और अलौकिक";
 "How many films?" = "कितनी फ़िल्में?";
 "Hoy" = "आज";
 "Hulu" = "Hulu";
@@ -1676,13 +1683,16 @@
 "Top 10 de drama" = "शीर्ष 10 ड्रामा";
 "Top 10 en Stremio" = "Stremio पर शीर्ष 10";
 "Top 10 on Stremio" = "Stremio पर शीर्ष 10";
+"Top 10 {name}" = "शीर्ष 10 {name}";
 "Top 100 on AniList" = "AniList पर शीर्ष 100";
+"Top Airing on MAL" = "MAL पर प्रसारित हो रहे शीर्ष एनीमे";
 "Top Movies" = "शीर्ष फ़िल्में";
 "Top Movies on MAL" = "MAL पर शीर्ष फ़िल्में";
 "Top Picks for You" = "आपके लिए बेहतरीन चयन";
 "Top Rated" = "सर्वाधिक रेटिंग वाले";
 "Top Rated Movies" = "सर्वाधिक रेटिंग वाली फ़िल्में";
 "Top Rated Series" = "सर्वाधिक रेटिंग वाली सीरीज़";
+"Top Rated on MAL" = "MAL पर सर्वाधिक रेटिंग वाले";
 "Top Series" = "शीर्ष सीरीज़";
 "Top Series on MAL" = "MAL पर शीर्ष सीरीज़";
 "Top of the screen" = "स्क्रीन के ऊपर";

@@ -7,6 +7,7 @@ struct DiscoveryRail: Identifiable, Sendable {
     let path: String
     var parameters: [String: String] = [:]
     var metas: [Media] = []
+    var ranked = false
 }
 
 struct TMDBService: Sendable {

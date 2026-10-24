@@ -8,6 +8,9 @@
 "2 min" = "2 分钟";
 "2.39:1" = "2.39:1";
 "2.º" = "第二";
+"2000s Era" = "2000 年代作品";
+"2010s Classics" = "2010 年代经典";
+"2020s Hits" = "2020 年代热门佳作";
 "21:9" = "21:9";
 "2nd" = "第二";
 "30s" = "30 秒";
@@ -39,6 +42,7 @@
 "Aclarar películas oscuras" = "提亮昏暗影片";
 "Acorn TV" = "Acorn TV";
 "Action" = "动作";
+"Action & Adventure" = "动作与冒险";
 "Action Hits" = "动作大片";
 "Activado" = "开启";
 "Activar addon" = "Enable addon";
@@ -634,6 +638,7 @@
 "Forzado" = "强制";
 "Found {count} streams for {title} in {seconds}s" = "在 {seconds} 秒内为 {title} 找到 {count} 个播放源";
 "Found {count} streams in {seconds}s." = "在 {seconds} 秒内找到 {count} 个播放源。";
+"Foundation Years (90s)" = "奠基年代（90 年代）";
 "Free, two-minute signup. Unlocks Trending, In Theaters Now, Top Rated, and per-streaming catalogs (Netflix, Disney+, Hulu, …). Your key stays on this machine." = "免费注册，仅需两分钟。可解锁“热门趋势”、“正在上映”、“高分内容”和各流媒体平台目录（Netflix、Disney+、Hulu 等）。密钥仅保存在此设备上。";
 "French" = "法语";
 "From" = "来源";
@@ -697,6 +702,7 @@
 "Hero, Top 10, Trending, In Theaters, per-service rails. Your addons append underneath." = "焦点推荐、热门前 10、热门趋势、正在上映及各流媒体服务内容栏。你的插件内容栏将依次显示在下方。";
 "Hidden" = "已隐藏";
 "Hidden Gems" = "冷门佳作";
+"Hidden Gems on MAL" = "MAL 冷门佳作";
 "Hidden titles" = "Hidden titles";
 "Hide" = "隐藏";
 "Hide Spooktober invitation" = "Hide Spooktober invitation";
@@ -721,6 +727,7 @@
 "Hoopla" = "Hoopla";
 "Horizontal" = "横向";
 "Horror" = "恐怖";
+"Horror & Supernatural" = "恐怖与超自然";
 "How many films?" = "多少部电影？";
 "Hoy" = "今天";
 "Hulu" = "Hulu";
@@ -1676,13 +1683,16 @@
 "Top 10 de drama" = "十大热门剧情片";
 "Top 10 en Stremio" = "Stremio 热门榜前 10 名";
 "Top 10 on Stremio" = "Stremio 热门榜前 10 名";
+"Top 10 {name}" = "{name}前 10 名";
 "Top 100 on AniList" = "AniList 前 100 名";
+"Top Airing on MAL" = "MAL 在播榜";
 "Top Movies" = "电影榜单";
 "Top Movies on MAL" = "MAL 电影榜";
 "Top Picks for You" = "为您精选";
 "Top Rated" = "评分最高";
 "Top Rated Movies" = "高分电影";
 "Top Rated Series" = "高分剧集";
+"Top Rated on MAL" = "MAL 评分榜";
 "Top Series" = "剧集榜单";
 "Top Series on MAL" = "MAL 剧集榜";
 "Top of the screen" = "屏幕顶部";

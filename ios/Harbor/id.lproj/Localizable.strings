@@ -8,6 +8,9 @@
 "2 min" = "2 mnt";
 "2.39:1" = "2.39:1";
 "2.º" = "Ke-2";
+"2000s Era" = "Era 2000-an";
+"2010s Classics" = "Klasik 2010-an";
+"2020s Hits" = "Hit 2020-an";
 "21:9" = "21:9";
 "2nd" = "Ke-2";
 "30s" = "30 dtk";
@@ -39,6 +42,7 @@
 "Aclarar películas oscuras" = "Cerahkan film gelap";
 "Acorn TV" = "Acorn TV";
 "Action" = "Aksi";
+"Action & Adventure" = "Aksi & Petualangan";
 "Action Hits" = "Film Aksi Populer";
 "Activado" = "Aktif";
 "Activar addon" = "Enable addon";
@@ -634,6 +638,7 @@
 "Forzado" = "Paksa";
 "Found {count} streams for {title} in {seconds}s" = "Ditemukan {count} stream untuk {title} dalam {seconds} dtk";
 "Found {count} streams in {seconds}s." = "Ditemukan {count} stream dalam {seconds} dtk.";
+"Foundation Years (90s)" = "Tahun-Tahun Awal (90-an)";
 "Free, two-minute signup. Unlocks Trending, In Theaters Now, Top Rated, and per-streaming catalogs (Netflix, Disney+, Hulu, …). Your key stays on this machine." = "Pendaftaran gratis selama dua menit. Membuka Sedang Tren, Sedang Tayang di Bioskop, Berperingkat Teratas, dan katalog per layanan streaming (Netflix, Disney+, Hulu, …). Kunci Anda tetap tersimpan di perangkat ini.";
 "French" = "Bahasa Prancis";
 "From" = "Dari";
@@ -697,6 +702,7 @@
 "Hero, Top 10, Trending, In Theaters, per-service rails. Your addons append underneath." = "Sorotan utama, 10 Teratas, Sedang Tren, Sedang Tayang di Bioskop, deretan per layanan. Addon Anda ditambahkan di bawahnya.";
 "Hidden" = "Tersembunyi";
 "Hidden Gems" = "Permata Tersembunyi";
+"Hidden Gems on MAL" = "Permata Tersembunyi di MAL";
 "Hidden titles" = "Hidden titles";
 "Hide" = "Sembunyikan";
 "Hide Spooktober invitation" = "Hide Spooktober invitation";
@@ -721,6 +727,7 @@
 "Hoopla" = "Hoopla";
 "Horizontal" = "Horizontal";
 "Horror" = "Horor";
+"Horror & Supernatural" = "Horor & Supranatural";
 "How many films?" = "Berapa banyak film?";
 "Hoy" = "Hari ini";
 "Hulu" = "Hulu";
@@ -1676,13 +1683,16 @@
 "Top 10 de drama" = "10 Drama Teratas";
 "Top 10 en Stremio" = "10 Teratas di Stremio";
 "Top 10 on Stremio" = "10 Teratas di Stremio";
+"Top 10 {name}" = "10 {name} Teratas";
 "Top 100 on AniList" = "100 Teratas di AniList";
+"Top Airing on MAL" = "Tayangan Teratas di MAL";
 "Top Movies" = "Film Teratas";
 "Top Movies on MAL" = "Film Teratas di MAL";
 "Top Picks for You" = "Pilihan Teratas untuk Anda";
 "Top Rated" = "Peringkat Tertinggi";
 "Top Rated Movies" = "Film Berperingkat Tertinggi";
 "Top Rated Series" = "Serial Berperingkat Tertinggi";
+"Top Rated on MAL" = "Peringkat Teratas di MAL";
 "Top Series" = "Serial Teratas";
 "Top Series on MAL" = "Serial Teratas di MAL";
 "Top of the screen" = "Bagian atas layar";

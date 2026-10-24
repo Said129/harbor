@@ -70,6 +70,8 @@ for language in languages:
     for key, label in spanish.items(): values.setdefault(label, values.get(key, label if code == 'es' else key))
     folder = output / f'{code}.lproj'; folder.mkdir(exist_ok=True)
     if a.only_label:
+        for key in a.only_label:
+            values.setdefault(key, english.get(source_by_value.get(key, key), key))
         existing = folder / 'Localizable.strings'
         old = existing.read_text('utf-8') if existing.exists() else ''
         preserved = {json.loads(key): json.loads(value) for key, value in re.findall(r'^("(?:[^"\\]|\\.)*") = ("(?:[^"\\]|\\.)*");$', old, re.M)}

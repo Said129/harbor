@@ -16,7 +16,8 @@ enum MALPublicCatalog {
                           "fields": "alternative_titles,mean,genres,nsfw,media_type,start_season,start_date,synopsis,status"]
         switch railID {
         case "anime-popular", "home-anime-popular": parameters["ranking_type"] = "bypopularity"
-        case "home-anime-airing": parameters["ranking_type"] = "airing"
+        case "home-anime-airing", "anime-top-airing": parameters["ranking_type"] = "airing"
+        case "anime-all-time": parameters["ranking_type"] = "all"
         case "anime-top-tv": parameters["ranking_type"] = "tv"
         case "anime-top-movies": parameters["ranking_type"] = "movie"
         case "anime-airing", "anime-upcoming", "home-anime-upcoming":

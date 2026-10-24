@@ -17,12 +17,8 @@ actor AnimeService {
         [DiscoveryRail(id: "anime-picks", title: "Top Picks for You", kind: "anime", path: "anime:picks"),
          DiscoveryRail(id: "anilist-trending", title: "Trending on AniList", kind: "anime", path: "anilist:TRENDING_DESC"),
          DiscoveryRail(id: "anilist-top100", title: "Top 100 on AniList", kind: "anime", path: "anilist:SCORE_DESC"),
-         DiscoveryRail(id: "anime-awards", title: "Award Winning Anime", kind: "anime", path: "anime:awards"),
-         DiscoveryRail(id: "anime-airing", title: "Airing Now", kind: "anime", path: "jikan:seasons/now"),
-         DiscoveryRail(id: "anime-upcoming", title: "Upcoming Season", kind: "anime", path: "jikan:seasons/upcoming"),
-         DiscoveryRail(id: "anime-top-tv", title: "Top Series on MAL", kind: "anime", path: "jikan:top/anime", parameters: ["type": "tv"]),
-         DiscoveryRail(id: "anime-top-movies", title: "Top Movies on MAL", kind: "anime", path: "jikan:top/anime", parameters: ["type": "movie"]),
-         DiscoveryRail(id: "anime-popular", title: "Most Popular on MAL", kind: "anime", path: "jikan:top/anime", parameters: ["filter": "bypopularity"])]
+         DiscoveryRail(id: "anime-awards", title: "Award Winning Anime", kind: "anime", path: "anime:awards")]
+            + ((try? DesktopAnimeRows.read().rows.map(\.rail)) ?? [])
     }
 
     static func homeDefinitions() -> [DiscoveryRail] {
@@ -124,6 +120,21 @@ actor AnimeService {
     }
 
     private func fetch(_ rail: DiscoveryRail, page: Int) async throws -> [Media] {
+        if rail.path.hasPrefix("desktop-anime:") {
+            let definitions = try DesktopAnimeRows.read()
+            guard let row = definitions.rows.first(where: { $0.id == rail.id && rail.path == "desktop-anime:" + $0.key }) else { throw HarborError(code: "anime-row-identity") }
+            if row.plans.count == 1 {
+                // Preserve the already working direct MAL transport for supported rankings/seasons.
+                if let direct = try? await MALPublicCatalog.page(rail, page: page, http: http) { return direct }
+                try Task.checkCancellation()
+            }
+            var raw: [JSONValue] = []
+            for plan in row.plans {
+                let query = try plan.request(page: page)
+                raw += try await fetchJikan(path: query.path, parameters: query.parameters)
+            }
+            return Self.unique(try definitions.filtered(raw, for: row).compactMap(Self.jikanMedia))
+        }
         if rail.path.hasPrefix("anilist:") {
             let top = rail.id == "anilist-top100"
             guard page <= (top ? 2 : 1) else { return [] }
@@ -164,18 +175,24 @@ actor AnimeService {
                 // Both transports read MAL. Retain Jikan when client-auth is unavailable.
                 try Task.checkCancellation()
             }
-            // Reserve a slot before suspension; concurrent rail requests cannot burst the API.
-            let delay = max(0, nextJikan.timeIntervalSinceNow)
-            nextJikan = Date().addingTimeInterval(delay + 0.45)
-            if delay > 0 { try await Task.sleep(for: .seconds(delay)) }
-            var url = URLComponents(string: "https://api.jikan.moe/v4/" + String(rail.path.dropFirst(6)))!
             var params = rail.parameters; params["page"] = String(page); params["sfw"] = "true"
-            url.queryItems = params.sorted { $0.key < $1.key }.map { URLQueryItem(name: $0.key, value: $0.value) }
-            let response = try await http.json(url.url!.absoluteString)
-            guard case .array(let values) = response["data"] else { throw HarborError(code: "anime-response") }
+            let values = try await fetchJikan(path: String(rail.path.dropFirst(6)), parameters: params)
             return Self.unique(values.compactMap(Self.jikanMedia))
         }
         throw HarborError(code: "anime-catalog")
+    }
+    private func fetchJikan(path: String, parameters: [String: String]) async throws -> [JSONValue] {
+        // Reserve before suspension so simultaneous genre/era rows respect provider limits.
+        let delay = max(0, nextJikan.timeIntervalSinceNow)
+        nextJikan = Date().addingTimeInterval(delay + 0.45)
+        if delay > 0 { try await Task.sleep(for: .seconds(delay)) }
+        try Task.checkCancellation()
+        var url = URLComponents(string: "https://api.jikan.moe/v4/" + path)!
+        var params = parameters; params["limit"] = "25"; params["sfw"] = "true"
+        url.queryItems = params.sorted { $0.key < $1.key }.map { URLQueryItem(name: $0.key, value: $0.value) }
+        let response = try await http.json(url.url!.absoluteString)
+        guard case .array(let values) = response["data"], values.count <= 25 else { throw HarborError(code: "anime-response") }
+        return values
     }
 
     func picks(records: [LibraryRecord]) async throws -> [Media] {
