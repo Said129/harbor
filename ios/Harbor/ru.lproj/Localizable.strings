@@ -19,6 +19,7 @@
 "A client for the Stremio protocol. Two minutes to set up; most of it optional. You stay in control of every key." = "Клиент для протокола Stremio. Две минуты на настройку, и почти всё – по желанию. Все ключи остаются под вашим контролем.";
 "A continuación" = "Далее";
 "AMC+" = "AMC+";
+"API key" = "API-ключ";
 "Abajo a la derecha" = "Снизу справа";
 "Abajo a la izquierda" = "Снизу слева";
 "About" = "О программе";
@@ -659,6 +660,7 @@
 "German" = "Немецкий";
 "Get Started" = "Начать";
 "Get a free key at themoviedb.org" = "Получить бесплатный ключ на themoviedb.org";
+"Get an API key" = "Получить ключ API";
 "Golf" = "Гольф";
 "Grand Prize" = "Гран-при";
 "Gray" = "Gray";
@@ -885,6 +887,7 @@
 "Mejor valorado en {site}" = "Лучшие по рейтингу на {site}";
 "Mes anterior" = "Предыдущий месяц";
 "Mes siguiente" = "Следующий месяц";
+"Metadata" = "Метаданные";
 "Metadata language" = "Язык метаданных";
 "Metadata providers" = "Провайдеры метаданных";
 "Mezclar sonido envolvente a estéreo" = "Сводить объёмный звук в стерео";
@@ -1861,6 +1864,13 @@
 "music.billboard.unavailable" = "Этот чарт здесь недоступен. Повторите попытку или откройте Billboard.";
 "music.billboard.world" = "Весь мир";
 "music.card.openItem" = "Открыть {title}";
+"music.credits.composer" = "Композитор";
+"music.credits.featured" = "Приглашённый исполнитель";
+"music.credits.lyricist" = "Автор текста";
+"music.credits.main" = "Основной исполнитель";
+"music.credits.performer" = "Исполнитель";
+"music.credits.producer" = "Продюсер";
+"music.credits.title" = "Участники записи";
 "music.detail.relatedArtists" = "Похожие исполнители";
 "music.discover" = "Обзор";
 "music.error.load" = "Не удалось загрузить музыку.";
@@ -1940,6 +1950,8 @@
 "music.genre.ukrainian-rap" = "Украинский рэп";
 "music.genre.ukrainian-wartime" = "Украинская музыка военного времени";
 "music.genre.west-coast-hip-hop" = "Хип-хоп Западного побережья";
+"music.lastfm.apiKey" = "Ключ API";
+"music.library.loadMore" = "Загрузить ещё";
 "music.loading" = "Загрузка музыки";
 "music.metadata.deezerFans" = "Поклонники на Deezer";
 "music.row.charts" = "Чарты";

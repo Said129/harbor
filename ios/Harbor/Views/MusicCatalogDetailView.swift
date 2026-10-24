@@ -3,6 +3,7 @@ import SwiftUI
 @MainActor struct MusicCatalogDetailView: View {
     let item: MusicCatalogItem
     let client: any MusicCatalogCalling
+    @Environment(\.musicArtistMetadata) private var artistMetadata
     @State private var model = MusicCatalogDetailModel()
     @State private var kind = MusicCatalogKind.tracks
     @State private var operation: Task<Void, Never>?
@@ -10,6 +11,9 @@ import SwiftUI
         ScrollView {
             LazyVStack(alignment: .leading, spacing: 24) {
                 heading
+                if case .track(let track) = item, let artistMetadata {
+                    MusicRecordingCreditsView(track: track, metadata: artistMetadata, catalog: client)
+                }
                 if item.isArtist {
                     Picker(DesktopInterfaceText.value("Catalog"), selection: $kind) {
                         Text(DesktopInterfaceText.value("Tracks")).tag(MusicCatalogKind.tracks)

@@ -17,6 +17,7 @@
 "A client for the Stremio protocol. Two minutes to set up; most of it optional. You stay in control of every key." = "Stremio 协议客户端。两分钟即可完成设置，其中大部分为可选项。所有密钥均由你掌控。";
 "A continuación" = "接下来播放";
 "AMC+" = "AMC+";
+"API key" = "API 密钥";
 "Abajo a la derecha" = "右下角";
 "Abajo a la izquierda" = "左下角";
 "About" = "关于";
@@ -654,6 +655,7 @@
 "German" = "德语";
 "Get Started" = "开始使用";
 "Get a free key at themoviedb.org" = "前往 themoviedb.org 获取免费密钥";
+"Get an API key" = "获取 API 密钥";
 "Golf" = "高尔夫";
 "Grand Prize" = "大奖";
 "Gray" = "Gray";
@@ -880,6 +882,7 @@
 "Mejor valorado en {site}" = "{site} 评分最高";
 "Mes anterior" = "上个月";
 "Mes siguiente" = "下个月";
+"Metadata" = "元数据";
 "Metadata language" = "元数据语言";
 "Metadata providers" = "元数据提供商";
 "Mezclar sonido envolvente a estéreo" = "将环绕声下混为立体声";
@@ -1846,6 +1849,13 @@
 "music.billboard.unavailable" = "此处无法获取该榜单。请重试或打开 Billboard。";
 "music.billboard.world" = "全球";
 "music.card.openItem" = "打开 {title}";
+"music.credits.composer" = "作曲";
+"music.credits.featured" = "合作艺人";
+"music.credits.lyricist" = "作词";
+"music.credits.main" = "主要艺人";
+"music.credits.performer" = "表演者";
+"music.credits.producer" = "制作人";
+"music.credits.title" = "制作人员";
 "music.detail.relatedArtists" = "相关艺人";
 "music.discover" = "发现";
 "music.error.load" = "无法加载音乐。";
@@ -1925,6 +1935,8 @@
 "music.genre.ukrainian-rap" = "乌克兰说唱";
 "music.genre.ukrainian-wartime" = "乌克兰战时音乐";
 "music.genre.west-coast-hip-hop" = "西海岸嘻哈";
+"music.lastfm.apiKey" = "API 密钥";
+"music.library.loadMore" = "加载更多";
 "music.loading" = "正在加载音乐";
 "music.metadata.deezerFans" = "Deezer 粉丝";
 "music.row.charts" = "排行榜";

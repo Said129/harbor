@@ -17,6 +17,7 @@
 "A client for the Stremio protocol. Two minutes to set up; most of it optional. You stay in control of every key." = "Klien untuk protokol Stremio. Hanya perlu dua menit untuk disiapkan; sebagian besar bersifat opsional. Anda tetap memegang kendali atas setiap kunci.";
 "A continuación" = "Berikutnya";
 "AMC+" = "AMC+";
+"API key" = "Kunci API";
 "Abajo a la derecha" = "Kanan bawah";
 "Abajo a la izquierda" = "Kiri bawah";
 "About" = "Tentang";
@@ -654,6 +655,7 @@
 "German" = "Jerman";
 "Get Started" = "Mulai";
 "Get a free key at themoviedb.org" = "Dapatkan kunci gratis di themoviedb.org";
+"Get an API key" = "Dapatkan kunci API";
 "Golf" = "Golf";
 "Grand Prize" = "Hadiah Utama";
 "Gray" = "Gray";
@@ -880,6 +882,7 @@
 "Mejor valorado en {site}" = "Peringkat teratas di {site}";
 "Mes anterior" = "Bulan sebelumnya";
 "Mes siguiente" = "Bulan depan";
+"Metadata" = "Metadata";
 "Metadata language" = "Bahasa metadata";
 "Metadata providers" = "Penyedia metadata";
 "Mezclar sonido envolvente a estéreo" = "Gabungkan suara surround menjadi stereo";
@@ -1846,6 +1849,13 @@
 "music.billboard.unavailable" = "Tangga lagu ini tidak tersedia di sini. Coba lagi atau buka Billboard.";
 "music.billboard.world" = "Seluruh dunia";
 "music.card.openItem" = "Buka {title}";
+"music.credits.composer" = "Komposer";
+"music.credits.featured" = "Artis tamu";
+"music.credits.lyricist" = "Penulis lirik";
+"music.credits.main" = "Artis utama";
+"music.credits.performer" = "Penampil";
+"music.credits.producer" = "Produser";
+"music.credits.title" = "Kredit";
 "music.detail.relatedArtists" = "Artis terkait";
 "music.discover" = "Temukan";
 "music.error.load" = "Musik tidak dapat dimuat.";
@@ -1925,6 +1935,8 @@
 "music.genre.ukrainian-rap" = "Rap Ukraina";
 "music.genre.ukrainian-wartime" = "Musik Ukraina masa perang";
 "music.genre.west-coast-hip-hop" = "Hip hop Pantai Barat";
+"music.lastfm.apiKey" = "Kunci API";
+"music.library.loadMore" = "Muat lagi";
 "music.loading" = "Memuat musik";
 "music.metadata.deezerFans" = "Penggemar di Deezer";
 "music.row.charts" = "Tangga lagu";

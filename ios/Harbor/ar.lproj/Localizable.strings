@@ -24,6 +24,7 @@
 "AFC Champions League Two" = "دوري أبطال آسيا 2";
 "AFC Women's Asian Cup" = "كأس آسيا للسيدات";
 "AMC+" = "AMC+";
+"API key" = "مفتاح API";
 "Abajo a la derecha" = "أسفل اليمين";
 "Abajo a la izquierda" = "أسفل اليسار";
 "About" = "حول";
@@ -679,6 +680,7 @@
 "German" = "الألمانية";
 "Get Started" = "ابدأ الآن";
 "Get a free key at themoviedb.org" = "احصل على مفتاح مجاني من themoviedb.org";
+"Get an API key" = "الحصول على مفتاح API";
 "Golf" = "الغولف";
 "Grand Prize" = "الجائزة الكبرى";
 "Gray" = "Gray";
@@ -905,6 +907,7 @@
 "Mejor valorado en {site}" = "الأعلى تقييمًا على {site}";
 "Mes anterior" = "الشهر السابق";
 "Mes siguiente" = "الشهر التالي";
+"Metadata" = "البيانات الوصفية";
 "Metadata language" = "لغة البيانات الوصفية";
 "Metadata providers" = "مزوّدو البيانات الوصفية";
 "Mezclar sonido envolvente a estéreo" = "دمج الصوت المحيطي إلى ستيريو (Stereo)";
@@ -1888,6 +1891,13 @@
 "music.billboard.unavailable" = "هذا المخطط غير متاح هنا. أعد المحاولة أو افتح Billboard.";
 "music.billboard.world" = "حول العالم";
 "music.card.openItem" = "فتح {title}";
+"music.credits.composer" = "الملحن";
+"music.credits.featured" = "الفنان الضيف";
+"music.credits.lyricist" = "كاتب الكلمات";
+"music.credits.main" = "الفنان الرئيسي";
+"music.credits.performer" = "المؤدي";
+"music.credits.producer" = "المنتج";
+"music.credits.title" = "فريق العمل";
 "music.detail.relatedArtists" = "فنانون ذوو صلة";
 "music.discover" = "اكتشف";
 "music.error.load" = "تعذر تحميل الموسيقى.";
@@ -1967,6 +1977,8 @@
 "music.genre.ukrainian-rap" = "الراب الأوكراني";
 "music.genre.ukrainian-wartime" = "موسيقى أوكرانية في زمن الحرب";
 "music.genre.west-coast-hip-hop" = "هيب هوب الساحل الغربي";
+"music.lastfm.apiKey" = "مفتاح API";
+"music.library.loadMore" = "تحميل المزيد";
 "music.loading" = "جارٍ تحميل الموسيقى";
 "music.metadata.deezerFans" = "متابعون على Deezer";
 "music.row.charts" = "القوائم";

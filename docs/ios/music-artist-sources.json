@@ -1,0 +1,31 @@
+{
+  "reference_version": "0.9.132",
+  "reference_commit": "0834340cec5531650bfe78cd628628702e636987",
+  "original_inputs": {
+    "src/lib/music/genre-catalog.ts": "6eb5559ccf2a8d1f1378f1fb105cbe9b45a6bd5328083e5962663fae75277a2a",
+    "src/lib/music/genre-artist-roster.ts": "c379ad5a13089ad94cf66f6e006fffe2d61f59fe1a272cefd6e451548e521f11",
+    "src/lib/music/recording-profile.ts": "df5a5b40d65999dbde38b5dd5b17c43166c71f32806b16184a521548c933cf45",
+    "src/lib/music/genre-insights.ts": "c03df7889ceeac1b39557ae0d7b9475cb3d3682750d5eb0e0940da0396d93af9",
+    "src/lib/music/artist-authority.ts": "22c9a4c64f39b2fc30afadd8ad0efad77e854d22369a83f0d15b1e9d3ebf1688",
+    "src/lib/music/artist-popularity.ts": "7d95c390711282cfd95062774305d475a8151c1e0a627d220de4baea7c3a94cc",
+    "src/lib/music/search-normalize.ts": "972d5f2778059adf59ee6d72a6c7f45012f371e93f3dac8dfa0dff2de7aac029",
+    "src/lib/cache.ts": "8e7016f707a788993b5d9e6763c03c26e318987a3fb91b905f8fbbdbb4fd9171",
+    "src/lib/music/lastfm.ts": "7d057374ff6796cac84df6c10878fa1bed16098ffa713b7d3a004735f51fd279"
+  },
+  "program_sha256": "5b27b579599bf357448882c9d0e49e93d76ecc8c5160df8728e116c8c8143b01",
+  "original_modules": 8,
+  "public_secret_key_identifier_only": "harbor.lastfm.v1.apiKey",
+  "preserved": [
+    "24-artist original tagged MusicBrainz roster and original returned-row cursor",
+    "MusicBrainz 1100ms scheduling and bounded metadata queue",
+    "30-minute roster and statistics cache",
+    "original authority and namesake resolution",
+    "three-at-a-time original statistics enrichment",
+    "original recording identity/ISRC/title-credit matching and attributed credits",
+    "recording consumer coalescing and source-specific cache TTLs"
+  ],
+  "generator_accesses_providers": false,
+  "generator_executes_apple_tests": false,
+  "contains_personal_api_key": false,
+  "full_music_parity_complete": false
+}

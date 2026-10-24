@@ -17,6 +17,7 @@
 "A client for the Stremio protocol. Two minutes to set up; most of it optional. You stay in control of every key." = "Klient protokołu Stremio. Konfiguracja zajmuje dwie minuty, a większość jej elementów jest opcjonalna. Każdy klucz pozostaje pod Twoją kontrolą.";
 "A continuación" = "Następny";
 "AMC+" = "AMC+";
+"API key" = "Klucz API";
 "Abajo a la derecha" = "Prawy dolny róg";
 "Abajo a la izquierda" = "Lewy dolny róg";
 "About" = "O aplikacji";
@@ -654,6 +655,7 @@
 "German" = "niemiecki";
 "Get Started" = "Rozpocznij";
 "Get a free key at themoviedb.org" = "Uzyskaj bezpłatny klucz na themoviedb.org";
+"Get an API key" = "Uzyskaj klucz API";
 "Golf" = "Golf";
 "Grand Prize" = "Nagroda główna";
 "Gray" = "Gray";
@@ -880,6 +882,7 @@
 "Mejor valorado en {site}" = "Najwyżej oceniane w {site}";
 "Mes anterior" = "Poprzedni miesiąc";
 "Mes siguiente" = "Następny miesiąc";
+"Metadata" = "Metadane";
 "Metadata language" = "Język metadanych";
 "Metadata providers" = "Dostawcy metadanych";
 "Mezclar sonido envolvente a estéreo" = "Miksuj dźwięk przestrzenny do stereo";
@@ -1846,6 +1849,13 @@
 "music.billboard.unavailable" = "Ta lista jest tutaj niedostępna. Spróbuj ponownie lub otwórz Billboard.";
 "music.billboard.world" = "Cały świat";
 "music.card.openItem" = "Otwórz {title}";
+"music.credits.composer" = "Kompozytor";
+"music.credits.featured" = "Artysta gościnny";
+"music.credits.lyricist" = "Autor tekstu";
+"music.credits.main" = "Główny artysta";
+"music.credits.performer" = "Wykonawca";
+"music.credits.producer" = "Producent";
+"music.credits.title" = "Twórcy";
 "music.detail.relatedArtists" = "Podobni wykonawcy";
 "music.discover" = "Odkrywaj";
 "music.error.load" = "Nie udało się wczytać muzyki.";
@@ -1925,6 +1935,8 @@
 "music.genre.ukrainian-rap" = "Ukraiński rap";
 "music.genre.ukrainian-wartime" = "Ukraińska muzyka czasu wojny";
 "music.genre.west-coast-hip-hop" = "Hip-hop Zachodniego Wybrzeża";
+"music.lastfm.apiKey" = "Klucz API";
+"music.library.loadMore" = "Wczytaj więcej";
 "music.loading" = "Wczytywanie muzyki";
 "music.metadata.deezerFans" = "Fani na Deezer";
 "music.row.charts" = "Listy przebojów";

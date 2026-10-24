@@ -17,6 +17,7 @@
 "A client for the Stremio protocol. Two minutes to set up; most of it optional. You stay in control of every key." = "Stremio 프로토콜용 클라이언트입니다. 설정에는 2분이면 충분하며 대부분은 선택 사항입니다. 모든 키는 사용자가 직접 관리합니다.";
 "A continuación" = "다음 콘텐츠";
 "AMC+" = "AMC+";
+"API key" = "API 키";
 "Abajo a la derecha" = "오른쪽 아래";
 "Abajo a la izquierda" = "왼쪽 아래";
 "About" = "정보";
@@ -654,6 +655,7 @@
 "German" = "독일어";
 "Get Started" = "시작하기";
 "Get a free key at themoviedb.org" = "themoviedb.org에서 무료 키 받기";
+"Get an API key" = "API 키 받기";
 "Golf" = "골프";
 "Grand Prize" = "대상";
 "Gray" = "Gray";
@@ -880,6 +882,7 @@
 "Mejor valorado en {site}" = "{site} 최고 평점 콘텐츠";
 "Mes anterior" = "이전 달";
 "Mes siguiente" = "다음 달";
+"Metadata" = "메타데이터";
 "Metadata language" = "메타데이터 언어";
 "Metadata providers" = "메타데이터 제공업체";
 "Mezclar sonido envolvente a estéreo" = "서라운드 사운드를 스테레오로 다운믹스";
@@ -1846,6 +1849,13 @@
 "music.billboard.unavailable" = "여기서는 이 차트를 볼 수 없습니다. 다시 시도하거나 Billboard를 여세요.";
 "music.billboard.world" = "전 세계";
 "music.card.openItem" = "{title} 열기";
+"music.credits.composer" = "작곡가";
+"music.credits.featured" = "피처링 아티스트";
+"music.credits.lyricist" = "작사가";
+"music.credits.main" = "주 아티스트";
+"music.credits.performer" = "연주자";
+"music.credits.producer" = "프로듀서";
+"music.credits.title" = "크레딧";
 "music.detail.relatedArtists" = "관련 아티스트";
 "music.discover" = "둘러보기";
 "music.error.load" = "음악을 불러올 수 없습니다.";
@@ -1925,6 +1935,8 @@
 "music.genre.ukrainian-rap" = "우크라이나 랩";
 "music.genre.ukrainian-wartime" = "우크라이나 전시 음악";
 "music.genre.west-coast-hip-hop" = "웨스트 코스트 힙합";
+"music.lastfm.apiKey" = "API 키";
+"music.library.loadMore" = "더 불러오기";
 "music.loading" = "음악 불러오는 중";
 "music.metadata.deezerFans" = "Deezer 팬";
 "music.row.charts" = "차트";

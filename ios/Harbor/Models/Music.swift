@@ -15,6 +15,7 @@ struct MusicTrack: Codable, Identifiable, Hashable, Sendable {
     var explicit: Bool?
     var version: String?
     var mediaKind: String?
+    var isrc: String?
 }
 struct LocalMusic: Codable, Identifiable, Hashable, Sendable {
     let track: MusicTrack

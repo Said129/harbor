@@ -22,6 +22,7 @@
 "AFC Champions League Two" = "Liga dos Campeões da AFC 2";
 "AFC Women's Asian Cup" = "Copa da Ásia Feminina";
 "AMC+" = "AMC+";
+"API key" = "Chave de API";
 "Abajo a la derecha" = "Inferior direito";
 "Abajo a la izquierda" = "Inferior esquerdo";
 "About" = "Sobre";
@@ -674,6 +675,7 @@
 "German" = "Alemão";
 "Get Started" = "Começar";
 "Get a free key at themoviedb.org" = "Obtenha uma chave gratuita em themoviedb.org";
+"Get an API key" = "Obter uma chave API";
 "Golf" = "Golfe";
 "Grand Prize" = "Grande Prêmio";
 "Gray" = "Gray";
@@ -900,6 +902,7 @@
 "Mejor valorado en {site}" = "Mais bem avaliados em {site}";
 "Mes anterior" = "Mês anterior";
 "Mes siguiente" = "Próximo mês";
+"Metadata" = "Metadados";
 "Metadata language" = "Idioma dos metadados";
 "Metadata providers" = "Provedores de metadados";
 "Mezclar sonido envolvente a estéreo" = "Converter som surround para estéreo";
@@ -1873,6 +1876,13 @@
 "music.billboard.unavailable" = "Esta parada não está disponível aqui. Tente novamente ou abra o Billboard.";
 "music.billboard.world" = "Mundial";
 "music.card.openItem" = "Abrir {title}";
+"music.credits.composer" = "Compositor";
+"music.credits.featured" = "Artista convidado";
+"music.credits.lyricist" = "Letrista";
+"music.credits.main" = "Artista principal";
+"music.credits.performer" = "Intérprete";
+"music.credits.producer" = "Produtor";
+"music.credits.title" = "Créditos";
 "music.detail.relatedArtists" = "Artistas relacionados";
 "music.discover" = "Descobrir";
 "music.error.load" = "Não foi possível carregar as músicas.";
@@ -1952,6 +1962,8 @@
 "music.genre.ukrainian-rap" = "Rap ucraniano";
 "music.genre.ukrainian-wartime" = "Música ucraniana em tempos de guerra";
 "music.genre.west-coast-hip-hop" = "Hip-hop da Costa Oeste";
+"music.lastfm.apiKey" = "Chave da API";
+"music.library.loadMore" = "Carregar mais";
 "music.loading" = "Carregando músicas";
 "music.metadata.deezerFans" = "Fãs no Deezer";
 "music.row.charts" = "Paradas";

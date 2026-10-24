@@ -17,6 +17,7 @@
 "A client for the Stremio protocol. Two minutes to set up; most of it optional. You stay in control of every key." = "Stremio प्रोटोकॉल के लिए एक क्लाइंट। सेटअप में दो मिनट लगते हैं; ज़्यादातर चीज़ें वैकल्पिक हैं। हर कुंजी का नियंत्रण आपके पास रहता है।";
 "A continuación" = "इसके बाद";
 "AMC+" = "AMC+";
+"API key" = "API कुंजी";
 "Abajo a la derecha" = "नीचे दाएँ";
 "Abajo a la izquierda" = "नीचे बाएँ";
 "About" = "इसके बारे में";
@@ -654,6 +655,7 @@
 "German" = "जर्मन";
 "Get Started" = "शुरू करें";
 "Get a free key at themoviedb.org" = "themoviedb.org पर मुफ़्त कुंजी पाएँ";
+"Get an API key" = "API कुंजी प्राप्त करें";
 "Golf" = "गोल्फ़";
 "Grand Prize" = "महापुरस्कार";
 "Gray" = "Gray";
@@ -880,6 +882,7 @@
 "Mejor valorado en {site}" = "{site} पर सर्वाधिक रेटिंग वाले";
 "Mes anterior" = "पिछला महीना";
 "Mes siguiente" = "अगला महीना";
+"Metadata" = "मेटाडेटा";
 "Metadata language" = "मेटाडेटा भाषा";
 "Metadata providers" = "मेटाडेटा प्रदाता";
 "Mezclar sonido envolvente a estéreo" = "सराउंड साउंड को स्टीरियो में मिक्स करें";
@@ -1846,6 +1849,13 @@
 "music.billboard.unavailable" = "यह चार्ट यहाँ उपलब्ध नहीं है। दोबारा कोशिश करें या Billboard खोलें।";
 "music.billboard.world" = "दुनिया भर";
 "music.card.openItem" = "{title} खोलें";
+"music.credits.composer" = "संगीतकार";
+"music.credits.featured" = "अतिथि कलाकार";
+"music.credits.lyricist" = "गीतकार";
+"music.credits.main" = "मुख्य कलाकार";
+"music.credits.performer" = "प्रस्तुतकर्ता";
+"music.credits.producer" = "निर्माता";
+"music.credits.title" = "श्रेय";
 "music.detail.relatedArtists" = "संबंधित कलाकार";
 "music.discover" = "खोजें";
 "music.error.load" = "संगीत लोड नहीं हो सका।";
@@ -1925,6 +1935,8 @@
 "music.genre.ukrainian-rap" = "यूक्रेनी रैप";
 "music.genre.ukrainian-wartime" = "युद्धकालीन यूक्रेनी संगीत";
 "music.genre.west-coast-hip-hop" = "वेस्ट कोस्ट हिप हॉप";
+"music.lastfm.apiKey" = "API कुंजी";
+"music.library.loadMore" = "और लोड करें";
 "music.loading" = "संगीत लोड हो रहा है";
 "music.metadata.deezerFans" = "Deezer प्रशंसक";
 "music.row.charts" = "चार्ट";

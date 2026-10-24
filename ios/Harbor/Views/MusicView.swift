@@ -14,6 +14,8 @@ struct MusicView: View {
     @State private var catalog: MusicCatalogModel
     @State private var explore: MusicExploreModel
     @State private var billboard: MusicBillboardClient
+    @State private var artistMetadata: MusicArtistClient
+    @State private var metadataSettings = false
     @AppStorage("harbor.music.genres.explore.v1") private var genreFiltersRaw = "{}"
     @MainActor init(app: AppModel) {
         self.app = app
@@ -25,6 +27,9 @@ struct MusicView: View {
             app?.pluginExecutionScope ?? .init(owner: "locked", activation: scope.activation)
         })))
         _billboard = State(initialValue: MusicBillboardClient(scope: scope, currentScope: { [weak app] in
+            app?.pluginExecutionScope ?? .init(owner: "locked", activation: scope.activation)
+        }))
+        _artistMetadata = State(initialValue: MusicArtistClient(scope: scope, currentScope: { [weak app] in
             app?.pluginExecutionScope ?? .init(owner: "locked", activation: scope.activation)
         }))
         MusicCollections.shared.prepare(owner: app.personalOwner)
@@ -72,10 +77,13 @@ struct MusicView: View {
             .onSubmit(of: .search) { UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil) }
             .toolbar { ToolbarItem(placement: .topBarTrailing) {
                 Menu {
+                    Button { metadataSettings = true } label: { Label(DesktopInterfaceText.value("Metadata"), systemImage: "info.circle") }.accessibilityIdentifier("music-metadata-open")
                     Button { openImport(folder: false) } label: { Label("Importar archivos", image: "music-plus") }
                     Button { openImport(folder: true) } label: { Label("Importar carpeta", image: "music-folder-open") }
-                } label: { MusicGlyph("plus").frame(width: 44, height: 44) }.accessibilityLabel("Importar música").disabled(!library.ready || library.importing)
+                } label: { MusicGlyph("plus").frame(width: 44, height: 44) }.accessibilityLabel("Importar música").accessibilityIdentifier("music-actions").disabled(!library.ready || library.importing)
             } }
+            .sheet(isPresented: $metadataSettings) { MusicMetadataSettingsView(client: artistMetadata) }
+            .environment(\.musicArtistMetadata, artistMetadata)
             .fileImporter(isPresented: $importFiles, allowedContentTypes: selectFolder ? [.folder] : [.audio, .data], allowsMultipleSelection: !selectFolder) { result in
                 switch result {
                 case .success(let urls):
@@ -85,7 +93,7 @@ struct MusicView: View {
                 case .failure: library.error = "No se pudo abrir la selección de archivos."
                 }
             }
-            .onDisappear { if library.owner != (app.personalOwner) { library.cancelImport(); explore.dispose(); billboard.dispose() } }
+            .onDisappear { if artistMetadata.scope != app.pluginExecutionScope { library.cancelImport(); explore.dispose(); billboard.dispose(); artistMetadata.dispose() } }
             .accessibilityElement(children: .contain).accessibilityIdentifier("music-library")
     }
     private var localLibrary: some View {

@@ -17,6 +17,7 @@
 "A client for the Stremio protocol. Two minutes to set up; most of it optional. You stay in control of every key." = "Un client pour le protocole Stremio. Deux minutes suffisent pour le configurer, et presque tout est facultatif. Vous gardez le contrôle de chaque clé.";
 "A continuación" = "À suivre";
 "AMC+" = "AMC+";
+"API key" = "Clé API";
 "Abajo a la derecha" = "En bas à droite";
 "Abajo a la izquierda" = "En bas à gauche";
 "About" = "À propos";
@@ -654,6 +655,7 @@
 "German" = "Allemand";
 "Get Started" = "Commencer";
 "Get a free key at themoviedb.org" = "Obtenez une clé gratuite sur themoviedb.org";
+"Get an API key" = "Obtenir une clé API";
 "Golf" = "Golf";
 "Grand Prize" = "Grand Prix";
 "Gray" = "Gray";
@@ -880,6 +882,7 @@
 "Mejor valorado en {site}" = "Les mieux notés sur {site}";
 "Mes anterior" = "Mois précédent";
 "Mes siguiente" = "Mois prochain";
+"Metadata" = "Métadonnées";
 "Metadata language" = "Langue des métadonnées";
 "Metadata providers" = "Fournisseurs de métadonnées";
 "Mezclar sonido envolvente a estéreo" = "Réduire le son surround en stéréo";
@@ -1846,6 +1849,13 @@
 "music.billboard.unavailable" = "Ce classement est indisponible ici. Réessayez ou ouvrez Billboard.";
 "music.billboard.world" = "Monde";
 "music.card.openItem" = "Ouvrir {title}";
+"music.credits.composer" = "Compositeur";
+"music.credits.featured" = "Artiste invité";
+"music.credits.lyricist" = "Parolier";
+"music.credits.main" = "Artiste principal";
+"music.credits.performer" = "Interprète";
+"music.credits.producer" = "Producteur";
+"music.credits.title" = "Crédits";
 "music.detail.relatedArtists" = "Artistes similaires";
 "music.discover" = "Découvrir";
 "music.error.load" = "Impossible de charger la musique.";
@@ -1925,6 +1935,8 @@
 "music.genre.ukrainian-rap" = "Rap ukrainien";
 "music.genre.ukrainian-wartime" = "Musique ukrainienne en temps de guerre";
 "music.genre.west-coast-hip-hop" = "Hip-hop de la côte Ouest";
+"music.lastfm.apiKey" = "Clé API";
+"music.library.loadMore" = "Charger plus";
 "music.loading" = "Chargement de la musique";
 "music.metadata.deezerFans" = "Fans sur Deezer";
 "music.row.charts" = "Classements";

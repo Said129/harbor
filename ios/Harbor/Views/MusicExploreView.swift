@@ -105,6 +105,7 @@ import SwiftUI
     let genre: MusicGenre
     let explore: MusicExploreModel
     let catalog: any MusicCatalogCalling
+    @Environment(\.musicArtistMetadata) private var artistMetadata
     @State private var model = MusicGenreModel()
     @State private var revision = 0
     @State private var moreTask: Task<Void, Never>?
@@ -148,7 +149,9 @@ import SwiftUI
                             }
                         }.padding(.horizontal, 18)
                     }
-                    rail(selection.artists, title: "music.explore.sceneArtists", layout: .circles)
+                    if let artistMetadata {
+                        MusicGenreArtistsView(genre: genre, known: selection.artists.compactMap { if case .artist(let artist) = $0 { artist } else { nil } }, metadata: artistMetadata, catalog: catalog)
+                    } else { rail(selection.artists, title: "music.explore.sceneArtists", layout: .circles) }
                     rail(selection.albums ?? [], title: "music.explore.sceneAlbums", layout: .covers)
                     rail(selection.playlists ?? [], title: "music.search.playlists", layout: .covers)
                     if selection.tracks.isEmpty && selection.artists.isEmpty && (selection.playlists ?? []).isEmpty && !model.loading {

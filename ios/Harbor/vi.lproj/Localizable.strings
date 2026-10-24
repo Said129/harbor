@@ -17,6 +17,7 @@
 "A client for the Stremio protocol. Two minutes to set up; most of it optional. You stay in control of every key." = "Ứng dụng khách cho giao thức Stremio. Chỉ mất hai phút để thiết lập; hầu hết đều không bắt buộc. Bạn luôn toàn quyền kiểm soát mọi khóa.";
 "A continuación" = "Tiếp theo";
 "AMC+" = "AMC+";
+"API key" = "Khóa API";
 "Abajo a la derecha" = "Dưới cùng bên phải";
 "Abajo a la izquierda" = "Dưới cùng bên trái";
 "About" = "Giới thiệu";
@@ -654,6 +655,7 @@
 "German" = "Tiếng Đức";
 "Get Started" = "Bắt đầu";
 "Get a free key at themoviedb.org" = "Nhận khóa miễn phí tại themoviedb.org";
+"Get an API key" = "Lấy khóa API";
 "Golf" = "Golf";
 "Grand Prize" = "Giải thưởng lớn";
 "Gray" = "Gray";
@@ -880,6 +882,7 @@
 "Mejor valorado en {site}" = "Được đánh giá cao nhất trên {site}";
 "Mes anterior" = "Tháng trước";
 "Mes siguiente" = "Tháng sau";
+"Metadata" = "Siêu dữ liệu";
 "Metadata language" = "Ngôn ngữ siêu dữ liệu";
 "Metadata providers" = "Nhà cung cấp siêu dữ liệu";
 "Mezclar sonido envolvente a estéreo" = "Trộn âm thanh vòm xuống stereo";
@@ -1846,6 +1849,13 @@
 "music.billboard.unavailable" = "Không thể xem bảng xếp hạng này tại đây. Thử lại hoặc mở Billboard.";
 "music.billboard.world" = "Toàn cầu";
 "music.card.openItem" = "Mở {title}";
+"music.credits.composer" = "Nhạc sĩ sáng tác";
+"music.credits.featured" = "Nghệ sĩ khách mời";
+"music.credits.lyricist" = "Người viết lời";
+"music.credits.main" = "Nghệ sĩ chính";
+"music.credits.performer" = "Người biểu diễn";
+"music.credits.producer" = "Nhà sản xuất";
+"music.credits.title" = "Đội ngũ thực hiện";
 "music.detail.relatedArtists" = "Nghệ sĩ liên quan";
 "music.discover" = "Khám phá";
 "music.error.load" = "Không thể tải nhạc.";
@@ -1925,6 +1935,8 @@
 "music.genre.ukrainian-rap" = "Rap Ukraina";
 "music.genre.ukrainian-wartime" = "Nhạc Ukraina thời chiến";
 "music.genre.west-coast-hip-hop" = "Hip hop Bờ Tây";
+"music.lastfm.apiKey" = "Khóa API";
+"music.library.loadMore" = "Tải thêm";
 "music.loading" = "Đang tải nhạc";
 "music.metadata.deezerFans" = "Người hâm mộ trên Deezer";
 "music.row.charts" = "Bảng xếp hạng";

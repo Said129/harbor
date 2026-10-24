@@ -23,6 +23,13 @@ import XCTest
     }
 }
 @MainActor final class MusicBillboardModelTests: XCTestCase {
+    func testEmptySearchShowsEveryPublishedRankBeforeFilteringAndAfterClearingSearch() async throws {
+        let client = ControlledBillboard(), model = MusicBillboardModel(); model.select("billboard-200")
+        await model.load(client: client)
+        XCTAssertEqual(model.query, ""); XCTAssertEqual(model.entries(locale: .init(identifier: "en")).map(\.rank), [1, 17])
+        model.query = "SECOND ARTIST"; XCTAssertEqual(model.entries(locale: .init(identifier: "en")).map(\.rank), [17])
+        model.query = ""; XCTAssertEqual(model.entries(locale: .init(identifier: "en")).map(\.rank), [1, 17])
+    }
     func testChangingChartAndCountryDiscardsLateRankingAndResolutionAndKeepsPublishedRanksDuringSearch() async throws {
         let client = ControlledBillboard(), model = MusicBillboardModel()
         let old = Task { await model.load(client: client) }

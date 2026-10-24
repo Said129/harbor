@@ -28,6 +28,7 @@ import Observation
     }
     func entries(locale: Locale) -> [MusicBillboardRanking.Entry] {
         let wanted = query.lowercased(with: locale)
+        if wanted.isEmpty { return ranking?.entries ?? [] }
         return ranking?.entries.filter { entry in
             let item = entry.item
             return (item.title + " " + (item.isArtist ? "" : item.subtitle ?? "")).lowercased(with: locale).contains(wanted)

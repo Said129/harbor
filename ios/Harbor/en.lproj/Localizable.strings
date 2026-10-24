@@ -6,6 +6,7 @@
 "2.º" = "2nd";
 "2nd" = "2nd";
 "A continuación" = "Up Next";
+"API key" = "API key";
 "Abajo a la derecha" = "Bottom right";
 "Abajo a la izquierda" = "Bottom left";
 "About" = "About";
@@ -519,6 +520,7 @@
 "Full HD · HDR" = "Full HD · HDR";
 "Gamma" = "Gamma";
 "Genre" = "Genre";
+"Get an API key" = "Get an API key";
 "Gray" = "Gray";
 "Gris" = "Gray";
 "Grosor del contorno" = "Outline thickness";
@@ -698,6 +700,7 @@
 "Mejor valorado en {site}" = "Top rated on {site}";
 "Mes anterior" = "Previous month";
 "Mes siguiente" = "Next month";
+"Metadata" = "Metadata";
 "Metadata language" = "Metadata language";
 "Metadata providers" = "Metadata providers";
 "Mezclar sonido envolvente a estéreo" = "Mix surround sound down to stereo";
@@ -1010,6 +1013,7 @@
 "Remove from this library" = "Remove from this library";
 "Remove saved book" = "Remove saved book";
 "Remove {language}" = "Remove {language}";
+"Removed" = "Removed";
 "Rename" = "Rename";
 "Rename row" = "Rename row";
 "Rename {name}" = "Rename {name}";
@@ -1456,6 +1460,13 @@
 "music.billboard.unavailable" = "This chart is unavailable here. Retry or open Billboard.";
 "music.billboard.world" = "Worldwide";
 "music.card.openItem" = "Open {title}";
+"music.credits.composer" = "Composer";
+"music.credits.featured" = "Featured artist";
+"music.credits.lyricist" = "Lyricist";
+"music.credits.main" = "Main artist";
+"music.credits.performer" = "Performer";
+"music.credits.producer" = "Producer";
+"music.credits.title" = "Credits";
 "music.detail.relatedArtists" = "Related artists";
 "music.discover" = "Discover";
 "music.error.load" = "Music could not load.";
@@ -1539,6 +1550,9 @@
 "music.genre.ukrainian-rap" = "Ukrainian rap";
 "music.genre.ukrainian-wartime" = "Ukrainian wartime music";
 "music.genre.west-coast-hip-hop" = "West Coast hip hop";
+"music.lastfm.apiKey" = "API key";
+"music.lastfm.getKey" = "Get an API key";
+"music.library.loadMore" = "Load more";
 "music.loading" = "Loading music";
 "music.metadata.deezerFans" = "Deezer fans";
 "music.row.charts" = "Charts";

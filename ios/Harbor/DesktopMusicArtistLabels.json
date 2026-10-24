@@ -1,0 +1,28 @@
+{
+  "keys": [
+    "API key",
+    "Done",
+    "Get an API key",
+    "Loading",
+    "Metadata",
+    "Remove",
+    "Removed",
+    "Retry",
+    "Save",
+    "Saved",
+    "music.credits.composer",
+    "music.credits.featured",
+    "music.credits.lyricist",
+    "music.credits.main",
+    "music.credits.performer",
+    "music.credits.producer",
+    "music.credits.title",
+    "music.error.load",
+    "music.explore.listeners",
+    "music.explore.sceneArtists",
+    "music.explore.scrobbles",
+    "music.lastfm.apiKey",
+    "music.library.loadMore",
+    "music.metadata.deezerFans"
+  ]
+}

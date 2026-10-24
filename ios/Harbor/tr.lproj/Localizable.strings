@@ -17,6 +17,7 @@
 "A client for the Stremio protocol. Two minutes to set up; most of it optional. You stay in control of every key." = "Stremio protokolü için bir istemci. Kurulumu iki dakika sürer ve çoğu adım isteğe bağlıdır. Her anahtarın kontrolü sizde kalır.";
 "A continuación" = "Sıradaki";
 "AMC+" = "AMC+";
+"API key" = "API anahtarı";
 "Abajo a la derecha" = "Sağ alt";
 "Abajo a la izquierda" = "Sol alt";
 "About" = "Hakkında";
@@ -654,6 +655,7 @@
 "German" = "Almanca";
 "Get Started" = "Başlayın";
 "Get a free key at themoviedb.org" = "themoviedb.org adresinden ücretsiz anahtar alın";
+"Get an API key" = "API anahtarı al";
 "Golf" = "Golf";
 "Grand Prize" = "Büyük Ödül";
 "Gray" = "Gray";
@@ -880,6 +882,7 @@
 "Mejor valorado en {site}" = "{site} üzerinde en yüksek puan alanlar";
 "Mes anterior" = "Önceki ay";
 "Mes siguiente" = "Sonraki ay";
+"Metadata" = "Meta veriler";
 "Metadata language" = "Meta veri dili";
 "Metadata providers" = "Meta veri sağlayıcıları";
 "Mezclar sonido envolvente a estéreo" = "Çevresel sesi stereoya indirge";
@@ -1846,6 +1849,13 @@
 "music.billboard.unavailable" = "Bu liste burada kullanılamıyor. Tekrar deneyin veya Billboard’u açın.";
 "music.billboard.world" = "Dünya çapında";
 "music.card.openItem" = "{title} aç";
+"music.credits.composer" = "Besteci";
+"music.credits.featured" = "Konuk sanatçı";
+"music.credits.lyricist" = "Söz yazarı";
+"music.credits.main" = "Ana sanatçı";
+"music.credits.performer" = "İcracı";
+"music.credits.producer" = "Yapımcı";
+"music.credits.title" = "Emeği geçenler";
 "music.detail.relatedArtists" = "Benzer sanatçılar";
 "music.discover" = "Keşfet";
 "music.error.load" = "Müzik yüklenemedi.";
@@ -1925,6 +1935,8 @@
 "music.genre.ukrainian-rap" = "Ukrayna rap";
 "music.genre.ukrainian-wartime" = "Savaş döneminde Ukrayna müziği";
 "music.genre.west-coast-hip-hop" = "Batı Yakası hip hop";
+"music.lastfm.apiKey" = "API anahtarı";
+"music.library.loadMore" = "Daha fazla yükle";
 "music.loading" = "Müzik yükleniyor";
 "music.metadata.deezerFans" = "Deezer hayranları";
 "music.row.charts" = "Listeler";

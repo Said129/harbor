@@ -17,6 +17,7 @@
 "A client for the Stremio protocol. Two minutes to set up; most of it optional. You stay in control of every key." = "Stremioプロトコル対応クライアント。設定は2分ほどで、ほとんどの項目は任意です。すべてのキーをご自身で管理できます。";
 "A continuación" = "次のエピソード";
 "AMC+" = "AMC+";
+"API key" = "APIキー";
 "Abajo a la derecha" = "右下";
 "Abajo a la izquierda" = "左下";
 "About" = "Harborについて";
@@ -654,6 +655,7 @@
 "German" = "ドイツ語";
 "Get Started" = "はじめる";
 "Get a free key at themoviedb.org" = "themoviedb.orgで無料キーを取得";
+"Get an API key" = "APIキーを取得";
 "Golf" = "ゴルフ";
 "Grand Prize" = "大賞";
 "Gray" = "Gray";
@@ -880,6 +882,7 @@
 "Mejor valorado en {site}" = "{site}で高評価";
 "Mes anterior" = "前の月";
 "Mes siguiente" = "次の月";
+"Metadata" = "メタデータ";
 "Metadata language" = "メタデータの言語";
 "Metadata providers" = "メタデータプロバイダー";
 "Mezclar sonido envolvente a estéreo" = "サラウンド音声をステレオにダウンミックス";
@@ -1846,6 +1849,13 @@
 "music.billboard.unavailable" = "このチャートはここでは利用できません。再試行するかBillboardを開いてください。";
 "music.billboard.world" = "世界";
 "music.card.openItem" = "{title}を開く";
+"music.credits.composer" = "作曲";
+"music.credits.featured" = "参加アーティスト";
+"music.credits.lyricist" = "作詞";
+"music.credits.main" = "メインアーティスト";
+"music.credits.performer" = "演奏者";
+"music.credits.producer" = "プロデューサー";
+"music.credits.title" = "クレジット";
 "music.detail.relatedArtists" = "関連アーティスト";
 "music.discover" = "見つける";
 "music.error.load" = "音楽を読み込めませんでした。";
@@ -1925,6 +1935,8 @@
 "music.genre.ukrainian-rap" = "ウクライナラップ";
 "music.genre.ukrainian-wartime" = "ウクライナの戦時音楽";
 "music.genre.west-coast-hip-hop" = "西海岸ヒップホップ";
+"music.lastfm.apiKey" = "APIキー";
+"music.library.loadMore" = "さらに読み込む";
 "music.loading" = "音楽を読み込み中";
 "music.metadata.deezerFans" = "Deezerのファン";
 "music.row.charts" = "チャート";
