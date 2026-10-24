@@ -230,6 +230,7 @@
 "Blur titles" = "تمويه العناوين";
 "Bold text" = "نص عريض";
 "Book" = "كتاب";
+"Book metadata" = "بيانات الكتاب الوصفية";
 "Bookmarks" = "الإشارات المرجعية";
 "Books" = "الكتب";
 "Books you open and import appear here." = "Books you open and import appear here.";
@@ -273,6 +274,8 @@
 "Búsquedas recientes" = "عمليات البحث الأخيرة";
 "CAF Champions League" = "دوري أبطال أفريقيا";
 "CAF Confederation Cup" = "كأس الكونفدرالية الأفريقية";
+"Cache" = "الذاكرة المؤقتة";
+"Cache cleared" = "تم مسح ذاكرة التخزين المؤقت";
 "Cached" = "مخزن مؤقتا";
 "Caches" = "الذواكر المؤقتة";
 "Calendar" = "التقويم";
@@ -342,6 +345,8 @@
 "Clave de API de TMDB (v3)" = "مفتاح API لـ TMDB (v3)";
 "Clave de API v3" = "مفتاح API الإصدار 3";
 "Clear all" = "مسح الكل";
+"Clear cache" = "مسح التخزين المؤقت الآن";
+"Clear cache now" = "مسح التخزين المؤقت الآن";
 "Clear caches" = "مسح الذواكر المؤقتة";
 "Clear filters" = "مسح المرشّحات";
 "Clear image cache" = "Clear image cache";
@@ -799,6 +804,7 @@
 "Interface" = "الواجهة";
 "Interfaz" = "الواجهة";
 "Interfaz del sistema" = "واجهة النظام";
+"Interlineado" = "ارتفاع السطر";
 "It is not affiliated with the maker of {product}, or with any company, addon author, or trademark holder referenced inside the app." = "لا يرتبط بصانع {product} ولا بأي شركة أو مطوّر إضافة أو مالك علامة تجارية مذكور داخل التطبيق.";
 "It is not affiliated with, endorsed by, sponsored by, or in any way associated with {company}." = "لا يرتبط بـ {company} ولا يحظى بتأييدها أو رعايتها أو بأي صلة بها.";
 "Italian" = "الإيطالية";
@@ -836,6 +842,7 @@
 "Light" = "فاتح";
 "Limited Series & Miniseries" = "مسلسلات محدودة وقصيرة";
 "Limpiar filtros" = "مسح المرشّحات";
+"Line height" = "ارتفاع السطر";
 "Lines" = "Lines";
 "List" = "قائمة";
 "Lista" = "قائمة";
@@ -888,6 +895,7 @@
 "Mantener la pantalla encendida" = "Keep screen awake";
 "Marcadores" = "الإشارات المرجعية";
 "Marcar como leído" = "Mark as read";
+"Margins" = "الهوامش";
 "Mark as read" = "Mark as read";
 "Mark watched button" = "زر التحديد كمُشاهَد";
 "Max" = "الأقصى";
@@ -954,6 +962,7 @@
 "My Library" = "مكتبتي";
 "My channels" = "My channels";
 "Mystery" = "غموض";
+"Márgenes" = "الهوامش";
 "Más leídos del momento" = "Popular reads";
 "Más suave y tenue, ideal para ver por la noche." = "أكثر نعومة وخفوتًا، ألطف للمشاهدة في وقت متأخر من الليل.";
 "Música" = "الموسيقى";
@@ -1295,6 +1304,7 @@
 "Remove from this library" = "Remove from this library";
 "Remove saved book" = "Remove saved book";
 "Remove {language}" = "إزالة {language}";
+"Removed" = "تمت الإزالة";
 "Rename" = "إعادة تسمية";
 "Rename row" = "إعادة تسمية الصف";
 "Rename {name}" = "أعِد تسمية {name}";

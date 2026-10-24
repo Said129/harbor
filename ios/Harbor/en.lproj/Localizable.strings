@@ -160,6 +160,7 @@
 "Blur titles" = "Blur titles";
 "Bold text" = "Bold text";
 "Book" = "Book";
+"Book metadata" = "Book metadata";
 "Bookmarks" = "Bookmarks";
 "Books" = "Books";
 "Books you open and import appear here." = "Books you open and import appear here.";
@@ -192,6 +193,7 @@
 "Buscar subtítulos de nuevo" = "Search subtitles again";
 "Búfer" = "Buffer";
 "Búsquedas recientes" = "Recent searches";
+"Cache cleared" = "Cache cleared";
 "Cached" = "Cached";
 "Calendar" = "Calendar";
 "Calendario" = "Calendar";
@@ -248,6 +250,8 @@
 "Clave de API de TMDB (v3)" = "TMDB API key (v3)";
 "Clave de API v3" = "v3 API key";
 "Clear all" = "Clear all";
+"Clear cache" = "Clear cache now";
+"Clear cache now" = "Clear cache now";
 "Clear filters" = "Clear filters";
 "Clear image cache" = "Clear image cache";
 "Clear search" = "Clear search";
@@ -616,6 +620,7 @@
 "Interface" = "Interface";
 "Interfaz" = "Interface";
 "Interfaz del sistema" = "System UI";
+"Interlineado" = "Line height";
 "Izquierda" = "Left";
 "Izquierda a derecha" = "Left to right";
 "Just added" = "Just added";
@@ -643,6 +648,7 @@
 "Lifts shadows so the pitch-black scenes are actually watchable." = "Lifts shadows so the pitch-black scenes are actually watchable.";
 "Light" = "Light";
 "Limpiar filtros" = "Clear filters";
+"Line height" = "Line height";
 "Lines" = "Lines";
 "List" = "List";
 "Lista" = "List";
@@ -685,6 +691,7 @@
 "Mantener la pantalla encendida" = "Keep screen awake";
 "Marcadores" = "Bookmarks";
 "Marcar como leído" = "Mark as read";
+"Margins" = "Margins";
 "Mark as read" = "Mark as read";
 "Mark watched button" = "Mark watched button";
 "Mejor valorado" = "Top rated";
@@ -741,6 +748,7 @@
 "My Library" = "My Library";
 "My channels" = "My channels";
 "Mystery" = "Mystery";
+"Márgenes" = "Margins";
 "Más leídos del momento" = "Popular reads";
 "Más suave y tenue, ideal para ver por la noche." = "Softer and dimmer, kinder for late-night watching.";
 "Música" = "Music";

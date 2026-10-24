@@ -222,6 +222,7 @@
 "Blur titles" = "Размывать названия";
 "Bold text" = "Жирный текст";
 "Book" = "Книга";
+"Book metadata" = "Метаданные книги";
 "Bookmarks" = "Закладки";
 "Books" = "Книги";
 "Books you open and import appear here." = "Books you open and import appear here.";
@@ -261,6 +262,8 @@
 "Buscar subtítulos de nuevo" = "Search subtitles again";
 "Búfer" = "Buffer";
 "Búsquedas recientes" = "Недавние запросы";
+"Cache" = "Кэш";
+"Cache cleared" = "Кэш очищен";
 "Cached" = "В кеше";
 "Caches" = "Кэши";
 "Calendar" = "Календарь";
@@ -326,6 +329,8 @@
 "Clave de API de TMDB (v3)" = "Ключ API TMDB (v3)";
 "Clave de API v3" = "Ключ API v3";
 "Clear all" = "Очистить всё";
+"Clear cache" = "Очистить кэш сейчас";
+"Clear cache now" = "Очистить кэш сейчас";
 "Clear caches" = "Очистить кэши";
 "Clear filters" = "Сбросить фильтры";
 "Clear image cache" = "Clear image cache";
@@ -779,6 +784,7 @@
 "Interface" = "Интерфейс";
 "Interfaz" = "Интерфейс";
 "Interfaz del sistema" = "System UI";
+"Interlineado" = "Межстрочный интервал";
 "It is not affiliated with the maker of {product}, or with any company, addon author, or trademark holder referenced inside the app." = "Он не связан с создателем {product}, а также с компаниями, авторами дополнений или правообладателями товарных знаков, упомянутыми в приложении.";
 "It is not affiliated with, endorsed by, sponsored by, or in any way associated with {company}." = "Он не связан с {company}, не одобрен и не спонсируется этой компанией и не имеет к ней никакого отношения.";
 "Italian" = "Итальянский";
@@ -816,6 +822,7 @@
 "Light" = "Светлая";
 "Limited Series & Miniseries" = "Лимитированные и мини-сериалы";
 "Limpiar filtros" = "Сбросить фильтры";
+"Line height" = "Межстрочный интервал";
 "Lines" = "Lines";
 "List" = "Список";
 "Lista" = "Список";
@@ -868,6 +875,7 @@
 "Mantener la pantalla encendida" = "Keep screen awake";
 "Marcadores" = "Закладки";
 "Marcar como leído" = "Mark as read";
+"Margins" = "Поля";
 "Mark as read" = "Mark as read";
 "Mark watched button" = "Кнопка «Отметить просмотренным»";
 "Max" = "Максимум";
@@ -934,6 +942,7 @@
 "My Library" = "Моя библиотека";
 "My channels" = "My channels";
 "Mystery" = "Детектив";
+"Márgenes" = "Поля";
 "Más leídos del momento" = "Popular reads";
 "Más suave y tenue, ideal para ver por la noche." = "Мягче и темнее, удобнее для ночного просмотра.";
 "Música" = "Музыка";
@@ -1275,6 +1284,7 @@
 "Remove from this library" = "Remove from this library";
 "Remove saved book" = "Remove saved book";
 "Remove {language}" = "Удалить язык: {language}";
+"Removed" = "Удалено";
 "Rename" = "Переименовать";
 "Rename row" = "Переименовать ряд";
 "Rename {name}" = "Переименовать {name}";

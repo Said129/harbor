@@ -218,6 +218,7 @@
 "Blur titles" = "Buramkan judul";
 "Bold text" = "Teks tebal";
 "Book" = "Buku";
+"Book metadata" = "Metadata buku";
 "Bookmarks" = "Penanda buku";
 "Books" = "Buku";
 "Books you open and import appear here." = "Books you open and import appear here.";
@@ -257,6 +258,8 @@
 "Buscar subtítulos de nuevo" = "Search subtitles again";
 "Búfer" = "Buffer";
 "Búsquedas recientes" = "Pencarian terbaru";
+"Cache" = "Cache";
+"Cache cleared" = "Cache dibersihkan";
 "Cached" = "Tersimpan di cache";
 "Caches" = "Cache";
 "Calendar" = "Kalender";
@@ -322,6 +325,8 @@
 "Clave de API de TMDB (v3)" = "Kunci API TMDB (v3)";
 "Clave de API v3" = "kunci API v3";
 "Clear all" = "Hapus semua";
+"Clear cache" = "Bersihkan cache sekarang";
+"Clear cache now" = "Bersihkan cache sekarang";
 "Clear caches" = "Bersihkan cache";
 "Clear filters" = "Hapus filter";
 "Clear image cache" = "Clear image cache";
@@ -774,6 +779,7 @@
 "Interface" = "Antarmuka";
 "Interfaz" = "Antarmuka";
 "Interfaz del sistema" = "UI Sistem";
+"Interlineado" = "Tinggi baris";
 "It is not affiliated with the maker of {product}, or with any company, addon author, or trademark holder referenced inside the app." = "Aplikasi ini tidak berafiliasi dengan pembuat {product}, maupun dengan perusahaan, pembuat addon, atau pemegang merek dagang apa pun yang disebutkan di dalam aplikasi.";
 "It is not affiliated with, endorsed by, sponsored by, or in any way associated with {company}." = "Aplikasi ini tidak berafiliasi, didukung, disponsori, atau terkait dengan {company} dengan cara apa pun.";
 "Italian" = "Bahasa Italia";
@@ -811,6 +817,7 @@
 "Light" = "Terang";
 "Limited Series & Miniseries" = "Seri Terbatas & Miniseri";
 "Limpiar filtros" = "Hapus filter";
+"Line height" = "Tinggi baris";
 "Lines" = "Lines";
 "List" = "Daftar";
 "Lista" = "Daftar";
@@ -863,6 +870,7 @@
 "Mantener la pantalla encendida" = "Keep screen awake";
 "Marcadores" = "Penanda buku";
 "Marcar como leído" = "Mark as read";
+"Margins" = "Margin";
 "Mark as read" = "Mark as read";
 "Mark watched button" = "Tombol tandai sudah ditonton";
 "Max" = "Maks";
@@ -929,6 +937,7 @@
 "My Library" = "Perpustakaan Saya";
 "My channels" = "My channels";
 "Mystery" = "Misteri";
+"Márgenes" = "Margin";
 "Más leídos del momento" = "Popular reads";
 "Más suave y tenue, ideal para ver por la noche." = "Lebih lembut dan redup, lebih nyaman untuk menonton larut malam.";
 "Música" = "Musik";
@@ -1263,6 +1272,7 @@
 "Remove from this library" = "Remove from this library";
 "Remove saved book" = "Remove saved book";
 "Remove {language}" = "Hapus {language}";
+"Removed" = "Dihapus";
 "Rename" = "Ubah nama";
 "Rename row" = "Ubah nama baris";
 "Rename {name}" = "Ubah nama {name}";

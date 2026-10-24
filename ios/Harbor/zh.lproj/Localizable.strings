@@ -218,6 +218,7 @@
 "Blur titles" = "模糊标题";
 "Bold text" = "粗体文字";
 "Book" = "书籍";
+"Book metadata" = "图书元数据";
 "Bookmarks" = "书签";
 "Books" = "书籍";
 "Books you open and import appear here." = "Books you open and import appear here.";
@@ -257,6 +258,8 @@
 "Buscar subtítulos de nuevo" = "Search subtitles again";
 "Búfer" = "Buffer";
 "Búsquedas recientes" = "最近搜索";
+"Cache" = "缓存";
+"Cache cleared" = "缓存已清除";
 "Cached" = "已缓存";
 "Caches" = "缓存";
 "Calendar" = "日历";
@@ -322,6 +325,8 @@
 "Clave de API de TMDB (v3)" = "TMDB API 密钥（v3）";
 "Clave de API v3" = "v3 API 密钥";
 "Clear all" = "全部清除";
+"Clear cache" = "立即清除缓存";
+"Clear cache now" = "立即清除缓存";
 "Clear caches" = "清除缓存";
 "Clear filters" = "清除筛选条件";
 "Clear image cache" = "Clear image cache";
@@ -774,6 +779,7 @@
 "Interface" = "界面";
 "Interfaz" = "界面";
 "Interfaz del sistema" = "系统界面";
+"Interlineado" = "行高";
 "It is not affiliated with the maker of {product}, or with any company, addon author, or trademark holder referenced inside the app." = "它与 {product} 的制作者，以及应用内提及的任何公司、插件作者或商标持有人均无关联。";
 "It is not affiliated with, endorsed by, sponsored by, or in any way associated with {company}." = "它不隶属于 {company}，也未获得其认可或赞助，与其不存在任何形式的关联。";
 "Italian" = "意大利语";
@@ -811,6 +817,7 @@
 "Light" = "浅色";
 "Limited Series & Miniseries" = "限定剧与迷你剧";
 "Limpiar filtros" = "清除筛选条件";
+"Line height" = "行高";
 "Lines" = "Lines";
 "List" = "列表";
 "Lista" = "列表";
@@ -863,6 +870,7 @@
 "Mantener la pantalla encendida" = "Keep screen awake";
 "Marcadores" = "书签";
 "Marcar como leído" = "Mark as read";
+"Margins" = "页边距";
 "Mark as read" = "Mark as read";
 "Mark watched button" = "“标为已看”按钮";
 "Max" = "最大";
@@ -929,6 +937,7 @@
 "My Library" = "我的媒体库";
 "My channels" = "My channels";
 "Mystery" = "悬疑";
+"Márgenes" = "页边距";
 "Más leídos del momento" = "Popular reads";
 "Más suave y tenue, ideal para ver por la noche." = "画面更柔和、更暗，适合深夜观看。";
 "Música" = "音乐";
@@ -1263,6 +1272,7 @@
 "Remove from this library" = "Remove from this library";
 "Remove saved book" = "Remove saved book";
 "Remove {language}" = "移除{language}";
+"Removed" = "已移除";
 "Rename" = "重命名";
 "Rename row" = "重命名内容栏";
 "Rename {name}" = "重命名 {name}";

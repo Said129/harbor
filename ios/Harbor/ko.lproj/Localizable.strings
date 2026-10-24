@@ -218,6 +218,7 @@
 "Blur titles" = "제목 흐리게 표시";
 "Bold text" = "굵은 텍스트";
 "Book" = "책";
+"Book metadata" = "도서 메타데이터";
 "Bookmarks" = "북마크";
 "Books" = "도서";
 "Books you open and import appear here." = "Books you open and import appear here.";
@@ -257,6 +258,8 @@
 "Buscar subtítulos de nuevo" = "Search subtitles again";
 "Búfer" = "Buffer";
 "Búsquedas recientes" = "최근 검색어";
+"Cache" = "캐시";
+"Cache cleared" = "캐시를 지웠습니다";
 "Cached" = "캐시됨";
 "Caches" = "캐시";
 "Calendar" = "캘린더";
@@ -322,6 +325,8 @@
 "Clave de API de TMDB (v3)" = "TMDB API 키(v3)";
 "Clave de API v3" = "v3 API 키";
 "Clear all" = "모두 삭제";
+"Clear cache" = "지금 캐시 지우기";
+"Clear cache now" = "지금 캐시 지우기";
 "Clear caches" = "캐시 삭제";
 "Clear filters" = "필터 초기화";
 "Clear image cache" = "Clear image cache";
@@ -774,6 +779,7 @@
 "Interface" = "인터페이스";
 "Interfaz" = "인터페이스";
 "Interfaz del sistema" = "시스템 UI";
+"Interlineado" = "줄 높이";
 "It is not affiliated with the maker of {product}, or with any company, addon author, or trademark holder referenced inside the app." = "{product} 제작사 또는 앱 내에서 언급된 회사, 애드온 제작자, 상표권자와 제휴 관계가 없습니다.";
 "It is not affiliated with, endorsed by, sponsored by, or in any way associated with {company}." = "{company}와 제휴하거나, 보증 또는 후원을 받거나, 어떠한 방식으로도 관련되어 있지 않습니다.";
 "Italian" = "이탈리아어";
@@ -811,6 +817,7 @@
 "Light" = "라이트";
 "Limited Series & Miniseries" = "리미티드 시리즈 및 미니시리즈";
 "Limpiar filtros" = "필터 초기화";
+"Line height" = "줄 높이";
 "Lines" = "Lines";
 "List" = "목록";
 "Lista" = "목록";
@@ -863,6 +870,7 @@
 "Mantener la pantalla encendida" = "Keep screen awake";
 "Marcadores" = "북마크";
 "Marcar como leído" = "Mark as read";
+"Margins" = "여백";
 "Mark as read" = "Mark as read";
 "Mark watched button" = "시청함 표시 버튼";
 "Max" = "최대";
@@ -929,6 +937,7 @@
 "My Library" = "내 라이브러리";
 "My channels" = "My channels";
 "Mystery" = "미스터리";
+"Márgenes" = "여백";
 "Más leídos del momento" = "Popular reads";
 "Más suave y tenue, ideal para ver por la noche." = "더 부드럽고 어둡게 조정해 심야 시청 시 눈의 부담을 줄입니다.";
 "Música" = "음악";
@@ -1263,6 +1272,7 @@
 "Remove from this library" = "Remove from this library";
 "Remove saved book" = "Remove saved book";
 "Remove {language}" = "{language} 제거";
+"Removed" = "삭제됨";
 "Rename" = "이름 변경";
 "Rename row" = "행 이름 변경";
 "Rename {name}" = "{name} 이름 바꾸기";

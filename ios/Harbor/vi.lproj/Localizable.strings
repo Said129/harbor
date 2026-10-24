@@ -218,6 +218,7 @@
 "Blur titles" = "Làm mờ tiêu đề";
 "Bold text" = "Chữ đậm";
 "Book" = "Sách";
+"Book metadata" = "Siêu dữ liệu sách";
 "Bookmarks" = "Dấu trang";
 "Books" = "Sách";
 "Books you open and import appear here." = "Books you open and import appear here.";
@@ -257,6 +258,8 @@
 "Buscar subtítulos de nuevo" = "Search subtitles again";
 "Búfer" = "Buffer";
 "Búsquedas recientes" = "Tìm kiếm gần đây";
+"Cache" = "Bộ nhớ đệm";
+"Cache cleared" = "Đã xóa bộ nhớ đệm";
 "Cached" = "Đã lưu vào bộ nhớ đệm";
 "Caches" = "Bộ nhớ đệm";
 "Calendar" = "Lịch";
@@ -322,6 +325,8 @@
 "Clave de API de TMDB (v3)" = "Khóa API TMDB (v3)";
 "Clave de API v3" = "Khóa API v3";
 "Clear all" = "Xóa tất cả";
+"Clear cache" = "Xóa bộ nhớ đệm ngay";
+"Clear cache now" = "Xóa bộ nhớ đệm ngay";
 "Clear caches" = "Xóa bộ nhớ đệm";
 "Clear filters" = "Xóa bộ lọc";
 "Clear image cache" = "Clear image cache";
@@ -774,6 +779,7 @@
 "Interface" = "Giao diện";
 "Interfaz" = "Giao diện";
 "Interfaz del sistema" = "Giao diện hệ thống";
+"Interlineado" = "Chiều cao dòng";
 "It is not affiliated with the maker of {product}, or with any company, addon author, or trademark holder referenced inside the app." = "Ứng dụng này không liên kết với nhà sản xuất {product}, hay bất kỳ công ty, tác giả tiện ích bổ sung hoặc chủ sở hữu nhãn hiệu nào được đề cập trong ứng dụng.";
 "It is not affiliated with, endorsed by, sponsored by, or in any way associated with {company}." = "Ứng dụng này không liên kết, được chứng thực, tài trợ hay có bất kỳ quan hệ nào với {company}.";
 "Italian" = "Tiếng Ý";
@@ -811,6 +817,7 @@
 "Light" = "Sáng";
 "Limited Series & Miniseries" = "Phim bộ giới hạn và phim bộ ngắn tập";
 "Limpiar filtros" = "Xóa bộ lọc";
+"Line height" = "Chiều cao dòng";
 "Lines" = "Lines";
 "List" = "Danh sách";
 "Lista" = "Danh sách";
@@ -863,6 +870,7 @@
 "Mantener la pantalla encendida" = "Keep screen awake";
 "Marcadores" = "Dấu trang";
 "Marcar como leído" = "Mark as read";
+"Margins" = "Lề";
 "Mark as read" = "Mark as read";
 "Mark watched button" = "Nút đánh dấu đã xem";
 "Max" = "Tối đa";
@@ -929,6 +937,7 @@
 "My Library" = "Thư viện của tôi";
 "My channels" = "My channels";
 "Mystery" = "Bí ẩn";
+"Márgenes" = "Lề";
 "Más leídos del momento" = "Popular reads";
 "Más suave y tenue, ideal para ver por la noche." = "Dịu và tối hơn, dễ chịu hơn khi xem khuya.";
 "Música" = "Âm nhạc";
@@ -1263,6 +1272,7 @@
 "Remove from this library" = "Remove from this library";
 "Remove saved book" = "Remove saved book";
 "Remove {language}" = "Xóa {language}";
+"Removed" = "Đã gỡ";
 "Rename" = "Đổi tên";
 "Rename row" = "Đổi tên hàng";
 "Rename {name}" = "Đổi tên {name}";

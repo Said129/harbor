@@ -218,6 +218,7 @@
 "Blur titles" = "タイトルをぼかす";
 "Bold text" = "太字";
 "Book" = "書籍";
+"Book metadata" = "書籍メタデータ";
 "Bookmarks" = "しおり";
 "Books" = "書籍";
 "Books you open and import appear here." = "Books you open and import appear here.";
@@ -257,6 +258,8 @@
 "Buscar subtítulos de nuevo" = "Search subtitles again";
 "Búfer" = "Buffer";
 "Búsquedas recientes" = "最近の検索";
+"Cache" = "キャッシュ";
+"Cache cleared" = "キャッシュを消去しました";
 "Cached" = "キャッシュ済み";
 "Caches" = "キャッシュ";
 "Calendar" = "カレンダー";
@@ -322,6 +325,8 @@
 "Clave de API de TMDB (v3)" = "TMDB APIキー（v3）";
 "Clave de API v3" = "v3 APIキー";
 "Clear all" = "すべて消去";
+"Clear cache" = "今すぐキャッシュを消去";
+"Clear cache now" = "今すぐキャッシュを消去";
 "Clear caches" = "キャッシュを消去";
 "Clear filters" = "フィルターをクリア";
 "Clear image cache" = "Clear image cache";
@@ -774,6 +779,7 @@
 "Interface" = "インターフェース";
 "Interfaz" = "インターフェース";
 "Interfaz del sistema" = "システムUI";
+"Interlineado" = "行の高さ";
 "It is not affiliated with the maker of {product}, or with any company, addon author, or trademark holder referenced inside the app." = "本アプリは、{product}の開発元、およびアプリ内で言及される企業、アドオン作者、商標権者とは提携していません。";
 "It is not affiliated with, endorsed by, sponsored by, or in any way associated with {company}." = "本アプリは{company}との提携、承認、スポンサー関係など、一切の関係がありません。";
 "Italian" = "イタリア語";
@@ -811,6 +817,7 @@
 "Light" = "ライト";
 "Limited Series & Miniseries" = "リミテッドシリーズ＆ミニシリーズ";
 "Limpiar filtros" = "フィルターをクリア";
+"Line height" = "行の高さ";
 "Lines" = "Lines";
 "List" = "リスト";
 "Lista" = "リスト";
@@ -863,6 +870,7 @@
 "Mantener la pantalla encendida" = "Keep screen awake";
 "Marcadores" = "しおり";
 "Marcar como leído" = "Mark as read";
+"Margins" = "余白";
 "Mark as read" = "Mark as read";
 "Mark watched button" = "「視聴済みにする」ボタン";
 "Max" = "最大";
@@ -929,6 +937,7 @@
 "My Library" = "マイライブラリ";
 "My channels" = "My channels";
 "Mystery" = "ミステリー";
+"Márgenes" = "余白";
 "Más leídos del momento" = "Popular reads";
 "Más suave y tenue, ideal para ver por la noche." = "柔らかく暗めの映像にし、深夜でも目に負担をかけずに視聴できます。";
 "Música" = "音楽";
@@ -1263,6 +1272,7 @@
 "Remove from this library" = "Remove from this library";
 "Remove saved book" = "Remove saved book";
 "Remove {language}" = "{language}を削除";
+"Removed" = "削除済み";
 "Rename" = "名前を変更";
 "Rename row" = "行の名前を変更";
 "Rename {name}" = "{name}の名前を変更";

@@ -218,6 +218,7 @@
 "Blur titles" = "Sfoca i titoli";
 "Bold text" = "Testo in grassetto";
 "Book" = "Libro";
+"Book metadata" = "Metadati libro";
 "Bookmarks" = "Segnalibri";
 "Books" = "Libri";
 "Books you open and import appear here." = "Books you open and import appear here.";
@@ -257,6 +258,8 @@
 "Buscar subtítulos de nuevo" = "Search subtitles again";
 "Búfer" = "Buffer";
 "Búsquedas recientes" = "Ricerche recenti";
+"Cache" = "Cache";
+"Cache cleared" = "Cache svuotata";
 "Cached" = "In cache";
 "Caches" = "Cache";
 "Calendar" = "Calendario";
@@ -322,6 +325,8 @@
 "Clave de API de TMDB (v3)" = "Chiave API TMDB (v3)";
 "Clave de API v3" = "chiave API v3";
 "Clear all" = "Cancella tutto";
+"Clear cache" = "Svuota la cache ora";
+"Clear cache now" = "Svuota la cache ora";
 "Clear caches" = "Svuota le cache";
 "Clear filters" = "Cancella filtri";
 "Clear image cache" = "Clear image cache";
@@ -774,6 +779,7 @@
 "Interface" = "Interfaccia";
 "Interfaz" = "Interfaccia";
 "Interfaz del sistema" = "Interfaccia di sistema";
+"Interlineado" = "Interlinea";
 "It is not affiliated with the maker of {product}, or with any company, addon author, or trademark holder referenced inside the app." = "Non è affiliato al produttore di {product}, né ad alcuna azienda, autore di Add-on o titolare di marchi citato nell'app.";
 "It is not affiliated with, endorsed by, sponsored by, or in any way associated with {company}." = "Non è affiliato, approvato o sponsorizzato da {company}, né associato in alcun modo a tale azienda.";
 "Italian" = "Italiano";
@@ -811,6 +817,7 @@
 "Light" = "Chiaro";
 "Limited Series & Miniseries" = "Serie limitate e miniserie";
 "Limpiar filtros" = "Cancella filtri";
+"Line height" = "Interlinea";
 "Lines" = "Lines";
 "List" = "Lista";
 "Lista" = "Lista";
@@ -863,6 +870,7 @@
 "Mantener la pantalla encendida" = "Keep screen awake";
 "Marcadores" = "Segnalibri";
 "Marcar como leído" = "Mark as read";
+"Margins" = "Margini";
 "Mark as read" = "Mark as read";
 "Mark watched button" = "Pulsante Segna come visto";
 "Max" = "Max";
@@ -929,6 +937,7 @@
 "My Library" = "La mia raccolta";
 "My channels" = "My channels";
 "Mystery" = "Mistero";
+"Márgenes" = "Margini";
 "Más leídos del momento" = "Popular reads";
 "Más suave y tenue, ideal para ver por la noche." = "Più morbido e meno luminoso, ideale per la visione notturna.";
 "Música" = "Musica";
@@ -1263,6 +1272,7 @@
 "Remove from this library" = "Remove from this library";
 "Remove saved book" = "Remove saved book";
 "Remove {language}" = "Rimuovi {language}";
+"Removed" = "Rimosso";
 "Rename" = "Rinomina";
 "Rename row" = "Rinomina riga";
 "Rename {name}" = "Rinomina {name}";

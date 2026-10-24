@@ -218,6 +218,7 @@
 "Blur titles" = "Başlıkları bulanıklaştır";
 "Bold text" = "Kalın metin";
 "Book" = "Kitap";
+"Book metadata" = "Kitap meta verileri";
 "Bookmarks" = "Yer İmleri";
 "Books" = "Kitaplar";
 "Books you open and import appear here." = "Books you open and import appear here.";
@@ -257,6 +258,8 @@
 "Buscar subtítulos de nuevo" = "Search subtitles again";
 "Búfer" = "Buffer";
 "Búsquedas recientes" = "Son aramalar";
+"Cache" = "Önbellek";
+"Cache cleared" = "Önbellek temizlendi";
 "Cached" = "Önbelleğe alınmış";
 "Caches" = "Önbellekler";
 "Calendar" = "Takvim";
@@ -322,6 +325,8 @@
 "Clave de API de TMDB (v3)" = "TMDB API anahtarı (v3)";
 "Clave de API v3" = "v3 API anahtarı";
 "Clear all" = "Tümünü temizle";
+"Clear cache" = "Önbelleği şimdi temizle";
+"Clear cache now" = "Önbelleği şimdi temizle";
 "Clear caches" = "Önbellekleri temizle";
 "Clear filters" = "Filtreleri temizle";
 "Clear image cache" = "Clear image cache";
@@ -774,6 +779,7 @@
 "Interface" = "Arayüz";
 "Interfaz" = "Arayüz";
 "Interfaz del sistema" = "Sistem arayüzü";
+"Interlineado" = "Satır yüksekliği";
 "It is not affiliated with the maker of {product}, or with any company, addon author, or trademark holder referenced inside the app." = "{product} geliştiricisiyle veya uygulamada adı geçen herhangi bir şirket, eklenti geliştiricisi ya da ticari marka sahibiyle bağlantılı değildir.";
 "It is not affiliated with, endorsed by, sponsored by, or in any way associated with {company}." = "{company} ile bağlantılı değildir; bu şirket tarafından onaylanmaz, desteklenmez veya hiçbir şekilde bu şirketle ilişkili değildir.";
 "Italian" = "İtalyanca";
@@ -811,6 +817,7 @@
 "Light" = "Açık";
 "Limited Series & Miniseries" = "Tek Sezonluk Diziler ve Mini Diziler";
 "Limpiar filtros" = "Filtreleri temizle";
+"Line height" = "Satır yüksekliği";
 "Lines" = "Lines";
 "List" = "Liste";
 "Lista" = "Liste";
@@ -863,6 +870,7 @@
 "Mantener la pantalla encendida" = "Keep screen awake";
 "Marcadores" = "Yer İmleri";
 "Marcar como leído" = "Mark as read";
+"Margins" = "Kenar boşlukları";
 "Mark as read" = "Mark as read";
 "Mark watched button" = "İzlendi olarak işaretle düğmesi";
 "Max" = "Maks.";
@@ -929,6 +937,7 @@
 "My Library" = "Kütüphanem";
 "My channels" = "My channels";
 "Mystery" = "Gizem";
+"Márgenes" = "Kenar boşlukları";
 "Más leídos del momento" = "Popular reads";
 "Más suave y tenue, ideal para ver por la noche." = "Daha yumuşak ve loş görüntüsüyle gece izlerken gözlerinizi daha az yorar.";
 "Música" = "Müzik";
@@ -1263,6 +1272,7 @@
 "Remove from this library" = "Remove from this library";
 "Remove saved book" = "Remove saved book";
 "Remove {language}" = "{language} dilini kaldır";
+"Removed" = "Kaldırıldı";
 "Rename" = "Yeniden adlandır";
 "Rename row" = "Satırı yeniden adlandır";
 "Rename {name}" = "{name} öğesini yeniden adlandır";

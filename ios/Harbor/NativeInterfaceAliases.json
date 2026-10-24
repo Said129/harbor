@@ -248,5 +248,8 @@
   "Se conserva el original: para sincronizar este archivo, expórtalo como UTF-8 o UTF-16.": "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it.",
   "No se pudo analizar esta fuente. La reproducción continúa; puedes reintentarlo.": "Could not analyze this source. Playback continues; you can retry.",
   "Selecciona un subtítulo externo SRT/VTT, sin subtítulos dobles, en un vídeo de al menos un minuto.": "Select an external SRT/VTT subtitle without dual subtitles, in a video at least one minute long.",
-  "Análisis detenido para priorizar la reproducción. Puedes reintentarlo cuando termine de cargar.": "Analysis stopped to prioritize playback. Retry after buffering finishes."
+  "Análisis detenido para priorizar la reproducción. Puedes reintentarlo cuando termine de cargar.": "Analysis stopped to prioritize playback. Retry after buffering finishes.",
+  "Interlineado": "Line height",
+  "Márgenes": "Margins",
+  "Clear cache": "Clear cache now"
 }
