@@ -749,6 +749,8 @@
 "Import CBZ/ZIP or folder" = "Import CBZ/ZIP or folder";
 "Import M3U file" = "Import M3U file";
 "Import PDF, CBZ, ZIP or image folders from the Manga menu. Your library shows their covers and can sort titles in reading order. For online sources, connect your Suwayomi server, install its extensions and select a source. Keep that server reachable from your iPhone or iPad." = "Import PDF, CBZ, ZIP or image folders from the Manga menu. Your library shows their covers and can sort titles in reading order. For online sources, connect your Suwayomi server, install its extensions and select a source. Keep that server reachable from your iPhone or iPad.";
+"Import files" = "파일 가져오기";
+"Import folder" = "폴더 가져오기";
 "Import from Files · EPUB / PDF" = "Import from Files · EPUB / PDF";
 "Import music" = "Import music";
 "Importa PDF, CBZ, ZIP o carpetas de imágenes desde el menú de Manga. Tu biblioteca muestra sus portadas y permite ordenar los títulos. Para fuentes en línea, conecta tu servidor Suwayomi, instala sus extensiones y elige una fuente. El servidor debe estar accesible desde tu iPhone o iPad." = "Import PDF, CBZ, ZIP or image folders from the Manga menu. Your library shows their covers and can sort titles in reading order. For online sources, connect your Suwayomi server, install its extensions and select a source. Keep that server reachable from your iPhone or iPad.";
@@ -1945,6 +1947,8 @@
 "music.genre.ukrainian-rap" = "우크라이나 랩";
 "music.genre.ukrainian-wartime" = "우크라이나 전시 음악";
 "music.genre.west-coast-hip-hop" = "웨스트 코스트 힙합";
+"music.home.filesBody" = "기기의 앨범과 곡을 라이브러리에 추가하세요.";
+"music.home.yourFiles" = "내 파일을 가장 먼저";
 "music.lastfm.apiKey" = "API 키";
 "music.library.loadMore" = "더 불러오기";
 "music.loading" = "음악 불러오는 중";
@@ -1953,6 +1957,7 @@
 "music.search.albums" = "앨범";
 "music.search.playlists" = "재생목록";
 "music.search.tracks" = "곡";
+"music.searchPlaceholder" = "노래, 앨범, 아티스트 검색";
 "music.taste.basedOn" = "선택한 장르의 선곡 · Deezer";
 "music.taste.body" = "추천에 사용할 장르를 고르세요. 선곡은 순환하며 언제든 취향을 바꿀 수 있어요.";
 "music.taste.choose" = "음악 취향 선택";

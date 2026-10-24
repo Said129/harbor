@@ -69,7 +69,7 @@ struct MusicView: View {
             else if screen == .explore { MusicExploreView(model: explore, catalog: catalog.client, billboard: billboard, filters: genreFilters) }
             else { localLibrary }
         }.background(HarborTheme.background).navigationTitle("Música").navigationBarTitleDisplayMode(.inline)
-            .searchable(text: search, prompt: screen == .forYou ? DesktopInterfaceText.value("Search music") : screen == .explore ? DesktopInterfaceText.value("music.taste.search") : "Canciones, álbumes, artistas o listas")
+            .searchable(text: search, prompt: screen == .forYou ? DesktopInterfaceText.value("Search music") : screen == .explore ? DesktopInterfaceText.value("music.taste.search") : DesktopInterfaceText.value("music.searchPlaceholder"))
             .task(id: screen.rawValue + "|" + query) {
                 if screen == .forYou { await catalog.load(query: query) }
             }
@@ -78,9 +78,9 @@ struct MusicView: View {
             .toolbar { ToolbarItem(placement: .topBarTrailing) {
                 Menu {
                     Button { metadataSettings = true } label: { Label(DesktopInterfaceText.value("Metadata"), systemImage: "info.circle") }.accessibilityIdentifier("music-metadata-open")
-                    Button { openImport(folder: false) } label: { Label("Importar archivos", image: "music-plus") }
-                    Button { openImport(folder: true) } label: { Label("Importar carpeta", image: "music-folder-open") }
-                } label: { MusicGlyph("plus").frame(width: 44, height: 44) }.accessibilityLabel("Importar música").accessibilityIdentifier("music-actions").disabled(!library.ready || library.importing)
+                    Button { openImport(folder: false) } label: { Label(DesktopInterfaceText.value("Import files"), image: "music-plus") }
+                    Button { openImport(folder: true) } label: { Label(DesktopInterfaceText.value("Import folder"), image: "music-folder-open") }
+                } label: { MusicGlyph("plus").frame(width: 44, height: 44) }.accessibilityLabel(DesktopInterfaceText.value("Options")).accessibilityIdentifier("music-actions").disabled(!library.ready || library.importing)
             } }
             .sheet(isPresented: $metadataSettings) { MusicMetadataSettingsView(client: artistMetadata) }
             .environment(\.musicArtistMetadata, artistMetadata)
@@ -123,9 +123,9 @@ struct MusicView: View {
     @ViewBuilder private var libraryContent: some View {
         if category == "Listas" { MusicPlaylistsView(library: library, store: playlists, query: query) }
         else if library.records.isEmpty {
-            ContentUnavailableView { Label("Tu música", image: "nav-music") } description: { Text("Importa tus canciones o una carpeta desde Archivos para escucharlas en Harbor.") } actions: {
-                Button { openImport(folder: false) } label: { Label("Importar archivos", image: "music-plus") }
-                Button { openImport(folder: true) } label: { Label("Importar carpeta", image: "music-folder-open") }
+            ContentUnavailableView { Label(DesktopInterfaceText.value("music.home.yourFiles"), image: "nav-music") } description: { Text(DesktopInterfaceText.value("music.home.filesBody")) } actions: {
+                Button { openImport(folder: false) } label: { Label(DesktopInterfaceText.value("Import files"), image: "music-plus") }
+                Button { openImport(folder: true) } label: { Label(DesktopInterfaceText.value("Import folder"), image: "music-folder-open") }
             }.disabled(!library.ready || library.importing)
         } else if records.isEmpty {
             if !query.isEmpty { ContentUnavailableView.search(text: query) }

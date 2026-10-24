@@ -749,6 +749,8 @@
 "Import CBZ/ZIP or folder" = "Importar CBZ/ZIP o carpeta";
 "Import M3U file" = "Importar archivo M3U";
 "Import PDF, CBZ, ZIP or image folders from the Manga menu. Your library shows their covers and can sort titles in reading order. For online sources, connect your Suwayomi server, install its extensions and select a source. Keep that server reachable from your iPhone or iPad." = "Importa PDF, CBZ, ZIP o carpetas de imágenes desde el menú de Manga. Tu biblioteca muestra sus portadas y permite ordenar los títulos. Para fuentes en línea, conecta tu servidor Suwayomi, instala sus extensiones y elige una fuente. El servidor debe estar accesible desde tu iPhone o iPad.";
+"Import files" = "Importar archivos";
+"Import folder" = "Importar carpeta";
 "Import from Files · EPUB / PDF" = "Importar desde Archivos · EPUB / PDF";
 "Import music" = "Importar música";
 "Importa PDF, CBZ, ZIP o carpetas de imágenes desde el menú de Manga. Tu biblioteca muestra sus portadas y permite ordenar los títulos. Para fuentes en línea, conecta tu servidor Suwayomi, instala sus extensiones y elige una fuente. El servidor debe estar accesible desde tu iPhone o iPad." = "Importa PDF, CBZ, ZIP o carpetas de imágenes desde el menú de Manga. Tu biblioteca muestra sus portadas y permite ordenar los títulos. Para fuentes en línea, conecta tu servidor Suwayomi, instala sus extensiones y elige una fuente. El servidor debe estar accesible desde tu iPhone o iPad.";
@@ -1945,6 +1947,8 @@
 "music.genre.ukrainian-rap" = "Rap ucraniano";
 "music.genre.ukrainian-wartime" = "Música ucraniana en tiempos de guerra";
 "music.genre.west-coast-hip-hop" = "Hip hop de la Costa Oeste";
+"music.home.filesBody" = "Añade álbumes y canciones de tu dispositivo a tu biblioteca.";
+"music.home.yourFiles" = "Tus archivos, en primer plano";
 "music.lastfm.apiKey" = "Clave de API";
 "music.library.loadMore" = "Cargar más";
 "music.loading" = "Cargando música";
@@ -1953,6 +1957,7 @@
 "music.search.albums" = "Álbumes";
 "music.search.playlists" = "Listas de reproducción";
 "music.search.tracks" = "Canciones";
+"music.searchPlaceholder" = "Buscar canciones, álbumes y artistas";
 "music.taste.basedOn" = "Selecciones de tus géneros · Deezer";
 "music.taste.body" = "Elige géneros para añadir sus listas actuales a Para ti. Cámbialos cuando quieras.";
 "music.taste.choose" = "Elige tus gustos";

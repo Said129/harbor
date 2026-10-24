@@ -774,6 +774,8 @@
 "Import CBZ/ZIP or folder" = "Import CBZ/ZIP or folder";
 "Import M3U file" = "Import M3U file";
 "Import PDF, CBZ, ZIP or image folders from the Manga menu. Your library shows their covers and can sort titles in reading order. For online sources, connect your Suwayomi server, install its extensions and select a source. Keep that server reachable from your iPhone or iPad." = "Import PDF, CBZ, ZIP or image folders from the Manga menu. Your library shows their covers and can sort titles in reading order. For online sources, connect your Suwayomi server, install its extensions and select a source. Keep that server reachable from your iPhone or iPad.";
+"Import files" = "استيراد ملفات";
+"Import folder" = "استيراد مجلد";
 "Import from Files · EPUB / PDF" = "استيراد من الملفات · EPUB / PDF";
 "Import music" = "Import music";
 "Importa PDF, CBZ, ZIP o carpetas de imágenes desde el menú de Manga. Tu biblioteca muestra sus portadas y permite ordenar los títulos. Para fuentes en línea, conecta tu servidor Suwayomi, instala sus extensiones y elige una fuente. El servidor debe estar accesible desde tu iPhone o iPad." = "Import PDF, CBZ, ZIP or image folders from the Manga menu. Your library shows their covers and can sort titles in reading order. For online sources, connect your Suwayomi server, install its extensions and select a source. Keep that server reachable from your iPhone or iPad.";
@@ -1987,6 +1989,8 @@
 "music.genre.ukrainian-rap" = "الراب الأوكراني";
 "music.genre.ukrainian-wartime" = "موسيقى أوكرانية في زمن الحرب";
 "music.genre.west-coast-hip-hop" = "هيب هوب الساحل الغربي";
+"music.home.filesBody" = "أضف ألبومات ومقاطع من جهازك إلى مكتبتك.";
+"music.home.yourFiles" = "ملفاتك في المقدمة";
 "music.lastfm.apiKey" = "مفتاح API";
 "music.library.loadMore" = "تحميل المزيد";
 "music.loading" = "جارٍ تحميل الموسيقى";
@@ -1995,6 +1999,7 @@
 "music.search.albums" = "الألبومات";
 "music.search.playlists" = "قوائم التشغيل";
 "music.search.tracks" = "المقاطع";
+"music.searchPlaceholder" = "ابحث عن أغانٍ وألبومات وفنانين";
 "music.taste.basedOn" = "مختارات من الأنواع التي اخترتها · Deezer";
 "music.taste.body" = "اختر أنواعًا لقسم من أجلك. تتجدد المختارات ويمكنك تغييرها متى شئت.";
 "music.taste.choose" = "اختر ذوقك الموسيقي";

@@ -749,6 +749,8 @@
 "Import CBZ/ZIP or folder" = "Import CBZ/ZIP or folder";
 "Import M3U file" = "Import M3U file";
 "Import PDF, CBZ, ZIP or image folders from the Manga menu. Your library shows their covers and can sort titles in reading order. For online sources, connect your Suwayomi server, install its extensions and select a source. Keep that server reachable from your iPhone or iPad." = "Import PDF, CBZ, ZIP or image folders from the Manga menu. Your library shows their covers and can sort titles in reading order. For online sources, connect your Suwayomi server, install its extensions and select a source. Keep that server reachable from your iPhone or iPad.";
+"Import files" = "ファイルを読み込む";
+"Import folder" = "フォルダを読み込む";
 "Import from Files · EPUB / PDF" = "Import from Files · EPUB / PDF";
 "Import music" = "Import music";
 "Importa PDF, CBZ, ZIP o carpetas de imágenes desde el menú de Manga. Tu biblioteca muestra sus portadas y permite ordenar los títulos. Para fuentes en línea, conecta tu servidor Suwayomi, instala sus extensiones y elige una fuente. El servidor debe estar accesible desde tu iPhone o iPad." = "Import PDF, CBZ, ZIP or image folders from the Manga menu. Your library shows their covers and can sort titles in reading order. For online sources, connect your Suwayomi server, install its extensions and select a source. Keep that server reachable from your iPhone or iPad.";
@@ -1945,6 +1947,8 @@
 "music.genre.ukrainian-rap" = "ウクライナラップ";
 "music.genre.ukrainian-wartime" = "ウクライナの戦時音楽";
 "music.genre.west-coast-hip-hop" = "西海岸ヒップホップ";
+"music.home.filesBody" = "デバイスのアルバムや曲をライブラリに追加しましょう。";
+"music.home.yourFiles" = "あなたのファイルを主役に";
 "music.lastfm.apiKey" = "APIキー";
 "music.library.loadMore" = "さらに読み込む";
 "music.loading" = "音楽を読み込み中";
@@ -1953,6 +1957,7 @@
 "music.search.albums" = "アルバム";
 "music.search.playlists" = "プレイリスト";
 "music.search.tracks" = "曲";
+"music.searchPlaceholder" = "曲、アルバム、アーティストを検索";
 "music.taste.basedOn" = "選んだジャンルのセレクション · Deezer";
 "music.taste.body" = "ジャンルを選ぶと、現在のチャートを「おすすめ」に追加します。いつでも変更できます。";
 "music.taste.choose" = "音楽の好みを選ぶ";

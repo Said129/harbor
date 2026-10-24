@@ -749,6 +749,8 @@
 "Import CBZ/ZIP or folder" = "Import CBZ/ZIP or folder";
 "Import M3U file" = "Import M3U file";
 "Import PDF, CBZ, ZIP or image folders from the Manga menu. Your library shows their covers and can sort titles in reading order. For online sources, connect your Suwayomi server, install its extensions and select a source. Keep that server reachable from your iPhone or iPad." = "Import PDF, CBZ, ZIP or image folders from the Manga menu. Your library shows their covers and can sort titles in reading order. For online sources, connect your Suwayomi server, install its extensions and select a source. Keep that server reachable from your iPhone or iPad.";
+"Import files" = "导入文件";
+"Import folder" = "导入文件夹";
 "Import from Files · EPUB / PDF" = "Import from Files · EPUB / PDF";
 "Import music" = "Import music";
 "Importa PDF, CBZ, ZIP o carpetas de imágenes desde el menú de Manga. Tu biblioteca muestra sus portadas y permite ordenar los títulos. Para fuentes en línea, conecta tu servidor Suwayomi, instala sus extensiones y elige una fuente. El servidor debe estar accesible desde tu iPhone o iPad." = "Import PDF, CBZ, ZIP or image folders from the Manga menu. Your library shows their covers and can sort titles in reading order. For online sources, connect your Suwayomi server, install its extensions and select a source. Keep that server reachable from your iPhone or iPad.";
@@ -1945,6 +1947,8 @@
 "music.genre.ukrainian-rap" = "乌克兰说唱";
 "music.genre.ukrainian-wartime" = "乌克兰战时音乐";
 "music.genre.west-coast-hip-hop" = "西海岸嘻哈";
+"music.home.filesBody" = "将设备上的专辑和歌曲添加到音乐库。";
+"music.home.yourFiles" = "你的文件，始终优先";
 "music.lastfm.apiKey" = "API 密钥";
 "music.library.loadMore" = "加载更多";
 "music.loading" = "正在加载音乐";
@@ -1953,6 +1957,7 @@
 "music.search.albums" = "专辑";
 "music.search.playlists" = "播放列表";
 "music.search.tracks" = "歌曲";
+"music.searchPlaceholder" = "搜索歌曲、专辑、艺人";
 "music.taste.basedOn" = "所选风格的精选音乐 · Deezer";
 "music.taste.body" = "选择为你推荐的风格。精选内容轮换展示，随时可修改。";
 "music.taste.choose" = "选择音乐口味";

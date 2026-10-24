@@ -89,7 +89,9 @@
     "Margins": "Márgenes",
     "Cache cleared": "Caché borrada",
     "Clear cache now": "Borrar caché ahora",
-    "Get an API key": "Obtener una clave API"
+    "Get an API key": "Obtener una clave API",
+    "Import files": "Importar archivos",
+    "Import folder": "Importar carpeta"
   },
   "pt": {
     "Auto-sync": "Sincronização automática",
@@ -135,7 +137,9 @@
     "Describe the site's lists, details and chapters using CSS selectors. Use {query} and {page} in the search and browse paths.": "Descreva listas, detalhes e capítulos do site com seletores CSS. Use {query} e {page} nos caminhos de pesquisa e navegação.",
     "Margins": "Margens",
     "Cache cleared": "Cache limpo",
-    "Get an API key": "Obter uma chave API"
+    "Get an API key": "Obter uma chave API",
+    "Import files": "Importar arquivos",
+    "Import folder": "Importar pasta"
   },
   "ru": {
     "Auto-sync": "Автосинхронизация",
@@ -181,7 +185,9 @@
     "Describe the site's lists, details and chapters using CSS selectors. Use {query} and {page} in the search and browse paths.": "Опишите списки, сведения и главы сайта с помощью CSS-селекторов. Используйте {query} и {page} в путях поиска и просмотра.",
     "Margins": "Поля",
     "Cache cleared": "Кэш очищен",
-    "Get an API key": "Получить ключ API"
+    "Get an API key": "Получить ключ API",
+    "Import files": "Импортировать файлы",
+    "Import folder": "Импортировать папку"
   },
   "ar": {
     "Auto-sync": "مزامنة تلقائية",
@@ -227,7 +233,9 @@
     "Describe the site's lists, details and chapters using CSS selectors. Use {query} and {page} in the search and browse paths.": "صِف قوائم الموقع وتفاصيله وفصوله باستخدام محددات CSS. استخدم {query} و{page} في مسارات البحث والتصفح.",
     "Margins": "الهوامش",
     "Cache cleared": "تم مسح ذاكرة التخزين المؤقت",
-    "Get an API key": "الحصول على مفتاح API"
+    "Get an API key": "الحصول على مفتاح API",
+    "Import files": "استيراد ملفات",
+    "Import folder": "استيراد مجلد"
   },
   "zh": {
     "Couldn't auto-sync": "无法自动同步",
@@ -244,7 +252,9 @@
     "Describe the site's lists, details and chapters using CSS selectors. Use {query} and {page} in the search and browse paths.": "使用 CSS 选择器描述网站的列表、详情和章节。在搜索和浏览路径中使用 {query} 和 {page}。",
     "Margins": "页边距",
     "Cache cleared": "缓存已清除",
-    "Get an API key": "获取 API 密钥"
+    "Get an API key": "获取 API 密钥",
+    "Import files": "导入文件",
+    "Import folder": "导入文件夹"
   },
   "fr": {
     "Couldn't auto-sync": "Synchronisation automatique impossible",
@@ -261,7 +271,9 @@
     "Describe the site's lists, details and chapters using CSS selectors. Use {query} and {page} in the search and browse paths.": "Décrivez les listes, les fiches et les chapitres du site avec des sélecteurs CSS. Utilisez {query} et {page} dans les chemins de recherche et de navigation.",
     "Margins": "Marges",
     "Cache cleared": "Cache vidé",
-    "Get an API key": "Obtenir une clé API"
+    "Get an API key": "Obtenir une clé API",
+    "Import files": "Importer des fichiers",
+    "Import folder": "Importer un dossier"
   },
   "de": {
     "Couldn't auto-sync": "Automatische Synchronisierung nicht möglich",
@@ -278,7 +290,9 @@
     "Describe the site's lists, details and chapters using CSS selectors. Use {query} and {page} in the search and browse paths.": "Beschreibe Listen, Details und Kapitel der Website mit CSS-Selektoren. Verwende {query} und {page} in den Such- und Katalogpfaden.",
     "Margins": "Seitenränder",
     "Cache cleared": "Cache geleert",
-    "Get an API key": "API-Schlüssel erhalten"
+    "Get an API key": "API-Schlüssel erhalten",
+    "Import files": "Dateien importieren",
+    "Import folder": "Ordner importieren"
   },
   "hi": {
     "Couldn't auto-sync": "अपने-आप सिंक नहीं हो सका",
@@ -295,7 +309,9 @@
     "Describe the site's lists, details and chapters using CSS selectors. Use {query} and {page} in the search and browse paths.": "CSS चयनकर्ताओं से साइट की सूचियाँ, विवरण और अध्याय बताएँ। खोज और ब्राउज़ पथों में {query} और {page} का उपयोग करें।",
     "Margins": "हाशिए",
     "Cache cleared": "कैश साफ़ कर दिया गया",
-    "Get an API key": "API कुंजी प्राप्त करें"
+    "Get an API key": "API कुंजी प्राप्त करें",
+    "Import files": "फ़ाइलें आयात करें",
+    "Import folder": "फ़ोल्डर आयात करें"
   },
   "id": {
     "Couldn't auto-sync": "Tidak dapat menyinkronkan otomatis",
@@ -312,7 +328,9 @@
     "Describe the site's lists, details and chapters using CSS selectors. Use {query} and {page} in the search and browse paths.": "Jelaskan daftar, detail, dan bab situs dengan selektor CSS. Gunakan {query} dan {page} pada jalur pencarian dan penelusuran.",
     "Margins": "Margin",
     "Cache cleared": "Cache dibersihkan",
-    "Get an API key": "Dapatkan kunci API"
+    "Get an API key": "Dapatkan kunci API",
+    "Import files": "Impor berkas",
+    "Import folder": "Impor folder"
   },
   "it": {
     "Couldn't auto-sync": "Sincronizzazione automatica non riuscita",
@@ -329,7 +347,9 @@
     "Describe the site's lists, details and chapters using CSS selectors. Use {query} and {page} in the search and browse paths.": "Descrivi elenchi, dettagli e capitoli del sito con selettori CSS. Usa {query} e {page} nei percorsi di ricerca e navigazione.",
     "Margins": "Margini",
     "Cache cleared": "Cache svuotata",
-    "Get an API key": "Ottieni una chiave API"
+    "Get an API key": "Ottieni una chiave API",
+    "Import files": "Importa file",
+    "Import folder": "Importa cartella"
   },
   "ja": {
     "Couldn't auto-sync": "自動同期できませんでした",
@@ -346,7 +366,9 @@
     "Describe the site's lists, details and chapters using CSS selectors. Use {query} and {page} in the search and browse paths.": "CSS セレクターでサイトの一覧、詳細、章を指定します。検索と閲覧のパスでは {query} と {page} を使用します。",
     "Margins": "余白",
     "Cache cleared": "キャッシュを消去しました",
-    "Get an API key": "APIキーを取得"
+    "Get an API key": "APIキーを取得",
+    "Import files": "ファイルを読み込む",
+    "Import folder": "フォルダを読み込む"
   },
   "ko": {
     "Couldn't auto-sync": "자동 동기화하지 못했습니다",
@@ -363,7 +385,9 @@
     "Describe the site's lists, details and chapters using CSS selectors. Use {query} and {page} in the search and browse paths.": "CSS 선택자로 사이트의 목록, 상세 정보, 장을 지정하세요. 검색 및 탐색 경로에 {query}와 {page}를 사용하세요.",
     "Margins": "여백",
     "Cache cleared": "캐시를 지웠습니다",
-    "Get an API key": "API 키 받기"
+    "Get an API key": "API 키 받기",
+    "Import files": "파일 가져오기",
+    "Import folder": "폴더 가져오기"
   },
   "pl": {
     "Couldn't auto-sync": "Nie udało się zsynchronizować automatycznie",
@@ -380,7 +404,9 @@
     "Describe the site's lists, details and chapters using CSS selectors. Use {query} and {page} in the search and browse paths.": "Opisz listy, szczegóły i rozdziały witryny za pomocą selektorów CSS. Użyj {query} i {page} w ścieżkach wyszukiwania i przeglądania.",
     "Margins": "Marginesy",
     "Cache cleared": "Pamięć podręczna wyczyszczona",
-    "Get an API key": "Uzyskaj klucz API"
+    "Get an API key": "Uzyskaj klucz API",
+    "Import files": "Importuj pliki",
+    "Import folder": "Importuj folder"
   },
   "tr": {
     "Couldn't auto-sync": "Otomatik eşitlenemedi",
@@ -397,7 +423,9 @@
     "Describe the site's lists, details and chapters using CSS selectors. Use {query} and {page} in the search and browse paths.": "Sitenin listelerini, ayrıntılarını ve bölümlerini CSS seçicileriyle tanımlayın. Arama ve gezinme yollarında {query} ve {page} kullanın.",
     "Margins": "Kenar boşlukları",
     "Cache cleared": "Önbellek temizlendi",
-    "Get an API key": "API anahtarı al"
+    "Get an API key": "API anahtarı al",
+    "Import files": "Dosyaları içe aktar",
+    "Import folder": "Klasörü içe aktar"
   },
   "vi": {
     "Couldn't auto-sync": "Không thể tự động đồng bộ",
@@ -414,7 +442,9 @@
     "Describe the site's lists, details and chapters using CSS selectors. Use {query} and {page} in the search and browse paths.": "Mô tả danh sách, thông tin và chương của trang web bằng bộ chọn CSS. Dùng {query} và {page} trong đường dẫn tìm kiếm và duyệt.",
     "Margins": "Lề",
     "Cache cleared": "Đã xóa bộ nhớ đệm",
-    "Get an API key": "Lấy khóa API"
+    "Get an API key": "Lấy khóa API",
+    "Import files": "Nhập tệp",
+    "Import folder": "Nhập thư mục"
   },
   "en": {
     "Browse services": "Browse services",
@@ -433,6 +463,8 @@
     "Book metadata": "Book metadata",
     "Get an API key": "Get an API key",
     "Metadata": "Metadata",
-    "Removed": "Removed"
+    "Removed": "Removed",
+    "Import files": "Import files",
+    "Import folder": "Import folder"
   }
 }

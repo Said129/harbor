@@ -749,6 +749,8 @@
 "Import CBZ/ZIP or folder" = "Import CBZ/ZIP or folder";
 "Import M3U file" = "Import M3U file";
 "Import PDF, CBZ, ZIP or image folders from the Manga menu. Your library shows their covers and can sort titles in reading order. For online sources, connect your Suwayomi server, install its extensions and select a source. Keep that server reachable from your iPhone or iPad." = "Import PDF, CBZ, ZIP or image folders from the Manga menu. Your library shows their covers and can sort titles in reading order. For online sources, connect your Suwayomi server, install its extensions and select a source. Keep that server reachable from your iPhone or iPad.";
+"Import files" = "Nhập tệp";
+"Import folder" = "Nhập thư mục";
 "Import from Files · EPUB / PDF" = "Import from Files · EPUB / PDF";
 "Import music" = "Import music";
 "Importa PDF, CBZ, ZIP o carpetas de imágenes desde el menú de Manga. Tu biblioteca muestra sus portadas y permite ordenar los títulos. Para fuentes en línea, conecta tu servidor Suwayomi, instala sus extensiones y elige una fuente. El servidor debe estar accesible desde tu iPhone o iPad." = "Import PDF, CBZ, ZIP or image folders from the Manga menu. Your library shows their covers and can sort titles in reading order. For online sources, connect your Suwayomi server, install its extensions and select a source. Keep that server reachable from your iPhone or iPad.";
@@ -1945,6 +1947,8 @@
 "music.genre.ukrainian-rap" = "Rap Ukraina";
 "music.genre.ukrainian-wartime" = "Nhạc Ukraina thời chiến";
 "music.genre.west-coast-hip-hop" = "Hip hop Bờ Tây";
+"music.home.filesBody" = "Thêm album và bài hát từ thiết bị vào thư viện.";
+"music.home.yourFiles" = "Ưu tiên tệp của bạn";
 "music.lastfm.apiKey" = "Khóa API";
 "music.library.loadMore" = "Tải thêm";
 "music.loading" = "Đang tải nhạc";
@@ -1953,6 +1957,7 @@
 "music.search.albums" = "Album";
 "music.search.playlists" = "Danh sách phát";
 "music.search.tracks" = "Bài hát";
+"music.searchPlaceholder" = "Tìm bài hát, album, nghệ sĩ";
 "music.taste.basedOn" = "Tuyển chọn từ thể loại bạn chọn · Deezer";
 "music.taste.body" = "Chọn thể loại để thêm bảng xếp hạng hiện tại vào Dành cho bạn. Có thể đổi bất cứ lúc nào.";
 "music.taste.choose" = "Chọn gu âm nhạc";

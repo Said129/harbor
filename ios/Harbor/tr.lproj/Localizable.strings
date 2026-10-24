@@ -749,6 +749,8 @@
 "Import CBZ/ZIP or folder" = "Import CBZ/ZIP or folder";
 "Import M3U file" = "Import M3U file";
 "Import PDF, CBZ, ZIP or image folders from the Manga menu. Your library shows their covers and can sort titles in reading order. For online sources, connect your Suwayomi server, install its extensions and select a source. Keep that server reachable from your iPhone or iPad." = "Import PDF, CBZ, ZIP or image folders from the Manga menu. Your library shows their covers and can sort titles in reading order. For online sources, connect your Suwayomi server, install its extensions and select a source. Keep that server reachable from your iPhone or iPad.";
+"Import files" = "Dosyaları içe aktar";
+"Import folder" = "Klasörü içe aktar";
 "Import from Files · EPUB / PDF" = "Import from Files · EPUB / PDF";
 "Import music" = "Import music";
 "Importa PDF, CBZ, ZIP o carpetas de imágenes desde el menú de Manga. Tu biblioteca muestra sus portadas y permite ordenar los títulos. Para fuentes en línea, conecta tu servidor Suwayomi, instala sus extensiones y elige una fuente. El servidor debe estar accesible desde tu iPhone o iPad." = "Import PDF, CBZ, ZIP or image folders from the Manga menu. Your library shows their covers and can sort titles in reading order. For online sources, connect your Suwayomi server, install its extensions and select a source. Keep that server reachable from your iPhone or iPad.";
@@ -1945,6 +1947,8 @@
 "music.genre.ukrainian-rap" = "Ukrayna rap";
 "music.genre.ukrainian-wartime" = "Savaş döneminde Ukrayna müziği";
 "music.genre.west-coast-hip-hop" = "Batı Yakası hip hop";
+"music.home.filesBody" = "Cihazınızdaki albüm ve parçaları kitaplığınıza ekleyin.";
+"music.home.yourFiles" = "Dosyalarınız ön planda";
 "music.lastfm.apiKey" = "API anahtarı";
 "music.library.loadMore" = "Daha fazla yükle";
 "music.loading" = "Müzik yükleniyor";
@@ -1953,6 +1957,7 @@
 "music.search.albums" = "Albümler";
 "music.search.playlists" = "Çalma listeleri";
 "music.search.tracks" = "Parçalar";
+"music.searchPlaceholder" = "Şarkı, albüm ve sanatçı ara";
 "music.taste.basedOn" = "Seçtiğin türlerden seçkiler · Deezer";
 "music.taste.body" = "Güncel listelerini Sana özel sayfasına eklemek için türleri seç. İstediğin zaman değiştir.";
 "music.taste.choose" = "Müzik zevkini seç";

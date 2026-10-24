@@ -754,6 +754,8 @@
 "Import CBZ/ZIP or folder" = "Import CBZ/ZIP or folder";
 "Import M3U file" = "Import M3U file";
 "Import PDF, CBZ, ZIP or image folders from the Manga menu. Your library shows their covers and can sort titles in reading order. For online sources, connect your Suwayomi server, install its extensions and select a source. Keep that server reachable from your iPhone or iPad." = "Import PDF, CBZ, ZIP or image folders from the Manga menu. Your library shows their covers and can sort titles in reading order. For online sources, connect your Suwayomi server, install its extensions and select a source. Keep that server reachable from your iPhone or iPad.";
+"Import files" = "Импортировать файлы";
+"Import folder" = "Импортировать папку";
 "Import from Files · EPUB / PDF" = "Импорт из «Файлов» · EPUB / PDF";
 "Import music" = "Import music";
 "Importa PDF, CBZ, ZIP o carpetas de imágenes desde el menú de Manga. Tu biblioteca muestra sus portadas y permite ordenar los títulos. Para fuentes en línea, conecta tu servidor Suwayomi, instala sus extensiones y elige una fuente. El servidor debe estar accesible desde tu iPhone o iPad." = "Import PDF, CBZ, ZIP or image folders from the Manga menu. Your library shows their covers and can sort titles in reading order. For online sources, connect your Suwayomi server, install its extensions and select a source. Keep that server reachable from your iPhone or iPad.";
@@ -1960,6 +1962,8 @@
 "music.genre.ukrainian-rap" = "Украинский рэп";
 "music.genre.ukrainian-wartime" = "Украинская музыка военного времени";
 "music.genre.west-coast-hip-hop" = "Хип-хоп Западного побережья";
+"music.home.filesBody" = "Добавьте альбомы и треки с устройства в библиотеку.";
+"music.home.yourFiles" = "Ваши файлы на первом месте";
 "music.lastfm.apiKey" = "Ключ API";
 "music.library.loadMore" = "Загрузить ещё";
 "music.loading" = "Загрузка музыки";
@@ -1968,6 +1972,7 @@
 "music.search.albums" = "Альбомы";
 "music.search.playlists" = "Плейлисты";
 "music.search.tracks" = "Треки";
+"music.searchPlaceholder" = "Поиск треков, альбомов и исполнителей";
 "music.taste.basedOn" = "Подборки из ваших жанров · Deezer";
 "music.taste.body" = "Выберите жанры, чтобы добавить их актуальные чарты в «Для вас». Выбор можно изменить в любое время.";
 "music.taste.choose" = "Выберите музыкальные вкусы";
