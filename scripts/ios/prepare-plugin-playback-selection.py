@@ -6,6 +6,9 @@ import re
 import runpy
 
 requested = os.environ.get('HARBOR_NATIVE_SELECTION', '').strip()
+if requested == 'ui-only:reading-visible-repair':
+    runpy.run_path('scripts/ios/prepare-reading-visible-repair-selection.py')
+    raise SystemExit(0)
 if 'HarborTests.MusicArtistNativeTests/' in requested:
     runpy.run_path('scripts/ios/prepare-music-artist-selection.py')
     raise SystemExit(0)

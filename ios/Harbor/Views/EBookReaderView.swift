@@ -189,7 +189,7 @@ struct EBookReaderView: View {
                             Text((focus ? "✓ " : "") + DesktopInterfaceText.value("Focus mode"))
                         }.accessibilityValue(focus ? "1" : "0").accessibilityIdentifier("ebook-focus-toggle")
                         Button(record.completed ? "Marcar como no leído" : "Marcar como leído") { var next = record; next.completed.toggle(); persist(next) }
-                        Button("Opciones de lectura") { settings = true }.accessibilityIdentifier("ebook-reader-settings-action")
+                        Button("Opciones de lectura") { readerActions = false; settings = true }.accessibilityIdentifier("ebook-reader-settings-action")
                     }
     }
     private var readerLifecycle: some View {
@@ -279,6 +279,7 @@ struct EBookReaderView: View {
                 }
             }
             .sheet(isPresented: $settings, onDismiss: {
+                readerActions = false
                 if narrationAfterSettings { narrationAfterSettings = false; narrationOptions = true }
             }) {
                 readerSettings

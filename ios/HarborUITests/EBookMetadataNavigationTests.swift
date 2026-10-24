@@ -53,7 +53,9 @@ import XCTest
         let target = app.buttons["nav-" + section]
         for _ in 0..<12 { if target.isHittable { break }; navigation.swipeDown() }
         for _ in 0..<12 { if target.isHittable { break }; navigation.swipeUp() }
-        XCTAssertTrue(target.isHittable); target.press(forDuration: 0.6)
+        XCTAssertTrue(target.isHittable); ReadingUIInteraction.tapVisible(target, in: app)
+        XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in !navigation.exists }, object: nil)], timeout: 15), .completed)
+        XCTAssertTrue(app.segmentedControls["ebook-screen"].waitForExistence(timeout: 20))
     }
     private func reveal(_ element: XCUIElement, _ app: XCUIApplication, up: Bool = true) {
         ReadingUIInteraction.reveal(element, in: app, up: up)
