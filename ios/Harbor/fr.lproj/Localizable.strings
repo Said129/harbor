@@ -397,11 +397,13 @@
 "Could not load this page. Try again." = "Impossible de charger cette page. Réessayez.";
 "Could not measure storage. Try again." = "Could not measure storage. Try again.";
 "Could not open book" = "Could not open book";
+"Could not read your saved tracks and listening history. Your data is preserved." = "Could not read your saved tracks and listening history. Your data is preserved.";
 "Could not restore your navigation. The saved version is kept." = "Could not restore your navigation. The saved version is kept.";
 "Could not restore your services. The saved version is kept." = "Impossible de restaurer vos services. La version enregistrée est conservée.";
 "Could not save navigation settings. Your previous settings are kept." = "Could not save navigation settings. Your previous settings are kept.";
 "Could not save streaming preferences. Your previous settings are kept." = "Could not save streaming preferences. Your previous settings are kept.";
 "Could not save your choices. Try again." = "Could not save your choices. Try again.";
+"Could not save your tracks or listening history. Try again." = "Could not save your tracks or listening history. Try again.";
 "Couldn't auto-sync" = "Synchronisation automatique impossible";
 "Crash" = "Plantage";
 "Crea tu propia paleta" = "Créez votre propre palette";
@@ -1218,6 +1220,7 @@
 "Reanudar tras una interrupción de audio" = "Resume after an audio interruption";
 "Recent activity" = "Activité récente";
 "Recent searches" = "Recherches récentes";
+"Recently played" = "Joué récemment";
 "Recién agregado" = "Ajouté récemment";
 "Recomendado" = "Recommandé";
 "Recommended" = "Recommandé";
@@ -1251,6 +1254,7 @@
 "Remove from favorites" = "Retirer des favoris";
 "Remove from queue" = "Retirer de la file d’attente";
 "Remove from saved" = "Supprimer des éléments enregistrés";
+"Remove from saved tracks" = "Retirer des titres enregistrés";
 "Remove from this library" = "Remove from this library";
 "Remove saved book" = "Remove saved book";
 "Remove {language}" = "Retirer {language}";
@@ -1339,6 +1343,7 @@
 "Saturación" = "Saturation";
 "Saturation" = "Saturation";
 "Save" = "Enregistrer";
+"Save a track and it will appear here." = "Enregistrez un titre depuis Découvrir et il apparaîtra ici.";
 "Save and share pages" = "Save and share pages";
 "Save changes" = "Enregistrer les modifications";
 "Save for later" = "Garder pour plus tard";
@@ -1346,6 +1351,7 @@
 "Save reminder" = "Enregistrer le rappel";
 "Save settings" = "Save settings";
 "Save to this library" = "Save to this library";
+"Save track" = "Enregistrer le titre";
 "Saved" = "Enregistré";
 "Saved app data" = "Saved app data";
 "Saving" = "Enregistrement";
@@ -1361,6 +1367,7 @@
 "Search addons" = "Rechercher des extensions";
 "Search by title or author, or change the language." = "Search by title or author, or change the language.";
 "Search languages" = "Rechercher des langues";
+"Search music" = "Rechercher de la musique";
 "Search settings" = "Rechercher dans les paramètres";
 "Search subtitles again" = "Search subtitles again";
 "Season" = "Saison";
@@ -1781,6 +1788,7 @@
 "Your leagues" = "Your leagues";
 "Your library" = "Votre médiathèque";
 "Your library and watch history are kept." = "Your library and watch history are kept.";
+"Your listening history will build itself here." = "Votre historique d’écoute se construira ici automatiquement.";
 "Your lists" = "Your lists";
 "Your navigation is saved locally. Cloud sync will retry." = "Your navigation is saved locally. Cloud sync will retry.";
 "Your profile" = "Votre profil";
@@ -1843,6 +1851,7 @@
 "yes" = "oui";
 "{app} itself does not host, distribute, or index any media. All streams come from third-party addons, debrid services, or your own {service} account that you configure yourself. You are responsible for what you choose to play and for complying with the laws of your jurisdiction." = "{app} n’héberge, ne distribue et n’indexe aucun média. Tous les flux proviennent d’extensions tierces, de services de débridage ou de votre propre compte {service}, que vous configurez vous-même. Vous êtes responsable des contenus que vous choisissez de lire et du respect des lois de votre juridiction.";
 "{count} picks ready" = "{count} choix prêts";
+"{count} tracks" = "{count} titres";
 "{h}h left" = "reste {h} h";
 "{h}h {m}m left" = "reste {h} h {m} min";
 "{m}m left" = "{m} min restantes";

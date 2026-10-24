@@ -397,11 +397,13 @@
 "Could not load this page. Try again." = "Nie udało się wczytać tej strony. Spróbuj ponownie.";
 "Could not measure storage. Try again." = "Could not measure storage. Try again.";
 "Could not open book" = "Could not open book";
+"Could not read your saved tracks and listening history. Your data is preserved." = "Could not read your saved tracks and listening history. Your data is preserved.";
 "Could not restore your navigation. The saved version is kept." = "Could not restore your navigation. The saved version is kept.";
 "Could not restore your services. The saved version is kept." = "Nie udało się przywrócić usług. Zapisana wersja została zachowana.";
 "Could not save navigation settings. Your previous settings are kept." = "Could not save navigation settings. Your previous settings are kept.";
 "Could not save streaming preferences. Your previous settings are kept." = "Could not save streaming preferences. Your previous settings are kept.";
 "Could not save your choices. Try again." = "Could not save your choices. Try again.";
+"Could not save your tracks or listening history. Try again." = "Could not save your tracks or listening history. Try again.";
 "Couldn't auto-sync" = "Nie udało się zsynchronizować automatycznie";
 "Crash" = "Awaria";
 "Crea tu propia paleta" = "Utwórz własną paletę";
@@ -1218,6 +1220,7 @@
 "Reanudar tras una interrupción de audio" = "Resume after an audio interruption";
 "Recent activity" = "Ostatnia aktywność";
 "Recent searches" = "Ostatnie wyszukiwania";
+"Recently played" = "Ostatnio grane";
 "Recién agregado" = "Ostatnio dodane";
 "Recomendado" = "Polecane";
 "Recommended" = "Polecane";
@@ -1251,6 +1254,7 @@
 "Remove from favorites" = "Usuń z ulubionych";
 "Remove from queue" = "Usuń z kolejki";
 "Remove from saved" = "Usuń z zapisanych";
+"Remove from saved tracks" = "Usuń z zapisanych utworów";
 "Remove from this library" = "Remove from this library";
 "Remove saved book" = "Remove saved book";
 "Remove {language}" = "Usuń język: {language}";
@@ -1339,6 +1343,7 @@
 "Saturación" = "Nasycenie";
 "Saturation" = "Nasycenie";
 "Save" = "Zapisz";
+"Save a track and it will appear here." = "Zapisz utwór z sekcji Odkrywaj, a pojawi się tutaj.";
 "Save and share pages" = "Save and share pages";
 "Save changes" = "Zapisz zmiany";
 "Save for later" = "Zapisz na później";
@@ -1346,6 +1351,7 @@
 "Save reminder" = "Zapisz przypomnienie";
 "Save settings" = "Save settings";
 "Save to this library" = "Save to this library";
+"Save track" = "Zapisz utwór";
 "Saved" = "Zapisano";
 "Saved app data" = "Saved app data";
 "Saving" = "Zapisywanie";
@@ -1361,6 +1367,7 @@
 "Search addons" = "Szukaj dodatków";
 "Search by title or author, or change the language." = "Search by title or author, or change the language.";
 "Search languages" = "Języki wyszukiwania";
+"Search music" = "Szukaj muzyki";
 "Search settings" = "Ustawienia wyszukiwania";
 "Search subtitles again" = "Search subtitles again";
 "Season" = "Sezon";
@@ -1781,6 +1788,7 @@
 "Your leagues" = "Your leagues";
 "Your library" = "Twoja biblioteka";
 "Your library and watch history are kept." = "Your library and watch history are kept.";
+"Your listening history will build itself here." = "Tutaj będzie powstawać Twoja historia słuchania.";
 "Your lists" = "Your lists";
 "Your navigation is saved locally. Cloud sync will retry." = "Your navigation is saved locally. Cloud sync will retry.";
 "Your profile" = "Twój profil";
@@ -1843,6 +1851,7 @@
 "yes" = "tak";
 "{app} itself does not host, distribute, or index any media. All streams come from third-party addons, debrid services, or your own {service} account that you configure yourself. You are responsible for what you choose to play and for complying with the laws of your jurisdiction." = "Sama aplikacja {app} nie hostuje, nie rozpowszechnia ani nie indeksuje żadnych multimediów. Wszystkie strumienie pochodzą z dodatków innych firm, usług debrid lub własnego konta {service}, które konfigurujesz samodzielnie. Odpowiadasz za wybór odtwarzanych treści i przestrzeganie prawa obowiązującego w Twojej jurysdykcji.";
 "{count} picks ready" = "{count} gotowych propozycji";
+"{count} tracks" = "Utwory: {count}";
 "{h}h left" = "pozostało {h} godz.";
 "{h}h {m}m left" = "pozostało {h} godz. {m} min";
 "{m}m left" = "pozostało {m} min";

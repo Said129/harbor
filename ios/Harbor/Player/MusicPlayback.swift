@@ -181,7 +181,13 @@ final class MusicPlayback {
         var endedNormally = false
         for _ in 0..<64 {
             guard let event = mpv_wait_event(handle, 0)?.pointee, event.event_id != MPV_EVENT_NONE else { break }
-            if event.event_id == MPV_EVENT_FILE_LOADED { loaded = true }
+            if event.event_id == MPV_EVENT_FILE_LOADED {
+                loaded = true
+                if !pendingLoad, let current {
+                    let id = current.id, loadedOwner = owner
+                    Task { @MainActor in MusicCollections.shared.recordPlayed(id, owner: loadedOwner) }
+                }
+            }
             if event.event_id == MPV_EVENT_START_FILE { loaded = false; position = 0; pendingLoad = false }
             if event.event_id == MPV_EVENT_PROPERTY_CHANGE, let data = event.data {
                 let property = data.assumingMemoryBound(to: mpv_event_property.self).pointee

@@ -397,11 +397,13 @@
 "Could not load this page. Try again." = "यह पेज लोड नहीं हो सका। फिर से कोशिश करें।";
 "Could not measure storage. Try again." = "Could not measure storage. Try again.";
 "Could not open book" = "Could not open book";
+"Could not read your saved tracks and listening history. Your data is preserved." = "Could not read your saved tracks and listening history. Your data is preserved.";
 "Could not restore your navigation. The saved version is kept." = "Could not restore your navigation. The saved version is kept.";
 "Could not restore your services. The saved version is kept." = "आपकी सेवाएँ बहाल नहीं हो सकीं। सहेजा गया संस्करण सुरक्षित है।";
 "Could not save navigation settings. Your previous settings are kept." = "Could not save navigation settings. Your previous settings are kept.";
 "Could not save streaming preferences. Your previous settings are kept." = "Could not save streaming preferences. Your previous settings are kept.";
 "Could not save your choices. Try again." = "Could not save your choices. Try again.";
+"Could not save your tracks or listening history. Try again." = "Could not save your tracks or listening history. Try again.";
 "Couldn't auto-sync" = "अपने-आप सिंक नहीं हो सका";
 "Crash" = "क्रैश";
 "Crea tu propia paleta" = "अपना पैलेट बनाएँ";
@@ -1218,6 +1220,7 @@
 "Reanudar tras una interrupción de audio" = "Resume after an audio interruption";
 "Recent activity" = "हाल की गतिविधि";
 "Recent searches" = "हाल की खोजें";
+"Recently played" = "हाल में खेला";
 "Recién agregado" = "हाल ही में जोड़ा गया";
 "Recomendado" = "सुझाए गए";
 "Recommended" = "सुझाए गए";
@@ -1251,6 +1254,7 @@
 "Remove from favorites" = "पसंदीदा से हटाएँ";
 "Remove from queue" = "क्यू से हटाएँ";
 "Remove from saved" = "सेव किए गए आइटमों से हटाएँ";
+"Remove from saved tracks" = "सहेजे गए ट्रैक से हटाएँ";
 "Remove from this library" = "Remove from this library";
 "Remove saved book" = "Remove saved book";
 "Remove {language}" = "{language} हटाएँ";
@@ -1339,6 +1343,7 @@
 "Saturación" = "सैचुरेशन";
 "Saturation" = "सैचुरेशन";
 "Save" = "सेव करें";
+"Save a track and it will appear here." = "खोजें से कोई ट्रैक सहेजें और वह यहाँ दिखाई देगा।";
 "Save and share pages" = "Save and share pages";
 "Save changes" = "बदलाव सेव करें";
 "Save for later" = "बाद के लिए सेव करें";
@@ -1346,6 +1351,7 @@
 "Save reminder" = "रिमाइंडर सहेजें";
 "Save settings" = "Save settings";
 "Save to this library" = "Save to this library";
+"Save track" = "ट्रैक सहेजें";
 "Saved" = "सेव किया गया";
 "Saved app data" = "Saved app data";
 "Saving" = "सेव हो रहा है";
@@ -1361,6 +1367,7 @@
 "Search addons" = "ऐडऑन खोजें";
 "Search by title or author, or change the language." = "Search by title or author, or change the language.";
 "Search languages" = "भाषाएँ खोजें";
+"Search music" = "संगीत खोजें";
 "Search settings" = "सेटिंग्स खोजें";
 "Search subtitles again" = "Search subtitles again";
 "Season" = "सीज़न";
@@ -1781,6 +1788,7 @@
 "Your leagues" = "Your leagues";
 "Your library" = "आपकी लाइब्रेरी";
 "Your library and watch history are kept." = "Your library and watch history are kept.";
+"Your listening history will build itself here." = "आपके सुनने का इतिहास यहाँ अपने आप बनता जाएगा।";
 "Your lists" = "Your lists";
 "Your navigation is saved locally. Cloud sync will retry." = "Your navigation is saved locally. Cloud sync will retry.";
 "Your profile" = "आपकी प्रोफ़ाइल";
@@ -1843,6 +1851,7 @@
 "yes" = "हाँ";
 "{app} itself does not host, distribute, or index any media. All streams come from third-party addons, debrid services, or your own {service} account that you configure yourself. You are responsible for what you choose to play and for complying with the laws of your jurisdiction." = "{app} स्वयं किसी मीडिया को होस्ट, वितरित या इंडेक्स नहीं करता। सभी स्ट्रीम तृतीय-पक्ष ऐडऑन, डीब्रिड सेवाओं या आपके अपने {service} अकाउंट से आती हैं, जिसे आप स्वयं कॉन्फ़िगर करते हैं। आप क्या चलाना चुनते हैं और अपने अधिकार क्षेत्र के कानूनों का पालन करते हैं, इसकी ज़िम्मेदारी आपकी है।";
 "{count} picks ready" = "{count} चुने हुए विकल्प तैयार हैं";
+"{count} tracks" = "{count} ट्रैक";
 "{h}h left" = "{h} घंटे बाकी";
 "{h}h {m}m left" = "{h} घंटे {m} मिनट बाकी";
 "{m}m left" = "{m} मिनट बाकी";

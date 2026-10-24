@@ -33,7 +33,7 @@ devices = json.loads((build / 'devices.json').read_text())['devices']
 runtime, phone = next((runtime, row) for runtime, values in devices.items() for row in values if row['udid'] == os.environ['IOS_SIMULATOR'])
 tablet = next(row for row in devices[runtime] if row['name'].startswith('iPad') and row.get('isAvailable', True))
 types = json.loads(subprocess.check_output(['xcrun', 'simctl', 'list', 'devicetypes', '--json'], text=True))['devicetypes']
-prebuilt = plan.get('block') in ('reading-metadata', 'reading-adaptations', 'ebook-detail', 'reading-display', 'web-fonts', 'reading-navigation', 'book-pagination', 'reader-completion', 'reading-surface', 'reader-position', 'reader-contents', 'reader-interface-completion', 'reader-bookmarks', 'reader-translation', 'reader-annotations', 'reader-narration', 'reader-narration-repair', 'reading-source-refresh', 'reader-focus', 'reader-heading', 'reading-final-repair')
+prebuilt = plan.get('block') in ('reading-metadata', 'reading-adaptations', 'ebook-detail', 'reading-display', 'web-fonts', 'reading-navigation', 'book-pagination', 'reader-completion', 'reading-surface', 'reader-position', 'reader-contents', 'reader-interface-completion', 'reader-bookmarks', 'reader-translation', 'reader-annotations', 'reader-narration', 'reader-narration-repair', 'reading-source-refresh', 'reader-focus', 'reader-heading', 'reading-final-repair', 'music-collections')
 if prebuilt:
     # A live metadata selection has not built the separate HarborTests preparation target.
     schemes = ['Harbor', 'HarborLive'] if plan.get('native_scheme') == 'HarborLive' or plan.get('ui_only') else ['HarborLive']

@@ -7,13 +7,13 @@
   "coverage_note": "This report inventories generated Desktop-derived labels and known mobile-only English fallbacks. It is not a certification of complete translation of every native message or of overall functional parity.",
   "languages": {
     "en": {
-      "entries": 1444,
-      "sha256": "b2c4699d6688bd238bb9af8fbc63e27d559efeee2b86a0c8be567117c5a050de",
+      "entries": 1453,
+      "sha256": "86389b7228f8227b1e1a12d39da8fcd40d04f756a78105db2bf244fa9fbd0583",
       "mobile_only_english_fallback": []
     },
     "ar": {
-      "entries": 1906,
-      "sha256": "18c6364326c837ab27e70da1f196f7eea6e84f48e710e93049631fd3d512c22c",
+      "entries": 1915,
+      "sha256": "3e77ea028f7e14d9eaab45c9a651e099cb6091fbdc6a982f600ae6a3c1a83cc5",
       "mobile_only_english_fallback": [
         "Accents",
         "Add bookmark",
@@ -47,10 +47,12 @@
         "Could not load navigation settings. Saved settings are kept.",
         "Could not load streaming preferences. Saved settings are kept.",
         "Could not measure storage. Try again.",
+        "Could not read your saved tracks and listening history. Your data is preserved.",
         "Could not restore your navigation. The saved version is kept.",
         "Could not save navigation settings. Your previous settings are kept.",
         "Could not save streaming preferences. Your previous settings are kept.",
         "Could not save your choices. Try again.",
+        "Could not save your tracks or listening history. Try again.",
         "Delete file",
         "Desktop reference",
         "Dismiss tip",
@@ -182,8 +184,8 @@
       ]
     },
     "zh": {
-      "entries": 1864,
-      "sha256": "1184f228162c0b452d5dd74f9ba72a63f399c12b950a068feb8507cd4ae00889",
+      "entries": 1873,
+      "sha256": "e20d3c4fc11839e9ee231ed6f7f10b61b3905551352760662e56b6c3f37a44e2",
       "mobile_only_english_fallback": [
         "Accents",
         "Add bookmark",
@@ -227,10 +229,12 @@
         "Could not load streaming preferences. Saved settings are kept.",
         "Could not measure storage. Try again.",
         "Could not open book",
+        "Could not read your saved tracks and listening history. Your data is preserved.",
         "Could not restore your navigation. The saved version is kept.",
         "Could not save navigation settings. Your previous settings are kept.",
         "Could not save streaming preferences. Your previous settings are kept.",
         "Could not save your choices. Try again.",
+        "Could not save your tracks or listening history. Try again.",
         "Delete file",
         "Desktop reference",
         "Dismiss tip",
@@ -387,8 +391,8 @@
       ]
     },
     "fr": {
-      "entries": 1864,
-      "sha256": "35473cc35d4440353118a806653288d7b3b40fc3710ec9a0040eceddc8bea99f",
+      "entries": 1873,
+      "sha256": "7104afa52e6dad4847c4ced2a4c28620267f8710d67025e5eb5a7a91886a71b5",
       "mobile_only_english_fallback": [
         "Accents",
         "Add bookmark",
@@ -432,10 +436,12 @@
         "Could not load streaming preferences. Saved settings are kept.",
         "Could not measure storage. Try again.",
         "Could not open book",
+        "Could not read your saved tracks and listening history. Your data is preserved.",
         "Could not restore your navigation. The saved version is kept.",
         "Could not save navigation settings. Your previous settings are kept.",
         "Could not save streaming preferences. Your previous settings are kept.",
         "Could not save your choices. Try again.",
+        "Could not save your tracks or listening history. Try again.",
         "Delete file",
         "Desktop reference",
         "Dismiss tip",
@@ -592,8 +598,8 @@
       ]
     },
     "de": {
-      "entries": 1864,
-      "sha256": "237b8ffd3aa8c456961fcd1e03dd6ebb1c5dca5c432c09cd143507116bd1d6f9",
+      "entries": 1873,
+      "sha256": "75790a4ec93252d1e8f718d643e76409e7c28cb29b92fd6f532eea1553564f44",
       "mobile_only_english_fallback": [
         "Accents",
         "Add bookmark",
@@ -637,10 +643,12 @@
         "Could not load streaming preferences. Saved settings are kept.",
         "Could not measure storage. Try again.",
         "Could not open book",
+        "Could not read your saved tracks and listening history. Your data is preserved.",
         "Could not restore your navigation. The saved version is kept.",
         "Could not save navigation settings. Your previous settings are kept.",
         "Could not save streaming preferences. Your previous settings are kept.",
         "Could not save your choices. Try again.",
+        "Could not save your tracks or listening history. Try again.",
         "Delete file",
         "Desktop reference",
         "Dismiss tip",
@@ -797,8 +805,8 @@
       ]
     },
     "hi": {
-      "entries": 1864,
-      "sha256": "87e3ff4f31d74db71ae06390b000fc57d89ab1a40b2b5c79348f3777ba618814",
+      "entries": 1873,
+      "sha256": "48252f1d9dc70fa31d4fad91ccc894cd978f2427109dd0cff8199f701c005b60",
       "mobile_only_english_fallback": [
         "Accents",
         "Add bookmark",
@@ -842,10 +850,12 @@
         "Could not load streaming preferences. Saved settings are kept.",
         "Could not measure storage. Try again.",
         "Could not open book",
+        "Could not read your saved tracks and listening history. Your data is preserved.",
         "Could not restore your navigation. The saved version is kept.",
         "Could not save navigation settings. Your previous settings are kept.",
         "Could not save streaming preferences. Your previous settings are kept.",
         "Could not save your choices. Try again.",
+        "Could not save your tracks or listening history. Try again.",
         "Delete file",
         "Desktop reference",
         "Dismiss tip",
@@ -1002,8 +1012,8 @@
       ]
     },
     "id": {
-      "entries": 1864,
-      "sha256": "d3fadbb72b26f2e4f054f3ab97e1433041fd63755f9a6f3eb8d774f5b0c16acf",
+      "entries": 1873,
+      "sha256": "22a3b24859a58761404d2f929920a45b5731893c5b747028d68bb922acb2af05",
       "mobile_only_english_fallback": [
         "Accents",
         "Add bookmark",
@@ -1047,10 +1057,12 @@
         "Could not load streaming preferences. Saved settings are kept.",
         "Could not measure storage. Try again.",
         "Could not open book",
+        "Could not read your saved tracks and listening history. Your data is preserved.",
         "Could not restore your navigation. The saved version is kept.",
         "Could not save navigation settings. Your previous settings are kept.",
         "Could not save streaming preferences. Your previous settings are kept.",
         "Could not save your choices. Try again.",
+        "Could not save your tracks or listening history. Try again.",
         "Delete file",
         "Desktop reference",
         "Dismiss tip",
@@ -1207,8 +1219,8 @@
       ]
     },
     "it": {
-      "entries": 1864,
-      "sha256": "bb04a065bc78d36b0563659bdd74bf2e983b191ebf2941d8e38873d86a8df573",
+      "entries": 1873,
+      "sha256": "4c3eadf314a86f66e55c71d1b350d3e94c2dde38b033160d1f3e2dcf3cf889f8",
       "mobile_only_english_fallback": [
         "Accents",
         "Add bookmark",
@@ -1252,10 +1264,12 @@
         "Could not load streaming preferences. Saved settings are kept.",
         "Could not measure storage. Try again.",
         "Could not open book",
+        "Could not read your saved tracks and listening history. Your data is preserved.",
         "Could not restore your navigation. The saved version is kept.",
         "Could not save navigation settings. Your previous settings are kept.",
         "Could not save streaming preferences. Your previous settings are kept.",
         "Could not save your choices. Try again.",
+        "Could not save your tracks or listening history. Try again.",
         "Delete file",
         "Desktop reference",
         "Dismiss tip",
@@ -1412,8 +1426,8 @@
       ]
     },
     "ja": {
-      "entries": 1864,
-      "sha256": "099b8138a8fa5511b03edd11cf37f1334c8ac5bd09734023fe825604681b2635",
+      "entries": 1873,
+      "sha256": "912ed35ab05853125fd443531bb0ccd38fefd3e46d6e34d1ce0c4d374aa908cb",
       "mobile_only_english_fallback": [
         "Accents",
         "Add bookmark",
@@ -1457,10 +1471,12 @@
         "Could not load streaming preferences. Saved settings are kept.",
         "Could not measure storage. Try again.",
         "Could not open book",
+        "Could not read your saved tracks and listening history. Your data is preserved.",
         "Could not restore your navigation. The saved version is kept.",
         "Could not save navigation settings. Your previous settings are kept.",
         "Could not save streaming preferences. Your previous settings are kept.",
         "Could not save your choices. Try again.",
+        "Could not save your tracks or listening history. Try again.",
         "Delete file",
         "Desktop reference",
         "Dismiss tip",
@@ -1617,8 +1633,8 @@
       ]
     },
     "ko": {
-      "entries": 1864,
-      "sha256": "b22bf595e0e06910dab3974ea783301dd9f0a489acc7a669b282468f7614a337",
+      "entries": 1873,
+      "sha256": "5affaca7094418efbb6e2deaaddeb4b4e740da419f0d4951169d59891f6eeeaf",
       "mobile_only_english_fallback": [
         "Accents",
         "Add bookmark",
@@ -1662,10 +1678,12 @@
         "Could not load streaming preferences. Saved settings are kept.",
         "Could not measure storage. Try again.",
         "Could not open book",
+        "Could not read your saved tracks and listening history. Your data is preserved.",
         "Could not restore your navigation. The saved version is kept.",
         "Could not save navigation settings. Your previous settings are kept.",
         "Could not save streaming preferences. Your previous settings are kept.",
         "Could not save your choices. Try again.",
+        "Could not save your tracks or listening history. Try again.",
         "Delete file",
         "Desktop reference",
         "Dismiss tip",
@@ -1822,8 +1840,8 @@
       ]
     },
     "pl": {
-      "entries": 1864,
-      "sha256": "44cd2048ef75e2a2183a86a56f8add98df3fc4e54c150a1d727e17130b753c98",
+      "entries": 1873,
+      "sha256": "1e139b0bb471b3a9694bfdc9f8db8c7410f8a181019a1750634839e672f962c1",
       "mobile_only_english_fallback": [
         "Accents",
         "Add bookmark",
@@ -1867,10 +1885,12 @@
         "Could not load streaming preferences. Saved settings are kept.",
         "Could not measure storage. Try again.",
         "Could not open book",
+        "Could not read your saved tracks and listening history. Your data is preserved.",
         "Could not restore your navigation. The saved version is kept.",
         "Could not save navigation settings. Your previous settings are kept.",
         "Could not save streaming preferences. Your previous settings are kept.",
         "Could not save your choices. Try again.",
+        "Could not save your tracks or listening history. Try again.",
         "Delete file",
         "Desktop reference",
         "Dismiss tip",
@@ -2027,8 +2047,8 @@
       ]
     },
     "pt": {
-      "entries": 1891,
-      "sha256": "b3066f19aff419fdfc780a43e87abf620ae307f18a7cd33e4563d2c95aab1a23",
+      "entries": 1900,
+      "sha256": "43ed65ff5b3d7dac8637e7700846cdc660abacced6ea80f33076926af1768e59",
       "mobile_only_english_fallback": [
         "Accents",
         "Add bookmark",
@@ -2063,10 +2083,12 @@
         "Could not load navigation settings. Saved settings are kept.",
         "Could not load streaming preferences. Saved settings are kept.",
         "Could not measure storage. Try again.",
+        "Could not read your saved tracks and listening history. Your data is preserved.",
         "Could not restore your navigation. The saved version is kept.",
         "Could not save navigation settings. Your previous settings are kept.",
         "Could not save streaming preferences. Your previous settings are kept.",
         "Could not save your choices. Try again.",
+        "Could not save your tracks or listening history. Try again.",
         "Delete file",
         "Desktop reference",
         "Dismiss tip",
@@ -2206,8 +2228,8 @@
       ]
     },
     "ru": {
-      "entries": 1879,
-      "sha256": "07f705d5bc04c8940b80c3ed0d0064dd4924cffc52b92e2d83ef295341dfa6ce",
+      "entries": 1888,
+      "sha256": "92d3fc3d95ca92547378fd1edf0c09cfd50d2c9aad6973f6c6bc03eb9182b832",
       "mobile_only_english_fallback": [
         "Accents",
         "Add bookmark",
@@ -2241,10 +2263,12 @@
         "Could not load navigation settings. Saved settings are kept.",
         "Could not load streaming preferences. Saved settings are kept.",
         "Could not measure storage. Try again.",
+        "Could not read your saved tracks and listening history. Your data is preserved.",
         "Could not restore your navigation. The saved version is kept.",
         "Could not save navigation settings. Your previous settings are kept.",
         "Could not save streaming preferences. Your previous settings are kept.",
         "Could not save your choices. Try again.",
+        "Could not save your tracks or listening history. Try again.",
         "Delete file",
         "Desktop reference",
         "Dismiss tip",
@@ -2376,13 +2400,13 @@
       ]
     },
     "es": {
-      "entries": 1864,
-      "sha256": "49615f54949be48382e4d6ef923b5c5d3e6b85a63664ca3bb76ccacc73a9f878",
+      "entries": 1873,
+      "sha256": "c7b86a7e3b61924fc10e3a3d5eafcaa9c91d6f56726b8a3ba55b888d44128d6e",
       "mobile_only_english_fallback": []
     },
     "tr": {
-      "entries": 1864,
-      "sha256": "1131d80178915f26627d3ba14fb39d91fbff3ecb1215917db7cdbcbf46fecae4",
+      "entries": 1873,
+      "sha256": "6bd9364979f4c7113adede19bc14f455d34c9fbe75c2a1486bc4835758ec63f0",
       "mobile_only_english_fallback": [
         "Accents",
         "Add bookmark",
@@ -2426,10 +2450,12 @@
         "Could not load streaming preferences. Saved settings are kept.",
         "Could not measure storage. Try again.",
         "Could not open book",
+        "Could not read your saved tracks and listening history. Your data is preserved.",
         "Could not restore your navigation. The saved version is kept.",
         "Could not save navigation settings. Your previous settings are kept.",
         "Could not save streaming preferences. Your previous settings are kept.",
         "Could not save your choices. Try again.",
+        "Could not save your tracks or listening history. Try again.",
         "Delete file",
         "Desktop reference",
         "Dismiss tip",
@@ -2586,8 +2612,8 @@
       ]
     },
     "vi": {
-      "entries": 1864,
-      "sha256": "7b2769c2eca4a7590a8195cbbd2ae01f0a7005702d863e2a9b83cc86d6ca4172",
+      "entries": 1873,
+      "sha256": "2b16a900b1cb3d91bbe6a7cbb74842f89a95416c22d184a7245e9187c7f052e7",
       "mobile_only_english_fallback": [
         "Accents",
         "Add bookmark",
@@ -2631,10 +2657,12 @@
         "Could not load streaming preferences. Saved settings are kept.",
         "Could not measure storage. Try again.",
         "Could not open book",
+        "Could not read your saved tracks and listening history. Your data is preserved.",
         "Could not restore your navigation. The saved version is kept.",
         "Could not save navigation settings. Your previous settings are kept.",
         "Could not save streaming preferences. Your previous settings are kept.",
         "Could not save your choices. Try again.",
+        "Could not save your tracks or listening history. Try again.",
         "Delete file",
         "Desktop reference",
         "Dismiss tip",

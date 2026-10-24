@@ -14,6 +14,7 @@ struct MusicView: View {
         self.app = app
         _library = State(initialValue: MusicLibrary(owner: app.personalOwner))
         _playlists = State(initialValue: MusicPlaylistStore(owner: app.personalOwner))
+        MusicCollections.shared.prepare(owner: app.personalOwner)
     }
     private var query: String { filters.query }
     private var records: [MusicRecord] { filters.apply(library.records) }
@@ -34,10 +35,16 @@ struct MusicView: View {
     }
     var body: some View {
         VStack(spacing: 12) {
-            Picker("Biblioteca", selection: $category) { Text("Canciones").tag("Canciones"); Text("Álbumes").tag("Álbumes"); Text("Artistas").tag("Artistas"); Text("Listas").tag("Listas") }.pickerStyle(.segmented).padding(.horizontal)
+            Picker("Biblioteca", selection: $category) { Text("Canciones").tag("Canciones"); Text("Álbumes").tag("Álbumes"); Text("Artistas").tag("Artistas"); Text("Listas").tag("Listas") }.pickerStyle(.segmented).padding(.horizontal).accessibilityIdentifier("music-library-category")
             if category == "Canciones", !library.records.isEmpty { MusicFilterTools(filters: $filters, count: records.count).padding(.horizontal) }
             if let error = library.error { Text(error).font(.caption).foregroundStyle(.orange).padding(.horizontal) }
             if let error = playlists.error { Text(error).font(.caption).foregroundStyle(.orange).padding(.horizontal) }
+            if let error = MusicCollections.shared.errors[library.owner] {
+                HStack {
+                    Text(DesktopInterfaceText.value(error)).font(.caption).foregroundStyle(.orange)
+                    Button(DesktopInterfaceText.value("Retry")) { MusicCollections.shared.retry(owner: library.owner) }
+                }.padding(.horizontal).accessibilityIdentifier("music-collections-error")
+            }
             importStatus
             libraryContent
         }.background(HarborTheme.background).navigationTitle("Música").navigationBarTitleDisplayMode(.inline)
@@ -127,6 +134,11 @@ struct MusicTrackActions: View {
     let owner: String
     var playlists: MusicPlaylistStore?
     var body: some View {
+        let collections = MusicCollections.shared
+        let liked = collections.isLiked(record.id, owner: owner)
+        Button { collections.setLiked(record.id, liked: !liked, owner: owner) } label: {
+            Label(DesktopInterfaceText.value(liked ? "Remove from saved tracks" : "Save track"), systemImage: liked ? "heart.slash" : "heart")
+        }.disabled(!collections.isReady(owner: owner)).accessibilityIdentifier("music-track-like")
         if let playlists { MusicPlaylistChoices(record: record, store: playlists) }
         Button { MusicPlayback.shared.enqueue(record, owner: owner, next: true) } label: { Label("Reproducir después", image: "music-queue-next") }
         Button { MusicPlayback.shared.enqueue(record, owner: owner) } label: { Label("Añadir a la cola", image: "music-queue") }
@@ -162,10 +174,13 @@ struct MusicTrackRow: View {
                     Text(record.local.track.artist + (record.local.track.album.map { " · " + $0 } ?? "")).font(.caption).foregroundStyle(.secondary).lineLimit(1)
                 }
                 Spacer()
+                if MusicCollections.shared.isLiked(record.id, owner: owner) { Image(systemName: "heart.fill").font(.caption).foregroundStyle(HarborTheme.accent) }
                 if MusicPlayback.shared.owner == owner && MusicPlayback.shared.current?.id == record.id { MusicGlyph(MusicPlayback.shared.paused ? "pause" : "waveform").foregroundStyle(HarborTheme.accent) }
                 Text(record.local.track.durationLabel).font(.caption.monospacedDigit()).foregroundStyle(.secondary)
             }.frame(minHeight: 44).contentShape(.rect)
         }.buttonStyle(.plain).accessibilityLabel(record.local.track.title + ", " + record.local.track.artist)
+            .accessibilityValue(MusicCollections.shared.isLiked(record.id, owner: owner) ? DesktopInterfaceText.value("Saved") : "")
+            .accessibilityIdentifier("music-track-" + record.id)
     }
 }
 

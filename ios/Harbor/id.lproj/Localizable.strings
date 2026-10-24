@@ -397,11 +397,13 @@
 "Could not load this page. Try again." = "Halaman ini tidak dapat dimuat. Coba lagi.";
 "Could not measure storage. Try again." = "Could not measure storage. Try again.";
 "Could not open book" = "Could not open book";
+"Could not read your saved tracks and listening history. Your data is preserved." = "Could not read your saved tracks and listening history. Your data is preserved.";
 "Could not restore your navigation. The saved version is kept." = "Could not restore your navigation. The saved version is kept.";
 "Could not restore your services. The saved version is kept." = "Layanan Anda tidak dapat dipulihkan. Versi yang tersimpan tetap disimpan.";
 "Could not save navigation settings. Your previous settings are kept." = "Could not save navigation settings. Your previous settings are kept.";
 "Could not save streaming preferences. Your previous settings are kept." = "Could not save streaming preferences. Your previous settings are kept.";
 "Could not save your choices. Try again." = "Could not save your choices. Try again.";
+"Could not save your tracks or listening history. Try again." = "Could not save your tracks or listening history. Try again.";
 "Couldn't auto-sync" = "Tidak dapat menyinkronkan otomatis";
 "Crash" = "Crash";
 "Crea tu propia paleta" = "Buat palet Anda sendiri";
@@ -1218,6 +1220,7 @@
 "Reanudar tras una interrupción de audio" = "Resume after an audio interruption";
 "Recent activity" = "Aktivitas terbaru";
 "Recent searches" = "Pencarian terbaru";
+"Recently played" = "Baru dimainkan";
 "Recién agregado" = "Baru ditambahkan";
 "Recomendado" = "Direkomendasikan";
 "Recommended" = "Direkomendasikan";
@@ -1251,6 +1254,7 @@
 "Remove from favorites" = "Hapus dari favorit";
 "Remove from queue" = "Hapus dari antrean";
 "Remove from saved" = "Hapus dari item tersimpan";
+"Remove from saved tracks" = "Hapus dari lagu tersimpan";
 "Remove from this library" = "Remove from this library";
 "Remove saved book" = "Remove saved book";
 "Remove {language}" = "Hapus {language}";
@@ -1339,6 +1343,7 @@
 "Saturación" = "Saturasi";
 "Saturation" = "Saturasi";
 "Save" = "Simpan";
+"Save a track and it will appear here." = "Simpan lagu dari Temukan dan lagu itu akan muncul di sini.";
 "Save and share pages" = "Save and share pages";
 "Save changes" = "Simpan perubahan";
 "Save for later" = "Simpan untuk nanti";
@@ -1346,6 +1351,7 @@
 "Save reminder" = "Simpan pengingat";
 "Save settings" = "Save settings";
 "Save to this library" = "Save to this library";
+"Save track" = "Simpan lagu";
 "Saved" = "Tersimpan";
 "Saved app data" = "Saved app data";
 "Saving" = "Menyimpan";
@@ -1361,6 +1367,7 @@
 "Search addons" = "Cari addon";
 "Search by title or author, or change the language." = "Search by title or author, or change the language.";
 "Search languages" = "Cari bahasa";
+"Search music" = "Cari musik";
 "Search settings" = "Cari pengaturan";
 "Search subtitles again" = "Search subtitles again";
 "Season" = "Musim";
@@ -1781,6 +1788,7 @@
 "Your leagues" = "Your leagues";
 "Your library" = "Perpustakaan Anda";
 "Your library and watch history are kept." = "Your library and watch history are kept.";
+"Your listening history will build itself here." = "Riwayat dengar Anda akan terkumpul di sini.";
 "Your lists" = "Your lists";
 "Your navigation is saved locally. Cloud sync will retry." = "Your navigation is saved locally. Cloud sync will retry.";
 "Your profile" = "Profil Anda";
@@ -1843,6 +1851,7 @@
 "yes" = "ya";
 "{app} itself does not host, distribute, or index any media. All streams come from third-party addons, debrid services, or your own {service} account that you configure yourself. You are responsible for what you choose to play and for complying with the laws of your jurisdiction." = "{app} sendiri tidak menghosting, mendistribusikan, atau mengindeks media apa pun. Semua stream berasal dari addon pihak ketiga, layanan debrid, atau akun {service} milik Anda yang Anda konfigurasi sendiri. Anda bertanggung jawab atas apa yang Anda pilih untuk diputar dan atas kepatuhan terhadap hukum di yurisdiksi Anda.";
 "{count} picks ready" = "{count} pilihan sudah siap";
+"{count} tracks" = "{count} lagu";
 "{h}h left" = "tersisa {h}j";
 "{h}h {m}m left" = "tersisa {h}j {m}m";
 "{m}m left" = "Tersisa {m} mnt";

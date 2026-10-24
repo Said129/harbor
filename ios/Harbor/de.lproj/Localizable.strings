@@ -397,11 +397,13 @@
 "Could not load this page. Try again." = "Diese Seite konnte nicht geladen werden. Versuche es erneut.";
 "Could not measure storage. Try again." = "Could not measure storage. Try again.";
 "Could not open book" = "Could not open book";
+"Could not read your saved tracks and listening history. Your data is preserved." = "Could not read your saved tracks and listening history. Your data is preserved.";
 "Could not restore your navigation. The saved version is kept." = "Could not restore your navigation. The saved version is kept.";
 "Could not restore your services. The saved version is kept." = "Deine Dienste konnten nicht wiederhergestellt werden. Die gespeicherte Version bleibt erhalten.";
 "Could not save navigation settings. Your previous settings are kept." = "Could not save navigation settings. Your previous settings are kept.";
 "Could not save streaming preferences. Your previous settings are kept." = "Could not save streaming preferences. Your previous settings are kept.";
 "Could not save your choices. Try again." = "Could not save your choices. Try again.";
+"Could not save your tracks or listening history. Try again." = "Could not save your tracks or listening history. Try again.";
 "Couldn't auto-sync" = "Automatische Synchronisierung nicht möglich";
 "Crash" = "Absturz";
 "Crea tu propia paleta" = "Eigene Farbpalette erstellen";
@@ -1218,6 +1220,7 @@
 "Reanudar tras una interrupción de audio" = "Resume after an audio interruption";
 "Recent activity" = "Letzte Aktivität";
 "Recent searches" = "Letzte Suchanfragen";
+"Recently played" = "Zuletzt gespielt";
 "Recién agregado" = "Gerade hinzugefügt";
 "Recomendado" = "Empfohlen";
 "Recommended" = "Empfohlen";
@@ -1251,6 +1254,7 @@
 "Remove from favorites" = "Aus Favoriten entfernen";
 "Remove from queue" = "Aus der Warteschlange entfernen";
 "Remove from saved" = "Aus „Gespeichert“ entfernen";
+"Remove from saved tracks" = "Aus gespeicherten Titeln entfernen";
 "Remove from this library" = "Remove from this library";
 "Remove saved book" = "Remove saved book";
 "Remove {language}" = "{language} entfernen";
@@ -1339,6 +1343,7 @@
 "Saturación" = "Sättigung";
 "Saturation" = "Sättigung";
 "Save" = "Speichern";
+"Save a track and it will appear here." = "Speichere einen Titel aus „Entdecken“, dann erscheint er hier.";
 "Save and share pages" = "Save and share pages";
 "Save changes" = "Änderungen speichern";
 "Save for later" = "Für später speichern";
@@ -1346,6 +1351,7 @@
 "Save reminder" = "Erinnerung speichern";
 "Save settings" = "Save settings";
 "Save to this library" = "Save to this library";
+"Save track" = "Titel speichern";
 "Saved" = "Gespeichert";
 "Saved app data" = "Saved app data";
 "Saving" = "Speichern";
@@ -1361,6 +1367,7 @@
 "Search addons" = "Add-ons durchsuchen";
 "Search by title or author, or change the language." = "Search by title or author, or change the language.";
 "Search languages" = "Suchsprachen";
+"Search music" = "Musik durchsuchen";
 "Search settings" = "Einstellungen durchsuchen";
 "Search subtitles again" = "Search subtitles again";
 "Season" = "Staffel";
@@ -1781,6 +1788,7 @@
 "Your leagues" = "Your leagues";
 "Your library" = "Deine Mediathek";
 "Your library and watch history are kept." = "Your library and watch history are kept.";
+"Your listening history will build itself here." = "Dein Hörverlauf entsteht hier automatisch.";
 "Your lists" = "Your lists";
 "Your navigation is saved locally. Cloud sync will retry." = "Your navigation is saved locally. Cloud sync will retry.";
 "Your profile" = "Dein Profil";
@@ -1843,6 +1851,7 @@
 "yes" = "ja";
 "{app} itself does not host, distribute, or index any media. All streams come from third-party addons, debrid services, or your own {service} account that you configure yourself. You are responsible for what you choose to play and for complying with the laws of your jurisdiction." = "{app} selbst hostet, verbreitet oder indexiert keinerlei Medien. Alle Streams stammen von Drittanbieter-Add-ons, Debrid-Diensten oder deinem eigenen {service}-Konto, das du selbst konfigurierst. Du bist dafür verantwortlich, was du abspielst, und musst die Gesetze deiner Rechtsordnung einhalten.";
 "{count} picks ready" = "{count} ausgewählte Titel bereit";
+"{count} tracks" = "{count} Titel";
 "{h}h left" = "noch {h} Std.";
 "{h}h {m}m left" = "noch {h} Std. {m} Min.";
 "{m}m left" = "noch {m} Min.";

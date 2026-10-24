@@ -77,7 +77,9 @@
     "Use shared settings": "Usar ajustes compartidos",
     "Settings changed. Please reopen this page.": "La configuración ha cambiado. Vuelve a abrir esta página.",
     "Could not complete this action. Try again.": "No se pudo completar la acción. Inténtalo de nuevo.",
-    "Describe the site's lists, details and chapters using CSS selectors. Use {query} and {page} in the search and browse paths.": "Describe las listas, las fichas y los capítulos del sitio con selectores CSS. Usa {query} y {page} en las rutas de búsqueda y exploración."
+    "Describe the site's lists, details and chapters using CSS selectors. Use {query} and {page} in the search and browse paths.": "Describe las listas, las fichas y los capítulos del sitio con selectores CSS. Usa {query} y {page} en las rutas de búsqueda y exploración.",
+    "Could not read your saved tracks and listening history. Your data is preserved.": "No se pudieron recuperar tus canciones guardadas y tu historial. Se conservan tus datos.",
+    "Could not save your tracks or listening history. Try again.": "No se pudieron guardar tus canciones o tu historial. Inténtalo de nuevo."
   },
   "pt": {
     "Auto-sync": "Sincronização automática",

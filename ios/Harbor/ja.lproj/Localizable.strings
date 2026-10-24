@@ -397,11 +397,13 @@
 "Could not load this page. Try again." = "このページを読み込めませんでした。もう一度お試しください。";
 "Could not measure storage. Try again." = "Could not measure storage. Try again.";
 "Could not open book" = "Could not open book";
+"Could not read your saved tracks and listening history. Your data is preserved." = "Could not read your saved tracks and listening history. Your data is preserved.";
 "Could not restore your navigation. The saved version is kept." = "Could not restore your navigation. The saved version is kept.";
 "Could not restore your services. The saved version is kept." = "サービスを復元できませんでした。保存済みのバージョンは保持されます。";
 "Could not save navigation settings. Your previous settings are kept." = "Could not save navigation settings. Your previous settings are kept.";
 "Could not save streaming preferences. Your previous settings are kept." = "Could not save streaming preferences. Your previous settings are kept.";
 "Could not save your choices. Try again." = "Could not save your choices. Try again.";
+"Could not save your tracks or listening history. Try again." = "Could not save your tracks or listening history. Try again.";
 "Couldn't auto-sync" = "自動同期できませんでした";
 "Crash" = "クラッシュ";
 "Crea tu propia paleta" = "独自のパレットを作成";
@@ -1218,6 +1220,7 @@
 "Reanudar tras una interrupción de audio" = "Resume after an audio interruption";
 "Recent activity" = "最近のアクティビティ";
 "Recent searches" = "最近の検索";
+"Recently played" = "最近プレイ";
 "Recién agregado" = "新着";
 "Recomendado" = "おすすめ";
 "Recommended" = "おすすめ";
@@ -1251,6 +1254,7 @@
 "Remove from favorites" = "お気に入りから削除";
 "Remove from queue" = "キューから削除";
 "Remove from saved" = "保存済みから削除";
+"Remove from saved tracks" = "保存済みの曲から削除";
 "Remove from this library" = "Remove from this library";
 "Remove saved book" = "Remove saved book";
 "Remove {language}" = "{language}を削除";
@@ -1339,6 +1343,7 @@
 "Saturación" = "彩度";
 "Saturation" = "彩度";
 "Save" = "保存";
+"Save a track and it will appear here." = "「見つける」で曲を保存すると、ここに表示されます。";
 "Save and share pages" = "Save and share pages";
 "Save changes" = "変更を保存";
 "Save for later" = "あとで見るに保存";
@@ -1346,6 +1351,7 @@
 "Save reminder" = "リマインダーを保存";
 "Save settings" = "Save settings";
 "Save to this library" = "Save to this library";
+"Save track" = "曲を保存";
 "Saved" = "保存済み";
 "Saved app data" = "Saved app data";
 "Saving" = "保存中";
@@ -1361,6 +1367,7 @@
 "Search addons" = "アドオンを検索";
 "Search by title or author, or change the language." = "Search by title or author, or change the language.";
 "Search languages" = "言語を検索";
+"Search music" = "音楽を検索";
 "Search settings" = "設定を検索";
 "Search subtitles again" = "Search subtitles again";
 "Season" = "シーズン";
@@ -1781,6 +1788,7 @@
 "Your leagues" = "Your leagues";
 "Your library" = "あなたのライブラリ";
 "Your library and watch history are kept." = "Your library and watch history are kept.";
+"Your listening history will build itself here." = "再生履歴はここに蓄積されます。";
 "Your lists" = "Your lists";
 "Your navigation is saved locally. Cloud sync will retry." = "Your navigation is saved locally. Cloud sync will retry.";
 "Your profile" = "あなたのプロフィール";
@@ -1843,6 +1851,7 @@
 "yes" = "はい";
 "{app} itself does not host, distribute, or index any media. All streams come from third-party addons, debrid services, or your own {service} account that you configure yourself. You are responsible for what you choose to play and for complying with the laws of your jurisdiction." = "{app}自体がメディアをホスト、配信、インデックス化することはありません。すべてのストリームは、サードパーティー製アドオン、デブリッドサービス、またはご自身で設定した{service}アカウントから提供されます。何を再生するかを判断し、お住まいの地域の法律を順守する責任はお客様にあります。";
 "{count} picks ready" = "おすすめ{count}件を用意しました";
+"{count} tracks" = "{count}曲";
 "{h}h left" = "残り{h}時間";
 "{h}h {m}m left" = "残り{h}時間{m}分";
 "{m}m left" = "残り{m}分";

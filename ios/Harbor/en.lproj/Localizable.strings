@@ -314,11 +314,13 @@
 "Could not load this page. Try again." = "Could not load this page. Try again.";
 "Could not measure storage. Try again." = "Could not measure storage. Try again.";
 "Could not open book" = "Could not open book";
+"Could not read your saved tracks and listening history. Your data is preserved." = "Could not read your saved tracks and listening history. Your data is preserved.";
 "Could not restore your navigation. The saved version is kept." = "Could not restore your navigation. The saved version is kept.";
 "Could not restore your services. The saved version is kept." = "Could not restore your services. The saved version is kept.";
 "Could not save navigation settings. Your previous settings are kept." = "Could not save navigation settings. Your previous settings are kept.";
 "Could not save streaming preferences. Your previous settings are kept." = "Could not save streaming preferences. Your previous settings are kept.";
 "Could not save your choices. Try again." = "Could not save your choices. Try again.";
+"Could not save your tracks or listening history. Try again." = "Could not save your tracks or listening history. Try again.";
 "Couldn't auto-sync" = "Couldn't auto-sync";
 "Crea tu propia paleta" = "Build your own palette";
 "Create profiles for the people who use Harbor. Each can have its own appearance, settings, and PIN." = "Create profiles for the people who use Harbor. Each can have its own appearance, settings, and PIN.";
@@ -958,6 +960,7 @@
 "Reanudar desde {time}" = "Resume from {time}";
 "Reanudar tras una interrupción de audio" = "Resume after an audio interruption";
 "Recent searches" = "Recent searches";
+"Recently played" = "Recently played";
 "Recién agregado" = "Just added";
 "Recomendado" = "Recommended";
 "Recommended" = "Recommended";
@@ -990,6 +993,7 @@
 "Remove from favorites" = "Remove from favorites";
 "Remove from queue" = "Remove from queue";
 "Remove from saved" = "Remove from saved";
+"Remove from saved tracks" = "Remove from saved tracks";
 "Remove from this library" = "Remove from this library";
 "Remove saved book" = "Remove saved book";
 "Remove {language}" = "Remove {language}";
@@ -1064,6 +1068,7 @@
 "Saturación" = "Saturation";
 "Saturation" = "Saturation";
 "Save" = "Save";
+"Save a track and it will appear here." = "Save a track and it will appear here.";
 "Save and share pages" = "Save and share pages";
 "Save changes" = "Save changes";
 "Save for later" = "Save for later";
@@ -1071,6 +1076,7 @@
 "Save reminder" = "Save reminder";
 "Save settings" = "Save settings";
 "Save to this library" = "Save to this library";
+"Save track" = "Save track";
 "Saved" = "Saved";
 "Saved app data" = "Saved app data";
 "Saving" = "Saving";
@@ -1086,6 +1092,7 @@
 "Search addons" = "Search addons";
 "Search by title or author, or change the language." = "Search by title or author, or change the language.";
 "Search languages" = "Search languages";
+"Search music" = "Search music";
 "Search settings" = "Search settings";
 "Search subtitles again" = "Search subtitles again";
 "Season" = "Season";
@@ -1409,6 +1416,7 @@
 "Your leagues" = "Your leagues";
 "Your library" = "Your library";
 "Your library and watch history are kept." = "Your library and watch history are kept.";
+"Your listening history will build itself here." = "Your listening history will build itself here.";
 "Your lists" = "Your lists";
 "Your navigation is saved locally. Cloud sync will retry." = "Your navigation is saved locally. Cloud sync will retry.";
 "Your profile" = "Your profile";
@@ -1427,6 +1435,7 @@
 "stars" = "stars";
 "username" = "username";
 "v3 API key" = "v3 API key";
+"{count} tracks" = "{count} tracks";
 "{h}h left" = "{h}h left";
 "{h}h {m}m left" = "{h}h {m}m left";
 "{m}m left" = "{m}m left";

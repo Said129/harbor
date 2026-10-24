@@ -397,11 +397,13 @@
 "Could not load this page. Try again." = "이 페이지를 불러오지 못했습니다. 다시 시도해 주세요.";
 "Could not measure storage. Try again." = "Could not measure storage. Try again.";
 "Could not open book" = "Could not open book";
+"Could not read your saved tracks and listening history. Your data is preserved." = "Could not read your saved tracks and listening history. Your data is preserved.";
 "Could not restore your navigation. The saved version is kept." = "Could not restore your navigation. The saved version is kept.";
 "Could not restore your services. The saved version is kept." = "서비스를 복원하지 못했습니다. 저장된 버전은 유지됩니다.";
 "Could not save navigation settings. Your previous settings are kept." = "Could not save navigation settings. Your previous settings are kept.";
 "Could not save streaming preferences. Your previous settings are kept." = "Could not save streaming preferences. Your previous settings are kept.";
 "Could not save your choices. Try again." = "Could not save your choices. Try again.";
+"Could not save your tracks or listening history. Try again." = "Could not save your tracks or listening history. Try again.";
 "Couldn't auto-sync" = "자동 동기화하지 못했습니다";
 "Crash" = "충돌";
 "Crea tu propia paleta" = "나만의 팔레트 만들기";
@@ -1218,6 +1220,7 @@
 "Reanudar tras una interrupción de audio" = "Resume after an audio interruption";
 "Recent activity" = "최근 활동";
 "Recent searches" = "최근 검색어";
+"Recently played" = "최근 플레이";
 "Recién agregado" = "최근 추가순";
 "Recomendado" = "추천";
 "Recommended" = "추천";
@@ -1251,6 +1254,7 @@
 "Remove from favorites" = "즐겨찾기에서 삭제";
 "Remove from queue" = "대기열에서 삭제";
 "Remove from saved" = "저장 목록에서 제거";
+"Remove from saved tracks" = "저장한 트랙에서 삭제";
 "Remove from this library" = "Remove from this library";
 "Remove saved book" = "Remove saved book";
 "Remove {language}" = "{language} 제거";
@@ -1339,6 +1343,7 @@
 "Saturación" = "채도";
 "Saturation" = "채도";
 "Save" = "저장";
+"Save a track and it will appear here." = "둘러보기에서 트랙을 저장하면 여기에 표시됩니다.";
 "Save and share pages" = "Save and share pages";
 "Save changes" = "변경 사항 저장";
 "Save for later" = "나중에 보기";
@@ -1346,6 +1351,7 @@
 "Save reminder" = "알림 저장";
 "Save settings" = "Save settings";
 "Save to this library" = "Save to this library";
+"Save track" = "트랙 저장";
 "Saved" = "저장됨";
 "Saved app data" = "Saved app data";
 "Saving" = "저장 중";
@@ -1361,6 +1367,7 @@
 "Search addons" = "애드온 검색";
 "Search by title or author, or change the language." = "Search by title or author, or change the language.";
 "Search languages" = "언어 검색";
+"Search music" = "음악 검색";
 "Search settings" = "설정 검색";
 "Search subtitles again" = "Search subtitles again";
 "Season" = "시즌";
@@ -1781,6 +1788,7 @@
 "Your leagues" = "Your leagues";
 "Your library" = "내 라이브러리";
 "Your library and watch history are kept." = "Your library and watch history are kept.";
+"Your listening history will build itself here." = "감상 기록이 여기에 쌓입니다.";
 "Your lists" = "Your lists";
 "Your navigation is saved locally. Cloud sync will retry." = "Your navigation is saved locally. Cloud sync will retry.";
 "Your profile" = "내 프로필";
@@ -1843,6 +1851,7 @@
 "yes" = "예";
 "{app} itself does not host, distribute, or index any media. All streams come from third-party addons, debrid services, or your own {service} account that you configure yourself. You are responsible for what you choose to play and for complying with the laws of your jurisdiction." = "{app} 자체는 어떠한 미디어도 호스팅, 배포 또는 색인하지 않습니다. 모든 스트림은 서드 파티 애드온, Debrid 서비스 또는 사용자가 직접 구성한 {service} 계정에서 제공됩니다. 재생할 콘텐츠를 선택하고 관할 지역의 법률을 준수할 책임은 사용자에게 있습니다.";
 "{count} picks ready" = "추천 {count}개 준비됨";
+"{count} tracks" = "{count}곡";
 "{h}h left" = "{h}시간 남음";
 "{h}h {m}m left" = "{h}시간 {m}분 남음";
 "{m}m left" = "{m}분 남음";

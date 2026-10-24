@@ -8,6 +8,7 @@ struct MusicPlaylistsView: View {
     private var lists: [MusicPlaylist] { store.playlists.filter { query.isEmpty || $0.name.localizedCaseInsensitiveContains(query) } }
     var body: some View {
         List {
+            MusicPersonalCollectionLinks(library: library, playlists: store, query: query)
             Button { creating = true } label: { Label("Crear lista", image: "music-plus") }.disabled(!store.ready)
             if lists.isEmpty { Text(query.isEmpty ? "Crea una lista y añade canciones desde sus opciones." : "No hay listas con este nombre.").foregroundStyle(.secondary) }
             ForEach(lists) { playlist in
@@ -21,6 +22,7 @@ struct MusicPlaylistsView: View {
                 }
             }
         }.listStyle(.plain).scrollContentBackground(.hidden)
+            .task(id: library.owner) { MusicCollections.shared.prepare(owner: library.owner) }
             .sheet(isPresented: $creating) { MusicPlaylistNameView(store: store) }
     }
 }

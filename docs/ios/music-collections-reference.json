@@ -1,0 +1,23 @@
+{
+  "reference_version": "0.9.132",
+  "reference_commit": "0834340cec5531650bfe78cd628628702e636987",
+  "original_inputs": {
+    "src/components/music/music-tabs.tsx": "9ef8e70e49d3a2234604d11a11296d97c8b20b1e5f31745d3acee200053b9e4b",
+    "src/components/music/music-library.tsx": "1d9c80ec77795dbf26cd2026453d1224e21114817de3b8d5dc361188dbd8dade",
+    "src/lib/music/liked.ts": "7397364122ccad6ed8bcace9be45e8f75abf5614e990efe54766cede150a5158",
+    "src/lib/music/library-collections.ts": "a79ba33d54daf90256ef9b5919f3e97e7131b032b53b2bf13fe1b55d850bec05",
+    "src-tauri/src/music/store.rs": "d7721f133fa6349c5522367ddd9d50a3fcc075d622f038e7f3f3360cd5dbbeba",
+    "src/lib/i18n/locales/en/music.ts": "71091015cc4277eeba807dc9f07fe979adae1be59c2054d9eef30c2d3b05d705"
+  },
+  "original_recent_limit": 50,
+  "collections": ["liked", "recent"],
+  "storage_adaptation": "Device-protected Keychain per personal profile, publish only after successful persistence",
+  "status": "implemented-apple-validation-pending",
+  "full_music_parity_complete": false,
+  "remaining_music_areas": [
+    "For you and Explore discovery feeds",
+    "online connector authentication, browsing and playback integration",
+    "complete source selection and remote collections",
+    "remaining music interfaces, settings and motion comparison"
+  ]
+}
