@@ -1830,6 +1830,12 @@
 "movies" = "영화";
 "music.artist.limited" = "이 소스는 일부 작품을 제공하며 전체 카탈로그를 포함하지 않을 수 있습니다.";
 "music.artist.popular" = "인기 곡";
+"music.billboard.country" = "국가 / 지역";
+"music.billboard.match" = "정확히 일치하는 카탈로그 항목이 없습니다. 차트 출처를 여세요.";
+"music.billboard.source" = "차트 출처 열기";
+"music.billboard.unavailable" = "여기서는 이 차트를 볼 수 없습니다. 다시 시도하거나 Billboard를 여세요.";
+"music.billboard.world" = "전 세계";
+"music.card.openItem" = "{title} 열기";
 "music.detail.relatedArtists" = "관련 아티스트";
 "music.discover" = "둘러보기";
 "music.error.load" = "음악을 불러올 수 없습니다.";
@@ -1882,6 +1888,8 @@
 "music.explore.subgenres" = "스타일과 신";
 "music.explore.watchPerformance" = "공연 보기";
 "music.explore.year" = "연도";
+"music.filter.all" = "전체";
+"music.filter.tracks" = "곡 필터";
 "music.genre.alternative-hip-hop" = "얼터너티브 힙합";
 "music.genre.atlanta-rap" = "애틀랜타 랩";
 "music.genre.bay-area-rap" = "베이 에어리어 랩";
@@ -1907,10 +1915,12 @@
 "music.genre.ukrainian-rap" = "우크라이나 랩";
 "music.genre.ukrainian-wartime" = "우크라이나 전시 음악";
 "music.genre.west-coast-hip-hop" = "웨스트 코스트 힙합";
+"music.loading" = "음악 불러오는 중";
 "music.metadata.deezerFans" = "Deezer 팬";
 "music.row.charts" = "차트";
 "music.search.albums" = "앨범";
 "music.search.playlists" = "재생목록";
+"music.search.tracks" = "곡";
 "music.taste.basedOn" = "선택한 장르의 선곡 · Deezer";
 "music.taste.body" = "추천에 사용할 장르를 고르세요. 선곡은 순환하며 언제든 취향을 바꿀 수 있어요.";
 "music.taste.choose" = "음악 취향 선택";
@@ -1923,6 +1933,7 @@
 "music.taste.search" = "장르 검색";
 "music.taste.selected" = "{count}개 선택됨";
 "music.volume" = "음악 볼륨";
+"music.watch.back" = "음악으로 돌아가기";
 "new" = "신규";
 "no" = "아니요";
 "nodes" = "노드";

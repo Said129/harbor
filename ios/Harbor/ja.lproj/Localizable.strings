@@ -1830,6 +1830,12 @@
 "movies" = "映画";
 "music.artist.limited" = "このソースは一部の作品を提供しており、カタログ全体を含まない場合があります。";
 "music.artist.popular" = "人気曲";
+"music.billboard.country" = "国 / 地域";
+"music.billboard.match" = "カタログに完全一致がありません。チャートの出典を開いてください。";
+"music.billboard.source" = "チャートの出典を開く";
+"music.billboard.unavailable" = "このチャートはここでは利用できません。再試行するかBillboardを開いてください。";
+"music.billboard.world" = "世界";
+"music.card.openItem" = "{title}を開く";
 "music.detail.relatedArtists" = "関連アーティスト";
 "music.discover" = "見つける";
 "music.error.load" = "音楽を読み込めませんでした。";
@@ -1882,6 +1888,8 @@
 "music.explore.subgenres" = "スタイルとシーン";
 "music.explore.watchPerformance" = "パフォーマンスを観る";
 "music.explore.year" = "年";
+"music.filter.all" = "すべて";
+"music.filter.tracks" = "曲を絞り込む";
 "music.genre.alternative-hip-hop" = "オルタナティブ・ヒップホップ";
 "music.genre.atlanta-rap" = "アトランタ・ラップ";
 "music.genre.bay-area-rap" = "ベイエリア・ラップ";
@@ -1907,10 +1915,12 @@
 "music.genre.ukrainian-rap" = "ウクライナラップ";
 "music.genre.ukrainian-wartime" = "ウクライナの戦時音楽";
 "music.genre.west-coast-hip-hop" = "西海岸ヒップホップ";
+"music.loading" = "音楽を読み込み中";
 "music.metadata.deezerFans" = "Deezerのファン";
 "music.row.charts" = "チャート";
 "music.search.albums" = "アルバム";
 "music.search.playlists" = "プレイリスト";
+"music.search.tracks" = "曲";
 "music.taste.basedOn" = "選んだジャンルのセレクション · Deezer";
 "music.taste.body" = "ジャンルを選ぶと、現在のチャートを「おすすめ」に追加します。いつでも変更できます。";
 "music.taste.choose" = "音楽の好みを選ぶ";
@@ -1923,6 +1933,7 @@
 "music.taste.search" = "ジャンルを検索";
 "music.taste.selected" = "{count} 件選択済み";
 "music.volume" = "音楽の音量";
+"music.watch.back" = "ミュージックに戻る";
 "new" = "新着";
 "no" = "いいえ";
 "nodes" = "ノード";

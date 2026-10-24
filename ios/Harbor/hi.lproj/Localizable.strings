@@ -1830,6 +1830,12 @@
 "movies" = "फ़िल्में";
 "music.artist.limited" = "यह स्रोत एक चयन देता है; इसमें पूरा कैटलॉग शामिल नहीं हो सकता।";
 "music.artist.popular" = "लोकप्रिय गाने";
+"music.billboard.country" = "देश / क्षेत्र";
+"music.billboard.match" = "कैटलॉग में सटीक मिलान नहीं मिला। चार्ट का स्रोत खोलें।";
+"music.billboard.source" = "चार्ट का स्रोत खोलें";
+"music.billboard.unavailable" = "यह चार्ट यहाँ उपलब्ध नहीं है। दोबारा कोशिश करें या Billboard खोलें।";
+"music.billboard.world" = "दुनिया भर";
+"music.card.openItem" = "{title} खोलें";
 "music.detail.relatedArtists" = "संबंधित कलाकार";
 "music.discover" = "खोजें";
 "music.error.load" = "संगीत लोड नहीं हो सका।";
@@ -1882,6 +1888,8 @@
 "music.explore.subgenres" = "शैलियाँ और संगीत दृश्य";
 "music.explore.watchPerformance" = "प्रस्तुति देखें";
 "music.explore.year" = "साल";
+"music.filter.all" = "सभी";
+"music.filter.tracks" = "ट्रैक फ़िल्टर करें";
 "music.genre.alternative-hip-hop" = "अल्टरनेटिव हिप हॉप";
 "music.genre.atlanta-rap" = "अटलांटा रैप";
 "music.genre.bay-area-rap" = "बे एरिया रैप";
@@ -1907,10 +1915,12 @@
 "music.genre.ukrainian-rap" = "यूक्रेनी रैप";
 "music.genre.ukrainian-wartime" = "युद्धकालीन यूक्रेनी संगीत";
 "music.genre.west-coast-hip-hop" = "वेस्ट कोस्ट हिप हॉप";
+"music.loading" = "संगीत लोड हो रहा है";
 "music.metadata.deezerFans" = "Deezer प्रशंसक";
 "music.row.charts" = "चार्ट";
 "music.search.albums" = "एल्बम";
 "music.search.playlists" = "प्लेलिस्ट";
+"music.search.tracks" = "गाने";
 "music.taste.basedOn" = "आपकी चुनी हुई शैलियों से संगीत · Deezer";
 "music.taste.body" = "आपके लिए की शैलियाँ चुनें। चयन बदलते रहते हैं और आप उन्हें कभी भी बदल सकते हैं।";
 "music.taste.choose" = "अपनी पसंद चुनें";
@@ -1923,6 +1933,7 @@
 "music.taste.search" = "शैलियाँ खोजें";
 "music.taste.selected" = "{count} चुने गए";
 "music.volume" = "संगीत की आवाज़";
+"music.watch.back" = "संगीत पर वापस जाएँ";
 "new" = "नया";
 "no" = "नहीं";
 "nodes" = "नोड्स";

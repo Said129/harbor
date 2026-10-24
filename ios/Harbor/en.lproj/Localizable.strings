@@ -1442,6 +1442,12 @@
 "h" = "h";
 "music.artist.limited" = "This source provides a selection; it may not include the full catalog.";
 "music.artist.popular" = "Popular tracks";
+"music.billboard.country" = "Country / region";
+"music.billboard.match" = "No exact catalog match. Open the chart source.";
+"music.billboard.source" = "Open chart source";
+"music.billboard.unavailable" = "This chart is unavailable here. Retry or open Billboard.";
+"music.billboard.world" = "Worldwide";
+"music.card.openItem" = "Open {title}";
 "music.detail.relatedArtists" = "Related artists";
 "music.discover" = "Discover";
 "music.error.load" = "Music could not load.";
@@ -1498,6 +1504,8 @@
 "music.explore.subgenres" = "Styles & scenes";
 "music.explore.watchPerformance" = "Watch performance";
 "music.explore.year" = "Year";
+"music.filter.all" = "All";
+"music.filter.tracks" = "Filter tracks";
 "music.genre.alternative-hip-hop" = "Alternative hip hop";
 "music.genre.atlanta-rap" = "Atlanta rap";
 "music.genre.bay-area-rap" = "Bay Area rap";
@@ -1523,11 +1531,13 @@
 "music.genre.ukrainian-rap" = "Ukrainian rap";
 "music.genre.ukrainian-wartime" = "Ukrainian wartime music";
 "music.genre.west-coast-hip-hop" = "West Coast hip hop";
+"music.loading" = "Loading music";
 "music.metadata.deezerFans" = "Deezer fans";
 "music.row.charts" = "Charts";
 "music.row.newReleases" = "New releases";
 "music.search.albums" = "Albums";
 "music.search.playlists" = "Playlists";
+"music.search.tracks" = "Tracks";
 "music.taste.basedOn" = "Selections from your chosen genres · Deezer";
 "music.taste.body" = "Pick genres for For you. Selections rotate, and you can change them anytime.";
 "music.taste.choose" = "Choose your tastes";
@@ -1540,6 +1550,7 @@
 "music.taste.search" = "Search genres";
 "music.taste.selected" = "{count} selected";
 "music.volume" = "Music volume";
+"music.watch.back" = "Back to music";
 "o usa uno de nuestros avatares" = "or use one of our avatars";
 "or use one of our avatars" = "or use one of our avatars";
 "profile.primary" = "Primary";

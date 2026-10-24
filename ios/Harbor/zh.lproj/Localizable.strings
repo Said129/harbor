@@ -1830,6 +1830,12 @@
 "movies" = "电影";
 "music.artist.limited" = "此来源提供部分作品，可能不包含完整目录。";
 "music.artist.popular" = "热门歌曲";
+"music.billboard.country" = "国家 / 地区";
+"music.billboard.match" = "目录中没有完全匹配的结果。请打开榜单来源。";
+"music.billboard.source" = "打开榜单来源";
+"music.billboard.unavailable" = "此处无法获取该榜单。请重试或打开 Billboard。";
+"music.billboard.world" = "全球";
+"music.card.openItem" = "打开 {title}";
 "music.detail.relatedArtists" = "相关艺人";
 "music.discover" = "发现";
 "music.error.load" = "无法加载音乐。";
@@ -1882,6 +1888,8 @@
 "music.explore.subgenres" = "风格与音乐场景";
 "music.explore.watchPerformance" = "观看演出";
 "music.explore.year" = "年份";
+"music.filter.all" = "全部";
+"music.filter.tracks" = "筛选歌曲";
 "music.genre.alternative-hip-hop" = "另类嘻哈";
 "music.genre.atlanta-rap" = "亚特兰大说唱";
 "music.genre.bay-area-rap" = "湾区说唱";
@@ -1907,10 +1915,12 @@
 "music.genre.ukrainian-rap" = "乌克兰说唱";
 "music.genre.ukrainian-wartime" = "乌克兰战时音乐";
 "music.genre.west-coast-hip-hop" = "西海岸嘻哈";
+"music.loading" = "正在加载音乐";
 "music.metadata.deezerFans" = "Deezer 粉丝";
 "music.row.charts" = "排行榜";
 "music.search.albums" = "专辑";
 "music.search.playlists" = "播放列表";
+"music.search.tracks" = "歌曲";
 "music.taste.basedOn" = "所选风格的精选音乐 · Deezer";
 "music.taste.body" = "选择为你推荐的风格。精选内容轮换展示，随时可修改。";
 "music.taste.choose" = "选择音乐口味";
@@ -1923,6 +1933,7 @@
 "music.taste.search" = "搜索流派";
 "music.taste.selected" = "已选 {count} 项";
 "music.volume" = "音乐音量";
+"music.watch.back" = "返回音乐";
 "new" = "新";
 "no" = "否";
 "nodes" = "节点";

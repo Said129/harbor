@@ -1845,6 +1845,12 @@
 "movies" = "фильмов";
 "music.artist.limited" = "Этот источник предлагает подборку, которая может не включать весь каталог.";
 "music.artist.popular" = "Популярные треки";
+"music.billboard.country" = "Страна / регион";
+"music.billboard.match" = "Точного совпадения в каталоге нет. Откройте источник чарта.";
+"music.billboard.source" = "Открыть источник чарта";
+"music.billboard.unavailable" = "Этот чарт здесь недоступен. Повторите попытку или откройте Billboard.";
+"music.billboard.world" = "Весь мир";
+"music.card.openItem" = "Открыть {title}";
 "music.detail.relatedArtists" = "Похожие исполнители";
 "music.discover" = "Обзор";
 "music.error.load" = "Не удалось загрузить музыку.";
@@ -1897,6 +1903,8 @@
 "music.explore.subgenres" = "Стили и музыкальные сцены";
 "music.explore.watchPerformance" = "Смотреть выступление";
 "music.explore.year" = "Год";
+"music.filter.all" = "Все";
+"music.filter.tracks" = "Фильтр треков";
 "music.genre.alternative-hip-hop" = "Альтернативный хип-хоп";
 "music.genre.atlanta-rap" = "Атлантский рэп";
 "music.genre.bay-area-rap" = "Рэп района залива";
@@ -1922,10 +1930,12 @@
 "music.genre.ukrainian-rap" = "Украинский рэп";
 "music.genre.ukrainian-wartime" = "Украинская музыка военного времени";
 "music.genre.west-coast-hip-hop" = "Хип-хоп Западного побережья";
+"music.loading" = "Загрузка музыки";
 "music.metadata.deezerFans" = "Поклонники на Deezer";
 "music.row.charts" = "Чарты";
 "music.search.albums" = "Альбомы";
 "music.search.playlists" = "Плейлисты";
+"music.search.tracks" = "Треки";
 "music.taste.basedOn" = "Подборки из ваших жанров · Deezer";
 "music.taste.body" = "Выберите жанры, чтобы добавить их актуальные чарты в «Для вас». Выбор можно изменить в любое время.";
 "music.taste.choose" = "Выберите музыкальные вкусы";
@@ -1938,6 +1948,7 @@
 "music.taste.search" = "Поиск жанров";
 "music.taste.selected" = "Выбрано: {count}";
 "music.volume" = "Громкость музыки";
+"music.watch.back" = "Вернуться к музыке";
 "new" = "новое";
 "no" = "нет";
 "nodes" = "узлов";

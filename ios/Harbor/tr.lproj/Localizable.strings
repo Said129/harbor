@@ -1830,6 +1830,12 @@
 "movies" = "filmler";
 "music.artist.limited" = "Bu kaynak bir seçki sunar; kataloğun tamamını içermeyebilir.";
 "music.artist.popular" = "Popüler şarkılar";
+"music.billboard.country" = "Ülke / bölge";
+"music.billboard.match" = "Katalogda tam eşleşme yok. Liste kaynağını açın.";
+"music.billboard.source" = "Liste kaynağını aç";
+"music.billboard.unavailable" = "Bu liste burada kullanılamıyor. Tekrar deneyin veya Billboard’u açın.";
+"music.billboard.world" = "Dünya çapında";
+"music.card.openItem" = "{title} aç";
 "music.detail.relatedArtists" = "Benzer sanatçılar";
 "music.discover" = "Keşfet";
 "music.error.load" = "Müzik yüklenemedi.";
@@ -1882,6 +1888,8 @@
 "music.explore.subgenres" = "Tarzlar ve müzik sahneleri";
 "music.explore.watchPerformance" = "Performansı izle";
 "music.explore.year" = "Yıl";
+"music.filter.all" = "Tümü";
+"music.filter.tracks" = "Parçaları filtrele";
 "music.genre.alternative-hip-hop" = "Alternatif hip hop";
 "music.genre.atlanta-rap" = "Atlanta rap";
 "music.genre.bay-area-rap" = "Bay Area rap";
@@ -1907,10 +1915,12 @@
 "music.genre.ukrainian-rap" = "Ukrayna rap";
 "music.genre.ukrainian-wartime" = "Savaş döneminde Ukrayna müziği";
 "music.genre.west-coast-hip-hop" = "Batı Yakası hip hop";
+"music.loading" = "Müzik yükleniyor";
 "music.metadata.deezerFans" = "Deezer hayranları";
 "music.row.charts" = "Listeler";
 "music.search.albums" = "Albümler";
 "music.search.playlists" = "Çalma listeleri";
+"music.search.tracks" = "Parçalar";
 "music.taste.basedOn" = "Seçtiğin türlerden seçkiler · Deezer";
 "music.taste.body" = "Güncel listelerini Sana özel sayfasına eklemek için türleri seç. İstediğin zaman değiştir.";
 "music.taste.choose" = "Müzik zevkini seç";
@@ -1923,6 +1933,7 @@
 "music.taste.search" = "Tür ara";
 "music.taste.selected" = "{count} seçildi";
 "music.volume" = "Müzik sesi";
+"music.watch.back" = "Müziğe dön";
 "new" = "yeni";
 "no" = "hayır";
 "nodes" = "düğümler";

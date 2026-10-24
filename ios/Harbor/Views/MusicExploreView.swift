@@ -3,6 +3,7 @@ import SwiftUI
 @MainActor struct MusicExploreView: View {
     let model: MusicExploreModel
     let catalog: any MusicCatalogCalling
+    let billboard: any MusicBillboardCalling
     @Binding var filters: MusicGenreFilters
     @AppStorage("uiLanguage") private var language = "es"
     @State private var revision = 0
@@ -12,6 +13,12 @@ import SwiftUI
         ScrollView {
             LazyVStack(alignment: .leading, spacing: 24) {
                 Text(text("music.discover")).font(.largeTitle.bold()).padding(.horizontal, 18)
+                NavigationLink { MusicBillboardView(client: billboard, catalog: catalog) } label: {
+                    HStack {
+                        VStack(alignment: .leading, spacing: 6) { Text("Billboard").font(.title2.bold()); Text(text("music.row.charts")).font(.subheadline).foregroundStyle(.secondary) }
+                        Spacer(); Image(systemName: "chevron.right")
+                    }.padding(18).background(HarborTheme.surface, in: .rect(cornerRadius: 14))
+                }.buttonStyle(.plain).padding(.horizontal, 18).accessibilityIdentifier("music-explore-billboard")
                 if let chart = model.chart, !chart.tracks.isEmpty {
                     MusicCatalogRail(row: .init(id: "explore:chart", title: "music.row.charts", titleLiteral: false, subtitle: "Deezer", layout: .trackGrid, source: "catalog", items: chart.tracks.map(MusicCatalogItem.track)), client: catalog)
                 }

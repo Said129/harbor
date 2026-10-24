@@ -1830,6 +1830,12 @@
 "movies" = "phim";
 "music.artist.limited" = "Nguồn này cung cấp một tuyển tập, có thể không bao gồm toàn bộ danh mục.";
 "music.artist.popular" = "Bài hát phổ biến";
+"music.billboard.country" = "Quốc gia / khu vực";
+"music.billboard.match" = "Không có kết quả khớp chính xác. Mở nguồn bảng xếp hạng.";
+"music.billboard.source" = "Mở nguồn bảng xếp hạng";
+"music.billboard.unavailable" = "Không thể xem bảng xếp hạng này tại đây. Thử lại hoặc mở Billboard.";
+"music.billboard.world" = "Toàn cầu";
+"music.card.openItem" = "Mở {title}";
 "music.detail.relatedArtists" = "Nghệ sĩ liên quan";
 "music.discover" = "Khám phá";
 "music.error.load" = "Không thể tải nhạc.";
@@ -1882,6 +1888,8 @@
 "music.explore.subgenres" = "Phong cách và dòng nhạc";
 "music.explore.watchPerformance" = "Xem biểu diễn";
 "music.explore.year" = "Năm";
+"music.filter.all" = "Tất cả";
+"music.filter.tracks" = "Lọc bài hát";
 "music.genre.alternative-hip-hop" = "Hip hop alternative";
 "music.genre.atlanta-rap" = "Rap Atlanta";
 "music.genre.bay-area-rap" = "Rap Bay Area";
@@ -1907,10 +1915,12 @@
 "music.genre.ukrainian-rap" = "Rap Ukraina";
 "music.genre.ukrainian-wartime" = "Nhạc Ukraina thời chiến";
 "music.genre.west-coast-hip-hop" = "Hip hop Bờ Tây";
+"music.loading" = "Đang tải nhạc";
 "music.metadata.deezerFans" = "Người hâm mộ trên Deezer";
 "music.row.charts" = "Bảng xếp hạng";
 "music.search.albums" = "Album";
 "music.search.playlists" = "Danh sách phát";
+"music.search.tracks" = "Bài hát";
 "music.taste.basedOn" = "Tuyển chọn từ thể loại bạn chọn · Deezer";
 "music.taste.body" = "Chọn thể loại để thêm bảng xếp hạng hiện tại vào Dành cho bạn. Có thể đổi bất cứ lúc nào.";
 "music.taste.choose" = "Chọn gu âm nhạc";
@@ -1923,6 +1933,7 @@
 "music.taste.search" = "Tìm thể loại";
 "music.taste.selected" = "Đã chọn {count}";
 "music.volume" = "Âm lượng nhạc";
+"music.watch.back" = "Quay lại âm nhạc";
 "new" = "mới";
 "no" = "không";
 "nodes" = "nút";

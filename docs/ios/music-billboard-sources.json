@@ -1,0 +1,26 @@
+{
+  "reference_version": "0.9.132",
+  "reference_commit": "0834340cec5531650bfe78cd628628702e636987",
+  "original_inputs": {
+    "src/lib/music/billboard-directory.ts": "ea9e2bf0cc8e722b21e2b8b70de2579430052d91cc2e58bf08b61e62bb49641f",
+    "src/lib/music/discovery-billboard.ts": "e0f95f3a5e1a18d6c1b7e6da958834218b5d8707606e5b692c84821861d63511",
+    "src/lib/music/artist-authority.ts": "22c9a4c64f39b2fc30afadd8ad0efad77e854d22369a83f0d15b1e9d3ebf1688",
+    "src/lib/music/artist-popularity.ts": "7d95c390711282cfd95062774305d475a8151c1e0a627d220de4baea7c3a94cc",
+    "src/lib/music/search-normalize.ts": "972d5f2778059adf59ee6d72a6c7f45012f371e93f3dac8dfa0dff2de7aac029",
+    "src/lib/cache.ts": "8e7016f707a788993b5d9e6763c03c26e318987a3fb91b905f8fbbdbb4fd9171"
+  },
+  "original_chart_count": 196,
+  "program_sha256": "93fcb838655aa9ab47739cc921d9120cecf9ac00f0cfea44896740f2b70af287",
+  "preserved": [
+    "all original chart identities, groups, countries and kinds",
+    "DOM parser with canonical identity and date checks",
+    "original rank, artwork host and duplicate validation",
+    "8 MiB response budget",
+    "one-hour cache with sixteen-chart limit",
+    "exact unique album resolution",
+    "original measured artist authority and namesake ranking"
+  ],
+  "generator_accesses_providers": false,
+  "generator_executes_apple_tests": false,
+  "full_music_parity_complete": false
+}

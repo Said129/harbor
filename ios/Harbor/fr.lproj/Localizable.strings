@@ -1830,6 +1830,12 @@
 "movies" = "films";
 "music.artist.limited" = "Cette source propose une sélection qui peut ne pas couvrir tout le catalogue.";
 "music.artist.popular" = "Titres populaires";
+"music.billboard.country" = "Pays / région";
+"music.billboard.match" = "Aucune correspondance exacte. Ouvrez la source du classement.";
+"music.billboard.source" = "Ouvrir la source du classement";
+"music.billboard.unavailable" = "Ce classement est indisponible ici. Réessayez ou ouvrez Billboard.";
+"music.billboard.world" = "Monde";
+"music.card.openItem" = "Ouvrir {title}";
 "music.detail.relatedArtists" = "Artistes similaires";
 "music.discover" = "Découvrir";
 "music.error.load" = "Impossible de charger la musique.";
@@ -1882,6 +1888,8 @@
 "music.explore.subgenres" = "Styles et scènes";
 "music.explore.watchPerformance" = "Voir la performance";
 "music.explore.year" = "Année";
+"music.filter.all" = "Tout";
+"music.filter.tracks" = "Filtrer les morceaux";
 "music.genre.alternative-hip-hop" = "Hip-hop alternatif";
 "music.genre.atlanta-rap" = "Rap d’Atlanta";
 "music.genre.bay-area-rap" = "Rap de la Bay Area";
@@ -1907,10 +1915,12 @@
 "music.genre.ukrainian-rap" = "Rap ukrainien";
 "music.genre.ukrainian-wartime" = "Musique ukrainienne en temps de guerre";
 "music.genre.west-coast-hip-hop" = "Hip-hop de la côte Ouest";
+"music.loading" = "Chargement de la musique";
 "music.metadata.deezerFans" = "Fans sur Deezer";
 "music.row.charts" = "Classements";
 "music.search.albums" = "Albums";
 "music.search.playlists" = "Playlists";
+"music.search.tracks" = "Titres";
 "music.taste.basedOn" = "Sélections de vos genres · Deezer";
 "music.taste.body" = "Choisissez des genres pour afficher leurs classements actuels dans Pour vous. Modifiables à tout moment.";
 "music.taste.choose" = "Choisir vos goûts";
@@ -1923,6 +1933,7 @@
 "music.taste.search" = "Rechercher des genres";
 "music.taste.selected" = "{count} sélectionnés";
 "music.volume" = "Volume de la musique";
+"music.watch.back" = "Retour à la musique";
 "new" = "nouveau";
 "no" = "non";
 "nodes" = "nœuds";

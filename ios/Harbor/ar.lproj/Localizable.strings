@@ -1872,6 +1872,12 @@
 "movies" = "أفلام";
 "music.artist.limited" = "يوفر هذا المصدر مجموعة مختارة قد لا تشمل الكتالوج الكامل.";
 "music.artist.popular" = "المقاطع الرائجة";
+"music.billboard.country" = "البلد / المنطقة";
+"music.billboard.match" = "لا يوجد تطابق دقيق في الفهرس. افتح مصدر المخطط.";
+"music.billboard.source" = "فتح مصدر المخطط";
+"music.billboard.unavailable" = "هذا المخطط غير متاح هنا. أعد المحاولة أو افتح Billboard.";
+"music.billboard.world" = "حول العالم";
+"music.card.openItem" = "فتح {title}";
 "music.detail.relatedArtists" = "فنانون ذوو صلة";
 "music.discover" = "اكتشف";
 "music.error.load" = "تعذر تحميل الموسيقى.";
@@ -1924,6 +1930,8 @@
 "music.explore.subgenres" = "الأنماط والمشاهد الموسيقية";
 "music.explore.watchPerformance" = "شاهد العرض";
 "music.explore.year" = "السنة";
+"music.filter.all" = "الكل";
+"music.filter.tracks" = "تصفية المقاطع";
 "music.genre.alternative-hip-hop" = "هيب هوب بديل";
 "music.genre.atlanta-rap" = "راب أتلانتا";
 "music.genre.bay-area-rap" = "راب منطقة الخليج";
@@ -1949,10 +1957,12 @@
 "music.genre.ukrainian-rap" = "الراب الأوكراني";
 "music.genre.ukrainian-wartime" = "موسيقى أوكرانية في زمن الحرب";
 "music.genre.west-coast-hip-hop" = "هيب هوب الساحل الغربي";
+"music.loading" = "جارٍ تحميل الموسيقى";
 "music.metadata.deezerFans" = "متابعون على Deezer";
 "music.row.charts" = "القوائم";
 "music.search.albums" = "الألبومات";
 "music.search.playlists" = "قوائم التشغيل";
+"music.search.tracks" = "المقاطع";
 "music.taste.basedOn" = "مختارات من الأنواع التي اخترتها · Deezer";
 "music.taste.body" = "اختر أنواعًا لقسم من أجلك. تتجدد المختارات ويمكنك تغييرها متى شئت.";
 "music.taste.choose" = "اختر ذوقك الموسيقي";
@@ -1965,6 +1975,7 @@
 "music.taste.search" = "ابحث عن الأنواع";
 "music.taste.selected" = "تم اختيار {count}";
 "music.volume" = "مستوى صوت الموسيقى";
+"music.watch.back" = "العودة إلى الموسيقى";
 "new" = "جديد";
 "no" = "لا";
 "nodes" = "العُقد";

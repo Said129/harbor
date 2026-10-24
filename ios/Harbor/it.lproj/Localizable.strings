@@ -1830,6 +1830,12 @@
 "movies" = "film";
 "music.artist.limited" = "Questa fonte offre una selezione che potrebbe non includere l'intero catalogo.";
 "music.artist.popular" = "Brani popolari";
+"music.billboard.country" = "Paese / regione";
+"music.billboard.match" = "Nessuna corrispondenza esatta. Apri la fonte della classifica.";
+"music.billboard.source" = "Apri la fonte della classifica";
+"music.billboard.unavailable" = "Questa classifica non è disponibile qui. Riprova o apri Billboard.";
+"music.billboard.world" = "Mondo";
+"music.card.openItem" = "Apri {title}";
 "music.detail.relatedArtists" = "Artisti simili";
 "music.discover" = "Scopri";
 "music.error.load" = "Impossibile caricare la musica.";
@@ -1882,6 +1888,8 @@
 "music.explore.subgenres" = "Stili e scene";
 "music.explore.watchPerformance" = "Guarda l’esibizione";
 "music.explore.year" = "Anno";
+"music.filter.all" = "Tutti";
+"music.filter.tracks" = "Filtra brani";
 "music.genre.alternative-hip-hop" = "Hip hop alternativo";
 "music.genre.atlanta-rap" = "Rap di Atlanta";
 "music.genre.bay-area-rap" = "Rap della Bay Area";
@@ -1907,10 +1915,12 @@
 "music.genre.ukrainian-rap" = "Rap ucraino";
 "music.genre.ukrainian-wartime" = "Musica ucraina in tempo di guerra";
 "music.genre.west-coast-hip-hop" = "Hip hop della West Coast";
+"music.loading" = "Caricamento musica";
 "music.metadata.deezerFans" = "Fan su Deezer";
 "music.row.charts" = "Classifiche";
 "music.search.albums" = "Album";
 "music.search.playlists" = "Playlist";
+"music.search.tracks" = "Brani";
 "music.taste.basedOn" = "Selezioni dai tuoi generi · Deezer";
 "music.taste.body" = "Scegli i generi per aggiungere le classifiche attuali a Per te. Puoi cambiarli quando vuoi.";
 "music.taste.choose" = "Scegli i tuoi gusti";
@@ -1923,6 +1933,7 @@
 "music.taste.search" = "Cerca generi";
 "music.taste.selected" = "{count} selezionati";
 "music.volume" = "Volume musica";
+"music.watch.back" = "Torna alla musica";
 "new" = "nuovo";
 "no" = "no";
 "nodes" = "nodi";

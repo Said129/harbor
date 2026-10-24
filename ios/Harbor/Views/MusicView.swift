@@ -13,6 +13,7 @@ struct MusicView: View {
     @AppStorage("harbor.music.tab") private var screen = MusicNativeScreen.forYou
     @State private var catalog: MusicCatalogModel
     @State private var explore: MusicExploreModel
+    @State private var billboard: MusicBillboardClient
     @AppStorage("harbor.music.genres.explore.v1") private var genreFiltersRaw = "{}"
     @MainActor init(app: AppModel) {
         self.app = app
@@ -23,6 +24,9 @@ struct MusicView: View {
         _explore = State(initialValue: MusicExploreModel(client: MusicExploreClient(scope: scope, currentScope: { [weak app] in
             app?.pluginExecutionScope ?? .init(owner: "locked", activation: scope.activation)
         })))
+        _billboard = State(initialValue: MusicBillboardClient(scope: scope, currentScope: { [weak app] in
+            app?.pluginExecutionScope ?? .init(owner: "locked", activation: scope.activation)
+        }))
         MusicCollections.shared.prepare(owner: app.personalOwner)
     }
     private var query: String { filters.query }
@@ -57,7 +61,7 @@ struct MusicView: View {
                 ForEach(MusicNativeScreen.allCases) { Text($0.title).tag($0) }
             }.pickerStyle(.segmented).padding(.horizontal).accessibilityIdentifier("music-screen")
             if screen == .forYou { MusicDiscoveryView(model: catalog, library: library, query: filters.query) }
-            else if screen == .explore { MusicExploreView(model: explore, catalog: catalog.client, filters: genreFilters) }
+            else if screen == .explore { MusicExploreView(model: explore, catalog: catalog.client, billboard: billboard, filters: genreFilters) }
             else { localLibrary }
         }.background(HarborTheme.background).navigationTitle("Música").navigationBarTitleDisplayMode(.inline)
             .searchable(text: search, prompt: screen == .forYou ? DesktopInterfaceText.value("Search music") : screen == .explore ? DesktopInterfaceText.value("music.taste.search") : "Canciones, álbumes, artistas o listas")
@@ -81,7 +85,7 @@ struct MusicView: View {
                 case .failure: library.error = "No se pudo abrir la selección de archivos."
                 }
             }
-            .onDisappear { if library.owner != (app.personalOwner) { library.cancelImport(); explore.dispose() } }
+            .onDisappear { if library.owner != (app.personalOwner) { library.cancelImport(); explore.dispose(); billboard.dispose() } }
             .accessibilityElement(children: .contain).accessibilityIdentifier("music-library")
     }
     private var localLibrary: some View {

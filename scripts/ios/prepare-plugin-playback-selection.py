@@ -6,6 +6,9 @@ import re
 import runpy
 
 requested = os.environ.get('HARBOR_NATIVE_SELECTION', '').strip()
+if 'HarborTests.MusicBillboardNativeTests/' in requested:
+    runpy.run_path('scripts/ios/prepare-music-billboard-selection.py')
+    raise SystemExit(0)
 if requested == 'ui-only:reading-visible':
     runpy.run_path('scripts/ios/prepare-reading-visible-selection.py')
     raise SystemExit(0)

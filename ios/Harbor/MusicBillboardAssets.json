@@ -1,0 +1,1390 @@
+{
+  "schema": 1,
+  "reference": "0834340cec5531650bfe78cd628628702e636987",
+  "inputs": {
+    "src/lib/music/billboard-directory.ts": "ea9e2bf0cc8e722b21e2b8b70de2579430052d91cc2e58bf08b61e62bb49641f",
+    "src/lib/music/discovery-billboard.ts": "e0f95f3a5e1a18d6c1b7e6da958834218b5d8707606e5b692c84821861d63511",
+    "src/lib/music/artist-authority.ts": "22c9a4c64f39b2fc30afadd8ad0efad77e854d22369a83f0d15b1e9d3ebf1688",
+    "src/lib/music/artist-popularity.ts": "7d95c390711282cfd95062774305d475a8151c1e0a627d220de4baea7c3a94cc",
+    "src/lib/music/search-normalize.ts": "972d5f2778059adf59ee6d72a6c7f45012f371e93f3dac8dfa0dff2de7aac029",
+    "src/lib/cache.ts": "8e7016f707a788993b5d9e6763c03c26e318987a3fb91b905f8fbbdbb4fd9171"
+  },
+  "charts": [
+    {
+      "id": "hot-100",
+      "name": "Billboard Hot 100",
+      "group": "Top Charts",
+      "country": "US",
+      "kind": "track"
+    },
+    {
+      "id": "billboard-200",
+      "name": "Billboard 200",
+      "group": "Top Charts",
+      "country": "US",
+      "kind": "album"
+    },
+    {
+      "id": "artist-100",
+      "name": "Billboard Artist 100",
+      "group": "Top Charts",
+      "country": "US",
+      "kind": "artist"
+    },
+    {
+      "id": "emerging-artists",
+      "name": "Emerging Artists",
+      "group": "Top Charts",
+      "country": "US",
+      "kind": "artist"
+    },
+    {
+      "id": "streaming-songs",
+      "name": "Streaming Songs",
+      "group": "Top Charts",
+      "country": "US",
+      "kind": "track"
+    },
+    {
+      "id": "radio-songs",
+      "name": "Radio Songs",
+      "group": "Top Charts",
+      "country": "US",
+      "kind": "track"
+    },
+    {
+      "id": "digital-song-sales",
+      "name": "Digital Song Sales",
+      "group": "Top Charts",
+      "country": "US",
+      "kind": "track"
+    },
+    {
+      "id": "top-album-sales",
+      "name": "Top Album Sales",
+      "group": "Top Charts",
+      "country": "US",
+      "kind": "album"
+    },
+    {
+      "id": "top-streaming-albums",
+      "name": "Top Streaming Albums",
+      "group": "Top Charts",
+      "country": "US",
+      "kind": "album"
+    },
+    {
+      "id": "independent-albums",
+      "name": "Independent Albums",
+      "group": "Top Charts",
+      "country": "US",
+      "kind": "album"
+    },
+    {
+      "id": "vinyl-albums",
+      "name": "Vinyl Albums",
+      "group": "Top Charts",
+      "country": "US",
+      "kind": "album"
+    },
+    {
+      "id": "indie-store-album-sales",
+      "name": "Indie Store Album Sales",
+      "group": "Top Charts",
+      "country": "US",
+      "kind": "album"
+    },
+    {
+      "id": "billboard-global-200",
+      "name": "Billboard Global 200",
+      "group": "Global",
+      "country": "global",
+      "kind": "track"
+    },
+    {
+      "id": "billboard-global-excl-us",
+      "name": "Billboard Global Excl. U.S.",
+      "group": "Global",
+      "country": "global",
+      "kind": "track"
+    },
+    {
+      "id": "billboard-u-s-afrobeats-songs",
+      "name": "Billboard U.S. Afrobeats Songs",
+      "group": "Afrobeats",
+      "country": "US",
+      "kind": "track"
+    },
+    {
+      "id": "the-arabic-hot-100",
+      "name": "Billboard Arabic Hot 100",
+      "group": "Hits of the World",
+      "country": "arabic",
+      "kind": "track"
+    },
+    {
+      "id": "top-arabic-artist-100",
+      "name": "Billboard Arabic Artist 100",
+      "group": "Hits of the World",
+      "country": "arabic",
+      "kind": "artist"
+    },
+    {
+      "id": "billboard-argentina-hot-100",
+      "name": "Billboard Argentina Hot 100",
+      "group": "Hits of the World",
+      "country": "AR",
+      "kind": "track"
+    },
+    {
+      "id": "billboard-brasil-hot-100",
+      "name": "Billboard Brasil Hot 100",
+      "group": "Hits of the World",
+      "country": "BR",
+      "kind": "track"
+    },
+    {
+      "id": "canadian-hot-100",
+      "name": "Billboard Canadian Hot 100",
+      "group": "Hits of the World",
+      "country": "CA",
+      "kind": "track"
+    },
+    {
+      "id": "canadian-albums",
+      "name": "Billboard Canadian Albums",
+      "group": "Hits of the World",
+      "country": "CA",
+      "kind": "album"
+    },
+    {
+      "id": "billboard-colombia-hot-100",
+      "name": "Billboard Colombia Hot 100",
+      "group": "Hits of the World",
+      "country": "CO",
+      "kind": "track"
+    },
+    {
+      "id": "billboard-italy-hot-100",
+      "name": "Billboard Italy Hot 100",
+      "group": "Hits of the World",
+      "country": "IT",
+      "kind": "track"
+    },
+    {
+      "id": "billboard-italy-albums-top-100",
+      "name": "Billboard Italy Albums Top 100",
+      "group": "Hits of the World",
+      "country": "IT",
+      "kind": "album"
+    },
+    {
+      "id": "japan-hot-100",
+      "name": "Billboard Japan Hot 100",
+      "group": "Hits of the World",
+      "country": "JP",
+      "kind": "track"
+    },
+    {
+      "id": "billboard-korea-global-k-songs",
+      "name": "Billboard Korea Global K-Songs",
+      "group": "Hits of the World",
+      "country": "KR",
+      "kind": "track"
+    },
+    {
+      "id": "billboard-philippines-hot-100",
+      "name": "Billboard Philippines Hot 100",
+      "group": "Hits of the World",
+      "country": "PH",
+      "kind": "track"
+    },
+    {
+      "id": "billboard-philippines-top-philippine-songs",
+      "name": "Billboard Philippines Top Philippine Songs",
+      "group": "Hits of the World",
+      "country": "PH",
+      "kind": "track"
+    },
+    {
+      "id": "billboard-vietnam-hot-100-songs",
+      "name": "Billboard Vietnam Hot 100",
+      "group": "Hits of the World",
+      "country": "VN",
+      "kind": "track"
+    },
+    {
+      "id": "billboard-vietnam-top-vietnamese-songs",
+      "name": "Billboard Vietnam Top Vietnamese Songs",
+      "group": "Hits of the World",
+      "country": "VN",
+      "kind": "track"
+    },
+    {
+      "id": "official-uk-songs",
+      "name": "The Official U.K. Singles Chart",
+      "group": "Hits of the World",
+      "country": "GB",
+      "kind": "track"
+    },
+    {
+      "id": "official-uk-albums",
+      "name": "The Official U.K. Albums Chart",
+      "group": "Hits of the World",
+      "country": "GB",
+      "kind": "album"
+    },
+    {
+      "id": "australia-songs-hotw",
+      "name": "Australia Songs",
+      "group": "Hits of the World",
+      "country": "AU",
+      "kind": "track"
+    },
+    {
+      "id": "australian-albums",
+      "name": "Australia Albums",
+      "group": "Hits of the World",
+      "country": "AU",
+      "kind": "album"
+    },
+    {
+      "id": "austria-songs-hotw",
+      "name": "Austria Songs",
+      "group": "Hits of the World",
+      "country": "AT",
+      "kind": "track"
+    },
+    {
+      "id": "belgium-songs-hotw",
+      "name": "Belgium Songs",
+      "group": "Hits of the World",
+      "country": "BE",
+      "kind": "track"
+    },
+    {
+      "id": "bolivia-songs-hotw",
+      "name": "Bolivia Songs",
+      "group": "Hits of the World",
+      "country": "BO",
+      "kind": "track"
+    },
+    {
+      "id": "chile-songs-hotw",
+      "name": "Chile Songs",
+      "group": "Hits of the World",
+      "country": "CL",
+      "kind": "track"
+    },
+    {
+      "id": "china-tme-uni-songs",
+      "name": "China TME UNI Chart",
+      "group": "Hits of the World",
+      "country": "CN",
+      "kind": "track"
+    },
+    {
+      "id": "croatia-songs-hotw",
+      "name": "Croatia Songs",
+      "group": "Hits of the World",
+      "country": "HR",
+      "kind": "track"
+    },
+    {
+      "id": "czech-republic-songs-hotw",
+      "name": "Czech Republic Songs",
+      "group": "Hits of the World",
+      "country": "CZ",
+      "kind": "track"
+    },
+    {
+      "id": "denmark-songs-hotw",
+      "name": "Denmark Songs",
+      "group": "Hits of the World",
+      "country": "DK",
+      "kind": "track"
+    },
+    {
+      "id": "ecuador-songs-hotw",
+      "name": "Ecuador Songs",
+      "group": "Hits of the World",
+      "country": "EC",
+      "kind": "track"
+    },
+    {
+      "id": "finland-songs-hotw",
+      "name": "Finland Songs",
+      "group": "Hits of the World",
+      "country": "FI",
+      "kind": "track"
+    },
+    {
+      "id": "france-songs-hotw",
+      "name": "France Songs",
+      "group": "Hits of the World",
+      "country": "FR",
+      "kind": "track"
+    },
+    {
+      "id": "germany-songs-hotw",
+      "name": "Germany Songs",
+      "group": "Hits of the World",
+      "country": "DE",
+      "kind": "track"
+    },
+    {
+      "id": "greece-songs-hotw",
+      "name": "Greece Songs",
+      "group": "Hits of the World",
+      "country": "GR",
+      "kind": "track"
+    },
+    {
+      "id": "greece-albums",
+      "name": "Greece Albums",
+      "group": "Hits of the World",
+      "country": "GR",
+      "kind": "album"
+    },
+    {
+      "id": "hong-kong-songs-hotw",
+      "name": "Hong Kong Songs",
+      "group": "Hits of the World",
+      "country": "HK",
+      "kind": "track"
+    },
+    {
+      "id": "hungary-songs-hotw",
+      "name": "Hungary Songs",
+      "group": "Hits of the World",
+      "country": "HU",
+      "kind": "track"
+    },
+    {
+      "id": "iceland-songs-hotw",
+      "name": "Iceland Songs",
+      "group": "Hits of the World",
+      "country": "IS",
+      "kind": "track"
+    },
+    {
+      "id": "india-songs-hotw",
+      "name": "India Songs",
+      "group": "Hits of the World",
+      "country": "IN",
+      "kind": "track"
+    },
+    {
+      "id": "indonesia-songs-hotw",
+      "name": "Indonesia Songs",
+      "group": "Hits of the World",
+      "country": "ID",
+      "kind": "track"
+    },
+    {
+      "id": "ireland-songs-hotw",
+      "name": "Ireland Songs",
+      "group": "Hits of the World",
+      "country": "IE",
+      "kind": "track"
+    },
+    {
+      "id": "luxembourg-songs-hotw",
+      "name": "Luxembourg Songs",
+      "group": "Hits of the World",
+      "country": "LU",
+      "kind": "track"
+    },
+    {
+      "id": "malaysia-songs-hotw",
+      "name": "Malaysia Songs",
+      "group": "Hits of the World",
+      "country": "MY",
+      "kind": "track"
+    },
+    {
+      "id": "mexico-songs-hotw",
+      "name": "Mexico Songs",
+      "group": "Hits of the World",
+      "country": "MX",
+      "kind": "track"
+    },
+    {
+      "id": "netherlands-songs-hotw",
+      "name": "Netherlands Songs",
+      "group": "Hits of the World",
+      "country": "NL",
+      "kind": "track"
+    },
+    {
+      "id": "new-zealand-songs-hotw",
+      "name": "New Zealand Songs",
+      "group": "Hits of the World",
+      "country": "NZ",
+      "kind": "track"
+    },
+    {
+      "id": "norway-songs-hotw",
+      "name": "Norway Songs",
+      "group": "Hits of the World",
+      "country": "NO",
+      "kind": "track"
+    },
+    {
+      "id": "peru-songs-hotw",
+      "name": "Peru Songs",
+      "group": "Hits of the World",
+      "country": "PE",
+      "kind": "track"
+    },
+    {
+      "id": "poland-songs-hotw",
+      "name": "Poland Songs",
+      "group": "Hits of the World",
+      "country": "PL",
+      "kind": "track"
+    },
+    {
+      "id": "portugal-songs-hotw",
+      "name": "Portugal Songs",
+      "group": "Hits of the World",
+      "country": "PT",
+      "kind": "track"
+    },
+    {
+      "id": "romania-songs-hotw",
+      "name": "Romania Songs",
+      "group": "Hits of the World",
+      "country": "RO",
+      "kind": "track"
+    },
+    {
+      "id": "singapore-songs-hotw",
+      "name": "Singapore Songs",
+      "group": "Hits of the World",
+      "country": "SG",
+      "kind": "track"
+    },
+    {
+      "id": "slovakia-songs-hotw",
+      "name": "Slovakia Songs",
+      "group": "Hits of the World",
+      "country": "SK",
+      "kind": "track"
+    },
+    {
+      "id": "south-africa-songs-hotw",
+      "name": "South Africa Songs",
+      "group": "Hits of the World",
+      "country": "ZA",
+      "kind": "track"
+    },
+    {
+      "id": "spain-songs-hotw",
+      "name": "Spain Songs",
+      "group": "Hits of the World",
+      "country": "ES",
+      "kind": "track"
+    },
+    {
+      "id": "sweden-songs-hotw",
+      "name": "Sweden Songs",
+      "group": "Hits of the World",
+      "country": "SE",
+      "kind": "track"
+    },
+    {
+      "id": "switzerland-songs-hotw",
+      "name": "Switzerland Songs",
+      "group": "Hits of the World",
+      "country": "CH",
+      "kind": "track"
+    },
+    {
+      "id": "taiwan-songs-hotw",
+      "name": "Taiwan Songs",
+      "group": "Hits of the World",
+      "country": "TW",
+      "kind": "track"
+    },
+    {
+      "id": "thailand-songs-hotw",
+      "name": "Thailand Songs",
+      "group": "Hits of the World",
+      "country": "TH",
+      "kind": "track"
+    },
+    {
+      "id": "turkey-songs-hotw",
+      "name": "Turkey Songs",
+      "group": "Hits of the World",
+      "country": "TR",
+      "kind": "track"
+    },
+    {
+      "id": "u-k-songs-hotw",
+      "name": "U.K. Songs",
+      "group": "Hits of the World",
+      "country": "GB",
+      "kind": "track"
+    },
+    {
+      "id": "pop-songs",
+      "name": "Pop Airplay",
+      "group": "Pop",
+      "country": "US",
+      "kind": "track"
+    },
+    {
+      "id": "adult-contemporary",
+      "name": "Adult Contemporary",
+      "group": "Pop",
+      "country": "US",
+      "kind": "track"
+    },
+    {
+      "id": "adult-pop-songs",
+      "name": "Adult Pop Airplay",
+      "group": "Pop",
+      "country": "US",
+      "kind": "track"
+    },
+    {
+      "id": "country-songs",
+      "name": "Hot Country Songs",
+      "group": "Country",
+      "country": "US",
+      "kind": "track"
+    },
+    {
+      "id": "country-albums",
+      "name": "Top Country Albums",
+      "group": "Country",
+      "country": "US",
+      "kind": "album"
+    },
+    {
+      "id": "country-streaming-songs",
+      "name": "Country Streaming Songs",
+      "group": "Country",
+      "country": "US",
+      "kind": "track"
+    },
+    {
+      "id": "country-airplay",
+      "name": "Country Airplay",
+      "group": "Country",
+      "country": "US",
+      "kind": "track"
+    },
+    {
+      "id": "bluegrass-albums",
+      "name": "Bluegrass Albums",
+      "group": "Country",
+      "country": "US",
+      "kind": "album"
+    },
+    {
+      "id": "americana-folk-albums",
+      "name": "Americana/Folk Albums",
+      "group": "Country",
+      "country": "US",
+      "kind": "album"
+    },
+    {
+      "id": "rock-songs",
+      "name": "Hot Rock & Alternative Songs",
+      "group": "Rock & Alternative",
+      "country": "US",
+      "kind": "track"
+    },
+    {
+      "id": "top-rock-alternative-albums",
+      "name": "Top Rock & Alternative Albums",
+      "group": "Rock & Alternative",
+      "country": "US",
+      "kind": "album"
+    },
+    {
+      "id": "rock-airplay",
+      "name": "Rock & Alternative Airplay",
+      "group": "Rock & Alternative",
+      "country": "US",
+      "kind": "track"
+    },
+    {
+      "id": "hot-rock-songs",
+      "name": "Hot Rock Songs",
+      "group": "Rock & Alternative",
+      "country": "US",
+      "kind": "track"
+    },
+    {
+      "id": "rock-albums",
+      "name": "Top Rock Albums",
+      "group": "Rock & Alternative",
+      "country": "US",
+      "kind": "album"
+    },
+    {
+      "id": "rock-streaming-songs",
+      "name": "Rock Streaming Songs",
+      "group": "Rock & Alternative",
+      "country": "US",
+      "kind": "track"
+    },
+    {
+      "id": "hot-alternative-songs",
+      "name": "Hot Alternative Songs",
+      "group": "Rock & Alternative",
+      "country": "US",
+      "kind": "track"
+    },
+    {
+      "id": "alternative-albums",
+      "name": "Top Alternative Albums",
+      "group": "Rock & Alternative",
+      "country": "US",
+      "kind": "album"
+    },
+    {
+      "id": "alternative-streaming-songs",
+      "name": "Alternative Streaming Songs",
+      "group": "Rock & Alternative",
+      "country": "US",
+      "kind": "track"
+    },
+    {
+      "id": "alternative-airplay",
+      "name": "Alternative Airplay",
+      "group": "Rock & Alternative",
+      "country": "US",
+      "kind": "track"
+    },
+    {
+      "id": "hot-hard-rock-songs",
+      "name": "Hot Hard Rock Songs",
+      "group": "Rock & Alternative",
+      "country": "US",
+      "kind": "track"
+    },
+    {
+      "id": "hard-rock-albums",
+      "name": "Top Hard Rock Albums",
+      "group": "Rock & Alternative",
+      "country": "US",
+      "kind": "album"
+    },
+    {
+      "id": "hard-rock-streaming-songs",
+      "name": "Hard Rock Streaming Songs",
+      "group": "Rock & Alternative",
+      "country": "US",
+      "kind": "track"
+    },
+    {
+      "id": "triple-a",
+      "name": "Adult Alternative Airplay",
+      "group": "Rock & Alternative",
+      "country": "US",
+      "kind": "track"
+    },
+    {
+      "id": "hot-mainstream-rock-tracks",
+      "name": "Mainstream Rock Airplay",
+      "group": "Rock & Alternative",
+      "country": "US",
+      "kind": "track"
+    },
+    {
+      "id": "r-b-hip-hop-songs",
+      "name": "Hot R&B/Hip-Hop Songs",
+      "group": "R&B/Hip-Hop",
+      "country": "US",
+      "kind": "track"
+    },
+    {
+      "id": "r-b-hip-hop-albums",
+      "name": "Top R&B/Hip-Hop Albums",
+      "group": "R&B/Hip-Hop",
+      "country": "US",
+      "kind": "album"
+    },
+    {
+      "id": "r-and-b-hip-hop-streaming-songs",
+      "name": "R&B/Hip-Hop Streaming Songs",
+      "group": "R&B/Hip-Hop",
+      "country": "US",
+      "kind": "track"
+    },
+    {
+      "id": "hot-r-and-b-hip-hop-airplay",
+      "name": "R&B/Hip-Hop Airplay",
+      "group": "R&B/Hip-Hop",
+      "country": "US",
+      "kind": "track"
+    },
+    {
+      "id": "r-and-b-songs",
+      "name": "Hot R&B Songs",
+      "group": "R&B/Hip-Hop",
+      "country": "US",
+      "kind": "track"
+    },
+    {
+      "id": "r-and-b-albums",
+      "name": "Top R&B Albums",
+      "group": "R&B/Hip-Hop",
+      "country": "US",
+      "kind": "album"
+    },
+    {
+      "id": "r-and-b-streaming-songs",
+      "name": "R&B Streaming Songs",
+      "group": "R&B/Hip-Hop",
+      "country": "US",
+      "kind": "track"
+    },
+    {
+      "id": "rap-song",
+      "name": "Hot Rap Songs",
+      "group": "R&B/Hip-Hop",
+      "country": "US",
+      "kind": "track"
+    },
+    {
+      "id": "rap-albums",
+      "name": "Top Rap Albums",
+      "group": "R&B/Hip-Hop",
+      "country": "US",
+      "kind": "album"
+    },
+    {
+      "id": "rap-streaming-songs",
+      "name": "Rap Streaming Songs",
+      "group": "R&B/Hip-Hop",
+      "country": "US",
+      "kind": "track"
+    },
+    {
+      "id": "hot-rap-tracks",
+      "name": "Rap Airplay",
+      "group": "R&B/Hip-Hop",
+      "country": "US",
+      "kind": "track"
+    },
+    {
+      "id": "mainstream-r-and-b-hip-hop",
+      "name": "Mainstream R&B/Hip-Hop Airplay",
+      "group": "R&B/Hip-Hop",
+      "country": "US",
+      "kind": "track"
+    },
+    {
+      "id": "hot-adult-r-and-b-airplay",
+      "name": "Adult R&B Airplay",
+      "group": "R&B/Hip-Hop",
+      "country": "US",
+      "kind": "track"
+    },
+    {
+      "id": "rhythmic-40",
+      "name": "Rhythmic Airplay",
+      "group": "R&B/Hip-Hop",
+      "country": "US",
+      "kind": "track"
+    },
+    {
+      "id": "latin-songs",
+      "name": "Hot Latin Songs",
+      "group": "Latin",
+      "country": "US",
+      "kind": "track"
+    },
+    {
+      "id": "latin-albums",
+      "name": "Top Latin Albums",
+      "group": "Latin",
+      "country": "US",
+      "kind": "album"
+    },
+    {
+      "id": "latin-airplay",
+      "name": "Latin Airplay",
+      "group": "Latin",
+      "country": "US",
+      "kind": "track"
+    },
+    {
+      "id": "latin-streaming-songs",
+      "name": "Latin Streaming Songs",
+      "group": "Latin",
+      "country": "US",
+      "kind": "track"
+    },
+    {
+      "id": "hot-regional-mexican-songs",
+      "name": "Hot Regional Mexican Songs",
+      "group": "Latin",
+      "country": "US",
+      "kind": "track"
+    },
+    {
+      "id": "regional-mexican-albums",
+      "name": "Top Regional Mexican Albums",
+      "group": "Latin",
+      "country": "US",
+      "kind": "album"
+    },
+    {
+      "id": "latin-regional-mexican-airplay",
+      "name": "Regional Mexican Airplay",
+      "group": "Latin",
+      "country": "US",
+      "kind": "track"
+    },
+    {
+      "id": "hot-latin-pop-songs",
+      "name": "Hot Latin Pop Songs",
+      "group": "Latin",
+      "country": "US",
+      "kind": "track"
+    },
+    {
+      "id": "latin-pop-albums",
+      "name": "Top Latin Pop Albums",
+      "group": "Latin",
+      "country": "US",
+      "kind": "album"
+    },
+    {
+      "id": "latin-pop-airplay",
+      "name": "Latin Pop Airplay",
+      "group": "Latin",
+      "country": "US",
+      "kind": "track"
+    },
+    {
+      "id": "hot-tropical-songs",
+      "name": "Hot Tropical Songs",
+      "group": "Latin",
+      "country": "US",
+      "kind": "track"
+    },
+    {
+      "id": "tropical-albums",
+      "name": "Top Tropical Albums",
+      "group": "Latin",
+      "country": "US",
+      "kind": "album"
+    },
+    {
+      "id": "latin-tropical-airplay",
+      "name": "Tropical Airplay",
+      "group": "Latin",
+      "country": "US",
+      "kind": "track"
+    },
+    {
+      "id": "hot-latin-rhythm-songs",
+      "name": "Hot Latin Rhythm Songs",
+      "group": "Latin",
+      "country": "US",
+      "kind": "track"
+    },
+    {
+      "id": "latin-rhythm-albums",
+      "name": "Top Latin Rhythm Albums",
+      "group": "Latin",
+      "country": "US",
+      "kind": "album"
+    },
+    {
+      "id": "latin-rhythm-airplay",
+      "name": "Latin Rhythm Airplay",
+      "group": "Latin",
+      "country": "US",
+      "kind": "track"
+    },
+    {
+      "id": "dance-electronic-songs",
+      "name": "Hot Dance/Electronic Songs",
+      "group": "Dance",
+      "country": "US",
+      "kind": "track"
+    },
+    {
+      "id": "hot-dance-pop-songs",
+      "name": "Hot Dance/Pop Songs",
+      "group": "Dance",
+      "country": "US",
+      "kind": "track"
+    },
+    {
+      "id": "dance-electronic-albums",
+      "name": "Top Dance Albums",
+      "group": "Dance",
+      "country": "US",
+      "kind": "album"
+    },
+    {
+      "id": "hot-dance-airplay",
+      "name": "Dance Airplay",
+      "group": "Dance",
+      "country": "US",
+      "kind": "track"
+    },
+    {
+      "id": "warm-global-dance-radio",
+      "name": "WARM Global Dance Radio",
+      "group": "Dance",
+      "country": "global",
+      "kind": "track"
+    },
+    {
+      "id": "dance-electronic-streaming-songs",
+      "name": "Dance Streaming Songs",
+      "group": "Dance",
+      "country": "US",
+      "kind": "track"
+    },
+    {
+      "id": "christian-songs",
+      "name": "Hot Christian Songs",
+      "group": "Christian",
+      "country": "US",
+      "kind": "track"
+    },
+    {
+      "id": "christian-albums",
+      "name": "Top Christian Albums",
+      "group": "Christian",
+      "country": "US",
+      "kind": "album"
+    },
+    {
+      "id": "christian-streaming-songs",
+      "name": "Christian Streaming Songs",
+      "group": "Christian",
+      "country": "US",
+      "kind": "track"
+    },
+    {
+      "id": "christian-airplay",
+      "name": "Christian Airplay",
+      "group": "Christian",
+      "country": "US",
+      "kind": "track"
+    },
+    {
+      "id": "hot-christian-adult-contemporary",
+      "name": "Christian AC Airplay",
+      "group": "Christian",
+      "country": "US",
+      "kind": "track"
+    },
+    {
+      "id": "gospel-songs",
+      "name": "Hot Gospel Songs",
+      "group": "Gospel",
+      "country": "US",
+      "kind": "track"
+    },
+    {
+      "id": "gospel-albums",
+      "name": "Top Gospel Albums",
+      "group": "Gospel",
+      "country": "US",
+      "kind": "album"
+    },
+    {
+      "id": "gospel-streaming-songs",
+      "name": "Gospel Streaming Songs",
+      "group": "Gospel",
+      "country": "US",
+      "kind": "track"
+    },
+    {
+      "id": "gospel-airplay",
+      "name": "Gospel Airplay",
+      "group": "Gospel",
+      "country": "US",
+      "kind": "track"
+    },
+    {
+      "id": "hot-100-songwriters",
+      "name": "Hot 100 Songwriters",
+      "group": "Songwriters & Producers",
+      "country": "US",
+      "kind": "artist"
+    },
+    {
+      "id": "hot-100-producers",
+      "name": "Hot 100 Producers",
+      "group": "Songwriters & Producers",
+      "country": "US",
+      "kind": "artist"
+    },
+    {
+      "id": "country-songwriters",
+      "name": "Country Songwriters",
+      "group": "Songwriters & Producers",
+      "country": "US",
+      "kind": "artist"
+    },
+    {
+      "id": "country-producers",
+      "name": "Country Producers",
+      "group": "Songwriters & Producers",
+      "country": "US",
+      "kind": "artist"
+    },
+    {
+      "id": "rock-alternative-songwriters",
+      "name": "Rock & Alternative Songwriters",
+      "group": "Songwriters & Producers",
+      "country": "US",
+      "kind": "artist"
+    },
+    {
+      "id": "rock-alternative-producers",
+      "name": "Rock & Alternative Producers",
+      "group": "Songwriters & Producers",
+      "country": "US",
+      "kind": "artist"
+    },
+    {
+      "id": "rock-songwriters",
+      "name": "Rock Songwriters",
+      "group": "Songwriters & Producers",
+      "country": "US",
+      "kind": "artist"
+    },
+    {
+      "id": "rock-producers",
+      "name": "Rock Producers",
+      "group": "Songwriters & Producers",
+      "country": "US",
+      "kind": "artist"
+    },
+    {
+      "id": "alternative-songwriters",
+      "name": "Alternative Songwriters",
+      "group": "Songwriters & Producers",
+      "country": "US",
+      "kind": "artist"
+    },
+    {
+      "id": "alternative-producers",
+      "name": "Alternative Producers",
+      "group": "Songwriters & Producers",
+      "country": "US",
+      "kind": "artist"
+    },
+    {
+      "id": "hard-rock-songwriters",
+      "name": "Hard Rock Songwriters",
+      "group": "Songwriters & Producers",
+      "country": "US",
+      "kind": "artist"
+    },
+    {
+      "id": "hard-rock-producers",
+      "name": "Hard Rock Producers",
+      "group": "Songwriters & Producers",
+      "country": "US",
+      "kind": "artist"
+    },
+    {
+      "id": "rb-hip-hop-songwriters",
+      "name": "R&B/Hip-Hop Songwriters",
+      "group": "Songwriters & Producers",
+      "country": "US",
+      "kind": "artist"
+    },
+    {
+      "id": "rb-hip-hop-producers",
+      "name": "R&B/Hip-Hop Producers",
+      "group": "Songwriters & Producers",
+      "country": "US",
+      "kind": "artist"
+    },
+    {
+      "id": "rb-songwriters",
+      "name": "R&B Songwriters",
+      "group": "Songwriters & Producers",
+      "country": "US",
+      "kind": "artist"
+    },
+    {
+      "id": "rb-producers",
+      "name": "R&B Producers",
+      "group": "Songwriters & Producers",
+      "country": "US",
+      "kind": "artist"
+    },
+    {
+      "id": "rap-songwriters",
+      "name": "Rap Songwriters",
+      "group": "Songwriters & Producers",
+      "country": "US",
+      "kind": "artist"
+    },
+    {
+      "id": "rap-producers",
+      "name": "Rap Producers",
+      "group": "Songwriters & Producers",
+      "country": "US",
+      "kind": "artist"
+    },
+    {
+      "id": "latin-songwriters",
+      "name": "Latin Songwriters",
+      "group": "Songwriters & Producers",
+      "country": "US",
+      "kind": "artist"
+    },
+    {
+      "id": "latin-producers",
+      "name": "Latin Producers",
+      "group": "Songwriters & Producers",
+      "country": "US",
+      "kind": "artist"
+    },
+    {
+      "id": "dance-electronic-songwriters",
+      "name": "Dance/Electronic Songwriters",
+      "group": "Songwriters & Producers",
+      "country": "US",
+      "kind": "artist"
+    },
+    {
+      "id": "dance-electronic-producers",
+      "name": "Dance/Electronic Producers",
+      "group": "Songwriters & Producers",
+      "country": "US",
+      "kind": "artist"
+    },
+    {
+      "id": "dance-pop-songwriters",
+      "name": "Dance/Pop Songwriters",
+      "group": "Songwriters & Producers",
+      "country": "US",
+      "kind": "artist"
+    },
+    {
+      "id": "dance-pop-producers",
+      "name": "Dance/Pop Producers",
+      "group": "Songwriters & Producers",
+      "country": "US",
+      "kind": "artist"
+    },
+    {
+      "id": "christian-songwriters",
+      "name": "Christian Songwriters",
+      "group": "Songwriters & Producers",
+      "country": "US",
+      "kind": "artist"
+    },
+    {
+      "id": "christian-producers",
+      "name": "Christian Producers",
+      "group": "Songwriters & Producers",
+      "country": "US",
+      "kind": "artist"
+    },
+    {
+      "id": "gospel-songwriters",
+      "name": "Gospel Songwriters",
+      "group": "Songwriters & Producers",
+      "country": "US",
+      "kind": "artist"
+    },
+    {
+      "id": "gospel-producers",
+      "name": "Gospel Producers",
+      "group": "Songwriters & Producers",
+      "country": "US",
+      "kind": "artist"
+    },
+    {
+      "id": "classical-albums",
+      "name": "Classical Albums",
+      "group": "Classical",
+      "country": "US",
+      "kind": "album"
+    },
+    {
+      "id": "classical-crossover-albums",
+      "name": "Classical Crossover Albums",
+      "group": "Classical",
+      "country": "US",
+      "kind": "album"
+    },
+    {
+      "id": "traditional-classic-albums",
+      "name": "Traditional Classical Albums",
+      "group": "Classical",
+      "country": "US",
+      "kind": "album"
+    },
+    {
+      "id": "jazz-albums",
+      "name": "Jazz Albums",
+      "group": "Jazz",
+      "country": "US",
+      "kind": "album"
+    },
+    {
+      "id": "contemporary-jazz",
+      "name": "Contemporary Jazz Albums",
+      "group": "Jazz",
+      "country": "US",
+      "kind": "album"
+    },
+    {
+      "id": "traditional-jazz-albums",
+      "name": "Traditional Jazz Albums",
+      "group": "Jazz",
+      "country": "US",
+      "kind": "album"
+    },
+    {
+      "id": "jazz-songs",
+      "name": "Smooth Jazz Airplay",
+      "group": "Jazz",
+      "country": "US",
+      "kind": "track"
+    },
+    {
+      "id": "world-albums",
+      "name": "World Albums",
+      "group": "World",
+      "country": "US",
+      "kind": "album"
+    },
+    {
+      "id": "hot-holiday-songs",
+      "name": "Holiday 100",
+      "group": "Holiday",
+      "country": "US",
+      "kind": "track"
+    },
+    {
+      "id": "holiday-albums",
+      "name": "Top Holiday Albums",
+      "group": "Holiday",
+      "country": "US",
+      "kind": "album"
+    },
+    {
+      "id": "holiday-streaming-songs",
+      "name": "Holiday Streaming Songs",
+      "group": "Holiday",
+      "country": "US",
+      "kind": "track"
+    },
+    {
+      "id": "holiday-songs",
+      "name": "Holiday Airplay",
+      "group": "Holiday",
+      "country": "US",
+      "kind": "track"
+    },
+    {
+      "id": "holiday-100-songwriters",
+      "name": "Holiday 100 Songwriters",
+      "group": "Holiday",
+      "country": "US",
+      "kind": "artist"
+    },
+    {
+      "id": "holiday-100-producers",
+      "name": "Holiday 100 Producers",
+      "group": "Holiday",
+      "country": "US",
+      "kind": "artist"
+    },
+    {
+      "id": "summer-songs",
+      "name": "Songs of the Summer",
+      "group": "Summer",
+      "country": "US",
+      "kind": "track"
+    },
+    {
+      "id": "cast-albums",
+      "name": "Cast Albums",
+      "group": "Stage & Screen",
+      "country": "US",
+      "kind": "album"
+    },
+    {
+      "id": "soundtracks",
+      "name": "Soundtracks",
+      "group": "Stage & Screen",
+      "country": "US",
+      "kind": "album"
+    },
+    {
+      "id": "blues-albums",
+      "name": "Blues Albums",
+      "group": "Additional Genres",
+      "country": "US",
+      "kind": "album"
+    },
+    {
+      "id": "comedy-albums",
+      "name": "Comedy Albums",
+      "group": "Additional Genres",
+      "country": "US",
+      "kind": "album"
+    },
+    {
+      "id": "kids-albums",
+      "name": "Kid Albums",
+      "group": "Additional Genres",
+      "country": "US",
+      "kind": "album"
+    },
+    {
+      "id": "new-age-albums",
+      "name": "New Age Albums",
+      "group": "Additional Genres",
+      "country": "US",
+      "kind": "album"
+    },
+    {
+      "id": "reggae-albums",
+      "name": "Reggae Albums",
+      "group": "Additional Genres",
+      "country": "US",
+      "kind": "album"
+    },
+    {
+      "id": "bubbling-under-hot-100-singles",
+      "name": "Bubbling Under Hot 100",
+      "group": "Additional Charts",
+      "country": "US",
+      "kind": "track"
+    },
+    {
+      "id": "lyricfind-us",
+      "name": "LyricFind U.S.",
+      "group": "Additional Charts",
+      "country": "US",
+      "kind": "track"
+    },
+    {
+      "id": "lyricfind-global",
+      "name": "LyricFind Global",
+      "group": "Additional Charts",
+      "country": "global",
+      "kind": "track"
+    }
+  ],
+  "program": {
+    "source": "var plugin=(()=>{\n  async function response(url,options={},maximum=8*1024*1024){\n    const signal=options.signal;\n    const value=await new Promise((resolve,reject)=>{\n      const abort=()=>reject(new Error(\"Billboard request aborted\"));\n      if(signal?.aborted){abort();return;}\n      signal?.addEventListener(\"abort\",abort,{once:true});\n      harbor.http(String(url),{method:\"GET\",responseType:\"text\",timeoutMs:15000})\n        .then(value=>{signal?.removeEventListener(\"abort\",abort);resolve(value);},error=>{signal?.removeEventListener(\"abort\",abort);reject(error);});\n    });\n    const text=String(value.body??\"\"),bytes=new TextEncoder().encode(text);\n    if(bytes.byteLength>maximum)throw new Error(\"Billboard response is too large\");\n    return {ok:value.ok===true,status:value.status,json:async()=>JSON.parse(text),body:{getReader(){let sent=false;return {\n      async read(){if(sent)return {done:true};sent=true;return {done:false,value:bytes};},\n      async cancel(){sent=true;},releaseLock(){}\n    };}}};\n  }\n  const factories={\"billboard-directory\":function(require,exports){\n\"use strict\";\nObject.defineProperty(exports, \"__esModule\", { value: true });\nexports.BILLBOARD_CHARTS = void 0;\nexports.BILLBOARD_CHARTS = [\n    {\n        id: \"hot-100\",\n        name: \"Billboard Hot 100\",\n        group: \"Top Charts\",\n        country: \"US\",\n        kind: \"track\",\n    },\n    {\n        id: \"billboard-200\",\n        name: \"Billboard 200\",\n        group: \"Top Charts\",\n        country: \"US\",\n        kind: \"album\",\n    },\n    {\n        id: \"artist-100\",\n        name: \"Billboard Artist 100\",\n        group: \"Top Charts\",\n        country: \"US\",\n        kind: \"artist\",\n    },\n    {\n        id: \"emerging-artists\",\n        name: \"Emerging Artists\",\n        group: \"Top Charts\",\n        country: \"US\",\n        kind: \"artist\",\n    },\n    {\n        id: \"streaming-songs\",\n        name: \"Streaming Songs\",\n        group: \"Top Charts\",\n        country: \"US\",\n        kind: \"track\",\n    },\n    {\n        id: \"radio-songs\",\n        name: \"Radio Songs\",\n        group: \"Top Charts\",\n        country: \"US\",\n        kind: \"track\",\n    },\n    {\n        id: \"digital-song-sales\",\n        name: \"Digital Song Sales\",\n        group: \"Top Charts\",\n        country: \"US\",\n        kind: \"track\",\n    },\n    {\n        id: \"top-album-sales\",\n        name: \"Top Album Sales\",\n        group: \"Top Charts\",\n        country: \"US\",\n        kind: \"album\",\n    },\n    {\n        id: \"top-streaming-albums\",\n        name: \"Top Streaming Albums\",\n        group: \"Top Charts\",\n        country: \"US\",\n        kind: \"album\",\n    },\n    {\n        id: \"independent-albums\",\n        name: \"Independent Albums\",\n        group: \"Top Charts\",\n        country: \"US\",\n        kind: \"album\",\n    },\n    {\n        id: \"vinyl-albums\",\n        name: \"Vinyl Albums\",\n        group: \"Top Charts\",\n        country: \"US\",\n        kind: \"album\",\n    },\n    {\n        id: \"indie-store-album-sales\",\n        name: \"Indie Store Album Sales\",\n        group: \"Top Charts\",\n        country: \"US\",\n        kind: \"album\",\n    },\n    {\n        id: \"billboard-global-200\",\n        name: \"Billboard Global 200\",\n        group: \"Global\",\n        country: \"global\",\n        kind: \"track\",\n    },\n    {\n        id: \"billboard-global-excl-us\",\n        name: \"Billboard Global Excl. U.S.\",\n        group: \"Global\",\n        country: \"global\",\n        kind: \"track\",\n    },\n    {\n        id: \"billboard-u-s-afrobeats-songs\",\n        name: \"Billboard U.S. Afrobeats Songs\",\n        group: \"Afrobeats\",\n        country: \"US\",\n        kind: \"track\",\n    },\n    {\n        id: \"the-arabic-hot-100\",\n        name: \"Billboard Arabic Hot 100\",\n        group: \"Hits of the World\",\n        country: \"arabic\",\n        kind: \"track\",\n    },\n    {\n        id: \"top-arabic-artist-100\",\n        name: \"Billboard Arabic Artist 100\",\n        group: \"Hits of the World\",\n        country: \"arabic\",\n        kind: \"artist\",\n    },\n    {\n        id: \"billboard-argentina-hot-100\",\n        name: \"Billboard Argentina Hot 100\",\n        group: \"Hits of the World\",\n        country: \"AR\",\n        kind: \"track\",\n    },\n    {\n        id: \"billboard-brasil-hot-100\",\n        name: \"Billboard Brasil Hot 100\",\n        group: \"Hits of the World\",\n        country: \"BR\",\n        kind: \"track\",\n    },\n    {\n        id: \"canadian-hot-100\",\n        name: \"Billboard Canadian Hot 100\",\n        group: \"Hits of the World\",\n        country: \"CA\",\n        kind: \"track\",\n    },\n    {\n        id: \"canadian-albums\",\n        name: \"Billboard Canadian Albums\",\n        group: \"Hits of the World\",\n        country: \"CA\",\n        kind: \"album\",\n    },\n    {\n        id: \"billboard-colombia-hot-100\",\n        name: \"Billboard Colombia Hot 100\",\n        group: \"Hits of the World\",\n        country: \"CO\",\n        kind: \"track\",\n    },\n    {\n        id: \"billboard-italy-hot-100\",\n        name: \"Billboard Italy Hot 100\",\n        group: \"Hits of the World\",\n        country: \"IT\",\n        kind: \"track\",\n    },\n    {\n        id: \"billboard-italy-albums-top-100\",\n        name: \"Billboard Italy Albums Top 100\",\n        group: \"Hits of the World\",\n        country: \"IT\",\n        kind: \"album\",\n    },\n    {\n        id: \"japan-hot-100\",\n        name: \"Billboard Japan Hot 100\",\n        group: \"Hits of the World\",\n        country: \"JP\",\n        kind: \"track\",\n    },\n    {\n        id: \"billboard-korea-global-k-songs\",\n        name: \"Billboard Korea Global K-Songs\",\n        group: \"Hits of the World\",\n        country: \"KR\",\n        kind: \"track\",\n    },\n    {\n        id: \"billboard-philippines-hot-100\",\n        name: \"Billboard Philippines Hot 100\",\n        group: \"Hits of the World\",\n        country: \"PH\",\n        kind: \"track\",\n    },\n    {\n        id: \"billboard-philippines-top-philippine-songs\",\n        name: \"Billboard Philippines Top Philippine Songs\",\n        group: \"Hits of the World\",\n        country: \"PH\",\n        kind: \"track\",\n    },\n    {\n        id: \"billboard-vietnam-hot-100-songs\",\n        name: \"Billboard Vietnam Hot 100\",\n        group: \"Hits of the World\",\n        country: \"VN\",\n        kind: \"track\",\n    },\n    {\n        id: \"billboard-vietnam-top-vietnamese-songs\",\n        name: \"Billboard Vietnam Top Vietnamese Songs\",\n        group: \"Hits of the World\",\n        country: \"VN\",\n        kind: \"track\",\n    },\n    {\n        id: \"official-uk-songs\",\n        name: \"The Official U.K. Singles Chart\",\n        group: \"Hits of the World\",\n        country: \"GB\",\n        kind: \"track\",\n    },\n    {\n        id: \"official-uk-albums\",\n        name: \"The Official U.K. Albums Chart\",\n        group: \"Hits of the World\",\n        country: \"GB\",\n        kind: \"album\",\n    },\n    {\n        id: \"australia-songs-hotw\",\n        name: \"Australia Songs\",\n        group: \"Hits of the World\",\n        country: \"AU\",\n        kind: \"track\",\n    },\n    {\n        id: \"australian-albums\",\n        name: \"Australia Albums\",\n        group: \"Hits of the World\",\n        country: \"AU\",\n        kind: \"album\",\n    },\n    {\n        id: \"austria-songs-hotw\",\n        name: \"Austria Songs\",\n        group: \"Hits of the World\",\n        country: \"AT\",\n        kind: \"track\",\n    },\n    {\n        id: \"belgium-songs-hotw\",\n        name: \"Belgium Songs\",\n        group: \"Hits of the World\",\n        country: \"BE\",\n        kind: \"track\",\n    },\n    {\n        id: \"bolivia-songs-hotw\",\n        name: \"Bolivia Songs\",\n        group: \"Hits of the World\",\n        country: \"BO\",\n        kind: \"track\",\n    },\n    {\n        id: \"chile-songs-hotw\",\n        name: \"Chile Songs\",\n        group: \"Hits of the World\",\n        country: \"CL\",\n        kind: \"track\",\n    },\n    {\n        id: \"china-tme-uni-songs\",\n        name: \"China TME UNI Chart\",\n        group: \"Hits of the World\",\n        country: \"CN\",\n        kind: \"track\",\n    },\n    {\n        id: \"croatia-songs-hotw\",\n        name: \"Croatia Songs\",\n        group: \"Hits of the World\",\n        country: \"HR\",\n        kind: \"track\",\n    },\n    {\n        id: \"czech-republic-songs-hotw\",\n        name: \"Czech Republic Songs\",\n        group: \"Hits of the World\",\n        country: \"CZ\",\n        kind: \"track\",\n    },\n    {\n        id: \"denmark-songs-hotw\",\n        name: \"Denmark Songs\",\n        group: \"Hits of the World\",\n        country: \"DK\",\n        kind: \"track\",\n    },\n    {\n        id: \"ecuador-songs-hotw\",\n        name: \"Ecuador Songs\",\n        group: \"Hits of the World\",\n        country: \"EC\",\n        kind: \"track\",\n    },\n    {\n        id: \"finland-songs-hotw\",\n        name: \"Finland Songs\",\n        group: \"Hits of the World\",\n        country: \"FI\",\n        kind: \"track\",\n    },\n    {\n        id: \"france-songs-hotw\",\n        name: \"France Songs\",\n        group: \"Hits of the World\",\n        country: \"FR\",\n        kind: \"track\",\n    },\n    {\n        id: \"germany-songs-hotw\",\n        name: \"Germany Songs\",\n        group: \"Hits of the World\",\n        country: \"DE\",\n        kind: \"track\",\n    },\n    {\n        id: \"greece-songs-hotw\",\n        name: \"Greece Songs\",\n        group: \"Hits of the World\",\n        country: \"GR\",\n        kind: \"track\",\n    },\n    {\n        id: \"greece-albums\",\n        name: \"Greece Albums\",\n        group: \"Hits of the World\",\n        country: \"GR\",\n        kind: \"album\",\n    },\n    {\n        id: \"hong-kong-songs-hotw\",\n        name: \"Hong Kong Songs\",\n        group: \"Hits of the World\",\n        country: \"HK\",\n        kind: \"track\",\n    },\n    {\n        id: \"hungary-songs-hotw\",\n        name: \"Hungary Songs\",\n        group: \"Hits of the World\",\n        country: \"HU\",\n        kind: \"track\",\n    },\n    {\n        id: \"iceland-songs-hotw\",\n        name: \"Iceland Songs\",\n        group: \"Hits of the World\",\n        country: \"IS\",\n        kind: \"track\",\n    },\n    {\n        id: \"india-songs-hotw\",\n        name: \"India Songs\",\n        group: \"Hits of the World\",\n        country: \"IN\",\n        kind: \"track\",\n    },\n    {\n        id: \"indonesia-songs-hotw\",\n        name: \"Indonesia Songs\",\n        group: \"Hits of the World\",\n        country: \"ID\",\n        kind: \"track\",\n    },\n    {\n        id: \"ireland-songs-hotw\",\n        name: \"Ireland Songs\",\n        group: \"Hits of the World\",\n        country: \"IE\",\n        kind: \"track\",\n    },\n    {\n        id: \"luxembourg-songs-hotw\",\n        name: \"Luxembourg Songs\",\n        group: \"Hits of the World\",\n        country: \"LU\",\n        kind: \"track\",\n    },\n    {\n        id: \"malaysia-songs-hotw\",\n        name: \"Malaysia Songs\",\n        group: \"Hits of the World\",\n        country: \"MY\",\n        kind: \"track\",\n    },\n    {\n        id: \"mexico-songs-hotw\",\n        name: \"Mexico Songs\",\n        group: \"Hits of the World\",\n        country: \"MX\",\n        kind: \"track\",\n    },\n    {\n        id: \"netherlands-songs-hotw\",\n        name: \"Netherlands Songs\",\n        group: \"Hits of the World\",\n        country: \"NL\",\n        kind: \"track\",\n    },\n    {\n        id: \"new-zealand-songs-hotw\",\n        name: \"New Zealand Songs\",\n        group: \"Hits of the World\",\n        country: \"NZ\",\n        kind: \"track\",\n    },\n    {\n        id: \"norway-songs-hotw\",\n        name: \"Norway Songs\",\n        group: \"Hits of the World\",\n        country: \"NO\",\n        kind: \"track\",\n    },\n    {\n        id: \"peru-songs-hotw\",\n        name: \"Peru Songs\",\n        group: \"Hits of the World\",\n        country: \"PE\",\n        kind: \"track\",\n    },\n    {\n        id: \"poland-songs-hotw\",\n        name: \"Poland Songs\",\n        group: \"Hits of the World\",\n        country: \"PL\",\n        kind: \"track\",\n    },\n    {\n        id: \"portugal-songs-hotw\",\n        name: \"Portugal Songs\",\n        group: \"Hits of the World\",\n        country: \"PT\",\n        kind: \"track\",\n    },\n    {\n        id: \"romania-songs-hotw\",\n        name: \"Romania Songs\",\n        group: \"Hits of the World\",\n        country: \"RO\",\n        kind: \"track\",\n    },\n    {\n        id: \"singapore-songs-hotw\",\n        name: \"Singapore Songs\",\n        group: \"Hits of the World\",\n        country: \"SG\",\n        kind: \"track\",\n    },\n    {\n        id: \"slovakia-songs-hotw\",\n        name: \"Slovakia Songs\",\n        group: \"Hits of the World\",\n        country: \"SK\",\n        kind: \"track\",\n    },\n    {\n        id: \"south-africa-songs-hotw\",\n        name: \"South Africa Songs\",\n        group: \"Hits of the World\",\n        country: \"ZA\",\n        kind: \"track\",\n    },\n    {\n        id: \"spain-songs-hotw\",\n        name: \"Spain Songs\",\n        group: \"Hits of the World\",\n        country: \"ES\",\n        kind: \"track\",\n    },\n    {\n        id: \"sweden-songs-hotw\",\n        name: \"Sweden Songs\",\n        group: \"Hits of the World\",\n        country: \"SE\",\n        kind: \"track\",\n    },\n    {\n        id: \"switzerland-songs-hotw\",\n        name: \"Switzerland Songs\",\n        group: \"Hits of the World\",\n        country: \"CH\",\n        kind: \"track\",\n    },\n    {\n        id: \"taiwan-songs-hotw\",\n        name: \"Taiwan Songs\",\n        group: \"Hits of the World\",\n        country: \"TW\",\n        kind: \"track\",\n    },\n    {\n        id: \"thailand-songs-hotw\",\n        name: \"Thailand Songs\",\n        group: \"Hits of the World\",\n        country: \"TH\",\n        kind: \"track\",\n    },\n    {\n        id: \"turkey-songs-hotw\",\n        name: \"Turkey Songs\",\n        group: \"Hits of the World\",\n        country: \"TR\",\n        kind: \"track\",\n    },\n    {\n        id: \"u-k-songs-hotw\",\n        name: \"U.K. Songs\",\n        group: \"Hits of the World\",\n        country: \"GB\",\n        kind: \"track\",\n    },\n    {\n        id: \"pop-songs\",\n        name: \"Pop Airplay\",\n        group: \"Pop\",\n        country: \"US\",\n        kind: \"track\",\n    },\n    {\n        id: \"adult-contemporary\",\n        name: \"Adult Contemporary\",\n        group: \"Pop\",\n        country: \"US\",\n        kind: \"track\",\n    },\n    {\n        id: \"adult-pop-songs\",\n        name: \"Adult Pop Airplay\",\n        group: \"Pop\",\n        country: \"US\",\n        kind: \"track\",\n    },\n    {\n        id: \"country-songs\",\n        name: \"Hot Country Songs\",\n        group: \"Country\",\n        country: \"US\",\n        kind: \"track\",\n    },\n    {\n        id: \"country-albums\",\n        name: \"Top Country Albums\",\n        group: \"Country\",\n        country: \"US\",\n        kind: \"album\",\n    },\n    {\n        id: \"country-streaming-songs\",\n        name: \"Country Streaming Songs\",\n        group: \"Country\",\n        country: \"US\",\n        kind: \"track\",\n    },\n    {\n        id: \"country-airplay\",\n        name: \"Country Airplay\",\n        group: \"Country\",\n        country: \"US\",\n        kind: \"track\",\n    },\n    {\n        id: \"bluegrass-albums\",\n        name: \"Bluegrass Albums\",\n        group: \"Country\",\n        country: \"US\",\n        kind: \"album\",\n    },\n    {\n        id: \"americana-folk-albums\",\n        name: \"Americana/Folk Albums\",\n        group: \"Country\",\n        country: \"US\",\n        kind: \"album\",\n    },\n    {\n        id: \"rock-songs\",\n        name: \"Hot Rock & Alternative Songs\",\n        group: \"Rock & Alternative\",\n        country: \"US\",\n        kind: \"track\",\n    },\n    {\n        id: \"top-rock-alternative-albums\",\n        name: \"Top Rock & Alternative Albums\",\n        group: \"Rock & Alternative\",\n        country: \"US\",\n        kind: \"album\",\n    },\n    {\n        id: \"rock-airplay\",\n        name: \"Rock & Alternative Airplay\",\n        group: \"Rock & Alternative\",\n        country: \"US\",\n        kind: \"track\",\n    },\n    {\n        id: \"hot-rock-songs\",\n        name: \"Hot Rock Songs\",\n        group: \"Rock & Alternative\",\n        country: \"US\",\n        kind: \"track\",\n    },\n    {\n        id: \"rock-albums\",\n        name: \"Top Rock Albums\",\n        group: \"Rock & Alternative\",\n        country: \"US\",\n        kind: \"album\",\n    },\n    {\n        id: \"rock-streaming-songs\",\n        name: \"Rock Streaming Songs\",\n        group: \"Rock & Alternative\",\n        country: \"US\",\n        kind: \"track\",\n    },\n    {\n        id: \"hot-alternative-songs\",\n        name: \"Hot Alternative Songs\",\n        group: \"Rock & Alternative\",\n        country: \"US\",\n        kind: \"track\",\n    },\n    {\n        id: \"alternative-albums\",\n        name: \"Top Alternative Albums\",\n        group: \"Rock & Alternative\",\n        country: \"US\",\n        kind: \"album\",\n    },\n    {\n        id: \"alternative-streaming-songs\",\n        name: \"Alternative Streaming Songs\",\n        group: \"Rock & Alternative\",\n        country: \"US\",\n        kind: \"track\",\n    },\n    {\n        id: \"alternative-airplay\",\n        name: \"Alternative Airplay\",\n        group: \"Rock & Alternative\",\n        country: \"US\",\n        kind: \"track\",\n    },\n    {\n        id: \"hot-hard-rock-songs\",\n        name: \"Hot Hard Rock Songs\",\n        group: \"Rock & Alternative\",\n        country: \"US\",\n        kind: \"track\",\n    },\n    {\n        id: \"hard-rock-albums\",\n        name: \"Top Hard Rock Albums\",\n        group: \"Rock & Alternative\",\n        country: \"US\",\n        kind: \"album\",\n    },\n    {\n        id: \"hard-rock-streaming-songs\",\n        name: \"Hard Rock Streaming Songs\",\n        group: \"Rock & Alternative\",\n        country: \"US\",\n        kind: \"track\",\n    },\n    {\n        id: \"triple-a\",\n        name: \"Adult Alternative Airplay\",\n        group: \"Rock & Alternative\",\n        country: \"US\",\n        kind: \"track\",\n    },\n    {\n        id: \"hot-mainstream-rock-tracks\",\n        name: \"Mainstream Rock Airplay\",\n        group: \"Rock & Alternative\",\n        country: \"US\",\n        kind: \"track\",\n    },\n    {\n        id: \"r-b-hip-hop-songs\",\n        name: \"Hot R&B/Hip-Hop Songs\",\n        group: \"R&B/Hip-Hop\",\n        country: \"US\",\n        kind: \"track\",\n    },\n    {\n        id: \"r-b-hip-hop-albums\",\n        name: \"Top R&B/Hip-Hop Albums\",\n        group: \"R&B/Hip-Hop\",\n        country: \"US\",\n        kind: \"album\",\n    },\n    {\n        id: \"r-and-b-hip-hop-streaming-songs\",\n        name: \"R&B/Hip-Hop Streaming Songs\",\n        group: \"R&B/Hip-Hop\",\n        country: \"US\",\n        kind: \"track\",\n    },\n    {\n        id: \"hot-r-and-b-hip-hop-airplay\",\n        name: \"R&B/Hip-Hop Airplay\",\n        group: \"R&B/Hip-Hop\",\n        country: \"US\",\n        kind: \"track\",\n    },\n    {\n        id: \"r-and-b-songs\",\n        name: \"Hot R&B Songs\",\n        group: \"R&B/Hip-Hop\",\n        country: \"US\",\n        kind: \"track\",\n    },\n    {\n        id: \"r-and-b-albums\",\n        name: \"Top R&B Albums\",\n        group: \"R&B/Hip-Hop\",\n        country: \"US\",\n        kind: \"album\",\n    },\n    {\n        id: \"r-and-b-streaming-songs\",\n        name: \"R&B Streaming Songs\",\n        group: \"R&B/Hip-Hop\",\n        country: \"US\",\n        kind: \"track\",\n    },\n    {\n        id: \"rap-song\",\n        name: \"Hot Rap Songs\",\n        group: \"R&B/Hip-Hop\",\n        country: \"US\",\n        kind: \"track\",\n    },\n    {\n        id: \"rap-albums\",\n        name: \"Top Rap Albums\",\n        group: \"R&B/Hip-Hop\",\n        country: \"US\",\n        kind: \"album\",\n    },\n    {\n        id: \"rap-streaming-songs\",\n        name: \"Rap Streaming Songs\",\n        group: \"R&B/Hip-Hop\",\n        country: \"US\",\n        kind: \"track\",\n    },\n    {\n        id: \"hot-rap-tracks\",\n        name: \"Rap Airplay\",\n        group: \"R&B/Hip-Hop\",\n        country: \"US\",\n        kind: \"track\",\n    },\n    {\n        id: \"mainstream-r-and-b-hip-hop\",\n        name: \"Mainstream R&B/Hip-Hop Airplay\",\n        group: \"R&B/Hip-Hop\",\n        country: \"US\",\n        kind: \"track\",\n    },\n    {\n        id: \"hot-adult-r-and-b-airplay\",\n        name: \"Adult R&B Airplay\",\n        group: \"R&B/Hip-Hop\",\n        country: \"US\",\n        kind: \"track\",\n    },\n    {\n        id: \"rhythmic-40\",\n        name: \"Rhythmic Airplay\",\n        group: \"R&B/Hip-Hop\",\n        country: \"US\",\n        kind: \"track\",\n    },\n    {\n        id: \"latin-songs\",\n        name: \"Hot Latin Songs\",\n        group: \"Latin\",\n        country: \"US\",\n        kind: \"track\",\n    },\n    {\n        id: \"latin-albums\",\n        name: \"Top Latin Albums\",\n        group: \"Latin\",\n        country: \"US\",\n        kind: \"album\",\n    },\n    {\n        id: \"latin-airplay\",\n        name: \"Latin Airplay\",\n        group: \"Latin\",\n        country: \"US\",\n        kind: \"track\",\n    },\n    {\n        id: \"latin-streaming-songs\",\n        name: \"Latin Streaming Songs\",\n        group: \"Latin\",\n        country: \"US\",\n        kind: \"track\",\n    },\n    {\n        id: \"hot-regional-mexican-songs\",\n        name: \"Hot Regional Mexican Songs\",\n        group: \"Latin\",\n        country: \"US\",\n        kind: \"track\",\n    },\n    {\n        id: \"regional-mexican-albums\",\n        name: \"Top Regional Mexican Albums\",\n        group: \"Latin\",\n        country: \"US\",\n        kind: \"album\",\n    },\n    {\n        id: \"latin-regional-mexican-airplay\",\n        name: \"Regional Mexican Airplay\",\n        group: \"Latin\",\n        country: \"US\",\n        kind: \"track\",\n    },\n    {\n        id: \"hot-latin-pop-songs\",\n        name: \"Hot Latin Pop Songs\",\n        group: \"Latin\",\n        country: \"US\",\n        kind: \"track\",\n    },\n    {\n        id: \"latin-pop-albums\",\n        name: \"Top Latin Pop Albums\",\n        group: \"Latin\",\n        country: \"US\",\n        kind: \"album\",\n    },\n    {\n        id: \"latin-pop-airplay\",\n        name: \"Latin Pop Airplay\",\n        group: \"Latin\",\n        country: \"US\",\n        kind: \"track\",\n    },\n    {\n        id: \"hot-tropical-songs\",\n        name: \"Hot Tropical Songs\",\n        group: \"Latin\",\n        country: \"US\",\n        kind: \"track\",\n    },\n    {\n        id: \"tropical-albums\",\n        name: \"Top Tropical Albums\",\n        group: \"Latin\",\n        country: \"US\",\n        kind: \"album\",\n    },\n    {\n        id: \"latin-tropical-airplay\",\n        name: \"Tropical Airplay\",\n        group: \"Latin\",\n        country: \"US\",\n        kind: \"track\",\n    },\n    {\n        id: \"hot-latin-rhythm-songs\",\n        name: \"Hot Latin Rhythm Songs\",\n        group: \"Latin\",\n        country: \"US\",\n        kind: \"track\",\n    },\n    {\n        id: \"latin-rhythm-albums\",\n        name: \"Top Latin Rhythm Albums\",\n        group: \"Latin\",\n        country: \"US\",\n        kind: \"album\",\n    },\n    {\n        id: \"latin-rhythm-airplay\",\n        name: \"Latin Rhythm Airplay\",\n        group: \"Latin\",\n        country: \"US\",\n        kind: \"track\",\n    },\n    {\n        id: \"dance-electronic-songs\",\n        name: \"Hot Dance/Electronic Songs\",\n        group: \"Dance\",\n        country: \"US\",\n        kind: \"track\",\n    },\n    {\n        id: \"hot-dance-pop-songs\",\n        name: \"Hot Dance/Pop Songs\",\n        group: \"Dance\",\n        country: \"US\",\n        kind: \"track\",\n    },\n    {\n        id: \"dance-electronic-albums\",\n        name: \"Top Dance Albums\",\n        group: \"Dance\",\n        country: \"US\",\n        kind: \"album\",\n    },\n    {\n        id: \"hot-dance-airplay\",\n        name: \"Dance Airplay\",\n        group: \"Dance\",\n        country: \"US\",\n        kind: \"track\",\n    },\n    {\n        id: \"warm-global-dance-radio\",\n        name: \"WARM Global Dance Radio\",\n        group: \"Dance\",\n        country: \"global\",\n        kind: \"track\",\n    },\n    {\n        id: \"dance-electronic-streaming-songs\",\n        name: \"Dance Streaming Songs\",\n        group: \"Dance\",\n        country: \"US\",\n        kind: \"track\",\n    },\n    {\n        id: \"christian-songs\",\n        name: \"Hot Christian Songs\",\n        group: \"Christian\",\n        country: \"US\",\n        kind: \"track\",\n    },\n    {\n        id: \"christian-albums\",\n        name: \"Top Christian Albums\",\n        group: \"Christian\",\n        country: \"US\",\n        kind: \"album\",\n    },\n    {\n        id: \"christian-streaming-songs\",\n        name: \"Christian Streaming Songs\",\n        group: \"Christian\",\n        country: \"US\",\n        kind: \"track\",\n    },\n    {\n        id: \"christian-airplay\",\n        name: \"Christian Airplay\",\n        group: \"Christian\",\n        country: \"US\",\n        kind: \"track\",\n    },\n    {\n        id: \"hot-christian-adult-contemporary\",\n        name: \"Christian AC Airplay\",\n        group: \"Christian\",\n        country: \"US\",\n        kind: \"track\",\n    },\n    {\n        id: \"gospel-songs\",\n        name: \"Hot Gospel Songs\",\n        group: \"Gospel\",\n        country: \"US\",\n        kind: \"track\",\n    },\n    {\n        id: \"gospel-albums\",\n        name: \"Top Gospel Albums\",\n        group: \"Gospel\",\n        country: \"US\",\n        kind: \"album\",\n    },\n    {\n        id: \"gospel-streaming-songs\",\n        name: \"Gospel Streaming Songs\",\n        group: \"Gospel\",\n        country: \"US\",\n        kind: \"track\",\n    },\n    {\n        id: \"gospel-airplay\",\n        name: \"Gospel Airplay\",\n        group: \"Gospel\",\n        country: \"US\",\n        kind: \"track\",\n    },\n    {\n        id: \"hot-100-songwriters\",\n        name: \"Hot 100 Songwriters\",\n        group: \"Songwriters & Producers\",\n        country: \"US\",\n        kind: \"artist\",\n    },\n    {\n        id: \"hot-100-producers\",\n        name: \"Hot 100 Producers\",\n        group: \"Songwriters & Producers\",\n        country: \"US\",\n        kind: \"artist\",\n    },\n    {\n        id: \"country-songwriters\",\n        name: \"Country Songwriters\",\n        group: \"Songwriters & Producers\",\n        country: \"US\",\n        kind: \"artist\",\n    },\n    {\n        id: \"country-producers\",\n        name: \"Country Producers\",\n        group: \"Songwriters & Producers\",\n        country: \"US\",\n        kind: \"artist\",\n    },\n    {\n        id: \"rock-alternative-songwriters\",\n        name: \"Rock & Alternative Songwriters\",\n        group: \"Songwriters & Producers\",\n        country: \"US\",\n        kind: \"artist\",\n    },\n    {\n        id: \"rock-alternative-producers\",\n        name: \"Rock & Alternative Producers\",\n        group: \"Songwriters & Producers\",\n        country: \"US\",\n        kind: \"artist\",\n    },\n    {\n        id: \"rock-songwriters\",\n        name: \"Rock Songwriters\",\n        group: \"Songwriters & Producers\",\n        country: \"US\",\n        kind: \"artist\",\n    },\n    {\n        id: \"rock-producers\",\n        name: \"Rock Producers\",\n        group: \"Songwriters & Producers\",\n        country: \"US\",\n        kind: \"artist\",\n    },\n    {\n        id: \"alternative-songwriters\",\n        name: \"Alternative Songwriters\",\n        group: \"Songwriters & Producers\",\n        country: \"US\",\n        kind: \"artist\",\n    },\n    {\n        id: \"alternative-producers\",\n        name: \"Alternative Producers\",\n        group: \"Songwriters & Producers\",\n        country: \"US\",\n        kind: \"artist\",\n    },\n    {\n        id: \"hard-rock-songwriters\",\n        name: \"Hard Rock Songwriters\",\n        group: \"Songwriters & Producers\",\n        country: \"US\",\n        kind: \"artist\",\n    },\n    {\n        id: \"hard-rock-producers\",\n        name: \"Hard Rock Producers\",\n        group: \"Songwriters & Producers\",\n        country: \"US\",\n        kind: \"artist\",\n    },\n    {\n        id: \"rb-hip-hop-songwriters\",\n        name: \"R&B/Hip-Hop Songwriters\",\n        group: \"Songwriters & Producers\",\n        country: \"US\",\n        kind: \"artist\",\n    },\n    {\n        id: \"rb-hip-hop-producers\",\n        name: \"R&B/Hip-Hop Producers\",\n        group: \"Songwriters & Producers\",\n        country: \"US\",\n        kind: \"artist\",\n    },\n    {\n        id: \"rb-songwriters\",\n        name: \"R&B Songwriters\",\n        group: \"Songwriters & Producers\",\n        country: \"US\",\n        kind: \"artist\",\n    },\n    {\n        id: \"rb-producers\",\n        name: \"R&B Producers\",\n        group: \"Songwriters & Producers\",\n        country: \"US\",\n        kind: \"artist\",\n    },\n    {\n        id: \"rap-songwriters\",\n        name: \"Rap Songwriters\",\n        group: \"Songwriters & Producers\",\n        country: \"US\",\n        kind: \"artist\",\n    },\n    {\n        id: \"rap-producers\",\n        name: \"Rap Producers\",\n        group: \"Songwriters & Producers\",\n        country: \"US\",\n        kind: \"artist\",\n    },\n    {\n        id: \"latin-songwriters\",\n        name: \"Latin Songwriters\",\n        group: \"Songwriters & Producers\",\n        country: \"US\",\n        kind: \"artist\",\n    },\n    {\n        id: \"latin-producers\",\n        name: \"Latin Producers\",\n        group: \"Songwriters & Producers\",\n        country: \"US\",\n        kind: \"artist\",\n    },\n    {\n        id: \"dance-electronic-songwriters\",\n        name: \"Dance/Electronic Songwriters\",\n        group: \"Songwriters & Producers\",\n        country: \"US\",\n        kind: \"artist\",\n    },\n    {\n        id: \"dance-electronic-producers\",\n        name: \"Dance/Electronic Producers\",\n        group: \"Songwriters & Producers\",\n        country: \"US\",\n        kind: \"artist\",\n    },\n    {\n        id: \"dance-pop-songwriters\",\n        name: \"Dance/Pop Songwriters\",\n        group: \"Songwriters & Producers\",\n        country: \"US\",\n        kind: \"artist\",\n    },\n    {\n        id: \"dance-pop-producers\",\n        name: \"Dance/Pop Producers\",\n        group: \"Songwriters & Producers\",\n        country: \"US\",\n        kind: \"artist\",\n    },\n    {\n        id: \"christian-songwriters\",\n        name: \"Christian Songwriters\",\n        group: \"Songwriters & Producers\",\n        country: \"US\",\n        kind: \"artist\",\n    },\n    {\n        id: \"christian-producers\",\n        name: \"Christian Producers\",\n        group: \"Songwriters & Producers\",\n        country: \"US\",\n        kind: \"artist\",\n    },\n    {\n        id: \"gospel-songwriters\",\n        name: \"Gospel Songwriters\",\n        group: \"Songwriters & Producers\",\n        country: \"US\",\n        kind: \"artist\",\n    },\n    {\n        id: \"gospel-producers\",\n        name: \"Gospel Producers\",\n        group: \"Songwriters & Producers\",\n        country: \"US\",\n        kind: \"artist\",\n    },\n    {\n        id: \"classical-albums\",\n        name: \"Classical Albums\",\n        group: \"Classical\",\n        country: \"US\",\n        kind: \"album\",\n    },\n    {\n        id: \"classical-crossover-albums\",\n        name: \"Classical Crossover Albums\",\n        group: \"Classical\",\n        country: \"US\",\n        kind: \"album\",\n    },\n    {\n        id: \"traditional-classic-albums\",\n        name: \"Traditional Classical Albums\",\n        group: \"Classical\",\n        country: \"US\",\n        kind: \"album\",\n    },\n    {\n        id: \"jazz-albums\",\n        name: \"Jazz Albums\",\n        group: \"Jazz\",\n        country: \"US\",\n        kind: \"album\",\n    },\n    {\n        id: \"contemporary-jazz\",\n        name: \"Contemporary Jazz Albums\",\n        group: \"Jazz\",\n        country: \"US\",\n        kind: \"album\",\n    },\n    {\n        id: \"traditional-jazz-albums\",\n        name: \"Traditional Jazz Albums\",\n        group: \"Jazz\",\n        country: \"US\",\n        kind: \"album\",\n    },\n    {\n        id: \"jazz-songs\",\n        name: \"Smooth Jazz Airplay\",\n        group: \"Jazz\",\n        country: \"US\",\n        kind: \"track\",\n    },\n    {\n        id: \"world-albums\",\n        name: \"World Albums\",\n        group: \"World\",\n        country: \"US\",\n        kind: \"album\",\n    },\n    {\n        id: \"hot-holiday-songs\",\n        name: \"Holiday 100\",\n        group: \"Holiday\",\n        country: \"US\",\n        kind: \"track\",\n    },\n    {\n        id: \"holiday-albums\",\n        name: \"Top Holiday Albums\",\n        group: \"Holiday\",\n        country: \"US\",\n        kind: \"album\",\n    },\n    {\n        id: \"holiday-streaming-songs\",\n        name: \"Holiday Streaming Songs\",\n        group: \"Holiday\",\n        country: \"US\",\n        kind: \"track\",\n    },\n    {\n        id: \"holiday-songs\",\n        name: \"Holiday Airplay\",\n        group: \"Holiday\",\n        country: \"US\",\n        kind: \"track\",\n    },\n    {\n        id: \"holiday-100-songwriters\",\n        name: \"Holiday 100 Songwriters\",\n        group: \"Holiday\",\n        country: \"US\",\n        kind: \"artist\",\n    },\n    {\n        id: \"holiday-100-producers\",\n        name: \"Holiday 100 Producers\",\n        group: \"Holiday\",\n        country: \"US\",\n        kind: \"artist\",\n    },\n    {\n        id: \"summer-songs\",\n        name: \"Songs of the Summer\",\n        group: \"Summer\",\n        country: \"US\",\n        kind: \"track\",\n    },\n    {\n        id: \"cast-albums\",\n        name: \"Cast Albums\",\n        group: \"Stage & Screen\",\n        country: \"US\",\n        kind: \"album\",\n    },\n    {\n        id: \"soundtracks\",\n        name: \"Soundtracks\",\n        group: \"Stage & Screen\",\n        country: \"US\",\n        kind: \"album\",\n    },\n    {\n        id: \"blues-albums\",\n        name: \"Blues Albums\",\n        group: \"Additional Genres\",\n        country: \"US\",\n        kind: \"album\",\n    },\n    {\n        id: \"comedy-albums\",\n        name: \"Comedy Albums\",\n        group: \"Additional Genres\",\n        country: \"US\",\n        kind: \"album\",\n    },\n    {\n        id: \"kids-albums\",\n        name: \"Kid Albums\",\n        group: \"Additional Genres\",\n        country: \"US\",\n        kind: \"album\",\n    },\n    {\n        id: \"new-age-albums\",\n        name: \"New Age Albums\",\n        group: \"Additional Genres\",\n        country: \"US\",\n        kind: \"album\",\n    },\n    {\n        id: \"reggae-albums\",\n        name: \"Reggae Albums\",\n        group: \"Additional Genres\",\n        country: \"US\",\n        kind: \"album\",\n    },\n    {\n        id: \"bubbling-under-hot-100-singles\",\n        name: \"Bubbling Under Hot 100\",\n        group: \"Additional Charts\",\n        country: \"US\",\n        kind: \"track\",\n    },\n    {\n        id: \"lyricfind-us\",\n        name: \"LyricFind U.S.\",\n        group: \"Additional Charts\",\n        country: \"US\",\n        kind: \"track\",\n    },\n    {\n        id: \"lyricfind-global\",\n        name: \"LyricFind Global\",\n        group: \"Additional Charts\",\n        country: \"global\",\n        kind: \"track\",\n    },\n];\n\n},\n\"discovery-billboard\":function(require,exports){\n\"use strict\";\nObject.defineProperty(exports, \"__esModule\", { value: true });\nexports.billboardChartUrl = exports.BILLBOARD_HOT_100_URL = exports.BILLBOARD_CHARTS = void 0;\nexports.parseBillboardChart = parseBillboardChart;\nexports.parseBillboardHot100 = parseBillboardHot100;\nexports.loadBillboardChart = loadBillboardChart;\nexports.loadBillboardHot100 = loadBillboardHot100;\nexports.resolveBillboardItem = resolveBillboardItem;\nconst safe_fetch_1 = require(\"@/lib/safe-fetch\");\nconst catalog_1 = require(\"./catalog\");\nconst artist_authority_1 = require(\"./artist-authority\");\nconst billboard_directory_1 = require(\"./billboard-directory\");\nvar billboard_directory_2 = require(\"./billboard-directory\");\nObject.defineProperty(exports, \"BILLBOARD_CHARTS\", { enumerable: true, get: function () { return billboard_directory_2.BILLBOARD_CHARTS; } });\nexports.BILLBOARD_HOT_100_URL = \"https://www.billboard.com/charts/hot-100/\";\nconst MAX_PAGE_BYTES = 8 * 1024 * 1024;\nconst cache = new Map();\nlet hotPending = null;\nconst text = (element) => element?.textContent?.replace(/\\s+/g, \" \").trim() ?? \"\";\nconst identity = (value) => value\n    .replace(/[™®]/g, \"\")\n    .normalize(\"NFKC\")\n    .toLowerCase()\n    .replace(/[^\\p{L}\\p{N}]/gu, \"\");\nconst billboardChartUrl = (id) => `https://www.billboard.com/charts/${id}/`;\nexports.billboardChartUrl = billboardChartUrl;\nfunction parseBillboardChart(html, chart) {\n    if (html.length > MAX_PAGE_BYTES)\n        throw new Error(\"Billboard page is too large\");\n    const document = new DOMParser().parseFromString(html, \"text/html\");\n    const canonical = document.querySelector('link[rel=\"canonical\"]')?.getAttribute(\"href\");\n    if (canonical) {\n        const url = new URL(canonical);\n        if (url.hostname !== \"www.billboard.com\" || url.pathname.split(\"/\")[2] !== chart.id)\n            throw new Error(\"Billboard chart identity does not match\");\n    }\n    else if (identity(text(document.querySelector(\"h1\"))) !== identity(chart.name))\n        throw new Error(\"Billboard chart identity is unavailable\");\n    const dateLabel = [...document.querySelectorAll(\"h2\")]\n        .map(text)\n        .find((value) => /^Week of [A-Za-z]+ \\d{1,2}, \\d{4}$/.test(value));\n    const timestamp = Date.parse(dateLabel?.replace(/^Week of /, \"\") ?? \"\");\n    if (!Number.isFinite(timestamp))\n        throw new Error(\"Billboard chart date is unavailable\");\n    const d = new Date(timestamp);\n    const date = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, \"0\")}-${String(d.getDate()).padStart(2, \"0\")}`;\n    const entries = [];\n    const seen = new Set();\n    for (const row of document.querySelectorAll(\".o-chart-results-list-row-container > .o-chart-results-list-row\")) {\n        const rank = Number(text(row.querySelector(\":scope > li:first-child > .c-label\")));\n        const titleNode = row.querySelector(\"h3#title-of-a-story\");\n        const title = text(titleNode);\n        const artist = text(titleNode?.nextElementSibling ?? null);\n        if (!Number.isSafeInteger(rank) ||\n            rank < 1 ||\n            rank > 200 ||\n            seen.has(rank) ||\n            !title ||\n            (chart.kind !== \"artist\" && !artist))\n            continue;\n        let artwork = \"\";\n        const image = row.querySelector(\"img\");\n        const raw = image?.getAttribute(\"data-lazy-src\") ??\n            image?.getAttribute(\"data-src\") ??\n            image?.getAttribute(\"src\") ??\n            \"\";\n        try {\n            const url = new URL(raw);\n            if (url.protocol === \"https:\" &&\n                [\"charts-static.billboard.com\", \"www.billboard.com\"].includes(url.hostname))\n                artwork = url.href;\n        }\n        catch {\n            /* Optional provider artwork. */\n        }\n        const base = { id: `billboard:${chart.id}:${date}:${rank}`, connectorId: \"catalog\", artwork };\n        const item = chart.kind === \"artist\"\n            ? { ...base, kind: \"artist\", name: title }\n            : chart.kind === \"album\"\n                ? { ...base, kind: \"album\", title, artist }\n                : { ...base, kind: \"track\", title, artist, durationSeconds: 0, durationLabel: \"\" };\n        entries.push({ rank, item });\n        seen.add(rank);\n    }\n    entries.sort((a, b) => a.rank - b.rank);\n    if (!entries.length || entries[0].rank !== 1)\n        throw new Error(\"Billboard chart entries are unavailable\");\n    return { chartId: chart.id, date, entries };\n}\nfunction parseBillboardHot100(html) {\n    const parsed = parseBillboardChart(html, billboard_directory_1.BILLBOARD_CHARTS.find((chart) => chart.id === \"hot-100\"));\n    return {\n        date: parsed.date,\n        tracks: parsed.entries\n            .map((entry) => entry.item)\n            .filter((item) => item.kind === \"track\"),\n        positions: parsed.entries.map((entry) => entry.rank),\n        artists: [],\n    };\n}\nasync function readPage(response, signal) {\n    const reader = response.body?.getReader();\n    if (!reader)\n        throw new Error(\"Billboard page is empty\");\n    const decoder = new TextDecoder();\n    let size = 0;\n    let html = \"\";\n    try {\n        while (true) {\n            signal.throwIfAborted();\n            const { value, done } = await reader.read();\n            if (done)\n                return html + decoder.decode();\n            size += value.byteLength;\n            if (size > MAX_PAGE_BYTES)\n                throw new Error(\"Billboard page is too large\");\n            html += decoder.decode(value, { stream: true });\n        }\n    }\n    finally {\n        await reader.cancel().catch(() => { });\n        reader.releaseLock();\n    }\n}\nasync function loadBillboardChart(id, signal, refresh = false) {\n    const chart = billboard_directory_1.BILLBOARD_CHARTS.find((chart) => chart.id === id);\n    if (!chart)\n        throw new Error(\"Unknown Billboard chart\");\n    signal?.throwIfAborted();\n    const saved = cache.get(id);\n    if (!refresh && saved && saved.until > Date.now())\n        return saved.chart;\n    const controller = new AbortController();\n    const abort = () => controller.abort();\n    signal?.addEventListener(\"abort\", abort, { once: true });\n    const timer = setTimeout(abort, 15000);\n    try {\n        const response = await (0, safe_fetch_1.safeFetchBytes)((0, exports.billboardChartUrl)(id), { signal: controller.signal, credentials: \"omit\" }, 15000, MAX_PAGE_BYTES);\n        if (!response.ok)\n            throw new Error(`Billboard: ${response.status}`);\n        const parsed = parseBillboardChart(await readPage(response, controller.signal), chart);\n        controller.signal.throwIfAborted();\n        cache.set(id, { until: Date.now() + 60 * 60 * 1000, chart: parsed });\n        while (cache.size > 16)\n            cache.delete(cache.keys().next().value);\n        return parsed;\n    }\n    finally {\n        clearTimeout(timer);\n        signal?.removeEventListener(\"abort\", abort);\n    }\n}\nfunction loadBillboardHot100() {\n    if (hotPending)\n        return hotPending;\n    hotPending = loadBillboardChart(\"hot-100\")\n        .then((chart) => ({\n        date: chart.date,\n        tracks: chart.entries\n            .map((entry) => entry.item)\n            .filter((item) => item.kind === \"track\"),\n        positions: chart.entries.map((entry) => entry.rank),\n        artists: [],\n    }))\n        .finally(() => {\n        hotPending = null;\n    });\n    return hotPending;\n}\n/** Chart IDs are not catalog IDs. Resolve album/artist entries only on an exact match. */\nasync function resolveBillboardItem(item) {\n    if (item.kind === \"track\")\n        return item;\n    if (item.kind === \"artist\") {\n        const canonical = (await (0, artist_authority_1.resolveArtist)(item.name)).canonical;\n        return canonical ? { ...canonical, kind: \"artist\" } : null;\n    }\n    if (item.kind !== \"album\")\n        return null;\n    const result = await (0, catalog_1.searchTyped)(`${item.title} ${item.artist}`, 32, \"catalog\");\n    const match = result.albums.filter((album) => identity(album.title) === identity(item.title) &&\n        identity(album.artist) === identity(item.artist));\n    return match.length === 1 ? { ...match[0], kind: \"album\" } : null;\n}\n\n},\n\"artist-authority\":function(require,exports){\n\"use strict\";\nvar __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {\n    if (k2 === undefined) k2 = k;\n    var desc = Object.getOwnPropertyDescriptor(m, k);\n    if (!desc || (\"get\" in desc ? !m.__esModule : desc.writable || desc.configurable)) {\n      desc = { enumerable: true, get: function() { return m[k]; } };\n    }\n    Object.defineProperty(o, k2, desc);\n}) : (function(o, m, k, k2) {\n    if (k2 === undefined) k2 = k;\n    o[k2] = m[k];\n}));\nvar __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {\n    Object.defineProperty(o, \"default\", { enumerable: true, value: v });\n}) : function(o, v) {\n    o[\"default\"] = v;\n});\nvar __importStar = (this && this.__importStar) || (function () {\n    var ownKeys = function(o) {\n        ownKeys = Object.getOwnPropertyNames || function (o) {\n            var ar = [];\n            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;\n            return ar;\n        };\n        return ownKeys(o);\n    };\n    return function (mod) {\n        if (mod && mod.__esModule) return mod;\n        var result = {};\n        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== \"default\") __createBinding(result, mod, k[i]);\n        __setModuleDefault(result, mod);\n        return result;\n    };\n})();\nObject.defineProperty(exports, \"__esModule\", { value: true });\nexports.displayClusters = exports.artistIdentityKey = void 0;\nexports.resolveArtist = resolveArtist;\nexports.primeArtistCandidates = primeArtistCandidates;\nexports.peekArtistIdentity = peekArtistIdentity;\nexports.identityForRef = identityForRef;\nconst cache_1 = require(\"@/lib/cache\");\nconst debug_1 = require(\"@/lib/debug\");\nconst safe_fetch_1 = require(\"@/lib/safe-fetch\");\nconst artist_popularity_1 = require(\"./artist-popularity\");\nObject.defineProperty(exports, \"artistIdentityKey\", { enumerable: true, get: function () { return artist_popularity_1.artistIdentityKey; } });\nObject.defineProperty(exports, \"displayClusters\", { enumerable: true, get: function () { return artist_popularity_1.displayClusters; } });\nconst RANKING_MAX = 300;\nconst HINT_MAX = 900;\nconst MEASURED_TTL = 24 * 60 * 60000;\nconst EMPTY_TTL = 60 * 60000;\nconst FAILED_TTL = 5 * 60000;\nconst HINT_TTL = 60 * 60000;\nconst SEARCH_LIMIT = 40;\nconst TOPIC_QUERY = /\\s*-\\s*topic\\s*$/i;\nconst rankings = new Map();\nconst hints = new Map();\nconst warned = new Set();\nconst emptyRanking = (key) => ({\n    key,\n    clusters: [],\n    canonical: null,\n    ambiguous: false,\n    measured: false,\n});\nconst rows = (value) => Array.isArray(value) ? value.filter((entry) => entry && typeof entry === \"object\") : [];\nconst count = (value) => typeof value === \"number\" && Number.isFinite(value) && value > 0 ? value : 0;\nconst text = (value) => (typeof value === \"string\" ? value : \"\");\nconst object = (value) => (value && typeof value === \"object\" ? value : {});\nconst fresh = (entry) => entry !== undefined && Date.now() - entry.at < entry.ttl;\nconst refKey = (ref) => `${ref.connectorId}:${ref.id}`;\nconst probeQuery = (name) => name.replace(TOPIC_QUERY, \"\").trim() || name.trim();\nasync function deezerJson(url) {\n    try {\n        const response = await (0, safe_fetch_1.safeFetch)(url, { headers: { Accept: \"application/json\" } });\n        if (!response.ok)\n            return { ok: false, body: null };\n        const value = await response.json();\n        return { ok: true, body: value && typeof value === \"object\" ? value : null };\n    }\n    catch {\n        return { ok: false, body: null };\n    }\n}\nfunction artistCandidate(row, index) {\n    const id = count(row.id);\n    const name = text(row.name);\n    if (!id || !name)\n        return null;\n    const metric = count(row.nb_fan);\n    return {\n        id: `deezer:artist:${id}`,\n        connectorId: \"catalog\",\n        name,\n        artwork: text(row.picture_xl) || text(row.picture_big) || undefined,\n        sourceId: \"catalog\",\n        metric,\n        tier: metric > 0 ? 1 : 0,\n        albums: count(row.nb_album),\n        index,\n    };\n}\nfunction searchCandidates(payload, key) {\n    const data = rows(payload?.data);\n    const found = [];\n    for (const row of data) {\n        if ((0, artist_popularity_1.artistIdentityKey)(text(row.name)) !== key)\n            continue;\n        const candidate = artistCandidate(row, found.length);\n        if (candidate)\n            found.push(candidate);\n    }\n    if (found.length || data.length !== 1)\n        return found;\n    const only = artistCandidate(data[0], 0);\n    return only ? [only] : [];\n}\nfunction withHints(base, refs, key) {\n    if (!refs.length)\n        return base;\n    const seats = new Map();\n    for (const candidate of base)\n        seats.set(candidate.sourceId, (seats.get(candidate.sourceId) ?? 0) + 1);\n    const merged = [...base];\n    for (const ref of refs) {\n        if ((0, artist_popularity_1.artistIdentityKey)(ref.name) !== key)\n            continue;\n        const index = seats.get(ref.connectorId) ?? 0;\n        seats.set(ref.connectorId, index + 1);\n        const audience = (0, artist_popularity_1.parseAudience)(ref.subtitle);\n        merged.push({\n            ...ref,\n            sourceId: ref.connectorId,\n            metric: audience?.value ?? 0,\n            tier: audience?.tier ?? 0,\n            albums: 0,\n            index,\n        });\n    }\n    return merged;\n}\nasync function narrowByTrack(candidates, name, track, key) {\n    const query = `artist:\"${name.replace(/\"/g, \"\")}\" track:\"${track.title.replace(/\"/g, \"\")}\"`;\n    const payload = await deezerJson(`https://api.deezer.com/search?q=${encodeURIComponent(query)}&limit=20`);\n    if (!payload.body)\n        return candidates;\n    const title = (0, artist_popularity_1.artistIdentityKey)(track.title);\n    const ids = new Set();\n    for (const row of rows(payload.body.data)) {\n        const artist = object(row.artist);\n        if ((0, artist_popularity_1.artistIdentityKey)(text(row.title)) !== title ||\n            (0, artist_popularity_1.artistIdentityKey)(text(artist.name)) !== key)\n            continue;\n        ids.add(`deezer:artist:${count(artist.id)}`);\n    }\n    const narrowed = candidates.filter((candidate) => candidate.sourceId !== \"catalog\" || ids.has(candidate.id));\n    return narrowed.some((candidate) => candidate.sourceId === \"catalog\") ? narrowed : candidates;\n}\nfunction storedHints(key) {\n    const entry = (0, cache_1.lruGet)(hints, key);\n    return entry && fresh(entry) ? entry.refs : [];\n}\nasync function probe(key, name, opts) {\n    const payload = await deezerJson(`https://api.deezer.com/search/artist?q=${encodeURIComponent(probeQuery(name))}&limit=${SEARCH_LIMIT}`);\n    const held = [...(opts?.hint ?? []), ...storedHints(key)];\n    let candidates = withHints(searchCandidates(payload.body, key), held, key);\n    if (!candidates.length)\n        return { ranking: emptyRanking(key), ok: payload.ok };\n    let ranking = (0, artist_popularity_1.rankArtistCandidates)(candidates);\n    const decisive = (ranking.clusters[0]?.decades ?? 0) >= artist_popularity_1.DECISIVE_DECADES;\n    if (opts?.track && candidates.length > 1 && !decisive) {\n        candidates = await narrowByTrack(candidates, name, opts.track, key);\n        ranking = (0, artist_popularity_1.rankArtistCandidates)(candidates);\n    }\n    return { ranking, ok: payload.ok };\n}\nasync function resolveArtist(name, opts) {\n    const key = (0, artist_popularity_1.artistIdentityKey)(name);\n    if (!key)\n        return emptyRanking(\"\");\n    const cached = (0, cache_1.lruGet)(rankings, key);\n    if (cached && fresh(cached))\n        return cached.value;\n    const entry = { at: Date.now(), ttl: FAILED_TTL };\n    entry.value = probe(key, name, opts).then(({ ranking, ok }) => {\n        entry.ttl = !ok ? FAILED_TTL : ranking.measured ? MEASURED_TTL : EMPTY_TTL;\n        entry.ready = ranking;\n        return ranking;\n    });\n    (0, cache_1.lruSet)(rankings, key, entry, RANKING_MAX);\n    return entry.value;\n}\nfunction primeArtistCandidates(nameKey, refs) {\n    const key = (0, artist_popularity_1.artistIdentityKey)(nameKey);\n    if (!key)\n        return;\n    const merged = new Map();\n    for (const ref of [...storedHints(key), ...refs])\n        if ((0, artist_popularity_1.artistIdentityKey)(ref.name) === key)\n            merged.set(refKey(ref), ref);\n    const held = [...merged.values()];\n    if (!held.length)\n        return;\n    const ranking = (0, artist_popularity_1.rankArtistCandidates)(withHints([], held, key));\n    (0, cache_1.lruSet)(hints, key, { at: Date.now(), ttl: HINT_TTL, refs: held, ranking }, HINT_MAX);\n}\nfunction peekArtistIdentity(name) {\n    const key = (0, artist_popularity_1.artistIdentityKey)(name);\n    if (!key)\n        return { ranking: null, probed: false };\n    const entry = (0, cache_1.lruGet)(rankings, key);\n    if (entry && fresh(entry) && entry.ready)\n        return { ranking: entry.ready, probed: true };\n    const hinted = (0, cache_1.lruGet)(hints, key);\n    return { ranking: hinted && fresh(hinted) ? hinted.ranking : null, probed: false };\n}\nfunction enrich(ref, member) {\n    const artwork = ref.artwork || member.artwork;\n    const subtitle = ref.subtitle || member.subtitle;\n    if (artwork === ref.artwork && subtitle === ref.subtitle)\n        return ref;\n    return { ...ref, artwork, subtitle };\n}\nfunction locate(ranking, ref) {\n    const wanted = refKey(ref);\n    if (!ranking.measured) {\n        if (!warned.has(wanted)) {\n            warned.add(wanted);\n            (0, debug_1.dwarn)(\"artist authority has no popularity signal for\", ref.name);\n        }\n        return ref;\n    }\n    const top = ranking.clusters[0];\n    for (const cluster of ranking.clusters) {\n        const member = cluster.members.find((entry) => refKey(entry) === wanted);\n        if (!member)\n            continue;\n        const own = refKey(cluster.lead) === wanted;\n        if (cluster === top)\n            return own ? enrich(ref, cluster.lead) : cluster.lead;\n        if (cluster.folded || (0, artist_popularity_1.outrankedNamesake)(ranking, cluster))\n            return top.lead;\n        return own ? enrich(ref, cluster.lead) : enrich(ref, member);\n    }\n    return ref;\n}\nconst verifiedRefs = new Map();\nasync function identityForRef(ref) {\n    if (ref.connectorId === \"local\")\n        return ref;\n    const ranking = await resolveArtist(ref.name, { hint: [ref] });\n    const located = locate(ranking, ref);\n    const canonical = ranking.canonical;\n    if (!canonical || ranking.ambiguous || refKey(located) === refKey(canonical)\n        || located.connectorId === canonical.connectorId\n        || (0, artist_popularity_1.artistIdentityKey)(located.name) !== (0, artist_popularity_1.artistIdentityKey)(canonical.name))\n        return located;\n    const key = `${refKey(located)}=>${refKey(canonical)}`;\n    const held = (0, cache_1.lruGet)(verifiedRefs, key);\n    if (held)\n        return held;\n    const checked = (async () => {\n        // Search may arrive after a dock lookup cached a ranking without this provider's ref.\n        const [{ artistTop }, { sharesArtistRecordings }, { withTimeout }] = await Promise.all([\n            Promise.resolve().then(() => __importStar(require(\"./catalog\"))),\n            Promise.resolve().then(() => __importStar(require(\"./artist-recording-match\"))),\n            Promise.resolve().then(() => __importStar(require(\"@/lib/progressive-rows\"))),\n        ]);\n        const [left, right] = await withTimeout(Promise.all([artistTop(located), artistTop(canonical)]), 12000);\n        return sharesArtistRecordings(left, right) ? canonical : located;\n    })().catch(() => { verifiedRefs.delete(key); return located; });\n    (0, cache_1.lruSet)(verifiedRefs, key, checked, RANKING_MAX);\n    return checked;\n}\n\n},\n\"artist-popularity\":function(require,exports){\n\"use strict\";\nObject.defineProperty(exports, \"__esModule\", { value: true });\nexports.clusterMetric = exports.SUBSTANTIVE_AUDIENCE = exports.TIE_DECADES = exports.DECISIVE_DECADES = void 0;\nexports.parseAudience = parseAudience;\nexports.audienceValue = audienceValue;\nexports.artistIdentityKey = artistIdentityKey;\nexports.rankArtistCandidates = rankArtistCandidates;\nexports.displayClusters = displayClusters;\nexports.outrankedNamesake = outrankedNamesake;\nexports.captionFor = captionFor;\nconst search_normalize_1 = require(\"./search-normalize\");\nconst AUDIENCE = /(\\d[\\d.,]*)\\s*([kmb])?\\s*(?:(monthly)\\s+)?(audience|subscribers?|followers?|listeners?|listens?|plays?|fans?)/i;\nconst TOPIC_SUFFIX = /\\s+topic$/;\nconst SOURCE_ORDER = [\n    \"catalog\",\n    \"spotify\",\n    \"youtube\",\n    \"soundcloud\",\n    \"local\",\n    \"jellyfin\",\n    \"plex\",\n    \"subsonic\",\n];\nexports.DECISIVE_DECADES = 1;\nexports.TIE_DECADES = 0.3;\nexports.SUBSTANTIVE_AUDIENCE = 1000;\nconst UNITS = [\n    [/^audience$/, \"monthlyAudience\"],\n    [/^subscribers?$/, \"subscribers\"],\n    [/^followers?$/, \"followers\"],\n    [/^listeners?$/, \"listeners\"],\n    [/^listens?$/, \"listens\"],\n    [/^plays?$/, \"plays\"],\n    [/^fans?$/, \"fans\"],\n];\nfunction unitOf(word) {\n    for (const [pattern, unit] of UNITS)\n        if (pattern.test(word))\n            return unit;\n    return \"fans\";\n}\nfunction parseAudience(subtitle) {\n    if (!subtitle)\n        return null;\n    const digits = subtitle.replace(/\\p{Nd}/gu, (character) => character >= \"0\" && character <= \"9\" ? character : String(character.charCodeAt(0) & 0xf));\n    const found = AUDIENCE.exec(digits);\n    if (!found)\n        return null;\n    const value = Number(found[1].replace(/,/g, \"\"));\n    if (!Number.isFinite(value))\n        return null;\n    const scale = found[2]?.toLowerCase();\n    const unit = unitOf(found[4].toLowerCase());\n    const flagship = unit === \"monthlyAudience\" || (Boolean(found[3]) && unit === \"listeners\");\n    const factor = scale === \"b\" ? 1e9 : scale === \"m\" ? 1e6 : scale === \"k\" ? 1e3 : 1;\n    return {\n        value: Math.round(value * factor),\n        unit: flagship ? \"monthlyAudience\" : unit,\n        tier: flagship ? 2 : 1,\n    };\n}\nfunction audienceValue(subtitle) {\n    return parseAudience(subtitle)?.value ?? 0;\n}\nfunction artistIdentityKey(name) {\n    const stripped = (0, search_normalize_1.collapseWhitespace)((0, search_normalize_1.normalizeName)(name).replace(TOPIC_SUFFIX, \"\"));\n    return stripped || name.trim().toLowerCase();\n}\nconst refKey = (ref) => `${ref.connectorId}:${ref.id}`;\nconst compare = (left, right) => right.metric - left.metric || right.albums - left.albums || left.index - right.index;\nfunction mergeSameRecord(lead, other) {\n    return {\n        ...lead,\n        artwork: lead.artwork || other.artwork,\n        subtitle: lead.subtitle || other.subtitle,\n        metric: Math.max(lead.metric, other.metric),\n        tier: Math.max(lead.tier, other.tier),\n        albums: Math.max(lead.albums, other.albums),\n    };\n}\nfunction dedupeExact(candidates) {\n    const seen = new Map();\n    for (const candidate of candidates) {\n        const key = refKey(candidate);\n        const existing = seen.get(key);\n        seen.set(key, existing ? mergeSameRecord(existing, candidate) : candidate);\n    }\n    return [...seen.values()];\n}\nfunction unionRef(lead, folded) {\n    const union = {\n        id: lead.id,\n        connectorId: lead.connectorId,\n        name: lead.name,\n        artwork: lead.artwork || folded?.artwork,\n        subtitle: lead.subtitle || folded?.subtitle,\n    };\n    if (lead.musicBrainzId)\n        union.musicBrainzId = lead.musicBrainzId;\n    return union;\n}\nfunction groupBySource(candidates) {\n    const buckets = new Map();\n    for (const candidate of candidates) {\n        const bucket = buckets.get(candidate.sourceId);\n        if (bucket)\n            bucket.push(candidate);\n        else\n            buckets.set(candidate.sourceId, [candidate]);\n    }\n    const groups = [];\n    for (const [sourceId, members] of buckets) {\n        const top = Math.max(...members.map((member) => member.tier));\n        const competing = members.filter((member) => member.tier === top).sort(compare);\n        const lower = members.filter((member) => member.tier !== top).sort(compare);\n        const lead = competing[0];\n        const rival = competing[1];\n        const order = SOURCE_ORDER.indexOf(sourceId);\n        groups.push({\n            sourceId,\n            order: order < 0 ? SOURCE_ORDER.length : order,\n            members: [...competing, ...lower],\n            decades: rival\n                ? Math.log10((lead.metric + 1) / (rival.metric + 1))\n                : lead.metric > 0\n                    ? Infinity\n                    : 0,\n            measured: lead.metric > 0,\n        });\n    }\n    return groups.sort((left, right) => left.order - right.order || left.sourceId.localeCompare(right.sourceId));\n}\nconst emptyRanking = (key) => ({\n    key,\n    clusters: [],\n    canonical: null,\n    ambiguous: false,\n    measured: false,\n});\nfunction rankArtistCandidates(candidates) {\n    const unique = dedupeExact(candidates);\n    if (!unique.length)\n        return emptyRanking(\"\");\n    const key = artistIdentityKey(unique[0].name);\n    const groups = groupBySource(unique);\n    const leadGroup = groups.find((group) => group.measured && group.decades >= exports.DECISIVE_DECADES) ??\n        groups.find((group) => group.measured) ??\n        groups[0];\n    const leadCandidate = leadGroup.members[0];\n    const carried = [];\n    const folded = new Set();\n    if (leadGroup.measured && leadGroup.decades >= exports.DECISIVE_DECADES) {\n        for (const group of groups) {\n            if (group === leadGroup || group.members.length !== 1 || group.members[0].tier !== 2)\n                continue;\n            carried.push(group.members[0]);\n            folded.add(refKey(group.members[0]));\n        }\n    }\n    const clusters = [];\n    for (const group of groups) {\n        for (const member of group.members) {\n            if (folded.has(refKey(member)))\n                continue;\n            const attached = member === leadCandidate ? carried : [];\n            const members = [member, ...attached];\n            clusters.push({\n                lead: unionRef(member, attached[0] ?? null),\n                members,\n                decades: member === group.members[0] ? group.decades : 0,\n                folded: attached.length > 0,\n                flagship: members.some((entry) => entry.tier === 2),\n            });\n        }\n    }\n    const at = clusters.findIndex((cluster) => refKey(cluster.lead) === refKey(leadCandidate));\n    if (at > 0)\n        clusters.unshift(...clusters.splice(at, 1));\n    const top = clusters[0];\n    return {\n        key,\n        clusters,\n        canonical: top ? top.lead : null,\n        ambiguous: clusters.length > 1 && top.decades < exports.TIE_DECADES,\n        measured: unique.some((candidate) => candidate.metric > 0),\n    };\n}\nconst clusterMetric = (cluster) => cluster.members.reduce((best, member) => Math.max(best, member.metric), 0);\nexports.clusterMetric = clusterMetric;\nfunction displayClusters(ranking) {\n    const [lead, ...rest] = ranking.clusters;\n    if (!lead)\n        return [];\n    if (!ranking.measured)\n        return [lead];\n    const home = lead.lead.connectorId;\n    const shown = [lead];\n    const sources = new Set([home]);\n    let rival = true;\n    for (const cluster of rest) {\n        if (cluster.lead.connectorId === home) {\n            const tie = rival && Number.isFinite(lead.decades) && lead.decades < exports.TIE_DECADES;\n            rival = false;\n            if (tie || (0, exports.clusterMetric)(cluster) >= exports.SUBSTANTIVE_AUDIENCE)\n                shown.push(cluster);\n            continue;\n        }\n        if (sources.has(cluster.lead.connectorId) || !cluster.flagship)\n            continue;\n        sources.add(cluster.lead.connectorId);\n        shown.push(cluster);\n    }\n    return shown;\n}\nfunction outrankedNamesake(ranking, cluster) {\n    const lead = ranking.clusters[0];\n    if (!lead || lead === cluster)\n        return false;\n    if (lead.lead.connectorId !== cluster.lead.connectorId)\n        return false;\n    return lead.decades >= exports.DECISIVE_DECADES && (0, exports.clusterMetric)(cluster) < exports.SUBSTANTIVE_AUDIENCE;\n}\nfunction captionFor(cluster, fansLabel, locale) {\n    if (cluster.lead.subtitle)\n        return cluster.lead.subtitle;\n    const lead = cluster.members[0];\n    if (lead && lead.id.startsWith(\"deezer:artist:\") && lead.metric > 0)\n        return `${lead.metric.toLocaleString(locale)} ${fansLabel}`;\n    return \"\";\n}\n\n},\n\"search-normalize\":function(require,exports){\n\"use strict\";\nObject.defineProperty(exports, \"__esModule\", { value: true });\nexports.stripInvisible = stripInvisible;\nexports.collapseWhitespace = collapseWhitespace;\nexports.hasCyrillic = hasCyrillic;\nexports.hasArabic = hasArabic;\nexports.foldArabic = foldArabic;\nexports.stripDiacritics = stripDiacritics;\nexports.transliterateCyrillic = transliterateCyrillic;\nexports.normalizeName = normalizeName;\nexports.stripFeatureCredit = stripFeatureCredit;\nexports.stripNoiseSuffix = stripNoiseSuffix;\nexports.normalizeTitle = normalizeTitle;\nexports.tokenize = tokenize;\nconst INVISIBLE = /[­​-‏‪-‮⁠-⁤⁦-⁩﻿]/g;\nconst COMBINING = \n// Match individual marks, not a composed glyph, for accent-insensitive search.\n// eslint-disable-next-line no-misleading-character-class\n/[\\u0300-\\u036f\\u0483-\\u0489\\u1ab0-\\u1aff\\u1dc0-\\u1dff\\u20d0-\\u20f0\\ufe20-\\ufe2f]/g;\nconst ARABIC_MARKS = /[ً-ٰٟۖ-ۭ]/g;\nconst TATWEEL = /ـ/g;\nconst ARABIC_DIGITS = /[٠-٩۰-۹]/g;\nconst APOSTROPHE = /['`´ʻʼ‘’]/g;\nconst AMPERSAND = /[&﹠＆]/g;\nconst NON_WORD = /[^\\p{L}\\p{N}]+/gu;\nconst CYRILLIC = /[Ѐ-ӿ]/;\nconst ARABIC = /[؀-ۿݐ-ݿࢠ-ࣿﭐ-﷿ﹰ-﻿]/;\nconst ARABIC_FOLD = [\n    [/[آأإٱٲٳٵ]/g, \"ا\"],\n    [/ة/g, \"ه\"],\n    [/[ىئیے]/g, \"ي\"],\n    [/ؤ/g, \"و\"],\n    [/[کڪ]/g, \"ك\"],\n    [/ء/g, \"\"],\n];\nconst LATIN_FOLD = {\n    ß: \"ss\",\n    æ: \"ae\",\n    œ: \"oe\",\n    ø: \"o\",\n    đ: \"d\",\n    ð: \"d\",\n    þ: \"th\",\n    ł: \"l\",\n    ħ: \"h\",\n    ı: \"i\",\n    ŋ: \"ng\",\n    ſ: \"s\",\n};\nconst CYRILLIC_LATIN = {\n    а: \"a\",\n    б: \"b\",\n    в: \"v\",\n    г: \"g\",\n    ґ: \"g\",\n    д: \"d\",\n    е: \"e\",\n    ё: \"e\",\n    є: \"ye\",\n    ж: \"zh\",\n    з: \"z\",\n    и: \"i\",\n    і: \"i\",\n    ї: \"yi\",\n    й: \"i\",\n    к: \"k\",\n    л: \"l\",\n    м: \"m\",\n    н: \"n\",\n    о: \"o\",\n    п: \"p\",\n    р: \"r\",\n    с: \"s\",\n    т: \"t\",\n    у: \"u\",\n    ў: \"u\",\n    ф: \"f\",\n    х: \"h\",\n    ц: \"ts\",\n    ч: \"ch\",\n    ш: \"sh\",\n    щ: \"sch\",\n    ъ: \"\",\n    ы: \"y\",\n    ь: \"\",\n    э: \"e\",\n    ю: \"yu\",\n    я: \"ya\",\n};\nconst NOISE_WORDS = new Set([\n    \"official\",\n    \"music\",\n    \"video\",\n    \"videos\",\n    \"audio\",\n    \"lyric\",\n    \"lyrics\",\n    \"visualizer\",\n    \"visualiser\",\n    \"hd\",\n    \"hq\",\n    \"4k\",\n    \"8k\",\n    \"uhd\",\n    \"full\",\n    \"original\",\n    \"mix\",\n    \"extended\",\n    \"radio\",\n    \"edit\",\n    \"single\",\n    \"album\",\n    \"version\",\n    \"remaster\",\n    \"remastered\",\n    \"master\",\n    \"mastered\",\n    \"mono\",\n    \"stereo\",\n    \"explicit\",\n    \"clean\",\n    \"deluxe\",\n    \"edition\",\n    \"bonus\",\n    \"track\",\n    \"tracks\",\n    \"anniversary\",\n    \"expanded\",\n    \"digital\",\n    \"reissue\",\n    \"vevo\",\n    \"mv\",\n    \"compilation\",\n    \"compilations\",\n]);\nconst FEATURE_SUFFIX = /[\\s([]*\\b(?:feat|ft|featuring)\\b\\.?\\s+[^)\\]]*[)\\]]?\\s*$/i;\nconst BRACKET_SUFFIX = /\\s*[([{]([^()[\\]{}]*)[)\\]}]\\s*$/;\nconst DASH_SUFFIX = /\\s+[-‐-―−]\\s+([^-‐-―−]+)\\s*$/;\nfunction stripInvisible(text) {\n    return text.replace(INVISIBLE, \"\");\n}\nfunction collapseWhitespace(text) {\n    return text.replace(/\\s+/g, \" \").trim();\n}\nfunction hasCyrillic(text) {\n    return CYRILLIC.test(text);\n}\nfunction hasArabic(text) {\n    return ARABIC.test(text);\n}\n/** Tatweel, harakat, alef and ta marbuta variants all collapse so Gulf spellings match. */\nfunction foldArabic(text) {\n    let value = text.replace(TATWEEL, \"\").replace(ARABIC_MARKS, \"\");\n    for (const [pattern, replacement] of ARABIC_FOLD)\n        value = value.replace(pattern, replacement);\n    return value.replace(ARABIC_DIGITS, (character) => String(character.charCodeAt(0) & 0xf));\n}\n/**\n * Decomposes and drops the generic combining-mark blocks only, so Latin accents,\n * Cyrillic breve and diaeresis fold away while Arabic, Hebrew and Indic bases survive.\n * Folding Cyrillic yo to ye and short-i to i is deliberate: Russian speakers type both.\n */\nfunction stripDiacritics(text) {\n    const folded = text.normalize(\"NFD\").replace(COMBINING, \"\");\n    return folded.replace(/[ßæðøþđħıłŋœſ]/g, (character) => LATIN_FOLD[character] ?? character);\n}\nfunction transliterateCyrillic(text) {\n    return text.replace(/[Ѐ-ӿ]/g, (character) => {\n        const mapped = CYRILLIC_LATIN[character.toLowerCase()];\n        return mapped === undefined ? character : mapped;\n    });\n}\n/** Plain lowercase, never locale aware: a Turkish locale would fold I to a dotless i. */\nfunction normalizeName(text) {\n    if (!text)\n        return \"\";\n    const folded = stripDiacritics(foldArabic(stripInvisible(text.normalize(\"NFKC\"))).toLowerCase());\n    const plain = folded.replace(APOSTROPHE, \"\").replace(AMPERSAND, \" and \").replace(NON_WORD, \" \");\n    return collapseWhitespace(plain).normalize(\"NFC\");\n}\nfunction stripFeatureCredit(text) {\n    const stripped = text.replace(FEATURE_SUFFIX, \"\").trim();\n    return stripped ? stripped : text;\n}\nfunction isNoiseGroup(group) {\n    const words = normalizeName(group).split(\" \").filter(Boolean);\n    return (words.length > 0 &&\n        words.every((word) => NOISE_WORDS.has(word) || /^(?:19|20)\\d{2}$/.test(word)));\n}\nfunction stripOneSuffix(text) {\n    const withoutFeature = stripFeatureCredit(text);\n    if (withoutFeature !== text)\n        return withoutFeature;\n    const bracket = BRACKET_SUFFIX.exec(text);\n    if (bracket && isNoiseGroup(bracket[1])) {\n        const head = text.slice(0, bracket.index).trim();\n        if (head)\n            return head;\n    }\n    const dash = DASH_SUFFIX.exec(text);\n    if (dash && isNoiseGroup(dash[1])) {\n        const head = text.slice(0, dash.index).trim();\n        if (head)\n            return head;\n    }\n    return text;\n}\n/** Drops release chrome only. Live, remix, instrumental and karaoke name a different recording. */\nfunction stripNoiseSuffix(text) {\n    let value = text.trim();\n    for (let pass = 0; pass < 4; pass += 1) {\n        const next = stripOneSuffix(value);\n        if (next === value)\n            return value;\n        value = next;\n    }\n    return value;\n}\nfunction normalizeTitle(text) {\n    if (!text)\n        return \"\";\n    return normalizeName(stripNoiseSuffix(text));\n}\nfunction tokenize(text) {\n    const normalized = normalizeName(text);\n    return normalized ? normalized.split(\" \") : [];\n}\n\n},\n\"@/lib/cache\":function(require,exports){\n\"use strict\";\nObject.defineProperty(exports, \"__esModule\", { value: true });\nexports.lruSet = lruSet;\nexports.lruGet = lruGet;\nfunction lruSet(map, key, value, max) {\n    if (map.has(key))\n        map.delete(key);\n    map.set(key, value);\n    while (map.size > max) {\n        const first = map.keys().next();\n        if (first.done)\n            break;\n        map.delete(first.value);\n    }\n}\nfunction lruGet(map, key) {\n    const v = map.get(key);\n    if (v === undefined)\n        return undefined;\n    map.delete(key);\n    map.set(key, v);\n    return v;\n}\n\n}},instances={};\n  function require(name){\n    if(name===\"@/lib/safe-fetch\")return {safeFetch:response,safeFetchBytes:(url,options,timeout,maximum)=>response(url,options,maximum)};\n    if(name===\"@/lib/debug\")return {dwarn(){}};\n    if(name===\"./catalog\")return {searchTyped(){throw new Error(\"Native album candidates required\");}};\n    const id=name.startsWith(\"./\")?name.slice(2):name;\n    if(instances[id])return instances[id];\n    if(!factories[id])throw new Error(\"Unknown pinned Billboard module\");\n    const exports={};instances[id]=exports;factories[id](require,exports);return exports;\n  }\n  const charts=require(\"billboard-directory\").BILLBOARD_CHARTS,board=require(\"discovery-billboard\");\n  return {id:\"harbor-music-billboard\",name:\"Harbor Music Billboard\",async content(input){\n    switch(input.operation){\n      case \"definitions\":return charts;\n      case \"parse\":{const chart=charts.find(value=>value.id===input.chart);if(!chart)throw new Error(\"Unknown Billboard chart\");return board.parseBillboardChart(input.html,chart);}\n      case \"load\":return board.loadBillboardChart(input.chart,undefined,input.refresh===true);\n      case \"resolve\":{\n        const isolated={};\n        factories[\"discovery-billboard\"](name=>name===\"./catalog\"?{searchTyped:async()=>({albums:input.albums??[]})}:require(name),isolated);\n        return isolated.resolveBillboardItem(input.item);\n      }\n      default:throw new Error(\"Unsupported Billboard operation\");\n    }\n  }};\n})();",
+    "sha256": "93fcb838655aa9ab47739cc921d9120cecf9ac00f0cfea44896740f2b70af287"
+  }
+}
