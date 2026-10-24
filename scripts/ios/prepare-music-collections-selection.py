@@ -4,10 +4,11 @@ import os
 from pathlib import Path
 import re
 
-assert os.environ['HARBOR_NATIVE_SELECTION'].strip() == 'HarborTests.MusicCollectionsTests/'
+requested = os.environ['HARBOR_NATIVE_SELECTION'].strip()
 methods = re.findall(r'\bfunc (test\w+)\(', Path('ios/HarborTests/MusicCollectionsTests.swift').read_text('utf-8'))
 assert len(set(methods)) == len(methods) == 3
 cases = ['HarborTests.MusicCollectionsTests/' + method for method in methods]
+assert requested == 'HarborTests.MusicCollectionsTests/' or requested.split(',') == cases
 seed = 'HarborTests.MusicCollectionInterfaceSeedTests/testPrepareOneOwnedAudioFileInAnUnconfiguredFreshGuest'
 batches, captures = [], []
 for family in ['IPhone', 'IPad']:

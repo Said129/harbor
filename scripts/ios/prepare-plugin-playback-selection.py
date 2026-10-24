@@ -6,7 +6,7 @@ import re
 import runpy
 
 requested = os.environ.get('HARBOR_NATIVE_SELECTION', '').strip()
-if requested == 'HarborTests.MusicCollectionsTests/':
+if 'HarborTests.MusicCollectionsTests/' in requested:
     runpy.run_path('scripts/ios/prepare-music-collections-selection.py')
     raise SystemExit(0)
 if requested == 'ui-only:reading-final-repair':
