@@ -19,21 +19,21 @@ if not batches:
     batches = [dict(id=family, family=family, seed=plan['native_preparation_case'], cases=case) for family, case in zip(['IPhone', 'IPad'], device_cases)]
 else:
     expected = plan['fresh_preparation_executions']
-    assert 1 <= expected <= 9 and len(batches) == len({batch['id'] for batch in batches}) == expected
+    assert 1 <= expected <= 10 and len(batches) == len({batch['id'] for batch in batches}) == expected
     assert all(re.fullmatch(r'[A-Za-z][A-Za-z0-9]*', batch['id']) and batch['cases'] for batch in batches)
     assert {batch['family'] for batch in batches} == {'IPhone', 'IPad'}
-assert plan['expected_original_images'] in (4, 6, 8, 10, 12, 13, 16, 26, 28, 32, 34, 36, 38, 39, 44, 46, 47, 48, 54, 58, 61)
-if plan.get('block') in ('reading-plugins', 'reading-repair', 'ebook-catalog', 'reading-bulk', 'reading-consolidated', 'reading-html', 'reading-metadata', 'reading-adaptations', 'reading-navigation', 'reading-surface', 'reading-source-refresh'):
+assert plan['expected_original_images'] in (4, 6, 8, 10, 12, 13, 16, 26, 28, 32, 34, 36, 38, 39, 44, 46, 47, 48, 52, 54, 58, 61)
+if plan.get('block') in ('reading-plugins', 'reading-repair', 'ebook-catalog', 'reading-bulk', 'reading-consolidated', 'reading-html', 'reading-metadata', 'reading-adaptations', 'reading-navigation', 'reading-surface', 'reading-source-refresh', 'reading-final-repair'):
     runpy.run_path('scripts/ios/reading-plugin-fixture-server.py')['start'](build)
 if plan['selected_case_count']:
     assert (canonical / 'PluginIntegrationModels-tree.json').is_file(), 'The model bundle did not execute; do not repeat its compilation on two UI devices.'
 else:
-    assert plan.get('ui_only') is True and plan['pending_native_cases'] == [] and plan['block'] in ('reader-contents', 'reader-interface-completion', 'reader-heading')
+    assert plan.get('ui_only') is True and plan['pending_native_cases'] == [] and plan['block'] in ('reader-contents', 'reader-interface-completion', 'reader-heading', 'reading-final-repair')
 devices = json.loads((build / 'devices.json').read_text())['devices']
 runtime, phone = next((runtime, row) for runtime, values in devices.items() for row in values if row['udid'] == os.environ['IOS_SIMULATOR'])
 tablet = next(row for row in devices[runtime] if row['name'].startswith('iPad') and row.get('isAvailable', True))
 types = json.loads(subprocess.check_output(['xcrun', 'simctl', 'list', 'devicetypes', '--json'], text=True))['devicetypes']
-prebuilt = plan.get('block') in ('reading-metadata', 'reading-adaptations', 'ebook-detail', 'reading-display', 'web-fonts', 'reading-navigation', 'book-pagination', 'reader-completion', 'reading-surface', 'reader-position', 'reader-contents', 'reader-interface-completion', 'reader-bookmarks', 'reader-translation', 'reader-annotations', 'reader-narration', 'reader-narration-repair', 'reading-source-refresh', 'reader-focus', 'reader-heading')
+prebuilt = plan.get('block') in ('reading-metadata', 'reading-adaptations', 'ebook-detail', 'reading-display', 'web-fonts', 'reading-navigation', 'book-pagination', 'reader-completion', 'reading-surface', 'reader-position', 'reader-contents', 'reader-interface-completion', 'reader-bookmarks', 'reader-translation', 'reader-annotations', 'reader-narration', 'reader-narration-repair', 'reading-source-refresh', 'reader-focus', 'reader-heading', 'reading-final-repair')
 if prebuilt:
     # A live metadata selection has not built the separate HarborTests preparation target.
     schemes = ['Harbor', 'HarborLive'] if plan.get('native_scheme') == 'HarborLive' or plan.get('ui_only') else ['HarborLive']

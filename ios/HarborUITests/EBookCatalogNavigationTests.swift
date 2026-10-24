@@ -17,11 +17,20 @@ import XCTest
         XCTAssertTrue(search.waitForExistence(timeout: 20)); search.tap(); search.typeText("Owned\n")
         let card = app.buttons["ebook-card-source:plugin%3Aowned.ui.reading.books:owned"]
         XCTAssertTrue(card.waitForExistence(timeout: 30))
-        reveal(card, app); XCTAssertTrue(card.exists)
-        let grouped = XCTNSPredicateExpectation(predicate: NSPredicate(format: "label CONTAINS '2'"), object: card)
-        XCTAssertEqual(XCTWaiter.wait(for: [grouped], timeout: 30), .completed)
+        let scroll = app.scrollViews["ebook-catalog-scroll"], deadline = Date(timeIntervalSinceNow: 30)
+        var grouped = false
+        repeat {
+            // Independent provider results can move this lazy grid cell while loading.
+            ReadingUIInteraction.reveal(card, in: app, container: scroll)
+            if card.label.contains("2") { grouped = true; break }
+            RunLoop.current.run(until: Date(timeIntervalSinceNow: 0.5))
+        } while Date() < deadline
+        if !grouped {
+            let details = XCTAttachment(string: app.debugDescription); details.name = "ebook-catalog-grouping-hierarchy"; details.lifetime = .keepAlways; owner.add(details)
+        }
+        XCTAssertTrue(grouped, "The visible result must still expose both grouped readable sources")
         capture(app, "ebook-catalog-grouped-" + device)
-        card.tap()
+        ReadingUIInteraction.tapVisible(card, in: app)
         let alternative = app.buttons["ebook-detail-source-source:plugin%3Aowned.ui.reading.alternate:owned"]
         XCTAssertTrue(alternative.waitForExistence(timeout: 20)); reveal(alternative, app)
         capture(app, "ebook-catalog-detail-" + device)
@@ -29,7 +38,8 @@ import XCTest
         let switched = XCTNSPredicateExpectation(predicate: NSPredicate(format: "selected == true"), object: alternative)
         XCTAssertEqual(XCTWaiter.wait(for: [switched], timeout: 20), .completed)
         let read = app.buttons["ebook-detail-read"]; reveal(read, app, up: false); read.tap()
-        let paragraph = app.staticTexts.matching(identifier: "ebook-reader-text").firstMatch
+        let paragraph = app.staticTexts.matching(NSPredicate(format: "identifier == 'ebook-reader-text' AND label == 'Owned first chapter paragraph.'")).firstMatch
+        ReadingUIInteraction.reveal(paragraph, in: app, container: app.scrollViews["ebook-reader-scroll"])
         XCTAssertTrue(paragraph.waitForExistence(timeout: 30)); XCTAssertEqual(paragraph.label, "Owned first chapter paragraph.")
         capture(app, "ebook-catalog-alternate-reader-" + device)
         navigate("ebook", app)

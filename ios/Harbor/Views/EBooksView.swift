@@ -87,7 +87,8 @@ struct EBooksView: View {
                     if savedBooks.isEmpty { ContentUnavailableView(query.isEmpty ? "Tu estantería" : "Sin resultados", image: "nav-ebook", description: Text(query.isEmpty ? "Los libros que abras e importes aparecerán aquí." : "Busca por título o autor entre tus libros guardados.")) }
                 }
             }.padding(.vertical, 16)
-        }.scrollDismissesKeyboard(.interactively).background(HarborTheme.background).navigationTitle("eBook").navigationBarTitleDisplayMode(.inline)
+        }.accessibilityIdentifier("ebook-catalog-scroll")
+            .scrollDismissesKeyboard(.interactively).background(HarborTheme.background).navigationTitle("eBook").navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) { if let reading { NavigationLink { EBookMetadataSettingsView(manager: reading) } label: { Image(systemName: "gearshape") }.accessibilityLabel(DesktopInterfaceText.value("Book metadata")).accessibilityIdentifier("ebook-metadata-settings") } }
                 ToolbarItem(placement: .topBarTrailing) { NavigationLink { HarborPluginManagementView(app: app, kind: .ebook) } label: { Image(systemName: "puzzlepiece.extension") }.accessibilityLabel(DesktopInterfaceText.value("Plugins")) }

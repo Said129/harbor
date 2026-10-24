@@ -3,6 +3,22 @@ import XCTest
 @MainActor final class EBookNarrationNavigationTests: XCTestCase {
     func testVoiceSearchSelectionRestorationAndRotatedPanelOnIPhone() { verify("iphone") }
     func testVoiceSearchSelectionRestorationAndRotatedPanelOnIPad() { verify("ipad") }
+    func testUnselectedVoiceCanBeRevealedAndChosenInsideTheLandscapeViewportOnIPhone() {
+        continueAfterFailure = false; XCUIDevice.shared.orientation = .portrait
+        let app = XCUIApplication(); app.launchArguments = ["-uiLanguage", "en", "-nativeGuide.initialized.v1", "YES", "-nativeGuide.completed.v1", "YES"]
+        app.launch(); defer { app.terminate(); XCUIDevice.shared.orientation = .portrait }; openBook(app)
+        let options = app.buttons["ebook-narration-options"]; XCTAssertTrue(options.waitForExistence(timeout: 20)); options.tap()
+        let search = app.searchFields.firstMatch; XCTAssertTrue(search.waitForExistence(timeout: 15)); search.tap(); search.typeText("Aria")
+        let aria = app.buttons["ebook-narration-voice-en-US-AriaNeural"]
+        XCTAssertTrue(aria.waitForExistence(timeout: 15)); XCTAssertNotEqual(aria.value as? String, "Selected")
+        XCUIDevice.shared.orientation = .landscapeLeft; ReadingUIInteraction.waitForLandscape(app)
+        let voices = app.descendants(matching: .any).matching(identifier: "ebook-narration-list").firstMatch
+        XCTAssertTrue(voices.waitForExistence(timeout: 15)); ReadingUIInteraction.revealWithinViewport(aria, in: app, container: voices)
+        capture(app, "reader-voice-landscape-before-iphone"); ReadingUIInteraction.tapVisible(aria, in: app)
+        XCTAssertEqual(aria.value as? String, "Selected"); capture(app, "reader-voice-landscape-after-iphone")
+        ReadingUIInteraction.tapVisible(app.buttons["ebook-narration-done"], in: app)
+        XCTAssertTrue(app.buttons["ebook-narration-play"].waitForExistence(timeout: 15))
+    }
     private func verify(_ device: String) {
         continueAfterFailure = false; XCUIDevice.shared.orientation = .portrait
         let app = XCUIApplication(); app.launchArguments = ["-uiLanguage", "en", "-nativeGuide.initialized.v1", "YES", "-nativeGuide.completed.v1", "YES"]
@@ -23,7 +39,7 @@ import XCTest
         XCUIDevice.shared.orientation = .landscapeLeft
         ReadingUIInteraction.waitForLandscape(app)
         let voices = app.descendants(matching: .any).matching(identifier: "ebook-narration-list").firstMatch
-        XCTAssertTrue(voices.waitForExistence(timeout: 15)); ReadingUIInteraction.reveal(aria, in: app, container: voices)
+        XCTAssertTrue(voices.waitForExistence(timeout: 15)); ReadingUIInteraction.revealWithinViewport(aria, in: app, container: voices)
         XCTAssertTrue(done.waitForExistence(timeout: 15)); XCTAssertTrue(done.isHittable)
         capture(app, "reader-narration-rotated-" + device); done.tap()
         XCTAssertTrue(app.buttons["ebook-narration-play"].waitForExistence(timeout: 15))
@@ -40,6 +56,6 @@ import XCTest
         let read = app.buttons["ebook-detail-read"]; XCTAssertTrue(read.waitForExistence(timeout: 20)); ReadingUIInteraction.reveal(read, in: app); read.tap()
     }
     private func capture(_ app: XCUIApplication, _ name: String) {
-        let attachment = XCTAttachment(screenshot: app.screenshot()); attachment.name = name; attachment.lifetime = .keepAlways; add(attachment)
+        let attachment = XCTAttachment(screenshot: XCUIScreen.main.screenshot()); attachment.name = name; attachment.lifetime = .keepAlways; add(attachment)
     }
 }

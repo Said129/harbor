@@ -6,6 +6,9 @@ import re
 import runpy
 
 requested = os.environ.get('HARBOR_NATIVE_SELECTION', '').strip()
+if requested == 'ui-only:reading-final-repair':
+    runpy.run_path('scripts/ios/prepare-reading-final-repair-selection.py')
+    raise SystemExit(0)
 if requested == 'ui-only:reader-heading':
     runpy.run_path('scripts/ios/prepare-reader-heading-selection.py')
     raise SystemExit(0)

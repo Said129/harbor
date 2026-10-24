@@ -11,6 +11,7 @@ struct HarborReadingHTMLEditor: View {
     let kind: HarborReadingPluginKind
     let draft: HarborReadingHTMLDraft
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var name: String
     @State private var logo: String
     @State private var language: String
@@ -33,33 +34,44 @@ struct HarborReadingHTMLEditor: View {
     private func text(_ key: String) -> String { DesktopInterfaceText.value(key) }
     var body: some View {
         NavigationStack {
-            Form {
-                Section {
-                    TextField(text("Source name"), text: $name).frame(minHeight: 44).contentShape(Rectangle()).focused($focused, equals: .name).accessibilityIdentifier("reading-html-name")
-                    TextField(text(kind == .manga ? "Logo URL (optional, auto-detected if blank)" : "Logo URL (optional)"), text: $logo).keyboardType(.URL).textInputAutocapitalization(.never).autocorrectionDisabled().frame(minHeight: 44).focused($focused, equals: .logo)
-                    Picker(text("Language"), selection: $language) {
-                        Text(text("All languages")).tag("all")
-                        ForEach(InterfaceLanguage.all, id: \.code) { item in Text(item.nativeLabel).tag(item.code) }
-                    }
-                }
-                Section {
-                    TextEditor(text: $raw).font(.system(.caption, design: .monospaced)).textInputAutocapitalization(.never).autocorrectionDisabled()
-                        .frame(minHeight: 320).focused($focused, equals: .configuration).privacySensitive().accessibilityIdentifier("reading-html-config")
-                } header: { Text(text("Configuration")) } footer: {
-                    Text(text("Describe the site's lists, details and chapters using CSS selectors. Use {query} and {page} in the search and browse paths."))
-                }
-                if let error { Section { Text(error).foregroundStyle(.orange).accessibilityIdentifier("reading-html-error") } }
-                if saving { Section { ProgressView(text("Saving")) } }
-            }.scrollContentBackground(.hidden).scrollDismissesKeyboard(.interactively).background(HarborTheme.background).tint(HarborTheme.accent).defaultFocus($focused, .name)
+            ScrollViewReader { proxy in
+                fields.scrollContentBackground(.hidden).scrollDismissesKeyboard(.interactively).background(HarborTheme.background).tint(HarborTheme.accent).defaultFocus($focused, .name)
                 .navigationTitle(text(draft.plugin == nil ? "Add source" : "Edit source")).navigationBarTitleDisplayMode(.inline)
                 .toolbar {
+                    ToolbarItemGroup(placement: .keyboard) { Spacer(); Button(text("Done")) { focused = nil }.accessibilityIdentifier("reading-html-keyboard-done") }
                     ToolbarItem(placement: .cancellationAction) { Button(text("Cancel")) { operation?.cancel(); dismiss() }.accessibilityIdentifier("reading-html-cancel") }
                     ToolbarItem(placement: .confirmationAction) {
                         Button(text(draft.plugin == nil ? "Add source" : "Save changes"), action: save)
                             .disabled(saving || manager.busy).accessibilityIdentifier("reading-html-save")
                     }
                 }
+                .task(id: error) {
+                    guard error != nil else { return }
+                    await Task.yield(); guard !Task.isCancelled else { return }
+                    withAnimation(reduceMotion ? nil : .easeOut(duration: 0.2)) { proxy.scrollTo("reading-html-error", anchor: .top) }
+                }
                 .onDisappear { operation?.cancel() }
+            }
+        }
+    }
+    private var fields: some View {
+        Form {
+            if let error { Section { Text(error).foregroundStyle(.orange).accessibilityIdentifier("reading-html-error").id("reading-html-error") } }
+            Section {
+                TextField(text("Source name"), text: $name).frame(minHeight: 44).contentShape(Rectangle()).focused($focused, equals: .name).accessibilityIdentifier("reading-html-name")
+                TextField(text(kind == .manga ? "Logo URL (optional, auto-detected if blank)" : "Logo URL (optional)"), text: $logo).keyboardType(.URL).textInputAutocapitalization(.never).autocorrectionDisabled().frame(minHeight: 44).focused($focused, equals: .logo)
+                Picker(text("Language"), selection: $language) {
+                    Text(text("All languages")).tag("all")
+                    ForEach(InterfaceLanguage.all, id: \.code) { item in Text(item.nativeLabel).tag(item.code) }
+                }
+            }
+            Section {
+                TextEditor(text: $raw).font(.system(.caption, design: .monospaced)).textInputAutocapitalization(.never).autocorrectionDisabled()
+                    .frame(minHeight: 320).focused($focused, equals: .configuration).privacySensitive().accessibilityIdentifier("reading-html-config")
+            } header: { Text(text("Configuration")) } footer: {
+                Text(text("Describe the site's lists, details and chapters using CSS selectors. Use {query} and {page} in the search and browse paths."))
+            }
+            if saving { Section { ProgressView(text("Saving")) } }
         }
     }
     private func save() {

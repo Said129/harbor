@@ -19,10 +19,10 @@ struct EBookRelatedView: View {
             ForEach(Array(collections.enumerated()), id: \.offset) { _, row in
                 VStack(alignment: .leading, spacing: 14) {
                     Text(row["collection"]["name"].string ?? text("Collection")).font(.title3.weight(.semibold))
-                    EBookGrid(books: EBookMetadataMapping.books(row["collection"]["books"], preserving: candidates), shelf: shelf, candidates: candidates, app: app)
+                    EBookGrid(books: EBookMetadataMapping.books(row["collection"]["books"], preserving: candidates), shelf: shelf, manager: manager, candidates: candidates, app: app)
                 }
             }
-            if !recommendations.isEmpty { Text(text("You may also like")).font(.title3.weight(.semibold)); EBookGrid(books: recommendations, shelf: shelf, candidates: candidates, app: app) }
+            if !recommendations.isEmpty { Text(text("You may also like")).font(.title3.weight(.semibold)); EBookGrid(books: recommendations, shelf: shelf, manager: manager, candidates: candidates, app: app) }
             ForEach(["manga", "anime", "liveAction"], id: \.self) { kind in
                 let entries = adaptations[kind].array
                 if !entries.isEmpty {

@@ -16,12 +16,12 @@ import XCTest
         let name = app.textFields["reading-html-name"]; XCTAssertTrue(name.waitForExistence(timeout: 15)); replace(name, with: "Renamed manual Manga")
         XCTAssertTrue(app.textViews["reading-html-config"].exists)
         capture(app, "reading-html-editor-" + device)
-        app.buttons["reading-html-save"].tap()
+        saveEditor(in: app)
         let edited = app.staticTexts["Renamed manual Manga"]; XCTAssertTrue(edited.waitForExistence(timeout: 30))
         capture(app, "reading-html-saved-" + device)
         let add = app.buttons["reading-html-add"]; reveal(add, app, up: false); add.tap()
         let config = app.textViews["reading-html-config"]; XCTAssertTrue(config.waitForExistence(timeout: 15)); replace(config, with: "{}")
-        ReadingUIInteraction.tapVisible(app.buttons["reading-html-save"], in: app)
+        saveEditor(in: app)
         let invalid = app.staticTexts["reading-html-error"]; XCTAssertTrue(invalid.waitForExistence(timeout: 30)); reveal(invalid, app)
         capture(app, "reading-html-invalid-" + device)
         app.buttons["reading-html-cancel"].tap()
@@ -38,11 +38,21 @@ import XCTest
         capture(app, "reading-html-book-catalog-" + device); book.tap()
         let readBook = app.buttons["ebook-detail-read"]; XCTAssertTrue(readBook.waitForExistence(timeout: 25)); readBook.tap()
         let paragraph = app.staticTexts.matching(NSPredicate(format: "identifier == 'ebook-reader-text' AND label == 'First paragraph.'")).firstMatch
+        ReadingUIInteraction.reveal(paragraph, in: app, container: app.scrollViews["ebook-reader-scroll"])
         XCTAssertTrue(paragraph.waitForExistence(timeout: 30))
         capture(app, "reading-html-book-reader-" + device)
     }
     private func replace(_ field: XCUIElement, with value: String) {
         ReadingUIInteraction.replace(field, with: value, in: XCUIApplication())
+    }
+    private func saveEditor(in app: XCUIApplication) {
+        if app.keyboards.firstMatch.exists {
+            let done = app.buttons["reading-html-keyboard-done"]; XCTAssertTrue(done.waitForExistence(timeout: 10)); ReadingUIInteraction.tapVisible(done, in: app)
+            XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == false"), object: app.keyboards.firstMatch)], timeout: 15), .completed)
+        }
+        let save = app.buttons["reading-html-save"]
+        let ready = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in save.exists && save.isHittable && save.isEnabled }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [ready], timeout: 20), .completed); ReadingUIInteraction.tapVisible(save, in: app)
     }
     private func navigate(_ section: String, _ app: XCUIApplication) {
         let menu = app.buttons["main-menu"]; XCTAssertTrue(menu.waitForExistence(timeout: 45)); menu.tap()

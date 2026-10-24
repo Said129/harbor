@@ -1,6 +1,16 @@
 import XCTest
 
 @MainActor enum ReadingUIInteraction {
+    static func chooseBookScreen(_ index: Int, in app: XCUIApplication) {
+        let tabs = app.segmentedControls["ebook-screen"]
+        XCTAssertTrue(tabs.waitForExistence(timeout: 15))
+        let scroll = app.scrollViews["ebook-catalog-scroll"]
+        reveal(tabs, in: app, up: false, container: scroll)
+        let target = tabs.buttons.element(boundBy: index)
+        XCTAssertTrue(target.waitForExistence(timeout: 10)); tapVisible(target, in: app)
+        XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(predicate: NSPredicate(format: "selected == true"), object: target)], timeout: 15), .completed)
+    }
+
     static func chooseBookSource(_ name: String, in app: XCUIApplication) {
         let picker = app.buttons["ebook-source"]
         XCTAssertTrue(picker.waitForExistence(timeout: 20)); reveal(picker, in: app, up: false); tapVisible(picker, in: app)
@@ -59,6 +69,26 @@ import XCTest
         let first = origin.withOffset(.init(dx: frame.midX - original.minX, dy: frame.minY - original.minY + frame.height * (up ? 0.8 : 0.2)))
         let last = origin.withOffset(.init(dx: frame.midX - original.minX, dy: frame.minY - original.minY + frame.height * (up ? 0.2 : 0.8)))
         first.press(forDuration: 0.05, thenDragTo: last)
+    }
+
+    static func revealWithinViewport(_ element: XCUIElement, in app: XCUIApplication, container: XCUIElement) {
+        for _ in 0..<30 {
+            var viewport = container.frame.intersection(app.windows.firstMatch.frame)
+            let search = app.searchFields.firstMatch
+            if search.exists, viewport.intersects(search.frame) {
+                let top = max(viewport.minY, search.frame.maxY)
+                viewport.size.height = max(0, viewport.maxY - top); viewport.origin.y = top
+            }
+            for overlay in [app.keyboards.firstMatch, app.buttons["ebook-narration-done"]] where overlay.exists {
+                if viewport.intersects(overlay.frame) { viewport.size.height = max(0, min(viewport.maxY, overlay.frame.minY) - viewport.minY) }
+            }
+            if let frame = visibleFrame(element, in: app), viewport.contains(frame), element.isHittable { return }
+            let above = element.exists && element.frame.maxY < viewport.minY
+            swipeVisible(container, in: app, up: !above)
+        }
+        let hierarchy = XCTAttachment(string: app.debugDescription); hierarchy.name = "reading-visible-row-hierarchy"; hierarchy.lifetime = .keepAlways
+        XCTContext.runActivity(named: "The requested row must be inside the unobstructed list") { $0.add(hierarchy) }
+        XCTFail("The row remained behind the search bar or fixed footer: " + element.description)
     }
 
     static func waitForLandscape(_ app: XCUIApplication) {

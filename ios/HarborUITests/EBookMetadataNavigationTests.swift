@@ -7,8 +7,7 @@ import XCTest
         let app = XCUIApplication(); app.launchArguments = ["-uiLanguage", "es", "-nativeGuide.initialized.v1", "YES", "-nativeGuide.completed.v1", "YES"]
         app.launch(); defer { app.terminate() }
         navigate("ebook", app)
-        let tabs = app.segmentedControls["ebook-screen"]; XCTAssertTrue(tabs.waitForExistence(timeout: 15)); reveal(tabs, app, up: false)
-        tabs.buttons.element(boundBy: 1).tap()
+        ReadingUIInteraction.chooseBookScreen(1, in: app)
         selectCategory("Fantasía", fallback: "Fantasy", app: app)
         let search = app.textFields["ebook-search"]; reveal(search, app, up: false); search.tap()
         if !app.keyboards.firstMatch.waitForExistence(timeout: 2) { search.tap() }; search.typeText("Owned\n")
@@ -20,11 +19,12 @@ import XCTest
         let title = app.staticTexts["ebook-detail-title"]; XCTAssertTrue(title.waitForExistence(timeout: 20))
         capture(app, "ebook-metadata-detail-" + device)
         let read = app.buttons["ebook-detail-read"]; XCTAssertTrue(read.waitForExistence(timeout: 30)); reveal(read, app, up: false); read.tap()
-        let paragraph = app.staticTexts.matching(identifier: "ebook-reader-text").firstMatch
+        let paragraph = app.staticTexts.matching(NSPredicate(format: "identifier == 'ebook-reader-text' AND label == 'Owned first chapter paragraph.'")).firstMatch
+        ReadingUIInteraction.reveal(paragraph, in: app, container: app.scrollViews["ebook-reader-scroll"])
         XCTAssertTrue(paragraph.waitForExistence(timeout: 30)); XCTAssertEqual(paragraph.label, "Owned first chapter paragraph.")
         capture(app, "ebook-metadata-reader-" + device)
         navigate("ebook", app)
-        let screen = app.segmentedControls["ebook-screen"]; XCTAssertTrue(screen.waitForExistence(timeout: 20)); reveal(screen, app, up: false); screen.buttons.element(boundBy: 1).tap()
+        ReadingUIInteraction.chooseBookScreen(1, in: app)
         if search.value as? String == "Owned" {
             let clearSearch = app.buttons["Borrar búsqueda"].firstMatch
             reveal(clearSearch, app, up: false); XCTAssertTrue(clearSearch.isHittable); clearSearch.tap()

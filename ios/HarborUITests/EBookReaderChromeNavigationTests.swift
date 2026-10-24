@@ -10,7 +10,9 @@ import XCTest
         let paragraph = app.staticTexts.matching(identifier: "ebook-reader-text").firstMatch
         XCTAssertTrue(paragraph.waitForExistence(timeout: 30)); XCTAssertEqual(paragraph.label, "Actual original:3 paragraph.")
         let menu = app.buttons["ebook-reader-menu"], next = app.buttons["ebook-next-section"]
-        let ready = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in menu.exists && next.exists && menu.isHittable && next.isEnabled }, object: nil)
+        // SwiftUI's Menu has a non-hittable AX wrapper on iPhone. The visible
+        // control is activated below and must open the actual settings sheet.
+        let ready = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in ReadingUIInteraction.visibleFrame(menu, in: app) != nil && next.exists && next.isEnabled }, object: nil)
         XCTAssertEqual(XCTWaiter.wait(for: [ready], timeout: 20), .completed)
         capture(app, "reader-focus-initial-" + device)
         openSettings(app)
@@ -38,7 +40,8 @@ import XCTest
         setting.coordinate(withNormalizedOffset: .init(dx: 0.93, dy: 0.5)).tap(); XCTAssertEqual(setting.value as? String, "0")
         ReadingUIInteraction.tapVisible(done, in: app)
         RunLoop.current.run(until: Date(timeIntervalSinceNow: 3))
-        XCTAssertTrue(menu.isHittable); XCTAssertTrue(next.isEnabled); XCTAssertEqual(paragraph.label, "Actual original:3 paragraph.")
+        XCTAssertNotNil(ReadingUIInteraction.visibleFrame(menu, in: app)); XCTAssertTrue(next.isEnabled); XCTAssertEqual(paragraph.label, "Actual original:3 paragraph.")
+        openSettings(app); ReadingUIInteraction.tapVisible(done, in: app)
         capture(app, "reader-focus-disabled-" + device)
     }
     private func hidden(_ menu: XCUIElement, next: XCUIElement, app: XCUIApplication) {
@@ -62,6 +65,6 @@ import XCTest
         let read = app.buttons["ebook-detail-read"]; XCTAssertTrue(read.waitForExistence(timeout: 20)); ReadingUIInteraction.reveal(read, in: app); ReadingUIInteraction.tapVisible(read, in: app)
     }
     private func capture(_ app: XCUIApplication, _ name: String) {
-        let attachment = XCTAttachment(screenshot: app.screenshot()); attachment.name = name; attachment.lifetime = .keepAlways; add(attachment)
+        let attachment = XCTAttachment(screenshot: XCUIScreen.main.screenshot()); attachment.name = name; attachment.lifetime = .keepAlways; add(attachment)
     }
 }

@@ -14,6 +14,9 @@ import XCTest
         let title = app.staticTexts["ebook-heading-title"]
         ReadingUIInteraction.reveal(title, in: app, container: scroll); XCTAssertEqual(title.label, "First section")
         capture(app, "reader-heading-first-" + device)
+        let passage = app.staticTexts.matching(NSPredicate(format: "identifier == 'ebook-reader-text' AND label == 'One two three & four.'")).firstMatch
+        ReadingUIInteraction.reveal(passage, in: app, container: scroll)
+        XCTAssertEqual(passage.label, "One two three & four.")
         let next = app.buttons["ebook-next-section"]; XCTAssertTrue(next.isEnabled); ReadingUIInteraction.tapVisible(next, in: app)
         expect("Second section", title: title)
         ReadingUIInteraction.reveal(title, in: app, up: false, container: scroll); XCTAssertFalse(cover.exists)
@@ -47,9 +50,10 @@ import XCTest
         let card = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH 'ebook-card-local:' AND label CONTAINS 'Owned cover book'")).firstMatch
         XCTAssertTrue(card.waitForExistence(timeout: 30)); ReadingUIInteraction.reveal(card, in: app); card.tap()
         let read = app.buttons["ebook-detail-read"]; XCTAssertTrue(read.waitForExistence(timeout: 20)); ReadingUIInteraction.reveal(read, in: app); ReadingUIInteraction.tapVisible(read, in: app)
-        XCTAssertTrue(app.staticTexts.matching(identifier: "ebook-reader-text").firstMatch.waitForExistence(timeout: 30))
+        // The embedded cover precedes the lazily mounted chapter paragraphs.
+        ReadingUIInteraction.assertReaderViewport(app)
     }
     private func capture(_ app: XCUIApplication, _ name: String) {
-        let attachment = XCTAttachment(screenshot: app.screenshot()); attachment.name = name; attachment.lifetime = .keepAlways; add(attachment)
+        let attachment = XCTAttachment(screenshot: XCUIScreen.main.screenshot()); attachment.name = name; attachment.lifetime = .keepAlways; add(attachment)
     }
 }
