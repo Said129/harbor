@@ -32,12 +32,31 @@ final class PageCustomization {
     var editing = false
     private var editingRails: [PageRail] = []
     private var key: String { "page-layout-" + EBookShelf.hash(owner + "|" + page) }
-    init(owner: String, page: String) {
+    init(owner: String, page: String, legacyOwner: String? = nil, inheritedOwner: String? = nil) {
         self.owner = owner; self.page = page
         var defaults = PageLayout(); defaults.secondaryMoreInfo = page != "home"; defaults.playButtonSquare = page != "home"
         layout = defaults
         do {
-            let saved = try KeychainStore().read(key, as: PageLayout.self) ?? defaults
+            let saved: PageLayout
+            if let current = try KeychainStore().read(key, as: PageLayout.self) { saved = current }
+            else if let inheritedOwner, inheritedOwner != owner,
+                    let shared = try KeychainStore().read("page-layout-" + EBookShelf.hash(inheritedOwner + "|" + page), as: PageLayout.self) {
+                // Desktop loadEffective falls back to the household's shared
+                // layout until this independent profile saves its own choice.
+                saved = shared
+            }
+            else if let legacyOwner, legacyOwner != owner,
+                    let previous = try KeychainStore().read("page-layout-" + EBookShelf.hash(legacyOwner + "|" + page), as: PageLayout.self) {
+                guard Self.valid(previous) else { throw HarborError(code: "page-layout") }
+                let marker = "page-layout-migration-" + EBookShelf.hash(legacyOwner + "|" + page)
+                let destination = try KeychainStore().read(marker, as: String.self)
+                if destination == nil || destination == owner {
+                    // Claim the migration before copying. A failed copy can retry for
+                    // this destination without exposing it to another profile/account.
+                    try KeychainStore().write(owner, key: marker)
+                    try KeychainStore().write(previous, key: key); saved = previous
+                } else { saved = defaults }
+            } else { saved = defaults }
             guard Self.valid(saved) else { throw HarborError(code: "page-layout") }
             layout = saved; ready = true
         } catch { self.error = "No se pudo recuperar la personalización. Los cambios anteriores se conservan." }

@@ -6,7 +6,14 @@ struct ContentPageView: View {
     let title: String
     @State private var model: ContentPageModel
     @State private var customization: PageCustomization
-    @MainActor init(app: AppModel, kind: String, title: String) { self.app = app; self.kind = kind; self.title = title; _model = State(initialValue: app.pageModel(kind)); _customization = State(initialValue: PageCustomization(owner: app.user?.id ?? "guest", page: kind)) }
+    @MainActor init(app: AppModel, kind: String, title: String) {
+        self.app = app; self.kind = kind; self.title = title; _model = State(initialValue: app.pageModel(kind))
+        // Desktop animeRows is profile scoped; its other per-page row stores are separate.
+        let scoped = kind == "anime"
+        let legacy = scoped && app.profileContext.profiles.active?.desktop.isPrimary == true ? (app.user?.id ?? "guest") : nil
+        let shared = scoped ? app.profileContext.binding?.sharedSettingsOwner : nil
+        _customization = State(initialValue: PageCustomization(owner: scoped ? app.settingsOwner : (app.user?.id ?? "guest"), page: kind, legacyOwner: legacy, inheritedOwner: shared))
+    }
     private var rails: [PageRail] { model.curated.map(PageRail.discovery) + model.rows.map(PageRail.catalog) }
     private var remainingRails: [PageRail] { kind == "anime" ? rails.filter { $0.id != "discovery-anime-picks" } : rails }
     var body: some View {

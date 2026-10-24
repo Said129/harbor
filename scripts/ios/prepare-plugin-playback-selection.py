@@ -6,6 +6,9 @@ import re
 import runpy
 
 requested = os.environ.get('HARBOR_NATIVE_SELECTION', '').strip()
+if 'HarborTests.PageCustomizationScopeTests/' in requested:
+    runpy.run_path('scripts/ios/prepare-page-customization-scope-selection.py')
+    raise SystemExit(0)
 if 'HarborTests.DesktopAnimeRowTests/' in requested:
     runpy.run_path('scripts/ios/prepare-desktop-anime-row-selection.py')
     raise SystemExit(0)
