@@ -36,7 +36,7 @@ import XCTest
         capture("music-billboard-search-" + device)
         let clear = app.buttons["music-billboard-clear-search"]; ReadingUIInteraction.revealWithinViewport(clear, in: app, container: scroll); ReadingUIInteraction.tapVisible(clear, in: app)
         let country = app.buttons["music-billboard-country"]; ReadingUIInteraction.revealWithinViewport(country, in: app, container: scroll); ReadingUIInteraction.tapVisible(country, in: app)
-        let uk = app.buttons["United Kingdom"].firstMatch; XCTAssertTrue(uk.waitForExistence(timeout: 10)); uk.tap()
+        ReadingUIInteraction.chooseNativeMenuItem("United Kingdom", in: app)
         XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(predicate: NSPredicate(format: "label != 'Billboard 200'"), object: title)], timeout: 15), .completed)
         XCTAssertTrue(first.waitForExistence(timeout: 60)); ReadingUIInteraction.revealWithinViewport(first, in: app, container: scroll)
         capture("music-billboard-country-" + device)

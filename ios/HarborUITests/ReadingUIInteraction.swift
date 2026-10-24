@@ -1,6 +1,15 @@
 import XCTest
 
 @MainActor enum ReadingUIInteraction {
+    static func chooseNativeMenuItem(_ label: String, in app: XCUIApplication) {
+        let choice = app.buttons[label].firstMatch
+        // Native menus virtualize long country/option lists independently of the
+        // page behind them. Scroll the presented collection, not the page.
+        let menu = app.collectionViews.firstMatch
+        if menu.waitForExistence(timeout: 5) { revealWithinViewport(choice, in: app, container: menu) }
+        XCTAssertTrue(choice.waitForExistence(timeout: 10)); tapVisible(choice, in: app)
+    }
+
     static func chooseBookScreen(_ index: Int, in app: XCUIApplication) {
         let tabs = app.segmentedControls["ebook-screen"]
         XCTAssertTrue(tabs.waitForExistence(timeout: 15))

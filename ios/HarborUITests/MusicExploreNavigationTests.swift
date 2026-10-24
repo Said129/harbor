@@ -45,7 +45,7 @@ import XCTest
     private func chooseCountry(_ country: String, app: XCUIApplication, scroll: XCUIElement) {
         let picker = app.buttons["music-genre-countries"]
         ReadingUIInteraction.reveal(picker, in: app, up: false, container: scroll); ReadingUIInteraction.tapVisible(picker, in: app)
-        let choice = app.buttons[country].firstMatch; XCTAssertTrue(choice.waitForExistence(timeout: 10)); choice.tap()
+        ReadingUIInteraction.chooseNativeMenuItem(country, in: app)
     }
     private func navigate(_ app: XCUIApplication) {
         let menu = app.buttons["main-menu"]; XCTAssertTrue(menu.waitForExistence(timeout: 45)); menu.tap()

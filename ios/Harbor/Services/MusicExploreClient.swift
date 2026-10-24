@@ -36,7 +36,9 @@ struct MusicExploreTransport: HarborPluginHostTransport {
         }
         guard let runtime else { throw CancellationError() }
         var input = arguments; input["operation"] = .string(operation)
-        let value = try await runtime.call("content", arguments: [.object(input)], timeout: 60)
+        let value: JSONValue
+        do { value = try await runtime.call("content", arguments: [.object(input)], timeout: 60) }
+        catch { try validate(); throw error }
         try validate()
         return try JSONDecoder().decode(type, from: JSONEncoder().encode(value))
     }

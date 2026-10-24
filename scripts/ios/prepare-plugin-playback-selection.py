@@ -6,6 +6,9 @@ import re
 import runpy
 
 requested = os.environ.get('HARBOR_NATIVE_SELECTION', '').strip()
+if requested in ('affected:music-explore', 'HarborTests.MusicExploreNativeTests/testOnlyAnonymousProviderGETRequestsRunAndRetiredScopeCannotPublishALateChart'):
+    runpy.run_path('scripts/ios/prepare-music-explore-repair-selection.py')
+    raise SystemExit(0)
 if 'HarborTests.MusicBillboardNativeTests/' in requested:
     runpy.run_path('scripts/ios/prepare-music-billboard-selection.py')
     raise SystemExit(0)
