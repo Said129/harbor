@@ -34,6 +34,7 @@ struct EBookReaderView: View {
     @State private var loading = false
     @State private var error: String?
     @State private var settings = false
+    @State private var readerActions = false
     @State private var contents = false
     @State private var contentsVolume: String?
     @State private var bookmarks = false
@@ -89,7 +90,7 @@ struct EBookReaderView: View {
     private var annotationSignature: String { shelf.owner + "|" + book.id + "|" + contentRevision.uuidString + "|" + String(notes.revision) }
     private var canAnnotate: Bool { notes.canSelect(revision: contentRevision) }
     private var chromeSuspended: Bool {
-        loading || error != nil || settings || contents || bookmarks || passageSearch || narrationOptions || notes.route != nil || scenePhase != .active || voiceOver
+        loading || error != nil || readerActions || settings || contents || bookmarks || passageSearch || narrationOptions || notes.route != nil || scenePhase != .active || voiceOver
     }
     private var readerFont: Font { readingFont(size: boundedFontSize) }
     private func readingFont(size: Double) -> Font {
@@ -174,7 +175,9 @@ struct EBookReaderView: View {
                 }.padding(.horizontal).background(canvas.opacity(0.92)).background(.ultraThinMaterial).foregroundStyle(ink)
     }
     private var readerMenu: some View {
-                    Menu {
+                    Button { readerActions = true } label: { Image(systemName: "ellipsis.circle") }
+                        .accessibilityLabel("Opciones de lectura").accessibilityIdentifier("ebook-reader-menu")
+                        .confirmationDialog("Opciones de lectura", isPresented: $readerActions, titleVisibility: .visible) {
                         Button("Índice") { contents = true }.accessibilityIdentifier("ebook-reader-contents-action")
                         Button(DesktopInterfaceText.value("Search chapter")) { passageSearch = true }.accessibilityIdentifier("ebook-passage-search-action")
                         Button(DesktopInterfaceText.value("Bookmark current passage")) { saveBookmark() }.accessibilityIdentifier("ebook-bookmark-add-action")
@@ -182,10 +185,12 @@ struct EBookReaderView: View {
                         Button(DesktopInterfaceText.value("Notes & highlights")) { notes.route = .list }.accessibilityIdentifier("ebook-notes-action")
                         Button(DesktopInterfaceText.value("Highlight")) { notes.select(block: settledBlock) }.disabled(!canAnnotate).accessibilityIdentifier("ebook-note-select-action")
                         Button(DesktopInterfaceText.value("Voice")) { narrationOptions = true }.accessibilityIdentifier("ebook-narration-menu")
-                        Toggle(DesktopInterfaceText.value("Focus mode"), isOn: $focus).accessibilityIdentifier("ebook-focus-toggle")
+                        Button { focus.toggle() } label: {
+                            Text((focus ? "✓ " : "") + DesktopInterfaceText.value("Focus mode"))
+                        }.accessibilityValue(focus ? "1" : "0").accessibilityIdentifier("ebook-focus-toggle")
                         Button(record.completed ? "Marcar como no leído" : "Marcar como leído") { var next = record; next.completed.toggle(); persist(next) }
                         Button("Opciones de lectura") { settings = true }.accessibilityIdentifier("ebook-reader-settings-action")
-                    } label: { Image(systemName: "ellipsis.circle") }.accessibilityLabel("Opciones de lectura").accessibilityIdentifier("ebook-reader-menu")
+                    }
     }
     private var readerLifecycle: some View {
         readerSurface

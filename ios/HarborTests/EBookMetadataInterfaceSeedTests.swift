@@ -22,5 +22,16 @@ final class EBookMetadataInterfaceSeedTests: XCTestCase {
         _ = try await client.query("category", arguments: ["category": .string("Fantasy")])
         _ = try await client.query("search", arguments: ["query": .string("Owned"), "category": .string("Fantasy")])
         try await client.flush()
+        let persisted = try await EBookMetadataCache(owner: owner).load()
+        XCTAssertFalse(persisted.isEmpty, "The following UI process must receive a persisted public catalog")
+        let coldNetwork = MetadataNetwork(.object(fixture))
+        let reopened = try EBookMetadataClient(scope: scope, currentScope: { scope }, network: coldNetwork, googleKey: "", language: "es")
+        defer { reopened.dispose() }
+        let restored = try await reopened.books("search", arguments: ["query": .string("Owned"), "category": .string("Fantasy")])
+        XCTAssertEqual(restored.first?.title, "Owned Book")
+        let outbound = await coldNetwork.requests
+        let diagnostic = XCTAttachment(string: "Owner: " + EBookShelf.hash(owner) + "\nPersisted public keys:\n" + persisted.keys.sorted().joined(separator: "\n") + "\nFresh worker requests:\n" + outbound.map(\.url).joined(separator: "\n"))
+        diagnostic.name = "owned-public-catalog-cold-cache"; diagnostic.lifetime = .keepAlways; add(diagnostic)
+        XCTAssertTrue(outbound.isEmpty, "A fresh worker must read the prepared catalog without another network request")
     }
 }

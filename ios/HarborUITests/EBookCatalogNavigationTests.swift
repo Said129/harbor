@@ -30,6 +30,7 @@ import XCTest
         }
         XCTAssertTrue(grouped, "The visible result must still expose both grouped readable sources")
         capture(app, "ebook-catalog-grouped-" + device)
+        ReadingUIInteraction.reveal(card, in: app, container: scroll)
         ReadingUIInteraction.tapVisible(card, in: app)
         let alternative = app.buttons["ebook-detail-source-source:plugin%3Aowned.ui.reading.alternate:owned"]
         XCTAssertTrue(alternative.waitForExistence(timeout: 20)); reveal(alternative, app)

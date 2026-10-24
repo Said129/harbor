@@ -6,6 +6,9 @@ import re
 import runpy
 
 requested = os.environ.get('HARBOR_NATIVE_SELECTION', '').strip()
+if requested == 'ui-only:reading-final-followup':
+    runpy.run_path('scripts/ios/prepare-reading-final-followup-selection.py')
+    raise SystemExit(0)
 if 'HarborTests.MusicCatalogModelTests/' in requested:
     runpy.run_path('scripts/ios/prepare-music-open-catalog-selection.py')
     raise SystemExit(0)

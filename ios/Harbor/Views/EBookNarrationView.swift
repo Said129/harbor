@@ -118,6 +118,9 @@ struct EBookNarrationView: View {
             .onChange(of: selected) { _, _ in language = selectedLanguage }
             .onChange(of: speed) { _, value in narrator.setSpeed(value) }
             .onChange(of: verticalSizeClass) { _, _ in dismissKeyboard() }
+            .onReceive(NotificationCenter.default.publisher(for: UIDevice.orientationDidChangeNotification)) { _ in
+                dismissKeyboard()
+            }
             .onDisappear { if narrator.previewID != nil { narrator.stop() } }
         }
     }

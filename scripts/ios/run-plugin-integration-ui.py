@@ -23,17 +23,17 @@ else:
     assert all(re.fullmatch(r'[A-Za-z][A-Za-z0-9]*', batch['id']) and batch['cases'] for batch in batches)
     assert {batch['family'] for batch in batches} == {'IPhone', 'IPad'}
 assert plan['expected_original_images'] in (4, 6, 8, 10, 12, 13, 16, 26, 28, 32, 34, 36, 38, 39, 44, 46, 47, 48, 52, 54, 58, 61)
-if plan.get('block') in ('reading-plugins', 'reading-repair', 'ebook-catalog', 'reading-bulk', 'reading-consolidated', 'reading-html', 'reading-metadata', 'reading-adaptations', 'reading-navigation', 'reading-surface', 'reading-source-refresh', 'reading-final-repair'):
+if plan.get('block') in ('reading-plugins', 'reading-repair', 'ebook-catalog', 'reading-bulk', 'reading-consolidated', 'reading-html', 'reading-metadata', 'reading-adaptations', 'reading-navigation', 'reading-surface', 'reading-source-refresh', 'reading-final-repair', 'reading-final-followup'):
     runpy.run_path('scripts/ios/reading-plugin-fixture-server.py')['start'](build)
 if plan['selected_case_count']:
     assert (canonical / 'PluginIntegrationModels-tree.json').is_file(), 'The model bundle did not execute; do not repeat its compilation on two UI devices.'
 else:
-    assert plan.get('ui_only') is True and plan['pending_native_cases'] == [] and plan['block'] in ('reader-contents', 'reader-interface-completion', 'reader-heading', 'reading-final-repair')
+    assert plan.get('ui_only') is True and plan['pending_native_cases'] == [] and plan['block'] in ('reader-contents', 'reader-interface-completion', 'reader-heading', 'reading-final-repair', 'reading-final-followup')
 devices = json.loads((build / 'devices.json').read_text())['devices']
 runtime, phone = next((runtime, row) for runtime, values in devices.items() for row in values if row['udid'] == os.environ['IOS_SIMULATOR'])
 tablet = next(row for row in devices[runtime] if row['name'].startswith('iPad') and row.get('isAvailable', True))
 types = json.loads(subprocess.check_output(['xcrun', 'simctl', 'list', 'devicetypes', '--json'], text=True))['devicetypes']
-prebuilt = plan.get('block') in ('reading-metadata', 'reading-adaptations', 'ebook-detail', 'reading-display', 'web-fonts', 'reading-navigation', 'book-pagination', 'reader-completion', 'reading-surface', 'reader-position', 'reader-contents', 'reader-interface-completion', 'reader-bookmarks', 'reader-translation', 'reader-annotations', 'reader-narration', 'reader-narration-repair', 'reading-source-refresh', 'reader-focus', 'reader-heading', 'reading-final-repair', 'music-collections', 'music-open-catalog')
+prebuilt = plan.get('block') in ('reading-metadata', 'reading-adaptations', 'ebook-detail', 'reading-display', 'web-fonts', 'reading-navigation', 'book-pagination', 'reader-completion', 'reading-surface', 'reader-position', 'reader-contents', 'reader-interface-completion', 'reader-bookmarks', 'reader-translation', 'reader-annotations', 'reader-narration', 'reader-narration-repair', 'reading-source-refresh', 'reader-focus', 'reader-heading', 'reading-final-repair', 'reading-final-followup', 'music-collections', 'music-open-catalog')
 if prebuilt:
     # A live metadata selection has not built the separate HarborTests preparation target.
     schemes = ['Harbor', 'HarborLive'] if plan.get('native_scheme') == 'HarborLive' or plan.get('ui_only') else ['HarborLive']
@@ -49,6 +49,21 @@ if prebuilt:
     assert (native_bundle / native_info['CFBundleExecutable']).is_file(), 'The fresh preparation bundle must exist before starting either device.'
 subprocess.run(['xcrun', 'simctl', 'shutdown', os.environ['IOS_SIMULATOR']], check=True)
 failures, selected = [], {}
+
+def record_owned_metadata_cache(container, label, stage):
+    if plan.get('block') != 'reading-final-followup' or not label.startswith(('Catalog', 'Metadata')):
+        return
+    folder = Path(container) / 'Library/Application Support/Harbor/Books/Metadata'
+    documents = []
+    for file in folder.glob('*.json'):
+        try:
+            value = json.loads(file.read_text('utf-8'))
+            documents.append(dict(file=file.name, owner_digest=value.get('owner'),
+                public_cache_keys=sorted(value.get('values', {}))))
+        except (ValueError, OSError) as error:
+            documents.append(dict(file=file.name, error=type(error).__name__))
+    (canonical / ('OwnedMetadataCache-' + label + '-' + stage + '.json')).write_text(json.dumps(documents, indent=2) + '\n', 'utf-8')
+
 
 def execute(device, prefix, scheme, case):
     cases = case if isinstance(case, list) else [case]
@@ -88,11 +103,13 @@ for batch in batches:
         container = subprocess.check_output(['xcrun', 'simctl', 'get_app_container', device, 'site.harbor.iphone', 'data'], text=True).strip()
         subprocess.run([sys.executable, 'scripts/ios/prepare-model-test-startup.py', '--container', container], check=True)
         if not execute(device, 'PluginSeed' + label, 'Harbor', batch['seed']): continue
+        record_owned_metadata_cache(container, label, 'prepared')
         video = recordings / ('plugin-' + label.lower() + '.mp4')
         with (build / 'logs' / ('plugin-' + label.lower() + '-recording.log')).open('w') as recording_log:
             recorder = subprocess.Popen(['xcrun', 'simctl', 'io', device, 'recordVideo', '--codec=h264', str(video)], stdout=recording_log, stderr=subprocess.STDOUT)
             try: execute(device, 'PluginUI' + label, 'HarborLive', case)
             finally:
+                record_owned_metadata_cache(container, label, 'after-ui')
                 if recorder.poll() is None: recorder.send_signal(signal.SIGINT)
                 try: recorder.wait(timeout=30)
                 except subprocess.TimeoutExpired: recorder.terminate(); recorder.wait(timeout=10)
