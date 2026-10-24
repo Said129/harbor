@@ -159,7 +159,26 @@ targets:
         GENERATE_INFOPLIST_FILE: YES
     dependencies:
       - target: Harbor
+  HarborExistingAppUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources:
+      - path: HarborUITests
+        excludes: [Fixtures]
+      - path: HarborUITests/Fixtures
+        type: folder
+        buildPhase: resources
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: site.harbor.iphone.existing-app-ui-tests
+        GENERATE_INFOPLIST_FILE: YES
 schemes:
+  HarborExistingAppUI:
+    build:
+      targets:
+        HarborExistingAppUITests: [test]
+    test:
+      targets: [HarborExistingAppUITests]
   Harbor:
     build:
       targets:

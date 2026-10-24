@@ -1,6 +1,7 @@
 import SwiftUI
 
 @MainActor struct MusicBillboardView: View {
+    @Environment(\.musicArtistMetadata) private var artistMetadata
     let client: any MusicBillboardCalling
     let catalog: any MusicCatalogCalling
     @State private var model = MusicBillboardModel()
@@ -40,7 +41,7 @@ import SwiftUI
                 .refreshable { await model.load(client: client, refresh: true) }
         }.background(HarborTheme.background).navigationTitle("Billboard").navigationBarTitleDisplayMode(.inline)
             .task(id: model.chartID + "|" + String(revision)) { await model.load(client: client, refresh: revision > 0) }
-            .navigationDestination(item: $model.opened) { item in MusicCatalogDetailView(item: item, client: catalog) }
+            .navigationDestination(item: $model.opened) { item in MusicCatalogDetailView(item: item, client: catalog).environment(\.musicArtistMetadata, artistMetadata) }
             .onDisappear { operation?.cancel(); model.cancel() }
     }
     private var heading: some View {

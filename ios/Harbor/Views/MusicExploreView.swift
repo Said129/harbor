@@ -1,6 +1,7 @@
 import SwiftUI
 
 @MainActor struct MusicExploreView: View {
+    @Environment(\.musicArtistMetadata) private var artistMetadata
     let model: MusicExploreModel
     let catalog: any MusicCatalogCalling
     let billboard: any MusicBillboardCalling
@@ -13,7 +14,7 @@ import SwiftUI
         ScrollView {
             LazyVStack(alignment: .leading, spacing: 24) {
                 Text(text("music.discover")).font(.largeTitle.bold()).padding(.horizontal, 18)
-                NavigationLink { MusicBillboardView(client: billboard, catalog: catalog) } label: {
+                NavigationLink { MusicBillboardView(client: billboard, catalog: catalog).environment(\.musicArtistMetadata, artistMetadata) } label: {
                     HStack {
                         VStack(alignment: .leading, spacing: 6) { Text("Billboard").font(.title2.bold()); Text(text("music.row.charts")).font(.subheadline).foregroundStyle(.secondary) }
                         Spacer(); Image(systemName: "chevron.right")
@@ -45,7 +46,7 @@ import SwiftUI
                     }
                     LazyVGrid(columns: [GridItem(.adaptive(minimum: 140, maximum: 200))], spacing: 16) {
                         ForEach(model.genres) { genre in
-                            NavigationLink { MusicGenreDetailView(genre: genre, explore: model, catalog: catalog) } label: { genreCard(genre) }
+                            NavigationLink { MusicGenreDetailView(genre: genre, explore: model, catalog: catalog).environment(\.musicArtistMetadata, artistMetadata) } label: { genreCard(genre) }
                                 .buttonStyle(.plain).accessibilityIdentifier("music-genre-" + String(genre.id))
                         }
                     }
@@ -128,7 +129,7 @@ import SwiftUI
                         ScrollView(.horizontal) {
                             HStack(spacing: 12) {
                                 ForEach(model.related) { related in
-                                    NavigationLink(related.displayName) { MusicGenreDetailView(genre: related, explore: explore, catalog: catalog) }
+                                    NavigationLink(related.displayName) { MusicGenreDetailView(genre: related, explore: explore, catalog: catalog).environment(\.musicArtistMetadata, artistMetadata) }
                                         .buttonStyle(.bordered).accessibilityIdentifier("music-related-genre-" + String(related.id))
                                 }
                             }
@@ -140,7 +141,7 @@ import SwiftUI
                         VStack(alignment: .leading, spacing: 12) {
                             Text(text(genre.deezerId != nil ? "music.row.charts" : "music.explore.selections")).font(.title2.bold())
                             ForEach(Array(selection.tracks.enumerated()), id: \.element.id) { index, track in
-                                NavigationLink { MusicCatalogDetailView(item: .track(track), client: catalog) } label: {
+                                MusicCatalogLink(item: .track(track), client: catalog) {
                                     HStack(spacing: 12) {
                                         if selection.positions.indices.contains(index), let position = selection.positions[index] { Text(String(position)).font(.caption.monospacedDigit()).foregroundStyle(.secondary).frame(minWidth: 18) }
                                         MusicCatalogCompactItem(item: .track(track))

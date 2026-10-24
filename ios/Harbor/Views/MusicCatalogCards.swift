@@ -1,5 +1,20 @@
 import SwiftUI
 
+@MainActor struct MusicCatalogLink<LabelContent: View>: View {
+    let item: MusicCatalogItem
+    let client: any MusicCatalogCalling
+    let content: LabelContent
+    @Environment(\.musicArtistMetadata) private var artistMetadata
+    init(item: MusicCatalogItem, client: any MusicCatalogCalling, @ViewBuilder label: () -> LabelContent) {
+        self.item = item; self.client = client; content = label()
+    }
+    var body: some View {
+        NavigationLink {
+            MusicCatalogDetailView(item: item, client: client).environment(\.musicArtistMetadata, artistMetadata)
+        } label: { content }
+    }
+}
+
 @MainActor struct MusicCatalogRail: View {
     let row: MusicCatalogRow
     let client: any MusicCatalogCalling
@@ -15,14 +30,14 @@ import SwiftUI
                         ForEach(Array(stride(from: 0, to: row.items.count, by: 3)), id: \.self) { offset in
                             VStack(spacing: 12) {
                                 ForEach(Array(row.items[offset..<min(offset + 3, row.items.count)])) { item in
-                                    NavigationLink { MusicCatalogDetailView(item: item, client: client) } label: { MusicCatalogCompactItem(item: item) }
+                                    MusicCatalogLink(item: item, client: client) { MusicCatalogCompactItem(item: item) }
                                         .buttonStyle(.plain).accessibilityIdentifier("music-catalog-item-" + item.id)
                                 }
                             }.frame(width: 280)
                         }
                     } else {
                         ForEach(row.items) { item in
-                            NavigationLink { MusicCatalogDetailView(item: item, client: client) } label: {
+                            MusicCatalogLink(item: item, client: client) {
                                 MusicCatalogCoverCard(item: item, wide: row.layout == .wide)
                             }.buttonStyle(.plain).accessibilityIdentifier("music-catalog-item-" + item.id)
                         }
@@ -76,7 +91,7 @@ import SwiftUI
         if let top = result.top {
             VStack(alignment: .leading, spacing: 12) {
                 Text(DesktopInterfaceText.value("Top result")).font(.title3.weight(.semibold))
-                NavigationLink { MusicCatalogDetailView(item: top, client: client) } label: { MusicCatalogCompactItem(item: top) }.buttonStyle(.plain)
+                MusicCatalogLink(item: top, client: client) { MusicCatalogCompactItem(item: top) }.buttonStyle(.plain)
             }.padding(.horizontal, 18)
         }
         ForEach(rows.filter { !$0.items.isEmpty }) { MusicCatalogRail(row: $0, client: client) }

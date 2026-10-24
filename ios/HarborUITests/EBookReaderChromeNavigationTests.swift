@@ -5,7 +5,7 @@ import XCTest
     func testFocusHidesAndRevealsControlsKeepsPanelsUsableAndRestoresAfterRelaunchOnIPad() { verify("ipad") }
     private func verify(_ device: String) {
         continueAfterFailure = false; XCUIDevice.shared.orientation = .portrait
-        let app = XCUIApplication(); app.launchArguments = ["-uiLanguage", "en", "-nativeGuide.initialized.v1", "YES", "-nativeGuide.completed.v1", "YES"]
+        let app = XCUIApplication(bundleIdentifier: "site.harbor.iphone"); app.launchArguments = ["-uiLanguage", "en", "-nativeGuide.initialized.v1", "YES", "-nativeGuide.completed.v1", "YES"]
         app.launch(); defer { app.terminate(); XCUIDevice.shared.orientation = .portrait }; openBook(app)
         let paragraph = app.staticTexts.matching(identifier: "ebook-reader-text").firstMatch
         XCTAssertTrue(paragraph.waitForExistence(timeout: 30)); XCTAssertEqual(paragraph.label, "Actual original:3 paragraph.")
@@ -40,8 +40,10 @@ import XCTest
         setting.coordinate(withNormalizedOffset: .init(dx: 0.93, dy: 0.5)).tap(); XCTAssertEqual(setting.value as? String, "0")
         ReadingUIInteraction.tapVisible(done, in: app)
         let dismissed = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in !done.exists && !app.sheets.firstMatch.exists }, object: nil)
-        XCTAssertEqual(XCTWaiter.wait(for: [dismissed], timeout: 15), .completed, "Closing reading settings must also retire the originating actions dialog")
-        XCTAssertTrue(paragraph.waitForExistence(timeout: 15))
+        XCTAssertEqual(XCTWaiter.wait(for: [dismissed], timeout: 15), .completed, "Closing reading settings must return to the reader")
+        ReadingUIInteraction.assertReaderViewport(app)
+        ReadingUIInteraction.reveal(paragraph, in: app, container: app.scrollViews["ebook-reader-scroll"])
+        XCTAssertNotNil(ReadingUIInteraction.visibleFrame(paragraph, in: app))
         XCTAssertNotNil(ReadingUIInteraction.visibleFrame(menu, in: app)); XCTAssertTrue(next.isEnabled); XCTAssertEqual(paragraph.label, "Actual original:3 paragraph.")
         openSettings(app); ReadingUIInteraction.tapVisible(done, in: app)
         capture(app, "reader-focus-disabled-" + device)

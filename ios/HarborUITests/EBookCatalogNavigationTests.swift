@@ -9,7 +9,7 @@ import XCTest
     let owner: XCTestCase
     func verify(_ device: String) {
         owner.continueAfterFailure = false
-        let app = XCUIApplication()
+        let app = XCUIApplication(bundleIdentifier: "site.harbor.iphone")
         app.launchArguments = ["-uiLanguage", "es", "-nativeGuide.initialized.v1", "YES", "-nativeGuide.completed.v1", "YES"]
         app.launch(); defer { app.terminate() }
         navigate("ebook", app)
@@ -62,7 +62,17 @@ import XCTest
         reveal(app.buttons["ebook-filter-reset"], app, up: false); app.buttons["ebook-filter-reset"].tap()
         XCTAssertTrue(card.waitForExistence(timeout: 30))
         navigate("manga", app)
-        let tags = app.buttons["manga-tag-filter"]; XCTAssertTrue(tags.waitForExistence(timeout: 30)); reveal(tags, app); tags.tap()
+        let filters = app.scrollViews["manga-filters"]
+        XCTAssertTrue(filters.waitForExistence(timeout: 30)); reveal(filters, app)
+        let tags = app.buttons["manga-tag-filter"]
+        for _ in 0..<6 {
+            if let frame = ReadingUIInteraction.visibleFrame(tags, in: app),
+               filters.frame.intersection(app.windows.firstMatch.frame).contains(frame), tags.isHittable { break }
+            filters.swipeLeft()
+        }
+        XCTAssertTrue(tags.waitForExistence(timeout: 10))
+        XCTAssertTrue(filters.frame.intersection(app.windows.firstMatch.frame).contains(tags.frame))
+        ReadingUIInteraction.tapVisible(tags, in: app)
         let tag = app.buttons.matching(NSPredicate(format: "label CONTAINS 'Owned tag'")).firstMatch
         XCTAssertTrue(tag.waitForExistence(timeout: 10)); tag.tap()
         let manga = app.buttons["manga-card-owned.ui.reading.manga::tagged"]

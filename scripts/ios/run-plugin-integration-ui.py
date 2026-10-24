@@ -12,6 +12,7 @@ import plistlib
 build = Path('ios/build'); canonical = build / 'canonical'; canonical.mkdir(parents=True, exist_ok=True)
 recordings = build / 'service-recordings'; recordings.mkdir(parents=True, exist_ok=True)
 plan = json.loads((build / 'preserved-plugin-integration.json').read_text())
+preserve_app = plan.get('preserve_prepared_app_data', False)
 batches = plan.get('ui_batches')
 if not batches:
     device_cases = plan.get('ui_device_cases', plan['ui_cases'])
@@ -22,36 +23,42 @@ else:
     assert 1 <= expected <= 10 and len(batches) == len({batch['id'] for batch in batches}) == expected
     assert all(re.fullmatch(r'[A-Za-z][A-Za-z0-9]*', batch['id']) and batch['cases'] for batch in batches)
     assert {batch['family'] for batch in batches} == {'IPhone', 'IPad'}
-assert plan['expected_original_images'] in (4, 6, 8, 10, 12, 13, 16, 17, 18, 24, 26, 28, 32, 34, 36, 38, 39, 44, 46, 47, 48, 52, 54, 58, 61)
-if plan.get('block') in ('reading-plugins', 'reading-repair', 'ebook-catalog', 'reading-bulk', 'reading-consolidated', 'reading-html', 'reading-metadata', 'reading-adaptations', 'reading-navigation', 'reading-surface', 'reading-source-refresh', 'reading-final-repair', 'reading-final-followup', 'reading-visible', 'reading-visible-repair'):
+assert plan['expected_original_images'] in (4, 6, 8, 10, 12, 13, 16, 17, 18, 24, 26, 28, 32, 34, 35, 36, 38, 39, 44, 46, 47, 48, 52, 54, 58, 61)
+if plan.get('block') in ('reading-plugins', 'reading-repair', 'ebook-catalog', 'reading-bulk', 'reading-consolidated', 'reading-html', 'reading-metadata', 'reading-adaptations', 'reading-navigation', 'reading-surface', 'reading-source-refresh', 'reading-final-repair', 'reading-final-followup', 'reading-visible', 'reading-visible-repair', 'prepared-app'):
     runpy.run_path('scripts/ios/reading-plugin-fixture-server.py')['start'](build)
 if plan['selected_case_count']:
     assert (canonical / 'PluginIntegrationModels-tree.json').is_file(), 'The model bundle did not execute; do not repeat its compilation on two UI devices.'
 else:
-    assert plan.get('ui_only') is True and plan['pending_native_cases'] == [] and plan['block'] in ('reader-contents', 'reader-interface-completion', 'reader-heading', 'reading-final-repair', 'reading-final-followup', 'reading-visible', 'reading-visible-repair')
+    assert plan.get('ui_only') is True and plan['pending_native_cases'] == [] and plan['block'] in ('reader-contents', 'reader-interface-completion', 'reader-heading', 'reading-final-repair', 'reading-final-followup', 'reading-visible', 'reading-visible-repair', 'prepared-app')
 devices = json.loads((build / 'devices.json').read_text())['devices']
 runtime, phone = next((runtime, row) for runtime, values in devices.items() for row in values if row['udid'] == os.environ['IOS_SIMULATOR'])
 tablet = next(row for row in devices[runtime] if row['name'].startswith('iPad') and row.get('isAvailable', True))
 types = json.loads(subprocess.check_output(['xcrun', 'simctl', 'list', 'devicetypes', '--json'], text=True))['devicetypes']
 prebuilt = plan.get('block') in ('reading-metadata', 'reading-adaptations', 'ebook-detail', 'reading-display', 'web-fonts', 'reading-navigation', 'book-pagination', 'reader-completion', 'reading-surface', 'reader-position', 'reader-contents', 'reader-interface-completion', 'reader-bookmarks', 'reader-translation', 'reader-annotations', 'reader-narration', 'reader-narration-repair', 'reading-source-refresh', 'reader-focus', 'reader-heading', 'reading-final-repair', 'reading-final-followup', 'reading-visible', 'reading-visible-repair', 'music-collections', 'music-open-catalog', 'music-explore', 'music-billboard', 'music-explore-repair', 'music-billboard-repair', 'music-public-network', 'music-artists')
+prebuilt = prebuilt or preserve_app
 if prebuilt:
     # A live metadata selection has not built the separate HarborTests preparation target.
     schemes = ['Harbor', 'HarborLive'] if plan.get('native_scheme') == 'HarborLive' or plan.get('ui_only') else ['HarborLive']
+    if preserve_app: schemes = ['Harbor', 'HarborExistingAppUI']
     with (build / 'logs' / 'reading-ui-build.log').open('w') as log:
         for scheme in schemes:
             command = ['xcodebuild', '-project', 'ios/Harbor.xcodeproj', '-scheme', scheme, '-configuration', 'Debug',
                 '-destination', f'platform=iOS Simulator,id={os.environ["IOS_SIMULATOR"]},arch={os.environ["IOS_SIMULATOR_ARCH"]}',
-                '-derivedDataPath', str(build / 'DerivedData'), '-clonedSourcePackagesDirPath', str(build / 'SourcePackages'),
+                '-derivedDataPath', str(build / ('ExistingAppUIData' if scheme == 'HarborExistingAppUI' else 'DerivedData')), '-clonedSourcePackagesDirPath', str(build / 'SourcePackages'),
                 'CODE_SIGNING_ALLOWED=YES', 'CODE_SIGN_IDENTITY=-', 'build-for-testing']
             subprocess.run(command, stdout=log, stderr=subprocess.STDOUT, timeout=900, check=True)
     native_bundle = build / 'DerivedData/Build/Products/Debug-iphonesimulator/Harbor.app/PlugIns/HarborTests.xctest'
     with (native_bundle / 'Info.plist').open('rb') as file: native_info = plistlib.load(file)
     assert (native_bundle / native_info['CFBundleExecutable']).is_file(), 'The fresh preparation bundle must exist before starting either device.'
+    if preserve_app:
+        # XCUIApplication(bundleIdentifier:) can otherwise find and reinstall an
+        # app from the UI target's build products, even without a target dependency.
+        assert not (build / 'ExistingAppUIData/Build/Products/Debug-iphonesimulator/Harbor.app').exists()
 subprocess.run(['xcrun', 'simctl', 'shutdown', os.environ['IOS_SIMULATOR']], check=True)
 failures, selected = [], {}
 
 def record_owned_metadata_cache(container, label, stage, device):
-    if plan.get('block') not in ('reading-final-followup', 'reading-visible', 'reading-visible-repair') or not label.startswith(('Catalog', 'Metadata')):
+    if plan.get('block') not in ('reading-final-followup', 'reading-visible', 'reading-visible-repair', 'prepared-app') or not label.startswith(('Catalog', 'Metadata')):
         return
     active = subprocess.check_output(['xcrun', 'simctl', 'get_app_container', device, 'site.harbor.iphone', 'data'], text=True).strip()
     import hashlib
@@ -76,7 +83,7 @@ def execute(device, prefix, scheme, case):
     bundle = build / (prefix + '.xcresult')
     command = ['xcodebuild', '-project', 'ios/Harbor.xcodeproj', '-scheme', scheme, '-configuration', 'Debug',
         '-destination', f'platform=iOS Simulator,id={device},arch={os.environ["IOS_SIMULATOR_ARCH"]}',
-        '-derivedDataPath', str(build / 'DerivedData'), '-clonedSourcePackagesDirPath', str(build / 'SourcePackages'),
+        '-derivedDataPath', str(build / ('ExistingAppUIData' if scheme == 'HarborExistingAppUI' else 'DerivedData')), '-clonedSourcePackagesDirPath', str(build / 'SourcePackages'),
         '-resultBundlePath', str(bundle), *['-only-testing:' + item.replace('.', '/', 1) for item in cases], '-parallel-testing-enabled', 'NO',
         'CODE_SIGNING_ALLOWED=YES', 'CODE_SIGN_IDENTITY=-', 'test-without-building' if prebuilt else 'test']
     log_path = build / 'logs' / (prefix + '.log')
@@ -109,13 +116,22 @@ for batch in batches:
         container = subprocess.check_output(['xcrun', 'simctl', 'get_app_container', device, 'site.harbor.iphone', 'data'], text=True).strip()
         subprocess.run([sys.executable, 'scripts/ios/prepare-model-test-startup.py', '--container', container], check=True)
         if not execute(device, 'PluginSeed' + label, 'Harbor', batch['seed']): continue
+        container = subprocess.check_output(['xcrun', 'simctl', 'get_app_container', device, 'site.harbor.iphone', 'data'], text=True).strip()
         record_owned_metadata_cache(container, label, 'prepared', device)
         video = recordings / ('plugin-' + label.lower() + '.mp4')
         with (build / 'logs' / ('plugin-' + label.lower() + '-recording.log')).open('w') as recording_log:
             recorder = subprocess.Popen(['xcrun', 'simctl', 'io', device, 'recordVideo', '--codec=h264', str(video)], stdout=recording_log, stderr=subprocess.STDOUT)
-            try: execute(device, 'PluginUI' + label, 'HarborLive', case)
+            try: execute(device, 'PluginUI' + label, 'HarborExistingAppUI' if preserve_app else 'HarborLive', case)
             finally:
                 record_owned_metadata_cache(container, label, 'after-ui', device)
+                if preserve_app:
+                    active = subprocess.check_output(['xcrun', 'simctl', 'get_app_container', device, 'site.harbor.iphone', 'data'], text=True).strip()
+                    import hashlib
+                    same = active == container
+                    (canonical / ('PreparedApplication-' + label + '.json')).write_text(json.dumps(dict(source=plan['source'],
+                        same_data_container=same, prepared_digest=hashlib.sha256(container.encode()).hexdigest(),
+                        after_ui_digest=hashlib.sha256(active.encode()).hexdigest()), indent=2) + '\n', 'utf-8')
+                    if not same: failures.append(dict(device=device, prepared_application_data='replaced-by-ui-runner'))
                 if recorder.poll() is None: recorder.send_signal(signal.SIGINT)
                 try: recorder.wait(timeout=30)
                 except subprocess.TimeoutExpired: recorder.terminate(); recorder.wait(timeout=10)

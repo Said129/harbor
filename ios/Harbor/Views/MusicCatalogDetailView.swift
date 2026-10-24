@@ -31,13 +31,13 @@ import SwiftUI
                 if item.isArtist, kind == .albums {
                     LazyVGrid(columns: [GridItem(.adaptive(minimum: 140, maximum: 180))], spacing: 18) {
                         ForEach(model.items) { entry in
-                            NavigationLink { MusicCatalogDetailView(item: entry, client: client) } label: { MusicCatalogCoverCard(item: entry) }
+                            MusicCatalogLink(item: entry, client: client) { MusicCatalogCoverCard(item: entry) }
                                 .buttonStyle(.plain).accessibilityIdentifier("music-detail-item-" + entry.id)
                         }
                     }
                 } else {
                     ForEach(model.items) { entry in
-                        NavigationLink { MusicCatalogDetailView(item: entry, client: client) } label: { MusicCatalogCompactItem(item: entry) }
+                        MusicCatalogLink(item: entry, client: client) { MusicCatalogCompactItem(item: entry) }
                             .buttonStyle(.plain).accessibilityIdentifier("music-detail-item-" + entry.id)
                     }
                 }
@@ -77,7 +77,7 @@ import SwiftUI
             if case .track(let track) = item {
                 if let album = track.album { Text(album).font(.subheadline).foregroundStyle(.secondary) }
                 Text(track.durationLabel).font(.caption.monospacedDigit()).foregroundStyle(.secondary)
-                NavigationLink { MusicCatalogArtistSearchView(query: track.artist, client: client) } label: {
+                NavigationLink { MusicCatalogArtistSearchView(query: track.artist, client: client).environment(\.musicArtistMetadata, artistMetadata) } label: {
                     Label(DesktopInterfaceText.value("View artist"), systemImage: "person.crop.circle")
                 }.buttonStyle(.bordered).accessibilityIdentifier("music-track-find-artist")
             }

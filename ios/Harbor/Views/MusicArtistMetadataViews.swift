@@ -46,7 +46,7 @@ extension EnvironmentValues {
                         VStack(alignment: .leading, spacing: 10) { title; sources(profile) }
                     }
                     ForEach(Array(profile.credits.enumerated()), id: \.offset) { index, credit in
-                        NavigationLink { MusicCatalogDetailView(item: .artist(credit.artist.catalog), client: catalog) } label: {
+                        MusicCatalogLink(item: .artist(credit.artist.catalog), client: catalog) {
                             HStack(spacing: 12) {
                                 VStack(alignment: .leading, spacing: 5) {
                                     Text(credit.name).font(.subheadline.weight(.semibold))

@@ -4,7 +4,7 @@ import XCTest
     let owner: XCTestCase
     func verify(_ device: String) {
         owner.continueAfterFailure = false
-        let app = XCUIApplication(); app.launchArguments = ["-uiLanguage", "es", "-nativeGuide.initialized.v1", "YES", "-nativeGuide.completed.v1", "YES"]
+        let app = XCUIApplication(bundleIdentifier: "site.harbor.iphone"); app.launchArguments = ["-uiLanguage", "es", "-nativeGuide.initialized.v1", "YES", "-nativeGuide.completed.v1", "YES"]
         app.launch(); defer { app.terminate() }
         navigate("ebook", app)
         ReadingUIInteraction.chooseBookScreen(1, in: app)

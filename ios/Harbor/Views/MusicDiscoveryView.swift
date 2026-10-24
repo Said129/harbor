@@ -79,7 +79,7 @@ enum MusicNativeScreen: String, CaseIterable, Identifiable {
     let eyebrow: String
     let client: any MusicCatalogCalling
     var body: some View {
-        NavigationLink { MusicCatalogDetailView(item: item, client: client) } label: {
+        MusicCatalogLink(item: item, client: client) {
             ZStack(alignment: .bottomLeading) {
                 Artwork(url: item.artwork, maxPixels: 900, failureIcon: "nav-music").frame(height: 300)
                 LinearGradient(colors: [.clear, .black.opacity(0.94)], startPoint: .top, endPoint: .bottom)

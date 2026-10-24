@@ -5,7 +5,7 @@ import XCTest
     func testPublicRanksAlbumChartLocalSearchCountrySelectionAndReturnToGenresOnIPad() { verify("ipad") }
     private func verify(_ device: String) {
         continueAfterFailure = false; XCUIDevice.shared.orientation = .portrait
-        let app = XCUIApplication(); app.launchArguments = ["-uiLanguage", "en", "-nativeGuide.initialized.v1", "YES", "-nativeGuide.completed.v1", "YES"]
+        let app = XCUIApplication(bundleIdentifier: "site.harbor.iphone"); app.launchArguments = ["-uiLanguage", "en", "-nativeGuide.initialized.v1", "YES", "-nativeGuide.completed.v1", "YES"]
         app.launch(); defer { app.terminate(); XCUIDevice.shared.orientation = .portrait }
         let menu = app.buttons["main-menu"]; XCTAssertTrue(menu.waitForExistence(timeout: 45)); menu.tap()
         let navigation = app.descendants(matching: .any).matching(identifier: "navigation-scroll").firstMatch

@@ -5,7 +5,7 @@ import XCTest
     func testPublicGenreArtistsProviderCreditsAndPrivateMetadataSettingsOnIPad() { verify("ipad") }
     private func verify(_ device: String) {
         continueAfterFailure = false; XCUIDevice.shared.orientation = .portrait
-        let app = XCUIApplication(); app.launchArguments = ["-uiLanguage", "en", "-nativeGuide.initialized.v1", "YES", "-nativeGuide.completed.v1", "YES"]
+        let app = XCUIApplication(bundleIdentifier: "site.harbor.iphone"); app.launchArguments = ["-uiLanguage", "en", "-nativeGuide.initialized.v1", "YES", "-nativeGuide.completed.v1", "YES"]
         app.launch(); defer { app.terminate(); XCUIDevice.shared.orientation = .portrait }
         let menu = app.buttons["main-menu"]; XCTAssertTrue(menu.waitForExistence(timeout: 45)); menu.tap()
         let navigation = app.descendants(matching: .any).matching(identifier: "navigation-scroll").firstMatch
@@ -19,7 +19,9 @@ import XCTest
         let rock = app.buttons["music-genre-152"]; ReadingUIInteraction.revealWithinViewport(rock, in: app, container: explore); ReadingUIInteraction.tapVisible(rock, in: app)
         let scroll = app.scrollViews["music-genre-detail-scroll"], title = app.staticTexts["music-genre-detail-title"]
         XCTAssertTrue(title.waitForExistence(timeout: 20)); XCTAssertEqual(title.label, "Rock")
-        let track = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH 'music-genre-track-deezer:track:'")).firstMatch
+        let firstTrack = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH 'music-genre-track-deezer:track:'")).firstMatch
+        XCTAssertTrue(firstTrack.waitForExistence(timeout: 30))
+        let track = app.buttons[firstTrack.identifier]
         ReadingUIInteraction.revealWithinViewport(track, in: app, container: scroll); ReadingUIInteraction.tapVisible(track, in: app)
         let detail = app.scrollViews["music-catalog-detail"], credits = app.buttons["music-recording-credit-0"]
         XCTAssertTrue(detail.waitForExistence(timeout: 20)); XCTAssertTrue(credits.waitForExistence(timeout: 45))
