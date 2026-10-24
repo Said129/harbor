@@ -80,6 +80,8 @@ import SwiftUI
             }.padding(.horizontal, 18)
         }
         ForEach(rows.filter { !$0.items.isEmpty }) { MusicCatalogRail(row: $0, client: client) }
-        if result.top == nil, rows.allSatisfy({ $0.items.isEmpty }) { ContentUnavailableView.search() }
+        if result.top == nil, rows.allSatisfy({ $0.items.isEmpty }) {
+            ContentUnavailableView(DesktopInterfaceText.value("No results"), systemImage: "magnifyingglass")
+        }
     }
 }
