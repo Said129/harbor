@@ -10,10 +10,13 @@ struct MusicView: View {
     @State private var category = "Canciones"
     @State private var importFiles = false
     @State private var selectFolder = false
+    @AppStorage("harbor.music.tab") private var screen = MusicNativeScreen.forYou
+    @State private var catalog: MusicCatalogModel
     @MainActor init(app: AppModel) {
         self.app = app
         _library = State(initialValue: MusicLibrary(owner: app.personalOwner))
         _playlists = State(initialValue: MusicPlaylistStore(owner: app.personalOwner))
+        _catalog = State(initialValue: MusicCatalogModel())
         MusicCollections.shared.prepare(owner: app.personalOwner)
     }
     private var query: String { filters.query }
@@ -35,6 +38,38 @@ struct MusicView: View {
     }
     var body: some View {
         VStack(spacing: 12) {
+            Picker(DesktopInterfaceText.value("Music"), selection: $screen) {
+                ForEach(MusicNativeScreen.allCases) { Text($0.title).tag($0) }
+            }.pickerStyle(.segmented).padding(.horizontal).accessibilityIdentifier("music-screen")
+            if screen == .forYou { MusicDiscoveryView(model: catalog, library: library, query: filters.query) }
+            else { localLibrary }
+        }.background(HarborTheme.background).navigationTitle("Música").navigationBarTitleDisplayMode(.inline)
+            .searchable(text: $filters.query, prompt: screen == .forYou ? DesktopInterfaceText.value("Search music") : "Canciones, álbumes, artistas o listas")
+            .task(id: screen.rawValue + "|" + query) {
+                if screen == .forYou { await catalog.load(query: query) }
+            }
+            .onChange(of: filters.query) { _, value in if value.count > 200 { filters.query = String(value.prefix(200)) } }
+            .onSubmit(of: .search) { UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil) }
+            .toolbar { ToolbarItem(placement: .topBarTrailing) {
+                Menu {
+                    Button { openImport(folder: false) } label: { Label("Importar archivos", image: "music-plus") }
+                    Button { openImport(folder: true) } label: { Label("Importar carpeta", image: "music-folder-open") }
+                } label: { MusicGlyph("plus").frame(width: 44, height: 44) }.accessibilityLabel("Importar música").disabled(!library.ready || library.importing)
+            } }
+            .fileImporter(isPresented: $importFiles, allowedContentTypes: selectFolder ? [.folder] : [.audio, .data], allowsMultipleSelection: !selectFolder) { result in
+                switch result {
+                case .success(let urls):
+                    screen = .library
+                    if selectFolder { if let folder = urls.first { library.importFolder(folder) } }
+                    else { library.importFiles(urls) }
+                case .failure: library.error = "No se pudo abrir la selección de archivos."
+                }
+            }
+            .onDisappear { if library.owner != (app.personalOwner) { library.cancelImport() } }
+            .accessibilityElement(children: .contain).accessibilityIdentifier("music-library")
+    }
+    private var localLibrary: some View {
+        VStack(spacing: 12) {
             Picker("Biblioteca", selection: $category) { Text("Canciones").tag("Canciones"); Text("Álbumes").tag("Álbumes"); Text("Artistas").tag("Artistas"); Text("Listas").tag("Listas") }.pickerStyle(.segmented).padding(.horizontal).accessibilityIdentifier("music-library-category")
             if category == "Canciones", !library.records.isEmpty { MusicFilterTools(filters: $filters, count: records.count).padding(.horizontal) }
             if let error = library.error { Text(error).font(.caption).foregroundStyle(.orange).padding(.horizontal) }
@@ -45,27 +80,8 @@ struct MusicView: View {
                     Button(DesktopInterfaceText.value("Retry")) { MusicCollections.shared.retry(owner: library.owner) }
                 }.padding(.horizontal).accessibilityIdentifier("music-collections-error")
             }
-            importStatus
-            libraryContent
-        }.background(HarborTheme.background).navigationTitle("Música").navigationBarTitleDisplayMode(.inline)
-            .searchable(text: $filters.query, prompt: "Canciones, álbumes, artistas o listas")
-            .onChange(of: filters.query) { _, value in if value.count > 200 { filters.query = String(value.prefix(200)) } }
-            .toolbar { ToolbarItem(placement: .topBarTrailing) {
-                Menu {
-                    Button { openImport(folder: false) } label: { Label("Importar archivos", image: "music-plus") }
-                    Button { openImport(folder: true) } label: { Label("Importar carpeta", image: "music-folder-open") }
-                } label: { MusicGlyph("plus").frame(width: 44, height: 44) }.accessibilityLabel("Importar música").disabled(!library.ready || library.importing)
-            } }
-            .fileImporter(isPresented: $importFiles, allowedContentTypes: selectFolder ? [.folder] : [.audio, .data], allowsMultipleSelection: !selectFolder) { result in
-                switch result {
-                case .success(let urls):
-                    if selectFolder { if let folder = urls.first { library.importFolder(folder) } }
-                    else { library.importFiles(urls) }
-                case .failure: library.error = "No se pudo abrir la selección de archivos."
-                }
-            }
-            .onDisappear { if library.owner != (app.personalOwner) { library.cancelImport() } }
-            .accessibilityIdentifier("music-library")
+            importStatus; libraryContent
+        }
     }
     @ViewBuilder private var importStatus: some View {
         if library.importing {

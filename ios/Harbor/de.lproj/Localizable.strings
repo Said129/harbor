@@ -578,6 +578,7 @@
 "Everything your addons offer, shown as posters. Scroll, search, or filter to what you want." = "Alles, was deine Add-ons anbieten, als Poster dargestellt. Scrolle, suche oder filtere nach deinen Wünschen.";
 "Excellence Prize" = "Exzellenzpreis";
 "Exit Picture in Picture" = "Bild-in-Bild-Modus beenden";
+"Explicit" = "Explizit";
 "Explorar" = "Durchsuchen";
 "Explorar complementos" = "Add-ons durchsuchen";
 "Explorar por categoría" = "Nach Kategorie durchsuchen";
@@ -620,6 +621,7 @@
 "Fondo" = "Hintergrund";
 "Font" = "Schriftart";
 "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found." = "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found.";
+"For you" = "Für dich";
 "Forced" = "Erzwungen";
 "Forest" = "Wald";
 "Formato de canales" = "Channel format";
@@ -827,6 +829,7 @@
 "Load file" = "Datei laden";
 "Load more" = "Mehr laden";
 "Loading" = "Wird geladen";
+"Loading music" = "Musik wird geladen";
 "Loading plugins..." = "Plugins werden geladen...";
 "Loading…" = "Wird geladen…";
 "Local" = "Lokal";
@@ -920,6 +923,7 @@
 "Muestra nombres traducidos al idioma seleccionado arriba. Desactívalo para mantener los títulos originales." = "Zeige übersetzte Namen in der oben gewählten Sprache. Deaktiviere dies, um Originaltitel beizubehalten.";
 "Muestra subtítulos en dos idiomas a la vez. Útil para aprender un idioma o ver contenido juntos." = "Zeige Untertitel in zwei Sprachen gleichzeitig. Hilfreich beim Sprachenlernen oder gemeinsamen Anschauen.";
 "Music" = "Musik";
+"Music is unavailable right now." = "Music is unavailable right now.";
 "Mute" = "Stummschalten";
 "Muted text" = "Gedämpfter Text";
 "My Library" = "Meine Mediathek";
@@ -1015,6 +1019,7 @@
 "Not set" = "Nicht festgelegt";
 "Nothing installed yet" = "Noch nichts installiert";
 "Nothing matched this filter. Try another category or change your region in Settings." = "Für diesen Filter wurden keine Treffer gefunden. Probiere eine andere Kategorie aus oder ändere deine Region in den Einstellungen.";
+"Nothing to show yet." = "Nothing to show yet.";
 "Notify me" = "Notify me";
 "Now" = "Jetzt";
 "Now Playing" = "Läuft gerade";
@@ -1366,6 +1371,7 @@
 "Search" = "Suchen";
 "Search addons" = "Add-ons durchsuchen";
 "Search by title or author, or change the language." = "Search by title or author, or change the language.";
+"Search is too long." = "Search is too long.";
 "Search languages" = "Suchsprachen";
 "Search music" = "Musik durchsuchen";
 "Search settings" = "Einstellungen durchsuchen";
@@ -1669,9 +1675,12 @@
 "Top of the screen" = "Am oberen Bildschirmrand";
 "Top rated" = "Bestbewertet";
 "Top rated on {site}" = "Bestbewertet auf {site}";
+"Top result" = "Bestes Ergebnis";
 "Top rising" = "Top-Aufsteiger";
+"Top tracks" = "Top tracks";
 "Torrents" = "Torrents";
 "Track" = "Tonspur";
+"Tracks" = "Tonspuren";
 "Traducir títulos" = "Titel übersetzen";
 "Transfer primary" = "Primärstatus übertragen";
 "Translate titles" = "Titel übersetzen";
@@ -1743,7 +1752,9 @@
 "Video FPS is unavailable." = "Video-FPS sind nicht verfügbar.";
 "Vietnamese" = "Vietnamesisch";
 "View" = "Ansicht";
+"View album" = "View album";
 "View all" = "Alle anzeigen";
+"View artist" = "View artist";
 "View more" = "Mehr anzeigen";
 "Visible" = "Sichtbar";
 "Vista" = "Ansicht";
@@ -1816,6 +1827,10 @@
 "left" = "links";
 "local" = "lokal";
 "movies" = "Filme";
+"music.artist.limited" = "Diese Quelle bietet eine Auswahl, möglicherweise nicht den vollständigen Katalog.";
+"music.detail.relatedArtists" = "Ähnliche Künstler";
+"music.row.charts" = "Charts";
+"music.search.albums" = "Alben";
 "music.volume" = "Musiklautstärke";
 "new" = "neu";
 "no" = "nein";
@@ -1851,6 +1866,7 @@
 "yes" = "ja";
 "{app} itself does not host, distribute, or index any media. All streams come from third-party addons, debrid services, or your own {service} account that you configure yourself. You are responsible for what you choose to play and for complying with the laws of your jurisdiction." = "{app} selbst hostet, verbreitet oder indexiert keinerlei Medien. Alle Streams stammen von Drittanbieter-Add-ons, Debrid-Diensten oder deinem eigenen {service}-Konto, das du selbst konfigurierst. Du bist dafür verantwortlich, was du abspielst, und musst die Gesetze deiner Rechtsordnung einhalten.";
 "{count} picks ready" = "{count} ausgewählte Titel bereit";
+"{count} results" = "{count} Ergebnisse";
 "{count} tracks" = "{count} Titel";
 "{h}h left" = "noch {h} Std.";
 "{h}h {m}m left" = "noch {h} Std. {m} Min.";

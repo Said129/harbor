@@ -460,6 +460,7 @@
 "Evento principal de esta noche" = "Tonight's main event";
 "Everything your addons offer, shown as posters. Scroll, search, or filter to what you want." = "Everything your addons offer, shown as posters. Scroll, search, or filter to what you want.";
 "Exit Picture in Picture" = "Exit Picture in Picture";
+"Explicit" = "Explicit";
 "Explorar" = "Browse";
 "Explorar complementos" = "Browse addons";
 "Explorar por categoría" = "Browse by category";
@@ -496,6 +497,7 @@
 "Fondo" = "Background";
 "Font" = "Font";
 "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found." = "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found.";
+"For you" = "For you";
 "Forced" = "Forced";
 "Formato de canales" = "Channel format";
 "Forzado" = "Forced";
@@ -659,6 +661,7 @@
 "Load file" = "Load file";
 "Load more" = "Load more";
 "Loading" = "Loading";
+"Loading music" = "Loading music";
 "Local app files" = "Local app files";
 "Los FPS de los subtítulos no están disponibles en este entorno de ejecución de libmpv." = "Subtitle FPS is unavailable in this libmpv runtime.";
 "Los FPS de los subtítulos no están disponibles mientras haya un subtítulo secundario activo." = "Subtitle FPS is unavailable while a secondary subtitle is active.";
@@ -732,6 +735,7 @@
 "Muestra nombres traducidos al idioma seleccionado arriba. Desactívalo para mantener los títulos originales." = "Show translated names in the language selected above. Turn off to keep original titles.";
 "Muestra subtítulos en dos idiomas a la vez. Útil para aprender un idioma o ver contenido juntos." = "Show two subtitle languages at once. Useful for learning a language or watching together.";
 "Music" = "Music";
+"Music is unavailable right now." = "Music is unavailable right now.";
 "Mute" = "Mute";
 "Muted text" = "Muted text";
 "My Library" = "My Library";
@@ -804,6 +808,7 @@
 "Normal" = "Normal";
 "Not now" = "Not now";
 "Not set" = "Not set";
+"Nothing to show yet." = "Nothing to show yet.";
 "Notify me" = "Notify me";
 "Now" = "Now";
 "Now Playing" = "Now Playing";
@@ -1091,8 +1096,10 @@
 "Search" = "Search";
 "Search addons" = "Search addons";
 "Search by title or author, or change the language." = "Search by title or author, or change the language.";
+"Search is too long." = "Search is too long.";
 "Search languages" = "Search languages";
 "Search music" = "Search music";
+"Search results" = "Search results";
 "Search settings" = "Search settings";
 "Search subtitles again" = "Search subtitles again";
 "Season" = "Season";
@@ -1326,9 +1333,12 @@
 "Top of the screen" = "Top of the screen";
 "Top rated" = "Top rated";
 "Top rated on {site}" = "Top rated on {site}";
+"Top result" = "Top result";
 "Top rising" = "Top rising";
+"Top tracks" = "Top tracks";
 "Torrents" = "Torrents";
 "Track" = "Track";
+"Tracks" = "Tracks";
 "Traducir títulos" = "Translate titles";
 "Translate titles" = "Translate titles";
 "Trazo grueso alrededor de cada letra. Alto contraste." = "Hard stroke around each letter. High contrast.";
@@ -1386,7 +1396,9 @@
 "Video FPS" = "Video FPS";
 "Video FPS is unavailable." = "Video FPS is unavailable.";
 "View" = "View";
+"View album" = "View album";
 "View all" = "View all";
+"View artist" = "View artist";
 "View more" = "View more";
 "Visible" = "Visible";
 "Vista" = "View";
@@ -1427,6 +1439,11 @@
 "eBook" = "eBook";
 "estrellas" = "stars";
 "h" = "h";
+"music.artist.limited" = "This source provides a selection; it may not include the full catalog.";
+"music.detail.relatedArtists" = "Related artists";
+"music.row.charts" = "Charts";
+"music.row.newReleases" = "New releases";
+"music.search.albums" = "Albums";
 "music.volume" = "Music volume";
 "o usa uno de nuestros avatares" = "or use one of our avatars";
 "or use one of our avatars" = "or use one of our avatars";
@@ -1435,6 +1452,7 @@
 "stars" = "stars";
 "username" = "username";
 "v3 API key" = "v3 API key";
+"{count} results" = "{count} results";
 "{count} tracks" = "{count} tracks";
 "{h}h left" = "{h}h left";
 "{h}h {m}m left" = "{h}h {m}m left";

@@ -578,6 +578,7 @@
 "Everything your addons offer, shown as posters. Scroll, search, or filter to what you want." = "Mọi nội dung từ các tiện ích bổ sung của bạn đều được hiển thị dưới dạng áp phích. Cuộn, tìm kiếm hoặc lọc để tìm nội dung bạn muốn.";
 "Excellence Prize" = "Giải Xuất sắc";
 "Exit Picture in Picture" = "Thoát chế độ Hình trong hình";
+"Explicit" = "Nhạy cảm";
 "Explorar" = "Duyệt";
 "Explorar complementos" = "Duyệt tiện ích bổ sung";
 "Explorar por categoría" = "Duyệt theo danh mục";
@@ -620,6 +621,7 @@
 "Fondo" = "Nền";
 "Font" = "Phông chữ";
 "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found." = "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found.";
+"For you" = "Dành cho bạn";
 "Forced" = "Bắt buộc";
 "Forest" = "Rừng xanh";
 "Formato de canales" = "Channel format";
@@ -827,6 +829,7 @@
 "Load file" = "Tải tệp";
 "Load more" = "Tải thêm";
 "Loading" = "Đang tải";
+"Loading music" = "Đang tải nhạc";
 "Loading plugins..." = "Đang tải plugin...";
 "Loading…" = "Đang tải…";
 "Local" = "Cục bộ";
@@ -920,6 +923,7 @@
 "Muestra nombres traducidos al idioma seleccionado arriba. Desactívalo para mantener los títulos originales." = "Hiện tên đã dịch bằng ngôn ngữ chọn ở trên. Tắt để giữ tên gốc.";
 "Muestra subtítulos en dos idiomas a la vez. Útil para aprender un idioma o ver contenido juntos." = "Hiện hai ngôn ngữ phụ đề cùng lúc. Hữu ích khi học ngoại ngữ hoặc xem cùng nhau.";
 "Music" = "Âm nhạc";
+"Music is unavailable right now." = "Music is unavailable right now.";
 "Mute" = "Tắt tiếng";
 "Muted text" = "Văn bản giảm nổi bật";
 "My Library" = "Thư viện của tôi";
@@ -1015,6 +1019,7 @@
 "Not set" = "Chưa đặt";
 "Nothing installed yet" = "Chưa cài gì";
 "Nothing matched this filter. Try another category or change your region in Settings." = "Không có nội dung nào khớp với bộ lọc này. Hãy thử danh mục khác hoặc đổi khu vực trong Cài đặt.";
+"Nothing to show yet." = "Nothing to show yet.";
 "Notify me" = "Notify me";
 "Now" = "Bây giờ";
 "Now Playing" = "Đang phát";
@@ -1366,6 +1371,7 @@
 "Search" = "Tìm kiếm";
 "Search addons" = "Tìm tiện ích bổ sung";
 "Search by title or author, or change the language." = "Search by title or author, or change the language.";
+"Search is too long." = "Search is too long.";
 "Search languages" = "Tìm ngôn ngữ";
 "Search music" = "Tìm nhạc";
 "Search settings" = "Tìm kiếm cài đặt";
@@ -1669,9 +1675,12 @@
 "Top of the screen" = "Đầu màn hình";
 "Top rated" = "Được đánh giá cao nhất";
 "Top rated on {site}" = "Được đánh giá cao nhất trên {site}";
+"Top result" = "Kết quả hàng đầu";
 "Top rising" = "Đang lên";
+"Top tracks" = "Top tracks";
 "Torrents" = "Torrent";
 "Track" = "Bản nhạc";
+"Tracks" = "Rãnh";
 "Traducir títulos" = "Dịch tiêu đề";
 "Transfer primary" = "Chuyển hồ sơ chính";
 "Translate titles" = "Dịch tiêu đề";
@@ -1743,7 +1752,9 @@
 "Video FPS is unavailable." = "FPS video không khả dụng.";
 "Vietnamese" = "Tiếng Việt";
 "View" = "Xem";
+"View album" = "View album";
 "View all" = "Xem tất cả";
+"View artist" = "View artist";
 "View more" = "Xem thêm";
 "Visible" = "Hiển thị";
 "Vista" = "Xem";
@@ -1816,6 +1827,10 @@
 "left" = "trái";
 "local" = "cục bộ";
 "movies" = "phim";
+"music.artist.limited" = "Nguồn này cung cấp một tuyển tập, có thể không bao gồm toàn bộ danh mục.";
+"music.detail.relatedArtists" = "Nghệ sĩ liên quan";
+"music.row.charts" = "Bảng xếp hạng";
+"music.search.albums" = "Album";
 "music.volume" = "Âm lượng nhạc";
 "new" = "mới";
 "no" = "không";
@@ -1851,6 +1866,7 @@
 "yes" = "có";
 "{app} itself does not host, distribute, or index any media. All streams come from third-party addons, debrid services, or your own {service} account that you configure yourself. You are responsible for what you choose to play and for complying with the laws of your jurisdiction." = "Bản thân {app} không lưu trữ, phân phối hay lập chỉ mục bất kỳ nội dung nghe nhìn nào. Mọi luồng phát đều đến từ tiện ích bổ sung của bên thứ ba, dịch vụ debrid hoặc tài khoản {service} do chính bạn cấu hình. Bạn chịu trách nhiệm về nội dung mình chọn phát và việc tuân thủ luật pháp tại nơi mình sinh sống.";
 "{count} picks ready" = "{count} lựa chọn đã sẵn sàng";
+"{count} results" = "{count} kết quả";
 "{count} tracks" = "{count} bài hát";
 "{h}h left" = "còn {h} giờ";
 "{h}h {m}m left" = "còn {h} giờ {m} phút";

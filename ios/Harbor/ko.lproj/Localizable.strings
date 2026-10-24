@@ -578,6 +578,7 @@
 "Everything your addons offer, shown as posters. Scroll, search, or filter to what you want." = "애드온에서 제공하는 모든 콘텐츠를 포스터로 표시합니다. 스크롤하거나 검색 또는 필터링해 원하는 콘텐츠를 찾으세요.";
 "Excellence Prize" = "우수상";
 "Exit Picture in Picture" = "화면 속 화면 종료";
+"Explicit" = "명시적 콘텐츠";
 "Explorar" = "탐색";
 "Explorar complementos" = "애드온 탐색";
 "Explorar por categoría" = "카테고리별 탐색";
@@ -620,6 +621,7 @@
 "Fondo" = "배경";
 "Font" = "글꼴";
 "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found." = "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found.";
+"For you" = "맞춤 추천";
 "Forced" = "강제 자막";
 "Forest" = "숲";
 "Formato de canales" = "Channel format";
@@ -827,6 +829,7 @@
 "Load file" = "파일 불러오기";
 "Load more" = "더 불러오기";
 "Loading" = "로딩 중";
+"Loading music" = "음악 불러오는 중";
 "Loading plugins..." = "플러그인 불러오는 중...";
 "Loading…" = "불러오는 중…";
 "Local" = "로컬";
@@ -920,6 +923,7 @@
 "Muestra nombres traducidos al idioma seleccionado arriba. Desactívalo para mantener los títulos originales." = "위에서 선택한 언어로 번역된 제목을 표시합니다. 원제를 유지하려면 끄세요.";
 "Muestra subtítulos en dos idiomas a la vez. Útil para aprender un idioma o ver contenido juntos." = "두 언어의 자막을 동시에 표시합니다. 언어 학습이나 함께 시청할 때 유용합니다.";
 "Music" = "음악";
+"Music is unavailable right now." = "Music is unavailable right now.";
 "Mute" = "음소거";
 "Muted text" = "흐린 텍스트";
 "My Library" = "내 라이브러리";
@@ -1015,6 +1019,7 @@
 "Not set" = "설정되지 않음";
 "Nothing installed yet" = "아직 설치된 것이 없습니다";
 "Nothing matched this filter. Try another category or change your region in Settings." = "이 필터와 일치하는 항목이 없습니다. 다른 카테고리를 선택하거나 설정에서 지역을 변경해 보세요.";
+"Nothing to show yet." = "Nothing to show yet.";
 "Notify me" = "Notify me";
 "Now" = "지금";
 "Now Playing" = "현재 재생 중";
@@ -1366,6 +1371,7 @@
 "Search" = "검색";
 "Search addons" = "애드온 검색";
 "Search by title or author, or change the language." = "Search by title or author, or change the language.";
+"Search is too long." = "Search is too long.";
 "Search languages" = "언어 검색";
 "Search music" = "음악 검색";
 "Search settings" = "설정 검색";
@@ -1669,9 +1675,12 @@
 "Top of the screen" = "화면 상단";
 "Top rated" = "평점순";
 "Top rated on {site}" = "{site} 최고 평점 콘텐츠";
+"Top result" = "최상위 결과";
 "Top rising" = "급상승";
+"Top tracks" = "Top tracks";
 "Torrents" = "토렌트";
 "Track" = "트랙";
+"Tracks" = "트랙";
 "Traducir títulos" = "제목 번역";
 "Transfer primary" = "기본 프로필 이전";
 "Translate titles" = "제목 번역";
@@ -1743,7 +1752,9 @@
 "Video FPS is unavailable." = "동영상 FPS를 사용할 수 없습니다.";
 "Vietnamese" = "베트남어";
 "View" = "보기";
+"View album" = "View album";
 "View all" = "모두 보기";
+"View artist" = "View artist";
 "View more" = "더 보기";
 "Visible" = "표시";
 "Vista" = "보기";
@@ -1816,6 +1827,10 @@
 "left" = "왼쪽";
 "local" = "로컬";
 "movies" = "영화";
+"music.artist.limited" = "이 소스는 일부 작품을 제공하며 전체 카탈로그를 포함하지 않을 수 있습니다.";
+"music.detail.relatedArtists" = "관련 아티스트";
+"music.row.charts" = "차트";
+"music.search.albums" = "앨범";
 "music.volume" = "음악 볼륨";
 "new" = "신규";
 "no" = "아니요";
@@ -1851,6 +1866,7 @@
 "yes" = "예";
 "{app} itself does not host, distribute, or index any media. All streams come from third-party addons, debrid services, or your own {service} account that you configure yourself. You are responsible for what you choose to play and for complying with the laws of your jurisdiction." = "{app} 자체는 어떠한 미디어도 호스팅, 배포 또는 색인하지 않습니다. 모든 스트림은 서드 파티 애드온, Debrid 서비스 또는 사용자가 직접 구성한 {service} 계정에서 제공됩니다. 재생할 콘텐츠를 선택하고 관할 지역의 법률을 준수할 책임은 사용자에게 있습니다.";
 "{count} picks ready" = "추천 {count}개 준비됨";
+"{count} results" = "결과 {count}개";
 "{count} tracks" = "{count}곡";
 "{h}h left" = "{h}시간 남음";
 "{h}h {m}m left" = "{h}시간 {m}분 남음";

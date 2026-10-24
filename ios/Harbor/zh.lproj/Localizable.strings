@@ -578,6 +578,7 @@
 "Everything your addons offer, shown as posters. Scroll, search, or filter to what you want." = "插件提供的所有内容都会以海报形式显示。滚动、搜索或筛选即可找到所需内容。";
 "Excellence Prize" = "优秀奖";
 "Exit Picture in Picture" = "退出画中画";
+"Explicit" = "露骨内容";
 "Explorar" = "浏览";
 "Explorar complementos" = "浏览插件";
 "Explorar por categoría" = "按类别浏览";
@@ -620,6 +621,7 @@
 "Fondo" = "背景";
 "Font" = "字体";
 "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found." = "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found.";
+"For you" = "为你推荐";
 "Forced" = "强制";
 "Forest" = "森林";
 "Formato de canales" = "Channel format";
@@ -827,6 +829,7 @@
 "Load file" = "加载文件";
 "Load more" = "加载更多";
 "Loading" = "正在加载";
+"Loading music" = "正在加载音乐";
 "Loading plugins..." = "正在加载插件…";
 "Loading…" = "正在加载…";
 "Local" = "本地";
@@ -920,6 +923,7 @@
 "Muestra nombres traducidos al idioma seleccionado arriba. Desactívalo para mantener los títulos originales." = "以上方所选语言显示译名。关闭则保留原始标题。";
 "Muestra subtítulos en dos idiomas a la vez. Útil para aprender un idioma o ver contenido juntos." = "同时显示两种语言的字幕。适合语言学习或一起观看。";
 "Music" = "音乐";
+"Music is unavailable right now." = "Music is unavailable right now.";
 "Mute" = "静音";
 "Muted text" = "弱化文本";
 "My Library" = "我的媒体库";
@@ -1015,6 +1019,7 @@
 "Not set" = "未设置";
 "Nothing installed yet" = "尚未安装任何内容";
 "Nothing matched this filter. Try another category or change your region in Settings." = "没有符合此筛选器的内容。请尝试其他类别，或在“设置”中更改你的地区。";
+"Nothing to show yet." = "Nothing to show yet.";
 "Notify me" = "Notify me";
 "Now" = "现在";
 "Now Playing" = "正在播放";
@@ -1366,6 +1371,7 @@
 "Search" = "搜索";
 "Search addons" = "搜索插件";
 "Search by title or author, or change the language." = "Search by title or author, or change the language.";
+"Search is too long." = "Search is too long.";
 "Search languages" = "搜索语言";
 "Search music" = "搜索音乐";
 "Search settings" = "搜索设置";
@@ -1669,9 +1675,12 @@
 "Top of the screen" = "屏幕顶部";
 "Top rated" = "评分最高";
 "Top rated on {site}" = "{site} 评分最高";
+"Top result" = "最佳结果";
 "Top rising" = "飙升榜";
+"Top tracks" = "Top tracks";
 "Torrents" = "种子";
 "Track" = "轨道";
+"Tracks" = "轨道";
 "Traducir títulos" = "翻译标题";
 "Transfer primary" = "转移主个人资料";
 "Translate titles" = "翻译标题";
@@ -1743,7 +1752,9 @@
 "Video FPS is unavailable." = "视频 FPS 不可用。";
 "Vietnamese" = "越南语";
 "View" = "视图";
+"View album" = "View album";
 "View all" = "查看全部";
+"View artist" = "View artist";
 "View more" = "查看更多";
 "Visible" = "可见";
 "Vista" = "视图";
@@ -1816,6 +1827,10 @@
 "left" = "左";
 "local" = "本地";
 "movies" = "电影";
+"music.artist.limited" = "此来源提供部分作品，可能不包含完整目录。";
+"music.detail.relatedArtists" = "相关艺人";
+"music.row.charts" = "排行榜";
+"music.search.albums" = "专辑";
 "music.volume" = "音乐音量";
 "new" = "新";
 "no" = "否";
@@ -1851,6 +1866,7 @@
 "yes" = "是";
 "{app} itself does not host, distribute, or index any media. All streams come from third-party addons, debrid services, or your own {service} account that you configure yourself. You are responsible for what you choose to play and for complying with the laws of your jurisdiction." = "{app} 本身不托管、分发或索引任何媒体。所有流均来自第三方插件、Debrid 服务或您自行配置的 {service} 账户。您须对自己选择播放的内容以及遵守所在司法管辖区的法律负责。";
 "{count} picks ready" = "有 {count} 个推荐待探索";
+"{count} results" = "{count} 个结果";
 "{count} tracks" = "{count} 首歌曲";
 "{h}h left" = "剩余 {h} 小时";
 "{h}h {m}m left" = "剩余 {h} 小时 {m} 分钟";

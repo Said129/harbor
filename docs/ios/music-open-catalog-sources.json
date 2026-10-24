@@ -41,6 +41,13 @@
     "Keep original algorithms, provider order, ID validation, rate limits and bound artist cursors",
     "HTTP identifies the pinned version and enforces an 8 MiB response-body budget"
   ],
-  "actual_tests_executed": false,
+  "localized_label_keys": [
+    "music.artist.limited",
+    "music.detail.relatedArtists",
+    "music.row.charts",
+    "music.row.newReleases",
+    "music.search.albums"
+  ],
+  "generator_executes_tests": false,
   "full_music_parity_complete": false
 }

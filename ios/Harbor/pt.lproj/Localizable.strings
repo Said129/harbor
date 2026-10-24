@@ -598,6 +598,7 @@
 "Everything your addons offer, shown as posters. Scroll, search, or filter to what you want." = "Tudo o que seus complementos oferecem, exibido como pôsteres. Role, pesquise ou filtre para encontrar o que você quer.";
 "Excellence Prize" = "Prêmio de Excelência";
 "Exit Picture in Picture" = "Sair do Picture in Picture";
+"Explicit" = "Explícito";
 "Explorar" = "Explorar";
 "Explorar complementos" = "Navegar pelos addons";
 "Explorar por categoría" = "Navegar por categoria";
@@ -640,6 +641,7 @@
 "Fondo" = "Plano de fundo";
 "Font" = "Fonte";
 "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found." = "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found.";
+"For you" = "Para você";
 "Forced" = "Forçado";
 "Forest" = "Floresta";
 "Formato de canales" = "Channel format";
@@ -847,6 +849,7 @@
 "Load file" = "Carregar arquivo";
 "Load more" = "Carregar mais";
 "Loading" = "Carregando";
+"Loading music" = "Carregando músicas";
 "Loading plugins..." = "Carregando plugins...";
 "Loading…" = "Carregando…";
 "Local" = "Local";
@@ -940,6 +943,7 @@
 "Muestra nombres traducidos al idioma seleccionado arriba. Desactívalo para mantener los títulos originales." = "Mostre nomes traduzidos no idioma selecionado acima. Desative para manter os títulos originais.";
 "Muestra subtítulos en dos idiomas a la vez. Útil para aprender un idioma o ver contenido juntos." = "Mostre legendas em dois idiomas ao mesmo tempo. Útil para aprender um idioma ou assistir junto.";
 "Music" = "Música";
+"Music is unavailable right now." = "Music is unavailable right now.";
 "Mute" = "Silenciar";
 "Muted text" = "Texto atenuado";
 "My Library" = "Minha Biblioteca";
@@ -1035,6 +1039,7 @@
 "Not set" = "Não definido";
 "Nothing installed yet" = "Nada instalado ainda";
 "Nothing matched this filter. Try another category or change your region in Settings." = "Nada corresponde a este filtro. Tente outra categoria ou mude sua região nas Configurações.";
+"Nothing to show yet." = "Nothing to show yet.";
 "Notify me" = "Notify me";
 "Now" = "Agora";
 "Now Playing" = "Tocando Agora";
@@ -1388,6 +1393,7 @@
 "Search" = "Pesquisar";
 "Search addons" = "Pesquisar addons";
 "Search by title or author, or change the language." = "Search by title or author, or change the language.";
+"Search is too long." = "Search is too long.";
 "Search languages" = "Pesquisar idiomas";
 "Search music" = "Buscar músicas";
 "Search settings" = "Pesquisar configurações";
@@ -1692,9 +1698,12 @@
 "Top of the screen" = "No topo da tela";
 "Top rated" = "Mais bem avaliados";
 "Top rated on {site}" = "Mais bem avaliados em {site}";
+"Top result" = "Melhor resultado";
 "Top rising" = "Em ascensão";
+"Top tracks" = "Top tracks";
 "Torrents" = "Torrents";
 "Track" = "Faixa";
+"Tracks" = "Faixas";
 "Traducir títulos" = "Traduzir títulos";
 "Transfer primary" = "Transferir principal";
 "Translate titles" = "Traduzir títulos";
@@ -1766,7 +1775,9 @@
 "Video FPS is unavailable." = "O FPS do vídeo não está disponível.";
 "Vietnamese" = "Vietnamita";
 "View" = "Exibir";
+"View album" = "View album";
 "View all" = "Ver tudo";
+"View artist" = "View artist";
 "View more" = "Ver mais";
 "Visible" = "Visível";
 "Vista" = "Exibir";
@@ -1843,6 +1854,10 @@
 "left" = "esquerda";
 "local" = "local";
 "movies" = "filmes";
+"music.artist.limited" = "Esta fonte oferece uma seleção que pode não incluir o catálogo completo.";
+"music.detail.relatedArtists" = "Artistas relacionados";
+"music.row.charts" = "Paradas";
+"music.search.albums" = "Álbuns";
 "music.volume" = "Volume da música";
 "new" = "novo";
 "no" = "não";
@@ -1878,6 +1893,7 @@
 "yes" = "sim";
 "{app} itself does not host, distribute, or index any media. All streams come from third-party addons, debrid services, or your own {service} account that you configure yourself. You are responsible for what you choose to play and for complying with the laws of your jurisdiction." = "O próprio {app} não hospeda, distribui nem indexa nenhuma mídia. Todas as transmissões vêm de complementos de terceiros, serviços de debrid ou da sua própria conta do {service}, configurada por você. Você é responsável pelo que escolhe reproduzir e por cumprir a legislação da sua jurisdição.";
 "{count} picks ready" = "{count} escolhas prontas";
+"{count} results" = "{count} resultados";
 "{count} tracks" = "{count} faixas";
 "{h}h left" = "faltam {h}h";
 "{h}h {m}m left" = "faltam {h}h {m}m";

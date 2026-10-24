@@ -578,6 +578,7 @@
 "Everything your addons offer, shown as posters. Scroll, search, or filter to what you want." = "Semua yang ditawarkan addon Anda, ditampilkan sebagai poster. Gulir, cari, atau filter untuk menemukan yang Anda inginkan.";
 "Excellence Prize" = "Penghargaan Keunggulan";
 "Exit Picture in Picture" = "Keluar dari Picture in Picture";
+"Explicit" = "Eksplisit";
 "Explorar" = "Jelajahi";
 "Explorar complementos" = "Jelajahi addon";
 "Explorar por categoría" = "Jelajahi berdasarkan kategori";
@@ -620,6 +621,7 @@
 "Fondo" = "Latar belakang";
 "Font" = "Font";
 "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found." = "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found.";
+"For you" = "Untuk Anda";
 "Forced" = "Paksa";
 "Forest" = "Hutan";
 "Formato de canales" = "Channel format";
@@ -827,6 +829,7 @@
 "Load file" = "Muat file";
 "Load more" = "Muat lebih banyak";
 "Loading" = "Memuat";
+"Loading music" = "Memuat musik";
 "Loading plugins..." = "Memuat plugin...";
 "Loading…" = "Memuat…";
 "Local" = "Lokal";
@@ -920,6 +923,7 @@
 "Muestra nombres traducidos al idioma seleccionado arriba. Desactívalo para mantener los títulos originales." = "Tampilkan nama terjemahan dalam bahasa yang dipilih di atas. Nonaktifkan untuk mempertahankan judul asli.";
 "Muestra subtítulos en dos idiomas a la vez. Útil para aprender un idioma o ver contenido juntos." = "Tampilkan dua bahasa subtitle sekaligus. Berguna untuk belajar bahasa atau menonton bersama.";
 "Music" = "Musik";
+"Music is unavailable right now." = "Music is unavailable right now.";
 "Mute" = "Bisukan";
 "Muted text" = "Teks redup";
 "My Library" = "Perpustakaan Saya";
@@ -1015,6 +1019,7 @@
 "Not set" = "Belum diatur";
 "Nothing installed yet" = "Belum ada yang terpasang";
 "Nothing matched this filter. Try another category or change your region in Settings." = "Tidak ada yang cocok dengan filter ini. Coba kategori lain atau ubah wilayah Anda di Pengaturan.";
+"Nothing to show yet." = "Nothing to show yet.";
 "Notify me" = "Notify me";
 "Now" = "Sekarang";
 "Now Playing" = "Sedang Diputar";
@@ -1366,6 +1371,7 @@
 "Search" = "Cari";
 "Search addons" = "Cari addon";
 "Search by title or author, or change the language." = "Search by title or author, or change the language.";
+"Search is too long." = "Search is too long.";
 "Search languages" = "Cari bahasa";
 "Search music" = "Cari musik";
 "Search settings" = "Cari pengaturan";
@@ -1669,9 +1675,12 @@
 "Top of the screen" = "Bagian atas layar";
 "Top rated" = "Peringkat teratas";
 "Top rated on {site}" = "Peringkat teratas di {site}";
+"Top result" = "Hasil teratas";
 "Top rising" = "Paling melejit";
+"Top tracks" = "Top tracks";
 "Torrents" = "Torrent";
 "Track" = "Lacak";
+"Tracks" = "Trek";
 "Traducir títulos" = "Terjemahkan judul";
 "Transfer primary" = "Alihkan profil utama";
 "Translate titles" = "Terjemahkan judul";
@@ -1743,7 +1752,9 @@
 "Video FPS is unavailable." = "FPS video tidak tersedia.";
 "Vietnamese" = "Bahasa Vietnam";
 "View" = "Lihat";
+"View album" = "View album";
 "View all" = "Lihat semua";
+"View artist" = "View artist";
 "View more" = "Lihat selengkapnya";
 "Visible" = "Terlihat";
 "Vista" = "Lihat";
@@ -1816,6 +1827,10 @@
 "left" = "kiri";
 "local" = "lokal";
 "movies" = "film";
+"music.artist.limited" = "Sumber ini menyediakan pilihan yang mungkin tidak mencakup seluruh katalog.";
+"music.detail.relatedArtists" = "Artis terkait";
+"music.row.charts" = "Tangga lagu";
+"music.search.albums" = "Album";
 "music.volume" = "Volume musik";
 "new" = "baru";
 "no" = "tidak";
@@ -1851,6 +1866,7 @@
 "yes" = "ya";
 "{app} itself does not host, distribute, or index any media. All streams come from third-party addons, debrid services, or your own {service} account that you configure yourself. You are responsible for what you choose to play and for complying with the laws of your jurisdiction." = "{app} sendiri tidak menghosting, mendistribusikan, atau mengindeks media apa pun. Semua stream berasal dari addon pihak ketiga, layanan debrid, atau akun {service} milik Anda yang Anda konfigurasi sendiri. Anda bertanggung jawab atas apa yang Anda pilih untuk diputar dan atas kepatuhan terhadap hukum di yurisdiksi Anda.";
 "{count} picks ready" = "{count} pilihan sudah siap";
+"{count} results" = "{count} hasil";
 "{count} tracks" = "{count} lagu";
 "{h}h left" = "tersisa {h}j";
 "{h}h {m}m left" = "tersisa {h}j {m}m";

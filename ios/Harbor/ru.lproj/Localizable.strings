@@ -582,6 +582,7 @@
 "Everything your addons offer, shown as posters. Scroll, search, or filter to what you want." = "Всё, что предлагают ваши дополнения, в виде постеров. Прокручивайте, ищите или фильтруйте.";
 "Excellence Prize" = "Приз за выдающиеся достижения";
 "Exit Picture in Picture" = "Выйти из картинки в картинке";
+"Explicit" = "Ненормативная лексика";
 "Explorar" = "Каталог";
 "Explorar complementos" = "Обзор дополнений";
 "Explorar por categoría" = "По категориям";
@@ -624,6 +625,7 @@
 "Fondo" = "Фон";
 "Font" = "Шрифт";
 "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found." = "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found.";
+"For you" = "Для вас";
 "Forced" = "Форсированные";
 "Forest" = "Лес";
 "Formato de canales" = "Channel format";
@@ -832,6 +834,7 @@
 "Load file" = "Загрузить файл";
 "Load more" = "Показать ещё";
 "Loading" = "Загрузка";
+"Loading music" = "Загрузка музыки";
 "Loading plugins..." = "Загрузка плагинов...";
 "Loading…" = "Загрузка…";
 "Local" = "Локальные";
@@ -925,6 +928,7 @@
 "Muestra nombres traducidos al idioma seleccionado arriba. Desactívalo para mantener los títulos originales." = "Показывать переведённые названия на выбранном выше языке. Выключите, чтобы сохранить оригинальные названия.";
 "Muestra subtítulos en dos idiomas a la vez. Útil para aprender un idioma o ver contenido juntos." = "Показывать субтитры на двух языках одновременно. Удобно для изучения языка или совместного просмотра.";
 "Music" = "Музыка";
+"Music is unavailable right now." = "Music is unavailable right now.";
 "Mute" = "Выключить звук";
 "Muted text" = "Приглушённый текст";
 "My Library" = "Моя библиотека";
@@ -1023,6 +1027,7 @@
 "Not set" = "Не задано";
 "Nothing installed yet" = "Пока ничего не установлено";
 "Nothing matched this filter. Try another category or change your region in Settings." = "По этому фильтру ничего не найдено. Попробуйте другую категорию или измените регион в настройках.";
+"Nothing to show yet." = "Nothing to show yet.";
 "Notify me" = "Notify me";
 "Now" = "Сейчас";
 "Now Playing" = "Сейчас воспроизводится";
@@ -1378,6 +1383,7 @@
 "Search" = "Поиск";
 "Search addons" = "Поиск дополнений";
 "Search by title or author, or change the language." = "Search by title or author, or change the language.";
+"Search is too long." = "Search is too long.";
 "Search languages" = "Поиск языков";
 "Search music" = "Поиск музыки";
 "Search settings" = "Поиск по настройкам";
@@ -1684,9 +1690,12 @@
 "Top of the screen" = "Вверху экрана";
 "Top rated" = "Лучшие по рейтингу";
 "Top rated on {site}" = "Лучшие по рейтингу на {site}";
+"Top result" = "Лучший результат";
 "Top rising" = "Набирают популярность";
+"Top tracks" = "Top tracks";
 "Torrents" = "Торренты";
 "Track" = "Дорожка";
+"Tracks" = "Дорожки";
 "Traducir títulos" = "Переводить названия";
 "Transfer primary" = "Передать основной профиль";
 "Translate titles" = "Переводить названия";
@@ -1758,7 +1767,9 @@
 "Video FPS is unavailable." = "Частота кадров видео недоступна.";
 "Vietnamese" = "Вьетнамский";
 "View" = "Вид";
+"View album" = "View album";
 "View all" = "Показать все";
+"View artist" = "View artist";
 "View more" = "Показать ещё";
 "Visible" = "Видимость";
 "Vista" = "Вид";
@@ -1831,6 +1842,10 @@
 "left" = "слева";
 "local" = "локально";
 "movies" = "фильмов";
+"music.artist.limited" = "Этот источник предлагает подборку, которая может не включать весь каталог.";
+"music.detail.relatedArtists" = "Похожие исполнители";
+"music.row.charts" = "Чарты";
+"music.search.albums" = "Альбомы";
 "music.volume" = "Громкость музыки";
 "new" = "новое";
 "no" = "нет";
@@ -1866,6 +1881,7 @@
 "yes" = "да";
 "{app} itself does not host, distribute, or index any media. All streams come from third-party addons, debrid services, or your own {service} account that you configure yourself. You are responsible for what you choose to play and for complying with the laws of your jurisdiction." = "Само приложение {app} не размещает, не распространяет и не индексирует медиаконтент. Все потоки поступают из сторонних дополнений, debrid-сервисов или вашей учётной записи {service}, которую вы настраиваете самостоятельно. Вы несёте ответственность за выбор воспроизводимого контента и соблюдение законодательства вашей юрисдикции.";
 "{count} picks ready" = "Готово вариантов: {count}";
+"{count} results" = "Результатов: {count}";
 "{count} tracks" = "Треков: {count}";
 "{h}h left" = "осталось {h} ч";
 "{h}h {m}m left" = "осталось {h} ч {m} мин";

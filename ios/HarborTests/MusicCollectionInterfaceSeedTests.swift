@@ -17,6 +17,7 @@ final class MusicCollectionInterfaceSeedTests: XCTestCase {
         let collections = MusicCollections.shared; collections.prepare(owner: owner)
         XCTAssertEqual(collections.snapshot(owner: owner), MusicCollectionsDocument())
         UserDefaults.standard.set("en", forKey: "uiLanguage")
+        UserDefaults.standard.set("library", forKey: "harbor.music.tab")
         UserDefaults.standard.set(true, forKey: "nativeGuide.initialized.v1")
         UserDefaults.standard.set(true, forKey: "nativeGuide.completed.v1")
     }

@@ -79,7 +79,13 @@
     "Could not complete this action. Try again.": "No se pudo completar la acción. Inténtalo de nuevo.",
     "Describe the site's lists, details and chapters using CSS selectors. Use {query} and {page} in the search and browse paths.": "Describe las listas, las fichas y los capítulos del sitio con selectores CSS. Usa {query} y {page} en las rutas de búsqueda y exploración.",
     "Could not read your saved tracks and listening history. Your data is preserved.": "No se pudieron recuperar tus canciones guardadas y tu historial. Se conservan tus datos.",
-    "Could not save your tracks or listening history. Try again.": "No se pudieron guardar tus canciones o tu historial. Inténtalo de nuevo."
+    "Could not save your tracks or listening history. Try again.": "No se pudieron guardar tus canciones o tu historial. Inténtalo de nuevo.",
+    "Music is unavailable right now.": "La música no está disponible ahora.",
+    "Search is too long.": "La búsqueda es demasiado larga.",
+    "Nothing to show yet.": "Todavía no hay nada que mostrar.",
+    "View album": "Ver álbum",
+    "View artist": "Ver artista",
+    "Top tracks": "Canciones populares"
   },
   "pt": {
     "Auto-sync": "Sincronização automática",

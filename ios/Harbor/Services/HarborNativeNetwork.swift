@@ -98,19 +98,30 @@ private func harborNetworkCompletion(_ context: UnsafeMutableRawPointer?, _ byte
 }
 
 /// Async work runs on Rust's network executor, without blocking the main actor or a Swift executor thread.
-struct HarborNativeNetwork: HarborNativeNetworkCalling {
+struct HarborNativeNetwork: HarborNativeNetworkCalling, MusicCatalogNetworking {
     func perform(_ request: HarborNetworkRequest) async throws -> HarborNetworkResponse {
         try Task.checkCancellation()
         guard harbor_ios_network_abi_version() == 1 else { throw HarborError(code: "plugin-network-abi") }
         let data = try JSONEncoder().encode(request)
         guard !data.isEmpty, data.count <= 16 * 1024 * 1024 else { throw HarborError(code: "plugin-network-request-size") }
+        return try await performEncoded(data, catalog: false)
+    }
+    func performMusicCatalog(_ request: MusicCatalogRequest) async throws -> HarborNetworkResponse {
+        try Task.checkCancellation()
+        guard harbor_ios_network_abi_version() == 1 else { throw HarborError(code: "plugin-network-abi") }
+        let data = try JSONEncoder().encode(request)
+        guard !data.isEmpty, data.count <= 64 * 1024 else { throw HarborError(code: "music-catalog-request-size") }
+        return try await performEncoded(data, catalog: true)
+    }
+    private func performEncoded(_ data: Data, catalog: Bool) async throws -> HarborNetworkResponse {
         let operation = HarborNetworkOperation()
         let response: HarborNetworkResponse = try await withTaskCancellationHandler {
             try await withCheckedThrowingContinuation { continuation in
                 guard operation.prepare(continuation) else { return }
                 let context = Unmanaged.passRetained(operation).toOpaque()
                 let handle = data.withUnsafeBytes { buffer in
-                    harbor_ios_network_start(buffer.bindMemory(to: UInt8.self).baseAddress, buffer.count, context, harborNetworkCompletion)
+                    if catalog { return harbor_ios_music_start(buffer.bindMemory(to: UInt8.self).baseAddress, buffer.count, context, harborNetworkCompletion) }
+                    return harbor_ios_network_start(buffer.bindMemory(to: UInt8.self).baseAddress, buffer.count, context, harborNetworkCompletion)
                 }
                 if handle == 0 {
                     Unmanaged<HarborNetworkOperation>.fromOpaque(context).release()

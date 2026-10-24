@@ -578,6 +578,7 @@
 "Everything your addons offer, shown as posters. Scroll, search, or filter to what you want." = "Eklentilerinizin sunduğu her şey posterlerle gösterilir. Kaydırın, arayın veya istediğinizi bulmak için filtreleyin.";
 "Excellence Prize" = "Mükemmellik Ödülü";
 "Exit Picture in Picture" = "Resim İçinde Resim modundan çık";
+"Explicit" = "Müstehcen";
 "Explorar" = "Göz at";
 "Explorar complementos" = "Eklentilere göz at";
 "Explorar por categoría" = "Kategoriye göre göz at";
@@ -620,6 +621,7 @@
 "Fondo" = "Arka plan";
 "Font" = "Yazı tipi";
 "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found." = "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found.";
+"For you" = "Sizin için";
 "Forced" = "Zorunlu";
 "Forest" = "Orman";
 "Formato de canales" = "Channel format";
@@ -827,6 +829,7 @@
 "Load file" = "Dosya yükle";
 "Load more" = "Daha fazla yükle";
 "Loading" = "Yükleniyor";
+"Loading music" = "Müzik yükleniyor";
 "Loading plugins..." = "Eklentiler yükleniyor...";
 "Loading…" = "Yükleniyor…";
 "Local" = "Yerel";
@@ -920,6 +923,7 @@
 "Muestra nombres traducidos al idioma seleccionado arriba. Desactívalo para mantener los títulos originales." = "Çevrilmiş adları yukarıda seçilen dilde gösterin. Özgün adları korumak için kapatın.";
 "Muestra subtítulos en dos idiomas a la vez. Útil para aprender un idioma o ver contenido juntos." = "Aynı anda iki altyazı dili gösterin. Dil öğrenirken veya birlikte izlerken kullanışlıdır.";
 "Music" = "Müzik";
+"Music is unavailable right now." = "Music is unavailable right now.";
 "Mute" = "Sesi kapat";
 "Muted text" = "Soluk metin";
 "My Library" = "Kütüphanem";
@@ -1015,6 +1019,7 @@
 "Not set" = "Ayarlanmadı";
 "Nothing installed yet" = "Henüz bir şey yüklenmedi";
 "Nothing matched this filter. Try another category or change your region in Settings." = "Bu filtreyle eşleşen bir şey yok. Başka bir kategori deneyin veya Ayarlar'dan bölgenizi değiştirin.";
+"Nothing to show yet." = "Nothing to show yet.";
 "Notify me" = "Notify me";
 "Now" = "Şimdi";
 "Now Playing" = "Şimdi oynatılıyor";
@@ -1366,6 +1371,7 @@
 "Search" = "Ara";
 "Search addons" = "Eklenti ara";
 "Search by title or author, or change the language." = "Search by title or author, or change the language.";
+"Search is too long." = "Search is too long.";
 "Search languages" = "Dil ara";
 "Search music" = "Müzik ara";
 "Search settings" = "Ayarlarda ara";
@@ -1669,9 +1675,12 @@
 "Top of the screen" = "Ekranın üstü";
 "Top rated" = "En yüksek puanlı";
 "Top rated on {site}" = "{site} üzerinde en yüksek puan alanlar";
+"Top result" = "En iyi sonuç";
 "Top rising" = "En hızlı yükselenler";
+"Top tracks" = "Top tracks";
 "Torrents" = "Torrentler";
 "Track" = "Parça";
+"Tracks" = "Parçalar";
 "Traducir títulos" = "Başlıkları çevir";
 "Transfer primary" = "Birincil profili aktar";
 "Translate titles" = "Başlıkları çevir";
@@ -1743,7 +1752,9 @@
 "Video FPS is unavailable." = "Video FPS'si kullanılamıyor.";
 "Vietnamese" = "Vietnamca";
 "View" = "Görüntüle";
+"View album" = "View album";
 "View all" = "Tümünü görüntüle";
+"View artist" = "View artist";
 "View more" = "Daha fazlasını görüntüle";
 "Visible" = "Görünür";
 "Vista" = "Görüntüle";
@@ -1816,6 +1827,10 @@
 "left" = "sol";
 "local" = "yerel";
 "movies" = "filmler";
+"music.artist.limited" = "Bu kaynak bir seçki sunar; kataloğun tamamını içermeyebilir.";
+"music.detail.relatedArtists" = "Benzer sanatçılar";
+"music.row.charts" = "Listeler";
+"music.search.albums" = "Albümler";
 "music.volume" = "Müzik sesi";
 "new" = "yeni";
 "no" = "hayır";
@@ -1851,6 +1866,7 @@
 "yes" = "evet";
 "{app} itself does not host, distribute, or index any media. All streams come from third-party addons, debrid services, or your own {service} account that you configure yourself. You are responsible for what you choose to play and for complying with the laws of your jurisdiction." = "{app} hiçbir medyayı barındırmaz, dağıtmaz veya dizine eklemez. Tüm yayınlar üçüncü taraf eklentilerden, debrid hizmetlerinden veya kendi yapılandırdığınız {service} hesabınızdan gelir. Oynatmayı seçtiğiniz içeriklerden ve bulunduğunuz yargı alanındaki yasalara uymaktan siz sorumlusunuz.";
 "{count} picks ready" = "{count} öneri hazır";
+"{count} results" = "{count} sonuç";
 "{count} tracks" = "{count} parça";
 "{h}h left" = "{h} sa kaldı";
 "{h}h {m}m left" = "{h} sa {m} dk kaldı";

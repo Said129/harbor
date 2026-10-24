@@ -1,0 +1,9 @@
+{
+  "keys": [
+    "music.artist.limited",
+    "music.detail.relatedArtists",
+    "music.row.charts",
+    "music.row.newReleases",
+    "music.search.albums"
+  ]
+}

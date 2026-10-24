@@ -578,6 +578,7 @@
 "Everything your addons offer, shown as posters. Scroll, search, or filter to what you want." = "आपके ऐडऑन जो कुछ भी पेश करते हैं, वह पोस्टर के रूप में दिखाया जाता है। जो चाहिए, उस तक पहुँचने के लिए स्क्रॉल करें, खोजें या फ़िल्टर करें।";
 "Excellence Prize" = "उत्कृष्टता पुरस्कार";
 "Exit Picture in Picture" = "पिक्चर इन पिक्चर से बाहर निकलें";
+"Explicit" = "अश्लील सामग्री";
 "Explorar" = "ब्राउज़ करें";
 "Explorar complementos" = "ऐडऑन ब्राउज़ करें";
 "Explorar por categoría" = "कैटेगरी के अनुसार ब्राउज़ करें";
@@ -620,6 +621,7 @@
 "Fondo" = "बैकग्राउंड";
 "Font" = "फ़ॉन्ट";
 "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found." = "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found.";
+"For you" = "आपके लिए";
 "Forced" = "फ़ोर्स्ड";
 "Forest" = "वन";
 "Formato de canales" = "Channel format";
@@ -827,6 +829,7 @@
 "Load file" = "फ़ाइल लोड करें";
 "Load more" = "और लोड करें";
 "Loading" = "लोड हो रहा है";
+"Loading music" = "संगीत लोड हो रहा है";
 "Loading plugins..." = "प्लगइन लोड हो रहे हैं...";
 "Loading…" = "लोड हो रहा है…";
 "Local" = "लोकल";
@@ -920,6 +923,7 @@
 "Muestra nombres traducidos al idioma seleccionado arriba. Desactívalo para mantener los títulos originales." = "ऊपर चुनी भाषा में अनूदित नाम दिखाएँ। मूल शीर्षक रखने के लिए बंद करें।";
 "Muestra subtítulos en dos idiomas a la vez. Útil para aprender un idioma o ver contenido juntos." = "दो भाषाओं के उपशीर्षक एक साथ दिखाएँ। भाषा सीखने या साथ देखने के लिए उपयोगी।";
 "Music" = "संगीत";
+"Music is unavailable right now." = "Music is unavailable right now.";
 "Mute" = "म्यूट करें";
 "Muted text" = "मद्धम टेक्स्ट";
 "My Library" = "मेरी लाइब्रेरी";
@@ -1015,6 +1019,7 @@
 "Not set" = "सेट नहीं है";
 "Nothing installed yet" = "अभी तक कुछ इंस्टॉल नहीं है";
 "Nothing matched this filter. Try another category or change your region in Settings." = "इस फ़िल्टर से कुछ भी मेल नहीं खाया। कोई दूसरी कैटेगरी आज़माएँ या सेटिंग्स में अपना क्षेत्र बदलें।";
+"Nothing to show yet." = "Nothing to show yet.";
 "Notify me" = "Notify me";
 "Now" = "अभी";
 "Now Playing" = "अभी चल रहा है";
@@ -1366,6 +1371,7 @@
 "Search" = "खोजें";
 "Search addons" = "ऐडऑन खोजें";
 "Search by title or author, or change the language." = "Search by title or author, or change the language.";
+"Search is too long." = "Search is too long.";
 "Search languages" = "भाषाएँ खोजें";
 "Search music" = "संगीत खोजें";
 "Search settings" = "सेटिंग्स खोजें";
@@ -1669,9 +1675,12 @@
 "Top of the screen" = "स्क्रीन के ऊपर";
 "Top rated" = "सर्वाधिक रेटिंग वाले";
 "Top rated on {site}" = "{site} पर सर्वाधिक रेटिंग वाले";
+"Top result" = "सर्वश्रेष्ठ परिणाम";
 "Top rising" = "सबसे तेज़ उभरते";
+"Top tracks" = "Top tracks";
 "Torrents" = "टोरेंट";
 "Track" = "ट्रैक करें";
+"Tracks" = "ट्रैक";
 "Traducir títulos" = "टाइटल का अनुवाद करें";
 "Transfer primary" = "मुख्य प्रोफ़ाइल ट्रांसफ़र करें";
 "Translate titles" = "टाइटल का अनुवाद करें";
@@ -1743,7 +1752,9 @@
 "Video FPS is unavailable." = "वीडियो FPS उपलब्ध नहीं है।";
 "Vietnamese" = "वियतनामी";
 "View" = "देखें";
+"View album" = "View album";
 "View all" = "सभी देखें";
+"View artist" = "View artist";
 "View more" = "और देखें";
 "Visible" = "दिखाई दे रहा है";
 "Vista" = "देखें";
@@ -1816,6 +1827,10 @@
 "left" = "बाएँ";
 "local" = "लोकल";
 "movies" = "फ़िल्में";
+"music.artist.limited" = "यह स्रोत एक चयन देता है; इसमें पूरा कैटलॉग शामिल नहीं हो सकता।";
+"music.detail.relatedArtists" = "संबंधित कलाकार";
+"music.row.charts" = "चार्ट";
+"music.search.albums" = "एल्बम";
 "music.volume" = "संगीत की आवाज़";
 "new" = "नया";
 "no" = "नहीं";
@@ -1851,6 +1866,7 @@
 "yes" = "हाँ";
 "{app} itself does not host, distribute, or index any media. All streams come from third-party addons, debrid services, or your own {service} account that you configure yourself. You are responsible for what you choose to play and for complying with the laws of your jurisdiction." = "{app} स्वयं किसी मीडिया को होस्ट, वितरित या इंडेक्स नहीं करता। सभी स्ट्रीम तृतीय-पक्ष ऐडऑन, डीब्रिड सेवाओं या आपके अपने {service} अकाउंट से आती हैं, जिसे आप स्वयं कॉन्फ़िगर करते हैं। आप क्या चलाना चुनते हैं और अपने अधिकार क्षेत्र के कानूनों का पालन करते हैं, इसकी ज़िम्मेदारी आपकी है।";
 "{count} picks ready" = "{count} चुने हुए विकल्प तैयार हैं";
+"{count} results" = "{count} नतीजे";
 "{count} tracks" = "{count} ट्रैक";
 "{h}h left" = "{h} घंटे बाकी";
 "{h}h {m}m left" = "{h} घंटे {m} मिनट बाकी";

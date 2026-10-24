@@ -578,6 +578,7 @@
 "Everything your addons offer, shown as posters. Scroll, search, or filter to what you want." = "Tout ce que proposent vos extensions, présenté sous forme d’affiches. Parcourez, recherchez ou filtrez pour trouver ce que vous voulez.";
 "Excellence Prize" = "Prix d’excellence";
 "Exit Picture in Picture" = "Quitter le mode Image dans l’image";
+"Explicit" = "Explicite";
 "Explorar" = "Parcourir";
 "Explorar complementos" = "Parcourir les extensions";
 "Explorar por categoría" = "Parcourir par catégorie";
@@ -620,6 +621,7 @@
 "Fondo" = "Arrière-plan";
 "Font" = "Police";
 "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found." = "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found.";
+"For you" = "Pour vous";
 "Forced" = "Forcés";
 "Forest" = "Forêt";
 "Formato de canales" = "Channel format";
@@ -827,6 +829,7 @@
 "Load file" = "Charger un fichier";
 "Load more" = "Charger plus";
 "Loading" = "Chargement";
+"Loading music" = "Chargement de la musique";
 "Loading plugins..." = "Chargement des plugins...";
 "Loading…" = "Chargement…";
 "Local" = "Local";
@@ -920,6 +923,7 @@
 "Muestra nombres traducidos al idioma seleccionado arriba. Desactívalo para mantener los títulos originales." = "Affichez les noms traduits dans la langue sélectionnée ci-dessus. Désactivez pour conserver les titres originaux.";
 "Muestra subtítulos en dos idiomas a la vez. Útil para aprender un idioma o ver contenido juntos." = "Affichez deux langues de sous-titres à la fois. Utile pour apprendre une langue ou regarder ensemble.";
 "Music" = "Musique";
+"Music is unavailable right now." = "Music is unavailable right now.";
 "Mute" = "Couper le son";
 "Muted text" = "Texte atténué";
 "My Library" = "Ma bibliothèque";
@@ -1015,6 +1019,7 @@
 "Not set" = "Non défini";
 "Nothing installed yet" = "Rien d'installé pour le moment";
 "Nothing matched this filter. Try another category or change your region in Settings." = "Aucun résultat avec ce filtre. Essayez une autre catégorie ou modifiez votre région dans les paramètres.";
+"Nothing to show yet." = "Nothing to show yet.";
 "Notify me" = "Notify me";
 "Now" = "Maintenant";
 "Now Playing" = "Lecture en cours";
@@ -1366,6 +1371,7 @@
 "Search" = "Rechercher";
 "Search addons" = "Rechercher des extensions";
 "Search by title or author, or change the language." = "Search by title or author, or change the language.";
+"Search is too long." = "Search is too long.";
 "Search languages" = "Rechercher des langues";
 "Search music" = "Rechercher de la musique";
 "Search settings" = "Rechercher dans les paramètres";
@@ -1669,9 +1675,12 @@
 "Top of the screen" = "En haut de l’écran";
 "Top rated" = "Les mieux notés";
 "Top rated on {site}" = "Les mieux notés sur {site}";
+"Top result" = "Meilleur résultat";
 "Top rising" = "En forte progression";
+"Top tracks" = "Top tracks";
 "Torrents" = "Torrents";
 "Track" = "Piste";
+"Tracks" = "Pistes";
 "Traducir títulos" = "Traduire les titres";
 "Transfer primary" = "Transférer le profil principal";
 "Translate titles" = "Traduire les titres";
@@ -1743,7 +1752,9 @@
 "Video FPS is unavailable." = "La fréquence d’images de la vidéo n’est pas disponible.";
 "Vietnamese" = "Vietnamien";
 "View" = "Afficher";
+"View album" = "View album";
 "View all" = "Tout afficher";
+"View artist" = "View artist";
 "View more" = "Afficher plus";
 "Visible" = "Visible";
 "Vista" = "Afficher";
@@ -1816,6 +1827,10 @@
 "left" = "gauche";
 "local" = "local";
 "movies" = "films";
+"music.artist.limited" = "Cette source propose une sélection qui peut ne pas couvrir tout le catalogue.";
+"music.detail.relatedArtists" = "Artistes similaires";
+"music.row.charts" = "Classements";
+"music.search.albums" = "Albums";
 "music.volume" = "Volume de la musique";
 "new" = "nouveau";
 "no" = "non";
@@ -1851,6 +1866,7 @@
 "yes" = "oui";
 "{app} itself does not host, distribute, or index any media. All streams come from third-party addons, debrid services, or your own {service} account that you configure yourself. You are responsible for what you choose to play and for complying with the laws of your jurisdiction." = "{app} n’héberge, ne distribue et n’indexe aucun média. Tous les flux proviennent d’extensions tierces, de services de débridage ou de votre propre compte {service}, que vous configurez vous-même. Vous êtes responsable des contenus que vous choisissez de lire et du respect des lois de votre juridiction.";
 "{count} picks ready" = "{count} choix prêts";
+"{count} results" = "{count} résultats";
 "{count} tracks" = "{count} titres";
 "{h}h left" = "reste {h} h";
 "{h}h {m}m left" = "reste {h} h {m} min";

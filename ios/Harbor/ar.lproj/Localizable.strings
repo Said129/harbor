@@ -602,6 +602,7 @@
 "Everything your addons offer, shown as posters. Scroll, search, or filter to what you want." = "كل ما تقدّمه إضافاتك، معروضًا على شكل ملصقات. مرّر أو ابحث أو صفِّ للوصول إلى ما تريد.";
 "Excellence Prize" = "جائزة التميّز";
 "Exit Picture in Picture" = "الخروج من صورة داخل صورة";
+"Explicit" = "محتوى صريح";
 "Explorar" = "تصفّح";
 "Explorar complementos" = "تصفح الإضافات";
 "Explorar por categoría" = "تصفّح حسب الفئة";
@@ -644,6 +645,7 @@
 "Fondo" = "الخلفية";
 "Font" = "الخط";
 "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found." = "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found.";
+"For you" = "لك";
 "Forced" = "إجباري";
 "Forest" = "غابة";
 "Formato de canales" = "Channel format";
@@ -852,6 +854,7 @@
 "Load file" = "تحميل ملف";
 "Load more" = "تحميل المزيد";
 "Loading" = "جارٍ التحميل";
+"Loading music" = "جارٍ تحميل الموسيقى";
 "Loading plugins..." = "جارٍ تحميل الإضافات...";
 "Loading…" = "جارٍ التحميل…";
 "Local" = "المحلّي";
@@ -945,6 +948,7 @@
 "Muestra nombres traducidos al idioma seleccionado arriba. Desactívalo para mantener los títulos originales." = "اعرض الأسماء المترجمة باللغة المحدّدة أعلاه. عطّل هذا الخيار للاحتفاظ بالعناوين الأصلية.";
 "Muestra subtítulos en dos idiomas a la vez. Útil para aprender un idioma o ver contenido juntos." = "اعرض ترجمات بلغتين في الوقت نفسه. مفيد لتعلّم لغة أو المشاهدة مع الآخرين.";
 "Music" = "الموسيقى";
+"Music is unavailable right now." = "Music is unavailable right now.";
 "Mute" = "كتم الصوت";
 "Muted text" = "نص باهت";
 "My Library" = "مكتبتي";
@@ -1043,6 +1047,7 @@
 "Not set" = "غير محدد";
 "Nothing installed yet" = "لم يُثبَّت شيء بعد";
 "Nothing matched this filter. Try another category or change your region in Settings." = "لا شيء يطابق هذا الفلتر. جرّب فئة أخرى أو غيّر منطقتك من الإعدادات.";
+"Nothing to show yet." = "Nothing to show yet.";
 "Notify me" = "Notify me";
 "Now" = "الآن";
 "Now Playing" = "قيد التشغيل الآن";
@@ -1400,6 +1405,7 @@
 "Search" = "بحث";
 "Search addons" = "ابحث عن الإضافات";
 "Search by title or author, or change the language." = "Search by title or author, or change the language.";
+"Search is too long." = "Search is too long.";
 "Search languages" = "ابحث في اللغات";
 "Search music" = "البحث في الموسيقى";
 "Search settings" = "ابحث في الإعدادات";
@@ -1707,9 +1713,12 @@
 "Top of the screen" = "أعلى الشاشة";
 "Top rated" = "الأعلى تقييمًا";
 "Top rated on {site}" = "الأعلى تقييمًا على {site}";
+"Top result" = "أفضل نتيجة";
 "Top rising" = "الأكثر صعودًا";
+"Top tracks" = "Top tracks";
 "Torrents" = "التورنت";
 "Track" = "المسار";
+"Tracks" = "المسارات";
 "Traducir títulos" = "ترجمة العناوين";
 "Transfer primary" = "نقل الأساسي";
 "Translate titles" = "ترجمة العناوين";
@@ -1781,7 +1790,9 @@
 "Video FPS is unavailable." = "معدل إطارات الفيديو غير متوفر.";
 "Vietnamese" = "الفيتنامية";
 "View" = "عرض";
+"View album" = "View album";
 "View all" = "عرض الكل";
+"View artist" = "View artist";
 "View more" = "عرض المزيد";
 "Visible" = "مرئي";
 "Vista" = "عرض";
@@ -1858,6 +1869,10 @@
 "left" = "اليسار";
 "local" = "محلي";
 "movies" = "أفلام";
+"music.artist.limited" = "يوفر هذا المصدر مجموعة مختارة قد لا تشمل الكتالوج الكامل.";
+"music.detail.relatedArtists" = "فنانون ذوو صلة";
+"music.row.charts" = "القوائم";
+"music.search.albums" = "الألبومات";
 "music.volume" = "مستوى صوت الموسيقى";
 "new" = "جديد";
 "no" = "لا";
@@ -1893,6 +1908,7 @@
 "yes" = "نعم";
 "{app} itself does not host, distribute, or index any media. All streams come from third-party addons, debrid services, or your own {service} account that you configure yourself. You are responsible for what you choose to play and for complying with the laws of your jurisdiction." = "لا يستضيف {app} نفسه أي وسائط أو يوزعها أو يفهرسها. تأتي جميع عمليات البث من إضافات تابعة لجهات خارجية أو خدمات debrid أو حسابك في {service} الذي تضبطه بنفسك. أنت مسؤول عما تختار تشغيله وعن الامتثال لقوانين نطاقك القضائي.";
 "{count} picks ready" = "{count} اختيارات جاهزة";
+"{count} results" = "{count} نتيجة";
 "{count} tracks" = "{count} مقطعًا";
 "{h}h left" = "بقي {h}س";
 "{h}h {m}m left" = "بقي {h}س {m}د";

@@ -73,6 +73,8 @@ duration = source[source.index('fn duration_label(seconds: u64)'):]
 assert duration.count('fn ') == 1
 save(target / 'types.rs', 'use serde::{Deserialize, Serialize};\n\n' + models + duration)
 
+labels = sorted(set(re.findall(r'"(music\.[A-Za-z0-9_.]+)"', (upstream / 'connectors/catalog/mod.rs').read_text('utf-8'))) | {'music.artist.limited'})
+(root / 'ios/Harbor/DesktopMusicCatalogLabels.json').write_text(json.dumps(dict(keys=labels), indent=2) + '\n', 'utf-8')
 manifest = dict(reference_version='0.9.132', reference_commit='0834340cec5531650bfe78cd628628702e636987',
     original_inputs=expected, generated_outputs=outputs,
     unchanged_modules=['model.rs', 'coverart.rs', 'deezer.rs', 'itunes.rs', 'listenbrainz.rs', 'musicbrainz.rs'],
@@ -80,6 +82,6 @@ manifest = dict(reference_version='0.9.132', reference_commit='0834340cec5531650
         'Keep the original atomic health cell and unsupported-operation text',
         'Keep original algorithms, provider order, ID validation, rate limits and bound artist cursors',
         'HTTP identifies the pinned version and enforces an 8 MiB response-body budget'],
-    actual_tests_executed=False, full_music_parity_complete=False)
+    localized_label_keys=labels, generator_executes_tests=False, full_music_parity_complete=False)
 (root / 'docs/ios/music-open-catalog-sources.json').write_text(json.dumps(manifest, indent=2) + '\n', 'utf-8')
 print('Pinned public music catalog:', len(outputs), 'outputs; original unit tests preserved, execution pending.')

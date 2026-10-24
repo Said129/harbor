@@ -578,6 +578,7 @@
 "Everything your addons offer, shown as posters. Scroll, search, or filter to what you want." = "アドオンが提供するすべてのコンテンツをポスター形式で表示します。スクロール、検索、フィルターで見たいものを探せます。";
 "Excellence Prize" = "優秀賞";
 "Exit Picture in Picture" = "ピクチャ・イン・ピクチャを終了";
+"Explicit" = "露骨な表現を含む";
 "Explorar" = "一覧";
 "Explorar complementos" = "アドオンを見る";
 "Explorar por categoría" = "カテゴリーから探す";
@@ -620,6 +621,7 @@
 "Fondo" = "背景";
 "Font" = "フォント";
 "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found." = "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found.";
+"For you" = "あなた向け";
 "Forced" = "強制字幕";
 "Forest" = "森";
 "Formato de canales" = "Channel format";
@@ -827,6 +829,7 @@
 "Load file" = "ファイルを読み込む";
 "Load more" = "さらに読み込む";
 "Loading" = "読み込み中";
+"Loading music" = "音楽を読み込み中";
 "Loading plugins..." = "プラグインを読み込み中...";
 "Loading…" = "読み込み中…";
 "Local" = "ローカル";
@@ -920,6 +923,7 @@
 "Muestra nombres traducidos al idioma seleccionado arriba. Desactívalo para mantener los títulos originales." = "上で選んだ言語の翻訳タイトルを表示します。原題を使う場合はオフにしてください。";
 "Muestra subtítulos en dos idiomas a la vez. Útil para aprender un idioma o ver contenido juntos." = "2つの言語の字幕を同時に表示します。語学学習や一緒に視聴するときに便利です。";
 "Music" = "音楽";
+"Music is unavailable right now." = "Music is unavailable right now.";
 "Mute" = "ミュート";
 "Muted text" = "控えめなテキスト";
 "My Library" = "マイライブラリ";
@@ -1015,6 +1019,7 @@
 "Not set" = "未設定";
 "Nothing installed yet" = "まだ何もインストールされていません";
 "Nothing matched this filter. Try another category or change your region in Settings." = "このフィルターに一致する作品はありません。別のカテゴリーを試すか、設定で地域を変更してください。";
+"Nothing to show yet." = "Nothing to show yet.";
 "Notify me" = "Notify me";
 "Now" = "現在";
 "Now Playing" = "再生中";
@@ -1366,6 +1371,7 @@
 "Search" = "検索";
 "Search addons" = "アドオンを検索";
 "Search by title or author, or change the language." = "Search by title or author, or change the language.";
+"Search is too long." = "Search is too long.";
 "Search languages" = "言語を検索";
 "Search music" = "音楽を検索";
 "Search settings" = "設定を検索";
@@ -1669,9 +1675,12 @@
 "Top of the screen" = "画面上部";
 "Top rated" = "評価が高い順";
 "Top rated on {site}" = "{site}で高評価";
+"Top result" = "最上位の結果";
 "Top rising" = "人気急上昇";
+"Top tracks" = "Top tracks";
 "Torrents" = "トレント";
 "Track" = "トラック";
+"Tracks" = "トラック";
 "Traducir títulos" = "タイトルを翻訳";
 "Transfer primary" = "メインプロフィールを移行";
 "Translate titles" = "タイトルを翻訳";
@@ -1743,7 +1752,9 @@
 "Video FPS is unavailable." = "動画FPSを取得できません。";
 "Vietnamese" = "ベトナム語";
 "View" = "表示";
+"View album" = "View album";
 "View all" = "すべて表示";
+"View artist" = "View artist";
 "View more" = "もっと見る";
 "Visible" = "表示";
 "Vista" = "表示";
@@ -1816,6 +1827,10 @@
 "left" = "左";
 "local" = "ローカル";
 "movies" = "映画";
+"music.artist.limited" = "このソースは一部の作品を提供しており、カタログ全体を含まない場合があります。";
+"music.detail.relatedArtists" = "関連アーティスト";
+"music.row.charts" = "チャート";
+"music.search.albums" = "アルバム";
 "music.volume" = "音楽の音量";
 "new" = "新着";
 "no" = "いいえ";
@@ -1851,6 +1866,7 @@
 "yes" = "はい";
 "{app} itself does not host, distribute, or index any media. All streams come from third-party addons, debrid services, or your own {service} account that you configure yourself. You are responsible for what you choose to play and for complying with the laws of your jurisdiction." = "{app}自体がメディアをホスト、配信、インデックス化することはありません。すべてのストリームは、サードパーティー製アドオン、デブリッドサービス、またはご自身で設定した{service}アカウントから提供されます。何を再生するかを判断し、お住まいの地域の法律を順守する責任はお客様にあります。";
 "{count} picks ready" = "おすすめ{count}件を用意しました";
+"{count} results" = "{count}件の結果";
 "{count} tracks" = "{count}曲";
 "{h}h left" = "残り{h}時間";
 "{h}h {m}m left" = "残り{h}時間{m}分";
