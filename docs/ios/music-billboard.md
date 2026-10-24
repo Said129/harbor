@@ -32,3 +32,17 @@ Local generation and dispatch checks are not Apple execution or visual approval.
 Music connectors, connected playback, video/event discovery, recommendations,
 other original surfaces and the final full-port audit remain separate pending
 work. This block does not produce an IPA or certify complete Music parity.
+
+The first Apple run found that the original `DOMParser` is unavailable in a
+worker. Billboard now uses the document host already used for trusted HTML
+sources. Native code admits only the exact bundled, hash-verified Billboard
+program to this mode; installed plugins continue to use workers. The document
+keeps its nonpersistent store and restrictive content policy, and its requests
+still pass through the same native network and profile guards.
+
+The narrow follow-up selects four original failed native cases, the album
+resolver affected by this hosting change, and the two unfinished UI journeys.
+The unaffected Billboard model result is retained. If the real primary-source
+request is denied, the failed public case now records only that public host's
+numeric DNS answers to distinguish source availability from a routing problem.
+It does not relax public-network checks.

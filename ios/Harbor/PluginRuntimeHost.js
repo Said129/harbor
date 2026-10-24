@@ -8,6 +8,7 @@
     compose,
     instance,
     createHTML,
+    createBillboard,
   ) {
     let worker = null;
     let trustedHTML = null;
@@ -49,11 +50,11 @@
     const api = {
       initialize(payload) {
         if (worker || trustedHTML) throw new Error("plugin already initialized");
-        if (payload.format === "trusted-html") {
+        if (["trusted-html", "trusted-billboard"].includes(payload.format)) {
           try {
-            if (typeof createHTML !== "function")
-              throw new Error("HTML source program unavailable");
-            trustedHTML = createHTML(
+            const create = payload.format === "trusted-billboard" ? createBillboard : createHTML;
+            if (typeof create !== "function") throw new Error("HTML source program unavailable");
+            trustedHTML = create(
               payload,
               (payload) =>
                 new Promise((resolve, reject) => {

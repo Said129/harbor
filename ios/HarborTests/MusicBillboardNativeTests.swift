@@ -42,6 +42,11 @@ private actor BillboardAlbumNetwork: MusicCatalogNetworking {
 @MainActor final class MusicBillboardNativeTests: XCTestCase {
     func testActualWorkerRetainsAllChartsParsesRanksDatesAndKindsAndRejectsWrongPageIdentity() async throws {
         let scope = BillboardScope(), network = BillboardFixtureNetwork()
+        let untrusted = HarborPluginRuntime(id: "untrusted-billboard", name: "Untrusted", source: "var plugin={content(){return 'untrusted';}};", format: .trustedBillboard,
+            scope: scope.value, currentScope: { scope.value }, transport: MusicBillboardTransport(network: network))
+        do { _ = try await untrusted.call("content", arguments: [.object([:])]); XCTFail("Only the exact bundled Billboard program may use the document host") }
+        catch let error as HarborPluginRuntimeError { XCTAssertEqual(error.code, "plugin-source") }
+        untrusted.dispose()
         let client = MusicBillboardClient(scope: scope.value, currentScope: { scope.value }, transport: MusicBillboardTransport(network: network))
         defer { client.dispose() }
         let definitions = try await client.query("definitions", as: [MusicBillboardReference].self)

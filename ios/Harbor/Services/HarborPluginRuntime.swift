@@ -7,7 +7,7 @@ struct PluginExecutionScope: Equatable, Sendable {
     let activation: UUID
 }
 
-enum HarborPluginCodeFormat: String, Sendable { case raw, harbor, providerScript = "provider-script", trustedHTML = "trusted-html" }
+enum HarborPluginCodeFormat: String, Sendable { case raw, harbor, providerScript = "provider-script", trustedHTML = "trusted-html", trustedBillboard = "trusted-billboard" }
 enum HarborPluginBridgeKind: String, Sendable { case http, grpc }
 
 /// Implemented by an owner-scoped host; the worker never receives account stores or native objects.
@@ -158,7 +158,14 @@ private struct PluginRuntimeAssets: Decodable {
         let sandboxJSON = try json(.string(sandbox.source)), instanceJSON = try json(.string(instance))
         let html: String
         if format == .trustedHTML { html = try HarborReadingHTMLAssets.source() } else { html = "null" }
-        let script = host + "\ninstallHarborPluginHost(" + sandboxJSON + "," + parser.source + "," + composer.source + "," + instanceJSON + "," + html + ");"
+        let billboard: String
+        if format == .trustedBillboard {
+            let pinned = try MusicBillboardAsset.read().program.source
+            guard source == pinned else { throw HarborPluginRuntimeError("plugin-source") }
+            billboard = "function(payload,request){const harbor={http:(url,opts)=>request({url,opts})};\n" + pinned
+                + "\nreturn {meta:{id:'harbor-music-billboard',name:'Harbor Billboard'},call(method,args){if(method!=='content')throw new Error('Unsupported Billboard method');return plugin.content(args[0]);}};}"
+        } else { billboard = "null" }
+        let script = host + "\ninstallHarborPluginHost(" + sandboxJSON + "," + parser.source + "," + composer.source + "," + instanceJSON + "," + html + "," + billboard + ");"
         let preferences = WKWebViewConfiguration()
         preferences.websiteDataStore = .nonPersistent()
         preferences.preferences.javaScriptCanOpenWindowsAutomatically = false

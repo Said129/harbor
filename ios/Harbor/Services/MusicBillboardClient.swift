@@ -29,7 +29,7 @@ struct MusicBillboardTransport: HarborPluginHostTransport {
         try validate()
         if runtime == nil {
             let asset = try MusicBillboardAsset.read()
-            runtime = HarborPluginRuntime(id: "trusted-music-billboard", name: "Harbor Billboard", source: asset.program.source, format: .raw,
+            runtime = HarborPluginRuntime(id: "trusted-music-billboard", name: "Harbor Billboard", source: asset.program.source, format: .trustedBillboard,
                 scope: scope, currentScope: currentScope, transport: transport)
         }
         guard let runtime else { throw CancellationError() }
