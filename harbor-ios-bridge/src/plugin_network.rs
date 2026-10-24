@@ -112,6 +112,36 @@ pub unsafe extern "C" fn harbor_ios_network_start(
     })
 }
 
+/// The public Desktop music catalog shares cancellation and completion ownership
+/// with network ABI 1. It accepts only the catalog's typed operations, not URLs.
+///
+/// # Safety
+/// Input and callback follow the same lifetime contract as harbor_ios_network_start.
+#[no_mangle]
+pub unsafe extern "C" fn harbor_ios_music_start(
+    input: *const u8,
+    length: usize,
+    context: *mut c_void,
+    callback: Option<Callback>,
+) -> u64 {
+    use base64::Engine;
+    let Some(callback) = callback else { return 0; };
+    if input.is_null() || length == 0 || length > 64 * 1024 { return 0; }
+    let parsed = serde_json::from_slice::<crate::music::Request>(unsafe { std::slice::from_raw_parts(input, length) });
+    start(context as usize, callback, async move {
+        let request = parsed.map_err(|_| "music-catalog-request-format")?;
+        let result = tokio::time::timeout(std::time::Duration::from_secs(30), crate::music::execute(request)).await;
+        let (status, ok, body) = match result {
+            Ok(Ok(value)) => (200, true, value),
+            Ok(Err(_)) => (503, false, json!({"code":"music-catalog-unavailable"})),
+            Err(_) => (504, false, json!({"code":"music-catalog-timeout"})),
+        };
+        let bytes = serde_json::to_vec(&body).map_err(|_| "music-catalog-response-format")?;
+        if bytes.len() > 8 * 1024 * 1024 { return Err("music-catalog-response-size"); }
+        Ok(json!({"status":status,"ok":ok,"headers":{},"bodyBase64":base64::engine::general_purpose::STANDARD.encode(bytes),"url":"harbor-music://catalog"}))
+    })
+}
+
 /// Cancel an outstanding operation; the promised callback still fires exactly once.
 #[no_mangle]
 pub extern "C" fn harbor_ios_network_cancel(handle: u64) {

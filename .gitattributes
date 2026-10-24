@@ -1,3 +1,11 @@
 # Keep the pinned Desktop vector bytes, including original line endings.
 ios/Harbor/DesktopAnimations/nav/*.json -text
 ios/Harbor/TLDTS-LICENSE.txt -text
+# Pinned music provider sources retain their original bytes and source hashes.
+harbor-ios-bridge/src/music/model.rs -text
+harbor-ios-bridge/src/music/UPSTREAM-LICENSE -text
+harbor-ios-bridge/src/music/connectors/catalog/coverart.rs -text
+harbor-ios-bridge/src/music/connectors/catalog/deezer.rs -text
+harbor-ios-bridge/src/music/connectors/catalog/itunes.rs -text
+harbor-ios-bridge/src/music/connectors/catalog/listenbrainz.rs -text
+harbor-ios-bridge/src/music/connectors/catalog/musicbrainz.rs -text

@@ -1,0 +1,46 @@
+{
+  "reference_version": "0.9.132",
+  "reference_commit": "0834340cec5531650bfe78cd628628702e636987",
+  "original_inputs": {
+    "LICENSE": "bab95a485a9589099811f44257f3ba1d67791ff205a48c46ede66313751c241a",
+    "src-tauri/src/music.rs": "1177dd263c3ebf2d8589da2502daaa0f0d179243ed83160647f1182ea7d773d6",
+    "src-tauri/src/music/model.rs": "2dd1b17478a59073b578c0788ab995d733871d2d418dc874813a5e6038722aa8",
+    "src-tauri/src/music/connector.rs": "4490f62a347ac860722bf362e7aee1f25d0ec535dee1e6157510ec1f849fae8d",
+    "src-tauri/src/music/connectors/catalog/mod.rs": "dcf0e1835412519962bc1d416497ccdfaeaba070247fad0f37e7d7a5b93c65e0",
+    "src-tauri/src/music/connectors/catalog/http.rs": "83277edf9d846bd4da5999e83fa3b9b7431e55271112bf83844ed1c90efd9bf4",
+    "src-tauri/src/music/connectors/catalog/coverart.rs": "b0e09065606be6dc5b76be160aaa520b4d19a95d7646a28b8f18800f019ea31e",
+    "src-tauri/src/music/connectors/catalog/deezer.rs": "f59ce3cf3eca198d41f0a180cf97e9823aa3ac1dfeb7b281750cbe6701e77c0e",
+    "src-tauri/src/music/connectors/catalog/itunes.rs": "ea2b96328a7c70f860f200308d38ee9524b1e109f67315aefb93e7d2af390302",
+    "src-tauri/src/music/connectors/catalog/listenbrainz.rs": "cd1cb3fe364d9db390a3080cd5431f1ff7a6bfd4aa8ac54e97dd9024e7084983",
+    "src-tauri/src/music/connectors/catalog/musicbrainz.rs": "9e413ab8ebf761cdc0971e23edaeeba58cbc2ee4ff0b6b83ccc51fd2bdbbedb9"
+  },
+  "generated_outputs": {
+    "harbor-ios-bridge/src/music/UPSTREAM-LICENSE": "bab95a485a9589099811f44257f3ba1d67791ff205a48c46ede66313751c241a",
+    "harbor-ios-bridge/src/music/model.rs": "2dd1b17478a59073b578c0788ab995d733871d2d418dc874813a5e6038722aa8",
+    "harbor-ios-bridge/src/music/connectors/catalog/coverart.rs": "b0e09065606be6dc5b76be160aaa520b4d19a95d7646a28b8f18800f019ea31e",
+    "harbor-ios-bridge/src/music/connectors/catalog/deezer.rs": "f59ce3cf3eca198d41f0a180cf97e9823aa3ac1dfeb7b281750cbe6701e77c0e",
+    "harbor-ios-bridge/src/music/connectors/catalog/itunes.rs": "ea2b96328a7c70f860f200308d38ee9524b1e109f67315aefb93e7d2af390302",
+    "harbor-ios-bridge/src/music/connectors/catalog/listenbrainz.rs": "cd1cb3fe364d9db390a3080cd5431f1ff7a6bfd4aa8ac54e97dd9024e7084983",
+    "harbor-ios-bridge/src/music/connectors/catalog/musicbrainz.rs": "9e413ab8ebf761cdc0971e23edaeeba58cbc2ee4ff0b6b83ccc51fd2bdbbedb9",
+    "harbor-ios-bridge/src/music/connector.rs": "81a5760fc224d9ea8c99066a3e16e0ce6f8d08aa76aa041eabc844e4ba2ee2d6",
+    "harbor-ios-bridge/src/music/connectors/catalog/mod.rs": "f0d6f59a53db75cafcd29778cd8de30d8abda227041b007014c8c4a06966bd88",
+    "harbor-ios-bridge/src/music/connectors/catalog/http.rs": "b032ef12e2b21575d9a7c83365c56887ac3b6efd43bab33518012ef15be7949f",
+    "harbor-ios-bridge/src/music/types.rs": "288407ef1f639bfcb49401b4ffe2f53d0fdeb0e0bca6bf76cf13d37986e2c5d5"
+  },
+  "unchanged_modules": [
+    "model.rs",
+    "coverart.rs",
+    "deezer.rs",
+    "itunes.rs",
+    "listenbrainz.rs",
+    "musicbrainz.rs"
+  ],
+  "adaptations": [
+    "Tauri trait becomes inherent catalog methods taking an empty native context",
+    "Keep the original atomic health cell and unsupported-operation text",
+    "Keep original algorithms, provider order, ID validation, rate limits and bound artist cursors",
+    "HTTP identifies the pinned version and enforces an 8 MiB response-body budget"
+  ],
+  "actual_tests_executed": false,
+  "full_music_parity_complete": false
+}

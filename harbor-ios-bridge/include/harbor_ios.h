@@ -22,6 +22,8 @@ void harbor_ios_font_free(uint8_t *data, size_t length);
 typedef void (*harbor_ios_network_callback)(void *context, const uint8_t *response, size_t length);
 uint32_t harbor_ios_network_abi_version(void);
 uint64_t harbor_ios_network_start(const uint8_t *input, size_t length, void *context, harbor_ios_network_callback callback);
+/* Typed public Music catalog operations; same callback and cancellation contract. */
+uint64_t harbor_ios_music_start(const uint8_t *input, size_t length, void *context, harbor_ios_network_callback callback);
 void harbor_ios_network_cancel(uint64_t handle);
 #ifdef __cplusplus
 }

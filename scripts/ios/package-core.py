@@ -9,7 +9,7 @@ ROOT = Path(__file__).resolve().parents[2]
 INSTALL_NAME = "@rpath/HarborCore.framework/HarborCore"
 EXPORTS = {"_harbor_ios_abi_version", "_harbor_ios_call", "_harbor_ios_response_free",
     "_harbor_ios_network_abi_version", "_harbor_ios_network_start", "_harbor_ios_network_cancel",
-    "_harbor_ios_font_decode", "_harbor_ios_font_free"}
+    "_harbor_ios_font_decode", "_harbor_ios_font_free", "_harbor_ios_music_start"}
 
 
 def main():

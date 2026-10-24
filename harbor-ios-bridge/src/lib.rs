@@ -5,8 +5,9 @@ mod font_decode;
 mod plugin_http;
 pub use font_decode::{harbor_ios_font_decode, harbor_ios_font_free};
 mod plugin_network;
+pub mod music;
 pub use plugin_network::{
-    harbor_ios_network_abi_version, harbor_ios_network_cancel, harbor_ios_network_start,
+    harbor_ios_network_abi_version, harbor_ios_network_cancel, harbor_ios_network_start, harbor_ios_music_start,
 };
 use std::ffi::{c_char, CString};
 

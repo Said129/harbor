@@ -1,0 +1,43 @@
+name: iOS public Music core
+on:
+  workflow_dispatch:
+  push:
+    branches: [ios/music-open-core-validation]
+permissions:
+  contents: read
+concurrency:
+  group: ios-music-core-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  catalog:
+    name: Apple Rust / original Music catalog
+    runs-on: macos-15
+    timeout-minutes: 20
+    env:
+      RUSTFLAGS: -D warnings
+      CARGO_TERM_COLOR: never
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: |
+            harbor-core
+            harbor-ios-bridge
+          shared-key: ios-music-catalog-host
+      - name: Verify the pinned original provider bytes
+        run: |
+          python3 - <<'PY'
+          import hashlib, json
+          from pathlib import Path
+          manifest = json.loads(Path('docs/ios/music-open-catalog-sources.json').read_text())
+          assert manifest['reference_version'] == '0.9.132'
+          for name, digest in manifest['generated_outputs'].items():
+              assert hashlib.sha256(Path(name).read_bytes()).hexdigest() == digest, name
+          print('All preserved public music catalog inputs match the pinned adapter output.')
+          PY
+      - name: Check the native Rust bridge without introducing warnings
+        run: cargo check --locked --manifest-path harbor-ios-bridge/Cargo.toml
+      - name: Execute only the newly ported original catalog and request contracts
+        run: |
+          cargo test --locked --manifest-path harbor-ios-bridge/Cargo.toml --lib music:: -- --test-threads=4
