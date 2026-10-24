@@ -49,9 +49,17 @@ final class HarborProfileSync {
     private let key: String
     private let owner: String
     private var boundLayoutOwner: String?
+    private var boundLayoutProfile: DesktopLayoutProfileTarget?
     private var layoutOwner: String { boundLayoutOwner ?? owner }
     @ObservationIgnored private var navigationBindings: [String: HarborNavigationSync] = [:]
     @ObservationIgnored private var serviceBindings: [String: HarborStreamingSync] = [:]
+    @ObservationIgnored private var pageBindings: [String: HarborPageSync] = [:]
+    func page(_ page: String) -> HarborPageSync {
+        let key = EBookShelf.hash(String(decoding: try! JSONEncoder().encode([layoutOwner, page]), as: UTF8.self))
+        if let value = pageBindings[key] { return value }
+        let value = HarborPageSync(preferences: PageCustomization.forOwner(layoutOwner, page: page))
+        pageBindings[key] = value; return value
+    }
     var navigation: HarborNavigationSync {
         if let value = navigationBindings[layoutOwner] { return value }
         let preferences = InterfacePreferences.shared
@@ -77,21 +85,22 @@ final class HarborProfileSync {
     var username: String? { stored.session?.username }
     var accountID: String? { stored.session?.id }
     var handle: String? { stored.session?.handle }
-    var hasPendingChanges: Bool { stored.pending != nil || navigation.hasPendingChanges || services.hasPendingChanges }
+    var hasPendingChanges: Bool { stored.pending != nil || navigation.hasPendingChanges || services.hasPendingChanges || page("home").hasPendingChanges || page("anime").hasPendingChanges }
     private init(owner: String, profile: ProfilePreferences) {
         self.owner = owner
         key = "harbor-identity-" + EBookShelf.hash(owner); self.profile = profile
         reload()
     }
-    func bindLayoutOwner(_ next: String) {
-        guard next != layoutOwner else { return }
-        suspendForProfileChange(); boundLayoutOwner = next
+    func bindLayoutOwner(_ next: String, profileID: String? = nil, primary: Bool = false) {
+        let target = profileID.map { DesktopLayoutProfileTarget(id: $0, primary: primary) }
+        guard next != layoutOwner || target != boundLayoutProfile else { return }
+        suspendForProfileChange(); boundLayoutOwner = next; boundLayoutProfile = target; selectedID = nil
     }
     /// Keep sessions and durable queues; invalidate late replies from a source
     /// which no longer owns the visible interface and preference bindings.
     func suspendForProfileChange() {
         generation += 1; scheduled?.cancel(); scheduled = nil; busy = false; hydrated = false
-        navigation.unbind(); services.unbind()
+        navigation.unbind(); services.unbind(); page("home").unbind(); page("anime").unbind()
     }
     func reload() {
         guard !busy else { return }
@@ -117,6 +126,8 @@ final class HarborProfileSync {
             if changedAccount {
                 navigation.unbind()
                 services.unbind()
+                page("home").unbind(); page("anime").unbind()
+                page("home").preferences.bind(.local(owner: layoutOwner)); page("anime").preferences.bind(.local(owner: layoutOwner))
                 StreamingPreferences.forOwner(layoutOwner).bind(.local(owner: layoutOwner))
                 if InterfacePreferences.shared.navigation.scope?.owner == layoutOwner { InterfacePreferences.shared.navigation.bind(.local(owner: layoutOwner)) }
             }
@@ -134,6 +145,8 @@ final class HarborProfileSync {
             hydrated = false; selectedID = nil; error = nil
             navigation.unbind()
             services.unbind()
+            page("home").unbind(); page("anime").unbind()
+            page("home").preferences.bind(.local(owner: layoutOwner)); page("anime").preferences.bind(.local(owner: layoutOwner))
             StreamingPreferences.forOwner(layoutOwner).bind(.local(owner: layoutOwner))
             if InterfacePreferences.shared.navigation.scope?.owner == layoutOwner { InterfacePreferences.shared.navigation.bind(.local(owner: layoutOwner)) }
         } catch { self.error = "No se pudo cerrar la sesión. Vuelve a intentarlo."; return }
@@ -196,7 +209,10 @@ final class HarborProfileSync {
         guard scope == generation, let session = stored.session else { return }
         let target = stored.pending?.account == session.id ? stored.pending?.syncId : selectedID
         if let target, roster.profile(target) == nil { hydrated = false; throw HarborError(code: "profile-sync-target") }
-        guard let remote = target.flatMap({ roster.profile($0) }) ?? roster.primary(), let id = remote["syncId"].string else { hydrated = false; throw HarborError(code: "profile-sync-target") }
+        let selected: JSONValue?
+        if let boundLayoutProfile { selected = boundLayoutProfile.resolve(in: roster) }
+        else { selected = target.flatMap { roster.profile($0) } ?? roster.primary() }
+        guard let remote = selected, let id = remote["syncId"].string else { hydrated = false; throw HarborError(code: "profile-sync-target") }
         selectedID = id; hydrated = true
         if let pending = stored.pending, pending.account == session.id {
             guard roster.profile(pending.syncId) != nil else { throw HarborError(code: "profile-sync-target") }
@@ -227,14 +243,18 @@ final class HarborProfileSync {
         guard scope == generation else { return }
         if let pending = stored.pending, pending.account == session.id { roster = try roster.applying(pending.fields, to: pending.syncId) }
         guard let final = roster.profile(selectedID ?? id) else { throw HarborError(code: "profile-sync-target") }
-        try profile?.adopt(final, accountID: session.id)
+        if boundLayoutProfile == nil || boundLayoutProfile?.primary == true { try profile?.adopt(final, accountID: session.id) }
         navigation.requestSync = { [weak self] in self?.scheduleSync() }
         services.requestSync = { [weak self] in self?.scheduleSync() }
+        page("home").requestSync = { [weak self] in self?.scheduleSync() }
+        page("anime").requestSync = { [weak self] in self?.scheduleSync() }
         let send: @MainActor (JSONValue) async throws -> JSONValue = { [weak self] body in
             guard let self, scope == self.generation, self.stored.session?.id == session.id else { throw HarborError(code: "account-changed") }
             return try await self.request("/sync/v1/push", method: "POST", body: body, scope: scope)
         }
         try await navigation.synchronize(state: state, account: session.id, profile: final, send: send)
         try await services.synchronize(state: state, account: session.id, profile: final, send: send)
+        try await page("home").synchronize(state: state, account: session.id, profile: final, send: send)
+        try await page("anime").synchronize(state: state, account: session.id, profile: final, send: send)
     }
 }

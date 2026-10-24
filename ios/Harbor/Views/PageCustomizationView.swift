@@ -3,33 +3,40 @@ import SwiftUI
 struct PageCustomizeButton: View {
     let rails: [PageRail]
     let customization: PageCustomization
+    var cloud: HarborPageSync? = nil
     @State private var optionsOpen = false
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     private var title: String {
         DesktopInterfaceText.value(customization.editing ? "Done editing" : customization.page == "home" ? "Customize home" : customization.page == "anime" ? "Customize anime" : "Customize page")
     }
     var body: some View {
-        HStack(spacing: 8) {
-            Spacer(minLength: 0)
-            if customization.editing {
-                PageEditPill(title: DesktopInterfaceText.value("Options"), icon: "page-options") { optionsOpen.toggle() }
-                    .accessibilityIdentifier("page-customize-options")
-                    .popover(isPresented: $optionsOpen) {
-                        VStack(alignment: .leading, spacing: 18) {
-                            HarborSettingsToggle(DesktopInterfaceText.value("Square play button"), isOn: setting(\.playButtonSquare))
-                            HarborSettingsToggle(DesktopInterfaceText.value("Show More info button"), isOn: setting(\.secondaryMoreInfo))
-                            if customization.page == "home" {
-                                HarborSettingsToggle(DesktopInterfaceText.value("Continue Watching at top"), isOn: setting(\.cwTop))
-                            }
-                        }.padding(16).frame(width: 280).background(ThemePreferences.shared.color("elevated"))
-                            .presentationCompactAdaptation(.popover)
-                    }
+        VStack(alignment: .trailing, spacing: 10) {
+            if let cloud, cloud.hasParkedVersion {
+                Button(DesktopInterfaceText.value("Restore my version")) { cloud.restoreMyVersion() }
+                    .font(.caption).frame(minHeight: 44).accessibilityIdentifier("page-restore-cloud-layout")
             }
-            PageEditPill(title: title, icon: "ui-pencil-outline", selected: customization.editing) {
-                customization.setEditingRails(rails)
-                withAnimation(reduceMotion ? nil : .easeOut(duration: 0.2)) { customization.editing.toggle() }
-                optionsOpen = false
-            }.accessibilityIdentifier("page-customize")
+            HStack(spacing: 8) {
+                Spacer(minLength: 0)
+                if customization.editing {
+                    PageEditPill(title: DesktopInterfaceText.value("Options"), icon: "page-options") { optionsOpen.toggle() }
+                        .accessibilityIdentifier("page-customize-options")
+                        .popover(isPresented: $optionsOpen) {
+                            VStack(alignment: .leading, spacing: 18) {
+                                HarborSettingsToggle(DesktopInterfaceText.value("Square play button"), isOn: setting(\.playButtonSquare))
+                                HarborSettingsToggle(DesktopInterfaceText.value("Show More info button"), isOn: setting(\.secondaryMoreInfo))
+                                if customization.page == "home" {
+                                    HarborSettingsToggle(DesktopInterfaceText.value("Continue Watching at top"), isOn: setting(\.cwTop))
+                                }
+                            }.padding(16).frame(width: 280).background(ThemePreferences.shared.color("elevated"))
+                                .presentationCompactAdaptation(.popover)
+                        }
+                }
+                PageEditPill(title: title, icon: "ui-pencil-outline", selected: customization.editing) {
+                    customization.setEditingRails(rails)
+                    withAnimation(reduceMotion ? nil : .easeOut(duration: 0.2)) { customization.editing.toggle() }
+                    optionsOpen = false
+                }.accessibilityIdentifier("page-customize")
+            }
         }.padding(.horizontal).disabled(!customization.ready)
             .task(id: rails.map(\.id)) { customization.setEditingRails(rails) }
             .onDisappear { customization.editing = false }

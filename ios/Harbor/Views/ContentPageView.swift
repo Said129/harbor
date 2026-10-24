@@ -8,11 +8,7 @@ struct ContentPageView: View {
     @State private var customization: PageCustomization
     @MainActor init(app: AppModel, kind: String, title: String) {
         self.app = app; self.kind = kind; self.title = title; _model = State(initialValue: app.pageModel(kind))
-        // Desktop animeRows is profile scoped; its other per-page row stores are separate.
-        let scoped = kind == "anime"
-        let legacy = scoped && app.profileContext.profiles.active?.desktop.isPrimary == true ? (app.user?.id ?? "guest") : nil
-        let shared = scoped ? app.profileContext.binding?.sharedSettingsOwner : nil
-        _customization = State(initialValue: PageCustomization(owner: scoped ? app.settingsOwner : (app.user?.id ?? "guest"), page: kind, legacyOwner: legacy, inheritedOwner: shared))
+        _customization = State(initialValue: app.pageCustomization(kind))
     }
     private var rails: [PageRail] { model.curated.map(PageRail.discovery) + model.rows.map(PageRail.catalog) }
     private var remainingRails: [PageRail] { kind == "anime" ? rails.filter { $0.id != "discovery-anime-picks" } : rails }
@@ -26,7 +22,7 @@ struct ContentPageView: View {
                         Button("Reintentar") { Task { ArtworkRefresh.shared.retryFailedImages(); await model.load(kind: kind, app: app, refresh: true) } }
                     }
                 }
-                PageCustomizeButton(rails: rails, customization: customization)
+                PageCustomizeButton(rails: rails, customization: customization, cloud: kind == "anime" && app.harborIdentity.cloud.signedIn ? app.harborIdentity.cloud.page("anime") : nil)
                 if let error = customization.error { Text(error).font(.caption).foregroundStyle(.orange).padding(.horizontal) }
                 if ["series", "anime"].contains(kind) { ContinueWatching(app: app, kind: kind, title: kind == "series" ? "Continúa donde lo dejaste" : "Seguir viendo") }
                 CustomizedRails(rails: remainingRails, app: app, customization: customization)

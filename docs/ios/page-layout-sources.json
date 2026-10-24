@@ -1,0 +1,45 @@
+{
+  "reference": "0.9.132 (Beta)",
+  "final_beta_commit": "8274f05485554e531cf5654574de84108f16bdb7",
+  "inputs_normalized_sha256": {
+    "src/lib/layout-sync/sections.ts": "fd56fa91e728d2c8d837153a0fe6a6ea0d57e4fe926cd1be758bbcef6091892e",
+    "src/lib/layout-sync/store.ts": "9e6c058eb369ddc4eb0b2567f97c9905a6ee6f22da504e9e69d4caaae326c299",
+    "src/lib/profile-sync/engine.ts": "a7cc2974aac5d3b3de827b053c4c3c5789e56f0ec6eb5c772ed0bd7ec271f7bc",
+    "src/lib/profile-sync/keys.ts": "f888bc74c1c6740b87119fc650c8cf239e8bfa79420b0e05295d109276cec710",
+    "src/lib/settings/types.ts": "71886d64c29143b415c79f1e0da5f75ac491e7fd83da9533edfbfbf4ab212876",
+    "src/lib/settings/defaults.ts": "4f3b084c27afd23ccb85a90f0ccf370c7d127177143bd5400e190ab68a720457",
+    "src/views/home/home-rows.ts": "93e6bfdb079362221fbcfbdeeade3d432d8d2dc0c72931878c8e673094d982e4",
+    "src/views/anime.tsx": "0ff4485b52be24a7df8c516f17da4e144a7f045daeebc5086b9c9075e1030afa",
+    "src/lib/catalog-browse.ts": "38232299fa3130e1db4b234440c06b714ead9158fdec94fff9eabbe59ed72871"
+  },
+  "checkpoint_inputs_normalized_sha256": {
+    "src/lib/layout-sync/sections.ts": "fd56fa91e728d2c8d837153a0fe6a6ea0d57e4fe926cd1be758bbcef6091892e",
+    "src/lib/layout-sync/store.ts": "9e6c058eb369ddc4eb0b2567f97c9905a6ee6f22da504e9e69d4caaae326c299",
+    "src/lib/profile-sync/engine.ts": "a7cc2974aac5d3b3de827b053c4c3c5789e56f0ec6eb5c772ed0bd7ec271f7bc",
+    "src/lib/profile-sync/keys.ts": "f888bc74c1c6740b87119fc650c8cf239e8bfa79420b0e05295d109276cec710",
+    "src/lib/settings/types.ts": "31fc19c935630bbda63e61b7b0027d4b1e8a8c246f24701f4047ddc528488467",
+    "src/lib/settings/defaults.ts": "58e7570ab40aa33c2b76947ece0b6bc1e1dae5ac2f9964764d34401b68e2c172",
+    "src/views/home/home-rows.ts": "93e6bfdb079362221fbcfbdeeade3d432d8d2dc0c72931878c8e673094d982e4",
+    "src/views/anime.tsx": "0ff4485b52be24a7df8c516f17da4e144a7f045daeebc5086b9c9075e1030afa",
+    "src/lib/catalog-browse.ts": "38232299fa3130e1db4b234440c06b714ead9158fdec94fff9eabbe59ed72871"
+  },
+  "unrelated_checkpoint_differences": {
+    "src/lib/settings/types.ts": "Only the unrelated Desktop Discord paused-music option differs; homeRows/animeRows are identical.",
+    "src/lib/settings/defaults.ts": "Only the unrelated Desktop Discord paused-music option differs; homeRows/animeRows are identical."
+  },
+  "compared_to_final_archive": true,
+  "section_keys": {
+    "home": "<syncId>:home",
+    "anime": "<syncId>:anime"
+  },
+  "section_semantics": "whole-value replacement, server revisions only",
+  "portable_catalog_identity": "<manifest.id>-<catalog.type>-<catalog.id>",
+  "anime_catalog_prefix": "addon:",
+  "native_configuration_urls_transmitted": false,
+  "opaque_fields_preserved": ["customSources", "listRows", "unsupported row keys", "future fields"],
+  "watched_by_adapter_implemented": false,
+  "full_household_account_activation_implemented": false,
+  "existing_unaffected_tests_repeated": false,
+  "full_desktop_parity_complete": false,
+  "ipa_created": false
+}

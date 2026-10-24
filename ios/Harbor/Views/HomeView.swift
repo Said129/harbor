@@ -10,7 +10,7 @@ struct HomeView: View {
     @MainActor init(model: AppModel) {
         self.model = model
         let owner = model.personalOwner
-        _customization = State(initialValue: PageCustomization(owner: model.settingsOwner, page: "home"))
+        _customization = State(initialValue: model.pageCustomization("home"))
         _seasonalPreferences = State(initialValue: SpooktoberInvitationPreferences(owner: owner))
     }
     private var rails: [PageRail] {
@@ -56,7 +56,7 @@ struct HomeView: View {
                         Button("Reintentar") { Task { await refresh() } }.buttonStyle(HarborAccountButtonStyle())
                     }.padding(28).frame(maxWidth: .infinity)
                 }
-                PageCustomizeButton(rails: rails, customization: customization)
+                PageCustomizeButton(rails: rails, customization: customization, cloud: model.harborIdentity.cloud.signedIn ? model.harborIdentity.cloud.page("home") : nil)
                 if let error = customization.error { Text(error).font(.caption).foregroundStyle(.orange).padding(.horizontal) }
                 if !classic && !customization.layout.cwTop { ContinueWatching(app: model) }
                 CustomizedRails(rails: rails, app: model, customization: customization)

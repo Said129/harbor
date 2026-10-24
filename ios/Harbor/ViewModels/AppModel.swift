@@ -110,6 +110,11 @@ final class AppModel {
     var user: AccountUser? { savedAccount?.session.user }
     var personalOwner: String { profileContext.binding?.personalOwner ?? user?.id ?? "guest" }
     var settingsOwner: String { profileContext.binding?.settingsOwner ?? user?.id ?? "guest" }
+    func pageCustomization(_ page: String) -> PageCustomization {
+        guard ["home", "anime"].contains(page) else { return PageCustomization(owner: user?.id ?? "guest", page: page) }
+        let legacy = page == "anime" && profileContext.profiles.active?.desktop.isPrimary == true ? (user?.id ?? "guest") : nil
+        return PageCustomization.forOwner(settingsOwner, page: page, legacyOwner: legacy, inheritedOwner: profileContext.binding?.sharedSettingsOwner)
+    }
     var harborIdentityOwner: String { profileContext.binding?.identityOwner ?? profileContext.sessions.identityOwner ?? "guest" }
     var harborIdentity: ProfilePreferences { ProfilePreferences.forOwner(harborIdentityOwner) }
     var progressOwner: String { profileContext.binding?.progressOwner ?? user?.id ?? "guest" }
@@ -252,9 +257,12 @@ final class AppModel {
             MetadataPreferences.shared.reloadPreferences(); MusicPlayback.shared.reloadPreferences()
         }
         try MetadataPreferences.shared.bind(ProfileSettingsStore.shared)
-        harborIdentity.cloud.bindLayoutOwner(settingsOwner)
+        _ = pageCustomization("home"); _ = pageCustomization("anime")
+        harborIdentity.cloud.bindLayoutOwner(settingsOwner, profileID: profileContext.profiles.active?.syncID,
+            primary: profileContext.profiles.active?.desktop.isPrimary == true)
         InterfacePreferences.shared.navigation.bind(.local(owner: settingsOwner))
         StreamingPreferences.forOwner(settingsOwner).bind(.local(owner: settingsOwner))
+        pageCustomization("home").bind(.local(owner: settingsOwner)); pageCustomization("anime").bind(.local(owner: settingsOwner))
         resume = ResumeStore(owner: owner)
         await reloadProgress()
     }

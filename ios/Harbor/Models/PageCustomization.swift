@@ -10,7 +10,7 @@ enum PageRail: Identifiable, Sendable {
     var metas: [Media] { switch self { case .catalog(let row): row.metas; case .discovery(let row): row.metas } }
     var defaultNumerals: Bool { switch self { case .catalog: false; case .discovery(let row): row.ranked || row.id.hasSuffix("-top10") || ["cm-top-movies", "cm-drama", "cm-comedy"].contains(row.id) } }
 }
-struct PageLayout: Codable {
+struct PageLayout: Codable, Equatable, Sendable {
     var version = 1
     var order: [String] = []
     var hidden: Set<String> = []
@@ -24,18 +24,35 @@ struct PageLayout: Codable {
 }
 @MainActor @Observable
 final class PageCustomization {
+    private static var models: [String: PageCustomization] = [:]
+    static func forOwner(_ owner: String, page: String, legacyOwner: String? = nil, inheritedOwner: String? = nil) -> PageCustomization {
+        let key = EBookShelf.hash(String(decoding: try! JSONEncoder().encode([owner, page]), as: UTF8.self))
+        if let value = models[key] { return value }
+        let value = PageCustomization(owner: owner, page: page, legacyOwner: legacyOwner, inheritedOwner: inheritedOwner)
+        models[key] = value; return value
+    }
     let owner: String
     let page: String
     private(set) var layout: PageLayout
     private(set) var ready = false
     private(set) var error: String?
+    private(set) var scope: NavigationScope
+    @ObservationIgnored var onEdit: ((PageLayout) -> Void)?
+    @ObservationIgnored var onRails: (([PageRail]) -> Void)?
+    private var localLayout = PageLayout()
     var editing = false
     private var editingRails: [PageRail] = []
-    private var key: String { "page-layout-" + EBookShelf.hash(owner + "|" + page) }
+    private var key: String { storageKey(scope) }
+    private func storageKey(_ scope: NavigationScope) -> String {
+        switch scope {
+        case .local: return "page-layout-" + EBookShelf.hash(owner + "|" + page)
+        case .harbor: return "page-layout-scope-" + EBookShelf.hash(scope.key + "|" + page)
+        }
+    }
     init(owner: String, page: String, legacyOwner: String? = nil, inheritedOwner: String? = nil) {
-        self.owner = owner; self.page = page
+        self.owner = owner; self.page = page; scope = .local(owner: owner)
         var defaults = PageLayout(); defaults.secondaryMoreInfo = page != "home"; defaults.playButtonSquare = page != "home"
-        layout = defaults
+        layout = defaults; localLayout = defaults
         do {
             let saved: PageLayout
             if let current = try KeychainStore().read(key, as: PageLayout.self) { saved = current }
@@ -58,7 +75,7 @@ final class PageCustomization {
                 } else { saved = defaults }
             } else { saved = defaults }
             guard Self.valid(saved) else { throw HarborError(code: "page-layout") }
-            layout = saved; ready = true
+            layout = saved; localLayout = saved; ready = true
         } catch { self.error = "No se pudo recuperar la personalización. Los cambios anteriores se conservan." }
     }
     func ordered(_ rails: [PageRail], includeHidden: Bool = false) -> [PageRail] {
@@ -76,7 +93,24 @@ final class PageCustomization {
         return rail.title
     }
     func ranked(_ rail: PageRail) -> Bool { layout.numerals.contains(rail.id) || (rail.defaultNumerals && !layout.plain.contains(rail.id)) }
-    func setEditingRails(_ rails: [PageRail]) { editingRails = rails }
+    func bind(_ next: NavigationScope) {
+        guard next.owner == owner else { return }
+        if scope == next && ready { return }
+        scope = next; onEdit = nil; onRails = nil; ready = false; editing = false; layout = localLayout
+        do {
+            let value = try KeychainStore().read(storageKey(next), as: PageLayout.self) ?? localLayout
+            guard Self.valid(value) else { throw HarborError(code: "page-layout") }
+            layout = value; ready = true; error = nil
+            if case .local = next { localLayout = value }
+        } catch { error = "No se pudo recuperar la personalización. Los cambios anteriores se conservan." }
+    }
+    func apply(_ value: PageLayout, to expected: NavigationScope) throws {
+        guard ready, scope == expected, Self.valid(value) else { throw HarborError(code: "account-changed") }
+        if value != layout { try KeychainStore().write(value, key: key); layout = value }
+        error = nil
+    }
+    func setEditingRails(_ rails: [PageRail]) { editingRails = rails; onRails?(rails) }
+    var currentRails: [PageRail] { editingRails }
     func move(_ rail: PageRail, toward neighbor: PageRail) {
         var ids = ordered(editingRails.isEmpty ? [rail, neighbor] : editingRails, includeHidden: true).map(\.id)
         guard let first = ids.firstIndex(of: rail.id), let second = ids.firstIndex(of: neighbor.id) else { return }
@@ -89,10 +123,12 @@ final class PageCustomization {
         do {
             guard Self.valid(next) else { throw HarborError(code: "page-layout") }
             try KeychainStore().write(next, key: key); layout = next; error = nil
+            if case .local = scope { localLayout = next }
+            onEdit?(next)
         } catch { self.error = "No se pudo guardar la personalización. Los cambios anteriores se conservan." }
     }
     func reset() { change { value in value = PageLayout(); value.secondaryMoreInfo = page != "home"; value.playButtonSquare = page != "home" } }
-    private static func valid(_ value: PageLayout) -> Bool {
+    nonisolated static func valid(_ value: PageLayout) -> Bool {
         value.version == 1 && value.order.count <= 1_000 && value.hidden.count <= 1_000 && value.renamed.count <= 1_000 && value.numerals.count <= 1_000 && value.plain.count <= 1_000 && value.renamed.values.allSatisfy { $0.count <= 120 }
     }
 }
