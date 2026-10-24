@@ -10,8 +10,8 @@ import XCTest
         let paragraph = app.staticTexts.matching(identifier: "ebook-reader-text").firstMatch
         XCTAssertTrue(paragraph.waitForExistence(timeout: 30)); XCTAssertEqual(paragraph.label, "Actual original:3 paragraph.")
         let menu = app.buttons["ebook-reader-menu"], next = app.buttons["ebook-next-section"]
-        // SwiftUI's Menu has a non-hittable AX wrapper on iPhone. The visible
-        // control is activated below and must open the actual settings sheet.
+        // Activate the visible options control and require the actual settings
+        // sheet; a menu wrapper alone does not prove the reader is interactive.
         let ready = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in ReadingUIInteraction.visibleFrame(menu, in: app) != nil && next.exists && next.isEnabled }, object: nil)
         XCTAssertEqual(XCTWaiter.wait(for: [ready], timeout: 20), .completed)
         capture(app, "reader-focus-initial-" + device)
@@ -50,7 +50,19 @@ import XCTest
     }
     private func openSettings(_ app: XCUIApplication) {
         let menu = app.buttons["ebook-reader-menu"]; XCTAssertTrue(menu.waitForExistence(timeout: 15)); ReadingUIInteraction.tapVisible(menu, in: app)
-        let settings = app.buttons["ebook-reader-settings-action"]; XCTAssertTrue(settings.waitForExistence(timeout: 10)); settings.tap()
+        let settings = app.buttons["ebook-reader-settings-action"]
+        if !settings.waitForExistence(timeout: 2) || ReadingUIInteraction.visibleFrame(settings, in: app) == nil {
+            // Landscape iPhone presents a scrolling action list. Settings is below
+            // its initial viewport and is not mounted in the accessibility tree yet.
+            let sheet = app.sheets.firstMatch; XCTAssertTrue(sheet.waitForExistence(timeout: 10))
+            let actions = sheet.scrollViews.allElementsBoundByIndex.filter {
+                let frame = $0.frame.intersection(app.windows.firstMatch.frame)
+                return frame.width > 80 && frame.height > 80
+            }.max { $0.frame.height < $1.frame.height }
+            guard let actions else { XCTFail("The reader options sheet must expose its scrolling action list"); return }
+            ReadingUIInteraction.revealWithinViewport(settings, in: app, container: actions)
+        }
+        XCTAssertTrue(settings.waitForExistence(timeout: 10)); ReadingUIInteraction.tapVisible(settings, in: app)
         XCTAssertTrue(app.buttons["ebook-reader-settings-done"].waitForExistence(timeout: 15))
     }
     private func openBook(_ app: XCUIApplication) {

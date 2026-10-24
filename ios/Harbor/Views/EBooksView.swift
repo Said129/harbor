@@ -64,7 +64,7 @@ struct EBooksView: View {
                         filters = .init(); applied = .init(); query = ""; reload = UUID()
                     }
                     grid(books)
-                    if loading { ProgressView("Buscando libros…").frame(maxWidth: .infinity) }
+                    if loading { ProgressView("Buscando libros…").frame(maxWidth: .infinity).accessibilityIdentifier("ebook-catalog-loading") }
                     else if error != nil { Button("Reintentar búsqueda") { Task { await load(next: false) } }.frame(maxWidth: .infinity, minHeight: 44) }
                     else if books.isEmpty { ContentUnavailableView("Sin resultados", image: "nav-ebook", description: Text("Busca por título o autor, o cambia el idioma.")) }
                     if more { Button("Cargar más") { Task { await load(next: true) } }.disabled(loading).frame(maxWidth: .infinity) }

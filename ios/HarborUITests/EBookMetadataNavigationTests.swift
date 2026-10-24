@@ -19,6 +19,7 @@ import XCTest
         let title = app.staticTexts["ebook-detail-title"]; XCTAssertTrue(title.waitForExistence(timeout: 20))
         capture(app, "ebook-metadata-detail-" + device)
         let read = app.buttons["ebook-detail-read"]; XCTAssertTrue(read.waitForExistence(timeout: 30)); reveal(read, app, up: false); read.tap()
+        ReadingUIInteraction.assertReaderViewport(app)
         let paragraph = app.staticTexts.matching(NSPredicate(format: "identifier == 'ebook-reader-text' AND label == 'Owned first chapter paragraph.'")).firstMatch
         ReadingUIInteraction.reveal(paragraph, in: app, container: app.scrollViews["ebook-reader-scroll"])
         XCTAssertTrue(paragraph.waitForExistence(timeout: 30)); XCTAssertEqual(paragraph.label, "Owned first chapter paragraph.")
