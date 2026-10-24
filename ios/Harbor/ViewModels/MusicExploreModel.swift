@@ -76,10 +76,14 @@ import Observation
             for (index, track) in page.tracks.enumerated() where trackIDs.insert(track.id).inserted {
                 tracks.append(track); positions.append(page.positions.indices.contains(index) ? page.positions[index] : nil)
             }
-            selection = .init(tracks: tracks, positions: positions,
-                artists: initial.artists + page.artists.filter { artistIDs.insert($0.id).inserted },
-                albums: (initial.albums ?? []) + (page.albums ?? []).filter { albumIDs.insert($0.id).inserted },
-                playlists: initial.playlists, popularity: (initial.popularity ?? [:]).merging(page.popularity ?? [:], uniquingKeysWith: max), done: page.done)
+            let freshArtists = page.artists.filter { artistIDs.insert($0.id).inserted }
+            let freshAlbums = (page.albums ?? []).filter { albumIDs.insert($0.id).inserted }
+            let artists: [MusicCatalogItem] = initial.artists + freshArtists
+            let albums: [MusicCatalogItem] = (initial.albums ?? []) + freshAlbums
+            var popularity: [String: Double] = initial.popularity ?? [:]
+            for (identity, score) in page.popularity ?? [:] { popularity[identity] = max(popularity[identity] ?? 0, score) }
+            selection = MusicGenreSelection(tracks: tracks, positions: positions, artists: artists,
+                albums: albums, playlists: initial.playlists, popularity: popularity, done: page.done)
             nextPage += 1; more = page.done != true
         } catch is CancellationError { }
         catch { if token == generation, !Task.isCancelled { failure = true } }
