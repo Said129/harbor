@@ -51,6 +51,8 @@
 "Actualizar episodios" = "Refresh episodes";
 "Actualizar fuentes" = "刷新来源";
 "Add" = "添加";
+"Add Custom Source" = "添加自定义来源";
+"Add Source" = "添加来源";
 "Add a TMDB key in Settings to unlock the full discovery feed." = "在设置中添加 TMDB 密钥，即可解锁完整的探索信息流。";
 "Add a repository" = "添加仓库";
 "Add bookmark" = "Add bookmark";
@@ -63,6 +65,7 @@
 "Add your TMDB key in Settings to load these catalogs." = "请在设置中添加 TMDB 密钥以加载这些目录。";
 "Add {language}" = "添加{language}";
 "Addon" = "插件";
+"Addon not installed" = "Addon not installed";
 "Addon order" = "插件顺序";
 "Addons" = "插件";
 "Adjust the text and background. The preview shows your changes as you make them." = "调整文字和背景。预览会实时显示更改。";
@@ -415,6 +418,7 @@
 "Could not save your choices. Try again." = "Could not save your choices. Try again.";
 "Could not save your tracks or listening history. Try again." = "Could not save your tracks or listening history. Try again.";
 "Couldn't auto-sync" = "无法自动同步";
+"Cover Image URL" = "封面图片 URL";
 "Crash" = "崩溃";
 "Crea tu propia paleta" = "创建自己的配色方案";
 "Create account" = "创建账号";
@@ -523,6 +527,7 @@
 "Easy on the eyes" = "护眼";
 "Edición terminada" = "完成编辑";
 "Edit" = "编辑";
+"Edit Folder Images" = "编辑文件夹图片";
 "Edit custom theme" = "编辑自定义主题";
 "Edit profile" = "编辑个人资料";
 "Edit {name}" = "编辑 {name}";
@@ -627,6 +632,7 @@
 "Fit" = "适应";
 "Flechas" = "箭头";
 "Focus" = "Focus";
+"Focus GIF URL" = "焦点 GIF URL";
 "Focus mode" = "专注模式";
 "Fondo" = "背景";
 "Font" = "字体";
@@ -791,11 +797,14 @@
 "Interfaz" = "界面";
 "Interfaz del sistema" = "系统界面";
 "Interlineado" = "行高";
+"Invalid SourceRow JSON format" = "SourceRow JSON 格式无效";
 "It is not affiliated with the maker of {product}, or with any company, addon author, or trademark holder referenced inside the app." = "它与 {product} 的制作者，以及应用内提及的任何公司、插件作者或商标持有人均无关联。";
 "It is not affiliated with, endorsed by, sponsored by, or in any way associated with {company}." = "它不隶属于 {company}，也未获得其认可或赞助，与其不存在任何形式的关联。";
 "Italian" = "意大利语";
 "Izquierda" = "左对齐";
 "Izquierda a derecha" = "从左到右";
+"JSON URL" = "JSON URL";
+"JSON cannot be empty" = "JSON 不能为空";
 "Japan's top science-fiction comic honor" = "日本顶级科幻漫画奖项";
 "Japanese" = "日语";
 "Just added" = "最新添加";
@@ -849,6 +858,7 @@
 "Loading" = "正在加载";
 "Loading music" = "正在加载音乐";
 "Loading plugins..." = "正在加载插件…";
+"Loading..." = "正在加载…";
 "Loading…" = "正在加载…";
 "Local" = "本地";
 "Local app files" = "Local app files";
@@ -899,6 +909,7 @@
 "Mis canales" = "My channels";
 "Misc" = "Misc";
 "Missing" = "缺失";
+"Missing TMDB Key" = "缺少 TMDB 密钥";
 "Misterio" = "悬疑";
 "Mix surround sound down to stereo" = "将环绕声下混为立体声";
 "Modo de concentración" = "专注模式";
@@ -1047,6 +1058,7 @@
 "Now playing: {label}" = "正在播放：{label}";
 "Nuevos estrenos de anime" = "动漫新作";
 "Nítido (anime y caricaturas)" = "清晰（动漫和卡通）";
+"OK" = "OK";
 "ONA" = "ONA";
 "OTA channels + IPTV" = "OTA 频道 + IPTV";
 "OVA" = "OVA";
@@ -1115,6 +1127,7 @@
 "Parte superior de la pantalla" = "屏幕顶部";
 "Pasar páginas horizontalmente" = "Turn pages horizontally";
 "Password" = "密码";
+"Paste JSON" = "粘贴 JSON";
 "Peacock" = "Peacock";
 "Peligro" = "危险";
 "Películas" = "电影";
@@ -1160,6 +1173,7 @@
 "Player options" = "Player options";
 "Playlists" = "播放列表";
 "Playlists and servers" = "Playlists and servers";
+"Please add your TMDB API key in the Library & Metadata settings to view this folder." = "请在“媒体库与元数据”设置中添加 TMDB API 密钥，以查看此文件夹。";
 "Plugin files" = "脚本插件文件";
 "Plugin files changed on disk. Reinstall it from its repository." = "磁盘上的脚本插件文件已更改。请从其仓库重新安装。";
 "Plugins" = "脚本插件";
@@ -1195,12 +1209,14 @@
 "Priorizar {language}" = "提高{language}的优先级";
 "Producer" = "制片人";
 "Profile PIN" = "个人资料 PIN";
+"Profile changed. Please try again." = "Profile changed. Please try again.";
 "Profile is locked. Enter the 4-digit PIN to continue." = "个人资料已锁定。请输入 4 位 PIN 以继续。";
 "Profiles" = "个人资料";
 "Progreso" = "Progress";
 "Progreso de descarga" = "Download progress";
 "Progress" = "Progress";
 "Proveedores de metadatos" = "元数据提供商";
+"Provide a JSON link or paste it directly." = "提供 JSON 链接或直接粘贴内容。";
 "Próximamente" = "Coming soon";
 "Próximos" = "即将开始";
 "Próximos animes" = "即将上线的动漫";
@@ -1651,6 +1667,8 @@
 "This file has one audio track." = "此文件只有一条音轨。";
 "This is a manga repository. Add it from the Manga page." = "这是漫画仓库。请在漫画页面添加。";
 "This is how your subtitles will look." = "字幕将显示为这样。";
+"This section depends on the addon" = "This section depends on the addon";
+"This section relies on TMDB discovery features." = "This section relies on TMDB discovery features.";
 "Thriller" = "惊悚";
 "Thrillers" = "惊悚片";
 "Thumbnails download again when needed. Books, downloads, accounts and watch progress are kept." = "Thumbnails download again when needed. Books, downloads, accounts and watch progress are kept.";
@@ -1737,6 +1755,7 @@
 "Títulos ocultos" = "Hidden titles";
 "Títulos y descripciones" = "标题和简介";
 "UFC / MMA" = "UFC / MMA";
+"URL cannot be empty" = "URL 不能为空";
 "Ukrainian" = "乌克兰语";
 "Ultra HD" = "Ultra HD";
 "Ultra HD · Dolby Vision" = "Ultra HD · Dolby Vision";
@@ -1813,6 +1832,7 @@
 "Xtream server" = "Xtream server";
 "Year" = "年份";
 "You can switch later in Settings under Library & metadata." = "之后可在“设置”的“媒体库与元数据”中切换。";
+"You must install this addon in your Stremio account first so Harbor can fetch its works." = "必须先在 Stremio 账户中安装此插件，Harbor 才能获取其中的作品。";
 "You're set." = "设置完成。";
 "You've reached the end · {n} addons" = "已到底 · 共 {n} 个插件";
 "YouTube" = "YouTube";

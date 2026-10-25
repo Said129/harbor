@@ -51,6 +51,8 @@
 "Actualizar episodios" = "Refresh episodes";
 "Actualizar fuentes" = "Segarkan sumber";
 "Add" = "Tambah";
+"Add Custom Source" = "Tambah Sumber Kustom";
+"Add Source" = "Tambah Sumber";
 "Add a TMDB key in Settings to unlock the full discovery feed." = "Tambahkan kunci TMDB di Pengaturan untuk membuka seluruh feed penemuan.";
 "Add a repository" = "Tambah repositori";
 "Add bookmark" = "Add bookmark";
@@ -63,6 +65,7 @@
 "Add your TMDB key in Settings to load these catalogs." = "Tambahkan kunci TMDB di Pengaturan untuk memuat katalog ini.";
 "Add {language}" = "Tambahkan {language}";
 "Addon" = "Addon";
+"Addon not installed" = "Addon not installed";
 "Addon order" = "Urutan addon";
 "Addons" = "Addon";
 "Adjust the text and background. The preview shows your changes as you make them." = "Sesuaikan teks dan latar belakang. Pratinjau langsung menunjukkan perubahan Anda.";
@@ -415,6 +418,7 @@
 "Could not save your choices. Try again." = "Could not save your choices. Try again.";
 "Could not save your tracks or listening history. Try again." = "Could not save your tracks or listening history. Try again.";
 "Couldn't auto-sync" = "Tidak dapat menyinkronkan otomatis";
+"Cover Image URL" = "URL Gambar Sampul";
 "Crash" = "Crash";
 "Crea tu propia paleta" = "Buat palet Anda sendiri";
 "Create account" = "Buat akun";
@@ -523,6 +527,7 @@
 "Easy on the eyes" = "Nyaman di mata";
 "Edición terminada" = "Selesai mengedit";
 "Edit" = "Edit";
+"Edit Folder Images" = "Edit Gambar Folder";
 "Edit custom theme" = "Edit tema khusus";
 "Edit profile" = "Edit profil";
 "Edit {name}" = "Edit {name}";
@@ -627,6 +632,7 @@
 "Fit" = "Sesuaikan";
 "Flechas" = "Panah";
 "Focus" = "Focus";
+"Focus GIF URL" = "URL GIF fokus";
 "Focus mode" = "Mode fokus";
 "Fondo" = "Latar belakang";
 "Font" = "Font";
@@ -791,11 +797,14 @@
 "Interfaz" = "Antarmuka";
 "Interfaz del sistema" = "UI Sistem";
 "Interlineado" = "Tinggi baris";
+"Invalid SourceRow JSON format" = "Format JSON SourceRow tidak valid";
 "It is not affiliated with the maker of {product}, or with any company, addon author, or trademark holder referenced inside the app." = "Aplikasi ini tidak berafiliasi dengan pembuat {product}, maupun dengan perusahaan, pembuat addon, atau pemegang merek dagang apa pun yang disebutkan di dalam aplikasi.";
 "It is not affiliated with, endorsed by, sponsored by, or in any way associated with {company}." = "Aplikasi ini tidak berafiliasi, didukung, disponsori, atau terkait dengan {company} dengan cara apa pun.";
 "Italian" = "Bahasa Italia";
 "Izquierda" = "Kiri";
 "Izquierda a derecha" = "Kiri ke kanan";
+"JSON URL" = "URL JSON";
+"JSON cannot be empty" = "JSON tidak boleh kosong";
 "Japan's top science-fiction comic honor" = "Penghargaan komik fiksi ilmiah tertinggi di Jepang";
 "Japanese" = "Bahasa Jepang";
 "Just added" = "Baru ditambahkan";
@@ -849,6 +858,7 @@
 "Loading" = "Memuat";
 "Loading music" = "Memuat musik";
 "Loading plugins..." = "Memuat plugin...";
+"Loading..." = "Memuat...";
 "Loading…" = "Memuat…";
 "Local" = "Lokal";
 "Local app files" = "Local app files";
@@ -899,6 +909,7 @@
 "Mis canales" = "My channels";
 "Misc" = "Misc";
 "Missing" = "Tidak ditemukan";
+"Missing TMDB Key" = "Kunci TMDB belum ada";
 "Misterio" = "Misteri";
 "Mix surround sound down to stereo" = "Gabungkan suara surround menjadi stereo";
 "Modo de concentración" = "Mode fokus";
@@ -1047,6 +1058,7 @@
 "Now playing: {label}" = "Sedang diputar: {label}";
 "Nuevos estrenos de anime" = "Rilisan Anime Baru";
 "Nítido (anime y caricaturas)" = "Tajam (anime & kartun)";
+"OK" = "OK";
 "ONA" = "ONA";
 "OTA channels + IPTV" = "Saluran OTA + IPTV";
 "OVA" = "OVA";
@@ -1115,6 +1127,7 @@
 "Parte superior de la pantalla" = "Bagian atas layar";
 "Pasar páginas horizontalmente" = "Turn pages horizontally";
 "Password" = "Kata Sandi";
+"Paste JSON" = "Tempel JSON";
 "Peacock" = "Peacock";
 "Peligro" = "Bahaya";
 "Películas" = "Film";
@@ -1160,6 +1173,7 @@
 "Player options" = "Player options";
 "Playlists" = "Daftar putar";
 "Playlists and servers" = "Playlists and servers";
+"Please add your TMDB API key in the Library & Metadata settings to view this folder." = "Tambahkan kunci API TMDB Anda di Pengaturan Perpustakaan & Metadata untuk melihat folder ini.";
 "Plugin files" = "File plugin";
 "Plugin files changed on disk. Reinstall it from its repository." = "File plugin berubah di disk. Pasang ulang dari repositorinya.";
 "Plugins" = "Plugin";
@@ -1195,12 +1209,14 @@
 "Priorizar {language}" = "Prioritaskan {language}";
 "Producer" = "Produser";
 "Profile PIN" = "PIN profil";
+"Profile changed. Please try again." = "Profile changed. Please try again.";
 "Profile is locked. Enter the 4-digit PIN to continue." = "Profil terkunci. Masukkan PIN 4 digit untuk melanjutkan.";
 "Profiles" = "Profil";
 "Progreso" = "Progress";
 "Progreso de descarga" = "Download progress";
 "Progress" = "Progress";
 "Proveedores de metadatos" = "Penyedia metadata";
+"Provide a JSON link or paste it directly." = "Berikan tautan JSON atau tempel langsung.";
 "Próximamente" = "Coming soon";
 "Próximos" = "Mendatang";
 "Próximos animes" = "Anime Mendatang";
@@ -1651,6 +1667,8 @@
 "This file has one audio track." = "File ini memiliki satu trek audio.";
 "This is a manga repository. Add it from the Manga page." = "Ini repositori manga. Tambahkan dari halaman Manga.";
 "This is how your subtitles will look." = "Beginilah tampilan subtitle Anda.";
+"This section depends on the addon" = "This section depends on the addon";
+"This section relies on TMDB discovery features." = "This section relies on TMDB discovery features.";
 "Thriller" = "Thriller";
 "Thrillers" = "Thriller";
 "Thumbnails download again when needed. Books, downloads, accounts and watch progress are kept." = "Thumbnails download again when needed. Books, downloads, accounts and watch progress are kept.";
@@ -1737,6 +1755,7 @@
 "Títulos ocultos" = "Hidden titles";
 "Títulos y descripciones" = "Judul dan deskripsi";
 "UFC / MMA" = "UFC / MMA";
+"URL cannot be empty" = "URL tidak boleh kosong";
 "Ukrainian" = "Bahasa Ukraina";
 "Ultra HD" = "Ultra HD";
 "Ultra HD · Dolby Vision" = "Ultra HD · Dolby Vision";
@@ -1813,6 +1832,7 @@
 "Xtream server" = "Xtream server";
 "Year" = "Tahun";
 "You can switch later in Settings under Library & metadata." = "Anda dapat beralih nanti di Pengaturan, bagian Perpustakaan & metadata.";
+"You must install this addon in your Stremio account first so Harbor can fetch its works." = "Anda harus menginstal addon ini terlebih dahulu di akun Stremio agar Harbor dapat mengambil kontennya.";
 "You're set." = "Anda siap.";
 "You've reached the end · {n} addons" = "Anda telah mencapai akhir · {n} addon";
 "YouTube" = "YouTube";

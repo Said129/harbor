@@ -56,6 +56,8 @@
 "Actualizar episodios" = "Refresh episodes";
 "Actualizar fuentes" = "Atualizar fontes";
 "Add" = "Adicionar";
+"Add Custom Source" = "Adicionar Fonte Personalizada";
+"Add Source" = "Adicionar Fonte";
 "Add a TMDB key in Settings to unlock the full discovery feed." = "Adicione uma chave do TMDB em Configurações para desbloquear o feed completo de descoberta.";
 "Add a repository" = "Adicionar um repositório";
 "Add bookmark" = "Add bookmark";
@@ -68,6 +70,7 @@
 "Add your TMDB key in Settings to load these catalogs." = "Adicione sua chave do TMDB nas Configurações para carregar estes catálogos.";
 "Add {language}" = "Adicionar {language}";
 "Addon" = "Addon";
+"Addon not installed" = "Addon not installed";
 "Addon order" = "Ordem dos addons";
 "Addons" = "Addons";
 "Adjust the text and background. The preview shows your changes as you make them." = "Ajuste o texto e o fundo. A prévia mostra as alterações em tempo real.";
@@ -435,6 +438,7 @@
 "Could not save your choices. Try again." = "Could not save your choices. Try again.";
 "Could not save your tracks or listening history. Try again." = "Could not save your tracks or listening history. Try again.";
 "Couldn't auto-sync" = "Não foi possível sincronizar";
+"Cover Image URL" = "URL da Imagem de Capa";
 "Crash" = "Falha";
 "Crea tu propia paleta" = "Crie sua própria paleta";
 "Create account" = "Criar conta";
@@ -543,6 +547,7 @@
 "Easy on the eyes" = "Suave para os olhos";
 "Edición terminada" = "Edição concluída";
 "Edit" = "Editar";
+"Edit Folder Images" = "Editar Imagens da Pasta";
 "Edit custom theme" = "Editar tema personalizado";
 "Edit profile" = "Editar perfil";
 "Edit {name}" = "Editar {name}";
@@ -647,6 +652,7 @@
 "Fit" = "Ajustar";
 "Flechas" = "Setas";
 "Focus" = "Focus";
+"Focus GIF URL" = "URL do GIF de Destaque";
 "Focus mode" = "Modo foco";
 "Fondo" = "Plano de fundo";
 "Font" = "Fonte";
@@ -811,11 +817,14 @@
 "Interfaz" = "Interface";
 "Interfaz del sistema" = "System UI";
 "Interlineado" = "Altura da linha";
+"Invalid SourceRow JSON format" = "Formato JSON de SourceRow inválido";
 "It is not affiliated with the maker of {product}, or with any company, addon author, or trademark holder referenced inside the app." = "Não é afiliado ao criador de {product} nem a qualquer empresa, autor de complemento ou titular de marca comercial mencionado no aplicativo.";
 "It is not affiliated with, endorsed by, sponsored by, or in any way associated with {company}." = "Não é afiliado, endossado, patrocinado nem associado de qualquer forma à {company}.";
 "Italian" = "Italiano";
 "Izquierda" = "Esquerda";
 "Izquierda a derecha" = "Da esquerda para a direita";
+"JSON URL" = "URL do JSON";
+"JSON cannot be empty" = "O JSON não pode estar vazio";
 "Japan's top science-fiction comic honor" = "A maior honraria japonesa dos quadrinhos de ficção científica";
 "Japanese" = "Japonês";
 "Just added" = "Recém-adicionado";
@@ -869,6 +878,7 @@
 "Loading" = "Carregando";
 "Loading music" = "Carregando músicas";
 "Loading plugins..." = "Carregando plugins...";
+"Loading..." = "Carregando...";
 "Loading…" = "Carregando…";
 "Local" = "Local";
 "Local app files" = "Local app files";
@@ -919,6 +929,7 @@
 "Mis canales" = "My channels";
 "Misc" = "Misc";
 "Missing" = "Ausente";
+"Missing TMDB Key" = "Chave do TMDB Ausente";
 "Misterio" = "Mistério";
 "Mix surround sound down to stereo" = "Converter som surround para estéreo";
 "Modo de concentración" = "Modo foco";
@@ -1067,6 +1078,7 @@
 "Now playing: {label}" = "Tocando agora: {label}";
 "Nuevos estrenos de anime" = "Novos Lançamentos de Anime";
 "Nítido (anime y caricaturas)" = "Nítido (anime e desenhos)";
+"OK" = "OK";
 "ONA" = "ONA";
 "OTA channels + IPTV" = "Canais OTA + IPTV";
 "OVA" = "OVA";
@@ -1135,6 +1147,7 @@
 "Parte superior de la pantalla" = "No topo da tela";
 "Pasar páginas horizontalmente" = "Virar páginas na horizontal";
 "Password" = "Senha";
+"Paste JSON" = "Colar JSON";
 "Peacock" = "Peacock";
 "Peligro" = "Perigo";
 "Películas" = "Filmes";
@@ -1180,6 +1193,7 @@
 "Player options" = "Player options";
 "Playlists" = "Playlists";
 "Playlists and servers" = "Playlists and servers";
+"Please add your TMDB API key in the Library & Metadata settings to view this folder." = "Por favor, adicione sua chave de API do TMDB nas configurações de Biblioteca e Metadados para visualizar esta pasta.";
 "Plugin files" = "Arquivos do plugin";
 "Plugin files changed on disk. Reinstall it from its repository." = "Os arquivos do plugin mudaram no disco. Reinstale-o a partir do repositório.";
 "Plugins" = "Plugins";
@@ -1215,12 +1229,14 @@
 "Priorizar {language}" = "Priorizar {language}";
 "Producer" = "Produtor";
 "Profile PIN" = "PIN do perfil";
+"Profile changed. Please try again." = "Profile changed. Please try again.";
 "Profile is locked. Enter the 4-digit PIN to continue." = "O perfil está bloqueado. Digite o PIN de 4 dígitos para continuar.";
 "Profiles" = "Perfis";
 "Progreso" = "Progress";
 "Progreso de descarga" = "Download progress";
 "Progress" = "Progress";
 "Proveedores de metadatos" = "Provedores de metadados";
+"Provide a JSON link or paste it directly." = "Forneça um link JSON ou cole-o diretamente.";
 "Próximamente" = "Coming soon";
 "Próximos" = "Próximos";
 "Próximos animes" = "Animes Futuros";
@@ -1674,6 +1690,8 @@
 "This file has one audio track." = "Este arquivo tem uma faixa de áudio.";
 "This is a manga repository. Add it from the Manga page." = "Este é um repositório de mangá. Adicione-o pela página de Mangá.";
 "This is how your subtitles will look." = "É assim que suas legendas vão ficar.";
+"This section depends on the addon" = "This section depends on the addon";
+"This section relies on TMDB discovery features." = "This section relies on TMDB discovery features.";
 "Thriller" = "Suspense";
 "Thrillers" = "Suspenses";
 "Thumbnails download again when needed. Books, downloads, accounts and watch progress are kept." = "Thumbnails download again when needed. Books, downloads, accounts and watch progress are kept.";
@@ -1760,6 +1778,7 @@
 "Títulos ocultos" = "Hidden titles";
 "Títulos y descripciones" = "Títulos e descrições";
 "UFC / MMA" = "UFC / MMA";
+"URL cannot be empty" = "A URL não pode estar vazia";
 "Ukrainian" = "Ucraniano";
 "Ultra HD" = "Ultra HD";
 "Ultra HD · Dolby Vision" = "Ultra HD · Dolby Vision";
@@ -1840,6 +1859,7 @@
 "Xtream server" = "Xtream server";
 "Year" = "Ano";
 "You can switch later in Settings under Library & metadata." = "Você pode mudar isso depois em Configurações, em Biblioteca e metadados.";
+"You must install this addon in your Stremio account first so Harbor can fetch its works." = "Você deve instalar esta extensão na sua conta do Stremio primeiro para que o Harbor possa buscar seus conteúdos.";
 "You're set." = "Tudo pronto.";
 "You've reached the end · {n} addons" = "Você chegou ao fim · {n} addons";
 "YouTube" = "YouTube";

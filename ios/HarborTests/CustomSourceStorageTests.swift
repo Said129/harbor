@@ -108,6 +108,37 @@ import XCTest
             XCTAssertEqual(preferences.sourceRows.first?.folders.first?.cover, "https://owned.invalid/conflict.png")
         }
     }
+    func testFirstSignInParksGuestSourceRowsWhenTheAccountWinsAndAnAbsentAccountWaitsForAnExplicitEdit() async throws {
+        for remoteWins in [false, true] {
+            try await isolated { owner, preferences, engine, _ in
+                let typedDefaults = preferences.layout
+                try preferences.importSources(self.text(self.source), expected: preferences.scope)
+                XCTAssertEqual(preferences.layout, typedDefaults, "Guest source imports do not change typed preferences")
+                let remote: JSONValue? = remoteWins ? .object(["customSources": .array([]), "future": .string("account authority")]) : nil
+                try await engine.synchronize(state: self.state(remote, rev: remoteWins ? 7 : 0), account: "A", profile: self.profile) { _ in
+                    XCTFail("The first pull must adopt the account or hold a guest snapshot without uploading it"); return .null
+                }
+                XCTAssertFalse(engine.hasPendingChanges)
+                XCTAssertEqual(engine.hasParkedVersion, remoteWins)
+                XCTAssertEqual(PageCustomization(owner: owner, page: "home").sourceRows.first?.raw, self.source, "The separate guest record remains intact")
+                if remoteWins {
+                    XCTAssertTrue(preferences.sourceRows.isEmpty); engine.restoreMyVersion()
+                } else {
+                    XCTAssertEqual(preferences.sourceRows.first?.raw, self.source)
+                    try preferences.editSourceImages(rowID: "owned-source", folderID: "owned-folder", cover: "https://owned.invalid/after-login.png", focus: "", expected: preferences.scope)
+                }
+                var writes: [JSONValue] = []
+                try await engine.synchronize(state: self.state(remote, rev: remoteWins ? 7 : 0), account: "A", profile: self.profile) { body in
+                    writes.append(body); return self.accepted(remoteWins ? 8 : 1)
+                }
+                XCTAssertEqual(writes.count, 1)
+                let sent = try XCTUnwrap(writes.first?["writes"].array.first)
+                XCTAssertEqual(sent["baseRev"], .integer(remoteWins ? 7 : 0))
+                XCTAssertEqual(sent["value"]["customSources"].array.first?["future"].string, "keep source field")
+                XCTAssertEqual(preferences.sourceRows.first?.id, "owned-source"); XCTAssertFalse(engine.hasPendingChanges)
+            }
+        }
+    }
     func testLinkedProfileSourceEditsOnlyUploadTheEditingProfilesSectionAndKeepTheLatestSharedUnknownFields() async throws {
         let h = try OwnedHouseholdLayouts(); defer { h.close() }
         h.set("desktop-primary", "home", .object(["customSources": .array([source]), "future": .string("earlier")]))

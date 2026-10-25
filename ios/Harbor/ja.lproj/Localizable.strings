@@ -51,6 +51,8 @@
 "Actualizar episodios" = "Refresh episodes";
 "Actualizar fuentes" = "ソースを更新";
 "Add" = "追加";
+"Add Custom Source" = "カスタムソースを追加";
+"Add Source" = "ソースを追加";
 "Add a TMDB key in Settings to unlock the full discovery feed." = "すべての発見フィードを利用するには、設定でTMDBキーを追加してください。";
 "Add a repository" = "リポジトリを追加";
 "Add bookmark" = "Add bookmark";
@@ -63,6 +65,7 @@
 "Add your TMDB key in Settings to load these catalogs." = "設定に TMDB キーを追加すると、これらのカタログを読み込めます。";
 "Add {language}" = "{language}を追加";
 "Addon" = "アドオン";
+"Addon not installed" = "Addon not installed";
 "Addon order" = "アドオン順";
 "Addons" = "アドオン";
 "Adjust the text and background. The preview shows your changes as you make them." = "文字と背景を調整します。変更がその場でプレビューに反映されます。";
@@ -415,6 +418,7 @@
 "Could not save your choices. Try again." = "Could not save your choices. Try again.";
 "Could not save your tracks or listening history. Try again." = "Could not save your tracks or listening history. Try again.";
 "Couldn't auto-sync" = "自動同期できませんでした";
+"Cover Image URL" = "カバー画像URL";
 "Crash" = "クラッシュ";
 "Crea tu propia paleta" = "独自のパレットを作成";
 "Create account" = "アカウントを作成";
@@ -523,6 +527,7 @@
 "Easy on the eyes" = "目にやさしい";
 "Edición terminada" = "編集を完了";
 "Edit" = "編集";
+"Edit Folder Images" = "フォルダー画像を編集";
 "Edit custom theme" = "カスタムテーマを編集";
 "Edit profile" = "プロフィールを編集";
 "Edit {name}" = "{name}を編集";
@@ -627,6 +632,7 @@
 "Fit" = "全体を表示";
 "Flechas" = "矢印キー";
 "Focus" = "Focus";
+"Focus GIF URL" = "フォーカス時のGIF URL";
 "Focus mode" = "集中モード";
 "Fondo" = "背景";
 "Font" = "フォント";
@@ -791,11 +797,14 @@
 "Interfaz" = "インターフェース";
 "Interfaz del sistema" = "システムUI";
 "Interlineado" = "行の高さ";
+"Invalid SourceRow JSON format" = "SourceRowのJSON形式が無効です";
 "It is not affiliated with the maker of {product}, or with any company, addon author, or trademark holder referenced inside the app." = "本アプリは、{product}の開発元、およびアプリ内で言及される企業、アドオン作者、商標権者とは提携していません。";
 "It is not affiliated with, endorsed by, sponsored by, or in any way associated with {company}." = "本アプリは{company}との提携、承認、スポンサー関係など、一切の関係がありません。";
 "Italian" = "イタリア語";
 "Izquierda" = "左揃え";
 "Izquierda a derecha" = "左から右";
+"JSON URL" = "JSON URL";
+"JSON cannot be empty" = "JSONを入力してください";
 "Japan's top science-fiction comic honor" = "日本最高峰のSFコミック賞";
 "Japanese" = "日本語";
 "Just added" = "新着";
@@ -849,6 +858,7 @@
 "Loading" = "読み込み中";
 "Loading music" = "音楽を読み込み中";
 "Loading plugins..." = "プラグインを読み込み中...";
+"Loading..." = "読み込み中...";
 "Loading…" = "読み込み中…";
 "Local" = "ローカル";
 "Local app files" = "Local app files";
@@ -899,6 +909,7 @@
 "Mis canales" = "My channels";
 "Misc" = "Misc";
 "Missing" = "不足";
+"Missing TMDB Key" = "TMDBキーがありません";
 "Misterio" = "ミステリー";
 "Mix surround sound down to stereo" = "サラウンド音声をステレオにダウンミックス";
 "Modo de concentración" = "集中モード";
@@ -1047,6 +1058,7 @@
 "Now playing: {label}" = "再生中: {label}";
 "Nuevos estrenos de anime" = "新作アニメ";
 "Nítido (anime y caricaturas)" = "くっきり（アニメ・カートゥーン）";
+"OK" = "OK";
 "ONA" = "ONA";
 "OTA channels + IPTV" = "地上波チャンネル + IPTV";
 "OVA" = "OVA";
@@ -1115,6 +1127,7 @@
 "Parte superior de la pantalla" = "画面上部";
 "Pasar páginas horizontalmente" = "Turn pages horizontally";
 "Password" = "パスワード";
+"Paste JSON" = "JSONを貼り付け";
 "Peacock" = "Peacock";
 "Peligro" = "危険";
 "Películas" = "映画";
@@ -1160,6 +1173,7 @@
 "Player options" = "Player options";
 "Playlists" = "プレイリスト";
 "Playlists and servers" = "Playlists and servers";
+"Please add your TMDB API key in the Library & Metadata settings to view this folder." = "このフォルダーを表示するには、「ライブラリとメタデータ」設定でTMDB APIキーを追加してください。";
 "Plugin files" = "プラグインファイル";
 "Plugin files changed on disk. Reinstall it from its repository." = "ディスク上のプラグインファイルが変更されています。リポジトリから再インストールしてください。";
 "Plugins" = "プラグイン";
@@ -1195,12 +1209,14 @@
 "Priorizar {language}" = "{language}の優先順位を上げる";
 "Producer" = "プロデューサー";
 "Profile PIN" = "プロフィールPIN";
+"Profile changed. Please try again." = "Profile changed. Please try again.";
 "Profile is locked. Enter the 4-digit PIN to continue." = "プロフィールはロックされています。続行するには4桁のPINを入力してください。";
 "Profiles" = "プロフィール";
 "Progreso" = "Progress";
 "Progreso de descarga" = "Download progress";
 "Progress" = "Progress";
 "Proveedores de metadatos" = "メタデータプロバイダー";
+"Provide a JSON link or paste it directly." = "JSONリンクを入力するか、JSONを直接貼り付けてください。";
 "Próximamente" = "Coming soon";
 "Próximos" = "開催予定";
 "Próximos animes" = "近日公開アニメ";
@@ -1651,6 +1667,8 @@
 "This file has one audio track." = "このファイルには音声トラックが1つあります。";
 "This is a manga repository. Add it from the Manga page." = "これはマンガのリポジトリです。マンガページから追加してください。";
 "This is how your subtitles will look." = "字幕はこのように表示されます。";
+"This section depends on the addon" = "This section depends on the addon";
+"This section relies on TMDB discovery features." = "This section relies on TMDB discovery features.";
 "Thriller" = "スリラー";
 "Thrillers" = "スリラー";
 "Thumbnails download again when needed. Books, downloads, accounts and watch progress are kept." = "Thumbnails download again when needed. Books, downloads, accounts and watch progress are kept.";
@@ -1737,6 +1755,7 @@
 "Títulos ocultos" = "Hidden titles";
 "Títulos y descripciones" = "タイトルと説明";
 "UFC / MMA" = "UFC / MMA";
+"URL cannot be empty" = "URLを入力してください";
 "Ukrainian" = "ウクライナ語";
 "Ultra HD" = "Ultra HD";
 "Ultra HD · Dolby Vision" = "Ultra HD · Dolby Vision";
@@ -1813,6 +1832,7 @@
 "Xtream server" = "Xtream server";
 "Year" = "年";
 "You can switch later in Settings under Library & metadata." = "後で「設定」の「ライブラリとメタデータ」から変更できます。";
+"You must install this addon in your Stremio account first so Harbor can fetch its works." = "Harborで作品を取得するには、まずStremioアカウントにこのアドオンをインストールしてください。";
 "You're set." = "準備完了です。";
 "You've reached the end · {n} addons" = "以上です・アドオン{n}件";
 "YouTube" = "YouTube";

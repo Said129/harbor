@@ -58,6 +58,8 @@
 "Actualizar episodios" = "Refresh episodes";
 "Actualizar fuentes" = "تحديث المصادر";
 "Add" = "إضافة";
+"Add Custom Source" = "إضافة قسم خارجي";
+"Add Source" = "إضافة قسم";
 "Add a TMDB key in Settings to unlock the full discovery feed." = "أضف مفتاح TMDB في الإعدادات لفتح موجز الاكتشاف الكامل.";
 "Add a repository" = "إضافة مستودع";
 "Add bookmark" = "Add bookmark";
@@ -70,6 +72,7 @@
 "Add your TMDB key in Settings to load these catalogs." = "أضف مفتاح TMDB في الإعدادات لتحميل هذه الكتالوجات.";
 "Add {language}" = "إضافة {language}";
 "Addon" = "إضافة";
+"Addon not installed" = "Addon not installed";
 "Addon order" = "ترتيب الإضافة";
 "Addons" = "الإضافات";
 "Adjust the text and background. The preview shows your changes as you make them." = "اضبط النص والخلفية. تُظهر المعاينة تغييراتك فور إجرائها.";
@@ -439,6 +442,7 @@
 "Could not save your choices. Try again." = "Could not save your choices. Try again.";
 "Could not save your tracks or listening history. Try again." = "Could not save your tracks or listening history. Try again.";
 "Couldn't auto-sync" = "تعذرت المزامنة التلقائية";
+"Cover Image URL" = "رابط الصورة (Cover Image URL)";
 "Crash" = "تعطّل";
 "Crea tu propia paleta" = "أنشئ لوحة ألوانك الخاصة";
 "Create account" = "إنشاء حساب";
@@ -547,6 +551,7 @@
 "Easy on the eyes" = "مريح للعين";
 "Edición terminada" = "انتهاء التعديل";
 "Edit" = "تعديل";
+"Edit Folder Images" = "تعديل صور المجموعة";
 "Edit custom theme" = "تعديل السمة المخصصة";
 "Edit profile" = "تعديل الملف الشخصي";
 "Edit {name}" = "تعديل {name}";
@@ -651,6 +656,7 @@
 "Fit" = "ملاءمة";
 "Flechas" = "الأسهم";
 "Focus" = "Focus";
+"Focus GIF URL" = "رابط الصورة المتحركة (Focus GIF URL)";
 "Focus mode" = "وضع التركيز";
 "Fondo" = "الخلفية";
 "Font" = "الخط";
@@ -816,11 +822,14 @@
 "Interfaz" = "الواجهة";
 "Interfaz del sistema" = "واجهة النظام";
 "Interlineado" = "ارتفاع السطر";
+"Invalid SourceRow JSON format" = "تنسيق JSON غير صالح";
 "It is not affiliated with the maker of {product}, or with any company, addon author, or trademark holder referenced inside the app." = "لا يرتبط بصانع {product} ولا بأي شركة أو مطوّر إضافة أو مالك علامة تجارية مذكور داخل التطبيق.";
 "It is not affiliated with, endorsed by, sponsored by, or in any way associated with {company}." = "لا يرتبط بـ {company} ولا يحظى بتأييدها أو رعايتها أو بأي صلة بها.";
 "Italian" = "الإيطالية";
 "Izquierda" = "يسار";
 "Izquierda a derecha" = "من اليسار إلى اليمين";
+"JSON URL" = "رابط JSON";
+"JSON cannot be empty" = "JSON لا يمكن أن يكون فارغاً";
 "Japan's top science-fiction comic honor" = "أرفع جائزة يابانية لقصص الخيال العلمي المصوّرة";
 "Japanese" = "اليابانية";
 "Just added" = "أُضيف حديثًا";
@@ -874,6 +883,7 @@
 "Loading" = "جارٍ التحميل";
 "Loading music" = "جارٍ تحميل الموسيقى";
 "Loading plugins..." = "جارٍ تحميل الإضافات...";
+"Loading..." = "جاري التحميل...";
 "Loading…" = "جارٍ التحميل…";
 "Local" = "المحلّي";
 "Local app files" = "Local app files";
@@ -924,6 +934,7 @@
 "Mis canales" = "My channels";
 "Misc" = "Misc";
 "Missing" = "مفقود";
+"Missing TMDB Key" = "مفتاح TMDB مفقود";
 "Misterio" = "غموض";
 "Mix surround sound down to stereo" = "دمج الصوت المحيطي إلى ستيريو (Stereo)";
 "Modo de concentración" = "وضع التركيز";
@@ -1075,6 +1086,7 @@
 "Now playing: {label}" = "يُعرض الآن: {label}";
 "Nuevos estrenos de anime" = "أحدث إصدارات الأنمي";
 "Nítido (anime y caricaturas)" = "واضح (أنمي وكرتون)";
+"OK" = "OK";
 "ONA" = "ONA";
 "OTA channels + IPTV" = "قنوات البث الهوائي + IPTV";
 "OTL" = "OTL";
@@ -1146,6 +1158,7 @@
 "Parte superior de la pantalla" = "أعلى الشاشة";
 "Pasar páginas horizontalmente" = "تقليب الصفحات أفقيًا";
 "Password" = "كلمة المرور";
+"Paste JSON" = "لصق JSON";
 "Peacock" = "Peacock";
 "Peligro" = "خطر";
 "Películas" = "الأفلام";
@@ -1191,6 +1204,7 @@
 "Player options" = "Player options";
 "Playlists" = "قوائم التشغيل";
 "Playlists and servers" = "Playlists and servers";
+"Please add your TMDB API key in the Library & Metadata settings to view this folder." = "يرجى إضافة مفتاح TMDB API الخاص بك في إعدادات المكتبة والبيانات الوصفية لعرض هذه المجموعة.";
 "Plugin files" = "ملفات المكوّن الإضافي";
 "Plugin files changed on disk. Reinstall it from its repository." = "تغيّرت ملفات المكوّن الإضافي على القرص. أعد تثبيته من مستودعه.";
 "Plugins" = "المكوّنات الإضافية";
@@ -1226,12 +1240,14 @@
 "Priorizar {language}" = "رفع أولوية {language}";
 "Producer" = "منتج";
 "Profile PIN" = "رمز PIN للملف الشخصي";
+"Profile changed. Please try again." = "Profile changed. Please try again.";
 "Profile is locked. Enter the 4-digit PIN to continue." = "الملف الشخصي مقفل. أدخل رمز PIN المكوّن من 4 أرقام للمتابعة.";
 "Profiles" = "الملفات الشخصية";
 "Progreso" = "Progress";
 "Progreso de descarga" = "Download progress";
 "Progress" = "Progress";
 "Proveedores de metadatos" = "مزوّدو البيانات الوصفية";
+"Provide a JSON link or paste it directly." = "أضف رابط JSON أو الصق الكود مباشرة.";
 "Próximamente" = "Coming soon";
 "Próximos" = "قادم";
 "Próximos animes" = "أنمي قادم";
@@ -1689,6 +1705,8 @@
 "This is a Stremio addon manifest. Add it from the Addons page instead." = "هذا ملف تعريف إضافة Stremio. أضفها من صفحة الإضافات بدلاً من ذلك.";
 "This is a manga repository. Add it from the Manga page." = "هذا مستودع مانغا. أضفه من صفحة المانغا.";
 "This is how your subtitles will look." = "هكذا ستبدو الترجمة.";
+"This section depends on the addon" = "This section depends on the addon";
+"This section relies on TMDB discovery features." = "This section relies on TMDB discovery features.";
 "Thriller" = "إثارة";
 "Thrillers" = "أعمال التشويق";
 "Thumbnails download again when needed. Books, downloads, accounts and watch progress are kept." = "Thumbnails download again when needed. Books, downloads, accounts and watch progress are kept.";
@@ -1775,6 +1793,7 @@
 "Títulos ocultos" = "Hidden titles";
 "Títulos y descripciones" = "العناوين والأوصاف";
 "UFC / MMA" = "UFC / MMA";
+"URL cannot be empty" = "الرابط لا يمكن أن يكون فارغاً";
 "Ukrainian" = "الأوكرانية";
 "Ultra HD" = "Ultra HD";
 "Ultra HD · Dolby Vision" = "Ultra HD · Dolby Vision";
@@ -1855,6 +1874,7 @@
 "Xtream server" = "Xtream server";
 "Year" = "السنة";
 "You can switch later in Settings under Library & metadata." = "يمكنك التبديل لاحقًا من الإعدادات ضمن المكتبة والبيانات الوصفية.";
+"You must install this addon in your Stremio account first so Harbor can fetch its works." = "يجب عليك تثبيت هذه الإضافة في حساب Stremio الخاص بك أولاً لكي يتمكن Harbor من جلب الأعمال الخاصة بها.";
 "You're set." = "أنت جاهز.";
 "You've reached the end · {n} addons" = "لقد وصلت إلى النهاية · {n} إضافة";
 "YouTube" = "YouTube";

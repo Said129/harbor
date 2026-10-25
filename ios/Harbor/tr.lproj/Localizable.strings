@@ -51,6 +51,8 @@
 "Actualizar episodios" = "Refresh episodes";
 "Actualizar fuentes" = "Kaynakları yenile";
 "Add" = "Ekle";
+"Add Custom Source" = "Özel Kaynak Ekle";
+"Add Source" = "Kaynak Ekle";
 "Add a TMDB key in Settings to unlock the full discovery feed." = "Tam keşif akışının kilidini açmak için Ayarlar'a bir TMDB anahtarı ekleyin.";
 "Add a repository" = "Depo ekle";
 "Add bookmark" = "Add bookmark";
@@ -63,6 +65,7 @@
 "Add your TMDB key in Settings to load these catalogs." = "Bu katalogları yüklemek için Ayarlar'a TMDB anahtarınızı ekleyin.";
 "Add {language}" = "{language} ekle";
 "Addon" = "Eklenti";
+"Addon not installed" = "Addon not installed";
 "Addon order" = "Eklenti sırası";
 "Addons" = "Eklentiler";
 "Adjust the text and background. The preview shows your changes as you make them." = "Metni ve arka planı ayarlayın. Önizleme yaptığınız değişiklikleri anında gösterir.";
@@ -415,6 +418,7 @@
 "Could not save your choices. Try again." = "Could not save your choices. Try again.";
 "Could not save your tracks or listening history. Try again." = "Could not save your tracks or listening history. Try again.";
 "Couldn't auto-sync" = "Otomatik eşitlenemedi";
+"Cover Image URL" = "Kapak Görseli URL'si";
 "Crash" = "Çökme";
 "Crea tu propia paleta" = "Kendi paletinizi oluşturun";
 "Create account" = "Hesap oluştur";
@@ -523,6 +527,7 @@
 "Easy on the eyes" = "Gözleri yormaz";
 "Edición terminada" = "Düzenlemeyi bitir";
 "Edit" = "Düzenle";
+"Edit Folder Images" = "Klasör Görsellerini Düzenle";
 "Edit custom theme" = "Özel temayı düzenle";
 "Edit profile" = "Profili düzenle";
 "Edit {name}" = "{name} profilini düzenle";
@@ -627,6 +632,7 @@
 "Fit" = "Sığdır";
 "Flechas" = "Ok tuşları";
 "Focus" = "Focus";
+"Focus GIF URL" = "Odaklanınca Gösterilen GIF URL'si";
 "Focus mode" = "Odak modu";
 "Fondo" = "Arka plan";
 "Font" = "Yazı tipi";
@@ -791,11 +797,14 @@
 "Interfaz" = "Arayüz";
 "Interfaz del sistema" = "Sistem arayüzü";
 "Interlineado" = "Satır yüksekliği";
+"Invalid SourceRow JSON format" = "Geçersiz SourceRow JSON biçimi";
 "It is not affiliated with the maker of {product}, or with any company, addon author, or trademark holder referenced inside the app." = "{product} geliştiricisiyle veya uygulamada adı geçen herhangi bir şirket, eklenti geliştiricisi ya da ticari marka sahibiyle bağlantılı değildir.";
 "It is not affiliated with, endorsed by, sponsored by, or in any way associated with {company}." = "{company} ile bağlantılı değildir; bu şirket tarafından onaylanmaz, desteklenmez veya hiçbir şekilde bu şirketle ilişkili değildir.";
 "Italian" = "İtalyanca";
 "Izquierda" = "Sol";
 "Izquierda a derecha" = "Soldan sağa";
+"JSON URL" = "JSON URL'si";
+"JSON cannot be empty" = "JSON boş olamaz";
 "Japan's top science-fiction comic honor" = "Japonya'nın en prestijli bilim kurgu çizgi roman ödülü";
 "Japanese" = "Japonca";
 "Just added" = "Yeni eklenenler";
@@ -849,6 +858,7 @@
 "Loading" = "Yükleniyor";
 "Loading music" = "Müzik yükleniyor";
 "Loading plugins..." = "Eklentiler yükleniyor...";
+"Loading..." = "Yükleniyor...";
 "Loading…" = "Yükleniyor…";
 "Local" = "Yerel";
 "Local app files" = "Local app files";
@@ -899,6 +909,7 @@
 "Mis canales" = "My channels";
 "Misc" = "Misc";
 "Missing" = "Eksik";
+"Missing TMDB Key" = "TMDB Anahtarı Eksik";
 "Misterio" = "Gizem";
 "Mix surround sound down to stereo" = "Çevresel sesi stereoya indirge";
 "Modo de concentración" = "Odak modu";
@@ -1047,6 +1058,7 @@
 "Now playing: {label}" = "Şimdi oynatılıyor: {label}";
 "Nuevos estrenos de anime" = "Yeni Çıkan Animeler";
 "Nítido (anime y caricaturas)" = "Net (anime ve çizgi film)";
+"OK" = "OK";
 "ONA" = "ONA";
 "OTA channels + IPTV" = "Karasal yayın kanalları + IPTV";
 "OVA" = "OVA";
@@ -1115,6 +1127,7 @@
 "Parte superior de la pantalla" = "Ekranın üstü";
 "Pasar páginas horizontalmente" = "Turn pages horizontally";
 "Password" = "Parola";
+"Paste JSON" = "JSON Yapıştır";
 "Peacock" = "Peacock";
 "Peligro" = "Tehlike";
 "Películas" = "Filmler";
@@ -1160,6 +1173,7 @@
 "Player options" = "Player options";
 "Playlists" = "Oynatma Listeleri";
 "Playlists and servers" = "Playlists and servers";
+"Please add your TMDB API key in the Library & Metadata settings to view this folder." = "Bu klasörü görüntülemek için lütfen Kütüphane ve Meta Veriler ayarlarına TMDB API anahtarınızı ekleyin.";
 "Plugin files" = "Uzantı dosyaları";
 "Plugin files changed on disk. Reinstall it from its repository." = "Uzantı dosyaları diskte değişti. Deposundan yeniden yükleyin.";
 "Plugins" = "Uzantılar";
@@ -1195,12 +1209,14 @@
 "Priorizar {language}" = "{language} dilini öne taşı";
 "Producer" = "Yapımcı";
 "Profile PIN" = "Profil PIN'i";
+"Profile changed. Please try again." = "Profile changed. Please try again.";
 "Profile is locked. Enter the 4-digit PIN to continue." = "Profil kilitli. Devam etmek için 4 haneli PIN'i girin.";
 "Profiles" = "Profiller";
 "Progreso" = "Progress";
 "Progreso de descarga" = "Download progress";
 "Progress" = "Progress";
 "Proveedores de metadatos" = "Meta veri sağlayıcıları";
+"Provide a JSON link or paste it directly." = "Bir JSON bağlantısı girin veya JSON'u doğrudan yapıştırın.";
 "Próximamente" = "Coming soon";
 "Próximos" = "Yaklaşan";
 "Próximos animes" = "Yakında Çıkacak Animeler";
@@ -1651,6 +1667,8 @@
 "This file has one audio track." = "Bu dosyada tek bir ses parçası var.";
 "This is a manga repository. Add it from the Manga page." = "Bu bir manga deposu. Manga sayfasından ekleyin.";
 "This is how your subtitles will look." = "Altyazılarınız böyle görünecek.";
+"This section depends on the addon" = "This section depends on the addon";
+"This section relies on TMDB discovery features." = "This section relies on TMDB discovery features.";
 "Thriller" = "Gerilim";
 "Thrillers" = "Gerilim Filmleri";
 "Thumbnails download again when needed. Books, downloads, accounts and watch progress are kept." = "Thumbnails download again when needed. Books, downloads, accounts and watch progress are kept.";
@@ -1737,6 +1755,7 @@
 "Títulos ocultos" = "Hidden titles";
 "Títulos y descripciones" = "Başlıklar ve açıklamalar";
 "UFC / MMA" = "UFC / MMA";
+"URL cannot be empty" = "URL boş olamaz";
 "Ukrainian" = "Ukraynaca";
 "Ultra HD" = "Ultra HD";
 "Ultra HD · Dolby Vision" = "Ultra HD · Dolby Vision";
@@ -1813,6 +1832,7 @@
 "Xtream server" = "Xtream server";
 "Year" = "Yıl";
 "You can switch later in Settings under Library & metadata." = "Bunu daha sonra Ayarlar'daki Kütüphane ve meta veriler bölümünden değiştirebilirsiniz.";
+"You must install this addon in your Stremio account first so Harbor can fetch its works." = "Harbor'ın içeriklerini alabilmesi için önce bu eklentiyi Stremio hesabınıza yüklemelisiniz.";
 "You're set." = "Her şey hazır.";
 "You've reached the end · {n} addons" = "Sona ulaştınız · {n} eklenti";
 "YouTube" = "YouTube";

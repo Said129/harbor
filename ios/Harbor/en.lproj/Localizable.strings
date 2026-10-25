@@ -37,6 +37,8 @@
 "Actualizar episodios" = "Refresh episodes";
 "Actualizar fuentes" = "Refresh sources";
 "Add" = "Add";
+"Add Custom Source" = "Add Custom Source";
+"Add Source" = "Add Source";
 "Add bookmark" = "Add bookmark";
 "Add key" = "Add key";
 "Add language" = "Add language";
@@ -46,6 +48,7 @@
 "Add to favorites" = "Add to favorites";
 "Add your TMDB key in Settings to load these catalogs." = "Add your TMDB key in Settings to load these catalogs.";
 "Add {language}" = "Add {language}";
+"Addon not installed" = "Addon not installed";
 "Addon order" = "Addon order";
 "Addons" = "Addons";
 "Adjust the text and background. The preview shows your changes as you make them." = "Adjust the text and background. The preview shows your changes as you make them.";
@@ -332,6 +335,7 @@
 "Could not save your choices. Try again." = "Could not save your choices. Try again.";
 "Could not save your tracks or listening history. Try again." = "Could not save your tracks or listening history. Try again.";
 "Couldn't auto-sync" = "Couldn't auto-sync";
+"Cover Image URL" = "Cover Image URL";
 "Crea tu propia paleta" = "Build your own palette";
 "Create profiles for the people who use Harbor. Each can have its own appearance, settings, and PIN." = "Create profiles for the people who use Harbor. Each can have its own appearance, settings, and PIN.";
 "Crime Series" = "Crime Series";
@@ -418,6 +422,7 @@
 "Easy on the eyes" = "Easy on the eyes";
 "Edición terminada" = "Done editing";
 "Edit" = "Edit";
+"Edit Folder Images" = "Edit Folder Images";
 "Edit custom theme" = "Edit custom theme";
 "Editar tema personalizado" = "Edit custom theme";
 "El selector muestra todas las fuentes. Estos filtros y límites de calidad se aplican a la reproducción automática." = "All sources are shown in the picker. These filters and quality limits apply to automatic playback.";
@@ -503,6 +508,7 @@
 "Fit" = "Fit";
 "Flechas" = "Arrows";
 "Focus" = "Focus";
+"Focus GIF URL" = "Focus GIF URL";
 "Focus mode" = "Focus mode";
 "Fondo" = "Background";
 "Font" = "Font";
@@ -633,8 +639,11 @@
 "Interfaz" = "Interface";
 "Interfaz del sistema" = "System UI";
 "Interlineado" = "Line height";
+"Invalid SourceRow JSON format" = "Invalid SourceRow JSON format";
 "Izquierda" = "Left";
 "Izquierda a derecha" = "Left to right";
+"JSON URL" = "JSON URL";
+"JSON cannot be empty" = "JSON cannot be empty";
 "Just added" = "Just added";
 "Kawaii" = "Kawaii";
 "Keep original" = "Keep original";
@@ -680,6 +689,7 @@
 "Load more" = "Load more";
 "Loading" = "Loading";
 "Loading music" = "Loading music";
+"Loading..." = "Loading...";
 "Local app files" = "Local app files";
 "Los FPS de los subtítulos no están disponibles en este entorno de ejecución de libmpv." = "Subtitle FPS is unavailable in this libmpv runtime.";
 "Los FPS de los subtítulos no están disponibles mientras haya un subtítulo secundario activo." = "Subtitle FPS is unavailable while a secondary subtitle is active.";
@@ -719,6 +729,7 @@
 "Mis canales" = "My channels";
 "Misc" = "Misc";
 "Missing" = "Missing";
+"Missing TMDB Key" = "Missing TMDB Key";
 "Misterio" = "Mystery";
 "Mix surround sound down to stereo" = "Mix surround sound down to stereo";
 "Modo de concentración" = "Focus mode";
@@ -838,6 +849,7 @@
 "Now playing: {label}" = "Now playing: {label}";
 "Nuevos estrenos de anime" = "New Anime Releases";
 "Nítido (anime y caricaturas)" = "Crisp (anime & cartoons)";
+"OK" = "OK";
 "OTA channels + IPTV" = "OTA channels + IPTV";
 "Oculta en las listas de episodios los detalles que podrían revelar la trama hasta que los hayas visto." = "Hides spoiler-prone episode details in episode lists until you have watched them.";
 "Ocultar" = "Hide";
@@ -891,6 +903,7 @@
 "Parte superior de la pantalla" = "Top of the screen";
 "Pasar páginas horizontalmente" = "Turn pages horizontally";
 "Password" = "Password";
+"Paste JSON" = "Paste JSON";
 "Peligro" = "Danger";
 "Películas" = "Movies";
 "Películas animadas" = "Animated Movies";
@@ -924,6 +937,7 @@
 "Player options" = "Player options";
 "Playlists" = "Playlists";
 "Playlists and servers" = "Playlists and servers";
+"Please add your TMDB API key in the Library & Metadata settings to view this folder." = "Please add your TMDB API key in the Library & Metadata settings to view this folder.";
 "Plugins" = "Plugins";
 "Popular Anime" = "Popular Anime";
 "Popular Movies" = "Popular Movies";
@@ -948,10 +962,12 @@
 "Primero selecciona una pista de subtítulos." = "Select a subtitle track first.";
 "Priorizar {language}" = "Move {language} earlier";
 "Producer" = "Producer";
+"Profile changed. Please try again." = "Profile changed. Please try again.";
 "Progreso" = "Progress";
 "Progreso de descarga" = "Download progress";
 "Progress" = "Progress";
 "Proveedores de metadatos" = "Metadata providers";
+"Provide a JSON link or paste it directly." = "Provide a JSON link or paste it directly.";
 "Próximamente" = "Coming soon";
 "Próximos" = "Upcoming";
 "Próximos animes" = "Upcoming Anime";
@@ -1327,6 +1343,8 @@
 "Theater Capture" = "Theater Capture";
 "This file has one audio track." = "This file has one audio track.";
 "This is how your subtitles will look." = "This is how your subtitles will look.";
+"This section depends on the addon" = "This section depends on the addon";
+"This section relies on TMDB discovery features." = "This section relies on TMDB discovery features.";
 "Thrillers" = "Thrillers";
 "Thumbnails download again when needed. Books, downloads, accounts and watch progress are kept." = "Thumbnails download again when needed. Books, downloads, accounts and watch progress are kept.";
 "Tiempo reproducido" = "Playback time";
@@ -1393,6 +1411,7 @@
 "Typography" = "Typography";
 "Títulos ocultos" = "Hidden titles";
 "Títulos y descripciones" = "Titles and descriptions";
+"URL cannot be empty" = "URL cannot be empty";
 "Ultra HD" = "Ultra HD";
 "Ultra HD · Dolby Vision" = "Ultra HD · Dolby Vision";
 "Ultra HD · HDR" = "Ultra HD · HDR";
@@ -1454,6 +1473,7 @@
 "Writer" = "Writer";
 "Xtream server" = "Xtream server";
 "Year" = "Year";
+"You must install this addon in your Stremio account first so Harbor can fetch its works." = "You must install this addon in your Stremio account first so Harbor can fetch its works.";
 "You've reached the end · {n} addons" = "You've reached the end · {n} addons";
 "Your addons" = "Your addons";
 "Your avatar, name, and handle across Harbor." = "Your avatar, name, and handle across Harbor.";

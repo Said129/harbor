@@ -63,12 +63,49 @@
     "ui_run": 40219962030,
     "ui_passed": 2
   },
-  "apple_validation": "pending",
+  "apple_validation": {
+    "run": 40238599670,
+    "source": "9eca75352484080df3235cf23388c3490c13dfd0",
+    "status": "compiler-failure",
+    "actual_executions": 0,
+    "error": "Out-of-scope addonID reference in related(), restored to its approved implementation in follow-up",
+    "compiler_archive_sha256": "b9c1e80e374affc1bda806fc9223fceea09ca284a8e3613ff3907f860cbb27d7"
+  },
   "actual_personal_account_login_verified": false,
   "remaining_full_port_audit": [
-    "Compare pre-sign-in local customization seeding at first account activation with Desktop settings synchronization",
-    "Complete global grid options, account-backed provider lists and the remaining interface/localization audit"
+    "Verify the new guest raw-source recovery case on Apple; pre-sync-id guest imports are held until an explicit account-scoped edit, matching Desktop",
+    "Complete global grid options, nonvideo source destinations, Desktop-style requirement dialogs, account-backed provider lists and the remaining interface/localization audit"
   ],
   "full_desktop_parity_complete": false,
-  "ipa_created": false
+  "ipa_created": false,
+  "first_activation_reference": {
+    "actual_original_functions_executed": true,
+    "inputs": {
+      "src/lib/profile-sync/scheduler.ts": "17777b6d5e9d1495d48f150e519ef72e6d56831d16f36a22089d16b20ce9a355",
+      "src/lib/profile-sync/engine.ts": "328c20dc9eda6109363273963a71400435a8ad8bf984bfeb8805ad1b83b24b95"
+    },
+    "cases": 4,
+    "network_requests": 0,
+    "guest_without_sync_id_is_not_queued": true,
+    "known_profile_mutation_is_queued": true,
+    "first_remote_adoption_parks_entire_nonempty_local_source": true,
+    "empty_defaults_are_not_parked": true,
+    "apple_native_tests_executed": false
+  },
+  "follow_up": {
+    "native_cases": 30,
+    "total_executions": 34,
+    "original_captures": 12,
+    "new_first_sign_in_recovery_case": true,
+    "all_previous_custom_source_cases_unexecuted": true,
+    "apple_validation": "pending",
+    "scope": "custom-sources-repair",
+    "source": "pending"
+  },
+  "source_labels": {
+    "languages": 16,
+    "keys_selected": 25,
+    "previous_existing_translations_preserved": true,
+    "source": "Pinned Desktop locale catalogs; existing mobile-only fallback policy retained"
+  }
 }

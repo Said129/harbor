@@ -220,8 +220,10 @@ struct PageSyncRecord: Codable, Sendable {
                 var defaults = PageLayout(); defaults.secondaryMoreInfo = preferences.page != "home"; defaults.playButtonSquare = preferences.page != "home"
                 let previous = try codec(preferences.wireProjection ?? incoming.value).applying(preferences.layout, mapping: mapping).raw
                 let remote = try codec(incoming.value).applying(layout, mapping: mapping).raw
-                if stored.applied == nil, preferences.layout != defaults || preferences.lastEditor == expected.editorID && preferences.wireProjection != nil,
-                   previous != remote {
+                // Desktop also parks a guest's raw source rows on first sign-in,
+                // even when no typed row preference changed before that sign-in.
+                let hasLocalLayout = preferences.layout != defaults || preferences.wireProjection != nil
+                if stored.applied == nil, hasLocalLayout, previous != remote {
                     next.parked = .init(value: previous, lostToRev: incoming.rev)
                 }
                 try adopt(layout, record: next, in: expected)

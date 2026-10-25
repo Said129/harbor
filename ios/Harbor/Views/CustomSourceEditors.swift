@@ -32,7 +32,7 @@ struct CustomSourceImportView: View {
                         TextEditor(text: $raw).font(.system(.caption, design: .monospaced)).frame(minHeight: 220)
                             .textInputAutocapitalization(.never).autocorrectionDisabled().focused($focused).privacySensitive().accessibilityIdentifier("source-import-json")
                     }
-                    Button(text("Import file")) { focused = false; importing = true }.accessibilityIdentifier("source-import-file")
+                    Button(text("Import files")) { focused = false; importing = true }.accessibilityIdentifier("source-import-file")
                 } footer: { Text(text("Provide a JSON link or paste it directly.")) }
                 if let error { Section { Text(error).foregroundStyle(.orange).accessibilityIdentifier("source-import-error") } }
                 if busy { Section { ProgressView(text("Loading...")) } }

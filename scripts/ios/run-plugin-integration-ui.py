@@ -12,7 +12,7 @@ import plistlib
 build = Path('ios/build'); canonical = build / 'canonical'; canonical.mkdir(parents=True, exist_ok=True)
 recordings = build / 'service-recordings'; recordings.mkdir(parents=True, exist_ok=True)
 plan = json.loads((build / 'preserved-plugin-integration.json').read_text())
-if plan.get('block') == 'custom-sources':
+if plan.get('block') in ('custom-sources', 'custom-sources-repair'):
     runpy.run_path('scripts/ios/custom-source-fixture-server.py')['start'](build)
 preserve_app = plan.get('preserve_prepared_app_data', False)
 batches = plan.get('ui_batches')

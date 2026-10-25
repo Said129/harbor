@@ -51,6 +51,8 @@
 "Actualizar episodios" = "Refresh episodes";
 "Actualizar fuentes" = "स्रोत रिफ़्रेश करें";
 "Add" = "जोड़ें";
+"Add Custom Source" = "कस्टम स्रोत जोड़ें";
+"Add Source" = "स्रोत जोड़ें";
 "Add a TMDB key in Settings to unlock the full discovery feed." = "पूरी डिस्कवरी फ़ीड अनलॉक करने के लिए सेटिंग्स में TMDB कुंजी जोड़ें।";
 "Add a repository" = "रिपॉज़िटरी जोड़ें";
 "Add bookmark" = "Add bookmark";
@@ -63,6 +65,7 @@
 "Add your TMDB key in Settings to load these catalogs." = "इन कैटलॉग को लोड करने के लिए सेटिंग्स में अपनी TMDB कुंजी जोड़ें।";
 "Add {language}" = "{language} जोड़ें";
 "Addon" = "ऐडऑन";
+"Addon not installed" = "Addon not installed";
 "Addon order" = "ऐडऑन क्रम";
 "Addons" = "ऐडऑन";
 "Adjust the text and background. The preview shows your changes as you make them." = "टेक्स्ट और पृष्ठभूमि समायोजित करें। बदलाव करते ही पूर्वावलोकन में दिखते हैं।";
@@ -415,6 +418,7 @@
 "Could not save your choices. Try again." = "Could not save your choices. Try again.";
 "Could not save your tracks or listening history. Try again." = "Could not save your tracks or listening history. Try again.";
 "Couldn't auto-sync" = "अपने-आप सिंक नहीं हो सका";
+"Cover Image URL" = "कवर इमेज URL";
 "Crash" = "क्रैश";
 "Crea tu propia paleta" = "अपना पैलेट बनाएँ";
 "Create account" = "अकाउंट बनाएँ";
@@ -523,6 +527,7 @@
 "Easy on the eyes" = "आँखों के लिए आरामदायक";
 "Edición terminada" = "संपादन पूरा करें";
 "Edit" = "संपादित करें";
+"Edit Folder Images" = "फ़ोल्डर की इमेज संपादित करें";
 "Edit custom theme" = "कस्टम थीम संपादित करें";
 "Edit profile" = "प्रोफ़ाइल संपादित करें";
 "Edit {name}" = "{name} को संपादित करें";
@@ -627,6 +632,7 @@
 "Fit" = "फ़िट करें";
 "Flechas" = "तीर";
 "Focus" = "Focus";
+"Focus GIF URL" = "फ़ोकस GIF URL";
 "Focus mode" = "फ़ोकस मोड";
 "Fondo" = "बैकग्राउंड";
 "Font" = "फ़ॉन्ट";
@@ -791,11 +797,14 @@
 "Interfaz" = "इंटरफ़ेस";
 "Interfaz del sistema" = "सिस्टम UI";
 "Interlineado" = "लाइन की ऊँचाई";
+"Invalid SourceRow JSON format" = "अमान्य SourceRow JSON फ़ॉर्मैट";
 "It is not affiliated with the maker of {product}, or with any company, addon author, or trademark holder referenced inside the app." = "यह {product} के निर्माता या ऐप में संदर्भित किसी भी कंपनी, ऐडऑन लेखक या ट्रेडमार्क धारक से संबद्ध नहीं है।";
 "It is not affiliated with, endorsed by, sponsored by, or in any way associated with {company}." = "यह {company} से संबद्ध नहीं है, न ही उसके द्वारा अनुमोदित या प्रायोजित है और न ही किसी भी तरह उससे जुड़ा है।";
 "Italian" = "इतालवी";
 "Izquierda" = "बायाँ";
 "Izquierda a derecha" = "बाएँ से दाएँ";
+"JSON URL" = "JSON URL";
+"JSON cannot be empty" = "JSON खाली नहीं हो सकता";
 "Japan's top science-fiction comic honor" = "जापान का सर्वोच्च साइंस-फिक्शन कॉमिक सम्मान";
 "Japanese" = "जापानी";
 "Just added" = "हाल ही में जोड़ा गया";
@@ -849,6 +858,7 @@
 "Loading" = "लोड हो रहा है";
 "Loading music" = "संगीत लोड हो रहा है";
 "Loading plugins..." = "प्लगइन लोड हो रहे हैं...";
+"Loading..." = "लोड हो रहा है...";
 "Loading…" = "लोड हो रहा है…";
 "Local" = "लोकल";
 "Local app files" = "Local app files";
@@ -899,6 +909,7 @@
 "Mis canales" = "My channels";
 "Misc" = "Misc";
 "Missing" = "गायब";
+"Missing TMDB Key" = "TMDB कुंजी नहीं मिली";
 "Misterio" = "रहस्य";
 "Mix surround sound down to stereo" = "सराउंड साउंड को स्टीरियो में मिक्स करें";
 "Modo de concentración" = "फ़ोकस मोड";
@@ -1047,6 +1058,7 @@
 "Now playing: {label}" = "अभी चल रहा है: {label}";
 "Nuevos estrenos de anime" = "नई एनीमे रिलीज़";
 "Nítido (anime y caricaturas)" = "शार्प (एनीमे और कार्टून)";
+"OK" = "OK";
 "ONA" = "ONA";
 "OTA channels + IPTV" = "OTA चैनल + IPTV";
 "OVA" = "OVA";
@@ -1115,6 +1127,7 @@
 "Parte superior de la pantalla" = "स्क्रीन के ऊपर";
 "Pasar páginas horizontalmente" = "Turn pages horizontally";
 "Password" = "पासवर्ड";
+"Paste JSON" = "JSON पेस्ट करें";
 "Peacock" = "Peacock";
 "Peligro" = "खतरा";
 "Películas" = "फ़िल्में";
@@ -1160,6 +1173,7 @@
 "Player options" = "Player options";
 "Playlists" = "प्लेलिस्ट";
 "Playlists and servers" = "Playlists and servers";
+"Please add your TMDB API key in the Library & Metadata settings to view this folder." = "यह फ़ोल्डर देखने के लिए कृपया लाइब्रेरी और मेटाडेटा सेटिंग्स में अपनी TMDB API कुंजी जोड़ें।";
 "Plugin files" = "प्लगइन फ़ाइलें";
 "Plugin files changed on disk. Reinstall it from its repository." = "डिस्क पर प्लगइन की फ़ाइलें बदल गई हैं। इसे इसकी रिपॉज़िटरी से दोबारा इंस्टॉल करें।";
 "Plugins" = "प्लगइन";
@@ -1195,12 +1209,14 @@
 "Priorizar {language}" = "{language} की प्राथमिकता बढ़ाएँ";
 "Producer" = "निर्माता";
 "Profile PIN" = "प्रोफ़ाइल PIN";
+"Profile changed. Please try again." = "Profile changed. Please try again.";
 "Profile is locked. Enter the 4-digit PIN to continue." = "प्रोफ़ाइल लॉक है। जारी रखने के लिए 4 अंकों का PIN दर्ज करें।";
 "Profiles" = "प्रोफ़ाइलें";
 "Progreso" = "Progress";
 "Progreso de descarga" = "Download progress";
 "Progress" = "Progress";
 "Proveedores de metadatos" = "मेटाडेटा प्रदाता";
+"Provide a JSON link or paste it directly." = "JSON लिंक दें या उसे सीधे पेस्ट करें।";
 "Próximamente" = "Coming soon";
 "Próximos" = "आगामी";
 "Próximos animes" = "आगामी ऐनिमे";
@@ -1651,6 +1667,8 @@
 "This file has one audio track." = "इस फ़ाइल में एक ऑडियो ट्रैक है।";
 "This is a manga repository. Add it from the Manga page." = "यह मांगा रिपॉज़िटरी है। इसे मांगा पेज से जोड़ें।";
 "This is how your subtitles will look." = "आपके सबटाइटल ऐसे दिखेंगे।";
+"This section depends on the addon" = "This section depends on the addon";
+"This section relies on TMDB discovery features." = "This section relies on TMDB discovery features.";
 "Thriller" = "थ्रिलर";
 "Thrillers" = "थ्रिलर";
 "Thumbnails download again when needed. Books, downloads, accounts and watch progress are kept." = "Thumbnails download again when needed. Books, downloads, accounts and watch progress are kept.";
@@ -1737,6 +1755,7 @@
 "Títulos ocultos" = "Hidden titles";
 "Títulos y descripciones" = "शीर्षक और विवरण";
 "UFC / MMA" = "UFC / MMA";
+"URL cannot be empty" = "URL खाली नहीं हो सकता";
 "Ukrainian" = "यूक्रेनी";
 "Ultra HD" = "Ultra HD";
 "Ultra HD · Dolby Vision" = "Ultra HD · Dolby Vision";
@@ -1813,6 +1832,7 @@
 "Xtream server" = "Xtream server";
 "Year" = "वर्ष";
 "You can switch later in Settings under Library & metadata." = "आप बाद में सेटिंग्स में लाइब्रेरी और मेटाडेटा के अंतर्गत इसे बदल सकते हैं।";
+"You must install this addon in your Stremio account first so Harbor can fetch its works." = "आपको पहले यह ऐडऑन अपने Stremio अकाउंट में इंस्टॉल करना होगा, ताकि Harbor इससे कंटेंट ला सके।";
 "You're set." = "सब तैयार है।";
 "You've reached the end · {n} addons" = "आप अंत तक पहुँच गए हैं · {n} ऐडऑन";
 "YouTube" = "YouTube";
