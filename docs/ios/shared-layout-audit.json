@@ -1,0 +1,13 @@
+{
+  "reference": "Harbor Desktop 0.9.132 Beta, preserved source",
+  "source": "src/lib/layout-sync/sections.ts, store.ts; src/lib/profile-sync/engine.ts, scheduler.ts; src/lib/settings.tsx",
+  "registered_settings_sections": ["home", "anime", "nav", "services"],
+  "other_registered_sections": ["account:profiles", "account:watchedby"],
+  "local_edits": "settings.tsx marks the active profile's section dirty. scheduler.scopeFor resolves only that profile's syncId; it does not fan out a local mutation to every linked profile document",
+  "incoming_documents": "engine.applyDocs walks registered documents for every known syncId, ordered by section rank and original response order",
+  "linked_storage": "Linked profiles read and write the shared settings store. Unlinked profiles have independent settings; inactive profiles are applied through persistence rather than the active UI provider",
+  "correction_to_previous_work_notes": "Automatically sending each change to every linked profile would add behavior absent from the reference. The actual missing work is full-roster section hydration and correct shared-store projection while retaining per-document revisions and pending intents",
+  "native_current_behavior": "HarborProfileSync applies home, anime, nav and services only for the active profile. Shared local namespaces already exist, but incoming inactive profile sections are not yet applied",
+  "full_roster_layout_hydration_implemented": false,
+  "full_desktop_parity_complete": false
+}

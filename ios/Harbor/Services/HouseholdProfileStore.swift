@@ -17,6 +17,7 @@ struct HouseholdProfileState: Codable, Equatable, Sendable {
     var synchronizationAccount: String?
     var rosterAttempt: HouseholdRosterAttempt?
     var sharedSettingsOwner: String?
+    var artworkServer: HarborIdentityServer?
 
     func validated() throws -> Self {
         guard version == 1, Set(profiles.map(\.id)).count == profiles.count,
@@ -30,6 +31,7 @@ struct HouseholdProfileState: Codable, Equatable, Sendable {
               Set(profiles.compactMap(\.legacyOwner)).count == profiles.compactMap(\.legacyOwner).count,
               Set(profiles.compactMap(\.localDataOwner)).count == profiles.compactMap(\.localDataOwner).count,
               sharedSettingsOwner == nil || (!sharedSettingsOwner!.isEmpty && sharedSettingsOwner!.utf8.count <= 512),
+              artworkServer?.retired != true,
               tombstones.count <= 64, tombstones.allSatisfy(\.deleted),
               selectedID == nil || profiles.contains(where: { $0.id == selectedID }),
               serverRevision == nil || (serverRevision! >= 0 && serverRevision! <= 9_007_199_254_740_991),
@@ -128,6 +130,11 @@ struct HouseholdProfileState: Codable, Equatable, Sendable {
             guard target.credential == nil || unlocked.contains(id) else { throw HarborError(code: "profile-locked") }
             guard target.parentCredential == nil || parentUnlocked.contains(id) else { throw HarborError(code: "profile-parent-locked") }
         }
+    }
+    func bindArtworkServer(_ server: HarborIdentityServer?, account: String) throws {
+        guard let server else { return }
+        guard ready, scope == .harbor(account: account), !server.retired else { throw HarborError(code: "profile-account-scope") }
+        var next = state; next.artworkServer = server; try commit(next)
     }
     /// The context stages private source sessions first. An interrupted activation
     /// can retry this atomic roster install without renaming personal data folders.

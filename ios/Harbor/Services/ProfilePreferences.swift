@@ -106,7 +106,7 @@ final class ProfilePreferences {
         legacyReady = true; legacyError = nil
         if let didChange { didChange(previous, value) } else { cloud.enqueue(before: previous, after: value) }
     }
-    func adopt(_ wire: JSONValue, accountID: String) throws {
+    func adopt(_ wire: JSONValue, accountID: String, server: HarborIdentityServer = .community) throws {
         guard ready, let name = wire["name"].string else { throw HarborError(code: "profile-data") }
         var next = value; next.name = String(name.prefix(32))
         if next.photo != nil, next.photoAccountID != accountID {
@@ -119,7 +119,7 @@ final class ProfilePreferences {
         if let path = wire["avatar"].string, path.hasPrefix("/avatars/") || path.hasPrefix("/kids/avatars/") {
             let id = String(path.split(separator: "/").last?.split(separator: ".").first ?? "")
             if DesktopAvatar.catalog.contains(where: { $0.id == id }) { next.avatar = id; next.photo = nil }
-            else if path.count <= 512, !path.contains(".."), let url = URL(string: "https://harbor.site" + path), url.host == "harbor.site" { next.remoteAvatar = url.absoluteString; next.photo = nil }
+            else if let url = server.avatar(.string(path)) { next.remoteAvatar = url; next.photo = nil }
         } else if next.photo == nil { next.initialsAvatar = true }
         guard next.valid else { throw HarborError(code: "profile-data") }
         if let binding { try binding.adopt(next, avatar: wire["avatar"], account: accountID); legacyValue = binding.value }

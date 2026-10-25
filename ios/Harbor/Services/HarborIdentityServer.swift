@@ -29,4 +29,10 @@ struct HarborIdentityServer: Codable, Equatable, Sendable {
         // on a replacement server must never inherit those private namespaces.
         self == .original ? id : "realm-v1-" + HouseholdProfileScope.hash([base, id])
     }
+
+    func avatar(_ value: JSONValue) -> String? {
+        guard !retired, let path = DesktopHouseholdProfile.portableAvatar(value).string,
+              let url = URL(string: base + path), url.host == host else { return nil }
+        return url.absoluteString
+    }
 }

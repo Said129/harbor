@@ -23,9 +23,9 @@ import Observation
     var value: MobileProfile {
         guard let profile, profiles.appearanceOwner(profile) == owner else { return MobileProfile() }
         return Self.project(name: profile.desktop.name, color: profile.desktop.raw["color"].string,
-                            avatar: profile.desktop.raw["avatar"], photo: profile.localPhotoID.flatMap(photos.cachedPhoto))
+                            avatar: profile.desktop.raw["avatar"], photo: profile.localPhotoID.flatMap(photos.cachedPhoto), server: profiles.state.artworkServer ?? .community)
     }
-    static func project(name: String, color: String?, avatar: JSONValue, photo: ProfilePhotoRecord? = nil) -> MobileProfile {
+    static func project(name: String, color: String?, avatar: JSONValue, photo: ProfilePhotoRecord? = nil, server: HarborIdentityServer = .community) -> MobileProfile {
         var result = MobileProfile()
         result.name = name
         let hex = color?.replacingOccurrences(of: "#", with: "") ?? ""
@@ -36,7 +36,8 @@ import Observation
             let id = String(raw.split(separator: "/").last?.split(separator: ".").first ?? "")
             if DesktopHouseholdProfile.portableAvatar(.string(raw)) != .null {
                 if DesktopAvatar.catalog.contains(where: { $0.id == id }) { result.avatar = id }
-                else { result.remoteAvatar = "https://harbor.site" + raw }
+                else if let url = server.avatar(.string(raw)) { result.remoteAvatar = url }
+                else { result.initialsAvatar = true }
             }
             else if Self.remoteAvatar(raw) { result.remoteAvatar = raw }
             else { result.initialsAvatar = true }

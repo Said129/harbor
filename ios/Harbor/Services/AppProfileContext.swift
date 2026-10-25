@@ -157,12 +157,13 @@ struct ActiveProfileBinding: Equatable, Sendable {
     /// Called only after an authenticated full-state GET has been validated.
     /// Import aliases keep old shelves/settings readable; neither those aliases
     /// nor the staged Stremio sessions enter the portable roster.
-    @discardableResult func activateHarbor(account: String, document: HarborLayoutDocument?) throws -> Bool {
+    @discardableResult func activateHarbor(account: String, document: HarborLayoutDocument?, artworkServer: HarborIdentityServer? = nil) throws -> Bool {
         guard !busy, profiles.ready, sessions.ready, !account.isEmpty, account.utf8.count <= 256,
               document == nil || document?.key == HarborHouseholdSync.key else { throw HarborError(code: "household-activation") }
         let incoming = try document.map { try DesktopHouseholdRoster($0.value) }
-        if profiles.scope == .harbor(account: account) { return false }
+        if profiles.scope == .harbor(account: account) { try profiles.bindArtworkServer(artworkServer, account: account); return false }
         let destination = profileFactory(.harbor(account: account))
+        try destination.bindArtworkServer(artworkServer, account: account)
         guard destination.ready else { throw HarborError(code: "household-unavailable") }
         if destination.profiles.isEmpty, destination.state.serverRevision == nil, destination.state.synchronizationAccount == nil,
            case .local = profiles.scope, sessions.mayImportDevice(into: account) {

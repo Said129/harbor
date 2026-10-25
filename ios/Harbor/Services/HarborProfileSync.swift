@@ -294,7 +294,7 @@ final class HarborProfileSync {
         guard scope == generation, stored.session?.account == account else { throw HarborError(code: "account-changed") }
         let incoming = try HarborLayoutDocument.state(state, key: HarborHouseholdSync.key)
         let previous = context.profiles.state, previousBinding = context.binding
-        let activated = try context.activateHarbor(account: account, document: incoming)
+        let activated = try context.activateHarbor(account: account, document: incoming, artworkServer: stored.session?.realm)
         if householdSync?.account != account || householdSync?.profiles !== context.profiles {
             householdSync?.invalidate(); householdSync = HarborHouseholdSync(account: account, profiles: context.profiles)
         }
@@ -349,7 +349,7 @@ final class HarborProfileSync {
         guard scope == generation else { return }
         if let pending = stored.pending, pending.account == session.account { roster = try roster.applying(pending.fields, to: pending.syncId) }
         guard let final = roster.profile(selectedID ?? id) else { throw HarborError(code: "profile-sync-target") }
-        if householdContext == nil, boundLayoutProfile == nil || boundLayoutProfile?.primary == true { try profile?.adopt(final, accountID: session.account) }
+        if householdContext == nil, boundLayoutProfile == nil || boundLayoutProfile?.primary == true { try profile?.adopt(final, accountID: session.account, server: session.realm) }
         navigation.requestSync = { [weak self] in self?.scheduleSync() }
         services.requestSync = { [weak self] in self?.scheduleSync() }
         page("home").requestSync = { [weak self] in self?.scheduleSync() }

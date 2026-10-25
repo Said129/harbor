@@ -6,6 +6,9 @@ import re
 import runpy
 
 requested = os.environ.get('HARBOR_NATIVE_SELECTION', '').strip()
+if requested == 'native-only:artwork-server' or 'HarborTests.HarborArtworkServerTests/' in requested:
+    runpy.run_path('scripts/ios/prepare-artwork-server-selection.py')
+    raise SystemExit(0)
 if requested == 'affected:identity-server' or 'HarborTests.HarborIdentityServerTests/' in requested:
     runpy.run_path('scripts/ios/prepare-identity-server-selection.py')
     raise SystemExit(0)

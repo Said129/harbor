@@ -1,0 +1,15 @@
+{
+  "reference": "Harbor Desktop 0.9.132 Beta artwork and portable profile avatars",
+  "public_index": "https://harborcommunity.site/anime-hero-art.json",
+  "anonymous_probe": "2026-10-25: HTTP 200 application/json, 2964470 bytes, v/art document with 6309 entries; no account credentials",
+  "bundled_avatars": "Resolve existing DesktopAvatar catalog entries locally before considering a remote URL. The sampled hosted harbor_animal_01.webp returned 404, so replacing local assets with hosted requests would break existing avatars",
+  "additional_avatars": "Use the explicitly chosen account server for portable paths absent from the bundled catalog. Persist that origin as device-only household artwork metadata, including across restart; never add it to account:profiles",
+  "legacy_appearance_facade": "Explicit identity server also supplies the avatar origin when no household binding is present",
+  "offline_behavior": "Keep shipped artwork and the previous cache when the daily index fails decoding or falls below 90 percent of the shipped entry count",
+  "request_behavior": "Daily updates are single-flight and throttled for 24 hours; enrichment keeps media identity and works from local data while the update runs",
+  "new_native_cases": 8,
+  "apple_validation_pending": true,
+  "real_account_custom_avatar_download_verified": false,
+  "full_desktop_parity_complete": false,
+  "ipa_created": false
+}

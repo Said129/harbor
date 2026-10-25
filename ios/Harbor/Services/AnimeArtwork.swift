@@ -3,6 +3,7 @@ import Foundation
 /// Harbor's original public art index, with its daily public update.
 actor AnimeArtwork {
     static let shared = AnimeArtwork()
+    static let publicIndex = "https://harborcommunity.site/anime-hero-art.json"
     private struct Art: Decodable, Sendable {
         let bg: String?
         let logo: String?
@@ -14,13 +15,23 @@ actor AnimeArtwork {
     private var refreshing = false
     private var checked = Date.distantPast
     private var minimumEntryCount = 1
-    private var cacheURL: URL? {
-        try? FileManager.default.url(for: .cachesDirectory, in: .userDomainMask, appropriateFor: nil, create: true).appendingPathComponent("harbor-anime-hero-art.json")
+    private let fetch: @Sendable (String) async throws -> JSONValue
+    private let cacheURL: URL?
+    init(seed: Data? = nil, cacheURL: URL? = nil, fetch: @escaping @Sendable (String) async throws -> JSONValue = { try await HTTPClient().json($0, timeout: 20) }) {
+        self.fetch = fetch
+        if let seed {
+            self.cacheURL = cacheURL
+            if let value = try? JSONDecoder().decode(Index.self, from: seed) {
+                art = value.art; minimumEntryCount = max(1, Int(ceil(Double(value.art.count) * 0.9)))
+            }
+            loaded = true
+        } else {
+            self.cacheURL = cacheURL ?? (try? FileManager.default.url(for: .cachesDirectory, in: .userDomainMask, appropriateFor: nil, create: true).appendingPathComponent("harbor-anime-hero-art.json"))
+        }
     }
     func enrich(_ items: [Media]) async -> [Media] {
         loadSeed()
         if !refreshing, Date().timeIntervalSince(checked) >= 24 * 60 * 60 {
-            refreshing = true
             Task { await refresh() }
         }
         return items.map { original in
@@ -45,9 +56,11 @@ actor AnimeArtwork {
             checked = (try? url.resourceValues(forKeys: [.contentModificationDateKey]).contentModificationDate) ?? .distantPast
         }
     }
-    private func refresh() async {
+    func refresh() async {
+        guard !refreshing, Date().timeIntervalSince(checked) >= 24 * 60 * 60 else { return }
+        refreshing = true
         defer { refreshing = false; checked = Date() }
-        guard let payload = try? await HTTPClient().json("https://harbor.site/anime-hero-art.json", timeout: 20),
+        guard let payload = try? await fetch(Self.publicIndex),
               let data = try? JSONEncoder().encode(payload), data.count <= 8 * 1024 * 1024, let updated = try? JSONDecoder().decode(Index.self, from: data),
               updated.art.count >= minimumEntryCount else { return }
         art = updated.art
