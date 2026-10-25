@@ -3,6 +3,7 @@ import atexit
 from functools import partial
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 import json
+import re
 from pathlib import Path
 import shutil
 import tempfile
@@ -15,13 +16,15 @@ def start(build):
     folder = tempfile.TemporaryDirectory(prefix='harbor-owned-sources-', dir=build); directory = Path(folder.name)
     base = 'http://127.0.0.1:18734'
     image = Path('ios/Harbor/Assets.xcassets/avatar-eboy_manga_eyes_bw_zoomed.imageset/avatar.png')
-    for name in ['cover.png', 'edited.png']: shutil.copy2(image, directory / name)
+    shutil.copy2(image, directory / 'cover.png')
+    shutil.copy2('ios/Harbor/Assets.xcassets/avatar-harbor_cat_01.imageset/avatar.png', directory / 'edited.png')
     shutil.copy2('ios/HarborTests/Fixtures/owned-source-focus.gif', directory / 'focus.gif')
     manifest = dict(id='owned.source.catalog', name='Owned source catalog', version='1.0.0', types=['movie'], resources=['catalog'],
         catalogs=[dict(id='owned', type='movie', name='Owned catalog', extra=[dict(name='skip', isRequired=False)])])
     (directory / 'manifest.json').write_text(json.dumps(manifest), 'utf-8')
     catalog = directory / 'catalog/movie'; catalog.mkdir(parents=True)
     entries = [dict(id='owned-source-title-' + str(i), type='movie', name='Owned catalog title ' + str(i), poster=base + '/cover.png') for i in range(1, 5)]
+    fifth = dict(id='owned-source-title-5', type='movie', name='Owned catalog title 5', poster=base + '/cover.png')
     (catalog / 'owned.json').write_text(json.dumps(dict(metas=entries)), 'utf-8')
     (catalog / 'owned').mkdir()
     (catalog / 'owned/skip=4.json').write_text(json.dumps(dict(metas=[])), 'utf-8')
@@ -39,7 +42,10 @@ def start(build):
         def do_GET(self):
             path = unquote(urlsplit(self.path).path)
             if path.startswith('/catalog/movie/owned'):
-                payload = json.dumps(dict(metas=[] if 'skip=4' in path else entries)).encode()
+                match = re.search(r'/skip=(\d+)(?:\.json)?$', path)
+                skip = int(match[1]) if match else 0
+                rows = entries if skip in [0, 4] else [fifth] if skip == 8 else []
+                payload = json.dumps(dict(metas=rows)).encode()
                 self.send_response(200); self.send_header('Content-Type', 'application/json'); self.send_header('Content-Length', str(len(payload)))
                 self.end_headers(); self.wfile.write(payload); return
             super().do_GET()

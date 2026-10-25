@@ -19,7 +19,9 @@
     "Native addon catalog resolution, TMDB discovery/company/collection and anonymous Trakt list hydration",
     "Unknown fields and public manifest/catalog identities survive edits; private account transport URLs are never inserted into layouts",
     "Raw page baselines keep source-only edits through missing server documents, offline edits, queue failures, conflicts and late acknowledgements",
-    "Imports and image editors reject a retired profile activation; page data follows the configured settings scope"
+    "Imports and image editors reject a retired profile activation; page data follows the configured settings scope",
+    "Duplicate-only catalog pages keep loading using raw provider offsets and the original forty-page cap",
+    "Paging sentinels remain mounted while loading; returning from details preserves the loaded genre and provider grid"
   ],
   "original_reference_executions": {
     "parser": 12,
@@ -73,8 +75,8 @@
   },
   "actual_personal_account_login_verified": false,
   "remaining_full_port_audit": [
-    "Authenticate the actual native failure, retain the other passed cases and complete the new source interface Apple review",
-    "Complete global grid options, nonvideo source destinations, account-backed provider lists and the remaining interface/localization audit"
+    "Execute the selected failed/affected/new source interface cases and inspect all original modal/card screenshots",
+    "Complete Desktop poster/TV card styles and tuning, back-to-top/count/scroll presentation, nonvideo source destinations, account-backed provider lists and the remaining interface/localization audit"
   ],
   "full_desktop_parity_complete": false,
   "ipa_created": false,
@@ -98,13 +100,23 @@
     "original_captures": 12,
     "new_first_sign_in_recovery_case": true,
     "all_previous_custom_source_cases_unexecuted": true,
-    "apple_validation": "running; do not infer case counts from step status",
+    "apple_validation": "completed; actual partial results retained",
     "scope": "custom-sources-repair",
     "source": "dedbd9e9111f2980d1bf1a81275e44b3f18fbce7",
     "run": 40239615319,
     "app_simulator_build": "passed",
-    "native_phase": "failed; original execution logs not yet available",
-    "ui_phase": "in_progress"
+    "native_phase": "29 passed; 1 failed due to re-encoding JSON key order in a test assertion",
+    "ui_phase": "2 failed before first required capture: Select All is unavailable in an empty field",
+    "native_passed": 29,
+    "native_failed": 1,
+    "fresh_preparations_passed": 2,
+    "ui_passed": 0,
+    "ui_failed": 2,
+    "original_required_captures": 0,
+    "new_warnings": 0,
+    "archive_sha256": "b80fd94fa01c01703e92fa6e90d36df01ffc242511892dfc5e6ccaac90a5f26a",
+    "native_tree_sha256": "7d99cd12892017022a14a675fe888b21de3b0a13cd1b38b8e10ddeab1e91702d",
+    "native_log_sha256": "70c30d0ba0901201cb5782eafa0feee4c69d42093192032181a0b45645d3e958"
   },
   "source_labels": {
     "languages": 16,
@@ -114,19 +126,206 @@
     "additional_fetch_error_entries": 16
   },
   "interface_follow_up": {
-    "source": "Interface changes in this commit; not in the running dedbd validation",
+    "source": "This source interface revision; awaiting Apple execution",
     "implemented": [
       "Themed missing-TMDB/addon popovers before opening a folder",
       "Theme borders, shading and touch-press GIF activation with Reduce Motion respected",
       "Safe translated fetch errors distinguished from malformed JSON",
       "ImageIO source cache disabled to avoid retaining full original frames"
     ],
-    "new_native_cases": 2,
+    "new_native_cases": 4,
     "affected_gif_cases": 1,
     "affected_ui_cases": 2,
-    "expected_original_captures": 20,
-    "previous_native_failures": "Inspect current original logs before finalizing the next selection",
+    "expected_original_captures": 24,
+    "previous_native_failures": "Only the failed file-read assertion is selected again; retain other cases except the affected GIF decoder",
     "apple_validated": false,
-    "dispatched": false
+    "dispatched": false,
+    "scope": "custom-source-interface",
+    "corrected_failed_native_cases": 1,
+    "selected_native_cases": 6,
+    "fresh_preparations": 2,
+    "expected_total_executions": 10,
+    "retained_parent_native_passes": 28
+  },
+  "grid_reference": {
+    "inputs": {
+      "src/views/grid.tsx": "24f8b69e46e548a6373d7c907ba248db3f38f650f21ce2e18a0b8f6f42efbb03"
+    },
+    "actual_original_success_callback_executed": true,
+    "provider_requests": 0,
+    "native_swift_executed": false,
+    "cases": [
+      {
+        "name": "first",
+        "before": {
+          "page": 0,
+          "loaded": 0,
+          "done": false,
+          "metas": []
+        },
+        "batch": [
+          {
+            "id": "a"
+          },
+          {
+            "id": "b"
+          }
+        ],
+        "after": {
+          "page": 1,
+          "loaded": 2,
+          "done": false,
+          "metas": [
+            {
+              "id": "a"
+            },
+            {
+              "id": "b"
+            }
+          ]
+        }
+      },
+      {
+        "name": "duplicate-only",
+        "before": {
+          "page": 1,
+          "loaded": 2,
+          "done": false,
+          "metas": [
+            {
+              "id": "a"
+            },
+            {
+              "id": "b"
+            }
+          ]
+        },
+        "batch": [
+          {
+            "id": "a"
+          },
+          {
+            "id": "b"
+          }
+        ],
+        "after": {
+          "page": 2,
+          "loaded": 4,
+          "done": false,
+          "metas": [
+            {
+              "id": "a"
+            },
+            {
+              "id": "b"
+            }
+          ]
+        }
+      },
+      {
+        "name": "fresh-after-duplicates",
+        "before": {
+          "page": 2,
+          "loaded": 4,
+          "done": false,
+          "metas": [
+            {
+              "id": "a"
+            },
+            {
+              "id": "b"
+            }
+          ]
+        },
+        "batch": [
+          {
+            "id": "c"
+          }
+        ],
+        "after": {
+          "page": 3,
+          "loaded": 5,
+          "done": false,
+          "metas": [
+            {
+              "id": "a"
+            },
+            {
+              "id": "b"
+            },
+            {
+              "id": "c"
+            }
+          ]
+        }
+      },
+      {
+        "name": "empty",
+        "before": {
+          "page": 3,
+          "loaded": 5,
+          "done": false,
+          "metas": [
+            {
+              "id": "a"
+            },
+            {
+              "id": "b"
+            },
+            {
+              "id": "c"
+            }
+          ]
+        },
+        "batch": [],
+        "after": {
+          "page": 4,
+          "loaded": 5,
+          "done": true,
+          "metas": [
+            {
+              "id": "a"
+            },
+            {
+              "id": "b"
+            },
+            {
+              "id": "c"
+            }
+          ]
+        }
+      },
+      {
+        "name": "page-cap",
+        "before": {
+          "page": 39,
+          "loaded": 39,
+          "done": false,
+          "metas": [
+            {
+              "id": "a"
+            }
+          ]
+        },
+        "batch": [
+          {
+            "id": "b"
+          }
+        ],
+        "after": {
+          "page": 40,
+          "loaded": 40,
+          "done": true,
+          "metas": [
+            {
+              "id": "a"
+            },
+            {
+              "id": "b"
+            }
+          ]
+        }
+      }
+    ]
   }
 }

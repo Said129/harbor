@@ -166,8 +166,9 @@ import XCTest
         XCTAssertEqual(preferences.wireProjection, saved)
         let file = FileManager.default.temporaryDirectory.appendingPathComponent("owned-source-" + UUID().uuidString + ".json")
         defer { try? FileManager.default.removeItem(at: file) }
-        try Data(text(source).utf8).write(to: file)
-        XCTAssertEqual(try CustomSourceDocumentFile.read(file), try text(source))
+        let contents = try text(source)
+        try Data(contents.utf8).write(to: file)
+        XCTAssertEqual(try CustomSourceDocumentFile.read(file), contents)
         try Data(repeating: 32, count: 96 * 1_024 + 1).write(to: file)
         XCTAssertThrowsError(try CustomSourceDocumentFile.read(file)); XCTAssertEqual(preferences.wireProjection, saved)
     }

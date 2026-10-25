@@ -95,7 +95,7 @@ struct DesktopSourceFolder: Identifiable, Equatable, Sendable {
     }
     func missingRequirement(hasTMDBKey: Bool, addons: [Addon]) -> Requirement? {
         if requiresTMDBKey && !hasTMDBKey { return .tmdbKey }
-        if case .catalog(_, let id, _, _) = destination {
+        if let destination, case .catalog(_, let id, _, _) = destination {
             if addons.contains(where: { $0.enabled && $0.manifest["id"].string == id }) { return nil }
             // A declared disabled Cinemeta is intentional. The built-in catalog
             // is available only when the account has no Cinemeta declaration.

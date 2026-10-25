@@ -14,8 +14,11 @@ import XCTest
         ReadingUIInteraction.tapVisible(customize, in: app)
         let add = app.buttons["custom-source-add"]; show(add, app, scroll); ReadingUIInteraction.tapVisible(add, in: app)
         let url = app.textFields["source-import-url"]; XCTAssertTrue(url.waitForExistence(timeout: 15))
-        for (path, message, state) in [("missing-sources.json", "Failed to fetch JSON", "fetch-error"), ("malformed.json", "Invalid SourceRow JSON format", "format-error")] {
-            ReadingUIInteraction.replace(url, with: "http://127.0.0.1:18734/" + path, in: app)
+        capture(app, "source-import-dialog-" + device)
+        for (index, entry) in [("missing-sources.json", "Failed to fetch JSON", "fetch-error"), ("malformed.json", "Invalid SourceRow JSON format", "format-error")].enumerated() {
+            let (path, message, state) = entry
+            if index == 0 { enterEmpty(url, "http://127.0.0.1:18734/" + path, app) }
+            else { ReadingUIInteraction.replace(url, with: "http://127.0.0.1:18734/" + path, in: app) }
             ReadingUIInteraction.tapVisible(app.buttons["source-import-save"], in: app)
             let failure = app.staticTexts["source-import-error"]
             XCTAssertTrue(failure.waitForExistence(timeout: 15))
@@ -30,6 +33,8 @@ import XCTest
         ReadingUIInteraction.tapVisible(folder, in: app)
         let title = app.buttons["catalog-browser-media"].firstMatch
         XCTAssertTrue(title.waitForExistence(timeout: 30)); XCTAssertEqual(title.label, "Owned catalog title 1")
+        let fifth = app.buttons.matching(identifier: "catalog-browser-media").matching(NSPredicate(format: "label == %@", "Owned catalog title 5")).firstMatch
+        show(fifth, app, app.scrollViews["catalog-browser-scroll"])
         capture(app, "source-catalog-" + device)
         ReadingUIInteraction.tapVisible(app.navigationBars.buttons.firstMatch, in: app)
         show(row, app, scroll)
@@ -50,8 +55,9 @@ import XCTest
         ReadingUIInteraction.tapVisible(app.buttons["source-images-owned-imported-sources-0"], in: app)
         let cover = app.textFields["source-cover-url"], focus = app.textFields["source-focus-url"]
         XCTAssertTrue(cover.waitForExistence(timeout: 15))
+        capture(app, "source-image-editor-" + device)
         ReadingUIInteraction.replace(cover, with: "http://127.0.0.1:18734/edited.png", in: app)
-        ReadingUIInteraction.replace(focus, with: "http://127.0.0.1:18734/focus.gif", in: app)
+        enterEmpty(focus, "http://127.0.0.1:18734/focus.gif", app)
         ReadingUIInteraction.tapVisible(app.buttons["source-images-save"], in: app)
         show(row, app, scroll); capture(app, "source-images-edited-" + device)
         let controls = element("page-row-controls-source-owned-imported-sources", app)
@@ -80,6 +86,12 @@ import XCTest
         capture(app, "source-deleted-" + device)
     }
     private func element(_ id: String, _ app: XCUIApplication) -> XCUIElement { app.descendants(matching: .any).matching(identifier: id).firstMatch }
+    private func enterEmpty(_ field: XCUIElement, _ value: String, _ app: XCUIApplication) {
+        // The fresh import URL and the fixture's null GIF have no selected text.
+        // Type normally; Select All cannot exist in an empty field.
+        ReadingUIInteraction.tapVisible(field, in: app); field.typeText(value)
+        XCTAssertEqual(field.value as? String, value)
+    }
     private func revealHorizontal(_ target: XCUIElement, _ app: XCUIApplication, _ container: XCUIElement, left: Bool = true) {
         for _ in 0..<6 {
             if ReadingUIInteraction.visibleFrame(target, in: app) != nil { break }

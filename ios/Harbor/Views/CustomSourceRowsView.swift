@@ -140,10 +140,10 @@ struct CustomSourceFolderBrowser: View {
     let app: AppModel
     @State private var catalog: CatalogRow?
     @State private var items: [Media] = []
-    @State private var page = 1
+    @State private var paging = DesktopGridPaging()
     @State private var busy = false
-    @State private var finished = false
     @State private var error: String?
+    @State private var loadedScope: String?
     private var destination: DesktopSourceFolder.Destination? { folder.destination }
     private var missingKey: Bool { folder.requiresTMDBKey && MetadataPreferences.shared.tmdbKey.isEmpty }
     var body: some View {
@@ -163,17 +163,20 @@ struct CustomSourceFolderBrowser: View {
                         LazyVGrid(columns: [GridItem(.adaptive(minimum: 106), spacing: 12, alignment: .top)], spacing: 22) {
                             ForEach(items, id: \.identity) { media in NavigationLink(value: media) { Poster(media: media, width: nil) }.buttonStyle(.plain) }
                         }
-                        if busy { ProgressView() }
-                        else if !items.isEmpty && !finished && error == nil { ProgressView().task { await load() } }
-                        else if !busy && items.isEmpty && finished && error == nil { HarborNoMatchesView() }
+                        if busy && items.isEmpty { ProgressView() }
+                        if !items.isEmpty && !paging.finished && error == nil { ProgressView().task(id: paging.page) { await load() } }
+                        else if !busy && items.isEmpty && paging.finished && error == nil { HarborNoMatchesView() }
                     }.padding()
-                }.task(id: app.accountOperationScope) { busy = false; catalog = nil; items = []; page = 1; finished = false; await load() }
+                }.task(id: app.accountOperationScope) {
+                    guard loadedScope != app.accountOperationScope else { return }
+                    loadedScope = app.accountOperationScope; busy = false; catalog = nil; items = []; paging = DesktopGridPaging(); await load()
+                }
             }
         }.background(HarborTheme.background).navigationTitle(destination?.title ?? folder.title).navigationBarTitleDisplayMode(.inline).toolbar(.visible, for: .navigationBar)
             .accessibilityIdentifier("source-folder-browser")
     }
     private func load() async {
-        guard !busy, !finished, !missingKey else { return }
+        guard !busy, !paging.finished, !missingKey else { return }
         busy = true; error = nil
         let scope = app.accountOperationScope
         defer { if scope == app.accountOperationScope { busy = false } }
@@ -184,10 +187,10 @@ struct CustomSourceFolderBrowser: View {
                 try Task.checkCancellation(); guard scope == app.accountOperationScope else { return }
                 catalog = result; return
             }
-            let next = try await CustomSourceCatalog().page(destination, page: page, configuration: MetadataPreferences.shared.configuration(), service: app.service)
+            let next = try await CustomSourceCatalog().page(destination, page: paging.nextPage, configuration: MetadataPreferences.shared.configuration(), service: app.service)
             try Task.checkCancellation(); guard scope == app.accountOperationScope else { return }
             var seen = Set(items.map(\.identity)); let additions = next.filter { seen.insert($0.identity).inserted }
-            items.append(contentsOf: additions); page += 1; finished = next.isEmpty || additions.isEmpty
+            items.append(contentsOf: additions); paging.received(next.count)
         } catch is CancellationError { return }
         catch {
             guard scope == app.accountOperationScope else { return }

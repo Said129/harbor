@@ -33,8 +33,9 @@ textos que Desktop tampoco traduce.
 Se ejecutaron el parser original de Desktop en 12 ejemplos, su acción de carpeta
 en 8 y sus funciones de cola y adopción inicial en 4. Son comprobaciones de la
 referencia TypeScript, no ejecuciones de la implementación Swift. Una consulta
-anónima real de Trakt devolvió dos elementos públicos; la comprobación nativa
-del cliente sigue seleccionada para Apple.
+anónima real de Trakt devolvió dos elementos públicos. El cliente nativo también
+aprobó su consulta real en Apple, sin cargar una sesión de cuenta; ese caso se
+conserva sin repetirlo.
 
 La [ejecución 40238599670](https://github.com/Said129/harbor/actions/runs/40238599670)
 falló durante la compilación, sin ejecutar pruebas, por una referencia fuera de
@@ -46,11 +47,16 @@ El archivo original del diagnóstico tiene SHA256
 La [validación de la corrección](https://github.com/Said129/harbor/actions/runs/40239615319)
 congela `dedbd9e9111f2980d1bf1a81275e44b3f18fbce7`: 30 casos nativos,
 dos preparaciones limpias y dos recorridos nuevos de iPhone/iPad, con 12 capturas
-requeridas. Sus resultados todavía no se presentan como aprobados. Se conservan
-las pruebas de identidad y reproducción ya aprobadas de archivos intactos.
+requeridas. Aprobaron 29 casos nativos y las dos preparaciones, sin advertencias
+nuevas. El caso nativo restante comparaba dos codificaciones JSON con distinto
+orden de claves; la corrección compara los bytes que escribió la propia prueba.
+Ambos recorridos de interfaz se detuvieron al buscar «Seleccionar todo» en el
+campo vacío de URL, antes de producir sus capturas requeridas. Ahora esos campos
+vacíos reciben texto normalmente. El archivo original de evidencia tiene SHA256
+`b80fd94fa01c01703e92fa6e90d36df01ffc242511892dfc5e6ccaac90a5f26a`.
 
-La revisión de equivalencia de esta zona incluye aún los diálogos de requisitos,
-opciones globales de cuadrícula y destinos no audiovisuales. Tampoco certifica
+La revisión de equivalencia de esta zona incluye aún la validación de los diálogos,
+las opciones de tarjetas póster/TV y sus ajustes y los destinos no audiovisuales. Tampoco certifica
 cuentas personales reales, el comportamiento en un dispositivo físico ni el port
 completo. Esta validación no produce una IPA. El
 [registro estructurado](custom-sources-parity.json) mantiene los hashes y el
@@ -65,10 +71,18 @@ decodificador evita guardar en caché los fotogramas originales de tamaño compl
 El importador distingue el error al descargar un documento y su formato inválido,
 sin mostrar direcciones privadas en el mensaje.
 
-Esta revisión todavía no está incluida en la ejecución anterior. Tiene dos casos
-nativos nuevos para requisitos, afecta al caso de decodificación del GIF y amplía
-los dos recorridos de interfaz a veinte capturas. Incluye respuestas HTTP 404 y
-JSON mal formado del servidor local controlado, además de los avisos de requisitos
-y el recorrido original completo. Sus resultados siguen pendientes. La selección
-posterior conservará las aprobaciones que demuestren los registros originales de
-la ejecución anterior e incorporará los fallos reales que se identifiquen.
+La cuadrícula cuenta los resultados originales del proveedor, sigue tras una
+página de duplicados y respeta el límite de cuarenta páginas de Desktop. El
+indicador de carga permanece montado durante la petición y conserva el cursor
+al volver de una ficha. Cinco casos ejecutados sobre la función original de
+Desktop confirman el comportamiento de paginación; no son ejecuciones de Swift.
+
+Esta revisión todavía no está incluida en la ejecución anterior. La selección
+añade cuatro casos nativos nuevos —dos de requisitos y dos de paginación—,
+repite el único caso afectado del GIF y corrige el caso fallido de lectura de
+archivo: seis casos nativos en total. Conserva los otros veintiocho aprobados.
+Las dos preparaciones y dos recorridos de interfaz suman diez ejecuciones, con
+veinticuatro capturas requeridas de iPhone/iPad, incluidas las hojas de importación
+y edición de imágenes. El servidor controlado devuelve errores 404, JSON inválido,
+una página duplicada y después el quinto título; las portadas original y editada
+son imágenes propias diferentes. Estos resultados Apple siguen pendientes.

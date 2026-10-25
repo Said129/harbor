@@ -68,8 +68,8 @@ struct CatalogBrowserView: View {
     @State private var items: [Media] = []
     @State private var loading = false
     @State private var error: String?
-    @State private var offset = 0
-    @State private var reachedEnd = false
+    @State private var paging: DesktopGridPaging
+    @State private var loadedGenre: String?
     @State private var generation = 0
     private let columns = [GridItem(.adaptive(minimum: 106), spacing: 12, alignment: .top)]
     private var genres: [String] { initial.plan.catalog?.extra.first { $0.name == "genre" }?.options ?? [] }
@@ -78,7 +78,8 @@ struct CatalogBrowserView: View {
         self.app = app; self.initial = initial; self.titleOverride = titleOverride
         _genre = State(initialValue: initial.selectedGenre ?? "")
         _items = State(initialValue: initial.metas)
-        _offset = State(initialValue: initial.receivedCount ?? initial.metas.count)
+        _paging = State(initialValue: DesktopGridPaging(initialCount: initial.receivedCount ?? initial.metas.count))
+        _loadedGenre = State(initialValue: initial.metas.isEmpty ? nil : initial.selectedGenre ?? "")
     }
 
     var body: some View {
@@ -99,13 +100,14 @@ struct CatalogBrowserView: View {
                     }
                 }.padding(.horizontal)
                 if loading { ProgressView().frame(maxWidth: .infinity) }
-                if supportsPaging && offset > 0 && !reachedEnd && !loading && error == nil {
-                    ProgressView().frame(maxWidth: .infinity).padding().task { await load(reset: false) }
+                if supportsPaging && paging.loaded > 0 && !paging.finished && error == nil {
+                    ProgressView().frame(maxWidth: .infinity).padding().task(id: paging.page) { await load(reset: false) }
                 }
                 if !loading && items.isEmpty && error == nil { HarborNoMatchesView(text: "No titles match these filters.").padding(.horizontal) }
             }
         }.background(HarborTheme.background).navigationTitle(titleOverride ?? initial.plan.title).navigationBarTitleDisplayMode(.inline).toolbar(.visible, for: .navigationBar)
-            .task(id: genre) { if items.isEmpty || genre != (initial.selectedGenre ?? "") || generation > 0 { await load(reset: true) } }
+            .accessibilityIdentifier("catalog-browser-scroll")
+            .task(id: genre) { if loadedGenre != genre { await load(reset: true) } }
     }
 
     private func load(reset: Bool) async {
@@ -113,20 +115,19 @@ struct CatalogBrowserView: View {
         loading = true; error = nil
         generation += 1
         let requestGeneration = generation
-        if reset { items = []; offset = 0; reachedEnd = false }
+        if reset { items = []; paging = DesktopGridPaging(); loadedGenre = nil }
         let requestedGenre = genre
         defer { if requestGeneration == generation { loading = false } }
         do {
             // Request this catalog only: some addons expose dozens of catalogs.
-            let result = try await app.service.catalog(initial.plan, genre: requestedGenre.isEmpty ? nil : requestedGenre, skip: reset ? 0 : offset)
+            let result = try await app.service.catalog(initial.plan, genre: requestedGenre.isEmpty ? nil : requestedGenre, skip: paging.loaded)
             try Task.checkCancellation()
             guard requestGeneration == generation else { return }
             var known = Set(items.map(\.identity))
             let additions = result.metas.filter { known.insert($0.identity).inserted }
             items.append(contentsOf: additions)
             let count = result.receivedCount ?? result.metas.count
-            offset += count
-            reachedEnd = count == 0 || additions.isEmpty
+            paging.received(count); loadedGenre = requestedGenre
         } catch is CancellationError { return }
         catch { if requestGeneration == generation { self.error = safeMessage(error) } }
     }

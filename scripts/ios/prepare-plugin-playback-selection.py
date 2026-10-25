@@ -6,6 +6,9 @@ import re
 import runpy
 
 requested = os.environ.get('HARBOR_NATIVE_SELECTION', '').strip()
+if requested == 'affected:custom-source-interface':
+    runpy.run_path('scripts/ios/prepare-source-interface-selection.py')
+    raise SystemExit(0)
 if requested in ('affected:custom-sources', 'affected:custom-sources-repair'):
     runpy.run_path('scripts/ios/prepare-custom-source-selection.py')
     raise SystemExit(0)
