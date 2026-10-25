@@ -6,6 +6,9 @@ import re
 import runpy
 
 requested = os.environ.get('HARBOR_NATIVE_SELECTION', '').strip()
+if requested == 'affected:cached-layout' or 'HarborTests.CachedHouseholdLayoutTests/' in requested:
+    runpy.run_path('scripts/ios/prepare-cached-layout-selection.py')
+    raise SystemExit(0)
 if requested == 'affected:household-layout' or 'HarborTests.HouseholdLayoutHydrationTests/' in requested:
     runpy.run_path('scripts/ios/prepare-household-layout-selection.py')
     raise SystemExit(0)

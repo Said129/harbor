@@ -1,0 +1,35 @@
+{
+  "reference": "Harbor Desktop 0.9.132 Beta",
+  "scope": [
+    "Preserve the complete latest shared layout independently of each profile's revision shadow",
+    "Resolve deferred catalog rows from that shared value without inventing edits or losing a failed queue write",
+    "Bind cached authenticated household settings before a network pull, including absent private overrides",
+    "Keep unknown Desktop fields, per-profile dirty keys and explicit conflict restoration"
+  ],
+  "predecessor": {
+    "run": 40191329989,
+    "source": "a57b78b7f2958923617a53d0dc29aec989ee36d4",
+    "native_passed": 40,
+    "native_failed": 3,
+    "ui_passed": 1,
+    "ui_failed": 3,
+    "new_warnings": 0,
+    "evidence_archive_sha256": "77a0af1f096ccfd598f5224fe617d8f35546b51d29f4b511cb117890b0ebcb69"
+  },
+  "selection": {
+    "marker": "affected:cached-layout",
+    "new_native": 11,
+    "affected_native": 23,
+    "failed_native": 3,
+    "fresh_preparations": 2,
+    "failed_ui": 3,
+    "expected_executions": 42,
+    "expected_original_captures": 12,
+    "unrelated_approved_cases_replayed": false,
+    "approved_iphone_continuation_retained": true
+  },
+  "apple_validation": "pending",
+  "actual_personal_account_login_verified": false,
+  "full_desktop_parity_complete": false,
+  "ipa_created": false
+}

@@ -1,7 +1,7 @@
 import XCTest
 @testable import Harbor
 
-@MainActor private final class OwnedHouseholdLayouts {
+@MainActor final class OwnedHouseholdLayouts {
     let memory: ActivationMemory
     let context: AppProfileContext
     var engine: HarborHouseholdLayoutSync

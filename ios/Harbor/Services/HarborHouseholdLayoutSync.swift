@@ -24,6 +24,25 @@ import Observation
     init(account: String) { self.account = account }
     func invalidate() { generation += 1; busy = false }
 
+    /// Read only the already activated account's settings. This never hydrates
+    /// sync journals, arms callbacks, or needs a network request.
+    static func bindCached(account: String, context: AppProfileContext, active: Active) throws {
+        guard context.ready, context.profiles.scope == .harbor(account: account),
+              let binding = context.binding, let selected = context.profiles.active, !selected.desktop.isKid,
+              active.navigation.preferences.scope?.owner == binding.settingsOwner,
+              active.services.preferences.owner == binding.settingsOwner,
+              active.home.preferences.owner == binding.settingsOwner, active.anime.preferences.owner == binding.settingsOwner else {
+            throw HarborError(code: "account-changed")
+        }
+        let expected = NavigationScope.harbor(owner: binding.settingsOwner, account: account,
+            profile: selected.syncID, linked: selected.desktop.settingsLinked)
+        active.navigation.preferences.bind(expected); active.services.preferences.bind(expected)
+        active.home.preferences.bind(expected); active.anime.preferences.bind(expected)
+        let shared = NavigationScope.harbor(owner: binding.sharedSettingsOwner, account: account, profile: selected.syncID, linked: true)
+        try active.navigation.preferences.inheritSharedIfAbsent(shared); try active.services.preferences.inheritSharedIfAbsent(shared)
+        try active.home.preferences.inheritSharedIfAbsent(shared); try active.anime.preferences.inheritSharedIfAbsent(shared)
+    }
+
     func synchronize(state: JSONValue, context: AppProfileContext, active: Active,
                      requestSync: @escaping @MainActor () -> Void,
                      send: @escaping @MainActor (JSONValue) async throws -> JSONValue,

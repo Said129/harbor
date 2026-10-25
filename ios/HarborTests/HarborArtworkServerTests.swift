@@ -42,7 +42,7 @@ private actor OwnedArtworkRequests {
         let active = try XCTUnwrap(context.profiles.active)
         let appearance = ProfilePreferences.forOwner(context.profiles.appearanceOwner(active))
         XCTAssertEqual(appearance.value.remoteAvatar, server.base + avatar)
-        context.reload(); XCTAssertTrue(context.ready)
+        context.reload(); try context.prepare(); XCTAssertTrue(context.ready)
         XCTAssertEqual(context.profiles.state.artworkServer, server)
         XCTAssertEqual(appearance.value.remoteAvatar, server.base + avatar)
         let wire = String(decoding: try JSONEncoder().encode(context.profiles.state.wireValue), as: UTF8.self)

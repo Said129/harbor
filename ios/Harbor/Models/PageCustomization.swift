@@ -42,6 +42,7 @@ final class PageCustomization {
     let page: String
     private(set) var layout: PageLayout
     private(set) var lastEditor: String?
+    private(set) var wireProjection: JSONValue?
     private(set) var ready = false
     private(set) var error: String?
     private(set) var scope: NavigationScope
@@ -64,7 +65,10 @@ final class PageCustomization {
         do {
             let saved: PageLayout
             var loadedEditor: String? = nil
-            if let current = try LayoutEditStorage.object(key, as: PageLayout.self) { saved = current.value; loadedEditor = current.editor }
+            if let current = try LayoutEditStorage.object(key, as: PageLayout.self) {
+                if let raw = current.projection { _ = try DesktopPageLayout(page: page, raw: raw) }
+                saved = current.value; loadedEditor = current.editor; wireProjection = current.projection
+            }
             else if let inheritedOwner, inheritedOwner != owner,
                     let shared = try KeychainStore().read("page-layout-" + EBookShelf.hash(inheritedOwner + "|" + page), as: PageLayout.self) {
                 // Desktop loadEffective falls back to the household's shared
@@ -105,24 +109,30 @@ final class PageCustomization {
     func bind(_ next: NavigationScope) {
         guard next.owner == owner else { return }
         if scope == next && ready { return }
-        scope = next; onEdit = nil; onRails = nil; ready = false; editing = false; layout = localLayout; lastEditor = nil
+        scope = next; onEdit = nil; onRails = nil; ready = false; editing = false; layout = localLayout; lastEditor = nil; wireProjection = nil
         do {
             let saved = try LayoutEditStorage.object(storageKey(next), as: PageLayout.self)
             let value = saved?.value ?? localLayout
             guard Self.valid(value) else { throw HarborError(code: "page-layout") }
-            layout = value; lastEditor = saved?.editor; ready = true; error = nil
+            if let raw = saved?.projection { _ = try DesktopPageLayout(page: page, raw: raw) }
+            layout = value; lastEditor = saved?.editor; wireProjection = saved?.projection; ready = true; error = nil
             if case .local = next { localLayout = value }
         } catch { self.error = "No se pudo recuperar la personalización. Los cambios anteriores se conservan." }
     }
-    func apply(_ value: PageLayout, to expected: NavigationScope, editor: String = "") throws {
+    func apply(_ value: PageLayout, to expected: NavigationScope, editor: String? = "", projection: JSONValue? = nil) throws {
         guard ready, scope == expected, Self.valid(value) else { throw HarborError(code: "account-changed") }
-        if value != layout || lastEditor != editor { try LayoutEditStorage.writeObject(.init(value: value, editor: editor), key: key); layout = value; lastEditor = editor }
+        if let projection { _ = try DesktopPageLayout(page: page, raw: projection) }
+        if value != layout || lastEditor != editor || wireProjection != projection {
+            try LayoutEditStorage.writeObject(.init(value: value, editor: editor, projection: projection), key: key)
+            layout = value; lastEditor = editor; wireProjection = projection
+        }
         error = nil
     }
     func refreshStoredValue() throws {
         guard ready, let saved = try LayoutEditStorage.object(key, as: PageLayout.self) else { return }
         guard Self.valid(saved.value) else { throw HarborError(code: "page-layout") }
-        layout = saved.value; lastEditor = saved.editor
+        if let raw = saved.projection { _ = try DesktopPageLayout(page: page, raw: raw) }
+        layout = saved.value; lastEditor = saved.editor; wireProjection = saved.projection
     }
     func inheritSharedIfAbsent(_ shared: NavigationScope) throws {
         guard ready, case .harbor(_, let account, _, false) = scope,
@@ -133,9 +143,26 @@ final class PageCustomization {
             ?? LayoutEditStorage.object(storageKey(.local(owner: shared.owner)), as: PageLayout.self)
         guard let inherited else { return }
         guard Self.valid(inherited.value) else { throw HarborError(code: "page-layout") }
-        layout = inherited.value; lastEditor = ""
+        if let raw = inherited.projection { _ = try DesktopPageLayout(page: page, raw: raw) }
+        layout = inherited.value; lastEditor = ""; wireProjection = inherited.projection
     }
-    func setEditingRails(_ rails: [PageRail]) { editingRails = rails; onRails?(rails) }
+    func materializeProjection(mapping: DesktopPageRowMap) throws {
+        guard ready, let wireProjection else { return }
+        let next = try DesktopPageLayout(page: page, raw: wireProjection).native(preserving: layout, mapping: mapping)
+        guard Self.valid(next) else { throw HarborError(code: "page-layout") }
+        guard next != layout else { return }
+        if try LayoutEditStorage.object(key, as: PageLayout.self) == nil {
+            // Effective shared settings remain inherited until the user edits.
+            layout = next; return
+        }
+        // Mapping newly available rows is not a user edit or a new sync baseline.
+        try apply(next, to: scope, editor: lastEditor, projection: wireProjection)
+    }
+    func setEditingRails(_ rails: [PageRail]) {
+        editingRails = rails
+        do { try materializeProjection(mapping: DesktopPageRowMap(page: page, rails: rails)); onRails?(rails) }
+        catch { self.error = "No se pudo recuperar la personalización. Los cambios anteriores se conservan." }
+    }
     var currentRails: [PageRail] { editingRails }
     func move(_ rail: PageRail, toward neighbor: PageRail) {
         var ids = ordered(editingRails.isEmpty ? [rail, neighbor] : editingRails, includeHidden: true).map(\.id)
@@ -153,7 +180,10 @@ final class PageCustomization {
         guard next != layout else { return }
         do {
             guard Self.valid(next) else { throw HarborError(code: "page-layout") }
-            try LayoutEditStorage.writeObject(.init(value: next, editor: scope.editorID), key: key); layout = next; lastEditor = scope.editorID; error = nil
+            let projection = try wireProjection.map { try DesktopPageLayout(page: page, raw: $0)
+                .applying(next, mapping: DesktopPageRowMap(page: page, rails: editingRails)).raw }
+            try LayoutEditStorage.writeObject(.init(value: next, editor: scope.editorID, projection: projection), key: key)
+            layout = next; lastEditor = scope.editorID; wireProjection = projection; error = nil
             if case .local = scope { localLayout = next }
             onEdit?(next)
         } catch { self.error = "No se pudo guardar la personalización. Los cambios anteriores se conservan." }

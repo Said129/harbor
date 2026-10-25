@@ -50,6 +50,7 @@ final class StreamingPreferences {
     private(set) var scope: NavigationScope
     private(set) var values: [String: Bool] = [:]
     private(set) var lastEditor: String?
+    private(set) var wireProjection: JSONValue?
     private(set) var ready = false
     private(set) var cloudWritePending = false
     private(set) var error: String?
@@ -79,12 +80,15 @@ final class StreamingPreferences {
         if next != scope { values = [:]; lastEditor = nil }
         scope = next; onEdit = nil; cloudWritePending = false; reload()
     }
-    func suspend() { ready = false; values = [:]; lastEditor = nil; onEdit = nil; cloudWritePending = false }
+    func suspend() { ready = false; values = [:]; lastEditor = nil; wireProjection = nil; onEdit = nil; cloudWritePending = false }
     func reload() {
-        ready = false; lastEditor = nil
+        ready = false; lastEditor = nil; wireProjection = nil
         do {
             let value: [String: Bool]
-            if let saved = try persistence.loadSnapshot(key) { value = saved.value; lastEditor = saved.editor }
+            if let saved = try persistence.loadSnapshot(key) {
+                if let raw = saved.projection { _ = try DesktopStreamingSelection(raw) }
+                value = saved.value; lastEditor = saved.editor; wireProjection = saved.projection
+            }
             else if case .harbor = scope { value = try persistence.load(localKey) ?? [:] }
             else { value = [:] }
             guard Self.valid(value) else { throw HarborError(code: "streaming-preferences") }
@@ -96,20 +100,26 @@ final class StreamingPreferences {
         guard isEnabled(service) != enabled else { return true }
         var next = values; next[service] = enabled
         do {
-            try persistence.saveSnapshot(.init(value: next, editor: scope.editorID), key: key); values = next; lastEditor = scope.editorID; error = nil; onEdit?(selection); return true
+            try persistence.saveSnapshot(.init(value: next, editor: scope.editorID, projection: wireProjection), key: key)
+            values = next; lastEditor = scope.editorID; error = nil; onEdit?(selection); return true
         } catch { self.error = "Could not save streaming preferences. Your previous settings are kept."; return false }
     }
-    func apply(_ selection: [String: Bool], to expected: NavigationScope, editor: String = "") throws {
+    func apply(_ selection: [String: Bool], to expected: NavigationScope, editor: String? = "", projection: JSONValue? = nil) throws {
         let known = Set(StreamingServiceDefinition.all.map(\.key))
         guard ready, scope == expected, Self.valid(selection), Set(selection.keys) == known else { throw HarborError(code: "account-changed") }
         let next = values.filter { !known.contains($0.key) }.merging(selection) { _, new in new }
-        if next != values || lastEditor != editor { try persistence.saveSnapshot(.init(value: next, editor: editor), key: key); values = next; lastEditor = editor }
+        if let projection { _ = try DesktopStreamingSelection(projection) }
+        if next != values || lastEditor != editor || wireProjection != projection {
+            try persistence.saveSnapshot(.init(value: next, editor: editor, projection: projection), key: key)
+            values = next; lastEditor = editor; wireProjection = projection
+        }
         error = nil
     }
     func refreshStoredValue() throws {
         guard ready, let saved = try persistence.loadSnapshot(key) else { return }
         guard Self.valid(saved.value) else { throw HarborError(code: "streaming-preferences") }
-        values = saved.value; lastEditor = saved.editor
+        if let raw = saved.projection { _ = try DesktopStreamingSelection(raw) }
+        values = saved.value; lastEditor = saved.editor; wireProjection = saved.projection
     }
     func inheritSharedIfAbsent(_ shared: NavigationScope) throws {
         guard ready, case .harbor(_, let account, _, false) = scope,
@@ -118,7 +128,8 @@ final class StreamingPreferences {
         let inherited = try persistence.loadSnapshot(storageKey(shared)) ?? persistence.loadSnapshot(storageKey(.local(owner: shared.owner)))
         guard let inherited else { return }
         guard Self.valid(inherited.value) else { throw HarborError(code: "streaming-preferences") }
-        values = inherited.value; lastEditor = ""
+        if let raw = inherited.projection { _ = try DesktopStreamingSelection(raw) }
+        values = inherited.value; lastEditor = ""; wireProjection = inherited.projection
     }
     func holdCloudWrite(_ pending: Bool, in expected: NavigationScope) {
         guard scope == expected else { return }; cloudWritePending = pending

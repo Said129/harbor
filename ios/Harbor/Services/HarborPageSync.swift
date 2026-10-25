@@ -4,7 +4,10 @@ import Observation
 struct PageSyncRecord: Codable, Sendable {
     struct Pending: Codable, Sendable { let version: UUID; var baseRev: Int64; let value: JSONValue; var preservesSharedBackup: Bool? = nil }
     struct Parked: Codable, Sendable { let value: JSONValue; let lostToRev: Int64 }
-    struct Adoption: Codable, Sendable { let previous: PageLayout; let next: PageLayout; var editor: String? = nil }
+    struct Adoption: Codable, Sendable {
+        let previous: PageLayout; let next: PageLayout; var editor: String? = nil
+        var projection: JSONValue? = nil; var previousProjection: JSONValue? = nil
+    }
     var version = 1
     var shadow: HarborLayoutDocument?
     var applied: PageLayout?
@@ -55,10 +58,20 @@ struct PageSyncRecord: Codable, Sendable {
     }
     private func key(_ scope: NavigationScope, document: String) -> String { "page-layout-sync-" + EBookShelf.hash(scope.key + "|" + document) }
     private func codec(_ raw: JSONValue? = nil) throws -> DesktopPageLayout {
-        try DesktopPageLayout(page: preferences.page, raw: raw ?? stored.pending?.value ?? stored.shadow?.value ?? .object([:]))
+        try DesktopPageLayout(page: preferences.page, raw: raw ?? preferences.wireProjection ?? stored.pending?.value ?? stored.shadow?.value ?? .object([:]))
+    }
+    private func appliedValue() throws -> JSONValue? {
+        guard let applied = stored.applied else { return nil }
+        if let shadow = stored.shadow {
+            let original = try codec(shadow.value)
+            // Expand the saved baseline with newly mapped server rows as well.
+            // This preserves a missed user edit without treating mapping as one.
+            return try original.applying(original.native(preserving: applied, mapping: mapping), mapping: mapping).raw
+        }
+        return try codec().applying(applied, mapping: mapping).raw
     }
     private func save(_ value: PageSyncRecord) throws {
-        guard let scope, !document.isEmpty, value.version == 1, try JSONEncoder().encode(value).count <= 512 * 1_024 else { throw HarborError(code: "page-sync-store") }
+        guard let scope, !document.isEmpty, value.version == 1, try JSONEncoder().encode(value).count <= 1_024 * 1_024 else { throw HarborError(code: "page-sync-store") }
         try persistence.write(value, key: key(scope, document: document)); stored = value
     }
     private func validate(_ value: PageSyncRecord, document: String) throws {
@@ -74,17 +87,25 @@ struct PageSyncRecord: Codable, Sendable {
         if let parked = value.parked { _ = try codec(parked.value) }
         if let adoption = value.adoption {
             guard PageCustomization.valid(adoption.previous), PageCustomization.valid(adoption.next) else { throw HarborError(code: "page-sync-store") }
+            if let raw = adoption.projection { _ = try codec(raw) }
+            if let raw = adoption.previousProjection { _ = try codec(raw) }
         }
     }
     private func completeAdoption(_ expected: NavigationScope) throws {
         guard let adoption = stored.adoption else { return }
         // A user can edit after a journal failure. Preserve that newer local edit;
         // the applied baseline below lets the next synchronization enqueue it.
-        if preferences.layout == adoption.previous || preferences.layout == adoption.next { try preferences.apply(adoption.next, to: expected, editor: adoption.editor ?? "") }
+        let projection = adoption.projection ?? stored.pending?.value ?? stored.shadow?.value
+        let sameProjection = adoption.projection == nil || preferences.wireProjection == adoption.previousProjection || preferences.wireProjection == projection
+        if sameProjection, preferences.layout == adoption.previous || preferences.layout == adoption.next {
+            try preferences.apply(adoption.next, to: expected, editor: adoption.editor ?? "", projection: projection)
+        }
         var next = stored; next.adoption = nil; next.applied = adoption.next; try save(next)
     }
-    private func adopt(_ layout: PageLayout, record: PageSyncRecord, in expected: NavigationScope, editor: String = "") throws {
-        var journal = record; journal.adoption = .init(previous: preferences.layout, next: layout, editor: editor)
+    private func adopt(_ layout: PageLayout, record: PageSyncRecord, in expected: NavigationScope, editor: String = "", projection: JSONValue? = nil) throws {
+        var journal = record
+        journal.adoption = .init(previous: preferences.layout, next: layout, editor: editor,
+            projection: projection ?? record.shadow?.value, previousProjection: preferences.wireProjection)
         try save(journal); try completeAdoption(expected)
     }
     private func enqueue(_ layout: PageLayout, replacedAt: Int64? = nil) throws {
@@ -92,30 +113,35 @@ struct PageSyncRecord: Codable, Sendable {
         try check(scope, generation: generation)
         let raw = try codec().applying(layout, mapping: mapping).raw
         if let pending = stored.pending, pending.value == raw { return }
-        if stored.pending == nil, let applied = stored.applied, try codec().applying(applied, mapping: mapping).raw == raw { return }
+        if stored.pending == nil, try appliedValue() == raw { return }
         var next = stored; next.pending = .init(version: UUID(), baseRev: stored.shadow?.rev ?? 0, value: raw)
         if let revision = replacedAt, let previous = stored.pending {
             if previous.preservesSharedBackup != true { next.parked = .init(value: previous.value, lostToRev: revision) }
             next.pending?.preservesSharedBackup = true
         }
+        try preferences.apply(layout, to: scope, editor: preferences.lastEditor, projection: raw)
         try save(next); error = nil; requestSync?()
     }
     private func register(_ rails: [PageRail], in expected: NavigationScope, generation: Int) throws {
         try check(expected, generation: generation)
         var nextMap = mapping; nextMap.register(rails)
         guard nextMap != mapping else { return }
-        mapping = nextMap
-        if let raw = stored.pending?.value ?? stored.shadow?.value {
-            let layout = try codec(raw).native(preserving: preferences.layout, mapping: mapping)
-            try adopt(layout, record: stored, in: expected, editor: stored.pending == nil ? "" : preferences.lastEditor ?? expected.editorID)
+        if preferences.wireProjection != nil {
+            try preferences.materializeProjection(mapping: nextMap)
+            mapping = nextMap; return
         }
+        if let raw = stored.pending?.value ?? stored.shadow?.value {
+            let layout = try codec(raw).native(preserving: preferences.layout, mapping: nextMap)
+            try adopt(layout, record: stored, in: expected, editor: stored.pending == nil ? "" : preferences.lastEditor ?? expected.editorID, projection: raw)
+        }
+        mapping = nextMap
     }
     func restoreMyVersion() {
         guard let scope, let parked = stored.parked else { return }
         do {
             try check(scope, generation: generation)
             let layout = try codec(parked.value).native(preserving: preferences.layout, mapping: mapping)
-            try adopt(layout, record: stored, in: scope, editor: scope.editorID)
+            try adopt(layout, record: stored, in: scope, editor: scope.editorID, projection: parked.value)
             // Desktop's explicit restore re-pushes the entire parked section.
             // Later edits must keep its opaque fields until it is acknowledged.
             var next = stored; next.pending = .init(version: UUID(), baseRev: stored.shadow?.rev ?? 0,
@@ -142,11 +168,12 @@ struct PageSyncRecord: Codable, Sendable {
         let generation = self.generation; busy = true
         defer { if self.generation == generation { busy = false } }
         try check(expected, generation: generation); try completeAdoption(expected)
-        if let pending = stored.pending, try codec(pending.value).applying(preferences.layout, mapping: mapping).raw != pending.value {
+        try preferences.materializeProjection(mapping: mapping)
+        if let pending = stored.pending, try codec().applying(preferences.layout, mapping: mapping).raw != pending.value {
             let revision = try HarborLayoutDocument.revision(state["rev"])
             hydrated = true; try enqueue(preferences.layout, replacedAt: preferences.lastEditor == "" ? revision : nil)
-        } else if stored.pending == nil, preferences.lastEditor == nil || preferences.lastEditor == expected.editorID, let applied = stored.applied,
-           try codec().applying(applied, mapping: mapping).raw != codec().applying(preferences.layout, mapping: mapping).raw {
+        } else if stored.pending == nil, preferences.lastEditor == nil || preferences.lastEditor == expected.editorID,
+           let applied = try appliedValue(), try codec().applying(preferences.layout, mapping: mapping).raw != applied {
             hydrated = true; try enqueue(preferences.layout)
         }
         let revision = stored.pending?.baseRev ?? stored.shadow?.rev ?? 0
@@ -161,7 +188,7 @@ struct PageSyncRecord: Codable, Sendable {
             guard let self else { return }
             do { try self.register(rails, in: expected, generation: generation) } catch { self.error = "Your layout is saved locally. Cloud sync will retry." }
         }
-        if stored.pending == nil, let incoming, incoming == stored.shadow, preferences.lastEditor != nil { error = nil; return }
+        if stored.pending == nil, let incoming, incoming == stored.shadow, preferences.wireProjection != nil { error = nil; return }
         if stored.pending == nil, incoming == nil, stored.shadow == nil, stored.applied == preferences.layout { error = nil; return }
         if let pending = stored.pending, let incoming, incoming.value == pending.value {
             var next = stored; next.shadow = incoming; next.pending = nil; next.applied = preferences.layout

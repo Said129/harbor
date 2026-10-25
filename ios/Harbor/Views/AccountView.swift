@@ -99,6 +99,7 @@ struct AccountView: View {
             if let error = error ?? app.accountError { Text(error).foregroundStyle(.orange).accessibilityIdentifier("account-error") }
           }.padding(22)
         }
+        .accessibilityIdentifier("account-scroll")
         .background(HarborTheme.background)
         .font(HarborTheme.font(15)).foregroundStyle(HarborTheme.ink)
         .textFieldStyle(.plain)

@@ -55,7 +55,7 @@ struct HarborIdentityPanel: View {
             if cloud.busy { ProgressView() }
             if let error = cloud.error { Text(error).font(HarborTheme.font(13)).foregroundStyle(.orange) }
             if !cloud.ready { Button("Reintentar") { cloud.reload() } }
-        }.disabled(cloud.busy).onChange(of: customServer) { _, _ in password = "" }
+        }.disabled(cloud.busy).onChange(of: customServer) { _, _ in editing = nil; password = "" }
             .onChange(of: serverURL) { _, _ in password = "" }.onDisappear { password = "" }
     }
 }

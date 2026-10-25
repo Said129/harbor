@@ -30,7 +30,10 @@ struct DesktopStreamingSelection: Sendable {
 struct StreamingSyncRecord: Codable, Sendable {
     struct Pending: Codable, Sendable { let version: UUID; var baseRev: Int64; let value: JSONValue; var preservesSharedBackup: Bool? = nil }
     struct Parked: Codable, Sendable { let value: JSONValue; let lostToRev: Int64 }
-    struct Adoption: Codable, Sendable { let previous: [String: Bool]; let next: [String: Bool] }
+    struct Adoption: Codable, Sendable {
+        let previous: [String: Bool]; let next: [String: Bool]
+        var projection: JSONValue? = nil; var previousProjection: JSONValue? = nil
+    }
     var version = 1
     var shadow: HarborLayoutDocument?
     var appliedLocal: [String: Bool]?
@@ -80,18 +83,21 @@ struct StreamingSyncRecord: Codable, Sendable {
     }
     private func save(_ next: StreamingSyncRecord) throws {
         guard let scope, !documentKey.isEmpty, next.version == 1,
-              try JSONEncoder().encode(next).count <= 384 * 1_024 else { throw HarborError(code: "streaming-sync-store") }
+              try JSONEncoder().encode(next).count <= 640 * 1_024 else { throw HarborError(code: "streaming-sync-store") }
         try persistence.writeSync(next, key: storageKey(scope, document: documentKey)); stored = next
     }
     private func codec(_ value: JSONValue? = nil) throws -> DesktopStreamingSelection {
-        try DesktopStreamingSelection(value ?? stored.pending?.value ?? stored.shadow?.value ?? .object([:]))
+        try DesktopStreamingSelection(value ?? preferences.wireProjection ?? stored.pending?.value ?? stored.shadow?.value ?? .object([:]))
     }
     private func adopt(_ next: StreamingSyncRecord, selection: [String: Bool], in expected: NavigationScope) throws {
         var next = next
-        if preferences.selection == selection { next.appliedLocal = selection; try save(next); return }
+        if preferences.selection == selection, preferences.lastEditor == "", preferences.wireProjection == next.shadow?.value {
+            next.appliedLocal = selection; try save(next); return
+        }
         // Persist the conflict backup and the application intent before
         // replacing preferences. A second Keychain write is recoverable.
-        next.adoption = StreamingSyncRecord.Adoption(previous: preferences.selection, next: selection)
+        next.adoption = StreamingSyncRecord.Adoption(previous: preferences.selection, next: selection,
+            projection: next.shadow?.value, previousProjection: preferences.wireProjection)
         try save(next)
         try completeAdoption(in: expected)
     }
@@ -100,7 +106,8 @@ struct StreamingSyncRecord: Codable, Sendable {
         try check(expected)
         preferences.holdCloudWrite(true, in: expected)
         let current = preferences.selection
-        if current != adoption.previous, current != adoption.next {
+        let sameProjection = adoption.projection == nil || preferences.wireProjection == adoption.previousProjection || preferences.wireProjection == adoption.projection
+        if !sameProjection || (current != adoption.previous && current != adoption.next) {
             // Another linked profile may have saved newer local settings
             // while this process was stopped. Keep that explicit choice.
             var next = stored; next.adoption = nil; next.appliedLocal = adoption.next
@@ -108,21 +115,23 @@ struct StreamingSyncRecord: Codable, Sendable {
             hydrated = true; try enqueue(current)
             return
         }
-        try preferences.apply(adoption.next, to: expected)
+        try preferences.apply(adoption.next, to: expected, projection: adoption.projection ?? stored.shadow?.value)
         var next = stored; next.adoption = nil; next.appliedLocal = adoption.next
         try save(next); preferences.holdCloudWrite(false, in: expected)
     }
     private func enqueue(_ selection: [String: Bool], force: Bool = false, base: JSONValue? = nil, replacedAt: Int64? = nil) throws {
         guard hydrated, let scope else { return }
         try check(scope)
+        let raw = try codec(base).applying(selection).raw
         if !force {
-            if let pending = stored.pending, try codec(pending.value).selection == selection { return }
-            if stored.pending == nil, stored.appliedLocal == selection { return }
+            if let pending = stored.pending { if pending.value == raw { return } }
+            else if stored.appliedLocal == selection { return }
         }
         var next = stored
         if let revision = replacedAt, let previous = stored.pending, previous.preservesSharedBackup != true { next.parked = .init(value: previous.value, lostToRev: revision) }
-        next.pending = StreamingSyncRecord.Pending(version: UUID(), baseRev: stored.shadow?.rev ?? 0, value: try codec(base).applying(selection).raw)
+        next.pending = StreamingSyncRecord.Pending(version: UUID(), baseRev: stored.shadow?.rev ?? 0, value: raw)
         if replacedAt != nil { next.pending?.preservesSharedBackup = true }
+        try preferences.apply(selection, to: scope, editor: preferences.lastEditor, projection: raw)
         try save(next); error = nil; requestSync?()
     }
     func restoreMyVersion() {
@@ -130,7 +139,8 @@ struct StreamingSyncRecord: Codable, Sendable {
         do {
             try check(scope)
             let selection = try codec(parked.value).selection
-            try preferences.apply(selection, to: scope, editor: scope.editorID)
+            let projection = try codec(stored.shadow?.value ?? .object([:])).applying(selection).raw
+            try preferences.apply(selection, to: scope, editor: scope.editorID, projection: projection)
             try enqueue(selection, force: true, base: stored.shadow?.value ?? .object([:]))
         } catch { self.error = "Could not restore your services. The saved version is kept." }
     }
@@ -152,6 +162,8 @@ struct StreamingSyncRecord: Codable, Sendable {
         if let adoption = record.adoption {
             _ = try DesktopStreamingSelection(.object([:])).applying(adoption.previous)
             _ = try DesktopStreamingSelection(.object([:])).applying(adoption.next)
+            if let raw = adoption.projection { _ = try codec(raw) }
+            if let raw = adoption.previousProjection { _ = try codec(raw) }
         }
     }
 
@@ -175,7 +187,7 @@ struct StreamingSyncRecord: Codable, Sendable {
         // Recover a locally saved checkbox if persisting its queue failed.
         // Also preserve a newer local edit when an older pending edit exists.
         if let pending = stored.pending {
-            if try codec(pending.value).selection != preferences.selection {
+            if try codec().applying(preferences.selection).raw != pending.value {
                 let revision = try HarborLayoutDocument.revision(state["rev"])
                 hydrated = true; try enqueue(preferences.selection, replacedAt: preferences.lastEditor == "" ? revision : nil)
             }
@@ -192,7 +204,7 @@ struct StreamingSyncRecord: Codable, Sendable {
             do { try self.enqueue(selection) }
             catch { self.error = "Your services are saved locally. Cloud sync will retry." }
         }
-        if stored.pending == nil, let incoming, incoming == stored.shadow, preferences.lastEditor != nil { error = nil; return }
+        if stored.pending == nil, let incoming, incoming == stored.shadow, preferences.wireProjection != nil { error = nil; return }
         if stored.pending == nil, incoming == nil, stored.shadow == nil, stored.appliedLocal == preferences.selection { error = nil; return }
         if let pending = stored.pending, let incoming, incoming.value == pending.value {
             var next = stored; next.shadow = incoming; next.pending = nil

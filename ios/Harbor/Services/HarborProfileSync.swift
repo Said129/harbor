@@ -137,6 +137,15 @@ final class HarborProfileSync {
         guard next != layoutOwner || target != boundLayoutProfile else { return }
         suspendForProfileChange(); boundLayoutOwner = next; boundLayoutProfile = target; selectedID = nil
     }
+    func bindCachedLayouts() {
+        guard ready, let session = stored.session, let context = householdContext, context.ready,
+              context.profiles.scope == .harbor(account: session.account), context.binding?.settingsOwner == layoutOwner,
+              context.profiles.active?.syncID == boundLayoutProfile?.id else { return }
+        do {
+            try HarborHouseholdLayoutSync.bindCached(account: session.account, context: context,
+                active: .init(navigation: navigation, services: services, home: page("home"), anime: page("anime")))
+        } catch { self.error = "No se pudieron recuperar algunos ajustes guardados. Los datos anteriores se conservan." }
+    }
     /// Keep sessions and durable queues; invalidate late replies from a source
     /// which no longer owns the visible interface and preference bindings.
     func suspendForProfileChange() {
@@ -375,6 +384,9 @@ final class HarborProfileSync {
                     requestSync: { [weak self] in self?.scheduleSync() }, send: send, check: check)
             }]
         } else {
+            // The legacy facade also works before an AppModel has bound the
+            // global navigation instance (for example immediately after login).
+            if navigation.preferences.scope?.owner != layoutOwner { navigation.preferences.bind(.local(owner: layoutOwner)) }
             steps = [
                 .init { try await self.navigation.synchronize(state: state, account: session.account, profile: final, send: send) },
                 .init { try await self.services.synchronize(state: state, account: session.account, profile: final, send: send) },

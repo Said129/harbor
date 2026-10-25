@@ -265,6 +265,7 @@ final class AppModel {
         InterfacePreferences.shared.navigation.bind(.local(owner: settingsOwner))
         StreamingPreferences.forOwner(settingsOwner).bind(.local(owner: settingsOwner))
         pageCustomization("home").bind(.local(owner: settingsOwner)); pageCustomization("anime").bind(.local(owner: settingsOwner))
+        harborIdentity.cloud.bindCachedLayouts()
         resume = ResumeStore(owner: owner)
         await reloadProgress()
     }

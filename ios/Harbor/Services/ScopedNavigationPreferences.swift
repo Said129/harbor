@@ -42,6 +42,7 @@ final class ScopedNavigationPreferences {
     private static let migrationOwnerKey = "iphone.nav.migration.owner.v1"
     private(set) var value = NativeNavigationLayout()
     private(set) var lastEditor: String?
+    private(set) var wireProjection: JSONValue?
     private(set) var scope: NavigationScope?
     private(set) var ready = false
     private(set) var error: String?
@@ -56,10 +57,13 @@ final class ScopedNavigationPreferences {
     func bind(_ scope: NavigationScope) {
         if self.scope == scope && ready { return }
         if self.scope != scope { value = NativeNavigationLayout(); lastEditor = nil }
-        onEdit = nil; ready = false; lastEditor = nil; error = nil; self.scope = scope
+        onEdit = nil; ready = false; lastEditor = nil; wireProjection = nil; error = nil; self.scope = scope
         do {
             let next: NativeNavigationLayout
-            if let saved = try persistence.readSnapshot(scope.key) { next = saved.value; lastEditor = saved.editor }
+            if let saved = try persistence.readSnapshot(scope.key) {
+                if let raw = saved.projection { _ = try DesktopNavigationLayout(raw) }
+                next = saved.value; lastEditor = saved.editor; wireProjection = saved.projection
+            }
             else {
                 switch scope {
                 case .local(let owner):
@@ -92,19 +96,24 @@ final class ScopedNavigationPreferences {
         guard next != value else { return }
         do {
             guard next.valid else { throw HarborError(code: "navigation-store") }
-            try persistence.writeSnapshot(.init(value: next, editor: scope.editorID), key: scope.key)
+            try persistence.writeSnapshot(.init(value: next, editor: scope.editorID, projection: wireProjection), key: scope.key)
             value = next; lastEditor = scope.editorID; error = nil; onEdit?(next)
         } catch { self.error = "Could not save navigation settings. Your previous settings are kept." }
     }
-    func apply(_ next: NativeNavigationLayout, to expected: NavigationScope, editor: String = "") throws {
+    func apply(_ next: NativeNavigationLayout, to expected: NavigationScope, editor: String? = "", projection: JSONValue? = nil) throws {
         guard ready, scope == expected, next.valid else { throw HarborError(code: "account-changed") }
-        if value != next || lastEditor != editor { try persistence.writeSnapshot(.init(value: next, editor: editor), key: expected.key); value = next; lastEditor = editor }
+        if let projection { _ = try DesktopNavigationLayout(projection) }
+        if value != next || lastEditor != editor || wireProjection != projection {
+            try persistence.writeSnapshot(.init(value: next, editor: editor, projection: projection), key: expected.key)
+            value = next; lastEditor = editor; wireProjection = projection
+        }
         error = nil
     }
     func refreshStoredValue() throws {
         guard ready, let scope, let saved = try persistence.readSnapshot(scope.key) else { return }
         guard saved.value.valid else { throw HarborError(code: "navigation-store") }
-        value = saved.value; lastEditor = saved.editor
+        if let raw = saved.projection { _ = try DesktopNavigationLayout(raw) }
+        value = saved.value; lastEditor = saved.editor; wireProjection = saved.projection
     }
     func inheritSharedIfAbsent(_ shared: NavigationScope) throws {
         guard ready, let scope, case .harbor(_, let account, _, false) = scope,
@@ -114,7 +123,8 @@ final class ScopedNavigationPreferences {
         let inherited = try persistence.readSnapshot(shared.key) ?? persistence.readSnapshot(NavigationScope.local(owner: shared.owner).key)
         guard let inherited else { return }
         guard inherited.value.valid else { throw HarborError(code: "navigation-store") }
-        value = inherited.value; lastEditor = ""
+        if let raw = inherited.projection { _ = try DesktopNavigationLayout(raw) }
+        value = inherited.value; lastEditor = ""; wireProjection = inherited.projection
     }
     private var hasLegacyValue: Bool { ["iphone.nav.order", "iphone.nav.hidden", "iphone.nav.names"].contains { storage.object(forKey: $0) != nil } }
     private func legacyValue() throws -> NativeNavigationLayout {

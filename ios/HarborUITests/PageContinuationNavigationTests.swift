@@ -45,7 +45,7 @@ import XCTest
         ReadingUIInteraction.tapVisible(controls.buttons["Show row"], in: app)
         ReadingUIInteraction.reveal(customize, in: app, up: false, container: scroll); ReadingUIInteraction.tapVisible(customize, in: app)
         app.terminate(); ReadingUIInteraction.launchPreparedApplication(app); navigate(app)
-        let preceding = app.staticTexts["Trending on AniList"]
+        let preceding = app.staticTexts["rail-anilist-trending"]
         ReadingUIInteraction.reveal(preceding, in: app, container: scroll)
         XCTAssertTrue(preceding.waitForExistence(timeout: 30)); ReadingUIInteraction.revealWithinViewport(preceding, in: app, container: scroll)
         XCTAssertTrue(row.waitForExistence(timeout: 10)); XCTAssertLessThan(preceding.frame.minY, row.frame.minY)
