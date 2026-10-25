@@ -6,6 +6,9 @@ import re
 import runpy
 
 requested = os.environ.get('HARBOR_NATIVE_SELECTION', '').strip()
+if requested == 'affected:watched-by' or 'HarborTests.WatchedBySyncTests/' in requested:
+    runpy.run_path('scripts/ios/prepare-watched-by-selection.py')
+    raise SystemExit(0)
 if requested == 'affected:layout-batch-startup' or 'HarborTests.LayoutSyncBatchTests/' in requested:
     runpy.run_path('scripts/ios/prepare-layout-batch-startup-selection.py')
     raise SystemExit(0)

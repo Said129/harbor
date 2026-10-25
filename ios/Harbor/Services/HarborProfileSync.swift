@@ -54,6 +54,17 @@ final class HarborProfileSync {
     @ObservationIgnored private var navigationBindings: [String: HarborNavigationSync] = [:]
     @ObservationIgnored private var serviceBindings: [String: HarborStreamingSync] = [:]
     @ObservationIgnored private var pageBindings: [String: HarborPageSync] = [:]
+    @ObservationIgnored private var watchedByBindings: [String: HarborWatchedBySync] = [:]
+    var watchedBy: HarborWatchedBySync {
+        let bucket = HouseholdProfileScope.hash([stored.session == nil ? "local" : "harbor", stored.session?.id ?? ""])
+        if let value = watchedByBindings[bucket] { return value }
+        let value = HarborWatchedBySync(owner: owner, account: stored.session?.id)
+        value.requestSync = { [weak self, weak value] in
+            guard let self, let value, self.signedIn, value.account == self.accountID else { return }
+            self.scheduleSync()
+        }
+        watchedByBindings[bucket] = value; return value
+    }
     func page(_ page: String) -> HarborPageSync {
         let key = EBookShelf.hash(String(decoding: try! JSONEncoder().encode([layoutOwner, page]), as: UTF8.self))
         if let value = pageBindings[key] { return value }
@@ -85,7 +96,7 @@ final class HarborProfileSync {
     var username: String? { stored.session?.username }
     var accountID: String? { stored.session?.id }
     var handle: String? { stored.session?.handle }
-    var hasPendingChanges: Bool { stored.pending != nil || navigation.hasPendingChanges || services.hasPendingChanges || page("home").hasPendingChanges || page("anime").hasPendingChanges }
+    var hasPendingChanges: Bool { stored.pending != nil || navigation.hasPendingChanges || services.hasPendingChanges || page("home").hasPendingChanges || page("anime").hasPendingChanges || watchedBy.hasPendingChanges }
     private init(owner: String, profile: ProfilePreferences) {
         self.owner = owner
         key = "harbor-identity-" + EBookShelf.hash(owner); self.profile = profile
@@ -257,6 +268,11 @@ final class HarborProfileSync {
             .init { try await self.services.synchronize(state: state, account: session.id, profile: final, send: send) },
             .init { try await self.page("home").synchronize(state: state, account: session.id, profile: final, send: send) },
             .init { try await self.page("anime").synchronize(state: state, account: session.id, profile: final, send: send) },
+            .init {
+                try await self.watchedBy.synchronize(state: state, send: send) {
+                    guard scope == self.generation, self.stored.session?.id == session.id else { throw HarborError(code: "account-changed") }
+                }
+            },
         ]) {
             guard scope == self.generation, self.stored.session?.id == session.id else { throw HarborError(code: "account-changed") }
         }

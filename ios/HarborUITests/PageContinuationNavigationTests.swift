@@ -3,13 +3,16 @@ import XCTest
 @MainActor final class PageContinuationNavigationTests: XCTestCase {
     func testAnimeContinueRowMovesRenamesHidesAndRestoresAfterRelaunchOnIPhone() { verify("iphone") }
     func testAnimeContinueRowMovesRenamesHidesAndRestoresAfterRelaunchOnIPad() { verify("ipad") }
-    private func verify(_ device: String) {
+    func testOtherWatcherBadgeCoexistsWithAnimeCustomizationOnIPhone() { verify("iphone", watcher: true) }
+    func testOtherWatcherBadgeCoexistsWithAnimeCustomizationOnIPad() { verify("ipad", watcher: true) }
+    private func verify(_ device: String, watcher: Bool = false) {
         continueAfterFailure = false
         let app = XCUIApplication(bundleIdentifier: "site.harbor.iphone")
         app.launchArguments = ["-uiLanguage", "en", "-nativeGuide.initialized.v1", "YES", "-nativeGuide.completed.v1", "YES"]
         ReadingUIInteraction.launchPreparedApplication(app); defer { app.terminate() }; navigate(app)
         let scroll = app.scrollViews["content-anime"], row = element("page-continue-watching-row", app)
         XCTAssertTrue(row.waitForExistence(timeout: 30)); ReadingUIInteraction.revealWithinViewport(row, in: app, container: scroll)
+        if watcher { verifyWatcher(app) }
         XCTAssertTrue(row.staticTexts["Continue Watching"].exists); capture(app, "anime-continue-initial-" + device)
         let customize = app.buttons["page-customize"]
         ReadingUIInteraction.reveal(customize, in: app, up: false, container: scroll); ReadingUIInteraction.tapVisible(customize, in: app)
@@ -41,7 +44,16 @@ import XCTest
         XCTAssertTrue(container.waitForExistence(timeout: 10)); XCTAssertLessThan(preceding.frame.minY, container.frame.minY)
         ReadingUIInteraction.revealWithinViewport(row, in: app, container: scroll)
         XCTAssertTrue(row.staticTexts["Owned anime row"].exists)
+        if watcher { verifyWatcher(app) }
         XCTAssertFalse(controls.exists); capture(app, "anime-continue-restored-" + device)
+    }
+    private func verifyWatcher(_ app: XCUIApplication) {
+        let badge = element("continue-watching-watcher", app)
+        XCTAssertTrue(badge.waitForExistence(timeout: 10)); XCTAssertEqual(badge.label, "Watched by Owned watcher")
+        XCTAssertGreaterThanOrEqual(badge.frame.width, 28)
+        let remove = app.buttons["continue-watching-remove"]
+        XCTAssertTrue(remove.exists); XCTAssertGreaterThanOrEqual(remove.frame.width, 44)
+        XCTAssertFalse(badge.frame.intersects(remove.frame), "Watcher and remove controls have separate visible positions")
     }
     private func navigate(_ app: XCUIApplication) {
         let menu = app.buttons["main-menu"]; XCTAssertTrue(menu.waitForExistence(timeout: 45)); ReadingUIInteraction.tapVisible(menu, in: app)

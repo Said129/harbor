@@ -4,6 +4,9 @@ import XCTest
 final class PageContinuationInterfaceSeedTests: XCTestCase {
     private struct PublicRailCache: Codable { let at: Date; let items: [Media] }
     @MainActor func testPrepareOwnedContinueHistoryAndPublicAnimeRowsOnAFreshGuest() async throws {
+        try await Self.prepareOwnedHistory()
+    }
+    @MainActor static func prepareOwnedHistory() async throws {
         guard try KeychainStore().read("account.v1", as: JSONValue.self) == nil else { XCTFail("Refuse configured account"); return }
         let context = AppProfileContext.shared; try context.prepare()
         guard context.profiles.profiles.count == 1, context.profiles.active?.credential == nil,

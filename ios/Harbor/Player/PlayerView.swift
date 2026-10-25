@@ -321,7 +321,7 @@ struct PlayerView: View {
             if paused { controlsVisible = true; saveCheckpoint(exiting: false) }
             restartHideTimer(); updateIdleTimer()
         }
-        .onChange(of: state.loaded) { _, _ in restartHideTimer(); updateIdleTimer() }
+        .onChange(of: state.loaded) { _, _ in restartHideTimer(); updateIdleTimer(); recordWatcher() }
         .onChange(of: state.buffering) { _, _ in restartHideTimer() }
         .onChange(of: state.choosingAudioRoute) { _, _ in controlsVisible = true; restartHideTimer() }
         .onChange(of: state.pictureInPictureChanging) { _, _ in controlsVisible = true; restartHideTimer() }
@@ -520,6 +520,19 @@ struct PlayerView: View {
     @MainActor private func snapshot(exiting: Bool) -> ResumeSnapshot? {
         guard !resumePending, !confirmingResume, session.progressEnabled, state.hasPosition, state.position.isFinite, state.duration.isFinite else { return nil }
         return ResumeSnapshot(positionMs: state.position * 1000, durationMs: state.duration * 1000, timestampMs: UInt64(max(0, Date().timeIntervalSince1970 * 1000)), exiting: exiting)
+    }
+
+    @MainActor private func recordWatcher() {
+        let context = AppProfileContext.shared
+        guard state.loaded, library != nil, let media, context.ready,
+              playbackGeneration == context.playback.generation,
+              let binding = context.binding, let active = context.profiles.active else { return }
+        let watches = ProfilePreferences.forOwner(binding.identityOwner).cloud.watchedBy
+        do {
+            let now = Date().timeIntervalSince1970 * 1_000
+            try watches.record(mediaID: session.target.id, profileID: active.id, at: now)
+            if media.id != session.target.id { try watches.record(mediaID: media.id, profileID: active.id, at: now) }
+        } catch { Diagnostics.shared.recordFailure(error) }
     }
 
     @MainActor private func saveCheckpoint(exiting: Bool) {

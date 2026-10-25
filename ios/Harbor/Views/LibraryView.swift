@@ -162,6 +162,12 @@ private struct ContinueWatchingCard: View {
             NavigationLink { DetailView(media: detailed, app: app, playImmediately: true, metadataLoaded: hydrated != nil) } label: {
                 ContinueWatchingArtwork(record: record, media: detailed, presentation: presentation)
             }.accessibilityIdentifier("continue-watching-resume").accessibilityLabel("Continuar viendo \(detailed.name)")
+                .overlay(alignment: .topLeading) {
+                    if let watcher = app.harborIdentity.cloud.watchedBy.value.watcher(mediaID: media.id, fallbackID: detailed.id,
+                        activeID: app.profileContext.profiles.active?.id, profiles: app.profileContext.profiles.profiles) {
+                        ContinueWatchingWatcher(app: app, watcher: watcher).padding(8).allowsHitTesting(false)
+                    }
+                }
                 .accessibilityValue(presentation.upNext ? DesktopInterfaceText.value("Up Next") : "\(presentation.coordinates(record: record, media: detailed)?.caption ?? record.playbackCaption ?? "") · \(Int(presentation.progress * 100)) por ciento")
                 .overlay(alignment: .topTrailing) {
                     Button { app.library.hideContinuing(record, owner: app.library.owner) } label: {
@@ -200,6 +206,21 @@ private struct ContinueWatchingCard: View {
     private func updatePresentation() {
         let watched = (try? WatchedCodec.decode(record.raw["state"]["watched"].string, videos: detailed.videos ?? [])) ?? []
         cardPresentation = ContinueWatchingPresentation(record: record, media: detailed, watched: watched)
+    }
+}
+
+private struct ContinueWatchingWatcher: View {
+    let app: AppModel
+    let watcher: DeviceHouseholdProfile
+    private var profile: ProfilePreferences { ProfilePreferences.forOwner(app.profileContext.profiles.appearanceOwner(watcher)) }
+    var body: some View {
+        ProfileAvatar(profile: profile, size: 28)
+            .padding(3).background(.black.opacity(0.7), in: .circle)
+            .accessibilityElement(children: .ignore)
+            .accessibilityHidden(false)
+            .accessibilityLabel(DesktopInterfaceText.value("Watched by {name}").replacingOccurrences(of: "{name}", with: watcher.desktop.name))
+            .accessibilityIdentifier("continue-watching-watcher")
+            .onAppear { profile.bindHousehold(app.profileContext.profiles, id: watcher.id) }
     }
 }
 

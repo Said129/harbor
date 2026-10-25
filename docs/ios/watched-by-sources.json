@@ -1,0 +1,26 @@
+{
+  "reference": "0.9.132 (Beta)",
+  "inputs": {
+    "src/lib/profile-sync/watched-by-merge.ts": "a4d167480e2ddb36ae8580b2ecb4ad408b374d8664dbafdfff1cc220b3dfec29",
+    "src/lib/watched-by.ts": "9cf28f1322c2e54bb188be8a5b128d9d2fb2ede013f63d23529d013557a4f2d7"
+  },
+  "original_functions_executed": true,
+  "vectors": 5,
+  "fixture_canonical_sha256": "238b43ef618bfe0d28e4d3e93dfe1c1cf9cdd3d4f24f242cc28b3a97b3efd9f6",
+  "production_recording": "PlayerView after loaded, guarded by the original profile playback generation",
+  "production_surface": "Continue Watching: another known profile only, with the existing avatar and remove button",
+  "cloud_document": "account:watchedby",
+  "wire_profile_ids": "Unchanged Desktop device profile IDs; unknown IDs retained but never guessed",
+  "cloud_conflicts": "Per-media timestamp merge; equal clocks retain local, unlike whole-value layout conflicts",
+  "isolation": "Separate durable account and unsigned buckets; authenticated transport and caller generation checks",
+  "timestamp_eviction": 300,
+  "tied_eviction": "Deterministic key order for JSON objects without portable insertion order",
+  "full_desktop_parity_complete": false,
+  "ipa_created": false,
+  "final_beta_commit": "8274f05485554e531cf5654574de84108f16bdb7",
+  "final_archive_compared_normalized_bytes": true,
+  "final_beta_normalized_inputs": {
+    "src/lib/profile-sync/watched-by-merge.ts": "369ed1ac65c51a517eb964537f5b70358af27f690695f1e2d219c6693c2999a6",
+    "src/lib/watched-by.ts": "497a662e10f857031c981be64f6f00066f7010c9e542617bd0a55e0709054096"
+  }
+}
