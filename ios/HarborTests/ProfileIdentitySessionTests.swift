@@ -61,6 +61,7 @@ import XCTest
     }
     func close() {
         remember(); clouds.forEach { $0.unbindHouseholdContext() }
+        clouds.removeAll()
         for key in keys { try? KeychainStore().remove(key) }
     }
 }
@@ -180,19 +181,43 @@ import XCTest
     func testExplicitAuthenticationToAnotherHouseholdKeepsTheInitiatingIdentityPrivateAndDoesNotShareItWithOtherProfiles() async throws {
         let h = try OwnedProfileIdentities(); defer { h.close() }
         let serverA = try HarborIdentityServer("https://owned-a.example"), serverB = try HarborIdentityServer("https://owned-b.example")
+        var documents: [String: [String: HarborLayoutDocument]] = ["A": ["account:profiles": h.memory.document()],
+            "B": ["account:profiles": h.memory.document([h.memory.remote("B-primary"), h.memory.remote("B-other", primary: false)])]]
+        var pushes: [JSONValue] = []
+        func exchange(_ account: String, _ path: String, _ method: String, _ body: JSONValue?, _ token: String?) throws -> JSONValue {
+            if path == "/identity/api/login" { XCTAssertEqual(method, "POST"); XCTAssertNil(token); return self.login(account) }
+            XCTAssertEqual(token, "owned-token-" + account)
+            if path == "/sync/v1/state" {
+                XCTAssertEqual(method, "GET")
+                let docs = documents[account] ?? [:]
+                return .object(["rev": .integer(docs.values.map(\.rev).max() ?? 0), "docs": .array(docs.keys.sorted().compactMap { key in
+                    docs[key].map { .object(["key": .string($0.key), "rev": .integer($0.rev), "value": $0.value]) }
+                })])
+            }
+            guard path == "/sync/v1/push", method == "POST" else { XCTFail("Unexpected owned identity request"); throw HarborError(code: "owned-request") }
+            let body = try XCTUnwrap(body); pushes.append(body)
+            let writes = body["writes"].array; XCTAssertEqual(writes.count, 1)
+            let write = try XCTUnwrap(writes.first), key = try XCTUnwrap(write["key"].string)
+            let revision = documents[account]?[key]?.rev ?? 0
+            XCTAssertEqual(write["baseRev"].numericValue, Double(revision))
+            documents[account, default: [:]][key] = .init(key: key, rev: revision + 1, value: write["value"])
+            return .object(["results": .array([.object(["key": .string(key), "ok": .bool(true), "rev": .integer(revision + 1)])])])
+        }
         let firstOwner = h.identityOwner
-        let a = try h.cloud { _, path, _, _, _ in
-            if path == "/identity/api/login" { return self.login("A") }; return self.state(h.memory.document())
+        let secondarySyncID = try XCTUnwrap(h.context.profiles.profiles.first { $0.id == h.secondary }).syncID
+        let a = try h.cloud { server, path, method, body, token in
+            XCTAssertEqual(server, serverA); return try exchange("A", path, method, body, token)
         }
         await a.signIn(username: "A", password: "owned-password", server: serverA); await a.sync()
-        XCTAssertTrue(a.hydrated); XCTAssertEqual(h.context.profiles.scope, .harbor(account: serverA.account("A")))
+        XCTAssertTrue(a.hydrated, a.error ?? "Identity A did not hydrate"); XCTAssertEqual(h.context.profiles.scope, .harbor(account: serverA.account("A")))
+        XCTAssertTrue(documents["A"]?["account:profiles"]?.value["profiles"].array.contains(where: { $0["syncId"].string == secondarySyncID }) == true,
+            "The pre-existing secondary must be acknowledged rather than dropped during first-account activation")
         a.unbindHouseholdContext()
         let second = try h.context.profiles.create(name: "Other signed in person")
         let selected = try await h.context.select(second.id); XCTAssertTrue(selected)
         let secondOwner = h.identityOwner
-        let b = try h.cloud { _, path, _, _, _ in
-            if path == "/identity/api/login" { return self.login("B") }
-            return self.state(h.memory.document([h.memory.remote("B-primary"), h.memory.remote("B-other", primary: false)]))
+        let b = try h.cloud { server, path, method, body, token in
+            XCTAssertEqual(server, serverB); return try exchange("B", path, method, body, token)
         }
         await b.signIn(username: "B", password: "owned-password", server: serverB); await b.sync()
         XCTAssertTrue(b.hydrated); XCTAssertEqual(h.context.profiles.scope, .harbor(account: serverB.account("B")))
@@ -204,5 +229,43 @@ import XCTest
         XCTAssertEqual(first["session"]["id"], .string("A"))
         let wire = String(decoding: try JSONEncoder().encode(h.context.profiles.state.wireValue), as: UTF8.self)
         for secret in ["localIdentityOwner", secondOwner, "owned-token-B", "owned-refresh-B"] { XCTAssertFalse(wire.contains(secret)) }
+        XCTAssertFalse(pushes.isEmpty)
+        let uploaded = String(decoding: try JSONEncoder().encode(pushes), as: UTF8.self)
+        for secret in ["localIdentityOwner", firstOwner, secondOwner, "owned-token-A", "owned-token-B", "owned-stremio-secret"] { XCTAssertFalse(uploaded.contains(secret)) }
+    }
+    func testSharedWatchAttributionStaysCurrentAcrossPrivateIdentityCoordinatorsWithoutSharingTheirCredentials() async throws {
+        let h = try OwnedHouseholdLayouts(); defer { h.close() }
+        let initial = try XCTUnwrap(h.context.binding), primary = try XCTUnwrap(h.context.profiles.active)
+        let aOwner = HarborProfileIdentity.owner(primary, scope: h.context.profiles.scope)
+        let aKey = HarborProfileIdentity.key(aOwner)
+        let watchKey = "watched-by-" + HouseholdProfileScope.hash([initial.identityOwner, "harbor", h.account])
+        let credential: JSONValue = .object(["session": .object(["id": .string(h.account), "username": .string("Owned watch account"),
+            "token": .string("owned-retired-watch-token"), "refresh": .string("owned-retired-watch-refresh")])])
+        try KeychainStore().write(credential, key: aKey)
+        defer { for key in [aKey, watchKey] { try? KeychainStore().remove(key) } }
+        var calls = 0
+        let a = HarborProfileSync(owner: aOwner, profile: ProfilePreferences.forOwner(initial.personalOwner), transport: { _, _, _, _ in calls += 1; return .null })
+        func bind(_ value: HarborProfileSync) throws {
+            let binding = try XCTUnwrap(h.context.binding), active = try XCTUnwrap(h.context.profiles.active)
+            value.bindHouseholdContext(h.context) {}; value.bindLayoutOwner(binding.settingsOwner, profileID: active.syncID, primary: active.desktop.isPrimary)
+            InterfacePreferences.shared.navigation.bind(.local(owner: binding.settingsOwner)); value.bindCachedLayouts()
+        }
+        try bind(a); let first = a.watchedBy
+        XCTAssertTrue(a.signedIn); XCTAssertNotNil(first.requestSync)
+        a.unbindHouseholdContext(); try await h.select("linked-other")
+        let secondary = try XCTUnwrap(h.context.profiles.active), next = try XCTUnwrap(h.context.binding)
+        let bOwner = HarborProfileIdentity.owner(secondary, scope: h.context.profiles.scope)
+        let b = HarborProfileSync(owner: bOwner, profile: ProfilePreferences.forOwner(next.personalOwner), transport: { _, _, _, _ in calls += 1; return .null })
+        defer { a.unbindHouseholdContext(); b.unbindHouseholdContext() }
+        try bind(b); let second = b.watchedBy
+        XCTAssertTrue(first === second, "The fixed account attribution bucket must not become stale private copies")
+        try second.record(mediaID: "owned-shared-watch", profileID: secondary.id)
+        await b.sync(); XCTAssertFalse(b.signedIn); XCTAssertEqual(calls, 0)
+        b.unbindHouseholdContext(); try await h.select("desktop-primary"); try bind(a)
+        XCTAssertEqual(a.watchedBy.value.watcher(mediaID: "owned-shared-watch", activeID: primary.id, profiles: h.context.profiles.profiles)?.id, secondary.id)
+        XCTAssertNotEqual(aOwner, bOwner); XCTAssertTrue(a.signedIn); XCTAssertFalse(b.signedIn)
+        XCTAssertEqual(try KeychainStore().read(aKey, as: JSONValue.self), credential)
+        XCTAssertNil(try KeychainStore().read(HarborProfileIdentity.key(bOwner), as: JSONValue.self))
+        await a.sync(); XCTAssertEqual(calls, 0)
     }
 }

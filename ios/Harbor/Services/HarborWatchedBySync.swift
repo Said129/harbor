@@ -18,6 +18,12 @@ struct WatchedBySyncRecord: Codable, Equatable, Sendable {
 /// One fixed account bucket also holds offline watches and unacknowledged edits.
 /// A response can acknowledge the sent snapshot without discarding newer watches.
 @MainActor @Observable final class HarborWatchedBySync {
+    private static var shared: [String: HarborWatchedBySync] = [:]
+    static func forOwner(_ owner: String, account: String?) -> HarborWatchedBySync {
+        let bucket = HouseholdProfileScope.hash([owner, account == nil ? "local" : "harbor", account ?? ""])
+        if let value = shared[bucket] { return value }
+        let value = HarborWatchedBySync(owner: owner, account: account); shared[bucket] = value; return value
+    }
     static let documentKey = "account:watchedby"
     let account: String?
     private let key: String

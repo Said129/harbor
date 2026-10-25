@@ -99,11 +99,12 @@ final class HarborProfileSync {
         let cacheOwner = householdContext?.binding?.identityOwner ?? owner
         let account = householdContext == nil ? stored.session?.account : cachedHouseholdAccount
         let bucket = HouseholdProfileScope.hash([cacheOwner, account == nil ? "local" : "harbor", account ?? ""])
-        if let value = watchedByBindings[bucket] { return value }
-        let value = HarborWatchedBySync(owner: cacheOwner, account: account)
-        value.requestSync = { [weak self, weak value] in
-            guard let self, let value, self.signedIn, value.account == self.accountID else { return }
-            self.scheduleSync()
+        let value = watchedByBindings[bucket] ?? HarborWatchedBySync.forOwner(cacheOwner, account: account)
+        if isCurrentBinding, signedIn, value.account == accountID {
+            value.requestSync = { [weak self, weak value] in
+                guard let self, let value, self.isCurrentBinding, self.signedIn, value.account == self.accountID else { return }
+                self.scheduleSync()
+            }
         }
         watchedByBindings[bucket] = value; return value
     }

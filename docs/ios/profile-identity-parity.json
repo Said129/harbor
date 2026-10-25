@@ -12,7 +12,9 @@
     "Private identity alias survives authenticated household activation but never enters the portable roster",
     "Previous coordinator retirement and identity checks before and after GET, push and refresh",
     "Signed-out unlocked profiles retain cached cloud layouts and account watch attribution without arming authenticated writes",
-    "Local appearance editing remains available when a legacy server is retired or a first pull is offline"
+    "Local appearance editing remains available when a legacy server is retired or a first pull is offline",
+    "Private identity coordinators reuse the same fixed household/account watch-attribution bucket, so switching profiles cannot display or overwrite a stale copy",
+    "Only the current authenticated identity can request a watch-attribution upload; a signed-out linked profile never borrows another profile's credential"
   ],
   "predecessor": {
     "run": 40216361279,
@@ -36,7 +38,34 @@
     "expected_original_captures": 8,
     "unrelated_approved_cases_replayed": false
   },
-  "apple_validation": "pending",
+  "apple_validation": {
+    "run": 40219962030,
+    "source": "0a1c39bc3c73d4148c819775cef0d707f9d570ad",
+    "actual_executions": 26,
+    "native_passed": 21,
+    "native_failed": 1,
+    "fresh_preparations_passed": 2,
+    "ui_passed": 2,
+    "original_captures": 8,
+    "evidence_archive_sha256": "83782880108eea43faf6df0de1cbbc0fc296d2f5aa84104ae69efeac6bb9bc93",
+    "new_warnings": 0
+  },
+  "follow_up": {
+    "selection_marker": "affected:profile-identity-repair",
+    "source_repairs": [
+      "The failing cross-account test must acknowledge pending roster writes and serve the accepted revision on subsequent GETs; returning a state body to a push is not a valid server response",
+      "Reuse a shared watch-attribution coordinator while keeping Harbor identity sessions private"
+    ],
+    "new_shared_watch_regressions": 1,
+    "predecessor_run": 40219962030,
+    "original_diagnostics_collected": true,
+    "failed_native_cases_selected": 1,
+    "affected_signed_out_cache_cases_selected": 1,
+    "expected_executions": 3,
+    "ui_replayed": false,
+    "approved_unrelated_results_retained": true,
+    "native_tests_executed": false
+  },
   "actual_personal_account_login_verified": false,
   "full_desktop_parity_complete": false,
   "ipa_created": false
