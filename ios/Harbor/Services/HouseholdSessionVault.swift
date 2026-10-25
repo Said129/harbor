@@ -25,6 +25,8 @@ struct HouseholdSessionState: Codable, Equatable, Sendable {
     var sources: [String: HouseholdAccountRecord] = [:]
     var migratedOwners: [String: HouseholdAccountRoute] = [:]
     var identityOwner: String?
+    var activeHarborAccount: String?
+    var deviceImportAccount: String?
     func validated() throws -> Self {
         guard version == 1, sources.allSatisfy({ key, value in
             key == value.route.key && !value.route.household.isEmpty && value.route.household.utf8.count <= 256
@@ -33,6 +35,7 @@ struct HouseholdSessionState: Codable, Equatable, Sendable {
         }), migratedOwners.keys.allSatisfy({ !$0.isEmpty && $0.utf8.count <= 512 }),
               migratedOwners.values.allSatisfy({ sources[$0.key]?.route == $0 }),
               identityOwner == nil || migratedOwners[identityOwner!] != nil,
+              [activeHarborAccount, deviceImportAccount].allSatisfy({ $0 == nil || (!$0!.isEmpty && $0!.utf8.count <= 256) }),
               try JSONEncoder().encode(self).count <= 16 * 1_024 * 1_024 else { throw HarborError(code: "household-sessions") }
         return self
     }
@@ -64,6 +67,32 @@ struct HouseholdSessionState: Codable, Equatable, Sendable {
     private(set) var error: String?
     var current: HouseholdSourceAccount? { ready ? route.flatMap { state.sources[$0.key]?.configuration } : nil }
     var identityOwner: String? { ready ? state.identityOwner : nil }
+    var activeHarborAccount: String? { ready ? state.activeHarborAccount : nil }
+    func mayImportDevice(into account: String) -> Bool { ready && (state.deviceImportAccount == nil || state.deviceImportAccount == account) }
+    func ownConfiguration(_ id: String, scope: HouseholdProfileScope) throws -> HouseholdSourceAccount? {
+        guard ready else { throw HarborError(code: "household-unavailable") }
+        return state.sources[HouseholdAccountRoute(household: scope.key, sourceID: id).key]?.configuration
+    }
+    /// Copy private records and the one-time account claim together. The old
+    /// records remain intact; another Harbor account cannot import them later.
+    func stageDeviceImport(_ profiles: [DeviceHouseholdProfile], from source: HouseholdProfileScope, account: String) throws {
+        guard ready, case .local = source, !account.isEmpty, account.utf8.count <= 256,
+              mayImportDevice(into: account) else { throw HarborError(code: "household-import-account") }
+        var next = state
+        for profile in profiles {
+            let old = HouseholdAccountRoute(household: source.key, sourceID: profile.id)
+            let target = HouseholdAccountRoute(household: HouseholdProfileScope.harbor(account: account).key, sourceID: profile.id)
+            if next.sources[target.key] == nil, let previous = state.sources[old.key] {
+                next.sources[target.key] = HouseholdAccountRecord(route: target, version: UUID(), configuration: previous.configuration)
+            }
+        }
+        next.deviceImportAccount = account; try commit(next)
+    }
+    func activateHarborAccount(_ account: String) throws {
+        guard ready, !account.isEmpty, account.utf8.count <= 256 else { throw HarborError(code: "household-import-account") }
+        if state.activeHarborAccount == account { return }
+        var next = state; next.activeHarborAccount = account; try commit(next)
+    }
     init(persistence: (any HouseholdSessionPersistence)? = nil) {
         self.persistence = persistence ?? KeychainHouseholdSessions(); reload()
     }

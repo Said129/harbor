@@ -16,6 +16,7 @@ struct HouseholdProfileState: Codable, Equatable, Sendable {
     var serverRevision: Int64?
     var synchronizationAccount: String?
     var rosterAttempt: HouseholdRosterAttempt?
+    var sharedSettingsOwner: String?
 
     func validated() throws -> Self {
         guard version == 1, Set(profiles.map(\.id)).count == profiles.count,
@@ -24,8 +25,11 @@ struct HouseholdProfileState: Codable, Equatable, Sendable {
                   && ($0.credential?.valid ?? true) && ($0.parentCredential?.valid ?? true)
                   && ($0.localPhotoID.map(ProfilePhotoStore.validDigest) ?? true)
                   && ($0.localPhotoID == nil || $0.appearanceInitialized == true)
+                  && [$0.localDataOwner, $0.localProgressOwner, $0.localProgressAccount].allSatisfy({ $0 == nil || (!$0!.isEmpty && $0!.utf8.count <= 512) })
                   && ($0.legacyOwner.map { !$0.isEmpty && $0.utf8.count <= 512 } ?? true) }),
               Set(profiles.compactMap(\.legacyOwner)).count == profiles.compactMap(\.legacyOwner).count,
+              Set(profiles.compactMap(\.localDataOwner)).count == profiles.compactMap(\.localDataOwner).count,
+              sharedSettingsOwner == nil || (!sharedSettingsOwner!.isEmpty && sharedSettingsOwner!.utf8.count <= 512),
               tombstones.count <= 64, tombstones.allSatisfy(\.deleted),
               selectedID == nil || profiles.contains(where: { $0.id == selectedID }),
               serverRevision == nil || (serverRevision! >= 0 && serverRevision! <= 9_007_199_254_740_991),
@@ -75,6 +79,7 @@ struct HouseholdProfileState: Codable, Equatable, Sendable {
     private var generation = 0
     private var unlocked: Set<String> = []
     private var parentUnlocked: Set<String> = []
+    @ObservationIgnored var didCommit: (() -> Void)?
     var profiles: [DeviceHouseholdProfile] { ready ? state.profiles : [] }
     var requestedProfile: DeviceHouseholdProfile? { profiles.first { $0.id == state.selectedID } }
     var active: DeviceHouseholdProfile? {
@@ -110,7 +115,7 @@ struct HouseholdProfileState: Codable, Equatable, Sendable {
     private func commit(_ next: HouseholdProfileState) throws {
         guard ready else { throw HarborError(code: "household-unavailable") }
         let value = try next.validated()
-        if value != state { try persistence.writeHousehold(value, key: scope.key); state = value; generation += 1; verifying = false }
+        if value != state { try persistence.writeHousehold(value, key: scope.key); state = value; generation += 1; verifying = false; didCommit?() }
         error = nil
     }
     private func requireEdit(_ id: String? = nil) throws {
@@ -123,6 +128,15 @@ struct HouseholdProfileState: Codable, Equatable, Sendable {
             guard target.credential == nil || unlocked.contains(id) else { throw HarborError(code: "profile-locked") }
             guard target.parentCredential == nil || parentUnlocked.contains(id) else { throw HarborError(code: "profile-parent-locked") }
         }
+    }
+    /// The context stages private source sessions first. An interrupted activation
+    /// can retry this atomic roster install without renaming personal data folders.
+    func installDeviceProfiles(_ imported: [DeviceHouseholdProfile], selectedID: String?, sharedOwner: String, account: String) throws {
+        guard ready, scope == .harbor(account: account), state.profiles.isEmpty,
+              state.serverRevision == nil, state.synchronizationAccount == nil,
+              imported.allSatisfy({ $0.legacyOwner == nil && $0.localDataOwner != nil }) else { throw HarborError(code: "household-import-target") }
+        var next = state; next.profiles = imported; next.selectedID = selectedID; next.sharedSettingsOwner = sharedOwner
+        try commit(next)
     }
     @discardableResult func create(name: String, avatar: String? = nil, color: String = "#7dd3fc", kid: JSONValue = .null, legacyOwner: String? = nil) throws -> DeviceHouseholdProfile {
         try requireEdit()

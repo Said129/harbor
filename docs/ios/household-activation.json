@@ -1,0 +1,24 @@
+{
+  "reference": "0.9.132 (Beta)",
+  "device_identity_rule": "Stable local profile IDs and private data namespaces; account:profiles carries portable fields only",
+  "activation": "Authenticated and validated full-state pull before a new Harbor household is activated",
+  "first_account_import": "Stage source sessions with a durable one-account claim, install roster aliases, bind/adopt the server, activate last",
+  "recovery": "Keep the old local roster, sessions and shelves; retry partial staging without overwriting an existing destination record",
+  "other_accounts": "Separate persisted households; no automatic source-session or personal-data import from a previously connected Harbor account",
+  "production_callers": [
+    "AppModel.bindHarborIdentity",
+    "HarborProfileSync.synchronizedHouseholdState",
+    "AppProfileContext.activateHarbor",
+    "HarborHouseholdSync.synchronize"
+  ],
+  "appearance_queue": "Flush the earlier client's durable appearance intent before using the full roster writer; new edits use that writer only",
+  "new_native_cases": 12,
+  "retained_watched_by_native_run": 40157907082,
+  "retained_watched_by_native_cases": 10,
+  "failed_interface_retry": "The app now reaches Anime; scroll the real LazyVStack before waiting for its initially offscreen continuation row",
+  "interface_evidence_archive_sha256": "91db1b15d978bc338688bc59b9cdbaccc0b3931e8b0b8e0ed4b8468eaf096c9f",
+  "native_validation_pending": true,
+  "linked_layout_fanout_still_requires_audit": true,
+  "full_desktop_parity_complete": false,
+  "ipa_created": false
+}

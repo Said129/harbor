@@ -37,10 +37,12 @@ struct ActiveProfileBinding: Equatable, Sendable {
 /// a personal owner from Stremio's user ID: two profiles can share that account.
 @MainActor @Observable final class AppProfileContext {
     static let shared = AppProfileContext()
-    let profiles: HouseholdProfileStore
+    private(set) var profiles: HouseholdProfileStore
     let sessions: HouseholdSessionVault
     let playback = ProfilePlaybackRegistry()
     private let legacy: any LegacyProfileLoading
+    @ObservationIgnored private let profileFactory: @MainActor (HouseholdProfileScope) -> HouseholdProfileStore
+    private var managesScope: Bool
     private(set) var binding: ActiveProfileBinding?
     private(set) var activationID = UUID()
     private(set) var busy = false
@@ -59,9 +61,13 @@ struct ActiveProfileBinding: Equatable, Sendable {
         sharedSettingsOwner(identityOwner: sessions.identityOwner ?? profiles.profiles.compactMap(\.legacyOwner).first ?? "identity-" + profiles.scope.key)
     }
 
-    init(profiles: HouseholdProfileStore? = nil, sessions: HouseholdSessionVault? = nil, legacy: (any LegacyProfileLoading)? = nil) {
-        self.profiles = profiles ?? HouseholdProfileStore(scope: .local(owner: "device-v1"))
-        self.sessions = sessions ?? HouseholdSessionVault()
+    init(profiles: HouseholdProfileStore? = nil, sessions: HouseholdSessionVault? = nil, legacy: (any LegacyProfileLoading)? = nil,
+         profileFactory: (@MainActor (HouseholdProfileScope) -> HouseholdProfileStore)? = nil) {
+        let vault = sessions ?? HouseholdSessionVault()
+        let factory = profileFactory ?? { HouseholdProfileStore(scope: $0) }
+        self.sessions = vault; self.profileFactory = factory; managesScope = profiles == nil
+        let scope = vault.activeHarborAccount.map { HouseholdProfileScope.harbor(account: $0) } ?? .local(owner: "device-v1")
+        self.profiles = profiles ?? factory(scope)
         self.legacy = legacy ?? KeychainLegacyProfile()
     }
     func prepare() throws {
@@ -100,7 +106,7 @@ struct ActiveProfileBinding: Equatable, Sendable {
     private func sharedSettingsOwner(identityOwner: String) -> String {
         switch profiles.scope {
         case .local: identityOwner
-        case .harbor: "settings-shared-" + profiles.scope.key
+        case .harbor: profiles.state.sharedSettingsOwner ?? "settings-shared-" + profiles.scope.key
         }
     }
     private func refreshBinding() throws {
@@ -116,7 +122,8 @@ struct ActiveProfileBinding: Equatable, Sendable {
         let accountID = lease.configuration?.account?.session.user.id
         let source = profiles.profiles.first { $0.id == routing.stremioSourceID }
         let progressOwner: String
-        if let old = source?.legacyOwner, old == (accountID ?? "guest") { progressOwner = old }
+        if let alias = source?.localProgressOwner, source?.localProgressAccount == accountID { progressOwner = alias }
+        else if let old = source?.legacyOwner, old == (accountID ?? "guest") { progressOwner = old }
         else { progressOwner = "source-progress-" + HouseholdProfileScope.hash([profiles.scope.key, routing.stremioSourceID, accountID ?? "guest"]) }
         let next = ActiveProfileBinding(profileID: profile.id, personalOwner: routing.personal,
             settingsOwner: profile.desktop.settingsLinked ? sharedOwner : routing.personal, sharedSettingsOwner: sharedOwner,
@@ -142,7 +149,74 @@ struct ActiveProfileBinding: Equatable, Sendable {
         try refreshBinding(); return true
     }
     func refreshRouting() throws { try refreshBinding() }
+    func bindProfileAppearances() {
+        for profile in profiles.profiles where !profile.desktop.isKid {
+            ProfilePreferences.forOwner(profiles.appearanceOwner(profile)).bindHousehold(profiles, id: profile.id)
+        }
+    }
+    /// Called only after an authenticated full-state GET has been validated.
+    /// Import aliases keep old shelves/settings readable; neither those aliases
+    /// nor the staged Stremio sessions enter the portable roster.
+    @discardableResult func activateHarbor(account: String, document: HarborLayoutDocument?) throws -> Bool {
+        guard !busy, profiles.ready, sessions.ready, !account.isEmpty, account.utf8.count <= 256,
+              document == nil || document?.key == HarborHouseholdSync.key else { throw HarborError(code: "household-activation") }
+        let incoming = try document.map { try DesktopHouseholdRoster($0.value) }
+        if profiles.scope == .harbor(account: account) { return false }
+        let destination = profileFactory(.harbor(account: account))
+        guard destination.ready else { throw HarborError(code: "household-unavailable") }
+        if destination.profiles.isEmpty, destination.state.serverRevision == nil, destination.state.synchronizationAccount == nil,
+           case .local = profiles.scope, sessions.mayImportDevice(into: account) {
+            let previous = profiles, sharedOwner = householdSettingsOwner
+            let remotePrimary = incoming?.profiles.first { $0.isPrimary && !$0.isKid && !$0.deleted }
+            var imported = try previous.profiles.map { profile -> DeviceHouseholdProfile in
+                var next = profile
+                next.localDataOwner = HouseholdProfileRouting(profile: profile, profiles: previous.profiles, scope: previous.scope, cwPerProfile: false).personal
+                let own = try sessions.ownConfiguration(profile.id, scope: previous.scope)
+                let ownAccount = own?.account?.session.user.id
+                if let legacy = profile.legacyOwner, legacy == (ownAccount ?? "guest") { next.localProgressOwner = legacy }
+                else { next.localProgressOwner = "source-progress-" + HouseholdProfileScope.hash([previous.scope.key, profile.id, ownAccount ?? "guest"]) }
+                next.localProgressAccount = ownAccount; next.legacyOwner = nil
+                // The earlier iOS client bound its primary appearance/layout to
+                // Desktop's primary. Preserve that established role mapping once.
+                if profile.desktop.isPrimary, let remotePrimary,
+                   !previous.profiles.contains(where: { $0.id != profile.id && $0.syncID == remotePrimary.syncID }) {
+                    if remotePrimary.raw["avatar"] != .null && remotePrimary.raw["avatar"] != profile.desktop.raw["avatar"] {
+                        next.localPhotoID = nil; next.appearanceInitialized = true
+                    }
+                    next.desktop = remotePrimary
+                }
+                return next
+            }
+            // Preserve exactly one primary if the previous primary was not in
+            // the authenticated roster; remote adoption handles later changes.
+            if incoming?.profiles.contains(where: { $0.isPrimary && !$0.deleted }) == true,
+               !imported.contains(where: { $0.desktop.isPrimary && $0.syncID == remotePrimary?.syncID }) {
+                for index in imported.indices where imported[index].desktop.isPrimary {
+                    imported[index].desktop = try imported[index].desktop.editing(["isPrimary": .bool(false)], at: Date().timeIntervalSince1970 * 1_000)
+                }
+            }
+            try sessions.stageDeviceImport(previous.profiles, from: previous.scope, account: account)
+            try destination.installDeviceProfiles(imported, selectedID: previous.state.selectedID, sharedOwner: sharedOwner, account: account)
+        }
+        try destination.bindSynchronization(account: account)
+        if let document, let incoming { try destination.adopt(incoming, revision: document.rev) }
+        else {
+            try destination.noteMissingServerRoster(account: account)
+            if destination.profiles.isEmpty { _ = try destination.create(name: "Guest \(Int.random(in: 1000...9999))") }
+        }
+        // Activation is the final durable write. A failed staging operation
+        // leaves the original context usable and can be retried after restart.
+        try sessions.activateHarborAccount(account)
+        playback.stopForProfileChange(); sessions.unbind(); profiles = destination; managesScope = true
+        binding = nil; activationID = UUID(); try refreshBinding(); bindProfileAppearances()
+        return true
+    }
     func reload() {
-        playback.stopForProfileChange(); profiles.reload(); sessions.reload(); binding = nil; activationID = UUID()
+        playback.stopForProfileChange(); sessions.reload()
+        if managesScope {
+            let scope = sessions.activeHarborAccount.map { HouseholdProfileScope.harbor(account: $0) } ?? .local(owner: "device-v1")
+            if profiles.scope != scope { profiles = profileFactory(scope) } else { profiles.reload() }
+        } else { profiles.reload() }
+        binding = nil; activationID = UUID()
     }
 }

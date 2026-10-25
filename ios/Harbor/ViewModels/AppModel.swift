@@ -42,9 +42,7 @@ final class AppModel {
     private var profilesAfterAccount = false
     var choosingProfile: Bool { showProfiles || profilesAfterAccount || profileContext.requiresSelection || switchingProfile }
     func prepareProfileAppearances() {
-        for profile in profileContext.profiles.profiles where !profile.desktop.isKid {
-            ProfilePreferences.forOwner(profileContext.profiles.appearanceOwner(profile)).bindHousehold(profileContext.profiles, id: profile.id)
-        }
+        profileContext.bindProfileAppearances()
     }
     func openProfiles() {
         automaticProfilePromptPending = false
@@ -100,6 +98,7 @@ final class AppModel {
         do { try profileContext.refreshRouting() }
         catch { storageReady = false; throw error }
         prepareProfileAppearances()
+        if profileContext.ready { bindHarborIdentity() }
         if storageReady && profileContext.ready && previous == profileContext.binding { return }
         storageReady = false
         if let active = profileContext.profiles.active {
@@ -258,13 +257,29 @@ final class AppModel {
         }
         try MetadataPreferences.shared.bind(ProfileSettingsStore.shared)
         _ = pageCustomization("home"); _ = pageCustomization("anime")
-        harborIdentity.cloud.bindLayoutOwner(settingsOwner, profileID: profileContext.profiles.active?.syncID,
-            primary: profileContext.profiles.active?.desktop.isPrimary == true)
+        bindHarborIdentity()
         InterfacePreferences.shared.navigation.bind(.local(owner: settingsOwner))
         StreamingPreferences.forOwner(settingsOwner).bind(.local(owner: settingsOwner))
         pageCustomization("home").bind(.local(owner: settingsOwner)); pageCustomization("anime").bind(.local(owner: settingsOwner))
         resume = ResumeStore(owner: owner)
         await reloadProgress()
+    }
+    private func bindHarborIdentity() {
+        let cloud = harborIdentity.cloud
+        cloud.bindHouseholdContext(profileContext) { [weak self] in
+            guard let self else { return }
+            self.prepareProfileAppearances()
+            Task { [weak self] in
+                guard let self else { return }
+                guard !self.accountBusy else { self.harborIdentity.cloud.requestHouseholdSynchronization(); return }
+                do {
+                    try await self.refreshSelectedProfile()
+                    if self.profileContext.ready { self.harborIdentity.cloud.requestHouseholdSynchronization() }
+                } catch { self.error = safeMessage(error); Diagnostics.shared.recordFailure(error) }
+            }
+        }
+        cloud.bindLayoutOwner(settingsOwner, profileID: profileContext.profiles.active?.syncID,
+            primary: profileContext.profiles.active?.desktop.isPrimary == true)
     }
 
     private func bindLibrary(_ session: AccountSession?) async {

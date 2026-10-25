@@ -8,7 +8,11 @@
   "identity": "Match one real video ID within the current source; retain raw season, episode, stream requests, watched keys and metadata snapshot",
   "new_native_cases": 3,
   "already_approved_cases_repeated": false,
-  "apple_validation_pending": true,
+  "apple_validation_pending": false,
+  "validated_native_run": 40158397002,
+  "validated_native_source": "0138cd5b6810c0928f1b5e91baa5f959ff1b21d9",
+  "validated_native_cases": 3,
+  "evidence_archive_sha256": "42223af6e06780547de368cc2edc4092b438acc6b92c13351d33893dfd2d32ae",
   "runtime_interface_approval_pending": true,
   "ipa_created": false
 }

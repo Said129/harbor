@@ -6,6 +6,9 @@ import re
 import runpy
 
 requested = os.environ.get('HARBOR_NATIVE_SELECTION', '').strip()
+if requested == 'affected:household-activation' or 'HarborTests.HouseholdIdentitySyncTests/' in requested:
+    runpy.run_path('scripts/ios/prepare-household-activation-selection.py')
+    raise SystemExit(0)
 if requested == 'native-only:player-order-caption' or 'HarborTests.PlayerEpisodePresentationTests/' in requested:
     runpy.run_path('scripts/ios/prepare-player-caption-selection.py')
     raise SystemExit(0)

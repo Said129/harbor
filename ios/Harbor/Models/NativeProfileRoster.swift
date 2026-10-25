@@ -98,6 +98,10 @@ struct DeviceHouseholdProfile: Codable, Equatable, Identifiable, Sendable {
     var legacyOwner: String?
     var localPhotoID: String? = nil
     var appearanceInitialized: Bool? = nil
+    /// One-time native import aliases are device-local and never part of desktop.raw.
+    var localDataOwner: String? = nil
+    var localProgressOwner: String? = nil
+    var localProgressAccount: String? = nil
     var syncID: String { desktop.syncID }
 }
 
@@ -126,7 +130,7 @@ struct HouseholdProfileRouting: Equatable, Sendable {
         }
         // Existing iOS shelves, favourites and trackers keep their namespace. Only
         // the explicitly migrated profile can hold this device-local alias.
-        personal = profile.legacyOwner ?? "profile-" + HouseholdProfileScope.hash([scope.key, profile.id])
+        personal = profile.localDataOwner ?? profile.legacyOwner ?? "profile-" + HouseholdProfileScope.hash([scope.key, profile.id])
         settings = profile.desktop.settingsLinked ? "settings-shared-" + scope.key : personal
         let sourceID = source(profile)
         let isPrivate = cwPerProfile && profiles.contains { $0.id != profile.id && source($0) == sourceID }

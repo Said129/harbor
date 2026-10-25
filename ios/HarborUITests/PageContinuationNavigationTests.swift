@@ -11,12 +11,14 @@ import XCTest
         app.launchArguments = ["-uiLanguage", "en", "-nativeGuide.initialized.v1", "YES", "-nativeGuide.completed.v1", "YES"]
         ReadingUIInteraction.launchPreparedApplication(app); defer { app.terminate() }; navigate(app)
         let scroll = app.scrollViews["content-anime"], row = element("page-continue-watching-row", app)
+        ReadingUIInteraction.reveal(row, in: app, container: scroll)
         XCTAssertTrue(row.waitForExistence(timeout: 30)); ReadingUIInteraction.revealWithinViewport(row, in: app, container: scroll)
         if watcher { verifyWatcher(app) }
         XCTAssertTrue(row.staticTexts["Continue Watching"].exists); capture(app, "anime-continue-initial-" + device)
         let customize = app.buttons["page-customize"]
         ReadingUIInteraction.reveal(customize, in: app, up: false, container: scroll); ReadingUIInteraction.tapVisible(customize, in: app)
         let controls = element("page-row-controls-continueWatching", app)
+        ReadingUIInteraction.reveal(controls, in: app, container: scroll)
         XCTAssertTrue(controls.waitForExistence(timeout: 15)); ReadingUIInteraction.revealWithinViewport(controls, in: app, container: scroll)
         XCTAssertFalse(controls.buttons["Move up"].isEnabled)
         XCTAssertFalse(controls.buttons["Needs at least 10 titles for the Top 10 look"].exists)
@@ -39,6 +41,7 @@ import XCTest
         ReadingUIInteraction.reveal(customize, in: app, up: false, container: scroll); ReadingUIInteraction.tapVisible(customize, in: app)
         app.terminate(); ReadingUIInteraction.launchPreparedApplication(app); navigate(app)
         let preceding = element("page-content-row-discovery-anilist-trending", app)
+        ReadingUIInteraction.reveal(preceding, in: app, container: scroll)
         XCTAssertTrue(preceding.waitForExistence(timeout: 30)); ReadingUIInteraction.revealWithinViewport(preceding, in: app, container: scroll)
         let container = element("page-content-row-continueWatching", app)
         XCTAssertTrue(container.waitForExistence(timeout: 10)); XCTAssertLessThan(preceding.frame.minY, container.frame.minY)
