@@ -41,6 +41,7 @@ final class PageCustomization {
     let owner: String
     let page: String
     private(set) var layout: PageLayout
+    private(set) var lastEditor: String?
     private(set) var ready = false
     private(set) var error: String?
     private(set) var scope: NavigationScope
@@ -52,7 +53,7 @@ final class PageCustomization {
     private var key: String { storageKey(scope) }
     private func storageKey(_ scope: NavigationScope) -> String {
         switch scope {
-        case .local: return "page-layout-" + EBookShelf.hash(owner + "|" + page)
+        case .local: return "page-layout-" + EBookShelf.hash(scope.owner + "|" + page)
         case .harbor: return "page-layout-scope-" + EBookShelf.hash(scope.key + "|" + page)
         }
     }
@@ -62,7 +63,8 @@ final class PageCustomization {
         layout = defaults; localLayout = defaults
         do {
             let saved: PageLayout
-            if let current = try KeychainStore().read(key, as: PageLayout.self) { saved = current }
+            var loadedEditor: String? = nil
+            if let current = try LayoutEditStorage.object(key, as: PageLayout.self) { saved = current.value; loadedEditor = current.editor }
             else if let inheritedOwner, inheritedOwner != owner,
                     let shared = try KeychainStore().read("page-layout-" + EBookShelf.hash(inheritedOwner + "|" + page), as: PageLayout.self) {
                 // Desktop loadEffective falls back to the household's shared
@@ -82,7 +84,7 @@ final class PageCustomization {
                 } else { saved = defaults }
             } else { saved = defaults }
             guard Self.valid(saved) else { throw HarborError(code: "page-layout") }
-            layout = saved; localLayout = saved; ready = true
+            layout = saved; localLayout = saved; lastEditor = loadedEditor; ready = true
         } catch { self.error = "No se pudo recuperar la personalización. Los cambios anteriores se conservan." }
     }
     func ordered(_ rails: [PageRail], includeHidden: Bool = false) -> [PageRail] {
@@ -103,18 +105,35 @@ final class PageCustomization {
     func bind(_ next: NavigationScope) {
         guard next.owner == owner else { return }
         if scope == next && ready { return }
-        scope = next; onEdit = nil; onRails = nil; ready = false; editing = false; layout = localLayout
+        scope = next; onEdit = nil; onRails = nil; ready = false; editing = false; layout = localLayout; lastEditor = nil
         do {
-            let value = try KeychainStore().read(storageKey(next), as: PageLayout.self) ?? localLayout
+            let saved = try LayoutEditStorage.object(storageKey(next), as: PageLayout.self)
+            let value = saved?.value ?? localLayout
             guard Self.valid(value) else { throw HarborError(code: "page-layout") }
-            layout = value; ready = true; error = nil
+            layout = value; lastEditor = saved?.editor; ready = true; error = nil
             if case .local = next { localLayout = value }
         } catch { self.error = "No se pudo recuperar la personalización. Los cambios anteriores se conservan." }
     }
-    func apply(_ value: PageLayout, to expected: NavigationScope) throws {
+    func apply(_ value: PageLayout, to expected: NavigationScope, editor: String = "") throws {
         guard ready, scope == expected, Self.valid(value) else { throw HarborError(code: "account-changed") }
-        if value != layout { try KeychainStore().write(value, key: key); layout = value }
+        if value != layout || lastEditor != editor { try LayoutEditStorage.writeObject(.init(value: value, editor: editor), key: key); layout = value; lastEditor = editor }
         error = nil
+    }
+    func refreshStoredValue() throws {
+        guard ready, let saved = try LayoutEditStorage.object(key, as: PageLayout.self) else { return }
+        guard Self.valid(saved.value) else { throw HarborError(code: "page-layout") }
+        layout = saved.value; lastEditor = saved.editor
+    }
+    func inheritSharedIfAbsent(_ shared: NavigationScope) throws {
+        guard ready, case .harbor(_, let account, _, false) = scope,
+              case .harbor(_, let sourceAccount, _, true) = shared, account == sourceAccount,
+              try LayoutEditStorage.object(key, as: PageLayout.self) == nil,
+              try LayoutEditStorage.object(storageKey(.local(owner: owner)), as: PageLayout.self) == nil else { return }
+        let inherited = try LayoutEditStorage.object(storageKey(shared), as: PageLayout.self)
+            ?? LayoutEditStorage.object(storageKey(.local(owner: shared.owner)), as: PageLayout.self)
+        guard let inherited else { return }
+        guard Self.valid(inherited.value) else { throw HarborError(code: "page-layout") }
+        layout = inherited.value; lastEditor = ""
     }
     func setEditingRails(_ rails: [PageRail]) { editingRails = rails; onRails?(rails) }
     var currentRails: [PageRail] { editingRails }
@@ -131,9 +150,10 @@ final class PageCustomization {
     func change(_ edit: (inout PageLayout) -> Void) {
         guard ready else { return }
         var next = layout; edit(&next)
+        guard next != layout else { return }
         do {
             guard Self.valid(next) else { throw HarborError(code: "page-layout") }
-            try KeychainStore().write(next, key: key); layout = next; error = nil
+            try LayoutEditStorage.writeObject(.init(value: next, editor: scope.editorID), key: key); layout = next; lastEditor = scope.editorID; error = nil
             if case .local = scope { localLayout = next }
             onEdit?(next)
         } catch { self.error = "No se pudo guardar la personalización. Los cambios anteriores se conservan." }

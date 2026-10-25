@@ -24,6 +24,6 @@ import Foundation
     private static func stopsPass(_ error: Error) -> Bool {
         if error is CancellationError || error is URLError { return true }
         guard let failure = error as? HarborError else { return false }
-        return ["account-changed", "profile-auth-response", "invalid-account-request", "http-401", "http-403", "http-429"].contains(failure.code)
+        return ["account-changed", "profile-auth-response", "invalid-account-request", "network", "http-401", "http-403", "http-429"].contains(failure.code)
     }
 }

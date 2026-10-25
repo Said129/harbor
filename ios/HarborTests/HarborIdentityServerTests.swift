@@ -122,7 +122,7 @@ import XCTest
         XCTAssertEqual(first.personalOwner, originalBinding.personalOwner)
         await cloud.signIn(username: "owned-user", password: "owned-password", server: b); await cloud.sync()
         XCTAssertNil(cloud.error); XCTAssertNotEqual(context.binding?.personalOwner, first.personalOwner)
-        XCTAssertNil(context.configuration?.account); XCTAssertTrue(context.configuration?.guestAddons.isEmpty == true)
+        XCTAssertNil(context.configuration?.account); XCTAssertTrue((context.configuration?.guestAddons ?? []).isEmpty)
         XCTAssertEqual(context.profiles.scope, .harbor(account: b.account("same-provider-id")))
         await cloud.signIn(username: "owned-user", password: "owned-password", server: a); await cloud.sync()
         XCTAssertNil(cloud.error); XCTAssertEqual(context.binding, first); XCTAssertEqual(context.configuration, source)

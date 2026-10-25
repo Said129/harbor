@@ -2,7 +2,7 @@ import Foundation
 import Observation
 
 struct NavigationSyncRecord: Codable, Sendable {
-    struct Pending: Codable, Sendable { let version: UUID; var baseRev: Int64; let value: JSONValue }
+    struct Pending: Codable, Sendable { let version: UUID; var baseRev: Int64; let value: JSONValue; var preservesSharedBackup: Bool? = nil }
     struct Parked: Codable, Sendable { let value: JSONValue; let lostToRev: Int64 }
     var version = 1
     var shadow: HarborLayoutDocument?
@@ -24,7 +24,7 @@ struct NavigationSyncRecord: Codable, Sendable {
 @MainActor @Observable
 final class HarborNavigationSync {
     private let owner: String
-    private let preferences: ScopedNavigationPreferences
+    let preferences: ScopedNavigationPreferences
     private let persistence: any NavigationSyncPersistence
     private let defaultOrder: [String]
     private let knownIDs: Set<String>
@@ -33,9 +33,10 @@ final class HarborNavigationSync {
     private var stored = NavigationSyncRecord()
     private var hydrated = false
     private(set) var error: String?
-    @ObservationIgnored var requestSync: (() -> Void)?
+    @ObservationIgnored var requestSync: (@MainActor () -> Void)?
     var hasPendingChanges: Bool { scope != nil && stored.pending != nil }
     var hasParkedVersion: Bool { scope != nil && stored.parked != nil }
+    func refreshSharedValue() throws { try preferences.refreshStoredValue() }
 
     init(owner: String, preferences: ScopedNavigationPreferences, defaultOrder: [String], knownIDs: Set<String>, persistence: (any NavigationSyncPersistence)? = nil) {
         self.owner = owner; self.preferences = preferences; self.defaultOrder = defaultOrder; self.knownIDs = knownIDs
@@ -54,12 +55,12 @@ final class HarborNavigationSync {
         try persistence.writeSync(next, key: syncKey(scope, key: documentKey)); stored = next
     }
     private func syncKey(_ scope: NavigationScope, key: String) -> String { "navigation-sync-" + EBookShelf.hash(scope.key + "|" + key) }
-    private func codec(_ value: JSONValue? = nil) throws -> DesktopNavigationLayout { try DesktopNavigationLayout(value ?? stored.shadow?.value ?? .object([:])) }
+    private func codec(_ value: JSONValue? = nil) throws -> DesktopNavigationLayout { try DesktopNavigationLayout(value ?? stored.pending?.value ?? stored.shadow?.value ?? .object([:])) }
     private func mobile(_ value: NativeNavigationLayout) -> NativeNavigationLayout {
         var seen = Set<String>()
         return NativeNavigationLayout(order: (value.order + defaultOrder).filter { knownIDs.contains($0) && seen.insert($0).inserted }, hidden: value.hidden.intersection(knownIDs), renamed: value.renamed.filter { knownIDs.contains($0.key) })
     }
-    private func enqueue(_ layout: NativeNavigationLayout, force: Bool = false) throws {
+    private func enqueue(_ layout: NativeNavigationLayout, force: Bool = false, base: JSONValue? = nil, replacedAt: Int64? = nil) throws {
         guard hydrated, let scope else { return }
         try check(scope)
         if !force {
@@ -68,9 +69,11 @@ final class HarborNavigationSync {
                 if mobile(previous) == mobile(layout) { return }
             } else if let previous = stored.appliedLocal, mobile(previous) == mobile(layout) { return }
         }
-        let value = try codec().applying(layout, knownIDs: knownIDs, defaultOrder: defaultOrder).raw
+        let value = try codec(base).applying(layout, knownIDs: knownIDs, defaultOrder: defaultOrder).raw
         var next = stored
+        if let revision = replacedAt, let previous = stored.pending, previous.preservesSharedBackup != true { next.parked = .init(value: previous.value, lostToRev: revision) }
         next.pending = NavigationSyncRecord.Pending(version: UUID(), baseRev: stored.shadow?.rev ?? 0, value: value)
+        if replacedAt != nil { next.pending?.preservesSharedBackup = true }
         try save(next); error = nil; requestSync?()
     }
     func restoreMyVersion() {
@@ -78,10 +81,10 @@ final class HarborNavigationSync {
         do {
             try check(scope)
             let next = try codec(parked.value).native(knownIDs: knownIDs, preserving: preferences.value, defaultOrder: defaultOrder)
-            try preferences.apply(next, to: scope)
+            try preferences.apply(next, to: scope, editor: scope.editorID)
             // Explicit restore remains meaningful even if a deleted server
             // document left the same visible mobile values on this device.
-            try enqueue(next, force: true)
+            try enqueue(next, force: true, base: stored.shadow?.value ?? .object([:]))
         } catch { self.error = "Could not restore your navigation. The saved version is kept." }
     }
 
@@ -112,7 +115,12 @@ final class HarborNavigationSync {
         try check(expected)
         // Recover an edit whose native preference write succeeded but whose
         // queue write failed. Do this before applying any incoming server data.
-        if stored.pending == nil, let previous = stored.appliedLocal, mobile(previous) != mobile(preferences.value) {
+        if let pending = stored.pending,
+           mobile(try codec(pending.value).native(knownIDs: knownIDs, preserving: preferences.value, defaultOrder: defaultOrder)) != mobile(preferences.value) {
+            let revision = try HarborLayoutDocument.revision(state["rev"])
+            hydrated = true; try enqueue(preferences.value, replacedAt: preferences.lastEditor == "" ? revision : nil)
+        } else if stored.pending == nil, preferences.lastEditor == nil || preferences.lastEditor == expected.editorID,
+                  let previous = stored.appliedLocal, mobile(previous) != mobile(preferences.value) {
             hydrated = true; try enqueue(preferences.value)
         }
         let baseRev = stored.pending?.baseRev ?? stored.shadow?.rev ?? 0
@@ -124,13 +132,16 @@ final class HarborNavigationSync {
             do { try self.enqueue(value) }
             catch { self.error = "Your navigation is saved locally. Cloud sync will retry." }
         }
+        if stored.pending == nil, let incoming, incoming == stored.shadow, preferences.lastEditor != nil { error = nil; return }
+        if stored.pending == nil, incoming == nil, stored.shadow == nil, stored.appliedLocal == preferences.value { error = nil; return }
         if let pending = stored.pending, let incoming, incoming.value == pending.value {
-            var next = stored; next.shadow = incoming; next.pending = nil; next.parked = nil
+            var next = stored; next.shadow = incoming; next.pending = nil
+            if pending.preservesSharedBackup != true { next.parked = nil }
             next.appliedLocal = preferences.value; try save(next); error = nil; return
         }
         if let pending = stored.pending, (incoming == nil && pending.baseRev > 0) || (incoming?.rev ?? 0) > pending.baseRev {
             var next = stored
-            next.parked = NavigationSyncRecord.Parked(value: pending.value, lostToRev: incoming?.rev ?? 0)
+            if pending.preservesSharedBackup != true { next.parked = NavigationSyncRecord.Parked(value: pending.value, lostToRev: incoming?.rev ?? 0) }
             next.pending = nil; next.shadow = incoming
             if let incoming {
                 let adopted = try codec(incoming.value).native(knownIDs: knownIDs, preserving: preferences.value, defaultOrder: defaultOrder)
@@ -156,7 +167,8 @@ final class HarborNavigationSync {
         switch try base.result(response) {
         case .accepted(let revision):
             let accepted = HarborLayoutDocument(key: key, rev: revision, value: pending.value)
-            var next = stored; next.shadow = accepted; next.parked = nil
+            var next = stored; next.shadow = accepted
+            if pending.preservesSharedBackup != true { next.parked = nil }
             next.appliedLocal = try codec(pending.value).native(knownIDs: knownIDs, preserving: preferences.value, defaultOrder: defaultOrder)
             if next.pending?.version == pending.version { next.pending = nil }
             else { next.pending?.baseRev = revision }
@@ -165,7 +177,7 @@ final class HarborNavigationSync {
         case .rejected(let current):
             let adopted = try codec(current.value).native(knownIDs: knownIDs, preserving: preferences.value, defaultOrder: defaultOrder)
             var next = stored
-            next.parked = NavigationSyncRecord.Parked(value: next.pending?.value ?? pending.value, lostToRev: current.rev)
+            if next.pending?.preservesSharedBackup != true { next.parked = NavigationSyncRecord.Parked(value: next.pending?.value ?? pending.value, lostToRev: current.rev) }
             next.pending = nil; next.shadow = current; next.appliedLocal = adopted
             try preferences.apply(adopted, to: expected); try save(next); error = nil
         }

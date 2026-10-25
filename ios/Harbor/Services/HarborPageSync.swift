@@ -2,9 +2,9 @@ import Foundation
 import Observation
 
 struct PageSyncRecord: Codable, Sendable {
-    struct Pending: Codable, Sendable { let version: UUID; var baseRev: Int64; let value: JSONValue }
+    struct Pending: Codable, Sendable { let version: UUID; var baseRev: Int64; let value: JSONValue; var preservesSharedBackup: Bool? = nil }
     struct Parked: Codable, Sendable { let value: JSONValue; let lostToRev: Int64 }
-    struct Adoption: Codable, Sendable { let previous: PageLayout; let next: PageLayout }
+    struct Adoption: Codable, Sendable { let previous: PageLayout; let next: PageLayout; var editor: String? = nil }
     var version = 1
     var shadow: HarborLayoutDocument?
     var applied: PageLayout?
@@ -35,9 +35,10 @@ struct PageSyncRecord: Codable, Sendable {
     private var hydrated = false
     private var busy = false
     private(set) var error: String?
-    @ObservationIgnored var requestSync: (() -> Void)?
+    @ObservationIgnored var requestSync: (@MainActor () -> Void)?
     var hasPendingChanges: Bool { scope != nil && stored.pending != nil }
     var hasParkedVersion: Bool { scope != nil && stored.parked != nil }
+    func refreshSharedValue() throws { try preferences.refreshStoredValue() }
 
     init(preferences: PageCustomization, persistence: (any PageSyncPersistence)? = nil) {
         self.preferences = preferences; self.persistence = persistence ?? KeychainPageSync()
@@ -79,20 +80,24 @@ struct PageSyncRecord: Codable, Sendable {
         guard let adoption = stored.adoption else { return }
         // A user can edit after a journal failure. Preserve that newer local edit;
         // the applied baseline below lets the next synchronization enqueue it.
-        if preferences.layout == adoption.previous || preferences.layout == adoption.next { try preferences.apply(adoption.next, to: expected) }
+        if preferences.layout == adoption.previous || preferences.layout == adoption.next { try preferences.apply(adoption.next, to: expected, editor: adoption.editor ?? "") }
         var next = stored; next.adoption = nil; next.applied = adoption.next; try save(next)
     }
-    private func adopt(_ layout: PageLayout, record: PageSyncRecord, in expected: NavigationScope) throws {
-        var journal = record; journal.adoption = .init(previous: preferences.layout, next: layout)
+    private func adopt(_ layout: PageLayout, record: PageSyncRecord, in expected: NavigationScope, editor: String = "") throws {
+        var journal = record; journal.adoption = .init(previous: preferences.layout, next: layout, editor: editor)
         try save(journal); try completeAdoption(expected)
     }
-    private func enqueue(_ layout: PageLayout) throws {
+    private func enqueue(_ layout: PageLayout, replacedAt: Int64? = nil) throws {
         guard hydrated, let scope else { return }
         try check(scope, generation: generation)
         let raw = try codec().applying(layout, mapping: mapping).raw
         if let pending = stored.pending, pending.value == raw { return }
         if stored.pending == nil, let applied = stored.applied, try codec().applying(applied, mapping: mapping).raw == raw { return }
         var next = stored; next.pending = .init(version: UUID(), baseRev: stored.shadow?.rev ?? 0, value: raw)
+        if let revision = replacedAt, let previous = stored.pending {
+            if previous.preservesSharedBackup != true { next.parked = .init(value: previous.value, lostToRev: revision) }
+            next.pending?.preservesSharedBackup = true
+        }
         try save(next); error = nil; requestSync?()
     }
     private func register(_ rails: [PageRail], in expected: NavigationScope, generation: Int) throws {
@@ -102,7 +107,7 @@ struct PageSyncRecord: Codable, Sendable {
         mapping = nextMap
         if let raw = stored.pending?.value ?? stored.shadow?.value {
             let layout = try codec(raw).native(preserving: preferences.layout, mapping: mapping)
-            try adopt(layout, record: stored, in: expected)
+            try adopt(layout, record: stored, in: expected, editor: stored.pending == nil ? "" : preferences.lastEditor ?? expected.editorID)
         }
     }
     func restoreMyVersion() {
@@ -110,7 +115,7 @@ struct PageSyncRecord: Codable, Sendable {
         do {
             try check(scope, generation: generation)
             let layout = try codec(parked.value).native(preserving: preferences.layout, mapping: mapping)
-            try adopt(layout, record: stored, in: scope)
+            try adopt(layout, record: stored, in: scope, editor: scope.editorID)
             // Desktop's explicit restore re-pushes the entire parked section.
             // Later edits must keep its opaque fields until it is acknowledged.
             var next = stored; next.pending = .init(version: UUID(), baseRev: stored.shadow?.rev ?? 0,
@@ -137,7 +142,10 @@ struct PageSyncRecord: Codable, Sendable {
         let generation = self.generation; busy = true
         defer { if self.generation == generation { busy = false } }
         try check(expected, generation: generation); try completeAdoption(expected)
-        if stored.pending == nil, let applied = stored.applied,
+        if let pending = stored.pending, try codec(pending.value).applying(preferences.layout, mapping: mapping).raw != pending.value {
+            let revision = try HarborLayoutDocument.revision(state["rev"])
+            hydrated = true; try enqueue(preferences.layout, replacedAt: preferences.lastEditor == "" ? revision : nil)
+        } else if stored.pending == nil, preferences.lastEditor == nil || preferences.lastEditor == expected.editorID, let applied = stored.applied,
            try codec().applying(applied, mapping: mapping).raw != codec().applying(preferences.layout, mapping: mapping).raw {
             hydrated = true; try enqueue(preferences.layout)
         }
@@ -153,12 +161,16 @@ struct PageSyncRecord: Codable, Sendable {
             guard let self else { return }
             do { try self.register(rails, in: expected, generation: generation) } catch { self.error = "Your layout is saved locally. Cloud sync will retry." }
         }
+        if stored.pending == nil, let incoming, incoming == stored.shadow, preferences.lastEditor != nil { error = nil; return }
+        if stored.pending == nil, incoming == nil, stored.shadow == nil, stored.applied == preferences.layout { error = nil; return }
         if let pending = stored.pending, let incoming, incoming.value == pending.value {
-            var next = stored; next.shadow = incoming; next.pending = nil; next.parked = nil; next.applied = preferences.layout
+            var next = stored; next.shadow = incoming; next.pending = nil; next.applied = preferences.layout
+            if pending.preservesSharedBackup != true { next.parked = nil }
             try save(next); error = nil; return
         }
         if let pending = stored.pending, (incoming == nil && pending.baseRev > 0) || (incoming?.rev ?? 0) > pending.baseRev {
-            var next = stored; next.parked = .init(value: pending.value, lostToRev: incoming?.rev ?? 0); next.pending = nil; next.shadow = incoming
+            var next = stored; next.pending = nil; next.shadow = incoming
+            if pending.preservesSharedBackup != true { next.parked = .init(value: pending.value, lostToRev: incoming?.rev ?? 0) }
             if let incoming { try adopt(codec(incoming.value).native(preserving: preferences.layout, mapping: mapping), record: next, in: expected) }
             else { next.applied = preferences.layout; try save(next) }
             error = nil; return
@@ -182,14 +194,17 @@ struct PageSyncRecord: Codable, Sendable {
         try check(expected, generation: generation)
         switch try base.result(response) {
         case .accepted(let revision):
-            var next = stored; next.shadow = .init(key: document, rev: revision, value: pending.value); next.parked = nil
+            var next = stored; next.shadow = .init(key: document, rev: revision, value: pending.value)
+            if pending.preservesSharedBackup != true { next.parked = nil }
             next.applied = try codec(pending.value).native(preserving: preferences.layout, mapping: mapping)
             if next.pending?.version == pending.version { next.pending = nil } else { next.pending?.baseRev = revision }
             try save(next); error = nil
             if next.pending != nil { requestSync?() }
         case .rejected(let current):
             let layout = try codec(current.value).native(preserving: preferences.layout, mapping: mapping)
-            var next = stored; next.parked = .init(value: next.pending?.value ?? pending.value, lostToRev: current.rev); next.pending = nil; next.shadow = current
+            var next = stored
+            if next.pending?.preservesSharedBackup != true { next.parked = .init(value: next.pending?.value ?? pending.value, lostToRev: current.rev) }
+            next.pending = nil; next.shadow = current
             try adopt(layout, record: next, in: expected); error = nil
         }
     }

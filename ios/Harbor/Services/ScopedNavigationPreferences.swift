@@ -5,6 +5,7 @@ enum NavigationScope: Equatable, Sendable {
     case local(owner: String)
     case harbor(owner: String, account: String, profile: String, linked: Bool)
     var owner: String { switch self { case .local(let owner), .harbor(let owner, _, _, _): owner } }
+    var editorID: String { switch self { case .local: "@local"; case .harbor(_, _, let profile, _): profile } }
     var key: String {
         let parts: [String]
         switch self {
@@ -20,10 +21,18 @@ enum NavigationScope: Equatable, Sendable {
 @MainActor protocol NavigationLayoutPersistence {
     func read(_ key: String) throws -> NativeNavigationLayout?
     func write(_ value: NativeNavigationLayout, key: String) throws
+    func readSnapshot(_ key: String) throws -> LayoutEditSnapshot<NativeNavigationLayout>?
+    func writeSnapshot(_ value: LayoutEditSnapshot<NativeNavigationLayout>, key: String) throws
+}
+@MainActor extension NavigationLayoutPersistence {
+    func readSnapshot(_ key: String) throws -> LayoutEditSnapshot<NativeNavigationLayout>? { try read(key).map { LayoutEditSnapshot(value: $0, editor: nil) } }
+    func writeSnapshot(_ value: LayoutEditSnapshot<NativeNavigationLayout>, key: String) throws { try write(value.value, key: key) }
 }
 @MainActor struct KeychainNavigationPersistence: NavigationLayoutPersistence {
-    func read(_ key: String) throws -> NativeNavigationLayout? { try KeychainStore().read(key, as: NativeNavigationLayout.self) }
-    func write(_ value: NativeNavigationLayout, key: String) throws { try KeychainStore().write(value, key: key) }
+    func read(_ key: String) throws -> NativeNavigationLayout? { try readSnapshot(key)?.value }
+    func write(_ value: NativeNavigationLayout, key: String) throws { try writeSnapshot(.init(value: value, editor: nil), key: key) }
+    func readSnapshot(_ key: String) throws -> LayoutEditSnapshot<NativeNavigationLayout>? { try LayoutEditStorage.object(key, as: NativeNavigationLayout.self) }
+    func writeSnapshot(_ value: LayoutEditSnapshot<NativeNavigationLayout>, key: String) throws { try LayoutEditStorage.writeObject(value, key: key) }
 }
 
 @MainActor @Observable
@@ -32,6 +41,7 @@ final class ScopedNavigationPreferences {
     private let persistence: any NavigationLayoutPersistence
     private static let migrationOwnerKey = "iphone.nav.migration.owner.v1"
     private(set) var value = NativeNavigationLayout()
+    private(set) var lastEditor: String?
     private(set) var scope: NavigationScope?
     private(set) var ready = false
     private(set) var error: String?
@@ -45,11 +55,11 @@ final class ScopedNavigationPreferences {
 
     func bind(_ scope: NavigationScope) {
         if self.scope == scope && ready { return }
-        if self.scope != scope { value = NativeNavigationLayout() }
-        onEdit = nil; ready = false; error = nil; self.scope = scope
+        if self.scope != scope { value = NativeNavigationLayout(); lastEditor = nil }
+        onEdit = nil; ready = false; lastEditor = nil; error = nil; self.scope = scope
         do {
             let next: NativeNavigationLayout
-            if let saved = try persistence.read(scope.key) { next = saved }
+            if let saved = try persistence.readSnapshot(scope.key) { next = saved.value; lastEditor = saved.editor }
             else {
                 switch scope {
                 case .local(let owner):
@@ -82,14 +92,29 @@ final class ScopedNavigationPreferences {
         guard next != value else { return }
         do {
             guard next.valid else { throw HarborError(code: "navigation-store") }
-            try persistence.write(next, key: scope.key)
-            value = next; error = nil; onEdit?(next)
+            try persistence.writeSnapshot(.init(value: next, editor: scope.editorID), key: scope.key)
+            value = next; lastEditor = scope.editorID; error = nil; onEdit?(next)
         } catch { self.error = "Could not save navigation settings. Your previous settings are kept." }
     }
-    func apply(_ next: NativeNavigationLayout, to expected: NavigationScope) throws {
+    func apply(_ next: NativeNavigationLayout, to expected: NavigationScope, editor: String = "") throws {
         guard ready, scope == expected, next.valid else { throw HarborError(code: "account-changed") }
-        if value != next { try persistence.write(next, key: expected.key); value = next }
+        if value != next || lastEditor != editor { try persistence.writeSnapshot(.init(value: next, editor: editor), key: expected.key); value = next; lastEditor = editor }
         error = nil
+    }
+    func refreshStoredValue() throws {
+        guard ready, let scope, let saved = try persistence.readSnapshot(scope.key) else { return }
+        guard saved.value.valid else { throw HarborError(code: "navigation-store") }
+        value = saved.value; lastEditor = saved.editor
+    }
+    func inheritSharedIfAbsent(_ shared: NavigationScope) throws {
+        guard ready, let scope, case .harbor(_, let account, _, false) = scope,
+              case .harbor(_, let sourceAccount, _, true) = shared, account == sourceAccount,
+              try persistence.readSnapshot(scope.key) == nil,
+              try persistence.read(NavigationScope.local(owner: scope.owner).key) == nil else { return }
+        let inherited = try persistence.readSnapshot(shared.key) ?? persistence.readSnapshot(NavigationScope.local(owner: shared.owner).key)
+        guard let inherited else { return }
+        guard inherited.value.valid else { throw HarborError(code: "navigation-store") }
+        value = inherited.value; lastEditor = ""
     }
     private var hasLegacyValue: Bool { ["iphone.nav.order", "iphone.nav.hidden", "iphone.nav.names"].contains { storage.object(forKey: $0) != nil } }
     private func legacyValue() throws -> NativeNavigationLayout {

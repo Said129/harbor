@@ -1,0 +1,30 @@
+{
+  "reference": "Preserved Harbor Desktop 0.9.132 Beta profile-sync/engine.ts and layout-sync/store.ts",
+  "implementation": "HarborProfileSync delegates authenticated household layout passes to HarborHouseholdLayoutSync; the legacy single-profile path remains available without a household context",
+  "incoming_order": "services, nav, home, anime, then original response order within each section. Known profiles with absent documents still hydrate their own pending journals",
+  "shared_values": "Linked profiles share persisted values. Independent profiles use their personal owner. Inactive actors never bind or replace the active navigation instance",
+  "visible_values": "Refresh only the affected shared preference instance after an inactive projection, preserving its UI callbacks and editing state",
+  "independent_fallback": "An independent profile with neither its own scoped value nor an explicit local override reads the account shared scope without creating a private record",
+  "origin": "Atomically persist the local editing syncId with preferences; empty marks a remote projection and nil supports legacy records. Metadata stays outside native layout values and never enters wire sections",
+  "wire_identity": "Only the edited profile's key becomes dirty. Previously queued keys coalesce against their current shared value as on Desktop; a local version displaced by another linked server section remains parked until explicitly restored",
+  "conflicts": "Maintain independent CAS revisions and durable intents per profile document, preserve unknown Desktop fields and existing section-specific restore behavior",
+  "retirement": "Account/selection/routing mutation and cancellation are checked before and after every send, before an actor can consume its acknowledgement",
+  "errors": "Malformed sections do not block other sections/profiles; the actual HTTP network error stops the pass. Failed storage does not clear previously known pending status",
+  "performance": "Index the incoming envelope once, avoid repeated writes for unchanged or absent sections, and keep all rendering free of Keychain reads",
+  "new_native_cases": 11,
+  "affected_recovery_and_migration_cases": 12,
+  "previously_unexecuted_server_native_cases": 20,
+  "previous_run": {
+    "run": 40186940505,
+    "actual_executions": 0,
+    "app_compilation": "passed",
+    "failure": "Owned identity assertion accessed optional guestAddons without unwrapping; corrected with an empty fallback"
+  },
+  "apple_validation_pending": true,
+  "actual_personal_account_login_verified": false,
+  "per_profile_identity_override_audit_pending": true,
+  "deferred_rail_mapping_cross_profile_audit_pending": true,
+  "offline_selection_shared_inheritance_audit_pending": true,
+  "full_desktop_parity_complete": false,
+  "ipa_created": false
+}

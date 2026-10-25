@@ -6,7 +6,8 @@ struct HarborIdentityPanel: View {
     @State private var password = ""
     @State private var customServer = false
     @State private var serverURL = ""
-    @FocusState private var editing: Bool
+    private enum Field: Hashable { case username, password, server }
+    @FocusState private var editing: Field?
     private var cloud: HarborProfileSync { profile.cloud }
     private var selectedServer: HarborIdentityServer? {
         if customServer { return try? HarborIdentityServer(serverURL) }
@@ -32,6 +33,7 @@ struct HarborIdentityPanel: View {
                     }.pickerStyle(.segmented).accessibilityIdentifier("harbor-server-choice")
                     if customServer {
                         TextField("https://servidor.example", text: $serverURL).keyboardType(.URL).textInputAutocapitalization(.never).autocorrectionDisabled()
+                            .focused($editing, equals: .server)
                             .padding(13).background(HarborTheme.surface, in: .rect(cornerRadius: 10)).accessibilityIdentifier("harbor-server-url")
                     } else {
                         Text(HarborIdentityServer.community.host).font(HarborTheme.font(13)).foregroundStyle(.secondary)
@@ -39,13 +41,13 @@ struct HarborIdentityPanel: View {
                     Text("Usa una cuenta de este servidor. El servicio original cerró; sus sesiones no se transfieren automáticamente.")
                         .font(HarborTheme.font(13)).foregroundStyle(.secondary)
                 }
-                TextField(DesktopInterfaceText.value("Username"), text: $username).textContentType(.username).textInputAutocapitalization(.never).autocorrectionDisabled().focused($editing)
+                TextField(DesktopInterfaceText.value("Username"), text: $username).textContentType(.username).textInputAutocapitalization(.never).autocorrectionDisabled().focused($editing, equals: .username)
                     .padding(13).background(HarborTheme.surface, in: .rect(cornerRadius: 10)).accessibilityIdentifier("harbor-username").disabled(!cloud.ready)
-                SecureField(DesktopInterfaceText.value("Password"), text: $password).textContentType(.password).focused($editing)
+                SecureField(DesktopInterfaceText.value("Password"), text: $password).textContentType(.password).focused($editing, equals: .password)
                     .padding(13).background(HarborTheme.surface, in: .rect(cornerRadius: 10)).accessibilityIdentifier("harbor-password").disabled(!cloud.ready)
                 Button(DesktopInterfaceText.value("Sign in")) {
                     guard let server = selectedServer else { return }
-                    editing = false; let secret = password; password = ""
+                    editing = nil; let secret = password; password = ""
                     Task { await cloud.signIn(username: username, password: secret, server: server) }
                 }.buttonStyle(HarborAccountButtonStyle(primary: true)).disabled(!cloud.ready || selectedServer == nil || selectedServer?.retired == true || username.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty || password.isEmpty)
                     .accessibilityIdentifier("harbor-login")

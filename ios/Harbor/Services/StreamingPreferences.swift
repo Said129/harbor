@@ -24,11 +24,19 @@ struct StreamingServiceDefinition: Decodable, Identifiable, Sendable {
 @MainActor protocol StreamingPreferencePersistence {
     func load(_ key: String) throws -> [String: Bool]?
     func save(_ value: [String: Bool], key: String) throws
+    func loadSnapshot(_ key: String) throws -> LayoutEditSnapshot<[String: Bool]>?
+    func saveSnapshot(_ value: LayoutEditSnapshot<[String: Bool]>, key: String) throws
+}
+@MainActor extension StreamingPreferencePersistence {
+    func loadSnapshot(_ key: String) throws -> LayoutEditSnapshot<[String: Bool]>? { try load(key).map { LayoutEditSnapshot(value: $0, editor: nil) } }
+    func saveSnapshot(_ value: LayoutEditSnapshot<[String: Bool]>, key: String) throws { try save(value.value, key: key) }
 }
 
 @MainActor private struct StreamingKeychain: StreamingPreferencePersistence {
-    func load(_ key: String) throws -> [String: Bool]? { try KeychainStore().read(key, as: [String: Bool].self) }
-    func save(_ value: [String: Bool], key: String) throws { try KeychainStore().write(value, key: key) }
+    func load(_ key: String) throws -> [String: Bool]? { try loadSnapshot(key)?.value }
+    func save(_ value: [String: Bool], key: String) throws { try saveSnapshot(.init(value: value, editor: nil), key: key) }
+    func loadSnapshot(_ key: String) throws -> LayoutEditSnapshot<[String: Bool]>? { try LayoutEditStorage.dictionary(key) }
+    func saveSnapshot(_ value: LayoutEditSnapshot<[String: Bool]>, key: String) throws { try LayoutEditStorage.writeDictionary(value, key: key) }
 }
 
 @MainActor @Observable
@@ -41,6 +49,7 @@ final class StreamingPreferences {
     let owner: String
     private(set) var scope: NavigationScope
     private(set) var values: [String: Bool] = [:]
+    private(set) var lastEditor: String?
     private(set) var ready = false
     private(set) var cloudWritePending = false
     private(set) var error: String?
@@ -48,8 +57,11 @@ final class StreamingPreferences {
     @ObservationIgnored var onEdit: (([String: Bool]) -> Void)?
     private var localKey: String { "native-streaming-" + EBookShelf.hash(owner) }
     private var key: String {
+        storageKey(scope)
+    }
+    private func storageKey(_ scope: NavigationScope) -> String {
         switch scope {
-        case .local: localKey
+        case .local: "native-streaming-" + EBookShelf.hash(scope.owner)
         case .harbor: "scoped-streaming-" + EBookShelf.hash(scope.key)
         }
     }
@@ -64,15 +76,15 @@ final class StreamingPreferences {
     var selection: [String: Bool] { Dictionary(uniqueKeysWithValues: StreamingServiceDefinition.all.map { ($0.key, isEnabled($0.key)) }) }
     func bind(_ next: NavigationScope) {
         guard next.owner == owner, next != scope || !ready else { return }
-        if next != scope { values = [:] }
+        if next != scope { values = [:]; lastEditor = nil }
         scope = next; onEdit = nil; cloudWritePending = false; reload()
     }
-    func suspend() { ready = false; values = [:]; onEdit = nil; cloudWritePending = false }
+    func suspend() { ready = false; values = [:]; lastEditor = nil; onEdit = nil; cloudWritePending = false }
     func reload() {
-        ready = false
+        ready = false; lastEditor = nil
         do {
             let value: [String: Bool]
-            if let saved = try persistence.load(key) { value = saved }
+            if let saved = try persistence.loadSnapshot(key) { value = saved.value; lastEditor = saved.editor }
             else if case .harbor = scope { value = try persistence.load(localKey) ?? [:] }
             else { value = [:] }
             guard Self.valid(value) else { throw HarborError(code: "streaming-preferences") }
@@ -84,15 +96,29 @@ final class StreamingPreferences {
         guard isEnabled(service) != enabled else { return true }
         var next = values; next[service] = enabled
         do {
-            try persistence.save(next, key: key); values = next; error = nil; onEdit?(selection); return true
+            try persistence.saveSnapshot(.init(value: next, editor: scope.editorID), key: key); values = next; lastEditor = scope.editorID; error = nil; onEdit?(selection); return true
         } catch { self.error = "Could not save streaming preferences. Your previous settings are kept."; return false }
     }
-    func apply(_ selection: [String: Bool], to expected: NavigationScope) throws {
+    func apply(_ selection: [String: Bool], to expected: NavigationScope, editor: String = "") throws {
         let known = Set(StreamingServiceDefinition.all.map(\.key))
         guard ready, scope == expected, Self.valid(selection), Set(selection.keys) == known else { throw HarborError(code: "account-changed") }
         let next = values.filter { !known.contains($0.key) }.merging(selection) { _, new in new }
-        if next != values { try persistence.save(next, key: key); values = next }
+        if next != values || lastEditor != editor { try persistence.saveSnapshot(.init(value: next, editor: editor), key: key); values = next; lastEditor = editor }
         error = nil
+    }
+    func refreshStoredValue() throws {
+        guard ready, let saved = try persistence.loadSnapshot(key) else { return }
+        guard Self.valid(saved.value) else { throw HarborError(code: "streaming-preferences") }
+        values = saved.value; lastEditor = saved.editor
+    }
+    func inheritSharedIfAbsent(_ shared: NavigationScope) throws {
+        guard ready, case .harbor(_, let account, _, false) = scope,
+              case .harbor(_, let sourceAccount, _, true) = shared, account == sourceAccount,
+              try persistence.loadSnapshot(key) == nil, try persistence.load(localKey) == nil else { return }
+        let inherited = try persistence.loadSnapshot(storageKey(shared)) ?? persistence.loadSnapshot(storageKey(.local(owner: shared.owner)))
+        guard let inherited else { return }
+        guard Self.valid(inherited.value) else { throw HarborError(code: "streaming-preferences") }
+        values = inherited.value; lastEditor = ""
     }
     func holdCloudWrite(_ pending: Bool, in expected: NavigationScope) {
         guard scope == expected else { return }; cloudWritePending = pending
