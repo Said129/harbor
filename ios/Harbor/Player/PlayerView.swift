@@ -450,7 +450,7 @@ struct PlayerView: View {
                             HStack(spacing: 6) { PlayerGlyph(name: "prev-episode", size: 17); Text("Anterior") }
                         }.frame(minHeight: 44).disabled(adjacent.previous == nil || episodeChanging).accessibilityIdentifier("player-previous-episode")
                         Spacer()
-                        if let coordinates = EpisodePresentation.coordinates(in: media, target: session.target) {
+                        if let coordinates = EpisodePresentation.coordinates(in: media, target: session.target, presentation: episodeOrder) {
                             Text(coordinates.caption).foregroundStyle(.secondary).accessibilityIdentifier("player-episode-caption")
                         }
                         Spacer()

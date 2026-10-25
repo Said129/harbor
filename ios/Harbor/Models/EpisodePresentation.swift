@@ -24,8 +24,18 @@ enum EpisodePresentation {
         return Coordinates(season: season, episode: number)
     }
 
-    static func coordinates(in media: Media?, target: ResumeTarget) -> Coordinates? {
-        coordinates(episode: episode(in: media, target: target), fallback: target)
+    static func coordinates(in media: Media?, target: ResumeTarget, presentation: EpisodeOrderProjection? = nil) -> Coordinates? {
+        let original = episode(in: media, target: target)
+        guard let media, media.id == target.id, let presentation else { return coordinates(episode: original, fallback: target) }
+        // A running session keeps its original metadata snapshot. The order can
+        // finish loading later, just as it does for previous/next navigation.
+        let source = presentation.videos.filter { $0.sourceMetaID == nil || $0.sourceMetaID == media.id }
+        let projected: Episode?
+        if let id = original?.id ?? target.videoId {
+            let matches = source.filter { $0.id == id }
+            projected = matches.count == 1 ? matches.first : nil
+        } else { projected = nil }
+        return coordinates(episode: projected ?? original, fallback: target)
     }
 }
 

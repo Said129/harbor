@@ -6,6 +6,9 @@ import re
 import runpy
 
 requested = os.environ.get('HARBOR_NATIVE_SELECTION', '').strip()
+if requested == 'native-only:player-order-caption' or 'HarborTests.PlayerEpisodePresentationTests/' in requested:
+    runpy.run_path('scripts/ios/prepare-player-caption-selection.py')
+    raise SystemExit(0)
 if requested == 'affected:watched-by' or 'HarborTests.WatchedBySyncTests/' in requested:
     runpy.run_path('scripts/ios/prepare-watched-by-selection.py')
     raise SystemExit(0)

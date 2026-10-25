@@ -1,0 +1,14 @@
+{
+  "explicit_case": "Dragon Ball Super episode 99",
+  "previous_native_episode_order_run": 39329283077,
+  "previous_super_99_case_passed": true,
+  "previous_case_scope": "EpisodePresentation given metadata with projected videos already applied",
+  "newly_affected_case": "A PlaybackSession holds its original media snapshot while DetailModel later publishes EpisodeOrderProjection",
+  "repair": "PlayerView passes the current projection to the caption helper, matching existing previous/next navigation",
+  "identity": "Match one real video ID within the current source; retain raw season, episode, stream requests, watched keys and metadata snapshot",
+  "new_native_cases": 3,
+  "already_approved_cases_repeated": false,
+  "apple_validation_pending": true,
+  "runtime_interface_approval_pending": true,
+  "ipa_created": false
+}
