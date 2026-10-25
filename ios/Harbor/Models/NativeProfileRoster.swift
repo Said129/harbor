@@ -37,7 +37,7 @@ struct DesktopHouseholdProfile: Codable, Equatable, Sendable {
             details.removeValue(forKey: "parentPinHash")
             fields["kid"] = .object(details)
         }
-        for key in ["id", "passwordHash", "shareStremioWith"] { fields.removeValue(forKey: key) }
+        for key in ["id", "passwordHash", "shareStremioWith", "localIdentityOwner"] { fields.removeValue(forKey: key) }
         // JSON decoding normalizes integral numbers. Use the same representation
         // before persistence and POST comparison so an acknowledged write is not
         // mistaken for another local edit after a restart.
@@ -102,6 +102,7 @@ struct DeviceHouseholdProfile: Codable, Equatable, Identifiable, Sendable {
     var localDataOwner: String? = nil
     var localProgressOwner: String? = nil
     var localProgressAccount: String? = nil
+    var localIdentityOwner: String? = nil
     var syncID: String { desktop.syncID }
 }
 

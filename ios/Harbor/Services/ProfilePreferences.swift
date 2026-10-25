@@ -62,7 +62,9 @@ final class ProfilePreferences {
     private let persistence: any ProfileAppearancePersistence
     private let photos: ProfilePhotoStore
     private let didChange: ((MobileProfile, MobileProfile) -> Void)?
-    var cloud: HarborProfileSync { HarborProfileSync.forOwner(owner, profile: self) }
+    @ObservationIgnored private weak var identitySync: HarborProfileSync?
+    var cloud: HarborProfileSync { identitySync ?? HarborProfileSync.forOwner(owner, profile: self) }
+    func bindIdentitySync(_ value: HarborProfileSync) { identitySync = value }
     init(owner: String, persistence: (any ProfileAppearancePersistence)? = nil, photos: ProfilePhotoStore? = nil, didChange: ((MobileProfile, MobileProfile) -> Void)? = nil) {
         self.owner = owner
         self.persistence = persistence ?? KeychainProfileAppearance(); self.photos = photos ?? .shared

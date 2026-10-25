@@ -56,7 +56,7 @@ struct HomeView: View {
                         Button("Reintentar") { Task { await refresh() } }.buttonStyle(HarborAccountButtonStyle())
                     }.padding(28).frame(maxWidth: .infinity)
                 }
-                PageCustomizeButton(rails: rails, customization: customization, cloud: model.harborIdentity.cloud.signedIn ? model.harborIdentity.cloud.page("home") : nil)
+                PageCustomizeButton(rails: rails, customization: customization, cloud: model.harborIdentity.signedIn ? model.harborIdentity.page("home") : nil)
                 if let error = customization.error { Text(error).font(.caption).foregroundStyle(.orange).padding(.horizontal) }
                 if !classic && !customization.layout.cwTop { ContinueWatching(app: model) }
                 CustomizedRails(rails: rails, app: model, customization: customization)

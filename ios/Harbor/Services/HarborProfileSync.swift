@@ -46,9 +46,19 @@ final class HarborProfileSync {
     }
     private struct Pending: Codable { let account: String; let syncId: String; var version: UUID; var fields: [String: JSONValue] }
     private struct Stored: Codable { var session: Session?; var pending: Pending?; var parked: [String: Pending]? }
+    static func identityRecordAccount(_ raw: JSONValue) throws -> String? {
+        guard case .object = raw, try JSONEncoder().encode(raw).count <= 512 * 1_024 else { throw HarborError(code: "profile-identity-migration") }
+        let value = try JSONDecoder().decode(Stored.self, from: JSONEncoder().encode(raw))
+        if let session = value.session {
+            guard !session.id.isEmpty, session.id.utf8.count <= 256, !session.username.isEmpty,
+                  session.username.utf8.count <= 256, !session.token.isEmpty, session.token.utf8.count <= 32 * 1_024,
+                  !session.refresh.isEmpty, session.refresh.utf8.count <= 32 * 1_024 else { throw HarborError(code: "profile-identity-migration") }
+        }
+        return value.session?.account
+    }
     private static var models: [String: HarborProfileSync] = [:]
     static func forOwner(_ owner: String, profile: ProfilePreferences) -> HarborProfileSync {
-        if let existing = models[owner] { return existing }
+        if let existing = models[owner] { existing.profile = profile; return existing }
         let value = HarborProfileSync(owner: owner, profile: profile); models[owner] = value; return value
     }
     private let key: String
@@ -65,14 +75,32 @@ final class HarborProfileSync {
     @ObservationIgnored private var householdSync: HarborHouseholdSync?
     @ObservationIgnored private var householdLayouts: HarborHouseholdLayoutSync?
     @ObservationIgnored private var householdDidChange: (() -> Void)?
+    @ObservationIgnored private var bindingActive = true
     func bindHouseholdContext(_ context: AppProfileContext, didChange: @escaping () -> Void) {
-        householdContext = context; householdDidChange = didChange
+        bindingActive = true; householdContext = context; householdDidChange = didChange
+    }
+    func unbindHouseholdContext() {
+        suspendForProfileChange(); bindingActive = false
+        householdContext = nil; householdDidChange = nil
+    }
+    private var isCurrentBinding: Bool {
+        guard bindingActive else { return false }
+        guard let context = householdContext else { return true }
+        guard context.ready, let active = context.profiles.active, !active.desktop.isKid else { return false }
+        return !HarborProfileIdentity.validOwner(owner) || HarborProfileIdentity.owner(active, scope: context.profiles.scope) == owner
+    }
+    private var cachedHouseholdAccount: String? {
+        guard let context = householdContext, context.ready, case .harbor(let account) = context.profiles.scope,
+              context.sessions.activeHarborAccount == account else { return nil }
+        return account
     }
     func requestHouseholdSynchronization() { if signedIn { scheduleSync() } }
     var watchedBy: HarborWatchedBySync {
-        let bucket = HouseholdProfileScope.hash([stored.session == nil ? "local" : "harbor", stored.session?.account ?? ""])
+        let cacheOwner = householdContext?.binding?.identityOwner ?? owner
+        let account = householdContext == nil ? stored.session?.account : cachedHouseholdAccount
+        let bucket = HouseholdProfileScope.hash([cacheOwner, account == nil ? "local" : "harbor", account ?? ""])
         if let value = watchedByBindings[bucket] { return value }
-        let value = HarborWatchedBySync(owner: owner, account: stored.session?.account)
+        let value = HarborWatchedBySync(owner: cacheOwner, account: account)
         value.requestSync = { [weak self, weak value] in
             guard let self, let value, self.signedIn, value.account == self.accountID else { return }
             self.scheduleSync()
@@ -97,7 +125,7 @@ final class HarborProfileSync {
         let value = HarborStreamingSync(owner: layoutOwner, preferences: StreamingPreferences.forOwner(layoutOwner))
         serviceBindings[layoutOwner] = value; return value
     }
-    private weak var profile: ProfilePreferences?
+    @ObservationIgnored private weak var profile: ProfilePreferences?
     private var stored = Stored()
     private var generation = 0
     private var selectedID: String?
@@ -129,6 +157,7 @@ final class HarborProfileSync {
         })
     }
     private func send(_ server: HarborIdentityServer, _ path: String, _ method: String, _ body: JSONValue?, _ token: String?) async throws -> JSONValue {
+        guard isCurrentBinding else { throw HarborError(code: "account-changed") }
         guard !server.retired else { throw HarborError(code: "harbor-server-retired") }
         return try await transport(server, path, method, body, token)
     }
@@ -138,13 +167,19 @@ final class HarborProfileSync {
         suspendForProfileChange(); boundLayoutOwner = next; boundLayoutProfile = target; selectedID = nil
     }
     func bindCachedLayouts() {
-        guard ready, let session = stored.session, let context = householdContext, context.ready,
-              context.profiles.scope == .harbor(account: session.account), context.binding?.settingsOwner == layoutOwner,
+        guard ready, bindingActive, let account = cachedHouseholdAccount, let context = householdContext,
+              context.binding?.settingsOwner == layoutOwner,
               context.profiles.active?.syncID == boundLayoutProfile?.id else { return }
         do {
-            try HarborHouseholdLayoutSync.bindCached(account: session.account, context: context,
+            try HarborHouseholdLayoutSync.bindCached(account: account, context: context,
                 active: .init(navigation: navigation, services: services, home: page("home"), anime: page("anime")))
         } catch { self.error = "No se pudieron recuperar algunos ajustes guardados. Los datos anteriores se conservan." }
+    }
+    private func bindSavedLayouts() {
+        if cachedHouseholdAccount != nil { bindCachedLayouts(); return }
+        page("home").preferences.bind(.local(owner: layoutOwner)); page("anime").preferences.bind(.local(owner: layoutOwner))
+        StreamingPreferences.forOwner(layoutOwner).bind(.local(owner: layoutOwner))
+        if InterfacePreferences.shared.navigation.scope?.owner == layoutOwner { InterfacePreferences.shared.navigation.bind(.local(owner: layoutOwner)) }
     }
     /// Keep sessions and durable queues; invalidate late replies from a source
     /// which no longer owns the visible interface and preference bindings.
@@ -152,20 +187,29 @@ final class HarborProfileSync {
         generation += 1; scheduled?.cancel(); scheduled = nil; busy = false; hydrated = false
         householdSync?.invalidate()
         householdLayouts?.invalidate()
-        navigation.unbind(); services.unbind(); page("home").unbind(); page("anime").unbind()
+        for binding in navigationBindings.values { binding.unbind() }
+        for binding in serviceBindings.values { binding.unbind() }
+        for binding in pageBindings.values { binding.unbind() }
     }
     func reload() {
         guard !busy else { return }
-        do { stored = try KeychainStore().read(key, as: Stored.self) ?? Stored(); ready = true; error = nil }
+        guard owner != HarborProfileIdentity.unboundOwner else { bindingActive = false; ready = false; return }
+        do {
+            if let raw = try KeychainStore().read(key, as: JSONValue.self) {
+                _ = try Self.identityRecordAccount(raw)
+                stored = try JSONDecoder().decode(Stored.self, from: JSONEncoder().encode(raw))
+            } else { stored = Stored() }
+            ready = true; error = nil
+        }
         catch { ready = false; self.error = "No se pudo recuperar la cuenta de Harbor. Los datos guardados se conservan." }
     }
     func signIn(username: String, password: String, server: HarborIdentityServer) async {
-        guard ready, !busy else { return }
+        guard ready, !busy, isCurrentBinding else { return }
         busy = true; error = nil; generation += 1; let scope = generation
         defer { if scope == generation { busy = false } }
         do {
             let response = try await send(server, "/identity/api/login", "POST", .object(["username": .string(username.trimmingCharacters(in: .whitespacesAndNewlines)), "password": .string(password)]), nil)
-            try Task.checkCancellation(); guard scope == generation else { return }
+            try Task.checkCancellation(); guard isCurrentBinding, scope == generation else { return }
             guard let token = response["token"].string, !token.isEmpty, let refresh = response["refresh"].string, !refresh.isEmpty,
                   let id = response["user"]["id"].string, !id.isEmpty, let name = response["user"]["username"].string else { throw HarborError(code: "profile-auth-response") }
             let session = Session(id: id, username: name, handle: response["user"]["handle"].string, token: token, refresh: refresh, server: server)
@@ -182,16 +226,14 @@ final class HarborProfileSync {
                 navigation.unbind()
                 services.unbind()
                 page("home").unbind(); page("anime").unbind()
-                page("home").preferences.bind(.local(owner: layoutOwner)); page("anime").preferences.bind(.local(owner: layoutOwner))
-                StreamingPreferences.forOwner(layoutOwner).bind(.local(owner: layoutOwner))
-                if InterfacePreferences.shared.navigation.scope?.owner == layoutOwner { InterfacePreferences.shared.navigation.bind(.local(owner: layoutOwner)) }
+                bindSavedLayouts()
             }
             try await synchronize(scope: scope)
         } catch is CancellationError { return }
         catch { if scope == generation { self.error = safeMessage(error) } }
     }
     func signOut() async {
-        guard ready, !busy else { return }
+        guard ready, !busy, isCurrentBinding else { return }
         generation += 1; let session = stored.session
         householdSync?.invalidate()
         householdLayouts?.invalidate(); householdLayouts = nil
@@ -203,14 +245,12 @@ final class HarborProfileSync {
             navigation.unbind()
             services.unbind()
             page("home").unbind(); page("anime").unbind()
-            page("home").preferences.bind(.local(owner: layoutOwner)); page("anime").preferences.bind(.local(owner: layoutOwner))
-            StreamingPreferences.forOwner(layoutOwner).bind(.local(owner: layoutOwner))
-            if InterfacePreferences.shared.navigation.scope?.owner == layoutOwner { InterfacePreferences.shared.navigation.bind(.local(owner: layoutOwner)) }
+            bindSavedLayouts()
         } catch { self.error = "No se pudo cerrar la sesión. Vuelve a intentarlo."; return }
         if let session { _ = try? await send(session.realm, "/auth/logout", "POST", .object([:]), session.token) }
     }
     func sync() async {
-        guard ready, signedIn, !busy else { return }
+        guard ready, signedIn, !busy, isCurrentBinding else { return }
         busy = true; let scope = generation; error = nil
         defer { if scope == generation { busy = false } }
         do { try await synchronize(scope: scope) }
@@ -240,6 +280,7 @@ final class HarborProfileSync {
         scheduleSync()
     }
     private func scheduleSync() {
+        guard isCurrentBinding else { return }
         scheduled?.cancel()
         scheduled = Task { [weak self] in
             do { try await Task.sleep(for: .milliseconds(600)); try Task.checkCancellation() } catch { return }
@@ -248,20 +289,20 @@ final class HarborProfileSync {
     }
     private func persist(_ value: Stored) throws { try KeychainStore().write(value, key: key) }
     private func request(_ path: String, method: String = "GET", body: JSONValue? = nil, scope: Int) async throws -> JSONValue {
-        guard scope == generation, let session = stored.session else { throw HarborError(code: "account-changed") }
+        guard isCurrentBinding, scope == generation, let session = stored.session else { throw HarborError(code: "account-changed") }
         do {
             let value = try await send(session.realm, path, method, body, session.token)
-            guard scope == generation, stored.session?.account == session.account else { throw HarborError(code: "account-changed") }
+            guard isCurrentBinding, scope == generation, stored.session?.account == session.account else { throw HarborError(code: "account-changed") }
             return value
         } catch let failure as HarborError where failure.code == "http-401" {
-            guard scope == generation, stored.session?.account == session.account else { throw HarborError(code: "account-changed") }
+            guard isCurrentBinding, scope == generation, stored.session?.account == session.account else { throw HarborError(code: "account-changed") }
             let response = try await send(session.realm, "/identity/api/token/refresh", "POST", .object(["refresh": .string(session.refresh)]), nil)
-            guard scope == generation, stored.session?.account == session.account, stored.session?.refresh == session.refresh,
+            guard isCurrentBinding, scope == generation, stored.session?.account == session.account, stored.session?.refresh == session.refresh,
                   let token = response["token"].string, !token.isEmpty, let refresh = response["refresh"].string, !refresh.isEmpty else { throw HarborError(code: "profile-auth-response") }
             var next = stored; next.session?.token = token; next.session?.refresh = refresh
             try persist(next); stored = next
             let value = try await send(session.realm, path, method, body, token)
-            guard scope == generation else { throw HarborError(code: "account-changed") }
+            guard isCurrentBinding, scope == generation else { throw HarborError(code: "account-changed") }
             return value
         }
     }
@@ -304,10 +345,12 @@ final class HarborProfileSync {
     }
     private func synchronizedHouseholdState(_ state: JSONValue, account: String, scope: Int) async throws -> JSONValue? {
         guard let context = householdContext else { return state }
-        guard scope == generation, stored.session?.account == account else { throw HarborError(code: "account-changed") }
+        guard isCurrentBinding, scope == generation, stored.session?.account == account else { throw HarborError(code: "account-changed") }
         let incoming = try HarborLayoutDocument.state(state, key: HarborHouseholdSync.key)
         let previous = context.profiles.state, previousBinding = context.binding
-        let activated = try context.activateHarbor(account: account, document: incoming, artworkServer: stored.session?.realm)
+        let activated = try context.activateHarbor(account: account, document: incoming, artworkServer: stored.session?.realm,
+            identityOwner: HarborProfileIdentity.validOwner(owner) ? owner : nil)
+        if activated { householdDidChange?() }
         if householdSync?.account != account || householdSync?.profiles !== context.profiles {
             householdSync?.invalidate(); householdSync = HarborHouseholdSync(account: account, profiles: context.profiles)
         }
@@ -321,10 +364,10 @@ final class HarborProfileSync {
             if self?.busy == false, engine?.hasPendingChanges == true { requestSync() }
         }
         try await engine.synchronize(state: state) { [weak self] body in
-            guard let self, scope == self.generation, self.stored.session?.account == account else { throw HarborError(code: "account-changed") }
+            guard let self, self.isCurrentBinding, scope == self.generation, self.stored.session?.account == account else { throw HarborError(code: "account-changed") }
             return try await self.request("/sync/v1/push", method: "POST", body: body, scope: scope)
         }
-        guard scope == generation, stored.session?.account == account else { throw HarborError(code: "account-changed") }
+        guard isCurrentBinding, scope == generation, stored.session?.account == account else { throw HarborError(code: "account-changed") }
         try context.refreshRouting(); context.bindProfileAppearances()
         let changed = activated || context.profiles.state != previous || context.binding != previousBinding
         guard context.ready, let active = context.profiles.active, let binding = context.binding else {
@@ -334,7 +377,7 @@ final class HarborProfileSync {
         guard boundLayoutProfile == target, layoutOwner == binding.settingsOwner else {
             hydrated = false; selectedID = nil; householdDidChange?(); scheduleSync(); return nil
         }
-        if changed { householdDidChange?() }
+        if changed && !activated { householdDidChange?() }
         guard let value = context.profiles.state.serverValue, let revision = context.profiles.state.serverRevision else { throw HarborError(code: "household-sync-unhydrated") }
         let roster = HarborRoster(rev: revision, value: value)
         guard roster.profile(active.syncID) != nil else { hydrated = false; scheduleSync(); return nil }
@@ -342,7 +385,7 @@ final class HarborProfileSync {
     }
     private func synchronize(scope: Int) async throws {
         var state = try await request("/sync/v1/state", scope: scope)
-        guard scope == generation, let session = stored.session else { return }
+        guard isCurrentBinding, scope == generation, let session = stored.session else { return }
         // Finish the earlier client's durable appearance queue before handing
         // account:profiles to the full roster writer; there is only one writer.
         if stored.pending?.account == session.account {
@@ -359,7 +402,7 @@ final class HarborProfileSync {
         else { selected = target.flatMap { roster.profile($0) } ?? roster.primary() }
         guard let remote = selected, let id = remote["syncId"].string else { hydrated = false; throw HarborError(code: "profile-sync-target") }
         selectedID = id; hydrated = true
-        guard scope == generation else { return }
+        guard isCurrentBinding, scope == generation else { return }
         if let pending = stored.pending, pending.account == session.account { roster = try roster.applying(pending.fields, to: pending.syncId) }
         guard let final = roster.profile(selectedID ?? id) else { throw HarborError(code: "profile-sync-target") }
         if householdContext == nil, boundLayoutProfile == nil || boundLayoutProfile?.primary == true { try profile?.adopt(final, accountID: session.account, server: session.realm) }
@@ -368,11 +411,11 @@ final class HarborProfileSync {
         page("home").requestSync = { [weak self] in self?.scheduleSync() }
         page("anime").requestSync = { [weak self] in self?.scheduleSync() }
         let send: @MainActor (JSONValue) async throws -> JSONValue = { [weak self] body in
-            guard let self, scope == self.generation, self.stored.session?.account == session.account else { throw HarborError(code: "account-changed") }
+            guard let self, self.isCurrentBinding, scope == self.generation, self.stored.session?.account == session.account else { throw HarborError(code: "account-changed") }
             return try await self.request("/sync/v1/push", method: "POST", body: body, scope: scope)
         }
         let check: @MainActor () throws -> Void = {
-            guard scope == self.generation, self.stored.session?.account == session.account else { throw HarborError(code: "account-changed") }
+            guard self.isCurrentBinding, scope == self.generation, self.stored.session?.account == session.account else { throw HarborError(code: "account-changed") }
         }
         var steps: [HarborLayoutSyncBatch.Step]
         if let context = householdContext {
@@ -396,7 +439,7 @@ final class HarborProfileSync {
         }
         steps.append(.init {
                 try await self.watchedBy.synchronize(state: state, send: send) {
-                    guard scope == self.generation, self.stored.session?.account == session.account else { throw HarborError(code: "account-changed") }
+                    guard self.isCurrentBinding, scope == self.generation, self.stored.session?.account == session.account else { throw HarborError(code: "account-changed") }
                 }
         })
         try await HarborLayoutSyncBatch.run(steps, check: check)

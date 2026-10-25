@@ -28,7 +28,7 @@ struct ProfileAccountButton: View {
 struct ProfileEditor: View {
     let user: AccountUser?
     let profile: ProfilePreferences
-    let identity: ProfilePreferences
+    let identity: HarborProfileSync
     @State private var name = ""
     @State private var chosenPhoto: PhotosPickerItem?
     @State private var avatars = false
@@ -38,8 +38,8 @@ struct ProfileEditor: View {
     @State private var avatarQuery = ""
     @State private var avatarGroup = ""
     @FocusState private var editingName: Bool
-    private var cloud: HarborProfileSync { identity.cloud }
-    private var editable: Bool { profile.ready && (!cloud.signedIn || cloud.hydrated) && !cloud.busy }
+    private var cloud: HarborProfileSync { identity }
+    private var editable: Bool { profile.ready && !cloud.busy }
     private var displayedName: String { profile.value.name.isEmpty ? user?.displayName ?? "Invitado" : profile.value.name }
     var body: some View {
         VStack(alignment: .leading, spacing: 22) {

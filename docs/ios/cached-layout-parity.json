@@ -28,8 +28,23 @@
     "unrelated_approved_cases_replayed": false,
     "approved_iphone_continuation_retained": true
   },
-  "apple_validation": "pending",
+  "apple_validation": "partial-failure",
   "actual_personal_account_login_verified": false,
   "full_desktop_parity_complete": false,
-  "ipa_created": false
+  "ipa_created": false,
+  "actual_validation": {
+    "run": 40216361279,
+    "source": "19b208b0e18acf10964b50afa40ab9ce9c2b8936",
+    "native_passed": 36,
+    "native_failed": 1,
+    "ui_passed": 3,
+    "ui_failed": 0,
+    "fresh_preparations_passed": 2,
+    "actual_executions": 42,
+    "actual_passed": 41,
+    "original_captures": 12,
+    "new_warnings": 0,
+    "failed_case": "StreamingSyncTests/testConflictBackupAndInterruptedApplicationSurviveStorageFailureAndRestart",
+    "evidence_archive_sha256": "925a523756be1dbb6c4f2ae97fcf840e2961cdf64044096d4c16490219085d4a"
+  }
 }

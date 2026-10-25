@@ -26,6 +26,7 @@ final class AppModel {
     private var lastAddonRefresh = Date.distantPast
     @ObservationIgnored private var pages: [String: ContentPageModel] = [:]
     private var preparedProfileActivation: UUID?
+    @ObservationIgnored private var boundHarborIdentity: HarborProfileSync?
     private(set) var storageReady: Bool {
         get { preparedProfileActivation == profileContext.activationID }
         set { preparedProfileActivation = newValue ? profileContext.activationID : nil }
@@ -102,7 +103,7 @@ final class AppModel {
         do { try profileContext.refreshRouting() }
         catch { storageReady = false; throw error }
         prepareProfileAppearances()
-        if profileContext.ready { bindHarborIdentity() }
+        if profileContext.ready { try bindHarborIdentity() }
         if storageReady && profileContext.ready && previous == profileContext.binding { return }
         storageReady = false
         if let active = profileContext.profiles.active {
@@ -118,8 +119,11 @@ final class AppModel {
         let legacy = page == "anime" && profileContext.profiles.active?.desktop.isPrimary == true ? (user?.id ?? "guest") : nil
         return PageCustomization.forOwner(settingsOwner, page: page, legacyOwner: legacy, inheritedOwner: profileContext.binding?.sharedSettingsOwner)
     }
-    var harborIdentityOwner: String { profileContext.binding?.identityOwner ?? profileContext.sessions.identityOwner ?? "guest" }
-    var harborIdentity: ProfilePreferences { ProfilePreferences.forOwner(harborIdentityOwner) }
+    var harborIdentityOwner: String {
+        guard let active = profileContext.profiles.active else { return HarborProfileIdentity.unboundOwner }
+        return HarborProfileIdentity.owner(active, scope: profileContext.profiles.scope)
+    }
+    var harborIdentity: HarborProfileSync { HarborProfileSync.forOwner(harborIdentityOwner, profile: ProfilePreferences.forOwner(personalOwner)) }
     var progressOwner: String { profileContext.binding?.progressOwner ?? user?.id ?? "guest" }
     var accountOperationScope: String { profileContext.activationID.uuidString + "|" + (profileContext.profiles.active?.id ?? "locked") }
     var interfaceProfileScope: String { profileContext.profiles.active?.id ?? "unbound" }
@@ -261,25 +265,28 @@ final class AppModel {
         }
         try MetadataPreferences.shared.bind(ProfileSettingsStore.shared)
         _ = pageCustomization("home"); _ = pageCustomization("anime")
-        bindHarborIdentity()
+        try bindHarborIdentity()
         InterfacePreferences.shared.navigation.bind(.local(owner: settingsOwner))
         StreamingPreferences.forOwner(settingsOwner).bind(.local(owner: settingsOwner))
         pageCustomization("home").bind(.local(owner: settingsOwner)); pageCustomization("anime").bind(.local(owner: settingsOwner))
-        harborIdentity.cloud.bindCachedLayouts()
+        harborIdentity.bindCachedLayouts()
         resume = ResumeStore(owner: owner)
         await reloadProgress()
     }
-    private func bindHarborIdentity() {
-        let cloud = harborIdentity.cloud
+    private func bindHarborIdentity() throws {
+        let cloud = harborIdentity
+        if boundHarborIdentity !== cloud { boundHarborIdentity?.unbindHouseholdContext(); boundHarborIdentity = cloud }
+        if try HarborProfileIdentity.migrateLegacy(context: profileContext) { cloud.reload() }
+        ProfilePreferences.forOwner(personalOwner).bindIdentitySync(cloud)
         cloud.bindHouseholdContext(profileContext) { [weak self] in
             guard let self else { return }
             self.prepareProfileAppearances()
             Task { [weak self] in
                 guard let self else { return }
-                guard !self.accountBusy else { self.harborIdentity.cloud.requestHouseholdSynchronization(); return }
+                guard !self.accountBusy else { self.harborIdentity.requestHouseholdSynchronization(); return }
                 do {
                     try await self.refreshSelectedProfile()
-                    if self.profileContext.ready { self.harborIdentity.cloud.requestHouseholdSynchronization() }
+                    if self.profileContext.ready { self.harborIdentity.requestHouseholdSynchronization() }
                 } catch { self.error = safeMessage(error); Diagnostics.shared.recordFailure(error) }
             }
         }
@@ -303,6 +310,7 @@ final class AppModel {
         do {
             let accepted = try await profileContext.select(id, password: password, parentPassword: parentPassword)
             guard accepted else { storageReady = wasReady && profileContext.ready; return false }
+            boundHarborIdentity?.unbindHouseholdContext(); boundHarborIdentity = nil
             storageReady = false
             MusicPlayback.shared.stopForAccount(personalOwner)
             let configuration = profileContext.configuration
@@ -406,9 +414,9 @@ final class AppModel {
         let next = SavedAccount(session: session, collection: collection)
         // Commit the token and downloaded collection together, only after both
         // requests succeed. A rejected login/sync preserves the previous account.
-        let previousProgressOwner = progressOwner, previousIdentityOwner = harborIdentityOwner
+        let previousProgressOwner = progressOwner, previousIdentity = harborIdentity
         try profileContext.save(HouseholdSourceAccount(account: next, guestAddons: profileContext.configuration?.guestAddons), explicitAuthenticationChange: true)
-        ProfilePreferences.forOwner(previousIdentityOwner).cloud.suspendForProfileChange()
+        previousIdentity.suspendForProfileChange()
         savedAccount = next
         addons = collection.addons
         await bindLibrary(session)
@@ -416,6 +424,7 @@ final class AppModel {
         rows = []; heroes = []; warnings = []; accountError = nil
         homeGeneration += 1; pages = [:]; home.reset()
         if previousProgressOwner != progressOwner { try await setProgressOwner(progressOwner) }
+        else { try bindHarborIdentity(); harborIdentity.requestHouseholdSynchronization() }
         Diagnostics.shared.record(.accountSignedIn, count: addons.count)
         await loadHome()
     }
@@ -483,9 +492,9 @@ final class AppModel {
         else { guest = [try await service.install(HarborService.cinemetaManifest)] }
         try Task.checkCancellation()
         guard scope == accountOperationScope else { throw HarborError(code: "account-cancelled") }
-        let previousIdentityOwner = harborIdentityOwner
+        let previousIdentity = harborIdentity
         try profileContext.save(HouseholdSourceAccount(account: nil, guestAddons: guest), explicitAuthenticationChange: true)
-        ProfilePreferences.forOwner(previousIdentityOwner).cloud.suspendForProfileChange()
+        previousIdentity.suspendForProfileChange()
         savedAccount = nil; addons = guest; rows = []; heroes = []; warnings = []; accountError = nil
         homeGeneration += 1; pages = [:]; home.reset()
         await bindLibrary(nil)

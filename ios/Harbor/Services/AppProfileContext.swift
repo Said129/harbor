@@ -157,7 +157,8 @@ struct ActiveProfileBinding: Equatable, Sendable {
     /// Called only after an authenticated full-state GET has been validated.
     /// Import aliases keep old shelves/settings readable; neither those aliases
     /// nor the staged Stremio sessions enter the portable roster.
-    @discardableResult func activateHarbor(account: String, document: HarborLayoutDocument?, artworkServer: HarborIdentityServer? = nil) throws -> Bool {
+    @discardableResult func activateHarbor(account: String, document: HarborLayoutDocument?, artworkServer: HarborIdentityServer? = nil,
+        identityOwner: String? = nil) throws -> Bool {
         guard !busy, profiles.ready, sessions.ready, !account.isEmpty, account.utf8.count <= 256,
               document == nil || document?.key == HarborHouseholdSync.key else { throw HarborError(code: "household-activation") }
         let incoming = try document.map { try DesktopHouseholdRoster($0.value) }
@@ -171,6 +172,7 @@ struct ActiveProfileBinding: Equatable, Sendable {
             let remotePrimary = incoming?.profiles.first { $0.isPrimary && !$0.isKid && !$0.deleted }
             var imported = try previous.profiles.map { profile -> DeviceHouseholdProfile in
                 var next = profile
+                next.localIdentityOwner = HarborProfileIdentity.owner(profile, scope: previous.scope)
                 next.localDataOwner = HouseholdProfileRouting(profile: profile, profiles: previous.profiles, scope: previous.scope, cwPerProfile: false).personal
                 let own = try sessions.ownConfiguration(profile.id, scope: previous.scope)
                 let ownAccount = own?.account?.session.user.id
@@ -205,6 +207,7 @@ struct ActiveProfileBinding: Equatable, Sendable {
             try destination.noteMissingServerRoster(account: account)
             if destination.profiles.isEmpty { _ = try destination.create(name: "Guest \(Int.random(in: 1000...9999))") }
         }
+        if let identityOwner { try destination.bindActivatedIdentity(identityOwner, account: account) }
         // Activation is the final durable write. A failed staging operation
         // leaves the original context usable and can be retried after restart.
         try sessions.activateHarborAccount(account)

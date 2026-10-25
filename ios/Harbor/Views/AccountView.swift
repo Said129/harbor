@@ -36,7 +36,7 @@ struct AccountView: View {
                     ProfileLaunchSettingsView(app: app)
                 }
             } else if section == "harbor" {
-                HarborIdentityPanel(profile: app.harborIdentity).id(app.harborIdentityOwner)
+                HarborIdentityPanel(profile: ProfilePreferences.forOwner(app.personalOwner), cloud: app.harborIdentity).id(app.harborIdentityOwner)
             } else if let user = app.user {
                 VStack(alignment: .leading, spacing: 14) {
                     HStack(spacing: 10) {

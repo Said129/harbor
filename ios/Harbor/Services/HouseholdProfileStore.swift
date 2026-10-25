@@ -28,6 +28,8 @@ struct HouseholdProfileState: Codable, Equatable, Sendable {
                   && ($0.localPhotoID == nil || $0.appearanceInitialized == true)
                   && [$0.localDataOwner, $0.localProgressOwner, $0.localProgressAccount].allSatisfy({ $0 == nil || (!$0!.isEmpty && $0!.utf8.count <= 512) })
                   && ($0.legacyOwner.map { !$0.isEmpty && $0.utf8.count <= 512 } ?? true) }),
+              profiles.allSatisfy({ $0.localIdentityOwner.map(HarborProfileIdentity.validOwner) ?? true }),
+              Set(profiles.compactMap(\.localIdentityOwner)).count == profiles.compactMap(\.localIdentityOwner).count,
               Set(profiles.compactMap(\.legacyOwner)).count == profiles.compactMap(\.legacyOwner).count,
               Set(profiles.compactMap(\.localDataOwner)).count == profiles.compactMap(\.localDataOwner).count,
               sharedSettingsOwner == nil || (!sharedSettingsOwner!.isEmpty && sharedSettingsOwner!.utf8.count <= 512),
@@ -136,6 +138,15 @@ struct HouseholdProfileState: Codable, Equatable, Sendable {
         guard let server else { return }
         guard ready, scope == .harbor(account: account), !server.retired else { throw HarborError(code: "profile-account-scope") }
         var next = state; next.artworkServer = server; try commit(next)
+    }
+    /// Called only by authenticated account activation. This is a private alias,
+    /// never a roster field or a copy of another person's credential.
+    func bindActivatedIdentity(_ owner: String, account: String) throws {
+        guard ready, scope == .harbor(account: account), HarborProfileIdentity.validOwner(owner) else { throw HarborError(code: "profile-identity-migration") }
+        if profiles.contains(where: { $0.localIdentityOwner == owner }) { return }
+        guard let selected = requestedProfile, !selected.desktop.isKid,
+              let index = state.profiles.firstIndex(where: { $0.id == selected.id }) else { return }
+        var next = state; next.profiles[index].localIdentityOwner = owner; try commit(next)
     }
     /// The context stages private source sessions first. An interrupted activation
     /// can retry this atomic roster install without renaming personal data folders.

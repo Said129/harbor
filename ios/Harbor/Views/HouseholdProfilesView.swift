@@ -265,7 +265,7 @@ private struct HouseholdUnlockTarget: Identifiable {
             guard let data = try await chosenPhoto.loadTransferable(type: Data.self) else { throw HarborError(code: "profile-photo") }
             try Task.checkCancellation()
             guard scope == app.accountOperationScope, photoRequest == request else { throw HarborError(code: "profile-editor-changed") }
-            draft.photo = .replace(try ProfilePhotoStore.normalized(data), account: app.harborIdentity.cloud.accountID)
+            draft.photo = .replace(try ProfilePhotoStore.normalized(data), account: app.harborIdentity.accountID)
             draft.avatar = .null; error = nil
         } catch is CancellationError { return }
         catch { self.error = safeMessage(error) }

@@ -27,7 +27,7 @@ struct ContentPageView: View {
                         Button("Reintentar") { Task { ArtworkRefresh.shared.retryFailedImages(); await model.load(kind: kind, app: app, refresh: true) } }
                     }
                 }
-                PageCustomizeButton(rails: remainingRails, customization: customization, cloud: kind == "anime" && app.harborIdentity.cloud.signedIn ? app.harborIdentity.cloud.page("anime") : nil)
+                PageCustomizeButton(rails: remainingRails, customization: customization, cloud: kind == "anime" && app.harborIdentity.signedIn ? app.harborIdentity.page("anime") : nil)
                 if let error = customization.error { Text(error).font(.caption).foregroundStyle(.orange).padding(.horizontal) }
                 if kind == "series" { ContinueWatching(app: app, kind: kind, title: "Continúa donde lo dejaste") }
                 CustomizedRails(rails: remainingRails, app: app, customization: customization)

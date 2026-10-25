@@ -1,0 +1,43 @@
+{
+  "reference": "Harbor Desktop 0.9.132 Beta",
+  "reference_inputs": {
+    "src/lib/theme-auth.ts": "f5bff0e84e04fee40f6811f5a83922c4d99a034d767c9908478f9ee02c663867",
+    "src/lib/profile-sync/engine.ts": "328c20dc9eda6109363273963a71400435a8ad8bf984bfeb8805ad1b83b24b95",
+    "src/lib/profile-sync/roster-store.ts": "72b75ca0b6d5f4454072e0e488073fd9dbdc1d548c89ee6ea8a727e6b5d27013",
+    "src/lib/auth.tsx": "5764f089d58a5e75a181e5e62594438c1767118ac27a9bcf1207668254bc1c00"
+  },
+  "implemented": [
+    "Private identity namespace for every normal profile, independent of shared settings and Stremio source",
+    "Primary-only migration with a durable destination claim, interrupted-copy retry, explicit private login/logout precedence and preserved original record",
+    "Private identity alias survives authenticated household activation but never enters the portable roster",
+    "Previous coordinator retirement and identity checks before and after GET, push and refresh",
+    "Signed-out unlocked profiles retain cached cloud layouts and account watch attribution without arming authenticated writes",
+    "Local appearance editing remains available when a legacy server is retired or a first pull is offline"
+  ],
+  "predecessor": {
+    "run": 40216361279,
+    "source": "19b208b0e18acf10964b50afa40ab9ce9c2b8936",
+    "native_passed": 36,
+    "native_failed": 1,
+    "ui_passed": 3,
+    "ui_failed": 0,
+    "evidence_archive_sha256": "925a523756be1dbb6c4f2ae97fcf840e2961cdf64044096d4c16490219085d4a",
+    "new_warnings": 0
+  },
+  "repaired_predecessor_failure": "Streaming adoption accepts a legacy snapshot without projection or editor metadata, while a newer stamped snapshot remains protected",
+  "selection": {
+    "marker": "affected:profile-identity",
+    "new_native": 12,
+    "affected_native": 9,
+    "failed_native": 1,
+    "fresh_preparations": 2,
+    "new_ui": 2,
+    "expected_executions": 26,
+    "expected_original_captures": 8,
+    "unrelated_approved_cases_replayed": false
+  },
+  "apple_validation": "pending",
+  "actual_personal_account_login_verified": false,
+  "full_desktop_parity_complete": false,
+  "ipa_created": false
+}

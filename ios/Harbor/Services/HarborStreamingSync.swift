@@ -106,7 +106,8 @@ struct StreamingSyncRecord: Codable, Sendable {
         try check(expected)
         preferences.holdCloudWrite(true, in: expected)
         let current = preferences.selection
-        let sameProjection = adoption.projection == nil || preferences.wireProjection == adoption.previousProjection || preferences.wireProjection == adoption.projection
+        let legacySnapshot = preferences.wireProjection == nil && preferences.lastEditor == nil
+        let sameProjection = legacySnapshot || adoption.projection == nil || preferences.wireProjection == adoption.previousProjection || preferences.wireProjection == adoption.projection
         if !sameProjection || (current != adoption.previous && current != adoption.next) {
             // Another linked profile may have saved newer local settings
             // while this process was stopped. Keep that explicit choice.

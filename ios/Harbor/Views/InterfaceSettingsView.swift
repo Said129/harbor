@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct InterfaceSettingsView: View {
-    let identity: ProfilePreferences
+    let identity: HarborProfileSync
     @Bindable var preferences = InterfacePreferences.shared
     @AppStorage("tvdbOrderPanel") private var richEpisodeOrderPanel = true
     @AppStorage("tvdbSeasonType") private var episodeOrder = "aired"
@@ -63,7 +63,7 @@ struct InterfaceSettingsView: View {
 }
 
 struct NavigationSettingsView: View {
-    let identity: ProfilePreferences
+    let identity: HarborProfileSync
     @Bindable var preferences = InterfacePreferences.shared
     @State private var resetRevision = 0
     var body: some View {
@@ -82,7 +82,7 @@ struct NavigationSettingsView: View {
                     if !preferences.navigation.ready { Button(DesktopInterfaceText.value("Retry")) { preferences.navigation.reload() }.buttonStyle(HarborAccountButtonStyle()) }
                 }
                 if preferences.navigation.scope != nil {
-                    let cloud = identity.cloud
+                    let cloud = identity
                     if cloud.signedIn {
                         if let error = cloud.navigation.error ?? cloud.error { Text(DesktopInterfaceText.value(error)).font(.caption).foregroundStyle(.orange) }
                         if cloud.navigation.hasParkedVersion {

@@ -2,13 +2,13 @@ import SwiftUI
 
 struct HarborIdentityPanel: View {
     let profile: ProfilePreferences
+    let cloud: HarborProfileSync
     @State private var username = ""
     @State private var password = ""
     @State private var customServer = false
     @State private var serverURL = ""
     private enum Field: Hashable { case username, password, server }
     @FocusState private var editing: Field?
-    private var cloud: HarborProfileSync { profile.cloud }
     private var selectedServer: HarborIdentityServer? {
         if customServer { return try? HarborIdentityServer(serverURL) }
         return .community
@@ -24,7 +24,7 @@ struct HarborIdentityPanel: View {
                 } else {
                     Button("Sincronizar") { Task { await cloud.sync() } }.buttonStyle(HarborAccountButtonStyle())
                 }
-                Button("Cerrar sesión", role: .destructive) { Task { await cloud.signOut() } }
+                Button("Cerrar sesión", role: .destructive) { Task { await cloud.signOut() } }.accessibilityIdentifier("harbor-signout")
             } else {
                 VStack(alignment: .leading, spacing: 10) {
                     Picker("Servidor", selection: $customServer) {

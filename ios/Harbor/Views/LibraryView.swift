@@ -165,7 +165,7 @@ private struct ContinueWatchingCard: View {
                 ContinueWatchingArtwork(record: record, media: detailed, presentation: presentation)
             }.accessibilityIdentifier("continue-watching-resume").accessibilityLabel("Continuar viendo \(detailed.name)")
                 .overlay(alignment: .topLeading) {
-                    if let watcher = app.harborIdentity.cloud.watchedBy.value.watcher(mediaID: media.id, fallbackID: detailed.id,
+                    if let watcher = app.harborIdentity.watchedBy.value.watcher(mediaID: media.id, fallbackID: detailed.id,
                         activeID: app.profileContext.profiles.active?.id, profiles: app.profileContext.profiles.profiles) {
                         ContinueWatchingWatcher(app: app, watcher: watcher).padding(8).allowsHitTesting(false)
                     }

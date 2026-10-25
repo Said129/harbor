@@ -11,7 +11,7 @@ struct StreamingSettingsView: View {
                 NavigationLink { StreamingServicesView(app: app) } label: {
                     Label(DesktopInterfaceText.value("Browse services"), systemImage: "square.grid.3x3").frame(minHeight: 44)
                 }.buttonStyle(HarborAccountButtonStyle()).accessibilityIdentifier("streaming-browse-services")
-                let cloud = app.harborIdentity.cloud
+                let cloud = app.harborIdentity
                 if cloud.signedIn {
                     HarborSettingsSection(DesktopInterfaceText.value("Sync")) {
                         if let error = cloud.services.error ?? cloud.error { Text(DesktopInterfaceText.value(error)).font(.caption).foregroundStyle(.orange) }

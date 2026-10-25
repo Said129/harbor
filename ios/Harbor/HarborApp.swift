@@ -82,9 +82,9 @@ struct HarborApp: App {
         lifecycle
                 .task(id: model.harborIdentityOwner + "|" + model.interfaceProfileScope + "|" + String(model.storageReady) + "|" + String(describing: scenePhase)) {
                     guard scenePhase == .active, model.storageReady else { return }
-                    let profile = model.harborIdentity
+                    let identity = model.harborIdentity
                     while !Task.isCancelled {
-                        await profile.cloud.sync()
+                        await identity.sync()
                         do { try await Task.sleep(for: .seconds(30)) } catch { return }
                     }
                 }
