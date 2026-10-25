@@ -73,8 +73,8 @@
   },
   "actual_personal_account_login_verified": false,
   "remaining_full_port_audit": [
-    "Verify the new guest raw-source recovery case on Apple; pre-sync-id guest imports are held until an explicit account-scoped edit, matching Desktop",
-    "Complete global grid options, nonvideo source destinations, Desktop-style requirement dialogs, account-backed provider lists and the remaining interface/localization audit"
+    "Authenticate the actual native failure, retain the other passed cases and complete the new source interface Apple review",
+    "Complete global grid options, nonvideo source destinations, account-backed provider lists and the remaining interface/localization audit"
   ],
   "full_desktop_parity_complete": false,
   "ipa_created": false,
@@ -98,14 +98,35 @@
     "original_captures": 12,
     "new_first_sign_in_recovery_case": true,
     "all_previous_custom_source_cases_unexecuted": true,
-    "apple_validation": "pending",
+    "apple_validation": "running; do not infer case counts from step status",
     "scope": "custom-sources-repair",
-    "source": "pending"
+    "source": "dedbd9e9111f2980d1bf1a81275e44b3f18fbce7",
+    "run": 40239615319,
+    "app_simulator_build": "passed",
+    "native_phase": "failed; original execution logs not yet available",
+    "ui_phase": "in_progress"
   },
   "source_labels": {
     "languages": 16,
     "keys_selected": 25,
     "previous_existing_translations_preserved": true,
-    "source": "Pinned Desktop locale catalogs; existing mobile-only fallback policy retained"
+    "source": "Pinned Desktop locale catalogs; existing mobile-only fallback policy retained",
+    "additional_fetch_error_entries": 16
+  },
+  "interface_follow_up": {
+    "source": "Interface changes in this commit; not in the running dedbd validation",
+    "implemented": [
+      "Themed missing-TMDB/addon popovers before opening a folder",
+      "Theme borders, shading and touch-press GIF activation with Reduce Motion respected",
+      "Safe translated fetch errors distinguished from malformed JSON",
+      "ImageIO source cache disabled to avoid retaining full original frames"
+    ],
+    "new_native_cases": 2,
+    "affected_gif_cases": 1,
+    "affected_ui_cases": 2,
+    "expected_original_captures": 20,
+    "previous_native_failures": "Inspect current original logs before finalizing the next selection",
+    "apple_validated": false,
+    "dispatched": false
   }
 }

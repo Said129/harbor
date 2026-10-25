@@ -29,8 +29,11 @@ def start(build):
         dict(id='owned-catalog', title='Owned catalog folder', tileShape='LANDSCAPE', coverImageUrl=base + '/cover.png', focusGifUrl=None,
             catalogSources=[dict(addonId='owned.source.catalog', type='movie', catalogId='owned')]),
         dict(id='owned-tmdb', title='Owned TMDB folder', tileShape='LANDSCAPE', coverImageUrl=base + '/cover.png', focusGifUrl=None,
-            sources=[dict(provider='tmdb', mediaType='MOVIE', tmdbSourceType='DISCOVER', filters=dict(withGenres='16'))])])
+            sources=[dict(provider='tmdb', mediaType='MOVIE', tmdbSourceType='DISCOVER', filters=dict(withGenres='16'))]),
+        dict(id='owned-missing-addon', title='Owned missing addon folder', tileShape='LANDSCAPE', coverImageUrl=base + '/cover.png', focusGifUrl=None,
+            catalogSources=[dict(addonId='owned.not.installed', type='movie', catalogId='owned')])])
     (directory / 'sources.json').write_text(json.dumps(row), 'utf-8')
+    (directory / 'malformed.json').write_text('{"owned_source":', 'utf-8')
     requests, lock = [], threading.Lock()
     class Handler(SimpleHTTPRequestHandler):
         def do_GET(self):

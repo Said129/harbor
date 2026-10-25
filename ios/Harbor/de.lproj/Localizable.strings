@@ -614,6 +614,7 @@
 "FPS del video" = "Video-FPS";
 "FPS personalizados para subtítulos" = "Benutzerdefinierte Untertitel-FPS";
 "Face" = "Gesicht";
+"Failed to fetch JSON" = "JSON konnte nicht abgerufen werden";
 "Family" = "Familie";
 "Fantasy" = "Fantasy";
 "Fantasía" = "Fantasy";

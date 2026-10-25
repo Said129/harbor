@@ -11,7 +11,8 @@ struct SourceDecodedAnimation: @unchecked Sendable {
 }
 enum SourceAnimationDecoder {
     static func decode(_ data: Data) throws -> SourceDecodedAnimation {
-        guard let source = CGImageSourceCreateWithData(data as CFData, nil), CGImageSourceGetCount(source) > 0 else { throw HarborError(code: "invalid-artwork") }
+        guard let source = CGImageSourceCreateWithData(data as CFData, [kCGImageSourceShouldCache: false] as CFDictionary),
+              CGImageSourceGetCount(source) > 0 else { throw HarborError(code: "invalid-artwork") }
         let count = CGImageSourceGetCount(source), step = max(1, Int(ceil(Double(count) / 160)))
         let selectedCount = Int(ceil(Double(count) / Double(step)))
         let pixels = min(480, max(64, Int(sqrt(Double(12 * 1_024 * 1_024) / Double(selectedCount * 4)))))

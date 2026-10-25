@@ -116,7 +116,7 @@ struct HTTPClient: Sendable {
     func sourceDocument(_ raw: String) async throws -> JSONValue {
         guard let parts = URLComponents(string: raw), ["http", "https"].contains(parts.scheme?.lowercased() ?? ""),
               parts.host?.isEmpty == false, parts.user == nil, parts.password == nil, let url = parts.url else { throw HarborError(code: "custom-source-import") }
-        return try await receive(URLRequest(url: url, timeoutInterval: 20), session: Self.sourceSession, maximumBytes: 96 * 1_024)
+        return try await receive(URLRequest(url: url, timeoutInterval: 20), session: Self.sourceSession, maximumBytes: 96 * 1_024, invalidJSONCode: "custom-source-import")
     }
 
     static func tvdbRequest(_ endpoint: TVDBRequest) throws -> URLRequest {
@@ -138,7 +138,7 @@ struct HTTPClient: Sendable {
         throw HarborError(code: "network")
     }
 
-    private func receive(_ input: URLRequest, session: URLSession, requireJSON: Bool = false, maximumBytes: Int = 8 * 1024 * 1024) async throws -> JSONValue {
+    private func receive(_ input: URLRequest, session: URLSession, requireJSON: Bool = false, maximumBytes: Int = 8 * 1024 * 1024, invalidJSONCode: String = "network") async throws -> JSONValue {
         var request = input
         if request.value(forHTTPHeaderField: "Accept") == nil { request.setValue("application/json", forHTTPHeaderField: "Accept") }
         request.setValue("Harbor-iOS/0.1", forHTTPHeaderField: "User-Agent")
@@ -157,7 +157,9 @@ struct HTTPClient: Sendable {
                 guard data.count < limit else { throw HarborError(code: "response-too-large") }
                 data.append(byte)
             }
-            let json = try JSONDecoder().decode(JSONValue.self, from: data)
+            let json: JSONValue
+            do { json = try JSONDecoder().decode(JSONValue.self, from: data) }
+            catch { throw HarborError(code: invalidJSONCode) }
             await Diagnostics.shared.record(.requestCompleted, count: data.count)
             return json
         } catch let error as HarborError {

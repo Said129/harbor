@@ -1,8 +1,8 @@
 import XCTest
 
 @MainActor final class CustomSourceNavigationTests: XCTestCase {
-    func testImportedDesktopFoldersOpenCatalogsEditImagesHideReopenAndDeleteOnIPhone() { verify("iphone") }
-    func testImportedDesktopFoldersOpenCatalogsEditImagesHideReopenAndDeleteOnIPad() { verify("ipad") }
+    func testDesktopFoldersImportOpenExplainRequirementsEditHideRestoreAndDeleteOnIPhone() { verify("iphone") }
+    func testDesktopFoldersImportOpenExplainRequirementsEditHideRestoreAndDeleteOnIPad() { verify("ipad") }
     private func verify(_ device: String) {
         continueAfterFailure = false
         let app = XCUIApplication(bundleIdentifier: "site.harbor.iphone")
@@ -14,6 +14,15 @@ import XCTest
         ReadingUIInteraction.tapVisible(customize, in: app)
         let add = app.buttons["custom-source-add"]; show(add, app, scroll); ReadingUIInteraction.tapVisible(add, in: app)
         let url = app.textFields["source-import-url"]; XCTAssertTrue(url.waitForExistence(timeout: 15))
+        for (path, message, state) in [("missing-sources.json", "Failed to fetch JSON", "fetch-error"), ("malformed.json", "Invalid SourceRow JSON format", "format-error")] {
+            ReadingUIInteraction.replace(url, with: "http://127.0.0.1:18734/" + path, in: app)
+            ReadingUIInteraction.tapVisible(app.buttons["source-import-save"], in: app)
+            let failure = app.staticTexts["source-import-error"]
+            XCTAssertTrue(failure.waitForExistence(timeout: 15))
+            let shown = XCTNSPredicateExpectation(predicate: NSPredicate(format: "label == %@", message), object: failure)
+            XCTAssertEqual(XCTWaiter.wait(for: [shown], timeout: 15), .completed)
+            capture(app, "source-" + state + "-" + device)
+        }
         ReadingUIInteraction.replace(url, with: "http://127.0.0.1:18734/sources.json", in: app)
         ReadingUIInteraction.tapVisible(app.buttons["source-import-save"], in: app)
         let row = element("source-row-owned-imported-sources", app), folder = element("source-folder-owned-imported-sources-0", app)
@@ -23,6 +32,18 @@ import XCTest
         XCTAssertTrue(title.waitForExistence(timeout: 30)); XCTAssertEqual(title.label, "Owned catalog title 1")
         capture(app, "source-catalog-" + device)
         ReadingUIInteraction.tapVisible(app.navigationBars.buttons.firstMatch, in: app)
+        show(row, app, scroll)
+        let folders = app.scrollViews["source-folders-owned-imported-sources"]
+        for (index, heading, state) in [(1, "Missing TMDB Key", "missing-key"), (2, "Addon not installed", "missing-addon")] {
+            let target = element("source-folder-owned-imported-sources-\(index)", app)
+            revealHorizontal(target, app, folders)
+            ReadingUIInteraction.tapVisible(target, in: app)
+            XCTAssertTrue(app.staticTexts[heading].waitForExistence(timeout: 15))
+            capture(app, "source-" + state + "-" + device)
+            ReadingUIInteraction.tapVisible(app.buttons["source-requirement-dismiss"], in: app)
+            XCTAssertTrue(row.waitForExistence(timeout: 10), "Closing a requirement returns to the original home row")
+        }
+        revealHorizontal(folder, app, folders, left: false)
         show(customize, app, scroll, up: false)
         if !app.buttons["custom-source-add"].exists { ReadingUIInteraction.tapVisible(customize, in: app) }
         show(app.buttons["source-images-owned-imported-sources-0"], app, scroll)
@@ -59,6 +80,13 @@ import XCTest
         capture(app, "source-deleted-" + device)
     }
     private func element(_ id: String, _ app: XCUIApplication) -> XCUIElement { app.descendants(matching: .any).matching(identifier: id).firstMatch }
+    private func revealHorizontal(_ target: XCUIElement, _ app: XCUIApplication, _ container: XCUIElement, left: Bool = true) {
+        for _ in 0..<6 {
+            if ReadingUIInteraction.visibleFrame(target, in: app) != nil { break }
+            if left { container.swipeLeft() } else { container.swipeRight() }
+        }
+        XCTAssertTrue(target.waitForExistence(timeout: 10)); XCTAssertNotNil(ReadingUIInteraction.visibleFrame(target, in: app))
+    }
     private func show(_ element: XCUIElement, _ app: XCUIApplication, _ scroll: XCUIElement, up: Bool = true) {
         if !element.exists { ReadingUIInteraction.reveal(element, in: app, up: up, container: scroll) }
         XCTAssertTrue(element.waitForExistence(timeout: 15)); ReadingUIInteraction.revealWithinViewport(element, in: app, container: scroll)

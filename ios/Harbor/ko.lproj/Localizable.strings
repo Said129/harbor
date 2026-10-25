@@ -614,6 +614,7 @@
 "FPS del video" = "동영상 FPS";
 "FPS personalizados para subtítulos" = "사용자 지정 자막 FPS";
 "Face" = "얼굴";
+"Failed to fetch JSON" = "JSON을 가져오지 못했습니다.";
 "Family" = "가족";
 "Fantasy" = "판타지";
 "Fantasía" = "판타지";

@@ -63,7 +63,7 @@ struct CustomSourceImportView: View {
                 let contents: String
                 if fromURL {
                     guard let parts = URLComponents(string: value), ["https", "http"].contains(parts.scheme?.lowercased() ?? ""),
-                          parts.host?.isEmpty == false, parts.user == nil, parts.password == nil else { throw HarborError(code: "custom-source-import") }
+                          parts.host?.isEmpty == false, parts.user == nil, parts.password == nil else { throw HarborError(code: "custom-source-url") }
                     let json = try await HTTPClient().sourceDocument(value)
                     contents = String(decoding: try JSONEncoder().encode(json), as: UTF8.self)
                 } else { contents = value }
@@ -71,7 +71,13 @@ struct CustomSourceImportView: View {
                 guard activation == AppProfileContext.shared.activationID else { throw HarborError(code: "account-changed") }
                 _ = try customization.importSources(contents, expected: expected); dismiss()
             } catch is CancellationError { return }
-            catch { self.error = text((error as? HarborError)?.code == "account-changed" ? "Profile changed. Please try again." : "Invalid SourceRow JSON format") }
+            catch {
+                let code = (error as? HarborError)?.code ?? "custom-source-import"
+                if code == "account-changed" { self.error = text("Profile changed. Please try again.") }
+                else if fromURL && (code == "network" || code == "custom-source-url" || code == "invalid-http-response" || code.hasPrefix("http-")) {
+                    self.error = text("Failed to fetch JSON")
+                } else { self.error = text("Invalid SourceRow JSON format") }
+            }
         }
     }
 }

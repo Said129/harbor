@@ -52,6 +52,11 @@ struct DesktopSourceRow: Identifiable, Equatable, Sendable {
 }
 
 struct DesktopSourceFolder: Identifiable, Equatable, Sendable {
+    enum Requirement: Equatable, Identifiable, Sendable {
+        case tmdbKey
+        case addon(String)
+        var id: String { switch self { case .tmdbKey: "tmdb"; case .addon(let id): "addon:" + id } }
+    }
     enum Destination: Equatable, Sendable {
         case discover(title: String, kind: String, parameters: [String: String])
         case collection(title: String, id: String)
@@ -87,6 +92,17 @@ struct DesktopSourceFolder: Identifiable, Equatable, Sendable {
     var requiresTMDBKey: Bool {
         guard let source = raw["sources"].array.first else { return false }
         return source["provider"].string == "tmdb" || source["provider"].string == "trakt" && Self.identifier(source["traktListId"]) != nil
+    }
+    func missingRequirement(hasTMDBKey: Bool, addons: [Addon]) -> Requirement? {
+        if requiresTMDBKey && !hasTMDBKey { return .tmdbKey }
+        if case .catalog(_, let id, _, _) = destination {
+            if addons.contains(where: { $0.enabled && $0.manifest["id"].string == id }) { return nil }
+            // A declared disabled Cinemeta is intentional. The built-in catalog
+            // is available only when the account has no Cinemeta declaration.
+            if id == "com.linvo.cinemeta", !addons.contains(where: { $0.manifest["id"].string == id }) { return nil }
+            return .addon(id)
+        }
+        return nil
     }
     var destination: Destination? {
         if let source = raw["sources"].array.first {

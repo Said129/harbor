@@ -614,6 +614,7 @@
 "FPS del video" = "動画FPS";
 "FPS personalizados para subtítulos" = "カスタム字幕FPS";
 "Face" = "塗り";
+"Failed to fetch JSON" = "JSONの取得に失敗しました";
 "Family" = "ファミリー";
 "Fantasy" = "ファンタジー";
 "Fantasía" = "ファンタジー";
