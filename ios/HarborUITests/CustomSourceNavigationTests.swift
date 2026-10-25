@@ -1,0 +1,69 @@
+import XCTest
+
+@MainActor final class CustomSourceNavigationTests: XCTestCase {
+    func testImportedDesktopFoldersOpenCatalogsEditImagesHideReopenAndDeleteOnIPhone() { verify("iphone") }
+    func testImportedDesktopFoldersOpenCatalogsEditImagesHideReopenAndDeleteOnIPad() { verify("ipad") }
+    private func verify(_ device: String) {
+        continueAfterFailure = false
+        let app = XCUIApplication(bundleIdentifier: "site.harbor.iphone")
+        app.launchArguments = ["-uiLanguage", "en", "-homeMode", "classic", "-nativeGuide.initialized.v1", "YES", "-nativeGuide.completed.v1", "YES"]
+        ReadingUIInteraction.launchPreparedApplication(app)
+        defer { if (testRun?.failureCount ?? 0) > 0 { ReadingUIInteraction.recordFailureContext(app) }; app.terminate() }
+        let scroll = app.scrollViews["home-scroll"], customize = app.buttons["page-customize"]
+        XCTAssertTrue(scroll.waitForExistence(timeout: 45)); show(customize, app, scroll)
+        ReadingUIInteraction.tapVisible(customize, in: app)
+        let add = app.buttons["custom-source-add"]; show(add, app, scroll); ReadingUIInteraction.tapVisible(add, in: app)
+        let url = app.textFields["source-import-url"]; XCTAssertTrue(url.waitForExistence(timeout: 15))
+        ReadingUIInteraction.replace(url, with: "http://127.0.0.1:18734/sources.json", in: app)
+        ReadingUIInteraction.tapVisible(app.buttons["source-import-save"], in: app)
+        let row = element("source-row-owned-imported-sources", app), folder = element("source-folder-owned-imported-sources-0", app)
+        show(row, app, scroll); XCTAssertTrue(row.exists); capture(app, "source-imported-" + device)
+        ReadingUIInteraction.tapVisible(folder, in: app)
+        let title = app.buttons["catalog-browser-media"].firstMatch
+        XCTAssertTrue(title.waitForExistence(timeout: 30)); XCTAssertEqual(title.label, "Owned catalog title 1")
+        capture(app, "source-catalog-" + device)
+        ReadingUIInteraction.tapVisible(app.navigationBars.buttons.firstMatch, in: app)
+        show(customize, app, scroll, up: false)
+        if !app.buttons["custom-source-add"].exists { ReadingUIInteraction.tapVisible(customize, in: app) }
+        show(app.buttons["source-images-owned-imported-sources-0"], app, scroll)
+        ReadingUIInteraction.tapVisible(app.buttons["source-images-owned-imported-sources-0"], in: app)
+        let cover = app.textFields["source-cover-url"], focus = app.textFields["source-focus-url"]
+        XCTAssertTrue(cover.waitForExistence(timeout: 15))
+        ReadingUIInteraction.replace(cover, with: "http://127.0.0.1:18734/edited.png", in: app)
+        ReadingUIInteraction.replace(focus, with: "http://127.0.0.1:18734/focus.gif", in: app)
+        ReadingUIInteraction.tapVisible(app.buttons["source-images-save"], in: app)
+        show(row, app, scroll); capture(app, "source-images-edited-" + device)
+        let controls = element("page-row-controls-source-owned-imported-sources", app)
+        show(controls, app, scroll)
+        XCTAssertTrue(controls.buttons["Move up"].isEnabled)
+        ReadingUIInteraction.tapVisible(controls.buttons["Move up"], in: app)
+        show(controls, app, scroll)
+        ReadingUIInteraction.tapVisible(controls.buttons["Rename row"], in: app)
+        let name = app.textFields["page-row-name-source-owned-imported-sources"]
+        ReadingUIInteraction.replace(name, with: "Owned renamed folders", in: app); name.typeText("\n")
+        show(controls, app, scroll); ReadingUIInteraction.tapVisible(controls.buttons["Hide row"], in: app)
+        let hidden = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in !row.exists }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [hidden], timeout: 10), .completed); capture(app, "source-hidden-" + device)
+        show(controls, app, scroll)
+        ReadingUIInteraction.tapVisible(controls.buttons["Show row"], in: app)
+        ReadingUIInteraction.tapVisible(app.buttons["page-customize-done"], in: app)
+        app.terminate(); ReadingUIInteraction.launchPreparedApplication(app)
+        show(row, app, scroll); XCTAssertTrue(row.staticTexts["Owned renamed folders"].exists)
+        capture(app, "source-restored-" + device)
+        show(customize, app, scroll, up: false); ReadingUIInteraction.tapVisible(customize, in: app)
+        show(app.buttons["source-delete-owned-imported-sources"], app, scroll)
+        ReadingUIInteraction.tapVisible(app.buttons["source-delete-owned-imported-sources"], in: app)
+        let removed = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in !row.exists }, object: nil)
+        XCTAssertEqual(XCTWaiter.wait(for: [removed], timeout: 10), .completed)
+        show(element("source-row-owned-posters", app), app, scroll, up: false)
+        capture(app, "source-deleted-" + device)
+    }
+    private func element(_ id: String, _ app: XCUIApplication) -> XCUIElement { app.descendants(matching: .any).matching(identifier: id).firstMatch }
+    private func show(_ element: XCUIElement, _ app: XCUIApplication, _ scroll: XCUIElement, up: Bool = true) {
+        if !element.exists { ReadingUIInteraction.reveal(element, in: app, up: up, container: scroll) }
+        XCTAssertTrue(element.waitForExistence(timeout: 15)); ReadingUIInteraction.revealWithinViewport(element, in: app, container: scroll)
+    }
+    private func capture(_ app: XCUIApplication, _ name: String) {
+        let attachment = XCTAttachment(screenshot: app.screenshot()); attachment.name = name; attachment.lifetime = .keepAlways; add(attachment)
+    }
+}

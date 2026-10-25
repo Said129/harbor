@@ -7,6 +7,12 @@ private final class AccountRedirectPolicy: NSObject, URLSessionTaskDelegate, @un
 }
 
 struct HTTPClient: Sendable {
+    private static let sourceSession: URLSession = {
+        let configuration = URLSessionConfiguration.ephemeral
+        configuration.httpShouldSetCookies = false; configuration.httpCookieStorage = nil
+        configuration.urlCredentialStorage = nil; configuration.urlCache = nil
+        return URLSession(configuration: configuration)
+    }()
     private static let metadataSession: URLSession = {
         let configuration = URLSessionConfiguration.ephemeral
         configuration.httpShouldSetCookies = false
@@ -92,6 +98,27 @@ struct HTTPClient: Sendable {
         return try await receive(request, session: Self.accountSession)
     }
 
+    static func traktListRequest(id: String, page: Int) throws -> URLRequest {
+        guard id.range(of: #"^[0-9]{1,18}$"#, options: .regularExpression) != nil,
+              let number = Int64(id), number > 0, (1...1_000).contains(page) else { throw HarborError(code: "custom-source-list") }
+        let url = URL(string: "https://api.trakt.tv/lists/\(number)/items?page=\(page)&limit=20")!
+        var request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 20)
+        request.setValue("2", forHTTPHeaderField: "trakt-api-version")
+        // This public application identifier is the one shipped by Desktop 0.9.132.
+        request.setValue("71ef7ea86333eab031c8830f8200df1f2f16ef9a3335a67470be4950ac80b925", forHTTPHeaderField: "trakt-api-key")
+        return request
+    }
+    func traktList(id: String, page: Int) async throws -> JSONValue {
+        // Public folders explicitly omit OAuth. The anonymous session has no
+        // cookies/credential storage and rejects redirects to other origins.
+        try await receive(Self.traktListRequest(id: id, page: page), session: Self.publicTVDBSession)
+    }
+    func sourceDocument(_ raw: String) async throws -> JSONValue {
+        guard let parts = URLComponents(string: raw), ["http", "https"].contains(parts.scheme?.lowercased() ?? ""),
+              parts.host?.isEmpty == false, parts.user == nil, parts.password == nil, let url = parts.url else { throw HarborError(code: "custom-source-import") }
+        return try await receive(URLRequest(url: url, timeoutInterval: 20), session: Self.sourceSession, maximumBytes: 96 * 1_024)
+    }
+
     static func tvdbRequest(_ endpoint: TVDBRequest) throws -> URLRequest {
         let base = "https://harborcommunity.site/api/tvdb/v4"
         let path = try endpoint.path
@@ -111,7 +138,7 @@ struct HTTPClient: Sendable {
         throw HarborError(code: "network")
     }
 
-    private func receive(_ input: URLRequest, session: URLSession, requireJSON: Bool = false) async throws -> JSONValue {
+    private func receive(_ input: URLRequest, session: URLSession, requireJSON: Bool = false, maximumBytes: Int = 8 * 1024 * 1024) async throws -> JSONValue {
         var request = input
         if request.value(forHTTPHeaderField: "Accept") == nil { request.setValue("application/json", forHTTPHeaderField: "Accept") }
         request.setValue("Harbor-iOS/0.1", forHTTPHeaderField: "User-Agent")
@@ -122,7 +149,7 @@ struct HTTPClient: Sendable {
             guard let response = response as? HTTPURLResponse else { throw HarborError(code: "invalid-http-response") }
             guard (200..<300).contains(response.statusCode) else { throw HarborError(code: "http-\(response.statusCode)") }
             if requireJSON, response.mimeType?.lowercased() != "application/json" { throw HarborError(code: "tvdb-response") }
-            let limit = 8 * 1024 * 1024
+            let limit = maximumBytes
             guard response.expectedContentLength <= Int64(limit) else { throw HarborError(code: "response-too-large") }
             var data = Data()
             for try await byte in bytes {

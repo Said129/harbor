@@ -1,0 +1,403 @@
+{
+  "reference": "Harbor Desktop 0.9.132 Beta",
+  "inputs": {
+    "src/lib/custom-sources.ts": "4d575fa8e066c48089f4401dcd80756734e7e30645c37c6842cf112442af56cb",
+    "src/components/source-folder-card.tsx": "59bcac35f0f20773cd814b45d2de8d952b11b52d4cc7b12227679e8a8e484d21"
+  },
+  "original_parser_cases": [
+    {
+      "input": "{\"id\":\"owned-row\",\"title\":\"Owned row\",\"folders\":[{\"id\":\"folder-1\",\"title\":\"Owned folder\",\"tileShape\":\"POSTER\",\"coverImageUrl\":null,\"focusGifUrl\":null,\"catalogSources\":[{\"addonId\":\"owned.addon\",\"type\":\"series\",\"catalogId\":\"owned-catalog\"}]}],\"future\":{\"preserve\":\"desktop-field\"}}",
+      "accepted": [
+        {
+          "id": "owned-row",
+          "title": "Owned row",
+          "folders": [
+            {
+              "id": "folder-1",
+              "title": "Owned folder",
+              "tileShape": "POSTER",
+              "coverImageUrl": null,
+              "focusGifUrl": null,
+              "catalogSources": [
+                {
+                  "addonId": "owned.addon",
+                  "type": "series",
+                  "catalogId": "owned-catalog"
+                }
+              ]
+            }
+          ],
+          "future": {
+            "preserve": "desktop-field"
+          }
+        }
+      ]
+    },
+    {
+      "input": "[{\"id\":\"owned-row\",\"title\":\"Owned row\",\"folders\":[{\"id\":\"folder-1\",\"title\":\"Owned folder\",\"tileShape\":\"POSTER\",\"coverImageUrl\":null,\"focusGifUrl\":null,\"catalogSources\":[{\"addonId\":\"owned.addon\",\"type\":\"series\",\"catalogId\":\"owned-catalog\"}]}],\"future\":{\"preserve\":\"desktop-field\"}},null,{\"id\":4}]",
+      "accepted": [
+        {
+          "id": "owned-row",
+          "title": "Owned row",
+          "folders": [
+            {
+              "id": "folder-1",
+              "title": "Owned folder",
+              "tileShape": "POSTER",
+              "coverImageUrl": null,
+              "focusGifUrl": null,
+              "catalogSources": [
+                {
+                  "addonId": "owned.addon",
+                  "type": "series",
+                  "catalogId": "owned-catalog"
+                }
+              ]
+            }
+          ],
+          "future": {
+            "preserve": "desktop-field"
+          }
+        }
+      ]
+    },
+    {
+      "input": "{\"id\":\"owned-row\",\"title\":\"Owned row\",\"folders\":[],\"future\":{\"preserve\":\"desktop-field\"}}",
+      "accepted": []
+    },
+    {
+      "input": "{\"id\":\"owned-row\",\"title\":\"Owned row\",\"folders\":[{\"id\":\"folder-1\",\"title\":\"Owned folder\",\"tileShape\":\"square\",\"coverImageUrl\":null,\"focusGifUrl\":null,\"catalogSources\":[{\"addonId\":\"owned.addon\",\"type\":\"series\",\"catalogId\":\"owned-catalog\"}]}],\"future\":{\"preserve\":\"desktop-field\"}}",
+      "accepted": []
+    },
+    {
+      "input": "{\"id\":\"owned-row\",\"title\":\"Owned row\",\"folders\":[{\"id\":\"folder-1\",\"title\":\"Owned folder\",\"tileShape\":\"POSTER\",\"coverImageUrl\":null,\"focusGifUrl\":null,\"catalogSources\":[{\"addonId\":\"owned.addon\",\"type\":\"series\",\"catalogId\":\"owned-catalog\"}]},{\"id\":\"folder-1\",\"title\":\"Owned folder\",\"tileShape\":\"POSTER\",\"coverImageUrl\":null,\"focusGifUrl\":null,\"catalogSources\":[],\"sources\":[{}]}],\"future\":{\"preserve\":\"desktop-field\"}}",
+      "accepted": []
+    },
+    {
+      "input": "{\"id\":\"owned-row\",\"title\":\"Owned row\",\"folders\":[{\"id\":\"folder-1\",\"title\":\"Owned folder\",\"tileShape\":\"POSTER\",\"coverImageUrl\":null,\"focusGifUrl\":null,\"sources\":[{\"provider\":\"future-provider\",\"mediaType\":\"ANY\",\"future\":2}]}],\"future\":{\"preserve\":\"desktop-field\"}}",
+      "accepted": [
+        {
+          "id": "owned-row",
+          "title": "Owned row",
+          "folders": [
+            {
+              "id": "folder-1",
+              "title": "Owned folder",
+              "tileShape": "POSTER",
+              "coverImageUrl": null,
+              "focusGifUrl": null,
+              "sources": [
+                {
+                  "provider": "future-provider",
+                  "mediaType": "ANY",
+                  "future": 2
+                }
+              ]
+            }
+          ],
+          "future": {
+            "preserve": "desktop-field"
+          }
+        }
+      ]
+    },
+    {
+      "input": "{\"id\":\"owned-row\",\"title\":\"Owned row\",\"folders\":[{\"id\":\"folder-1\",\"title\":\"Owned folder\",\"tileShape\":\"POSTER\",\"coverImageUrl\":null,\"focusGifUrl\":null,\"catalogSources\":[{\"addonId\":\"owned.addon\",\"type\":\"series\",\"catalogId\":\"owned-catalog\"},{\"addonId\":\"owned.addon\",\"type\":\"series\",\"catalogId\":2}]}],\"future\":{\"preserve\":\"desktop-field\"}}",
+      "accepted": []
+    },
+    {
+      "input": "[{\"id\":\"owned-row\",\"title\":\"Owned row\",\"folders\":[{\"id\":\"folder-1\",\"title\":\"Owned folder\",\"tileShape\":\"POSTER\",\"coverImageUrl\":null,\"focusGifUrl\":null,\"catalogSources\":[{\"addonId\":\"owned.addon\",\"type\":\"series\",\"catalogId\":\"owned-catalog\"}]}],\"future\":{\"preserve\":\"desktop-field\"}},{\"id\":\"owned-row\",\"title\":\"Duplicate ID is retained by the parser\",\"folders\":[{\"id\":\"folder-1\",\"title\":\"Owned folder\",\"tileShape\":\"POSTER\",\"coverImageUrl\":null,\"focusGifUrl\":null,\"catalogSources\":[{\"addonId\":\"owned.addon\",\"type\":\"series\",\"catalogId\":\"owned-catalog\"}]}],\"future\":{\"preserve\":\"desktop-field\"}}]",
+      "accepted": [
+        {
+          "id": "owned-row",
+          "title": "Owned row",
+          "folders": [
+            {
+              "id": "folder-1",
+              "title": "Owned folder",
+              "tileShape": "POSTER",
+              "coverImageUrl": null,
+              "focusGifUrl": null,
+              "catalogSources": [
+                {
+                  "addonId": "owned.addon",
+                  "type": "series",
+                  "catalogId": "owned-catalog"
+                }
+              ]
+            }
+          ],
+          "future": {
+            "preserve": "desktop-field"
+          }
+        },
+        {
+          "id": "owned-row",
+          "title": "Duplicate ID is retained by the parser",
+          "folders": [
+            {
+              "id": "folder-1",
+              "title": "Owned folder",
+              "tileShape": "POSTER",
+              "coverImageUrl": null,
+              "focusGifUrl": null,
+              "catalogSources": [
+                {
+                  "addonId": "owned.addon",
+                  "type": "series",
+                  "catalogId": "owned-catalog"
+                }
+              ]
+            }
+          ],
+          "future": {
+            "preserve": "desktop-field"
+          }
+        }
+      ]
+    },
+    {
+      "input": "{\"id\":\"\",\"title\":\"\",\"folders\":[{\"id\":\"folder-1\",\"title\":\"Owned folder\",\"tileShape\":\"POSTER\",\"coverImageUrl\":null,\"focusGifUrl\":null,\"catalogSources\":[{\"addonId\":\"owned.addon\",\"type\":\"series\",\"catalogId\":\"owned-catalog\"}]}],\"future\":{\"preserve\":\"desktop-field\"}}",
+      "accepted": [
+        {
+          "id": "",
+          "title": "",
+          "folders": [
+            {
+              "id": "folder-1",
+              "title": "Owned folder",
+              "tileShape": "POSTER",
+              "coverImageUrl": null,
+              "focusGifUrl": null,
+              "catalogSources": [
+                {
+                  "addonId": "owned.addon",
+                  "type": "series",
+                  "catalogId": "owned-catalog"
+                }
+              ]
+            }
+          ],
+          "future": {
+            "preserve": "desktop-field"
+          }
+        }
+      ]
+    },
+    {
+      "input": "42",
+      "accepted": []
+    },
+    {
+      "input": "null",
+      "accepted": []
+    },
+    {
+      "input": "{not valid json",
+      "accepted": []
+    }
+  ],
+  "original_folder_action_cases": [
+    {
+      "folder": {
+        "id": "folder-1",
+        "title": "Owned folder",
+        "tileShape": "POSTER",
+        "coverImageUrl": null,
+        "focusGifUrl": null,
+        "catalogSources": [
+          {
+            "addonId": "owned.addon",
+            "type": "series",
+            "catalogId": "owned-catalog"
+          }
+        ]
+      },
+      "expected": {
+        "type": "catalog",
+        "title": "Owned folder",
+        "addon": "owned.addon",
+        "kind": "series",
+        "id": "owned-catalog"
+      }
+    },
+    {
+      "folder": {
+        "id": "folder-1",
+        "title": "Owned folder",
+        "tileShape": "POSTER",
+        "coverImageUrl": null,
+        "focusGifUrl": null,
+        "sources": [
+          {
+            "title": "Discovery",
+            "provider": "tmdb",
+            "mediaType": "TV",
+            "tmdbSourceType": "DISCOVER",
+            "sortBy": "vote_average.desc",
+            "filters": {
+              "year": 2020,
+              "voteCountGte": 100,
+              "voteAverageGte": 7.5,
+              "withGenres": [16, 35],
+              "includeAdult": false
+            }
+          }
+        ]
+      },
+      "expected": {
+        "type": "discover",
+        "title": "Discovery",
+        "kind": "tv",
+        "parameters": {
+          "sort_by": "vote_average.desc",
+          "first_air_date_year": "2020",
+          "vote_count.gte": "100",
+          "vote_average.gte": "7.5",
+          "with_genres": "16,35",
+          "include_adult": "false"
+        }
+      }
+    },
+    {
+      "folder": {
+        "id": "folder-1",
+        "title": "Owned folder",
+        "tileShape": "POSTER",
+        "coverImageUrl": null,
+        "focusGifUrl": null,
+        "sources": [
+          {
+            "title": "",
+            "provider": "tmdb",
+            "mediaType": "MOVIE",
+            "tmdbSourceType": "COMPANY",
+            "tmdbId": 12,
+            "filters": {
+              "primaryReleaseDateGte": "2000-01-01"
+            }
+          }
+        ]
+      },
+      "expected": {
+        "type": "discover",
+        "title": "Owned folder",
+        "kind": "movie",
+        "parameters": {
+          "primary_release_date_gte": "2000-01-01",
+          "with_companies": "12"
+        }
+      }
+    },
+    {
+      "folder": {
+        "id": "folder-1",
+        "title": "Owned folder",
+        "tileShape": "POSTER",
+        "coverImageUrl": null,
+        "focusGifUrl": null,
+        "sources": [
+          {
+            "title": "Collection",
+            "provider": "tmdb",
+            "mediaType": "MOVIE",
+            "tmdbSourceType": "COLLECTION",
+            "tmdbId": 123
+          }
+        ]
+      },
+      "expected": {
+        "type": "collection",
+        "title": "Collection",
+        "id": "123"
+      }
+    },
+    {
+      "folder": {
+        "id": "folder-1",
+        "title": "Owned folder",
+        "tileShape": "POSTER",
+        "coverImageUrl": null,
+        "focusGifUrl": null,
+        "sources": [
+          {
+            "provider": "trakt",
+            "mediaType": "TV",
+            "traktListId": "456"
+          }
+        ]
+      },
+      "expected": {
+        "type": "traktList",
+        "title": "Owned folder",
+        "id": "456"
+      }
+    },
+    {
+      "folder": {
+        "id": "folder-1",
+        "title": "Owned folder",
+        "tileShape": "POSTER",
+        "coverImageUrl": null,
+        "focusGifUrl": null,
+        "catalogSources": [
+          {
+            "addonId": "owned.addon",
+            "type": "series",
+            "catalogId": "owned-catalog"
+          }
+        ],
+        "sources": [
+          {
+            "provider": "future-provider",
+            "mediaType": "MOVIE"
+          }
+        ]
+      },
+      "expected": {
+        "type": "catalog",
+        "title": "Owned folder",
+        "addon": "owned.addon",
+        "kind": "series",
+        "id": "owned-catalog"
+      }
+    },
+    {
+      "folder": {
+        "id": "folder-1",
+        "title": "Owned folder",
+        "tileShape": "POSTER",
+        "coverImageUrl": null,
+        "focusGifUrl": null,
+        "sources": [
+          {
+            "provider": "future-provider",
+            "mediaType": "MOVIE"
+          }
+        ]
+      },
+      "expected": null
+    },
+    {
+      "folder": {
+        "id": "folder-1",
+        "title": "Owned folder",
+        "tileShape": "POSTER",
+        "coverImageUrl": null,
+        "focusGifUrl": null,
+        "sources": [
+          {
+            "provider": "tmdb",
+            "mediaType": "MOVIE",
+            "tmdbSourceType": "COLLECTION",
+            "tmdbId": 0
+          }
+        ]
+      },
+      "expected": null
+    }
+  ],
+  "provider_network_requests": 0,
+  "actual_original_typescript_executed": true,
+  "native_tests_executed": false
+}

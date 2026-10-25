@@ -89,6 +89,17 @@ struct TMDBService: Sendable {
         let items = parts.compactMap { makeMedia($0, kind: "movie", configuration: configuration) }.sorted { ($0.released ?? "9999") < ($1.released ?? "9999") }
         return CollectionDetails(name: name, description: response["overview"].string, background: image(response["backdrop_path"].string, size: "w1280"), parts: items)
     }
+    func sourceMetadata(_ media: Media, configuration: MetadataConfiguration) async throws -> Media {
+        let pieces = media.id.split(separator: ":")
+        guard pieces.count == 3, pieces[0] == "tmdb", ["movie", "tv"].contains(String(pieces[1])),
+              let id = Int(pieces[2]), id > 0 else { throw HarborError(code: "invalid-metadata-request") }
+        let raw = try await get("\(pieces[1])/\(id)", configuration: configuration)
+        guard let mapped = makeMedia(raw, kind: media.type, configuration: configuration) else { throw HarborError(code: "invalid-metadata-response") }
+        var result = media
+        result.poster = mapped.poster; result.background = mapped.background; result.description = mapped.description
+        result.releaseInfo = mapped.releaseInfo; result.imdbRating = mapped.imdbRating; result.ratingSource = mapped.ratingSource
+        return result
+    }
     func detail(_ media: Media, configuration: MetadataConfiguration) async throws -> Media {
         let pieces = media.id.split(separator: ":")
         let path: String

@@ -86,7 +86,9 @@ struct HarborService: Sendable {
     func related(_ media: Media, addons: [Addon]) async throws -> [Media] {
         guard media.id.range(of: "^tt[0-9]{7,}$", options: .regularExpression) != nil,
               ["movie", "series"].contains(media.type), let genre = media.genres?.first, !genre.isEmpty else { return [] }
-        let providers = try await catalogProviders(addons)
+        let providers: [Addon]
+        if addons.contains(where: { $0.manifest["id"].string == addonID }) || addonID != "com.linvo.cinemeta" { providers = addons }
+        else { providers = try await catalogProviders(addons) }
         guard let provider = providers.first(where: { $0.enabled && $0.manifest["id"].string == "com.linvo.cinemeta" }) else { return [] }
         let plans: [RequestPlan] = try await core.call("catalogs", ["addons": try .encoded([provider]), "search": .null, "genre": .string(genre), "skip": .integer(0)])
         guard let plan = plans.first(where: { $0.kind == media.type && $0.catalog?.id == "top" && $0.catalog?.extra.first(where: { $0.name == "genre" })?.options.contains(genre) == true }) else { return [] }
@@ -116,6 +118,13 @@ struct HarborService: Sendable {
         let response = try await http.json(request.url, timeout: Double(request.timeoutMs) / 1000)
         // Keep the original plan identity/order across filters and pages.
         return try decodeCatalog(response, plan: plan)
+    }
+    func sourceCatalog(addonID: String, type: String, id: String, addons: [Addon]) async throws -> CatalogRow {
+        let providers = try await catalogProviders(addons)
+        guard let addon = providers.first(where: { $0.enabled && $0.manifest["id"].string == addonID }) else { throw HarborError(code: "custom-source-addon") }
+        let plans: [RequestPlan] = try await core.call("catalogs", ["addons": try .encoded([addon]), "search": .null, "genre": .null, "skip": .integer(0)])
+        guard let plan = plans.first(where: { $0.catalog?.id == id && $0.catalog?.type == type }) else { throw HarborError(code: "custom-source-catalog") }
+        return CatalogRow(plan: plan, metas: [])
     }
 
     private func decodeCatalog(_ response: JSONValue, plan: RequestPlan) throws -> CatalogRow {

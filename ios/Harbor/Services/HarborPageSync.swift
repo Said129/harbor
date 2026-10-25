@@ -11,6 +11,7 @@ struct PageSyncRecord: Codable, Sendable {
     var version = 1
     var shadow: HarborLayoutDocument?
     var applied: PageLayout?
+    var appliedProjection: JSONValue?
     var pending: Pending?
     var parked: Parked?
     var adoption: Adoption?
@@ -62,13 +63,15 @@ struct PageSyncRecord: Codable, Sendable {
     }
     private func appliedValue() throws -> JSONValue? {
         guard let applied = stored.applied else { return nil }
-        if let shadow = stored.shadow {
-            let original = try codec(shadow.value)
+        if let raw = stored.appliedProjection ?? stored.shadow?.value {
+            let original = try codec(raw)
             // Expand the saved baseline with newly mapped server rows as well.
             // This preserves a missed user edit without treating mapping as one.
             return try original.applying(original.native(preserving: applied, mapping: mapping), mapping: mapping).raw
         }
-        return try codec().applying(applied, mapping: mapping).raw
+        // Older journals with no server document did not save a raw baseline.
+        // Reconstruct their typed baseline, never from a newer raw-only edit.
+        return try codec(.object([:])).applying(applied, mapping: mapping).raw
     }
     private func save(_ value: PageSyncRecord) throws {
         guard let scope, !document.isEmpty, value.version == 1, try JSONEncoder().encode(value).count <= 1_024 * 1_024 else { throw HarborError(code: "page-sync-store") }
@@ -76,6 +79,7 @@ struct PageSyncRecord: Codable, Sendable {
     }
     private func validate(_ value: PageSyncRecord, document: String) throws {
         guard value.version == 1, value.applied.map(PageCustomization.valid) != false else { throw HarborError(code: "page-sync-store") }
+        if let projection = value.appliedProjection { _ = try codec(projection) }
         if let shadow = value.shadow {
             guard shadow.key == document, (0...HarborLayoutDocument.maximumRevision).contains(shadow.rev) else { throw HarborError(code: "page-sync-store") }
             _ = try codec(shadow.value)
@@ -100,7 +104,7 @@ struct PageSyncRecord: Codable, Sendable {
         if sameProjection, preferences.layout == adoption.previous || preferences.layout == adoption.next {
             try preferences.apply(adoption.next, to: expected, editor: adoption.editor ?? "", projection: projection)
         }
-        var next = stored; next.adoption = nil; next.applied = adoption.next; try save(next)
+        var next = stored; next.adoption = nil; next.applied = adoption.next; next.appliedProjection = projection; try save(next)
     }
     private func adopt(_ layout: PageLayout, record: PageSyncRecord, in expected: NavigationScope, editor: String = "", projection: JSONValue? = nil) throws {
         var journal = record
@@ -188,10 +192,17 @@ struct PageSyncRecord: Codable, Sendable {
             guard let self else { return }
             do { try self.register(rails, in: expected, generation: generation) } catch { self.error = "Your layout is saved locally. Cloud sync will retry." }
         }
+        if stored.pending == nil, stored.applied == nil, incoming == nil,
+           preferences.lastEditor == expected.editorID {
+            // A cached/offline edit made by this profile before its first pull
+            // is intentional data. Defaults and inherited snapshots have no
+            // matching editor stamp and must still never upload automatically.
+            try enqueue(preferences.layout)
+        }
         if stored.pending == nil, let incoming, incoming == stored.shadow, preferences.wireProjection != nil { error = nil; return }
         if stored.pending == nil, incoming == nil, stored.shadow == nil, stored.applied == preferences.layout { error = nil; return }
         if let pending = stored.pending, let incoming, incoming.value == pending.value {
-            var next = stored; next.shadow = incoming; next.pending = nil; next.applied = preferences.layout
+            var next = stored; next.shadow = incoming; next.pending = nil; next.applied = preferences.layout; next.appliedProjection = pending.value
             if pending.preservesSharedBackup != true { next.parked = nil }
             try save(next); error = nil; return
         }
@@ -199,7 +210,7 @@ struct PageSyncRecord: Codable, Sendable {
             var next = stored; next.pending = nil; next.shadow = incoming
             if pending.preservesSharedBackup != true { next.parked = .init(value: pending.value, lostToRev: incoming?.rev ?? 0) }
             if let incoming { try adopt(codec(incoming.value).native(preserving: preferences.layout, mapping: mapping), record: next, in: expected) }
-            else { next.applied = preferences.layout; try save(next) }
+            else { next.applied = preferences.layout; next.appliedProjection = try codec().applying(preferences.layout, mapping: mapping).raw; try save(next) }
             error = nil; return
         }
         if stored.pending == nil {
@@ -207,12 +218,14 @@ struct PageSyncRecord: Codable, Sendable {
             if let incoming {
                 let layout = try codec(incoming.value).native(preserving: preferences.layout, mapping: mapping)
                 var defaults = PageLayout(); defaults.secondaryMoreInfo = preferences.page != "home"; defaults.playButtonSquare = preferences.page != "home"
-                if stored.applied == nil, preferences.layout != defaults,
-                   try codec(incoming.value).applying(preferences.layout, mapping: mapping).raw != codec(incoming.value).applying(layout, mapping: mapping).raw {
-                    next.parked = .init(value: try codec(incoming.value).applying(preferences.layout, mapping: mapping).raw, lostToRev: incoming.rev)
+                let previous = try codec(preferences.wireProjection ?? incoming.value).applying(preferences.layout, mapping: mapping).raw
+                let remote = try codec(incoming.value).applying(layout, mapping: mapping).raw
+                if stored.applied == nil, preferences.layout != defaults || preferences.lastEditor == expected.editorID && preferences.wireProjection != nil,
+                   previous != remote {
+                    next.parked = .init(value: previous, lostToRev: incoming.rev)
                 }
                 try adopt(layout, record: next, in: expected)
-            } else { next.applied = preferences.layout; try save(next) }
+            } else { next.applied = preferences.layout; next.appliedProjection = try codec().applying(preferences.layout, mapping: mapping).raw; try save(next) }
             error = nil; return
         }
         guard let pending = stored.pending else { return }
@@ -224,6 +237,7 @@ struct PageSyncRecord: Codable, Sendable {
             var next = stored; next.shadow = .init(key: document, rev: revision, value: pending.value)
             if pending.preservesSharedBackup != true { next.parked = nil }
             next.applied = try codec(pending.value).native(preserving: preferences.layout, mapping: mapping)
+            next.appliedProjection = pending.value
             if next.pending?.version == pending.version { next.pending = nil } else { next.pending?.baseRev = revision }
             try save(next); error = nil
             if next.pending != nil { requestSync?() }

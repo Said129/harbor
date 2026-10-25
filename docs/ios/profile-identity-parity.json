@@ -64,7 +64,15 @@
     "expected_executions": 3,
     "ui_replayed": false,
     "approved_unrelated_results_retained": true,
-    "native_tests_executed": false
+    "native_tests_executed": true,
+    "apple_validation": {
+      "run": 40222469616,
+      "source": "f06766c0c7ec2f6c33ccf5f650c5860eee7c7a40",
+      "native_passed": 3,
+      "native_failed": 0,
+      "new_warnings": 0,
+      "evidence_archive_sha256": "55d1751e37c620f237275461b6e25c9352ee69e82424ed2249605fcb3a1761e6"
+    }
   },
   "actual_personal_account_login_verified": false,
   "full_desktop_parity_complete": false,

@@ -63,6 +63,7 @@ struct CatalogsView: View {
 struct CatalogBrowserView: View {
     let app: AppModel
     let initial: CatalogRow
+    var titleOverride: String?
     @State private var genre = ""
     @State private var items: [Media] = []
     @State private var loading = false
@@ -73,8 +74,8 @@ struct CatalogBrowserView: View {
     private let columns = [GridItem(.adaptive(minimum: 106), spacing: 12, alignment: .top)]
     private var genres: [String] { initial.plan.catalog?.extra.first { $0.name == "genre" }?.options ?? [] }
     private var supportsPaging: Bool { initial.plan.catalog?.extra.contains { $0.name == "skip" } ?? false }
-    init(app: AppModel, initial: CatalogRow) {
-        self.app = app; self.initial = initial
+    init(app: AppModel, initial: CatalogRow, titleOverride: String? = nil) {
+        self.app = app; self.initial = initial; self.titleOverride = titleOverride
         _genre = State(initialValue: initial.selectedGenre ?? "")
         _items = State(initialValue: initial.metas)
         _offset = State(initialValue: initial.receivedCount ?? initial.metas.count)
@@ -103,7 +104,7 @@ struct CatalogBrowserView: View {
                 }
                 if !loading && items.isEmpty && error == nil { HarborNoMatchesView(text: "No titles match these filters.").padding(.horizontal) }
             }
-        }.background(HarborTheme.background).navigationTitle(initial.plan.title).navigationBarTitleDisplayMode(.inline).toolbar(.visible, for: .navigationBar)
+        }.background(HarborTheme.background).navigationTitle(titleOverride ?? initial.plan.title).navigationBarTitleDisplayMode(.inline).toolbar(.visible, for: .navigationBar)
             .task(id: genre) { if items.isEmpty || genre != (initial.selectedGenre ?? "") || generation > 0 { await load(reset: true) } }
     }
 

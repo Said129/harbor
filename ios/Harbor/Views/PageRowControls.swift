@@ -102,6 +102,15 @@ struct PageRowControls: View {
                         customization.change { $0.heroSource = hero ? nil : rail.id }
                     }
                 }
+                if case .sources(let row) = rail {
+                    Button(role: .destructive) {
+                        do { try customization.removeSource(row.id, expected: customization.scope) }
+                        catch { notice = safeMessage(error) }
+                    } label: {
+                        Image(systemName: "trash").frame(width: 44, height: 44)
+                    }.buttonStyle(.plain).accessibilityLabel(DesktopInterfaceText.value("Delete"))
+                        .accessibilityIdentifier("source-delete-\(row.id)")
+                }
                 Spacer(minLength: 0)
             }
         }.padding(.horizontal, 8).padding(.vertical, 6)

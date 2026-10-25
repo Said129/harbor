@@ -26,6 +26,8 @@ struct DesktopPageRowMap: Equatable, Sendable {
     mutating func register(_ rails: [PageRail]) {
         for rail in rails {
             switch rail {
+            case .sources:
+                if page == "home", rail.id.utf8.count <= 1_024 { pairs[rail.id] = rail.id }
             case .continuing:
                 if page == "anime" { pairs[rail.id] = "continueWatching" }
             case .discovery(let row):
@@ -90,7 +92,13 @@ struct DesktopPageLayout: Equatable, Sendable {
         } else { numerals = []; hero = nil }
         self.page = page; self.raw = raw
     }
-    func native(preserving local: PageLayout, mapping: DesktopPageRowMap) -> PageLayout {
+    private func includingSources(_ base: DesktopPageRowMap) -> DesktopPageRowMap {
+        var mapping = base
+        if page == "home" { mapping.register(raw["customSources"].array.compactMap(DesktopSourceRow.init).map(PageRail.sources)) }
+        return mapping
+    }
+    func native(preserving local: PageLayout, mapping base: DesktopPageRowMap) -> PageLayout {
+        let mapping = includingSources(base)
         var next = local
         next.order = Self.replace(local.order, with: Self.unique(order.flatMap(mapping.native)), known: mapping.nativeIDs)
         next.hidden = local.hidden.subtracting(mapping.nativeIDs).union(hidden.flatMap(mapping.native))
@@ -109,7 +117,8 @@ struct DesktopPageLayout: Equatable, Sendable {
         }
         return next
     }
-    func applying(_ local: PageLayout, mapping: DesktopPageRowMap) throws -> Self {
+    func applying(_ local: PageLayout, mapping base: DesktopPageRowMap) throws -> Self {
+        let mapping = includingSources(base)
         guard PageCustomization.valid(local), mapping.page == page else { throw HarborError(code: "page-sync-value") }
         var fields = raw.objectValue
         fields["order"] = .array(Self.replace(order, with: Self.unique(local.order.compactMap(mapping.desktop)), known: mapping.desktopIDs).map(JSONValue.string))

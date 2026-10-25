@@ -15,10 +15,11 @@ struct HomeView: View {
     }
     private var rails: [PageRail] {
         let catalogs = model.rows.filter { !$0.metas.isEmpty }.map(PageRail.catalog)
-        guard !classic else { return catalogs }
+        let sources = customization.sourceRows.map(PageRail.sources)
+        guard !classic else { return catalogs + sources }
         let built = (model.home.rows + model.home.animeRows).filter { !$0.metas.isEmpty }.map(PageRail.discovery)
         var names = Set(built.map { $0.kind + "|" + $0.title.trimmingCharacters(in: .whitespacesAndNewlines).lowercased() })
-        return built + catalogs.filter { names.insert($0.kind + "|" + $0.title.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()).inserted }
+        return built + catalogs.filter { names.insert($0.kind + "|" + $0.title.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()).inserted } + sources
     }
     private var heroes: [Media] {
         if !classic && !model.home.heroes.isEmpty { return model.home.heroes }

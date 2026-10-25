@@ -5,12 +5,13 @@ enum PageRail: Identifiable, Sendable {
     case catalog(CatalogRow)
     case discovery(DiscoveryRail)
     case continuing(kind: String)
-    var id: String { switch self { case .catalog(let row): "catalog-" + EBookShelf.hash(row.id); case .discovery(let row): "discovery-" + row.id; case .continuing: "continueWatching" } }
-    var title: String { switch self { case .catalog(let row): row.plan.title; case .discovery(let row): row.title; case .continuing: DesktopInterfaceText.value("Continue Watching") } }
-    var kind: String { switch self { case .catalog(let row): row.plan.kind; case .discovery(let row): row.kind; case .continuing(let kind): kind } }
-    var metas: [Media] { switch self { case .catalog(let row): row.metas; case .discovery(let row): row.metas; case .continuing: [] } }
-    var supportsArtworkCustomization: Bool { if case .continuing = self { return false }; return true }
-    var defaultNumerals: Bool { switch self { case .catalog, .continuing: false; case .discovery(let row): row.ranked || row.id.hasSuffix("-top10") || ["cm-top-movies", "cm-drama", "cm-comedy"].contains(row.id) } }
+    case sources(DesktopSourceRow)
+    var id: String { switch self { case .catalog(let row): "catalog-" + EBookShelf.hash(row.id); case .discovery(let row): "discovery-" + row.id; case .continuing: "continueWatching"; case .sources(let row): row.rowID } }
+    var title: String { switch self { case .catalog(let row): row.plan.title; case .discovery(let row): row.title; case .continuing: DesktopInterfaceText.value("Continue Watching"); case .sources(let row): row.title } }
+    var kind: String { switch self { case .catalog(let row): row.plan.kind; case .discovery(let row): row.kind; case .continuing(let kind): kind; case .sources: "source" } }
+    var metas: [Media] { switch self { case .catalog(let row): row.metas; case .discovery(let row): row.metas; case .continuing, .sources: [] } }
+    var supportsArtworkCustomization: Bool { switch self { case .continuing, .sources: false; default: true } }
+    var defaultNumerals: Bool { switch self { case .catalog, .continuing, .sources: false; case .discovery(let row): row.ranked || row.id.hasSuffix("-top10") || ["cm-top-movies", "cm-drama", "cm-comedy"].contains(row.id) } }
     static func addingContinuation(to rails: [PageRail], kind: String, records: [LibraryRecord], detectedAnime: Set<String>, presentationError: Bool) -> [PageRail] {
         let rows = rails.filter { $0.id != "continueWatching" }
         guard presentationError || records.contains(where: { $0.continuing && ContinueWatchingSelection.includes($0, kind: kind, detectedAnime: detectedAnime) }) else { return rows }
@@ -49,6 +50,7 @@ final class PageCustomization {
     @ObservationIgnored var onEdit: ((PageLayout) -> Void)?
     @ObservationIgnored var onRails: (([PageRail]) -> Void)?
     private var localLayout = PageLayout()
+    private var localProjection: JSONValue?
     var editing = false
     private var editingRails: [PageRail] = []
     private var key: String { storageKey(scope) }
@@ -70,25 +72,27 @@ final class PageCustomization {
                 saved = current.value; loadedEditor = current.editor; wireProjection = current.projection
             }
             else if let inheritedOwner, inheritedOwner != owner,
-                    let shared = try KeychainStore().read("page-layout-" + EBookShelf.hash(inheritedOwner + "|" + page), as: PageLayout.self) {
+                    let shared = try LayoutEditStorage.object("page-layout-" + EBookShelf.hash(inheritedOwner + "|" + page), as: PageLayout.self) {
                 // Desktop loadEffective falls back to the household's shared
                 // layout until this independent profile saves its own choice.
-                saved = shared
+                saved = shared.value; wireProjection = shared.projection
             }
             else if let legacyOwner, legacyOwner != owner,
-                    let previous = try KeychainStore().read("page-layout-" + EBookShelf.hash(legacyOwner + "|" + page), as: PageLayout.self) {
-                guard Self.valid(previous) else { throw HarborError(code: "page-layout") }
+                    let previous = try LayoutEditStorage.object("page-layout-" + EBookShelf.hash(legacyOwner + "|" + page), as: PageLayout.self) {
+                guard Self.valid(previous.value) else { throw HarborError(code: "page-layout") }
                 let marker = "page-layout-migration-" + EBookShelf.hash(legacyOwner + "|" + page)
                 let destination = try KeychainStore().read(marker, as: String.self)
                 if destination == nil || destination == owner {
                     // Claim the migration before copying. A failed copy can retry for
                     // this destination without exposing it to another profile/account.
                     try KeychainStore().write(owner, key: marker)
-                    try KeychainStore().write(previous, key: key); saved = previous
+                    try LayoutEditStorage.writeObject(previous, key: key); saved = previous.value
+                    loadedEditor = previous.editor; wireProjection = previous.projection
                 } else { saved = defaults }
             } else { saved = defaults }
             guard Self.valid(saved) else { throw HarborError(code: "page-layout") }
-            layout = saved; localLayout = saved; lastEditor = loadedEditor; ready = true
+            if let raw = wireProjection { _ = try DesktopPageLayout(page: page, raw: raw) }
+            layout = saved; localLayout = saved; localProjection = wireProjection; lastEditor = loadedEditor; ready = true
         } catch { self.error = "No se pudo recuperar la personalización. Los cambios anteriores se conservan." }
     }
     func ordered(_ rails: [PageRail], includeHidden: Bool = false) -> [PageRail] {
@@ -114,9 +118,10 @@ final class PageCustomization {
             let saved = try LayoutEditStorage.object(storageKey(next), as: PageLayout.self)
             let value = saved?.value ?? localLayout
             guard Self.valid(value) else { throw HarborError(code: "page-layout") }
-            if let raw = saved?.projection { _ = try DesktopPageLayout(page: page, raw: raw) }
-            layout = value; lastEditor = saved?.editor; wireProjection = saved?.projection; ready = true; error = nil
-            if case .local = next { localLayout = value }
+            let projection = saved == nil ? localProjection : saved?.projection
+            if let raw = projection { _ = try DesktopPageLayout(page: page, raw: raw) }
+            layout = value; lastEditor = saved?.editor; wireProjection = projection; ready = true; error = nil
+            if case .local = next { localLayout = value; localProjection = projection }
         } catch { self.error = "No se pudo recuperar la personalización. Los cambios anteriores se conservan." }
     }
     func apply(_ value: PageLayout, to expected: NavigationScope, editor: String? = "", projection: JSONValue? = nil) throws {
@@ -125,6 +130,7 @@ final class PageCustomization {
         if value != layout || lastEditor != editor || wireProjection != projection {
             try LayoutEditStorage.writeObject(.init(value: value, editor: editor, projection: projection), key: key)
             layout = value; lastEditor = editor; wireProjection = projection
+            if case .local = scope { localLayout = value; localProjection = projection }
         }
         error = nil
     }
@@ -184,11 +190,63 @@ final class PageCustomization {
                 .applying(next, mapping: DesktopPageRowMap(page: page, rails: editingRails)).raw }
             try LayoutEditStorage.writeObject(.init(value: next, editor: scope.editorID, projection: projection), key: key)
             layout = next; lastEditor = scope.editorID; wireProjection = projection; error = nil
-            if case .local = scope { localLayout = next }
+            if case .local = scope { localLayout = next; localProjection = projection }
             onEdit?(next)
         } catch { self.error = "No se pudo guardar la personalización. Los cambios anteriores se conservan." }
     }
-    func reset() { change { value in value = PageLayout(); value.secondaryMoreInfo = page != "home"; value.playButtonSquare = page != "home" } }
+    var sourceRows: [DesktopSourceRow] {
+        guard page == "home" else { return [] }
+        var seen = Set<String>()
+        return (wireProjection?["customSources"].array ?? []).compactMap(DesktopSourceRow.init).filter { seen.insert($0.id).inserted }
+    }
+    @discardableResult func importSources(_ text: String, expected: NavigationScope) throws -> Int {
+        guard text.utf8.count <= 96 * 1_024 else { throw HarborError(code: "custom-source-import") }
+        let rows = DesktopSourceRow.parse(text)
+        guard !rows.isEmpty else { throw HarborError(code: "custom-source-import") }
+        try changeSources(expected: expected) { $0 = DesktopSourceRow.merging(rows, into: $0) }
+        return rows.count
+    }
+    func removeSource(_ id: String, expected: NavigationScope) throws {
+        try changeSources(expected: expected) { $0.removeAll { $0["id"].string == id } }
+    }
+    func editSourceImages(rowID: String, folderID: String, cover: String, focus: String, expected: NavigationScope) throws {
+        try changeSources(expected: expected) { rows in
+            rows = rows.map { raw in
+                guard let row = DesktopSourceRow(raw), row.id == rowID else { return raw }
+                return row.editingImages(folderID: folderID, cover: cover, focus: focus).raw
+            }
+        }
+    }
+    private func changeSources(expected: NavigationScope, edit: (inout [JSONValue]) -> Void) throws {
+        guard ready, page == "home", scope == expected else { throw HarborError(code: "account-changed") }
+        let mapping = DesktopPageRowMap(page: page, rails: editingRails)
+        let previous = try DesktopPageLayout(page: page, raw: wireProjection ?? .object([:])).applying(layout, mapping: mapping)
+        var fields = previous.raw.objectValue, rows = previous.raw["customSources"].array
+        edit(&rows); fields["customSources"] = .array(rows)
+        let projection = try DesktopPageLayout(page: page, raw: .object(fields)).raw
+        guard projection != previous.raw else { return }
+        try LayoutEditStorage.writeObject(.init(value: layout, editor: scope.editorID, projection: projection), key: key)
+        wireProjection = projection; lastEditor = scope.editorID; error = nil
+        if case .local = scope { localProjection = projection }
+        onEdit?(layout)
+    }
+    func reset() {
+        guard ready else { return }
+        var next = PageLayout(); next.secondaryMoreInfo = page != "home"; next.playButtonSquare = page != "home"
+        do {
+            var projection = try wireProjection.map { try DesktopPageLayout(page: page, raw: $0)
+                .applying(next, mapping: DesktopPageRowMap(page: page, rails: editingRails)).raw }
+            if page == "home", let original = projection, original["customSources"] != .null {
+                var fields = original.objectValue; fields["customSources"] = .array([])
+                projection = try DesktopPageLayout(page: page, raw: .object(fields)).raw
+            }
+            guard next != layout || projection != wireProjection else { return }
+            try LayoutEditStorage.writeObject(.init(value: next, editor: scope.editorID, projection: projection), key: key)
+            layout = next; wireProjection = projection; lastEditor = scope.editorID; error = nil
+            if case .local = scope { localLayout = next; localProjection = projection }
+            onEdit?(next)
+        } catch { self.error = "No se pudo guardar la personalización. Los cambios anteriores se conservan." }
+    }
     nonisolated static func valid(_ value: PageLayout) -> Bool {
         value.version == 1 && value.order.count <= 1_000 && value.hidden.count <= 1_000 && value.renamed.count <= 1_000 && value.numerals.count <= 1_000 && value.plain.count <= 1_000 && value.renamed.values.allSatisfy { $0.count <= 120 }
     }

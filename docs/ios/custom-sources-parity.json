@@ -1,0 +1,74 @@
+{
+  "reference": "Harbor Desktop 0.9.132 Beta",
+  "inputs": {
+    "src/lib/custom-sources.ts": "4d575fa8e066c48089f4401dcd80756734e7e30645c37c6842cf112442af56cb",
+    "src/components/source-folder-card.tsx": "59bcac35f0f20773cd814b45d2de8d952b11b52d4cc7b12227679e8a8e484d21",
+    "src/components/custom-sources-row.tsx": "96c2c883aee1561f3283989718b1858d8eec8a4382b6605b2d4ecc94ca9e3905",
+    "src/components/add-source-modal.tsx": "998c472ab747ea517074bfce5c8c51e550fff96af4b426398f3b5b4ea209b81b",
+    "src/components/edit-folder-images-modal.tsx": "f93a7863d3cc6e0345ed5240f15cf5b28a7b7b4807e10cd676987cc9fb9ef841",
+    "src/lib/home-customization.ts": "2113d58e1691afb3c25918108269347b5e30cc4b1e5d90ffc55306bb9e9a8103",
+    "src/lib/trakt/config.ts": "23571647a75a77a81cc242bd0a42e00f4a21ede580517d63a7bd59ac12cc8391",
+    "src/lib/trakt/lists.ts": "1a2c939b061d8fb1f9a59f48bcf7240383e1b66134b67c95624ea9d7f31c73b5",
+    "src/lib/trakt/hydrate.ts": "93f73da7cc6a85480b59e74447defd5862e82770f6cd4ffcc20e29d7dbbf13a3",
+    "src/lib/trakt/to-meta.ts": "feaf5c4bd7bdd03e7465c52c867ed07359a676c911a76b14c02b00c16eb5eaf4"
+  },
+  "implemented": [
+    "Whole-JSON source-row imports from a URL, pasted text and bounded UTF-8 JSON files",
+    "Poster/landscape folder cards, row hide/show/reorder/rename/delete/reset and persisted image/GIF edits",
+    "Offscreen folder loading is lazy; focused animations decode off the main thread within a mobile image budget",
+    "Native addon catalog resolution, TMDB discovery/company/collection and anonymous Trakt list hydration",
+    "Unknown fields and public manifest/catalog identities survive edits; private account transport URLs are never inserted into layouts",
+    "Raw page baselines keep source-only edits through missing server documents, offline edits, queue failures, conflicts and late acknowledgements",
+    "Imports and image editors reject a retired profile activation; page data follows the configured settings scope"
+  ],
+  "original_reference_executions": {
+    "parser": 12,
+    "folder_click_handler": 8,
+    "provider_requests": 0,
+    "actual_original_typescript_executed": true
+  },
+  "anonymous_public_trakt_probe": {
+    "observed_at": "2026-10-25T21:00:51.600298+00:00",
+    "authenticated": false,
+    "user_credentials_loaded": false,
+    "personal_account_used": false,
+    "observations": [
+      {
+        "path": "/lists/trending?limit=1",
+        "status": 200,
+        "bytes": 7433
+      },
+      {
+        "path": "/lists/1248149/items?page=1&limit=2",
+        "status": 200,
+        "bytes": 832
+      }
+    ],
+    "returned_public_items": 2
+  },
+  "selection": {
+    "marker": "affected:custom-sources",
+    "new_native": 13,
+    "affected_native": 16,
+    "fresh_preparations": 2,
+    "new_ui": 2,
+    "expected_total_executions": 33,
+    "required_original_captures": 12,
+    "unrelated_approved_cases_replayed": false
+  },
+  "retained_identity": {
+    "native_run": 40222469616,
+    "native_passed": 3,
+    "native_failed": 0,
+    "ui_run": 40219962030,
+    "ui_passed": 2
+  },
+  "apple_validation": "pending",
+  "actual_personal_account_login_verified": false,
+  "remaining_full_port_audit": [
+    "Compare pre-sign-in local customization seeding at first account activation with Desktop settings synchronization",
+    "Complete global grid options, account-backed provider lists and the remaining interface/localization audit"
+  ],
+  "full_desktop_parity_complete": false,
+  "ipa_created": false
+}

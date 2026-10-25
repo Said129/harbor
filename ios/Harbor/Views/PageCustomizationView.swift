@@ -5,12 +5,17 @@ struct PageCustomizeButton: View {
     let customization: PageCustomization
     var cloud: HarborPageSync? = nil
     @State private var optionsOpen = false
+    @State private var importingSources = false
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     private var title: String {
         DesktopInterfaceText.value(customization.editing ? "Done editing" : customization.page == "home" ? "Customize home" : customization.page == "anime" ? "Customize anime" : "Customize page")
     }
     var body: some View {
         VStack(alignment: .trailing, spacing: 10) {
+            if customization.editing && customization.page == "home" {
+                PageEditPill(title: DesktopInterfaceText.value("Add Custom Source"), icon: "nav-addons") { importingSources = true }
+                    .accessibilityIdentifier("custom-source-add")
+            }
             if let cloud, cloud.hasParkedVersion {
                 Button(DesktopInterfaceText.value("Restore my version")) { cloud.restoreMyVersion() }
                     .font(.caption).frame(minHeight: 44).accessibilityIdentifier("page-restore-cloud-layout")
@@ -38,6 +43,7 @@ struct PageCustomizeButton: View {
                 }.accessibilityIdentifier("page-customize")
             }
         }.padding(.horizontal).disabled(!customization.ready)
+            .sheet(isPresented: $importingSources) { CustomSourceImportView(customization: customization) }
             .task(id: rails.map(\.id)) { customization.setEditingRails(rails) }
             .onDisappear { customization.editing = false }
     }
@@ -62,6 +68,7 @@ struct CustomizedRails: View {
                             }
                         } else {
                             switch rail {
+                            case .sources(let row): CustomSourceRowView(row: row, title: title, app: app, customization: customization)
                             case .continuing(let kind):
                                 ContinueWatching(app: app, kind: kind, title: title, titleIsLiteral: true)
                             case .catalog(let row): CatalogRails(rows: [row], app: app, titleOverrides: [row.id: title])
@@ -76,7 +83,7 @@ struct CustomizedRails: View {
     }
     @ViewBuilder private func browse(_ rail: PageRail) -> some View {
         switch rail {
-        case .continuing: EmptyView()
+        case .continuing, .sources: EmptyView()
         case .catalog(let row): NavigationLink { CatalogBrowserView(app: app, initial: row) } label: { Label(DesktopInterfaceText.value("View all"), image: "desktop-chevron-right").font(.caption).foregroundStyle(.secondary) }.accessibilityIdentifier("catalog-browser-link")
         case .discovery(let row): NavigationLink(DesktopInterfaceText.value("View all")) { DiscoveryGrid(rail: row, app: app) }.font(.caption).foregroundStyle(.secondary)
         }
