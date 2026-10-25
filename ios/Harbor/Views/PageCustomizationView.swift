@@ -64,15 +64,13 @@ struct CustomizedRails: View {
                             switch rail {
                             case .continuing(let kind):
                                 ContinueWatching(app: app, kind: kind, title: title, titleIsLiteral: true)
-                                    .accessibilityElement(children: .contain)
-                                    .accessibilityIdentifier("page-continue-watching-row")
                             case .catalog(let row): CatalogRails(rows: [row], app: app, titleOverrides: [row.id: title])
                             case .discovery(let row):
                                 DiscoveryRails(rows: [row], app: app, titleOverrides: [row.id: title], disableDefaultRanking: true)
                             }
                         }
                     }
-                }.accessibilityElement(children: .contain).accessibilityIdentifier("page-content-row-" + rail.id)
+                }.accessibilityElement(children: .contain)
             }
         }
     }

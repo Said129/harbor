@@ -9,12 +9,17 @@ import XCTest
         continueAfterFailure = false
         let app = XCUIApplication(bundleIdentifier: "site.harbor.iphone")
         app.launchArguments = ["-uiLanguage", "en", "-nativeGuide.initialized.v1", "YES", "-nativeGuide.completed.v1", "YES"]
-        ReadingUIInteraction.launchPreparedApplication(app); defer { app.terminate() }; navigate(app)
-        let scroll = app.scrollViews["content-anime"], row = element("page-continue-watching-row", app)
+        ReadingUIInteraction.launchPreparedApplication(app)
+        defer {
+            if (testRun?.failureCount ?? 0) > 0 { ReadingUIInteraction.recordFailureContext(app) }
+            app.terminate()
+        }
+        navigate(app)
+        let scroll = app.scrollViews["content-anime"], row = app.staticTexts["anime-continue-watching-title"]
         ReadingUIInteraction.reveal(row, in: app, container: scroll)
         XCTAssertTrue(row.waitForExistence(timeout: 30)); ReadingUIInteraction.revealWithinViewport(row, in: app, container: scroll)
         if watcher { verifyWatcher(app) }
-        XCTAssertTrue(row.staticTexts["Continue Watching"].exists); capture(app, "anime-continue-initial-" + device)
+        XCTAssertEqual(row.label, "Continue Watching"); capture(app, "anime-continue-initial-" + device)
         let customize = app.buttons["page-customize"]
         ReadingUIInteraction.reveal(customize, in: app, up: false, container: scroll); ReadingUIInteraction.tapVisible(customize, in: app)
         let controls = element("page-row-controls-continueWatching", app)
@@ -40,13 +45,12 @@ import XCTest
         ReadingUIInteraction.tapVisible(controls.buttons["Show row"], in: app)
         ReadingUIInteraction.reveal(customize, in: app, up: false, container: scroll); ReadingUIInteraction.tapVisible(customize, in: app)
         app.terminate(); ReadingUIInteraction.launchPreparedApplication(app); navigate(app)
-        let preceding = element("page-content-row-discovery-anilist-trending", app)
+        let preceding = app.staticTexts["Trending on AniList"]
         ReadingUIInteraction.reveal(preceding, in: app, container: scroll)
         XCTAssertTrue(preceding.waitForExistence(timeout: 30)); ReadingUIInteraction.revealWithinViewport(preceding, in: app, container: scroll)
-        let container = element("page-content-row-continueWatching", app)
-        XCTAssertTrue(container.waitForExistence(timeout: 10)); XCTAssertLessThan(preceding.frame.minY, container.frame.minY)
+        XCTAssertTrue(row.waitForExistence(timeout: 10)); XCTAssertLessThan(preceding.frame.minY, row.frame.minY)
         ReadingUIInteraction.revealWithinViewport(row, in: app, container: scroll)
-        XCTAssertTrue(row.staticTexts["Owned anime row"].exists)
+        XCTAssertEqual(row.label, "Owned anime row")
         if watcher { verifyWatcher(app) }
         XCTAssertFalse(controls.exists); capture(app, "anime-continue-restored-" + device)
     }

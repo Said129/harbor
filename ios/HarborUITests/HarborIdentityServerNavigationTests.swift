@@ -7,7 +7,11 @@ import XCTest
         continueAfterFailure = false
         let app = XCUIApplication(bundleIdentifier: "site.harbor.iphone")
         app.launchArguments = ["-uiLanguage", "en", "-nativeGuide.initialized.v1", "YES", "-nativeGuide.completed.v1", "YES"]
-        ReadingUIInteraction.launchPreparedApplication(app); defer { app.terminate() }
+        ReadingUIInteraction.launchPreparedApplication(app)
+        defer {
+            if (testRun?.failureCount ?? 0) > 0 { ReadingUIInteraction.recordFailureContext(app) }
+            app.terminate()
+        }
         let account = app.buttons["main-account"].firstMatch
         XCTAssertTrue(account.waitForExistence(timeout: 45)); ReadingUIInteraction.tapVisible(account, in: app)
         let tab = app.buttons["account-tab-harbor"], tabs = app.scrollViews["account-tabs"]
@@ -19,12 +23,12 @@ import XCTest
         XCTAssertTrue(choice.buttons["Harbor Community"].isSelected)
         capture(app, "identity-server-community-" + device)
         let username = app.textFields["harbor-username"], login = app.buttons["harbor-login"]
-        ReadingUIInteraction.reveal(username, in: app); ReadingUIInteraction.replace(username, with: "owned-ui-user", in: app)
+        ReadingUIInteraction.reveal(username, in: app); ReadingUIInteraction.tapVisible(username, in: app); username.typeText("owned-ui-user")
         ReadingUIInteraction.reveal(password, in: app); ReadingUIInteraction.tapVisible(password, in: app); password.typeText("owned-ui-password")
         ReadingUIInteraction.reveal(choice, in: app, up: false); ReadingUIInteraction.tapVisible(choice.buttons["Personalizado"], in: app)
         assertEmpty(password); XCTAssertFalse(login.isEnabled)
         let url = app.textFields["harbor-server-url"]
-        ReadingUIInteraction.reveal(url, in: app); ReadingUIInteraction.replace(url, with: "http://owned.example", in: app)
+        ReadingUIInteraction.reveal(url, in: app); ReadingUIInteraction.tapVisible(url, in: app); url.typeText("http://owned.example")
         ReadingUIInteraction.reveal(password, in: app); ReadingUIInteraction.tapVisible(password, in: app); password.typeText("owned-ui-password")
         XCTAssertFalse(login.isEnabled, "An insecure origin cannot receive a password")
         ReadingUIInteraction.reveal(url, in: app, up: false); ReadingUIInteraction.replace(url, with: "https://owned.example", in: app)
@@ -38,6 +42,7 @@ import XCTest
         capture(app, "identity-server-restored-" + device)
     }
     private func assertEmpty(_ field: XCUIElement) {
+        XCTAssertTrue(field.waitForExistence(timeout: 10))
         let cleared = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
             let value = field.value as? String
             return value == "" || value == field.placeholderValue

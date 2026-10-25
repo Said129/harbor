@@ -1,0 +1,21 @@
+{
+  "reference": "Harbor Desktop 0.9.132 Beta",
+  "compiler_repair": "The designated identity initializer must assign serverTransport to the stored transport. The previous identity and artwork runs both stopped on that single self-assignment before executing tests",
+  "compiler_only_runs": [40162327075, 40163157918],
+  "previously_unexecuted_native_cases": 20,
+  "previously_unexecuted_account_ui_cases": 2,
+  "failed_continuation_ui_cases": 2,
+  "fresh_preparation_executions": 2,
+  "expected_total_executions": 26,
+  "required_original_captures": 18,
+  "continuation_runtime_evidence": "Run 40161132799 actual iPhone frame at 30s and iPad frame at 30s show Continue Watching, its owned title, watcher avatar and independent X. The driver continues to scroll because it cannot find the conditional container's identifier",
+  "continuation_repair": "Expose a heading trait and identifier on the actual Text; remove redundant row wrapper identifiers; exercise that heading and the visible preceding section when asserting persisted row order",
+  "failure_diagnostics": "Keep the actual view hierarchy and screenshot if a visible control lookup fails",
+  "retained_household_native_passes": 12,
+  "unrelated_approved_tests_repeated": false,
+  "apple_validation_pending": true,
+  "full_roster_layout_hydration_implemented": false,
+  "actual_personal_account_login_verified": false,
+  "full_desktop_parity_complete": false,
+  "ipa_created": false
+}

@@ -117,7 +117,7 @@ final class HarborProfileSync {
              try await HTTPClient().harbor(path, server: server, method: method, body: body, token: token)
          }) {
         self.owner = owner
-        self.transport = transport
+        self.transport = serverTransport
         key = "harbor-identity-" + EBookShelf.hash(owner); self.profile = profile
         reload()
     }

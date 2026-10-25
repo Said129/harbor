@@ -16,10 +16,17 @@
   "new_native_cases": 12,
   "retained_watched_by_native_run": 40157907082,
   "retained_watched_by_native_cases": 10,
-  "failed_interface_retry": "The app now reaches Anime; scroll the real LazyVStack before waiting for its initially offscreen continuation row",
-  "interface_evidence_archive_sha256": "91db1b15d978bc338688bc59b9cdbaccc0b3931e8b0b8e0ed4b8468eaf096c9f",
-  "native_validation_pending": true,
-  "linked_layout_fanout_still_requires_audit": true,
+  "native_validation": {
+    "run": 40161132799,
+    "source": "0eb91c873efe71b9c339966ec42a9ec13844f665",
+    "passed": 12,
+    "new_warnings": 0
+  },
+  "failed_interface_retry": "Actual iPhone and iPad recordings show the continuation row, watcher and remove control while the container AX lookup misses it. Anchor interaction to the actual visible section heading; retain every move/rename/hide/restart assertion",
+  "interface_evidence_archive_sha256": "fa07e12b6ec276f9ac30fb64bad16cb9d46adc98b1980612351ee81de5cf03bf",
+  "native_validation_pending": false,
+  "current_identity_and_artwork_changes_require_separate_validation": true,
+  "full_roster_layout_hydration_implemented": false,
   "full_desktop_parity_complete": false,
   "ipa_created": false
 }

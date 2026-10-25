@@ -1,6 +1,12 @@
 import XCTest
 
 @MainActor enum ReadingUIInteraction {
+    static func recordFailureContext(_ app: XCUIApplication) {
+        XCTContext.runActivity(named: "Actual interface context after a failed assertion") { activity in
+            let hierarchy = XCTAttachment(string: app.debugDescription); hierarchy.name = "failed-interface-hierarchy"; hierarchy.lifetime = .keepAlways; activity.add(hierarchy)
+            let screen = XCTAttachment(screenshot: app.screenshot()); screen.name = "failed-interface-screen"; screen.lifetime = .keepAlways; activity.add(screen)
+        }
+    }
     static func launchPreparedApplication(_ app: XCUIApplication) {
         let environment = app.launchEnvironment.filter { key, _ in
             key.hasPrefix("DYLD_") || key.hasPrefix("__XCODE_") || key.hasPrefix("XCTest")
@@ -79,6 +85,10 @@ import XCTest
             if visibleFrame(element, in: app) != nil, element.isHittable { return }
             if let container { swipeVisible(container, in: app, up: up) }
             else if up { app.swipeUp() } else { app.swipeDown() }
+        }
+        XCTContext.runActivity(named: "The requested control was not found in the visible scroll viewport") { activity in
+            let hierarchy = XCTAttachment(string: app.debugDescription); hierarchy.name = "scroll-control-not-found-hierarchy"; hierarchy.lifetime = .keepAlways; activity.add(hierarchy)
+            let screen = XCTAttachment(screenshot: app.screenshot()); screen.name = "scroll-control-not-found-screen"; screen.lifetime = .keepAlways; activity.add(screen)
         }
         XCTAssertNotNil(visibleFrame(element, in: app), element.description)
         XCTAssertTrue(element.isHittable)
