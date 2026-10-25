@@ -1,6 +1,25 @@
 import XCTest
 
 @MainActor enum ReadingUIInteraction {
+    static func launchPreparedApplication(_ app: XCUIApplication) {
+        let environment = app.launchEnvironment.filter { key, _ in
+            key.hasPrefix("DYLD_") || key.hasPrefix("__XCODE_") || key.hasPrefix("XCTest")
+        }
+        XCTContext.runActivity(named: "Prepared application launch environment") { activity in
+            let metadata = XCTAttachment(string: environment.sorted { $0.key < $1.key }.map { $0.key + "=" + $0.value }.joined(separator: "\n"))
+            metadata.name = "prepared-app-runtime-paths"; metadata.lifetime = .keepAlways; activity.add(metadata)
+        }
+        app.launch()
+        guard app.wait(for: .runningForeground, timeout: 10) else {
+            XCTContext.runActivity(named: "The installed application did not reach the foreground") { activity in
+                let screen = XCTAttachment(screenshot: XCUIScreen.main.screenshot()); screen.name = "prepared-app-launch-failure-screen"; screen.lifetime = .keepAlways; activity.add(screen)
+                let state = XCTAttachment(string: String(describing: app.state)); state.name = "prepared-app-launch-state"; state.lifetime = .keepAlways; activity.add(state)
+            }
+            XCTFail("The prepared installed Harbor application did not remain in the foreground")
+            return
+        }
+    }
+
     static func chooseNativeMenuItem(_ label: String, in app: XCUIApplication) {
         let choice = app.buttons[label].firstMatch
         // Native menus virtualize long country/option lists independently of the

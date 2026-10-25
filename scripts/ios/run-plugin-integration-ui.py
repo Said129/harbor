@@ -22,7 +22,9 @@ else:
     expected = plan['fresh_preparation_executions']
     assert 1 <= expected <= 10 and len(batches) == len({batch['id'] for batch in batches}) == expected
     assert all(re.fullmatch(r'[A-Za-z][A-Za-z0-9]*', batch['id']) and batch['cases'] for batch in batches)
-    assert {batch['family'] for batch in batches} == {'IPhone', 'IPad'}
+    families = {batch['family'] for batch in batches}
+    if plan.get('startup_probe'): assert len(batches) == 1 and families == {'IPhone'}
+    else: assert families == {'IPhone', 'IPad'}
 assert plan['expected_original_images'] in (4, 6, 8, 10, 12, 13, 16, 17, 18, 24, 26, 28, 32, 34, 35, 36, 38, 39, 44, 46, 47, 48, 52, 54, 58, 61)
 if plan.get('block') in ('reading-plugins', 'reading-repair', 'ebook-catalog', 'reading-bulk', 'reading-consolidated', 'reading-html', 'reading-metadata', 'reading-adaptations', 'reading-navigation', 'reading-surface', 'reading-source-refresh', 'reading-final-repair', 'reading-final-followup', 'reading-visible', 'reading-visible-repair', 'prepared-app'):
     runpy.run_path('scripts/ios/reading-plugin-fixture-server.py')['start'](build)
@@ -118,11 +120,15 @@ for batch in batches:
         if not execute(device, 'PluginSeed' + label, 'Harbor', batch['seed']): continue
         container = subprocess.check_output(['xcrun', 'simctl', 'get_app_container', device, 'site.harbor.iphone', 'data'], text=True).strip()
         record_owned_metadata_cache(container, label, 'prepared', device)
+        if plan.get('startup_probe'):
+            subprocess.run([sys.executable, 'scripts/ios/collect-prepared-app-startup.py', '--device', device, '--label', label, '--phase', 'before-ui'], check=True)
         video = recordings / ('plugin-' + label.lower() + '.mp4')
         with (build / 'logs' / ('plugin-' + label.lower() + '-recording.log')).open('w') as recording_log:
             recorder = subprocess.Popen(['xcrun', 'simctl', 'io', device, 'recordVideo', '--codec=h264', str(video)], stdout=recording_log, stderr=subprocess.STDOUT)
             try: execute(device, 'PluginUI' + label, 'HarborExistingAppUI' if preserve_app else 'HarborLive', case)
             finally:
+                if plan.get('startup_probe'):
+                    subprocess.run([sys.executable, 'scripts/ios/collect-prepared-app-startup.py', '--device', device, '--label', label, '--phase', 'after-ui'], check=True)
                 record_owned_metadata_cache(container, label, 'after-ui', device)
                 if preserve_app:
                     active = subprocess.check_output(['xcrun', 'simctl', 'get_app_container', device, 'site.harbor.iphone', 'data'], text=True).strip()

@@ -1,0 +1,23 @@
+{
+  "reference": "0.9.132 (Beta)",
+  "original_engine": "src/lib/profile-sync/engine.ts",
+  "original_engine_normalized_sha256": "a7cc2974aac5d3b3de827b053c4c3c5789e56f0ec6eb5c772ed0bd7ec271f7bc",
+  "independent_sections": ["nav", "services", "home", "anime"],
+  "source_account_lease_checked_before_and_after_each_section": true,
+  "section_errors_preserved": true,
+  "authentication_cancellation_and_transport_errors_stop_pass": true,
+  "retained_native_run": 40142488560,
+  "retained_native_cases": 20,
+  "unchanged_retained_inputs": [
+    "ios/Harbor/Services/HarborPageSync.swift",
+    "ios/Harbor/Services/DesktopPageLayout.swift",
+    "ios/Harbor/Models/PageCustomization.swift",
+    "ios/Harbor/Services/DesktopLayoutProfileTarget.swift",
+    "ios/HarborTests/DesktopPageLayoutTests.swift",
+    "ios/HarborTests/PageLayoutSyncTests.swift",
+    "ios/HarborTests/AnimeContinuationLayoutTests.swift"
+  ],
+  "diagnostic_retry": "Only one failed fresh iPhone route; collect ordinary launch console, dependencies and crash reports.",
+  "full_desktop_parity_complete": false,
+  "ipa_created": false
+}

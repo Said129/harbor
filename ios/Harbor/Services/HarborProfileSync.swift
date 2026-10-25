@@ -252,9 +252,13 @@ final class HarborProfileSync {
             guard let self, scope == self.generation, self.stored.session?.id == session.id else { throw HarborError(code: "account-changed") }
             return try await self.request("/sync/v1/push", method: "POST", body: body, scope: scope)
         }
-        try await navigation.synchronize(state: state, account: session.id, profile: final, send: send)
-        try await services.synchronize(state: state, account: session.id, profile: final, send: send)
-        try await page("home").synchronize(state: state, account: session.id, profile: final, send: send)
-        try await page("anime").synchronize(state: state, account: session.id, profile: final, send: send)
+        try await HarborLayoutSyncBatch.run([
+            .init { try await self.navigation.synchronize(state: state, account: session.id, profile: final, send: send) },
+            .init { try await self.services.synchronize(state: state, account: session.id, profile: final, send: send) },
+            .init { try await self.page("home").synchronize(state: state, account: session.id, profile: final, send: send) },
+            .init { try await self.page("anime").synchronize(state: state, account: session.id, profile: final, send: send) },
+        ]) {
+            guard scope == self.generation, self.stored.session?.id == session.id else { throw HarborError(code: "account-changed") }
+        }
     }
 }

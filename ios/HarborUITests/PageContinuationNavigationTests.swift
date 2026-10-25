@@ -7,7 +7,7 @@ import XCTest
         continueAfterFailure = false
         let app = XCUIApplication(bundleIdentifier: "site.harbor.iphone")
         app.launchArguments = ["-uiLanguage", "en", "-nativeGuide.initialized.v1", "YES", "-nativeGuide.completed.v1", "YES"]
-        app.launch(); defer { app.terminate() }; navigate(app)
+        ReadingUIInteraction.launchPreparedApplication(app); defer { app.terminate() }; navigate(app)
         let scroll = app.scrollViews["content-anime"], row = element("page-continue-watching-row", app)
         XCTAssertTrue(row.waitForExistence(timeout: 30)); ReadingUIInteraction.revealWithinViewport(row, in: app, container: scroll)
         XCTAssertTrue(row.staticTexts["Continue Watching"].exists); capture(app, "anime-continue-initial-" + device)
@@ -34,7 +34,7 @@ import XCTest
         capture(app, "anime-continue-hidden-" + device)
         ReadingUIInteraction.tapVisible(controls.buttons["Show row"], in: app)
         ReadingUIInteraction.reveal(customize, in: app, up: false, container: scroll); ReadingUIInteraction.tapVisible(customize, in: app)
-        app.terminate(); app.launch(); navigate(app)
+        app.terminate(); ReadingUIInteraction.launchPreparedApplication(app); navigate(app)
         let preceding = element("page-content-row-discovery-anilist-trending", app)
         XCTAssertTrue(preceding.waitForExistence(timeout: 30)); ReadingUIInteraction.revealWithinViewport(preceding, in: app, container: scroll)
         let container = element("page-content-row-continueWatching", app)
