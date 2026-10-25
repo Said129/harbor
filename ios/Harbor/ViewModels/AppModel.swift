@@ -25,7 +25,11 @@ final class AppModel {
     @ObservationIgnored private var addonRefresh: (id: UUID, task: Task<AccountCollection, Error>)?
     private var lastAddonRefresh = Date.distantPast
     @ObservationIgnored private var pages: [String: ContentPageModel] = [:]
-    private(set) var storageReady = false
+    private var preparedProfileActivation: UUID?
+    private(set) var storageReady: Bool {
+        get { preparedProfileActivation == profileContext.activationID }
+        set { preparedProfileActivation = newValue ? profileContext.activationID : nil }
+    }
     private(set) var addons: [Addon] = []
     private(set) var rows: [CatalogRow] = []
     private(set) var heroes: [Media] = []

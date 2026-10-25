@@ -42,8 +42,10 @@ import XCTest
     func testFirstAccountPreservesTheDeviceProfileAndEveryExistingDataNamespace() throws {
         let memory = ActivationMemory(), context = memory.context(); try context.prepare()
         let before = try XCTUnwrap(context.binding), source = try XCTUnwrap(context.configuration)
+        let preparedActivation = context.activationID
         let activated = try context.activateHarbor(account: "A", document: memory.document())
         XCTAssertTrue(activated); XCTAssertEqual(context.profiles.scope, .harbor(account: "A"))
+        XCTAssertNotEqual(context.activationID, preparedActivation, "Old prepared UI data must retire even when import aliases preserve its owner strings")
         XCTAssertEqual(context.profiles.active?.id, before.profileID); XCTAssertEqual(context.profiles.active?.syncID, "desktop-primary")
         XCTAssertEqual(context.binding?.personalOwner, before.personalOwner)
         XCTAssertEqual(context.binding?.settingsOwner, before.settingsOwner)

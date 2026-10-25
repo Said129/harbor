@@ -5,6 +5,7 @@
   "first_account_import": "Stage source sessions with a durable one-account claim, install roster aliases, bind/adopt the server, activate last",
   "recovery": "Keep the old local roster, sessions and shelves; retry partial staging without overwriting an existing destination record",
   "other_accounts": "Separate persisted households; no automatic source-session or personal-data import from a previously connected Harbor account",
+  "visible_data_gate": "AppModel storage readiness belongs to the current activation UUID, so a new household cannot briefly render the previous library while its data is being bound",
   "production_callers": [
     "AppModel.bindHarborIdentity",
     "HarborProfileSync.synchronizedHouseholdState",
