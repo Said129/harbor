@@ -64,7 +64,7 @@ import XCTest
     func testRealSignInHydratesTheFullRosterAndEditsCreationAndTombstonesUseTheSameAuthenticatedWriter() async throws {
         try await withCloud { memory, context, server, cloud in
             server.docs["account:profiles"] = memory.document([memory.remote(), memory.remote("desktop-second", primary: false)])
-            await cloud.signIn(username: "owned-account", password: "owned-password"); await cloud.sync()
+            await cloud.signIn(username: "owned-account", password: "owned-password", server: .community); await cloud.sync()
             XCTAssertTrue(cloud.hydrated); XCTAssertNil(cloud.error)
             XCTAssertEqual(context.profiles.profiles.count, 2); XCTAssertEqual(context.profiles.active?.syncID, "desktop-primary")
             XCTAssertTrue(server.pushes.isEmpty, "An identical authenticated pull cannot echo the roster")
@@ -84,7 +84,7 @@ import XCTest
     func testAnAuthoritativelyEmptyAccountSeedsTheExistingDeviceProfileWithoutUploadingPrivateState() async throws {
         try await withCloud { _, context, server, cloud in
             let before = try XCTUnwrap(context.binding)
-            await cloud.signIn(username: "owned-account", password: "owned-password"); await cloud.sync()
+            await cloud.signIn(username: "owned-account", password: "owned-password", server: .community); await cloud.sync()
             XCTAssertEqual(context.profiles.active?.id, before.profileID)
             XCTAssertEqual(context.binding?.personalOwner, before.personalOwner)
             XCTAssertEqual(server.pushes.count, 1)
@@ -97,7 +97,7 @@ import XCTest
         try await withCloud { memory, context, server, cloud in
             let before = context.profiles.scope
             server.failGET = true
-            await cloud.signIn(username: "owned-account", password: "owned-password")
+            await cloud.signIn(username: "owned-account", password: "owned-password", server: .community)
             XCTAssertEqual(context.profiles.scope, before); XCTAssertTrue(context.ready)
             XCTAssertNil(memory.sessions?.activeHarborAccount); XCTAssertNil(memory.sessions?.deviceImportAccount)
             XCTAssertTrue(server.pushes.isEmpty); XCTAssertFalse(cloud.hydrated); XCTAssertNotNil(cloud.error)
@@ -108,7 +108,7 @@ import XCTest
             let before = context.profiles.scope
             server.docs["account:profiles"] = memory.document()
             server.beforeGET = { cloud.suspendForProfileChange() }
-            await cloud.signIn(username: "owned-account", password: "owned-password")
+            await cloud.signIn(username: "owned-account", password: "owned-password", server: .community)
             XCTAssertEqual(context.profiles.scope, before)
             XCTAssertNil(memory.sessions?.activeHarborAccount); XCTAssertNil(memory.sessions?.deviceImportAccount)
             XCTAssertTrue(server.pushes.isEmpty); XCTAssertFalse(cloud.hydrated)

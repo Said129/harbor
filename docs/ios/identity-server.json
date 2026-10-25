@@ -1,0 +1,22 @@
+{
+  "reference": "Harbor Desktop 0.9.132 Beta; retain its identity and profile sync protocol",
+  "compatibility_source": "https://github.com/Harborofficial/Harbor/blob/beta-branch/src/lib/profile-sync/client.ts",
+  "endpoint_source": "https://github.com/Harborofficial/Harbor/blob/beta-branch/src/lib/config/endpoints.ts",
+  "replacement_identity_origin": "https://harborcommunity.site",
+  "identity_and_profile_sync_base": "/themes/api",
+  "subtitle_autosync_origin_is_not_an_account_endpoint": true,
+  "availability_probe": "Anonymous GET /themes/api/identity/api/me and /themes/api/sync/v1/state returned 401 application/json auth_required on 2026-10-25; no account was created or used",
+  "explicit_choice": "Account panel shows Community or an HTTPS custom origin before the user enters credentials; changing the origin clears the password",
+  "old_sessions": "A missing server field belongs to the retired original origin. Sync and logout never send its saved tokens; disconnect keeps journals and device data",
+  "local_account_scope": "The original origin preserves its legacy user-ID namespace. Replacement origins hash canonical origin and provider ID for household, profile settings, watched-by and appearance journals",
+  "network": "Known paths and methods only; the existing ephemeral account session refuses redirects and stores no cookies or cache",
+  "new_native_cases": 8,
+  "affected_identity_cases": 4,
+  "unrelated_tests_repeated": false,
+  "apple_native_and_interface_validation_pending": true,
+  "actual_personal_account_login_verified": false,
+  "linked_layout_fanout_still_requires_audit": true,
+  "public_artwork_and_per_profile_identity_override_audit_pending": true,
+  "full_desktop_parity_complete": false,
+  "ipa_created": false
+}

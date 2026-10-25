@@ -50,13 +50,19 @@ struct HTTPClient: Sendable {
         return result["data"]
     }
 
-    func harbor(_ path: String, method: String = "GET", body: JSONValue? = nil, token: String? = nil) async throws -> JSONValue {
+    static func harborRequest(_ path: String, server: HarborIdentityServer, method: String = "GET", body: JSONValue? = nil, token: String? = nil) throws -> URLRequest {
+        guard !server.retired else { throw HarborError(code: "harbor-server-retired") }
         let allowed: [String: String] = ["/identity/api/login": "POST", "/identity/api/token/refresh": "POST", "/identity/api/me": "GET", "/auth/logout": "POST", "/sync/v1/state": "GET", "/sync/v1/push": "POST", "/social/me/profile": "PATCH"]
-        guard allowed[path] == method, let url = URL(string: "https://harbor.site/themes/api" + path) else { throw HarborError(code: "invalid-account-request") }
+        guard allowed[path] == method, let url = URL(string: server.base + "/themes/api" + path) else { throw HarborError(code: "invalid-account-request") }
         var request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 20)
         request.httpMethod = method
         if let body { request.httpBody = try JSONEncoder().encode(body); request.setValue("application/json", forHTTPHeaderField: "Content-Type") }
         if let token { request.setValue("Bearer " + token, forHTTPHeaderField: "Authorization") }
+        return request
+    }
+
+    func harbor(_ path: String, server: HarborIdentityServer, method: String = "GET", body: JSONValue? = nil, token: String? = nil) async throws -> JSONValue {
+        let request = try Self.harborRequest(path, server: server, method: method, body: body, token: token)
         return try await receive(request, session: Self.accountSession)
     }
 

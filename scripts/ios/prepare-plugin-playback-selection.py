@@ -6,6 +6,9 @@ import re
 import runpy
 
 requested = os.environ.get('HARBOR_NATIVE_SELECTION', '').strip()
+if requested == 'affected:identity-server' or 'HarborTests.HarborIdentityServerTests/' in requested:
+    runpy.run_path('scripts/ios/prepare-identity-server-selection.py')
+    raise SystemExit(0)
 if requested == 'affected:household-activation' or 'HarborTests.HouseholdIdentitySyncTests/' in requested:
     runpy.run_path('scripts/ios/prepare-household-activation-selection.py')
     raise SystemExit(0)

@@ -24,7 +24,7 @@ struct AccountView: View {
                 HarborPill(title: DesktopInterfaceText.value("Profiles"), selected: section == "profiles") { section = "profiles" }.accessibilityIdentifier("account-tab-profiles")
                 HarborPill(title: DesktopInterfaceText.value("Harbor account"), selected: section == "harbor", icon: "harbor-brand") { section = "harbor" }.accessibilityIdentifier("account-tab-harbor")
                 HarborPill(title: "Stremio", selected: section == "stremio", icon: "account-stremio") { section = "stremio" }.accessibilityIdentifier("account-tab-stremio")
-            } }.scrollIndicators(.hidden)
+            } }.scrollIndicators(.hidden).accessibilityIdentifier("account-tabs")
             Button { app.openProfiles() } label: {
                 Label(DesktopInterfaceText.value("Manage profiles"), systemImage: "person.2")
                     .frame(maxWidth: .infinity, alignment: .leading).frame(minHeight: 44)

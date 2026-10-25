@@ -9,6 +9,8 @@ struct HarborError: Error, LocalizedError, Sendable {
         case "account-rejected": "Stremio ha rechazado el acceso. Comprueba tus datos o vuelve a iniciar sesión."
         case "invalid-account-response", "invalid-account-store": "No se pudo recuperar tu cuenta. Los datos guardados se han conservado."
         case "profile-auth-response": "Harbor no devolvió una sesión válida. Vuelve a iniciar sesión."
+        case "harbor-server-url": "Introduce la dirección HTTPS del servidor de Harbor, sin usuario, contraseña ni rutas."
+        case "harbor-server-retired": "El servidor original de Harbor cerró. Cierra esta sesión y elige un servidor compatible para volver a conectar. Los datos locales se conservan."
         case "profile-sync-roster": "Abre Harbor en desktop con esta misma cuenta para sincronizar tu perfil y vuelve a intentarlo."
         case "profile-sync-target": "Este perfil ya no está disponible en la cuenta. Los cambios pendientes se han conservado."
         case "profile-sync-response", "profile-sync-conflict": "No se pudo confirmar la sincronización del perfil. Los cambios pendientes se conservan; vuelve a intentarlo."
