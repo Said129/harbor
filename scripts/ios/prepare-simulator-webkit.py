@@ -16,20 +16,25 @@ runtime, = [row for row in runtimes if row['identifier'] == runtime_id and row.g
 root = Path(runtime['bundlePath']) / 'Contents/Resources/RuntimeRoot'
 ordinary = root / 'usr/lib/swift/libswiftWebKit.dylib'
 overlay = root / 'System/Cryptexes/OS/usr/lib/swift/libswiftWebKit.dylib'
-output = Path('ios/build/DerivedData/Build/Products/Debug-iphonesimulator/libswiftWebKit.dylib')
+outputs = [Path('ios/build') / directory / 'Build/Products/Debug-iphonesimulator/libswiftWebKit.dylib'
+    for directory in ['DerivedData', 'ExistingAppUIData']]
 linked = not ordinary.is_file() and overlay.is_file()
 if linked:
-    output.parent.mkdir(parents=True, exist_ok=True)
-    if output.is_symlink():
-        assert output.resolve() == overlay.resolve(), 'Unexpected existing WebKit overlay'
-    else:
-        assert not output.exists(), 'Never replace a build product with a runtime overlay'
-        output.symlink_to(overlay)
+    # The independent UI runner has its own DYLD_LIBRARY_PATH. Keep the same
+    # selected runtime available there without reinstalling the prepared app.
+    for output in outputs:
+        output.parent.mkdir(parents=True, exist_ok=True)
+        if output.is_symlink():
+            assert output.resolve() == overlay.resolve(), 'Unexpected existing WebKit overlay'
+        else:
+            assert not output.exists(), 'Never replace a build product with a runtime overlay'
+            output.symlink_to(overlay)
 proof = dict(source=os.environ.get('GITHUB_SHA', 'working-tree'), simulator_runtime=runtime_id,
     runtime_version=runtime['version'], applied=linked, simulator_only=True,
     deployment_target_changed=False, library_embedded_in_app=False)
 if linked:
-    proof.update(runtime_library_sha256=hashlib.sha256(overlay.read_bytes()).hexdigest(), runtime_library=str(overlay), build_product_link=str(output))
+    proof.update(runtime_library_sha256=hashlib.sha256(overlay.read_bytes()).hexdigest(), runtime_library=str(overlay),
+        build_product_link=str(outputs[0]), build_product_links=[str(output) for output in outputs])
 target = Path('ios/build/canonical/SimulatorWebKitOverlay.json'); target.parent.mkdir(parents=True, exist_ok=True)
 target.write_text(json.dumps(proof, indent=2) + '\n', 'utf-8')
 print(json.dumps(proof))

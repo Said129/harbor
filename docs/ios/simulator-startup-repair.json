@@ -1,0 +1,20 @@
+{
+  "source_run": 40156238216,
+  "source_commit": "857c10aa32534169e9265b3b5a7e5b5dc28e795f",
+  "evidence_archive_sha256": "71cb2f76cc56629e23e138838c3e080d6d0a047c1c984aa267a5d135e30ce74f",
+  "native_cases_passed": 6,
+  "fresh_preparations_passed": 1,
+  "interface_cases_failed": 1,
+  "required_interface_captures": 0,
+  "demonstrated_cause": "Ordinary launch and the independent UI launch both abort before main with DYLD Library missing: /usr/lib/swift/libswiftWebKit.dylib",
+  "native_host_search_path": "ios/build/DerivedData/Build/Products/Debug-iphonesimulator",
+  "independent_ui_search_path": "ios/build/ExistingAppUIData/Build/Products/Debug-iphonesimulator",
+  "runtime_library_sha256": "1f93f6bdf8ead8a985d67e2a6f29b8180bfdfb77896aebe53ee0afd900b9ff14",
+  "repair": "Expose the selected simulator runtime's existing WebKit overlay in both test product paths; verify it after building the independent UI runner",
+  "reference": "https://developer.apple.com/forums/thread/785964",
+  "app_binary_changed_by_repair": false,
+  "deployment_target_changed": false,
+  "runtime_library_embedded_in_app": false,
+  "runtime_repair_apple_validation_pending": true,
+  "ipa_created": false
+}

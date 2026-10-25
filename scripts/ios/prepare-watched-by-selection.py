@@ -23,6 +23,7 @@ plan = dict(source=os.environ.get('GITHUB_SHA', 'working-tree'), block='watched-
     preserve_prepared_app_data=True, fresh_preparation_executions=2, expected_total_executions=14,
     expected_original_images=12, required_original_captures=captures,
     new_native_cases=10, retained_page_layout_native_run=40142488560, retained_page_layout_native_cases=20,
+    retained_layout_batch_native_run=40156238216, retained_layout_batch_native_cases=6,
     unrelated_approved_cases_selected=False, existing_rust_tests_repeated=False,
     household_account_activation_still_pending=True, full_desktop_parity_complete=False, ipa_requested=False)
 build = Path('ios/build'); build.mkdir(parents=True, exist_ok=True)

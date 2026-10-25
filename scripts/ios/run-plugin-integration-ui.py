@@ -56,6 +56,14 @@ if prebuilt:
         # XCUIApplication(bundleIdentifier:) can otherwise find and reinstall an
         # app from the UI target's build products, even without a target dependency.
         assert not (build / 'ExistingAppUIData/Build/Products/Debug-iphonesimulator/Harbor.app').exists()
+        # Xcode launches this app using the independent runner's product search
+        # paths, not the native preparation host's paths. The iOS18.5 WebKit
+        # simulator overlay must be available to both without being embedded.
+        subprocess.run([sys.executable, 'scripts/ios/prepare-simulator-webkit.py'], check=True)
+        overlay = json.loads((canonical / 'SimulatorWebKitOverlay.json').read_text('utf-8'))
+        if overlay['applied']:
+            runner_overlay = build / 'ExistingAppUIData/Build/Products/Debug-iphonesimulator/libswiftWebKit.dylib'
+            assert runner_overlay.is_symlink() and runner_overlay.resolve() == Path(overlay['runtime_library']).resolve()
 subprocess.run(['xcrun', 'simctl', 'shutdown', os.environ['IOS_SIMULATOR']], check=True)
 failures, selected = [], {}
 
