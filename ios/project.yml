@@ -31,6 +31,7 @@ targets:
           [
             HarborLoader,
             DesktopAnimations,
+            SettingsPreview,
             PluginRuntimeHost.js,
             ReadingFontNotices.txt,
             EBookNarrationNotices.txt,
@@ -48,6 +49,9 @@ targets:
         type: folder
         buildPhase: resources
       - path: Harbor/DesktopAnimations
+        type: folder
+        buildPhase: resources
+      - path: Harbor/SettingsPreview
         type: folder
         buildPhase: resources
     settings:

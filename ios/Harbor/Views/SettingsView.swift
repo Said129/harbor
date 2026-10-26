@@ -69,7 +69,7 @@ struct SettingsView: View {
                 }
                 if matches("Colors", group: "Appearance") {
                     group("Appearance") {
-                        NavigationLink { ThemeSettingsView(sample: app.rows.lazy.flatMap(\.metas).first).toolbar(.visible, for: .navigationBar) } label: { SettingsRow(title: DesktopInterfaceText.value("Colors"), icon: "desktop-palette") }.accessibilityIdentifier("settings-theme")
+                        NavigationLink { ThemeSettingsView(cinemetaEnabled: !app.addons.contains { $0.manifest["id"].string == "com.linvo.cinemeta" && !$0.enabled }).toolbar(.visible, for: .navigationBar) } label: { SettingsRow(title: DesktopInterfaceText.value("Colors"), icon: "desktop-palette") }.accessibilityIdentifier("settings-theme")
                     }
                 }
                 if matches("Downloads", group: "System") || matches("Storage overview", group: "System") || matches("Caches", group: "System") {

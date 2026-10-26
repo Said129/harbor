@@ -36,6 +36,7 @@ actor ArtworkStore {
     deinit { session.invalidateAndCancel() }
 
     func data(_ raw: String) async throws -> Data {
+        if let resource = SettingsPreviewArtwork.resource(raw) { return try Data(contentsOf: resource, options: .mappedIfSafe) }
         guard let url = URL(string: raw), ["http", "https"].contains(url.scheme?.lowercased() ?? "") else { throw HarborError(code: "invalid-artwork") }
         if let found = cache.object(forKey: raw as NSString) { return found as Data }
         if let entry = pending[raw] { return try await entry.task.value }

@@ -1,0 +1,46 @@
+{
+  "reference": "0834340cec5531650bfe78cd628628702e636987",
+  "unchanged_decoded_pixels": true,
+  "images": [
+    {
+      "file": "the-general-poster.png",
+      "source": "the-general-poster.webp",
+      "source_sha256": "3413a7da1c7eb08f1287a55ced01e7de62dd38bce9f3b030baf3094ae74a4ca2",
+      "sha256": "cc42b41c1b813aa54648f3a7f9f5e7185a5abe5fd1a41e82a26b4f244542cd67",
+      "width": 526,
+      "height": 1080
+    },
+    {
+      "file": "the-general-still.png",
+      "source": "the-general-still.webp",
+      "source_sha256": "e677bab120f1948f44b7d4f939f0b5fc75e506ef10efc7383d066972b7ff62b2",
+      "sha256": "be5a6339bce297e97b536a5e79aff6a88ed2e442c768b8d44af63e905bfb0abc",
+      "width": 480,
+      "height": 368
+    },
+    {
+      "file": "sherlock-jr-poster.png",
+      "source": "sherlock-jr-poster.webp",
+      "source_sha256": "915c94972705eda8c5ab622c8171dd4047c30afaed4c2210c4d32a5d85c5b9b4",
+      "sha256": "eeea304db72ad0391f02d8c627a957e467469bc74117d7b0e7ce3f4a4759c71e",
+      "width": 685,
+      "height": 1080
+    },
+    {
+      "file": "the-kid-poster.png",
+      "source": "the-kid-poster.webp",
+      "source_sha256": "6d2f856bb7a998e6d294484fe735d6e30762cf02a6d611d3a08ab87ab67d2d30",
+      "sha256": "44ea03c6ad5faac5abc44ee6cdef48d276d1ac67ea798b07f243c476c34e52cd",
+      "width": 720,
+      "height": 1063
+    },
+    {
+      "file": "safety-last-poster.png",
+      "source": "safety-last-poster.webp",
+      "source_sha256": "1b36d4707cb6496bb93b09db02527a198eaca0af0c027ea698383c66edd40016",
+      "sha256": "e5f584b01fe325dd2ad9eac0a14cd6ab4a9ce0bc9f7ecf3c670cb5eef848e289",
+      "width": 558,
+      "height": 1080
+    }
+  ]
+}

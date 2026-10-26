@@ -71,6 +71,8 @@ struct CardArtworkHTTPTransport: CardArtworkTransport {
 actor CardArtworkResolver {
     static let shared = CardArtworkResolver()
     private struct Cached { let artwork: ResolvedCardArtwork; let at: Date }
+    private struct CachedPoster { let url: String?; let at: Date }
+    private struct CachedRequest { let value: JSONValue?; let at: Date; let cost: Int }
     private let transport: any CardArtworkTransport
     private let anime: AnimeArtwork
     private let gate = AnimeMetadataGate()
@@ -78,7 +80,42 @@ actor CardArtworkResolver {
     private var curatedPending: Task<[String: String], Never>?
     private var cached: [String: Cached] = [:]
     private var pending: [String: Task<ResolvedCardArtwork, Never>] = [:]
+    private var posters: [String: CachedPoster] = [:]
+    private var posterPending: [String: Task<String?, Never>] = [:]
+    private var requests: [String: CachedRequest] = [:]
+    private var requestPending: [String: Task<JSONValue?, Never>] = [:]
+    private var requestCost = 0
     init(transport: any CardArtworkTransport = CardArtworkHTTPTransport(), anime: AnimeArtwork = .shared) { self.transport = transport; self.anime = anime }
+
+    nonisolated static func canLocalizePoster(_ media: Media, configuration: MetadataConfiguration) -> Bool {
+        !configuration.tmdbKey.isEmpty && (tmdb(media.artworkID) != nil || media.artworkID.range(of: "^tt[0-9]{7,12}$", options: .regularExpression) != nil)
+            && CardArtworkPolicy(languages: configuration.imageLanguages, metadataLanguage: configuration.language, originalLanguage: nil).localizes
+    }
+    func poster(_ media: Media, configuration: MetadataConfiguration) async -> String? {
+        guard !Task.isCancelled, Self.canLocalizePoster(media, configuration: configuration) else { return nil }
+        let key = Self.cacheKey(media, configuration)
+        if let saved = posters[key], Date().timeIntervalSince(saved.at) < (saved.url == nil ? 300 : 3_600) { return saved.url }
+        if let task = posterPending[key] { return await task.value }
+        let task = Task { await self.localizedPoster(media, configuration: configuration) }
+        posterPending[key] = task
+        let value = await task.value; posterPending[key] = nil
+        if posters.count >= 1_200, let oldest = posters.min(by: { $0.value.at < $1.value.at })?.key { posters[oldest] = nil }
+        posters[key] = CachedPoster(url: value, at: Date()); return value
+    }
+    private func localizedPoster(_ media: Media, configuration: MetadataConfiguration) async -> String? {
+        var reference = Self.tmdb(media.artworkID)
+        if reference == nil {
+            let kind = media.type == "movie" ? "movie" : "tv"
+            let found = await request(.tmdbFind(media.artworkID), configuration)
+            if let id = found?[kind == "movie" ? "movie_results" : "tv_results"].array.first?["id"].integer { reference = (kind, id) }
+        }
+        guard let reference else { return nil }
+        // Desktop's card hook omits originalLang; Original therefore means neutral
+        // artwork here, while metadata galleries can rank a known original language.
+        let policy = CardArtworkPolicy(languages: configuration.imageLanguages, metadataLanguage: configuration.language, originalLanguage: nil)
+        let images = await request(.tmdbImages(kind: reference.kind, id: reference.id, languages: policy.parameter), configuration)
+        return policy.poster(images?["posters"].array ?? [])
+    }
 
     func resolve(_ media: Media, configuration: MetadataConfiguration, pinnedLogo: String? = nil) async -> ResolvedCardArtwork {
         let original = ResolvedCardArtwork(logo: CardArtworkPolicy.image(pinnedLogo) ?? CardArtworkPolicy.image(media.logo), backdrop: media.background != media.poster ? CardArtworkPolicy.image(media.background) : nil)
@@ -96,12 +133,31 @@ actor CardArtworkResolver {
     }
     nonisolated static func cacheKey(_ media: Media, _ configuration: MetadataConfiguration, pinnedLogo: String? = nil) -> String {
         // Only a digest of configuration enters the cache key; no key is logged or persisted.
-        let parts = [media.identity, media.logo ?? "", media.poster ?? "", media.background ?? "", media.originalLanguage ?? "", media.animeFormat ?? "", media.name, media.releaseInfo ?? "", configuration.tmdbKey, configuration.language, configuration.imageLanguages.joined(separator: ","), pinnedLogo ?? ""]
+        let parts = [media.identity, media.artworkID, media.logo ?? "", media.poster ?? "", media.background ?? "", media.originalLanguage ?? "", media.animeFormat ?? "", media.name, media.releaseInfo ?? "", configuration.tmdbKey, configuration.language, configuration.imageLanguages.joined(separator: ","), pinnedLogo ?? ""]
         return SHA256.hash(data: Data(parts.joined(separator: "\u{0}").utf8)).map { String(format: "%02x", $0) }.joined()
     }
     private func request(_ request: CardArtworkRequest, _ configuration: MetadataConfiguration) async -> JSONValue? {
         let transport = transport
-        return try? await gate.run { try await transport.get(request, configuration: configuration) }
+        // Poster and TV cards share these responses. Secrets never enter a raw
+        // cache key, and decoded image lists have a separate bounded memory cost.
+        guard request.credentialed else { return try? await gate.run { try await transport.get(request, configuration: configuration) } }
+        let raw = "\(request)\u{0}\(configuration.tmdbKey)\u{0}\(configuration.language)"
+        let key = SHA256.hash(data: Data(raw.utf8)).map { String(format: "%02x", $0) }.joined()
+        if let saved = requests[key], Date().timeIntervalSince(saved.at) < (saved.value == nil ? 30 : 3_600) { return saved.value }
+        if let task = requestPending[key] { return await task.value }
+        let task = Task { try? await self.gate.run { try await transport.get(request, configuration: configuration) } }
+        requestPending[key] = task
+        let value = await task.value; requestPending[key] = nil
+        if let previous = requests.removeValue(forKey: key) { requestCost -= previous.cost }
+        let cost = value.flatMap { try? JSONEncoder().encode($0).count } ?? 0
+        if cost <= 16 * 1_024 * 1_024 {
+            while requests.count >= 400 || requestCost + cost > 16 * 1_024 * 1_024 {
+                guard let oldest = requests.min(by: { $0.value.at < $1.value.at })?.key, let removed = requests.removeValue(forKey: oldest) else { break }
+                requestCost -= removed.cost
+            }
+            requests[key] = CachedRequest(value: value, at: Date(), cost: cost); requestCost += cost
+        }
+        return value
     }
     private func curatedLogos(_ configuration: MetadataConfiguration) async -> [String: String] {
         if let curated { return curated }
@@ -181,7 +237,7 @@ actor CardArtworkResolver {
         result.logo = result.logo ?? curated ?? own
         return result
     }
-    private static func tmdb(_ id: String) -> (kind: String, id: Int)? {
+    nonisolated private static func tmdb(_ id: String) -> (kind: String, id: Int)? {
         let parts = id.split(separator: ":", omittingEmptySubsequences: false)
         guard parts.count == 3, parts[0] == "tmdb", ["movie", "tv"].contains(String(parts[1])), let number = Int(parts[2]), number > 0 else { return nil }
         return (String(parts[1]), number)

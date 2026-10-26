@@ -1,0 +1,241 @@
+{
+  "reference": "0834340cec5531650bfe78cd628628702e636987",
+  "actual_original_typescript_executed": true,
+  "provider_network_requests": 0,
+  "inputs": {
+    "src/lib/providers/tmdb/tmdb-images.ts": "4002e94f8a100b7f0a5d837f3f33fed183a4095bc323fbc2f047947ad455942a",
+    "src/lib/providers/tmdb/tmdb-image-rungs.ts": "a04b320b55b71543ec502f03caee0ccc43199b6bcc81657bdac0b5cd21eb35b4",
+    "src/lib/providers/tmdb/tmdb-image-lang.ts": "6d9fd04918c002c9a973b719f6313214ff33913a58ecfa3eec8d6524ea2e0158",
+    "src/lib/subtitles/language.ts": "f415c2084d5ba704fcf3daf6c4db2c1ea6ab6f981e8d3e2b0aa7ff65134b717f"
+  },
+  "cases": [
+    {
+      "languages": ["Spanish", "English", "Original"],
+      "metadata": "en-US",
+      "original": null,
+      "posters": [
+        {
+          "file_path": "/en.jpg",
+          "iso_639_1": "en",
+          "vote_average": 10
+        },
+        {
+          "file_path": "/es.jpg",
+          "iso_639_1": "es",
+          "vote_average": 1
+        }
+      ],
+      "expected": "https://image.tmdb.org/t/p/w500/es.jpg",
+      "requests": [
+        {
+          "route": "movie/100/images",
+          "params": {
+            "include_image_language": "es,en,null"
+          }
+        }
+      ]
+    },
+    {
+      "languages": ["German"],
+      "metadata": "fr-FR",
+      "original": null,
+      "posters": [
+        {
+          "file_path": "/en.jpg",
+          "iso_639_1": "en",
+          "vote_average": 10
+        },
+        {
+          "file_path": "/fr.jpg",
+          "iso_639_1": "fr",
+          "vote_average": 1
+        }
+      ],
+      "expected": "https://image.tmdb.org/t/p/w500/fr.jpg",
+      "requests": [
+        {
+          "route": "movie/101/images",
+          "params": {
+            "include_image_language": "de,null"
+          }
+        }
+      ]
+    },
+    {
+      "languages": ["Original", "English"],
+      "metadata": "en-US",
+      "original": "ja",
+      "posters": [
+        {
+          "file_path": "/neutral.jpg",
+          "iso_639_1": null,
+          "vote_average": 10
+        },
+        {
+          "file_path": "/ja.jpg",
+          "iso_639_1": "ja",
+          "vote_average": 1
+        }
+      ],
+      "expected": "https://image.tmdb.org/t/p/w500/ja.jpg",
+      "requests": [
+        {
+          "route": "movie/102/images",
+          "params": {
+            "include_image_language": "ja,null,en"
+          }
+        }
+      ]
+    },
+    {
+      "languages": ["Original", "English"],
+      "metadata": "es-ES",
+      "original": null,
+      "posters": [
+        {
+          "file_path": "/en.jpg",
+          "iso_639_1": "en",
+          "vote_average": 10
+        },
+        {
+          "file_path": "/neutral.jpg",
+          "iso_639_1": null,
+          "vote_average": 1
+        }
+      ],
+      "expected": "https://image.tmdb.org/t/p/w500/neutral.jpg",
+      "requests": [
+        {
+          "route": "movie/103/images",
+          "params": {
+            "include_image_language": "null,en"
+          }
+        }
+      ]
+    },
+    {
+      "languages": ["French"],
+      "metadata": "",
+      "original": null,
+      "posters": [
+        {
+          "file_path": "/ja.jpg",
+          "iso_639_1": "ja",
+          "vote_average": 10
+        },
+        {
+          "file_path": "/en.jpg",
+          "iso_639_1": "en",
+          "vote_average": 1
+        }
+      ],
+      "expected": "https://image.tmdb.org/t/p/w500/en.jpg",
+      "requests": [
+        {
+          "route": "movie/104/images",
+          "params": {
+            "include_image_language": "fr,null"
+          }
+        }
+      ]
+    },
+    {
+      "languages": ["English"],
+      "metadata": "",
+      "original": null,
+      "posters": [
+        {
+          "file_path": "/first.jpg",
+          "iso_639_1": "en",
+          "vote_average": 5
+        },
+        {
+          "file_path": "/best.jpg",
+          "iso_639_1": "en",
+          "vote_average": 8
+        },
+        {
+          "file_path": "/tie.jpg",
+          "iso_639_1": "en",
+          "vote_average": 8
+        }
+      ],
+      "expected": "https://image.tmdb.org/t/p/w500/best.jpg",
+      "requests": [
+        {
+          "route": "movie/105/images",
+          "params": {
+            "include_image_language": "en,null"
+          }
+        }
+      ]
+    },
+    {
+      "languages": ["Original"],
+      "metadata": "",
+      "original": null,
+      "posters": [
+        {
+          "file_path": "/empty.jpg",
+          "iso_639_1": "",
+          "vote_average": 7
+        },
+        {
+          "file_path": "/neutral.jpg",
+          "iso_639_1": null,
+          "vote_average": 7
+        }
+      ],
+      "expected": "https://image.tmdb.org/t/p/w500/empty.jpg",
+      "requests": [
+        {
+          "route": "movie/106/images",
+          "params": {
+            "include_image_language": "null"
+          }
+        }
+      ]
+    },
+    {
+      "languages": [],
+      "metadata": "",
+      "original": null,
+      "posters": [],
+      "expected": null,
+      "requests": [
+        {
+          "route": "movie/107/images",
+          "params": {
+            "include_image_language": "en,null"
+          }
+        }
+      ]
+    },
+    {
+      "languages": ["Spanish"],
+      "metadata": "",
+      "original": null,
+      "posters": [
+        {
+          "file_path": "/first.jpg",
+          "iso_639_1": "ja",
+          "vote_average": 9
+        },
+        {
+          "file_path": "/second.jpg",
+          "iso_639_1": "de",
+          "vote_average": 9
+        }
+      ],
+      "expected": "https://image.tmdb.org/t/p/w500/first.jpg",
+      "requests": [
+        {
+          "route": "movie/108/images",
+          "params": {
+            "include_image_language": "es,null"
+          }
+        }
+      ]
+    }
+  ]
+}

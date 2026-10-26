@@ -5,6 +5,8 @@ struct ProfilePoster: View {
     let width: CGFloat?
     let artworkFallbacks: [String]
     let honorsRowStyle: Bool
+    var showsTitle = true
+    var showsRating = true
     @AppStorage("rowCardStyle") private var style = "poster"
     @AppStorage("tvCardLogoPos") private var logoPosition = "bottomStart"
     @AppStorage("posterScale") private var scale = 1.0
@@ -17,8 +19,18 @@ struct ProfilePoster: View {
     @State private var logoLoaded = false
     @State private var resolvedArtwork: ResolvedCardArtwork?
     @State private var resolvedKey = ""
+    @State private var localizedPoster: String?
+    @State private var posterResolvedKey = ""
     private var overrides: TitleArtworkPreferences { .shared }
-    private var posterURL: String? { overrides.value(.poster, id: media.artworkID) ?? media.poster }
+    private var localizesPoster: Bool {
+        overrides.value(.poster, id: media.artworkID) == nil && CardArtworkResolver.canLocalizePoster(media, configuration: MetadataPreferences.shared.configuration())
+    }
+    private var posterPending: Bool { localizesPoster && posterResolvedKey != artworkKey }
+    private var posterURL: String? {
+        overrides.value(.poster, id: media.artworkID) ?? (posterPending ? nil : (posterResolvedKey == artworkKey ? localizedPoster : nil) ?? media.poster)
+    }
+    private var posterFallback: String? { posterPending ? nil : media.fallbackPoster }
+    private var posterFallbacks: [String] { posterPending ? [] : [media.poster, media.background].compactMap { $0 } + artworkFallbacks }
     private var logoURL: String? { overrides.value(.logo, id: media.artworkID) ?? (resolvedKey == artworkKey ? resolvedArtwork?.logo : nil) ?? media.logo }
     private var backgroundURL: String? {
         overrides.value(.backdrop, id: media.artworkID) ?? (media.background != media.poster ? media.background : nil)
@@ -28,7 +40,7 @@ struct ProfilePoster: View {
         var result = media; result.background = overrides.value(.backdrop, id: media.artworkID) ?? media.background; return result
     }
     private var artworkKey: String {
-        if configuration.style != .tv { return "poster|" + media.identity }
+        if configuration.style != .tv && !localizesPoster { return "poster|" + media.identity }
         return "\(style)|\(AppProfileContext.shared.activationID)|" + CardArtworkResolver.cacheKey(resolutionMedia, MetadataPreferences.shared.configuration(), pinnedLogo: overrides.value(.logo, id: media.artworkID))
     }
     private var configuration: PosterCardConfiguration { .init(style: honorsRowStyle ? style : "poster", logoPosition: logoPosition, scale: scale, radius: radius, effect: effect, quality: quality) }
@@ -45,6 +57,12 @@ struct ProfilePoster: View {
             .animation(reduceMotion ? nil : .easeInOut(duration: 0.26), value: configuration.radius)
             .onChange(of: logoURL) { _, _ in logoLoaded = false }
             .task(id: artworkKey) {
+                let key = artworkKey
+                let value = localizesPoster ? await CardArtworkResolver.shared.poster(media, configuration: MetadataPreferences.shared.configuration()) : nil
+                guard !Task.isCancelled, key == artworkKey else { return }
+                localizedPoster = value; posterResolvedKey = key
+            }
+            .task(id: artworkKey) {
                 guard configuration.style == .tv else { return }
                 let key = artworkKey
                 let value = await CardArtworkResolver.shared.resolve(resolutionMedia, configuration: MetadataPreferences.shared.configuration(), pinnedLogo: overrides.value(.logo, id: media.artworkID))
@@ -57,7 +75,7 @@ struct ProfilePoster: View {
             Group {
                 if configuration.style == .tv { televisionArtwork }
                 else {
-                    Artwork(url: posterURL, fallback: media.fallbackPoster, fallbacks: [media.poster, media.background].compactMap { $0 } + artworkFallbacks,
+                    Artwork(url: posterURL, fallback: posterFallback, fallbacks: posterFallbacks,
                         maxPixels: pixelLimit, onImageAvailability: { loaded = $0 }, onLoadCompletion: { _ in loaded = true })
                 }
             }.aspectRatio(configuration.aspectRatio, contentMode: .fit)
@@ -65,8 +83,8 @@ struct ProfilePoster: View {
                 .blur(radius: !reduceMotion && configuration.effect == .blur && !loaded ? 8 : 0)
                 .opacity(configuration.effect == .off || reduceMotion || loaded ? 1 : 0)
                 .animation(reduceMotion || configuration.effect == .off ? nil : .easeOut(duration: 0.35), value: loaded)
-                .overlay(alignment: .bottomTrailing) { if configuration.style == .poster { rating } }
-            if configuration.style == .poster { Text(media.name).font(.caption.weight(.medium)).lineLimit(2).frame(maxWidth: .infinity, alignment: .leading) }
+                .overlay(alignment: .bottomTrailing) { if showsRating && configuration.style == .poster { rating } }
+            if showsTitle && configuration.style == .poster { Text(media.name).font(.caption.weight(.medium)).lineLimit(2).frame(maxWidth: .infinity, alignment: .leading) }
         }.frame(maxWidth: .infinity, alignment: .leading)
     }
     @ViewBuilder private var rating: some View {
@@ -80,7 +98,7 @@ struct ProfilePoster: View {
     }
     private var televisionArtwork: some View {
         ZStack {
-            Artwork(url: posterURL, fallback: media.fallbackPoster, fallbacks: [media.poster].compactMap { $0 } + artworkFallbacks, maxPixels: pixelLimit,
+            Artwork(url: posterURL, fallback: posterFallback, fallbacks: posterFallbacks, maxPixels: pixelLimit,
                 onImageAvailability: { if $0 { loaded = true } }, onLoadCompletion: { _ in loaded = true })
                 .scaleEffect(1.1).blur(radius: 18).saturation(1.2)
             if let backdrop = backgroundURL {
@@ -90,7 +108,7 @@ struct ProfilePoster: View {
                 ? [.init(color: HarborTheme.background.opacity(0.8), location: 0), .init(color: HarborTheme.background.opacity(0.45), location: 0.5), .init(color: HarborTheme.background.opacity(0.7), location: 1)]
                 : [.init(color: HarborTheme.background, location: 0.02), .init(color: HarborTheme.background.opacity(0.65), location: 0.34), .init(color: HarborTheme.background.opacity(0.18), location: 0.62), .init(color: .clear, location: 0.84)], startPoint: .bottom, endPoint: .top)
             HStack(alignment: configuration.logoPosition == .center ? .center : .bottom, spacing: 10) {
-                Artwork(url: posterURL, fallback: media.fallbackPoster, fallbacks: [media.poster].compactMap { $0 } + artworkFallbacks, maxPixels: 180)
+                Artwork(url: posterURL, fallback: posterFallback, fallbacks: posterFallbacks, maxPixels: 180)
                     .frame(width: 36, height: 54).clipShape(.rect(cornerRadius: 2))
                     .overlay { RoundedRectangle(cornerRadius: 2).stroke(.white.opacity(0.12), lineWidth: 1) }
                 VStack(alignment: captionAlignment, spacing: 4) {

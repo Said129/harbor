@@ -13,8 +13,12 @@ import XCTest
         XCTAssertGreaterThan(portrait.frame.height, portrait.frame.width * 1.3)
         capture(app, "poster-grid-" + device)
         relaunch(app); openAppearance(app)
+        assertBundledPreview(app, style: "poster", height: 177)
+        capture(app, "poster-fallback-preview-" + device)
         choose("poster-card-style", "TV", app)
         choose("poster-logo-position", "Center", app)
+        assertBundledPreview(app, style: "tv", height: 132.75)
+        capture(app, "poster-fallback-tv-preview-" + device)
         let size = app.sliders["poster-card-size"], radius = app.sliders["poster-card-radius"]
         show(size, app); size.adjust(toNormalizedSliderPosition: 1)
         show(radius, app); radius.adjust(toNormalizedSliderPosition: 1)
@@ -46,6 +50,13 @@ import XCTest
         capture(app, "poster-reset-" + device)
     }
     private func relaunch(_ app: XCUIApplication) { app.terminate(); ReadingUIInteraction.launchPreparedApplication(app) }
+    private func assertBundledPreview(_ app: XCUIApplication, style: String, height: CGFloat) {
+        let preview = app.descendants(matching: .any).matching(identifier: "poster-card-preview").firstMatch
+        show(preview, app, up: false)
+        XCTAssertEqual(preview.label, "The General"); XCTAssertEqual(preview.value as? String, style)
+        XCTAssertEqual(preview.frame.height, height, accuracy: 4)
+        XCTAssertLessThanOrEqual(preview.frame.maxX, app.windows.firstMatch.frame.maxX)
+    }
     private func openCatalog(_ app: XCUIApplication) -> XCUIElement {
         let scroll = app.scrollViews["home-scroll"]
         XCTAssertTrue(scroll.waitForExistence(timeout: 45))

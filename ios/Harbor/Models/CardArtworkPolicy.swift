@@ -4,6 +4,7 @@ import Foundation
 struct CardArtworkPolicy: Sendable {
     let priority: [String?]
     let order: [String?]
+    let posterOrder: [String?]
     let localizes: Bool
     init(languages: [String], metadataLanguage: String, originalLanguage: String?) {
         var priority: [String?] = []
@@ -24,9 +25,30 @@ struct CardArtworkPolicy: Sendable {
         if let original { add(original) }; add(nil)
         let metadata = metadataLanguage.split(separator: "-").first?.lowercased() ?? ""
         self.priority = priority; self.order = order
+        var posters: [String?] = []
+        func addPoster(_ code: String?) { if !posters.contains(code) { posters.append(code) } }
+        for code in priority {
+            if let code { addPoster(code) } else { if let original { addPoster(original) }; addPoster(nil) }
+        }
+        if !metadata.isEmpty { addPoster(metadata) }
+        addPoster("en"); if let original { addPoster(original) }; addPoster(nil)
+        posterOrder = posters
         localizes = priority.first! == nil || priority.compactMap { $0 }.first.map { $0 != "en" } == true || (!metadata.isEmpty && metadata != "en")
     }
     var parameter: String { order.map { $0 ?? "null" }.joined(separator: ",") }
+    func poster(_ entries: [JSONValue]) -> String? {
+        func rank(_ entry: JSONValue) -> Int {
+            let language = entry["iso_639_1"].string.flatMap { $0.isEmpty ? nil : $0 }
+            return posterOrder.firstIndex(of: language).map { posterOrder.count - $0 } ?? -1
+        }
+        let best = entries.reduce(nil as JSONValue?) { best, entry in
+            guard let best else { return entry }
+            let votes = entry["vote_average"].textValue.flatMap(Double.init) ?? 0
+            let previous = best["vote_average"].textValue.flatMap(Double.init) ?? 0
+            return rank(entry) > rank(best) || (rank(entry) == rank(best) && votes > previous) ? entry : best
+        }
+        return Self.tmdbImage(best?["file_path"].string, size: "w500")
+    }
     func logo(_ entries: [JSONValue]) -> String? {
         func score(_ entry: JSONValue) -> Double {
             let rank = order.firstIndex(of: entry["iso_639_1"].string).map { order.count - $0 } ?? 0
