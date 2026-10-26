@@ -51,22 +51,14 @@ private struct PosterDockPreview: View {
             let width = max(1, (geometry.size.width - 36) / 4)
             HStack(alignment: .bottom, spacing: 12) {
                 ForEach(Array(items.enumerated()), id: \.offset) { index, media in
-                    let physicalIndex = direction == .rightToLeft ? 3 - index : index
-                    let frame = CGRect(x: Double(physicalIndex) * (width + 12), y: 0, width: width, height: width * 1.5)
-                    let dock = reduceMotion ? PosterDockTransform() : PosterBehaviorPolicy.dock(pointerX: pointerX, frame: frame,
-                        viewport: CGRect(origin: .zero, size: geometry.size), first: index == 0, last: index == items.count - 1, rtl: direction == .rightToLeft)
-                    Artwork(url: media.poster, maxPixels: 500).aspectRatio(2.0 / 3, contentMode: .fit)
-                        .clipShape(.rect(cornerRadius: 10)).frame(width: width)
-                        .scaleEffect(dock.scale, anchor: UnitPoint(x: dock.origin == .left ? 0 : dock.origin == .right ? 1 : 0.5, y: 1))
-                        .offset(x: dock.x, y: dock.y).zIndex(dock.zIndex)
-                        .animation(reduceMotion ? nil : .timingCurve(0.22, 0.61, 0.36, 1, duration: PosterBehaviorPolicy.transitionMilliseconds(milliseconds) / 1_000), value: dock)
+                    poster(media, index: index, width: width, viewport: geometry.size)
                 }
                 if items.count < 4 { Spacer(minLength: 0) }
             }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom).padding(.bottom, 7)
                 .contentShape(Rectangle())
-                .onContinuousHover { phase in switch phase { case .active(let point): pointerX = point.x; case .ended: pointerX = nil } }
+                .onContinuousHover { phase in switch phase { case .active(let point): pointerX = Double(point.x); case .ended: pointerX = nil } }
                 .simultaneousGesture(DragGesture(minimumDistance: 4).onChanged { value in
-                    if abs(value.translation.width) > abs(value.translation.height) { pointerX = value.location.x }
+                    if abs(value.translation.width) > abs(value.translation.height) { pointerX = Double(value.location.x) }
                 }.onEnded { _ in pointerX = nil })
                 .accessibilityElement(children: .ignore).accessibilityLabel(DesktopInterfaceText.value("Poster dock magnification"))
                 .accessibilityValue(items.isEmpty ? "" : items[min(accessibleIndex, items.count - 1)].name)
@@ -74,9 +66,20 @@ private struct PosterDockPreview: View {
                     guard !items.isEmpty else { return }
                     switch change { case .increment: accessibleIndex = min(items.count - 1, accessibleIndex + 1); case .decrement: accessibleIndex = max(0, accessibleIndex - 1); @unknown default: return }
                     let index = direction == .rightToLeft ? 3 - accessibleIndex : accessibleIndex
-                    pointerX = Double(index) * (width + 12) + width / 2
+                    pointerX = Double(index) * (Double(width) + 12) + Double(width) / 2
                 }
                 .accessibilityIdentifier("poster-dock-preview")
         }.aspectRatio(8.0 / 3, contentMode: .fit)
+    }
+    private func poster(_ media: Media, index: Int, width: CGFloat, viewport: CGSize) -> some View {
+        let physicalIndex = direction == .rightToLeft ? 3 - index : index
+        let frame = CGRect(x: CGFloat(physicalIndex) * (width + 12), y: 0, width: width, height: width * 1.5)
+        let dock = reduceMotion ? PosterDockTransform() : PosterBehaviorPolicy.dock(pointerX: pointerX, frame: frame,
+            viewport: CGRect(origin: .zero, size: viewport), first: index == 0, last: index == items.count - 1, rtl: direction == .rightToLeft)
+        let anchor = UnitPoint(x: dock.origin == .left ? 0 : dock.origin == .right ? 1 : 0.5, y: 1)
+        return Artwork(url: media.poster, maxPixels: 500).aspectRatio(2.0 / 3, contentMode: .fit)
+            .clipShape(.rect(cornerRadius: 10)).frame(width: width)
+            .scaleEffect(CGFloat(dock.scale), anchor: anchor).offset(x: CGFloat(dock.x), y: CGFloat(dock.y)).zIndex(dock.zIndex)
+            .animation(reduceMotion ? nil : .timingCurve(0.22, 0.61, 0.36, 1, duration: PosterBehaviorPolicy.transitionMilliseconds(milliseconds) / 1_000), value: dock)
     }
 }

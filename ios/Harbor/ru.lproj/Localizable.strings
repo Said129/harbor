@@ -157,6 +157,8 @@
 "Audio languages" = "Языки аудио";
 "Audio not labeled" = "Аудио без метки";
 "Audio sin etiqueta" = "Аудио без метки";
+"Authorization expired. Connect again." = "Authorization expired. Connect again.";
+"Authorize Harbor on Simkl" = "Авторизовать Harbor в Simkl";
 "Auto" = "Авто";
 "Auto (match video)" = "Авто (как у видео)";
 "Auto-play next episode" = "Автовоспроизведение следующей серии";
@@ -354,6 +356,7 @@
 "Close navigation" = "Close navigation";
 "Close player" = "Закрыть плеер";
 "Clásica" = "Классика";
+"Code expired. Try again." = "Code expired. Try again.";
 "Colecciones" = "Коллекции";
 "Collections" = "Коллекции";
 "Color de la barra" = "Цвет полосы";
@@ -390,7 +393,10 @@
 "Confirm your PIN" = "Подтвердите PIN";
 "Confirm your current PIN to remove the lock." = "Подтвердите текущий PIN, чтобы снять блокировку.";
 "Confirm your current PIN, then pick a new one." = "Подтвердите текущий PIN, затем задайте новый.";
+"Connect Simkl" = "Подключить Simkl";
 "Connect TMDB" = "Подключить TMDB";
+"Connected" = "Подключено";
+"Connected to Simkl" = "Подключено к Simkl";
 "Connecting" = "Подключение";
 "Conservar original" = "Оставить оригинал";
 "Contenido" = "Контент";
@@ -413,21 +419,26 @@
 "Controls" = "Управление";
 "Copia principal." = "Основной текст.";
 "Copia secundaria." = "Второстепенный текст.";
+"Copied" = "Скопировано";
+"Copy" = "Копировать";
 "Corner radius" = "Скругление углов";
 "Correo y contraseña" = "Email and password";
 "Could not analyze this source. Playback continues; you can retry." = "Не удалось проанализировать источник. Просмотр продолжается; можно повторить попытку.";
 "Could not apply the timing. The original subtitle is kept." = "Не удалось применить синхронизацию. Исходные субтитры сохранены.";
 "Could not complete this action. Try again." = "Не удалось выполнить действие. Попробуйте ещё раз.";
+"Could not connect to Simkl. Try again." = "Could not connect to Simkl. Try again.";
 "Could not load navigation settings. Saved settings are kept." = "Could not load navigation settings. Saved settings are kept.";
 "Could not load streaming preferences. Saved settings are kept." = "Could not load streaming preferences. Saved settings are kept.";
 "Could not load this page. Try again." = "Не удалось загрузить эту страницу. Повторите попытку.";
 "Could not measure storage. Try again." = "Could not measure storage. Try again.";
 "Could not open book" = "Не удалось открыть книгу";
+"Could not read the account on this device." = "Could not read the account on this device.";
 "Could not read your saved tracks and listening history. Your data is preserved." = "Could not read your saved tracks and listening history. Your data is preserved.";
 "Could not restore your navigation. The saved version is kept." = "Could not restore your navigation. The saved version is kept.";
 "Could not restore your services. The saved version is kept." = "Не удалось восстановить сервисы. Сохранённая версия не удалена.";
 "Could not save navigation settings. Your previous settings are kept." = "Could not save navigation settings. Your previous settings are kept.";
 "Could not save streaming preferences. Your previous settings are kept." = "Could not save streaming preferences. Your previous settings are kept.";
+"Could not save the account on this device." = "Could not save the account on this device.";
 "Could not save your choices. Try again." = "Could not save your choices. Try again.";
 "Could not save your tracks or listening history. Try again." = "Could not save your tracks or listening history. Try again.";
 "Couldn't auto-sync" = "Не удалось синхронизировать";
@@ -1082,6 +1093,7 @@
 "Normal" = "Обычный";
 "Norwegian" = "Норвежский";
 "Not a stream plugin: it exports no getStreams or streams function." = "Не плагин потоков: не экспортирует функцию getStreams или streams.";
+"Not connected" = "Не подключено";
 "Not interested" = "Не интересует";
 "Not now" = "Не сейчас";
 "Not set" = "Не задано";
@@ -1365,6 +1377,7 @@
 "Reproducir automáticamente el siguiente episodio" = "Автовоспроизведение следующей серии";
 "Reproducir después" = "Воспроизвести следующим";
 "Reproductor" = "Игрок";
+"Requesting code from Simkl…" = "Запрос кода у Simkl…";
 "Requiere al menos 10 títulos para el estilo de Top 10" = "Для вида Топ-10 нужно минимум 10 материалов";
 "Requiere títulos con abundante material gráfico para el contenido destacado" = "Для главного баннера нужны материалы с качественными изображениями";
 "Resaltado, progreso." = "Выделение, прогресс.";
@@ -1547,6 +1560,7 @@
 "Siguiente" = "Далее";
 "Siguiente canción" = "Next song";
 "Silenciar" = "Выключить звук";
+"Simkl is temporarily limiting requests. Try again later." = "Simkl is temporarily limiting requests. Try again later.";
 "Sin configurar" = "Не задано";
 "Sin corrección" = "Без коррекции";
 "Sin corrección (predeterminado)" = "Без коррекции (по умолчанию)";
@@ -1610,6 +1624,8 @@
 "Startup & default" = "Запуск и профиль по умолчанию";
 "Status" = "Статус";
 "Step 1 · Metadata" = "Шаг 1 · Метаданные";
+"Step 1 · Open Simkl" = "Шаг 1 · Открыть Simkl";
+"Step 2 · Enter this code" = "Шаг 2 · Ввести этот код";
 "Step 2 · Stremio" = "Шаг 2 · Stremio";
 "Step 3 · Streaming" = "Шаг 3 · Стриминг";
 "Step 4 · Subtitles" = "Шаг 4 · Субтитры";
@@ -1783,6 +1799,7 @@
 "Top tracks" = "Top tracks";
 "Torrents" = "Торренты";
 "Track" = "Дорожка";
+"Tracking" = "Tracking";
 "Tracks" = "Дорожки";
 "Traducir títulos" = "Переводить названия";
 "Transfer primary" = "Передать основной профиль";
@@ -1868,6 +1885,7 @@
 "Volumes" = "Тома";
 "Volver a empezar" = "Начать сначала";
 "Vídeo" = "Видео";
+"Waiting for you to authorize on simkl.com…" = "Ожидание авторизации на simkl.com…";
 "War" = "Военный";
 "Watched" = "Просмотрено";
 "Welcome to Harbor" = "Добро пожаловать в Harbor";

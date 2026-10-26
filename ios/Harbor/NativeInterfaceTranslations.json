@@ -91,7 +91,13 @@
     "Clear cache now": "Borrar caché ahora",
     "Get an API key": "Obtener una clave API",
     "Import files": "Importar archivos",
-    "Import folder": "Importar carpeta"
+    "Import folder": "Importar carpeta",
+    "Could not read the account on this device.": "No se pudo leer la cuenta guardada en este dispositivo.",
+    "Could not save the account on this device.": "No se pudo guardar la cuenta en este dispositivo.",
+    "Code expired. Try again.": "El código ha caducado. Inténtalo de nuevo.",
+    "Authorization expired. Connect again.": "La autorización ha caducado. Conecta de nuevo la cuenta.",
+    "Simkl is temporarily limiting requests. Try again later.": "Simkl está limitando las solicitudes temporalmente. Inténtalo más tarde.",
+    "Could not connect to Simkl. Try again.": "No se pudo conectar con Simkl. Inténtalo de nuevo."
   },
   "pt": {
     "Auto-sync": "Sincronização automática",

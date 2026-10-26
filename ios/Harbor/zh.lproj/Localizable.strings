@@ -154,6 +154,8 @@
 "Audio languages" = "音频语言";
 "Audio not labeled" = "音频未标注";
 "Audio sin etiqueta" = "音频未标注";
+"Authorization expired. Connect again." = "Authorization expired. Connect again.";
+"Authorize Harbor on Simkl" = "在 Simkl 上授权 Harbor";
 "Auto" = "自动";
 "Auto (match video)" = "自动（匹配视频）";
 "Auto-play next episode" = "自动播放下一集";
@@ -350,6 +352,7 @@
 "Close navigation" = "Close navigation";
 "Close player" = "关闭播放器";
 "Clásica" = "经典";
+"Code expired. Try again." = "Code expired. Try again.";
 "Colecciones" = "合集";
 "Collections" = "合集";
 "Color de la barra" = "进度条颜色";
@@ -386,7 +389,10 @@
 "Confirm your PIN" = "确认 PIN";
 "Confirm your current PIN to remove the lock." = "确认当前 PIN 以解除锁定。";
 "Confirm your current PIN, then pick a new one." = "确认当前 PIN，然后设置新 PIN。";
+"Connect Simkl" = "连接 Simkl";
 "Connect TMDB" = "连接 TMDB";
+"Connected" = "已连接";
+"Connected to Simkl" = "已连接到 Simkl";
 "Connecting" = "正在连接";
 "Conservar original" = "保留原样";
 "Contenido" = "内容";
@@ -409,21 +415,26 @@
 "Controls" = "控件";
 "Copia principal." = "主要文字。";
 "Copia secundaria." = "备用副本。";
+"Copied" = "已复制";
+"Copy" = "复制";
 "Corner radius" = "圆角半径";
 "Correo y contraseña" = "Email and password";
 "Could not analyze this source. Playback continues; you can retry." = "Could not analyze this source. Playback continues; you can retry.";
 "Could not apply the timing. The original subtitle is kept." = "Could not apply the timing. The original subtitle is kept.";
 "Could not complete this action. Try again." = "无法完成此操作。请重试。";
+"Could not connect to Simkl. Try again." = "Could not connect to Simkl. Try again.";
 "Could not load navigation settings. Saved settings are kept." = "Could not load navigation settings. Saved settings are kept.";
 "Could not load streaming preferences. Saved settings are kept." = "Could not load streaming preferences. Saved settings are kept.";
 "Could not load this page. Try again." = "无法加载此页面。请重试。";
 "Could not measure storage. Try again." = "Could not measure storage. Try again.";
 "Could not open book" = "Could not open book";
+"Could not read the account on this device." = "Could not read the account on this device.";
 "Could not read your saved tracks and listening history. Your data is preserved." = "Could not read your saved tracks and listening history. Your data is preserved.";
 "Could not restore your navigation. The saved version is kept." = "Could not restore your navigation. The saved version is kept.";
 "Could not restore your services. The saved version is kept." = "无法恢复你的服务。已保留保存的版本。";
 "Could not save navigation settings. Your previous settings are kept." = "Could not save navigation settings. Your previous settings are kept.";
 "Could not save streaming preferences. Your previous settings are kept." = "Could not save streaming preferences. Your previous settings are kept.";
+"Could not save the account on this device." = "Could not save the account on this device.";
 "Could not save your choices. Try again." = "Could not save your choices. Try again.";
 "Could not save your tracks or listening history. Try again." = "Could not save your tracks or listening history. Try again.";
 "Couldn't auto-sync" = "无法自动同步";
@@ -1074,6 +1085,7 @@
 "Normal" = "正常";
 "Norwegian" = "挪威语";
 "Not a stream plugin: it exports no getStreams or streams function." = "不是播放源脚本插件：它没有导出 getStreams 或 streams 函数。";
+"Not connected" = "未连接";
 "Not interested" = "不感兴趣";
 "Not now" = "暂不";
 "Not set" = "未设置";
@@ -1353,6 +1365,7 @@
 "Reproducir automáticamente el siguiente episodio" = "自动播放下一集";
 "Reproducir después" = "下一首播放";
 "Reproductor" = "选手";
+"Requesting code from Simkl…" = "正在向 Simkl 请求代码…";
 "Requiere al menos 10 títulos para el estilo de Top 10" = "至少需要 10 部作品才能使用前 10 名样式";
 "Requiere títulos con abundante material gráfico para el contenido destacado" = "需要包含丰富图片素材的作品才能用于焦点推荐";
 "Resaltado, progreso." = "高亮、进度。";
@@ -1535,6 +1548,7 @@
 "Siguiente" = "下一个";
 "Siguiente canción" = "Next song";
 "Silenciar" = "静音";
+"Simkl is temporarily limiting requests. Try again later." = "Simkl is temporarily limiting requests. Try again later.";
 "Sin configurar" = "未设置";
 "Sin corrección" = "不校正";
 "Sin corrección (predeterminado)" = "不校正（默认）";
@@ -1596,6 +1610,8 @@
 "Startup & default" = "启动与默认设置";
 "Status" = "状态";
 "Step 1 · Metadata" = "第 1 步 · 元数据";
+"Step 1 · Open Simkl" = "第 1 步 · 打开 Simkl";
+"Step 2 · Enter this code" = "第 2 步 · 输入此代码";
 "Step 2 · Stremio" = "第 2 步 · Stremio";
 "Step 3 · Streaming" = "第 3 步 · 流媒体";
 "Step 4 · Subtitles" = "第 4 步 · 字幕";
@@ -1768,6 +1784,7 @@
 "Top tracks" = "Top tracks";
 "Torrents" = "种子";
 "Track" = "轨道";
+"Tracking" = "Tracking";
 "Tracks" = "轨道";
 "Traducir títulos" = "翻译标题";
 "Transfer primary" = "转移主个人资料";
@@ -1853,6 +1870,7 @@
 "Volumes" = "分卷";
 "Volver a empezar" = "从头播放";
 "Vídeo" = "视频";
+"Waiting for you to authorize on simkl.com…" = "正在等待你在 simkl.com 上授权…";
 "War" = "战争";
 "Watched" = "已观看";
 "Welcome to Harbor" = "欢迎使用 Harbor";

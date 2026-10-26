@@ -154,6 +154,8 @@
 "Audio languages" = "ऑडियो भाषाएँ";
 "Audio not labeled" = "ऑडियो का लेबल नहीं है";
 "Audio sin etiqueta" = "ऑडियो का लेबल नहीं है";
+"Authorization expired. Connect again." = "Authorization expired. Connect again.";
+"Authorize Harbor on Simkl" = "Simkl पर Harbor को अधिकृत करें";
 "Auto" = "ऑटो";
 "Auto (match video)" = "ऑटो (वीडियो के अनुरूप)";
 "Auto-play next episode" = "अगला एपिसोड अपने-आप चलाएँ";
@@ -350,6 +352,7 @@
 "Close navigation" = "Close navigation";
 "Close player" = "प्लेयर बंद करें";
 "Clásica" = "क्लासिक";
+"Code expired. Try again." = "Code expired. Try again.";
 "Colecciones" = "कलेक्शन";
 "Collections" = "कलेक्शन";
 "Color de la barra" = "बार का रंग";
@@ -386,7 +389,10 @@
 "Confirm your PIN" = "अपने PIN की पुष्टि करें";
 "Confirm your current PIN to remove the lock." = "लॉक हटाने के लिए अपने मौजूदा PIN की पुष्टि करें।";
 "Confirm your current PIN, then pick a new one." = "अपने मौजूदा PIN की पुष्टि करें, फिर नया PIN चुनें।";
+"Connect Simkl" = "Simkl कनेक्ट करें";
 "Connect TMDB" = "TMDB कनेक्ट करें";
+"Connected" = "कनेक्टेड";
+"Connected to Simkl" = "Simkl से कनेक्टेड";
 "Connecting" = "कनेक्ट हो रहा है";
 "Conservar original" = "मूल रखें";
 "Contenido" = "कॉन्टेंट";
@@ -409,21 +415,26 @@
 "Controls" = "कंट्रोल";
 "Copia principal." = "मुख्य टेक्स्ट।";
 "Copia secundaria." = "द्वितीयक टेक्स्ट।";
+"Copied" = "कॉपी किया गया";
+"Copy" = "कॉपी करें";
 "Corner radius" = "कोने की गोलाई";
 "Correo y contraseña" = "Email and password";
 "Could not analyze this source. Playback continues; you can retry." = "Could not analyze this source. Playback continues; you can retry.";
 "Could not apply the timing. The original subtitle is kept." = "Could not apply the timing. The original subtitle is kept.";
 "Could not complete this action. Try again." = "यह कार्रवाई पूरी नहीं हो सकी। फिर से कोशिश करें।";
+"Could not connect to Simkl. Try again." = "Could not connect to Simkl. Try again.";
 "Could not load navigation settings. Saved settings are kept." = "Could not load navigation settings. Saved settings are kept.";
 "Could not load streaming preferences. Saved settings are kept." = "Could not load streaming preferences. Saved settings are kept.";
 "Could not load this page. Try again." = "यह पेज लोड नहीं हो सका। फिर से कोशिश करें।";
 "Could not measure storage. Try again." = "Could not measure storage. Try again.";
 "Could not open book" = "Could not open book";
+"Could not read the account on this device." = "Could not read the account on this device.";
 "Could not read your saved tracks and listening history. Your data is preserved." = "Could not read your saved tracks and listening history. Your data is preserved.";
 "Could not restore your navigation. The saved version is kept." = "Could not restore your navigation. The saved version is kept.";
 "Could not restore your services. The saved version is kept." = "आपकी सेवाएँ बहाल नहीं हो सकीं। सहेजा गया संस्करण सुरक्षित है।";
 "Could not save navigation settings. Your previous settings are kept." = "Could not save navigation settings. Your previous settings are kept.";
 "Could not save streaming preferences. Your previous settings are kept." = "Could not save streaming preferences. Your previous settings are kept.";
+"Could not save the account on this device." = "Could not save the account on this device.";
 "Could not save your choices. Try again." = "Could not save your choices. Try again.";
 "Could not save your tracks or listening history. Try again." = "Could not save your tracks or listening history. Try again.";
 "Couldn't auto-sync" = "अपने-आप सिंक नहीं हो सका";
@@ -1074,6 +1085,7 @@
 "Normal" = "सामान्य";
 "Norwegian" = "नॉर्वेजियन";
 "Not a stream plugin: it exports no getStreams or streams function." = "स्ट्रीम प्लगइन नहीं है: यह कोई getStreams या streams फ़ंक्शन एक्सपोर्ट नहीं करता।";
+"Not connected" = "कनेक्ट नहीं है";
 "Not interested" = "दिलचस्पी नहीं है";
 "Not now" = "अभी नहीं";
 "Not set" = "सेट नहीं है";
@@ -1353,6 +1365,7 @@
 "Reproducir automáticamente el siguiente episodio" = "अगला एपिसोड अपने-आप चलाएँ";
 "Reproducir después" = "अगला चलाएँ";
 "Reproductor" = "खिलाड़ी";
+"Requesting code from Simkl…" = "Simkl से कोड का अनुरोध किया जा रहा है…";
 "Requiere al menos 10 títulos para el estilo de Top 10" = "Top 10 लुक के लिए कम से कम 10 शीर्षक चाहिए";
 "Requiere títulos con abundante material gráfico para el contenido destacado" = "हीरो सेक्शन में दिखाने के लिए भरपूर आर्टवर्क वाले टाइटल चाहिए";
 "Resaltado, progreso." = "हाइलाइट, प्रगति।";
@@ -1535,6 +1548,7 @@
 "Siguiente" = "अगला";
 "Siguiente canción" = "Next song";
 "Silenciar" = "म्यूट करें";
+"Simkl is temporarily limiting requests. Try again later." = "Simkl is temporarily limiting requests. Try again later.";
 "Sin configurar" = "सेट नहीं है";
 "Sin corrección" = "कोई सुधार नहीं";
 "Sin corrección (predeterminado)" = "कोई सुधार नहीं (डिफ़ॉल्ट)";
@@ -1596,6 +1610,8 @@
 "Startup & default" = "स्टार्टअप और डिफ़ॉल्ट";
 "Status" = "स्थिति";
 "Step 1 · Metadata" = "चरण 1 · मेटाडेटा";
+"Step 1 · Open Simkl" = "चरण 1 · Simkl खोलें";
+"Step 2 · Enter this code" = "चरण 2 · यह कोड दर्ज करें";
 "Step 2 · Stremio" = "चरण 2 · Stremio";
 "Step 3 · Streaming" = "चरण 3 · स्ट्रीमिंग";
 "Step 4 · Subtitles" = "चरण 4 · सबटाइटल";
@@ -1768,6 +1784,7 @@
 "Top tracks" = "Top tracks";
 "Torrents" = "टोरेंट";
 "Track" = "ट्रैक करें";
+"Tracking" = "Tracking";
 "Tracks" = "ट्रैक";
 "Traducir títulos" = "टाइटल का अनुवाद करें";
 "Transfer primary" = "मुख्य प्रोफ़ाइल ट्रांसफ़र करें";
@@ -1853,6 +1870,7 @@
 "Volumes" = "खंड";
 "Volver a empezar" = "फिर से शुरू करें";
 "Vídeo" = "वीडियो";
+"Waiting for you to authorize on simkl.com…" = "simkl.com पर आपके अनुमति देने की प्रतीक्षा हो रही है…";
 "War" = "युद्ध";
 "Watched" = "देख लिया";
 "Welcome to Harbor" = "Harbor में आपका स्वागत है";

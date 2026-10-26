@@ -9,6 +9,9 @@ requested = os.environ.get('HARBOR_NATIVE_SELECTION', '').strip()
 if requested == 'ui-only:artwork-interface-repair':
     runpy.run_path('scripts/ios/prepare-artwork-interface-repair-selection.py')
     raise SystemExit(0)
+if requested == 'affected:poster-simkl-completion' or 'HarborTests.SimklClientTests/' in requested:
+    runpy.run_path('scripts/ios/prepare-poster-simkl-completion-selection.py')
+    raise SystemExit(0)
 if requested == 'affected:poster-behavior' or 'HarborTests.PosterBehaviorTests/' in requested:
     runpy.run_path('scripts/ios/prepare-poster-behavior-selection.py')
     raise SystemExit(0)

@@ -126,6 +126,8 @@
 "Audio languages" = "Audio languages";
 "Audio not labeled" = "Audio not labeled";
 "Audio sin etiqueta" = "Audio not labeled";
+"Authorization expired. Connect again." = "Authorization expired. Connect again.";
+"Authorize Harbor on Simkl" = "Authorize Harbor on Simkl";
 "Auto" = "Auto";
 "Auto (match video)" = "Auto (match video)";
 "Auto-play next episode" = "Auto-play next episode";
@@ -275,6 +277,7 @@
 "Close navigation" = "Close navigation";
 "Close player" = "Close player";
 "Clásica" = "Classic";
+"Code expired. Try again." = "Code expired. Try again.";
 "Colecciones" = "Collections";
 "Collections" = "Collections";
 "Color de la barra" = "Bar color";
@@ -306,7 +309,10 @@
 "Configurar addon" = "Configure addon";
 "Configure Sports" = "Configure Sports";
 "Configure addon" = "Configure addon";
+"Connect Simkl" = "Connect Simkl";
 "Connect TMDB" = "Connect TMDB";
+"Connected" = "Connected";
+"Connected to Simkl" = "Connected to Simkl";
 "Connecting" = "Connecting";
 "Conservar original" = "Keep original";
 "Contenido" = "Content";
@@ -326,21 +332,26 @@
 "Controls" = "Controls";
 "Copia principal." = "Primary copy.";
 "Copia secundaria." = "Secondary copy.";
+"Copied" = "Copied";
+"Copy" = "Copy";
 "Corner radius" = "Corner radius";
 "Correo y contraseña" = "Email and password";
 "Could not analyze this source. Playback continues; you can retry." = "Could not analyze this source. Playback continues; you can retry.";
 "Could not apply the timing. The original subtitle is kept." = "Could not apply the timing. The original subtitle is kept.";
 "Could not complete this action. Try again." = "Could not complete this action. Try again.";
+"Could not connect to Simkl. Try again." = "Could not connect to Simkl. Try again.";
 "Could not load navigation settings. Saved settings are kept." = "Could not load navigation settings. Saved settings are kept.";
 "Could not load streaming preferences. Saved settings are kept." = "Could not load streaming preferences. Saved settings are kept.";
 "Could not load this page. Try again." = "Could not load this page. Try again.";
 "Could not measure storage. Try again." = "Could not measure storage. Try again.";
 "Could not open book" = "Could not open book";
+"Could not read the account on this device." = "Could not read the account on this device.";
 "Could not read your saved tracks and listening history. Your data is preserved." = "Could not read your saved tracks and listening history. Your data is preserved.";
 "Could not restore your navigation. The saved version is kept." = "Could not restore your navigation. The saved version is kept.";
 "Could not restore your services. The saved version is kept." = "Could not restore your services. The saved version is kept.";
 "Could not save navigation settings. Your previous settings are kept." = "Could not save navigation settings. Your previous settings are kept.";
 "Could not save streaming preferences. Your previous settings are kept." = "Could not save streaming preferences. Your previous settings are kept.";
+"Could not save the account on this device." = "Could not save the account on this device.";
 "Could not save your choices. Try again." = "Could not save your choices. Try again.";
 "Could not save your tracks or listening history. Try again." = "Could not save your tracks or listening history. Try again.";
 "Couldn't auto-sync" = "Couldn't auto-sync";
@@ -868,6 +879,7 @@
 "Nombre de usuario" = "Username";
 "Nombre para mostrar" = "Display name";
 "Normal" = "Normal";
+"Not connected" = "Not connected";
 "Not now" = "Not now";
 "Not set" = "Not set";
 "Nothing to show yet." = "Nothing to show yet.";
@@ -1092,6 +1104,7 @@
 "Reproducir automáticamente el siguiente episodio" = "Auto-play next episode";
 "Reproducir después" = "Play next";
 "Reproductor" = "Player";
+"Requesting code from Simkl…" = "Requesting code from Simkl…";
 "Requiere al menos 10 títulos para el estilo de Top 10" = "Needs at least 10 titles for the Top 10 look";
 "Requiere títulos con abundante material gráfico para el contenido destacado" = "Needs artwork-rich titles to feed the hero";
 "Resaltado, progreso." = "Highlight, progress.";
@@ -1250,6 +1263,7 @@
 "Siguiente" = "Next";
 "Siguiente canción" = "Next song";
 "Silenciar" = "Mute";
+"Simkl is temporarily limiting requests. Try again later." = "Simkl is temporarily limiting requests. Try again later.";
 "Sin configurar" = "Not set";
 "Sin corrección" = "No correction";
 "Sin corrección (predeterminado)" = "No correction (default)";
@@ -1300,6 +1314,8 @@
 "Start Watching" = "Start Watching";
 "Start with subtitles off" = "Start with subtitles off";
 "Status" = "Status";
+"Step 1 · Open Simkl" = "Step 1 · Open Simkl";
+"Step 2 · Enter this code" = "Step 2 · Enter this code";
 "Stop feeding the hero carousel (back to automatic)" = "Stop feeding the hero carousel (back to automatic)";
 "Stop playback" = "Stop playback";
 "Stop showing as second subtitle" = "Stop showing as second subtitle";
@@ -1435,6 +1451,7 @@
 "Top tracks" = "Top tracks";
 "Torrents" = "Torrents";
 "Track" = "Track";
+"Tracking" = "Tracking";
 "Tracks" = "Tracks";
 "Traducir títulos" = "Translate titles";
 "Translate titles" = "Translate titles";
@@ -1506,6 +1523,7 @@
 "Volumen" = "Volume";
 "Volver a empezar" = "Start Over";
 "Vídeo" = "Video";
+"Waiting for you to authorize on simkl.com…" = "Waiting for you to authorize on simkl.com…";
 "Watched" = "Watched";
 "Welcome to Harbor" = "Welcome to Harbor";
 "When a release ships multiple audio tracks, Harbor selects the first match from this list." = "When a release ships multiple audio tracks, Harbor selects the first match from this list.";

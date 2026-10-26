@@ -36,6 +36,13 @@ struct SettingsView: View {
                         }
                     }
                 }
+                if matches("Simkl", group: "Tracking") {
+                    group("Tracking") {
+                        NavigationLink { SimklSettingsView(app: app).id(app.accountOperationScope).toolbar(.visible, for: .navigationBar) } label: {
+                            SettingsRow(title: "Simkl", icon: "tracker-simkl")
+                        }.accessibilityIdentifier("settings-simkl")
+                    }
+                }
                 if matches("Subtitles", group: "Languages & subtitles") {
                     group("Languages & subtitles") {
                         NavigationLink { PlayerSettingsView(page: .subtitles).toolbar(.visible, for: .navigationBar) } label: {

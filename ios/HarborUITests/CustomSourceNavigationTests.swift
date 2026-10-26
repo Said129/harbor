@@ -103,21 +103,47 @@ import XCTest
         enterEmpty(field, value, app)
     }
     private func revealHorizontal(_ target: XCUIElement, _ app: XCUIApplication, _ container: XCUIElement, left: Bool = true) {
-        for _ in 0..<8 {
+        for _ in 0..<12 {
             let bounds = container.frame, viewport = bounds.intersection(app.windows.firstMatch.frame)
-            if let frame = ReadingUIInteraction.visibleFrame(target, in: app), viewport.contains(frame), target.isHittable { return }
+            // The stroked folder's AX frame extends half a point beyond its
+            // 180pt scroll viewport. Accept that border, never an offscreen tile.
+            if let frame = ReadingUIInteraction.visibleFrame(target, in: app), viewport.insetBy(dx: -1, dy: -1).contains(frame) {
+                let ready = XCTNSPredicateExpectation(predicate: NSPredicate(format: "isHittable == true"), object: target)
+                if XCTWaiter.wait(for: [ready], timeout: 3) == .completed { return }
+                ReadingUIInteraction.recordFailureContext(app); XCTFail("The fully visible folder control must accept a tap"); return
+            }
             guard !viewport.isNull, viewport.width > 80, viewport.height > 40 else {
                 ReadingUIInteraction.recordFailureContext(app); XCTFail("The folder row must have a visible viewport before a horizontal gesture"); return
             }
+            let moveLeft = target.exists ? target.frame.maxX > viewport.maxX : left
+            let needed = target.exists ? (moveLeft ? target.frame.maxX - viewport.maxX + 12 : viewport.minX - target.frame.minX + 12) : viewport.width / 2
+            let distance = min(viewport.width * 0.6, max(20, needed))
             let origin = container.coordinate(withNormalizedOffset: .zero)
-            let start = origin.withOffset(.init(dx: viewport.minX - bounds.minX + viewport.width * (left ? 0.85 : 0.15), dy: viewport.midY - bounds.minY))
-            let end = origin.withOffset(.init(dx: viewport.minX - bounds.minX + viewport.width * (left ? 0.15 : 0.85), dy: viewport.midY - bounds.minY))
-            start.press(forDuration: 0.05, thenDragTo: end)
+            let startX = viewport.minX - bounds.minX + viewport.width * (moveLeft ? 0.8 : 0.2)
+            let start = origin.withOffset(.init(dx: startX, dy: viewport.midY - bounds.minY))
+            let end = origin.withOffset(.init(dx: startX + (moveLeft ? -distance : distance), dy: viewport.midY - bounds.minY))
+            start.press(forDuration: 0.05, thenDragTo: end, withVelocity: .slow, thenHoldForDuration: 0.2)
         }
         if ReadingUIInteraction.visibleFrame(target, in: app) == nil { ReadingUIInteraction.recordFailureContext(app) }
-        XCTAssertTrue(target.waitForExistence(timeout: 10)); XCTAssertNotNil(ReadingUIInteraction.visibleFrame(target, in: app))
+        XCTAssertTrue(target.waitForExistence(timeout: 10)); XCTAssertNotNil(ReadingUIInteraction.visibleFrame(target, in: app)); XCTAssertTrue(target.isHittable)
     }
     private func show(_ element: XCUIElement, _ app: XCUIApplication, _ scroll: XCUIElement, up: Bool = true) {
+        if element.identifier.hasPrefix("source-row-") {
+            // This AX group has no action of its own. Reveal its actual bounds
+            // and a tappable child, rather than requiring the group to be a button.
+            for _ in 0..<20 {
+                let bounds = scroll.frame, viewport = bounds.intersection(app.windows.firstMatch.frame)
+                if let frame = ReadingUIInteraction.visibleFrame(element, in: app), viewport.insetBy(dx: -1, dy: -1).contains(frame),
+                   element.buttons.allElementsBoundByIndex.contains(where: { ReadingUIInteraction.visibleFrame($0, in: app) != nil && $0.isHittable }) { return }
+                guard viewport.width > 80, viewport.height > 80 else { break }
+                let above = element.exists ? element.frame.minY < viewport.minY : !up
+                let origin = scroll.coordinate(withNormalizedOffset: .zero)
+                let start = origin.withOffset(.init(dx: viewport.minX - bounds.minX + 8, dy: viewport.minY - bounds.minY + viewport.height * (above ? 0.2 : 0.8)))
+                let end = origin.withOffset(.init(dx: viewport.minX - bounds.minX + 8, dy: viewport.minY - bounds.minY + viewport.height * (above ? 0.8 : 0.2)))
+                start.press(forDuration: 0.05, thenDragTo: end, withVelocity: .slow, thenHoldForDuration: 0.2)
+            }
+            ReadingUIInteraction.recordFailureContext(app); XCTFail("The source row and one actionable folder must be visible"); return
+        }
         if !element.exists { ReadingUIInteraction.reveal(element, in: app, up: up, container: scroll) }
         XCTAssertTrue(element.waitForExistence(timeout: 15)); ReadingUIInteraction.revealWithinViewport(element, in: app, container: scroll)
     }

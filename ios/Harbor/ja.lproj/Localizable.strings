@@ -154,6 +154,8 @@
 "Audio languages" = "音声言語";
 "Audio not labeled" = "音声ラベルなし";
 "Audio sin etiqueta" = "音声ラベルなし";
+"Authorization expired. Connect again." = "Authorization expired. Connect again.";
+"Authorize Harbor on Simkl" = "SimklでHarborを認証";
 "Auto" = "自動";
 "Auto (match video)" = "自動（動画に合わせる）";
 "Auto-play next episode" = "次のエピソードを自動再生";
@@ -350,6 +352,7 @@
 "Close navigation" = "Close navigation";
 "Close player" = "プレイヤーを閉じる";
 "Clásica" = "クラシック";
+"Code expired. Try again." = "Code expired. Try again.";
 "Colecciones" = "コレクション";
 "Collections" = "コレクション";
 "Color de la barra" = "バーの色";
@@ -386,7 +389,10 @@
 "Confirm your PIN" = "PINを確認";
 "Confirm your current PIN to remove the lock." = "ロックを解除するには、現在のPINを確認してください。";
 "Confirm your current PIN, then pick a new one." = "現在のPINを確認してから、新しいPINを設定してください。";
+"Connect Simkl" = "Simklに接続";
 "Connect TMDB" = "TMDBに接続";
+"Connected" = "接続済み";
+"Connected to Simkl" = "Simklに接続済み";
 "Connecting" = "接続中";
 "Conservar original" = "オリジナルを維持";
 "Contenido" = "コンテンツ";
@@ -409,21 +415,26 @@
 "Controls" = "コントロール";
 "Copia principal." = "メインテキスト。";
 "Copia secundaria." = "補足テキスト。";
+"Copied" = "コピーしました";
+"Copy" = "コピー";
 "Corner radius" = "角の丸み";
 "Correo y contraseña" = "Email and password";
 "Could not analyze this source. Playback continues; you can retry." = "Could not analyze this source. Playback continues; you can retry.";
 "Could not apply the timing. The original subtitle is kept." = "Could not apply the timing. The original subtitle is kept.";
 "Could not complete this action. Try again." = "この操作を完了できませんでした。もう一度お試しください。";
+"Could not connect to Simkl. Try again." = "Could not connect to Simkl. Try again.";
 "Could not load navigation settings. Saved settings are kept." = "Could not load navigation settings. Saved settings are kept.";
 "Could not load streaming preferences. Saved settings are kept." = "Could not load streaming preferences. Saved settings are kept.";
 "Could not load this page. Try again." = "このページを読み込めませんでした。もう一度お試しください。";
 "Could not measure storage. Try again." = "Could not measure storage. Try again.";
 "Could not open book" = "Could not open book";
+"Could not read the account on this device." = "Could not read the account on this device.";
 "Could not read your saved tracks and listening history. Your data is preserved." = "Could not read your saved tracks and listening history. Your data is preserved.";
 "Could not restore your navigation. The saved version is kept." = "Could not restore your navigation. The saved version is kept.";
 "Could not restore your services. The saved version is kept." = "サービスを復元できませんでした。保存済みのバージョンは保持されます。";
 "Could not save navigation settings. Your previous settings are kept." = "Could not save navigation settings. Your previous settings are kept.";
 "Could not save streaming preferences. Your previous settings are kept." = "Could not save streaming preferences. Your previous settings are kept.";
+"Could not save the account on this device." = "Could not save the account on this device.";
 "Could not save your choices. Try again." = "Could not save your choices. Try again.";
 "Could not save your tracks or listening history. Try again." = "Could not save your tracks or listening history. Try again.";
 "Couldn't auto-sync" = "自動同期できませんでした";
@@ -1074,6 +1085,7 @@
 "Normal" = "標準";
 "Norwegian" = "ノルウェー語";
 "Not a stream plugin: it exports no getStreams or streams function." = "ストリームプラグインではありません: getStreamsまたはstreams関数をエクスポートしていません。";
+"Not connected" = "未接続";
 "Not interested" = "興味なし";
 "Not now" = "今はしない";
 "Not set" = "未設定";
@@ -1353,6 +1365,7 @@
 "Reproducir automáticamente el siguiente episodio" = "次のエピソードを自動再生";
 "Reproducir después" = "次に再生";
 "Reproductor" = "選手";
+"Requesting code from Simkl…" = "Simklにコードをリクエスト中…";
 "Requiere al menos 10 títulos para el estilo de Top 10" = "トップ10表示には10作品以上が必要です";
 "Requiere títulos con abundante material gráfico para el contenido destacado" = "ヒーロー表示には画像が豊富な作品が必要です";
 "Resaltado, progreso." = "ハイライト、進捗。";
@@ -1535,6 +1548,7 @@
 "Siguiente" = "次へ";
 "Siguiente canción" = "Next song";
 "Silenciar" = "ミュート";
+"Simkl is temporarily limiting requests. Try again later." = "Simkl is temporarily limiting requests. Try again later.";
 "Sin configurar" = "未設定";
 "Sin corrección" = "補正なし";
 "Sin corrección (predeterminado)" = "補正なし（デフォルト）";
@@ -1596,6 +1610,8 @@
 "Startup & default" = "起動とデフォルト";
 "Status" = "ステータス";
 "Step 1 · Metadata" = "ステップ1 · メタデータ";
+"Step 1 · Open Simkl" = "ステップ1 · Simklを開く";
+"Step 2 · Enter this code" = "ステップ2 · このコードを入力";
 "Step 2 · Stremio" = "ステップ2 · Stremio";
 "Step 3 · Streaming" = "ステップ3 · ストリーミング";
 "Step 4 · Subtitles" = "ステップ4 · 字幕";
@@ -1768,6 +1784,7 @@
 "Top tracks" = "Top tracks";
 "Torrents" = "トレント";
 "Track" = "トラック";
+"Tracking" = "Tracking";
 "Tracks" = "トラック";
 "Traducir títulos" = "タイトルを翻訳";
 "Transfer primary" = "メインプロフィールを移行";
@@ -1853,6 +1870,7 @@
 "Volumes" = "巻";
 "Volver a empezar" = "最初から再生";
 "Vídeo" = "動画";
+"Waiting for you to authorize on simkl.com…" = "simkl.comでの認証を待っています…";
 "War" = "戦争";
 "Watched" = "視聴済み";
 "Welcome to Harbor" = "Harborへようこそ";

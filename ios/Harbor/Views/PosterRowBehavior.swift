@@ -66,7 +66,7 @@ struct PosterRowFrames: PreferenceKey {
                     switch phase {
                     case .active(let point):
                         PosterAttentionState.shared.pointerMoved()
-                        if active && dock { row.pointerX = point.x }
+                        if active && dock { row.pointerX = Double(point.x) }
                     case .ended: row.pointerX = nil
                     }
                 }

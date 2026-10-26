@@ -44,7 +44,10 @@ struct ProfilePoster: View {
     private var selected: Bool { participates && focusEnabled && attention.input == .keyboard && attention.active == instanceID }
     private var dimmed: Bool { participates && focusEnabled && attention.input == .keyboard && attention.active != nil && attention.active != instanceID }
     private var allowsExpansion: Bool { participates && honorsRowStyle && expansionEnabled && configuration.style == .poster && (row?.viewport.width ?? 0) > 0 }
-    private var expandedWidth: CGFloat? { expanded ? expansionBase.map { PosterBehaviorPolicy.expandedWidth(posterHeight: $0.height) } : nil }
+    private var expandedWidth: CGFloat? {
+        guard expanded, let base = expansionBase else { return nil }
+        return CGFloat(PosterBehaviorPolicy.expandedWidth(posterHeight: Double(base.height)))
+    }
     private var dock: PosterDockTransform {
         guard participates, dockEnabled, configuration.style == .poster, !reduceMotion, !expanded else { return .init() }
         return row?.dock(instanceID, rtl: layoutDirection == .rightToLeft) ?? .init()
@@ -59,7 +62,7 @@ struct ProfilePoster: View {
     }
     private var widePixels: Int {
         if quality == "max" { return 0 }
-        let target = PosterBehaviorPolicy.expandedWidth(posterHeight: expansionBase?.height ?? artSize.height) * displayScale * (quality == "balanced" ? 0.75 : 1)
+        let target: Double = PosterBehaviorPolicy.expandedWidth(posterHeight: Double(expansionBase?.height ?? artSize.height)) * Double(displayScale) * (quality == "balanced" ? 0.75 : 1)
         return Int(min(2_048, max(240, target.rounded(.up))))
     }
     private var localizesPoster: Bool {
@@ -85,7 +88,7 @@ struct ProfilePoster: View {
     }
     private var configuration: PosterCardConfiguration { .init(style: honorsRowStyle ? style : "poster", logoPosition: logoPosition, scale: scale, radius: radius, effect: effect, quality: quality) }
     private var pixelLimit: Int { configuration.pixels(width: width.map { configuration.rowWidth(base: Double($0)) } ?? (configuration.style == .tv ? 318 : 150) * configuration.scale, displayScale: Double(displayScale)) }
-    var body: some View {
+    private var layoutCard: some View {
         Group {
             if let width {
                 card.containerRelativeFrame(.horizontal, alignment: .leading) { available, _ in
@@ -99,14 +102,18 @@ struct ProfilePoster: View {
                     GeometryReader { geometry in Color.clear.preference(key: PosterRowFrames.self, value: [instanceID: geometry.frame(in: .named(row.id))]) }
                 }
             }
-            .opacity(dimmed ? 0.34 : 1).colorMultiply(dimmed ? Color(white: 0.68) : .white)
+    }
+    private var styledCard: some View {
+        layoutCard.opacity(dimmed ? 0.34 : 1).colorMultiply(dimmed ? Color(white: 0.68) : .white)
             .saturation(dimmed ? 0.78 : 1).blur(radius: dimmed ? 0.7 : 0)
             .animation(reduceMotion ? nil : .easeInOut(duration: 0.22), value: dimmed)
             .animation(reduceMotion ? nil : .timingCurve(0.16, 1, 0.3, 1, duration: 0.48), value: expanded)
             .zIndex(selected ? 100 : dock.zIndex)
             .animation(reduceMotion ? nil : .easeInOut(duration: 0.26), value: configuration.scale)
             .animation(reduceMotion ? nil : .easeInOut(duration: 0.26), value: configuration.radius)
-            .onChange(of: logoURL) { _, _ in logoLoaded = false }
+    }
+    private var lifecycleCard: some View {
+        styledCard.onChange(of: logoURL) { _, _ in logoLoaded = false }
             .onChange(of: keyboardFocused) { _, _ in syncFocus(); syncExpansion() }
             .onKeyPress(phases: .down) { _ in
                 if attention.input != .keyboard { attention.input = .keyboard }; return .ignored
@@ -130,7 +137,9 @@ struct ProfilePoster: View {
                 if phase == .active { syncFocus(); syncExpansion() }
                 else { attention.focus(instanceID, enabled: false, focused: false); expanded = false }
             }
-            .task(id: wideTaskKey) {
+    }
+    var body: some View {
+        lifecycleCard.task(id: wideTaskKey) {
                 let key = wideTaskKey
                 wideReady = false; wideURL = nil; expanded = false
                 guard allowsExpansion else { return }

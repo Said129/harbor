@@ -154,6 +154,8 @@
 "Audio languages" = "Bahasa audio";
 "Audio not labeled" = "Audio tanpa label";
 "Audio sin etiqueta" = "Audio tanpa label";
+"Authorization expired. Connect again." = "Authorization expired. Connect again.";
+"Authorize Harbor on Simkl" = "Izinkan Harbor di Simkl";
 "Auto" = "Otomatis";
 "Auto (match video)" = "Otomatis (sesuai video)";
 "Auto-play next episode" = "Putar episode berikutnya secara otomatis";
@@ -350,6 +352,7 @@
 "Close navigation" = "Close navigation";
 "Close player" = "Tutup pemutar";
 "Clásica" = "Klasik";
+"Code expired. Try again." = "Code expired. Try again.";
 "Colecciones" = "Koleksi";
 "Collections" = "Koleksi";
 "Color de la barra" = "Warna bilah";
@@ -386,7 +389,10 @@
 "Confirm your PIN" = "Konfirmasi PIN Anda";
 "Confirm your current PIN to remove the lock." = "Konfirmasikan PIN Anda saat ini untuk menonaktifkan kunci.";
 "Confirm your current PIN, then pick a new one." = "Konfirmasikan PIN saat ini, lalu pilih PIN baru.";
+"Connect Simkl" = "Hubungkan Simkl";
 "Connect TMDB" = "Hubungkan TMDB";
+"Connected" = "Terhubung";
+"Connected to Simkl" = "Terhubung ke Simkl";
 "Connecting" = "Menghubungkan";
 "Conservar original" = "Pertahankan yang asli";
 "Contenido" = "Konten";
@@ -409,21 +415,26 @@
 "Controls" = "Kontrol";
 "Copia principal." = "Salinan utama.";
 "Copia secundaria." = "Teks sekunder.";
+"Copied" = "Disalin";
+"Copy" = "Salin";
 "Corner radius" = "Radius sudut";
 "Correo y contraseña" = "Email and password";
 "Could not analyze this source. Playback continues; you can retry." = "Could not analyze this source. Playback continues; you can retry.";
 "Could not apply the timing. The original subtitle is kept." = "Could not apply the timing. The original subtitle is kept.";
 "Could not complete this action. Try again." = "Tindakan ini tidak dapat diselesaikan. Coba lagi.";
+"Could not connect to Simkl. Try again." = "Could not connect to Simkl. Try again.";
 "Could not load navigation settings. Saved settings are kept." = "Could not load navigation settings. Saved settings are kept.";
 "Could not load streaming preferences. Saved settings are kept." = "Could not load streaming preferences. Saved settings are kept.";
 "Could not load this page. Try again." = "Halaman ini tidak dapat dimuat. Coba lagi.";
 "Could not measure storage. Try again." = "Could not measure storage. Try again.";
 "Could not open book" = "Could not open book";
+"Could not read the account on this device." = "Could not read the account on this device.";
 "Could not read your saved tracks and listening history. Your data is preserved." = "Could not read your saved tracks and listening history. Your data is preserved.";
 "Could not restore your navigation. The saved version is kept." = "Could not restore your navigation. The saved version is kept.";
 "Could not restore your services. The saved version is kept." = "Layanan Anda tidak dapat dipulihkan. Versi yang tersimpan tetap disimpan.";
 "Could not save navigation settings. Your previous settings are kept." = "Could not save navigation settings. Your previous settings are kept.";
 "Could not save streaming preferences. Your previous settings are kept." = "Could not save streaming preferences. Your previous settings are kept.";
+"Could not save the account on this device." = "Could not save the account on this device.";
 "Could not save your choices. Try again." = "Could not save your choices. Try again.";
 "Could not save your tracks or listening history. Try again." = "Could not save your tracks or listening history. Try again.";
 "Couldn't auto-sync" = "Tidak dapat menyinkronkan otomatis";
@@ -1074,6 +1085,7 @@
 "Normal" = "Normal";
 "Norwegian" = "Norwegia";
 "Not a stream plugin: it exports no getStreams or streams function." = "Bukan plugin stream: tidak mengekspor fungsi getStreams atau streams.";
+"Not connected" = "Tidak terhubung";
 "Not interested" = "Tidak tertarik";
 "Not now" = "Jangan sekarang";
 "Not set" = "Belum diatur";
@@ -1353,6 +1365,7 @@
 "Reproducir automáticamente el siguiente episodio" = "Putar episode berikutnya secara otomatis";
 "Reproducir después" = "Putar berikutnya";
 "Reproductor" = "Pemain";
+"Requesting code from Simkl…" = "Meminta kode dari Simkl…";
 "Requiere al menos 10 títulos para el estilo de Top 10" = "Memerlukan setidaknya 10 judul untuk tampilan Top 10";
 "Requiere títulos con abundante material gráfico para el contenido destacado" = "Memerlukan judul dengan materi visual lengkap untuk mengisi banner utama";
 "Resaltado, progreso." = "Sorotan, progres.";
@@ -1535,6 +1548,7 @@
 "Siguiente" = "Berikutnya";
 "Siguiente canción" = "Next song";
 "Silenciar" = "Bisukan";
+"Simkl is temporarily limiting requests. Try again later." = "Simkl is temporarily limiting requests. Try again later.";
 "Sin configurar" = "Belum diatur";
 "Sin corrección" = "Tanpa koreksi";
 "Sin corrección (predeterminado)" = "Tanpa koreksi (default)";
@@ -1596,6 +1610,8 @@
 "Startup & default" = "Mulai & bawaan";
 "Status" = "Status";
 "Step 1 · Metadata" = "Langkah 1 · Metadata";
+"Step 1 · Open Simkl" = "Langkah 1 · Buka Simkl";
+"Step 2 · Enter this code" = "Langkah 2 · Masukkan kode ini";
 "Step 2 · Stremio" = "Langkah 2 · Stremio";
 "Step 3 · Streaming" = "Langkah 3 · Streaming";
 "Step 4 · Subtitles" = "Langkah 4 · Subtitle";
@@ -1768,6 +1784,7 @@
 "Top tracks" = "Top tracks";
 "Torrents" = "Torrent";
 "Track" = "Lacak";
+"Tracking" = "Tracking";
 "Tracks" = "Trek";
 "Traducir títulos" = "Terjemahkan judul";
 "Transfer primary" = "Alihkan profil utama";
@@ -1853,6 +1870,7 @@
 "Volumes" = "Volume";
 "Volver a empezar" = "Mulai dari Awal";
 "Vídeo" = "Video";
+"Waiting for you to authorize on simkl.com…" = "Menunggu Anda memberikan otorisasi di simkl.com…";
 "War" = "Perang";
 "Watched" = "Sudah ditonton";
 "Welcome to Harbor" = "Selamat datang di Harbor";

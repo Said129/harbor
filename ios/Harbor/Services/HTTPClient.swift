@@ -47,7 +47,27 @@ struct HTTPClient: Sendable {
     }
 
     func simklArtwork(_ id: Int) async throws -> JSONValue {
-        try await receive(Self.simklArtworkRequest(id), session: Self.publicTVDBSession)
+        try await SimklClient.shared.response(.anime(id))
+    }
+
+    func simklReply(_ request: URLRequest) async throws -> SimklReply {
+        guard request.url?.scheme == "https", request.url?.host == "api.simkl.com" else { throw HarborError(code: "simkl-request") }
+        await Diagnostics.shared.record(.requestStarted)
+        do {
+            let (bytes, response) = try await Self.publicTVDBSession.bytes(for: request)
+            guard let response = response as? HTTPURLResponse else { throw HarborError(code: "invalid-http-response") }
+            let limit = 8 * 1_024 * 1_024
+            guard response.expectedContentLength <= Int64(limit) else { throw HarborError(code: "response-too-large") }
+            var data = Data()
+            for try await byte in bytes {
+                try Task.checkCancellation(); guard data.count < limit else { throw HarborError(code: "response-too-large") }; data.append(byte)
+            }
+            await Diagnostics.shared.record(.requestCompleted, count: data.count)
+            return SimklReply(status: response.statusCode, data: data, retryAfter: response.value(forHTTPHeaderField: "Retry-After"))
+        } catch is CancellationError { throw CancellationError() }
+        catch let error as HarborError { await Diagnostics.shared.recordFailure(error); throw error }
+        catch let error as URLError where error.code == .cancelled { throw CancellationError() }
+        catch { let error = HarborError(code: "network"); await Diagnostics.shared.recordFailure(error); throw error }
     }
 
     func anilist(query: String, variables: JSONValue) async throws -> JSONValue {

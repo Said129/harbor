@@ -165,6 +165,8 @@
 "Audio languages" = "لغات الصوت";
 "Audio not labeled" = "الصوت بلا تسمية";
 "Audio sin etiqueta" = "الصوت بلا تسمية";
+"Authorization expired. Connect again." = "Authorization expired. Connect again.";
+"Authorize Harbor on Simkl" = "تفويض Harbor على Simkl";
 "Auto" = "تلقائي";
 "Auto (match video)" = "تلقائي (مطابقة الفيديو)";
 "Auto-play next episode" = "التشغيل التلقائي للحلقة التالية";
@@ -370,6 +372,7 @@
 "Close navigation" = "Close navigation";
 "Close player" = "إغلاق المشغل";
 "Clásica" = "الكلاسيكي";
+"Code expired. Try again." = "Code expired. Try again.";
 "Colecciones" = "المجموعات";
 "Collections" = "المجموعات";
 "Color de la barra" = "لون الشريط";
@@ -406,7 +409,10 @@
 "Confirm your PIN" = "أكّد رمز PIN الخاص بك";
 "Confirm your current PIN to remove the lock." = "أكّد رمز PIN الحالي لإزالة القفل.";
 "Confirm your current PIN, then pick a new one." = "أكّد رمز PIN الحالي، ثم اختر رمزًا جديدًا.";
+"Connect Simkl" = "ربط Simkl";
 "Connect TMDB" = "ربط TMDB";
+"Connected" = "متصل";
+"Connected to Simkl" = "تم الاتصال بـ Simkl";
 "Connecting" = "جارٍ الاتصال";
 "Conservar original" = "الاحتفاظ بالأصل";
 "Contenido" = "المحتوى";
@@ -433,21 +439,26 @@
 "Copa do Brasil" = "كأس البرازيل";
 "Copia principal." = "النص الأساسي.";
 "Copia secundaria." = "نص ثانوي.";
+"Copied" = "تم النسخ";
+"Copy" = "نسخ";
 "Corner radius" = "نصف قطر الزاوية";
 "Correo y contraseña" = "Email and password";
 "Could not analyze this source. Playback continues; you can retry." = "تعذر تحليل هذا المصدر. تستمر المشاهدة ويمكنك المحاولة مجددًا.";
 "Could not apply the timing. The original subtitle is kept." = "تعذر تطبيق التوقيت. تم الاحتفاظ بالترجمة الأصلية.";
 "Could not complete this action. Try again." = "تعذّر إكمال هذا الإجراء. حاول مجددًا.";
+"Could not connect to Simkl. Try again." = "Could not connect to Simkl. Try again.";
 "Could not load navigation settings. Saved settings are kept." = "Could not load navigation settings. Saved settings are kept.";
 "Could not load streaming preferences. Saved settings are kept." = "Could not load streaming preferences. Saved settings are kept.";
 "Could not load this page. Try again." = "تعذر تحميل هذه الصفحة. حاول مرة أخرى.";
 "Could not measure storage. Try again." = "Could not measure storage. Try again.";
 "Could not open book" = "تعذر فتح الكتاب";
+"Could not read the account on this device." = "Could not read the account on this device.";
 "Could not read your saved tracks and listening history. Your data is preserved." = "Could not read your saved tracks and listening history. Your data is preserved.";
 "Could not restore your navigation. The saved version is kept." = "Could not restore your navigation. The saved version is kept.";
 "Could not restore your services. The saved version is kept." = "تعذّرت استعادة خدماتك. تم الاحتفاظ بالنسخة المحفوظة.";
 "Could not save navigation settings. Your previous settings are kept." = "Could not save navigation settings. Your previous settings are kept.";
 "Could not save streaming preferences. Your previous settings are kept." = "Could not save streaming preferences. Your previous settings are kept.";
+"Could not save the account on this device." = "Could not save the account on this device.";
 "Could not save your choices. Try again." = "Could not save your choices. Try again.";
 "Could not save your tracks or listening history. Try again." = "Could not save your tracks or listening history. Try again.";
 "Couldn't auto-sync" = "تعذرت المزامنة التلقائية";
@@ -1102,6 +1113,7 @@
 "Normal" = "عادية";
 "Norwegian" = "النرويجية";
 "Not a stream plugin: it exports no getStreams or streams function." = "ليس مكوّنًا إضافيًا للبث: لا يصدّر دالة getStreams أو streams.";
+"Not connected" = "غير متصل";
 "Not interested" = "غير مهتم";
 "Not now" = "ليس الآن";
 "Not set" = "غير محدد";
@@ -1385,6 +1397,7 @@
 "Reproducir automáticamente el siguiente episodio" = "التشغيل التلقائي للحلقة التالية";
 "Reproducir después" = "تشغيل تاليًا";
 "Reproductor" = "اللاعب";
+"Requesting code from Simkl…" = "جارٍ طلب رمز من Simkl…";
 "Requiere al menos 10 títulos para el estilo de Top 10" = "يحتاج إلى 10 عناوين على الأقل لمظهر أفضل 10";
 "Requiere títulos con abundante material gráfico para el contenido destacado" = "يحتاج إلى عناوين غنية بالصور لتغذية العرض الرئيسي";
 "Resaltado, progreso." = "التمييز والتقدّم.";
@@ -1569,6 +1582,7 @@
 "Siguiente" = "التالي";
 "Siguiente canción" = "Next song";
 "Silenciar" = "كتم الصوت";
+"Simkl is temporarily limiting requests. Try again later." = "Simkl is temporarily limiting requests. Try again later.";
 "Sin configurar" = "غير محدد";
 "Sin corrección" = "بلا تصحيح";
 "Sin corrección (predeterminado)" = "بلا تصحيح (الافتراضي)";
@@ -1632,6 +1646,8 @@
 "Startup & default" = "بدء التشغيل والافتراضي";
 "Status" = "الحالة";
 "Step 1 · Metadata" = "الخطوة 1 · البيانات الوصفية";
+"Step 1 · Open Simkl" = "الخطوة 1 · افتح Simkl";
+"Step 2 · Enter this code" = "الخطوة 2 · أدخل هذا الرمز";
 "Step 2 · Stremio" = "الخطوة 2 · Stremio";
 "Step 3 · Streaming" = "الخطوة 3 · البث";
 "Step 4 · Subtitles" = "الخطوة 4 · الترجمات";
@@ -1806,6 +1822,7 @@
 "Top tracks" = "Top tracks";
 "Torrents" = "التورنت";
 "Track" = "المسار";
+"Tracking" = "Tracking";
 "Tracks" = "المسارات";
 "Traducir títulos" = "ترجمة العناوين";
 "Transfer primary" = "نقل الأساسي";
@@ -1891,6 +1908,7 @@
 "Volumes" = "المجلدات";
 "Volver a empezar" = "البدء من جديد";
 "Vídeo" = "فيديو";
+"Waiting for you to authorize on simkl.com…" = "في انتظار تفويضك على simkl.com…";
 "War" = "حرب";
 "Watched" = "تمت المشاهدة";
 "Welcome to Harbor" = "مرحبًا بك في Harbor";

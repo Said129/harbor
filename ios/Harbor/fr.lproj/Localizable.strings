@@ -154,6 +154,8 @@
 "Audio languages" = "Langues audio";
 "Audio not labeled" = "Audio non identifié";
 "Audio sin etiqueta" = "Audio non identifié";
+"Authorization expired. Connect again." = "Authorization expired. Connect again.";
+"Authorize Harbor on Simkl" = "Autoriser Harbor sur Simkl";
 "Auto" = "Automatique";
 "Auto (match video)" = "Automatique (adapté à la vidéo)";
 "Auto-play next episode" = "Lire automatiquement l’épisode suivant";
@@ -350,6 +352,7 @@
 "Close navigation" = "Close navigation";
 "Close player" = "Fermer le lecteur";
 "Clásica" = "Classique";
+"Code expired. Try again." = "Code expired. Try again.";
 "Colecciones" = "Collections";
 "Collections" = "Collections";
 "Color de la barra" = "Couleur de la barre";
@@ -386,7 +389,10 @@
 "Confirm your PIN" = "Confirmez votre code PIN";
 "Confirm your current PIN to remove the lock." = "Saisissez votre code PIN actuel pour supprimer le verrouillage.";
 "Confirm your current PIN, then pick a new one." = "Saisissez votre code PIN actuel, puis choisissez-en un nouveau.";
+"Connect Simkl" = "Connecter Simkl";
 "Connect TMDB" = "Connecter TMDB";
+"Connected" = "Connecté";
+"Connected to Simkl" = "Connecté à Simkl";
 "Connecting" = "Connexion en cours";
 "Conservar original" = "Conserver l’original";
 "Contenido" = "Contenu";
@@ -409,21 +415,26 @@
 "Controls" = "Commandes";
 "Copia principal." = "Copie principale.";
 "Copia secundaria." = "Copie secondaire.";
+"Copied" = "Copié";
+"Copy" = "Copier";
 "Corner radius" = "Rayon des coins";
 "Correo y contraseña" = "Email and password";
 "Could not analyze this source. Playback continues; you can retry." = "Could not analyze this source. Playback continues; you can retry.";
 "Could not apply the timing. The original subtitle is kept." = "Could not apply the timing. The original subtitle is kept.";
 "Could not complete this action. Try again." = "Impossible de terminer cette action. Réessayez.";
+"Could not connect to Simkl. Try again." = "Could not connect to Simkl. Try again.";
 "Could not load navigation settings. Saved settings are kept." = "Could not load navigation settings. Saved settings are kept.";
 "Could not load streaming preferences. Saved settings are kept." = "Could not load streaming preferences. Saved settings are kept.";
 "Could not load this page. Try again." = "Impossible de charger cette page. Réessayez.";
 "Could not measure storage. Try again." = "Could not measure storage. Try again.";
 "Could not open book" = "Could not open book";
+"Could not read the account on this device." = "Could not read the account on this device.";
 "Could not read your saved tracks and listening history. Your data is preserved." = "Could not read your saved tracks and listening history. Your data is preserved.";
 "Could not restore your navigation. The saved version is kept." = "Could not restore your navigation. The saved version is kept.";
 "Could not restore your services. The saved version is kept." = "Impossible de restaurer vos services. La version enregistrée est conservée.";
 "Could not save navigation settings. Your previous settings are kept." = "Could not save navigation settings. Your previous settings are kept.";
 "Could not save streaming preferences. Your previous settings are kept." = "Could not save streaming preferences. Your previous settings are kept.";
+"Could not save the account on this device." = "Could not save the account on this device.";
 "Could not save your choices. Try again." = "Could not save your choices. Try again.";
 "Could not save your tracks or listening history. Try again." = "Could not save your tracks or listening history. Try again.";
 "Couldn't auto-sync" = "Synchronisation automatique impossible";
@@ -1074,6 +1085,7 @@
 "Normal" = "Normal";
 "Norwegian" = "Norvégien";
 "Not a stream plugin: it exports no getStreams or streams function." = "Pas un plugin de flux : il n'exporte aucune fonction getStreams ni streams.";
+"Not connected" = "Non connecté";
 "Not interested" = "Cela ne m’intéresse pas";
 "Not now" = "Pas maintenant";
 "Not set" = "Non défini";
@@ -1353,6 +1365,7 @@
 "Reproducir automáticamente el siguiente episodio" = "Lire automatiquement l’épisode suivant";
 "Reproducir después" = "Lire ensuite";
 "Reproductor" = "Joueur";
+"Requesting code from Simkl…" = "Demande de code à Simkl…";
 "Requiere al menos 10 títulos para el estilo de Top 10" = "Nécessite au moins 10 titres pour le style Top 10";
 "Requiere títulos con abundante material gráfico para el contenido destacado" = "Nécessite des titres riches en visuels pour alimenter la bannière principale";
 "Resaltado, progreso." = "Surbrillance, progression.";
@@ -1535,6 +1548,7 @@
 "Siguiente" = "Suivant";
 "Siguiente canción" = "Next song";
 "Silenciar" = "Couper le son";
+"Simkl is temporarily limiting requests. Try again later." = "Simkl is temporarily limiting requests. Try again later.";
 "Sin configurar" = "Non défini";
 "Sin corrección" = "Aucune correction";
 "Sin corrección (predeterminado)" = "Aucune correction (par défaut)";
@@ -1596,6 +1610,8 @@
 "Startup & default" = "Démarrage et réglages par défaut";
 "Status" = "Statut";
 "Step 1 · Metadata" = "Étape 1 · Métadonnées";
+"Step 1 · Open Simkl" = "Étape 1 · Ouvrir Simkl";
+"Step 2 · Enter this code" = "Étape 2 · Saisir ce code";
 "Step 2 · Stremio" = "Étape 2 · Stremio";
 "Step 3 · Streaming" = "Étape 3 · Streaming";
 "Step 4 · Subtitles" = "Étape 4 · Sous-titres";
@@ -1768,6 +1784,7 @@
 "Top tracks" = "Top tracks";
 "Torrents" = "Torrents";
 "Track" = "Piste";
+"Tracking" = "Tracking";
 "Tracks" = "Pistes";
 "Traducir títulos" = "Traduire les titres";
 "Transfer primary" = "Transférer le profil principal";
@@ -1853,6 +1870,7 @@
 "Volumes" = "Tomes";
 "Volver a empezar" = "Recommencer";
 "Vídeo" = "Vidéo";
+"Waiting for you to authorize on simkl.com…" = "En attente de votre autorisation sur simkl.com…";
 "War" = "Guerre";
 "Watched" = "Vu";
 "Welcome to Harbor" = "Bienvenue sur Harbor";

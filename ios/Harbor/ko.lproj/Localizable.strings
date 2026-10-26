@@ -154,6 +154,8 @@
 "Audio languages" = "오디오 언어";
 "Audio not labeled" = "오디오 정보 없음";
 "Audio sin etiqueta" = "오디오 정보 없음";
+"Authorization expired. Connect again." = "Authorization expired. Connect again.";
+"Authorize Harbor on Simkl" = "Simkl에서 Harbor 승인";
 "Auto" = "자동";
 "Auto (match video)" = "자동(동영상에 맞춤)";
 "Auto-play next episode" = "다음 에피소드 자동 재생";
@@ -350,6 +352,7 @@
 "Close navigation" = "Close navigation";
 "Close player" = "플레이어 닫기";
 "Clásica" = "클래식";
+"Code expired. Try again." = "Code expired. Try again.";
 "Colecciones" = "컬렉션";
 "Collections" = "컬렉션";
 "Color de la barra" = "바 색상";
@@ -386,7 +389,10 @@
 "Confirm your PIN" = "PIN 확인";
 "Confirm your current PIN to remove the lock." = "잠금을 해제하려면 현재 PIN을 확인하세요.";
 "Confirm your current PIN, then pick a new one." = "현재 PIN을 확인한 후 새 PIN을 선택하세요.";
+"Connect Simkl" = "Simkl 연결";
 "Connect TMDB" = "TMDB 연결";
+"Connected" = "연결됨";
+"Connected to Simkl" = "Simkl에 연결됨";
 "Connecting" = "연결 중";
 "Conservar original" = "원본 유지";
 "Contenido" = "콘텐츠";
@@ -409,21 +415,26 @@
 "Controls" = "컨트롤";
 "Copia principal." = "기본 문구.";
 "Copia secundaria." = "보조 사본입니다.";
+"Copied" = "복사됨";
+"Copy" = "복사";
 "Corner radius" = "모서리 둥글기";
 "Correo y contraseña" = "Email and password";
 "Could not analyze this source. Playback continues; you can retry." = "Could not analyze this source. Playback continues; you can retry.";
 "Could not apply the timing. The original subtitle is kept." = "Could not apply the timing. The original subtitle is kept.";
 "Could not complete this action. Try again." = "이 작업을 완료하지 못했습니다. 다시 시도하세요.";
+"Could not connect to Simkl. Try again." = "Could not connect to Simkl. Try again.";
 "Could not load navigation settings. Saved settings are kept." = "Could not load navigation settings. Saved settings are kept.";
 "Could not load streaming preferences. Saved settings are kept." = "Could not load streaming preferences. Saved settings are kept.";
 "Could not load this page. Try again." = "이 페이지를 불러오지 못했습니다. 다시 시도해 주세요.";
 "Could not measure storage. Try again." = "Could not measure storage. Try again.";
 "Could not open book" = "Could not open book";
+"Could not read the account on this device." = "Could not read the account on this device.";
 "Could not read your saved tracks and listening history. Your data is preserved." = "Could not read your saved tracks and listening history. Your data is preserved.";
 "Could not restore your navigation. The saved version is kept." = "Could not restore your navigation. The saved version is kept.";
 "Could not restore your services. The saved version is kept." = "서비스를 복원하지 못했습니다. 저장된 버전은 유지됩니다.";
 "Could not save navigation settings. Your previous settings are kept." = "Could not save navigation settings. Your previous settings are kept.";
 "Could not save streaming preferences. Your previous settings are kept." = "Could not save streaming preferences. Your previous settings are kept.";
+"Could not save the account on this device." = "Could not save the account on this device.";
 "Could not save your choices. Try again." = "Could not save your choices. Try again.";
 "Could not save your tracks or listening history. Try again." = "Could not save your tracks or listening history. Try again.";
 "Couldn't auto-sync" = "자동 동기화하지 못했습니다";
@@ -1074,6 +1085,7 @@
 "Normal" = "보통";
 "Norwegian" = "노르웨이어";
 "Not a stream plugin: it exports no getStreams or streams function." = "스트림 플러그인이 아닙니다: getStreams 또는 streams 함수를 내보내지 않습니다.";
+"Not connected" = "연결되지 않음";
 "Not interested" = "관심 없음";
 "Not now" = "나중에";
 "Not set" = "설정되지 않음";
@@ -1353,6 +1365,7 @@
 "Reproducir automáticamente el siguiente episodio" = "다음 에피소드 자동 재생";
 "Reproducir después" = "다음에 재생";
 "Reproductor" = "선수";
+"Requesting code from Simkl…" = "Simkl에서 코드 요청 중…";
 "Requiere al menos 10 títulos para el estilo de Top 10" = "상위 10개 스타일에는 작품이 10개 이상 필요합니다";
 "Requiere títulos con abundante material gráfico para el contenido destacado" = "히어로에 표시하려면 아트워크가 풍부한 작품이 필요합니다";
 "Resaltado, progreso." = "강조, 진행률.";
@@ -1535,6 +1548,7 @@
 "Siguiente" = "다음";
 "Siguiente canción" = "Next song";
 "Silenciar" = "음소거";
+"Simkl is temporarily limiting requests. Try again later." = "Simkl is temporarily limiting requests. Try again later.";
 "Sin configurar" = "설정되지 않음";
 "Sin corrección" = "보정 안 함";
 "Sin corrección (predeterminado)" = "보정 안 함(기본값)";
@@ -1596,6 +1610,8 @@
 "Startup & default" = "시작 및 기본값";
 "Status" = "상태";
 "Step 1 · Metadata" = "1단계 · 메타데이터";
+"Step 1 · Open Simkl" = "1단계 · Simkl 열기";
+"Step 2 · Enter this code" = "2단계 · 이 코드 입력";
 "Step 2 · Stremio" = "2단계 · Stremio";
 "Step 3 · Streaming" = "3단계 · 스트리밍";
 "Step 4 · Subtitles" = "4단계 · 자막";
@@ -1768,6 +1784,7 @@
 "Top tracks" = "Top tracks";
 "Torrents" = "토렌트";
 "Track" = "트랙";
+"Tracking" = "Tracking";
 "Tracks" = "트랙";
 "Traducir títulos" = "제목 번역";
 "Transfer primary" = "기본 프로필 이전";
@@ -1853,6 +1870,7 @@
 "Volumes" = "권";
 "Volver a empezar" = "처음부터 재생";
 "Vídeo" = "동영상";
+"Waiting for you to authorize on simkl.com…" = "simkl.com에서 인증하기를 기다리는 중…";
 "War" = "전쟁";
 "Watched" = "시청함";
 "Welcome to Harbor" = "Harbor에 오신 것을 환영합니다";

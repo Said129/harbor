@@ -1,0 +1,355 @@
+{
+  "reference": "0834340cec5531650bfe78cd628628702e636987",
+  "actual_original_typescript_executed": true,
+  "provider_network_requests": 0,
+  "inputs": {
+    "src/lib/simkl/retry-policy.ts": "fcdc150228cf8883e5e014d878546160eec3e8efb081aaeddd68410c99a6d5dd"
+  },
+  "implementation_sources_not_executed": {
+    "src/lib/simkl/config.ts": "4926bd88b63e0dfe6f1f78d746348db828339eafde495dee4e03f3be110b0052",
+    "src/lib/simkl/client.ts": "a99c494c4977da3636df6a0fc8a91a6215c0562398cc1ef61edbd1d307b475c6",
+    "src/lib/simkl/device-auth.ts": "2bc83557010dd5e12050672402e67e76730cb551d643729275046726ecad5bc8",
+    "src/lib/simkl/session.ts": "644f38af6458b2c2392b00c1bbb5d44bf9fcfec2deb0005d3fe8063df98b7cb7",
+    "src/views/settings/simkl-panel.tsx": "6e0268e8009c932f4707b5390422160301f562d18870b84b965a2e0c42504be9",
+    "src/components/simkl/simkl-device-modal.tsx": "c46a76b8370e314145ab7602542a8ffc4d65b1c139dc2ba1a7570abd6f950ccd",
+    "src/assets/simkl.png": "f19412bc1500bbf54bd9cc885492af8880dece3b5c0f1670eaa71ed5a20ac924"
+  },
+  "cases": [
+    {
+      "status": 429,
+      "body": "{}",
+      "retryAfter": null,
+      "attempt": 0,
+      "now": 1700000000000,
+      "random": 0.123,
+      "expected": {
+        "delayMs": 1123,
+        "cooldown": null
+      }
+    },
+    {
+      "status": 429,
+      "body": "{}",
+      "retryAfter": null,
+      "attempt": 1,
+      "now": 1700000000000,
+      "random": 0.123,
+      "expected": {
+        "delayMs": 1123,
+        "cooldown": null
+      }
+    },
+    {
+      "status": 429,
+      "body": "{}",
+      "retryAfter": null,
+      "attempt": 4,
+      "now": 1700000000000,
+      "random": 0.123,
+      "expected": {
+        "delayMs": 1123,
+        "cooldown": null
+      }
+    },
+    {
+      "status": 429,
+      "body": "{}",
+      "retryAfter": null,
+      "attempt": 5,
+      "now": 1700000000000,
+      "random": 0.123,
+      "expected": {
+        "delayMs": 1123,
+        "cooldown": null
+      }
+    },
+    {
+      "status": 500,
+      "body": "{}",
+      "retryAfter": null,
+      "attempt": 0,
+      "now": 1700000000000,
+      "random": 0.123,
+      "expected": {
+        "delayMs": 1123,
+        "cooldown": null
+      }
+    },
+    {
+      "status": 500,
+      "body": "{}",
+      "retryAfter": null,
+      "attempt": 1,
+      "now": 1700000000000,
+      "random": 0.123,
+      "expected": {
+        "delayMs": 2123,
+        "cooldown": null
+      }
+    },
+    {
+      "status": 500,
+      "body": "{}",
+      "retryAfter": null,
+      "attempt": 4,
+      "now": 1700000000000,
+      "random": 0.123,
+      "expected": {
+        "delayMs": 16123,
+        "cooldown": null
+      }
+    },
+    {
+      "status": 500,
+      "body": "{}",
+      "retryAfter": null,
+      "attempt": 5,
+      "now": 1700000000000,
+      "random": 0.123,
+      "expected": {
+        "delayMs": 16123,
+        "cooldown": null
+      }
+    },
+    {
+      "status": 502,
+      "body": "{}",
+      "retryAfter": null,
+      "attempt": 0,
+      "now": 1700000000000,
+      "random": 0.123,
+      "expected": {
+        "delayMs": 1123,
+        "cooldown": null
+      }
+    },
+    {
+      "status": 502,
+      "body": "{}",
+      "retryAfter": null,
+      "attempt": 1,
+      "now": 1700000000000,
+      "random": 0.123,
+      "expected": {
+        "delayMs": 2123,
+        "cooldown": null
+      }
+    },
+    {
+      "status": 502,
+      "body": "{}",
+      "retryAfter": null,
+      "attempt": 4,
+      "now": 1700000000000,
+      "random": 0.123,
+      "expected": {
+        "delayMs": 16123,
+        "cooldown": null
+      }
+    },
+    {
+      "status": 502,
+      "body": "{}",
+      "retryAfter": null,
+      "attempt": 5,
+      "now": 1700000000000,
+      "random": 0.123,
+      "expected": {
+        "delayMs": 16123,
+        "cooldown": null
+      }
+    },
+    {
+      "status": 503,
+      "body": "{}",
+      "retryAfter": null,
+      "attempt": 0,
+      "now": 1700000000000,
+      "random": 0.123,
+      "expected": {
+        "delayMs": 1123,
+        "cooldown": null
+      }
+    },
+    {
+      "status": 503,
+      "body": "{}",
+      "retryAfter": null,
+      "attempt": 1,
+      "now": 1700000000000,
+      "random": 0.123,
+      "expected": {
+        "delayMs": 2123,
+        "cooldown": null
+      }
+    },
+    {
+      "status": 503,
+      "body": "{}",
+      "retryAfter": null,
+      "attempt": 4,
+      "now": 1700000000000,
+      "random": 0.123,
+      "expected": {
+        "delayMs": 16123,
+        "cooldown": null
+      }
+    },
+    {
+      "status": 503,
+      "body": "{}",
+      "retryAfter": null,
+      "attempt": 5,
+      "now": 1700000000000,
+      "random": 0.123,
+      "expected": {
+        "delayMs": 16123,
+        "cooldown": null
+      }
+    },
+    {
+      "status": 429,
+      "body": "{\"error\":\"user_limit_exceeded\"}",
+      "retryAfter": null,
+      "attempt": 0,
+      "now": 1700000000000,
+      "random": 0.9999,
+      "expected": {
+        "delayMs": 60000,
+        "cooldown": "user"
+      }
+    },
+    {
+      "status": 429,
+      "body": "{\"error\":\"app_limit_exceeded\"}",
+      "retryAfter": "3",
+      "attempt": 0,
+      "now": 1700000000000,
+      "random": 0.9999,
+      "expected": {
+        "delayMs": 3000,
+        "cooldown": "app"
+      }
+    },
+    {
+      "status": 429,
+      "body": "{\"error\":\"user_limit_exceeded\"}",
+      "retryAfter": "0",
+      "attempt": 0,
+      "now": 1700000000000,
+      "random": 0.9999,
+      "expected": {
+        "delayMs": 1000,
+        "cooldown": "user"
+      }
+    },
+    {
+      "status": 429,
+      "body": "{}",
+      "retryAfter": "86400",
+      "attempt": 0,
+      "now": 1700000000000,
+      "random": 0.9999,
+      "expected": {
+        "delayMs": 1999,
+        "cooldown": null
+      }
+    },
+    {
+      "status": 429,
+      "body": "not JSON",
+      "retryAfter": "86400",
+      "attempt": 0,
+      "now": 1700000000000,
+      "random": 0.9999,
+      "expected": {
+        "delayMs": 1999,
+        "cooldown": null
+      }
+    },
+    {
+      "status": 503,
+      "body": "{}",
+      "retryAfter": "31",
+      "attempt": 0,
+      "now": 1700000000000,
+      "random": 0.9999,
+      "expected": {
+        "delayMs": 31000,
+        "cooldown": "app"
+      }
+    },
+    {
+      "status": 503,
+      "body": "{}",
+      "retryAfter": "30",
+      "attempt": 0,
+      "now": 1700000000000,
+      "random": 0.9999,
+      "expected": {
+        "delayMs": 30999,
+        "cooldown": null
+      }
+    },
+    {
+      "status": 503,
+      "body": "{}",
+      "retryAfter": "garbage",
+      "attempt": 0,
+      "now": 1700000000000,
+      "random": 0.9999,
+      "expected": {
+        "delayMs": 1999,
+        "cooldown": null
+      }
+    },
+    {
+      "status": 503,
+      "body": "{}",
+      "retryAfter": "-2",
+      "attempt": 0,
+      "now": 1700000000000,
+      "random": 0.9999,
+      "expected": {
+        "delayMs": 1999,
+        "cooldown": null
+      }
+    },
+    {
+      "status": 503,
+      "body": "{}",
+      "retryAfter": "Tue, 14 Nov 2023 22:13:25 GMT",
+      "attempt": 0,
+      "now": 1700000000000,
+      "random": 0.9999,
+      "expected": {
+        "delayMs": 5999,
+        "cooldown": null
+      }
+    },
+    {
+      "status": 503,
+      "body": "{}",
+      "retryAfter": "Tue, 14 Nov 2023 22:13:19 GMT",
+      "attempt": 0,
+      "now": 1700000000000,
+      "random": 0.9999,
+      "expected": {
+        "delayMs": 1999,
+        "cooldown": null
+      }
+    },
+    {
+      "status": 503,
+      "body": "{}",
+      "retryAfter": "99999999999999999999999999999999999999999",
+      "attempt": 0,
+      "now": 1700000000000,
+      "random": 0.9999,
+      "expected": {
+        "delayMs": 9005499254740991,
+        "cooldown": "app"
+      }
+    }
+  ]
+}

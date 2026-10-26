@@ -154,6 +154,8 @@
 "Audio languages" = "Ngôn ngữ âm thanh";
 "Audio not labeled" = "Âm thanh không có nhãn";
 "Audio sin etiqueta" = "Âm thanh không có nhãn";
+"Authorization expired. Connect again." = "Authorization expired. Connect again.";
+"Authorize Harbor on Simkl" = "Ủy quyền Harbor trên Simkl";
 "Auto" = "Tự động";
 "Auto (match video)" = "Tự động (khớp video)";
 "Auto-play next episode" = "Tự động phát tập tiếp theo";
@@ -350,6 +352,7 @@
 "Close navigation" = "Close navigation";
 "Close player" = "Đóng trình phát";
 "Clásica" = "Cổ điển";
+"Code expired. Try again." = "Code expired. Try again.";
 "Colecciones" = "Bộ sưu tập";
 "Collections" = "Bộ sưu tập";
 "Color de la barra" = "Màu thanh";
@@ -386,7 +389,10 @@
 "Confirm your PIN" = "Xác nhận mã PIN";
 "Confirm your current PIN to remove the lock." = "Xác nhận mã PIN hiện tại để bỏ khóa.";
 "Confirm your current PIN, then pick a new one." = "Xác nhận mã PIN hiện tại, rồi chọn mã mới.";
+"Connect Simkl" = "Kết nối Simkl";
 "Connect TMDB" = "Kết nối TMDB";
+"Connected" = "Đã kết nối";
+"Connected to Simkl" = "Đã kết nối với Simkl";
 "Connecting" = "Đang kết nối";
 "Conservar original" = "Giữ nguyên bản";
 "Contenido" = "Nội dung";
@@ -409,21 +415,26 @@
 "Controls" = "Điều khiển";
 "Copia principal." = "Bản chính.";
 "Copia secundaria." = "Bản sao phụ.";
+"Copied" = "Đã sao chép";
+"Copy" = "Sao chép";
 "Corner radius" = "Độ bo góc";
 "Correo y contraseña" = "Email and password";
 "Could not analyze this source. Playback continues; you can retry." = "Could not analyze this source. Playback continues; you can retry.";
 "Could not apply the timing. The original subtitle is kept." = "Could not apply the timing. The original subtitle is kept.";
 "Could not complete this action. Try again." = "Không thể hoàn tất thao tác này. Hãy thử lại.";
+"Could not connect to Simkl. Try again." = "Could not connect to Simkl. Try again.";
 "Could not load navigation settings. Saved settings are kept." = "Could not load navigation settings. Saved settings are kept.";
 "Could not load streaming preferences. Saved settings are kept." = "Could not load streaming preferences. Saved settings are kept.";
 "Could not load this page. Try again." = "Không thể tải trang này. Vui lòng thử lại.";
 "Could not measure storage. Try again." = "Could not measure storage. Try again.";
 "Could not open book" = "Could not open book";
+"Could not read the account on this device." = "Could not read the account on this device.";
 "Could not read your saved tracks and listening history. Your data is preserved." = "Could not read your saved tracks and listening history. Your data is preserved.";
 "Could not restore your navigation. The saved version is kept." = "Could not restore your navigation. The saved version is kept.";
 "Could not restore your services. The saved version is kept." = "Không thể khôi phục các dịch vụ của bạn. Phiên bản đã lưu vẫn được giữ lại.";
 "Could not save navigation settings. Your previous settings are kept." = "Could not save navigation settings. Your previous settings are kept.";
 "Could not save streaming preferences. Your previous settings are kept." = "Could not save streaming preferences. Your previous settings are kept.";
+"Could not save the account on this device." = "Could not save the account on this device.";
 "Could not save your choices. Try again." = "Could not save your choices. Try again.";
 "Could not save your tracks or listening history. Try again." = "Could not save your tracks or listening history. Try again.";
 "Couldn't auto-sync" = "Không thể tự động đồng bộ";
@@ -1074,6 +1085,7 @@
 "Normal" = "Bình thường";
 "Norwegian" = "Tiếng Na Uy";
 "Not a stream plugin: it exports no getStreams or streams function." = "Không phải plugin luồng phát: không xuất hàm getStreams hay streams.";
+"Not connected" = "Chưa kết nối";
 "Not interested" = "Không quan tâm";
 "Not now" = "Để sau";
 "Not set" = "Chưa đặt";
@@ -1353,6 +1365,7 @@
 "Reproducir automáticamente el siguiente episodio" = "Tự động phát tập tiếp theo";
 "Reproducir después" = "Phát tiếp theo";
 "Reproductor" = "Tuyển thủ";
+"Requesting code from Simkl…" = "Đang yêu cầu mã từ Simkl…";
 "Requiere al menos 10 títulos para el estilo de Top 10" = "Cần ít nhất 10 tựa phim để hiển thị theo dạng Top 10";
 "Requiere títulos con abundante material gráfico para el contenido destacado" = "Cần các tựa phim có hình ảnh phong phú để đưa lên mục nổi bật";
 "Resaltado, progreso." = "Tô sáng, tiến trình.";
@@ -1535,6 +1548,7 @@
 "Siguiente" = "Tiếp theo";
 "Siguiente canción" = "Next song";
 "Silenciar" = "Tắt tiếng";
+"Simkl is temporarily limiting requests. Try again later." = "Simkl is temporarily limiting requests. Try again later.";
 "Sin configurar" = "Chưa đặt";
 "Sin corrección" = "Không hiệu chỉnh";
 "Sin corrección (predeterminado)" = "Không hiệu chỉnh (mặc định)";
@@ -1596,6 +1610,8 @@
 "Startup & default" = "Khởi động và mặc định";
 "Status" = "Trạng thái";
 "Step 1 · Metadata" = "Bước 1 · Siêu dữ liệu";
+"Step 1 · Open Simkl" = "Bước 1 · Mở Simkl";
+"Step 2 · Enter this code" = "Bước 2 · Nhập mã này";
 "Step 2 · Stremio" = "Bước 2 · Stremio";
 "Step 3 · Streaming" = "Bước 3 · Dịch vụ phát trực tuyến";
 "Step 4 · Subtitles" = "Bước 4 · Phụ đề";
@@ -1768,6 +1784,7 @@
 "Top tracks" = "Top tracks";
 "Torrents" = "Torrent";
 "Track" = "Bản nhạc";
+"Tracking" = "Tracking";
 "Tracks" = "Rãnh";
 "Traducir títulos" = "Dịch tiêu đề";
 "Transfer primary" = "Chuyển hồ sơ chính";
@@ -1853,6 +1870,7 @@
 "Volumes" = "Tập";
 "Volver a empezar" = "Phát lại từ đầu";
 "Vídeo" = "Video";
+"Waiting for you to authorize on simkl.com…" = "Đang chờ bạn cấp quyền trên simkl.com…";
 "War" = "Chiến tranh";
 "Watched" = "Đã xem";
 "Welcome to Harbor" = "Chào mừng đến với Harbor";

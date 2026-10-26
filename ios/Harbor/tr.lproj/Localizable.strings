@@ -154,6 +154,8 @@
 "Audio languages" = "Ses dilleri";
 "Audio not labeled" = "Ses bilgisi belirtilmemiş";
 "Audio sin etiqueta" = "Ses bilgisi belirtilmemiş";
+"Authorization expired. Connect again." = "Authorization expired. Connect again.";
+"Authorize Harbor on Simkl" = "Harbor'ı Simkl'de yetkilendir";
 "Auto" = "Otomatik";
 "Auto (match video)" = "Otomatik (videoyla eşleştir)";
 "Auto-play next episode" = "Sonraki bölümü otomatik oynat";
@@ -350,6 +352,7 @@
 "Close navigation" = "Close navigation";
 "Close player" = "Oynatıcıyı kapat";
 "Clásica" = "Klasik";
+"Code expired. Try again." = "Code expired. Try again.";
 "Colecciones" = "Koleksiyonlar";
 "Collections" = "Koleksiyonlar";
 "Color de la barra" = "Çubuk rengi";
@@ -386,7 +389,10 @@
 "Confirm your PIN" = "PIN'inizi doğrulayın";
 "Confirm your current PIN to remove the lock." = "Kilidi kaldırmak için geçerli PIN'inizi doğrulayın.";
 "Confirm your current PIN, then pick a new one." = "Geçerli PIN'inizi doğrulayın, ardından yeni bir PIN seçin.";
+"Connect Simkl" = "Simkl'ı bağla";
 "Connect TMDB" = "TMDB'yi bağla";
+"Connected" = "Bağlı";
+"Connected to Simkl" = "Simkl'e bağlandı";
 "Connecting" = "Bağlanıyor";
 "Conservar original" = "Özgün biçimi koru";
 "Contenido" = "İçerik";
@@ -409,21 +415,26 @@
 "Controls" = "Kontroller";
 "Copia principal." = "Birincil metin.";
 "Copia secundaria." = "İkincil metin.";
+"Copied" = "Kopyalandı";
+"Copy" = "Kopyala";
 "Corner radius" = "Köşe yarıçapı";
 "Correo y contraseña" = "Email and password";
 "Could not analyze this source. Playback continues; you can retry." = "Could not analyze this source. Playback continues; you can retry.";
 "Could not apply the timing. The original subtitle is kept." = "Could not apply the timing. The original subtitle is kept.";
 "Could not complete this action. Try again." = "Bu işlem tamamlanamadı. Tekrar deneyin.";
+"Could not connect to Simkl. Try again." = "Could not connect to Simkl. Try again.";
 "Could not load navigation settings. Saved settings are kept." = "Could not load navigation settings. Saved settings are kept.";
 "Could not load streaming preferences. Saved settings are kept." = "Could not load streaming preferences. Saved settings are kept.";
 "Could not load this page. Try again." = "Bu sayfa yüklenemedi. Tekrar deneyin.";
 "Could not measure storage. Try again." = "Could not measure storage. Try again.";
 "Could not open book" = "Could not open book";
+"Could not read the account on this device." = "Could not read the account on this device.";
 "Could not read your saved tracks and listening history. Your data is preserved." = "Could not read your saved tracks and listening history. Your data is preserved.";
 "Could not restore your navigation. The saved version is kept." = "Could not restore your navigation. The saved version is kept.";
 "Could not restore your services. The saved version is kept." = "Hizmetleriniz geri yüklenemedi. Kayıtlı sürüm korunuyor.";
 "Could not save navigation settings. Your previous settings are kept." = "Could not save navigation settings. Your previous settings are kept.";
 "Could not save streaming preferences. Your previous settings are kept." = "Could not save streaming preferences. Your previous settings are kept.";
+"Could not save the account on this device." = "Could not save the account on this device.";
 "Could not save your choices. Try again." = "Could not save your choices. Try again.";
 "Could not save your tracks or listening history. Try again." = "Could not save your tracks or listening history. Try again.";
 "Couldn't auto-sync" = "Otomatik eşitlenemedi";
@@ -1074,6 +1085,7 @@
 "Normal" = "Normal";
 "Norwegian" = "Norveççe";
 "Not a stream plugin: it exports no getStreams or streams function." = "Yayın uzantısı değil: getStreams veya streams işlevi dışa aktarmıyor.";
+"Not connected" = "Bağlı değil";
 "Not interested" = "İlgilenmiyorum";
 "Not now" = "Şimdi değil";
 "Not set" = "Ayarlanmadı";
@@ -1353,6 +1365,7 @@
 "Reproducir automáticamente el siguiente episodio" = "Sonraki bölümü otomatik oynat";
 "Reproducir después" = "Sıradaki olarak çal";
 "Reproductor" = "Oyuncu";
+"Requesting code from Simkl…" = "Simkl'den kod isteniyor…";
 "Requiere al menos 10 títulos para el estilo de Top 10" = "İlk 10 görünümü için en az 10 içerik gerekir";
 "Requiere títulos con abundante material gráfico para el contenido destacado" = "Vitrinde gösterilebilmesi için zengin görsellere sahip içerikler gerekir";
 "Resaltado, progreso." = "Vurgu, ilerleme.";
@@ -1535,6 +1548,7 @@
 "Siguiente" = "Sonraki";
 "Siguiente canción" = "Next song";
 "Silenciar" = "Sesi kapat";
+"Simkl is temporarily limiting requests. Try again later." = "Simkl is temporarily limiting requests. Try again later.";
 "Sin configurar" = "Ayarlanmadı";
 "Sin corrección" = "Düzeltme yok";
 "Sin corrección (predeterminado)" = "Düzeltme yok (varsayılan)";
@@ -1596,6 +1610,8 @@
 "Startup & default" = "Başlangıç ve varsayılan";
 "Status" = "Durum";
 "Step 1 · Metadata" = "1. Adım · Meta veriler";
+"Step 1 · Open Simkl" = "1. Adım · Simkl'ı açın";
+"Step 2 · Enter this code" = "2. Adım · Bu kodu girin";
 "Step 2 · Stremio" = "2. Adım · Stremio";
 "Step 3 · Streaming" = "3. Adım · Yayın hizmetleri";
 "Step 4 · Subtitles" = "4. Adım · Altyazılar";
@@ -1768,6 +1784,7 @@
 "Top tracks" = "Top tracks";
 "Torrents" = "Torrentler";
 "Track" = "Parça";
+"Tracking" = "Tracking";
 "Tracks" = "Parçalar";
 "Traducir títulos" = "Başlıkları çevir";
 "Transfer primary" = "Birincil profili aktar";
@@ -1853,6 +1870,7 @@
 "Volumes" = "Ciltler";
 "Volver a empezar" = "Baştan Başlat";
 "Vídeo" = "Video";
+"Waiting for you to authorize on simkl.com…" = "simkl.com'da yetkilendirmeniz bekleniyor…";
 "War" = "Savaş";
 "Watched" = "İzlendi";
 "Welcome to Harbor" = "Harbor'a hoş geldiniz";
