@@ -29,6 +29,19 @@ import XCTest
         choose("poster-card-effect", "Fade", app)
         choose("poster-card-quality", "Balanced", app)
         capture(app, "poster-quality-controls-" + device)
+        let behaviorIDs = ["poster-focused-card", "poster-backdrop-expansion", "poster-dock-magnification"]
+        for identifier in behaviorIDs {
+            let toggle = app.switches[identifier]; show(toggle, app)
+            XCTAssertEqual(toggle.value as? String, "0"); ReadingUIInteraction.tapVisible(toggle, in: app)
+            XCTAssertEqual(toggle.value as? String, "1")
+        }
+        let duration = app.sliders["poster-dock-duration"]; show(duration, app)
+        duration.adjust(toNormalizedSliderPosition: 0.8); let durationValue = duration.value as? String
+        XCTAssertNotNil(durationValue)
+        let preview = app.descendants(matching: .any).matching(identifier: "poster-dock-preview").firstMatch
+        show(preview, app); XCTAssertEqual(preview.value as? String, "The General")
+        XCTAssertGreaterThan(preview.frame.width, 200); XCTAssertGreaterThan(preview.frame.height, 70)
+        capture(app, "poster-behavior-controls-" + device)
         relaunch(app)
         let wide = openCatalog(app)
         XCTAssertGreaterThan(wide.frame.width, wide.frame.height * 1.5)
@@ -43,7 +56,12 @@ import XCTest
         assertChoice("poster-card-effect", "Fade", app)
         assertChoice("poster-card-quality", "Balanced", app)
         capture(app, "poster-restored-" + device)
+        for identifier in behaviorIDs { let toggle = app.switches[identifier]; show(toggle, app); XCTAssertEqual(toggle.value as? String, "1") }
+        show(duration, app); XCTAssertEqual(duration.value as? String, durationValue)
+        show(preview, app); capture(app, "poster-behavior-restored-" + device)
         let reset = app.buttons["theme-reset"]; show(reset, app); ReadingUIInteraction.tapVisible(reset, in: app)
+        for identifier in behaviorIDs { let toggle = app.switches[identifier]; show(toggle, app, up: false); XCTAssertEqual(toggle.value as? String, "0") }
+        XCTAssertFalse(duration.exists); capture(app, "poster-behavior-reset-" + device)
         assertChoice("poster-card-style", "Poster", app, up: false)
         assertChoice("poster-card-effect", "Instant", app)
         assertChoice("poster-card-quality", "High", app)

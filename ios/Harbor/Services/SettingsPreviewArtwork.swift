@@ -60,7 +60,7 @@ actor SettingsPreviewSamples {
         for kind in ["series", "movie"] {
             let response = try? await fetch("https://v3-cinemeta.strem.io/catalog/\(kind)/top.json")
             let candidates = (response?["metas"].array ?? []).compactMap { Media.parse($0, kind: kind) }
-                .filter { $0.poster != nil && $0.background != nil && (Double($0.imdbRating ?? "") ?? 0) > 0 && $0.adult != true }.prefix(20)
+                .filter { $0.poster?.isEmpty == false && $0.background?.isEmpty == false && (Double($0.imdbRating ?? "") ?? 0) > 0 && $0.adult != true }.prefix(20)
             var picks: [Media] = []
             let items = Array(candidates)
             for index in stride(from: 0, to: items.count, by: 4) {

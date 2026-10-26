@@ -117,6 +117,7 @@
 "Animals" = "Animals";
 "Animated Movies" = "Animationsfilme";
 "Animation" = "Animation";
+"Animation speed" = "Animationsgeschwindigkeit";
 "Anime" = "Anime";
 "Anime Expo" = "Anime Expo";
 "Anime en tendencia" = "Anime im Trend";
@@ -298,6 +299,7 @@
 "Capítulo anterior" = "Vorheriges Kapitel";
 "Capítulo siguiente" = "Nächstes Kapitel";
 "Capítulos" = "Kapitel";
+"Card behaviour" = "Kartenverhalten";
 "Cards, panels." = "Karten, Bereiche.";
 "Cargar archivo" = "Datei laden";
 "Cargar más" = "Mehr laden";
@@ -560,6 +562,7 @@
 "Eliminar lista" = "Liste löschen";
 "Email and password" = "Email and password";
 "Embedded" = "Eingebettet";
+"Emphasize the selected card across the page while gently darkening and blurring the other cards." = "Hebt die ausgewählte Karte auf der gesamten Seite hervor und dunkelt die anderen Karten dezent ab und macht sie unscharf.";
 "En ascenso" = "Top-Aufsteiger";
 "En caché" = "Im Cache";
 "En directo" = "Live";
@@ -602,6 +605,8 @@
 "Everything your addons offer, shown as posters. Scroll, search, or filter to what you want." = "Alles, was deine Add-ons anbieten, als Poster dargestellt. Scrolle, suche oder filtere nach deinen Wünschen.";
 "Excellence Prize" = "Exzellenzpreis";
 "Exit Picture in Picture" = "Bild-in-Bild-Modus beenden";
+"Expand poster cards during keyboard or remote navigation across poster rows, using preloaded wide artwork." = "Posterkarten bei der Navigation mit Tastatur oder Fernbedienung durch Posterzeilen vergrößern, wobei vorgeladene Bilder im Querformat verwendet werden.";
+"Expanding Cards" = "Sich vergrößernde Karten";
 "Explicit" = "Explizit";
 "Explorar" = "Durchsuchen";
 "Explorar complementos" = "Add-ons durchsuchen";
@@ -645,6 +650,7 @@
 "Focus" = "Focus";
 "Focus GIF URL" = "GIF-URL fokussieren";
 "Focus mode" = "Fokusmodus";
+"Focused Card" = "Fokussierte Karte";
 "Fondo" = "Hintergrund";
 "Font" = "Schriftart";
 "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found." = "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found.";
@@ -674,6 +680,7 @@
 "Full HD · HDR" = "Full HD · HDR";
 "Gamma" = "Gamma";
 "Genre" = "Genre";
+"Gently magnify nearby posters as you move across a poster row." = "Poster in der Nähe sanft vergrößern, während du dich durch eine Posterreihe bewegst.";
 "German" = "Deutsch";
 "Get Started" = "Loslegen";
 "Get a free key at themoviedb.org" = "Kostenlosen Schlüssel auf themoviedb.org erhalten";
@@ -748,6 +755,7 @@
 "Horror" = "Horror";
 "Horror & Supernatural" = "Horror & Übernatürliches";
 "How large every poster card is drawn across Home and search." = "How large every poster card is drawn across Home and search.";
+"How long a poster takes to grow and settle as the pointer passes it." = "How long a poster takes to grow and settle as the pointer passes it.";
 "How many films?" = "Wie viele Filme?";
 "Hoy" = "Heute";
 "Hulu" = "Hulu";
@@ -1215,12 +1223,14 @@
 "Poster" = "Poster";
 "Poster card style" = "Stil der Posterkarten";
 "Poster cards" = "Posterkarten";
+"Poster dock magnification" = "Vergrößerung des Poster-Docks";
 "Poster reset to default" = "Poster reset to default";
 "Posters, ratings, lists" = "Poster, Bewertungen, Listen";
 "Predeterminado" = "Standard";
 "Predeterminado (acento dorado)" = "Standard (goldener Akzent)";
 "Preguntar si reanudar o empezar de nuevo" = "Fragen, ob fortgesetzt oder neu begonnen werden soll";
 "Premiered This Month" = "Diesen Monat erschienen";
+"Preview" = "Vorschau";
 "Previous" = "Zurück";
 "Previous chapter" = "Vorheriges Kapitel";
 "Previous day" = "Previous day";
@@ -2064,6 +2074,7 @@
 "{count} tracks" = "{count} Titel";
 "{h}h left" = "noch {h} Std.";
 "{h}h {m}m left" = "noch {h} Std. {m} Min.";
+"{ms} ms" = "{ms} ms";
 "{m}m left" = "noch {m} Min.";
 "{names}, and all other names, logos, and brand references are property of their respective owners and are used here only for compatibility and identification." = "{names} und alle anderen Namen, Logos und Markenverweise sind Eigentum ihrer jeweiligen Inhaber und werden hier ausschließlich zur Kompatibilität und Identifizierung verwendet.";
 "{name} + {n} more" = "{name} + {n} weitere";

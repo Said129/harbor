@@ -117,6 +117,7 @@
 "Animals" = "Animals";
 "Animated Movies" = "アニメ映画";
 "Animation" = "アニメーション";
+"Animation speed" = "アニメーション速度";
 "Anime" = "アニメ";
 "Anime Expo" = "Anime Expo";
 "Anime en tendencia" = "トレンドアニメ";
@@ -298,6 +299,7 @@
 "Capítulo anterior" = "前のチャプター";
 "Capítulo siguiente" = "次の話";
 "Capítulos" = "話";
+"Card behaviour" = "カードの動作";
 "Cards, panels." = "カード、パネル。";
 "Cargar archivo" = "ファイルを読み込む";
 "Cargar más" = "さらに読み込む";
@@ -560,6 +562,7 @@
 "Eliminar lista" = "リストを削除";
 "Email and password" = "Email and password";
 "Embedded" = "埋め込み";
+"Emphasize the selected card across the page while gently darkening and blurring the other cards." = "選択したカードをページ全体で強調し、ほかのカードを軽く暗くしてぼかします。";
 "En ascenso" = "人気急上昇";
 "En caché" = "キャッシュ済み";
 "En directo" = "ライブ";
@@ -602,6 +605,8 @@
 "Everything your addons offer, shown as posters. Scroll, search, or filter to what you want." = "アドオンが提供するすべてのコンテンツをポスター形式で表示します。スクロール、検索、フィルターで見たいものを探せます。";
 "Excellence Prize" = "優秀賞";
 "Exit Picture in Picture" = "ピクチャ・イン・ピクチャを終了";
+"Expand poster cards during keyboard or remote navigation across poster rows, using preloaded wide artwork." = "キーボードやリモコンでポスター列を移動する際、事前読み込みした横長画像を使ってポスターカードを拡大します。";
+"Expanding Cards" = "拡大カード";
 "Explicit" = "露骨な表現を含む";
 "Explorar" = "一覧";
 "Explorar complementos" = "アドオンを見る";
@@ -645,6 +650,7 @@
 "Focus" = "Focus";
 "Focus GIF URL" = "フォーカス時のGIF URL";
 "Focus mode" = "集中モード";
+"Focused Card" = "フォーカス中のカード";
 "Fondo" = "背景";
 "Font" = "フォント";
 "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found." = "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found.";
@@ -674,6 +680,7 @@
 "Full HD · HDR" = "Full HD · HDR";
 "Gamma" = "ガンマ";
 "Genre" = "ジャンル";
+"Gently magnify nearby posters as you move across a poster row." = "ポスターの列を移動すると、近くのポスターが滑らかに拡大します。";
 "German" = "ドイツ語";
 "Get Started" = "はじめる";
 "Get a free key at themoviedb.org" = "themoviedb.orgで無料キーを取得";
@@ -748,6 +755,7 @@
 "Horror" = "ホラー";
 "Horror & Supernatural" = "ホラー＆超常現象";
 "How large every poster card is drawn across Home and search." = "How large every poster card is drawn across Home and search.";
+"How long a poster takes to grow and settle as the pointer passes it." = "How long a poster takes to grow and settle as the pointer passes it.";
 "How many films?" = "映画は何本？";
 "Hoy" = "今日";
 "Hulu" = "Hulu";
@@ -1215,12 +1223,14 @@
 "Poster" = "ポスター";
 "Poster card style" = "ポスターカードのスタイル";
 "Poster cards" = "ポスターカード";
+"Poster dock magnification" = "ポスター列のDock風拡大";
 "Poster reset to default" = "Poster reset to default";
 "Posters, ratings, lists" = "ポスター、評価、リスト";
 "Predeterminado" = "デフォルト";
 "Predeterminado (acento dorado)" = "デフォルト（ゴールドのアクセント）";
 "Preguntar si reanudar o empezar de nuevo" = "続きから再生するか最初から再生するか確認";
 "Premiered This Month" = "今月の新作";
+"Preview" = "プレビュー";
 "Previous" = "前へ";
 "Previous chapter" = "前のチャプター";
 "Previous day" = "Previous day";
@@ -2064,6 +2074,7 @@
 "{count} tracks" = "{count}曲";
 "{h}h left" = "残り{h}時間";
 "{h}h {m}m left" = "残り{h}時間{m}分";
+"{ms} ms" = "{ms} ミリ秒";
 "{m}m left" = "残り{m}分";
 "{names}, and all other names, logos, and brand references are property of their respective owners and are used here only for compatibility and identification." = "{names}をはじめ、その他すべての名称、ロゴ、ブランド表記は各所有者に帰属し、互換性の確保と識別のみを目的として使用されています。";
 "{name} + {n} more" = "{name}ほか{n}件";

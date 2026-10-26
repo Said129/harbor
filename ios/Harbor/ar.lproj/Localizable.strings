@@ -127,6 +127,7 @@
 "Animated Movies" = "أفلام الرسوم المتحركة";
 "Animated sidebar icons" = "Animated sidebar icons";
 "Animation" = "أنميشن";
+"Animation speed" = "سرعة الحركة";
 "Anime" = "أنمي";
 "Anime Expo" = "معرض Anime Expo";
 "Anime en tendencia" = "أنمي رائج";
@@ -318,6 +319,7 @@
 "Capítulo anterior" = "الفصل السابق";
 "Capítulo siguiente" = "الفصل التالي";
 "Capítulos" = "الفصول";
+"Card behaviour" = "سلوك البطاقات";
 "Cards, panels." = "بطاقات، لوحات.";
 "Cargar archivo" = "تحميل ملف";
 "Cargar más" = "تحميل المزيد";
@@ -584,6 +586,7 @@
 "Eliminar lista" = "حذف القائمة";
 "Email and password" = "Email and password";
 "Embedded" = "مدمج";
+"Emphasize the selected card across the page while gently darkening and blurring the other cards." = "إبراز البطاقة المحددة في الصفحة مع تعتيم البطاقات الأخرى وتشويشها برفق.";
 "En ascenso" = "الأكثر صعودًا";
 "En caché" = "مخزن مؤقتا";
 "En directo" = "مباشر";
@@ -626,6 +629,8 @@
 "Everything your addons offer, shown as posters. Scroll, search, or filter to what you want." = "كل ما تقدّمه إضافاتك، معروضًا على شكل ملصقات. مرّر أو ابحث أو صفِّ للوصول إلى ما تريد.";
 "Excellence Prize" = "جائزة التميّز";
 "Exit Picture in Picture" = "الخروج من صورة داخل صورة";
+"Expand poster cards during keyboard or remote navigation across poster rows, using preloaded wide artwork." = "توسيع بطاقات الملصقات أثناء التنقل بلوحة المفاتيح أو جهاز التحكم عبر صفوف الملصقات، باستخدام صور عريضة محمّلة مسبقًا.";
+"Expanding Cards" = "البطاقات المتوسّعة";
 "Explicit" = "محتوى صريح";
 "Explorar" = "تصفّح";
 "Explorar complementos" = "تصفح الإضافات";
@@ -669,6 +674,7 @@
 "Focus" = "Focus";
 "Focus GIF URL" = "رابط الصورة المتحركة (Focus GIF URL)";
 "Focus mode" = "وضع التركيز";
+"Focused Card" = "البطاقة المركّزة";
 "Fondo" = "الخلفية";
 "Font" = "الخط";
 "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found." = "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found.";
@@ -699,6 +705,7 @@
 "GB" = "GB";
 "Gamma" = "جاما";
 "Genre" = "النوع";
+"Gently magnify nearby posters as you move across a poster row." = "يكبّر الملصقات المجاورة بلطف أثناء تنقّلك عبر صف الملصقات.";
 "German" = "الألمانية";
 "Get Started" = "ابدأ الآن";
 "Get a free key at themoviedb.org" = "احصل على مفتاح مجاني من themoviedb.org";
@@ -773,6 +780,7 @@
 "Horror" = "رعب";
 "Horror & Supernatural" = "رعب وخوارق";
 "How large every poster card is drawn across Home and search." = "How large every poster card is drawn across Home and search.";
+"How long a poster takes to grow and settle as the pointer passes it." = "How long a poster takes to grow and settle as the pointer passes it.";
 "How many films?" = "كم عدد الأفلام؟";
 "Hoy" = "اليوم";
 "Hulu" = "Hulu";
@@ -1246,12 +1254,14 @@
 "Poster" = "الملصق";
 "Poster card style" = "نمط بطاقة الملصق";
 "Poster cards" = "بطاقات الملصقات";
+"Poster dock magnification" = "تكبير رصيف الملصقات";
 "Poster reset to default" = "Poster reset to default";
 "Posters, ratings, lists" = "الملصقات والتقييمات والقوائم";
 "Predeterminado" = "الافتراضي";
 "Predeterminado (acento dorado)" = "افتراضي (تمييز ذهبي)";
 "Preguntar si reanudar o empezar de nuevo" = "السؤال عن الاستئناف أو البدء من جديد";
 "Premiered This Month" = "عرض هذا الشهر";
+"Preview" = "معاينة";
 "Previous" = "السابق";
 "Previous chapter" = "الفصل السابق";
 "Previous day" = "Previous day";
@@ -2106,6 +2116,7 @@
 "{count} tracks" = "{count} مقطعًا";
 "{h}h left" = "بقي {h}س";
 "{h}h {m}m left" = "بقي {h}س {m}د";
+"{ms} ms" = "{ms} ms";
 "{m}m left" = "بقي {m}د";
 "{names}, and all other names, logos, and brand references are property of their respective owners and are used here only for compatibility and identification." = "إن {names}، وجميع الأسماء والشعارات والإشارات إلى العلامات التجارية الأخرى، ملك لأصحابها المعنيين، ولا تُستخدم هنا إلا لأغراض التوافق والتعريف.";
 "{name} + {n} more" = "{name} و{n} آخرين";

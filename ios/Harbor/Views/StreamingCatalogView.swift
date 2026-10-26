@@ -166,7 +166,7 @@ struct StreamingCatalogView: View {
             LazyHStack(alignment: .top, spacing: 12) {
                 ForEach(values, id: \.identity) { media in NavigationLink(value: media) { Poster(media: media) }.buttonStyle(.plain) }
             }.padding(.horizontal, 20)
-        }.scrollIndicators(.hidden)
+        }.scrollIndicators(.hidden).posterRowBehavior()
     }
     private func select(_ next: ServiceCatalogCategory) {
         guard category.id != next.id else { return }

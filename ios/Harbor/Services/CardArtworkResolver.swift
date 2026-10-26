@@ -12,6 +12,8 @@ enum CardArtworkRequest: Hashable, Sendable {
     case anime(kind: String, id: String)
     case mapping(String)
     case tvdb(Int)
+    case tvdbIMDb(String)
+    case simklAnime(Int)
     case tmdbFind(String)
     case tmdbIdentity(kind: String, id: Int)
     case tmdbImages(kind: String, id: Int, languages: String)
@@ -32,6 +34,10 @@ enum CardArtworkRequest: Hashable, Sendable {
         case .tvdb(let id):
             guard id > 0 else { throw HarborError(code: "card-artwork-request") }
             return base + "/api/tvdb/artwork?series=\(id)"
+        case .tvdbIMDb(let id):
+            guard id.range(of: "^tt[0-9]{7,12}$", options: .regularExpression) != nil else { throw HarborError(code: "card-artwork-request") }
+            return base + "/api/tvdb/artwork?imdb=" + id
+        case .simklAnime(let id): return try HTTPClient.simklArtworkRequest(id).url!.absoluteString
         case .tmdbFind(let imdb):
             guard imdb.range(of: "^tt[0-9]{7,12}$", options: .regularExpression) != nil else { throw HarborError(code: "card-artwork-request") }
             path = "find/" + imdb; parameters["external_source"] = "imdb_id"
@@ -63,6 +69,7 @@ protocol CardArtworkTransport: Sendable {
 struct CardArtworkHTTPTransport: CardArtworkTransport {
     func get(_ request: CardArtworkRequest, configuration: MetadataConfiguration) async throws -> JSONValue {
         if case .mapping(let id) = request { return try await AnimeFranchiseService.shared.response(.mapping(id)) }
+        if case .simklAnime(let id) = request { return try await SimklArtworkCatalog.shared.response(id) }
         return try await HTTPClient().json(request.url(configuration: configuration), credentialed: request.credentialed)
     }
 }
@@ -168,6 +175,74 @@ actor CardArtworkResolver {
         }
         curatedPending = task
         let value = await task.value; curated = value; curatedPending = nil; return value
+    }
+    func wideCandidates(_ input: Media, configuration: MetadataConfiguration) async -> [String] {
+        var media = input; media.id = input.artworkID
+        let kind = media.type == "movie" ? "movie" : "tv"
+        let simklParts = media.id.split(separator: ":")
+        let simkl = simklParts.count == 2 && simklParts[0] == "simkl" ? Int(simklParts[1]).flatMap { $0 > 0 ? $0 : nil } : nil
+        let isAnime = AnimeService.isAnime(media.id) || simkl != nil
+        let derived = isAnime && ["SPECIAL", "OVA", "ONA", "MUSIC"].contains(media.animeFormat?.uppercased() ?? "")
+        var reference = Self.tmdb(media.id), imdb = media.id.hasPrefix("tt") ? media.id : media.imdbID
+        var kitsu: Int?, series: Int?, mappingSource: String?
+        if let simkl {
+            let detail = await request(.simklAnime(simkl), configuration)
+            let ids = detail?["ids"]
+            kitsu = ids?["kitsu"].textValue.flatMap(Int.init); series = ids?["tvdb"].integer
+            imdb = ids?["imdb"].string ?? imdb
+            if let number = ids?["tmdb"].integer, number > 0 { reference = (kind, number) }
+            if kitsu == nil {
+                if let mal = ids?["mal"].integer, mal > 0 { mappingSource = "mal:\(mal)" }
+                else if let anidb = ids?["anidb"].integer, anidb > 0 { mappingSource = "anidb:\(anidb)" }
+            }
+        } else if isAnime, let identity = AnimePublicIdentity(media.id) {
+            if identity.provider == "kitsu" { kitsu = Int(identity.number) }
+            mappingSource = media.id
+        }
+        if let source = mappingSource, let identity = AnimePublicIdentity(source), let mapping = await request(.mapping(source), configuration),
+           mapping["mappings"][identity.mappingKey].textValue == identity.number {
+            let ids = mapping["mappings"]
+            kitsu = kitsu ?? ids["kitsu_id"].integer; series = series ?? ids["thetvdb_id"].integer; imdb = imdb ?? ids["imdb_id"].string
+        }
+        if !derived, series == nil, let kitsu, kitsu > 0, mappingSource != "kitsu:\(kitsu)",
+           let mapping = await request(.mapping("kitsu:\(kitsu)"), configuration), mapping["mappings"]["kitsu_id"].integer == kitsu {
+            series = mapping["mappings"]["thetvdb_id"].integer; imdb = imdb ?? mapping["mappings"]["imdb_id"].string
+        }
+        if reference == nil, !configuration.tmdbKey.isEmpty {
+            if isAnime {
+                var hits = await request(.tmdbSearch(kind: kind, name: media.name, year: media.releaseInfo), configuration)
+                if hits?["results"].array.isEmpty != false, media.releaseInfo != nil { hits = await request(.tmdbSearch(kind: kind, name: media.name, year: nil), configuration) }
+                if let hit = AnimeCardArtworkMatch.best(hits?["results"].array ?? [], name: media.name, year: media.releaseInfo, kind: kind, exact: derived), let id = hit["id"].integer { reference = (kind, id) }
+            } else if let imdb, let result = await request(.tmdbFind(imdb), configuration), let id = result[kind == "movie" ? "movie_results" : "tv_results"].array.first?["id"].integer { reference = (kind, id) }
+        }
+        async let tmdbArtwork = tmdbWideImages(reference, configuration)
+        async let tvdbArtwork = tvdbWideImages(series: derived ? nil : series, imdb: derived ? nil : imdb, configuration)
+        let values = await tmdbArtwork + tvdbArtwork + [media.background].compactMap { $0 }
+        let alternatives = PosterBehaviorPolicy.alternatives(values, poster: media.poster)
+        if !alternatives.isEmpty || !isAnime { return alternatives }
+        var empty = media; empty.background = nil
+        let staticArt = await anime.enrich([empty]).first?.background
+        if let staticArt { return PosterBehaviorPolicy.alternatives([staticArt], poster: media.poster) }
+        let canonical = kitsu.flatMap { $0 > 0 ? "kitsu:\($0)" : nil } ?? media.id
+        guard AnimeService.isAnime(canonical) else { return [] }
+        let full = await request(.anime(kind: media.type == "movie" ? "movie" : "series", id: canonical), configuration)
+        return PosterBehaviorPolicy.alternatives([full?["meta"]["background"].string].compactMap { $0 }, poster: media.poster)
+    }
+    private func tmdbWideImages(_ reference: (kind: String, id: Int)?, _ configuration: MetadataConfiguration) async -> [String] {
+        guard let reference, !configuration.tmdbKey.isEmpty else { return [] }
+        let policy = CardArtworkPolicy(languages: configuration.imageLanguages, metadataLanguage: configuration.language, originalLanguage: nil)
+        let images = await request(.tmdbImages(kind: reference.kind, id: reference.id, languages: policy.parameter), configuration)
+        return (images?["backdrops"].array ?? []).enumerated().sorted {
+            let a = $0.element["vote_average"].textValue.flatMap(Double.init) ?? 0, b = $1.element["vote_average"].textValue.flatMap(Double.init) ?? 0
+            return a == b ? $0.offset < $1.offset : a > b
+        }.prefix(12).compactMap { CardArtworkPolicy.tmdbImage($0.element["file_path"].string, size: "w780") }
+    }
+    private func tvdbWideImages(series: Int?, imdb: String?, _ configuration: MetadataConfiguration) async -> [String] {
+        let result: JSONValue?
+        if let series, series > 0 { result = await request(.tvdb(series), configuration) }
+        else if let imdb, imdb.range(of: "^tt[0-9]{7,12}$", options: .regularExpression) != nil { result = await request(.tvdbIMDb(imdb), configuration) }
+        else { return [] }
+        return result?["backgrounds"].array.compactMap { CardArtworkPolicy.image($0.string) } ?? []
     }
     private func perform(_ media: Media, configuration: MetadataConfiguration, pinnedLogo: String?) async -> ResolvedCardArtwork {
         let policy = CardArtworkPolicy(languages: configuration.imageLanguages, metadataLanguage: configuration.language, originalLanguage: media.originalLanguage)

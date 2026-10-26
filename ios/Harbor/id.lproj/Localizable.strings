@@ -117,6 +117,7 @@
 "Animals" = "Animals";
 "Animated Movies" = "Film Animasi";
 "Animation" = "Animasi";
+"Animation speed" = "Kecepatan animasi";
 "Anime" = "Anime";
 "Anime Expo" = "Anime Expo";
 "Anime en tendencia" = "Anime yang sedang tren";
@@ -298,6 +299,7 @@
 "Capítulo anterior" = "Bab sebelumnya";
 "Capítulo siguiente" = "Bab berikutnya";
 "Capítulos" = "Bab";
+"Card behaviour" = "Perilaku kartu";
 "Cards, panels." = "Kartu, panel.";
 "Cargar archivo" = "Muat file";
 "Cargar más" = "Muat lebih banyak";
@@ -560,6 +562,7 @@
 "Eliminar lista" = "Hapus daftar";
 "Email and password" = "Email and password";
 "Embedded" = "Tertanam";
+"Emphasize the selected card across the page while gently darkening and blurring the other cards." = "Tonjolkan kartu yang dipilih di seluruh halaman sambil sedikit menggelapkan dan memburamkan kartu lainnya.";
 "En ascenso" = "Paling melejit";
 "En caché" = "Tersimpan di cache";
 "En directo" = "Langsung";
@@ -602,6 +605,8 @@
 "Everything your addons offer, shown as posters. Scroll, search, or filter to what you want." = "Semua yang ditawarkan addon Anda, ditampilkan sebagai poster. Gulir, cari, atau filter untuk menemukan yang Anda inginkan.";
 "Excellence Prize" = "Penghargaan Keunggulan";
 "Exit Picture in Picture" = "Keluar dari Picture in Picture";
+"Expand poster cards during keyboard or remote navigation across poster rows, using preloaded wide artwork." = "Perluas kartu poster saat menavigasi deretan poster dengan keyboard atau remote, menggunakan gambar lebar yang telah dimuat sebelumnya.";
+"Expanding Cards" = "Kartu yang Diperluas";
 "Explicit" = "Eksplisit";
 "Explorar" = "Jelajahi";
 "Explorar complementos" = "Jelajahi addon";
@@ -645,6 +650,7 @@
 "Focus" = "Focus";
 "Focus GIF URL" = "URL GIF fokus";
 "Focus mode" = "Mode fokus";
+"Focused Card" = "Kartu Terfokus";
 "Fondo" = "Latar belakang";
 "Font" = "Font";
 "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found." = "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found.";
@@ -674,6 +680,7 @@
 "Full HD · HDR" = "Full HD · HDR";
 "Gamma" = "Gamma";
 "Genre" = "Genre";
+"Gently magnify nearby posters as you move across a poster row." = "Perbesar secara halus poster di sekitarnya saat Anda bergerak di sepanjang baris poster.";
 "German" = "Jerman";
 "Get Started" = "Mulai";
 "Get a free key at themoviedb.org" = "Dapatkan kunci gratis di themoviedb.org";
@@ -748,6 +755,7 @@
 "Horror" = "Horor";
 "Horror & Supernatural" = "Horor & Supranatural";
 "How large every poster card is drawn across Home and search." = "How large every poster card is drawn across Home and search.";
+"How long a poster takes to grow and settle as the pointer passes it." = "How long a poster takes to grow and settle as the pointer passes it.";
 "How many films?" = "Berapa banyak film?";
 "Hoy" = "Hari ini";
 "Hulu" = "Hulu";
@@ -1215,12 +1223,14 @@
 "Poster" = "Poster";
 "Poster card style" = "Gaya kartu poster";
 "Poster cards" = "Kartu poster";
+"Poster dock magnification" = "Pembesaran dock poster";
 "Poster reset to default" = "Poster reset to default";
 "Posters, ratings, lists" = "Poster, rating, daftar";
 "Predeterminado" = "Bawaan";
 "Predeterminado (acento dorado)" = "Bawaan (aksen emas)";
 "Preguntar si reanudar o empezar de nuevo" = "Tanyakan apakah ingin melanjutkan atau memulai dari awal";
 "Premiered This Month" = "Tayang Perdana Bulan Ini";
+"Preview" = "Pratinjau";
 "Previous" = "Sebelumnya";
 "Previous chapter" = "Bab sebelumnya";
 "Previous day" = "Previous day";
@@ -2064,6 +2074,7 @@
 "{count} tracks" = "{count} lagu";
 "{h}h left" = "tersisa {h}j";
 "{h}h {m}m left" = "tersisa {h}j {m}m";
+"{ms} ms" = "{ms} md";
 "{m}m left" = "Tersisa {m} mnt";
 "{names}, and all other names, logos, and brand references are property of their respective owners and are used here only for compatibility and identification." = "{names}, serta semua nama, logo, dan referensi merek lainnya adalah milik masing-masing pemiliknya dan hanya digunakan di sini untuk kompatibilitas dan identifikasi.";
 "{name} + {n} more" = "{name} + {n} lainnya";

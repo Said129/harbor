@@ -117,6 +117,7 @@
 "Animals" = "Animals";
 "Animated Movies" = "Animasyon Filmleri";
 "Animation" = "Animasyon";
+"Animation speed" = "Animasyon hızı";
 "Anime" = "Anime";
 "Anime Expo" = "Anime Expo";
 "Anime en tendencia" = "Gündemdeki Animeler";
@@ -298,6 +299,7 @@
 "Capítulo anterior" = "Önceki bölüm";
 "Capítulo siguiente" = "Sonraki bölüm";
 "Capítulos" = "Bölümler";
+"Card behaviour" = "Kart davranışı";
 "Cards, panels." = "Kartlar, paneller.";
 "Cargar archivo" = "Dosya yükle";
 "Cargar más" = "Daha fazla yükle";
@@ -560,6 +562,7 @@
 "Eliminar lista" = "Listeyi sil";
 "Email and password" = "Email and password";
 "Embedded" = "Gömülü";
+"Emphasize the selected card across the page while gently darkening and blurring the other cards." = "Diğer kartları hafifçe karartıp bulanıklaştırırken seçili kartı sayfa genelinde öne çıkarın.";
 "En ascenso" = "En hızlı yükselenler";
 "En caché" = "Önbelleğe alınmış";
 "En directo" = "Canlı";
@@ -602,6 +605,8 @@
 "Everything your addons offer, shown as posters. Scroll, search, or filter to what you want." = "Eklentilerinizin sunduğu her şey posterlerle gösterilir. Kaydırın, arayın veya istediğinizi bulmak için filtreleyin.";
 "Excellence Prize" = "Mükemmellik Ödülü";
 "Exit Picture in Picture" = "Resim İçinde Resim modundan çık";
+"Expand poster cards during keyboard or remote navigation across poster rows, using preloaded wide artwork." = "Poster satırlarında klavye veya uzaktan kumandayla gezinirken önceden yüklenmiş geniş görselleri kullanarak poster kartlarını genişletin.";
+"Expanding Cards" = "Genişleyen Kartlar";
 "Explicit" = "Müstehcen";
 "Explorar" = "Göz at";
 "Explorar complementos" = "Eklentilere göz at";
@@ -645,6 +650,7 @@
 "Focus" = "Focus";
 "Focus GIF URL" = "Odaklanınca Gösterilen GIF URL'si";
 "Focus mode" = "Odak modu";
+"Focused Card" = "Odaklanılan Kart";
 "Fondo" = "Arka plan";
 "Font" = "Yazı tipi";
 "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found." = "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found.";
@@ -674,6 +680,7 @@
 "Full HD · HDR" = "Full HD · HDR";
 "Gamma" = "Gama";
 "Genre" = "Tür";
+"Gently magnify nearby posters as you move across a poster row." = "Bir afiş sırasında gezinirken yakındaki afişleri hafifçe büyütün.";
 "German" = "Almanca";
 "Get Started" = "Başlayın";
 "Get a free key at themoviedb.org" = "themoviedb.org adresinden ücretsiz anahtar alın";
@@ -748,6 +755,7 @@
 "Horror" = "Korku";
 "Horror & Supernatural" = "Korku ve Doğaüstü";
 "How large every poster card is drawn across Home and search." = "How large every poster card is drawn across Home and search.";
+"How long a poster takes to grow and settle as the pointer passes it." = "How long a poster takes to grow and settle as the pointer passes it.";
 "How many films?" = "Kaç film?";
 "Hoy" = "Bugün";
 "Hulu" = "Hulu";
@@ -1215,12 +1223,14 @@
 "Poster" = "Poster";
 "Poster card style" = "Poster kartı stili";
 "Poster cards" = "Poster kartları";
+"Poster dock magnification" = "Poster şeridi büyütme efekti";
 "Poster reset to default" = "Poster reset to default";
 "Posters, ratings, lists" = "Afişler, puanlar, listeler";
 "Predeterminado" = "Varsayılan";
 "Predeterminado (acento dorado)" = "Varsayılan (altın vurgu)";
 "Preguntar si reanudar o empezar de nuevo" = "Devam edilsin mi, baştan mı başlansın diye sor";
 "Premiered This Month" = "Bu Ay Başlayanlar";
+"Preview" = "Önizleme";
 "Previous" = "Önceki";
 "Previous chapter" = "Önceki bölüm";
 "Previous day" = "Previous day";
@@ -2064,6 +2074,7 @@
 "{count} tracks" = "{count} parça";
 "{h}h left" = "{h} sa kaldı";
 "{h}h {m}m left" = "{h} sa {m} dk kaldı";
+"{ms} ms" = "{ms} ms";
 "{m}m left" = "{m} dk kaldı";
 "{names}, and all other names, logos, and brand references are property of their respective owners and are used here only for compatibility and identification." = "{names} ve diğer tüm adlar, logolar ve marka referansları ilgili sahiplerinin mülkiyetindedir ve burada yalnızca uyumluluk ve tanımlama amacıyla kullanılır.";
 "{name} + {n} more" = "{name} + {n} tane daha";

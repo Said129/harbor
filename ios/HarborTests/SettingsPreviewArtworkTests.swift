@@ -43,7 +43,8 @@ final class SettingsPreviewArtworkTests: XCTestCase {
             .object(["id": .string(id), "name": .string(id), "poster": .string("https://owned.invalid/" + id), "background": .string("https://owned.invalid/wide"), "imdbRating": .string(rating), "adult": .bool(adult)])
         }
         let series = "https://v3-cinemeta.strem.io/catalog/series/top.json", detail = "https://v3-cinemeta.strem.io/meta/series/tt1234567.json"
-        let fetch = OwnedSettingsSampleFetch([series: .object(["metas": .array([media("unrated", rating: "0"), media("adult", adult: true), media("black"), media("tt1234567")])]),
+        var missingBackground = media("empty-background").objectValue; missingBackground["background"] = .string("")
+        let fetch = OwnedSettingsSampleFetch([series: .object(["metas": .array([media("unrated", rating: "0"), media("adult", adult: true), .object(missingBackground), media("black"), media("tt1234567")])]),
             detail: .object(["meta": .object(["id": .string("tt1234567"), "name": .string("Owned usable sample"), "description": .string("Full description"), "poster": .string("https://owned.invalid/unverified")])])])
         let service = SettingsPreviewSamples(fetch: { try await fetch.get($0) }, image: { $0.hasSuffix("black") ? black : valid })
         let values = await withTaskGroup(of: [Media].self) { group in

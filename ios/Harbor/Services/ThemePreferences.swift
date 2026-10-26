@@ -49,7 +49,7 @@ final class ThemePreferences {
     }
     func reset() {
         preset = "cool-grey"; custom = false; customColors = [:]; font = "switzer"; seekBarColor = ""
-        for key in ["rowCardStyle", "tvCardLogoPos", "posterScale", "posterRadius", "posterEffect", "posterQuality"] { storage.removeObject(forKey: key) }
+        for key in ["rowCardStyle", "tvCardLogoPos", "posterScale", "posterRadius", "posterEffect", "posterQuality", "posterFocusedCard", "posterBackdropExpansion", "posterDockMagnification", "posterDockTransitionMs"] { storage.removeObject(forKey: key) }
     }
 
     private var reloading = false

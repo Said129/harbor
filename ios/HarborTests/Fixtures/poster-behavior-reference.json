@@ -1,0 +1,2450 @@
+{
+  "reference": "0834340cec5531650bfe78cd628628702e636987",
+  "actual_original_typescript_executed": true,
+  "provider_network_requests": 0,
+  "inputs": {
+    "src/lib/poster-dock.ts": "7178e871305d6e93485fec4e43308bedee949f12e77467bc393d73edc9e6094e",
+    "src/lib/poster-backdrop-expansion.ts": "ecba6de3b5d50770975d17d24ce690ab92b85b5b4dc109efdbe057df769400f3"
+  },
+  "dockCases": [
+    {
+      "rtl": false,
+      "scroll": 0,
+      "pointerX": 18,
+      "viewportLeft": 18,
+      "viewportWidth": 414,
+      "transitionMs": null,
+      "reset": true,
+      "cards": [
+        {
+          "index": 0,
+          "left": 18,
+          "width": 120,
+          "active": true,
+          "expected": {
+            "x": 7.220942378326961,
+            "y": -6.156316258445423,
+            "scale": 1.1055368501447789,
+            "origin": "left",
+            "zIndex": 88
+          },
+          "transition": "transform 760ms cubic-bezier(0.22, 0.61, 0.36, 1)"
+        },
+        {
+          "index": 1,
+          "left": 150,
+          "width": 120,
+          "active": false,
+          "expected": {
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "origin": "center",
+            "zIndex": 0
+          },
+          "transition": null
+        },
+        {
+          "index": 2,
+          "left": 282,
+          "width": 120,
+          "active": false,
+          "expected": {
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "origin": "center",
+            "zIndex": 0
+          },
+          "transition": null
+        },
+        {
+          "index": 3,
+          "left": 414,
+          "width": 120,
+          "active": false,
+          "expected": {
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "origin": "center",
+            "zIndex": 0
+          },
+          "transition": null
+        },
+        {
+          "index": 4,
+          "left": 546,
+          "width": 120,
+          "active": false,
+          "expected": {
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "origin": "center",
+            "zIndex": 0
+          },
+          "transition": null
+        },
+        {
+          "index": 5,
+          "left": 678,
+          "width": 120,
+          "active": false,
+          "expected": {
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "origin": "center",
+            "zIndex": 0
+          },
+          "transition": null
+        }
+      ]
+    },
+    {
+      "rtl": false,
+      "scroll": 0,
+      "pointerX": 78,
+      "viewportLeft": 18,
+      "viewportWidth": 414,
+      "transitionMs": 815.6,
+      "reset": true,
+      "cards": [
+        {
+          "index": 0,
+          "left": 18,
+          "width": 120,
+          "active": true,
+          "expected": {
+            "x": 0,
+            "y": -7,
+            "scale": 1.12,
+            "origin": "left",
+            "zIndex": 100
+          },
+          "transition": "transform 816ms cubic-bezier(0.22, 0.61, 0.36, 1)"
+        },
+        {
+          "index": 1,
+          "left": 150,
+          "width": 120,
+          "active": true,
+          "expected": {
+            "x": 8.33327827022556,
+            "y": -3.229388140850814,
+            "scale": 1.0553609395574426,
+            "origin": "center",
+            "zIndex": 47
+          },
+          "transition": "transform 816ms cubic-bezier(0.22, 0.61, 0.36, 1)"
+        },
+        {
+          "index": 2,
+          "left": 282,
+          "width": 120,
+          "active": false,
+          "expected": {
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "origin": "center",
+            "zIndex": 0
+          },
+          "transition": null
+        },
+        {
+          "index": 3,
+          "left": 414,
+          "width": 120,
+          "active": false,
+          "expected": {
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "origin": "center",
+            "zIndex": 0
+          },
+          "transition": null
+        },
+        {
+          "index": 4,
+          "left": 546,
+          "width": 120,
+          "active": false,
+          "expected": {
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "origin": "center",
+            "zIndex": 0
+          },
+          "transition": null
+        },
+        {
+          "index": 5,
+          "left": 678,
+          "width": 120,
+          "active": false,
+          "expected": {
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "origin": "center",
+            "zIndex": 0
+          },
+          "transition": null
+        }
+      ]
+    },
+    {
+      "rtl": false,
+      "scroll": 0,
+      "pointerX": 217,
+      "viewportLeft": 18,
+      "viewportWidth": 414,
+      "transitionMs": 9999,
+      "reset": true,
+      "cards": [
+        {
+          "index": 0,
+          "left": 18,
+          "width": 120,
+          "active": true,
+          "expected": {
+            "x": 0,
+            "y": -2.864768399576258,
+            "scale": 1.0491103154213073,
+            "origin": "left",
+            "zIndex": 42
+          },
+          "transition": "transform 1500ms cubic-bezier(0.22, 0.61, 0.36, 1)"
+        },
+        {
+          "index": 1,
+          "left": 150,
+          "width": 120,
+          "active": true,
+          "expected": {
+            "x": -0.9562911399272157,
+            "y": -6.988281407160428,
+            "scale": 1.119799109837036,
+            "origin": "center",
+            "zIndex": 100
+          },
+          "transition": "transform 1500ms cubic-bezier(0.22, 0.61, 0.36, 1)"
+        },
+        {
+          "index": 2,
+          "left": 282,
+          "width": 120,
+          "active": true,
+          "expected": {
+            "x": 0,
+            "y": -3.5831953436272066,
+            "scale": 1.0614262058907522,
+            "origin": "right",
+            "zIndex": 52
+          },
+          "transition": "transform 1500ms cubic-bezier(0.22, 0.61, 0.36, 1)"
+        },
+        {
+          "index": 3,
+          "left": 414,
+          "width": 120,
+          "active": false,
+          "expected": {
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "origin": "center",
+            "zIndex": 0
+          },
+          "transition": null
+        },
+        {
+          "index": 4,
+          "left": 546,
+          "width": 120,
+          "active": false,
+          "expected": {
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "origin": "center",
+            "zIndex": 0
+          },
+          "transition": null
+        },
+        {
+          "index": 5,
+          "left": 678,
+          "width": 120,
+          "active": false,
+          "expected": {
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "origin": "center",
+            "zIndex": 0
+          },
+          "transition": null
+        }
+      ]
+    },
+    {
+      "rtl": false,
+      "scroll": 0,
+      "pointerX": 432,
+      "viewportLeft": 18,
+      "viewportWidth": 414,
+      "transitionMs": -100,
+      "reset": true,
+      "cards": [
+        {
+          "index": 0,
+          "left": 18,
+          "width": 120,
+          "active": false,
+          "expected": {
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "origin": "center",
+            "zIndex": 0
+          },
+          "transition": null
+        },
+        {
+          "index": 1,
+          "left": 150,
+          "width": 120,
+          "active": false,
+          "expected": {
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "origin": "center",
+            "zIndex": 0
+          },
+          "transition": null
+        },
+        {
+          "index": 2,
+          "left": 282,
+          "width": 120,
+          "active": true,
+          "expected": {
+            "x": -9.061020794605936,
+            "y": -5.150067374711922,
+            "scale": 1.088286869280776,
+            "origin": "right",
+            "zIndex": 74
+          },
+          "transition": "transform 250ms cubic-bezier(0.22, 0.61, 0.36, 1)"
+        },
+        {
+          "index": 3,
+          "left": 414,
+          "width": 120,
+          "active": true,
+          "expected": {
+            "x": 0,
+            "y": -6.582235730813128,
+            "scale": 1.1128383268139395,
+            "origin": "right",
+            "zIndex": 94
+          },
+          "transition": "transform 250ms cubic-bezier(0.22, 0.61, 0.36, 1)"
+        },
+        {
+          "index": 4,
+          "left": 546,
+          "width": 120,
+          "active": true,
+          "expected": {
+            "x": 0,
+            "y": -0.9232451993944801,
+            "scale": 1.0158270605610482,
+            "origin": "right",
+            "zIndex": 14
+          },
+          "transition": "transform 250ms cubic-bezier(0.22, 0.61, 0.36, 1)"
+        },
+        {
+          "index": 5,
+          "left": 678,
+          "width": 120,
+          "active": false,
+          "expected": {
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "origin": "center",
+            "zIndex": 0
+          },
+          "transition": null
+        }
+      ]
+    },
+    {
+      "rtl": false,
+      "scroll": 93,
+      "pointerX": 18,
+      "viewportLeft": 18,
+      "viewportWidth": 414,
+      "transitionMs": null,
+      "reset": true,
+      "cards": [
+        {
+          "index": 0,
+          "left": -75,
+          "width": 120,
+          "active": true,
+          "expected": {
+            "x": 0,
+            "y": -6.741099425045273,
+            "scale": 1.1155617044293475,
+            "origin": "left",
+            "zIndex": 96
+          },
+          "transition": "transform 760ms cubic-bezier(0.22, 0.61, 0.36, 1)"
+        },
+        {
+          "index": 1,
+          "left": 57,
+          "width": 120,
+          "active": true,
+          "expected": {
+            "x": 9.257470158514737,
+            "y": -4.783385901641259,
+            "scale": 1.082000901170993,
+            "origin": "center",
+            "zIndex": 69
+          },
+          "transition": "transform 760ms cubic-bezier(0.22, 0.61, 0.36, 1)"
+        },
+        {
+          "index": 2,
+          "left": 189,
+          "width": 120,
+          "active": false,
+          "expected": {
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "origin": "center",
+            "zIndex": 0
+          },
+          "transition": null
+        },
+        {
+          "index": 3,
+          "left": 321,
+          "width": 120,
+          "active": false,
+          "expected": {
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "origin": "center",
+            "zIndex": 0
+          },
+          "transition": null
+        },
+        {
+          "index": 4,
+          "left": 453,
+          "width": 120,
+          "active": false,
+          "expected": {
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "origin": "center",
+            "zIndex": 0
+          },
+          "transition": null
+        },
+        {
+          "index": 5,
+          "left": 585,
+          "width": 120,
+          "active": false,
+          "expected": {
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "origin": "center",
+            "zIndex": 0
+          },
+          "transition": null
+        }
+      ]
+    },
+    {
+      "rtl": false,
+      "scroll": 93,
+      "pointerX": 78,
+      "viewportLeft": 18,
+      "viewportWidth": 414,
+      "transitionMs": 9999,
+      "reset": true,
+      "cards": [
+        {
+          "index": 0,
+          "left": -75,
+          "width": 120,
+          "active": true,
+          "expected": {
+            "x": 0,
+            "y": -5.030909713786767,
+            "scale": 1.086244166522059,
+            "origin": "left",
+            "zIndex": 72
+          },
+          "transition": "transform 1500ms cubic-bezier(0.22, 0.61, 0.36, 1)"
+        },
+        {
+          "index": 1,
+          "left": 57,
+          "width": 120,
+          "active": true,
+          "expected": {
+            "x": 5.06183085472786,
+            "y": -6.639285046142065,
+            "scale": 1.1138163150767213,
+            "origin": "center",
+            "zIndex": 95
+          },
+          "transition": "transform 1500ms cubic-bezier(0.22, 0.61, 0.36, 1)"
+        },
+        {
+          "index": 2,
+          "left": 189,
+          "width": 120,
+          "active": true,
+          "expected": {
+            "x": 3.660566481941402,
+            "y": -1.095041255281616,
+            "scale": 1.0187721358048276,
+            "origin": "center",
+            "zIndex": 16
+          },
+          "transition": "transform 1500ms cubic-bezier(0.22, 0.61, 0.36, 1)"
+        },
+        {
+          "index": 3,
+          "left": 321,
+          "width": 120,
+          "active": false,
+          "expected": {
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "origin": "center",
+            "zIndex": 0
+          },
+          "transition": null
+        },
+        {
+          "index": 4,
+          "left": 453,
+          "width": 120,
+          "active": false,
+          "expected": {
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "origin": "center",
+            "zIndex": 0
+          },
+          "transition": null
+        },
+        {
+          "index": 5,
+          "left": 585,
+          "width": 120,
+          "active": false,
+          "expected": {
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "origin": "center",
+            "zIndex": 0
+          },
+          "transition": null
+        }
+      ]
+    },
+    {
+      "rtl": false,
+      "scroll": 93,
+      "pointerX": 217,
+      "viewportLeft": 18,
+      "viewportWidth": 414,
+      "transitionMs": -100,
+      "reset": true,
+      "cards": [
+        {
+          "index": 0,
+          "left": -75,
+          "width": 120,
+          "active": false,
+          "expected": {
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "origin": "center",
+            "zIndex": 0
+          },
+          "transition": null
+        },
+        {
+          "index": 1,
+          "left": 57,
+          "width": 120,
+          "active": true,
+          "expected": {
+            "x": -9.268063611720667,
+            "y": -4.740971001380187,
+            "scale": 1.081273788595089,
+            "origin": "center",
+            "zIndex": 68
+          },
+          "transition": "transform 250ms cubic-bezier(0.22, 0.61, 0.36, 1)"
+        },
+        {
+          "index": 2,
+          "left": 189,
+          "width": 120,
+          "active": true,
+          "expected": {
+            "x": 4.226599017635548,
+            "y": -6.75646237194144,
+            "scale": 1.1158250692332818,
+            "origin": "center",
+            "zIndex": 97
+          },
+          "transition": "transform 250ms cubic-bezier(0.22, 0.61, 0.36, 1)"
+        },
+        {
+          "index": 3,
+          "left": 321,
+          "width": 120,
+          "active": true,
+          "expected": {
+            "x": 0,
+            "y": -1.4930974152062277,
+            "scale": 1.0255959556892495,
+            "origin": "right",
+            "zIndex": 22
+          },
+          "transition": "transform 250ms cubic-bezier(0.22, 0.61, 0.36, 1)"
+        },
+        {
+          "index": 4,
+          "left": 453,
+          "width": 120,
+          "active": false,
+          "expected": {
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "origin": "center",
+            "zIndex": 0
+          },
+          "transition": null
+        },
+        {
+          "index": 5,
+          "left": 585,
+          "width": 120,
+          "active": false,
+          "expected": {
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "origin": "center",
+            "zIndex": 0
+          },
+          "transition": null
+        }
+      ]
+    },
+    {
+      "rtl": false,
+      "scroll": 93,
+      "pointerX": 432,
+      "viewportLeft": 18,
+      "viewportWidth": 414,
+      "transitionMs": 815.6,
+      "reset": true,
+      "cards": [
+        {
+          "index": 0,
+          "left": -75,
+          "width": 120,
+          "active": false,
+          "expected": {
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "origin": "center",
+            "zIndex": 0
+          },
+          "transition": null
+        },
+        {
+          "index": 1,
+          "left": 57,
+          "width": 120,
+          "active": false,
+          "expected": {
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "origin": "center",
+            "zIndex": 0
+          },
+          "transition": null
+        },
+        {
+          "index": 2,
+          "left": 189,
+          "width": 120,
+          "active": true,
+          "expected": {
+            "x": -1.448413985314557,
+            "y": -0.40487402279704937,
+            "scale": 1.0069406975336637,
+            "origin": "center",
+            "zIndex": 7
+          },
+          "transition": "transform 816ms cubic-bezier(0.22, 0.61, 0.36, 1)"
+        },
+        {
+          "index": 3,
+          "left": 321,
+          "width": 120,
+          "active": true,
+          "expected": {
+            "x": -6.367738920142504,
+            "y": -6.386947785663296,
+            "scale": 1.1094905334685137,
+            "origin": "right",
+            "zIndex": 91
+          },
+          "transition": "transform 816ms cubic-bezier(0.22, 0.61, 0.36, 1)"
+        },
+        {
+          "index": 4,
+          "left": 453,
+          "width": 120,
+          "active": true,
+          "expected": {
+            "x": 0,
+            "y": -5.488249815847071,
+            "scale": 1.0940842825573784,
+            "origin": "right",
+            "zIndex": 79
+          },
+          "transition": "transform 816ms cubic-bezier(0.22, 0.61, 0.36, 1)"
+        },
+        {
+          "index": 5,
+          "left": 585,
+          "width": 120,
+          "active": false,
+          "expected": {
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "origin": "center",
+            "zIndex": 0
+          },
+          "transition": null
+        }
+      ]
+    },
+    {
+      "rtl": false,
+      "scroll": 366,
+      "pointerX": 18,
+      "viewportLeft": 18,
+      "viewportWidth": 414,
+      "transitionMs": null,
+      "reset": true,
+      "cards": [
+        {
+          "index": 0,
+          "left": -348,
+          "width": 120,
+          "active": false,
+          "expected": {
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "origin": "center",
+            "zIndex": 0
+          },
+          "transition": null
+        },
+        {
+          "index": 1,
+          "left": -216,
+          "width": 120,
+          "active": true,
+          "expected": {
+            "x": 0,
+            "y": -0.9232451993944801,
+            "scale": 1.0158270605610482,
+            "origin": "left",
+            "zIndex": 14
+          },
+          "transition": "transform 760ms cubic-bezier(0.22, 0.61, 0.36, 1)"
+        },
+        {
+          "index": 2,
+          "left": -84,
+          "width": 120,
+          "active": true,
+          "expected": {
+            "x": 0,
+            "y": -6.582235730813128,
+            "scale": 1.1128383268139395,
+            "origin": "left",
+            "zIndex": 94
+          },
+          "transition": "transform 760ms cubic-bezier(0.22, 0.61, 0.36, 1)"
+        },
+        {
+          "index": 3,
+          "left": 48,
+          "width": 120,
+          "active": true,
+          "expected": {
+            "x": 9.061020794605936,
+            "y": -5.150067374711922,
+            "scale": 1.088286869280776,
+            "origin": "left",
+            "zIndex": 74
+          },
+          "transition": "transform 760ms cubic-bezier(0.22, 0.61, 0.36, 1)"
+        },
+        {
+          "index": 4,
+          "left": 180,
+          "width": 120,
+          "active": false,
+          "expected": {
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "origin": "center",
+            "zIndex": 0
+          },
+          "transition": null
+        },
+        {
+          "index": 5,
+          "left": 312,
+          "width": 120,
+          "active": false,
+          "expected": {
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "origin": "center",
+            "zIndex": 0
+          },
+          "transition": null
+        }
+      ]
+    },
+    {
+      "rtl": false,
+      "scroll": 366,
+      "pointerX": 78,
+      "viewportLeft": 18,
+      "viewportWidth": 414,
+      "transitionMs": -100,
+      "reset": true,
+      "cards": [
+        {
+          "index": 0,
+          "left": -348,
+          "width": 120,
+          "active": false,
+          "expected": {
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "origin": "center",
+            "zIndex": 0
+          },
+          "transition": null
+        },
+        {
+          "index": 1,
+          "left": -216,
+          "width": 120,
+          "active": false,
+          "expected": {
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "origin": "center",
+            "zIndex": 0
+          },
+          "transition": null
+        },
+        {
+          "index": 2,
+          "left": -84,
+          "width": 120,
+          "active": true,
+          "expected": {
+            "x": 0,
+            "y": -4.6551720047969365,
+            "scale": 1.0798029486536618,
+            "origin": "left",
+            "zIndex": 67
+          },
+          "transition": "transform 250ms cubic-bezier(0.22, 0.61, 0.36, 1)"
+        },
+        {
+          "index": 3,
+          "left": 48,
+          "width": 120,
+          "active": true,
+          "expected": {
+            "x": 3.9796431970140898,
+            "y": -6.7858018615753135,
+            "scale": 1.1163280319127198,
+            "origin": "left",
+            "zIndex": 97
+          },
+          "transition": "transform 250ms cubic-bezier(0.22, 0.61, 0.36, 1)"
+        },
+        {
+          "index": 4,
+          "left": 180,
+          "width": 120,
+          "active": true,
+          "expected": {
+            "x": 5.085966059141675,
+            "y": -1.6059674403272621,
+            "scale": 1.0275308704056103,
+            "origin": "center",
+            "zIndex": 24
+          },
+          "transition": "transform 250ms cubic-bezier(0.22, 0.61, 0.36, 1)"
+        },
+        {
+          "index": 5,
+          "left": 312,
+          "width": 120,
+          "active": false,
+          "expected": {
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "origin": "center",
+            "zIndex": 0
+          },
+          "transition": null
+        }
+      ]
+    },
+    {
+      "rtl": false,
+      "scroll": 366,
+      "pointerX": 217,
+      "viewportLeft": 18,
+      "viewportWidth": 414,
+      "transitionMs": 815.6,
+      "reset": true,
+      "cards": [
+        {
+          "index": 0,
+          "left": -348,
+          "width": 120,
+          "active": false,
+          "expected": {
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "origin": "center",
+            "zIndex": 0
+          },
+          "transition": null
+        },
+        {
+          "index": 1,
+          "left": -216,
+          "width": 120,
+          "active": false,
+          "expected": {
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "origin": "center",
+            "zIndex": 0
+          },
+          "transition": null
+        },
+        {
+          "index": 2,
+          "left": -84,
+          "width": 120,
+          "active": false,
+          "expected": {
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "origin": "center",
+            "zIndex": 0
+          },
+          "transition": null
+        },
+        {
+          "index": 3,
+          "left": 48,
+          "width": 120,
+          "active": true,
+          "expected": {
+            "x": 0,
+            "y": -4.345010236910218,
+            "scale": 1.0744858897756038,
+            "origin": "left",
+            "zIndex": 62
+          },
+          "transition": "transform 816ms cubic-bezier(0.22, 0.61, 0.36, 1)"
+        },
+        {
+          "index": 4,
+          "left": 180,
+          "width": 120,
+          "active": true,
+          "expected": {
+            "x": 3.0906405004990667,
+            "y": -6.873832551277185,
+            "scale": 1.117837129450466,
+            "origin": "center",
+            "zIndex": 98
+          },
+          "transition": "transform 816ms cubic-bezier(0.22, 0.61, 0.36, 1)"
+        },
+        {
+          "index": 5,
+          "left": 312,
+          "width": 120,
+          "active": true,
+          "expected": {
+            "x": 0,
+            "y": -1.9973535697437372,
+            "scale": 1.0342403469098926,
+            "origin": "right",
+            "zIndex": 29
+          },
+          "transition": "transform 816ms cubic-bezier(0.22, 0.61, 0.36, 1)"
+        }
+      ]
+    },
+    {
+      "rtl": false,
+      "scroll": 366,
+      "pointerX": 432,
+      "viewportLeft": 18,
+      "viewportWidth": 414,
+      "transitionMs": 9999,
+      "reset": true,
+      "cards": [
+        {
+          "index": 0,
+          "left": -348,
+          "width": 120,
+          "active": false,
+          "expected": {
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "origin": "center",
+            "zIndex": 0
+          },
+          "transition": null
+        },
+        {
+          "index": 1,
+          "left": -216,
+          "width": 120,
+          "active": false,
+          "expected": {
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "origin": "center",
+            "zIndex": 0
+          },
+          "transition": null
+        },
+        {
+          "index": 2,
+          "left": -84,
+          "width": 120,
+          "active": false,
+          "expected": {
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "origin": "center",
+            "zIndex": 0
+          },
+          "transition": null
+        },
+        {
+          "index": 3,
+          "left": 48,
+          "width": 120,
+          "active": false,
+          "expected": {
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "origin": "center",
+            "zIndex": 0
+          },
+          "transition": null
+        },
+        {
+          "index": 4,
+          "left": 180,
+          "width": 120,
+          "active": false,
+          "expected": {
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "origin": "center",
+            "zIndex": 0
+          },
+          "transition": null
+        },
+        {
+          "index": 5,
+          "left": 312,
+          "width": 120,
+          "active": true,
+          "expected": {
+            "x": -7.220942378326957,
+            "y": -6.156316258445425,
+            "scale": 1.1055368501447789,
+            "origin": "right",
+            "zIndex": 88
+          },
+          "transition": "transform 1500ms cubic-bezier(0.22, 0.61, 0.36, 1)"
+        }
+      ]
+    },
+    {
+      "rtl": true,
+      "scroll": 0,
+      "pointerX": 18,
+      "viewportLeft": 18,
+      "viewportWidth": 414,
+      "transitionMs": null,
+      "reset": true,
+      "cards": [
+        {
+          "index": 0,
+          "left": 312,
+          "width": 120,
+          "active": false,
+          "expected": {
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "origin": "center",
+            "zIndex": 0
+          },
+          "transition": null
+        },
+        {
+          "index": 1,
+          "left": 180,
+          "width": 120,
+          "active": false,
+          "expected": {
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "origin": "center",
+            "zIndex": 0
+          },
+          "transition": null
+        },
+        {
+          "index": 2,
+          "left": 48,
+          "width": 120,
+          "active": true,
+          "expected": {
+            "x": 9.061020794605936,
+            "y": -5.150067374711922,
+            "scale": 1.088286869280776,
+            "origin": "left",
+            "zIndex": 74
+          },
+          "transition": "transform 760ms cubic-bezier(0.22, 0.61, 0.36, 1)"
+        },
+        {
+          "index": 3,
+          "left": -84,
+          "width": 120,
+          "active": true,
+          "expected": {
+            "x": 0,
+            "y": -6.582235730813128,
+            "scale": 1.1128383268139395,
+            "origin": "left",
+            "zIndex": 94
+          },
+          "transition": "transform 760ms cubic-bezier(0.22, 0.61, 0.36, 1)"
+        },
+        {
+          "index": 4,
+          "left": -216,
+          "width": 120,
+          "active": true,
+          "expected": {
+            "x": 0,
+            "y": -0.9232451993944801,
+            "scale": 1.0158270605610482,
+            "origin": "left",
+            "zIndex": 14
+          },
+          "transition": "transform 760ms cubic-bezier(0.22, 0.61, 0.36, 1)"
+        },
+        {
+          "index": 5,
+          "left": -348,
+          "width": 120,
+          "active": false,
+          "expected": {
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "origin": "center",
+            "zIndex": 0
+          },
+          "transition": null
+        }
+      ]
+    },
+    {
+      "rtl": true,
+      "scroll": 0,
+      "pointerX": 78,
+      "viewportLeft": 18,
+      "viewportWidth": 414,
+      "transitionMs": 815.6,
+      "reset": true,
+      "cards": [
+        {
+          "index": 0,
+          "left": 312,
+          "width": 120,
+          "active": false,
+          "expected": {
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "origin": "center",
+            "zIndex": 0
+          },
+          "transition": null
+        },
+        {
+          "index": 1,
+          "left": 180,
+          "width": 120,
+          "active": true,
+          "expected": {
+            "x": 5.085966059141675,
+            "y": -1.6059674403272621,
+            "scale": 1.0275308704056103,
+            "origin": "center",
+            "zIndex": 24
+          },
+          "transition": "transform 816ms cubic-bezier(0.22, 0.61, 0.36, 1)"
+        },
+        {
+          "index": 2,
+          "left": 48,
+          "width": 120,
+          "active": true,
+          "expected": {
+            "x": 3.9796431970140898,
+            "y": -6.7858018615753135,
+            "scale": 1.1163280319127198,
+            "origin": "left",
+            "zIndex": 97
+          },
+          "transition": "transform 816ms cubic-bezier(0.22, 0.61, 0.36, 1)"
+        },
+        {
+          "index": 3,
+          "left": -84,
+          "width": 120,
+          "active": true,
+          "expected": {
+            "x": 0,
+            "y": -4.6551720047969365,
+            "scale": 1.0798029486536618,
+            "origin": "left",
+            "zIndex": 67
+          },
+          "transition": "transform 816ms cubic-bezier(0.22, 0.61, 0.36, 1)"
+        },
+        {
+          "index": 4,
+          "left": -216,
+          "width": 120,
+          "active": false,
+          "expected": {
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "origin": "center",
+            "zIndex": 0
+          },
+          "transition": null
+        },
+        {
+          "index": 5,
+          "left": -348,
+          "width": 120,
+          "active": false,
+          "expected": {
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "origin": "center",
+            "zIndex": 0
+          },
+          "transition": null
+        }
+      ]
+    },
+    {
+      "rtl": true,
+      "scroll": 0,
+      "pointerX": 217,
+      "viewportLeft": 18,
+      "viewportWidth": 414,
+      "transitionMs": 9999,
+      "reset": true,
+      "cards": [
+        {
+          "index": 0,
+          "left": 312,
+          "width": 120,
+          "active": true,
+          "expected": {
+            "x": 0,
+            "y": -1.9973535697437372,
+            "scale": 1.0342403469098926,
+            "origin": "right",
+            "zIndex": 29
+          },
+          "transition": "transform 1500ms cubic-bezier(0.22, 0.61, 0.36, 1)"
+        },
+        {
+          "index": 1,
+          "left": 180,
+          "width": 120,
+          "active": true,
+          "expected": {
+            "x": 3.0906405004990667,
+            "y": -6.873832551277185,
+            "scale": 1.117837129450466,
+            "origin": "center",
+            "zIndex": 98
+          },
+          "transition": "transform 1500ms cubic-bezier(0.22, 0.61, 0.36, 1)"
+        },
+        {
+          "index": 2,
+          "left": 48,
+          "width": 120,
+          "active": true,
+          "expected": {
+            "x": 0,
+            "y": -4.345010236910218,
+            "scale": 1.0744858897756038,
+            "origin": "left",
+            "zIndex": 62
+          },
+          "transition": "transform 1500ms cubic-bezier(0.22, 0.61, 0.36, 1)"
+        },
+        {
+          "index": 3,
+          "left": -84,
+          "width": 120,
+          "active": false,
+          "expected": {
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "origin": "center",
+            "zIndex": 0
+          },
+          "transition": null
+        },
+        {
+          "index": 4,
+          "left": -216,
+          "width": 120,
+          "active": false,
+          "expected": {
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "origin": "center",
+            "zIndex": 0
+          },
+          "transition": null
+        },
+        {
+          "index": 5,
+          "left": -348,
+          "width": 120,
+          "active": false,
+          "expected": {
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "origin": "center",
+            "zIndex": 0
+          },
+          "transition": null
+        }
+      ]
+    },
+    {
+      "rtl": true,
+      "scroll": 0,
+      "pointerX": 432,
+      "viewportLeft": 18,
+      "viewportWidth": 414,
+      "transitionMs": -100,
+      "reset": true,
+      "cards": [
+        {
+          "index": 0,
+          "left": 312,
+          "width": 120,
+          "active": true,
+          "expected": {
+            "x": -7.220942378326961,
+            "y": -6.156316258445423,
+            "scale": 1.1055368501447789,
+            "origin": "right",
+            "zIndex": 88
+          },
+          "transition": "transform 250ms cubic-bezier(0.22, 0.61, 0.36, 1)"
+        },
+        {
+          "index": 1,
+          "left": 180,
+          "width": 120,
+          "active": false,
+          "expected": {
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "origin": "center",
+            "zIndex": 0
+          },
+          "transition": null
+        },
+        {
+          "index": 2,
+          "left": 48,
+          "width": 120,
+          "active": false,
+          "expected": {
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "origin": "center",
+            "zIndex": 0
+          },
+          "transition": null
+        },
+        {
+          "index": 3,
+          "left": -84,
+          "width": 120,
+          "active": false,
+          "expected": {
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "origin": "center",
+            "zIndex": 0
+          },
+          "transition": null
+        },
+        {
+          "index": 4,
+          "left": -216,
+          "width": 120,
+          "active": false,
+          "expected": {
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "origin": "center",
+            "zIndex": 0
+          },
+          "transition": null
+        },
+        {
+          "index": 5,
+          "left": -348,
+          "width": 120,
+          "active": false,
+          "expected": {
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "origin": "center",
+            "zIndex": 0
+          },
+          "transition": null
+        }
+      ]
+    },
+    {
+      "rtl": true,
+      "scroll": 93,
+      "pointerX": 18,
+      "viewportLeft": 18,
+      "viewportWidth": 414,
+      "transitionMs": null,
+      "reset": true,
+      "cards": [
+        {
+          "index": 0,
+          "left": 405,
+          "width": 120,
+          "active": false,
+          "expected": {
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "origin": "center",
+            "zIndex": 0
+          },
+          "transition": null
+        },
+        {
+          "index": 1,
+          "left": 273,
+          "width": 120,
+          "active": false,
+          "expected": {
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "origin": "center",
+            "zIndex": 0
+          },
+          "transition": null
+        },
+        {
+          "index": 2,
+          "left": 141,
+          "width": 120,
+          "active": true,
+          "expected": {
+            "x": 1.448413985314557,
+            "y": -0.40487402279704937,
+            "scale": 1.0069406975336637,
+            "origin": "center",
+            "zIndex": 7
+          },
+          "transition": "transform 760ms cubic-bezier(0.22, 0.61, 0.36, 1)"
+        },
+        {
+          "index": 3,
+          "left": 9,
+          "width": 120,
+          "active": true,
+          "expected": {
+            "x": 6.367738920142504,
+            "y": -6.386947785663296,
+            "scale": 1.1094905334685137,
+            "origin": "left",
+            "zIndex": 91
+          },
+          "transition": "transform 760ms cubic-bezier(0.22, 0.61, 0.36, 1)"
+        },
+        {
+          "index": 4,
+          "left": -123,
+          "width": 120,
+          "active": true,
+          "expected": {
+            "x": 0,
+            "y": -5.488249815847071,
+            "scale": 1.0940842825573784,
+            "origin": "left",
+            "zIndex": 79
+          },
+          "transition": "transform 760ms cubic-bezier(0.22, 0.61, 0.36, 1)"
+        },
+        {
+          "index": 5,
+          "left": -255,
+          "width": 120,
+          "active": false,
+          "expected": {
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "origin": "center",
+            "zIndex": 0
+          },
+          "transition": null
+        }
+      ]
+    },
+    {
+      "rtl": true,
+      "scroll": 93,
+      "pointerX": 78,
+      "viewportLeft": 18,
+      "viewportWidth": 414,
+      "transitionMs": 9999,
+      "reset": true,
+      "cards": [
+        {
+          "index": 0,
+          "left": 405,
+          "width": 120,
+          "active": false,
+          "expected": {
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "origin": "center",
+            "zIndex": 0
+          },
+          "transition": null
+        },
+        {
+          "index": 1,
+          "left": 273,
+          "width": 120,
+          "active": false,
+          "expected": {
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "origin": "center",
+            "zIndex": 0
+          },
+          "transition": null
+        },
+        {
+          "index": 2,
+          "left": 141,
+          "width": 120,
+          "active": true,
+          "expected": {
+            "x": 8.853724058098345,
+            "y": -3.68213039314284,
+            "scale": 1.0631222353110201,
+            "origin": "center",
+            "zIndex": 53
+          },
+          "transition": "transform 1500ms cubic-bezier(0.22, 0.61, 0.36, 1)"
+        },
+        {
+          "index": 3,
+          "left": 9,
+          "width": 120,
+          "active": true,
+          "expected": {
+            "x": 0,
+            "y": -6.980631979250587,
+            "scale": 1.1196679767871531,
+            "origin": "left",
+            "zIndex": 100
+          },
+          "transition": "transform 1500ms cubic-bezier(0.22, 0.61, 0.36, 1)"
+        },
+        {
+          "index": 4,
+          "left": -123,
+          "width": 120,
+          "active": true,
+          "expected": {
+            "x": 0,
+            "y": -2.758775358124529,
+            "scale": 1.0472932918535633,
+            "origin": "left",
+            "zIndex": 40
+          },
+          "transition": "transform 1500ms cubic-bezier(0.22, 0.61, 0.36, 1)"
+        },
+        {
+          "index": 5,
+          "left": -255,
+          "width": 120,
+          "active": false,
+          "expected": {
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "origin": "center",
+            "zIndex": 0
+          },
+          "transition": null
+        }
+      ]
+    },
+    {
+      "rtl": true,
+      "scroll": 93,
+      "pointerX": 217,
+      "viewportLeft": 18,
+      "viewportWidth": 414,
+      "transitionMs": -100,
+      "reset": true,
+      "cards": [
+        {
+          "index": 0,
+          "left": 405,
+          "width": 120,
+          "active": false,
+          "expected": {
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "origin": "center",
+            "zIndex": 0
+          },
+          "transition": null
+        },
+        {
+          "index": 1,
+          "left": 273,
+          "width": 120,
+          "active": true,
+          "expected": {
+            "x": 9.116711824482936,
+            "y": -4.020300638780604,
+            "scale": 1.0689194395219532,
+            "origin": "center",
+            "zIndex": 58
+          },
+          "transition": "transform 250ms cubic-bezier(0.22, 0.61, 0.36, 1)"
+        },
+        {
+          "index": 2,
+          "left": 141,
+          "width": 120,
+          "active": true,
+          "expected": {
+            "x": -2.1703465938948487,
+            "y": -6.938848485288826,
+            "scale": 1.1189516883192372,
+            "origin": "center",
+            "zIndex": 99
+          },
+          "transition": "transform 250ms cubic-bezier(0.22, 0.61, 0.36, 1)"
+        },
+        {
+          "index": 3,
+          "left": 9,
+          "width": 120,
+          "active": true,
+          "expected": {
+            "x": 0,
+            "y": -2.3820522210915014,
+            "scale": 1.0408351809329972,
+            "origin": "left",
+            "zIndex": 35
+          },
+          "transition": "transform 250ms cubic-bezier(0.22, 0.61, 0.36, 1)"
+        },
+        {
+          "index": 4,
+          "left": -123,
+          "width": 120,
+          "active": false,
+          "expected": {
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "origin": "center",
+            "zIndex": 0
+          },
+          "transition": null
+        },
+        {
+          "index": 5,
+          "left": -255,
+          "width": 120,
+          "active": false,
+          "expected": {
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "origin": "center",
+            "zIndex": 0
+          },
+          "transition": null
+        }
+      ]
+    },
+    {
+      "rtl": true,
+      "scroll": 93,
+      "pointerX": 432,
+      "viewportLeft": 18,
+      "viewportWidth": 414,
+      "transitionMs": 815.6,
+      "reset": true,
+      "cards": [
+        {
+          "index": 0,
+          "left": 405,
+          "width": 120,
+          "active": true,
+          "expected": {
+            "x": 0,
+            "y": -6.741099425045273,
+            "scale": 1.1155617044293475,
+            "origin": "right",
+            "zIndex": 96
+          },
+          "transition": "transform 816ms cubic-bezier(0.22, 0.61, 0.36, 1)"
+        },
+        {
+          "index": 1,
+          "left": 273,
+          "width": 120,
+          "active": true,
+          "expected": {
+            "x": -9.257470158514737,
+            "y": -4.783385901641259,
+            "scale": 1.082000901170993,
+            "origin": "center",
+            "zIndex": 69
+          },
+          "transition": "transform 816ms cubic-bezier(0.22, 0.61, 0.36, 1)"
+        },
+        {
+          "index": 2,
+          "left": 141,
+          "width": 120,
+          "active": false,
+          "expected": {
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "origin": "center",
+            "zIndex": 0
+          },
+          "transition": null
+        },
+        {
+          "index": 3,
+          "left": 9,
+          "width": 120,
+          "active": false,
+          "expected": {
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "origin": "center",
+            "zIndex": 0
+          },
+          "transition": null
+        },
+        {
+          "index": 4,
+          "left": -123,
+          "width": 120,
+          "active": false,
+          "expected": {
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "origin": "center",
+            "zIndex": 0
+          },
+          "transition": null
+        },
+        {
+          "index": 5,
+          "left": -255,
+          "width": 120,
+          "active": false,
+          "expected": {
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "origin": "center",
+            "zIndex": 0
+          },
+          "transition": null
+        }
+      ]
+    },
+    {
+      "rtl": true,
+      "scroll": 366,
+      "pointerX": 18,
+      "viewportLeft": 18,
+      "viewportWidth": 414,
+      "transitionMs": null,
+      "reset": true,
+      "cards": [
+        {
+          "index": 0,
+          "left": 678,
+          "width": 120,
+          "active": false,
+          "expected": {
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "origin": "center",
+            "zIndex": 0
+          },
+          "transition": null
+        },
+        {
+          "index": 1,
+          "left": 546,
+          "width": 120,
+          "active": false,
+          "expected": {
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "origin": "center",
+            "zIndex": 0
+          },
+          "transition": null
+        },
+        {
+          "index": 2,
+          "left": 414,
+          "width": 120,
+          "active": false,
+          "expected": {
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "origin": "center",
+            "zIndex": 0
+          },
+          "transition": null
+        },
+        {
+          "index": 3,
+          "left": 282,
+          "width": 120,
+          "active": false,
+          "expected": {
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "origin": "center",
+            "zIndex": 0
+          },
+          "transition": null
+        },
+        {
+          "index": 4,
+          "left": 150,
+          "width": 120,
+          "active": false,
+          "expected": {
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "origin": "center",
+            "zIndex": 0
+          },
+          "transition": null
+        },
+        {
+          "index": 5,
+          "left": 18,
+          "width": 120,
+          "active": true,
+          "expected": {
+            "x": 7.220942378326957,
+            "y": -6.156316258445425,
+            "scale": 1.1055368501447789,
+            "origin": "left",
+            "zIndex": 88
+          },
+          "transition": "transform 760ms cubic-bezier(0.22, 0.61, 0.36, 1)"
+        }
+      ]
+    },
+    {
+      "rtl": true,
+      "scroll": 366,
+      "pointerX": 78,
+      "viewportLeft": 18,
+      "viewportWidth": 414,
+      "transitionMs": -100,
+      "reset": true,
+      "cards": [
+        {
+          "index": 0,
+          "left": 678,
+          "width": 120,
+          "active": false,
+          "expected": {
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "origin": "center",
+            "zIndex": 0
+          },
+          "transition": null
+        },
+        {
+          "index": 1,
+          "left": 546,
+          "width": 120,
+          "active": false,
+          "expected": {
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "origin": "center",
+            "zIndex": 0
+          },
+          "transition": null
+        },
+        {
+          "index": 2,
+          "left": 414,
+          "width": 120,
+          "active": false,
+          "expected": {
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "origin": "center",
+            "zIndex": 0
+          },
+          "transition": null
+        },
+        {
+          "index": 3,
+          "left": 282,
+          "width": 120,
+          "active": false,
+          "expected": {
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "origin": "center",
+            "zIndex": 0
+          },
+          "transition": null
+        },
+        {
+          "index": 4,
+          "left": 150,
+          "width": 120,
+          "active": true,
+          "expected": {
+            "x": 8.33327827022556,
+            "y": -3.229388140850814,
+            "scale": 1.0553609395574426,
+            "origin": "center",
+            "zIndex": 47
+          },
+          "transition": "transform 250ms cubic-bezier(0.22, 0.61, 0.36, 1)"
+        },
+        {
+          "index": 5,
+          "left": 18,
+          "width": 120,
+          "active": true,
+          "expected": {
+            "x": 0,
+            "y": -7,
+            "scale": 1.12,
+            "origin": "left",
+            "zIndex": 100
+          },
+          "transition": "transform 250ms cubic-bezier(0.22, 0.61, 0.36, 1)"
+        }
+      ]
+    },
+    {
+      "rtl": true,
+      "scroll": 366,
+      "pointerX": 217,
+      "viewportLeft": 18,
+      "viewportWidth": 414,
+      "transitionMs": 815.6,
+      "reset": true,
+      "cards": [
+        {
+          "index": 0,
+          "left": 678,
+          "width": 120,
+          "active": false,
+          "expected": {
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "origin": "center",
+            "zIndex": 0
+          },
+          "transition": null
+        },
+        {
+          "index": 1,
+          "left": 546,
+          "width": 120,
+          "active": false,
+          "expected": {
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "origin": "center",
+            "zIndex": 0
+          },
+          "transition": null
+        },
+        {
+          "index": 2,
+          "left": 414,
+          "width": 120,
+          "active": false,
+          "expected": {
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "origin": "center",
+            "zIndex": 0
+          },
+          "transition": null
+        },
+        {
+          "index": 3,
+          "left": 282,
+          "width": 120,
+          "active": true,
+          "expected": {
+            "x": 0,
+            "y": -3.5831953436272084,
+            "scale": 1.0614262058907522,
+            "origin": "right",
+            "zIndex": 52
+          },
+          "transition": "transform 816ms cubic-bezier(0.22, 0.61, 0.36, 1)"
+        },
+        {
+          "index": 4,
+          "left": 150,
+          "width": 120,
+          "active": true,
+          "expected": {
+            "x": -0.9562911399272197,
+            "y": -6.988281407160428,
+            "scale": 1.119799109837036,
+            "origin": "center",
+            "zIndex": 100
+          },
+          "transition": "transform 816ms cubic-bezier(0.22, 0.61, 0.36, 1)"
+        },
+        {
+          "index": 5,
+          "left": 18,
+          "width": 120,
+          "active": true,
+          "expected": {
+            "x": 0,
+            "y": -2.8647683995762567,
+            "scale": 1.0491103154213073,
+            "origin": "left",
+            "zIndex": 42
+          },
+          "transition": "transform 816ms cubic-bezier(0.22, 0.61, 0.36, 1)"
+        }
+      ]
+    },
+    {
+      "rtl": true,
+      "scroll": 366,
+      "pointerX": 432,
+      "viewportLeft": 18,
+      "viewportWidth": 414,
+      "transitionMs": 9999,
+      "reset": true,
+      "cards": [
+        {
+          "index": 0,
+          "left": 678,
+          "width": 120,
+          "active": false,
+          "expected": {
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "origin": "center",
+            "zIndex": 0
+          },
+          "transition": null
+        },
+        {
+          "index": 1,
+          "left": 546,
+          "width": 120,
+          "active": true,
+          "expected": {
+            "x": 0,
+            "y": -0.9232451993944801,
+            "scale": 1.0158270605610482,
+            "origin": "right",
+            "zIndex": 14
+          },
+          "transition": "transform 1500ms cubic-bezier(0.22, 0.61, 0.36, 1)"
+        },
+        {
+          "index": 2,
+          "left": 414,
+          "width": 120,
+          "active": true,
+          "expected": {
+            "x": 0,
+            "y": -6.582235730813128,
+            "scale": 1.1128383268139395,
+            "origin": "right",
+            "zIndex": 94
+          },
+          "transition": "transform 1500ms cubic-bezier(0.22, 0.61, 0.36, 1)"
+        },
+        {
+          "index": 3,
+          "left": 282,
+          "width": 120,
+          "active": true,
+          "expected": {
+            "x": -9.061020794605936,
+            "y": -5.150067374711922,
+            "scale": 1.088286869280776,
+            "origin": "right",
+            "zIndex": 74
+          },
+          "transition": "transform 1500ms cubic-bezier(0.22, 0.61, 0.36, 1)"
+        },
+        {
+          "index": 4,
+          "left": 150,
+          "width": 120,
+          "active": false,
+          "expected": {
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "origin": "center",
+            "zIndex": 0
+          },
+          "transition": null
+        },
+        {
+          "index": 5,
+          "left": 18,
+          "width": 120,
+          "active": false,
+          "expected": {
+            "x": 0,
+            "y": 0,
+            "scale": 1,
+            "origin": "center",
+            "zIndex": 0
+          },
+          "transition": null
+        }
+      ]
+    }
+  ],
+  "sizes": [
+    {
+      "width": 640,
+      "height": 360,
+      "expected": true
+    },
+    {
+      "width": 639,
+      "height": 360,
+      "expected": false
+    },
+    {
+      "width": 640,
+      "height": 359,
+      "expected": false
+    },
+    {
+      "width": 1450,
+      "height": 1000,
+      "expected": true
+    },
+    {
+      "width": 2200,
+      "height": 1000,
+      "expected": true
+    },
+    {
+      "width": 2201,
+      "height": 1000,
+      "expected": false
+    },
+    {
+      "width": 1449,
+      "height": 1000,
+      "expected": false
+    },
+    {
+      "width": 1080,
+      "height": 1920,
+      "expected": false
+    },
+    {
+      "width": 1280,
+      "height": 720,
+      "expected": true
+    },
+    {
+      "width": 0,
+      "height": 0,
+      "expected": false
+    },
+    {
+      "width": 1024,
+      "height": -1,
+      "expected": false
+    }
+  ],
+  "reveals": [
+    {
+      "left": 10,
+      "right": 100,
+      "viewportLeft": 0,
+      "viewportRight": 414,
+      "gutter": 12,
+      "expected": -2
+    },
+    {
+      "left": -10,
+      "right": 100,
+      "viewportLeft": 0,
+      "viewportRight": 414,
+      "gutter": 12,
+      "expected": -22
+    },
+    {
+      "left": 300,
+      "right": 500,
+      "viewportLeft": 0,
+      "viewportRight": 414,
+      "gutter": 12,
+      "expected": 98
+    },
+    {
+      "left": -10,
+      "right": 500,
+      "viewportLeft": 0,
+      "viewportRight": 414,
+      "gutter": 12,
+      "expected": 0
+    },
+    {
+      "left": 20,
+      "right": 390,
+      "viewportLeft": 0,
+      "viewportRight": 414,
+      "gutter": 0,
+      "expected": 0
+    },
+    {
+      "left": -40,
+      "right": 10,
+      "viewportLeft": -50,
+      "viewportRight": 400,
+      "gutter": -2,
+      "expected": 0
+    }
+  ],
+  "identities": [
+    {
+      "current": "https://image.tmdb.org/t/p/w500/poster.jpg?language=es",
+      "candidates": [
+        "https://IMAGE.TMDB.ORG:443/t/p/original/poster.jpg#test",
+        "https://owned.invalid/wide.jpg"
+      ],
+      "expected": "https://owned.invalid/wide.jpg"
+    },
+    {
+      "current": "https://owned.invalid/path.jpg?one=1",
+      "candidates": ["https://owned.invalid/path.jpg?two=2", "https://owned.invalid/other.jpg"],
+      "expected": "https://owned.invalid/other.jpg"
+    },
+    {
+      "current": "https://owned.invalid/poster.jpg",
+      "candidates": ["https://owned.invalid/wide.jpg"],
+      "expected": "https://owned.invalid/wide.jpg"
+    }
+  ],
+  "widths": [
+    {
+      "height": 1,
+      "expected": 1.7777777777777777
+    },
+    {
+      "height": 174,
+      "expected": 309.3333333333333
+    },
+    {
+      "height": 243.5,
+      "expected": 432.88888888888886
+    },
+    {
+      "height": 480,
+      "expected": 853.3333333333333
+    }
+  ],
+  "rungs": [
+    {
+      "input": "https://image.tmdb.org/t/p/w780/wide.jpg",
+      "expected": "https://image.tmdb.org/t/p/w1280/wide.jpg"
+    },
+    {
+      "input": "https://owned.invalid/wide.jpg",
+      "expected": "https://owned.invalid/wide.jpg"
+    },
+    {
+      "input": "https://image.tmdb.org/t/p/original/wide.jpg?language=es",
+      "expected": "https://image.tmdb.org/t/p/w1280/wide.jpg?language=es"
+    }
+  ]
+}

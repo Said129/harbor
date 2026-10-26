@@ -117,6 +117,7 @@
 "Animals" = "Animals";
 "Animated Movies" = "Phim hoạt hình";
 "Animation" = "Hoạt hình";
+"Animation speed" = "Tốc độ hiệu ứng";
 "Anime" = "Anime";
 "Anime Expo" = "Anime Expo";
 "Anime en tendencia" = "Anime thịnh hành";
@@ -298,6 +299,7 @@
 "Capítulo anterior" = "Chương trước";
 "Capítulo siguiente" = "Chương tiếp theo";
 "Capítulos" = "Các chương";
+"Card behaviour" = "Cách thẻ hoạt động";
 "Cards, panels." = "Thẻ, bảng.";
 "Cargar archivo" = "Tải tệp";
 "Cargar más" = "Tải thêm";
@@ -560,6 +562,7 @@
 "Eliminar lista" = "Xóa danh sách";
 "Email and password" = "Email and password";
 "Embedded" = "Được nhúng";
+"Emphasize the selected card across the page while gently darkening and blurring the other cards." = "Làm nổi bật thẻ được chọn trên toàn trang, đồng thời làm tối và làm mờ nhẹ các thẻ khác.";
 "En ascenso" = "Đang lên";
 "En caché" = "Đã lưu vào bộ nhớ đệm";
 "En directo" = "Trực tiếp";
@@ -602,6 +605,8 @@
 "Everything your addons offer, shown as posters. Scroll, search, or filter to what you want." = "Mọi nội dung từ các tiện ích bổ sung của bạn đều được hiển thị dưới dạng áp phích. Cuộn, tìm kiếm hoặc lọc để tìm nội dung bạn muốn.";
 "Excellence Prize" = "Giải Xuất sắc";
 "Exit Picture in Picture" = "Thoát chế độ Hình trong hình";
+"Expand poster cards during keyboard or remote navigation across poster rows, using preloaded wide artwork." = "Mở rộng thẻ áp phích khi điều hướng bằng bàn phím hoặc điều khiển từ xa qua các hàng áp phích, sử dụng ảnh ngang đã tải trước.";
+"Expanding Cards" = "Thẻ mở rộng";
 "Explicit" = "Nhạy cảm";
 "Explorar" = "Duyệt";
 "Explorar complementos" = "Duyệt tiện ích bổ sung";
@@ -645,6 +650,7 @@
 "Focus" = "Focus";
 "Focus GIF URL" = "URL GIF khi lấy nét";
 "Focus mode" = "Chế độ tập trung";
+"Focused Card" = "Thẻ được chọn";
 "Fondo" = "Nền";
 "Font" = "Phông chữ";
 "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found." = "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found.";
@@ -674,6 +680,7 @@
 "Full HD · HDR" = "Full HD · HDR";
 "Gamma" = "Gamma";
 "Genre" = "Thể loại";
+"Gently magnify nearby posters as you move across a poster row." = "Phóng to nhẹ các áp phích lân cận khi bạn di chuyển qua một hàng áp phích.";
 "German" = "Tiếng Đức";
 "Get Started" = "Bắt đầu";
 "Get a free key at themoviedb.org" = "Nhận khóa miễn phí tại themoviedb.org";
@@ -748,6 +755,7 @@
 "Horror" = "Kinh dị";
 "Horror & Supernatural" = "Kinh dị và siêu nhiên";
 "How large every poster card is drawn across Home and search." = "How large every poster card is drawn across Home and search.";
+"How long a poster takes to grow and settle as the pointer passes it." = "How long a poster takes to grow and settle as the pointer passes it.";
 "How many films?" = "Bao nhiêu phim?";
 "Hoy" = "Hôm nay";
 "Hulu" = "Hulu";
@@ -1215,12 +1223,14 @@
 "Poster" = "Áp phích";
 "Poster card style" = "Kiểu thẻ áp phích";
 "Poster cards" = "Thẻ áp phích";
+"Poster dock magnification" = "Phóng đại áp phích kiểu thanh Dock";
 "Poster reset to default" = "Poster reset to default";
 "Posters, ratings, lists" = "Áp phích, điểm đánh giá, danh sách";
 "Predeterminado" = "Mặc định";
 "Predeterminado (acento dorado)" = "Mặc định (điểm nhấn màu vàng kim)";
 "Preguntar si reanudar o empezar de nuevo" = "Hỏi tiếp tục xem hay xem lại từ đầu";
 "Premiered This Month" = "Ra mắt trong tháng này";
+"Preview" = "Xem trước";
 "Previous" = "Trước";
 "Previous chapter" = "Chương trước";
 "Previous day" = "Previous day";
@@ -2064,6 +2074,7 @@
 "{count} tracks" = "{count} bài hát";
 "{h}h left" = "còn {h} giờ";
 "{h}h {m}m left" = "còn {h} giờ {m} phút";
+"{ms} ms" = "{ms} ms";
 "{m}m left" = "còn {m} phút";
 "{names}, and all other names, logos, and brand references are property of their respective owners and are used here only for compatibility and identification." = "{names} và mọi tên, logo cùng thông tin tham chiếu thương hiệu khác đều thuộc sở hữu của chủ sở hữu tương ứng và chỉ được sử dụng tại đây để đảm bảo khả năng tương thích và nhận diện.";
 "{name} + {n} more" = "{name} + thêm {n}";

@@ -46,6 +46,10 @@ struct HTTPClient: Sendable {
         return try await receive(request, session: Self.accountSession)
     }
 
+    func simklArtwork(_ id: Int) async throws -> JSONValue {
+        try await receive(Self.simklArtworkRequest(id), session: Self.publicTVDBSession)
+    }
+
     func anilist(query: String, variables: JSONValue) async throws -> JSONValue {
         var request = URLRequest(url: URL(string: "https://graphql.anilist.co")!, timeoutInterval: 20)
         request.httpMethod = "POST"

@@ -267,7 +267,7 @@ struct DiscoverView: View {
     private func shelf(_ title: String, items: [Media]) -> some View {
         VStack(alignment: .leading, spacing: 14) {
             Text(title).font(HarborTheme.font(18, weight: .semibold)).padding(.horizontal)
-            ScrollView(.horizontal) { LazyHStack(alignment: .top, spacing: 12) { ForEach(items, id: \.identity) { media in NavigationLink(value: media) { Poster(media: media) }.buttonStyle(.plain) } }.padding(.horizontal) }.scrollIndicators(.hidden)
+            ScrollView(.horizontal) { LazyHStack(alignment: .top, spacing: 12) { ForEach(items, id: \.identity) { media in NavigationLink(value: media) { Poster(media: media) }.buttonStyle(.plain) } }.padding(.horizontal) }.scrollIndicators(.hidden).posterRowBehavior()
         }
     }
 }

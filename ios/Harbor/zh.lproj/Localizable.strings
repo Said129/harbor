@@ -117,6 +117,7 @@
 "Animals" = "Animals";
 "Animated Movies" = "动画电影";
 "Animation" = "动画";
+"Animation speed" = "动画速度";
 "Anime" = "动漫";
 "Anime Expo" = "Anime Expo";
 "Anime en tendencia" = "热门动漫";
@@ -298,6 +299,7 @@
 "Capítulo anterior" = "上一章";
 "Capítulo siguiente" = "下一章";
 "Capítulos" = "章节";
+"Card behaviour" = "卡片行为";
 "Cards, panels." = "卡片、面板。";
 "Cargar archivo" = "加载文件";
 "Cargar más" = "加载更多";
@@ -560,6 +562,7 @@
 "Eliminar lista" = "删除片单";
 "Email and password" = "Email and password";
 "Embedded" = "内嵌";
+"Emphasize the selected card across the page while gently darkening and blurring the other cards." = "突出显示页面中选中的卡片，同时轻微调暗并模糊其他卡片。";
 "En ascenso" = "飙升榜";
 "En caché" = "已缓存";
 "En directo" = "直播";
@@ -602,6 +605,8 @@
 "Everything your addons offer, shown as posters. Scroll, search, or filter to what you want." = "插件提供的所有内容都会以海报形式显示。滚动、搜索或筛选即可找到所需内容。";
 "Excellence Prize" = "优秀奖";
 "Exit Picture in Picture" = "退出画中画";
+"Expand poster cards during keyboard or remote navigation across poster rows, using preloaded wide artwork." = "使用键盘或遥控器浏览海报行时，使用预加载的宽幅图片展开海报卡片。";
+"Expanding Cards" = "展开卡片";
 "Explicit" = "露骨内容";
 "Explorar" = "浏览";
 "Explorar complementos" = "浏览插件";
@@ -645,6 +650,7 @@
 "Focus" = "Focus";
 "Focus GIF URL" = "焦点 GIF URL";
 "Focus mode" = "专注模式";
+"Focused Card" = "聚焦卡片";
 "Fondo" = "背景";
 "Font" = "字体";
 "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found." = "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found.";
@@ -674,6 +680,7 @@
 "Full HD · HDR" = "Full HD · HDR";
 "Gamma" = "伽马";
 "Genre" = "类型";
+"Gently magnify nearby posters as you move across a poster row." = "在海报行中移动时，轻微放大附近的海报。";
 "German" = "德语";
 "Get Started" = "开始使用";
 "Get a free key at themoviedb.org" = "前往 themoviedb.org 获取免费密钥";
@@ -748,6 +755,7 @@
 "Horror" = "恐怖";
 "Horror & Supernatural" = "恐怖与超自然";
 "How large every poster card is drawn across Home and search." = "How large every poster card is drawn across Home and search.";
+"How long a poster takes to grow and settle as the pointer passes it." = "How long a poster takes to grow and settle as the pointer passes it.";
 "How many films?" = "多少部电影？";
 "Hoy" = "今天";
 "Hulu" = "Hulu";
@@ -1215,12 +1223,14 @@
 "Poster" = "海报";
 "Poster card style" = "海报卡片样式";
 "Poster cards" = "海报卡片";
+"Poster dock magnification" = "海报停靠栏放大效果";
 "Poster reset to default" = "Poster reset to default";
 "Posters, ratings, lists" = "海报、评分、列表";
 "Predeterminado" = "默认";
 "Predeterminado (acento dorado)" = "默认（金色强调色）";
 "Preguntar si reanudar o empezar de nuevo" = "询问继续播放还是从头开始";
 "Premiered This Month" = "本月首播";
+"Preview" = "预览";
 "Previous" = "上一个";
 "Previous chapter" = "上一章";
 "Previous day" = "Previous day";
@@ -2064,6 +2074,7 @@
 "{count} tracks" = "{count} 首歌曲";
 "{h}h left" = "剩余 {h} 小时";
 "{h}h {m}m left" = "剩余 {h} 小时 {m} 分钟";
+"{ms} ms" = "{ms} 毫秒";
 "{m}m left" = "剩余 {m} 分钟";
 "{names}, and all other names, logos, and brand references are property of their respective owners and are used here only for compatibility and identification." = "{names} 以及所有其他名称、徽标和品牌标识均为其各自所有者的财产，此处仅用于兼容和识别。";
 "{name} + {n} more" = "{name} + 另 {n} 个";

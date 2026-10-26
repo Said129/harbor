@@ -117,6 +117,7 @@
 "Animals" = "Animals";
 "Animated Movies" = "एनिमेटेड फ़िल्में";
 "Animation" = "एनीमेशन";
+"Animation speed" = "एनीमेशन की गति";
 "Anime" = "एनीमे";
 "Anime Expo" = "Anime Expo";
 "Anime en tendencia" = "ट्रेंडिंग एनीमे";
@@ -298,6 +299,7 @@
 "Capítulo anterior" = "पिछला अध्याय";
 "Capítulo siguiente" = "अगला अध्याय";
 "Capítulos" = "अध्याय";
+"Card behaviour" = "कार्ड का व्यवहार";
 "Cards, panels." = "कार्ड, पैनल।";
 "Cargar archivo" = "फ़ाइल लोड करें";
 "Cargar más" = "और लोड करें";
@@ -560,6 +562,7 @@
 "Eliminar lista" = "लिस्ट हटाएँ";
 "Email and password" = "Email and password";
 "Embedded" = "एम्बेड किया गया";
+"Emphasize the selected card across the page while gently darkening and blurring the other cards." = "अन्य कार्डों को हल्का गहरा और धुँधला करते हुए पूरे पेज पर चुने गए कार्ड को उभारें।";
 "En ascenso" = "सबसे तेज़ उभरते";
 "En caché" = "कैश में सहेजा गया";
 "En directo" = "लाइव";
@@ -602,6 +605,8 @@
 "Everything your addons offer, shown as posters. Scroll, search, or filter to what you want." = "आपके ऐडऑन जो कुछ भी पेश करते हैं, वह पोस्टर के रूप में दिखाया जाता है। जो चाहिए, उस तक पहुँचने के लिए स्क्रॉल करें, खोजें या फ़िल्टर करें।";
 "Excellence Prize" = "उत्कृष्टता पुरस्कार";
 "Exit Picture in Picture" = "पिक्चर इन पिक्चर से बाहर निकलें";
+"Expand poster cards during keyboard or remote navigation across poster rows, using preloaded wide artwork." = "पहले से लोड किए गए चौड़े आर्टवर्क का उपयोग करके, पोस्टर की पंक्तियों में कीबोर्ड या रिमोट से नेविगेट करते समय पोस्टर कार्ड बड़े करें।";
+"Expanding Cards" = "बड़े होने वाले कार्ड";
 "Explicit" = "अश्लील सामग्री";
 "Explorar" = "ब्राउज़ करें";
 "Explorar complementos" = "ऐडऑन ब्राउज़ करें";
@@ -645,6 +650,7 @@
 "Focus" = "Focus";
 "Focus GIF URL" = "फ़ोकस GIF URL";
 "Focus mode" = "फ़ोकस मोड";
+"Focused Card" = "फ़ोकस वाला कार्ड";
 "Fondo" = "बैकग्राउंड";
 "Font" = "फ़ॉन्ट";
 "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found." = "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found.";
@@ -674,6 +680,7 @@
 "Full HD · HDR" = "Full HD · HDR";
 "Gamma" = "गामा";
 "Genre" = "शैली";
+"Gently magnify nearby posters as you move across a poster row." = "पोस्टर की पंक्ति में आगे बढ़ते समय आस-पास के पोस्टर को हल्का बड़ा करें।";
 "German" = "जर्मन";
 "Get Started" = "शुरू करें";
 "Get a free key at themoviedb.org" = "themoviedb.org पर मुफ़्त कुंजी पाएँ";
@@ -748,6 +755,7 @@
 "Horror" = "हॉरर";
 "Horror & Supernatural" = "हॉरर और अलौकिक";
 "How large every poster card is drawn across Home and search." = "How large every poster card is drawn across Home and search.";
+"How long a poster takes to grow and settle as the pointer passes it." = "How long a poster takes to grow and settle as the pointer passes it.";
 "How many films?" = "कितनी फ़िल्में?";
 "Hoy" = "आज";
 "Hulu" = "Hulu";
@@ -1215,12 +1223,14 @@
 "Poster" = "पोस्टर";
 "Poster card style" = "पोस्टर कार्ड की शैली";
 "Poster cards" = "पोस्टर कार्ड";
+"Poster dock magnification" = "पोस्टर डॉक का ज़ूम";
 "Poster reset to default" = "Poster reset to default";
 "Posters, ratings, lists" = "पोस्टर, रेटिंग, सूचियाँ";
 "Predeterminado" = "डिफ़ॉल्ट";
 "Predeterminado (acento dorado)" = "डिफ़ॉल्ट (सुनहरा एक्सेंट)";
 "Preguntar si reanudar o empezar de nuevo" = "वहीं से चलाने या फिर से शुरू करने के लिए पूछें";
 "Premiered This Month" = "इस महीने प्रीमियर हुए";
+"Preview" = "प्रीव्यू";
 "Previous" = "पिछला";
 "Previous chapter" = "पिछला अध्याय";
 "Previous day" = "Previous day";
@@ -2064,6 +2074,7 @@
 "{count} tracks" = "{count} ट्रैक";
 "{h}h left" = "{h} घंटे बाकी";
 "{h}h {m}m left" = "{h} घंटे {m} मिनट बाकी";
+"{ms} ms" = "{ms} मिलीसेकंड";
 "{m}m left" = "{m} मिनट बाकी";
 "{names}, and all other names, logos, and brand references are property of their respective owners and are used here only for compatibility and identification." = "{names}, और अन्य सभी नाम, लोगो व ब्रांड संदर्भ उनके संबंधित स्वामियों की संपत्ति हैं और यहां केवल संगतता व पहचान के लिए इस्तेमाल किए गए हैं।";
 "{name} + {n} more" = "{name} + {n} और";

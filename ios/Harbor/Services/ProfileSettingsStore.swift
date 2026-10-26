@@ -47,6 +47,7 @@ struct ProfileSettingsState: Codable, Equatable, Sendable {
     nonisolated static let keys: Set<String> = [
         "uiLanguage", "navIconAnimations", "interface.autoRotateBanners", "homeMode", "showImdbBadge", "showTmdbBadge",
         "rowCardStyle", "tvCardLogoPos", "posterScale", "posterRadius", "posterEffect", "posterQuality",
+        "posterFocusedCard", "posterBackdropExpansion", "posterDockMagnification", "posterDockTransitionMs",
         "tmdbImageLangs", "harbor:title-logos", "harbor:title-posters", "harbor:title-backdrops",
         "showWatchedButton", "showEpisodeDescription", "hideSpoilers", "blurEpisodes", "spoilerHideTitles", "spoilerHideDescriptions",
         "iphone.theme.preset", "iphone.theme.custom", "iphone.theme.font", "iphone.theme.colors", "seekBarColor",

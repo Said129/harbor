@@ -124,6 +124,7 @@
 "Animals" = "Animals";
 "Animated Movies" = "Filmes de Animação";
 "Animation" = "Animação";
+"Animation speed" = "Velocidade da animação";
 "Anime" = "Anime";
 "Anime Expo" = "Anime Expo";
 "Anime en tendencia" = "Animes em Alta";
@@ -314,6 +315,7 @@
 "Capítulo anterior" = "Capítulo anterior";
 "Capítulo siguiente" = "Próximo capítulo";
 "Capítulos" = "Capítulos";
+"Card behaviour" = "Comportamento dos cartões";
 "Cards, panels." = "Cartões, painéis.";
 "Cargar archivo" = "Carregar arquivo";
 "Cargar más" = "Carregar mais";
@@ -580,6 +582,7 @@
 "Eliminar lista" = "Excluir lista";
 "Email and password" = "Email and password";
 "Embedded" = "Incorporado";
+"Emphasize the selected card across the page while gently darkening and blurring the other cards." = "Destaca o cartão selecionado na página, escurecendo e desfocando suavemente os outros cartões.";
 "En ascenso" = "Em ascensão";
 "En caché" = "Em cache";
 "En directo" = "Ao vivo";
@@ -622,6 +625,8 @@
 "Everything your addons offer, shown as posters. Scroll, search, or filter to what you want." = "Tudo o que seus complementos oferecem, exibido como pôsteres. Role, pesquise ou filtre para encontrar o que você quer.";
 "Excellence Prize" = "Prêmio de Excelência";
 "Exit Picture in Picture" = "Sair do Picture in Picture";
+"Expand poster cards during keyboard or remote navigation across poster rows, using preloaded wide artwork." = "Expande os cartões de pôster durante a navegação por teclado ou controle nas fileiras de pôsteres, usando arte larga pré-carregada.";
+"Expanding Cards" = "Cartões expansíveis";
 "Explicit" = "Explícito";
 "Explorar" = "Explorar";
 "Explorar complementos" = "Navegar pelos addons";
@@ -665,6 +670,7 @@
 "Focus" = "Focus";
 "Focus GIF URL" = "URL do GIF de Destaque";
 "Focus mode" = "Modo foco";
+"Focused Card" = "Cartão em foco";
 "Fondo" = "Plano de fundo";
 "Font" = "Fonte";
 "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found." = "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found.";
@@ -694,6 +700,7 @@
 "Full HD · HDR" = "Full HD · HDR";
 "Gamma" = "Gama";
 "Genre" = "Gênero";
+"Gently magnify nearby posters as you move across a poster row." = "Amplia suavemente os pôsteres próximos conforme você percorre uma linha de pôsteres.";
 "German" = "Alemão";
 "Get Started" = "Começar";
 "Get a free key at themoviedb.org" = "Obtenha uma chave gratuita em themoviedb.org";
@@ -768,6 +775,7 @@
 "Horror" = "Terror";
 "Horror & Supernatural" = "Terror e Sobrenatural";
 "How large every poster card is drawn across Home and search." = "How large every poster card is drawn across Home and search.";
+"How long a poster takes to grow and settle as the pointer passes it." = "How long a poster takes to grow and settle as the pointer passes it.";
 "How many films?" = "Quantos filmes?";
 "Hoy" = "Hoje";
 "Hulu" = "Hulu";
@@ -1235,12 +1243,14 @@
 "Poster" = "Pôster";
 "Poster card style" = "Estilo do cartão de pôster";
 "Poster cards" = "Cartões de pôsteres";
+"Poster dock magnification" = "Ampliação do dock de pôsteres";
 "Poster reset to default" = "Poster reset to default";
 "Posters, ratings, lists" = "Pôsteres, avaliações, listas";
 "Predeterminado" = "Padrão";
 "Predeterminado (acento dorado)" = "Padrão (destaque dourado)";
 "Preguntar si reanudar o empezar de nuevo" = "Perguntar se deseja continuar ou começar de novo";
 "Premiered This Month" = "Estreou Este Mês";
+"Preview" = "Prévia";
 "Previous" = "Anterior";
 "Previous chapter" = "Capítulo anterior";
 "Previous day" = "Previous day";
@@ -2091,6 +2101,7 @@
 "{count} tracks" = "{count} faixas";
 "{h}h left" = "faltam {h}h";
 "{h}h {m}m left" = "faltam {h}h {m}m";
+"{ms} ms" = "{ms} ms";
 "{m}m left" = "faltam {m}m";
 "{names}, and all other names, logos, and brand references are property of their respective owners and are used here only for compatibility and identification." = "{names} e todos os demais nomes, logotipos e referências a marcas pertencem a seus respectivos proprietários e são usados aqui apenas para compatibilidade e identificação.";
 "{name} + {n} more" = "{name} + mais {n}";

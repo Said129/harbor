@@ -85,7 +85,7 @@ struct DetailMetadataView: View {
     private func rail(_ title: String, items: [Media]) -> some View {
         VStack(alignment: .leading, spacing: 14) {
             Text(title).font(HarborTheme.font(17, weight: .medium))
-            ScrollView(.horizontal) { LazyHStack(alignment: .top, spacing: 12) { ForEach(items, id: \.identity) { item in NavigationLink { DetailView(media: item, app: app) } label: { Poster(media: item) }.buttonStyle(.plain) } } }.scrollIndicators(.hidden)
+            ScrollView(.horizontal) { LazyHStack(alignment: .top, spacing: 12) { ForEach(items, id: \.identity) { item in NavigationLink { DetailView(media: item, app: app) } label: { Poster(media: item) }.buttonStyle(.plain) } } }.scrollIndicators(.hidden).posterRowBehavior()
         }
     }
     private func mediaGallery(_ details: MediaDetails) -> some View {

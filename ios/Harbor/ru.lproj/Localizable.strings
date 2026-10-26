@@ -120,6 +120,7 @@
 "Animated Movies" = "Мультфильмы";
 "Animated sidebar icons" = "Animated sidebar icons";
 "Animation" = "Мультфильм";
+"Animation speed" = "Скорость анимации";
 "Anime" = "Аниме";
 "Anime Expo" = "Anime Expo";
 "Anime en tendencia" = "Аниме в тренде";
@@ -302,6 +303,7 @@
 "Capítulo anterior" = "Предыдущая глава";
 "Capítulo siguiente" = "Следующая глава";
 "Capítulos" = "Главы";
+"Card behaviour" = "Поведение карточек";
 "Cards, panels." = "Карточки, панели.";
 "Cargar archivo" = "Загрузить файл";
 "Cargar más" = "Показать ещё";
@@ -564,6 +566,7 @@
 "Eliminar lista" = "Удалить список";
 "Email and password" = "Email and password";
 "Embedded" = "Встроенные";
+"Emphasize the selected card across the page while gently darkening and blurring the other cards." = "Выделяет выбранную карточку на странице, слегка затемняя и размывая остальные.";
 "En ascenso" = "Набирают популярность";
 "En caché" = "В кеше";
 "En directo" = "В эфире";
@@ -606,6 +609,8 @@
 "Everything your addons offer, shown as posters. Scroll, search, or filter to what you want." = "Всё, что предлагают ваши дополнения, в виде постеров. Прокручивайте, ищите или фильтруйте.";
 "Excellence Prize" = "Приз за выдающиеся достижения";
 "Exit Picture in Picture" = "Выйти из картинки в картинке";
+"Expand poster cards during keyboard or remote navigation across poster rows, using preloaded wide artwork." = "Расширяет карточки постеров при навигации с клавиатуры или пульта по рядам постеров, используя предзагруженные широкие изображения.";
+"Expanding Cards" = "Расширяющиеся карточки";
 "Explicit" = "Ненормативная лексика";
 "Explorar" = "Каталог";
 "Explorar complementos" = "Обзор дополнений";
@@ -649,6 +654,7 @@
 "Focus" = "Focus";
 "Focus GIF URL" = "URL GIF при фокусе";
 "Focus mode" = "Режим фокуса";
+"Focused Card" = "Выделенная карточка";
 "Fondo" = "Фон";
 "Font" = "Шрифт";
 "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found." = "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found.";
@@ -679,6 +685,7 @@
 "GB" = "GB";
 "Gamma" = "Гамма";
 "Genre" = "Жанр";
+"Gently magnify nearby posters as you move across a poster row." = "Плавно увеличивать соседние постеры при движении по ряду.";
 "German" = "Немецкий";
 "Get Started" = "Начать";
 "Get a free key at themoviedb.org" = "Получить бесплатный ключ на themoviedb.org";
@@ -753,6 +760,7 @@
 "Horror" = "Ужасы";
 "Horror & Supernatural" = "Ужасы и мистика";
 "How large every poster card is drawn across Home and search." = "How large every poster card is drawn across Home and search.";
+"How long a poster takes to grow and settle as the pointer passes it." = "How long a poster takes to grow and settle as the pointer passes it.";
 "How many films?" = "Сколько фильмов?";
 "Hoy" = "Сегодня";
 "Hulu" = "Hulu";
@@ -1226,12 +1234,14 @@
 "Poster" = "Постер";
 "Poster card style" = "Стиль карточек постеров";
 "Poster cards" = "Карточки с постерами";
+"Poster dock magnification" = "Увеличение постеров как в доке";
 "Poster reset to default" = "Poster reset to default";
 "Posters, ratings, lists" = "Постеры, рейтинги, списки";
 "Predeterminado" = "По умолчанию";
 "Predeterminado (acento dorado)" = "По умолчанию (золотой акцент)";
 "Preguntar si reanudar o empezar de nuevo" = "Спрашивать: продолжить или начать сначала";
 "Premiered This Month" = "Премьеры этого месяца";
+"Preview" = "Предпросмотр";
 "Previous" = "Предыдущее";
 "Previous chapter" = "Предыдущая глава";
 "Previous day" = "Previous day";
@@ -2079,6 +2089,7 @@
 "{count} tracks" = "Треков: {count}";
 "{h}h left" = "осталось {h} ч";
 "{h}h {m}m left" = "осталось {h} ч {m} мин";
+"{ms} ms" = "{ms} ms";
 "{m}m left" = "осталось {m} мин";
 "{names}, and all other names, logos, and brand references are property of their respective owners and are used here only for compatibility and identification." = "{names}, а также все прочие названия, логотипы и упоминания брендов принадлежат их соответствующим владельцам и используются здесь исключительно для обеспечения совместимости и идентификации.";
 "{name} + {n} more" = "{name} и ещё {n}";

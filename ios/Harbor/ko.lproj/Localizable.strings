@@ -117,6 +117,7 @@
 "Animals" = "Animals";
 "Animated Movies" = "애니메이션 영화";
 "Animation" = "애니메이션";
+"Animation speed" = "애니메이션 속도";
 "Anime" = "애니메이션";
 "Anime Expo" = "Anime Expo";
 "Anime en tendencia" = "인기 급상승 애니메이션";
@@ -298,6 +299,7 @@
 "Capítulo anterior" = "이전 챕터";
 "Capítulo siguiente" = "다음 챕터";
 "Capítulos" = "챕터";
+"Card behaviour" = "카드 동작";
 "Cards, panels." = "카드, 패널.";
 "Cargar archivo" = "파일 불러오기";
 "Cargar más" = "더 불러오기";
@@ -560,6 +562,7 @@
 "Eliminar lista" = "목록 삭제";
 "Email and password" = "Email and password";
 "Embedded" = "내장";
+"Emphasize the selected card across the page while gently darkening and blurring the other cards." = "선택한 카드를 페이지 전체에서 강조하고 다른 카드는 은은하게 어둡게 하고 흐리게 표시합니다.";
 "En ascenso" = "급상승";
 "En caché" = "캐시됨";
 "En directo" = "라이브";
@@ -602,6 +605,8 @@
 "Everything your addons offer, shown as posters. Scroll, search, or filter to what you want." = "애드온에서 제공하는 모든 콘텐츠를 포스터로 표시합니다. 스크롤하거나 검색 또는 필터링해 원하는 콘텐츠를 찾으세요.";
 "Excellence Prize" = "우수상";
 "Exit Picture in Picture" = "화면 속 화면 종료";
+"Expand poster cards during keyboard or remote navigation across poster rows, using preloaded wide artwork." = "키보드나 리모컨으로 포스터 행을 탐색할 때 미리 불러온 와이드 아트워크를 사용해 포스터 카드를 확장합니다.";
+"Expanding Cards" = "확장 카드";
 "Explicit" = "명시적 콘텐츠";
 "Explorar" = "탐색";
 "Explorar complementos" = "애드온 탐색";
@@ -645,6 +650,7 @@
 "Focus" = "Focus";
 "Focus GIF URL" = "포커스 GIF URL";
 "Focus mode" = "집중 모드";
+"Focused Card" = "선택 카드";
 "Fondo" = "배경";
 "Font" = "글꼴";
 "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found." = "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found.";
@@ -674,6 +680,7 @@
 "Full HD · HDR" = "Full HD · HDR";
 "Gamma" = "감마";
 "Genre" = "장르";
+"Gently magnify nearby posters as you move across a poster row." = "포스터 행을 이동할 때 주변 포스터를 부드럽게 확대합니다.";
 "German" = "독일어";
 "Get Started" = "시작하기";
 "Get a free key at themoviedb.org" = "themoviedb.org에서 무료 키 받기";
@@ -748,6 +755,7 @@
 "Horror" = "호러";
 "Horror & Supernatural" = "공포 및 초자연";
 "How large every poster card is drawn across Home and search." = "How large every poster card is drawn across Home and search.";
+"How long a poster takes to grow and settle as the pointer passes it." = "How long a poster takes to grow and settle as the pointer passes it.";
 "How many films?" = "영화는 몇 편인가요?";
 "Hoy" = "오늘";
 "Hulu" = "Hulu";
@@ -1215,12 +1223,14 @@
 "Poster" = "포스터";
 "Poster card style" = "포스터 카드 스타일";
 "Poster cards" = "포스터 카드";
+"Poster dock magnification" = "포스터 독 확대 효과";
 "Poster reset to default" = "Poster reset to default";
 "Posters, ratings, lists" = "포스터, 평점, 목록";
 "Predeterminado" = "기본값";
 "Predeterminado (acento dorado)" = "기본값(골드 강조색)";
 "Preguntar si reanudar o empezar de nuevo" = "이어 보기 또는 처음부터 보기 확인";
 "Premiered This Month" = "이번 달 공개작";
+"Preview" = "미리보기";
 "Previous" = "이전";
 "Previous chapter" = "이전 챕터";
 "Previous day" = "Previous day";
@@ -2064,6 +2074,7 @@
 "{count} tracks" = "{count}곡";
 "{h}h left" = "{h}시간 남음";
 "{h}h {m}m left" = "{h}시간 {m}분 남음";
+"{ms} ms" = "{ms}밀리초";
 "{m}m left" = "{m}분 남음";
 "{names}, and all other names, logos, and brand references are property of their respective owners and are used here only for compatibility and identification." = "{names} 및 기타 모든 이름, 로고, 브랜드 표시는 각 소유자의 자산이며 호환성과 식별 목적으로만 사용됩니다.";
 "{name} + {n} more" = "{name} 외 {n}개";

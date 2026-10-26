@@ -117,6 +117,7 @@
 "Animals" = "Animals";
 "Animated Movies" = "Films d’animation";
 "Animation" = "Animation";
+"Animation speed" = "Vitesse d’animation";
 "Anime" = "Anime";
 "Anime Expo" = "Anime Expo";
 "Anime en tendencia" = "Anime tendance";
@@ -298,6 +299,7 @@
 "Capítulo anterior" = "Chapitre précédent";
 "Capítulo siguiente" = "Chapitre suivant";
 "Capítulos" = "Chapitres";
+"Card behaviour" = "Comportement des cartes";
 "Cards, panels." = "Cartes, panneaux.";
 "Cargar archivo" = "Charger un fichier";
 "Cargar más" = "Charger plus";
@@ -560,6 +562,7 @@
 "Eliminar lista" = "Supprimer la liste";
 "Email and password" = "Email and password";
 "Embedded" = "Intégré";
+"Emphasize the selected card across the page while gently darkening and blurring the other cards." = "Mettez en valeur la carte sélectionnée sur toute la page tout en assombrissant et en floutant légèrement les autres cartes.";
 "En ascenso" = "En forte progression";
 "En caché" = "En cache";
 "En directo" = "Direct";
@@ -602,6 +605,8 @@
 "Everything your addons offer, shown as posters. Scroll, search, or filter to what you want." = "Tout ce que proposent vos extensions, présenté sous forme d’affiches. Parcourez, recherchez ou filtrez pour trouver ce que vous voulez.";
 "Excellence Prize" = "Prix d’excellence";
 "Exit Picture in Picture" = "Quitter le mode Image dans l’image";
+"Expand poster cards during keyboard or remote navigation across poster rows, using preloaded wide artwork." = "Agrandir les cartes d’affiche lors de la navigation au clavier ou à la télécommande dans les rangées d’affiches, à l’aide d’illustrations larges préchargées.";
+"Expanding Cards" = "Cartes extensibles";
 "Explicit" = "Explicite";
 "Explorar" = "Parcourir";
 "Explorar complementos" = "Parcourir les extensions";
@@ -645,6 +650,7 @@
 "Focus" = "Focus";
 "Focus GIF URL" = "URL du GIF de sélection";
 "Focus mode" = "Mode concentration";
+"Focused Card" = "Carte sélectionnée";
 "Fondo" = "Arrière-plan";
 "Font" = "Police";
 "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found." = "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found.";
@@ -674,6 +680,7 @@
 "Full HD · HDR" = "Full HD · HDR";
 "Gamma" = "Gamma";
 "Genre" = "Genre";
+"Gently magnify nearby posters as you move across a poster row." = "Agrandit légèrement les affiches voisines lorsque vous parcourez une rangée d’affiches.";
 "German" = "Allemand";
 "Get Started" = "Commencer";
 "Get a free key at themoviedb.org" = "Obtenez une clé gratuite sur themoviedb.org";
@@ -748,6 +755,7 @@
 "Horror" = "Horreur";
 "Horror & Supernatural" = "Horreur et surnaturel";
 "How large every poster card is drawn across Home and search." = "How large every poster card is drawn across Home and search.";
+"How long a poster takes to grow and settle as the pointer passes it." = "How long a poster takes to grow and settle as the pointer passes it.";
 "How many films?" = "Combien de films ?";
 "Hoy" = "Aujourd’hui";
 "Hulu" = "Hulu";
@@ -1215,12 +1223,14 @@
 "Poster" = "Affiche";
 "Poster card style" = "Style des cartes d’affiche";
 "Poster cards" = "Cartes d’affiches";
+"Poster dock magnification" = "Agrandissement des affiches du dock";
 "Poster reset to default" = "Poster reset to default";
 "Posters, ratings, lists" = "Affiches, notes, listes";
 "Predeterminado" = "Par défaut";
 "Predeterminado (acento dorado)" = "Par défaut (accent doré)";
 "Preguntar si reanudar o empezar de nuevo" = "Demander s’il faut reprendre ou recommencer";
 "Premiered This Month" = "Sorties du mois";
+"Preview" = "Aperçu";
 "Previous" = "Précédent";
 "Previous chapter" = "Chapitre précédent";
 "Previous day" = "Previous day";
@@ -2064,6 +2074,7 @@
 "{count} tracks" = "{count} titres";
 "{h}h left" = "reste {h} h";
 "{h}h {m}m left" = "reste {h} h {m} min";
+"{ms} ms" = "{ms} ms";
 "{m}m left" = "{m} min restantes";
 "{names}, and all other names, logos, and brand references are property of their respective owners and are used here only for compatibility and identification." = "{names}, ainsi que tous les autres noms, logos et marques mentionnés, appartiennent à leurs propriétaires respectifs et ne sont utilisés ici qu’à des fins de compatibilité et d’identification.";
 "{name} + {n} more" = "{name} + {n} autres";

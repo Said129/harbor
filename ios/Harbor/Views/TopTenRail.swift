@@ -17,26 +17,59 @@ struct TopTenRail: View {
     @AppStorage("rowCardStyle") private var style = "poster"
     @AppStorage("posterScale") private var scale = 1.0
     private var configuration: PosterCardConfiguration { .init(style: style, scale: scale) }
-    private var wantedWidth: Double { configuration.rowWidth() + 76 * configuration.scale }
-    private var wantedHeight: Double { configuration.rowWidth() / configuration.aspectRatio + (configuration.style == .tv ? 0 : 39) }
     var body: some View {
         ScrollView(.horizontal) {
             LazyHStack(spacing: 10) {
                 ForEach(Array(metas.prefix(10).enumerated()), id: \.element.identity) { index, media in
-                    NavigationLink(value: media) {
-                        GeometryReader { bounds in
-                            let factor = bounds.size.width / wantedWidth
-                            ZStack(alignment: .topLeading) {
-                                RankNumeral(rank: index + 1, size: 195 * configuration.scale * factor)
-                                    .frame(width: 135 * configuration.scale * factor, height: 177 * configuration.scale * factor)
-                                    .mask(LinearGradient(stops: [.init(color: .clear, location: 0), .init(color: .black, location: 0.12), .init(color: .black, location: 0.65), .init(color: .clear, location: 1)], startPoint: .leading, endPoint: .trailing))
-                                Poster(media: media, width: nil).padding(.leading, 76 * configuration.scale * factor)
-                            }
-                        }.aspectRatio(wantedWidth / wantedHeight, contentMode: .fit)
-                            .containerRelativeFrame(.horizontal, alignment: .leading) { available, _ in min(max(1, available - 32), CGFloat(wantedWidth)) }.clipped()
-                    }.buttonStyle(.plain).accessibilityLabel("\(index + 1). \(media.name)").accessibilityIdentifier(media.type == "movie" ? "catalog-movie" : "catalog-media")
+                    NavigationLink(value: media) { RankedPosterArtwork(rank: index + 1, media: media, configuration: configuration) }
+                        .buttonStyle(.plain).accessibilityLabel("\(index + 1). \(media.name)").accessibilityIdentifier(media.type == "movie" ? "catalog-movie" : "catalog-media")
                 }
             }.padding(.horizontal)
-        }.scrollIndicators(.hidden)
+        }.scrollIndicators(.hidden).posterRowBehavior()
+    }
+}
+
+private struct RankedPosterArtwork: View {
+    let rank: Int
+    let media: Media
+    let configuration: PosterCardConfiguration
+    @AppStorage("posterDockMagnification") private var dock = false
+    @AppStorage("posterBackdropExpansion") private var expansion = false
+    @Environment(\.posterRowContext) private var row
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @State private var wideWidth: CGFloat?
+    private var baseWidth: Double { configuration.rowWidth() + 76 * configuration.scale }
+    private var baseHeight: Double { configuration.rowWidth() / configuration.aspectRatio + (configuration.style == .tv ? 0 : 39) }
+    private var effects: Bool { configuration.style == .poster && (dock || expansion) }
+    private var baseFactor: Double {
+        guard let viewport = row?.viewport.width, viewport > 0 else { return 1 }
+        return min(1, max(1, viewport - 32) / baseWidth)
+    }
+    private var aspectRatio: Double {
+        guard let wideWidth else { return baseWidth / baseHeight }
+        return (wideWidth + 76 * configuration.scale * baseFactor) / (baseHeight * baseFactor)
+    }
+    var body: some View {
+        GeometryReader { bounds in
+            let factor = effects && (row?.viewport.width ?? 0) > 0 ? baseFactor : bounds.size.width / baseWidth
+            ZStack(alignment: .topLeading) {
+                RankNumeral(rank: rank, size: 195 * configuration.scale * factor)
+                    .frame(width: 135 * configuration.scale * factor, height: 177 * configuration.scale * factor)
+                    .mask(LinearGradient(stops: [.init(color: .clear, location: 0), .init(color: .black, location: 0.12), .init(color: .black, location: 0.65), .init(color: .clear, location: 1)], startPoint: .leading, endPoint: .trailing))
+                Poster(media: media, width: nil, onExpansionWidthChange: { wideWidth = $0 })
+                    .padding(.leading, 76 * configuration.scale * factor)
+            }
+        }.aspectRatio(aspectRatio, contentMode: .fit)
+            .containerRelativeFrame(.horizontal, alignment: .leading) { available, _ in
+                wideWidth.map { $0 + 76 * configuration.scale * baseFactor } ?? min(max(1, available - 32), baseWidth)
+            }
+            .modifier(RankedPosterClipping(enabled: !effects))
+            .animation(reduceMotion ? nil : .timingCurve(0.16, 1, 0.3, 1, duration: 0.48), value: wideWidth)
+    }
+}
+private struct RankedPosterClipping: ViewModifier {
+    let enabled: Bool
+    @ViewBuilder func body(content: Content) -> some View {
+        if enabled { content.clipped() } else { content }
     }
 }

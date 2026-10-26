@@ -1,8 +1,7 @@
 import SwiftUI
 
 struct PosterAppearanceControls: View {
-    var cinemetaEnabled = true
-    @State private var samples = SettingsPreviewArtwork.films
+    var samples = SettingsPreviewArtwork.films
     @AppStorage("rowCardStyle") private var style = "poster"
     @AppStorage("tvCardLogoPos") private var logo = "bottomStart"
     @AppStorage("posterScale") private var scale = 1.0
@@ -48,11 +47,6 @@ struct PosterAppearanceControls: View {
                 }.pickerStyle(.segmented).accessibilityIdentifier("poster-card-quality")
                 Text(text("High is sized to your screen and looks identical to full res on far less memory. Balanced saves the most. Maximum keeps original resolution.")).font(.caption).foregroundStyle(.secondary)
             }.padding(16).background(HarborTheme.surface, in: .rect(cornerRadius: 12))
-        }.task(id: cinemetaEnabled) {
-            guard cinemetaEnabled else { samples = SettingsPreviewArtwork.films; return }
-            let value = await SettingsPreviewSamples.shared.samples()
-            guard !Task.isCancelled, cinemetaEnabled else { return }
-            samples = value
         }
     }
 }

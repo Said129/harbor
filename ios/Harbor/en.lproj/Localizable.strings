@@ -93,6 +93,7 @@
 "Animals" = "Animals";
 "Animated Movies" = "Animated Movies";
 "Animation" = "Animation";
+"Animation speed" = "Animation speed";
 "Anime" = "Anime";
 "Anime en tendencia" = "Trending Anime";
 "Anime popular" = "Popular Anime";
@@ -231,6 +232,7 @@
 "Capítulo anterior" = "Previous chapter";
 "Capítulo siguiente" = "Next chapter";
 "Capítulos" = "Chapters";
+"Card behaviour" = "Card behaviour";
 "Cards, panels." = "Cards, panels.";
 "Cargar archivo" = "Load file";
 "Cargar más" = "Load more";
@@ -450,6 +452,7 @@
 "Eliminar lista" = "Delete list";
 "Email and password" = "Email and password";
 "Embedded" = "Embedded";
+"Emphasize the selected card across the page while gently darkening and blurring the other cards." = "Emphasize the selected card across the page while gently darkening and blurring the other cards.";
 "En ascenso" = "Top rising";
 "En caché" = "Cached";
 "En directo" = "Live";
@@ -484,6 +487,8 @@
 "Evento principal de esta noche" = "Tonight's main event";
 "Everything your addons offer, shown as posters. Scroll, search, or filter to what you want." = "Everything your addons offer, shown as posters. Scroll, search, or filter to what you want.";
 "Exit Picture in Picture" = "Exit Picture in Picture";
+"Expand poster cards during keyboard or remote navigation across poster rows, using preloaded wide artwork." = "Expand poster cards during keyboard or remote navigation across poster rows, using preloaded wide artwork.";
+"Expanding Cards" = "Expanding Cards";
 "Explicit" = "Explicit";
 "Explorar" = "Browse";
 "Explorar complementos" = "Browse addons";
@@ -521,6 +526,7 @@
 "Focus" = "Focus";
 "Focus GIF URL" = "Focus GIF URL";
 "Focus mode" = "Focus mode";
+"Focused Card" = "Focused Card";
 "Fondo" = "Background";
 "Font" = "Font";
 "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found." = "For external UTF-8 or UTF-16 SRT/VTT subtitles. Changes are applied only when a reliable match is found.";
@@ -543,6 +549,7 @@
 "Full HD · HDR" = "Full HD · HDR";
 "Gamma" = "Gamma";
 "Genre" = "Genre";
+"Gently magnify nearby posters as you move across a poster row." = "Gently magnify nearby posters as you move across a poster row.";
 "Get an API key" = "Get an API key";
 "Gray" = "Gray";
 "Gris" = "Gray";
@@ -596,6 +603,7 @@
 "Horror" = "Horror";
 "Horror & Supernatural" = "Horror & Supernatural";
 "How large every poster card is drawn across Home and search." = "How large every poster card is drawn across Home and search.";
+"How long a poster takes to grow and settle as the pointer passes it." = "How long a poster takes to grow and settle as the pointer passes it.";
 "Hoy" = "Today";
 "IMDb" = "IMDb";
 "Idioma" = "Language";
@@ -972,11 +980,13 @@
 "Poster" = "Poster";
 "Poster card style" = "Poster card style";
 "Poster cards" = "Poster cards";
+"Poster dock magnification" = "Poster dock magnification";
 "Poster reset to default" = "Poster reset to default";
 "Posters, ratings, lists" = "Posters, ratings, lists";
 "Predeterminado" = "Default";
 "Predeterminado (acento dorado)" = "Default (gold accent)";
 "Preguntar si reanudar o empezar de nuevo" = "Ask to resume or start over";
+"Preview" = "Preview";
 "Previous" = "Previous";
 "Previous chapter" = "Previous chapter";
 "Previous day" = "Previous day";
@@ -1665,6 +1675,7 @@
 "{count} tracks" = "{count} tracks";
 "{h}h left" = "{h}h left";
 "{h}h {m}m left" = "{h}h {m}m left";
+"{ms} ms" = "{ms} ms";
 "{m}m left" = "{m}m left";
 "{name} + {n} more" = "{name} + {n} more";
 "{name} + {n} más" = "{name} + {n} more";

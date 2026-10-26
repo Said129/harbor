@@ -2,6 +2,7 @@ import SwiftUI
 
 struct ThemeSettingsView: View {
     var cinemetaEnabled = true
+    @State private var samples = SettingsPreviewArtwork.films
     @Bindable var preferences = ThemePreferences.shared
     @State private var editingColors = false
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
@@ -23,8 +24,9 @@ struct ThemeSettingsView: View {
                         ThemeFontCard(value: value, name: DesktopInterfaceText.value(name), selected: preferences.font == value) { preferences.font = value }
                     }
                 }
-                PosterAppearanceControls(cinemetaEnabled: cinemetaEnabled)
+                PosterAppearanceControls(samples: samples)
                 PlayerSeekBarSettings()
+                PosterBehaviorControls(samples: samples)
                 Button { preferences.reset() } label: {
                     Label(DesktopInterfaceText.value("Reset"), image: "audio-reset-sync").font(HarborTheme.font(14, weight: .medium)).frame(minHeight: 44)
                 }.buttonStyle(.plain).accessibilityIdentifier("theme-reset")
@@ -34,5 +36,11 @@ struct ThemeSettingsView: View {
             .accessibilityIdentifier("theme-settings-scroll")
             .accessibilityElement(children: .contain).accessibilityValue(preferences.custom ? "custom" : preferences.preset)
             .sheet(isPresented: $editingColors) { CustomPaletteEditor(preferences: preferences) }
+            .task(id: cinemetaEnabled) {
+                guard cinemetaEnabled else { samples = SettingsPreviewArtwork.films; return }
+                let value = await SettingsPreviewSamples.shared.samples()
+                guard !Task.isCancelled, cinemetaEnabled else { return }
+                samples = value
+            }
     }
 }

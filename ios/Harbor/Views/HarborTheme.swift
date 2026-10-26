@@ -20,8 +20,9 @@ struct Poster: View {
     var width: CGFloat? = 116
     var artworkFallbacks: [String] = []
     var honorsRowStyle = true
+    var onExpansionWidthChange: ((CGFloat?) -> Void)? = nil
     var body: some View {
-        ProfilePoster(media: media, width: width, artworkFallbacks: artworkFallbacks, honorsRowStyle: honorsRowStyle)
+        ProfilePoster(media: media, width: width, artworkFallbacks: artworkFallbacks, honorsRowStyle: honorsRowStyle, onExpansionWidthChange: onExpansionWidthChange)
     }
 }
 
@@ -56,7 +57,7 @@ struct CatalogRails: View {
                                 }
                             }
                         }.padding(.horizontal)
-                    }.scrollIndicators(.hidden)
+                    }.scrollIndicators(.hidden).posterRowBehavior()
                 }
             }
         }
