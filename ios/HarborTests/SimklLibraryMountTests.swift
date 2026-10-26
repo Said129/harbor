@@ -41,6 +41,9 @@ import UIKit
             let item = try XCTUnwrap(snapshot.items["movie:1"])
             window.rootViewController = UIHostingController(rootView: SimklTitleActions(media: item.media, target: item.target, model: model, ratings: true).preferredColorScheme(.dark))
             try await settle(window); capture(window, "simkl-library-native-actions-" + label)
+            let accountModel = SimklAccountModel(store: account, client: client, active: { true })
+            window.rootViewController = UIHostingController(rootView: NavigationStack { SimklSettingsView(model: accountModel) }.preferredColorScheme(.dark))
+            try await settle(window); capture(window, "simkl-library-native-settings-" + label)
         }
         XCTAssertNil(model.error); XCTAssertEqual(store.snapshot.items.count, 3)
     }

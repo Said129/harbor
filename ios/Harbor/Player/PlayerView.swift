@@ -300,6 +300,7 @@ struct PlayerView: View {
 
     private func withLifecycle<V: View>(_ content: V) -> some View {
         withAddonSubtitles(withSkipIntro(content.background { PlayerOrientationAnchor().allowsHitTesting(false) }))
+        .modifier(SimklPlaybackTracking(state: state, session: session, media: media, library: library, resumePending: resumePending))
         .task(id: autoAdvanceReady) {
             guard autoAdvanceReady, let next = adjacent.next else { return }
             requestEpisode(next)

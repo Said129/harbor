@@ -166,6 +166,7 @@
 "Automatic synchronization" = "Automatic synchronization";
 "Automatically hide controls" = "Automatically hide controls";
 "Automatically sync with audio" = "Automatically sync with audio";
+"Automatically track what you are playing and save watch progress in real-time." = "재생 중인 콘텐츠를 자동으로 추적하고 시청 진행 상황을 실시간으로 저장합니다.";
 "Automática" = "자동";
 "Automático" = "자동";
 "Automático (coincidir con el video)" = "자동(동영상에 맞춤)";
@@ -1465,6 +1466,7 @@
 "Sci-Fi & Fantasy" = "SF & 판타지";
 "Scores" = "평점";
 "Screener" = "Screener";
+"Scrobble to SIMKL" = "SIMKL에 시청 기록 전송";
 "Se conserva el original: para sincronizar este archivo, expórtalo como UTF-8 o UTF-16." = "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it.";
 "Se han añadido todos los idiomas." = "모든 언어를 추가했습니다.";
 "Se muestra al mismo tiempo que el subtítulo principal." = "기본 자막과 동시에 표시됩니다.";

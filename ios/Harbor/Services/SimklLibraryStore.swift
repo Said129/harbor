@@ -81,4 +81,5 @@ actor SimklLibraryDisk: SimklLibraryPersistence {
         snapshot = .init(); restored = false; refreshedAt = nil; revision &+= 1
         try await disk.remove(owner: owner)
     }
+    func invalidate() { refreshedAt = nil; revision &+= 1 }
 }

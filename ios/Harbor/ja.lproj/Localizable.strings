@@ -166,6 +166,7 @@
 "Automatic synchronization" = "Automatic synchronization";
 "Automatically hide controls" = "Automatically hide controls";
 "Automatically sync with audio" = "Automatically sync with audio";
+"Automatically track what you are playing and save watch progress in real-time." = "再生中の作品を自動的に記録し、視聴進捗をリアルタイムで保存します。";
 "Automática" = "自動";
 "Automático" = "自動";
 "Automático (coincidir con el video)" = "自動（動画に合わせる）";
@@ -1465,6 +1466,7 @@
 "Sci-Fi & Fantasy" = "SF＆ファンタジー";
 "Scores" = "スコア";
 "Screener" = "Screener";
+"Scrobble to SIMKL" = "SIMKLに視聴履歴を送信";
 "Se conserva el original: para sincronizar este archivo, expórtalo como UTF-8 o UTF-16." = "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it.";
 "Se han añadido todos los idiomas." = "すべての言語が追加されています。";
 "Se muestra al mismo tiempo que el subtítulo principal." = "メイン字幕と同時に表示されます。";

@@ -138,6 +138,7 @@
 "Automatic synchronization" = "Automatic synchronization";
 "Automatically hide controls" = "Automatically hide controls";
 "Automatically sync with audio" = "Automatically sync with audio";
+"Automatically track what you are playing and save watch progress in real-time." = "Automatically track what you are playing and save watch progress in real-time.";
 "Automática" = "Automatic";
 "Automático" = "Automatic";
 "Automático (coincidir con el video)" = "Auto (match video)";
@@ -1195,6 +1196,7 @@
 "Scores" = "Scores";
 "Screener" = "Screener";
 "Screenplay" = "Screenplay";
+"Scrobble to SIMKL" = "Scrobble to SIMKL";
 "Se conserva el original: para sincronizar este archivo, expórtalo como UTF-8 o UTF-16." = "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it.";
 "Se han añadido todos los idiomas." = "All languages have been added.";
 "Se muestra al mismo tiempo que el subtítulo principal." = "Shown at the same time as your main subtitle.";

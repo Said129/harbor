@@ -6,12 +6,14 @@ struct SimklSettingsView: View {
     @State private var connecting = false
     @State private var disconnecting = false
     @AppStorage("simklEnableUserRatings") private var ratings = true
+    @AppStorage("simklScrobbleEnabled") private var scrobble = true
     @MainActor init(app: AppModel) {
         let owner = app.personalOwner, scope = app.accountOperationScope
-        _model = State(initialValue: SimklAccountModel(store: SimklAccountStore.forOwner(owner), active: { [weak app] in
+        self.init(model: SimklAccountModel(store: SimklAccountStore.forOwner(owner), active: { [weak app] in
             app?.personalOwner == owner && app?.accountOperationScope == scope && app?.interfaceProfileScope != "unbound"
         }))
     }
+    @MainActor init(model: SimklAccountModel) { _model = State(initialValue: model) }
     private func text(_ key: String) -> String { DesktopInterfaceText.value(key) }
     var body: some View {
         ScrollView {
@@ -27,6 +29,8 @@ struct SimklSettingsView: View {
                 if let session = model.store.session {
                     if let name = session.username { Text(name).font(HarborTheme.font(18, weight: .medium)).accessibilityIdentifier("simkl-account-name") }
                     Toggle(text("Enable User Ratings"), isOn: $ratings).accessibilityIdentifier("simkl-enable-ratings")
+                    Toggle(text("Scrobble to SIMKL"), isOn: $scrobble).accessibilityIdentifier("simkl-enable-scrobble")
+                    Text(text("Automatically track what you are playing and save watch progress in real-time.")).font(.caption).foregroundStyle(.secondary)
                     Button(role: .destructive) { disconnecting = true } label: { Text(text("Disconnect")).frame(minHeight: 44) }
                         .buttonStyle(HarborAccountButtonStyle()).accessibilityIdentifier("simkl-disconnect")
                 } else {
@@ -50,6 +54,8 @@ struct SimklSettingsView: View {
                     model.disconnect()
                     if model.store.session == nil {
                         ratings = true
+                        scrobble = true
+                        try? SimklPendingWatches.forOwner(model.store.owner).bind(nil)
                         let library = SimklLibraryStore.forOwner(model.store.owner); library.bind(nil)
                         Task { try? await library.clear() }
                     }

@@ -177,6 +177,7 @@
 "Automatic synchronization" = "Automatic synchronization";
 "Automatically hide controls" = "Automatically hide controls";
 "Automatically sync with audio" = "Automatically sync with audio";
+"Automatically track what you are playing and save watch progress in real-time." = "تتبّع ما تشاهده تلقائيًا وحفظ تقدّم المشاهدة في الوقت الفعلي.";
 "Automática" = "تلقائي";
 "Automático" = "تلقائي";
 "Automático (coincidir con el video)" = "تلقائي (مطابقة الفيديو)";
@@ -1499,6 +1500,7 @@
 "Sci-Fi & Fantasy" = "خيال علمي وفانتازيا";
 "Scores" = "التقييمات";
 "Screener" = "Screener";
+"Scrobble to SIMKL" = "تسجيل المشاهدات في SIMKL";
 "Se conserva el original: para sincronizar este archivo, expórtalo como UTF-8 o UTF-16." = "تم الاحتفاظ بالأصل. صدّر الترجمة بترميز UTF-8 أو UTF-16 لمزامنتها.";
 "Se han añadido todos los idiomas." = "تمت إضافة جميع اللغات.";
 "Se muestra al mismo tiempo que el subtítulo principal." = "تُعرض في الوقت نفسه مع الترجمة الرئيسية.";

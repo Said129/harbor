@@ -2,8 +2,8 @@ import Foundation
 import CryptoKit
 
 enum SimklEndpoint: Sendable {
-    case pin, poll(String), anime(Int), detail(SimklMediaKind, Int), settings, library(SimklLibraryEndpoint)
-    var method: String { switch self { case .settings: "POST"; case .library(let endpoint): endpoint.method; default: "GET" } }
+    case pin, poll(String), anime(Int), detail(SimklMediaKind, Int), settings, library(SimklLibraryEndpoint), watch(SimklWatchEndpoint)
+    var method: String { switch self { case .settings, .watch: "POST"; case .library(let endpoint): endpoint.method; default: "GET" } }
     func request(token: String? = nil) throws -> URLRequest {
         var request = try HTTPClient.simklArtworkRequest(1)
         var url = URLComponents(url: request.url!, resolvingAgainstBaseURL: false)!
@@ -28,6 +28,10 @@ enum SimklEndpoint: Sendable {
             if let body = try endpoint.body() {
                 request.httpBody = try JSONEncoder().encode(body); request.setValue("application/json", forHTTPHeaderField: "Content-Type")
             }
+        case .watch(let endpoint):
+            guard let token, Self.validToken(token), case .object = endpoint.body else { throw HarborError(code: "simkl-not-connected") }
+            url.path = endpoint.path; request.setValue("Bearer " + token, forHTTPHeaderField: "Authorization")
+            request.httpBody = try JSONEncoder().encode(endpoint.body); request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         }
         request.url = url.url; request.httpMethod = method
         return request

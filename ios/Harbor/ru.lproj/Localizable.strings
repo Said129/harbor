@@ -169,6 +169,7 @@
 "Automatic synchronization" = "Automatic synchronization";
 "Automatically hide controls" = "Automatically hide controls";
 "Automatically sync with audio" = "Automatically sync with audio";
+"Automatically track what you are playing and save watch progress in real-time." = "Автоматически отслеживать, что вы смотрите, и сохранять прогресс в реальном времени.";
 "Automática" = "Автоматически";
 "Automático" = "Автоматически";
 "Automático (coincidir con el video)" = "Авто (как у видео)";
@@ -1477,6 +1478,7 @@
 "Sci-Fi & Fantasy" = "Фантастика и фэнтези";
 "Scores" = "Оценки";
 "Screener" = "Screener";
+"Scrobble to SIMKL" = "Скробблинг в SIMKL";
 "Se conserva el original: para sincronizar este archivo, expórtalo como UTF-8 o UTF-16." = "Оригинал сохранён. Для синхронизации экспортируйте субтитры в UTF-8 или UTF-16.";
 "Se han añadido todos los idiomas." = "Все языки добавлены.";
 "Se muestra al mismo tiempo que el subtítulo principal." = "Отображается одновременно с основными субтитрами.";

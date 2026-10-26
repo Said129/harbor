@@ -174,6 +174,7 @@
 "Automatic synchronization" = "Automatic synchronization";
 "Automatically hide controls" = "Automatically hide controls";
 "Automatically sync with audio" = "Automatically sync with audio";
+"Automatically track what you are playing and save watch progress in real-time." = "Acompanha automaticamente o que você está assistindo e salva o progresso em tempo real.";
 "Automática" = "Automático";
 "Automático" = "Automático";
 "Automático (coincidir con el video)" = "Automático (igualar ao vídeo)";
@@ -1487,6 +1488,7 @@
 "Sci-Fi & Fantasy" = "Ficção Científica e Fantasia";
 "Scores" = "Notas";
 "Screener" = "Screener";
+"Scrobble to SIMKL" = "Fazer scrobble para o SIMKL";
 "Se conserva el original: para sincronizar este archivo, expórtalo como UTF-8 o UTF-16." = "O original foi mantido. Exporte a legenda em UTF-8 ou UTF-16 para sincronizá-la.";
 "Se han añadido todos los idiomas." = "Todos os idiomas foram adicionados.";
 "Se muestra al mismo tiempo que el subtítulo principal." = "Exibida junto com a legenda principal.";

@@ -25,7 +25,7 @@ import Observation
     func loadAccount() {
         guard active() else { return }
         do { if !account.ready { try account.load() }; store.bind(account.session?.accessToken) }
-        catch { error = "Could not read the account on this device." }
+        catch { self.error = "Could not read the account on this device." }
     }
     func cancel() { operation = UUID(); loading = false }
     private func current(_ ticket: UUID, token: String) -> Bool { ticket == operation && active() && account.session?.accessToken == token && !Task.isCancelled }

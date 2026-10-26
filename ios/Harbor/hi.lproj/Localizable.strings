@@ -166,6 +166,7 @@
 "Automatic synchronization" = "Automatic synchronization";
 "Automatically hide controls" = "Automatically hide controls";
 "Automatically sync with audio" = "Automatically sync with audio";
+"Automatically track what you are playing and save watch progress in real-time." = "चलाए जा रहे कॉन्टेंट को अपने-आप ट्रैक करें और देखने की प्रोग्रेस रीयल-टाइम में सेव करें।";
 "Automática" = "स्वचालित";
 "Automático" = "स्वचालित";
 "Automático (coincidir con el video)" = "ऑटो (वीडियो के अनुरूप)";
@@ -1465,6 +1466,7 @@
 "Sci-Fi & Fantasy" = "साइंस फ़िक्शन और फ़ैंटेसी";
 "Scores" = "स्कोर";
 "Screener" = "Screener";
+"Scrobble to SIMKL" = "SIMKL पर स्क्रॉबल करें";
 "Se conserva el original: para sincronizar este archivo, expórtalo como UTF-8 o UTF-16." = "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it.";
 "Se han añadido todos los idiomas." = "सभी भाषाएँ जोड़ दी गई हैं।";
 "Se muestra al mismo tiempo que el subtítulo principal." = "आपके मुख्य सबटाइटल के साथ ही दिखाया जाता है।";

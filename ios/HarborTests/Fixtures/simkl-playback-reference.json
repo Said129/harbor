@@ -1,0 +1,1144 @@
+{
+  "reference": "0834340cec5531650bfe78cd628628702e636987",
+  "actual_original_typescript_executed": true,
+  "provider_network_requests": 0,
+  "source_hashes": {
+    "src/lib/simkl/scrobble-body.ts": "c84ab70ba300fcd5170e2fde327343e4e8c38235d8a81b6871bfa4b9e14a8a2b",
+    "src/lib/simkl/scrobble-hook.ts": "171d89ba7423a49e634fb4ce02fb61e2e5da7ed3f2a4607fb7d9e6a121caf8c0"
+  },
+  "config_sha256": "4926bd88b63e0dfe6f1f78d746348db828339eafde495dee4e03f3be110b0052",
+  "watched_ratio_extracted_from_original_config": 0.9,
+  "seams": "React effect scheduling, player clock, transport, account/settings and history/pending side-effect recorders only; original body and hook source executed.",
+  "bodies": [
+    {
+      "id": "tt0123456",
+      "episode": null,
+      "progress": -5,
+      "info": {
+        "title": "Owned Title",
+        "year": 2020,
+        "imdb": "tt0987654"
+      },
+      "expected": {
+        "progress": 0,
+        "movie": {
+          "ids": {
+            "imdb": "tt0123456"
+          },
+          "title": "Owned Title",
+          "year": 2020
+        }
+      }
+    },
+    {
+      "id": "tt0123456",
+      "episode": null,
+      "progress": 25,
+      "info": {
+        "title": "Owned Title",
+        "year": 2020,
+        "imdb": "tt0987654"
+      },
+      "expected": {
+        "progress": 25,
+        "movie": {
+          "ids": {
+            "imdb": "tt0123456"
+          },
+          "title": "Owned Title",
+          "year": 2020
+        }
+      }
+    },
+    {
+      "id": "tt0123456",
+      "episode": null,
+      "progress": 120,
+      "info": {
+        "title": "Owned Title",
+        "year": 2020,
+        "imdb": "tt0987654"
+      },
+      "expected": {
+        "progress": 100,
+        "movie": {
+          "ids": {
+            "imdb": "tt0123456"
+          },
+          "title": "Owned Title",
+          "year": 2020
+        }
+      }
+    },
+    {
+      "id": "tt0123456",
+      "episode": {
+        "season": 2,
+        "episode": 7,
+        "imdbId": "tt0765432"
+      },
+      "progress": -5,
+      "info": {
+        "title": "Owned Title",
+        "year": 2020,
+        "imdb": "tt0987654"
+      },
+      "expected": {
+        "progress": 0,
+        "show": {
+          "ids": {
+            "imdb": "tt0123456"
+          },
+          "title": "Owned Title",
+          "year": 2020
+        },
+        "episode": {
+          "season": 2,
+          "number": 7
+        }
+      }
+    },
+    {
+      "id": "tt0123456",
+      "episode": {
+        "season": 2,
+        "episode": 7,
+        "imdbId": "tt0765432"
+      },
+      "progress": 25,
+      "info": {
+        "title": "Owned Title",
+        "year": 2020,
+        "imdb": "tt0987654"
+      },
+      "expected": {
+        "progress": 25,
+        "show": {
+          "ids": {
+            "imdb": "tt0123456"
+          },
+          "title": "Owned Title",
+          "year": 2020
+        },
+        "episode": {
+          "season": 2,
+          "number": 7
+        }
+      }
+    },
+    {
+      "id": "tt0123456",
+      "episode": {
+        "season": 2,
+        "episode": 7,
+        "imdbId": "tt0765432"
+      },
+      "progress": 120,
+      "info": {
+        "title": "Owned Title",
+        "year": 2020,
+        "imdb": "tt0987654"
+      },
+      "expected": {
+        "progress": 100,
+        "show": {
+          "ids": {
+            "imdb": "tt0123456"
+          },
+          "title": "Owned Title",
+          "year": 2020
+        },
+        "episode": {
+          "season": 2,
+          "number": 7
+        }
+      }
+    },
+    {
+      "id": "tmdb:movie:123",
+      "episode": null,
+      "progress": -5,
+      "info": {
+        "title": "Owned Title",
+        "year": 2020,
+        "imdb": "tt0987654"
+      },
+      "expected": {
+        "progress": 0,
+        "movie": {
+          "ids": {
+            "tmdb": 123,
+            "imdb": "tt0987654"
+          },
+          "title": "Owned Title",
+          "year": 2020
+        }
+      }
+    },
+    {
+      "id": "tmdb:movie:123",
+      "episode": null,
+      "progress": 25,
+      "info": {
+        "title": "Owned Title",
+        "year": 2020,
+        "imdb": "tt0987654"
+      },
+      "expected": {
+        "progress": 25,
+        "movie": {
+          "ids": {
+            "tmdb": 123,
+            "imdb": "tt0987654"
+          },
+          "title": "Owned Title",
+          "year": 2020
+        }
+      }
+    },
+    {
+      "id": "tmdb:movie:123",
+      "episode": null,
+      "progress": 120,
+      "info": {
+        "title": "Owned Title",
+        "year": 2020,
+        "imdb": "tt0987654"
+      },
+      "expected": {
+        "progress": 100,
+        "movie": {
+          "ids": {
+            "tmdb": 123,
+            "imdb": "tt0987654"
+          },
+          "title": "Owned Title",
+          "year": 2020
+        }
+      }
+    },
+    {
+      "id": "tmdb:movie:123",
+      "episode": {
+        "season": 2,
+        "episode": 7,
+        "imdbId": "tt0765432"
+      },
+      "progress": -5,
+      "info": {
+        "title": "Owned Title",
+        "year": 2020,
+        "imdb": "tt0987654"
+      },
+      "expected": {
+        "progress": 0,
+        "movie": {
+          "ids": {
+            "tmdb": 123,
+            "imdb": "tt0987654"
+          },
+          "title": "Owned Title",
+          "year": 2020
+        }
+      }
+    },
+    {
+      "id": "tmdb:movie:123",
+      "episode": {
+        "season": 2,
+        "episode": 7,
+        "imdbId": "tt0765432"
+      },
+      "progress": 25,
+      "info": {
+        "title": "Owned Title",
+        "year": 2020,
+        "imdb": "tt0987654"
+      },
+      "expected": {
+        "progress": 25,
+        "movie": {
+          "ids": {
+            "tmdb": 123,
+            "imdb": "tt0987654"
+          },
+          "title": "Owned Title",
+          "year": 2020
+        }
+      }
+    },
+    {
+      "id": "tmdb:movie:123",
+      "episode": {
+        "season": 2,
+        "episode": 7,
+        "imdbId": "tt0765432"
+      },
+      "progress": 120,
+      "info": {
+        "title": "Owned Title",
+        "year": 2020,
+        "imdb": "tt0987654"
+      },
+      "expected": {
+        "progress": 100,
+        "movie": {
+          "ids": {
+            "tmdb": 123,
+            "imdb": "tt0987654"
+          },
+          "title": "Owned Title",
+          "year": 2020
+        }
+      }
+    },
+    {
+      "id": "tmdb:tv:123",
+      "episode": null,
+      "progress": -5,
+      "info": {
+        "title": "Owned Title",
+        "year": 2020,
+        "imdb": "tt0987654"
+      },
+      "expected": null
+    },
+    {
+      "id": "tmdb:tv:123",
+      "episode": null,
+      "progress": 25,
+      "info": {
+        "title": "Owned Title",
+        "year": 2020,
+        "imdb": "tt0987654"
+      },
+      "expected": null
+    },
+    {
+      "id": "tmdb:tv:123",
+      "episode": null,
+      "progress": 120,
+      "info": {
+        "title": "Owned Title",
+        "year": 2020,
+        "imdb": "tt0987654"
+      },
+      "expected": null
+    },
+    {
+      "id": "tmdb:tv:123",
+      "episode": {
+        "season": 2,
+        "episode": 7,
+        "imdbId": "tt0765432"
+      },
+      "progress": -5,
+      "info": {
+        "title": "Owned Title",
+        "year": 2020,
+        "imdb": "tt0987654"
+      },
+      "expected": {
+        "progress": 0,
+        "show": {
+          "ids": {
+            "tmdb": 123,
+            "imdb": "tt0987654"
+          },
+          "title": "Owned Title",
+          "year": 2020
+        },
+        "episode": {
+          "season": 2,
+          "number": 7
+        }
+      }
+    },
+    {
+      "id": "tmdb:tv:123",
+      "episode": {
+        "season": 2,
+        "episode": 7,
+        "imdbId": "tt0765432"
+      },
+      "progress": 25,
+      "info": {
+        "title": "Owned Title",
+        "year": 2020,
+        "imdb": "tt0987654"
+      },
+      "expected": {
+        "progress": 25,
+        "show": {
+          "ids": {
+            "tmdb": 123,
+            "imdb": "tt0987654"
+          },
+          "title": "Owned Title",
+          "year": 2020
+        },
+        "episode": {
+          "season": 2,
+          "number": 7
+        }
+      }
+    },
+    {
+      "id": "tmdb:tv:123",
+      "episode": {
+        "season": 2,
+        "episode": 7,
+        "imdbId": "tt0765432"
+      },
+      "progress": 120,
+      "info": {
+        "title": "Owned Title",
+        "year": 2020,
+        "imdb": "tt0987654"
+      },
+      "expected": {
+        "progress": 100,
+        "show": {
+          "ids": {
+            "tmdb": 123,
+            "imdb": "tt0987654"
+          },
+          "title": "Owned Title",
+          "year": 2020
+        },
+        "episode": {
+          "season": 2,
+          "number": 7
+        }
+      }
+    },
+    {
+      "id": "mal:123",
+      "episode": null,
+      "progress": -5,
+      "info": {
+        "title": "Owned Title",
+        "year": 2020,
+        "imdb": "tt0987654"
+      },
+      "expected": {
+        "progress": 0,
+        "movie": {
+          "ids": {
+            "mal": 123,
+            "imdb": "tt0987654"
+          },
+          "title": "Owned Title",
+          "year": 2020
+        }
+      }
+    },
+    {
+      "id": "mal:123",
+      "episode": null,
+      "progress": 25,
+      "info": {
+        "title": "Owned Title",
+        "year": 2020,
+        "imdb": "tt0987654"
+      },
+      "expected": {
+        "progress": 25,
+        "movie": {
+          "ids": {
+            "mal": 123,
+            "imdb": "tt0987654"
+          },
+          "title": "Owned Title",
+          "year": 2020
+        }
+      }
+    },
+    {
+      "id": "mal:123",
+      "episode": null,
+      "progress": 120,
+      "info": {
+        "title": "Owned Title",
+        "year": 2020,
+        "imdb": "tt0987654"
+      },
+      "expected": {
+        "progress": 100,
+        "movie": {
+          "ids": {
+            "mal": 123,
+            "imdb": "tt0987654"
+          },
+          "title": "Owned Title",
+          "year": 2020
+        }
+      }
+    },
+    {
+      "id": "mal:123",
+      "episode": {
+        "season": 2,
+        "episode": 7,
+        "imdbId": "tt0765432"
+      },
+      "progress": -5,
+      "info": {
+        "title": "Owned Title",
+        "year": 2020,
+        "imdb": "tt0987654"
+      },
+      "expected": {
+        "progress": 0,
+        "anime": {
+          "ids": {
+            "mal": 123,
+            "imdb": "tt0987654"
+          },
+          "title": "Owned Title",
+          "year": 2020
+        },
+        "episode": {
+          "season": 2,
+          "number": 7
+        }
+      }
+    },
+    {
+      "id": "mal:123",
+      "episode": {
+        "season": 2,
+        "episode": 7,
+        "imdbId": "tt0765432"
+      },
+      "progress": 25,
+      "info": {
+        "title": "Owned Title",
+        "year": 2020,
+        "imdb": "tt0987654"
+      },
+      "expected": {
+        "progress": 25,
+        "anime": {
+          "ids": {
+            "mal": 123,
+            "imdb": "tt0987654"
+          },
+          "title": "Owned Title",
+          "year": 2020
+        },
+        "episode": {
+          "season": 2,
+          "number": 7
+        }
+      }
+    },
+    {
+      "id": "mal:123",
+      "episode": {
+        "season": 2,
+        "episode": 7,
+        "imdbId": "tt0765432"
+      },
+      "progress": 120,
+      "info": {
+        "title": "Owned Title",
+        "year": 2020,
+        "imdb": "tt0987654"
+      },
+      "expected": {
+        "progress": 100,
+        "anime": {
+          "ids": {
+            "mal": 123,
+            "imdb": "tt0987654"
+          },
+          "title": "Owned Title",
+          "year": 2020
+        },
+        "episode": {
+          "season": 2,
+          "number": 7
+        }
+      }
+    },
+    {
+      "id": "kitsu:123",
+      "episode": null,
+      "progress": -5,
+      "info": {
+        "title": "Owned Title",
+        "year": 2020,
+        "imdb": "tt0987654"
+      },
+      "expected": {
+        "progress": 0,
+        "movie": {
+          "ids": {
+            "kitsu": 123,
+            "imdb": "tt0987654"
+          },
+          "title": "Owned Title",
+          "year": 2020
+        }
+      }
+    },
+    {
+      "id": "kitsu:123",
+      "episode": null,
+      "progress": 25,
+      "info": {
+        "title": "Owned Title",
+        "year": 2020,
+        "imdb": "tt0987654"
+      },
+      "expected": {
+        "progress": 25,
+        "movie": {
+          "ids": {
+            "kitsu": 123,
+            "imdb": "tt0987654"
+          },
+          "title": "Owned Title",
+          "year": 2020
+        }
+      }
+    },
+    {
+      "id": "kitsu:123",
+      "episode": null,
+      "progress": 120,
+      "info": {
+        "title": "Owned Title",
+        "year": 2020,
+        "imdb": "tt0987654"
+      },
+      "expected": {
+        "progress": 100,
+        "movie": {
+          "ids": {
+            "kitsu": 123,
+            "imdb": "tt0987654"
+          },
+          "title": "Owned Title",
+          "year": 2020
+        }
+      }
+    },
+    {
+      "id": "kitsu:123",
+      "episode": {
+        "season": 2,
+        "episode": 7,
+        "imdbId": "tt0765432"
+      },
+      "progress": -5,
+      "info": {
+        "title": "Owned Title",
+        "year": 2020,
+        "imdb": "tt0987654"
+      },
+      "expected": {
+        "progress": 0,
+        "anime": {
+          "ids": {
+            "kitsu": 123,
+            "imdb": "tt0987654"
+          },
+          "title": "Owned Title",
+          "year": 2020
+        },
+        "episode": {
+          "season": 2,
+          "number": 7
+        }
+      }
+    },
+    {
+      "id": "kitsu:123",
+      "episode": {
+        "season": 2,
+        "episode": 7,
+        "imdbId": "tt0765432"
+      },
+      "progress": 25,
+      "info": {
+        "title": "Owned Title",
+        "year": 2020,
+        "imdb": "tt0987654"
+      },
+      "expected": {
+        "progress": 25,
+        "anime": {
+          "ids": {
+            "kitsu": 123,
+            "imdb": "tt0987654"
+          },
+          "title": "Owned Title",
+          "year": 2020
+        },
+        "episode": {
+          "season": 2,
+          "number": 7
+        }
+      }
+    },
+    {
+      "id": "kitsu:123",
+      "episode": {
+        "season": 2,
+        "episode": 7,
+        "imdbId": "tt0765432"
+      },
+      "progress": 120,
+      "info": {
+        "title": "Owned Title",
+        "year": 2020,
+        "imdb": "tt0987654"
+      },
+      "expected": {
+        "progress": 100,
+        "anime": {
+          "ids": {
+            "kitsu": 123,
+            "imdb": "tt0987654"
+          },
+          "title": "Owned Title",
+          "year": 2020
+        },
+        "episode": {
+          "season": 2,
+          "number": 7
+        }
+      }
+    },
+    {
+      "id": "anilist:123",
+      "episode": null,
+      "progress": -5,
+      "info": {
+        "title": "Owned Title",
+        "year": 2020,
+        "imdb": "tt0987654"
+      },
+      "expected": {
+        "progress": 0,
+        "movie": {
+          "ids": {
+            "anilist": 123,
+            "imdb": "tt0987654"
+          },
+          "title": "Owned Title",
+          "year": 2020
+        }
+      }
+    },
+    {
+      "id": "anilist:123",
+      "episode": null,
+      "progress": 25,
+      "info": {
+        "title": "Owned Title",
+        "year": 2020,
+        "imdb": "tt0987654"
+      },
+      "expected": {
+        "progress": 25,
+        "movie": {
+          "ids": {
+            "anilist": 123,
+            "imdb": "tt0987654"
+          },
+          "title": "Owned Title",
+          "year": 2020
+        }
+      }
+    },
+    {
+      "id": "anilist:123",
+      "episode": null,
+      "progress": 120,
+      "info": {
+        "title": "Owned Title",
+        "year": 2020,
+        "imdb": "tt0987654"
+      },
+      "expected": {
+        "progress": 100,
+        "movie": {
+          "ids": {
+            "anilist": 123,
+            "imdb": "tt0987654"
+          },
+          "title": "Owned Title",
+          "year": 2020
+        }
+      }
+    },
+    {
+      "id": "anilist:123",
+      "episode": {
+        "season": 2,
+        "episode": 7,
+        "imdbId": "tt0765432"
+      },
+      "progress": -5,
+      "info": {
+        "title": "Owned Title",
+        "year": 2020,
+        "imdb": "tt0987654"
+      },
+      "expected": {
+        "progress": 0,
+        "anime": {
+          "ids": {
+            "anilist": 123,
+            "imdb": "tt0987654"
+          },
+          "title": "Owned Title",
+          "year": 2020
+        },
+        "episode": {
+          "season": 2,
+          "number": 7
+        }
+      }
+    },
+    {
+      "id": "anilist:123",
+      "episode": {
+        "season": 2,
+        "episode": 7,
+        "imdbId": "tt0765432"
+      },
+      "progress": 25,
+      "info": {
+        "title": "Owned Title",
+        "year": 2020,
+        "imdb": "tt0987654"
+      },
+      "expected": {
+        "progress": 25,
+        "anime": {
+          "ids": {
+            "anilist": 123,
+            "imdb": "tt0987654"
+          },
+          "title": "Owned Title",
+          "year": 2020
+        },
+        "episode": {
+          "season": 2,
+          "number": 7
+        }
+      }
+    },
+    {
+      "id": "anilist:123",
+      "episode": {
+        "season": 2,
+        "episode": 7,
+        "imdbId": "tt0765432"
+      },
+      "progress": 120,
+      "info": {
+        "title": "Owned Title",
+        "year": 2020,
+        "imdb": "tt0987654"
+      },
+      "expected": {
+        "progress": 100,
+        "anime": {
+          "ids": {
+            "anilist": 123,
+            "imdb": "tt0987654"
+          },
+          "title": "Owned Title",
+          "year": 2020
+        },
+        "episode": {
+          "season": 2,
+          "number": 7
+        }
+      }
+    },
+    {
+      "id": "anidb:123",
+      "episode": null,
+      "progress": -5,
+      "info": {
+        "title": "Owned Title",
+        "year": 2020,
+        "imdb": "tt0987654"
+      },
+      "expected": {
+        "progress": 0,
+        "movie": {
+          "ids": {
+            "anidb": 123,
+            "imdb": "tt0987654"
+          },
+          "title": "Owned Title",
+          "year": 2020
+        }
+      }
+    },
+    {
+      "id": "anidb:123",
+      "episode": null,
+      "progress": 25,
+      "info": {
+        "title": "Owned Title",
+        "year": 2020,
+        "imdb": "tt0987654"
+      },
+      "expected": {
+        "progress": 25,
+        "movie": {
+          "ids": {
+            "anidb": 123,
+            "imdb": "tt0987654"
+          },
+          "title": "Owned Title",
+          "year": 2020
+        }
+      }
+    },
+    {
+      "id": "anidb:123",
+      "episode": null,
+      "progress": 120,
+      "info": {
+        "title": "Owned Title",
+        "year": 2020,
+        "imdb": "tt0987654"
+      },
+      "expected": {
+        "progress": 100,
+        "movie": {
+          "ids": {
+            "anidb": 123,
+            "imdb": "tt0987654"
+          },
+          "title": "Owned Title",
+          "year": 2020
+        }
+      }
+    },
+    {
+      "id": "anidb:123",
+      "episode": {
+        "season": 2,
+        "episode": 7,
+        "imdbId": "tt0765432"
+      },
+      "progress": -5,
+      "info": {
+        "title": "Owned Title",
+        "year": 2020,
+        "imdb": "tt0987654"
+      },
+      "expected": {
+        "progress": 0,
+        "anime": {
+          "ids": {
+            "anidb": 123,
+            "imdb": "tt0987654"
+          },
+          "title": "Owned Title",
+          "year": 2020
+        },
+        "episode": {
+          "season": 2,
+          "number": 7
+        }
+      }
+    },
+    {
+      "id": "anidb:123",
+      "episode": {
+        "season": 2,
+        "episode": 7,
+        "imdbId": "tt0765432"
+      },
+      "progress": 25,
+      "info": {
+        "title": "Owned Title",
+        "year": 2020,
+        "imdb": "tt0987654"
+      },
+      "expected": {
+        "progress": 25,
+        "anime": {
+          "ids": {
+            "anidb": 123,
+            "imdb": "tt0987654"
+          },
+          "title": "Owned Title",
+          "year": 2020
+        },
+        "episode": {
+          "season": 2,
+          "number": 7
+        }
+      }
+    },
+    {
+      "id": "anidb:123",
+      "episode": {
+        "season": 2,
+        "episode": 7,
+        "imdbId": "tt0765432"
+      },
+      "progress": 120,
+      "info": {
+        "title": "Owned Title",
+        "year": 2020,
+        "imdb": "tt0987654"
+      },
+      "expected": {
+        "progress": 100,
+        "anime": {
+          "ids": {
+            "anidb": 123,
+            "imdb": "tt0987654"
+          },
+          "title": "Owned Title",
+          "year": 2020
+        },
+        "episode": {
+          "season": 2,
+          "number": 7
+        }
+      }
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "partial-pause-resume",
+      "steps": [
+        ["playing", 50, 1000],
+        ["paused", 200, 1000],
+        ["playing", 400, 1000]
+      ],
+      "exit": [410, 1000],
+      "expected": [
+        {
+          "action": "start",
+          "progress": 5
+        },
+        {
+          "action": "pause",
+          "progress": 20
+        },
+        {
+          "action": "start",
+          "progress": 40
+        },
+        {
+          "action": "pause",
+          "progress": 41
+        }
+      ],
+      "expectedWatched": false
+    },
+    {
+      "name": "past-watched-threshold",
+      "steps": [
+        ["playing", 910, 1000],
+        ["paused", 940, 1000]
+      ],
+      "exit": [700, 1000],
+      "expected": [
+        {
+          "action": "start",
+          "progress": 91
+        },
+        {
+          "action": "pause",
+          "progress": 94
+        },
+        {
+          "action": "stop",
+          "progress": 100
+        }
+      ],
+      "expectedWatched": true
+    },
+    {
+      "name": "natural-end",
+      "steps": [
+        ["playing", 100, 1000],
+        ["ended", 1000, 1000]
+      ],
+      "exit": [1000, 1000],
+      "expected": [
+        {
+          "action": "start",
+          "progress": 10
+        },
+        {
+          "action": "stop",
+          "progress": 100
+        }
+      ],
+      "expectedWatched": true
+    },
+    {
+      "name": "early-end",
+      "steps": [
+        ["playing", 100, 1000],
+        ["ended", 500, 1000]
+      ],
+      "exit": [500, 1000],
+      "expected": [
+        {
+          "action": "start",
+          "progress": 10
+        },
+        {
+          "action": "stop",
+          "progress": 50
+        }
+      ],
+      "expectedWatched": false
+    },
+    {
+      "name": "seek-back-keeps-furthest",
+      "steps": [
+        ["playing", 800, 1000],
+        ["playing", 950, 1000],
+        ["playing", 500, 1000]
+      ],
+      "exit": [500, 1000],
+      "expected": [
+        {
+          "action": "start",
+          "progress": 80
+        },
+        {
+          "action": "stop",
+          "progress": 100
+        }
+      ],
+      "expectedWatched": true
+    },
+    {
+      "name": "short-stub",
+      "steps": [
+        ["playing", 90, 149],
+        ["paused", 100, 149]
+      ],
+      "exit": [100, 149],
+      "expected": [],
+      "expectedWatched": false
+    },
+    {
+      "name": "paused-without-start",
+      "steps": [["paused", 300, 1000]],
+      "exit": [300, 1000],
+      "expected": [],
+      "expectedWatched": false
+    }
+  ]
+}

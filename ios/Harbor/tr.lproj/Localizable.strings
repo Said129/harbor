@@ -166,6 +166,7 @@
 "Automatic synchronization" = "Automatic synchronization";
 "Automatically hide controls" = "Automatically hide controls";
 "Automatically sync with audio" = "Automatically sync with audio";
+"Automatically track what you are playing and save watch progress in real-time." = "Oynattıklarınızı otomatik olarak takip eder ve izleme ilerlemesini gerçek zamanlı olarak kaydeder.";
 "Automática" = "Otomatik";
 "Automático" = "Otomatik";
 "Automático (coincidir con el video)" = "Otomatik (videoyla eşleştir)";
@@ -1465,6 +1466,7 @@
 "Sci-Fi & Fantasy" = "Bilim Kurgu ve Fantastik";
 "Scores" = "Puanlar";
 "Screener" = "Screener";
+"Scrobble to SIMKL" = "SIMKL'ye scrobble gönder";
 "Se conserva el original: para sincronizar este archivo, expórtalo como UTF-8 o UTF-16." = "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it.";
 "Se han añadido todos los idiomas." = "Tüm diller eklendi.";
 "Se muestra al mismo tiempo que el subtítulo principal." = "Ana altyazınızla aynı anda gösterilir.";

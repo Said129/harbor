@@ -166,6 +166,7 @@
 "Automatic synchronization" = "Automatic synchronization";
 "Automatically hide controls" = "Automatically hide controls";
 "Automatically sync with audio" = "Automatically sync with audio";
+"Automatically track what you are playing and save watch progress in real-time." = "Lacak secara otomatis apa yang sedang Anda putar dan simpan progres tontonan secara real-time.";
 "Automática" = "Otomatis";
 "Automático" = "Otomatis";
 "Automático (coincidir con el video)" = "Otomatis (sesuai video)";
@@ -1465,6 +1466,7 @@
 "Sci-Fi & Fantasy" = "Fiksi Ilmiah & Fantasi";
 "Scores" = "Skor";
 "Screener" = "Screener";
+"Scrobble to SIMKL" = "Scrobble ke SIMKL";
 "Se conserva el original: para sincronizar este archivo, expórtalo como UTF-8 o UTF-16." = "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it.";
 "Se han añadido todos los idiomas." = "Semua bahasa telah ditambahkan.";
 "Se muestra al mismo tiempo que el subtítulo principal." = "Ditampilkan bersamaan dengan subtitle utama Anda.";
