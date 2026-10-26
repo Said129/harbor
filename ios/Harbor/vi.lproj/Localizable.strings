@@ -183,6 +183,7 @@
 "Background" = "Nền";
 "Background opacity" = "Độ mờ nền";
 "Bajar {name}" = "Chuyển {name} xuống";
+"Balanced" = "Cân bằng";
 "Bar color" = "Màu thanh";
 "Barra de búsqueda" = "Thanh tua";
 "Barra inferior" = "Thanh dưới";
@@ -224,6 +225,8 @@
 "Blur spoilers" = "Làm mờ nội dung tiết lộ";
 "Blur thumbnails" = "Làm mờ ảnh thu nhỏ";
 "Blur titles" = "Làm mờ tiêu đề";
+"Blur up" = "Tăng độ mờ";
+"Blur up looks smoothest. Fade is lighter on older devices. Instant turns it off." = "Làm rõ dần mượt nhất. Mờ dần nhẹ hơn trên thiết bị cũ. Tức thì sẽ tắt hiệu ứng.";
 "Bold text" = "Chữ đậm";
 "Book" = "Sách";
 "Book metadata" = "Siêu dữ liệu sách";
@@ -332,6 +335,7 @@
 "Classic Stremio" = "Stremio cổ điển";
 "Clave de API de TMDB (v3)" = "Khóa API TMDB (v3)";
 "Clave de API v3" = "Khóa API v3";
+"Clear" = "Xóa";
 "Clear all" = "Xóa tất cả";
 "Clear cache" = "Xóa bộ nhớ đệm ngay";
 "Clear cache now" = "Xóa bộ nhớ đệm ngay";
@@ -357,6 +361,7 @@
 "Comedy Series" = "Phim bộ hài";
 "Comenzar a ver" = "Bắt đầu xem";
 "Comenzar con los subtítulos desactivados" = "Tắt phụ đề khi bắt đầu";
+"Comfort" = "Comfort";
 "Coming soon" = "Coming soon";
 "Coming to Theaters" = "Sắp ra rạp";
 "Community index" = "Bảng xếp hạng cộng đồng";
@@ -401,6 +406,7 @@
 "Controls" = "Điều khiển";
 "Copia principal." = "Bản chính.";
 "Copia secundaria." = "Bản sao phụ.";
+"Corner radius" = "Độ bo góc";
 "Correo y contraseña" = "Email and password";
 "Could not analyze this source. Playback continues; you can retry." = "Could not analyze this source. Playback continues; you can retry.";
 "Could not apply the timing. The original subtitle is kept." = "Could not apply the timing. The original subtitle is kept.";
@@ -464,6 +470,7 @@
 "Delete list" = "Xóa danh sách";
 "Delete profile" = "Xóa hồ sơ";
 "Delete this profile?" = "Xóa hồ sơ này?";
+"Dense" = "Dense";
 "Deporte" = "Sport";
 "Derecha" = "Phải";
 "Derecha a izquierda" = "Từ phải sang trái";
@@ -559,6 +566,7 @@
 "En reproducción: {label}" = "Đang phát: {label}";
 "Enable addon" = "Enable addon";
 "Enabled" = "Đã bật";
+"End" = "Kết thúc";
 "Enfocar" = "Độ sắc nét";
 "English" = "Tiếng Anh";
 "Enter Harbor" = "Vào Harbor";
@@ -614,6 +622,7 @@
 "FPS del video" = "FPS video";
 "FPS personalizados para subtítulos" = "FPS phụ đề tùy chỉnh";
 "Face" = "Khuôn mặt";
+"Fade" = "Mờ dần";
 "Failed to fetch JSON" = "Không thể tải JSON";
 "Family" = "Gia đình";
 "Fantasy" = "Kỳ ảo";
@@ -723,6 +732,8 @@
 "Hides spoiler-prone episode details in episode lists until you have watched them." = "Ẩn các chi tiết dễ tiết lộ nội dung trong danh sách tập cho đến khi bạn xem xong.";
 "Hides the episode name, which often gives the twist away on its own." = "Hides the episode name, which often gives the twist away on its own.";
 "Hides the synopsis text under each unwatched episode." = "Hides the synopsis text under each unwatched episode.";
+"High" = "Cao";
+"High is sized to your screen and looks identical to full res on far less memory. Balanced saves the most. Maximum keeps original resolution." = "Cao được điều chỉnh theo màn hình và trông giống hệt độ phân giải đầy đủ nhưng dùng ít bộ nhớ hơn nhiều. Cân bằng tiết kiệm bộ nhớ nhất. Tối đa giữ nguyên độ phân giải gốc.";
 "Highlight, progress." = "Tô sáng, tiến trình.";
 "Highlighted blocks." = "Các khối được tô sáng.";
 "Hindi" = "Tiếng Hindi";
@@ -735,6 +746,7 @@
 "Horizontal" = "Ngang";
 "Horror" = "Kinh dị";
 "Horror & Supernatural" = "Kinh dị và siêu nhiên";
+"How large every poster card is drawn across Home and search." = "How large every poster card is drawn across Home and search.";
 "How many films?" = "Bao nhiêu phim?";
 "Hoy" = "Hôm nay";
 "Hulu" = "Hulu";
@@ -826,6 +838,7 @@
 "Language preference order" = "Thứ tự ưu tiên ngôn ngữ";
 "Languages" = "Ngôn ngữ";
 "Languages & subtitles" = "Ngôn ngữ & phụ đề";
+"Large" = "Lớn";
 "Laterales" = "Hai bên";
 "Lectura" = "Đang đọc";
 "Left" = "Trái";
@@ -854,6 +867,7 @@
 "Live TV playlists" = "Danh sách phát TV trực tiếp";
 "Live preview is on. Save keeps what you've picked as your Custom theme. Reset reverts the editor to the saved palette." = "Live preview is on. Save keeps what you've picked as your Custom theme. Reset reverts the editor to the saved palette.";
 "Llegaste al final · {n} complementos" = "Bạn đã xem hết · {n} tiện ích bổ sung";
+"Load effect" = "Hiệu ứng tải";
 "Load file" = "Tải tệp";
 "Load more" = "Tải thêm";
 "Loading" = "Đang tải";
@@ -864,6 +878,7 @@
 "Local" = "Cục bộ";
 "Local app files" = "Local app files";
 "Logo URL (optional, auto-detected if blank)" = "URL logo (không bắt buộc, tự động phát hiện nếu để trống)";
+"Logo position" = "Vị trí logo";
 "Logos" = "Logo";
 "Los FPS de los subtítulos no están disponibles en este entorno de ejecución de libmpv." = "FPS phụ đề không khả dụng trong môi trường chạy libmpv này.";
 "Los FPS de los subtítulos no están disponibles mientras haya un subtítulo secundario activo." = "FPS phụ đề không khả dụng khi đang bật phụ đề thứ hai.";
@@ -896,6 +911,7 @@
 "Mark as read" = "Mark as read";
 "Mark watched button" = "Nút đánh dấu đã xem";
 "Max" = "Tối đa";
+"Maximum" = "Tối đa";
 "Mecha" = "Mecha";
 "Media" = "Nội dung đa phương tiện";
 "Mejor valorado" = "Được đánh giá cao nhất";
@@ -1160,6 +1176,7 @@
 "Picture adjustment" = "Picture adjustment";
 "Picture adjustments" = "Điều chỉnh hình ảnh";
 "Picture in Picture" = "Hình trong hình";
+"Pill" = "Pill";
 "Play" = "Phát";
 "Play movie" = "Phát phim";
 "Play next" = "Phát tiếp theo";
@@ -1192,6 +1209,8 @@
 "Posición de la canción" = "Song position";
 "Posición de reproducción" = "Playback position";
 "Position and size only" = "Chỉ vị trí và kích thước";
+"Poster" = "Áp phích";
+"Poster card style" = "Kiểu thẻ áp phích";
 "Poster cards" = "Thẻ áp phích";
 "Posters, ratings, lists" = "Áp phích, điểm đánh giá, danh sách";
 "Predeterminado" = "Mặc định";
@@ -1227,6 +1246,7 @@
 "Página anterior" = "Trang trước";
 "Página siguiente" = "Trang tiếp theo";
 "Pósteres, calificaciones y listas" = "Áp phích, điểm đánh giá, danh sách";
+"Quality" = "Chất lượng";
 "Quedan {h} h" = "còn {h} giờ";
 "Quedan {h} h {m} min" = "còn {h} giờ {m} phút";
 "Quedan {m} min" = "còn {m} phút";
@@ -1374,6 +1394,7 @@
 "Rotate featured banners automatically" = "Rotate featured banners automatically";
 "Rounded" = "Bo tròn";
 "Rounded background panel behind the text. Most readable." = "Nền bo góc phía sau chữ. Dễ đọc nhất.";
+"Row card style" = "Kiểu thẻ theo hàng";
 "Royal" = "Hoàng gia";
 "Rugby" = "Bóng bầu dục";
 "Running on Cinemeta for now. Add a TMDB key from Settings whenever you're ready." = "Hiện đang dùng Cinemeta. Bạn có thể thêm khóa TMDB trong Cài đặt bất cứ khi nào sẵn sàng.";
@@ -1456,6 +1477,7 @@
 "Share" = "Chia sẻ";
 "Share file" = "Share file";
 "Share with {name}" = "Chia sẻ với {name}";
+"Sharp" = "Sharp";
 "Sharpen" = "Độ sắc nét";
 "Sharper lines and a little more pop." = "Đường nét rõ hơn và hình ảnh nổi bật hơn một chút.";
 "Short of the Year" = "Phim ngắn của năm";
@@ -1545,8 +1567,10 @@
 "Spotlight" = "Nổi bật";
 "Spotlighted at the show" = "Được giới thiệu nổi bật tại sự kiện";
 "Square play button" = "Nút phát hình vuông";
+"Standard" = "Tiêu chuẩn";
 "Standard Def" = "Standard Def";
 "Standings" = "Bảng xếp hạng";
+"Start" = "Bắt đầu";
 "Start Over" = "Phát lại từ đầu";
 "Start Watching" = "Bắt đầu xem";
 "Start as" = "Bắt đầu với";
@@ -1585,6 +1609,7 @@
 "Subtitles" = "Phụ đề";
 "Subtitles from your addons" = "Subtitles from your addons";
 "Subtitles synced" = "Đã đồng bộ phụ đề";
+"Subtle" = "Subtle";
 "Subtle text" = "Văn bản phụ";
 "Subtítulo externo" = "Phụ đề ngoài";
 "Subtítulos" = "Phụ đề";
@@ -1619,6 +1644,7 @@
 "TMDB · catálogos y filas" = "TMDB · danh mục và hàng nội dung";
 "TV" = "Truyền hình";
 "TV Shows" = "Phim bộ";
+"TV shows wide art cards with the logo on them. Poster is the classic grid." = "Phim bộ dùng thẻ ảnh ngang có logo. Áp phích dùng lưới cổ điển.";
 "Table of contents" = "Table of contents";
 "Tags" = "Thẻ";
 "Tamaño" = "Kích thước";

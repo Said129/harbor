@@ -141,7 +141,7 @@ struct StreamingCatalogView: View {
             section(model.movies, kind: "movie")
             section(model.series, kind: "series")
         } else {
-            LazyVGrid(columns: [GridItem(.adaptive(minimum: 106), spacing: 12, alignment: .top)], spacing: 22) {
+            PosterGrid(spacing: 22) {
                 ForEach(model.allTitles, id: \.identity) { media in NavigationLink(value: media) { Poster(media: media, width: nil) }.buttonStyle(.plain) }
             }.padding(.horizontal, 20)
         }
@@ -197,12 +197,13 @@ private struct ServicePressStyle: ButtonStyle {
 }
 
 private struct ServiceCatalogSkeleton: View {
+    @AppStorage("rowCardStyle") private var style = "poster"
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @Environment(\.scenePhase) private var scenePhase
     var body: some View {
-        LazyVGrid(columns: [GridItem(.adaptive(minimum: 106), spacing: 12)], spacing: 22) {
+        PosterGrid(spacing: 22) {
             ForEach(0..<18) { _ in
-                RoundedRectangle(cornerRadius: 12).fill(HarborTheme.ink.opacity(0.08)).aspectRatio(2.0 / 3, contentMode: .fit)
+                RoundedRectangle(cornerRadius: 12).fill(HarborTheme.ink.opacity(0.08)).aspectRatio(style == "tv" ? 16.0 / 9 : 2.0 / 3, contentMode: .fit)
                     .phaseAnimator(reduceMotion || scenePhase != .active ? [false] : [false, true]) { content, highlighted in
                         content.opacity(highlighted ? 1 : 0.45)
                     } animation: { _ in .easeInOut(duration: 0.8) }

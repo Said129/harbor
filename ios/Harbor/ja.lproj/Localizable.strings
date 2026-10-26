@@ -183,6 +183,7 @@
 "Background" = "背景";
 "Background opacity" = "背景の不透明度";
 "Bajar {name}" = "{name}を下に移動";
+"Balanced" = "バランス";
 "Bar color" = "バーの色";
 "Barra de búsqueda" = "シークバー";
 "Barra inferior" = "下部バー";
@@ -224,6 +225,8 @@
 "Blur spoilers" = "ネタバレをぼかす";
 "Blur thumbnails" = "サムネイルをぼかす";
 "Blur titles" = "タイトルをぼかす";
+"Blur up" = "ぼかしを強める";
+"Blur up looks smoothest. Fade is lighter on older devices. Instant turns it off." = "「ブラーアップ」が最も滑らかです。「フェード」は古い端末への負荷が軽く、「即時」では効果がオフになります。";
 "Bold text" = "太字";
 "Book" = "書籍";
 "Book metadata" = "書籍メタデータ";
@@ -332,6 +335,7 @@
 "Classic Stremio" = "クラシックStremio";
 "Clave de API de TMDB (v3)" = "TMDB APIキー（v3）";
 "Clave de API v3" = "v3 APIキー";
+"Clear" = "クリア";
 "Clear all" = "すべて消去";
 "Clear cache" = "今すぐキャッシュを消去";
 "Clear cache now" = "今すぐキャッシュを消去";
@@ -357,6 +361,7 @@
 "Comedy Series" = "コメディシリーズ";
 "Comenzar a ver" = "視聴を開始";
 "Comenzar con los subtítulos desactivados" = "字幕をオフで再生開始";
+"Comfort" = "Comfort";
 "Coming soon" = "Coming soon";
 "Coming to Theaters" = "近日劇場公開";
 "Community index" = "コミュニティインデックス";
@@ -401,6 +406,7 @@
 "Controls" = "コントロール";
 "Copia principal." = "メインテキスト。";
 "Copia secundaria." = "補足テキスト。";
+"Corner radius" = "角の丸み";
 "Correo y contraseña" = "Email and password";
 "Could not analyze this source. Playback continues; you can retry." = "Could not analyze this source. Playback continues; you can retry.";
 "Could not apply the timing. The original subtitle is kept." = "Could not apply the timing. The original subtitle is kept.";
@@ -464,6 +470,7 @@
 "Delete list" = "リストを削除";
 "Delete profile" = "プロフィールを削除";
 "Delete this profile?" = "このプロフィールを削除しますか？";
+"Dense" = "Dense";
 "Deporte" = "Sport";
 "Derecha" = "右揃え";
 "Derecha a izquierda" = "右から左";
@@ -559,6 +566,7 @@
 "En reproducción: {label}" = "再生中: {label}";
 "Enable addon" = "Enable addon";
 "Enabled" = "有効";
+"End" = "終了";
 "Enfocar" = "シャープネス";
 "English" = "英語";
 "Enter Harbor" = "Harborをはじめる";
@@ -614,6 +622,7 @@
 "FPS del video" = "動画FPS";
 "FPS personalizados para subtítulos" = "カスタム字幕FPS";
 "Face" = "塗り";
+"Fade" = "フェード";
 "Failed to fetch JSON" = "JSONの取得に失敗しました";
 "Family" = "ファミリー";
 "Fantasy" = "ファンタジー";
@@ -723,6 +732,8 @@
 "Hides spoiler-prone episode details in episode lists until you have watched them." = "視聴するまで、エピソード一覧でネタバレを含む可能性のある詳細を非表示にします。";
 "Hides the episode name, which often gives the twist away on its own." = "Hides the episode name, which often gives the twist away on its own.";
 "Hides the synopsis text under each unwatched episode." = "Hides the synopsis text under each unwatched episode.";
+"High" = "高";
+"High is sized to your screen and looks identical to full res on far less memory. Balanced saves the most. Maximum keeps original resolution." = "「高」は画面に合わせたサイズになり、大幅に少ないメモリでフル解像度と同等に見えます。「バランス」はメモリを最も節約します。「最大」は元の解像度を維持します。";
 "Highlight, progress." = "ハイライト、進捗。";
 "Highlighted blocks." = "ハイライトされたブロック。";
 "Hindi" = "ヒンディー語";
@@ -735,6 +746,7 @@
 "Horizontal" = "横向き";
 "Horror" = "ホラー";
 "Horror & Supernatural" = "ホラー＆超常現象";
+"How large every poster card is drawn across Home and search." = "How large every poster card is drawn across Home and search.";
 "How many films?" = "映画は何本？";
 "Hoy" = "今日";
 "Hulu" = "Hulu";
@@ -826,6 +838,7 @@
 "Language preference order" = "言語の優先順位";
 "Languages" = "言語";
 "Languages & subtitles" = "言語と字幕";
+"Large" = "大";
 "Laterales" = "見開き";
 "Lectura" = "読書中";
 "Left" = "左揃え";
@@ -854,6 +867,7 @@
 "Live TV playlists" = "ライブTVプレイリスト";
 "Live preview is on. Save keeps what you've picked as your Custom theme. Reset reverts the editor to the saved palette." = "Live preview is on. Save keeps what you've picked as your Custom theme. Reset reverts the editor to the saved palette.";
 "Llegaste al final · {n} complementos" = "以上です・アドオン{n}件";
+"Load effect" = "読み込み効果";
 "Load file" = "ファイルを読み込む";
 "Load more" = "さらに読み込む";
 "Loading" = "読み込み中";
@@ -864,6 +878,7 @@
 "Local" = "ローカル";
 "Local app files" = "Local app files";
 "Logo URL (optional, auto-detected if blank)" = "ロゴのURL（任意、空欄の場合は自動検出）";
+"Logo position" = "ロゴの位置";
 "Logos" = "ロゴ";
 "Los FPS de los subtítulos no están disponibles en este entorno de ejecución de libmpv." = "このlibmpvランタイムでは字幕FPSを使用できません。";
 "Los FPS de los subtítulos no están disponibles mientras haya un subtítulo secundario activo." = "第2字幕が有効な間は字幕FPSを使用できません。";
@@ -896,6 +911,7 @@
 "Mark as read" = "Mark as read";
 "Mark watched button" = "「視聴済みにする」ボタン";
 "Max" = "最大";
+"Maximum" = "最大";
 "Mecha" = "メカ";
 "Media" = "メディア";
 "Mejor valorado" = "評価が高い順";
@@ -1160,6 +1176,7 @@
 "Picture adjustment" = "Picture adjustment";
 "Picture adjustments" = "画質調整";
 "Picture in Picture" = "ピクチャ・イン・ピクチャ";
+"Pill" = "Pill";
 "Play" = "再生";
 "Play movie" = "映画を再生";
 "Play next" = "次に再生";
@@ -1192,6 +1209,8 @@
 "Posición de la canción" = "Song position";
 "Posición de reproducción" = "Playback position";
 "Position and size only" = "位置とサイズのみ";
+"Poster" = "ポスター";
+"Poster card style" = "ポスターカードのスタイル";
 "Poster cards" = "ポスターカード";
 "Posters, ratings, lists" = "ポスター、評価、リスト";
 "Predeterminado" = "デフォルト";
@@ -1227,6 +1246,7 @@
 "Página anterior" = "前のページ";
 "Página siguiente" = "次のページ";
 "Pósteres, calificaciones y listas" = "ポスター、評価、リスト";
+"Quality" = "画質";
 "Quedan {h} h" = "残り{h}時間";
 "Quedan {h} h {m} min" = "残り{h}時間{m}分";
 "Quedan {m} min" = "残り{m}分";
@@ -1374,6 +1394,7 @@
 "Rotate featured banners automatically" = "Rotate featured banners automatically";
 "Rounded" = "丸ゴシック";
 "Rounded background panel behind the text. Most readable." = "テキストの背後に角丸の背景を表示します。最も読みやすい設定です。";
+"Row card style" = "横並びカードのスタイル";
 "Royal" = "ロイヤル";
 "Rugby" = "ラグビー";
 "Running on Cinemeta for now. Add a TMDB key from Settings whenever you're ready." = "現在はCinemetaを使用しています。準備ができたら、いつでも「設定」からTMDBキーを追加できます。";
@@ -1456,6 +1477,7 @@
 "Share" = "共有";
 "Share file" = "Share file";
 "Share with {name}" = "{name}と共有";
+"Sharp" = "Sharp";
 "Sharpen" = "シャープネス";
 "Sharper lines and a little more pop." = "線をよりくっきりさせ、少しメリハリを加えます。";
 "Short of the Year" = "年間最優秀短編";
@@ -1545,8 +1567,10 @@
 "Spotlight" = "スポットライト";
 "Spotlighted at the show" = "イベントで注目された作品";
 "Square play button" = "四角い再生ボタン";
+"Standard" = "通常";
 "Standard Def" = "Standard Def";
 "Standings" = "順位表";
+"Start" = "開始";
 "Start Over" = "最初から再生";
 "Start Watching" = "視聴を開始";
 "Start as" = "起動プロフィール";
@@ -1585,6 +1609,7 @@
 "Subtitles" = "字幕";
 "Subtitles from your addons" = "Subtitles from your addons";
 "Subtitles synced" = "字幕を同期しました";
+"Subtle" = "Subtle";
 "Subtle text" = "控えめなテキスト";
 "Subtítulo externo" = "外部字幕";
 "Subtítulos" = "字幕";
@@ -1619,6 +1644,7 @@
 "TMDB · catálogos y filas" = "TMDB・カタログとレール";
 "TV" = "TVシリーズ";
 "TV Shows" = "テレビ番組";
+"TV shows wide art cards with the logo on them. Poster is the classic grid." = "「TV」はロゴ入りの横長アートカード、「ポスター」は定番のグリッド表示です。";
 "Table of contents" = "Table of contents";
 "Tags" = "タグ";
 "Tamaño" = "サイズ";

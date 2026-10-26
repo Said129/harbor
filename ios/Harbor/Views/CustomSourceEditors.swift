@@ -26,8 +26,7 @@ struct CustomSourceImportView: View {
                         Text(text("JSON URL")).tag("url"); Text(text("Paste JSON")).tag("json")
                     }.pickerStyle(.segmented).accessibilityIdentifier("source-import-mode")
                     if mode == "url" {
-                        TextField("https://example.com/sources.json", text: $url).keyboardType(.URL).textInputAutocapitalization(.never)
-                            .autocorrectionDisabled().focused($focused).privacySensitive().accessibilityIdentifier("source-import-url")
+                        SourceURLInput(title: "https://example.com/sources.json", value: $url, identifier: "source-import-url", focus: $focused)
                     } else {
                         TextEditor(text: $raw).font(.system(.caption, design: .monospaced)).frame(minHeight: 220)
                             .textInputAutocapitalization(.never).autocorrectionDisabled().focused($focused).privacySensitive().accessibilityIdentifier("source-import-json")
@@ -101,8 +100,8 @@ struct SourceFolderImagesEditor: View {
         NavigationStack {
             Form {
                 Section {
-                    TextField(DesktopInterfaceText.value("Cover Image URL"), text: $cover).accessibilityIdentifier("source-cover-url")
-                    TextField(DesktopInterfaceText.value("Focus GIF URL"), text: $focus).accessibilityIdentifier("source-focus-url")
+                    SourceURLInput(title: DesktopInterfaceText.value("Cover Image URL"), value: $cover, identifier: "source-cover-url")
+                    SourceURLInput(title: DesktopInterfaceText.value("Focus GIF URL"), value: $focus, identifier: "source-focus-url")
                 }.keyboardType(.URL).textInputAutocapitalization(.never).autocorrectionDisabled()
                 if let error { Text(error).foregroundStyle(.orange) }
             }.scrollContentBackground(.hidden).background(HarborTheme.background).tint(HarborTheme.accent)
@@ -120,5 +119,27 @@ struct SourceFolderImagesEditor: View {
                     }
                 }
         }
+    }
+}
+
+private struct SourceURLInput: View {
+    let title: String
+    @Binding var value: String
+    let identifier: String
+    var focus: FocusState<Bool>.Binding? = nil
+    @FocusState private var localFocus: Bool
+    var body: some View {
+        HStack(spacing: 4) {
+            TextField(title, text: $value).keyboardType(.URL).textInputAutocapitalization(.never).autocorrectionDisabled()
+                .environment(\.layoutDirection, .leftToRight).focused(focus ?? $localFocus).accessibilityIdentifier(identifier)
+            if !value.isEmpty {
+                Button {
+                    value = ""
+                    if let focus { focus.wrappedValue = true } else { localFocus = true }
+                } label: {
+                    Image("desktop-x").resizable().scaledToFit().frame(width: 12, height: 12).foregroundStyle(.secondary).frame(width: 44, height: 44)
+                }.buttonStyle(.plain).accessibilityLabel(DesktopInterfaceText.value("Clear")).accessibilityIdentifier(identifier + "-clear")
+            }
+        }.privacySensitive()
     }
 }

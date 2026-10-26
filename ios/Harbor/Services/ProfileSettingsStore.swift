@@ -46,6 +46,7 @@ struct ProfileSettingsState: Codable, Equatable, Sendable {
     static let shared = ProfileSettingsStore()
     nonisolated static let keys: Set<String> = [
         "uiLanguage", "navIconAnimations", "interface.autoRotateBanners", "homeMode", "showImdbBadge", "showTmdbBadge",
+        "rowCardStyle", "tvCardLogoPos", "posterScale", "posterRadius", "posterEffect", "posterQuality",
         "showWatchedButton", "showEpisodeDescription", "hideSpoilers", "blurEpisodes", "spoilerHideTitles", "spoilerHideDescriptions",
         "iphone.theme.preset", "iphone.theme.custom", "iphone.theme.font", "iphone.theme.colors", "seekBarColor",
         "iphone.player-options.v1", "mpvHwdec", "resumePlayback", "resumePrompt", "subtitleAutoSync",

@@ -1,0 +1,87 @@
+import SwiftUI
+
+struct ProfilePoster: View {
+    let media: Media
+    let width: CGFloat?
+    let artworkFallbacks: [String]
+    let honorsRowStyle: Bool
+    @AppStorage("rowCardStyle") private var style = "poster"
+    @AppStorage("tvCardLogoPos") private var logoPosition = "bottomStart"
+    @AppStorage("posterScale") private var scale = 1.0
+    @AppStorage("posterRadius") private var radius = 12.0
+    @AppStorage("posterEffect") private var effect = "off"
+    @AppStorage("posterQuality") private var quality = "high"
+    @Environment(\.displayScale) private var displayScale
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @State private var loaded = false
+    @State private var logoLoaded = false
+    private var configuration: PosterCardConfiguration { .init(style: honorsRowStyle ? style : "poster", logoPosition: logoPosition, scale: scale, radius: radius, effect: effect, quality: quality) }
+    private var pixelLimit: Int { configuration.pixels(width: width.map { configuration.rowWidth(base: Double($0)) } ?? (configuration.style == .tv ? 318 : 150) * configuration.scale, displayScale: Double(displayScale)) }
+    var body: some View {
+        Group {
+            if let width {
+                card.containerRelativeFrame(.horizontal, alignment: .leading) { available, _ in
+                    min(max(1, available - 32), CGFloat(configuration.rowWidth(base: Double(width))))
+                }
+            } else { card }
+        }.foregroundStyle(HarborTheme.ink).contentShape(Rectangle())
+            .animation(reduceMotion ? nil : .easeInOut(duration: 0.26), value: configuration.scale)
+            .animation(reduceMotion ? nil : .easeInOut(duration: 0.26), value: configuration.radius)
+    }
+    private var card: some View {
+        VStack(alignment: .leading, spacing: configuration.style == .tv ? 0 : 6) {
+            Group {
+                if configuration.style == .tv { televisionArtwork }
+                else {
+                    Artwork(url: media.poster, fallback: media.fallbackPoster, fallbacks: [media.background].compactMap { $0 } + artworkFallbacks,
+                        maxPixels: pixelLimit, onImageAvailability: { loaded = $0 }, onLoadCompletion: { _ in loaded = true })
+                }
+            }.aspectRatio(configuration.aspectRatio, contentMode: .fit)
+                .background(HarborTheme.surface).clipShape(.rect(cornerRadius: configuration.radius)).accessibilityHidden(true)
+                .blur(radius: !reduceMotion && configuration.effect == .blur && !loaded ? 8 : 0)
+                .opacity(configuration.effect == .off || reduceMotion || loaded ? 1 : 0)
+                .animation(reduceMotion || configuration.effect == .off ? nil : .easeOut(duration: 0.35), value: loaded)
+                .overlay(alignment: .bottomTrailing) { if configuration.style == .poster { rating } }
+            if configuration.style == .poster { Text(media.name).font(.caption.weight(.medium)).lineLimit(2).frame(maxWidth: .infinity, alignment: .leading) }
+        }.frame(maxWidth: .infinity, alignment: .leading)
+    }
+    @ViewBuilder private var rating: some View {
+        if (media.ratingSource == "TMDB" ? InterfacePreferences.shared.showTmdbBadge : InterfacePreferences.shared.showImdbBadge), let value = media.imdbRating {
+            HStack(spacing: 3) {
+                Text(media.ratingSource ?? "IMDb").font(.system(size: 7, weight: .black)).foregroundStyle(.black).padding(2)
+                    .background(media.ratingSource == "TMDB" ? Color.mint : .yellow, in: .rect(cornerRadius: 2))
+                Text(value).font(.system(size: 9, weight: .semibold)).foregroundStyle(.white)
+            }.padding(4).background(.black.opacity(0.8), in: .capsule).padding(5)
+        }
+    }
+    private var televisionArtwork: some View {
+        ZStack {
+            Artwork(url: media.poster, fallback: media.fallbackPoster, fallbacks: artworkFallbacks, maxPixels: pixelLimit,
+                onImageAvailability: { if $0 { loaded = true } }, onLoadCompletion: { _ in loaded = true })
+                .scaleEffect(1.1).blur(radius: 18).saturation(1.2)
+            if let backdrop = media.background, backdrop != media.poster {
+                Artwork(url: backdrop, maxPixels: pixelLimit, showsPlaceholder: false, onImageAvailability: { if $0 { loaded = true } })
+            }
+            LinearGradient(stops: configuration.logoPosition == .center
+                ? [.init(color: HarborTheme.background.opacity(0.8), location: 0), .init(color: HarborTheme.background.opacity(0.45), location: 0.5), .init(color: HarborTheme.background.opacity(0.7), location: 1)]
+                : [.init(color: HarborTheme.background, location: 0.02), .init(color: HarborTheme.background.opacity(0.65), location: 0.34), .init(color: HarborTheme.background.opacity(0.18), location: 0.62), .init(color: .clear, location: 0.84)], startPoint: .bottom, endPoint: .top)
+            HStack(alignment: .bottom, spacing: 10) {
+                Artwork(url: media.poster, fallback: media.fallbackPoster, fallbacks: artworkFallbacks, maxPixels: 180)
+                    .frame(width: 36, height: 54).clipShape(.rect(cornerRadius: 2))
+                    .overlay { RoundedRectangle(cornerRadius: 2).stroke(.white.opacity(0.12), lineWidth: 1) }
+                VStack(alignment: .leading, spacing: 4) {
+                    ZStack(alignment: .leading) {
+                        Text(media.name).font(HarborTheme.font(14.5, weight: .semibold)).lineLimit(2).foregroundStyle(logoLoaded ? .clear : HarborTheme.ink)
+                        if let logo = media.logo {
+                            Artwork(url: logo, fit: .fit, maxPixels: 600, showsPlaceholder: false, onImageAvailability: { logoLoaded = $0 }).frame(height: 34)
+                        }
+                    }
+                    if let year = media.releaseInfo { Text(year).font(HarborTheme.font(11)).foregroundStyle(ThemePreferences.shared.color("ink-muted")).lineLimit(1) }
+                }.frame(maxWidth: .infinity, alignment: .leading)
+            }.padding(14).frame(maxWidth: .infinity, maxHeight: .infinity, alignment: logoAlignment)
+        }.clipped()
+    }
+    private var logoAlignment: Alignment {
+        switch configuration.logoPosition { case .center: .center; case .bottomStart: .bottomLeading; case .bottomEnd: .bottomTrailing }
+    }
+}

@@ -38,7 +38,7 @@ struct VODView: View {
                 }.font(.subheadline)
                 if loading { ProgressView("Cargando VOD…").frame(maxWidth: .infinity) }
                 if let error = error ?? preferences.error { Text(error).font(.caption).foregroundStyle(.orange); Button("Reintentar") { Task { await load(refresh: true) } } }
-                LazyVGrid(columns: [GridItem(.adaptive(minimum: 104), spacing: 12, alignment: .top)], alignment: .leading, spacing: 22) {
+                PosterGrid(alignment: .leading, spacing: 22) {
                     if series {
                         ForEach(Array(shows.prefix(visibleCount))) { show in NavigationLink { VODDetailView(movie: nil, series: show, source: preferences.sources.first { $0.id == show.source }, app: app) } label: { VODPoster(media: show.media, owner: preferences.owner) }.buttonStyle(.plain) }
                     } else {

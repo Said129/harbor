@@ -183,6 +183,7 @@
 "Background" = "Sfondo";
 "Background opacity" = "Opacità dello sfondo";
 "Bajar {name}" = "Sposta {name} in basso";
+"Balanced" = "Bilanciato";
 "Bar color" = "Colore della barra";
 "Barra de búsqueda" = "Barra di avanzamento";
 "Barra inferior" = "Barra inferiore";
@@ -224,6 +225,8 @@
 "Blur spoilers" = "Sfoca gli spoiler";
 "Blur thumbnails" = "Sfoca le miniature";
 "Blur titles" = "Sfoca i titoli";
+"Blur up" = "Sfocatura progressiva";
+"Blur up looks smoothest. Fade is lighter on older devices. Instant turns it off." = "La sfocatura progressiva è più fluida. La dissolvenza è meno impegnativa sui dispositivi meno recenti. L'opzione Istantanea la disattiva.";
 "Bold text" = "Testo in grassetto";
 "Book" = "Libro";
 "Book metadata" = "Metadati libro";
@@ -332,6 +335,7 @@
 "Classic Stremio" = "Stremio classico";
 "Clave de API de TMDB (v3)" = "Chiave API TMDB (v3)";
 "Clave de API v3" = "chiave API v3";
+"Clear" = "Cancella";
 "Clear all" = "Cancella tutto";
 "Clear cache" = "Svuota la cache ora";
 "Clear cache now" = "Svuota la cache ora";
@@ -357,6 +361,7 @@
 "Comedy Series" = "Serie commedia";
 "Comenzar a ver" = "Inizia a guardare";
 "Comenzar con los subtítulos desactivados" = "Avvia con i sottotitoli disattivati";
+"Comfort" = "Comfort";
 "Coming soon" = "Coming soon";
 "Coming to Theaters" = "Prossimamente al cinema";
 "Community index" = "Indice della community";
@@ -401,6 +406,7 @@
 "Controls" = "Comandi";
 "Copia principal." = "Testo principale.";
 "Copia secundaria." = "Copia secondaria.";
+"Corner radius" = "Raggio degli angoli";
 "Correo y contraseña" = "Email and password";
 "Could not analyze this source. Playback continues; you can retry." = "Could not analyze this source. Playback continues; you can retry.";
 "Could not apply the timing. The original subtitle is kept." = "Could not apply the timing. The original subtitle is kept.";
@@ -464,6 +470,7 @@
 "Delete list" = "Elimina lista";
 "Delete profile" = "Elimina profilo";
 "Delete this profile?" = "Eliminare questo profilo?";
+"Dense" = "Dense";
 "Deporte" = "Sport";
 "Derecha" = "Destra";
 "Derecha a izquierda" = "Da destra a sinistra";
@@ -559,6 +566,7 @@
 "En reproducción: {label}" = "In riproduzione: {label}";
 "Enable addon" = "Enable addon";
 "Enabled" = "Abilitato";
+"End" = "Fine";
 "Enfocar" = "Nitidezza";
 "English" = "Inglese";
 "Enter Harbor" = "Entra in Harbor";
@@ -614,6 +622,7 @@
 "FPS del video" = "FPS video";
 "FPS personalizados para subtítulos" = "FPS personalizzati per i sottotitoli";
 "Face" = "Volto";
+"Fade" = "Dissolvenza";
 "Failed to fetch JSON" = "Impossibile recuperare il JSON";
 "Family" = "Famiglia";
 "Fantasy" = "Fantasy";
@@ -723,6 +732,8 @@
 "Hides spoiler-prone episode details in episode lists until you have watched them." = "Nasconde nelle liste degli episodi i dettagli che potrebbero contenere spoiler finché non li hai guardati.";
 "Hides the episode name, which often gives the twist away on its own." = "Hides the episode name, which often gives the twist away on its own.";
 "Hides the synopsis text under each unwatched episode." = "Hides the synopsis text under each unwatched episode.";
+"High" = "Alta";
+"High is sized to your screen and looks identical to full res on far less memory. Balanced saves the most. Maximum keeps original resolution." = "Alta si adatta allo schermo e offre un aspetto identico alla risoluzione completa usando molta meno memoria. Bilanciata offre il massimo risparmio. Massima mantiene la risoluzione originale.";
 "Highlight, progress." = "Evidenziazione, avanzamento.";
 "Highlighted blocks." = "Blocchi evidenziati.";
 "Hindi" = "Hindi";
@@ -735,6 +746,7 @@
 "Horizontal" = "Orizzontale";
 "Horror" = "Horror";
 "Horror & Supernatural" = "Horror e soprannaturale";
+"How large every poster card is drawn across Home and search." = "How large every poster card is drawn across Home and search.";
 "How many films?" = "Quanti film?";
 "Hoy" = "Oggi";
 "Hulu" = "Hulu";
@@ -826,6 +838,7 @@
 "Language preference order" = "Ordine di preferenza delle lingue";
 "Languages" = "Lingue";
 "Languages & subtitles" = "Lingue e Sottotitoli";
+"Large" = "Grande";
 "Laterales" = "Lati";
 "Lectura" = "Lettura";
 "Left" = "Sinistra";
@@ -854,6 +867,7 @@
 "Live TV playlists" = "Playlist della TV in diretta";
 "Live preview is on. Save keeps what you've picked as your Custom theme. Reset reverts the editor to the saved palette." = "Live preview is on. Save keeps what you've picked as your Custom theme. Reset reverts the editor to the saved palette.";
 "Llegaste al final · {n} complementos" = "Hai raggiunto la fine · {n} Add-on";
+"Load effect" = "Effetto di caricamento";
 "Load file" = "Carica file";
 "Load more" = "Carica altro";
 "Loading" = "Caricamento";
@@ -864,6 +878,7 @@
 "Local" = "Locale";
 "Local app files" = "Local app files";
 "Logo URL (optional, auto-detected if blank)" = "URL del logo (facoltativo, rilevato automaticamente se vuoto)";
+"Logo position" = "Posizione del logo";
 "Logos" = "Loghi";
 "Los FPS de los subtítulos no están disponibles en este entorno de ejecución de libmpv." = "Gli FPS dei sottotitoli non sono disponibili in questo runtime di libmpv.";
 "Los FPS de los subtítulos no están disponibles mientras haya un subtítulo secundario activo." = "Gli FPS dei sottotitoli non sono disponibili mentre è attivo un sottotitolo secondario.";
@@ -896,6 +911,7 @@
 "Mark as read" = "Mark as read";
 "Mark watched button" = "Pulsante Segna come visto";
 "Max" = "Max";
+"Maximum" = "Massimo";
 "Mecha" = "Mecha";
 "Media" = "Contenuti multimediali";
 "Mejor valorado" = "Più apprezzati";
@@ -1160,6 +1176,7 @@
 "Picture adjustment" = "Picture adjustment";
 "Picture adjustments" = "Regolazioni immagine";
 "Picture in Picture" = "Picture in Picture";
+"Pill" = "Pill";
 "Play" = "Riproduci";
 "Play movie" = "Riproduci film";
 "Play next" = "Riproduci dopo";
@@ -1192,6 +1209,8 @@
 "Posición de la canción" = "Song position";
 "Posición de reproducción" = "Playback position";
 "Position and size only" = "Solo posizione e dimensioni";
+"Poster" = "Locandina";
+"Poster card style" = "Stile delle schede poster";
 "Poster cards" = "Schede con locandine";
 "Posters, ratings, lists" = "Poster, valutazioni, liste";
 "Predeterminado" = "Predefinito";
@@ -1227,6 +1246,7 @@
 "Página anterior" = "Pagina precedente";
 "Página siguiente" = "Pagina successiva";
 "Pósteres, calificaciones y listas" = "Poster, valutazioni, liste";
+"Quality" = "Qualità";
 "Quedan {h} h" = "{h} h rimanenti";
 "Quedan {h} h {m} min" = "{h} h {m} min rimanenti";
 "Quedan {m} min" = "{m} min rimanenti";
@@ -1374,6 +1394,7 @@
 "Rotate featured banners automatically" = "Rotate featured banners automatically";
 "Rounded" = "Arrotondato";
 "Rounded background panel behind the text. Most readable." = "Pannello di sfondo arrotondato dietro il testo. Offre la massima leggibilità.";
+"Row card style" = "Stile delle schede nelle righe";
 "Royal" = "Regale";
 "Rugby" = "Rugby";
 "Running on Cinemeta for now. Add a TMDB key from Settings whenever you're ready." = "Per ora usa Cinemeta. Quando vuoi, aggiungi una chiave TMDB dalle Impostazioni.";
@@ -1456,6 +1477,7 @@
 "Share" = "Condividi";
 "Share file" = "Share file";
 "Share with {name}" = "Condividi con {name}";
+"Sharp" = "Sharp";
 "Sharpen" = "Nitidezza";
 "Sharper lines and a little more pop." = "Linee più nitide e immagini un po' più vivaci.";
 "Short of the Year" = "Cortometraggio dell'anno";
@@ -1545,8 +1567,10 @@
 "Spotlight" = "In evidenza";
 "Spotlighted at the show" = "In evidenza all'evento";
 "Square play button" = "Pulsante Riproduci quadrato";
+"Standard" = "Standard";
 "Standard Def" = "Standard Def";
 "Standings" = "Classifica";
+"Start" = "Avvia";
 "Start Over" = "Ricomincia";
 "Start Watching" = "Inizia a guardare";
 "Start as" = "Inizia come";
@@ -1585,6 +1609,7 @@
 "Subtitles" = "Sottotitoli";
 "Subtitles from your addons" = "Subtitles from your addons";
 "Subtitles synced" = "Sottotitoli sincronizzati";
+"Subtle" = "Subtle";
 "Subtle text" = "Testo discreto";
 "Subtítulo externo" = "Sottotitolo esterno";
 "Subtítulos" = "Sottotitoli";
@@ -1619,6 +1644,7 @@
 "TMDB · catálogos y filas" = "TMDB · cataloghi e sezioni";
 "TV" = "TV";
 "TV Shows" = "Serie TV";
+"TV shows wide art cards with the logo on them. Poster is the classic grid." = "TV mostra schede orizzontali con il logo sull'immagine. Poster usa la griglia classica.";
 "Table of contents" = "Table of contents";
 "Tags" = "Tag";
 "Tamaño" = "Dimensioni";

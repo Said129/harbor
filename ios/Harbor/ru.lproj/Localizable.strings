@@ -187,6 +187,7 @@
 "Background" = "Фон";
 "Background opacity" = "Непрозрачность фона";
 "Bajar {name}" = "Переместить «{name}» вниз";
+"Balanced" = "Сбалансированный";
 "Bar color" = "Цвет полосы";
 "Barra de búsqueda" = "Полоса перемотки";
 "Barra inferior" = "Нижняя панель";
@@ -228,6 +229,8 @@
 "Blur spoilers" = "Размывать спойлеры";
 "Blur thumbnails" = "Размывать миниатюры";
 "Blur titles" = "Размывать названия";
+"Blur up" = "Плавное проявление";
+"Blur up looks smoothest. Fade is lighter on older devices. Instant turns it off." = "«Плавное проявление» выглядит мягче всего. «Затухание» легче для старых устройств. «Мгновенно» отключает эффект.";
 "Bold text" = "Жирный текст";
 "Book" = "Книга";
 "Book metadata" = "Метаданные книги";
@@ -336,6 +339,7 @@
 "Classic Stremio" = "Классический Stremio";
 "Clave de API de TMDB (v3)" = "Ключ API TMDB (v3)";
 "Clave de API v3" = "Ключ API v3";
+"Clear" = "Очистить";
 "Clear all" = "Очистить всё";
 "Clear cache" = "Очистить кэш сейчас";
 "Clear cache now" = "Очистить кэш сейчас";
@@ -361,6 +365,7 @@
 "Comedy Series" = "Комедийные сериалы";
 "Comenzar a ver" = "Начать просмотр";
 "Comenzar con los subtítulos desactivados" = "Запускать с выключенными субтитрами";
+"Comfort" = "Comfort";
 "Coming soon" = "Coming soon";
 "Coming to Theaters" = "Скоро в кино";
 "Community index" = "Рейтинг сообщества";
@@ -405,6 +410,7 @@
 "Controls" = "Управление";
 "Copia principal." = "Основной текст.";
 "Copia secundaria." = "Второстепенный текст.";
+"Corner radius" = "Скругление углов";
 "Correo y contraseña" = "Email and password";
 "Could not analyze this source. Playback continues; you can retry." = "Не удалось проанализировать источник. Просмотр продолжается; можно повторить попытку.";
 "Could not apply the timing. The original subtitle is kept." = "Не удалось применить синхронизацию. Исходные субтитры сохранены.";
@@ -468,6 +474,7 @@
 "Delete list" = "Удалить список";
 "Delete profile" = "Удалить профиль";
 "Delete this profile?" = "Удалить этот профиль?";
+"Dense" = "Dense";
 "Deporte" = "Sport";
 "Derecha" = "Справа";
 "Derecha a izquierda" = "Справа налево";
@@ -563,6 +570,7 @@
 "En reproducción: {label}" = "Сейчас в эфире: {label}";
 "Enable addon" = "Enable addon";
 "Enabled" = "Включено";
+"End" = "Конец";
 "Enfocar" = "Повысить резкость";
 "English" = "Английский";
 "Enter Harbor" = "Войти в Harbor";
@@ -618,6 +626,7 @@
 "FPS del video" = "Частота кадров видео";
 "FPS personalizados para subtítulos" = "Другая частота кадров субтитров";
 "Face" = "Заливка";
+"Fade" = "Затухание";
 "Failed to fetch JSON" = "Не удалось загрузить JSON";
 "Family" = "Семейный";
 "Fantasy" = "Фэнтези";
@@ -728,6 +737,8 @@
 "Hides spoiler-prone episode details in episode lists until you have watched them." = "Скрывает в списках серий детали со спойлерами, пока вы не посмотрите серию.";
 "Hides the episode name, which often gives the twist away on its own." = "Hides the episode name, which often gives the twist away on its own.";
 "Hides the synopsis text under each unwatched episode." = "Hides the synopsis text under each unwatched episode.";
+"High" = "Высокое";
+"High is sized to your screen and looks identical to full res on far less memory. Balanced saves the most. Maximum keeps original resolution." = "«Высокий» подгоняется под ваш экран и выглядит так же, как полное разрешение, но занимает намного меньше памяти. «Сбалансированный» экономит больше всего. «Максимум» сохраняет исходное разрешение.";
 "Highlight, progress." = "Выделение, прогресс.";
 "Highlighted blocks." = "Выделенные блоки.";
 "Hindi" = "Хинди";
@@ -740,6 +751,7 @@
 "Horizontal" = "Горизонтально";
 "Horror" = "Ужасы";
 "Horror & Supernatural" = "Ужасы и мистика";
+"How large every poster card is drawn across Home and search." = "How large every poster card is drawn across Home and search.";
 "How many films?" = "Сколько фильмов?";
 "Hoy" = "Сегодня";
 "Hulu" = "Hulu";
@@ -831,6 +843,7 @@
 "Language preference order" = "Порядок предпочитаемых языков";
 "Languages" = "Языки";
 "Languages & subtitles" = "Языки и субтитры";
+"Large" = "Крупный";
 "Laterales" = "Стороны";
 "Lectura" = "Чтение";
 "Left" = "Слева";
@@ -859,6 +872,7 @@
 "Live TV playlists" = "Плейлисты прямого эфира";
 "Live preview is on. Save keeps what you've picked as your Custom theme. Reset reverts the editor to the saved palette." = "Live preview is on. Save keeps what you've picked as your Custom theme. Reset reverts the editor to the saved palette.";
 "Llegaste al final · {n} complementos" = "Это всё · {n} дополнений";
+"Load effect" = "Эффект загрузки";
 "Load file" = "Загрузить файл";
 "Load more" = "Показать ещё";
 "Loading" = "Загрузка";
@@ -869,6 +883,7 @@
 "Local" = "Локальные";
 "Local app files" = "Local app files";
 "Logo URL (optional, auto-detected if blank)" = "URL логотипа (необязательно, определится автоматически)";
+"Logo position" = "Положение логотипа";
 "Logos" = "Логотипы";
 "Los FPS de los subtítulos no están disponibles en este entorno de ejecución de libmpv." = "Настройка частоты кадров субтитров недоступна в этой версии libmpv.";
 "Los FPS de los subtítulos no están disponibles mientras haya un subtítulo secundario activo." = "Настройка частоты кадров недоступна, пока включены вторые субтитры.";
@@ -901,6 +916,7 @@
 "Mark as read" = "Mark as read";
 "Mark watched button" = "Кнопка «Отметить просмотренным»";
 "Max" = "Максимум";
+"Maximum" = "Максимум";
 "Mecha" = "Меха";
 "Media" = "Медиа";
 "Mejor valorado" = "Лучшие по рейтингу";
@@ -1171,6 +1187,7 @@
 "Picture adjustment" = "Picture adjustment";
 "Picture adjustments" = "Настройка изображения";
 "Picture in Picture" = "Картинка в картинке";
+"Pill" = "Pill";
 "Play" = "Воспроизвести";
 "Play movie" = "Смотреть фильм";
 "Play next" = "Воспроизвести следующим";
@@ -1203,6 +1220,8 @@
 "Posición de la canción" = "Song position";
 "Posición de reproducción" = "Playback position";
 "Position and size only" = "Только положение и размер";
+"Poster" = "Постер";
+"Poster card style" = "Стиль карточек постеров";
 "Poster cards" = "Карточки с постерами";
 "Posters, ratings, lists" = "Постеры, рейтинги, списки";
 "Predeterminado" = "По умолчанию";
@@ -1238,6 +1257,7 @@
 "Página anterior" = "Предыдущая страница";
 "Página siguiente" = "Следующая страница";
 "Pósteres, calificaciones y listas" = "Постеры, рейтинги, списки";
+"Quality" = "Качество";
 "Quedan {h} h" = "осталось {h} ч";
 "Quedan {h} h {m} min" = "осталось {h} ч {m} мин";
 "Quedan {m} min" = "осталось {m} мин";
@@ -1386,6 +1406,7 @@
 "Rotate featured banners automatically" = "Автоматически менять избранные баннеры";
 "Rounded" = "Скруглённый";
 "Rounded background panel behind the text. Most readable." = "Скруглённая подложка за текстом. Максимальная читаемость.";
+"Row card style" = "Стиль карточек в рядах";
 "Royal" = "Королевский";
 "Rugby" = "Регби";
 "Running on Cinemeta for now. Add a TMDB key from Settings whenever you're ready." = "Пока используется Cinemeta. Добавьте ключ TMDB в Настройках, когда будете готовы.";
@@ -1468,6 +1489,7 @@
 "Share" = "Поделиться";
 "Share file" = "Share file";
 "Share with {name}" = "Общий доступ с {name}";
+"Sharp" = "Sharp";
 "Sharpen" = "Повысить резкость";
 "Sharper lines and a little more pop." = "Более чёткие линии и чуть больше выразительности.";
 "Short of the Year" = "Короткометражка года";
@@ -1559,8 +1581,10 @@
 "Spotlight" = "Витрина";
 "Spotlighted at the show" = "В центре внимания выставки";
 "Square play button" = "Квадратная кнопка воспроизведения";
+"Standard" = "Обычные";
 "Standard Def" = "Standard Def";
 "Standings" = "Турнирная таблица";
+"Start" = "Начало";
 "Start Over" = "Начать сначала";
 "Start Watching" = "Начать просмотр";
 "Start as" = "Запускать как";
@@ -1599,6 +1623,7 @@
 "Subtitles" = "Субтитры";
 "Subtitles from your addons" = "Subtitles from your addons";
 "Subtitles synced" = "Субтитры синхронизированы";
+"Subtle" = "Subtle";
 "Subtle text" = "Приглушённый текст";
 "Subtítulo externo" = "Внешние субтитры";
 "Subtítulos" = "Субтитры";
@@ -1633,6 +1658,7 @@
 "TMDB · catálogos y filas" = "TMDB · каталоги и ряды";
 "TV" = "ТВ";
 "TV Shows" = "Сериалы";
+"TV shows wide art cards with the logo on them. Poster is the classic grid." = "«ТВ»: широкие карточки с обложкой и логотипом на ней. «Постер»: классическая сетка.";
 "Table of contents" = "Table of contents";
 "Tags" = "Теги";
 "Tamaño" = "Размер";

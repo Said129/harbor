@@ -183,6 +183,7 @@
 "Background" = "背景";
 "Background opacity" = "背景不透明度";
 "Bajar {name}" = "下移{name}";
+"Balanced" = "均衡";
 "Bar color" = "进度条颜色";
 "Barra de búsqueda" = "进度条";
 "Barra inferior" = "底部栏";
@@ -224,6 +225,8 @@
 "Blur spoilers" = "模糊剧透内容";
 "Blur thumbnails" = "模糊缩略图";
 "Blur titles" = "模糊标题";
+"Blur up" = "向上模糊";
+"Blur up looks smoothest. Fade is lighter on older devices. Instant turns it off." = "模糊渐显最流畅。淡入在旧设备上负担更小。即时显示则会关闭该效果。";
 "Bold text" = "粗体文字";
 "Book" = "书籍";
 "Book metadata" = "图书元数据";
@@ -332,6 +335,7 @@
 "Classic Stremio" = "经典 Stremio";
 "Clave de API de TMDB (v3)" = "TMDB API 密钥（v3）";
 "Clave de API v3" = "v3 API 密钥";
+"Clear" = "清除";
 "Clear all" = "全部清除";
 "Clear cache" = "立即清除缓存";
 "Clear cache now" = "立即清除缓存";
@@ -357,6 +361,7 @@
 "Comedy Series" = "喜剧剧集";
 "Comenzar a ver" = "开始观看";
 "Comenzar con los subtítulos desactivados" = "开始播放时关闭字幕";
+"Comfort" = "Comfort";
 "Coming soon" = "Coming soon";
 "Coming to Theaters" = "即将上映";
 "Community index" = "社区指数";
@@ -401,6 +406,7 @@
 "Controls" = "控件";
 "Copia principal." = "主要文字。";
 "Copia secundaria." = "备用副本。";
+"Corner radius" = "圆角半径";
 "Correo y contraseña" = "Email and password";
 "Could not analyze this source. Playback continues; you can retry." = "Could not analyze this source. Playback continues; you can retry.";
 "Could not apply the timing. The original subtitle is kept." = "Could not apply the timing. The original subtitle is kept.";
@@ -464,6 +470,7 @@
 "Delete list" = "删除片单";
 "Delete profile" = "删除个人资料";
 "Delete this profile?" = "删除此个人资料？";
+"Dense" = "Dense";
 "Deporte" = "Sport";
 "Derecha" = "右对齐";
 "Derecha a izquierda" = "从右到左";
@@ -559,6 +566,7 @@
 "En reproducción: {label}" = "正在播放：{label}";
 "Enable addon" = "Enable addon";
 "Enabled" = "已启用";
+"End" = "结束";
 "Enfocar" = "锐化";
 "English" = "英语";
 "Enter Harbor" = "进入 Harbor";
@@ -614,6 +622,7 @@
 "FPS del video" = "视频 FPS";
 "FPS personalizados para subtítulos" = "自定义字幕 FPS";
 "Face" = "字体";
+"Fade" = "淡化";
 "Failed to fetch JSON" = "无法获取 JSON";
 "Family" = "家庭";
 "Fantasy" = "奇幻";
@@ -723,6 +732,8 @@
 "Hides spoiler-prone episode details in episode lists until you have watched them." = "在你看完之前，隐藏分集列表中容易剧透的剧集详情。";
 "Hides the episode name, which often gives the twist away on its own." = "Hides the episode name, which often gives the twist away on its own.";
 "Hides the synopsis text under each unwatched episode." = "Hides the synopsis text under each unwatched episode.";
+"High" = "高";
+"High is sized to your screen and looks identical to full res on far less memory. Balanced saves the most. Maximum keeps original resolution." = "“高”会根据屏幕调整尺寸，显示效果与全分辨率相同，但内存占用低得多。“均衡”最节省内存。“最高”则保留原始分辨率。";
 "Highlight, progress." = "高亮、进度。";
 "Highlighted blocks." = "高亮区块。";
 "Hindi" = "印地语";
@@ -735,6 +746,7 @@
 "Horizontal" = "横向";
 "Horror" = "恐怖";
 "Horror & Supernatural" = "恐怖与超自然";
+"How large every poster card is drawn across Home and search." = "How large every poster card is drawn across Home and search.";
 "How many films?" = "多少部电影？";
 "Hoy" = "今天";
 "Hulu" = "Hulu";
@@ -826,6 +838,7 @@
 "Language preference order" = "语言优先顺序";
 "Languages" = "语言";
 "Languages & subtitles" = "语言与字幕";
+"Large" = "大号";
 "Laterales" = "双页";
 "Lectura" = "正在读取";
 "Left" = "左对齐";
@@ -854,6 +867,7 @@
 "Live TV playlists" = "直播电视播放列表";
 "Live preview is on. Save keeps what you've picked as your Custom theme. Reset reverts the editor to the saved palette." = "Live preview is on. Save keeps what you've picked as your Custom theme. Reset reverts the editor to the saved palette.";
 "Llegaste al final · {n} complementos" = "已到底 · 共 {n} 个插件";
+"Load effect" = "加载效果";
 "Load file" = "加载文件";
 "Load more" = "加载更多";
 "Loading" = "正在加载";
@@ -864,6 +878,7 @@
 "Local" = "本地";
 "Local app files" = "Local app files";
 "Logo URL (optional, auto-detected if blank)" = "Logo URL（可选，留空则自动检测）";
+"Logo position" = "徽标位置";
 "Logos" = "徽标";
 "Los FPS de los subtítulos no están disponibles en este entorno de ejecución de libmpv." = "此 libmpv 运行时不支持字幕 FPS。";
 "Los FPS de los subtítulos no están disponibles mientras haya un subtítulo secundario activo." = "启用第二字幕时，字幕 FPS 不可用。";
@@ -896,6 +911,7 @@
 "Mark as read" = "Mark as read";
 "Mark watched button" = "“标为已看”按钮";
 "Max" = "最大";
+"Maximum" = "最高";
 "Mecha" = "机甲";
 "Media" = "媒体";
 "Mejor valorado" = "评分最高";
@@ -1160,6 +1176,7 @@
 "Picture adjustment" = "Picture adjustment";
 "Picture adjustments" = "画面调整";
 "Picture in Picture" = "画中画";
+"Pill" = "Pill";
 "Play" = "播放";
 "Play movie" = "播放电影";
 "Play next" = "下一首播放";
@@ -1192,6 +1209,8 @@
 "Posición de la canción" = "Song position";
 "Posición de reproducción" = "Playback position";
 "Position and size only" = "仅位置和大小";
+"Poster" = "海报";
+"Poster card style" = "海报卡片样式";
 "Poster cards" = "海报卡片";
 "Posters, ratings, lists" = "海报、评分、列表";
 "Predeterminado" = "默认";
@@ -1227,6 +1246,7 @@
 "Página anterior" = "上一页";
 "Página siguiente" = "下一页";
 "Pósteres, calificaciones y listas" = "海报、评分、列表";
+"Quality" = "质量";
 "Quedan {h} h" = "剩余 {h} 小时";
 "Quedan {h} h {m} min" = "剩余 {h} 小时 {m} 分钟";
 "Quedan {m} min" = "剩余 {m} 分钟";
@@ -1374,6 +1394,7 @@
 "Rotate featured banners automatically" = "Rotate featured banners automatically";
 "Rounded" = "圆体";
 "Rounded background panel behind the text. Most readable." = "文字后方的圆角背景面板，可读性最佳。";
+"Row card style" = "横排卡片样式";
 "Royal" = "皇家";
 "Rugby" = "英式橄榄球";
 "Running on Cinemeta for now. Add a TMDB key from Settings whenever you're ready." = "目前使用 Cinemeta。准备好后，可随时在“设置”中添加 TMDB 密钥。";
@@ -1456,6 +1477,7 @@
 "Share" = "分享";
 "Share file" = "Share file";
 "Share with {name}" = "与 {name} 共享";
+"Sharp" = "Sharp";
 "Sharpen" = "锐化";
 "Sharper lines and a little more pop." = "线条更锐利，画面更有活力。";
 "Short of the Year" = "年度短片奖";
@@ -1545,8 +1567,10 @@
 "Spotlight" = "焦点推荐";
 "Spotlighted at the show" = "展会焦点作品";
 "Square play button" = "方形播放按钮";
+"Standard" = "普通";
 "Standard Def" = "Standard Def";
 "Standings" = "积分榜";
+"Start" = "开始";
 "Start Over" = "从头播放";
 "Start Watching" = "开始观看";
 "Start as" = "启动时为";
@@ -1585,6 +1609,7 @@
 "Subtitles" = "字幕";
 "Subtitles from your addons" = "Subtitles from your addons";
 "Subtitles synced" = "字幕已同步";
+"Subtle" = "Subtle";
 "Subtle text" = "弱化文本";
 "Subtítulo externo" = "外部字幕";
 "Subtítulos" = "字幕";
@@ -1619,6 +1644,7 @@
 "TMDB · catálogos y filas" = "TMDB · 目录和内容栏";
 "TV" = "电视剧";
 "TV Shows" = "电视剧";
+"TV shows wide art cards with the logo on them. Poster is the classic grid." = "电视节目显示为带徽标的横向图片卡片。海报则采用经典网格布局。";
 "Table of contents" = "Table of contents";
 "Tags" = "标签";
 "Tamaño" = "大小";

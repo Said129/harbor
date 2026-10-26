@@ -183,6 +183,7 @@
 "Background" = "Arka plan";
 "Background opacity" = "Arka plan opaklığı";
 "Bajar {name}" = "{name} öğesini aşağı taşı";
+"Balanced" = "Dengeli";
 "Bar color" = "Çubuk rengi";
 "Barra de búsqueda" = "İlerleme çubuğu";
 "Barra inferior" = "Alt çubuk";
@@ -224,6 +225,8 @@
 "Blur spoilers" = "Spoilerları bulanıklaştır";
 "Blur thumbnails" = "Küçük görselleri bulanıklaştır";
 "Blur titles" = "Başlıkları bulanıklaştır";
+"Blur up" = "Yukarı doğru bulanıklaştır";
+"Blur up looks smoothest. Fade is lighter on older devices. Instant turns it off." = "Bulanıklıktan netleşme en pürüzsüz görünümü sunar. Solma eski cihazlarda daha az kaynak kullanır. Anında seçeneği efekti kapatır.";
 "Bold text" = "Kalın metin";
 "Book" = "Kitap";
 "Book metadata" = "Kitap meta verileri";
@@ -332,6 +335,7 @@
 "Classic Stremio" = "Klasik Stremio";
 "Clave de API de TMDB (v3)" = "TMDB API anahtarı (v3)";
 "Clave de API v3" = "v3 API anahtarı";
+"Clear" = "Temizle";
 "Clear all" = "Tümünü temizle";
 "Clear cache" = "Önbelleği şimdi temizle";
 "Clear cache now" = "Önbelleği şimdi temizle";
@@ -357,6 +361,7 @@
 "Comedy Series" = "Komedi Dizileri";
 "Comenzar a ver" = "İzlemeye Başla";
 "Comenzar con los subtítulos desactivados" = "Altyazıları kapalı başlat";
+"Comfort" = "Comfort";
 "Coming soon" = "Coming soon";
 "Coming to Theaters" = "Yakında Sinemalarda";
 "Community index" = "Topluluk endeksi";
@@ -401,6 +406,7 @@
 "Controls" = "Kontroller";
 "Copia principal." = "Birincil metin.";
 "Copia secundaria." = "İkincil metin.";
+"Corner radius" = "Köşe yarıçapı";
 "Correo y contraseña" = "Email and password";
 "Could not analyze this source. Playback continues; you can retry." = "Could not analyze this source. Playback continues; you can retry.";
 "Could not apply the timing. The original subtitle is kept." = "Could not apply the timing. The original subtitle is kept.";
@@ -464,6 +470,7 @@
 "Delete list" = "Listeyi sil";
 "Delete profile" = "Profili sil";
 "Delete this profile?" = "Bu profil silinsin mi?";
+"Dense" = "Dense";
 "Deporte" = "Sport";
 "Derecha" = "Sağ";
 "Derecha a izquierda" = "Sağdan sola";
@@ -559,6 +566,7 @@
 "En reproducción: {label}" = "Şimdi oynatılıyor: {label}";
 "Enable addon" = "Enable addon";
 "Enabled" = "Etkin";
+"End" = "End";
 "Enfocar" = "Keskinlik";
 "English" = "İngilizce";
 "Enter Harbor" = "Harbor'a gir";
@@ -614,6 +622,7 @@
 "FPS del video" = "Video FPS'si";
 "FPS personalizados para subtítulos" = "Özel altyazı FPS'si";
 "Face" = "Yüz";
+"Fade" = "Solma";
 "Failed to fetch JSON" = "JSON alınamadı";
 "Family" = "Aile";
 "Fantasy" = "Fantastik";
@@ -723,6 +732,8 @@
 "Hides spoiler-prone episode details in episode lists until you have watched them." = "Bölüm listelerinde spoiler içerebilecek bölüm ayrıntılarını, ilgili bölümleri izleyene kadar gizler.";
 "Hides the episode name, which often gives the twist away on its own." = "Hides the episode name, which often gives the twist away on its own.";
 "Hides the synopsis text under each unwatched episode." = "Hides the synopsis text under each unwatched episode.";
+"High" = "Yüksek";
+"High is sized to your screen and looks identical to full res on far less memory. Balanced saves the most. Maximum keeps original resolution." = "Yüksek, ekranınıza göre boyutlandırılır ve çok daha az bellek kullanarak tam çözünürlükle aynı görünür. Dengeli en fazla tasarrufu sağlar. Maksimum, özgün çözünürlüğü korur.";
 "Highlight, progress." = "Vurgu, ilerleme.";
 "Highlighted blocks." = "Vurgulanan bloklar.";
 "Hindi" = "Hintçe";
@@ -735,6 +746,7 @@
 "Horizontal" = "Yatay";
 "Horror" = "Korku";
 "Horror & Supernatural" = "Korku ve Doğaüstü";
+"How large every poster card is drawn across Home and search." = "How large every poster card is drawn across Home and search.";
 "How many films?" = "Kaç film?";
 "Hoy" = "Bugün";
 "Hulu" = "Hulu";
@@ -826,6 +838,7 @@
 "Language preference order" = "Dil tercih sırası";
 "Languages" = "Diller";
 "Languages & subtitles" = "Diller ve altyazılar";
+"Large" = "Büyük";
 "Laterales" = "Kenarlar";
 "Lectura" = "Okunuyor";
 "Left" = "Sol";
@@ -854,6 +867,7 @@
 "Live TV playlists" = "Canlı TV oynatma listeleri";
 "Live preview is on. Save keeps what you've picked as your Custom theme. Reset reverts the editor to the saved palette." = "Live preview is on. Save keeps what you've picked as your Custom theme. Reset reverts the editor to the saved palette.";
 "Llegaste al final · {n} complementos" = "Sona ulaştınız · {n} eklenti";
+"Load effect" = "Yükleme efekti";
 "Load file" = "Dosya yükle";
 "Load more" = "Daha fazla yükle";
 "Loading" = "Yükleniyor";
@@ -864,6 +878,7 @@
 "Local" = "Yerel";
 "Local app files" = "Local app files";
 "Logo URL (optional, auto-detected if blank)" = "Logo URL'si (isteğe bağlı, boş bırakılırsa otomatik algılanır)";
+"Logo position" = "Logo konumu";
 "Logos" = "Logolar";
 "Los FPS de los subtítulos no están disponibles en este entorno de ejecución de libmpv." = "Altyazı FPS'si bu libmpv çalışma ortamında kullanılamıyor.";
 "Los FPS de los subtítulos no están disponibles mientras haya un subtítulo secundario activo." = "İkincil altyazı etkinken altyazı FPS'si kullanılamaz.";
@@ -896,6 +911,7 @@
 "Mark as read" = "Mark as read";
 "Mark watched button" = "İzlendi olarak işaretle düğmesi";
 "Max" = "Maks.";
+"Maximum" = "Maksimum";
 "Mecha" = "Mecha";
 "Media" = "Medya";
 "Mejor valorado" = "En yüksek puanlı";
@@ -1160,6 +1176,7 @@
 "Picture adjustment" = "Picture adjustment";
 "Picture adjustments" = "Görüntü ayarları";
 "Picture in Picture" = "Resim İçinde Resim";
+"Pill" = "Pill";
 "Play" = "Oynat";
 "Play movie" = "Filmi oynat";
 "Play next" = "Sıradaki olarak çal";
@@ -1192,6 +1209,8 @@
 "Posición de la canción" = "Song position";
 "Posición de reproducción" = "Playback position";
 "Position and size only" = "Yalnızca konum ve boyut";
+"Poster" = "Poster";
+"Poster card style" = "Poster kartı stili";
 "Poster cards" = "Poster kartları";
 "Posters, ratings, lists" = "Afişler, puanlar, listeler";
 "Predeterminado" = "Varsayılan";
@@ -1227,6 +1246,7 @@
 "Página anterior" = "Önceki sayfa";
 "Página siguiente" = "Sonraki sayfa";
 "Pósteres, calificaciones y listas" = "Afişler, puanlar, listeler";
+"Quality" = "Kalite";
 "Quedan {h} h" = "{h} sa kaldı";
 "Quedan {h} h {m} min" = "{h} sa {m} dk kaldı";
 "Quedan {m} min" = "{m} dk kaldı";
@@ -1374,6 +1394,7 @@
 "Rotate featured banners automatically" = "Rotate featured banners automatically";
 "Rounded" = "Yuvarlak";
 "Rounded background panel behind the text. Most readable." = "Metnin arkasında yuvarlatılmış arka plan paneli. Okunması en kolay seçenek.";
+"Row card style" = "Satır kartı stili";
 "Royal" = "Asil";
 "Rugby" = "Ragbi";
 "Running on Cinemeta for now. Add a TMDB key from Settings whenever you're ready." = "Şimdilik Cinemeta kullanılıyor. Hazır olduğunuzda Ayarlar'dan bir TMDB anahtarı ekleyebilirsiniz.";
@@ -1456,6 +1477,7 @@
 "Share" = "Paylaş";
 "Share file" = "Share file";
 "Share with {name}" = "{name} ile paylaş";
+"Sharp" = "Sharp";
 "Sharpen" = "Keskinlik";
 "Sharper lines and a little more pop." = "Daha keskin çizgiler ve biraz daha canlı bir görünüm sunar.";
 "Short of the Year" = "Short of the Year";
@@ -1545,8 +1567,10 @@
 "Spotlight" = "Öne çıkanlar";
 "Spotlighted at the show" = "Etkinlikte öne çıkanlar";
 "Square play button" = "Kare oynat düğmesi";
+"Standard" = "Standart";
 "Standard Def" = "Standard Def";
 "Standings" = "Puan durumu";
+"Start" = "Başlangıç";
 "Start Over" = "Baştan Başlat";
 "Start Watching" = "İzlemeye Başla";
 "Start as" = "Başlangıç profili";
@@ -1585,6 +1609,7 @@
 "Subtitles" = "Altyazılar";
 "Subtitles from your addons" = "Subtitles from your addons";
 "Subtitles synced" = "Altyazılar eşitlendi";
+"Subtle" = "Subtle";
 "Subtle text" = "İkincil metin";
 "Subtítulo externo" = "Harici altyazı";
 "Subtítulos" = "Altyazılar";
@@ -1619,6 +1644,7 @@
 "TMDB · catálogos y filas" = "TMDB · kataloglar ve raflar";
 "TV" = "TV";
 "TV Shows" = "Diziler";
+"TV shows wide art cards with the logo on them. Poster is the classic grid." = "TV, üzerinde logo bulunan geniş görsel kartları gösterir. Poster ise klasik ızgara görünümüdür.";
 "Table of contents" = "Table of contents";
 "Tags" = "Etiketler";
 "Tamaño" = "Boyut";

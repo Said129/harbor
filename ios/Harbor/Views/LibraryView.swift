@@ -22,7 +22,7 @@ struct LibraryView: View {
                 ForEach(Array(groups.enumerated()), id: \.offset) { _, group in
                     VStack(alignment: .leading, spacing: 14) {
                         if !group.title.isEmpty { Text("\(group.title.uppercased())  \(group.items.count)").font(.system(size: 10, weight: .semibold)).tracking(2).foregroundStyle(.secondary) }
-                        LazyVGrid(columns: [GridItem(.adaptive(minimum: 106), spacing: 12, alignment: .top)], spacing: 22) {
+                        PosterGrid(spacing: 22) {
                             ForEach(group.items) { record in
                                 if let media = record.media {
                                     NavigationLink { DetailView(media: media, app: app) } label: {

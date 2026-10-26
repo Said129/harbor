@@ -195,6 +195,7 @@
 "Background" = "الخلفية";
 "Background opacity" = "شفافية الخلفية";
 "Bajar {name}" = "نقل {name} لأسفل";
+"Balanced" = "متوازن";
 "Bar color" = "لون الشريط";
 "Barra de búsqueda" = "شريط التقدم";
 "Barra inferior" = "الشريط السفلي";
@@ -236,6 +237,8 @@
 "Blur spoilers" = "تمويه الحرق";
 "Blur thumbnails" = "تمويه الصور المصغّرة";
 "Blur titles" = "تمويه العناوين";
+"Blur up" = "تمويه تدريجي";
+"Blur up looks smoothest. Fade is lighter on older devices. Instant turns it off." = "التمويه التدريجي هو الأنعم. التلاشي أخف على الأجهزة القديمة. الفوري يعطّل التأثير.";
 "Bold text" = "نص عريض";
 "Book" = "كتاب";
 "Book metadata" = "بيانات الكتاب الوصفية";
@@ -352,6 +355,7 @@
 "Classic Stremio" = "Stremio الكلاسيكي";
 "Clave de API de TMDB (v3)" = "مفتاح API لـ TMDB (v3)";
 "Clave de API v3" = "مفتاح API الإصدار 3";
+"Clear" = "مسح";
 "Clear all" = "مسح الكل";
 "Clear cache" = "مسح التخزين المؤقت الآن";
 "Clear cache now" = "مسح التخزين المؤقت الآن";
@@ -377,6 +381,7 @@
 "Comedy Series" = "مسلسلات كوميدية";
 "Comenzar a ver" = "بدء المشاهدة";
 "Comenzar con los subtítulos desactivados" = "البدء مع إيقاف الترجمة";
+"Comfort" = "Comfort";
 "Coming soon" = "Coming soon";
 "Coming to Theaters" = "قريبًا في دور العرض";
 "Community index" = "فهرس المجتمع";
@@ -425,6 +430,7 @@
 "Copa do Brasil" = "كأس البرازيل";
 "Copia principal." = "النص الأساسي.";
 "Copia secundaria." = "نص ثانوي.";
+"Corner radius" = "نصف قطر الزاوية";
 "Correo y contraseña" = "Email and password";
 "Could not analyze this source. Playback continues; you can retry." = "تعذر تحليل هذا المصدر. تستمر المشاهدة ويمكنك المحاولة مجددًا.";
 "Could not apply the timing. The original subtitle is kept." = "تعذر تطبيق التوقيت. تم الاحتفاظ بالترجمة الأصلية.";
@@ -488,6 +494,7 @@
 "Delete list" = "حذف القائمة";
 "Delete profile" = "حذف الملف الشخصي";
 "Delete this profile?" = "حذف هذا الملف الشخصي؟";
+"Dense" = "Dense";
 "Deporte" = "Sport";
 "Derecha" = "يمين";
 "Derecha a izquierda" = "من اليمين إلى اليسار";
@@ -583,6 +590,7 @@
 "En reproducción: {label}" = "يُعرض الآن: {label}";
 "Enable addon" = "Enable addon";
 "Enabled" = "مُفعّلة";
+"End" = "النهاية";
 "Enfocar" = "الحدة";
 "English" = "الإنجليزية";
 "Enter Harbor" = "ادخل إلى Harbor";
@@ -638,6 +646,7 @@
 "FPS del video" = "معدل إطارات الفيديو";
 "FPS personalizados para subtítulos" = "معدل إطارات مخصص للترجمة";
 "Face" = "التعبئة";
+"Fade" = "تلاشٍ";
 "Failed to fetch JSON" = "فشل جلب ملف JSON";
 "Family" = "عائلي";
 "Fantasy" = "فانتازيا";
@@ -748,6 +757,8 @@
 "Hides spoiler-prone episode details in episode lists until you have watched them." = "يخفي تفاصيل الحلقات المعرّضة للحرق في قوائم الحلقات حتى تشاهدها.";
 "Hides the episode name, which often gives the twist away on its own." = "Hides the episode name, which often gives the twist away on its own.";
 "Hides the synopsis text under each unwatched episode." = "Hides the synopsis text under each unwatched episode.";
+"High" = "عالية";
+"High is sized to your screen and looks identical to full res on far less memory. Balanced saves the most. Maximum keeps original resolution." = "الجودة العالية مضبوطة على مقاس شاشتك وتبدو مطابقة للدقة الكاملة بذاكرة أقل بكثير. المتوازنة توفّر الأكثر. القصوى تحافظ على الدقة الأصلية.";
 "Highlight, progress." = "التمييز والتقدّم.";
 "Highlighted blocks." = "كتل مميّزة.";
 "Hindi" = "الهندية";
@@ -760,6 +771,7 @@
 "Horizontal" = "أفقي";
 "Horror" = "رعب";
 "Horror & Supernatural" = "رعب وخوارق";
+"How large every poster card is drawn across Home and search." = "How large every poster card is drawn across Home and search.";
 "How many films?" = "كم عدد الأفلام؟";
 "Hoy" = "اليوم";
 "Hulu" = "Hulu";
@@ -851,6 +863,7 @@
 "Language preference order" = "ترتيب اللغات المفضّلة";
 "Languages" = "اللغات";
 "Languages & subtitles" = "اللغات والترجمات";
+"Large" = "كبير";
 "Laterales" = "الجوانب";
 "Lectura" = "جارٍ القراءة";
 "Left" = "يسار";
@@ -879,6 +892,7 @@
 "Live TV playlists" = "قوائم تشغيل البث التلفزيوني المباشر";
 "Live preview is on. Save keeps what you've picked as your Custom theme. Reset reverts the editor to the saved palette." = "Live preview is on. Save keeps what you've picked as your Custom theme. Reset reverts the editor to the saved palette.";
 "Llegaste al final · {n} complementos" = "لقد وصلت إلى النهاية · {n} إضافة";
+"Load effect" = "تحميل التأثير";
 "Load file" = "تحميل ملف";
 "Load more" = "تحميل المزيد";
 "Loading" = "جارٍ التحميل";
@@ -889,6 +903,7 @@
 "Local" = "المحلّي";
 "Local app files" = "Local app files";
 "Logo URL (optional, auto-detected if blank)" = "عنوان URL للشعار (اختياري، يُكتشف تلقائيًا إن تُرك فارغًا)";
+"Logo position" = "موضع الشعار";
 "Logos" = "الشعارات";
 "Los FPS de los subtítulos no están disponibles en este entorno de ejecución de libmpv." = "معدل إطارات الترجمة غير متوفر في إصدار libmpv الحالي.";
 "Los FPS de los subtítulos no están disponibles mientras haya un subtítulo secundario activo." = "لا يتوفر تعديل معدل إطارات الترجمة أثناء تفعيل ترجمة ثانوية.";
@@ -921,6 +936,7 @@
 "Mark as read" = "Mark as read";
 "Mark watched button" = "زر التحديد كمُشاهَد";
 "Max" = "الأقصى";
+"Maximum" = "القصوى";
 "Mecha" = "ميكا";
 "Media" = "الوسائط";
 "Mejor valorado" = "الأعلى تقييمًا";
@@ -1191,6 +1207,7 @@
 "Picture adjustment" = "Picture adjustment";
 "Picture adjustments" = "تعديلات الصورة";
 "Picture in Picture" = "صورة داخل صورة";
+"Pill" = "Pill";
 "Play" = "تشغيل";
 "Play movie" = "تشغيل الفيلم";
 "Play next" = "تشغيل تاليًا";
@@ -1223,6 +1240,8 @@
 "Posición de la canción" = "Song position";
 "Posición de reproducción" = "Playback position";
 "Position and size only" = "الموضع والحجم فقط";
+"Poster" = "الملصق";
+"Poster card style" = "نمط بطاقة الملصق";
 "Poster cards" = "بطاقات الملصقات";
 "Posters, ratings, lists" = "الملصقات والتقييمات والقوائم";
 "Predeterminado" = "الافتراضي";
@@ -1258,6 +1277,7 @@
 "Página anterior" = "الصفحة السابقة";
 "Página siguiente" = "الصفحة التالية";
 "Pósteres, calificaciones y listas" = "الملصقات والتقييمات والقوائم";
+"Quality" = "الجودة";
 "Quedan {h} h" = "بقي {h}س";
 "Quedan {h} h {m} min" = "بقي {h}س {m}د";
 "Quedan {m} min" = "بقي {m}د";
@@ -1406,6 +1426,7 @@
 "Rotate featured banners automatically" = "تغيير اللافتات المميزة تلقائيًا";
 "Rounded" = "مستدير";
 "Rounded background panel behind the text. Most readable." = "لوحة خلفية دائرية خلف النص. الأكثر قابلية للقراءة.";
+"Row card style" = "شكل بطاقات الصفوف";
 "Royal" = "ملكي";
 "Rugby" = "الرغبي";
 "Running on Cinemeta for now. Add a TMDB key from Settings whenever you're ready." = "يعمل على Cinemeta حاليًا. أضف مفتاح TMDB من الإعدادات متى كنت مستعدًا.";
@@ -1490,6 +1511,7 @@
 "Share" = "مشاركة";
 "Share file" = "Share file";
 "Share with {name}" = "مشاركة مع {name}";
+"Sharp" = "Sharp";
 "Sharpen" = "الحدة";
 "Sharper lines and a little more pop." = "خطوط أكثر حدة وقليل من البروز.";
 "Short of the Year" = "الفيلم القصير للعام";
@@ -1581,8 +1603,10 @@
 "Spotlight" = "تحت الأضواء";
 "Spotlighted at the show" = "أعمال سلّط المعرض الضوء عليها";
 "Square play button" = "زر تشغيل مربع";
+"Standard" = "عادية";
 "Standard Def" = "Standard Def";
 "Standings" = "الترتيب";
+"Start" = "البداية";
 "Start Over" = "البدء من جديد";
 "Start Watching" = "بدء المشاهدة";
 "Start as" = "البدء كـ";
@@ -1621,6 +1645,7 @@
 "Subtitles" = "الترجمة";
 "Subtitles from your addons" = "Subtitles from your addons";
 "Subtitles synced" = "تمت مزامنة الترجمة";
+"Subtle" = "Subtle";
 "Subtle text" = "نص خافت";
 "Subtítulo externo" = "ترجمة خارجية";
 "Subtítulos" = "الترجمة";
@@ -1656,6 +1681,7 @@
 "TMDB · catálogos y filas" = "TMDB · البيانات الوصفية الأساسية";
 "TV" = "المسلسلات";
 "TV Shows" = "مسلسلات تلفزيونية";
+"TV shows wide art cards with the logo on them. Poster is the classic grid." = "يعرض نمط المسلسلات بطاقات فنية عريضة تحمل الشعار، بينما الملصق هو الشبكة الكلاسيكية.";
 "Table of contents" = "Table of contents";
 "Tags" = "الوسوم";
 "Tamaño" = "الحجم";

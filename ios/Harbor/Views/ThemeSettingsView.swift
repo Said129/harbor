@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct ThemeSettingsView: View {
+    var sample: Media? = nil
     @Bindable var preferences = ThemePreferences.shared
     @State private var editingColors = false
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
@@ -22,6 +23,7 @@ struct ThemeSettingsView: View {
                         ThemeFontCard(value: value, name: DesktopInterfaceText.value(name), selected: preferences.font == value) { preferences.font = value }
                     }
                 }
+                PosterAppearanceControls(sample: sample)
                 PlayerSeekBarSettings()
                 Button { preferences.reset() } label: {
                     Label(DesktopInterfaceText.value("Reset"), image: "audio-reset-sync").font(HarborTheme.font(14, weight: .medium)).frame(minHeight: 44)

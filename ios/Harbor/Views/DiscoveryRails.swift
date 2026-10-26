@@ -38,7 +38,7 @@ struct DiscoveryGrid: View {
     private var grid: some View {
         ScrollView {
             LazyVStack(spacing: 18) {
-                LazyVGrid(columns: [GridItem(.adaptive(minimum: 106), spacing: 12, alignment: .top)], spacing: 22) {
+                PosterGrid(spacing: 22) {
                     ForEach(items, id: \.identity) { media in NavigationLink(value: media) { Poster(media: media, width: nil) }.buttonStyle(.plain) }
                 }
                 if let error { Text(error).font(.caption).foregroundStyle(.orange); Button("Reintentar") { Task { await load() } } }

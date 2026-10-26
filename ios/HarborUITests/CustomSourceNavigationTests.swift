@@ -18,7 +18,7 @@ import XCTest
         for (index, entry) in [("missing-sources.json", "Failed to fetch JSON", "fetch-error"), ("malformed.json", "Invalid SourceRow JSON format", "format-error")].enumerated() {
             let (path, message, state) = entry
             if index == 0 { enterEmpty(url, "http://127.0.0.1:18734/" + path, app) }
-            else { ReadingUIInteraction.replace(url, with: "http://127.0.0.1:18734/" + path, in: app) }
+            else { replaceURL(url, "source-import-url", "http://127.0.0.1:18734/" + path, app) }
             ReadingUIInteraction.tapVisible(app.buttons["source-import-save"], in: app)
             let failure = app.staticTexts["source-import-error"]
             XCTAssertTrue(failure.waitForExistence(timeout: 15))
@@ -26,7 +26,7 @@ import XCTest
             XCTAssertEqual(XCTWaiter.wait(for: [shown], timeout: 15), .completed)
             capture(app, "source-" + state + "-" + device)
         }
-        ReadingUIInteraction.replace(url, with: "http://127.0.0.1:18734/sources.json", in: app)
+        replaceURL(url, "source-import-url", "http://127.0.0.1:18734/sources.json", app)
         ReadingUIInteraction.tapVisible(app.buttons["source-import-save"], in: app)
         let row = element("source-row-owned-imported-sources", app), folder = element("source-folder-owned-imported-sources-0", app)
         show(row, app, scroll); XCTAssertTrue(row.exists); capture(app, "source-imported-" + device)
@@ -56,7 +56,7 @@ import XCTest
         let cover = app.textFields["source-cover-url"], focus = app.textFields["source-focus-url"]
         XCTAssertTrue(cover.waitForExistence(timeout: 15))
         capture(app, "source-image-editor-" + device)
-        ReadingUIInteraction.replace(cover, with: "http://127.0.0.1:18734/edited.png", in: app)
+        replaceURL(cover, "source-cover-url", "http://127.0.0.1:18734/edited.png", app)
         enterEmpty(focus, "http://127.0.0.1:18734/focus.gif", app)
         ReadingUIInteraction.tapVisible(app.buttons["source-images-save"], in: app)
         show(row, app, scroll); capture(app, "source-images-edited-" + device)
@@ -91,6 +91,11 @@ import XCTest
         // Type normally; Select All cannot exist in an empty field.
         ReadingUIInteraction.tapVisible(field, in: app); field.typeText(value)
         XCTAssertEqual(field.value as? String, value)
+    }
+    private func replaceURL(_ field: XCUIElement, _ identifier: String, _ value: String, _ app: XCUIApplication) {
+        let clear = app.buttons[identifier + "-clear"]
+        XCTAssertTrue(clear.waitForExistence(timeout: 10)); ReadingUIInteraction.tapVisible(clear, in: app)
+        enterEmpty(field, value, app)
     }
     private func revealHorizontal(_ target: XCUIElement, _ app: XCUIApplication, _ container: XCUIElement, left: Bool = true) {
         for _ in 0..<6 {

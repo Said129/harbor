@@ -183,6 +183,7 @@
 "Background" = "배경";
 "Background opacity" = "배경 불투명도";
 "Bajar {name}" = "{name} 아래로 이동";
+"Balanced" = "균형";
 "Bar color" = "바 색상";
 "Barra de búsqueda" = "탐색 막대";
 "Barra inferior" = "하단 표시줄";
@@ -224,6 +225,8 @@
 "Blur spoilers" = "스포일러 흐리게 표시";
 "Blur thumbnails" = "썸네일 흐리게 표시";
 "Blur titles" = "제목 흐리게 표시";
+"Blur up" = "위쪽 흐림";
+"Blur up looks smoothest. Fade is lighter on older devices. Instant turns it off." = "위로 흐리기는 가장 부드럽습니다. 페이드는 구형 기기에서 더 가볍게 작동합니다. 즉시는 효과를 끕니다.";
 "Bold text" = "굵은 텍스트";
 "Book" = "책";
 "Book metadata" = "도서 메타데이터";
@@ -332,6 +335,7 @@
 "Classic Stremio" = "클래식 Stremio";
 "Clave de API de TMDB (v3)" = "TMDB API 키(v3)";
 "Clave de API v3" = "v3 API 키";
+"Clear" = "지우기";
 "Clear all" = "모두 삭제";
 "Clear cache" = "지금 캐시 지우기";
 "Clear cache now" = "지금 캐시 지우기";
@@ -357,6 +361,7 @@
 "Comedy Series" = "코미디 시리즈";
 "Comenzar a ver" = "시청 시작";
 "Comenzar con los subtítulos desactivados" = "자막을 끈 상태로 시작";
+"Comfort" = "Comfort";
 "Coming soon" = "Coming soon";
 "Coming to Theaters" = "극장 개봉 예정작";
 "Community index" = "커뮤니티 지수";
@@ -401,6 +406,7 @@
 "Controls" = "컨트롤";
 "Copia principal." = "기본 문구.";
 "Copia secundaria." = "보조 사본입니다.";
+"Corner radius" = "모서리 둥글기";
 "Correo y contraseña" = "Email and password";
 "Could not analyze this source. Playback continues; you can retry." = "Could not analyze this source. Playback continues; you can retry.";
 "Could not apply the timing. The original subtitle is kept." = "Could not apply the timing. The original subtitle is kept.";
@@ -464,6 +470,7 @@
 "Delete list" = "목록 삭제";
 "Delete profile" = "프로필 삭제";
 "Delete this profile?" = "이 프로필을 삭제할까요?";
+"Dense" = "Dense";
 "Deporte" = "Sport";
 "Derecha" = "오른쪽";
 "Derecha a izquierda" = "오른쪽에서 왼쪽";
@@ -559,6 +566,7 @@
 "En reproducción: {label}" = "현재 재생 중: {label}";
 "Enable addon" = "Enable addon";
 "Enabled" = "사용";
+"End" = "끝";
 "Enfocar" = "선명도";
 "English" = "영어";
 "Enter Harbor" = "Harbor 입장";
@@ -614,6 +622,7 @@
 "FPS del video" = "동영상 FPS";
 "FPS personalizados para subtítulos" = "사용자 지정 자막 FPS";
 "Face" = "얼굴";
+"Fade" = "페이드";
 "Failed to fetch JSON" = "JSON을 가져오지 못했습니다.";
 "Family" = "가족";
 "Fantasy" = "판타지";
@@ -723,6 +732,8 @@
 "Hides spoiler-prone episode details in episode lists until you have watched them." = "시청하기 전까지 에피소드 목록에서 스포일러가 될 수 있는 세부 정보를 숨깁니다.";
 "Hides the episode name, which often gives the twist away on its own." = "Hides the episode name, which often gives the twist away on its own.";
 "Hides the synopsis text under each unwatched episode." = "Hides the synopsis text under each unwatched episode.";
+"High" = "높음";
+"High is sized to your screen and looks identical to full res on far less memory. Balanced saves the most. Maximum keeps original resolution." = "높음은 화면 크기에 맞춰 조정되어 훨씬 적은 메모리로도 전체 해상도와 동일하게 보입니다. 균형은 메모리를 가장 많이 절약합니다. 최대는 원본 해상도를 유지합니다.";
 "Highlight, progress." = "강조, 진행률.";
 "Highlighted blocks." = "강조된 블록.";
 "Hindi" = "힌디어";
@@ -735,6 +746,7 @@
 "Horizontal" = "가로";
 "Horror" = "호러";
 "Horror & Supernatural" = "공포 및 초자연";
+"How large every poster card is drawn across Home and search." = "How large every poster card is drawn across Home and search.";
 "How many films?" = "영화는 몇 편인가요?";
 "Hoy" = "오늘";
 "Hulu" = "Hulu";
@@ -826,6 +838,7 @@
 "Language preference order" = "언어 우선순위";
 "Languages" = "언어";
 "Languages & subtitles" = "언어 및 자막";
+"Large" = "크게";
 "Laterales" = "양면";
 "Lectura" = "읽는 중";
 "Left" = "왼쪽";
@@ -854,6 +867,7 @@
 "Live TV playlists" = "실시간 TV 재생목록";
 "Live preview is on. Save keeps what you've picked as your Custom theme. Reset reverts the editor to the saved palette." = "Live preview is on. Save keeps what you've picked as your Custom theme. Reset reverts the editor to the saved palette.";
 "Llegaste al final · {n} complementos" = "마지막입니다 · 애드온 {n}개";
+"Load effect" = "로드 효과";
 "Load file" = "파일 불러오기";
 "Load more" = "더 불러오기";
 "Loading" = "로딩 중";
@@ -864,6 +878,7 @@
 "Local" = "로컬";
 "Local app files" = "Local app files";
 "Logo URL (optional, auto-detected if blank)" = "로고 URL(선택 사항, 비워 두면 자동 감지)";
+"Logo position" = "로고 위치";
 "Logos" = "로고";
 "Los FPS de los subtítulos no están disponibles en este entorno de ejecución de libmpv." = "이 libmpv 런타임에서는 자막 FPS를 사용할 수 없습니다.";
 "Los FPS de los subtítulos no están disponibles mientras haya un subtítulo secundario activo." = "보조 자막이 활성화된 동안에는 자막 FPS를 사용할 수 없습니다.";
@@ -896,6 +911,7 @@
 "Mark as read" = "Mark as read";
 "Mark watched button" = "시청함 표시 버튼";
 "Max" = "최대";
+"Maximum" = "최대";
 "Mecha" = "메카";
 "Media" = "미디어";
 "Mejor valorado" = "평점순";
@@ -1160,6 +1176,7 @@
 "Picture adjustment" = "Picture adjustment";
 "Picture adjustments" = "화면 조정";
 "Picture in Picture" = "화면 속 화면";
+"Pill" = "Pill";
 "Play" = "재생";
 "Play movie" = "영화 재생";
 "Play next" = "다음에 재생";
@@ -1192,6 +1209,8 @@
 "Posición de la canción" = "Song position";
 "Posición de reproducción" = "Playback position";
 "Position and size only" = "위치와 크기만";
+"Poster" = "포스터";
+"Poster card style" = "포스터 카드 스타일";
 "Poster cards" = "포스터 카드";
 "Posters, ratings, lists" = "포스터, 평점, 목록";
 "Predeterminado" = "기본값";
@@ -1227,6 +1246,7 @@
 "Página anterior" = "이전 페이지";
 "Página siguiente" = "다음 페이지";
 "Pósteres, calificaciones y listas" = "포스터, 평점, 목록";
+"Quality" = "화질";
 "Quedan {h} h" = "{h}시간 남음";
 "Quedan {h} h {m} min" = "{h}시간 {m}분 남음";
 "Quedan {m} min" = "{m}분 남음";
@@ -1374,6 +1394,7 @@
 "Rotate featured banners automatically" = "Rotate featured banners automatically";
 "Rounded" = "둥근 글꼴";
 "Rounded background panel behind the text. Most readable." = "텍스트 뒤의 둥근 배경 패널입니다. 가독성이 가장 높습니다.";
+"Row card style" = "행 카드 스타일";
 "Royal" = "로열";
 "Rugby" = "럭비";
 "Running on Cinemeta for now. Add a TMDB key from Settings whenever you're ready." = "현재는 Cinemeta로 실행됩니다. 준비되면 언제든 설정에서 TMDB 키를 추가하세요.";
@@ -1456,6 +1477,7 @@
 "Share" = "공유";
 "Share file" = "Share file";
 "Share with {name}" = "{name}과(와) 공유";
+"Sharp" = "Sharp";
 "Sharpen" = "선명도";
 "Sharper lines and a little more pop." = "선을 더 선명하게 하고 생동감을 약간 높입니다.";
 "Short of the Year" = "Short of the Year";
@@ -1545,8 +1567,10 @@
 "Spotlight" = "스포트라이트";
 "Spotlighted at the show" = "행사에서 주목받은 작품";
 "Square play button" = "정사각형 재생 버튼";
+"Standard" = "일반";
 "Standard Def" = "Standard Def";
 "Standings" = "순위";
+"Start" = "시작";
 "Start Over" = "처음부터 재생";
 "Start Watching" = "시청 시작";
 "Start as" = "시작 프로필";
@@ -1585,6 +1609,7 @@
 "Subtitles" = "자막";
 "Subtitles from your addons" = "Subtitles from your addons";
 "Subtitles synced" = "자막 동기화됨";
+"Subtle" = "Subtle";
 "Subtle text" = "은은한 텍스트";
 "Subtítulo externo" = "외부 자막";
 "Subtítulos" = "자막";
@@ -1619,6 +1644,7 @@
 "TMDB · catálogos y filas" = "TMDB · 카탈로그 및 콘텐츠 행";
 "TV" = "TV";
 "TV Shows" = "TV 프로그램";
+"TV shows wide art cards with the logo on them. Poster is the classic grid." = "TV에서는 로고가 표시된 가로형 아트 카드를 사용합니다. 포스터는 클래식 그리드 형식입니다.";
 "Table of contents" = "Table of contents";
 "Tags" = "태그";
 "Tamaño" = "크기";

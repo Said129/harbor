@@ -160,20 +160,19 @@ struct CustomSourceFolderBrowser: View {
                             Text(error).foregroundStyle(.secondary).multilineTextAlignment(.center)
                             Button(DesktopInterfaceText.value("Retry")) { Task { await load() } }
                         }
-                        LazyVGrid(columns: [GridItem(.adaptive(minimum: 106), spacing: 12, alignment: .top)], spacing: 22) {
+                        PosterGrid(spacing: 22) {
                             ForEach(items, id: \.identity) { media in NavigationLink(value: media) { Poster(media: media, width: nil) }.buttonStyle(.plain) }
                         }
                         if busy && items.isEmpty { ProgressView() }
                         if !items.isEmpty && !paging.finished && error == nil { ProgressView().task(id: paging.page) { await load() } }
                         else if !busy && items.isEmpty && paging.finished && error == nil { HarborNoMatchesView() }
                     }.padding()
-                }.task(id: app.accountOperationScope) {
+                }.accessibilityIdentifier("source-folder-browser").task(id: app.accountOperationScope) {
                     guard loadedScope != app.accountOperationScope else { return }
                     loadedScope = app.accountOperationScope; busy = false; catalog = nil; items = []; paging = DesktopGridPaging(); await load()
                 }
             }
         }.background(HarborTheme.background).navigationTitle(destination?.title ?? folder.title).navigationBarTitleDisplayMode(.inline).toolbar(.visible, for: .navigationBar)
-            .accessibilityIdentifier("source-folder-browser")
     }
     private func load() async {
         guard !busy, !paging.finished, !missingKey else { return }

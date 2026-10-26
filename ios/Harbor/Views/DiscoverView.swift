@@ -448,7 +448,7 @@ private struct VoyageRouteView: View {
             VStack(alignment: .leading, spacing: 20) {
                 Text(DesktopVoyage.copy(theme.label)).font(HarborTheme.displayFont(30)); Text(DesktopVoyage.copy(theme.tagline)).font(HarborTheme.font(14)).foregroundStyle(.secondary)
                 ForEach(Array(items.enumerated()), id: \.element.identity) { index, item in
-                    NavigationLink(value: item) { HStack(alignment: .top, spacing: 16) { Text(String(index + 1)).font(HarborTheme.displayFont(32)).foregroundStyle(HarborTheme.accent); Poster(media: item, width: 110); VStack(alignment: .leading, spacing: 8) { Text(item.name).font(HarborTheme.font(17, weight: .semibold)); if let text = item.description { Text(text).font(HarborTheme.font(13)).foregroundStyle(.secondary).lineLimit(5) } } } }.buttonStyle(.plain)
+                    NavigationLink(value: item) { HStack(alignment: .top, spacing: 16) { Text(String(index + 1)).font(HarborTheme.displayFont(32)).foregroundStyle(HarborTheme.accent); Poster(media: item, width: 110, honorsRowStyle: false); VStack(alignment: .leading, spacing: 8) { Text(item.name).font(HarborTheme.font(17, weight: .semibold)); if let text = item.description { Text(text).font(HarborTheme.font(13)).foregroundStyle(.secondary).lineLimit(5) } } } }.buttonStyle(.plain)
                 }
                 if loading { ProgressView() }; if let error { Text(error).font(HarborTheme.font(13)).foregroundStyle(.orange); Button(DesktopInterfaceText.value("Retry")) { Task { await load() } } }
             }.padding()

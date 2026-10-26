@@ -183,6 +183,7 @@
 "Background" = "Latar belakang";
 "Background opacity" = "Opasitas latar belakang";
 "Bajar {name}" = "Pindahkan {name} ke bawah";
+"Balanced" = "Seimbang";
 "Bar color" = "Warna bilah";
 "Barra de búsqueda" = "Bilah waktu";
 "Barra inferior" = "Bilah bawah";
@@ -224,6 +225,8 @@
 "Blur spoilers" = "Buramkan spoiler";
 "Blur thumbnails" = "Buramkan gambar mini";
 "Blur titles" = "Buramkan judul";
+"Blur up" = "Buram bertahap";
+"Blur up looks smoothest. Fade is lighter on older devices. Instant turns it off." = "Buram bertahap terlihat paling mulus. Pudar lebih ringan di perangkat lama. Instan akan menonaktifkannya.";
 "Bold text" = "Teks tebal";
 "Book" = "Buku";
 "Book metadata" = "Metadata buku";
@@ -332,6 +335,7 @@
 "Classic Stremio" = "Stremio Klasik";
 "Clave de API de TMDB (v3)" = "Kunci API TMDB (v3)";
 "Clave de API v3" = "kunci API v3";
+"Clear" = "Bersihkan";
 "Clear all" = "Hapus semua";
 "Clear cache" = "Bersihkan cache sekarang";
 "Clear cache now" = "Bersihkan cache sekarang";
@@ -357,6 +361,7 @@
 "Comedy Series" = "Serial Komedi";
 "Comenzar a ver" = "Mulai Menonton";
 "Comenzar con los subtítulos desactivados" = "Mulai dengan subtitle nonaktif";
+"Comfort" = "Comfort";
 "Coming soon" = "Coming soon";
 "Coming to Theaters" = "Segera Hadir di Bioskop";
 "Community index" = "Indeks komunitas";
@@ -401,6 +406,7 @@
 "Controls" = "Kontrol";
 "Copia principal." = "Salinan utama.";
 "Copia secundaria." = "Teks sekunder.";
+"Corner radius" = "Radius sudut";
 "Correo y contraseña" = "Email and password";
 "Could not analyze this source. Playback continues; you can retry." = "Could not analyze this source. Playback continues; you can retry.";
 "Could not apply the timing. The original subtitle is kept." = "Could not apply the timing. The original subtitle is kept.";
@@ -464,6 +470,7 @@
 "Delete list" = "Hapus daftar";
 "Delete profile" = "Hapus profil";
 "Delete this profile?" = "Hapus profil ini?";
+"Dense" = "Dense";
 "Deporte" = "Sport";
 "Derecha" = "Kanan";
 "Derecha a izquierda" = "Kanan ke kiri";
@@ -559,6 +566,7 @@
 "En reproducción: {label}" = "Sedang diputar: {label}";
 "Enable addon" = "Enable addon";
 "Enabled" = "Diaktifkan";
+"End" = "Akhir";
 "Enfocar" = "Pertajam";
 "English" = "Inggris";
 "Enter Harbor" = "Masuk ke Harbor";
@@ -614,6 +622,7 @@
 "FPS del video" = "FPS video";
 "FPS personalizados para subtítulos" = "FPS subtitle kustom";
 "Face" = "Wajah";
+"Fade" = "Pudar";
 "Failed to fetch JSON" = "Gagal mengambil JSON";
 "Family" = "Keluarga";
 "Fantasy" = "Fantasi";
@@ -723,6 +732,8 @@
 "Hides spoiler-prone episode details in episode lists until you have watched them." = "Menyembunyikan detail episode yang berpotensi mengandung spoiler dalam daftar episode hingga Anda menontonnya.";
 "Hides the episode name, which often gives the twist away on its own." = "Hides the episode name, which often gives the twist away on its own.";
 "Hides the synopsis text under each unwatched episode." = "Hides the synopsis text under each unwatched episode.";
+"High" = "Tinggi";
+"High is sized to your screen and looks identical to full res on far less memory. Balanced saves the most. Maximum keeps original resolution." = "Tinggi disesuaikan dengan layar Anda dan tampak sama dengan resolusi penuh, tetapi menggunakan jauh lebih sedikit memori. Seimbang paling menghemat. Maksimum mempertahankan resolusi asli.";
 "Highlight, progress." = "Sorotan, progres.";
 "Highlighted blocks." = "Blok yang disorot.";
 "Hindi" = "Hindi";
@@ -735,6 +746,7 @@
 "Horizontal" = "Horizontal";
 "Horror" = "Horor";
 "Horror & Supernatural" = "Horor & Supranatural";
+"How large every poster card is drawn across Home and search." = "How large every poster card is drawn across Home and search.";
 "How many films?" = "Berapa banyak film?";
 "Hoy" = "Hari ini";
 "Hulu" = "Hulu";
@@ -826,6 +838,7 @@
 "Language preference order" = "Urutan bahasa pilihan";
 "Languages" = "Bahasa";
 "Languages & subtitles" = "Bahasa & subtitle";
+"Large" = "Besar";
 "Laterales" = "Sisi";
 "Lectura" = "Sedang membaca";
 "Left" = "Kiri";
@@ -854,6 +867,7 @@
 "Live TV playlists" = "Daftar putar TV Langsung";
 "Live preview is on. Save keeps what you've picked as your Custom theme. Reset reverts the editor to the saved palette." = "Live preview is on. Save keeps what you've picked as your Custom theme. Reset reverts the editor to the saved palette.";
 "Llegaste al final · {n} complementos" = "Anda telah mencapai akhir · {n} addon";
+"Load effect" = "Efek pemuatan";
 "Load file" = "Muat file";
 "Load more" = "Muat lebih banyak";
 "Loading" = "Memuat";
@@ -864,6 +878,7 @@
 "Local" = "Lokal";
 "Local app files" = "Local app files";
 "Logo URL (optional, auto-detected if blank)" = "URL logo (opsional, terdeteksi otomatis jika kosong)";
+"Logo position" = "Posisi logo";
 "Logos" = "Logo";
 "Los FPS de los subtítulos no están disponibles en este entorno de ejecución de libmpv." = "FPS subtitle tidak tersedia di runtime libmpv ini.";
 "Los FPS de los subtítulos no están disponibles mientras haya un subtítulo secundario activo." = "FPS subtitle tidak tersedia saat subtitle sekunder aktif.";
@@ -896,6 +911,7 @@
 "Mark as read" = "Mark as read";
 "Mark watched button" = "Tombol tandai sudah ditonton";
 "Max" = "Maks";
+"Maximum" = "Maksimum";
 "Mecha" = "Mecha";
 "Media" = "Media";
 "Mejor valorado" = "Peringkat teratas";
@@ -1160,6 +1176,7 @@
 "Picture adjustment" = "Picture adjustment";
 "Picture adjustments" = "Penyesuaian gambar";
 "Picture in Picture" = "Gambar dalam Gambar";
+"Pill" = "Pill";
 "Play" = "Putar";
 "Play movie" = "Putar film";
 "Play next" = "Putar berikutnya";
@@ -1192,6 +1209,8 @@
 "Posición de la canción" = "Song position";
 "Posición de reproducción" = "Playback position";
 "Position and size only" = "Hanya posisi dan ukuran";
+"Poster" = "Poster";
+"Poster card style" = "Gaya kartu poster";
 "Poster cards" = "Kartu poster";
 "Posters, ratings, lists" = "Poster, rating, daftar";
 "Predeterminado" = "Bawaan";
@@ -1227,6 +1246,7 @@
 "Página anterior" = "Halaman sebelumnya";
 "Página siguiente" = "Halaman berikutnya";
 "Pósteres, calificaciones y listas" = "Poster, rating, daftar";
+"Quality" = "Kualitas";
 "Quedan {h} h" = "tersisa {h}j";
 "Quedan {h} h {m} min" = "tersisa {h}j {m}m";
 "Quedan {m} min" = "Tersisa {m} mnt";
@@ -1374,6 +1394,7 @@
 "Rotate featured banners automatically" = "Rotate featured banners automatically";
 "Rounded" = "Bersudut membulat";
 "Rounded background panel behind the text. Most readable." = "Panel latar bersudut membulat di belakang teks. Paling mudah dibaca.";
+"Row card style" = "Gaya kartu baris";
 "Royal" = "Kerajaan";
 "Rugby" = "Rugbi";
 "Running on Cinemeta for now. Add a TMDB key from Settings whenever you're ready." = "Untuk saat ini menggunakan Cinemeta. Tambahkan kunci TMDB dari Pengaturan kapan pun Anda siap.";
@@ -1456,6 +1477,7 @@
 "Share" = "Bagikan";
 "Share file" = "Share file";
 "Share with {name}" = "Bagikan dengan {name}";
+"Sharp" = "Sharp";
 "Sharpen" = "Pertajam";
 "Sharper lines and a little more pop." = "Garis lebih tajam dan tampilan sedikit lebih menonjol.";
 "Short of the Year" = "Film Pendek Terbaik Tahun Ini";
@@ -1545,8 +1567,10 @@
 "Spotlight" = "Sorotan";
 "Spotlighted at the show" = "Disorot di acara tersebut";
 "Square play button" = "Tombol putar berbentuk persegi";
+"Standard" = "Standar";
 "Standard Def" = "Standard Def";
 "Standings" = "Klasemen";
+"Start" = "Mulai";
 "Start Over" = "Mulai dari Awal";
 "Start Watching" = "Mulai Menonton";
 "Start as" = "Mulai sebagai";
@@ -1585,6 +1609,7 @@
 "Subtitles" = "Subtitle";
 "Subtitles from your addons" = "Subtitles from your addons";
 "Subtitles synced" = "Subtitle tersinkron";
+"Subtle" = "Subtle";
 "Subtle text" = "Teks samar";
 "Subtítulo externo" = "Subtitle eksternal";
 "Subtítulos" = "Subtitle";
@@ -1619,6 +1644,7 @@
 "TMDB · catálogos y filas" = "TMDB · katalog dan deretan";
 "TV" = "TV";
 "TV Shows" = "Acara TV";
+"TV shows wide art cards with the logo on them. Poster is the classic grid." = "TV menampilkan kartu gambar lebar dengan logo. Poster menggunakan kisi klasik.";
 "Table of contents" = "Table of contents";
 "Tags" = "Tag";
 "Tamaño" = "Ukuran";

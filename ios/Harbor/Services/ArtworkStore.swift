@@ -122,6 +122,7 @@ struct Artwork: View {
     var failureIcon = "nav-movies"
     var showsPlaceholder = true
     var onImageAvailability: ((Bool) -> Void)? = nil
+    var onLoadCompletion: ((Bool) -> Void)? = nil
     @State private var image: UIImage?
     @State private var failed = false
     @State private var retryRevision = 0
@@ -141,13 +142,13 @@ struct Artwork: View {
                 do {
                     let data = try await ArtworkStore.shared.data(raw)
                     try Task.checkCancellation()
-                    guard let source = CGImageSourceCreateWithData(data as CFData, nil),
-                          let cgImage = CGImageSourceCreateThumbnailAtIndex(source, 0, [kCGImageSourceCreateThumbnailFromImageAlways: true, kCGImageSourceCreateThumbnailWithTransform: true, kCGImageSourceThumbnailMaxPixelSize: maxPixels] as CFDictionary) else { continue }
-                    image = UIImage(cgImage: cgImage); onImageAvailability?(true); return
+                    let decoded = try await ArtworkBitmapDecoder.thumbnail(data, maxPixels: maxPixels)
+                    try Task.checkCancellation()
+                    image = decoded.image; onImageAvailability?(true); onLoadCompletion?(true); return
                 } catch is CancellationError { return }
                 catch { continue }
             }
-            failed = true
+            failed = true; onLoadCompletion?(false)
         }
         .onChange(of: ArtworkRefresh.shared.revision) { _, _ in if failed { retryRevision &+= 1 } }
         .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)) { _ in

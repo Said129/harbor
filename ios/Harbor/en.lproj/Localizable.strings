@@ -154,6 +154,7 @@
 "Background" = "Background";
 "Background opacity" = "Background opacity";
 "Bajar {name}" = "Move {name} down";
+"Balanced" = "Balanced";
 "Bar color" = "Bar color";
 "Barra de búsqueda" = "Seek bar";
 "Barra inferior" = "Bottom bar";
@@ -167,6 +168,8 @@
 "Blur spoilers" = "Blur spoilers";
 "Blur thumbnails" = "Blur thumbnails";
 "Blur titles" = "Blur titles";
+"Blur up" = "Blur up";
+"Blur up looks smoothest. Fade is lighter on older devices. Instant turns it off." = "Blur up looks smoothest. Fade is lighter on older devices. Instant turns it off.";
 "Bold text" = "Bold text";
 "Book" = "Book";
 "Book metadata" = "Book metadata";
@@ -258,6 +261,7 @@
 "Classic Stremio" = "Classic Stremio";
 "Clave de API de TMDB (v3)" = "TMDB API key (v3)";
 "Clave de API v3" = "v3 API key";
+"Clear" = "Clear";
 "Clear all" = "Clear all";
 "Clear cache" = "Clear cache now";
 "Clear cache now" = "Clear cache now";
@@ -281,6 +285,7 @@
 "Comedy Series" = "Comedy Series";
 "Comenzar a ver" = "Start Watching";
 "Comenzar con los subtítulos desactivados" = "Start with subtitles off";
+"Comfort" = "Comfort";
 "Coming soon" = "Coming soon";
 "Community index" = "Community index";
 "Compact" = "Compact";
@@ -318,6 +323,7 @@
 "Controls" = "Controls";
 "Copia principal." = "Primary copy.";
 "Copia secundaria." = "Secondary copy.";
+"Corner radius" = "Corner radius";
 "Correo y contraseña" = "Email and password";
 "Could not analyze this source. Playback continues; you can retry." = "Could not analyze this source. Playback continues; you can retry.";
 "Could not apply the timing. The original subtitle is kept." = "Could not apply the timing. The original subtitle is kept.";
@@ -366,6 +372,7 @@
 "Delete" = "Delete";
 "Delete file" = "Delete file";
 "Delete list" = "Delete list";
+"Dense" = "Dense";
 "Deporte" = "Sport";
 "Derecha" = "Right";
 "Derecha a izquierda" = "Right to left";
@@ -449,6 +456,7 @@
 "En reproducción: {label}" = "Now playing: {label}";
 "Enable addon" = "Enable addon";
 "Enabled" = "Enabled";
+"End" = "End";
 "Enfocar" = "Sharpen";
 "English" = "English";
 "Enter an FPS from 1 to 240." = "Enter an FPS from 1 to 240.";
@@ -495,6 +503,7 @@
 "FPS del video" = "Video FPS";
 "FPS personalizados para subtítulos" = "Custom subtitle FPS";
 "Face" = "Face";
+"Fade" = "Fade";
 "Failed to fetch JSON" = "Failed to fetch JSON";
 "Fantasy" = "Fantasy";
 "Fantasía" = "Fantasy";
@@ -576,6 +585,8 @@
 "Hides spoiler-prone episode details in episode lists until you have watched them." = "Hides spoiler-prone episode details in episode lists until you have watched them.";
 "Hides the episode name, which often gives the twist away on its own." = "Hides the episode name, which often gives the twist away on its own.";
 "Hides the synopsis text under each unwatched episode." = "Hides the synopsis text under each unwatched episode.";
+"High" = "High";
+"High is sized to your screen and looks identical to full res on far less memory. Balanced saves the most. Maximum keeps original resolution." = "High is sized to your screen and looks identical to full res on far less memory. Balanced saves the most. Maximum keeps original resolution.";
 "Highlight, progress." = "Highlight, progress.";
 "Highlighted blocks." = "Highlighted blocks.";
 "Home" = "Home";
@@ -583,6 +594,7 @@
 "Home style" = "Home style";
 "Horror" = "Horror";
 "Horror & Supernatural" = "Horror & Supernatural";
+"How large every poster card is drawn across Home and search." = "How large every poster card is drawn across Home and search.";
 "Hoy" = "Today";
 "IMDb" = "IMDb";
 "Idioma" = "Language";
@@ -660,6 +672,7 @@
 "Language preference order" = "Language preference order";
 "Languages" = "Languages";
 "Languages & subtitles" = "Languages & subtitles";
+"Large" = "Large";
 "Laterales" = "Sides";
 "Lectura" = "Reading";
 "Left" = "Left";
@@ -686,12 +699,14 @@
 "Live TV playlists" = "Live TV playlists";
 "Live preview is on. Save keeps what you've picked as your Custom theme. Reset reverts the editor to the saved palette." = "Live preview is on. Save keeps what you've picked as your Custom theme. Reset reverts the editor to the saved palette.";
 "Llegaste al final · {n} complementos" = "You've reached the end · {n} addons";
+"Load effect" = "Load effect";
 "Load file" = "Load file";
 "Load more" = "Load more";
 "Loading" = "Loading";
 "Loading music" = "Loading music";
 "Loading..." = "Loading...";
 "Local app files" = "Local app files";
+"Logo position" = "Logo position";
 "Los FPS de los subtítulos no están disponibles en este entorno de ejecución de libmpv." = "Subtitle FPS is unavailable in this libmpv runtime.";
 "Los FPS de los subtítulos no están disponibles mientras haya un subtítulo secundario activo." = "Subtitle FPS is unavailable while a secondary subtitle is active.";
 "Los FPS del video no están disponibles." = "Video FPS is unavailable.";
@@ -717,6 +732,7 @@
 "Margins" = "Margins";
 "Mark as read" = "Mark as read";
 "Mark watched button" = "Mark watched button";
+"Maximum" = "Maximum";
 "Mecha" = "Mecha";
 "Mejor valorado" = "Top rated";
 "Mejor valorado en {site}" = "Top rated on {site}";
@@ -925,6 +941,7 @@
 "Picture adjustment" = "Picture adjustment";
 "Picture adjustments" = "Picture adjustments";
 "Picture in Picture" = "Picture in Picture";
+"Pill" = "Pill";
 "Play" = "Play";
 "Play next" = "Play next";
 "Play now" = "Play now";
@@ -948,6 +965,8 @@
 "Posición de la canción" = "Song position";
 "Posición de reproducción" = "Playback position";
 "Position and size only" = "Position and size only";
+"Poster" = "Poster";
+"Poster card style" = "Poster card style";
 "Poster cards" = "Poster cards";
 "Posters, ratings, lists" = "Posters, ratings, lists";
 "Predeterminado" = "Default";
@@ -978,6 +997,7 @@
 "Página anterior" = "Previous page";
 "Página siguiente" = "Next page";
 "Pósteres, calificaciones y listas" = "Posters, ratings, lists";
+"Quality" = "Quality";
 "Quedan {h} h" = "{h}h left";
 "Quedan {h} h {m} min" = "{h}h {m}m left";
 "Quedan {m} min" = "{m}m left";
@@ -1108,6 +1128,7 @@
 "Rotate featured banners automatically" = "Rotate featured banners automatically";
 "Rounded" = "Rounded";
 "Rounded background panel behind the text. Most readable." = "Rounded background panel behind the text. Most readable.";
+"Row card style" = "Row card style";
 "Salir de imagen en imagen" = "Exit Picture in Picture";
 "Saltar créditos" = "Skip Credits";
 "Saltar intro" = "Skip Intro";
@@ -1177,6 +1198,7 @@
 "Settings changed. Please reopen this page." = "Settings changed. Please reopen this page.";
 "Share" = "Share";
 "Share file" = "Share file";
+"Sharp" = "Sharp";
 "Sharpen" = "Sharpen";
 "Sharper lines and a little more pop." = "Sharper lines and a little more pop.";
 "Show More info button" = "Show More info button";
@@ -1251,8 +1273,10 @@
 "Sport" = "Sport";
 "Sports" = "Sports";
 "Square play button" = "Square play button";
+"Standard" = "Standard";
 "Standard Def" = "Standard Def";
 "Standings" = "Standings";
+"Start" = "Start";
 "Start Over" = "Start Over";
 "Start Watching" = "Start Watching";
 "Start with subtitles off" = "Start with subtitles off";
@@ -1280,6 +1304,7 @@
 "Subtitles" = "Subtitles";
 "Subtitles from your addons" = "Subtitles from your addons";
 "Subtitles synced" = "Subtitles synced";
+"Subtle" = "Subtle";
 "Subtle text" = "Subtle text";
 "Subtítulo externo" = "External subtitle";
 "Subtítulos" = "Subtitles";
@@ -1308,6 +1333,8 @@
 "TMDB API key (v3)" = "TMDB API key (v3)";
 "TMDB · catalogs and rails" = "TMDB · catalogs and rails";
 "TMDB · catálogos y filas" = "TMDB · catalogs and rails";
+"TV" = "TV";
+"TV shows wide art cards with the logo on them. Poster is the classic grid." = "TV shows wide art cards with the logo on them. Poster is the classic grid.";
 "Table of contents" = "Table of contents";
 "Tags" = "Tags";
 "Tamaño" = "Size";

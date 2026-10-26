@@ -47,7 +47,10 @@ final class ThemePreferences {
         let selected = palettes.first { $0.id == preset } ?? palettes.first
         return (selected?.tokens ?? [:]).merging(customColors) { _, saved in saved }
     }
-    func reset() { preset = "cool-grey"; custom = false; customColors = [:]; font = "switzer"; seekBarColor = "" }
+    func reset() {
+        preset = "cool-grey"; custom = false; customColors = [:]; font = "switzer"; seekBarColor = ""
+        for key in ["rowCardStyle", "tvCardLogoPos", "posterScale", "posterRadius", "posterEffect", "posterQuality"] { storage.removeObject(forKey: key) }
+    }
 
     private var reloading = false
     private func persist(_ value: Any?, forKey key: String) {

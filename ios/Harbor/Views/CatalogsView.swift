@@ -71,7 +71,6 @@ struct CatalogBrowserView: View {
     @State private var paging: DesktopGridPaging
     @State private var loadedGenre: String?
     @State private var generation = 0
-    private let columns = [GridItem(.adaptive(minimum: 106), spacing: 12, alignment: .top)]
     private var genres: [String] { initial.plan.catalog?.extra.first { $0.name == "genre" }?.options ?? [] }
     private var supportsPaging: Bool { initial.plan.catalog?.extra.contains { $0.name == "skip" } ?? false }
     init(app: AppModel, initial: CatalogRow, titleOverride: String? = nil) {
@@ -94,7 +93,7 @@ struct CatalogBrowserView: View {
                 if let error {
                     VStack(alignment: .leading) { Text(error).font(.caption).foregroundStyle(.orange); Button("Reintentar") { Task { await load(reset: items.isEmpty) } } }.padding(.horizontal)
                 }
-                LazyVGrid(columns: columns, spacing: 20) {
+                PosterGrid(spacing: 20) {
                     ForEach(items, id: \.identity) { media in
                         NavigationLink { DetailView(media: media, app: app) } label: { Poster(media: media, width: nil) }.buttonStyle(.plain).accessibilityLabel(media.name).accessibilityIdentifier("catalog-browser-media")
                     }

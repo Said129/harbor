@@ -3,6 +3,9 @@ import XCTest
 
 final class CustomSourceInterfaceSeedTests: XCTestCase {
     @MainActor func testPrepareAnOwnedCatalogAndPosterFoldersOnAFreshGuestWithoutAnyAccount() async throws {
+        try await Self.prepareOwnedSources()
+    }
+    @MainActor static func prepareOwnedSources() async throws {
         try await PageContinuationInterfaceSeedTests.prepareOwnedHistory()
         let context = AppProfileContext.shared, binding = try XCTUnwrap(context.binding)
         let addon = try await HarborService().install("http://127.0.0.1:18734/manifest.json")

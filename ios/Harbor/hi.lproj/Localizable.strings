@@ -183,6 +183,7 @@
 "Background" = "बैकग्राउंड";
 "Background opacity" = "बैकग्राउंड की अपारदर्शिता";
 "Bajar {name}" = "{name} नीचे ले जाएँ";
+"Balanced" = "संतुलित";
 "Bar color" = "बार का रंग";
 "Barra de búsqueda" = "सीक बार";
 "Barra inferior" = "निचला बार";
@@ -224,6 +225,8 @@
 "Blur spoilers" = "स्पॉइलर ब्लर करें";
 "Blur thumbnails" = "थंबनेल ब्लर करें";
 "Blur titles" = "शीर्षक ब्लर करें";
+"Blur up" = "ब्लर बढ़ाएँ";
+"Blur up looks smoothest. Fade is lighter on older devices. Instant turns it off." = "ब्लर बढ़ाना सबसे सहज दिखता है। पुराने डिवाइसों पर फ़ेड हल्का रहता है। इंस्टेंट यह इफ़ेक्ट बंद कर देता है।";
 "Bold text" = "बोल्ड टेक्स्ट";
 "Book" = "किताब";
 "Book metadata" = "किताब का मेटाडेटा";
@@ -332,6 +335,7 @@
 "Classic Stremio" = "क्लासिक Stremio";
 "Clave de API de TMDB (v3)" = "TMDB API कुंजी (v3)";
 "Clave de API v3" = "v3 API कुंजी";
+"Clear" = "साफ़ करें";
 "Clear all" = "सभी साफ़ करें";
 "Clear cache" = "कैश अभी साफ़ करें";
 "Clear cache now" = "कैश अभी साफ़ करें";
@@ -357,6 +361,7 @@
 "Comedy Series" = "कॉमेडी सीरीज़";
 "Comenzar a ver" = "देखना शुरू करें";
 "Comenzar con los subtítulos desactivados" = "सबटाइटल बंद रखकर शुरू करें";
+"Comfort" = "Comfort";
 "Coming soon" = "Coming soon";
 "Coming to Theaters" = "सिनेमाघरों में जल्द";
 "Community index" = "कम्युनिटी इंडेक्स";
@@ -401,6 +406,7 @@
 "Controls" = "कंट्रोल";
 "Copia principal." = "मुख्य टेक्स्ट।";
 "Copia secundaria." = "द्वितीयक टेक्स्ट।";
+"Corner radius" = "कोने की गोलाई";
 "Correo y contraseña" = "Email and password";
 "Could not analyze this source. Playback continues; you can retry." = "Could not analyze this source. Playback continues; you can retry.";
 "Could not apply the timing. The original subtitle is kept." = "Could not apply the timing. The original subtitle is kept.";
@@ -464,6 +470,7 @@
 "Delete list" = "लिस्ट हटाएँ";
 "Delete profile" = "प्रोफ़ाइल हटाएँ";
 "Delete this profile?" = "यह प्रोफ़ाइल हटाएँ?";
+"Dense" = "Dense";
 "Deporte" = "Sport";
 "Derecha" = "दायाँ";
 "Derecha a izquierda" = "दाएँ से बाएँ";
@@ -559,6 +566,7 @@
 "En reproducción: {label}" = "अभी चल रहा है: {label}";
 "Enable addon" = "Enable addon";
 "Enabled" = "सक्षम";
+"End" = "समाप्ति";
 "Enfocar" = "शार्प करें";
 "English" = "अंग्रेज़ी";
 "Enter Harbor" = "Harbor में प्रवेश करें";
@@ -614,6 +622,7 @@
 "FPS del video" = "वीडियो FPS";
 "FPS personalizados para subtítulos" = "कस्टम सबटाइटल FPS";
 "Face" = "चेहरा";
+"Fade" = "फ़ेड";
 "Failed to fetch JSON" = "JSON फ़ेच नहीं किया जा सका";
 "Family" = "परिवार";
 "Fantasy" = "फ़ैंटेसी";
@@ -723,6 +732,8 @@
 "Hides spoiler-prone episode details in episode lists until you have watched them." = "एपिसोड सूचियों में स्पॉइलर वाले एपिसोड विवरण तब तक छिपाता है, जब तक आप उन्हें देख न लें।";
 "Hides the episode name, which often gives the twist away on its own." = "Hides the episode name, which often gives the twist away on its own.";
 "Hides the synopsis text under each unwatched episode." = "Hides the synopsis text under each unwatched episode.";
+"High" = "उच्च";
+"High is sized to your screen and looks identical to full res on far less memory. Balanced saves the most. Maximum keeps original resolution." = "उच्च विकल्प आपके स्क्रीन के आकार के अनुसार सेट होता है और बहुत कम मेमोरी में पूर्ण रिज़ॉल्यूशन जैसा ही दिखता है। संतुलित विकल्प सबसे अधिक मेमोरी बचाता है। अधिकतम विकल्प मूल रिज़ॉल्यूशन बनाए रखता है।";
 "Highlight, progress." = "हाइलाइट, प्रगति।";
 "Highlighted blocks." = "हाइलाइट किए गए ब्लॉक।";
 "Hindi" = "हिंदी";
@@ -735,6 +746,7 @@
 "Horizontal" = "क्षैतिज";
 "Horror" = "हॉरर";
 "Horror & Supernatural" = "हॉरर और अलौकिक";
+"How large every poster card is drawn across Home and search." = "How large every poster card is drawn across Home and search.";
 "How many films?" = "कितनी फ़िल्में?";
 "Hoy" = "आज";
 "Hulu" = "Hulu";
@@ -826,6 +838,7 @@
 "Language preference order" = "भाषाओं की प्राथमिकता";
 "Languages" = "भाषाएँ";
 "Languages & subtitles" = "भाषाएँ और सबटाइटल";
+"Large" = "बड़ा";
 "Laterales" = "किनारे";
 "Lectura" = "पढ़ा जा रहा है";
 "Left" = "बायाँ";
@@ -854,6 +867,7 @@
 "Live TV playlists" = "लाइव TV प्लेलिस्ट";
 "Live preview is on. Save keeps what you've picked as your Custom theme. Reset reverts the editor to the saved palette." = "Live preview is on. Save keeps what you've picked as your Custom theme. Reset reverts the editor to the saved palette.";
 "Llegaste al final · {n} complementos" = "आप अंत तक पहुँच गए हैं · {n} ऐडऑन";
+"Load effect" = "लोड इफ़ेक्ट";
 "Load file" = "फ़ाइल लोड करें";
 "Load more" = "और लोड करें";
 "Loading" = "लोड हो रहा है";
@@ -864,6 +878,7 @@
 "Local" = "लोकल";
 "Local app files" = "Local app files";
 "Logo URL (optional, auto-detected if blank)" = "लोगो URL (वैकल्पिक, खाली होने पर अपने-आप पता लगाया जाएगा)";
+"Logo position" = "लोगो की स्थिति";
 "Logos" = "लोगो";
 "Los FPS de los subtítulos no están disponibles en este entorno de ejecución de libmpv." = "इस libmpv रनटाइम में सबटाइटल FPS उपलब्ध नहीं है।";
 "Los FPS de los subtítulos no están disponibles mientras haya un subtítulo secundario activo." = "दूसरा सबटाइटल सक्रिय होने पर सबटाइटल FPS उपलब्ध नहीं है।";
@@ -896,6 +911,7 @@
 "Mark as read" = "Mark as read";
 "Mark watched button" = "देखा हुआ चिह्नित करने का बटन";
 "Max" = "अधिकतम";
+"Maximum" = "अधिकतम";
 "Mecha" = "मेका";
 "Media" = "मीडिया";
 "Mejor valorado" = "सर्वाधिक रेटिंग वाले";
@@ -1160,6 +1176,7 @@
 "Picture adjustment" = "Picture adjustment";
 "Picture adjustments" = "चित्र समायोजन";
 "Picture in Picture" = "पिक्चर इन पिक्चर";
+"Pill" = "Pill";
 "Play" = "चलाएँ";
 "Play movie" = "फ़िल्म चलाएँ";
 "Play next" = "अगला चलाएँ";
@@ -1192,6 +1209,8 @@
 "Posición de la canción" = "Song position";
 "Posición de reproducción" = "Playback position";
 "Position and size only" = "केवल स्थिति और आकार";
+"Poster" = "पोस्टर";
+"Poster card style" = "पोस्टर कार्ड की शैली";
 "Poster cards" = "पोस्टर कार्ड";
 "Posters, ratings, lists" = "पोस्टर, रेटिंग, सूचियाँ";
 "Predeterminado" = "डिफ़ॉल्ट";
@@ -1227,6 +1246,7 @@
 "Página anterior" = "पिछला पेज";
 "Página siguiente" = "अगला पेज";
 "Pósteres, calificaciones y listas" = "पोस्टर, रेटिंग, सूचियाँ";
+"Quality" = "क्वालिटी";
 "Quedan {h} h" = "{h} घंटे बाकी";
 "Quedan {h} h {m} min" = "{h} घंटे {m} मिनट बाकी";
 "Quedan {m} min" = "{m} मिनट बाकी";
@@ -1374,6 +1394,7 @@
 "Rotate featured banners automatically" = "Rotate featured banners automatically";
 "Rounded" = "गोलाकार";
 "Rounded background panel behind the text. Most readable." = "टेक्स्ट के पीछे गोल कोनों वाला बैकग्राउंड पैनल। पढ़ने में सबसे आसान।";
+"Row card style" = "पंक्ति कार्ड की शैली";
 "Royal" = "शाही";
 "Rugby" = "रग्बी";
 "Running on Cinemeta for now. Add a TMDB key from Settings whenever you're ready." = "फ़िलहाल Cinemeta पर चल रहा है। जब आप तैयार हों, सेटिंग्स से TMDB कुंजी जोड़ें।";
@@ -1456,6 +1477,7 @@
 "Share" = "साझा करें";
 "Share file" = "Share file";
 "Share with {name}" = "{name} के साथ साझा करें";
+"Sharp" = "Sharp";
 "Sharpen" = "शार्प करें";
 "Sharper lines and a little more pop." = "ज़्यादा शार्प लाइनें और थोड़ी ज़्यादा स्पष्टता।";
 "Short of the Year" = "वर्ष की सर्वश्रेष्ठ लघु फ़िल्म";
@@ -1545,8 +1567,10 @@
 "Spotlight" = "स्पॉटलाइट";
 "Spotlighted at the show" = "शो में विशेष रूप से प्रदर्शित";
 "Square play button" = "वर्गाकार प्ले बटन";
+"Standard" = "सामान्य";
 "Standard Def" = "Standard Def";
 "Standings" = "अंक तालिका";
+"Start" = "शुरू करें";
 "Start Over" = "फिर से शुरू करें";
 "Start Watching" = "देखना शुरू करें";
 "Start as" = "इस रूप में शुरू करें";
@@ -1585,6 +1609,7 @@
 "Subtitles" = "सबटाइटल";
 "Subtitles from your addons" = "Subtitles from your addons";
 "Subtitles synced" = "सबटाइटल सिंक हो गए";
+"Subtle" = "Subtle";
 "Subtle text" = "हल्का टेक्स्ट";
 "Subtítulo externo" = "बाहरी सबटाइटल";
 "Subtítulos" = "सबटाइटल";
@@ -1619,6 +1644,7 @@
 "TMDB · catálogos y filas" = "TMDB · कैटलॉग और पंक्तियाँ";
 "TV" = "TV";
 "TV Shows" = "TV शो";
+"TV shows wide art cards with the logo on them. Poster is the classic grid." = "TV विकल्प में लोगो वाले चौड़े आर्ट कार्ड होते हैं। पोस्टर विकल्प में पारंपरिक ग्रिड होता है।";
 "Table of contents" = "Table of contents";
 "Tags" = "टैग";
 "Tamaño" = "आकार";
