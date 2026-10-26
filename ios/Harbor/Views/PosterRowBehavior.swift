@@ -27,7 +27,8 @@ import Observation
         return PosterBehaviorPolicy.dock(pointerX: pointerX, frame: frame, viewport: viewport,
             first: order.first?.key == card, last: order.last?.key == card, rtl: rtl)
     }
-    func requestReveal(_ card: UUID) { reveal = Reveal(card: card) }
+    func requestReveal(_ card: UUID) { if !dragging { reveal = Reveal(card: card) } }
+    func cancelReveal(_ card: UUID) { if reveal?.card == card { reveal = nil } }
 }
 
 private struct PosterRowContextKey: EnvironmentKey { static let defaultValue: PosterRowContext? = nil }
@@ -72,7 +73,7 @@ struct PosterRowFrames: PreferenceKey {
                 }
                 .onKeyPress(phases: .down) { _ in if PosterAttentionState.shared.input != .keyboard { PosterAttentionState.shared.input = .keyboard }; return .ignored }
                 .simultaneousGesture(DragGesture(minimumDistance: 10).onChanged { _ in
-                    if active && !row.dragging { row.dragging = true }
+                    if active && !row.dragging { row.dragging = true; row.reveal = nil }
                 }.onEnded { _ in row.dragging = false }, including: active ? .all : .none)
                 .onChange(of: active) { _, enabled in if !enabled { row.pointerX = nil; row.reveal = nil } }
                 .task(id: row.reveal) {

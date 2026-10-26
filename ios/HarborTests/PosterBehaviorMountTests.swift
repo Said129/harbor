@@ -76,7 +76,12 @@ private struct MountedPosterRow: View {
         }
         XCTAssertEqual(state.activations, 0); capture(window, "poster-behavior-native-revealed-last")
         PosterAttentionState.shared.pointerMoved()
-        try await wait("pointer cancels keyboard expansion") { state.widths.isEmpty && PosterAttentionState.shared.active == nil && row.frames.values.allSatisfy { abs($0.width - 116) < 1 } }
+        try await wait("pointer cancels keyboard expansion and viewport reveal") { state.widths.isEmpty && row.reveal == nil && PosterAttentionState.shared.active == nil && row.frames.values.allSatisfy { abs($0.width - 116) < 0.01 } }
+        var previousFrames: [UUID: CGRect] = [:], stableSamples = 0
+        try await wait("collapsed cells finish their native layout animation") {
+            stableSamples = previousFrames == row.frames ? stableSamples + 1 : 0
+            previousFrames = row.frames; return stableSamples >= 4
+        }
         let frame = try XCTUnwrap(row.frames.values.first(where: { $0.midX > 0 && $0.midX < row.viewport.width }))
         let beforeDock = row.frames
         row.pointerX = frame.midX

@@ -130,12 +130,13 @@ struct ProfilePoster: View {
             .onAppear { syncFocus() }
             .onDisappear {
                 attention.focus(instanceID, enabled: false, focused: false)
+                row?.cancelReveal(instanceID)
                 expanded = false; expansionBase = nil; wideReady = false; wideURL = nil; wideResolvedKey = ""
                 onExpansionWidthChange?(nil)
             }
             .onChange(of: scenePhase) { _, phase in
                 if phase == .active { syncFocus(); syncExpansion() }
-                else { attention.focus(instanceID, enabled: false, focused: false); expanded = false }
+                else { attention.focus(instanceID, enabled: false, focused: false); row?.cancelReveal(instanceID); expanded = false }
             }
     }
     var body: some View {
@@ -205,7 +206,10 @@ struct ProfilePoster: View {
         let next = allowsExpansion && keyboardFocused && attention.input == .keyboard && wideReady && wideResolvedKey == wideTaskKey
         if next, expansionBase == nil, artSize.width > 0, artSize.height > 0 { expansionBase = artSize }
         let ready = next && expansionBase != nil
-        if expanded != ready { expanded = ready; if ready { row?.requestReveal(instanceID) } }
+        if expanded != ready {
+            expanded = ready
+            if ready { row?.requestReveal(instanceID) } else { row?.cancelReveal(instanceID) }
+        }
     }
     private func rejectWideArtwork(_ url: String) {
         let key = wideTaskKey, media = wideMedia, configuration = MetadataPreferences.shared.configuration()
