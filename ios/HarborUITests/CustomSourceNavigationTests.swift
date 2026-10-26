@@ -45,7 +45,9 @@ import XCTest
             ReadingUIInteraction.tapVisible(target, in: app)
             XCTAssertTrue(app.staticTexts[heading].waitForExistence(timeout: 15))
             capture(app, "source-" + state + "-" + device)
-            ReadingUIInteraction.tapVisible(app.buttons["source-requirement-dismiss"], in: app)
+            let dismiss = app.buttons["source-requirement-dismiss"]
+            if !dismiss.waitForExistence(timeout: 10) { ReadingUIInteraction.recordFailureContext(app); XCTFail("The visible requirement must expose its OK action"); return }
+            ReadingUIInteraction.tapVisible(dismiss, in: app)
             XCTAssertTrue(row.waitForExistence(timeout: 10), "Closing a requirement returns to the original home row")
         }
         revealHorizontal(folder, app, folders, left: false)
@@ -98,10 +100,18 @@ import XCTest
         enterEmpty(field, value, app)
     }
     private func revealHorizontal(_ target: XCUIElement, _ app: XCUIApplication, _ container: XCUIElement, left: Bool = true) {
-        for _ in 0..<6 {
-            if ReadingUIInteraction.visibleFrame(target, in: app) != nil { break }
-            if left { container.swipeLeft() } else { container.swipeRight() }
+        for _ in 0..<8 {
+            let bounds = container.frame, viewport = bounds.intersection(app.windows.firstMatch.frame)
+            if let frame = ReadingUIInteraction.visibleFrame(target, in: app), viewport.contains(CGPoint(x: frame.midX, y: frame.midY)) { return }
+            guard !viewport.isNull, viewport.width > 80, viewport.height > 40 else {
+                ReadingUIInteraction.recordFailureContext(app); XCTFail("The folder row must have a visible viewport before a horizontal gesture"); return
+            }
+            let origin = container.coordinate(withNormalizedOffset: .zero)
+            let start = origin.withOffset(.init(dx: viewport.minX - bounds.minX + viewport.width * (left ? 0.85 : 0.15), dy: viewport.midY - bounds.minY))
+            let end = origin.withOffset(.init(dx: viewport.minX - bounds.minX + viewport.width * (left ? 0.15 : 0.85), dy: viewport.midY - bounds.minY))
+            start.press(forDuration: 0.05, thenDragTo: end)
         }
+        if ReadingUIInteraction.visibleFrame(target, in: app) == nil { ReadingUIInteraction.recordFailureContext(app) }
         XCTAssertTrue(target.waitForExistence(timeout: 10)); XCTAssertNotNil(ReadingUIInteraction.visibleFrame(target, in: app))
     }
     private func show(_ element: XCUIElement, _ app: XCUIApplication, _ scroll: XCUIElement, up: Bool = true) {

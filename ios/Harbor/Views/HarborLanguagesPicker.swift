@@ -5,15 +5,17 @@ import UIKit
 struct HarborLanguagesPicker: View {
     @Binding var value: String
     let identifier: String
+    var includesOriginal = false
     @State private var expanded = false
     @State private var query = ""
+    @FocusState private var searchFocused: Bool
 
     private var selected: [String] { SubtitleLanguages.preferredCodes(value) }
     private var matches: [String] {
         let selectedCodes = Set(selected)
         let search = query.trimmingCharacters(in: .whitespacesAndNewlines)
-        return SubtitleLanguages.allCodes.filter {
-            !selectedCodes.contains($0) && (search.isEmpty || SubtitleLanguages.preferenceName($0).localizedStandardContains(search))
+        return ((includesOriginal ? ["original"] : []) + SubtitleLanguages.allCodes).filter {
+            !selectedCodes.contains($0) && (search.isEmpty || name($0).localizedStandardContains(search))
         }
     }
 
@@ -49,7 +51,7 @@ struct HarborLanguagesPicker: View {
         HStack(spacing: 8) {
             Text(String(index + 1)).font(HarborTheme.font(13)).monospacedDigit().foregroundStyle(.secondary)
             HarborLanguageFlag(code: code)
-            Text(SubtitleLanguages.preferenceName(code)).font(HarborTheme.font(15))
+            Text(name(code)).font(HarborTheme.font(15))
                 .fixedSize(horizontal: false, vertical: true)
             if index > 0 {
                 Button {
@@ -78,6 +80,7 @@ struct HarborLanguagesPicker: View {
                 icon("nav-search", size: 18).foregroundStyle(.secondary)
                 TextField(DesktopInterfaceText.value("Search languages"), text: $query)
                     .font(HarborTheme.font(15)).autocorrectionDisabled().textInputAutocapitalization(.never)
+                    .focused($searchFocused).onSubmit { if includesOriginal { searchFocused = false } }
                     .accessibilityIdentifier(identifier + "-search")
             }.padding(.horizontal, 16).frame(minHeight: 48)
             Divider().overlay(HarborTheme.ink.opacity(0.06))
@@ -86,10 +89,11 @@ struct HarborLanguagesPicker: View {
                     ForEach(matches, id: \.self) { code in
                         Button {
                             value = (selected + [code]).joined(separator: ","); query = ""
+                            if includesOriginal { searchFocused = false }
                         } label: {
                             HStack(spacing: 10) {
                                 HarborLanguageFlag(code: code)
-                                Text(SubtitleLanguages.preferenceName(code)).font(HarborTheme.font(15))
+                                Text(name(code)).font(HarborTheme.font(15))
                                     .multilineTextAlignment(.leading).fixedSize(horizontal: false, vertical: true)
                                 Spacer(minLength: 0)
                             }.padding(.horizontal, 10).padding(.vertical, 6)
@@ -103,7 +107,7 @@ struct HarborLanguagesPicker: View {
                     Text(DesktopInterfaceText.value(query.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? "All languages have been added." : "No language matches that search."))
                         .font(HarborTheme.font(15)).foregroundStyle(.secondary).padding(16)
                 }
-            }.frame(height: 240)
+            }.frame(height: 240).accessibilityIdentifier(identifier + "-options")
         }.background(HarborTheme.surface, in: .rect(cornerRadius: 10))
             .clipShape(.rect(cornerRadius: 10))
             .overlay { RoundedRectangle(cornerRadius: 10).stroke(HarborTheme.ink.opacity(0.06), lineWidth: 1) }
@@ -113,8 +117,9 @@ struct HarborLanguagesPicker: View {
         Image(name).resizable().scaledToFit().frame(width: size, height: size).accessibilityHidden(true)
     }
     private func label(_ original: String, code: String) -> String {
-        DesktopInterfaceText.value(original).replacingOccurrences(of: "{language}", with: SubtitleLanguages.preferenceName(code))
+        DesktopInterfaceText.value(original).replacingOccurrences(of: "{language}", with: name(code))
     }
+    private func name(_ code: String) -> String { code == "original" ? DesktopInterfaceText.value("Original") : SubtitleLanguages.preferenceName(code) }
 }
 
 private struct LanguageChipLayout: Layout {

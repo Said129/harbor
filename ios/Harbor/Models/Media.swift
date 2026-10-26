@@ -23,6 +23,10 @@ struct Media: Codable, Identifiable, Hashable, Sendable {
     var behaviorHints: BehaviorHints?
     var details: MediaDetails?
     var imdbID: String?
+    var originalLanguage: String?
+    var animeFormat: String?
+    var artworkSourceID: String?
+    var artworkID: String { artworkSourceID ?? id }
     struct BehaviorHints: Codable, Hashable, Sendable { var defaultVideoId: String? }
     var identity: String { "\(type):\(id)" }
     var fallbackPoster: String? { imdbArtwork("poster") }
@@ -41,6 +45,8 @@ struct Media: Codable, Identifiable, Hashable, Sendable {
         media.releaseInfo = value["releaseInfo"].string
         media.released = value["released"].string
         media.imdbID = value["imdb_id"].string
+        media.originalLanguage = value["originalLanguage"].string ?? value["original_language"].string
+        media.animeFormat = value["animeFormat"].string
         if let rating = value["imdbRating"].textValue, let number = Double(rating), number > 0, number <= 10 { media.imdbRating = rating }
         media.runtime = value["runtime"].textValue
         media.country = value["country"].string

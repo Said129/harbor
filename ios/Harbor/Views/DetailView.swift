@@ -256,10 +256,11 @@ struct DetailView: View {
         entry.media.logo = model.episodePool?.sources[entry.id]?.logo ?? entry.media.logo
         return AnimeSeasonArtwork.presentation(entry, root: model.media, episodes: model.episodePool?.episodes ?? model.media.videos ?? [], language: MetadataPreferences.shared.language)
     }
-    private var heroLogo: String? { seasonArtwork?.logo ?? model.media.logo }
+    private var heroLogo: String? { TitleArtworkPreferences.shared.value(.logo, id: model.media.artworkID) ?? seasonArtwork?.logo ?? model.media.logo }
     private var hero: some View {
         ZStack(alignment: .bottomLeading) {
-            Artwork(url: seasonArtwork?.background ?? model.media.background, fallback: model.media.fallbackBackground, fallbacks: [model.media.poster].compactMap { $0 }, maxPixels: 1400).frame(height: 370).clipped()
+            Artwork(url: TitleArtworkPreferences.shared.value(.backdrop, id: model.media.artworkID) ?? seasonArtwork?.background ?? model.media.background,
+                fallback: model.media.fallbackBackground, fallbacks: [TitleArtworkPreferences.shared.value(.poster, id: model.media.artworkID), model.media.poster].compactMap { $0 }, maxPixels: 1400).frame(height: 370).clipped()
             LinearGradient(colors: [.black.opacity(0.12), HarborTheme.background.opacity(0.45), HarborTheme.background], startPoint: .top, endPoint: .bottom).allowsHitTesting(false)
             VStack(alignment: .leading, spacing: 18) {
                 if let tagline = model.media.details?.tagline, !tagline.isEmpty { Text(tagline.uppercased()).font(HarborTheme.font(10, weight: .medium)).tracking(2).foregroundStyle(.secondary).lineLimit(2) }
@@ -281,7 +282,7 @@ struct DetailView: View {
     private var titlePlate: some View {
         ZStack(alignment: .bottomLeading) {
             Text(model.media.name).font(.custom("Fraunces-9ptBlack", size: 34).weight(.medium)).lineLimit(3).foregroundStyle(logoLoaded ? Color.clear : HarborTheme.ink).accessibilityIdentifier("detail-title").accessibilityAddTraits(.isHeader)
-            if let logo = heroLogo { Artwork(url: logo, fit: .fit, maxPixels: 800, showsPlaceholder: false, onImageAvailability: { logoLoaded = $0 }).frame(maxWidth: 310).frame(height: 96).accessibilityHidden(true) }
+            if let logo = heroLogo { Artwork(url: logo, fit: .fit, fitAlignment: .leading, maxPixels: 800, showsPlaceholder: false, onImageAvailability: { logoLoaded = $0 }).frame(maxWidth: 310).frame(height: 96).accessibilityHidden(true) }
         }.frame(minHeight: 96, alignment: .bottomLeading)
     }
     private var primaryActions: some View {

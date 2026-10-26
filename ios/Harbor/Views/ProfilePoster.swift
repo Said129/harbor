@@ -15,6 +15,22 @@ struct ProfilePoster: View {
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var loaded = false
     @State private var logoLoaded = false
+    @State private var resolvedArtwork: ResolvedCardArtwork?
+    @State private var resolvedKey = ""
+    private var overrides: TitleArtworkPreferences { .shared }
+    private var posterURL: String? { overrides.value(.poster, id: media.artworkID) ?? media.poster }
+    private var logoURL: String? { overrides.value(.logo, id: media.artworkID) ?? (resolvedKey == artworkKey ? resolvedArtwork?.logo : nil) ?? media.logo }
+    private var backgroundURL: String? {
+        overrides.value(.backdrop, id: media.artworkID) ?? (media.background != media.poster ? media.background : nil)
+            ?? (resolvedKey == artworkKey ? resolvedArtwork?.backdrop : nil)
+    }
+    private var resolutionMedia: Media {
+        var result = media; result.background = overrides.value(.backdrop, id: media.artworkID) ?? media.background; return result
+    }
+    private var artworkKey: String {
+        if configuration.style != .tv { return "poster|" + media.identity }
+        return "\(style)|\(AppProfileContext.shared.activationID)|" + CardArtworkResolver.cacheKey(resolutionMedia, MetadataPreferences.shared.configuration(), pinnedLogo: overrides.value(.logo, id: media.artworkID))
+    }
     private var configuration: PosterCardConfiguration { .init(style: honorsRowStyle ? style : "poster", logoPosition: logoPosition, scale: scale, radius: radius, effect: effect, quality: quality) }
     private var pixelLimit: Int { configuration.pixels(width: width.map { configuration.rowWidth(base: Double($0)) } ?? (configuration.style == .tv ? 318 : 150) * configuration.scale, displayScale: Double(displayScale)) }
     var body: some View {
@@ -27,13 +43,21 @@ struct ProfilePoster: View {
         }.foregroundStyle(HarborTheme.ink).contentShape(Rectangle())
             .animation(reduceMotion ? nil : .easeInOut(duration: 0.26), value: configuration.scale)
             .animation(reduceMotion ? nil : .easeInOut(duration: 0.26), value: configuration.radius)
+            .onChange(of: logoURL) { _, _ in logoLoaded = false }
+            .task(id: artworkKey) {
+                guard configuration.style == .tv else { return }
+                let key = artworkKey
+                let value = await CardArtworkResolver.shared.resolve(resolutionMedia, configuration: MetadataPreferences.shared.configuration(), pinnedLogo: overrides.value(.logo, id: media.artworkID))
+                guard !Task.isCancelled, key == artworkKey else { return }
+                resolvedArtwork = value; resolvedKey = key
+            }
     }
     private var card: some View {
         VStack(alignment: .leading, spacing: configuration.style == .tv ? 0 : 6) {
             Group {
                 if configuration.style == .tv { televisionArtwork }
                 else {
-                    Artwork(url: media.poster, fallback: media.fallbackPoster, fallbacks: [media.background].compactMap { $0 } + artworkFallbacks,
+                    Artwork(url: posterURL, fallback: media.fallbackPoster, fallbacks: [media.poster, media.background].compactMap { $0 } + artworkFallbacks,
                         maxPixels: pixelLimit, onImageAvailability: { loaded = $0 }, onLoadCompletion: { _ in loaded = true })
                 }
             }.aspectRatio(configuration.aspectRatio, contentMode: .fit)
@@ -56,32 +80,41 @@ struct ProfilePoster: View {
     }
     private var televisionArtwork: some View {
         ZStack {
-            Artwork(url: media.poster, fallback: media.fallbackPoster, fallbacks: artworkFallbacks, maxPixels: pixelLimit,
+            Artwork(url: posterURL, fallback: media.fallbackPoster, fallbacks: [media.poster].compactMap { $0 } + artworkFallbacks, maxPixels: pixelLimit,
                 onImageAvailability: { if $0 { loaded = true } }, onLoadCompletion: { _ in loaded = true })
                 .scaleEffect(1.1).blur(radius: 18).saturation(1.2)
-            if let backdrop = media.background, backdrop != media.poster {
+            if let backdrop = backgroundURL {
                 Artwork(url: backdrop, maxPixels: pixelLimit, showsPlaceholder: false, onImageAvailability: { if $0 { loaded = true } })
             }
             LinearGradient(stops: configuration.logoPosition == .center
                 ? [.init(color: HarborTheme.background.opacity(0.8), location: 0), .init(color: HarborTheme.background.opacity(0.45), location: 0.5), .init(color: HarborTheme.background.opacity(0.7), location: 1)]
                 : [.init(color: HarborTheme.background, location: 0.02), .init(color: HarborTheme.background.opacity(0.65), location: 0.34), .init(color: HarborTheme.background.opacity(0.18), location: 0.62), .init(color: .clear, location: 0.84)], startPoint: .bottom, endPoint: .top)
-            HStack(alignment: .bottom, spacing: 10) {
-                Artwork(url: media.poster, fallback: media.fallbackPoster, fallbacks: artworkFallbacks, maxPixels: 180)
+            HStack(alignment: configuration.logoPosition == .center ? .center : .bottom, spacing: 10) {
+                Artwork(url: posterURL, fallback: media.fallbackPoster, fallbacks: [media.poster].compactMap { $0 } + artworkFallbacks, maxPixels: 180)
                     .frame(width: 36, height: 54).clipShape(.rect(cornerRadius: 2))
                     .overlay { RoundedRectangle(cornerRadius: 2).stroke(.white.opacity(0.12), lineWidth: 1) }
-                VStack(alignment: .leading, spacing: 4) {
-                    ZStack(alignment: .leading) {
+                VStack(alignment: captionAlignment, spacing: 4) {
+                    ZStack(alignment: captionFrameAlignment) {
                         Text(media.name).font(HarborTheme.font(14.5, weight: .semibold)).lineLimit(2).foregroundStyle(logoLoaded ? .clear : HarborTheme.ink)
-                        if let logo = media.logo {
-                            Artwork(url: logo, fit: .fit, maxPixels: 600, showsPlaceholder: false, onImageAvailability: { logoLoaded = $0 }).frame(height: 34)
+                        if let logo = logoURL {
+                            Artwork(url: logo, fit: .fit, fitAlignment: .leading, maxPixels: 600, showsPlaceholder: false, onImageAvailability: { logoLoaded = $0 }).frame(height: 34)
                         }
                     }
                     if let year = media.releaseInfo { Text(year).font(HarborTheme.font(11)).foregroundStyle(ThemePreferences.shared.color("ink-muted")).lineLimit(1) }
-                }.frame(maxWidth: .infinity, alignment: .leading)
-            }.padding(14).frame(maxWidth: .infinity, maxHeight: .infinity, alignment: logoAlignment)
+                }.multilineTextAlignment(captionTextAlignment).frame(maxWidth: .infinity, alignment: captionFrameAlignment)
+            }.padding(configuration.logoPosition == .center ? 0 : 14).frame(maxWidth: .infinity, maxHeight: .infinity, alignment: logoAlignment)
         }.clipped()
     }
     private var logoAlignment: Alignment {
         switch configuration.logoPosition { case .center: .center; case .bottomStart: .bottomLeading; case .bottomEnd: .bottomTrailing }
+    }
+    private var captionAlignment: HorizontalAlignment {
+        switch configuration.logoPosition { case .center: .center; case .bottomStart: .leading; case .bottomEnd: .trailing }
+    }
+    private var captionFrameAlignment: Alignment {
+        switch configuration.logoPosition { case .center: .center; case .bottomStart: .leading; case .bottomEnd: .trailing }
+    }
+    private var captionTextAlignment: TextAlignment {
+        switch configuration.logoPosition { case .center: .center; case .bottomStart: .leading; case .bottomEnd: .trailing }
     }
 }

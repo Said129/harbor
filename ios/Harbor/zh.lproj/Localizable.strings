@@ -180,6 +180,7 @@
 "Aún no hay catálogos" = "暂无目录";
 "Back" = "返回";
 "Back to top" = "返回顶部";
+"Backdrop reset to default" = "Backdrop reset to default";
 "Background" = "背景";
 "Background opacity" = "背景不透明度";
 "Bajar {name}" = "下移{name}";
@@ -761,6 +762,7 @@
 "Idiomas de subtítulos" = "字幕语言";
 "Idiomas y subtítulos" = "语言与字幕";
 "Image cache cleared." = "Image cache cleared.";
+"Image languages" = "图片语言";
 "Imagen" = "画面";
 "Imagen en imagen" = "画中画";
 "Imagen más intensa y vívida, con un poco más de contraste." = "画面色彩更饱满、更鲜艳，并略微提高对比度。";
@@ -879,6 +881,7 @@
 "Local app files" = "Local app files";
 "Logo URL (optional, auto-detected if blank)" = "Logo URL（可选，留空则自动检测）";
 "Logo position" = "徽标位置";
+"Logo reset to default" = "Logo reset to default";
 "Logos" = "徽标";
 "Los FPS de los subtítulos no están disponibles en este entorno de ejecución de libmpv." = "此 libmpv 运行时不支持字幕 FPS。";
 "Los FPS de los subtítulos no están disponibles mientras haya un subtítulo secundario activo." = "启用第二字幕时，字幕 FPS 不可用。";
@@ -1212,6 +1215,7 @@
 "Poster" = "海报";
 "Poster card style" = "海报卡片样式";
 "Poster cards" = "海报卡片";
+"Poster reset to default" = "Poster reset to default";
 "Posters, ratings, lists" = "海报、评分、列表";
 "Predeterminado" = "默认";
 "Predeterminado (acento dorado)" = "默认（金色强调色）";
@@ -1456,6 +1460,7 @@
 "Select a subtitle track first." = "请先选择字幕轨道。";
 "Select an external SRT or VTT subtitle with at least four lines." = "Select an external SRT or VTT subtitle with at least four lines.";
 "Select an external SRT/VTT subtitle without dual subtitles, in a video at least one minute long." = "Select an external SRT/VTT subtitle without dual subtitles, in a video at least one minute long.";
+"Selected" = "已选择";
 "Serie dramática" = "剧情剧集";
 "Series" = "剧集";
 "Series de comedia" = "喜剧剧集";
@@ -1472,6 +1477,9 @@
 "Servidor Xtream" = "Xtream server";
 "Sesión iniciada en Stremio" = "已登录 Stremio";
 "Set a PIN" = "设置 PIN";
+"Set as show backdrop" = "Set as show backdrop";
+"Set as show logo" = "Set as show logo";
+"Set as show poster" = "Set as show poster";
 "Settings" = "设置";
 "Settings changed. Please reopen this page." = "设置已更改。请重新打开此页面。";
 "Share" = "分享";

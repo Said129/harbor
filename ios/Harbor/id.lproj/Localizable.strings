@@ -180,6 +180,7 @@
 "Aún no hay catálogos" = "Belum ada katalog";
 "Back" = "Kembali";
 "Back to top" = "Kembali ke atas";
+"Backdrop reset to default" = "Backdrop reset to default";
 "Background" = "Latar belakang";
 "Background opacity" = "Opasitas latar belakang";
 "Bajar {name}" = "Pindahkan {name} ke bawah";
@@ -761,6 +762,7 @@
 "Idiomas de subtítulos" = "Bahasa subtitle";
 "Idiomas y subtítulos" = "Bahasa & subtitle";
 "Image cache cleared." = "Image cache cleared.";
+"Image languages" = "Bahasa gambar";
 "Imagen" = "Gambar";
 "Imagen en imagen" = "Gambar dalam Gambar";
 "Imagen más intensa y vívida, con un poco más de contraste." = "Gambar lebih kaya dan hidup dengan sedikit tambahan kontras.";
@@ -879,6 +881,7 @@
 "Local app files" = "Local app files";
 "Logo URL (optional, auto-detected if blank)" = "URL logo (opsional, terdeteksi otomatis jika kosong)";
 "Logo position" = "Posisi logo";
+"Logo reset to default" = "Logo reset to default";
 "Logos" = "Logo";
 "Los FPS de los subtítulos no están disponibles en este entorno de ejecución de libmpv." = "FPS subtitle tidak tersedia di runtime libmpv ini.";
 "Los FPS de los subtítulos no están disponibles mientras haya un subtítulo secundario activo." = "FPS subtitle tidak tersedia saat subtitle sekunder aktif.";
@@ -1212,6 +1215,7 @@
 "Poster" = "Poster";
 "Poster card style" = "Gaya kartu poster";
 "Poster cards" = "Kartu poster";
+"Poster reset to default" = "Poster reset to default";
 "Posters, ratings, lists" = "Poster, rating, daftar";
 "Predeterminado" = "Bawaan";
 "Predeterminado (acento dorado)" = "Bawaan (aksen emas)";
@@ -1456,6 +1460,7 @@
 "Select a subtitle track first." = "Pilih trek subtitle terlebih dahulu.";
 "Select an external SRT or VTT subtitle with at least four lines." = "Select an external SRT or VTT subtitle with at least four lines.";
 "Select an external SRT/VTT subtitle without dual subtitles, in a video at least one minute long." = "Select an external SRT/VTT subtitle without dual subtitles, in a video at least one minute long.";
+"Selected" = "Dipilih";
 "Serie dramática" = "Serial Drama";
 "Series" = "Acara";
 "Series de comedia" = "Serial Komedi";
@@ -1472,6 +1477,9 @@
 "Servidor Xtream" = "Xtream server";
 "Sesión iniciada en Stremio" = "Sudah masuk ke Stremio";
 "Set a PIN" = "Atur PIN";
+"Set as show backdrop" = "Set as show backdrop";
+"Set as show logo" = "Set as show logo";
+"Set as show poster" = "Set as show poster";
 "Settings" = "Pengaturan";
 "Settings changed. Please reopen this page." = "Pengaturan telah berubah. Buka kembali halaman ini.";
 "Share" = "Bagikan";

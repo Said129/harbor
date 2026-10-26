@@ -23,6 +23,7 @@ struct AnimeFranchiseEntry: Codable, Hashable, Identifiable, Sendable {
         let start = value["startDate"].string.flatMap { $0.isEmpty ? nil : $0 }
         let year = start.flatMap { Int($0.prefix(4)) } ?? 0
         var media = Media(id: "kitsu:\(id)", type: subtype == "movie" ? "movie" : "series", name: title)
+        media.animeFormat = subtype?.uppercased()
         media.poster = image(value["posterImage"]["large"].string, value["posterImage"]["original"].string, value["posterImage"]["medium"].string)
         media.background = image(value["coverImage"]["original"].string, value["coverImage"]["large"].string, value["coverImage"]["small"].string)
         media.description = value["synopsis"].string ?? value["description"].string
@@ -41,6 +42,7 @@ struct AnimeFranchiseEntry: Codable, Hashable, Identifiable, Sendable {
         let format = value["format"].string
         let date = value["startDate"], year = value["seasonYear"].integer ?? date["year"].integer ?? 0
         var media = Media(id: "anilist:\(id)", type: format == "MOVIE" ? "movie" : "series", name: title)
+        media.animeFormat = format
         media.poster = image(value["coverImage"]["large"].string); media.background = image(value["bannerImage"].string)
         media.description = value["description"].string?.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression).trimmingCharacters(in: .whitespacesAndNewlines)
         media.releaseInfo = year > 0 ? String(year) : nil

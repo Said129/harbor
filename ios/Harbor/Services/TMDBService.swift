@@ -65,6 +65,7 @@ struct TMDBService: Sendable {
             guard let id = value["id"].integer, let title = value[kind == "movie" ? "title" : "name"].string else { return nil }
             let original = value[kind == "movie" ? "original_title" : "original_name"].string
             var media = Media(id: "tmdb:\(kind == "movie" ? "movie" : "tv"):\(id)", type: kind, name: configuration.translateTitles ? title : original ?? title)
+            media.originalLanguage = value["original_language"].string
             media.poster = image(value["poster_path"].string, size: "w342")
             media.background = image(value["backdrop_path"].string, size: "w1280")
             media.description = value["overview"].string
@@ -109,12 +110,17 @@ struct TMDBService: Sendable {
             guard let raw = found[media.type == "movie" ? "movie_results" : "tv_results"].array.first, let id = raw["id"].integer else { return media }
             path = "\(media.type == "movie" ? "movie" : "tv")/\(id)"
         } else { return media }
-        let value = try await get(path, parameters: ["append_to_response": "external_ids,images,credits,recommendations,similar,videos", "include_image_language": "\(configuration.language.prefix(2)),en,null"], configuration: configuration)
+        let policy = CardArtworkPolicy(languages: configuration.imageLanguages, metadataLanguage: configuration.language, originalLanguage: media.originalLanguage)
+        let value = try await get(path, parameters: ["append_to_response": "external_ids,images,credits,recommendations,similar,videos", "include_image_language": policy.parameter], configuration: configuration)
         var result = media
-        if let imdb = value["imdb_id"].string ?? value["external_ids"]["imdb_id"].string, !imdb.isEmpty { result.id = imdb }
+        if let imdb = value["imdb_id"].string ?? value["external_ids"]["imdb_id"].string, !imdb.isEmpty {
+            if imdb != media.id { result.artworkSourceID = media.artworkSourceID ?? media.id }
+            result.id = imdb
+        }
         result.background = image(value["backdrop_path"].string, size: "w1280") ?? result.background
         result.poster = image(value["poster_path"].string, size: "w342") ?? result.poster
-        result.logo = value["images"]["logos"].array.first.flatMap { image($0["file_path"].string, size: "w500") } ?? result.logo
+        result.originalLanguage = value["original_language"].string ?? media.originalLanguage
+        result.logo = CardArtworkPolicy(languages: configuration.imageLanguages, metadataLanguage: configuration.language, originalLanguage: result.originalLanguage).logo(value["images"]["logos"].array) ?? result.logo
         result.description = value["overview"].string ?? result.description
         result.genres = value["genres"].array.compactMap { $0["name"].string }
         result.cast = Array(value["credits"]["cast"].array.compactMap { $0["name"].string }.prefix(15))

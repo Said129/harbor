@@ -131,6 +131,7 @@ private struct SourceFolderRequirementView: View {
                 .buttonStyle(.plain).foregroundStyle(.white).background(HarborTheme.accent, in: .capsule).accessibilityIdentifier("source-requirement-dismiss")
         }.padding(28).frame(idealWidth: 420, maxWidth: 420).background(ThemePreferences.shared.color("elevated"))
             .foregroundStyle(HarborTheme.ink)
+            .accessibilityElement(children: .contain)
             .accessibilityIdentifier("source-requirement")
     }
 }

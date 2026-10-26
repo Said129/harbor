@@ -72,9 +72,22 @@ import XCTest
     }
     private func show(_ control: XCUIElement, _ app: XCUIApplication, up: Bool = true) {
         let scroll = app.scrollViews["theme-settings-scroll"]
-        ReadingUIInteraction.reveal(control, in: app, up: up, container: scroll)
-        ReadingUIInteraction.revealWithinViewport(control, in: app, container: scroll)
-        XCTAssertTrue(control.waitForExistence(timeout: 15))
+        // The iPad seek-bar preview consumes drags started through its timeline.
+        // Scroll in the page's outer gutter so the page receives the gesture.
+        for _ in 0..<16 {
+            let bounds = scroll.frame
+            var viewport = bounds.intersection(app.windows.firstMatch.frame)
+            viewport.size.height = max(0, viewport.height - 28)
+            if let frame = ReadingUIInteraction.visibleFrame(control, in: app), viewport.contains(frame), control.isHittable { return }
+            guard !viewport.isNull, viewport.height > 80, viewport.width > 80 else { break }
+            let above = control.exists ? control.frame.midY < viewport.midY : !up
+            let origin = scroll.coordinate(withNormalizedOffset: .zero)
+            let start = origin.withOffset(.init(dx: viewport.minX - bounds.minX + 8, dy: viewport.minY - bounds.minY + viewport.height * (above ? 0.2 : 0.8)))
+            let end = origin.withOffset(.init(dx: viewport.minX - bounds.minX + 8, dy: viewport.minY - bounds.minY + viewport.height * (above ? 0.8 : 0.2)))
+            start.press(forDuration: 0.05, thenDragTo: end)
+        }
+        ReadingUIInteraction.recordFailureContext(app)
+        XCTFail("The appearance control must be inside the visible page: " + control.description)
     }
     private func choose(_ identifier: String, _ choice: String, _ app: XCUIApplication) {
         let picker = app.segmentedControls[identifier]; show(picker, app)

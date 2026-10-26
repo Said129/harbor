@@ -180,6 +180,7 @@
 "Aún no hay catálogos" = "अभी तक कोई कैटलॉग नहीं है";
 "Back" = "वापस";
 "Back to top" = "सबसे ऊपर जाएँ";
+"Backdrop reset to default" = "Backdrop reset to default";
 "Background" = "बैकग्राउंड";
 "Background opacity" = "बैकग्राउंड की अपारदर्शिता";
 "Bajar {name}" = "{name} नीचे ले जाएँ";
@@ -761,6 +762,7 @@
 "Idiomas de subtítulos" = "सबटाइटल भाषाएँ";
 "Idiomas y subtítulos" = "भाषाएँ और सबटाइटल";
 "Image cache cleared." = "Image cache cleared.";
+"Image languages" = "इमेज की भाषाएँ";
 "Imagen" = "चित्र";
 "Imagen en imagen" = "पिक्चर इन पिक्चर";
 "Imagen más intensa y vívida, con un poco más de contraste." = "थोड़े अधिक कंट्रास्ट के साथ अधिक समृद्ध और चटख तस्वीर।";
@@ -879,6 +881,7 @@
 "Local app files" = "Local app files";
 "Logo URL (optional, auto-detected if blank)" = "लोगो URL (वैकल्पिक, खाली होने पर अपने-आप पता लगाया जाएगा)";
 "Logo position" = "लोगो की स्थिति";
+"Logo reset to default" = "Logo reset to default";
 "Logos" = "लोगो";
 "Los FPS de los subtítulos no están disponibles en este entorno de ejecución de libmpv." = "इस libmpv रनटाइम में सबटाइटल FPS उपलब्ध नहीं है।";
 "Los FPS de los subtítulos no están disponibles mientras haya un subtítulo secundario activo." = "दूसरा सबटाइटल सक्रिय होने पर सबटाइटल FPS उपलब्ध नहीं है।";
@@ -1212,6 +1215,7 @@
 "Poster" = "पोस्टर";
 "Poster card style" = "पोस्टर कार्ड की शैली";
 "Poster cards" = "पोस्टर कार्ड";
+"Poster reset to default" = "Poster reset to default";
 "Posters, ratings, lists" = "पोस्टर, रेटिंग, सूचियाँ";
 "Predeterminado" = "डिफ़ॉल्ट";
 "Predeterminado (acento dorado)" = "डिफ़ॉल्ट (सुनहरा एक्सेंट)";
@@ -1456,6 +1460,7 @@
 "Select a subtitle track first." = "पहले एक सबटाइटल ट्रैक चुनें।";
 "Select an external SRT or VTT subtitle with at least four lines." = "Select an external SRT or VTT subtitle with at least four lines.";
 "Select an external SRT/VTT subtitle without dual subtitles, in a video at least one minute long." = "Select an external SRT/VTT subtitle without dual subtitles, in a video at least one minute long.";
+"Selected" = "चुना गया";
 "Serie dramática" = "ड्रामा सीरीज़";
 "Series" = "शो";
 "Series de comedia" = "कॉमेडी सीरीज़";
@@ -1472,6 +1477,9 @@
 "Servidor Xtream" = "Xtream server";
 "Sesión iniciada en Stremio" = "Stremio में साइन इन हैं";
 "Set a PIN" = "PIN सेट करें";
+"Set as show backdrop" = "Set as show backdrop";
+"Set as show logo" = "Set as show logo";
+"Set as show poster" = "Set as show poster";
 "Settings" = "सेटिंग्स";
 "Settings changed. Please reopen this page." = "सेटिंग बदल गई हैं। कृपया यह पेज फिर से खोलें।";
 "Share" = "साझा करें";

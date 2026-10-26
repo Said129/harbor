@@ -106,7 +106,22 @@ struct DetailMetadataView: View {
                         }
                     } else {
                         let urls = gallery == "backdrops" ? details.backdrops : gallery == "posters" ? details.posters : details.logos
-                        ForEach(urls, id: \.self) { url in Button { imageURL = url } label: { Artwork(url: url, fit: gallery == "logos" ? .fit : .fill, maxPixels: 500).frame(width: gallery == "posters" ? 110 : 220, height: gallery == "posters" ? 165 : 124).clipShape(.rect(cornerRadius: 10)) }.buttonStyle(.plain).accessibilityLabel("Abrir imagen") }
+                        ForEach(urls, id: \.self) { url in
+                            let kind: TitleArtworkKind = gallery == "logos" ? .logo : gallery == "posters" ? .poster : .backdrop
+                            let pinned = TitleArtworkPreferences.shared.value(kind, id: media.artworkID) == url
+                            ZStack(alignment: .bottomTrailing) {
+                                Button { imageURL = url } label: {
+                                    Artwork(url: url, fit: gallery == "logos" ? .fit : .fill, maxPixels: 500)
+                                        .frame(width: gallery == "posters" ? 110 : 220, height: gallery == "posters" ? 165 : 124).clipShape(.rect(cornerRadius: 10))
+                                }.buttonStyle(.plain).accessibilityLabel("Abrir imagen")
+                                Button { TitleArtworkPreferences.shared.toggle(kind, id: media.artworkID, url: url) } label: {
+                                    Image("desktop-star").resizable().scaledToFit().frame(width: 18, height: 18)
+                                        .foregroundStyle(pinned ? HarborTheme.accent : .white).frame(width: 44, height: 44).background(.black.opacity(0.7), in: .circle)
+                                }.buttonStyle(.plain).padding(6).accessibilityLabel(DesktopInterfaceText.value(pinned ? kind.resetLabel : kind.setLabel))
+                                    .accessibilityValue(pinned ? DesktopInterfaceText.value("Selected") : "")
+                                    .accessibilityIdentifier("detail-pin-" + kind.rawValue)
+                            }
+                        }
                     }
                 }
             }.scrollIndicators(.hidden)

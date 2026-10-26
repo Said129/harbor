@@ -188,6 +188,7 @@
 "Aún no hay catálogos" = "Nenhum catálogo ainda";
 "Back" = "Voltar";
 "Back to top" = "Voltar ao topo";
+"Backdrop reset to default" = "Backdrop reset to default";
 "Background" = "Plano de fundo";
 "Background opacity" = "Opacidade do plano de fundo";
 "Bajar {name}" = "Mover {name} para baixo";
@@ -781,6 +782,7 @@
 "Idiomas de subtítulos" = "Idiomas de legenda";
 "Idiomas y subtítulos" = "Idiomas e legendas";
 "Image cache cleared." = "Image cache cleared.";
+"Image languages" = "Idiomas da imagem";
 "Imagen" = "Imagem";
 "Imagen en imagen" = "Imagem sobre imagem";
 "Imagen más intensa y vívida, con un poco más de contraste." = "Imagem mais rica e vívida com um toque a mais de contraste.";
@@ -899,6 +901,7 @@
 "Local app files" = "Local app files";
 "Logo URL (optional, auto-detected if blank)" = "URL do logo (opcional, detectada automaticamente se em branco)";
 "Logo position" = "Posição da logo";
+"Logo reset to default" = "Logo reset to default";
 "Logos" = "Logos";
 "Los FPS de los subtítulos no están disponibles en este entorno de ejecución de libmpv." = "O FPS da legenda não está disponível nesta versão do libmpv.";
 "Los FPS de los subtítulos no están disponibles mientras haya un subtítulo secundario activo." = "O FPS da legenda não está disponível enquanto houver uma legenda secundária ativa.";
@@ -1232,6 +1235,7 @@
 "Poster" = "Pôster";
 "Poster card style" = "Estilo do cartão de pôster";
 "Poster cards" = "Cartões de pôsteres";
+"Poster reset to default" = "Poster reset to default";
 "Posters, ratings, lists" = "Pôsteres, avaliações, listas";
 "Predeterminado" = "Padrão";
 "Predeterminado (acento dorado)" = "Padrão (destaque dourado)";
@@ -1478,6 +1482,7 @@
 "Select a subtitle track first." = "Selecione primeiro uma faixa de legendas.";
 "Select an external SRT or VTT subtitle with at least four lines." = "Selecione uma legenda SRT ou VTT externa com pelo menos quatro linhas.";
 "Select an external SRT/VTT subtitle without dual subtitles, in a video at least one minute long." = "Selecione uma legenda SRT/VTT externa, sem legendas duplas, em um vídeo de pelo menos um minuto.";
+"Selected" = "Selecionado";
 "Serie dramática" = "Série Dramática";
 "Series" = "Séries";
 "Series de comedia" = "Séries de Comédia";
@@ -1494,6 +1499,9 @@
 "Servidor Xtream" = "Xtream server";
 "Sesión iniciada en Stremio" = "Conectado ao Stremio";
 "Set a PIN" = "Defina um PIN";
+"Set as show backdrop" = "Set as show backdrop";
+"Set as show logo" = "Set as show logo";
+"Set as show poster" = "Set as show poster";
 "Settings" = "Configurações";
 "Settings changed. Please reopen this page." = "As definições foram alteradas. Volta a abrir esta página.";
 "Share" = "Compartilhar";

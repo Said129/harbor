@@ -180,6 +180,7 @@
 "Aún no hay catálogos" = "Henüz katalog yok";
 "Back" = "Geri";
 "Back to top" = "Başa dön";
+"Backdrop reset to default" = "Backdrop reset to default";
 "Background" = "Arka plan";
 "Background opacity" = "Arka plan opaklığı";
 "Bajar {name}" = "{name} öğesini aşağı taşı";
@@ -761,6 +762,7 @@
 "Idiomas de subtítulos" = "Altyazı dilleri";
 "Idiomas y subtítulos" = "Diller ve altyazılar";
 "Image cache cleared." = "Image cache cleared.";
+"Image languages" = "Görsel dilleri";
 "Imagen" = "Resim";
 "Imagen en imagen" = "Resim İçinde Resim";
 "Imagen más intensa y vívida, con un poco más de contraste." = "Biraz daha fazla kontrastla daha zengin ve canlı bir görüntü sunar.";
@@ -879,6 +881,7 @@
 "Local app files" = "Local app files";
 "Logo URL (optional, auto-detected if blank)" = "Logo URL'si (isteğe bağlı, boş bırakılırsa otomatik algılanır)";
 "Logo position" = "Logo konumu";
+"Logo reset to default" = "Logo reset to default";
 "Logos" = "Logolar";
 "Los FPS de los subtítulos no están disponibles en este entorno de ejecución de libmpv." = "Altyazı FPS'si bu libmpv çalışma ortamında kullanılamıyor.";
 "Los FPS de los subtítulos no están disponibles mientras haya un subtítulo secundario activo." = "İkincil altyazı etkinken altyazı FPS'si kullanılamaz.";
@@ -1212,6 +1215,7 @@
 "Poster" = "Poster";
 "Poster card style" = "Poster kartı stili";
 "Poster cards" = "Poster kartları";
+"Poster reset to default" = "Poster reset to default";
 "Posters, ratings, lists" = "Afişler, puanlar, listeler";
 "Predeterminado" = "Varsayılan";
 "Predeterminado (acento dorado)" = "Varsayılan (altın vurgu)";
@@ -1456,6 +1460,7 @@
 "Select a subtitle track first." = "Önce bir altyazı parçası seçin.";
 "Select an external SRT or VTT subtitle with at least four lines." = "Select an external SRT or VTT subtitle with at least four lines.";
 "Select an external SRT/VTT subtitle without dual subtitles, in a video at least one minute long." = "Select an external SRT/VTT subtitle without dual subtitles, in a video at least one minute long.";
+"Selected" = "Seçildi";
 "Serie dramática" = "Dram Dizileri";
 "Series" = "Diziler";
 "Series de comedia" = "Komedi Dizileri";
@@ -1472,6 +1477,9 @@
 "Servidor Xtream" = "Xtream server";
 "Sesión iniciada en Stremio" = "Stremio oturumu açık";
 "Set a PIN" = "PIN belirle";
+"Set as show backdrop" = "Set as show backdrop";
+"Set as show logo" = "Set as show logo";
+"Set as show poster" = "Set as show poster";
 "Settings" = "Ayarlar";
 "Settings changed. Please reopen this page." = "Ayarlar değişti. Lütfen bu sayfayı yeniden açın.";
 "Share" = "Paylaş";

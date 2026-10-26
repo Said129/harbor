@@ -6,6 +6,9 @@ import re
 import runpy
 
 requested = os.environ.get('HARBOR_NATIVE_SELECTION', '').strip()
+if requested == 'affected:card-artwork':
+    runpy.run_path('scripts/ios/prepare-card-artwork-selection.py')
+    raise SystemExit(0)
 if requested == 'affected:poster-appearance':
     runpy.run_path('scripts/ios/prepare-poster-appearance-selection.py')
     raise SystemExit(0)

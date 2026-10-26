@@ -118,6 +118,7 @@ struct Artwork: View {
     var fallback: String? = nil
     var fallbacks: [String] = []
     var fit: ContentMode = .fill
+    var fitAlignment: UnitPoint? = nil
     var maxPixels = 1000
     var failureIcon = "nav-movies"
     var showsPlaceholder = true
@@ -128,7 +129,10 @@ struct Artwork: View {
     @State private var retryRevision = 0
     var body: some View {
         ZStack {
-            if let image { BoundedArtworkImage(image: image, fit: fit) }
+            if let image {
+                if fit == .fit, let fitAlignment { AlignedArtworkImage(image: image, alignment: fitAlignment) }
+                else { BoundedArtworkImage(image: image, fit: fit) }
+            }
             else if showsPlaceholder {
                 Rectangle().fill(.white.opacity(0.045))
                 if failed {

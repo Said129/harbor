@@ -180,6 +180,7 @@
 "Aún no hay catálogos" = "Chưa có danh mục";
 "Back" = "Quay lại";
 "Back to top" = "Về đầu trang";
+"Backdrop reset to default" = "Backdrop reset to default";
 "Background" = "Nền";
 "Background opacity" = "Độ mờ nền";
 "Bajar {name}" = "Chuyển {name} xuống";
@@ -761,6 +762,7 @@
 "Idiomas de subtítulos" = "Ngôn ngữ phụ đề";
 "Idiomas y subtítulos" = "Ngôn ngữ & phụ đề";
 "Image cache cleared." = "Image cache cleared.";
+"Image languages" = "Ngôn ngữ hình ảnh";
 "Imagen" = "Hình ảnh";
 "Imagen en imagen" = "Hình trong hình";
 "Imagen más intensa y vívida, con un poco más de contraste." = "Hình ảnh đậm đà, sống động hơn với độ tương phản cao hơn một chút.";
@@ -879,6 +881,7 @@
 "Local app files" = "Local app files";
 "Logo URL (optional, auto-detected if blank)" = "URL logo (không bắt buộc, tự động phát hiện nếu để trống)";
 "Logo position" = "Vị trí logo";
+"Logo reset to default" = "Logo reset to default";
 "Logos" = "Logo";
 "Los FPS de los subtítulos no están disponibles en este entorno de ejecución de libmpv." = "FPS phụ đề không khả dụng trong môi trường chạy libmpv này.";
 "Los FPS de los subtítulos no están disponibles mientras haya un subtítulo secundario activo." = "FPS phụ đề không khả dụng khi đang bật phụ đề thứ hai.";
@@ -1212,6 +1215,7 @@
 "Poster" = "Áp phích";
 "Poster card style" = "Kiểu thẻ áp phích";
 "Poster cards" = "Thẻ áp phích";
+"Poster reset to default" = "Poster reset to default";
 "Posters, ratings, lists" = "Áp phích, điểm đánh giá, danh sách";
 "Predeterminado" = "Mặc định";
 "Predeterminado (acento dorado)" = "Mặc định (điểm nhấn màu vàng kim)";
@@ -1456,6 +1460,7 @@
 "Select a subtitle track first." = "Trước tiên, hãy chọn một rãnh phụ đề.";
 "Select an external SRT or VTT subtitle with at least four lines." = "Select an external SRT or VTT subtitle with at least four lines.";
 "Select an external SRT/VTT subtitle without dual subtitles, in a video at least one minute long." = "Select an external SRT/VTT subtitle without dual subtitles, in a video at least one minute long.";
+"Selected" = "Đã chọn";
 "Serie dramática" = "Phim bộ chính kịch";
 "Series" = "Phim bộ";
 "Series de comedia" = "Phim bộ hài";
@@ -1472,6 +1477,9 @@
 "Servidor Xtream" = "Xtream server";
 "Sesión iniciada en Stremio" = "Đã đăng nhập vào Stremio";
 "Set a PIN" = "Đặt mã PIN";
+"Set as show backdrop" = "Set as show backdrop";
+"Set as show logo" = "Set as show logo";
+"Set as show poster" = "Set as show poster";
 "Settings" = "Cài đặt";
 "Settings changed. Please reopen this page." = "Cài đặt đã thay đổi. Vui lòng mở lại trang này.";
 "Share" = "Chia sẻ";

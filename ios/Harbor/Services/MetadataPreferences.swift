@@ -6,6 +6,7 @@ struct MetadataConfiguration: Sendable {
     var region: String
     var language: String
     var translateTitles: Bool
+    var imageLanguages: [String] = ["English", "Original"]
 }
 
 @MainActor @Observable
@@ -24,6 +25,9 @@ final class MetadataPreferences {
     var translateTitles = UserDefaults.standard.object(forKey: "metadata.translateTitles") as? Bool ?? true {
         didSet { persist(translateTitles, forKey: "metadata.translateTitles") }
     }
+    var imageLanguages = UserDefaults.standard.stringArray(forKey: "tmdbImageLangs") ?? ["English", "Original"] {
+        didSet { persist(imageLanguages, forKey: "tmdbImageLangs") }
+    }
     func bind(_ settings: ProfileSettingsStore) throws {
         guard let owner = settings.owner else { throw HarborError(code: "profile-settings") }
         let key = try settings.tmdbKey(expectedOwner: owner)
@@ -35,7 +39,7 @@ final class MetadataPreferences {
         try scopedSettings.setTMDBKey(key, expectedOwner: expectedOwner)
         tmdbKey = key; error = nil
     }
-    func configuration() -> MetadataConfiguration { MetadataConfiguration(tmdbKey: tmdbKey, region: region, language: language, translateTitles: translateTitles) }
+    func configuration() -> MetadataConfiguration { MetadataConfiguration(tmdbKey: tmdbKey, region: region, language: language, translateTitles: translateTitles, imageLanguages: imageLanguages) }
 
     private var reloading = false
     private func persist(_ value: Any?, forKey key: String) {
@@ -46,5 +50,6 @@ final class MetadataPreferences {
         region = UserDefaults.standard.string(forKey: "metadata.region") ?? "US"
         language = UserDefaults.standard.string(forKey: "metadata.language") ?? "es-ES"
         translateTitles = UserDefaults.standard.object(forKey: "metadata.translateTitles") as? Bool ?? true
+        imageLanguages = UserDefaults.standard.stringArray(forKey: "tmdbImageLangs") ?? ["English", "Original"]
     }
 }

@@ -180,6 +180,7 @@
 "Aún no hay catálogos" = "Nie ma jeszcze żadnych katalogów";
 "Back" = "Wstecz";
 "Back to top" = "Wróć na górę";
+"Backdrop reset to default" = "Backdrop reset to default";
 "Background" = "Tło";
 "Background opacity" = "Krycie tła";
 "Bajar {name}" = "Przenieś {name} w dół";
@@ -761,6 +762,7 @@
 "Idiomas de subtítulos" = "Języki napisów";
 "Idiomas y subtítulos" = "Języki i napisy";
 "Image cache cleared." = "Image cache cleared.";
+"Image languages" = "Języki obrazów";
 "Imagen" = "Obraz";
 "Imagen en imagen" = "Obraz w obrazie";
 "Imagen más intensa y vívida, con un poco más de contraste." = "Bogatszy, żywszy obraz z nieco większym kontrastem.";
@@ -879,6 +881,7 @@
 "Local app files" = "Local app files";
 "Logo URL (optional, auto-detected if blank)" = "URL logo (opcjonalny, wykrywany automatycznie, jeśli pole jest puste)";
 "Logo position" = "Położenie logo";
+"Logo reset to default" = "Logo reset to default";
 "Logos" = "Logo";
 "Los FPS de los subtítulos no están disponibles en este entorno de ejecución de libmpv." = "Zmiana FPS napisów jest niedostępna w tym środowisku wykonawczym libmpv.";
 "Los FPS de los subtítulos no están disponibles mientras haya un subtítulo secundario activo." = "Zmiana FPS napisów jest niedostępna, gdy aktywne są dodatkowe napisy.";
@@ -1212,6 +1215,7 @@
 "Poster" = "Plakat";
 "Poster card style" = "Styl karty plakatu";
 "Poster cards" = "Karty plakatów";
+"Poster reset to default" = "Poster reset to default";
 "Posters, ratings, lists" = "Plakaty, oceny, listy";
 "Predeterminado" = "Domyślne";
 "Predeterminado (acento dorado)" = "Domyślny (złoty akcent)";
@@ -1456,6 +1460,7 @@
 "Select a subtitle track first." = "Najpierw wybierz ścieżkę napisów.";
 "Select an external SRT or VTT subtitle with at least four lines." = "Select an external SRT or VTT subtitle with at least four lines.";
 "Select an external SRT/VTT subtitle without dual subtitles, in a video at least one minute long." = "Select an external SRT/VTT subtitle without dual subtitles, in a video at least one minute long.";
+"Selected" = "Wybrano";
 "Serie dramática" = "Seriale dramatyczne";
 "Series" = "Seriale";
 "Series de comedia" = "Seriale komediowe";
@@ -1472,6 +1477,9 @@
 "Servidor Xtream" = "Xtream server";
 "Sesión iniciada en Stremio" = "Zalogowano do Stremio";
 "Set a PIN" = "Ustaw PIN";
+"Set as show backdrop" = "Set as show backdrop";
+"Set as show logo" = "Set as show logo";
+"Set as show poster" = "Set as show poster";
 "Settings" = "Ustawienia";
 "Settings changed. Please reopen this page." = "Ustawienia zostały zmienione. Otwórz tę stronę ponownie.";
 "Share" = "Udostępnij";

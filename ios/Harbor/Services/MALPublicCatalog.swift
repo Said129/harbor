@@ -45,6 +45,7 @@ enum MALPublicCatalog {
             guard !genres.contains(where: { ["hentai", "erotica"].contains($0.lowercased()) }), ids.insert("mal:\(id)").inserted else { return nil }
             let english = node["alternative_titles"]["en"].string?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
             var media = Media(id: "mal:\(id)", type: node["media_type"].string == "movie" ? "movie" : "series", name: english.isEmpty ? title : english)
+            media.animeFormat = node["media_type"].string?.uppercased()
             media.poster = node["main_picture"]["large"].string ?? node["main_picture"]["medium"].string
             media.background = media.poster; media.description = node["synopsis"].string
             media.releaseInfo = node["start_season"]["year"].integer.map(String.init) ?? node["start_date"].string.map { String($0.prefix(4)) }

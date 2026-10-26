@@ -37,6 +37,11 @@ struct MetadataSettingsView: View {
                     HarborSettingsChoice(DesktopInterfaceText.value("Metadata language"), selection: $preferences.language, choices: languages.map { (Locale.current.localizedString(forIdentifier: $0) ?? $0, $0) })
                     HarborSettingsToggle(DesktopInterfaceText.value("Translate titles"), note: DesktopInterfaceText.value("Show translated names in the language selected above. Turn off to keep original titles."), isOn: $preferences.translateTitles)
                 }
+                HarborSettingsSection(DesktopInterfaceText.value("Image languages")) {
+                    HarborLanguagesPicker(value: Binding(get: { preferences.imageLanguages.joined(separator: ",") }, set: { value in
+                        preferences.imageLanguages = SubtitleLanguages.preferredCodes(value).map { $0 == "original" ? "Original" : SubtitleLanguages.preferenceName($0) }
+                    }), identifier: "metadata-image-languages", includesOriginal: true)
+                }
             }
             .padding(20)
         }.background(HarborTheme.background).foregroundStyle(HarborTheme.ink)

@@ -192,6 +192,7 @@
 "Back" = "رجوع";
 "Back in two weeks" = "يعود بعد أسبوعين";
 "Back to top" = "العودة إلى الأعلى";
+"Backdrop reset to default" = "Backdrop reset to default";
 "Background" = "الخلفية";
 "Background opacity" = "شفافية الخلفية";
 "Bajar {name}" = "نقل {name} لأسفل";
@@ -786,6 +787,7 @@
 "Idiomas de subtítulos" = "لغات الترجمة";
 "Idiomas y subtítulos" = "اللغات والترجمات";
 "Image cache cleared." = "Image cache cleared.";
+"Image languages" = "لغات الصور";
 "Imagen" = "الصورة";
 "Imagen en imagen" = "صورة داخل صورة";
 "Imagen más intensa y vívida, con un poco más de contraste." = "صورة أغنى وأكثر حيوية مع القليل من التباين الإضافي.";
@@ -904,6 +906,7 @@
 "Local app files" = "Local app files";
 "Logo URL (optional, auto-detected if blank)" = "عنوان URL للشعار (اختياري، يُكتشف تلقائيًا إن تُرك فارغًا)";
 "Logo position" = "موضع الشعار";
+"Logo reset to default" = "Logo reset to default";
 "Logos" = "الشعارات";
 "Los FPS de los subtítulos no están disponibles en este entorno de ejecución de libmpv." = "معدل إطارات الترجمة غير متوفر في إصدار libmpv الحالي.";
 "Los FPS de los subtítulos no están disponibles mientras haya un subtítulo secundario activo." = "لا يتوفر تعديل معدل إطارات الترجمة أثناء تفعيل ترجمة ثانوية.";
@@ -1243,6 +1246,7 @@
 "Poster" = "الملصق";
 "Poster card style" = "نمط بطاقة الملصق";
 "Poster cards" = "بطاقات الملصقات";
+"Poster reset to default" = "Poster reset to default";
 "Posters, ratings, lists" = "الملصقات والتقييمات والقوائم";
 "Predeterminado" = "الافتراضي";
 "Predeterminado (acento dorado)" = "افتراضي (تمييز ذهبي)";
@@ -1490,6 +1494,7 @@
 "Select a subtitle track first." = "اختر مسار ترجمة أولًا.";
 "Select an external SRT or VTT subtitle with at least four lines." = "اختر ترجمة خارجية بصيغة SRT أو VTT تحتوي على أربعة أسطر على الأقل.";
 "Select an external SRT/VTT subtitle without dual subtitles, in a video at least one minute long." = "اختر ترجمة خارجية SRT/VTT دون ترجمة مزدوجة، لفيديو مدته دقيقة على الأقل.";
+"Selected" = "تم الاختيار";
 "Serie dramática" = "مسلسلات درامية";
 "Series" = "مسلسلات";
 "Series de comedia" = "مسلسلات كوميدية";
@@ -1506,6 +1511,9 @@
 "Servidor Xtream" = "Xtream server";
 "Sesión iniciada en Stremio" = "تم تسجيل الدخول إلى Stremio";
 "Set a PIN" = "تعيين رمز PIN";
+"Set as show backdrop" = "Set as show backdrop";
+"Set as show logo" = "Set as show logo";
+"Set as show poster" = "Set as show poster";
 "Settings" = "الإعدادات";
 "Settings changed. Please reopen this page." = "تغيّرت الإعدادات. أعد فتح هذه الصفحة.";
 "Share" = "مشاركة";

@@ -154,7 +154,7 @@ private struct ContinueWatchingCard: View {
     @AppStorage(AnimeEpisodeGrouping.preferenceKey) private var episodeGrouping = AnimeEpisodeGrouping.seasons.rawValue
     @State private var hydrated: Media?
     @State private var cardPresentation: ContinueWatchingPresentation?
-    private var detailed: Media { hydrated ?? media }
+    private var detailed: Media { TitleArtworkPreferences.shared.applying(to: hydrated ?? media) }
     private var presentation: ContinueWatchingPresentation {
         cardPresentation ?? ContinueWatchingPresentation(record: record, media: media, watched: [])
     }

@@ -5,16 +5,17 @@ struct HarborHeroTitle: View {
     var size: CGFloat = 32
     var height: CGFloat = 90
     @State private var logoLoaded = false
+    private var logo: String? { TitleArtworkPreferences.shared.value(.logo, id: media.artworkID) ?? media.logo }
     var body: some View {
         ZStack(alignment: .bottomLeading) {
             Text(media.name).font(HarborTheme.displayFont(size)).lineLimit(3)
                 .foregroundStyle(logoLoaded ? Color.clear : HarborTheme.ink).accessibilityAddTraits(.isHeader)
-            if let logo = media.logo {
-                Artwork(url: logo, fit: .fit, maxPixels: 800, showsPlaceholder: false, onImageAvailability: { logoLoaded = $0 })
+            if let logo {
+                Artwork(url: logo, fit: .fit, fitAlignment: .leading, maxPixels: 800, showsPlaceholder: false, onImageAvailability: { logoLoaded = $0 })
                     .frame(maxWidth: 300).frame(height: height).accessibilityHidden(true)
             }
         }.frame(minHeight: height, alignment: .bottomLeading)
-            .onChange(of: media.logo) { _, _ in logoLoaded = false }
+            .onChange(of: logo) { _, _ in logoLoaded = false }
     }
 }
 
@@ -31,7 +32,7 @@ struct HarborAnimeHero: View {
     var body: some View {
         ZStack(alignment: .top) {
             if slides.indices.contains(selected) {
-                let media = slides[selected]
+                let media = TitleArtworkPreferences.shared.applying(to: slides[selected])
                 GeometryReader { bounds in
                     Artwork(url: media.background, fallback: media.poster, maxPixels: 1400)
                         .frame(width: bounds.size.width, height: bounds.size.height)
@@ -145,7 +146,8 @@ private struct HarborSeriesSlide: View {
     let app: AppModel
     var body: some View {
         ZStack(alignment: .bottomLeading) {
-            Artwork(url: media.background, fallback: media.fallbackBackground, fallbacks: [media.poster].compactMap { $0 }, maxPixels: 1200)
+            Artwork(url: TitleArtworkPreferences.shared.value(.backdrop, id: media.artworkID) ?? media.background,
+                fallback: media.fallbackBackground, fallbacks: [TitleArtworkPreferences.shared.value(.poster, id: media.artworkID), media.poster].compactMap { $0 }, maxPixels: 1200)
             LinearGradient(colors: [.clear, .black.opacity(0.35), .black.opacity(0.85)], startPoint: .top, endPoint: .bottom).allowsHitTesting(false)
             VStack(alignment: .leading, spacing: 13) {
                 NavigationLink(value: media) { HarborHeroTitle(media: media, size: 28, height: 76) }.buttonStyle(.plain)

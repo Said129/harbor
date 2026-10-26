@@ -184,6 +184,7 @@
 "Back" = "Назад";
 "Back in two weeks" = "Back in two weeks";
 "Back to top" = "Наверх";
+"Backdrop reset to default" = "Backdrop reset to default";
 "Background" = "Фон";
 "Background opacity" = "Непрозрачность фона";
 "Bajar {name}" = "Переместить «{name}» вниз";
@@ -766,6 +767,7 @@
 "Idiomas de subtítulos" = "Языки субтитров";
 "Idiomas y subtítulos" = "Языки и субтитры";
 "Image cache cleared." = "Image cache cleared.";
+"Image languages" = "Языки изображений";
 "Imagen" = "Изображение";
 "Imagen en imagen" = "Картинка в картинке";
 "Imagen más intensa y vívida, con un poco más de contraste." = "Более сочная картинка с чуть большим контрастом.";
@@ -884,6 +886,7 @@
 "Local app files" = "Local app files";
 "Logo URL (optional, auto-detected if blank)" = "URL логотипа (необязательно, определится автоматически)";
 "Logo position" = "Положение логотипа";
+"Logo reset to default" = "Logo reset to default";
 "Logos" = "Логотипы";
 "Los FPS de los subtítulos no están disponibles en este entorno de ejecución de libmpv." = "Настройка частоты кадров субтитров недоступна в этой версии libmpv.";
 "Los FPS de los subtítulos no están disponibles mientras haya un subtítulo secundario activo." = "Настройка частоты кадров недоступна, пока включены вторые субтитры.";
@@ -1223,6 +1226,7 @@
 "Poster" = "Постер";
 "Poster card style" = "Стиль карточек постеров";
 "Poster cards" = "Карточки с постерами";
+"Poster reset to default" = "Poster reset to default";
 "Posters, ratings, lists" = "Постеры, рейтинги, списки";
 "Predeterminado" = "По умолчанию";
 "Predeterminado (acento dorado)" = "По умолчанию (золотой акцент)";
@@ -1468,6 +1472,7 @@
 "Select a subtitle track first." = "Сначала выберите дорожку субтитров.";
 "Select an external SRT or VTT subtitle with at least four lines." = "Выберите внешний файл SRT или VTT с минимум четырьмя строками.";
 "Select an external SRT/VTT subtitle without dual subtitles, in a video at least one minute long." = "Выберите внешние SRT/VTT без двойных субтитров в видео продолжительностью не менее минуты.";
+"Selected" = "Выбрано";
 "Serie dramática" = "Драматические сериалы";
 "Series" = "Сериалы";
 "Series de comedia" = "Комедийные сериалы";
@@ -1484,6 +1489,9 @@
 "Servidor Xtream" = "Xtream server";
 "Sesión iniciada en Stremio" = "Вход в Stremio выполнен";
 "Set a PIN" = "Задать PIN";
+"Set as show backdrop" = "Set as show backdrop";
+"Set as show logo" = "Set as show logo";
+"Set as show poster" = "Set as show poster";
 "Settings" = "Настройки";
 "Settings changed. Please reopen this page." = "Настройки изменились. Откройте эту страницу заново.";
 "Share" = "Поделиться";

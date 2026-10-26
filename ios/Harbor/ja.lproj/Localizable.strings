@@ -180,6 +180,7 @@
 "Aún no hay catálogos" = "カタログはまだありません";
 "Back" = "戻る";
 "Back to top" = "ページ上部へ";
+"Backdrop reset to default" = "Backdrop reset to default";
 "Background" = "背景";
 "Background opacity" = "背景の不透明度";
 "Bajar {name}" = "{name}を下に移動";
@@ -761,6 +762,7 @@
 "Idiomas de subtítulos" = "字幕言語";
 "Idiomas y subtítulos" = "言語と字幕";
 "Image cache cleared." = "Image cache cleared.";
+"Image languages" = "画像の言語";
 "Imagen" = "映像";
 "Imagen en imagen" = "ピクチャ・イン・ピクチャ";
 "Imagen más intensa y vívida, con un poco más de contraste." = "コントラストを少し上げ、より深みのある鮮やかな映像にします。";
@@ -879,6 +881,7 @@
 "Local app files" = "Local app files";
 "Logo URL (optional, auto-detected if blank)" = "ロゴのURL（任意、空欄の場合は自動検出）";
 "Logo position" = "ロゴの位置";
+"Logo reset to default" = "Logo reset to default";
 "Logos" = "ロゴ";
 "Los FPS de los subtítulos no están disponibles en este entorno de ejecución de libmpv." = "このlibmpvランタイムでは字幕FPSを使用できません。";
 "Los FPS de los subtítulos no están disponibles mientras haya un subtítulo secundario activo." = "第2字幕が有効な間は字幕FPSを使用できません。";
@@ -1212,6 +1215,7 @@
 "Poster" = "ポスター";
 "Poster card style" = "ポスターカードのスタイル";
 "Poster cards" = "ポスターカード";
+"Poster reset to default" = "Poster reset to default";
 "Posters, ratings, lists" = "ポスター、評価、リスト";
 "Predeterminado" = "デフォルト";
 "Predeterminado (acento dorado)" = "デフォルト（ゴールドのアクセント）";
@@ -1456,6 +1460,7 @@
 "Select a subtitle track first." = "先に字幕トラックを選択してください。";
 "Select an external SRT or VTT subtitle with at least four lines." = "Select an external SRT or VTT subtitle with at least four lines.";
 "Select an external SRT/VTT subtitle without dual subtitles, in a video at least one minute long." = "Select an external SRT/VTT subtitle without dual subtitles, in a video at least one minute long.";
+"Selected" = "選択済み";
 "Serie dramática" = "ドラマシリーズ";
 "Series" = "番組";
 "Series de comedia" = "コメディシリーズ";
@@ -1472,6 +1477,9 @@
 "Servidor Xtream" = "Xtream server";
 "Sesión iniciada en Stremio" = "Stremioにログイン済み";
 "Set a PIN" = "PINを設定";
+"Set as show backdrop" = "Set as show backdrop";
+"Set as show logo" = "Set as show logo";
+"Set as show poster" = "Set as show poster";
 "Settings" = "設定";
 "Settings changed. Please reopen this page." = "設定が変更されました。このページを開き直してください。";
 "Share" = "共有";

@@ -180,6 +180,7 @@
 "Aún no hay catálogos" = "아직 카탈로그가 없습니다";
 "Back" = "뒤로";
 "Back to top" = "맨 위로";
+"Backdrop reset to default" = "Backdrop reset to default";
 "Background" = "배경";
 "Background opacity" = "배경 불투명도";
 "Bajar {name}" = "{name} 아래로 이동";
@@ -761,6 +762,7 @@
 "Idiomas de subtítulos" = "자막 언어";
 "Idiomas y subtítulos" = "언어 및 자막";
 "Image cache cleared." = "Image cache cleared.";
+"Image languages" = "이미지 언어";
 "Imagen" = "사진";
 "Imagen en imagen" = "화면 속 화면";
 "Imagen más intensa y vívida, con un poco más de contraste." = "대비를 약간 높여 더 풍부하고 생생한 화면을 만듭니다.";
@@ -879,6 +881,7 @@
 "Local app files" = "Local app files";
 "Logo URL (optional, auto-detected if blank)" = "로고 URL(선택 사항, 비워 두면 자동 감지)";
 "Logo position" = "로고 위치";
+"Logo reset to default" = "Logo reset to default";
 "Logos" = "로고";
 "Los FPS de los subtítulos no están disponibles en este entorno de ejecución de libmpv." = "이 libmpv 런타임에서는 자막 FPS를 사용할 수 없습니다.";
 "Los FPS de los subtítulos no están disponibles mientras haya un subtítulo secundario activo." = "보조 자막이 활성화된 동안에는 자막 FPS를 사용할 수 없습니다.";
@@ -1212,6 +1215,7 @@
 "Poster" = "포스터";
 "Poster card style" = "포스터 카드 스타일";
 "Poster cards" = "포스터 카드";
+"Poster reset to default" = "Poster reset to default";
 "Posters, ratings, lists" = "포스터, 평점, 목록";
 "Predeterminado" = "기본값";
 "Predeterminado (acento dorado)" = "기본값(골드 강조색)";
@@ -1456,6 +1460,7 @@
 "Select a subtitle track first." = "먼저 자막 트랙을 선택하세요.";
 "Select an external SRT or VTT subtitle with at least four lines." = "Select an external SRT or VTT subtitle with at least four lines.";
 "Select an external SRT/VTT subtitle without dual subtitles, in a video at least one minute long." = "Select an external SRT/VTT subtitle without dual subtitles, in a video at least one minute long.";
+"Selected" = "선택됨";
 "Serie dramática" = "드라마 시리즈";
 "Series" = "프로그램";
 "Series de comedia" = "코미디 시리즈";
@@ -1472,6 +1477,9 @@
 "Servidor Xtream" = "Xtream server";
 "Sesión iniciada en Stremio" = "Stremio에 로그인됨";
 "Set a PIN" = "PIN 설정";
+"Set as show backdrop" = "Set as show backdrop";
+"Set as show logo" = "Set as show logo";
+"Set as show poster" = "Set as show poster";
 "Settings" = "설정";
 "Settings changed. Please reopen this page." = "설정이 변경되었습니다. 이 페이지를 다시 여세요.";
 "Share" = "공유";

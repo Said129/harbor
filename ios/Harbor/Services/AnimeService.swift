@@ -244,6 +244,7 @@ actor AnimeService {
     static func anilistMedia(_ value: JSONValue) -> Media? {
         guard let id = value["id"].integer, let name = value["title"]["english"].string ?? value["title"]["userPreferred"].string ?? value["title"]["romaji"].string else { return nil }
         var media = Media(id: "anilist:\(id)", type: value["format"].string == "MOVIE" ? "movie" : "series", name: name)
+        media.animeFormat = value["format"].string
         media.poster = value["coverImage"]["extraLarge"].string ?? value["coverImage"]["large"].string
         media.background = value["bannerImage"].string; media.description = plain(value["description"].string)
         media.releaseInfo = value["seasonYear"].integer.map(String.init); media.genres = value["genres"].array.compactMap(\.string)
@@ -253,6 +254,7 @@ actor AnimeService {
     private static func jikanMedia(_ value: JSONValue) -> Media? {
         guard let id = value["mal_id"].integer, let name = value["title_english"].string ?? value["title"].string else { return nil }
         var media = Media(id: "mal:\(id)", type: value["type"].string == "Movie" ? "movie" : "series", name: name)
+        media.animeFormat = value["type"].string?.uppercased()
         media.poster = value["images"]["webp"]["large_image_url"].string ?? value["images"]["jpg"]["large_image_url"].string
         media.description = plain(value["synopsis"].string); media.releaseInfo = value["year"].integer.map(String.init)
         media.genres = value["genres"].array.compactMap { $0["name"].string }

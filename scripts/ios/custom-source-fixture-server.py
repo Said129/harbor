@@ -18,6 +18,7 @@ def start(build):
     image = Path('ios/Harbor/Assets.xcassets/avatar-eboy_manga_eyes_bw_zoomed.imageset/avatar.png')
     shutil.copy2(image, directory / 'cover.png')
     shutil.copy2('ios/Harbor/Assets.xcassets/avatar-harbor_cat_01.imageset/avatar.png', directory / 'edited.png')
+    shutil.copy2('ios/Harbor/Assets.xcassets/harbor-brand.imageset/harbor.png', directory / 'logo.png')
     shutil.copy2('ios/HarborTests/Fixtures/owned-source-focus.gif', directory / 'focus.gif')
     manifest = dict(id='owned.source.catalog', name='Owned source catalog', version='1.0.0', types=['movie'], resources=['catalog'],
         catalogs=[dict(id='owned', type='movie', name='Owned catalog', extra=[dict(name='skip', isRequired=False)])])

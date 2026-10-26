@@ -151,6 +151,7 @@
 "Aún no hay catálogos" = "No catalogs yet";
 "Back" = "Back";
 "Back to top" = "Back to top";
+"Backdrop reset to default" = "Backdrop reset to default";
 "Background" = "Background";
 "Background opacity" = "Background opacity";
 "Bajar {name}" = "Move {name} down";
@@ -606,6 +607,7 @@
 "Idiomas de subtítulos" = "Subtitle languages";
 "Idiomas y subtítulos" = "Languages & subtitles";
 "Image cache cleared." = "Image cache cleared.";
+"Image languages" = "Image languages";
 "Imagen" = "Picture";
 "Imagen en imagen" = "Picture in Picture";
 "Imagen más intensa y vívida, con un poco más de contraste." = "Richer, more vivid picture with a touch more contrast.";
@@ -707,6 +709,7 @@
 "Loading..." = "Loading...";
 "Local app files" = "Local app files";
 "Logo position" = "Logo position";
+"Logo reset to default" = "Logo reset to default";
 "Los FPS de los subtítulos no están disponibles en este entorno de ejecución de libmpv." = "Subtitle FPS is unavailable in this libmpv runtime.";
 "Los FPS de los subtítulos no están disponibles mientras haya un subtítulo secundario activo." = "Subtitle FPS is unavailable while a secondary subtitle is active.";
 "Los FPS del video no están disponibles." = "Video FPS is unavailable.";
@@ -905,6 +908,7 @@
 "Orden inverso" = "Reverse order";
 "Ordenar" = "Sort";
 "Ordenar por" = "Sort by";
+"Original" = "Original";
 "Oscuro" = "Dark";
 "Outline" = "Outline";
 "Outline color" = "Outline color";
@@ -968,6 +972,7 @@
 "Poster" = "Poster";
 "Poster card style" = "Poster card style";
 "Poster cards" = "Poster cards";
+"Poster reset to default" = "Poster reset to default";
 "Posters, ratings, lists" = "Posters, ratings, lists";
 "Predeterminado" = "Default";
 "Predeterminado (acento dorado)" = "Default (gold accent)";
@@ -1181,6 +1186,7 @@
 "Select a subtitle track first." = "Select a subtitle track first.";
 "Select an external SRT or VTT subtitle with at least four lines." = "Select an external SRT or VTT subtitle with at least four lines.";
 "Select an external SRT/VTT subtitle without dual subtitles, in a video at least one minute long." = "Select an external SRT/VTT subtitle without dual subtitles, in a video at least one minute long.";
+"Selected" = "Selected";
 "Serie dramática" = "Drama Series";
 "Series" = "Shows";
 "Series de comedia" = "Comedy Series";
@@ -1194,6 +1200,9 @@
 "Services changes waiting to sync" = "Services changes waiting to sync";
 "Servidor Xtream" = "Xtream server";
 "Sesión iniciada en Stremio" = "Signed in to Stremio";
+"Set as show backdrop" = "Set as show backdrop";
+"Set as show logo" = "Set as show logo";
+"Set as show poster" = "Set as show poster";
 "Settings" = "Settings";
 "Settings changed. Please reopen this page." = "Settings changed. Please reopen this page.";
 "Share" = "Share";
