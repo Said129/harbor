@@ -1,0 +1,806 @@
+{
+  "reference": "0834340cec5531650bfe78cd628628702e636987",
+  "actual_original_typescript_executed": true,
+  "imports_replaced_only_for_network_react_and_session": true,
+  "provider_network_requests": 0,
+  "executed_sources": [
+    "src/lib/simkl/ids.ts",
+    "src/lib/simkl/list-status.ts",
+    "src/lib/simkl/ratings.ts",
+    "src/lib/simkl/anime-grouping.ts"
+  ],
+  "source_hashes": {
+    "src/lib/simkl/ids.ts": "9a8c8bfae25871825543fea4fdd4188e9e9240b45815309d9a13000b8750bc14",
+    "src/lib/simkl/list-status.ts": "b59134cd2d2647137defc1c9fd270521ca3551083af2e360d07ccee27479673e",
+    "src/lib/simkl/ratings.ts": "e33d46ffbf796313538059d09becbd784886d400f1910b69844ea25fd6bd2017",
+    "src/lib/simkl/anime-grouping.ts": "83b587ca3842daeeef496d4b08226b1ec2345610af9d31d18684917035cfa418"
+  },
+  "show_order": ["watching", "plantowatch", "completed", "hold", "dropped"],
+  "movie_order": ["plantowatch", "completed", "dropped"],
+  "cases": [
+    {
+      "action": "status",
+      "kind": "movie",
+      "value": "plantowatch",
+      "expected": {
+        "path": "/sync/add-to-list",
+        "method": "POST",
+        "body": {
+          "to": "plantowatch",
+          "movies": [
+            {
+              "to": "plantowatch",
+              "ids": {
+                "simkl": 123,
+                "imdb": "tt0123456",
+                "tmdb": 456,
+                "mal": 789
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "action": "status",
+      "kind": "movie",
+      "value": "completed",
+      "expected": {
+        "path": "/sync/add-to-list",
+        "method": "POST",
+        "body": {
+          "to": "completed",
+          "movies": [
+            {
+              "to": "completed",
+              "ids": {
+                "simkl": 123,
+                "imdb": "tt0123456",
+                "tmdb": 456,
+                "mal": 789
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "action": "status",
+      "kind": "movie",
+      "value": "dropped",
+      "expected": {
+        "path": "/sync/add-to-list",
+        "method": "POST",
+        "body": {
+          "to": "dropped",
+          "movies": [
+            {
+              "to": "dropped",
+              "ids": {
+                "simkl": 123,
+                "imdb": "tt0123456",
+                "tmdb": 456,
+                "mal": 789
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "action": "remove",
+      "kind": "movie",
+      "expected": {
+        "path": "/sync/history/remove",
+        "method": "POST",
+        "body": {
+          "movies": [
+            {
+              "ids": {
+                "simkl": 123,
+                "imdb": "tt0123456",
+                "tmdb": 456,
+                "mal": 789
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "action": "rating",
+      "kind": "movie",
+      "value": 1,
+      "expected": {
+        "path": "/sync/ratings",
+        "method": "POST",
+        "body": {
+          "movies": [
+            {
+              "rating": 1,
+              "ids": {
+                "simkl": 123,
+                "imdb": "tt0123456",
+                "tmdb": 456,
+                "mal": 789
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "action": "rating",
+      "kind": "movie",
+      "value": 5,
+      "expected": {
+        "path": "/sync/ratings",
+        "method": "POST",
+        "body": {
+          "movies": [
+            {
+              "rating": 5,
+              "ids": {
+                "simkl": 123,
+                "imdb": "tt0123456",
+                "tmdb": 456,
+                "mal": 789
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "action": "rating",
+      "kind": "movie",
+      "value": 10,
+      "expected": {
+        "path": "/sync/ratings",
+        "method": "POST",
+        "body": {
+          "movies": [
+            {
+              "rating": 10,
+              "ids": {
+                "simkl": 123,
+                "imdb": "tt0123456",
+                "tmdb": 456,
+                "mal": 789
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "action": "rating",
+      "kind": "movie",
+      "value": null,
+      "expected": {
+        "path": "/sync/ratings/remove",
+        "method": "POST",
+        "body": {
+          "movies": [
+            {
+              "ids": {
+                "simkl": 123,
+                "imdb": "tt0123456",
+                "tmdb": 456,
+                "mal": 789
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "action": "status",
+      "kind": "show",
+      "value": "watching",
+      "expected": {
+        "path": "/sync/add-to-list",
+        "method": "POST",
+        "body": {
+          "to": "watching",
+          "shows": [
+            {
+              "to": "watching",
+              "ids": {
+                "simkl": 123,
+                "imdb": "tt0123456",
+                "tmdb": 456,
+                "mal": 789
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "action": "status",
+      "kind": "show",
+      "value": "plantowatch",
+      "expected": {
+        "path": "/sync/add-to-list",
+        "method": "POST",
+        "body": {
+          "to": "plantowatch",
+          "shows": [
+            {
+              "to": "plantowatch",
+              "ids": {
+                "simkl": 123,
+                "imdb": "tt0123456",
+                "tmdb": 456,
+                "mal": 789
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "action": "status",
+      "kind": "show",
+      "value": "completed",
+      "expected": {
+        "path": "/sync/add-to-list",
+        "method": "POST",
+        "body": {
+          "to": "completed",
+          "shows": [
+            {
+              "to": "completed",
+              "ids": {
+                "simkl": 123,
+                "imdb": "tt0123456",
+                "tmdb": 456,
+                "mal": 789
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "action": "status",
+      "kind": "show",
+      "value": "hold",
+      "expected": {
+        "path": "/sync/add-to-list",
+        "method": "POST",
+        "body": {
+          "to": "hold",
+          "shows": [
+            {
+              "to": "hold",
+              "ids": {
+                "simkl": 123,
+                "imdb": "tt0123456",
+                "tmdb": 456,
+                "mal": 789
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "action": "status",
+      "kind": "show",
+      "value": "dropped",
+      "expected": {
+        "path": "/sync/add-to-list",
+        "method": "POST",
+        "body": {
+          "to": "dropped",
+          "shows": [
+            {
+              "to": "dropped",
+              "ids": {
+                "simkl": 123,
+                "imdb": "tt0123456",
+                "tmdb": 456,
+                "mal": 789
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "action": "remove",
+      "kind": "show",
+      "expected": {
+        "path": "/sync/history/remove",
+        "method": "POST",
+        "body": {
+          "shows": [
+            {
+              "ids": {
+                "simkl": 123,
+                "imdb": "tt0123456",
+                "tmdb": 456,
+                "mal": 789
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "action": "rating",
+      "kind": "show",
+      "value": 1,
+      "expected": {
+        "path": "/sync/ratings",
+        "method": "POST",
+        "body": {
+          "shows": [
+            {
+              "rating": 1,
+              "ids": {
+                "simkl": 123,
+                "imdb": "tt0123456",
+                "tmdb": 456,
+                "mal": 789
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "action": "rating",
+      "kind": "show",
+      "value": 5,
+      "expected": {
+        "path": "/sync/ratings",
+        "method": "POST",
+        "body": {
+          "shows": [
+            {
+              "rating": 5,
+              "ids": {
+                "simkl": 123,
+                "imdb": "tt0123456",
+                "tmdb": 456,
+                "mal": 789
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "action": "rating",
+      "kind": "show",
+      "value": 10,
+      "expected": {
+        "path": "/sync/ratings",
+        "method": "POST",
+        "body": {
+          "shows": [
+            {
+              "rating": 10,
+              "ids": {
+                "simkl": 123,
+                "imdb": "tt0123456",
+                "tmdb": 456,
+                "mal": 789
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "action": "rating",
+      "kind": "show",
+      "value": null,
+      "expected": {
+        "path": "/sync/ratings/remove",
+        "method": "POST",
+        "body": {
+          "shows": [
+            {
+              "ids": {
+                "simkl": 123,
+                "imdb": "tt0123456",
+                "tmdb": 456,
+                "mal": 789
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "action": "status",
+      "kind": "anime",
+      "value": "watching",
+      "expected": {
+        "path": "/sync/add-to-list",
+        "method": "POST",
+        "body": {
+          "to": "watching",
+          "shows": [
+            {
+              "to": "watching",
+              "ids": {
+                "simkl": 123,
+                "imdb": "tt0123456",
+                "tmdb": 456,
+                "mal": 789
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "action": "status",
+      "kind": "anime",
+      "value": "plantowatch",
+      "expected": {
+        "path": "/sync/add-to-list",
+        "method": "POST",
+        "body": {
+          "to": "plantowatch",
+          "shows": [
+            {
+              "to": "plantowatch",
+              "ids": {
+                "simkl": 123,
+                "imdb": "tt0123456",
+                "tmdb": 456,
+                "mal": 789
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "action": "status",
+      "kind": "anime",
+      "value": "completed",
+      "expected": {
+        "path": "/sync/add-to-list",
+        "method": "POST",
+        "body": {
+          "to": "completed",
+          "shows": [
+            {
+              "to": "completed",
+              "ids": {
+                "simkl": 123,
+                "imdb": "tt0123456",
+                "tmdb": 456,
+                "mal": 789
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "action": "status",
+      "kind": "anime",
+      "value": "hold",
+      "expected": {
+        "path": "/sync/add-to-list",
+        "method": "POST",
+        "body": {
+          "to": "hold",
+          "shows": [
+            {
+              "to": "hold",
+              "ids": {
+                "simkl": 123,
+                "imdb": "tt0123456",
+                "tmdb": 456,
+                "mal": 789
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "action": "status",
+      "kind": "anime",
+      "value": "dropped",
+      "expected": {
+        "path": "/sync/add-to-list",
+        "method": "POST",
+        "body": {
+          "to": "dropped",
+          "shows": [
+            {
+              "to": "dropped",
+              "ids": {
+                "simkl": 123,
+                "imdb": "tt0123456",
+                "tmdb": 456,
+                "mal": 789
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "action": "remove",
+      "kind": "anime",
+      "expected": {
+        "path": "/sync/history/remove",
+        "method": "POST",
+        "body": {
+          "shows": [
+            {
+              "ids": {
+                "simkl": 123,
+                "imdb": "tt0123456",
+                "tmdb": 456,
+                "mal": 789
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "action": "rating",
+      "kind": "anime",
+      "value": 1,
+      "expected": {
+        "path": "/sync/ratings",
+        "method": "POST",
+        "body": {
+          "anime": [
+            {
+              "rating": 1,
+              "ids": {
+                "simkl": 123,
+                "imdb": "tt0123456",
+                "tmdb": 456,
+                "mal": 789
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "action": "rating",
+      "kind": "anime",
+      "value": 5,
+      "expected": {
+        "path": "/sync/ratings",
+        "method": "POST",
+        "body": {
+          "anime": [
+            {
+              "rating": 5,
+              "ids": {
+                "simkl": 123,
+                "imdb": "tt0123456",
+                "tmdb": 456,
+                "mal": 789
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "action": "rating",
+      "kind": "anime",
+      "value": 10,
+      "expected": {
+        "path": "/sync/ratings",
+        "method": "POST",
+        "body": {
+          "anime": [
+            {
+              "rating": 10,
+              "ids": {
+                "simkl": 123,
+                "imdb": "tt0123456",
+                "tmdb": 456,
+                "mal": 789
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "action": "rating",
+      "kind": "anime",
+      "value": null,
+      "expected": {
+        "path": "/sync/ratings/remove",
+        "method": "POST",
+        "body": {
+          "anime": [
+            {
+              "ids": {
+                "simkl": 123,
+                "imdb": "tt0123456",
+                "tmdb": 456,
+                "mal": 789
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "normalization": [
+    {
+      "input": "Naruto",
+      "expected": "naruto"
+    },
+    {
+      "input": "Naruto Shippuden",
+      "expected": "naruto"
+    },
+    {
+      "input": "Attack on Titan Season 2",
+      "expected": "attackontitan"
+    },
+    {
+      "input": "Attack on Titan: The Final Season",
+      "expected": "attackontitan"
+    },
+    {
+      "input": "Title Part 2",
+      "expected": "title"
+    },
+    {
+      "input": "Title II",
+      "expected": "title"
+    },
+    {
+      "input": "Title 3rd Season",
+      "expected": "title"
+    },
+    {
+      "input": "Title (TV)",
+      "expected": "titletv"
+    },
+    {
+      "input": "Title [OVA]",
+      "expected": "titleova"
+    },
+    {
+      "input": "Title Final Season",
+      "expected": "title"
+    },
+    {
+      "input": "Title: Side Story",
+      "expected": "title"
+    },
+    {
+      "input": "Title...",
+      "expected": "title"
+    },
+    {
+      "input": "Title 2020",
+      "expected": "title"
+    },
+    {
+      "input": "Title Cour 2",
+      "expected": "title"
+    },
+    {
+      "input": "Title S4",
+      "expected": "title"
+    },
+    {
+      "input": "Title IV",
+      "expected": "title"
+    },
+    {
+      "input": "Dragon Ball Super",
+      "expected": "dragonballsuper"
+    },
+    {
+      "input": "One Piece",
+      "expected": "onepiece"
+    },
+    {
+      "input": "Cafe Gaiden",
+      "expected": "cafe"
+    },
+    {
+      "input": "Title Enchousen",
+      "expected": "title"
+    }
+  ],
+  "targets": [
+    {
+      "id": "tt0123456",
+      "type": "movie",
+      "expected": {
+        "kind": "movie",
+        "ids": {
+          "imdb": "tt0123456"
+        }
+      }
+    },
+    {
+      "id": "tt0123456",
+      "type": "series",
+      "expected": {
+        "kind": "show",
+        "ids": {
+          "imdb": "tt0123456"
+        }
+      }
+    },
+    {
+      "id": "tmdb:movie:456",
+      "type": "movie",
+      "expected": {
+        "kind": "movie",
+        "ids": {
+          "tmdb": 456
+        }
+      }
+    },
+    {
+      "id": "tmdb:tv:456",
+      "type": "series",
+      "expected": {
+        "kind": "show",
+        "ids": {
+          "tmdb": 456
+        }
+      }
+    },
+    {
+      "id": "mal:123",
+      "type": "series",
+      "expected": {
+        "kind": "show",
+        "ids": {
+          "mal": 123
+        }
+      }
+    },
+    {
+      "id": "kitsu:999",
+      "type": "series",
+      "expected": {
+        "kind": "show",
+        "ids": {
+          "mal": 123
+        }
+      }
+    },
+    {
+      "id": "anilist:999",
+      "type": "series",
+      "expected": {
+        "kind": "show",
+        "ids": {
+          "mal": 123
+        }
+      }
+    },
+    {
+      "id": "anidb:999",
+      "type": "movie",
+      "expected": {
+        "kind": "movie",
+        "ids": {
+          "mal": 123
+        }
+      }
+    }
+  ]
+}

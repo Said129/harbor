@@ -19,6 +19,7 @@
 "4:3" = "4:3";
 "A client for the Stremio protocol. Two minutes to set up; most of it optional. You stay in control of every key." = "Klien untuk protokol Stremio. Hanya perlu dua menit untuk disiapkan; sebagian besar bersifat opsional. Anda tetap memegang kendali atas setiap kunci.";
 "A continuación" = "Berikutnya";
+"A to Z" = "A sampai Z";
 "AMC+" = "AMC+";
 "API key" = "Kunci API";
 "Abajo a la derecha" = "Kanan bawah";
@@ -60,6 +61,7 @@
 "Add language" = "Tambahkan bahasa";
 "Add local folder" = "Add local folder";
 "Add source" = "Tambah sumber";
+"Add to Simkl" = "Tambahkan ke Simkl";
 "Add to Suwayomi library" = "Add to Suwayomi library";
 "Add to favorites" = "Tambahkan ke favorit";
 "Add your TMDB key in Settings to load these catalogs." = "Tambahkan kunci TMDB di Pengaturan untuk memuat katalog ini.";
@@ -271,6 +273,7 @@
 "Buscar en la configuración" = "Cari pengaturan";
 "Buscar idiomas" = "Cari bahasa";
 "Buscar subtítulos de nuevo" = "Search subtitles again";
+"By year" = "Berdasarkan tahun";
 "Búfer" = "Buffer";
 "Búsquedas recientes" = "Pencarian terbaru";
 "Cache" = "Cache";
@@ -376,6 +379,7 @@
 "Compartir" = "Bagikan";
 "Compartir archivo" = "Share file";
 "Compatibility" = "Compatibility";
+"Completed" = "Selesai";
 "Con serifas" = "Serif";
 "Concentración" = "Focus";
 "Conectando" = "Menghubungkan";
@@ -438,6 +442,7 @@
 "Could not save your choices. Try again." = "Could not save your choices. Try again.";
 "Could not save your tracks or listening history. Try again." = "Could not save your tracks or listening history. Try again.";
 "Couldn't auto-sync" = "Tidak dapat menyinkronkan otomatis";
+"Couldn't reach Simkl" = "Tidak dapat menghubungi Simkl";
 "Cover Image URL" = "URL Gambar Sampul";
 "Crash" = "Crash";
 "Crea tu propia paleta" = "Buat palet Anda sendiri";
@@ -538,6 +543,7 @@
 "Drama" = "Drama";
 "Drama Series" = "Serial Drama";
 "Drop shadow" = "Bayangan jatuh";
+"Dropped" = "Terlewat";
 "Dual subtitles" = "Subtitle ganda";
 "Dutch" = "Belanda";
 "Día anterior" = "Previous day";
@@ -579,6 +585,7 @@
 "En directo" = "Langsung";
 "En reproducción" = "Sedang Diputar";
 "En reproducción: {label}" = "Sedang diputar: {label}";
+"Enable User Ratings" = "Aktifkan Rating Pengguna";
 "Enable addon" = "Enable addon";
 "Enabled" = "Diaktifkan";
 "End" = "Akhir";
@@ -1041,6 +1048,7 @@
 "No catalogs yet" = "Belum ada katalog";
 "No correction" = "Tanpa koreksi";
 "No correction (default)" = "Tanpa koreksi (default)";
+"No date" = "Tidak ada tanggal";
 "No default profile" = "Tidak ada profil default";
 "No description available." = "Deskripsi tidak tersedia.";
 "No episodes found for this season." = "Tidak ditemukan episode untuk musim ini.";
@@ -1051,9 +1059,11 @@
 "No hay idiomas preferidos seleccionados." = "Belum ada bahasa pilihan.";
 "No hay subtítulos que coincidan con tu búsqueda." = "No subtitles match your search.";
 "No installed addon matches that." = "Tidak ada addon terinstal yang cocok dengan itu.";
+"No items found in this section." = "Tidak ditemukan item di bagian ini.";
 "No language matches that search." = "Tidak ada bahasa yang cocok dengan pencarian itu.";
 "No longer listed by its repository." = "Tidak lagi terdaftar di repositorinya.";
 "No manga found" = "Manga tidak ditemukan";
+"No matches for these filters." = "Tidak ada yang cocok dengan filter ini.";
 "No matches." = "Tidak ada yang cocok.";
 "No picks loaded. TMDB might be unreachable." = "Tidak ada pilihan yang dimuat. TMDB mungkin tidak dapat dijangkau.";
 "No preferred languages selected." = "Belum ada bahasa pilihan.";
@@ -1116,6 +1126,7 @@
 "Oculto" = "Tersembunyi";
 "Off" = "Nonaktif";
 "On" = "Aktif";
+"On Hold" = "Ditunda";
 "On The Air" = "Sedang Tayang";
 "On Tonight" = "Tayang Malam Ini";
 "On start" = "On start";
@@ -1200,6 +1211,7 @@
 "Picture adjustments" = "Penyesuaian gambar";
 "Picture in Picture" = "Gambar dalam Gambar";
 "Pill" = "Pill";
+"Plan to Watch" = "Akan Ditonton";
 "Play" = "Putar";
 "Play movie" = "Putar film";
 "Play next" = "Putar berikutnya";
@@ -1290,6 +1302,7 @@
 "Raised" = "Dinaikkan";
 "Random avatar" = "Avatar acak";
 "Ranked by the {site} community from their public index." = "Diurutkan oleh komunitas {site} berdasarkan indeks publik mereka.";
+"Rate on SIMKL" = "Beri nilai di SIMKL";
 "Rating" = "Rating";
 "Re-runs the welcome flow and clears every dismissed tip." = "Menjalankan ulang alur sambutan dan menghapus semua tip yang sebelumnya ditutup.";
 "Reaches" = "Mengakses";
@@ -1341,6 +1354,7 @@
 "Remove from Suwayomi library" = "Remove from Suwayomi library";
 "Remove from continue watching" = "Remove from continue watching";
 "Remove from favorites" = "Hapus dari favorit";
+"Remove from list" = "Hapus dari daftar";
 "Remove from queue" = "Hapus dari antrean";
 "Remove from saved" = "Hapus dari item tersimpan";
 "Remove from saved tracks" = "Hapus dari lagu tersimpan";
@@ -1463,6 +1477,7 @@
 "Search music" = "Cari musik";
 "Search settings" = "Cari pengaturan";
 "Search subtitles again" = "Search subtitles again";
+"Search title…" = "Cari judul…";
 "Season" = "Musim";
 "Season {n}" = "Musim {n}";
 "Seasons" = "Musim";
@@ -1549,6 +1564,7 @@
 "Siguiente canción" = "Next song";
 "Silenciar" = "Bisukan";
 "Simkl is temporarily limiting requests. Try again later." = "Simkl is temporarily limiting requests. Try again later.";
+"Simkl sign-in expired, reconnect it" = "Sesi masuk Simkl kedaluwarsa, hubungkan kembali";
 "Sin configurar" = "Belum diatur";
 "Sin corrección" = "Tanpa koreksi";
 "Sin corrección (predeterminado)" = "Tanpa koreksi (default)";
@@ -1728,8 +1744,10 @@
 "This file has one audio track." = "File ini memiliki satu trek audio.";
 "This is a manga repository. Add it from the Manga page." = "Ini repositori manga. Tambahkan dari halaman Manga.";
 "This is how your subtitles will look." = "Beginilah tampilan subtitle Anda.";
+"This month" = "Bulan ini";
 "This section depends on the addon" = "This section depends on the addon";
 "This section relies on TMDB discovery features." = "This section relies on TMDB discovery features.";
+"This week" = "Minggu ini";
 "Thriller" = "Thriller";
 "Thrillers" = "Thriller";
 "Thumbnails download again when needed. Books, downloads, accounts and watch progress are kept." = "Thumbnails download again when needed. Books, downloads, accounts and watch progress are kept.";
@@ -1873,6 +1891,7 @@
 "Waiting for you to authorize on simkl.com…" = "Menunggu Anda memberikan otorisasi di simkl.com…";
 "War" = "Perang";
 "Watched" = "Sudah ditonton";
+"Watching" = "Sedang menonton";
 "Welcome to Harbor" = "Selamat datang di Harbor";
 "Western" = "Western";
 "What everyone is reading" = "Yang sedang dibaca semua orang";
@@ -1911,6 +1930,7 @@
 "Your lists" = "Your lists";
 "Your navigation is saved locally. Cloud sync will retry." = "Your navigation is saved locally. Cloud sync will retry.";
 "Your profile" = "Profil Anda";
+"Your rating" = "Rating Anda";
 "Your services are saved locally. Cloud sync will retry." = "Layanan Anda tersimpan di perangkat ini. Sinkronisasi cloud akan dicoba lagi.";
 "Yours" = "Milik Anda";
 "Zoom" = "Perbesar";

@@ -17,6 +17,11 @@ import Observation
     }
 }
 @MainActor @Observable final class SimklAccountStore {
+    private static var stores: [String: SimklAccountStore] = [:]
+    static func forOwner(_ owner: String) -> SimklAccountStore {
+        if let saved = stores[owner] { return saved }
+        let store = SimklAccountStore(owner: owner); stores[owner] = store; return store
+    }
     let owner: String
     private let persistence: any SimklAccountPersistence
     private(set) var session: SimklSession?

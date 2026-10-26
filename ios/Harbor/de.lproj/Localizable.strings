@@ -19,6 +19,7 @@
 "4:3" = "4:3";
 "A client for the Stremio protocol. Two minutes to set up; most of it optional. You stay in control of every key." = "Ein Client für das Stremio-Protokoll. Die Einrichtung dauert zwei Minuten, und das meiste ist optional. Du behältst die Kontrolle über jeden Schlüssel.";
 "A continuación" = "Als Nächstes";
+"A to Z" = "A bis Z";
 "AMC+" = "AMC+";
 "API key" = "API-Schlüssel";
 "Abajo a la derecha" = "Unten rechts";
@@ -60,6 +61,7 @@
 "Add language" = "Sprache hinzufügen";
 "Add local folder" = "Add local folder";
 "Add source" = "Quelle hinzufügen";
+"Add to Simkl" = "Zu Simkl hinzufügen";
 "Add to Suwayomi library" = "Add to Suwayomi library";
 "Add to favorites" = "Zu Favoriten hinzufügen";
 "Add your TMDB key in Settings to load these catalogs." = "Füge deinen TMDB-Schlüssel in den Einstellungen hinzu, um diese Kataloge zu laden.";
@@ -271,6 +273,7 @@
 "Buscar en la configuración" = "Einstellungen durchsuchen";
 "Buscar idiomas" = "Suchsprachen";
 "Buscar subtítulos de nuevo" = "Search subtitles again";
+"By year" = "Nach Jahr";
 "Búfer" = "Buffer";
 "Búsquedas recientes" = "Letzte Suchanfragen";
 "Cache" = "Cache";
@@ -376,6 +379,7 @@
 "Compartir" = "Teilen";
 "Compartir archivo" = "Share file";
 "Compatibility" = "Compatibility";
+"Completed" = "Abgeschlossen";
 "Con serifas" = "Serifenschrift";
 "Concentración" = "Focus";
 "Conectando" = "Verbindung wird hergestellt";
@@ -438,6 +442,7 @@
 "Could not save your choices. Try again." = "Could not save your choices. Try again.";
 "Could not save your tracks or listening history. Try again." = "Could not save your tracks or listening history. Try again.";
 "Couldn't auto-sync" = "Automatische Synchronisierung nicht möglich";
+"Couldn't reach Simkl" = "Simkl konnte nicht erreicht werden";
 "Cover Image URL" = "URL des Titelbilds";
 "Crash" = "Absturz";
 "Crea tu propia paleta" = "Eigene Farbpalette erstellen";
@@ -538,6 +543,7 @@
 "Drama" = "Drama";
 "Drama Series" = "Dramaserien";
 "Drop shadow" = "Schlagschatten";
+"Dropped" = "Verworfen";
 "Dual subtitles" = "Zwei Untertitelspuren";
 "Dutch" = "Niederländisch";
 "Día anterior" = "Previous day";
@@ -579,6 +585,7 @@
 "En directo" = "Live";
 "En reproducción" = "Läuft gerade";
 "En reproducción: {label}" = "Jetzt läuft: {label}";
+"Enable User Ratings" = "Nutzerbewertungen aktivieren";
 "Enable addon" = "Enable addon";
 "Enabled" = "Aktiviert";
 "End" = "Ende";
@@ -1041,6 +1048,7 @@
 "No catalogs yet" = "Noch keine Kataloge";
 "No correction" = "Keine Korrektur";
 "No correction (default)" = "Keine Korrektur (Standard)";
+"No date" = "Kein Datum";
 "No default profile" = "Kein Standardprofil";
 "No description available." = "Keine Beschreibung verfügbar.";
 "No episodes found for this season." = "Für diese Staffel wurden keine Episoden gefunden.";
@@ -1051,9 +1059,11 @@
 "No hay idiomas preferidos seleccionados." = "Keine bevorzugten Sprachen ausgewählt.";
 "No hay subtítulos que coincidan con tu búsqueda." = "No subtitles match your search.";
 "No installed addon matches that." = "Kein installiertes Add-on passt dazu.";
+"No items found in this section." = "Keine Elemente in diesem Bereich gefunden.";
 "No language matches that search." = "Keine Sprache entspricht dieser Suche.";
 "No longer listed by its repository." = "Wird vom Repository nicht mehr gelistet.";
 "No manga found" = "Kein Manga gefunden";
+"No matches for these filters." = "Keine Treffer für diese Filter.";
 "No matches." = "Keine Treffer.";
 "No picks loaded. TMDB might be unreachable." = "Keine Empfehlungen geladen. TMDB ist möglicherweise nicht erreichbar.";
 "No preferred languages selected." = "Keine bevorzugten Sprachen ausgewählt.";
@@ -1116,6 +1126,7 @@
 "Oculto" = "Ausgeblendet";
 "Off" = "Aus";
 "On" = "Ein";
+"On Hold" = "Pausiert";
 "On The Air" = "Auf Sendung";
 "On Tonight" = "Heute Abend";
 "On start" = "On start";
@@ -1200,6 +1211,7 @@
 "Picture adjustments" = "Bildanpassungen";
 "Picture in Picture" = "Bild im Bild";
 "Pill" = "Pill";
+"Plan to Watch" = "Möchte ich sehen";
 "Play" = "Abspielen";
 "Play movie" = "Film abspielen";
 "Play next" = "Als Nächstes abspielen";
@@ -1290,6 +1302,7 @@
 "Raised" = "Erhöht";
 "Random avatar" = "Zufälliger Avatar";
 "Ranked by the {site} community from their public index." = "Von der {site}-Community anhand ihres öffentlichen Index eingestuft.";
+"Rate on SIMKL" = "Auf SIMKL bewerten";
 "Rating" = "Wertung";
 "Re-runs the welcome flow and clears every dismissed tip." = "Führt den Willkommensdialog erneut aus und setzt alle ausgeblendeten Tipps zurück.";
 "Reaches" = "Erreicht";
@@ -1341,6 +1354,7 @@
 "Remove from Suwayomi library" = "Remove from Suwayomi library";
 "Remove from continue watching" = "Remove from continue watching";
 "Remove from favorites" = "Aus Favoriten entfernen";
+"Remove from list" = "Aus der Liste entfernen";
 "Remove from queue" = "Aus der Warteschlange entfernen";
 "Remove from saved" = "Aus „Gespeichert“ entfernen";
 "Remove from saved tracks" = "Aus gespeicherten Titeln entfernen";
@@ -1463,6 +1477,7 @@
 "Search music" = "Musik durchsuchen";
 "Search settings" = "Einstellungen durchsuchen";
 "Search subtitles again" = "Search subtitles again";
+"Search title…" = "Titel suchen…";
 "Season" = "Staffel";
 "Season {n}" = "Staffel {n}";
 "Seasons" = "Staffeln";
@@ -1549,6 +1564,7 @@
 "Siguiente canción" = "Next song";
 "Silenciar" = "Stummschalten";
 "Simkl is temporarily limiting requests. Try again later." = "Simkl is temporarily limiting requests. Try again later.";
+"Simkl sign-in expired, reconnect it" = "Simkl-Anmeldung abgelaufen, erneut verbinden";
 "Sin configurar" = "Nicht festgelegt";
 "Sin corrección" = "Keine Korrektur";
 "Sin corrección (predeterminado)" = "Keine Korrektur (Standard)";
@@ -1728,8 +1744,10 @@
 "This file has one audio track." = "Diese Datei hat eine Tonspur.";
 "This is a manga repository. Add it from the Manga page." = "Das ist ein Manga-Repository. Füge es auf der Manga-Seite hinzu.";
 "This is how your subtitles will look." = "So werden deine Untertitel aussehen.";
+"This month" = "Diesen Monat";
 "This section depends on the addon" = "This section depends on the addon";
 "This section relies on TMDB discovery features." = "This section relies on TMDB discovery features.";
+"This week" = "Diese Woche";
 "Thriller" = "Thriller";
 "Thrillers" = "Thriller";
 "Thumbnails download again when needed. Books, downloads, accounts and watch progress are kept." = "Thumbnails download again when needed. Books, downloads, accounts and watch progress are kept.";
@@ -1873,6 +1891,7 @@
 "Waiting for you to authorize on simkl.com…" = "Warte darauf, dass du die Autorisierung auf simkl.com abschließt…";
 "War" = "Krieg";
 "Watched" = "Angesehen";
+"Watching" = "Wird angesehen";
 "Welcome to Harbor" = "Willkommen bei Harbor";
 "Western" = "Western";
 "What everyone is reading" = "Was alle lesen";
@@ -1911,6 +1930,7 @@
 "Your lists" = "Your lists";
 "Your navigation is saved locally. Cloud sync will retry." = "Your navigation is saved locally. Cloud sync will retry.";
 "Your profile" = "Dein Profil";
+"Your rating" = "Deine Bewertung";
 "Your services are saved locally. Cloud sync will retry." = "Deine Dienste sind lokal gespeichert. Die Synchronisierung wird erneut versucht.";
 "Yours" = "Deins";
 "Zoom" = "Zoom";

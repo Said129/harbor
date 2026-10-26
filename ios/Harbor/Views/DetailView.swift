@@ -275,6 +275,7 @@ struct DetailView: View {
                 }.scrollIndicators(.hidden)
                 primaryActions
                 secondaryActions
+                SimklDetailControls(media: model.media, app: app).id(app.accountOperationScope + "|" + model.media.identity)
                 if let error = app.library.favorites.error { Text(error).font(.caption).foregroundStyle(.orange) }
             }.padding(20)
         }.frame(minHeight: 370)

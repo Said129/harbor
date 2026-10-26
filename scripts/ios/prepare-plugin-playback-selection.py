@@ -6,6 +6,9 @@ import re
 import runpy
 
 requested = os.environ.get('HARBOR_NATIVE_SELECTION', '').strip()
+if requested == 'native-only:simkl-library' or 'HarborTests.SimklLibraryContractTests/' in requested:
+    runpy.run_path('scripts/ios/prepare-simkl-library-selection.py')
+    raise SystemExit(0)
 if requested == 'ui-only:artwork-interface-repair':
     runpy.run_path('scripts/ios/prepare-artwork-interface-repair-selection.py')
     raise SystemExit(0)

@@ -109,7 +109,7 @@ private struct MountedPosterRow: View {
     }
 }
 
-private final class OwnedPosterImagePublisher: @unchecked Sendable {
+final class OwnedPosterImagePublisher: @unchecked Sendable {
     private let listener: NWListener
     private let queue = DispatchQueue(label: "harbor.owned.poster-images")
     private let poster: Data, wide: Data

@@ -19,6 +19,7 @@
 "4:3" = "4:3";
 "A client for the Stremio protocol. Two minutes to set up; most of it optional. You stay in control of every key." = "Stremio protokolü için bir istemci. Kurulumu iki dakika sürer ve çoğu adım isteğe bağlıdır. Her anahtarın kontrolü sizde kalır.";
 "A continuación" = "Sıradaki";
+"A to Z" = "A'dan Z'ye";
 "AMC+" = "AMC+";
 "API key" = "API anahtarı";
 "Abajo a la derecha" = "Sağ alt";
@@ -60,6 +61,7 @@
 "Add language" = "Dil ekle";
 "Add local folder" = "Add local folder";
 "Add source" = "Kaynak ekle";
+"Add to Simkl" = "Simkl'a ekle";
 "Add to Suwayomi library" = "Add to Suwayomi library";
 "Add to favorites" = "Favorilere ekle";
 "Add your TMDB key in Settings to load these catalogs." = "Bu katalogları yüklemek için Ayarlar'a TMDB anahtarınızı ekleyin.";
@@ -271,6 +273,7 @@
 "Buscar en la configuración" = "Ayarlarda ara";
 "Buscar idiomas" = "Dil ara";
 "Buscar subtítulos de nuevo" = "Search subtitles again";
+"By year" = "Yıla göre";
 "Búfer" = "Buffer";
 "Búsquedas recientes" = "Son aramalar";
 "Cache" = "Önbellek";
@@ -376,6 +379,7 @@
 "Compartir" = "Paylaş";
 "Compartir archivo" = "Share file";
 "Compatibility" = "Compatibility";
+"Completed" = "Tamamlandı";
 "Con serifas" = "Serif";
 "Concentración" = "Focus";
 "Conectando" = "Bağlanıyor";
@@ -438,6 +442,7 @@
 "Could not save your choices. Try again." = "Could not save your choices. Try again.";
 "Could not save your tracks or listening history. Try again." = "Could not save your tracks or listening history. Try again.";
 "Couldn't auto-sync" = "Otomatik eşitlenemedi";
+"Couldn't reach Simkl" = "Simkl'a ulaşılamadı";
 "Cover Image URL" = "Kapak Görseli URL'si";
 "Crash" = "Çökme";
 "Crea tu propia paleta" = "Kendi paletinizi oluşturun";
@@ -538,6 +543,7 @@
 "Drama" = "Dram";
 "Drama Series" = "Dram Dizileri";
 "Drop shadow" = "Gölge";
+"Dropped" = "Yarım bırakıldı";
 "Dual subtitles" = "Çift altyazı";
 "Dutch" = "Felemenkçe";
 "Día anterior" = "Previous day";
@@ -579,6 +585,7 @@
 "En directo" = "Canlı";
 "En reproducción" = "Şimdi oynatılıyor";
 "En reproducción: {label}" = "Şimdi oynatılıyor: {label}";
+"Enable User Ratings" = "Kullanıcı Puanlarını Etkinleştir";
 "Enable addon" = "Enable addon";
 "Enabled" = "Etkin";
 "End" = "End";
@@ -1041,6 +1048,7 @@
 "No catalogs yet" = "Henüz katalog yok";
 "No correction" = "Düzeltme yok";
 "No correction (default)" = "Düzeltme yok (varsayılan)";
+"No date" = "Tarih yok";
 "No default profile" = "Varsayılan profil yok";
 "No description available." = "Açıklama yok.";
 "No episodes found for this season." = "Bu sezon için bölüm bulunamadı.";
@@ -1051,9 +1059,11 @@
 "No hay idiomas preferidos seleccionados." = "Tercih edilen dil seçilmedi.";
 "No hay subtítulos que coincidan con tu búsqueda." = "No subtitles match your search.";
 "No installed addon matches that." = "Yüklü eklentiler arasında bununla eşleşen yok.";
+"No items found in this section." = "Bu bölümde öğe bulunamadı.";
 "No language matches that search." = "Bu aramayla eşleşen dil yok.";
 "No longer listed by its repository." = "Artık deposunda listelenmiyor.";
 "No manga found" = "Manga bulunamadı";
+"No matches for these filters." = "Bu filtrelerle eşleşen sonuç yok.";
 "No matches." = "Eşleşme yok.";
 "No picks loaded. TMDB might be unreachable." = "Hiçbir öneri yüklenmedi. TMDB'ye ulaşılamıyor olabilir.";
 "No preferred languages selected." = "Tercih edilen dil seçilmedi.";
@@ -1116,6 +1126,7 @@
 "Oculto" = "Gizli";
 "Off" = "Kapalı";
 "On" = "Açık";
+"On Hold" = "Beklemede";
 "On The Air" = "Yayındaki Diziler";
 "On Tonight" = "Bu Akşam Yayında";
 "On start" = "On start";
@@ -1200,6 +1211,7 @@
 "Picture adjustments" = "Görüntü ayarları";
 "Picture in Picture" = "Resim İçinde Resim";
 "Pill" = "Pill";
+"Plan to Watch" = "İzlenecekler";
 "Play" = "Oynat";
 "Play movie" = "Filmi oynat";
 "Play next" = "Sıradaki olarak çal";
@@ -1290,6 +1302,7 @@
 "Raised" = "Yükseltilmiş";
 "Random avatar" = "Rastgele avatar";
 "Ranked by the {site} community from their public index." = "{site} topluluğu tarafından herkese açık endeksine göre sıralanmıştır.";
+"Rate on SIMKL" = "SIMKL'de puanla";
 "Rating" = "Puan";
 "Re-runs the welcome flow and clears every dismissed tip." = "Karşılama akışını yeniden çalıştırır ve kapattığınız tüm ipuçlarını sıfırlar.";
 "Reaches" = "Eriştiği alan adları";
@@ -1341,6 +1354,7 @@
 "Remove from Suwayomi library" = "Remove from Suwayomi library";
 "Remove from continue watching" = "Remove from continue watching";
 "Remove from favorites" = "Favorilerden kaldır";
+"Remove from list" = "Listeden kaldır";
 "Remove from queue" = "Kuyruktan kaldır";
 "Remove from saved" = "Kaydedilenlerden kaldır";
 "Remove from saved tracks" = "Kaydedilen parçalardan kaldır";
@@ -1463,6 +1477,7 @@
 "Search music" = "Müzik ara";
 "Search settings" = "Ayarlarda ara";
 "Search subtitles again" = "Search subtitles again";
+"Search title…" = "Başlık ara…";
 "Season" = "Sezon";
 "Season {n}" = "Sezon {n}";
 "Seasons" = "Sezonlar";
@@ -1549,6 +1564,7 @@
 "Siguiente canción" = "Next song";
 "Silenciar" = "Sesi kapat";
 "Simkl is temporarily limiting requests. Try again later." = "Simkl is temporarily limiting requests. Try again later.";
+"Simkl sign-in expired, reconnect it" = "Simkl oturumunun süresi doldu, yeniden bağlayın";
 "Sin configurar" = "Ayarlanmadı";
 "Sin corrección" = "Düzeltme yok";
 "Sin corrección (predeterminado)" = "Düzeltme yok (varsayılan)";
@@ -1728,8 +1744,10 @@
 "This file has one audio track." = "Bu dosyada tek bir ses parçası var.";
 "This is a manga repository. Add it from the Manga page." = "Bu bir manga deposu. Manga sayfasından ekleyin.";
 "This is how your subtitles will look." = "Altyazılarınız böyle görünecek.";
+"This month" = "Bu ay";
 "This section depends on the addon" = "This section depends on the addon";
 "This section relies on TMDB discovery features." = "This section relies on TMDB discovery features.";
+"This week" = "Bu hafta";
 "Thriller" = "Gerilim";
 "Thrillers" = "Gerilim Filmleri";
 "Thumbnails download again when needed. Books, downloads, accounts and watch progress are kept." = "Thumbnails download again when needed. Books, downloads, accounts and watch progress are kept.";
@@ -1873,6 +1891,7 @@
 "Waiting for you to authorize on simkl.com…" = "simkl.com'da yetkilendirmeniz bekleniyor…";
 "War" = "Savaş";
 "Watched" = "İzlendi";
+"Watching" = "İzleniyor";
 "Welcome to Harbor" = "Harbor'a hoş geldiniz";
 "Western" = "Vahşi Batı";
 "What everyone is reading" = "Herkesin okudukları";
@@ -1911,6 +1930,7 @@
 "Your lists" = "Your lists";
 "Your navigation is saved locally. Cloud sync will retry." = "Your navigation is saved locally. Cloud sync will retry.";
 "Your profile" = "Profiliniz";
+"Your rating" = "Puanınız";
 "Your services are saved locally. Cloud sync will retry." = "Hizmetleriniz bu cihazda kaydedildi. Bulut eşitlemesi yeniden denenecek.";
 "Yours" = "Size ait";
 "Zoom" = "Yakınlaştırma";

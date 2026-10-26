@@ -19,6 +19,7 @@
 "4:3" = "4:3";
 "A client for the Stremio protocol. Two minutes to set up; most of it optional. You stay in control of every key." = "Ứng dụng khách cho giao thức Stremio. Chỉ mất hai phút để thiết lập; hầu hết đều không bắt buộc. Bạn luôn toàn quyền kiểm soát mọi khóa.";
 "A continuación" = "Tiếp theo";
+"A to Z" = "A đến Z";
 "AMC+" = "AMC+";
 "API key" = "Khóa API";
 "Abajo a la derecha" = "Dưới cùng bên phải";
@@ -60,6 +61,7 @@
 "Add language" = "Thêm ngôn ngữ";
 "Add local folder" = "Add local folder";
 "Add source" = "Thêm nguồn";
+"Add to Simkl" = "Thêm vào Simkl";
 "Add to Suwayomi library" = "Add to Suwayomi library";
 "Add to favorites" = "Thêm vào mục yêu thích";
 "Add your TMDB key in Settings to load these catalogs." = "Thêm khóa TMDB trong Cài đặt để tải các danh mục này.";
@@ -271,6 +273,7 @@
 "Buscar en la configuración" = "Tìm kiếm cài đặt";
 "Buscar idiomas" = "Tìm ngôn ngữ";
 "Buscar subtítulos de nuevo" = "Search subtitles again";
+"By year" = "Theo năm";
 "Búfer" = "Buffer";
 "Búsquedas recientes" = "Tìm kiếm gần đây";
 "Cache" = "Bộ nhớ đệm";
@@ -376,6 +379,7 @@
 "Compartir" = "Chia sẻ";
 "Compartir archivo" = "Share file";
 "Compatibility" = "Compatibility";
+"Completed" = "Đã hoàn thành";
 "Con serifas" = "Có chân";
 "Concentración" = "Focus";
 "Conectando" = "Đang kết nối";
@@ -438,6 +442,7 @@
 "Could not save your choices. Try again." = "Could not save your choices. Try again.";
 "Could not save your tracks or listening history. Try again." = "Could not save your tracks or listening history. Try again.";
 "Couldn't auto-sync" = "Không thể tự động đồng bộ";
+"Couldn't reach Simkl" = "Không thể kết nối với Simkl";
 "Cover Image URL" = "URL ảnh bìa";
 "Crash" = "Sự cố";
 "Crea tu propia paleta" = "Tạo bảng màu riêng";
@@ -538,6 +543,7 @@
 "Drama" = "Chính kịch";
 "Drama Series" = "Phim bộ chính kịch";
 "Drop shadow" = "Bóng đổ";
+"Dropped" = "Đã ngừng";
 "Dual subtitles" = "Phụ đề kép";
 "Dutch" = "Tiếng Hà Lan";
 "Día anterior" = "Previous day";
@@ -579,6 +585,7 @@
 "En directo" = "Trực tiếp";
 "En reproducción" = "Đang phát";
 "En reproducción: {label}" = "Đang phát: {label}";
+"Enable User Ratings" = "Bật điểm đánh giá của người dùng";
 "Enable addon" = "Enable addon";
 "Enabled" = "Đã bật";
 "End" = "Kết thúc";
@@ -1041,6 +1048,7 @@
 "No catalogs yet" = "Chưa có danh mục";
 "No correction" = "Không hiệu chỉnh";
 "No correction (default)" = "Không hiệu chỉnh (mặc định)";
+"No date" = "Không có ngày";
 "No default profile" = "Không có hồ sơ mặc định";
 "No description available." = "Không có mô tả.";
 "No episodes found for this season." = "Không tìm thấy tập nào cho mùa này.";
@@ -1051,9 +1059,11 @@
 "No hay idiomas preferidos seleccionados." = "Chưa chọn ngôn ngữ ưu tiên.";
 "No hay subtítulos que coincidan con tu búsqueda." = "No subtitles match your search.";
 "No installed addon matches that." = "Không có tiện ích bổ sung đã cài đặt nào khớp.";
+"No items found in this section." = "Không tìm thấy mục nào trong phần này.";
 "No language matches that search." = "Không có ngôn ngữ nào khớp với nội dung tìm kiếm.";
 "No longer listed by its repository." = "Kho lưu trữ không còn liệt kê plugin này.";
 "No manga found" = "Không tìm thấy manga";
+"No matches for these filters." = "Không có kết quả phù hợp với các bộ lọc này.";
 "No matches." = "Không có kết quả.";
 "No picks loaded. TMDB might be unreachable." = "Chưa tải được đề xuất. Có thể không kết nối được với TMDB.";
 "No preferred languages selected." = "Chưa chọn ngôn ngữ ưu tiên.";
@@ -1116,6 +1126,7 @@
 "Oculto" = "Đã ẩn";
 "Off" = "Tắt";
 "On" = "Bật";
+"On Hold" = "Tạm hoãn";
 "On The Air" = "Đang phát sóng";
 "On Tonight" = "Chiếu tối nay";
 "On start" = "On start";
@@ -1200,6 +1211,7 @@
 "Picture adjustments" = "Điều chỉnh hình ảnh";
 "Picture in Picture" = "Hình trong hình";
 "Pill" = "Pill";
+"Plan to Watch" = "Dự định xem";
 "Play" = "Phát";
 "Play movie" = "Phát phim";
 "Play next" = "Phát tiếp theo";
@@ -1290,6 +1302,7 @@
 "Raised" = "Nổi";
 "Random avatar" = "Ảnh đại diện ngẫu nhiên";
 "Ranked by the {site} community from their public index." = "Do cộng đồng {site} xếp hạng dựa trên bảng xếp hạng công khai của họ.";
+"Rate on SIMKL" = "Đánh giá trên SIMKL";
 "Rating" = "Điểm đánh giá";
 "Re-runs the welcome flow and clears every dismissed tip." = "Chạy lại quy trình chào mừng và đặt lại mọi mẹo đã ẩn.";
 "Reaches" = "Truy cập";
@@ -1341,6 +1354,7 @@
 "Remove from Suwayomi library" = "Remove from Suwayomi library";
 "Remove from continue watching" = "Remove from continue watching";
 "Remove from favorites" = "Xóa khỏi mục yêu thích";
+"Remove from list" = "Xóa khỏi danh sách";
 "Remove from queue" = "Xóa khỏi hàng chờ";
 "Remove from saved" = "Xóa khỏi mục đã lưu";
 "Remove from saved tracks" = "Xóa khỏi bài hát đã lưu";
@@ -1463,6 +1477,7 @@
 "Search music" = "Tìm nhạc";
 "Search settings" = "Tìm kiếm cài đặt";
 "Search subtitles again" = "Search subtitles again";
+"Search title…" = "Tìm kiếm tiêu đề…";
 "Season" = "Mùa";
 "Season {n}" = "Mùa {n}";
 "Seasons" = "Các mùa";
@@ -1549,6 +1564,7 @@
 "Siguiente canción" = "Next song";
 "Silenciar" = "Tắt tiếng";
 "Simkl is temporarily limiting requests. Try again later." = "Simkl is temporarily limiting requests. Try again later.";
+"Simkl sign-in expired, reconnect it" = "Phiên đăng nhập Simkl đã hết hạn, hãy kết nối lại";
 "Sin configurar" = "Chưa đặt";
 "Sin corrección" = "Không hiệu chỉnh";
 "Sin corrección (predeterminado)" = "Không hiệu chỉnh (mặc định)";
@@ -1728,8 +1744,10 @@
 "This file has one audio track." = "Tệp này có một rãnh âm thanh.";
 "This is a manga repository. Add it from the Manga page." = "Đây là kho lưu trữ manga. Hãy thêm từ trang Manga.";
 "This is how your subtitles will look." = "Phụ đề của bạn sẽ hiển thị như thế này.";
+"This month" = "Tháng này";
 "This section depends on the addon" = "This section depends on the addon";
 "This section relies on TMDB discovery features." = "This section relies on TMDB discovery features.";
+"This week" = "Tuần này";
 "Thriller" = "Giật gân";
 "Thrillers" = "Phim giật gân";
 "Thumbnails download again when needed. Books, downloads, accounts and watch progress are kept." = "Thumbnails download again when needed. Books, downloads, accounts and watch progress are kept.";
@@ -1873,6 +1891,7 @@
 "Waiting for you to authorize on simkl.com…" = "Đang chờ bạn cấp quyền trên simkl.com…";
 "War" = "Chiến tranh";
 "Watched" = "Đã xem";
+"Watching" = "Đang xem";
 "Welcome to Harbor" = "Chào mừng đến với Harbor";
 "Western" = "Viễn Tây";
 "What everyone is reading" = "Mọi người đang đọc gì";
@@ -1911,6 +1930,7 @@
 "Your lists" = "Your lists";
 "Your navigation is saved locally. Cloud sync will retry." = "Your navigation is saved locally. Cloud sync will retry.";
 "Your profile" = "Hồ sơ của bạn";
+"Your rating" = "Đánh giá của bạn";
 "Your services are saved locally. Cloud sync will retry." = "Các dịch vụ đã được lưu trên thiết bị này. Đồng bộ đám mây sẽ được thử lại.";
 "Yours" = "Của bạn";
 "Zoom" = "Thu phóng";

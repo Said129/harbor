@@ -4,6 +4,9 @@ struct LibraryView: View {
     let app: AppModel
     @State private var query = ""
     @State private var showHidden = false
+    @State private var simklSelected = false
+    @State private var simkl: SimklLibraryModel
+    @MainActor init(app: AppModel) { self.app = app; _simkl = State(initialValue: SimklLibraryModel(app: app)) }
     private var records: [LibraryRecord] { app.library.selectedItems(query: query) }
     private var display: LibraryDisplay { app.library.presentation.display }
     private var groups: [LibraryListing.Group] { LibraryListing.groups(records, display: display) }
@@ -11,7 +14,23 @@ struct LibraryView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
                 HarborPageHeading(title: "Tu colección.", eyebrow: "Mi biblioteca")
-                filters
+                tabs.disabled(!app.library.canChangePresentation)
+                Divider()
+                if !simklSelected || !simkl.isActive { filters }
+                if simklSelected && simkl.isActive { SimklLibraryContent(app: app, model: simkl) }
+                else { localContents }
+            }.padding()
+        }.background(HarborTheme.background).navigationTitle("").toolbar(.hidden, for: .navigationBar)
+            .refreshable { if simklSelected { await simkl.refresh(force: true) } else { await app.library.sync() } }
+            .task(id: app.accountOperationScope) {
+                simkl.cancel(); simkl = SimklLibraryModel(app: app); simklSelected = false; simkl.loadAccount()
+            }
+            .onChange(of: simkl.account.session) { _, session in if session == nil { simklSelected = false; simkl.store.bind(nil) } }
+            .onChange(of: app.library.owner) { _, _ in query = ""; showHidden = false }
+            .sheet(isPresented: $showHidden) { HiddenContinuingView(app: app) }
+    }
+    private var localContents: some View {
+        Group {
                 LibraryPresentationFeedback(library: app.library)
                 if let error = app.library.favorites.error {
                     Text(error).font(.caption).foregroundStyle(.orange)
@@ -40,29 +59,10 @@ struct LibraryView: View {
                 }
                 if records.isEmpty && !app.library.loading { emptyState }
                 else if !records.isEmpty { Text(records.count == 1 ? "1 título" : "\(records.count) títulos").font(.caption).foregroundStyle(.secondary) }
-            }.padding()
-        }.background(HarborTheme.background).navigationTitle("").toolbar(.hidden, for: .navigationBar)
-            .refreshable { await app.library.sync() }
-            .onChange(of: app.library.owner) { _, _ in query = ""; showHidden = false }
-            .sheet(isPresented: $showHidden) { HiddenContinuingView(app: app) }
+        }
     }
     private var filters: some View {
         VStack(alignment: .leading, spacing: 12) {
-            ScrollView(.horizontal) {
-                HStack(spacing: 18) {
-                    ForEach(LibraryFilter.allCases) { filter in
-                        if filter == .favorites { localTab }
-                        Button { app.library.changeDisplay { $0.filter = filter } } label: {
-                            HStack(spacing: 7) {
-                                Image(filter == .favorites ? "desktop-star" : filter == .watched ? "desktop-clock" : filter == .continuing ? "ui-play-filled" : filter == .all ? "desktop-library" : "desktop-bookmark").resizable().scaledToFit().frame(width: 16, height: 16)
-                                Text(filter.title).font(HarborTheme.font(13, weight: .semibold))
-                            }.frame(minHeight: 44).contentShape(Rectangle()).foregroundStyle(display.filter == filter ? HarborTheme.ink : HarborTheme.ink.opacity(0.5))
-                                .overlay(alignment: .bottom) { if display.filter == filter { Rectangle().fill(HarborTheme.ink).frame(height: 2) } }
-                        }.buttonStyle(.plain).accessibilityLabel(filter.title).accessibilityIdentifier("library-tab-\(filter.rawValue)").accessibilityAddTraits(display.filter == filter ? [.isSelected] : [])
-                    }
-                }
-            }.scrollIndicators(.hidden).accessibilityIdentifier("library-filter")
-            Divider()
             ScrollView(.horizontal) {
                 HStack(spacing: 5) {
                     ForEach(LibraryKind.allCases) { kind in
@@ -84,6 +84,29 @@ struct LibraryView: View {
                 Button("Títulos ocultos de Continuar viendo (\(app.library.hiddenContinuing.count))") { showHidden = true }.font(.caption)
             }
         }.disabled(!app.library.canChangePresentation)
+    }
+    private var tabs: some View {
+            ScrollView(.horizontal) {
+                HStack(spacing: 18) {
+                    ForEach(LibraryFilter.allCases) { filter in
+                        if filter == .favorites { localTab }
+                        Button { simklSelected = false; app.library.changeDisplay { $0.filter = filter } } label: {
+                            HStack(spacing: 7) {
+                                Image(filter == .favorites ? "desktop-star" : filter == .watched ? "desktop-clock" : filter == .continuing ? "ui-play-filled" : filter == .all ? "desktop-library" : "desktop-bookmark").resizable().scaledToFit().frame(width: 16, height: 16)
+                                Text(filter.title).font(HarborTheme.font(13, weight: .semibold))
+                            }.frame(minHeight: 44).contentShape(Rectangle()).foregroundStyle(!simklSelected && display.filter == filter ? HarborTheme.ink : HarborTheme.ink.opacity(0.5))
+                                .overlay(alignment: .bottom) { if !simklSelected && display.filter == filter { Rectangle().fill(HarborTheme.ink).frame(height: 2) } }
+                        }.buttonStyle(.plain).accessibilityLabel(filter.title).accessibilityIdentifier("library-tab-\(filter.rawValue)").accessibilityAddTraits(!simklSelected && display.filter == filter ? [.isSelected] : [])
+                    }
+                    if simkl.isActive && simkl.account.session != nil {
+                        Button { simklSelected = true } label: {
+                            HStack(spacing: 7) { Image("tracker-simkl").resizable().scaledToFit().frame(width: 16, height: 16); Text("Simkl").font(HarborTheme.font(13, weight: .semibold)) }
+                                .frame(minHeight: 44).contentShape(Rectangle()).foregroundStyle(simklSelected ? HarborTheme.ink : HarborTheme.ink.opacity(0.5))
+                                .overlay(alignment: .bottom) { if simklSelected { Rectangle().fill(HarborTheme.ink).frame(height: 2) } }
+                        }.buttonStyle(.plain).accessibilityIdentifier("library-tab-simkl").accessibilityAddTraits(simklSelected ? [.isSelected] : [])
+                    }
+                }
+            }.scrollIndicators(.hidden).accessibilityIdentifier("library-filter")
     }
     private var localTab: some View {
         NavigationLink { DownloadsView(app: app).toolbar(.visible, for: .navigationBar) } label: {

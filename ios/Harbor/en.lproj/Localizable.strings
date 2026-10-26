@@ -9,6 +9,7 @@
 "2020s Hits" = "2020s Hits";
 "2nd" = "2nd";
 "A continuación" = "Up Next";
+"A to Z" = "A to Z";
 "API key" = "API key";
 "Abajo a la derecha" = "Bottom right";
 "Abajo a la izquierda" = "Bottom left";
@@ -44,6 +45,7 @@
 "Add language" = "Add language";
 "Add local folder" = "Add local folder";
 "Add source" = "Add source";
+"Add to Simkl" = "Add to Simkl";
 "Add to Suwayomi library" = "Add to Suwayomi library";
 "Add to favorites" = "Add to favorites";
 "Add your TMDB key in Settings to load these catalogs." = "Add your TMDB key in Settings to load these catalogs.";
@@ -207,6 +209,7 @@
 "Buscar en la configuración" = "Search settings";
 "Buscar idiomas" = "Search languages";
 "Buscar subtítulos de nuevo" = "Search subtitles again";
+"By year" = "By year";
 "Búfer" = "Buffer";
 "Búsquedas recientes" = "Recent searches";
 "Cache cleared" = "Cache cleared";
@@ -299,6 +302,7 @@
 "Compartir" = "Share";
 "Compartir archivo" = "Share file";
 "Compatibility" = "Compatibility";
+"Completed" = "Completed";
 "Con serifas" = "Serif";
 "Concentración" = "Focus";
 "Conectando" = "Connecting";
@@ -355,6 +359,7 @@
 "Could not save your choices. Try again." = "Could not save your choices. Try again.";
 "Could not save your tracks or listening history. Try again." = "Could not save your tracks or listening history. Try again.";
 "Couldn't auto-sync" = "Couldn't auto-sync";
+"Couldn't reach Simkl" = "Couldn't reach Simkl";
 "Cover Image URL" = "Cover Image URL";
 "Crea tu propia paleta" = "Build your own palette";
 "Create profiles for the people who use Harbor. Each can have its own appearance, settings, and PIN." = "Create profiles for the people who use Harbor. Each can have its own appearance, settings, and PIN.";
@@ -434,6 +439,7 @@
 "Downloads" = "Downloads";
 "Drama Series" = "Drama Series";
 "Drop shadow" = "Drop shadow";
+"Dropped" = "Dropped";
 "Dual subtitles" = "Dual subtitles";
 "Día anterior" = "Previous day";
 "Día siguiente" = "Next day";
@@ -469,6 +475,7 @@
 "En directo" = "Live";
 "En reproducción" = "Now Playing";
 "En reproducción: {label}" = "Now playing: {label}";
+"Enable User Ratings" = "Enable User Ratings";
 "Enable addon" = "Enable addon";
 "Enabled" = "Enabled";
 "End" = "End";
@@ -845,6 +852,7 @@
 "No catalogs yet" = "No catalogs yet";
 "No correction" = "No correction";
 "No correction (default)" = "No correction (default)";
+"No date" = "No date";
 "No default profile" = "No default profile";
 "No description available." = "No description available.";
 "No episodes found for this season." = "No episodes found for this season.";
@@ -855,8 +863,10 @@
 "No hay idiomas preferidos seleccionados." = "No preferred languages selected.";
 "No hay subtítulos que coincidan con tu búsqueda." = "No subtitles match your search.";
 "No installed addon matches that." = "No installed addon matches that.";
+"No items found in this section." = "No items found in this section.";
 "No language matches that search." = "No language matches that search.";
 "No manga found" = "No manga found";
+"No matches for these filters." = "No matches for these filters.";
 "No matches." = "No matches.";
 "No preferred languages selected." = "No preferred languages selected.";
 "No reliable match was found. The original subtitle is kept." = "No reliable match was found. The original subtitle is kept.";
@@ -905,6 +915,7 @@
 "Oculto" = "Hidden";
 "Off" = "Off";
 "On" = "On";
+"On Hold" = "On Hold";
 "On The Air" = "On The Air";
 "On start" = "On start";
 "Opacidad" = "Opacity";
@@ -966,6 +977,7 @@
 "Picture adjustments" = "Picture adjustments";
 "Picture in Picture" = "Picture in Picture";
 "Pill" = "Pill";
+"Plan to Watch" = "Plan to Watch";
 "Play" = "Play";
 "Play next" = "Play next";
 "Play now" = "Play now";
@@ -1040,6 +1052,7 @@
 "Raised" = "Raised";
 "Random avatar" = "Random avatar";
 "Ranked by the {site} community from their public index." = "Ranked by the {site} community from their public index.";
+"Rate on SIMKL" = "Rate on SIMKL";
 "Read more" = "Read more";
 "Read on iPhone and iPad" = "Read on iPhone and iPad";
 "Reader options" = "Reader options";
@@ -1084,6 +1097,7 @@
 "Remove from Suwayomi library" = "Remove from Suwayomi library";
 "Remove from continue watching" = "Remove from continue watching";
 "Remove from favorites" = "Remove from favorites";
+"Remove from list" = "Remove from list";
 "Remove from queue" = "Remove from queue";
 "Remove from saved" = "Remove from saved";
 "Remove from saved tracks" = "Remove from saved tracks";
@@ -1194,6 +1208,7 @@
 "Search results" = "Search results";
 "Search settings" = "Search settings";
 "Search subtitles again" = "Search subtitles again";
+"Search title…" = "Search title…";
 "Season" = "Season";
 "Season {n}" = "Season {n}";
 "Seasons and episodes" = "Seasons and episodes";
@@ -1264,6 +1279,7 @@
 "Siguiente canción" = "Next song";
 "Silenciar" = "Mute";
 "Simkl is temporarily limiting requests. Try again later." = "Simkl is temporarily limiting requests. Try again later.";
+"Simkl sign-in expired, reconnect it" = "Simkl sign-in expired, reconnect it";
 "Sin configurar" = "Not set";
 "Sin corrección" = "No correction";
 "Sin corrección (predeterminado)" = "No correction (default)";
@@ -1406,8 +1422,10 @@
 "Theater Capture" = "Theater Capture";
 "This file has one audio track." = "This file has one audio track.";
 "This is how your subtitles will look." = "This is how your subtitles will look.";
+"This month" = "This month";
 "This section depends on the addon" = "This section depends on the addon";
 "This section relies on TMDB discovery features." = "This section relies on TMDB discovery features.";
+"This week" = "This week";
 "Thrillers" = "Thrillers";
 "Thumbnails download again when needed. Books, downloads, accounts and watch progress are kept." = "Thumbnails download again when needed. Books, downloads, accounts and watch progress are kept.";
 "Tiempo reproducido" = "Playback time";
@@ -1525,6 +1543,7 @@
 "Vídeo" = "Video";
 "Waiting for you to authorize on simkl.com…" = "Waiting for you to authorize on simkl.com…";
 "Watched" = "Watched";
+"Watching" = "Watching";
 "Welcome to Harbor" = "Welcome to Harbor";
 "When a release ships multiple audio tracks, Harbor selects the first match from this list." = "When a release ships multiple audio tracks, Harbor selects the first match from this list.";
 "When an episode ends, automatically start the next one. Off lets the episode finish and stop." = "When an episode ends, automatically start the next one. Off lets the episode finish and stop.";
@@ -1550,6 +1569,7 @@
 "Your lists" = "Your lists";
 "Your navigation is saved locally. Cloud sync will retry." = "Your navigation is saved locally. Cloud sync will retry.";
 "Your profile" = "Your profile";
+"Your rating" = "Your rating";
 "Your services are saved locally. Cloud sync will retry." = "Your services are saved locally. Cloud sync will retry.";
 "Zoom" = "Zoom";
 "code" = "code";

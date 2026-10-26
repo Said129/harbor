@@ -5,9 +5,10 @@ struct SimklSettingsView: View {
     @State private var model: SimklAccountModel
     @State private var connecting = false
     @State private var disconnecting = false
+    @AppStorage("simklEnableUserRatings") private var ratings = true
     @MainActor init(app: AppModel) {
         let owner = app.personalOwner, scope = app.accountOperationScope
-        _model = State(initialValue: SimklAccountModel(store: SimklAccountStore(owner: owner), active: { [weak app] in
+        _model = State(initialValue: SimklAccountModel(store: SimklAccountStore.forOwner(owner), active: { [weak app] in
             app?.personalOwner == owner && app?.accountOperationScope == scope && app?.interfaceProfileScope != "unbound"
         }))
     }
@@ -25,6 +26,7 @@ struct SimklSettingsView: View {
                 }
                 if let session = model.store.session {
                     if let name = session.username { Text(name).font(HarborTheme.font(18, weight: .medium)).accessibilityIdentifier("simkl-account-name") }
+                    Toggle(text("Enable User Ratings"), isOn: $ratings).accessibilityIdentifier("simkl-enable-ratings")
                     Button(role: .destructive) { disconnecting = true } label: { Text(text("Disconnect")).frame(minHeight: 44) }
                         .buttonStyle(HarborAccountButtonStyle()).accessibilityIdentifier("simkl-disconnect")
                 } else {
@@ -44,7 +46,14 @@ struct SimklSettingsView: View {
             .onDisappear { model.cancel() }
             .sheet(isPresented: $connecting) { SimklDeviceAuthorizationView(model: model).presentationDetents([.medium, .large]).presentationDragIndicator(.visible) }
             .confirmationDialog(text("Disconnect"), isPresented: $disconnecting, titleVisibility: .visible) {
-                Button(text("Disconnect"), role: .destructive) { model.disconnect() }
+                Button(text("Disconnect"), role: .destructive) {
+                    model.disconnect()
+                    if model.store.session == nil {
+                        ratings = true
+                        let library = SimklLibraryStore.forOwner(model.store.owner); library.bind(nil)
+                        Task { try? await library.clear() }
+                    }
+                }
                 Button(text("Cancel"), role: .cancel) { }
             }
     }

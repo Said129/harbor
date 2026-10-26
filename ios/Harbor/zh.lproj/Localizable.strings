@@ -19,6 +19,7 @@
 "4:3" = "4:3";
 "A client for the Stremio protocol. Two minutes to set up; most of it optional. You stay in control of every key." = "Stremio 协议客户端。两分钟即可完成设置，其中大部分为可选项。所有密钥均由你掌控。";
 "A continuación" = "接下来播放";
+"A to Z" = "按名称";
 "AMC+" = "AMC+";
 "API key" = "API 密钥";
 "Abajo a la derecha" = "右下角";
@@ -60,6 +61,7 @@
 "Add language" = "添加语言";
 "Add local folder" = "Add local folder";
 "Add source" = "添加来源";
+"Add to Simkl" = "添加到 Simkl";
 "Add to Suwayomi library" = "Add to Suwayomi library";
 "Add to favorites" = "添加到收藏";
 "Add your TMDB key in Settings to load these catalogs." = "请在设置中添加 TMDB 密钥以加载这些目录。";
@@ -271,6 +273,7 @@
 "Buscar en la configuración" = "搜索设置";
 "Buscar idiomas" = "搜索语言";
 "Buscar subtítulos de nuevo" = "Search subtitles again";
+"By year" = "按年份";
 "Búfer" = "Buffer";
 "Búsquedas recientes" = "最近搜索";
 "Cache" = "缓存";
@@ -376,6 +379,7 @@
 "Compartir" = "分享";
 "Compartir archivo" = "Share file";
 "Compatibility" = "Compatibility";
+"Completed" = "已完成";
 "Con serifas" = "衬线体";
 "Concentración" = "Focus";
 "Conectando" = "正在连接";
@@ -438,6 +442,7 @@
 "Could not save your choices. Try again." = "Could not save your choices. Try again.";
 "Could not save your tracks or listening history. Try again." = "Could not save your tracks or listening history. Try again.";
 "Couldn't auto-sync" = "无法自动同步";
+"Couldn't reach Simkl" = "无法连接 Simkl";
 "Cover Image URL" = "封面图片 URL";
 "Crash" = "崩溃";
 "Crea tu propia paleta" = "创建自己的配色方案";
@@ -538,6 +543,7 @@
 "Drama" = "剧情";
 "Drama Series" = "剧情剧集";
 "Drop shadow" = "投影";
+"Dropped" = "已丢弃";
 "Dual subtitles" = "双字幕";
 "Dutch" = "荷兰语";
 "Día anterior" = "Previous day";
@@ -579,6 +585,7 @@
 "En directo" = "直播";
 "En reproducción" = "正在播放";
 "En reproducción: {label}" = "正在播放：{label}";
+"Enable User Ratings" = "启用用户评分";
 "Enable addon" = "Enable addon";
 "Enabled" = "已启用";
 "End" = "结束";
@@ -1041,6 +1048,7 @@
 "No catalogs yet" = "暂无目录";
 "No correction" = "不校正";
 "No correction (default)" = "不校正（默认）";
+"No date" = "无日期";
 "No default profile" = "无默认个人资料";
 "No description available." = "暂无简介。";
 "No episodes found for this season." = "未找到本季剧集。";
@@ -1051,9 +1059,11 @@
 "No hay idiomas preferidos seleccionados." = "未选择首选语言。";
 "No hay subtítulos que coincidan con tu búsqueda." = "No subtitles match your search.";
 "No installed addon matches that." = "没有已安装的插件与其匹配。";
+"No items found in this section." = "此分区中未找到任何项目。";
 "No language matches that search." = "没有与该搜索匹配的语言。";
 "No longer listed by its repository." = "其仓库已不再列出此插件。";
 "No manga found" = "未找到漫画";
+"No matches for these filters." = "没有符合这些筛选条件的结果。";
 "No matches." = "无匹配结果。";
 "No picks loaded. TMDB might be unreachable." = "未加载任何推荐。可能无法连接 TMDB。";
 "No preferred languages selected." = "未选择首选语言。";
@@ -1116,6 +1126,7 @@
 "Oculto" = "已隐藏";
 "Off" = "关闭";
 "On" = "开启";
+"On Hold" = "搁置";
 "On The Air" = "正在播出";
 "On Tonight" = "今晚播出";
 "On start" = "On start";
@@ -1200,6 +1211,7 @@
 "Picture adjustments" = "画面调整";
 "Picture in Picture" = "画中画";
 "Pill" = "Pill";
+"Plan to Watch" = "计划观看";
 "Play" = "播放";
 "Play movie" = "播放电影";
 "Play next" = "下一首播放";
@@ -1290,6 +1302,7 @@
 "Raised" = "凸起";
 "Random avatar" = "随机头像";
 "Ranked by the {site} community from their public index." = "根据{site}社区的公开指数排名。";
+"Rate on SIMKL" = "在 SIMKL 上评分";
 "Rating" = "评分";
 "Re-runs the welcome flow and clears every dismissed tip." = "重新运行欢迎流程，并恢复所有已忽略的提示。";
 "Reaches" = "访问范围";
@@ -1341,6 +1354,7 @@
 "Remove from Suwayomi library" = "Remove from Suwayomi library";
 "Remove from continue watching" = "Remove from continue watching";
 "Remove from favorites" = "从收藏中移除";
+"Remove from list" = "从列表中移除";
 "Remove from queue" = "从播放队列中移除";
 "Remove from saved" = "从已保存内容中移除";
 "Remove from saved tracks" = "从已收藏歌曲中移除";
@@ -1463,6 +1477,7 @@
 "Search music" = "搜索音乐";
 "Search settings" = "搜索设置";
 "Search subtitles again" = "Search subtitles again";
+"Search title…" = "搜索片名…";
 "Season" = "季";
 "Season {n}" = "第 {n} 季";
 "Seasons" = "季";
@@ -1549,6 +1564,7 @@
 "Siguiente canción" = "Next song";
 "Silenciar" = "静音";
 "Simkl is temporarily limiting requests. Try again later." = "Simkl is temporarily limiting requests. Try again later.";
+"Simkl sign-in expired, reconnect it" = "Simkl 登录已过期，请重新连接";
 "Sin configurar" = "未设置";
 "Sin corrección" = "不校正";
 "Sin corrección (predeterminado)" = "不校正（默认）";
@@ -1728,8 +1744,10 @@
 "This file has one audio track." = "此文件只有一条音轨。";
 "This is a manga repository. Add it from the Manga page." = "这是漫画仓库。请在漫画页面添加。";
 "This is how your subtitles will look." = "字幕将显示为这样。";
+"This month" = "本月";
 "This section depends on the addon" = "This section depends on the addon";
 "This section relies on TMDB discovery features." = "This section relies on TMDB discovery features.";
+"This week" = "本周";
 "Thriller" = "惊悚";
 "Thrillers" = "惊悚片";
 "Thumbnails download again when needed. Books, downloads, accounts and watch progress are kept." = "Thumbnails download again when needed. Books, downloads, accounts and watch progress are kept.";
@@ -1873,6 +1891,7 @@
 "Waiting for you to authorize on simkl.com…" = "正在等待你在 simkl.com 上授权…";
 "War" = "战争";
 "Watched" = "已观看";
+"Watching" = "正在观看";
 "Welcome to Harbor" = "欢迎使用 Harbor";
 "Western" = "西部";
 "What everyone is reading" = "大家都在读";
@@ -1911,6 +1930,7 @@
 "Your lists" = "Your lists";
 "Your navigation is saved locally. Cloud sync will retry." = "Your navigation is saved locally. Cloud sync will retry.";
 "Your profile" = "你的个人资料";
+"Your rating" = "你的评分";
 "Your services are saved locally. Cloud sync will retry." = "你的服务已保存在本机。稍后将重试云端同步。";
 "Yours" = "你的";
 "Zoom" = "缩放";

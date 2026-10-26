@@ -21,6 +21,7 @@
 "4:3" = "4:3";
 "A client for the Stremio protocol. Two minutes to set up; most of it optional. You stay in control of every key." = "عميل لبروتوكول Stremio. دقيقتان للإعداد، ومعظمه اختياري. تبقى أنت المتحكّم في كل مفتاح.";
 "A continuación" = "التالي";
+"A to Z" = "أبجديًا";
 "AFC Asian Cup" = "كأس آسيا";
 "AFC Champions League Elite" = "دوري أبطال آسيا للنخبة";
 "AFC Champions League Qualifying" = "تصفيات دوري أبطال آسيا";
@@ -67,6 +68,7 @@
 "Add language" = "إضافة لغة";
 "Add local folder" = "Add local folder";
 "Add source" = "إضافة مصدر";
+"Add to Simkl" = "إضافة إلى Simkl";
 "Add to Suwayomi library" = "Add to Suwayomi library";
 "Add to favorites" = "إضافة إلى المفضّلة";
 "Add your TMDB key in Settings to load these catalogs." = "أضف مفتاح TMDB في الإعدادات لتحميل هذه الكتالوجات.";
@@ -285,6 +287,7 @@
 "Buscar en la configuración" = "ابحث في الإعدادات";
 "Buscar idiomas" = "ابحث في اللغات";
 "Buscar subtítulos de nuevo" = "Search subtitles again";
+"By year" = "حسب السنة";
 "Búfer" = "Buffer";
 "Búsquedas recientes" = "عمليات البحث الأخيرة";
 "CAF Champions League" = "دوري أبطال أفريقيا";
@@ -396,6 +399,7 @@
 "Compartir" = "مشاركة";
 "Compartir archivo" = "Share file";
 "Compatibility" = "Compatibility";
+"Completed" = "اكتمل";
 "Con serifas" = "مذيل";
 "Concentración" = "Focus";
 "Conectando" = "جارٍ الاتصال";
@@ -462,6 +466,7 @@
 "Could not save your choices. Try again." = "Could not save your choices. Try again.";
 "Could not save your tracks or listening history. Try again." = "Could not save your tracks or listening history. Try again.";
 "Couldn't auto-sync" = "تعذرت المزامنة التلقائية";
+"Couldn't reach Simkl" = "تعذّر الوصول إلى Simkl";
 "Cover Image URL" = "رابط الصورة (Cover Image URL)";
 "Crash" = "تعطّل";
 "Crea tu propia paleta" = "أنشئ لوحة ألوانك الخاصة";
@@ -562,6 +567,7 @@
 "Drama" = "دراما";
 "Drama Series" = "مسلسلات درامية";
 "Drop shadow" = "ظل الإسقاط";
+"Dropped" = "مهجور";
 "Dual subtitles" = "ترجمة مزدوجة";
 "Dutch" = "الهولندية";
 "Día anterior" = "Previous day";
@@ -603,6 +609,7 @@
 "En directo" = "مباشر";
 "En reproducción" = "قيد التشغيل الآن";
 "En reproducción: {label}" = "يُعرض الآن: {label}";
+"Enable User Ratings" = "تفعيل تقييمات المستخدمين";
 "Enable addon" = "Enable addon";
 "Enabled" = "مُفعّلة";
 "End" = "النهاية";
@@ -1069,6 +1076,7 @@
 "No catalogs yet" = "لا توجد كتالوجات بعد";
 "No correction" = "بلا تصحيح";
 "No correction (default)" = "بلا تصحيح (الافتراضي)";
+"No date" = "بلا تاريخ";
 "No default profile" = "لا يوجد ملف شخصي افتراضي";
 "No description available." = "لا يوجد وصف متاح.";
 "No episodes found for this season." = "لم يُعثر على حلقات لهذا الموسم.";
@@ -1079,9 +1087,11 @@
 "No hay idiomas preferidos seleccionados." = "لم تُحدّد لغات مفضّلة.";
 "No hay subtítulos que coincidan con tu búsqueda." = "No subtitles match your search.";
 "No installed addon matches that." = "لا توجد إضافة مثبّتة تطابق ذلك.";
+"No items found in this section." = "لم يُعثر على عناصر في هذا القسم.";
 "No language matches that search." = "لا توجد لغة تطابق هذا البحث.";
 "No longer listed by its repository." = "لم يعد مدرجًا في مستودعه.";
 "No manga found" = "لم يُعثر على مانجا";
+"No matches for these filters." = "لا توجد نتائج لهذه المرشّحات.";
 "No matches." = "لا توجد نتائج.";
 "No picks loaded. TMDB might be unreachable." = "لم تُحمّل أي اختيارات. قد يتعذّر الوصول إلى TMDB.";
 "No preferred languages selected." = "لم تُحدّد لغات مفضّلة.";
@@ -1145,6 +1155,7 @@
 "Oculto" = "مخفي";
 "Off" = "إيقاف";
 "On" = "تشغيل";
+"On Hold" = "متوقّف مؤقتًا";
 "On The Air" = "تُعرض حاليًا";
 "On Tonight" = "يعرض الليلة";
 "On start" = "On start";
@@ -1231,6 +1242,7 @@
 "Picture adjustments" = "تعديلات الصورة";
 "Picture in Picture" = "صورة داخل صورة";
 "Pill" = "Pill";
+"Plan to Watch" = "خطة للمشاهدة";
 "Play" = "تشغيل";
 "Play movie" = "تشغيل الفيلم";
 "Play next" = "تشغيل تاليًا";
@@ -1321,6 +1333,7 @@
 "Raised" = "بارز";
 "Random avatar" = "صورة رمزية عشوائية";
 "Ranked by the {site} community from their public index." = "مرتّب حسب مجتمع {site} استنادًا إلى فهرسه العام.";
+"Rate on SIMKL" = "قيّم على SIMKL";
 "Rating" = "التقييم";
 "Re-runs the welcome flow and clears every dismissed tip." = "يعيد تشغيل تدفّق الترحيب ويمسح كل تلميح مرفوض.";
 "Reaches" = "يتصل بـ";
@@ -1373,6 +1386,7 @@
 "Remove from Suwayomi library" = "Remove from Suwayomi library";
 "Remove from continue watching" = "إزالة من متابعة المشاهدة";
 "Remove from favorites" = "إزالة من المفضّلة";
+"Remove from list" = "إزالة من القائمة";
 "Remove from queue" = "إزالة من قائمة الانتظار";
 "Remove from saved" = "إزالة من المحفوظات";
 "Remove from saved tracks" = "إزالة من المقاطع المحفوظة";
@@ -1497,6 +1511,7 @@
 "Search music" = "البحث في الموسيقى";
 "Search settings" = "ابحث في الإعدادات";
 "Search subtitles again" = "Search subtitles again";
+"Search title…" = "ابحث عن عنوان…";
 "Season" = "الموسم";
 "Season {n}" = "موسم {n}";
 "Seasons" = "المواسم";
@@ -1583,6 +1598,7 @@
 "Siguiente canción" = "Next song";
 "Silenciar" = "كتم الصوت";
 "Simkl is temporarily limiting requests. Try again later." = "Simkl is temporarily limiting requests. Try again later.";
+"Simkl sign-in expired, reconnect it" = "انتهت صلاحية تسجيل الدخول إلى Simkl، أعد ربطه";
 "Sin configurar" = "غير محدد";
 "Sin corrección" = "بلا تصحيح";
 "Sin corrección (predeterminado)" = "بلا تصحيح (الافتراضي)";
@@ -1766,8 +1782,10 @@
 "This is a Stremio addon manifest. Add it from the Addons page instead." = "هذا ملف تعريف إضافة Stremio. أضفها من صفحة الإضافات بدلاً من ذلك.";
 "This is a manga repository. Add it from the Manga page." = "هذا مستودع مانغا. أضفه من صفحة المانغا.";
 "This is how your subtitles will look." = "هكذا ستبدو الترجمة.";
+"This month" = "هذا الشهر";
 "This section depends on the addon" = "This section depends on the addon";
 "This section relies on TMDB discovery features." = "This section relies on TMDB discovery features.";
+"This week" = "هذا الأسبوع";
 "Thriller" = "إثارة";
 "Thrillers" = "أعمال التشويق";
 "Thumbnails download again when needed. Books, downloads, accounts and watch progress are kept." = "Thumbnails download again when needed. Books, downloads, accounts and watch progress are kept.";
@@ -1911,6 +1929,7 @@
 "Waiting for you to authorize on simkl.com…" = "في انتظار تفويضك على simkl.com…";
 "War" = "حرب";
 "Watched" = "تمت المشاهدة";
+"Watching" = "قيد المشاهدة";
 "Welcome to Harbor" = "مرحبًا بك في Harbor";
 "Western" = "غربي";
 "What everyone is reading" = "ما يقرؤه الجميع";
@@ -1953,6 +1972,7 @@
 "Your lists" = "Your lists";
 "Your navigation is saved locally. Cloud sync will retry." = "Your navigation is saved locally. Cloud sync will retry.";
 "Your profile" = "ملفك الشخصي";
+"Your rating" = "تقييمك";
 "Your services are saved locally. Cloud sync will retry." = "تم حفظ خدماتك على هذا الجهاز. ستتم إعادة محاولة المزامنة.";
 "Yours" = "ما يخصّك";
 "Zoom" = "تكبير";

@@ -19,6 +19,7 @@
 "4:3" = "4:3";
 "A client for the Stremio protocol. Two minutes to set up; most of it optional. You stay in control of every key." = "Stremioプロトコル対応クライアント。設定は2分ほどで、ほとんどの項目は任意です。すべてのキーをご自身で管理できます。";
 "A continuación" = "次のエピソード";
+"A to Z" = "名前順";
 "AMC+" = "AMC+";
 "API key" = "APIキー";
 "Abajo a la derecha" = "右下";
@@ -60,6 +61,7 @@
 "Add language" = "言語を追加";
 "Add local folder" = "Add local folder";
 "Add source" = "ソースを追加";
+"Add to Simkl" = "Simklに追加";
 "Add to Suwayomi library" = "Add to Suwayomi library";
 "Add to favorites" = "お気に入りに追加";
 "Add your TMDB key in Settings to load these catalogs." = "設定に TMDB キーを追加すると、これらのカタログを読み込めます。";
@@ -271,6 +273,7 @@
 "Buscar en la configuración" = "設定を検索";
 "Buscar idiomas" = "言語を検索";
 "Buscar subtítulos de nuevo" = "Search subtitles again";
+"By year" = "年別";
 "Búfer" = "Buffer";
 "Búsquedas recientes" = "最近の検索";
 "Cache" = "キャッシュ";
@@ -376,6 +379,7 @@
 "Compartir" = "共有";
 "Compartir archivo" = "Share file";
 "Compatibility" = "Compatibility";
+"Completed" = "完了";
 "Con serifas" = "セリフ体";
 "Concentración" = "Focus";
 "Conectando" = "接続中";
@@ -438,6 +442,7 @@
 "Could not save your choices. Try again." = "Could not save your choices. Try again.";
 "Could not save your tracks or listening history. Try again." = "Could not save your tracks or listening history. Try again.";
 "Couldn't auto-sync" = "自動同期できませんでした";
+"Couldn't reach Simkl" = "Simklに接続できませんでした";
 "Cover Image URL" = "カバー画像URL";
 "Crash" = "クラッシュ";
 "Crea tu propia paleta" = "独自のパレットを作成";
@@ -538,6 +543,7 @@
 "Drama" = "ドラマ";
 "Drama Series" = "ドラマシリーズ";
 "Drop shadow" = "ドロップシャドウ";
+"Dropped" = "中断";
 "Dual subtitles" = "2言語字幕";
 "Dutch" = "オランダ語";
 "Día anterior" = "Previous day";
@@ -579,6 +585,7 @@
 "En directo" = "ライブ";
 "En reproducción" = "再生中";
 "En reproducción: {label}" = "再生中: {label}";
+"Enable User Ratings" = "ユーザー評価を有効化";
 "Enable addon" = "Enable addon";
 "Enabled" = "有効";
 "End" = "終了";
@@ -1041,6 +1048,7 @@
 "No catalogs yet" = "カタログはまだありません";
 "No correction" = "補正なし";
 "No correction (default)" = "補正なし（デフォルト）";
+"No date" = "日付未定";
 "No default profile" = "既定のプロフィールなし";
 "No description available." = "説明はありません。";
 "No episodes found for this season." = "このシーズンのエピソードが見つかりません。";
@@ -1051,9 +1059,11 @@
 "No hay idiomas preferidos seleccionados." = "優先言語が選ばれていません。";
 "No hay subtítulos que coincidan con tu búsqueda." = "No subtitles match your search.";
 "No installed addon matches that." = "一致するインストール済みアドオンはありません。";
+"No items found in this section." = "このセクションには項目がありません。";
 "No language matches that search." = "検索に一致する言語がありません。";
 "No longer listed by its repository." = "リポジトリに掲載されなくなりました。";
 "No manga found" = "マンガが見つかりません";
+"No matches for these filters." = "このフィルターに一致する作品はありません。";
 "No matches." = "一致する項目はありません。";
 "No picks loaded. TMDB might be unreachable." = "おすすめを読み込めませんでした。TMDBに接続できない可能性があります。";
 "No preferred languages selected." = "優先言語が選ばれていません。";
@@ -1116,6 +1126,7 @@
 "Oculto" = "非表示";
 "Off" = "オフ";
 "On" = "オン";
+"On Hold" = "保留中";
 "On The Air" = "放送中";
 "On Tonight" = "今夜放送";
 "On start" = "On start";
@@ -1200,6 +1211,7 @@
 "Picture adjustments" = "画質調整";
 "Picture in Picture" = "ピクチャ・イン・ピクチャ";
 "Pill" = "Pill";
+"Plan to Watch" = "視聴予定";
 "Play" = "再生";
 "Play movie" = "映画を再生";
 "Play next" = "次に再生";
@@ -1290,6 +1302,7 @@
 "Raised" = "浮き出し";
 "Random avatar" = "ランダムなアバター";
 "Ranked by the {site} community from their public index." = "{site}コミュニティの公開インデックスに基づくランキングです。";
+"Rate on SIMKL" = "SIMKLで評価";
 "Rating" = "レーティング";
 "Re-runs the welcome flow and clears every dismissed tip." = "ウェルカムガイドをもう一度開始し、非表示にしたヒントをすべて元に戻します。";
 "Reaches" = "接続先";
@@ -1341,6 +1354,7 @@
 "Remove from Suwayomi library" = "Remove from Suwayomi library";
 "Remove from continue watching" = "Remove from continue watching";
 "Remove from favorites" = "お気に入りから削除";
+"Remove from list" = "リストから削除";
 "Remove from queue" = "キューから削除";
 "Remove from saved" = "保存済みから削除";
 "Remove from saved tracks" = "保存済みの曲から削除";
@@ -1463,6 +1477,7 @@
 "Search music" = "音楽を検索";
 "Search settings" = "設定を検索";
 "Search subtitles again" = "Search subtitles again";
+"Search title…" = "タイトルを検索…";
 "Season" = "シーズン";
 "Season {n}" = "シーズン{n}";
 "Seasons" = "シーズン";
@@ -1549,6 +1564,7 @@
 "Siguiente canción" = "Next song";
 "Silenciar" = "ミュート";
 "Simkl is temporarily limiting requests. Try again later." = "Simkl is temporarily limiting requests. Try again later.";
+"Simkl sign-in expired, reconnect it" = "Simklへのサインインの有効期限が切れました。再接続してください";
 "Sin configurar" = "未設定";
 "Sin corrección" = "補正なし";
 "Sin corrección (predeterminado)" = "補正なし（デフォルト）";
@@ -1728,8 +1744,10 @@
 "This file has one audio track." = "このファイルには音声トラックが1つあります。";
 "This is a manga repository. Add it from the Manga page." = "これはマンガのリポジトリです。マンガページから追加してください。";
 "This is how your subtitles will look." = "字幕はこのように表示されます。";
+"This month" = "今月";
 "This section depends on the addon" = "This section depends on the addon";
 "This section relies on TMDB discovery features." = "This section relies on TMDB discovery features.";
+"This week" = "今週";
 "Thriller" = "スリラー";
 "Thrillers" = "スリラー";
 "Thumbnails download again when needed. Books, downloads, accounts and watch progress are kept." = "Thumbnails download again when needed. Books, downloads, accounts and watch progress are kept.";
@@ -1873,6 +1891,7 @@
 "Waiting for you to authorize on simkl.com…" = "simkl.comでの認証を待っています…";
 "War" = "戦争";
 "Watched" = "視聴済み";
+"Watching" = "視聴中";
 "Welcome to Harbor" = "Harborへようこそ";
 "Western" = "西部劇";
 "What everyone is reading" = "みんなが読んでいる作品";
@@ -1911,6 +1930,7 @@
 "Your lists" = "Your lists";
 "Your navigation is saved locally. Cloud sync will retry." = "Your navigation is saved locally. Cloud sync will retry.";
 "Your profile" = "あなたのプロフィール";
+"Your rating" = "あなたの評価";
 "Your services are saved locally. Cloud sync will retry." = "サービスはこのデバイスに保存されています。クラウド同期を再試行します。";
 "Yours" = "あなたのもの";
 "Zoom" = "ズーム";

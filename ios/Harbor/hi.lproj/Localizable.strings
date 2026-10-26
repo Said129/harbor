@@ -19,6 +19,7 @@
 "4:3" = "4:3";
 "A client for the Stremio protocol. Two minutes to set up; most of it optional. You stay in control of every key." = "Stremio प्रोटोकॉल के लिए एक क्लाइंट। सेटअप में दो मिनट लगते हैं; ज़्यादातर चीज़ें वैकल्पिक हैं। हर कुंजी का नियंत्रण आपके पास रहता है।";
 "A continuación" = "इसके बाद";
+"A to Z" = "A से Z";
 "AMC+" = "AMC+";
 "API key" = "API कुंजी";
 "Abajo a la derecha" = "नीचे दाएँ";
@@ -60,6 +61,7 @@
 "Add language" = "भाषा जोड़ें";
 "Add local folder" = "Add local folder";
 "Add source" = "स्रोत जोड़ें";
+"Add to Simkl" = "Simkl में जोड़ें";
 "Add to Suwayomi library" = "Add to Suwayomi library";
 "Add to favorites" = "पसंदीदा में जोड़ें";
 "Add your TMDB key in Settings to load these catalogs." = "इन कैटलॉग को लोड करने के लिए सेटिंग्स में अपनी TMDB कुंजी जोड़ें।";
@@ -271,6 +273,7 @@
 "Buscar en la configuración" = "सेटिंग्स खोजें";
 "Buscar idiomas" = "भाषाएँ खोजें";
 "Buscar subtítulos de nuevo" = "Search subtitles again";
+"By year" = "वर्ष के अनुसार";
 "Búfer" = "Buffer";
 "Búsquedas recientes" = "हाल की खोजें";
 "Cache" = "कैश";
@@ -376,6 +379,7 @@
 "Compartir" = "साझा करें";
 "Compartir archivo" = "Share file";
 "Compatibility" = "Compatibility";
+"Completed" = "पूरा हुआ";
 "Con serifas" = "सेरिफ़";
 "Concentración" = "Focus";
 "Conectando" = "कनेक्ट हो रहा है";
@@ -438,6 +442,7 @@
 "Could not save your choices. Try again." = "Could not save your choices. Try again.";
 "Could not save your tracks or listening history. Try again." = "Could not save your tracks or listening history. Try again.";
 "Couldn't auto-sync" = "अपने-आप सिंक नहीं हो सका";
+"Couldn't reach Simkl" = "Simkl से संपर्क नहीं हो सका";
 "Cover Image URL" = "कवर इमेज URL";
 "Crash" = "क्रैश";
 "Crea tu propia paleta" = "अपना पैलेट बनाएँ";
@@ -538,6 +543,7 @@
 "Drama" = "ड्रामा";
 "Drama Series" = "ड्रामा सीरीज़";
 "Drop shadow" = "ड्रॉप शैडो";
+"Dropped" = "ड्रॉप हुए";
 "Dual subtitles" = "दोहरे सबटाइटल";
 "Dutch" = "डच";
 "Día anterior" = "Previous day";
@@ -579,6 +585,7 @@
 "En directo" = "लाइव";
 "En reproducción" = "अभी चल रहा है";
 "En reproducción: {label}" = "अभी चल रहा है: {label}";
+"Enable User Ratings" = "यूज़र रेटिंग सक्षम करें";
 "Enable addon" = "Enable addon";
 "Enabled" = "सक्षम";
 "End" = "समाप्ति";
@@ -1041,6 +1048,7 @@
 "No catalogs yet" = "अभी तक कोई कैटलॉग नहीं है";
 "No correction" = "कोई सुधार नहीं";
 "No correction (default)" = "कोई सुधार नहीं (डिफ़ॉल्ट)";
+"No date" = "कोई तारीख नहीं";
 "No default profile" = "कोई डिफ़ॉल्ट प्रोफ़ाइल नहीं";
 "No description available." = "कोई विवरण उपलब्ध नहीं है।";
 "No episodes found for this season." = "इस सीज़न के लिए कोई एपिसोड नहीं मिला।";
@@ -1051,9 +1059,11 @@
 "No hay idiomas preferidos seleccionados." = "कोई पसंदीदा भाषा नहीं चुनी गई।";
 "No hay subtítulos que coincidan con tu búsqueda." = "No subtitles match your search.";
 "No installed addon matches that." = "कोई इंस्टॉल किया गया ऐडऑन उससे मेल नहीं खाता।";
+"No items found in this section." = "इस सेक्शन में कोई आइटम नहीं मिला।";
 "No language matches that search." = "उस खोज से मेल खाने वाली कोई भाषा नहीं मिली।";
 "No longer listed by its repository." = "अब इसकी रिपॉज़िटरी में सूचीबद्ध नहीं है।";
 "No manga found" = "कोई मंगा नहीं मिला";
+"No matches for these filters." = "इन फ़िल्टर से कोई मेल नहीं।";
 "No matches." = "कोई मेल नहीं।";
 "No picks loaded. TMDB might be unreachable." = "कोई सुझाव लोड नहीं हुआ। हो सकता है TMDB उपलब्ध न हो।";
 "No preferred languages selected." = "कोई पसंदीदा भाषा नहीं चुनी गई।";
@@ -1116,6 +1126,7 @@
 "Oculto" = "छिपा हुआ";
 "Off" = "बंद";
 "On" = "चालू";
+"On Hold" = "होल्ड पर";
 "On The Air" = "प्रसारण जारी है";
 "On Tonight" = "आज रात प्रसारण में";
 "On start" = "On start";
@@ -1200,6 +1211,7 @@
 "Picture adjustments" = "चित्र समायोजन";
 "Picture in Picture" = "पिक्चर इन पिक्चर";
 "Pill" = "Pill";
+"Plan to Watch" = "देखने की योजना";
 "Play" = "चलाएँ";
 "Play movie" = "फ़िल्म चलाएँ";
 "Play next" = "अगला चलाएँ";
@@ -1290,6 +1302,7 @@
 "Raised" = "ऊँचा";
 "Random avatar" = "रैंडम अवतार";
 "Ranked by the {site} community from their public index." = "{site} समुदाय के सार्वजनिक इंडेक्स के आधार पर रैंक किया गया।";
+"Rate on SIMKL" = "SIMKL पर रेट करें";
 "Rating" = "रेटिंग";
 "Re-runs the welcome flow and clears every dismissed tip." = "स्वागत प्रक्रिया फिर से चलाता है और खारिज की गई हर टिप मिटा देता है।";
 "Reaches" = "संपर्क करता है";
@@ -1341,6 +1354,7 @@
 "Remove from Suwayomi library" = "Remove from Suwayomi library";
 "Remove from continue watching" = "Remove from continue watching";
 "Remove from favorites" = "पसंदीदा से हटाएँ";
+"Remove from list" = "सूची से हटाएँ";
 "Remove from queue" = "क्यू से हटाएँ";
 "Remove from saved" = "सेव किए गए आइटमों से हटाएँ";
 "Remove from saved tracks" = "सहेजे गए ट्रैक से हटाएँ";
@@ -1463,6 +1477,7 @@
 "Search music" = "संगीत खोजें";
 "Search settings" = "सेटिंग्स खोजें";
 "Search subtitles again" = "Search subtitles again";
+"Search title…" = "शीर्षक खोजें…";
 "Season" = "सीज़न";
 "Season {n}" = "सीज़न {n}";
 "Seasons" = "सीज़न";
@@ -1549,6 +1564,7 @@
 "Siguiente canción" = "Next song";
 "Silenciar" = "म्यूट करें";
 "Simkl is temporarily limiting requests. Try again later." = "Simkl is temporarily limiting requests. Try again later.";
+"Simkl sign-in expired, reconnect it" = "Simkl साइन-इन की समय-सीमा खत्म हो गई है, इसे फिर से कनेक्ट करें";
 "Sin configurar" = "सेट नहीं है";
 "Sin corrección" = "कोई सुधार नहीं";
 "Sin corrección (predeterminado)" = "कोई सुधार नहीं (डिफ़ॉल्ट)";
@@ -1728,8 +1744,10 @@
 "This file has one audio track." = "इस फ़ाइल में एक ऑडियो ट्रैक है।";
 "This is a manga repository. Add it from the Manga page." = "यह मांगा रिपॉज़िटरी है। इसे मांगा पेज से जोड़ें।";
 "This is how your subtitles will look." = "आपके सबटाइटल ऐसे दिखेंगे।";
+"This month" = "इस महीने";
 "This section depends on the addon" = "This section depends on the addon";
 "This section relies on TMDB discovery features." = "This section relies on TMDB discovery features.";
+"This week" = "इस हफ़्ते";
 "Thriller" = "थ्रिलर";
 "Thrillers" = "थ्रिलर";
 "Thumbnails download again when needed. Books, downloads, accounts and watch progress are kept." = "Thumbnails download again when needed. Books, downloads, accounts and watch progress are kept.";
@@ -1873,6 +1891,7 @@
 "Waiting for you to authorize on simkl.com…" = "simkl.com पर आपके अनुमति देने की प्रतीक्षा हो रही है…";
 "War" = "युद्ध";
 "Watched" = "देख लिया";
+"Watching" = "देख रहे हैं";
 "Welcome to Harbor" = "Harbor में आपका स्वागत है";
 "Western" = "वेस्टर्न";
 "What everyone is reading" = "हर कोई क्या पढ़ रहा है";
@@ -1911,6 +1930,7 @@
 "Your lists" = "Your lists";
 "Your navigation is saved locally. Cloud sync will retry." = "Your navigation is saved locally. Cloud sync will retry.";
 "Your profile" = "आपकी प्रोफ़ाइल";
+"Your rating" = "आपकी रेटिंग";
 "Your services are saved locally. Cloud sync will retry." = "आपकी सेवाएँ इस डिवाइस पर सहेजी गई हैं। क्लाउड सिंक फिर से किया जाएगा।";
 "Yours" = "आपका";
 "Zoom" = "ज़ूम";

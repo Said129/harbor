@@ -2,8 +2,8 @@ import Foundation
 import CryptoKit
 
 enum SimklEndpoint: Sendable {
-    case pin, poll(String), anime(Int), settings
-    var method: String { if case .settings = self { return "POST" }; return "GET" }
+    case pin, poll(String), anime(Int), detail(SimklMediaKind, Int), settings, library(SimklLibraryEndpoint)
+    var method: String { switch self { case .settings: "POST"; case .library(let endpoint): endpoint.method; default: "GET" } }
     func request(token: String? = nil) throws -> URLRequest {
         var request = try HTTPClient.simklArtworkRequest(1)
         var url = URLComponents(url: request.url!, resolvingAgainstBaseURL: false)!
@@ -14,10 +14,20 @@ enum SimklEndpoint: Sendable {
             url.path = "/oauth/pin/" + code
         case .anime(let id):
             guard id > 0 else { throw HarborError(code: "anime-id") }; url.path = "/anime/\(id)"
+        case .detail(let kind, let id):
+            guard id > 0 else { throw HarborError(code: "simkl-id") }
+            url.path = "/\(kind == .movie ? "movies" : kind == .show ? "tv" : "anime")/\(id)"
         case .settings:
             guard let token, Self.validToken(token) else { throw HarborError(code: "simkl-not-connected") }
             url.path = "/users/settings"; request.setValue("Bearer " + token, forHTTPHeaderField: "Authorization")
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        case .library(let endpoint):
+            guard let token, Self.validToken(token) else { throw HarborError(code: "simkl-not-connected") }
+            url.path = endpoint.path; url.queryItems = (url.queryItems ?? []) + endpoint.query
+            request.setValue("Bearer " + token, forHTTPHeaderField: "Authorization")
+            if let body = try endpoint.body() {
+                request.httpBody = try JSONEncoder().encode(body); request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            }
         }
         request.url = url.url; request.httpMethod = method
         return request
