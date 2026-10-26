@@ -46,6 +46,7 @@ plan = dict(source=os.environ.get('GITHUB_SHA', 'working-tree'), block=block, se
     unexecuted_native_cases=13, new_simkl_native_cases=9, affected_native_cases=[affected],
     failed_source_ui_cases_retried=2, unexecuted_appearance_ui_cases=2, new_simkl_ui_cases=2,
     owned_local_source_ui_server=True, parent_compiler_run=40362055020, parent_interface_run=40352341225,
+    parent_unexecuted_suite_run=40404254632, parent_app_compiled=True,
     parent_results_not_assumed=True, behavior_reference='ios/HarborTests/Fixtures/poster-behavior-reference.json',
     simkl_reference='ios/HarborTests/Fixtures/simkl-retry-reference.json',
     actual_native_focus_and_decoded_pixels_required=True, public_simkl_device_code_only=True,

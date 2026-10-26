@@ -8,7 +8,7 @@ private actor OwnedSimklFetch {
     func get(_ id: Int) async throws -> JSONValue {
         calls.append((id, Date())); try await Task.sleep(for: .milliseconds(15))
         if let failure { throw HarborError(code: failure) }
-        return .object(["ids": .object(["simkl": .integer(id)])])
+        return .object(["ids": .object(["simkl": .integer(Int64(id))])])
     }
 }
 
