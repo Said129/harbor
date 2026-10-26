@@ -16,19 +16,20 @@ struct CustomSourceRowView: View {
             ScrollView(.horizontal) {
                 LazyHStack(alignment: .top, spacing: 16) {
                     ForEach(Array(row.folders.enumerated()), id: \.offset) { index, folder in
-                        folderAction(folder, index: index).buttonStyle(CustomSourcePressStyle())
-                            .focused($focusedFolder, equals: index)
-                            .frame(width: tileWidth)
-                            .accessibilityLabel(folder.title).accessibilityIdentifier("source-folder-\(row.id)-\(index)")
-                            .overlay(alignment: .topTrailing) {
-                                if customization.editing {
-                                    Button { edit = folder } label: {
-                                        Image("ui-pencil-outline").resizable().scaledToFit().frame(width: 16, height: 16)
-                                            .frame(width: 36, height: 36).background(.black.opacity(0.65), in: .circle).frame(minWidth: 44, minHeight: 44)
-                                    }.buttonStyle(.plain).padding(6).accessibilityLabel(DesktopInterfaceText.value("Edit Folder Images"))
-                                        .accessibilityIdentifier("source-images-\(row.id)-\(index)")
-                                }
+                        ZStack(alignment: .topTrailing) {
+                            folderAction(folder, index: index).buttonStyle(CustomSourcePressStyle())
+                                .focused($focusedFolder, equals: index)
+                                .frame(width: tileWidth)
+                                .accessibilityLabel(folder.title).accessibilityIdentifier("source-folder-\(row.id)-\(index)")
+                            if customization.editing {
+                                Button { edit = folder } label: {
+                                    Image("ui-pencil-outline").resizable().scaledToFit().frame(width: 16, height: 16)
+                                        .frame(width: 36, height: 36).background(.black.opacity(0.65), in: .circle)
+                                        .frame(width: 44, height: 44).contentShape(Rectangle())
+                                }.buttonStyle(.plain).padding(6).accessibilityLabel(DesktopInterfaceText.value("Edit Folder Images"))
+                                    .accessibilityIdentifier("source-images-\(row.id)-\(index)")
                             }
+                        }.frame(width: tileWidth)
                     }
                 }.padding(.horizontal).frame(height: tileHeight)
             }.scrollIndicators(.hidden).accessibilityIdentifier("source-folders-\(row.id)")

@@ -37,14 +37,29 @@ struct HarborLanguagesPicker: View {
                 Text(DesktopInterfaceText.value("No preferred languages selected."))
                     .font(HarborTheme.font(15)).foregroundStyle(.secondary)
             }
-            if expanded {
-                searchGrid
+            if expanded && !includesOriginal {
+                searchGrid(fillsAvailableSpace: false)
             }
         }.frame(maxWidth: .infinity, alignment: .leading)
             .accessibilityElement(children: .contain)
             .accessibilityLabel(DesktopInterfaceText.value("Language preference order"))
             .accessibilityValue(selected.joined(separator: ","))
             .accessibilityIdentifier(identifier)
+            .sheet(isPresented: Binding(get: { includesOriginal && expanded }, set: { expanded = $0; if !$0 { query = ""; searchFocused = false } })) {
+                NavigationStack {
+                    searchGrid(fillsAvailableSpace: true).padding(20)
+                        .background(HarborTheme.background).foregroundStyle(HarborTheme.ink)
+                        .accessibilityElement(children: .contain).accessibilityValue(selected.joined(separator: ","))
+                        .accessibilityIdentifier(identifier + "-chooser")
+                        .navigationTitle(DesktopInterfaceText.value("Image languages")).navigationBarTitleDisplayMode(.inline)
+                        .toolbar {
+                            ToolbarItem(placement: .confirmationAction) {
+                                Button(DesktopInterfaceText.value("Done")) { expanded = false; query = ""; searchFocused = false }
+                                    .frame(minWidth: 44, minHeight: 44).accessibilityIdentifier(identifier + "-done")
+                            }
+                        }
+                }.presentationDetents([.large]).presentationDragIndicator(.visible)
+            }
     }
 
     private func chip(_ code: String, index: Int) -> some View {
@@ -74,7 +89,7 @@ struct HarborLanguagesPicker: View {
             .accessibilityIdentifier(identifier + "-selected-" + code)
     }
 
-    private var searchGrid: some View {
+    private func searchGrid(fillsAvailableSpace: Bool) -> some View {
         VStack(spacing: 0) {
             HStack(spacing: 12) {
                 icon("nav-search", size: 18).foregroundStyle(.secondary)
@@ -107,7 +122,8 @@ struct HarborLanguagesPicker: View {
                     Text(DesktopInterfaceText.value(query.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? "All languages have been added." : "No language matches that search."))
                         .font(HarborTheme.font(15)).foregroundStyle(.secondary).padding(16)
                 }
-            }.frame(height: 240).accessibilityIdentifier(identifier + "-options")
+            }.frame(height: fillsAvailableSpace ? nil : 240).frame(maxHeight: fillsAvailableSpace ? .infinity : nil)
+                .scrollDismissesKeyboard(fillsAvailableSpace ? .interactively : .automatic).accessibilityIdentifier(identifier + "-options")
         }.background(HarborTheme.surface, in: .rect(cornerRadius: 10))
             .clipShape(.rect(cornerRadius: 10))
             .overlay { RoundedRectangle(cornerRadius: 10).stroke(HarborTheme.ink.opacity(0.06), lineWidth: 1) }

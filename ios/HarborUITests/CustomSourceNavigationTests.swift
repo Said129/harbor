@@ -53,8 +53,11 @@ import XCTest
         revealHorizontal(folder, app, folders, left: false)
         show(customize, app, scroll, up: false)
         if !app.buttons["custom-source-add"].exists { ReadingUIInteraction.tapVisible(customize, in: app) }
-        show(app.buttons["source-images-owned-imported-sources-0"], app, scroll)
-        ReadingUIInteraction.tapVisible(app.buttons["source-images-owned-imported-sources-0"], in: app)
+        show(row, app, scroll)
+        let editImages = app.buttons["source-images-owned-imported-sources-0"]
+        revealHorizontal(editImages, app, folders, left: false)
+        show(editImages, app, scroll)
+        ReadingUIInteraction.tapVisible(editImages, in: app)
         let cover = app.textFields["source-cover-url"], focus = app.textFields["source-focus-url"]
         XCTAssertTrue(cover.waitForExistence(timeout: 15))
         capture(app, "source-image-editor-" + device)
@@ -102,7 +105,7 @@ import XCTest
     private func revealHorizontal(_ target: XCUIElement, _ app: XCUIApplication, _ container: XCUIElement, left: Bool = true) {
         for _ in 0..<8 {
             let bounds = container.frame, viewport = bounds.intersection(app.windows.firstMatch.frame)
-            if let frame = ReadingUIInteraction.visibleFrame(target, in: app), viewport.contains(CGPoint(x: frame.midX, y: frame.midY)) { return }
+            if let frame = ReadingUIInteraction.visibleFrame(target, in: app), viewport.contains(frame), target.isHittable { return }
             guard !viewport.isNull, viewport.width > 80, viewport.height > 40 else {
                 ReadingUIInteraction.recordFailureContext(app); XCTFail("The folder row must have a visible viewport before a horizontal gesture"); return
             }

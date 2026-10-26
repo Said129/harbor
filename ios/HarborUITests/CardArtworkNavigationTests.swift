@@ -21,17 +21,20 @@ import XCTest
         show(picker, app); XCTAssertEqual(picker.value as? String, "en,original")
         capture(app, "card-image-languages-" + device)
         ReadingUIInteraction.tapVisible(app.buttons["metadata-image-languages-toggle"], in: app)
-        let search = app.textFields["metadata-image-languages-search"]; show(search, app)
+        let chooser = element("metadata-image-languages-chooser", app)
+        XCTAssertTrue(chooser.waitForExistence(timeout: 10))
+        let search = app.textFields["metadata-image-languages-search"]
+        XCTAssertTrue(search.waitForExistence(timeout: 10))
         ReadingUIInteraction.tapVisible(search, in: app); search.typeText("Spanish")
         let spanish = app.buttons["metadata-image-languages-add-es"]
         ReadingUIInteraction.reveal(spanish, in: app, container: app.scrollViews["metadata-image-languages-options"])
+        capture(app, "card-image-search-" + device)
         ReadingUIInteraction.tapVisible(spanish, in: app)
-        // Selecting a result clears the search; dismiss its keyboard through the native Done action.
-        if app.keyboards.firstMatch.exists {
-            let done = app.keyboards.buttons["Done"]
-            if done.exists { ReadingUIInteraction.tapVisible(done, in: app) } else { search.typeText("\n") }
-        }
-        let toggle = app.buttons["metadata-image-languages-toggle"]; show(toggle, app, up: false); ReadingUIInteraction.tapVisible(toggle, in: app)
+        let added = XCTNSPredicateExpectation(predicate: NSPredicate(format: "value == %@", "en,original,es"), object: chooser)
+        if XCTWaiter.wait(for: [added], timeout: 10) != .completed { ReadingUIInteraction.recordFailureContext(app); XCTFail("Selecting Spanish must update the live image-language preference"); return }
+        ReadingUIInteraction.tapVisible(app.buttons["metadata-image-languages-done"], in: app)
+        show(picker, app); XCTAssertEqual(picker.value as? String, "en,original,es")
+        capture(app, "card-image-added-" + device)
         let earlier = app.buttons["metadata-image-languages-earlier-es"]
         for _ in 0..<2 { show(earlier, app); ReadingUIInteraction.tapVisible(earlier, in: app) }
         XCTAssertEqual(picker.value as? String, "es,en,original")
