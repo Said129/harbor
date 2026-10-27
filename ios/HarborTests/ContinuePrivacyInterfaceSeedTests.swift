@@ -3,10 +3,13 @@ import XCTest
 
 final class ContinuePrivacyInterfaceSeedTests: XCTestCase {
     @MainActor func testPrepareTwoOwnedProfilesSharingAnUnconfiguredGuestSource() throws {
-        guard try KeychainStore().read("account.v1", as: JSONValue.self) == nil else { XCTFail("Refuse configured account"); return }
+        _ = try Self.prepareOwnedSharedGuest()
+    }
+    @MainActor static func prepareOwnedSharedGuest() throws -> (binding: ActiveProfileBinding, other: DeviceHouseholdProfile) {
+        guard try KeychainStore().read("account.v1", as: JSONValue.self) == nil else { XCTFail("Refuse configured account"); throw HarborError(code: "owned-seed-safety") }
         let context = AppProfileContext.shared; try context.prepare()
         guard context.profiles.profiles.count == 1, context.profiles.active?.credential == nil, context.configuration?.account == nil,
-              let binding = context.binding else { XCTFail("Refuse configured household"); return }
+              let binding = context.binding else { XCTFail("Refuse configured household"); throw HarborError(code: "owned-seed-safety") }
         try context.save(HouseholdSourceAccount(account: nil, guestAddons: []))
         let profile = try context.profiles.create(name: "Owned shared profile")
         XCTAssertEqual(profile.shareStremioWith, binding.profileID)
@@ -17,5 +20,6 @@ final class ContinuePrivacyInterfaceSeedTests: XCTestCase {
         defaults.set(true, forKey: "nativeGuide.initialized.v1"); defaults.set(true, forKey: "nativeGuide.completed.v1")
         XCTAssertTrue(ProfileSettingsStore.shared.saveCurrent())
         let account = SimklAccountStore.forOwner(binding.personalOwner); try account.load(); XCTAssertNil(account.session)
+        return (binding, profile)
     }
 }

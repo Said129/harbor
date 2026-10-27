@@ -33,7 +33,7 @@ if plan.get('block') in ('reading-plugins', 'reading-repair', 'ebook-catalog', '
 if plan['selected_case_count']:
     assert (canonical / 'PluginIntegrationModels-tree.json').is_file(), 'The model bundle did not execute; do not repeat its compilation on two UI devices.'
 else:
-    assert plan.get('ui_only') is True and plan['pending_native_cases'] == [] and plan['block'] in ('reader-contents', 'reader-interface-completion', 'reader-heading', 'reading-final-repair', 'reading-final-followup', 'reading-visible', 'reading-visible-repair', 'prepared-app', 'artwork-interface-repair')
+    assert plan.get('ui_only') is True and plan['pending_native_cases'] == [] and plan['block'] in ('reader-contents', 'reader-interface-completion', 'reader-heading', 'reading-final-repair', 'reading-final-followup', 'reading-visible', 'reading-visible-repair', 'prepared-app', 'artwork-interface-repair', 'continue-private-home')
 devices = json.loads((build / 'devices.json').read_text())['devices']
 runtime, phone = next((runtime, row) for runtime, values in devices.items() for row in values if row['udid'] == os.environ['IOS_SIMULATOR'])
 tablet = next(row for row in devices[runtime] if row['name'].startswith('iPad') and row.get('isAvailable', True))

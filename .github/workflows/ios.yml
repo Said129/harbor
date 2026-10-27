@@ -541,7 +541,7 @@ jobs:
             test ${#selection[@]} -eq "$expected"
             native_scheme=$(python3 -c 'import json; p=json.load(open("ios/build/preserved-plugin-integration.json")); s=p.get("native_scheme", "Harbor"); assert s in ("Harbor", "HarborLive"); assert s != "HarborLive" or (p["block"] == "reading-surface" and p["selected_case_count"] == 1 and all(c.startswith("HarborIntegrationTests.EBookMetadataPublicTests/") for c in p["pending_native_cases"])); print(s)')
             if [[ "$expected" == 0 ]]; then
-              python3 -c 'import json; p=json.load(open("ios/build/preserved-plugin-integration.json")); assert p["ui_only"] is True and p["block"] in ("reader-contents", "reader-interface-completion", "reader-heading", "reading-final-repair", "reading-final-followup", "reading-visible", "reading-visible-repair", "prepared-app", "artwork-interface-repair") and p["pending_native_cases"] == []'
+              python3 -c 'import json; p=json.load(open("ios/build/preserved-plugin-integration.json")); assert p["ui_only"] is True and p["block"] in ("reader-contents", "reader-interface-completion", "reader-heading", "reading-final-repair", "reading-final-followup", "reading-visible", "reading-visible-repair", "prepared-app", "artwork-interface-repair", "continue-private-home") and p["pending_native_cases"] == []'
               test_action=build-for-testing
             fi
           elif [[ "${{ inputs.validation_scope }}" == "plugin-manager" ]]; then
