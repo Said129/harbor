@@ -51,6 +51,7 @@ private struct MountedPosterRow: View {
 
 @MainActor final class PosterBehaviorMountTests: XCTestCase {
     func testActualNativeFocusLoadsWidePixelsReservesWidthRevealsTheCardAndCollapsesForPointerWithoutActivatingIt() async throws {
+        XCTAssertEqual(UIDevice.current.userInterfaceIdiom, .pad, "UIKit keyboard navigation is an iPad interaction; the iPhone scene did not provide a focus system")
         let defaults = UserDefaults.standard
         let keys = ["posterFocusedCard", "posterBackdropExpansion", "posterDockMagnification", "posterDockTransitionMs", "rowCardStyle", "posterScale", "posterRadius", "posterEffect", "posterQuality"]
         let old = Dictionary(uniqueKeysWithValues: keys.map { ($0, defaults.object(forKey: $0)) })
@@ -88,6 +89,7 @@ private struct MountedPosterRow: View {
         // Complete pending native focus work as UIKit requires. This does not
         // substitute the binding value for the production environment value.
         host.setNeedsFocusUpdate(); host.updateFocusIfNeeded(); scene.focusSystem?.updateFocusIfNeeded()
+        try await wait("the actual iPad scene provides a native keyboard focus system") { scene.focusSystem != nil }
         try await wait("focused production poster receives the native focus environment") { PosterAttentionState.shared.active != nil }
         try await wait("decoded wide artwork reserves the expanded width") { (state.widths[0] ?? 0) > 300 }
         try await Task.sleep(for: .milliseconds(650))

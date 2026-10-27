@@ -18,6 +18,8 @@ plan = dict(source=os.environ.get('GITHUB_SHA', 'working-tree'), block=block, se
     failed_native_cases_retried=1, parent_partial_run=40441446615, retained_parent_actual_passes=10,
     approved_source_ui_replayed=False, approved_simkl_collections_replayed=False,
     native_focus_environment_injection=False, actual_decoded_wide_pixels_and_layout_required=True,
+    native_device_family='iPad', actual_scene_focus_system_required=True,
+    previous_unsupported_iphone_run=40495850888,
     unrelated_approved_cases_selected=False, existing_rust_tests_repeated=False,
     full_desktop_parity_complete=False, ipa_requested=False)
 build = Path('ios/build'); build.mkdir(parents=True, exist_ok=True)
