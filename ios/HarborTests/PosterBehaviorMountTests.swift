@@ -32,13 +32,13 @@ private struct MountedPosterRow: View {
         ScrollView(.horizontal) {
             HStack(alignment: .top, spacing: 12) {
                 ForEach(Array(media.enumerated()), id: \.offset) { index, item in
-                    VStack(spacing: 0) {
+                    Button { state.activations += 1 } label: {
                         MountedNativePosterFocusProbe(index: index, state: state, media: item)
                     }
-                        .contentShape(Rectangle()).onTapGesture { state.activations += 1 }
+                        .buttonStyle(.plain).contentShape(Rectangle())
                         // isFocused describes the nearest focusable ancestor.
-                        // Focus the control container, leaving the production
-                        // poster inside it just as it is inside a NavigationLink.
+                        // Use an actual action control, as production does with
+                        // NavigationLink, rather than a gesture-only container.
                         .focusable(interactions: .edit).focused($focused, equals: index)
                 }
             }.padding(.horizontal, 16).padding(.vertical, 20)
@@ -67,7 +67,7 @@ private struct MountedPosterRow: View {
             item.poster = base + "/poster.png"; item.background = base + "/wide.png"; return item
         }
         let state = MountedPosterState(), row = PosterRowContext()
-        let scene = try XCTUnwrap(UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }.first)
+        let scene = try XCTUnwrap(UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }.first { $0.activationState == .foregroundActive })
         let previous = scene.windows.first(where: \.isKeyWindow), window = UIWindow(windowScene: scene)
         window.frame = CGRect(x: 0, y: 0, width: 390, height: 700)
         let host = UIHostingController(rootView: MountedPosterRow(state: state, row: row, media: media).preferredColorScheme(.dark))
@@ -84,12 +84,12 @@ private struct MountedPosterRow: View {
         let original = row.frames.values.sorted { $0.minX < $1.minX }
         XCTAssertTrue(original.allSatisfy { abs($0.width - 116) < 1 })
         capture(window, "poster-behavior-native-initial")
+        try await wait("the actual iPad scene provides a native keyboard focus system") { scene.focusSystem != nil }
         state.requestedFocus = 0
         try await wait("actual native row focus binding") { state.observedFocus == 0 }
         // Complete pending native focus work as UIKit requires. This does not
         // substitute the binding value for the production environment value.
         host.setNeedsFocusUpdate(); host.updateFocusIfNeeded(); scene.focusSystem?.updateFocusIfNeeded()
-        try await wait("the actual iPad scene provides a native keyboard focus system") { scene.focusSystem != nil }
         try await wait("focused production poster receives the native focus environment") { PosterAttentionState.shared.active != nil }
         try await wait("decoded wide artwork reserves the expanded width") { (state.widths[0] ?? 0) > 300 }
         try await Task.sleep(for: .milliseconds(650))
@@ -129,7 +129,7 @@ private struct MountedPosterRow: View {
         }
     }
     private func nativeFocusSummary(_ window: UIWindow) -> String {
-        var lines = ["applicationState=\(UIApplication.shared.applicationState.rawValue); scene=\(String(describing: window.windowScene?.activationState)); key=\(window.isKeyWindow); hidden=\(window.isHidden); focusSystem=\(String(describing: window.windowScene?.focusSystem)); focusedItem=\(String(describing: window.windowScene?.focusSystem?.focusedItem))"]
+        var lines = ["applicationState=\(UIApplication.shared.applicationState.rawValue); scene=\(String(describing: window.windowScene?.activationState.rawValue)); key=\(window.isKeyWindow); hidden=\(window.isHidden); focusSystem=\(String(describing: window.windowScene?.focusSystem)); focusedItem=\(String(describing: window.windowScene?.focusSystem?.focusedItem))"]
         func visit(_ view: UIView, depth: Int) {
             guard lines.count < 100 else { return }
             lines.append("depth=\(depth); class=\(String(describing: type(of: view))); canBecomeFocused=\(view.canBecomeFocused); isFocused=\(view.isFocused); frame=\(view.frame); hidden=\(view.isHidden); alpha=\(view.alpha)")

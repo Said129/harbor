@@ -6,6 +6,7 @@ import CryptoKit
 actor ResumeStore {
     private var document = ResumeDocument()
     private var ready = false
+    private var clearedAt: [String: Double] = [:]
     private var fileURL: URL?
     private let owner: String
     private let limit = 8 * 1024 * 1024
@@ -45,11 +46,11 @@ actor ResumeStore {
             for episode in media.videos ?? [] where episode.id == videoID {
                 let previous = ResumeTarget(id: media.id, season: episode.season, episode: episode.episode, videoId: episode.id)
                 let key = try invoke("resumeKey", ["target": try .encoded(previous)], as: Key.self)
-                if let entry = document.entries[key.key], entry.t > (merged.entries[result.key]?.t ?? 0) { merged.entries[result.key] = entry }
+                if let entry = document.entries[key.key], Double(entry.t) > (clearedAt[result.key] ?? -1), entry.t > (merged.entries[result.key]?.t ?? 0) { merged.entries[result.key] = entry }
             }
         }
         if let cloud {
-            if cloud.t >= (merged.entries[result.key]?.t ?? 0) { merged.entries[result.key] = cloud }
+            if Double(cloud.t) > (clearedAt[result.key] ?? -1), cloud.t >= (merged.entries[result.key]?.t ?? 0) { merged.entries[result.key] = cloud }
         }
         return try invoke("resumePosition", ["target": try .encoded(target), "document": try .encoded(merged), "durationMs": .number(durationMs), "playback": .bool(playback), "prompt": .bool(prompt)], as: ResumeStart.self)
     }
@@ -69,6 +70,7 @@ actor ResumeStore {
         guard await current() else { throw CancellationError() }
         struct Key: Decodable { let key: String }
         let result = try invoke("resumeKey", ["target": try .encoded(target)], as: Key.self)
+        guard Double(entry.t) > (clearedAt[result.key] ?? -1) else { return false }
         if let held = document.entries[result.key] {
             let newer = entry.t > 0 && entry.t >= held.t
             guard newer || (held.t == 0 && entry.ms > held.ms) else { return false }
@@ -87,6 +89,7 @@ actor ResumeStore {
         struct Result: Decodable { let checkpoint: Checkpoint? }
         let result: Result = try invoke("resumeCheckpoint", ["target": try .encoded(target), "positionMs": .number(snapshot.positionMs), "durationMs": .number(snapshot.durationMs), "timestampMs": .unsigned(snapshot.timestampMs), "exiting": .bool(snapshot.exiting)], as: Result.self)
         guard let checkpoint = result.checkpoint else { return false }
+        guard Double(checkpoint.entry.t) > (clearedAt[checkpoint.key] ?? -1) else { return false }
         // Late cleanup tasks cannot overwrite a newer checkpoint after reopening.
         if let existing = document.entries[checkpoint.key], existing.t >= checkpoint.entry.t { return false }
         var next = document
@@ -102,6 +105,7 @@ actor ResumeStore {
         struct Key: Decodable { let key: String }
         let result = try invoke("resumeKey", ["target": try .encoded(target)], as: Key.self)
         guard !target.id.hasPrefix("iptv:") else { return false }
+        guard Double(timestampMs) > (clearedAt[result.key] ?? -1) else { return false }
         if let current = document.entries[result.key], current.t >= timestampMs { return false }
         var next = document; next.entries[result.key] = ResumeEntry(ms: 0, t: timestampMs)
         return try commit(next)
@@ -114,8 +118,15 @@ actor ResumeStore {
         guard ready else { throw HarborError(code: "resume-store-unavailable") }
         struct Key: Decodable { let key: String }
         let key = try invoke("resumeKey", ["target": try .encoded(target)], as: Key.self).key
-        guard let held = document.entries[key], Double(held.t) <= timestampMs else { return false }
-        var next = document; next.entries.removeValue(forKey: key); return try commit(next)
+        guard timestampMs.isFinite, timestampMs >= 0 else { throw HarborError(code: "invalid-resume-position") }
+        if let held = document.entries[key], Double(held.t) > timestampMs { return false }
+        let changed = document.entries[key] != nil
+        if changed { var next = document; next.entries.removeValue(forKey: key); _ = try commit(next) }
+        // The key stays absent, matching Desktop. Keep a bounded in-flight
+        // barrier so a request already awaiting its lease cannot recreate it.
+        clearedAt[key] = max(clearedAt[key] ?? 0, timestampMs)
+        if clearedAt.count > 2_000, let oldest = clearedAt.min(by: { $0.value < $1.value })?.key { clearedAt.removeValue(forKey: oldest) }
+        return changed
     }
 
     private func commit(_ next: ResumeDocument) throws -> Bool {

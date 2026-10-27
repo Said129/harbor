@@ -417,7 +417,7 @@ jobs:
         run: |
           set -euo pipefail
           xcrun simctl list devices available --json > ios/build/devices.json
-          device=$(python3 -c 'import json; d=json.load(open("ios/build/devices.json")); selection="${{ inputs.native_test_selection }}"; keyboard_focus=selection == "native-only:poster-focus-completion" or selection.startswith("HarborTests.PosterBehaviorMountTests/"); prefix="iPad" if keyboard_focus or "${{ inputs.validation_scope }}" in ["stable-tablet-ui", "stable-tablet-rotation", "reading-tablet-final"] else "iPhone"; print(next(x["udid"] for runtime, values in d["devices"].items() if "iOS" in runtime for x in values if x["name"].startswith(prefix)))')
+          device=$(python3 -c 'import json; d=json.load(open("ios/build/devices.json")); selection="${{ inputs.native_test_selection }}"; keyboard_focus=selection in ["native-only:poster-focus-completion", "native-only:continue-focus-completion"] or selection.startswith("HarborTests.PosterBehaviorMountTests/"); prefix="iPad" if keyboard_focus or "${{ inputs.validation_scope }}" in ["stable-tablet-ui", "stable-tablet-rotation", "reading-tablet-final"] else "iPhone"; print(next(x["udid"] for runtime, values in d["devices"].items() if "iOS" in runtime for x in values if x["name"].startswith(prefix)))')
           echo "IOS_SIMULATOR=$device" >> "$GITHUB_ENV"
           echo "IOS_SIMULATOR_ARCH=$(uname -m)" >> "$GITHUB_ENV"
           xcrun simctl bootstatus "$device" -b

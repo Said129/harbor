@@ -24,7 +24,7 @@ private actor OwnedLibraryQueueService: LibraryServing {
     }
     func holdNextRead() { hold = true }
     func isHolding() -> Bool { held != nil }
-    func release() { held?.resume(); held = nil }
+    func release() { hold = false; held?.resume(); held = nil }
     func appendFailure() { puts.append(.object(["error": .bool(true)])) }
     func replaceLibrary(_ records: [JSONValue]) { library = records }
 }
@@ -37,6 +37,16 @@ private actor OwnedLibraryQueueService: LibraryServing {
     }
     func write(_ value: ContinueDismissalState) throws { }
     func legacy(_ owner: String) throws -> [String: ContinueDismissal] { [:] }
+}
+private actor OwnedDismissalLease {
+    private var continuation: CheckedContinuation<Bool, Never>?
+    private var released = false
+    func wait() async -> Bool {
+        if released { return true }
+        return await withCheckedContinuation { continuation = $0 }
+    }
+    func isWaiting() -> Bool { continuation != nil }
+    func release() { released = true; continuation?.resume(returning: true); continuation = nil }
 }
 
 @MainActor final class ContinueDismissalTests: XCTestCase {
@@ -170,6 +180,25 @@ private actor OwnedLibraryQueueService: LibraryServing {
         try await store.load(); try await store.save(target, snapshot: .init(positionMs: 600_000, durationMs: 1_000_000, timestampMs: 1_700_000_010_123, exiting: true))
         let cleared = try await store.clear(target, notNewerThan: 1_700_000_000_123), entry = try await store.entry(target)
         XCTAssertFalse(cleared); XCTAssertEqual(entry?.ms, 600_000)
+        let lease = OwnedDismissalLease()
+        let pending = Task { try await store.importRemote(target, entry: .init(ms: 650_000, t: 1_700_000_020_123), current: { await lease.wait() }) }
+        for _ in 0..<200 { if await lease.isWaiting() { break }; try await Task.sleep(for: .milliseconds(5)) }
+        let waiting = await lease.isWaiting(); XCTAssertTrue(waiting)
+        let removed = try await store.clear(target, notNewerThan: 1_700_000_030_123); XCTAssertTrue(removed)
+        await lease.release(); let imported = try await pending.value; XCTAssertFalse(imported)
+        let absent = try await store.entry(target); XCTAssertNil(absent)
+        let late = try await store.save(target, snapshot: .init(positionMs: 700_000, durationMs: 1_000_000, timestampMs: 1_700_000_025_123, exiting: true))
+        XCTAssertFalse(late)
+        let merged = try await store.position(target, cloud: .init(ms: 650_000, t: 1_700_000_020_123)); XCTAssertEqual(merged.ms, 0)
+        let fresh = try await store.save(target, snapshot: .init(positionMs: 710_000, durationMs: 1_000_000, timestampMs: 1_700_000_040_123, exiting: true))
+        let freshEntry = try await store.entry(target); XCTAssertTrue(fresh); XCTAssertEqual(freshEntry?.ms, 710_000)
+        var movie = Media(id: "owned-legacy-dismissal", type: "movie", name: "Owned legacy")
+        movie.videos = [.init(id: movie.id + ":1:1", season: 1, episode: 1)]
+        let oldMovie = ResumeTarget(id: movie.id, season: 1, episode: 1, videoId: movie.videos?.first?.id), currentMovie = ResumeTarget(id: movie.id)
+        try await store.save(oldMovie, snapshot: .init(positionMs: 300_000, durationMs: 1_000_000, timestampMs: 1_700_000_020_123, exiting: true))
+        _ = try await store.clear(currentMovie, notNewerThan: 1_700_000_030_123)
+        let legacy = try await store.position(currentMovie, durationMs: 1_000_000, media: movie)
+        XCTAssertEqual(legacy.ms, 0, "An old S1E1 alias cannot undo a cleared movie key that was already absent")
     }
     func testOfflineBookmarkChangesPreserveProviderFieldsAndNewerRemotePlaybackWinsTheRecovery() async throws {
         let root = try directory(); defer { try? FileManager.default.removeItem(at: root) }
