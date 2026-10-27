@@ -23,7 +23,8 @@ private struct MountedSimklPlayback: View {
         defaults.set(true, forKey: "simklScrobbleEnabled")
         let account = SimklAccountStore(owner: "owned-mounted-tracking", persistence: OwnedSimklLibraryAccount()); try account.load()
         let queue = SimklPendingWatches(owner: account.owner, persistence: OwnedSimklPendingMemory()), clock = OwnedSimklClock()
-        let replies = OwnedSimklReplies(Array(repeating: .init(status: 200, data: Data("{}".utf8)), count: 5), clock: clock)
+        let replies = OwnedSimklReplies(Array(repeating: .init(status: 200, data: Data("{}".utf8)), count: 4)
+            + [.init(status: 200, data: Data("{\"added\":{\"movies\":1}}".utf8))], clock: clock)
         let client = SimklClient(transport: { try await replies.send($0) }, sleep: { clock.advance($0) }, now: { clock.now() })
         let reporter = SimklWatchReporter(account: account, queue: queue, client: client, active: { true })
         let session = PlaybackSession(source: .init(url: "https://owned.invalid/not-opened.mp4", headers: nil, subtitles: nil, via: "owned-state-fixture"),

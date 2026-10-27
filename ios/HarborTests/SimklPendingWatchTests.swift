@@ -14,7 +14,7 @@ private actor OwnedSimklTrackingHold {
     func send(_ request: URLRequest) async -> SimklReply {
         requests.append(request)
         if requests.count == 1 { return await withCheckedContinuation { continuation = $0 } }
-        return .init(status: 200, data: Data("{}".utf8))
+        return .init(status: 200, data: Data((request.url?.path == "/sync/history" ? "{\"added\":{\"movies\":1}}" : "{}").utf8))
     }
     func release() { continuation?.resume(returning: .init(status: 200, data: Data("{}".utf8))); continuation = nil }
 }
@@ -51,7 +51,7 @@ private actor OwnedSimklTrackingHold {
         let account = SimklAccountStore(owner: "owned", persistence: OwnedSimklLibraryAccount()); try account.load()
         let clock = OwnedSimklClock(), replies = OwnedSimklReplies([
             .init(status: 200, data: Data("{}".utf8)), .init(status: 403, data: Data("{}".utf8)),
-            .init(status: 200, data: Data("{}".utf8)), .init(status: 200, data: Data("{}".utf8))], clock: clock)
+            .init(status: 200, data: Data("{}".utf8)), .init(status: 200, data: Data("{\"added\":{\"movies\":1}}".utf8))], clock: clock)
         let client = SimklClient(transport: { try await replies.send($0) }, sleep: { clock.advance($0) }, now: { clock.now() })
         let reporter = SimklWatchReporter(account: account, queue: queue, client: client, active: { true })
         await reporter.send(.init(action: .stop, progress: 100, recordWatched: true), identity: .init(mediaID: "tt0123456"))
@@ -73,6 +73,7 @@ private actor OwnedSimklTrackingHold {
         await held.release(); await next.settled()
         let requests = await held.requests
         XCTAssertEqual(requests.map { $0.url!.path }, ["/scrobble/start", "/scrobble/stop", "/sync/history", "/scrobble/start"])
+        XCTAssertTrue(queue.document?.entries.isEmpty == true, "A confirmed history reply clears the terminal intent before the next session")
         let lastBody = try JSONDecoder().decode(JSONValue.self, from: XCTUnwrap(requests.last?.httpBody)); XCTAssertEqual(lastBody["movie"]["ids"]["imdb"].string, "tt0765432")
         try queue.bind(account.session?.accessToken); _ = try queue.record(.init(mediaID: "tt0123456"))
         active.active = false; await reporter.recover()

@@ -64,9 +64,11 @@ enum SimklWatchEndpoint: Sendable {
     private let client: SimklClient
     private let active: @MainActor () -> Bool
     private let mapping: @Sendable (String) async throws -> JSONValue
+    private let resolve: @Sendable (String, Int, Int) async -> TrackerResolutionResult
     init(account: SimklAccountStore, queue: SimklPendingWatches, client: SimklClient = .shared, active: @escaping @MainActor () -> Bool,
-         mapping: @escaping @Sendable (String) async throws -> JSONValue = { try await AnimeFranchiseService.shared.response(.mapping($0)) }) {
-        self.account = account; self.queue = queue; self.client = client; self.active = active; self.mapping = mapping
+         mapping: @escaping @Sendable (String) async throws -> JSONValue = { try await AnimeFranchiseService.shared.response(.mapping($0)) },
+         resolve: @escaping @Sendable (String, Int, Int) async -> TrackerResolutionResult = { await TrackerEpisodeResolver.shared.resolve(metaID: $0, season: $1, number: $2) }) {
+        self.account = account; self.queue = queue; self.client = client; self.active = active; self.mapping = mapping; self.resolve = resolve
     }
     private func owned(_ token: String) -> Bool { active() && account.session?.accessToken == token }
     func send(_ event: SimklPlaybackPolicy.Event, identity: SimklWatchIdentity) async {
@@ -104,13 +106,39 @@ enum SimklWatchEndpoint: Sendable {
         guard owned(token) else { return false }
         do {
             guard let body = try await identity.historyBody(mapping: mapping), owned(token) else { return false }
-            return await post(.history(body), token: token, lease: lease)
+            if await post(.history(body), token: token, lease: lease) { return true }
+            guard owned(token), !Task.isCancelled, !AnimeService.isAnime(identity.mediaID),
+                  let episode = identity.episode, let season = episode.season, let number = episode.episode else { return false }
+            let resolution = await resolve(identity.mediaID, season, number)
+            guard owned(token), !Task.isCancelled, let resolved = resolution.episode else { return false }
+            return await post(.history(resolved.simklHistoryBody()), token: token, lease: lease)
         } catch { return false }
     }
     private func post(_ endpoint: SimklWatchEndpoint, token: String, lease: @escaping SimklClient.Lease) async -> Bool {
         do {
             let response = try await client.response(.watch(endpoint), token: token, current: lease)
-            return owned(token) && !response["not_found"].objectValue.values.contains { !$0.array.isEmpty }
+            guard owned(token), !response["not_found"].objectValue.values.contains(where: { !$0.array.isEmpty }) else { return false }
+            if case .history(let body) = endpoint { return SimklHistoryReceipt.confirms(body: body, response: response) }
+            return true
         } catch { return false }
+    }
+}
+
+enum SimklHistoryReceipt {
+    static func confirms(body: JSONValue, response: JSONValue) -> Bool {
+        if !body["movies"].array.isEmpty { return (response["added"]["movies"].integer ?? 0) >= body["movies"].array.count }
+        let shows = body["shows"].array
+        guard !shows.isEmpty else { return false }
+        var episodes = Set<String>()
+        for (index, show) in shows.enumerated() {
+            for season in show["seasons"].array {
+                for episode in season["episodes"].array {
+                    guard let seasonNumber = season["number"].integer, let number = episode["number"].integer else { return false }
+                    episodes.insert("\(index)|\(seasonNumber)|\(number)")
+                }
+            }
+        }
+        if !episodes.isEmpty { return (response["added"]["episodes"].integer ?? 0) >= episodes.count }
+        return (response["added"]["shows"].integer ?? 0) >= shows.count
     }
 }

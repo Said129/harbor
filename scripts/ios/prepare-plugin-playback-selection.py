@@ -6,6 +6,9 @@ import re
 import runpy
 
 requested = os.environ.get('HARBOR_NATIVE_SELECTION', '').strip()
+if requested == 'native-only:tracker-history' or requested.startswith('HarborTests.TrackerEpisodeResolverTests/'):
+    runpy.run_path('scripts/ios/prepare-tracker-history-selection.py')
+    raise SystemExit(0)
 if requested == 'affected:poster-source-simkl-repair' or (requested.startswith('HarborTests.PosterBehaviorProfileTests/') and 'HarborTests.SimklLibraryPersistenceTests/' in requested):
     runpy.run_path('scripts/ios/prepare-poster-source-simkl-repair-selection.py')
     raise SystemExit(0)

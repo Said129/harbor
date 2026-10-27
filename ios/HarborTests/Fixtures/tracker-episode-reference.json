@@ -1,0 +1,1623 @@
+{
+  "reference": "0834340cec5531650bfe78cd628628702e636987",
+  "actual_original_typescript_executed": true,
+  "provider_network_requests": 0,
+  "source_hashes": {
+    "src/lib/tracker-resolve/match.ts": "8dcf003071542b985e336649c7418a6c5a2f982051dee58caac28952b7bea087",
+    "src/lib/tracker-resolve/cache.ts": "54df48dba05ff6ce31494bcb533d4bf60c597b70a77fbbcee2216ed5884b632b",
+    "src/lib/tracker-resolve/resolve.ts": "9837236455bdad4973b4971ec9f623b0a58f5e0e606b5af4dc119c7187df26c9",
+    "src/lib/tracker-resolve/trakt-catalog.ts": "542441b501289dfb68893024f3092916d9db89ba7d75896437a0bbdf144b3559",
+    "src/lib/tracker-resolve/resolve-default.ts": "5b4c030bb67367d75f987894678599a9e79bbd9860fff0330244480b03156a45",
+    "src/lib/simkl/history.ts": "f0aceff2bad49a50cd9436b77d4f3d85d861cacb5748b968fd3240767e314c67",
+    "src/lib/trakt/config.ts": "23571647a75a77a81cc242bd0a42e00f4a21ede580517d63a7bd59ac12cc8391"
+  },
+  "seams": "Only anonymous catalog transport, account identity and history transport; original match, resolution, cache, catalog parsing and history acceptance execute.",
+  "public_trakt_client_id": "71ef7ea86333eab031c8830f8200df1f2f16ef9a3335a67470be4950ac80b925",
+  "scenarios": [
+    {
+      "name": "exact-id-outside-original-season",
+      "identity": {
+        "showTitle": "The Owned Show",
+        "showYear": 2020,
+        "season": 1,
+        "number": 7,
+        "name": "The Distant Shore",
+        "airDate": "2020-04-10",
+        "episodeTvdbId": 901,
+        "episodeImdbId": "tt9000007"
+      },
+      "search": [
+        {
+          "show": {
+            "ids": {
+              "trakt": 1,
+              "imdb": "tt1000001"
+            },
+            "title": "The Owned Show",
+            "year": 2020
+          }
+        }
+      ],
+      "seasons": {
+        "1": [
+          {
+            "number": 3,
+            "episodes": [
+              {
+                "number": 2,
+                "title": "The Distant Shore",
+                "first_aired": "2020-04-10T00:00:00Z",
+                "ids": {
+                  "tvdb": 901
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "episode": {
+          "showIds": {
+            "imdb": "tt1000001",
+            "trakt": 1
+          },
+          "season": 3,
+          "number": 2
+        }
+      },
+      "requests": [
+        "/search/show?query=The+Owned+Show&limit=10",
+        "/shows/1/seasons?extended=episodes"
+      ]
+    },
+    {
+      "name": "later-exact-id-beats-earlier-heuristic",
+      "identity": {
+        "showTitle": "The Owned Show",
+        "showYear": 2020,
+        "season": 1,
+        "number": 7,
+        "name": "The Distant Shore",
+        "airDate": "2020-04-10",
+        "episodeTvdbId": 901,
+        "episodeImdbId": "tt9000007"
+      },
+      "search": [
+        {
+          "show": {
+            "ids": {
+              "trakt": 1,
+              "imdb": "tt1000001"
+            },
+            "title": "The Owned Show",
+            "year": 2020
+          }
+        },
+        {
+          "show": {
+            "ids": {
+              "trakt": 2,
+              "imdb": "tt1000002"
+            },
+            "title": "Unrelated reboot",
+            "year": 1990
+          }
+        }
+      ],
+      "seasons": {
+        "1": [
+          {
+            "number": 1,
+            "episodes": [
+              {
+                "number": 7,
+                "title": "The Distant Shore",
+                "first_aired": "2020-04-10T00:00:00Z",
+                "ids": {}
+              }
+            ]
+          }
+        ],
+        "2": [
+          {
+            "number": 8,
+            "episodes": [
+              {
+                "number": 4,
+                "title": "The Distant Shore",
+                "first_aired": "2020-04-10T00:00:00Z",
+                "ids": {
+                  "tvdb": 901
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "episode": {
+          "showIds": {
+            "imdb": "tt1000002",
+            "trakt": 2
+          },
+          "season": 8,
+          "number": 4
+        }
+      },
+      "requests": [
+        "/search/show?query=The+Owned+Show&limit=10",
+        "/shows/1/seasons?extended=episodes",
+        "/shows/2/seasons?extended=episodes"
+      ]
+    },
+    {
+      "name": "conflicting-tvdb-cannot-be-rescued-by-title-or-date",
+      "identity": {
+        "showTitle": "The Owned Show",
+        "showYear": 2020,
+        "season": 1,
+        "number": 7,
+        "name": "The Distant Shore",
+        "airDate": "2020-04-10",
+        "episodeTvdbId": 901,
+        "episodeImdbId": "tt9000007"
+      },
+      "search": [
+        {
+          "show": {
+            "ids": {
+              "trakt": 1,
+              "imdb": "tt1000001"
+            },
+            "title": "The Owned Show",
+            "year": 2020
+          }
+        }
+      ],
+      "seasons": {
+        "1": [
+          {
+            "number": 1,
+            "episodes": [
+              {
+                "number": 7,
+                "title": "The Distant Shore",
+                "first_aired": "2020-04-10T00:00:00Z",
+                "ids": {
+                  "tvdb": 999,
+                  "imdb": "tt9000007"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "expected": {
+        "ok": false,
+        "reason": "not-found"
+      },
+      "requests": [
+        "/search/show?query=The+Owned+Show&limit=10",
+        "/shows/1/seasons?extended=episodes"
+      ]
+    },
+    {
+      "name": "unique-three-day-airdate",
+      "identity": {
+        "showTitle": "The Owned Show",
+        "showYear": 2020,
+        "season": 1,
+        "number": 7,
+        "name": "Episode 7",
+        "airDate": "2020-04-10",
+        "episodeTvdbId": null,
+        "episodeImdbId": null
+      },
+      "search": [
+        {
+          "show": {
+            "ids": {
+              "trakt": 1,
+              "imdb": "tt1000001"
+            },
+            "title": "The Owned Show",
+            "year": 2020
+          }
+        }
+      ],
+      "seasons": {
+        "1": [
+          {
+            "number": 2,
+            "episodes": [
+              {
+                "number": 3,
+                "title": "Episode 3",
+                "first_aired": "2020-04-13T00:00:00Z",
+                "ids": {}
+              }
+            ]
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "episode": {
+          "showIds": {
+            "imdb": "tt1000001",
+            "trakt": 1
+          },
+          "season": 2,
+          "number": 3
+        }
+      },
+      "requests": [
+        "/search/show?query=The+Owned+Show&limit=10",
+        "/shows/1/seasons?extended=episodes"
+      ]
+    },
+    {
+      "name": "same-day-batch-remains-ambiguous",
+      "identity": {
+        "showTitle": "The Owned Show",
+        "showYear": 2020,
+        "season": 1,
+        "number": 7,
+        "name": "Episode 7",
+        "airDate": "2020-04-10",
+        "episodeTvdbId": null,
+        "episodeImdbId": null
+      },
+      "search": [
+        {
+          "show": {
+            "ids": {
+              "trakt": 1,
+              "imdb": "tt1000001"
+            },
+            "title": "The Owned Show",
+            "year": 2020
+          }
+        }
+      ],
+      "seasons": {
+        "1": [
+          {
+            "number": 2,
+            "episodes": [
+              {
+                "number": 1,
+                "title": "Episode 1",
+                "first_aired": "2020-04-10T00:00:00Z",
+                "ids": {}
+              },
+              {
+                "number": 2,
+                "title": "Episode 2",
+                "first_aired": "2020-04-10T00:00:00Z",
+                "ids": {}
+              }
+            ]
+          }
+        ]
+      },
+      "expected": {
+        "ok": false,
+        "reason": "not-found"
+      },
+      "requests": [
+        "/search/show?query=The+Owned+Show&limit=10",
+        "/shows/1/seasons?extended=episodes"
+      ]
+    },
+    {
+      "name": "distinctive-title-beats-airdate",
+      "identity": {
+        "showTitle": "The Owned Show",
+        "showYear": 2020,
+        "season": 1,
+        "number": 7,
+        "name": "The Distant Shore",
+        "airDate": "2020-04-10",
+        "episodeTvdbId": 901,
+        "episodeImdbId": "tt9000007"
+      },
+      "search": [
+        {
+          "show": {
+            "ids": {
+              "trakt": 1,
+              "imdb": "tt1000001"
+            },
+            "title": "The Owned Show",
+            "year": 2020
+          }
+        }
+      ],
+      "seasons": {
+        "1": [
+          {
+            "number": 2,
+            "episodes": [
+              {
+                "number": 1,
+                "title": "Another Chapter",
+                "first_aired": "2020-04-10T00:00:00Z",
+                "ids": {}
+              },
+              {
+                "number": 2,
+                "title": "The Distant Shore",
+                "first_aired": "2020-10-10T00:00:00Z",
+                "ids": {}
+              }
+            ]
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "episode": {
+          "showIds": {
+            "imdb": "tt1000001",
+            "trakt": 1
+          },
+          "season": 2,
+          "number": 2
+        }
+      },
+      "requests": [
+        "/search/show?query=The+Owned+Show&limit=10",
+        "/shows/1/seasons?extended=episodes"
+      ]
+    },
+    {
+      "name": "heuristic-needs-same-show-year",
+      "identity": {
+        "showTitle": "The Owned Show",
+        "showYear": 2020,
+        "season": 1,
+        "number": 7,
+        "name": "The Distant Shore",
+        "airDate": "2020-04-10",
+        "episodeTvdbId": 901,
+        "episodeImdbId": "tt9000007"
+      },
+      "search": [
+        {
+          "show": {
+            "ids": {
+              "trakt": 1,
+              "imdb": "tt1000001"
+            },
+            "title": "The Owned Show",
+            "year": 1990
+          }
+        }
+      ],
+      "seasons": {
+        "1": [
+          {
+            "number": 2,
+            "episodes": [
+              {
+                "number": 2,
+                "title": "The Distant Shore",
+                "first_aired": "2020-04-10T00:00:00Z",
+                "ids": {}
+              }
+            ]
+          }
+        ]
+      },
+      "expected": {
+        "ok": false,
+        "reason": "not-found"
+      },
+      "requests": [
+        "/search/show?query=The+Owned+Show&limit=10",
+        "/shows/1/seasons?extended=episodes"
+      ]
+    },
+    {
+      "name": "no-comparable-signal-is-retryable",
+      "identity": {
+        "showTitle": "The Owned Show",
+        "showYear": 2020,
+        "season": 1,
+        "number": 7,
+        "name": "Episode 7",
+        "airDate": null,
+        "episodeTvdbId": null,
+        "episodeImdbId": null
+      },
+      "search": [
+        {
+          "show": {
+            "ids": {
+              "trakt": 1,
+              "imdb": "tt1000001"
+            },
+            "title": "The Owned Show",
+            "year": 2020
+          }
+        }
+      ],
+      "seasons": {
+        "1": [
+          {
+            "number": 2,
+            "episodes": [
+              {
+                "number": 1,
+                "title": "Episode 1",
+                "first_aired": null,
+                "ids": {}
+              }
+            ]
+          }
+        ]
+      },
+      "expected": {
+        "ok": false,
+        "reason": "error"
+      },
+      "requests": [
+        "/search/show?query=The+Owned+Show&limit=10",
+        "/shows/1/seasons?extended=episodes"
+      ]
+    },
+    {
+      "name": "empty-search-is-not-found",
+      "identity": {
+        "showTitle": "The Owned Show",
+        "showYear": 2020,
+        "season": 1,
+        "number": 7,
+        "name": "The Distant Shore",
+        "airDate": "2020-04-10",
+        "episodeTvdbId": 901,
+        "episodeImdbId": "tt9000007"
+      },
+      "search": [],
+      "seasons": {},
+      "expected": {
+        "ok": false,
+        "reason": "not-found"
+      },
+      "requests": ["/search/show?query=The+Owned+Show&limit=10"]
+    },
+    {
+      "name": "search-error-is-retryable",
+      "identity": {
+        "showTitle": "The Owned Show",
+        "showYear": 2020,
+        "season": 1,
+        "number": 7,
+        "name": "The Distant Shore",
+        "airDate": "2020-04-10",
+        "episodeTvdbId": 901,
+        "episodeImdbId": "tt9000007"
+      },
+      "search": [],
+      "seasons": {},
+      "searchError": true,
+      "expected": {
+        "ok": false,
+        "reason": "error"
+      },
+      "requests": ["/search/show?query=The+Owned+Show&limit=10"]
+    },
+    {
+      "name": "season-error-does-not-cache-an-earlier-guess",
+      "identity": {
+        "showTitle": "The Owned Show",
+        "showYear": 2020,
+        "season": 1,
+        "number": 7,
+        "name": "The Distant Shore",
+        "airDate": "2020-04-10",
+        "episodeTvdbId": 901,
+        "episodeImdbId": "tt9000007"
+      },
+      "search": [
+        {
+          "show": {
+            "ids": {
+              "trakt": 1,
+              "imdb": "tt1000001"
+            },
+            "title": "The Owned Show",
+            "year": 2020
+          }
+        },
+        {
+          "show": {
+            "ids": {
+              "trakt": 2,
+              "imdb": "tt1000002"
+            },
+            "title": "The Owned Show",
+            "year": 2020
+          }
+        }
+      ],
+      "seasons": {
+        "1": [
+          {
+            "number": 1,
+            "episodes": [
+              {
+                "number": 7,
+                "title": "The Distant Shore",
+                "first_aired": "2020-04-10T00:00:00Z",
+                "ids": {}
+              }
+            ]
+          }
+        ]
+      },
+      "seasonError": "2",
+      "expected": {
+        "ok": false,
+        "reason": "error"
+      },
+      "requests": [
+        "/search/show?query=The+Owned+Show&limit=10",
+        "/shows/1/seasons?extended=episodes",
+        "/shows/2/seasons?extended=episodes"
+      ]
+    },
+    {
+      "name": "sixth-show-outside-candidate-budget",
+      "identity": {
+        "showTitle": "The Owned Show",
+        "showYear": 2020,
+        "season": 1,
+        "number": 7,
+        "name": "The Distant Shore",
+        "airDate": "2020-04-10",
+        "episodeTvdbId": 901,
+        "episodeImdbId": "tt9000007"
+      },
+      "search": [
+        {
+          "show": {
+            "ids": {
+              "trakt": 1,
+              "imdb": "tt1000001"
+            },
+            "title": "Wrong title",
+            "year": 1990
+          }
+        },
+        {
+          "show": {
+            "ids": {
+              "trakt": 2,
+              "imdb": "tt1000002"
+            },
+            "title": "Wrong title",
+            "year": 1990
+          }
+        },
+        {
+          "show": {
+            "ids": {
+              "trakt": 3,
+              "imdb": "tt1000003"
+            },
+            "title": "Wrong title",
+            "year": 1990
+          }
+        },
+        {
+          "show": {
+            "ids": {
+              "trakt": 4,
+              "imdb": "tt1000004"
+            },
+            "title": "Wrong title",
+            "year": 1990
+          }
+        },
+        {
+          "show": {
+            "ids": {
+              "trakt": 5,
+              "imdb": "tt1000005"
+            },
+            "title": "Wrong title",
+            "year": 1990
+          }
+        },
+        {
+          "show": {
+            "ids": {
+              "trakt": 6,
+              "imdb": "tt1000006"
+            },
+            "title": "Wrong title",
+            "year": 1990
+          }
+        }
+      ],
+      "seasons": {
+        "6": [
+          {
+            "number": 2,
+            "episodes": [
+              {
+                "number": 4,
+                "title": "The Distant Shore",
+                "first_aired": "2020-04-10T00:00:00Z",
+                "ids": {
+                  "tvdb": 901
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "expected": {
+        "ok": false,
+        "reason": "error"
+      },
+      "requests": [
+        "/search/show?query=The+Owned+Show&limit=10",
+        "/shows/1/seasons?extended=episodes",
+        "/shows/2/seasons?extended=episodes",
+        "/shows/3/seasons?extended=episodes",
+        "/shows/4/seasons?extended=episodes",
+        "/shows/5/seasons?extended=episodes"
+      ]
+    },
+    {
+      "name": "foreign-numeric-id-is-not-a-trakt-id",
+      "identity": {
+        "showTitle": "The Owned Show",
+        "showYear": 2020,
+        "season": 1,
+        "number": 7,
+        "name": "The Distant Shore",
+        "airDate": "2020-04-10",
+        "episodeTvdbId": 901,
+        "episodeImdbId": "tt9000007"
+      },
+      "search": [
+        {
+          "show": {
+            "ids": {
+              "tmdb": 50
+            },
+            "title": "The Owned Show",
+            "year": 2020
+          }
+        }
+      ],
+      "seasons": {},
+      "expected": {
+        "ok": false,
+        "reason": "not-found"
+      },
+      "requests": ["/search/show?query=The+Owned+Show&limit=10"]
+    },
+    {
+      "name": "search-deduplicates-provider-identities",
+      "identity": {
+        "showTitle": "The Owned Show",
+        "showYear": 2020,
+        "season": 1,
+        "number": 7,
+        "name": "The Distant Shore",
+        "airDate": "2020-04-10",
+        "episodeTvdbId": 901,
+        "episodeImdbId": "tt9000007"
+      },
+      "search": [
+        {
+          "show": {
+            "ids": {
+              "trakt": 1,
+              "imdb": "tt1000001"
+            },
+            "title": "The Owned Show",
+            "year": 2020
+          }
+        },
+        {
+          "show": {
+            "ids": {
+              "trakt": 1,
+              "imdb": "tt1000001"
+            },
+            "title": "The Owned Show",
+            "year": 2020
+          }
+        },
+        {
+          "show": {
+            "ids": {
+              "trakt": 2,
+              "imdb": "tt1000002"
+            },
+            "title": "The Owned Show",
+            "year": 2020
+          }
+        }
+      ],
+      "seasons": {
+        "1": [],
+        "2": [
+          {
+            "number": 0,
+            "episodes": [
+              {
+                "number": 3,
+                "title": "The Distant Shore",
+                "first_aired": "2020-04-10T00:00:00Z",
+                "ids": {
+                  "imdb": "tt9000007"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "episode": {
+          "showIds": {
+            "imdb": "tt1000002",
+            "trakt": 2
+          },
+          "season": 0,
+          "number": 3
+        }
+      },
+      "requests": [
+        "/search/show?query=The+Owned+Show&limit=10",
+        "/shows/1/seasons?extended=episodes",
+        "/shows/2/seasons?extended=episodes"
+      ]
+    },
+    {
+      "name": "original-season-order-with-unique-title",
+      "identity": {
+        "showTitle": "The Owned Show",
+        "showYear": 2020,
+        "season": 5,
+        "number": 7,
+        "name": "The Distant Shore",
+        "airDate": "2020-04-10",
+        "episodeTvdbId": 901,
+        "episodeImdbId": "tt9000007"
+      },
+      "search": [
+        {
+          "show": {
+            "ids": {
+              "trakt": 1,
+              "imdb": "tt1000001"
+            },
+            "title": "The Owned Show",
+            "year": 2020
+          }
+        }
+      ],
+      "seasons": {
+        "1": [
+          {
+            "number": 0,
+            "episodes": [
+              {
+                "number": 3,
+                "title": "Episode 3",
+                "first_aired": "2020-04-10T00:00:00Z",
+                "ids": {}
+              }
+            ]
+          },
+          {
+            "number": 1,
+            "episodes": [
+              {
+                "number": 2,
+                "title": "The Distant Shore",
+                "first_aired": "2020-04-10T00:00:00Z",
+                "ids": {}
+              }
+            ]
+          },
+          {
+            "number": 5,
+            "episodes": [
+              {
+                "number": 7,
+                "title": "Another Shore",
+                "first_aired": "2020-04-10T00:00:00Z",
+                "ids": {}
+              }
+            ]
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "episode": {
+          "showIds": {
+            "imdb": "tt1000001",
+            "trakt": 1
+          },
+          "season": 1,
+          "number": 2
+        }
+      },
+      "requests": [
+        "/search/show?query=The+Owned+Show&limit=10",
+        "/shows/1/seasons?extended=episodes"
+      ]
+    },
+    {
+      "name": "blank-show-title-never-searches",
+      "identity": {
+        "showTitle": " ",
+        "showYear": 2020,
+        "season": 1,
+        "number": 7,
+        "name": "The Distant Shore",
+        "airDate": "2020-04-10",
+        "episodeTvdbId": 901,
+        "episodeImdbId": "tt9000007"
+      },
+      "search": [
+        {
+          "show": {
+            "ids": {
+              "trakt": 1,
+              "imdb": "tt1000001"
+            },
+            "title": "The Owned Show",
+            "year": 2020
+          }
+        }
+      ],
+      "seasons": {},
+      "expected": {
+        "ok": false,
+        "reason": "error"
+      },
+      "requests": []
+    }
+  ],
+  "hydrationCases": [
+    {
+      "name": "imdb",
+      "metaId": "tt0123456",
+      "season": 1,
+      "number": 7,
+      "metadata": {
+        "name": "The Owned Show",
+        "releaseInfo": "2020–2026",
+        "videos": [
+          {
+            "season": 1,
+            "number": 7,
+            "title": "The Distant Shore",
+            "firstAired": "2020-04-10",
+            "tvdb_id": 901,
+            "imdb_id": "tt9000007"
+          }
+        ]
+      },
+      "tmdbLookup": [
+        {
+          "show": {
+            "ids": {
+              "imdb": "tt0123456",
+              "trakt": 50,
+              "tmdb": 501
+            }
+          }
+        }
+      ],
+      "search": [
+        {
+          "show": {
+            "ids": {
+              "trakt": 1,
+              "imdb": "tt1000001"
+            },
+            "title": "The Owned Show",
+            "year": 2020
+          }
+        }
+      ],
+      "seasons": {
+        "1": [
+          {
+            "number": 3,
+            "episodes": [
+              {
+                "number": 2,
+                "title": "The Distant Shore",
+                "first_aired": "2020-04-10T00:00:00Z",
+                "ids": {
+                  "tvdb": 901
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "episode": {
+          "showIds": {
+            "imdb": "tt1000001",
+            "trakt": 1
+          },
+          "season": 3,
+          "number": 2
+        }
+      },
+      "requests": [
+        "CINEMETA:tt0123456:forced",
+        "/search/show?query=The+Owned+Show&limit=10",
+        "/shows/1/seasons?extended=episodes"
+      ]
+    },
+    {
+      "name": "tmdb",
+      "metaId": "tmdb:tv:501",
+      "season": 1,
+      "number": 7,
+      "metadata": {
+        "name": "The Owned Show",
+        "releaseInfo": "2020–2026",
+        "videos": [
+          {
+            "season": 1,
+            "number": 7,
+            "title": "The Distant Shore",
+            "firstAired": "2020-04-10",
+            "tvdb_id": 901,
+            "imdb_id": "tt9000007"
+          }
+        ]
+      },
+      "tmdbLookup": [
+        {
+          "show": {
+            "ids": {
+              "imdb": "tt0123456",
+              "trakt": 50,
+              "tmdb": 501
+            }
+          }
+        }
+      ],
+      "search": [
+        {
+          "show": {
+            "ids": {
+              "trakt": 1,
+              "imdb": "tt1000001"
+            },
+            "title": "The Owned Show",
+            "year": 2020
+          }
+        }
+      ],
+      "seasons": {
+        "1": [
+          {
+            "number": 3,
+            "episodes": [
+              {
+                "number": 2,
+                "title": "The Distant Shore",
+                "first_aired": "2020-04-10T00:00:00Z",
+                "ids": {
+                  "tvdb": 901
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "episode": {
+          "showIds": {
+            "imdb": "tt1000001",
+            "trakt": 1
+          },
+          "season": 3,
+          "number": 2
+        }
+      },
+      "requests": [
+        "/search/tmdb/501?type=show",
+        "CINEMETA:tt0123456:forced",
+        "/search/show?query=The+Owned+Show&limit=10",
+        "/shows/1/seasons?extended=episodes"
+      ]
+    },
+    {
+      "name": "imdb-video-suffix",
+      "metaId": "tt0123456:1:7",
+      "season": 1,
+      "number": 7,
+      "metadata": {
+        "name": "The Owned Show",
+        "releaseInfo": "2020–2026",
+        "videos": [
+          {
+            "season": 1,
+            "number": 7,
+            "title": "The Distant Shore",
+            "firstAired": "2020-04-10",
+            "tvdb_id": 901,
+            "imdb_id": "tt9000007"
+          }
+        ]
+      },
+      "tmdbLookup": [
+        {
+          "show": {
+            "ids": {
+              "imdb": "tt0123456",
+              "trakt": 50,
+              "tmdb": 501
+            }
+          }
+        }
+      ],
+      "search": [
+        {
+          "show": {
+            "ids": {
+              "trakt": 1,
+              "imdb": "tt1000001"
+            },
+            "title": "The Owned Show",
+            "year": 2020
+          }
+        }
+      ],
+      "seasons": {
+        "1": [
+          {
+            "number": 3,
+            "episodes": [
+              {
+                "number": 2,
+                "title": "The Distant Shore",
+                "first_aired": "2020-04-10T00:00:00Z",
+                "ids": {
+                  "tvdb": 901
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "episode": {
+          "showIds": {
+            "imdb": "tt1000001",
+            "trakt": 1
+          },
+          "season": 3,
+          "number": 2
+        }
+      },
+      "requests": [
+        "CINEMETA:tt0123456:forced",
+        "/search/show?query=The+Owned+Show&limit=10",
+        "/shows/1/seasons?extended=episodes"
+      ]
+    },
+    {
+      "name": "unsupported-anime",
+      "metaId": "kitsu:123",
+      "season": 1,
+      "number": 7,
+      "metadata": {
+        "name": "The Owned Show",
+        "releaseInfo": "2020–2026",
+        "videos": [
+          {
+            "season": 1,
+            "number": 7,
+            "title": "The Distant Shore",
+            "firstAired": "2020-04-10",
+            "tvdb_id": 901,
+            "imdb_id": "tt9000007"
+          }
+        ]
+      },
+      "tmdbLookup": [
+        {
+          "show": {
+            "ids": {
+              "imdb": "tt0123456",
+              "trakt": 50,
+              "tmdb": 501
+            }
+          }
+        }
+      ],
+      "search": [
+        {
+          "show": {
+            "ids": {
+              "trakt": 1,
+              "imdb": "tt1000001"
+            },
+            "title": "The Owned Show",
+            "year": 2020
+          }
+        }
+      ],
+      "seasons": {
+        "1": [
+          {
+            "number": 3,
+            "episodes": [
+              {
+                "number": 2,
+                "title": "The Distant Shore",
+                "first_aired": "2020-04-10T00:00:00Z",
+                "ids": {
+                  "tvdb": 901
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "expected": {
+        "ok": false,
+        "reason": "error"
+      },
+      "requests": []
+    },
+    {
+      "name": "missing-metadata",
+      "metaId": "tt0123456",
+      "season": 1,
+      "number": 7,
+      "metadata": null,
+      "tmdbLookup": [
+        {
+          "show": {
+            "ids": {
+              "imdb": "tt0123456",
+              "trakt": 50,
+              "tmdb": 501
+            }
+          }
+        }
+      ],
+      "search": [
+        {
+          "show": {
+            "ids": {
+              "trakt": 1,
+              "imdb": "tt1000001"
+            },
+            "title": "The Owned Show",
+            "year": 2020
+          }
+        }
+      ],
+      "seasons": {
+        "1": [
+          {
+            "number": 3,
+            "episodes": [
+              {
+                "number": 2,
+                "title": "The Distant Shore",
+                "first_aired": "2020-04-10T00:00:00Z",
+                "ids": {
+                  "tvdb": 901
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "expected": {
+        "ok": false,
+        "reason": "error"
+      },
+      "requests": ["CINEMETA:tt0123456:forced"]
+    },
+    {
+      "name": "missing-video",
+      "metaId": "tt0123456",
+      "season": 1,
+      "number": 7,
+      "metadata": {
+        "name": "The Owned Show",
+        "releaseInfo": "2020–2026",
+        "videos": []
+      },
+      "tmdbLookup": [
+        {
+          "show": {
+            "ids": {
+              "imdb": "tt0123456",
+              "trakt": 50,
+              "tmdb": 501
+            }
+          }
+        }
+      ],
+      "search": [
+        {
+          "show": {
+            "ids": {
+              "trakt": 1,
+              "imdb": "tt1000001"
+            },
+            "title": "The Owned Show",
+            "year": 2020
+          }
+        }
+      ],
+      "seasons": {
+        "1": [
+          {
+            "number": 3,
+            "episodes": [
+              {
+                "number": 2,
+                "title": "The Distant Shore",
+                "first_aired": "2020-04-10T00:00:00Z",
+                "ids": {
+                  "tvdb": 901
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "expected": {
+        "ok": false,
+        "reason": "error"
+      },
+      "requests": [
+        "CINEMETA:tt0123456:forced",
+        "/search/show?query=The+Owned+Show&limit=10",
+        "/shows/1/seasons?extended=episodes"
+      ]
+    }
+  ],
+  "matchCases": [
+    {
+      "name": "same-tvdb",
+      "identity": {
+        "showTitle": "The Owned Show",
+        "showYear": 2020,
+        "season": 1,
+        "number": 7,
+        "name": "The Distant Shore",
+        "airDate": "2020-04-10",
+        "episodeTvdbId": 901,
+        "episodeImdbId": "tt9000007"
+      },
+      "candidate": {
+        "number": 4,
+        "tvdbId": 901
+      },
+      "expected": true
+    },
+    {
+      "name": "tvdb-conflict-even-with-same-imdb",
+      "identity": {
+        "showTitle": "The Owned Show",
+        "showYear": 2020,
+        "season": 1,
+        "number": 7,
+        "name": "The Distant Shore",
+        "airDate": "2020-04-10",
+        "episodeTvdbId": 901,
+        "episodeImdbId": "tt9000007"
+      },
+      "candidate": {
+        "number": 4,
+        "tvdbId": 999,
+        "imdbId": "tt9000007",
+        "title": "The Distant Shore",
+        "airDate": "2020-04-10"
+      },
+      "expected": false
+    },
+    {
+      "name": "same-imdb",
+      "identity": {
+        "showTitle": "The Owned Show",
+        "showYear": 2020,
+        "season": 1,
+        "number": 7,
+        "name": "The Distant Shore",
+        "airDate": "2020-04-10",
+        "episodeTvdbId": 901,
+        "episodeImdbId": "tt9000007"
+      },
+      "candidate": {
+        "number": 4,
+        "imdbId": "tt9000007"
+      },
+      "expected": true
+    },
+    {
+      "name": "different-imdb",
+      "identity": {
+        "showTitle": "The Owned Show",
+        "showYear": 2020,
+        "season": 1,
+        "number": 7,
+        "name": "The Distant Shore",
+        "airDate": "2020-04-10",
+        "episodeTvdbId": 901,
+        "episodeImdbId": "tt9000007"
+      },
+      "candidate": {
+        "number": 4,
+        "imdbId": "tt9999999",
+        "title": "The Distant Shore"
+      },
+      "expected": false
+    },
+    {
+      "name": "accented-title",
+      "identity": {
+        "showTitle": "The Owned Show",
+        "showYear": 2020,
+        "season": 1,
+        "number": 7,
+        "name": "The Distant Shore",
+        "airDate": "2020-04-10",
+        "episodeTvdbId": 901,
+        "episodeImdbId": "tt9000007"
+      },
+      "candidate": {
+        "number": 4,
+        "title": "Dístânt Shore"
+      },
+      "expected": true
+    },
+    {
+      "name": "different-distinctive-title",
+      "identity": {
+        "showTitle": "The Owned Show",
+        "showYear": 2020,
+        "season": 1,
+        "number": 7,
+        "name": "The Distant Shore",
+        "airDate": "2020-04-10",
+        "episodeTvdbId": 901,
+        "episodeImdbId": "tt9000007"
+      },
+      "candidate": {
+        "number": 4,
+        "title": "Another Shore",
+        "airDate": "2020-04-10"
+      },
+      "expected": false
+    },
+    {
+      "name": "generic-date-match",
+      "identity": {
+        "showTitle": "The Owned Show",
+        "showYear": 2020,
+        "season": 1,
+        "number": 7,
+        "name": "The Distant Shore",
+        "airDate": "2020-04-10",
+        "episodeTvdbId": 901,
+        "episodeImdbId": "tt9000007"
+      },
+      "candidate": {
+        "number": 4,
+        "title": "Episode 4",
+        "airDate": "2020-04-13"
+      },
+      "expected": true
+    },
+    {
+      "name": "generic-date-too-far",
+      "identity": {
+        "showTitle": "The Owned Show",
+        "showYear": 2020,
+        "season": 1,
+        "number": 7,
+        "name": "The Distant Shore",
+        "airDate": "2020-04-10",
+        "episodeTvdbId": 901,
+        "episodeImdbId": "tt9000007"
+      },
+      "candidate": {
+        "number": 4,
+        "title": "Chapter 4",
+        "airDate": "2020-04-14"
+      },
+      "expected": false
+    }
+  ],
+  "receipts": [
+    {
+      "kind": "movie",
+      "response": {},
+      "body": {
+        "movies": [
+          {
+            "ids": {
+              "imdb": "tt0123456"
+            },
+            "watched_at": "2026-10-27T02:23:28.628Z"
+          }
+        ]
+      },
+      "expected": false
+    },
+    {
+      "kind": "movie",
+      "response": {
+        "added": {
+          "movies": 0
+        }
+      },
+      "body": {
+        "movies": [
+          {
+            "ids": {
+              "imdb": "tt0123456"
+            },
+            "watched_at": "2026-10-27T02:23:28.628Z"
+          }
+        ]
+      },
+      "expected": false
+    },
+    {
+      "kind": "movie",
+      "response": {
+        "added": {
+          "movies": 1
+        }
+      },
+      "body": {
+        "movies": [
+          {
+            "ids": {
+              "imdb": "tt0123456"
+            },
+            "watched_at": "2026-10-27T02:23:28.628Z"
+          }
+        ]
+      },
+      "expected": true
+    },
+    {
+      "kind": "episode",
+      "response": {},
+      "body": {
+        "shows": [
+          {
+            "ids": {
+              "imdb": "tt0123456"
+            },
+            "seasons": [
+              {
+                "number": 1,
+                "episodes": [
+                  {
+                    "number": 7,
+                    "watched_at": "2026-10-27T02:23:28.628Z"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "expected": false
+    },
+    {
+      "kind": "episode",
+      "response": {
+        "added": {
+          "episodes": 0
+        }
+      },
+      "body": {
+        "shows": [
+          {
+            "ids": {
+              "imdb": "tt0123456"
+            },
+            "seasons": [
+              {
+                "number": 1,
+                "episodes": [
+                  {
+                    "number": 7,
+                    "watched_at": "2026-10-27T02:23:28.628Z"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "expected": false
+    },
+    {
+      "kind": "episode",
+      "response": {
+        "added": {
+          "episodes": 1
+        }
+      },
+      "body": {
+        "shows": [
+          {
+            "ids": {
+              "imdb": "tt0123456"
+            },
+            "seasons": [
+              {
+                "number": 1,
+                "episodes": [
+                  {
+                    "number": 7,
+                    "watched_at": "2026-10-27T02:23:28.628Z"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "expected": true
+    },
+    {
+      "kind": "episode",
+      "response": {
+        "added": {
+          "shows": 1
+        }
+      },
+      "body": {
+        "shows": [
+          {
+            "ids": {
+              "imdb": "tt0123456"
+            },
+            "seasons": [
+              {
+                "number": 1,
+                "episodes": [
+                  {
+                    "number": 7,
+                    "watched_at": "2026-10-27T02:23:28.628Z"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "expected": false
+    }
+  ]
+}

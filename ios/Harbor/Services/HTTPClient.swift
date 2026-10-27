@@ -132,6 +132,33 @@ struct HTTPClient: Sendable {
         request.setValue("71ef7ea86333eab031c8830f8200df1f2f16ef9a3335a67470be4950ac80b925", forHTTPHeaderField: "trakt-api-key")
         return request
     }
+    static func trackerCatalogRequest(_ endpoint: TrackerCatalogRequest) throws -> URLRequest {
+        var components = URLComponents(string: "https://api.trakt.tv")!
+        switch endpoint {
+        case .searchShows(let title):
+            guard !title.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty, title.utf8.count <= 1_024 else { throw HarborError(code: "tracker-request") }
+            components.path = "/search/show"; components.queryItems = [.init(name: "query", value: title), .init(name: "limit", value: "10")]
+        case .seasons(let ids):
+            guard let id = ids.parameter, !id.isEmpty, id.utf8.count <= 200, !id.contains("/"), !id.contains("\\"), id != ".", id != ".." else { throw HarborError(code: "tracker-request") }
+            components.path = "/shows/\(id)/seasons"; components.queryItems = [.init(name: "extended", value: "episodes")]
+        case .tmdbShow(let id):
+            guard id > 0 else { throw HarborError(code: "tracker-request") }
+            components.path = "/search/tmdb/\(id)"; components.queryItems = [.init(name: "type", value: "show")]
+        case .cinemetaSeries(let imdb):
+            guard imdb.range(of: "^tt[0-9]+$", options: .regularExpression) != nil, imdb.count <= 40 else { throw HarborError(code: "tracker-request") }
+            components = URLComponents(string: "https://v3-cinemeta.strem.io")!; components.path = "/meta/series/\(imdb).json"
+        }
+        guard let url = components.url else { throw HarborError(code: "tracker-request") }
+        var request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 20)
+        if url.host == "api.trakt.tv" {
+            request.setValue("2", forHTTPHeaderField: "trakt-api-version")
+            request.setValue("71ef7ea86333eab031c8830f8200df1f2f16ef9a3335a67470be4950ac80b925", forHTTPHeaderField: "trakt-api-key")
+        }
+        return request
+    }
+    func trackerCatalog(_ endpoint: TrackerCatalogRequest) async throws -> JSONValue {
+        try await receive(Self.trackerCatalogRequest(endpoint), session: Self.publicTVDBSession)
+    }
     func traktList(id: String, page: Int) async throws -> JSONValue {
         // Public folders explicitly omit OAuth. The anonymous session has no
         // cookies/credential storage and rejects redirects to other origins.
