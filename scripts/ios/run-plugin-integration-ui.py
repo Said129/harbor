@@ -137,6 +137,8 @@ for batch in batches:
             recorder = subprocess.Popen(['xcrun', 'simctl', 'io', device, 'recordVideo', '--codec=h264', str(video)], stdout=recording_log, stderr=subprocess.STDOUT)
             try: execute(device, 'PluginUI' + label, 'HarborExistingAppUI' if preserve_app else 'HarborLive', case)
             finally:
+                if plan.get('collect_launch_failure_diagnostics') and any(item.get('device') == device for item in failures):
+                    subprocess.run([sys.executable, 'scripts/ios/collect-simulator-launch-failure.py', '--device', device, '--label', label], check=False)
                 if plan.get('startup_probe'):
                     subprocess.run([sys.executable, 'scripts/ios/collect-prepared-app-startup.py', '--device', device, '--label', label, '--phase', 'after-ui'], check=True)
                 record_owned_metadata_cache(container, label, 'after-ui', device)

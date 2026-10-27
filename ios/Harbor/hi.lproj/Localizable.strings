@@ -158,6 +158,7 @@
 "Audio sin etiqueta" = "ऑडियो का लेबल नहीं है";
 "Authorization expired. Connect again." = "Authorization expired. Connect again.";
 "Authorize Harbor on Simkl" = "Simkl पर Harbor को अधिकृत करें";
+"Authorize Harbor on Trakt" = "Trakt पर Harbor को अधिकृत करें";
 "Auto" = "ऑटो";
 "Auto (match video)" = "ऑटो (वीडियो के अनुरूप)";
 "Auto-play next episode" = "अगला एपिसोड अपने-आप चलाएँ";
@@ -396,6 +397,7 @@
 "Confirm your current PIN, then pick a new one." = "अपने मौजूदा PIN की पुष्टि करें, फिर नया PIN चुनें।";
 "Connect Simkl" = "Simkl कनेक्ट करें";
 "Connect TMDB" = "TMDB कनेक्ट करें";
+"Connect Trakt" = "Trakt कनेक्ट करें";
 "Connected" = "कनेक्टेड";
 "Connected to Simkl" = "Simkl से कनेक्टेड";
 "Connecting" = "कनेक्ट हो रहा है";
@@ -444,6 +446,7 @@
 "Could not save your tracks or listening history. Try again." = "Could not save your tracks or listening history. Try again.";
 "Couldn't auto-sync" = "अपने-आप सिंक नहीं हो सका";
 "Couldn't reach Simkl" = "Simkl से संपर्क नहीं हो सका";
+"Couldn't reach Trakt. Check your connection and try again." = "Trakt से संपर्क नहीं हो सका। अपना कनेक्शन जाँचें और फिर कोशिश करें।";
 "Cover Image URL" = "कवर इमेज URL";
 "Crash" = "क्रैश";
 "Crea tu propia paleta" = "अपना पैलेट बनाएँ";
@@ -1381,6 +1384,7 @@
 "Reproducir después" = "अगला चलाएँ";
 "Reproductor" = "खिलाड़ी";
 "Requesting code from Simkl…" = "Simkl से कोड का अनुरोध किया जा रहा है…";
+"Requesting code from Trakt…" = "Trakt से कोड का अनुरोध किया जा रहा है…";
 "Requiere al menos 10 títulos para el estilo de Top 10" = "Top 10 लुक के लिए कम से कम 10 शीर्षक चाहिए";
 "Requiere títulos con abundante material gráfico para el contenido destacado" = "हीरो सेक्शन में दिखाने के लिए भरपूर आर्टवर्क वाले टाइटल चाहिए";
 "Resaltado, progreso." = "हाइलाइट, प्रगति।";
@@ -1629,6 +1633,7 @@
 "Status" = "स्थिति";
 "Step 1 · Metadata" = "चरण 1 · मेटाडेटा";
 "Step 1 · Open Simkl" = "चरण 1 · Simkl खोलें";
+"Step 1 · Open Trakt" = "चरण 1 · Trakt खोलें";
 "Step 2 · Enter this code" = "चरण 2 · यह कोड दर्ज करें";
 "Step 2 · Stremio" = "चरण 2 · Stremio";
 "Step 3 · Streaming" = "चरण 3 · स्ट्रीमिंग";
@@ -1733,6 +1738,7 @@
 "That route wouldn't chart. Try a different direction." = "उस रूट का चार्ट नहीं बन सका। कोई दूसरी दिशा आज़माएँ।";
 "The CW" = "The CW";
 "The Roku Channel" = "The Roku Channel";
+"The authorization code timed out before you finished. Try again." = "आपके पूरा करने से पहले ही ऑथराइज़ेशन कोड की समय-सीमा समाप्त हो गई। फिर से कोशिश करें।";
 "The comics industry's highest honor" = "कॉमिक्स उद्योग का सर्वोच्च सम्मान";
 "The filled part of the timeline. Default follows your Harbor accent." = "The filled part of the timeline. Default follows your Harbor accent.";
 "The most-watched movies and series on {name} right now in {region}." = "{region} में इस समय {name} पर सबसे ज़्यादा देखी जा रही फ़िल्में और सीरीज़।";
@@ -1807,6 +1813,7 @@
 "Tracking" = "Tracking";
 "Tracks" = "ट्रैक";
 "Traducir títulos" = "टाइटल का अनुवाद करें";
+"Trakt reported that authorization was denied. Try again if this was unintentional." = "Trakt के अनुसार प्राधिकरण अस्वीकार कर दिया गया था। अगर ऐसा अनजाने में हुआ, तो फिर कोशिश करें।";
 "Transfer primary" = "मुख्य प्रोफ़ाइल ट्रांसफ़र करें";
 "Translate titles" = "टाइटल का अनुवाद करें";
 "Trazo grueso alrededor de cada letra. Alto contraste." = "हर अक्षर के चारों ओर मोटी रेखा। अधिक कंट्रास्ट।";
@@ -1891,6 +1898,7 @@
 "Volver a empezar" = "फिर से शुरू करें";
 "Vídeo" = "वीडियो";
 "Waiting for you to authorize on simkl.com…" = "simkl.com पर आपके अनुमति देने की प्रतीक्षा हो रही है…";
+"Waiting for you to authorize on trakt.tv…" = "trakt.tv पर आपके अनुमति देने की प्रतीक्षा हो रही है…";
 "War" = "युद्ध";
 "Watched" = "देख लिया";
 "Watching" = "देख रहे हैं";

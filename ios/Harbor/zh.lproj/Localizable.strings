@@ -158,6 +158,7 @@
 "Audio sin etiqueta" = "音频未标注";
 "Authorization expired. Connect again." = "Authorization expired. Connect again.";
 "Authorize Harbor on Simkl" = "在 Simkl 上授权 Harbor";
+"Authorize Harbor on Trakt" = "在 Trakt 上授权 Harbor";
 "Auto" = "自动";
 "Auto (match video)" = "自动（匹配视频）";
 "Auto-play next episode" = "自动播放下一集";
@@ -396,6 +397,7 @@
 "Confirm your current PIN, then pick a new one." = "确认当前 PIN，然后设置新 PIN。";
 "Connect Simkl" = "连接 Simkl";
 "Connect TMDB" = "连接 TMDB";
+"Connect Trakt" = "连接 Trakt";
 "Connected" = "已连接";
 "Connected to Simkl" = "已连接到 Simkl";
 "Connecting" = "正在连接";
@@ -444,6 +446,7 @@
 "Could not save your tracks or listening history. Try again." = "Could not save your tracks or listening history. Try again.";
 "Couldn't auto-sync" = "无法自动同步";
 "Couldn't reach Simkl" = "无法连接 Simkl";
+"Couldn't reach Trakt. Check your connection and try again." = "无法连接到 Trakt。请检查网络连接后重试。";
 "Cover Image URL" = "封面图片 URL";
 "Crash" = "崩溃";
 "Crea tu propia paleta" = "创建自己的配色方案";
@@ -1381,6 +1384,7 @@
 "Reproducir después" = "下一首播放";
 "Reproductor" = "选手";
 "Requesting code from Simkl…" = "正在向 Simkl 请求代码…";
+"Requesting code from Trakt…" = "正在向 Trakt 请求代码…";
 "Requiere al menos 10 títulos para el estilo de Top 10" = "至少需要 10 部作品才能使用前 10 名样式";
 "Requiere títulos con abundante material gráfico para el contenido destacado" = "需要包含丰富图片素材的作品才能用于焦点推荐";
 "Resaltado, progreso." = "高亮、进度。";
@@ -1629,6 +1633,7 @@
 "Status" = "状态";
 "Step 1 · Metadata" = "第 1 步 · 元数据";
 "Step 1 · Open Simkl" = "第 1 步 · 打开 Simkl";
+"Step 1 · Open Trakt" = "第 1 步 · 打开 Trakt";
 "Step 2 · Enter this code" = "第 2 步 · 输入此代码";
 "Step 2 · Stremio" = "第 2 步 · Stremio";
 "Step 3 · Streaming" = "第 3 步 · 流媒体";
@@ -1733,6 +1738,7 @@
 "That route wouldn't chart. Try a different direction." = "这条航线走不通。换个方向试试。";
 "The CW" = "The CW";
 "The Roku Channel" = "The Roku Channel";
+"The authorization code timed out before you finished. Try again." = "你未能及时完成操作，授权码已过期。请重试。";
 "The comics industry's highest honor" = "漫画行业的最高荣誉";
 "The filled part of the timeline. Default follows your Harbor accent." = "The filled part of the timeline. Default follows your Harbor accent.";
 "The most-watched movies and series on {name} right now in {region}." = "{region} 当前在 {name} 上观看人数最多的电影和剧集。";
@@ -1807,6 +1813,7 @@
 "Tracking" = "Tracking";
 "Tracks" = "轨道";
 "Traducir títulos" = "翻译标题";
+"Trakt reported that authorization was denied. Try again if this was unintentional." = "Trakt 报告授权被拒绝。如果并非有意拒绝，请重试。";
 "Transfer primary" = "转移主个人资料";
 "Translate titles" = "翻译标题";
 "Trazo grueso alrededor de cada letra. Alto contraste." = "为每个字符添加硬边描边，对比度高。";
@@ -1891,6 +1898,7 @@
 "Volver a empezar" = "从头播放";
 "Vídeo" = "视频";
 "Waiting for you to authorize on simkl.com…" = "正在等待你在 simkl.com 上授权…";
+"Waiting for you to authorize on trakt.tv…" = "正在等待你在 trakt.tv 上授权…";
 "War" = "战争";
 "Watched" = "已观看";
 "Watching" = "正在观看";

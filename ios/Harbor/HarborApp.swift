@@ -123,6 +123,7 @@ struct HarborApp: App {
                 }
                 .modifier(LibraryPendingRecovery(app: model))
                 .modifier(TraktPlaybackRecovery(app: model))
+                .modifier(TraktPendingRecovery(app: model))
     }
     private var accountSheet: some View {
         NavigationStack { AccountView(app: model) }.font(HarborTheme.font()).foregroundStyle(HarborTheme.ink).tint(HarborTheme.accent).preferredColorScheme(.dark)

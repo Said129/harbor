@@ -158,6 +158,7 @@
 "Audio sin etiqueta" = "Âm thanh không có nhãn";
 "Authorization expired. Connect again." = "Authorization expired. Connect again.";
 "Authorize Harbor on Simkl" = "Ủy quyền Harbor trên Simkl";
+"Authorize Harbor on Trakt" = "Ủy quyền Harbor trên Trakt";
 "Auto" = "Tự động";
 "Auto (match video)" = "Tự động (khớp video)";
 "Auto-play next episode" = "Tự động phát tập tiếp theo";
@@ -396,6 +397,7 @@
 "Confirm your current PIN, then pick a new one." = "Xác nhận mã PIN hiện tại, rồi chọn mã mới.";
 "Connect Simkl" = "Kết nối Simkl";
 "Connect TMDB" = "Kết nối TMDB";
+"Connect Trakt" = "Kết nối Trakt";
 "Connected" = "Đã kết nối";
 "Connected to Simkl" = "Đã kết nối với Simkl";
 "Connecting" = "Đang kết nối";
@@ -444,6 +446,7 @@
 "Could not save your tracks or listening history. Try again." = "Could not save your tracks or listening history. Try again.";
 "Couldn't auto-sync" = "Không thể tự động đồng bộ";
 "Couldn't reach Simkl" = "Không thể kết nối với Simkl";
+"Couldn't reach Trakt. Check your connection and try again." = "Không thể kết nối với Trakt. Hãy kiểm tra kết nối rồi thử lại.";
 "Cover Image URL" = "URL ảnh bìa";
 "Crash" = "Sự cố";
 "Crea tu propia paleta" = "Tạo bảng màu riêng";
@@ -1381,6 +1384,7 @@
 "Reproducir después" = "Phát tiếp theo";
 "Reproductor" = "Tuyển thủ";
 "Requesting code from Simkl…" = "Đang yêu cầu mã từ Simkl…";
+"Requesting code from Trakt…" = "Đang yêu cầu mã từ Trakt…";
 "Requiere al menos 10 títulos para el estilo de Top 10" = "Cần ít nhất 10 tựa phim để hiển thị theo dạng Top 10";
 "Requiere títulos con abundante material gráfico para el contenido destacado" = "Cần các tựa phim có hình ảnh phong phú để đưa lên mục nổi bật";
 "Resaltado, progreso." = "Tô sáng, tiến trình.";
@@ -1629,6 +1633,7 @@
 "Status" = "Trạng thái";
 "Step 1 · Metadata" = "Bước 1 · Siêu dữ liệu";
 "Step 1 · Open Simkl" = "Bước 1 · Mở Simkl";
+"Step 1 · Open Trakt" = "Bước 1 · Mở Trakt";
 "Step 2 · Enter this code" = "Bước 2 · Nhập mã này";
 "Step 2 · Stremio" = "Bước 2 · Stremio";
 "Step 3 · Streaming" = "Bước 3 · Dịch vụ phát trực tuyến";
@@ -1733,6 +1738,7 @@
 "That route wouldn't chart. Try a different direction." = "Không thể lập hải trình đó. Hãy thử một hướng khác.";
 "The CW" = "The CW";
 "The Roku Channel" = "The Roku Channel";
+"The authorization code timed out before you finished. Try again." = "Mã ủy quyền đã hết hạn trước khi bạn hoàn tất. Hãy thử lại.";
 "The comics industry's highest honor" = "Giải thưởng danh giá nhất của ngành truyện tranh";
 "The filled part of the timeline. Default follows your Harbor accent." = "The filled part of the timeline. Default follows your Harbor accent.";
 "The most-watched movies and series on {name} right now in {region}." = "Các phim điện ảnh và phim bộ được xem nhiều nhất trên {name} hiện nay tại {region}.";
@@ -1807,6 +1813,7 @@
 "Tracking" = "Tracking";
 "Tracks" = "Rãnh";
 "Traducir títulos" = "Dịch tiêu đề";
+"Trakt reported that authorization was denied. Try again if this was unintentional." = "Trakt cho biết yêu cầu cấp quyền đã bị từ chối. Hãy thử lại nếu bạn không chủ ý từ chối.";
 "Transfer primary" = "Chuyển hồ sơ chính";
 "Translate titles" = "Dịch tiêu đề";
 "Trazo grueso alrededor de cada letra. Alto contraste." = "Viền đậm quanh từng chữ. Độ tương phản cao.";
@@ -1891,6 +1898,7 @@
 "Volver a empezar" = "Phát lại từ đầu";
 "Vídeo" = "Video";
 "Waiting for you to authorize on simkl.com…" = "Đang chờ bạn cấp quyền trên simkl.com…";
+"Waiting for you to authorize on trakt.tv…" = "Đang chờ bạn cấp quyền trên trakt.tv…";
 "War" = "Chiến tranh";
 "Watched" = "Đã xem";
 "Watching" = "Đang xem";

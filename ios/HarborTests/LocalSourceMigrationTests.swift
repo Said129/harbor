@@ -146,12 +146,17 @@ actor OwnedRetirementOfflineService: LibraryServing {
     }
     func testEveryDesktopLanguageHasAccountIndependentSourceAndPrivateHistoryGuidance() {
         XCTAssertEqual(Set(LocalProfileText.translations.keys), Set(InterfaceLanguage.all.map(\.code)))
+        XCTAssertEqual(Set(LocalProfileText.serverNotes.keys), Set(InterfaceLanguage.all.map(\.code)))
         for language in InterfaceLanguage.all {
-            XCTAssertEqual(LocalProfileText.translations[language.code]?.count, LocalProfileText.Key.allCases.count)
+            XCTAssertEqual(LocalProfileText.translations[language.code]?.count, 2)
+            XCTAssertNotNil(LocalProfileText.serverNotes[language.code])
             for key in LocalProfileText.Key.allCases {
                 let text = LocalProfileText.value(key, language: language.code)
-                XCTAssertFalse(text.isEmpty); XCTAssertFalse(text.contains("Stremio")); XCTAssertTrue(text.contains("Harbor"))
+                XCTAssertFalse(text.isEmpty); XCTAssertFalse(text.contains("Stremio"))
+                if key != .serverAccount { XCTAssertTrue(text.contains("Harbor")) }
             }
         }
+        XCTAssertTrue(LocalProfileText.value(.serverAccount, language: "en").contains("original service closed"))
+        XCTAssertTrue(LocalProfileText.value(.serverAccount, language: "es").contains("servicio original cerró"))
     }
 }

@@ -166,6 +166,7 @@
 "Audio sin etiqueta" = "Áudio sem identificação";
 "Authorization expired. Connect again." = "Authorization expired. Connect again.";
 "Authorize Harbor on Simkl" = "Autorizar o Harbor no Simkl";
+"Authorize Harbor on Trakt" = "Autorizar o Harbor no Trakt";
 "Auto" = "Automático";
 "Auto (match video)" = "Automático (igualar ao vídeo)";
 "Auto-play next episode" = "Reproduzir o próximo episódio automaticamente";
@@ -412,6 +413,7 @@
 "Confirm your current PIN, then pick a new one." = "Confirme seu PIN atual e escolha um novo.";
 "Connect Simkl" = "Conectar Simkl";
 "Connect TMDB" = "Conectar TMDB";
+"Connect Trakt" = "Conectar Trakt";
 "Connected" = "Conectado";
 "Connected to Simkl" = "Conectado ao Simkl";
 "Connecting" = "Conectando";
@@ -464,6 +466,7 @@
 "Could not save your tracks or listening history. Try again." = "Could not save your tracks or listening history. Try again.";
 "Couldn't auto-sync" = "Não foi possível sincronizar";
 "Couldn't reach Simkl" = "Não foi possível conectar ao Simkl";
+"Couldn't reach Trakt. Check your connection and try again." = "Não foi possível conectar ao Trakt. Verifique sua conexão e tente novamente.";
 "Cover Image URL" = "URL da Imagem de Capa";
 "Crash" = "Falha";
 "Crea tu propia paleta" = "Crie sua própria paleta";
@@ -1401,6 +1404,7 @@
 "Reproducir después" = "Reproduzir a seguir";
 "Reproductor" = "Jogador";
 "Requesting code from Simkl…" = "Solicitando código do Simkl…";
+"Requesting code from Trakt…" = "Solicitando código do Trakt…";
 "Requiere al menos 10 títulos para el estilo de Top 10" = "Precisa de pelo menos 10 títulos para o visual Top 10";
 "Requiere títulos con abundante material gráfico para el contenido destacado" = "Precisa de títulos com bastante arte para alimentar o destaque";
 "Resaltado, progreso." = "Destaque, progresso.";
@@ -1651,6 +1655,7 @@
 "Status" = "Status";
 "Step 1 · Metadata" = "Etapa 1 · Metadados";
 "Step 1 · Open Simkl" = "Etapa 1 · Abrir Simkl";
+"Step 1 · Open Trakt" = "Etapa 1 · Abrir Trakt";
 "Step 2 · Enter this code" = "Etapa 2 · Digite este código";
 "Step 2 · Stremio" = "Etapa 2 · Stremio";
 "Step 3 · Streaming" = "Etapa 3 · Streaming";
@@ -1756,6 +1761,7 @@
 "That route wouldn't chart. Try a different direction." = "Não foi possível traçar essa rota. Tente outra direção.";
 "The CW" = "The CW";
 "The Roku Channel" = "The Roku Channel";
+"The authorization code timed out before you finished. Try again." = "O código de autorização expirou antes de você terminar. Tente novamente.";
 "The comics industry's highest honor" = "A maior honraria da indústria de quadrinhos";
 "The filled part of the timeline. Default follows your Harbor accent." = "The filled part of the timeline. Default follows your Harbor accent.";
 "The most-watched movies and series on {name} right now in {region}." = "Os filmes e séries mais assistidos no {name} agora em {region}.";
@@ -1830,6 +1836,7 @@
 "Tracking" = "Tracking";
 "Tracks" = "Faixas";
 "Traducir títulos" = "Traduzir títulos";
+"Trakt reported that authorization was denied. Try again if this was unintentional." = "O Trakt informou que a autorização foi negada. Tente novamente se isso não foi intencional.";
 "Transfer primary" = "Transferir principal";
 "Translate titles" = "Traduzir títulos";
 "Trazo grueso alrededor de cada letra. Alto contraste." = "Contorno forte ao redor de cada letra. Alto contraste.";
@@ -1914,6 +1921,7 @@
 "Volver a empezar" = "Começar de Novo";
 "Vídeo" = "Vídeo";
 "Waiting for you to authorize on simkl.com…" = "Aguardando sua autorização em simkl.com…";
+"Waiting for you to authorize on trakt.tv…" = "Aguardando sua autorização em trakt.tv…";
 "War" = "Guerra";
 "Watched" = "Assistido";
 "Watching" = "Assistindo";

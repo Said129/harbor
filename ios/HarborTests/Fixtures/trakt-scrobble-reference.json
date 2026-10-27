@@ -1,0 +1,5071 @@
+{
+  "reference": "0834340cec5531650bfe78cd628628702e636987",
+  "actual_original_typescript_executed": true,
+  "provider_network_requests": 0,
+  "executed_module_hashes": {
+    "src/lib/trakt/ids.ts": "f11d6a1e177e9c4952327a7b1d77255310458188e2f92cc91cc8821145716c07",
+    "src/lib/trakt/scrobble.ts": "74c52001fec5634199aa05a397a544430632abd4f709d93643b5a74a8f0df44b",
+    "src/lib/trakt/history.ts": "c3179bbf9d9ba35a26b71922bc60685ec348a7f6b964a9fe8cbacf7c80af3d18",
+    "src/lib/trakt/scrobble-hook.ts": "167bca231b291820cdd5d8b597d082eb8b4c8ba022b140392f2a134ea3999b43",
+    "src/lib/tracker-resolve/match.ts": "8dcf003071542b985e336649c7418a6c5a2f982051dee58caac28952b7bea087",
+    "src/lib/tracker-resolve/resolve.ts": "9837236455bdad4973b4971ec9f623b0a58f5e0e606b5af4dc119c7187df26c9",
+    "src/lib/trakt/resolve.ts": "2cc751bce0c6209eaa182f38527012ccd3c4810f5e6d2f9a8d6322188f8af08a"
+  },
+  "targets": [
+    {
+      "name": "imdb-film",
+      "mediaID": "tt1234567",
+      "expected": {
+        "ok": true,
+        "target": {
+          "kind": "movie",
+          "ids": {
+            "imdb": "tt1234567"
+          }
+        }
+      }
+    },
+    {
+      "name": "imdb-show-episode",
+      "mediaID": "tt1234567",
+      "episode": {
+        "season": 1,
+        "episode": 7
+      },
+      "expected": {
+        "ok": true,
+        "target": {
+          "kind": "episode",
+          "show": {
+            "ids": {
+              "imdb": "tt1234567"
+            }
+          },
+          "season": 1,
+          "number": 7
+        }
+      }
+    },
+    {
+      "name": "imdb-coordinates",
+      "mediaID": "tt1234567:2:9",
+      "expected": {
+        "ok": true,
+        "target": {
+          "kind": "episode",
+          "show": {
+            "ids": {
+              "imdb": "tt1234567"
+            }
+          },
+          "season": 2,
+          "number": 9
+        }
+      }
+    },
+    {
+      "name": "imdb-special",
+      "mediaID": "tt1234567:0:2",
+      "expected": {
+        "ok": true,
+        "target": {
+          "kind": "episode",
+          "show": {
+            "ids": {
+              "imdb": "tt1234567"
+            }
+          },
+          "season": 0,
+          "number": 2
+        }
+      }
+    },
+    {
+      "name": "tmdb-film",
+      "mediaID": "tmdb:movie:8",
+      "expected": {
+        "ok": true,
+        "target": {
+          "kind": "movie",
+          "ids": {
+            "tmdb": 8
+          }
+        }
+      }
+    },
+    {
+      "name": "tmdb-show",
+      "mediaID": "tmdb:tv:9",
+      "expected": {
+        "ok": true,
+        "target": {
+          "kind": "show",
+          "ids": {
+            "tmdb": 9
+          }
+        }
+      }
+    },
+    {
+      "name": "tmdb-episode",
+      "mediaID": "tmdb:tv:9",
+      "episode": {
+        "season": 1,
+        "episode": 7
+      },
+      "expected": {
+        "ok": true,
+        "target": {
+          "kind": "episode",
+          "show": {
+            "ids": {
+              "tmdb": 9
+            }
+          },
+          "season": 1,
+          "number": 7
+        }
+      }
+    },
+    {
+      "name": "tmdb-coordinates",
+      "mediaID": "tmdb:tv:9:3:12",
+      "expected": {
+        "ok": true,
+        "target": {
+          "kind": "episode",
+          "show": {
+            "ids": {
+              "tmdb": 9
+            }
+          },
+          "season": 3,
+          "number": 12
+        }
+      }
+    },
+    {
+      "name": "anime-no-mapping",
+      "mediaID": "kitsu:8",
+      "episode": {
+        "season": 1,
+        "episode": 7
+      },
+      "expected": {
+        "ok": false,
+        "reason": "anime"
+      }
+    },
+    {
+      "name": "anime-no-episode",
+      "mediaID": "mal:8",
+      "expected": {
+        "ok": false,
+        "reason": "anime"
+      }
+    },
+    {
+      "name": "anime-tvdb",
+      "mediaID": "kitsu:8",
+      "episode": {
+        "season": 1,
+        "episode": 7,
+        "tvdbEpisodeId": 81
+      },
+      "expected": {
+        "ok": true,
+        "target": {
+          "kind": "episode",
+          "show": {
+            "ids": {}
+          },
+          "season": 1,
+          "number": 7,
+          "episodeIds": {
+            "tvdb": 81
+          }
+        }
+      }
+    },
+    {
+      "name": "anime-all-mappings",
+      "mediaID": "mal:8",
+      "episode": {
+        "season": 1,
+        "episode": 7,
+        "imdbId": "tt1234567",
+        "imdbSeason": 2,
+        "imdbEpisode": 3,
+        "tvdbEpisodeId": 82
+      },
+      "expected": {
+        "ok": true,
+        "target": {
+          "kind": "episode",
+          "show": {
+            "ids": {
+              "imdb": "tt1234567"
+            }
+          },
+          "season": 2,
+          "number": 3,
+          "episodeIds": {
+            "tvdb": 82
+          }
+        }
+      }
+    },
+    {
+      "name": "anime-imdb",
+      "mediaID": "mal:8",
+      "episode": {
+        "season": 1,
+        "episode": 7,
+        "imdbId": "tt1234567",
+        "imdbSeason": 0,
+        "imdbEpisode": 3
+      },
+      "expected": {
+        "ok": true,
+        "target": {
+          "kind": "episode",
+          "show": {
+            "ids": {
+              "imdb": "tt1234567"
+            }
+          },
+          "season": 0,
+          "number": 3
+        }
+      }
+    },
+    {
+      "name": "anime-partial-mapping",
+      "mediaID": "mal:8",
+      "episode": {
+        "season": 1,
+        "episode": 7,
+        "imdbId": "tt1234567",
+        "imdbSeason": 2
+      },
+      "expected": {
+        "ok": false,
+        "reason": "anime"
+      }
+    },
+    {
+      "name": "unknown",
+      "mediaID": "other:8",
+      "expected": {
+        "ok": false,
+        "reason": "unrecognized"
+      }
+    },
+    {
+      "name": "bad-imdb",
+      "mediaID": "ttbad",
+      "expected": {
+        "ok": false,
+        "reason": "unrecognized"
+      }
+    },
+    {
+      "name": "empty",
+      "mediaID": "",
+      "expected": {
+        "ok": false,
+        "reason": "unrecognized"
+      }
+    }
+  ],
+  "bodyCases": [
+    {
+      "name": "imdb-film-0",
+      "mediaID": "tt1234567",
+      "progress": 0,
+      "expected": {
+        "movie": {
+          "ids": {
+            "imdb": "tt1234567"
+          }
+        },
+        "progress": 0
+      },
+      "outcome": "recorded"
+    },
+    {
+      "name": "imdb-film-2.675",
+      "mediaID": "tt1234567",
+      "progress": 2.675,
+      "expected": {
+        "movie": {
+          "ids": {
+            "imdb": "tt1234567"
+          }
+        },
+        "progress": 2.67
+      },
+      "outcome": "recorded"
+    },
+    {
+      "name": "imdb-film-2.125",
+      "mediaID": "tt1234567",
+      "progress": 2.125,
+      "expected": {
+        "movie": {
+          "ids": {
+            "imdb": "tt1234567"
+          }
+        },
+        "progress": 2.13
+      },
+      "outcome": "recorded"
+    },
+    {
+      "name": "imdb-film-69.999",
+      "mediaID": "tt1234567",
+      "progress": 69.999,
+      "expected": {
+        "movie": {
+          "ids": {
+            "imdb": "tt1234567"
+          }
+        },
+        "progress": 70
+      },
+      "outcome": "recorded"
+    },
+    {
+      "name": "imdb-film-90",
+      "mediaID": "tt1234567",
+      "progress": 90,
+      "expected": {
+        "movie": {
+          "ids": {
+            "imdb": "tt1234567"
+          }
+        },
+        "progress": 90
+      },
+      "outcome": "recorded"
+    },
+    {
+      "name": "imdb-film-101",
+      "mediaID": "tt1234567",
+      "progress": 101,
+      "expected": {
+        "movie": {
+          "ids": {
+            "imdb": "tt1234567"
+          }
+        },
+        "progress": 100
+      },
+      "outcome": "recorded"
+    },
+    {
+      "name": "imdb-film--1",
+      "mediaID": "tt1234567",
+      "progress": -1,
+      "expected": {
+        "movie": {
+          "ids": {
+            "imdb": "tt1234567"
+          }
+        },
+        "progress": 0
+      },
+      "outcome": "recorded"
+    },
+    {
+      "name": "imdb-show-episode-0",
+      "mediaID": "tt1234567",
+      "episode": {
+        "season": 1,
+        "episode": 7
+      },
+      "progress": 0,
+      "expected": {
+        "show": {
+          "ids": {
+            "imdb": "tt1234567"
+          }
+        },
+        "episode": {
+          "season": 1,
+          "number": 7
+        },
+        "progress": 0
+      },
+      "outcome": "recorded"
+    },
+    {
+      "name": "imdb-show-episode-2.675",
+      "mediaID": "tt1234567",
+      "episode": {
+        "season": 1,
+        "episode": 7
+      },
+      "progress": 2.675,
+      "expected": {
+        "show": {
+          "ids": {
+            "imdb": "tt1234567"
+          }
+        },
+        "episode": {
+          "season": 1,
+          "number": 7
+        },
+        "progress": 2.67
+      },
+      "outcome": "recorded"
+    },
+    {
+      "name": "imdb-show-episode-2.125",
+      "mediaID": "tt1234567",
+      "episode": {
+        "season": 1,
+        "episode": 7
+      },
+      "progress": 2.125,
+      "expected": {
+        "show": {
+          "ids": {
+            "imdb": "tt1234567"
+          }
+        },
+        "episode": {
+          "season": 1,
+          "number": 7
+        },
+        "progress": 2.13
+      },
+      "outcome": "recorded"
+    },
+    {
+      "name": "imdb-show-episode-69.999",
+      "mediaID": "tt1234567",
+      "episode": {
+        "season": 1,
+        "episode": 7
+      },
+      "progress": 69.999,
+      "expected": {
+        "show": {
+          "ids": {
+            "imdb": "tt1234567"
+          }
+        },
+        "episode": {
+          "season": 1,
+          "number": 7
+        },
+        "progress": 70
+      },
+      "outcome": "recorded"
+    },
+    {
+      "name": "imdb-show-episode-90",
+      "mediaID": "tt1234567",
+      "episode": {
+        "season": 1,
+        "episode": 7
+      },
+      "progress": 90,
+      "expected": {
+        "show": {
+          "ids": {
+            "imdb": "tt1234567"
+          }
+        },
+        "episode": {
+          "season": 1,
+          "number": 7
+        },
+        "progress": 90
+      },
+      "outcome": "recorded"
+    },
+    {
+      "name": "imdb-show-episode-101",
+      "mediaID": "tt1234567",
+      "episode": {
+        "season": 1,
+        "episode": 7
+      },
+      "progress": 101,
+      "expected": {
+        "show": {
+          "ids": {
+            "imdb": "tt1234567"
+          }
+        },
+        "episode": {
+          "season": 1,
+          "number": 7
+        },
+        "progress": 100
+      },
+      "outcome": "recorded"
+    },
+    {
+      "name": "imdb-show-episode--1",
+      "mediaID": "tt1234567",
+      "episode": {
+        "season": 1,
+        "episode": 7
+      },
+      "progress": -1,
+      "expected": {
+        "show": {
+          "ids": {
+            "imdb": "tt1234567"
+          }
+        },
+        "episode": {
+          "season": 1,
+          "number": 7
+        },
+        "progress": 0
+      },
+      "outcome": "recorded"
+    },
+    {
+      "name": "imdb-coordinates-0",
+      "mediaID": "tt1234567:2:9",
+      "progress": 0,
+      "expected": {
+        "show": {
+          "ids": {
+            "imdb": "tt1234567"
+          }
+        },
+        "episode": {
+          "season": 2,
+          "number": 9
+        },
+        "progress": 0
+      },
+      "outcome": "recorded"
+    },
+    {
+      "name": "imdb-coordinates-2.675",
+      "mediaID": "tt1234567:2:9",
+      "progress": 2.675,
+      "expected": {
+        "show": {
+          "ids": {
+            "imdb": "tt1234567"
+          }
+        },
+        "episode": {
+          "season": 2,
+          "number": 9
+        },
+        "progress": 2.67
+      },
+      "outcome": "recorded"
+    },
+    {
+      "name": "imdb-coordinates-2.125",
+      "mediaID": "tt1234567:2:9",
+      "progress": 2.125,
+      "expected": {
+        "show": {
+          "ids": {
+            "imdb": "tt1234567"
+          }
+        },
+        "episode": {
+          "season": 2,
+          "number": 9
+        },
+        "progress": 2.13
+      },
+      "outcome": "recorded"
+    },
+    {
+      "name": "imdb-coordinates-69.999",
+      "mediaID": "tt1234567:2:9",
+      "progress": 69.999,
+      "expected": {
+        "show": {
+          "ids": {
+            "imdb": "tt1234567"
+          }
+        },
+        "episode": {
+          "season": 2,
+          "number": 9
+        },
+        "progress": 70
+      },
+      "outcome": "recorded"
+    },
+    {
+      "name": "imdb-coordinates-90",
+      "mediaID": "tt1234567:2:9",
+      "progress": 90,
+      "expected": {
+        "show": {
+          "ids": {
+            "imdb": "tt1234567"
+          }
+        },
+        "episode": {
+          "season": 2,
+          "number": 9
+        },
+        "progress": 90
+      },
+      "outcome": "recorded"
+    },
+    {
+      "name": "imdb-coordinates-101",
+      "mediaID": "tt1234567:2:9",
+      "progress": 101,
+      "expected": {
+        "show": {
+          "ids": {
+            "imdb": "tt1234567"
+          }
+        },
+        "episode": {
+          "season": 2,
+          "number": 9
+        },
+        "progress": 100
+      },
+      "outcome": "recorded"
+    },
+    {
+      "name": "imdb-coordinates--1",
+      "mediaID": "tt1234567:2:9",
+      "progress": -1,
+      "expected": {
+        "show": {
+          "ids": {
+            "imdb": "tt1234567"
+          }
+        },
+        "episode": {
+          "season": 2,
+          "number": 9
+        },
+        "progress": 0
+      },
+      "outcome": "recorded"
+    },
+    {
+      "name": "imdb-special-0",
+      "mediaID": "tt1234567:0:2",
+      "progress": 0,
+      "expected": {
+        "show": {
+          "ids": {
+            "imdb": "tt1234567"
+          }
+        },
+        "episode": {
+          "season": 0,
+          "number": 2
+        },
+        "progress": 0
+      },
+      "outcome": "recorded"
+    },
+    {
+      "name": "imdb-special-2.675",
+      "mediaID": "tt1234567:0:2",
+      "progress": 2.675,
+      "expected": {
+        "show": {
+          "ids": {
+            "imdb": "tt1234567"
+          }
+        },
+        "episode": {
+          "season": 0,
+          "number": 2
+        },
+        "progress": 2.67
+      },
+      "outcome": "recorded"
+    },
+    {
+      "name": "imdb-special-2.125",
+      "mediaID": "tt1234567:0:2",
+      "progress": 2.125,
+      "expected": {
+        "show": {
+          "ids": {
+            "imdb": "tt1234567"
+          }
+        },
+        "episode": {
+          "season": 0,
+          "number": 2
+        },
+        "progress": 2.13
+      },
+      "outcome": "recorded"
+    },
+    {
+      "name": "imdb-special-69.999",
+      "mediaID": "tt1234567:0:2",
+      "progress": 69.999,
+      "expected": {
+        "show": {
+          "ids": {
+            "imdb": "tt1234567"
+          }
+        },
+        "episode": {
+          "season": 0,
+          "number": 2
+        },
+        "progress": 70
+      },
+      "outcome": "recorded"
+    },
+    {
+      "name": "imdb-special-90",
+      "mediaID": "tt1234567:0:2",
+      "progress": 90,
+      "expected": {
+        "show": {
+          "ids": {
+            "imdb": "tt1234567"
+          }
+        },
+        "episode": {
+          "season": 0,
+          "number": 2
+        },
+        "progress": 90
+      },
+      "outcome": "recorded"
+    },
+    {
+      "name": "imdb-special-101",
+      "mediaID": "tt1234567:0:2",
+      "progress": 101,
+      "expected": {
+        "show": {
+          "ids": {
+            "imdb": "tt1234567"
+          }
+        },
+        "episode": {
+          "season": 0,
+          "number": 2
+        },
+        "progress": 100
+      },
+      "outcome": "recorded"
+    },
+    {
+      "name": "imdb-special--1",
+      "mediaID": "tt1234567:0:2",
+      "progress": -1,
+      "expected": {
+        "show": {
+          "ids": {
+            "imdb": "tt1234567"
+          }
+        },
+        "episode": {
+          "season": 0,
+          "number": 2
+        },
+        "progress": 0
+      },
+      "outcome": "recorded"
+    },
+    {
+      "name": "tmdb-film-0",
+      "mediaID": "tmdb:movie:8",
+      "progress": 0,
+      "expected": {
+        "movie": {
+          "ids": {
+            "tmdb": 8
+          }
+        },
+        "progress": 0
+      },
+      "outcome": "recorded"
+    },
+    {
+      "name": "tmdb-film-2.675",
+      "mediaID": "tmdb:movie:8",
+      "progress": 2.675,
+      "expected": {
+        "movie": {
+          "ids": {
+            "tmdb": 8
+          }
+        },
+        "progress": 2.67
+      },
+      "outcome": "recorded"
+    },
+    {
+      "name": "tmdb-film-2.125",
+      "mediaID": "tmdb:movie:8",
+      "progress": 2.125,
+      "expected": {
+        "movie": {
+          "ids": {
+            "tmdb": 8
+          }
+        },
+        "progress": 2.13
+      },
+      "outcome": "recorded"
+    },
+    {
+      "name": "tmdb-film-69.999",
+      "mediaID": "tmdb:movie:8",
+      "progress": 69.999,
+      "expected": {
+        "movie": {
+          "ids": {
+            "tmdb": 8
+          }
+        },
+        "progress": 70
+      },
+      "outcome": "recorded"
+    },
+    {
+      "name": "tmdb-film-90",
+      "mediaID": "tmdb:movie:8",
+      "progress": 90,
+      "expected": {
+        "movie": {
+          "ids": {
+            "tmdb": 8
+          }
+        },
+        "progress": 90
+      },
+      "outcome": "recorded"
+    },
+    {
+      "name": "tmdb-film-101",
+      "mediaID": "tmdb:movie:8",
+      "progress": 101,
+      "expected": {
+        "movie": {
+          "ids": {
+            "tmdb": 8
+          }
+        },
+        "progress": 100
+      },
+      "outcome": "recorded"
+    },
+    {
+      "name": "tmdb-film--1",
+      "mediaID": "tmdb:movie:8",
+      "progress": -1,
+      "expected": {
+        "movie": {
+          "ids": {
+            "tmdb": 8
+          }
+        },
+        "progress": 0
+      },
+      "outcome": "recorded"
+    },
+    {
+      "name": "tmdb-show-0",
+      "mediaID": "tmdb:tv:9",
+      "progress": 0,
+      "expected": null,
+      "outcome": "failed"
+    },
+    {
+      "name": "tmdb-show-2.675",
+      "mediaID": "tmdb:tv:9",
+      "progress": 2.675,
+      "expected": null,
+      "outcome": "failed"
+    },
+    {
+      "name": "tmdb-show-2.125",
+      "mediaID": "tmdb:tv:9",
+      "progress": 2.125,
+      "expected": null,
+      "outcome": "failed"
+    },
+    {
+      "name": "tmdb-show-69.999",
+      "mediaID": "tmdb:tv:9",
+      "progress": 69.999,
+      "expected": null,
+      "outcome": "failed"
+    },
+    {
+      "name": "tmdb-show-90",
+      "mediaID": "tmdb:tv:9",
+      "progress": 90,
+      "expected": null,
+      "outcome": "failed"
+    },
+    {
+      "name": "tmdb-show-101",
+      "mediaID": "tmdb:tv:9",
+      "progress": 101,
+      "expected": null,
+      "outcome": "failed"
+    },
+    {
+      "name": "tmdb-show--1",
+      "mediaID": "tmdb:tv:9",
+      "progress": -1,
+      "expected": null,
+      "outcome": "failed"
+    },
+    {
+      "name": "tmdb-episode-0",
+      "mediaID": "tmdb:tv:9",
+      "episode": {
+        "season": 1,
+        "episode": 7
+      },
+      "progress": 0,
+      "expected": {
+        "show": {
+          "ids": {
+            "tmdb": 9
+          }
+        },
+        "episode": {
+          "season": 1,
+          "number": 7
+        },
+        "progress": 0
+      },
+      "outcome": "recorded"
+    },
+    {
+      "name": "tmdb-episode-2.675",
+      "mediaID": "tmdb:tv:9",
+      "episode": {
+        "season": 1,
+        "episode": 7
+      },
+      "progress": 2.675,
+      "expected": {
+        "show": {
+          "ids": {
+            "tmdb": 9
+          }
+        },
+        "episode": {
+          "season": 1,
+          "number": 7
+        },
+        "progress": 2.67
+      },
+      "outcome": "recorded"
+    },
+    {
+      "name": "tmdb-episode-2.125",
+      "mediaID": "tmdb:tv:9",
+      "episode": {
+        "season": 1,
+        "episode": 7
+      },
+      "progress": 2.125,
+      "expected": {
+        "show": {
+          "ids": {
+            "tmdb": 9
+          }
+        },
+        "episode": {
+          "season": 1,
+          "number": 7
+        },
+        "progress": 2.13
+      },
+      "outcome": "recorded"
+    },
+    {
+      "name": "tmdb-episode-69.999",
+      "mediaID": "tmdb:tv:9",
+      "episode": {
+        "season": 1,
+        "episode": 7
+      },
+      "progress": 69.999,
+      "expected": {
+        "show": {
+          "ids": {
+            "tmdb": 9
+          }
+        },
+        "episode": {
+          "season": 1,
+          "number": 7
+        },
+        "progress": 70
+      },
+      "outcome": "recorded"
+    },
+    {
+      "name": "tmdb-episode-90",
+      "mediaID": "tmdb:tv:9",
+      "episode": {
+        "season": 1,
+        "episode": 7
+      },
+      "progress": 90,
+      "expected": {
+        "show": {
+          "ids": {
+            "tmdb": 9
+          }
+        },
+        "episode": {
+          "season": 1,
+          "number": 7
+        },
+        "progress": 90
+      },
+      "outcome": "recorded"
+    },
+    {
+      "name": "tmdb-episode-101",
+      "mediaID": "tmdb:tv:9",
+      "episode": {
+        "season": 1,
+        "episode": 7
+      },
+      "progress": 101,
+      "expected": {
+        "show": {
+          "ids": {
+            "tmdb": 9
+          }
+        },
+        "episode": {
+          "season": 1,
+          "number": 7
+        },
+        "progress": 100
+      },
+      "outcome": "recorded"
+    },
+    {
+      "name": "tmdb-episode--1",
+      "mediaID": "tmdb:tv:9",
+      "episode": {
+        "season": 1,
+        "episode": 7
+      },
+      "progress": -1,
+      "expected": {
+        "show": {
+          "ids": {
+            "tmdb": 9
+          }
+        },
+        "episode": {
+          "season": 1,
+          "number": 7
+        },
+        "progress": 0
+      },
+      "outcome": "recorded"
+    },
+    {
+      "name": "tmdb-coordinates-0",
+      "mediaID": "tmdb:tv:9:3:12",
+      "progress": 0,
+      "expected": {
+        "show": {
+          "ids": {
+            "tmdb": 9
+          }
+        },
+        "episode": {
+          "season": 3,
+          "number": 12
+        },
+        "progress": 0
+      },
+      "outcome": "recorded"
+    },
+    {
+      "name": "tmdb-coordinates-2.675",
+      "mediaID": "tmdb:tv:9:3:12",
+      "progress": 2.675,
+      "expected": {
+        "show": {
+          "ids": {
+            "tmdb": 9
+          }
+        },
+        "episode": {
+          "season": 3,
+          "number": 12
+        },
+        "progress": 2.67
+      },
+      "outcome": "recorded"
+    },
+    {
+      "name": "tmdb-coordinates-2.125",
+      "mediaID": "tmdb:tv:9:3:12",
+      "progress": 2.125,
+      "expected": {
+        "show": {
+          "ids": {
+            "tmdb": 9
+          }
+        },
+        "episode": {
+          "season": 3,
+          "number": 12
+        },
+        "progress": 2.13
+      },
+      "outcome": "recorded"
+    },
+    {
+      "name": "tmdb-coordinates-69.999",
+      "mediaID": "tmdb:tv:9:3:12",
+      "progress": 69.999,
+      "expected": {
+        "show": {
+          "ids": {
+            "tmdb": 9
+          }
+        },
+        "episode": {
+          "season": 3,
+          "number": 12
+        },
+        "progress": 70
+      },
+      "outcome": "recorded"
+    },
+    {
+      "name": "tmdb-coordinates-90",
+      "mediaID": "tmdb:tv:9:3:12",
+      "progress": 90,
+      "expected": {
+        "show": {
+          "ids": {
+            "tmdb": 9
+          }
+        },
+        "episode": {
+          "season": 3,
+          "number": 12
+        },
+        "progress": 90
+      },
+      "outcome": "recorded"
+    },
+    {
+      "name": "tmdb-coordinates-101",
+      "mediaID": "tmdb:tv:9:3:12",
+      "progress": 101,
+      "expected": {
+        "show": {
+          "ids": {
+            "tmdb": 9
+          }
+        },
+        "episode": {
+          "season": 3,
+          "number": 12
+        },
+        "progress": 100
+      },
+      "outcome": "recorded"
+    },
+    {
+      "name": "tmdb-coordinates--1",
+      "mediaID": "tmdb:tv:9:3:12",
+      "progress": -1,
+      "expected": {
+        "show": {
+          "ids": {
+            "tmdb": 9
+          }
+        },
+        "episode": {
+          "season": 3,
+          "number": 12
+        },
+        "progress": 0
+      },
+      "outcome": "recorded"
+    },
+    {
+      "name": "anime-tvdb-0",
+      "mediaID": "kitsu:8",
+      "episode": {
+        "season": 1,
+        "episode": 7,
+        "tvdbEpisodeId": 81
+      },
+      "progress": 0,
+      "expected": {
+        "episode": {
+          "ids": {
+            "tvdb": 81
+          }
+        },
+        "progress": 0
+      },
+      "outcome": "recorded"
+    },
+    {
+      "name": "anime-tvdb-2.675",
+      "mediaID": "kitsu:8",
+      "episode": {
+        "season": 1,
+        "episode": 7,
+        "tvdbEpisodeId": 81
+      },
+      "progress": 2.675,
+      "expected": {
+        "episode": {
+          "ids": {
+            "tvdb": 81
+          }
+        },
+        "progress": 2.67
+      },
+      "outcome": "recorded"
+    },
+    {
+      "name": "anime-tvdb-2.125",
+      "mediaID": "kitsu:8",
+      "episode": {
+        "season": 1,
+        "episode": 7,
+        "tvdbEpisodeId": 81
+      },
+      "progress": 2.125,
+      "expected": {
+        "episode": {
+          "ids": {
+            "tvdb": 81
+          }
+        },
+        "progress": 2.13
+      },
+      "outcome": "recorded"
+    },
+    {
+      "name": "anime-tvdb-69.999",
+      "mediaID": "kitsu:8",
+      "episode": {
+        "season": 1,
+        "episode": 7,
+        "tvdbEpisodeId": 81
+      },
+      "progress": 69.999,
+      "expected": {
+        "episode": {
+          "ids": {
+            "tvdb": 81
+          }
+        },
+        "progress": 70
+      },
+      "outcome": "recorded"
+    },
+    {
+      "name": "anime-tvdb-90",
+      "mediaID": "kitsu:8",
+      "episode": {
+        "season": 1,
+        "episode": 7,
+        "tvdbEpisodeId": 81
+      },
+      "progress": 90,
+      "expected": {
+        "episode": {
+          "ids": {
+            "tvdb": 81
+          }
+        },
+        "progress": 90
+      },
+      "outcome": "recorded"
+    },
+    {
+      "name": "anime-tvdb-101",
+      "mediaID": "kitsu:8",
+      "episode": {
+        "season": 1,
+        "episode": 7,
+        "tvdbEpisodeId": 81
+      },
+      "progress": 101,
+      "expected": {
+        "episode": {
+          "ids": {
+            "tvdb": 81
+          }
+        },
+        "progress": 100
+      },
+      "outcome": "recorded"
+    },
+    {
+      "name": "anime-tvdb--1",
+      "mediaID": "kitsu:8",
+      "episode": {
+        "season": 1,
+        "episode": 7,
+        "tvdbEpisodeId": 81
+      },
+      "progress": -1,
+      "expected": {
+        "episode": {
+          "ids": {
+            "tvdb": 81
+          }
+        },
+        "progress": 0
+      },
+      "outcome": "recorded"
+    },
+    {
+      "name": "anime-all-mappings-0",
+      "mediaID": "mal:8",
+      "episode": {
+        "season": 1,
+        "episode": 7,
+        "imdbId": "tt1234567",
+        "imdbSeason": 2,
+        "imdbEpisode": 3,
+        "tvdbEpisodeId": 82
+      },
+      "progress": 0,
+      "expected": {
+        "show": {
+          "ids": {
+            "imdb": "tt1234567"
+          }
+        },
+        "episode": {
+          "ids": {
+            "tvdb": 82
+          }
+        },
+        "progress": 0
+      },
+      "outcome": "recorded"
+    },
+    {
+      "name": "anime-all-mappings-2.675",
+      "mediaID": "mal:8",
+      "episode": {
+        "season": 1,
+        "episode": 7,
+        "imdbId": "tt1234567",
+        "imdbSeason": 2,
+        "imdbEpisode": 3,
+        "tvdbEpisodeId": 82
+      },
+      "progress": 2.675,
+      "expected": {
+        "show": {
+          "ids": {
+            "imdb": "tt1234567"
+          }
+        },
+        "episode": {
+          "ids": {
+            "tvdb": 82
+          }
+        },
+        "progress": 2.67
+      },
+      "outcome": "recorded"
+    },
+    {
+      "name": "anime-all-mappings-2.125",
+      "mediaID": "mal:8",
+      "episode": {
+        "season": 1,
+        "episode": 7,
+        "imdbId": "tt1234567",
+        "imdbSeason": 2,
+        "imdbEpisode": 3,
+        "tvdbEpisodeId": 82
+      },
+      "progress": 2.125,
+      "expected": {
+        "show": {
+          "ids": {
+            "imdb": "tt1234567"
+          }
+        },
+        "episode": {
+          "ids": {
+            "tvdb": 82
+          }
+        },
+        "progress": 2.13
+      },
+      "outcome": "recorded"
+    },
+    {
+      "name": "anime-all-mappings-69.999",
+      "mediaID": "mal:8",
+      "episode": {
+        "season": 1,
+        "episode": 7,
+        "imdbId": "tt1234567",
+        "imdbSeason": 2,
+        "imdbEpisode": 3,
+        "tvdbEpisodeId": 82
+      },
+      "progress": 69.999,
+      "expected": {
+        "show": {
+          "ids": {
+            "imdb": "tt1234567"
+          }
+        },
+        "episode": {
+          "ids": {
+            "tvdb": 82
+          }
+        },
+        "progress": 70
+      },
+      "outcome": "recorded"
+    },
+    {
+      "name": "anime-all-mappings-90",
+      "mediaID": "mal:8",
+      "episode": {
+        "season": 1,
+        "episode": 7,
+        "imdbId": "tt1234567",
+        "imdbSeason": 2,
+        "imdbEpisode": 3,
+        "tvdbEpisodeId": 82
+      },
+      "progress": 90,
+      "expected": {
+        "show": {
+          "ids": {
+            "imdb": "tt1234567"
+          }
+        },
+        "episode": {
+          "ids": {
+            "tvdb": 82
+          }
+        },
+        "progress": 90
+      },
+      "outcome": "recorded"
+    },
+    {
+      "name": "anime-all-mappings-101",
+      "mediaID": "mal:8",
+      "episode": {
+        "season": 1,
+        "episode": 7,
+        "imdbId": "tt1234567",
+        "imdbSeason": 2,
+        "imdbEpisode": 3,
+        "tvdbEpisodeId": 82
+      },
+      "progress": 101,
+      "expected": {
+        "show": {
+          "ids": {
+            "imdb": "tt1234567"
+          }
+        },
+        "episode": {
+          "ids": {
+            "tvdb": 82
+          }
+        },
+        "progress": 100
+      },
+      "outcome": "recorded"
+    },
+    {
+      "name": "anime-all-mappings--1",
+      "mediaID": "mal:8",
+      "episode": {
+        "season": 1,
+        "episode": 7,
+        "imdbId": "tt1234567",
+        "imdbSeason": 2,
+        "imdbEpisode": 3,
+        "tvdbEpisodeId": 82
+      },
+      "progress": -1,
+      "expected": {
+        "show": {
+          "ids": {
+            "imdb": "tt1234567"
+          }
+        },
+        "episode": {
+          "ids": {
+            "tvdb": 82
+          }
+        },
+        "progress": 0
+      },
+      "outcome": "recorded"
+    },
+    {
+      "name": "anime-imdb-0",
+      "mediaID": "mal:8",
+      "episode": {
+        "season": 1,
+        "episode": 7,
+        "imdbId": "tt1234567",
+        "imdbSeason": 0,
+        "imdbEpisode": 3
+      },
+      "progress": 0,
+      "expected": {
+        "show": {
+          "ids": {
+            "imdb": "tt1234567"
+          }
+        },
+        "episode": {
+          "season": 0,
+          "number": 3
+        },
+        "progress": 0
+      },
+      "outcome": "recorded"
+    },
+    {
+      "name": "anime-imdb-2.675",
+      "mediaID": "mal:8",
+      "episode": {
+        "season": 1,
+        "episode": 7,
+        "imdbId": "tt1234567",
+        "imdbSeason": 0,
+        "imdbEpisode": 3
+      },
+      "progress": 2.675,
+      "expected": {
+        "show": {
+          "ids": {
+            "imdb": "tt1234567"
+          }
+        },
+        "episode": {
+          "season": 0,
+          "number": 3
+        },
+        "progress": 2.67
+      },
+      "outcome": "recorded"
+    },
+    {
+      "name": "anime-imdb-2.125",
+      "mediaID": "mal:8",
+      "episode": {
+        "season": 1,
+        "episode": 7,
+        "imdbId": "tt1234567",
+        "imdbSeason": 0,
+        "imdbEpisode": 3
+      },
+      "progress": 2.125,
+      "expected": {
+        "show": {
+          "ids": {
+            "imdb": "tt1234567"
+          }
+        },
+        "episode": {
+          "season": 0,
+          "number": 3
+        },
+        "progress": 2.13
+      },
+      "outcome": "recorded"
+    },
+    {
+      "name": "anime-imdb-69.999",
+      "mediaID": "mal:8",
+      "episode": {
+        "season": 1,
+        "episode": 7,
+        "imdbId": "tt1234567",
+        "imdbSeason": 0,
+        "imdbEpisode": 3
+      },
+      "progress": 69.999,
+      "expected": {
+        "show": {
+          "ids": {
+            "imdb": "tt1234567"
+          }
+        },
+        "episode": {
+          "season": 0,
+          "number": 3
+        },
+        "progress": 70
+      },
+      "outcome": "recorded"
+    },
+    {
+      "name": "anime-imdb-90",
+      "mediaID": "mal:8",
+      "episode": {
+        "season": 1,
+        "episode": 7,
+        "imdbId": "tt1234567",
+        "imdbSeason": 0,
+        "imdbEpisode": 3
+      },
+      "progress": 90,
+      "expected": {
+        "show": {
+          "ids": {
+            "imdb": "tt1234567"
+          }
+        },
+        "episode": {
+          "season": 0,
+          "number": 3
+        },
+        "progress": 90
+      },
+      "outcome": "recorded"
+    },
+    {
+      "name": "anime-imdb-101",
+      "mediaID": "mal:8",
+      "episode": {
+        "season": 1,
+        "episode": 7,
+        "imdbId": "tt1234567",
+        "imdbSeason": 0,
+        "imdbEpisode": 3
+      },
+      "progress": 101,
+      "expected": {
+        "show": {
+          "ids": {
+            "imdb": "tt1234567"
+          }
+        },
+        "episode": {
+          "season": 0,
+          "number": 3
+        },
+        "progress": 100
+      },
+      "outcome": "recorded"
+    },
+    {
+      "name": "anime-imdb--1",
+      "mediaID": "mal:8",
+      "episode": {
+        "season": 1,
+        "episode": 7,
+        "imdbId": "tt1234567",
+        "imdbSeason": 0,
+        "imdbEpisode": 3
+      },
+      "progress": -1,
+      "expected": {
+        "show": {
+          "ids": {
+            "imdb": "tt1234567"
+          }
+        },
+        "episode": {
+          "season": 0,
+          "number": 3
+        },
+        "progress": 0
+      },
+      "outcome": "recorded"
+    }
+  ],
+  "sendCases": [
+    {
+      "name": "start-ok",
+      "action": "start",
+      "statuses": [200],
+      "expected": {
+        "requests": [
+          {
+            "path": "/scrobble/start",
+            "method": "POST",
+            "body": {
+              "movie": {
+                "ids": {
+                  "imdb": "tt1234567"
+                }
+              },
+              "progress": 50
+            }
+          }
+        ],
+        "delays": [],
+        "outcome": "recorded"
+      }
+    },
+    {
+      "name": "pause-error",
+      "action": "pause",
+      "statuses": [503],
+      "expected": {
+        "requests": [
+          {
+            "path": "/scrobble/pause",
+            "method": "POST",
+            "body": {
+              "movie": {
+                "ids": {
+                  "imdb": "tt1234567"
+                }
+              },
+              "progress": 50
+            }
+          }
+        ],
+        "delays": [],
+        "outcome": "failed"
+      }
+    },
+    {
+      "name": "start-error",
+      "action": "start",
+      "statuses": [503],
+      "expected": {
+        "requests": [
+          {
+            "path": "/scrobble/start",
+            "method": "POST",
+            "body": {
+              "movie": {
+                "ids": {
+                  "imdb": "tt1234567"
+                }
+              },
+              "progress": 50
+            }
+          }
+        ],
+        "delays": [],
+        "outcome": "failed"
+      }
+    },
+    {
+      "name": "stop-retry",
+      "action": "stop",
+      "statuses": [503, 201],
+      "expected": {
+        "requests": [
+          {
+            "path": "/scrobble/stop",
+            "method": "POST",
+            "body": {
+              "movie": {
+                "ids": {
+                  "imdb": "tt1234567"
+                }
+              },
+              "progress": 50
+            }
+          },
+          {
+            "path": "/scrobble/stop",
+            "method": "POST",
+            "body": {
+              "movie": {
+                "ids": {
+                  "imdb": "tt1234567"
+                }
+              },
+              "progress": 50
+            }
+          }
+        ],
+        "delays": [800],
+        "outcome": "recorded"
+      }
+    },
+    {
+      "name": "stop-failed",
+      "action": "stop",
+      "statuses": [503, 503],
+      "expected": {
+        "requests": [
+          {
+            "path": "/scrobble/stop",
+            "method": "POST",
+            "body": {
+              "movie": {
+                "ids": {
+                  "imdb": "tt1234567"
+                }
+              },
+              "progress": 50
+            }
+          },
+          {
+            "path": "/scrobble/stop",
+            "method": "POST",
+            "body": {
+              "movie": {
+                "ids": {
+                  "imdb": "tt1234567"
+                }
+              },
+              "progress": 50
+            }
+          }
+        ],
+        "delays": [800],
+        "outcome": "failed"
+      }
+    },
+    {
+      "name": "stop-duplicate",
+      "action": "stop",
+      "statuses": [409],
+      "expected": {
+        "requests": [
+          {
+            "path": "/scrobble/stop",
+            "method": "POST",
+            "body": {
+              "movie": {
+                "ids": {
+                  "imdb": "tt1234567"
+                }
+              },
+              "progress": 50
+            }
+          }
+        ],
+        "delays": [],
+        "outcome": "already-recorded"
+      }
+    },
+    {
+      "name": "stop-later-duplicate",
+      "action": "stop",
+      "statuses": [503, 409],
+      "expected": {
+        "requests": [
+          {
+            "path": "/scrobble/stop",
+            "method": "POST",
+            "body": {
+              "movie": {
+                "ids": {
+                  "imdb": "tt1234567"
+                }
+              },
+              "progress": 50
+            }
+          },
+          {
+            "path": "/scrobble/stop",
+            "method": "POST",
+            "body": {
+              "movie": {
+                "ids": {
+                  "imdb": "tt1234567"
+                }
+              },
+              "progress": 50
+            }
+          }
+        ],
+        "delays": [800],
+        "outcome": "already-recorded"
+      }
+    },
+    {
+      "name": "pause-conflict",
+      "action": "pause",
+      "statuses": [409],
+      "expected": {
+        "requests": [
+          {
+            "path": "/scrobble/pause",
+            "method": "POST",
+            "body": {
+              "movie": {
+                "ids": {
+                  "imdb": "tt1234567"
+                }
+              },
+              "progress": 50
+            }
+          }
+        ],
+        "delays": [],
+        "outcome": "failed"
+      }
+    }
+  ],
+  "historyCases": [
+    {
+      "name": "imdb-film",
+      "mediaID": "tt1234567",
+      "receipt": {
+        "added": {
+          "movies": 1
+        }
+      },
+      "expected": {
+        "confirmed": true,
+        "body": {
+          "movies": [
+            {
+              "ids": {
+                "imdb": "tt1234567"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "imdb-film",
+      "mediaID": "tt1234567",
+      "receipt": {
+        "existing": {
+          "episodes": 1
+        }
+      },
+      "expected": {
+        "confirmed": true,
+        "body": {
+          "movies": [
+            {
+              "ids": {
+                "imdb": "tt1234567"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "imdb-film",
+      "mediaID": "tt1234567",
+      "receipt": {
+        "not_found": {
+          "movies": [{}]
+        }
+      },
+      "expected": {
+        "confirmed": false,
+        "body": {
+          "movies": [
+            {
+              "ids": {
+                "imdb": "tt1234567"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "imdb-film",
+      "mediaID": "tt1234567",
+      "receipt": {
+        "added": {
+          "movies": 0,
+          "episodes": 0
+        }
+      },
+      "expected": {
+        "confirmed": false,
+        "body": {
+          "movies": [
+            {
+              "ids": {
+                "imdb": "tt1234567"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "imdb-film",
+      "mediaID": "tt1234567",
+      "receipt": {},
+      "expected": {
+        "confirmed": false,
+        "body": {
+          "movies": [
+            {
+              "ids": {
+                "imdb": "tt1234567"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "imdb-show-episode",
+      "mediaID": "tt1234567",
+      "episode": {
+        "season": 1,
+        "episode": 7
+      },
+      "receipt": {
+        "added": {
+          "movies": 1
+        }
+      },
+      "expected": {
+        "confirmed": true,
+        "body": {
+          "shows": [
+            {
+              "ids": {
+                "imdb": "tt1234567"
+              },
+              "seasons": [
+                {
+                  "number": 1,
+                  "episodes": [
+                    {
+                      "number": 7
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "imdb-show-episode",
+      "mediaID": "tt1234567",
+      "episode": {
+        "season": 1,
+        "episode": 7
+      },
+      "receipt": {
+        "existing": {
+          "episodes": 1
+        }
+      },
+      "expected": {
+        "confirmed": true,
+        "body": {
+          "shows": [
+            {
+              "ids": {
+                "imdb": "tt1234567"
+              },
+              "seasons": [
+                {
+                  "number": 1,
+                  "episodes": [
+                    {
+                      "number": 7
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "imdb-show-episode",
+      "mediaID": "tt1234567",
+      "episode": {
+        "season": 1,
+        "episode": 7
+      },
+      "receipt": {
+        "not_found": {
+          "movies": [{}]
+        }
+      },
+      "expected": {
+        "confirmed": false,
+        "body": {
+          "shows": [
+            {
+              "ids": {
+                "imdb": "tt1234567"
+              },
+              "seasons": [
+                {
+                  "number": 1,
+                  "episodes": [
+                    {
+                      "number": 7
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "imdb-show-episode",
+      "mediaID": "tt1234567",
+      "episode": {
+        "season": 1,
+        "episode": 7
+      },
+      "receipt": {
+        "added": {
+          "movies": 0,
+          "episodes": 0
+        }
+      },
+      "expected": {
+        "confirmed": false,
+        "body": {
+          "shows": [
+            {
+              "ids": {
+                "imdb": "tt1234567"
+              },
+              "seasons": [
+                {
+                  "number": 1,
+                  "episodes": [
+                    {
+                      "number": 7
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "imdb-show-episode",
+      "mediaID": "tt1234567",
+      "episode": {
+        "season": 1,
+        "episode": 7
+      },
+      "receipt": {},
+      "expected": {
+        "confirmed": false,
+        "body": {
+          "shows": [
+            {
+              "ids": {
+                "imdb": "tt1234567"
+              },
+              "seasons": [
+                {
+                  "number": 1,
+                  "episodes": [
+                    {
+                      "number": 7
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "imdb-coordinates",
+      "mediaID": "tt1234567:2:9",
+      "receipt": {
+        "added": {
+          "movies": 1
+        }
+      },
+      "expected": {
+        "confirmed": true,
+        "body": {
+          "shows": [
+            {
+              "ids": {
+                "imdb": "tt1234567"
+              },
+              "seasons": [
+                {
+                  "number": 2,
+                  "episodes": [
+                    {
+                      "number": 9
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "imdb-coordinates",
+      "mediaID": "tt1234567:2:9",
+      "receipt": {
+        "existing": {
+          "episodes": 1
+        }
+      },
+      "expected": {
+        "confirmed": true,
+        "body": {
+          "shows": [
+            {
+              "ids": {
+                "imdb": "tt1234567"
+              },
+              "seasons": [
+                {
+                  "number": 2,
+                  "episodes": [
+                    {
+                      "number": 9
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "imdb-coordinates",
+      "mediaID": "tt1234567:2:9",
+      "receipt": {
+        "not_found": {
+          "movies": [{}]
+        }
+      },
+      "expected": {
+        "confirmed": false,
+        "body": {
+          "shows": [
+            {
+              "ids": {
+                "imdb": "tt1234567"
+              },
+              "seasons": [
+                {
+                  "number": 2,
+                  "episodes": [
+                    {
+                      "number": 9
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "imdb-coordinates",
+      "mediaID": "tt1234567:2:9",
+      "receipt": {
+        "added": {
+          "movies": 0,
+          "episodes": 0
+        }
+      },
+      "expected": {
+        "confirmed": false,
+        "body": {
+          "shows": [
+            {
+              "ids": {
+                "imdb": "tt1234567"
+              },
+              "seasons": [
+                {
+                  "number": 2,
+                  "episodes": [
+                    {
+                      "number": 9
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "imdb-coordinates",
+      "mediaID": "tt1234567:2:9",
+      "receipt": {},
+      "expected": {
+        "confirmed": false,
+        "body": {
+          "shows": [
+            {
+              "ids": {
+                "imdb": "tt1234567"
+              },
+              "seasons": [
+                {
+                  "number": 2,
+                  "episodes": [
+                    {
+                      "number": 9
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "imdb-special",
+      "mediaID": "tt1234567:0:2",
+      "receipt": {
+        "added": {
+          "movies": 1
+        }
+      },
+      "expected": {
+        "confirmed": true,
+        "body": {
+          "shows": [
+            {
+              "ids": {
+                "imdb": "tt1234567"
+              },
+              "seasons": [
+                {
+                  "number": 0,
+                  "episodes": [
+                    {
+                      "number": 2
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "imdb-special",
+      "mediaID": "tt1234567:0:2",
+      "receipt": {
+        "existing": {
+          "episodes": 1
+        }
+      },
+      "expected": {
+        "confirmed": true,
+        "body": {
+          "shows": [
+            {
+              "ids": {
+                "imdb": "tt1234567"
+              },
+              "seasons": [
+                {
+                  "number": 0,
+                  "episodes": [
+                    {
+                      "number": 2
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "imdb-special",
+      "mediaID": "tt1234567:0:2",
+      "receipt": {
+        "not_found": {
+          "movies": [{}]
+        }
+      },
+      "expected": {
+        "confirmed": false,
+        "body": {
+          "shows": [
+            {
+              "ids": {
+                "imdb": "tt1234567"
+              },
+              "seasons": [
+                {
+                  "number": 0,
+                  "episodes": [
+                    {
+                      "number": 2
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "imdb-special",
+      "mediaID": "tt1234567:0:2",
+      "receipt": {
+        "added": {
+          "movies": 0,
+          "episodes": 0
+        }
+      },
+      "expected": {
+        "confirmed": false,
+        "body": {
+          "shows": [
+            {
+              "ids": {
+                "imdb": "tt1234567"
+              },
+              "seasons": [
+                {
+                  "number": 0,
+                  "episodes": [
+                    {
+                      "number": 2
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "imdb-special",
+      "mediaID": "tt1234567:0:2",
+      "receipt": {},
+      "expected": {
+        "confirmed": false,
+        "body": {
+          "shows": [
+            {
+              "ids": {
+                "imdb": "tt1234567"
+              },
+              "seasons": [
+                {
+                  "number": 0,
+                  "episodes": [
+                    {
+                      "number": 2
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "tmdb-film",
+      "mediaID": "tmdb:movie:8",
+      "receipt": {
+        "added": {
+          "movies": 1
+        }
+      },
+      "expected": {
+        "confirmed": true,
+        "body": {
+          "movies": [
+            {
+              "ids": {
+                "tmdb": 8
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "tmdb-film",
+      "mediaID": "tmdb:movie:8",
+      "receipt": {
+        "existing": {
+          "episodes": 1
+        }
+      },
+      "expected": {
+        "confirmed": true,
+        "body": {
+          "movies": [
+            {
+              "ids": {
+                "tmdb": 8
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "tmdb-film",
+      "mediaID": "tmdb:movie:8",
+      "receipt": {
+        "not_found": {
+          "movies": [{}]
+        }
+      },
+      "expected": {
+        "confirmed": false,
+        "body": {
+          "movies": [
+            {
+              "ids": {
+                "tmdb": 8
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "tmdb-film",
+      "mediaID": "tmdb:movie:8",
+      "receipt": {
+        "added": {
+          "movies": 0,
+          "episodes": 0
+        }
+      },
+      "expected": {
+        "confirmed": false,
+        "body": {
+          "movies": [
+            {
+              "ids": {
+                "tmdb": 8
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "tmdb-film",
+      "mediaID": "tmdb:movie:8",
+      "receipt": {},
+      "expected": {
+        "confirmed": false,
+        "body": {
+          "movies": [
+            {
+              "ids": {
+                "tmdb": 8
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "tmdb-show",
+      "mediaID": "tmdb:tv:9",
+      "receipt": {
+        "added": {
+          "movies": 1
+        }
+      },
+      "expected": {
+        "confirmed": false,
+        "body": null
+      }
+    },
+    {
+      "name": "tmdb-show",
+      "mediaID": "tmdb:tv:9",
+      "receipt": {
+        "existing": {
+          "episodes": 1
+        }
+      },
+      "expected": {
+        "confirmed": false,
+        "body": null
+      }
+    },
+    {
+      "name": "tmdb-show",
+      "mediaID": "tmdb:tv:9",
+      "receipt": {
+        "not_found": {
+          "movies": [{}]
+        }
+      },
+      "expected": {
+        "confirmed": false,
+        "body": null
+      }
+    },
+    {
+      "name": "tmdb-show",
+      "mediaID": "tmdb:tv:9",
+      "receipt": {
+        "added": {
+          "movies": 0,
+          "episodes": 0
+        }
+      },
+      "expected": {
+        "confirmed": false,
+        "body": null
+      }
+    },
+    {
+      "name": "tmdb-show",
+      "mediaID": "tmdb:tv:9",
+      "receipt": {},
+      "expected": {
+        "confirmed": false,
+        "body": null
+      }
+    },
+    {
+      "name": "tmdb-episode",
+      "mediaID": "tmdb:tv:9",
+      "episode": {
+        "season": 1,
+        "episode": 7
+      },
+      "receipt": {
+        "added": {
+          "movies": 1
+        }
+      },
+      "expected": {
+        "confirmed": true,
+        "body": {
+          "shows": [
+            {
+              "ids": {
+                "tmdb": 9
+              },
+              "seasons": [
+                {
+                  "number": 1,
+                  "episodes": [
+                    {
+                      "number": 7
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "tmdb-episode",
+      "mediaID": "tmdb:tv:9",
+      "episode": {
+        "season": 1,
+        "episode": 7
+      },
+      "receipt": {
+        "existing": {
+          "episodes": 1
+        }
+      },
+      "expected": {
+        "confirmed": true,
+        "body": {
+          "shows": [
+            {
+              "ids": {
+                "tmdb": 9
+              },
+              "seasons": [
+                {
+                  "number": 1,
+                  "episodes": [
+                    {
+                      "number": 7
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "tmdb-episode",
+      "mediaID": "tmdb:tv:9",
+      "episode": {
+        "season": 1,
+        "episode": 7
+      },
+      "receipt": {
+        "not_found": {
+          "movies": [{}]
+        }
+      },
+      "expected": {
+        "confirmed": false,
+        "body": {
+          "shows": [
+            {
+              "ids": {
+                "tmdb": 9
+              },
+              "seasons": [
+                {
+                  "number": 1,
+                  "episodes": [
+                    {
+                      "number": 7
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "tmdb-episode",
+      "mediaID": "tmdb:tv:9",
+      "episode": {
+        "season": 1,
+        "episode": 7
+      },
+      "receipt": {
+        "added": {
+          "movies": 0,
+          "episodes": 0
+        }
+      },
+      "expected": {
+        "confirmed": false,
+        "body": {
+          "shows": [
+            {
+              "ids": {
+                "tmdb": 9
+              },
+              "seasons": [
+                {
+                  "number": 1,
+                  "episodes": [
+                    {
+                      "number": 7
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "tmdb-episode",
+      "mediaID": "tmdb:tv:9",
+      "episode": {
+        "season": 1,
+        "episode": 7
+      },
+      "receipt": {},
+      "expected": {
+        "confirmed": false,
+        "body": {
+          "shows": [
+            {
+              "ids": {
+                "tmdb": 9
+              },
+              "seasons": [
+                {
+                  "number": 1,
+                  "episodes": [
+                    {
+                      "number": 7
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "tmdb-coordinates",
+      "mediaID": "tmdb:tv:9:3:12",
+      "receipt": {
+        "added": {
+          "movies": 1
+        }
+      },
+      "expected": {
+        "confirmed": true,
+        "body": {
+          "shows": [
+            {
+              "ids": {
+                "tmdb": 9
+              },
+              "seasons": [
+                {
+                  "number": 3,
+                  "episodes": [
+                    {
+                      "number": 12
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "tmdb-coordinates",
+      "mediaID": "tmdb:tv:9:3:12",
+      "receipt": {
+        "existing": {
+          "episodes": 1
+        }
+      },
+      "expected": {
+        "confirmed": true,
+        "body": {
+          "shows": [
+            {
+              "ids": {
+                "tmdb": 9
+              },
+              "seasons": [
+                {
+                  "number": 3,
+                  "episodes": [
+                    {
+                      "number": 12
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "tmdb-coordinates",
+      "mediaID": "tmdb:tv:9:3:12",
+      "receipt": {
+        "not_found": {
+          "movies": [{}]
+        }
+      },
+      "expected": {
+        "confirmed": false,
+        "body": {
+          "shows": [
+            {
+              "ids": {
+                "tmdb": 9
+              },
+              "seasons": [
+                {
+                  "number": 3,
+                  "episodes": [
+                    {
+                      "number": 12
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "tmdb-coordinates",
+      "mediaID": "tmdb:tv:9:3:12",
+      "receipt": {
+        "added": {
+          "movies": 0,
+          "episodes": 0
+        }
+      },
+      "expected": {
+        "confirmed": false,
+        "body": {
+          "shows": [
+            {
+              "ids": {
+                "tmdb": 9
+              },
+              "seasons": [
+                {
+                  "number": 3,
+                  "episodes": [
+                    {
+                      "number": 12
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "tmdb-coordinates",
+      "mediaID": "tmdb:tv:9:3:12",
+      "receipt": {},
+      "expected": {
+        "confirmed": false,
+        "body": {
+          "shows": [
+            {
+              "ids": {
+                "tmdb": 9
+              },
+              "seasons": [
+                {
+                  "number": 3,
+                  "episodes": [
+                    {
+                      "number": 12
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "anime-tvdb",
+      "mediaID": "kitsu:8",
+      "episode": {
+        "season": 1,
+        "episode": 7,
+        "tvdbEpisodeId": 81
+      },
+      "receipt": {
+        "added": {
+          "movies": 1
+        }
+      },
+      "expected": {
+        "confirmed": true,
+        "body": {
+          "episodes": [
+            {
+              "ids": {
+                "tvdb": 81
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "anime-tvdb",
+      "mediaID": "kitsu:8",
+      "episode": {
+        "season": 1,
+        "episode": 7,
+        "tvdbEpisodeId": 81
+      },
+      "receipt": {
+        "existing": {
+          "episodes": 1
+        }
+      },
+      "expected": {
+        "confirmed": true,
+        "body": {
+          "episodes": [
+            {
+              "ids": {
+                "tvdb": 81
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "anime-tvdb",
+      "mediaID": "kitsu:8",
+      "episode": {
+        "season": 1,
+        "episode": 7,
+        "tvdbEpisodeId": 81
+      },
+      "receipt": {
+        "not_found": {
+          "movies": [{}]
+        }
+      },
+      "expected": {
+        "confirmed": false,
+        "body": {
+          "episodes": [
+            {
+              "ids": {
+                "tvdb": 81
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "anime-tvdb",
+      "mediaID": "kitsu:8",
+      "episode": {
+        "season": 1,
+        "episode": 7,
+        "tvdbEpisodeId": 81
+      },
+      "receipt": {
+        "added": {
+          "movies": 0,
+          "episodes": 0
+        }
+      },
+      "expected": {
+        "confirmed": false,
+        "body": {
+          "episodes": [
+            {
+              "ids": {
+                "tvdb": 81
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "anime-tvdb",
+      "mediaID": "kitsu:8",
+      "episode": {
+        "season": 1,
+        "episode": 7,
+        "tvdbEpisodeId": 81
+      },
+      "receipt": {},
+      "expected": {
+        "confirmed": false,
+        "body": {
+          "episodes": [
+            {
+              "ids": {
+                "tvdb": 81
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "anime-all-mappings",
+      "mediaID": "mal:8",
+      "episode": {
+        "season": 1,
+        "episode": 7,
+        "imdbId": "tt1234567",
+        "imdbSeason": 2,
+        "imdbEpisode": 3,
+        "tvdbEpisodeId": 82
+      },
+      "receipt": {
+        "added": {
+          "movies": 1
+        }
+      },
+      "expected": {
+        "confirmed": true,
+        "body": {
+          "episodes": [
+            {
+              "ids": {
+                "tvdb": 82
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "anime-all-mappings",
+      "mediaID": "mal:8",
+      "episode": {
+        "season": 1,
+        "episode": 7,
+        "imdbId": "tt1234567",
+        "imdbSeason": 2,
+        "imdbEpisode": 3,
+        "tvdbEpisodeId": 82
+      },
+      "receipt": {
+        "existing": {
+          "episodes": 1
+        }
+      },
+      "expected": {
+        "confirmed": true,
+        "body": {
+          "episodes": [
+            {
+              "ids": {
+                "tvdb": 82
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "anime-all-mappings",
+      "mediaID": "mal:8",
+      "episode": {
+        "season": 1,
+        "episode": 7,
+        "imdbId": "tt1234567",
+        "imdbSeason": 2,
+        "imdbEpisode": 3,
+        "tvdbEpisodeId": 82
+      },
+      "receipt": {
+        "not_found": {
+          "movies": [{}]
+        }
+      },
+      "expected": {
+        "confirmed": false,
+        "body": {
+          "episodes": [
+            {
+              "ids": {
+                "tvdb": 82
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "anime-all-mappings",
+      "mediaID": "mal:8",
+      "episode": {
+        "season": 1,
+        "episode": 7,
+        "imdbId": "tt1234567",
+        "imdbSeason": 2,
+        "imdbEpisode": 3,
+        "tvdbEpisodeId": 82
+      },
+      "receipt": {
+        "added": {
+          "movies": 0,
+          "episodes": 0
+        }
+      },
+      "expected": {
+        "confirmed": false,
+        "body": {
+          "episodes": [
+            {
+              "ids": {
+                "tvdb": 82
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "anime-all-mappings",
+      "mediaID": "mal:8",
+      "episode": {
+        "season": 1,
+        "episode": 7,
+        "imdbId": "tt1234567",
+        "imdbSeason": 2,
+        "imdbEpisode": 3,
+        "tvdbEpisodeId": 82
+      },
+      "receipt": {},
+      "expected": {
+        "confirmed": false,
+        "body": {
+          "episodes": [
+            {
+              "ids": {
+                "tvdb": 82
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "anime-imdb",
+      "mediaID": "mal:8",
+      "episode": {
+        "season": 1,
+        "episode": 7,
+        "imdbId": "tt1234567",
+        "imdbSeason": 0,
+        "imdbEpisode": 3
+      },
+      "receipt": {
+        "added": {
+          "movies": 1
+        }
+      },
+      "expected": {
+        "confirmed": true,
+        "body": {
+          "shows": [
+            {
+              "ids": {
+                "imdb": "tt1234567"
+              },
+              "seasons": [
+                {
+                  "number": 0,
+                  "episodes": [
+                    {
+                      "number": 3
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "anime-imdb",
+      "mediaID": "mal:8",
+      "episode": {
+        "season": 1,
+        "episode": 7,
+        "imdbId": "tt1234567",
+        "imdbSeason": 0,
+        "imdbEpisode": 3
+      },
+      "receipt": {
+        "existing": {
+          "episodes": 1
+        }
+      },
+      "expected": {
+        "confirmed": true,
+        "body": {
+          "shows": [
+            {
+              "ids": {
+                "imdb": "tt1234567"
+              },
+              "seasons": [
+                {
+                  "number": 0,
+                  "episodes": [
+                    {
+                      "number": 3
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "anime-imdb",
+      "mediaID": "mal:8",
+      "episode": {
+        "season": 1,
+        "episode": 7,
+        "imdbId": "tt1234567",
+        "imdbSeason": 0,
+        "imdbEpisode": 3
+      },
+      "receipt": {
+        "not_found": {
+          "movies": [{}]
+        }
+      },
+      "expected": {
+        "confirmed": false,
+        "body": {
+          "shows": [
+            {
+              "ids": {
+                "imdb": "tt1234567"
+              },
+              "seasons": [
+                {
+                  "number": 0,
+                  "episodes": [
+                    {
+                      "number": 3
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "anime-imdb",
+      "mediaID": "mal:8",
+      "episode": {
+        "season": 1,
+        "episode": 7,
+        "imdbId": "tt1234567",
+        "imdbSeason": 0,
+        "imdbEpisode": 3
+      },
+      "receipt": {
+        "added": {
+          "movies": 0,
+          "episodes": 0
+        }
+      },
+      "expected": {
+        "confirmed": false,
+        "body": {
+          "shows": [
+            {
+              "ids": {
+                "imdb": "tt1234567"
+              },
+              "seasons": [
+                {
+                  "number": 0,
+                  "episodes": [
+                    {
+                      "number": 3
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "anime-imdb",
+      "mediaID": "mal:8",
+      "episode": {
+        "season": 1,
+        "episode": 7,
+        "imdbId": "tt1234567",
+        "imdbSeason": 0,
+        "imdbEpisode": 3
+      },
+      "receipt": {},
+      "expected": {
+        "confirmed": false,
+        "body": {
+          "shows": [
+            {
+              "ids": {
+                "imdb": "tt1234567"
+              },
+              "seasons": [
+                {
+                  "number": 0,
+                  "episodes": [
+                    {
+                      "number": 3
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "lifecycleCases": [
+    {
+      "name": "stub",
+      "steps": [
+        {
+          "status": "playing",
+          "position": 20,
+          "duration": 149,
+          "identity": {
+            "mediaID": "tt1234567"
+          },
+          "now": 1700000001,
+          "expected": []
+        },
+        {
+          "status": "ended",
+          "position": 149,
+          "duration": 149,
+          "identity": {
+            "mediaID": "tt1234567"
+          },
+          "now": 1700000002,
+          "expected": []
+        }
+      ],
+      "finish": []
+    },
+    {
+      "name": "threshold-duration",
+      "steps": [
+        {
+          "status": "playing",
+          "position": 10,
+          "duration": 150,
+          "identity": {
+            "mediaID": "tt1234567"
+          },
+          "now": 1700000001,
+          "expected": [
+            {
+              "identity": {
+                "mediaID": "tt1234567"
+              },
+              "event": {
+                "action": "start",
+                "progress": 6.666666666666667
+              }
+            }
+          ]
+        },
+        {
+          "status": "paused",
+          "position": 30,
+          "duration": 150,
+          "identity": {
+            "mediaID": "tt1234567"
+          },
+          "now": 1700000002,
+          "expected": [
+            {
+              "identity": {
+                "mediaID": "tt1234567"
+              },
+              "event": {
+                "action": "pause",
+                "progress": 20
+              }
+            }
+          ]
+        }
+      ],
+      "finish": [
+        {
+          "identity": {
+            "mediaID": "tt1234567"
+          },
+          "event": {
+            "action": "pause",
+            "progress": 20
+          }
+        }
+      ]
+    },
+    {
+      "name": "pause-and-resume",
+      "steps": [
+        {
+          "status": "loading",
+          "position": 0,
+          "duration": 0,
+          "identity": {
+            "mediaID": "tt1234567"
+          },
+          "now": 1700000001,
+          "expected": []
+        },
+        {
+          "status": "playing",
+          "position": 10,
+          "duration": 1000,
+          "identity": {
+            "mediaID": "tt1234567"
+          },
+          "now": 1700000002,
+          "expected": [
+            {
+              "identity": {
+                "mediaID": "tt1234567"
+              },
+              "event": {
+                "action": "start",
+                "progress": 1
+              }
+            }
+          ]
+        },
+        {
+          "status": "playing",
+          "position": 11,
+          "duration": 1000,
+          "tick": true,
+          "identity": {
+            "mediaID": "tt1234567"
+          },
+          "now": 1700000003,
+          "expected": []
+        },
+        {
+          "status": "paused",
+          "position": 12,
+          "duration": 1000,
+          "identity": {
+            "mediaID": "tt1234567"
+          },
+          "now": 1700000004,
+          "expected": [
+            {
+              "identity": {
+                "mediaID": "tt1234567"
+              },
+              "event": {
+                "action": "pause",
+                "progress": 1.2
+              }
+            }
+          ]
+        },
+        {
+          "status": "playing",
+          "position": 13,
+          "duration": 1000,
+          "identity": {
+            "mediaID": "tt1234567"
+          },
+          "now": 1700000005,
+          "expected": [
+            {
+              "identity": {
+                "mediaID": "tt1234567"
+              },
+              "event": {
+                "action": "start",
+                "progress": 1.3
+              }
+            }
+          ]
+        }
+      ],
+      "finish": [
+        {
+          "identity": {
+            "mediaID": "tt1234567"
+          },
+          "event": {
+            "action": "pause",
+            "progress": 1.3
+          }
+        }
+      ]
+    },
+    {
+      "name": "paused-seek-not-watched",
+      "steps": [
+        {
+          "status": "playing",
+          "position": 100,
+          "duration": 1000,
+          "identity": {
+            "mediaID": "tt1234567"
+          },
+          "now": 1700000001,
+          "expected": [
+            {
+              "identity": {
+                "mediaID": "tt1234567"
+              },
+              "event": {
+                "action": "start",
+                "progress": 10
+              }
+            }
+          ]
+        },
+        {
+          "status": "paused",
+          "position": 200,
+          "duration": 1000,
+          "identity": {
+            "mediaID": "tt1234567"
+          },
+          "now": 1700000002,
+          "expected": [
+            {
+              "identity": {
+                "mediaID": "tt1234567"
+              },
+              "event": {
+                "action": "pause",
+                "progress": 20
+              }
+            }
+          ]
+        },
+        {
+          "status": "paused",
+          "position": 950,
+          "duration": 1000,
+          "tick": true,
+          "identity": {
+            "mediaID": "tt1234567"
+          },
+          "now": 1700000003,
+          "expected": []
+        },
+        {
+          "status": "paused",
+          "position": 300,
+          "duration": 1000,
+          "tick": true,
+          "identity": {
+            "mediaID": "tt1234567"
+          },
+          "now": 1700000004,
+          "expected": []
+        }
+      ],
+      "finish": [
+        {
+          "identity": {
+            "mediaID": "tt1234567"
+          },
+          "event": {
+            "action": "pause",
+            "progress": 30
+          }
+        }
+      ]
+    },
+    {
+      "name": "end-actual-progress",
+      "steps": [
+        {
+          "status": "playing",
+          "position": 100,
+          "duration": 1000,
+          "identity": {
+            "mediaID": "tt1234567"
+          },
+          "now": 1700000001,
+          "expected": [
+            {
+              "identity": {
+                "mediaID": "tt1234567"
+              },
+              "event": {
+                "action": "start",
+                "progress": 10
+              }
+            }
+          ]
+        },
+        {
+          "status": "playing",
+          "position": 730,
+          "duration": 1000,
+          "tick": true,
+          "identity": {
+            "mediaID": "tt1234567"
+          },
+          "now": 1700000002,
+          "expected": []
+        },
+        {
+          "status": "ended",
+          "position": 740,
+          "duration": 1000,
+          "identity": {
+            "mediaID": "tt1234567"
+          },
+          "now": 1700000003,
+          "expected": [
+            {
+              "identity": {
+                "mediaID": "tt1234567"
+              },
+              "event": {
+                "action": "stop",
+                "progress": 74
+              }
+            }
+          ]
+        }
+      ],
+      "finish": []
+    },
+    {
+      "name": "furthest-kept-on-end",
+      "steps": [
+        {
+          "status": "playing",
+          "position": 100,
+          "duration": 1000,
+          "identity": {
+            "mediaID": "tt1234567"
+          },
+          "now": 1700000001,
+          "expected": [
+            {
+              "identity": {
+                "mediaID": "tt1234567"
+              },
+              "event": {
+                "action": "start",
+                "progress": 10
+              }
+            }
+          ]
+        },
+        {
+          "status": "playing",
+          "position": 950,
+          "duration": 1000,
+          "tick": true,
+          "identity": {
+            "mediaID": "tt1234567"
+          },
+          "now": 1700000002,
+          "expected": []
+        },
+        {
+          "status": "playing",
+          "position": 400,
+          "duration": 1000,
+          "tick": true,
+          "identity": {
+            "mediaID": "tt1234567"
+          },
+          "now": 1700000003,
+          "expected": [
+            {
+              "identity": {
+                "mediaID": "tt1234567"
+              },
+              "event": {
+                "action": "start",
+                "progress": 40
+              }
+            }
+          ]
+        },
+        {
+          "status": "ended",
+          "position": 410,
+          "duration": 1000,
+          "identity": {
+            "mediaID": "tt1234567"
+          },
+          "now": 1700000004,
+          "expected": [
+            {
+              "identity": {
+                "mediaID": "tt1234567"
+              },
+              "event": {
+                "action": "stop",
+                "progress": 95
+              }
+            }
+          ]
+        }
+      ],
+      "finish": []
+    },
+    {
+      "name": "exit-below-threshold",
+      "steps": [
+        {
+          "status": "playing",
+          "position": 899,
+          "duration": 1000,
+          "identity": {
+            "mediaID": "tt1234567"
+          },
+          "now": 1700000001,
+          "expected": [
+            {
+              "identity": {
+                "mediaID": "tt1234567"
+              },
+              "event": {
+                "action": "start",
+                "progress": 89.9
+              }
+            }
+          ]
+        }
+      ],
+      "finish": [
+        {
+          "identity": {
+            "mediaID": "tt1234567"
+          },
+          "event": {
+            "action": "pause",
+            "progress": 89.9
+          }
+        }
+      ]
+    },
+    {
+      "name": "exit-at-threshold",
+      "steps": [
+        {
+          "status": "playing",
+          "position": 900,
+          "duration": 1000,
+          "identity": {
+            "mediaID": "tt1234567"
+          },
+          "now": 1700000001,
+          "expected": [
+            {
+              "identity": {
+                "mediaID": "tt1234567"
+              },
+              "event": {
+                "action": "start",
+                "progress": 90
+              }
+            }
+          ]
+        }
+      ],
+      "finish": [
+        {
+          "identity": {
+            "mediaID": "tt1234567"
+          },
+          "event": {
+            "action": "stop",
+            "progress": 100
+          }
+        }
+      ]
+    },
+    {
+      "name": "seek-resync-rate-limited",
+      "steps": [
+        {
+          "status": "playing",
+          "position": 100,
+          "duration": 1000,
+          "identity": {
+            "mediaID": "tt1234567"
+          },
+          "now": 1700000001,
+          "expected": [
+            {
+              "identity": {
+                "mediaID": "tt1234567"
+              },
+              "event": {
+                "action": "start",
+                "progress": 10
+              }
+            }
+          ]
+        },
+        {
+          "status": "playing",
+          "position": 101,
+          "duration": 1000,
+          "tick": true,
+          "identity": {
+            "mediaID": "tt1234567"
+          },
+          "now": 1700000002,
+          "expected": []
+        },
+        {
+          "status": "playing",
+          "position": 500,
+          "duration": 1000,
+          "tick": true,
+          "identity": {
+            "mediaID": "tt1234567"
+          },
+          "now": 1700000003,
+          "expected": [
+            {
+              "identity": {
+                "mediaID": "tt1234567"
+              },
+              "event": {
+                "action": "start",
+                "progress": 50
+              }
+            }
+          ]
+        },
+        {
+          "status": "playing",
+          "position": 800,
+          "duration": 1000,
+          "tick": true,
+          "identity": {
+            "mediaID": "tt1234567"
+          },
+          "now": 1700000004,
+          "expected": []
+        },
+        {
+          "status": "playing",
+          "position": 900,
+          "duration": 1000,
+          "tick": true,
+          "seconds": 31,
+          "identity": {
+            "mediaID": "tt1234567"
+          },
+          "now": 1700000035,
+          "expected": []
+        }
+      ],
+      "finish": [
+        {
+          "identity": {
+            "mediaID": "tt1234567"
+          },
+          "event": {
+            "action": "stop",
+            "progress": 100
+          }
+        }
+      ]
+    },
+    {
+      "name": "identity-needs-reset",
+      "steps": [
+        {
+          "status": "playing",
+          "position": 500,
+          "duration": 1000,
+          "identity": {
+            "mediaID": "tt1234567"
+          },
+          "now": 1700000001,
+          "expected": [
+            {
+              "identity": {
+                "mediaID": "tt1234567"
+              },
+              "event": {
+                "action": "start",
+                "progress": 50
+              }
+            }
+          ]
+        },
+        {
+          "status": "playing",
+          "position": 500,
+          "duration": 1000,
+          "identity": {
+            "mediaID": "tt1234568"
+          },
+          "now": 1700000002,
+          "expected": [
+            {
+              "identity": {
+                "mediaID": "tt1234567"
+              },
+              "event": {
+                "action": "pause",
+                "progress": 50
+              }
+            }
+          ]
+        },
+        {
+          "status": "playing",
+          "position": 1,
+          "duration": 1000,
+          "identity": {
+            "mediaID": "tt1234568"
+          },
+          "now": 1700000003,
+          "expected": []
+        },
+        {
+          "status": "loading",
+          "position": 0,
+          "duration": 0,
+          "identity": {
+            "mediaID": "tt1234568"
+          },
+          "now": 1700000004,
+          "expected": []
+        },
+        {
+          "status": "playing",
+          "position": 1,
+          "duration": 1000,
+          "identity": {
+            "mediaID": "tt1234568"
+          },
+          "now": 1700000005,
+          "expected": [
+            {
+              "identity": {
+                "mediaID": "tt1234568"
+              },
+              "event": {
+                "action": "start",
+                "progress": 0.1
+              }
+            }
+          ]
+        }
+      ],
+      "finish": [
+        {
+          "identity": {
+            "mediaID": "tt1234568"
+          },
+          "event": {
+            "action": "pause",
+            "progress": 0.1
+          }
+        }
+      ]
+    },
+    {
+      "name": "identity-after-watched",
+      "steps": [
+        {
+          "status": "playing",
+          "position": 950,
+          "duration": 1000,
+          "identity": {
+            "mediaID": "tt1234567"
+          },
+          "now": 1700000001,
+          "expected": [
+            {
+              "identity": {
+                "mediaID": "tt1234567"
+              },
+              "event": {
+                "action": "start",
+                "progress": 95
+              }
+            }
+          ]
+        },
+        {
+          "status": "loading",
+          "position": 0,
+          "duration": 0,
+          "identity": {
+            "mediaID": "tt1234568"
+          },
+          "now": 1700000002,
+          "expected": [
+            {
+              "identity": {
+                "mediaID": "tt1234567"
+              },
+              "event": {
+                "action": "stop",
+                "progress": 100
+              }
+            }
+          ]
+        },
+        {
+          "status": "playing",
+          "position": 1,
+          "duration": 1000,
+          "identity": {
+            "mediaID": "tt1234568"
+          },
+          "now": 1700000003,
+          "expected": [
+            {
+              "identity": {
+                "mediaID": "tt1234568"
+              },
+              "event": {
+                "action": "start",
+                "progress": 0.1
+              }
+            }
+          ]
+        }
+      ],
+      "finish": [
+        {
+          "identity": {
+            "mediaID": "tt1234568"
+          },
+          "event": {
+            "action": "pause",
+            "progress": 0.1
+          }
+        }
+      ]
+    },
+    {
+      "name": "metadata-mapping-change",
+      "steps": [
+        {
+          "status": "playing",
+          "position": 200,
+          "duration": 1000,
+          "identity": {
+            "mediaID": "kitsu:8",
+            "episode": {
+              "season": 1,
+              "episode": 7
+            }
+          },
+          "now": 1700000001,
+          "expected": []
+        },
+        {
+          "status": "playing",
+          "position": 201,
+          "duration": 1000,
+          "identity": {
+            "mediaID": "kitsu:8",
+            "episode": {
+              "season": 1,
+              "episode": 7,
+              "tvdbEpisodeId": 81
+            }
+          },
+          "now": 1700000002,
+          "expected": [
+            {
+              "identity": {
+                "mediaID": "kitsu:8",
+                "episode": {
+                  "season": 1,
+                  "episode": 7,
+                  "tvdbEpisodeId": 81
+                }
+              },
+              "event": {
+                "action": "start",
+                "progress": 20.1
+              }
+            }
+          ]
+        }
+      ],
+      "finish": [
+        {
+          "identity": {
+            "mediaID": "kitsu:8",
+            "episode": {
+              "season": 1,
+              "episode": 7,
+              "tvdbEpisodeId": 81
+            }
+          },
+          "event": {
+            "action": "pause",
+            "progress": 20.1
+          }
+        }
+      ]
+    },
+    {
+      "name": "zero-duration-exit",
+      "steps": [
+        {
+          "status": "playing",
+          "position": 500,
+          "duration": 1000,
+          "identity": {
+            "mediaID": "tt1234567"
+          },
+          "now": 1700000001,
+          "expected": [
+            {
+              "identity": {
+                "mediaID": "tt1234567"
+              },
+              "event": {
+                "action": "start",
+                "progress": 50
+              }
+            }
+          ]
+        },
+        {
+          "status": "loading",
+          "position": 0,
+          "duration": 0,
+          "identity": {
+            "mediaID": "tt1234567"
+          },
+          "now": 1700000002,
+          "expected": []
+        }
+      ],
+      "finish": []
+    },
+    {
+      "name": "end-once",
+      "steps": [
+        {
+          "status": "playing",
+          "position": 500,
+          "duration": 1000,
+          "identity": {
+            "mediaID": "tt1234567"
+          },
+          "now": 1700000001,
+          "expected": [
+            {
+              "identity": {
+                "mediaID": "tt1234567"
+              },
+              "event": {
+                "action": "start",
+                "progress": 50
+              }
+            }
+          ]
+        },
+        {
+          "status": "ended",
+          "position": 800,
+          "duration": 1000,
+          "identity": {
+            "mediaID": "tt1234567"
+          },
+          "now": 1700000002,
+          "expected": [
+            {
+              "identity": {
+                "mediaID": "tt1234567"
+              },
+              "event": {
+                "action": "stop",
+                "progress": 80
+              }
+            }
+          ]
+        },
+        {
+          "status": "ended",
+          "position": 800,
+          "duration": 1000,
+          "tick": true,
+          "identity": {
+            "mediaID": "tt1234567"
+          },
+          "now": 1700000003,
+          "expected": []
+        }
+      ],
+      "finish": []
+    }
+  ],
+  "movieCases": [
+    {
+      "name": "contained",
+      "identity": {
+        "showTitle": "Owned Show",
+        "showYear": 2020,
+        "season": 0,
+        "number": 1,
+        "name": "The Lost Island",
+        "airDate": "2020-01-01"
+      },
+      "candidate": {
+        "title": "Series: The Lost Island",
+        "year": 2020
+      },
+      "expected": true
+    },
+    {
+      "name": "wrong-year",
+      "identity": {
+        "showTitle": "Owned Show",
+        "showYear": 2020,
+        "season": 0,
+        "number": 1,
+        "name": "The Lost Island",
+        "airDate": "2020-01-01"
+      },
+      "candidate": {
+        "title": "The Lost Island",
+        "year": 2022
+      },
+      "expected": false
+    },
+    {
+      "name": "one-year",
+      "identity": {
+        "showTitle": "Owned Show",
+        "showYear": 2020,
+        "season": 0,
+        "number": 1,
+        "name": "The Lost Island",
+        "airDate": "2020-01-01"
+      },
+      "candidate": {
+        "title": "The Lost Island",
+        "year": 2019
+      },
+      "expected": true
+    },
+    {
+      "name": "missing-year",
+      "identity": {
+        "showTitle": "Owned Show",
+        "showYear": 2020,
+        "season": 0,
+        "number": 1,
+        "name": "The Lost Island",
+        "airDate": "2020-01-01"
+      },
+      "candidate": {
+        "title": "The Lost Island",
+        "year": null
+      },
+      "expected": false
+    },
+    {
+      "name": "no-date",
+      "identity": {
+        "showTitle": "Owned Show",
+        "showYear": 2020,
+        "season": 0,
+        "number": 1,
+        "name": "The Lost Island",
+        "airDate": null
+      },
+      "candidate": {
+        "title": "The Lost Island",
+        "year": null
+      },
+      "expected": true
+    },
+    {
+      "name": "generic",
+      "identity": {
+        "showTitle": "Owned Show",
+        "showYear": 2020,
+        "season": 0,
+        "number": 1,
+        "name": "Special 1",
+        "airDate": "2020-01-01"
+      },
+      "candidate": {
+        "title": "Special 1",
+        "year": 2020
+      },
+      "expected": false
+    },
+    {
+      "name": "no-title",
+      "identity": {
+        "showTitle": "Owned Show",
+        "showYear": 2020,
+        "season": 0,
+        "number": 1,
+        "name": null,
+        "airDate": "2020-01-01"
+      },
+      "candidate": {
+        "title": "The Lost Island",
+        "year": 2020
+      },
+      "expected": false
+    },
+    {
+      "name": "wrong-title",
+      "identity": {
+        "showTitle": "Owned Show",
+        "showYear": 2020,
+        "season": 0,
+        "number": 1,
+        "name": "The Lost Island",
+        "airDate": "2020-01-01"
+      },
+      "candidate": {
+        "title": "The Island",
+        "year": 2020
+      },
+      "expected": false
+    },
+    {
+      "name": "unicode",
+      "identity": {
+        "showTitle": "Owned Show",
+        "showYear": 2020,
+        "season": 0,
+        "number": 1,
+        "name": "L’île perdue",
+        "airDate": "2020-01-01"
+      },
+      "candidate": {
+        "title": "L ile perdue",
+        "year": 2020
+      },
+      "expected": true
+    },
+    {
+      "name": "invalid-date",
+      "identity": {
+        "showTitle": "Owned Show",
+        "showYear": 2020,
+        "season": 0,
+        "number": 1,
+        "name": "The Lost Island",
+        "airDate": "invalid"
+      },
+      "candidate": {
+        "title": "The Lost Island",
+        "year": 1999
+      },
+      "expected": true
+    }
+  ],
+  "resolutionCases": [
+    {
+      "name": "start-resolved",
+      "action": "start",
+      "progress": 20,
+      "identity": {
+        "mediaID": "tt1234567",
+        "episode": {
+          "season": 2,
+          "episode": 7
+        }
+      },
+      "statuses": [503, 200],
+      "found": true,
+      "special": false,
+      "resolved": {
+        "showIds": {
+          "trakt": 91
+        },
+        "season": 1,
+        "number": 8
+      },
+      "expected": {
+        "requests": [
+          {
+            "path": "/scrobble/start",
+            "method": "POST",
+            "body": {
+              "show": {
+                "ids": {
+                  "imdb": "tt1234567"
+                }
+              },
+              "episode": {
+                "season": 2,
+                "number": 7
+              },
+              "progress": 20
+            }
+          },
+          {
+            "path": "/scrobble/start",
+            "method": "POST",
+            "body": {
+              "show": {
+                "ids": {
+                  "trakt": 91
+                }
+              },
+              "episode": {
+                "season": 1,
+                "number": 8
+              },
+              "progress": 20
+            }
+          }
+        ],
+        "catalog": [["tt1234567", 2, 7]],
+        "delays": [],
+        "outcome": null
+      }
+    },
+    {
+      "name": "pause-resolved",
+      "action": "pause",
+      "progress": 30,
+      "identity": {
+        "mediaID": "tt1234567",
+        "episode": {
+          "season": 2,
+          "episode": 7
+        }
+      },
+      "statuses": [503, 200],
+      "found": true,
+      "special": false,
+      "resolved": {
+        "showIds": {
+          "trakt": 91
+        },
+        "season": 1,
+        "number": 8
+      },
+      "expected": {
+        "requests": [
+          {
+            "path": "/scrobble/pause",
+            "method": "POST",
+            "body": {
+              "show": {
+                "ids": {
+                  "imdb": "tt1234567"
+                }
+              },
+              "episode": {
+                "season": 2,
+                "number": 7
+              },
+              "progress": 30
+            }
+          },
+          {
+            "path": "/scrobble/pause",
+            "method": "POST",
+            "body": {
+              "show": {
+                "ids": {
+                  "trakt": 91
+                }
+              },
+              "episode": {
+                "season": 1,
+                "number": 8
+              },
+              "progress": 30
+            }
+          }
+        ],
+        "catalog": [["tt1234567", 2, 7]],
+        "delays": [],
+        "outcome": null
+      }
+    },
+    {
+      "name": "stop-resolved",
+      "action": "stop",
+      "progress": 91,
+      "identity": {
+        "mediaID": "tt1234567",
+        "episode": {
+          "season": 2,
+          "episode": 7
+        }
+      },
+      "statuses": [503, 503, 200, 200],
+      "found": true,
+      "special": false,
+      "resolved": {
+        "showIds": {
+          "trakt": 91
+        },
+        "season": 1,
+        "number": 8
+      },
+      "expected": {
+        "requests": [
+          {
+            "path": "/scrobble/stop",
+            "method": "POST",
+            "body": {
+              "show": {
+                "ids": {
+                  "imdb": "tt1234567"
+                }
+              },
+              "episode": {
+                "season": 2,
+                "number": 7
+              },
+              "progress": 91
+            }
+          },
+          {
+            "path": "/scrobble/stop",
+            "method": "POST",
+            "body": {
+              "show": {
+                "ids": {
+                  "imdb": "tt1234567"
+                }
+              },
+              "episode": {
+                "season": 2,
+                "number": 7
+              },
+              "progress": 91
+            }
+          },
+          {
+            "path": "/sync/history",
+            "method": "POST",
+            "body": {
+              "shows": [
+                {
+                  "ids": {
+                    "imdb": "tt1234567"
+                  },
+                  "seasons": [
+                    {
+                      "number": 2,
+                      "episodes": [
+                        {
+                          "number": 7
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "path": "/scrobble/stop",
+            "method": "POST",
+            "body": {
+              "show": {
+                "ids": {
+                  "trakt": 91
+                }
+              },
+              "episode": {
+                "season": 1,
+                "number": 8
+              },
+              "progress": 91
+            }
+          }
+        ],
+        "catalog": [["tt1234567", 2, 7]],
+        "delays": [800],
+        "outcome": "recorded"
+      }
+    },
+    {
+      "name": "direct-history",
+      "action": "stop",
+      "progress": 91,
+      "identity": {
+        "mediaID": "tt1234567",
+        "episode": {
+          "season": 2,
+          "episode": 7
+        }
+      },
+      "statuses": [503, 503, 200],
+      "found": false,
+      "special": false,
+      "resolved": {
+        "showIds": {
+          "trakt": 91
+        },
+        "season": 1,
+        "number": 8
+      },
+      "expected": {
+        "requests": [
+          {
+            "path": "/scrobble/stop",
+            "method": "POST",
+            "body": {
+              "show": {
+                "ids": {
+                  "imdb": "tt1234567"
+                }
+              },
+              "episode": {
+                "season": 2,
+                "number": 7
+              },
+              "progress": 91
+            }
+          },
+          {
+            "path": "/scrobble/stop",
+            "method": "POST",
+            "body": {
+              "show": {
+                "ids": {
+                  "imdb": "tt1234567"
+                }
+              },
+              "episode": {
+                "season": 2,
+                "number": 7
+              },
+              "progress": 91
+            }
+          },
+          {
+            "path": "/sync/history",
+            "method": "POST",
+            "body": {
+              "shows": [
+                {
+                  "ids": {
+                    "imdb": "tt1234567"
+                  },
+                  "seasons": [
+                    {
+                      "number": 2,
+                      "episodes": [
+                        {
+                          "number": 7
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "catalog": [],
+        "delays": [800],
+        "outcome": "recorded"
+      }
+    },
+    {
+      "name": "special-movie",
+      "action": "stop",
+      "progress": 91,
+      "identity": {
+        "mediaID": "tt1234567",
+        "episode": {
+          "season": 0,
+          "episode": 7
+        }
+      },
+      "statuses": [503, 503, 200, 200],
+      "found": false,
+      "special": true,
+      "resolved": {
+        "showIds": {
+          "trakt": 91
+        },
+        "season": 1,
+        "number": 8
+      },
+      "expected": {
+        "requests": [
+          {
+            "path": "/scrobble/stop",
+            "method": "POST",
+            "body": {
+              "show": {
+                "ids": {
+                  "imdb": "tt1234567"
+                }
+              },
+              "episode": {
+                "season": 0,
+                "number": 7
+              },
+              "progress": 91
+            }
+          },
+          {
+            "path": "/scrobble/stop",
+            "method": "POST",
+            "body": {
+              "show": {
+                "ids": {
+                  "imdb": "tt1234567"
+                }
+              },
+              "episode": {
+                "season": 0,
+                "number": 7
+              },
+              "progress": 91
+            }
+          },
+          {
+            "path": "/sync/history",
+            "method": "POST",
+            "body": {
+              "shows": [
+                {
+                  "ids": {
+                    "imdb": "tt1234567"
+                  },
+                  "seasons": [
+                    {
+                      "number": 0,
+                      "episodes": [
+                        {
+                          "number": 7
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "path": "/scrobble/stop",
+            "method": "POST",
+            "body": {
+              "movie": {
+                "ids": {
+                  "trakt": 92
+                }
+              },
+              "progress": 91
+            }
+          }
+        ],
+        "catalog": [["tt1234567", 0, 7]],
+        "delays": [800],
+        "outcome": "recorded"
+      }
+    },
+    {
+      "name": "heuristic-miss",
+      "action": "stop",
+      "progress": 91,
+      "identity": {
+        "mediaID": "tt1234567",
+        "episode": {
+          "season": 2,
+          "episode": 7
+        }
+      },
+      "statuses": [503, 503, 200],
+      "found": false,
+      "special": false,
+      "resolved": {
+        "showIds": {
+          "trakt": 91
+        },
+        "season": 1,
+        "number": 8
+      },
+      "expected": {
+        "requests": [
+          {
+            "path": "/scrobble/stop",
+            "method": "POST",
+            "body": {
+              "show": {
+                "ids": {
+                  "imdb": "tt1234567"
+                }
+              },
+              "episode": {
+                "season": 2,
+                "number": 7
+              },
+              "progress": 91
+            }
+          },
+          {
+            "path": "/scrobble/stop",
+            "method": "POST",
+            "body": {
+              "show": {
+                "ids": {
+                  "imdb": "tt1234567"
+                }
+              },
+              "episode": {
+                "season": 2,
+                "number": 7
+              },
+              "progress": 91
+            }
+          },
+          {
+            "path": "/sync/history",
+            "method": "POST",
+            "body": {
+              "shows": [
+                {
+                  "ids": {
+                    "imdb": "tt1234567"
+                  },
+                  "seasons": [
+                    {
+                      "number": 2,
+                      "episodes": [
+                        {
+                          "number": 7
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "catalog": [["tt1234567", 2, 7]],
+        "delays": [800],
+        "outcome": "failed"
+      }
+    },
+    {
+      "name": "low-progress-no-history",
+      "action": "stop",
+      "progress": 60,
+      "identity": {
+        "mediaID": "tt1234567",
+        "episode": {
+          "season": 2,
+          "episode": 7
+        }
+      },
+      "statuses": [503, 503, 200],
+      "found": true,
+      "special": false,
+      "resolved": {
+        "showIds": {
+          "trakt": 91
+        },
+        "season": 1,
+        "number": 8
+      },
+      "expected": {
+        "requests": [
+          {
+            "path": "/scrobble/stop",
+            "method": "POST",
+            "body": {
+              "show": {
+                "ids": {
+                  "imdb": "tt1234567"
+                }
+              },
+              "episode": {
+                "season": 2,
+                "number": 7
+              },
+              "progress": 60
+            }
+          },
+          {
+            "path": "/scrobble/stop",
+            "method": "POST",
+            "body": {
+              "show": {
+                "ids": {
+                  "imdb": "tt1234567"
+                }
+              },
+              "episode": {
+                "season": 2,
+                "number": 7
+              },
+              "progress": 60
+            }
+          },
+          {
+            "path": "/scrobble/stop",
+            "method": "POST",
+            "body": {
+              "show": {
+                "ids": {
+                  "trakt": 91
+                }
+              },
+              "episode": {
+                "season": 1,
+                "number": 8
+              },
+              "progress": 60
+            }
+          }
+        ],
+        "catalog": [["tt1234567", 2, 7]],
+        "delays": [800],
+        "outcome": "recorded"
+      }
+    }
+  ]
+}

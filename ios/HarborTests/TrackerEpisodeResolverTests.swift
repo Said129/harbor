@@ -11,6 +11,7 @@ actor OwnedTrackerCatalog {
         case .searchShows:
             if scenario["searchError"] == .bool(true) { throw HarborError(code: "owned-tracker-search") }
             try await Task.sleep(for: .milliseconds(20)); return scenario["search"]
+        case .searchMovies: return scenario["movies"]
         case .seasons(let ids):
             guard let id = ids.parameter else { throw HarborError(code: "owned-tracker-foreign-id") }
             if scenario["seasonError"].string == id { throw HarborError(code: "owned-tracker-seasons") }

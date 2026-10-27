@@ -158,6 +158,7 @@
 "Audio sin etiqueta" = "音声ラベルなし";
 "Authorization expired. Connect again." = "Authorization expired. Connect again.";
 "Authorize Harbor on Simkl" = "SimklでHarborを認証";
+"Authorize Harbor on Trakt" = "TraktでHarborを認証";
 "Auto" = "自動";
 "Auto (match video)" = "自動（動画に合わせる）";
 "Auto-play next episode" = "次のエピソードを自動再生";
@@ -396,6 +397,7 @@
 "Confirm your current PIN, then pick a new one." = "現在のPINを確認してから、新しいPINを設定してください。";
 "Connect Simkl" = "Simklに接続";
 "Connect TMDB" = "TMDBに接続";
+"Connect Trakt" = "Traktに接続";
 "Connected" = "接続済み";
 "Connected to Simkl" = "Simklに接続済み";
 "Connecting" = "接続中";
@@ -444,6 +446,7 @@
 "Could not save your tracks or listening history. Try again." = "Could not save your tracks or listening history. Try again.";
 "Couldn't auto-sync" = "自動同期できませんでした";
 "Couldn't reach Simkl" = "Simklに接続できませんでした";
+"Couldn't reach Trakt. Check your connection and try again." = "Traktに接続できませんでした。接続を確認して、もう一度お試しください。";
 "Cover Image URL" = "カバー画像URL";
 "Crash" = "クラッシュ";
 "Crea tu propia paleta" = "独自のパレットを作成";
@@ -1381,6 +1384,7 @@
 "Reproducir después" = "次に再生";
 "Reproductor" = "選手";
 "Requesting code from Simkl…" = "Simklにコードをリクエスト中…";
+"Requesting code from Trakt…" = "Traktにコードをリクエスト中…";
 "Requiere al menos 10 títulos para el estilo de Top 10" = "トップ10表示には10作品以上が必要です";
 "Requiere títulos con abundante material gráfico para el contenido destacado" = "ヒーロー表示には画像が豊富な作品が必要です";
 "Resaltado, progreso." = "ハイライト、進捗。";
@@ -1629,6 +1633,7 @@
 "Status" = "ステータス";
 "Step 1 · Metadata" = "ステップ1 · メタデータ";
 "Step 1 · Open Simkl" = "ステップ1 · Simklを開く";
+"Step 1 · Open Trakt" = "ステップ1 · Traktを開く";
 "Step 2 · Enter this code" = "ステップ2 · このコードを入力";
 "Step 2 · Stremio" = "ステップ2 · Stremio";
 "Step 3 · Streaming" = "ステップ3 · ストリーミング";
@@ -1733,6 +1738,7 @@
 "That route wouldn't chart. Try a different direction." = "そのルートは作成できませんでした。別の方向をお試しください。";
 "The CW" = "The CW";
 "The Roku Channel" = "The Roku Channel";
+"The authorization code timed out before you finished. Try again." = "完了前に認証コードの有効期限が切れました。もう一度お試しください。";
 "The comics industry's highest honor" = "コミック業界最高の栄誉";
 "The filled part of the timeline. Default follows your Harbor accent." = "The filled part of the timeline. Default follows your Harbor accent.";
 "The most-watched movies and series on {name} right now in {region}." = "現在{region}の{name}で最も視聴されている映画とシリーズです。";
@@ -1807,6 +1813,7 @@
 "Tracking" = "Tracking";
 "Tracks" = "トラック";
 "Traducir títulos" = "タイトルを翻訳";
+"Trakt reported that authorization was denied. Try again if this was unintentional." = "Traktで認証が拒否されました。意図しない場合は、もう一度お試しください。";
 "Transfer primary" = "メインプロフィールを移行";
 "Translate titles" = "タイトルを翻訳";
 "Trazo grueso alrededor de cada letra. Alto contraste." = "各文字をくっきり縁取ります。高コントラストです。";
@@ -1891,6 +1898,7 @@
 "Volver a empezar" = "最初から再生";
 "Vídeo" = "動画";
 "Waiting for you to authorize on simkl.com…" = "simkl.comでの認証を待っています…";
+"Waiting for you to authorize on trakt.tv…" = "trakt.tvでの認証を待っています…";
 "War" = "戦争";
 "Watched" = "視聴済み";
 "Watching" = "視聴中";

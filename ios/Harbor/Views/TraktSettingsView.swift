@@ -65,12 +65,13 @@ struct TraktDeviceAuthorizationView: View {
         NavigationStack {
             ScrollView {
                 VStack(alignment: .leading, spacing: 22) {
-                    Text(text(model.store.session == nil ? "Connect Trakt" : "Connected")).font(HarborTheme.font(22, weight: .semibold))
+                    Text(text(model.store.session == nil ? "Authorize Harbor on Trakt" : "Connected")).font(HarborTheme.font(22, weight: .semibold))
                     if model.store.session != nil {
                         Label(text("Connected"), systemImage: "checkmark.circle.fill").foregroundStyle(.green).accessibilityIdentifier("trakt-authorized")
                     } else if let pin = model.pin {
+                        Text(text("Step 1 · Open Trakt")).font(.caption.weight(.semibold)).foregroundStyle(.secondary)
                         Link(destination: pin.verificationURL) { Label("trakt.tv/activate", systemImage: "arrow.up.right.square").frame(maxWidth: .infinity, minHeight: 44, alignment: .leading) }.accessibilityIdentifier("trakt-authorize-link")
-                        Text(text("Enter this code")).font(.caption.weight(.semibold)).foregroundStyle(.secondary)
+                        Text(text("Step 2 · Enter this code")).font(.caption.weight(.semibold)).foregroundStyle(.secondary)
                         Button {
                             UIPasteboard.general.setItems([["public.utf8-plain-text": pin.userCode]], options: [.localOnly: true, .expirationDate: Date().addingTimeInterval(120)]); copied = true
                         } label: {
@@ -79,10 +80,10 @@ struct TraktDeviceAuthorizationView: View {
                                 Spacer(minLength: 12); Label(text(copied ? "Copied" : "Copy"), systemImage: copied ? "checkmark" : "doc.on.doc").font(.caption)
                             }.padding(16).frame(maxWidth: .infinity, minHeight: 64).background(HarborTheme.surface, in: .rect(cornerRadius: 12))
                         }.buttonStyle(.plain).accessibilityIdentifier("trakt-pin-code")
-                        HStack(spacing: 10) { ProgressView(); Text(text("Waiting for authorization…")).font(.callout).foregroundStyle(.secondary) }
-                    } else if model.busy { ProgressView().frame(maxWidth: .infinity, minHeight: 100) }
+                        HStack(spacing: 10) { ProgressView(); Text(text("Waiting for you to authorize on trakt.tv…")).font(.callout).foregroundStyle(.secondary) }
+                    } else if model.busy { ProgressView(text("Requesting code from Trakt…")).frame(maxWidth: .infinity, minHeight: 100) }
                     if let error = model.error {
-                        Text(text(error)).foregroundStyle(.orange).accessibilityIdentifier("trakt-authorization-error")
+                        Text(text(authorizationMessage(error))).foregroundStyle(.orange).accessibilityIdentifier("trakt-authorization-error")
                         Button(text("Try again")) { attempt = UUID() }.buttonStyle(HarborAccountButtonStyle(primary: true)).accessibilityIdentifier("trakt-retry")
                     }
                 }.padding(22).frame(maxWidth: 680, alignment: .leading).frame(maxWidth: .infinity, alignment: .leading)
@@ -93,5 +94,13 @@ struct TraktDeviceAuthorizationView: View {
             .task(id: copied) { if copied { try? await Task.sleep(for: .milliseconds(1_400)); if !Task.isCancelled { copied = false } } }
             .task(id: model.store.session != nil) { if model.store.session != nil { try? await Task.sleep(for: .milliseconds(1_400)); if !Task.isCancelled { dismiss() } } }
             .onDisappear { model.cancel() }
+    }
+    private func authorizationMessage(_ value: String) -> String {
+        switch value {
+        case "Authorization was denied. Try again.": "Trakt reported that authorization was denied. Try again if this was unintentional."
+        case "Code expired. Try again.": "The authorization code timed out before you finished. Try again."
+        case "Could not connect to Trakt. Try again.": "Couldn't reach Trakt. Check your connection and try again."
+        default: value
+        }
     }
 }

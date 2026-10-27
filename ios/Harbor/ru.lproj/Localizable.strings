@@ -161,6 +161,7 @@
 "Audio sin etiqueta" = "Аудио без метки";
 "Authorization expired. Connect again." = "Authorization expired. Connect again.";
 "Authorize Harbor on Simkl" = "Авторизовать Harbor в Simkl";
+"Authorize Harbor on Trakt" = "Авторизовать Harbor в Trakt";
 "Auto" = "Авто";
 "Auto (match video)" = "Авто (как у видео)";
 "Auto-play next episode" = "Автовоспроизведение следующей серии";
@@ -400,6 +401,7 @@
 "Confirm your current PIN, then pick a new one." = "Подтвердите текущий PIN, затем задайте новый.";
 "Connect Simkl" = "Подключить Simkl";
 "Connect TMDB" = "Подключить TMDB";
+"Connect Trakt" = "Подключить Trakt";
 "Connected" = "Подключено";
 "Connected to Simkl" = "Подключено к Simkl";
 "Connecting" = "Подключение";
@@ -448,6 +450,7 @@
 "Could not save your tracks or listening history. Try again." = "Could not save your tracks or listening history. Try again.";
 "Couldn't auto-sync" = "Не удалось синхронизировать";
 "Couldn't reach Simkl" = "Не удалось связаться с Simkl";
+"Couldn't reach Trakt. Check your connection and try again." = "Не удалось связаться с Trakt. Проверьте подключение и повторите попытку.";
 "Cover Image URL" = "URL обложки";
 "Crash" = "Сбой";
 "Crea tu propia paleta" = "Создать свою палитру";
@@ -1393,6 +1396,7 @@
 "Reproducir después" = "Воспроизвести следующим";
 "Reproductor" = "Игрок";
 "Requesting code from Simkl…" = "Запрос кода у Simkl…";
+"Requesting code from Trakt…" = "Запрос кода у Trakt…";
 "Requiere al menos 10 títulos para el estilo de Top 10" = "Для вида Топ-10 нужно минимум 10 материалов";
 "Requiere títulos con abundante material gráfico para el contenido destacado" = "Для главного баннера нужны материалы с качественными изображениями";
 "Resaltado, progreso." = "Выделение, прогресс.";
@@ -1643,6 +1647,7 @@
 "Status" = "Статус";
 "Step 1 · Metadata" = "Шаг 1 · Метаданные";
 "Step 1 · Open Simkl" = "Шаг 1 · Открыть Simkl";
+"Step 1 · Open Trakt" = "Шаг 1 · Открыть Trakt";
 "Step 2 · Enter this code" = "Шаг 2 · Ввести этот код";
 "Step 2 · Stremio" = "Шаг 2 · Stremio";
 "Step 3 · Streaming" = "Шаг 3 · Стриминг";
@@ -1747,6 +1752,7 @@
 "That route wouldn't chart. Try a different direction." = "Не удалось проложить маршрут. Попробуйте другое направление.";
 "The CW" = "The CW";
 "The Roku Channel" = "The Roku Channel";
+"The authorization code timed out before you finished. Try again." = "Срок действия кода авторизации истёк. Попробуйте снова.";
 "The comics industry's highest honor" = "Высшая награда индустрии комиксов";
 "The filled part of the timeline. Default follows your Harbor accent." = "The filled part of the timeline. Default follows your Harbor accent.";
 "The most-watched movies and series on {name} right now in {region}." = "Самые просматриваемые фильмы и сериалы на {name} сейчас в регионе {region}.";
@@ -1822,6 +1828,7 @@
 "Tracking" = "Tracking";
 "Tracks" = "Дорожки";
 "Traducir títulos" = "Переводить названия";
+"Trakt reported that authorization was denied. Try again if this was unintentional." = "Trakt сообщил об отказе в авторизации. Повторите, если это вышло случайно.";
 "Transfer primary" = "Передать основной профиль";
 "Translate titles" = "Переводить названия";
 "Trazo grueso alrededor de cada letra. Alto contraste." = "Жёсткая обводка каждой буквы. Высокий контраст.";
@@ -1906,6 +1913,7 @@
 "Volver a empezar" = "Начать сначала";
 "Vídeo" = "Видео";
 "Waiting for you to authorize on simkl.com…" = "Ожидание авторизации на simkl.com…";
+"Waiting for you to authorize on trakt.tv…" = "Ожидание авторизации на trakt.tv…";
 "War" = "Военный";
 "Watched" = "Просмотрено";
 "Watching" = "Смотрю";

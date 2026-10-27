@@ -39,12 +39,20 @@ afectadas de Simkl e historia privada. Incluye montajes reales de ajustes,
 autorización pendiente/denegada y tarjeta con imagen decodificada en ambos tamaños.
 Tres preparaciones de invitados propios permiten dos recorridos nuevos de fuente
 Trakt en iPhone/iPad y el recorrido de privacidad de iPhone pendiente. Se esperan
-18 ejecuciones y veinte imágenes originales; deben recogerse y revisarse después.
+18 ejecuciones y veinte imágenes originales como objetivo inicial.
+La ejecución 40595901859 terminó con 17 aprobadas y un fallo al segundo arranque
+de la app en el recorrido de privacidad de iPhone. Los doce casos nativos y los
+dos recorridos de fuente Trakt pasaron; no se vuelven a seleccionar los intactos.
+Se autenticaron y revisaron las 18 capturas obtenidas. Se detectó un recurso PNG
+equivocado para el distintivo y textos de autorización sin traducir. Sus arreglos
+se comprueban en la selección de reproducción siguiente. Las capturas de
+privacidad restaurada/desbloqueada siguen pendientes.
 Se conservan los aprobados intactos y no se repite el fallo de foco sin corregirlo.
 
 ## Pendientes conservados
 
-Listas y su sincronización bidireccional, historial, registro automático de
-reproducción, recomendaciones y calendario. Este incremento no sustituye esas
+Listas y su sincronización bidireccional, historial, recomendaciones y calendario.
+El registro automático está implementado en el incremento siguiente y pendiente
+de ejecución Apple; véase `trakt-scrobble-0.9.132.md`. Este incremento no sustituye esas
 funciones por controles sin efecto ni declara el port completo, el rendimiento
 físico o una IPA nueva como aprobados.

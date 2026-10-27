@@ -1,7 +1,7 @@
 import Foundation
 
 enum LocalProfileText {
-    enum Key: CaseIterable, Equatable { case sharedContinue, requiredAddon }
+    enum Key: Int, CaseIterable, Equatable { case sharedContinue, requiredAddon, serverAccount }
     static let translations: [String: [String]] = [
         "en": ["Each Harbor profile can keep its own progress, separate from profiles that share the same sources.", "Install this addon in Harbor first so its titles can be loaded."],
         "es": ["Cada perfil de Harbor puede guardar su propio progreso, separado de los perfiles que comparten las mismas fuentes.", "Instala primero este addon en Harbor para poder cargar sus títulos."],
@@ -22,7 +22,25 @@ enum LocalProfileText {
     ]
     static func value(_ key: Key, language: String? = nil) -> String {
         let code = InterfaceLanguage.resolve(language ?? UserDefaults.standard.string(forKey: "uiLanguage") ?? "es")
-        let index = key == .sharedContinue ? 0 : 1
-        return (translations[code] ?? translations["en"]!)[index]
+        if key == .serverAccount { return serverNotes[code] ?? serverNotes["en"]! }
+        return (translations[code] ?? translations["en"]!)[key.rawValue]
     }
+    static let serverNotes: [String: String] = [
+        "en": "Use an account from this server. The original service closed; its sessions do not transfer automatically.",
+        "es": "Usa una cuenta de este servidor. El servicio original cerró; sus sesiones no se transfieren automáticamente.",
+        "de": "Verwende ein Konto dieses Servers. Der ursprüngliche Dienst wurde eingestellt; seine Sitzungen werden nicht automatisch übertragen.",
+        "fr": "Utilisez un compte de ce serveur. Le service d’origine a fermé ; ses sessions ne sont pas transférées automatiquement.",
+        "it": "Usa un account di questo server. Il servizio originale ha chiuso; le sue sessioni non vengono trasferite automaticamente.",
+        "pt": "Use uma conta deste servidor. O serviço original encerrou; as suas sessões não são transferidas automaticamente.",
+        "ru": "Используйте учётную запись этого сервера. Исходный сервис закрыт; его сеансы не переносятся автоматически.",
+        "pl": "Użyj konta z tego serwera. Pierwotna usługa została zamknięta; jej sesje nie są przenoszone automatycznie.",
+        "tr": "Bu sunucudaki bir hesabı kullanın. İlk hizmet kapandı; oturumları otomatik olarak aktarılmaz.",
+        "ar": "استخدم حساباً من هذا الخادم. أُغلقت الخدمة الأصلية؛ لا تُنقل جلساتها تلقائياً.",
+        "ja": "このサーバーのアカウントを使ってください。元のサービスは終了しており、そのセッションは自動的には引き継がれません。",
+        "ko": "이 서버의 계정을 사용하세요. 기존 서비스는 종료되었으며 해당 세션은 자동으로 이전되지 않습니다.",
+        "zh": "请使用此服务器的账户。原服务已关闭，其登录会话不会自动转移。",
+        "hi": "इस सर्वर के खाते का उपयोग करें। मूल सेवा बंद हो गई है; उसके सत्र अपने आप स्थानांतरित नहीं होते।",
+        "vi": "Hãy dùng tài khoản của máy chủ này. Dịch vụ gốc đã đóng; các phiên đăng nhập không tự động chuyển sang đây.",
+        "id": "Gunakan akun dari server ini. Layanan aslinya telah ditutup; sesi masuknya tidak dipindahkan secara otomatis.",
+    ]
 }

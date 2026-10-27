@@ -45,7 +45,7 @@ actor OwnedTraktTransport {
     }
     private func canonical(_ value: JSONValue) throws -> JSONValue { try JSONDecoder().decode(JSONValue.self, from: JSONEncoder().encode(value)) }
     private func reply(_ status: Int = 200, _ value: JSONValue = .null, retryAfter: String? = nil) throws -> TraktReply { .init(status: status, data: try JSONEncoder().encode(value), retryAfter: retryAfter) }
-    private func session(_ suffix: String = "old") -> TraktSession { .init(accessToken: "owned-access-" + suffix, refreshToken: "owned-refresh-" + suffix, createdAt: 1_700_000_000, expiresIn: 7_776_000, username: "Owned Trakt") }
+    private func session(_ suffix: String = "old") -> TraktSession { .init(accessToken: "owned-access-" + suffix, refreshToken: "owned-refresh-" + suffix, createdAt: 1_700_000_000, expiresIn: 7_776_000, username: "Owned Trakt", trackingID: UUID(uuidString: "00000000-0000-4000-8000-" + String(EBookShelf.hash(suffix).prefix(12)))!) }
     private func grant(_ suffix: String = "new") -> JSONValue { .object(["access_token": .string("owned-access-" + suffix), "refresh_token": .string("owned-refresh-" + suffix), "created_at": .integer(1_700_000_100), "expires_in": .integer(7_776_000)]) }
     private func account(_ owner: String, memory: OwnedTraktPersistence? = nil) throws -> TraktAccountStore {
         let account = TraktAccountStore(owner: owner, persistence: memory ?? OwnedTraktPersistence()); try account.load(); try account.set(session()); return account

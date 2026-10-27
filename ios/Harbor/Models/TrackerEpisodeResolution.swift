@@ -80,6 +80,20 @@ enum TrackerEpisodeMatch {
         let text = normalize(value)
         return text.count >= 4 && text.range(of: "^(episode\\s*[0-9]+$|part\\s*[0-9]+$|chapter\\s*[0-9]+$|special\\b)", options: .regularExpression) == nil
     }
+    static func movieMatches(_ identity: TrackerEpisodeIdentity, title: String?, year: Int?) -> Bool {
+        guard distinctive(identity.name) else { return false }
+        let episodeName = normalize(identity.name), movie = normalize(title)
+        guard !movie.isEmpty, movie == episodeName || movie.contains(episodeName) else { return false }
+        guard var value = identity.airDate, !value.isEmpty else { return true }
+        if value.count == 10 { value += "T00:00:00Z" }
+        let formatter = ISO8601DateFormatter(); formatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+        var date = formatter.date(from: value)
+        if date == nil { formatter.formatOptions = [.withInternetDateTime]; date = formatter.date(from: value) }
+        guard let date else { return true }
+        guard let year else { return false }
+        var calendar = Calendar(identifier: .gregorian); calendar.timeZone = TimeZone(secondsFromGMT: 0)!
+        return abs(calendar.component(.year, from: date) - year) <= 1
+    }
     static func days(_ first: String?, _ second: String?) -> Double? {
         func date(_ value: String?) -> Date? {
             guard var value, !value.isEmpty else { return nil }

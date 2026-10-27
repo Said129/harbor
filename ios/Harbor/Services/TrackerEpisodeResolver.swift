@@ -1,7 +1,7 @@
 import Foundation
 
 enum TrackerCatalogRequest: Equatable, Sendable {
-    case searchShows(String), seasons(TrackerShowIDs), tmdbShow(Int), cinemetaSeries(String)
+    case searchShows(String), searchMovies(String), seasons(TrackerShowIDs), tmdbShow(Int), cinemetaSeries(String)
 }
 
 /// Public metadata only: no Trakt login is needed for the shared episode resolver.
@@ -16,6 +16,9 @@ actor TrackerEpisodeResolver {
     private var pending: [String: Task<TrackerResolutionResult, Never>] = [:]
     private var metaPending: [String: Task<TrackerResolutionResult, Never>] = [:]
     private var tmdbIDs: [Int: TrackerShowIDs] = [:]
+    private struct SpecialEntry { let ids: TrackerShowIDs? }
+    private var specialMovies: [String: SpecialEntry] = [:]
+    private var pendingSpecialMovies: [String: Task<TrackerShowIDs?, Never>] = [:]
     init(response: @escaping Response = { try await HTTPClient().trackerCatalog($0) }, now: @escaping @Sendable () -> Date = { Date() },
          cacheURL: URL? = URL.applicationSupportDirectory.appendingPathComponent("HarborTrackerResolution", isDirectory: true).appendingPathComponent("episodes.json")) {
         self.response = response; self.now = now; self.cacheURL = cacheURL
@@ -60,6 +63,29 @@ actor TrackerEpisodeResolver {
             persist()
         }
         return result
+    }
+    func specialMovie(metaID: String, season: Int, number: Int) async -> TrackerShowIDs? {
+        guard season >= 0, season <= 100_000, number > 0, number <= 1_000_000, metaID.utf8.count <= 1_024,
+              !Task.isCancelled, let identity = try? await hydrate(metaID: metaID, season: season, number: number) else { return nil }
+        let key = [TrackerEpisodeMatch.normalize(identity.showTitle), identity.showYear.map(String.init) ?? "", TrackerEpisodeMatch.normalize(identity.name)].joined(separator: "|")
+        if let cached = specialMovies[key] { return cached.ids }
+        if let pending = pendingSpecialMovies[key] { return await pending.value }
+        let task = Task<TrackerShowIDs?, Never> {
+            do {
+                let raw = try await self.response(.searchMovies(identity.name ?? ""))
+                var seen = Set<String>()
+                let candidates = raw.array.compactMap { row -> (TrackerShowIDs, JSONValue)? in
+                    let movie = row["movie"], ids = TrackerShowIDs(movie["ids"])
+                    guard movie != .null, let id = ids.parameter, seen.insert(id).inserted else { return nil }
+                    return (ids, movie)
+                }
+                let result = candidates.first { TrackerEpisodeMatch.movieMatches(identity, title: $0.1["title"].string, year: $0.1["year"].integer) }?.0
+                if self.specialMovies.count >= 200 { self.specialMovies.removeAll() }
+                self.specialMovies[key] = SpecialEntry(ids: result); return result
+            } catch { return nil }
+        }
+        pendingSpecialMovies[key] = task
+        let result = await task.value; pendingSpecialMovies[key] = nil; return result
     }
     private func persist() {
         guard let cacheURL else { return }

@@ -130,6 +130,7 @@
 "Audio sin etiqueta" = "Audio not labeled";
 "Authorization expired. Connect again." = "Authorization expired. Connect again.";
 "Authorize Harbor on Simkl" = "Authorize Harbor on Simkl";
+"Authorize Harbor on Trakt" = "Authorize Harbor on Trakt";
 "Auto" = "Auto";
 "Auto (match video)" = "Auto (match video)";
 "Auto-play next episode" = "Auto-play next episode";
@@ -316,6 +317,7 @@
 "Configure addon" = "Configure addon";
 "Connect Simkl" = "Connect Simkl";
 "Connect TMDB" = "Connect TMDB";
+"Connect Trakt" = "Connect Trakt";
 "Connected" = "Connected";
 "Connected to Simkl" = "Connected to Simkl";
 "Connecting" = "Connecting";
@@ -361,6 +363,7 @@
 "Could not save your tracks or listening history. Try again." = "Could not save your tracks or listening history. Try again.";
 "Couldn't auto-sync" = "Couldn't auto-sync";
 "Couldn't reach Simkl" = "Couldn't reach Simkl";
+"Couldn't reach Trakt. Check your connection and try again." = "Couldn't reach Trakt. Check your connection and try again.";
 "Cover Image URL" = "Cover Image URL";
 "Crea tu propia paleta" = "Build your own palette";
 "Create profiles for the people who use Harbor. Each can have its own appearance, settings, and PIN." = "Create profiles for the people who use Harbor. Each can have its own appearance, settings, and PIN.";
@@ -1120,6 +1123,7 @@
 "Reproducir después" = "Play next";
 "Reproductor" = "Player";
 "Requesting code from Simkl…" = "Requesting code from Simkl…";
+"Requesting code from Trakt…" = "Requesting code from Trakt…";
 "Requiere al menos 10 títulos para el estilo de Top 10" = "Needs at least 10 titles for the Top 10 look";
 "Requiere títulos con abundante material gráfico para el contenido destacado" = "Needs artwork-rich titles to feed the hero";
 "Resaltado, progreso." = "Highlight, progress.";
@@ -1333,6 +1337,7 @@
 "Start with subtitles off" = "Start with subtitles off";
 "Status" = "Status";
 "Step 1 · Open Simkl" = "Step 1 · Open Simkl";
+"Step 1 · Open Trakt" = "Step 1 · Open Trakt";
 "Step 2 · Enter this code" = "Step 2 · Enter this code";
 "Stop feeding the hero carousel (back to automatic)" = "Stop feeding the hero carousel (back to automatic)";
 "Stop playback" = "Stop playback";
@@ -1416,6 +1421,7 @@
 "Texto silenciado" = "Muted text";
 "Texto sutil" = "Subtle text";
 "Textos auxiliares y antetítulos." = "Captions, eyebrows.";
+"The authorization code timed out before you finished. Try again." = "The authorization code timed out before you finished. Try again.";
 "The filled part of the timeline. Default follows your Harbor accent." = "The filled part of the timeline. Default follows your Harbor accent.";
 "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it." = "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it.";
 "The quick brown fox jumps over the lazy dog" = "The quick brown fox jumps over the lazy dog";
@@ -1474,6 +1480,7 @@
 "Tracking" = "Tracking";
 "Tracks" = "Tracks";
 "Traducir títulos" = "Translate titles";
+"Trakt reported that authorization was denied. Try again if this was unintentional." = "Trakt reported that authorization was denied. Try again if this was unintentional.";
 "Translate titles" = "Translate titles";
 "Trazo grueso alrededor de cada letra. Alto contraste." = "Hard stroke around each letter. High contrast.";
 "Trending" = "Trending";
@@ -1544,6 +1551,7 @@
 "Volver a empezar" = "Start Over";
 "Vídeo" = "Video";
 "Waiting for you to authorize on simkl.com…" = "Waiting for you to authorize on simkl.com…";
+"Waiting for you to authorize on trakt.tv…" = "Waiting for you to authorize on trakt.tv…";
 "Watched" = "Watched";
 "Watching" = "Watching";
 "Welcome to Harbor" = "Welcome to Harbor";

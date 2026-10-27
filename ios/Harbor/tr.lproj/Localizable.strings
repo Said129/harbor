@@ -158,6 +158,7 @@
 "Audio sin etiqueta" = "Ses bilgisi belirtilmemiş";
 "Authorization expired. Connect again." = "Authorization expired. Connect again.";
 "Authorize Harbor on Simkl" = "Harbor'ı Simkl'de yetkilendir";
+"Authorize Harbor on Trakt" = "Harbor'ı Trakt'ta yetkilendir";
 "Auto" = "Otomatik";
 "Auto (match video)" = "Otomatik (videoyla eşleştir)";
 "Auto-play next episode" = "Sonraki bölümü otomatik oynat";
@@ -396,6 +397,7 @@
 "Confirm your current PIN, then pick a new one." = "Geçerli PIN'inizi doğrulayın, ardından yeni bir PIN seçin.";
 "Connect Simkl" = "Simkl'ı bağla";
 "Connect TMDB" = "TMDB'yi bağla";
+"Connect Trakt" = "Trakt'ı bağla";
 "Connected" = "Bağlı";
 "Connected to Simkl" = "Simkl'e bağlandı";
 "Connecting" = "Bağlanıyor";
@@ -444,6 +446,7 @@
 "Could not save your tracks or listening history. Try again." = "Could not save your tracks or listening history. Try again.";
 "Couldn't auto-sync" = "Otomatik eşitlenemedi";
 "Couldn't reach Simkl" = "Simkl'a ulaşılamadı";
+"Couldn't reach Trakt. Check your connection and try again." = "Trakt'a erişilemedi. Bağlantınızı kontrol edip tekrar deneyin.";
 "Cover Image URL" = "Kapak Görseli URL'si";
 "Crash" = "Çökme";
 "Crea tu propia paleta" = "Kendi paletinizi oluşturun";
@@ -1381,6 +1384,7 @@
 "Reproducir después" = "Sıradaki olarak çal";
 "Reproductor" = "Oyuncu";
 "Requesting code from Simkl…" = "Simkl'den kod isteniyor…";
+"Requesting code from Trakt…" = "Trakt'tan kod isteniyor…";
 "Requiere al menos 10 títulos para el estilo de Top 10" = "İlk 10 görünümü için en az 10 içerik gerekir";
 "Requiere títulos con abundante material gráfico para el contenido destacado" = "Vitrinde gösterilebilmesi için zengin görsellere sahip içerikler gerekir";
 "Resaltado, progreso." = "Vurgu, ilerleme.";
@@ -1629,6 +1633,7 @@
 "Status" = "Durum";
 "Step 1 · Metadata" = "1. Adım · Meta veriler";
 "Step 1 · Open Simkl" = "1. Adım · Simkl'ı açın";
+"Step 1 · Open Trakt" = "1. Adım · Trakt'ı açın";
 "Step 2 · Enter this code" = "2. Adım · Bu kodu girin";
 "Step 2 · Stremio" = "2. Adım · Stremio";
 "Step 3 · Streaming" = "3. Adım · Yayın hizmetleri";
@@ -1733,6 +1738,7 @@
 "That route wouldn't chart. Try a different direction." = "Bu rota çizilemedi. Farklı bir yön deneyin.";
 "The CW" = "The CW";
 "The Roku Channel" = "The Roku Channel";
+"The authorization code timed out before you finished. Try again." = "Siz işlemi tamamlamadan yetkilendirme kodunun süresi doldu. Tekrar deneyin.";
 "The comics industry's highest honor" = "Çizgi roman sektörünün en büyük onuru";
 "The filled part of the timeline. Default follows your Harbor accent." = "The filled part of the timeline. Default follows your Harbor accent.";
 "The most-watched movies and series on {name} right now in {region}." = "Şu anda {region} bölgesinde {name} platformunda en çok izlenen filmler ve diziler.";
@@ -1807,6 +1813,7 @@
 "Tracking" = "Tracking";
 "Tracks" = "Parçalar";
 "Traducir títulos" = "Başlıkları çevir";
+"Trakt reported that authorization was denied. Try again if this was unintentional." = "Trakt, yetkilendirmenin reddedildiğini bildirdi. Bunu istemeden yaptıysanız tekrar deneyin.";
 "Transfer primary" = "Birincil profili aktar";
 "Translate titles" = "Başlıkları çevir";
 "Trazo grueso alrededor de cada letra. Alto contraste." = "Her harfin çevresinde keskin bir kontur. Yüksek kontrast.";
@@ -1891,6 +1898,7 @@
 "Volver a empezar" = "Baştan Başlat";
 "Vídeo" = "Video";
 "Waiting for you to authorize on simkl.com…" = "simkl.com'da yetkilendirmeniz bekleniyor…";
+"Waiting for you to authorize on trakt.tv…" = "trakt.tv'de yetkilendirmeniz bekleniyor…";
 "War" = "Savaş";
 "Watched" = "İzlendi";
 "Watching" = "İzleniyor";

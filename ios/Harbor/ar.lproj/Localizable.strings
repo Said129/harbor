@@ -169,6 +169,7 @@
 "Audio sin etiqueta" = "الصوت بلا تسمية";
 "Authorization expired. Connect again." = "Authorization expired. Connect again.";
 "Authorize Harbor on Simkl" = "تفويض Harbor على Simkl";
+"Authorize Harbor on Trakt" = "تفويض Harbor على Trakt";
 "Auto" = "تلقائي";
 "Auto (match video)" = "تلقائي (مطابقة الفيديو)";
 "Auto-play next episode" = "التشغيل التلقائي للحلقة التالية";
@@ -416,6 +417,7 @@
 "Confirm your current PIN, then pick a new one." = "أكّد رمز PIN الحالي، ثم اختر رمزًا جديدًا.";
 "Connect Simkl" = "ربط Simkl";
 "Connect TMDB" = "ربط TMDB";
+"Connect Trakt" = "ربط Trakt";
 "Connected" = "متصل";
 "Connected to Simkl" = "تم الاتصال بـ Simkl";
 "Connecting" = "جارٍ الاتصال";
@@ -468,6 +470,7 @@
 "Could not save your tracks or listening history. Try again." = "Could not save your tracks or listening history. Try again.";
 "Couldn't auto-sync" = "تعذرت المزامنة التلقائية";
 "Couldn't reach Simkl" = "تعذّر الوصول إلى Simkl";
+"Couldn't reach Trakt. Check your connection and try again." = "تعذّر الوصول إلى Trakt. تحقق من اتصالك وحاول مرة أخرى.";
 "Cover Image URL" = "رابط الصورة (Cover Image URL)";
 "Crash" = "تعطّل";
 "Crea tu propia paleta" = "أنشئ لوحة ألوانك الخاصة";
@@ -1413,6 +1416,7 @@
 "Reproducir después" = "تشغيل تاليًا";
 "Reproductor" = "اللاعب";
 "Requesting code from Simkl…" = "جارٍ طلب رمز من Simkl…";
+"Requesting code from Trakt…" = "جارٍ طلب رمز من Trakt…";
 "Requiere al menos 10 títulos para el estilo de Top 10" = "يحتاج إلى 10 عناوين على الأقل لمظهر أفضل 10";
 "Requiere títulos con abundante material gráfico para el contenido destacado" = "يحتاج إلى عناوين غنية بالصور لتغذية العرض الرئيسي";
 "Resaltado, progreso." = "التمييز والتقدّم.";
@@ -1665,6 +1669,7 @@
 "Status" = "الحالة";
 "Step 1 · Metadata" = "الخطوة 1 · البيانات الوصفية";
 "Step 1 · Open Simkl" = "الخطوة 1 · افتح Simkl";
+"Step 1 · Open Trakt" = "الخطوة 1 · افتح Trakt";
 "Step 2 · Enter this code" = "الخطوة 2 · أدخل هذا الرمز";
 "Step 2 · Stremio" = "الخطوة 2 · Stremio";
 "Step 3 · Streaming" = "الخطوة 3 · البث";
@@ -1770,6 +1775,7 @@
 "That route wouldn't chart. Try a different direction." = "تعذّر رسم هذا المسار. جرّب اتجاهًا آخر.";
 "The CW" = "The CW";
 "The Roku Channel" = "The Roku Channel";
+"The authorization code timed out before you finished. Try again." = "انتهت مهلة رمز التفويض قبل أن تُكمل. حاول مرة أخرى.";
 "The comics industry's highest honor" = "أرفع تكريم في صناعة القصص المصوّرة";
 "The filled part of the timeline. Default follows your Harbor accent." = "The filled part of the timeline. Default follows your Harbor accent.";
 "The most-watched movies and series on {name} right now in {region}." = "أكثر الأفلام والمسلسلات مشاهدةً على {name} الآن في {region}.";
@@ -1845,6 +1851,7 @@
 "Tracking" = "Tracking";
 "Tracks" = "المسارات";
 "Traducir títulos" = "ترجمة العناوين";
+"Trakt reported that authorization was denied. Try again if this was unintentional." = "أفاد Trakt بأنه تم رفض التفويض. حاول مرة أخرى إن لم يكن ذلك مقصودًا.";
 "Transfer primary" = "نقل الأساسي";
 "Translate titles" = "ترجمة العناوين";
 "Trazo grueso alrededor de cada letra. Alto contraste." = "حد صلب حول كل حرف. تباين عالٍ.";
@@ -1929,6 +1936,7 @@
 "Volver a empezar" = "البدء من جديد";
 "Vídeo" = "فيديو";
 "Waiting for you to authorize on simkl.com…" = "في انتظار تفويضك على simkl.com…";
+"Waiting for you to authorize on trakt.tv…" = "في انتظار تفويضك على trakt.tv…";
 "War" = "حرب";
 "Watched" = "تمت المشاهدة";
 "Watching" = "قيد المشاهدة";

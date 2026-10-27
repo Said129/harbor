@@ -6,6 +6,9 @@ import re
 import runpy
 
 requested = os.environ.get('HARBOR_NATIVE_SELECTION', '').strip()
+if requested == 'affected:trakt-scrobble' or requested.startswith('HarborTests.TraktScrobbleTests/'):
+    runpy.run_path('scripts/ios/prepare-trakt-scrobble-selection.py')
+    raise SystemExit(0)
 if requested == 'affected:local-source-retirement' or requested.startswith('HarborTests.LocalSourceMigrationTests/'):
     runpy.run_path('scripts/ios/prepare-local-source-retirement-selection.py')
     raise SystemExit(0)

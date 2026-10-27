@@ -38,8 +38,9 @@ struct HarborIdentityPanel: View {
                     } else {
                         Text(HarborIdentityServer.community.host).font(HarborTheme.font(13)).foregroundStyle(.secondary)
                     }
-                    Text("Usa una cuenta de este servidor. El servicio original cerró; sus sesiones no se transfieren automáticamente.")
+                    Text(LocalProfileText.value(.serverAccount))
                         .font(HarborTheme.font(13)).foregroundStyle(.secondary)
+                        .accessibilityIdentifier("harbor-server-note")
                 }
                 TextField(DesktopInterfaceText.value("Username"), text: $username).textContentType(.username).textInputAutocapitalization(.never).autocorrectionDisabled().focused($editing, equals: .username)
                     .padding(13).background(HarborTheme.surface, in: .rect(cornerRadius: 10)).accessibilityIdentifier("harbor-username").disabled(!cloud.ready)

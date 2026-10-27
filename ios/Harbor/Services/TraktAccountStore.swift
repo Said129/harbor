@@ -30,13 +30,18 @@ import Observation
     @ObservationIgnored private var refreshing: (id: UUID, identity: UUID, token: String, task: Task<TraktSession, Error>)?
     init(owner: String, persistence: (any TraktAccountPersistence)? = nil) { self.owner = owner; self.persistence = persistence ?? KeychainTraktAccount() }
     func load() throws {
-        let value = try persistence.read(owner: owner)
+        var value = try persistence.read(owner: owner)
         guard value?.valid ?? true else { throw HarborError(code: "trakt-session") }
+        if var legacy = value, legacy.trackingID == nil {
+            legacy.trackingID = UUID(); try persistence.write(legacy, owner: owner); value = legacy
+        }
         if value != session { identity = UUID() }; session = value; ready = true
     }
     func set(_ value: TraktSession?) throws {
         guard ready, value?.valid ?? true else { throw HarborError(code: "trakt-session") }
-        try persistence.write(value, owner: owner); session = value; identity = UUID()
+        var next = value
+        if next?.trackingID == nil { next?.trackingID = UUID() }
+        try persistence.write(next, owner: owner); session = next; identity = UUID()
     }
     private func allows(_ identity: UUID, token: String, active: TraktClient.Active? = nil) -> Bool {
         ready && self.identity == identity && session?.accessToken == token && (active?() ?? true)
@@ -53,7 +58,8 @@ import Observation
             // A refresh can rotate the secret while its profile leaves the
             // foreground. Preserve that rotation only in the same still-owned
             // account; an explicit disconnect/replacement invalidates it.
-            let next = try TraktSession(reply.value(), username: captured.username)
+            var next = try TraktSession(reply.value(), username: captured.username)
+            next.trackingID = captured.trackingID
             guard self.allows(identity, token: captured.accessToken) else { throw CancellationError() }
             try self.persistence.write(next, owner: self.owner); self.session = next; return next
         }

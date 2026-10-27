@@ -11,14 +11,16 @@ struct TraktSession: Codable, Equatable, Sendable {
     let createdAt: Double
     let expiresIn: Double
     var username: String?
+    var trackingID: UUID?
     var valid: Bool {
         SimklEndpoint.validToken(accessToken) && SimklEndpoint.validToken(refreshToken)
             && createdAt.isFinite && createdAt >= 0 && createdAt <= 8_640_000_000_000
             && expiresIn.isFinite && expiresIn > 0 && expiresIn <= 315_360_000
             && (username.map { $0.utf8.count <= 1_024 && $0.rangeOfCharacter(from: .controlCharacters) == nil } ?? true)
     }
-    init(accessToken: String, refreshToken: String, createdAt: Double, expiresIn: Double, username: String? = nil) {
+    init(accessToken: String, refreshToken: String, createdAt: Double, expiresIn: Double, username: String? = nil, trackingID: UUID? = nil) {
         self.accessToken = accessToken; self.refreshToken = refreshToken; self.createdAt = createdAt; self.expiresIn = expiresIn; self.username = username
+        self.trackingID = trackingID
     }
     init(_ value: JSONValue, username: String? = nil) throws {
         guard let access = value["access_token"].string, let refresh = value["refresh_token"].string,
@@ -42,8 +44,8 @@ struct TraktPin: Equatable, Sendable {
     }
 }
 enum TraktEndpoint: Sendable {
-    case deviceCode, poll(String), refresh(String), me, playback
-    var authenticated: Bool { switch self { case .me, .playback: true; default: false } }
+    case deviceCode, poll(String), refresh(String), me, playback, watch(TraktWatchEndpoint)
+    var authenticated: Bool { switch self { case .me, .playback, .watch: true; default: false } }
     func request(token: String? = nil) throws -> URLRequest {
         let url: URL, body: JSONValue?
         switch self {
@@ -57,6 +59,7 @@ enum TraktEndpoint: Sendable {
             url = URL(string: TraktConfiguration.tokenBase + "/api/trakt/token")!; body = .object(["refresh_token": .string(token), "grant_type": .string("refresh_token")])
         case .me: url = URL(string: "https://api.trakt.tv/users/me")!; body = nil
         case .playback: url = URL(string: "https://api.trakt.tv/sync/playback?limit=40")!; body = nil
+        case .watch(let endpoint): url = URL(string: "https://api.trakt.tv" + endpoint.path)!; body = endpoint.body
         }
         var request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 20)
         request.httpMethod = body == nil ? "GET" : "POST"

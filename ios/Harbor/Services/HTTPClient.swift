@@ -160,6 +160,9 @@ struct HTTPClient: Sendable {
         case .searchShows(let title):
             guard !title.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty, title.utf8.count <= 1_024 else { throw HarborError(code: "tracker-request") }
             components.path = "/search/show"; components.queryItems = [.init(name: "query", value: title), .init(name: "limit", value: "10")]
+        case .searchMovies(let title):
+            guard title.utf8.count <= 1_024 else { throw HarborError(code: "tracker-request") }
+            components.path = "/search/movie"; components.queryItems = [.init(name: "query", value: title), .init(name: "limit", value: "10")]
         case .seasons(let ids):
             guard let id = ids.parameter, !id.isEmpty, id.utf8.count <= 200, !id.contains("/"), !id.contains("\\"), id != ".", id != ".." else { throw HarborError(code: "tracker-request") }
             components.path = "/shows/\(id)/seasons"; components.queryItems = [.init(name: "extended", value: "episodes")]
