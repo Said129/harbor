@@ -8,8 +8,20 @@ import UIKit
 @MainActor @Observable private final class MountedPosterState {
     var requestedFocus: Int?
     var observedFocus: Int?
+    var nativeEnvironmentFocus: [Int: Bool] = [:]
     var widths: [Int: CGFloat] = [:]
     var activations = 0
+}
+private struct MountedNativePosterFocusProbe: View {
+    let index: Int
+    let state: MountedPosterState
+    let media: Media
+    @Environment(\.isFocused) private var focused
+    var body: some View {
+        ProfilePoster(media: media, width: 116, artworkFallbacks: [], honorsRowStyle: true,
+            onExpansionWidthChange: { state.widths[index] = $0 })
+            .onChange(of: focused, initial: true) { _, value in state.nativeEnvironmentFocus[index] = value }
+    }
 }
 private struct MountedPosterRow: View {
     let state: MountedPosterState
@@ -21,8 +33,7 @@ private struct MountedPosterRow: View {
             HStack(alignment: .top, spacing: 12) {
                 ForEach(Array(media.enumerated()), id: \.offset) { index, item in
                     VStack(spacing: 0) {
-                        ProfilePoster(media: item, width: 116, artworkFallbacks: [], honorsRowStyle: true,
-                            onExpansionWidthChange: { state.widths[index] = $0 })
+                        MountedNativePosterFocusProbe(index: index, state: state, media: item)
                     }
                         .contentShape(Rectangle()).onTapGesture { state.activations += 1 }
                         // isFocused describes the nearest focusable ancestor.
@@ -64,7 +75,7 @@ private struct MountedPosterRow: View {
         defer {
             if (testRun?.failureCount ?? 0) > 0 {
                 capture(window, "poster-behavior-native-failed-stage")
-                let diagnostic = XCTAttachment(string: "requested=\(String(describing: state.requestedFocus)); observed=\(String(describing: state.observedFocus)); input=\(PosterAttentionState.shared.input); active=\(String(describing: PosterAttentionState.shared.active)); widths=\(state.widths); viewport=\(row.viewport); frames=\(row.frames)")
+                let diagnostic = XCTAttachment(string: "requested=\(String(describing: state.requestedFocus)); observed=\(String(describing: state.observedFocus)); nativeEnvironment=\(state.nativeEnvironmentFocus); input=\(PosterAttentionState.shared.input); active=\(String(describing: PosterAttentionState.shared.active)); widths=\(state.widths); viewport=\(row.viewport); frames=\(row.frames)\n" + nativeFocusSummary(window))
                 diagnostic.name = "poster-behavior-native-state"; diagnostic.lifetime = .keepAlways; add(diagnostic)
             }
         }
@@ -74,6 +85,9 @@ private struct MountedPosterRow: View {
         capture(window, "poster-behavior-native-initial")
         state.requestedFocus = 0
         try await wait("actual native row focus binding") { state.observedFocus == 0 }
+        // Complete pending native focus work as UIKit requires. This does not
+        // substitute the binding value for the production environment value.
+        host.setNeedsFocusUpdate(); host.updateFocusIfNeeded(); scene.focusSystem?.updateFocusIfNeeded()
         try await wait("focused production poster receives the native focus environment") { PosterAttentionState.shared.active != nil }
         try await wait("decoded wide artwork reserves the expanded width") { (state.widths[0] ?? 0) > 300 }
         try await Task.sleep(for: .milliseconds(650))
@@ -111,6 +125,15 @@ private struct MountedPosterRow: View {
         return UIGraphicsImageRenderer(size: .init(width: width, height: height), format: format).pngData { context in
             color.setFill(); context.fill(.init(x: 0, y: 0, width: width, height: height))
         }
+    }
+    private func nativeFocusSummary(_ window: UIWindow) -> String {
+        var lines = ["applicationState=\(UIApplication.shared.applicationState.rawValue); scene=\(String(describing: window.windowScene?.activationState)); key=\(window.isKeyWindow); hidden=\(window.isHidden); focusSystem=\(String(describing: window.windowScene?.focusSystem)); focusedItem=\(String(describing: window.windowScene?.focusSystem?.focusedItem))"]
+        func visit(_ view: UIView, depth: Int) {
+            guard lines.count < 100 else { return }
+            lines.append("depth=\(depth); class=\(String(describing: type(of: view))); canBecomeFocused=\(view.canBecomeFocused); isFocused=\(view.isFocused); frame=\(view.frame); hidden=\(view.isHidden); alpha=\(view.alpha)")
+            for child in view.subviews { visit(child, depth: depth + 1) }
+        }
+        visit(window, depth: 0); return lines.joined(separator: "\n")
     }
     private func capture(_ window: UIWindow, _ name: String) {
         let format = UIGraphicsImageRendererFormat(); format.scale = 1
