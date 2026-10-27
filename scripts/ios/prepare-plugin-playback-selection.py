@@ -6,6 +6,9 @@ import re
 import runpy
 
 requested = os.environ.get('HARBOR_NATIVE_SELECTION', '').strip()
+if requested == 'affected:continue-dismissal' or requested.startswith('HarborTests.ContinueDismissalTests/'):
+    runpy.run_path('scripts/ios/prepare-continue-dismissal-selection.py')
+    raise SystemExit(0)
 if requested == 'ui-only:continue-private-home':
     runpy.run_path('scripts/ios/prepare-continue-private-home-selection.py')
     raise SystemExit(0)

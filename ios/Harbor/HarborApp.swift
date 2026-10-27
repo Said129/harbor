@@ -121,6 +121,7 @@ struct HarborApp: App {
                     await model.library.sync()
                     await model.refreshAddons()
                 }
+                .modifier(LibraryPendingRecovery(app: model))
     }
     private var accountSheet: some View {
         NavigationStack { AccountView(app: model) }.font(HarborTheme.font()).foregroundStyle(HarborTheme.ink).tint(HarborTheme.accent).preferredColorScheme(.dark)

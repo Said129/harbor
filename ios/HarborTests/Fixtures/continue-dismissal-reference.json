@@ -1,0 +1,1626 @@
+{
+  "reference": "0834340cec5531650bfe78cd628628702e636987",
+  "actual_original_typescript_executed": true,
+  "provider_network_requests": 0,
+  "owned_transport_only": true,
+  "now": 1700000000123,
+  "source_hashes": {
+    "src/lib/cw-profile.ts": "1f2c64fc66859972afc8db9c3832875805de22b6ac48c6bc5898655ed8e6a9da",
+    "src/lib/resume.ts": "d32e7811c2f34118825625f3404c01c8951de7ed839b7cdf0390b883ddffe70b",
+    "src/lib/cw-dismiss.ts": "1e68ede8756969e3951c23925a03506908ecf3c98df604a91fbf254a0b2aa851",
+    "src/lib/stremio-write-queue.ts": "1c294a84664bf935b09320145270d907656579f6d0a2e5eda73f181c26976e29",
+    "src/lib/stremio.ts": "dd785247ba25a37bd0a03ce577e117dd38fe75c6d4dcdc1c607cdf3095b8272b"
+  },
+  "dismissals": [
+    {
+      "name": "authenticated-global-movie",
+      "item": {
+        "_id": "tt0123456",
+        "type": "movie",
+        "name": "Owned film",
+        "removed": false,
+        "temp": false,
+        "providerField": "preserved",
+        "_mtime": "2023-11-14T22:13:19.123Z",
+        "state": {
+          "timeOffset": 400000,
+          "duration": 1000000,
+          "lastWatched": "2023-11-14T22:13:19.123Z"
+        }
+      },
+      "auth": true,
+      "expected": {
+        "sharedResume": {},
+        "personalResume": {
+          "tt0123456": {
+            "ms": 400000,
+            "t": 1699999999123
+          }
+        },
+        "sharedDismissals": {
+          "tt0123456": {
+            "t": 1700000000123,
+            "p": 0.4
+          }
+        },
+        "privateDismissals": {},
+        "queue": [],
+        "transport": [
+          {
+            "method": "datastorePut",
+            "body": {
+              "authKey": "owned-fixture-credential",
+              "collection": "libraryItem",
+              "changes": [
+                {
+                  "_id": "tt0123456",
+                  "type": "movie",
+                  "name": "Owned film",
+                  "removed": false,
+                  "temp": false,
+                  "providerField": "preserved",
+                  "_mtime": "2023-11-14T22:13:20.123Z",
+                  "state": {
+                    "timeOffset": 0,
+                    "duration": 1000000,
+                    "lastWatched": "2023-11-14T22:13:19.123Z"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "guest-keeps-resume",
+      "item": {
+        "_id": "tt0123456",
+        "type": "movie",
+        "name": "Owned film",
+        "removed": false,
+        "temp": false,
+        "providerField": "preserved",
+        "_mtime": "2023-11-14T22:13:19.123Z",
+        "state": {
+          "timeOffset": 400000,
+          "duration": 1000000,
+          "lastWatched": "2023-11-14T22:13:19.123Z"
+        }
+      },
+      "auth": false,
+      "expected": {
+        "sharedResume": {
+          "tt0123456": {
+            "ms": 400000,
+            "t": 1699999999123
+          }
+        },
+        "personalResume": {
+          "tt0123456": {
+            "ms": 400000,
+            "t": 1699999999123
+          }
+        },
+        "sharedDismissals": {
+          "tt0123456": {
+            "t": 1700000000123,
+            "p": 0.4
+          }
+        },
+        "privateDismissals": {},
+        "queue": [],
+        "transport": []
+      }
+    },
+    {
+      "name": "private-keeps-both-resumes-and-cloud",
+      "item": {
+        "_id": "tt0123456",
+        "type": "movie",
+        "name": "Owned film",
+        "removed": false,
+        "temp": false,
+        "providerField": "preserved",
+        "_mtime": "2023-11-14T22:13:19.123Z",
+        "state": {
+          "timeOffset": 400000,
+          "duration": 1000000,
+          "lastWatched": "2023-11-14T22:13:19.123Z"
+        }
+      },
+      "auth": true,
+      "privateMode": true,
+      "expected": {
+        "sharedResume": {
+          "tt0123456": {
+            "ms": 400000,
+            "t": 1699999999123
+          }
+        },
+        "personalResume": {
+          "tt0123456": {
+            "ms": 400000,
+            "t": 1699999999123
+          }
+        },
+        "sharedDismissals": {},
+        "privateDismissals": {
+          "tt0123456": {
+            "t": 1700000000123,
+            "p": 0.4
+          }
+        },
+        "queue": [],
+        "transport": []
+      }
+    },
+    {
+      "name": "requested-private-with-no-other-sharer-is-global",
+      "item": {
+        "_id": "tt0123456",
+        "type": "movie",
+        "name": "Owned film",
+        "removed": false,
+        "temp": false,
+        "providerField": "preserved",
+        "_mtime": "2023-11-14T22:13:19.123Z",
+        "state": {
+          "timeOffset": 400000,
+          "duration": 1000000,
+          "lastWatched": "2023-11-14T22:13:19.123Z"
+        }
+      },
+      "auth": true,
+      "privateMode": true,
+      "solo": true,
+      "expected": {
+        "sharedResume": {},
+        "personalResume": {
+          "tt0123456": {
+            "ms": 400000,
+            "t": 1699999999123
+          }
+        },
+        "sharedDismissals": {
+          "tt0123456": {
+            "t": 1700000000123,
+            "p": 0.4
+          }
+        },
+        "privateDismissals": {},
+        "queue": [],
+        "transport": [
+          {
+            "method": "datastorePut",
+            "body": {
+              "authKey": "owned-fixture-credential",
+              "collection": "libraryItem",
+              "changes": [
+                {
+                  "_id": "tt0123456",
+                  "type": "movie",
+                  "name": "Owned film",
+                  "removed": false,
+                  "temp": false,
+                  "providerField": "preserved",
+                  "_mtime": "2023-11-14T22:13:20.123Z",
+                  "state": {
+                    "timeOffset": 0,
+                    "duration": 1000000,
+                    "lastWatched": "2023-11-14T22:13:19.123Z"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "simkl-clears-global-without-cloud",
+      "item": {
+        "_id": "tt0123456",
+        "type": "movie",
+        "name": "Owned film",
+        "removed": false,
+        "temp": false,
+        "providerField": "preserved",
+        "_mtime": "2023-11-14T22:13:19.123Z",
+        "state": {
+          "timeOffset": 400000,
+          "duration": 1000000,
+          "lastWatched": "2023-11-14T22:13:19.123Z"
+        },
+        "external": "simkl"
+      },
+      "auth": false,
+      "expected": {
+        "sharedResume": {},
+        "personalResume": {
+          "tt0123456": {
+            "ms": 400000,
+            "t": 1699999999123
+          }
+        },
+        "sharedDismissals": {
+          "tt0123456": {
+            "t": 1700000000123,
+            "p": 0.4
+          },
+          "simkl|tt0123456": 1700000000123
+        },
+        "privateDismissals": {},
+        "queue": [],
+        "transport": []
+      }
+    },
+    {
+      "name": "trakt-clears-global-without-cloud",
+      "item": {
+        "_id": "tt0123456",
+        "type": "movie",
+        "name": "Owned film",
+        "removed": false,
+        "temp": false,
+        "providerField": "preserved",
+        "_mtime": "2023-11-14T22:13:19.123Z",
+        "state": {
+          "timeOffset": 400000,
+          "duration": 1000000,
+          "lastWatched": "2023-11-14T22:13:19.123Z"
+        },
+        "external": "trakt"
+      },
+      "auth": true,
+      "expected": {
+        "sharedResume": {},
+        "personalResume": {
+          "tt0123456": {
+            "ms": 400000,
+            "t": 1699999999123
+          }
+        },
+        "sharedDismissals": {
+          "tt0123456": {
+            "t": 1700000000123,
+            "p": 0.4
+          },
+          "trakt|tt0123456": 1700000000123
+        },
+        "privateDismissals": {},
+        "queue": [],
+        "transport": []
+      }
+    },
+    {
+      "name": "anime-clears-absolute-coordinate-but-does-not-write-stremio",
+      "item": {
+        "_id": "kitsu:8",
+        "type": "series",
+        "name": "Owned film",
+        "removed": false,
+        "temp": false,
+        "providerField": "preserved",
+        "_mtime": "2023-11-14T22:13:19.123Z",
+        "state": {
+          "video_id": "kitsu:8:99",
+          "timeOffset": 400000,
+          "duration": 1000000
+        }
+      },
+      "auth": true,
+      "season": 1,
+      "episode": 99,
+      "expected": {
+        "sharedResume": {},
+        "personalResume": {
+          "kitsu:8|s1e99": {
+            "ms": 400000,
+            "t": 1699999999123
+          }
+        },
+        "sharedDismissals": {
+          "kitsu:8": {
+            "t": 1700000000123,
+            "v": "kitsu:8:99",
+            "s": 1,
+            "e": 99,
+            "p": 0.4
+          }
+        },
+        "privateDismissals": {},
+        "queue": [],
+        "transport": []
+      }
+    },
+    {
+      "name": "specials-use-zero-season",
+      "item": {
+        "_id": "ttshow",
+        "type": "series",
+        "name": "Owned film",
+        "removed": false,
+        "temp": false,
+        "providerField": "preserved",
+        "_mtime": "2023-11-14T22:13:19.123Z",
+        "state": {
+          "video_id": "ttshow:0:7",
+          "season": 0,
+          "episode": 7,
+          "timeOffset": 400000,
+          "duration": 1000000
+        }
+      },
+      "auth": true,
+      "season": 0,
+      "episode": 7,
+      "expected": {
+        "sharedResume": {},
+        "personalResume": {
+          "ttshow|s0e7": {
+            "ms": 400000,
+            "t": 1699999999123
+          }
+        },
+        "sharedDismissals": {
+          "ttshow": {
+            "t": 1700000000123,
+            "v": "ttshow:0:7",
+            "s": 0,
+            "e": 7,
+            "p": 0.4
+          }
+        },
+        "privateDismissals": {},
+        "queue": [],
+        "transport": [
+          {
+            "method": "datastorePut",
+            "body": {
+              "authKey": "owned-fixture-credential",
+              "collection": "libraryItem",
+              "changes": [
+                {
+                  "_id": "ttshow",
+                  "type": "series",
+                  "name": "Owned film",
+                  "removed": false,
+                  "temp": false,
+                  "providerField": "preserved",
+                  "_mtime": "2023-11-14T22:13:20.123Z",
+                  "state": {
+                    "video_id": "ttshow:0:7",
+                    "season": 0,
+                    "episode": 7,
+                    "timeOffset": 0,
+                    "duration": 1000000
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "offline-global-is-queued",
+      "item": {
+        "_id": "tt0123456",
+        "type": "movie",
+        "name": "Owned film",
+        "removed": false,
+        "temp": false,
+        "providerField": "preserved",
+        "_mtime": "2023-11-14T22:13:19.123Z",
+        "state": {
+          "timeOffset": 400000,
+          "duration": 1000000,
+          "lastWatched": "2023-11-14T22:13:19.123Z"
+        }
+      },
+      "auth": true,
+      "puts": [
+        {
+          "error": true
+        }
+      ],
+      "expected": {
+        "sharedResume": {},
+        "personalResume": {
+          "tt0123456": {
+            "ms": 400000,
+            "t": 1699999999123
+          }
+        },
+        "sharedDismissals": {
+          "tt0123456": {
+            "t": 1700000000123,
+            "p": 0.4
+          }
+        },
+        "privateDismissals": {},
+        "queue": [
+          {
+            "authKey": "owned-fixture-credential",
+            "item": {
+              "_id": "tt0123456",
+              "type": "movie",
+              "name": "Owned film",
+              "removed": false,
+              "temp": false,
+              "providerField": "preserved",
+              "_mtime": "2023-11-14T22:13:20.123Z",
+              "state": {
+                "timeOffset": 0,
+                "duration": 1000000,
+                "lastWatched": "2023-11-14T22:13:19.123Z"
+              }
+            }
+          }
+        ],
+        "transport": [
+          {
+            "method": "datastorePut",
+            "body": {
+              "authKey": "owned-fixture-credential",
+              "collection": "libraryItem",
+              "changes": [
+                {
+                  "_id": "tt0123456",
+                  "type": "movie",
+                  "name": "Owned film",
+                  "removed": false,
+                  "temp": false,
+                  "providerField": "preserved",
+                  "_mtime": "2023-11-14T22:13:20.123Z",
+                  "state": {
+                    "timeOffset": 0,
+                    "duration": 1000000,
+                    "lastWatched": "2023-11-14T22:13:19.123Z"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "missing-state-does-not-clear-or-write",
+      "item": {
+        "_id": "tt0123456",
+        "type": "movie",
+        "name": "Owned film",
+        "removed": false,
+        "temp": false,
+        "providerField": "preserved",
+        "_mtime": "2023-11-14T22:13:19.123Z"
+      },
+      "auth": true,
+      "expected": {
+        "sharedResume": {
+          "tt0123456": {
+            "ms": 400000,
+            "t": 1699999999123
+          }
+        },
+        "personalResume": {
+          "tt0123456": {
+            "ms": 400000,
+            "t": 1699999999123
+          }
+        },
+        "sharedDismissals": {
+          "tt0123456": 1700000000123
+        },
+        "privateDismissals": {},
+        "queue": [],
+        "transport": []
+      }
+    }
+  ],
+  "queueCases": [
+    {
+      "name": "failed-send-persists",
+      "puts": [
+        {
+          "error": true
+        }
+      ],
+      "operations": [
+        [
+          "put",
+          {
+            "_id": "tt0123456",
+            "type": "movie",
+            "name": "Owned film",
+            "removed": false,
+            "temp": false,
+            "providerField": "preserved",
+            "_mtime": "2023-11-14T22:13:20.123Z",
+            "state": {
+              "timeOffset": 0,
+              "duration": 1000000,
+              "lastWatched": "2023-11-14T22:13:19.123Z"
+            }
+          }
+        ]
+      ],
+      "expected": {
+        "results": [false],
+        "queue": [
+          {
+            "authKey": "owned-fixture-credential",
+            "item": {
+              "_id": "tt0123456",
+              "type": "movie",
+              "name": "Owned film",
+              "removed": false,
+              "temp": false,
+              "providerField": "preserved",
+              "_mtime": "2023-11-14T22:13:20.123Z",
+              "state": {
+                "timeOffset": 0,
+                "duration": 1000000,
+                "lastWatched": "2023-11-14T22:13:19.123Z"
+              }
+            }
+          }
+        ],
+        "transport": [
+          {
+            "method": "datastorePut",
+            "body": {
+              "authKey": "owned-fixture-credential",
+              "collection": "libraryItem",
+              "changes": [
+                {
+                  "_id": "tt0123456",
+                  "type": "movie",
+                  "name": "Owned film",
+                  "removed": false,
+                  "temp": false,
+                  "providerField": "preserved",
+                  "_mtime": "2023-11-14T22:13:20.123Z",
+                  "state": {
+                    "timeOffset": 0,
+                    "duration": 1000000,
+                    "lastWatched": "2023-11-14T22:13:19.123Z"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "newer-failure-replaces",
+      "puts": [
+        {
+          "error": true
+        },
+        {
+          "error": true
+        }
+      ],
+      "operations": [
+        [
+          "put",
+          {
+            "_id": "tt0123456",
+            "type": "movie",
+            "name": "Owned film",
+            "removed": false,
+            "temp": false,
+            "providerField": "preserved",
+            "_mtime": "2023-11-14T22:13:20.123Z",
+            "state": {
+              "timeOffset": 0,
+              "duration": 1000000,
+              "lastWatched": "2023-11-14T22:13:19.123Z"
+            }
+          }
+        ],
+        [
+          "put",
+          {
+            "_id": "tt0123456",
+            "type": "movie",
+            "name": "Owned film",
+            "removed": false,
+            "temp": false,
+            "providerField": "preserved",
+            "_mtime": "2023-11-14T22:13:21.123Z",
+            "state": {
+              "timeOffset": 0,
+              "duration": 1000000,
+              "lastWatched": "2023-11-14T22:13:19.123Z"
+            }
+          }
+        ]
+      ],
+      "expected": {
+        "results": [false, false],
+        "queue": [
+          {
+            "authKey": "owned-fixture-credential",
+            "item": {
+              "_id": "tt0123456",
+              "type": "movie",
+              "name": "Owned film",
+              "removed": false,
+              "temp": false,
+              "providerField": "preserved",
+              "_mtime": "2023-11-14T22:13:21.123Z",
+              "state": {
+                "timeOffset": 0,
+                "duration": 1000000,
+                "lastWatched": "2023-11-14T22:13:19.123Z"
+              }
+            }
+          }
+        ],
+        "transport": [
+          {
+            "method": "datastorePut",
+            "body": {
+              "authKey": "owned-fixture-credential",
+              "collection": "libraryItem",
+              "changes": [
+                {
+                  "_id": "tt0123456",
+                  "type": "movie",
+                  "name": "Owned film",
+                  "removed": false,
+                  "temp": false,
+                  "providerField": "preserved",
+                  "_mtime": "2023-11-14T22:13:20.123Z",
+                  "state": {
+                    "timeOffset": 0,
+                    "duration": 1000000,
+                    "lastWatched": "2023-11-14T22:13:19.123Z"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "method": "datastorePut",
+            "body": {
+              "authKey": "owned-fixture-credential",
+              "collection": "libraryItem",
+              "changes": [
+                {
+                  "_id": "tt0123456",
+                  "type": "movie",
+                  "name": "Owned film",
+                  "removed": false,
+                  "temp": false,
+                  "providerField": "preserved",
+                  "_mtime": "2023-11-14T22:13:21.123Z",
+                  "state": {
+                    "timeOffset": 0,
+                    "duration": 1000000,
+                    "lastWatched": "2023-11-14T22:13:19.123Z"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "older-failure-keeps-newer",
+      "puts": [
+        {
+          "error": true
+        },
+        {
+          "error": true
+        }
+      ],
+      "operations": [
+        [
+          "put",
+          {
+            "_id": "tt0123456",
+            "type": "movie",
+            "name": "Owned film",
+            "removed": false,
+            "temp": false,
+            "providerField": "preserved",
+            "_mtime": "2023-11-14T22:13:21.123Z",
+            "state": {
+              "timeOffset": 0,
+              "duration": 1000000,
+              "lastWatched": "2023-11-14T22:13:19.123Z"
+            }
+          }
+        ],
+        [
+          "put",
+          {
+            "_id": "tt0123456",
+            "type": "movie",
+            "name": "Owned film",
+            "removed": false,
+            "temp": false,
+            "providerField": "preserved",
+            "_mtime": "2023-11-14T22:13:20.123Z",
+            "state": {
+              "timeOffset": 0,
+              "duration": 1000000,
+              "lastWatched": "2023-11-14T22:13:19.123Z"
+            }
+          }
+        ]
+      ],
+      "expected": {
+        "results": [false, false],
+        "queue": [
+          {
+            "authKey": "owned-fixture-credential",
+            "item": {
+              "_id": "tt0123456",
+              "type": "movie",
+              "name": "Owned film",
+              "removed": false,
+              "temp": false,
+              "providerField": "preserved",
+              "_mtime": "2023-11-14T22:13:21.123Z",
+              "state": {
+                "timeOffset": 0,
+                "duration": 1000000,
+                "lastWatched": "2023-11-14T22:13:19.123Z"
+              }
+            }
+          }
+        ],
+        "transport": [
+          {
+            "method": "datastorePut",
+            "body": {
+              "authKey": "owned-fixture-credential",
+              "collection": "libraryItem",
+              "changes": [
+                {
+                  "_id": "tt0123456",
+                  "type": "movie",
+                  "name": "Owned film",
+                  "removed": false,
+                  "temp": false,
+                  "providerField": "preserved",
+                  "_mtime": "2023-11-14T22:13:21.123Z",
+                  "state": {
+                    "timeOffset": 0,
+                    "duration": 1000000,
+                    "lastWatched": "2023-11-14T22:13:19.123Z"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "method": "datastorePut",
+            "body": {
+              "authKey": "owned-fixture-credential",
+              "collection": "libraryItem",
+              "changes": [
+                {
+                  "_id": "tt0123456",
+                  "type": "movie",
+                  "name": "Owned film",
+                  "removed": false,
+                  "temp": false,
+                  "providerField": "preserved",
+                  "_mtime": "2023-11-14T22:13:20.123Z",
+                  "state": {
+                    "timeOffset": 0,
+                    "duration": 1000000,
+                    "lastWatched": "2023-11-14T22:13:19.123Z"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "successful-newer-clears-older",
+      "puts": [
+        {
+          "error": true
+        },
+        {}
+      ],
+      "operations": [
+        [
+          "put",
+          {
+            "_id": "tt0123456",
+            "type": "movie",
+            "name": "Owned film",
+            "removed": false,
+            "temp": false,
+            "providerField": "preserved",
+            "_mtime": "2023-11-14T22:13:20.123Z",
+            "state": {
+              "timeOffset": 0,
+              "duration": 1000000,
+              "lastWatched": "2023-11-14T22:13:19.123Z"
+            }
+          }
+        ],
+        [
+          "put",
+          {
+            "_id": "tt0123456",
+            "type": "movie",
+            "name": "Owned film",
+            "removed": false,
+            "temp": false,
+            "providerField": "preserved",
+            "_mtime": "2023-11-14T22:13:21.123Z",
+            "state": {
+              "timeOffset": 0,
+              "duration": 1000000,
+              "lastWatched": "2023-11-14T22:13:19.123Z"
+            }
+          }
+        ]
+      ],
+      "expected": {
+        "results": [false, true],
+        "queue": [],
+        "transport": [
+          {
+            "method": "datastorePut",
+            "body": {
+              "authKey": "owned-fixture-credential",
+              "collection": "libraryItem",
+              "changes": [
+                {
+                  "_id": "tt0123456",
+                  "type": "movie",
+                  "name": "Owned film",
+                  "removed": false,
+                  "temp": false,
+                  "providerField": "preserved",
+                  "_mtime": "2023-11-14T22:13:20.123Z",
+                  "state": {
+                    "timeOffset": 0,
+                    "duration": 1000000,
+                    "lastWatched": "2023-11-14T22:13:19.123Z"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "method": "datastorePut",
+            "body": {
+              "authKey": "owned-fixture-credential",
+              "collection": "libraryItem",
+              "changes": [
+                {
+                  "_id": "tt0123456",
+                  "type": "movie",
+                  "name": "Owned film",
+                  "removed": false,
+                  "temp": false,
+                  "providerField": "preserved",
+                  "_mtime": "2023-11-14T22:13:21.123Z",
+                  "state": {
+                    "timeOffset": 0,
+                    "duration": 1000000,
+                    "lastWatched": "2023-11-14T22:13:19.123Z"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "successful-older-keeps-newer",
+      "puts": [
+        {
+          "error": true
+        },
+        {}
+      ],
+      "operations": [
+        [
+          "put",
+          {
+            "_id": "tt0123456",
+            "type": "movie",
+            "name": "Owned film",
+            "removed": false,
+            "temp": false,
+            "providerField": "preserved",
+            "_mtime": "2023-11-14T22:13:21.123Z",
+            "state": {
+              "timeOffset": 0,
+              "duration": 1000000,
+              "lastWatched": "2023-11-14T22:13:19.123Z"
+            }
+          }
+        ],
+        [
+          "put",
+          {
+            "_id": "tt0123456",
+            "type": "movie",
+            "name": "Owned film",
+            "removed": false,
+            "temp": false,
+            "providerField": "preserved",
+            "_mtime": "2023-11-14T22:13:20.123Z",
+            "state": {
+              "timeOffset": 0,
+              "duration": 1000000,
+              "lastWatched": "2023-11-14T22:13:19.123Z"
+            }
+          }
+        ]
+      ],
+      "expected": {
+        "results": [false, true],
+        "queue": [
+          {
+            "authKey": "owned-fixture-credential",
+            "item": {
+              "_id": "tt0123456",
+              "type": "movie",
+              "name": "Owned film",
+              "removed": false,
+              "temp": false,
+              "providerField": "preserved",
+              "_mtime": "2023-11-14T22:13:21.123Z",
+              "state": {
+                "timeOffset": 0,
+                "duration": 1000000,
+                "lastWatched": "2023-11-14T22:13:19.123Z"
+              }
+            }
+          }
+        ],
+        "transport": [
+          {
+            "method": "datastorePut",
+            "body": {
+              "authKey": "owned-fixture-credential",
+              "collection": "libraryItem",
+              "changes": [
+                {
+                  "_id": "tt0123456",
+                  "type": "movie",
+                  "name": "Owned film",
+                  "removed": false,
+                  "temp": false,
+                  "providerField": "preserved",
+                  "_mtime": "2023-11-14T22:13:21.123Z",
+                  "state": {
+                    "timeOffset": 0,
+                    "duration": 1000000,
+                    "lastWatched": "2023-11-14T22:13:19.123Z"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "method": "datastorePut",
+            "body": {
+              "authKey": "owned-fixture-credential",
+              "collection": "libraryItem",
+              "changes": [
+                {
+                  "_id": "tt0123456",
+                  "type": "movie",
+                  "name": "Owned film",
+                  "removed": false,
+                  "temp": false,
+                  "providerField": "preserved",
+                  "_mtime": "2023-11-14T22:13:20.123Z",
+                  "state": {
+                    "timeOffset": 0,
+                    "duration": 1000000,
+                    "lastWatched": "2023-11-14T22:13:19.123Z"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "flush-read-failure-keeps-pending",
+      "puts": [
+        {
+          "error": true
+        }
+      ],
+      "gets": [
+        {
+          "error": true
+        }
+      ],
+      "operations": [
+        [
+          "put",
+          {
+            "_id": "tt0123456",
+            "type": "movie",
+            "name": "Owned film",
+            "removed": false,
+            "temp": false,
+            "providerField": "preserved",
+            "_mtime": "2023-11-14T22:13:20.123Z",
+            "state": {
+              "timeOffset": 0,
+              "duration": 1000000,
+              "lastWatched": "2023-11-14T22:13:19.123Z"
+            }
+          }
+        ],
+        ["flush"]
+      ],
+      "expected": {
+        "results": [false, null],
+        "queue": [
+          {
+            "authKey": "owned-fixture-credential",
+            "item": {
+              "_id": "tt0123456",
+              "type": "movie",
+              "name": "Owned film",
+              "removed": false,
+              "temp": false,
+              "providerField": "preserved",
+              "_mtime": "2023-11-14T22:13:20.123Z",
+              "state": {
+                "timeOffset": 0,
+                "duration": 1000000,
+                "lastWatched": "2023-11-14T22:13:19.123Z"
+              }
+            }
+          }
+        ],
+        "transport": [
+          {
+            "method": "datastorePut",
+            "body": {
+              "authKey": "owned-fixture-credential",
+              "collection": "libraryItem",
+              "changes": [
+                {
+                  "_id": "tt0123456",
+                  "type": "movie",
+                  "name": "Owned film",
+                  "removed": false,
+                  "temp": false,
+                  "providerField": "preserved",
+                  "_mtime": "2023-11-14T22:13:20.123Z",
+                  "state": {
+                    "timeOffset": 0,
+                    "duration": 1000000,
+                    "lastWatched": "2023-11-14T22:13:19.123Z"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "method": "datastoreGet",
+            "body": {
+              "authKey": "owned-fixture-credential",
+              "collection": "libraryItem",
+              "ids": ["tt0123456"],
+              "all": false
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "flush-newer-remote-drops-without-put",
+      "puts": [
+        {
+          "error": true
+        }
+      ],
+      "gets": [
+        {
+          "items": [
+            {
+              "_id": "tt0123456",
+              "type": "movie",
+              "name": "Owned film",
+              "removed": false,
+              "temp": false,
+              "providerField": "preserved",
+              "_mtime": "2023-11-14T22:13:21.123Z",
+              "state": {
+                "timeOffset": 700000,
+                "duration": 1000000,
+                "lastWatched": "2023-11-14T22:13:19.123Z"
+              }
+            }
+          ]
+        }
+      ],
+      "operations": [
+        [
+          "put",
+          {
+            "_id": "tt0123456",
+            "type": "movie",
+            "name": "Owned film",
+            "removed": false,
+            "temp": false,
+            "providerField": "preserved",
+            "_mtime": "2023-11-14T22:13:20.123Z",
+            "state": {
+              "timeOffset": 0,
+              "duration": 1000000,
+              "lastWatched": "2023-11-14T22:13:19.123Z"
+            }
+          }
+        ],
+        ["flush"]
+      ],
+      "expected": {
+        "results": [false, null],
+        "queue": [],
+        "transport": [
+          {
+            "method": "datastorePut",
+            "body": {
+              "authKey": "owned-fixture-credential",
+              "collection": "libraryItem",
+              "changes": [
+                {
+                  "_id": "tt0123456",
+                  "type": "movie",
+                  "name": "Owned film",
+                  "removed": false,
+                  "temp": false,
+                  "providerField": "preserved",
+                  "_mtime": "2023-11-14T22:13:20.123Z",
+                  "state": {
+                    "timeOffset": 0,
+                    "duration": 1000000,
+                    "lastWatched": "2023-11-14T22:13:19.123Z"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "method": "datastoreGet",
+            "body": {
+              "authKey": "owned-fixture-credential",
+              "collection": "libraryItem",
+              "ids": ["tt0123456"],
+              "all": false
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "flush-same-second-remote-drops",
+      "puts": [
+        {
+          "error": true
+        }
+      ],
+      "gets": [
+        {
+          "items": [
+            {
+              "_id": "tt0123456",
+              "type": "movie",
+              "name": "Owned film",
+              "removed": false,
+              "temp": false,
+              "providerField": "preserved",
+              "_mtime": "2023-11-14T22:13:20.122Z",
+              "state": {
+                "timeOffset": 700000,
+                "duration": 1000000,
+                "lastWatched": "2023-11-14T22:13:19.123Z"
+              }
+            }
+          ]
+        }
+      ],
+      "operations": [
+        [
+          "put",
+          {
+            "_id": "tt0123456",
+            "type": "movie",
+            "name": "Owned film",
+            "removed": false,
+            "temp": false,
+            "providerField": "preserved",
+            "_mtime": "2023-11-14T22:13:20.123Z",
+            "state": {
+              "timeOffset": 0,
+              "duration": 1000000,
+              "lastWatched": "2023-11-14T22:13:19.123Z"
+            }
+          }
+        ],
+        ["flush"]
+      ],
+      "expected": {
+        "results": [false, null],
+        "queue": [],
+        "transport": [
+          {
+            "method": "datastorePut",
+            "body": {
+              "authKey": "owned-fixture-credential",
+              "collection": "libraryItem",
+              "changes": [
+                {
+                  "_id": "tt0123456",
+                  "type": "movie",
+                  "name": "Owned film",
+                  "removed": false,
+                  "temp": false,
+                  "providerField": "preserved",
+                  "_mtime": "2023-11-14T22:13:20.123Z",
+                  "state": {
+                    "timeOffset": 0,
+                    "duration": 1000000,
+                    "lastWatched": "2023-11-14T22:13:19.123Z"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "method": "datastoreGet",
+            "body": {
+              "authKey": "owned-fixture-credential",
+              "collection": "libraryItem",
+              "ids": ["tt0123456"],
+              "all": false
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "flush-older-remote-sends",
+      "puts": [
+        {
+          "error": true
+        },
+        {}
+      ],
+      "gets": [
+        {
+          "items": [
+            {
+              "_id": "tt0123456",
+              "type": "movie",
+              "name": "Owned film",
+              "removed": false,
+              "temp": false,
+              "providerField": "preserved",
+              "_mtime": "2023-11-14T22:13:19.123Z",
+              "state": {
+                "timeOffset": 700000,
+                "duration": 1000000,
+                "lastWatched": "2023-11-14T22:13:19.123Z"
+              }
+            }
+          ]
+        }
+      ],
+      "operations": [
+        [
+          "put",
+          {
+            "_id": "tt0123456",
+            "type": "movie",
+            "name": "Owned film",
+            "removed": false,
+            "temp": false,
+            "providerField": "preserved",
+            "_mtime": "2023-11-14T22:13:20.123Z",
+            "state": {
+              "timeOffset": 0,
+              "duration": 1000000,
+              "lastWatched": "2023-11-14T22:13:19.123Z"
+            }
+          }
+        ],
+        ["flush"]
+      ],
+      "expected": {
+        "results": [false, null],
+        "queue": [],
+        "transport": [
+          {
+            "method": "datastorePut",
+            "body": {
+              "authKey": "owned-fixture-credential",
+              "collection": "libraryItem",
+              "changes": [
+                {
+                  "_id": "tt0123456",
+                  "type": "movie",
+                  "name": "Owned film",
+                  "removed": false,
+                  "temp": false,
+                  "providerField": "preserved",
+                  "_mtime": "2023-11-14T22:13:20.123Z",
+                  "state": {
+                    "timeOffset": 0,
+                    "duration": 1000000,
+                    "lastWatched": "2023-11-14T22:13:19.123Z"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "method": "datastoreGet",
+            "body": {
+              "authKey": "owned-fixture-credential",
+              "collection": "libraryItem",
+              "ids": ["tt0123456"],
+              "all": false
+            }
+          },
+          {
+            "method": "datastorePut",
+            "body": {
+              "authKey": "owned-fixture-credential",
+              "collection": "libraryItem",
+              "changes": [
+                {
+                  "_id": "tt0123456",
+                  "type": "movie",
+                  "name": "Owned film",
+                  "removed": false,
+                  "temp": false,
+                  "providerField": "preserved",
+                  "_mtime": "2023-11-14T22:13:20.123Z",
+                  "state": {
+                    "timeOffset": 0,
+                    "duration": 1000000,
+                    "lastWatched": "2023-11-14T22:13:19.123Z"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "flush-missing-remote-sends",
+      "puts": [
+        {
+          "error": true
+        },
+        {}
+      ],
+      "gets": [
+        {
+          "items": []
+        }
+      ],
+      "operations": [
+        [
+          "put",
+          {
+            "_id": "tt0123456",
+            "type": "movie",
+            "name": "Owned film",
+            "removed": false,
+            "temp": false,
+            "providerField": "preserved",
+            "_mtime": "2023-11-14T22:13:20.123Z",
+            "state": {
+              "timeOffset": 0,
+              "duration": 1000000,
+              "lastWatched": "2023-11-14T22:13:19.123Z"
+            }
+          }
+        ],
+        ["flush"]
+      ],
+      "expected": {
+        "results": [false, null],
+        "queue": [],
+        "transport": [
+          {
+            "method": "datastorePut",
+            "body": {
+              "authKey": "owned-fixture-credential",
+              "collection": "libraryItem",
+              "changes": [
+                {
+                  "_id": "tt0123456",
+                  "type": "movie",
+                  "name": "Owned film",
+                  "removed": false,
+                  "temp": false,
+                  "providerField": "preserved",
+                  "_mtime": "2023-11-14T22:13:20.123Z",
+                  "state": {
+                    "timeOffset": 0,
+                    "duration": 1000000,
+                    "lastWatched": "2023-11-14T22:13:19.123Z"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "method": "datastoreGet",
+            "body": {
+              "authKey": "owned-fixture-credential",
+              "collection": "libraryItem",
+              "ids": ["tt0123456"],
+              "all": false
+            }
+          },
+          {
+            "method": "datastorePut",
+            "body": {
+              "authKey": "owned-fixture-credential",
+              "collection": "libraryItem",
+              "changes": [
+                {
+                  "_id": "tt0123456",
+                  "type": "movie",
+                  "name": "Owned film",
+                  "removed": false,
+                  "temp": false,
+                  "providerField": "preserved",
+                  "_mtime": "2023-11-14T22:13:20.123Z",
+                  "state": {
+                    "timeOffset": 0,
+                    "duration": 1000000,
+                    "lastWatched": "2023-11-14T22:13:19.123Z"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "flush-put-failure-retains",
+      "puts": [
+        {
+          "error": true
+        },
+        {
+          "error": true
+        }
+      ],
+      "gets": [
+        {
+          "items": []
+        }
+      ],
+      "operations": [
+        [
+          "put",
+          {
+            "_id": "tt0123456",
+            "type": "movie",
+            "name": "Owned film",
+            "removed": false,
+            "temp": false,
+            "providerField": "preserved",
+            "_mtime": "2023-11-14T22:13:20.123Z",
+            "state": {
+              "timeOffset": 0,
+              "duration": 1000000,
+              "lastWatched": "2023-11-14T22:13:19.123Z"
+            }
+          }
+        ],
+        ["flush"]
+      ],
+      "expected": {
+        "results": [false, null],
+        "queue": [
+          {
+            "authKey": "owned-fixture-credential",
+            "item": {
+              "_id": "tt0123456",
+              "type": "movie",
+              "name": "Owned film",
+              "removed": false,
+              "temp": false,
+              "providerField": "preserved",
+              "_mtime": "2023-11-14T22:13:20.123Z",
+              "state": {
+                "timeOffset": 0,
+                "duration": 1000000,
+                "lastWatched": "2023-11-14T22:13:19.123Z"
+              }
+            }
+          }
+        ],
+        "transport": [
+          {
+            "method": "datastorePut",
+            "body": {
+              "authKey": "owned-fixture-credential",
+              "collection": "libraryItem",
+              "changes": [
+                {
+                  "_id": "tt0123456",
+                  "type": "movie",
+                  "name": "Owned film",
+                  "removed": false,
+                  "temp": false,
+                  "providerField": "preserved",
+                  "_mtime": "2023-11-14T22:13:20.123Z",
+                  "state": {
+                    "timeOffset": 0,
+                    "duration": 1000000,
+                    "lastWatched": "2023-11-14T22:13:19.123Z"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "method": "datastoreGet",
+            "body": {
+              "authKey": "owned-fixture-credential",
+              "collection": "libraryItem",
+              "ids": ["tt0123456"],
+              "all": false
+            }
+          },
+          {
+            "method": "datastorePut",
+            "body": {
+              "authKey": "owned-fixture-credential",
+              "collection": "libraryItem",
+              "changes": [
+                {
+                  "_id": "tt0123456",
+                  "type": "movie",
+                  "name": "Owned film",
+                  "removed": false,
+                  "temp": false,
+                  "providerField": "preserved",
+                  "_mtime": "2023-11-14T22:13:20.123Z",
+                  "state": {
+                    "timeOffset": 0,
+                    "duration": 1000000,
+                    "lastWatched": "2023-11-14T22:13:19.123Z"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

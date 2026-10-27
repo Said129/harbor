@@ -14,7 +14,7 @@ import XCTest
         show(privacy, app); XCTAssertEqual(privacy.value as? String, "0"); capture(app, "continue-private-default-" + device)
         show(library, app); XCTAssertEqual(library.value as? String, "1"); ReadingUIInteraction.tapVisible(library, in: app)
         show(simkl, app); XCTAssertEqual(simkl.value as? String, "0"); ReadingUIInteraction.tapVisible(simkl, in: app)
-        show(privacy, app); ReadingUIInteraction.tapVisible(privacy, in: app); XCTAssertEqual(privacy.value as? String, "1")
+        show(privacy, app); tap(privacy, value: "1", app)
         reveal(library, app); XCTAssertFalse(library.isEnabled); XCTAssertEqual(library.value as? String, "0")
         reveal(simkl, app); XCTAssertFalse(simkl.isEnabled); XCTAssertEqual(simkl.value as? String, "1")
         show(local, app); ReadingUIInteraction.tapVisible(local, in: app); XCTAssertEqual(local.value as? String, "0")
@@ -24,7 +24,7 @@ import XCTest
         reveal(library, app); XCTAssertFalse(library.isEnabled); XCTAssertEqual(library.value as? String, "0")
         reveal(simkl, app); XCTAssertFalse(simkl.isEnabled); XCTAssertEqual(simkl.value as? String, "1")
         show(local, app); XCTAssertEqual(local.value as? String, "0"); capture(app, "continue-private-restored-" + device)
-        show(privacy, app); ReadingUIInteraction.tapVisible(privacy, in: app); XCTAssertEqual(privacy.value as? String, "0")
+        show(privacy, app); tap(privacy, value: "0", app)
         show(library, app); XCTAssertEqual(library.value as? String, "0"); ReadingUIInteraction.tapVisible(library, in: app)
         show(local, app); XCTAssertEqual(local.value as? String, "0"); ReadingUIInteraction.tapVisible(local, in: app)
         show(simkl, app); XCTAssertEqual(simkl.value as? String, "1"); ReadingUIInteraction.tapVisible(simkl, in: app)
@@ -42,10 +42,16 @@ import XCTest
         XCTAssertTrue(app.scrollViews["interface-settings-scroll"].waitForExistence(timeout: 15))
     }
     private func reveal(_ element: XCUIElement, _ app: XCUIApplication) {
-        ReadingUIInteraction.reveal(element, in: app, container: app.scrollViews["interface-settings-scroll"])
+        ReadingUIInteraction.revealWithinViewport(element, in: app, container: app.scrollViews["interface-settings-scroll"])
         XCTAssertTrue(element.exists)
     }
     private func show(_ element: XCUIElement, _ app: XCUIApplication) { reveal(element, app); XCTAssertTrue(element.isEnabled); XCTAssertTrue(element.isHittable) }
+    private func tap(_ element: XCUIElement, value: String, _ app: XCUIApplication) {
+        ReadingUIInteraction.tapVisible(element, in: app)
+        let changed = XCTNSPredicateExpectation(predicate: NSPredicate(format: "value == %@", value), object: element)
+        XCTAssertEqual(XCTWaiter.wait(for: [changed], timeout: 10), .completed)
+        XCTAssertEqual(element.value as? String, value)
+    }
     private func capture(_ app: XCUIApplication, _ name: String) {
         let attachment = XCTAttachment(screenshot: app.screenshot()); attachment.name = name; attachment.lifetime = .keepAlways; add(attachment)
     }

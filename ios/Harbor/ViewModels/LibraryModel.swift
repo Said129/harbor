@@ -9,6 +9,7 @@ final class LibraryModel {
     private var records: [JSONValue] { snapshot.records }
     private let cache = LibraryCache()
     private let service: any LibraryServing
+    private let writeQueue: LibraryWriteQueue
     private var session: AccountSession?
     private var guestOwner = "guest"
     private(set) var personalOwner = "guest"
@@ -18,7 +19,10 @@ final class LibraryModel {
     private var writable = false
     private var presentationReady = false
     private(set) var presentation = LibraryPresentation()
-    private(set) var presentationError: String?
+    private var sharedPresentationError: String?
+    private var privatePresentationError: String?
+    private var privateDismissalScope: String?
+    var presentationError: String? { privatePresentationError ?? sharedPresentationError }
     private(set) var favorites = MediaFavorites(owner: "guest")
     private(set) var discovery = DiscoveryPreferences(owner: "guest")
     let simklPlayback: SimklPlaybackFeed
@@ -35,12 +39,14 @@ final class LibraryModel {
     private var localReady = false
     @ObservationIgnored private var localActive: @MainActor () -> Bool = { false }
     private(set) var continueSources = ContinueWatchingSources()
-    init(simklPlayback: SimklPlaybackFeed? = nil, localContinue: LocalContinueStore = .shared, privateDismissals: ContinueDismissalStore? = nil, service: (any LibraryServing)? = nil) {
+    init(simklPlayback: SimklPlaybackFeed? = nil, localContinue: LocalContinueStore = .shared, privateDismissals: ContinueDismissalStore? = nil, service: (any LibraryServing)? = nil, writeQueue: LibraryWriteQueue? = nil) {
         self.simklPlayback = simklPlayback ?? SimklPlaybackFeed(); self.localContinue = localContinue
         privateDismissalStore = privateDismissals ?? .shared
-        self.service = service ?? LibraryService()
+        let transport = service ?? LibraryService()
+        self.service = transport; self.writeQueue = writeQueue ?? LibraryWriteQueue(service: transport)
     }
     var canChangePresentation: Bool { presentationReady }
+    var hasCloudSession: Bool { session != nil }
     private var lastProgressWrite: [String: UInt64] = [:]
     var loading = false
     var busy = false
@@ -72,13 +78,14 @@ final class LibraryModel {
     func setContinueSources(_ value: ContinueWatchingSources) { if continueSources != value { continueSources = value } }
     func setContinuePrivacy(_ enabled: Bool, migratedScope: String? = nil) {
         continuingPrivate = enabled; continuationCache = nil
-        privateDismissalsReady = false; privateDismissals = [:]
+        privateDismissalsReady = false; privateDismissals = [:]; privatePresentationError = nil
+        if let migratedScope { privateDismissalScope = migratedScope }
         guard enabled else { return }
         do {
-            if let migratedScope { try privateDismissalStore.requireMigration(scope: migratedScope) }
+            if let scope = privateDismissalScope { try privateDismissalStore.requireMigration(scope: scope) }
             privateDismissals = try privateDismissalStore.values(owner: personalOwner); privateDismissalsReady = true
         }
-        catch { presentationError = "No se pudo recuperar el historial privado. Los datos guardados se conservan."; Diagnostics.shared.recordFailure(error) }
+        catch { privatePresentationError = "No se pudo recuperar el historial privado. Los datos guardados se conservan."; Diagnostics.shared.recordFailure(error) }
     }
     func bindPlaybackProgress(_ stores: PlaybackProgressStores) {
         guard stores.personalOwner == personalOwner, stores.sharedOwner == localSharedOwner else { return }
@@ -155,13 +162,40 @@ final class LibraryModel {
         do {
             let saved = try KeychainStore().read(LibraryPresentation.key(owner: owner), as: LibraryPresentation.self) ?? LibraryPresentation()
             guard saved.valid else { throw HarborError(code: "library-presentation") }
-            presentation = saved; presentationReady = true; presentationError = nil
-        } catch { presentationError = "No se pudieron recuperar las preferencias de biblioteca. Los datos guardados se conservan." }
+            presentation = saved; presentationReady = true; sharedPresentationError = nil
+        } catch { sharedPresentationError = "No se pudieron recuperar las preferencias de biblioteca. Los datos guardados se conservan." }
+        if continuingPrivate { setContinuePrivacy(true) }
     }
     func changeDisplay(_ edit: (inout LibraryDisplay) -> Void) { changePresentation { edit(&$0.display) } }
-    func hideContinuing(_ record: LibraryRecord, owner expectedOwner: String) {
-        guard owner == expectedOwner, let current = allContinuing.first(where: { $0.id == record.id }), current.continuing else { return }
-        changeDismissals { $0[current.id] = ContinueDismissal(current) }
+    @discardableResult
+    func hideContinuing(_ record: LibraryRecord, owner expectedOwner: String, now: Date = Date()) -> Task<Void, Never>? {
+        guard owner == expectedOwner, let current = allContinuing.first(where: { $0.id == record.id }), current.continuing else { return nil }
+        let dismissal = ContinueDismissal(current, now: now)
+        guard changeDismissals({ $0[current.id] = dismissal }) else { return nil }
+        mutation += 1
+        let action = ContinueDismissalAction(current, privateMode: continuingPrivate, authenticated: session != nil, timestampMs: dismissal.timestampMs)
+        guard action.clearsResume else { return nil }
+        let ticket = generation, session = session, stores = playbackProgressStores, privateRead = continuingPrivate
+        return Task { [weak self] in
+            guard let self, self.generation == ticket else { return }
+            do {
+                if let stores {
+                    let store = privateRead ? stores.personal : stores.shared
+                    try await store.clear(action.target, notNewerThan: dismissal.timestampMs)
+                }
+                guard self.generation == ticket, let record = action.cloudRecord, let session else { return }
+                let lease: LibraryWriteQueue.Lease = { [weak self] in
+                    await self?.dismissalCurrent(ticket, owner: expectedOwner, id: current.id, timestampMs: dismissal.timestampMs) ?? false
+                }
+                _ = try await self.writeQueue.put(record, session: session, current: lease)
+                guard self.generation == ticket else { return }
+                let next = LibraryWriteQueue.merging(self.records, pending: [record])
+                let prepared = try await self.cache.saveSnapshot(next, owner: expectedOwner)
+                guard self.generation == ticket else { return }
+                self.snapshot = prepared
+            } catch is CancellationError { }
+            catch { if self.generation == ticket { self.error = safeMessage(error) }; Diagnostics.shared.recordFailure(error) }
+        }
     }
     func showContinuing(_ record: LibraryRecord) { changeDismissals { $0.removeValue(forKey: record.id) } }
     func noteLocalProgress(_ target: ResumeTarget, snapshot: ResumeSnapshot, owner expectedOwner: String, personalOwner expectedPerson: String? = nil) {
@@ -169,20 +203,20 @@ final class LibraryModel {
               let dismissal = dismissals[target.id], dismissal.hasNewPlayback(snapshot) else { return }
         changeDismissals { $0.removeValue(forKey: target.id) }
     }
-    private func changeDismissals(_ edit: (inout [String: ContinueDismissal]) -> Void) {
-        guard continuingPrivate else { changePresentation { edit(&$0.dismissed) }; return }
-        guard privateDismissalsReady else { return }
-        do { privateDismissals = try privateDismissalStore.change(owner: personalOwner, edit); presentationError = nil }
-        catch { presentationError = "No se pudo guardar este cambio de historial privado. Los datos anteriores se conservan."; Diagnostics.shared.recordFailure(error) }
+    @discardableResult private func changeDismissals(_ edit: (inout [String: ContinueDismissal]) -> Void) -> Bool {
+        guard continuingPrivate else { return changePresentation { edit(&$0.dismissed) } }
+        guard privateDismissalsReady else { return false }
+        do { privateDismissals = try privateDismissalStore.change(owner: personalOwner, edit); privatePresentationError = nil; return true }
+        catch { privatePresentationError = "No se pudo guardar este cambio de historial privado. Los datos anteriores se conservan."; Diagnostics.shared.recordFailure(error); return false }
     }
-    private func changePresentation(_ edit: (inout LibraryPresentation) -> Void) {
-        guard presentationReady else { return }
+    @discardableResult private func changePresentation(_ edit: (inout LibraryPresentation) -> Void) -> Bool {
+        guard presentationReady else { return false }
         var next = presentation; edit(&next)
         do {
             guard next.valid, try JSONEncoder().encode(next).count <= 1_024 * 1_024 else { throw HarborError(code: "library-presentation") }
             try KeychainStore().write(next, key: LibraryPresentation.key(owner: owner))
-            presentation = next; presentationError = nil
-        } catch { presentationError = "No se pudo guardar este cambio de biblioteca. Los datos anteriores se conservan." }
+            presentation = next; sharedPresentationError = nil; return true
+        } catch { sharedPresentationError = "No se pudo guardar este cambio de biblioteca. Los datos anteriores se conservan."; return false }
     }
     func bookmarked(_ media: Media) -> Bool { items.first { $0.id == media.id }?.bookmarked ?? false }
     func watched(_ media: Media) -> Bool {
@@ -217,6 +251,7 @@ final class LibraryModel {
         self.session = session; self.guestOwner = guestOwner
         self.personalOwner = personalOwner ?? session?.user.id ?? guestOwner
         continuingPrivate = false; privateDismissalsReady = false; privateDismissals = [:]; playbackProgressStores = nil
+        privatePresentationError = nil; privateDismissalScope = nil
         localReady = false; localSnapshot = .init(); localRevision &+= 1; localScope = nil
         snapshot = LibrarySnapshot([]); syncing = false; busy = false; error = nil; writable = false; loading = true
         favorites = MediaFavorites(owner: self.personalOwner)
@@ -228,7 +263,9 @@ final class LibraryModel {
         do {
             let saved = try await cache.readSnapshot(owner: owner)
             guard current == generation else { return }
-            snapshot = saved; writable = true
+            let pending = try await writeQueue.pending(owner: owner)
+            guard current == generation else { return }
+            snapshot = LibrarySnapshot(LibraryWriteQueue.merging(saved.records, pending: pending)); writable = true
         } catch { self.error = safeMessage(error); return }
         if synchronize { await sync() }
     }
@@ -240,9 +277,13 @@ final class LibraryModel {
         loading = true
         defer { if current == generation { loading = false; syncing = false } }
         do {
+            try await flushWrites(session, ticket: current)
+            guard current == generation, revision == mutation else { return }
             let next = try await service.records(session)
             guard current == generation, revision == mutation else { return }
-            let prepared = try await cache.saveSnapshot(next, owner: session.user.id)
+            let pending = try await writeQueue.pending(owner: session.user.id)
+            guard current == generation, revision == mutation else { return }
+            let prepared = try await cache.saveSnapshot(LibraryWriteQueue.merging(next, pending: pending), owner: session.user.id)
             guard current == generation, revision == mutation else { return }
             snapshot = prepared; error = nil; writable = true
             await absorbCloudAnimeHistory()
@@ -289,13 +330,19 @@ final class LibraryModel {
             do {
                 let record = try await service.record(target.id, session: session)
                 guard generation == current else { return nil }
-                fresh = record.flatMap { LibraryRecord(raw: $0).resume(for: target) }
+                fresh = record.flatMap {
+                    let value = LibraryRecord(raw: $0)
+                    return isDismissed(value) ? nil : value.resume(for: target)
+                }
             } catch { if generation == current { Diagnostics.shared.recordFailure(error) } }
         }
         guard generation == current, continuingPrivate == privateRead else { return nil }
         let local = localReady && localActive() ? (privateRead ? localSnapshot.personalRecords : localSnapshot.sharedRecords) : []
         let shared = privateRead ? [] : items + simklPlayback.records(for: personalOwner)
-        let candidates = (shared + local).compactMap { $0.resume(for: target) } + [fresh].compactMap { $0 }
+        // A shared dismissal clears the shared resume. Older local ledgers and
+        // tracker snapshots must not resurrect the position while cloud is offline.
+        let candidates = (shared + local).filter { privateRead || (session == nil && $0.raw["external"].string == nil) || !isDismissed($0) }
+            .compactMap { $0.resume(for: target) } + [fresh].compactMap { $0 }
         return candidates.max { $0.entry.t < $1.entry.t }
     }
     func saveProgress(_ media: Media, target: ResumeTarget, snapshot: ResumeSnapshot, owner expectedOwner: String) async {
@@ -316,7 +363,15 @@ final class LibraryModel {
             // Read the current cloud item before changing it. Unknown provider
             // fields and progress from another device survive every mutation.
             let original: JSONValue?
-            if let activeSession { original = try await service.record(media.id, session: activeSession) }
+            if let activeSession {
+                do {
+                    let remote = try await service.record(media.id, session: activeSession)
+                    let cached = records.first { $0["_id"].string == media.id }
+                    original = LibraryWriteQueue.merging([remote].compactMap { $0 }, pending: [cached].compactMap { $0 }).first
+                }
+                catch is CancellationError { throw CancellationError() }
+                catch { original = records.first { $0["_id"].string == media.id } }
+            }
             else { original = records.first { $0["_id"].string == media.id } }
             guard current == generation else { return false }
             var fields = LibraryRecord.new(media)
@@ -325,9 +380,12 @@ final class LibraryModel {
                 fields["removed"] = .bool(true)
                 fields["temp"] = .bool(progress)
             }
-            try change(&fields); fields["_mtime"] = .string(Date().ISO8601Format())
+            try change(&fields); fields["_mtime"] = .string(ContinueDismissalAction.iso(Date().timeIntervalSince1970 * 1_000))
             let record = JSONValue.object(fields)
-            if let activeSession { try await service.save(record, session: activeSession) }
+            if let activeSession {
+                let lease: LibraryWriteQueue.Lease = { [weak self] in await self?.writeCurrent(current, owner: activeOwner) ?? false }
+                _ = try await writeQueue.put(record, session: activeSession, current: lease)
+            }
             guard current == generation else { return false }
             var next = records.filter { $0["_id"].string != media.id }; next.append(record)
             let prepared = try await cache.saveSnapshot(next, owner: activeOwner)
@@ -335,5 +393,30 @@ final class LibraryModel {
             snapshot = prepared; error = nil; return true
         } catch is CancellationError { return false }
         catch { if current == generation { self.error = safeMessage(error); Diagnostics.shared.recordFailure(error) }; return false }
+    }
+    private func writeCurrent(_ ticket: Int, owner: String) -> Bool { generation == ticket && self.owner == owner }
+    private func dismissalCurrent(_ ticket: Int, owner: String, id: String, timestampMs: Double) -> Bool {
+        writeCurrent(ticket, owner: owner) && dismissals[id]?.timestampMs == timestampMs
+    }
+    @discardableResult private func flushWrites(_ session: AccountSession, ticket: Int) async throws -> [JSONValue] {
+        let owner = session.user.id
+        return try await writeQueue.flush(session, current: { [weak self] in await self?.writeCurrent(ticket, owner: owner) ?? false })
+    }
+    func flushPendingWrites() async {
+        guard let session else { return }
+        let ticket = generation, revision = mutation, owner = session.user.id
+        do {
+            let reconciled = try await flushWrites(session, ticket: ticket)
+            guard !reconciled.isEmpty, generation == ticket, mutation == revision else { return }
+            let ids = Set(reconciled.compactMap { $0["_id"].string })
+            let pending = try await writeQueue.pending(owner: owner)
+            guard generation == ticket, mutation == revision else { return }
+            let next = LibraryWriteQueue.merging(records.filter { !ids.contains($0["_id"].string ?? "") } + reconciled, pending: pending)
+            let prepared = try await cache.saveSnapshot(next, owner: owner)
+            guard generation == ticket, mutation == revision else { return }
+            snapshot = prepared
+        }
+        catch is CancellationError { }
+        catch { if generation == ticket { self.error = safeMessage(error) }; Diagnostics.shared.recordFailure(error) }
     }
 }

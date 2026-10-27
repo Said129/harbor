@@ -107,6 +107,17 @@ actor ResumeStore {
         return try commit(next)
     }
 
+    /// Dismiss only the captured episode. A checkpoint written after the tap
+    /// must survive delayed cleanup, as must every personal resume document.
+    @discardableResult
+    func clear(_ target: ResumeTarget, notNewerThan timestampMs: Double) throws -> Bool {
+        guard ready else { throw HarborError(code: "resume-store-unavailable") }
+        struct Key: Decodable { let key: String }
+        let key = try invoke("resumeKey", ["target": try .encoded(target)], as: Key.self).key
+        guard let held = document.entries[key], Double(held.t) <= timestampMs else { return false }
+        var next = document; next.entries.removeValue(forKey: key); return try commit(next)
+    }
+
     private func commit(_ next: ResumeDocument) throws -> Bool {
         do {
             let data = try JSONEncoder().encode(next)
