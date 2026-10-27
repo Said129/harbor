@@ -84,10 +84,20 @@ private actor OwnedDismissalLease {
             let restored = try await reopened.pending(owner: account.user.id); XCTAssertEqual(sorted(restored), sorted(expected))
             for file in try FileManager.default.contentsOfDirectory(at: root, includingPropertiesForKeys: nil) {
                 XCTAssertFalse(try String(contentsOf: file, encoding: .utf8).contains(account.authKey))
-                let protection = try FileManager.default.attributesOfItem(atPath: file.path)[.protectionKey] as? FileProtectionType
+                let rawProtection = try FileManager.default.attributesOfItem(atPath: file.path)[.protectionKey]
+                let protection = (rawProtection as? FileProtectionType) ?? (rawProtection as? String).map { FileProtectionType(rawValue: $0) }
+                #if targetEnvironment(simulator)
+                if let protection { XCTAssertEqual(protection, .completeUntilFirstUserAuthentication) }
+                else { XCTAssertNil(rawProtection, "Do not accept an unexpected protection attribute type") }
+                #else
                 XCTAssertEqual(protection, .completeUntilFirstUserAuthentication)
+                #endif
             }
         }
+        #if targetEnvironment(simulator)
+        let limitation = XCTAttachment(string: "Queue requests, durable reopen and absence of credentials were checked. Simulator results cannot verify hardware Data Protection; the device assertion is retained.")
+        limitation.name = "hardware-data-protection-unverified"; limitation.lifetime = .keepAlways; add(limitation)
+        #endif
     }
     func testTenExecutedDesktopDismissalsKeepPersonalAndOtherEpisodeResumesAndExactProviderFields() async throws {
         let fixture = try fixture(), rows = fixture["dismissals"].array; XCTAssertEqual(rows.count, 10)
