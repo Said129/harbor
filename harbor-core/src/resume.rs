@@ -17,6 +17,23 @@ pub struct Target {
 pub struct Entry {
     pub ms: f64,
     pub t: u64,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub pct: Option<f64>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub source: Option<String>,
+}
+
+impl Entry {
+    /// Tracker imports carry a percentage alongside estimated milliseconds.
+    /// Once real metadata supplies the runtime, use the same winning entry's ratio.
+    pub fn position(&self, duration_ms: f64) -> f64 {
+        if duration_ms.is_finite() && duration_ms > 0.0 {
+            if let Some(pct) = self.pct {
+                return pct * duration_ms;
+            }
+        }
+        self.ms
+    }
 }
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
@@ -66,6 +83,13 @@ pub fn validate(document: &Document) -> Result<(), &'static str> {
             || key.chars().any(char::is_control)
             || !entry.ms.is_finite()
             || entry.ms < 0.0
+            || entry
+                .pct
+                .is_some_and(|pct| !pct.is_finite() || !(0.0..=1.0).contains(&pct))
+            || entry
+                .source
+                .as_deref()
+                .is_some_and(|source| !["simkl", "trakt"].contains(&source))
     }) {
         return Err("invalid-resume-store");
     }
@@ -135,6 +159,8 @@ pub fn checkpoint(
         entry: Entry {
             ms: position_ms,
             t: timestamp_ms,
+            pct: None,
+            source: None,
         },
     }))
 }

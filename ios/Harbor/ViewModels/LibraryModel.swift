@@ -3,7 +3,9 @@ import Observation
 
 @MainActor @Observable
 final class LibraryModel {
-    private var snapshot = LibrarySnapshot([])
+    private var snapshot = LibrarySnapshot([]) { didSet { continuationRevision &+= 1 } }
+    private var continuationRevision = 0
+    @ObservationIgnored private var continuationCache: (library: Int, tracker: Int, records: [LibraryRecord])?
     private var records: [JSONValue] { snapshot.records }
     private let cache = LibraryCache()
     private let service = LibraryService()
@@ -19,6 +21,8 @@ final class LibraryModel {
     private(set) var presentationError: String?
     private(set) var favorites = MediaFavorites(owner: "guest")
     private(set) var discovery = DiscoveryPreferences(owner: "guest")
+    let simklPlayback: SimklPlaybackFeed
+    init(simklPlayback: SimklPlaybackFeed? = nil) { self.simklPlayback = simklPlayback ?? SimklPlaybackFeed() }
     var canChangePresentation: Bool { presentationReady }
     private var lastProgressWrite: [String: UInt64] = [:]
     var loading = false
@@ -27,9 +31,21 @@ final class LibraryModel {
     var owner: String { session?.user.id ?? guestOwner }
     var items: [LibraryRecord] { snapshot.items }
     var continuing: [LibraryRecord] {
-        snapshot.continuing.filter { presentation.dismissed[$0.id]?.hides($0) != true }
+        allContinuing.filter { presentation.dismissed[$0.id]?.hides($0) != true }
     }
-    var hiddenContinuing: [LibraryRecord] { snapshot.continuing.filter { presentation.dismissed[$0.id]?.hides($0) == true } }
+    private var allContinuing: [LibraryRecord] {
+        let external = simklPlayback.records(for: personalOwner)
+        guard !external.isEmpty else { return snapshot.continuing }
+        if let saved = continuationCache, saved.library == continuationRevision, saved.tracker == simklPlayback.revision { return saved.records }
+        var seen = Set<String>()
+        let merged = (snapshot.continuing + external.filter(\.continuing))
+            .sorted { $0.activityTimestamp == $1.activityTimestamp ? $0.id < $1.id : $0.activityTimestamp > $1.activityTimestamp }
+            .filter { seen.insert($0.id).inserted }
+        continuationCache = (continuationRevision, simklPlayback.revision, merged)
+        return merged
+    }
+    var hiddenContinuing: [LibraryRecord] { allContinuing.filter { presentation.dismissed[$0.id]?.hides($0) == true } }
+    func isDismissed(_ record: LibraryRecord) -> Bool { presentation.dismissed[record.id]?.hides(record) == true }
     func selectedItems(query: String) -> [LibraryRecord] {
         LibraryListing.select(filteredItems(for: presentation.display.filter), display: presentation.display, query: query)
     }
@@ -61,7 +77,7 @@ final class LibraryModel {
     }
     func changeDisplay(_ edit: (inout LibraryDisplay) -> Void) { changePresentation { edit(&$0.display) } }
     func hideContinuing(_ record: LibraryRecord, owner expectedOwner: String) {
-        guard owner == expectedOwner, let current = items.first(where: { $0.id == record.id }), current.continuing else { return }
+        guard owner == expectedOwner, let current = allContinuing.first(where: { $0.id == record.id }), current.continuing else { return }
         changePresentation { $0.dismissed[current.id] = ContinueDismissal(current) }
     }
     func showContinuing(_ record: LibraryRecord) { changePresentation { $0.dismissed.removeValue(forKey: record.id) } }
@@ -175,15 +191,17 @@ final class LibraryModel {
     }
     func resume(for target: ResumeTarget, refresh: Bool = true) async -> CloudResume? {
         let current = generation
+        var fresh: CloudResume?
         if let session, refresh {
             do {
                 let record = try await service.record(target.id, session: session)
                 guard generation == current else { return nil }
-                return record.flatMap { LibraryRecord(raw: $0).resume(for: target) }
+                fresh = record.flatMap { LibraryRecord(raw: $0).resume(for: target) }
             } catch { if generation == current { Diagnostics.shared.recordFailure(error) } }
         }
         guard generation == current else { return nil }
-        return records.first { $0["_id"].string == target.id }.flatMap { LibraryRecord(raw: $0).resume(for: target) }
+        let candidates = (items + simklPlayback.records(for: personalOwner)).compactMap { $0.resume(for: target) } + [fresh].compactMap { $0 }
+        return candidates.max { $0.entry.t < $1.entry.t }
     }
     func saveProgress(_ media: Media, target: ResumeTarget, snapshot: ResumeSnapshot, owner expectedOwner: String) async {
         guard expectedOwner == owner else { return }

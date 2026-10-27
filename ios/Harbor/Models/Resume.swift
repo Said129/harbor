@@ -10,6 +10,8 @@ struct ResumeTarget: Codable, Sendable {
 struct ResumeEntry: Codable, Equatable, Sendable {
     let ms: Double
     let t: UInt64
+    var pct: Double? = nil
+    var source: String? = nil
 }
 
 struct CloudResume: Sendable {

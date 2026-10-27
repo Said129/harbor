@@ -2,6 +2,21 @@ use harbor_ios_bridge::{call, harbor_ios_call, harbor_ios_response_free, MAX_REQ
 use serde_json::{json, Value};
 
 #[test]
+fn tracker_percentage_crosses_the_real_abi_and_preserves_legacy_entries() {
+    let document = json!({"version":1,"entries":{"owned|s1e7":{"ms":1320000,"t":123,"pct":0.5,"source":"simkl"},"old":{"ms":60000,"t":12}}});
+    let validated = run(json!({"operation":"validateResume","document":document}));
+    assert_eq!(validated["data"]["entries"]["owned|s1e7"]["pct"], 0.5);
+    assert_eq!(
+        validated["data"]["entries"]["owned|s1e7"]["source"],
+        "simkl"
+    );
+    let request = json!({"operation":"resumePosition","target":{"id":"owned","season":1,"episode":7},"document":document,"durationMs":1440000,"playback":true,"prompt":true});
+    let position = run(request);
+    assert_eq!(position["data"]["ms"], 720000.0);
+    assert_eq!(position["data"]["prompt"], true);
+}
+
+#[test]
 fn invalid_request_does_not_echo_secret() {
     let response = call(br#"{"operation":"unknown","token":"private-value"}"#);
     assert!(!response.contains("private-value"));

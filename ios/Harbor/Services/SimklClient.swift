@@ -2,7 +2,7 @@ import Foundation
 import CryptoKit
 
 enum SimklEndpoint: Sendable {
-    case pin, poll(String), anime(Int), detail(SimklMediaKind, Int), settings, library(SimklLibraryEndpoint), watch(SimklWatchEndpoint)
+    case pin, poll(String), anime(Int), detail(SimklMediaKind, Int), settings, library(SimklLibraryEndpoint), watch(SimklWatchEndpoint), playback
     var method: String { switch self { case .settings, .watch: "POST"; case .library(let endpoint): endpoint.method; default: "GET" } }
     func request(token: String? = nil) throws -> URLRequest {
         var request = try HTTPClient.simklArtworkRequest(1)
@@ -21,6 +21,10 @@ enum SimklEndpoint: Sendable {
             guard let token, Self.validToken(token) else { throw HarborError(code: "simkl-not-connected") }
             url.path = "/users/settings"; request.setValue("Bearer " + token, forHTTPHeaderField: "Authorization")
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        case .playback:
+            guard let token, Self.validToken(token) else { throw HarborError(code: "simkl-not-connected") }
+            url.path = "/sync/playback"; url.queryItems = [URLQueryItem(name: "hide_watched", value: "true"), URLQueryItem(name: "limit", value: "40")]
+            request.setValue("Bearer " + token, forHTTPHeaderField: "Authorization")
         case .library(let endpoint):
             guard let token, Self.validToken(token) else { throw HarborError(code: "simkl-not-connected") }
             url.path = endpoint.path; url.queryItems = (url.queryItems ?? []) + endpoint.query

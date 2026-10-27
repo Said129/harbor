@@ -402,7 +402,12 @@ final class DetailModel {
                 do {
                     let cloud = await library.resume(for: target)
                     guard owner == library.owner, contextRevision() == context, request == streamRequest, resolution == resolutionRequest else { return }
-                    let duration = (episode?.runtime ?? 0) > 0 ? (episode?.runtime ?? 0) * 60_000 : cloud?.durationMs ?? 0
+                    let movieMinutes = selected.runtime.flatMap { value -> Double? in
+                        guard let range = value.range(of: "[0-9]+(?:\\.[0-9]+)?", options: .regularExpression) else { return nil }
+                        return Double(value[range])
+                    } ?? 0
+                    let minutes = (episode?.runtime ?? 0) > 0 ? (episode?.runtime ?? 0) : cloud?.entry.pct != nil && selected.type == "movie" ? movieMinutes : 0
+                    let duration = minutes > 0 ? minutes * 60_000 : cloud?.durationMs ?? 0
                     start = try await resume.position(target, durationMs: duration, playback: UserDefaults.standard.object(forKey: "resumePlayback") as? Bool ?? true, prompt: UserDefaults.standard.object(forKey: "resumePrompt") as? Bool ?? false, cloud: cloud?.entry, media: selected)
                 } catch {
                     warning = safeMessage(error)

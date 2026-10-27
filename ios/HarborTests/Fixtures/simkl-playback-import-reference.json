@@ -1,0 +1,1053 @@
+{
+  "reference": "0834340cec5531650bfe78cd628628702e636987",
+  "actual_original_typescript_executed": true,
+  "provider_network_requests": 0,
+  "source_hashes": {
+    "src/lib/simkl/playback.ts": "fe7a5d968b172d46ddb335f3cbeb4ccbeb339ee6e80bd3c1f3733f3cfc2f2290"
+  },
+  "cases": [
+    {
+      "name": "movie-imdb",
+      "raw": [
+        {
+          "progress": 50,
+          "paused_at": "2024-01-01T00:00:00Z",
+          "movie": {
+            "title": "Owned Film",
+            "ids": {
+              "imdb": "tt0123456",
+              "tmdb": 8
+            }
+          }
+        }
+      ],
+      "expected": [
+        {
+          "_id": "tt0123456",
+          "type": "movie",
+          "name": "Owned Film",
+          "state": {
+            "timeOffset": 3150000,
+            "duration": 6300000,
+            "lastWatched": "2024-01-01T00:00:00Z"
+          },
+          "removed": false,
+          "temp": false,
+          "_ctime": "2024-01-01T00:00:00Z",
+          "_mtime": "2024-01-01T00:00:00Z",
+          "external": "simkl"
+        }
+      ],
+      "requests": ["/sync/playback?hide_watched=true&limit=40"],
+      "writes": [
+        {
+          "id": "tt0123456",
+          "ms": 3150000,
+          "pct": 0.5,
+          "source": "simkl",
+          "t": 1704067200000
+        }
+      ]
+    },
+    {
+      "name": "movie-tmdb",
+      "raw": [
+        {
+          "progress": 50,
+          "paused_at": "2024-01-01T00:00:00Z",
+          "movie": {
+            "title": "Owned Film",
+            "ids": {
+              "tmdb": "8"
+            }
+          }
+        }
+      ],
+      "expected": [
+        {
+          "_id": "tmdb:movie:8",
+          "type": "movie",
+          "name": "Owned Film",
+          "state": {
+            "timeOffset": 3150000,
+            "duration": 6300000,
+            "lastWatched": "2024-01-01T00:00:00Z"
+          },
+          "removed": false,
+          "temp": false,
+          "_ctime": "2024-01-01T00:00:00Z",
+          "_mtime": "2024-01-01T00:00:00Z",
+          "external": "simkl"
+        }
+      ],
+      "requests": ["/sync/playback?hide_watched=true&limit=40"],
+      "writes": [
+        {
+          "id": "tmdb:movie:8",
+          "ms": 3150000,
+          "pct": 0.5,
+          "source": "simkl",
+          "t": 1704067200000
+        }
+      ]
+    },
+    {
+      "name": "movie-invalid-ids",
+      "raw": [
+        {
+          "progress": 50,
+          "paused_at": "2024-01-01T00:00:00Z",
+          "movie": {
+            "ids": {
+              "imdb": "unsafe"
+            }
+          }
+        }
+      ],
+      "expected": [],
+      "requests": ["/sync/playback?hide_watched=true&limit=40"],
+      "writes": []
+    },
+    {
+      "name": "show-coordinates",
+      "raw": [
+        {
+          "progress": 50,
+          "paused_at": "2024-01-01T00:00:00Z",
+          "show": {
+            "title": "Owned Film",
+            "ids": {
+              "imdb": "tt0123456",
+              "tmdb": 8
+            }
+          },
+          "episode": {
+            "season": 2,
+            "number": 7
+          }
+        }
+      ],
+      "expected": [
+        {
+          "_id": "tt0123456",
+          "type": "series",
+          "name": "Owned Film",
+          "state": {
+            "timeOffset": 1320000,
+            "duration": 2640000,
+            "season": 2,
+            "episode": 7,
+            "video_id": "tt0123456:2:7",
+            "lastWatched": "2024-01-01T00:00:00Z"
+          },
+          "removed": false,
+          "temp": false,
+          "_ctime": "2024-01-01T00:00:00Z",
+          "_mtime": "2024-01-01T00:00:00Z",
+          "external": "simkl",
+          "isAnime": false
+        }
+      ],
+      "requests": ["/sync/playback?hide_watched=true&limit=40"],
+      "writes": [
+        {
+          "id": "tt0123456",
+          "ms": 1320000,
+          "season": 2,
+          "episode": 7,
+          "pct": 0.5,
+          "source": "simkl",
+          "t": 1704067200000
+        }
+      ]
+    },
+    {
+      "name": "show-missing-coordinates",
+      "raw": [
+        {
+          "progress": 50,
+          "paused_at": "2024-01-01T00:00:00Z",
+          "show": {
+            "title": "Owned Film",
+            "ids": {
+              "imdb": "tt0123456",
+              "tmdb": 8
+            }
+          }
+        }
+      ],
+      "expected": [
+        {
+          "_id": "tt0123456",
+          "type": "series",
+          "name": "Owned Film",
+          "state": {
+            "timeOffset": 1320000,
+            "duration": 2640000,
+            "lastWatched": "2024-01-01T00:00:00Z"
+          },
+          "removed": false,
+          "temp": false,
+          "_ctime": "2024-01-01T00:00:00Z",
+          "_mtime": "2024-01-01T00:00:00Z",
+          "external": "simkl",
+          "isAnime": false
+        }
+      ],
+      "requests": ["/sync/playback?hide_watched=true&limit=40"],
+      "writes": [
+        {
+          "id": "tt0123456",
+          "ms": 1320000,
+          "pct": 0.5,
+          "source": "simkl",
+          "t": 1704067200000
+        }
+      ]
+    },
+    {
+      "name": "anime-prefers-kitsu",
+      "raw": [
+        {
+          "progress": 50,
+          "paused_at": "2024-01-01T00:00:00Z",
+          "anime": {
+            "title": "Owned Anime",
+            "ids": {
+              "imdb": "tt1234567",
+              "tmdb": 7,
+              "kitsu": 8,
+              "mal": 9,
+              "anilist": 10
+            }
+          },
+          "episode": {
+            "season": 1,
+            "number": 7,
+            "tvdb_season": 5,
+            "tvdb_number": 23
+          }
+        }
+      ],
+      "expected": [
+        {
+          "_id": "kitsu:8",
+          "type": "series",
+          "name": "Owned Anime",
+          "state": {
+            "timeOffset": 1320000,
+            "duration": 2640000,
+            "season": 1,
+            "episode": 7,
+            "video_id": "kitsu:8:1:7",
+            "lastWatched": "2024-01-01T00:00:00Z"
+          },
+          "removed": false,
+          "temp": false,
+          "_ctime": "2024-01-01T00:00:00Z",
+          "_mtime": "2024-01-01T00:00:00Z",
+          "external": "simkl",
+          "isAnime": true
+        }
+      ],
+      "requests": ["/sync/playback?hide_watched=true&limit=40"],
+      "writes": [
+        {
+          "id": "kitsu:8",
+          "ms": 1320000,
+          "season": 1,
+          "episode": 7,
+          "pct": 0.5,
+          "source": "simkl",
+          "t": 1704067200000
+        }
+      ]
+    },
+    {
+      "name": "anime-mal-entry",
+      "raw": [
+        {
+          "progress": 50,
+          "paused_at": "2024-01-01T00:00:00Z",
+          "anime": {
+            "title": "Owned Anime",
+            "ids": {
+              "mal": 9,
+              "anilist": 10
+            }
+          },
+          "episode": {
+            "episode": 99
+          }
+        }
+      ],
+      "expected": [
+        {
+          "_id": "mal:9",
+          "type": "series",
+          "name": "Owned Anime",
+          "state": {
+            "timeOffset": 1320000,
+            "duration": 2640000,
+            "season": 1,
+            "episode": 99,
+            "video_id": "mal:9:1:99",
+            "lastWatched": "2024-01-01T00:00:00Z"
+          },
+          "removed": false,
+          "temp": false,
+          "_ctime": "2024-01-01T00:00:00Z",
+          "_mtime": "2024-01-01T00:00:00Z",
+          "external": "simkl",
+          "isAnime": true
+        }
+      ],
+      "requests": ["/sync/playback?hide_watched=true&limit=40"],
+      "writes": [
+        {
+          "id": "mal:9",
+          "ms": 1320000,
+          "season": 1,
+          "episode": 99,
+          "pct": 0.5,
+          "source": "simkl",
+          "t": 1704067200000
+        }
+      ]
+    },
+    {
+      "name": "anime-anilist-entry",
+      "raw": [
+        {
+          "progress": 50,
+          "paused_at": "2024-01-01T00:00:00Z",
+          "anime": {
+            "title": "Owned Anime",
+            "ids": {
+              "anilist": 10
+            }
+          },
+          "episode": {
+            "number": 9
+          }
+        }
+      ],
+      "expected": [
+        {
+          "_id": "anilist:10",
+          "type": "series",
+          "name": "Owned Anime",
+          "state": {
+            "timeOffset": 1320000,
+            "duration": 2640000,
+            "season": 1,
+            "episode": 9,
+            "video_id": "anilist:10:1:9",
+            "lastWatched": "2024-01-01T00:00:00Z"
+          },
+          "removed": false,
+          "temp": false,
+          "_ctime": "2024-01-01T00:00:00Z",
+          "_mtime": "2024-01-01T00:00:00Z",
+          "external": "simkl",
+          "isAnime": true
+        }
+      ],
+      "requests": ["/sync/playback?hide_watched=true&limit=40"],
+      "writes": [
+        {
+          "id": "anilist:10",
+          "ms": 1320000,
+          "season": 1,
+          "episode": 9,
+          "pct": 0.5,
+          "source": "simkl",
+          "t": 1704067200000
+        }
+      ]
+    },
+    {
+      "name": "anime-franchise-mapped",
+      "raw": [
+        {
+          "progress": 50,
+          "paused_at": "2024-01-01T00:00:00Z",
+          "anime": {
+            "title": "Owned Anime",
+            "ids": {
+              "imdb": "tt1234567"
+            }
+          },
+          "episode": {
+            "season": 1,
+            "number": 7,
+            "tvdb_season": 5,
+            "tvdb_number": 23
+          }
+        }
+      ],
+      "expected": [
+        {
+          "_id": "tt1234567",
+          "type": "series",
+          "name": "Owned Anime",
+          "state": {
+            "timeOffset": 1320000,
+            "duration": 2640000,
+            "season": 5,
+            "episode": 23,
+            "video_id": "tt1234567:5:23",
+            "lastWatched": "2024-01-01T00:00:00Z"
+          },
+          "removed": false,
+          "temp": false,
+          "_ctime": "2024-01-01T00:00:00Z",
+          "_mtime": "2024-01-01T00:00:00Z",
+          "external": "simkl",
+          "isAnime": true
+        }
+      ],
+      "requests": ["/sync/playback?hide_watched=true&limit=40"],
+      "writes": [
+        {
+          "id": "tt1234567",
+          "ms": 1320000,
+          "season": 5,
+          "episode": 23,
+          "pct": 0.5,
+          "source": "simkl",
+          "t": 1704067200000
+        }
+      ]
+    },
+    {
+      "name": "anime-franchise-unmapped-rejected",
+      "raw": [
+        {
+          "progress": 50,
+          "paused_at": "2024-01-01T00:00:00Z",
+          "anime": {
+            "title": "Owned Anime",
+            "ids": {
+              "imdb": "tt1234567"
+            }
+          },
+          "episode": {
+            "season": 1,
+            "number": 7
+          }
+        }
+      ],
+      "expected": [],
+      "requests": ["/sync/playback?hide_watched=true&limit=40"],
+      "writes": []
+    },
+    {
+      "name": "anime-film",
+      "raw": [
+        {
+          "progress": 50,
+          "paused_at": "2024-01-01T00:00:00Z",
+          "anime": {
+            "title": "Owned Anime",
+            "ids": {
+              "imdb": "tt1234567",
+              "tmdb": 7,
+              "kitsu": 8,
+              "mal": 9,
+              "anilist": 10
+            }
+          }
+        }
+      ],
+      "expected": [
+        {
+          "_id": "tt1234567",
+          "type": "movie",
+          "name": "Owned Anime",
+          "state": {
+            "timeOffset": 3150000,
+            "duration": 6300000,
+            "lastWatched": "2024-01-01T00:00:00Z"
+          },
+          "removed": false,
+          "temp": false,
+          "_ctime": "2024-01-01T00:00:00Z",
+          "_mtime": "2024-01-01T00:00:00Z",
+          "external": "simkl",
+          "isAnime": true
+        }
+      ],
+      "requests": ["/sync/playback?hide_watched=true&limit=40"],
+      "writes": [
+        {
+          "id": "tt1234567",
+          "ms": 3150000,
+          "pct": 0.5,
+          "source": "simkl",
+          "t": 1704067200000
+        }
+      ]
+    },
+    {
+      "name": "progress-under-one",
+      "raw": [
+        {
+          "progress": 0.5,
+          "paused_at": "2024-01-01T00:00:00Z",
+          "movie": {
+            "title": "Owned Film",
+            "ids": {
+              "imdb": "tt0123456",
+              "tmdb": 8
+            }
+          }
+        }
+      ],
+      "expected": [],
+      "requests": ["/sync/playback?hide_watched=true&limit=40"],
+      "writes": []
+    },
+    {
+      "name": "progress-one",
+      "raw": [
+        {
+          "progress": 1,
+          "paused_at": "2024-01-01T00:00:00Z",
+          "movie": {
+            "title": "Owned Film",
+            "ids": {
+              "imdb": "tt0123456",
+              "tmdb": 8
+            }
+          }
+        }
+      ],
+      "expected": [
+        {
+          "_id": "tt0123456",
+          "type": "movie",
+          "name": "Owned Film",
+          "state": {
+            "timeOffset": 63000,
+            "duration": 6300000,
+            "lastWatched": "2024-01-01T00:00:00Z"
+          },
+          "removed": false,
+          "temp": false,
+          "_ctime": "2024-01-01T00:00:00Z",
+          "_mtime": "2024-01-01T00:00:00Z",
+          "external": "simkl"
+        }
+      ],
+      "requests": ["/sync/playback?hide_watched=true&limit=40"],
+      "writes": [
+        {
+          "id": "tt0123456",
+          "ms": 63000,
+          "pct": 0.01,
+          "source": "simkl",
+          "t": 1704067200000
+        }
+      ]
+    },
+    {
+      "name": "progress-ninety-eight",
+      "raw": [
+        {
+          "progress": 98,
+          "paused_at": "2024-01-01T00:00:00Z",
+          "movie": {
+            "title": "Owned Film",
+            "ids": {
+              "imdb": "tt0123456",
+              "tmdb": 8
+            }
+          }
+        }
+      ],
+      "expected": [
+        {
+          "_id": "tt0123456",
+          "type": "movie",
+          "name": "Owned Film",
+          "state": {
+            "timeOffset": 6174000,
+            "duration": 6300000,
+            "lastWatched": "2024-01-01T00:00:00Z"
+          },
+          "removed": false,
+          "temp": false,
+          "_ctime": "2024-01-01T00:00:00Z",
+          "_mtime": "2024-01-01T00:00:00Z",
+          "external": "simkl"
+        }
+      ],
+      "requests": ["/sync/playback?hide_watched=true&limit=40"],
+      "writes": [
+        {
+          "id": "tt0123456",
+          "ms": 6174000,
+          "pct": 0.98,
+          "source": "simkl",
+          "t": 1704067200000
+        }
+      ]
+    },
+    {
+      "name": "progress-ninety-nine",
+      "raw": [
+        {
+          "progress": 99,
+          "paused_at": "2024-01-01T00:00:00Z",
+          "movie": {
+            "title": "Owned Film",
+            "ids": {
+              "imdb": "tt0123456",
+              "tmdb": 8
+            }
+          }
+        }
+      ],
+      "expected": [],
+      "requests": ["/sync/playback?hide_watched=true&limit=40"],
+      "writes": []
+    },
+    {
+      "name": "watched-time-fallback",
+      "raw": [
+        {
+          "progress": 50,
+          "movie": {
+            "title": "Owned Film",
+            "ids": {
+              "imdb": "tt0123456",
+              "tmdb": 8
+            }
+          },
+          "watched_at": "2024-01-01T00:00:00Z"
+        }
+      ],
+      "expected": [
+        {
+          "_id": "tt0123456",
+          "type": "movie",
+          "name": "Owned Film",
+          "state": {
+            "timeOffset": 3150000,
+            "duration": 6300000,
+            "lastWatched": "2024-01-01T00:00:00Z"
+          },
+          "removed": false,
+          "temp": false,
+          "_ctime": "2024-01-01T00:00:00Z",
+          "_mtime": "2024-01-01T00:00:00Z",
+          "external": "simkl"
+        }
+      ],
+      "requests": ["/sync/playback?hide_watched=true&limit=40"],
+      "writes": [
+        {
+          "id": "tt0123456",
+          "ms": 3150000,
+          "pct": 0.5,
+          "source": "simkl",
+          "t": 1704067200000
+        }
+      ]
+    },
+    {
+      "name": "epoch-fallback",
+      "raw": [
+        {
+          "progress": 50,
+          "movie": {
+            "title": "Owned Film",
+            "ids": {
+              "imdb": "tt0123456",
+              "tmdb": 8
+            }
+          }
+        }
+      ],
+      "expected": [
+        {
+          "_id": "tt0123456",
+          "type": "movie",
+          "name": "Owned Film",
+          "state": {
+            "timeOffset": 3150000,
+            "duration": 6300000,
+            "lastWatched": "1970-01-01T00:00:00.000Z"
+          },
+          "removed": false,
+          "temp": false,
+          "_ctime": "1970-01-01T00:00:00.000Z",
+          "_mtime": "1970-01-01T00:00:00.000Z",
+          "external": "simkl"
+        }
+      ],
+      "requests": ["/sync/playback?hide_watched=true&limit=40"],
+      "writes": [
+        {
+          "id": "tt0123456",
+          "ms": 3150000,
+          "pct": 0.5,
+          "source": "simkl",
+          "t": 0
+        }
+      ]
+    },
+    {
+      "name": "duplicates-keep-first-coordinate",
+      "raw": [
+        {
+          "progress": 50,
+          "paused_at": "2024-01-01T00:00:00Z",
+          "show": {
+            "title": "Owned Film",
+            "ids": {
+              "imdb": "tt0123456",
+              "tmdb": 8
+            }
+          },
+          "episode": {
+            "season": 1,
+            "number": 7
+          }
+        },
+        {
+          "progress": 60,
+          "paused_at": "2024-01-01T00:00:00Z",
+          "show": {
+            "title": "Owned Film",
+            "ids": {
+              "imdb": "tt0123456",
+              "tmdb": 8
+            }
+          },
+          "episode": {
+            "season": 1,
+            "number": 7
+          }
+        },
+        {
+          "progress": 50,
+          "paused_at": "2024-01-01T00:00:00Z",
+          "show": {
+            "title": "Owned Film",
+            "ids": {
+              "imdb": "tt0123456",
+              "tmdb": 8
+            }
+          },
+          "episode": {
+            "season": 1,
+            "number": 8
+          }
+        }
+      ],
+      "expected": [
+        {
+          "_id": "tt0123456",
+          "type": "series",
+          "name": "Owned Film",
+          "state": {
+            "timeOffset": 1320000,
+            "duration": 2640000,
+            "season": 1,
+            "episode": 7,
+            "video_id": "tt0123456:1:7",
+            "lastWatched": "2024-01-01T00:00:00Z"
+          },
+          "removed": false,
+          "temp": false,
+          "_ctime": "2024-01-01T00:00:00Z",
+          "_mtime": "2024-01-01T00:00:00Z",
+          "external": "simkl",
+          "isAnime": false
+        },
+        {
+          "_id": "tt0123456",
+          "type": "series",
+          "name": "Owned Film",
+          "state": {
+            "timeOffset": 1320000,
+            "duration": 2640000,
+            "season": 1,
+            "episode": 8,
+            "video_id": "tt0123456:1:8",
+            "lastWatched": "2024-01-01T00:00:00Z"
+          },
+          "removed": false,
+          "temp": false,
+          "_ctime": "2024-01-01T00:00:00Z",
+          "_mtime": "2024-01-01T00:00:00Z",
+          "external": "simkl",
+          "isAnime": false
+        }
+      ],
+      "requests": ["/sync/playback?hide_watched=true&limit=40"],
+      "writes": [
+        {
+          "id": "tt0123456",
+          "ms": 1320000,
+          "season": 1,
+          "episode": 7,
+          "pct": 0.5,
+          "source": "simkl",
+          "t": 1704067200000
+        },
+        {
+          "id": "tt0123456",
+          "ms": 1320000,
+          "season": 1,
+          "episode": 8,
+          "pct": 0.5,
+          "source": "simkl",
+          "t": 1704067200000
+        }
+      ]
+    },
+    {
+      "name": "non-array-response",
+      "raw": {},
+      "expected": [],
+      "requests": ["/sync/playback?hide_watched=true&limit=40"],
+      "writes": []
+    },
+    {
+      "name": "provider-404",
+      "status": 404,
+      "expected": [],
+      "requests": ["/sync/playback?hide_watched=true&limit=40"],
+      "writes": []
+    },
+    {
+      "name": "dismissed-does-not-backfill",
+      "raw": [
+        {
+          "progress": 50,
+          "paused_at": "2024-01-01T00:00:00Z",
+          "movie": {
+            "title": "Owned Film",
+            "ids": {
+              "imdb": "tt0123456",
+              "tmdb": 8
+            }
+          }
+        }
+      ],
+      "dismissed": true,
+      "expected": [
+        {
+          "_id": "tt0123456",
+          "type": "movie",
+          "name": "Owned Film",
+          "state": {
+            "timeOffset": 3150000,
+            "duration": 6300000,
+            "lastWatched": "2024-01-01T00:00:00Z"
+          },
+          "removed": false,
+          "temp": false,
+          "_ctime": "2024-01-01T00:00:00Z",
+          "_mtime": "2024-01-01T00:00:00Z",
+          "external": "simkl"
+        }
+      ],
+      "requests": ["/sync/playback?hide_watched=true&limit=40"],
+      "writes": []
+    },
+    {
+      "name": "older-remote-preserves-local",
+      "raw": [
+        {
+          "progress": 50,
+          "paused_at": "2024-01-01T00:00:00Z",
+          "movie": {
+            "title": "Owned Film",
+            "ids": {
+              "imdb": "tt0123456",
+              "tmdb": 8
+            }
+          }
+        }
+      ],
+      "existing": {
+        "ms": 2000000,
+        "t": 1704067200001
+      },
+      "expected": [
+        {
+          "_id": "tt0123456",
+          "type": "movie",
+          "name": "Owned Film",
+          "state": {
+            "timeOffset": 3150000,
+            "duration": 6300000,
+            "lastWatched": "2024-01-01T00:00:00Z"
+          },
+          "removed": false,
+          "temp": false,
+          "_ctime": "2024-01-01T00:00:00Z",
+          "_mtime": "2024-01-01T00:00:00Z",
+          "external": "simkl"
+        }
+      ],
+      "requests": ["/sync/playback?hide_watched=true&limit=40"],
+      "writes": []
+    },
+    {
+      "name": "equal-remote-time-wins",
+      "raw": [
+        {
+          "progress": 50,
+          "paused_at": "2024-01-01T00:00:00Z",
+          "movie": {
+            "title": "Owned Film",
+            "ids": {
+              "imdb": "tt0123456",
+              "tmdb": 8
+            }
+          }
+        }
+      ],
+      "existing": {
+        "ms": 2000000,
+        "t": 1704067200000
+      },
+      "expected": [
+        {
+          "_id": "tt0123456",
+          "type": "movie",
+          "name": "Owned Film",
+          "state": {
+            "timeOffset": 3150000,
+            "duration": 6300000,
+            "lastWatched": "2024-01-01T00:00:00Z"
+          },
+          "removed": false,
+          "temp": false,
+          "_ctime": "2024-01-01T00:00:00Z",
+          "_mtime": "2024-01-01T00:00:00Z",
+          "external": "simkl"
+        }
+      ],
+      "requests": ["/sync/playback?hide_watched=true&limit=40"],
+      "writes": [
+        {
+          "id": "tt0123456",
+          "ms": 3150000,
+          "pct": 0.5,
+          "source": "simkl",
+          "t": 1704067200000
+        }
+      ]
+    },
+    {
+      "name": "zero-time-further-ahead",
+      "raw": [
+        {
+          "progress": 50,
+          "movie": {
+            "title": "Owned Film",
+            "ids": {
+              "imdb": "tt0123456",
+              "tmdb": 8
+            }
+          }
+        }
+      ],
+      "existing": {
+        "ms": 10,
+        "t": 0
+      },
+      "expected": [
+        {
+          "_id": "tt0123456",
+          "type": "movie",
+          "name": "Owned Film",
+          "state": {
+            "timeOffset": 3150000,
+            "duration": 6300000,
+            "lastWatched": "1970-01-01T00:00:00.000Z"
+          },
+          "removed": false,
+          "temp": false,
+          "_ctime": "1970-01-01T00:00:00.000Z",
+          "_mtime": "1970-01-01T00:00:00.000Z",
+          "external": "simkl"
+        }
+      ],
+      "requests": ["/sync/playback?hide_watched=true&limit=40"],
+      "writes": [
+        {
+          "id": "tt0123456",
+          "ms": 3150000,
+          "pct": 0.5,
+          "source": "simkl",
+          "t": 0
+        }
+      ]
+    },
+    {
+      "name": "zero-time-behind",
+      "raw": [
+        {
+          "progress": 50,
+          "movie": {
+            "title": "Owned Film",
+            "ids": {
+              "imdb": "tt0123456",
+              "tmdb": 8
+            }
+          }
+        }
+      ],
+      "existing": {
+        "ms": 4000000,
+        "t": 0
+      },
+      "expected": [
+        {
+          "_id": "tt0123456",
+          "type": "movie",
+          "name": "Owned Film",
+          "state": {
+            "timeOffset": 3150000,
+            "duration": 6300000,
+            "lastWatched": "1970-01-01T00:00:00.000Z"
+          },
+          "removed": false,
+          "temp": false,
+          "_ctime": "1970-01-01T00:00:00.000Z",
+          "_mtime": "1970-01-01T00:00:00.000Z",
+          "external": "simkl"
+        }
+      ],
+      "requests": ["/sync/playback?hide_watched=true&limit=40"],
+      "writes": []
+    },
+    {
+      "name": "changed-session-rejects-late-response",
+      "raw": [
+        {
+          "progress": 50,
+          "paused_at": "2024-01-01T00:00:00Z",
+          "movie": {
+            "title": "Owned Film",
+            "ids": {
+              "imdb": "tt0123456",
+              "tmdb": 8
+            }
+          }
+        }
+      ],
+      "changedSession": true,
+      "expectedError": true,
+      "requests": ["/sync/playback?hide_watched=true&limit=40"],
+      "writes": []
+    }
+  ]
+}

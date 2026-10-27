@@ -6,6 +6,9 @@ import re
 import runpy
 
 requested = os.environ.get('HARBOR_NATIVE_SELECTION', '').strip()
+if requested == 'affected:simkl-playback-import' or requested.startswith('HarborTests.SimklPlaybackImportTests/'):
+    runpy.run_path('scripts/ios/prepare-simkl-playback-import-selection.py')
+    raise SystemExit(0)
 if requested == 'affected:collection-source-completion' or requested.startswith('HarborTests.SimklCollectionIndexTests/'):
     runpy.run_path('scripts/ios/prepare-collection-source-completion-selection.py')
     raise SystemExit(0)

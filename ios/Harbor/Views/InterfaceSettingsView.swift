@@ -29,6 +29,7 @@ struct InterfaceSettingsView: View {
                     HarborSettingsToggle("IMDb", isOn: $preferences.showImdbBadge)
                     HarborSettingsToggle("TMDB", isOn: $preferences.showTmdbBadge)
                 }
+                SimklContinueSourceControls()
                 HarborSettingsSection(DesktopInterfaceText.value("Show pages")) {
                     HarborSettingsToggle(DesktopInterfaceText.value("Mark watched button"), isOn: $preferences.showWatchedButton)
                 }
@@ -59,6 +60,22 @@ struct InterfaceSettingsView: View {
         }.background(HarborTheme.background).navigationTitle(DesktopInterfaceText.value("Library"))
             .navigationBarTitleDisplayMode(.inline).tint(HarborTheme.accent)
             .accessibilityIdentifier("interface-settings-scroll")
+    }
+}
+
+struct SimklContinueSourceControls: View {
+    @AppStorage("cwSources") private var cwSources = ContinueWatchingSources.defaultValue
+    @AppStorage("cwPerProfile") private var privateContinuing = false
+    var body: some View {
+        HarborSettingsSection(DesktopInterfaceText.value("Continue Watching sources")) {
+            HarborSettingsToggle(DesktopInterfaceText.value("Simkl progress"), note: DesktopInterfaceText.value("Pulls what you have part-watched on Simkl into the row, marked with the Simkl logo. Requires a connected Simkl account."),
+                isOn: Binding(get: { ContinueWatchingSources(rawValue: cwSources).simkl }, set: { value in
+                    var next = ContinueWatchingSources(rawValue: cwSources); next.simkl = value; cwSources = next.rawValue
+                })).disabled(privateContinuing).accessibilityIdentifier("settings-cw-simkl")
+            if privateContinuing {
+                Text(DesktopInterfaceText.value("Unavailable while Continue Watching is kept private to each profile, because Simkl progress is shared across every profile on this account.")).font(.caption).foregroundStyle(.secondary)
+            }
+        }
     }
 }
 

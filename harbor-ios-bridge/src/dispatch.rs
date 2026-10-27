@@ -152,7 +152,10 @@ pub fn dispatch(bytes: &[u8]) -> Result<Value, &'static str> {
         } => {
             resume::validate(&document)?;
             let key = resume::key(&target)?;
-            let ms = document.entries.get(&key).map_or(0.0, |entry| entry.ms);
+            let ms = document
+                .entries
+                .get(&key)
+                .map_or(0.0, |entry| entry.position(duration_ms));
             Ok(json!(resume::start_plan(
                 ms,
                 duration_ms,

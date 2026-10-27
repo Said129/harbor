@@ -61,6 +61,23 @@ actor ResumeStore {
         return document.entries[result.key]
     }
 
+    /// Preserve the provider pause time; importing an unchanged remote checkpoint
+    /// must never manufacture fresh local activity or replace a newer Start Over.
+    @discardableResult
+    func importRemote(_ target: ResumeTarget, entry: ResumeEntry, current: @escaping SimklClient.Lease) async throws -> Bool {
+        guard ready else { throw HarborError(code: "resume-store-unavailable") }
+        guard await current() else { throw CancellationError() }
+        struct Key: Decodable { let key: String }
+        let result = try invoke("resumeKey", ["target": try .encoded(target)], as: Key.self)
+        if let held = document.entries[result.key] {
+            let newer = entry.t > 0 && entry.t >= held.t
+            guard newer || (held.t == 0 && entry.ms > held.ms) else { return false }
+        }
+        var next = document; next.entries[result.key] = entry
+        _ = try invoke("validateResume", ["document": try .encoded(next)], as: ResumeDocument.self)
+        return try commit(next)
+    }
+
     @discardableResult
     func save(_ target: ResumeTarget, snapshot: ResumeSnapshot) throws -> Bool {
         guard ready else { throw HarborError(code: "resume-store-unavailable") }

@@ -59,7 +59,9 @@ fn autosave_boundaries_match_desktop_guard_rules() {
         entry,
         Entry {
             ms: 12_345.5,
-            t: 1234
+            t: 1234,
+            pct: None,
+            source: None,
         }
     );
 }
@@ -121,10 +123,42 @@ fn unknown_schema_and_invalid_records_are_not_treated_as_empty() {
         Err("unsupported-resume-version")
     );
     document.version = 1;
-    document
-        .entries
-        .insert("tt123".into(), Entry { ms: -1.0, t: 1 });
+    document.entries.insert(
+        "tt123".into(),
+        Entry {
+            ms: -1.0,
+            t: 1,
+            pct: None,
+            source: None,
+        },
+    );
     assert_eq!(resume::validate(&document), Err("invalid-resume-store"));
     document.entries.get_mut("tt123").unwrap().ms = 6000.0;
     assert_eq!(resume::validate(&document), Ok(()));
+}
+
+#[test]
+fn tracker_percentage_survives_validation_and_uses_real_runtime_from_the_same_entry() {
+    let mut document: Document = serde_json::from_str(
+        r#"{"version":1,"entries":{"owned":{"ms":1320000,"t":123,"pct":0.5,"source":"simkl"}}}"#,
+    )
+    .unwrap();
+    assert_eq!(resume::validate(&document), Ok(()));
+    let entry = document.entries.get_mut("owned").unwrap();
+    assert_eq!(entry.position(1_440_000.0), 720_000.0);
+    assert_eq!(entry.position(0.0), 1_320_000.0);
+    assert_eq!(
+        serde_json::to_value(&document).unwrap()["entries"]["owned"]["pct"],
+        0.5
+    );
+    for pct in [f64::NAN, -0.1, 1.1] {
+        document.entries.get_mut("owned").unwrap().pct = Some(pct);
+        assert_eq!(resume::validate(&document), Err("invalid-resume-store"));
+    }
+    document.entries.get_mut("owned").unwrap().pct = None;
+    document.entries.get_mut("owned").unwrap().source = Some("unrecognized".into());
+    assert_eq!(resume::validate(&document), Err("invalid-resume-store"));
+    let old: Entry = serde_json::from_str(r#"{"ms":60000,"t":12}"#).unwrap();
+    assert_eq!(old.position(1_440_000.0), 60_000.0);
+    assert!(serde_json::to_value(old).unwrap().get("pct").is_none());
 }

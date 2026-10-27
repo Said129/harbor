@@ -249,7 +249,7 @@ private struct ContinueWatchingWatcher: View {
     }
 }
 
-private struct ContinueWatchingArtwork: View {
+struct ContinueWatchingArtwork: View {
     let record: LibraryRecord
     let media: Media
     let presentation: ContinueWatchingPresentation
@@ -284,6 +284,9 @@ private struct ContinueWatchingArtwork: View {
             }
             .overlay(alignment: .bottomLeading) {
                 HStack(spacing: 6) {
+                    if record.raw["external"] == .string("simkl") {
+                        Image("tracker-simkl").resizable().scaledToFit().frame(width: 15, height: 15).accessibilityLabel("Simkl").accessibilityIdentifier("continue-watching-source-simkl")
+                    }
                     Image("ui-play-filled").resizable().scaledToFit().frame(width: 11, height: 11).accessibilityHidden(true)
                     if let episodeCaption { Text(episodeCaption).font(HarborTheme.font(11, weight: .medium)).fixedSize(horizontal: true, vertical: false) }
                     if presentation.upNext {

@@ -86,7 +86,8 @@ struct LibraryRecord: Identifiable, Sendable {
         let timestamp = finished || offset == 0 ? modifiedTimestamp : lastWatchedTimestamp ?? modifiedTimestamp
         guard let timestamp, timestamp < Double(UInt64.max) else { return nil }
         let duration = state["duration"].numericValue ?? 0
-        return CloudResume(entry: ResumeEntry(ms: finished ? 0 : offset, t: UInt64(timestamp)), durationMs: duration.isFinite && duration >= 0 ? duration : 0)
+        let remote = SimklPlaybackImport.checkpoint(self)?.1
+        return CloudResume(entry: remote ?? ResumeEntry(ms: finished ? 0 : offset, t: UInt64(timestamp)), durationMs: duration.isFinite && duration >= 0 ? duration : 0)
     }
     static func new(_ media: Media) -> [String: JSONValue] {
         let now = Date().ISO8601Format()

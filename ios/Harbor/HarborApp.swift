@@ -31,7 +31,13 @@ struct HarborApp: App {
     @Bindable var model: AppModel
     @State private var profileForeground = ProfileForegroundCycle()
     @AppStorage("uiLanguage") private var uiLanguage = "es"
+    @AppStorage("cwSources") private var cwSources = ContinueWatchingSources.defaultValue
+    @AppStorage("cwPerProfile") private var privateContinuing = false
     @Environment(\.scenePhase) private var scenePhase
+    private var simklPlaybackTaskID: String {
+        let token = SimklAccountStore.forOwner(model.personalOwner).session.map { EBookShelf.hash($0.accessToken) } ?? "disconnected"
+        return [model.accountOperationScope, String(model.storageReady), cwSources, String(privateContinuing), token, String(describing: scenePhase)].joined(separator: "|")
+    }
     var body: some View {
         synchronization
             .sheet(isPresented: $model.showAccount, onDismiss: { model.accountDidDismiss() }) { accountSheet }
@@ -80,6 +86,27 @@ struct HarborApp: App {
     }
     private var synchronization: some View {
         lifecycle
+                .task(id: model.personalOwner + "|" + String(model.storageReady)) {
+                    guard model.storageReady else { return }
+                    let account = SimklAccountStore.forOwner(model.personalOwner)
+                    if !account.ready { do { try account.load() } catch { Diagnostics.shared.recordFailure(error) } }
+                }
+                .task(id: simklPlaybackTaskID) {
+                    let owner = model.personalOwner, scope = model.accountOperationScope, account = SimklAccountStore.forOwner(owner)
+                    let feed = model.library.simklPlayback
+                    feed.bind(account: account, scope: scope, active: { [weak model] in
+                        model?.storageReady == true && model?.personalOwner == owner && model?.accountOperationScope == scope
+                    }, enabled: {
+                        ContinueWatchingSources(rawValue: UserDefaults.standard.string(forKey: "cwSources") ?? ContinueWatchingSources.defaultValue).simkl
+                            && !UserDefaults.standard.bool(forKey: "cwPerProfile")
+                    })
+                    guard scenePhase == .active, model.storageReady else { return }
+                    await feed.refresh(focused: true, resume: model.resume, dismissed: { model.library.isDismissed($0) })
+                    while !Task.isCancelled {
+                        do { try await Task.sleep(for: .seconds(300)) } catch { return }
+                        await feed.refresh(resume: model.resume, dismissed: { model.library.isDismissed($0) })
+                    }
+                }
                 .task(id: model.harborIdentityOwner + "|" + model.interfaceProfileScope + "|" + String(model.storageReady) + "|" + String(describing: scenePhase)) {
                     guard scenePhase == .active, model.storageReady else { return }
                     let identity = model.harborIdentity

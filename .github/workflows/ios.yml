@@ -354,6 +354,10 @@ jobs:
           set -e
           python3 scripts/ios/record-music-public-network-rust.py
           test "$status" -eq 0
+      - name: Verify imported tracker percentage and legacy resume on the Apple host
+        if: ${{ inputs.validation_scope == 'plugin-playback' && (contains(inputs.native_test_selection, 'simkl-playback-import') || contains(inputs.native_test_selection, 'SimklPlaybackImportTests/')) }}
+        shell: bash
+        run: bash scripts/ios/verify-simkl-playback-import-rust.sh
       - name: Build and package Rust before Swift
         shell: bash
         run: |
