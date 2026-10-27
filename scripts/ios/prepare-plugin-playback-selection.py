@@ -6,6 +6,9 @@ import re
 import runpy
 
 requested = os.environ.get('HARBOR_NATIVE_SELECTION', '').strip()
+if requested == 'affected:trakt-account' or requested.startswith('HarborTests.TraktAccountTests/'):
+    runpy.run_path('scripts/ios/prepare-trakt-account-selection.py')
+    raise SystemExit(0)
 if requested == 'native-only:continue-focus-completion' or (requested.startswith('HarborTests.PosterBehaviorMountTests/') and 'HarborTests.ContinueDismissalTests/' in requested):
     runpy.run_path('scripts/ios/prepare-continue-focus-selection.py')
     raise SystemExit(0)

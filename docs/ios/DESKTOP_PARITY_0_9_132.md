@@ -6,6 +6,8 @@ La referencia de código es `0834340cec5531650bfe78cd628628702e636987`, identifi
 
 ## Criterios de equivalencia
 
+Actualización y aclaración del propietario del 27 de octubre: terminar primero iOS/iPadOS conservando el sistema existente de perfiles y cuenta de Harbor; eliminar el sistema de cuentas/sesiones y la sincronización autenticada de Stremio. Conservar los datos mediante migración recuperable y mantener la compatibilidad con el protocolo abierto de addons. No se pide inventar otro sistema de perfiles. Esta excepción se incorpora al port sin reducir el resto de la equivalencia. El alcance se registra en [INDEPENDENT_APP_SCOPE.md](INDEPENDENT_APP_SCOPE.md). Desktop, Android y Android TV quedan para después de terminar iOS; su orden posterior es flexible.
+
 - Comparar recorridos y resultados completos, además de pantallas y nombres de opciones. Un interruptor sin un comportamiento real no completa una función.
 - Incluir todas las interfaces, animaciones, transiciones, secciones y estados de carga, vacío y error que correspondan al alcance compatible. Esta ampliación fue confirmada expresamente por el propietario el 17 de octubre. Revisar la composición visual y el movimiento frente a la referencia, además de la lógica, adaptando el tamaño y la interacción a iPhone/iPad y respetando Reducir movimiento.
 - Adaptar la interacción a pantalla táctil, iPad, selector de documentos, compartir, audio y ciclo de vida de iOS. Conservar la identidad de Harbor.

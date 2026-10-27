@@ -80,6 +80,8 @@ struct ContinueSourceControls: View {
                 isOn: source(\.local)).accessibilityIdentifier("settings-cw-local")
             HarborSettingsToggle(DesktopInterfaceText.value("Simkl progress"), note: DesktopInterfaceText.value("Pulls what you have part-watched on Simkl into the row, marked with the Simkl logo. Requires a connected Simkl account."),
                 isOn: source(\.simkl)).disabled(privateContinuing).accessibilityIdentifier("settings-cw-simkl")
+            HarborSettingsToggle(DesktopInterfaceText.value("Trakt progress"), note: DesktopInterfaceText.value("Pulls what you have part-watched on Trakt into the row, marked with the Trakt logo. Requires a connected Trakt account."),
+                isOn: source(\.trakt)).disabled(privateContinuing).accessibilityIdentifier("settings-cw-trakt")
             if privateContinuing {
                 Text(DesktopInterfaceText.value("Unavailable while Continue Watching is kept private to each profile, because Simkl progress is shared across every profile on this account.")).font(.caption).foregroundStyle(.secondary)
             }

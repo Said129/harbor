@@ -286,6 +286,8 @@ struct ContinueWatchingArtwork: View {
                 HStack(spacing: 6) {
                     if record.raw["external"] == .string("simkl") {
                         Image("tracker-simkl").resizable().scaledToFit().frame(width: 15, height: 15).accessibilityLabel("Simkl").accessibilityIdentifier("continue-watching-source-simkl")
+                    } else if record.raw["external"] == .string("trakt") {
+                        Image("tracker-trakt").resizable().scaledToFit().frame(width: 15, height: 15).accessibilityLabel("Trakt").accessibilityIdentifier("continue-watching-source-trakt")
                     }
                     Image("ui-play-filled").resizable().scaledToFit().frame(width: 11, height: 11).accessibilityHidden(true)
                     if let episodeCaption { Text(episodeCaption).font(HarborTheme.font(11, weight: .medium)).fixedSize(horizontal: true, vertical: false) }

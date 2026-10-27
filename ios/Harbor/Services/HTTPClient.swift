@@ -70,6 +70,28 @@ struct HTTPClient: Sendable {
         catch { let error = HarborError(code: "network"); await Diagnostics.shared.recordFailure(error); throw error }
     }
 
+    func traktReply(_ request: URLRequest) async throws -> TraktReply {
+        guard let parts = request.url.flatMap({ URLComponents(url: $0, resolvingAgainstBaseURL: false) }),
+              parts.scheme == "https", parts.user == nil, parts.password == nil, parts.port == nil,
+              parts.host == "api.trakt.tv" || (parts.host == "harborcommunity.site" && ["/api/trakt/token", "/api/trakt/device-token"].contains(parts.path)) else { throw HarborError(code: "trakt-request") }
+        await Diagnostics.shared.record(.requestStarted)
+        do {
+            let (bytes, response) = try await Self.publicTVDBSession.bytes(for: request)
+            guard let response = response as? HTTPURLResponse else { throw HarborError(code: "invalid-http-response") }
+            let limit = 8 * 1_024 * 1_024
+            guard response.expectedContentLength <= Int64(limit) else { throw HarborError(code: "response-too-large") }
+            var data = Data()
+            for try await byte in bytes {
+                try Task.checkCancellation(); guard data.count < limit else { throw HarborError(code: "response-too-large") }; data.append(byte)
+            }
+            await Diagnostics.shared.record(.requestCompleted, count: data.count)
+            return TraktReply(status: response.statusCode, data: data, retryAfter: response.value(forHTTPHeaderField: "Retry-After"))
+        } catch is CancellationError { throw CancellationError() }
+        catch let error as HarborError { await Diagnostics.shared.recordFailure(error); throw error }
+        catch let error as URLError where error.code == .cancelled { throw CancellationError() }
+        catch { let error = HarborError(code: "network"); await Diagnostics.shared.recordFailure(error); throw error }
+    }
+
     func anilist(query: String, variables: JSONValue) async throws -> JSONValue {
         var request = URLRequest(url: URL(string: "https://graphql.anilist.co")!, timeoutInterval: 20)
         request.httpMethod = "POST"

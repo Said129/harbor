@@ -1,0 +1,1190 @@
+{
+  "reference": "0834340cec5531650bfe78cd628628702e636987",
+  "actual_original_typescript_executed": true,
+  "provider_network_requests": 0,
+  "source_hashes": {
+    "src/lib/trakt/playback.ts": "eeb47b74b8a4fa596b009f2024486dc3f37eb238e803a2df26c14a818a37c19e",
+    "src/lib/trakt/device-auth.ts": "6bce68235b8f6d9c417f54526c60d5657b9b22d56642c23ba8aab189b847e07e",
+    "src/lib/trakt/config.ts": "23571647a75a77a81cc242bd0a42e00f4a21ede580517d63a7bd59ac12cc8391",
+    "src/lib/trakt/client.ts": "399477787e7fa33e228e3b939f0558aa464eb766160f961038bfc286898a6bcd"
+  },
+  "cases": [
+    {
+      "name": "movie-imdb",
+      "raw": [
+        {
+          "progress": 50,
+          "paused_at": "2024-01-01T00:00:00Z",
+          "movie": {
+            "title": "Owned Trakt film",
+            "ids": {
+              "imdb": "tt0123456",
+              "tmdb": 8
+            }
+          }
+        }
+      ],
+      "expected": [
+        {
+          "_id": "tt0123456",
+          "type": "movie",
+          "name": "Owned Trakt film",
+          "state": {
+            "timeOffset": 3150000,
+            "duration": 6300000,
+            "lastWatched": "2024-01-01T00:00:00Z"
+          },
+          "removed": false,
+          "temp": false,
+          "_ctime": "2024-01-01T00:00:00Z",
+          "_mtime": "2024-01-01T00:00:00Z",
+          "external": "trakt"
+        }
+      ],
+      "requests": ["/sync/playback?limit=40"],
+      "writes": [["tt0123456", 3150000, null, null, null, 0.5, "trakt"]]
+    },
+    {
+      "name": "movie-tmdb",
+      "raw": [
+        {
+          "progress": 50,
+          "paused_at": "2024-01-01T00:00:00Z",
+          "movie": {
+            "title": "Owned Trakt film",
+            "ids": {
+              "tmdb": 8
+            }
+          }
+        }
+      ],
+      "expected": [
+        {
+          "_id": "tmdb:movie:8",
+          "type": "movie",
+          "name": "Owned Trakt film",
+          "state": {
+            "timeOffset": 3150000,
+            "duration": 6300000,
+            "lastWatched": "2024-01-01T00:00:00Z"
+          },
+          "removed": false,
+          "temp": false,
+          "_ctime": "2024-01-01T00:00:00Z",
+          "_mtime": "2024-01-01T00:00:00Z",
+          "external": "trakt"
+        }
+      ],
+      "requests": ["/sync/playback?limit=40"],
+      "writes": [["tmdb:movie:8", 3150000, null, null, null, 0.5, "trakt"]]
+    },
+    {
+      "name": "movie-invalid",
+      "raw": [
+        {
+          "progress": 50,
+          "paused_at": "2024-01-01T00:00:00Z",
+          "movie": {
+            "title": "Owned Trakt film",
+            "ids": {
+              "imdb": "unsafe"
+            }
+          }
+        }
+      ],
+      "expected": [],
+      "requests": ["/sync/playback?limit=40"],
+      "writes": []
+    },
+    {
+      "name": "show-coordinates",
+      "raw": [
+        {
+          "progress": 50,
+          "paused_at": "2024-01-01T00:00:00Z",
+          "show": {
+            "title": "Owned Trakt show",
+            "ids": {
+              "imdb": "tt1234567",
+              "tmdb": 9
+            }
+          },
+          "episode": {
+            "season": 2,
+            "number": 7
+          }
+        }
+      ],
+      "expected": [
+        {
+          "_id": "tt1234567",
+          "type": "series",
+          "name": "Owned Trakt show",
+          "state": {
+            "timeOffset": 1320000,
+            "duration": 2640000,
+            "season": 2,
+            "episode": 7,
+            "video_id": "tt1234567:2:7",
+            "lastWatched": "2024-01-01T00:00:00Z"
+          },
+          "removed": false,
+          "temp": false,
+          "_ctime": "2024-01-01T00:00:00Z",
+          "_mtime": "2024-01-01T00:00:00Z",
+          "external": "trakt"
+        }
+      ],
+      "requests": ["/sync/playback?limit=40"],
+      "writes": [["tt1234567", 1320000, 2, 7, null, 0.5, "trakt"]]
+    },
+    {
+      "name": "show-tmdb",
+      "raw": [
+        {
+          "progress": 50,
+          "paused_at": "2024-01-01T00:00:00Z",
+          "show": {
+            "title": "Owned Trakt show",
+            "ids": {
+              "tmdb": 9
+            }
+          },
+          "episode": {
+            "season": 2,
+            "number": 7
+          }
+        }
+      ],
+      "expected": [
+        {
+          "_id": "tmdb:tv:9",
+          "type": "series",
+          "name": "Owned Trakt show",
+          "state": {
+            "timeOffset": 1320000,
+            "duration": 2640000,
+            "season": 2,
+            "episode": 7,
+            "video_id": "tmdb:tv:9:2:7",
+            "lastWatched": "2024-01-01T00:00:00Z"
+          },
+          "removed": false,
+          "temp": false,
+          "_ctime": "2024-01-01T00:00:00Z",
+          "_mtime": "2024-01-01T00:00:00Z",
+          "external": "trakt"
+        }
+      ],
+      "requests": ["/sync/playback?limit=40"],
+      "writes": [["tmdb:tv:9", 1320000, 2, 7, null, 0.5, "trakt"]]
+    },
+    {
+      "name": "show-specials-coordinates-omitted",
+      "raw": [
+        {
+          "progress": 50,
+          "paused_at": "2024-01-01T00:00:00Z",
+          "show": {
+            "title": "Owned Trakt show",
+            "ids": {
+              "imdb": "tt1234567",
+              "tmdb": 9
+            }
+          },
+          "episode": {
+            "season": 0,
+            "number": 7
+          }
+        }
+      ],
+      "expected": [
+        {
+          "_id": "tt1234567",
+          "type": "series",
+          "name": "Owned Trakt show",
+          "state": {
+            "timeOffset": 1320000,
+            "duration": 2640000,
+            "lastWatched": "2024-01-01T00:00:00Z"
+          },
+          "removed": false,
+          "temp": false,
+          "_ctime": "2024-01-01T00:00:00Z",
+          "_mtime": "2024-01-01T00:00:00Z",
+          "external": "trakt"
+        }
+      ],
+      "requests": ["/sync/playback?limit=40"],
+      "writes": [["tt1234567", 1320000, null, null, null, 0.5, "trakt"]]
+    },
+    {
+      "name": "show-missing-coordinates",
+      "raw": [
+        {
+          "progress": 50,
+          "paused_at": "2024-01-01T00:00:00Z",
+          "show": {
+            "title": "Owned Trakt show",
+            "ids": {
+              "imdb": "tt1234567",
+              "tmdb": 9
+            }
+          }
+        }
+      ],
+      "expected": [
+        {
+          "_id": "tt1234567",
+          "type": "series",
+          "name": "Owned Trakt show",
+          "state": {
+            "timeOffset": 1320000,
+            "duration": 2640000,
+            "lastWatched": "2024-01-01T00:00:00Z"
+          },
+          "removed": false,
+          "temp": false,
+          "_ctime": "2024-01-01T00:00:00Z",
+          "_mtime": "2024-01-01T00:00:00Z",
+          "external": "trakt"
+        }
+      ],
+      "requests": ["/sync/playback?limit=40"],
+      "writes": [["tt1234567", 1320000, null, null, null, 0.5, "trakt"]]
+    },
+    {
+      "name": "movie-with-episode-is-not-a-movie",
+      "raw": [
+        {
+          "progress": 50,
+          "paused_at": "2024-01-01T00:00:00Z",
+          "movie": {
+            "title": "Owned Trakt film",
+            "ids": {
+              "imdb": "tt0123456",
+              "tmdb": 8
+            }
+          },
+          "episode": {
+            "season": 1,
+            "number": 1
+          }
+        }
+      ],
+      "expected": [],
+      "requests": ["/sync/playback?limit=40"],
+      "writes": []
+    },
+    {
+      "name": "no-supported-node",
+      "raw": [
+        {
+          "progress": 50,
+          "paused_at": "2024-01-01T00:00:00Z",
+          "anime": {
+            "title": "Owned Trakt show",
+            "ids": {
+              "imdb": "tt1234567",
+              "tmdb": 9
+            }
+          }
+        }
+      ],
+      "expected": [],
+      "requests": ["/sync/playback?limit=40"],
+      "writes": []
+    },
+    {
+      "name": "under-one",
+      "raw": [
+        {
+          "progress": 0.5,
+          "paused_at": "2024-01-01T00:00:00Z",
+          "movie": {
+            "title": "Owned Trakt film",
+            "ids": {
+              "imdb": "tt0123456",
+              "tmdb": 8
+            }
+          }
+        }
+      ],
+      "expected": [],
+      "requests": ["/sync/playback?limit=40"],
+      "writes": []
+    },
+    {
+      "name": "one-percent",
+      "raw": [
+        {
+          "progress": 1,
+          "paused_at": "2024-01-01T00:00:00Z",
+          "movie": {
+            "title": "Owned Trakt film",
+            "ids": {
+              "imdb": "tt0123456",
+              "tmdb": 8
+            }
+          }
+        }
+      ],
+      "expected": [
+        {
+          "_id": "tt0123456",
+          "type": "movie",
+          "name": "Owned Trakt film",
+          "state": {
+            "timeOffset": 63000,
+            "duration": 6300000,
+            "lastWatched": "2024-01-01T00:00:00Z"
+          },
+          "removed": false,
+          "temp": false,
+          "_ctime": "2024-01-01T00:00:00Z",
+          "_mtime": "2024-01-01T00:00:00Z",
+          "external": "trakt"
+        }
+      ],
+      "requests": ["/sync/playback?limit=40"],
+      "writes": [["tt0123456", 63000, null, null, null, 0.01, "trakt"]]
+    },
+    {
+      "name": "ninety-eight",
+      "raw": [
+        {
+          "progress": 98,
+          "paused_at": "2024-01-01T00:00:00Z",
+          "movie": {
+            "title": "Owned Trakt film",
+            "ids": {
+              "imdb": "tt0123456",
+              "tmdb": 8
+            }
+          }
+        }
+      ],
+      "expected": [
+        {
+          "_id": "tt0123456",
+          "type": "movie",
+          "name": "Owned Trakt film",
+          "state": {
+            "timeOffset": 6174000,
+            "duration": 6300000,
+            "lastWatched": "2024-01-01T00:00:00Z"
+          },
+          "removed": false,
+          "temp": false,
+          "_ctime": "2024-01-01T00:00:00Z",
+          "_mtime": "2024-01-01T00:00:00Z",
+          "external": "trakt"
+        }
+      ],
+      "requests": ["/sync/playback?limit=40"],
+      "writes": [["tt0123456", 6174000, null, null, null, 0.98, "trakt"]]
+    },
+    {
+      "name": "ninety-nine-rejected",
+      "raw": [
+        {
+          "progress": 99,
+          "paused_at": "2024-01-01T00:00:00Z",
+          "movie": {
+            "title": "Owned Trakt film",
+            "ids": {
+              "imdb": "tt0123456",
+              "tmdb": 8
+            }
+          }
+        }
+      ],
+      "expected": [],
+      "requests": ["/sync/playback?limit=40"],
+      "writes": []
+    },
+    {
+      "name": "no-progress",
+      "raw": [
+        {
+          "paused_at": "2024-01-01T00:00:00Z",
+          "movie": {
+            "title": "Owned Trakt film",
+            "ids": {
+              "imdb": "tt0123456",
+              "tmdb": 8
+            }
+          }
+        }
+      ],
+      "expected": [],
+      "requests": ["/sync/playback?limit=40"],
+      "writes": []
+    },
+    {
+      "name": "epoch",
+      "raw": [
+        {
+          "progress": 50,
+          "movie": {
+            "title": "Owned Trakt film",
+            "ids": {
+              "imdb": "tt0123456",
+              "tmdb": 8
+            }
+          }
+        }
+      ],
+      "expected": [
+        {
+          "_id": "tt0123456",
+          "type": "movie",
+          "name": "Owned Trakt film",
+          "state": {
+            "timeOffset": 3150000,
+            "duration": 6300000,
+            "lastWatched": "1970-01-01T00:00:00.000Z"
+          },
+          "removed": false,
+          "temp": false,
+          "_ctime": "1970-01-01T00:00:00.000Z",
+          "_mtime": "1970-01-01T00:00:00.000Z",
+          "external": "trakt"
+        }
+      ],
+      "requests": ["/sync/playback?limit=40"],
+      "writes": [["tt0123456", 3150000, null, null, null, 0.5, "trakt"]]
+    },
+    {
+      "name": "paused-time-kept",
+      "raw": [
+        {
+          "progress": 50,
+          "paused_at": "2024-01-01T00:00:00Z",
+          "movie": {
+            "title": "Owned Trakt film",
+            "ids": {
+              "imdb": "tt0123456",
+              "tmdb": 8
+            }
+          },
+          "watched_at": "2025-01-01T00:00:00Z"
+        }
+      ],
+      "expected": [
+        {
+          "_id": "tt0123456",
+          "type": "movie",
+          "name": "Owned Trakt film",
+          "state": {
+            "timeOffset": 3150000,
+            "duration": 6300000,
+            "lastWatched": "2024-01-01T00:00:00Z"
+          },
+          "removed": false,
+          "temp": false,
+          "_ctime": "2024-01-01T00:00:00Z",
+          "_mtime": "2024-01-01T00:00:00Z",
+          "external": "trakt"
+        }
+      ],
+      "requests": ["/sync/playback?limit=40"],
+      "writes": [["tt0123456", 3150000, null, null, null, 0.5, "trakt"]]
+    },
+    {
+      "name": "no-title",
+      "raw": [
+        {
+          "progress": 50,
+          "paused_at": "2024-01-01T00:00:00Z",
+          "movie": {
+            "ids": {
+              "imdb": "tt0123456",
+              "tmdb": 8
+            }
+          }
+        }
+      ],
+      "expected": [
+        {
+          "_id": "tt0123456",
+          "type": "movie",
+          "name": "Untitled",
+          "state": {
+            "timeOffset": 3150000,
+            "duration": 6300000,
+            "lastWatched": "2024-01-01T00:00:00Z"
+          },
+          "removed": false,
+          "temp": false,
+          "_ctime": "2024-01-01T00:00:00Z",
+          "_mtime": "2024-01-01T00:00:00Z",
+          "external": "trakt"
+        }
+      ],
+      "requests": ["/sync/playback?limit=40"],
+      "writes": [["tt0123456", 3150000, null, null, null, 0.5, "trakt"]]
+    },
+    {
+      "name": "empty-title",
+      "raw": [
+        {
+          "progress": 50,
+          "paused_at": "2024-01-01T00:00:00Z",
+          "movie": {
+            "title": "",
+            "ids": {
+              "imdb": "tt0123456",
+              "tmdb": 8
+            }
+          }
+        }
+      ],
+      "expected": [
+        {
+          "_id": "tt0123456",
+          "type": "movie",
+          "name": "",
+          "state": {
+            "timeOffset": 3150000,
+            "duration": 6300000,
+            "lastWatched": "2024-01-01T00:00:00Z"
+          },
+          "removed": false,
+          "temp": false,
+          "_ctime": "2024-01-01T00:00:00Z",
+          "_mtime": "2024-01-01T00:00:00Z",
+          "external": "trakt"
+        }
+      ],
+      "requests": ["/sync/playback?limit=40"],
+      "writes": [["tt0123456", 3150000, null, null, null, 0.5, "trakt"]]
+    },
+    {
+      "name": "duplicates-keep-first-coordinate",
+      "raw": [
+        {
+          "progress": 50,
+          "paused_at": "2024-01-01T00:00:00Z",
+          "show": {
+            "title": "Owned Trakt show",
+            "ids": {
+              "imdb": "tt1234567",
+              "tmdb": 9
+            }
+          },
+          "episode": {
+            "season": 1,
+            "number": 7
+          }
+        },
+        {
+          "progress": 60,
+          "paused_at": "2024-01-01T00:00:00Z",
+          "show": {
+            "title": "Owned Trakt show",
+            "ids": {
+              "imdb": "tt1234567",
+              "tmdb": 9
+            }
+          },
+          "episode": {
+            "season": 1,
+            "number": 7
+          }
+        },
+        {
+          "progress": 50,
+          "paused_at": "2024-01-01T00:00:00Z",
+          "show": {
+            "title": "Owned Trakt show",
+            "ids": {
+              "imdb": "tt1234567",
+              "tmdb": 9
+            }
+          },
+          "episode": {
+            "season": 1,
+            "number": 8
+          }
+        }
+      ],
+      "expected": [
+        {
+          "_id": "tt1234567",
+          "type": "series",
+          "name": "Owned Trakt show",
+          "state": {
+            "timeOffset": 1320000,
+            "duration": 2640000,
+            "season": 1,
+            "episode": 7,
+            "video_id": "tt1234567:1:7",
+            "lastWatched": "2024-01-01T00:00:00Z"
+          },
+          "removed": false,
+          "temp": false,
+          "_ctime": "2024-01-01T00:00:00Z",
+          "_mtime": "2024-01-01T00:00:00Z",
+          "external": "trakt"
+        },
+        {
+          "_id": "tt1234567",
+          "type": "series",
+          "name": "Owned Trakt show",
+          "state": {
+            "timeOffset": 1320000,
+            "duration": 2640000,
+            "season": 1,
+            "episode": 8,
+            "video_id": "tt1234567:1:8",
+            "lastWatched": "2024-01-01T00:00:00Z"
+          },
+          "removed": false,
+          "temp": false,
+          "_ctime": "2024-01-01T00:00:00Z",
+          "_mtime": "2024-01-01T00:00:00Z",
+          "external": "trakt"
+        }
+      ],
+      "requests": ["/sync/playback?limit=40"],
+      "writes": [
+        ["tt1234567", 1320000, 1, 7, null, 0.5, "trakt"],
+        ["tt1234567", 1320000, 1, 8, null, 0.5, "trakt"]
+      ]
+    },
+    {
+      "name": "non-array",
+      "raw": {},
+      "expected": [],
+      "requests": ["/sync/playback?limit=40"],
+      "writes": []
+    },
+    {
+      "name": "not-found",
+      "status": 404,
+      "expected": [],
+      "requests": ["/sync/playback?limit=40"],
+      "writes": []
+    },
+    {
+      "name": "provider-failure",
+      "status": 503,
+      "expectedError": true,
+      "requests": ["/sync/playback?limit=40"],
+      "writes": []
+    },
+    {
+      "name": "no-session",
+      "raw": [
+        {
+          "progress": 50,
+          "paused_at": "2024-01-01T00:00:00Z",
+          "movie": {
+            "title": "Owned Trakt film",
+            "ids": {
+              "imdb": "tt0123456",
+              "tmdb": 8
+            }
+          }
+        }
+      ],
+      "noSession": true,
+      "expected": [],
+      "requests": [],
+      "writes": []
+    },
+    {
+      "name": "dismissed-no-backfill",
+      "raw": [
+        {
+          "progress": 50,
+          "paused_at": "2024-01-01T00:00:00Z",
+          "movie": {
+            "title": "Owned Trakt film",
+            "ids": {
+              "imdb": "tt0123456",
+              "tmdb": 8
+            }
+          }
+        }
+      ],
+      "dismissed": true,
+      "expected": [
+        {
+          "_id": "tt0123456",
+          "type": "movie",
+          "name": "Owned Trakt film",
+          "state": {
+            "timeOffset": 3150000,
+            "duration": 6300000,
+            "lastWatched": "2024-01-01T00:00:00Z"
+          },
+          "removed": false,
+          "temp": false,
+          "_ctime": "2024-01-01T00:00:00Z",
+          "_mtime": "2024-01-01T00:00:00Z",
+          "external": "trakt"
+        }
+      ],
+      "requests": ["/sync/playback?limit=40"],
+      "writes": []
+    },
+    {
+      "name": "newer-local-preserved",
+      "raw": [
+        {
+          "progress": 50,
+          "paused_at": "2024-01-01T00:00:00Z",
+          "movie": {
+            "title": "Owned Trakt film",
+            "ids": {
+              "imdb": "tt0123456",
+              "tmdb": 8
+            }
+          }
+        }
+      ],
+      "existing": {
+        "ms": 1000000,
+        "t": 1704067200001
+      },
+      "expected": [
+        {
+          "_id": "tt0123456",
+          "type": "movie",
+          "name": "Owned Trakt film",
+          "state": {
+            "timeOffset": 3150000,
+            "duration": 6300000,
+            "lastWatched": "2024-01-01T00:00:00Z"
+          },
+          "removed": false,
+          "temp": false,
+          "_ctime": "2024-01-01T00:00:00Z",
+          "_mtime": "2024-01-01T00:00:00Z",
+          "external": "trakt"
+        }
+      ],
+      "requests": ["/sync/playback?limit=40"],
+      "writes": []
+    },
+    {
+      "name": "equal-pause-wins",
+      "raw": [
+        {
+          "progress": 50,
+          "paused_at": "2024-01-01T00:00:00Z",
+          "movie": {
+            "title": "Owned Trakt film",
+            "ids": {
+              "imdb": "tt0123456",
+              "tmdb": 8
+            }
+          }
+        }
+      ],
+      "existing": {
+        "ms": 1000000,
+        "t": 1704067200000
+      },
+      "expected": [
+        {
+          "_id": "tt0123456",
+          "type": "movie",
+          "name": "Owned Trakt film",
+          "state": {
+            "timeOffset": 3150000,
+            "duration": 6300000,
+            "lastWatched": "2024-01-01T00:00:00Z"
+          },
+          "removed": false,
+          "temp": false,
+          "_ctime": "2024-01-01T00:00:00Z",
+          "_mtime": "2024-01-01T00:00:00Z",
+          "external": "trakt"
+        }
+      ],
+      "requests": ["/sync/playback?limit=40"],
+      "writes": [["tt0123456", 3150000, null, null, null, 0.5, "trakt"]]
+    },
+    {
+      "name": "zero-time-further-ahead",
+      "raw": [
+        {
+          "progress": 50,
+          "movie": {
+            "title": "Owned Trakt film",
+            "ids": {
+              "imdb": "tt0123456",
+              "tmdb": 8
+            }
+          }
+        }
+      ],
+      "existing": {
+        "ms": 10,
+        "t": 0
+      },
+      "expected": [
+        {
+          "_id": "tt0123456",
+          "type": "movie",
+          "name": "Owned Trakt film",
+          "state": {
+            "timeOffset": 3150000,
+            "duration": 6300000,
+            "lastWatched": "1970-01-01T00:00:00.000Z"
+          },
+          "removed": false,
+          "temp": false,
+          "_ctime": "1970-01-01T00:00:00.000Z",
+          "_mtime": "1970-01-01T00:00:00.000Z",
+          "external": "trakt"
+        }
+      ],
+      "requests": ["/sync/playback?limit=40"],
+      "writes": [["tt0123456", 3150000, null, null, null, 0.5, "trakt"]]
+    },
+    {
+      "name": "zero-time-behind",
+      "raw": [
+        {
+          "progress": 50,
+          "movie": {
+            "title": "Owned Trakt film",
+            "ids": {
+              "imdb": "tt0123456",
+              "tmdb": 8
+            }
+          }
+        }
+      ],
+      "existing": {
+        "ms": 4000000,
+        "t": 0
+      },
+      "expected": [
+        {
+          "_id": "tt0123456",
+          "type": "movie",
+          "name": "Owned Trakt film",
+          "state": {
+            "timeOffset": 3150000,
+            "duration": 6300000,
+            "lastWatched": "1970-01-01T00:00:00.000Z"
+          },
+          "removed": false,
+          "temp": false,
+          "_ctime": "1970-01-01T00:00:00.000Z",
+          "_mtime": "1970-01-01T00:00:00.000Z",
+          "external": "trakt"
+        }
+      ],
+      "requests": ["/sync/playback?limit=40"],
+      "writes": []
+    }
+  ],
+  "authCases": [
+    {
+      "name": "authorized",
+      "polls": [400, 200],
+      "expected": {
+        "updates": ["authorized"],
+        "requests": [
+          {
+            "url": "https://api.trakt.tv/oauth/device/code",
+            "method": "POST",
+            "headers": {
+              "Content-Type": "application/json"
+            },
+            "body": {
+              "client_id": "71ef7ea86333eab031c8830f8200df1f2f16ef9a3335a67470be4950ac80b925"
+            }
+          },
+          {
+            "url": "https://harbor.site/api/trakt/device-token",
+            "method": "POST",
+            "headers": {
+              "Content-Type": "application/json"
+            },
+            "body": {
+              "code": "owned-device"
+            }
+          },
+          {
+            "url": "https://harbor.site/api/trakt/device-token",
+            "method": "POST",
+            "headers": {
+              "Content-Type": "application/json"
+            },
+            "body": {
+              "code": "owned-device"
+            }
+          },
+          {
+            "url": "https://api.trakt.tv/users/me",
+            "method": "GET",
+            "headers": {
+              "Content-Type": "application/json",
+              "trakt-api-version": "2",
+              "trakt-api-key": "71ef7ea86333eab031c8830f8200df1f2f16ef9a3335a67470be4950ac80b925",
+              "Authorization": "Bearer owned-access"
+            },
+            "body": null
+          }
+        ],
+        "delays": [2000],
+        "session": {
+          "accessToken": "owned-access",
+          "refreshToken": "owned-refresh",
+          "createdAt": 1700000000,
+          "expiresIn": 7776000,
+          "username": "Owned Trakt"
+        }
+      }
+    },
+    {
+      "name": "slow-down-then-authorized",
+      "polls": [429, 400, 200],
+      "expected": {
+        "updates": ["slow_down", "authorized"],
+        "requests": [
+          {
+            "url": "https://api.trakt.tv/oauth/device/code",
+            "method": "POST",
+            "headers": {
+              "Content-Type": "application/json"
+            },
+            "body": {
+              "client_id": "71ef7ea86333eab031c8830f8200df1f2f16ef9a3335a67470be4950ac80b925"
+            }
+          },
+          {
+            "url": "https://harbor.site/api/trakt/device-token",
+            "method": "POST",
+            "headers": {
+              "Content-Type": "application/json"
+            },
+            "body": {
+              "code": "owned-device"
+            }
+          },
+          {
+            "url": "https://harbor.site/api/trakt/device-token",
+            "method": "POST",
+            "headers": {
+              "Content-Type": "application/json"
+            },
+            "body": {
+              "code": "owned-device"
+            }
+          },
+          {
+            "url": "https://harbor.site/api/trakt/device-token",
+            "method": "POST",
+            "headers": {
+              "Content-Type": "application/json"
+            },
+            "body": {
+              "code": "owned-device"
+            }
+          },
+          {
+            "url": "https://api.trakt.tv/users/me",
+            "method": "GET",
+            "headers": {
+              "Content-Type": "application/json",
+              "trakt-api-version": "2",
+              "trakt-api-key": "71ef7ea86333eab031c8830f8200df1f2f16ef9a3335a67470be4950ac80b925",
+              "Authorization": "Bearer owned-access"
+            },
+            "body": null
+          }
+        ],
+        "delays": [7000, 7000],
+        "session": {
+          "accessToken": "owned-access",
+          "refreshToken": "owned-refresh",
+          "createdAt": 1700000000,
+          "expiresIn": 7776000,
+          "username": "Owned Trakt"
+        }
+      }
+    },
+    {
+      "name": "expired",
+      "polls": [410],
+      "expected": {
+        "updates": ["expired"],
+        "requests": [
+          {
+            "url": "https://api.trakt.tv/oauth/device/code",
+            "method": "POST",
+            "headers": {
+              "Content-Type": "application/json"
+            },
+            "body": {
+              "client_id": "71ef7ea86333eab031c8830f8200df1f2f16ef9a3335a67470be4950ac80b925"
+            }
+          },
+          {
+            "url": "https://harbor.site/api/trakt/device-token",
+            "method": "POST",
+            "headers": {
+              "Content-Type": "application/json"
+            },
+            "body": {
+              "code": "owned-device"
+            }
+          }
+        ],
+        "delays": [],
+        "session": null
+      }
+    },
+    {
+      "name": "denied",
+      "polls": [418],
+      "expected": {
+        "updates": ["denied"],
+        "requests": [
+          {
+            "url": "https://api.trakt.tv/oauth/device/code",
+            "method": "POST",
+            "headers": {
+              "Content-Type": "application/json"
+            },
+            "body": {
+              "client_id": "71ef7ea86333eab031c8830f8200df1f2f16ef9a3335a67470be4950ac80b925"
+            }
+          },
+          {
+            "url": "https://harbor.site/api/trakt/device-token",
+            "method": "POST",
+            "headers": {
+              "Content-Type": "application/json"
+            },
+            "body": {
+              "code": "owned-device"
+            }
+          }
+        ],
+        "delays": [],
+        "session": null
+      }
+    },
+    {
+      "name": "server-error",
+      "polls": [500],
+      "expected": {
+        "updates": ["error"],
+        "requests": [
+          {
+            "url": "https://api.trakt.tv/oauth/device/code",
+            "method": "POST",
+            "headers": {
+              "Content-Type": "application/json"
+            },
+            "body": {
+              "client_id": "71ef7ea86333eab031c8830f8200df1f2f16ef9a3335a67470be4950ac80b925"
+            }
+          },
+          {
+            "url": "https://harbor.site/api/trakt/device-token",
+            "method": "POST",
+            "headers": {
+              "Content-Type": "application/json"
+            },
+            "body": {
+              "code": "owned-device"
+            }
+          }
+        ],
+        "delays": [],
+        "session": null
+      }
+    },
+    {
+      "name": "cancelled",
+      "polls": [400],
+      "cancel": true,
+      "expected": {
+        "updates": [],
+        "requests": [
+          {
+            "url": "https://api.trakt.tv/oauth/device/code",
+            "method": "POST",
+            "headers": {
+              "Content-Type": "application/json"
+            },
+            "body": {
+              "client_id": "71ef7ea86333eab031c8830f8200df1f2f16ef9a3335a67470be4950ac80b925"
+            }
+          },
+          {
+            "url": "https://harbor.site/api/trakt/device-token",
+            "method": "POST",
+            "headers": {
+              "Content-Type": "application/json"
+            },
+            "body": {
+              "code": "owned-device"
+            }
+          }
+        ],
+        "delays": [],
+        "session": null
+      }
+    },
+    {
+      "name": "authorized-without-username",
+      "polls": [200],
+      "userStatus": 503,
+      "expected": {
+        "updates": ["authorized"],
+        "requests": [
+          {
+            "url": "https://api.trakt.tv/oauth/device/code",
+            "method": "POST",
+            "headers": {
+              "Content-Type": "application/json"
+            },
+            "body": {
+              "client_id": "71ef7ea86333eab031c8830f8200df1f2f16ef9a3335a67470be4950ac80b925"
+            }
+          },
+          {
+            "url": "https://harbor.site/api/trakt/device-token",
+            "method": "POST",
+            "headers": {
+              "Content-Type": "application/json"
+            },
+            "body": {
+              "code": "owned-device"
+            }
+          },
+          {
+            "url": "https://api.trakt.tv/users/me",
+            "method": "GET",
+            "headers": {
+              "Content-Type": "application/json",
+              "trakt-api-version": "2",
+              "trakt-api-key": "71ef7ea86333eab031c8830f8200df1f2f16ef9a3335a67470be4950ac80b925",
+              "Authorization": "Bearer owned-access"
+            },
+            "body": null
+          }
+        ],
+        "delays": [],
+        "session": {
+          "accessToken": "owned-access",
+          "refreshToken": "owned-refresh",
+          "createdAt": 1700000000,
+          "expiresIn": 7776000,
+          "username": null
+        }
+      }
+    }
+  ]
+}

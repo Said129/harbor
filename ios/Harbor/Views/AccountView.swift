@@ -12,7 +12,7 @@ struct AccountView: View {
     @Environment(\.dismiss) private var dismiss
     @MainActor init(app: AppModel) {
         self.app = app
-        _section = State(initialValue: app.user == nil ? "stremio" : "profile")
+        _section = State(initialValue: "profile")
     }
 
     var body: some View {

@@ -36,11 +36,18 @@ struct SettingsView: View {
                         }
                     }
                 }
-                if matches("Simkl", group: "Tracking") {
+                if matches("Simkl", group: "Tracking") || matches("Trakt", group: "Tracking") {
                     group("Tracking") {
+                        if matches("Simkl", group: "Tracking") {
                         NavigationLink { SimklSettingsView(app: app).id(app.accountOperationScope).toolbar(.visible, for: .navigationBar) } label: {
                             SettingsRow(title: "Simkl", icon: "tracker-simkl")
                         }.accessibilityIdentifier("settings-simkl")
+                        }
+                        if matches("Trakt", group: "Tracking") {
+                            NavigationLink { TraktSettingsView(app: app).id(app.accountOperationScope).toolbar(.visible, for: .navigationBar) } label: {
+                                SettingsRow(title: "Trakt", icon: "tracker-trakt")
+                            }.accessibilityIdentifier("settings-trakt")
+                        }
                     }
                 }
                 if matches("Subtitles", group: "Languages & subtitles") {

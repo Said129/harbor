@@ -5,7 +5,7 @@ import Observation
 final class LibraryModel {
     private var snapshot = LibrarySnapshot([]) { didSet { continuationRevision &+= 1 } }
     private var continuationRevision = 0
-    @ObservationIgnored private var continuationCache: (library: Int, tracker: Int, local: Int, trackerVisible: Bool, localVisible: Bool, sources: ContinueWatchingSources, records: [LibraryRecord])?
+    @ObservationIgnored private var continuationCache: (library: Int, tracker: Int, trakt: Int, local: Int, trackerVisible: Bool, localVisible: Bool, sources: ContinueWatchingSources, records: [LibraryRecord])?
     private var records: [JSONValue] { snapshot.records }
     private let cache = LibraryCache()
     private let service: any LibraryServing
@@ -26,6 +26,7 @@ final class LibraryModel {
     private(set) var favorites = MediaFavorites(owner: "guest")
     private(set) var discovery = DiscoveryPreferences(owner: "guest")
     let simklPlayback: SimklPlaybackFeed
+    let traktPlayback: TraktPlaybackFeed
     private let localContinue: LocalContinueStore
     private let privateDismissalStore: ContinueDismissalStore
     private var privateDismissals: [String: ContinueDismissal] = [:]
@@ -39,8 +40,9 @@ final class LibraryModel {
     private var localReady = false
     @ObservationIgnored private var localActive: @MainActor () -> Bool = { false }
     private(set) var continueSources = ContinueWatchingSources()
-    init(simklPlayback: SimklPlaybackFeed? = nil, localContinue: LocalContinueStore = .shared, privateDismissals: ContinueDismissalStore? = nil, service: (any LibraryServing)? = nil, writeQueue: LibraryWriteQueue? = nil) {
+    init(simklPlayback: SimklPlaybackFeed? = nil, localContinue: LocalContinueStore = .shared, privateDismissals: ContinueDismissalStore? = nil, service: (any LibraryServing)? = nil, writeQueue: LibraryWriteQueue? = nil, traktPlayback: TraktPlaybackFeed? = nil) {
         self.simklPlayback = simklPlayback ?? SimklPlaybackFeed(); self.localContinue = localContinue
+        self.traktPlayback = traktPlayback ?? TraktPlaybackFeed()
         privateDismissalStore = privateDismissals ?? .shared
         let transport = service ?? LibraryService()
         self.service = transport; self.writeQueue = writeQueue ?? LibraryWriteQueue(service: transport)
@@ -59,20 +61,23 @@ final class LibraryModel {
     private var dismissals: [String: ContinueDismissal] { continuingPrivate ? privateDismissals : presentation.dismissed }
     private var allContinuing: [LibraryRecord] {
         guard !continuingPrivate || privateDismissalsReady else { return [] }
-        let external = continueSources.simkl && !continuingPrivate ? simklPlayback.records(for: personalOwner) : []
+        let simkl = continueSources.simkl && !continuingPrivate ? simklPlayback.records(for: personalOwner) : []
+        let trakt = continueSources.trakt && !continuingPrivate ? traktPlayback.records(for: personalOwner) : []
+        let external = simkl + trakt
         let localVisible = localReady && localActive()
         let localRecords = continuingPrivate ? localSnapshot.personalRecords : localSnapshot.sharedRecords
         let local = localVisible ? localRecords.filter { $0.raw["nativeSource"] == .string("library") ? continueSources.library : continueSources.local } : []
         let base = continueSources.library && !continuingPrivate ? snapshot.continuing.filter { !CloudAnimeContinueImport.owns($0.id) || !localVisible } : []
         guard !external.isEmpty || !local.isEmpty else { return base }
         if let saved = continuationCache, saved.library == continuationRevision, saved.tracker == simklPlayback.revision,
+           saved.trakt == traktPlayback.revision,
            saved.local == localRevision, saved.trackerVisible == !external.isEmpty, saved.localVisible == localVisible,
            saved.sources == continueSources { return saved.records }
         var seen = Set<String>()
         let merged = (base + external.filter(\.continuing) + local.filter(\.continuing))
             .sorted { $0.activityTimestamp == $1.activityTimestamp ? $0.id < $1.id : $0.activityTimestamp > $1.activityTimestamp }
             .filter { seen.insert($0.id).inserted }
-        continuationCache = (continuationRevision, simklPlayback.revision, localRevision, !external.isEmpty, localVisible, continueSources, merged)
+        continuationCache = (continuationRevision, simklPlayback.revision, traktPlayback.revision, localRevision, !external.isEmpty, localVisible, continueSources, merged)
         return merged
     }
     func setContinueSources(_ value: ContinueWatchingSources) { if continueSources != value { continueSources = value } }
@@ -338,7 +343,7 @@ final class LibraryModel {
         }
         guard generation == current, continuingPrivate == privateRead else { return nil }
         let local = localReady && localActive() ? (privateRead ? localSnapshot.personalRecords : localSnapshot.sharedRecords) : []
-        let shared = privateRead ? [] : items + simklPlayback.records(for: personalOwner)
+        let shared = privateRead ? [] : items + simklPlayback.records(for: personalOwner) + traktPlayback.records(for: personalOwner)
         // A shared dismissal clears the shared resume. Older local ledgers and
         // tracker snapshots must not resurrect the position while cloud is offline.
         let candidates = (shared + local).filter { privateRead || (session == nil && $0.raw["external"].string == nil) || !isDismissed($0) }
