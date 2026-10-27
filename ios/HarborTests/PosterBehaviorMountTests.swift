@@ -23,7 +23,7 @@ private struct MountedPosterRow: View {
                     Button { state.activations += 1 } label: {
                         ProfilePoster(media: item, width: 116, artworkFallbacks: [], honorsRowStyle: true,
                             onExpansionWidthChange: { state.widths[index] = $0 })
-                    }.buttonStyle(.plain).focusable().focused($focused, equals: index)
+                    }.buttonStyle(.plain).focused($focused, equals: index)
                 }
             }.padding(.horizontal, 16).padding(.vertical, 20)
         }.posterRowBehavior(context: row).frame(height: 250)
@@ -56,12 +56,21 @@ private struct MountedPosterRow: View {
         let host = UIHostingController(rootView: MountedPosterRow(state: state, row: row, media: media).preferredColorScheme(.dark))
         window.rootViewController = host; window.makeKeyAndVisible()
         defer { window.isHidden = true; window.rootViewController = nil; previous?.makeKey(); PosterAttentionState.shared.pointerMoved() }
+        defer {
+            if (testRun?.failureCount ?? 0) > 0 {
+                capture(window, "poster-behavior-native-failed-stage")
+                let diagnostic = XCTAttachment(string: "requested=\(String(describing: state.requestedFocus)); observed=\(String(describing: state.observedFocus)); input=\(PosterAttentionState.shared.input); active=\(String(describing: PosterAttentionState.shared.active)); widths=\(state.widths); viewport=\(row.viewport); frames=\(row.frames)")
+                diagnostic.name = "poster-behavior-native-state"; diagnostic.lifetime = .keepAlways; add(diagnostic)
+            }
+        }
         try await wait("three real measured cards") { row.frames.count == 3 && row.viewport.width > 300 }
         let original = row.frames.values.sorted { $0.minX < $1.minX }
         XCTAssertTrue(original.allSatisfy { abs($0.width - 116) < 1 })
         capture(window, "poster-behavior-native-initial")
         state.requestedFocus = 0
-        try await wait("actual focus binding and decoded wide artwork") { state.observedFocus == 0 && (state.widths[0] ?? 0) > 300 && PosterAttentionState.shared.active != nil }
+        try await wait("actual native button focus binding") { state.observedFocus == 0 }
+        try await wait("focused production poster receives the native focus environment") { PosterAttentionState.shared.active != nil }
+        try await wait("decoded wide artwork reserves the expanded width") { (state.widths[0] ?? 0) > 300 }
         try await Task.sleep(for: .milliseconds(650))
         let expanded = row.frames.values.sorted { $0.minX < $1.minX }
         XCTAssertEqual(expanded[0].width, 174 * 16 / 9, accuracy: 2)

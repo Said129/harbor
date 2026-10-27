@@ -17,7 +17,9 @@ import XCTest
         try store.activate(owner: "shared", sharedOwner: "shared", migrateLegacy: false)
         for key in toggles { defaults.set(true, forKey: key) }; defaults.set(1_250.0, forKey: "posterDockTransitionMs"); XCTAssertTrue(store.saveCurrent())
         try store.activate(owner: "private", sharedOwner: "shared", migrateLegacy: false)
-        for key in toggles { XCTAssertFalse(defaults.bool(forKey: key)); defaults.set(false, forKey: key) }
+        // An independent profile initially forks the shared document, as Desktop does.
+        for key in toggles { XCTAssertTrue(defaults.bool(forKey: key)); defaults.set(false, forKey: key) }
+        XCTAssertEqual(defaults.double(forKey: "posterDockTransitionMs"), 1_250)
         defaults.set(350.0, forKey: "posterDockTransitionMs"); XCTAssertTrue(store.saveCurrent())
         try store.activate(owner: "shared", sharedOwner: "shared", migrateLegacy: false)
         for key in toggles { XCTAssertTrue(defaults.bool(forKey: key)) }; XCTAssertEqual(defaults.double(forKey: "posterDockTransitionMs"), 1_250)

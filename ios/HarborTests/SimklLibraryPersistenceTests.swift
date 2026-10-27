@@ -23,8 +23,13 @@ import XCTest
         XCTAssertEqual(restored, snapshot); XCTAssertNil(wrongOwner); XCTAssertNil(changedAccount)
         let file = root.appendingPathComponent(EBookShelf.hash("owned-first") + ".json")
         let raw = try String(contentsOf: file, encoding: .utf8); XCTAssertFalse(raw.contains(token)); XCTAssertFalse(raw.contains("accessToken"))
+        #if targetEnvironment(simulator)
+        let limitation = XCTAttachment(string: "The simulator does not expose file protection classes. Persistence, account isolation and backup exclusion run here; the protection class must also be verified on a physical device.")
+        limitation.name = "simkl-file-protection-device-verification-required"; limitation.lifetime = .keepAlways; add(limitation)
+        #else
         let attributes = try FileManager.default.attributesOfItem(atPath: file.path)
         XCTAssertEqual(attributes[.protectionKey] as? FileProtectionType, .completeUntilFirstUserAuthentication)
+        #endif
         XCTAssertEqual(try root.resourceValues(forKeys: [.isExcludedFromBackupKey]).isExcludedFromBackup, true)
         try await disk.remove(owner: "owned-first"); let removed = try await disk.read(owner: "owned-first", fingerprint: fingerprint); XCTAssertNil(removed)
     }
@@ -47,7 +52,8 @@ import XCTest
         try store.activate(owner: "first", sharedOwner: "first", migrateLegacy: false)
         defaults.set(false, forKey: "simklEnableUserRatings"); XCTAssertTrue(store.saveCurrent())
         try store.activate(owner: "second", sharedOwner: "first", migrateLegacy: false)
-        XCTAssertNil(defaults.object(forKey: "simklEnableUserRatings")); defaults.set(true, forKey: "simklEnableUserRatings"); XCTAssertTrue(store.saveCurrent())
+        XCTAssertEqual(defaults.object(forKey: "simklEnableUserRatings") as? Bool, false)
+        defaults.set(true, forKey: "simklEnableUserRatings"); XCTAssertTrue(store.saveCurrent())
         try store.activate(owner: "first", sharedOwner: "first", migrateLegacy: false); XCTAssertFalse(defaults.bool(forKey: "simklEnableUserRatings"))
         let reopened = ProfileSettingsStore(defaults: defaults, persistence: memory)
         try reopened.activate(owner: "second", sharedOwner: "first", migrateLegacy: false); XCTAssertTrue(defaults.bool(forKey: "simklEnableUserRatings"))

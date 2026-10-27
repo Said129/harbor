@@ -129,12 +129,12 @@ import XCTest
     }
     private func show(_ element: XCUIElement, _ app: XCUIApplication, _ scroll: XCUIElement, up: Bool = true) {
         if element.identifier.hasPrefix("source-row-") {
-            // This AX group has no action of its own. Reveal its actual bounds
-            // and a tappable child, rather than requiring the group to be a button.
+            // A row is a noninteractive accessibility group. Reveal its bounds;
+            // the exact folder or pencil is separately revealed and must accept
+            // a real tap before its resulting screen is asserted.
             for _ in 0..<20 {
                 let bounds = scroll.frame, viewport = bounds.intersection(app.windows.firstMatch.frame)
-                if let frame = ReadingUIInteraction.visibleFrame(element, in: app), viewport.insetBy(dx: -1, dy: -1).contains(frame),
-                   element.buttons.allElementsBoundByIndex.contains(where: { ReadingUIInteraction.visibleFrame($0, in: app) != nil && $0.isHittable }) { return }
+                if let frame = ReadingUIInteraction.visibleFrame(element, in: app), viewport.insetBy(dx: -1, dy: -1).contains(frame) { return }
                 guard viewport.width > 80, viewport.height > 80 else { break }
                 let above = element.exists ? element.frame.minY < viewport.minY : !up
                 let origin = scroll.coordinate(withNormalizedOffset: .zero)
@@ -142,7 +142,7 @@ import XCTest
                 let end = origin.withOffset(.init(dx: viewport.minX - bounds.minX + 8, dy: viewport.minY - bounds.minY + viewport.height * (above ? 0.8 : 0.2)))
                 start.press(forDuration: 0.05, thenDragTo: end, withVelocity: .slow, thenHoldForDuration: 0.2)
             }
-            ReadingUIInteraction.recordFailureContext(app); XCTFail("The source row and one actionable folder must be visible"); return
+            ReadingUIInteraction.recordFailureContext(app); XCTFail("The source row must fit inside the page viewport"); return
         }
         if !element.exists { ReadingUIInteraction.reveal(element, in: app, up: up, container: scroll) }
         XCTAssertTrue(element.waitForExistence(timeout: 15)); ReadingUIInteraction.revealWithinViewport(element, in: app, container: scroll)

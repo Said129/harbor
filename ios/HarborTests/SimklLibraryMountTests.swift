@@ -34,10 +34,10 @@ import UIKit
             window.frame = CGRect(origin: .zero, size: size)
             let movies = ScrollView { SimklLibraryContent(app: app, model: model).padding(20) }.background(HarborTheme.background).preferredColorScheme(.dark)
             window.rootViewController = UIHostingController(rootView: movies); window.makeKeyAndVisible()
-            try await settle(window); capture(window, "simkl-library-native-movies-" + label)
+            try await settle(window); try await waitForDecodedCover(window); capture(window, "simkl-library-native-movies-" + label)
             let anime = ScrollView { SimklLibraryContent(app: app, model: model, kind: .anime, status: .watching).padding(20) }.background(HarborTheme.background).preferredColorScheme(.dark)
             window.rootViewController = UIHostingController(rootView: anime)
-            try await settle(window); capture(window, "simkl-library-native-anime-" + label)
+            try await settle(window); try await waitForDecodedCover(window); capture(window, "simkl-library-native-anime-" + label)
             let item = try XCTUnwrap(snapshot.items["movie:1"])
             window.rootViewController = UIHostingController(rootView: SimklTitleActions(media: item.media, target: item.target, model: model, ratings: true).preferredColorScheme(.dark))
             try await settle(window); capture(window, "simkl-library-native-actions-" + label)
@@ -50,6 +50,21 @@ import UIKit
     private func settle(_ window: UIWindow) async throws {
         window.layoutIfNeeded(); try await Task.sleep(for: .milliseconds(750)); window.layoutIfNeeded()
         XCTAssertGreaterThan(window.rootViewController?.view.bounds.width ?? 0, 300)
+    }
+    private func waitForDecodedCover(_ window: UIWindow) async throws {
+        func containsCover(_ view: UIView) -> Bool {
+            if let imageView = view as? UIImageView, let image = imageView.image,
+               image.cgImage != nil, imageView.bounds.width > 80, imageView.bounds.height > 120,
+               abs(image.size.width / image.size.height - 2.0 / 3) < 0.01 { return true }
+            return view.subviews.contains(where: containsCover)
+        }
+        for _ in 0..<100 {
+            window.layoutIfNeeded()
+            if containsCover(window) { return }
+            try await Task.sleep(for: .milliseconds(50))
+        }
+        XCTFail("The production library must decode and mount the owned cover before the evidence capture")
+        throw HarborError(code: "owned-simkl-cover-not-mounted")
     }
     private func capture(_ window: UIWindow, _ name: String) {
         let format = UIGraphicsImageRendererFormat(); format.scale = 1
