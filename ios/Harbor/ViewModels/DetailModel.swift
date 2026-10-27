@@ -382,7 +382,7 @@ final class DetailModel {
         resolving = true
         let resolution = UUID()
         resolutionRequest = resolution
-        let owner = library.owner, context = contextRevision()
+        let owner = library.owner, personalOwner = library.personalOwner, context = contextRevision()
         let request = streamRequest
         let episode = selectedEpisode
         let selected = playbackContextMedia
@@ -391,7 +391,7 @@ final class DetailModel {
         do {
             let source = try await service.resolve(offer)
             try Task.checkCancellation()
-            guard owner == library.owner, contextRevision() == context, request == streamRequest, resolution == resolutionRequest else { return }
+            guard owner == library.owner, personalOwner == library.personalOwner, contextRevision() == context, request == streamRequest, resolution == resolutionRequest else { return }
             let target = ResumeTarget(id: selected.id, season: episode?.season, episode: episode?.episode, videoId: episode?.id)
             var start = ResumeStart(ms: 0, prompt: false)
             var warning: String?
@@ -401,7 +401,7 @@ final class DetailModel {
             else if progressEnabled {
                 do {
                     let cloud = await library.resume(for: target)
-                    guard owner == library.owner, contextRevision() == context, request == streamRequest, resolution == resolutionRequest else { return }
+                    guard owner == library.owner, personalOwner == library.personalOwner, contextRevision() == context, request == streamRequest, resolution == resolutionRequest else { return }
                     let movieMinutes = selected.runtime.flatMap { value -> Double? in
                         guard let range = value.range(of: "[0-9]+(?:\\.[0-9]+)?", options: .regularExpression) else { return nil }
                         return Double(value[range])
@@ -415,11 +415,12 @@ final class DetailModel {
                 }
             }
             try Task.checkCancellation()
-            guard owner == library.owner, contextRevision() == context, request == streamRequest, resolution == resolutionRequest else { return }
+            guard owner == library.owner, personalOwner == library.personalOwner, contextRevision() == context, request == streamRequest, resolution == resolutionRequest else { return }
             lastPlayedSource = StreamSourceIdentity(offer)
             sourceContinuation = nil
             playback = PlaybackSession(source: source, target: target, startMs: start.ms, storageWarning: warning, progressEnabled: progressEnabled, owner: owner, resumeStore: resume, preservePosition: preservedPosition != nil, advanceStartedAtMs: preservedPosition == nil ? nil : continuation?.advanceStartedAtMs, promptForResume: start.prompt)
             playback?.media = selected
+            playback?.personalOwner = personalOwner
             playback?.subtitleRequest = SubtitleRequest(media: selected, videoID: episode?.id ?? selected.behaviorHints?.defaultVideoId ?? selected.id, season: episode?.season, episode: episode?.episode, addons: streamAddons, stream: offer.raw)
         }
         catch is CancellationError { return }

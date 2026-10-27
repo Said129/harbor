@@ -6,6 +6,9 @@ import re
 import runpy
 
 requested = os.environ.get('HARBOR_NATIVE_SELECTION', '').strip()
+if requested == 'affected:local-continue' or requested.startswith('HarborTests.LocalContinueTests/'):
+    runpy.run_path('scripts/ios/prepare-local-continue-selection.py')
+    raise SystemExit(0)
 if requested == 'native-only:poster-focus-completion' or requested.startswith('HarborTests.PosterBehaviorMountTests/'):
     runpy.run_path('scripts/ios/prepare-poster-focus-completion-selection.py')
     raise SystemExit(0)

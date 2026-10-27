@@ -299,6 +299,12 @@ final class AppModel {
         if !library.matchesSession(session, personalOwner: personalOwner, guestOwner: progressOwner) {
             await library.setSession(session, personalOwner: personalOwner, guestOwner: progressOwner, synchronize: false)
         }
+        if let binding = profileContext.binding {
+            let scope = accountOperationScope, owner = personalOwner
+            await library.bindLocalContinuing(sharedOwner: binding.progressOwner, scope: scope, active: { [weak self] in
+                self?.profileContext.ready == true && self?.personalOwner == owner && self?.accountOperationScope == scope
+            })
+        }
         Task { await library.sync() }
     }
 

@@ -37,6 +37,7 @@ struct PlaybackSession: Identifiable, Sendable {
     let storageWarning: String?
     let progressEnabled: Bool
     var owner = "guest"
+    var personalOwner: String? = nil
     var resumeStore: ResumeStore? = nil
     var preservePosition = false
     var advanceStartedAtMs: Double? = nil

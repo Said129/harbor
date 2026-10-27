@@ -548,11 +548,10 @@ struct PlayerView: View {
 
     @MainActor private func persist(_ value: ResumeSnapshot, syncCloud: Bool = true) async {
         do {
-            if try await resume.save(session.target, snapshot: value) {
+            if try await PlaybackProgressCommit.save(value, session: session, resume: resume, media: media, library: library) {
                 lastSavedMs = value.positionMs
                 progressError = nil
                 Diagnostics.shared.record(.progressSaved)
-                library?.noteLocalProgress(session.target, snapshot: value, owner: session.owner)
             }
         } catch {
             progressError = safeMessage(error)

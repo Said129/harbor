@@ -96,7 +96,7 @@ struct DownloadsView: View {
     }
     private func play(_ item: DownloadItem) async {
         guard preparation == nil, item.status == .complete, allItems.contains(where: { $0.id == item.id && $0.status == .complete }) else { return }
-        let expectedOwner = owner, store = app.resume, operation = UUID()
+        let expectedOwner = owner, libraryOwner = app.library.owner, accountScope = app.accountOperationScope, store = app.resume, operation = UUID()
         preparation = operation; error = nil
         defer { if preparation == operation { preparation = nil } }
         do {
@@ -104,9 +104,10 @@ struct DownloadsView: View {
             guard FileManager.default.fileExists(atPath: file.path) else { throw HarborError(code: "download-missing") }
             let cloud = await app.library.resume(for: item.target, refresh: false)
             let start = try await store.position(item.target, durationMs: cloud?.durationMs ?? 0, playback: UserDefaults.standard.object(forKey: "resumePlayback") as? Bool ?? true, prompt: UserDefaults.standard.object(forKey: "resumePrompt") as? Bool ?? false, cloud: cloud?.entry, media: item.media)
-            guard expectedOwner == owner, preparation == operation, allItems.contains(where: { $0.id == item.id && $0.status == .complete }), FileManager.default.fileExists(atPath: file.path) else { return }
+            guard expectedOwner == owner, libraryOwner == app.library.owner, accountScope == app.accountOperationScope,
+                  preparation == operation, allItems.contains(where: { $0.id == item.id && $0.status == .complete }), FileManager.default.fileExists(atPath: file.path) else { return }
             playbackMedia = item.media
-            playback = PlaybackSession(source: PlaybackSource(url: file.path, headers: nil, subtitles: nil, via: "download"), target: item.target, startMs: start.ms, storageWarning: nil, progressEnabled: true, owner: expectedOwner, resumeStore: store, promptForResume: start.prompt)
+            playback = PlaybackSession(source: PlaybackSource(url: file.path, headers: nil, subtitles: nil, via: "download"), target: item.target, startMs: start.ms, storageWarning: nil, progressEnabled: true, owner: libraryOwner, personalOwner: expectedOwner, resumeStore: store, promptForResume: start.prompt)
         } catch { if expectedOwner == owner, preparation == operation { self.error = safeMessage(error) } }
     }
 }

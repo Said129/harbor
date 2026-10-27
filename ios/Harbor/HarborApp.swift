@@ -92,6 +92,7 @@ struct HarborApp: App {
                     if !account.ready { do { try account.load() } catch { Diagnostics.shared.recordFailure(error) } }
                 }
                 .task(id: simklPlaybackTaskID) {
+                    model.library.setContinueSources(ContinueWatchingSources(rawValue: cwSources))
                     let owner = model.personalOwner, scope = model.accountOperationScope, account = SimklAccountStore.forOwner(owner)
                     let feed = model.library.simklPlayback
                     feed.bind(account: account, scope: scope, active: { [weak model] in

@@ -29,7 +29,7 @@ struct InterfaceSettingsView: View {
                     HarborSettingsToggle("IMDb", isOn: $preferences.showImdbBadge)
                     HarborSettingsToggle("TMDB", isOn: $preferences.showTmdbBadge)
                 }
-                SimklContinueSourceControls()
+                ContinueSourceControls()
                 HarborSettingsSection(DesktopInterfaceText.value("Show pages")) {
                     HarborSettingsToggle(DesktopInterfaceText.value("Mark watched button"), isOn: $preferences.showWatchedButton)
                 }
@@ -63,19 +63,28 @@ struct InterfaceSettingsView: View {
     }
 }
 
-struct SimklContinueSourceControls: View {
+struct ContinueSourceControls: View {
     @AppStorage("cwSources") private var cwSources = ContinueWatchingSources.defaultValue
     @AppStorage("cwPerProfile") private var privateContinuing = false
     var body: some View {
         HarborSettingsSection(DesktopInterfaceText.value("Continue Watching sources")) {
+            Text(DesktopInterfaceText.value("Choose which services feed your Continue Watching row. Turn on as many as you like and Harbor merges them, keeping the most recent progress for each title. What you watch is still scrobbled to every connected service regardless of what you pick here."))
+                .font(.caption).foregroundStyle(.secondary)
+            HarborSettingsToggle(DesktopInterfaceText.value("Harbor library"), note: DesktopInterfaceText.value("Your own Harbor account progress. The primary source for almost everyone."),
+                isOn: source(\.library)).disabled(privateContinuing).accessibilityIdentifier("settings-cw-library")
+            HarborSettingsToggle(DesktopInterfaceText.value("Downloads"), note: DesktopInterfaceText.value("Titles you are part-way through in your local downloads, even offline."),
+                isOn: source(\.local)).accessibilityIdentifier("settings-cw-local")
             HarborSettingsToggle(DesktopInterfaceText.value("Simkl progress"), note: DesktopInterfaceText.value("Pulls what you have part-watched on Simkl into the row, marked with the Simkl logo. Requires a connected Simkl account."),
-                isOn: Binding(get: { ContinueWatchingSources(rawValue: cwSources).simkl }, set: { value in
-                    var next = ContinueWatchingSources(rawValue: cwSources); next.simkl = value; cwSources = next.rawValue
-                })).disabled(privateContinuing).accessibilityIdentifier("settings-cw-simkl")
+                isOn: source(\.simkl)).disabled(privateContinuing).accessibilityIdentifier("settings-cw-simkl")
             if privateContinuing {
                 Text(DesktopInterfaceText.value("Unavailable while Continue Watching is kept private to each profile, because Simkl progress is shared across every profile on this account.")).font(.caption).foregroundStyle(.secondary)
             }
         }
+    }
+    private func source(_ key: WritableKeyPath<ContinueWatchingSources, Bool>) -> Binding<Bool> {
+        Binding(get: { ContinueWatchingSources(rawValue: cwSources)[keyPath: key] }, set: { value in
+            var next = ContinueWatchingSources(rawValue: cwSources); next[keyPath: key] = value; cwSources = next.rawValue
+        })
     }
 }
 

@@ -137,6 +137,7 @@ private actor OwnedPlaybackImportSleeps {
         let transport = OwnedPlaybackImportTransport([try reply(raw), try reply(raw)])
         let client = SimklClient(transport: { await transport.send($0) }, sleep: { clock.advance($0) }, now: { clock.now() })
         let feed = SimklPlaybackFeed(client: client), library = LibraryModel(simklPlayback: feed), account = try account(owner)
+        var sources = ContinueWatchingSources(); sources.simkl = true; library.setContinueSources(sources)
         await library.setSession(nil, personalOwner: owner, guestOwner: owner, synchronize: false)
         feed.bind(account: account, scope: owner, active: { true }, enabled: { true })
         await feed.refresh(); let record = try XCTUnwrap(library.continuing.first)
