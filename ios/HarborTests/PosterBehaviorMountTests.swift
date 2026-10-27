@@ -20,11 +20,14 @@ private struct MountedPosterRow: View {
         ScrollView(.horizontal) {
             HStack(alignment: .top, spacing: 12) {
                 ForEach(Array(media.enumerated()), id: \.offset) { index, item in
-                    ProfilePoster(media: item, width: 116, artworkFallbacks: [], honorsRowStyle: true,
-                        onExpansionWidthChange: { state.widths[index] = $0 })
+                    VStack(spacing: 0) {
+                        ProfilePoster(media: item, width: 116, artworkFallbacks: [], honorsRowStyle: true,
+                            onExpansionWidthChange: { state.widths[index] = $0 })
+                    }
                         .contentShape(Rectangle()).onTapGesture { state.activations += 1 }
-                        // Custom native focus accepts programmatic placement on
-                        // Simulator without requiring a connected hardware keyboard.
+                        // isFocused describes the nearest focusable ancestor.
+                        // Focus the control container, leaving the production
+                        // poster inside it just as it is inside a NavigationLink.
                         .focusable(interactions: .edit).focused($focused, equals: index)
                 }
             }.padding(.horizontal, 16).padding(.vertical, 20)
