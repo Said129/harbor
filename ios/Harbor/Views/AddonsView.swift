@@ -81,7 +81,7 @@ struct AddonsView: View {
             .refreshable { communityRefresh += 1; await loadDirectory(refresh: true) }
             .sheet(item: $selectedAddon) { addon in NavigationStack { AddonDetailView(app: app, addon: addon) }.font(HarborTheme.font()).tint(HarborTheme.accent) }
             .sheet(isPresented: $reorder) { AddonOrderView(app: app) }
-            .onChange(of: app.user?.id) { _, _ in url = ""; error = nil; query = ""; selectedAddon = nil; reorder = false }
+            .onChange(of: app.accountOperationScope) { _, _ in url = ""; error = nil; query = ""; selectedAddon = nil; reorder = false }
     }
     private func categoryTile(_ value: AddonCategory) -> some View {
         let colors: [Color] = switch value {
@@ -129,7 +129,6 @@ struct AddonsView: View {
                 if installing { ProgressView().accessibilityIdentifier("addon-install-progress") }
             }
             if let error { Text(error).font(.caption).foregroundStyle(.orange) }
-            if app.user != nil { Text("Instalación, eliminación y orden se sincronizan con Stremio. La activación se aplica en este iPhone.").font(.caption).foregroundStyle(.secondary) }
         }
     }
     private func resolved(_ addon: Addon) -> Addon { app.addons.first { $0.id == addon.id } ?? app.addons.first { $0.manifest["id"].string == addon.manifest["id"].string } ?? addon }
@@ -206,6 +205,6 @@ private struct AddonOrderView: View {
             }.environment(\.editMode, .constant(.active)).disabled(app.accountBusy || !app.storageReady)
                 .navigationTitle("Orden de addons").navigationBarTitleDisplayMode(.inline)
                 .toolbar { ToolbarItem(placement: .confirmationAction) { Button("Cerrar") { dismiss() } } }
-        }.font(HarborTheme.font()).tint(HarborTheme.accent).onChange(of: app.user?.id) { _, _ in dismiss() }
+        }.font(HarborTheme.font()).tint(HarborTheme.accent).onChange(of: app.accountOperationScope) { _, _ in dismiss() }
     }
 }

@@ -7,7 +7,7 @@ final class LibraryModel {
     private var continuationRevision = 0
     @ObservationIgnored private var continuationCache: (library: Int, tracker: Int, trakt: Int, local: Int, trackerVisible: Bool, localVisible: Bool, sources: ContinueWatchingSources, records: [LibraryRecord])?
     private var records: [JSONValue] { snapshot.records }
-    private let cache = LibraryCache()
+    private let cache: LibraryCache
     private let service: any LibraryServing
     private let writeQueue: LibraryWriteQueue
     private var session: AccountSession?
@@ -40,9 +40,10 @@ final class LibraryModel {
     private var localReady = false
     @ObservationIgnored private var localActive: @MainActor () -> Bool = { false }
     private(set) var continueSources = ContinueWatchingSources()
-    init(simklPlayback: SimklPlaybackFeed? = nil, localContinue: LocalContinueStore = .shared, privateDismissals: ContinueDismissalStore? = nil, service: (any LibraryServing)? = nil, writeQueue: LibraryWriteQueue? = nil, traktPlayback: TraktPlaybackFeed? = nil) {
+    init(simklPlayback: SimklPlaybackFeed? = nil, localContinue: LocalContinueStore = .shared, privateDismissals: ContinueDismissalStore? = nil, service: (any LibraryServing)? = nil, writeQueue: LibraryWriteQueue? = nil, traktPlayback: TraktPlaybackFeed? = nil, cache: LibraryCache? = nil) {
         self.simklPlayback = simklPlayback ?? SimklPlaybackFeed(); self.localContinue = localContinue
         self.traktPlayback = traktPlayback ?? TraktPlaybackFeed()
+        self.cache = cache ?? LibraryCache()
         privateDismissalStore = privateDismissals ?? .shared
         let transport = service ?? LibraryService()
         self.service = transport; self.writeQueue = writeQueue ?? LibraryWriteQueue(service: transport)

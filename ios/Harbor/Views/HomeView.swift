@@ -99,7 +99,7 @@ struct HomeView: View {
         async let catalogs: Void = model.loadHome()
         if !classic {
             async let curated: Void = model.home.load(app: model, refresh: true)
-            async let anime: Void = model.home.loadAnime(owner: model.user?.id ?? "guest", refresh: true)
+            async let anime: Void = model.home.loadAnime(owner: model.accountOperationScope, refresh: true)
             _ = await (curated, anime)
         }
         await catalogs

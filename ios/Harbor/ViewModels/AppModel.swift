@@ -22,11 +22,9 @@ final class AppModel {
     let plugins = HarborPluginSession()
     let readingPlugins = HarborReadingPluginSession()
     let profileContext = AppProfileContext.shared
-    private let accounts = AccountService()
-    private var savedAccount: SavedAccount?
     private var homeGeneration = 0
     private var started = false
-    @ObservationIgnored private var addonRefresh: (id: UUID, task: Task<AccountCollection, Error>)?
+    @ObservationIgnored private var addonRefresh: (id: UUID, task: Task<[Addon], Error>)?
     private var lastAddonRefresh = Date.distantPast
     @ObservationIgnored private var pages: [String: ContentPageModel] = [:]
     private var preparedProfileActivation: UUID?
@@ -115,12 +113,11 @@ final class AppModel {
         } else { showProfiles = true }
     }
     private(set) var pendingDocument: PendingProfileDocument?
-    var user: AccountUser? { savedAccount?.session.user }
-    var personalOwner: String { profileContext.binding?.personalOwner ?? user?.id ?? "guest" }
-    var settingsOwner: String { profileContext.binding?.settingsOwner ?? user?.id ?? "guest" }
+    var personalOwner: String { profileContext.binding?.personalOwner ?? "guest" }
+    var settingsOwner: String { profileContext.binding?.settingsOwner ?? "guest" }
     func pageCustomization(_ page: String) -> PageCustomization {
-        guard ["home", "anime"].contains(page) else { return PageCustomization(owner: user?.id ?? "guest", page: page) }
-        let legacy = page == "anime" && profileContext.profiles.active?.desktop.isPrimary == true ? (user?.id ?? "guest") : nil
+        guard ["home", "anime"].contains(page) else { return PageCustomization(owner: settingsOwner, page: page) }
+        let legacy = page == "anime" && profileContext.profiles.active?.desktop.isPrimary == true ? (profileContext.configuration?.dataOwner ?? "guest") : nil
         return PageCustomization.forOwner(settingsOwner, page: page, legacyOwner: legacy, inheritedOwner: profileContext.binding?.sharedSettingsOwner)
     }
     var harborIdentityOwner: String {
@@ -128,7 +125,7 @@ final class AppModel {
         return HarborProfileIdentity.owner(active, scope: profileContext.profiles.scope)
     }
     var harborIdentity: HarborProfileSync { HarborProfileSync.forOwner(harborIdentityOwner, profile: ProfilePreferences.forOwner(personalOwner)) }
-    var progressOwner: String { profileContext.binding?.progressOwner ?? user?.id ?? "guest" }
+    var progressOwner: String { profileContext.binding?.progressOwner ?? "guest" }
     var sharesContinueSource: Bool {
         guard let profile = profileContext.profiles.active else { return false }
         return HouseholdProfileRouting(profile: profile, profiles: profileContext.profiles.profiles,
@@ -213,6 +210,8 @@ final class AppModel {
         Diagnostics.shared.record(.startup)
         do {
             try profileContext.prepare()
+            try await profileContext.retireStremioAccounts()
+            try LegacySourceRetirement.run()
             let action = try profileLaunchPreferences().launchAction(profiles: profileContext.profiles.profiles,
                 selectedID: profileContext.profiles.state.selectedID, selectedUnlocked: profileContext.profiles.active != nil,
                 lastSelected: ProfileSelectionClock(scope: profileContext.profiles.scope).lastSelected, now: Date().timeIntervalSince1970)
@@ -228,31 +227,19 @@ final class AppModel {
             }
             guard profileContext.ready else { throw HarborError(code: "profile-selection-required") }
             let configuration = profileContext.configuration
-            if let account = configuration?.account {
-                savedAccount = account
-                addons = account.collection.addons
-                AppGuidePreferences.shared.prepare(hasSavedConfiguration: true)
-            }
-            else if let saved = configuration?.guestAddons {
+            if let saved = configuration?.guestAddons {
                 addons = saved
                 AppGuidePreferences.shared.prepare(hasSavedConfiguration: true)
-            }
-            else {
+            } else {
+                addons = []
                 AppGuidePreferences.shared.prepare(hasSavedConfiguration: false)
-                let scope = accountOperationScope
-                let fallback = try await service.install(HarborService.cinemetaManifest)
-                try Task.checkCancellation()
-                guard savedAccount == nil, scope == accountOperationScope else { throw CancellationError() }
-                try profileContext.save(HouseholdSourceAccount(account: nil, guestAddons: [fallback]))
-                addons = [fallback]
             }
             try await setProgressOwner(progressOwner)
-            await bindLibrary(savedAccount?.session)
+            await bindLibrary(nil)
             storageReady = true
             Diagnostics.shared.record(.coreReady)
-            if savedAccount != nil {
-                do { try await syncAccount() }
-                catch { accountError = safeMessage(error); await loadHome() }
+            if configuration?.guestAddons == nil {
+                Task { await initializeDefaultSourceAndHome() }
             } else { await loadHome() }
         } catch is CancellationError { started = false }
         catch { self.error = safeMessage(error); Diagnostics.shared.recordFailure(error) }
@@ -352,29 +339,24 @@ final class AppModel {
         addonRefresh?.task.cancel(); addonRefresh = nil
         defer { accountBusy = false; switchingProfile = false }
         do {
+            try await profileContext.retireStremioAccounts()
             let accepted = try await profileContext.select(id, password: password, parentPassword: parentPassword)
             guard accepted else { storageReady = wasReady && profileContext.ready; return false }
             boundHarborIdentity?.unbindHouseholdContext(); boundHarborIdentity = nil
             storageReady = false
             MusicPlayback.shared.stopForAccount(personalOwner)
             let configuration = profileContext.configuration
-            savedAccount = configuration?.account
-            if let account = savedAccount { addons = account.collection.addons }
-            else if let saved = configuration?.guestAddons { addons = saved }
-            else {
-                let scope = accountOperationScope
-                let fallback = try await service.install(HarborService.cinemetaManifest)
-                try Task.checkCancellation()
-                guard scope == accountOperationScope else { throw HarborError(code: "account-cancelled") }
-                try profileContext.save(HouseholdSourceAccount(account: nil, guestAddons: [fallback])); addons = [fallback]
-            }
+            addons = configuration?.guestAddons ?? []
             homeGeneration += 1; rows = []; heroes = []; warnings = []; pages = [:]; home.reset()
             error = nil; accountError = nil; lastAddonRefresh = .distantPast
-            try await setProgressOwner(progressOwner); await bindLibrary(savedAccount?.session)
+            try await setProgressOwner(progressOwner); await bindLibrary(nil)
             storageReady = true
             if recordSelection { ProfileSelectionClock(scope: profileContext.profiles.scope).recordSelection() }
             automaticProfilePromptPending = false
-            Task { await loadHome(); await refreshAddons() }
+            Task {
+                if configuration?.guestAddons == nil { await initializeDefaultSourceAndHome() }
+                else { await loadHome(); await refreshAddons() }
+            }
             return true
         } catch {
             // A failed account binding stays hidden; never expose the previous
@@ -435,116 +417,65 @@ final class AppModel {
         }
     }
 
-    func signIn(email: String, password: String) async throws {
-        guard !accountBusy, profileContext.ready else { throw HarborError(code: "account-busy") }
-        accountBusy = true
-        defer { accountBusy = false }
+    /// First-run catalog discovery must not gate local profiles, the library or
+    /// document imports. A late default never replaces an intentional empty list.
+    private func initializeDefaultSourceAndHome() async {
         let scope = accountOperationScope
-        try await accept(try await accounts.login(email: email, password: password), scope: scope)
-    }
-
-    func signIn(authKey: String) async throws {
-        guard !accountBusy, profileContext.ready else { throw HarborError(code: "account-busy") }
-        accountBusy = true
-        defer { accountBusy = false }
-        let scope = accountOperationScope
-        try await accept(try await accounts.session(authKey: authKey), scope: scope)
-    }
-
-    private func accept(_ session: AccountSession, scope: String) async throws {
-        let collection = try await accounts.addons(session)
-        try Task.checkCancellation()
-        guard scope == accountOperationScope else { throw HarborError(code: "account-cancelled") }
-        let next = SavedAccount(session: session, collection: collection)
-        // Commit the token and downloaded collection together, only after both
-        // requests succeed. A rejected login/sync preserves the previous account.
-        let previousProgressOwner = progressOwner, previousIdentity = harborIdentity
-        try profileContext.save(HouseholdSourceAccount(account: next, guestAddons: profileContext.configuration?.guestAddons), explicitAuthenticationChange: true)
-        previousIdentity.suspendForProfileChange()
-        savedAccount = next
-        addons = collection.addons
-        if previousProgressOwner != progressOwner { try await setProgressOwner(progressOwner) }
-        else { try bindHarborIdentity(); harborIdentity.requestHouseholdSynchronization() }
-        await bindLibrary(session)
-        storageReady = true
-        rows = []; heroes = []; warnings = []; accountError = nil
-        homeGeneration += 1; pages = [:]; home.reset()
-        Diagnostics.shared.record(.accountSignedIn, count: addons.count)
+        guard storageReady, profileContext.configuration?.guestAddons == nil else { return }
+        do {
+            let fallback = try await service.install(HarborService.cinemetaManifest)
+            guard !Task.isCancelled, scope == accountOperationScope, storageReady,
+                  profileContext.configuration?.guestAddons == nil, addons.isEmpty else { return }
+            try persist([fallback])
+        } catch is CancellationError { return }
+        catch { Diagnostics.shared.recordFailure(error) }
+        guard scope == accountOperationScope, storageReady else { return }
         await loadHome()
     }
 
-    func syncAccount() async throws {
-        guard !accountBusy, let old = savedAccount else { throw HarborError(code: "account-busy") }
-        accountBusy = true
-        defer { accountBusy = false }
-        let scope = accountOperationScope
-        var collection = try await accounts.addons(old.session)
-        let enabled = Dictionary(old.collection.addons.map { ($0.transportUrl, $0.enabled) }, uniquingKeysWith: { first, _ in first })
-        for index in collection.addons.indices {
-            collection.addons[index].enabled = enabled[collection.addons[index].transportUrl] ?? true
-        }
-        let next = SavedAccount(session: old.session, collection: collection)
-        try Task.checkCancellation()
-        guard scope == accountOperationScope else { throw HarborError(code: "account-cancelled") }
-        try profileContext.save(HouseholdSourceAccount(account: next, guestAddons: profileContext.configuration?.guestAddons))
-        savedAccount = next; addons = collection.addons
-        lastAddonRefresh = Date()
-        await bindLibrary(next.session)
-        warnings = []; accountError = nil
-        Diagnostics.shared.record(.accountSynced, count: addons.count)
-        await loadHome()
-    }
-
+    /// Refresh the configured manifests directly. This path never contacts an
+    /// account API and preserves each instance's URL, enabled state and ordering.
     func refreshAddons(force: Bool = false) async {
-        guard storageReady, !accountBusy, let old = savedAccount, force || Date().timeIntervalSince(lastAddonRefresh) > 30 else { return }
-        let scope = accountOperationScope
-        let task: Task<AccountCollection, Error>
-        let requestID: UUID
+        guard storageReady, !accountBusy, force || Date().timeIntervalSince(lastAddonRefresh) > 30 else { return }
+        // Opening a detail/player uses the last known manifests immediately.
+        // Only the explicit Refresh action waits for provider availability.
+        if !force { Task { await refreshAddons(force: true) }; return }
+        let scope = accountOperationScope, baseline = addons
+        let task: Task<[Addon], Error>, requestID: UUID
         if let existing = addonRefresh { task = existing.task; requestID = existing.id }
         else {
-            let accounts = accounts
             requestID = UUID()
-            task = Task { try await accounts.addons(old.session, timeout: 5) }
+            let service = service
+            task = Task {
+                await withTaskGroup(of: (Int, Addon).self) { group in
+                    var iterator = baseline.enumerated().makeIterator(), values = baseline
+                    func enqueue(_ index: Int, _ addon: Addon) {
+                        group.addTask {
+                            guard var next = try? await service.install(addon.transportUrl, timeout: 5),
+                                  next.manifest["id"] == addon.manifest["id"] else { return (index, addon) }
+                            next.enabled = addon.enabled; return (index, next)
+                        }
+                    }
+                    for _ in 0..<3 { if let (index, addon) = iterator.next() { enqueue(index, addon) } }
+                    for await (index, addon) in group {
+                        values[index] = addon
+                        if let (next, item) = iterator.next() { enqueue(next, item) }
+                    }
+                    return values
+                }
+            }
             addonRefresh = (requestID, task)
         }
         defer { if addonRefresh?.id == requestID { addonRefresh = nil } }
         do {
-            var collection = try await task.value
-            guard !Task.isCancelled, !accountBusy, scope == accountOperationScope, savedAccount?.session.authKey == old.session.authKey else { return }
-            let enabled = Dictionary(addons.map { ($0.id, $0.enabled) }, uniquingKeysWith: { first, _ in first })
-            for index in collection.addons.indices { collection.addons[index].enabled = enabled[collection.addons[index].id] ?? true }
-            let changed = addons.count != collection.addons.count || zip(addons, collection.addons).contains { $0.0.id != $0.1.id || $0.0.manifest != $0.1.manifest }
-            let next = SavedAccount(session: old.session, collection: collection)
-            try profileContext.save(HouseholdSourceAccount(account: next, guestAddons: profileContext.configuration?.guestAddons))
-            savedAccount = next; addons = collection.addons; lastAddonRefresh = Date(); accountError = nil
-            if changed { pages = [:]; home.reset(); Task { await loadHome() } }
+            let refreshed = try await task.value
+            guard !Task.isCancelled, !accountBusy, scope == accountOperationScope,
+                  try JSONValue.encoded(addons) == JSONValue.encoded(baseline) else { return }
+            let changed = try JSONValue.encoded(refreshed) != JSONValue.encoded(baseline)
+            if changed { try persist(refreshed); pages = [:]; home.reset(); Task { await loadHome() } }
+            lastAddonRefresh = Date(); accountError = nil
         } catch is CancellationError { return }
-        catch {
-            guard scope == accountOperationScope else { return }
-            accountError = "No se pudieron actualizar los addons de la cuenta. Se conservan los últimos guardados; vuelve a actualizar las fuentes."
-        }
-    }
-
-    func signOut() async throws {
-        guard !accountBusy else { throw HarborError(code: "account-busy") }
-        accountBusy = true
-        defer { accountBusy = false }
-        // Desktop sign-out removes the local session, without revoking other devices.
-        let guest: [Addon]
-        let scope = accountOperationScope
-        if let saved = profileContext.configuration?.guestAddons { guest = saved }
-        else { guest = [try await service.install(HarborService.cinemetaManifest)] }
-        try Task.checkCancellation()
-        guard scope == accountOperationScope else { throw HarborError(code: "account-cancelled") }
-        let previousIdentity = harborIdentity
-        try profileContext.save(HouseholdSourceAccount(account: nil, guestAddons: guest), explicitAuthenticationChange: true)
-        previousIdentity.suspendForProfileChange()
-        savedAccount = nil; addons = guest; rows = []; heroes = []; warnings = []; accountError = nil
-        homeGeneration += 1; pages = [:]; home.reset()
-        try await setProgressOwner(progressOwner)
-        await bindLibrary(nil)
-        Diagnostics.shared.record(.accountSignedOut)
-        await loadHome()
+        catch { Diagnostics.shared.recordFailure(error) }
     }
 
     func install(_ url: String, expectedManifestID: String? = nil) async throws {
@@ -608,30 +539,20 @@ final class AppModel {
     }
 
     private func saveCollection(_ next: [Addon], replacing replacements: [String: String] = [:]) async throws {
-        if let account = savedAccount {
-            let scope = accountOperationScope
-            let fresh = try await accounts.addons(account.session)
-            try Task.checkCancellation()
-            guard scope == accountOperationScope else { throw HarborError(code: "account-cancelled") }
-            let merged = account.collection.merging(next, into: fresh.addons)
-            let collection = AccountCollection(addons: merged, records: fresh.records(for: merged, replacing: replacements))
-            try await accounts.save(collection, session: account.session)
-            try Task.checkCancellation()
-            guard scope == accountOperationScope else { throw HarborError(code: "account-cancelled") }
-            let saved = SavedAccount(session: account.session, collection: collection)
-            do { try profileContext.save(HouseholdSourceAccount(account: saved, guestAddons: profileContext.configuration?.guestAddons)) }
-            catch { throw HarborError(code: "account-local-save-failed") }
-            savedAccount = saved; addons = merged; lastAddonRefresh = Date()
-        } else { try persist(next) }
+        try persist(next, replacing: replacements)
     }
 
-    private func persist(_ next: [Addon]) throws {
+    private func persist(_ next: [Addon], replacing replacements: [String: String] = [:]) throws {
         guard storageReady else { throw HarborError(code: "storage-unavailable") }
-        if var account = savedAccount {
-            account.collection.addons = next
-            try profileContext.save(HouseholdSourceAccount(account: account, guestAddons: profileContext.configuration?.guestAddons))
-            savedAccount = account
-        } else { try profileContext.save(HouseholdSourceAccount(account: nil, guestAddons: next)) }
+        var configuration = profileContext.configuration ?? HouseholdSourceAccount(account: nil, guestAddons: nil)
+        guard configuration.account == nil else { throw HarborError(code: "profile-account-migration") }
+        if var archive = configuration.localSource {
+            let previous = AccountCollection(addons: addons, records: archive.collection.records)
+            archive.collection = AccountCollection(addons: next, records: previous.records(for: next, replacing: replacements))
+            configuration.localSource = archive
+        }
+        configuration.guestAddons = next
+        try profileContext.save(configuration)
         addons = next
     }
 }

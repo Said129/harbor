@@ -69,7 +69,7 @@ struct ContinueSourceControls: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 30) {
             HarborSettingsToggle(DesktopInterfaceText.value("Keep Continue Watching private to each profile"),
-                note: DesktopInterfaceText.value("Only show Continue Watching for the profile that's active. Each profile sees just its own progress, so what you watch stays hidden from the other profiles that share this Stremio account."),
+                note: LocalProfileText.value(.sharedContinue),
                 isOn: $privateContinuing).accessibilityIdentifier("settings-cw-private")
             HarborSettingsSection(DesktopInterfaceText.value("Continue Watching sources")) {
             Text(DesktopInterfaceText.value("Choose which services feed your Continue Watching row. Turn on as many as you like and Harbor merges them, keeping the most recent progress for each title. What you watch is still scrobbled to every connected service regardless of what you pick here."))

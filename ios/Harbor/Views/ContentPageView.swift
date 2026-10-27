@@ -74,7 +74,7 @@ struct CinemaHero: View {
                                     if moreInfo {
                                         NavigationLink(value: media) { Label("Más información", image: "desktop-info").font(HarborTheme.font(14, weight: .semibold)).padding(.horizontal, 14).padding(.vertical, 13).background(.black.opacity(0.3), in: .rect(cornerRadius: 8)) }.buttonStyle(.plain)
                                     } else {
-                                        Button { if app.user == nil { app.showAccount = true } else { Task { await app.library.toggleBookmark(media) } } } label: { Label(app.library.bookmarked(media) ? "En mi lista" : "Añadir a mi lista", image: "desktop-bookmark").font(HarborTheme.font(14, weight: .semibold)).padding(.horizontal, 10).padding(.vertical, 13) }.buttonStyle(.plain).disabled(app.library.busy || app.library.loading)
+                                        Button { Task { await app.library.toggleBookmark(media) } } label: { Label(app.library.bookmarked(media) ? "En mi lista" : "Añadir a mi lista", image: "desktop-bookmark").font(HarborTheme.font(14, weight: .semibold)).padding(.horizontal, 10).padding(.vertical, 13) }.buttonStyle(.plain).disabled(app.library.busy || app.library.loading)
                                     }
                                 }
                             }.padding(20).frame(maxWidth: .infinity, alignment: .leading)

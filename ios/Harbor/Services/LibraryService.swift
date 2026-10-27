@@ -36,6 +36,8 @@ struct LibraryService: LibraryServing {
 }
 
 actor LibraryCache {
+    private let directory: URL?
+    init(directory: URL? = nil) { self.directory = directory }
     func readSnapshot(owner: String) throws -> LibrarySnapshot { LibrarySnapshot(try read(owner: owner)) }
     func saveSnapshot(_ records: [JSONValue], owner: String) throws -> LibrarySnapshot {
         try save(records, owner: owner)
@@ -60,6 +62,7 @@ actor LibraryCache {
     }
     private func location(_ owner: String) throws -> URL {
         let hash = SHA256.hash(data: Data(owner.utf8)).map { String(format: "%02x", $0) }.joined()
-        return try FileManager.default.url(for: .applicationSupportDirectory, in: .userDomainMask, appropriateFor: nil, create: false).appendingPathComponent("Harbor/library-\(hash).json")
+        let base = try directory ?? FileManager.default.url(for: .applicationSupportDirectory, in: .userDomainMask, appropriateFor: nil, create: false).appendingPathComponent("Harbor", isDirectory: true)
+        return base.appendingPathComponent("library-\(hash).json")
     }
 }

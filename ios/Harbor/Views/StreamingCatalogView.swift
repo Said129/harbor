@@ -28,7 +28,7 @@ struct StreamingCatalogView: View {
     @Environment(\.scenePhase) private var scenePhase
     private var signature: String {
         let configuration = MetadataPreferences.shared.configuration()
-        return ServiceCatalogModel.scopeKey(service: service, category: category, configuration: configuration, owner: app.user?.id ?? "guest")
+        return ServiceCatalogModel.scopeKey(service: service, category: category, configuration: configuration, owner: app.accountOperationScope)
     }
     var body: some View {
         ScrollViewReader { scroll in
@@ -174,7 +174,7 @@ struct StreamingCatalogView: View {
         withAnimation(reduceMotion ? nil : .easeOut(duration: 0.24)) { category = next }
     }
     private func load(more: Bool) async {
-        await model.load(service: service, category: category, configuration: MetadataPreferences.shared.configuration(), owner: app.user?.id ?? "guest", more: more)
+        await model.load(service: service, category: category, configuration: MetadataPreferences.shared.configuration(), owner: app.accountOperationScope, more: more)
     }
 }
 

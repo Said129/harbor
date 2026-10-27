@@ -203,11 +203,8 @@ private struct DiscoveryQueueHero: View {
     }
     private var save: some View {
         Button {
-            if app.user == nil { app.showAccount = true }
-            else {
-                let owner = app.personalOwner
-                Task { await app.library.toggleBookmark(media); if owner == app.personalOwner, app.library.error == nil { onSaved() } }
-            }
+            let owner = app.personalOwner
+            Task { await app.library.toggleBookmark(media); if owner == app.personalOwner, app.library.error == nil { onSaved() } }
         } label: { chip(saved ? "Saved" : "Save", asset: "ui-save-banner", active: saved) }
             .buttonStyle(.plain).disabled(app.library.busy || app.library.loading).accessibilityIdentifier("discovery-queue-save")
     }

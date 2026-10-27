@@ -23,6 +23,17 @@ actor LibraryWriteQueue {
 
     func pending(owner: String) throws -> [JSONValue] { Array(try load(owner).entries.values) }
 
+    /// Only remove the exact intents already copied to the local library. A late
+    /// newer intent remains available for the next recovery pass.
+    func retire(_ consumed: [JSONValue], owner: String) throws {
+        var next = try load(owner)
+        for record in consumed {
+            let id = try identifier(record)
+            if next.entries[id] == record { next.entries.removeValue(forKey: id) }
+        }
+        try commit(next, owner: owner)
+    }
+
     /// The immediate attempt matches Desktop. A failed request is accepted only
     /// after the newest intent has been durably saved; disk failures propagate.
     @discardableResult

@@ -22,7 +22,7 @@ struct SettingsView: View {
                                          choices: InterfaceLanguage.all.map { ($0.nativeLabel, $0.code) }, localizeChoices: false,
                                          identifier: "settings-app-language")
                 }
-                if matches("Your profile", group: "Account & setup") || matches("Stremio") {
+                if matches("Your profile", group: "Account & setup") || matches("Harbor account") {
                     group("Account & setup") {
                         ProfileAccountButton(app: app, expanded: true).accessibilityIdentifier("settings-account").padding(14)
                     }

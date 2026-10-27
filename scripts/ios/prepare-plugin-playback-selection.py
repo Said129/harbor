@@ -6,6 +6,9 @@ import re
 import runpy
 
 requested = os.environ.get('HARBOR_NATIVE_SELECTION', '').strip()
+if requested == 'affected:local-source-retirement' or requested.startswith('HarborTests.LocalSourceMigrationTests/'):
+    runpy.run_path('scripts/ios/prepare-local-source-retirement-selection.py')
+    raise SystemExit(0)
 if requested == 'affected:trakt-account' or requested.startswith('HarborTests.TraktAccountTests/'):
     runpy.run_path('scripts/ios/prepare-trakt-account-selection.py')
     raise SystemExit(0)

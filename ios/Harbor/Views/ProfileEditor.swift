@@ -12,7 +12,7 @@ struct ProfileAccountButton: View {
                 if expanded {
                     VStack(alignment: .leading, spacing: 4) {
                         accountName(profile).font(HarborTheme.font(13, weight: .semibold)).lineLimit(1)
-                        if app.user != nil { Text(DesktopInterfaceText.value("profile.signedIn")).font(HarborTheme.font(11)).foregroundStyle(.secondary) }
+                        if app.harborIdentity.signedIn { Text(DesktopInterfaceText.value("Connected")).font(HarborTheme.font(11)).foregroundStyle(.secondary) }
                     }
                 }
             }.frame(minHeight: 44)
@@ -20,13 +20,11 @@ struct ProfileAccountButton: View {
     }
     private func accountName(_ profile: ProfilePreferences) -> Text {
         if !profile.value.name.isEmpty { return Text(verbatim: profile.value.name) }
-        if let user = app.user { return Text(verbatim: user.displayName) }
-        return Text("Guest")
+        return Text(DesktopInterfaceText.value("Guest"))
     }
 }
 
 struct ProfileEditor: View {
-    let user: AccountUser?
     let profile: ProfilePreferences
     let identity: HarborProfileSync
     @State private var name = ""
@@ -40,7 +38,7 @@ struct ProfileEditor: View {
     @FocusState private var editingName: Bool
     private var cloud: HarborProfileSync { identity }
     private var editable: Bool { profile.ready && !cloud.busy }
-    private var displayedName: String { profile.value.name.isEmpty ? user?.displayName ?? "Invitado" : profile.value.name }
+    private var displayedName: String { profile.value.name.isEmpty ? DesktopInterfaceText.value("Guest") : profile.value.name }
     var body: some View {
         VStack(alignment: .leading, spacing: 22) {
             Text(DesktopInterfaceText.value("Your profile")).font(HarborTheme.font(20, weight: .semibold)).accessibilityAddTraits(.isHeader)

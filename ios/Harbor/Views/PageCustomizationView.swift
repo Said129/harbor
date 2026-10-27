@@ -103,7 +103,7 @@ struct CustomizedHero: View {
         let ids = source?.metas.prefix(6).map(\.identity).joined(separator: "|") ?? ""
         let addons = app.addons.filter(\.enabled).map(\.id).joined()
         let settings = MetadataPreferences.shared
-        return [source?.id ?? "automatic", ids, app.user?.id ?? "guest", addons, settings.region, settings.language, String(settings.translateTitles), EBookShelf.hash(settings.tmdbKey)].joined(separator: "|")
+        return [source?.id ?? "automatic", ids, app.accountOperationScope, addons, settings.region, settings.language, String(settings.translateTitles), EBookShelf.hash(settings.tmdbKey)].joined(separator: "|")
     }
     private var metas: [Media] {
         guard let source else { return defaults }
@@ -124,12 +124,12 @@ struct CustomizedHero: View {
                 guard let source else { selected = []; enrichedSignature = ""; return }
                 let currentSignature = signature
                 let originals = Array(source.metas.prefix(customization.page == "anime" ? 6 : 5)); selected = originals; enrichedSignature = currentSignature
-                let owner = app.user?.id ?? "guest", service = app.service, addons = app.addons
+                let owner = app.accountOperationScope, service = app.service, addons = app.addons
                 let fetched = await withTaskGroup(of: (Int, Media).self, returning: [(Int, Media)].self) { group in
                     for (index, media) in originals.enumerated() { group.addTask { (index, (try? await service.metadata(media, addons: addons)) ?? media) } }
                     var result: [(Int, Media)] = []; for await value in group { result.append(value) }; return result
                 }
-                guard !Task.isCancelled, owner == (app.user?.id ?? "guest"), customization.layout.heroSource == source.id, currentSignature == signature else { return }
+                guard !Task.isCancelled, owner == app.accountOperationScope, customization.layout.heroSource == source.id, currentSignature == signature else { return }
                 selected = fetched.sorted { $0.0 < $1.0 }.map(\.1)
             }
     }

@@ -8,7 +8,7 @@ struct CatalogsView: View {
     @State private var customization: PageCustomization
     @MainActor init(app: AppModel) {
         self.app = app
-        _customization = State(initialValue: PageCustomization(owner: app.user?.id ?? "guest", page: "catalogs"))
+        _customization = State(initialValue: app.pageCustomization("catalogs"))
     }
     private var rows: [CatalogRow] {
         app.rows.filter { row in

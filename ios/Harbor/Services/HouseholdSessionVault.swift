@@ -4,6 +4,8 @@ import Observation
 struct HouseholdSourceAccount: Codable, Equatable, Sendable {
     var account: SavedAccount?
     var guestAddons: [Addon]?
+    var localSource: LocalSourceArchive? = nil
+    var dataOwner: String? { account?.session.user.id ?? localSource?.owner }
     // Compare the complete protocol payload, including fields unknown to native UI.
     static func == (lhs: Self, rhs: Self) -> Bool {
         guard let left = try? JSONValue.encoded(lhs), let right = try? JSONValue.encoded(rhs) else { return false }
@@ -32,6 +34,7 @@ struct HouseholdSessionState: Codable, Equatable, Sendable {
             key == value.route.key && !value.route.household.isEmpty && value.route.household.utf8.count <= 256
                 && !value.route.sourceID.isEmpty && value.route.sourceID.utf8.count <= 256
                 && (value.configuration.account.map { $0.version == 1 && !$0.session.authKey.isEmpty && !$0.session.user.id.isEmpty } ?? true)
+                && (value.configuration.localSource?.valid ?? true)
         }), migratedOwners.keys.allSatisfy({ !$0.isEmpty && $0.utf8.count <= 512 }),
               migratedOwners.values.allSatisfy({ sources[$0.key]?.route == $0 }),
               identityOwner == nil || migratedOwners[identityOwner!] != nil,
@@ -72,6 +75,27 @@ struct HouseholdSessionState: Codable, Equatable, Sendable {
     func ownConfiguration(_ id: String, scope: HouseholdProfileScope) throws -> HouseholdSourceAccount? {
         guard ready else { throw HarborError(code: "household-unavailable") }
         return state.sources[HouseholdAccountRoute(household: scope.key, sourceID: id).key]?.configuration
+    }
+    /// Retire authentication only after its local library and unsent changes are
+    /// durable. Keep the source route and owner aliases so shared profiles retain
+    /// their history, settings, resumes and configured addon instances.
+    func retireStremioAccounts(prepare: @Sendable (String) async throws -> Void) async throws {
+        guard ready else { throw HarborError(code: "household-unavailable") }
+        let original = state, ticket = generation
+        let owners = Set(original.sources.values.compactMap { $0.configuration.account?.session.user.id })
+        guard !owners.isEmpty else { return }
+        for owner in owners.sorted() { try await prepare(owner) }
+        guard ready, generation == ticket, state == original else { throw HarborError(code: "profile-account-changed") }
+        var next = original
+        for (key, record) in original.sources where record.configuration.account != nil {
+            var configuration = record.configuration
+            let account = configuration.account!
+            configuration.localSource = LocalSourceArchive(owner: account.session.user.id, collection: account.collection,
+                previousGuestAddons: configuration.guestAddons)
+            configuration.guestAddons = account.collection.addons; configuration.account = nil
+            next.sources[key] = HouseholdAccountRecord(route: record.route, version: UUID(), configuration: configuration)
+        }
+        try commit(next)
     }
     /// Copy private records and the one-time account claim together. The old
     /// records remain intact; another Harbor account cannot import them later.

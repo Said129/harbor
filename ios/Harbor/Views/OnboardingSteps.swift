@@ -66,7 +66,7 @@ struct OnboardingLanguageStep: View {
 }
 
 struct OnboardingWelcomeStep: View {
-    private let features = [("Current", "Trending, in theaters, what's on every streamer."), ("Yours", "Your Stremio library + addons sync in untouched."), ("Quiet", "No telemetry, no servers, no bundled keys.")]
+    private let features = [("Current", "Trending, in theaters, what's on every streamer."), ("Yours", "Your profile"), ("Quiet", "No telemetry, no servers, no bundled keys.")]
     var body: some View {
         VStack(alignment: .leading, spacing: 24) {
             HarborBrand(size: 44, tiltedO: true)
@@ -109,17 +109,12 @@ struct OnboardingAccountStep: View {
     let app: AppModel
     var body: some View {
         VStack(alignment: .leading, spacing: 24) {
-            OnboardingHeading("Bring in your library", message: "Sign in to mirror your Continue Watching, watchlist, and any addons you've already curated. Optional; Harbor works fully signed-out.", eyebrow: "Step 2 · Stremio")
-            if let user = app.user {
-                Label(user.displayName, systemImage: "checkmark.circle.fill").privacySensitive().padding(16)
-                    .frame(maxWidth: .infinity, alignment: .leading).background(HarborTheme.background, in: .rect(cornerRadius: 12))
-            }
+            OnboardingHeading("Profiles", message: "Create profiles for the people who use Harbor. Each can have its own appearance, settings, and PIN.")
             NavigationLink { AccountView(app: app).toolbar(.visible, for: .navigationBar) } label: {
-                Label { Text(DesktopInterfaceText.value(app.user == nil ? "Sign in" : "Manage")) } icon: {
-                    Image("account-stremio").resizable().scaledToFit().frame(width: 24, height: 24).accessibilityHidden(true)
+                Label { Text(DesktopInterfaceText.value("Your profile")) } icon: {
+                    Image("harbor-brand").resizable().scaledToFit().frame(width: 24, height: 24).accessibilityHidden(true)
                 }.frame(minHeight: 44)
-            }.buttonStyle(HarborAccountButtonStyle()).accessibilityIdentifier("guide-stremio-account")
-            Link(DesktopInterfaceText.value("Create account"), destination: URL(string: "https://www.stremio.com/register")!).frame(minHeight: 44)
+            }.buttonStyle(HarborAccountButtonStyle()).accessibilityIdentifier("guide-harbor-profile")
         }
     }
 }

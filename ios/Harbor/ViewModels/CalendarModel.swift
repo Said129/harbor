@@ -19,7 +19,7 @@ final class CalendarModel {
     func load(month: Date, app: AppModel) async {
         generation += 1
         let current = generation
-        let accountSignature = (app.user?.id ?? "guest") + app.addons.filter(\.enabled).map(\.id).joined()
+        let accountSignature = app.accountOperationScope + app.addons.filter(\.enabled).map(\.id).joined()
         if accountSignature != signature { metadata = [:]; signature = accountSignature }
         let records = app.library.items.filter { $0.bookmarked || $0.continuing }
         loading = true; error = nil; events = []

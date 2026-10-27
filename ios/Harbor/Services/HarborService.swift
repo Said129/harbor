@@ -14,10 +14,10 @@ struct HarborService: Sendable {
         return addons
     }
 
-    func install(_ url: String) async throws -> Addon {
+    func install(_ url: String, timeout: TimeInterval = 8) async throws -> Addon {
         struct Normalized: Decodable, Sendable { let url: String }
         let normalized: Normalized = try await core.call("normalizeAddon", ["url": .string(url)])
-        let manifest = try await http.json(normalized.url)
+        let manifest = try await http.json(normalized.url, timeout: timeout)
         return try await core.call("installAddon", ["url": .string(normalized.url), "manifest": manifest])
     }
 

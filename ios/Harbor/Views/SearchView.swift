@@ -35,7 +35,7 @@ struct SearchView: View {
         .onSubmit(of: .search) { history.record(query) }
         .onDisappear { if completedQuery != nil { history.record(query) } }
         .refreshable { ArtworkRefresh.shared.retryFailedImages(); await search() }
-        .task(id: query + (app.user?.id ?? "guest") + app.addons.filter(\.enabled).map(\.id).joined()) { await search() }
+        .task(id: query + app.accountOperationScope + app.addons.filter(\.enabled).map(\.id).joined()) { await search() }
     }
     private var searchTitles: [String: String] {
         Dictionary(rows.map { ($0.id, $0.isAnimeCatalog ? "Anime" : ["movie": "Películas", "series": "Series", "tv": "TV", "channel": "TV"][$0.plan.kind] ?? "Resultados") }, uniquingKeysWith: { first, _ in first })

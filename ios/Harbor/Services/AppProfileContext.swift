@@ -4,7 +4,7 @@ import Observation
 struct LegacyProfileConfiguration: Sendable {
     let configuration: HouseholdSourceAccount
     var appearance: MobileProfile? = nil
-    var owner: String { configuration.account?.session.user.id ?? "guest" }
+    var owner: String { configuration.dataOwner ?? "guest" }
 }
 @MainActor protocol LegacyProfileLoading {
     func loadLegacyProfile() throws -> LegacyProfileConfiguration
@@ -119,7 +119,7 @@ struct ActiveProfileBinding: Equatable, Sendable {
         let routing = HouseholdProfileRouting(profile: profile, profiles: profiles.profiles, scope: profiles.scope, cwPerProfile: false)
         let identityOwner = sessions.identityOwner ?? profiles.profiles.compactMap(\.legacyOwner).first ?? "identity-" + profiles.scope.key
         let sharedOwner = sharedSettingsOwner(identityOwner: identityOwner)
-        let accountID = lease.configuration?.account?.session.user.id
+        let accountID = lease.configuration?.dataOwner
         let source = profiles.profiles.first { $0.id == routing.stremioSourceID }
         let progressOwner = sourceProgressOwner(source, sourceID: routing.stremioSourceID, accountID: accountID)
         let next = ActiveProfileBinding(profileID: profile.id, personalOwner: routing.personal,
@@ -139,7 +139,7 @@ struct ActiveProfileBinding: Equatable, Sendable {
         for profile in profiles.profiles {
             let routing = HouseholdProfileRouting(profile: profile, profiles: profiles.profiles, scope: profiles.scope, cwPerProfile: false)
             let source = profiles.profiles.first { $0.id == routing.stremioSourceID }
-            let account = try sessions.ownConfiguration(routing.stremioSourceID, scope: profiles.scope)?.account?.session.user.id
+            let account = try sessions.ownConfiguration(routing.stremioSourceID, scope: profiles.scope)?.dataOwner
             values[routing.personal] = account ?? sourceProgressOwner(source, sourceID: routing.stremioSourceID, accountID: nil)
         }
         return values
@@ -162,6 +162,10 @@ struct ActiveProfileBinding: Equatable, Sendable {
         try refreshBinding(); return true
     }
     func refreshRouting() throws { try refreshBinding() }
+    func retireStremioAccounts(using migration: LocalSourceMigration = .init()) async throws {
+        try await sessions.retireStremioAccounts { try await migration.prepare($0) }
+        try refreshBinding()
+    }
     func bindProfileAppearances() {
         for profile in profiles.profiles where !profile.desktop.isKid {
             ProfilePreferences.forOwner(profiles.appearanceOwner(profile)).bindHousehold(profiles, id: profile.id)
@@ -188,7 +192,7 @@ struct ActiveProfileBinding: Equatable, Sendable {
                 next.localIdentityOwner = HarborProfileIdentity.owner(profile, scope: previous.scope)
                 next.localDataOwner = HouseholdProfileRouting(profile: profile, profiles: previous.profiles, scope: previous.scope, cwPerProfile: false).personal
                 let own = try sessions.ownConfiguration(profile.id, scope: previous.scope)
-                let ownAccount = own?.account?.session.user.id
+                let ownAccount = own?.dataOwner
                 if let legacy = profile.legacyOwner, legacy == (ownAccount ?? "guest") { next.localProgressOwner = legacy }
                 else { next.localProgressOwner = "source-progress-" + HouseholdProfileScope.hash([previous.scope.key, profile.id, ownAccount ?? "guest"]) }
                 next.localProgressAccount = ownAccount; next.legacyOwner = nil

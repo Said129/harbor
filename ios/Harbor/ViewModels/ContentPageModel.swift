@@ -13,7 +13,7 @@ final class ContentPageModel {
     private var loadedSignature = ""
     func load(kind: String, app: AppModel, refresh: Bool = false) async {
         let configuration = MetadataPreferences.shared.configuration()
-        let signature = kind + (app.user?.id ?? "guest") + app.addons.filter(\.enabled).map(\.id).joined() + configuration.tmdbKey + configuration.region + configuration.language + String(configuration.translateTitles)
+        let signature = kind + app.accountOperationScope + app.addons.filter(\.enabled).map(\.id).joined() + configuration.tmdbKey + configuration.region + configuration.language + String(configuration.translateTitles)
         guard refresh || signature != loadedSignature else { return }
         generation += 1
         let current = generation
@@ -163,9 +163,9 @@ final class ContentPageModel {
     }
     func refreshAnimePicks(app: AppModel) async {
         guard !loading, let index = curated.firstIndex(where: { $0.id == "anime-picks" }) else { return }
-        let current = generation, owner = app.user?.id ?? "guest"
+        let current = generation, owner = app.accountOperationScope
         guard let picks = try? await AnimeService.shared.picks(records: app.library.items), !Task.isCancelled,
-              current == generation, owner == (app.user?.id ?? "guest"), curated.indices.contains(index), curated[index].id == "anime-picks" else { return }
+              current == generation, owner == app.accountOperationScope, curated.indices.contains(index), curated[index].id == "anime-picks" else { return }
         curated[index].metas = picks
     }
 }

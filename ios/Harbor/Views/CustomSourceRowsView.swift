@@ -119,7 +119,7 @@ private struct SourceFolderRequirementView: View {
                 if case .addon(let id) = requirement {
                     Text("\(DesktopInterfaceText.value("This section depends on the addon")) \(Text(id).bold())")
                         .font(HarborTheme.font(15)).foregroundStyle(ThemePreferences.shared.color("ink-muted"))
-                    Text(DesktopInterfaceText.value("You must install this addon in your Stremio account first so Harbor can fetch its works."))
+                    Text(LocalProfileText.value(.requiredAddon))
                         .font(HarborTheme.font(15)).foregroundStyle(ThemePreferences.shared.color("ink-muted"))
                 } else {
                     Text(DesktopInterfaceText.value("This section relies on TMDB discovery features."))
@@ -196,7 +196,7 @@ struct CustomSourceFolderBrowser: View {
         catch {
             guard scope == app.accountOperationScope else { return }
             if let failure = error as? HarborError, failure.code == "custom-source-addon" {
-                self.error = DesktopInterfaceText.value("You must install this addon in your Stremio account first so Harbor can fetch its works.")
+                self.error = LocalProfileText.value(.requiredAddon)
             } else { self.error = safeMessage(error) }
         }
     }

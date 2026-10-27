@@ -55,7 +55,7 @@ struct AddonDetailView: View {
             .toolbar { ToolbarItem(placement: .confirmationAction) { Button("Cerrar") { dismiss() }.disabled(saving) } }
             .confirmationDialog("Eliminar \(addon.name) de tus addons", isPresented: $confirmingRemoval, titleVisibility: .visible) {
                 Button("Eliminar addon", role: .destructive) { remove() }
-            } message: { Text(app.user == nil ? "El addon se quitará de este iPhone." : "El addon se quitará también de tu colección de Stremio.") }
+            } message: { Text("El addon se quitará de este iPhone.") }
             .sheet(isPresented: $showConfiguration) {
                 if let url = addon.configurationURL {
                     NavigationStack {
@@ -65,7 +65,7 @@ struct AddonDetailView: View {
                         }
                     }.font(HarborTheme.font()).tint(HarborTheme.accent)
                 }
-            }.onChange(of: app.user?.id) { _, _ in dismiss() }
+            }.onChange(of: app.accountOperationScope) { _, _ in dismiss() }
     }
     private var actions: some View {
         VStack(alignment: .leading, spacing: 12) {

@@ -86,8 +86,8 @@ private struct HarborAnimeSlide: View {
                     Label(DesktopInterfaceText.value("Start Watching"), image: "ui-play-filled").font(HarborTheme.font(15, weight: .semibold)).padding(.horizontal, 22).frame(minHeight: 48).foregroundStyle(HarborTheme.background).background(HarborTheme.ink, in: .capsule)
                 }.buttonStyle(.plain).accessibilityIdentifier("anime-start-watching")
                 Button {
-                    if app.user == nil { app.showAccount = true }
-                    else { Task { await app.library.toggleBookmark(media); if app.library.error == nil { withAnimation(reduceMotion ? nil : .spring(response: 0.25, dampingFraction: 0.7)) { hint = "saved"; hintRevision &+= 1 } } } }
+                    let owner = app.personalOwner
+                    Task { await app.library.toggleBookmark(media); if owner == app.personalOwner, app.library.error == nil { withAnimation(reduceMotion ? nil : .spring(response: 0.25, dampingFraction: 0.7)) { hint = "saved"; hintRevision &+= 1 } } }
                 } label: {
                     Image(saved ? "desktop-check" : "desktop-plus").resizable().scaledToFit().frame(width: 18, height: 18).frame(width: 48, height: 48).background(saved ? HarborTheme.ink.opacity(0.15) : HarborTheme.background.opacity(0.8), in: .circle)
                 }.buttonStyle(.plain).disabled(app.library.busy || app.library.loading)

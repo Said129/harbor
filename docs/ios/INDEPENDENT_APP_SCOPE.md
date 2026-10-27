@@ -14,7 +14,9 @@ El 27 de octubre de 2026 el propietario precisó el objetivo: completar primero 
 
 ## Estado y límites
 
-Ya existen el almacén local de perfiles, propietarios separados y configuración local de addons. La pestaña inicial de Cuenta pasa a «Tu perfil» también sin sesión Stremio. El arranque inicial aún debe revisarse: intenta obtener Cinemeta antes de habilitar el almacenamiento de la aplicación. El perfil local y la gestión de archivos no deben depender de esa descarga.
+Ya existen el almacén local de perfiles, propietarios separados y configuración local de addons. El incremento actual retira la pestaña y los accesos de cuenta Stremio, sus servicios de autenticación y las llamadas de sincronización desde AppModel. Conserva las tres secciones de Cuenta: Tu perfil, Perfiles y Cuenta Harbor. Los datos originales se convierten en fuentes locales conservando sus propietarios, manifiestos completos, biblioteca y cambios pendientes; la sesión solo se descarta tras guardar los datos. El arranque habilita el almacenamiento antes de descargar Cinemeta y una respuesta tardía no reemplaza fuentes elegidas por el usuario. La actualización automática de manifiestos pasa a segundo plano; solo Actualizar espera al proveedor. Este incremento todavía necesita compilación y ejecución en Apple.
+
+La selección de comprobación incorpora ocho casos nuevos de migración, dos de propietarios afectados y dos recorridos nuevos de Cuenta con preparaciones independientes en iPhone/iPad. No certifica todavía el primer arranque sin red ni los tres botones de guardado cuyo requisito de cuenta Stremio se ha retirado; esos recorridos también deben cerrarse antes de la entrega final.
 
 La aclaración del propietario no exige diseñar un sistema de cuentas nuevo ni contratar un backend nuevo: se conserva el sistema de Harbor. La disponibilidad de su servidor y la validación de la sincronización siguen siendo asuntos distintos de los perfiles locales; no se ha desplegado un servidor propio ni se considera que los perfiles locales demuestren sincronización por Internet.
 
