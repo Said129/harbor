@@ -43,11 +43,11 @@ plan = dict(source=os.environ.get('GITHUB_SHA', 'working-tree'), block=block, se
     original_reference='ios/HarborTests/Fixtures/simkl-playback-import-reference.json',
     original_oracle_cases=26, personal_simkl_requests_performed=False,
     owned_local_source_ui_server=False, unrelated_approved_cases_selected=False,
-    existing_rust_tests_repeated=False, new_rust_tests=2,
+    existing_rust_tests_repeated=False, new_rust_tests=1, retained_core_tests=1, parent_rust_compiler_run=40443774165,
     full_desktop_parity_complete=False, physical_performance_verified=False, ipa_requested=False)
 build = Path('ios/build'); build.mkdir(parents=True, exist_ok=True)
 (build / 'preserved-plugin-integration.json').write_text(json.dumps(plan, indent=2) + '\n', 'utf-8')
 (build / 'plugin-integration-selection.txt').write_text('\n'.join(case.replace('.', '/', 1) for case in cases) + '\n', 'utf-8')
 if os.environ.get('GITHUB_ENV'):
     with open(os.environ['GITHUB_ENV'], 'a', encoding='utf-8') as stream: stream.write('HARBOR_PLUGIN_UI_REQUIRED=true\n')
-print('8 new native +6 affected resume +2 fresh guests +2 real source UI=18 executions/8captures,2newRust tests. No IPA.')
+print('8 new native +6 affected resume +2 fresh guests +2 real source UI=18 executions/8captures; failed Rust bridge only, core PASS retained. No IPA.')

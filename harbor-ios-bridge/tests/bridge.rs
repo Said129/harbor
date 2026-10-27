@@ -3,6 +3,9 @@ use serde_json::{json, Value};
 
 #[test]
 fn tracker_percentage_crosses_the_real_abi_and_preserves_legacy_entries() {
+    let run = |request: Value| -> Value {
+        serde_json::from_str(&call(&serde_json::to_vec(&request).unwrap())).unwrap()
+    };
     let document = json!({"version":1,"entries":{"owned|s1e7":{"ms":1320000,"t":123,"pct":0.5,"source":"simkl"},"old":{"ms":60000,"t":12}}});
     let validated = run(json!({"operation":"validateResume","document":document}));
     assert_eq!(validated["data"]["entries"]["owned|s1e7"]["pct"], 0.5);
