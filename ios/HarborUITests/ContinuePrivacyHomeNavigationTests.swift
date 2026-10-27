@@ -24,8 +24,10 @@ import XCTest
         ReadingUIInteraction.reveal(privacy, in: app, container: app.scrollViews["interface-settings-scroll"])
         XCTAssertEqual(privacy.value as? String, "1"); ReadingUIInteraction.tapVisible(privacy, in: app)
         XCTAssertEqual(privacy.value as? String, "0")
-        app.terminate(); ReadingUIInteraction.launchPreparedApplication(app)
+        openHome(app)
         expectHome(app, a: true, b: true); capture(app, "private-home-shared-" + device)
+        app.terminate(); ReadingUIInteraction.launchPreparedApplication(app)
+        expectHome(app, a: true, b: true)
     }
     private func card(_ title: String, _ app: XCUIApplication) -> XCUIElement {
         app.buttons.matching(identifier: "continue-watching-resume").matching(NSPredicate(format: "label CONTAINS %@", title)).firstMatch
@@ -60,6 +62,13 @@ import XCTest
         let library = app.buttons["settings-interface"]
         ReadingUIInteraction.reveal(library, in: app, container: scroll); ReadingUIInteraction.tapVisible(library, in: app)
         XCTAssertTrue(app.scrollViews["interface-settings-scroll"].waitForExistence(timeout: 15))
+    }
+    private func openHome(_ app: XCUIApplication) {
+        ReadingUIInteraction.tapVisible(app.buttons["main-menu"], in: app)
+        let navigation = app.descendants(matching: .any).matching(identifier: "navigation-scroll").firstMatch
+        XCTAssertTrue(navigation.waitForExistence(timeout: 10))
+        let home = app.buttons["nav-home"]
+        ReadingUIInteraction.reveal(home, in: app, container: navigation); ReadingUIInteraction.tapVisible(home, in: app)
     }
     private func capture(_ app: XCUIApplication, _ name: String) {
         let attachment = XCTAttachment(screenshot: app.screenshot()); attachment.name = name; attachment.lifetime = .keepAlways; add(attachment)
