@@ -69,7 +69,7 @@ actor SimklLibraryDisk: SimklLibraryPersistence {
         let revision = revision
         let saved = try await disk.read(owner: owner, fingerprint: fingerprint)
         guard self.fingerprint == fingerprint, self.revision == revision else { throw CancellationError() }
-        if let saved { snapshot = saved }; restored = true
+        if let saved { snapshot = saved; self.revision &+= 1 }; restored = true
     }
     func commit(_ value: SimklLibrarySnapshot, fingerprint: String, expectedRevision: Int) async throws {
         guard self.fingerprint == fingerprint, revision == expectedRevision else { throw CancellationError() }

@@ -93,8 +93,11 @@ actor TrackerEpisodeResolver {
         let release = series["releaseInfo"].string ?? ""
         let yearRange = release.range(of: "[0-9]{4}", options: .regularExpression)
         let episodeIMDb = video["imdb_id"].string.flatMap { $0.range(of: "^tt[0-9]+$", options: .regularExpression) != nil ? $0 : nil }
+        let name: String?, airDate: String?
+        if let value = video["name"].string { name = value } else { name = video["title"].string }
+        if let value = video["released"].string { airDate = value } else { airDate = video["firstAired"].string }
         return .init(showTitle: title, showYear: yearRange.flatMap { Int(release[$0]) }, season: season, number: number,
-            name: video["name"].string ?? video["title"].string, airDate: video["released"].string ?? video["firstAired"].string,
+            name: name, airDate: airDate,
             episodeTvdbId: video["tvdb_id"].integer, episodeImdbId: episodeIMDb)
     }
     private func perform(_ identity: TrackerEpisodeIdentity) async -> TrackerResolutionResult {

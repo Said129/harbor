@@ -60,21 +60,24 @@ enum SimklCollection {
         let query = query.trimmingCharacters(in: .whitespacesAndNewlines).folding(options: [.caseInsensitive, .diacriticInsensitive], locale: .current)
         return groups.compactMap { items in
             guard items.contains(where: { $0.status == status }) else { return nil }
-            let watching = items.filter { $0.status == .watching }.sorted { ($0.addedAt ?? "") > ($1.addedAt ?? "") }
-            guard let representative = watching.first ?? items.first else { return nil }
-            var media = representative.media
-            if kind == .anime {
-                media.name = items.map(\.title).reduce(nil as String?) { best, value in
-                    guard let best else { return value }; return value.count < best.count ? value : best
-                } ?? media.name
-                let years = items.compactMap(\.year)
-                if let first = years.min(), let last = years.max() { media.releaseInfo = first == last ? String(first) : "\(first)-\(last)" }
-                if media.poster == nil { media.poster = items.compactMap(\.poster).first }
-            }
-            guard query.isEmpty || media.name.folding(options: [.caseInsensitive, .diacriticInsensitive], locale: .current).contains(query) else { return nil }
-            return Row(id: kind == .anime ? "franchise:" + items.map(\.id).sorted().joined(separator: ",") : representative.id,
-                media: media, items: items, date: items.compactMap(\.addedAt).max())
+            guard let row = Self.row(items, kind: kind), query.isEmpty || row.media.name.folding(options: [.caseInsensitive, .diacriticInsensitive], locale: .current).contains(query) else { return nil }
+            return row
         }
+    }
+    static func row(_ items: [SimklListItem], kind: SimklMediaKind) -> Row? {
+        let watching = items.filter { $0.status == .watching }.sorted { ($0.addedAt ?? "") > ($1.addedAt ?? "") }
+        guard let representative = watching.first ?? items.first else { return nil }
+        var media = representative.media
+        if kind == .anime {
+            media.name = items.map(\.title).reduce(nil as String?) { best, value in
+                guard let best else { return value }; return value.count < best.count ? value : best
+            } ?? media.name
+            let years = items.compactMap(\.year)
+            if let first = years.min(), let last = years.max() { media.releaseInfo = first == last ? String(first) : "\(first)-\(last)" }
+            if media.poster == nil { media.poster = items.compactMap(\.poster).first }
+        }
+        return Row(id: kind == .anime ? "franchise:" + items.map(\.id).sorted().joined(separator: ",") : representative.id,
+            media: media, items: items, date: items.compactMap(\.addedAt).max())
     }
     static func groups(_ rows: [Row], sort: LibrarySort, now: Date = Date(), calendar: Calendar = .current) -> [Group] {
         let rows = rows.sorted {
@@ -97,5 +100,41 @@ enum SimklCollection {
             var values = buckets[rank]?.1 ?? []; values.append(row); buckets[rank] = (label, values)
         }
         return buckets.sorted { $0.key < $1.key }.map { .init(id: String($0.key), label: $0.value.0, rows: $0.value.1) }
+    }
+}
+
+/// Immutable prepared rows keep title normalization and franchise grouping out
+/// of SwiftUI body updates, status taps and individual search keystrokes.
+final class SimklCollectionIndex: Sendable {
+    private struct Prepared: Sendable {
+        let row: SimklCollection.Row
+        let statuses: Set<SimklListStatus>
+        let searchName: String
+    }
+    private let prepared: [SimklMediaKind: [Prepared]]
+    private let totals: [SimklMediaKind: [SimklListStatus: Int]]
+    init(_ snapshot: SimklLibrarySnapshot, relations: [String: Set<String>] = [:]) {
+        let items = Array(snapshot.items.values)
+        var prepared: [SimklMediaKind: [Prepared]] = [:], totals: [SimklMediaKind: [SimklListStatus: Int]] = [:]
+        for kind in SimklMediaKind.allCases {
+            let groups = kind == .anime ? SimklCollection.franchises(items.filter(SimklCollection.isAnime), relations: relations)
+                : items.filter { $0.kind == kind && !SimklCollection.isAnime($0) }.map { [$0] }
+            for group in groups {
+                let statuses = Set(group.map(\.status))
+                for status in statuses { totals[kind, default: [:]][status, default: 0] += 1 }
+                if let row = SimklCollection.row(group, kind: kind) {
+                    prepared[kind, default: []].append(.init(row: row, statuses: statuses,
+                        searchName: row.media.name.folding(options: [.caseInsensitive, .diacriticInsensitive], locale: .current)))
+                }
+            }
+        }
+        self.prepared = prepared; self.totals = totals
+    }
+    func counts(kind: SimklMediaKind) -> [SimklListStatus: Int] { totals[kind] ?? [:] }
+    func rows(kind: SimklMediaKind, status: SimklListStatus, query: String = "") -> [SimklCollection.Row] {
+        let query = query.trimmingCharacters(in: .whitespacesAndNewlines).folding(options: [.caseInsensitive, .diacriticInsensitive], locale: .current)
+        return (prepared[kind] ?? []).compactMap { item in
+            item.statuses.contains(status) && (query.isEmpty || item.searchName.contains(query)) ? item.row : nil
+        }
     }
 }

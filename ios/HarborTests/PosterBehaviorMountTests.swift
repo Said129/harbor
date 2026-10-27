@@ -20,10 +20,12 @@ private struct MountedPosterRow: View {
         ScrollView(.horizontal) {
             HStack(alignment: .top, spacing: 12) {
                 ForEach(Array(media.enumerated()), id: \.offset) { index, item in
-                    Button { state.activations += 1 } label: {
-                        ProfilePoster(media: item, width: 116, artworkFallbacks: [], honorsRowStyle: true,
-                            onExpansionWidthChange: { state.widths[index] = $0 })
-                    }.buttonStyle(.plain).focused($focused, equals: index)
+                    ProfilePoster(media: item, width: 116, artworkFallbacks: [], honorsRowStyle: true,
+                        onExpansionWidthChange: { state.widths[index] = $0 })
+                        .contentShape(Rectangle()).onTapGesture { state.activations += 1 }
+                        // Custom native focus accepts programmatic placement on
+                        // Simulator without requiring a connected hardware keyboard.
+                        .focusable(interactions: .edit).focused($focused, equals: index)
                 }
             }.padding(.horizontal, 16).padding(.vertical, 20)
         }.posterRowBehavior(context: row).frame(height: 250)
@@ -68,7 +70,7 @@ private struct MountedPosterRow: View {
         XCTAssertTrue(original.allSatisfy { abs($0.width - 116) < 1 })
         capture(window, "poster-behavior-native-initial")
         state.requestedFocus = 0
-        try await wait("actual native button focus binding") { state.observedFocus == 0 }
+        try await wait("actual native row focus binding") { state.observedFocus == 0 }
         try await wait("focused production poster receives the native focus environment") { PosterAttentionState.shared.active != nil }
         try await wait("decoded wide artwork reserves the expanded width") { (state.widths[0] ?? 0) > 300 }
         try await Task.sleep(for: .milliseconds(650))

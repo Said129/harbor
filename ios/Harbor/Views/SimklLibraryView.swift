@@ -11,11 +11,10 @@ struct SimklLibraryContent: View {
         _status = State(initialValue: SimklListStatus.options(for: kind).contains(status) ? status : .plantowatch)
     }
     private var sort: LibrarySort { app.library.presentation.display.sort }
-    private var rows: [SimklCollection.Row] { SimklCollection.rows(model.store.snapshot, kind: kind, status: status, query: query, relations: model.relations) }
-    private var groups: [SimklCollection.Group] { SimklCollection.groups(rows, sort: sort) }
     private func text(_ key: String) -> String { DesktopInterfaceText.value(key) }
     var body: some View {
-        let counts = SimklCollection.counts(model.store.snapshot, kind: kind, relations: model.relations)
+        let prepared = model.collection, counts = prepared.counts(kind: kind)
+        let rows = prepared.rows(kind: kind, status: status, query: query), groups = SimklCollection.groups(rows, sort: sort)
         VStack(alignment: .leading, spacing: 18) {
             ScrollView(.horizontal) {
                 HStack(spacing: 8) {

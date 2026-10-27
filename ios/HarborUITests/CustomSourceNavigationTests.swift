@@ -81,8 +81,14 @@ import XCTest
         ReadingUIInteraction.tapVisible(app.buttons["page-customize-done"], in: app)
         app.terminate(); ReadingUIInteraction.launchPreparedApplication(app)
         show(row, app, scroll); XCTAssertTrue(row.staticTexts["Owned renamed folders"].exists)
-        capture(app, "source-restored-" + device)
         show(customize, app, scroll, up: false); ReadingUIInteraction.tapVisible(customize, in: app)
+        show(row, app, scroll); revealHorizontal(editImages, app, folders, left: false); show(editImages, app, scroll)
+        ReadingUIInteraction.tapVisible(editImages, in: app)
+        XCTAssertTrue(cover.waitForExistence(timeout: 15))
+        XCTAssertEqual(cover.value as? String, "http://127.0.0.1:18734/edited.png")
+        XCTAssertEqual(focus.value as? String, "http://127.0.0.1:18734/focus.gif")
+        ReadingUIInteraction.tapVisible(app.navigationBars["Edit Folder Images"].buttons["Cancel"], in: app)
+        show(row, app, scroll); capture(app, "source-restored-" + device)
         show(app.buttons["source-delete-owned-imported-sources"], app, scroll)
         ReadingUIInteraction.tapVisible(app.buttons["source-delete-owned-imported-sources"], in: app)
         let removed = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in !row.exists }, object: nil)
@@ -108,6 +114,10 @@ import XCTest
             // The stroked folder's AX frame extends half a point beyond its
             // 180pt scroll viewport. Accept that border, never an offscreen tile.
             if let frame = ReadingUIInteraction.visibleFrame(target, in: app), viewport.insetBy(dx: -1, dy: -1).contains(frame) {
+                // The overlapping pencil has a visible, enabled 44pt control but
+                // iOS reports AX isHittable=false. Its actual on-screen tap must
+                // open the editor; saved URLs must survive reopening the app.
+                if target.identifier.hasPrefix("source-images-") { XCTAssertTrue(target.isEnabled); return }
                 let ready = XCTNSPredicateExpectation(predicate: NSPredicate(format: "isHittable == true"), object: target)
                 if XCTWaiter.wait(for: [ready], timeout: 3) == .completed { return }
                 ReadingUIInteraction.recordFailureContext(app); XCTFail("The fully visible folder control must accept a tap"); return
@@ -128,10 +138,10 @@ import XCTest
         XCTAssertTrue(target.waitForExistence(timeout: 10)); XCTAssertNotNil(ReadingUIInteraction.visibleFrame(target, in: app)); XCTAssertTrue(target.isHittable)
     }
     private func show(_ element: XCUIElement, _ app: XCUIApplication, _ scroll: XCUIElement, up: Bool = true) {
-        if element.identifier.hasPrefix("source-row-") {
-            // A row is a noninteractive accessibility group. Reveal its bounds;
-            // the exact folder or pencil is separately revealed and must accept
-            // a real tap before its resulting screen is asserted.
+        if element.identifier.hasPrefix("source-row-") || element.identifier.hasPrefix("source-images-") {
+            // Reveal the noninteractive row group or exact pencil bounds. The
+            // pencil's actual tap and resulting editor, save and persisted URLs
+            // are asserted separately, even when the AX hit-test flag is false.
             for _ in 0..<20 {
                 let bounds = scroll.frame, viewport = bounds.intersection(app.windows.firstMatch.frame)
                 if let frame = ReadingUIInteraction.visibleFrame(element, in: app), viewport.insetBy(dx: -1, dy: -1).contains(frame) { return }

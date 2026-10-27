@@ -10,9 +10,17 @@ import Observation
     private(set) var loading = false
     private(set) var error: String?
     private(set) var relations: [String: Set<String>] = [:]
+    private var relationsRevision = 0
+    @ObservationIgnored private var collectionCache: (revision: Int, relations: Int, locale: String, index: SimklCollectionIndex)?
     private var resolvedRelations = Set<String>()
     private var loadingRelations = false
     var isActive: Bool { active() }
+    var collection: SimklCollectionIndex {
+        let revision = store.revision, locale = Locale.current.identifier
+        if let saved = collectionCache, saved.revision == revision, saved.relations == relationsRevision, saved.locale == locale { return saved.index }
+        let index = SimklCollectionIndex(store.snapshot, relations: relations)
+        collectionCache = (revision, relationsRevision, locale, index); return index
+    }
     init(account: SimklAccountStore, store: SimklLibraryStore, client: SimklClient = .shared, active: @escaping @MainActor () -> Bool) {
         self.account = account; self.store = store; self.client = client; self.active = active
     }
@@ -24,7 +32,11 @@ import Observation
     }
     func loadAccount() {
         guard active() else { return }
-        do { if !account.ready { try account.load() }; store.bind(account.session?.accessToken) }
+        do {
+            if !account.ready { try account.load() }
+            let previous = store.fingerprint; store.bind(account.session?.accessToken)
+            if previous != store.fingerprint { relations.removeAll(); resolvedRelations.removeAll(); relationsRevision &+= 1 }
+        }
         catch { self.error = "Could not read the account on this device." }
     }
     func cancel() { operation = UUID(); loading = false }
@@ -100,6 +112,12 @@ import Observation
         let ticket = operation
         let lease: SimklClient.Lease = { [weak self] in await self?.current(ticket, token: token) ?? false }
         loadingRelations = true; defer { loadingRelations = false }
+        var additions: [String: Set<String>] = [:]
+        defer {
+            if current(ticket, token: token), !additions.isEmpty {
+                relations.merge(additions) { _, new in new }; resolvedRelations.formUnion(additions.keys); relationsRevision &+= 1
+            }
+        }
         let groups = SimklCollection.franchises(Array(store.snapshot.items.values).filter(SimklCollection.isAnime))
             .sorted { ($0.map(\.title).min() ?? "") < ($1.map(\.title).min() ?? "") }
         guard groups.count > 1 else { return }
@@ -115,7 +133,7 @@ import Observation
                         for target in store.snapshot.items.values where SimklCollection.isAnime(target) && target.ids.values["simkl"]?.integer == id { related.insert(target.id) }
                     }
                 }
-                relations[item.id] = related; resolvedRelations.insert(item.id)
+                additions[item.id] = related
             } catch is CancellationError { return }
             catch let error as SimklAPIError where error.retryAt != nil { return }
             catch { /* Retain title grouping; a later appearance can retry missing public relations. */ }
