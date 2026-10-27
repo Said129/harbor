@@ -12,6 +12,10 @@ final class AppModel {
     let service = HarborService()
     private let continuationMetadataStore = MediaMetadataStore()
     private(set) var resume = ResumeStore()
+    private(set) var sharedResume = ResumeStore()
+    private(set) var personalResume = ResumeStore()
+    private var resumeOwners: (personal: String, shared: String)?
+    private let progressStores = PlaybackProgressStoreRegistry()
     let library = LibraryModel()
     let home = HomeContentModel()
     let animeDetection = AnimeLibraryDetection()
@@ -125,6 +129,25 @@ final class AppModel {
     }
     var harborIdentity: HarborProfileSync { HarborProfileSync.forOwner(harborIdentityOwner, profile: ProfilePreferences.forOwner(personalOwner)) }
     var progressOwner: String { profileContext.binding?.progressOwner ?? user?.id ?? "guest" }
+    var sharesContinueSource: Bool {
+        guard let profile = profileContext.profiles.active else { return false }
+        return HouseholdProfileRouting(profile: profile, profiles: profileContext.profiles.profiles,
+            scope: profileContext.profiles.scope, cwPerProfile: true).privateContinuing
+    }
+    func applyContinuePreferences() {
+        guard profileContext.ready, ProfileSettingsStore.shared.owner == settingsOwner,
+              resumeOwners?.personal == personalOwner, resumeOwners?.shared == progressOwner else { return }
+        do {
+            let preferences = try ProfileSettingsStore.shared.continuePreferences(owner: settingsOwner, sharedOwner: profileContext.householdSettingsOwner)
+            let privateMode = preferences.perProfile && sharesContinueSource
+            resume = privateMode ? personalResume : sharedResume
+            library.setContinueSources(preferences.sources)
+            if library.personalOwner == personalOwner { library.setContinuePrivacy(privateMode, migratedScope: profileContext.profiles.scope.key) }
+        } catch {
+            library.setContinuePrivacy(true); resume = personalResume
+            progressError = safeMessage(error); Diagnostics.shared.recordFailure(error)
+        }
+    }
     var accountOperationScope: String { profileContext.activationID.uuidString + "|" + (profileContext.profiles.active?.id ?? "locked") }
     var interfaceProfileScope: String { profileContext.profiles.active?.id ?? "unbound" }
     private var documentOwner: String? {
@@ -242,8 +265,13 @@ final class AppModel {
     }
 
     func reloadProgress() async {
-        do { try await resume.load(); progressError = nil }
-        catch { progressError = safeMessage(error); Diagnostics.shared.recordFailure(error) }
+        let shared = sharedResume, personal = personalResume, scope = accountOperationScope
+        var failure: Error?
+        for store in [shared, personal] {
+            do { try await store.load() } catch { failure = error; Diagnostics.shared.recordFailure(error) }
+        }
+        guard scope == accountOperationScope else { return }
+        progressError = failure.map(safeMessage)
     }
 
     private func setProgressOwner(_ owner: String) async throws {
@@ -271,7 +299,10 @@ final class AppModel {
         StreamingPreferences.forOwner(settingsOwner).bind(.local(owner: settingsOwner))
         pageCustomization("home").bind(.local(owner: settingsOwner)); pageCustomization("anime").bind(.local(owner: settingsOwner))
         harborIdentity.bindCachedLayouts()
-        resume = ResumeStore(owner: owner)
+        sharedResume = progressStores.store(owner: owner)
+        personalResume = progressStores.store(owner: "continue-private-" + binding.personalOwner)
+        resumeOwners = (binding.personalOwner, owner)
+        applyContinuePreferences()
         await reloadProgress()
     }
     private func bindHarborIdentity() throws {
@@ -300,10 +331,16 @@ final class AppModel {
             await library.setSession(session, personalOwner: personalOwner, guestOwner: progressOwner, synchronize: false)
         }
         if let binding = profileContext.binding {
+            do { try ContinueDismissalStore.shared.migrate(scope: profileContext.profiles.scope.key, existingOwners: profileContext.continuingLegacyOwners()) }
+            catch { Diagnostics.shared.recordFailure(error) }
+            applyContinuePreferences()
             let scope = accountOperationScope, owner = personalOwner
             await library.bindLocalContinuing(sharedOwner: binding.progressOwner, scope: scope, active: { [weak self] in
                 self?.profileContext.ready == true && self?.personalOwner == owner && self?.accountOperationScope == scope
             })
+            if resumeOwners?.personal == owner, resumeOwners?.shared == binding.progressOwner {
+                library.bindPlaybackProgress(.init(personalOwner: owner, sharedOwner: binding.progressOwner, personal: personalResume, shared: sharedResume))
+            }
         }
         Task { await library.sync() }
     }
@@ -426,12 +463,12 @@ final class AppModel {
         previousIdentity.suspendForProfileChange()
         savedAccount = next
         addons = collection.addons
+        if previousProgressOwner != progressOwner { try await setProgressOwner(progressOwner) }
+        else { try bindHarborIdentity(); harborIdentity.requestHouseholdSynchronization() }
         await bindLibrary(session)
         storageReady = true
         rows = []; heroes = []; warnings = []; accountError = nil
         homeGeneration += 1; pages = [:]; home.reset()
-        if previousProgressOwner != progressOwner { try await setProgressOwner(progressOwner) }
-        else { try bindHarborIdentity(); harborIdentity.requestHouseholdSynchronization() }
         Diagnostics.shared.record(.accountSignedIn, count: addons.count)
         await loadHome()
     }
@@ -504,8 +541,8 @@ final class AppModel {
         previousIdentity.suspendForProfileChange()
         savedAccount = nil; addons = guest; rows = []; heroes = []; warnings = []; accountError = nil
         homeGeneration += 1; pages = [:]; home.reset()
-        await bindLibrary(nil)
         try await setProgressOwner(progressOwner)
+        await bindLibrary(nil)
         Diagnostics.shared.record(.accountSignedOut)
         await loadHome()
     }

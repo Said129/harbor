@@ -36,7 +36,7 @@ struct HarborApp: App {
     @Environment(\.scenePhase) private var scenePhase
     private var simklPlaybackTaskID: String {
         let token = SimklAccountStore.forOwner(model.personalOwner).session.map { EBookShelf.hash($0.accessToken) } ?? "disconnected"
-        return [model.accountOperationScope, String(model.storageReady), cwSources, String(privateContinuing), token, String(describing: scenePhase)].joined(separator: "|")
+        return [model.accountOperationScope, String(model.storageReady), cwSources, String(privateContinuing), String(model.sharesContinueSource), token, String(describing: scenePhase)].joined(separator: "|")
     }
     var body: some View {
         synchronization
@@ -92,20 +92,20 @@ struct HarborApp: App {
                     if !account.ready { do { try account.load() } catch { Diagnostics.shared.recordFailure(error) } }
                 }
                 .task(id: simklPlaybackTaskID) {
-                    model.library.setContinueSources(ContinueWatchingSources(rawValue: cwSources))
+                    model.applyContinuePreferences()
                     let owner = model.personalOwner, scope = model.accountOperationScope, account = SimklAccountStore.forOwner(owner)
                     let feed = model.library.simklPlayback
                     feed.bind(account: account, scope: scope, active: { [weak model] in
                         model?.storageReady == true && model?.personalOwner == owner && model?.accountOperationScope == scope
-                    }, enabled: {
+                    }, enabled: { [weak model] in
                         ContinueWatchingSources(rawValue: UserDefaults.standard.string(forKey: "cwSources") ?? ContinueWatchingSources.defaultValue).simkl
-                            && !UserDefaults.standard.bool(forKey: "cwPerProfile")
+                            && model?.library.continuingPrivate == false
                     })
                     guard scenePhase == .active, model.storageReady else { return }
-                    await feed.refresh(focused: true, resume: model.resume, dismissed: { model.library.isDismissed($0) })
+                    await feed.refresh(focused: true, resume: model.sharedResume, dismissed: { model.library.isDismissed($0) })
                     while !Task.isCancelled {
                         do { try await Task.sleep(for: .seconds(300)) } catch { return }
-                        await feed.refresh(resume: model.resume, dismissed: { model.library.isDismissed($0) })
+                        await feed.refresh(resume: model.sharedResume, dismissed: { model.library.isDismissed($0) })
                     }
                 }
                 .task(id: model.harborIdentityOwner + "|" + model.interfaceProfileScope + "|" + String(model.storageReady) + "|" + String(describing: scenePhase)) {

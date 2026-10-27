@@ -6,6 +6,9 @@ import re
 import runpy
 
 requested = os.environ.get('HARBOR_NATIVE_SELECTION', '').strip()
+if requested == 'affected:continue-privacy' or requested.startswith('HarborTests.ContinuePrivacyTests/'):
+    runpy.run_path('scripts/ios/prepare-continue-privacy-selection.py')
+    raise SystemExit(0)
 if requested == 'affected:local-continue' or requested.startswith('HarborTests.LocalContinueTests/'):
     runpy.run_path('scripts/ios/prepare-local-continue-selection.py')
     raise SystemExit(0)

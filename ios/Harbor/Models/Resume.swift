@@ -29,6 +29,13 @@ struct ResumeStart: Decodable, Sendable {
     let prompt: Bool
 }
 
+struct PlaybackProgressStores: Sendable {
+    let personalOwner: String
+    let sharedOwner: String
+    let personal: ResumeStore
+    let shared: ResumeStore
+}
+
 struct PlaybackSession: Identifiable, Sendable {
     let id = UUID()
     let source: PlaybackSource
@@ -38,6 +45,7 @@ struct PlaybackSession: Identifiable, Sendable {
     let progressEnabled: Bool
     var owner = "guest"
     var personalOwner: String? = nil
+    var progressStores: PlaybackProgressStores? = nil
     var resumeStore: ResumeStore? = nil
     var preservePosition = false
     var advanceStartedAtMs: Double? = nil

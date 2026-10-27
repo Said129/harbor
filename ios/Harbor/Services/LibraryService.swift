@@ -1,7 +1,13 @@
 import Foundation
 import CryptoKit
 
-struct LibraryService: Sendable {
+protocol LibraryServing: Sendable {
+    func records(_ session: AccountSession) async throws -> [JSONValue]
+    func record(_ id: String, session: AccountSession) async throws -> JSONValue?
+    func save(_ record: JSONValue, session: AccountSession) async throws
+}
+
+struct LibraryService: LibraryServing {
     private let http = HTTPClient()
     func records(_ session: AccountSession) async throws -> [JSONValue] {
         let metadata = try await request("datastoreMeta", session: session)

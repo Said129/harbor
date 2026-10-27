@@ -8,7 +8,7 @@ final class LibraryModel {
     @ObservationIgnored private var continuationCache: (library: Int, tracker: Int, local: Int, trackerVisible: Bool, localVisible: Bool, sources: ContinueWatchingSources, records: [LibraryRecord])?
     private var records: [JSONValue] { snapshot.records }
     private let cache = LibraryCache()
-    private let service = LibraryService()
+    private let service: any LibraryServing
     private var session: AccountSession?
     private var guestOwner = "guest"
     private(set) var personalOwner = "guest"
@@ -23,6 +23,11 @@ final class LibraryModel {
     private(set) var discovery = DiscoveryPreferences(owner: "guest")
     let simklPlayback: SimklPlaybackFeed
     private let localContinue: LocalContinueStore
+    private let privateDismissalStore: ContinueDismissalStore
+    private var privateDismissals: [String: ContinueDismissal] = [:]
+    private var privateDismissalsReady = false
+    private(set) var continuingPrivate = false
+    private(set) var playbackProgressStores: PlaybackProgressStores?
     private var localSnapshot = LocalContinueSnapshot()
     private var localRevision = 0
     private var localSharedOwner: String?
@@ -30,8 +35,10 @@ final class LibraryModel {
     private var localReady = false
     @ObservationIgnored private var localActive: @MainActor () -> Bool = { false }
     private(set) var continueSources = ContinueWatchingSources()
-    init(simklPlayback: SimklPlaybackFeed? = nil, localContinue: LocalContinueStore = .shared) {
+    init(simklPlayback: SimklPlaybackFeed? = nil, localContinue: LocalContinueStore = .shared, privateDismissals: ContinueDismissalStore? = nil, service: (any LibraryServing)? = nil) {
         self.simklPlayback = simklPlayback ?? SimklPlaybackFeed(); self.localContinue = localContinue
+        privateDismissalStore = privateDismissals ?? .shared
+        self.service = service ?? LibraryService()
     }
     var canChangePresentation: Bool { presentationReady }
     private var lastProgressWrite: [String: UInt64] = [:]
@@ -41,13 +48,16 @@ final class LibraryModel {
     var owner: String { session?.user.id ?? guestOwner }
     var items: [LibraryRecord] { snapshot.items }
     var continuing: [LibraryRecord] {
-        allContinuing.filter { presentation.dismissed[$0.id]?.hides($0) != true }
+        allContinuing.filter { dismissals[$0.id]?.hides($0) != true }
     }
+    private var dismissals: [String: ContinueDismissal] { continuingPrivate ? privateDismissals : presentation.dismissed }
     private var allContinuing: [LibraryRecord] {
-        let external = continueSources.simkl ? simklPlayback.records(for: personalOwner) : []
+        guard !continuingPrivate || privateDismissalsReady else { return [] }
+        let external = continueSources.simkl && !continuingPrivate ? simklPlayback.records(for: personalOwner) : []
         let localVisible = localReady && localActive()
-        let local = localVisible ? localSnapshot.sharedRecords.filter { $0.raw["nativeSource"] == .string("library") ? continueSources.library : continueSources.local } : []
-        let base = continueSources.library ? snapshot.continuing.filter { !CloudAnimeContinueImport.owns($0.id) || !localVisible } : []
+        let localRecords = continuingPrivate ? localSnapshot.personalRecords : localSnapshot.sharedRecords
+        let local = localVisible ? localRecords.filter { $0.raw["nativeSource"] == .string("library") ? continueSources.library : continueSources.local } : []
+        let base = continueSources.library && !continuingPrivate ? snapshot.continuing.filter { !CloudAnimeContinueImport.owns($0.id) || !localVisible } : []
         guard !external.isEmpty || !local.isEmpty else { return base }
         if let saved = continuationCache, saved.library == continuationRevision, saved.tracker == simklPlayback.revision,
            saved.local == localRevision, saved.trackerVisible == !external.isEmpty, saved.localVisible == localVisible,
@@ -60,6 +70,20 @@ final class LibraryModel {
         return merged
     }
     func setContinueSources(_ value: ContinueWatchingSources) { if continueSources != value { continueSources = value } }
+    func setContinuePrivacy(_ enabled: Bool, migratedScope: String? = nil) {
+        continuingPrivate = enabled; continuationCache = nil
+        privateDismissalsReady = false; privateDismissals = [:]
+        guard enabled else { return }
+        do {
+            if let migratedScope { try privateDismissalStore.requireMigration(scope: migratedScope) }
+            privateDismissals = try privateDismissalStore.values(owner: personalOwner); privateDismissalsReady = true
+        }
+        catch { presentationError = "No se pudo recuperar el historial privado. Los datos guardados se conservan."; Diagnostics.shared.recordFailure(error) }
+    }
+    func bindPlaybackProgress(_ stores: PlaybackProgressStores) {
+        guard stores.personalOwner == personalOwner, stores.sharedOwner == localSharedOwner else { return }
+        playbackProgressStores = stores
+    }
     func bindLocalContinuing(sharedOwner: String, scope: String, active: @escaping @MainActor () -> Bool) async {
         localActive = active
         if localReady, localSharedOwner == sharedOwner, localScope == scope { return }
@@ -90,7 +114,7 @@ final class LibraryModel {
         generation == ticket && self.personalOwner == personalOwner && localSharedOwner == sharedOwner && localScope == scope && localActive()
     }
     private func absorbCloudAnimeHistory() async {
-        guard localReady, localActive(), let sharedOwner = localSharedOwner else { return }
+        guard !continuingPrivate, localReady, localActive(), let sharedOwner = localSharedOwner else { return }
         let eligible = snapshot.items.filter { CloudAnimeContinueImport.owns($0.id) && !isDismissed($0) }
         guard !eligible.isEmpty else { return }
         let ticket = generation, owner = personalOwner, scope = localScope
@@ -103,8 +127,8 @@ final class LibraryModel {
         } catch is CancellationError { }
         catch { Diagnostics.shared.recordFailure(error) }
     }
-    var hiddenContinuing: [LibraryRecord] { allContinuing.filter { presentation.dismissed[$0.id]?.hides($0) == true } }
-    func isDismissed(_ record: LibraryRecord) -> Bool { presentation.dismissed[record.id]?.hides(record) == true }
+    var hiddenContinuing: [LibraryRecord] { allContinuing.filter { dismissals[$0.id]?.hides($0) == true } }
+    func isDismissed(_ record: LibraryRecord) -> Bool { dismissals[record.id]?.hides(record) == true }
     func selectedItems(query: String) -> [LibraryRecord] {
         LibraryListing.select(filteredItems(for: presentation.display.filter), display: presentation.display, query: query)
     }
@@ -137,12 +161,19 @@ final class LibraryModel {
     func changeDisplay(_ edit: (inout LibraryDisplay) -> Void) { changePresentation { edit(&$0.display) } }
     func hideContinuing(_ record: LibraryRecord, owner expectedOwner: String) {
         guard owner == expectedOwner, let current = allContinuing.first(where: { $0.id == record.id }), current.continuing else { return }
-        changePresentation { $0.dismissed[current.id] = ContinueDismissal(current) }
+        changeDismissals { $0[current.id] = ContinueDismissal(current) }
     }
-    func showContinuing(_ record: LibraryRecord) { changePresentation { $0.dismissed.removeValue(forKey: record.id) } }
-    func noteLocalProgress(_ target: ResumeTarget, snapshot: ResumeSnapshot, owner expectedOwner: String) {
-        guard owner == expectedOwner, let dismissal = presentation.dismissed[target.id], dismissal.hasNewPlayback(snapshot) else { return }
-        changePresentation { $0.dismissed.removeValue(forKey: target.id) }
+    func showContinuing(_ record: LibraryRecord) { changeDismissals { $0.removeValue(forKey: record.id) } }
+    func noteLocalProgress(_ target: ResumeTarget, snapshot: ResumeSnapshot, owner expectedOwner: String, personalOwner expectedPerson: String? = nil) {
+        guard owner == expectedOwner, !continuingPrivate || expectedPerson == personalOwner,
+              let dismissal = dismissals[target.id], dismissal.hasNewPlayback(snapshot) else { return }
+        changeDismissals { $0.removeValue(forKey: target.id) }
+    }
+    private func changeDismissals(_ edit: (inout [String: ContinueDismissal]) -> Void) {
+        guard continuingPrivate else { changePresentation { edit(&$0.dismissed) }; return }
+        guard privateDismissalsReady else { return }
+        do { privateDismissals = try privateDismissalStore.change(owner: personalOwner, edit); presentationError = nil }
+        catch { presentationError = "No se pudo guardar este cambio de historial privado. Los datos anteriores se conservan."; Diagnostics.shared.recordFailure(error) }
     }
     private func changePresentation(_ edit: (inout LibraryPresentation) -> Void) {
         guard presentationReady else { return }
@@ -185,6 +216,7 @@ final class LibraryModel {
         let current = generation
         self.session = session; self.guestOwner = guestOwner
         self.personalOwner = personalOwner ?? session?.user.id ?? guestOwner
+        continuingPrivate = false; privateDismissalsReady = false; privateDismissals = [:]; playbackProgressStores = nil
         localReady = false; localSnapshot = .init(); localRevision &+= 1; localScope = nil
         snapshot = LibrarySnapshot([]); syncing = false; busy = false; error = nil; writable = false; loading = true
         favorites = MediaFavorites(owner: self.personalOwner)
@@ -251,18 +283,19 @@ final class LibraryModel {
         if success, taste.owner == personalOwner, watched(media) { taste.track(.watched, media: media) }
     }
     func resume(for target: ResumeTarget, refresh: Bool = true) async -> CloudResume? {
-        let current = generation
+        let current = generation, privateRead = continuingPrivate
         var fresh: CloudResume?
-        if let session, refresh {
+        if let session, refresh, !privateRead {
             do {
                 let record = try await service.record(target.id, session: session)
                 guard generation == current else { return nil }
                 fresh = record.flatMap { LibraryRecord(raw: $0).resume(for: target) }
             } catch { if generation == current { Diagnostics.shared.recordFailure(error) } }
         }
-        guard generation == current else { return nil }
-        let local = localReady && localActive() ? localSnapshot.sharedRecords : []
-        let candidates = (items + simklPlayback.records(for: personalOwner) + local).compactMap { $0.resume(for: target) } + [fresh].compactMap { $0 }
+        guard generation == current, continuingPrivate == privateRead else { return nil }
+        let local = localReady && localActive() ? (privateRead ? localSnapshot.personalRecords : localSnapshot.sharedRecords) : []
+        let shared = privateRead ? [] : items + simklPlayback.records(for: personalOwner)
+        let candidates = (shared + local).compactMap { $0.resume(for: target) } + [fresh].compactMap { $0 }
         return candidates.max { $0.entry.t < $1.entry.t }
     }
     func saveProgress(_ media: Media, target: ResumeTarget, snapshot: ResumeSnapshot, owner expectedOwner: String) async {

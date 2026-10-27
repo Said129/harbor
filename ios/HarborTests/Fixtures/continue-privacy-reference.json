@@ -1,0 +1,917 @@
+{
+  "reference": "0834340cec5531650bfe78cd628628702e636987",
+  "actual_original_typescript_executed": true,
+  "provider_network_requests": 0,
+  "source_hashes": {
+    "src/lib/cw-profile.ts": "1f2c64fc66859972afc8db9c3832875805de22b6ac48c6bc5898655ed8e6a9da",
+    "src/lib/resume.ts": "d32e7811c2f34118825625f3404c01c8951de7ed839b7cdf0390b883ddffe70b",
+    "src/lib/cw-dismiss.ts": "1e68ede8756969e3951c23925a03506908ecf3c98df604a91fbf254a0b2aa851",
+    "src/lib/stremio.ts": "dd785247ba25a37bd0a03ce577e117dd38fe75c6d4dcdc1c607cdf3095b8272b"
+  },
+  "scopeCases": [
+    {
+      "name": "shared-false-a-own-null",
+      "profiles": [
+        {
+          "id": "a",
+          "isPrimary": true
+        },
+        {
+          "id": "b",
+          "shareStremioWith": "a",
+          "settingsLinked": false
+        },
+        {
+          "id": "c",
+          "settingsLinked": false
+        }
+      ],
+      "activeId": "a",
+      "settings": {
+        "harbor.settings.shared": {
+          "cwPerProfile": false
+        }
+      },
+      "expected": {
+        "profileId": "a",
+        "sharedId": "a",
+        "private": false
+      }
+    },
+    {
+      "name": "shared-false-a-own-false",
+      "profiles": [
+        {
+          "id": "a",
+          "isPrimary": true
+        },
+        {
+          "id": "b",
+          "shareStremioWith": "a",
+          "settingsLinked": false
+        },
+        {
+          "id": "c",
+          "settingsLinked": false
+        }
+      ],
+      "activeId": "a",
+      "settings": {
+        "harbor.settings.shared": {
+          "cwPerProfile": false
+        },
+        "harbor.settings.a": {
+          "cwPerProfile": false
+        }
+      },
+      "expected": {
+        "profileId": "a",
+        "sharedId": "a",
+        "private": false
+      }
+    },
+    {
+      "name": "shared-false-a-own-true",
+      "profiles": [
+        {
+          "id": "a",
+          "isPrimary": true
+        },
+        {
+          "id": "b",
+          "shareStremioWith": "a",
+          "settingsLinked": false
+        },
+        {
+          "id": "c",
+          "settingsLinked": false
+        }
+      ],
+      "activeId": "a",
+      "settings": {
+        "harbor.settings.shared": {
+          "cwPerProfile": false
+        },
+        "harbor.settings.a": {
+          "cwPerProfile": true
+        }
+      },
+      "expected": {
+        "profileId": "a",
+        "sharedId": "a",
+        "private": false
+      }
+    },
+    {
+      "name": "shared-false-b-own-null",
+      "profiles": [
+        {
+          "id": "a",
+          "isPrimary": true
+        },
+        {
+          "id": "b",
+          "shareStremioWith": "a",
+          "settingsLinked": false
+        },
+        {
+          "id": "c",
+          "settingsLinked": false
+        }
+      ],
+      "activeId": "b",
+      "settings": {
+        "harbor.settings.shared": {
+          "cwPerProfile": false
+        }
+      },
+      "expected": {
+        "profileId": "b",
+        "sharedId": "a",
+        "private": false
+      }
+    },
+    {
+      "name": "shared-false-b-own-false",
+      "profiles": [
+        {
+          "id": "a",
+          "isPrimary": true
+        },
+        {
+          "id": "b",
+          "shareStremioWith": "a",
+          "settingsLinked": false
+        },
+        {
+          "id": "c",
+          "settingsLinked": false
+        }
+      ],
+      "activeId": "b",
+      "settings": {
+        "harbor.settings.shared": {
+          "cwPerProfile": false
+        },
+        "harbor.settings.b": {
+          "cwPerProfile": false
+        }
+      },
+      "expected": {
+        "profileId": "b",
+        "sharedId": "a",
+        "private": false
+      }
+    },
+    {
+      "name": "shared-false-b-own-true",
+      "profiles": [
+        {
+          "id": "a",
+          "isPrimary": true
+        },
+        {
+          "id": "b",
+          "shareStremioWith": "a",
+          "settingsLinked": false
+        },
+        {
+          "id": "c",
+          "settingsLinked": false
+        }
+      ],
+      "activeId": "b",
+      "settings": {
+        "harbor.settings.shared": {
+          "cwPerProfile": false
+        },
+        "harbor.settings.b": {
+          "cwPerProfile": true
+        }
+      },
+      "expected": {
+        "profileId": "b",
+        "sharedId": "a",
+        "private": true
+      }
+    },
+    {
+      "name": "shared-false-c-own-null",
+      "profiles": [
+        {
+          "id": "a",
+          "isPrimary": true
+        },
+        {
+          "id": "b",
+          "shareStremioWith": "a",
+          "settingsLinked": false
+        },
+        {
+          "id": "c",
+          "settingsLinked": false
+        }
+      ],
+      "activeId": "c",
+      "settings": {
+        "harbor.settings.shared": {
+          "cwPerProfile": false
+        }
+      },
+      "expected": {
+        "profileId": "c",
+        "sharedId": "c",
+        "private": false
+      }
+    },
+    {
+      "name": "shared-false-c-own-false",
+      "profiles": [
+        {
+          "id": "a",
+          "isPrimary": true
+        },
+        {
+          "id": "b",
+          "shareStremioWith": "a",
+          "settingsLinked": false
+        },
+        {
+          "id": "c",
+          "settingsLinked": false
+        }
+      ],
+      "activeId": "c",
+      "settings": {
+        "harbor.settings.shared": {
+          "cwPerProfile": false
+        },
+        "harbor.settings.c": {
+          "cwPerProfile": false
+        }
+      },
+      "expected": {
+        "profileId": "c",
+        "sharedId": "c",
+        "private": false
+      }
+    },
+    {
+      "name": "shared-false-c-own-true",
+      "profiles": [
+        {
+          "id": "a",
+          "isPrimary": true
+        },
+        {
+          "id": "b",
+          "shareStremioWith": "a",
+          "settingsLinked": false
+        },
+        {
+          "id": "c",
+          "settingsLinked": false
+        }
+      ],
+      "activeId": "c",
+      "settings": {
+        "harbor.settings.shared": {
+          "cwPerProfile": false
+        },
+        "harbor.settings.c": {
+          "cwPerProfile": true
+        }
+      },
+      "expected": {
+        "profileId": "c",
+        "sharedId": "c",
+        "private": false
+      }
+    },
+    {
+      "name": "shared-true-a-own-null",
+      "profiles": [
+        {
+          "id": "a",
+          "isPrimary": true
+        },
+        {
+          "id": "b",
+          "shareStremioWith": "a",
+          "settingsLinked": false
+        },
+        {
+          "id": "c",
+          "settingsLinked": false
+        }
+      ],
+      "activeId": "a",
+      "settings": {
+        "harbor.settings.shared": {
+          "cwPerProfile": true
+        }
+      },
+      "expected": {
+        "profileId": "a",
+        "sharedId": "a",
+        "private": true
+      }
+    },
+    {
+      "name": "shared-true-a-own-false",
+      "profiles": [
+        {
+          "id": "a",
+          "isPrimary": true
+        },
+        {
+          "id": "b",
+          "shareStremioWith": "a",
+          "settingsLinked": false
+        },
+        {
+          "id": "c",
+          "settingsLinked": false
+        }
+      ],
+      "activeId": "a",
+      "settings": {
+        "harbor.settings.shared": {
+          "cwPerProfile": true
+        },
+        "harbor.settings.a": {
+          "cwPerProfile": false
+        }
+      },
+      "expected": {
+        "profileId": "a",
+        "sharedId": "a",
+        "private": true
+      }
+    },
+    {
+      "name": "shared-true-a-own-true",
+      "profiles": [
+        {
+          "id": "a",
+          "isPrimary": true
+        },
+        {
+          "id": "b",
+          "shareStremioWith": "a",
+          "settingsLinked": false
+        },
+        {
+          "id": "c",
+          "settingsLinked": false
+        }
+      ],
+      "activeId": "a",
+      "settings": {
+        "harbor.settings.shared": {
+          "cwPerProfile": true
+        },
+        "harbor.settings.a": {
+          "cwPerProfile": true
+        }
+      },
+      "expected": {
+        "profileId": "a",
+        "sharedId": "a",
+        "private": true
+      }
+    },
+    {
+      "name": "shared-true-b-own-null",
+      "profiles": [
+        {
+          "id": "a",
+          "isPrimary": true
+        },
+        {
+          "id": "b",
+          "shareStremioWith": "a",
+          "settingsLinked": false
+        },
+        {
+          "id": "c",
+          "settingsLinked": false
+        }
+      ],
+      "activeId": "b",
+      "settings": {
+        "harbor.settings.shared": {
+          "cwPerProfile": true
+        }
+      },
+      "expected": {
+        "profileId": "b",
+        "sharedId": "a",
+        "private": true
+      }
+    },
+    {
+      "name": "shared-true-b-own-false",
+      "profiles": [
+        {
+          "id": "a",
+          "isPrimary": true
+        },
+        {
+          "id": "b",
+          "shareStremioWith": "a",
+          "settingsLinked": false
+        },
+        {
+          "id": "c",
+          "settingsLinked": false
+        }
+      ],
+      "activeId": "b",
+      "settings": {
+        "harbor.settings.shared": {
+          "cwPerProfile": true
+        },
+        "harbor.settings.b": {
+          "cwPerProfile": false
+        }
+      },
+      "expected": {
+        "profileId": "b",
+        "sharedId": "a",
+        "private": false
+      }
+    },
+    {
+      "name": "shared-true-b-own-true",
+      "profiles": [
+        {
+          "id": "a",
+          "isPrimary": true
+        },
+        {
+          "id": "b",
+          "shareStremioWith": "a",
+          "settingsLinked": false
+        },
+        {
+          "id": "c",
+          "settingsLinked": false
+        }
+      ],
+      "activeId": "b",
+      "settings": {
+        "harbor.settings.shared": {
+          "cwPerProfile": true
+        },
+        "harbor.settings.b": {
+          "cwPerProfile": true
+        }
+      },
+      "expected": {
+        "profileId": "b",
+        "sharedId": "a",
+        "private": true
+      }
+    },
+    {
+      "name": "shared-true-c-own-null",
+      "profiles": [
+        {
+          "id": "a",
+          "isPrimary": true
+        },
+        {
+          "id": "b",
+          "shareStremioWith": "a",
+          "settingsLinked": false
+        },
+        {
+          "id": "c",
+          "settingsLinked": false
+        }
+      ],
+      "activeId": "c",
+      "settings": {
+        "harbor.settings.shared": {
+          "cwPerProfile": true
+        }
+      },
+      "expected": {
+        "profileId": "c",
+        "sharedId": "c",
+        "private": false
+      }
+    },
+    {
+      "name": "shared-true-c-own-false",
+      "profiles": [
+        {
+          "id": "a",
+          "isPrimary": true
+        },
+        {
+          "id": "b",
+          "shareStremioWith": "a",
+          "settingsLinked": false
+        },
+        {
+          "id": "c",
+          "settingsLinked": false
+        }
+      ],
+      "activeId": "c",
+      "settings": {
+        "harbor.settings.shared": {
+          "cwPerProfile": true
+        },
+        "harbor.settings.c": {
+          "cwPerProfile": false
+        }
+      },
+      "expected": {
+        "profileId": "c",
+        "sharedId": "c",
+        "private": false
+      }
+    },
+    {
+      "name": "shared-true-c-own-true",
+      "profiles": [
+        {
+          "id": "a",
+          "isPrimary": true
+        },
+        {
+          "id": "b",
+          "shareStremioWith": "a",
+          "settingsLinked": false
+        },
+        {
+          "id": "c",
+          "settingsLinked": false
+        }
+      ],
+      "activeId": "c",
+      "settings": {
+        "harbor.settings.shared": {
+          "cwPerProfile": true
+        },
+        "harbor.settings.c": {
+          "cwPerProfile": true
+        }
+      },
+      "expected": {
+        "profileId": "c",
+        "sharedId": "c",
+        "private": false
+      }
+    }
+  ],
+  "migrations": [
+    {
+      "name": "plain",
+      "initial": {
+        "harbor.profiles.v1": {
+          "activeId": "a",
+          "profiles": [
+            {
+              "id": "a",
+              "isPrimary": true
+            },
+            {
+              "id": "b",
+              "shareStremioWith": "a",
+              "settingsLinked": false
+            }
+          ]
+        },
+        "harbor.settings.shared": {
+          "cwPerProfile": true
+        },
+        "harbor.cw.dismissed.v1": {
+          "film": {
+            "t": 1000,
+            "v": "film:1:7",
+            "s": 1,
+            "e": 7,
+            "p": 0.3
+          }
+        }
+      },
+      "expected": {
+        "marker": "1",
+        "documents": {
+          "a": {
+            "film": {
+              "t": 1000,
+              "v": "film:1:7",
+              "s": 1,
+              "e": 7,
+              "p": 0.3
+            }
+          },
+          "b": {
+            "film": {
+              "t": 1000,
+              "v": "film:1:7",
+              "s": 1,
+              "e": 7,
+              "p": 0.3
+            }
+          },
+          "d": null
+        }
+      }
+    },
+    {
+      "name": "preserve-empty",
+      "initial": {
+        "harbor.profiles.v1": {
+          "activeId": "a",
+          "profiles": [
+            {
+              "id": "a",
+              "isPrimary": true
+            },
+            {
+              "id": "b",
+              "shareStremioWith": "a",
+              "settingsLinked": false
+            }
+          ]
+        },
+        "harbor.settings.shared": {
+          "cwPerProfile": true
+        },
+        "harbor.cw.dismissed.v1": {
+          "film": {
+            "t": 1000,
+            "v": "film:1:7",
+            "s": 1,
+            "e": 7,
+            "p": 0.3
+          }
+        },
+        "harbor.cw.dismissed.private.v1.b": {}
+      },
+      "expected": {
+        "marker": "1",
+        "documents": {
+          "a": {
+            "film": {
+              "t": 1000,
+              "v": "film:1:7",
+              "s": 1,
+              "e": 7,
+              "p": 0.3
+            }
+          },
+          "b": {},
+          "d": null
+        }
+      }
+    },
+    {
+      "name": "preserve-newer",
+      "initial": {
+        "harbor.profiles.v1": {
+          "activeId": "a",
+          "profiles": [
+            {
+              "id": "a",
+              "isPrimary": true
+            },
+            {
+              "id": "b",
+              "shareStremioWith": "a",
+              "settingsLinked": false
+            }
+          ]
+        },
+        "harbor.settings.shared": {
+          "cwPerProfile": true
+        },
+        "harbor.cw.dismissed.v1": {
+          "film": {
+            "t": 1000,
+            "v": "film:1:7",
+            "s": 1,
+            "e": 7,
+            "p": 0.3
+          }
+        },
+        "harbor.cw.dismissed.private.v1.b": {
+          "newer": {
+            "t": 2000,
+            "p": 0.8
+          }
+        }
+      },
+      "expected": {
+        "marker": "1",
+        "documents": {
+          "a": {
+            "film": {
+              "t": 1000,
+              "v": "film:1:7",
+              "s": 1,
+              "e": 7,
+              "p": 0.3
+            }
+          },
+          "b": {
+            "newer": {
+              "t": 2000,
+              "p": 0.8
+            }
+          },
+          "d": null
+        }
+      }
+    },
+    {
+      "name": "new-profile",
+      "initial": {
+        "harbor.profiles.v1": {
+          "activeId": "a",
+          "profiles": [
+            {
+              "id": "a",
+              "isPrimary": true
+            },
+            {
+              "id": "b",
+              "shareStremioWith": "a",
+              "settingsLinked": false
+            }
+          ]
+        },
+        "harbor.settings.shared": {
+          "cwPerProfile": true
+        },
+        "harbor.cw.dismissed.v1": {
+          "film": {
+            "t": 1000,
+            "v": "film:1:7",
+            "s": 1,
+            "e": 7,
+            "p": 0.3
+          }
+        }
+      },
+      "expected": {
+        "marker": "1",
+        "documents": {
+          "a": {
+            "film": {
+              "t": 1000,
+              "v": "film:1:7",
+              "s": 1,
+              "e": 7,
+              "p": 0.3
+            }
+          },
+          "b": {
+            "film": {
+              "t": 1000,
+              "v": "film:1:7",
+              "s": 1,
+              "e": 7,
+              "p": 0.3
+            }
+          },
+          "d": null
+        }
+      }
+    },
+    {
+      "name": "failed-write",
+      "initial": {
+        "harbor.profiles.v1": {
+          "activeId": "a",
+          "profiles": [
+            {
+              "id": "a",
+              "isPrimary": true
+            },
+            {
+              "id": "b",
+              "shareStremioWith": "a",
+              "settingsLinked": false
+            }
+          ]
+        },
+        "harbor.settings.shared": {
+          "cwPerProfile": true
+        },
+        "harbor.cw.dismissed.v1": {
+          "film": {
+            "t": 1000,
+            "v": "film:1:7",
+            "s": 1,
+            "e": 7,
+            "p": 0.3
+          }
+        }
+      },
+      "expected": {
+        "marker": null,
+        "documents": {
+          "a": null,
+          "b": null,
+          "d": null
+        }
+      }
+    }
+  ],
+  "resumeCases": [
+    {
+      "name": "shared-playback",
+      "now": 1700000000123,
+      "expected": {
+        "shared": {
+          "film": {
+            "ms": 400000,
+            "t": 1700000000123
+          },
+          "cloud": {
+            "ms": 600000,
+            "t": 1700000000133,
+            "pct": 0.5,
+            "source": "simkl"
+          }
+        },
+        "personal": {
+          "film": {
+            "ms": 400000,
+            "t": 1700000000123
+          }
+        }
+      }
+    },
+    {
+      "name": "private-playback",
+      "now": 1700000000123,
+      "expected": {
+        "shared": {
+          "film": {
+            "ms": 400000,
+            "t": 1700000000123
+          },
+          "cloud": {
+            "ms": 600000,
+            "t": 1700000000133,
+            "pct": 0.5,
+            "source": "simkl"
+          }
+        },
+        "personal": {
+          "film": {
+            "ms": 400000,
+            "t": 1700000000123
+          }
+        }
+      }
+    },
+    {
+      "name": "cloud-only",
+      "now": 1700000000123,
+      "expected": {
+        "shared": {
+          "cloud": {
+            "ms": 600000,
+            "t": 1700000000133,
+            "pct": 0.5,
+            "source": "simkl"
+          }
+        },
+        "personal": {}
+      }
+    },
+    {
+      "name": "start-over",
+      "now": 1700000000123,
+      "expected": {
+        "shared": {
+          "film": {
+            "ms": 0,
+            "t": 1700000000143
+          },
+          "cloud": {
+            "ms": 600000,
+            "t": 1700000000133,
+            "pct": 0.5,
+            "source": "simkl"
+          }
+        },
+        "personal": {
+          "film": {
+            "ms": 0,
+            "t": 1700000000143
+          }
+        }
+      }
+    }
+  ]
+}

@@ -22,6 +22,7 @@ struct LocalContinueEntry: Codable, Equatable, Sendable {
         !id.isEmpty && id.utf8.count <= 2_048 && id.rangeOfCharacter(from: .controlCharacters) == nil
             && ["movie", "series"].contains(type) && name.utf8.count <= 4_096
             && positionMs.isFinite && positionMs >= 0 && durationMs.isFinite && durationMs >= 0
+            && t <= 8_640_000_000_000_000
             && (season ?? 0) >= 0 && (episode ?? 1) > 0 && (videoId?.utf8.count ?? 0) <= 4_096
             && (poster?.utf8.count ?? 0) <= 16_384 && (background?.utf8.count ?? 0) <= 16_384
     }
@@ -33,7 +34,11 @@ struct LocalContinueEntry: Codable, Equatable, Sendable {
         return value.valid ? value : nil
     }
     var record: LibraryRecord {
-        let date = Date(timeIntervalSince1970: Double(t) / 1_000).ISO8601Format(.init(includingFractionalSeconds: true))
+        // Formatting fractional binary seconds truncated .123 to .122 on the
+        // Apple host. Keep the integer milliseconds that Desktop serializes.
+        let fraction = String(t % 1_000)
+        let whole = Date(timeIntervalSince1970: Double(t / 1_000)).ISO8601Format()
+        let date = String(whole.dropLast()) + "." + String(repeating: "0", count: 3 - fraction.count) + fraction + "Z"
         var state: [String: JSONValue] = ["timeOffset": .number(positionMs), "duration": .number(durationMs),
             "flaggedWatched": .integer(durationMs > 0 && positionMs / durationMs >= 0.9 ? 1 : 0), "lastWatched": .string(date)]
         if let season { state["season"] = .integer(Int64(season)) }

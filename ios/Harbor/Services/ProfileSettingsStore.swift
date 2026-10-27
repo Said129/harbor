@@ -30,6 +30,10 @@ struct ProfileSettingsState: Codable, Equatable, Sendable {
         return self
     }
 }
+struct ContinueWatchingPreferences: Sendable {
+    let perProfile: Bool
+    let sources: ContinueWatchingSources
+}
 @MainActor protocol ProfileSettingsPersistence {
     func readProfileSettings() throws -> ProfileSettingsState?
     func writeProfileSettings(_ value: ProfileSettingsState) throws
@@ -126,6 +130,18 @@ struct ProfileSettingsState: Codable, Equatable, Sendable {
         let interval = (values["profilePromptInterval"] as? String).flatMap(ProfileLaunchPreferences.Interval.init(rawValue:)) ?? .launch
         let result = ProfileLaunchPreferences(interval: interval, defaultID: values["defaultProfileId"] as? String ?? "")
         return result.valid ? result : ProfileLaunchPreferences(interval: interval)
+    }
+    /// Read the requested document, not the previous profile's active defaults.
+    func continuePreferences(owner nextOwner: String, sharedOwner: String) throws -> ContinueWatchingPreferences {
+        guard ready, !nextOwner.isEmpty, nextOwner.utf8.count <= 512, !sharedOwner.isEmpty, sharedOwner.utf8.count <= 512 else { throw HarborError(code: "profile-settings") }
+        let document: ProfileSettingsDocument?
+        if owner == nextOwner { document = try capture(preserving: state.documents[nextOwner]) }
+        else if let saved = state.documents[nextOwner] { document = saved }
+        else if owner == sharedOwner { document = try capture(preserving: state.documents[sharedOwner]) }
+        else { document = state.documents[sharedOwner] }
+        let values = try document?.values.mapValues(ProfileSettingsDocument.value) ?? [:]
+        return .init(perProfile: values["cwPerProfile"] as? Bool ?? false,
+            sources: .init(rawValue: values["cwSources"] as? String ?? ContinueWatchingSources.defaultValue))
     }
     func setLaunchPreferences(_ preferences: ProfileLaunchPreferences, sharedOwner: String, expectedOwner: String) throws {
         guard ready, owner == expectedOwner, !sharedOwner.isEmpty, sharedOwner.utf8.count <= 512, preferences.valid else { throw HarborError(code: "profile-settings-changed") }

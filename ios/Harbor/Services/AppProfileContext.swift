@@ -121,15 +121,28 @@ struct ActiveProfileBinding: Equatable, Sendable {
         let sharedOwner = sharedSettingsOwner(identityOwner: identityOwner)
         let accountID = lease.configuration?.account?.session.user.id
         let source = profiles.profiles.first { $0.id == routing.stremioSourceID }
-        let progressOwner: String
-        if let alias = source?.localProgressOwner, source?.localProgressAccount == accountID { progressOwner = alias }
-        else if let old = source?.legacyOwner, old == (accountID ?? "guest") { progressOwner = old }
-        else { progressOwner = "source-progress-" + HouseholdProfileScope.hash([profiles.scope.key, routing.stremioSourceID, accountID ?? "guest"]) }
+        let progressOwner = sourceProgressOwner(source, sourceID: routing.stremioSourceID, accountID: accountID)
         let next = ActiveProfileBinding(profileID: profile.id, personalOwner: routing.personal,
             settingsOwner: profile.desktop.settingsLinked ? sharedOwner : routing.personal, sharedSettingsOwner: sharedOwner,
             stremioSourceID: routing.stremioSourceID, progressOwner: progressOwner,
             identityOwner: identityOwner, accountID: accountID)
         if binding != next { playback.stopForProfileChange(); activationID = UUID(); binding = next }
+    }
+    private func sourceProgressOwner(_ source: DeviceHouseholdProfile?, sourceID: String, accountID: String?) -> String {
+        if let alias = source?.localProgressOwner, source?.localProgressAccount == accountID { return alias }
+        if let old = source?.legacyOwner, old == (accountID ?? "guest") { return old }
+        return "source-progress-" + HouseholdProfileScope.hash([profiles.scope.key, sourceID, accountID ?? "guest"])
+    }
+    func continuingLegacyOwners() throws -> [String: String] {
+        guard ready else { throw HarborError(code: "profile-account-scope") }
+        var values: [String: String] = [:]
+        for profile in profiles.profiles {
+            let routing = HouseholdProfileRouting(profile: profile, profiles: profiles.profiles, scope: profiles.scope, cwPerProfile: false)
+            let source = profiles.profiles.first { $0.id == routing.stremioSourceID }
+            let account = try sessions.ownConfiguration(routing.stremioSourceID, scope: profiles.scope)?.account?.session.user.id
+            values[routing.personal] = account ?? sourceProgressOwner(source, sourceID: routing.stremioSourceID, accountID: nil)
+        }
+        return values
     }
     /// Addon ordering/configuration and source refresh intentionally affect profiles
     /// sharing Stremio. Explicit sign-in/out instead prepares and detaches this one.

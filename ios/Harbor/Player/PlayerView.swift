@@ -204,7 +204,7 @@ struct PlayerView: View {
                 guard active, scenePhase == .active, library.map({ $0.owner == session.owner }) ?? true else { return }
                 if !continuing && session.progressEnabled {
                     do {
-                        try await resume.restart(session.target, timestampMs: UInt64(max(0, Date().timeIntervalSince1970 * 1000)))
+                        try await PlaybackProgressCommit.restart(session: session, resume: resume, timestampMs: UInt64(max(0, Date().timeIntervalSince1970 * 1000)))
                         lastSavedMs = 0; progressError = nil
                     } catch { progressError = safeMessage(error) }
                 }

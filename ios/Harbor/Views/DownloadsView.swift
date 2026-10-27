@@ -96,7 +96,7 @@ struct DownloadsView: View {
     }
     private func play(_ item: DownloadItem) async {
         guard preparation == nil, item.status == .complete, allItems.contains(where: { $0.id == item.id && $0.status == .complete }) else { return }
-        let expectedOwner = owner, libraryOwner = app.library.owner, accountScope = app.accountOperationScope, store = app.resume, operation = UUID()
+        let expectedOwner = owner, libraryOwner = app.library.owner, accountScope = app.accountOperationScope, store = app.resume, progressStores = app.library.playbackProgressStores, operation = UUID()
         preparation = operation; error = nil
         defer { if preparation == operation { preparation = nil } }
         do {
@@ -108,6 +108,7 @@ struct DownloadsView: View {
                   preparation == operation, allItems.contains(where: { $0.id == item.id && $0.status == .complete }), FileManager.default.fileExists(atPath: file.path) else { return }
             playbackMedia = item.media
             playback = PlaybackSession(source: PlaybackSource(url: file.path, headers: nil, subtitles: nil, via: "download"), target: item.target, startMs: start.ms, storageWarning: nil, progressEnabled: true, owner: libraryOwner, personalOwner: expectedOwner, resumeStore: store, promptForResume: start.prompt)
+            playback?.progressStores = progressStores
         } catch { if expectedOwner == owner, preparation == operation { self.error = safeMessage(error) } }
     }
 }

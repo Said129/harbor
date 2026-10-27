@@ -382,7 +382,7 @@ final class DetailModel {
         resolving = true
         let resolution = UUID()
         resolutionRequest = resolution
-        let owner = library.owner, personalOwner = library.personalOwner, context = contextRevision()
+        let owner = library.owner, personalOwner = library.personalOwner, progressStores = library.playbackProgressStores, context = contextRevision()
         let request = streamRequest
         let episode = selectedEpisode
         let selected = playbackContextMedia
@@ -421,6 +421,7 @@ final class DetailModel {
             playback = PlaybackSession(source: source, target: target, startMs: start.ms, storageWarning: warning, progressEnabled: progressEnabled, owner: owner, resumeStore: resume, preservePosition: preservedPosition != nil, advanceStartedAtMs: preservedPosition == nil ? nil : continuation?.advanceStartedAtMs, promptForResume: start.prompt)
             playback?.media = selected
             playback?.personalOwner = personalOwner
+            playback?.progressStores = progressStores
             playback?.subtitleRequest = SubtitleRequest(media: selected, videoID: episode?.id ?? selected.behaviorHints?.defaultVideoId ?? selected.id, season: episode?.season, episode: episode?.episode, addons: streamAddons, stream: offer.raw)
         }
         catch is CancellationError { return }

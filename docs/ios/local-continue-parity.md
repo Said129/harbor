@@ -26,12 +26,29 @@ original `local-cw.ts`, `cw-profile.ts`, `continue-watching.ts` conversion, and
 history cases and 15 cloud absorption cases with no provider requests. Input
 hashes are included in the fixture.
 
-Validation selection: 8 new native methods, 2 actually affected existing methods,
-2 fresh guest preparations, and 2 actual iPhone/iPad settings journeys with 6
-required original captures. Selection preflight is not native execution. Apple
-results and visual review remain required before approving this change.
+Initial Apple validation executed 14 tests: 13 passed, with all six source-control
+captures reviewed. The remaining exact-record test found Foundation truncating
+integer milliseconds from `.123` to `.122`. The formatter now constructs the
+fraction from the original integer; that failed comparison is selected again.
 
-This does not complete private Continue Watching: profile-specific read routing,
-the privacy setting, legacy dismissal migration, and dual resume ownership still
-require their complete Desktop behavior. Trakt progress remains a separate gap.
-No IPA is produced by this validation selection.
+The private-mode increment selects personal records/resume only when another
+profile shares the source. Actual playback and explicit Start Over mirror to the
+canonical personal/shared resume actors; cloud imports stay shared. Weak actor
+registration prevents a closing player and another profile from maintaining
+competing cached copies of one file. Settings resolve the requested profile's
+own document, including the shared fallback, before selecting a resume store.
+
+Legacy hidden choices seed existing profiles once. Explicit private choices,
+including an empty document, survive; profiles created later inherit nothing.
+Failed private reads/migrations never fall back to shared cards. Library and
+Simkl controls lock while privacy is requested; Downloads remains editable.
+
+The private increment still requires Apple execution and visual review: 9 new
+native methods, the failed date comparison, the affected production checkpoint
+composition, 2 fresh guest preparations, and 2 actual privacy/source journeys
+with 8 captures. Its executed Desktop oracle has 18 scope, 5 migration and 4
+resume scenarios. Selection preflight does not prove native behavior.
+
+Global dismissal cloud propagation and resume clearing still need their complete
+Desktop behavior. Trakt progress remains a separate gap. Neither validation
+selection produces an IPA or establishes complete Desktop parity.
