@@ -53,9 +53,11 @@ nuevos se generan selectivamente en los dieciséis idiomas, preservando los
 rótulos anteriores.
 
 Media ya conserva addonOrigin al leer, guardar y reabrir entradas; los catálogos
-y respuestas de metadatos registran el proveedor. Falta completar el
-enrutamiento preferido de ese origen tanto para addons como para plugins: guardar
-el campo no demuestra que todas las solicitudes usen todavía el proveedor correcto.
+y respuestas de metadatos registran el proveedor. El enrutamiento preferido,
+la separación de caché por origen y la prioridad de sus fuentes ya están
+implementados; su comprobación específica Apple sigue pendiente. El documento
+addon-origins-0.9.132.md describe el alcance, los contratos y las excepciones
+de plataforma.
 Los objetos preparados conservan también el Media analizado para evitar volver
 a procesar episodios al dibujar cada tarjeta.
 
@@ -71,8 +73,14 @@ El nuevo generador de contratos ejecutó cinco módulos originales, cuatro
 escenarios de búsqueda y catorce pares de títulos Manga sin red. Tres pruebas
 nativas nuevas comparan esos resultados y la reapertura de vídeo con su origen.
 Dos recorridos UI nuevos, con preparación en un invitado vacío para cada tamaño,
-ejercitan creación, edición, orden, pertenencia, retirada y persistencia. Ninguna
-de estas pruebas nuevas se considera ejecutada hasta obtener sus resultados Apple.
+ejercitan creación, edición, orden, pertenencia, retirada y persistencia. La
+ejecución 40691573028 cerró siete de siete pruebas sin nuevas advertencias.
+Sus ocho capturas originales se revisaron individualmente: los estados
+principales encajan en ambos tamaños; aparecieron un texto de ficha sin traducir
+y «actualizado dentro de 0 s». Se conservan los resultados funcionales y se
+validan esas correcciones mediante recorridos nuevos y acotados. Esta evidencia
+no certifica todavía búsqueda en vivo, arrastre real, apertura o portadas privadas
+de Manga.
 
 Siguen pendientes las filas de Inicio, su selector de personalización, la
 integración real de respaldo/sincronización, los recorridos completos de Manga y
