@@ -3,6 +3,8 @@ import UIKit
 
 struct TraktSettingsView: View {
     @State private var model: TraktAccountModel
+    private let library: LibraryModel?
+    @State private var transfers: TraktLibraryModel?
     @State private var connecting = false
     @State private var disconnecting = false
     @AppStorage("cwSources") private var sources = ContinueWatchingSources.defaultValue
@@ -11,9 +13,11 @@ struct TraktSettingsView: View {
         let owner = app.personalOwner, scope = app.accountOperationScope
         self.init(model: TraktAccountModel(store: .forOwner(owner), active: { [weak app] in
             app?.personalOwner == owner && app?.accountOperationScope == scope && app?.storageReady == true
-        }))
+        }), library: app.library, transfers: TraktLibraryModel(app: app))
     }
-    @MainActor init(model: TraktAccountModel) { _model = State(initialValue: model) }
+    @MainActor init(model: TraktAccountModel, library: LibraryModel? = nil, transfers: TraktLibraryModel? = nil) {
+        _model = State(initialValue: model); self.library = library; _transfers = State(initialValue: transfers)
+    }
     private func text(_ value: String) -> String { DesktopInterfaceText.value(value) }
     private var progress: Binding<Bool> {
         .init(get: { ContinueWatchingSources(rawValue: sources).trakt }, set: { value in
@@ -43,6 +47,7 @@ struct TraktSettingsView: View {
                 if privateContinuing {
                     Text(text("Unavailable while Continue Watching is kept private to each profile, because Trakt progress is shared across every profile on this account.")).font(.caption).foregroundStyle(.secondary)
                 }
+                if model.store.session != nil, let library, let transfers { TraktWatchlistTransferView(model: transfers, library: library) }
                 Link(destination: URL(string: "https://trakt.tv")!) { Label("trakt.tv", systemImage: "arrow.up.right.square").frame(minHeight: 44) }.accessibilityIdentifier("trakt-website")
                 if let error = model.error { Text(text(error)).foregroundStyle(.orange).accessibilityIdentifier("trakt-error") }
                 if !model.store.ready { Button(text("Retry")) { model.load() }.frame(minHeight: 44).accessibilityIdentifier("trakt-reload") }

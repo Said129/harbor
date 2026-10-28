@@ -66,6 +66,9 @@
 "Add to favorites" = "Thêm vào mục yêu thích";
 "Add your TMDB key in Settings to load these catalogs." = "Thêm khóa TMDB trong Cài đặt để tải các danh mục này.";
 "Add {language}" = "Thêm {language}";
+"Add {n} titles from your Harbor watchlist to Trakt? Trakt skips any it already has." = "Thêm {n} tựa phim từ danh sách xem Harbor vào Trakt? Trakt sẽ bỏ qua những tựa đã có.";
+"Add {n} titles from your Trakt watchlist to Harbor?" = "Thêm {n} tựa phim từ danh sách xem Trakt vào Harbor?";
+"Added {n} to your Harbor watchlist" = "Đã thêm {n} vào danh sách xem Harbor";
 "Addon" = "Tiện ích bổ sung";
 "Addon not installed" = "Addon not installed";
 "Addon order" = "Thứ tự tiện ích bổ sung";
@@ -424,6 +427,7 @@
 "Copia secundaria." = "Bản sao phụ.";
 "Copied" = "Đã sao chép";
 "Copy" = "Sao chép";
+"Copy your Harbor watchlist over to Trakt, or pull your Trakt watchlist into Harbor." = "Copy your Harbor watchlist over to Trakt, or pull your Trakt watchlist into Harbor.";
 "Corner radius" = "Độ bo góc";
 "Correo y contraseña" = "Email and password";
 "Could not analyze this source. Playback continues; you can retry." = "Could not analyze this source. Playback continues; you can retry.";
@@ -635,6 +639,7 @@
 "Explorar por categoría" = "Duyệt theo danh mục";
 "Explore" = "Khám phá";
 "Export log" = "Export log";
+"Export to Trakt" = "Xuất sang Trakt";
 "Extension" = "Extension";
 "Extensiones" = "Tiện ích mở rộng";
 "Extensiones Manga" = "Manga extensions";
@@ -803,6 +808,7 @@
 "Import files" = "Nhập tệp";
 "Import folder" = "Nhập thư mục";
 "Import from Files · EPUB / PDF" = "Import from Files · EPUB / PDF";
+"Import from Trakt" = "Nhập từ Trakt";
 "Import music" = "Import music";
 "Importa PDF, CBZ, ZIP o carpetas de imágenes desde el menú de Manga. Tu biblioteca muestra sus portadas y permite ordenar los títulos. Para fuentes en línea, conecta tu servidor Suwayomi, instala sus extensiones y elige una fuente. El servidor debe estar accesible desde tu iPhone o iPad." = "Import PDF, CBZ, ZIP or image folders from the Manga menu. Your library shows their covers and can sort titles in reading order. For online sources, connect your Suwayomi server, install its extensions and select a source. Keep that server reachable from your iPhone or iPad.";
 "Importado" = "Đã nhập";
@@ -816,6 +822,7 @@
 "Imported and now playing" = "Đã nhập và đang phát";
 "Imported books and reading progress are stored separately for each Harbor account on this device. Importing the same file again keeps its saved reading position. These files are not uploaded to Stremio." = "Imported books and reading progress are stored separately for each Harbor account on this device. Importing the same file again keeps its saved reading position. These files are not uploaded to Stremio.";
 "Importing book…" = "Importing book…";
+"Importing {done} / {total}" = "Đang nhập {done} / {total}";
 "In Theaters Now" = "Đang chiếu tại rạp";
 "In eBook, search Gutenberg or import EPUB and PDF files. In Manga, import PDF, CBZ, ZIP or image folders, or connect your Suwayomi server." = "In eBook, search Gutenberg or import EPUB and PDF files. In Manga, import PDF, CBZ, ZIP or image folders, or connect your Suwayomi server.";
 "Indonesian" = "Tiếng Indonesia";
@@ -989,6 +996,7 @@
 "Move down" = "Di chuyển xuống";
 "Move earlier" = "Tăng ưu tiên";
 "Move up" = "Di chuyển lên";
+"Move your watchlist" = "Chuyển danh sách xem";
 "Move {language} earlier" = "Tăng ưu tiên cho {language}";
 "Move {name} down" = "Chuyển {name} xuống";
 "Move {name} up" = "Chuyển {name} lên";
@@ -1062,6 +1070,7 @@
 "No hay extensiones disponibles en este servidor." = "No extensions are available on this server.";
 "No hay idiomas preferidos seleccionados." = "Chưa chọn ngôn ngữ ưu tiên.";
 "No hay subtítulos que coincidan con tu búsqueda." = "No subtitles match your search.";
+"No history yet." = "Chưa có lịch sử.";
 "No installed addon matches that." = "Không có tiện ích bổ sung đã cài đặt nào khớp.";
 "No items found in this section." = "Không tìm thấy mục nào trong phần này.";
 "No language matches that search." = "Không có ngôn ngữ nào khớp với nội dung tìm kiếm.";
@@ -1105,6 +1114,8 @@
 "Not set" = "Chưa đặt";
 "Nothing installed yet" = "Chưa cài gì";
 "Nothing matched this filter. Try another category or change your region in Settings." = "Không có nội dung nào khớp với bộ lọc này. Hãy thử danh mục khác hoặc đổi khu vực trong Cài đặt.";
+"Nothing saved on Trakt yet." = "Chưa lưu nội dung nào trên Trakt.";
+"Nothing to send. All {n} watchlist items are anime, which Trakt can't track." = "Không có gì để gửi. Cả {n} mục trong danh sách xem đều là anime mà Trakt không thể theo dõi.";
 "Nothing to show yet." = "Nothing to show yet.";
 "Notify me" = "Notify me";
 "Now" = "Bây giờ";
@@ -1283,6 +1294,7 @@
 "Próximos" = "Sắp tới";
 "Próximos animes" = "Anime sắp ra mắt";
 "Psychological" = "Tâm lý";
+"Pull every title on your Trakt watchlist into Harbor. Anything already saved is left alone." = "Pull every title on your Trakt watchlist into Harbor. Anything already saved is left alone.";
 "Punchier color" = "Màu sắc nổi bật hơn";
 "Puntuaciones" = "Điểm số";
 "Página anterior" = "Trang trước";
@@ -1363,6 +1375,7 @@
 "Remove from saved" = "Xóa khỏi mục đã lưu";
 "Remove from saved tracks" = "Xóa khỏi bài hát đã lưu";
 "Remove from this library" = "Remove from this library";
+"Remove from watchlist" = "Xóa khỏi danh sách xem";
 "Remove saved book" = "Remove saved book";
 "Remove {language}" = "Xóa {language}";
 "Removed" = "Đã gỡ";
@@ -1505,6 +1518,9 @@
 "Select an external SRT or VTT subtitle with at least four lines." = "Select an external SRT or VTT subtitle with at least four lines.";
 "Select an external SRT/VTT subtitle without dual subtitles, in a video at least one minute long." = "Select an external SRT/VTT subtitle without dual subtitles, in a video at least one minute long.";
 "Selected" = "Đã chọn";
+"Send every title in your Harbor watchlist up to Trakt. Safe to run again, Trakt skips anything it already has." = "Send every title in your Harbor watchlist up to Trakt. Safe to run again, Trakt skips anything it already has.";
+"Sending to Trakt…" = "Đang gửi đến Trakt…";
+"Sent {n} to Trakt" = "Đã gửi {n} mục đến Trakt";
 "Serie dramática" = "Phim bộ chính kịch";
 "Series" = "Phim bộ";
 "Series de comedia" = "Phim bộ hài";
@@ -1813,7 +1829,15 @@
 "Tracking" = "Tracking";
 "Tracks" = "Rãnh";
 "Traducir títulos" = "Dịch tiêu đề";
+"Trakt account limit reached. Upgrade to Trakt VIP or trim your watchlist." = "Đã đạt giới hạn tài khoản Trakt. Nâng cấp lên Trakt VIP hoặc rút gọn danh sách xem.";
+"Trakt history" = "Lịch sử Trakt";
+"Trakt is having server trouble (HTTP {n}). Try again shortly." = "Máy chủ Trakt đang gặp sự cố (HTTP {n}). Hãy thử lại sau ít phút.";
+"Trakt is rate-limiting. Wait a minute and try again." = "Trakt đang giới hạn tần suất yêu cầu. Hãy đợi một phút rồi thử lại.";
+"Trakt rejected the request (HTTP {n})." = "Trakt đã từ chối yêu cầu (HTTP {n}).";
+"Trakt rejected the request (account locked or permission denied)." = "Trakt đã từ chối yêu cầu (tài khoản bị khóa hoặc quyền truy cập bị từ chối).";
 "Trakt reported that authorization was denied. Try again if this was unintentional." = "Trakt cho biết yêu cầu cấp quyền đã bị từ chối. Hãy thử lại nếu bạn không chủ ý từ chối.";
+"Trakt sign-in expired. Reconnect Trakt in settings and try again." = "Phiên đăng nhập Trakt đã hết hạn. Hãy kết nối lại Trakt trong Cài đặt rồi thử lại.";
+"Trakt watchlist" = "Danh sách xem Trakt";
 "Transfer primary" = "Chuyển hồ sơ chính";
 "Translate titles" = "Dịch tiêu đề";
 "Trazo grueso alrededor de cada letra. Alto contraste." = "Viền đậm quanh từng chữ. Độ tương phản cao.";
@@ -1930,6 +1954,7 @@
 "YouTube" = "YouTube";
 "Your Discovery Queue" = "Hàng đợi khám phá của bạn";
 "Your Stremio library + addons sync in untouched." = "Thư viện Stremio và tiện ích bổ sung của bạn được đồng bộ nguyên vẹn.";
+"Your Trakt watchlist is empty, nothing to import." = "Danh sách xem Trakt của bạn đang trống, không có gì để nhập.";
 "Your addons" = "Tiện ích bổ sung của bạn";
 "Your avatar, name, and handle across Harbor." = "Ảnh đại diện, tên và tên người dùng của bạn trên Harbor.";
 "Your color" = "Màu của bạn";
@@ -1942,6 +1967,7 @@
 "Your profile" = "Hồ sơ của bạn";
 "Your rating" = "Đánh giá của bạn";
 "Your services are saved locally. Cloud sync will retry." = "Các dịch vụ đã được lưu trên thiết bị này. Đồng bộ đám mây sẽ được thử lại.";
+"Your watchlist is empty, nothing to send." = "Danh sách xem của bạn đang trống, không có gì để gửi.";
 "Yours" = "Của bạn";
 "Zoom" = "Thu phóng";
 "anime" = "anime";
@@ -2102,6 +2128,7 @@
 "seeders" = "người chia sẻ";
 "service" = "dịch vụ";
 "services" = "dịch vụ";
+"skipped {n} anime" = "đã bỏ qua {n} anime";
 "speed" = "tốc độ";
 "star" = "sao";
 "stars" = "sao";
@@ -2127,12 +2154,15 @@
 "{names}, and all other names, logos, and brand references are property of their respective owners and are used here only for compatibility and identification." = "{names} và mọi tên, logo cùng thông tin tham chiếu thương hiệu khác đều thuộc sở hữu của chủ sở hữu tương ứng và chỉ được sử dụng tại đây để đảm bảo khả năng tương thích và nhận diện.";
 "{name} + {n} more" = "{name} + thêm {n}";
 "{name} + {n} más" = "{name} + thêm {n}";
+"{n} anime titles will be left out (Trakt has no IDs for them)." = "{n} tựa anime sẽ bị bỏ qua (Trakt không có ID cho các tựa này).";
 "{n} ep" = "{n} tập";
 "{n} eps" = "{n} tập";
 "{n} min" = "{n} phút";
+"{n} not matched" = "{n} mục chưa khớp";
 "{n} seeds" = "{n} seed";
 "{n} semillas" = "{n} seed";
 "{requests} requests" = "{requests} yêu cầu";
+"{shown} of {total}" = "{shown} trên {total}";
 "{watched} de {total} vistos ({pct}%)." = "đã xem {watched}/{total} ({pct}%).";
 "{watched} of {total} watched ({pct}%)." = "đã xem {watched}/{total} ({pct}%).";
 "Álbumes" = "Album";

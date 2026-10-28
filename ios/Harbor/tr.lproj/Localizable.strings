@@ -66,6 +66,9 @@
 "Add to favorites" = "Favorilere ekle";
 "Add your TMDB key in Settings to load these catalogs." = "Bu katalogları yüklemek için Ayarlar'a TMDB anahtarınızı ekleyin.";
 "Add {language}" = "{language} ekle";
+"Add {n} titles from your Harbor watchlist to Trakt? Trakt skips any it already has." = "Harbor izleme listenizdeki {n} başlık Trakt'a eklensin mi? Trakt, zaten bulunanları atlar.";
+"Add {n} titles from your Trakt watchlist to Harbor?" = "Trakt izleme listenizdeki {n} başlık Harbor'a eklensin mi?";
+"Added {n} to your Harbor watchlist" = "Harbor izleme listenize {n} başlık eklendi";
 "Addon" = "Eklenti";
 "Addon not installed" = "Addon not installed";
 "Addon order" = "Eklenti sırası";
@@ -424,6 +427,7 @@
 "Copia secundaria." = "İkincil metin.";
 "Copied" = "Kopyalandı";
 "Copy" = "Kopyala";
+"Copy your Harbor watchlist over to Trakt, or pull your Trakt watchlist into Harbor." = "Copy your Harbor watchlist over to Trakt, or pull your Trakt watchlist into Harbor.";
 "Corner radius" = "Köşe yarıçapı";
 "Correo y contraseña" = "Email and password";
 "Could not analyze this source. Playback continues; you can retry." = "Could not analyze this source. Playback continues; you can retry.";
@@ -635,6 +639,7 @@
 "Explorar por categoría" = "Kategoriye göre göz at";
 "Explore" = "Keşfet";
 "Export log" = "Export log";
+"Export to Trakt" = "Trakt'a aktar";
 "Extension" = "Extension";
 "Extensiones" = "Eklentiler";
 "Extensiones Manga" = "Manga extensions";
@@ -803,6 +808,7 @@
 "Import files" = "Dosyaları içe aktar";
 "Import folder" = "Klasörü içe aktar";
 "Import from Files · EPUB / PDF" = "Import from Files · EPUB / PDF";
+"Import from Trakt" = "Trakt'tan içe aktar";
 "Import music" = "Import music";
 "Importa PDF, CBZ, ZIP o carpetas de imágenes desde el menú de Manga. Tu biblioteca muestra sus portadas y permite ordenar los títulos. Para fuentes en línea, conecta tu servidor Suwayomi, instala sus extensiones y elige una fuente. El servidor debe estar accesible desde tu iPhone o iPad." = "Import PDF, CBZ, ZIP or image folders from the Manga menu. Your library shows their covers and can sort titles in reading order. For online sources, connect your Suwayomi server, install its extensions and select a source. Keep that server reachable from your iPhone or iPad.";
 "Importado" = "İçe aktarıldı";
@@ -816,6 +822,7 @@
 "Imported and now playing" = "İçe aktarıldı ve şimdi oynatılıyor";
 "Imported books and reading progress are stored separately for each Harbor account on this device. Importing the same file again keeps its saved reading position. These files are not uploaded to Stremio." = "Imported books and reading progress are stored separately for each Harbor account on this device. Importing the same file again keeps its saved reading position. These files are not uploaded to Stremio.";
 "Importing book…" = "Importing book…";
+"Importing {done} / {total}" = "İçe aktarılıyor: {done} / {total}";
 "In Theaters Now" = "Şu Anda Sinemalarda";
 "In eBook, search Gutenberg or import EPUB and PDF files. In Manga, import PDF, CBZ, ZIP or image folders, or connect your Suwayomi server." = "In eBook, search Gutenberg or import EPUB and PDF files. In Manga, import PDF, CBZ, ZIP or image folders, or connect your Suwayomi server.";
 "Indonesian" = "Endonezce";
@@ -989,6 +996,7 @@
 "Move down" = "Aşağı taşı";
 "Move earlier" = "Öne taşı";
 "Move up" = "Yukarı taşı";
+"Move your watchlist" = "İzleme listenizi taşıyın";
 "Move {language} earlier" = "{language} dilini öne taşı";
 "Move {name} down" = "{name} öğesini aşağı taşı";
 "Move {name} up" = "{name} öğesini yukarı taşı";
@@ -1062,6 +1070,7 @@
 "No hay extensiones disponibles en este servidor." = "No extensions are available on this server.";
 "No hay idiomas preferidos seleccionados." = "Tercih edilen dil seçilmedi.";
 "No hay subtítulos que coincidan con tu búsqueda." = "No subtitles match your search.";
+"No history yet." = "Henüz geçmiş yok.";
 "No installed addon matches that." = "Yüklü eklentiler arasında bununla eşleşen yok.";
 "No items found in this section." = "Bu bölümde öğe bulunamadı.";
 "No language matches that search." = "Bu aramayla eşleşen dil yok.";
@@ -1105,6 +1114,8 @@
 "Not set" = "Ayarlanmadı";
 "Nothing installed yet" = "Henüz bir şey yüklenmedi";
 "Nothing matched this filter. Try another category or change your region in Settings." = "Bu filtreyle eşleşen bir şey yok. Başka bir kategori deneyin veya Ayarlar'dan bölgenizi değiştirin.";
+"Nothing saved on Trakt yet." = "Trakt'a henüz bir şey kaydedilmedi.";
+"Nothing to send. All {n} watchlist items are anime, which Trakt can't track." = "Gönderilecek bir şey yok. İzleme listesindeki {n} öğenin tümü anime ve Trakt bunları takip edemiyor.";
 "Nothing to show yet." = "Nothing to show yet.";
 "Notify me" = "Notify me";
 "Now" = "Şimdi";
@@ -1283,6 +1294,7 @@
 "Próximos" = "Yaklaşan";
 "Próximos animes" = "Yakında Çıkacak Animeler";
 "Psychological" = "Psikolojik";
+"Pull every title on your Trakt watchlist into Harbor. Anything already saved is left alone." = "Pull every title on your Trakt watchlist into Harbor. Anything already saved is left alone.";
 "Punchier color" = "Daha canlı renkler";
 "Puntuaciones" = "Puanlar";
 "Página anterior" = "Önceki sayfa";
@@ -1363,6 +1375,7 @@
 "Remove from saved" = "Kaydedilenlerden kaldır";
 "Remove from saved tracks" = "Kaydedilen parçalardan kaldır";
 "Remove from this library" = "Remove from this library";
+"Remove from watchlist" = "İzleme listesinden kaldır";
 "Remove saved book" = "Remove saved book";
 "Remove {language}" = "{language} dilini kaldır";
 "Removed" = "Kaldırıldı";
@@ -1505,6 +1518,9 @@
 "Select an external SRT or VTT subtitle with at least four lines." = "Select an external SRT or VTT subtitle with at least four lines.";
 "Select an external SRT/VTT subtitle without dual subtitles, in a video at least one minute long." = "Select an external SRT/VTT subtitle without dual subtitles, in a video at least one minute long.";
 "Selected" = "Seçildi";
+"Send every title in your Harbor watchlist up to Trakt. Safe to run again, Trakt skips anything it already has." = "Send every title in your Harbor watchlist up to Trakt. Safe to run again, Trakt skips anything it already has.";
+"Sending to Trakt…" = "Trakt'a gönderiliyor…";
+"Sent {n} to Trakt" = "{n} öğe Trakt'a gönderildi";
 "Serie dramática" = "Dram Dizileri";
 "Series" = "Diziler";
 "Series de comedia" = "Komedi Dizileri";
@@ -1813,7 +1829,15 @@
 "Tracking" = "Tracking";
 "Tracks" = "Parçalar";
 "Traducir títulos" = "Başlıkları çevir";
+"Trakt account limit reached. Upgrade to Trakt VIP or trim your watchlist." = "Trakt hesap sınırına ulaşıldı. Trakt VIP'ye yükseltin veya izleme listenizi kısaltın.";
+"Trakt history" = "Trakt geçmişi";
+"Trakt is having server trouble (HTTP {n}). Try again shortly." = "Trakt sunucu sorunu yaşıyor (HTTP {n}). Kısa süre sonra tekrar deneyin.";
+"Trakt is rate-limiting. Wait a minute and try again." = "Trakt istek hızını sınırlıyor. Bir dakika bekleyip tekrar deneyin.";
+"Trakt rejected the request (HTTP {n})." = "Trakt isteği reddetti (HTTP {n}).";
+"Trakt rejected the request (account locked or permission denied)." = "Trakt isteği reddetti (hesap kilitli veya izin reddedildi).";
 "Trakt reported that authorization was denied. Try again if this was unintentional." = "Trakt, yetkilendirmenin reddedildiğini bildirdi. Bunu istemeden yaptıysanız tekrar deneyin.";
+"Trakt sign-in expired. Reconnect Trakt in settings and try again." = "Trakt oturumunun süresi doldu. Ayarlar'da Trakt bağlantısını yeniden kurup tekrar deneyin.";
+"Trakt watchlist" = "Trakt izleme listesi";
 "Transfer primary" = "Birincil profili aktar";
 "Translate titles" = "Başlıkları çevir";
 "Trazo grueso alrededor de cada letra. Alto contraste." = "Her harfin çevresinde keskin bir kontur. Yüksek kontrast.";
@@ -1930,6 +1954,7 @@
 "YouTube" = "YouTube";
 "Your Discovery Queue" = "Keşif Kuyruğunuz";
 "Your Stremio library + addons sync in untouched." = "Stremio kütüphaneniz ve eklentileriniz değişmeden eşitlenir.";
+"Your Trakt watchlist is empty, nothing to import." = "Trakt izleme listeniz boş, içe aktarılacak bir şey yok.";
 "Your addons" = "Eklentilerin";
 "Your avatar, name, and handle across Harbor." = "Harbor genelinde avatarınız, adınız ve kullanıcı adınız.";
 "Your color" = "Renginiz";
@@ -1942,6 +1967,7 @@
 "Your profile" = "Profiliniz";
 "Your rating" = "Puanınız";
 "Your services are saved locally. Cloud sync will retry." = "Hizmetleriniz bu cihazda kaydedildi. Bulut eşitlemesi yeniden denenecek.";
+"Your watchlist is empty, nothing to send." = "İzleme listeniz boş, gönderilecek bir şey yok.";
 "Yours" = "Size ait";
 "Zoom" = "Yakınlaştırma";
 "anime" = "anime";
@@ -2102,6 +2128,7 @@
 "seeders" = "seed edenler";
 "service" = "hizmet";
 "services" = "hizmetler";
+"skipped {n} anime" = "{n} anime atlandı";
 "speed" = "hız";
 "star" = "yıldız";
 "stars" = "yıldız";
@@ -2127,12 +2154,15 @@
 "{names}, and all other names, logos, and brand references are property of their respective owners and are used here only for compatibility and identification." = "{names} ve diğer tüm adlar, logolar ve marka referansları ilgili sahiplerinin mülkiyetindedir ve burada yalnızca uyumluluk ve tanımlama amacıyla kullanılır.";
 "{name} + {n} more" = "{name} + {n} tane daha";
 "{name} + {n} más" = "{name} + {n} tane daha";
+"{n} anime titles will be left out (Trakt has no IDs for them)." = "{n} anime başlığı dışarıda bırakılacak (Trakt'ta bunlara ait kimlik numaraları yok).";
 "{n} ep" = "{n} blm";
 "{n} eps" = "{n} blm";
 "{n} min" = "{n} dk";
+"{n} not matched" = "{n} eşleşmedi";
 "{n} seeds" = "{n} seed";
 "{n} semillas" = "{n} seed";
 "{requests} requests" = "{requests} istek";
+"{shown} of {total}" = "{total} öğeden {shown} tanesi";
 "{watched} de {total} vistos ({pct}%)." = "{total} içinden {watched} izlendi (%{pct}).";
 "{watched} of {total} watched ({pct}%)." = "{total} içinden {watched} izlendi (%{pct}).";
 "Álbumes" = "Albümler";

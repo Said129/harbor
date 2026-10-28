@@ -66,6 +66,9 @@
 "Add to favorites" = "Tambahkan ke favorit";
 "Add your TMDB key in Settings to load these catalogs." = "Tambahkan kunci TMDB di Pengaturan untuk memuat katalog ini.";
 "Add {language}" = "Tambahkan {language}";
+"Add {n} titles from your Harbor watchlist to Trakt? Trakt skips any it already has." = "Tambahkan {n} judul dari daftar tontonan Harbor Anda ke Trakt? Trakt akan melewati judul yang sudah ada.";
+"Add {n} titles from your Trakt watchlist to Harbor?" = "Tambahkan {n} judul dari daftar tontonan Trakt Anda ke Harbor?";
+"Added {n} to your Harbor watchlist" = "{n} ditambahkan ke daftar tontonan Harbor Anda";
 "Addon" = "Addon";
 "Addon not installed" = "Addon not installed";
 "Addon order" = "Urutan addon";
@@ -424,6 +427,7 @@
 "Copia secundaria." = "Teks sekunder.";
 "Copied" = "Disalin";
 "Copy" = "Salin";
+"Copy your Harbor watchlist over to Trakt, or pull your Trakt watchlist into Harbor." = "Copy your Harbor watchlist over to Trakt, or pull your Trakt watchlist into Harbor.";
 "Corner radius" = "Radius sudut";
 "Correo y contraseña" = "Email and password";
 "Could not analyze this source. Playback continues; you can retry." = "Could not analyze this source. Playback continues; you can retry.";
@@ -635,6 +639,7 @@
 "Explorar por categoría" = "Jelajahi berdasarkan kategori";
 "Explore" = "Jelajahi";
 "Export log" = "Export log";
+"Export to Trakt" = "Ekspor ke Trakt";
 "Extension" = "Extension";
 "Extensiones" = "Ekstensi";
 "Extensiones Manga" = "Manga extensions";
@@ -803,6 +808,7 @@
 "Import files" = "Impor berkas";
 "Import folder" = "Impor folder";
 "Import from Files · EPUB / PDF" = "Import from Files · EPUB / PDF";
+"Import from Trakt" = "Impor dari Trakt";
 "Import music" = "Import music";
 "Importa PDF, CBZ, ZIP o carpetas de imágenes desde el menú de Manga. Tu biblioteca muestra sus portadas y permite ordenar los títulos. Para fuentes en línea, conecta tu servidor Suwayomi, instala sus extensiones y elige una fuente. El servidor debe estar accesible desde tu iPhone o iPad." = "Import PDF, CBZ, ZIP or image folders from the Manga menu. Your library shows their covers and can sort titles in reading order. For online sources, connect your Suwayomi server, install its extensions and select a source. Keep that server reachable from your iPhone or iPad.";
 "Importado" = "Diimpor";
@@ -816,6 +822,7 @@
 "Imported and now playing" = "Telah diimpor dan kini diputar";
 "Imported books and reading progress are stored separately for each Harbor account on this device. Importing the same file again keeps its saved reading position. These files are not uploaded to Stremio." = "Imported books and reading progress are stored separately for each Harbor account on this device. Importing the same file again keeps its saved reading position. These files are not uploaded to Stremio.";
 "Importing book…" = "Importing book…";
+"Importing {done} / {total}" = "Mengimpor {done} / {total}";
 "In Theaters Now" = "Sedang Tayang di Bioskop";
 "In eBook, search Gutenberg or import EPUB and PDF files. In Manga, import PDF, CBZ, ZIP or image folders, or connect your Suwayomi server." = "In eBook, search Gutenberg or import EPUB and PDF files. In Manga, import PDF, CBZ, ZIP or image folders, or connect your Suwayomi server.";
 "Indonesian" = "Bahasa Indonesia";
@@ -989,6 +996,7 @@
 "Move down" = "Pindahkan ke bawah";
 "Move earlier" = "Naikkan prioritas";
 "Move up" = "Pindahkan ke atas";
+"Move your watchlist" = "Pindahkan daftar tontonan Anda";
 "Move {language} earlier" = "Prioritaskan {language}";
 "Move {name} down" = "Pindahkan {name} ke bawah";
 "Move {name} up" = "Pindahkan {name} ke atas";
@@ -1062,6 +1070,7 @@
 "No hay extensiones disponibles en este servidor." = "No extensions are available on this server.";
 "No hay idiomas preferidos seleccionados." = "Belum ada bahasa pilihan.";
 "No hay subtítulos que coincidan con tu búsqueda." = "No subtitles match your search.";
+"No history yet." = "Belum ada riwayat.";
 "No installed addon matches that." = "Tidak ada addon terinstal yang cocok dengan itu.";
 "No items found in this section." = "Tidak ditemukan item di bagian ini.";
 "No language matches that search." = "Tidak ada bahasa yang cocok dengan pencarian itu.";
@@ -1105,6 +1114,8 @@
 "Not set" = "Belum diatur";
 "Nothing installed yet" = "Belum ada yang terpasang";
 "Nothing matched this filter. Try another category or change your region in Settings." = "Tidak ada yang cocok dengan filter ini. Coba kategori lain atau ubah wilayah Anda di Pengaturan.";
+"Nothing saved on Trakt yet." = "Belum ada yang disimpan di Trakt.";
+"Nothing to send. All {n} watchlist items are anime, which Trakt can't track." = "Tidak ada yang bisa dikirim. Semua {n} item daftar tontonan adalah anime, yang tidak dapat dilacak oleh Trakt.";
 "Nothing to show yet." = "Nothing to show yet.";
 "Notify me" = "Notify me";
 "Now" = "Sekarang";
@@ -1283,6 +1294,7 @@
 "Próximos" = "Mendatang";
 "Próximos animes" = "Anime Mendatang";
 "Psychological" = "Psikologis";
+"Pull every title on your Trakt watchlist into Harbor. Anything already saved is left alone." = "Pull every title on your Trakt watchlist into Harbor. Anything already saved is left alone.";
 "Punchier color" = "Warna lebih tegas";
 "Puntuaciones" = "Skor";
 "Página anterior" = "Halaman sebelumnya";
@@ -1363,6 +1375,7 @@
 "Remove from saved" = "Hapus dari item tersimpan";
 "Remove from saved tracks" = "Hapus dari lagu tersimpan";
 "Remove from this library" = "Remove from this library";
+"Remove from watchlist" = "Hapus dari daftar tontonan";
 "Remove saved book" = "Remove saved book";
 "Remove {language}" = "Hapus {language}";
 "Removed" = "Dihapus";
@@ -1505,6 +1518,9 @@
 "Select an external SRT or VTT subtitle with at least four lines." = "Select an external SRT or VTT subtitle with at least four lines.";
 "Select an external SRT/VTT subtitle without dual subtitles, in a video at least one minute long." = "Select an external SRT/VTT subtitle without dual subtitles, in a video at least one minute long.";
 "Selected" = "Dipilih";
+"Send every title in your Harbor watchlist up to Trakt. Safe to run again, Trakt skips anything it already has." = "Send every title in your Harbor watchlist up to Trakt. Safe to run again, Trakt skips anything it already has.";
+"Sending to Trakt…" = "Mengirim ke Trakt…";
+"Sent {n} to Trakt" = "{n} dikirim ke Trakt";
 "Serie dramática" = "Serial Drama";
 "Series" = "Acara";
 "Series de comedia" = "Serial Komedi";
@@ -1813,7 +1829,15 @@
 "Tracking" = "Tracking";
 "Tracks" = "Trek";
 "Traducir títulos" = "Terjemahkan judul";
+"Trakt account limit reached. Upgrade to Trakt VIP or trim your watchlist." = "Batas akun Trakt tercapai. Tingkatkan ke Trakt VIP atau kurangi daftar tontonan Anda.";
+"Trakt history" = "Riwayat Trakt";
+"Trakt is having server trouble (HTTP {n}). Try again shortly." = "Server Trakt sedang bermasalah (HTTP {n}). Coba lagi sebentar lagi.";
+"Trakt is rate-limiting. Wait a minute and try again." = "Trakt sedang membatasi jumlah permintaan. Tunggu sebentar, lalu coba lagi.";
+"Trakt rejected the request (HTTP {n})." = "Trakt menolak permintaan (HTTP {n}).";
+"Trakt rejected the request (account locked or permission denied)." = "Trakt menolak permintaan (akun terkunci atau izin ditolak).";
 "Trakt reported that authorization was denied. Try again if this was unintentional." = "Trakt melaporkan bahwa otorisasi ditolak. Coba lagi jika ini tidak disengaja.";
+"Trakt sign-in expired. Reconnect Trakt in settings and try again." = "Sesi masuk Trakt telah berakhir. Hubungkan kembali Trakt di Pengaturan, lalu coba lagi.";
+"Trakt watchlist" = "Daftar tontonan Trakt";
 "Transfer primary" = "Alihkan profil utama";
 "Translate titles" = "Terjemahkan judul";
 "Trazo grueso alrededor de cada letra. Alto contraste." = "Garis tegas di sekeliling setiap huruf. Kontras tinggi.";
@@ -1930,6 +1954,7 @@
 "YouTube" = "YouTube";
 "Your Discovery Queue" = "Antrean Penemuan Anda";
 "Your Stremio library + addons sync in untouched." = "Perpustakaan Stremio + addon Anda disinkronkan tanpa perubahan.";
+"Your Trakt watchlist is empty, nothing to import." = "Daftar tontonan Trakt Anda kosong, tidak ada yang dapat diimpor.";
 "Your addons" = "Addon Anda";
 "Your avatar, name, and handle across Harbor." = "Avatar, nama, dan nama pengguna Anda di seluruh Harbor.";
 "Your color" = "Warna Anda";
@@ -1942,6 +1967,7 @@
 "Your profile" = "Profil Anda";
 "Your rating" = "Rating Anda";
 "Your services are saved locally. Cloud sync will retry." = "Layanan Anda tersimpan di perangkat ini. Sinkronisasi cloud akan dicoba lagi.";
+"Your watchlist is empty, nothing to send." = "Daftar tontonan Anda kosong, tidak ada yang dapat dikirim.";
 "Yours" = "Milik Anda";
 "Zoom" = "Perbesar";
 "anime" = "anime";
@@ -2102,6 +2128,7 @@
 "seeders" = "seeder";
 "service" = "layanan";
 "services" = "layanan";
+"skipped {n} anime" = "melewatkan {n} anime";
 "speed" = "kecepatan";
 "star" = "bintang";
 "stars" = "bintang";
@@ -2127,12 +2154,15 @@
 "{names}, and all other names, logos, and brand references are property of their respective owners and are used here only for compatibility and identification." = "{names}, serta semua nama, logo, dan referensi merek lainnya adalah milik masing-masing pemiliknya dan hanya digunakan di sini untuk kompatibilitas dan identifikasi.";
 "{name} + {n} more" = "{name} + {n} lainnya";
 "{name} + {n} más" = "{name} + {n} lainnya";
+"{n} anime titles will be left out (Trakt has no IDs for them)." = "{n} judul anime akan dikecualikan (Trakt tidak memiliki ID untuk judul tersebut).";
 "{n} ep" = "{n} ep";
 "{n} eps" = "{n} ep";
 "{n} min" = "{n} mnt";
+"{n} not matched" = "{n} tidak berhasil dicocokkan";
 "{n} seeds" = "{n} seed";
 "{n} semillas" = "{n} seed";
 "{requests} requests" = "{requests} permintaan";
+"{shown} of {total}" = "{shown} dari {total}";
 "{watched} de {total} vistos ({pct}%)." = "{watched} dari {total} ditonton ({pct}%).";
 "{watched} of {total} watched ({pct}%)." = "{watched} dari {total} ditonton ({pct}%).";
 "Álbumes" = "Album";

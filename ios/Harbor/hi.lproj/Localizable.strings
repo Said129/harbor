@@ -66,6 +66,9 @@
 "Add to favorites" = "पसंदीदा में जोड़ें";
 "Add your TMDB key in Settings to load these catalogs." = "इन कैटलॉग को लोड करने के लिए सेटिंग्स में अपनी TMDB कुंजी जोड़ें।";
 "Add {language}" = "{language} जोड़ें";
+"Add {n} titles from your Harbor watchlist to Trakt? Trakt skips any it already has." = "अपनी Harbor वॉचलिस्ट से {n} टाइटल Trakt में जोड़ें? जो टाइटल Trakt में पहले से हैं, उन्हें छोड़ दिया जाएगा।";
+"Add {n} titles from your Trakt watchlist to Harbor?" = "अपनी Trakt वॉचलिस्ट से {n} टाइटल Harbor में जोड़ें?";
+"Added {n} to your Harbor watchlist" = "आपकी Harbor वॉचलिस्ट में {n} जोड़ दिए गए";
 "Addon" = "ऐडऑन";
 "Addon not installed" = "Addon not installed";
 "Addon order" = "ऐडऑन क्रम";
@@ -424,6 +427,7 @@
 "Copia secundaria." = "द्वितीयक टेक्स्ट।";
 "Copied" = "कॉपी किया गया";
 "Copy" = "कॉपी करें";
+"Copy your Harbor watchlist over to Trakt, or pull your Trakt watchlist into Harbor." = "Copy your Harbor watchlist over to Trakt, or pull your Trakt watchlist into Harbor.";
 "Corner radius" = "कोने की गोलाई";
 "Correo y contraseña" = "Email and password";
 "Could not analyze this source. Playback continues; you can retry." = "Could not analyze this source. Playback continues; you can retry.";
@@ -635,6 +639,7 @@
 "Explorar por categoría" = "कैटेगरी के अनुसार ब्राउज़ करें";
 "Explore" = "एक्सप्लोर करें";
 "Export log" = "Export log";
+"Export to Trakt" = "Trakt में एक्सपोर्ट करें";
 "Extension" = "Extension";
 "Extensiones" = "एक्सटेंशन";
 "Extensiones Manga" = "Manga extensions";
@@ -803,6 +808,7 @@
 "Import files" = "फ़ाइलें आयात करें";
 "Import folder" = "फ़ोल्डर आयात करें";
 "Import from Files · EPUB / PDF" = "Import from Files · EPUB / PDF";
+"Import from Trakt" = "Trakt से इम्पोर्ट करें";
 "Import music" = "Import music";
 "Importa PDF, CBZ, ZIP o carpetas de imágenes desde el menú de Manga. Tu biblioteca muestra sus portadas y permite ordenar los títulos. Para fuentes en línea, conecta tu servidor Suwayomi, instala sus extensiones y elige una fuente. El servidor debe estar accesible desde tu iPhone o iPad." = "Import PDF, CBZ, ZIP or image folders from the Manga menu. Your library shows their covers and can sort titles in reading order. For online sources, connect your Suwayomi server, install its extensions and select a source. Keep that server reachable from your iPhone or iPad.";
 "Importado" = "इंपोर्ट किया गया";
@@ -816,6 +822,7 @@
 "Imported and now playing" = "इम्पोर्ट हो गया और अब चल रहा है";
 "Imported books and reading progress are stored separately for each Harbor account on this device. Importing the same file again keeps its saved reading position. These files are not uploaded to Stremio." = "Imported books and reading progress are stored separately for each Harbor account on this device. Importing the same file again keeps its saved reading position. These files are not uploaded to Stremio.";
 "Importing book…" = "Importing book…";
+"Importing {done} / {total}" = "इंपोर्ट जारी: {done} / {total}";
 "In Theaters Now" = "अभी सिनेमाघरों में";
 "In eBook, search Gutenberg or import EPUB and PDF files. In Manga, import PDF, CBZ, ZIP or image folders, or connect your Suwayomi server." = "In eBook, search Gutenberg or import EPUB and PDF files. In Manga, import PDF, CBZ, ZIP or image folders, or connect your Suwayomi server.";
 "Indonesian" = "इंडोनेशियाई";
@@ -989,6 +996,7 @@
 "Move down" = "नीचे ले जाएँ";
 "Move earlier" = "प्राथमिकता बढ़ाएँ";
 "Move up" = "ऊपर ले जाएँ";
+"Move your watchlist" = "अपनी वॉचलिस्ट ट्रांसफ़र करें";
 "Move {language} earlier" = "{language} की प्राथमिकता बढ़ाएँ";
 "Move {name} down" = "{name} नीचे ले जाएँ";
 "Move {name} up" = "{name} ऊपर ले जाएँ";
@@ -1062,6 +1070,7 @@
 "No hay extensiones disponibles en este servidor." = "No extensions are available on this server.";
 "No hay idiomas preferidos seleccionados." = "कोई पसंदीदा भाषा नहीं चुनी गई।";
 "No hay subtítulos que coincidan con tu búsqueda." = "No subtitles match your search.";
+"No history yet." = "अभी कोई हिस्ट्री नहीं।";
 "No installed addon matches that." = "कोई इंस्टॉल किया गया ऐडऑन उससे मेल नहीं खाता।";
 "No items found in this section." = "इस सेक्शन में कोई आइटम नहीं मिला।";
 "No language matches that search." = "उस खोज से मेल खाने वाली कोई भाषा नहीं मिली।";
@@ -1105,6 +1114,8 @@
 "Not set" = "सेट नहीं है";
 "Nothing installed yet" = "अभी तक कुछ इंस्टॉल नहीं है";
 "Nothing matched this filter. Try another category or change your region in Settings." = "इस फ़िल्टर से कुछ भी मेल नहीं खाया। कोई दूसरी कैटेगरी आज़माएँ या सेटिंग्स में अपना क्षेत्र बदलें।";
+"Nothing saved on Trakt yet." = "Trakt पर अभी तक कुछ सेव नहीं है।";
+"Nothing to send. All {n} watchlist items are anime, which Trakt can't track." = "भेजने के लिए कुछ नहीं है। वॉचलिस्ट के सभी {n} आइटम ऐनिमे हैं, जिन्हें Trakt ट्रैक नहीं कर सकता।";
 "Nothing to show yet." = "Nothing to show yet.";
 "Notify me" = "Notify me";
 "Now" = "अभी";
@@ -1283,6 +1294,7 @@
 "Próximos" = "आगामी";
 "Próximos animes" = "आगामी ऐनिमे";
 "Psychological" = "मनोवैज्ञानिक";
+"Pull every title on your Trakt watchlist into Harbor. Anything already saved is left alone." = "Pull every title on your Trakt watchlist into Harbor. Anything already saved is left alone.";
 "Punchier color" = "अधिक चटख रंग";
 "Puntuaciones" = "स्कोर";
 "Página anterior" = "पिछला पेज";
@@ -1363,6 +1375,7 @@
 "Remove from saved" = "सेव किए गए आइटमों से हटाएँ";
 "Remove from saved tracks" = "सहेजे गए ट्रैक से हटाएँ";
 "Remove from this library" = "Remove from this library";
+"Remove from watchlist" = "वॉचलिस्ट से हटाएँ";
 "Remove saved book" = "Remove saved book";
 "Remove {language}" = "{language} हटाएँ";
 "Removed" = "हटाया गया";
@@ -1505,6 +1518,9 @@
 "Select an external SRT or VTT subtitle with at least four lines." = "Select an external SRT or VTT subtitle with at least four lines.";
 "Select an external SRT/VTT subtitle without dual subtitles, in a video at least one minute long." = "Select an external SRT/VTT subtitle without dual subtitles, in a video at least one minute long.";
 "Selected" = "चुना गया";
+"Send every title in your Harbor watchlist up to Trakt. Safe to run again, Trakt skips anything it already has." = "Send every title in your Harbor watchlist up to Trakt. Safe to run again, Trakt skips anything it already has.";
+"Sending to Trakt…" = "Trakt को भेजा जा रहा है…";
+"Sent {n} to Trakt" = "{n} को Trakt पर भेजा गया";
 "Serie dramática" = "ड्रामा सीरीज़";
 "Series" = "शो";
 "Series de comedia" = "कॉमेडी सीरीज़";
@@ -1813,7 +1829,15 @@
 "Tracking" = "Tracking";
 "Tracks" = "ट्रैक";
 "Traducir títulos" = "टाइटल का अनुवाद करें";
+"Trakt account limit reached. Upgrade to Trakt VIP or trim your watchlist." = "Trakt अकाउंट की सीमा पूरी हो गई है। Trakt VIP में अपग्रेड करें या अपनी वॉचलिस्ट छोटी करें।";
+"Trakt history" = "Trakt इतिहास";
+"Trakt is having server trouble (HTTP {n}). Try again shortly." = "Trakt के सर्वर में समस्या है (HTTP {n})। थोड़ी देर बाद फिर कोशिश करें।";
+"Trakt is rate-limiting. Wait a minute and try again." = "Trakt अनुरोधों की दर सीमित कर रहा है। एक मिनट रुककर फिर कोशिश करें।";
+"Trakt rejected the request (HTTP {n})." = "Trakt ने अनुरोध अस्वीकार कर दिया (HTTP {n})।";
+"Trakt rejected the request (account locked or permission denied)." = "Trakt ने अनुरोध अस्वीकार कर दिया (खाता लॉक है या अनुमति नहीं मिली)।";
 "Trakt reported that authorization was denied. Try again if this was unintentional." = "Trakt के अनुसार प्राधिकरण अस्वीकार कर दिया गया था। अगर ऐसा अनजाने में हुआ, तो फिर कोशिश करें।";
+"Trakt sign-in expired. Reconnect Trakt in settings and try again." = "Trakt साइन-इन की समय-सीमा खत्म हो गई है। सेटिंग्स में Trakt को फिर कनेक्ट करके दोबारा कोशिश करें।";
+"Trakt watchlist" = "Trakt वॉचलिस्ट";
 "Transfer primary" = "मुख्य प्रोफ़ाइल ट्रांसफ़र करें";
 "Translate titles" = "टाइटल का अनुवाद करें";
 "Trazo grueso alrededor de cada letra. Alto contraste." = "हर अक्षर के चारों ओर मोटी रेखा। अधिक कंट्रास्ट।";
@@ -1930,6 +1954,7 @@
 "YouTube" = "YouTube";
 "Your Discovery Queue" = "आपकी डिस्कवरी क्यू";
 "Your Stremio library + addons sync in untouched." = "आपकी Stremio लाइब्रेरी + ऐडऑन बिना किसी बदलाव के सिंक हो जाते हैं।";
+"Your Trakt watchlist is empty, nothing to import." = "आपकी Trakt वॉचलिस्ट खाली है, इंपोर्ट करने के लिए कुछ नहीं है।";
 "Your addons" = "आपके ऐडऑन";
 "Your avatar, name, and handle across Harbor." = "पूरे Harbor में आपका अवतार, नाम और हैंडल।";
 "Your color" = "आपका रंग";
@@ -1942,6 +1967,7 @@
 "Your profile" = "आपकी प्रोफ़ाइल";
 "Your rating" = "आपकी रेटिंग";
 "Your services are saved locally. Cloud sync will retry." = "आपकी सेवाएँ इस डिवाइस पर सहेजी गई हैं। क्लाउड सिंक फिर से किया जाएगा।";
+"Your watchlist is empty, nothing to send." = "आपकी वॉचलिस्ट खाली है, भेजने के लिए कुछ नहीं है।";
 "Yours" = "आपका";
 "Zoom" = "ज़ूम";
 "anime" = "ऐनिमे";
@@ -2102,6 +2128,7 @@
 "seeders" = "सीडर्स";
 "service" = "सेवा";
 "services" = "सेवाएँ";
+"skipped {n} anime" = "{n} ऐनिमे छोड़े गए";
 "speed" = "गति";
 "star" = "स्टार";
 "stars" = "स्टार्स";
@@ -2127,12 +2154,15 @@
 "{names}, and all other names, logos, and brand references are property of their respective owners and are used here only for compatibility and identification." = "{names}, और अन्य सभी नाम, लोगो व ब्रांड संदर्भ उनके संबंधित स्वामियों की संपत्ति हैं और यहां केवल संगतता व पहचान के लिए इस्तेमाल किए गए हैं।";
 "{name} + {n} more" = "{name} + {n} और";
 "{name} + {n} más" = "{name} + {n} और";
+"{n} anime titles will be left out (Trakt has no IDs for them)." = "{n} ऐनिमे शीर्षक छोड़ दिए जाएँगे (Trakt में उनके लिए IDs नहीं हैं)।";
 "{n} ep" = "{n} एपिसोड";
 "{n} eps" = "{n} एपिसोड";
 "{n} min" = "{n} मिनट";
+"{n} not matched" = "{n} का मिलान नहीं हुआ";
 "{n} seeds" = "{n} सीड";
 "{n} semillas" = "{n} सीड";
 "{requests} requests" = "{requests} अनुरोध";
+"{shown} of {total}" = "{total} में से {shown}";
 "{watched} de {total} vistos ({pct}%)." = "{total} में से {watched} देखे गए ({pct}%)।";
 "{watched} of {total} watched ({pct}%)." = "{total} में से {watched} देखे गए ({pct}%)।";
 "Álbumes" = "एल्बम";

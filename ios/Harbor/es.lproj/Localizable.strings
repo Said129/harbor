@@ -66,6 +66,9 @@
 "Add to favorites" = "Agregar a favoritos";
 "Add your TMDB key in Settings to load these catalogs." = "Añade tu clave de TMDB en Ajustes para cargar estos catálogos.";
 "Add {language}" = "Añadir {language}";
+"Add {n} titles from your Harbor watchlist to Trakt? Trakt skips any it already has." = "¿Agregar {n} títulos de tu lista de seguimiento de Harbor a Trakt? Trakt omitirá los que ya tenga.";
+"Add {n} titles from your Trakt watchlist to Harbor?" = "¿Agregar {n} títulos de tu lista de seguimiento de Trakt a Harbor?";
+"Added {n} to your Harbor watchlist" = "Se agregaron {n} a tu lista de seguimiento de Harbor";
 "Addon" = "Complemento";
 "Addon not installed" = "Addon not installed";
 "Addon order" = "Orden de addons";
@@ -424,6 +427,7 @@
 "Copia secundaria." = "Copia secundaria.";
 "Copied" = "Copiado";
 "Copy" = "Copiar";
+"Copy your Harbor watchlist over to Trakt, or pull your Trakt watchlist into Harbor." = "Copy your Harbor watchlist over to Trakt, or pull your Trakt watchlist into Harbor.";
 "Corner radius" = "Radio de las esquinas";
 "Correo y contraseña" = "Correo y contraseña";
 "Could not analyze this source. Playback continues; you can retry." = "No se pudo analizar esta fuente. La reproducción continúa; puedes reintentarlo.";
@@ -635,6 +639,7 @@
 "Explorar por categoría" = "Explorar por categoría";
 "Explore" = "Explorar";
 "Export log" = "Export log";
+"Export to Trakt" = "Exportar a Trakt";
 "Extension" = "Extensión";
 "Extensiones" = "Extensiones";
 "Extensiones Manga" = "Extensiones Manga";
@@ -803,6 +808,7 @@
 "Import files" = "Importar archivos";
 "Import folder" = "Importar carpeta";
 "Import from Files · EPUB / PDF" = "Importar desde Archivos · EPUB / PDF";
+"Import from Trakt" = "Importar desde Trakt";
 "Import music" = "Importar música";
 "Importa PDF, CBZ, ZIP o carpetas de imágenes desde el menú de Manga. Tu biblioteca muestra sus portadas y permite ordenar los títulos. Para fuentes en línea, conecta tu servidor Suwayomi, instala sus extensiones y elige una fuente. El servidor debe estar accesible desde tu iPhone o iPad." = "Importa PDF, CBZ, ZIP o carpetas de imágenes desde el menú de Manga. Tu biblioteca muestra sus portadas y permite ordenar los títulos. Para fuentes en línea, conecta tu servidor Suwayomi, instala sus extensiones y elige una fuente. El servidor debe estar accesible desde tu iPhone o iPad.";
 "Importado" = "Importado";
@@ -816,6 +822,7 @@
 "Imported and now playing" = "Importado y reproduciendo";
 "Imported books and reading progress are stored separately for each Harbor account on this device. Importing the same file again keeps its saved reading position. These files are not uploaded to Stremio." = "Los libros importados y el progreso se guardan por separado para cada cuenta de Harbor en este dispositivo. Al importar el mismo archivo se conserva la posición de lectura. Estos archivos no se suben a Stremio.";
 "Importing book…" = "Importando libro…";
+"Importing {done} / {total}" = "Importando {done} / {total}";
 "In Theaters Now" = "Ahora en cines";
 "In eBook, search Gutenberg or import EPUB and PDF files. In Manga, import PDF, CBZ, ZIP or image folders, or connect your Suwayomi server." = "En eBook, busca en Gutenberg o importa archivos EPUB y PDF. En Manga, importa PDF, CBZ, ZIP o carpetas de imágenes, o conecta tu servidor Suwayomi.";
 "Indonesian" = "Indonesio";
@@ -989,6 +996,7 @@
 "Move down" = "Mover hacia abajo";
 "Move earlier" = "Mover antes";
 "Move up" = "Mover hacia arriba";
+"Move your watchlist" = "Mueve tu lista de seguimiento";
 "Move {language} earlier" = "Priorizar {language}";
 "Move {name} down" = "Bajar {name}";
 "Move {name} up" = "Subir {name}";
@@ -1062,6 +1070,7 @@
 "No hay extensiones disponibles en este servidor." = "No hay extensiones disponibles en este servidor.";
 "No hay idiomas preferidos seleccionados." = "No hay idiomas preferidos seleccionados.";
 "No hay subtítulos que coincidan con tu búsqueda." = "No hay subtítulos que coincidan con tu búsqueda.";
+"No history yet." = "Aún no hay historial.";
 "No installed addon matches that." = "Ningún complemento instalado coincide con eso.";
 "No items found in this section." = "No se encontraron elementos en esta sección.";
 "No language matches that search." = "Ningún idioma coincide con esa búsqueda.";
@@ -1105,6 +1114,8 @@
 "Not set" = "Sin configurar";
 "Nothing installed yet" = "Aún no hay nada instalado";
 "Nothing matched this filter. Try another category or change your region in Settings." = "Nada coincidió con este filtro. Prueba otra categoría o cambia tu región en Configuración.";
+"Nothing saved on Trakt yet." = "Aún no hay nada guardado en Trakt.";
+"Nothing to send. All {n} watchlist items are anime, which Trakt can't track." = "Nada que enviar. Los {n} títulos de la lista de seguimiento son anime, y Trakt no puede registrarlos.";
 "Nothing to show yet." = "Todavía no hay nada que mostrar.";
 "Notify me" = "Avisarme";
 "Now" = "Ahora";
@@ -1283,6 +1294,7 @@
 "Próximos" = "Próximos";
 "Próximos animes" = "Próximos animes";
 "Psychological" = "Psicológico";
+"Pull every title on your Trakt watchlist into Harbor. Anything already saved is left alone." = "Pull every title on your Trakt watchlist into Harbor. Anything already saved is left alone.";
 "Punchier color" = "Color más intenso";
 "Puntuaciones" = "Puntuaciones";
 "Página anterior" = "Página anterior";
@@ -1363,6 +1375,7 @@
 "Remove from saved" = "Quitar de guardados";
 "Remove from saved tracks" = "Quitar de pistas guardadas";
 "Remove from this library" = "Quitar de esta biblioteca";
+"Remove from watchlist" = "Quitar de la lista de seguimiento";
 "Remove saved book" = "Eliminar libro guardado";
 "Remove {language}" = "Quitar {language}";
 "Removed" = "Eliminado";
@@ -1505,6 +1518,9 @@
 "Select an external SRT or VTT subtitle with at least four lines." = "Selecciona un subtítulo externo SRT o VTT con al menos cuatro líneas.";
 "Select an external SRT/VTT subtitle without dual subtitles, in a video at least one minute long." = "Selecciona un subtítulo externo SRT/VTT, sin subtítulos dobles, en un vídeo de al menos un minuto.";
 "Selected" = "Seleccionado";
+"Send every title in your Harbor watchlist up to Trakt. Safe to run again, Trakt skips anything it already has." = "Send every title in your Harbor watchlist up to Trakt. Safe to run again, Trakt skips anything it already has.";
+"Sending to Trakt…" = "Enviando a Trakt…";
+"Sent {n} to Trakt" = "Se enviaron {n} a Trakt";
 "Serie dramática" = "Serie dramática";
 "Series" = "Series";
 "Series de comedia" = "Series de comedia";
@@ -1813,7 +1829,15 @@
 "Tracking" = "Tracking";
 "Tracks" = "Pistas";
 "Traducir títulos" = "Traducir títulos";
+"Trakt account limit reached. Upgrade to Trakt VIP or trim your watchlist." = "Se alcanzó el límite de la cuenta de Trakt. Actualiza a Trakt VIP o reduce tu lista de seguimiento.";
+"Trakt history" = "Historial de Trakt";
+"Trakt is having server trouble (HTTP {n}). Try again shortly." = "Trakt tiene problemas con el servidor (HTTP {n}). Inténtalo de nuevo en breve.";
+"Trakt is rate-limiting. Wait a minute and try again." = "Trakt está limitando la frecuencia de solicitudes. Espera un minuto e inténtalo de nuevo.";
+"Trakt rejected the request (HTTP {n})." = "Trakt rechazó la solicitud (HTTP {n}).";
+"Trakt rejected the request (account locked or permission denied)." = "Trakt rechazó la solicitud (cuenta bloqueada o permiso denegado).";
 "Trakt reported that authorization was denied. Try again if this was unintentional." = "Trakt informó que se denegó la autorización. Inténtalo de nuevo si no fue intencional.";
+"Trakt sign-in expired. Reconnect Trakt in settings and try again." = "El inicio de sesión de Trakt venció. Vuelve a conectar Trakt en la configuración e inténtalo de nuevo.";
+"Trakt watchlist" = "Lista de seguimiento de Trakt";
 "Transfer primary" = "Transferir perfil principal";
 "Translate titles" = "Traducir títulos";
 "Trazo grueso alrededor de cada letra. Alto contraste." = "Trazo grueso alrededor de cada letra. Alto contraste.";
@@ -1930,6 +1954,7 @@
 "YouTube" = "YouTube";
 "Your Discovery Queue" = "Tu cola de descubrimiento";
 "Your Stremio library + addons sync in untouched." = "Tu biblioteca y tus complementos de Stremio se sincronizan sin cambios.";
+"Your Trakt watchlist is empty, nothing to import." = "Tu lista de seguimiento de Trakt está vacía. No hay nada que importar.";
 "Your addons" = "Tus addons";
 "Your avatar, name, and handle across Harbor." = "Tu avatar, nombre e identificador en Harbor.";
 "Your color" = "Tu color";
@@ -1942,6 +1967,7 @@
 "Your profile" = "Tu perfil";
 "Your rating" = "Tu calificación";
 "Your services are saved locally. Cloud sync will retry." = "Tus servicios se han guardado en este dispositivo. Se reintentará la sincronización.";
+"Your watchlist is empty, nothing to send." = "Tu lista de seguimiento está vacía. No hay nada que enviar.";
 "Yours" = "Tuyo";
 "Zoom" = "Zoom";
 "anime" = "anime";
@@ -2102,6 +2128,7 @@
 "seeders" = "sembradores";
 "service" = "servicio";
 "services" = "servicios";
+"skipped {n} anime" = "{n} animes omitidos";
 "speed" = "velocidad";
 "star" = "estrella";
 "stars" = "estrellas";
@@ -2127,12 +2154,15 @@
 "{names}, and all other names, logos, and brand references are property of their respective owners and are used here only for compatibility and identification." = "{names} y todos los demás nombres, logotipos y referencias de marcas son propiedad de sus respectivos dueños y se usan aquí únicamente con fines de compatibilidad e identificación.";
 "{name} + {n} more" = "{name} + {n} más";
 "{name} + {n} más" = "{name} + {n} más";
+"{n} anime titles will be left out (Trakt has no IDs for them)." = "Se excluirán {n} títulos de anime (Trakt no tiene identificadores para ellos).";
 "{n} ep" = "{n} ep.";
 "{n} eps" = "{n} epis.";
 "{n} min" = "{n} min";
+"{n} not matched" = "{n} sin coincidencia";
 "{n} seeds" = "{n} semillas";
 "{n} semillas" = "{n} semillas";
 "{requests} requests" = "{requests} solicitudes";
+"{shown} of {total}" = "{shown} de {total}";
 "{watched} de {total} vistos ({pct}%)." = "{watched} de {total} vistos ({pct}%).";
 "{watched} of {total} watched ({pct}%)." = "{watched} de {total} vistos ({pct}%).";
 "Álbumes" = "Álbumes";

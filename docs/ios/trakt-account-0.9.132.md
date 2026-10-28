@@ -46,7 +46,9 @@ dos recorridos de fuente Trakt pasaron; no se vuelven a seleccionar los intactos
 Se autenticaron y revisaron las 18 capturas obtenidas. Se detectó un recurso PNG
 equivocado para el distintivo y textos de autorización sin traducir. Sus arreglos
 se comprueban en la selección de reproducción siguiente. Las capturas de
-privacidad restaurada/desbloqueada siguen pendientes.
+privacidad restaurada/desbloqueada se obtuvieron y su recorrido pasó en la
+ejecución posterior 40604874961. La autorización, el distintivo corregido y la
+nota de servidor traducida también pasaron sus comprobaciones seleccionadas.
 Se conservan los aprobados intactos y no se repite el fallo de foco sin corregirlo.
 
 ## Pendientes conservados

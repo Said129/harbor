@@ -53,7 +53,10 @@ struct TraktWatchTarget: Codable, Equatable, Sendable {
             let imdb = ref.imdbID.flatMap { $0.range(of: "^tt[0-9]+$", options: .regularExpression) != nil ? $0 : nil }
             let show = imdb.map { ids("imdb", .string($0)) } ?? .init(.object([:]))
             if let tvdb = ref.tvdbEpisodeID, tvdb > 0 {
-                return .init(kind: .episode, ids: show, season: ref.imdbSeason ?? ref.season, number: ref.imdbEpisode ?? ref.episode, episodeIDs: ids("tvdb", .integer(Int64(tvdb))))
+                var season = ref.season, number = ref.episode
+                if let mapped = ref.imdbSeason { season = mapped }
+                if let mapped = ref.imdbEpisode { number = mapped }
+                return .init(kind: .episode, ids: show, season: season, number: number, episodeIDs: ids("tvdb", .integer(Int64(tvdb))))
             }
             guard imdb != nil else { return nil }
             return episode(show, ref.imdbSeason, ref.imdbEpisode)

@@ -66,6 +66,9 @@
 "Add to favorites" = "Aggiungi ai preferiti";
 "Add your TMDB key in Settings to load these catalogs." = "Aggiungi la tua chiave TMDB nelle Impostazioni per caricare questi cataloghi.";
 "Add {language}" = "Aggiungi {language}";
+"Add {n} titles from your Harbor watchlist to Trakt? Trakt skips any it already has." = "Aggiungere {n} titoli dalla tua lista Harbor a Trakt? Trakt ignorerà quelli già presenti.";
+"Add {n} titles from your Trakt watchlist to Harbor?" = "Aggiungere {n} titoli dalla tua lista Trakt a Harbor?";
+"Added {n} to your Harbor watchlist" = "Aggiunti {n} titoli alla tua lista Harbor";
 "Addon" = "Add-on";
 "Addon not installed" = "Addon not installed";
 "Addon order" = "Ordine degli Add-on";
@@ -424,6 +427,7 @@
 "Copia secundaria." = "Copia secondaria.";
 "Copied" = "Copiato";
 "Copy" = "Copia";
+"Copy your Harbor watchlist over to Trakt, or pull your Trakt watchlist into Harbor." = "Copy your Harbor watchlist over to Trakt, or pull your Trakt watchlist into Harbor.";
 "Corner radius" = "Raggio degli angoli";
 "Correo y contraseña" = "Email and password";
 "Could not analyze this source. Playback continues; you can retry." = "Could not analyze this source. Playback continues; you can retry.";
@@ -635,6 +639,7 @@
 "Explorar por categoría" = "Esplora per categoria";
 "Explore" = "Esplora";
 "Export log" = "Export log";
+"Export to Trakt" = "Esporta su Trakt";
 "Extension" = "Extension";
 "Extensiones" = "Estensioni";
 "Extensiones Manga" = "Manga extensions";
@@ -803,6 +808,7 @@
 "Import files" = "Importa file";
 "Import folder" = "Importa cartella";
 "Import from Files · EPUB / PDF" = "Import from Files · EPUB / PDF";
+"Import from Trakt" = "Importa da Trakt";
 "Import music" = "Import music";
 "Importa PDF, CBZ, ZIP o carpetas de imágenes desde el menú de Manga. Tu biblioteca muestra sus portadas y permite ordenar los títulos. Para fuentes en línea, conecta tu servidor Suwayomi, instala sus extensiones y elige una fuente. El servidor debe estar accesible desde tu iPhone o iPad." = "Import PDF, CBZ, ZIP or image folders from the Manga menu. Your library shows their covers and can sort titles in reading order. For online sources, connect your Suwayomi server, install its extensions and select a source. Keep that server reachable from your iPhone or iPad.";
 "Importado" = "Importato";
@@ -816,6 +822,7 @@
 "Imported and now playing" = "Importato e ora in riproduzione";
 "Imported books and reading progress are stored separately for each Harbor account on this device. Importing the same file again keeps its saved reading position. These files are not uploaded to Stremio." = "Imported books and reading progress are stored separately for each Harbor account on this device. Importing the same file again keeps its saved reading position. These files are not uploaded to Stremio.";
 "Importing book…" = "Importing book…";
+"Importing {done} / {total}" = "Importazione: {done} / {total}";
 "In Theaters Now" = "Ora al cinema";
 "In eBook, search Gutenberg or import EPUB and PDF files. In Manga, import PDF, CBZ, ZIP or image folders, or connect your Suwayomi server." = "In eBook, search Gutenberg or import EPUB and PDF files. In Manga, import PDF, CBZ, ZIP or image folders, or connect your Suwayomi server.";
 "Indonesian" = "Indonesiano";
@@ -989,6 +996,7 @@
 "Move down" = "Sposta in basso";
 "Move earlier" = "Sposta prima";
 "Move up" = "Sposta in alto";
+"Move your watchlist" = "Sposta la tua lista";
 "Move {language} earlier" = "Sposta {language} prima";
 "Move {name} down" = "Sposta {name} in basso";
 "Move {name} up" = "Sposta {name} in alto";
@@ -1062,6 +1070,7 @@
 "No hay extensiones disponibles en este servidor." = "No extensions are available on this server.";
 "No hay idiomas preferidos seleccionados." = "Nessuna lingua preferita selezionata.";
 "No hay subtítulos que coincidan con tu búsqueda." = "No subtitles match your search.";
+"No history yet." = "Ancora nessuna cronologia.";
 "No installed addon matches that." = "Nessun Add-on installato corrisponde alla ricerca.";
 "No items found in this section." = "Nessun elemento trovato in questa sezione.";
 "No language matches that search." = "Nessuna lingua corrisponde alla ricerca.";
@@ -1105,6 +1114,8 @@
 "Not set" = "Non impostato";
 "Nothing installed yet" = "Ancora nulla di installato";
 "Nothing matched this filter. Try another category or change your region in Settings." = "Nessuna corrispondenza con questo filtro. Prova un'altra categoria o cambia la regione nelle Impostazioni.";
+"Nothing saved on Trakt yet." = "Non hai ancora salvato nulla su Trakt.";
+"Nothing to send. All {n} watchlist items are anime, which Trakt can't track." = "Nulla da inviare. Tutti i {n} titoli della Lista sono anime che Trakt non può monitorare.";
 "Nothing to show yet." = "Nothing to show yet.";
 "Notify me" = "Notify me";
 "Now" = "Ora";
@@ -1283,6 +1294,7 @@
 "Próximos" = "In arrivo";
 "Próximos animes" = "Anime in arrivo";
 "Psychological" = "Psicologico";
+"Pull every title on your Trakt watchlist into Harbor. Anything already saved is left alone." = "Pull every title on your Trakt watchlist into Harbor. Anything already saved is left alone.";
 "Punchier color" = "Colori più incisivi";
 "Puntuaciones" = "Punteggi";
 "Página anterior" = "Pagina precedente";
@@ -1363,6 +1375,7 @@
 "Remove from saved" = "Rimuovi dai salvati";
 "Remove from saved tracks" = "Rimuovi dai brani salvati";
 "Remove from this library" = "Remove from this library";
+"Remove from watchlist" = "Rimuovi dalla Lista";
 "Remove saved book" = "Remove saved book";
 "Remove {language}" = "Rimuovi {language}";
 "Removed" = "Rimosso";
@@ -1505,6 +1518,9 @@
 "Select an external SRT or VTT subtitle with at least four lines." = "Select an external SRT or VTT subtitle with at least four lines.";
 "Select an external SRT/VTT subtitle without dual subtitles, in a video at least one minute long." = "Select an external SRT/VTT subtitle without dual subtitles, in a video at least one minute long.";
 "Selected" = "Selezionato";
+"Send every title in your Harbor watchlist up to Trakt. Safe to run again, Trakt skips anything it already has." = "Send every title in your Harbor watchlist up to Trakt. Safe to run again, Trakt skips anything it already has.";
+"Sending to Trakt…" = "Invio a Trakt…";
+"Sent {n} to Trakt" = "Invio di {n} a Trakt completato";
 "Serie dramática" = "Serie drammatiche";
 "Series" = "Serie";
 "Series de comedia" = "Serie commedia";
@@ -1813,7 +1829,15 @@
 "Tracking" = "Tracking";
 "Tracks" = "Tracce";
 "Traducir títulos" = "Traduci i titoli";
+"Trakt account limit reached. Upgrade to Trakt VIP or trim your watchlist." = "Hai raggiunto il limite dell'account Trakt. Passa a Trakt VIP o riduci la tua Lista.";
+"Trakt history" = "Cronologia Trakt";
+"Trakt is having server trouble (HTTP {n}). Try again shortly." = "Trakt ha problemi con il server (HTTP {n}). Riprova tra poco.";
+"Trakt is rate-limiting. Wait a minute and try again." = "Trakt sta limitando le richieste. Attendi un minuto e riprova.";
+"Trakt rejected the request (HTTP {n})." = "Trakt ha rifiutato la richiesta (HTTP {n}).";
+"Trakt rejected the request (account locked or permission denied)." = "Trakt ha rifiutato la richiesta (account bloccato o autorizzazione negata).";
 "Trakt reported that authorization was denied. Try again if this was unintentional." = "Trakt ha segnalato che l'autorizzazione è stata negata. Riprova se non era intenzionale.";
+"Trakt sign-in expired. Reconnect Trakt in settings and try again." = "L'accesso a Trakt è scaduto. Riconnetti Trakt nelle Impostazioni e riprova.";
+"Trakt watchlist" = "Lista Trakt";
 "Transfer primary" = "Trasferisci il profilo principale";
 "Translate titles" = "Traduci i titoli";
 "Trazo grueso alrededor de cada letra. Alto contraste." = "Tratto netto intorno a ogni lettera. Contrasto elevato.";
@@ -1930,6 +1954,7 @@
 "YouTube" = "YouTube";
 "Your Discovery Queue" = "La tua coda Scoperte";
 "Your Stremio library + addons sync in untouched." = "La tua libreria Stremio e i tuoi Add-on vengono sincronizzati senza modifiche.";
+"Your Trakt watchlist is empty, nothing to import." = "La tua Lista di Trakt è vuota, non c'è nulla da importare.";
 "Your addons" = "I tuoi Add-on";
 "Your avatar, name, and handle across Harbor." = "Il tuo avatar, il tuo nome e il tuo handle su Harbor.";
 "Your color" = "Il tuo colore";
@@ -1942,6 +1967,7 @@
 "Your profile" = "Il tuo profilo";
 "Your rating" = "La tua valutazione";
 "Your services are saved locally. Cloud sync will retry." = "I tuoi servizi sono salvati su questo dispositivo. La sincronizzazione verrà ritentata.";
+"Your watchlist is empty, nothing to send." = "La tua Lista è vuota, non c'è nulla da inviare.";
 "Yours" = "I tuoi";
 "Zoom" = "Zoom";
 "anime" = "anime";
@@ -2102,6 +2128,7 @@
 "seeders" = "seeder";
 "service" = "servizio";
 "services" = "servizi";
+"skipped {n} anime" = "{n} anime saltati";
 "speed" = "velocità";
 "star" = "stella";
 "stars" = "stelle";
@@ -2127,12 +2154,15 @@
 "{names}, and all other names, logos, and brand references are property of their respective owners and are used here only for compatibility and identification." = "{names} e tutti gli altri nomi, loghi e riferimenti a marchi appartengono ai rispettivi proprietari e sono usati qui esclusivamente per compatibilità e identificazione.";
 "{name} + {n} more" = "{name} + altri {n}";
 "{name} + {n} más" = "{name} + altri {n}";
+"{n} anime titles will be left out (Trakt has no IDs for them)." = "{n} titoli anime saranno esclusi perché Trakt non dispone dei relativi ID.";
 "{n} ep" = "{n} ep.";
 "{n} eps" = "{n} ep.";
 "{n} min" = "{n} min";
+"{n} not matched" = "{n} senza corrispondenza";
 "{n} seeds" = "{n} seed";
 "{n} semillas" = "{n} seed";
 "{requests} requests" = "{requests} richieste";
+"{shown} of {total}" = "{shown} di {total}";
 "{watched} de {total} vistos ({pct}%)." = "Visti {watched} su {total} ({pct}%).";
 "{watched} of {total} watched ({pct}%)." = "Visti {watched} su {total} ({pct}%).";
 "Álbumes" = "Album";

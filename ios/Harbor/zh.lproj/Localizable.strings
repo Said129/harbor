@@ -66,6 +66,9 @@
 "Add to favorites" = "添加到收藏";
 "Add your TMDB key in Settings to load these catalogs." = "请在设置中添加 TMDB 密钥以加载这些目录。";
 "Add {language}" = "添加{language}";
+"Add {n} titles from your Harbor watchlist to Trakt? Trakt skips any it already has." = "要将 Harbor 片单中的 {n} 部作品添加到 Trakt 吗？Trakt 会跳过已有的作品。";
+"Add {n} titles from your Trakt watchlist to Harbor?" = "要将 Trakt 片单中的 {n} 部作品添加到 Harbor 吗？";
+"Added {n} to your Harbor watchlist" = "已将 {n} 部作品添加到你的 Harbor 片单";
 "Addon" = "插件";
 "Addon not installed" = "Addon not installed";
 "Addon order" = "插件顺序";
@@ -424,6 +427,7 @@
 "Copia secundaria." = "备用副本。";
 "Copied" = "已复制";
 "Copy" = "复制";
+"Copy your Harbor watchlist over to Trakt, or pull your Trakt watchlist into Harbor." = "Copy your Harbor watchlist over to Trakt, or pull your Trakt watchlist into Harbor.";
 "Corner radius" = "圆角半径";
 "Correo y contraseña" = "Email and password";
 "Could not analyze this source. Playback continues; you can retry." = "Could not analyze this source. Playback continues; you can retry.";
@@ -635,6 +639,7 @@
 "Explorar por categoría" = "按类别浏览";
 "Explore" = "探索";
 "Export log" = "Export log";
+"Export to Trakt" = "导出到 Trakt";
 "Extension" = "Extension";
 "Extensiones" = "扩展";
 "Extensiones Manga" = "Manga extensions";
@@ -803,6 +808,7 @@
 "Import files" = "导入文件";
 "Import folder" = "导入文件夹";
 "Import from Files · EPUB / PDF" = "Import from Files · EPUB / PDF";
+"Import from Trakt" = "从 Trakt 导入";
 "Import music" = "Import music";
 "Importa PDF, CBZ, ZIP o carpetas de imágenes desde el menú de Manga. Tu biblioteca muestra sus portadas y permite ordenar los títulos. Para fuentes en línea, conecta tu servidor Suwayomi, instala sus extensiones y elige una fuente. El servidor debe estar accesible desde tu iPhone o iPad." = "Import PDF, CBZ, ZIP or image folders from the Manga menu. Your library shows their covers and can sort titles in reading order. For online sources, connect your Suwayomi server, install its extensions and select a source. Keep that server reachable from your iPhone or iPad.";
 "Importado" = "已导入";
@@ -816,6 +822,7 @@
 "Imported and now playing" = "已导入并正在播放";
 "Imported books and reading progress are stored separately for each Harbor account on this device. Importing the same file again keeps its saved reading position. These files are not uploaded to Stremio." = "Imported books and reading progress are stored separately for each Harbor account on this device. Importing the same file again keeps its saved reading position. These files are not uploaded to Stremio.";
 "Importing book…" = "Importing book…";
+"Importing {done} / {total}" = "正在导入 {done} / {total}";
 "In Theaters Now" = "正在热映";
 "In eBook, search Gutenberg or import EPUB and PDF files. In Manga, import PDF, CBZ, ZIP or image folders, or connect your Suwayomi server." = "In eBook, search Gutenberg or import EPUB and PDF files. In Manga, import PDF, CBZ, ZIP or image folders, or connect your Suwayomi server.";
 "Indonesian" = "印度尼西亚语";
@@ -989,6 +996,7 @@
 "Move down" = "下移";
 "Move earlier" = "提高优先级";
 "Move up" = "上移";
+"Move your watchlist" = "迁移你的片单";
 "Move {language} earlier" = "提高{language}的优先级";
 "Move {name} down" = "下移{name}";
 "Move {name} up" = "上移{name}";
@@ -1062,6 +1070,7 @@
 "No hay extensiones disponibles en este servidor." = "No extensions are available on this server.";
 "No hay idiomas preferidos seleccionados." = "未选择首选语言。";
 "No hay subtítulos que coincidan con tu búsqueda." = "No subtitles match your search.";
+"No history yet." = "暂无观看历史。";
 "No installed addon matches that." = "没有已安装的插件与其匹配。";
 "No items found in this section." = "此分区中未找到任何项目。";
 "No language matches that search." = "没有与该搜索匹配的语言。";
@@ -1105,6 +1114,8 @@
 "Not set" = "未设置";
 "Nothing installed yet" = "尚未安装任何内容";
 "Nothing matched this filter. Try another category or change your region in Settings." = "没有符合此筛选器的内容。请尝试其他类别，或在“设置”中更改你的地区。";
+"Nothing saved on Trakt yet." = "Trakt 上尚未保存任何内容。";
+"Nothing to send. All {n} watchlist items are anime, which Trakt can't track." = "没有可发送的内容。片单中的全部 {n} 个项目都是动漫，而 Trakt 无法跟踪动漫。";
 "Nothing to show yet." = "Nothing to show yet.";
 "Notify me" = "Notify me";
 "Now" = "现在";
@@ -1283,6 +1294,7 @@
 "Próximos" = "即将开始";
 "Próximos animes" = "即将上线的动漫";
 "Psychological" = "心理";
+"Pull every title on your Trakt watchlist into Harbor. Anything already saved is left alone." = "Pull every title on your Trakt watchlist into Harbor. Anything already saved is left alone.";
 "Punchier color" = "更鲜艳的色彩";
 "Puntuaciones" = "评分";
 "Página anterior" = "上一页";
@@ -1363,6 +1375,7 @@
 "Remove from saved" = "从已保存内容中移除";
 "Remove from saved tracks" = "从已收藏歌曲中移除";
 "Remove from this library" = "Remove from this library";
+"Remove from watchlist" = "从想看列表中移除";
 "Remove saved book" = "Remove saved book";
 "Remove {language}" = "移除{language}";
 "Removed" = "已移除";
@@ -1505,6 +1518,9 @@
 "Select an external SRT or VTT subtitle with at least four lines." = "Select an external SRT or VTT subtitle with at least four lines.";
 "Select an external SRT/VTT subtitle without dual subtitles, in a video at least one minute long." = "Select an external SRT/VTT subtitle without dual subtitles, in a video at least one minute long.";
 "Selected" = "已选择";
+"Send every title in your Harbor watchlist up to Trakt. Safe to run again, Trakt skips anything it already has." = "Send every title in your Harbor watchlist up to Trakt. Safe to run again, Trakt skips anything it already has.";
+"Sending to Trakt…" = "正在发送到 Trakt…";
+"Sent {n} to Trakt" = "已向 Trakt 发送 {n} 项";
 "Serie dramática" = "剧情剧集";
 "Series" = "剧集";
 "Series de comedia" = "喜剧剧集";
@@ -1813,7 +1829,15 @@
 "Tracking" = "Tracking";
 "Tracks" = "轨道";
 "Traducir títulos" = "翻译标题";
+"Trakt account limit reached. Upgrade to Trakt VIP or trim your watchlist." = "已达到 Trakt 账户上限。请升级到 Trakt VIP 或精简片单。";
+"Trakt history" = "Trakt 观看历史";
+"Trakt is having server trouble (HTTP {n}). Try again shortly." = "Trakt 服务器出现问题（HTTP {n}）。请稍后重试。";
+"Trakt is rate-limiting. Wait a minute and try again." = "Trakt 正在限制请求频率。请等待一分钟后重试。";
+"Trakt rejected the request (HTTP {n})." = "Trakt 拒绝了请求（HTTP {n}）。";
+"Trakt rejected the request (account locked or permission denied)." = "Trakt 拒绝了请求（账户已锁定或权限被拒绝）。";
 "Trakt reported that authorization was denied. Try again if this was unintentional." = "Trakt 报告授权被拒绝。如果并非有意拒绝，请重试。";
+"Trakt sign-in expired. Reconnect Trakt in settings and try again." = "Trakt 登录已过期。请在设置中重新连接 Trakt，然后重试。";
+"Trakt watchlist" = "Trakt 待看清单";
 "Transfer primary" = "转移主个人资料";
 "Translate titles" = "翻译标题";
 "Trazo grueso alrededor de cada letra. Alto contraste." = "为每个字符添加硬边描边，对比度高。";
@@ -1930,6 +1954,7 @@
 "YouTube" = "YouTube";
 "Your Discovery Queue" = "你的发现队列";
 "Your Stremio library + addons sync in untouched." = "你的 Stremio 媒体库和插件将原样同步。";
+"Your Trakt watchlist is empty, nothing to import." = "你的 Trakt 片单为空，没有可导入的内容。";
 "Your addons" = "你的插件";
 "Your avatar, name, and handle across Harbor." = "你在 Harbor 中使用的头像、名称和账号名。";
 "Your color" = "你的颜色";
@@ -1942,6 +1967,7 @@
 "Your profile" = "你的个人资料";
 "Your rating" = "你的评分";
 "Your services are saved locally. Cloud sync will retry." = "你的服务已保存在本机。稍后将重试云端同步。";
+"Your watchlist is empty, nothing to send." = "你的片单为空，没有可发送的内容。";
 "Yours" = "你的";
 "Zoom" = "缩放";
 "anime" = "动漫";
@@ -2102,6 +2128,7 @@
 "seeders" = "做种者";
 "service" = "服务";
 "services" = "服务";
+"skipped {n} anime" = "已跳过 {n} 部动漫";
 "speed" = "速度";
 "star" = "颗星";
 "stars" = "颗星";
@@ -2127,12 +2154,15 @@
 "{names}, and all other names, logos, and brand references are property of their respective owners and are used here only for compatibility and identification." = "{names} 以及所有其他名称、徽标和品牌标识均为其各自所有者的财产，此处仅用于兼容和识别。";
 "{name} + {n} more" = "{name} + 另 {n} 个";
 "{name} + {n} más" = "{name} + 另 {n} 个";
+"{n} anime titles will be left out (Trakt has no IDs for them)." = "将排除 {n} 部动漫作品（Trakt 中没有对应 ID）。";
 "{n} ep" = "{n} 集";
 "{n} eps" = "{n} 集";
 "{n} min" = "{n} 分钟";
+"{n} not matched" = "{n} 个未匹配";
 "{n} seeds" = "{n} 个做种者";
 "{n} semillas" = "{n} 个做种者";
 "{requests} requests" = "{requests} 次请求";
+"{shown} of {total}" = "已显示 {shown} 个，共 {total} 个";
 "{watched} de {total} vistos ({pct}%)." = "已观看 {watched}/{total}（{pct}%）。";
 "{watched} of {total} watched ({pct}%)." = "已观看 {watched}/{total}（{pct}%）。";
 "Álbumes" = "专辑";

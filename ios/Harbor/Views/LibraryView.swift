@@ -4,9 +4,13 @@ struct LibraryView: View {
     let app: AppModel
     @State private var query = ""
     @State private var showHidden = false
-    @State private var simklSelected = false
+    private enum Tracker { case simkl, trakt }
+    @State private var tracker: Tracker?
     @State private var simkl: SimklLibraryModel
-    @MainActor init(app: AppModel) { self.app = app; _simkl = State(initialValue: SimklLibraryModel(app: app)) }
+    @State private var trakt: TraktLibraryModel
+    @MainActor init(app: AppModel) {
+        self.app = app; _simkl = State(initialValue: SimklLibraryModel(app: app)); _trakt = State(initialValue: TraktLibraryModel(app: app))
+    }
     private var records: [LibraryRecord] { app.library.selectedItems(query: query) }
     private var display: LibraryDisplay { app.library.presentation.display }
     private var groups: [LibraryListing.Group] { LibraryListing.groups(records, display: display) }
@@ -16,16 +20,26 @@ struct LibraryView: View {
                 HarborPageHeading(title: "Tu colección.", eyebrow: "Mi biblioteca")
                 tabs.disabled(!app.library.canChangePresentation)
                 Divider()
-                if !simklSelected || !simkl.isActive { filters }
-                if simklSelected && simkl.isActive { SimklLibraryContent(app: app, model: simkl) }
+                if tracker == nil { filters }
+                if tracker == .simkl && simkl.isActive { SimklLibraryContent(app: app, model: simkl) }
+                else if tracker == .trakt && trakt.isActive { TraktLibraryContent(app: app, model: trakt) }
                 else { localContents }
             }.padding()
         }.background(HarborTheme.background).navigationTitle("").toolbar(.hidden, for: .navigationBar)
-            .refreshable { if simklSelected { await simkl.refresh(force: true) } else { await app.library.sync() } }
-            .task(id: app.accountOperationScope) {
-                simkl.cancel(); simkl = SimklLibraryModel(app: app); simklSelected = false; simkl.loadAccount()
+            .refreshable {
+                if tracker == .simkl { await simkl.refresh(force: true) }
+                else if tracker == .trakt { await trakt.refresh(force: true) }
+                else { await app.library.sync() }
             }
-            .onChange(of: simkl.account.session) { _, session in if session == nil { simklSelected = false; simkl.store.bind(nil) } }
+            .task(id: app.accountOperationScope) {
+                simkl.cancel(); trakt.cancel(); simkl = SimklLibraryModel(app: app); trakt = TraktLibraryModel(app: app)
+                tracker = nil; simkl.loadAccount(); trakt.loadAccount()
+            }
+            .onChange(of: simkl.account.session) { _, session in if session == nil { if tracker == .simkl { tracker = nil }; simkl.store.bind(nil) } }
+            .onChange(of: trakt.account.session?.trackingID) { _, _ in
+                trakt.cancel(); trakt.loadAccount()
+                if trakt.account.session == nil && tracker == .trakt { tracker = nil }
+            }
             .onChange(of: app.library.owner) { _, _ in query = ""; showHidden = false }
             .sheet(isPresented: $showHidden) { HiddenContinuingView(app: app) }
     }
@@ -90,20 +104,27 @@ struct LibraryView: View {
                 HStack(spacing: 18) {
                     ForEach(LibraryFilter.allCases) { filter in
                         if filter == .favorites { localTab }
-                        Button { simklSelected = false; app.library.changeDisplay { $0.filter = filter } } label: {
+                        Button { tracker = nil; app.library.changeDisplay { $0.filter = filter } } label: {
                             HStack(spacing: 7) {
                                 Image(filter == .favorites ? "desktop-star" : filter == .watched ? "desktop-clock" : filter == .continuing ? "ui-play-filled" : filter == .all ? "desktop-library" : "desktop-bookmark").resizable().scaledToFit().frame(width: 16, height: 16)
                                 Text(filter.title).font(HarborTheme.font(13, weight: .semibold))
-                            }.frame(minHeight: 44).contentShape(Rectangle()).foregroundStyle(!simklSelected && display.filter == filter ? HarborTheme.ink : HarborTheme.ink.opacity(0.5))
-                                .overlay(alignment: .bottom) { if !simklSelected && display.filter == filter { Rectangle().fill(HarborTheme.ink).frame(height: 2) } }
-                        }.buttonStyle(.plain).accessibilityLabel(filter.title).accessibilityIdentifier("library-tab-\(filter.rawValue)").accessibilityAddTraits(!simklSelected && display.filter == filter ? [.isSelected] : [])
+                            }.frame(minHeight: 44).contentShape(Rectangle()).foregroundStyle(tracker == nil && display.filter == filter ? HarborTheme.ink : HarborTheme.ink.opacity(0.5))
+                                .overlay(alignment: .bottom) { if tracker == nil && display.filter == filter { Rectangle().fill(HarborTheme.ink).frame(height: 2) } }
+                        }.buttonStyle(.plain).accessibilityLabel(filter.title).accessibilityIdentifier("library-tab-\(filter.rawValue)").accessibilityAddTraits(tracker == nil && display.filter == filter ? [.isSelected] : [])
+                    }
+                    if trakt.isActive && trakt.account.session != nil {
+                        Button { tracker = .trakt } label: {
+                            HStack(spacing: 7) { Image("tracker-trakt").resizable().scaledToFit().frame(width: 16, height: 16); Text("Trakt").font(HarborTheme.font(13, weight: .semibold)) }
+                                .frame(minHeight: 44).contentShape(Rectangle()).foregroundStyle(tracker == .trakt ? HarborTheme.ink : HarborTheme.ink.opacity(0.5))
+                                .overlay(alignment: .bottom) { if tracker == .trakt { Rectangle().fill(HarborTheme.ink).frame(height: 2) } }
+                        }.buttonStyle(.plain).accessibilityIdentifier("library-tab-trakt").accessibilityAddTraits(tracker == .trakt ? [.isSelected] : [])
                     }
                     if simkl.isActive && simkl.account.session != nil {
-                        Button { simklSelected = true } label: {
+                        Button { tracker = .simkl } label: {
                             HStack(spacing: 7) { Image("tracker-simkl").resizable().scaledToFit().frame(width: 16, height: 16); Text("Simkl").font(HarborTheme.font(13, weight: .semibold)) }
-                                .frame(minHeight: 44).contentShape(Rectangle()).foregroundStyle(simklSelected ? HarborTheme.ink : HarborTheme.ink.opacity(0.5))
-                                .overlay(alignment: .bottom) { if simklSelected { Rectangle().fill(HarborTheme.ink).frame(height: 2) } }
-                        }.buttonStyle(.plain).accessibilityIdentifier("library-tab-simkl").accessibilityAddTraits(simklSelected ? [.isSelected] : [])
+                                .frame(minHeight: 44).contentShape(Rectangle()).foregroundStyle(tracker == .simkl ? HarborTheme.ink : HarborTheme.ink.opacity(0.5))
+                                .overlay(alignment: .bottom) { if tracker == .simkl { Rectangle().fill(HarborTheme.ink).frame(height: 2) } }
+                        }.buttonStyle(.plain).accessibilityIdentifier("library-tab-simkl").accessibilityAddTraits(tracker == .simkl ? [.isSelected] : [])
                     }
                 }
             }.scrollIndicators(.hidden).accessibilityIdentifier("library-filter")

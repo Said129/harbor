@@ -166,7 +166,8 @@ import XCTest
                 let receipt: JSONValue = row["name"].string == "direct-history" ? .object(["existing": .object(["episodes": .integer(1)])]) : .object([:])
                 return try reply(try XCTUnwrap(status.integer), receipt)
             }
-            let transport = OwnedTraktTransport(responses), resolved = try row["resolved"].decoded(TrackerResolvedEpisode.self)
+            let transport = OwnedTraktTransport(responses)
+            let resolved = TrackerResolvedEpisode(showIds: .init(row["resolved"]["showIds"]), season: try XCTUnwrap(row["resolved"]["season"].integer), number: try XCTUnwrap(row["resolved"]["number"].integer))
             let found = row["found"] == .bool(true), special = row["special"] == .bool(true)
             let reporter = TraktWatchReporter(account: account, queue: queue, client: client(transport), active: { true },
                 resolve: { _, _, _ in found ? .found(resolved) : .notFound },

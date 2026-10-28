@@ -1,8 +1,9 @@
 # Reproducción Trakt de la referencia 0.9.132
 
 Referencia conservada: `0834340cec5531650bfe78cd628628702e636987`.
-Implementación nativa incorporada; compilación, ejecución Apple y revisión de
-las nuevas capturas pendientes. No se ha generado otra IPA.
+La ejecución Apple 40604874961 del commit
+`e1367aeb8072860c05a87340ef285c26042a8411` compiló y completó 22 comprobaciones:
+20 aprobadas y dos fallidas. No se ha generado otra IPA.
 
 ## Comportamiento
 
@@ -55,7 +56,16 @@ Se conserva pendiente el recorrido de privacidad de iPhone que falló al segundo
 arranque, sin relajar las aserciones ni repetir automáticamente el arranque. Si
 falla, se guardan registros del sistema y diagnósticos del simulador. La selección
 completa suma 16 casos nativos, tres preparaciones y tres recorridos UI: 22
-ejecuciones y 18 capturas previstas. Esto es el plan de validación, no un resultado.
+ejecuciones y 18 capturas previstas. Se obtuvieron las 18 capturas y pasaron los
+tres recorridos UI, incluido el segundo arranque y la restauración de privacidad
+del iPhone que antes fallaban. Los catorce casos nativos aprobados se conservan.
+
+Los dos fallos restantes son concretos: la fixture de resolución usa IDs planos,
+mientras que el tipo Codable nativo espera su envoltorio interno, y Swift resolvió
+incorrectamente una expresión de fallback opcional del número de episodio TVDB.
+Este último produjo también un aviso de compilación. Se corrigen la lectura de
+la fixture y el fallback explícito; solo esos dos casos vuelven a seleccionarse
+con la nueva biblioteca Trakt. Los arreglos aún requieren ejecución Apple.
 
 ## Límites
 

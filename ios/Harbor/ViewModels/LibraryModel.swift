@@ -306,6 +306,11 @@ final class LibraryModel {
         }
         if success, taste.owner == personalOwner, bookmarked(media) { taste.track(.watchlist, media: media) }
     }
+    @discardableResult func saveBookmark(_ media: Media, owner expectedOwner: String, personalOwner expectedPersonalOwner: String) async -> Bool {
+        guard owner == expectedOwner, personalOwner == expectedPersonalOwner, writable else { return false }
+        if bookmarked(media) { return true }
+        return await update(media) { fields in fields["removed"] = .bool(false); fields["temp"] = .bool(false) }
+    }
     func toggleWatched(_ media: Media) async {
         let taste = discovery
         let success = await update(media) { fields in

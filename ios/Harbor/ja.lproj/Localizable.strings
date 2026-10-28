@@ -66,6 +66,9 @@
 "Add to favorites" = "お気に入りに追加";
 "Add your TMDB key in Settings to load these catalogs." = "設定に TMDB キーを追加すると、これらのカタログを読み込めます。";
 "Add {language}" = "{language}を追加";
+"Add {n} titles from your Harbor watchlist to Trakt? Trakt skips any it already has." = "Harborのウォッチリストから{n}件の作品をTraktに追加しますか？Traktにすでにある作品はスキップされます。";
+"Add {n} titles from your Trakt watchlist to Harbor?" = "Traktのウォッチリストから{n}件の作品をHarborに追加しますか？";
+"Added {n} to your Harbor watchlist" = "Harborのウォッチリストに{n}件追加しました";
 "Addon" = "アドオン";
 "Addon not installed" = "Addon not installed";
 "Addon order" = "アドオン順";
@@ -424,6 +427,7 @@
 "Copia secundaria." = "補足テキスト。";
 "Copied" = "コピーしました";
 "Copy" = "コピー";
+"Copy your Harbor watchlist over to Trakt, or pull your Trakt watchlist into Harbor." = "Copy your Harbor watchlist over to Trakt, or pull your Trakt watchlist into Harbor.";
 "Corner radius" = "角の丸み";
 "Correo y contraseña" = "Email and password";
 "Could not analyze this source. Playback continues; you can retry." = "Could not analyze this source. Playback continues; you can retry.";
@@ -635,6 +639,7 @@
 "Explorar por categoría" = "カテゴリーから探す";
 "Explore" = "見つける";
 "Export log" = "Export log";
+"Export to Trakt" = "Traktにエクスポート";
 "Extension" = "Extension";
 "Extensiones" = "拡張機能";
 "Extensiones Manga" = "Manga extensions";
@@ -803,6 +808,7 @@
 "Import files" = "ファイルを読み込む";
 "Import folder" = "フォルダを読み込む";
 "Import from Files · EPUB / PDF" = "Import from Files · EPUB / PDF";
+"Import from Trakt" = "Traktからインポート";
 "Import music" = "Import music";
 "Importa PDF, CBZ, ZIP o carpetas de imágenes desde el menú de Manga. Tu biblioteca muestra sus portadas y permite ordenar los títulos. Para fuentes en línea, conecta tu servidor Suwayomi, instala sus extensiones y elige una fuente. El servidor debe estar accesible desde tu iPhone o iPad." = "Import PDF, CBZ, ZIP or image folders from the Manga menu. Your library shows their covers and can sort titles in reading order. For online sources, connect your Suwayomi server, install its extensions and select a source. Keep that server reachable from your iPhone or iPad.";
 "Importado" = "インポート済み";
@@ -816,6 +822,7 @@
 "Imported and now playing" = "インポートして再生中";
 "Imported books and reading progress are stored separately for each Harbor account on this device. Importing the same file again keeps its saved reading position. These files are not uploaded to Stremio." = "Imported books and reading progress are stored separately for each Harbor account on this device. Importing the same file again keeps its saved reading position. These files are not uploaded to Stremio.";
 "Importing book…" = "Importing book…";
+"Importing {done} / {total}" = "インポート中 {done} / {total}";
 "In Theaters Now" = "現在上映中";
 "In eBook, search Gutenberg or import EPUB and PDF files. In Manga, import PDF, CBZ, ZIP or image folders, or connect your Suwayomi server." = "In eBook, search Gutenberg or import EPUB and PDF files. In Manga, import PDF, CBZ, ZIP or image folders, or connect your Suwayomi server.";
 "Indonesian" = "インドネシア語";
@@ -989,6 +996,7 @@
 "Move down" = "下へ移動";
 "Move earlier" = "優先順位を上げる";
 "Move up" = "上へ移動";
+"Move your watchlist" = "ウォッチリストを移行";
 "Move {language} earlier" = "{language}の優先順位を上げる";
 "Move {name} down" = "{name}を下に移動";
 "Move {name} up" = "{name}を上に移動";
@@ -1062,6 +1070,7 @@
 "No hay extensiones disponibles en este servidor." = "No extensions are available on this server.";
 "No hay idiomas preferidos seleccionados." = "優先言語が選ばれていません。";
 "No hay subtítulos que coincidan con tu búsqueda." = "No subtitles match your search.";
+"No history yet." = "視聴履歴はまだありません。";
 "No installed addon matches that." = "一致するインストール済みアドオンはありません。";
 "No items found in this section." = "このセクションには項目がありません。";
 "No language matches that search." = "検索に一致する言語がありません。";
@@ -1105,6 +1114,8 @@
 "Not set" = "未設定";
 "Nothing installed yet" = "まだ何もインストールされていません";
 "Nothing matched this filter. Try another category or change your region in Settings." = "このフィルターに一致する作品はありません。別のカテゴリーを試すか、設定で地域を変更してください。";
+"Nothing saved on Trakt yet." = "Traktにはまだ何も保存されていません。";
+"Nothing to send. All {n} watchlist items are anime, which Trakt can't track." = "送信できる項目がありません。ウォッチリストの全{n}件がアニメですが、Traktでは追跡できません。";
 "Nothing to show yet." = "Nothing to show yet.";
 "Notify me" = "Notify me";
 "Now" = "現在";
@@ -1283,6 +1294,7 @@
 "Próximos" = "開催予定";
 "Próximos animes" = "近日公開アニメ";
 "Psychological" = "心理";
+"Pull every title on your Trakt watchlist into Harbor. Anything already saved is left alone." = "Pull every title on your Trakt watchlist into Harbor. Anything already saved is left alone.";
 "Punchier color" = "色を鮮やかに";
 "Puntuaciones" = "スコア";
 "Página anterior" = "前のページ";
@@ -1363,6 +1375,7 @@
 "Remove from saved" = "保存済みから削除";
 "Remove from saved tracks" = "保存済みの曲から削除";
 "Remove from this library" = "Remove from this library";
+"Remove from watchlist" = "ウォッチリストから削除";
 "Remove saved book" = "Remove saved book";
 "Remove {language}" = "{language}を削除";
 "Removed" = "削除済み";
@@ -1505,6 +1518,9 @@
 "Select an external SRT or VTT subtitle with at least four lines." = "Select an external SRT or VTT subtitle with at least four lines.";
 "Select an external SRT/VTT subtitle without dual subtitles, in a video at least one minute long." = "Select an external SRT/VTT subtitle without dual subtitles, in a video at least one minute long.";
 "Selected" = "選択済み";
+"Send every title in your Harbor watchlist up to Trakt. Safe to run again, Trakt skips anything it already has." = "Send every title in your Harbor watchlist up to Trakt. Safe to run again, Trakt skips anything it already has.";
+"Sending to Trakt…" = "Traktに送信中…";
+"Sent {n} to Trakt" = "{n}件をTraktに送信しました";
 "Serie dramática" = "ドラマシリーズ";
 "Series" = "番組";
 "Series de comedia" = "コメディシリーズ";
@@ -1813,7 +1829,15 @@
 "Tracking" = "Tracking";
 "Tracks" = "トラック";
 "Traducir títulos" = "タイトルを翻訳";
+"Trakt account limit reached. Upgrade to Trakt VIP or trim your watchlist." = "Traktアカウントの上限に達しました。Trakt VIPにアップグレードするか、ウォッチリストを整理してください。";
+"Trakt history" = "Trakt視聴履歴";
+"Trakt is having server trouble (HTTP {n}). Try again shortly." = "Traktでサーバー障害が発生しています（HTTP {n}）。しばらくしてからもう一度お試しください。";
+"Trakt is rate-limiting. Wait a minute and try again." = "Traktによってリクエスト回数が制限されています。1分ほど待ってからもう一度お試しください。";
+"Trakt rejected the request (HTTP {n})." = "Traktがリクエストを拒否しました（HTTP {n}）。";
+"Trakt rejected the request (account locked or permission denied)." = "Traktがリクエストを拒否しました（アカウントがロックされているか、権限がありません）。";
 "Trakt reported that authorization was denied. Try again if this was unintentional." = "Traktで認証が拒否されました。意図しない場合は、もう一度お試しください。";
+"Trakt sign-in expired. Reconnect Trakt in settings and try again." = "Traktへのサインインの有効期限が切れました。設定でTraktを再接続してから、もう一度お試しください。";
+"Trakt watchlist" = "Traktウォッチリスト";
 "Transfer primary" = "メインプロフィールを移行";
 "Translate titles" = "タイトルを翻訳";
 "Trazo grueso alrededor de cada letra. Alto contraste." = "各文字をくっきり縁取ります。高コントラストです。";
@@ -1930,6 +1954,7 @@
 "YouTube" = "YouTube";
 "Your Discovery Queue" = "あなたの発見キュー";
 "Your Stremio library + addons sync in untouched." = "Stremioのライブラリとアドオンをそのまま同期。";
+"Your Trakt watchlist is empty, nothing to import." = "Traktのウォッチリストは空です。インポートする項目はありません。";
 "Your addons" = "あなたのアドオン";
 "Your avatar, name, and handle across Harbor." = "Harbor全体で使用するアバター、名前、ハンドルネームです。";
 "Your color" = "あなたのカラー";
@@ -1942,6 +1967,7 @@
 "Your profile" = "あなたのプロフィール";
 "Your rating" = "あなたの評価";
 "Your services are saved locally. Cloud sync will retry." = "サービスはこのデバイスに保存されています。クラウド同期を再試行します。";
+"Your watchlist is empty, nothing to send." = "ウォッチリストは空です。送信する項目はありません。";
 "Yours" = "あなたのもの";
 "Zoom" = "ズーム";
 "anime" = "アニメ";
@@ -2102,6 +2128,7 @@
 "seeders" = "シーダー";
 "service" = "サービス";
 "services" = "サービス";
+"skipped {n} anime" = "{n}件のアニメをスキップしました";
 "speed" = "速度";
 "star" = "スター";
 "stars" = "スター";
@@ -2127,12 +2154,15 @@
 "{names}, and all other names, logos, and brand references are property of their respective owners and are used here only for compatibility and identification." = "{names}をはじめ、その他すべての名称、ロゴ、ブランド表記は各所有者に帰属し、互換性の確保と識別のみを目的として使用されています。";
 "{name} + {n} more" = "{name}ほか{n}件";
 "{name} + {n} más" = "{name}ほか{n}件";
+"{n} anime titles will be left out (Trakt has no IDs for them)." = "{n}件のアニメ作品が除外されます（Traktに対応するIDがないため）。";
 "{n} ep" = "{n}話";
 "{n} eps" = "{n}話";
 "{n} min" = "{n}分";
+"{n} not matched" = "未照合{n}件";
 "{n} seeds" = "シード数: {n}";
 "{n} semillas" = "シード数: {n}";
 "{requests} requests" = "{requests}件のリクエスト";
+"{shown} of {total}" = "{total}件中{shown}件";
 "{watched} de {total} vistos ({pct}%)." = "{total}中{watched}を視聴済み（{pct}%）。";
 "{watched} of {total} watched ({pct}%)." = "{total}中{watched}を視聴済み（{pct}%）。";
 "Álbumes" = "アルバム";

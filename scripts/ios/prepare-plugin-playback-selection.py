@@ -6,6 +6,9 @@ import re
 import runpy
 
 requested = os.environ.get('HARBOR_NATIVE_SELECTION', '').strip()
+if requested == 'affected:trakt-library' or requested.startswith('HarborTests.TraktLibraryTests/'):
+    runpy.run_path('scripts/ios/prepare-trakt-library-selection.py')
+    raise SystemExit(0)
 if requested == 'affected:trakt-scrobble' or requested.startswith('HarborTests.TraktScrobbleTests/'):
     runpy.run_path('scripts/ios/prepare-trakt-scrobble-selection.py')
     raise SystemExit(0)
