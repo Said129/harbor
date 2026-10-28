@@ -1,0 +1,549 @@
+{
+  "reference": "0834340cec5531650bfe78cd628628702e636987",
+  "actual_original_typescript_executed": true,
+  "provider_network_requests": 0,
+  "executed_module_hashes": {
+    "src/lib/stremio.ts": "dd785247ba25a37bd0a03ce577e117dd38fe75c6d4dcdc1c607cdf3095b8272b",
+    "src/views/library/shared.tsx": "01abb1404c81681f14b6e54d8fc22d42fc2dd8f6413164b4f6bf82297c6a1952",
+    "src/views/library/history-merge.ts": "d002330d82ce7afacb9bfec496e38cf305b0b71a17c23f0abe253587d5d42f34"
+  },
+  "extracted_original_functions": {
+    "src/lib/stremio.ts": ["libraryMetaType", "episodeFromVideoId"]
+  },
+  "cases": [
+    {
+      "name": "local-priority-and-provider-show-deduplication",
+      "local": [
+        {
+          "_id": "tt1234567",
+          "type": "movie",
+          "name": "Owned tt1234567",
+          "removed": false,
+          "temp": false,
+          "_mtime": "2026-10-27T12:00:00Z",
+          "state": {
+            "timeOffset": 40000,
+            "duration": 100000
+          }
+        },
+        {
+          "_id": "tt7654321",
+          "type": "series",
+          "name": "Owned tt7654321",
+          "removed": false,
+          "temp": false,
+          "_mtime": "2026-10-27T12:00:00Z",
+          "state": {
+            "season": 5,
+            "episode": 23,
+            "timeOffset": 20000,
+            "duration": 60000
+          }
+        }
+      ],
+      "remote": [
+        {
+          "type": "movie",
+          "imdb": "tt1234567",
+          "title": "Trakt tt1234567",
+          "watchedAt": "2026-10-26T00:00:00Z"
+        },
+        {
+          "type": "episode",
+          "showImdb": "tt7654321",
+          "title": "Trakt tt7654321",
+          "watchedAt": "2026-10-26T00:00:00Z",
+          "season": 5,
+          "number": 23
+        },
+        {
+          "type": "episode",
+          "showImdb": "tt9999999",
+          "title": "Trakt tt9999999",
+          "watchedAt": "2026-10-26T00:00:00Z",
+          "season": 5,
+          "number": 23
+        },
+        {
+          "type": "episode",
+          "showImdb": "tt9999999",
+          "title": "Trakt tt9999999",
+          "watchedAt": "2026-10-26T00:00:00Z",
+          "season": 5,
+          "number": 23
+        }
+      ],
+      "filteredIDs": ["tt1234567", "tt7654321"],
+      "expected": [
+        {
+          "id": "tt1234567",
+          "type": "movie",
+          "name": "Owned tt1234567",
+          "localID": "tt1234567",
+          "date": 1793102400000,
+          "watchedAt": 1793102400000,
+          "season": null,
+          "episode": null,
+          "progress": 0.4,
+          "watched": false,
+          "durationMs": 100000,
+          "timeOffsetMs": 40000
+        },
+        {
+          "id": "tt7654321",
+          "type": "series",
+          "name": "Owned tt7654321",
+          "localID": "tt7654321",
+          "date": 1793102400000,
+          "watchedAt": 1793102400000,
+          "season": 5,
+          "episode": 23,
+          "progress": 0.3333333333333333,
+          "watched": false,
+          "durationMs": 60000,
+          "timeOffsetMs": 20000
+        },
+        {
+          "id": "tt9999999",
+          "type": "series",
+          "name": "Trakt tt9999999",
+          "localID": null,
+          "date": 1792972800000,
+          "watchedAt": 1792972800000,
+          "season": null,
+          "episode": null,
+          "progress": 0,
+          "watched": false,
+          "durationMs": 0,
+          "timeOffsetMs": 0
+        }
+      ]
+    },
+    {
+      "name": "removed-temp-and-unstarted-bookmark",
+      "local": [
+        {
+          "_id": "removed",
+          "type": "movie",
+          "name": "Owned removed",
+          "removed": true,
+          "temp": false,
+          "_mtime": "2026-10-27T12:00:00Z",
+          "state": {
+            "timesWatched": 1
+          }
+        },
+        {
+          "_id": "temp",
+          "type": "movie",
+          "name": "Owned temp",
+          "removed": true,
+          "temp": true,
+          "_mtime": "2026-10-27T12:00:00Z",
+          "state": {
+            "timeOffset": 2
+          }
+        },
+        {
+          "_id": "saved",
+          "type": "movie",
+          "name": "Owned saved",
+          "removed": false,
+          "temp": false,
+          "_mtime": "2026-10-27T12:00:00Z",
+          "state": {}
+        },
+        {
+          "_id": "finished",
+          "type": "movie",
+          "name": "Owned finished",
+          "removed": false,
+          "temp": false,
+          "_mtime": "2026-10-27T12:00:00Z",
+          "state": {
+            "flaggedWatched": 1
+          }
+        }
+      ],
+      "remote": [],
+      "filteredIDs": ["temp", "finished"],
+      "expected": [
+        {
+          "id": "temp",
+          "type": "movie",
+          "name": "Owned temp",
+          "localID": "temp",
+          "date": 1793102400000,
+          "watchedAt": 1793102400000,
+          "season": null,
+          "episode": null,
+          "progress": 0,
+          "watched": false,
+          "durationMs": 0,
+          "timeOffsetMs": 2
+        },
+        {
+          "id": "finished",
+          "type": "movie",
+          "name": "Owned finished",
+          "localID": "finished",
+          "date": 1793102400000,
+          "watchedAt": 1793102400000,
+          "season": null,
+          "episode": null,
+          "progress": 0,
+          "watched": true,
+          "durationMs": 0,
+          "timeOffsetMs": 0
+        }
+      ]
+    },
+    {
+      "name": "raw-anime-series-and-special-coordinates",
+      "local": [
+        {
+          "_id": "kitsu:1",
+          "type": "anime",
+          "name": "Owned kitsu:1",
+          "removed": false,
+          "temp": false,
+          "_mtime": "2026-10-27T12:00:00Z",
+          "state": {
+            "video_id": "kitsu:1:99",
+            "timeOffset": 100
+          }
+        },
+        {
+          "_id": "tt7654321",
+          "type": "series",
+          "name": "Owned tt7654321",
+          "removed": false,
+          "temp": false,
+          "_mtime": "2026-10-27T12:00:00Z",
+          "state": {
+            "season": 5,
+            "episode": 23,
+            "timeOffset": 100
+          }
+        },
+        {
+          "_id": "special",
+          "type": "series",
+          "name": "Owned special",
+          "removed": false,
+          "temp": false,
+          "_mtime": "2026-10-27T12:00:00Z",
+          "state": {
+            "season": 0,
+            "episode": 1,
+            "video_id": "special:0:1",
+            "timeOffset": 100
+          }
+        }
+      ],
+      "remote": [],
+      "filteredIDs": ["kitsu:1", "tt7654321", "special"],
+      "expected": [
+        {
+          "id": "kitsu:1",
+          "type": "anime",
+          "name": "Owned kitsu:1",
+          "localID": "kitsu:1",
+          "date": 1793102400000,
+          "watchedAt": 1793102400000,
+          "season": 1,
+          "episode": 99,
+          "progress": 0,
+          "watched": false,
+          "durationMs": 0,
+          "timeOffsetMs": 100
+        },
+        {
+          "id": "tt7654321",
+          "type": "series",
+          "name": "Owned tt7654321",
+          "localID": "tt7654321",
+          "date": 1793102400000,
+          "watchedAt": 1793102400000,
+          "season": 5,
+          "episode": 23,
+          "progress": 0,
+          "watched": false,
+          "durationMs": 0,
+          "timeOffsetMs": 100
+        },
+        {
+          "id": "special",
+          "type": "series",
+          "name": "Owned special",
+          "localID": "special",
+          "date": 1793102400000,
+          "watchedAt": 1793102400000,
+          "season": 0,
+          "episode": 1,
+          "progress": 0,
+          "watched": false,
+          "durationMs": 0,
+          "timeOffsetMs": 100
+        }
+      ]
+    },
+    {
+      "name": "group-date-separate-from-last-watched",
+      "local": [
+        {
+          "_id": "older",
+          "type": "movie",
+          "name": "Owned older",
+          "removed": false,
+          "temp": false,
+          "_mtime": "2026-10-01T00:00:00Z",
+          "state": {
+            "lastWatched": "2026-10-28T00:00:00Z",
+            "timesWatched": 1
+          }
+        },
+        {
+          "_id": "recent",
+          "type": "movie",
+          "name": "Owned recent",
+          "removed": false,
+          "temp": false,
+          "_mtime": "2026-10-27T12:00:00Z",
+          "state": {
+            "lastWatched": "2026-10-02T00:00:00Z",
+            "timeOffset": 10
+          }
+        }
+      ],
+      "remote": [],
+      "filteredIDs": ["older", "recent"],
+      "expected": [
+        {
+          "id": "older",
+          "type": "movie",
+          "name": "Owned older",
+          "localID": "older",
+          "date": 1790812800000,
+          "watchedAt": 1793145600000,
+          "season": null,
+          "episode": null,
+          "progress": 0,
+          "watched": true,
+          "durationMs": 0,
+          "timeOffsetMs": 0
+        },
+        {
+          "id": "recent",
+          "type": "movie",
+          "name": "Owned recent",
+          "localID": "recent",
+          "date": 1793102400000,
+          "watchedAt": 1790899200000,
+          "season": null,
+          "episode": null,
+          "progress": 0,
+          "watched": false,
+          "durationMs": 0,
+          "timeOffsetMs": 10
+        }
+      ]
+    },
+    {
+      "name": "missing-imdb-is-not-a-renderable-history-card",
+      "local": [],
+      "remote": [
+        {
+          "type": "movie",
+          "tmdb": 8,
+          "title": "TMDB-only",
+          "watchedAt": "2026-10-27T00:00:00Z"
+        },
+        {
+          "type": "movie",
+          "imdb": "tt1234567",
+          "title": "Trakt tt1234567",
+          "watchedAt": "2026-10-26T00:00:00Z"
+        }
+      ],
+      "filteredIDs": [],
+      "expected": [
+        {
+          "id": "tt1234567",
+          "type": "movie",
+          "name": "Trakt tt1234567",
+          "localID": null,
+          "date": 1792972800000,
+          "watchedAt": 1792972800000,
+          "season": null,
+          "episode": null,
+          "progress": 0,
+          "watched": false,
+          "durationMs": 0,
+          "timeOffsetMs": 0
+        }
+      ]
+    },
+    {
+      "name": "ninety-percent-not-times-watched-only",
+      "local": [
+        {
+          "_id": "at-threshold",
+          "type": "movie",
+          "name": "Owned at-threshold",
+          "removed": false,
+          "temp": false,
+          "_mtime": "2026-10-27T12:00:00Z",
+          "state": {
+            "timeOffset": 90,
+            "duration": 100
+          }
+        },
+        {
+          "_id": "below-threshold",
+          "type": "movie",
+          "name": "Owned below-threshold",
+          "removed": false,
+          "temp": false,
+          "_mtime": "2026-10-27T12:00:00Z",
+          "state": {
+            "timeOffset": 89,
+            "duration": 100
+          }
+        },
+        {
+          "_id": "times",
+          "type": "movie",
+          "name": "Owned times",
+          "removed": false,
+          "temp": false,
+          "_mtime": "2026-10-27T12:00:00Z",
+          "state": {
+            "timesWatched": 1
+          }
+        }
+      ],
+      "remote": [],
+      "filteredIDs": ["at-threshold", "below-threshold", "times"],
+      "expected": [
+        {
+          "id": "at-threshold",
+          "type": "movie",
+          "name": "Owned at-threshold",
+          "localID": "at-threshold",
+          "date": 1793102400000,
+          "watchedAt": 1793102400000,
+          "season": null,
+          "episode": null,
+          "progress": 0.9,
+          "watched": true,
+          "durationMs": 100,
+          "timeOffsetMs": 90
+        },
+        {
+          "id": "below-threshold",
+          "type": "movie",
+          "name": "Owned below-threshold",
+          "localID": "below-threshold",
+          "date": 1793102400000,
+          "watchedAt": 1793102400000,
+          "season": null,
+          "episode": null,
+          "progress": 0.89,
+          "watched": false,
+          "durationMs": 100,
+          "timeOffsetMs": 89
+        },
+        {
+          "id": "times",
+          "type": "movie",
+          "name": "Owned times",
+          "localID": "times",
+          "date": 1793102400000,
+          "watchedAt": 1793102400000,
+          "season": null,
+          "episode": null,
+          "progress": 0,
+          "watched": true,
+          "durationMs": 0,
+          "timeOffsetMs": 0
+        }
+      ]
+    },
+    {
+      "name": "unsupported-type-and-invalid-video",
+      "local": [
+        {
+          "_id": "other",
+          "type": "other",
+          "name": "Owned other",
+          "removed": false,
+          "temp": false,
+          "_mtime": "2026-10-27T12:00:00Z",
+          "state": {
+            "timeOffset": 10,
+            "video_id": "invalid"
+          }
+        },
+        {
+          "_id": "channel",
+          "type": "channel",
+          "name": "Owned channel",
+          "removed": false,
+          "temp": false,
+          "_mtime": "2026-10-27T12:00:00Z",
+          "state": {
+            "timeOffset": 20,
+            "video_id": "channel:1:2"
+          }
+        }
+      ],
+      "remote": [],
+      "filteredIDs": ["other", "channel"],
+      "expected": [
+        {
+          "id": "other",
+          "type": "other",
+          "name": "Owned other",
+          "localID": "other",
+          "date": 1793102400000,
+          "watchedAt": 1793102400000,
+          "season": null,
+          "episode": null,
+          "progress": 0,
+          "watched": false,
+          "durationMs": 0,
+          "timeOffsetMs": 10
+        },
+        {
+          "id": "channel",
+          "type": "channel",
+          "name": "Owned channel",
+          "localID": "channel",
+          "date": 1793102400000,
+          "watchedAt": 1793102400000,
+          "season": 1,
+          "episode": 2,
+          "progress": 0,
+          "watched": false,
+          "durationMs": 0,
+          "timeOffsetMs": 20
+        }
+      ]
+    },
+    {
+      "name": "empty",
+      "local": [],
+      "remote": [],
+      "filteredIDs": [],
+      "expected": []
+    }
+  ],
+  "css": {
+    "path": "src/index.css",
+    "sha256": "90fe2e2ceca88ea5d9f5b76fe846267ca7906f18fbd099d66107f98286768f4b",
+    "entranceMilliseconds": 440,
+    "entranceOffset": 10,
+    "reducedMotionDisables": true
+  }
+}

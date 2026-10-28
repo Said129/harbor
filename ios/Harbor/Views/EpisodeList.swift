@@ -3,6 +3,7 @@ import SwiftUI
 struct EpisodeList: View {
     let media: Media
     let library: LibraryModel
+    var preferredEpisode: Episode? = nil
     var animeGrouping: Binding<AnimeEpisodeGrouping>? = nil
     var ordering: EpisodeOrderProjection? = nil
     var pool: AnimeEpisodePool? = nil
@@ -20,6 +21,7 @@ struct EpisodeList: View {
     var toggleExtraWatched: (AnimeFranchiseExtra) -> Void = { _ in }
     let play: (Episode?) -> Void
     @State private var season = 1
+    @State private var preferredApplied = false
     @State private var orderSection = ""
     @State private var revealed = Set<String>()
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
@@ -72,16 +74,24 @@ struct EpisodeList: View {
             .task(id: [media.identity, ordering?.kind.rawValue ?? "", currentSection?.id ?? "", currentSection?.from ?? "", currentSection?.to ?? ""].joined(separator: "|")) {
                 selectSeasonArtwork(currentSection)
             }
-            .task(id: media.identity) { if !seasons.contains(season) { season = seasons.first(where: { $0 > 0 }) ?? seasons.first ?? 1 } }
-            .onChange(of: seasons) { _, _ in if !seasons.contains(season) { season = seasons.first(where: { $0 > 0 }) ?? seasons.first ?? 1 } }
+            .task(id: media.identity) {
+                preferredApplied = false; chooseInitialSeason()
+            }
+            .onChange(of: seasons) { _, _ in chooseInitialSeason() }
             .onChange(of: sections.map(\.id)) { _, ids in
                 if !ids.contains(orderSection) {
                     let record = library.items.first { $0.id == media.id }
-                    let next = ordering.flatMap { pool?.startingEpisode(in: library, presentation: $0) }
+                    let next = preferredEpisode ?? ordering.flatMap { pool?.startingEpisode(in: library, presentation: $0) }
                         ?? EpisodeSequence.startingEpisode(media.videos ?? [], record: record, watched: library.watchedEpisodes(media), presentation: ordering)
-                    orderSection = sections.first(where: { $0.episodes.contains(where: { $0.id == next?.id }) })?.id ?? ids.first ?? ""
+                    orderSection = sections.first(where: { $0.episodes.contains(where: { episode in
+                        episode.id == next?.id || (next != nil && episode.season == next?.season && episode.episode == next?.episode && (episode.sourceMetaID == nil || episode.sourceMetaID == media.id))
+                    }) })?.id ?? ids.first ?? ""
                 }
             }
+    }
+    private func chooseInitialSeason() {
+        if !preferredApplied, let preferred = preferredEpisode?.season, seasons.contains(preferred) { season = preferred; preferredApplied = true }
+        else if !seasons.contains(season) { season = seasons.first(where: { $0 > 0 }) ?? seasons.first ?? 1 }
     }
     @ViewBuilder private func sourceRow(_ episode: Episode, watched: [String: Set<String>]) -> some View {
         let source = pool?.source(for: episode) ?? media

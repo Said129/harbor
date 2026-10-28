@@ -395,6 +395,7 @@
 "Configurar addon" = "Configurar addon";
 "Configure Sports" = "Configurar Sports";
 "Configure addon" = "Configurar addon";
+"Confirm remove from history" = "Confirmar eliminación del historial";
 "Confirm your PIN" = "Confirma tu PIN";
 "Confirm your current PIN to remove the lock." = "Confirma tu PIN actual para quitar el bloqueo.";
 "Confirm your current PIN, then pick a new one." = "Confirma tu PIN actual y luego elige uno nuevo.";
@@ -719,6 +720,7 @@
 "Gris" = "Gris";
 "Grosor del contorno" = "Grosor del contorno";
 "Group by repository" = "Agrupar por repositorio";
+"Grouped" = "Agrupados";
 "Guardado" = "Guardado";
 "Guardando" = "Guardando";
 "Guardar" = "Guardar";
@@ -912,6 +914,7 @@
 "Loading" = "Cargando";
 "Loading music" = "Cargando música";
 "Loading plugins..." = "Cargando plugins...";
+"Loading your history…" = "Cargando tu historial…";
 "Loading..." = "Cargando...";
 "Loading…" = "Cargando…";
 "Local" = "Local";
@@ -1117,6 +1120,7 @@
 "Nothing saved on Trakt yet." = "Aún no hay nada guardado en Trakt.";
 "Nothing to send. All {n} watchlist items are anime, which Trakt can't track." = "Nada que enviar. Los {n} títulos de la lista de seguimiento son anime, y Trakt no puede registrarlos.";
 "Nothing to show yet." = "Todavía no hay nada que mostrar.";
+"Nothing watched yet" = "Aún no has visto nada";
 "Notify me" = "Avisarme";
 "Now" = "Ahora";
 "Now Playing" = "En reproducción";
@@ -1146,6 +1150,7 @@
 "On Tonight" = "Esta noche";
 "On start" = "Al empezar";
 "Onboarding" = "Primeros pasos";
+"One list" = "Una lista";
 "Ongoing" = "En curso";
 "Only https links are accepted." = "Solo se aceptan enlaces https.";
 "Opacidad" = "Opacidad";
@@ -1264,11 +1269,13 @@
 "Poster cards" = "Tarjetas de carteles";
 "Poster dock magnification" = "Ampliación de la barra de pósteres";
 "Poster reset to default" = "Poster reset to default";
+"Posters" = "Pósteres";
 "Posters, ratings, lists" = "Pósteres, calificaciones y listas";
 "Predeterminado" = "Predeterminado";
 "Predeterminado (acento dorado)" = "Predeterminado (acento dorado)";
 "Preguntar si reanudar o empezar de nuevo" = "Preguntar si reanudar o empezar de nuevo";
 "Premiered This Month" = "Estrenados este mes";
+"Press play on something. It'll show up here once you start watching." = "Reproduce algo. Aparecerá aquí cuando empieces a verlo.";
 "Preview" = "Vista previa";
 "Previous" = "Anterior";
 "Previous chapter" = "Capítulo anterior";
@@ -1370,6 +1377,7 @@
 "Remove from Suwayomi library" = "Quitar de biblioteca Suwayomi";
 "Remove from continue watching" = "Quitar de Continuar viendo";
 "Remove from favorites" = "Quitar de favoritos";
+"Remove from history" = "Quitar del historial";
 "Remove from list" = "Quitar de la lista";
 "Remove from queue" = "Quitar de la cola";
 "Remove from saved" = "Quitar de guardados";
@@ -2157,6 +2165,8 @@
 "{n} anime titles will be left out (Trakt has no IDs for them)." = "Se excluirán {n} títulos de anime (Trakt no tiene identificadores para ellos).";
 "{n} ep" = "{n} ep.";
 "{n} eps" = "{n} epis.";
+"{n} item" = "{n} elemento";
+"{n} items" = "{n} elementos";
 "{n} min" = "{n} min";
 "{n} not matched" = "{n} sin coincidencia";
 "{n} seeds" = "{n} semillas";

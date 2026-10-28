@@ -395,6 +395,7 @@
 "Configurar addon" = "Configure addon";
 "Configure Sports" = "Configure Sports";
 "Configure addon" = "Configure addon";
+"Confirm remove from history" = "हिस्ट्री से निकालने की पुष्टि करें";
 "Confirm your PIN" = "अपने PIN की पुष्टि करें";
 "Confirm your current PIN to remove the lock." = "लॉक हटाने के लिए अपने मौजूदा PIN की पुष्टि करें।";
 "Confirm your current PIN, then pick a new one." = "अपने मौजूदा PIN की पुष्टि करें, फिर नया PIN चुनें।";
@@ -719,6 +720,7 @@
 "Gris" = "Gray";
 "Grosor del contorno" = "आउटलाइन की मोटाई";
 "Group by repository" = "रिपॉज़िटरी के अनुसार समूह बनाएँ";
+"Grouped" = "समूहित";
 "Guardado" = "सेव किया गया";
 "Guardando" = "सेव हो रहा है";
 "Guardar" = "सेव करें";
@@ -912,6 +914,7 @@
 "Loading" = "लोड हो रहा है";
 "Loading music" = "संगीत लोड हो रहा है";
 "Loading plugins..." = "प्लगइन लोड हो रहे हैं...";
+"Loading your history…" = "आपकी हिस्ट्री लोड हो रही है…";
 "Loading..." = "लोड हो रहा है...";
 "Loading…" = "लोड हो रहा है…";
 "Local" = "लोकल";
@@ -1117,6 +1120,7 @@
 "Nothing saved on Trakt yet." = "Trakt पर अभी तक कुछ सेव नहीं है।";
 "Nothing to send. All {n} watchlist items are anime, which Trakt can't track." = "भेजने के लिए कुछ नहीं है। वॉचलिस्ट के सभी {n} आइटम ऐनिमे हैं, जिन्हें Trakt ट्रैक नहीं कर सकता।";
 "Nothing to show yet." = "Nothing to show yet.";
+"Nothing watched yet" = "अभी तक कुछ नहीं देखा";
 "Notify me" = "Notify me";
 "Now" = "अभी";
 "Now Playing" = "अभी चल रहा है";
@@ -1146,6 +1150,7 @@
 "On Tonight" = "आज रात प्रसारण में";
 "On start" = "On start";
 "Onboarding" = "शुरुआती सेटअप";
+"One list" = "एक सूची";
 "Ongoing" = "जारी";
 "Only https links are accepted." = "सिर्फ़ https लिंक स्वीकार किए जाते हैं।";
 "Opacidad" = "अपारदर्शिता";
@@ -1264,11 +1269,13 @@
 "Poster cards" = "पोस्टर कार्ड";
 "Poster dock magnification" = "पोस्टर डॉक का ज़ूम";
 "Poster reset to default" = "Poster reset to default";
+"Posters" = "पोस्टर";
 "Posters, ratings, lists" = "पोस्टर, रेटिंग, सूचियाँ";
 "Predeterminado" = "डिफ़ॉल्ट";
 "Predeterminado (acento dorado)" = "डिफ़ॉल्ट (सुनहरा एक्सेंट)";
 "Preguntar si reanudar o empezar de nuevo" = "वहीं से चलाने या फिर से शुरू करने के लिए पूछें";
 "Premiered This Month" = "इस महीने प्रीमियर हुए";
+"Press play on something. It'll show up here once you start watching." = "कुछ चलाएँ। देखना शुरू करते ही वह यहाँ दिखाई देगा।";
 "Preview" = "प्रीव्यू";
 "Previous" = "पिछला";
 "Previous chapter" = "पिछला अध्याय";
@@ -1370,6 +1377,7 @@
 "Remove from Suwayomi library" = "Remove from Suwayomi library";
 "Remove from continue watching" = "Remove from continue watching";
 "Remove from favorites" = "पसंदीदा से हटाएँ";
+"Remove from history" = "इतिहास से हटाएँ";
 "Remove from list" = "सूची से हटाएँ";
 "Remove from queue" = "क्यू से हटाएँ";
 "Remove from saved" = "सेव किए गए आइटमों से हटाएँ";
@@ -2157,6 +2165,8 @@
 "{n} anime titles will be left out (Trakt has no IDs for them)." = "{n} ऐनिमे शीर्षक छोड़ दिए जाएँगे (Trakt में उनके लिए IDs नहीं हैं)।";
 "{n} ep" = "{n} एपिसोड";
 "{n} eps" = "{n} एपिसोड";
+"{n} item" = "{n} आइटम";
+"{n} items" = "{n} आइटम";
 "{n} min" = "{n} मिनट";
 "{n} not matched" = "{n} का मिलान नहीं हुआ";
 "{n} seeds" = "{n} सीड";

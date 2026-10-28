@@ -29,8 +29,9 @@ struct DetailView: View {
     @AppStorage("tvdbSeasonType") private var episodeOrderSetting = "aired"
     @AppStorage("tvdbOrderPanel") private var richEpisodeOrderPanel = true
     private let playImmediately: Bool
-    init(media: Media, app: AppModel, playImmediately: Bool = false, metadataLoaded: Bool = false) {
-        self.app = app; self.playImmediately = playImmediately
+    private let episodeHint: Episode?
+    init(media: Media, app: AppModel, playImmediately: Bool = false, metadataLoaded: Bool = false, episodeHint: Episode? = nil) {
+        self.app = app; self.playImmediately = playImmediately; self.episodeHint = episodeHint
         _model = State(initialValue: DetailModel(media, service: app.service, metadataLoaded: metadataLoaded, pluginStreams: { [weak app] media, videoID, episode, priority in
             guard let app else { throw CancellationError() }
             return try await app.pluginStreams(media: media, videoID: videoID, episode: episode, startingPriority: priority)
@@ -49,7 +50,7 @@ struct DetailView: View {
                     if model.loading { ProgressView() }
                     if model.isAnimeOneOff {
                         animeMovieSection
-                    } else if model.media.type != "movie" && model.media.episodic { EpisodeList(media: model.media, library: app.library,
+                    } else if model.media.type != "movie" && model.media.episodic { EpisodeList(media: model.media, library: app.library, preferredEpisode: episodeHint,
                         animeGrouping: model.episodeOrderProjection == nil && model.allowsContinuousAnimeEpisodes ? Binding(get: { model.animeEpisodeGrouping }, set: { model.setAnimeEpisodeGrouping($0) }) : nil,
                         ordering: model.episodeOrderProjection, pool: model.episodePool, orderOptions: model.episodeOrderOptions,
                         selectOrder: { episodeOrderSetting = $0.rawValue }, richOrderPanel: richEpisodeOrderPanel, orderLoading: model.episodeOrderLoading,

@@ -399,6 +399,7 @@
 "Configurar addon" = "Configure addon";
 "Configure Sports" = "Configure Sports";
 "Configure addon" = "Configure addon";
+"Confirm remove from history" = "Подтвердите удаление из истории";
 "Confirm your PIN" = "Подтвердите PIN";
 "Confirm your current PIN to remove the lock." = "Подтвердите текущий PIN, чтобы снять блокировку.";
 "Confirm your current PIN, then pick a new one." = "Подтвердите текущий PIN, затем задайте новый.";
@@ -724,6 +725,7 @@
 "Gris" = "Gray";
 "Grosor del contorno" = "Толщина обводки";
 "Group by repository" = "Группировать по репозиторию";
+"Grouped" = "Сгруппировано";
 "Guardado" = "Сохранено";
 "Guardando" = "Сохранение";
 "Guardar" = "Сохранить";
@@ -917,6 +919,7 @@
 "Loading" = "Загрузка";
 "Loading music" = "Загрузка музыки";
 "Loading plugins..." = "Загрузка плагинов...";
+"Loading your history…" = "Загрузка истории…";
 "Loading..." = "Загрузка...";
 "Loading…" = "Загрузка…";
 "Local" = "Локальные";
@@ -1125,6 +1128,7 @@
 "Nothing saved on Trakt yet." = "В Trakt пока ничего не сохранено.";
 "Nothing to send. All {n} watchlist items are anime, which Trakt can't track." = "Отправлять нечего. Все {n} позиций в списке к просмотру относятся к аниме, которое Trakt не отслеживает.";
 "Nothing to show yet." = "Nothing to show yet.";
+"Nothing watched yet" = "Пока ничего не просмотрено";
 "Notify me" = "Notify me";
 "Now" = "Сейчас";
 "Now Playing" = "Сейчас воспроизводится";
@@ -1155,6 +1159,7 @@
 "On Tonight" = "Сегодня в эфире";
 "On start" = "On start";
 "Onboarding" = "Начало работы";
+"One list" = "Один список";
 "Ongoing" = "Продолжается";
 "Only https links are accepted." = "Принимаются только ссылки https.";
 "Opacidad" = "Непрозрачность";
@@ -1275,11 +1280,13 @@
 "Poster cards" = "Карточки с постерами";
 "Poster dock magnification" = "Увеличение постеров как в доке";
 "Poster reset to default" = "Poster reset to default";
+"Posters" = "Постеры";
 "Posters, ratings, lists" = "Постеры, рейтинги, списки";
 "Predeterminado" = "По умолчанию";
 "Predeterminado (acento dorado)" = "По умолчанию (золотой акцент)";
 "Preguntar si reanudar o empezar de nuevo" = "Спрашивать: продолжить или начать сначала";
 "Premiered This Month" = "Премьеры этого месяца";
+"Press play on something. It'll show up here once you start watching." = "Запустите что-нибудь. Как только начнёте смотреть, оно появится здесь.";
 "Preview" = "Предпросмотр";
 "Previous" = "Предыдущее";
 "Previous chapter" = "Предыдущая глава";
@@ -1382,6 +1389,7 @@
 "Remove from Suwayomi library" = "Remove from Suwayomi library";
 "Remove from continue watching" = "Убрать из «Продолжить просмотр»";
 "Remove from favorites" = "Убрать из избранного";
+"Remove from history" = "Удалить из истории";
 "Remove from list" = "Удалить из списка";
 "Remove from queue" = "Убрать из очереди";
 "Remove from saved" = "Убрать из сохранённого";
@@ -2172,6 +2180,8 @@
 "{n} anime titles will be left out (Trakt has no IDs for them)." = "{n} аниме будет пропущено (в Trakt нет для них ID).";
 "{n} ep" = "{n} эп";
 "{n} eps" = "{n} эп";
+"{n} item" = "{n} элементов";
+"{n} items" = "{n} элементов";
 "{n} min" = "{n} мин";
 "{n} not matched" = "Не сопоставлено: {n}";
 "{n} seeds" = "Сидов: {n}";

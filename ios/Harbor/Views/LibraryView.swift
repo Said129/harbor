@@ -8,8 +8,10 @@ struct LibraryView: View {
     @State private var tracker: Tracker?
     @State private var simkl: SimklLibraryModel
     @State private var trakt: TraktLibraryModel
+    @State private var history: LibraryHistoryModel
     @MainActor init(app: AppModel) {
         self.app = app; _simkl = State(initialValue: SimklLibraryModel(app: app)); _trakt = State(initialValue: TraktLibraryModel(app: app))
+        _history = State(initialValue: LibraryHistoryModel(app: app))
     }
     private var records: [LibraryRecord] { app.library.selectedItems(query: query) }
     private var display: LibraryDisplay { app.library.presentation.display }
@@ -20,24 +22,28 @@ struct LibraryView: View {
                 HarborPageHeading(title: "Tu colección.", eyebrow: "Mi biblioteca")
                 tabs.disabled(!app.library.canChangePresentation)
                 Divider()
-                if tracker == nil { filters }
+                if tracker == nil && display.filter != .watched { filters }
                 if tracker == .simkl && simkl.isActive { SimklLibraryContent(app: app, model: simkl) }
                 else if tracker == .trakt && trakt.isActive { TraktLibraryContent(app: app, model: trakt) }
+                else if display.filter == .watched { LibraryHistoryContent(app: app, model: history) }
                 else { localContents }
             }.padding()
         }.background(HarborTheme.background).navigationTitle("").toolbar(.hidden, for: .navigationBar)
             .refreshable {
                 if tracker == .simkl { await simkl.refresh(force: true) }
                 else if tracker == .trakt { await trakt.refresh(force: true) }
+                else if display.filter == .watched { await history.refresh(force: true) }
                 else { await app.library.sync() }
             }
             .task(id: app.accountOperationScope) {
                 simkl.cancel(); trakt.cancel(); simkl = SimklLibraryModel(app: app); trakt = TraktLibraryModel(app: app)
+                history.cancel(); history = LibraryHistoryModel(app: app)
                 tracker = nil; simkl.loadAccount(); trakt.loadAccount()
             }
             .onChange(of: simkl.account.session) { _, session in if session == nil { if tracker == .simkl { tracker = nil }; simkl.store.bind(nil) } }
             .onChange(of: trakt.account.session?.trackingID) { _, _ in
                 trakt.cancel(); trakt.loadAccount()
+                history.cancel(); history.loadAccount()
                 if trakt.account.session == nil && tracker == .trakt { tracker = nil }
             }
             .onChange(of: app.library.owner) { _, _ in query = ""; showHidden = false }

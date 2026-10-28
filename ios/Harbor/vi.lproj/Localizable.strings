@@ -395,6 +395,7 @@
 "Configurar addon" = "Configure addon";
 "Configure Sports" = "Configure Sports";
 "Configure addon" = "Configure addon";
+"Confirm remove from history" = "Xác nhận xóa khỏi lịch sử";
 "Confirm your PIN" = "Xác nhận mã PIN";
 "Confirm your current PIN to remove the lock." = "Xác nhận mã PIN hiện tại để bỏ khóa.";
 "Confirm your current PIN, then pick a new one." = "Xác nhận mã PIN hiện tại, rồi chọn mã mới.";
@@ -719,6 +720,7 @@
 "Gris" = "Gray";
 "Grosor del contorno" = "Độ dày đường viền";
 "Group by repository" = "Nhóm theo kho lưu trữ";
+"Grouped" = "Đã nhóm";
 "Guardado" = "Đã lưu";
 "Guardando" = "Đang lưu";
 "Guardar" = "Lưu";
@@ -912,6 +914,7 @@
 "Loading" = "Đang tải";
 "Loading music" = "Đang tải nhạc";
 "Loading plugins..." = "Đang tải plugin...";
+"Loading your history…" = "Đang tải lịch sử…";
 "Loading..." = "Đang tải...";
 "Loading…" = "Đang tải…";
 "Local" = "Cục bộ";
@@ -1117,6 +1120,7 @@
 "Nothing saved on Trakt yet." = "Chưa lưu nội dung nào trên Trakt.";
 "Nothing to send. All {n} watchlist items are anime, which Trakt can't track." = "Không có gì để gửi. Cả {n} mục trong danh sách xem đều là anime mà Trakt không thể theo dõi.";
 "Nothing to show yet." = "Nothing to show yet.";
+"Nothing watched yet" = "Chưa xem nội dung nào";
 "Notify me" = "Notify me";
 "Now" = "Bây giờ";
 "Now Playing" = "Đang phát";
@@ -1146,6 +1150,7 @@
 "On Tonight" = "Chiếu tối nay";
 "On start" = "On start";
 "Onboarding" = "Hướng dẫn ban đầu";
+"One list" = "Một danh sách";
 "Ongoing" = "Đang phát hành";
 "Only https links are accepted." = "Chỉ chấp nhận liên kết https.";
 "Opacidad" = "Độ mờ";
@@ -1264,11 +1269,13 @@
 "Poster cards" = "Thẻ áp phích";
 "Poster dock magnification" = "Phóng đại áp phích kiểu thanh Dock";
 "Poster reset to default" = "Poster reset to default";
+"Posters" = "Áp phích";
 "Posters, ratings, lists" = "Áp phích, điểm đánh giá, danh sách";
 "Predeterminado" = "Mặc định";
 "Predeterminado (acento dorado)" = "Mặc định (điểm nhấn màu vàng kim)";
 "Preguntar si reanudar o empezar de nuevo" = "Hỏi tiếp tục xem hay xem lại từ đầu";
 "Premiered This Month" = "Ra mắt trong tháng này";
+"Press play on something. It'll show up here once you start watching." = "Hãy nhấn phát trên một nội dung. Nội dung đó sẽ xuất hiện ở đây khi bạn bắt đầu xem.";
 "Preview" = "Xem trước";
 "Previous" = "Trước";
 "Previous chapter" = "Chương trước";
@@ -1370,6 +1377,7 @@
 "Remove from Suwayomi library" = "Remove from Suwayomi library";
 "Remove from continue watching" = "Remove from continue watching";
 "Remove from favorites" = "Xóa khỏi mục yêu thích";
+"Remove from history" = "Xóa khỏi lịch sử";
 "Remove from list" = "Xóa khỏi danh sách";
 "Remove from queue" = "Xóa khỏi hàng chờ";
 "Remove from saved" = "Xóa khỏi mục đã lưu";
@@ -2157,6 +2165,8 @@
 "{n} anime titles will be left out (Trakt has no IDs for them)." = "{n} tựa anime sẽ bị bỏ qua (Trakt không có ID cho các tựa này).";
 "{n} ep" = "{n} tập";
 "{n} eps" = "{n} tập";
+"{n} item" = "{n} mục";
+"{n} items" = "{n} mục";
 "{n} min" = "{n} phút";
 "{n} not matched" = "{n} mục chưa khớp";
 "{n} seeds" = "{n} seed";

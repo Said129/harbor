@@ -415,6 +415,7 @@
 "Configurar addon" = "Configure addon";
 "Configure Sports" = "Configure Sports";
 "Configure addon" = "Configure addon";
+"Confirm remove from history" = "تأكيد الإزالة من السجل";
 "Confirm your PIN" = "أكّد رمز PIN الخاص بك";
 "Confirm your current PIN to remove the lock." = "أكّد رمز PIN الحالي لإزالة القفل.";
 "Confirm your current PIN, then pick a new one." = "أكّد رمز PIN الحالي، ثم اختر رمزًا جديدًا.";
@@ -744,6 +745,7 @@
 "Gris" = "Gray";
 "Grosor del contorno" = "سُمك الإطار";
 "Group by repository" = "التجميع حسب المستودع";
+"Grouped" = "مُجمّع";
 "Guardado" = "محفوظ";
 "Guardando" = "جارٍ الحفظ";
 "Guardar" = "حفظ";
@@ -937,6 +939,7 @@
 "Loading" = "جارٍ التحميل";
 "Loading music" = "جارٍ تحميل الموسيقى";
 "Loading plugins..." = "جارٍ تحميل الإضافات...";
+"Loading your history…" = "جارٍ تحميل سجلك…";
 "Loading..." = "جاري التحميل...";
 "Loading…" = "جارٍ التحميل…";
 "Local" = "المحلّي";
@@ -1145,6 +1148,7 @@
 "Nothing saved on Trakt yet." = "لا شيء محفوظ على Trakt بعد.";
 "Nothing to send. All {n} watchlist items are anime, which Trakt can't track." = "لا شيء لإرساله. جميع عناصر قائمة المشاهدة الـ {n} هي أنمي، وهو ما لا يستطيع Trakt تتبّعه.";
 "Nothing to show yet." = "Nothing to show yet.";
+"Nothing watched yet" = "لم تتم مشاهدة أي شيء بعد";
 "Notify me" = "Notify me";
 "Now" = "الآن";
 "Now Playing" = "قيد التشغيل الآن";
@@ -1175,6 +1179,7 @@
 "On Tonight" = "يعرض الليلة";
 "On start" = "On start";
 "Onboarding" = "الإعداد الأولي";
+"One list" = "قائمة واحدة";
 "Ongoing" = "مستمر";
 "Only https links are accepted." = "تُقبل روابط https فقط.";
 "Opacidad" = "الشفافية";
@@ -1295,11 +1300,13 @@
 "Poster cards" = "بطاقات الملصقات";
 "Poster dock magnification" = "تكبير رصيف الملصقات";
 "Poster reset to default" = "Poster reset to default";
+"Posters" = "الملصقات";
 "Posters, ratings, lists" = "الملصقات والتقييمات والقوائم";
 "Predeterminado" = "الافتراضي";
 "Predeterminado (acento dorado)" = "افتراضي (تمييز ذهبي)";
 "Preguntar si reanudar o empezar de nuevo" = "السؤال عن الاستئناف أو البدء من جديد";
 "Premiered This Month" = "عرض هذا الشهر";
+"Press play on something. It'll show up here once you start watching." = "اضغط تشغيل على شيء ما. سيظهر هنا بمجرد أن تبدأ المشاهدة.";
 "Preview" = "معاينة";
 "Previous" = "السابق";
 "Previous chapter" = "الفصل السابق";
@@ -1402,6 +1409,7 @@
 "Remove from Suwayomi library" = "Remove from Suwayomi library";
 "Remove from continue watching" = "إزالة من متابعة المشاهدة";
 "Remove from favorites" = "إزالة من المفضّلة";
+"Remove from history" = "إزالة من السجل";
 "Remove from list" = "إزالة من القائمة";
 "Remove from queue" = "إزالة من قائمة الانتظار";
 "Remove from saved" = "إزالة من المحفوظات";
@@ -2199,6 +2207,8 @@
 "{n} anime titles will be left out (Trakt has no IDs for them)." = "سيتم استبعاد {n} عنوان أنمي (لا تملك Trakt معرّفات لها).";
 "{n} ep" = "{n} حلقة";
 "{n} eps" = "{n} حلقة";
+"{n} item" = "{n} عنصر";
+"{n} items" = "{n} عناصر";
 "{n} min" = "{n} دقيقة";
 "{n} not matched" = "{n} غير مطابق";
 "{n} seeds" = "{n} موزع";

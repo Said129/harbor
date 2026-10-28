@@ -395,6 +395,7 @@
 "Configurar addon" = "Configure addon";
 "Configure Sports" = "Configure Sports";
 "Configure addon" = "Configure addon";
+"Confirm remove from history" = "Geçmişten kaldırmayı onayla";
 "Confirm your PIN" = "PIN'inizi doğrulayın";
 "Confirm your current PIN to remove the lock." = "Kilidi kaldırmak için geçerli PIN'inizi doğrulayın.";
 "Confirm your current PIN, then pick a new one." = "Geçerli PIN'inizi doğrulayın, ardından yeni bir PIN seçin.";
@@ -719,6 +720,7 @@
 "Gris" = "Gray";
 "Grosor del contorno" = "Kontur kalınlığı";
 "Group by repository" = "Depoya göre grupla";
+"Grouped" = "Gruplandırılmış";
 "Guardado" = "Kaydedildi";
 "Guardando" = "Kaydediliyor";
 "Guardar" = "Kaydet";
@@ -912,6 +914,7 @@
 "Loading" = "Yükleniyor";
 "Loading music" = "Müzik yükleniyor";
 "Loading plugins..." = "Eklentiler yükleniyor...";
+"Loading your history…" = "Geçmişiniz yükleniyor…";
 "Loading..." = "Yükleniyor...";
 "Loading…" = "Yükleniyor…";
 "Local" = "Yerel";
@@ -1117,6 +1120,7 @@
 "Nothing saved on Trakt yet." = "Trakt'a henüz bir şey kaydedilmedi.";
 "Nothing to send. All {n} watchlist items are anime, which Trakt can't track." = "Gönderilecek bir şey yok. İzleme listesindeki {n} öğenin tümü anime ve Trakt bunları takip edemiyor.";
 "Nothing to show yet." = "Nothing to show yet.";
+"Nothing watched yet" = "Henüz hiçbir şey izlenmedi";
 "Notify me" = "Notify me";
 "Now" = "Şimdi";
 "Now Playing" = "Şimdi oynatılıyor";
@@ -1146,6 +1150,7 @@
 "On Tonight" = "Bu Akşam Yayında";
 "On start" = "On start";
 "Onboarding" = "Başlangıç rehberi";
+"One list" = "Tek liste";
 "Ongoing" = "Devam ediyor";
 "Only https links are accepted." = "Yalnızca https bağlantıları kabul edilir.";
 "Opacidad" = "Opaklık";
@@ -1264,11 +1269,13 @@
 "Poster cards" = "Poster kartları";
 "Poster dock magnification" = "Poster şeridi büyütme efekti";
 "Poster reset to default" = "Poster reset to default";
+"Posters" = "Posterler";
 "Posters, ratings, lists" = "Afişler, puanlar, listeler";
 "Predeterminado" = "Varsayılan";
 "Predeterminado (acento dorado)" = "Varsayılan (altın vurgu)";
 "Preguntar si reanudar o empezar de nuevo" = "Devam edilsin mi, baştan mı başlansın diye sor";
 "Premiered This Month" = "Bu Ay Başlayanlar";
+"Press play on something. It'll show up here once you start watching." = "Bir içerikte Oynat'a basın. İzlemeye başladığınızda burada görünür.";
 "Preview" = "Önizleme";
 "Previous" = "Önceki";
 "Previous chapter" = "Önceki bölüm";
@@ -1370,6 +1377,7 @@
 "Remove from Suwayomi library" = "Remove from Suwayomi library";
 "Remove from continue watching" = "Remove from continue watching";
 "Remove from favorites" = "Favorilerden kaldır";
+"Remove from history" = "Geçmişten kaldır";
 "Remove from list" = "Listeden kaldır";
 "Remove from queue" = "Kuyruktan kaldır";
 "Remove from saved" = "Kaydedilenlerden kaldır";
@@ -2157,6 +2165,8 @@
 "{n} anime titles will be left out (Trakt has no IDs for them)." = "{n} anime başlığı dışarıda bırakılacak (Trakt'ta bunlara ait kimlik numaraları yok).";
 "{n} ep" = "{n} blm";
 "{n} eps" = "{n} blm";
+"{n} item" = "{n} öğe";
+"{n} items" = "{n} öğe";
 "{n} min" = "{n} dk";
 "{n} not matched" = "{n} eşleşmedi";
 "{n} seeds" = "{n} seed";

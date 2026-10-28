@@ -395,6 +395,7 @@
 "Configurar addon" = "Configure addon";
 "Configure Sports" = "Configure Sports";
 "Configure addon" = "Configure addon";
+"Confirm remove from history" = "Konfirmasi penghapusan dari riwayat";
 "Confirm your PIN" = "Konfirmasi PIN Anda";
 "Confirm your current PIN to remove the lock." = "Konfirmasikan PIN Anda saat ini untuk menonaktifkan kunci.";
 "Confirm your current PIN, then pick a new one." = "Konfirmasikan PIN saat ini, lalu pilih PIN baru.";
@@ -719,6 +720,7 @@
 "Gris" = "Gray";
 "Grosor del contorno" = "Ketebalan garis tepi";
 "Group by repository" = "Kelompokkan per repositori";
+"Grouped" = "Dikelompokkan";
 "Guardado" = "Tersimpan";
 "Guardando" = "Menyimpan";
 "Guardar" = "Simpan";
@@ -912,6 +914,7 @@
 "Loading" = "Memuat";
 "Loading music" = "Memuat musik";
 "Loading plugins..." = "Memuat plugin...";
+"Loading your history…" = "Memuat riwayat Anda…";
 "Loading..." = "Memuat...";
 "Loading…" = "Memuat…";
 "Local" = "Lokal";
@@ -1117,6 +1120,7 @@
 "Nothing saved on Trakt yet." = "Belum ada yang disimpan di Trakt.";
 "Nothing to send. All {n} watchlist items are anime, which Trakt can't track." = "Tidak ada yang bisa dikirim. Semua {n} item daftar tontonan adalah anime, yang tidak dapat dilacak oleh Trakt.";
 "Nothing to show yet." = "Nothing to show yet.";
+"Nothing watched yet" = "Belum ada yang ditonton";
 "Notify me" = "Notify me";
 "Now" = "Sekarang";
 "Now Playing" = "Sedang Diputar";
@@ -1146,6 +1150,7 @@
 "On Tonight" = "Tayang Malam Ini";
 "On start" = "On start";
 "Onboarding" = "Pengenalan awal";
+"One list" = "Satu daftar";
 "Ongoing" = "Berlanjut";
 "Only https links are accepted." = "Hanya tautan https yang diterima.";
 "Opacidad" = "Opasitas";
@@ -1264,11 +1269,13 @@
 "Poster cards" = "Kartu poster";
 "Poster dock magnification" = "Pembesaran dock poster";
 "Poster reset to default" = "Poster reset to default";
+"Posters" = "Poster";
 "Posters, ratings, lists" = "Poster, rating, daftar";
 "Predeterminado" = "Bawaan";
 "Predeterminado (acento dorado)" = "Bawaan (aksen emas)";
 "Preguntar si reanudar o empezar de nuevo" = "Tanyakan apakah ingin melanjutkan atau memulai dari awal";
 "Premiered This Month" = "Tayang Perdana Bulan Ini";
+"Press play on something. It'll show up here once you start watching." = "Putar sesuatu. Konten akan muncul di sini setelah Anda mulai menonton.";
 "Preview" = "Pratinjau";
 "Previous" = "Sebelumnya";
 "Previous chapter" = "Bab sebelumnya";
@@ -1370,6 +1377,7 @@
 "Remove from Suwayomi library" = "Remove from Suwayomi library";
 "Remove from continue watching" = "Remove from continue watching";
 "Remove from favorites" = "Hapus dari favorit";
+"Remove from history" = "Hapus dari riwayat";
 "Remove from list" = "Hapus dari daftar";
 "Remove from queue" = "Hapus dari antrean";
 "Remove from saved" = "Hapus dari item tersimpan";
@@ -2157,6 +2165,8 @@
 "{n} anime titles will be left out (Trakt has no IDs for them)." = "{n} judul anime akan dikecualikan (Trakt tidak memiliki ID untuk judul tersebut).";
 "{n} ep" = "{n} ep";
 "{n} eps" = "{n} ep";
+"{n} item" = "{n} item";
+"{n} items" = "{n} item";
 "{n} min" = "{n} mnt";
 "{n} not matched" = "{n} tidak berhasil dicocokkan";
 "{n} seeds" = "{n} seed";

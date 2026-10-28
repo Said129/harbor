@@ -62,6 +62,12 @@ final class LibraryModel {
     var error: String?
     var owner: String { session?.user.id ?? guestOwner }
     var items: [LibraryRecord] { snapshot.items }
+    var historyRevision: Int { continuationRevision }
+    @discardableResult func removeHistory(_ record: LibraryRecord, owner expectedOwner: String, personalOwner expectedPersonalOwner: String) async -> Bool {
+        guard owner == expectedOwner, personalOwner == expectedPersonalOwner,
+              let saved = items.first(where: { $0.id == record.id }), LibraryHistoryEntry.eligible(saved), let media = saved.media else { return false }
+        return await update(media) { fields in fields["removed"] = .bool(true); fields["temp"] = .bool(false) }
+    }
     func bindTraktWatchlist(_ value: TraktWatchlistSync?) {
         if let value, value.account.owner != personalOwner { value.invalidate(); return }
         traktWatchlist?.invalidate(); traktWatchlist = value; watchlistCache = nil

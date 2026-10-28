@@ -395,6 +395,7 @@
 "Configurar addon" = "Configure addon";
 "Configure Sports" = "Configure Sports";
 "Configure addon" = "Configure addon";
+"Confirm remove from history" = "履歴から削除しますか";
 "Confirm your PIN" = "PINを確認";
 "Confirm your current PIN to remove the lock." = "ロックを解除するには、現在のPINを確認してください。";
 "Confirm your current PIN, then pick a new one." = "現在のPINを確認してから、新しいPINを設定してください。";
@@ -719,6 +720,7 @@
 "Gris" = "Gray";
 "Grosor del contorno" = "縁取りの太さ";
 "Group by repository" = "リポジトリごとにまとめる";
+"Grouped" = "グループ化済み";
 "Guardado" = "保存済み";
 "Guardando" = "保存中";
 "Guardar" = "保存";
@@ -912,6 +914,7 @@
 "Loading" = "読み込み中";
 "Loading music" = "音楽を読み込み中";
 "Loading plugins..." = "プラグインを読み込み中...";
+"Loading your history…" = "履歴を読み込み中…";
 "Loading..." = "読み込み中...";
 "Loading…" = "読み込み中…";
 "Local" = "ローカル";
@@ -1117,6 +1120,7 @@
 "Nothing saved on Trakt yet." = "Traktにはまだ何も保存されていません。";
 "Nothing to send. All {n} watchlist items are anime, which Trakt can't track." = "送信できる項目がありません。ウォッチリストの全{n}件がアニメですが、Traktでは追跡できません。";
 "Nothing to show yet." = "Nothing to show yet.";
+"Nothing watched yet" = "まだ何も視聴していません";
 "Notify me" = "Notify me";
 "Now" = "現在";
 "Now Playing" = "再生中";
@@ -1146,6 +1150,7 @@
 "On Tonight" = "今夜放送";
 "On start" = "On start";
 "Onboarding" = "初期ガイド";
+"One list" = "1件のリスト";
 "Ongoing" = "連載中";
 "Only https links are accepted." = "httpsのリンクのみ使用できます。";
 "Opacidad" = "不透明度";
@@ -1264,11 +1269,13 @@
 "Poster cards" = "ポスターカード";
 "Poster dock magnification" = "ポスター列のDock風拡大";
 "Poster reset to default" = "Poster reset to default";
+"Posters" = "ポスター";
 "Posters, ratings, lists" = "ポスター、評価、リスト";
 "Predeterminado" = "デフォルト";
 "Predeterminado (acento dorado)" = "デフォルト（ゴールドのアクセント）";
 "Preguntar si reanudar o empezar de nuevo" = "続きから再生するか最初から再生するか確認";
 "Premiered This Month" = "今月の新作";
+"Press play on something. It'll show up here once you start watching." = "何か再生してみましょう。視聴を始めると、ここに表示されます。";
 "Preview" = "プレビュー";
 "Previous" = "前へ";
 "Previous chapter" = "前のチャプター";
@@ -1370,6 +1377,7 @@
 "Remove from Suwayomi library" = "Remove from Suwayomi library";
 "Remove from continue watching" = "Remove from continue watching";
 "Remove from favorites" = "お気に入りから削除";
+"Remove from history" = "履歴から削除";
 "Remove from list" = "リストから削除";
 "Remove from queue" = "キューから削除";
 "Remove from saved" = "保存済みから削除";
@@ -2157,6 +2165,8 @@
 "{n} anime titles will be left out (Trakt has no IDs for them)." = "{n}件のアニメ作品が除外されます（Traktに対応するIDがないため）。";
 "{n} ep" = "{n}話";
 "{n} eps" = "{n}話";
+"{n} item" = "{n}件";
+"{n} items" = "{n}件";
 "{n} min" = "{n}分";
 "{n} not matched" = "未照合{n}件";
 "{n} seeds" = "シード数: {n}";

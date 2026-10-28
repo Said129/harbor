@@ -395,6 +395,7 @@
 "Configurar addon" = "Configure addon";
 "Configure Sports" = "Configure Sports";
 "Configure addon" = "Configure addon";
+"Confirm remove from history" = "기록에서 삭제 확인";
 "Confirm your PIN" = "PIN 확인";
 "Confirm your current PIN to remove the lock." = "잠금을 해제하려면 현재 PIN을 확인하세요.";
 "Confirm your current PIN, then pick a new one." = "현재 PIN을 확인한 후 새 PIN을 선택하세요.";
@@ -719,6 +720,7 @@
 "Gris" = "Gray";
 "Grosor del contorno" = "외곽선 두께";
 "Group by repository" = "저장소별로 묶기";
+"Grouped" = "그룹화됨";
 "Guardado" = "저장됨";
 "Guardando" = "저장 중";
 "Guardar" = "저장";
@@ -912,6 +914,7 @@
 "Loading" = "로딩 중";
 "Loading music" = "음악 불러오는 중";
 "Loading plugins..." = "플러그인 불러오는 중...";
+"Loading your history…" = "기록을 불러오는 중…";
 "Loading..." = "로딩 중...";
 "Loading…" = "불러오는 중…";
 "Local" = "로컬";
@@ -1117,6 +1120,7 @@
 "Nothing saved on Trakt yet." = "Trakt에 아직 저장된 항목이 없습니다.";
 "Nothing to send. All {n} watchlist items are anime, which Trakt can't track." = "보낼 항목이 없습니다. 관심 목록의 {n}개 항목이 모두 애니메이션이라 Trakt에서 추적할 수 없습니다.";
 "Nothing to show yet." = "Nothing to show yet.";
+"Nothing watched yet" = "아직 시청한 콘텐츠가 없습니다";
 "Notify me" = "Notify me";
 "Now" = "지금";
 "Now Playing" = "현재 재생 중";
@@ -1146,6 +1150,7 @@
 "On Tonight" = "오늘 밤 방송";
 "On start" = "On start";
 "Onboarding" = "시작 안내";
+"One list" = "목록 하나";
 "Ongoing" = "연재 중";
 "Only https links are accepted." = "https 링크만 사용할 수 있습니다.";
 "Opacidad" = "불투명도";
@@ -1264,11 +1269,13 @@
 "Poster cards" = "포스터 카드";
 "Poster dock magnification" = "포스터 독 확대 효과";
 "Poster reset to default" = "Poster reset to default";
+"Posters" = "포스터";
 "Posters, ratings, lists" = "포스터, 평점, 목록";
 "Predeterminado" = "기본값";
 "Predeterminado (acento dorado)" = "기본값(골드 강조색)";
 "Preguntar si reanudar o empezar de nuevo" = "이어 보기 또는 처음부터 보기 확인";
 "Premiered This Month" = "이번 달 공개작";
+"Press play on something. It'll show up here once you start watching." = "콘텐츠를 재생해 보세요. 시청을 시작하면 여기에 표시됩니다.";
 "Preview" = "미리보기";
 "Previous" = "이전";
 "Previous chapter" = "이전 챕터";
@@ -1370,6 +1377,7 @@
 "Remove from Suwayomi library" = "Remove from Suwayomi library";
 "Remove from continue watching" = "Remove from continue watching";
 "Remove from favorites" = "즐겨찾기에서 삭제";
+"Remove from history" = "기록에서 삭제";
 "Remove from list" = "목록에서 제거";
 "Remove from queue" = "대기열에서 삭제";
 "Remove from saved" = "저장 목록에서 제거";
@@ -2157,6 +2165,8 @@
 "{n} anime titles will be left out (Trakt has no IDs for them)." = "애니메이션 제목 {n}개가 제외됩니다(Trakt에 해당 ID가 없음).";
 "{n} ep" = "에피소드 {n}개";
 "{n} eps" = "에피소드 {n}개";
+"{n} item" = "항목 {n}개";
+"{n} items" = "항목 {n}개";
 "{n} min" = "{n}분";
 "{n} not matched" = "일치하지 않음 {n}개";
 "{n} seeds" = "시드 {n}개";

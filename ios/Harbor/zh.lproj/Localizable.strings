@@ -395,6 +395,7 @@
 "Configurar addon" = "Configure addon";
 "Configure Sports" = "Configure Sports";
 "Configure addon" = "Configure addon";
+"Confirm remove from history" = "确认从历史记录中移除";
 "Confirm your PIN" = "确认 PIN";
 "Confirm your current PIN to remove the lock." = "确认当前 PIN 以解除锁定。";
 "Confirm your current PIN, then pick a new one." = "确认当前 PIN，然后设置新 PIN。";
@@ -719,6 +720,7 @@
 "Gris" = "Gray";
 "Grosor del contorno" = "描边粗细";
 "Group by repository" = "按仓库分组";
+"Grouped" = "已分组";
 "Guardado" = "已保存";
 "Guardando" = "正在保存";
 "Guardar" = "保存";
@@ -912,6 +914,7 @@
 "Loading" = "正在加载";
 "Loading music" = "正在加载音乐";
 "Loading plugins..." = "正在加载插件…";
+"Loading your history…" = "正在加载历史记录…";
 "Loading..." = "正在加载…";
 "Loading…" = "正在加载…";
 "Local" = "本地";
@@ -1117,6 +1120,7 @@
 "Nothing saved on Trakt yet." = "Trakt 上尚未保存任何内容。";
 "Nothing to send. All {n} watchlist items are anime, which Trakt can't track." = "没有可发送的内容。片单中的全部 {n} 个项目都是动漫，而 Trakt 无法跟踪动漫。";
 "Nothing to show yet." = "Nothing to show yet.";
+"Nothing watched yet" = "尚未观看任何内容";
 "Notify me" = "Notify me";
 "Now" = "现在";
 "Now Playing" = "正在播放";
@@ -1146,6 +1150,7 @@
 "On Tonight" = "今晚播出";
 "On start" = "On start";
 "Onboarding" = "新手引导";
+"One list" = "单个列表";
 "Ongoing" = "连载中";
 "Only https links are accepted." = "只接受 https 链接。";
 "Opacidad" = "不透明度";
@@ -1264,11 +1269,13 @@
 "Poster cards" = "海报卡片";
 "Poster dock magnification" = "海报停靠栏放大效果";
 "Poster reset to default" = "Poster reset to default";
+"Posters" = "海报";
 "Posters, ratings, lists" = "海报、评分、列表";
 "Predeterminado" = "默认";
 "Predeterminado (acento dorado)" = "默认（金色强调色）";
 "Preguntar si reanudar o empezar de nuevo" = "询问继续播放还是从头开始";
 "Premiered This Month" = "本月首播";
+"Press play on something. It'll show up here once you start watching." = "请播放任意内容。开始观看后，它就会显示在这里。";
 "Preview" = "预览";
 "Previous" = "上一个";
 "Previous chapter" = "上一章";
@@ -1370,6 +1377,7 @@
 "Remove from Suwayomi library" = "Remove from Suwayomi library";
 "Remove from continue watching" = "Remove from continue watching";
 "Remove from favorites" = "从收藏中移除";
+"Remove from history" = "从历史记录中移除";
 "Remove from list" = "从列表中移除";
 "Remove from queue" = "从播放队列中移除";
 "Remove from saved" = "从已保存内容中移除";
@@ -2157,6 +2165,8 @@
 "{n} anime titles will be left out (Trakt has no IDs for them)." = "将排除 {n} 部动漫作品（Trakt 中没有对应 ID）。";
 "{n} ep" = "{n} 集";
 "{n} eps" = "{n} 集";
+"{n} item" = "{n} 个项目";
+"{n} items" = "{n} 个项目";
 "{n} min" = "{n} 分钟";
 "{n} not matched" = "{n} 个未匹配";
 "{n} seeds" = "{n} 个做种者";

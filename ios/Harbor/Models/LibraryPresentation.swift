@@ -21,7 +21,8 @@ struct LibraryDisplay: Codable, Sendable {
     var kind = LibraryKind.all
     var sort = LibrarySort.recent
     var grouped = true
-    private enum CodingKeys: String, CodingKey { case filter, kind, sort, grouped }
+    var historyView = LibraryHistoryView.posters
+    private enum CodingKeys: String, CodingKey { case filter, kind, sort, grouped, historyView }
     init() { }
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
@@ -29,6 +30,7 @@ struct LibraryDisplay: Codable, Sendable {
         kind = try values.decodeIfPresent(LibraryKind.self, forKey: .kind) ?? .all
         sort = try values.decodeIfPresent(LibrarySort.self, forKey: .sort) ?? .recent
         grouped = try values.decodeIfPresent(Bool.self, forKey: .grouped) ?? true
+        historyView = try values.decodeIfPresent(LibraryHistoryView.self, forKey: .historyView) ?? .posters
     }
 }
 struct ContinueDismissal: Codable, Sendable {

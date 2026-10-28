@@ -318,6 +318,7 @@
 "Configurar addon" = "Configure addon";
 "Configure Sports" = "Configure Sports";
 "Configure addon" = "Configure addon";
+"Confirm remove from history" = "Confirm remove from history";
 "Connect Simkl" = "Connect Simkl";
 "Connect TMDB" = "Connect TMDB";
 "Connect Trakt" = "Connect Trakt";
@@ -581,6 +582,7 @@
 "Gray" = "Gray";
 "Gris" = "Gray";
 "Grosor del contorno" = "Outline thickness";
+"Grouped" = "Grouped";
 "Guardado" = "Saved";
 "Guardando" = "Saving";
 "Guardar" = "Save";
@@ -743,6 +745,7 @@
 "Load more" = "Load more";
 "Loading" = "Loading";
 "Loading music" = "Loading music";
+"Loading your history…" = "Loading your history…";
 "Loading..." = "Loading...";
 "Local app files" = "Local app files";
 "Logo position" = "Logo position";
@@ -908,6 +911,7 @@
 "Nothing saved on Trakt yet." = "Nothing saved on Trakt yet.";
 "Nothing to send. All {n} watchlist items are anime, which Trakt can't track." = "Nothing to send. All {n} watchlist items are anime, which Trakt can't track.";
 "Nothing to show yet." = "Nothing to show yet.";
+"Nothing watched yet" = "Nothing watched yet";
 "Notify me" = "Notify me";
 "Now" = "Now";
 "Now Playing" = "Now Playing";
@@ -933,6 +937,7 @@
 "On Hold" = "On Hold";
 "On The Air" = "On The Air";
 "On start" = "On start";
+"One list" = "One list";
 "Opacidad" = "Opacity";
 "Opacidad del fondo" = "Background opacity";
 "Opacity" = "Opacity";
@@ -1021,10 +1026,12 @@
 "Poster cards" = "Poster cards";
 "Poster dock magnification" = "Poster dock magnification";
 "Poster reset to default" = "Poster reset to default";
+"Posters" = "Posters";
 "Posters, ratings, lists" = "Posters, ratings, lists";
 "Predeterminado" = "Default";
 "Predeterminado (acento dorado)" = "Default (gold accent)";
 "Preguntar si reanudar o empezar de nuevo" = "Ask to resume or start over";
+"Press play on something. It'll show up here once you start watching." = "Press play on something. It'll show up here once you start watching.";
 "Preview" = "Preview";
 "Previous" = "Previous";
 "Previous chapter" = "Previous chapter";
@@ -1113,6 +1120,7 @@
 "Remove from Suwayomi library" = "Remove from Suwayomi library";
 "Remove from continue watching" = "Remove from continue watching";
 "Remove from favorites" = "Remove from favorites";
+"Remove from history" = "Remove from history";
 "Remove from list" = "Remove from list";
 "Remove from queue" = "Remove from queue";
 "Remove from saved" = "Remove from saved";
@@ -1755,6 +1763,8 @@
 "{name} + {n} more" = "{name} + {n} more";
 "{name} + {n} más" = "{name} + {n} more";
 "{n} anime titles will be left out (Trakt has no IDs for them)." = "{n} anime titles will be left out (Trakt has no IDs for them).";
+"{n} item" = "{n} item";
+"{n} items" = "{n} items";
 "{n} min" = "{n} min";
 "{n} not matched" = "{n} not matched";
 "{n} seeds" = "{n} seeds";
