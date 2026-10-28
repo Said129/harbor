@@ -48,7 +48,15 @@ with decoded owned covers in compact and regular sizes. Eight original images
 are required. No approved Trakt library, OAuth, scrobble, or full Home journey
 is selected again.
 
-Apple compilation/execution and image inspection are pending for this source.
+Apple run `40778941925` compiled source `4790dc21fc5ccaa09fdeacf879d1a7f96bb432f0`
+and passed all five selected cases without new warnings. All eight original
+compact/regular captures were individually inspected: personalized headings,
+decoded controlled covers, the independent View All grid and existing row
+editing controls fit their viewports. The regular grid capture includes its
+next-page loading state. The 1,003,014 byte archive has SHA-256
+`ab2351b83fab411618a3efc8072e0a23df854f8d25d61e1e4a5e54f420a433f7`,
+matching GitHub's digest.
+
 Rendering an injected owned Trakt feed is not evidence of live personal OAuth
 or an end to end journey from ordinary app launch. The existing Trakt token
 broker configuration still requires the separate independence audit. Public
