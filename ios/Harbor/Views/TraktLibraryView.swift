@@ -113,12 +113,12 @@ struct TraktWatchlistTransferView: View {
                     let plan = TraktLibraryModel.exportPlan(library.items)
                     if plan.exportable > 0 { phase = .export(plan) }
                     else { phase = .result(text(plan.skippedAnime > 0 ? "Nothing to send. All {n} watchlist items are anime, which Trakt can't track." : "Your watchlist is empty, nothing to send.", variables: ["n": String(plan.skippedAnime)])) }
-                }.buttonStyle(HarborAccountButtonStyle()).disabled(busy || !library.writable).accessibilityIdentifier("trakt-export-watchlist")
+                }.buttonStyle(HarborAccountButtonStyle()).disabled(busy || !library.canSaveBookmarks).accessibilityIdentifier("trakt-export-watchlist")
                 Text(text("Pull every title on your Trakt watchlist into Harbor. Anything already saved is left alone.")).font(.callout).foregroundStyle(.secondary)
                 Button(text("Import from Trakt")) { phase = .loading; Task {
                     if let items = await model.fetchImport() { phase = items.isEmpty ? .result(text("Your Trakt watchlist is empty, nothing to import.")) : .importItems(items) }
                     else { phase = .result(text(model.error ?? "Couldn't reach Trakt. Check your connection and try again.")) }
-                } }.buttonStyle(HarborAccountButtonStyle()).disabled(busy || !library.writable).accessibilityIdentifier("trakt-import-watchlist")
+                } }.buttonStyle(HarborAccountButtonStyle()).disabled(busy || !library.canSaveBookmarks).accessibilityIdentifier("trakt-import-watchlist")
                 feedback
             }
         }.task { model.loadAccount() }.onDisappear { model.cancel() }

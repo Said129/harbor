@@ -1,0 +1,357 @@
+{
+  "reference": "0834340cec5531650bfe78cd628628702e636987",
+  "actual_original_typescript_executed": true,
+  "provider_network_requests": 0,
+  "executed_module_hashes": {
+    "src/lib/trakt/ids.ts": "f11d6a1e177e9c4952327a7b1d77255310458188e2f92cc91cc8821145716c07",
+    "src/lib/trakt/watchlist.ts": "d8ab78d708ecb779f75905ae911c915eaf24faa069bffd2ce8d0e555ce75d17a",
+    "src/lib/watchlist.ts": "7e5535fed0f1ffbd6a88b967dcdb11cd9757c617a91fe42df06139ad83bbea6b",
+    "src/lib/watchlist-sync.tsx": "56295cd28503ad46dd0fe3bdc1f9cbf0539477d1cf0374752146a7b1bae17605"
+  },
+  "cases": [
+    {
+      "name": "movie-add-remove",
+      "initial": [],
+      "remote": [],
+      "actions": [
+        {
+          "id": "tt1234567",
+          "type": "movie",
+          "name": "Owned Film"
+        },
+        {
+          "id": "tt1234567",
+          "type": "movie"
+        }
+      ],
+      "aggregate": [],
+      "before": [],
+      "steps": [
+        {
+          "saved": true,
+          "ids": ["tt1234567"],
+          "requests": [
+            {
+              "route": "/sync/watchlist",
+              "method": "POST",
+              "body": {
+                "movies": [
+                  {
+                    "ids": {
+                      "imdb": "tt1234567"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "saved": false,
+          "ids": [],
+          "requests": [
+            {
+              "route": "/sync/watchlist/remove",
+              "method": "POST",
+              "body": {
+                "movies": [
+                  {
+                    "ids": {
+                      "imdb": "tt1234567"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "show-add-remove",
+      "initial": [],
+      "remote": [],
+      "actions": [
+        {
+          "id": "tmdb:tv:9",
+          "type": "series",
+          "name": "Owned Show"
+        },
+        {
+          "id": "tmdb:tv:9",
+          "type": "series"
+        }
+      ],
+      "aggregate": [],
+      "before": [],
+      "steps": [
+        {
+          "saved": true,
+          "ids": ["tmdb:tv:9"],
+          "requests": [
+            {
+              "route": "/sync/watchlist",
+              "method": "POST",
+              "body": {
+                "shows": [
+                  {
+                    "ids": {
+                      "tmdb": 9
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "saved": false,
+          "ids": [],
+          "requests": [
+            {
+              "route": "/sync/watchlist/remove",
+              "method": "POST",
+              "body": {
+                "shows": [
+                  {
+                    "ids": {
+                      "tmdb": 9
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "remote-both-aliases",
+      "initial": [],
+      "remote": [
+        {
+          "type": "movie",
+          "title": "Owned Film",
+          "year": 2024,
+          "ids": {
+            "imdb": "tt1234567",
+            "tmdb": 8
+          },
+          "contextDate": "2026-10-01T00:00:00Z"
+        },
+        {
+          "type": "show",
+          "title": "Owned Show",
+          "year": 2022,
+          "ids": {
+            "imdb": "tt1234568",
+            "tmdb": 9
+          },
+          "contextDate": "2026-10-01T00:00:00Z"
+        }
+      ],
+      "actions": [
+        {
+          "id": "tmdb:movie:8",
+          "type": "movie",
+          "imdbId": "tt1234567"
+        },
+        {
+          "id": "tmdb:tv:9",
+          "type": "series",
+          "imdbId": "tt1234568"
+        }
+      ],
+      "aggregate": ["tt1234567", "tmdb:movie:8", "tt1234568", "tmdb:tv:9"],
+      "before": ["tmdb:movie:8", "tmdb:tv:9", "tt1234567", "tt1234568"],
+      "steps": [
+        {
+          "saved": false,
+          "ids": ["tmdb:tv:9", "tt1234568"],
+          "requests": [
+            {
+              "route": "/sync/watchlist/remove",
+              "method": "POST",
+              "body": {
+                "movies": [
+                  {
+                    "ids": {
+                      "tmdb": 8
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "saved": false,
+          "ids": [],
+          "requests": [
+            {
+              "route": "/sync/watchlist/remove",
+              "method": "POST",
+              "body": {
+                "shows": [
+                  {
+                    "ids": {
+                      "tmdb": 9
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "local-alias-eviction",
+      "initial": [
+        {
+          "id": "tt1234567",
+          "type": "movie",
+          "name": "IMDb"
+        },
+        {
+          "id": "tmdb:movie:8",
+          "type": "movie",
+          "name": "TMDB",
+          "imdbId": "tt1234567"
+        }
+      ],
+      "remote": [
+        {
+          "type": "movie",
+          "title": "Owned Film",
+          "year": 2024,
+          "ids": {
+            "imdb": "tt1234567",
+            "tmdb": 8
+          },
+          "contextDate": "2026-10-01T00:00:00Z"
+        }
+      ],
+      "actions": [
+        {
+          "id": "tmdb:movie:8",
+          "type": "movie",
+          "imdbId": "tt1234567"
+        }
+      ],
+      "aggregate": ["tt1234567", "tmdb:movie:8"],
+      "before": ["tmdb:movie:8", "tt1234567"],
+      "steps": [
+        {
+          "saved": false,
+          "ids": [],
+          "requests": [
+            {
+              "route": "/sync/watchlist/remove",
+              "method": "POST",
+              "body": {
+                "movies": [
+                  {
+                    "ids": {
+                      "tmdb": 8
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "provider-failure-keeps-local",
+      "initial": [],
+      "remote": [],
+      "fail": true,
+      "actions": [
+        {
+          "id": "tt1234567",
+          "type": "movie"
+        },
+        {
+          "id": "tt1234567",
+          "type": "movie"
+        }
+      ],
+      "aggregate": [],
+      "before": [],
+      "steps": [
+        {
+          "saved": true,
+          "ids": ["tt1234567"],
+          "requests": [
+            {
+              "route": "/sync/watchlist",
+              "method": "POST",
+              "body": {
+                "movies": [
+                  {
+                    "ids": {
+                      "imdb": "tt1234567"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "saved": false,
+          "ids": [],
+          "requests": [
+            {
+              "route": "/sync/watchlist/remove",
+              "method": "POST",
+              "body": {
+                "movies": [
+                  {
+                    "ids": {
+                      "imdb": "tt1234567"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "unsupported-anime-stays-local",
+      "initial": [],
+      "remote": [],
+      "actions": [
+        {
+          "id": "kitsu:1",
+          "type": "series",
+          "imdbId": "tt1234567"
+        },
+        {
+          "id": "kitsu:1",
+          "type": "series",
+          "imdbId": "tt1234567"
+        }
+      ],
+      "aggregate": [],
+      "before": [],
+      "steps": [
+        {
+          "saved": true,
+          "ids": ["kitsu:1"],
+          "requests": []
+        },
+        {
+          "saved": false,
+          "ids": [],
+          "requests": []
+        }
+      ]
+    }
+  ],
+  "stale_scope_publications": 0
+}

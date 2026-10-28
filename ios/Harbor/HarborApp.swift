@@ -123,6 +123,7 @@ struct HarborApp: App {
                 }
                 .modifier(LibraryPendingRecovery(app: model))
                 .modifier(TraktPlaybackRecovery(app: model))
+                .modifier(TraktWatchlistRecovery(app: model))
                 .modifier(TraktPendingRecovery(app: model))
     }
     private var accountSheet: some View {

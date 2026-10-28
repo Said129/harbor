@@ -44,7 +44,35 @@ con LibraryModel, persistencia, progreso existente y reinicio sin cuenta Stremio
 Un montaje nuevo muestra los componentes de lista, historial y transferencia con
 portadas decodificadas en ambos tamaños. Dos recorridos UI nuevos comprueban las
 pestañas locales afectadas y la ausencia de pestañas de proveedores desconectados.
-Estas pruebas aún no se han ejecutado en Apple.
+La primera compilación Apple (40608969355, fuente 5984eac) detectó dos errores
+en el bloque nuevo: una propiedad privada consultada desde la vista y una
+asignación a `error` sin `self` dentro de `catch`. Ambos están corregidos. Esa
+ejecución no llegó a iniciar pruebas; no aporta aprobaciones nativas ni visuales.
+
+Se añadió la agregación automática de la lista Trakt al iniciar y volver a la
+app, sin bloquear el inicio. Las tarjetas y botones reconocen ambas rutas IMDb
+y TMDB, mantienen el tipo película/serie y conservan los metadatos y el progreso
+locales. La proyección externa no copia títulos a la biblioteca persistente;
+la importación manual sigue guardándolos explícitamente.
+
+Guardar o quitar desde Harbor escribe primero localmente y envía después la
+acción Trakt en orden. La retirada elimina también los alias locales enlazados
+sin borrar su progreso ni campos desconocidos. Una decisión de retirada por
+perfil y conexión impide que una respuesta antigua la resucite; una nueva alta
+remota posterior o una conexión distinta puede volver a mostrar el título.
+Las respuestas y acciones de un perfil o conexión retirados no publican ni
+envían la siguiente acción. La cola es de mejor esfuerzo, como la referencia;
+no se afirma una cola persistente de cambios de lista sin conexión.
+
+Otros cuatro módulos originales se ejecutaron sin red para obtener seis
+escenarios y once acciones de sincronización automática, más la barrera contra
+publicaciones de otro perfil. Seis casos nativos nuevos comprueban ese contrato,
+la composición real con LibraryModel, reinicio, conservación del progreso,
+cambio de conexión, carrera con actualización y espera de transferencias. Los
+controles individuales usan el tipo de Media también para IMDb de series,
+evitando enviarlo al bucket de películas. Esa corrección explícita conserva
+el comportamiento útil, en lugar del error de inferencia de la referencia.
+Todos estos casos nativos siguen pendientes de ejecución Apple.
 
 Los montajes con transporte y metadatos controlados no certifican el recorrido
 completo de una cuenta OAuth personal ni los botones de confirmación en una
@@ -52,10 +80,7 @@ instalación física. Sus capturas originales deben recogerse y revisarse.
 
 ## Pendientes de fidelidad que siguen en el objetivo
 
-La referencia también sincroniza automáticamente guardar/quitar de la lista
-local y agrega identificadores de las listas externas. Ese enlace global y la
-proyección de sus marcas de visto siguen pendientes; los controles manuales de
-este incremento no los sustituyen. También permanecen las listas públicas,
+La proyección global de las marcas de visto sigue pendiente. También permanecen las listas públicas,
 recomendaciones, calendario, avatar, comentarios y valoraciones Trakt, además
 del resto del alcance compatible del port. No se considera cerrado Trakt ni el
 port completo por añadir esta pestaña.

@@ -6,6 +6,8 @@ final class LibraryModel {
     private var snapshot = LibrarySnapshot([]) { didSet { continuationRevision &+= 1 } }
     private var continuationRevision = 0
     @ObservationIgnored private var continuationCache: (library: Int, tracker: Int, trakt: Int, local: Int, trackerVisible: Bool, localVisible: Bool, sources: ContinueWatchingSources, records: [LibraryRecord])?
+    private var traktWatchlist: TraktWatchlistSync?
+    @ObservationIgnored private var watchlistCache: (library: Int, remote: Int, binding: UUID, projection: TraktWatchlistProjection)?
     private var records: [JSONValue] { snapshot.records }
     private let cache: LibraryCache
     private let service: any LibraryServing
@@ -49,6 +51,8 @@ final class LibraryModel {
         self.service = transport; self.writeQueue = writeQueue ?? LibraryWriteQueue(service: transport)
     }
     var canChangePresentation: Bool { presentationReady }
+    var bookmarksReady: Bool { writable }
+    var canSaveBookmarks: Bool { writable && !busy }
     var hasCloudSession: Bool { session != nil }
     private var lastProgressWrite: [String: UInt64] = [:]
     var loading = false
@@ -56,6 +60,16 @@ final class LibraryModel {
     var error: String?
     var owner: String { session?.user.id ?? guestOwner }
     var items: [LibraryRecord] { snapshot.items }
+    func bindTraktWatchlist(_ value: TraktWatchlistSync?) {
+        if let value, value.account.owner != personalOwner { value.invalidate(); return }
+        traktWatchlist?.invalidate(); traktWatchlist = value; watchlistCache = nil
+    }
+    private var watchlistProjection: TraktWatchlistProjection? {
+        guard let binding = traktWatchlist, binding.isActive, binding.account.owner == personalOwner else { return nil }
+        if let cached = watchlistCache, cached.library == continuationRevision, cached.remote == binding.store.revision, cached.binding == binding.id { return cached.projection }
+        let projection = TraktWatchlistProjection(local: items, remote: binding.store.snapshot.watchlist, decisionKey: binding.decisionKey, fingerprint: binding.fingerprint)
+        watchlistCache = (continuationRevision, binding.store.revision, binding.id, projection); return projection
+    }
     var continuing: [LibraryRecord] {
         allContinuing.filter { dismissals[$0.id]?.hides($0) != true }
     }
@@ -148,9 +162,15 @@ final class LibraryModel {
     func filteredItems(for filter: LibraryFilter) -> [LibraryRecord] {
         let selected: [LibraryRecord]
         switch filter {
-        case .all: selected = items.filter { $0.bookmarked || $0.continuing || $0.watched }
-        case .saved: selected = items.filter(\.bookmarked)
-        case .watchlist: selected = items.filter { $0.bookmarked && !$0.watched }
+        case .all:
+            if let projection = watchlistProjection {
+                selected = projection.saved + items.filter { record in
+                    guard record.continuing || record.watched, let media = record.media else { return false }
+                    return projection.keys.isDisjoint(with: TraktWatchlistProjection.keys(media))
+                }
+            } else { selected = items.filter { $0.bookmarked || $0.continuing || $0.watched } }
+        case .saved: selected = watchlistProjection?.saved ?? items.filter(\.bookmarked)
+        case .watchlist: selected = (watchlistProjection?.saved ?? items.filter(\.bookmarked)).filter { !$0.watched }
         case .watched: selected = items.filter(\.watched)
         case .favorites:
             selected = favorites.entries.map { favorite in
@@ -224,7 +244,10 @@ final class LibraryModel {
             presentation = next; sharedPresentationError = nil; return true
         } catch { sharedPresentationError = "No se pudo guardar este cambio de biblioteca. Los datos anteriores se conservan."; return false }
     }
-    func bookmarked(_ media: Media) -> Bool { items.first { $0.id == media.id }?.bookmarked ?? false }
+    func bookmarked(_ media: Media) -> Bool {
+        if let projection = watchlistProjection { return !projection.keys.isDisjoint(with: TraktWatchlistProjection.keys(media)) }
+        return items.first { $0.id == media.id }?.bookmarked ?? false
+    }
     func watched(_ media: Media) -> Bool {
         if media.episodic {
             let available = (media.videos ?? []).filter { $0.season != nil && $0.episode != nil && $0.available }
@@ -253,6 +276,7 @@ final class LibraryModel {
     }
     func setSession(_ session: AccountSession?, personalOwner: String? = nil, guestOwner: String = "guest", synchronize: Bool = true) async {
         generation += 1
+        bindTraktWatchlist(nil)
         let current = generation
         self.session = session; self.guestOwner = guestOwner
         self.personalOwner = personalOwner ?? session?.user.id ?? guestOwner
@@ -297,18 +321,41 @@ final class LibraryModel {
         catch { if current == generation { self.error = safeMessage(error); Diagnostics.shared.recordFailure(error) } }
     }
     func toggleBookmark(_ media: Media) async {
-        let taste = discovery
-        let success = await update(media) { fields in
-            let wasSaved = fields["removed"] != .bool(true) && fields["temp"] != .bool(true)
+        let taste = discovery, current = generation, binding = traktWatchlist.flatMap { $0.isActive ? $0 : nil }
+        let wasSaved = bookmarked(media), related = wasSaved ? bookmarkAliases(media, binding: binding) : []
+        let decision = binding?.decision(saved: !wasSaved)
+        let success = await update(media, related: related) { fields in
             fields["removed"] = .bool(wasSaved)
             let state = fields["state"] ?? .null
             fields["temp"] = .bool(wasSaved && ((state["timeOffset"].numericValue ?? 0) > 0 || (state["flaggedWatched"].numericValue ?? 0) > 0))
+            if let binding, let decision {
+                var decisions = (fields["nativeTraktWatchlist"] ?? .null).objectValue
+                decisions[binding.decisionKey] = decision; fields["nativeTraktWatchlist"] = .object(decisions)
+            }
+            if fields["_id"]?.string == media.id, let imdb = media.imdbID { fields["imdb_id"] = .string(imdb) }
         }
+        if success, current == generation { binding?.enqueue(media, saved: !wasSaved) }
         if success, taste.owner == personalOwner, bookmarked(media) { taste.track(.watchlist, media: media) }
+    }
+    private func bookmarkAliases(_ media: Media, binding: TraktWatchlistSync?) -> Set<String> {
+        var keys = TraktWatchlistProjection.keys(media), related = Set<String>()
+        for _ in 0..<3 {
+            if let binding {
+                for item in binding.store.snapshot.watchlist {
+                    let aliases = TraktWatchlistProjection.keys(item)
+                    if !keys.isDisjoint(with: aliases) { keys.formUnion(aliases) }
+                }
+            }
+            for record in items {
+                guard let other = record.media else { continue }; let aliases = TraktWatchlistProjection.keys(other)
+                if !keys.isDisjoint(with: aliases) { related.insert(record.id); keys.formUnion(aliases) }
+            }
+        }
+        return related
     }
     @discardableResult func saveBookmark(_ media: Media, owner expectedOwner: String, personalOwner expectedPersonalOwner: String) async -> Bool {
         guard owner == expectedOwner, personalOwner == expectedPersonalOwner, writable else { return false }
-        if bookmarked(media) { return true }
+        if items.first(where: { $0.id == media.id })?.bookmarked == true { return true }
         return await update(media) { fields in fields["removed"] = .bool(false); fields["temp"] = .bool(false) }
     }
     func toggleWatched(_ media: Media) async {
@@ -366,7 +413,7 @@ final class LibraryModel {
         }
         if success, current == generation { lastProgressWrite[media.id] = snapshot.timestampMs }
     }
-    @discardableResult private func update(_ media: Media, progress: Bool = false, change: (inout [String: JSONValue]) throws -> Void) async -> Bool {
+    @discardableResult private func update(_ media: Media, progress: Bool = false, related: Set<String> = [], change: (inout [String: JSONValue]) throws -> Void) async -> Bool {
         guard writable, !busy else { return false }
         busy = true; mutation += 1; let current = generation; let activeSession = session; let activeOwner = owner
         defer { if current == generation { busy = false } }
@@ -393,12 +440,17 @@ final class LibraryModel {
             }
             try change(&fields); fields["_mtime"] = .string(ContinueDismissalAction.iso(Date().timeIntervalSince1970 * 1_000))
             let record = JSONValue.object(fields)
+            var changed = [record]
+            for saved in records where saved["_id"].string != media.id && related.contains(saved["_id"].string ?? "") {
+                var fields = saved.objectValue; try change(&fields); fields["_mtime"] = record["_mtime"]; changed.append(.object(fields))
+            }
             if let activeSession {
                 let lease: LibraryWriteQueue.Lease = { [weak self] in await self?.writeCurrent(current, owner: activeOwner) ?? false }
-                _ = try await writeQueue.put(record, session: activeSession, current: lease)
+                for record in changed { _ = try await writeQueue.put(record, session: activeSession, current: lease) }
             }
             guard current == generation else { return false }
-            var next = records.filter { $0["_id"].string != media.id }; next.append(record)
+            let ids = Set(changed.compactMap { $0["_id"].string })
+            let next = records.filter { !ids.contains($0["_id"].string ?? "") } + changed
             let prepared = try await cache.saveSnapshot(next, owner: activeOwner)
             guard current == generation else { return false }
             snapshot = prepared; error = nil; return true

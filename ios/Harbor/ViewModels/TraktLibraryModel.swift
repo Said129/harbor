@@ -110,7 +110,7 @@ import Observation
             let value = try await account.response(.library(.watchlist), client: client, active: lease)
             guard lease() else { return nil }; return try TraktLibraryItem.watchlist(value)
         } catch is CancellationError { return nil }
-        catch { if lease() { error = Self.message(error) }; return nil }
+        catch { if lease() { self.error = Self.message(error) }; return nil }
     }
     func importItems(_ items: [TraktLibraryItem], save: @escaping @MainActor (Media) async -> Bool) async -> Int? {
         guard active(), !loading, !transferring, account.session != nil else { return nil }
