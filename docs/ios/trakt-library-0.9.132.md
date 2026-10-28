@@ -80,9 +80,14 @@ instalación física. Sus capturas originales deben recogerse y revisarse.
 
 ## Pendientes de fidelidad que siguen en el objetivo
 
-La lectura global de las marcas y su prioridad manual están implementadas, con
-ejecución Apple pendiente; véase `trakt-watched-0.9.132.md`. Siguen pendientes la
-combinación completa de Historial y sus vistas por episodio. También permanecen las listas públicas,
+Las listas, transferencias, enlace automático y marcas globales aprobaron sus
+24 casos nativos en la ejecución 40613602917; véase `trakt-watched-0.9.132.md`.
+De las once capturas originales revisadas individualmente, la primera lista
+compacta conservaba una portada en carga. Se exige ahora esperar las cuatro
+portadas y repetir solo ese montaje afectado; el resto de las aprobaciones se
+conserva. El recorrido de pestañas del iPhone también requiere reparación.
+Historial combinado y su vista por episodios están implementados en un incremento
+posterior con ejecución pendiente. También permanecen las listas públicas,
 recomendaciones, calendario, avatar, comentarios y valoraciones Trakt, además
 del resto del alcance compatible del port. No se considera cerrado Trakt ni el
 port completo por añadir esta pestaña.

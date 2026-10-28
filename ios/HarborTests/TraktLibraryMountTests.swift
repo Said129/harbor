@@ -48,12 +48,12 @@ import XCTest
         XCTAssertGreaterThan(window.rootViewController?.view.bounds.width ?? 0, 300)
     }
     private func waitForDecodedCover(_ window: UIWindow) async throws {
-        func contains(_ view: UIView) -> Bool {
-            if let image = view as? UIImageView, image.image?.cgImage != nil, image.bounds.width > 80, image.bounds.height > 120 { return true }
-            return view.subviews.contains(where: contains)
+        func decoded(_ view: UIView) -> Int {
+            let own = (view as? UIImageView).map { $0.image?.cgImage != nil && $0.bounds.width > 80 && $0.bounds.height > 120 ? 1 : 0 } ?? 0
+            return own + view.subviews.reduce(0) { $0 + decoded($1) }
         }
-        for _ in 0..<100 { window.layoutIfNeeded(); if contains(window) { return }; try await Task.sleep(for: .milliseconds(50)) }
-        XCTFail("The actual Trakt library must decode the owned cover before capture"); throw HarborError(code: "owned-trakt-cover")
+        for _ in 0..<100 { window.layoutIfNeeded(); if decoded(window) >= 4 { return }; try await Task.sleep(for: .milliseconds(50)) }
+        XCTFail("All four actual Trakt cards must decode the owned cover before capture"); throw HarborError(code: "owned-trakt-cover")
     }
     private func capture(_ window: UIWindow, _ name: String) {
         let format = UIGraphicsImageRendererFormat(); format.scale = 1

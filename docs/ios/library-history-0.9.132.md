@@ -55,7 +55,17 @@ reinicio. Estos recorridos usan títulos sintéticos sin portadas; no certifican
 arte de proveedores. Las imágenes del montaje cubren ese aspecto por separado.
 
 Ninguno de estos casos nuevos se ha ejecutado todavía. La validación anterior de
-listas y marcas Trakt sigue en curso y se conserva como una ejecución distinta.
-Sus casos aprobados solo deberán repetirse si esta modificación afecta a su
-comportamiento. Permanecen pendientes las demás secciones, servicios, interfaces,
-animaciones y validaciones físicas del objetivo general, y una sola IPA final.
+listas y marcas Trakt terminó con 27 de 28 aprobaciones: 24 casos nativos, dos
+preparaciones y el recorrido del iPad aprobaron. Se conserva su evidencia. El
+recorrido del iPhone falló al consultar `isHittable` en una pestaña fuera del área
+visible. La reparación revela el marco completo antes de activarla y conserva
+la comprobación de selección tras el toque real.
+
+La nueva selección contiene siete casos nativos nuevos y un montaje afectado:
+la captura Trakt compacta anterior tenía una portada aún en carga, por lo que
+ahora debe esperar las cuatro. Hay tres preparaciones y tres recorridos: dos
+nuevos de Historial y solo el recorrido anterior fallido del iPhone. Total:
+14 ejecuciones y 19 capturas originales previstas. Se conservan las otras
+23 aprobaciones nativas y la del recorrido anterior del iPad. Permanecen
+pendientes las demás secciones, servicios, interfaces, animaciones y validaciones
+físicas del objetivo general, y una sola IPA final.

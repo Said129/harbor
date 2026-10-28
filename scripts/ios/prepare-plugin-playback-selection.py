@@ -6,6 +6,9 @@ import re
 import runpy
 
 requested = os.environ.get('HARBOR_NATIVE_SELECTION', '').strip()
+if requested == 'affected:library-history' or requested.startswith('HarborTests.LibraryHistoryTests/'):
+    runpy.run_path('scripts/ios/prepare-library-history-selection.py')
+    raise SystemExit(0)
 if requested == 'affected:trakt-library' or requested.startswith('HarborTests.TraktLibraryTests/'):
     runpy.run_path('scripts/ios/prepare-trakt-library-selection.py')
     raise SystemExit(0)

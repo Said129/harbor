@@ -54,11 +54,11 @@ import XCTest
         XCTAssertFalse(library.hasCloudSession); let requests = await service.requests; XCTAssertEqual(requests, 0)
     }
     private func waitForDecodedArtwork(_ window: UIWindow) async throws {
-        func contains(_ view: UIView) -> Bool {
-            if let image = view as? UIImageView, image.image?.cgImage != nil, image.bounds.width > 80, image.bounds.height > 60 { return true }
-            return view.subviews.contains(where: contains)
+        func decoded(_ view: UIView) -> Int {
+            let own = (view as? UIImageView).map { $0.image?.cgImage != nil && $0.bounds.width > 80 && $0.bounds.height > 60 ? 1 : 0 } ?? 0
+            return own + view.subviews.reduce(0) { $0 + decoded($1) }
         }
-        for _ in 0..<100 { window.layoutIfNeeded(); if contains(window) { return }; try await Task.sleep(for: .milliseconds(50)) }
-        XCTFail("Actual history artwork must be decoded before capture"); throw HarborError(code: "owned-history-artwork")
+        for _ in 0..<100 { window.layoutIfNeeded(); if decoded(window) >= 2 { return }; try await Task.sleep(for: .milliseconds(50)) }
+        XCTFail("Both actual history cards must decode their artwork before capture"); throw HarborError(code: "owned-history-artwork")
     }
 }

@@ -16,8 +16,8 @@ import XCTest
         XCTAssertFalse(app.buttons["library-tab-trakt"].exists); XCTAssertFalse(app.buttons["library-tab-simkl"].exists)
         for name in ["all", "saved", "watchlist", "watched", "favorites", "continue"] {
             let tab = app.buttons["library-tab-" + name]
-            for _ in 0..<4 { if tab.isHittable { break }; bar.swipeLeft() }
-            XCTAssertTrue(tab.isEnabled); XCTAssertTrue(tab.isHittable); ReadingUIInteraction.tapVisible(tab, in: app)
+            ReadingUIInteraction.revealHorizontally(tab, in: app, container: bar)
+            XCTAssertTrue(tab.isEnabled); ReadingUIInteraction.tapVisible(tab, in: app)
             let selected = XCTNSPredicateExpectation(predicate: NSPredicate(format: "selected == true"), object: tab)
             XCTAssertEqual(XCTWaiter.wait(for: [selected], timeout: 5), .completed)
             if ["all", "watchlist", "continue"].contains(name) {

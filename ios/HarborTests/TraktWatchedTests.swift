@@ -72,7 +72,7 @@ actor OwnedTraktWatchedDisk: TraktWatchedPersistence {
             let account = try account(), root = FileManager.default.temporaryDirectory.appendingPathComponent("owned-watched-manual-" + UUID().uuidString)
             try FileManager.default.createDirectory(at: root, withIntermediateDirectories: true); defer { try? FileManager.default.removeItem(at: root) }
             let disk = OwnedTraktWatchedDisk(), fingerprint = EBookShelf.hash(try XCTUnwrap(account.session?.trackingID).uuidString)
-            try await disk.write(.init(at: Date(), keys: Set(row["keys"].array.compactMap(\.string))), owner: account.owner, fingerprint: fingerprint)
+            await disk.write(.init(at: Date(), keys: Set(row["keys"].array.compactMap(\.string))), owner: account.owner, fingerprint: fingerprint)
             let transport = OwnedTraktTransport(fallback: { request in
                 let value: JSONValue = .object(["added": .object(["episodes": .integer(1)])])
                 return .init(status: request.httpMethod == "GET" ? 503 : 200, data: try JSONEncoder().encode(value))
@@ -100,7 +100,8 @@ actor OwnedTraktWatchedDisk: TraktWatchedPersistence {
         let feed = TraktWatchedFeed(client: client(transport), disk: disk); feed.bind(account: account, scope: "owned", active: { scope.active })
         await transport.hold("/sync/history"); let operation = Task { await feed.refresh() }; try await waitForHold(transport)
         scope.active = false; await transport.release(); await operation.value; XCTAssertNil(feed.state(for: account.owner))
-        let saved = try await disk.read(owner: account.owner, fingerprint: EBookShelf.hash(try XCTUnwrap(account.session?.trackingID).uuidString)); XCTAssertNil(saved)
+        let fingerprint = EBookShelf.hash(try XCTUnwrap(account.session?.trackingID).uuidString)
+        let saved = await disk.read(owner: account.owner, fingerprint: fingerprint); XCTAssertNil(saved)
         scope.active = true; feed.bind(account: account, scope: "owned", active: { scope.active })
         await transport.hold("/sync/history"); let changed = Task { await feed.refresh(force: true) }; try await waitForHold(transport)
         try account.set(nil); await transport.release(); await changed.value; XCTAssertNil(feed.state(for: account.owner))

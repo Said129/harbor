@@ -39,7 +39,8 @@ de numeración canónica/prioridad manual, tres respuestas canceladas o fallidas
 cuatro rutas de marcado directo, resuelto, especial o sin confirmación. Las
 entradas, salidas y hashes quedan en la fixture. Seis casos nativos nuevos
 comprueban esas reglas con el transporte, la caché protegida, LibraryModel y su
-reinicio reales. Todavía no se han ejecutado en Apple.
+reinicio reales. Los seis aprobaron en Apple en la ejecución 40613602917,
+fuente `a250493946884de12a2c269786996917ded08e42`.
 
 La compilación anterior 40611330498 aprobó el SDK completo sin advertencias
 nuevas, pero no ejecutó pruebas: una aserción nueva de listas usaba `.array` sin
@@ -48,6 +49,14 @@ Su archivo de evidencias y el árbol vacío se mantienen; no cuentan como prueba
 aprobadas. La siguiente selección conserva los casos aún no ejecutados y añade
 estos seis, sin repetir áreas aprobadas intactas ni producir otra IPA.
 
-Siguen pendientes la revisión visual de los estados nuevos en ambos tamaños,
-la combinación completa de fuentes de Historial y sus vistas por episodio, las
-listas públicas, recomendaciones, calendario y demás diferencias del port.
+La ejecución 40613602917 aprobó los 24 casos nativos seleccionados y 27 de 28
+ejecuciones totales. El recorrido del iPhone falló al consultar la visibilidad
+de Favoritos fuera de la ventana horizontal; el recorrido del iPad aprobó.
+Aparecieron dos `try` redundantes en estas pruebas, ya retirados del código sin
+cambiar sus expectativas. La siguiente compilación deberá confirmar que no
+quedan advertencias nuevas; no se repiten estos seis casos por ese ajuste.
+
+Siguen pendientes la revisión visual de las marcas en los episodios, las listas
+públicas, recomendaciones, calendario y demás diferencias del port. Historial
+combinado y su vista por episodios están implementados en un incremento posterior
+con ejecución pendiente; véase `library-history-0.9.132.md`.

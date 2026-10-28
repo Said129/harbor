@@ -143,6 +143,16 @@ import XCTest
         // Use the observed on-screen control; AXScrollToVisible fails on some iPad toolbar buttons.
         element.coordinate(withNormalizedOffset: .init(dx: 0.5, dy: 0.5)).tap()
     }
+    static func revealHorizontally(_ element: XCUIElement, in app: XCUIApplication, container: XCUIElement) {
+        func contained() -> Bool {
+            guard element.exists, visibleFrame(element, in: app) != nil else { return false }
+            let frame = element.frame, bounds = container.frame.intersection(app.frame)
+            return frame.minX.isFinite && frame.maxX.isFinite && frame.width > 0
+                && frame.minX >= bounds.minX - 1 && frame.maxX <= bounds.maxX + 1
+        }
+        for _ in 0..<6 { if contained() { return }; container.swipeLeft() }
+        XCTAssertTrue(contained(), "Reveal the whole tab inside its horizontal viewport before activation")
+    }
 
     static func back(from title: String, in app: XCUIApplication) {
         let bar = app.navigationBars[title]
