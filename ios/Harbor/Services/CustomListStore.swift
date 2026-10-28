@@ -65,7 +65,7 @@ actor CustomListDisk: CustomListPersistence {
             guard raw != nil || inherited?.ready != false else { throw HarborError(code: "custom-lists-store") }
             value = await Task.detached { raw.map(CustomListsDocument.init) }.value
             ready = true; error = nil
-        } catch { error = "Could not read your lists. Your saved data is preserved." }
+        } catch { self.error = "Could not read your lists. Your saved data is preserved." }
     }
     @discardableResult func apply(_ action: CustomListsDocument.Action) async -> CustomListsDocument.Result? {
         guard ready, !busy else { return nil }
@@ -81,7 +81,7 @@ actor CustomListDisk: CustomListPersistence {
         } catch {
             // Same visible fallback as Desktop's exhausted localStorage: keep
             // the edit in this owner's memory and make retry explicit.
-            value = next; unsaved = true; error = "Your lists are kept in memory. Save them before closing the app."
+            value = next; unsaved = true; self.error = "Your lists are kept in memory. Save them before closing the app."
         }
         return result
     }
@@ -89,7 +89,7 @@ actor CustomListDisk: CustomListPersistence {
         guard ready, unsaved, !busy else { return }
         busy = true; defer { busy = false }
         do { try await disk.write(document.raw, owner: owner); unsaved = false; error = nil }
-        catch { error = "Your lists are kept in memory. Save them before closing the app." }
+        catch { self.error = "Your lists are kept in memory. Save them before closing the app." }
     }
     func contains(_ item: String, list: String) -> Bool { lists.first { $0.id == list }?.items.contains { $0.id == item } ?? false }
 }

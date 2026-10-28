@@ -52,3 +52,17 @@ sincronización de este almacén: el módulo original escribe por separado
 comprobar los recorridos reales de cuenta y respaldo. Tampoco se atribuye este
 trabajo a las listas de música, que utilizan otro modelo. No hay IPA nueva ni
 aprobación de equivalencia completa de Mis listas.
+
+El primer intento Apple `40682261066`, fuente `4c8e563a`, no ejecutó modelos:
+la compilación encontró tres asignaciones a `error` dentro de bloques `catch`
+que ocultaban la propiedad del almacén. Las tres usan ahora `self.error`.
+El archivo original de diagnósticos mide 32.922 bytes y su SHA-256
+`5c0ac1285f67c293ded64188455fbb31b4863c03b8416c86e7c233e590cf2b22` coincide
+con el digest de GitHub. Se solicitó detener `40684549235` porque su fuente
+contenía exactamente ese error conocido; no se reinicia por una espera vencida.
+
+La selección `custom-lists-repair` reúne los cuatro contratos sin ejecutar, el
+nuevo caso de concurrencia y solo los dos recorridos de Historial que fallaron,
+con sus dos preparaciones necesarias: nueve ejecuciones y seis capturas previstas.
+No vuelve a ejecutar los montajes ni el recorrido de pestañas aprobados. La
+interfaz de Mis listas sigue pendiente y no se genera otra IPA.
