@@ -194,8 +194,9 @@ enum CustomListPresentation {
     }
     static func updated(_ list: CustomList, locale: Locale) -> String? {
         guard let timestamp = list.raw["updatedAt"].numericValue, timestamp > 0 else { return nil }
-        let formatter = RelativeDateTimeFormatter(); formatter.locale = locale; formatter.unitsStyle = .abbreviated
-        let when = formatter.localizedString(for: Date(timeIntervalSince1970: timestamp / 1_000), relativeTo: Date())
+        let formatter = RelativeDateTimeFormatter(); formatter.locale = locale; formatter.unitsStyle = .abbreviated; formatter.dateTimeStyle = .named
+        let date = Date(timeIntervalSince1970: timestamp / 1_000), now = Date()
+        let when = now.timeIntervalSince(date) < 45 ? formatter.localizedString(fromTimeInterval: 0) : formatter.localizedString(for: date, relativeTo: now)
         return DesktopInterfaceText.value("Updated {when}", variables: ["when": when], language: locale.identifier)
     }
     static func count(_ list: CustomList, locale: Locale, limit: Bool = false) -> String {

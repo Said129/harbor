@@ -845,6 +845,7 @@
 "Importing book…" = "Importing book…";
 "Importing {done} / {total}" = "正在导入 {done} / {total}";
 "In Theaters Now" = "正在热映";
+"In Watchlist" = "已在待看清单中";
 "In eBook, search Gutenberg or import EPUB and PDF files. In Manga, import PDF, CBZ, ZIP or image folders, or connect your Suwayomi server." = "In eBook, search Gutenberg or import EPUB and PDF files. In Manga, import PDF, CBZ, ZIP or image folders, or connect your Suwayomi server.";
 "Indonesian" = "印度尼西亚语";
 "Información" = "信息";
@@ -1799,6 +1800,7 @@
 "That route wouldn't chart. Try a different direction." = "这条航线走不通。换个方向试试。";
 "The CW" = "The CW";
 "The Roku Channel" = "The Roku Channel";
+"The addons did not return metadata for this title." = "插件未返回此作品的元数据。";
 "The authorization code timed out before you finished. Try again." = "你未能及时完成操作，授权码已过期。请重试。";
 "The comics industry's highest honor" = "漫画行业的最高荣誉";
 "The filled part of the timeline. Default follows your Harbor accent." = "The filled part of the timeline. Default follows your Harbor accent.";

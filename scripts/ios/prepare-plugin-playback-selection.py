@@ -6,6 +6,9 @@ import re
 import runpy
 
 requested = os.environ.get('HARBOR_NATIVE_SELECTION', '').strip()
+if requested == 'affected:addon-origins' or requested.startswith('HarborTests.AddonOriginTests/'):
+    runpy.run_path('scripts/ios/prepare-addon-origins-selection.py')
+    raise SystemExit(0)
 if requested == 'affected:custom-lists-interface' or requested.startswith('HarborTests.CustomListInterfaceContractsTests/'):
     runpy.run_path('scripts/ios/prepare-custom-lists-interface-selection.py')
     raise SystemExit(0)

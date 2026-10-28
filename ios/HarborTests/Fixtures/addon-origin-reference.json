@@ -1,0 +1,499 @@
+{
+  "reference": "0834340cec5531650bfe78cd628628702e636987",
+  "actual_original_typescript_executed": true,
+  "provider_network_requests": 0,
+  "executed_module_hashes": {
+    "src/lib/addons.ts": "d5e9e79e13ec96ef942fe657c3d8eae2c4009b519bc56811c9f1f781a923d551",
+    "src/lib/cinemeta.ts": "717b61825238ea1c98a751a2ab606c60e2d9801887ca8acaab79e4b2100aace5",
+    "src/lib/streams/addons.ts": "cc1420d21c628dcb1ac053c8c44561d06a34d1d8230399631632262a221ea324",
+    "src/lib/streams/plugins/addon.ts": "bc943dd3ccba1859746ff1f1d81570736d1aefe55b8c80b54150b9ae5727ed1c",
+    "src/lib/streams/scoring/scoring-stream.ts": "5d72d0737af45c70b189de2ee7b5942de67baba82a8446b060577a6d35e47b27"
+  },
+  "extracted_original_functions": {
+    "src/lib/addons.ts": ["addonBasesForOrigin", "fetchAddonMeta"],
+    "src/lib/cinemeta.ts": ["isAddonNativeMeta"],
+    "src/lib/streams/addons.ts": ["streamTypesAcceptingId", "alternateStreamTypes"],
+    "src/lib/streams/plugins/addon.ts": ["pluginIdFromCatalogueBase"],
+    "src/lib/streams/scoring/scoring-stream.ts": [
+      "scoreStream: original preferAddonId if statement only"
+    ]
+  },
+  "score_branch_sha256": "d8819242292611f69b656fc4d3417f7ca4b380e84348841fc9a5c6aaa456bc2b",
+  "base_cases": [
+    {
+      "addons": [
+        {
+          "manifest": {
+            "id": "owned",
+            "name": "First",
+            "types": ["movie", "series"],
+            "resources": ["stream"]
+          },
+          "transportUrl": "https://example.org/first/manifest.json",
+          "enabled": true
+        },
+        {
+          "manifest": {
+            "id": "owned",
+            "name": "Second",
+            "types": ["tv", "movie"],
+            "idPrefixes": ["owned:"],
+            "resources": ["stream"]
+          },
+          "transportUrl": "https://example.org/second/manifest.json",
+          "enabled": true
+        },
+        {
+          "manifest": {
+            "id": "other",
+            "name": "Other"
+          },
+          "transportUrl": "https://example.org/other/manifest.json",
+          "enabled": true
+        }
+      ],
+      "origin": null,
+      "expected": []
+    },
+    {
+      "addons": [
+        {
+          "manifest": {
+            "id": "owned",
+            "name": "First",
+            "types": ["movie", "series"],
+            "resources": ["stream"]
+          },
+          "transportUrl": "https://example.org/first/manifest.json",
+          "enabled": true
+        },
+        {
+          "manifest": {
+            "id": "owned",
+            "name": "Second",
+            "types": ["tv", "movie"],
+            "idPrefixes": ["owned:"],
+            "resources": ["stream"]
+          },
+          "transportUrl": "https://example.org/second/manifest.json",
+          "enabled": true
+        },
+        {
+          "manifest": {
+            "id": "other",
+            "name": "Other"
+          },
+          "transportUrl": "https://example.org/other/manifest.json",
+          "enabled": true
+        }
+      ],
+      "origin": {
+        "id": "owned",
+        "name": "Owned"
+      },
+      "expected": ["https://example.org/first", "https://example.org/second"]
+    },
+    {
+      "addons": [
+        {
+          "manifest": {
+            "id": "owned",
+            "name": "First",
+            "types": ["movie", "series"],
+            "resources": ["stream"]
+          },
+          "transportUrl": "https://example.org/first/manifest.json",
+          "enabled": true
+        },
+        {
+          "manifest": {
+            "id": "owned",
+            "name": "Second",
+            "types": ["tv", "movie"],
+            "idPrefixes": ["owned:"],
+            "resources": ["stream"]
+          },
+          "transportUrl": "https://example.org/second/manifest.json",
+          "enabled": true
+        },
+        {
+          "manifest": {
+            "id": "other",
+            "name": "Other"
+          },
+          "transportUrl": "https://example.org/other/manifest.json",
+          "enabled": true
+        }
+      ],
+      "origin": {
+        "id": "owned",
+        "name": "Owned",
+        "base": "https://example.org/first/manifest.json"
+      },
+      "expected": ["https://example.org/first", "https://example.org/second"]
+    },
+    {
+      "addons": [
+        {
+          "manifest": {
+            "id": "owned",
+            "name": "First",
+            "types": ["movie", "series"],
+            "resources": ["stream"]
+          },
+          "transportUrl": "https://example.org/first/manifest.json",
+          "enabled": true
+        },
+        {
+          "manifest": {
+            "id": "owned",
+            "name": "Second",
+            "types": ["tv", "movie"],
+            "idPrefixes": ["owned:"],
+            "resources": ["stream"]
+          },
+          "transportUrl": "https://example.org/second/manifest.json",
+          "enabled": true
+        },
+        {
+          "manifest": {
+            "id": "other",
+            "name": "Other"
+          },
+          "transportUrl": "https://example.org/other/manifest.json",
+          "enabled": true
+        }
+      ],
+      "origin": {
+        "id": "owned",
+        "name": "Owned",
+        "base": "https://example.org/saved"
+      },
+      "expected": [
+        "https://example.org/saved",
+        "https://example.org/first",
+        "https://example.org/second"
+      ]
+    },
+    {
+      "addons": [
+        {
+          "manifest": {
+            "id": "owned",
+            "name": "First",
+            "types": ["movie", "series"],
+            "resources": ["stream"]
+          },
+          "transportUrl": "https://example.org/first/manifest.json",
+          "enabled": true
+        },
+        {
+          "manifest": {
+            "id": "owned",
+            "name": "Second",
+            "types": ["tv", "movie"],
+            "idPrefixes": ["owned:"],
+            "resources": ["stream"]
+          },
+          "transportUrl": "https://example.org/second/manifest.json",
+          "enabled": true
+        },
+        {
+          "manifest": {
+            "id": "other",
+            "name": "Other"
+          },
+          "transportUrl": "https://example.org/other/manifest.json",
+          "enabled": true
+        }
+      ],
+      "origin": {
+        "id": "missing",
+        "name": "Missing",
+        "base": "https://example.org/saved/manifest.json"
+      },
+      "expected": ["https://example.org/saved"]
+    }
+  ],
+  "native_cases": [
+    {
+      "media": {
+        "id": "tt1234567",
+        "type": "movie",
+        "name": "Owned"
+      },
+      "expected": false
+    },
+    {
+      "media": {
+        "id": "tt1234567",
+        "type": "series",
+        "name": "Owned",
+        "addonOrigin": {
+          "id": "owned",
+          "name": "Owned"
+        }
+      },
+      "expected": false
+    },
+    {
+      "media": {
+        "id": "tt1234567",
+        "type": "tv",
+        "name": "Owned"
+      },
+      "expected": true
+    },
+    {
+      "media": {
+        "id": "tmdb:tv:1",
+        "type": "movie",
+        "name": "Owned"
+      },
+      "expected": false
+    },
+    {
+      "media": {
+        "id": "tmdb:tv:1",
+        "type": "series",
+        "name": "Owned",
+        "addonOrigin": {
+          "id": "owned",
+          "name": "Owned"
+        }
+      },
+      "expected": false
+    },
+    {
+      "media": {
+        "id": "tmdb:tv:1",
+        "type": "tv",
+        "name": "Owned"
+      },
+      "expected": true
+    },
+    {
+      "media": {
+        "id": "kitsu:1",
+        "type": "movie",
+        "name": "Owned"
+      },
+      "expected": false
+    },
+    {
+      "media": {
+        "id": "kitsu:1",
+        "type": "series",
+        "name": "Owned",
+        "addonOrigin": {
+          "id": "owned",
+          "name": "Owned"
+        }
+      },
+      "expected": false
+    },
+    {
+      "media": {
+        "id": "kitsu:1",
+        "type": "tv",
+        "name": "Owned"
+      },
+      "expected": true
+    },
+    {
+      "media": {
+        "id": "mal:1",
+        "type": "movie",
+        "name": "Owned"
+      },
+      "expected": false
+    },
+    {
+      "media": {
+        "id": "mal:1",
+        "type": "series",
+        "name": "Owned",
+        "addonOrigin": {
+          "id": "owned",
+          "name": "Owned"
+        }
+      },
+      "expected": false
+    },
+    {
+      "media": {
+        "id": "mal:1",
+        "type": "tv",
+        "name": "Owned"
+      },
+      "expected": true
+    },
+    {
+      "media": {
+        "id": "anilist:1",
+        "type": "movie",
+        "name": "Owned"
+      },
+      "expected": false
+    },
+    {
+      "media": {
+        "id": "anilist:1",
+        "type": "series",
+        "name": "Owned",
+        "addonOrigin": {
+          "id": "owned",
+          "name": "Owned"
+        }
+      },
+      "expected": true
+    },
+    {
+      "media": {
+        "id": "anilist:1",
+        "type": "tv",
+        "name": "Owned"
+      },
+      "expected": true
+    },
+    {
+      "media": {
+        "id": "owned:1",
+        "type": "movie",
+        "name": "Owned"
+      },
+      "expected": false
+    },
+    {
+      "media": {
+        "id": "owned:1",
+        "type": "series",
+        "name": "Owned",
+        "addonOrigin": {
+          "id": "owned",
+          "name": "Owned"
+        }
+      },
+      "expected": true
+    },
+    {
+      "media": {
+        "id": "owned:1",
+        "type": "tv",
+        "name": "Owned"
+      },
+      "expected": true
+    }
+  ],
+  "type_cases": [
+    {
+      "addon": {
+        "manifest": {
+          "resources": ["stream"],
+          "types": ["tv", "movie", "tv"],
+          "idPrefixes": ["owned:"]
+        },
+        "transportUrl": "https://example.org/manifest.json",
+        "enabled": true
+      },
+      "primary": "movie",
+      "id": "owned:1",
+      "expected": ["movie", "tv", "tv"]
+    },
+    {
+      "addon": {
+        "manifest": {
+          "resources": [
+            {
+              "name": "stream",
+              "types": ["tv", "series"],
+              "idPrefixes": ["owned:"]
+            }
+          ],
+          "types": ["movie"]
+        },
+        "transportUrl": "https://example.org/manifest.json",
+        "enabled": true
+      },
+      "primary": "movie",
+      "id": "owned:1",
+      "expected": ["movie", "tv", "series"]
+    },
+    {
+      "addon": {
+        "manifest": {
+          "resources": [
+            {
+              "name": "stream",
+              "types": ["tv"],
+              "idPrefixes": ["different:"]
+            }
+          ]
+        },
+        "transportUrl": "https://example.org/manifest.json",
+        "enabled": true
+      },
+      "primary": "movie",
+      "id": "owned:1",
+      "expected": ["movie"]
+    }
+  ],
+  "plugin_cases": [
+    {
+      "base": "https://example.org/manifest.json",
+      "expected": null
+    },
+    {
+      "base": "harbor-plugin://plugin:one/provider",
+      "expected": "plugin:one"
+    },
+    {
+      "base": "harbor-plugin://plugin:one",
+      "expected": "plugin:one"
+    },
+    {
+      "base": "harbor-plugin://repo/key",
+      "expected": null
+    },
+    {
+      "base": "harbor-plugin://",
+      "expected": null
+    },
+    {
+      "base": "harbor-plugin://plugin:two/provider/path",
+      "expected": "plugin:two"
+    }
+  ],
+  "metadata_request": "https://example.org/first/meta/series/owned%3A%E6%9D%B1%E4%BA%AC%2Fa%3Fb%23c.json",
+  "score_cases": [
+    {
+      "addonId": "owned",
+      "preferAddonId": "owned",
+      "expected": {
+        "score": 250,
+        "reasons": [
+          {
+            "signal": "origin-addon",
+            "delta": 250
+          }
+        ]
+      }
+    },
+    {
+      "addonId": "other",
+      "preferAddonId": "owned",
+      "expected": {
+        "score": 0,
+        "reasons": []
+      }
+    },
+    {
+      "addonId": "owned",
+      "expected": {
+        "score": 0,
+        "reasons": []
+      }
+    }
+  ],
+  "caveat": "Only the exact origin-score branch executes for scoring. This does not certify other score signals or Android bytecode support."
+}

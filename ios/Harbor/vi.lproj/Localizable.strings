@@ -845,6 +845,7 @@
 "Importing book…" = "Importing book…";
 "Importing {done} / {total}" = "Đang nhập {done} / {total}";
 "In Theaters Now" = "Đang chiếu tại rạp";
+"In Watchlist" = "Trong danh sách xem";
 "In eBook, search Gutenberg or import EPUB and PDF files. In Manga, import PDF, CBZ, ZIP or image folders, or connect your Suwayomi server." = "In eBook, search Gutenberg or import EPUB and PDF files. In Manga, import PDF, CBZ, ZIP or image folders, or connect your Suwayomi server.";
 "Indonesian" = "Tiếng Indonesia";
 "Información" = "Thông tin";
@@ -1799,6 +1800,7 @@
 "That route wouldn't chart. Try a different direction." = "Không thể lập hải trình đó. Hãy thử một hướng khác.";
 "The CW" = "The CW";
 "The Roku Channel" = "The Roku Channel";
+"The addons did not return metadata for this title." = "Các tiện ích không trả về siêu dữ liệu cho tựa phim này.";
 "The authorization code timed out before you finished. Try again." = "Mã ủy quyền đã hết hạn trước khi bạn hoàn tất. Hãy thử lại.";
 "The comics industry's highest honor" = "Giải thưởng danh giá nhất của ngành truyện tranh";
 "The filled part of the timeline. Default follows your Harbor accent." = "The filled part of the timeline. Default follows your Harbor accent.";

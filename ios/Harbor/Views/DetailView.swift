@@ -45,8 +45,8 @@ struct DetailView: View {
                 hero
                 VStack(alignment: .leading, spacing: 16) {
                     Text(seasonArtwork?.description ?? model.media.description ?? "").font(HarborTheme.font(16)).lineSpacing(5).foregroundStyle(HarborTheme.ink.opacity(0.7)).textSelection(.enabled).accessibilityIdentifier("detail-description")
-                    if let error = app.library.error { Text(error).font(.caption).foregroundStyle(.orange) }
-                    if let error = model.error { Text(error).foregroundStyle(.orange) }
+                    if let error = app.library.error { Text(DesktopInterfaceText.value(error)).font(.caption).foregroundStyle(.orange) }
+                    if let error = model.error { Text(DesktopInterfaceText.value(error)).foregroundStyle(.orange).accessibilityIdentifier("detail-metadata-error") }
                     if model.loading { ProgressView() }
                     if model.isAnimeOneOff {
                         animeMovieSection
@@ -290,10 +290,11 @@ struct DetailView: View {
     private var primaryActions: some View {
         HStack(spacing: 10) {
                     Button { playTitle() } label: { HStack(spacing: 10) { glyph("ui-play-filled", size: 15); Text("Reproducir").font(HarborTheme.font(15, weight: .semibold)).lineLimit(1).minimumScaleFactor(0.85) }.padding(.horizontal, 22).frame(minHeight: 48).foregroundStyle(.black).background(.white, in: .capsule) }.buttonStyle(.plain).disabled(model.loadingMetadata || (model.media.episodic && (model.media.videos ?? []).isEmpty)).accessibilityIdentifier("detail-play")
-                    Button { Task { await app.library.toggleBookmark(model.media); if app.library.error == nil { showHint("bookmark") } } } label: { HStack(spacing: 8) { glyph(app.library.bookmarked(model.media) ? "music-check" : "music-plus", size: 16); Text(app.library.bookmarked(model.media) ? "En la lista para ver" : "Agregar a la lista de seguimiento").font(HarborTheme.font(14, weight: .medium)).lineLimit(1).minimumScaleFactor(0.85) }.padding(.horizontal, 16).frame(minHeight: 48).background(app.library.bookmarked(model.media) ? HarborTheme.accent.opacity(0.2) : HarborTheme.background.opacity(0.8), in: .capsule) }.buttonStyle(.plain).disabled(app.library.busy).accessibilityLabel(app.library.bookmarked(model.media) ? "En la lista para ver" : "Agregar a la lista de seguimiento").accessibilityIdentifier("detail-bookmark")
-                        .modifier(HarborActionHint(id: "bookmark", title: app.library.bookmarked(model.media) ? "En la lista para ver" : "Agregar a la lista de seguimiento", selected: actionHint))
+                    Button { Task { await app.library.toggleBookmark(model.media); if app.library.error == nil { showHint("bookmark") } } } label: { HStack(spacing: 8) { glyph(app.library.bookmarked(model.media) ? "music-check" : "music-plus", size: 16); Text(watchlistTitle).font(HarborTheme.font(14, weight: .medium)).lineLimit(1).minimumScaleFactor(0.85) }.padding(.horizontal, 16).frame(minHeight: 48).background(app.library.bookmarked(model.media) ? HarborTheme.accent.opacity(0.2) : HarborTheme.background.opacity(0.8), in: .capsule) }.buttonStyle(.plain).disabled(app.library.busy).accessibilityLabel(watchlistTitle).accessibilityIdentifier("detail-bookmark")
+                        .modifier(HarborActionHint(id: "bookmark", title: watchlistTitle, selected: actionHint))
                 }
     }
+    private var watchlistTitle: String { DesktopInterfaceText.value(app.library.bookmarked(model.media) ? "In Watchlist" : "Add to Watchlist") }
     private var secondaryActions: some View {
         HStack(spacing: 10) {
                     CustomListMembershipButton(app: app, item: CustomListItem.input(model.media))

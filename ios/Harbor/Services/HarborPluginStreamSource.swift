@@ -31,9 +31,11 @@ struct HarborPluginSourceGroup: Sendable {
 
 enum HarborPluginSourceSelection {
     static func groups(_ plugins: [HarborInstalledStreamPlugin], type: String, ids: [String],
-        options: HarborPluginStreamOptions, startingPriority: Int) -> [HarborPluginSourceGroup] {
+        options: HarborPluginStreamOptions, startingPriority: Int, origin: MediaAddonOrigin? = nil, sourceID: String? = nil) -> [HarborPluginSourceGroup] {
         guard options.enabled else { return [] }
         let runnable = plugins.filter { $0.runnable && !(options.hideAdult && $0.entry.nsfw) }
+        let named = origin?.base.flatMap(AddonOriginPolicy.pluginID) ?? origin?.id
+        let pinned = named.flatMap { id in runnable.contains(where: { $0.id == id }) ? id : nil }
         var collections: [[HarborInstalledStreamPlugin]] = []
         for plugin in runnable {
             if options.groupByRepository, let index = collections.firstIndex(where: { $0.first?.repoURL == plugin.repoURL }) {
@@ -45,16 +47,21 @@ enum HarborPluginSourceSelection {
             let left = prefixes.firstIndex(where: a.element.hasPrefix) ?? 999, right = prefixes.firstIndex(where: b.element.hasPrefix) ?? 999
             return left == right ? a.offset < b.offset : left < right
         }.map(\.element)
-        return collections.enumerated().compactMap { index, members in
+        let groups: [HarborPluginSourceGroup] = collections.enumerated().compactMap { index, members in
             guard let first = members.first else { return nil }
             let types = Set(members.flatMap { $0.entry.types }), accepted = members.flatMap { $0.entry.idPrefixes }
             // The reference falls back to any declared stream type when a scheme matches.
-            guard !types.isEmpty, let picked = ordered.first(where: { id in accepted.isEmpty || accepted.contains(where: id.hasPrefix) }) else { return nil }
+            let forced = !options.groupByRepository && first.id == pinned ? sourceID : nil
+            guard !types.isEmpty, let picked = forced ?? ordered.first(where: { id in accepted.isEmpty || accepted.contains(where: id.hasPrefix) }) else { return nil }
             let addonID = options.groupByRepository ? "plugin-repo:" + HarborPluginManifest.repositoryKey(first.repoURL) : first.id
             let name = options.groupByRepository ? first.repoName : first.entry.name
             let path = options.groupByRepository ? "repo/" + HarborPluginManifest.repositoryKey(first.repoURL) : first.id
             return .init(addonID: addonID, name: name, url: "harbor-plugin://" + path, plugins: members, pickedID: picked, priority: startingPriority + index)
         }
+        if let pinned, !options.groupByRepository, groups.contains(where: { $0.url == "harbor-plugin://" + pinned }) {
+            return groups.filter { $0.url == "harbor-plugin://" + pinned }
+        }
+        return groups
     }
 }
 
@@ -72,7 +79,7 @@ enum HarborPluginSourceSelection {
         try validate()
         let ids = StreamRequestPolicy.ids(media, videoID: videoID, season: episode?.season, episode: episode?.episode)
         let groups = HarborPluginSourceSelection.groups(manager.document.plugins, type: media.type == "anime" ? "series" : media.type,
-            ids: ids, options: options, startingPriority: startingPriority)
+            ids: ids, options: options, startingPriority: startingPriority, origin: media.addonOrigin, sourceID: media.id)
         return try await withThrowingTaskGroup(of: (Int, HarborPluginStreamBatch).self) { tasks in
             for (index, group) in groups.enumerated() {
                 tasks.addTask { (index, try await self.run(group, media: media, ids: ids, episode: episode, options: options, tmdbKey: tmdbKey)) }

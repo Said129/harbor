@@ -9,7 +9,7 @@ actor MediaMetadataStore {
     // The digest includes account, configured transports and metadata settings.
     // Private addon URLs and credentials never appear in logs or disk caches.
     static func key(_ media: Media, owner: String, addons: [Addon], configuration: MetadataConfiguration) throws -> String {
-        let value: JSONValue = .object(["media": .string(media.identity), "owner": .string(owner), "addons": try .encoded(addons), "tmdb": .string(configuration.tmdbKey), "language": .string(configuration.language), "region": .string(configuration.region), "translate": .bool(configuration.translateTitles)])
+        let value: JSONValue = .object(["media": .string(media.identity), "origin": try .encoded(media.addonOrigin), "owner": .string(owner), "addons": try .encoded(addons), "tmdb": .string(configuration.tmdbKey), "language": .string(configuration.language), "region": .string(configuration.region), "translate": .bool(configuration.translateTitles)])
         let encoder = JSONEncoder(); encoder.outputFormatting = [.sortedKeys]
         return SHA256.hash(data: try encoder.encode(value)).map { String(format: "%02x", $0) }.joined()
     }

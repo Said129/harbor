@@ -60,12 +60,25 @@ struct HarborService: Sendable {
         let configuration: MetadataConfiguration
         if let supplied { configuration = supplied }
         else { configuration = await MetadataPreferences.shared.configuration() }
+        let preferred = try await AddonOriginMetadata().value(media, addons: addons)
+        let attempted = Set(AddonOriginPolicy.metadataURLs(media, addons: addons))
+        if let preferred, AddonOriginPolicy.isNative(media) { return preferred }
         if media.id.hasPrefix("tmdb:") && !configuration.tmdbKey.isEmpty {
-            let enriched = try await TMDBService().detail(media, configuration: configuration)
+            let enriched: Media
+            do { enriched = try await TMDBService().detail(media, configuration: configuration) }
+            catch {
+                try Task.checkCancellation()
+                if let preferred { return preferred }
+                throw error
+            }
             if enriched.id != media.id {
-                if var combined = try? await addonMetadata(enriched, addons: addons) {
+                let provider: Media?
+                if let preferred { provider = preferred }
+                else { provider = try? await addonMetadata(enriched, addons: addons, attempted: attempted) }
+                if var combined = provider {
                     combined.logo = enriched.logo ?? combined.logo; combined.background = enriched.background ?? combined.background
                     combined.artworkSourceID = enriched.artworkSourceID ?? combined.artworkSourceID
+                    combined.imdbID = enriched.imdbID ?? (enriched.id.hasPrefix("tt") ? enriched.id : combined.imdbID)
                     combined.cast = enriched.cast ?? combined.cast; combined.director = enriched.director ?? combined.director
                     combined.details = enriched.details?.includingTrailers(from: combined.details) ?? combined.details
                     return combined
@@ -74,7 +87,9 @@ struct HarborService: Sendable {
             }
             return enriched
         }
-        var result = try await addonMetadata(media, addons: addons)
+        var result: Media
+        if let preferred { result = preferred }
+        else { result = try await addonMetadata(media, addons: addons, attempted: attempted) }
         if !configuration.tmdbKey.isEmpty, let enriched = try? await TMDBService().detail(result, configuration: configuration) {
             result.logo = enriched.logo ?? result.logo
             result.background = enriched.background ?? result.background
@@ -96,8 +111,10 @@ struct HarborService: Sendable {
         try Task.checkCancellation()
         return Array(row.metas.filter { $0.identity != media.identity }.prefix(30))
     }
-    private func addonMetadata(_ media: Media, addons: [Addon]) async throws -> Media {
-        let plans = try await resources(addons, "meta", media.type, media.id)
+    private func addonMetadata(_ media: Media, addons: [Addon], attempted: Set<String> = []) async throws -> Media {
+        let plans = try await resources(addons, "meta", media.type, media.id).filter {
+            !attempted.contains(AddonOriginPolicy.resourceURL($0.addon.transportUrl, resource: "meta", kind: media.type, id: media.id) ?? $0.url)
+        }
         let result = try await fetch(plans)
         for plan in plans {
             if let value = result.values.first(where: { $0.0.key == plan.key })?.1,
@@ -106,10 +123,13 @@ struct HarborService: Sendable {
                 return meta
             }
         }
-        if AnimeService.isAnime(media.id), let parsed = try? await AnimeService.metadata(id: media.id, kind: media.type) { return parsed }
+        if AnimeService.isAnime(media.id), var parsed = try? await AnimeService.metadata(id: media.id, kind: media.type) {
+            parsed.addonOrigin = media.addonOrigin; return parsed
+        }
         if media.id.hasPrefix("tt") && ["movie", "series"].contains(media.type),
+           !attempted.contains("https://v3-cinemeta.strem.io/meta/\(media.type)/\(media.id).json"),
            let value = try? await http.json("https://v3-cinemeta.strem.io/meta/\(media.type)/\(media.id).json"),
-           let parsed = Media.parse(value["meta"], kind: media.type) { return parsed }
+           var parsed = Media.parse(value["meta"], kind: media.type) { parsed.addonOrigin = media.addonOrigin; return parsed }
         throw HarborError(code: result.errors.first ?? "no-metadata")
     }
 
@@ -149,13 +169,8 @@ struct HarborService: Sendable {
     func streams(_ media: Media, videoID: String, addons: [Addon], season: Int? = nil, episode: Int? = nil, unfiltered: Bool = false,
         pluginSource: (@Sendable () async throws -> HarborPluginStreamBatch)? = nil) async throws -> ([StreamOffer], [String]) {
         async let pluginResponse = Self.pluginResponse(pluginSource)
-        var requested: [RequestPlan] = []
-        let kind = media.type == "anime" ? "series" : media.type
-        for id in StreamRequestPolicy.ids(media, videoID: videoID, season: season, episode: episode) {
-            requested += try await resources(addons, "stream", kind, id)
-        }
-        let plans = StreamRequestPolicy.plans(requested)
-        let responses = try await fetch(plans)
+        let selection = try await streamRequests(media, videoID: videoID, addons: addons, season: season, episode: episode)
+        let responses = try await fetch(selection.plans, fallbacks: selection.fallbacks)
         var raw: [JSONValue] = []
         var errors = responses.errors
         for (plan, response) in responses.values {
@@ -168,9 +183,39 @@ struct HarborService: Sendable {
         raw.append(contentsOf: plugins.streams); errors.append(contentsOf: plugins.errors)
         try Task.checkCancellation()
         let preferences = await StreamPreferences.shared.configuration()
-        let trust = (unfiltered ? StreamFilterConfiguration(level: "off", addonOrder: preferences.addonOrder) : preferences).trust(media, season: season, episode: episode)
-        let result: JSONValue = try await core.call("rank", ["streams": .array(StreamRequestPolicy.deduplicated(raw)), "trust": trust, "score": .object(["mediaKind": .string(kind), "respectAddonOrder": .bool(preferences.addonOrder)])])
+        let trust = (unfiltered || AddonOriginPolicy.isNative(media) ? StreamFilterConfiguration(level: "off", addonOrder: preferences.addonOrder) : preferences).trust(media, season: season, episode: episode)
+        let result: JSONValue = try await core.call("rank", ["streams": .array(StreamRequestPolicy.deduplicated(raw)), "trust": trust, "score": AddonOriginPolicy.score(media, addonOrder: preferences.addonOrder)])
         return (result["picker"]["all"].array.enumerated().map { StreamOffer(id: $0.offset, raw: $0.element) }, errors)
+    }
+
+    struct StreamRequests: Sendable {
+        let plans: [RequestPlan]
+        let fallbacks: [String: [RequestPlan]]
+    }
+    func streamRequests(_ media: Media, videoID: String, addons: [Addon], season: Int? = nil, episode: Int? = nil) async throws -> StreamRequests {
+        var requested: [RequestPlan] = []
+        let kind = media.type == "anime" ? "series" : media.type
+        for id in StreamRequestPolicy.ids(media, videoID: videoID, season: season, episode: episode) {
+            requested += try await resources(addons, "stream", kind, id)
+        }
+        let originBases = AddonOriginPolicy.bases(addons, origin: media.addonOrigin)
+        var fallbacks: [String: [RequestPlan]] = [:]
+        for (index, addon) in addons.enumerated() where addon.enabled && AddonOriginPolicy.declaresStreams(addon) && originBases.contains(AddonOriginPolicy.base(addon.transportUrl)) {
+            // A saved series must retain its selected provider episode ID.
+            // Desktop also forces the catalogue's ID for its own addon; retain
+            // other canonical requests rather than losing those episode sources.
+            let id = media.episodic ? videoID : media.id
+            let types = AddonOriginPolicy.streamTypes(addon, primary: kind, id: id)
+            let candidates = types.compactMap { type -> RequestPlan? in
+                guard let url = AddonOriginPolicy.resourceURL(addon.transportUrl, resource: "stream", kind: type, id: id) else { return nil }
+                return RequestPlan(key: "\(index):stream:\(type):\(id)", url: url, title: addon.name, kind: type, addon: addon,
+                    addonPriority: index, timeoutMs: AddonOriginPolicy.timeout(addon), catalog: nil)
+            }
+            guard let primary = candidates.first else { continue }
+            if !requested.contains(where: { $0.key == primary.key }) { requested.append(primary) }
+            fallbacks[primary.key] = Array(candidates.dropFirst())
+        }
+        return .init(plans: StreamRequestPolicy.plans(requested), fallbacks: fallbacks)
     }
 
     private static func pluginResponse(_ provider: (@Sendable () async throws -> HarborPluginStreamBatch)?) async throws -> HarborPluginStreamBatch {
@@ -186,7 +231,8 @@ struct HarborService: Sendable {
 
     func automaticStreams(_ offers: [StreamOffer], media: Media, season: Int?, episode: Int?) async throws -> [StreamOffer] {
         let preferences = await StreamPreferences.shared.configuration()
-        let result: JSONValue = try await core.call("rank", ["streams": .array(offers.map(\.raw)), "trust": preferences.trust(media, season: season, episode: episode), "score": .object(["mediaKind": .string(media.type == "anime" ? "series" : media.type), "respectAddonOrder": .bool(preferences.addonOrder)])])
+        let trust = (AddonOriginPolicy.isNative(media) ? StreamFilterConfiguration(level: "off", addonOrder: preferences.addonOrder) : preferences).trust(media, season: season, episode: episode)
+        let result: JSONValue = try await core.call("rank", ["streams": .array(offers.map(\.raw)), "trust": trust, "score": AddonOriginPolicy.score(media, addonOrder: preferences.addonOrder)])
         return result["picker"]["all"].array.enumerated().map { StreamOffer(id: $0.offset, raw: $0.element) }
     }
 
@@ -195,14 +241,11 @@ struct HarborService: Sendable {
     }
 
     private struct Responses { var values: [(RequestPlan, JSONValue)] = []; var errors: [String] = [] }
-    private func fetch(_ plans: [RequestPlan]) async throws -> Responses {
+    private func fetch(_ plans: [RequestPlan], fallbacks: [String: [RequestPlan]] = [:]) async throws -> Responses {
         try await withThrowingTaskGroup(of: (RequestPlan, JSONValue?, String?).self) { group in
             for plan in plans {
                 group.addTask {
-                    do { return (plan, try await http.json(plan.url, timeout: Double(plan.timeoutMs) / 1000), nil) }
-                    catch is CancellationError { throw CancellationError() }
-                    catch let error as HarborError { return (plan, nil, error.code) }
-                    catch { return (plan, nil, "invalid-response") }
+                    try await AddonOriginReplies.fetch(plan, fallbacks: fallbacks[plan.key] ?? [])
                 }
             }
             var responses = Responses()

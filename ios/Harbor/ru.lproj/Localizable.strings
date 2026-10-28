@@ -850,6 +850,7 @@
 "Importing book…" = "Импорт книги…";
 "Importing {done} / {total}" = "Импорт {done} / {total}";
 "In Theaters Now" = "Сейчас в кино";
+"In Watchlist" = "В списке просмотра";
 "In eBook, search Gutenberg or import EPUB and PDF files. In Manga, import PDF, CBZ, ZIP or image folders, or connect your Suwayomi server." = "In eBook, search Gutenberg or import EPUB and PDF files. In Manga, import PDF, CBZ, ZIP or image folders, or connect your Suwayomi server.";
 "Indonesian" = "Индонезийский";
 "Información" = "Информация";
@@ -1813,6 +1814,7 @@
 "That route wouldn't chart. Try a different direction." = "Не удалось проложить маршрут. Попробуйте другое направление.";
 "The CW" = "The CW";
 "The Roku Channel" = "The Roku Channel";
+"The addons did not return metadata for this title." = "Дополнения не вернули метаданные для этого произведения.";
 "The authorization code timed out before you finished. Try again." = "Срок действия кода авторизации истёк. Попробуйте снова.";
 "The comics industry's highest honor" = "Высшая награда индустрии комиксов";
 "The filled part of the timeline. Default follows your Harbor accent." = "The filled part of the timeline. Default follows your Harbor accent.";

@@ -691,6 +691,7 @@
 "Importing book…" = "Importing book…";
 "Importing {done} / {total}" = "Importing {done} / {total}";
 "In Theaters Now" = "In Theaters Now";
+"In Watchlist" = "In Watchlist";
 "In eBook, search Gutenberg or import EPUB and PDF files. In Manga, import PDF, CBZ, ZIP or image folders, or connect your Suwayomi server." = "In eBook, search Gutenberg or import EPUB and PDF files. In Manga, import PDF, CBZ, ZIP or image folders, or connect your Suwayomi server.";
 "Información" = "Information";
 "Information" = "Information";
@@ -1485,6 +1486,7 @@
 "Texto silenciado" = "Muted text";
 "Texto sutil" = "Subtle text";
 "Textos auxiliares y antetítulos." = "Captions, eyebrows.";
+"The addons did not return metadata for this title." = "The addons did not return metadata for this title.";
 "The authorization code timed out before you finished. Try again." = "The authorization code timed out before you finished. Try again.";
 "The filled part of the timeline. Default follows your Harbor accent." = "The filled part of the timeline. Default follows your Harbor accent.";
 "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it." = "The original is kept. Export this subtitle as UTF-8 or UTF-16 to sync it.";

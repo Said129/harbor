@@ -845,6 +845,7 @@
 "Importing book…" = "Importing book…";
 "Importing {done} / {total}" = "इंपोर्ट जारी: {done} / {total}";
 "In Theaters Now" = "अभी सिनेमाघरों में";
+"In Watchlist" = "वॉचलिस्ट में";
 "In eBook, search Gutenberg or import EPUB and PDF files. In Manga, import PDF, CBZ, ZIP or image folders, or connect your Suwayomi server." = "In eBook, search Gutenberg or import EPUB and PDF files. In Manga, import PDF, CBZ, ZIP or image folders, or connect your Suwayomi server.";
 "Indonesian" = "इंडोनेशियाई";
 "Información" = "जानकारी";
@@ -1799,6 +1800,7 @@
 "That route wouldn't chart. Try a different direction." = "उस रूट का चार्ट नहीं बन सका। कोई दूसरी दिशा आज़माएँ।";
 "The CW" = "The CW";
 "The Roku Channel" = "The Roku Channel";
+"The addons did not return metadata for this title." = "ऐडऑन ने इस शीर्षक के लिए कोई मेटाडेटा नहीं दिया।";
 "The authorization code timed out before you finished. Try again." = "आपके पूरा करने से पहले ही ऑथराइज़ेशन कोड की समय-सीमा समाप्त हो गई। फिर से कोशिश करें।";
 "The comics industry's highest honor" = "कॉमिक्स उद्योग का सर्वोच्च सम्मान";
 "The filled part of the timeline. Default follows your Harbor accent." = "The filled part of the timeline. Default follows your Harbor accent.";

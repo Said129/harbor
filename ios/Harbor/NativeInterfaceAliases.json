@@ -251,5 +251,6 @@
   "Análisis detenido para priorizar la reproducción. Puedes reintentarlo cuando termine de cargar.": "Analysis stopped to prioritize playback. Retry after buffering finishes.",
   "Interlineado": "Line height",
   "Márgenes": "Margins",
-  "Clear cache": "Clear cache now"
+  "Clear cache": "Clear cache now",
+  "Los addons no devolvieron metadata para este título.": "The addons did not return metadata for this title."
 }
