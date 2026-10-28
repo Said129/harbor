@@ -179,3 +179,9 @@ digest de GitHub. Faltan las dos capturas posteriores a retirada porque los
 recorridos no llegaron a esa parte. La revisión individual completa de estos
 17 originales todavía está pendiente; los fotogramas diagnósticos extraídos de
 las grabaciones se conservan aparte con su procedencia.
+
+La selección `history-search-interface` contiene únicamente esos dos recorridos
+fallidos y sus dos preparaciones necesarias: cuatro ejecuciones y seis imágenes
+previstas. La compilación prepara los destinos sin ejecutar modelos; los dos
+montajes y el recorrido de pestañas aprobados se conservan. Las aserciones de
+filtrado, borrado con confirmación y persistencia tras reiniciar permanecen.

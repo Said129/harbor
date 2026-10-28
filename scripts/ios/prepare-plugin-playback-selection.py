@@ -6,6 +6,9 @@ import re
 import runpy
 
 requested = os.environ.get('HARBOR_NATIVE_SELECTION', '').strip()
+if requested == 'ui-only:history-search-interface':
+    runpy.run_path('scripts/ios/prepare-history-search-interface-selection.py')
+    raise SystemExit(0)
 if requested == 'native-only:custom-lists-core' or requested.startswith('HarborTests.CustomListTests/'):
     runpy.run_path('scripts/ios/prepare-custom-lists-core-selection.py')
     raise SystemExit(0)
