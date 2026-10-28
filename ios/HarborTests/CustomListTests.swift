@@ -3,9 +3,17 @@ import XCTest
 
 actor OwnedCustomListDisk: CustomListPersistence {
     private var values: [String: JSONValue] = [:]
+    private var hold = false
+    private var waiter: CheckedContinuation<Void, Never>?
     var reject = false
     func setReject(_ value: Bool) { reject = value }
-    func read(owner: String) -> JSONValue? { values[owner] }
+    var isReadHeld: Bool { waiter != nil }
+    func holdRead() { hold = true }
+    func releaseRead() { hold = false; waiter?.resume(); waiter = nil }
+    func read(owner: String) async -> JSONValue? {
+        if hold { await withCheckedContinuation { waiter = $0 } }
+        return values[owner]
+    }
     func write(_ value: JSONValue, owner: String) throws {
         if reject { throw HarborError(code: "owned-write-failure") }; values[owner] = value
     }

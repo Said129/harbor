@@ -55,21 +55,26 @@ actor CustomListDisk: CustomListPersistence {
     func load(force: Bool = false) async {
         if let loading { await loading.value; return }
         guard !busy, !unsaved, force || !ready else { return }
-        let task = Task { await self.read() }; loading = task; await task.value; loading = nil
+        busy = true
+        let task = Task { await self.read() }; loading = task; await task.value; loading = nil; busy = false
     }
     private func read() async {
         do {
             let raw = try await disk.read(owner: owner)
             if raw == nil { await inherited?.load() }
             guard raw != nil || inherited?.ready != false else { throw HarborError(code: "custom-lists-store") }
-            value = raw.map(CustomListsDocument.init); ready = true; error = nil
+            value = await Task.detached { raw.map(CustomListsDocument.init) }.value
+            ready = true; error = nil
         } catch { error = "Could not read your lists. Your saved data is preserved." }
     }
     @discardableResult func apply(_ action: CustomListsDocument.Action) async -> CustomListsDocument.Result? {
         guard ready, !busy else { return nil }
-        var next = document; let result = next.apply(action, at: now())
-        guard result.changed else { return result }
         busy = true; defer { busy = false }
+        let current = document, timestamp = now()
+        let (next, result) = await Task.detached {
+            var next = current; let result = next.apply(action, at: timestamp); return (next, result)
+        }.value
+        guard result.changed else { return result }
         do {
             try await disk.write(next.raw, owner: owner)
             value = next; unsaved = false; error = nil

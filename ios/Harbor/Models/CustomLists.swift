@@ -57,22 +57,26 @@ struct CustomListItem: Identifiable, Sendable {
 }
 
 struct CustomList: Identifiable, Sendable {
-    var raw: JSONValue
+    let raw: JSONValue
+    let items: [CustomListItem]
+    init(raw: JSONValue, items: [CustomListItem]? = nil) {
+        self.raw = raw; self.items = items ?? raw["items"].array.compactMap(CustomListItem.parse)
+    }
     var id: String { raw["id"].string ?? "" }
     var name: String { raw["name"].string ?? "" }
     var description: String { raw["description"].string ?? "" }
-    var items: [CustomListItem] { raw["items"].array.compactMap(CustomListItem.parse) }
     var cover: String? { raw["coverImage"].string ?? items.compactMap(\.poster).first }
     static func parse(_ raw: JSONValue) -> Self? {
         guard let id = raw["id"].string, let name = raw["name"].string else { return nil }
+        let items = raw["items"].array.compactMap(CustomListItem.parse)
         var fields: [String: JSONValue] = ["id": .string(id), "name": .string(name),
             "createdAt": raw["createdAt"].numericValue != nil ? raw["createdAt"] : .integer(0),
             "updatedAt": raw["updatedAt"].numericValue != nil ? raw["updatedAt"] : .integer(0),
-            "items": .array(raw["items"].array.compactMap(CustomListItem.parse).map(\.raw))]
+            "items": .array(items.map(\.raw))]
         for key in ["description", "coverImage", "bgImage"] { if let value = raw[key].string { fields[key] = .string(value) } }
         if raw["order"].numericValue != nil { fields["order"] = raw["order"] }
         if let mode = raw["bgMode"].string, ["auto", "custom"].contains(mode) { fields["bgMode"] = .string(mode) }
-        return .init(raw: .object(fields))
+        return .init(raw: .object(fields), items: items)
     }
 }
 
@@ -100,7 +104,7 @@ struct CustomListsDocument: Sendable {
     private mutating func edit(_ id: String, _ body: (inout [String: JSONValue]) -> Bool) -> Bool {
         guard let index = values.firstIndex(where: { $0.id == id }) else { return false }
         var fields = values[index].raw.objectValue; guard body(&fields) else { return false }
-        values[index].raw = .object(fields); return true
+        values[index] = .init(raw: .object(fields)); return true
     }
     @discardableResult mutating func apply(_ action: Action, at: Int64) -> Result {
         var result = Result()
@@ -122,7 +126,10 @@ struct CustomListsDocument: Sendable {
         case .reorderLists(let ids):
             let positions = Dictionary(ids.enumerated().map { ($0.element, $0.offset) }, uniquingKeysWith: { _, last in last })
             for index in values.indices {
-                if let position = positions[values[index].id] { var fields = values[index].raw.objectValue; fields["order"] = .integer(Int64(position)); values[index].raw = .object(fields) }
+                if let position = positions[values[index].id] {
+                    var fields = values[index].raw.objectValue; fields["order"] = .integer(Int64(position))
+                    values[index] = .init(raw: .object(fields), items: values[index].items)
+                }
             }
             result.changed = true
         case .reorderItems(let list, let ids):

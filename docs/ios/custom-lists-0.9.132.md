@@ -20,6 +20,14 @@ visible en memoria del propietario y permite reintentar; recargar no la descarta
 Un archivo ilegible impide sobrescribirlo con una colección vacía. No se añade
 ninguna cuenta ni petición Stremio ni se inventa un endpoint remoto para listas.
 
+La preparación de metadatos y las modificaciones del documento se ejecutan fuera
+del hilo de interfaz. Cada lista guarda sus elementos ya preparados, por lo que
+leer sus portadas durante un render no vuelve a serializar los vídeos. Una
+recarga mantiene el almacén ocupado y reúne a sus solicitantes; no puede aceptar
+una edición que luego sea sustituida por una lectura anterior. Un caso adicional
+retiene la lectura real mediante una barrera y comprueba ese orden. Este caso y
+la optimización posterior siguen pendientes de ejecución en Apple.
+
 El generador ejecuta el módulo original completo de listas con almacenamiento y
 reloj propios, más los dos cuerpos originales de persistencia extraídos por AST.
 Ocho escenarios conservan operaciones, resultados, fechas y escrituras: edición,
