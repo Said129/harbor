@@ -25,7 +25,10 @@ else:
     assert 1 <= expected <= 10 and len(batches) == len({batch['id'] for batch in batches}) == expected
     assert all(re.fullmatch(r'[A-Za-z][A-Za-z0-9]*', batch['id']) and batch['cases'] for batch in batches)
     families = {batch['family'] for batch in batches}
-    if plan.get('startup_probe'): assert len(batches) == 1 and families == {'IPhone'}
+    if plan.get('single_family_repair'):
+        assert len(batches) == 1 and plan['repair_family'] in ('IPhone', 'IPad') and families == {plan['repair_family']}
+        assert batches[0]['cases'] == [plan['failed_ui_case']]
+    elif plan.get('startup_probe'): assert len(batches) == 1 and families == {'IPhone'}
     else: assert families == {'IPhone', 'IPad'}
 captures = plan['required_original_captures']
 assert captures and all(isinstance(name, str) and name for name in captures)

@@ -115,6 +115,13 @@ private actor OriginHeldReply {
         let primary = try XCTUnwrap(selection.plans.first { $0.addon.manifest["id"].string == "owned" })
         let fallback = try XCTUnwrap(selection.fallbacks[primary.key]?.first)
         XCTAssertEqual(primary.kind, "movie"); XCTAssertEqual(fallback.kind, "tv")
+        var repeated = addons[0]
+        var manifest = repeated.manifest.objectValue
+        manifest["types"] = .array([.string("tv"), .string("movie"), .string("tv")])
+        repeated.manifest = .object(manifest)
+        let unique = try await service.streamRequests(media, videoID: media.id, addons: [repeated])
+        let uniquePrimary = try XCTUnwrap(unique.plans.first)
+        XCTAssertEqual(unique.fallbacks[uniquePrimary.key]?.map(\.kind), ["tv"], "Repeated manifest types must not repeat an identical network request")
         let requests = OriginRequests([primary.url: .object(["streams": .array([])]), fallback.url: .object(["streams": .array([.object(["url": .string("https://example.org/video.mp4")])])])])
         let reply = try await AddonOriginReplies.fetch(primary, fallbacks: [fallback]) { try await requests.load($0.url) }
         XCTAssertEqual(reply.0.kind, "tv"); XCTAssertEqual(reply.1?["streams"].array.count, 1); XCTAssertNil(reply.2)

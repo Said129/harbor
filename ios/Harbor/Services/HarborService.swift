@@ -206,8 +206,10 @@ struct HarborService: Sendable {
             // other canonical requests rather than losing those episode sources.
             let id = media.episodic ? videoID : media.id
             let types = AddonOriginPolicy.streamTypes(addon, primary: kind, id: id)
+            var seen = Set<String>()
             let candidates = types.compactMap { type -> RequestPlan? in
-                guard let url = AddonOriginPolicy.resourceURL(addon.transportUrl, resource: "stream", kind: type, id: id) else { return nil }
+                guard let url = AddonOriginPolicy.resourceURL(addon.transportUrl, resource: "stream", kind: type, id: id),
+                      seen.insert(url).inserted else { return nil }
                 return RequestPlan(key: "\(index):stream:\(type):\(id)", url: url, title: addon.name, kind: type, addon: addon,
                     addonPriority: index, timeoutMs: AddonOriginPolicy.timeout(addon), catalog: nil)
             }

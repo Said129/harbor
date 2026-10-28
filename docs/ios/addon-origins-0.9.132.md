@@ -52,3 +52,32 @@ dieciséis idiomas; no se oculta un fallo real.
 No se considera completa la equivalencia global ni se produce una IPA por este
 incremento. Continúan pendientes las filas de listas en Inicio, su selector de
 personalización, portadas privadas de Manga y los demás bloques del inventario.
+
+## Resultados reales y reparación seleccionada, 28 de octubre de 2026
+
+La ejecución ARM `40727046556` no recibió máquina en ninguno de sus dos
+intentos: cero pruebas ejecutadas. GitHub indicó falta de capacidad ARM. Se
+conservan sus anotaciones y se envió la misma fuente y selección, una sola vez,
+a Intel con un recibo independiente.
+
+La ejecución Intel `40740807507`, fuente exacta `baf87971970e0109a15328a64a637f5c7fc9e64e`,
+compiló y ejecutó doce casos: diez aprobados y dos fallidos, sin nuevas
+advertencias. El cotejo de tipos encontró que Desktop conserva tipos repetidos
+en la declaración genérica. La reparación conserva esa declaración original y
+suprime URLs duplicadas al planificar las peticiones; no repite llamadas idénticas.
+Se repiten solo la comparación fallida y el caso de planificación afectado.
+
+El recorrido inglés del iPhone aprobó «Updated now», el botón de guardar y el
+mensaje de metadatos. Sus dos imágenes originales se revisaron individualmente.
+El iPad falló antes de entrar en Biblioteca: la grabación muestra el menú y el
+destino visibles, mientras XCTest no encontró un marco válido para desplazar su
+contenedor. La reparación limita la consulta al ScrollView real y espera el
+destino dentro del marco de la aplicación, conservando todas las aserciones.
+Se repite únicamente ese recorrido y su preparación necesaria.
+
+Archivo autenticado: 12.802.292 bytes, SHA-256
+`0e3d85b40841c09e5291a5d115813cc5db6c86a0080183b8b8f06ada7261ad51`,
+igual al digest de GitHub. Los fotogramas diagnósticos del iPad guardan el hash
+de la grabación de origen. Las filas de listas y portadas privadas se
+implementaron después en `28386ee0`; sus resultados parciales y hallazgos
+figuran en `home-lists-0.9.132.md`. El objetivo completo permanece abierto.

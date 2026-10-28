@@ -91,3 +91,15 @@ posterior con ejecución pendiente. También permanecen las listas públicas,
 recomendaciones, calendario, avatar, comentarios y valoraciones Trakt, además
 del resto del alcance compatible del port. No se considera cerrado Trakt ni el
 port completo por añadir esta pestaña.
+
+## Evidencia posterior revisada
+
+La revisión de los 17 originales de `40678694048` quedó completada el
+28 de octubre de 2026. Las seis imágenes de Trakt muestran las cuatro portadas
+decodificadas y textos ingleses coherentes en la transferencia compacta y regular.
+Las dos imágenes por tamaño de watchlist/history representan el mismo componente
+con ambos bloques; no prueban dos rutas distintas. El recorrido de pestañas del
+iPhone aprobó y sus tres imágenes se revisaron. El historial y la búsqueda
+reparada también tienen resultados posteriores en `library-history-0.9.132.md`.
+Se conservan esas aprobaciones sin repetirlas; las demás funciones pendientes
+citadas arriba siguen dentro del objetivo.

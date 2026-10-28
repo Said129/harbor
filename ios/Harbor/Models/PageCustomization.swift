@@ -259,6 +259,10 @@ final class PageCustomization {
                 .applying(next, mapping: DesktopPageRowMap(page: page, rails: editingRails)).raw }
             if page == "home", let original = projection {
                 var fields = original.objectValue; fields["customSources"] = .array([]); fields["listRows"] = .array([])
+                // Desktop reset clears supported row options even for references
+                // removed earlier; unrelated future document fields still survive.
+                for key in ["order", "hidden", "numerals"] { fields[key] = .array([]) }
+                fields["renamed"] = .object([:]); fields["heroSource"] = .null
                 projection = try DesktopPageLayout(page: page, raw: .object(fields)).raw
             }
             guard next != layout || projection != wireProjection else { return }

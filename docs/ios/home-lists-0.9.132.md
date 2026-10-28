@@ -1,6 +1,6 @@
 # Home lists from Desktop 0.9.132
 
-Reference: `0834340cec5531650bfe78cd628628702e636987`, the owner's preserved Desktop 0.9.132 tree. This increment implements Home rows made from My lists. Apple compilation, native results and original interface captures are pending; the implementation alone is not an approval of full parity or a stable IPA.
+Reference: `0834340cec5531650bfe78cd628628702e636987`, the owner's preserved Desktop 0.9.132 tree. This increment implements Home rows made from My lists. The actual partial Apple results and remaining findings below are authoritative; they are not an approval of full parity or a stable IPA.
 
 ## Reference behavior
 
@@ -28,6 +28,16 @@ The context is discarded/cancelled on disappearance, backgrounding, profile acti
 
 The new `affected:home-lists` plan selects six new native cases (original selection/mutations, persistence/scope/malformed edits, raw-only Harbor sync, owned source selection and actual PDF image decoding), one affected existing wire-preservation case, two fresh guest preparations and two ordinary Home journeys, one per device family: **11 executions and 9 original images**. The journeys add/remove/re-add rows, rename/hide/show, enable numerals, move, relaunch and open an owned PDF through its Manga hero.
 
-The local fixture server supplies owned film artwork; a newly generated two-page PDF supplies the actual imported Manga cover and reader. The image decode case requires a successful real image callback, not existence of a placeholder. Native/actual UI tests have not yet executed for this increment. Source comparison, selector preflight and formatting are separate from Apple runtime evidence. No personal accounts or provider credentials are part of the fixtures.
+The local fixture server supplies owned film artwork; a newly generated two-page PDF supplies the actual imported Manga cover and reader. The image decode case requires a successful real image callback, not existence of a placeholder. Source comparison, selector preflight and formatting are separate from Apple runtime evidence. No personal accounts or provider credentials are part of the fixtures.
 
 Preserve the accepted My lists contracts/interface actions from run `40691573028`. The new gate does not replay that journey or unrelated reader/player/tracker suites. Live configured Manga providers, full motion/keyboard coverage, physical iPhone/iPad performance and the remaining full-project parity requirements still require their own evidence. No IPA is produced by this gate.
+
+## Actual results and selected repair, 28 October 2026
+
+Run `40739389865`, exact source `28386ee04c67a435b627e28bae1a6ea6899d341c`, compiled and executed eleven cases: ten passed, one failed. Both complete ordinary Home journeys passed, including add/remove/re-add, name/visibility/numerals/order, relaunch, Manga hero and actual PDF reading. Six of the seven native cases passed; both preparations also passed. There were no new compiler warnings.
+
+The single failure is the final reset assertion in the original mutation comparison: the removed list's hidden flag survived because reset only rewrote mapped rows. The repair explicitly empties all supported Home row-option fields, including references removed earlier, while retaining unrelated future document fields. Keep the other passing cases. Retry this failure and only the affected raw-reference reset/future-field case.
+
+The authenticated archive is 78,086,105 bytes, SHA-256 `a854bb0f76034392848b02db22d0ce4f0b830f6f586c58f3cfe28d4cf326dbb1`, equal to GitHub's digest. All nine original images were individually inspected. Actual private PDF cover, poster, hero and reader rendering fit both device families. The external visual review retains additional existing English-UI findings: Spanish seasonal invitation, hero information action, and automatic movie-hero bookmark action. These language findings remain open; successful navigation does not close them.
+
+The follow-up `list-parity-repair` plan combines the failed reset and failed origin comparison with their two affected native paths, one necessary fresh iPad preparation and only the failed iPad localization journey: six executions/two originals. It retains both approved Home journeys and the approved iPhone localization journey. No new IPA.

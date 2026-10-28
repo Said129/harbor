@@ -10,8 +10,18 @@ import XCTest
         ReadingUIInteraction.launchPreparedApplication(app)
         defer { if (testRun?.failureCount ?? 0) > 0 { ReadingUIInteraction.recordFailureContext(app) }; app.terminate() }
         XCTAssertTrue(app.buttons["main-menu"].waitForExistence(timeout: 45)); ReadingUIInteraction.tapVisible(app.buttons["main-menu"], in: app)
-        let navigation = app.descendants(matching: .any).matching(identifier: "navigation-scroll").firstMatch
-        let library = app.buttons["nav-library"]; ReadingUIInteraction.reveal(library, in: app, container: navigation); ReadingUIInteraction.tapVisible(library, in: app)
+        let navigation = app.scrollViews["navigation-scroll"]
+        XCTAssertTrue(navigation.waitForExistence(timeout: 15))
+        let library = navigation.buttons["nav-library"]
+        let visible = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+            guard library.exists else { return false }
+            let frame = library.frame
+            return !frame.isNull && !frame.isInfinite && frame.width > 1 && frame.height > 1
+                && app.frame.contains(CGPoint(x: frame.midX, y: frame.midY))
+        }, object: nil)
+        let hierarchy = XCTAttachment(string: app.debugDescription); hierarchy.name = "localization-open-navigation-hierarchy"; hierarchy.lifetime = .keepAlways; add(hierarchy)
+        XCTAssertEqual(XCTWaiter.wait(for: [visible], timeout: 15), .completed, "Wait for the real sidebar destination inside the application viewport")
+        library.coordinate(withNormalizedOffset: .init(dx: 0.5, dy: 0.5)).tap()
         let bar = app.scrollViews["library-filter"]; XCTAssertTrue(bar.waitForExistence(timeout: 15))
         let lists = app.buttons["library-tab-custom-lists"]; ReadingUIInteraction.revealHorizontally(lists, in: app, container: bar); ReadingUIInteraction.tapVisible(lists, in: app)
         ReadingUIInteraction.tapVisible(app.buttons["custom-list-create"], in: app)

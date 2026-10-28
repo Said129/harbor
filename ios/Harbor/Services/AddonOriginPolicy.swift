@@ -52,7 +52,11 @@ enum AddonOriginPolicy {
         }
         let declared: [JSONValue]
         if !specific.isEmpty { declared = specific.filter { accepts($0["idPrefixes"]) }.flatMap { $0["types"].array } }
-        else if declaresStreams(addon), accepts(addon.manifest["idPrefixes"]) { declared = addon.manifest["types"].array }
+        else if declaresStreams(addon), accepts(addon.manifest["idPrefixes"]) {
+            // Desktop's generic manifest branch preserves declaration order,
+            // including repeated alternate types. Request planning deduplicates URLs.
+            return [primary] + addon.manifest["types"].array.compactMap(\.string).filter { !$0.isEmpty && $0 != primary }
+        }
         else { declared = [] }
         for value in declared.compactMap(\.string) where !value.isEmpty && !result.contains(value) { result.append(value) }
         return result

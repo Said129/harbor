@@ -185,3 +185,22 @@ fallidos y sus dos preparaciones necesarias: cuatro ejecuciones y seis imágenes
 previstas. La compilación prepara los destinos sin ejecutar modelos; los dos
 montajes y el recorrido de pestañas aprobados se conservan. Las aserciones de
 filtrado, borrado con confirmación y persistencia tras reiniciar permanecen.
+
+## Revisión individual completada el 28 de octubre de 2026
+
+Se revisaron los 17 originales de `40678694048`, validando cada hash
+contra el índice autenticado. Las cuatro vistas nativas de Historial muestran
+portadas decodificadas y alineación superior corregida; las seis vistas de Trakt
+mantienen sus portadas y muestran la transferencia completa en inglés. Las tres
+capturas de pestañas del iPhone encajan en la ventana. Las cuatro capturas UI de
+Historial usan registros sin portada por diseño; no prueban artwork público.
+Las vistas de Trakt etiquetadas watchlist/history muestran el mismo componente
+combinado, no dos rutas independientes.
+
+La revisión queda guardada en `harbor-run-40678694048/visual-review.json`.
+No se repitieron pruebas. Los dos recorridos que fallaron al localizar el mensaje
+sin coincidencias aprobaron posteriormente en `40685530173`, fuente
+`e3ef940a`: nueve de nueve ejecuciones, cero nuevas advertencias y seis
+originales revisados. El fallo anterior y sus resultados parciales se conservan.
+Esto cierra esos pendientes de captura y reparación, sin certificar el port
+completo ni rendimiento físico.
