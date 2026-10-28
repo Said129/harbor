@@ -1,0 +1,411 @@
+{
+  "reference": "0834340cec5531650bfe78cd628628702e636987",
+  "actual_original_typescript_executed": true,
+  "provider_network_requests": 0,
+  "executed_module_hashes": {
+    "src/lib/trakt/ids.ts": "f11d6a1e177e9c4952327a7b1d77255310458188e2f92cc91cc8821145716c07",
+    "src/lib/aired.ts": "c95310b7f44f047bd6c90c7742f810c0ae23630fcf3df66ae8a4d4901e00adfa",
+    "src/lib/mark-watched.ts": "165ec0e6ef88960a5a2fc44353e5e257b90319a959e7df22f70825df3c560e4a"
+  },
+  "at": 1793145600000,
+  "cases": [
+    {
+      "name": "custom-movie-explicit-imdb",
+      "media": {
+        "id": "owned:film",
+        "type": "movie",
+        "name": "Owned Film",
+        "imdb_id": "tt1234567"
+      },
+      "imdb": "tt1234567",
+      "targets": [
+        {
+          "kind": "movie",
+          "ids": {
+            "imdb": "tt1234567"
+          }
+        }
+      ],
+      "episodes": [],
+      "watchEvents": 1
+    },
+    {
+      "name": "direct-imdb-movie",
+      "media": {
+        "id": "tt1234567",
+        "type": "movie",
+        "name": "Owned Film"
+      },
+      "targets": [
+        {
+          "kind": "movie",
+          "ids": {
+            "imdb": "tt1234567"
+          }
+        }
+      ],
+      "episodes": [],
+      "watchEvents": 1
+    },
+    {
+      "name": "tmdb-movie-with-explicit-imdb",
+      "media": {
+        "id": "tmdb:movie:8",
+        "type": "movie",
+        "name": "Owned Film",
+        "imdb_id": "tt1234567"
+      },
+      "imdb": "tt1234567",
+      "tmdb": 8,
+      "targets": [
+        {
+          "kind": "movie",
+          "ids": {
+            "imdb": "tt1234567",
+            "tmdb": 8
+          }
+        }
+      ],
+      "episodes": [],
+      "watchEvents": 1
+    },
+    {
+      "name": "unrecognized-movie-no-request",
+      "media": {
+        "id": "owned:unknown",
+        "type": "movie",
+        "name": "Owned Unknown"
+      },
+      "targets": [],
+      "episodes": [],
+      "watchEvents": 1
+    },
+    {
+      "name": "custom-show-explicit-imdb-and-aired-boundary",
+      "media": {
+        "id": "owned:show",
+        "type": "series",
+        "name": "Owned Show",
+        "imdb_id": "tt7654321",
+        "videos": [
+          {
+            "id": "ep:4",
+            "season": 1,
+            "episode": 4,
+            "released": "2099-01-01T00:00:00Z"
+          },
+          {
+            "id": "ep:0",
+            "season": 0,
+            "episode": 1,
+            "released": "2020-01-01T00:00:00Z"
+          },
+          {
+            "id": "ep:3",
+            "season": 1,
+            "episode": 3
+          },
+          {
+            "id": "ep:2",
+            "season": 1,
+            "episode": 2,
+            "released": "2020-01-01T00:00:00Z"
+          },
+          {
+            "id": "ep:1",
+            "season": 1,
+            "episode": 1
+          }
+        ]
+      },
+      "imdb": "tt7654321",
+      "targets": [
+        {
+          "kind": "episode",
+          "show": {
+            "ids": {
+              "imdb": "tt7654321"
+            }
+          },
+          "season": 1,
+          "number": 1
+        },
+        {
+          "kind": "episode",
+          "show": {
+            "ids": {
+              "imdb": "tt7654321"
+            }
+          },
+          "season": 1,
+          "number": 2
+        }
+      ],
+      "episodes": [
+        {
+          "season": 1,
+          "episode": 1
+        },
+        {
+          "season": 1,
+          "episode": 2
+        }
+      ],
+      "watchEvents": 1
+    },
+    {
+      "name": "tmdb-show-without-imdb",
+      "media": {
+        "id": "tmdb:tv:9",
+        "type": "series",
+        "name": "Owned Show",
+        "videos": [
+          {
+            "id": "ep:4",
+            "season": 1,
+            "episode": 4,
+            "released": "2099-01-01T00:00:00Z"
+          },
+          {
+            "id": "ep:0",
+            "season": 0,
+            "episode": 1,
+            "released": "2020-01-01T00:00:00Z"
+          },
+          {
+            "id": "ep:3",
+            "season": 1,
+            "episode": 3
+          },
+          {
+            "id": "ep:2",
+            "season": 1,
+            "episode": 2,
+            "released": "2020-01-01T00:00:00Z"
+          },
+          {
+            "id": "ep:1",
+            "season": 1,
+            "episode": 1
+          }
+        ]
+      },
+      "targets": [
+        {
+          "kind": "episode",
+          "show": {
+            "ids": {
+              "tmdb": 9
+            }
+          },
+          "season": 1,
+          "number": 1
+        },
+        {
+          "kind": "episode",
+          "show": {
+            "ids": {
+              "tmdb": 9
+            }
+          },
+          "season": 1,
+          "number": 2
+        }
+      ],
+      "episodes": [
+        {
+          "season": 1,
+          "episode": 1
+        },
+        {
+          "season": 1,
+          "episode": 2
+        }
+      ],
+      "watchEvents": 1
+    },
+    {
+      "name": "anime-whole-mark-has-no-trakt-request",
+      "media": {
+        "id": "kitsu:1",
+        "type": "series",
+        "name": "Owned Anime",
+        "imdb_id": "tt7654321",
+        "videos": [
+          {
+            "id": "ep:4",
+            "season": 1,
+            "episode": 4,
+            "released": "2099-01-01T00:00:00Z"
+          },
+          {
+            "id": "ep:0",
+            "season": 0,
+            "episode": 1,
+            "released": "2020-01-01T00:00:00Z"
+          },
+          {
+            "id": "ep:3",
+            "season": 1,
+            "episode": 3
+          },
+          {
+            "id": "ep:2",
+            "season": 1,
+            "episode": 2,
+            "released": "2020-01-01T00:00:00Z"
+          },
+          {
+            "id": "ep:1",
+            "season": 1,
+            "episode": 1
+          }
+        ]
+      },
+      "imdb": "tt7654321",
+      "targets": [],
+      "episodes": [
+        {
+          "season": 1,
+          "episode": 1
+        },
+        {
+          "season": 1,
+          "episode": 2
+        }
+      ],
+      "watchEvents": 1
+    },
+    {
+      "name": "all-undated-regular-episodes",
+      "media": {
+        "id": "tt7654321",
+        "type": "series",
+        "name": "Owned Show",
+        "videos": [
+          {
+            "id": "ep:4",
+            "season": 1,
+            "episode": 4
+          },
+          {
+            "id": "ep:0",
+            "season": 0,
+            "episode": 1
+          },
+          {
+            "id": "ep:3",
+            "season": 1,
+            "episode": 3
+          },
+          {
+            "id": "ep:2",
+            "season": 1,
+            "episode": 2
+          },
+          {
+            "id": "ep:1",
+            "season": 1,
+            "episode": 1
+          }
+        ]
+      },
+      "targets": [
+        {
+          "kind": "episode",
+          "show": {
+            "ids": {
+              "imdb": "tt7654321"
+            }
+          },
+          "season": 1,
+          "number": 1
+        },
+        {
+          "kind": "episode",
+          "show": {
+            "ids": {
+              "imdb": "tt7654321"
+            }
+          },
+          "season": 1,
+          "number": 2
+        },
+        {
+          "kind": "episode",
+          "show": {
+            "ids": {
+              "imdb": "tt7654321"
+            }
+          },
+          "season": 1,
+          "number": 3
+        },
+        {
+          "kind": "episode",
+          "show": {
+            "ids": {
+              "imdb": "tt7654321"
+            }
+          },
+          "season": 1,
+          "number": 4
+        }
+      ],
+      "episodes": [
+        {
+          "season": 1,
+          "episode": 1
+        },
+        {
+          "season": 1,
+          "episode": 2
+        },
+        {
+          "season": 1,
+          "episode": 3
+        },
+        {
+          "season": 1,
+          "episode": 4
+        }
+      ],
+      "watchEvents": 1
+    },
+    {
+      "name": "undated-entries-before-only-future-date",
+      "media": {
+        "id": "tt7654321",
+        "type": "series",
+        "name": "Owned Show",
+        "videos": [
+          {
+            "id": "ep:4",
+            "season": 1,
+            "episode": 4,
+            "released": "2099-01-01T00:00:00Z"
+          },
+          {
+            "id": "ep:0",
+            "season": 0,
+            "episode": 1,
+            "released": "2020-01-01T00:00:00Z"
+          },
+          {
+            "id": "ep:3",
+            "season": 1,
+            "episode": 3
+          },
+          {
+            "id": "ep:1",
+            "season": 1,
+            "episode": 1
+          }
+        ]
+      },
+      "targets": [],
+      "episodes": [],
+      "watchEvents": 1
+    }
+  ]
+}

@@ -88,17 +88,16 @@ actor TraktWatchedDisk: TraktWatchedPersistence {
     }
     @discardableResult func enqueueMark(_ media: Media, episodes: [Episode], owner: String, wholeSeries: Bool = false) -> Task<Void, Never>? {
         guard account?.owner == owner, current(operation), let account, let fingerprint else { return nil }
-        let anime = ["kitsu:", "mal:", "anilist:", "anidb:"].contains { media.id.hasPrefix($0) }
-        guard !(wholeSeries && anime) else { return nil }
+        let requests = ManualWatchedSelection.requests(media, episodes: episodes, wholeSeries: wholeSeries)
+        guard !requests.isEmpty else { return nil }
         let ticket = operation, before = writing
-        let identities: [TraktWatchIdentity] = media.episodic ? episodes.map { .init(mediaID: media.id, episode: $0) } : [.init(mediaID: media.id)]
         let task = Task { [weak self] in
             await before?.value
             guard let self, self.current(ticket) else { return }
             let reporter = TraktWatchReporter(account: account, queue: .forOwner(owner), client: self.client, active: { [weak self] in self?.current(ticket) ?? false })
-            for identity in identities {
+            for request in requests {
                 guard self.current(ticket) else { return }
-                guard let confirmed = await reporter.mark(identity), self.current(ticket) else { continue }
+                guard let confirmed = await reporter.mark(request.identity, target: request.target), self.current(ticket) else { continue }
                 var state = self.snapshot ?? TraktWatchedState(at: self.now(), keys: [])
                 state.record(confirmed); self.snapshot = state; self.fetchedAt = nil; self.revision &+= 1
                 do { try await self.disk.write(state, owner: owner, fingerprint: fingerprint) }

@@ -258,7 +258,7 @@ final class LibraryModel {
     }
     func watched(_ media: Media) -> Bool {
         if media.episodic {
-            let available = (media.videos ?? []).filter { $0.season != nil && $0.episode != nil && $0.available }
+            let available = ManualWatchedSelection.releasedEpisodes(media)
             let watched = watchedEpisodes(media)
             return !available.isEmpty && available.allSatisfy { watched.contains($0.watchedKey) }
         }
@@ -391,7 +391,7 @@ final class LibraryModel {
             if case .object(let current) = fields["state"] { state = current }
             if media.episodic {
                 let videos = media.videos ?? []
-                let available = videos.filter { $0.season != nil && $0.episode != nil && $0.available }
+                let available = ManualWatchedSelection.releasedEpisodes(media)
                 guard !available.isEmpty else { throw HarborError(code: "invalid-watched-state") }
                 var watched = try WatchedCodec.decode(state["watched"]?.string, videos: videos)
                 if wasWatched { for video in available { watched.remove(video.watchedKey) } }
@@ -407,7 +407,7 @@ final class LibraryModel {
             fields["state"] = .object(state)
         }
         if success, current == generation, !wasWatched {
-            traktWatched.enqueueMark(media, episodes: media.episodic ? (media.videos ?? []).filter { $0.season != nil && $0.episode != nil && $0.available } : [], owner: personalOwner, wholeSeries: true)
+            traktWatched.enqueueMark(media, episodes: media.episodic ? ManualWatchedSelection.releasedEpisodes(media) : [], owner: personalOwner, wholeSeries: true)
         }
         if success, taste.owner == personalOwner, watched(media) { taste.track(.watched, media: media) }
     }

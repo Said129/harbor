@@ -125,9 +125,9 @@ struct TraktPendingDocument: Codable, Sendable {
             return owned(ticket) && TraktHistoryReceipt.confirms(value)
         } catch { return false }
     }
-    func mark(_ identity: TraktWatchIdentity) async -> TraktWatchTarget? {
+    func mark(_ identity: TraktWatchIdentity, target explicitTarget: TraktWatchTarget? = nil) async -> TraktWatchTarget? {
         let ticket = accountIdentity
-        guard owned(ticket), let target = TraktWatchTarget.resolve(identity), target.kind != .show else { return nil }
+        guard owned(ticket), let target = explicitTarget ?? TraktWatchTarget.resolve(identity), target.kind != .show else { return nil }
         if await history(target, ticket: ticket) { return target }
         guard owned(ticket), target.resolvable, let season = target.season, let number = target.number else { return nil }
         let result = await resolve(identity.mediaID, season, number)
