@@ -1,0 +1,695 @@
+{
+  "schema": 1,
+  "reference": "0834340cec5531650bfe78cd628628702e636987",
+  "original_manifest_sha256": "957681f337638aa2bf6749209aafe12701f6af90ba399c246ee06dccd438d425",
+  "original_files_verified": 131,
+  "original_inputs": {
+    "alt-collections.json": "e594e900ac45d1c5cf97a8495b5078e50ce6a902bbdeb0d8adf95ec0ce5c0a39",
+    "anime-expanded.json": "465221f3ac3fb0878ac1d64bcc364b09b1d962cd4c859bccec3ff80739439ffa",
+    "app.js": "5f2f33c90a6f062ab21fe1d8983b40f7caefc6e7a2632018a4a88464ae59f901",
+    "assets/art/cat-candy.svg": "7da9dfa00fdf0e6d028fbd975d8365350b5f4532b72741500ea3af7be3338ce9",
+    "assets/art/event/bats-flight.svg": "52c116a35c505ecbff0bfa6186f6c4a68dfa850ea5966d1173d060859b46e740",
+    "assets/art/event/bookmark.svg": "13c0700c80e7517f1ac1af18c5656e47b8ee4553b8d86cbd5ed6e8be19c491a2",
+    "assets/art/event/corner-vines.svg": "ff0becee8b96dc5d28355d5e82fbb6a39ccc81fea66f8ede824e17ae17d71b45",
+    "assets/art/event/corner-web.svg": "64f26f0b2a1f4d23dd36b55d81b497b3fac786d3c98520147fd867c93307e625",
+    "assets/art/event/ink-tag.svg": "fbecc2f0e272cb5e67bf533bbc0fa1e6d8ce744e85152ef7666cbb01d8e966fc",
+    "assets/art/event/pumpkin-seal.svg": "1cc9f354231a10b9aea0720467932a2acf0771298f3a0220141c8a8f3fdeb83b",
+    "assets/art/event/record-tag.svg": "e8f2846ca92bfdc6986acb71bad72cf0420e0f9dbb55000753e4d5dc1ef1b203",
+    "assets/art/event/screening-frame.svg": "d2e85f6f0e9c4fce2103bada35d9d69cb9e6c289568edd5c6a96c08f92286ae5",
+    "assets/art/event/spooktober-splash-original.jpg": "c316c434aedca94e354c79073222d181ff167ed3e14e859d3bec7c7ae2c90fca",
+    "assets/art/event/spooktober-splash.svg": "f0772e382fab3f6c052945c55d8fda1c05ca13e83a9c16ef7d8d49f06051e018",
+    "assets/art/event/tab-plate.svg": "8e2f7866c407f3ccf46f29fd211b6867ae44a0602cbd22d2412b9ea82991017a",
+    "assets/art/event/ticket.svg": "3cb252a3dd3f69bed31826711e6dade319f0b20d3f9df1d966d713cad1045ee9",
+    "assets/art/eyes-cat.svg": "82920b684d89f1e65a38b9911b26feb922ddaa29bb9b7c7739ff673ea5954567",
+    "assets/art/eyes-curious.svg": "991b9006c7ca1bcd9c1819cb31035199f3e4080c0539d948d646f8f4faf0663a",
+    "assets/art/eyes-sleepy.svg": "18acb63726f65787bd4c27132ff2ef400a55a563cec442f90897b590d58b5406",
+    "assets/art/foreground-tree.svg": "21913c2fcbcbb9613949d2563cfe1a05f04691266c8eaef490d7decc819748ef",
+    "assets/art/foreground-wall.svg": "c119602b232f4a1d41547336ebfaf58b6f71583ec2e7e4c2a6bbbaf59352352e",
+    "assets/art/ghost-float.svg": "f0e1d782fd81f744cc33f9c6961a6da3dd750f6eef9b431d70a0ccdae87ead74",
+    "assets/art/ghost-peek.svg": "de558117943e017bac957a120ecce08527f6c1e986350ae752573f6424a9b499",
+    "assets/art/grass-clump.svg": "3f6c535c12b7e7c161e9cbe11eb00bcbf3add41490c40f6694ffe7cc6a70542d",
+    "assets/art/graveyard-ground.svg": "dc944cebddc817ca6feaa6fdda6ad530f26ead4f40230d9b95cce89712cbaa1b",
+    "assets/art/Harbor-Spookfest-Midnight.svg": "4aa9c7f30d373faec85fe307a7238c7dfb686cce6ae4e37e5db95d16704db6ce",
+    "assets/art/Harbor-Spookfest-Original.svg": "ebc8cfe3af1620ae9f483ba7041b742313b97362ecbcf8590af50a0ca0a29d04",
+    "assets/art/haunted-record.svg": "08e469927aa5abebffc5f2b57ab31bc7cea5c80624e648914a3e00b4ab729e4d",
+    "assets/art/headstone-cross.svg": "d24d4c35b6321a33189a9583c82ef78ccf00e2947aa95292f1603a835e02ea91",
+    "assets/art/headstone-ornate.svg": "7ff8c5cecc6cea22837c80ca729cde93af267551da32d102d203b08efb3ea624",
+    "assets/art/headstone-round.svg": "4e43b7088ab101595993eff8a1de978c328d753838112598cc19fc9f7b63781d",
+    "assets/art/headstone-small.svg": "be555d41ac326f1c08bb5dcfbd2a34dc689e06e83208703de8bec91fadc69ced",
+    "assets/art/headstone-stepped.svg": "4f162129f1a83548b277078d0daa82e0c4d589a1bc2ada8b01a86687aebb1cdb",
+    "assets/art/night-grain.svg": "c1f13732b8412c786e60259221b666447d0ada38079d832095ba6a62a672a55f",
+    "assets/art/pumpkin-grin.svg": "9c0dfe0f074ef626a6fb279fe8aa971357bd50632e9668c548d682cc90509439",
+    "assets/art/pumpkin-mischief.svg": "0497469787503796809da8021d883bd2d18441eba9d8bbded1966bc42d36af58",
+    "assets/art/shudder-figure-body.svg": "f1f121d7a524c64e8b8bb9cbca9bddf4c9c9128b27464bc13a8d3e44add3eb70",
+    "assets/art/shudder-figure-head.svg": "512d7065d45ab680bbf7a506a6a8357171edf1906186b1ffda9df3af9072cb5a",
+    "assets/art/shudder-figure.svg": "e42afe1158cf921ee0a4c4b16dbe4b68dea32c43675ebbba829dd66e1f406a0f",
+    "assets/art/shudder-knife-arm.svg": "0d1a437891dad0368d2002c75b69696d224131b7feba511edb95dca58892f010",
+    "assets/art/shudder-knife-grip.svg": "ee7fda01a0a30a56fd29bde71dd02f71c23037501c82b6f6ffd912d77140fa00",
+    "assets/art/shudder-knife-hand.svg": "01906b338c2c4f6170026d4ed81382cfbcd70829aee60b260d309953865fb620",
+    "assets/art/shudder-knife-sleeve.svg": "a6a5c62b0a07f1fffad29d2cc60f7df877a1d9a52ac9cf1eb8b75e9a2eabf8a5",
+    "assets/art/witch-hat.svg": "903b1835efaaccfaedfc78db2e2a5e866d42d6c1e93c26f2dbb6ec40366bbac0",
+    "assets/fonts/jakarta-latin.woff2": "153fc85b70298beeb1d61a5f723331649e7f23bb77302a66e61cb3e2fbdb5e79",
+    "assets/fonts/nightmare.otf": "359e40471bf527b3567fd1846d94f91a507fa8ba69d16d70ec52e586858b6821",
+    "assets/fonts/switzer-400.woff2": "ddd9595560c35725e00d01667ce9bee519d245620e610844f0dd149df10b5d5f",
+    "assets/fonts/switzer-500.woff2": "7393d1abac009ede0da9f95d6c83479a08d798e28d3509575e02fb1d2346866f",
+    "assets/fonts/switzer-600.woff2": "d6497c264dbf70ae51add5103b6c7553dadff334b5853d09adf8c9f1c63ad36b",
+    "assets/fonts/switzer-700.woff2": "7aecbe035c1e311eabe7cac089f565c917558c365f809d5a9684881782370e1f",
+    "assets/fonts/switzer.woff2": "699d43c546d6b12795fbc73edd1bf45667e8cb63f17abcb1b5948e6d22f065e3",
+    "assets/icons/anime-spirit.svg": "9ba410a1aa5221292f908d2566efa2d261bef25a0c1c2f4e13cd780a0325d01f",
+    "assets/icons/arrow-right.svg": "8609ab63a0d12c7db24bf52f0898eb7d2867272641d10763bfda3b6918cfcaf6",
+    "assets/icons/candle.svg": "7fa13b38d4799f2cd9d2c5d0bfdf5d70128d1ce612ca58d1b48a482640abfacb",
+    "assets/icons/candy.svg": "51e7fad3cec0ee53d59da81c06684aefb68331a046407cc222b7ffd5772b86f7",
+    "assets/icons/case-file.svg": "9d62d77a0691b8759dc1ae75edca1b9c5175ba264cb918ec75f7040d77ca496b",
+    "assets/icons/ghost-tv.svg": "85494afbd24800e7694a3a269fb7db872606f9c14bf7c319561e757e5e38e5ec",
+    "assets/icons/haunted-book.svg": "30b87767b31fd6543fcfd11dc4d6e6f80953ef3522d17b9550248187186d699d",
+    "assets/icons/haunted-record.svg": "ccc9af5f4d73d09191d6f75a54252860c2841452261fb81000299c8e6659f13f",
+    "assets/icons/ink-eye.svg": "2d4a183cf44a0756282d6de08e6143709b96fa599bc8b5209c84691003fa6b3d",
+    "assets/icons/midnight-film.svg": "74cfadbee1be105ae9040eef0976ba5cf780daa9875e7f893e216807279ca22d",
+    "assets/icons/moon.svg": "963ae2ac09f9cfb416882cfc5ebdd4314e187c2509bc5b16caf7b4b3088889df",
+    "assets/icons/path-body-horror.svg": "ac4da34561fce63af7618c04cbff0bf4f7559122342561dc301c5d2423991a88",
+    "assets/icons/path-folk-horror.svg": "2859521c521cc1daf9325b24281be8e9a742c1ba5af9eb140ea3576b88d473c3",
+    "assets/icons/path-found-footage.svg": "9a0f5a57d8530c18d4e388f3d3c0089089e311f61249ba59c9929bfca1a54a73",
+    "assets/icons/path-giallo.svg": "1c76814946e06c7927606913a7780fb19c0d31b48d7336077256712aa67088a6",
+    "assets/posters/backrooms.jpg": "4045bf17c99c0b312b4cb84030dc1fdbc8d01940b5e1c5d3cd4c5a08d4a08ce3",
+    "assets/posters/coraline-backdrop.jpg": "95ae710011c97400506356c7f8f2503ac42208b7e18f18e236447c161f2e0168",
+    "assets/posters/obsession.jpg": "9eae90c80c10bb33291657f783cd99e1da39599ce9b794ef53da38ebc3fa9094",
+    "assets/posters/other-mommy.jpg": "5624f6c68528ee651323a3b5e06ad2e2ef9f87df39b0ed80a07d7003d94a0946",
+    "assets/reading-cozy/book-tender-is-the-flesh.webp": "6f54f5d001c4c5ddbd27afa84b5bbf539dff987b3692fe33cd3b226cab2de7e9",
+    "assets/series-features/hulu.svg": "6bf705502216ffd2ad58721bcb1b76b93d3a2a31995dfa919ef34a847d038e1f",
+    "assets/services/imdb.svg": "27f20028643228cf74afe7808f671d091689a799f935a3fc5471f701b47364d1",
+    "assets/services/max.svg": "930e98e7a6fa3e5b36c201398619db23aa217e49d67f460ae96f0ef897d00f3b",
+    "assets/services/mubi.svg": "1c2db2ecf58d03bd6e0c72ae30c3448548f18845ede47f3f82a1e39259592885",
+    "assets/services/myanimelist.svg": "089d5e61d444500831461d349c804408a4356ee8251802c4d7cfdcb84e24644e",
+    "assets/services/neon.svg": "6459f8b6752c9d8f888bab15aed682374e3b2e8b6f455551045654b402752419",
+    "assets/services/netflix.svg": "0c12d5374247e16fced565a207d010bf39f1eb55ee0394581ced67b2e6fa7b92",
+    "assets/services/peacock.svg": "5d7134f70e44896a3cd445b3c8355d0f49140d733f99c4a4c148e8dd999ce864",
+    "assets/services/shudder.svg": "ed7631d3ab477433c714681e06fa372d172ce892bfb8d47adf9edbfbdf311709",
+    "assets/twilight/tt1099212-logo.png": "6f97f3a059d078639848fc48088df7b45da860ad93db291a2feb1dea56362d90",
+    "assets/twilight/tt1325004-background.webp": "efd7feb3e0bd6ffbca35aea32b7984a6b96ab872b1b050cc7dcc67c6340eca68",
+    "back-to-top.js": "a84697242b15fb87f292e47e14b0816c7a86ab0c41107651a03394281c8be05f",
+    "catalog.js": "952c5e4808b4bc927750162183896b3015ca810dc507d7857863325d8b054abe",
+    "catalog.json": "b1c99d2f084300a8d80c46f9d762b4db4fd395d4cfcedd672d9c739f855b2130",
+    "cinema.js": "52f71ed2491da39f3e66b6d625e7ad279443d8be935a80ef61bfe64532c46dea",
+    "content.json": "aacecd60cc736bccb69f519db94d1fdd780171cf7ec338cef16179bfce2509f4",
+    "credits.html": "34a3414f412859ba09c5e053978b7d7b32d2446091a1ae55922ba41361d07f63",
+    "cult-features.css": "36703313273062049053f079015b236ea53fff1a8de5eef613b426c3fc036f4d",
+    "cult-features.js": "a394770775455fa7d145af42f2d4243069f013129a8e11ada262ae4243dffd5b",
+    "editorial.js": "1ceba2f49cc0b784be44b5edba98b0ec74b067b87393d8d4e6571ff885217d0d",
+    "encounter.js": "86812d76983f4f325edcba91522a85663a218c67de0047645ef045ab73819649",
+    "fresh-releases.js": "fd2831878ef3a9235b96fb26dc5170ca6bc8aebaf3af50e8c14acf9f88eb8a70",
+    "halloween-night.js": "21842b1d6950b34f8aabee7d1ef7b486cfac32376f286a95f890a56f58865e79",
+    "halloween-song-shelf.json": "d84dddf6564e9695734ff3fcbd300c5c9afd2249fcc2faef9c24ddc55740843d",
+    "harbor-bridge.js": "b5675d7b970d040b9490b19fe82918b1b0c0023fac793fe6a54649a31d2e3432",
+    "hero-depth.js": "d07a6b5daab3dc237b114a3ec5fae395cc8e87df69a615accce2834282b520f3",
+    "horror-paths.css": "65b3ea11ec59bfad33fe4b1c7be032af76c49a09260046c2b65b663a01bf7548",
+    "horror-paths.js": "d9094553561c6f3f0819319d9fa503283b742fbe3b9e2c652957955cfcbddb5e",
+    "horror-paths.json": "190783eb02c9b1ea1e3b1cb6f200e01b8ddde7d7daeee00f7c216e8a0ed9cb1d",
+    "index.html": "5300292990c1af934e8e344c377ac7807d956b3be62b8596a5996dfbae9e5a97",
+    "inline-surface.js": "df049ca2834020a3e47087f562f8ce6454668e2d99047ea962c8af320147d7f1",
+    "international-expanded.json": "7228e54d2afcf393affbc56e4f6ec34c1c3c9fb20a11196ce23b8a933e274141",
+    "manga-expanded.json": "4cfbb9c16cdfc035210325f99e5709f3746a3d61a0da3e0ede60688a2d154cdf",
+    "masters.js": "f52b4b0d4e8481f738a9615132a4adc716872f86ef00109f11c56f364262d5f8",
+    "mixtapes.js": "0714dcbe46e84e94cb8a4fb2d33e334ea62aee2ec65eeabf10d9434048a7367a",
+    "music.json": "2466880a36d13970f3011f04164d819c32a80d5ff04eb05e5dc6a4f6ddb46f15",
+    "native-entry.js": "2a64a65aa2d4207b1806fd1508d236b0321b99a64c59994dce747932befa5414",
+    "native-environment.js": "b3cd4c1cf90df93643074c2fd3e0da6ad81f3ae13505eb9642bc7bcbee0f9ee3",
+    "native-fonts.json": "4431167385c0bf0bde0de31f338dfa3ff82ccac053db7de3b7521bc6e2a736a9",
+    "native-layout.html": "29ad060240fe178c6cd5b5fcaef517d2f5e4c88b4ebd2d7626db76127a87cd24",
+    "native-runtime.js": "8d78e5808e00811e576353ba6f1d8b8fd63f1f94556550c288461d38edc16a6a",
+    "native-styles.css": "b4f2b0b887d50a5e6dbb9e52c7ba53b258c2cbfb6d999bf3c2a4308133f8e6b7",
+    "new-releases-expanded.json": "a82562bdc0837b108576b676b16db8fc1850c96651fc92a057a6f5a2236079ea",
+    "official-video.js": "718d2f849ba66cb8e6ce25de21b62ff0630d1654779f3cf3665c69742a5629c8",
+    "page-navigation.js": "e428000195d99e02a6403f6d4eca175e18bb26acfa2c6a0ab6bc4b41582e12bc",
+    "playlist-data.json": "7e7943d45e8fe71bb77910f7123ddcaff7f7b938c2603f34138c93ec06cd3552",
+    "playlist-pages.css": "af6e2110e22cadc71f765c171abbd7273266bd773c718eabe5664b3b243a235f",
+    "playlist-pages.js": "2f9bb8c9829516dc00fa650a5cb368c4c9cf8009a9c2a241ce699d260e320598",
+    "rails.js": "a56521c2bbd5d3bba2d5855abcca2e958ac71488f8e20adbed4571812a25226d",
+    "reading-cozy-expanded.json": "b3fec31323dfe4d54992bb4c163f70311e9343649160c97d8a3b0aec2852b62d",
+    "scene-life.js": "9ec014f735e62bc64eab7430a2f2cb304a99d4eca35531fc50da3a913d97d7f8",
+    "screen-shelves-expanded.json": "2f3616b9365547531d65ec4e39a04d828009f58b068062e456c331e43ff1c7c2",
+    "screening.css": "6ff97aeb190ac7923a1c3085e8da0d6dd210afe8e63a18ebc1aebc47f4ca5cad",
+    "screening.json": "c1126900809b1b98ef9aba63d05d1c76f0a2e91dc68c144c72c8289f3e8ecfac",
+    "series-features.json": "4c56dad1123303d2919ee9eb84b16a189c8250727f4f4c2f5f5965f840f685fc",
+    "shudder-art.js": "4f8a5e3ec3f23ea16f74e0ab82079aa89f0df2c366d7b750ea74d4e5f2a64309",
+    "spotlight-data.json": "f299a64e391b330b6a917b5fab5f4ea3255d6f95ef76884a866574285d5698dc",
+    "true-crime-expanded.json": "0fe88f4023d3719c1d565a4ece07850f52af25b03f824937edb4068be05ec945",
+    "twilight-data.json": "ac2199a6c24d8d732dd7a0e8e563e522159f7173db3aaf79281d942912e41216",
+    "world.css": "76545c450a72a2c5c4c89eac4a8d9a064372fdbc4521313e0f19c99ea657e46e"
+  },
+  "normalized_checkout_text_paths": [
+    "alt-collections.json",
+    "anime-expanded.json",
+    "app.js",
+    "assets/art/cat-candy.svg",
+    "assets/art/event/bats-flight.svg",
+    "assets/art/event/screening-frame.svg",
+    "assets/art/event/spooktober-splash.svg",
+    "assets/art/foreground-tree.svg",
+    "assets/art/foreground-wall.svg",
+    "assets/art/ghost-float.svg",
+    "assets/art/ghost-peek.svg",
+    "assets/art/grass-clump.svg",
+    "assets/art/graveyard-ground.svg",
+    "assets/art/Harbor-Spookfest-Midnight.svg",
+    "assets/art/Harbor-Spookfest-Original.svg",
+    "assets/art/haunted-record.svg",
+    "assets/art/headstone-cross.svg",
+    "assets/art/headstone-ornate.svg",
+    "assets/art/headstone-round.svg",
+    "assets/art/headstone-small.svg",
+    "assets/art/headstone-stepped.svg",
+    "assets/art/pumpkin-grin.svg",
+    "assets/art/pumpkin-mischief.svg",
+    "assets/art/shudder-figure-body.svg",
+    "assets/art/shudder-figure-head.svg",
+    "assets/art/shudder-figure.svg",
+    "assets/art/shudder-knife-arm.svg",
+    "assets/art/shudder-knife-grip.svg",
+    "assets/art/shudder-knife-hand.svg",
+    "assets/art/shudder-knife-sleeve.svg",
+    "assets/art/witch-hat.svg",
+    "assets/icons/anime-spirit.svg",
+    "assets/icons/arrow-right.svg",
+    "assets/icons/candle.svg",
+    "assets/icons/candy.svg",
+    "assets/icons/case-file.svg",
+    "assets/icons/ghost-tv.svg",
+    "assets/icons/haunted-book.svg",
+    "assets/icons/ink-eye.svg",
+    "assets/icons/midnight-film.svg",
+    "assets/icons/moon.svg",
+    "assets/icons/path-body-horror.svg",
+    "assets/icons/path-folk-horror.svg",
+    "assets/icons/path-found-footage.svg",
+    "assets/icons/path-giallo.svg",
+    "assets/series-features/hulu.svg",
+    "assets/services/imdb.svg",
+    "assets/services/max.svg",
+    "assets/services/mubi.svg",
+    "assets/services/myanimelist.svg",
+    "assets/services/peacock.svg",
+    "assets/services/shudder.svg",
+    "back-to-top.js",
+    "catalog.js",
+    "catalog.json",
+    "cinema.js",
+    "content.json",
+    "credits.html",
+    "cult-features.js",
+    "editorial.js",
+    "encounter.js",
+    "fresh-releases.js",
+    "halloween-night.js",
+    "halloween-song-shelf.json",
+    "harbor-bridge.js",
+    "hero-depth.js",
+    "horror-paths.js",
+    "horror-paths.json",
+    "index.html",
+    "inline-surface.js",
+    "international-expanded.json",
+    "manga-expanded.json",
+    "masters.js",
+    "mixtapes.js",
+    "music.json",
+    "native-entry.js",
+    "native-environment.js",
+    "native-fonts.json",
+    "native-layout.html",
+    "native-runtime.js",
+    "new-releases-expanded.json",
+    "official-video.js",
+    "page-navigation.js",
+    "playlist-data.json",
+    "playlist-pages.js",
+    "rails.js",
+    "reading-cozy-expanded.json",
+    "scene-life.js",
+    "screen-shelves-expanded.json",
+    "screening.json",
+    "series-features.json",
+    "shudder-art.js",
+    "spotlight-data.json",
+    "true-crime-expanded.json",
+    "twilight-data.json"
+  ],
+  "upstream_manifest_differs_from_committed_blobs": [
+    "alt-collections.json",
+    "assets/art/event/screening-frame.svg",
+    "assets/art/event/spooktober-splash.svg",
+    "assets/art/haunted-record.svg",
+    "assets/art/shudder-figure-body.svg",
+    "assets/art/shudder-figure-head.svg",
+    "assets/icons/anime-spirit.svg",
+    "assets/icons/arrow-right.svg",
+    "assets/icons/candle.svg",
+    "assets/icons/candy.svg",
+    "assets/icons/ghost-tv.svg",
+    "assets/icons/haunted-book.svg",
+    "assets/icons/ink-eye.svg",
+    "assets/icons/midnight-film.svg",
+    "assets/icons/moon.svg",
+    "assets/services/imdb.svg",
+    "back-to-top.js",
+    "catalog.js",
+    "catalog.json",
+    "cinema.js",
+    "content.json",
+    "credits.html",
+    "cult-features.css",
+    "cult-features.js",
+    "editorial.js",
+    "encounter.js",
+    "halloween-song-shelf.json",
+    "horror-paths.js",
+    "horror-paths.json",
+    "index.html",
+    "inline-surface.js",
+    "international-expanded.json",
+    "manga-expanded.json",
+    "masters.js",
+    "mixtapes.js",
+    "music.json",
+    "native-layout.html",
+    "native-runtime.js",
+    "native-styles.css",
+    "new-releases-expanded.json",
+    "official-video.js",
+    "page-navigation.js",
+    "playlist-pages.js",
+    "reading-cozy-expanded.json",
+    "scene-life.js",
+    "screen-shelves-expanded.json",
+    "screening.css",
+    "screening.json",
+    "series-features.json",
+    "spotlight-data.json",
+    "true-crime-expanded.json",
+    "twilight-data.json",
+    "world.css"
+  ],
+  "original_runtime_and_layout_preserved": true,
+  "original_fonts_copied": false,
+  "exact_original_typography": false,
+  "remote_code_updates": false,
+  "files": {
+    "index.html": {
+      "bytes": 1116,
+      "sha256": "c9428c348622292190cf1aa2e76fcac61e1c6912a76f6ac67d57b5c5b1c46a6d"
+    },
+    "index.js": {
+      "bytes": 922,
+      "sha256": "5e97a7fe9382ecb6954b7c21b07fa8f942ff904eb606b2e37f074f1a441c8478"
+    },
+    "spooktober/alt-collections.json": {
+      "bytes": 22089,
+      "sha256": "e594e900ac45d1c5cf97a8495b5078e50ce6a902bbdeb0d8adf95ec0ce5c0a39"
+    },
+    "spooktober/anime-expanded.json": {
+      "bytes": 24638,
+      "sha256": "465221f3ac3fb0878ac1d64bcc364b09b1d962cd4c859bccec3ff80739439ffa"
+    },
+    "spooktober/assets/art/Harbor-Spookfest-Midnight.svg": {
+      "bytes": 280089,
+      "sha256": "4aa9c7f30d373faec85fe307a7238c7dfb686cce6ae4e37e5db95d16704db6ce"
+    },
+    "spooktober/assets/art/Harbor-Spookfest-Original.svg": {
+      "bytes": 273215,
+      "sha256": "ebc8cfe3af1620ae9f483ba7041b742313b97362ecbcf8590af50a0ca0a29d04"
+    },
+    "spooktober/assets/art/cat-candy.svg": {
+      "bytes": 34350,
+      "sha256": "7da9dfa00fdf0e6d028fbd975d8365350b5f4532b72741500ea3af7be3338ce9"
+    },
+    "spooktober/assets/art/event/bats-flight.svg": {
+      "bytes": 1369,
+      "sha256": "52c116a35c505ecbff0bfa6186f6c4a68dfa850ea5966d1173d060859b46e740"
+    },
+    "spooktober/assets/art/event/bookmark.svg": {
+      "bytes": 513,
+      "sha256": "13c0700c80e7517f1ac1af18c5656e47b8ee4553b8d86cbd5ed6e8be19c491a2"
+    },
+    "spooktober/assets/art/event/corner-vines.svg": {
+      "bytes": 425,
+      "sha256": "ff0becee8b96dc5d28355d5e82fbb6a39ccc81fea66f8ede824e17ae17d71b45"
+    },
+    "spooktober/assets/art/event/corner-web.svg": {
+      "bytes": 361,
+      "sha256": "64f26f0b2a1f4d23dd36b55d81b497b3fac786d3c98520147fd867c93307e625"
+    },
+    "spooktober/assets/art/event/ink-tag.svg": {
+      "bytes": 575,
+      "sha256": "fbecc2f0e272cb5e67bf533bbc0fa1e6d8ce744e85152ef7666cbb01d8e966fc"
+    },
+    "spooktober/assets/art/event/pumpkin-seal.svg": {
+      "bytes": 913,
+      "sha256": "1cc9f354231a10b9aea0720467932a2acf0771298f3a0220141c8a8f3fdeb83b"
+    },
+    "spooktober/assets/art/event/record-tag.svg": {
+      "bytes": 637,
+      "sha256": "e8f2846ca92bfdc6986acb71bad72cf0420e0f9dbb55000753e4d5dc1ef1b203"
+    },
+    "spooktober/assets/art/event/screening-frame.svg": {
+      "bytes": 620,
+      "sha256": "d2e85f6f0e9c4fce2103bada35d9d69cb9e6c289568edd5c6a96c08f92286ae5"
+    },
+    "spooktober/assets/art/event/spooktober-splash-original.jpg": {
+      "bytes": 223094,
+      "sha256": "c316c434aedca94e354c79073222d181ff167ed3e14e859d3bec7c7ae2c90fca"
+    },
+    "spooktober/assets/art/event/spooktober-splash.svg": {
+      "bytes": 211507,
+      "sha256": "f0772e382fab3f6c052945c55d8fda1c05ca13e83a9c16ef7d8d49f06051e018"
+    },
+    "spooktober/assets/art/event/tab-plate.svg": {
+      "bytes": 481,
+      "sha256": "8e2f7866c407f3ccf46f29fd211b6867ae44a0602cbd22d2412b9ea82991017a"
+    },
+    "spooktober/assets/art/event/ticket.svg": {
+      "bytes": 552,
+      "sha256": "3cb252a3dd3f69bed31826711e6dade319f0b20d3f9df1d966d713cad1045ee9"
+    },
+    "spooktober/assets/art/eyes-cat.svg": {
+      "bytes": 272,
+      "sha256": "82920b684d89f1e65a38b9911b26feb922ddaa29bb9b7c7739ff673ea5954567"
+    },
+    "spooktober/assets/art/eyes-curious.svg": {
+      "bytes": 295,
+      "sha256": "991b9006c7ca1bcd9c1819cb31035199f3e4080c0539d948d646f8f4faf0663a"
+    },
+    "spooktober/assets/art/eyes-sleepy.svg": {
+      "bytes": 283,
+      "sha256": "18acb63726f65787bd4c27132ff2ef400a55a563cec442f90897b590d58b5406"
+    },
+    "spooktober/assets/art/foreground-tree.svg": {
+      "bytes": 42854,
+      "sha256": "21913c2fcbcbb9613949d2563cfe1a05f04691266c8eaef490d7decc819748ef"
+    },
+    "spooktober/assets/art/foreground-wall.svg": {
+      "bytes": 14028,
+      "sha256": "c119602b232f4a1d41547336ebfaf58b6f71583ec2e7e4c2a6bbbaf59352352e"
+    },
+    "spooktober/assets/art/ghost-float.svg": {
+      "bytes": 4654,
+      "sha256": "f0e1d782fd81f744cc33f9c6961a6da3dd750f6eef9b431d70a0ccdae87ead74"
+    },
+    "spooktober/assets/art/ghost-peek.svg": {
+      "bytes": 4321,
+      "sha256": "de558117943e017bac957a120ecce08527f6c1e986350ae752573f6424a9b499"
+    },
+    "spooktober/assets/art/grass-clump.svg": {
+      "bytes": 2356,
+      "sha256": "3f6c535c12b7e7c161e9cbe11eb00bcbf3add41490c40f6694ffe7cc6a70542d"
+    },
+    "spooktober/assets/art/graveyard-ground.svg": {
+      "bytes": 119816,
+      "sha256": "dc944cebddc817ca6feaa6fdda6ad530f26ead4f40230d9b95cce89712cbaa1b"
+    },
+    "spooktober/assets/art/haunted-record.svg": {
+      "bytes": 1461,
+      "sha256": "08e469927aa5abebffc5f2b57ab31bc7cea5c80624e648914a3e00b4ab729e4d"
+    },
+    "spooktober/assets/art/headstone-cross.svg": {
+      "bytes": 4009,
+      "sha256": "d24d4c35b6321a33189a9583c82ef78ccf00e2947aa95292f1603a835e02ea91"
+    },
+    "spooktober/assets/art/headstone-ornate.svg": {
+      "bytes": 3403,
+      "sha256": "7ff8c5cecc6cea22837c80ca729cde93af267551da32d102d203b08efb3ea624"
+    },
+    "spooktober/assets/art/headstone-round.svg": {
+      "bytes": 2703,
+      "sha256": "4e43b7088ab101595993eff8a1de978c328d753838112598cc19fc9f7b63781d"
+    },
+    "spooktober/assets/art/headstone-small.svg": {
+      "bytes": 2593,
+      "sha256": "be555d41ac326f1c08bb5dcfbd2a34dc689e06e83208703de8bec91fadc69ced"
+    },
+    "spooktober/assets/art/headstone-stepped.svg": {
+      "bytes": 7535,
+      "sha256": "4f162129f1a83548b277078d0daa82e0c4d589a1bc2ada8b01a86687aebb1cdb"
+    },
+    "spooktober/assets/art/night-grain.svg": {
+      "bytes": 302,
+      "sha256": "c1f13732b8412c786e60259221b666447d0ada38079d832095ba6a62a672a55f"
+    },
+    "spooktober/assets/art/pumpkin-grin.svg": {
+      "bytes": 18682,
+      "sha256": "9c0dfe0f074ef626a6fb279fe8aa971357bd50632e9668c548d682cc90509439"
+    },
+    "spooktober/assets/art/pumpkin-mischief.svg": {
+      "bytes": 15472,
+      "sha256": "0497469787503796809da8021d883bd2d18441eba9d8bbded1966bc42d36af58"
+    },
+    "spooktober/assets/art/shudder-figure-body.svg": {
+      "bytes": 2004,
+      "sha256": "f1f121d7a524c64e8b8bb9cbca9bddf4c9c9128b27464bc13a8d3e44add3eb70"
+    },
+    "spooktober/assets/art/shudder-figure-head.svg": {
+      "bytes": 1344,
+      "sha256": "512d7065d45ab680bbf7a506a6a8357171edf1906186b1ffda9df3af9072cb5a"
+    },
+    "spooktober/assets/art/shudder-figure.svg": {
+      "bytes": 3640,
+      "sha256": "e42afe1158cf921ee0a4c4b16dbe4b68dea32c43675ebbba829dd66e1f406a0f"
+    },
+    "spooktober/assets/art/shudder-knife-arm.svg": {
+      "bytes": 1114,
+      "sha256": "0d1a437891dad0368d2002c75b69696d224131b7feba511edb95dca58892f010"
+    },
+    "spooktober/assets/art/shudder-knife-grip.svg": {
+      "bytes": 861,
+      "sha256": "ee7fda01a0a30a56fd29bde71dd02f71c23037501c82b6f6ffd912d77140fa00"
+    },
+    "spooktober/assets/art/shudder-knife-hand.svg": {
+      "bytes": 2053,
+      "sha256": "01906b338c2c4f6170026d4ed81382cfbcd70829aee60b260d309953865fb620"
+    },
+    "spooktober/assets/art/shudder-knife-sleeve.svg": {
+      "bytes": 314,
+      "sha256": "a6a5c62b0a07f1fffad29d2cc60f7df877a1d9a52ac9cf1eb8b75e9a2eabf8a5"
+    },
+    "spooktober/assets/art/witch-hat.svg": {
+      "bytes": 4903,
+      "sha256": "903b1835efaaccfaedfc78db2e2a5e866d42d6c1e93c26f2dbb6ec40366bbac0"
+    },
+    "spooktober/assets/icons/anime-spirit.svg": {
+      "bytes": 2290,
+      "sha256": "9ba410a1aa5221292f908d2566efa2d261bef25a0c1c2f4e13cd780a0325d01f"
+    },
+    "spooktober/assets/icons/arrow-right.svg": {
+      "bytes": 1023,
+      "sha256": "8609ab63a0d12c7db24bf52f0898eb7d2867272641d10763bfda3b6918cfcaf6"
+    },
+    "spooktober/assets/icons/candle.svg": {
+      "bytes": 1168,
+      "sha256": "7fa13b38d4799f2cd9d2c5d0bfdf5d70128d1ce612ca58d1b48a482640abfacb"
+    },
+    "spooktober/assets/icons/candy.svg": {
+      "bytes": 1020,
+      "sha256": "51e7fad3cec0ee53d59da81c06684aefb68331a046407cc222b7ffd5772b86f7"
+    },
+    "spooktober/assets/icons/case-file.svg": {
+      "bytes": 333,
+      "sha256": "9d62d77a0691b8759dc1ae75edca1b9c5175ba264cb918ec75f7040d77ca496b"
+    },
+    "spooktober/assets/icons/ghost-tv.svg": {
+      "bytes": 1795,
+      "sha256": "85494afbd24800e7694a3a269fb7db872606f9c14bf7c319561e757e5e38e5ec"
+    },
+    "spooktober/assets/icons/haunted-book.svg": {
+      "bytes": 2159,
+      "sha256": "30b87767b31fd6543fcfd11dc4d6e6f80953ef3522d17b9550248187186d699d"
+    },
+    "spooktober/assets/icons/haunted-record.svg": {
+      "bytes": 430,
+      "sha256": "ccc9af5f4d73d09191d6f75a54252860c2841452261fb81000299c8e6659f13f"
+    },
+    "spooktober/assets/icons/ink-eye.svg": {
+      "bytes": 1509,
+      "sha256": "2d4a183cf44a0756282d6de08e6143709b96fa599bc8b5209c84691003fa6b3d"
+    },
+    "spooktober/assets/icons/midnight-film.svg": {
+      "bytes": 1577,
+      "sha256": "74cfadbee1be105ae9040eef0976ba5cf780daa9875e7f893e216807279ca22d"
+    },
+    "spooktober/assets/icons/moon.svg": {
+      "bytes": 928,
+      "sha256": "963ae2ac09f9cfb416882cfc5ebdd4314e187c2509bc5b16caf7b4b3088889df"
+    },
+    "spooktober/assets/icons/path-body-horror.svg": {
+      "bytes": 485,
+      "sha256": "ac4da34561fce63af7618c04cbff0bf4f7559122342561dc301c5d2423991a88"
+    },
+    "spooktober/assets/icons/path-folk-horror.svg": {
+      "bytes": 441,
+      "sha256": "2859521c521cc1daf9325b24281be8e9a742c1ba5af9eb140ea3576b88d473c3"
+    },
+    "spooktober/assets/icons/path-found-footage.svg": {
+      "bytes": 533,
+      "sha256": "9a0f5a57d8530c18d4e388f3d3c0089089e311f61249ba59c9929bfca1a54a73"
+    },
+    "spooktober/assets/icons/path-giallo.svg": {
+      "bytes": 461,
+      "sha256": "1c76814946e06c7927606913a7780fb19c0d31b48d7336077256712aa67088a6"
+    },
+    "spooktober/assets/posters/backrooms.jpg": {
+      "bytes": 16187,
+      "sha256": "4045bf17c99c0b312b4cb84030dc1fdbc8d01940b5e1c5d3cd4c5a08d4a08ce3"
+    },
+    "spooktober/assets/posters/coraline-backdrop.jpg": {
+      "bytes": 101770,
+      "sha256": "95ae710011c97400506356c7f8f2503ac42208b7e18f18e236447c161f2e0168"
+    },
+    "spooktober/assets/posters/obsession.jpg": {
+      "bytes": 110916,
+      "sha256": "9eae90c80c10bb33291657f783cd99e1da39599ce9b794ef53da38ebc3fa9094"
+    },
+    "spooktober/assets/posters/other-mommy.jpg": {
+      "bytes": 11265,
+      "sha256": "5624f6c68528ee651323a3b5e06ad2e2ef9f87df39b0ed80a07d7003d94a0946"
+    },
+    "spooktober/assets/reading-cozy/book-tender-is-the-flesh.webp": {
+      "bytes": 16746,
+      "sha256": "6f54f5d001c4c5ddbd27afa84b5bbf539dff987b3692fe33cd3b226cab2de7e9"
+    },
+    "spooktober/assets/series-features/hulu.svg": {
+      "bytes": 806,
+      "sha256": "6bf705502216ffd2ad58721bcb1b76b93d3a2a31995dfa919ef34a847d038e1f"
+    },
+    "spooktober/assets/services/imdb.svg": {
+      "bytes": 513,
+      "sha256": "27f20028643228cf74afe7808f671d091689a799f935a3fc5471f701b47364d1"
+    },
+    "spooktober/assets/services/max.svg": {
+      "bytes": 3287,
+      "sha256": "930e98e7a6fa3e5b36c201398619db23aa217e49d67f460ae96f0ef897d00f3b"
+    },
+    "spooktober/assets/services/mubi.svg": {
+      "bytes": 6507,
+      "sha256": "1c2db2ecf58d03bd6e0c72ae30c3448548f18845ede47f3f82a1e39259592885"
+    },
+    "spooktober/assets/services/myanimelist.svg": {
+      "bytes": 703,
+      "sha256": "089d5e61d444500831461d349c804408a4356ee8251802c4d7cfdcb84e24644e"
+    },
+    "spooktober/assets/services/neon.svg": {
+      "bytes": 6567,
+      "sha256": "6459f8b6752c9d8f888bab15aed682374e3b2e8b6f455551045654b402752419"
+    },
+    "spooktober/assets/services/netflix.svg": {
+      "bytes": 1118,
+      "sha256": "0c12d5374247e16fced565a207d010bf39f1eb55ee0394581ced67b2e6fa7b92"
+    },
+    "spooktober/assets/services/peacock.svg": {
+      "bytes": 3335,
+      "sha256": "5d7134f70e44896a3cd445b3c8355d0f49140d733f99c4a4c148e8dd999ce864"
+    },
+    "spooktober/assets/services/shudder.svg": {
+      "bytes": 49134,
+      "sha256": "ed7631d3ab477433c714681e06fa372d172ce892bfb8d47adf9edbfbdf311709"
+    },
+    "spooktober/assets/twilight/tt1099212-logo.png": {
+      "bytes": 130268,
+      "sha256": "6f97f3a059d078639848fc48088df7b45da860ad93db291a2feb1dea56362d90"
+    },
+    "spooktober/assets/twilight/tt1325004-background.webp": {
+      "bytes": 252202,
+      "sha256": "efd7feb3e0bd6ffbca35aea32b7984a6b96ab872b1b050cc7dcc67c6340eca68"
+    },
+    "spooktober/catalog.json": {
+      "bytes": 421652,
+      "sha256": "b1c99d2f084300a8d80c46f9d762b4db4fd395d4cfcedd672d9c739f855b2130"
+    },
+    "spooktober/content.json": {
+      "bytes": 33727,
+      "sha256": "aacecd60cc736bccb69f519db94d1fdd780171cf7ec338cef16179bfce2509f4"
+    },
+    "spooktober/credits.html": {
+      "bytes": 7873,
+      "sha256": "34a3414f412859ba09c5e053978b7d7b32d2446091a1ae55922ba41361d07f63"
+    },
+    "spooktober/halloween-song-shelf.json": {
+      "bytes": 3009,
+      "sha256": "d84dddf6564e9695734ff3fcbd300c5c9afd2249fcc2faef9c24ddc55740843d"
+    },
+    "spooktober/horror-paths.json": {
+      "bytes": 56728,
+      "sha256": "190783eb02c9b1ea1e3b1cb6f200e01b8ddde7d7daeee00f7c216e8a0ed9cb1d"
+    },
+    "spooktober/international-expanded.json": {
+      "bytes": 47694,
+      "sha256": "7228e54d2afcf393affbc56e4f6ec34c1c3c9fb20a11196ce23b8a933e274141"
+    },
+    "spooktober/manga-expanded.json": {
+      "bytes": 42111,
+      "sha256": "4cfbb9c16cdfc035210325f99e5709f3746a3d61a0da3e0ede60688a2d154cdf"
+    },
+    "spooktober/music.json": {
+      "bytes": 460545,
+      "sha256": "2466880a36d13970f3011f04164d819c32a80d5ff04eb05e5dc6a4f6ddb46f15"
+    },
+    "spooktober/native-entry.js": {
+      "bytes": 2821,
+      "sha256": "2a64a65aa2d4207b1806fd1508d236b0321b99a64c59994dce747932befa5414"
+    },
+    "spooktober/native-environment.js": {
+      "bytes": 10643,
+      "sha256": "b3cd4c1cf90df93643074c2fd3e0da6ad81f3ae13505eb9642bc7bcbee0f9ee3"
+    },
+    "spooktober/native-fonts.json": {
+      "bytes": 363,
+      "sha256": "1aaa04522c03f0d4ec2649bd29eeb2ec58b633083ec9ff955e82465257d8bc14"
+    },
+    "spooktober/native-layout.html": {
+      "bytes": 159528,
+      "sha256": "29ad060240fe178c6cd5b5fcaef517d2f5e4c88b4ebd2d7626db76127a87cd24"
+    },
+    "spooktober/native-runtime.js": {
+      "bytes": 173259,
+      "sha256": "8d78e5808e00811e576353ba6f1d8b8fd63f1f94556550c288461d38edc16a6a"
+    },
+    "spooktober/native-styles.css": {
+      "bytes": 154947,
+      "sha256": "b4f2b0b887d50a5e6dbb9e52c7ba53b258c2cbfb6d999bf3c2a4308133f8e6b7"
+    },
+    "spooktober/new-releases-expanded.json": {
+      "bytes": 13523,
+      "sha256": "a82562bdc0837b108576b676b16db8fc1850c96651fc92a057a6f5a2236079ea"
+    },
+    "spooktober/playlist-data.json": {
+      "bytes": 14143,
+      "sha256": "7e7943d45e8fe71bb77910f7123ddcaff7f7b938c2603f34138c93ec06cd3552"
+    },
+    "spooktober/reading-cozy-expanded.json": {
+      "bytes": 40290,
+      "sha256": "b3fec31323dfe4d54992bb4c163f70311e9343649160c97d8a3b0aec2852b62d"
+    },
+    "spooktober/screen-shelves-expanded.json": {
+      "bytes": 80151,
+      "sha256": "2f3616b9365547531d65ec4e39a04d828009f58b068062e456c331e43ff1c7c2"
+    },
+    "spooktober/screening.json": {
+      "bytes": 45599,
+      "sha256": "c1126900809b1b98ef9aba63d05d1c76f0a2e91dc68c144c72c8289f3e8ecfac"
+    },
+    "spooktober/series-features.json": {
+      "bytes": 10680,
+      "sha256": "4c56dad1123303d2919ee9eb84b16a189c8250727f4f4c2f5f5965f840f685fc"
+    },
+    "spooktober/spotlight-data.json": {
+      "bytes": 14214,
+      "sha256": "f299a64e391b330b6a917b5fab5f4ea3255d6f95ef76884a866574285d5698dc"
+    },
+    "spooktober/true-crime-expanded.json": {
+      "bytes": 79532,
+      "sha256": "0fe88f4023d3719c1d565a4ece07850f52af25b03f824937edb4068be05ec945"
+    },
+    "spooktober/twilight-data.json": {
+      "bytes": 3858,
+      "sha256": "ac2199a6c24d8d732dd7a0e8e563e522159f7173db3aaf79281d942912e41216"
+    }
+  },
+  "zip_sha256": "8e3b9e510fd67769cd4bb5891606a4abecbf59b3412dcaf3b00809f16263e684",
+  "zip_bytes": 1755056
+}

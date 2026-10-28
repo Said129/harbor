@@ -1,0 +1,232 @@
+{
+  "reference": "0834340cec5531650bfe78cd628628702e636987",
+  "actual_original_callback_and_music_mappers_executed": true,
+  "original_modules": {
+    "src/views/spooktober/spooktober-music.ts": "ad58eb8b8acc0ec06458f60fe4a1e5371fac25bca4889521771a23aa992e371f",
+    "src/lib/spooktober-navigation.ts": "6cd45025e050af67cd330ae651099e5073982206e80c5ea005c8f098fc74da82",
+    "src/views/spooktober/spooktober-view.tsx": "aa337e435c946c3cb12de9d9deacb007150e781f9f83b1780f9f825ceb24b92c"
+  },
+  "playlists": ["party", "dark", "scores", "goth", "emo", "darkpop"],
+  "provider_network_requests": 0,
+  "cases": [
+    {
+      "intent": "meta",
+      "item": {
+        "imdbId": "tt0077651",
+        "title": "Halloween",
+        "type": "Film",
+        "year": 1978,
+        "poster": "/spooktober/assets/posters/halloween.jpg",
+        "description": "Owned reference",
+        "genres": ["Horror", 7, "Thriller"]
+      },
+      "expected": [
+        {
+          "kind": "media",
+          "media": {
+            "id": "tt0077651",
+            "name": "Halloween",
+            "type": "movie",
+            "poster": "/spooktober/assets/posters/halloween.jpg",
+            "description": "Owned reference",
+            "releaseInfo": "1978",
+            "genres": ["Horror", "Thriller"]
+          }
+        }
+      ]
+    },
+    {
+      "intent": "meta",
+      "item": {
+        "imdbId": "tt0903747",
+        "title": "Owned series",
+        "type": "Series",
+        "year": "2008",
+        "poster": "https://example.org/cover.jpg"
+      },
+      "expected": [
+        {
+          "kind": "media",
+          "media": {
+            "id": "tt0903747",
+            "name": "Owned series",
+            "type": "series",
+            "poster": "https://example.org/cover.jpg",
+            "description": "",
+            "releaseInfo": "2008"
+          }
+        }
+      ]
+    },
+    {
+      "intent": "meta",
+      "item": {
+        "imdbId": "wrong",
+        "title": "Rejected"
+      },
+      "expected": []
+    },
+    {
+      "intent": "meta",
+      "item": {
+        "imdbId": "tt0077651"
+      },
+      "expected": []
+    },
+    {
+      "intent": "track",
+      "item": {
+        "id": "music-12345",
+        "title": "Owned song",
+        "creator": "Owned artist",
+        "album": "Owned album",
+        "poster": "assets/posters/halloween.jpg",
+        "duration": 182.5,
+        "explicit": true
+      },
+      "expected": [
+        {
+          "kind": "track",
+          "track": {
+            "id": "itunes:track:12345",
+            "connectorId": "catalog",
+            "sourceId": "12345",
+            "title": "Owned song",
+            "artist": "Owned artist",
+            "album": "Owned album",
+            "artwork": "/spooktober/assets/posters/halloween.jpg",
+            "durationSeconds": 183,
+            "durationLabel": "3:03",
+            "explicit": true,
+            "mediaKind": "audio"
+          }
+        }
+      ]
+    },
+    {
+      "intent": "track",
+      "item": {
+        "id": "original-pick",
+        "title": "Second owned song",
+        "creator": "Owned artist",
+        "poster": "https://example.org/art.jpg",
+        "duration": -4
+      },
+      "expected": [
+        {
+          "kind": "track",
+          "track": {
+            "id": "spooktober:original-pick",
+            "connectorId": "catalog",
+            "title": "Second owned song",
+            "artist": "Owned artist",
+            "album": "",
+            "artwork": "https://example.org/art.jpg",
+            "durationSeconds": 0,
+            "durationLabel": "0:00",
+            "explicit": false,
+            "mediaKind": "audio"
+          }
+        }
+      ]
+    },
+    {
+      "intent": "track",
+      "item": {
+        "id": "missing-artist",
+        "title": "Rejected"
+      },
+      "expected": []
+    },
+    {
+      "intent": "video",
+      "item": {
+        "id": "abcdefghijk",
+        "title": "Owned video",
+        "artist": "Owned performer",
+        "image": "assets/posters/halloween.jpg"
+      },
+      "expected": [
+        {
+          "kind": "video",
+          "track": {
+            "id": "abcdefghijk",
+            "sourceId": "abcdefghijk",
+            "connectorId": "youtube",
+            "title": "Owned video",
+            "artist": "Owned performer",
+            "artwork": "/spooktober/assets/posters/halloween.jpg",
+            "durationSeconds": 0,
+            "durationLabel": "",
+            "mediaKind": "video"
+          }
+        }
+      ]
+    },
+    {
+      "intent": "video",
+      "item": {
+        "id": "wrong",
+        "title": "Rejected"
+      },
+      "expected": []
+    },
+    {
+      "intent": "playlist",
+      "id": "party",
+      "expected": [
+        {
+          "kind": "playlist",
+          "id": "party"
+        }
+      ]
+    },
+    {
+      "intent": "playlist",
+      "id": "goth",
+      "expected": [
+        {
+          "kind": "playlist",
+          "id": "goth"
+        }
+      ]
+    },
+    {
+      "intent": "playlist",
+      "id": "unknown",
+      "expected": []
+    },
+    {
+      "intent": "external",
+      "url": "https://example.org/reference",
+      "expected": [
+        {
+          "kind": "external",
+          "url": "https://example.org/reference"
+        }
+      ]
+    },
+    {
+      "intent": "external",
+      "url": "javascript:alert(1)",
+      "expected": []
+    },
+    {
+      "intent": "back",
+      "expected": [
+        {
+          "kind": "back"
+        }
+      ]
+    },
+    {
+      "intent": "reload",
+      "expected": [
+        {
+          "kind": "reload",
+          "attempt": 1
+        }
+      ]
+    }
+  ]
+}

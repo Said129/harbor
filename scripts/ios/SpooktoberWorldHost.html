@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'none'; script-src 'self' https://www.youtube.com https://s.ytimg.com; style-src 'self' 'unsafe-inline'; img-src 'self' https: data:; font-src 'self'; connect-src 'self' https:; frame-src https://www.youtube.com https://www.youtube-nocookie.com; media-src https: blob: data:"
+    />
+    <title>Spooktober</title>
+    <style>
+      html,
+      body {
+        margin: 0;
+        height: 100%;
+        background: #101112;
+        color: #eeeae3;
+        color-scheme: dark;
+      }
+      #world {
+        position: absolute;
+        inset: 0;
+        overflow: auto;
+        overscroll-behavior: contain;
+        -webkit-overflow-scrolling: touch;
+      }
+      #world:focus {
+        outline: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="world" tabindex="-1" aria-label="Spooktober"></div>
+    <script type="module" src="index.js"></script>
+  </body>
+</html>
