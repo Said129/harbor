@@ -49,8 +49,7 @@ struct LibraryHistoryContent: View {
                     Button(text("Retry")) { Task { await model.refresh(force: true) } }.frame(minHeight: 44)
                 }.accessibilityIdentifier("library-history-error")
             }
-        }.accessibilityIdentifier("library-history-content")
-            .task(id: model.account.identity) { await model.refresh() }.onDisappear { model.cancel() }
+        }.task(id: model.account.identity) { await model.refresh() }.onDisappear { model.cancel() }
     }
     private var historyDisplay: LibraryDisplay { var value = display; value.filter = .watched; return value }
     private func card(_ entry: LibraryHistoryEntry, episodes: Bool) -> some View {

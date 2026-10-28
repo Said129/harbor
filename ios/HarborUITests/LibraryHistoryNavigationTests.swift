@@ -57,7 +57,7 @@ import XCTest
         XCTAssertEqual(history.label, "History")
         ReadingUIInteraction.revealHorizontally(history, in: app, container: bar)
         ReadingUIInteraction.tapVisible(history, in: app)
-        XCTAssertTrue(app.descendants(matching: .any).matching(identifier: "library-history-content").firstMatch.waitForExistence(timeout: 15))
+        XCTAssertTrue(app.buttons["library-history-refresh"].waitForExistence(timeout: 15))
     }
     private func capture(_ app: XCUIApplication, _ name: String) {
         Thread.sleep(forTimeInterval: 0.55)

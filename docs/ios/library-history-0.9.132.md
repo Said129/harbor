@@ -161,3 +161,21 @@ sus imágenes propias decodificadas. El archivo de 28.897.890 bytes tiene SHA-25
 digest de GitHub. La alineación superior corregida después, en `8875df1d`, sigue
 pendiente de sus nuevas capturas. Se conservan los resultados aprobados y no se
 atribuye a esta ejecución una aprobación física, de animación o del port completo.
+
+La ejecución `40678694048`, fuente `8875df1d`, aprobó seis de ocho ejecuciones:
+los dos montajes, las tres preparaciones y el recorrido de pestañas del iPhone.
+Solo fallaron los dos recorridos completos de Historial al localizar el mensaje
+de búsqueda sin coincidencias. Las grabaciones originales muestran la consulta
+escrita y el mensaje visible en ambos tamaños; los registros identifican el campo
+de texto con el identificador del contenedor. Se retira ese identificador de la
+vista contenedora para no propagarlo a los elementos y se espera el botón de
+actualización propio de Historial al abrirlo. La reparación necesita ejecución;
+no se presenta el fallo como una búsqueda que no filtrase el contenido.
+
+Se conservaron los resultados parciales y 17 imágenes originales. El archivo de
+37.478.828 bytes tiene SHA-256
+`80bd36fa8a97fad984d8f9faa28316f549bcaf33e4daf023de0d6ee1c5a32fcc`, igual al
+digest de GitHub. Faltan las dos capturas posteriores a retirada porque los
+recorridos no llegaron a esa parte. La revisión individual completa de estos
+17 originales todavía está pendiente; los fotogramas diagnósticos extraídos de
+las grabaciones se conservan aparte con su procedencia.
