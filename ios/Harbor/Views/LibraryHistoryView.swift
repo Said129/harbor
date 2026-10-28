@@ -33,7 +33,7 @@ struct LibraryHistoryContent: View {
                         VStack(alignment: .leading, spacing: 14) {
                             if !group.title.isEmpty { Text(text(LibraryListing.sourceGroupTitle(group.title)).uppercased() + "  \(group.items.count)").font(.system(size: 11, weight: .bold)).tracking(2).foregroundStyle(.secondary) }
                             if display.historyView == .episodes {
-                                LazyVGrid(columns: [GridItem(.adaptive(minimum: 155), spacing: 16)], alignment: .leading, spacing: 22) {
+                                LazyVGrid(columns: [GridItem(.adaptive(minimum: 155), spacing: 16, alignment: .topLeading)], alignment: .leading, spacing: 22) {
                                     ForEach(group.items) { record in if let entry = indexed[record.id] { card(entry, episodes: true) } }
                                 }
                             } else {

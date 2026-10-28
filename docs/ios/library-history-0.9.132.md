@@ -54,7 +54,7 @@ credenciales, verifican cambio de modo, búsqueda, confirmación, retirada y
 reinicio. Estos recorridos usan títulos sintéticos sin portadas; no certifican
 arte de proveedores. Las imágenes del montaje cubren ese aspecto por separado.
 
-Ninguno de estos casos nuevos se ha ejecutado todavía. El intento 40617349724,
+El intento inicial 40617349724,
 en `a5c1bb0f`, falló al compilar: el `error` implícito del `catch` ocultaba la
 propiedad del modelo. La asignación usa ahora `self.error`. El archivo de
 diagnósticos original, de 30.924 bytes, conserva SHA-256
@@ -67,7 +67,7 @@ recorrido del iPhone falló al consultar `isHittable` en una pestaña fuera del 
 visible. La reparación revela el marco completo antes de activarla y conserva
 la comprobación de selección tras el toque real.
 
-La nueva selección contiene ocho casos nativos sin ejecutar y un montaje afectado:
+La selección inicial de seguimiento contenía ocho casos nativos sin ejecutar y un montaje afectado:
 la captura Trakt compacta anterior tenía una portada aún en carga, por lo que
 ahora debe esperar las cuatro. Hay tres preparaciones y tres recorridos: dos
 nuevos de Historial y solo el recorrido anterior fallido del iPhone. Total:
@@ -117,3 +117,34 @@ La selección `independent-history` reúne esos tres casos nativos, el montaje d
 componente afectado por el rótulo, dos preparaciones y los dos recorridos nuevos:
 ocho ejecuciones y seis capturas previstas. Conserva los cinco casos de marcado
 ya aprobados en 40675700785 y no reinicia la validación anterior de Historial.
+
+## Resultado Apple y reparación de los recorridos pendientes
+
+La [ejecución 40674798409](https://github.com/Said129/harbor/actions/runs/40674798409),
+fuente `079a5da425564110ffed6380f8aee889362b919b`, aprobó los nueve casos nativos:
+seis de Historial, dos montajes y el cotejo de los 16 idiomas. No hubo omitidos ni
+advertencias nuevas. Las tres preparaciones y los tres recorridos no llegaron a
+ejecutarse: el script de interfaz tenía una lista cerrada de cantidades de imágenes
+que no admitía 19. La reparación comprueba la igualdad entre cantidad declarada,
+capturas requeridas y nombres únicos. El código real de esa comprobación se
+ejecutó localmente con cuatro cantidades válidas, incluida 19, y cuatro planes
+inválidos; no se presenta esa comprobación local como una ejecución en iOS.
+
+Se descargaron y revisaron individualmente las diez imágenes nativas originales.
+El archivo de 597.135 bytes tiene SHA-256
+`8ab909c56c4767eb8d3fb9fcfddace0f7cd50231b15562c23088c91b7eaf7460`, igual al
+digest de GitHub. Las cuatro portadas Trakt ya están decodificadas en ambos tamaños.
+Quedaban una «T» fija en las tarjetas de episodio, una diferencia de alineación
+vertical entre películas y episodios y un encabezado de transferencia que usaba
+el idioma de preferencias mientras su contenido usaba el del entorno.
+
+El rótulo ya usa el catálogo; la cuadrícula alinea las tarjetas arriba y el
+encabezado de transferencia recibe el mismo idioma que su contenido. El parámetro
+opcional de sección conserva el comportamiento anterior para sus demás usos.
+Estas reparaciones visuales todavía necesitan nuevas capturas.
+
+La selección `library-history-interface` conserva siete aprobaciones nativas
+intactas y repite únicamente los dos montajes cuyo aspecto cambió. Añade las tres
+preparaciones y los tres recorridos sin ejecutar: ocho ejecuciones y 19 imágenes
+previstas, sin IPA. Los tres modelos de historial independiente y los dos nuevos
+recorridos específicos de rótulos siguen en su validación separada.

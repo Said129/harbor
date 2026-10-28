@@ -109,7 +109,7 @@ struct TraktWatchlistTransferView: View {
         switch phase { case .idle, .result: model.loading || model.transferring || model.store.updating; default: true }
     }
     var body: some View {
-        HarborSettingsSection("Move your watchlist", note: "Copy your Harbor watchlist over to Trakt, or pull your Trakt watchlist into Harbor.") {
+        HarborSettingsSection("Move your watchlist", note: "Copy your Harbor watchlist over to Trakt, or pull your Trakt watchlist into Harbor.", language: locale.identifier) {
             VStack(alignment: .leading, spacing: 12) {
                 Text(text("Send every title in your Harbor watchlist up to Trakt. Safe to run again, Trakt skips anything it already has.")).font(.callout).foregroundStyle(.secondary)
                 Button(text("Export to Trakt")) {

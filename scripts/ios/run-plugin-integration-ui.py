@@ -27,7 +27,9 @@ else:
     families = {batch['family'] for batch in batches}
     if plan.get('startup_probe'): assert len(batches) == 1 and families == {'IPhone'}
     else: assert families == {'IPhone', 'IPad'}
-assert plan['expected_original_images'] in (4, 6, 8, 10, 12, 13, 16, 17, 18, 20, 24, 26, 28, 32, 34, 35, 36, 38, 39, 44, 46, 47, 48, 52, 54, 56, 58, 61)
+captures = plan['required_original_captures']
+assert captures and all(isinstance(name, str) and name for name in captures)
+assert plan['expected_original_images'] == len(captures) == len(set(captures))
 if plan.get('block') in ('reading-plugins', 'reading-repair', 'ebook-catalog', 'reading-bulk', 'reading-consolidated', 'reading-html', 'reading-metadata', 'reading-adaptations', 'reading-navigation', 'reading-surface', 'reading-source-refresh', 'reading-final-repair', 'reading-final-followup', 'reading-visible', 'reading-visible-repair', 'prepared-app'):
     runpy.run_path('scripts/ios/reading-plugin-fixture-server.py')['start'](build)
 if plan['selected_case_count']:

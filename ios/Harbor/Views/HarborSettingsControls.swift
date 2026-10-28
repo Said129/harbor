@@ -5,22 +5,24 @@ import SwiftUI
 struct HarborSettingsSection<Content: View>: View {
     let title: String
     var note: String? = nil
+    var language: String? = nil
     let content: Content
 
-    init(_ title: String, note: String? = nil, @ViewBuilder content: () -> Content) {
+    init(_ title: String, note: String? = nil, language: String? = nil, @ViewBuilder content: () -> Content) {
         self.title = title
         self.note = note
+        self.language = language
         self.content = content()
     }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 14) {
-            Text(DesktopInterfaceText.value(title)).font(HarborTheme.font(20, weight: .semibold))
+            Text(DesktopInterfaceText.value(title, language: language)).font(HarborTheme.font(20, weight: .semibold))
                 .accessibilityAddTraits(.isHeader)
             VStack(alignment: .leading, spacing: 18) { content }
                 .frame(maxWidth: .infinity, alignment: .leading)
             if let note {
-                Text(DesktopInterfaceText.value(note)).font(HarborTheme.font(13)).foregroundStyle(.secondary)
+                Text(DesktopInterfaceText.value(note, language: language)).font(HarborTheme.font(13)).foregroundStyle(.secondary)
                     .fixedSize(horizontal: false, vertical: true)
             }
         }.frame(maxWidth: .infinity, alignment: .leading)
