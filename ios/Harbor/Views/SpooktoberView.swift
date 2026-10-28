@@ -4,32 +4,87 @@ import UIKit
 struct SpooktoberInvitation: View {
     let preferences: SpooktoberInvitationPreferences
     let open: () -> Void
+    @Environment(\.locale) private var locale
+    @Environment(\.horizontalSizeClass) private var sizeClass
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @State private var hovered = false
+    @State private var sway = 0
+    @FocusState private var focused: Bool
+    private func text(_ key: String) -> String { DesktopInterfaceText.value(key, language: locale.identifier) }
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            ZStack(alignment: .topTrailing) {
+            if preferences.dismissed { collapsed }
+            else { invitation }
+            if let error = preferences.error { Text(error).font(.caption).foregroundStyle(.orange) }
+        }.padding(.horizontal).frame(maxWidth: .infinity, alignment: .leading)
+            .onChange(of: focused) { _, active in if active && !preferences.dismissed && !reduceMotion { sway += 1 } }
+    }
+    private var collapsed: some View {
+        Button(action: open) {
+            HStack(spacing: 8) {
+                Image("spook-pumpkin").resizable().scaledToFit().frame(width: 22, height: 22).accessibilityHidden(true)
+                Text("Spooktober").font(HarborTheme.font(13, weight: .semibold))
+            }.padding(.leading, 8).padding(.trailing, 13).frame(minHeight: 44)
+                .foregroundStyle(hovered || focused ? HarborTheme.ink : ThemePreferences.shared.color("ink-muted"))
+                .background(HarborTheme.surface.opacity(hovered || focused ? 1 : 0.82), in: .capsule)
+                .overlay { Capsule().stroke(ThemePreferences.shared.color("edge-soft"), lineWidth: 1) }
+                .overlay { if focused { Capsule().stroke(HarborTheme.ink, lineWidth: 2).padding(-4) } }
+        }.buttonStyle(.plain).focused($focused).onHover { hovered = $0 }
+            .animation(reduceMotion ? nil : .easeOut(duration: 0.16), value: hovered || focused)
+            .accessibilityHint(text("spooktober.enter")).accessibilityIdentifier("spooktober-open-collapsed")
+    }
+    private var invitation: some View {
+        ZStack(alignment: .topTrailing) {
                 Button(action: open) {
                     HStack(spacing: 14) {
-                        Image("spook-pumpkin").resizable().scaledToFit().frame(width: 62, height: 68).accessibilityHidden(true)
+                        SpooktoberInvitationPumpkin(trigger: sway, reduceMotion: reduceMotion).frame(width: 62, height: 68).accessibilityHidden(true)
                         VStack(alignment: .leading, spacing: 5) {
                             Text("Spooktober").font(.custom("Fraunces-9ptBlack", size: 27))
-                            Text("Cine, música y descubrimientos de medianoche.").font(.caption).foregroundStyle(.secondary)
+                            Text(text("spooktober.cta.description")).font(.caption).foregroundStyle(.secondary).accessibilityIdentifier("spooktober-description")
                         }
                         Spacer(minLength: 0)
-                        Image(systemName: "arrow.right").accessibilityHidden(true)
+                        HStack(spacing: 8) {
+                            if sizeClass == .regular { Text(text("spooktober.enter")).font(HarborTheme.font(12)) }
+                            Image(systemName: "arrow.right").accessibilityHidden(true)
+                        }
                     }.padding(18).padding(.trailing, 8).frame(maxWidth: .infinity, alignment: .leading)
                 }.buttonStyle(.plain).background {
                     ZStack {
                         HarborTheme.surface
                         Image("spook-hill").resizable().foregroundStyle(ThemePreferences.shared.color("raised").opacity(0.3))
                         Image("spook-field").resizable().foregroundStyle(ThemePreferences.shared.color("raised").opacity(0.15))
-                    }
+                    }.brightness(hovered ? 0.03 : 0)
                 }.clipShape(.rect(cornerRadius: 14)).accessibilityIdentifier("spooktober-open")
+                    .accessibilityHint(text("spooktober.enter")).focused($focused)
+                    .onHover { active in if active && !hovered && !reduceMotion { sway += 1 }; hovered = active }
+                    .animation(reduceMotion ? nil : .easeOut(duration: 0.18), value: hovered)
+                    .overlay { if focused { RoundedRectangle(cornerRadius: 14).stroke(HarborTheme.ink, lineWidth: 2).padding(-4) } }
                 Button { preferences.dismiss() } label: {
                     Image(systemName: "xmark").font(.caption).padding(10).background(HarborTheme.background.opacity(0.8), in: .circle)
-                }.frame(minWidth: 44, minHeight: 44).accessibilityLabel("Ocultar invitación de Spooktober")
+                }.frame(minWidth: 44, minHeight: 44).accessibilityLabel(text("spooktober.dismiss")).accessibilityIdentifier("spooktober-dismiss")
+        }
+    }
+}
+
+private struct SpooktoberPumpkinMotion { var angle = 0.0; var y = 0.0 }
+private struct SpooktoberInvitationPumpkin: View {
+    let trigger: Int
+    let reduceMotion: Bool
+    var body: some View {
+        Image("spook-pumpkin").resizable().scaledToFit()
+            .keyframeAnimator(initialValue: SpooktoberPumpkinMotion(), trigger: trigger) { content, motion in
+                content.rotationEffect(.degrees(reduceMotion ? 0 : motion.angle), anchor: UnitPoint(x: 0.5, y: 0.88))
+                    .offset(y: reduceMotion ? 0 : motion.y)
+            } keyframes: { _ in
+                KeyframeTrack(\.angle) {
+                    CubicKeyframe(-7, duration: 0.19); CubicKeyframe(5, duration: 0.2432)
+                    CubicKeyframe(-2, duration: 0.1748); CubicKeyframe(0, duration: 0.152)
+                }
+                KeyframeTrack(\.y) {
+                    CubicKeyframe(-2, duration: 0.19); CubicKeyframe(-1, duration: 0.2432)
+                    CubicKeyframe(0, duration: 0.1748); CubicKeyframe(0, duration: 0.152)
+                }
             }
-            if let error = preferences.error { Text(error).font(.caption).foregroundStyle(.orange) }
-        }.padding(.horizontal)
     }
 }
 

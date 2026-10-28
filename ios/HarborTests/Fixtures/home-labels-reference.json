@@ -1,0 +1,274 @@
+{
+  "reference": "0834340cec5531650bfe78cd628628702e636987",
+  "original_catalogs_executed": true,
+  "actual_original_invitation_component_executed": true,
+  "jsx_rendering_is_not_a_browser_snapshot": true,
+  "executed_original_file_hashes": {
+    "src/views/spooktober/spooktober-entry.tsx": "b2264f26be454569812cc35c0c194f15a258004abd42879af0283ae67fc1e647",
+    "src/views/spooktober/spooktober-entry.css": "0b99b8a3a1a762de12f8d72fc5c3d588faad9c4e0a13774878bc9c3b10ee99d8",
+    "src/components/cinema-hero.tsx": "dcafa5f876d8b326c782fc35ed35e27f53b19cc9171985fbe6edbd0844630d90",
+    "src/components/hero.tsx": "ff464c97bf1fe8c6fcba6b6cb8721d3681826e065b28fa439dfc6f496404f709",
+    "src/views/movies.tsx": "3f1b37248f4e55897adb7fcafc76ee41589cda37ef99066ab447f3616546ea0d",
+    "src/lib/i18n/locales/en/spooktober.ts": "aabd3635e4efc7d499ce579138d82b42fc83f6188cbed6a17154287bb94ebd2c"
+  },
+  "provider_network_requests": 0,
+  "keys": [
+    "Featured tonight",
+    "Play",
+    "Read",
+    "More info",
+    "In Watchlist",
+    "Add to Watchlist",
+    "spooktober.cta.description",
+    "spooktober.enter",
+    "spooktober.dismiss"
+  ],
+  "languages": [
+    {
+      "code": "en",
+      "expected": {
+        "Featured tonight": "Featured tonight",
+        "Play": "Play",
+        "Read": "Read",
+        "More info": "More info",
+        "In Watchlist": "In Watchlist",
+        "Add to Watchlist": "Add to Watchlist",
+        "spooktober.cta.description": "Films, music & midnight discoveries.",
+        "spooktober.enter": "Step inside",
+        "spooktober.dismiss": "Dismiss Spooktober"
+      }
+    },
+    {
+      "code": "ar",
+      "expected": {
+        "Featured tonight": "مميّز الليلة",
+        "Play": "تشغيل",
+        "Read": "قراءة",
+        "More info": "مزيد من المعلومات",
+        "In Watchlist": "في قائمة المشاهدة",
+        "Add to Watchlist": "إضافة إلى قائمة المشاهدة",
+        "spooktober.cta.description": "أفلام وموسيقى واكتشافات منتصف الليل.",
+        "spooktober.enter": "تفضل بالدخول",
+        "spooktober.dismiss": "إغلاق Spooktober"
+      }
+    },
+    {
+      "code": "zh",
+      "expected": {
+        "Featured tonight": "今晚精选",
+        "Play": "播放",
+        "Read": "读取",
+        "More info": "更多信息",
+        "In Watchlist": "已在待看清单中",
+        "Add to Watchlist": "添加到待看清单",
+        "spooktober.cta.description": "电影、音乐与午夜新发现。",
+        "spooktober.enter": "请进",
+        "spooktober.dismiss": "关闭Spooktober"
+      }
+    },
+    {
+      "code": "fr",
+      "expected": {
+        "Featured tonight": "À la une ce soir",
+        "Play": "Lire",
+        "Read": "Lire",
+        "More info": "Plus d’infos",
+        "In Watchlist": "Dans la liste à regarder",
+        "Add to Watchlist": "Ajouter à la liste de suivi",
+        "spooktober.cta.description": "Films, musique et découvertes de minuit.",
+        "spooktober.enter": "Entrez",
+        "spooktober.dismiss": "Fermer Spooktober"
+      }
+    },
+    {
+      "code": "de",
+      "expected": {
+        "Featured tonight": "Heute Abend im Fokus",
+        "Play": "Abspielen",
+        "Read": "Lesen",
+        "More info": "Weitere Infos",
+        "In Watchlist": "Auf der Merkliste",
+        "Add to Watchlist": "Zur Merkliste hinzufügen",
+        "spooktober.cta.description": "Filme, Musik und Entdeckungen um Mitternacht.",
+        "spooktober.enter": "Komm herein",
+        "spooktober.dismiss": "Spooktober schließen"
+      }
+    },
+    {
+      "code": "hi",
+      "expected": {
+        "Featured tonight": "आज रात के लिए चुनिंदा",
+        "Play": "चलाएँ",
+        "Read": "पढ़ें",
+        "More info": "अधिक जानकारी",
+        "In Watchlist": "वॉचलिस्ट में",
+        "Add to Watchlist": "वॉचलिस्ट में जोड़ें",
+        "spooktober.cta.description": "फ़िल्में, संगीत और आधी रात की खोजें।",
+        "spooktober.enter": "अंदर आएँ",
+        "spooktober.dismiss": "Spooktober बंद करें"
+      }
+    },
+    {
+      "code": "id",
+      "expected": {
+        "Featured tonight": "Unggulan malam ini",
+        "Play": "Putar",
+        "Read": "Baca",
+        "More info": "Info selengkapnya",
+        "In Watchlist": "Di Daftar Tontonan",
+        "Add to Watchlist": "Tambahkan ke Daftar Tontonan",
+        "spooktober.cta.description": "Film, musik, dan penemuan tengah malam.",
+        "spooktober.enter": "Masuklah",
+        "spooktober.dismiss": "Tutup Spooktober"
+      }
+    },
+    {
+      "code": "it",
+      "expected": {
+        "Featured tonight": "In evidenza stasera",
+        "Play": "Riproduci",
+        "Read": "Leggi",
+        "More info": "Maggiori informazioni",
+        "In Watchlist": "Nella Lista",
+        "Add to Watchlist": "Aggiungi alla lista",
+        "spooktober.cta.description": "Film, musica e scoperte di mezzanotte.",
+        "spooktober.enter": "Entra",
+        "spooktober.dismiss": "Chiudi Spooktober"
+      }
+    },
+    {
+      "code": "ja",
+      "expected": {
+        "Featured tonight": "今夜のおすすめ",
+        "Play": "再生",
+        "Read": "読む",
+        "More info": "詳細",
+        "In Watchlist": "ウォッチリストに追加済み",
+        "Add to Watchlist": "ウォッチリストに追加",
+        "spooktober.cta.description": "映画、音楽、真夜中の発見。",
+        "spooktober.enter": "中へどうぞ",
+        "spooktober.dismiss": "Spooktoberを閉じる"
+      }
+    },
+    {
+      "code": "ko",
+      "expected": {
+        "Featured tonight": "오늘 밤의 추천작",
+        "Play": "재생",
+        "Read": "읽기",
+        "More info": "더 알아보기",
+        "In Watchlist": "관심 목록에 있음",
+        "Add to Watchlist": "관심 목록에 추가",
+        "spooktober.cta.description": "영화, 음악, 그리고 한밤의 발견.",
+        "spooktober.enter": "안으로 들어오세요",
+        "spooktober.dismiss": "Spooktober 닫기"
+      }
+    },
+    {
+      "code": "pl",
+      "expected": {
+        "Featured tonight": "Polecane na dziś wieczór",
+        "Play": "Odtwórz",
+        "Read": "Odczytaj",
+        "More info": "Więcej informacji",
+        "In Watchlist": "Na liście do obejrzenia",
+        "Add to Watchlist": "Dodaj do listy do obejrzenia",
+        "spooktober.cta.description": "Filmy, muzyka i odkrycia o północy.",
+        "spooktober.enter": "Wejdź do środka",
+        "spooktober.dismiss": "Zamknij Spooktober"
+      }
+    },
+    {
+      "code": "pt",
+      "expected": {
+        "Featured tonight": "Destaque de hoje",
+        "Play": "Reproduzir",
+        "Read": "Ler",
+        "More info": "Mais informações",
+        "In Watchlist": "Na Watchlist",
+        "Add to Watchlist": "Adicionar à Watchlist",
+        "spooktober.cta.description": "Filmes, música e descobertas à meia-noite.",
+        "spooktober.enter": "Entre",
+        "spooktober.dismiss": "Fechar Spooktober"
+      }
+    },
+    {
+      "code": "ru",
+      "expected": {
+        "Featured tonight": "Выбор на вечер",
+        "Play": "Воспроизвести",
+        "Read": "Прочитать",
+        "More info": "Подробнее",
+        "In Watchlist": "В списке просмотра",
+        "Add to Watchlist": "Добавить в список просмотра",
+        "spooktober.cta.description": "Кино, музыка и полуночные открытия.",
+        "spooktober.enter": "Заходите",
+        "spooktober.dismiss": "Закрыть Spooktober"
+      }
+    },
+    {
+      "code": "es",
+      "expected": {
+        "Featured tonight": "Destacado esta noche",
+        "Play": "Reproducir",
+        "Read": "Leer",
+        "More info": "Más información",
+        "In Watchlist": "En la lista para ver",
+        "Add to Watchlist": "Agregar a la lista de seguimiento",
+        "spooktober.cta.description": "Películas, música y descubrimientos de medianoche.",
+        "spooktober.enter": "Pasa dentro",
+        "spooktober.dismiss": "Cerrar Spooktober"
+      }
+    },
+    {
+      "code": "tr",
+      "expected": {
+        "Featured tonight": "Bu gece öne çıkanlar",
+        "Play": "Oynat",
+        "Read": "Oku",
+        "More info": "Daha fazla bilgi",
+        "In Watchlist": "İzleme Listesinde",
+        "Add to Watchlist": "İzleme Listesine ekle",
+        "spooktober.cta.description": "Filmler, müzik ve gece yarısı keşifleri.",
+        "spooktober.enter": "İçeri gel",
+        "spooktober.dismiss": "Spooktober’ı kapat"
+      }
+    },
+    {
+      "code": "vi",
+      "expected": {
+        "Featured tonight": "Nổi bật tối nay",
+        "Play": "Phát",
+        "Read": "Đọc",
+        "More info": "Thông tin thêm",
+        "In Watchlist": "Trong danh sách xem",
+        "Add to Watchlist": "Thêm vào danh sách xem",
+        "spooktober.cta.description": "Phim, âm nhạc và những khám phá lúc nửa đêm.",
+        "spooktober.enter": "Mời bước vào",
+        "spooktober.dismiss": "Đóng Spooktober"
+      }
+    }
+  ],
+  "original_branches": [
+    {
+      "collapsed": false,
+      "button_count": 2,
+      "invitation_marker": true,
+      "has_dismiss": true,
+      "open_calls": 1,
+      "dismiss_calls": 1,
+      "prepare_calls": 2,
+      "invitation_title": null
+    },
+    {
+      "collapsed": true,
+      "button_count": 1,
+      "invitation_marker": "collapsed",
+      "has_dismiss": false,
+      "open_calls": 1,
+      "dismiss_calls": 0,
+      "prepare_calls": 2,
+      "invitation_title": "Step inside"
+    }
+  ]
+}

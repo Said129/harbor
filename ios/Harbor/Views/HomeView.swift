@@ -42,7 +42,7 @@ struct HomeView: View {
                     CustomizedHero(rails: rails, defaults: heroes, app: model, customization: customization)
                 }
                 if loading && rails.isEmpty { HarborLoader().frame(maxWidth: .infinity).padding(40) }
-                if SpooktoberSeason.available(seasonalDate) && !seasonalPreferences.dismissed {
+                if SpooktoberSeason.available(seasonalDate) {
                     SpooktoberInvitation(preferences: seasonalPreferences) { showSpooktober = true }
                 }
                 if let error = model.progressError {
@@ -72,6 +72,9 @@ struct HomeView: View {
             .refreshable { await refresh() }
             .task(id: model.continuingDetectionSignature) { await model.detectContinuingAnime() }
             .task(id: model.settingsOwner) { await model.customLists.load() }
+            .onChange(of: model.personalOwner) { _, owner in
+                showSpooktober = false; seasonalPreferences = SpooktoberInvitationPreferences(owner: owner)
+            }
             .task(id: contentSignature) {
                 guard model.storageReady, !classic else { return }
                 async let curated: Void = model.home.load(app: model)

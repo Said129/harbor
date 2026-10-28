@@ -685,6 +685,7 @@
 "Feature this catalog in the hero carousel" = "इस कैटलॉग को हीरो कैरोसेल में प्रमुखता दें";
 "Featured" = "चुनिंदा";
 "Featured at Anime Expo" = "एनीमे एक्सपो में प्रदर्शित";
+"Featured tonight" = "आज रात के लिए चुनिंदा";
 "Fecha" = "तारीख";
 "Fiction" = "कथा-साहित्य";
 "File is larger than 2 MB." = "फ़ाइल 2 MB से बड़ी है।";
@@ -1002,6 +1003,7 @@
 "Momento en que aparece la etiqueta A continuación antes de que termine un episodio. Automático se ajusta a la duración del episodio, para que en los episodios cortos no aparezca tan pronto. Desactivado la oculta." = "एपिसोड खत्म होने से कितनी देर पहले अगला पिल दिखाई दे। ऑटो इसे एपिसोड की अवधि के अनुसार समायोजित करता है, ताकि छोटे एपिसोड में यह बहुत जल्दी न दिखे। बंद करने पर यह छिप जाता है।";
 "More Movies" = "और फ़िल्में";
 "More Series" = "और सीरीज़";
+"More info" = "अधिक जानकारी";
 "Most Popular" = "सबसे लोकप्रिय";
 "Most Popular on MAL" = "MAL पर सबसे लोकप्रिय";
 "Mostrar" = "दिखाएँ";
@@ -2188,6 +2190,9 @@
 "services" = "सेवाएँ";
 "skipped {n} anime" = "{n} ऐनिमे छोड़े गए";
 "speed" = "गति";
+"spooktober.cta.description" = "फ़िल्में, संगीत और आधी रात की खोजें।";
+"spooktober.dismiss" = "Spooktober बंद करें";
+"spooktober.enter" = "अंदर आएँ";
 "star" = "स्टार";
 "stars" = "स्टार्स";
 "stats" = "आँकड़े";

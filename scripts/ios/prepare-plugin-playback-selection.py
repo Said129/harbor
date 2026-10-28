@@ -6,6 +6,9 @@ import re
 import runpy
 
 requested = os.environ.get('HARBOR_NATIVE_SELECTION', '').strip()
+if requested == 'affected:home-entry-language' or requested.startswith('HarborTests.HomeEntryLanguageTests/'):
+    runpy.run_path('scripts/ios/prepare-home-entry-language-selection.py')
+    raise SystemExit(0)
 if requested == 'affected:list-parity-repair' or ('HarborTests.CustomListHomeTests/' in requested and 'HarborTests.AddonOriginTests/' in requested):
     runpy.run_path('scripts/ios/prepare-list-parity-repair-selection.py')
     raise SystemExit(0)

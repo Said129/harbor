@@ -685,6 +685,7 @@
 "Feature this catalog in the hero carousel" = "Bu kataloğu vitrin karuselinde öne çıkar";
 "Featured" = "Öne Çıkan";
 "Featured at Anime Expo" = "Anime Expo'da Öne Çıkanlar";
+"Featured tonight" = "Bu gece öne çıkanlar";
 "Fecha" = "Tarih";
 "Fiction" = "Kurgu";
 "File is larger than 2 MB." = "Dosya 2 MB'tan büyük.";
@@ -1002,6 +1003,7 @@
 "Momento en que aparece la etiqueta A continuación antes de que termine un episodio. Automático se ajusta a la duración del episodio, para que en los episodios cortos no aparezca tan pronto. Desactivado la oculta." = "Bölüm bitmeden önce Sıradaki rozetinin ne zaman görüneceğini belirler. Otomatik seçeneği bölüm uzunluğuna göre ayarlanır, böylece kısa bölümlerde bildirim çok erken gösterilmez. Kapalı seçeneği bildirimi gizler.";
 "More Movies" = "Daha Fazla Film";
 "More Series" = "Daha Fazla Dizi";
+"More info" = "Daha fazla bilgi";
 "Most Popular" = "En Popüler";
 "Most Popular on MAL" = "MAL'deki En Popülerler";
 "Mostrar" = "Göster";
@@ -2188,6 +2190,9 @@
 "services" = "hizmetler";
 "skipped {n} anime" = "{n} anime atlandı";
 "speed" = "hız";
+"spooktober.cta.description" = "Filmler, müzik ve gece yarısı keşifleri.";
+"spooktober.dismiss" = "Spooktober’ı kapat";
+"spooktober.enter" = "İçeri gel";
 "star" = "yıldız";
 "stars" = "yıldız";
 "stats" = "istatistikler";

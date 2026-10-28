@@ -50,6 +50,8 @@ struct CinemaHero: View {
     var moreInfo = true
     var customList: CustomList? = nil
     @State private var selected = 0
+    @Environment(\.locale) private var locale
+    private func text(_ key: String) -> String { DesktopInterfaceText.value(key, language: locale.identifier) }
     var body: some View {
         VStack(spacing: 14) {
             TabView(selection: $selected) {
@@ -61,7 +63,8 @@ struct CinemaHero: View {
                                 .frame(width: geometry.size.width, height: geometry.size.height).accessibilityHidden(true)
                             LinearGradient(colors: [.black.opacity(0.12), HarborTheme.background.opacity(0.55), HarborTheme.background], startPoint: .top, endPoint: .bottom).accessibilityHidden(true)
                             VStack(alignment: .leading, spacing: 14) {
-                                Text("FEATURED TONIGHT").font(HarborTheme.font(9, weight: .semibold)).tracking(4).foregroundStyle(.white.opacity(0.5))
+                                Text(text("Featured tonight").uppercased(with: locale)).font(HarborTheme.font(9, weight: .semibold)).tracking(4).foregroundStyle(.white.opacity(0.5))
+                                    .accessibilityIdentifier("hero-eyebrow")
                                 HarborHeroTitle(media: media, size: 30, height: 76)
                                 HStack(spacing: 14) {
                                     if let year = media.releaseInfo { Text(year).foregroundStyle(.secondary) }
@@ -72,15 +75,15 @@ struct CinemaHero: View {
                                 HStack(spacing: 10) {
                                     NavigationLink { destination(media, play: true) } label: {
                                         Group {
-                                            if media.type == "manga" { Label(DesktopInterfaceText.value("Read"), systemImage: "book") }
-                                            else { Label("Reproducir", image: "ui-play-filled") }
+                                            if media.type == "manga" { Label(text("Read"), systemImage: "book") }
+                                            else { Label(text("Play"), image: "ui-play-filled") }
                                         }.font(HarborTheme.font(14, weight: .semibold)).padding(.horizontal, 18).padding(.vertical, 13).foregroundStyle(.black).background(.white, in: .rect(cornerRadius: playSquare ? 8 : 24))
                                     }
                                         .buttonStyle(.plain).accessibilityIdentifier("hero-play")
                                     if moreInfo || media.type == "manga" {
-                                        NavigationLink { destination(media, play: false) } label: { Label("Más información", image: "desktop-info").font(HarborTheme.font(14, weight: .semibold)).padding(.horizontal, 14).padding(.vertical, 13).background(.black.opacity(0.3), in: .rect(cornerRadius: 8)) }.buttonStyle(.plain)
+                                        NavigationLink { destination(media, play: false) } label: { Label(text("More info"), image: "desktop-info").font(HarborTheme.font(14, weight: .semibold)).padding(.horizontal, 14).padding(.vertical, 13).background(.black.opacity(0.3), in: .rect(cornerRadius: 8)) }.buttonStyle(.plain).accessibilityIdentifier("hero-more-info")
                                     } else {
-                                        Button { Task { await app.library.toggleBookmark(media) } } label: { Label(app.library.bookmarked(media) ? "En mi lista" : "Añadir a mi lista", image: "desktop-bookmark").font(HarborTheme.font(14, weight: .semibold)).padding(.horizontal, 10).padding(.vertical, 13) }.buttonStyle(.plain).disabled(app.library.busy || app.library.loading)
+                                        Button { Task { await app.library.toggleBookmark(media) } } label: { Label(text(app.library.bookmarked(media) ? "In Watchlist" : "Add to Watchlist"), image: "desktop-bookmark").font(HarborTheme.font(14, weight: .semibold)).padding(.horizontal, 10).padding(.vertical, 13) }.buttonStyle(.plain).disabled(app.library.busy || app.library.loading).accessibilityIdentifier("hero-bookmark")
                                     }
                                 }
                             }.padding(20).frame(maxWidth: .infinity, alignment: .leading)

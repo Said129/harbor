@@ -705,6 +705,7 @@
 "Feature this catalog in the hero carousel" = "Destacar este catálogo no carrossel principal";
 "Featured" = "Em destaque";
 "Featured at Anime Expo" = "Destaques da Anime Expo";
+"Featured tonight" = "Destaque de hoje";
 "Fecha" = "Data";
 "Fiction" = "Ficção";
 "File is larger than 2 MB." = "O arquivo tem mais de 2 MB.";
@@ -1022,6 +1023,7 @@
 "Momento en que aparece la etiqueta A continuación antes de que termine un episodio. Automático se ajusta a la duración del episodio, para que en los episodios cortos no aparezca tan pronto. Desactivado la oculta." = "Quando o indicador Próximo aparece antes do episódio terminar. Automático se ajusta à duração do episódio, então episódios curtos param de avisar tão cedo. Desativado o oculta.";
 "More Movies" = "Mais filmes";
 "More Series" = "Mais séries";
+"More info" = "Mais informações";
 "Most Popular" = "Mais populares";
 "Most Popular on MAL" = "Mais Populares no MAL";
 "Mostrar" = "Mostrar";
@@ -2215,6 +2217,9 @@
 "services" = "serviços";
 "skipped {n} anime" = "{n} anime ignorado";
 "speed" = "velocidade";
+"spooktober.cta.description" = "Filmes, música e descobertas à meia-noite.";
+"spooktober.dismiss" = "Fechar Spooktober";
+"spooktober.enter" = "Entre";
 "star" = "estrela";
 "stars" = "estrelas";
 "stats" = "estatísticas";

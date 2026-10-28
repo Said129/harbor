@@ -685,6 +685,7 @@
 "Feature this catalog in the hero carousel" = "このカタログをヒーローカルーセルに表示";
 "Featured" = "注目";
 "Featured at Anime Expo" = "Anime Expo注目作";
+"Featured tonight" = "今夜のおすすめ";
 "Fecha" = "日付";
 "Fiction" = "フィクション";
 "File is larger than 2 MB." = "ファイルが2 MBを超えています。";
@@ -1002,6 +1003,7 @@
 "Momento en que aparece la etiqueta A continuación antes de que termine un episodio. Automático se ajusta a la duración del episodio, para que en los episodios cortos no aparezca tan pronto. Desactivado la oculta." = "エピソード終了の何秒前に「次のエピソード」を表示するかを設定します。自動ではエピソードの長さに合わせて調整し、短いエピソードで早く表示されすぎないようにします。オフにすると非表示になります。";
 "More Movies" = "その他の映画";
 "More Series" = "その他のシリーズ";
+"More info" = "詳細";
 "Most Popular" = "人気トップ";
 "Most Popular on MAL" = "MALで最も人気";
 "Mostrar" = "表示";
@@ -2188,6 +2190,9 @@
 "services" = "サービス";
 "skipped {n} anime" = "{n}件のアニメをスキップしました";
 "speed" = "速度";
+"spooktober.cta.description" = "映画、音楽、真夜中の発見。";
+"spooktober.dismiss" = "Spooktoberを閉じる";
+"spooktober.enter" = "中へどうぞ";
 "star" = "スター";
 "stars" = "スター";
 "stats" = "スタッツ";

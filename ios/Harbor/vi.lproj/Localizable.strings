@@ -685,6 +685,7 @@
 "Feature this catalog in the hero carousel" = "Đưa danh mục này lên băng chuyền nổi bật";
 "Featured" = "Nổi bật";
 "Featured at Anime Expo" = "Nổi bật tại Anime Expo";
+"Featured tonight" = "Nổi bật tối nay";
 "Fecha" = "Ngày";
 "Fiction" = "Hư cấu";
 "File is larger than 2 MB." = "Tệp lớn hơn 2 MB.";
@@ -1002,6 +1003,7 @@
 "Momento en que aparece la etiqueta A continuación antes de que termine un episodio. Automático se ajusta a la duración del episodio, para que en los episodios cortos no aparezca tan pronto. Desactivado la oculta." = "Thời điểm nhãn Tập tiếp theo xuất hiện trước khi tập kết thúc. Tự động điều chỉnh theo độ dài tập để không nhắc quá sớm với các tập ngắn. Tắt để ẩn.";
 "More Movies" = "Thêm phim điện ảnh";
 "More Series" = "Thêm phim bộ";
+"More info" = "Thông tin thêm";
 "Most Popular" = "Phổ biến nhất";
 "Most Popular on MAL" = "Phổ biến nhất trên MAL";
 "Mostrar" = "Hiện";
@@ -2188,6 +2190,9 @@
 "services" = "dịch vụ";
 "skipped {n} anime" = "đã bỏ qua {n} anime";
 "speed" = "tốc độ";
+"spooktober.cta.description" = "Phim, âm nhạc và những khám phá lúc nửa đêm.";
+"spooktober.dismiss" = "Đóng Spooktober";
+"spooktober.enter" = "Mời bước vào";
 "star" = "sao";
 "stars" = "sao";
 "stats" = "thống kê";

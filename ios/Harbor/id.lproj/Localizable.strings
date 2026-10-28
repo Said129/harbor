@@ -685,6 +685,7 @@
 "Feature this catalog in the hero carousel" = "Tampilkan katalog ini di carousel hero";
 "Featured" = "Unggulan";
 "Featured at Anime Expo" = "Ditampilkan di Anime Expo";
+"Featured tonight" = "Unggulan malam ini";
 "Fecha" = "Tanggal";
 "Fiction" = "Fiksi";
 "File is larger than 2 MB." = "File lebih besar dari 2 MB.";
@@ -1002,6 +1003,7 @@
 "Momento en que aparece la etiqueta A continuación antes de que termine un episodio. Automático se ajusta a la duración del episodio, para que en los episodios cortos no aparezca tan pronto. Desactivado la oculta." = "Waktu munculnya label Berikutnya sebelum episode berakhir. Otomatis menyesuaikan dengan durasi episode agar episode pendek tidak memunculkannya terlalu dini. Jika dinonaktifkan, label akan disembunyikan.";
 "More Movies" = "Film Lainnya";
 "More Series" = "Serial Lainnya";
+"More info" = "Info selengkapnya";
 "Most Popular" = "Paling Populer";
 "Most Popular on MAL" = "Paling Populer di MAL";
 "Mostrar" = "Tampilkan";
@@ -2188,6 +2190,9 @@
 "services" = "layanan";
 "skipped {n} anime" = "melewatkan {n} anime";
 "speed" = "kecepatan";
+"spooktober.cta.description" = "Film, musik, dan penemuan tengah malam.";
+"spooktober.dismiss" = "Tutup Spooktober";
+"spooktober.enter" = "Masuklah";
 "star" = "bintang";
 "stars" = "bintang";
 "stats" = "statistik";

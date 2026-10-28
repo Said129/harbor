@@ -81,3 +81,15 @@ igual al digest de GitHub. Los fotogramas diagnósticos del iPad guardan el hash
 de la grabación de origen. Las filas de listas y portadas privadas se
 implementaron después en `28386ee0`; sus resultados parciales y hallazgos
 figuran en `home-lists-0.9.132.md`. El objetivo completo permanece abierto.
+
+La reparación `40773669603`, fuente exacta
+`415ed880ca6228d0ad5c8588936088471f50dce3`, aprobó seis de seis ejecuciones,
+sin omisiones, fallos ni nuevas advertencias. Aprobaron la comparación con los
+tipos originales, la supresión de peticiones repetidas y el recorrido pendiente
+del iPad, junto con los dos casos de restablecimiento y su preparación necesaria.
+Las dos imágenes originales del iPad se revisaron individualmente: «Updated now»,
+guardado y mensaje de metadatos en inglés, con el diseño ajustado a la ventana.
+La portada genérica de esa ficha pertenece al caso de prueba sin artwork.
+Se conservaron los otros resultados nativos y el recorrido aprobado del iPhone.
+La procedencia del archivo y sus hashes figuran también en
+`home-lists-0.9.132.md`. No se produjo una IPA.

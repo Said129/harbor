@@ -709,6 +709,7 @@
 "Feature this catalog in the hero carousel" = "إبراز هذا الكتالوج في شريط العرض الرئيسي";
 "Featured" = "مختارة";
 "Featured at Anime Expo" = "مختارات Anime Expo";
+"Featured tonight" = "مميّز الليلة";
 "Fecha" = "التاريخ";
 "Fiction" = "أدب روائي";
 "File is larger than 2 MB." = "حجم الملف أكبر من 2 م.ب.";
@@ -1027,6 +1028,7 @@
 "Momento en que aparece la etiqueta A continuación antes de que termine un episodio. Automático se ajusta a la duración del episodio, para que en los episodios cortos no aparezca tan pronto. Desactivado la oculta." = "متى يظهر تنبيه الحلقة القادمة قبل انتهاء الحلقة. يتم ضبطه تلقائياً بناءً على طول الحلقة. 'إيقاف' يخفيه تماماً.";
 "More Movies" = "المزيد من الأفلام";
 "More Series" = "المزيد من المسلسلات";
+"More info" = "مزيد من المعلومات";
 "Most Popular" = "الأكثر رواجًا";
 "Most Popular on MAL" = "الأكثر شعبية على MAL";
 "Mostrar" = "إظهار";
@@ -2230,6 +2232,9 @@
 "services" = "خدمات";
 "skipped {n} anime" = "تم تخطي {n} أنمي";
 "speed" = "السرعة";
+"spooktober.cta.description" = "أفلام وموسيقى واكتشافات منتصف الليل.";
+"spooktober.dismiss" = "إغلاق Spooktober";
+"spooktober.enter" = "تفضل بالدخول";
 "star" = "نجمة";
 "stars" = "نجوم";
 "stats" = "الإحصائيات";

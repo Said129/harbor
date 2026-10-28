@@ -685,6 +685,7 @@
 "Feature this catalog in the hero carousel" = "在焦点轮播中推荐此目录";
 "Featured" = "精选";
 "Featured at Anime Expo" = "Anime Expo 精选作品";
+"Featured tonight" = "今晚精选";
 "Fecha" = "日期";
 "Fiction" = "虚构类";
 "File is larger than 2 MB." = "文件大于 2 MB。";
@@ -1002,6 +1003,7 @@
 "Momento en que aparece la etiqueta A continuación antes de que termine un episodio. Automático se ajusta a la duración del episodio, para que en los episodios cortos no aparezca tan pronto. Desactivado la oculta." = "设置本集结束前显示“接下来播放”提示的时间。“自动”会根据剧集时长调整，避免短剧集过早提示。“关闭”会隐藏提示。";
 "More Movies" = "更多电影";
 "More Series" = "更多剧集";
+"More info" = "更多信息";
 "Most Popular" = "最受欢迎";
 "Most Popular on MAL" = "MAL 人气榜";
 "Mostrar" = "显示";
@@ -2188,6 +2190,9 @@
 "services" = "服务";
 "skipped {n} anime" = "已跳过 {n} 部动漫";
 "speed" = "速度";
+"spooktober.cta.description" = "电影、音乐与午夜新发现。";
+"spooktober.dismiss" = "关闭Spooktober";
+"spooktober.enter" = "请进";
 "star" = "颗星";
 "stars" = "颗星";
 "stats" = "数据";

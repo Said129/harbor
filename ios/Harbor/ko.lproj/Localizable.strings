@@ -685,6 +685,7 @@
 "Feature this catalog in the hero carousel" = "이 카탈로그를 히어로 캐러셀에 추천";
 "Featured" = "추천";
 "Featured at Anime Expo" = "Anime Expo 소개작";
+"Featured tonight" = "오늘 밤의 추천작";
 "Fecha" = "날짜";
 "Fiction" = "소설";
 "File is larger than 2 MB." = "파일이 2 MB보다 큽니다.";
@@ -1002,6 +1003,7 @@
 "Momento en que aparece la etiqueta A continuación antes de que termine un episodio. Automático se ajusta a la duración del episodio, para que en los episodios cortos no aparezca tan pronto. Desactivado la oculta." = "에피소드가 끝나기 전에 다음 재생 알림을 표시할 시점을 설정합니다. 자동은 에피소드 길이에 맞춰 조절하므로 짧은 에피소드에서 너무 일찍 표시되지 않습니다. 끄면 숨깁니다.";
 "More Movies" = "영화 더 보기";
 "More Series" = "시리즈 더 보기";
+"More info" = "더 알아보기";
 "Most Popular" = "최고 인기작";
 "Most Popular on MAL" = "MAL 최고 인기작";
 "Mostrar" = "표시";
@@ -2188,6 +2190,9 @@
 "services" = "서비스";
 "skipped {n} anime" = "애니메이션 {n}개 건너뜀";
 "speed" = "속도";
+"spooktober.cta.description" = "영화, 음악, 그리고 한밤의 발견.";
+"spooktober.dismiss" = "Spooktober 닫기";
+"spooktober.enter" = "안으로 들어오세요";
 "star" = "별";
 "stars" = "별";
 "stats" = "통계";

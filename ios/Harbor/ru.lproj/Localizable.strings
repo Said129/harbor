@@ -689,6 +689,7 @@
 "Feature this catalog in the hero carousel" = "Показывать этот каталог в главной карусели";
 "Featured" = "Избранное";
 "Featured at Anime Expo" = "Представлено на Anime Expo";
+"Featured tonight" = "Выбор на вечер";
 "Fecha" = "Дата";
 "Fiction" = "Художественная литература";
 "File is larger than 2 MB." = "Файл больше 2 МБ.";
@@ -1007,6 +1008,7 @@
 "Momento en que aparece la etiqueta A continuación antes de que termine un episodio. Automático se ajusta a la duración del episodio, para que en los episodios cortos no aparezca tan pronto. Desactivado la oculta." = "Когда плашка «Далее» появляется перед концом серии. «Авто» подстраивается под длину серии, чтобы короткие серии не предлагали переход слишком рано. «Выкл.» скрывает её.";
 "More Movies" = "Ещё фильмы";
 "More Series" = "Ещё сериалы";
+"More info" = "Подробнее";
 "Most Popular" = "Самое популярное";
 "Most Popular on MAL" = "Самое популярное на MAL";
 "Mostrar" = "Показать";
@@ -2203,6 +2205,9 @@
 "services" = "сервисы";
 "skipped {n} anime" = "пропущено {n} аниме";
 "speed" = "скорость";
+"spooktober.cta.description" = "Кино, музыка и полуночные открытия.";
+"spooktober.dismiss" = "Закрыть Spooktober";
+"spooktober.enter" = "Заходите";
 "star" = "звезда";
 "stars" = "звёзд";
 "stats" = "статистика";
