@@ -1,0 +1,2233 @@
+{
+  "reference": "0834340cec5531650bfe78cd628628702e636987",
+  "actual_original_typescript_executed": true,
+  "provider_network_requests": 0,
+  "at": 1793145600000,
+  "executed_module_hashes": {
+    "src/lib/cinemeta.ts": "717b61825238ea1c98a751a2ab606c60e2d9801887ca8acaab79e4b2100aace5",
+    "src/lib/custom-lists.ts": "d4be856965e44ccb6431acb7529e364275e118ad517bcd87a10ce9ddb0919ff5"
+  },
+  "extracted_original_functions": {
+    "src/lib/cinemeta.ts": ["persistableAddonOrigin", "persistableVideos"]
+  },
+  "cases": [
+    {
+      "name": "create-trim-edit-description-delete",
+      "actions": [
+        ["create", "  Weekend  ", "  Owned description  ", "list-1"],
+        ["rename", "list-1", "  New name  "],
+        ["describe", "list-1", "  "],
+        ["create", "Other", "", "list-2"],
+        ["delete", "list-2"]
+      ],
+      "outcomes": ["list-1", null, null, "list-2", null],
+      "expected": [
+        {
+          "id": "list-1",
+          "name": "New name",
+          "createdAt": 1793145600000,
+          "updatedAt": 1793145600002,
+          "items": []
+        }
+      ],
+      "writes": 5
+    },
+    {
+      "name": "types-origin-and-stream-sanitization",
+      "actions": [
+        ["create", "Owned", "", "list-1"],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "kitsu:1",
+            "type": "anime",
+            "name": "Owned Anime",
+            "poster": "https://example.org/owned.png",
+            "addonOrigin": {
+              "id": "owned",
+              "name": "Owned Source",
+              "base": "https://example.org/manifest.json",
+              "ignored": "discard"
+            },
+            "videos": [
+              {
+                "id": "kitsu:1:1",
+                "season": 1,
+                "episode": 1,
+                "streams": [
+                  {
+                    "url": "https://example.org/not-persisted.mp4"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "tmdb:tv:9",
+            "name": "Owned Show"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:manga",
+            "type": "manga",
+            "name": "Owned Manga"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "tt1234567",
+            "type": "movie",
+            "name": "Owned Movie"
+          }
+        ]
+      ],
+      "outcomes": ["list-1", null, null, null, null],
+      "expected": [
+        {
+          "id": "list-1",
+          "name": "Owned",
+          "createdAt": 1793145600000,
+          "updatedAt": 1793145600004,
+          "items": [
+            {
+              "id": "kitsu:1",
+              "type": "series",
+              "name": "Owned Anime",
+              "poster": "https://example.org/owned.png",
+              "addedAt": 1793145600001,
+              "addonOrigin": {
+                "id": "owned",
+                "name": "Owned Source",
+                "base": "https://example.org/manifest.json"
+              },
+              "videos": [
+                {
+                  "id": "kitsu:1:1",
+                  "season": 1,
+                  "episode": 1
+                }
+              ]
+            },
+            {
+              "id": "tmdb:tv:9",
+              "type": "series",
+              "name": "Owned Show",
+              "addedAt": 1793145600002
+            },
+            {
+              "id": "owned:manga",
+              "type": "manga",
+              "name": "Owned Manga",
+              "addedAt": 1793145600003
+            },
+            {
+              "id": "tt1234567",
+              "type": "movie",
+              "name": "Owned Movie",
+              "addedAt": 1793145600004
+            }
+          ]
+        }
+      ],
+      "writes": 5
+    },
+    {
+      "name": "duplicate-add-toggle-and-remove",
+      "actions": [
+        ["create", "Owned", "", "list-1"],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "kitsu:1",
+            "type": "anime",
+            "name": "Owned Anime",
+            "poster": "https://example.org/owned.png",
+            "addonOrigin": {
+              "id": "owned",
+              "name": "Owned Source",
+              "base": "https://example.org/manifest.json",
+              "ignored": "discard"
+            },
+            "videos": [
+              {
+                "id": "kitsu:1:1",
+                "season": 1,
+                "episode": 1,
+                "streams": [
+                  {
+                    "url": "https://example.org/not-persisted.mp4"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "kitsu:1",
+            "type": "anime",
+            "name": "Owned Anime",
+            "poster": "https://example.org/owned.png",
+            "addonOrigin": {
+              "id": "owned",
+              "name": "Owned Source",
+              "base": "https://example.org/manifest.json",
+              "ignored": "discard"
+            },
+            "videos": [
+              {
+                "id": "kitsu:1:1",
+                "season": 1,
+                "episode": 1,
+                "streams": [
+                  {
+                    "url": "https://example.org/not-persisted.mp4"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        [
+          "toggle",
+          "list-1",
+          {
+            "id": "kitsu:1",
+            "type": "anime",
+            "name": "Owned Anime",
+            "poster": "https://example.org/owned.png",
+            "addonOrigin": {
+              "id": "owned",
+              "name": "Owned Source",
+              "base": "https://example.org/manifest.json",
+              "ignored": "discard"
+            },
+            "videos": [
+              {
+                "id": "kitsu:1:1",
+                "season": 1,
+                "episode": 1,
+                "streams": [
+                  {
+                    "url": "https://example.org/not-persisted.mp4"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        [
+          "toggle",
+          "list-1",
+          {
+            "id": "kitsu:1",
+            "type": "anime",
+            "name": "Owned Anime",
+            "poster": "https://example.org/owned.png",
+            "addonOrigin": {
+              "id": "owned",
+              "name": "Owned Source",
+              "base": "https://example.org/manifest.json",
+              "ignored": "discard"
+            },
+            "videos": [
+              {
+                "id": "kitsu:1:1",
+                "season": 1,
+                "episode": 1,
+                "streams": [
+                  {
+                    "url": "https://example.org/not-persisted.mp4"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        ["remove", "list-1", "kitsu:1"]
+      ],
+      "outcomes": ["list-1", null, null, false, true, null],
+      "expected": [
+        {
+          "id": "list-1",
+          "name": "Owned",
+          "createdAt": 1793145600000,
+          "updatedAt": 1793145600005,
+          "items": []
+        }
+      ],
+      "writes": 5
+    },
+    {
+      "name": "reorder-list-and-items-preserves-omitted-ids",
+      "actions": [
+        ["create", "First", "", "list-1"],
+        ["create", "Second", "", "list-2"],
+        ["create", "Third", "", "list-3"],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "one"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "two"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "three"
+          }
+        ],
+        ["reorderItems", "list-1", ["three", "three", "missing", "one"]],
+        ["reorderLists", ["list-3", "list-1"]]
+      ],
+      "outcomes": ["list-1", "list-2", "list-3", null, null, null, null, null],
+      "expected": [
+        {
+          "id": "list-3",
+          "name": "Third",
+          "createdAt": 1793145600002,
+          "updatedAt": 1793145600002,
+          "order": 0,
+          "items": []
+        },
+        {
+          "id": "list-1",
+          "name": "First",
+          "createdAt": 1793145600000,
+          "updatedAt": 1793145600005,
+          "order": 1,
+          "items": [
+            {
+              "id": "three",
+              "type": "movie",
+              "name": "",
+              "addedAt": 1793145600005
+            },
+            {
+              "id": "one",
+              "type": "movie",
+              "name": "",
+              "addedAt": 1793145600003
+            },
+            {
+              "id": "two",
+              "type": "movie",
+              "name": "",
+              "addedAt": 1793145600004
+            }
+          ]
+        },
+        {
+          "id": "list-2",
+          "name": "Second",
+          "createdAt": 1793145600001,
+          "updatedAt": 1793145600001,
+          "items": []
+        }
+      ],
+      "writes": 8
+    },
+    {
+      "name": "item-identity-update-deduplicates-in-place",
+      "actions": [
+        ["create", "Owned", "", "list-1"],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "one",
+            "name": "One"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "two",
+            "name": "Two"
+          }
+        ],
+        [
+          "update",
+          "list-1",
+          "one",
+          {
+            "id": "two",
+            "name": "Renamed",
+            "poster": "https://example.org/new.png"
+          }
+        ]
+      ],
+      "outcomes": ["list-1", null, null, null],
+      "expected": [
+        {
+          "id": "list-1",
+          "name": "Owned",
+          "createdAt": 1793145600000,
+          "updatedAt": 1793145600003,
+          "items": [
+            {
+              "id": "two",
+              "type": "movie",
+              "name": "Renamed",
+              "poster": "https://example.org/new.png",
+              "addedAt": 1793145600001
+            }
+          ]
+        }
+      ],
+      "writes": 4
+    },
+    {
+      "name": "twenty-four-lists-limit",
+      "actions": [
+        ["create", "List 0", "", "list-1"],
+        ["create", "List 1", "", "list-2"],
+        ["create", "List 2", "", "list-3"],
+        ["create", "List 3", "", "list-4"],
+        ["create", "List 4", "", "list-5"],
+        ["create", "List 5", "", "list-6"],
+        ["create", "List 6", "", "list-7"],
+        ["create", "List 7", "", "list-8"],
+        ["create", "List 8", "", "list-9"],
+        ["create", "List 9", "", "list-10"],
+        ["create", "List 10", "", "list-11"],
+        ["create", "List 11", "", "list-12"],
+        ["create", "List 12", "", "list-13"],
+        ["create", "List 13", "", "list-14"],
+        ["create", "List 14", "", "list-15"],
+        ["create", "List 15", "", "list-16"],
+        ["create", "List 16", "", "list-17"],
+        ["create", "List 17", "", "list-18"],
+        ["create", "List 18", "", "list-19"],
+        ["create", "List 19", "", "list-20"],
+        ["create", "List 20", "", "list-21"],
+        ["create", "List 21", "", "list-22"],
+        ["create", "List 22", "", "list-23"],
+        ["create", "List 23", "", "list-24"],
+        ["create", "List 24", "", "list-25"]
+      ],
+      "outcomes": [
+        "list-1",
+        "list-2",
+        "list-3",
+        "list-4",
+        "list-5",
+        "list-6",
+        "list-7",
+        "list-8",
+        "list-9",
+        "list-10",
+        "list-11",
+        "list-12",
+        "list-13",
+        "list-14",
+        "list-15",
+        "list-16",
+        "list-17",
+        "list-18",
+        "list-19",
+        "list-20",
+        "list-21",
+        "list-22",
+        "list-23",
+        "list-24",
+        null
+      ],
+      "expected": [
+        {
+          "id": "list-24",
+          "name": "List 23",
+          "createdAt": 1793145600023,
+          "updatedAt": 1793145600023,
+          "items": []
+        },
+        {
+          "id": "list-23",
+          "name": "List 22",
+          "createdAt": 1793145600022,
+          "updatedAt": 1793145600022,
+          "items": []
+        },
+        {
+          "id": "list-22",
+          "name": "List 21",
+          "createdAt": 1793145600021,
+          "updatedAt": 1793145600021,
+          "items": []
+        },
+        {
+          "id": "list-21",
+          "name": "List 20",
+          "createdAt": 1793145600020,
+          "updatedAt": 1793145600020,
+          "items": []
+        },
+        {
+          "id": "list-20",
+          "name": "List 19",
+          "createdAt": 1793145600019,
+          "updatedAt": 1793145600019,
+          "items": []
+        },
+        {
+          "id": "list-19",
+          "name": "List 18",
+          "createdAt": 1793145600018,
+          "updatedAt": 1793145600018,
+          "items": []
+        },
+        {
+          "id": "list-18",
+          "name": "List 17",
+          "createdAt": 1793145600017,
+          "updatedAt": 1793145600017,
+          "items": []
+        },
+        {
+          "id": "list-17",
+          "name": "List 16",
+          "createdAt": 1793145600016,
+          "updatedAt": 1793145600016,
+          "items": []
+        },
+        {
+          "id": "list-16",
+          "name": "List 15",
+          "createdAt": 1793145600015,
+          "updatedAt": 1793145600015,
+          "items": []
+        },
+        {
+          "id": "list-15",
+          "name": "List 14",
+          "createdAt": 1793145600014,
+          "updatedAt": 1793145600014,
+          "items": []
+        },
+        {
+          "id": "list-14",
+          "name": "List 13",
+          "createdAt": 1793145600013,
+          "updatedAt": 1793145600013,
+          "items": []
+        },
+        {
+          "id": "list-13",
+          "name": "List 12",
+          "createdAt": 1793145600012,
+          "updatedAt": 1793145600012,
+          "items": []
+        },
+        {
+          "id": "list-12",
+          "name": "List 11",
+          "createdAt": 1793145600011,
+          "updatedAt": 1793145600011,
+          "items": []
+        },
+        {
+          "id": "list-11",
+          "name": "List 10",
+          "createdAt": 1793145600010,
+          "updatedAt": 1793145600010,
+          "items": []
+        },
+        {
+          "id": "list-10",
+          "name": "List 9",
+          "createdAt": 1793145600009,
+          "updatedAt": 1793145600009,
+          "items": []
+        },
+        {
+          "id": "list-9",
+          "name": "List 8",
+          "createdAt": 1793145600008,
+          "updatedAt": 1793145600008,
+          "items": []
+        },
+        {
+          "id": "list-8",
+          "name": "List 7",
+          "createdAt": 1793145600007,
+          "updatedAt": 1793145600007,
+          "items": []
+        },
+        {
+          "id": "list-7",
+          "name": "List 6",
+          "createdAt": 1793145600006,
+          "updatedAt": 1793145600006,
+          "items": []
+        },
+        {
+          "id": "list-6",
+          "name": "List 5",
+          "createdAt": 1793145600005,
+          "updatedAt": 1793145600005,
+          "items": []
+        },
+        {
+          "id": "list-5",
+          "name": "List 4",
+          "createdAt": 1793145600004,
+          "updatedAt": 1793145600004,
+          "items": []
+        },
+        {
+          "id": "list-4",
+          "name": "List 3",
+          "createdAt": 1793145600003,
+          "updatedAt": 1793145600003,
+          "items": []
+        },
+        {
+          "id": "list-3",
+          "name": "List 2",
+          "createdAt": 1793145600002,
+          "updatedAt": 1793145600002,
+          "items": []
+        },
+        {
+          "id": "list-2",
+          "name": "List 1",
+          "createdAt": 1793145600001,
+          "updatedAt": 1793145600001,
+          "items": []
+        },
+        {
+          "id": "list-1",
+          "name": "List 0",
+          "createdAt": 1793145600000,
+          "updatedAt": 1793145600000,
+          "items": []
+        }
+      ],
+      "writes": 24
+    },
+    {
+      "name": "hundred-items-limit-and-toggle-removes-at-limit",
+      "actions": [
+        ["create", "Owned", "", "list-1"],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:0",
+            "name": "Title 0"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:1",
+            "name": "Title 1"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:2",
+            "name": "Title 2"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:3",
+            "name": "Title 3"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:4",
+            "name": "Title 4"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:5",
+            "name": "Title 5"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:6",
+            "name": "Title 6"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:7",
+            "name": "Title 7"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:8",
+            "name": "Title 8"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:9",
+            "name": "Title 9"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:10",
+            "name": "Title 10"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:11",
+            "name": "Title 11"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:12",
+            "name": "Title 12"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:13",
+            "name": "Title 13"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:14",
+            "name": "Title 14"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:15",
+            "name": "Title 15"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:16",
+            "name": "Title 16"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:17",
+            "name": "Title 17"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:18",
+            "name": "Title 18"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:19",
+            "name": "Title 19"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:20",
+            "name": "Title 20"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:21",
+            "name": "Title 21"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:22",
+            "name": "Title 22"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:23",
+            "name": "Title 23"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:24",
+            "name": "Title 24"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:25",
+            "name": "Title 25"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:26",
+            "name": "Title 26"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:27",
+            "name": "Title 27"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:28",
+            "name": "Title 28"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:29",
+            "name": "Title 29"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:30",
+            "name": "Title 30"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:31",
+            "name": "Title 31"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:32",
+            "name": "Title 32"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:33",
+            "name": "Title 33"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:34",
+            "name": "Title 34"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:35",
+            "name": "Title 35"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:36",
+            "name": "Title 36"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:37",
+            "name": "Title 37"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:38",
+            "name": "Title 38"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:39",
+            "name": "Title 39"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:40",
+            "name": "Title 40"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:41",
+            "name": "Title 41"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:42",
+            "name": "Title 42"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:43",
+            "name": "Title 43"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:44",
+            "name": "Title 44"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:45",
+            "name": "Title 45"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:46",
+            "name": "Title 46"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:47",
+            "name": "Title 47"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:48",
+            "name": "Title 48"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:49",
+            "name": "Title 49"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:50",
+            "name": "Title 50"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:51",
+            "name": "Title 51"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:52",
+            "name": "Title 52"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:53",
+            "name": "Title 53"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:54",
+            "name": "Title 54"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:55",
+            "name": "Title 55"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:56",
+            "name": "Title 56"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:57",
+            "name": "Title 57"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:58",
+            "name": "Title 58"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:59",
+            "name": "Title 59"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:60",
+            "name": "Title 60"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:61",
+            "name": "Title 61"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:62",
+            "name": "Title 62"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:63",
+            "name": "Title 63"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:64",
+            "name": "Title 64"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:65",
+            "name": "Title 65"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:66",
+            "name": "Title 66"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:67",
+            "name": "Title 67"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:68",
+            "name": "Title 68"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:69",
+            "name": "Title 69"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:70",
+            "name": "Title 70"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:71",
+            "name": "Title 71"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:72",
+            "name": "Title 72"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:73",
+            "name": "Title 73"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:74",
+            "name": "Title 74"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:75",
+            "name": "Title 75"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:76",
+            "name": "Title 76"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:77",
+            "name": "Title 77"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:78",
+            "name": "Title 78"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:79",
+            "name": "Title 79"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:80",
+            "name": "Title 80"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:81",
+            "name": "Title 81"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:82",
+            "name": "Title 82"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:83",
+            "name": "Title 83"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:84",
+            "name": "Title 84"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:85",
+            "name": "Title 85"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:86",
+            "name": "Title 86"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:87",
+            "name": "Title 87"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:88",
+            "name": "Title 88"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:89",
+            "name": "Title 89"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:90",
+            "name": "Title 90"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:91",
+            "name": "Title 91"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:92",
+            "name": "Title 92"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:93",
+            "name": "Title 93"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:94",
+            "name": "Title 94"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:95",
+            "name": "Title 95"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:96",
+            "name": "Title 96"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:97",
+            "name": "Title 97"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:98",
+            "name": "Title 98"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:99",
+            "name": "Title 99"
+          }
+        ],
+        [
+          "add",
+          "list-1",
+          {
+            "id": "owned:100",
+            "name": "Title 100"
+          }
+        ],
+        [
+          "toggle",
+          "list-1",
+          {
+            "id": "owned:0"
+          }
+        ],
+        [
+          "toggle",
+          "list-1",
+          {
+            "id": "owned:new"
+          }
+        ]
+      ],
+      "outcomes": [
+        "list-1",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        false,
+        true
+      ],
+      "expected": [
+        {
+          "id": "list-1",
+          "name": "Owned",
+          "createdAt": 1793145600000,
+          "updatedAt": 1793145600103,
+          "items": [
+            {
+              "id": "owned:1",
+              "type": "movie",
+              "name": "Title 1",
+              "addedAt": 1793145600002
+            },
+            {
+              "id": "owned:2",
+              "type": "movie",
+              "name": "Title 2",
+              "addedAt": 1793145600003
+            },
+            {
+              "id": "owned:3",
+              "type": "movie",
+              "name": "Title 3",
+              "addedAt": 1793145600004
+            },
+            {
+              "id": "owned:4",
+              "type": "movie",
+              "name": "Title 4",
+              "addedAt": 1793145600005
+            },
+            {
+              "id": "owned:5",
+              "type": "movie",
+              "name": "Title 5",
+              "addedAt": 1793145600006
+            },
+            {
+              "id": "owned:6",
+              "type": "movie",
+              "name": "Title 6",
+              "addedAt": 1793145600007
+            },
+            {
+              "id": "owned:7",
+              "type": "movie",
+              "name": "Title 7",
+              "addedAt": 1793145600008
+            },
+            {
+              "id": "owned:8",
+              "type": "movie",
+              "name": "Title 8",
+              "addedAt": 1793145600009
+            },
+            {
+              "id": "owned:9",
+              "type": "movie",
+              "name": "Title 9",
+              "addedAt": 1793145600010
+            },
+            {
+              "id": "owned:10",
+              "type": "movie",
+              "name": "Title 10",
+              "addedAt": 1793145600011
+            },
+            {
+              "id": "owned:11",
+              "type": "movie",
+              "name": "Title 11",
+              "addedAt": 1793145600012
+            },
+            {
+              "id": "owned:12",
+              "type": "movie",
+              "name": "Title 12",
+              "addedAt": 1793145600013
+            },
+            {
+              "id": "owned:13",
+              "type": "movie",
+              "name": "Title 13",
+              "addedAt": 1793145600014
+            },
+            {
+              "id": "owned:14",
+              "type": "movie",
+              "name": "Title 14",
+              "addedAt": 1793145600015
+            },
+            {
+              "id": "owned:15",
+              "type": "movie",
+              "name": "Title 15",
+              "addedAt": 1793145600016
+            },
+            {
+              "id": "owned:16",
+              "type": "movie",
+              "name": "Title 16",
+              "addedAt": 1793145600017
+            },
+            {
+              "id": "owned:17",
+              "type": "movie",
+              "name": "Title 17",
+              "addedAt": 1793145600018
+            },
+            {
+              "id": "owned:18",
+              "type": "movie",
+              "name": "Title 18",
+              "addedAt": 1793145600019
+            },
+            {
+              "id": "owned:19",
+              "type": "movie",
+              "name": "Title 19",
+              "addedAt": 1793145600020
+            },
+            {
+              "id": "owned:20",
+              "type": "movie",
+              "name": "Title 20",
+              "addedAt": 1793145600021
+            },
+            {
+              "id": "owned:21",
+              "type": "movie",
+              "name": "Title 21",
+              "addedAt": 1793145600022
+            },
+            {
+              "id": "owned:22",
+              "type": "movie",
+              "name": "Title 22",
+              "addedAt": 1793145600023
+            },
+            {
+              "id": "owned:23",
+              "type": "movie",
+              "name": "Title 23",
+              "addedAt": 1793145600024
+            },
+            {
+              "id": "owned:24",
+              "type": "movie",
+              "name": "Title 24",
+              "addedAt": 1793145600025
+            },
+            {
+              "id": "owned:25",
+              "type": "movie",
+              "name": "Title 25",
+              "addedAt": 1793145600026
+            },
+            {
+              "id": "owned:26",
+              "type": "movie",
+              "name": "Title 26",
+              "addedAt": 1793145600027
+            },
+            {
+              "id": "owned:27",
+              "type": "movie",
+              "name": "Title 27",
+              "addedAt": 1793145600028
+            },
+            {
+              "id": "owned:28",
+              "type": "movie",
+              "name": "Title 28",
+              "addedAt": 1793145600029
+            },
+            {
+              "id": "owned:29",
+              "type": "movie",
+              "name": "Title 29",
+              "addedAt": 1793145600030
+            },
+            {
+              "id": "owned:30",
+              "type": "movie",
+              "name": "Title 30",
+              "addedAt": 1793145600031
+            },
+            {
+              "id": "owned:31",
+              "type": "movie",
+              "name": "Title 31",
+              "addedAt": 1793145600032
+            },
+            {
+              "id": "owned:32",
+              "type": "movie",
+              "name": "Title 32",
+              "addedAt": 1793145600033
+            },
+            {
+              "id": "owned:33",
+              "type": "movie",
+              "name": "Title 33",
+              "addedAt": 1793145600034
+            },
+            {
+              "id": "owned:34",
+              "type": "movie",
+              "name": "Title 34",
+              "addedAt": 1793145600035
+            },
+            {
+              "id": "owned:35",
+              "type": "movie",
+              "name": "Title 35",
+              "addedAt": 1793145600036
+            },
+            {
+              "id": "owned:36",
+              "type": "movie",
+              "name": "Title 36",
+              "addedAt": 1793145600037
+            },
+            {
+              "id": "owned:37",
+              "type": "movie",
+              "name": "Title 37",
+              "addedAt": 1793145600038
+            },
+            {
+              "id": "owned:38",
+              "type": "movie",
+              "name": "Title 38",
+              "addedAt": 1793145600039
+            },
+            {
+              "id": "owned:39",
+              "type": "movie",
+              "name": "Title 39",
+              "addedAt": 1793145600040
+            },
+            {
+              "id": "owned:40",
+              "type": "movie",
+              "name": "Title 40",
+              "addedAt": 1793145600041
+            },
+            {
+              "id": "owned:41",
+              "type": "movie",
+              "name": "Title 41",
+              "addedAt": 1793145600042
+            },
+            {
+              "id": "owned:42",
+              "type": "movie",
+              "name": "Title 42",
+              "addedAt": 1793145600043
+            },
+            {
+              "id": "owned:43",
+              "type": "movie",
+              "name": "Title 43",
+              "addedAt": 1793145600044
+            },
+            {
+              "id": "owned:44",
+              "type": "movie",
+              "name": "Title 44",
+              "addedAt": 1793145600045
+            },
+            {
+              "id": "owned:45",
+              "type": "movie",
+              "name": "Title 45",
+              "addedAt": 1793145600046
+            },
+            {
+              "id": "owned:46",
+              "type": "movie",
+              "name": "Title 46",
+              "addedAt": 1793145600047
+            },
+            {
+              "id": "owned:47",
+              "type": "movie",
+              "name": "Title 47",
+              "addedAt": 1793145600048
+            },
+            {
+              "id": "owned:48",
+              "type": "movie",
+              "name": "Title 48",
+              "addedAt": 1793145600049
+            },
+            {
+              "id": "owned:49",
+              "type": "movie",
+              "name": "Title 49",
+              "addedAt": 1793145600050
+            },
+            {
+              "id": "owned:50",
+              "type": "movie",
+              "name": "Title 50",
+              "addedAt": 1793145600051
+            },
+            {
+              "id": "owned:51",
+              "type": "movie",
+              "name": "Title 51",
+              "addedAt": 1793145600052
+            },
+            {
+              "id": "owned:52",
+              "type": "movie",
+              "name": "Title 52",
+              "addedAt": 1793145600053
+            },
+            {
+              "id": "owned:53",
+              "type": "movie",
+              "name": "Title 53",
+              "addedAt": 1793145600054
+            },
+            {
+              "id": "owned:54",
+              "type": "movie",
+              "name": "Title 54",
+              "addedAt": 1793145600055
+            },
+            {
+              "id": "owned:55",
+              "type": "movie",
+              "name": "Title 55",
+              "addedAt": 1793145600056
+            },
+            {
+              "id": "owned:56",
+              "type": "movie",
+              "name": "Title 56",
+              "addedAt": 1793145600057
+            },
+            {
+              "id": "owned:57",
+              "type": "movie",
+              "name": "Title 57",
+              "addedAt": 1793145600058
+            },
+            {
+              "id": "owned:58",
+              "type": "movie",
+              "name": "Title 58",
+              "addedAt": 1793145600059
+            },
+            {
+              "id": "owned:59",
+              "type": "movie",
+              "name": "Title 59",
+              "addedAt": 1793145600060
+            },
+            {
+              "id": "owned:60",
+              "type": "movie",
+              "name": "Title 60",
+              "addedAt": 1793145600061
+            },
+            {
+              "id": "owned:61",
+              "type": "movie",
+              "name": "Title 61",
+              "addedAt": 1793145600062
+            },
+            {
+              "id": "owned:62",
+              "type": "movie",
+              "name": "Title 62",
+              "addedAt": 1793145600063
+            },
+            {
+              "id": "owned:63",
+              "type": "movie",
+              "name": "Title 63",
+              "addedAt": 1793145600064
+            },
+            {
+              "id": "owned:64",
+              "type": "movie",
+              "name": "Title 64",
+              "addedAt": 1793145600065
+            },
+            {
+              "id": "owned:65",
+              "type": "movie",
+              "name": "Title 65",
+              "addedAt": 1793145600066
+            },
+            {
+              "id": "owned:66",
+              "type": "movie",
+              "name": "Title 66",
+              "addedAt": 1793145600067
+            },
+            {
+              "id": "owned:67",
+              "type": "movie",
+              "name": "Title 67",
+              "addedAt": 1793145600068
+            },
+            {
+              "id": "owned:68",
+              "type": "movie",
+              "name": "Title 68",
+              "addedAt": 1793145600069
+            },
+            {
+              "id": "owned:69",
+              "type": "movie",
+              "name": "Title 69",
+              "addedAt": 1793145600070
+            },
+            {
+              "id": "owned:70",
+              "type": "movie",
+              "name": "Title 70",
+              "addedAt": 1793145600071
+            },
+            {
+              "id": "owned:71",
+              "type": "movie",
+              "name": "Title 71",
+              "addedAt": 1793145600072
+            },
+            {
+              "id": "owned:72",
+              "type": "movie",
+              "name": "Title 72",
+              "addedAt": 1793145600073
+            },
+            {
+              "id": "owned:73",
+              "type": "movie",
+              "name": "Title 73",
+              "addedAt": 1793145600074
+            },
+            {
+              "id": "owned:74",
+              "type": "movie",
+              "name": "Title 74",
+              "addedAt": 1793145600075
+            },
+            {
+              "id": "owned:75",
+              "type": "movie",
+              "name": "Title 75",
+              "addedAt": 1793145600076
+            },
+            {
+              "id": "owned:76",
+              "type": "movie",
+              "name": "Title 76",
+              "addedAt": 1793145600077
+            },
+            {
+              "id": "owned:77",
+              "type": "movie",
+              "name": "Title 77",
+              "addedAt": 1793145600078
+            },
+            {
+              "id": "owned:78",
+              "type": "movie",
+              "name": "Title 78",
+              "addedAt": 1793145600079
+            },
+            {
+              "id": "owned:79",
+              "type": "movie",
+              "name": "Title 79",
+              "addedAt": 1793145600080
+            },
+            {
+              "id": "owned:80",
+              "type": "movie",
+              "name": "Title 80",
+              "addedAt": 1793145600081
+            },
+            {
+              "id": "owned:81",
+              "type": "movie",
+              "name": "Title 81",
+              "addedAt": 1793145600082
+            },
+            {
+              "id": "owned:82",
+              "type": "movie",
+              "name": "Title 82",
+              "addedAt": 1793145600083
+            },
+            {
+              "id": "owned:83",
+              "type": "movie",
+              "name": "Title 83",
+              "addedAt": 1793145600084
+            },
+            {
+              "id": "owned:84",
+              "type": "movie",
+              "name": "Title 84",
+              "addedAt": 1793145600085
+            },
+            {
+              "id": "owned:85",
+              "type": "movie",
+              "name": "Title 85",
+              "addedAt": 1793145600086
+            },
+            {
+              "id": "owned:86",
+              "type": "movie",
+              "name": "Title 86",
+              "addedAt": 1793145600087
+            },
+            {
+              "id": "owned:87",
+              "type": "movie",
+              "name": "Title 87",
+              "addedAt": 1793145600088
+            },
+            {
+              "id": "owned:88",
+              "type": "movie",
+              "name": "Title 88",
+              "addedAt": 1793145600089
+            },
+            {
+              "id": "owned:89",
+              "type": "movie",
+              "name": "Title 89",
+              "addedAt": 1793145600090
+            },
+            {
+              "id": "owned:90",
+              "type": "movie",
+              "name": "Title 90",
+              "addedAt": 1793145600091
+            },
+            {
+              "id": "owned:91",
+              "type": "movie",
+              "name": "Title 91",
+              "addedAt": 1793145600092
+            },
+            {
+              "id": "owned:92",
+              "type": "movie",
+              "name": "Title 92",
+              "addedAt": 1793145600093
+            },
+            {
+              "id": "owned:93",
+              "type": "movie",
+              "name": "Title 93",
+              "addedAt": 1793145600094
+            },
+            {
+              "id": "owned:94",
+              "type": "movie",
+              "name": "Title 94",
+              "addedAt": 1793145600095
+            },
+            {
+              "id": "owned:95",
+              "type": "movie",
+              "name": "Title 95",
+              "addedAt": 1793145600096
+            },
+            {
+              "id": "owned:96",
+              "type": "movie",
+              "name": "Title 96",
+              "addedAt": 1793145600097
+            },
+            {
+              "id": "owned:97",
+              "type": "movie",
+              "name": "Title 97",
+              "addedAt": 1793145600098
+            },
+            {
+              "id": "owned:98",
+              "type": "movie",
+              "name": "Title 98",
+              "addedAt": 1793145600099
+            },
+            {
+              "id": "owned:99",
+              "type": "movie",
+              "name": "Title 99",
+              "addedAt": 1793145600100
+            },
+            {
+              "id": "owned:new",
+              "type": "movie",
+              "name": "",
+              "addedAt": 1793145600103
+            }
+          ]
+        }
+      ],
+      "writes": 103
+    },
+    {
+      "name": "invalid-actions-leave-existing-data",
+      "actions": [
+        ["create", "  ", "", "unused"],
+        ["create", "Owned", "", "list-1"],
+        ["rename", "list-1", "  "],
+        ["delete", "unknown"],
+        [
+          "add",
+          "unknown",
+          {
+            "id": "kitsu:1",
+            "type": "anime",
+            "name": "Owned Anime",
+            "poster": "https://example.org/owned.png",
+            "addonOrigin": {
+              "id": "owned",
+              "name": "Owned Source",
+              "base": "https://example.org/manifest.json",
+              "ignored": "discard"
+            },
+            "videos": [
+              {
+                "id": "kitsu:1:1",
+                "season": 1,
+                "episode": 1,
+                "streams": [
+                  {
+                    "url": "https://example.org/not-persisted.mp4"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        ["remove", "list-1", "unknown"],
+        [
+          "update",
+          "list-1",
+          "unknown",
+          {
+            "id": "other"
+          }
+        ]
+      ],
+      "outcomes": [null, "list-1", null, null, null, null, null],
+      "expected": [
+        {
+          "id": "list-1",
+          "name": "Owned",
+          "createdAt": 1793145600001,
+          "updatedAt": 1793145600001,
+          "items": []
+        }
+      ],
+      "writes": 1
+    }
+  ]
+}

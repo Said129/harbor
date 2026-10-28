@@ -115,6 +115,7 @@ final class AppModel {
     private(set) var pendingDocument: PendingProfileDocument?
     var personalOwner: String { profileContext.binding?.personalOwner ?? "guest" }
     var settingsOwner: String { profileContext.binding?.settingsOwner ?? "guest" }
+    var customLists: CustomListStore { .forOwner(settingsOwner, inheritedOwner: profileContext.binding?.sharedSettingsOwner) }
     func pageCustomization(_ page: String) -> PageCustomization {
         guard ["home", "anime"].contains(page) else { return PageCustomization(owner: settingsOwner, page: page) }
         let legacy = page == "anime" && profileContext.profiles.active?.desktop.isPrimary == true ? (profileContext.configuration?.dataOwner ?? "guest") : nil
