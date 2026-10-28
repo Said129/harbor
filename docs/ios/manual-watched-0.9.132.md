@@ -31,7 +31,15 @@ con nueve escenarios. La fixture conserva entradas, objetivos, episodios emitido
 y hashes de los tres módulos. Cinco casos nativos nuevos contrastan esos resultados
 y ejercitan el `LibraryModel` real, la escritura y reapertura de la caché, los
 especiales individuales, la confirmación, el aislamiento de anime y una escritura
-retenida durante un cambio de perfil. Siguen sin ejecutarse en Apple a la fecha
-de este cambio. No se afirma validación visual, autorización real de Trakt ni
-equivalencia global terminada. Se conservan los casos aprobados de las suites
-anteriores; no se genera una IPA en esta selección.
+retenida durante un cambio de perfil. La ejecución Apple
+[40675700785](https://github.com/Said129/harbor/actions/runs/40675700785), fuente
+`041ca4830c46bc98d04c104253d7d2795056d2c2`, aprobó los cinco casos, sin omitidos,
+fallos ni advertencias nuevas. Los árboles y los registros originales coinciden.
+El archivo original de evidencia mide 52.661 bytes y tiene SHA-256
+`14ac0ccd414131bc229f4ec6032d9c2f9be717eb0bc290570a579d48e13662e5`, igual al
+digest de GitHub. La selección es nativa y no genera imágenes ni una IPA.
+
+Se conservan los casos aprobados de las suites anteriores. No se afirma validación
+visual, autorización real de Trakt ni equivalencia global terminada. La ampliación
+posterior para mostrar marcas locales en Historial y los rótulos de episodio se
+documenta por separado y todavía necesita su propia ejecución.
