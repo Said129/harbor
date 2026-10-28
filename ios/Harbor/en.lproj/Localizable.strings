@@ -10,6 +10,7 @@
 "2nd" = "2nd";
 "A continuación" = "Up Next";
 "A to Z" = "A to Z";
+"A-Z" = "A-Z";
 "API key" = "API key";
 "Abajo a la derecha" = "Bottom right";
 "Abajo a la izquierda" = "Bottom left";
@@ -47,6 +48,7 @@
 "Add source" = "Add source";
 "Add to Simkl" = "Add to Simkl";
 "Add to Suwayomi library" = "Add to Suwayomi library";
+"Add to Watchlist" = "Add to Watchlist";
 "Add to favorites" = "Add to favorites";
 "Add your TMDB key in Settings to load these catalogs." = "Add your TMDB key in Settings to load these catalogs.";
 "Add {language}" = "Add {language}";
@@ -333,6 +335,7 @@
 "Continue Watching" = "Continue Watching";
 "Continue Watching at top" = "Continue Watching at top";
 "Continue to next chapter" = "Continue to next chapter";
+"Continue watching" = "Continue watching";
 "Continúa donde lo dejaste" = "Pick up where you left off";
 "Continúa los episodios y las películas que viste en parte desde el punto guardado. Todo lo que hayas visto más del 80% siempre se reinicia. Desactiva esta opción para comenzar siempre desde el principio; es útil si vuelves a ver series." = "Pick up partly-watched episodes and movies at your saved spot. Anything watched past 80% always restarts. Turn this off to always start from the beginning, handy if you rewatch shows.";
 "Contorno" = "Outline";
@@ -626,6 +629,7 @@
 "High is sized to your screen and looks identical to full res on far less memory. Balanced saves the most. Maximum keeps original resolution." = "High is sized to your screen and looks identical to full res on far less memory. Balanced saves the most. Maximum keeps original resolution.";
 "Highlight, progress." = "Highlight, progress.";
 "Highlighted blocks." = "Highlighted blocks.";
+"History" = "History";
 "Home" = "Home";
 "Home layout" = "Home layout";
 "Home style" = "Home style";
@@ -747,6 +751,7 @@
 "Loading music" = "Loading music";
 "Loading your history…" = "Loading your history…";
 "Loading..." = "Loading...";
+"Local" = "Local";
 "Local app files" = "Local app files";
 "Logo position" = "Logo position";
 "Logo reset to default" = "Logo reset to default";
@@ -774,6 +779,8 @@
 "Marcar como leído" = "Mark as read";
 "Margins" = "Margins";
 "Mark as read" = "Mark as read";
+"Mark as unwatched" = "Mark as unwatched";
+"Mark as watched" = "Mark as watched";
 "Mark watched button" = "Mark watched button";
 "Maximum" = "Maximum";
 "Mecha" = "Mecha";
@@ -834,6 +841,7 @@
 "Muted text" = "Muted text";
 "My Library" = "My Library";
 "My channels" = "My channels";
+"My library" = "My library";
 "Mystery" = "Mystery";
 "Márgenes" = "Margins";
 "Más leídos del momento" = "Popular reads";
@@ -872,6 +880,7 @@
 "No description available." = "No description available.";
 "No episodes found for this season." = "No episodes found for this season.";
 "No extensions are available on this server." = "No extensions are available on this server.";
+"No favorites yet" = "No favorites yet";
 "No hay coincidencias." = "No matches.";
 "No hay descripción disponible." = "No description available.";
 "No hay extensiones disponibles en este servidor." = "No extensions are available on this server.";
@@ -882,6 +891,7 @@
 "No items found in this section." = "No items found in this section.";
 "No language matches that search." = "No language matches that search.";
 "No manga found" = "No manga found";
+"No matches" = "No matches";
 "No matches for these filters." = "No matches for these filters.";
 "No matches." = "No matches.";
 "No preferred languages selected." = "No preferred languages selected.";
@@ -946,6 +956,7 @@
 "Opciones de lectura" = "Reading options";
 "Opciones del lector" = "Reader options";
 "Opciones del reproductor" = "Player options";
+"Open a title and tap Add to Watchlist to save it here." = "Open a title and tap Add to Watchlist to save it here.";
 "Open image" = "Open image";
 "Open in Safari" = "Open in Safari";
 "Open in browser" = "Open in browser";
@@ -1088,6 +1099,7 @@
 "Reanudar desde donde lo dejaste" = "Resume where you left off";
 "Reanudar desde {time}" = "Resume from {time}";
 "Reanudar tras una interrupción de audio" = "Resume after an audio interruption";
+"Recent" = "Recent";
 "Recent searches" = "Recent searches";
 "Recently played" = "Recently played";
 "Recién agregado" = "Just added";
@@ -1410,6 +1422,7 @@
 "Syncing subtitles…" = "Syncing subtitles…";
 "System" = "System";
 "System UI" = "System UI";
+"S{season} E{episode}" = "S{season} E{episode}";
 "Sólo favoritos" = "Favorites only";
 "TMDB" = "TMDB";
 "TMDB API key (v3)" = "TMDB API key (v3)";
@@ -1586,6 +1599,7 @@
 "Waiting for you to authorize on trakt.tv…" = "Waiting for you to authorize on trakt.tv…";
 "Watched" = "Watched";
 "Watching" = "Watching";
+"Watchlist" = "Watchlist";
 "Welcome to Harbor" = "Welcome to Harbor";
 "When a release ships multiple audio tracks, Harbor selects the first match from this list." = "When a release ships multiple audio tracks, Harbor selects the first match from this list.";
 "When an episode ends, automatically start the next one. Off lets the episode finish and stop." = "When an episode ends, automatically start the next one. Off lets the episode finish and stop.";
@@ -1604,6 +1618,7 @@
 "Your Trakt watchlist is empty, nothing to import." = "Your Trakt watchlist is empty, nothing to import.";
 "Your addons" = "Your addons";
 "Your avatar, name, and handle across Harbor." = "Your avatar, name, and handle across Harbor.";
+"Your collection." = "Your collection.";
 "Your color" = "Your color";
 "Your leagues" = "Your leagues";
 "Your library" = "Your library";
@@ -1614,6 +1629,7 @@
 "Your profile" = "Your profile";
 "Your rating" = "Your rating";
 "Your services are saved locally. Cloud sync will retry." = "Your services are saved locally. Cloud sync will retry.";
+"Your watchlist is empty" = "Your watchlist is empty";
 "Your watchlist is empty, nothing to send." = "Your watchlist is empty, nothing to send.";
 "Zoom" = "Zoom";
 "code" = "code";

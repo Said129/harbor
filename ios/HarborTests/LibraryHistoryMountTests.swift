@@ -43,7 +43,7 @@ import XCTest
                         if value.type == "series" { value.videos = [Episode(id: "tt7654321:5:23", season: 5, episode: 23, name: "Owned episode title", thumbnail: base + "/wide.png")] }
                         return value
                     }).padding(20) }.background(HarborTheme.background)
-                }.foregroundStyle(HarborTheme.ink).preferredColorScheme(.dark)
+                }.foregroundStyle(HarborTheme.ink).preferredColorScheme(.dark).environment(\.locale, Locale(identifier: "en"))
                 window.rootViewController = UIHostingController(rootView: content); window.makeKeyAndVisible(); window.layoutIfNeeded()
                 try await waitForDecodedArtwork(window); try await Task.sleep(for: .milliseconds(600)); window.layoutIfNeeded()
                 let image = UIGraphicsImageRenderer(bounds: window.bounds, format: format).image { _ in _ = window.drawHierarchy(in: window.bounds, afterScreenUpdates: true) }

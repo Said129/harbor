@@ -7,7 +7,7 @@ import re
 block = 'library-history'
 marker = 'affected:' + block
 cases = []
-for suite, count in [('LibraryHistoryTests', 6), ('LibraryHistoryMountTests', 1), ('TraktLibraryMountTests', 1)]:
+for suite, count in [('LibraryHistoryTests', 6), ('LibraryHistoryMountTests', 1), ('LibraryInterfaceLanguageTests', 1), ('TraktLibraryMountTests', 1)]:
     methods = re.findall(r'\bfunc (test\w+)\(', Path('ios/HarborTests/' + suite + '.swift').read_text('utf-8'))
     assert len(methods) == len(set(methods)) == count
     cases += ['HarborTests.' + suite + '/' + method for method in methods]
@@ -29,13 +29,14 @@ for case in cases + [item for batch in batches for item in [batch['seed'], *batc
     target, tail = case.split('.', 1); suite, method = tail.split('/')
     target = 'HarborUITests' if target == 'HarborExistingAppUITests' else target
     assert len(re.findall(r'\bfunc ' + method + r'\(', Path('ios/' + target + '/' + suite + '.swift').read_text('utf-8'))) == 1
-assert len(cases) == len(set(cases)) == 8 and len(captures) == len(set(captures)) == 19
+assert len(cases) == len(set(cases)) == 9 and len(captures) == len(set(captures)) == 19
 plan = dict(source=os.environ.get('GITHUB_SHA', 'working-tree'), block=block, selection_marker=marker,
-    selected_case_count=8, pending_native_cases=cases, new_native_cases=7,
+    selected_case_count=9, pending_native_cases=cases, new_native_cases=8,
     ui_batches=batches, ui_cases=[case for batch in batches for case in batch['cases']], preserve_prepared_app_data=True,
-    fresh_preparation_executions=3, expected_total_executions=14,
+    fresh_preparation_executions=3, expected_total_executions=15,
     expected_original_images=19, required_original_captures=captures,
     parent_run=40613602917, parent_source='a250493946884de12a2c269786996917ded08e42',
+    compiler_parent_run=40617349724, compiler_parent_source='a5c1bb0f8e5f8a4a7dad7670c7ec8e7e9b556e97',
     failed_parent_ui=[failed_phone],
     genuinely_affected_native_cases=[cases[-1]],
     affected_mount_reason='The first compact original had one loading cover. The changed barrier requires all four actual owned covers before capture.',
@@ -48,4 +49,4 @@ build = Path('ios/build'); build.mkdir(parents=True, exist_ok=True)
 (build / 'plugin-integration-selection.txt').write_text('\n'.join(case.replace('.', '/', 1) for case in cases) + '\n', 'utf-8')
 if os.environ.get('GITHUB_ENV'):
     with open(os.environ['GITHUB_ENV'], 'a', encoding='utf-8') as stream: stream.write('HARBOR_PLUGIN_UI_REQUIRED=true\n')
-print('7 new native +1 incomplete artwork mount +3 fresh preparations +2 new UI +1 failed phone UI=14 executions/19 originals; no IPA.')
+print('8 unexecuted native +1 incomplete artwork mount +3 fresh preparations +2 new UI +1 failed phone UI=15 executions/19 originals; no IPA.')

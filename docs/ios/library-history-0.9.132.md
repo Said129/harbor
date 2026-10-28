@@ -54,18 +54,37 @@ credenciales, verifican cambio de modo, búsqueda, confirmación, retirada y
 reinicio. Estos recorridos usan títulos sintéticos sin portadas; no certifican
 arte de proveedores. Las imágenes del montaje cubren ese aspecto por separado.
 
-Ninguno de estos casos nuevos se ha ejecutado todavía. La validación anterior de
+Ninguno de estos casos nuevos se ha ejecutado todavía. El intento 40617349724,
+en `a5c1bb0f`, falló al compilar: el `error` implícito del `catch` ocultaba la
+propiedad del modelo. La asignación usa ahora `self.error`. El archivo de
+diagnósticos original, de 30.924 bytes, conserva SHA-256
+`abf0b00b34011cc96309c22a9e17d5e9f651d3beb1a83ec5a03ec2552809c15f`,
+igual al digest de GitHub. No se atribuye ninguna ejecución a ese intento.
+La validación anterior de
 listas y marcas Trakt terminó con 27 de 28 aprobaciones: 24 casos nativos, dos
 preparaciones y el recorrido del iPad aprobaron. Se conserva su evidencia. El
 recorrido del iPhone falló al consultar `isHittable` en una pestaña fuera del área
 visible. La reparación revela el marco completo antes de activarla y conserva
 la comprobación de selección tras el toque real.
 
-La nueva selección contiene siete casos nativos nuevos y un montaje afectado:
+La nueva selección contiene ocho casos nativos sin ejecutar y un montaje afectado:
 la captura Trakt compacta anterior tenía una portada aún en carga, por lo que
 ahora debe esperar las cuatro. Hay tres preparaciones y tres recorridos: dos
 nuevos de Historial y solo el recorrido anterior fallido del iPhone. Total:
-14 ejecuciones y 19 capturas originales previstas. Se conservan las otras
+15 ejecuciones y 19 capturas originales previstas. Se conservan las otras
 23 aprobaciones nativas y la del recorrido anterior del iPad. Permanecen
 pendientes las demás secciones, servicios, interfaces, animaciones y validaciones
 físicas del objetivo general, y una sola IPA final.
+
+La revisión de los originales en inglés detectó encabezados, pestañas, filtros y
+vacíos de Biblioteca aún escritos en español. Ahora usan claves canónicas del
+Desktop fijado; se actualizan solo 40 rótulos en los 16 idiomas. La instrucción
+para añadir títulos utiliza una pulsación móvil en lugar del clic derecho de
+Desktop. Las vistas observan el idioma del entorno sin reconstruirse ni perder
+la búsqueda o el modo elegido; el traductor admite identificadores regionales
+como `en_US` y conserva el comportamiento por defecto de los demás consumidores.
+Un nuevo caso compara 20 claves por idioma contra catálogos originales extraídos,
+la instrucción móvil y la interpolación de temporadas y episodios. Los recorridos
+de Historial exigen también el encabezado y la pestaña en inglés, y el montaje
+de Historial captura expresamente ese idioma. Sigue pendiente su ejecución Apple;
+esta revisión no certifica la traducción completa de todas las pantallas.

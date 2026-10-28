@@ -20,6 +20,7 @@
 "A client for the Stremio protocol. Two minutes to set up; most of it optional. You stay in control of every key." = "Stremio protokolü için bir istemci. Kurulumu iki dakika sürer ve çoğu adım isteğe bağlıdır. Her anahtarın kontrolü sizde kalır.";
 "A continuación" = "Sıradaki";
 "A to Z" = "A'dan Z'ye";
+"A-Z" = "A-Z";
 "AMC+" = "AMC+";
 "API key" = "API anahtarı";
 "Abajo a la derecha" = "Sağ alt";
@@ -63,6 +64,7 @@
 "Add source" = "Kaynak ekle";
 "Add to Simkl" = "Simkl'a ekle";
 "Add to Suwayomi library" = "Add to Suwayomi library";
+"Add to Watchlist" = "İzleme Listesine ekle";
 "Add to favorites" = "Favorilere ekle";
 "Add your TMDB key in Settings to load these catalogs." = "Bu katalogları yüklemek için Ayarlar'a TMDB anahtarınızı ekleyin.";
 "Add {language}" = "{language} ekle";
@@ -416,6 +418,7 @@
 "Continue Watching, then your addon catalogs in install order. No hero, no Harbor rails." = "Önce İzlemeye Devam Et, ardından kurulum sırasına göre eklenti kataloglarınız gösterilir. Öne çıkan alan ve Harbor satırları gösterilmez.";
 "Continue reading" = "Okumaya devam et";
 "Continue to next chapter" = "Continue to next chapter";
+"Continue watching" = "İzlemeye devam et";
 "Continúa donde lo dejaste" = "Kaldığınız yerden devam edin";
 "Continúa los episodios y las películas que viste en parte desde el punto guardado. Todo lo que hayas visto más del 80% siempre se reinicia. Desactiva esta opción para comenzar siempre desde el principio; es útil si vuelves a ver series." = "Kısmen izlenmiş bölümlere ve filmlere kaldığınız yerden devam edin. %80'den fazlası izlenen içerikler her zaman baştan başlar. Dizileri yeniden izliyorsanız her zaman baştan başlatmak için bunu kapatın.";
 "Contorno" = "Dış çizgi";
@@ -952,6 +955,8 @@
 "Marcar como leído" = "Mark as read";
 "Margins" = "Kenar boşlukları";
 "Mark as read" = "Mark as read";
+"Mark as unwatched" = "İzlenmedi olarak işaretle";
+"Mark as watched" = "İzlendi olarak işaretle";
 "Mark watched button" = "İzlendi olarak işaretle düğmesi";
 "Max" = "Maks.";
 "Maximum" = "Maksimum";
@@ -1020,6 +1025,7 @@
 "Muted text" = "Soluk metin";
 "My Library" = "Kütüphanem";
 "My channels" = "My channels";
+"My library" = "Kitaplığım";
 "Mystery" = "Gizem";
 "Márgenes" = "Kenar boşlukları";
 "Más leídos del momento" = "Popular reads";
@@ -1068,6 +1074,7 @@
 "No description available." = "Açıklama yok.";
 "No episodes found for this season." = "Bu sezon için bölüm bulunamadı.";
 "No extensions are available on this server." = "No extensions are available on this server.";
+"No favorites yet" = "Henüz favori yok";
 "No hay coincidencias." = "Eşleşme yok.";
 "No hay descripción disponible." = "Açıklama yok.";
 "No hay extensiones disponibles en este servidor." = "No extensions are available on this server.";
@@ -1079,6 +1086,7 @@
 "No language matches that search." = "Bu aramayla eşleşen dil yok.";
 "No longer listed by its repository." = "Artık deposunda listelenmiyor.";
 "No manga found" = "Manga bulunamadı";
+"No matches" = "Eşleşme yok";
 "No matches for these filters." = "Bu filtrelerle eşleşen sonuç yok.";
 "No matches." = "Eşleşme yok.";
 "No picks loaded. TMDB might be unreachable." = "Hiçbir öneri yüklenmedi. TMDB'ye ulaşılamıyor olabilir.";
@@ -1161,6 +1169,7 @@
 "Opciones de lectura" = "Reading options";
 "Opciones del lector" = "Reader options";
 "Opciones del reproductor" = "Player options";
+"Open a title and tap Add to Watchlist to save it here." = "Bir başlığı açıp buraya kaydetmek için «İzleme listesine ekle» seçeneğine dokun.";
 "Open image" = "Görseli aç";
 "Open in Safari" = "Open in Safari";
 "Open in browser" = "Tarayıcıda aç";
@@ -1343,6 +1352,7 @@
 "Reanudar desde donde lo dejaste" = "Kaldığınız yerden devam edin";
 "Reanudar desde {time}" = "{time} konumundan devam et";
 "Reanudar tras una interrupción de audio" = "Resume after an audio interruption";
+"Recent" = "Son kullanılanlar";
 "Recent activity" = "Son etkinlik";
 "Recent searches" = "Son aramalar";
 "Recently played" = "Son oynanan";
@@ -1717,6 +1727,7 @@
 "Syncing subtitles…" = "Syncing subtitles…";
 "System" = "Sistem";
 "System UI" = "Sistem arayüzü";
+"S{season} E{episode}" = "S{season} B{episode}";
 "Sólo favoritos" = "Favorites only";
 "TMDB" = "TMDB";
 "TMDB API key (v3)" = "TMDB API anahtarı (v3)";
@@ -1934,6 +1945,7 @@
 "War" = "Savaş";
 "Watched" = "İzlendi";
 "Watching" = "İzleniyor";
+"Watchlist" = "İzleme Listesi";
 "Welcome to Harbor" = "Harbor'a hoş geldiniz";
 "Western" = "Vahşi Batı";
 "What everyone is reading" = "Herkesin okudukları";
@@ -1965,6 +1977,7 @@
 "Your Trakt watchlist is empty, nothing to import." = "Trakt izleme listeniz boş, içe aktarılacak bir şey yok.";
 "Your addons" = "Eklentilerin";
 "Your avatar, name, and handle across Harbor." = "Harbor genelinde avatarınız, adınız ve kullanıcı adınız.";
+"Your collection." = "Koleksiyonunuz.";
 "Your color" = "Renginiz";
 "Your leagues" = "Your leagues";
 "Your library" = "Kütüphaneniz";
@@ -1975,6 +1988,7 @@
 "Your profile" = "Profiliniz";
 "Your rating" = "Puanınız";
 "Your services are saved locally. Cloud sync will retry." = "Hizmetleriniz bu cihazda kaydedildi. Bulut eşitlemesi yeniden denenecek.";
+"Your watchlist is empty" = "İzleme listeniz boş";
 "Your watchlist is empty, nothing to send." = "İzleme listeniz boş, gönderilecek bir şey yok.";
 "Yours" = "Size ait";
 "Zoom" = "Yakınlaştırma";

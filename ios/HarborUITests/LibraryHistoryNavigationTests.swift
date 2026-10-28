@@ -36,7 +36,9 @@ import XCTest
         let navigation = app.descendants(matching: .any).matching(identifier: "navigation-scroll").firstMatch
         let library = app.buttons["nav-library"]; ReadingUIInteraction.reveal(library, in: app, container: navigation); ReadingUIInteraction.tapVisible(library, in: app)
         let bar = app.scrollViews["library-filter"]; XCTAssertTrue(bar.waitForExistence(timeout: 15))
+        XCTAssertTrue(app.staticTexts["Your collection."].exists)
         let history = app.buttons["library-tab-watched"]
+        XCTAssertEqual(history.label, "History")
         ReadingUIInteraction.revealHorizontally(history, in: app, container: bar)
         ReadingUIInteraction.tapVisible(history, in: app)
         XCTAssertTrue(app.descendants(matching: .any).matching(identifier: "library-history-content").firstMatch.waitForExistence(timeout: 15))

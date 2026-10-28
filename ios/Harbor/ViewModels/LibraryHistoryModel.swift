@@ -36,7 +36,7 @@ import Observation
     func loadAccount() {
         guard isActive, account.owner == personalOwner, account.owner == store.owner else { return }
         do { if !account.ready { try account.load() }; store.bind(account.session?.trackingID) }
-        catch { error = "Could not read the account on this device." }
+        catch { self.error = "Could not read the account on this device." }
     }
     func cancel() { operation = UUID(); loading = false }
     func refresh(force: Bool = false) async {

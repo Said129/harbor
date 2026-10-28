@@ -20,6 +20,7 @@
 "A client for the Stremio protocol. Two minutes to set up; most of it optional. You stay in control of every key." = "Stremio 协议客户端。两分钟即可完成设置，其中大部分为可选项。所有密钥均由你掌控。";
 "A continuación" = "接下来播放";
 "A to Z" = "按名称";
+"A-Z" = "A-Z";
 "AMC+" = "AMC+";
 "API key" = "API 密钥";
 "Abajo a la derecha" = "右下角";
@@ -63,6 +64,7 @@
 "Add source" = "添加来源";
 "Add to Simkl" = "添加到 Simkl";
 "Add to Suwayomi library" = "Add to Suwayomi library";
+"Add to Watchlist" = "添加到待看清单";
 "Add to favorites" = "添加到收藏";
 "Add your TMDB key in Settings to load these catalogs." = "请在设置中添加 TMDB 密钥以加载这些目录。";
 "Add {language}" = "添加{language}";
@@ -416,6 +418,7 @@
 "Continue Watching, then your addon catalogs in install order. No hero, no Harbor rails." = "先显示“继续观看”，再按安装顺序显示插件目录。不显示焦点推荐和 Harbor 内容栏。";
 "Continue reading" = "继续阅读";
 "Continue to next chapter" = "Continue to next chapter";
+"Continue watching" = "继续观看";
 "Continúa donde lo dejaste" = "从上次停下的位置继续";
 "Continúa los episodios y las películas que viste en parte desde el punto guardado. Todo lo que hayas visto más del 80% siempre se reinicia. Desactiva esta opción para comenzar siempre desde el principio; es útil si vuelves a ver series." = "从保存的位置继续播放未看完的剧集和电影。观看进度超过 80% 的内容始终会从头播放。关闭此项后所有内容都会从头播放，适合重看剧集。";
 "Contorno" = "描边";
@@ -952,6 +955,8 @@
 "Marcar como leído" = "Mark as read";
 "Margins" = "页边距";
 "Mark as read" = "Mark as read";
+"Mark as unwatched" = "标记为未观看";
+"Mark as watched" = "标记为已观看";
 "Mark watched button" = "“标为已看”按钮";
 "Max" = "最大";
 "Maximum" = "最高";
@@ -1020,6 +1025,7 @@
 "Muted text" = "弱化文本";
 "My Library" = "我的媒体库";
 "My channels" = "My channels";
+"My library" = "我的媒体库";
 "Mystery" = "悬疑";
 "Márgenes" = "页边距";
 "Más leídos del momento" = "Popular reads";
@@ -1068,6 +1074,7 @@
 "No description available." = "暂无简介。";
 "No episodes found for this season." = "未找到本季剧集。";
 "No extensions are available on this server." = "No extensions are available on this server.";
+"No favorites yet" = "暂无收藏";
 "No hay coincidencias." = "无匹配结果。";
 "No hay descripción disponible." = "暂无简介。";
 "No hay extensiones disponibles en este servidor." = "No extensions are available on this server.";
@@ -1079,6 +1086,7 @@
 "No language matches that search." = "没有与该搜索匹配的语言。";
 "No longer listed by its repository." = "其仓库已不再列出此插件。";
 "No manga found" = "未找到漫画";
+"No matches" = "无匹配项";
 "No matches for these filters." = "没有符合这些筛选条件的结果。";
 "No matches." = "无匹配结果。";
 "No picks loaded. TMDB might be unreachable." = "未加载任何推荐。可能无法连接 TMDB。";
@@ -1161,6 +1169,7 @@
 "Opciones de lectura" = "Reading options";
 "Opciones del lector" = "Reader options";
 "Opciones del reproductor" = "Player options";
+"Open a title and tap Add to Watchlist to save it here." = "打开一个条目，轻点“添加到待看列表”即可将其保存到这里。";
 "Open image" = "打开图片";
 "Open in Safari" = "Open in Safari";
 "Open in browser" = "在浏览器中打开";
@@ -1343,6 +1352,7 @@
 "Reanudar desde donde lo dejaste" = "从上次停止的位置继续播放";
 "Reanudar desde {time}" = "从 {time} 继续播放";
 "Reanudar tras una interrupción de audio" = "Resume after an audio interruption";
+"Recent" = "最近";
 "Recent activity" = "近期活动";
 "Recent searches" = "最近搜索";
 "Recently played" = "最近游玩";
@@ -1717,6 +1727,7 @@
 "Syncing subtitles…" = "Syncing subtitles…";
 "System" = "跟随系统";
 "System UI" = "系统界面";
+"S{season} E{episode}" = "第{season}季 第{episode}集";
 "Sólo favoritos" = "Favorites only";
 "TMDB" = "TMDB";
 "TMDB API key (v3)" = "TMDB API 密钥（v3）";
@@ -1934,6 +1945,7 @@
 "War" = "战争";
 "Watched" = "已观看";
 "Watching" = "正在观看";
+"Watchlist" = "想看清单";
 "Welcome to Harbor" = "欢迎使用 Harbor";
 "Western" = "西部";
 "What everyone is reading" = "大家都在读";
@@ -1965,6 +1977,7 @@
 "Your Trakt watchlist is empty, nothing to import." = "你的 Trakt 片单为空，没有可导入的内容。";
 "Your addons" = "你的插件";
 "Your avatar, name, and handle across Harbor." = "你在 Harbor 中使用的头像、名称和账号名。";
+"Your collection." = "你的收藏。";
 "Your color" = "你的颜色";
 "Your leagues" = "Your leagues";
 "Your library" = "你的媒体库";
@@ -1975,6 +1988,7 @@
 "Your profile" = "你的个人资料";
 "Your rating" = "你的评分";
 "Your services are saved locally. Cloud sync will retry." = "你的服务已保存在本机。稍后将重试云端同步。";
+"Your watchlist is empty" = "你的待看清单为空";
 "Your watchlist is empty, nothing to send." = "你的片单为空，没有可发送的内容。";
 "Yours" = "你的";
 "Zoom" = "缩放";

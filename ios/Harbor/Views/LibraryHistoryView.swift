@@ -7,7 +7,8 @@ struct LibraryHistoryContent: View {
     private var display: LibraryDisplay { model.library.presentation.display }
     @State private var query = ""
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
-    private func text(_ key: String, variables: [String: String] = [:]) -> String { DesktopInterfaceText.value(key, variables: variables) }
+    @Environment(\.locale) private var locale
+    private func text(_ key: String, variables: [String: String] = [:]) -> String { DesktopInterfaceText.value(key, variables: variables, language: locale.identifier) }
     var body: some View {
         let entries = model.entries, indexed = Dictionary(entries.map { ($0.id, $0) }, uniquingKeysWith: { first, _ in first })
         let records = LibraryListing.select(entries.map(\.listingRecord), display: historyDisplay, query: query)
@@ -30,7 +31,7 @@ struct LibraryHistoryContent: View {
                 VStack(alignment: .leading, spacing: 28) {
                     ForEach(Array(groups.enumerated()), id: \.offset) { _, group in
                         VStack(alignment: .leading, spacing: 14) {
-                            if !group.title.isEmpty { Text(text(group.title).uppercased() + "  \(group.items.count)").font(.system(size: 11, weight: .bold)).tracking(2).foregroundStyle(.secondary) }
+                            if !group.title.isEmpty { Text(text(LibraryListing.sourceGroupTitle(group.title)).uppercased() + "  \(group.items.count)").font(.system(size: 11, weight: .bold)).tracking(2).foregroundStyle(.secondary) }
                             if display.historyView == .episodes {
                                 LazyVGrid(columns: [GridItem(.adaptive(minimum: 155), spacing: 16)], alignment: .leading, spacing: 22) {
                                     ForEach(group.items) { record in if let entry = indexed[record.id] { card(entry, episodes: true) } }
@@ -61,7 +62,7 @@ struct LibraryHistoryContent: View {
                 HStack(spacing: 6) {
                     ForEach(LibraryKind.allCases) { kind in
                         let count = entries.filter { kind == .all || $0.media?.type == kind.rawValue }.count
-                        HarborPill(title: text(kind.title) + "  \(count)", selected: display.kind == kind) { model.library.changeDisplay { $0.kind = kind } }
+                        HarborPill(title: text(kind.sourceTitle) + "  \(count)", selected: display.kind == kind) { model.library.changeDisplay { $0.kind = kind } }
                             .accessibilityIdentifier("library-history-kind-" + kind.rawValue)
                     }
                 }
@@ -75,7 +76,7 @@ struct LibraryHistoryContent: View {
                     }
                     Divider().frame(height: 24).padding(.horizontal, 5)
                     ForEach(LibrarySort.allCases) { sort in
-                        HarborPill(title: text(sort.title), selected: display.sort == sort) { model.library.changeDisplay { $0.sort = sort } }
+                        HarborPill(title: text(sort.sourceTitle), selected: display.sort == sort) { model.library.changeDisplay { $0.sort = sort } }
                     }
                     if display.sort == .recent {
                         Divider().frame(height: 24).padding(.horizontal, 5)
@@ -152,9 +153,10 @@ private struct LibraryHistoryCard: View {
     let metadata: (@MainActor (Media) async throws -> Media)?
     @State private var hydrated: Media?
     @State private var confirm = false
+    @Environment(\.locale) private var locale
     private var media: Media? { hydrated ?? entry.media }
     private var episode: Episode? { hydrated?.videos?.first { $0.season == entry.season && $0.episode == entry.episode } }
-    private func text(_ key: String, variables: [String: String] = [:]) -> String { DesktopInterfaceText.value(key, variables: variables) }
+    private func text(_ key: String, variables: [String: String] = [:]) -> String { DesktopInterfaceText.value(key, variables: variables, language: locale.identifier) }
     var body: some View {
         Group {
             if let media {

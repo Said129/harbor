@@ -20,6 +20,7 @@
 "A client for the Stremio protocol. Two minutes to set up; most of it optional. You stay in control of every key." = "Stremioプロトコル対応クライアント。設定は2分ほどで、ほとんどの項目は任意です。すべてのキーをご自身で管理できます。";
 "A continuación" = "次のエピソード";
 "A to Z" = "名前順";
+"A-Z" = "A-Z";
 "AMC+" = "AMC+";
 "API key" = "APIキー";
 "Abajo a la derecha" = "右下";
@@ -63,6 +64,7 @@
 "Add source" = "ソースを追加";
 "Add to Simkl" = "Simklに追加";
 "Add to Suwayomi library" = "Add to Suwayomi library";
+"Add to Watchlist" = "ウォッチリストに追加";
 "Add to favorites" = "お気に入りに追加";
 "Add your TMDB key in Settings to load these catalogs." = "設定に TMDB キーを追加すると、これらのカタログを読み込めます。";
 "Add {language}" = "{language}を追加";
@@ -416,6 +418,7 @@
 "Continue Watching, then your addon catalogs in install order. No hero, no Harbor rails." = "「視聴を続ける」の後に、アドオンのカタログをインストール順で表示します。ヒーローやHarborのレールはありません。";
 "Continue reading" = "続きを読む";
 "Continue to next chapter" = "Continue to next chapter";
+"Continue watching" = "視聴を続ける";
 "Continúa donde lo dejaste" = "続きから見る";
 "Continúa los episodios y las películas que viste en parte desde el punto guardado. Todo lo que hayas visto más del 80% siempre se reinicia. Desactiva esta opción para comenzar siempre desde el principio; es útil si vuelves a ver series." = "途中まで視聴したエピソードや映画を、保存した位置から再開します。80%を超えて視聴した作品は常に最初から再生されます。番組を見直す場合など、常に最初から再生したいときはオフにしてください。";
 "Contorno" = "縁取り";
@@ -952,6 +955,8 @@
 "Marcar como leído" = "Mark as read";
 "Margins" = "余白";
 "Mark as read" = "Mark as read";
+"Mark as unwatched" = "未視聴にする";
+"Mark as watched" = "視聴済みにする";
 "Mark watched button" = "「視聴済みにする」ボタン";
 "Max" = "最大";
 "Maximum" = "最大";
@@ -1020,6 +1025,7 @@
 "Muted text" = "控えめなテキスト";
 "My Library" = "マイライブラリ";
 "My channels" = "My channels";
+"My library" = "マイライブラリ";
 "Mystery" = "ミステリー";
 "Márgenes" = "余白";
 "Más leídos del momento" = "Popular reads";
@@ -1068,6 +1074,7 @@
 "No description available." = "説明はありません。";
 "No episodes found for this season." = "このシーズンのエピソードが見つかりません。";
 "No extensions are available on this server." = "No extensions are available on this server.";
+"No favorites yet" = "お気に入りはまだありません";
 "No hay coincidencias." = "一致する項目はありません。";
 "No hay descripción disponible." = "説明はありません。";
 "No hay extensiones disponibles en este servidor." = "No extensions are available on this server.";
@@ -1079,6 +1086,7 @@
 "No language matches that search." = "検索に一致する言語がありません。";
 "No longer listed by its repository." = "リポジトリに掲載されなくなりました。";
 "No manga found" = "マンガが見つかりません";
+"No matches" = "一致する結果はありません";
 "No matches for these filters." = "このフィルターに一致する作品はありません。";
 "No matches." = "一致する項目はありません。";
 "No picks loaded. TMDB might be unreachable." = "おすすめを読み込めませんでした。TMDBに接続できない可能性があります。";
@@ -1161,6 +1169,7 @@
 "Opciones de lectura" = "Reading options";
 "Opciones del lector" = "Reader options";
 "Opciones del reproductor" = "Player options";
+"Open a title and tap Add to Watchlist to save it here." = "作品を開き、「ウォッチリストに追加」をタップするとここに保存されます。";
 "Open image" = "画像を開く";
 "Open in Safari" = "Open in Safari";
 "Open in browser" = "ブラウザで開く";
@@ -1343,6 +1352,7 @@
 "Reanudar desde donde lo dejaste" = "続きから再生";
 "Reanudar desde {time}" = "{time}から再開";
 "Reanudar tras una interrupción de audio" = "Resume after an audio interruption";
+"Recent" = "最近";
 "Recent activity" = "最近のアクティビティ";
 "Recent searches" = "最近の検索";
 "Recently played" = "最近プレイ";
@@ -1717,6 +1727,7 @@
 "Syncing subtitles…" = "Syncing subtitles…";
 "System" = "システム";
 "System UI" = "システムUI";
+"S{season} E{episode}" = "S{season} E{episode}";
 "Sólo favoritos" = "Favorites only";
 "TMDB" = "TMDB";
 "TMDB API key (v3)" = "TMDB APIキー（v3）";
@@ -1934,6 +1945,7 @@
 "War" = "戦争";
 "Watched" = "視聴済み";
 "Watching" = "視聴中";
+"Watchlist" = "ウォッチリスト";
 "Welcome to Harbor" = "Harborへようこそ";
 "Western" = "西部劇";
 "What everyone is reading" = "みんなが読んでいる作品";
@@ -1965,6 +1977,7 @@
 "Your Trakt watchlist is empty, nothing to import." = "Traktのウォッチリストは空です。インポートする項目はありません。";
 "Your addons" = "あなたのアドオン";
 "Your avatar, name, and handle across Harbor." = "Harbor全体で使用するアバター、名前、ハンドルネームです。";
+"Your collection." = "あなたのコレクションです。";
 "Your color" = "あなたのカラー";
 "Your leagues" = "Your leagues";
 "Your library" = "あなたのライブラリ";
@@ -1975,6 +1988,7 @@
 "Your profile" = "あなたのプロフィール";
 "Your rating" = "あなたの評価";
 "Your services are saved locally. Cloud sync will retry." = "サービスはこのデバイスに保存されています。クラウド同期を再試行します。";
+"Your watchlist is empty" = "ウォッチリストは空です";
 "Your watchlist is empty, nothing to send." = "ウォッチリストは空です。送信する項目はありません。";
 "Yours" = "あなたのもの";
 "Zoom" = "ズーム";

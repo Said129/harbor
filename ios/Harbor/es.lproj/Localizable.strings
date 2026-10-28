@@ -20,6 +20,7 @@
 "A client for the Stremio protocol. Two minutes to set up; most of it optional. You stay in control of every key." = "Un cliente para el protocolo de Stremio. Se configura en dos minutos y casi todo es opcional. Tú mantienes el control de cada clave.";
 "A continuación" = "A continuación";
 "A to Z" = "De la A a la Z";
+"A-Z" = "A-Z";
 "AMC+" = "AMC+";
 "API key" = "Clave de API";
 "Abajo a la derecha" = "Abajo a la derecha";
@@ -63,6 +64,7 @@
 "Add source" = "Añadir fuente";
 "Add to Simkl" = "Agregar a Simkl";
 "Add to Suwayomi library" = "Añadir a biblioteca Suwayomi";
+"Add to Watchlist" = "Agregar a la lista de seguimiento";
 "Add to favorites" = "Agregar a favoritos";
 "Add your TMDB key in Settings to load these catalogs." = "Añade tu clave de TMDB en Ajustes para cargar estos catálogos.";
 "Add {language}" = "Añadir {language}";
@@ -416,6 +418,7 @@
 "Continue Watching, then your addon catalogs in install order. No hero, no Harbor rails." = "Seguir viendo y luego los catálogos de tus complementos, en orden de instalación. Sin sección destacada ni filas de Harbor.";
 "Continue reading" = "Seguir leyendo";
 "Continue to next chapter" = "Continuar al siguiente capítulo";
+"Continue watching" = "Seguir viendo";
 "Continúa donde lo dejaste" = "Continúa donde lo dejaste";
 "Continúa los episodios y las películas que viste en parte desde el punto guardado. Todo lo que hayas visto más del 80% siempre se reinicia. Desactiva esta opción para comenzar siempre desde el principio; es útil si vuelves a ver series." = "Continúa los episodios y las películas que viste en parte desde el punto guardado. Todo lo que hayas visto más del 80% siempre se reinicia. Desactiva esta opción para comenzar siempre desde el principio; es útil si vuelves a ver series.";
 "Contorno" = "Contorno";
@@ -952,6 +955,8 @@
 "Marcar como leído" = "Marcar como leído";
 "Margins" = "Márgenes";
 "Mark as read" = "Marcar como leído";
+"Mark as unwatched" = "Marcar como no visto";
+"Mark as watched" = "Marcar como visto";
 "Mark watched button" = "Botón Marcar como visto";
 "Max" = "Máx.";
 "Maximum" = "Máximo";
@@ -1020,6 +1025,7 @@
 "Muted text" = "Texto silenciado";
 "My Library" = "Mi biblioteca";
 "My channels" = "Mis canales";
+"My library" = "Mi biblioteca";
 "Mystery" = "Misterio";
 "Márgenes" = "Márgenes";
 "Más leídos del momento" = "Más leídos del momento";
@@ -1068,6 +1074,7 @@
 "No description available." = "No hay descripción disponible.";
 "No episodes found for this season." = "No se encontraron episodios para esta temporada.";
 "No extensions are available on this server." = "No hay extensiones disponibles en este servidor.";
+"No favorites yet" = "Aún no hay favoritos";
 "No hay coincidencias." = "No hay coincidencias.";
 "No hay descripción disponible." = "No hay descripción disponible.";
 "No hay extensiones disponibles en este servidor." = "No hay extensiones disponibles en este servidor.";
@@ -1079,6 +1086,7 @@
 "No language matches that search." = "Ningún idioma coincide con esa búsqueda.";
 "No longer listed by its repository." = "Su repositorio ya no lo incluye.";
 "No manga found" = "No se encontró ningún manga";
+"No matches" = "Sin coincidencias";
 "No matches for these filters." = "No hay coincidencias con estos filtros.";
 "No matches." = "No hay coincidencias.";
 "No picks loaded. TMDB might be unreachable." = "No se cargaron selecciones. Es posible que TMDB no esté disponible.";
@@ -1161,6 +1169,7 @@
 "Opciones de lectura" = "Opciones de lectura";
 "Opciones del lector" = "Opciones del lector";
 "Opciones del reproductor" = "Opciones del reproductor";
+"Open a title and tap Add to Watchlist to save it here." = "Abre un título y toca «Añadir a mi lista» para guardarlo aquí.";
 "Open image" = "Abrir imagen";
 "Open in Safari" = "Abrir en Safari";
 "Open in browser" = "Abrir en el navegador";
@@ -1343,6 +1352,7 @@
 "Reanudar desde donde lo dejaste" = "Reanudar desde donde lo dejaste";
 "Reanudar desde {time}" = "Reanudar desde {time}";
 "Reanudar tras una interrupción de audio" = "Reanudar tras una interrupción de audio";
+"Recent" = "Reciente";
 "Recent activity" = "Actividad reciente";
 "Recent searches" = "Búsquedas recientes";
 "Recently played" = "Jugado recientemente";
@@ -1717,6 +1727,7 @@
 "Syncing subtitles…" = "Sincronizando subtítulos…";
 "System" = "Sistema";
 "System UI" = "Interfaz del sistema";
+"S{season} E{episode}" = "T{season} E{episode}";
 "Sólo favoritos" = "Sólo favoritos";
 "TMDB" = "TMDB";
 "TMDB API key (v3)" = "Clave de API de TMDB (v3)";
@@ -1934,6 +1945,7 @@
 "War" = "Guerra";
 "Watched" = "Visto";
 "Watching" = "Viendo";
+"Watchlist" = "Lista para ver";
 "Welcome to Harbor" = "Te damos la bienvenida a Harbor";
 "Western" = "Wéstern";
 "What everyone is reading" = "Lo que todos están leyendo";
@@ -1965,6 +1977,7 @@
 "Your Trakt watchlist is empty, nothing to import." = "Tu lista de seguimiento de Trakt está vacía. No hay nada que importar.";
 "Your addons" = "Tus addons";
 "Your avatar, name, and handle across Harbor." = "Tu avatar, nombre e identificador en Harbor.";
+"Your collection." = "Tu colección.";
 "Your color" = "Tu color";
 "Your leagues" = "Tus ligas";
 "Your library" = "Tu biblioteca";
@@ -1975,6 +1988,7 @@
 "Your profile" = "Tu perfil";
 "Your rating" = "Tu calificación";
 "Your services are saved locally. Cloud sync will retry." = "Tus servicios se han guardado en este dispositivo. Se reintentará la sincronización.";
+"Your watchlist is empty" = "Tu lista de seguimiento está vacía";
 "Your watchlist is empty, nothing to send." = "Tu lista de seguimiento está vacía. No hay nada que enviar.";
 "Yours" = "Tuyo";
 "Zoom" = "Zoom";

@@ -20,6 +20,7 @@
 "A client for the Stremio protocol. Two minutes to set up; most of it optional. You stay in control of every key." = "Stremio 프로토콜용 클라이언트입니다. 설정에는 2분이면 충분하며 대부분은 선택 사항입니다. 모든 키는 사용자가 직접 관리합니다.";
 "A continuación" = "다음 콘텐츠";
 "A to Z" = "이름순";
+"A-Z" = "가나다순";
 "AMC+" = "AMC+";
 "API key" = "API 키";
 "Abajo a la derecha" = "오른쪽 아래";
@@ -63,6 +64,7 @@
 "Add source" = "소스 추가";
 "Add to Simkl" = "Simkl에 추가";
 "Add to Suwayomi library" = "Add to Suwayomi library";
+"Add to Watchlist" = "관심 목록에 추가";
 "Add to favorites" = "즐겨찾기에 추가";
 "Add your TMDB key in Settings to load these catalogs." = "설정에서 TMDB 키를 추가하면 카탈로그를 불러올 수 있습니다.";
 "Add {language}" = "{language} 추가";
@@ -416,6 +418,7 @@
 "Continue Watching, then your addon catalogs in install order. No hero, no Harbor rails." = "이어보기 다음에 설치 순서대로 애드온 카탈로그가 표시됩니다. 히어로와 Harbor 콘텐츠 줄은 표시되지 않습니다.";
 "Continue reading" = "계속 읽기";
 "Continue to next chapter" = "Continue to next chapter";
+"Continue watching" = "이어서 시청";
 "Continúa donde lo dejaste" = "이어서 시청하기";
 "Continúa los episodios y las películas que viste en parte desde el punto guardado. Todo lo que hayas visto más del 80% siempre se reinicia. Desactiva esta opción para comenzar siempre desde el principio; es útil si vuelves a ver series." = "보다 만 에피소드와 영화를 저장된 위치부터 이어서 재생합니다. 80% 넘게 본 콘텐츠는 항상 처음부터 다시 시작합니다. 프로그램을 다시 볼 때처럼 항상 처음부터 시작하려면 끄세요.";
 "Contorno" = "외곽선";
@@ -952,6 +955,8 @@
 "Marcar como leído" = "Mark as read";
 "Margins" = "여백";
 "Mark as read" = "Mark as read";
+"Mark as unwatched" = "시청하지 않음으로 표시";
+"Mark as watched" = "시청함으로 표시";
 "Mark watched button" = "시청함 표시 버튼";
 "Max" = "최대";
 "Maximum" = "최대";
@@ -1020,6 +1025,7 @@
 "Muted text" = "흐린 텍스트";
 "My Library" = "내 라이브러리";
 "My channels" = "My channels";
+"My library" = "내 라이브러리";
 "Mystery" = "미스터리";
 "Márgenes" = "여백";
 "Más leídos del momento" = "Popular reads";
@@ -1068,6 +1074,7 @@
 "No description available." = "설명이 없습니다.";
 "No episodes found for this season." = "이 시즌의 에피소드를 찾을 수 없습니다.";
 "No extensions are available on this server." = "No extensions are available on this server.";
+"No favorites yet" = "아직 즐겨찾기가 없습니다.";
 "No hay coincidencias." = "일치하는 항목이 없습니다.";
 "No hay descripción disponible." = "설명이 없습니다.";
 "No hay extensiones disponibles en este servidor." = "No extensions are available on this server.";
@@ -1079,6 +1086,7 @@
 "No language matches that search." = "검색과 일치하는 언어가 없습니다.";
 "No longer listed by its repository." = "저장소 목록에서 사라졌습니다.";
 "No manga found" = "만화를 찾을 수 없습니다.";
+"No matches" = "일치 항목 없음";
 "No matches for these filters." = "이 필터와 일치하는 항목이 없습니다.";
 "No matches." = "일치하는 항목이 없습니다.";
 "No picks loaded. TMDB might be unreachable." = "추천 항목을 불러오지 못했습니다. TMDB에 연결할 수 없는 상태일 수 있습니다.";
@@ -1161,6 +1169,7 @@
 "Opciones de lectura" = "Reading options";
 "Opciones del lector" = "Reader options";
 "Opciones del reproductor" = "Player options";
+"Open a title and tap Add to Watchlist to save it here." = "작품을 열고 «관심 목록에 추가»를 탭하면 여기에 저장됩니다.";
 "Open image" = "이미지 열기";
 "Open in Safari" = "Open in Safari";
 "Open in browser" = "브라우저에서 열기";
@@ -1343,6 +1352,7 @@
 "Reanudar desde donde lo dejaste" = "중단한 지점부터 이어 보기";
 "Reanudar desde {time}" = "{time}부터 이어서 재생";
 "Reanudar tras una interrupción de audio" = "Resume after an audio interruption";
+"Recent" = "최근 항목";
 "Recent activity" = "최근 활동";
 "Recent searches" = "최근 검색어";
 "Recently played" = "최근 플레이";
@@ -1717,6 +1727,7 @@
 "Syncing subtitles…" = "Syncing subtitles…";
 "System" = "시스템";
 "System UI" = "시스템 UI";
+"S{season} E{episode}" = "시즌 {season} 에피소드 {episode}";
 "Sólo favoritos" = "Favorites only";
 "TMDB" = "TMDB";
 "TMDB API key (v3)" = "TMDB API 키(v3)";
@@ -1934,6 +1945,7 @@
 "War" = "전쟁";
 "Watched" = "시청함";
 "Watching" = "시청 중";
+"Watchlist" = "관심 목록";
 "Welcome to Harbor" = "Harbor에 오신 것을 환영합니다";
 "Western" = "서부극";
 "What everyone is reading" = "지금 모두가 읽는 작품";
@@ -1965,6 +1977,7 @@
 "Your Trakt watchlist is empty, nothing to import." = "Trakt 관심 목록이 비어 있어 가져올 항목이 없습니다.";
 "Your addons" = "내 애드온";
 "Your avatar, name, and handle across Harbor." = "Harbor 전반에 표시되는 아바타, 이름 및 핸들입니다.";
+"Your collection." = "내 컬렉션입니다.";
 "Your color" = "내 색상";
 "Your leagues" = "Your leagues";
 "Your library" = "내 라이브러리";
@@ -1975,6 +1988,7 @@
 "Your profile" = "내 프로필";
 "Your rating" = "내 평점";
 "Your services are saved locally. Cloud sync will retry." = "서비스가 이 기기에 저장되었습니다. 클라우드 동기화를 다시 시도합니다.";
+"Your watchlist is empty" = "관심 목록이 비어 있습니다";
 "Your watchlist is empty, nothing to send." = "관심 목록이 비어 있어 보낼 항목이 없습니다.";
 "Yours" = "내 것";
 "Zoom" = "확대/축소";

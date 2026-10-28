@@ -6,7 +6,8 @@ struct TraktLibraryContent: View {
     var metadata: (@MainActor (Media) async throws -> Media)? = nil
     @State private var kind = LibraryKind.all
     @State private var query = ""
-    private func text(_ key: String, variables: [String: String] = [:]) -> String { DesktopInterfaceText.value(key, variables: variables) }
+    @Environment(\.locale) private var locale
+    private func text(_ key: String, variables: [String: String] = [:]) -> String { DesktopInterfaceText.value(key, variables: variables, language: locale.identifier) }
     var body: some View {
         let combined = model.watchlist + model.history
         VStack(alignment: .leading, spacing: 22) {
@@ -15,7 +16,7 @@ struct TraktLibraryContent: View {
                     HStack(spacing: 6) {
                         ForEach(LibraryKind.allCases) { value in
                             let count = combined.filter { value == .all || $0.media?.type == value.rawValue }.count
-                            HarborPill(title: text(value.title) + "  \(count)", selected: kind == value) { kind = value }
+                            HarborPill(title: text(value.sourceTitle) + "  \(count)", selected: kind == value) { kind = value }
                                 .accessibilityIdentifier("trakt-library-kind-" + value.rawValue)
                         }
                     }
@@ -24,7 +25,7 @@ struct TraktLibraryContent: View {
                 ScrollView(.horizontal) {
                     HStack(spacing: 6) {
                         ForEach(LibrarySort.allCases) { value in
-                            HarborPill(title: text(value.title), selected: app.library.presentation.display.sort == value) { app.library.changeDisplay { $0.sort = value } }
+                            HarborPill(title: text(value.sourceTitle), selected: app.library.presentation.display.sort == value) { app.library.changeDisplay { $0.sort = value } }
                                 .accessibilityIdentifier("trakt-library-sort-" + value.rawValue)
                         }
                     }
@@ -55,7 +56,7 @@ struct TraktLibraryContent: View {
             } else {
                 ForEach(Array(groups.enumerated()), id: \.offset) { _, group in
                     VStack(alignment: .leading, spacing: 14) {
-                        if !group.title.isEmpty { Text(text(group.title).uppercased() + "  \(group.items.count)").font(.system(size: 10, weight: .semibold)).tracking(2).foregroundStyle(.secondary) }
+                        if !group.title.isEmpty { Text(text(LibraryListing.sourceGroupTitle(group.title)).uppercased() + "  \(group.items.count)").font(.system(size: 10, weight: .semibold)).tracking(2).foregroundStyle(.secondary) }
                         PosterGrid(spacing: 22) {
                             ForEach(group.items) { record in
                                 if let media = record.media {
@@ -77,12 +78,13 @@ private struct TraktLibraryCard: View {
     let removable: Bool
     let metadata: (@MainActor (Media) async throws -> Media)?
     @State private var hydrated: Media?
+    @Environment(\.locale) private var locale
     var body: some View {
         NavigationLink { DetailView(media: hydrated ?? media, app: app, metadataLoaded: hydrated != nil) } label: { Poster(media: hydrated ?? media, width: nil) }
             .buttonStyle(.plain).accessibilityLabel(media.name).accessibilityIdentifier("trakt-library-media")
             .contextMenu {
                 if removable, let target = TraktLibraryTarget(media) {
-                    Button(DesktopInterfaceText.value("Remove from watchlist"), role: .destructive) { Task {
+                    Button(DesktopInterfaceText.value("Remove from watchlist", language: locale.identifier), role: .destructive) { Task {
                         await model.setWatchlisted(false, target: target, title: media.name, year: media.releaseInfo.flatMap { Int($0) })
                     } }.disabled(model.store.updating)
                 }
@@ -101,7 +103,8 @@ struct TraktWatchlistTransferView: View {
     let library: LibraryModel
     private enum Phase { case idle, loading, export(TraktWatchlistExportPlan), importItems([TraktLibraryItem]), running(Bool), result(String) }
     @State private var phase = Phase.idle
-    private func text(_ key: String, variables: [String: String] = [:]) -> String { DesktopInterfaceText.value(key, variables: variables) }
+    @Environment(\.locale) private var locale
+    private func text(_ key: String, variables: [String: String] = [:]) -> String { DesktopInterfaceText.value(key, variables: variables, language: locale.identifier) }
     private var busy: Bool {
         switch phase { case .idle, .result: model.loading || model.transferring || model.store.updating; default: true }
     }

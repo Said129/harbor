@@ -22,6 +22,7 @@
 "A client for the Stremio protocol. Two minutes to set up; most of it optional. You stay in control of every key." = "Клиент для протокола Stremio. Две минуты на настройку, и почти всё – по желанию. Все ключи остаются под вашим контролем.";
 "A continuación" = "Далее";
 "A to Z" = "По алфавиту";
+"A-Z" = "А-Я";
 "AMC+" = "AMC+";
 "API key" = "API-ключ";
 "Abajo a la derecha" = "Снизу справа";
@@ -65,6 +66,7 @@
 "Add source" = "Добавить источник";
 "Add to Simkl" = "Добавить в Simkl";
 "Add to Suwayomi library" = "Add to Suwayomi library";
+"Add to Watchlist" = "Добавить в список просмотра";
 "Add to favorites" = "Добавить в избранное";
 "Add your TMDB key in Settings to load these catalogs." = "Добавьте ключ TMDB в настройках, чтобы загрузить эти каталоги.";
 "Add {language}" = "Добавить язык: {language}";
@@ -420,6 +422,7 @@
 "Continue Watching, then your addon catalogs in install order. No hero, no Harbor rails." = "Продолжить просмотр, затем каталоги дополнений в порядке установки. Без баннера и рядов Harbor.";
 "Continue reading" = "Продолжить чтение";
 "Continue to next chapter" = "Continue to next chapter";
+"Continue watching" = "Продолжить просмотр";
 "Continúa donde lo dejaste" = "Продолжить с того же места";
 "Continúa los episodios y las películas que viste en parte desde el punto guardado. Todo lo que hayas visto más del 80% siempre se reinicia. Desactiva esta opción para comenzar siempre desde el principio; es útil si vuelves a ver series." = "Продолжайте недосмотренные серии и фильмы с сохранённого места. Всё, просмотренное более чем на 80%, всегда начинается заново. Отключите, чтобы всегда начинать с начала, удобно при пересмотре сериалов.";
 "Contorno" = "Обводка";
@@ -957,6 +960,8 @@
 "Marcar como leído" = "Mark as read";
 "Margins" = "Поля";
 "Mark as read" = "Mark as read";
+"Mark as unwatched" = "Отметить непросмотренным";
+"Mark as watched" = "Отметить просмотренным";
 "Mark watched button" = "Кнопка «Отметить просмотренным»";
 "Max" = "Максимум";
 "Maximum" = "Максимум";
@@ -1025,6 +1030,7 @@
 "Muted text" = "Приглушённый текст";
 "My Library" = "Моя библиотека";
 "My channels" = "My channels";
+"My library" = "Моя библиотека";
 "Mystery" = "Детектив";
 "Márgenes" = "Поля";
 "Más leídos del momento" = "Popular reads";
@@ -1076,6 +1082,7 @@
 "No description available." = "Описание недоступно.";
 "No episodes found for this season." = "Для этого сезона серии не найдены.";
 "No extensions are available on this server." = "No extensions are available on this server.";
+"No favorites yet" = "Пока нет избранного";
 "No hay coincidencias." = "Совпадений нет.";
 "No hay descripción disponible." = "Описание недоступно.";
 "No hay extensiones disponibles en este servidor." = "No extensions are available on this server.";
@@ -1087,6 +1094,7 @@
 "No language matches that search." = "По этому запросу язык не найден.";
 "No longer listed by its repository." = "Больше не значится в репозитории.";
 "No manga found" = "Манга не найдена";
+"No matches" = "Нет совпадений";
 "No matches for these filters." = "По этим фильтрам ничего не найдено.";
 "No matches." = "Совпадений нет.";
 "No picks loaded. TMDB might be unreachable." = "Подборки не загружены. Возможно, TMDB недоступен.";
@@ -1170,6 +1178,7 @@
 "Opciones de lectura" = "Reading options";
 "Opciones del lector" = "Reader options";
 "Opciones del reproductor" = "Player options";
+"Open a title and tap Add to Watchlist to save it here." = "Откройте произведение и нажмите «Добавить в список просмотра», чтобы сохранить его здесь.";
 "Open image" = "Открыть изображение";
 "Open in Safari" = "Open in Safari";
 "Open in browser" = "Открыть в браузере";
@@ -1354,6 +1363,7 @@
 "Reanudar desde donde lo dejaste" = "Продолжить с места остановки";
 "Reanudar desde {time}" = "Продолжить с {time}";
 "Reanudar tras una interrupción de audio" = "Resume after an audio interruption";
+"Recent" = "Недавние";
 "Recent activity" = "Недавняя активность";
 "Recent searches" = "Недавние запросы";
 "Recently played" = "Недавно играли";
@@ -1731,6 +1741,7 @@
 "Syncing subtitles…" = "Синхронизация субтитров…";
 "System" = "Системный";
 "System UI" = "System UI";
+"S{season} E{episode}" = "S{season} E{episode}";
 "Sólo favoritos" = "Favorites only";
 "TMDB" = "TMDB";
 "TMDB API key (v3)" = "Ключ API TMDB (v3)";
@@ -1949,6 +1960,7 @@
 "War" = "Военный";
 "Watched" = "Просмотрено";
 "Watching" = "Смотрю";
+"Watchlist" = "Список для просмотра";
 "Welcome to Harbor" = "Добро пожаловать в Harbor";
 "Western" = "Вестерн";
 "What everyone is reading" = "Что читают все";
@@ -1980,6 +1992,7 @@
 "Your Trakt watchlist is empty, nothing to import." = "Ваш список к просмотру в Trakt пуст, импортировать нечего.";
 "Your addons" = "Ваши дополнения";
 "Your avatar, name, and handle across Harbor." = "Ваш аватар, имя и ник во всём Harbor.";
+"Your collection." = "Ваша коллекция.";
 "Your color" = "Ваш цвет";
 "Your leagues" = "Your leagues";
 "Your library" = "Ваша библиотека";
@@ -1990,6 +2003,7 @@
 "Your profile" = "Ваш профиль";
 "Your rating" = "Ваша оценка";
 "Your services are saved locally. Cloud sync will retry." = "Сервисы сохранены на этом устройстве. Синхронизация будет повторена.";
+"Your watchlist is empty" = "Список просмотра пуст";
 "Your watchlist is empty, nothing to send." = "Ваш список к просмотру пуст, отправлять нечего.";
 "Yours" = "У вас";
 "Zoom" = "Масштаб";

@@ -20,6 +20,7 @@
 "A client for the Stremio protocol. Two minutes to set up; most of it optional. You stay in control of every key." = "Ứng dụng khách cho giao thức Stremio. Chỉ mất hai phút để thiết lập; hầu hết đều không bắt buộc. Bạn luôn toàn quyền kiểm soát mọi khóa.";
 "A continuación" = "Tiếp theo";
 "A to Z" = "A đến Z";
+"A-Z" = "A-Z";
 "AMC+" = "AMC+";
 "API key" = "Khóa API";
 "Abajo a la derecha" = "Dưới cùng bên phải";
@@ -63,6 +64,7 @@
 "Add source" = "Thêm nguồn";
 "Add to Simkl" = "Thêm vào Simkl";
 "Add to Suwayomi library" = "Add to Suwayomi library";
+"Add to Watchlist" = "Thêm vào danh sách xem";
 "Add to favorites" = "Thêm vào mục yêu thích";
 "Add your TMDB key in Settings to load these catalogs." = "Thêm khóa TMDB trong Cài đặt để tải các danh mục này.";
 "Add {language}" = "Thêm {language}";
@@ -416,6 +418,7 @@
 "Continue Watching, then your addon catalogs in install order. No hero, no Harbor rails." = "Xem tiếp, sau đó là các danh mục tiện ích bổ sung theo thứ tự cài đặt. Không có mục nổi bật hay các hàng của Harbor.";
 "Continue reading" = "Đọc tiếp";
 "Continue to next chapter" = "Continue to next chapter";
+"Continue watching" = "Xem tiếp";
 "Continúa donde lo dejaste" = "Xem tiếp từ đoạn đã dừng";
 "Continúa los episodios y las películas que viste en parte desde el punto guardado. Todo lo que hayas visto más del 80% siempre se reinicia. Desactiva esta opción para comenzar siempre desde el principio; es útil si vuelves a ver series." = "Tiếp tục phát các tập và phim đang xem dở từ vị trí đã lưu. Nội dung đã xem quá 80% luôn phát lại từ đầu. Tắt tùy chọn này để luôn phát từ đầu, tiện khi xem lại phim bộ.";
 "Contorno" = "Viền chữ";
@@ -952,6 +955,8 @@
 "Marcar como leído" = "Mark as read";
 "Margins" = "Lề";
 "Mark as read" = "Mark as read";
+"Mark as unwatched" = "Đánh dấu là chưa xem";
+"Mark as watched" = "Đánh dấu là đã xem";
 "Mark watched button" = "Nút đánh dấu đã xem";
 "Max" = "Tối đa";
 "Maximum" = "Tối đa";
@@ -1020,6 +1025,7 @@
 "Muted text" = "Văn bản giảm nổi bật";
 "My Library" = "Thư viện của tôi";
 "My channels" = "My channels";
+"My library" = "Thư viện của tôi";
 "Mystery" = "Bí ẩn";
 "Márgenes" = "Lề";
 "Más leídos del momento" = "Popular reads";
@@ -1068,6 +1074,7 @@
 "No description available." = "Không có mô tả.";
 "No episodes found for this season." = "Không tìm thấy tập nào cho mùa này.";
 "No extensions are available on this server." = "No extensions are available on this server.";
+"No favorites yet" = "Chưa có mục yêu thích";
 "No hay coincidencias." = "Không có kết quả.";
 "No hay descripción disponible." = "Không có mô tả.";
 "No hay extensiones disponibles en este servidor." = "No extensions are available on this server.";
@@ -1079,6 +1086,7 @@
 "No language matches that search." = "Không có ngôn ngữ nào khớp với nội dung tìm kiếm.";
 "No longer listed by its repository." = "Kho lưu trữ không còn liệt kê plugin này.";
 "No manga found" = "Không tìm thấy manga";
+"No matches" = "Không có kết quả";
 "No matches for these filters." = "Không có kết quả phù hợp với các bộ lọc này.";
 "No matches." = "Không có kết quả.";
 "No picks loaded. TMDB might be unreachable." = "Chưa tải được đề xuất. Có thể không kết nối được với TMDB.";
@@ -1161,6 +1169,7 @@
 "Opciones de lectura" = "Reading options";
 "Opciones del lector" = "Reader options";
 "Opciones del reproductor" = "Player options";
+"Open a title and tap Add to Watchlist to save it here." = "Mở một tựa phim và chạm vào «Thêm vào danh sách xem» để lưu tại đây.";
 "Open image" = "Mở ảnh";
 "Open in Safari" = "Open in Safari";
 "Open in browser" = "Mở trong trình duyệt";
@@ -1343,6 +1352,7 @@
 "Reanudar desde donde lo dejaste" = "Tiếp tục từ chỗ đã dừng";
 "Reanudar desde {time}" = "Tiếp tục từ {time}";
 "Reanudar tras una interrupción de audio" = "Resume after an audio interruption";
+"Recent" = "Gần đây";
 "Recent activity" = "Hoạt động gần đây";
 "Recent searches" = "Tìm kiếm gần đây";
 "Recently played" = "Chơi gần đây";
@@ -1717,6 +1727,7 @@
 "Syncing subtitles…" = "Syncing subtitles…";
 "System" = "Hệ thống";
 "System UI" = "Giao diện hệ thống";
+"S{season} E{episode}" = "M{season} T{episode}";
 "Sólo favoritos" = "Favorites only";
 "TMDB" = "TMDB";
 "TMDB API key (v3)" = "Khóa API TMDB (v3)";
@@ -1934,6 +1945,7 @@
 "War" = "Chiến tranh";
 "Watched" = "Đã xem";
 "Watching" = "Đang xem";
+"Watchlist" = "Danh sách xem";
 "Welcome to Harbor" = "Chào mừng đến với Harbor";
 "Western" = "Viễn Tây";
 "What everyone is reading" = "Mọi người đang đọc gì";
@@ -1965,6 +1977,7 @@
 "Your Trakt watchlist is empty, nothing to import." = "Danh sách xem Trakt của bạn đang trống, không có gì để nhập.";
 "Your addons" = "Tiện ích bổ sung của bạn";
 "Your avatar, name, and handle across Harbor." = "Ảnh đại diện, tên và tên người dùng của bạn trên Harbor.";
+"Your collection." = "Bộ sưu tập của bạn.";
 "Your color" = "Màu của bạn";
 "Your leagues" = "Your leagues";
 "Your library" = "Thư viện của bạn";
@@ -1975,6 +1988,7 @@
 "Your profile" = "Hồ sơ của bạn";
 "Your rating" = "Đánh giá của bạn";
 "Your services are saved locally. Cloud sync will retry." = "Các dịch vụ đã được lưu trên thiết bị này. Đồng bộ đám mây sẽ được thử lại.";
+"Your watchlist is empty" = "Danh sách xem đang trống";
 "Your watchlist is empty, nothing to send." = "Danh sách xem của bạn đang trống, không có gì để gửi.";
 "Yours" = "Của bạn";
 "Zoom" = "Thu phóng";

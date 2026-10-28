@@ -5,16 +5,19 @@ enum LibraryFilter: String, Codable, CaseIterable, Identifiable, Sendable {
     case all, saved, watchlist, watched, favorites, continuing = "continue"
     var id: String { rawValue }
     var title: String { switch self { case .all: "Biblioteca"; case .saved: "Guardados"; case .watchlist: "Mi lista"; case .watched: "Historial"; case .favorites: "Favoritos"; case .continuing: "Continuar" } }
+    var sourceTitle: String { switch self { case .all: "Library"; case .saved: "Saved"; case .watchlist: "Watchlist"; case .watched: "History"; case .favorites: "Favorites"; case .continuing: "Continue watching" } }
 }
 enum LibraryKind: String, Codable, CaseIterable, Identifiable, Sendable {
     case all, movie, series
     var id: String { rawValue }
     var title: String { switch self { case .all: "Todo"; case .movie: "Películas"; case .series: "Series" } }
+    var sourceTitle: String { switch self { case .all: "All"; case .movie: "Movies"; case .series: "Shows" } }
 }
 enum LibrarySort: String, Codable, CaseIterable, Identifiable, Sendable {
     case recent, title, year
     var id: String { rawValue }
     var title: String { switch self { case .recent: "Recientes"; case .title: "A–Z"; case .year: "Año" } }
+    var sourceTitle: String { switch self { case .recent: "Recent"; case .title: "A-Z"; case .year: "Year" } }
 }
 struct LibraryDisplay: Codable, Sendable {
     var filter = LibraryFilter.all
@@ -83,6 +86,9 @@ struct LibraryPresentation: Codable, Sendable {
     }
 }
 enum LibraryListing {
+    static func sourceGroupTitle(_ title: String) -> String {
+        switch title { case "Hoy": "Today"; case "Esta semana": "This week"; case "Este mes": "This month"; case "Sin fecha": "No date"; case "Por año": "By year"; case "A–Z": "A to Z"; default: title }
+    }
     struct Group {
         let title: String
         let items: [LibraryRecord]

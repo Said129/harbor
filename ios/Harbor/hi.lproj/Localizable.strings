@@ -20,6 +20,7 @@
 "A client for the Stremio protocol. Two minutes to set up; most of it optional. You stay in control of every key." = "Stremio प्रोटोकॉल के लिए एक क्लाइंट। सेटअप में दो मिनट लगते हैं; ज़्यादातर चीज़ें वैकल्पिक हैं। हर कुंजी का नियंत्रण आपके पास रहता है।";
 "A continuación" = "इसके बाद";
 "A to Z" = "A से Z";
+"A-Z" = "A-Z";
 "AMC+" = "AMC+";
 "API key" = "API कुंजी";
 "Abajo a la derecha" = "नीचे दाएँ";
@@ -63,6 +64,7 @@
 "Add source" = "स्रोत जोड़ें";
 "Add to Simkl" = "Simkl में जोड़ें";
 "Add to Suwayomi library" = "Add to Suwayomi library";
+"Add to Watchlist" = "वॉचलिस्ट में जोड़ें";
 "Add to favorites" = "पसंदीदा में जोड़ें";
 "Add your TMDB key in Settings to load these catalogs." = "इन कैटलॉग को लोड करने के लिए सेटिंग्स में अपनी TMDB कुंजी जोड़ें।";
 "Add {language}" = "{language} जोड़ें";
@@ -416,6 +418,7 @@
 "Continue Watching, then your addon catalogs in install order. No hero, no Harbor rails." = "‘देखना जारी रखें’, फिर इंस्टॉल क्रम में आपके ऐडऑन कैटलॉग। न हीरो सेक्शन, न Harbor की पंक्तियाँ।";
 "Continue reading" = "पढ़ना जारी रखें";
 "Continue to next chapter" = "Continue to next chapter";
+"Continue watching" = "देखना जारी रखें";
 "Continúa donde lo dejaste" = "वहीं से जारी रखें जहाँ आपने छोड़ा था";
 "Continúa los episodios y las películas que viste en parte desde el punto guardado. Todo lo que hayas visto más del 80% siempre se reinicia. Desactiva esta opción para comenzar siempre desde el principio; es útil si vuelves a ver series." = "अधूरे देखे एपिसोड और फ़िल्में सेव की गई जगह से शुरू करें। 80% से ज़्यादा देखी गई कोई भी चीज़ हमेशा शुरू से चलेगी। हमेशा शुरुआत से चलाने के लिए इसे बंद करें, जो शो दोबारा देखते समय उपयोगी है।";
 "Contorno" = "आउटलाइन";
@@ -952,6 +955,8 @@
 "Marcar como leído" = "Mark as read";
 "Margins" = "हाशिए";
 "Mark as read" = "Mark as read";
+"Mark as unwatched" = "न देखा हुआ मार्क करें";
+"Mark as watched" = "देखा हुआ मार्क करें";
 "Mark watched button" = "देखा हुआ चिह्नित करने का बटन";
 "Max" = "अधिकतम";
 "Maximum" = "अधिकतम";
@@ -1020,6 +1025,7 @@
 "Muted text" = "मद्धम टेक्स्ट";
 "My Library" = "मेरी लाइब्रेरी";
 "My channels" = "My channels";
+"My library" = "मेरी लाइब्रेरी";
 "Mystery" = "रहस्य";
 "Márgenes" = "हाशिए";
 "Más leídos del momento" = "Popular reads";
@@ -1068,6 +1074,7 @@
 "No description available." = "कोई विवरण उपलब्ध नहीं है।";
 "No episodes found for this season." = "इस सीज़न के लिए कोई एपिसोड नहीं मिला।";
 "No extensions are available on this server." = "No extensions are available on this server.";
+"No favorites yet" = "अभी कोई पसंदीदा आइटम नहीं";
 "No hay coincidencias." = "कोई मेल नहीं।";
 "No hay descripción disponible." = "कोई विवरण उपलब्ध नहीं है।";
 "No hay extensiones disponibles en este servidor." = "No extensions are available on this server.";
@@ -1079,6 +1086,7 @@
 "No language matches that search." = "उस खोज से मेल खाने वाली कोई भाषा नहीं मिली।";
 "No longer listed by its repository." = "अब इसकी रिपॉज़िटरी में सूचीबद्ध नहीं है।";
 "No manga found" = "कोई मंगा नहीं मिला";
+"No matches" = "कोई मेल नहीं";
 "No matches for these filters." = "इन फ़िल्टर से कोई मेल नहीं।";
 "No matches." = "कोई मेल नहीं।";
 "No picks loaded. TMDB might be unreachable." = "कोई सुझाव लोड नहीं हुआ। हो सकता है TMDB उपलब्ध न हो।";
@@ -1161,6 +1169,7 @@
 "Opciones de lectura" = "Reading options";
 "Opciones del lector" = "Reader options";
 "Opciones del reproductor" = "Player options";
+"Open a title and tap Add to Watchlist to save it here." = "कोई शीर्षक खोलें और उसे यहाँ सहेजने के लिए «वॉचलिस्ट में जोड़ें» पर टैप करें।";
 "Open image" = "चित्र खोलें";
 "Open in Safari" = "Open in Safari";
 "Open in browser" = "ब्राउज़र में खोलें";
@@ -1343,6 +1352,7 @@
 "Reanudar desde donde lo dejaste" = "जहाँ छोड़ा था, वहीं से शुरू करें";
 "Reanudar desde {time}" = "{time} से जारी रखें";
 "Reanudar tras una interrupción de audio" = "Resume after an audio interruption";
+"Recent" = "हालिया";
 "Recent activity" = "हाल की गतिविधि";
 "Recent searches" = "हाल की खोजें";
 "Recently played" = "हाल में खेला";
@@ -1717,6 +1727,7 @@
 "Syncing subtitles…" = "Syncing subtitles…";
 "System" = "सिस्टम";
 "System UI" = "सिस्टम UI";
+"S{season} E{episode}" = "S{season} E{episode}";
 "Sólo favoritos" = "Favorites only";
 "TMDB" = "TMDB";
 "TMDB API key (v3)" = "TMDB API कुंजी (v3)";
@@ -1934,6 +1945,7 @@
 "War" = "युद्ध";
 "Watched" = "देख लिया";
 "Watching" = "देख रहे हैं";
+"Watchlist" = "वॉचलिस्ट";
 "Welcome to Harbor" = "Harbor में आपका स्वागत है";
 "Western" = "वेस्टर्न";
 "What everyone is reading" = "हर कोई क्या पढ़ रहा है";
@@ -1965,6 +1977,7 @@
 "Your Trakt watchlist is empty, nothing to import." = "आपकी Trakt वॉचलिस्ट खाली है, इंपोर्ट करने के लिए कुछ नहीं है।";
 "Your addons" = "आपके ऐडऑन";
 "Your avatar, name, and handle across Harbor." = "पूरे Harbor में आपका अवतार, नाम और हैंडल।";
+"Your collection." = "आपका संग्रह।";
 "Your color" = "आपका रंग";
 "Your leagues" = "Your leagues";
 "Your library" = "आपकी लाइब्रेरी";
@@ -1975,6 +1988,7 @@
 "Your profile" = "आपकी प्रोफ़ाइल";
 "Your rating" = "आपकी रेटिंग";
 "Your services are saved locally. Cloud sync will retry." = "आपकी सेवाएँ इस डिवाइस पर सहेजी गई हैं। क्लाउड सिंक फिर से किया जाएगा।";
+"Your watchlist is empty" = "आपकी वॉचलिस्ट खाली है";
 "Your watchlist is empty, nothing to send." = "आपकी वॉचलिस्ट खाली है, भेजने के लिए कुछ नहीं है।";
 "Yours" = "आपका";
 "Zoom" = "ज़ूम";

@@ -22,6 +22,7 @@
 "A client for the Stremio protocol. Two minutes to set up; most of it optional. You stay in control of every key." = "عميل لبروتوكول Stremio. دقيقتان للإعداد، ومعظمه اختياري. تبقى أنت المتحكّم في كل مفتاح.";
 "A continuación" = "التالي";
 "A to Z" = "أبجديًا";
+"A-Z" = "أ-ي";
 "AFC Asian Cup" = "كأس آسيا";
 "AFC Champions League Elite" = "دوري أبطال آسيا للنخبة";
 "AFC Champions League Qualifying" = "تصفيات دوري أبطال آسيا";
@@ -70,6 +71,7 @@
 "Add source" = "إضافة مصدر";
 "Add to Simkl" = "إضافة إلى Simkl";
 "Add to Suwayomi library" = "Add to Suwayomi library";
+"Add to Watchlist" = "إضافة إلى قائمة المشاهدة";
 "Add to favorites" = "إضافة إلى المفضّلة";
 "Add your TMDB key in Settings to load these catalogs." = "أضف مفتاح TMDB في الإعدادات لتحميل هذه الكتالوجات.";
 "Add {language}" = "إضافة {language}";
@@ -436,6 +438,7 @@
 "Continue Watching, then your addon catalogs in install order. No hero, no Harbor rails." = "متابعة المشاهدة، ثم كتالوجات إضافاتك بترتيب التثبيت. بلا واجهة بارزة، وبلا صفوف Harbor.";
 "Continue reading" = "متابعة القراءة";
 "Continue to next chapter" = "Continue to next chapter";
+"Continue watching" = "متابعة المشاهدة";
 "Continúa donde lo dejaste" = "أكمل من حيث توقفت";
 "Continúa los episodios y las películas que viste en parte desde el punto guardado. Todo lo que hayas visto más del 80% siempre se reinicia. Desactiva esta opción para comenzar siempre desde el principio; es útil si vuelves a ver series." = "تابع الحلقات والأفلام المُشاهَدة جزئيًا من موضعك المحفوظ. أي شيء تمت مشاهدة أكثر من 80% منه يُعاد تشغيله من البداية دائمًا. عطّل هذا الخيار لتبدأ من البداية دائمًا، وهو مفيد إذا كنت تعيد مشاهدة المسلسلات.";
 "Contorno" = "إطار";
@@ -977,6 +980,8 @@
 "Marcar como leído" = "Mark as read";
 "Margins" = "الهوامش";
 "Mark as read" = "Mark as read";
+"Mark as unwatched" = "تحديد كغير مُشاهَد";
+"Mark as watched" = "تحديد كمُشاهَد";
 "Mark watched button" = "زر التحديد كمُشاهَد";
 "Max" = "الأقصى";
 "Maximum" = "القصوى";
@@ -1045,6 +1050,7 @@
 "Muted text" = "نص باهت";
 "My Library" = "مكتبتي";
 "My channels" = "My channels";
+"My library" = "مكتبتي";
 "Mystery" = "غموض";
 "Márgenes" = "الهوامش";
 "Más leídos del momento" = "Popular reads";
@@ -1096,6 +1102,7 @@
 "No description available." = "لا يوجد وصف متاح.";
 "No episodes found for this season." = "لم يُعثر على حلقات لهذا الموسم.";
 "No extensions are available on this server." = "No extensions are available on this server.";
+"No favorites yet" = "لا مفضّلة بعد";
 "No hay coincidencias." = "لا توجد نتائج.";
 "No hay descripción disponible." = "لا يوجد وصف متاح.";
 "No hay extensiones disponibles en este servidor." = "No extensions are available on this server.";
@@ -1107,6 +1114,7 @@
 "No language matches that search." = "لا توجد لغة تطابق هذا البحث.";
 "No longer listed by its repository." = "لم يعد مدرجًا في مستودعه.";
 "No manga found" = "لم يُعثر على مانجا";
+"No matches" = "لا توجد نتائج";
 "No matches for these filters." = "لا توجد نتائج لهذه المرشّحات.";
 "No matches." = "لا توجد نتائج.";
 "No picks loaded. TMDB might be unreachable." = "لم تُحمّل أي اختيارات. قد يتعذّر الوصول إلى TMDB.";
@@ -1190,6 +1198,7 @@
 "Opciones de lectura" = "Reading options";
 "Opciones del lector" = "Reader options";
 "Opciones del reproductor" = "Player options";
+"Open a title and tap Add to Watchlist to save it here." = "افتح عنوانًا واضغط على «إضافة إلى قائمة المشاهدة» لحفظه هنا.";
 "Open image" = "فتح الصورة";
 "Open in Safari" = "Open in Safari";
 "Open in browser" = "فتح في المتصفح";
@@ -1374,6 +1383,7 @@
 "Reanudar desde donde lo dejaste" = "المتابعة من حيث توقّفت";
 "Reanudar desde {time}" = "المتابعة من {time}";
 "Reanudar tras una interrupción de audio" = "Resume after an audio interruption";
+"Recent" = "الأحدث";
 "Recent activity" = "النشاط الأخير";
 "Recent searches" = "عمليات البحث الأخيرة";
 "Recently played" = "لُعبت مؤخرًا";
@@ -1754,6 +1764,7 @@
 "Syncing subtitles…" = "جارٍ مزامنة الترجمة…";
 "System" = "النظام";
 "System UI" = "واجهة النظام";
+"S{season} E{episode}" = "م{season} ح{episode}";
 "Sólo favoritos" = "Favorites only";
 "TMDB" = "TMDB";
 "TMDB API key (v3)" = "مفتاح API لـ TMDB (v3)";
@@ -1972,6 +1983,7 @@
 "War" = "حرب";
 "Watched" = "تمت المشاهدة";
 "Watching" = "قيد المشاهدة";
+"Watchlist" = "قائمة المشاهدة";
 "Welcome to Harbor" = "مرحبًا بك في Harbor";
 "Western" = "غربي";
 "What everyone is reading" = "ما يقرؤه الجميع";
@@ -2007,6 +2019,7 @@
 "Your Trakt watchlist is empty, nothing to import." = "قائمة المشاهدة في Trakt فارغة، لا شيء لاستيراده.";
 "Your addons" = "إضافاتك";
 "Your avatar, name, and handle across Harbor." = "صورتك الرمزية واسمك ومُعرِّفك في جميع أنحاء Harbor.";
+"Your collection." = "مجموعتك.";
 "Your color" = "لونك";
 "Your leagues" = "Your leagues";
 "Your library" = "مكتبتك";
@@ -2017,6 +2030,7 @@
 "Your profile" = "ملفك الشخصي";
 "Your rating" = "تقييمك";
 "Your services are saved locally. Cloud sync will retry." = "تم حفظ خدماتك على هذا الجهاز. ستتم إعادة محاولة المزامنة.";
+"Your watchlist is empty" = "قائمة مشاهدتك فارغة";
 "Your watchlist is empty, nothing to send." = "قائمة المشاهدة فارغة، لا شيء لإرساله.";
 "Yours" = "ما يخصّك";
 "Zoom" = "تكبير";

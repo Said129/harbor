@@ -20,6 +20,7 @@
 "A client for the Stremio protocol. Two minutes to set up; most of it optional. You stay in control of every key." = "Klien untuk protokol Stremio. Hanya perlu dua menit untuk disiapkan; sebagian besar bersifat opsional. Anda tetap memegang kendali atas setiap kunci.";
 "A continuación" = "Berikutnya";
 "A to Z" = "A sampai Z";
+"A-Z" = "A-Z";
 "AMC+" = "AMC+";
 "API key" = "Kunci API";
 "Abajo a la derecha" = "Kanan bawah";
@@ -63,6 +64,7 @@
 "Add source" = "Tambah sumber";
 "Add to Simkl" = "Tambahkan ke Simkl";
 "Add to Suwayomi library" = "Add to Suwayomi library";
+"Add to Watchlist" = "Tambahkan ke Daftar Tontonan";
 "Add to favorites" = "Tambahkan ke favorit";
 "Add your TMDB key in Settings to load these catalogs." = "Tambahkan kunci TMDB di Pengaturan untuk memuat katalog ini.";
 "Add {language}" = "Tambahkan {language}";
@@ -416,6 +418,7 @@
 "Continue Watching, then your addon catalogs in install order. No hero, no Harbor rails." = "Lanjutkan Menonton, lalu katalog addon Anda sesuai urutan pemasangan. Tanpa hero, tanpa baris Harbor.";
 "Continue reading" = "Lanjutkan membaca";
 "Continue to next chapter" = "Continue to next chapter";
+"Continue watching" = "Lanjutkan menonton";
 "Continúa donde lo dejaste" = "Lanjutkan dari bagian terakhir yang Anda tonton";
 "Continúa los episodios y las películas que viste en parte desde el punto guardado. Todo lo que hayas visto más del 80% siempre se reinicia. Desactiva esta opción para comenzar siempre desde el principio; es útil si vuelves a ver series." = "Lanjutkan episode dan film yang belum selesai dari posisi tersimpan. Apa pun yang telah ditonton lebih dari 80% akan selalu dimulai ulang. Nonaktifkan ini agar selalu memulai dari awal, cocok jika Anda menonton ulang acara.";
 "Contorno" = "Garis tepi";
@@ -952,6 +955,8 @@
 "Marcar como leído" = "Mark as read";
 "Margins" = "Margin";
 "Mark as read" = "Mark as read";
+"Mark as unwatched" = "Tandai sebagai belum ditonton";
+"Mark as watched" = "Tandai sebagai sudah ditonton";
 "Mark watched button" = "Tombol tandai sudah ditonton";
 "Max" = "Maks";
 "Maximum" = "Maksimum";
@@ -1020,6 +1025,7 @@
 "Muted text" = "Teks redup";
 "My Library" = "Perpustakaan Saya";
 "My channels" = "My channels";
+"My library" = "Perpustakaan saya";
 "Mystery" = "Misteri";
 "Márgenes" = "Margin";
 "Más leídos del momento" = "Popular reads";
@@ -1068,6 +1074,7 @@
 "No description available." = "Deskripsi tidak tersedia.";
 "No episodes found for this season." = "Tidak ditemukan episode untuk musim ini.";
 "No extensions are available on this server." = "No extensions are available on this server.";
+"No favorites yet" = "Belum ada favorit";
 "No hay coincidencias." = "Tidak ada yang cocok.";
 "No hay descripción disponible." = "Deskripsi tidak tersedia.";
 "No hay extensiones disponibles en este servidor." = "No extensions are available on this server.";
@@ -1079,6 +1086,7 @@
 "No language matches that search." = "Tidak ada bahasa yang cocok dengan pencarian itu.";
 "No longer listed by its repository." = "Tidak lagi terdaftar di repositorinya.";
 "No manga found" = "Manga tidak ditemukan";
+"No matches" = "Tidak ada yang cocok";
 "No matches for these filters." = "Tidak ada yang cocok dengan filter ini.";
 "No matches." = "Tidak ada yang cocok.";
 "No picks loaded. TMDB might be unreachable." = "Tidak ada pilihan yang dimuat. TMDB mungkin tidak dapat dijangkau.";
@@ -1161,6 +1169,7 @@
 "Opciones de lectura" = "Reading options";
 "Opciones del lector" = "Reader options";
 "Opciones del reproductor" = "Player options";
+"Open a title and tap Add to Watchlist to save it here." = "Buka judul dan ketuk «Tambah ke Daftar Tontonan» untuk menyimpannya di sini.";
 "Open image" = "Buka gambar";
 "Open in Safari" = "Open in Safari";
 "Open in browser" = "Buka di browser";
@@ -1343,6 +1352,7 @@
 "Reanudar desde donde lo dejaste" = "Lanjutkan dari posisi terakhir";
 "Reanudar desde {time}" = "Lanjutkan dari {time}";
 "Reanudar tras una interrupción de audio" = "Resume after an audio interruption";
+"Recent" = "Terbaru";
 "Recent activity" = "Aktivitas terbaru";
 "Recent searches" = "Pencarian terbaru";
 "Recently played" = "Baru dimainkan";
@@ -1717,6 +1727,7 @@
 "Syncing subtitles…" = "Syncing subtitles…";
 "System" = "Sistem";
 "System UI" = "UI Sistem";
+"S{season} E{episode}" = "S{season} E{episode}";
 "Sólo favoritos" = "Favorites only";
 "TMDB" = "TMDB";
 "TMDB API key (v3)" = "Kunci API TMDB (v3)";
@@ -1934,6 +1945,7 @@
 "War" = "Perang";
 "Watched" = "Sudah ditonton";
 "Watching" = "Sedang menonton";
+"Watchlist" = "Daftar tontonan";
 "Welcome to Harbor" = "Selamat datang di Harbor";
 "Western" = "Western";
 "What everyone is reading" = "Yang sedang dibaca semua orang";
@@ -1965,6 +1977,7 @@
 "Your Trakt watchlist is empty, nothing to import." = "Daftar tontonan Trakt Anda kosong, tidak ada yang dapat diimpor.";
 "Your addons" = "Addon Anda";
 "Your avatar, name, and handle across Harbor." = "Avatar, nama, dan nama pengguna Anda di seluruh Harbor.";
+"Your collection." = "Koleksi Anda.";
 "Your color" = "Warna Anda";
 "Your leagues" = "Your leagues";
 "Your library" = "Perpustakaan Anda";
@@ -1975,6 +1988,7 @@
 "Your profile" = "Profil Anda";
 "Your rating" = "Rating Anda";
 "Your services are saved locally. Cloud sync will retry." = "Layanan Anda tersimpan di perangkat ini. Sinkronisasi cloud akan dicoba lagi.";
+"Your watchlist is empty" = "Daftar tontonan Anda kosong";
 "Your watchlist is empty, nothing to send." = "Daftar tontonan Anda kosong, tidak ada yang dapat dikirim.";
 "Yours" = "Milik Anda";
 "Zoom" = "Perbesar";

@@ -9,6 +9,8 @@ struct LibraryView: View {
     @State private var simkl: SimklLibraryModel
     @State private var trakt: TraktLibraryModel
     @State private var history: LibraryHistoryModel
+    @Environment(\.locale) private var locale
+    private func text(_ key: String, variables: [String: String] = [:]) -> String { DesktopInterfaceText.value(key, variables: variables, language: locale.identifier) }
     @MainActor init(app: AppModel) {
         self.app = app; _simkl = State(initialValue: SimklLibraryModel(app: app)); _trakt = State(initialValue: TraktLibraryModel(app: app))
         _history = State(initialValue: LibraryHistoryModel(app: app))
@@ -19,7 +21,7 @@ struct LibraryView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
-                HarborPageHeading(title: "Tu colección.", eyebrow: "Mi biblioteca")
+                HarborPageHeading(title: text("Your collection."), eyebrow: text("My library"))
                 tabs.disabled(!app.library.canChangePresentation)
                 Divider()
                 if tracker == nil && display.filter != .watched { filters }
@@ -54,13 +56,13 @@ struct LibraryView: View {
                 LibraryPresentationFeedback(library: app.library)
                 if let error = app.library.favorites.error {
                     Text(error).font(.caption).foregroundStyle(.orange)
-                    Button("Reintentar favoritos") { app.library.favorites.reload() }
+                    Button(text("Retry")) { app.library.favorites.reload() }
                 }
                 if app.library.loading { ProgressView().frame(maxWidth: .infinity) }
-                if let error = app.library.error { VStack(alignment: .leading) { Text(error).font(.caption).foregroundStyle(.orange); Button("Reintentar") { Task { await app.library.sync() } } } }
+                if let error = app.library.error { VStack(alignment: .leading) { Text(error).font(.caption).foregroundStyle(.orange); Button(text("Retry")) { Task { await app.library.sync() } } } }
                 ForEach(Array(groups.enumerated()), id: \.offset) { _, group in
                     VStack(alignment: .leading, spacing: 14) {
-                        if !group.title.isEmpty { Text("\(group.title.uppercased())  \(group.items.count)").font(.system(size: 10, weight: .semibold)).tracking(2).foregroundStyle(.secondary) }
+                        if !group.title.isEmpty { Text(text(LibraryListing.sourceGroupTitle(group.title)).uppercased() + "  \(group.items.count)").font(.system(size: 10, weight: .semibold)).tracking(2).foregroundStyle(.secondary) }
                         PosterGrid(spacing: 22) {
                             ForEach(group.items) { record in
                                 if let media = record.media {
@@ -78,7 +80,7 @@ struct LibraryView: View {
                     }
                 }
                 if records.isEmpty && !app.library.loading { emptyState }
-                else if !records.isEmpty { Text(records.count == 1 ? "1 título" : "\(records.count) títulos").font(.caption).foregroundStyle(.secondary) }
+                else if !records.isEmpty { Text(text(records.count == 1 ? "{n} item" : "{n} items", variables: ["n": String(records.count)])).font(.caption).foregroundStyle(.secondary) }
         }
     }
     private var filters: some View {
@@ -87,21 +89,21 @@ struct LibraryView: View {
                 HStack(spacing: 5) {
                     ForEach(LibraryKind.allCases) { kind in
                         let count = app.library.filteredItems(for: display.filter).filter { kind == .all || $0.media?.type == kind.rawValue }.count
-                        HarborPill(title: "\(kind.title)  \(count)", selected: display.kind == kind) { app.library.changeDisplay { $0.kind = kind } }
+                        HarborPill(title: text(kind.sourceTitle) + "  \(count)", selected: display.kind == kind) { app.library.changeDisplay { $0.kind = kind } }
                     }
                 }
             }.scrollIndicators(.hidden).accessibilityIdentifier("library-kind")
-            HarborSearchField(prompt: "Buscar título…", text: $query)
+            HarborSearchField(prompt: text("Search title…"), text: $query, dismissOnSubmit: true)
             ScrollView(.horizontal) {
                 HStack(spacing: 5) {
-                    ForEach(LibrarySort.allCases) { sort in HarborPill(title: sort.title, selected: display.sort == sort) { app.library.changeDisplay { $0.sort = sort } } }
+                    ForEach(LibrarySort.allCases) { sort in HarborPill(title: text(sort.sourceTitle), selected: display.sort == sort) { app.library.changeDisplay { $0.sort = sort } } }
                     Divider().frame(height: 24).padding(.horizontal, 5)
-                    HarborPill(title: "Agrupada", selected: display.grouped) { app.library.changeDisplay { $0.grouped = true } }
-                    HarborPill(title: "Una lista", selected: !display.grouped) { app.library.changeDisplay { $0.grouped = false } }
+                    HarborPill(title: text("Grouped"), selected: display.grouped) { app.library.changeDisplay { $0.grouped = true } }
+                    HarborPill(title: text("One list"), selected: !display.grouped) { app.library.changeDisplay { $0.grouped = false } }
                 }
             }.scrollIndicators(.hidden).accessibilityIdentifier("library-sort")
             if !app.library.hiddenContinuing.isEmpty {
-                Button("Títulos ocultos de Continuar viendo (\(app.library.hiddenContinuing.count))") { showHidden = true }.font(.caption)
+                Button(text("Hidden titles") + " (\(app.library.hiddenContinuing.count))") { showHidden = true }.font(.caption)
             }
         }.disabled(!app.library.canChangePresentation)
     }
@@ -113,10 +115,10 @@ struct LibraryView: View {
                         Button { tracker = nil; app.library.changeDisplay { $0.filter = filter } } label: {
                             HStack(spacing: 7) {
                                 Image(filter == .favorites ? "desktop-star" : filter == .watched ? "desktop-clock" : filter == .continuing ? "ui-play-filled" : filter == .all ? "desktop-library" : "desktop-bookmark").resizable().scaledToFit().frame(width: 16, height: 16)
-                                Text(filter.title).font(HarborTheme.font(13, weight: .semibold))
+                                Text(text(filter.sourceTitle)).font(HarborTheme.font(13, weight: .semibold))
                             }.frame(minHeight: 44).contentShape(Rectangle()).foregroundStyle(tracker == nil && display.filter == filter ? HarborTheme.ink : HarborTheme.ink.opacity(0.5))
                                 .overlay(alignment: .bottom) { if tracker == nil && display.filter == filter { Rectangle().fill(HarborTheme.ink).frame(height: 2) } }
-                        }.buttonStyle(.plain).accessibilityLabel(filter.title).accessibilityIdentifier("library-tab-\(filter.rawValue)").accessibilityAddTraits(tracker == nil && display.filter == filter ? [.isSelected] : [])
+                        }.buttonStyle(.plain).accessibilityLabel(text(filter.sourceTitle)).accessibilityIdentifier("library-tab-\(filter.rawValue)").accessibilityAddTraits(tracker == nil && display.filter == filter ? [.isSelected] : [])
                     }
                     if trakt.isActive && trakt.account.session != nil {
                         Button { tracker = .trakt } label: {
@@ -139,28 +141,28 @@ struct LibraryView: View {
         NavigationLink { DownloadsView(app: app).toolbar(.visible, for: .navigationBar) } label: {
             HStack(spacing: 7) {
                 Image("desktop-hard-drive").resizable().scaledToFit().frame(width: 16, height: 16)
-                Text("Local").font(HarborTheme.font(13, weight: .semibold))
+                Text(text("Local")).font(HarborTheme.font(13, weight: .semibold))
             }.foregroundStyle(HarborTheme.ink.opacity(0.5)).frame(minHeight: 44).contentShape(Rectangle())
-        }.buttonStyle(.plain).accessibilityLabel("Local").accessibilityIdentifier("library-tab-local")
+        }.buttonStyle(.plain).accessibilityLabel(text("Local")).accessibilityIdentifier("library-tab-local")
     }
     private var emptyState: some View {
         let filtered = !query.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty || app.library.presentation.display.kind != .all
         let icon = filtered ? "nav-search" : display.filter == .favorites ? "desktop-star" : display.filter == .watched ? "desktop-clock" : display.filter == .continuing ? "ui-play-filled" : "desktop-bookmark"
         let title: String
         let message: String
-        if filtered { title = "Sin coincidencias"; message = "No hay coincidencias con estos filtros." }
+        if filtered { title = "No matches"; message = "No matches for these filters." }
         else {
             switch display.filter {
-            case .favorites: title = "Aún no hay favoritos"; message = "Agregar a favoritos"
-            case .watched: title = "Aún no has visto nada"; message = "Reproduce algo. Aparecerá aquí cuando empieces a verlo."
-            case .continuing: title = "Continuar viendo"; message = "Aún no hay nada en progreso. Presiona Reproducir en algún título."
-            default: title = "Tu lista de seguimiento está vacía"; message = "Selecciona \"Agregar a la lista de seguimiento\" en su página de detalles para guardarlo aquí."
+            case .favorites: title = "No favorites yet"; message = "Add to favorites"
+            case .watched: title = "Nothing watched yet"; message = "Press play on something. It'll show up here once you start watching."
+            case .continuing: title = "Continue watching"; message = "Press play on something. It'll show up here once you start watching."
+            default: title = "Your watchlist is empty"; message = "Open a title and tap Add to Watchlist to save it here."
             }
         }
         return VStack(spacing: 12) {
             Image(icon).resizable().scaledToFit().frame(width: 28, height: 28).foregroundStyle(HarborTheme.ink.opacity(0.4)).accessibilityHidden(true)
-            Text(title).font(HarborTheme.font(16, weight: .semibold)).foregroundStyle(HarborTheme.ink)
-            if display.filter != .favorites || filtered { Text(message).font(HarborTheme.font(13)).lineSpacing(4).foregroundStyle(HarborTheme.ink.opacity(0.6)) }
+            Text(text(title)).font(HarborTheme.font(16, weight: .semibold)).foregroundStyle(HarborTheme.ink)
+            if display.filter != .favorites || filtered { Text(text(message)).font(HarborTheme.font(13)).lineSpacing(4).foregroundStyle(HarborTheme.ink.opacity(0.6)) }
         }.multilineTextAlignment(.center).frame(maxWidth: .infinity).padding(.horizontal, 24).padding(.vertical, 56)
             .background(HarborTheme.background.opacity(0.3), in: .rect(cornerRadius: 16))
             .overlay { RoundedRectangle(cornerRadius: 16).stroke(HarborTheme.ink.opacity(0.12), style: StrokeStyle(lineWidth: 1, dash: [4, 4])) }
@@ -351,10 +353,25 @@ struct ContinueWatchingArtwork: View {
 
 private struct LibraryProgress: View {
     let record: LibraryRecord
+    @Environment(\.locale) private var locale
+    private func text(_ key: String, variables: [String: String] = [:]) -> String { DesktopInterfaceText.value(key, variables: variables, language: locale.identifier) }
+    private var caption: String {
+        var parts: [String] = []
+        let coordinates = record.playbackCoordinates
+        if record.media?.episodic == true, let season = coordinates.season, let episode = coordinates.episode {
+            parts.append(text("S{season} E{episode}", variables: ["season": String(season), "episode": String(episode)]))
+        }
+        let duration = record.raw["state"]["duration"].numericValue ?? 0, offset = record.raw["state"]["timeOffset"].numericValue ?? 0
+        if duration.isFinite, offset.isFinite, duration > offset, offset >= 0 {
+            let minutes = ceil((duration - offset) / 60_000)
+            if minutes < Double(Int.max) { parts.append(text("{m}m left", variables: ["m": String(Int(minutes))])) }
+        }
+        return parts.joined(separator: " · ")
+    }
     var body: some View {
         VStack(alignment: .leading, spacing: 5) {
-            ProgressView(value: record.progress).tint(HarborTheme.accent).accessibilityLabel("Progreso").accessibilityValue("\(Int(record.progress * 100)) por ciento")
-            if let caption = record.playbackCaption { Text(caption).font(.caption2).foregroundStyle(.secondary).lineLimit(2) }
+            ProgressView(value: record.progress).tint(HarborTheme.accent).accessibilityLabel(text("Progress")).accessibilityValue("\(Int(record.progress * 100))%")
+            if !caption.isEmpty { Text(caption).font(.caption2).foregroundStyle(.secondary).lineLimit(2) }
         }
     }
 }
@@ -363,15 +380,17 @@ private struct LibraryActions: View {
     let record: LibraryRecord
     let media: Media
     let owner: String
+    @Environment(\.locale) private var locale
+    private func text(_ key: String) -> String { DesktopInterfaceText.value(key, language: locale.identifier) }
     var body: some View {
-        Button(DesktopInterfaceText.value(app.library.favorites.contains(media) ? "Remove from favorites" : "Add to favorites")) {
+        Button(text(app.library.favorites.contains(media) ? "Remove from favorites" : "Add to favorites")) {
             guard owner == app.library.owner else { return }
             app.library.favorites.toggle(media)
         }.disabled(!app.library.favorites.ready)
-        Button(record.bookmarked ? "Quitar de mi lista" : "Añadir a mi lista") {
+        Button(text(record.bookmarked ? "Remove from watchlist" : "Add to Watchlist")) {
             Task { guard owner == app.library.owner else { return }; await app.library.toggleBookmark(media) }
         }.disabled(app.library.busy)
-        Button(record.watched ? "Marcar como no visto" : "Marcar como visto") {
+        Button(text(record.watched ? "Mark as unwatched" : "Mark as watched")) {
             Task {
                 guard owner == app.library.owner else { return }
                 let detailed = (try? await app.service.metadata(media, addons: app.addons)) ?? media

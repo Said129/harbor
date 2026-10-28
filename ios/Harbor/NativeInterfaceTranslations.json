@@ -97,7 +97,8 @@
     "Code expired. Try again.": "El código ha caducado. Inténtalo de nuevo.",
     "Authorization expired. Connect again.": "La autorización ha caducado. Conecta de nuevo la cuenta.",
     "Simkl is temporarily limiting requests. Try again later.": "Simkl está limitando las solicitudes temporalmente. Inténtalo más tarde.",
-    "Could not connect to Simkl. Try again.": "No se pudo conectar con Simkl. Inténtalo de nuevo."
+    "Could not connect to Simkl. Try again.": "No se pudo conectar con Simkl. Inténtalo de nuevo.",
+    "Open a title and tap Add to Watchlist to save it here.": "Abre un título y toca «Añadir a mi lista» para guardarlo aquí."
   },
   "pt": {
     "Auto-sync": "Sincronização automática",
@@ -145,7 +146,8 @@
     "Cache cleared": "Cache limpo",
     "Get an API key": "Obter uma chave API",
     "Import files": "Importar arquivos",
-    "Import folder": "Importar pasta"
+    "Import folder": "Importar pasta",
+    "Open a title and tap Add to Watchlist to save it here.": "Abra um título e toque em «Adicionar à lista» para guardá-lo aqui."
   },
   "ru": {
     "Auto-sync": "Автосинхронизация",
@@ -193,7 +195,8 @@
     "Cache cleared": "Кэш очищен",
     "Get an API key": "Получить ключ API",
     "Import files": "Импортировать файлы",
-    "Import folder": "Импортировать папку"
+    "Import folder": "Импортировать папку",
+    "Open a title and tap Add to Watchlist to save it here.": "Откройте произведение и нажмите «Добавить в список просмотра», чтобы сохранить его здесь."
   },
   "ar": {
     "Auto-sync": "مزامنة تلقائية",
@@ -241,7 +244,8 @@
     "Cache cleared": "تم مسح ذاكرة التخزين المؤقت",
     "Get an API key": "الحصول على مفتاح API",
     "Import files": "استيراد ملفات",
-    "Import folder": "استيراد مجلد"
+    "Import folder": "استيراد مجلد",
+    "Open a title and tap Add to Watchlist to save it here.": "افتح عنوانًا واضغط على «إضافة إلى قائمة المشاهدة» لحفظه هنا."
   },
   "zh": {
     "Couldn't auto-sync": "无法自动同步",
@@ -260,7 +264,8 @@
     "Cache cleared": "缓存已清除",
     "Get an API key": "获取 API 密钥",
     "Import files": "导入文件",
-    "Import folder": "导入文件夹"
+    "Import folder": "导入文件夹",
+    "Open a title and tap Add to Watchlist to save it here.": "打开一个条目，轻点“添加到待看列表”即可将其保存到这里。"
   },
   "fr": {
     "Couldn't auto-sync": "Synchronisation automatique impossible",
@@ -279,7 +284,8 @@
     "Cache cleared": "Cache vidé",
     "Get an API key": "Obtenir une clé API",
     "Import files": "Importer des fichiers",
-    "Import folder": "Importer un dossier"
+    "Import folder": "Importer un dossier",
+    "Open a title and tap Add to Watchlist to save it here.": "Ouvrez un titre et touchez « Ajouter à la liste » pour l’enregistrer ici."
   },
   "de": {
     "Couldn't auto-sync": "Automatische Synchronisierung nicht möglich",
@@ -298,7 +304,8 @@
     "Cache cleared": "Cache geleert",
     "Get an API key": "API-Schlüssel erhalten",
     "Import files": "Dateien importieren",
-    "Import folder": "Ordner importieren"
+    "Import folder": "Ordner importieren",
+    "Open a title and tap Add to Watchlist to save it here.": "Öffne einen Titel und tippe auf „Zur Merkliste hinzufügen“, um ihn hier zu speichern."
   },
   "hi": {
     "Couldn't auto-sync": "अपने-आप सिंक नहीं हो सका",
@@ -317,7 +324,8 @@
     "Cache cleared": "कैश साफ़ कर दिया गया",
     "Get an API key": "API कुंजी प्राप्त करें",
     "Import files": "फ़ाइलें आयात करें",
-    "Import folder": "फ़ोल्डर आयात करें"
+    "Import folder": "फ़ोल्डर आयात करें",
+    "Open a title and tap Add to Watchlist to save it here.": "कोई शीर्षक खोलें और उसे यहाँ सहेजने के लिए «वॉचलिस्ट में जोड़ें» पर टैप करें।"
   },
   "id": {
     "Couldn't auto-sync": "Tidak dapat menyinkronkan otomatis",
@@ -336,7 +344,8 @@
     "Cache cleared": "Cache dibersihkan",
     "Get an API key": "Dapatkan kunci API",
     "Import files": "Impor berkas",
-    "Import folder": "Impor folder"
+    "Import folder": "Impor folder",
+    "Open a title and tap Add to Watchlist to save it here.": "Buka judul dan ketuk «Tambah ke Daftar Tontonan» untuk menyimpannya di sini."
   },
   "it": {
     "Couldn't auto-sync": "Sincronizzazione automatica non riuscita",
@@ -355,7 +364,8 @@
     "Cache cleared": "Cache svuotata",
     "Get an API key": "Ottieni una chiave API",
     "Import files": "Importa file",
-    "Import folder": "Importa cartella"
+    "Import folder": "Importa cartella",
+    "Open a title and tap Add to Watchlist to save it here.": "Apri un titolo e tocca «Aggiungi alla lista» per salvarlo qui."
   },
   "ja": {
     "Couldn't auto-sync": "自動同期できませんでした",
@@ -374,7 +384,8 @@
     "Cache cleared": "キャッシュを消去しました",
     "Get an API key": "APIキーを取得",
     "Import files": "ファイルを読み込む",
-    "Import folder": "フォルダを読み込む"
+    "Import folder": "フォルダを読み込む",
+    "Open a title and tap Add to Watchlist to save it here.": "作品を開き、「ウォッチリストに追加」をタップするとここに保存されます。"
   },
   "ko": {
     "Couldn't auto-sync": "자동 동기화하지 못했습니다",
@@ -393,7 +404,8 @@
     "Cache cleared": "캐시를 지웠습니다",
     "Get an API key": "API 키 받기",
     "Import files": "파일 가져오기",
-    "Import folder": "폴더 가져오기"
+    "Import folder": "폴더 가져오기",
+    "Open a title and tap Add to Watchlist to save it here.": "작품을 열고 «관심 목록에 추가»를 탭하면 여기에 저장됩니다."
   },
   "pl": {
     "Couldn't auto-sync": "Nie udało się zsynchronizować automatycznie",
@@ -412,7 +424,8 @@
     "Cache cleared": "Pamięć podręczna wyczyszczona",
     "Get an API key": "Uzyskaj klucz API",
     "Import files": "Importuj pliki",
-    "Import folder": "Importuj folder"
+    "Import folder": "Importuj folder",
+    "Open a title and tap Add to Watchlist to save it here.": "Otwórz tytuł i stuknij „Dodaj do listy”, aby go tutaj zapisać."
   },
   "tr": {
     "Couldn't auto-sync": "Otomatik eşitlenemedi",
@@ -431,7 +444,8 @@
     "Cache cleared": "Önbellek temizlendi",
     "Get an API key": "API anahtarı al",
     "Import files": "Dosyaları içe aktar",
-    "Import folder": "Klasörü içe aktar"
+    "Import folder": "Klasörü içe aktar",
+    "Open a title and tap Add to Watchlist to save it here.": "Bir başlığı açıp buraya kaydetmek için «İzleme listesine ekle» seçeneğine dokun."
   },
   "vi": {
     "Couldn't auto-sync": "Không thể tự động đồng bộ",
@@ -450,7 +464,8 @@
     "Cache cleared": "Đã xóa bộ nhớ đệm",
     "Get an API key": "Lấy khóa API",
     "Import files": "Nhập tệp",
-    "Import folder": "Nhập thư mục"
+    "Import folder": "Nhập thư mục",
+    "Open a title and tap Add to Watchlist to save it here.": "Mở một tựa phim và chạm vào «Thêm vào danh sách xem» để lưu tại đây."
   },
   "en": {
     "Browse services": "Browse services",
@@ -471,6 +486,7 @@
     "Metadata": "Metadata",
     "Removed": "Removed",
     "Import files": "Import files",
-    "Import folder": "Import folder"
+    "Import folder": "Import folder",
+    "Open a title and tap Add to Watchlist to save it here.": "Open a title and tap Add to Watchlist to save it here."
   }
 }

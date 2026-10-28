@@ -13,8 +13,9 @@ enum DesktopInterfaceText {
     private static let bundles: [String: Bundle] = Dictionary(uniqueKeysWithValues: InterfaceLanguage.all.compactMap { language in
         Bundle.main.path(forResource: language.code, ofType: "lproj").flatMap(Bundle.init(path:)).map { (language.code, $0) }
     })
-    static func value(_ original: String, site: String? = nil, variables: [String: String] = [:]) -> String {
-        let code = InterfaceLanguage.resolve(UserDefaults.standard.string(forKey: "uiLanguage") ?? "es")
+    static func value(_ original: String, site: String? = nil, variables: [String: String] = [:], language: String? = nil) -> String {
+        let selected = language.map { Locale(identifier: $0).language.languageCode?.identifier ?? $0 }
+        let code = InterfaceLanguage.resolve(selected ?? UserDefaults.standard.string(forKey: "uiLanguage") ?? "es")
         let key = aliases[original] ?? sourceBySpanish[original] ?? original
         let fallback = code == "es" ? spanish[key] ?? original : key
         let text = bundles[code]?.localizedString(forKey: key, value: fallback, table: nil) ?? fallback
