@@ -29,6 +29,7 @@ final class LibraryModel {
     private(set) var discovery = DiscoveryPreferences(owner: "guest")
     let simklPlayback: SimklPlaybackFeed
     let traktPlayback: TraktPlaybackFeed
+    let traktWatched: TraktWatchedFeed
     private let localContinue: LocalContinueStore
     private let privateDismissalStore: ContinueDismissalStore
     private var privateDismissals: [String: ContinueDismissal] = [:]
@@ -42,9 +43,10 @@ final class LibraryModel {
     private var localReady = false
     @ObservationIgnored private var localActive: @MainActor () -> Bool = { false }
     private(set) var continueSources = ContinueWatchingSources()
-    init(simklPlayback: SimklPlaybackFeed? = nil, localContinue: LocalContinueStore = .shared, privateDismissals: ContinueDismissalStore? = nil, service: (any LibraryServing)? = nil, writeQueue: LibraryWriteQueue? = nil, traktPlayback: TraktPlaybackFeed? = nil, cache: LibraryCache? = nil) {
+    init(simklPlayback: SimklPlaybackFeed? = nil, localContinue: LocalContinueStore = .shared, privateDismissals: ContinueDismissalStore? = nil, service: (any LibraryServing)? = nil, writeQueue: LibraryWriteQueue? = nil, traktPlayback: TraktPlaybackFeed? = nil, cache: LibraryCache? = nil, traktWatched: TraktWatchedFeed? = nil) {
         self.simklPlayback = simklPlayback ?? SimklPlaybackFeed(); self.localContinue = localContinue
         self.traktPlayback = traktPlayback ?? TraktPlaybackFeed()
+        self.traktWatched = traktWatched ?? TraktWatchedFeed()
         self.cache = cache ?? LibraryCache()
         privateDismissalStore = privateDismissals ?? .shared
         let transport = service ?? LibraryService()
@@ -254,21 +256,38 @@ final class LibraryModel {
             let watched = watchedEpisodes(media)
             return !available.isEmpty && available.allSatisfy { watched.contains($0.watchedKey) }
         }
-        return items.first { $0.id == media.id }?.watched ?? false
+        let record = items.first { $0.id == media.id }
+        if let manual = record?.raw["state"]["nativeManualMovie"], manual != .null { return manual == .bool(true) }
+        return record?.watched == true || traktWatched.state(for: personalOwner)?.movie(media) == true
     }
     func watchedEpisodes(_ media: Media) -> Set<String> {
-        let field = records.first { $0["_id"].string == media.id }?["state"]["watched"].string
-        return (try? WatchedCodec.decode(field, videos: media.videos ?? [])) ?? []
+        let state = records.first { $0["_id"].string == media.id }?["state"] ?? .null
+        var watched = (try? WatchedCodec.decode(state["watched"].string, videos: media.videos ?? [])) ?? []
+        if let remote = traktWatched.state(for: personalOwner) { watched.formUnion(remote.episodes(media)) }
+        let manual = state["nativeManualEpisodes"].objectValue
+        for (key, value) in manual { if value == .bool(true) { watched.insert(key) } else if value == .bool(false) { watched.remove(key) } }
+        for episode in media.videos ?? [] {
+            var season = episode.season, number = episode.episode
+            if let value = episode.imdbSeason { season = value }; if let value = episode.imdbEpisode { number = value }
+            guard let season, let number else { continue }
+            let canonical = "\(season):\(number)"
+            let decision = manual[episode.watchedKey] ?? manual[canonical]
+            if decision == .bool(true) { watched.insert(episode.watchedKey) } else if decision == .bool(false) { watched.remove(episode.watchedKey) }
+        }
+        return watched
     }
     func toggleEpisode(_ media: Media, episode: Episode) async {
-        await update(media) { fields in
+        let wasWatched = watchedEpisodes(media).contains(episode.watchedKey), current = generation
+        let success = await update(media) { fields in
             var state = (fields["state"] ?? .null).objectValue
             let videos = media.videos ?? []
             var watched = try WatchedCodec.decode(state["watched"]?.string, videos: videos)
-            if !watched.insert(episode.watchedKey).inserted { watched.remove(episode.watchedKey) }
+            if wasWatched { watched.remove(episode.watchedKey) } else { watched.insert(episode.watchedKey) }
             state["watched"] = .string(try WatchedCodec.encode(watched, videos: videos))
+            var manual = (state["nativeManualEpisodes"] ?? .null).objectValue; manual[episode.watchedKey] = .bool(!wasWatched); state["nativeManualEpisodes"] = .object(manual)
             fields["state"] = .object(state)
         }
+        if success, current == generation, !wasWatched { traktWatched.enqueueMark(media, episodes: [episode], owner: personalOwner) }
     }
     func matchesSession(_ session: AccountSession?, personalOwner: String, guestOwner: String) -> Bool {
         writable && presentationReady && self.session?.authKey == session?.authKey
@@ -277,6 +296,7 @@ final class LibraryModel {
     func setSession(_ session: AccountSession?, personalOwner: String? = nil, guestOwner: String = "guest", synchronize: Bool = true) async {
         generation += 1
         bindTraktWatchlist(nil)
+        traktWatched.clear()
         let current = generation
         self.session = session; self.guestOwner = guestOwner
         self.personalOwner = personalOwner ?? session?.user.id ?? guestOwner
@@ -359,7 +379,7 @@ final class LibraryModel {
         return await update(media) { fields in fields["removed"] = .bool(false); fields["temp"] = .bool(false) }
     }
     func toggleWatched(_ media: Media) async {
-        let taste = discovery
+        let taste = discovery, current = generation, wasWatched = watched(media)
         let success = await update(media) { fields in
             var state: [String: JSONValue] = [:]
             if case .object(let current) = fields["state"] { state = current }
@@ -368,16 +388,20 @@ final class LibraryModel {
                 let available = videos.filter { $0.season != nil && $0.episode != nil && $0.available }
                 guard !available.isEmpty else { throw HarborError(code: "invalid-watched-state") }
                 var watched = try WatchedCodec.decode(state["watched"]?.string, videos: videos)
-                if available.allSatisfy({ watched.contains($0.watchedKey) }) { for video in available { watched.remove(video.watchedKey) } }
+                if wasWatched { for video in available { watched.remove(video.watchedKey) } }
                 else { for video in available { watched.insert(video.watchedKey) } }
                 state["watched"] = .string(try WatchedCodec.encode(watched, videos: videos))
+                var manual = (state["nativeManualEpisodes"] ?? .null).objectValue
+                for video in available { manual[video.watchedKey] = .bool(!wasWatched) }; state["nativeManualEpisodes"] = .object(manual)
             } else {
-                let watched = (state["flaggedWatched"]?.numericValue ?? 0) > 0 || (state["timesWatched"]?.numericValue ?? 0) > 0
-                state["flaggedWatched"] = .integer(watched ? 0 : 1)
-                if watched { state["timesWatched"] = .integer(0) }
+                state["flaggedWatched"] = .integer(wasWatched ? 0 : 1); state["nativeManualMovie"] = .bool(!wasWatched)
+                if wasWatched { state["timesWatched"] = .integer(0) }
             }
             state["timeOffset"] = .integer(0)
             fields["state"] = .object(state)
+        }
+        if success, current == generation, !wasWatched {
+            traktWatched.enqueueMark(media, episodes: media.episodic ? (media.videos ?? []).filter { $0.season != nil && $0.episode != nil && $0.available } : [], owner: personalOwner, wholeSeries: true)
         }
         if success, taste.owner == personalOwner, watched(media) { taste.track(.watched, media: media) }
     }

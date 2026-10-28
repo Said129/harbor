@@ -68,7 +68,7 @@ import XCTest
                 .object(["route": .string(try XCTUnwrap(request.url?.path)), "method": .string(request.httpMethod ?? ""),
                     "body": try JSONDecoder().decode(JSONValue.self, from: XCTUnwrap(request.httpBody))])
             }
-            XCTAssertEqual(.array(actual), .array(expected)); XCTAssertTrue(requests.allSatisfy { $0.value(forHTTPHeaderField: "Authorization") == "Bearer owned-access" && $0.value(forHTTPHeaderField: "Cookie") == nil })
+            XCTAssertEqual(JSONValue.array(actual), JSONValue.array(expected)); XCTAssertTrue(requests.allSatisfy { $0.value(forHTTPHeaderField: "Authorization") == "Bearer owned-access" && $0.value(forHTTPHeaderField: "Cookie") == nil })
             let accountRequests = await service.requests; XCTAssertEqual(accountRequests, 0); XCTAssertFalse(library.hasCloudSession)
             library.bindTraktWatchlist(nil)
         }

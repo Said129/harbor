@@ -80,7 +80,9 @@ instalación física. Sus capturas originales deben recogerse y revisarse.
 
 ## Pendientes de fidelidad que siguen en el objetivo
 
-La proyección global de las marcas de visto sigue pendiente. También permanecen las listas públicas,
+La lectura global de las marcas y su prioridad manual están implementadas, con
+ejecución Apple pendiente; véase `trakt-watched-0.9.132.md`. Siguen pendientes la
+combinación completa de Historial y sus vistas por episodio. También permanecen las listas públicas,
 recomendaciones, calendario, avatar, comentarios y valoraciones Trakt, además
 del resto del alcance compatible del port. No se considera cerrado Trakt ni el
 port completo por añadir esta pestaña.

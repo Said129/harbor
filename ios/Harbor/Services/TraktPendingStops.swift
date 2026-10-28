@@ -125,6 +125,19 @@ struct TraktPendingDocument: Codable, Sendable {
             return owned(ticket) && TraktHistoryReceipt.confirms(value)
         } catch { return false }
     }
+    func mark(_ identity: TraktWatchIdentity) async -> TraktWatchTarget? {
+        let ticket = accountIdentity
+        guard owned(ticket), let target = TraktWatchTarget.resolve(identity), target.kind != .show else { return nil }
+        if await history(target, ticket: ticket) { return target }
+        guard owned(ticket), target.resolvable, let season = target.season, let number = target.number else { return nil }
+        let result = await resolve(identity.mediaID, season, number)
+        guard owned(ticket) else { return nil }
+        let resolved: TraktWatchTarget
+        if let episode = result.episode { resolved = .init(episode) }
+        else if result.reason == "not-found", season == 0, let ids = await specialMovie(identity.mediaID, season, number), owned(ticket) { resolved = .init(kind: .movie, ids: ids) }
+        else { return nil }
+        return await history(resolved, ticket: ticket) ? resolved : nil
+    }
     private func playback(_ action: TraktScrobbleAction, target: TraktWatchTarget, identity: TraktWatchIdentity, progress: Double, ticket: UUID) async {
         if await scrobble(action, target: target, progress: progress, ticket: ticket) == .recorded { return }
         guard owned(ticket), target.resolvable, let season = target.season, let number = target.number else { return }

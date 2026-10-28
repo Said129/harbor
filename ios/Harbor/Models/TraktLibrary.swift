@@ -127,14 +127,15 @@ struct TraktWatchlistExportResult: Equatable, Sendable {
 }
 
 enum TraktLibraryEndpoint: Sendable {
-    case watchlist, history, export(JSONValue), change(TraktLibraryTarget, Bool)
+    case watchlist, history, watchedKeys, export(JSONValue), change(TraktLibraryTarget, Bool)
     var path: String {
         switch self {
         case .watchlist: "/sync/watchlist?sort_by=added&sort_how=desc"
         case .history: "/sync/history?limit=200"
+        case .watchedKeys: "/sync/history?limit=1000"
         case .export: "/sync/watchlist"
         case .change(_, let saved): saved ? "/sync/watchlist" : "/sync/watchlist/remove"
         }
     }
-    var body: JSONValue? { switch self { case .watchlist, .history: nil; case .export(let body): body; case .change(let target, _): target.body } }
+    var body: JSONValue? { switch self { case .watchlist, .history, .watchedKeys: nil; case .export(let body): body; case .change(let target, _): target.body } }
 }
