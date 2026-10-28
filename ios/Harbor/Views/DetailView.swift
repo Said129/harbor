@@ -296,6 +296,7 @@ struct DetailView: View {
     }
     private var secondaryActions: some View {
         HStack(spacing: 10) {
+                    CustomListMembershipButton(app: app, item: CustomListItem.input(model.media))
                     Button { app.library.favorites.toggle(model.media); if app.library.favorites.error == nil { showHint("favorite") } } label: {
                         glyph(app.library.favorites.contains(model.media) ? "ui-unfavorite" : "ui-favorite", size: 20).frame(width: 48, height: 48).foregroundStyle(app.library.favorites.contains(model.media) ? HarborTheme.accent : HarborTheme.ink).background(HarborTheme.background.opacity(0.8), in: .circle)
                     }.buttonStyle(.plain).disabled(!app.library.favorites.ready).accessibilityLabel(app.library.favorites.contains(model.media) ? "Quitar de favoritos" : "Agregar a favoritos").accessibilityIdentifier("detail-favorite")

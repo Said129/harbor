@@ -4,6 +4,7 @@ struct LibraryView: View {
     let app: AppModel
     @State private var query = ""
     @State private var showHidden = false
+    @State private var showingLists = false
     private enum Tracker { case simkl, trakt }
     @State private var tracker: Tracker?
     @State private var simkl: SimklLibraryModel
@@ -24,15 +25,17 @@ struct LibraryView: View {
                 HarborPageHeading(title: text("Your collection."), eyebrow: text("My library"))
                 tabs.disabled(!app.library.canChangePresentation)
                 Divider()
-                if tracker == nil && display.filter != .watched { filters }
-                if tracker == .simkl && simkl.isActive { SimklLibraryContent(app: app, model: simkl) }
+                if !showingLists && tracker == nil && display.filter != .watched { filters }
+                if showingLists { CustomListsContent(app: app) }
+                else if tracker == .simkl && simkl.isActive { SimklLibraryContent(app: app, model: simkl) }
                 else if tracker == .trakt && trakt.isActive { TraktLibraryContent(app: app, model: trakt) }
                 else if display.filter == .watched { LibraryHistoryContent(app: app, model: history) }
                 else { localContents }
             }.padding()
         }.background(HarborTheme.background).navigationTitle("").toolbar(.hidden, for: .navigationBar)
             .refreshable {
-                if tracker == .simkl { await simkl.refresh(force: true) }
+                if showingLists { await app.customLists.load(force: true) }
+                else if tracker == .simkl { await simkl.refresh(force: true) }
                 else if tracker == .trakt { await trakt.refresh(force: true) }
                 else if display.filter == .watched { await history.refresh(force: true) }
                 else { await app.library.sync() }
@@ -40,7 +43,7 @@ struct LibraryView: View {
             .task(id: app.accountOperationScope) {
                 simkl.cancel(); trakt.cancel(); simkl = SimklLibraryModel(app: app); trakt = TraktLibraryModel(app: app)
                 history.cancel(); history = LibraryHistoryModel(app: app)
-                tracker = nil; simkl.loadAccount(); trakt.loadAccount()
+                tracker = nil; showingLists = false; simkl.loadAccount(); trakt.loadAccount()
             }
             .onChange(of: simkl.account.session) { _, session in if session == nil { if tracker == .simkl { tracker = nil }; simkl.store.bind(nil) } }
             .onChange(of: trakt.account.session?.trackingID) { _, _ in
@@ -111,24 +114,24 @@ struct LibraryView: View {
             ScrollView(.horizontal) {
                 HStack(spacing: 18) {
                     ForEach(LibraryFilter.allCases) { filter in
-                        if filter == .favorites { localTab }
-                        Button { tracker = nil; app.library.changeDisplay { $0.filter = filter } } label: {
+                        if filter == .favorites { localTab; customListsTab }
+                        Button { tracker = nil; showingLists = false; app.library.changeDisplay { $0.filter = filter } } label: {
                             HStack(spacing: 7) {
                                 Image(filter == .favorites ? "desktop-star" : filter == .watched ? "desktop-clock" : filter == .continuing ? "ui-play-filled" : filter == .all ? "desktop-library" : "desktop-bookmark").resizable().scaledToFit().frame(width: 16, height: 16)
                                 Text(text(filter.sourceTitle)).font(HarborTheme.font(13, weight: .semibold))
-                            }.frame(minHeight: 44).contentShape(Rectangle()).foregroundStyle(tracker == nil && display.filter == filter ? HarborTheme.ink : HarborTheme.ink.opacity(0.5))
-                                .overlay(alignment: .bottom) { if tracker == nil && display.filter == filter { Rectangle().fill(HarborTheme.ink).frame(height: 2) } }
-                        }.buttonStyle(.plain).accessibilityLabel(text(filter.sourceTitle)).accessibilityIdentifier("library-tab-\(filter.rawValue)").accessibilityAddTraits(tracker == nil && display.filter == filter ? [.isSelected] : [])
+                            }.frame(minHeight: 44).contentShape(Rectangle()).foregroundStyle(!showingLists && tracker == nil && display.filter == filter ? HarborTheme.ink : HarborTheme.ink.opacity(0.5))
+                                .overlay(alignment: .bottom) { if !showingLists && tracker == nil && display.filter == filter { Rectangle().fill(HarborTheme.ink).frame(height: 2) } }
+                        }.buttonStyle(.plain).accessibilityLabel(text(filter.sourceTitle)).accessibilityIdentifier("library-tab-\(filter.rawValue)").accessibilityAddTraits(!showingLists && tracker == nil && display.filter == filter ? [.isSelected] : [])
                     }
                     if trakt.isActive && trakt.account.session != nil {
-                        Button { tracker = .trakt } label: {
+                        Button { showingLists = false; tracker = .trakt } label: {
                             HStack(spacing: 7) { Image("tracker-trakt").resizable().scaledToFit().frame(width: 16, height: 16); Text("Trakt").font(HarborTheme.font(13, weight: .semibold)) }
                                 .frame(minHeight: 44).contentShape(Rectangle()).foregroundStyle(tracker == .trakt ? HarborTheme.ink : HarborTheme.ink.opacity(0.5))
                                 .overlay(alignment: .bottom) { if tracker == .trakt { Rectangle().fill(HarborTheme.ink).frame(height: 2) } }
                         }.buttonStyle(.plain).accessibilityIdentifier("library-tab-trakt").accessibilityAddTraits(tracker == .trakt ? [.isSelected] : [])
                     }
                     if simkl.isActive && simkl.account.session != nil {
-                        Button { tracker = .simkl } label: {
+                        Button { showingLists = false; tracker = .simkl } label: {
                             HStack(spacing: 7) { Image("tracker-simkl").resizable().scaledToFit().frame(width: 16, height: 16); Text("Simkl").font(HarborTheme.font(13, weight: .semibold)) }
                                 .frame(minHeight: 44).contentShape(Rectangle()).foregroundStyle(tracker == .simkl ? HarborTheme.ink : HarborTheme.ink.opacity(0.5))
                                 .overlay(alignment: .bottom) { if tracker == .simkl { Rectangle().fill(HarborTheme.ink).frame(height: 2) } }
@@ -144,6 +147,15 @@ struct LibraryView: View {
                 Text(text("Local")).font(HarborTheme.font(13, weight: .semibold))
             }.foregroundStyle(HarborTheme.ink.opacity(0.5)).frame(minHeight: 44).contentShape(Rectangle())
         }.buttonStyle(.plain).accessibilityLabel(text("Local")).accessibilityIdentifier("library-tab-local")
+    }
+    private var customListsTab: some View {
+        Button { tracker = nil; showingLists = true } label: {
+            HStack(spacing: 7) {
+                Image("desktop-layers").resizable().scaledToFit().frame(width: 16, height: 16)
+                Text(text("My lists")).font(HarborTheme.font(13, weight: .semibold))
+            }.frame(minHeight: 44).contentShape(Rectangle()).foregroundStyle(showingLists ? HarborTheme.ink : HarborTheme.ink.opacity(0.5))
+                .overlay(alignment: .bottom) { if showingLists { Rectangle().fill(HarborTheme.ink).frame(height: 2) } }
+        }.buttonStyle(.plain).accessibilityIdentifier("library-tab-custom-lists").accessibilityAddTraits(showingLists ? [.isSelected] : [])
     }
     private var emptyState: some View {
         let filtered = !query.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty || app.library.presentation.display.kind != .all

@@ -12,6 +12,23 @@ struct DiscoveryRail: Identifiable, Sendable {
 
 struct TMDBService: Sendable {
     private let http = HTTPClient()
+    func searchWatchables(_ query: String, configuration: MetadataConfiguration) async throws -> [Media] {
+        let query = query.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !query.isEmpty, !configuration.tmdbKey.isEmpty else { return [] }
+        var requestConfiguration = configuration
+        if !configuration.translateTitles { requestConfiguration.language = "en-US" }
+        let response = try await get("search/multi", parameters: ["query": query, "include_adult": "false"], configuration: requestConfiguration)
+        guard case .array = response["results"] else { throw HarborError(code: "invalid-metadata-response") }
+        try Task.checkCancellation()
+        let language = configuration.language.split(separator: "-").first?.lowercased() ?? ""
+        var english: JSONValue = .null
+        if configuration.translateTitles, !language.isEmpty, !["en", "ja"].contains(language) {
+            var englishConfiguration = configuration; englishConfiguration.language = "en-US"
+            english = (try? await get("search/multi", parameters: ["query": query, "include_adult": "false"], configuration: englishConfiguration)) ?? .null
+        }
+        try Task.checkCancellation()
+        return CustomListSearchResults.map(response, english: english, configuration: configuration)
+    }
     func homeDefinitions() -> [DiscoveryRail] {
         [
             DiscoveryRail(id: "tmdb-trending-movies", title: DesktopInterfaceText.value("Trending This Week"), kind: "movie", path: "trending/movie/week"),

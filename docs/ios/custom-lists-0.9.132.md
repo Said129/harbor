@@ -37,14 +37,46 @@ contrastan esos escenarios y ejercitan reapertura, separación de propietarios,
 herencia hasta la primera edición, memoria tras un fallo y conservación de bytes
 ilegibles. Estos casos aún no se han ejecutado en Apple.
 
-Este incremento todavía no ofrece la sección al usuario. Faltan conectar la
-pestaña y sus tarjetas, creación/edición/eliminación, selección de pertenencia,
-búsqueda de títulos, reordenación táctil y accesible, apertura de manga conservando
-su proveedor, filas de Inicio, traducciones y respaldo compatibles. También falta
-comparar los estados y animaciones con la referencia en iPhone/iPad. La entrada
-tipada desde `Media` no conserva todavía `addonOrigin`, porque ese modelo nativo
-no lo expone: se debe integrar el origen completo antes de dar la función por
-terminada. Los datos crudos y los vídeos ya tienen el contrato de persistencia.
+La interfaz ya conecta la pestaña «Mis listas» de Biblioteca con tarjetas de tres
+portadas en abanico, creación, nombre y descripción, borrado con confirmación,
+orden mediante arrastre y controles accesibles, detalle, retirada de títulos y
+pertenencia a listas desde las fichas de vídeo y Manga. El editor conserva los
+límites de 60/240 unidades UTF-16 sin cortar caracteres. Los arrastres pertenecen
+a una activación de perfil y no se aceptan desde otra.
+
+La búsqueda espera 260 ms, usa la búsqueda múltiple de TMDB y conserva los doce
+primeros resultados de películas y doce de series, excluyendo personas y títulos
+sin portada. Mantiene los títulos de anime y su alternativa inglesa conforme al
+original. Sin clave TMDB explica qué ajuste falta. Una respuesta de una búsqueda
+anterior o de otro perfil no puede sustituir los resultados actuales. Los textos
+nuevos se generan selectivamente en los dieciséis idiomas, preservando los
+rótulos anteriores.
+
+Media ya conserva addonOrigin al leer, guardar y reabrir entradas; los catálogos
+y respuestas de metadatos registran el proveedor. Falta completar el
+enrutamiento preferido de ese origen tanto para addons como para plugins: guardar
+el campo no demuestra que todas las solicitudes usen todavía el proveedor correcto.
+Los objetos preparados conservan también el Media analizado para evitar volver
+a procesar episodios al dibujar cada tarjeta.
+
+Manga abre la copia local del propietario o comprueba que el detalle remoto
+corresponda al título guardado. Si cambió la identidad, busca coincidencias
+exactas Unicode, incluyendo los calificadores de color del original, antes de
+actualizar la entrada. Las búsquedas entre fuentes tienen cuatro solicitudes
+simultáneas como máximo. Las copias locales no inicializan el motor de plugins.
+Este recorrido y las portadas de Manga que necesitan rutas privadas o cabeceras
+todavía requieren comprobación en Apple.
+
+El nuevo generador de contratos ejecutó cinco módulos originales, cuatro
+escenarios de búsqueda y catorce pares de títulos Manga sin red. Tres pruebas
+nativas nuevas comparan esos resultados y la reapertura de vídeo con su origen.
+Dos recorridos UI nuevos, con preparación en un invitado vacío para cada tamaño,
+ejercitan creación, edición, orden, pertenencia, retirada y persistencia. Ninguna
+de estas pruebas nuevas se considera ejecutada hasta obtener sus resultados Apple.
+
+Siguen pendientes las filas de Inicio, su selector de personalización, la
+integración real de respaldo/sincronización, los recorridos completos de Manga y
+la comparación visual de estados y animaciones en iPhone/iPad.
 
 El campo `customLists` declarado en el esquema de ajustes Desktop no demuestra
 sincronización de este almacén: el módulo original escribe por separado
@@ -65,4 +97,5 @@ La selección `custom-lists-repair` reúne los cuatro contratos sin ejecutar, el
 nuevo caso de concurrencia y solo los dos recorridos de Historial que fallaron,
 con sus dos preparaciones necesarias: nueve ejecuciones y seis capturas previstas.
 No vuelve a ejecutar los montajes ni el recorrido de pestañas aprobados. La
-interfaz de Mis listas sigue pendiente y no se genera otra IPA.
+interfaz nueva de Mis listas pertenece a cambios posteriores a esa fuente y no
+queda validada por dicha ejecución. No se genera otra IPA.

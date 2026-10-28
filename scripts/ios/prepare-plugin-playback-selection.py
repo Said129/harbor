@@ -6,6 +6,9 @@ import re
 import runpy
 
 requested = os.environ.get('HARBOR_NATIVE_SELECTION', '').strip()
+if requested == 'affected:custom-lists-interface' or requested.startswith('HarborTests.CustomListInterfaceContractsTests/'):
+    runpy.run_path('scripts/ios/prepare-custom-lists-interface-selection.py')
+    raise SystemExit(0)
 if requested == 'affected:custom-lists-repair' or (requested.startswith('HarborTests.CustomListTests/') and 'CustomListConcurrencyTests/' in requested):
     runpy.run_path('scripts/ios/prepare-custom-lists-repair-selection.py')
     raise SystemExit(0)

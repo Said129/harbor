@@ -101,7 +101,10 @@ struct HarborService: Sendable {
         let result = try await fetch(plans)
         for plan in plans {
             if let value = result.values.first(where: { $0.0.key == plan.key })?.1,
-               let meta = Media.parse(value["meta"], kind: media.type) { return meta }
+               var meta = Media.parse(value["meta"], kind: media.type) {
+                meta.addonOrigin = meta.addonOrigin ?? media.addonOrigin ?? MediaAddonOrigin.from(plan.addon)
+                return meta
+            }
         }
         if AnimeService.isAnime(media.id), let parsed = try? await AnimeService.metadata(id: media.id, kind: media.type) { return parsed }
         if media.id.hasPrefix("tt") && ["movie", "series"].contains(media.type),
@@ -134,7 +137,11 @@ struct HarborService: Sendable {
     private func decodeCatalog(_ response: JSONValue, plan: RequestPlan) throws -> CatalogRow {
         guard case .array(let values) = response["metas"] else { throw HarborError(code: "invalid-catalog-response") }
         var seen = Set<String>()
-        let parsed = values.compactMap { Media.parse($0, kind: plan.kind) }.filter { seen.insert($0.identity).inserted }
+        let parsed = values.compactMap { value -> Media? in
+            guard var media = Media.parse(value, kind: plan.kind) else { return nil }
+            media.addonOrigin = media.addonOrigin ?? MediaAddonOrigin.from(plan.addon)
+            return media
+        }.filter { seen.insert($0.identity).inserted }
         guard values.isEmpty || !parsed.isEmpty else { throw HarborError(code: "invalid-catalog-response") }
         return CatalogRow(plan: plan, metas: parsed, receivedCount: values.count)
     }

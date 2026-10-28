@@ -6,7 +6,12 @@ struct CustomListItem: Identifiable, Sendable {
     var name: String { raw["name"].string ?? "" }
     var type: String { raw["type"].string ?? "movie" }
     var poster: String? { raw["poster"].string }
-    var media: Media { Media.parse(raw, kind: type) ?? .init(id: id, type: type, name: name) }
+    let media: Media
+    init(raw: JSONValue) {
+        self.raw = raw
+        let id = raw["id"].string ?? "", kind = raw["type"].string ?? "movie", name = raw["name"].string ?? ""
+        media = Media.parse(raw, kind: kind) ?? .init(id: id, type: kind, name: name)
+    }
     static func origin(_ raw: JSONValue) -> JSONValue? {
         guard let id = raw["id"].string, !id.isEmpty else { return nil }
         var fields: [String: JSONValue] = ["id": .string(id), "name": .string(raw["name"].string.flatMap { $0.isEmpty ? nil : $0 } ?? id)]
@@ -51,7 +56,14 @@ struct CustomListItem: Identifiable, Sendable {
     static func input(_ media: Media) -> JSONValue {
         var fields: [String: JSONValue] = ["id": .string(media.id), "type": .string(media.type), "name": .string(media.name)]
         fields["poster"] = media.poster.map(JSONValue.string)
+        if let origin = media.addonOrigin, let value = try? JSONValue.encoded(origin) { fields["addonOrigin"] = value }
         if let videos = media.videos, let data = try? JSONEncoder().encode(videos), let value = try? JSONDecoder().decode(JSONValue.self, from: data) { fields["videos"] = Self.videos(value) }
+        return .object(fields)
+    }
+    static func input(_ book: MangaBook) -> JSONValue {
+        var fields: [String: JSONValue] = ["id": .string(book.id), "type": .string("manga"), "name": .string(book.title)]
+        fields["poster"] = book.cover.map(JSONValue.string)
+        fields["altTitle"] = book.metadata?["altTitle"].string.map(JSONValue.string)
         return .object(fields)
     }
 }

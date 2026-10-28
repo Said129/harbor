@@ -1,0 +1,1825 @@
+{
+  "reference": "0834340cec5531650bfe78cd628628702e636987",
+  "actual_original_typescript_executed": true,
+  "provider_network_requests": 0,
+  "executed_module_hashes": {
+    "src/lib/providers/tmdb/tmdb-image-rungs.ts": "a04b320b55b71543ec502f03caee0ccc43199b6bcc81657bdac0b5cd21eb35b4",
+    "src/lib/providers/tmdb/tmdb-meta-mappers.ts": "99bef4427174b7ce2fbc6120f98a363c59125f840388588696b00df18d9590fd",
+    "src/lib/search.ts": "d95dc22af0c34439b4f45a8315d2d013df51b9314526fe401e2a3062e3154ee6",
+    "src/lib/manga/title.ts": "cefd326925c27f9c5f8c36e68cfd725be2e35bd9503fa64ebe84738b0fd7ebbf",
+    "src/lib/manga/open-resolve.ts": "32b6356b1b97ae330f99092491c939b0568a1f3d87d32c5b10ce6ab5c4404f28"
+  },
+  "extracted_original_functions": {
+    "src/lib/search.ts": ["searchAll"],
+    "src/lib/manga/open-resolve.ts": ["mangaTitleKey", "mangaTitlesMatch"]
+  },
+  "search_cases": [
+    {
+      "configuration": {
+        "translateTitles": true,
+        "language": "es-ES"
+      },
+      "response": {
+        "results": [
+          {
+            "id": 2,
+            "media_type": "tv",
+            "name": "進撃の巨人",
+            "original_name": "進撃の巨人",
+            "original_language": "ja",
+            "genre_ids": [16],
+            "poster_path": "/anime.jpg"
+          },
+          {
+            "id": 1,
+            "media_type": "movie",
+            "title": "Localized Film",
+            "original_title": "Original Film",
+            "original_language": "fr",
+            "poster_path": "/film.jpg",
+            "backdrop_path": "/film-back.jpg"
+          },
+          {
+            "id": 3,
+            "media_type": "tv",
+            "name": "Localized Show",
+            "original_name": "Original Show",
+            "poster_path": "/show.jpg"
+          },
+          {
+            "id": 4,
+            "media_type": "movie",
+            "title": "No poster",
+            "original_title": "No poster"
+          },
+          {
+            "id": 5,
+            "media_type": "person",
+            "name": "A person",
+            "profile_path": "/person.jpg"
+          },
+          {
+            "id": 100,
+            "media_type": "movie",
+            "title": "Movie 0",
+            "poster_path": "/m0.jpg"
+          },
+          {
+            "id": 101,
+            "media_type": "movie",
+            "title": "Movie 1",
+            "poster_path": "/m1.jpg"
+          },
+          {
+            "id": 102,
+            "media_type": "movie",
+            "title": "Movie 2",
+            "poster_path": "/m2.jpg"
+          },
+          {
+            "id": 103,
+            "media_type": "movie",
+            "title": "Movie 3",
+            "poster_path": "/m3.jpg"
+          },
+          {
+            "id": 104,
+            "media_type": "movie",
+            "title": "Movie 4",
+            "poster_path": "/m4.jpg"
+          },
+          {
+            "id": 105,
+            "media_type": "movie",
+            "title": "Movie 5",
+            "poster_path": "/m5.jpg"
+          },
+          {
+            "id": 106,
+            "media_type": "movie",
+            "title": "Movie 6",
+            "poster_path": "/m6.jpg"
+          },
+          {
+            "id": 107,
+            "media_type": "movie",
+            "title": "Movie 7",
+            "poster_path": "/m7.jpg"
+          },
+          {
+            "id": 108,
+            "media_type": "movie",
+            "title": "Movie 8",
+            "poster_path": "/m8.jpg"
+          },
+          {
+            "id": 109,
+            "media_type": "movie",
+            "title": "Movie 9",
+            "poster_path": "/m9.jpg"
+          },
+          {
+            "id": 110,
+            "media_type": "movie",
+            "title": "Movie 10",
+            "poster_path": "/m10.jpg"
+          },
+          {
+            "id": 111,
+            "media_type": "movie",
+            "title": "Movie 11",
+            "poster_path": "/m11.jpg"
+          },
+          {
+            "id": 112,
+            "media_type": "movie",
+            "title": "Movie 12",
+            "poster_path": "/m12.jpg"
+          },
+          {
+            "id": 113,
+            "media_type": "movie",
+            "title": "Movie 13",
+            "poster_path": "/m13.jpg"
+          },
+          {
+            "id": 200,
+            "media_type": "tv",
+            "name": "Series 0",
+            "poster_path": "/s0.jpg"
+          },
+          {
+            "id": 201,
+            "media_type": "tv",
+            "name": "Series 1",
+            "poster_path": "/s1.jpg"
+          },
+          {
+            "id": 202,
+            "media_type": "tv",
+            "name": "Series 2",
+            "poster_path": "/s2.jpg"
+          },
+          {
+            "id": 203,
+            "media_type": "tv",
+            "name": "Series 3",
+            "poster_path": "/s3.jpg"
+          },
+          {
+            "id": 204,
+            "media_type": "tv",
+            "name": "Series 4",
+            "poster_path": "/s4.jpg"
+          },
+          {
+            "id": 205,
+            "media_type": "tv",
+            "name": "Series 5",
+            "poster_path": "/s5.jpg"
+          },
+          {
+            "id": 206,
+            "media_type": "tv",
+            "name": "Series 6",
+            "poster_path": "/s6.jpg"
+          },
+          {
+            "id": 207,
+            "media_type": "tv",
+            "name": "Series 7",
+            "poster_path": "/s7.jpg"
+          },
+          {
+            "id": 208,
+            "media_type": "tv",
+            "name": "Series 8",
+            "poster_path": "/s8.jpg"
+          },
+          {
+            "id": 209,
+            "media_type": "tv",
+            "name": "Series 9",
+            "poster_path": "/s9.jpg"
+          },
+          {
+            "id": 210,
+            "media_type": "tv",
+            "name": "Series 10",
+            "poster_path": "/s10.jpg"
+          },
+          {
+            "id": 211,
+            "media_type": "tv",
+            "name": "Series 11",
+            "poster_path": "/s11.jpg"
+          },
+          {
+            "id": 212,
+            "media_type": "tv",
+            "name": "Series 12",
+            "poster_path": "/s12.jpg"
+          },
+          {
+            "id": 213,
+            "media_type": "tv",
+            "name": "Series 13",
+            "poster_path": "/s13.jpg"
+          }
+        ]
+      },
+      "english": {
+        "results": [
+          {
+            "id": 2,
+            "media_type": "tv",
+            "name": "Attack on Titan",
+            "original_name": "進撃の巨人",
+            "original_language": "ja",
+            "genre_ids": [16],
+            "poster_path": "/anime.jpg"
+          },
+          {
+            "id": 1,
+            "media_type": "movie",
+            "title": "Localized Film",
+            "original_title": "Original Film",
+            "original_language": "fr",
+            "poster_path": "/film.jpg",
+            "backdrop_path": "/film-back.jpg"
+          },
+          {
+            "id": 3,
+            "media_type": "tv",
+            "name": "Localized Show",
+            "original_name": "Original Show",
+            "poster_path": "/show.jpg"
+          },
+          {
+            "id": 4,
+            "media_type": "movie",
+            "title": "No poster",
+            "original_title": "No poster"
+          },
+          {
+            "id": 5,
+            "media_type": "person",
+            "name": "A person",
+            "profile_path": "/person.jpg"
+          },
+          {
+            "id": 100,
+            "media_type": "movie",
+            "title": "Movie 0",
+            "poster_path": "/m0.jpg"
+          },
+          {
+            "id": 101,
+            "media_type": "movie",
+            "title": "Movie 1",
+            "poster_path": "/m1.jpg"
+          },
+          {
+            "id": 102,
+            "media_type": "movie",
+            "title": "Movie 2",
+            "poster_path": "/m2.jpg"
+          },
+          {
+            "id": 103,
+            "media_type": "movie",
+            "title": "Movie 3",
+            "poster_path": "/m3.jpg"
+          },
+          {
+            "id": 104,
+            "media_type": "movie",
+            "title": "Movie 4",
+            "poster_path": "/m4.jpg"
+          },
+          {
+            "id": 105,
+            "media_type": "movie",
+            "title": "Movie 5",
+            "poster_path": "/m5.jpg"
+          },
+          {
+            "id": 106,
+            "media_type": "movie",
+            "title": "Movie 6",
+            "poster_path": "/m6.jpg"
+          },
+          {
+            "id": 107,
+            "media_type": "movie",
+            "title": "Movie 7",
+            "poster_path": "/m7.jpg"
+          },
+          {
+            "id": 108,
+            "media_type": "movie",
+            "title": "Movie 8",
+            "poster_path": "/m8.jpg"
+          },
+          {
+            "id": 109,
+            "media_type": "movie",
+            "title": "Movie 9",
+            "poster_path": "/m9.jpg"
+          },
+          {
+            "id": 110,
+            "media_type": "movie",
+            "title": "Movie 10",
+            "poster_path": "/m10.jpg"
+          },
+          {
+            "id": 111,
+            "media_type": "movie",
+            "title": "Movie 11",
+            "poster_path": "/m11.jpg"
+          },
+          {
+            "id": 112,
+            "media_type": "movie",
+            "title": "Movie 12",
+            "poster_path": "/m12.jpg"
+          },
+          {
+            "id": 113,
+            "media_type": "movie",
+            "title": "Movie 13",
+            "poster_path": "/m13.jpg"
+          },
+          {
+            "id": 200,
+            "media_type": "tv",
+            "name": "Series 0",
+            "poster_path": "/s0.jpg"
+          },
+          {
+            "id": 201,
+            "media_type": "tv",
+            "name": "Series 1",
+            "poster_path": "/s1.jpg"
+          },
+          {
+            "id": 202,
+            "media_type": "tv",
+            "name": "Series 2",
+            "poster_path": "/s2.jpg"
+          },
+          {
+            "id": 203,
+            "media_type": "tv",
+            "name": "Series 3",
+            "poster_path": "/s3.jpg"
+          },
+          {
+            "id": 204,
+            "media_type": "tv",
+            "name": "Series 4",
+            "poster_path": "/s4.jpg"
+          },
+          {
+            "id": 205,
+            "media_type": "tv",
+            "name": "Series 5",
+            "poster_path": "/s5.jpg"
+          },
+          {
+            "id": 206,
+            "media_type": "tv",
+            "name": "Series 6",
+            "poster_path": "/s6.jpg"
+          },
+          {
+            "id": 207,
+            "media_type": "tv",
+            "name": "Series 7",
+            "poster_path": "/s7.jpg"
+          },
+          {
+            "id": 208,
+            "media_type": "tv",
+            "name": "Series 8",
+            "poster_path": "/s8.jpg"
+          },
+          {
+            "id": 209,
+            "media_type": "tv",
+            "name": "Series 9",
+            "poster_path": "/s9.jpg"
+          },
+          {
+            "id": 210,
+            "media_type": "tv",
+            "name": "Series 10",
+            "poster_path": "/s10.jpg"
+          },
+          {
+            "id": 211,
+            "media_type": "tv",
+            "name": "Series 11",
+            "poster_path": "/s11.jpg"
+          },
+          {
+            "id": 212,
+            "media_type": "tv",
+            "name": "Series 12",
+            "poster_path": "/s12.jpg"
+          },
+          {
+            "id": 213,
+            "media_type": "tv",
+            "name": "Series 13",
+            "poster_path": "/s13.jpg"
+          }
+        ]
+      },
+      "original_requests": [
+        {
+          "route": "search/multi",
+          "args": {
+            "query": "Owned",
+            "include_adult": "false"
+          }
+        },
+        {
+          "route": "search/multi",
+          "args": {
+            "query": "Owned",
+            "include_adult": "false",
+            "language": "en-US"
+          }
+        }
+      ],
+      "expected": [
+        {
+          "id": "tmdb:movie:1",
+          "type": "movie",
+          "name": "Localized Film",
+          "poster": "https://image.tmdb.org/t/p/w500/film.jpg",
+          "background": "https://image.tmdb.org/t/p/w780/film-back.jpg"
+        },
+        {
+          "id": "tmdb:movie:100",
+          "type": "movie",
+          "name": "Movie 0",
+          "poster": "https://image.tmdb.org/t/p/w500/m0.jpg"
+        },
+        {
+          "id": "tmdb:movie:101",
+          "type": "movie",
+          "name": "Movie 1",
+          "poster": "https://image.tmdb.org/t/p/w500/m1.jpg"
+        },
+        {
+          "id": "tmdb:movie:102",
+          "type": "movie",
+          "name": "Movie 2",
+          "poster": "https://image.tmdb.org/t/p/w500/m2.jpg"
+        },
+        {
+          "id": "tmdb:movie:103",
+          "type": "movie",
+          "name": "Movie 3",
+          "poster": "https://image.tmdb.org/t/p/w500/m3.jpg"
+        },
+        {
+          "id": "tmdb:movie:104",
+          "type": "movie",
+          "name": "Movie 4",
+          "poster": "https://image.tmdb.org/t/p/w500/m4.jpg"
+        },
+        {
+          "id": "tmdb:movie:105",
+          "type": "movie",
+          "name": "Movie 5",
+          "poster": "https://image.tmdb.org/t/p/w500/m5.jpg"
+        },
+        {
+          "id": "tmdb:movie:106",
+          "type": "movie",
+          "name": "Movie 6",
+          "poster": "https://image.tmdb.org/t/p/w500/m6.jpg"
+        },
+        {
+          "id": "tmdb:movie:107",
+          "type": "movie",
+          "name": "Movie 7",
+          "poster": "https://image.tmdb.org/t/p/w500/m7.jpg"
+        },
+        {
+          "id": "tmdb:movie:108",
+          "type": "movie",
+          "name": "Movie 8",
+          "poster": "https://image.tmdb.org/t/p/w500/m8.jpg"
+        },
+        {
+          "id": "tmdb:movie:109",
+          "type": "movie",
+          "name": "Movie 9",
+          "poster": "https://image.tmdb.org/t/p/w500/m9.jpg"
+        },
+        {
+          "id": "tmdb:movie:110",
+          "type": "movie",
+          "name": "Movie 10",
+          "poster": "https://image.tmdb.org/t/p/w500/m10.jpg"
+        },
+        {
+          "id": "tmdb:tv:2",
+          "type": "series",
+          "name": "Attack on Titan",
+          "poster": "https://image.tmdb.org/t/p/w500/anime.jpg"
+        },
+        {
+          "id": "tmdb:tv:3",
+          "type": "series",
+          "name": "Localized Show",
+          "poster": "https://image.tmdb.org/t/p/w500/show.jpg"
+        },
+        {
+          "id": "tmdb:tv:200",
+          "type": "series",
+          "name": "Series 0",
+          "poster": "https://image.tmdb.org/t/p/w500/s0.jpg"
+        },
+        {
+          "id": "tmdb:tv:201",
+          "type": "series",
+          "name": "Series 1",
+          "poster": "https://image.tmdb.org/t/p/w500/s1.jpg"
+        },
+        {
+          "id": "tmdb:tv:202",
+          "type": "series",
+          "name": "Series 2",
+          "poster": "https://image.tmdb.org/t/p/w500/s2.jpg"
+        },
+        {
+          "id": "tmdb:tv:203",
+          "type": "series",
+          "name": "Series 3",
+          "poster": "https://image.tmdb.org/t/p/w500/s3.jpg"
+        },
+        {
+          "id": "tmdb:tv:204",
+          "type": "series",
+          "name": "Series 4",
+          "poster": "https://image.tmdb.org/t/p/w500/s4.jpg"
+        },
+        {
+          "id": "tmdb:tv:205",
+          "type": "series",
+          "name": "Series 5",
+          "poster": "https://image.tmdb.org/t/p/w500/s5.jpg"
+        },
+        {
+          "id": "tmdb:tv:206",
+          "type": "series",
+          "name": "Series 6",
+          "poster": "https://image.tmdb.org/t/p/w500/s6.jpg"
+        },
+        {
+          "id": "tmdb:tv:207",
+          "type": "series",
+          "name": "Series 7",
+          "poster": "https://image.tmdb.org/t/p/w500/s7.jpg"
+        },
+        {
+          "id": "tmdb:tv:208",
+          "type": "series",
+          "name": "Series 8",
+          "poster": "https://image.tmdb.org/t/p/w500/s8.jpg"
+        },
+        {
+          "id": "tmdb:tv:209",
+          "type": "series",
+          "name": "Series 9",
+          "poster": "https://image.tmdb.org/t/p/w500/s9.jpg"
+        }
+      ]
+    },
+    {
+      "configuration": {
+        "translateTitles": false,
+        "language": "es-ES"
+      },
+      "response": {
+        "results": [
+          {
+            "id": 2,
+            "media_type": "tv",
+            "name": "Attack on Titan",
+            "original_name": "進撃の巨人",
+            "original_language": "ja",
+            "genre_ids": [16],
+            "poster_path": "/anime.jpg"
+          },
+          {
+            "id": 1,
+            "media_type": "movie",
+            "title": "Localized Film",
+            "original_title": "Original Film",
+            "original_language": "fr",
+            "poster_path": "/film.jpg",
+            "backdrop_path": "/film-back.jpg"
+          },
+          {
+            "id": 3,
+            "media_type": "tv",
+            "name": "Localized Show",
+            "original_name": "Original Show",
+            "poster_path": "/show.jpg"
+          },
+          {
+            "id": 4,
+            "media_type": "movie",
+            "title": "No poster",
+            "original_title": "No poster"
+          },
+          {
+            "id": 5,
+            "media_type": "person",
+            "name": "A person",
+            "profile_path": "/person.jpg"
+          },
+          {
+            "id": 100,
+            "media_type": "movie",
+            "title": "Movie 0",
+            "poster_path": "/m0.jpg"
+          },
+          {
+            "id": 101,
+            "media_type": "movie",
+            "title": "Movie 1",
+            "poster_path": "/m1.jpg"
+          },
+          {
+            "id": 102,
+            "media_type": "movie",
+            "title": "Movie 2",
+            "poster_path": "/m2.jpg"
+          },
+          {
+            "id": 103,
+            "media_type": "movie",
+            "title": "Movie 3",
+            "poster_path": "/m3.jpg"
+          },
+          {
+            "id": 104,
+            "media_type": "movie",
+            "title": "Movie 4",
+            "poster_path": "/m4.jpg"
+          },
+          {
+            "id": 105,
+            "media_type": "movie",
+            "title": "Movie 5",
+            "poster_path": "/m5.jpg"
+          },
+          {
+            "id": 106,
+            "media_type": "movie",
+            "title": "Movie 6",
+            "poster_path": "/m6.jpg"
+          },
+          {
+            "id": 107,
+            "media_type": "movie",
+            "title": "Movie 7",
+            "poster_path": "/m7.jpg"
+          },
+          {
+            "id": 108,
+            "media_type": "movie",
+            "title": "Movie 8",
+            "poster_path": "/m8.jpg"
+          },
+          {
+            "id": 109,
+            "media_type": "movie",
+            "title": "Movie 9",
+            "poster_path": "/m9.jpg"
+          },
+          {
+            "id": 110,
+            "media_type": "movie",
+            "title": "Movie 10",
+            "poster_path": "/m10.jpg"
+          },
+          {
+            "id": 111,
+            "media_type": "movie",
+            "title": "Movie 11",
+            "poster_path": "/m11.jpg"
+          },
+          {
+            "id": 112,
+            "media_type": "movie",
+            "title": "Movie 12",
+            "poster_path": "/m12.jpg"
+          },
+          {
+            "id": 113,
+            "media_type": "movie",
+            "title": "Movie 13",
+            "poster_path": "/m13.jpg"
+          },
+          {
+            "id": 200,
+            "media_type": "tv",
+            "name": "Series 0",
+            "poster_path": "/s0.jpg"
+          },
+          {
+            "id": 201,
+            "media_type": "tv",
+            "name": "Series 1",
+            "poster_path": "/s1.jpg"
+          },
+          {
+            "id": 202,
+            "media_type": "tv",
+            "name": "Series 2",
+            "poster_path": "/s2.jpg"
+          },
+          {
+            "id": 203,
+            "media_type": "tv",
+            "name": "Series 3",
+            "poster_path": "/s3.jpg"
+          },
+          {
+            "id": 204,
+            "media_type": "tv",
+            "name": "Series 4",
+            "poster_path": "/s4.jpg"
+          },
+          {
+            "id": 205,
+            "media_type": "tv",
+            "name": "Series 5",
+            "poster_path": "/s5.jpg"
+          },
+          {
+            "id": 206,
+            "media_type": "tv",
+            "name": "Series 6",
+            "poster_path": "/s6.jpg"
+          },
+          {
+            "id": 207,
+            "media_type": "tv",
+            "name": "Series 7",
+            "poster_path": "/s7.jpg"
+          },
+          {
+            "id": 208,
+            "media_type": "tv",
+            "name": "Series 8",
+            "poster_path": "/s8.jpg"
+          },
+          {
+            "id": 209,
+            "media_type": "tv",
+            "name": "Series 9",
+            "poster_path": "/s9.jpg"
+          },
+          {
+            "id": 210,
+            "media_type": "tv",
+            "name": "Series 10",
+            "poster_path": "/s10.jpg"
+          },
+          {
+            "id": 211,
+            "media_type": "tv",
+            "name": "Series 11",
+            "poster_path": "/s11.jpg"
+          },
+          {
+            "id": 212,
+            "media_type": "tv",
+            "name": "Series 12",
+            "poster_path": "/s12.jpg"
+          },
+          {
+            "id": 213,
+            "media_type": "tv",
+            "name": "Series 13",
+            "poster_path": "/s13.jpg"
+          }
+        ]
+      },
+      "english": null,
+      "original_requests": [
+        {
+          "route": "search/multi",
+          "args": {
+            "query": "Owned",
+            "include_adult": "false",
+            "language": "en-US"
+          }
+        }
+      ],
+      "expected": [
+        {
+          "id": "tmdb:movie:1",
+          "type": "movie",
+          "name": "Original Film",
+          "poster": "https://image.tmdb.org/t/p/w500/film.jpg",
+          "background": "https://image.tmdb.org/t/p/w780/film-back.jpg"
+        },
+        {
+          "id": "tmdb:movie:100",
+          "type": "movie",
+          "name": "Movie 0",
+          "poster": "https://image.tmdb.org/t/p/w500/m0.jpg"
+        },
+        {
+          "id": "tmdb:movie:101",
+          "type": "movie",
+          "name": "Movie 1",
+          "poster": "https://image.tmdb.org/t/p/w500/m1.jpg"
+        },
+        {
+          "id": "tmdb:movie:102",
+          "type": "movie",
+          "name": "Movie 2",
+          "poster": "https://image.tmdb.org/t/p/w500/m2.jpg"
+        },
+        {
+          "id": "tmdb:movie:103",
+          "type": "movie",
+          "name": "Movie 3",
+          "poster": "https://image.tmdb.org/t/p/w500/m3.jpg"
+        },
+        {
+          "id": "tmdb:movie:104",
+          "type": "movie",
+          "name": "Movie 4",
+          "poster": "https://image.tmdb.org/t/p/w500/m4.jpg"
+        },
+        {
+          "id": "tmdb:movie:105",
+          "type": "movie",
+          "name": "Movie 5",
+          "poster": "https://image.tmdb.org/t/p/w500/m5.jpg"
+        },
+        {
+          "id": "tmdb:movie:106",
+          "type": "movie",
+          "name": "Movie 6",
+          "poster": "https://image.tmdb.org/t/p/w500/m6.jpg"
+        },
+        {
+          "id": "tmdb:movie:107",
+          "type": "movie",
+          "name": "Movie 7",
+          "poster": "https://image.tmdb.org/t/p/w500/m7.jpg"
+        },
+        {
+          "id": "tmdb:movie:108",
+          "type": "movie",
+          "name": "Movie 8",
+          "poster": "https://image.tmdb.org/t/p/w500/m8.jpg"
+        },
+        {
+          "id": "tmdb:movie:109",
+          "type": "movie",
+          "name": "Movie 9",
+          "poster": "https://image.tmdb.org/t/p/w500/m9.jpg"
+        },
+        {
+          "id": "tmdb:movie:110",
+          "type": "movie",
+          "name": "Movie 10",
+          "poster": "https://image.tmdb.org/t/p/w500/m10.jpg"
+        },
+        {
+          "id": "tmdb:tv:2",
+          "type": "series",
+          "name": "Attack on Titan",
+          "poster": "https://image.tmdb.org/t/p/w500/anime.jpg"
+        },
+        {
+          "id": "tmdb:tv:3",
+          "type": "series",
+          "name": "Original Show",
+          "poster": "https://image.tmdb.org/t/p/w500/show.jpg"
+        },
+        {
+          "id": "tmdb:tv:200",
+          "type": "series",
+          "name": "Series 0",
+          "poster": "https://image.tmdb.org/t/p/w500/s0.jpg"
+        },
+        {
+          "id": "tmdb:tv:201",
+          "type": "series",
+          "name": "Series 1",
+          "poster": "https://image.tmdb.org/t/p/w500/s1.jpg"
+        },
+        {
+          "id": "tmdb:tv:202",
+          "type": "series",
+          "name": "Series 2",
+          "poster": "https://image.tmdb.org/t/p/w500/s2.jpg"
+        },
+        {
+          "id": "tmdb:tv:203",
+          "type": "series",
+          "name": "Series 3",
+          "poster": "https://image.tmdb.org/t/p/w500/s3.jpg"
+        },
+        {
+          "id": "tmdb:tv:204",
+          "type": "series",
+          "name": "Series 4",
+          "poster": "https://image.tmdb.org/t/p/w500/s4.jpg"
+        },
+        {
+          "id": "tmdb:tv:205",
+          "type": "series",
+          "name": "Series 5",
+          "poster": "https://image.tmdb.org/t/p/w500/s5.jpg"
+        },
+        {
+          "id": "tmdb:tv:206",
+          "type": "series",
+          "name": "Series 6",
+          "poster": "https://image.tmdb.org/t/p/w500/s6.jpg"
+        },
+        {
+          "id": "tmdb:tv:207",
+          "type": "series",
+          "name": "Series 7",
+          "poster": "https://image.tmdb.org/t/p/w500/s7.jpg"
+        },
+        {
+          "id": "tmdb:tv:208",
+          "type": "series",
+          "name": "Series 8",
+          "poster": "https://image.tmdb.org/t/p/w500/s8.jpg"
+        },
+        {
+          "id": "tmdb:tv:209",
+          "type": "series",
+          "name": "Series 9",
+          "poster": "https://image.tmdb.org/t/p/w500/s9.jpg"
+        }
+      ]
+    },
+    {
+      "configuration": {
+        "translateTitles": true,
+        "language": "ja-JP"
+      },
+      "response": {
+        "results": [
+          {
+            "id": 2,
+            "media_type": "tv",
+            "name": "進撃の巨人",
+            "original_name": "進撃の巨人",
+            "original_language": "ja",
+            "genre_ids": [16],
+            "poster_path": "/anime.jpg"
+          },
+          {
+            "id": 1,
+            "media_type": "movie",
+            "title": "Localized Film",
+            "original_title": "Original Film",
+            "original_language": "fr",
+            "poster_path": "/film.jpg",
+            "backdrop_path": "/film-back.jpg"
+          },
+          {
+            "id": 3,
+            "media_type": "tv",
+            "name": "Localized Show",
+            "original_name": "Original Show",
+            "poster_path": "/show.jpg"
+          },
+          {
+            "id": 4,
+            "media_type": "movie",
+            "title": "No poster",
+            "original_title": "No poster"
+          },
+          {
+            "id": 5,
+            "media_type": "person",
+            "name": "A person",
+            "profile_path": "/person.jpg"
+          },
+          {
+            "id": 100,
+            "media_type": "movie",
+            "title": "Movie 0",
+            "poster_path": "/m0.jpg"
+          },
+          {
+            "id": 101,
+            "media_type": "movie",
+            "title": "Movie 1",
+            "poster_path": "/m1.jpg"
+          },
+          {
+            "id": 102,
+            "media_type": "movie",
+            "title": "Movie 2",
+            "poster_path": "/m2.jpg"
+          },
+          {
+            "id": 103,
+            "media_type": "movie",
+            "title": "Movie 3",
+            "poster_path": "/m3.jpg"
+          },
+          {
+            "id": 104,
+            "media_type": "movie",
+            "title": "Movie 4",
+            "poster_path": "/m4.jpg"
+          },
+          {
+            "id": 105,
+            "media_type": "movie",
+            "title": "Movie 5",
+            "poster_path": "/m5.jpg"
+          },
+          {
+            "id": 106,
+            "media_type": "movie",
+            "title": "Movie 6",
+            "poster_path": "/m6.jpg"
+          },
+          {
+            "id": 107,
+            "media_type": "movie",
+            "title": "Movie 7",
+            "poster_path": "/m7.jpg"
+          },
+          {
+            "id": 108,
+            "media_type": "movie",
+            "title": "Movie 8",
+            "poster_path": "/m8.jpg"
+          },
+          {
+            "id": 109,
+            "media_type": "movie",
+            "title": "Movie 9",
+            "poster_path": "/m9.jpg"
+          },
+          {
+            "id": 110,
+            "media_type": "movie",
+            "title": "Movie 10",
+            "poster_path": "/m10.jpg"
+          },
+          {
+            "id": 111,
+            "media_type": "movie",
+            "title": "Movie 11",
+            "poster_path": "/m11.jpg"
+          },
+          {
+            "id": 112,
+            "media_type": "movie",
+            "title": "Movie 12",
+            "poster_path": "/m12.jpg"
+          },
+          {
+            "id": 113,
+            "media_type": "movie",
+            "title": "Movie 13",
+            "poster_path": "/m13.jpg"
+          },
+          {
+            "id": 200,
+            "media_type": "tv",
+            "name": "Series 0",
+            "poster_path": "/s0.jpg"
+          },
+          {
+            "id": 201,
+            "media_type": "tv",
+            "name": "Series 1",
+            "poster_path": "/s1.jpg"
+          },
+          {
+            "id": 202,
+            "media_type": "tv",
+            "name": "Series 2",
+            "poster_path": "/s2.jpg"
+          },
+          {
+            "id": 203,
+            "media_type": "tv",
+            "name": "Series 3",
+            "poster_path": "/s3.jpg"
+          },
+          {
+            "id": 204,
+            "media_type": "tv",
+            "name": "Series 4",
+            "poster_path": "/s4.jpg"
+          },
+          {
+            "id": 205,
+            "media_type": "tv",
+            "name": "Series 5",
+            "poster_path": "/s5.jpg"
+          },
+          {
+            "id": 206,
+            "media_type": "tv",
+            "name": "Series 6",
+            "poster_path": "/s6.jpg"
+          },
+          {
+            "id": 207,
+            "media_type": "tv",
+            "name": "Series 7",
+            "poster_path": "/s7.jpg"
+          },
+          {
+            "id": 208,
+            "media_type": "tv",
+            "name": "Series 8",
+            "poster_path": "/s8.jpg"
+          },
+          {
+            "id": 209,
+            "media_type": "tv",
+            "name": "Series 9",
+            "poster_path": "/s9.jpg"
+          },
+          {
+            "id": 210,
+            "media_type": "tv",
+            "name": "Series 10",
+            "poster_path": "/s10.jpg"
+          },
+          {
+            "id": 211,
+            "media_type": "tv",
+            "name": "Series 11",
+            "poster_path": "/s11.jpg"
+          },
+          {
+            "id": 212,
+            "media_type": "tv",
+            "name": "Series 12",
+            "poster_path": "/s12.jpg"
+          },
+          {
+            "id": 213,
+            "media_type": "tv",
+            "name": "Series 13",
+            "poster_path": "/s13.jpg"
+          }
+        ]
+      },
+      "english": null,
+      "original_requests": [
+        {
+          "route": "search/multi",
+          "args": {
+            "query": "Owned",
+            "include_adult": "false"
+          }
+        }
+      ],
+      "expected": [
+        {
+          "id": "tmdb:movie:1",
+          "type": "movie",
+          "name": "Localized Film",
+          "poster": "https://image.tmdb.org/t/p/w500/film.jpg",
+          "background": "https://image.tmdb.org/t/p/w780/film-back.jpg"
+        },
+        {
+          "id": "tmdb:movie:100",
+          "type": "movie",
+          "name": "Movie 0",
+          "poster": "https://image.tmdb.org/t/p/w500/m0.jpg"
+        },
+        {
+          "id": "tmdb:movie:101",
+          "type": "movie",
+          "name": "Movie 1",
+          "poster": "https://image.tmdb.org/t/p/w500/m1.jpg"
+        },
+        {
+          "id": "tmdb:movie:102",
+          "type": "movie",
+          "name": "Movie 2",
+          "poster": "https://image.tmdb.org/t/p/w500/m2.jpg"
+        },
+        {
+          "id": "tmdb:movie:103",
+          "type": "movie",
+          "name": "Movie 3",
+          "poster": "https://image.tmdb.org/t/p/w500/m3.jpg"
+        },
+        {
+          "id": "tmdb:movie:104",
+          "type": "movie",
+          "name": "Movie 4",
+          "poster": "https://image.tmdb.org/t/p/w500/m4.jpg"
+        },
+        {
+          "id": "tmdb:movie:105",
+          "type": "movie",
+          "name": "Movie 5",
+          "poster": "https://image.tmdb.org/t/p/w500/m5.jpg"
+        },
+        {
+          "id": "tmdb:movie:106",
+          "type": "movie",
+          "name": "Movie 6",
+          "poster": "https://image.tmdb.org/t/p/w500/m6.jpg"
+        },
+        {
+          "id": "tmdb:movie:107",
+          "type": "movie",
+          "name": "Movie 7",
+          "poster": "https://image.tmdb.org/t/p/w500/m7.jpg"
+        },
+        {
+          "id": "tmdb:movie:108",
+          "type": "movie",
+          "name": "Movie 8",
+          "poster": "https://image.tmdb.org/t/p/w500/m8.jpg"
+        },
+        {
+          "id": "tmdb:movie:109",
+          "type": "movie",
+          "name": "Movie 9",
+          "poster": "https://image.tmdb.org/t/p/w500/m9.jpg"
+        },
+        {
+          "id": "tmdb:movie:110",
+          "type": "movie",
+          "name": "Movie 10",
+          "poster": "https://image.tmdb.org/t/p/w500/m10.jpg"
+        },
+        {
+          "id": "tmdb:tv:2",
+          "type": "series",
+          "name": "進撃の巨人",
+          "poster": "https://image.tmdb.org/t/p/w500/anime.jpg"
+        },
+        {
+          "id": "tmdb:tv:3",
+          "type": "series",
+          "name": "Localized Show",
+          "poster": "https://image.tmdb.org/t/p/w500/show.jpg"
+        },
+        {
+          "id": "tmdb:tv:200",
+          "type": "series",
+          "name": "Series 0",
+          "poster": "https://image.tmdb.org/t/p/w500/s0.jpg"
+        },
+        {
+          "id": "tmdb:tv:201",
+          "type": "series",
+          "name": "Series 1",
+          "poster": "https://image.tmdb.org/t/p/w500/s1.jpg"
+        },
+        {
+          "id": "tmdb:tv:202",
+          "type": "series",
+          "name": "Series 2",
+          "poster": "https://image.tmdb.org/t/p/w500/s2.jpg"
+        },
+        {
+          "id": "tmdb:tv:203",
+          "type": "series",
+          "name": "Series 3",
+          "poster": "https://image.tmdb.org/t/p/w500/s3.jpg"
+        },
+        {
+          "id": "tmdb:tv:204",
+          "type": "series",
+          "name": "Series 4",
+          "poster": "https://image.tmdb.org/t/p/w500/s4.jpg"
+        },
+        {
+          "id": "tmdb:tv:205",
+          "type": "series",
+          "name": "Series 5",
+          "poster": "https://image.tmdb.org/t/p/w500/s5.jpg"
+        },
+        {
+          "id": "tmdb:tv:206",
+          "type": "series",
+          "name": "Series 6",
+          "poster": "https://image.tmdb.org/t/p/w500/s6.jpg"
+        },
+        {
+          "id": "tmdb:tv:207",
+          "type": "series",
+          "name": "Series 7",
+          "poster": "https://image.tmdb.org/t/p/w500/s7.jpg"
+        },
+        {
+          "id": "tmdb:tv:208",
+          "type": "series",
+          "name": "Series 8",
+          "poster": "https://image.tmdb.org/t/p/w500/s8.jpg"
+        },
+        {
+          "id": "tmdb:tv:209",
+          "type": "series",
+          "name": "Series 9",
+          "poster": "https://image.tmdb.org/t/p/w500/s9.jpg"
+        }
+      ]
+    },
+    {
+      "configuration": {
+        "translateTitles": true,
+        "language": "en-US"
+      },
+      "response": {
+        "results": [
+          {
+            "id": 2,
+            "media_type": "tv",
+            "name": "進撃の巨人",
+            "original_name": "進撃の巨人",
+            "original_language": "ja",
+            "genre_ids": [16],
+            "poster_path": "/anime.jpg"
+          },
+          {
+            "id": 1,
+            "media_type": "movie",
+            "title": "Localized Film",
+            "original_title": "Original Film",
+            "original_language": "fr",
+            "poster_path": "/film.jpg",
+            "backdrop_path": "/film-back.jpg"
+          },
+          {
+            "id": 3,
+            "media_type": "tv",
+            "name": "Localized Show",
+            "original_name": "Original Show",
+            "poster_path": "/show.jpg"
+          },
+          {
+            "id": 4,
+            "media_type": "movie",
+            "title": "No poster",
+            "original_title": "No poster"
+          },
+          {
+            "id": 5,
+            "media_type": "person",
+            "name": "A person",
+            "profile_path": "/person.jpg"
+          },
+          {
+            "id": 100,
+            "media_type": "movie",
+            "title": "Movie 0",
+            "poster_path": "/m0.jpg"
+          },
+          {
+            "id": 101,
+            "media_type": "movie",
+            "title": "Movie 1",
+            "poster_path": "/m1.jpg"
+          },
+          {
+            "id": 102,
+            "media_type": "movie",
+            "title": "Movie 2",
+            "poster_path": "/m2.jpg"
+          },
+          {
+            "id": 103,
+            "media_type": "movie",
+            "title": "Movie 3",
+            "poster_path": "/m3.jpg"
+          },
+          {
+            "id": 104,
+            "media_type": "movie",
+            "title": "Movie 4",
+            "poster_path": "/m4.jpg"
+          },
+          {
+            "id": 105,
+            "media_type": "movie",
+            "title": "Movie 5",
+            "poster_path": "/m5.jpg"
+          },
+          {
+            "id": 106,
+            "media_type": "movie",
+            "title": "Movie 6",
+            "poster_path": "/m6.jpg"
+          },
+          {
+            "id": 107,
+            "media_type": "movie",
+            "title": "Movie 7",
+            "poster_path": "/m7.jpg"
+          },
+          {
+            "id": 108,
+            "media_type": "movie",
+            "title": "Movie 8",
+            "poster_path": "/m8.jpg"
+          },
+          {
+            "id": 109,
+            "media_type": "movie",
+            "title": "Movie 9",
+            "poster_path": "/m9.jpg"
+          },
+          {
+            "id": 110,
+            "media_type": "movie",
+            "title": "Movie 10",
+            "poster_path": "/m10.jpg"
+          },
+          {
+            "id": 111,
+            "media_type": "movie",
+            "title": "Movie 11",
+            "poster_path": "/m11.jpg"
+          },
+          {
+            "id": 112,
+            "media_type": "movie",
+            "title": "Movie 12",
+            "poster_path": "/m12.jpg"
+          },
+          {
+            "id": 113,
+            "media_type": "movie",
+            "title": "Movie 13",
+            "poster_path": "/m13.jpg"
+          },
+          {
+            "id": 200,
+            "media_type": "tv",
+            "name": "Series 0",
+            "poster_path": "/s0.jpg"
+          },
+          {
+            "id": 201,
+            "media_type": "tv",
+            "name": "Series 1",
+            "poster_path": "/s1.jpg"
+          },
+          {
+            "id": 202,
+            "media_type": "tv",
+            "name": "Series 2",
+            "poster_path": "/s2.jpg"
+          },
+          {
+            "id": 203,
+            "media_type": "tv",
+            "name": "Series 3",
+            "poster_path": "/s3.jpg"
+          },
+          {
+            "id": 204,
+            "media_type": "tv",
+            "name": "Series 4",
+            "poster_path": "/s4.jpg"
+          },
+          {
+            "id": 205,
+            "media_type": "tv",
+            "name": "Series 5",
+            "poster_path": "/s5.jpg"
+          },
+          {
+            "id": 206,
+            "media_type": "tv",
+            "name": "Series 6",
+            "poster_path": "/s6.jpg"
+          },
+          {
+            "id": 207,
+            "media_type": "tv",
+            "name": "Series 7",
+            "poster_path": "/s7.jpg"
+          },
+          {
+            "id": 208,
+            "media_type": "tv",
+            "name": "Series 8",
+            "poster_path": "/s8.jpg"
+          },
+          {
+            "id": 209,
+            "media_type": "tv",
+            "name": "Series 9",
+            "poster_path": "/s9.jpg"
+          },
+          {
+            "id": 210,
+            "media_type": "tv",
+            "name": "Series 10",
+            "poster_path": "/s10.jpg"
+          },
+          {
+            "id": 211,
+            "media_type": "tv",
+            "name": "Series 11",
+            "poster_path": "/s11.jpg"
+          },
+          {
+            "id": 212,
+            "media_type": "tv",
+            "name": "Series 12",
+            "poster_path": "/s12.jpg"
+          },
+          {
+            "id": 213,
+            "media_type": "tv",
+            "name": "Series 13",
+            "poster_path": "/s13.jpg"
+          }
+        ]
+      },
+      "english": null,
+      "original_requests": [
+        {
+          "route": "search/multi",
+          "args": {
+            "query": "Owned",
+            "include_adult": "false"
+          }
+        }
+      ],
+      "expected": [
+        {
+          "id": "tmdb:movie:1",
+          "type": "movie",
+          "name": "Localized Film",
+          "poster": "https://image.tmdb.org/t/p/w500/film.jpg",
+          "background": "https://image.tmdb.org/t/p/w780/film-back.jpg"
+        },
+        {
+          "id": "tmdb:movie:100",
+          "type": "movie",
+          "name": "Movie 0",
+          "poster": "https://image.tmdb.org/t/p/w500/m0.jpg"
+        },
+        {
+          "id": "tmdb:movie:101",
+          "type": "movie",
+          "name": "Movie 1",
+          "poster": "https://image.tmdb.org/t/p/w500/m1.jpg"
+        },
+        {
+          "id": "tmdb:movie:102",
+          "type": "movie",
+          "name": "Movie 2",
+          "poster": "https://image.tmdb.org/t/p/w500/m2.jpg"
+        },
+        {
+          "id": "tmdb:movie:103",
+          "type": "movie",
+          "name": "Movie 3",
+          "poster": "https://image.tmdb.org/t/p/w500/m3.jpg"
+        },
+        {
+          "id": "tmdb:movie:104",
+          "type": "movie",
+          "name": "Movie 4",
+          "poster": "https://image.tmdb.org/t/p/w500/m4.jpg"
+        },
+        {
+          "id": "tmdb:movie:105",
+          "type": "movie",
+          "name": "Movie 5",
+          "poster": "https://image.tmdb.org/t/p/w500/m5.jpg"
+        },
+        {
+          "id": "tmdb:movie:106",
+          "type": "movie",
+          "name": "Movie 6",
+          "poster": "https://image.tmdb.org/t/p/w500/m6.jpg"
+        },
+        {
+          "id": "tmdb:movie:107",
+          "type": "movie",
+          "name": "Movie 7",
+          "poster": "https://image.tmdb.org/t/p/w500/m7.jpg"
+        },
+        {
+          "id": "tmdb:movie:108",
+          "type": "movie",
+          "name": "Movie 8",
+          "poster": "https://image.tmdb.org/t/p/w500/m8.jpg"
+        },
+        {
+          "id": "tmdb:movie:109",
+          "type": "movie",
+          "name": "Movie 9",
+          "poster": "https://image.tmdb.org/t/p/w500/m9.jpg"
+        },
+        {
+          "id": "tmdb:movie:110",
+          "type": "movie",
+          "name": "Movie 10",
+          "poster": "https://image.tmdb.org/t/p/w500/m10.jpg"
+        },
+        {
+          "id": "tmdb:tv:2",
+          "type": "series",
+          "name": "進撃の巨人",
+          "poster": "https://image.tmdb.org/t/p/w500/anime.jpg"
+        },
+        {
+          "id": "tmdb:tv:3",
+          "type": "series",
+          "name": "Localized Show",
+          "poster": "https://image.tmdb.org/t/p/w500/show.jpg"
+        },
+        {
+          "id": "tmdb:tv:200",
+          "type": "series",
+          "name": "Series 0",
+          "poster": "https://image.tmdb.org/t/p/w500/s0.jpg"
+        },
+        {
+          "id": "tmdb:tv:201",
+          "type": "series",
+          "name": "Series 1",
+          "poster": "https://image.tmdb.org/t/p/w500/s1.jpg"
+        },
+        {
+          "id": "tmdb:tv:202",
+          "type": "series",
+          "name": "Series 2",
+          "poster": "https://image.tmdb.org/t/p/w500/s2.jpg"
+        },
+        {
+          "id": "tmdb:tv:203",
+          "type": "series",
+          "name": "Series 3",
+          "poster": "https://image.tmdb.org/t/p/w500/s3.jpg"
+        },
+        {
+          "id": "tmdb:tv:204",
+          "type": "series",
+          "name": "Series 4",
+          "poster": "https://image.tmdb.org/t/p/w500/s4.jpg"
+        },
+        {
+          "id": "tmdb:tv:205",
+          "type": "series",
+          "name": "Series 5",
+          "poster": "https://image.tmdb.org/t/p/w500/s5.jpg"
+        },
+        {
+          "id": "tmdb:tv:206",
+          "type": "series",
+          "name": "Series 6",
+          "poster": "https://image.tmdb.org/t/p/w500/s6.jpg"
+        },
+        {
+          "id": "tmdb:tv:207",
+          "type": "series",
+          "name": "Series 7",
+          "poster": "https://image.tmdb.org/t/p/w500/s7.jpg"
+        },
+        {
+          "id": "tmdb:tv:208",
+          "type": "series",
+          "name": "Series 8",
+          "poster": "https://image.tmdb.org/t/p/w500/s8.jpg"
+        },
+        {
+          "id": "tmdb:tv:209",
+          "type": "series",
+          "name": "Series 9",
+          "poster": "https://image.tmdb.org/t/p/w500/s9.jpg"
+        }
+      ]
+    }
+  ],
+  "manga_cases": [
+    {
+      "query": "One Piece",
+      "candidate": "ONE-PIECE (Official Colored)",
+      "query_key": "onepiece",
+      "candidate_key": "onepiece",
+      "expected": true
+    },
+    {
+      "query": "進撃の巨人",
+      "candidate": "進撃 の 巨人",
+      "query_key": "進撃の巨人",
+      "candidate_key": "進撃の巨人",
+      "expected": true
+    },
+    {
+      "query": "Solo Leveling",
+      "candidate": "나 혼자만 레벨업",
+      "alternate": "Solo Leveling",
+      "query_key": "sololeveling",
+      "candidate_key": "나혼자만레벨업",
+      "expected": true
+    },
+    {
+      "query": "Color",
+      "candidate": "Color",
+      "query_key": "color",
+      "candidate_key": "color",
+      "expected": true
+    },
+    {
+      "query": "My Color Life",
+      "candidate": "My Color Life (Full Color)",
+      "query_key": "mycolorlife",
+      "candidate_key": "mycolorlife",
+      "expected": true
+    },
+    {
+      "query": "One Piece",
+      "candidate": "One Piece: Episode A",
+      "query_key": "onepiece",
+      "candidate_key": "onepieceepisodea",
+      "expected": false
+    },
+    {
+      "query": "作品Ⅳ",
+      "candidate": "作品IV",
+      "query_key": "作品ⅳ",
+      "candidate_key": "作品iv",
+      "expected": false
+    },
+    {
+      "query": "作品Ⅳ",
+      "candidate": "作品Ⅳ",
+      "query_key": "作品ⅳ",
+      "candidate_key": "作品ⅳ",
+      "expected": true
+    },
+    {
+      "query": "",
+      "candidate": "",
+      "query_key": "",
+      "candidate_key": "",
+      "expected": false
+    },
+    {
+      "query": "(Color) -",
+      "candidate": "(Color) -",
+      "query_key": "color",
+      "candidate_key": "color",
+      "expected": true
+    },
+    {
+      "query": "Tokyo Ghoul",
+      "candidate": "東京喰種",
+      "alternate": "Tokyo Ghoul",
+      "query_key": "tokyoghoul",
+      "candidate_key": "東京喰種",
+      "expected": true
+    },
+    {
+      "query": "A",
+      "candidate": "B",
+      "query_key": "a",
+      "candidate_key": "b",
+      "expected": false
+    },
+    {
+      "query": "Naruto",
+      "candidate": "Naruto (Color, Volume 2)",
+      "query_key": "naruto",
+      "candidate_key": "naruto",
+      "expected": true
+    },
+    {
+      "query": "Naruto",
+      "candidate": "Naruto (Colorful)",
+      "query_key": "naruto",
+      "candidate_key": "narutocolorful",
+      "expected": false
+    }
+  ]
+}

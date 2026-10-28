@@ -5,6 +5,7 @@ struct MangaDetailView: View {
     let shelf: MangaShelf
     let client: SuwayomiClient?
     @Environment(\.readingPlugins) private var reading
+    @Environment(\.customListApp) private var app
     @State private var detail: MangaBook?
     @State private var chapters: [MangaChapter] = []
     @State private var selection: MangaChapter?
@@ -49,6 +50,8 @@ struct MangaDetailView: View {
             }.padding(.bottom, 24)
         }.background(HarborTheme.background).foregroundStyle(HarborTheme.ink).navigationTitle("").navigationBarTitleDisplayMode(.inline)
             .toolbar { ToolbarItem(placement: .topBarTrailing) {
+                if let app { CustomListMembershipButton(app: app, item: CustomListItem.input(displayed)) }
+            }; ToolbarItem(placement: .topBarTrailing) {
                 Menu {
                     Button("Guardar en esta biblioteca") { saveBook() }
                     if let client { Button("Añadir a biblioteca Suwayomi") { Task { do { try await client.setLibrary(book, enabled: true) } catch { self.error = safeMessage(error) } } }; Button("Quitar de biblioteca Suwayomi", role: .destructive) { Task { do { try await client.setLibrary(book, enabled: false) } catch { self.error = safeMessage(error) } } } }

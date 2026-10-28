@@ -40,6 +40,7 @@ struct HarborApp: App {
     }
     var body: some View {
         synchronization
+            .environment(\.customListApp, model)
             .sheet(isPresented: $model.showAccount, onDismiss: { model.accountDidDismiss() }) { accountSheet }
             .fullScreenCover(isPresented: $model.showProfiles) { profilesSheet }
     }

@@ -98,7 +98,11 @@
     "Authorization expired. Connect again.": "La autorización ha caducado. Conecta de nuevo la cuenta.",
     "Simkl is temporarily limiting requests. Try again later.": "Simkl está limitando las solicitudes temporalmente. Inténtalo más tarde.",
     "Could not connect to Simkl. Try again.": "No se pudo conectar con Simkl. Inténtalo de nuevo.",
-    "Open a title and tap Add to Watchlist to save it here.": "Abre un título y toca «Añadir a mi lista» para guardarlo aquí."
+    "Open a title and tap Add to Watchlist to save it here.": "Abre un título y toca «Añadir a mi lista» para guardarlo aquí.",
+    "Add a TMDB API key in Metadata settings to search for titles.": "Añade una clave API de TMDB en los ajustes de metadatos para buscar títulos.",
+    "Could not read your lists. Your saved data is preserved.": "No se pudieron leer tus listas. Los datos guardados se conservan.",
+    "Your lists are kept in memory. Save them before closing the app.": "Tus listas se conservan en memoria. Guárdalas antes de cerrar la app.",
+    "A short note about this list": "A short note about this list"
   },
   "pt": {
     "Auto-sync": "Sincronização automática",
@@ -147,7 +151,11 @@
     "Get an API key": "Obter uma chave API",
     "Import files": "Importar arquivos",
     "Import folder": "Importar pasta",
-    "Open a title and tap Add to Watchlist to save it here.": "Abra um título e toque em «Adicionar à lista» para guardá-lo aqui."
+    "Open a title and tap Add to Watchlist to save it here.": "Abra um título e toque em «Adicionar à lista» para guardá-lo aqui.",
+    "Add a TMDB API key in Metadata settings to search for titles.": "Adicione uma chave API do TMDB nas definições de metadados para pesquisar títulos.",
+    "Could not read your lists. Your saved data is preserved.": "Não foi possível ler as suas listas. Os dados guardados foram preservados.",
+    "Your lists are kept in memory. Save them before closing the app.": "As suas listas estão na memória. Guarde-as antes de fechar a aplicação.",
+    "A short note about this list": "A short note about this list"
   },
   "ru": {
     "Auto-sync": "Автосинхронизация",
@@ -196,7 +204,10 @@
     "Get an API key": "Получить ключ API",
     "Import files": "Импортировать файлы",
     "Import folder": "Импортировать папку",
-    "Open a title and tap Add to Watchlist to save it here.": "Откройте произведение и нажмите «Добавить в список просмотра», чтобы сохранить его здесь."
+    "Open a title and tap Add to Watchlist to save it here.": "Откройте произведение и нажмите «Добавить в список просмотра», чтобы сохранить его здесь.",
+    "Add a TMDB API key in Metadata settings to search for titles.": "Добавьте ключ API TMDB в настройках метаданных для поиска произведений.",
+    "Could not read your lists. Your saved data is preserved.": "Не удалось прочитать ваши списки. Сохранённые данные не потеряны.",
+    "Your lists are kept in memory. Save them before closing the app.": "Ваши списки находятся в памяти. Сохраните их перед закрытием приложения."
   },
   "ar": {
     "Auto-sync": "مزامنة تلقائية",
@@ -245,7 +256,10 @@
     "Get an API key": "الحصول على مفتاح API",
     "Import files": "استيراد ملفات",
     "Import folder": "استيراد مجلد",
-    "Open a title and tap Add to Watchlist to save it here.": "افتح عنوانًا واضغط على «إضافة إلى قائمة المشاهدة» لحفظه هنا."
+    "Open a title and tap Add to Watchlist to save it here.": "افتح عنوانًا واضغط على «إضافة إلى قائمة المشاهدة» لحفظه هنا.",
+    "Add a TMDB API key in Metadata settings to search for titles.": "أضف مفتاح API لخدمة TMDB في إعدادات البيانات الوصفية للبحث عن العناوين.",
+    "Could not read your lists. Your saved data is preserved.": "تعذرت قراءة قوائمك. بياناتك المحفوظة محفوظة.",
+    "Your lists are kept in memory. Save them before closing the app.": "قوائمك محفوظة في الذاكرة. احفظها قبل إغلاق التطبيق."
   },
   "zh": {
     "Couldn't auto-sync": "无法自动同步",
@@ -265,7 +279,11 @@
     "Get an API key": "获取 API 密钥",
     "Import files": "导入文件",
     "Import folder": "导入文件夹",
-    "Open a title and tap Add to Watchlist to save it here.": "打开一个条目，轻点“添加到待看列表”即可将其保存到这里。"
+    "Open a title and tap Add to Watchlist to save it here.": "打开一个条目，轻点“添加到待看列表”即可将其保存到这里。",
+    "Add a TMDB API key in Metadata settings to search for titles.": "请在元数据设置中添加 TMDB API 密钥以搜索作品。",
+    "Could not read your lists. Your saved data is preserved.": "无法读取你的列表。已保存的数据仍然保留。",
+    "Your lists are kept in memory. Save them before closing the app.": "你的列表暂存在内存中。请在关闭应用前保存。",
+    "A short note about this list": "A short note about this list"
   },
   "fr": {
     "Couldn't auto-sync": "Synchronisation automatique impossible",
@@ -285,7 +303,11 @@
     "Get an API key": "Obtenir une clé API",
     "Import files": "Importer des fichiers",
     "Import folder": "Importer un dossier",
-    "Open a title and tap Add to Watchlist to save it here.": "Ouvrez un titre et touchez « Ajouter à la liste » pour l’enregistrer ici."
+    "Open a title and tap Add to Watchlist to save it here.": "Ouvrez un titre et touchez « Ajouter à la liste » pour l’enregistrer ici.",
+    "Add a TMDB API key in Metadata settings to search for titles.": "Ajoutez une clé API TMDB dans les réglages des métadonnées pour rechercher des titres.",
+    "Could not read your lists. Your saved data is preserved.": "Impossible de lire vos listes. Vos données enregistrées sont conservées.",
+    "Your lists are kept in memory. Save them before closing the app.": "Vos listes sont conservées en mémoire. Enregistrez-les avant de fermer l’application.",
+    "A short note about this list": "A short note about this list"
   },
   "de": {
     "Couldn't auto-sync": "Automatische Synchronisierung nicht möglich",
@@ -305,7 +327,11 @@
     "Get an API key": "API-Schlüssel erhalten",
     "Import files": "Dateien importieren",
     "Import folder": "Ordner importieren",
-    "Open a title and tap Add to Watchlist to save it here.": "Öffne einen Titel und tippe auf „Zur Merkliste hinzufügen“, um ihn hier zu speichern."
+    "Open a title and tap Add to Watchlist to save it here.": "Öffne einen Titel und tippe auf „Zur Merkliste hinzufügen“, um ihn hier zu speichern.",
+    "Add a TMDB API key in Metadata settings to search for titles.": "Füge in den Metadateneinstellungen einen TMDB-API-Schlüssel hinzu, um nach Titeln zu suchen.",
+    "Could not read your lists. Your saved data is preserved.": "Deine Listen konnten nicht gelesen werden. Die gespeicherten Daten bleiben erhalten.",
+    "Your lists are kept in memory. Save them before closing the app.": "Deine Listen bleiben im Arbeitsspeicher. Speichere sie, bevor du die App schließt.",
+    "A short note about this list": "A short note about this list"
   },
   "hi": {
     "Couldn't auto-sync": "अपने-आप सिंक नहीं हो सका",
@@ -325,7 +351,11 @@
     "Get an API key": "API कुंजी प्राप्त करें",
     "Import files": "फ़ाइलें आयात करें",
     "Import folder": "फ़ोल्डर आयात करें",
-    "Open a title and tap Add to Watchlist to save it here.": "कोई शीर्षक खोलें और उसे यहाँ सहेजने के लिए «वॉचलिस्ट में जोड़ें» पर टैप करें।"
+    "Open a title and tap Add to Watchlist to save it here.": "कोई शीर्षक खोलें और उसे यहाँ सहेजने के लिए «वॉचलिस्ट में जोड़ें» पर टैप करें।",
+    "Add a TMDB API key in Metadata settings to search for titles.": "शीर्षक खोजने के लिए मेटाडेटा सेटिंग में TMDB API कुंजी जोड़ें।",
+    "Could not read your lists. Your saved data is preserved.": "आपकी सूचियाँ पढ़ी नहीं जा सकीं। सहेजा गया डेटा सुरक्षित है।",
+    "Your lists are kept in memory. Save them before closing the app.": "आपकी सूचियाँ मेमोरी में रखी गई हैं। ऐप बंद करने से पहले उन्हें सहेजें।",
+    "A short note about this list": "A short note about this list"
   },
   "id": {
     "Couldn't auto-sync": "Tidak dapat menyinkronkan otomatis",
@@ -345,7 +375,11 @@
     "Get an API key": "Dapatkan kunci API",
     "Import files": "Impor berkas",
     "Import folder": "Impor folder",
-    "Open a title and tap Add to Watchlist to save it here.": "Buka judul dan ketuk «Tambah ke Daftar Tontonan» untuk menyimpannya di sini."
+    "Open a title and tap Add to Watchlist to save it here.": "Buka judul dan ketuk «Tambah ke Daftar Tontonan» untuk menyimpannya di sini.",
+    "Add a TMDB API key in Metadata settings to search for titles.": "Tambahkan kunci API TMDB di pengaturan metadata untuk mencari judul.",
+    "Could not read your lists. Your saved data is preserved.": "Daftar Anda tidak dapat dibaca. Data tersimpan tetap dipertahankan.",
+    "Your lists are kept in memory. Save them before closing the app.": "Daftar Anda disimpan dalam memori. Simpan sebelum menutup aplikasi.",
+    "A short note about this list": "A short note about this list"
   },
   "it": {
     "Couldn't auto-sync": "Sincronizzazione automatica non riuscita",
@@ -365,7 +399,11 @@
     "Get an API key": "Ottieni una chiave API",
     "Import files": "Importa file",
     "Import folder": "Importa cartella",
-    "Open a title and tap Add to Watchlist to save it here.": "Apri un titolo e tocca «Aggiungi alla lista» per salvarlo qui."
+    "Open a title and tap Add to Watchlist to save it here.": "Apri un titolo e tocca «Aggiungi alla lista» per salvarlo qui.",
+    "Add a TMDB API key in Metadata settings to search for titles.": "Aggiungi una chiave API TMDB nelle impostazioni dei metadati per cercare titoli.",
+    "Could not read your lists. Your saved data is preserved.": "Impossibile leggere le tue liste. I dati salvati sono conservati.",
+    "Your lists are kept in memory. Save them before closing the app.": "Le tue liste sono conservate in memoria. Salvale prima di chiudere l’app.",
+    "A short note about this list": "A short note about this list"
   },
   "ja": {
     "Couldn't auto-sync": "自動同期できませんでした",
@@ -385,7 +423,11 @@
     "Get an API key": "APIキーを取得",
     "Import files": "ファイルを読み込む",
     "Import folder": "フォルダを読み込む",
-    "Open a title and tap Add to Watchlist to save it here.": "作品を開き、「ウォッチリストに追加」をタップするとここに保存されます。"
+    "Open a title and tap Add to Watchlist to save it here.": "作品を開き、「ウォッチリストに追加」をタップするとここに保存されます。",
+    "Add a TMDB API key in Metadata settings to search for titles.": "作品を検索するには、メタデータ設定で TMDB API キーを追加してください。",
+    "Could not read your lists. Your saved data is preserved.": "リストを読み込めませんでした。保存済みデータは保持されています。",
+    "Your lists are kept in memory. Save them before closing the app.": "リストはメモリ内に保持されています。アプリを閉じる前に保存してください。",
+    "A short note about this list": "A short note about this list"
   },
   "ko": {
     "Couldn't auto-sync": "자동 동기화하지 못했습니다",
@@ -405,7 +447,11 @@
     "Get an API key": "API 키 받기",
     "Import files": "파일 가져오기",
     "Import folder": "폴더 가져오기",
-    "Open a title and tap Add to Watchlist to save it here.": "작품을 열고 «관심 목록에 추가»를 탭하면 여기에 저장됩니다."
+    "Open a title and tap Add to Watchlist to save it here.": "작품을 열고 «관심 목록에 추가»를 탭하면 여기에 저장됩니다.",
+    "Add a TMDB API key in Metadata settings to search for titles.": "작품을 검색하려면 메타데이터 설정에서 TMDB API 키를 추가하세요.",
+    "Could not read your lists. Your saved data is preserved.": "목록을 읽을 수 없습니다. 저장된 데이터는 유지됩니다.",
+    "Your lists are kept in memory. Save them before closing the app.": "목록이 메모리에 보관되어 있습니다. 앱을 닫기 전에 저장하세요.",
+    "A short note about this list": "A short note about this list"
   },
   "pl": {
     "Couldn't auto-sync": "Nie udało się zsynchronizować automatycznie",
@@ -425,7 +471,11 @@
     "Get an API key": "Uzyskaj klucz API",
     "Import files": "Importuj pliki",
     "Import folder": "Importuj folder",
-    "Open a title and tap Add to Watchlist to save it here.": "Otwórz tytuł i stuknij „Dodaj do listy”, aby go tutaj zapisać."
+    "Open a title and tap Add to Watchlist to save it here.": "Otwórz tytuł i stuknij „Dodaj do listy”, aby go tutaj zapisać.",
+    "Add a TMDB API key in Metadata settings to search for titles.": "Dodaj klucz API TMDB w ustawieniach metadanych, aby wyszukiwać tytuły.",
+    "Could not read your lists. Your saved data is preserved.": "Nie udało się odczytać list. Zapisane dane zostały zachowane.",
+    "Your lists are kept in memory. Save them before closing the app.": "Listy są przechowywane w pamięci. Zapisz je przed zamknięciem aplikacji.",
+    "A short note about this list": "A short note about this list"
   },
   "tr": {
     "Couldn't auto-sync": "Otomatik eşitlenemedi",
@@ -445,7 +495,11 @@
     "Get an API key": "API anahtarı al",
     "Import files": "Dosyaları içe aktar",
     "Import folder": "Klasörü içe aktar",
-    "Open a title and tap Add to Watchlist to save it here.": "Bir başlığı açıp buraya kaydetmek için «İzleme listesine ekle» seçeneğine dokun."
+    "Open a title and tap Add to Watchlist to save it here.": "Bir başlığı açıp buraya kaydetmek için «İzleme listesine ekle» seçeneğine dokun.",
+    "Add a TMDB API key in Metadata settings to search for titles.": "Başlık aramak için meta veri ayarlarına bir TMDB API anahtarı ekleyin.",
+    "Could not read your lists. Your saved data is preserved.": "Listeleriniz okunamadı. Kayıtlı verileriniz korunuyor.",
+    "Your lists are kept in memory. Save them before closing the app.": "Listeleriniz bellekte tutuluyor. Uygulamayı kapatmadan önce kaydedin.",
+    "A short note about this list": "A short note about this list"
   },
   "vi": {
     "Couldn't auto-sync": "Không thể tự động đồng bộ",
@@ -465,7 +519,11 @@
     "Get an API key": "Lấy khóa API",
     "Import files": "Nhập tệp",
     "Import folder": "Nhập thư mục",
-    "Open a title and tap Add to Watchlist to save it here.": "Mở một tựa phim và chạm vào «Thêm vào danh sách xem» để lưu tại đây."
+    "Open a title and tap Add to Watchlist to save it here.": "Mở một tựa phim và chạm vào «Thêm vào danh sách xem» để lưu tại đây.",
+    "Add a TMDB API key in Metadata settings to search for titles.": "Thêm khóa API TMDB trong cài đặt siêu dữ liệu để tìm tựa phim.",
+    "Could not read your lists. Your saved data is preserved.": "Không thể đọc danh sách của bạn. Dữ liệu đã lưu vẫn được giữ nguyên.",
+    "Your lists are kept in memory. Save them before closing the app.": "Danh sách của bạn đang được giữ trong bộ nhớ. Hãy lưu trước khi đóng ứng dụng.",
+    "A short note about this list": "A short note about this list"
   },
   "en": {
     "Browse services": "Browse services",
@@ -487,6 +545,45 @@
     "Removed": "Removed",
     "Import files": "Import files",
     "Import folder": "Import folder",
-    "Open a title and tap Add to Watchlist to save it here.": "Open a title and tap Add to Watchlist to save it here."
+    "Open a title and tap Add to Watchlist to save it here.": "Open a title and tap Add to Watchlist to save it here.",
+    "Add a TMDB API key in Metadata settings to search for titles.": "Add a TMDB API key in Metadata settings to search for titles.",
+    "Could not read your lists. Your saved data is preserved.": "Could not read your lists. Your saved data is preserved.",
+    "Your lists are kept in memory. Save them before closing the app.": "Your lists are kept in memory. Save them before closing the app.",
+    "Rename list": "Rename list",
+    "{n} items": "{n} items",
+    "Add a movie or show to this list...": "Add a movie or show to this list...",
+    "Movie": "Movie",
+    "No lists yet. Create your first one below.": "No lists yet. Create your first one below.",
+    "{n} / {max} items": "{n} / {max} items",
+    "Nothing here yet": "Nothing here yet",
+    "Group the movies and shows you want to keep close.": "Group the movies and shows you want to keep close.",
+    "Manga sources": "Manga sources",
+    "{n} / {max} lists": "{n} / {max} lists",
+    "Removed from \"{name}\"": "Removed from \"{name}\"",
+    "Group the movies and shows you love. Rewatch shelf, weekend picks, whatever keeps them close.": "Group the movies and shows you love. Rewatch shelf, weekend picks, whatever keeps them close.",
+    "Searching...": "Searching...",
+    "Updated {when}": "Updated {when}",
+    "No matches. Try another title.": "No matches. Try another title.",
+    "Description": "Description",
+    "Create your first list": "Create your first list",
+    "Added to \"{name}\"": "Added to \"{name}\"",
+    "This list is full ({max} items)": "This list is full ({max} items)",
+    "Back to lists": "Back to lists",
+    "Delete list": "Delete list",
+    "Create new list": "Create new list",
+    "Add to list": "Add to list",
+    "New list": "New list",
+    "List name": "List name",
+    "You have reached {max} lists. Remove one to make room.": "You have reached {max} lists. Remove one to make room.",
+    "Weekend watchlist": "Weekend watchlist",
+    "List settings": "List settings",
+    "This title would not open": "This title would not open",
+    "Add titles with the search above, or hit \"Add to list\" on any movie or show's page.": "Add titles with the search above, or hit \"Add to list\" on any movie or show's page.",
+    "1 item": "1 item",
+    "My lists": "My lists",
+    "Move down": "Move down",
+    "A short note about this list": "A short note about this list",
+    "Remove from list": "Remove from list",
+    "Move up": "Move up"
   }
 }

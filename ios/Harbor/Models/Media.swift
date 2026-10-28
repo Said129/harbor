@@ -26,6 +26,7 @@ struct Media: Codable, Identifiable, Hashable, Sendable {
     var originalLanguage: String?
     var animeFormat: String?
     var artworkSourceID: String?
+    var addonOrigin: MediaAddonOrigin?
     var artworkID: String { artworkSourceID ?? id }
     struct BehaviorHints: Codable, Hashable, Sendable { var defaultVideoId: String? }
     var identity: String { "\(type):\(id)" }
@@ -47,6 +48,7 @@ struct Media: Codable, Identifiable, Hashable, Sendable {
         media.imdbID = value["imdb_id"].string
         media.originalLanguage = value["originalLanguage"].string ?? value["original_language"].string
         media.animeFormat = value["animeFormat"].string
+        media.addonOrigin = MediaAddonOrigin.parse(value["addonOrigin"])
         if let rating = value["imdbRating"].textValue, let number = Double(rating), number > 0, number <= 10 { media.imdbRating = rating }
         media.runtime = value["runtime"].textValue
         media.country = value["country"].string
@@ -71,6 +73,22 @@ struct Media: Codable, Identifiable, Hashable, Sendable {
         }
         if !videos.isEmpty { var details = MediaDetails(); details.trailers = Array(videos.prefix(30)); media.details = details }
         return media
+    }
+}
+
+struct MediaAddonOrigin: Codable, Hashable, Sendable {
+    let id: String
+    let name: String
+    var logo: String?
+    var base: String?
+    static func parse(_ value: JSONValue) -> Self? {
+        guard let id = value["id"].string, !id.isEmpty else { return nil }
+        return .init(id: id, name: value["name"].string.flatMap { $0.isEmpty ? nil : $0 } ?? id,
+            logo: value["logo"].string, base: value["base"].string.flatMap { $0.isEmpty ? nil : $0 })
+    }
+    static func from(_ addon: Addon) -> Self? {
+        guard let id = addon.manifest["id"].string, !id.isEmpty else { return nil }
+        return .init(id: id, name: addon.name, logo: addon.manifest["logo"].string, base: addon.transportUrl)
     }
 }
 
