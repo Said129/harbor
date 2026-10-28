@@ -6,6 +6,9 @@ import re
 import runpy
 
 requested = os.environ.get('HARBOR_NATIVE_SELECTION', '').strip()
+if requested == 'native-only:custom-lists-core' or requested.startswith('HarborTests.CustomListTests/'):
+    runpy.run_path('scripts/ios/prepare-custom-lists-core-selection.py')
+    raise SystemExit(0)
 if requested == 'affected:library-history-interface' or requested.startswith('HarborTests.LibraryHistoryMountTests/'):
     runpy.run_path('scripts/ios/prepare-library-history-interface-selection.py')
     raise SystemExit(0)
