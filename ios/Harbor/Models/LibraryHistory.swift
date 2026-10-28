@@ -30,7 +30,13 @@ struct LibraryHistoryEntry: Identifiable, Sendable {
     }
     static func eligible(_ record: LibraryRecord) -> Bool {
         (record.raw["removed"] != .bool(true) || record.raw["temp"] == .bool(true))
-            && (record.watched || (record.raw["state"]["timeOffset"].numericValue ?? 0) > 0)
+            && (record.watched || manuallyWatched(record) || (record.raw["state"]["timeOffset"].numericValue ?? 0) > 0)
+    }
+    private static func manuallyWatched(_ record: LibraryRecord) -> Bool {
+        // Independent Harbor stores manual episode decisions locally. They
+        // must not require a Stremio round trip to appear in its own history.
+        record.raw["state"]["nativeManualMovie"] == .bool(true)
+            || record.raw["state"]["nativeManualEpisodes"].objectValue.values.contains(.bool(true))
     }
     static func merge(local: [LibraryRecord], remote: [TraktLibraryItem]) -> [Self] {
         var result: [Self] = [], index: [String: Int] = [:]
@@ -46,7 +52,7 @@ struct LibraryHistoryEntry: Identifiable, Sendable {
             let entry = Self(record: record, localID: record.id, date: LibraryRecord.timestamp(record.raw["_mtime"]),
                 watchedAt: LibraryRecord.timestamp(state["lastWatched"]) ?? LibraryRecord.timestamp(record.raw["_mtime"]),
                 season: record.media?.type == "movie" ? nil : coordinates.season, episode: record.media?.type == "movie" ? nil : coordinates.episode,
-                progress: ratio, watched: record.watched || ratio >= 0.9, durationMs: duration, timeOffsetMs: offset)
+                progress: ratio, watched: record.watched || manuallyWatched(record) || ratio >= 0.9, durationMs: duration, timeOffsetMs: offset)
             if let existing = index[record.id] { result[existing] = entry } else { index[record.id] = result.count; result.append(entry) }
         }
         for item in remote {

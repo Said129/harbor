@@ -3,6 +3,22 @@ import XCTest
 @MainActor final class LibraryHistoryNavigationTests: XCTestCase {
     func testIndependentHistorySwitchesModesSearchesConfirmsRemovalAndRestoresOnIPhone() { verify("iphone") }
     func testIndependentHistorySwitchesModesSearchesConfirmsRemovalAndRestoresOnIPad() { verify("ipad") }
+    func testEpisodeCaptionUsesTheEnglishCatalogOnIPhone() { verifyCaption("iphone") }
+    func testEpisodeCaptionUsesTheEnglishCatalogOnIPad() { verifyCaption("ipad") }
+    private func verifyCaption(_ device: String) {
+        continueAfterFailure = false
+        let app = XCUIApplication(bundleIdentifier: "site.harbor.iphone")
+        app.launchArguments = ["-uiLanguage", "en", "-homeMode", "classic", "-nativeGuide.initialized.v1", "YES", "-nativeGuide.completed.v1", "YES"]
+        ReadingUIInteraction.launchPreparedApplication(app)
+        defer { if (testRun?.failureCount ?? 0) > 0 { ReadingUIInteraction.recordFailureContext(app) }; app.terminate() }
+        openHistory(app)
+        ReadingUIInteraction.tapVisible(app.buttons["library-history-view-episodes"], in: app)
+        let card = app.buttons.matching(NSPredicate(format: "identifier == %@ AND label == %@", "library-history-media", "Owned episode")).firstMatch
+        XCTAssertTrue(card.waitForExistence(timeout: 10))
+        let localized = XCTNSPredicateExpectation(predicate: NSPredicate(format: "value == %@", "S5 E23"), object: card)
+        XCTAssertEqual(XCTWaiter.wait(for: [localized], timeout: 10), .completed)
+        capture(app, "library-history-episode-caption-" + device)
+    }
     private func verify(_ device: String) {
         continueAfterFailure = false
         let app = XCUIApplication(bundleIdentifier: "site.harbor.iphone")

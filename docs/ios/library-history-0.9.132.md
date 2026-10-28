@@ -88,3 +88,27 @@ la instrucción móvil y la interpolación de temporadas y episodios. Los recorr
 de Historial exigen también el encabezado y la pestaña en inglés, y el montaje
 de Historial captura expresamente ese idioma. Sigue pendiente su ejecución Apple;
 esta revisión no certifica la traducción completa de todas las pantallas.
+
+## Adaptación al historial independiente y rótulos de episodios
+
+La retirada solicitada de las sesiones Stremio requiere que las marcas manuales
+locales también sean visibles en Historial. Un título nuevo se guardaba como
+retirado y no temporal: aunque su decisión de visto persistía, el filtro de
+Historial lo descartaba. Al marcarlo pasa a ser temporal si está retirado, sin
+añadirlo automáticamente a Mi lista. El filtro acepta las decisiones nativas
+booleanas positivas de película o episodio. Desmarcarlas sin progreso ni otra
+actividad retira esa entrada del historial; quitarla expresamente conserva sus
+decisiones y su progreso, como las demás entradas. Los campos del protocolo no
+se reinterpretan ni se añaden cuentas remotas.
+
+Tres casos nuevos ejercitan el marcado individual, su retirada, el marcado de
+película y serie completa, reapertura y separación de propietario, con cero
+peticiones a cuentas. También conservan los ocho escenarios del filtro original
+y rechazan cadenas o números usados como decisiones booleanas. La ampliación es
+la adaptación local a la excepción de cuentas del propietario; no se atribuye al
+filtro original de Desktop, que requería su sesión para obtener la colección.
+
+El rótulo visible de episodio de Historial usa ahora `S{season} E{episode}` del
+catálogo elegido, en lugar de una «T» fija. El mismo rótulo se comunica como valor
+de accesibilidad de la tarjeta. Dos recorridos nuevos, aún pendientes de Apple,
+exigen `S5 E23` en la app normal en inglés y capturan ese estado en iPhone/iPad.

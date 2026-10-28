@@ -157,12 +157,17 @@ private struct LibraryHistoryCard: View {
     private var media: Media? { hydrated ?? entry.media }
     private var episode: Episode? { hydrated?.videos?.first { $0.season == entry.season && $0.episode == entry.episode } }
     private func text(_ key: String, variables: [String: String] = [:]) -> String { DesktopInterfaceText.value(key, variables: variables, language: locale.identifier) }
+    private var episodeCaption: String? {
+        guard let hint = entry.episodeHint else { return nil }
+        return text("S{season} E{episode}", variables: ["season": String(hint.season ?? 0), "episode": String(hint.episode ?? 0)])
+    }
     var body: some View {
         Group {
             if let media {
                 NavigationLink { DetailView(media: media, app: app, metadataLoaded: hydrated != nil, episodeHint: entry.episodeHint) } label: {
                     if episodes { episodeCard(media) } else { Poster(media: media, width: nil) }
                 }.buttonStyle(.plain).accessibilityLabel(media.name).accessibilityIdentifier("library-history-media")
+                    .accessibilityValue(episodes ? episodeCaption ?? "" : "")
                     .overlay(alignment: .topTrailing) {
                         if entry.localID != nil {
                             Button { confirm = true } label: {
@@ -205,9 +210,9 @@ private struct LibraryHistoryCard: View {
                         }
                     }.frame(height: 4) }
                 }.clipShape(.rect(cornerRadius: 12))
-            if let hint = entry.episodeHint {
+            if let caption = episodeCaption {
                 Text(media.name.uppercased()).font(HarborTheme.font(10, weight: .semibold)).tracking(1).foregroundStyle(.secondary).lineLimit(1)
-                Text("T\(hint.season ?? 0) E\(hint.episode ?? 0)" + (episode?.name.map { " — " + $0 } ?? "")).font(HarborTheme.font(13, weight: .medium)).lineLimit(1)
+                Text(caption + (episode?.name.map { " — " + $0 } ?? "")).font(HarborTheme.font(13, weight: .medium)).lineLimit(1)
             } else { Text(media.name).font(HarborTheme.font(13, weight: .medium)).lineLimit(1) }
             if let date = entry.watchedAt { Text(Date(timeIntervalSince1970: date / 1_000), format: .dateTime.month(.twoDigits).day(.twoDigits).year()).font(.caption2).foregroundStyle(.secondary) }
         }.frame(maxWidth: .infinity, alignment: .leading).contentShape(Rectangle())

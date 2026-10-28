@@ -291,6 +291,7 @@ final class LibraryModel {
             if wasWatched { watched.remove(episode.watchedKey) } else { watched.insert(episode.watchedKey) }
             state["watched"] = .string(try WatchedCodec.encode(watched, videos: videos))
             var manual = (state["nativeManualEpisodes"] ?? .null).objectValue; manual[episode.watchedKey] = .bool(!wasWatched); state["nativeManualEpisodes"] = .object(manual)
+            if !wasWatched && fields["removed"] == .bool(true) { fields["temp"] = .bool(true) }
             fields["state"] = .object(state)
         }
         if success, current == generation, !wasWatched { traktWatched.enqueueMark(media, episodes: [episode], owner: personalOwner) }
@@ -404,6 +405,7 @@ final class LibraryModel {
                 if wasWatched { state["timesWatched"] = .integer(0) }
             }
             state["timeOffset"] = .integer(0)
+            if !wasWatched && fields["removed"] == .bool(true) { fields["temp"] = .bool(true) }
             fields["state"] = .object(state)
         }
         if success, current == generation, !wasWatched {
