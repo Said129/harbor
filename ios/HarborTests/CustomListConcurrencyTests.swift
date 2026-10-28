@@ -2,7 +2,7 @@ import XCTest
 @testable import Harbor
 
 @MainActor final class CustomListConcurrencyTests: XCTestCase {
-    func testHeldReloadCoalescesAndCannotOverwriteAnEditAcceptedWhileItReads() async throws {
+    func testHeldReloadCoalescesAndKeepsEditsDisabledUntilCommittedDataIsReady() async throws {
         let disk = OwnedCustomListDisk(), store = CustomListStore(owner: "owned", disk: disk, now: { 100 })
         await store.load(); await store.apply(.create("Committed", "", id: "one"))
         await disk.holdRead()

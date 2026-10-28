@@ -148,3 +148,16 @@ intactas y repite únicamente los dos montajes cuyo aspecto cambió. Añade las 
 preparaciones y los tres recorridos sin ejecutar: ocho ejecuciones y 19 imágenes
 previstas, sin IPA. Los tres modelos de historial independiente y los dos nuevos
 recorridos específicos de rótulos siguen en su validación separada.
+
+La [ejecución independiente 40677771264](https://github.com/Said129/harbor/actions/runs/40677771264),
+fuente `e028a83ea104b8d9ebf59f5822704ecf6a98c0a4`, aprobó sus ocho ejecuciones:
+tres modelos nuevos de historial local, un montaje afectado, dos preparaciones
+y los dos recorridos de rótulos. No hubo omitidos ni advertencias nuevas. Se
+revisaron individualmente las seis imágenes originales: el encabezado, las
+pestañas y el rótulo `S5 E23` se ven en inglés en la app normal en ambos tamaños.
+Los títulos sintéticos usan imágenes genéricas por diseño; el montaje muestra
+sus imágenes propias decodificadas. El archivo de 28.897.890 bytes tiene SHA-256
+`b0d251069a8bd0ceb95a48d82f69a2738edd8e20edb43b4c32ff4e7a2bc9b981`, igual al
+digest de GitHub. La alineación superior corregida después, en `8875df1d`, sigue
+pendiente de sus nuevas capturas. Se conservan los resultados aprobados y no se
+atribuye a esta ejecución una aprobación física, de animación o del port completo.
