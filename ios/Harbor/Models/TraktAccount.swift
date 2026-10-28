@@ -44,8 +44,8 @@ struct TraktPin: Equatable, Sendable {
     }
 }
 enum TraktEndpoint: Sendable {
-    case deviceCode, poll(String), refresh(String), me, playback, watch(TraktWatchEndpoint), library(TraktLibraryEndpoint)
-    var authenticated: Bool { switch self { case .me, .playback, .watch, .library: true; default: false } }
+    case deviceCode, poll(String), refresh(String), me, playback, watch(TraktWatchEndpoint), library(TraktLibraryEndpoint), home(TraktHomeEndpoint)
+    var authenticated: Bool { switch self { case .me, .playback, .watch, .library, .home: true; default: false } }
     func request(token: String? = nil) throws -> URLRequest {
         let url: URL, body: JSONValue?
         switch self {
@@ -61,6 +61,9 @@ enum TraktEndpoint: Sendable {
         case .playback: url = URL(string: "https://api.trakt.tv/sync/playback?limit=40")!; body = nil
         case .watch(let endpoint): url = URL(string: "https://api.trakt.tv" + endpoint.path)!; body = endpoint.body
         case .library(let endpoint): url = URL(string: "https://api.trakt.tv" + endpoint.path)!; body = endpoint.body
+        case .home(let endpoint):
+            guard endpoint.valid else { throw HarborError(code: "trakt-request") }
+            url = URL(string: "https://api.trakt.tv" + endpoint.path)!; body = nil
         }
         var request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 20)
         request.httpMethod = body == nil ? "GET" : "POST"

@@ -1882,6 +1882,8 @@
 "Tracking" = "Tracking";
 "Tracks" = "트랙";
 "Traducir títulos" = "제목 번역";
+"Trakt Recommends: Movies" = "Trakt Recommends: Movies";
+"Trakt Recommends: Series" = "Trakt Recommends: Series";
 "Trakt account limit reached. Upgrade to Trakt VIP or trim your watchlist." = "Trakt 계정 한도에 도달했습니다. Trakt VIP로 업그레이드하거나 관심 목록을 줄이세요.";
 "Trakt history" = "Trakt 시청 기록";
 "Trakt is having server trouble (HTTP {n}). Try again shortly." = "Trakt 서버에 문제가 있습니다(HTTP {n}). 잠시 후 다시 시도하세요.";
@@ -1933,6 +1935,7 @@
 "Unmute" = "음소거 해제";
 "Unverified" = "확인되지 않음";
 "Up Next" = "다음 콘텐츠";
+"Up Next on Trakt" = "Up Next on Trakt";
 "Upcoming" = "예정";
 "Upcoming Anime" = "공개 예정 애니메이션";
 "Upcoming Season" = "다음 시즌 공개 예정작";
@@ -2011,6 +2014,7 @@
 "YouTube" = "YouTube";
 "Your Discovery Queue" = "내 탐색 대기열";
 "Your Stremio library + addons sync in untouched." = "Stremio 보관함과 애드온을 그대로 동기화합니다.";
+"Your Trakt Watchlist" = "Your Trakt Watchlist";
 "Your Trakt watchlist is empty, nothing to import." = "Trakt 관심 목록이 비어 있어 가져올 항목이 없습니다.";
 "Your addons" = "내 애드온";
 "Your avatar, name, and handle across Harbor." = "Harbor 전반에 표시되는 아바타, 이름 및 핸들입니다.";

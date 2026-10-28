@@ -1882,6 +1882,8 @@
 "Tracking" = "Tracking";
 "Tracks" = "ट्रैक";
 "Traducir títulos" = "टाइटल का अनुवाद करें";
+"Trakt Recommends: Movies" = "Trakt Recommends: Movies";
+"Trakt Recommends: Series" = "Trakt Recommends: Series";
 "Trakt account limit reached. Upgrade to Trakt VIP or trim your watchlist." = "Trakt अकाउंट की सीमा पूरी हो गई है। Trakt VIP में अपग्रेड करें या अपनी वॉचलिस्ट छोटी करें।";
 "Trakt history" = "Trakt इतिहास";
 "Trakt is having server trouble (HTTP {n}). Try again shortly." = "Trakt के सर्वर में समस्या है (HTTP {n})। थोड़ी देर बाद फिर कोशिश करें।";
@@ -1933,6 +1935,7 @@
 "Unmute" = "आवाज़ चालू करें";
 "Unverified" = "असत्यापित";
 "Up Next" = "इसके बाद";
+"Up Next on Trakt" = "Up Next on Trakt";
 "Upcoming" = "आगामी";
 "Upcoming Anime" = "आगामी ऐनिमे";
 "Upcoming Season" = "आगामी सीज़न";
@@ -2011,6 +2014,7 @@
 "YouTube" = "YouTube";
 "Your Discovery Queue" = "आपकी डिस्कवरी क्यू";
 "Your Stremio library + addons sync in untouched." = "आपकी Stremio लाइब्रेरी + ऐडऑन बिना किसी बदलाव के सिंक हो जाते हैं।";
+"Your Trakt Watchlist" = "Your Trakt Watchlist";
 "Your Trakt watchlist is empty, nothing to import." = "आपकी Trakt वॉचलिस्ट खाली है, इंपोर्ट करने के लिए कुछ नहीं है।";
 "Your addons" = "आपके ऐडऑन";
 "Your avatar, name, and handle across Harbor." = "पूरे Harbor में आपका अवतार, नाम और हैंडल।";

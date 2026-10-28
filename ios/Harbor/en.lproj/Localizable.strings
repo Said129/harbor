@@ -1553,6 +1553,8 @@
 "Tracking" = "Tracking";
 "Tracks" = "Tracks";
 "Traducir títulos" = "Translate titles";
+"Trakt Recommends: Movies" = "Trakt Recommends: Movies";
+"Trakt Recommends: Series" = "Trakt Recommends: Series";
 "Trakt account limit reached. Upgrade to Trakt VIP or trim your watchlist." = "Trakt account limit reached. Upgrade to Trakt VIP or trim your watchlist.";
 "Trakt history" = "Trakt history";
 "Trakt is having server trouble (HTTP {n}). Try again shortly." = "Trakt is having server trouble (HTTP {n}). Try again shortly.";
@@ -1594,6 +1596,7 @@
 "Unmute" = "Unmute";
 "Unverified" = "Unverified";
 "Up Next" = "Up Next";
+"Up Next on Trakt" = "Up Next on Trakt";
 "Upcoming" = "Upcoming";
 "Upcoming Anime" = "Upcoming Anime";
 "Upcoming Season" = "Upcoming Season";
@@ -1654,6 +1657,7 @@
 "You have reached {max} lists. Remove one to make room." = "You have reached {max} lists. Remove one to make room.";
 "You must install this addon in your Stremio account first so Harbor can fetch its works." = "You must install this addon in your Stremio account first so Harbor can fetch its works.";
 "You've reached the end · {n} addons" = "You've reached the end · {n} addons";
+"Your Trakt Watchlist" = "Your Trakt Watchlist";
 "Your Trakt watchlist is empty, nothing to import." = "Your Trakt watchlist is empty, nothing to import.";
 "Your addons" = "Your addons";
 "Your avatar, name, and handle across Harbor." = "Your avatar, name, and handle across Harbor.";

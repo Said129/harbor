@@ -1882,6 +1882,8 @@
 "Tracking" = "Tracking";
 "Tracks" = "轨道";
 "Traducir títulos" = "翻译标题";
+"Trakt Recommends: Movies" = "Trakt Recommends: Movies";
+"Trakt Recommends: Series" = "Trakt Recommends: Series";
 "Trakt account limit reached. Upgrade to Trakt VIP or trim your watchlist." = "已达到 Trakt 账户上限。请升级到 Trakt VIP 或精简片单。";
 "Trakt history" = "Trakt 观看历史";
 "Trakt is having server trouble (HTTP {n}). Try again shortly." = "Trakt 服务器出现问题（HTTP {n}）。请稍后重试。";
@@ -1933,6 +1935,7 @@
 "Unmute" = "取消静音";
 "Unverified" = "未经验证";
 "Up Next" = "接下来播放";
+"Up Next on Trakt" = "Up Next on Trakt";
 "Upcoming" = "即将开始";
 "Upcoming Anime" = "即将上线的动漫";
 "Upcoming Season" = "下一季新番";
@@ -2011,6 +2014,7 @@
 "YouTube" = "YouTube";
 "Your Discovery Queue" = "你的发现队列";
 "Your Stremio library + addons sync in untouched." = "你的 Stremio 媒体库和插件将原样同步。";
+"Your Trakt Watchlist" = "Your Trakt Watchlist";
 "Your Trakt watchlist is empty, nothing to import." = "你的 Trakt 片单为空，没有可导入的内容。";
 "Your addons" = "你的插件";
 "Your avatar, name, and handle across Harbor." = "你在 Harbor 中使用的头像、名称和账号名。";

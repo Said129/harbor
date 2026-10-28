@@ -6,12 +6,15 @@ struct HomeView: View {
     @State private var seasonalPreferences: SpooktoberInvitationPreferences
     @State private var seasonalDate = Date()
     @State private var showSpooktober = false
+    @State private var trakt: TraktHomeModel
+    @AppStorage("uiLanguage") private var uiLanguage = "es"
     @Environment(\.scenePhase) private var scenePhase
     @MainActor init(model: AppModel) {
         self.model = model
         let owner = model.personalOwner
         _customization = State(initialValue: model.pageCustomization("home"))
         _seasonalPreferences = State(initialValue: SpooktoberInvitationPreferences(owner: owner))
+        _trakt = State(initialValue: TraktHomeModel(app: model))
     }
     private var rails: [PageRail] {
         let catalogs = model.rows.filter { !$0.metas.isEmpty }.map(PageRail.catalog)
@@ -20,7 +23,7 @@ struct HomeView: View {
         guard !classic else { return sources + lists + catalogs }
         let built = (model.home.rows + model.home.animeRows).filter { !$0.metas.isEmpty }.map(PageRail.discovery)
         var names = Set(built.map { $0.kind + "|" + $0.title.trimmingCharacters(in: .whitespacesAndNewlines).lowercased() })
-        return sources + lists + built + catalogs.filter { names.insert($0.kind + "|" + $0.title.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()).inserted }
+        return sources + lists + trakt.rows.map(PageRail.discovery) + built + catalogs.filter { names.insert($0.kind + "|" + $0.title.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()).inserted }
     }
     private var heroes: [Media] {
         if !classic && !model.home.heroes.isEmpty { return model.home.heroes }
@@ -32,6 +35,9 @@ struct HomeView: View {
     private var contentSignature: String {
         let configuration = MetadataPreferences.shared.configuration()
         return [model.accountOperationScope, String(model.storageReady), String(classic), EBookShelf.hash(configuration.tmdbKey), configuration.language, configuration.region, String(configuration.translateTitles), StreamingPreferences.forOwner(model.settingsOwner).signature, model.addons.filter(\.enabled).map(\.id).joined(separator: "|")].joined(separator: "|")
+    }
+    private var traktSignature: String {
+        [contentSignature, TraktAccountStore.forOwner(model.personalOwner).identity.uuidString, uiLanguage].joined(separator: "|")
     }
     var body: some View {
         ScrollView {
@@ -81,6 +87,11 @@ struct HomeView: View {
                 async let anime: Void = model.home.loadAnime(owner: model.personalOwner)
                 _ = await (curated, anime)
             }
+            .task(id: traktSignature) {
+                guard model.storageReady, !classic else { trakt.cancel(); return }
+                if !trakt.isActive { trakt.cancel(); trakt = TraktHomeModel(app: model) }
+                await trakt.load(configuration: MetadataPreferences.shared.configuration())
+            }
             .sheet(isPresented: $showSpooktober) {
                 NavigationStack {
                     SpooktoberView(app: model)
@@ -105,7 +116,8 @@ struct HomeView: View {
         if !classic {
             async let curated: Void = model.home.load(app: model, refresh: true)
             async let anime: Void = model.home.loadAnime(owner: model.accountOperationScope, refresh: true)
-            _ = await (curated, anime)
+            async let personal: Void = trakt.load(configuration: MetadataPreferences.shared.configuration(), force: true)
+            _ = await (curated, anime, personal)
         }
         await catalogs
     }

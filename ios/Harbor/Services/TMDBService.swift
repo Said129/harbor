@@ -1,5 +1,10 @@
 import Foundation
 
+struct PersonalDiscoverySource: Sendable {
+    let available: @MainActor @Sendable () -> Bool
+    let page: @MainActor @Sendable (Int) async throws -> [Media]
+}
+
 struct DiscoveryRail: Identifiable, Sendable {
     let id: String
     let title: String
@@ -8,6 +13,7 @@ struct DiscoveryRail: Identifiable, Sendable {
     var parameters: [String: String] = [:]
     var metas: [Media] = []
     var ranked = false
+    var personal: PersonalDiscoverySource? = nil
 }
 
 struct TMDBService: Sendable {
@@ -106,6 +112,12 @@ struct TMDBService: Sendable {
         guard let name = response["name"].string, case .array(let parts) = response["parts"] else { throw HarborError(code: "invalid-metadata-response") }
         let items = parts.compactMap { makeMedia($0, kind: "movie", configuration: configuration) }.sorted { ($0.released ?? "9999") < ($1.released ?? "9999") }
         return CollectionDetails(name: name, description: response["overview"].string, background: image(response["backdrop_path"].string, size: "w1280"), parts: items)
+    }
+    func traktMetadata(_ media: Media, configuration: MetadataConfiguration) async throws -> JSONValue {
+        let pieces = media.id.split(separator: ":")
+        guard pieces.count == 3, pieces[0] == "tmdb", ["movie", "tv"].contains(String(pieces[1])),
+              let id = Int(pieces[2]), id > 0 else { throw HarborError(code: "invalid-metadata-request") }
+        return try await get("\(pieces[1])/\(id)", configuration: configuration)
     }
     func sourceMetadata(_ media: Media, configuration: MetadataConfiguration) async throws -> Media {
         let pieces = media.id.split(separator: ":")

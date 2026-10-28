@@ -118,7 +118,7 @@ struct CustomizedRails: View {
         case .continuing, .sources: EmptyView()
         case .list(let list): NavigationLink { CustomListScreen(app: app, listID: list.id) } label: { Text(DesktopInterfaceText.value("View all")).font(.caption).foregroundStyle(.secondary) }
         case .catalog(let row): NavigationLink { CatalogBrowserView(app: app, initial: row) } label: { Label(DesktopInterfaceText.value("View all"), image: "desktop-chevron-right").font(.caption).foregroundStyle(.secondary) }.accessibilityIdentifier("catalog-browser-link")
-        case .discovery(let row): NavigationLink(DesktopInterfaceText.value("View all")) { DiscoveryGrid(rail: row, app: app) }.font(.caption).foregroundStyle(.secondary)
+        case .discovery(let row): NavigationLink(DesktopInterfaceText.value("View all")) { DiscoveryGrid(rail: row, app: app, titleOverride: customization.title(rail, among: rails)) }.font(.caption).foregroundStyle(.secondary)
         }
     }
 }

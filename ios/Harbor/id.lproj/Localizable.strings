@@ -1882,6 +1882,8 @@
 "Tracking" = "Tracking";
 "Tracks" = "Trek";
 "Traducir títulos" = "Terjemahkan judul";
+"Trakt Recommends: Movies" = "Trakt Recommends: Movies";
+"Trakt Recommends: Series" = "Trakt Recommends: Series";
 "Trakt account limit reached. Upgrade to Trakt VIP or trim your watchlist." = "Batas akun Trakt tercapai. Tingkatkan ke Trakt VIP atau kurangi daftar tontonan Anda.";
 "Trakt history" = "Riwayat Trakt";
 "Trakt is having server trouble (HTTP {n}). Try again shortly." = "Server Trakt sedang bermasalah (HTTP {n}). Coba lagi sebentar lagi.";
@@ -1933,6 +1935,7 @@
 "Unmute" = "Aktifkan suara";
 "Unverified" = "Belum diverifikasi";
 "Up Next" = "Berikutnya";
+"Up Next on Trakt" = "Up Next on Trakt";
 "Upcoming" = "Mendatang";
 "Upcoming Anime" = "Anime Mendatang";
 "Upcoming Season" = "Musim Mendatang";
@@ -2011,6 +2014,7 @@
 "YouTube" = "YouTube";
 "Your Discovery Queue" = "Antrean Penemuan Anda";
 "Your Stremio library + addons sync in untouched." = "Perpustakaan Stremio + addon Anda disinkronkan tanpa perubahan.";
+"Your Trakt Watchlist" = "Your Trakt Watchlist";
 "Your Trakt watchlist is empty, nothing to import." = "Daftar tontonan Trakt Anda kosong, tidak ada yang dapat diimpor.";
 "Your addons" = "Addon Anda";
 "Your avatar, name, and handle across Harbor." = "Avatar, nama, dan nama pengguna Anda di seluruh Harbor.";

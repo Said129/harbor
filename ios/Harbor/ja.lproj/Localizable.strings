@@ -1882,6 +1882,8 @@
 "Tracking" = "Tracking";
 "Tracks" = "トラック";
 "Traducir títulos" = "タイトルを翻訳";
+"Trakt Recommends: Movies" = "Trakt Recommends: Movies";
+"Trakt Recommends: Series" = "Trakt Recommends: Series";
 "Trakt account limit reached. Upgrade to Trakt VIP or trim your watchlist." = "Traktアカウントの上限に達しました。Trakt VIPにアップグレードするか、ウォッチリストを整理してください。";
 "Trakt history" = "Trakt視聴履歴";
 "Trakt is having server trouble (HTTP {n}). Try again shortly." = "Traktでサーバー障害が発生しています（HTTP {n}）。しばらくしてからもう一度お試しください。";
@@ -1933,6 +1935,7 @@
 "Unmute" = "ミュート解除";
 "Unverified" = "未確認";
 "Up Next" = "次のエピソード";
+"Up Next on Trakt" = "Up Next on Trakt";
 "Upcoming" = "開催予定";
 "Upcoming Anime" = "近日公開アニメ";
 "Upcoming Season" = "来シーズン";
@@ -2011,6 +2014,7 @@
 "YouTube" = "YouTube";
 "Your Discovery Queue" = "あなたの発見キュー";
 "Your Stremio library + addons sync in untouched." = "Stremioのライブラリとアドオンをそのまま同期。";
+"Your Trakt Watchlist" = "Your Trakt Watchlist";
 "Your Trakt watchlist is empty, nothing to import." = "Traktのウォッチリストは空です。インポートする項目はありません。";
 "Your addons" = "あなたのアドオン";
 "Your avatar, name, and handle across Harbor." = "Harbor全体で使用するアバター、名前、ハンドルネームです。";

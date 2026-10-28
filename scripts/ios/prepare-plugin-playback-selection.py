@@ -6,6 +6,9 @@ import re
 import runpy
 
 requested = os.environ.get('HARBOR_NATIVE_SELECTION', '').strip()
+if requested == 'affected:trakt-home' or requested.startswith('HarborTests.TraktHomeTests/'):
+    runpy.run_path('scripts/ios/prepare-trakt-home-selection.py')
+    raise SystemExit(0)
 if requested == 'affected:home-entry-language' or requested.startswith('HarborTests.HomeEntryLanguageTests/'):
     runpy.run_path('scripts/ios/prepare-home-entry-language-selection.py')
     raise SystemExit(0)

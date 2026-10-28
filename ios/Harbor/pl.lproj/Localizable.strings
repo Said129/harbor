@@ -1882,6 +1882,8 @@
 "Tracking" = "Tracking";
 "Tracks" = "Ścieżki";
 "Traducir títulos" = "Tłumacz tytuły";
+"Trakt Recommends: Movies" = "Trakt Recommends: Movies";
+"Trakt Recommends: Series" = "Trakt Recommends: Series";
 "Trakt account limit reached. Upgrade to Trakt VIP or trim your watchlist." = "Osiągnięto limit konta Trakt. Przejdź na Trakt VIP lub skróć listę do obejrzenia.";
 "Trakt history" = "Historia Trakt";
 "Trakt is having server trouble (HTTP {n}). Try again shortly." = "Trakt ma problemy z serwerem (HTTP {n}). Spróbuj ponownie za chwilę.";
@@ -1933,6 +1935,7 @@
 "Unmute" = "Włącz dźwięk";
 "Unverified" = "Niezweryfikowane";
 "Up Next" = "Następny";
+"Up Next on Trakt" = "Up Next on Trakt";
 "Upcoming" = "Nadchodzące";
 "Upcoming Anime" = "Nadchodzące anime";
 "Upcoming Season" = "Nadchodzący sezon";
@@ -2011,6 +2014,7 @@
 "YouTube" = "YouTube";
 "Your Discovery Queue" = "Twoja kolejka odkryć";
 "Your Stremio library + addons sync in untouched." = "Twoja biblioteka Stremio i dodatki zostaną zsynchronizowane bez żadnych zmian.";
+"Your Trakt Watchlist" = "Your Trakt Watchlist";
 "Your Trakt watchlist is empty, nothing to import." = "Twoja lista do obejrzenia w Trakt jest pusta, nie ma czego importować.";
 "Your addons" = "Twoje dodatki";
 "Your avatar, name, and handle across Harbor." = "Twój awatar, nazwa i identyfikator w całym Harbor.";

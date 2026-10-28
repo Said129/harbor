@@ -1882,6 +1882,8 @@
 "Tracking" = "Tracking";
 "Tracks" = "Parçalar";
 "Traducir títulos" = "Başlıkları çevir";
+"Trakt Recommends: Movies" = "Trakt Recommends: Movies";
+"Trakt Recommends: Series" = "Trakt Recommends: Series";
 "Trakt account limit reached. Upgrade to Trakt VIP or trim your watchlist." = "Trakt hesap sınırına ulaşıldı. Trakt VIP'ye yükseltin veya izleme listenizi kısaltın.";
 "Trakt history" = "Trakt geçmişi";
 "Trakt is having server trouble (HTTP {n}). Try again shortly." = "Trakt sunucu sorunu yaşıyor (HTTP {n}). Kısa süre sonra tekrar deneyin.";
@@ -1933,6 +1935,7 @@
 "Unmute" = "Sesi aç";
 "Unverified" = "Doğrulanmamış";
 "Up Next" = "Sıradaki";
+"Up Next on Trakt" = "Up Next on Trakt";
 "Upcoming" = "Yaklaşan";
 "Upcoming Anime" = "Yakında Çıkacak Animeler";
 "Upcoming Season" = "Gelecek Sezon";
@@ -2011,6 +2014,7 @@
 "YouTube" = "YouTube";
 "Your Discovery Queue" = "Keşif Kuyruğunuz";
 "Your Stremio library + addons sync in untouched." = "Stremio kütüphaneniz ve eklentileriniz değişmeden eşitlenir.";
+"Your Trakt Watchlist" = "Your Trakt Watchlist";
 "Your Trakt watchlist is empty, nothing to import." = "Trakt izleme listeniz boş, içe aktarılacak bir şey yok.";
 "Your addons" = "Eklentilerin";
 "Your avatar, name, and handle across Harbor." = "Harbor genelinde avatarınız, adınız ve kullanıcı adınız.";

@@ -1897,6 +1897,8 @@
 "Tracking" = "Tracking";
 "Tracks" = "Дорожки";
 "Traducir títulos" = "Переводить названия";
+"Trakt Recommends: Movies" = "Trakt Recommends: Movies";
+"Trakt Recommends: Series" = "Trakt Recommends: Series";
 "Trakt account limit reached. Upgrade to Trakt VIP or trim your watchlist." = "Достигнут лимит аккаунта Trakt. Оформите Trakt VIP или сократите список к просмотру.";
 "Trakt history" = "История Trakt";
 "Trakt is having server trouble (HTTP {n}). Try again shortly." = "У Trakt проблемы с сервером (HTTP {n}). Попробуйте позже.";
@@ -1948,6 +1950,7 @@
 "Unmute" = "Включить звук";
 "Unverified" = "Не подтверждён";
 "Up Next" = "Далее";
+"Up Next on Trakt" = "Up Next on Trakt";
 "Upcoming" = "Скоро";
 "Upcoming Anime" = "Ожидаемое аниме";
 "Upcoming Season" = "Следующий сезон";
@@ -2026,6 +2029,7 @@
 "YouTube" = "YouTube";
 "Your Discovery Queue" = "Ваша очередь открытий";
 "Your Stremio library + addons sync in untouched." = "Ваша библиотека Stremio и дополнения синхронизируются без изменений.";
+"Your Trakt Watchlist" = "Your Trakt Watchlist";
 "Your Trakt watchlist is empty, nothing to import." = "Ваш список к просмотру в Trakt пуст, импортировать нечего.";
 "Your addons" = "Ваши дополнения";
 "Your avatar, name, and handle across Harbor." = "Ваш аватар, имя и ник во всём Harbor.";

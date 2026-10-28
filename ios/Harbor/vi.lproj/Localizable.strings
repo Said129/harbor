@@ -1882,6 +1882,8 @@
 "Tracking" = "Tracking";
 "Tracks" = "Rãnh";
 "Traducir títulos" = "Dịch tiêu đề";
+"Trakt Recommends: Movies" = "Trakt Recommends: Movies";
+"Trakt Recommends: Series" = "Trakt Recommends: Series";
 "Trakt account limit reached. Upgrade to Trakt VIP or trim your watchlist." = "Đã đạt giới hạn tài khoản Trakt. Nâng cấp lên Trakt VIP hoặc rút gọn danh sách xem.";
 "Trakt history" = "Lịch sử Trakt";
 "Trakt is having server trouble (HTTP {n}). Try again shortly." = "Máy chủ Trakt đang gặp sự cố (HTTP {n}). Hãy thử lại sau ít phút.";
@@ -1933,6 +1935,7 @@
 "Unmute" = "Bật tiếng";
 "Unverified" = "Chưa xác minh";
 "Up Next" = "Tiếp theo";
+"Up Next on Trakt" = "Up Next on Trakt";
 "Upcoming" = "Sắp tới";
 "Upcoming Anime" = "Anime sắp ra mắt";
 "Upcoming Season" = "Mùa sắp tới";
@@ -2011,6 +2014,7 @@
 "YouTube" = "YouTube";
 "Your Discovery Queue" = "Hàng đợi khám phá của bạn";
 "Your Stremio library + addons sync in untouched." = "Thư viện Stremio và tiện ích bổ sung của bạn được đồng bộ nguyên vẹn.";
+"Your Trakt Watchlist" = "Your Trakt Watchlist";
 "Your Trakt watchlist is empty, nothing to import." = "Danh sách xem Trakt của bạn đang trống, không có gì để nhập.";
 "Your addons" = "Tiện ích bổ sung của bạn";
 "Your avatar, name, and handle across Harbor." = "Ảnh đại diện, tên và tên người dùng của bạn trên Harbor.";
