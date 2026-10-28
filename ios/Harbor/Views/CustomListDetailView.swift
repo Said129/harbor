@@ -47,8 +47,7 @@ struct CustomListDetailContent: View {
     }
     private func itemCard(_ item: CustomListItem) -> some View {
         NavigationLink {
-            if item.type == "manga" { CustomListMangaDestination(app: app, item: item, listID: list.id) }
-            else { DetailView(media: item.media, app: app) }
+            CustomListItemDestination(app: app, item: item, listID: list.id)
         } label: { Poster(media: item.media, width: nil) }
             .buttonStyle(.plain).accessibilityLabel(item.name).accessibilityIdentifier("custom-list-item")
             .overlay(alignment: .topTrailing) {

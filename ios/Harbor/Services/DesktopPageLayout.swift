@@ -28,6 +28,8 @@ struct DesktopPageRowMap: Equatable, Sendable {
             switch rail {
             case .sources:
                 if page == "home", rail.id.utf8.count <= 1_024 { pairs[rail.id] = rail.id }
+            case .list:
+                if page == "home", rail.id.utf8.count <= 1_024 { pairs[rail.id] = rail.id }
             case .continuing:
                 if page == "anime" { pairs[rail.id] = "continueWatching" }
             case .discovery(let row):
@@ -39,6 +41,10 @@ struct DesktopPageRowMap: Equatable, Sendable {
                 pairs[rail.id] = (page == "anime" ? "addon:" : "") + manifest + "-" + catalog.type + "-" + catalog.id
             }
         }
+    }
+    mutating func registerLists(_ ids: [String]) {
+        guard page == "home" else { return }
+        for id in ids where !id.isEmpty && ("list-" + id).utf8.count <= 1_024 { pairs["list-" + id] = "list-" + id }
     }
     private static func safeID(_ id: String) -> Bool {
         !id.isEmpty && id.utf8.count <= 512 && !id.contains("://") && !id.contains("?") && !id.contains("#") && !id.contains("/")
@@ -59,6 +65,7 @@ struct DesktopPageLayout: Equatable, Sendable {
     let renamed: [String: String]
     let numerals: [String]
     let hero: String?
+    let listRows: [String]
     init(page: String, raw: JSONValue) throws {
         guard ["home", "anime"].contains(page), case .object(let fields) = raw,
               try JSONEncoder().encode(raw).count <= 96 * 1_024 else { throw HarborError(code: "page-sync-value") }
@@ -80,6 +87,7 @@ struct DesktopPageLayout: Equatable, Sendable {
             }
         } else { renamed = [:] }
         if page == "home" {
+            listRows = try ids("listRows")
             numerals = try ids("numerals")
             if let value = fields["heroSource"], value != .null {
                 guard let id = value.string, id.utf8.count <= 1_024 else { throw HarborError(code: "page-sync-value") }
@@ -89,12 +97,15 @@ struct DesktopPageLayout: Equatable, Sendable {
                 if let value = fields[key], case .bool = value { continue }
                 else if fields[key] != nil { throw HarborError(code: "page-sync-value") }
             }
-        } else { numerals = []; hero = nil }
+        } else { numerals = []; hero = nil; listRows = [] }
         self.page = page; self.raw = raw
     }
     private func includingSources(_ base: DesktopPageRowMap) -> DesktopPageRowMap {
         var mapping = base
-        if page == "home" { mapping.register(raw["customSources"].array.compactMap(DesktopSourceRow.init).map(PageRail.sources)) }
+        if page == "home" {
+            mapping.register(raw["customSources"].array.compactMap(DesktopSourceRow.init).map(PageRail.sources))
+            mapping.registerLists(listRows)
+        }
         return mapping
     }
     func native(preserving local: PageLayout, mapping base: DesktopPageRowMap) -> PageLayout {

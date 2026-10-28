@@ -62,6 +62,7 @@
 "Add a movie or show to this list..." = "इस सूची में कोई फ़िल्म या शो जोड़ें...";
 "Add a repository" = "रिपॉज़िटरी जोड़ें";
 "Add bookmark" = "Add bookmark";
+"Add from lists" = "सूचियों से जोड़ें";
 "Add key" = "कुंजी जोड़ें";
 "Add language" = "भाषा जोड़ें";
 "Add local folder" = "Add local folder";
@@ -1412,6 +1413,7 @@
 "Remove from continue watching" = "Remove from continue watching";
 "Remove from favorites" = "पसंदीदा से हटाएँ";
 "Remove from history" = "इतिहास से हटाएँ";
+"Remove from home" = "Remove from home";
 "Remove from list" = "सूची से हटाएँ";
 "Remove from queue" = "क्यू से हटाएँ";
 "Remove from saved" = "सेव किए गए आइटमों से हटाएँ";

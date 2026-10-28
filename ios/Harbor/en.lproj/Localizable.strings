@@ -46,6 +46,7 @@
 "Add a TMDB API key in Metadata settings to search for titles." = "Add a TMDB API key in Metadata settings to search for titles.";
 "Add a movie or show to this list..." = "Add a movie or show to this list...";
 "Add bookmark" = "Add bookmark";
+"Add from lists" = "Add from lists";
 "Add key" = "Add key";
 "Add language" = "Add language";
 "Add local folder" = "Add local folder";
@@ -1112,6 +1113,7 @@
 "Random avatar" = "Random avatar";
 "Ranked by the {site} community from their public index." = "Ranked by the {site} community from their public index.";
 "Rate on SIMKL" = "Rate on SIMKL";
+"Read" = "Read";
 "Read more" = "Read more";
 "Read on iPhone and iPad" = "Read on iPhone and iPad";
 "Reader options" = "Reader options";
@@ -1158,6 +1160,7 @@
 "Remove from continue watching" = "Remove from continue watching";
 "Remove from favorites" = "Remove from favorites";
 "Remove from history" = "Remove from history";
+"Remove from home" = "Remove from home";
 "Remove from list" = "Remove from list";
 "Remove from queue" = "Remove from queue";
 "Remove from saved" = "Remove from saved";

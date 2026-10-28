@@ -10,6 +10,7 @@ struct CustomListsContent: View {
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     private var store: CustomListStore { app.customLists }
     private var dragPrefix: String { "harbor-list:" + EBookShelf.hash(app.accountOperationScope) + ":" }
+    init(app: AppModel, initialListID: String? = nil) { self.app = app; _selected = State(initialValue: initialListID) }
     private func text(_ key: String, _ variables: [String: String] = [:]) -> String { DesktopInterfaceText.value(key, variables: variables, language: locale.identifier) }
     var body: some View {
         VStack(alignment: .leading, spacing: 24) {
@@ -45,7 +46,7 @@ struct CustomListsContent: View {
                     }
                 }.animation(reduceMotion ? nil : .easeInOut(duration: 0.2), value: store.lists.map(\.id))
             }
-        }.task(id: app.settingsOwner) { await store.load() }
+        }.customListArtwork(app: app, lists: store.lists).task(id: app.settingsOwner) { await store.load() }
             .onChange(of: app.accountOperationScope) { _, _ in selected = nil; editor = nil; deleting = nil; dropTarget = nil }
             .onChange(of: store.lists.map(\.id)) { _, ids in if let selected, !ids.contains(selected) { self.selected = nil } }
             .sheet(item: $editor) { target in CustomListEditor(app: app, target: target) { id in selected = id } }
@@ -99,7 +100,7 @@ struct CustomListCard: View {
                     let items = Array(list.items.prefix(3))
                     ForEach(Array(items.enumerated()), id: \.offset) { index, item in
                         let offset = Double(index) - Double(items.count - 1) / 2
-                        Artwork(url: item.poster, maxPixels: 240).frame(width: 70, height: 105).clipped().clipShape(.rect(cornerRadius: 8))
+                        CustomListArtwork(media: item.media, url: item.poster, maxPixels: 240).frame(width: 70, height: 105).clipped().clipShape(.rect(cornerRadius: 8))
                             .overlay { RoundedRectangle(cornerRadius: 8).stroke(.black.opacity(0.25), lineWidth: 1) }
                             .shadow(color: .black.opacity(0.6), radius: 12, y: 10)
                             .rotationEffect(.degrees(offset * 7)).offset(x: offset * 30).zIndex(Double(index))

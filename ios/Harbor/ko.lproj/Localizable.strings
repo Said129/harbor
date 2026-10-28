@@ -62,6 +62,7 @@
 "Add a movie or show to this list..." = "이 목록에 영화 또는 시리즈 추가...";
 "Add a repository" = "저장소 추가";
 "Add bookmark" = "Add bookmark";
+"Add from lists" = "목록에서 추가";
 "Add key" = "키 추가";
 "Add language" = "언어 추가";
 "Add local folder" = "Add local folder";
@@ -1412,6 +1413,7 @@
 "Remove from continue watching" = "Remove from continue watching";
 "Remove from favorites" = "즐겨찾기에서 삭제";
 "Remove from history" = "기록에서 삭제";
+"Remove from home" = "Remove from home";
 "Remove from list" = "목록에서 제거";
 "Remove from queue" = "대기열에서 삭제";
 "Remove from saved" = "저장 목록에서 제거";

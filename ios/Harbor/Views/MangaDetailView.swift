@@ -4,11 +4,13 @@ struct MangaDetailView: View {
     let book: MangaBook
     let shelf: MangaShelf
     let client: SuwayomiClient?
+    var readImmediately = false
     @Environment(\.readingPlugins) private var reading
     @Environment(\.customListApp) private var app
     @State private var detail: MangaBook?
     @State private var chapters: [MangaChapter] = []
     @State private var selection: MangaChapter?
+    @State private var didAutoRead = false
     @State private var loading = false
     @State private var reverse = false
     @State private var query = ""
@@ -57,7 +59,12 @@ struct MangaDetailView: View {
                     if let client { Button("Añadir a biblioteca Suwayomi") { Task { do { try await client.setLibrary(book, enabled: true) } catch { self.error = safeMessage(error) } } }; Button("Quitar de biblioteca Suwayomi", role: .destructive) { Task { do { try await client.setLibrary(book, enabled: false) } catch { self.error = safeMessage(error) } } } }
                 } label: { glyph("desktop-bookmark", size: 19).frame(width: 44, height: 44) }.accessibilityLabel("Biblioteca de Manga")
             } }
-            .task(id: book.pluginID == nil ? "local" : String(reading?.ready ?? false)) { await load() }
+            .task(id: book.pluginID == nil ? "local" : String(reading?.ready ?? false)) {
+                let scope = app?.accountOperationScope
+                await load()
+                guard readImmediately, !didAutoRead, !Task.isCancelled, scope == app?.accountOperationScope, let resume else { return }
+                didAutoRead = true; selection = resume
+            }
             .navigationDestination(item: $selection) { chapter in
                 MangaReaderView(book: displayed, initialChapter: chapter, chapters: chapters, shelf: shelf, client: client).environment(\.readingPlugins, reading)
             }

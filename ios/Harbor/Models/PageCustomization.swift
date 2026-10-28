@@ -6,12 +6,13 @@ enum PageRail: Identifiable, Sendable {
     case discovery(DiscoveryRail)
     case continuing(kind: String)
     case sources(DesktopSourceRow)
-    var id: String { switch self { case .catalog(let row): "catalog-" + EBookShelf.hash(row.id); case .discovery(let row): "discovery-" + row.id; case .continuing: "continueWatching"; case .sources(let row): row.rowID } }
-    var title: String { switch self { case .catalog(let row): row.plan.title; case .discovery(let row): row.title; case .continuing: DesktopInterfaceText.value("Continue Watching"); case .sources(let row): row.title } }
-    var kind: String { switch self { case .catalog(let row): row.plan.kind; case .discovery(let row): row.kind; case .continuing(let kind): kind; case .sources: "source" } }
-    var metas: [Media] { switch self { case .catalog(let row): row.metas; case .discovery(let row): row.metas; case .continuing, .sources: [] } }
+    case list(CustomList)
+    var id: String { switch self { case .catalog(let row): "catalog-" + EBookShelf.hash(row.id); case .discovery(let row): "discovery-" + row.id; case .continuing: "continueWatching"; case .sources(let row): row.rowID; case .list(let list): "list-" + list.id } }
+    var title: String { switch self { case .catalog(let row): row.plan.title; case .discovery(let row): row.title; case .continuing: DesktopInterfaceText.value("Continue Watching"); case .sources(let row): row.title; case .list(let list): list.name } }
+    var kind: String { switch self { case .catalog(let row): row.plan.kind; case .discovery(let row): row.kind; case .continuing(let kind): kind; case .sources: "source"; case .list: "movie" } }
+    var metas: [Media] { switch self { case .catalog(let row): row.metas; case .discovery(let row): row.metas; case .continuing, .sources: []; case .list(let list): list.items.map(\.media) } }
     var supportsArtworkCustomization: Bool { switch self { case .continuing, .sources: false; default: true } }
-    var defaultNumerals: Bool { switch self { case .catalog, .continuing, .sources: false; case .discovery(let row): row.ranked || row.id.hasSuffix("-top10") || ["cm-top-movies", "cm-drama", "cm-comedy"].contains(row.id) } }
+    var defaultNumerals: Bool { switch self { case .catalog, .continuing, .sources, .list: false; case .discovery(let row): row.ranked || row.id.hasSuffix("-top10") || ["cm-top-movies", "cm-drama", "cm-comedy"].contains(row.id) } }
     static func addingContinuation(to rails: [PageRail], kind: String, records: [LibraryRecord], detectedAnime: Set<String>, presentationError: Bool) -> [PageRail] {
         let rows = rails.filter { $0.id != "continueWatching" }
         guard presentationError || records.contains(where: { $0.continuing && ContinueWatchingSelection.includes($0, kind: kind, detectedAnime: detectedAnime) }) else { return rows }
@@ -199,6 +200,26 @@ final class PageCustomization {
         var seen = Set<String>()
         return (wireProjection?["customSources"].array ?? []).compactMap(DesktopSourceRow.init).filter { seen.insert($0.id).inserted }
     }
+    var listRowIDs: [String] { page == "home" ? wireProjection?["listRows"].array.compactMap(\.string) ?? [] : [] }
+    func addListRow(_ id: String, expected: NavigationScope) throws {
+        try changeListRows(expected: expected) { if !$0.contains(id) { $0.append(id) } }
+    }
+    func removeListRow(_ id: String, expected: NavigationScope) throws {
+        try changeListRows(expected: expected) { $0.removeAll { $0 == id } }
+    }
+    private func changeListRows(expected: NavigationScope, edit: (inout [String]) -> Void) throws {
+        guard ready, page == "home", scope == expected else { throw HarborError(code: "account-changed") }
+        let mapping = DesktopPageRowMap(page: page, rails: editingRails)
+        let previous = try DesktopPageLayout(page: page, raw: wireProjection ?? .object([:])).applying(layout, mapping: mapping)
+        var fields = previous.raw.objectValue, ids = previous.listRows
+        edit(&ids); fields["listRows"] = .array(ids.map(JSONValue.string))
+        let projection = try DesktopPageLayout(page: page, raw: .object(fields)).raw
+        guard projection != previous.raw else { return }
+        try LayoutEditStorage.writeObject(.init(value: layout, editor: scope.editorID, projection: projection), key: key)
+        wireProjection = projection; lastEditor = scope.editorID; error = nil
+        if case .local = scope { localProjection = projection }
+        onEdit?(layout)
+    }
     @discardableResult func importSources(_ text: String, expected: NavigationScope) throws -> Int {
         guard text.utf8.count <= 96 * 1_024 else { throw HarborError(code: "custom-source-import") }
         let rows = DesktopSourceRow.parse(text)
@@ -236,8 +257,8 @@ final class PageCustomization {
         do {
             var projection = try wireProjection.map { try DesktopPageLayout(page: page, raw: $0)
                 .applying(next, mapping: DesktopPageRowMap(page: page, rails: editingRails)).raw }
-            if page == "home", let original = projection, original["customSources"] != .null {
-                var fields = original.objectValue; fields["customSources"] = .array([])
+            if page == "home", let original = projection {
+                var fields = original.objectValue; fields["customSources"] = .array([]); fields["listRows"] = .array([])
                 projection = try DesktopPageLayout(page: page, raw: .object(fields)).raw
             }
             guard next != layout || projection != wireProjection else { return }

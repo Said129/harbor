@@ -12,6 +12,8 @@ struct MangaImage: View {
     var maxPixels = 2200
     var retryOnFailure = false
     var onSize: ((CGSize) -> Void)?
+    var onImageAvailability: ((Bool) -> Void)? = nil
+    var onLoadCompletion: ((Bool) -> Void)? = nil
     @Environment(\.readingPlugins) private var reading
     @State private var image: UIImage?
     @State private var failed = false
@@ -29,7 +31,7 @@ struct MangaImage: View {
         }.task(id: signature) { await load() }
     }
     private func load() async {
-        failed = false; image = nil
+        failed = false; image = nil; onImageAvailability?(false)
         do {
             let data: Data
             if let pluginID = book.pluginID {
@@ -56,8 +58,8 @@ struct MangaImage: View {
                 let height = (properties?[kCGImagePropertyPixelHeight] as? NSNumber)?.doubleValue ?? Double(image.height)
                 return MangaBitmap(image: UIImage(cgImage: image), size: CGSize(width: width, height: height))
             }.value
-            try Task.checkCancellation(); image = bitmap.image; onSize?(bitmap.size)
+            try Task.checkCancellation(); image = bitmap.image; onSize?(bitmap.size); onImageAvailability?(true); onLoadCompletion?(true)
         } catch is CancellationError { return }
-        catch { failed = true }
+        catch { failed = true; onImageAvailability?(false); onLoadCompletion?(false) }
     }
 }

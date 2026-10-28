@@ -64,6 +64,7 @@
 "Add a movie or show to this list..." = "Добавить фильм или сериал в список...";
 "Add a repository" = "Добавить репозиторий";
 "Add bookmark" = "Add bookmark";
+"Add from lists" = "Добавить из списков";
 "Add key" = "Добавить ключ";
 "Add language" = "Добавить язык";
 "Add local folder" = "Add local folder";
@@ -1424,6 +1425,7 @@
 "Remove from continue watching" = "Убрать из «Продолжить просмотр»";
 "Remove from favorites" = "Убрать из избранного";
 "Remove from history" = "Удалить из истории";
+"Remove from home" = "Remove from home";
 "Remove from list" = "Удалить из списка";
 "Remove from queue" = "Убрать из очереди";
 "Remove from saved" = "Убрать из сохранённого";

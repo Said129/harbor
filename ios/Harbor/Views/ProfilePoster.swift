@@ -168,7 +168,7 @@ struct ProfilePoster: View {
                 if configuration.style == .tv { televisionArtwork }
                 else {
                     ZStack {
-                        Artwork(url: posterURL, fallback: posterFallback, fallbacks: posterFallbacks,
+                        CustomListArtwork(media: media, url: posterURL, fallback: posterFallback, fallbacks: posterFallbacks,
                             maxPixels: pixelLimit, onImageAvailability: { loaded = $0 }, onLoadCompletion: { _ in loaded = true })
                         if let wideURL, wideResolvedKey == wideTaskKey {
                             Artwork(url: wideURL, maxPixels: widePixels, showsPlaceholder: false, onImageAvailability: { ready in
@@ -231,7 +231,7 @@ struct ProfilePoster: View {
     }
     private var televisionArtwork: some View {
         ZStack {
-            Artwork(url: posterURL, fallback: posterFallback, fallbacks: posterFallbacks, maxPixels: pixelLimit,
+            CustomListArtwork(media: media, url: posterURL, fallback: posterFallback, fallbacks: posterFallbacks, maxPixels: pixelLimit,
                 onImageAvailability: { if $0 { loaded = true } }, onLoadCompletion: { _ in loaded = true })
                 .scaleEffect(1.1).blur(radius: 18).saturation(1.2)
             if let backdrop = backgroundURL {
@@ -241,7 +241,7 @@ struct ProfilePoster: View {
                 ? [.init(color: HarborTheme.background.opacity(0.8), location: 0), .init(color: HarborTheme.background.opacity(0.45), location: 0.5), .init(color: HarborTheme.background.opacity(0.7), location: 1)]
                 : [.init(color: HarborTheme.background, location: 0.02), .init(color: HarborTheme.background.opacity(0.65), location: 0.34), .init(color: HarborTheme.background.opacity(0.18), location: 0.62), .init(color: .clear, location: 0.84)], startPoint: .bottom, endPoint: .top)
             HStack(alignment: configuration.logoPosition == .center ? .center : .bottom, spacing: 10) {
-                Artwork(url: posterURL, fallback: posterFallback, fallbacks: posterFallbacks, maxPixels: 180)
+                CustomListArtwork(media: media, url: posterURL, fallback: posterFallback, fallbacks: posterFallbacks, maxPixels: 180)
                     .frame(width: 36, height: 54).clipShape(.rect(cornerRadius: 2))
                     .overlay { RoundedRectangle(cornerRadius: 2).stroke(.white.opacity(0.12), lineWidth: 1) }
                 VStack(alignment: captionAlignment, spacing: 4) {

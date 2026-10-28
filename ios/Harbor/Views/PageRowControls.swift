@@ -54,7 +54,7 @@ struct PageRowControls: View {
     private var hidden: Bool { customization.layout.hidden.contains(rail.id) }
     private var ranked: Bool { customization.ranked(rail) }
     private var hero: Bool { customization.layout.heroSource == rail.id }
-    private var canHero: Bool { rail.metas.contains { $0.background != nil || $0.poster != nil } }
+    private var canHero: Bool { rail.metas.contains { $0.type == "manga" || $0.background != nil || $0.poster != nil } }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
@@ -110,6 +110,14 @@ struct PageRowControls: View {
                         Image(systemName: "trash").frame(width: 44, height: 44)
                     }.buttonStyle(.plain).accessibilityLabel(DesktopInterfaceText.value("Delete"))
                         .accessibilityIdentifier("source-delete-\(row.id)")
+                }
+                if case .list(let list) = rail {
+                    Button {
+                        do { try customization.removeListRow(list.id, expected: customization.scope) }
+                        catch { notice = safeMessage(error) }
+                    } label: { Image(systemName: "trash").frame(width: 44, height: 44) }
+                        .buttonStyle(.plain).accessibilityLabel(DesktopInterfaceText.value("Remove from home"))
+                        .accessibilityIdentifier("home-list-remove-" + list.id)
                 }
                 Spacer(minLength: 0)
             }

@@ -48,6 +48,7 @@ struct CinemaHero: View {
     let app: AppModel
     var playSquare = true
     var moreInfo = true
+    var customList: CustomList? = nil
     @State private var selected = 0
     var body: some View {
         VStack(spacing: 14) {
@@ -55,7 +56,7 @@ struct CinemaHero: View {
                 ForEach(Array(metas.prefix(5).enumerated()), id: \.element.identity) { index, media in
                     GeometryReader { geometry in
                         ZStack(alignment: .bottomLeading) {
-                            Artwork(url: TitleArtworkPreferences.shared.value(.backdrop, id: media.artworkID) ?? media.background,
+                            CustomListArtwork(media: media, url: TitleArtworkPreferences.shared.value(.backdrop, id: media.artworkID) ?? media.background ?? (media.type == "manga" ? media.poster : nil),
                                 fallback: media.fallbackBackground, fallbacks: [TitleArtworkPreferences.shared.value(.poster, id: media.artworkID), media.poster].compactMap { $0 }, maxPixels: 1400)
                                 .frame(width: geometry.size.width, height: geometry.size.height).accessibilityHidden(true)
                             LinearGradient(colors: [.black.opacity(0.12), HarborTheme.background.opacity(0.55), HarborTheme.background], startPoint: .top, endPoint: .bottom).accessibilityHidden(true)
@@ -69,10 +70,15 @@ struct CinemaHero: View {
                                 }.font(.caption)
                                 if let description = media.description { Text(description).font(.subheadline).foregroundStyle(.white.opacity(0.72)).lineLimit(3) }
                                 HStack(spacing: 10) {
-                                    NavigationLink { DetailView(media: media, app: app, playImmediately: true) } label: { Label("Reproducir", image: "ui-play-filled").font(HarborTheme.font(14, weight: .semibold)).padding(.horizontal, 18).padding(.vertical, 13).foregroundStyle(.black).background(.white, in: .rect(cornerRadius: playSquare ? 8 : 24)) }
+                                    NavigationLink { destination(media, play: true) } label: {
+                                        Group {
+                                            if media.type == "manga" { Label(DesktopInterfaceText.value("Read"), systemImage: "book") }
+                                            else { Label("Reproducir", image: "ui-play-filled") }
+                                        }.font(HarborTheme.font(14, weight: .semibold)).padding(.horizontal, 18).padding(.vertical, 13).foregroundStyle(.black).background(.white, in: .rect(cornerRadius: playSquare ? 8 : 24))
+                                    }
                                         .buttonStyle(.plain).accessibilityIdentifier("hero-play")
-                                    if moreInfo {
-                                        NavigationLink(value: media) { Label("Más información", image: "desktop-info").font(HarborTheme.font(14, weight: .semibold)).padding(.horizontal, 14).padding(.vertical, 13).background(.black.opacity(0.3), in: .rect(cornerRadius: 8)) }.buttonStyle(.plain)
+                                    if moreInfo || media.type == "manga" {
+                                        NavigationLink { destination(media, play: false) } label: { Label("Más información", image: "desktop-info").font(HarborTheme.font(14, weight: .semibold)).padding(.horizontal, 14).padding(.vertical, 13).background(.black.opacity(0.3), in: .rect(cornerRadius: 8)) }.buttonStyle(.plain)
                                     } else {
                                         Button { Task { await app.library.toggleBookmark(media) } } label: { Label(app.library.bookmarked(media) ? "En mi lista" : "Añadir a mi lista", image: "desktop-bookmark").font(HarborTheme.font(14, weight: .semibold)).padding(.horizontal, 10).padding(.vertical, 13) }.buttonStyle(.plain).disabled(app.library.busy || app.library.loading)
                                     }
@@ -92,5 +98,10 @@ struct CinemaHero: View {
             if !moreInfo, let error = app.library.error { Text(error).font(.caption).foregroundStyle(.orange).padding(.horizontal) }
         }
         .onChange(of: metas.map(\.identity)) { _, _ in if selected >= min(5, metas.count) { selected = 0 } }
+    }
+    @ViewBuilder private func destination(_ media: Media, play: Bool) -> some View {
+        if media.type == "manga", let customList, let item = customList.items.first(where: { $0.id == media.id }) {
+            CustomListItemDestination(app: app, item: item, listID: customList.id, playImmediately: play)
+        } else { DetailView(media: media, app: app, playImmediately: play) }
     }
 }

@@ -4,6 +4,7 @@ struct CustomListMangaDestination: View {
     let app: AppModel
     let item: CustomListItem
     let listID: String
+    var readImmediately = false
     @State private var book: MangaBook?
     @State private var shelf: MangaShelf?
     @State private var client: SuwayomiClient?
@@ -14,7 +15,7 @@ struct CustomListMangaDestination: View {
     @Environment(\.locale) private var locale
     var body: some View {
         Group {
-            if let book, let shelf { MangaDetailView(book: book, shelf: shelf, client: book.server == client?.server.id ? client : nil) }
+            if let book, let shelf { MangaDetailView(book: book, shelf: shelf, client: book.server == client?.server.id ? client : nil, readImmediately: readImmediately) }
             else if let failure {
                 VStack(spacing: 16) {
                     Text(failure).font(HarborTheme.font(14)).multilineTextAlignment(.center)

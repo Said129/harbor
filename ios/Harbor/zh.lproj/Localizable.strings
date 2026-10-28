@@ -62,6 +62,7 @@
 "Add a movie or show to this list..." = "将电影或剧集添加到此片单…";
 "Add a repository" = "添加仓库";
 "Add bookmark" = "Add bookmark";
+"Add from lists" = "从片单添加";
 "Add key" = "添加密钥";
 "Add language" = "添加语言";
 "Add local folder" = "Add local folder";
@@ -1412,6 +1413,7 @@
 "Remove from continue watching" = "Remove from continue watching";
 "Remove from favorites" = "从收藏中移除";
 "Remove from history" = "从历史记录中移除";
+"Remove from home" = "Remove from home";
 "Remove from list" = "从列表中移除";
 "Remove from queue" = "从播放队列中移除";
 "Remove from saved" = "从已保存内容中移除";

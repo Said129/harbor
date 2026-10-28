@@ -14,6 +14,8 @@ private struct RankNumeral: UIViewRepresentable {
 
 struct TopTenRail: View {
     let metas: [Media]
+    var app: AppModel? = nil
+    var customList: CustomList? = nil
     @AppStorage("rowCardStyle") private var style = "poster"
     @AppStorage("posterScale") private var scale = 1.0
     private var configuration: PosterCardConfiguration { .init(style: style, scale: scale) }
@@ -21,11 +23,20 @@ struct TopTenRail: View {
         ScrollView(.horizontal) {
             LazyHStack(spacing: 10) {
                 ForEach(Array(metas.prefix(10).enumerated()), id: \.element.identity) { index, media in
-                    NavigationLink(value: media) { RankedPosterArtwork(rank: index + 1, media: media, configuration: configuration) }
+                    card(media, index: index)
                         .buttonStyle(.plain).accessibilityLabel("\(index + 1). \(media.name)").accessibilityIdentifier(media.type == "movie" ? "catalog-movie" : "catalog-media")
                 }
             }.padding(.horizontal)
         }.scrollIndicators(.hidden).posterRowBehavior()
+    }
+    @ViewBuilder private func card(_ media: Media, index: Int) -> some View {
+        if let app, let customList, let item = customList.items.first(where: { $0.id == media.id }) {
+            NavigationLink { CustomListItemDestination(app: app, item: item, listID: customList.id) } label: {
+                RankedPosterArtwork(rank: index + 1, media: media, configuration: configuration)
+            }
+        } else {
+            NavigationLink(value: media) { RankedPosterArtwork(rank: index + 1, media: media, configuration: configuration) }
+        }
     }
 }
 

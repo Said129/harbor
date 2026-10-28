@@ -1,0 +1,1577 @@
+{
+  "reference": "0834340cec5531650bfe78cd628628702e636987",
+  "actual_original_typescript_executed": true,
+  "provider_network_requests": 0,
+  "executed_module_hashes": {
+    "src/lib/home-customization.ts": "2113d58e1691afb3c25918108269347b5e30cc4b1e5d90ffc55306bb9e9a8103",
+    "src/views/home.tsx": "54e67c672a8bfeea98593e2ab409687b1a19086082a1f4d1ea9bd76a8c43051c"
+  },
+  "extracted_original_memos": ["listHomeRows", "availableListRows"],
+  "projections": [
+    {
+      "lists": [
+        {
+          "id": "alpha",
+          "name": "Own titles",
+          "description": "A",
+          "items": [
+            {
+              "id": "own:show",
+              "type": "series",
+              "name": "Own Show",
+              "poster": "https://example.org/show.jpg",
+              "addonOrigin": {
+                "id": "own",
+                "name": "Own addon",
+                "base": "https://example.org/addon/manifest.json"
+              },
+              "videos": [
+                {
+                  "id": "own:show:5:23",
+                  "season": 5,
+                  "episode": 23
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "empty",
+          "name": "Empty",
+          "items": []
+        },
+        {
+          "id": "beta",
+          "name": "Own titles",
+          "items": [
+            {
+              "id": "local-pdf",
+              "type": "manga",
+              "name": "Owned Manga",
+              "poster": "cover.png"
+            }
+          ]
+        },
+        {
+          "id": "ten",
+          "name": "Ten picks",
+          "items": [
+            {
+              "id": "own:film-0",
+              "type": "movie",
+              "name": "Film 0",
+              "poster": "https://example.org/0.jpg"
+            },
+            {
+              "id": "own:film-1",
+              "type": "movie",
+              "name": "Film 1",
+              "poster": "https://example.org/1.jpg"
+            },
+            {
+              "id": "own:film-2",
+              "type": "movie",
+              "name": "Film 2",
+              "poster": "https://example.org/2.jpg"
+            },
+            {
+              "id": "own:film-3",
+              "type": "movie",
+              "name": "Film 3",
+              "poster": "https://example.org/3.jpg"
+            },
+            {
+              "id": "own:film-4",
+              "type": "movie",
+              "name": "Film 4",
+              "poster": "https://example.org/4.jpg"
+            },
+            {
+              "id": "own:film-5",
+              "type": "movie",
+              "name": "Film 5",
+              "poster": "https://example.org/5.jpg"
+            },
+            {
+              "id": "own:film-6",
+              "type": "movie",
+              "name": "Film 6",
+              "poster": "https://example.org/6.jpg"
+            },
+            {
+              "id": "own:film-7",
+              "type": "movie",
+              "name": "Film 7",
+              "poster": "https://example.org/7.jpg"
+            },
+            {
+              "id": "own:film-8",
+              "type": "movie",
+              "name": "Film 8",
+              "poster": "https://example.org/8.jpg"
+            },
+            {
+              "id": "own:film-9",
+              "type": "movie",
+              "name": "Film 9",
+              "poster": "https://example.org/9.jpg"
+            }
+          ]
+        }
+      ],
+      "selected_ids": [],
+      "expected_rows": [],
+      "expected_available": [
+        {
+          "id": "alpha",
+          "name": "Own titles"
+        },
+        {
+          "id": "beta",
+          "name": "Own titles"
+        },
+        {
+          "id": "ten",
+          "name": "Ten picks"
+        }
+      ]
+    },
+    {
+      "lists": [
+        {
+          "id": "alpha",
+          "name": "Own titles",
+          "description": "A",
+          "items": [
+            {
+              "id": "own:show",
+              "type": "series",
+              "name": "Own Show",
+              "poster": "https://example.org/show.jpg",
+              "addonOrigin": {
+                "id": "own",
+                "name": "Own addon",
+                "base": "https://example.org/addon/manifest.json"
+              },
+              "videos": [
+                {
+                  "id": "own:show:5:23",
+                  "season": 5,
+                  "episode": 23
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "empty",
+          "name": "Empty",
+          "items": []
+        },
+        {
+          "id": "beta",
+          "name": "Own titles",
+          "items": [
+            {
+              "id": "local-pdf",
+              "type": "manga",
+              "name": "Owned Manga",
+              "poster": "cover.png"
+            }
+          ]
+        },
+        {
+          "id": "ten",
+          "name": "Ten picks",
+          "items": [
+            {
+              "id": "own:film-0",
+              "type": "movie",
+              "name": "Film 0",
+              "poster": "https://example.org/0.jpg"
+            },
+            {
+              "id": "own:film-1",
+              "type": "movie",
+              "name": "Film 1",
+              "poster": "https://example.org/1.jpg"
+            },
+            {
+              "id": "own:film-2",
+              "type": "movie",
+              "name": "Film 2",
+              "poster": "https://example.org/2.jpg"
+            },
+            {
+              "id": "own:film-3",
+              "type": "movie",
+              "name": "Film 3",
+              "poster": "https://example.org/3.jpg"
+            },
+            {
+              "id": "own:film-4",
+              "type": "movie",
+              "name": "Film 4",
+              "poster": "https://example.org/4.jpg"
+            },
+            {
+              "id": "own:film-5",
+              "type": "movie",
+              "name": "Film 5",
+              "poster": "https://example.org/5.jpg"
+            },
+            {
+              "id": "own:film-6",
+              "type": "movie",
+              "name": "Film 6",
+              "poster": "https://example.org/6.jpg"
+            },
+            {
+              "id": "own:film-7",
+              "type": "movie",
+              "name": "Film 7",
+              "poster": "https://example.org/7.jpg"
+            },
+            {
+              "id": "own:film-8",
+              "type": "movie",
+              "name": "Film 8",
+              "poster": "https://example.org/8.jpg"
+            },
+            {
+              "id": "own:film-9",
+              "type": "movie",
+              "name": "Film 9",
+              "poster": "https://example.org/9.jpg"
+            }
+          ]
+        }
+      ],
+      "selected_ids": ["beta", "missing", "empty", "alpha"],
+      "expected_rows": [
+        {
+          "key": "list-beta",
+          "type": "movie",
+          "name": "Own titles",
+          "metas": [
+            {
+              "id": "local-pdf",
+              "type": "manga",
+              "name": "Owned Manga",
+              "poster": "cover.png"
+            }
+          ],
+          "page": 1,
+          "hasMore": false,
+          "noDedup": true
+        },
+        {
+          "key": "list-alpha",
+          "type": "movie",
+          "name": "Own titles",
+          "metas": [
+            {
+              "id": "own:show",
+              "type": "series",
+              "name": "Own Show",
+              "poster": "https://example.org/show.jpg"
+            }
+          ],
+          "page": 1,
+          "hasMore": false,
+          "noDedup": true
+        }
+      ],
+      "expected_available": [
+        {
+          "id": "ten",
+          "name": "Ten picks"
+        }
+      ]
+    },
+    {
+      "lists": [
+        {
+          "id": "alpha",
+          "name": "Own titles",
+          "description": "A",
+          "items": [
+            {
+              "id": "own:show",
+              "type": "series",
+              "name": "Own Show",
+              "poster": "https://example.org/show.jpg",
+              "addonOrigin": {
+                "id": "own",
+                "name": "Own addon",
+                "base": "https://example.org/addon/manifest.json"
+              },
+              "videos": [
+                {
+                  "id": "own:show:5:23",
+                  "season": 5,
+                  "episode": 23
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "empty",
+          "name": "Empty",
+          "items": []
+        },
+        {
+          "id": "beta",
+          "name": "Own titles",
+          "items": [
+            {
+              "id": "local-pdf",
+              "type": "manga",
+              "name": "Owned Manga",
+              "poster": "cover.png"
+            }
+          ]
+        },
+        {
+          "id": "ten",
+          "name": "Ten picks",
+          "items": [
+            {
+              "id": "own:film-0",
+              "type": "movie",
+              "name": "Film 0",
+              "poster": "https://example.org/0.jpg"
+            },
+            {
+              "id": "own:film-1",
+              "type": "movie",
+              "name": "Film 1",
+              "poster": "https://example.org/1.jpg"
+            },
+            {
+              "id": "own:film-2",
+              "type": "movie",
+              "name": "Film 2",
+              "poster": "https://example.org/2.jpg"
+            },
+            {
+              "id": "own:film-3",
+              "type": "movie",
+              "name": "Film 3",
+              "poster": "https://example.org/3.jpg"
+            },
+            {
+              "id": "own:film-4",
+              "type": "movie",
+              "name": "Film 4",
+              "poster": "https://example.org/4.jpg"
+            },
+            {
+              "id": "own:film-5",
+              "type": "movie",
+              "name": "Film 5",
+              "poster": "https://example.org/5.jpg"
+            },
+            {
+              "id": "own:film-6",
+              "type": "movie",
+              "name": "Film 6",
+              "poster": "https://example.org/6.jpg"
+            },
+            {
+              "id": "own:film-7",
+              "type": "movie",
+              "name": "Film 7",
+              "poster": "https://example.org/7.jpg"
+            },
+            {
+              "id": "own:film-8",
+              "type": "movie",
+              "name": "Film 8",
+              "poster": "https://example.org/8.jpg"
+            },
+            {
+              "id": "own:film-9",
+              "type": "movie",
+              "name": "Film 9",
+              "poster": "https://example.org/9.jpg"
+            }
+          ]
+        }
+      ],
+      "selected_ids": ["alpha", "ten"],
+      "expected_rows": [
+        {
+          "key": "list-alpha",
+          "type": "movie",
+          "name": "Own titles",
+          "metas": [
+            {
+              "id": "own:show",
+              "type": "series",
+              "name": "Own Show",
+              "poster": "https://example.org/show.jpg"
+            }
+          ],
+          "page": 1,
+          "hasMore": false,
+          "noDedup": true
+        },
+        {
+          "key": "list-ten",
+          "type": "movie",
+          "name": "Ten picks",
+          "metas": [
+            {
+              "id": "own:film-0",
+              "type": "movie",
+              "name": "Film 0",
+              "poster": "https://example.org/0.jpg"
+            },
+            {
+              "id": "own:film-1",
+              "type": "movie",
+              "name": "Film 1",
+              "poster": "https://example.org/1.jpg"
+            },
+            {
+              "id": "own:film-2",
+              "type": "movie",
+              "name": "Film 2",
+              "poster": "https://example.org/2.jpg"
+            },
+            {
+              "id": "own:film-3",
+              "type": "movie",
+              "name": "Film 3",
+              "poster": "https://example.org/3.jpg"
+            },
+            {
+              "id": "own:film-4",
+              "type": "movie",
+              "name": "Film 4",
+              "poster": "https://example.org/4.jpg"
+            },
+            {
+              "id": "own:film-5",
+              "type": "movie",
+              "name": "Film 5",
+              "poster": "https://example.org/5.jpg"
+            },
+            {
+              "id": "own:film-6",
+              "type": "movie",
+              "name": "Film 6",
+              "poster": "https://example.org/6.jpg"
+            },
+            {
+              "id": "own:film-7",
+              "type": "movie",
+              "name": "Film 7",
+              "poster": "https://example.org/7.jpg"
+            },
+            {
+              "id": "own:film-8",
+              "type": "movie",
+              "name": "Film 8",
+              "poster": "https://example.org/8.jpg"
+            },
+            {
+              "id": "own:film-9",
+              "type": "movie",
+              "name": "Film 9",
+              "poster": "https://example.org/9.jpg"
+            }
+          ],
+          "page": 1,
+          "hasMore": false,
+          "noDedup": true
+        }
+      ],
+      "expected_available": [
+        {
+          "id": "beta",
+          "name": "Own titles"
+        }
+      ]
+    },
+    {
+      "lists": [
+        {
+          "id": "alpha",
+          "name": "Own titles",
+          "description": "A",
+          "items": [
+            {
+              "id": "own:show",
+              "type": "series",
+              "name": "Own Show",
+              "poster": "https://example.org/show.jpg",
+              "addonOrigin": {
+                "id": "own",
+                "name": "Own addon",
+                "base": "https://example.org/addon/manifest.json"
+              },
+              "videos": [
+                {
+                  "id": "own:show:5:23",
+                  "season": 5,
+                  "episode": 23
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "empty",
+          "name": "Empty",
+          "items": []
+        },
+        {
+          "id": "beta",
+          "name": "Own titles",
+          "items": [
+            {
+              "id": "local-pdf",
+              "type": "manga",
+              "name": "Owned Manga",
+              "poster": "cover.png"
+            }
+          ]
+        },
+        {
+          "id": "ten",
+          "name": "Ten picks",
+          "items": [
+            {
+              "id": "own:film-0",
+              "type": "movie",
+              "name": "Film 0",
+              "poster": "https://example.org/0.jpg"
+            },
+            {
+              "id": "own:film-1",
+              "type": "movie",
+              "name": "Film 1",
+              "poster": "https://example.org/1.jpg"
+            },
+            {
+              "id": "own:film-2",
+              "type": "movie",
+              "name": "Film 2",
+              "poster": "https://example.org/2.jpg"
+            },
+            {
+              "id": "own:film-3",
+              "type": "movie",
+              "name": "Film 3",
+              "poster": "https://example.org/3.jpg"
+            },
+            {
+              "id": "own:film-4",
+              "type": "movie",
+              "name": "Film 4",
+              "poster": "https://example.org/4.jpg"
+            },
+            {
+              "id": "own:film-5",
+              "type": "movie",
+              "name": "Film 5",
+              "poster": "https://example.org/5.jpg"
+            },
+            {
+              "id": "own:film-6",
+              "type": "movie",
+              "name": "Film 6",
+              "poster": "https://example.org/6.jpg"
+            },
+            {
+              "id": "own:film-7",
+              "type": "movie",
+              "name": "Film 7",
+              "poster": "https://example.org/7.jpg"
+            },
+            {
+              "id": "own:film-8",
+              "type": "movie",
+              "name": "Film 8",
+              "poster": "https://example.org/8.jpg"
+            },
+            {
+              "id": "own:film-9",
+              "type": "movie",
+              "name": "Film 9",
+              "poster": "https://example.org/9.jpg"
+            }
+          ]
+        }
+      ],
+      "selected_ids": ["missing"],
+      "expected_rows": [],
+      "expected_available": [
+        {
+          "id": "alpha",
+          "name": "Own titles"
+        },
+        {
+          "id": "beta",
+          "name": "Own titles"
+        },
+        {
+          "id": "ten",
+          "name": "Ten picks"
+        }
+      ]
+    },
+    {
+      "lists": [
+        {
+          "id": "alpha",
+          "name": "Own titles",
+          "description": "A",
+          "items": [
+            {
+              "id": "own:show",
+              "type": "series",
+              "name": "Own Show",
+              "poster": "https://example.org/show.jpg",
+              "addonOrigin": {
+                "id": "own",
+                "name": "Own addon",
+                "base": "https://example.org/addon/manifest.json"
+              },
+              "videos": [
+                {
+                  "id": "own:show:5:23",
+                  "season": 5,
+                  "episode": 23
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "empty",
+          "name": "Empty",
+          "items": []
+        },
+        {
+          "id": "beta",
+          "name": "Own titles",
+          "items": [
+            {
+              "id": "local-pdf",
+              "type": "manga",
+              "name": "Owned Manga",
+              "poster": "cover.png"
+            }
+          ]
+        },
+        {
+          "id": "ten",
+          "name": "Ten picks",
+          "items": [
+            {
+              "id": "own:film-0",
+              "type": "movie",
+              "name": "Film 0",
+              "poster": "https://example.org/0.jpg"
+            },
+            {
+              "id": "own:film-1",
+              "type": "movie",
+              "name": "Film 1",
+              "poster": "https://example.org/1.jpg"
+            },
+            {
+              "id": "own:film-2",
+              "type": "movie",
+              "name": "Film 2",
+              "poster": "https://example.org/2.jpg"
+            },
+            {
+              "id": "own:film-3",
+              "type": "movie",
+              "name": "Film 3",
+              "poster": "https://example.org/3.jpg"
+            },
+            {
+              "id": "own:film-4",
+              "type": "movie",
+              "name": "Film 4",
+              "poster": "https://example.org/4.jpg"
+            },
+            {
+              "id": "own:film-5",
+              "type": "movie",
+              "name": "Film 5",
+              "poster": "https://example.org/5.jpg"
+            },
+            {
+              "id": "own:film-6",
+              "type": "movie",
+              "name": "Film 6",
+              "poster": "https://example.org/6.jpg"
+            },
+            {
+              "id": "own:film-7",
+              "type": "movie",
+              "name": "Film 7",
+              "poster": "https://example.org/7.jpg"
+            },
+            {
+              "id": "own:film-8",
+              "type": "movie",
+              "name": "Film 8",
+              "poster": "https://example.org/8.jpg"
+            },
+            {
+              "id": "own:film-9",
+              "type": "movie",
+              "name": "Film 9",
+              "poster": "https://example.org/9.jpg"
+            }
+          ]
+        }
+      ],
+      "selected_ids": ["empty"],
+      "expected_rows": [],
+      "expected_available": [
+        {
+          "id": "alpha",
+          "name": "Own titles"
+        },
+        {
+          "id": "beta",
+          "name": "Own titles"
+        },
+        {
+          "id": "ten",
+          "name": "Ten picks"
+        }
+      ]
+    },
+    {
+      "lists": [
+        {
+          "id": "alpha",
+          "name": "Own titles",
+          "description": "A",
+          "items": [
+            {
+              "id": "own:show",
+              "type": "series",
+              "name": "Own Show",
+              "poster": "https://example.org/show.jpg",
+              "addonOrigin": {
+                "id": "own",
+                "name": "Own addon",
+                "base": "https://example.org/addon/manifest.json"
+              },
+              "videos": [
+                {
+                  "id": "own:show:5:23",
+                  "season": 5,
+                  "episode": 23
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "empty",
+          "name": "Empty",
+          "items": []
+        },
+        {
+          "id": "beta",
+          "name": "Own titles",
+          "items": [
+            {
+              "id": "local-pdf",
+              "type": "manga",
+              "name": "Owned Manga",
+              "poster": "cover.png"
+            }
+          ]
+        },
+        {
+          "id": "ten",
+          "name": "Ten picks",
+          "items": [
+            {
+              "id": "own:film-0",
+              "type": "movie",
+              "name": "Film 0",
+              "poster": "https://example.org/0.jpg"
+            },
+            {
+              "id": "own:film-1",
+              "type": "movie",
+              "name": "Film 1",
+              "poster": "https://example.org/1.jpg"
+            },
+            {
+              "id": "own:film-2",
+              "type": "movie",
+              "name": "Film 2",
+              "poster": "https://example.org/2.jpg"
+            },
+            {
+              "id": "own:film-3",
+              "type": "movie",
+              "name": "Film 3",
+              "poster": "https://example.org/3.jpg"
+            },
+            {
+              "id": "own:film-4",
+              "type": "movie",
+              "name": "Film 4",
+              "poster": "https://example.org/4.jpg"
+            },
+            {
+              "id": "own:film-5",
+              "type": "movie",
+              "name": "Film 5",
+              "poster": "https://example.org/5.jpg"
+            },
+            {
+              "id": "own:film-6",
+              "type": "movie",
+              "name": "Film 6",
+              "poster": "https://example.org/6.jpg"
+            },
+            {
+              "id": "own:film-7",
+              "type": "movie",
+              "name": "Film 7",
+              "poster": "https://example.org/7.jpg"
+            },
+            {
+              "id": "own:film-8",
+              "type": "movie",
+              "name": "Film 8",
+              "poster": "https://example.org/8.jpg"
+            },
+            {
+              "id": "own:film-9",
+              "type": "movie",
+              "name": "Film 9",
+              "poster": "https://example.org/9.jpg"
+            }
+          ]
+        }
+      ],
+      "selected_ids": ["alpha", "alpha"],
+      "expected_rows": [
+        {
+          "key": "list-alpha",
+          "type": "movie",
+          "name": "Own titles",
+          "metas": [
+            {
+              "id": "own:show",
+              "type": "series",
+              "name": "Own Show",
+              "poster": "https://example.org/show.jpg"
+            }
+          ],
+          "page": 1,
+          "hasMore": false,
+          "noDedup": true
+        },
+        {
+          "key": "list-alpha",
+          "type": "movie",
+          "name": "Own titles",
+          "metas": [
+            {
+              "id": "own:show",
+              "type": "series",
+              "name": "Own Show",
+              "poster": "https://example.org/show.jpg"
+            }
+          ],
+          "page": 1,
+          "hasMore": false,
+          "noDedup": true
+        }
+      ],
+      "expected_available": [
+        {
+          "id": "beta",
+          "name": "Own titles"
+        },
+        {
+          "id": "ten",
+          "name": "Ten picks"
+        }
+      ]
+    }
+  ],
+  "action_cases": [
+    {
+      "action": "addListRow",
+      "args": ["alpha"],
+      "expected": {
+        "order": [],
+        "hidden": [],
+        "renamed": {},
+        "numerals": [],
+        "heroSource": null,
+        "customSources": [],
+        "listRows": ["alpha"],
+        "playButtonSquare": false,
+        "secondaryMoreInfo": false,
+        "cwTop": false
+      }
+    },
+    {
+      "action": "addListRow",
+      "args": ["beta"],
+      "expected": {
+        "order": [],
+        "hidden": [],
+        "renamed": {},
+        "numerals": [],
+        "heroSource": null,
+        "customSources": [],
+        "listRows": ["alpha", "beta"],
+        "playButtonSquare": false,
+        "secondaryMoreInfo": false,
+        "cwTop": false
+      }
+    },
+    {
+      "action": "addListRow",
+      "args": ["alpha"],
+      "expected": {
+        "order": [],
+        "hidden": [],
+        "renamed": {},
+        "numerals": [],
+        "heroSource": null,
+        "customSources": [],
+        "listRows": ["alpha", "beta"],
+        "playButtonSquare": false,
+        "secondaryMoreInfo": false,
+        "cwTop": false
+      }
+    },
+    {
+      "action": "renameRow",
+      "args": ["list-alpha", "  Weekend picks  "],
+      "expected": {
+        "order": [],
+        "hidden": [],
+        "renamed": {
+          "list-alpha": "Weekend picks"
+        },
+        "numerals": [],
+        "heroSource": null,
+        "customSources": [],
+        "listRows": ["alpha", "beta"],
+        "playButtonSquare": false,
+        "secondaryMoreInfo": false,
+        "cwTop": false
+      }
+    },
+    {
+      "action": "toggleRowHidden",
+      "args": ["list-beta"],
+      "expected": {
+        "order": [],
+        "hidden": ["list-beta"],
+        "renamed": {
+          "list-alpha": "Weekend picks"
+        },
+        "numerals": [],
+        "heroSource": null,
+        "customSources": [],
+        "listRows": ["alpha", "beta"],
+        "playButtonSquare": false,
+        "secondaryMoreInfo": false,
+        "cwTop": false
+      }
+    },
+    {
+      "action": "toggleRowNumerals",
+      "args": ["list-alpha"],
+      "expected": {
+        "order": [],
+        "hidden": ["list-beta"],
+        "renamed": {
+          "list-alpha": "Weekend picks"
+        },
+        "numerals": ["list-alpha"],
+        "heroSource": null,
+        "customSources": [],
+        "listRows": ["alpha", "beta"],
+        "playButtonSquare": false,
+        "secondaryMoreInfo": false,
+        "cwTop": false
+      }
+    },
+    {
+      "action": "toggleHeroSource",
+      "args": ["list-alpha"],
+      "expected": {
+        "order": [],
+        "hidden": ["list-beta"],
+        "renamed": {
+          "list-alpha": "Weekend picks"
+        },
+        "numerals": ["list-alpha"],
+        "heroSource": "list-alpha",
+        "customSources": [],
+        "listRows": ["alpha", "beta"],
+        "playButtonSquare": false,
+        "secondaryMoreInfo": false,
+        "cwTop": false
+      }
+    },
+    {
+      "action": "togglePlayButtonSquare",
+      "args": [],
+      "expected": {
+        "order": [],
+        "hidden": ["list-beta"],
+        "renamed": {
+          "list-alpha": "Weekend picks"
+        },
+        "numerals": ["list-alpha"],
+        "heroSource": "list-alpha",
+        "customSources": [],
+        "listRows": ["alpha", "beta"],
+        "playButtonSquare": true,
+        "secondaryMoreInfo": false,
+        "cwTop": false
+      }
+    },
+    {
+      "action": "toggleSecondaryMoreInfo",
+      "args": [],
+      "expected": {
+        "order": [],
+        "hidden": ["list-beta"],
+        "renamed": {
+          "list-alpha": "Weekend picks"
+        },
+        "numerals": ["list-alpha"],
+        "heroSource": "list-alpha",
+        "customSources": [],
+        "listRows": ["alpha", "beta"],
+        "playButtonSquare": true,
+        "secondaryMoreInfo": true,
+        "cwTop": false
+      }
+    },
+    {
+      "action": "toggleCwTop",
+      "args": [],
+      "expected": {
+        "order": [],
+        "hidden": ["list-beta"],
+        "renamed": {
+          "list-alpha": "Weekend picks"
+        },
+        "numerals": ["list-alpha"],
+        "heroSource": "list-alpha",
+        "customSources": [],
+        "listRows": ["alpha", "beta"],
+        "playButtonSquare": true,
+        "secondaryMoreInfo": true,
+        "cwTop": true
+      }
+    },
+    {
+      "action": "removeListRow",
+      "args": ["beta"],
+      "expected": {
+        "order": [],
+        "hidden": ["list-beta"],
+        "renamed": {
+          "list-alpha": "Weekend picks"
+        },
+        "numerals": ["list-alpha"],
+        "heroSource": "list-alpha",
+        "customSources": [],
+        "listRows": ["alpha"],
+        "playButtonSquare": true,
+        "secondaryMoreInfo": true,
+        "cwTop": true
+      }
+    },
+    {
+      "action": "toggleHeroSource",
+      "args": ["list-alpha"],
+      "expected": {
+        "order": [],
+        "hidden": ["list-beta"],
+        "renamed": {
+          "list-alpha": "Weekend picks"
+        },
+        "numerals": ["list-alpha"],
+        "heroSource": null,
+        "customSources": [],
+        "listRows": ["alpha"],
+        "playButtonSquare": true,
+        "secondaryMoreInfo": true,
+        "cwTop": true
+      }
+    },
+    {
+      "action": "resetHomeRows",
+      "args": [],
+      "expected": {
+        "order": [],
+        "hidden": [],
+        "renamed": {},
+        "numerals": [],
+        "heroSource": null,
+        "customSources": [],
+        "listRows": [],
+        "playButtonSquare": false,
+        "secondaryMoreInfo": false,
+        "cwTop": false
+      }
+    }
+  ],
+  "layout_cases": [
+    {
+      "rows": [
+        {
+          "key": "list-alpha",
+          "type": "movie",
+          "name": "Own titles",
+          "metas": [
+            {
+              "id": "own:show",
+              "type": "series",
+              "name": "Own Show",
+              "poster": "https://example.org/show.jpg"
+            }
+          ],
+          "page": 1,
+          "hasMore": false,
+          "noDedup": true
+        },
+        {
+          "key": "list-beta",
+          "type": "movie",
+          "name": "Own titles",
+          "metas": [
+            {
+              "id": "local-pdf",
+              "type": "manga",
+              "name": "Owned Manga",
+              "poster": "cover.png"
+            }
+          ],
+          "page": 1,
+          "hasMore": false,
+          "noDedup": true
+        },
+        {
+          "key": "list-ten",
+          "type": "movie",
+          "name": "Ten picks",
+          "metas": [
+            {
+              "id": "own:film-0",
+              "type": "movie",
+              "name": "Film 0",
+              "poster": "https://example.org/0.jpg"
+            },
+            {
+              "id": "own:film-1",
+              "type": "movie",
+              "name": "Film 1",
+              "poster": "https://example.org/1.jpg"
+            },
+            {
+              "id": "own:film-2",
+              "type": "movie",
+              "name": "Film 2",
+              "poster": "https://example.org/2.jpg"
+            },
+            {
+              "id": "own:film-3",
+              "type": "movie",
+              "name": "Film 3",
+              "poster": "https://example.org/3.jpg"
+            },
+            {
+              "id": "own:film-4",
+              "type": "movie",
+              "name": "Film 4",
+              "poster": "https://example.org/4.jpg"
+            },
+            {
+              "id": "own:film-5",
+              "type": "movie",
+              "name": "Film 5",
+              "poster": "https://example.org/5.jpg"
+            },
+            {
+              "id": "own:film-6",
+              "type": "movie",
+              "name": "Film 6",
+              "poster": "https://example.org/6.jpg"
+            },
+            {
+              "id": "own:film-7",
+              "type": "movie",
+              "name": "Film 7",
+              "poster": "https://example.org/7.jpg"
+            },
+            {
+              "id": "own:film-8",
+              "type": "movie",
+              "name": "Film 8",
+              "poster": "https://example.org/8.jpg"
+            },
+            {
+              "id": "own:film-9",
+              "type": "movie",
+              "name": "Film 9",
+              "poster": "https://example.org/9.jpg"
+            }
+          ],
+          "page": 1,
+          "hasMore": false,
+          "noDedup": true
+        }
+      ],
+      "custom": {
+        "order": ["list-ten", "missing", "list-alpha"],
+        "hidden": ["list-beta"],
+        "renamed": {
+          "list-alpha": "Weekend"
+        },
+        "numerals": ["list-ten"],
+        "heroSource": "list-alpha",
+        "customSources": [],
+        "listRows": ["alpha", "beta", "ten"],
+        "playButtonSquare": false,
+        "secondaryMoreInfo": false,
+        "cwTop": false
+      },
+      "include_hidden": false,
+      "expected": [
+        {
+          "key": "list-ten",
+          "type": "movie",
+          "name": "Ten picks",
+          "metas": [
+            {
+              "id": "own:film-0",
+              "type": "movie",
+              "name": "Film 0",
+              "poster": "https://example.org/0.jpg"
+            },
+            {
+              "id": "own:film-1",
+              "type": "movie",
+              "name": "Film 1",
+              "poster": "https://example.org/1.jpg"
+            },
+            {
+              "id": "own:film-2",
+              "type": "movie",
+              "name": "Film 2",
+              "poster": "https://example.org/2.jpg"
+            },
+            {
+              "id": "own:film-3",
+              "type": "movie",
+              "name": "Film 3",
+              "poster": "https://example.org/3.jpg"
+            },
+            {
+              "id": "own:film-4",
+              "type": "movie",
+              "name": "Film 4",
+              "poster": "https://example.org/4.jpg"
+            },
+            {
+              "id": "own:film-5",
+              "type": "movie",
+              "name": "Film 5",
+              "poster": "https://example.org/5.jpg"
+            },
+            {
+              "id": "own:film-6",
+              "type": "movie",
+              "name": "Film 6",
+              "poster": "https://example.org/6.jpg"
+            },
+            {
+              "id": "own:film-7",
+              "type": "movie",
+              "name": "Film 7",
+              "poster": "https://example.org/7.jpg"
+            },
+            {
+              "id": "own:film-8",
+              "type": "movie",
+              "name": "Film 8",
+              "poster": "https://example.org/8.jpg"
+            },
+            {
+              "id": "own:film-9",
+              "type": "movie",
+              "name": "Film 9",
+              "poster": "https://example.org/9.jpg"
+            }
+          ],
+          "page": 1,
+          "hasMore": false,
+          "noDedup": true
+        },
+        {
+          "key": "list-alpha",
+          "type": "movie",
+          "name": "Weekend",
+          "metas": [
+            {
+              "id": "own:show",
+              "type": "series",
+              "name": "Own Show",
+              "poster": "https://example.org/show.jpg"
+            }
+          ],
+          "page": 1,
+          "hasMore": false,
+          "noDedup": true
+        }
+      ]
+    },
+    {
+      "rows": [
+        {
+          "key": "list-alpha",
+          "type": "movie",
+          "name": "Own titles",
+          "metas": [
+            {
+              "id": "own:show",
+              "type": "series",
+              "name": "Own Show",
+              "poster": "https://example.org/show.jpg"
+            }
+          ],
+          "page": 1,
+          "hasMore": false,
+          "noDedup": true
+        },
+        {
+          "key": "list-beta",
+          "type": "movie",
+          "name": "Own titles",
+          "metas": [
+            {
+              "id": "local-pdf",
+              "type": "manga",
+              "name": "Owned Manga",
+              "poster": "cover.png"
+            }
+          ],
+          "page": 1,
+          "hasMore": false,
+          "noDedup": true
+        },
+        {
+          "key": "list-ten",
+          "type": "movie",
+          "name": "Ten picks",
+          "metas": [
+            {
+              "id": "own:film-0",
+              "type": "movie",
+              "name": "Film 0",
+              "poster": "https://example.org/0.jpg"
+            },
+            {
+              "id": "own:film-1",
+              "type": "movie",
+              "name": "Film 1",
+              "poster": "https://example.org/1.jpg"
+            },
+            {
+              "id": "own:film-2",
+              "type": "movie",
+              "name": "Film 2",
+              "poster": "https://example.org/2.jpg"
+            },
+            {
+              "id": "own:film-3",
+              "type": "movie",
+              "name": "Film 3",
+              "poster": "https://example.org/3.jpg"
+            },
+            {
+              "id": "own:film-4",
+              "type": "movie",
+              "name": "Film 4",
+              "poster": "https://example.org/4.jpg"
+            },
+            {
+              "id": "own:film-5",
+              "type": "movie",
+              "name": "Film 5",
+              "poster": "https://example.org/5.jpg"
+            },
+            {
+              "id": "own:film-6",
+              "type": "movie",
+              "name": "Film 6",
+              "poster": "https://example.org/6.jpg"
+            },
+            {
+              "id": "own:film-7",
+              "type": "movie",
+              "name": "Film 7",
+              "poster": "https://example.org/7.jpg"
+            },
+            {
+              "id": "own:film-8",
+              "type": "movie",
+              "name": "Film 8",
+              "poster": "https://example.org/8.jpg"
+            },
+            {
+              "id": "own:film-9",
+              "type": "movie",
+              "name": "Film 9",
+              "poster": "https://example.org/9.jpg"
+            }
+          ],
+          "page": 1,
+          "hasMore": false,
+          "noDedup": true
+        }
+      ],
+      "custom": {
+        "order": ["list-ten", "missing", "list-alpha"],
+        "hidden": ["list-beta"],
+        "renamed": {
+          "list-alpha": "Weekend"
+        },
+        "numerals": ["list-ten"],
+        "heroSource": "list-alpha",
+        "customSources": [],
+        "listRows": ["alpha", "beta", "ten"],
+        "playButtonSquare": false,
+        "secondaryMoreInfo": false,
+        "cwTop": false
+      },
+      "include_hidden": true,
+      "expected": [
+        {
+          "key": "list-ten",
+          "type": "movie",
+          "name": "Ten picks",
+          "metas": [
+            {
+              "id": "own:film-0",
+              "type": "movie",
+              "name": "Film 0",
+              "poster": "https://example.org/0.jpg"
+            },
+            {
+              "id": "own:film-1",
+              "type": "movie",
+              "name": "Film 1",
+              "poster": "https://example.org/1.jpg"
+            },
+            {
+              "id": "own:film-2",
+              "type": "movie",
+              "name": "Film 2",
+              "poster": "https://example.org/2.jpg"
+            },
+            {
+              "id": "own:film-3",
+              "type": "movie",
+              "name": "Film 3",
+              "poster": "https://example.org/3.jpg"
+            },
+            {
+              "id": "own:film-4",
+              "type": "movie",
+              "name": "Film 4",
+              "poster": "https://example.org/4.jpg"
+            },
+            {
+              "id": "own:film-5",
+              "type": "movie",
+              "name": "Film 5",
+              "poster": "https://example.org/5.jpg"
+            },
+            {
+              "id": "own:film-6",
+              "type": "movie",
+              "name": "Film 6",
+              "poster": "https://example.org/6.jpg"
+            },
+            {
+              "id": "own:film-7",
+              "type": "movie",
+              "name": "Film 7",
+              "poster": "https://example.org/7.jpg"
+            },
+            {
+              "id": "own:film-8",
+              "type": "movie",
+              "name": "Film 8",
+              "poster": "https://example.org/8.jpg"
+            },
+            {
+              "id": "own:film-9",
+              "type": "movie",
+              "name": "Film 9",
+              "poster": "https://example.org/9.jpg"
+            }
+          ],
+          "page": 1,
+          "hasMore": false,
+          "noDedup": true
+        },
+        {
+          "key": "list-alpha",
+          "type": "movie",
+          "name": "Weekend",
+          "metas": [
+            {
+              "id": "own:show",
+              "type": "series",
+              "name": "Own Show",
+              "poster": "https://example.org/show.jpg"
+            }
+          ],
+          "page": 1,
+          "hasMore": false,
+          "noDedup": true
+        },
+        {
+          "key": "list-beta",
+          "type": "movie",
+          "name": "Own titles",
+          "metas": [
+            {
+              "id": "local-pdf",
+              "type": "manga",
+              "name": "Owned Manga",
+              "poster": "cover.png"
+            }
+          ],
+          "page": 1,
+          "hasMore": false,
+          "noDedup": true
+        }
+      ]
+    }
+  ]
+}

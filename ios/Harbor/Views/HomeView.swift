@@ -16,10 +16,11 @@ struct HomeView: View {
     private var rails: [PageRail] {
         let catalogs = model.rows.filter { !$0.metas.isEmpty }.map(PageRail.catalog)
         let sources = customization.sourceRows.map(PageRail.sources)
-        guard !classic else { return catalogs + sources }
+        let lists = CustomListHomeRows.selected(model.customLists.lists, ids: customization.listRowIDs).map(PageRail.list)
+        guard !classic else { return sources + lists + catalogs }
         let built = (model.home.rows + model.home.animeRows).filter { !$0.metas.isEmpty }.map(PageRail.discovery)
         var names = Set(built.map { $0.kind + "|" + $0.title.trimmingCharacters(in: .whitespacesAndNewlines).lowercased() })
-        return built + catalogs.filter { names.insert($0.kind + "|" + $0.title.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()).inserted } + sources
+        return sources + lists + built + catalogs.filter { names.insert($0.kind + "|" + $0.title.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()).inserted }
     }
     private var heroes: [Media] {
         if !classic && !model.home.heroes.isEmpty { return model.home.heroes }
@@ -57,19 +58,20 @@ struct HomeView: View {
                         Button("Reintentar") { Task { await refresh() } }.buttonStyle(HarborAccountButtonStyle())
                     }.padding(28).frame(maxWidth: .infinity)
                 }
-                PageCustomizeButton(rails: rails, customization: customization, cloud: model.harborIdentity.signedIn ? model.harborIdentity.page("home") : nil)
+                PageCustomizeButton(rails: rails, customization: customization, cloud: model.harborIdentity.signedIn ? model.harborIdentity.page("home") : nil, listStore: model.customLists)
                 if let error = customization.error { Text(error).font(.caption).foregroundStyle(.orange).padding(.horizontal) }
                 if !classic && !customization.layout.cwTop { ContinueWatching(app: model) }
                 CustomizedRails(rails: rails, app: model, customization: customization)
-                if model.storageReady && rails.isEmpty && !loading && homeError == nil {
+                if model.storageReady && model.customLists.ready && rails.isEmpty && !loading && homeError == nil {
                     HarborCatalogEmptyView(app: model).padding(.horizontal)
                 }
             }.padding(.bottom, 24)
-        }.accessibilityIdentifier("home-scroll")
+        }.customListArtwork(app: model, lists: model.customLists.lists).accessibilityIdentifier("home-scroll")
             .background(HarborTheme.background).navigationBarTitleDisplayMode(.inline)
             .safeAreaInset(edge: .bottom) { PageEditingFooter(customization: customization) }
             .refreshable { await refresh() }
             .task(id: model.continuingDetectionSignature) { await model.detectContinuingAnime() }
+            .task(id: model.settingsOwner) { await model.customLists.load() }
             .task(id: contentSignature) {
                 guard model.storageReady, !classic else { return }
                 async let curated: Void = model.home.load(app: model)

@@ -67,6 +67,7 @@
 "Add a movie or show to this list..." = "Adicione um filme ou série a esta lista...";
 "Add a repository" = "Adicionar um repositório";
 "Add bookmark" = "Add bookmark";
+"Add from lists" = "Adicionar de listas";
 "Add key" = "Adicionar chave";
 "Add language" = "Adicionar idioma";
 "Add local folder" = "Add local folder";
@@ -1432,6 +1433,7 @@
 "Remove from continue watching" = "Remover de Continuar assistindo";
 "Remove from favorites" = "Remover dos favoritos";
 "Remove from history" = "Remover do histórico";
+"Remove from home" = "Remove from home";
 "Remove from list" = "Remover da lista";
 "Remove from queue" = "Remover da fila";
 "Remove from saved" = "Remover dos salvos";
