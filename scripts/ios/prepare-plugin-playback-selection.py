@@ -6,6 +6,9 @@ import re
 import runpy
 
 requested = os.environ.get('HARBOR_NATIVE_SELECTION', '').strip()
+if requested == 'affected:independent-history' or requested.startswith('HarborTests.IndependentManualHistoryTests/'):
+    runpy.run_path('scripts/ios/prepare-independent-history-selection.py')
+    raise SystemExit(0)
 if requested == 'native-only:manual-watched' or requested.startswith('HarborTests.ManualWatchedSelectionTests/'):
     runpy.run_path('scripts/ios/prepare-manual-watched-selection.py')
     raise SystemExit(0)

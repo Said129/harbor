@@ -112,3 +112,8 @@ El rótulo visible de episodio de Historial usa ahora `S{season} E{episode}` del
 catálogo elegido, en lugar de una «T» fija. El mismo rótulo se comunica como valor
 de accesibilidad de la tarjeta. Dos recorridos nuevos, aún pendientes de Apple,
 exigen `S5 E23` en la app normal en inglés y capturan ese estado en iPhone/iPad.
+
+La selección `independent-history` reúne esos tres casos nativos, el montaje del
+componente afectado por el rótulo, dos preparaciones y los dos recorridos nuevos:
+ocho ejecuciones y seis capturas previstas. Conserva los cinco casos de marcado
+ya aprobados en 40675700785 y no reinicia la validación anterior de Historial.
