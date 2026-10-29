@@ -23,22 +23,21 @@ import XCTest
         XCTAssertThrowsError(try MusicCatalogMerge.search([.success(first), .cancelled], limit: 2)) { XCTAssertTrue($0 is CancellationError) }
     }
     func testCombinedHomeSettlesConcurrentlyRetainsGoodSourcesAndCancelsItsBrowseBudget() async throws {
-        let owner = ServerCatalogOwner(), disk = ServerCatalogDisk(); disk.pairing = pair
+        let owner = ServerCatalogOwner(), disk = ServerCatalogDisk(), barrier = ServerCatalogBarrier(); disk.pairing = pair
         let wire = ServerCatalogWire { request in
-            try await Task.sleep(for: .milliseconds(15))
+            await barrier.arrive("private")
             if request.url?.lastPathComponent == "getAlbumList2" {
                 return try Self.response(["albumList2": .object(["album": .array([.object(["id": .string("owned-album"), "name": .string("Server album")])])])])
             }
             return try Self.response([:])
         }
-        let service = makeService(owner, disk: disk, wire: wire), catalog = ServerCatalogPublic()
+        let service = makeService(owner, disk: disk, wire: wire), catalog = ServerCatalogPublic(barrier: barrier)
         let client = MusicServerCatalogClient(server: service, catalog: catalog, currentScope: { owner.scope })
         await catalog.setHome([row("public", "catalog"), row("subsonic:home:newest", "catalog")])
-        await catalog.setDelay(.milliseconds(80))
         let loading = Task { try await client.home() }
-        try await wire.waitForRequest()
-        let publicStarted = await catalog.homeCalls; XCTAssertEqual(publicStarted, 1)
-        let publicFinished = await catalog.homeCompleted; XCTAssertEqual(publicFinished, 0, "Private requests start while public discovery is still waiting")
+        let concurrent = try await barrier.waitForBoth()
+        await barrier.release()
+        XCTAssertTrue(concurrent, "Both sources must enter before either may finish; serialized requests cannot satisfy this barrier")
         let rows = try await loading.value
         XCTAssertEqual(rows.map(\.id), ["public", "subsonic:home:newest", "subsonic:home:frequent", "subsonic:home:random"])
         XCTAssertEqual(rows[1].source, "catalog", "The first source-ranked row owns a duplicate id")
@@ -173,12 +172,13 @@ private actor ServerCatalogGate {
 private actor ServerCatalogPublic: MusicCatalogCalling {
     private var rows: [MusicCatalogRow] = [], fail = false, delay: Duration = .zero
     private let gate: ServerCatalogGate?
+    private let barrier: ServerCatalogBarrier?
     private(set) var homeCalls = 0, homeCompleted = 0, detailCalls = 0, searchCalls = 0
-    init(gate: ServerCatalogGate? = nil) { self.gate = gate }
+    init(gate: ServerCatalogGate? = nil, barrier: ServerCatalogBarrier? = nil) { self.gate = gate; self.barrier = barrier }
     func setHome(_ rows: [MusicCatalogRow]) { self.rows = rows }
     func setFail(_ value: Bool) { fail = value }
     func setDelay(_ value: Duration) { delay = value }
-    func home() async throws -> [MusicCatalogRow] { homeCalls += 1; if fail { throw SubsonicMusicError.network }; try await Task.sleep(for: delay); homeCompleted += 1; return rows }
+    func home() async throws -> [MusicCatalogRow] { homeCalls += 1; if fail { throw SubsonicMusicError.network }; await barrier?.arrive("public"); try await Task.sleep(for: delay); homeCompleted += 1; return rows }
     func search(_ query: String, limit: Int) async throws -> MusicCatalogSearch {
         searchCalls += 1; await gate?.hold(); if fail { throw SubsonicMusicError.network }
         return .init(top: nil, tracks: [MusicServerCatalogTests.song("public-song", "Public song")], albums: [], artists: [], playlists: [])
@@ -188,4 +188,18 @@ private actor ServerCatalogPublic: MusicCatalogCalling {
     func artistRows(_ artist: MusicCatalogArtist) async throws -> [MusicCatalogRow] { detailCalls += 1; return [] }
     func artistCatalog(_ artist: MusicCatalogArtist, kind: MusicCatalogKind, cursor: String?) async throws -> MusicCatalogPage { detailCalls += 1; return .init(items: [], nextCursor: nil, total: nil, scope: .catalog) }
     func playlistTracks(_ playlist: MusicCatalogPlaylist) async throws -> [MusicTrack] { detailCalls += 1; return [] }
+}
+private actor ServerCatalogBarrier {
+    private var arrivals = Set<String>(), pending: [CheckedContinuation<Void, Never>] = []
+    private var released = false
+    func arrive(_ source: String) async {
+        arrivals.insert(source)
+        guard !released else { return }
+        await withCheckedContinuation { pending.append($0) }
+    }
+    func waitForBoth() async throws -> Bool {
+        for _ in 0..<250 { if arrivals.count == 2 { return true }; try await Task.sleep(for: .milliseconds(20)) }
+        return false
+    }
+    func release() { released = true; let held = pending; pending = []; held.forEach { $0.resume() } }
 }

@@ -1,0 +1,38 @@
+{
+  "reference": "0834340cec5531650bfe78cd628628702e636987",
+  "original_modules": {
+    "src-tauri/src/music.rs": {
+      "checkout_sha256": "1177dd263c3ebf2d8589da2502daaa0f0d179243ed83160647f1182ea7d773d6",
+      "committed_sha256": "1bc4c996d3b8679eed3525f2319fa5245357e2cffda929d61ddcd352e4416d24"
+    },
+    "src-tauri/src/music/core_setup.rs": {
+      "checkout_sha256": "2510a04b1b397c1ecd32783af5712ed945facf91e8c1d25ad3eb4c69c988be05",
+      "committed_sha256": "4fbe11f611e1fdeb8c162e0737fa09562a6a7c8c1a474197555f6312029ea644"
+    },
+    "src-tauri/src/music/deck_events.rs": {
+      "checkout_sha256": "abc24899b9134fdd8d820396433c78cfd0e03511863e94627b3dd6b5d69251f1",
+      "committed_sha256": "a57a09c99a603795e8c12e3d061618300fad4e231b5ffa77b4dbe3a72adc1995"
+    },
+    "src-tauri/src/music/commands/search.rs": {
+      "checkout_sha256": "eb214de16a2472699188b1bdee3b0dbab7ed1620fc46c502fdd7c30879c849d0",
+      "committed_sha256": "6357f5ded5fb7c1c6c8d9886960079c67002eaf254b63987ce4c34c6c2eae9e2"
+    },
+    "src-tauri/src/music/commands/playback.rs": {
+      "checkout_sha256": "31b56721cbfacaeabb45fb985c2f56787195444504dbcf9eeef7f4c01138eb53",
+      "committed_sha256": "164e3b96f17af64fd04fe6235f19ece37e697ab3aed9ed93fad56331cfdc051b"
+    }
+  },
+  "complete_original_rust_modules_executed": false,
+  "native_tests_executed": false,
+  "shared_player_engine_connected": false,
+  "actual_music_audio_playback_verified": false,
+  "original_contracts": {
+    "header_count": 16,
+    "header_name_bytes": 128,
+    "header_value_bytes": 8192,
+    "native_mpv_header_string_array": true,
+    "listening_maximum_position_increment": 2,
+    "scrobble_duration_fraction": 0.5,
+    "scrobble_threshold_cap_seconds": 240
+  }
+}

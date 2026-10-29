@@ -34,7 +34,11 @@ zero failed or skipped. Its original 53,940-byte evidence archive has SHA-256
 matching GitHub's digest. This does not claim a live private server or audio
 playback test. The run introduced one Sendable-closure warning in the fan-out
 helper; its correction and the one affected concurrency case require the next
-Apple gate. The other five successful service cases will not be repeated.
+Apple gate. Run 40874840049/source `9b81c8caca3758a06efd9db92a2b4e955cb263b7`
+subsequently compiled the correction with zero new compiler warnings and passed
+that affected fan-out case. The remaining issue in that follow-up concerns its
+new connection mount lifecycle and one timing-dependent catalog assertion,
+not the retained six service cases. Those service cases are not selected again.
 
 The follow-up described in `music-server-catalog-0.9.132.md` connects server
 settings and catalog routing. Full source selection and shared remote audio

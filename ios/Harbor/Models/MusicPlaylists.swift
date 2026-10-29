@@ -53,6 +53,7 @@ final class MusicPlaylistStore {
     func add(_ record: MusicRecord, to id: String) {
         add([record.local.track], to: id)
     }
+    @discardableResult func remember(_ recordings: [MusicTrack]) -> Bool { change(upserting: recordings) { _ in } }
     @discardableResult func add(_ recordings: [MusicTrack], to id: String) -> MusicPlaylist? {
         let saved = change(upserting: recordings) { values in
             guard let index = values.firstIndex(where: { $0.id == id }) else { throw HarborError(code: "music-store") }

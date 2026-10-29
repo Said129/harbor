@@ -2,7 +2,11 @@
 
 This slice connects the profile-owned Navidrome/Subsonic service to the existing Music catalog. Music → Options → Media servers opens the URL, username and password form. A successful connection reloads discovery and search. Disconnecting removes the saved pairing and invalidates combined search results; public catalog rows can remain visible during the reload.
 
-The earlier service gate executed six cases successfully. It also introduced one compiler warning at its task-group closure. That closure now relies on the group's Sendable operation and explicitly awaits the actor-isolated request method. One affected fan-out case is selected again; the other five service passes are retained. Seven additional cases select the new router, merge rules, connection form lifetime, 368 label comparisons and an independently mounted production form/connected screen at 390 × 844 and 834 × 1194. The eight-case follow-up has not executed on Apple yet. Four required original images must be reviewed after execution. This is not an ordinary application navigation journey or physical iPad verification.
+Apple run 40874840049, source `9b81c8caca3758a06efd9db92a2b4e955cb263b7`, executed eight cases: seven passed and one failed. It introduced zero compiler warnings; the earlier service Sendable warning is resolved and its affected fan-out case passed. The failure was a timing-dependent concurrency assertion that sampled whether an 80 ms delay had finished. The repaired test now requires both sources to arrive at a shared barrier before either can return, then separately verifies partial results and the browse deadline.
+
+All four original form/connected images were individually inspected. Their headings, fields, account/status and actions fit at 390 × 844 and 834 × 1194. The mount emitted one appearance-transition warning, so its harness now keeps one hosting controller, changes its root content without animations and lets the window finish disappearing. Only that affected mount and the failed concurrency method are selected again. The other six passes remain retained. This does not certify ordinary application navigation or physical iPad use.
+
+The original 163,386-byte archive has SHA-256 `6a735daf463787a6dbd11214c64dc10576114b25eb818def03d37c09f31d4510`, matching GitHub's digest. Its result remains partial until the two necessary follow-ups pass without new appearance warnings.
 
 ## Desktop behavior preserved
 

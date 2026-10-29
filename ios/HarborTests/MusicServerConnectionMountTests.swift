@@ -13,16 +13,21 @@ import XCTest
             window.isHidden = true; window.rootViewController = nil; previous?.makeKey()
             if let oldLanguage { UserDefaults.standard.set(oldLanguage, forKey: "uiLanguage") } else { UserDefaults.standard.removeObject(forKey: "uiLanguage") }
         }
+        let host = UIHostingController(rootView: AnyView(Color.black))
+        window.rootViewController = host; window.makeKeyAndVisible()
+        try await Task.sleep(for: .milliseconds(400))
         for (label, size) in [("compact", CGSize(width: 390, height: 844)), ("regular", CGSize(width: 834, height: 1194))] {
             for connected in [false, true] {
                 let scope = PluginExecutionScope(owner: "owned-server-interface-" + label, activation: UUID())
                 let disk = MountedServerDisk()
                 if connected { disk.pairing = .salted(baseUrl: "https://owned.example.test", username: "Owned listener", password: "owned", salt: "owned") }
                 let service = SubsonicMusicService(scope: scope, currentScope: { scope }, transport: MountedServerNoNetwork(), persistence: disk)
-                let host = UIHostingController(rootView: MusicServerConnectionView(service: service) { XCTFail("A read-only mount must not change the connection") }
+                let content = MusicServerConnectionView(service: service) { XCTFail("A read-only mount must not change the connection") }
+                    .id(scope.activation)
                     .environment(\.locale, Locale(identifier: "en")).environment(\.layoutDirection, .leftToRight)
-                    .environment(\.horizontalSizeClass, size.width > 600 ? .regular : .compact).preferredColorScheme(.dark))
-                window.frame = CGRect(origin: .zero, size: size); window.rootViewController = host; window.makeKeyAndVisible()
+                    .environment(\.horizontalSizeClass, size.width > 600 ? .regular : .compact).preferredColorScheme(.dark)
+                    .transaction { $0.disablesAnimations = true }
+                UIView.performWithoutAnimation { host.rootView = AnyView(content) }
                 window.frame = CGRect(origin: .zero, size: size); host.view.frame = window.bounds
                 try await Task.sleep(for: .milliseconds(400)); window.layoutIfNeeded(); host.view.layoutIfNeeded()
                 XCTAssertEqual(host.view.bounds.width, size.width, accuracy: 1)
@@ -38,6 +43,8 @@ import XCTest
                 service.dispose()
             }
         }
+        window.isHidden = true
+        try await Task.sleep(for: .milliseconds(400))
     }
 }
 @MainActor private final class MountedServerDisk: SubsonicPairingPersistence {
