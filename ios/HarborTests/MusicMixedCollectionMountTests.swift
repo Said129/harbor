@@ -34,6 +34,7 @@ import XCTest
         let collections = MusicCollections.shared, layout = MixedCollectionMountLayout()
         let oldLanguage = UserDefaults.standard.object(forKey: "uiLanguage"), oldLayout = UserDefaults.standard.object(forKey: "harbor.music.playlistView")
         var publishers: [SharedMusicPublisher] = []
+        let pairing = SharedMusicPairingDisk(), scope = PluginExecutionScope(owner: owner, activation: UUID())
         let scene = try XCTUnwrap(UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }.first)
         let previous = scene.windows.first(where: \.isKeyWindow), window = UIWindow(windowScene: scene)
         defer {
@@ -58,6 +59,7 @@ import XCTest
                 }
                 let publisher = try SharedMusicPublisher(audio: Data(), artwork: try XCTUnwrap(art.pngData())); publishers.append(publisher)
                 let base = try await publisher.start()
+                if offset == 0 { pairing.value = .salted(baseUrl: base.absoluteString, username: "owned-listener", password: "owned-password", salt: "owned-salt") }
                 remote.append(SharedMusicPlaybackTests.track("subsonic:owned-\(offset + 1)", source: "owned-\(offset + 1)", connector: "subsonic", artwork: base.appendingPathComponent("cover.png").absoluteString))
             }
             XCTAssertTrue(store.remember(remote))
@@ -65,7 +67,10 @@ import XCTest
             collections.prepare(owner: owner)
             for track in [local.local.track] + remote { XCTAssertTrue(collections.recordPlayed(track.id, owner: owner)) }
             for track in remote { XCTAssertTrue(collections.setLiked(track.id, liked: true, owner: owner)) }
-            let host = UIHostingController(rootView: MixedCollectionMountedRoot(library: library, store: store, playlistID: list.id, layout: layout))
+            let server = SubsonicMusicService(scope: scope, currentScope: { scope }, persistence: pairing)
+            defer { server.dispose() }
+            let session = MusicPlaybackSession(server: server, playlists: store, localRecords: { library.records }, currentScope: { scope })
+            let host = UIHostingController(rootView: MixedCollectionMountedRoot(library: library, store: store, playlistID: list.id, layout: layout).environment(\.musicPlaybackSession, session))
             window.rootViewController = host; window.makeKeyAndVisible(); try await Task.sleep(for: .milliseconds(400))
             for (label, size) in [("compact", CGSize(width: 390, height: 844)), ("regular", CGSize(width: 834, height: 1194))] {
                 layout.regular = size.width > 600; layout.recent = false; layout.adding = false
