@@ -2205,6 +2205,11 @@
 "music.pause" = "Пауза";
 "music.play" = "Воспроизвести";
 "music.player.close" = "Остановить и закрыть плеер";
+"music.playlist.coverFailed" = "Не удалось использовать изображение";
+"music.playlist.coverRemove" = "Удалить обложку";
+"music.playlist.coverSize" = "Изображение слишком большое";
+"music.playlist.coverType" = "Выберите файл изображения";
+"music.playlist.coverUpload" = "Загрузить обложку";
 "music.playlist.create" = "Создать плейлист";
 "music.playlist.delete" = "Удалить плейлист";
 "music.playlist.deleteConfirm" = "Удалить этот плейлист? Песни останутся в вашей медиатеке.";

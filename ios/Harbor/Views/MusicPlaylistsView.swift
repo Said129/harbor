@@ -16,7 +16,7 @@ import SwiftUI
                     MusicPlaylistView(id: playlist.id, library: library, store: store)
                 } label: {
                     HStack(spacing: 12) {
-                        MusicCollectionCover(tracks: store.recordings(in: playlist.id, local: library.records), local: library.records, owner: library.owner).frame(width: 52, height: 52)
+                        MusicCollectionCover(tracks: store.recordings(in: playlist.id, local: library.records), local: library.records, owner: library.owner, playlist: playlist.id).frame(width: 52, height: 52)
                         VStack(alignment: .leading, spacing: 4) { Text(playlist.name); Text(DesktopInterfaceText.value("music.card.trackCount", variables: ["count": String(playlist.trackIds.count)])).font(.caption).foregroundStyle(.secondary) }
                     }
                 }
@@ -67,7 +67,7 @@ struct MusicPlaylistChoices: View {
             if let playlist {
                 Section {
                     HStack(alignment: .top, spacing: 16) {
-                        MusicCollectionCover(tracks: tracks, local: library.records, owner: library.owner).frame(width: 104, height: 104)
+                        MusicPlaylistCoverEditor(playlist: playlist.id, tracks: tracks, library: library, store: store).frame(width: 104)
                         VStack(alignment: .leading, spacing: 8) {
                             Text(playlist.name).font(.title3.bold())
                             Text(DesktopInterfaceText.value("music.card.trackCount", variables: ["count": String(playlist.trackIds.count)])).font(.caption).foregroundStyle(.secondary)
@@ -116,7 +116,13 @@ struct MusicPlaylistChoices: View {
             .sheet(isPresented: $renaming) { MusicPlaylistNameView(store: store, id: id) }
             .sheet(isPresented: $adding) { MusicPlaylistAddView(id: id, library: library, store: store) }
             .confirmationDialog(DesktopInterfaceText.value("music.playlist.deleteConfirm"), isPresented: $deleting, titleVisibility: .visible) {
-                Button(DesktopInterfaceText.value("music.playlist.delete"), role: .destructive) { store.delete(id); if store.error == nil { dismiss() } }
+                Button(DesktopInterfaceText.value("music.playlist.delete"), role: .destructive) {
+                    store.delete(id)
+                    if store.error == nil {
+                        try? MusicPlaylistCoverStore.shared.clear(owner: library.owner, playlist: id, allowed: { true })
+                        dismiss()
+                    }
+                }
             }.accessibilityIdentifier("music-mixed-playlist")
     }
     private func play(_ track: MusicTrack) {

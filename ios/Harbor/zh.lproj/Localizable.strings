@@ -2190,6 +2190,11 @@
 "music.pause" = "暂停";
 "music.play" = "播放";
 "music.player.close" = "停止并关闭播放器";
+"music.playlist.coverFailed" = "无法使用该图片";
+"music.playlist.coverRemove" = "移除封面";
+"music.playlist.coverSize" = "图片过大";
+"music.playlist.coverType" = "请选择图片文件";
+"music.playlist.coverUpload" = "上传封面";
 "music.playlist.create" = "创建播放列表";
 "music.playlist.delete" = "删除歌单";
 "music.playlist.deleteConfirm" = "删除此歌单？歌曲仍会保留在资料库中。";

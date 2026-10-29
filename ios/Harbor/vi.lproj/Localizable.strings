@@ -2190,6 +2190,11 @@
 "music.pause" = "Tạm dừng";
 "music.play" = "Phát";
 "music.player.close" = "Dừng và đóng trình phát";
+"music.playlist.coverFailed" = "Không thể dùng ảnh này";
+"music.playlist.coverRemove" = "Xóa ảnh bìa";
+"music.playlist.coverSize" = "Ảnh quá lớn";
+"music.playlist.coverType" = "Chọn một tệp ảnh";
+"music.playlist.coverUpload" = "Tải ảnh bìa";
 "music.playlist.create" = "Tạo danh sách phát";
 "music.playlist.delete" = "Xóa danh sách phát";
 "music.playlist.deleteConfirm" = "Xóa danh sách phát này? Các bài hát vẫn nằm trong thư viện của bạn.";

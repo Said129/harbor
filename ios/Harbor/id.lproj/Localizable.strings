@@ -2190,6 +2190,11 @@
 "music.pause" = "Jeda";
 "music.play" = "Putar";
 "music.player.close" = "Hentikan dan tutup pemutar";
+"music.playlist.coverFailed" = "Gambar tidak dapat digunakan";
+"music.playlist.coverRemove" = "Hapus sampul";
+"music.playlist.coverSize" = "Gambar terlalu besar";
+"music.playlist.coverType" = "Pilih berkas gambar";
+"music.playlist.coverUpload" = "Unggah sampul";
 "music.playlist.create" = "Buat daftar putar";
 "music.playlist.delete" = "Hapus playlist";
 "music.playlist.deleteConfirm" = "Hapus playlist ini? Lagu tetap ada di koleksi Anda.";

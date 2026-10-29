@@ -2190,6 +2190,11 @@
 "music.pause" = "Wstrzymaj";
 "music.play" = "Odtwórz";
 "music.player.close" = "Zatrzymaj i zamknij odtwarzacz";
+"music.playlist.coverFailed" = "Nie udało się użyć obrazu";
+"music.playlist.coverRemove" = "Usuń okładkę";
+"music.playlist.coverSize" = "Obraz jest za duży";
+"music.playlist.coverType" = "Wybierz plik obrazu";
+"music.playlist.coverUpload" = "Prześlij okładkę";
 "music.playlist.create" = "Utwórz playlistę";
 "music.playlist.delete" = "Usuń playlistę";
 "music.playlist.deleteConfirm" = "Usunąć tę playlistę? Utwory pozostaną w bibliotece.";

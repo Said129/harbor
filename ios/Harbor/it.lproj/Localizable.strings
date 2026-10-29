@@ -2190,6 +2190,11 @@
 "music.pause" = "Pausa";
 "music.play" = "Riproduci";
 "music.player.close" = "Interrompi e chiudi il lettore";
+"music.playlist.coverFailed" = "Impossibile usare l'immagine";
+"music.playlist.coverRemove" = "Rimuovi copertina";
+"music.playlist.coverSize" = "Immagine troppo grande";
+"music.playlist.coverType" = "Scegli un file immagine";
+"music.playlist.coverUpload" = "Carica copertina";
 "music.playlist.create" = "Crea playlist";
 "music.playlist.delete" = "Elimina playlist";
 "music.playlist.deleteConfirm" = "Eliminare questa playlist? I brani resteranno nella tua libreria.";

@@ -1,0 +1,80 @@
+{
+  "reference": "0834340cec5531650bfe78cd628628702e636987",
+  "original_modules": {
+    "src/lib/music/playlist-cover.ts": {
+      "committed_sha256": "4caa7f5a613d1a9cded94b7d7c10a1d6a36af661ed736410e8fbd2a0b3fc9f66",
+      "checkout_sha256": "c19e6a619324ef9635c7fba63333ac6086bbe0bd35c9b767b33abb2f072a2be2"
+    },
+    "src/components/music/music-playlist-cover.tsx": {
+      "committed_sha256": "fdb0c14b55c8f2ece06f8a0d1e08243e67cf8d5586fe62e02c8a381fdae5bead",
+      "checkout_sha256": "70dd1346a0b85e0d4b0d7759d00ec53a6e5348fbac1c638db84d7ca8e70cd0a4"
+    },
+    "src/components/music/music-playlist-cover-edit.tsx": {
+      "committed_sha256": "5cf4ce5e7f67b766164dd6daca6edb222208462b6992a9e3ce858462c96dbea6",
+      "checkout_sha256": "9d79367264943df85d882cf0fc0f31ab3ad993b46f071a227f1280856d62aed2"
+    },
+    "src/components/music/music-playlist-cover-edit.css": {
+      "committed_sha256": "4882132d7fbcbba89eb571b5090161f45e54832ffa5bc4653862f72e3a7b851f",
+      "checkout_sha256": "4882132d7fbcbba89eb571b5090161f45e54832ffa5bc4653862f72e3a7b851f"
+    }
+  },
+  "original_dom_and_tauri_cover_modules_executed": false,
+  "source_limits": {
+    "max_input_bytes": 25165824,
+    "max_edge": 900,
+    "formats": ["png", "jpeg", "gif", "webp", "avif"]
+  },
+  "native_adaptations": [
+    "Native PNG output preserves alpha without requiring a WebP encoder.",
+    "Photos selection also accepts supported HEIC/HEIF input.",
+    "Touch actions stay visible and use 44-point targets."
+  ],
+  "owned_input_fixtures": {
+    "original_code_generated_pixels": true,
+    "user_images_used": false,
+    "files": [
+      {
+        "path": "owned-playlist-cover.png",
+        "format": "PNG",
+        "width": 48,
+        "height": 24,
+        "bytes": 171,
+        "sha256": "d533844e30d19ddbf9164c0adba1f3947d65f45179cf69fbcd77d472b5ef9688"
+      },
+      {
+        "path": "owned-playlist-cover.jpg",
+        "format": "JPEG",
+        "width": 48,
+        "height": 24,
+        "bytes": 874,
+        "sha256": "a821c726961b894be3e65ecabfadc19d561603443609426570b6d25381359788"
+      },
+      {
+        "path": "owned-playlist-cover.gif",
+        "format": "GIF",
+        "width": 48,
+        "height": 24,
+        "bytes": 190,
+        "sha256": "b4ff5afafb247f681e47bcd47fc744952951bd136a347dbe6b71a08a87abc227"
+      },
+      {
+        "path": "owned-playlist-cover.webp",
+        "format": "WEBP",
+        "width": 48,
+        "height": 24,
+        "bytes": 78,
+        "sha256": "5f83fe6f419e7a181b625a27460431eb2df1bac39e32a551c79ef9bc3c5754dd"
+      },
+      {
+        "path": "owned-playlist-cover.avif",
+        "format": "AVIF",
+        "width": 48,
+        "height": 24,
+        "bytes": 519,
+        "sha256": "fb38e2e80195517acd09cc9e05014c9d31dea6085646d9be0a738dac5822d887"
+      }
+    ]
+  },
+  "native_tests_executed": false,
+  "full_desktop_parity_complete": false
+}

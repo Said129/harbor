@@ -2190,6 +2190,11 @@
 "music.pause" = "Pausieren";
 "music.play" = "Abspielen";
 "music.player.close" = "Wiedergabe stoppen und schließen";
+"music.playlist.coverFailed" = "Bild konnte nicht verwendet werden";
+"music.playlist.coverRemove" = "Cover entfernen";
+"music.playlist.coverSize" = "Das Bild ist zu groß";
+"music.playlist.coverType" = "Wähle eine Bilddatei";
+"music.playlist.coverUpload" = "Cover hochladen";
 "music.playlist.create" = "Playlist erstellen";
 "music.playlist.delete" = "Playlist löschen";
 "music.playlist.deleteConfirm" = "Diese Playlist löschen? Die Titel bleiben in deiner Mediathek.";

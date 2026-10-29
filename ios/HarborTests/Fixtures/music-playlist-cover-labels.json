@@ -1,0 +1,174 @@
+{
+  "reference": "0834340cec5531650bfe78cd628628702e636987",
+  "keys": [
+    "music.playlist.coverUpload",
+    "music.playlist.coverRemove",
+    "music.playlist.coverType",
+    "music.playlist.coverSize",
+    "music.playlist.coverFailed"
+  ],
+  "languages": [
+    {
+      "code": "ar",
+      "expected": {
+        "music.playlist.coverUpload": "رفع غلاف",
+        "music.playlist.coverRemove": "إزالة الغلاف",
+        "music.playlist.coverType": "اختر ملف صورة",
+        "music.playlist.coverSize": "الصورة كبيرة جدًا",
+        "music.playlist.coverFailed": "تعذر استخدام الصورة"
+      }
+    },
+    {
+      "code": "de",
+      "expected": {
+        "music.playlist.coverUpload": "Cover hochladen",
+        "music.playlist.coverRemove": "Cover entfernen",
+        "music.playlist.coverType": "Wähle eine Bilddatei",
+        "music.playlist.coverSize": "Das Bild ist zu groß",
+        "music.playlist.coverFailed": "Bild konnte nicht verwendet werden"
+      }
+    },
+    {
+      "code": "en",
+      "expected": {
+        "music.playlist.coverUpload": "Upload cover",
+        "music.playlist.coverRemove": "Remove cover",
+        "music.playlist.coverType": "Pick an image file",
+        "music.playlist.coverSize": "That image is too large",
+        "music.playlist.coverFailed": "Could not use that image"
+      }
+    },
+    {
+      "code": "es",
+      "expected": {
+        "music.playlist.coverUpload": "Subir portada",
+        "music.playlist.coverRemove": "Quitar portada",
+        "music.playlist.coverType": "Elige un archivo de imagen",
+        "music.playlist.coverSize": "La imagen es demasiado grande",
+        "music.playlist.coverFailed": "No se pudo usar esa imagen"
+      }
+    },
+    {
+      "code": "fr",
+      "expected": {
+        "music.playlist.coverUpload": "Importer une pochette",
+        "music.playlist.coverRemove": "Retirer la pochette",
+        "music.playlist.coverType": "Choisissez un fichier image",
+        "music.playlist.coverSize": "Image trop volumineuse",
+        "music.playlist.coverFailed": "Impossible d'utiliser cette image"
+      }
+    },
+    {
+      "code": "hi",
+      "expected": {
+        "music.playlist.coverUpload": "कवर अपलोड करें",
+        "music.playlist.coverRemove": "कवर हटाएँ",
+        "music.playlist.coverType": "एक चित्र फ़ाइल चुनें",
+        "music.playlist.coverSize": "यह चित्र बहुत बड़ा है",
+        "music.playlist.coverFailed": "यह चित्र उपयोग नहीं हो सका"
+      }
+    },
+    {
+      "code": "id",
+      "expected": {
+        "music.playlist.coverUpload": "Unggah sampul",
+        "music.playlist.coverRemove": "Hapus sampul",
+        "music.playlist.coverType": "Pilih berkas gambar",
+        "music.playlist.coverSize": "Gambar terlalu besar",
+        "music.playlist.coverFailed": "Gambar tidak dapat digunakan"
+      }
+    },
+    {
+      "code": "it",
+      "expected": {
+        "music.playlist.coverUpload": "Carica copertina",
+        "music.playlist.coverRemove": "Rimuovi copertina",
+        "music.playlist.coverType": "Scegli un file immagine",
+        "music.playlist.coverSize": "Immagine troppo grande",
+        "music.playlist.coverFailed": "Impossibile usare l'immagine"
+      }
+    },
+    {
+      "code": "ja",
+      "expected": {
+        "music.playlist.coverUpload": "カバーをアップロード",
+        "music.playlist.coverRemove": "カバーを削除",
+        "music.playlist.coverType": "画像ファイルを選択",
+        "music.playlist.coverSize": "画像が大きすぎます",
+        "music.playlist.coverFailed": "この画像は使用できません"
+      }
+    },
+    {
+      "code": "ko",
+      "expected": {
+        "music.playlist.coverUpload": "커버 업로드",
+        "music.playlist.coverRemove": "커버 제거",
+        "music.playlist.coverType": "이미지 파일을 선택하세요",
+        "music.playlist.coverSize": "이미지가 너무 큽니다",
+        "music.playlist.coverFailed": "이 이미지를 사용할 수 없습니다"
+      }
+    },
+    {
+      "code": "pl",
+      "expected": {
+        "music.playlist.coverUpload": "Prześlij okładkę",
+        "music.playlist.coverRemove": "Usuń okładkę",
+        "music.playlist.coverType": "Wybierz plik obrazu",
+        "music.playlist.coverSize": "Obraz jest za duży",
+        "music.playlist.coverFailed": "Nie udało się użyć obrazu"
+      }
+    },
+    {
+      "code": "pt",
+      "expected": {
+        "music.playlist.coverUpload": "Enviar capa",
+        "music.playlist.coverRemove": "Remover capa",
+        "music.playlist.coverType": "Escolha um arquivo de imagem",
+        "music.playlist.coverSize": "Imagem grande demais",
+        "music.playlist.coverFailed": "Não foi possível usar a imagem"
+      }
+    },
+    {
+      "code": "ru",
+      "expected": {
+        "music.playlist.coverUpload": "Загрузить обложку",
+        "music.playlist.coverRemove": "Удалить обложку",
+        "music.playlist.coverType": "Выберите файл изображения",
+        "music.playlist.coverSize": "Изображение слишком большое",
+        "music.playlist.coverFailed": "Не удалось использовать изображение"
+      }
+    },
+    {
+      "code": "tr",
+      "expected": {
+        "music.playlist.coverUpload": "Kapak yükle",
+        "music.playlist.coverRemove": "Kapağı kaldır",
+        "music.playlist.coverType": "Bir görsel dosyası seçin",
+        "music.playlist.coverSize": "Görsel çok büyük",
+        "music.playlist.coverFailed": "Bu görsel kullanılamadı"
+      }
+    },
+    {
+      "code": "vi",
+      "expected": {
+        "music.playlist.coverUpload": "Tải ảnh bìa",
+        "music.playlist.coverRemove": "Xóa ảnh bìa",
+        "music.playlist.coverType": "Chọn một tệp ảnh",
+        "music.playlist.coverSize": "Ảnh quá lớn",
+        "music.playlist.coverFailed": "Không thể dùng ảnh này"
+      }
+    },
+    {
+      "code": "zh",
+      "expected": {
+        "music.playlist.coverUpload": "上传封面",
+        "music.playlist.coverRemove": "移除封面",
+        "music.playlist.coverType": "请选择图片文件",
+        "music.playlist.coverSize": "图片过大",
+        "music.playlist.coverFailed": "无法使用该图片"
+      }
+    }
+  ],
+  "comparisons": 80,
+  "native_tests_executed": false
+}

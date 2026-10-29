@@ -1821,6 +1821,11 @@
 "music.pause" = "Pause";
 "music.play" = "Play";
 "music.player.close" = "Stop and close player";
+"music.playlist.coverFailed" = "Could not use that image";
+"music.playlist.coverRemove" = "Remove cover";
+"music.playlist.coverSize" = "That image is too large";
+"music.playlist.coverType" = "Pick an image file";
+"music.playlist.coverUpload" = "Upload cover";
 "music.playlist.create" = "Create playlist";
 "music.playlist.delete" = "Delete playlist";
 "music.playlist.deleteConfirm" = "Delete this playlist? The songs stay in your library.";

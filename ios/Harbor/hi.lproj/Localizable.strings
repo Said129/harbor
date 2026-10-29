@@ -2190,6 +2190,11 @@
 "music.pause" = "रोकें";
 "music.play" = "चलाएँ";
 "music.player.close" = "प्लेयर रोकें और बंद करें";
+"music.playlist.coverFailed" = "यह चित्र उपयोग नहीं हो सका";
+"music.playlist.coverRemove" = "कवर हटाएँ";
+"music.playlist.coverSize" = "यह चित्र बहुत बड़ा है";
+"music.playlist.coverType" = "एक चित्र फ़ाइल चुनें";
+"music.playlist.coverUpload" = "कवर अपलोड करें";
 "music.playlist.create" = "प्लेलिस्ट बनाएँ";
 "music.playlist.delete" = "प्लेलिस्ट हटाएँ";
 "music.playlist.deleteConfirm" = "यह प्लेलिस्ट हटाएँ? गाने आपकी लाइब्रेरी में रहेंगे।";

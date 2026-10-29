@@ -2190,6 +2190,11 @@
 "music.pause" = "Pausar";
 "music.play" = "Reproducir";
 "music.player.close" = "Detener y cerrar reproductor";
+"music.playlist.coverFailed" = "No se pudo usar esa imagen";
+"music.playlist.coverRemove" = "Quitar portada";
+"music.playlist.coverSize" = "La imagen es demasiado grande";
+"music.playlist.coverType" = "Elige un archivo de imagen";
+"music.playlist.coverUpload" = "Subir portada";
 "music.playlist.create" = "Crear lista";
 "music.playlist.delete" = "Eliminar playlist";
 "music.playlist.deleteConfirm" = "¿Eliminar esta playlist? Las canciones permanecerán en tu biblioteca.";

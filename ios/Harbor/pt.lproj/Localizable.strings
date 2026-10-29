@@ -2217,6 +2217,11 @@
 "music.pause" = "Pausar";
 "music.play" = "Reproduzir";
 "music.player.close" = "Parar e fechar o reprodutor";
+"music.playlist.coverFailed" = "Não foi possível usar a imagem";
+"music.playlist.coverRemove" = "Remover capa";
+"music.playlist.coverSize" = "Imagem grande demais";
+"music.playlist.coverType" = "Escolha um arquivo de imagem";
+"music.playlist.coverUpload" = "Enviar capa";
 "music.playlist.create" = "Criar playlist";
 "music.playlist.delete" = "Excluir playlist";
 "music.playlist.deleteConfirm" = "Excluir esta playlist? As músicas permanecerão na sua biblioteca.";

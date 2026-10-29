@@ -1,0 +1,17 @@
+# Editable music playlist covers
+
+The playlist header now exposes the Desktop upload/remove cover actions through a visible 44-point menu. Files opens the native document picker; Photos is an additional mobile path. Playlist rows show the same saved image. Removing a custom cover restores the existing mosaic, and deleting a playlist also retires its cover. Import errors occupy layout space beneath the image rather than overlapping the next controls.
+
+The original inputs are authenticated in `music-playlist-cover-inputs.json`. Desktop accepts PNG, JPEG, GIF, WebP and AVIF, limits input to 24 MB and scales its first decoded image to a maximum edge of 900 pixels. The native implementation retains those limits and formats. It additionally permits supported HEIC/HEIF images from Photos. Native output is PNG rather than Desktop's WebP: this uses the platform encoder, preserves alpha and removes imported metadata while keeping the original aspect ratio and size bound. Those are explicit platform adaptations; the original DOM and Tauri file modules were not executed by the native implementation.
+
+`MusicPlaylistCoverFiles` decodes, resizes, encodes and stages the image on a background actor. Each profile has its own protected, backup-excluded directory; published filenames are validated playlist UUIDs. The main actor publishes with a single atomic rename after checking the current upload generation and caller's profile/document permission. A retired permission or a clear action cannot publish an older staged upload. Failed or cancelled imports retain the prior cover, and unpublished stage files are discarded. There is one published file per playlist, without retaining a stack of replaced versions.
+
+`MusicCollectionCover` reloads only when its profile, playlist or cover revision changes. A thumbnail for another identity is never shown while loading. Replacing an image keeps the old bitmap until the new one is decoded. Loading and decoding stay off the interface actor. This implementation choice is not a physical-device performance measurement.
+
+## Pending focused validation
+
+Four new functional cases are prepared: actual decoding of the five Desktop formats and 900-pixel/alpha output, invalid/oversized input and profile separation, held-stage permission/clear retirement, and 80 comparisons for the five source labels in all 16 languages. The input images contain only original code-generated pixels; all five files together are 1,832 bytes. No user's photos are test inputs or bundled assets.
+
+A new independent production-view mount requires four originals: the custom cover and restored three-tile mosaic at compact and regular sizes. The paint check distinguishes the actual owned bitmap dimensions from the fallback tiles. The already affected mixed-collection mount must also be inspected after the header action changes. Its result in the currently running 13-case selection must be collected before choosing a later exact selection; approved unrelated cases are retained.
+
+These new cover cases have not executed in Apple yet. Independently mounting the interface and calling its actual file store does not prove normal picker navigation, HEIC/HEIF decoding, a real Photos permission flow, or physical iPhone/iPad behavior. Those limits remain explicit. Full Desktop styling and the larger Music and application parity work remain open. No IPA is requested by this slice.

@@ -4,6 +4,10 @@ import SwiftUI
     let tracks: [MusicTrack]
     let local: [MusicRecord]
     let owner: String
+    var playlist: String?
+    var onCustomChange: ((Bool) -> Void)?
+    @State private var custom: DecodedArtworkBitmap?
+    @State private var customIdentity = ""
     private var tiles: [MusicPlaybackItem] {
         let imported = Dictionary(local.map { ($0.id, $0) }, uniquingKeysWith: { first, _ in first })
         var seen = Set<String>(), result: [MusicPlaybackItem] = []
@@ -16,6 +20,22 @@ import SwiftUI
         return result
     }
     var body: some View {
+        let identity = owner + "|" + (playlist ?? "")
+        let revision = playlist.map { MusicPlaylistCoverStore.shared.revision(owner: owner, playlist: $0) } ?? 0
+        Group {
+            if customIdentity == identity, let custom { BoundedArtworkImage(image: custom.image, fit: .fill).clipShape(.rect(cornerRadius: 8)) }
+            else { mosaic }
+        }.accessibilityHidden(true).task(id: identity + "|" + String(revision)) {
+            if customIdentity != identity { custom = nil; customIdentity = identity; onCustomChange?(false) }
+            guard let playlist else { custom = nil; onCustomChange?(false); return }
+            do {
+                let image = try await MusicPlaylistCoverStore.shared.image(owner: owner, playlist: playlist)
+                try Task.checkCancellation(); custom = image; onCustomChange?(image != nil)
+            } catch is CancellationError { }
+            catch { custom = nil; onCustomChange?(false) }
+        }
+    }
+    private var mosaic: some View {
         GeometryReader { geometry in
             let entries = tiles, width = geometry.size.width, height = geometry.size.height
             Group {

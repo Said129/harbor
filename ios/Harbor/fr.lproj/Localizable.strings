@@ -2190,6 +2190,11 @@
 "music.pause" = "Mettre en pause";
 "music.play" = "Lire";
 "music.player.close" = "Arrêter et fermer le lecteur";
+"music.playlist.coverFailed" = "Impossible d'utiliser cette image";
+"music.playlist.coverRemove" = "Retirer la pochette";
+"music.playlist.coverSize" = "Image trop volumineuse";
+"music.playlist.coverType" = "Choisissez un fichier image";
+"music.playlist.coverUpload" = "Importer une pochette";
 "music.playlist.create" = "Créer la playlist";
 "music.playlist.delete" = "Supprimer la playlist";
 "music.playlist.deleteConfirm" = "Supprimer cette playlist ? Les morceaux resteront dans votre bibliothèque.";

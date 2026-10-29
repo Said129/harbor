@@ -2232,6 +2232,11 @@
 "music.pause" = "إيقاف مؤقت";
 "music.play" = "تشغيل";
 "music.player.close" = "إيقاف وإغلاق المشغل";
+"music.playlist.coverFailed" = "تعذر استخدام الصورة";
+"music.playlist.coverRemove" = "إزالة الغلاف";
+"music.playlist.coverSize" = "الصورة كبيرة جدًا";
+"music.playlist.coverType" = "اختر ملف صورة";
+"music.playlist.coverUpload" = "رفع غلاف";
 "music.playlist.create" = "إنشاء قائمة تشغيل";
 "music.playlist.delete" = "حذف قائمة التشغيل";
 "music.playlist.deleteConfirm" = "هل تريد حذف قائمة التشغيل؟ ستبقى الأغاني في مكتبتك.";

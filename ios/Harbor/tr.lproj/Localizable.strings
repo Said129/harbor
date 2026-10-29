@@ -2190,6 +2190,11 @@
 "music.pause" = "Duraklat";
 "music.play" = "Çal";
 "music.player.close" = "Oynatmayı durdur ve kapat";
+"music.playlist.coverFailed" = "Bu görsel kullanılamadı";
+"music.playlist.coverRemove" = "Kapağı kaldır";
+"music.playlist.coverSize" = "Görsel çok büyük";
+"music.playlist.coverType" = "Bir görsel dosyası seçin";
+"music.playlist.coverUpload" = "Kapak yükle";
 "music.playlist.create" = "Çalma listesi oluştur";
 "music.playlist.delete" = "Çalma listesini sil";
 "music.playlist.deleteConfirm" = "Bu çalma listesi silinsin mi? Şarkılar kitaplığınızda kalacak.";

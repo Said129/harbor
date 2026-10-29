@@ -2190,6 +2190,11 @@
 "music.pause" = "一時停止";
 "music.play" = "再生";
 "music.player.close" = "停止してプレーヤーを閉じる";
+"music.playlist.coverFailed" = "この画像は使用できません";
+"music.playlist.coverRemove" = "カバーを削除";
+"music.playlist.coverSize" = "画像が大きすぎます";
+"music.playlist.coverType" = "画像ファイルを選択";
+"music.playlist.coverUpload" = "カバーをアップロード";
 "music.playlist.create" = "プレイリストを作成";
 "music.playlist.delete" = "プレイリストを削除";
 "music.playlist.deleteConfirm" = "このプレイリストを削除しますか？曲はライブラリに残ります。";
