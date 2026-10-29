@@ -6,6 +6,9 @@ import re
 import runpy
 
 requested = os.environ.get('HARBOR_NATIVE_SELECTION', '').strip()
+if requested == 'affected:music-playlist-covers' or requested.startswith('HarborTests.MusicPlaylistCoverTests/'):
+    runpy.run_path('scripts/ios/prepare-music-playlist-covers-selection.py')
+    raise SystemExit(0)
 if requested == 'affected:music-mixed-collections' or requested.startswith('HarborTests.MusicMixedCollectionTests/'):
     runpy.run_path('scripts/ios/prepare-music-mixed-collections-selection.py')
     raise SystemExit(0)

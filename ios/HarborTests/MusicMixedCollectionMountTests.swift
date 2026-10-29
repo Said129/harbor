@@ -75,7 +75,7 @@ import XCTest
                 UserDefaults.standard.set("compact", forKey: "harbor.music.playlistView")
                 try await decoded(window, minimum: 3, minimumWidth: 50); capture(window, "music-mixed-compact-" + label)
                 layout.recent = true
-                try await decoded(window, minimum: 3, minimumWidth: 50); capture(window, "music-mixed-recent-" + label)
+                try await decoded(window, minimum: 3, minimumWidth: 50, recent: true); capture(window, "music-mixed-recent-" + label)
                 // Leave only the first source and actual local file in the list,
                 // so the production tray must offer the two other saved sources.
                 store.remove(remote[1].id, from: list.id); store.remove(remote[2].id, from: list.id)
@@ -92,14 +92,32 @@ import XCTest
             for record in library.records { await library.remove(record) }
         } catch { for record in library.records { await library.remove(record) }; throw error }
     }
-    private func decoded(_ window: UIView, minimum: Int, minimumWidth: CGFloat) async throws {
-        func count(_ view: UIView) -> Int {
-            let own = (view as? UIImageView).map { $0.image?.cgImage != nil && $0.bounds.width >= minimumWidth && $0.bounds.height >= 30 ? 1 : 0 } ?? 0
-            return own + view.subviews.reduce(0) { $0 + count($1) }
+    private func decoded(_ window: UIView, minimum: Int, minimumWidth: CGFloat, recent: Bool = false) async throws {
+        func images(_ view: UIView) -> [UIImageView] {
+            guard !view.isHidden, view.alpha > 0.01 else { return [] }
+            let own = (view as? UIImageView).map { image -> [UIImageView] in
+                guard image.image?.cgImage?.width == 300, image.image?.cgImage?.height == 300,
+                      image.convert(image.bounds, to: window).intersects(window.bounds) else { return [] }
+                return [image]
+            } ?? []
+            return own + view.subviews.flatMap(images)
+        }
+        func ready() -> Bool {
+            let painted = images(window)
+            if recent {
+                // The old playlist can retain decoded images during route replacement.
+                // Require the actual 120-point recent mosaic AND its compact track rows.
+                return painted.filter { abs($0.bounds.height - 60) < 1 && $0.bounds.width >= 59 }.count >= 3 &&
+                    painted.filter { abs($0.bounds.width - 32) < 1 && abs($0.bounds.height - 32) < 1 }.count >= 3
+            }
+            return painted.filter { $0.bounds.width >= minimumWidth && $0.bounds.height >= 30 }.count >= minimum
         }
         for _ in 0..<160 {
             window.layoutIfNeeded()
-            if count(window) >= minimum { try await Task.sleep(for: .milliseconds(500)); window.layoutIfNeeded(); return }
+            if ready() {
+                try await Task.sleep(for: .milliseconds(500)); window.layoutIfNeeded()
+                if ready() { return }
+            }
             try await Task.sleep(for: .milliseconds(50))
         }
         XCTFail("Decode owned source artwork in the production mixed collection before capture"); throw HarborError(code: "owned-mixed-artwork")

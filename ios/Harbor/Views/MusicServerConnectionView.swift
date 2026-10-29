@@ -58,7 +58,12 @@ import SwiftUI
                 }
             }.scrollDismissesKeyboard(.interactively).navigationTitle(text("music.connections.server"))
                 .navigationBarTitleDisplayMode(.inline).accessibilityIdentifier("music-server-connection")
-                .toolbar { ToolbarItem(placement: .topBarTrailing) { Button(text("Close")) { dismiss() } } }
+                .toolbar {
+                    ToolbarItem(placement: .principal) {
+                        Text(text("music.connections.server")).font(.headline).accessibilityIdentifier("music-server-title")
+                    }
+                    ToolbarItem(placement: .topBarTrailing) { Button(text("Close")) { dismiss() } }
+                }
         }.onDisappear { operation?.cancel(); operation = nil; model.close() }
     }
     private func text(_ key: String, variables: [String: String] = [:]) -> String { DesktopInterfaceText.value(key, variables: variables) }

@@ -50,16 +50,28 @@ import XCTest
             UIView.performWithoutAnimation { window.frame = CGRect(origin: .zero, size: size); host.view.frame = window.bounds; window.layoutIfNeeded() }
             try await Task.sleep(for: .milliseconds(400)); window.layoutIfNeeded()
             let scroll = try XCTUnwrap(scrolls(window).first { $0.bounds.width > 250 && $0.contentSize.height > $0.bounds.height + 100 })
-            scroll.setContentOffset(CGPoint(x: 0, y: -scroll.adjustedContentInset.top), animated: false)
-            try await decoded(window); capture(window, "music-shared-top-" + label)
-            scroll.setContentOffset(CGPoint(x: 0, y: max(-scroll.adjustedContentInset.top, scroll.contentSize.height - scroll.bounds.height + scroll.adjustedContentInset.bottom)), animated: false)
-            try await decoded(window); capture(window, "music-shared-queue-" + label)
+            try await decoded(window)
+            try await settle(scroll, in: window, bottom: false); capture(window, "music-shared-top-" + label)
+            try await settle(scroll, in: window, bottom: true); capture(window, "music-shared-queue-" + label)
             XCTAssertEqual(host.view.bounds.width, size.width, accuracy: 1)
             XCTAssertEqual(player.items.count, 14); XCTAssertEqual(player.upcomingItems.count, 13)
         }
         window.isHidden = true; try await Task.sleep(for: .milliseconds(400))
     }
     private func scrolls(_ view: UIView) -> [UIScrollView] { ((view as? UIScrollView).map { [$0] } ?? []) + view.subviews.flatMap(scrolls) }
+    private func settle(_ scroll: UIScrollView, in window: UIWindow, bottom: Bool) async throws {
+        var stable = 0
+        for _ in 0..<120 {
+            window.layoutIfNeeded()
+            let target = bottom ? max(-scroll.adjustedContentInset.top, scroll.contentSize.height - scroll.bounds.height + scroll.adjustedContentInset.bottom) : -scroll.adjustedContentInset.top
+            if abs(scroll.contentOffset.y - target) < 0.5 { stable += 1 } else { stable = 0 }
+            scroll.setContentOffset(CGPoint(x: 0, y: target), animated: false)
+            if stable >= 6 { window.layoutIfNeeded(); return }
+            try await Task.sleep(for: .milliseconds(50))
+        }
+        XCTFail("The resized player's real scroll offset must settle before photographing its top or queue")
+        throw HarborError(code: "owned-shared-player-offset")
+    }
     private func decoded(_ window: UIWindow) async throws {
         func count(_ view: UIView) -> Int {
             let own = (view as? UIImageView).map { $0.image?.cgImage != nil && $0.bounds.width >= 40 && $0.bounds.height >= 40 ? 1 : 0 } ?? 0
