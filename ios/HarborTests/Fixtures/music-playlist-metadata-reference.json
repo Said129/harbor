@@ -1,0 +1,248 @@
+{
+  "reference": "0834340cec5531650bfe78cd628628702e636987",
+  "original_modules": {
+    "src-tauri/src/music/db/mod.rs": "73cf3709576284227d5b727268b82dfd99ed2163c09c85a61444885caaf90da7",
+    "src-tauri/src/music/migrations.rs": "274ddb8e38884beeec14b51b82316ace7d7d7f5d97d837d05cbd6941c6f3e522"
+  },
+  "actual_original_upsert_and_url_sql_executed": true,
+  "complete_original_rust_function_executed": false,
+  "original_sql_fragments": 5,
+  "provider_network_requests": 0,
+  "cases": [
+    {
+      "input": {
+        "id": "catalog:owned",
+        "connectorId": "catalog",
+        "sourceId": "catalog:owned",
+        "title": "Owned recording",
+        "artist": "Owned artist",
+        "album": "Owned album",
+        "artwork": "https://example.org/owned.jpg",
+        "durationSeconds": 182,
+        "durationLabel": "ignored",
+        "explicit": true,
+        "version": "Original",
+        "mediaKind": "video",
+        "playbackUrl": "https://example.org/temporary-audio"
+      },
+      "expected": {
+        "id": "catalog:owned",
+        "connectorId": "catalog",
+        "sourceId": "catalog:owned",
+        "title": "Owned recording",
+        "artist": "Owned artist",
+        "album": "Owned album",
+        "artwork": "https://example.org/owned.jpg",
+        "durationSeconds": 182,
+        "durationLabel": "3:02",
+        "mediaKind": "video",
+        "explicit": true,
+        "version": "Original",
+        "playbackUrl": null
+      }
+    },
+    {
+      "input": {
+        "id": "catalog:owned",
+        "connectorId": "catalog",
+        "sourceId": "catalog:owned",
+        "title": "Updated recording",
+        "artist": "Owned artist",
+        "album": "Owned album",
+        "artwork": "https://example.org/owned.jpg",
+        "durationSeconds": 61,
+        "durationLabel": "ignored"
+      },
+      "expected": {
+        "id": "catalog:owned",
+        "connectorId": "catalog",
+        "sourceId": "catalog:owned",
+        "title": "Updated recording",
+        "artist": "Owned artist",
+        "album": "Owned album",
+        "artwork": "https://example.org/owned.jpg",
+        "durationSeconds": 61,
+        "durationLabel": "1:01",
+        "mediaKind": "video",
+        "explicit": true,
+        "version": "Original",
+        "playbackUrl": null
+      }
+    },
+    {
+      "input": {
+        "id": "catalog:owned",
+        "connectorId": "catalog",
+        "sourceId": "catalog:owned",
+        "title": "Owned recording",
+        "artist": "Owned artist",
+        "album": "Owned album",
+        "artwork": "https://example.org/owned.jpg",
+        "durationSeconds": 182,
+        "durationLabel": "ignored",
+        "mediaKind": "unrecognized"
+      },
+      "expected": {
+        "id": "catalog:owned",
+        "connectorId": "catalog",
+        "sourceId": "catalog:owned",
+        "title": "Owned recording",
+        "artist": "Owned artist",
+        "album": "Owned album",
+        "artwork": "https://example.org/owned.jpg",
+        "durationSeconds": 182,
+        "durationLabel": "3:02",
+        "mediaKind": "video",
+        "explicit": true,
+        "version": "Original",
+        "playbackUrl": null
+      }
+    },
+    {
+      "input": {
+        "id": "direct:owned",
+        "connectorId": "direct",
+        "sourceId": "direct:owned",
+        "title": "Owned recording",
+        "artist": "Owned artist",
+        "album": "Owned album",
+        "artwork": "https://example.org/owned.jpg",
+        "durationSeconds": 182,
+        "durationLabel": "ignored",
+        "playbackUrl": "  https://example.org/owned-audio.flac  "
+      },
+      "expected": {
+        "id": "direct:owned",
+        "connectorId": "direct",
+        "sourceId": "direct:owned",
+        "title": "Owned recording",
+        "artist": "Owned artist",
+        "album": "Owned album",
+        "artwork": "https://example.org/owned.jpg",
+        "durationSeconds": 182,
+        "durationLabel": "3:02",
+        "mediaKind": null,
+        "explicit": null,
+        "version": null,
+        "playbackUrl": "https://example.org/owned-audio.flac"
+      }
+    },
+    {
+      "input": {
+        "id": "direct:owned",
+        "connectorId": "direct",
+        "sourceId": "direct:owned",
+        "title": "Owned recording",
+        "artist": "Owned artist",
+        "album": "Owned album",
+        "artwork": "https://example.org/owned.jpg",
+        "durationSeconds": 182,
+        "durationLabel": "ignored",
+        "playbackUrl": "   "
+      },
+      "expected": {
+        "id": "direct:owned",
+        "connectorId": "direct",
+        "sourceId": "direct:owned",
+        "title": "Owned recording",
+        "artist": "Owned artist",
+        "album": "Owned album",
+        "artwork": "https://example.org/owned.jpg",
+        "durationSeconds": 182,
+        "durationLabel": "3:02",
+        "mediaKind": null,
+        "explicit": null,
+        "version": null,
+        "playbackUrl": "https://example.org/owned-audio.flac"
+      }
+    },
+    {
+      "input": {
+        "id": "legacy-recording",
+        "title": "Owned recording",
+        "artist": "",
+        "album": "Owned album",
+        "artwork": "https://example.org/owned.jpg",
+        "durationSeconds": 182,
+        "durationLabel": "ignored"
+      },
+      "expected": {
+        "id": "legacy-recording",
+        "connectorId": "youtube",
+        "sourceId": "legacy-recording",
+        "title": "Owned recording",
+        "artist": "",
+        "album": "Owned album",
+        "artwork": "https://example.org/owned.jpg",
+        "durationSeconds": 182,
+        "durationLabel": "3:02",
+        "mediaKind": null,
+        "explicit": null,
+        "version": null,
+        "playbackUrl": null
+      }
+    },
+    {
+      "input": {
+        "id": "empty-credit",
+        "connectorId": "",
+        "sourceId": "",
+        "title": "",
+        "artist": "Owned artist",
+        "album": "Owned album",
+        "artwork": "https://example.org/owned.jpg",
+        "durationSeconds": 182,
+        "durationLabel": "ignored",
+        "explicit": false,
+        "version": "",
+        "mediaKind": "audio"
+      },
+      "expected": {
+        "id": "empty-credit",
+        "connectorId": "",
+        "sourceId": "",
+        "title": "",
+        "artist": "Owned artist",
+        "album": "Owned album",
+        "artwork": "https://example.org/owned.jpg",
+        "durationSeconds": 182,
+        "durationLabel": "3:02",
+        "mediaKind": "audio",
+        "explicit": false,
+        "version": "",
+        "playbackUrl": null
+      }
+    },
+    {
+      "input": {
+        "id": "catalog:owned",
+        "connectorId": "catalog",
+        "sourceId": "catalog:owned",
+        "title": "Owned recording",
+        "artist": "Owned artist",
+        "album": "Owned album",
+        "artwork": "https://example.org/owned.jpg",
+        "durationSeconds": 182,
+        "durationLabel": "ignored",
+        "explicit": false,
+        "version": "",
+        "mediaKind": "audio"
+      },
+      "expected": {
+        "id": "catalog:owned",
+        "connectorId": "catalog",
+        "sourceId": "catalog:owned",
+        "title": "Owned recording",
+        "artist": "Owned artist",
+        "album": "Owned album",
+        "artwork": "https://example.org/owned.jpg",
+        "durationSeconds": 182,
+        "durationLabel": "3:02",
+        "mediaKind": "audio",
+        "explicit": false,
+        "version": "",
+        "playbackUrl": null
+      }
+    }
+  ]
+}

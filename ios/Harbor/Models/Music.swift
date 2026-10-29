@@ -1,6 +1,20 @@
 import Foundation
 import Observation
 
+struct MusicAudioQuality: Codable, Hashable, Sendable {
+    var codec: String?
+    var lossless: Bool?
+    var sampleRateHz: Double?
+    var bitDepth: Double?
+    var bitrateKbps: Double?
+}
+struct MusicCollectionOrigin: Codable, Hashable, Sendable {
+    let id: String
+    var connectorId: String?
+    var title: String?
+    var artist: String?
+    var artwork: String?
+}
 struct MusicTrack: Codable, Identifiable, Hashable, Sendable {
     let id: String
     let connectorId: String?
@@ -16,6 +30,9 @@ struct MusicTrack: Codable, Identifiable, Hashable, Sendable {
     var version: String?
     var mediaKind: String?
     var isrc: String?
+    var releaseDate: String?
+    var collectionOrigin: MusicCollectionOrigin?
+    var quality: MusicAudioQuality?
 }
 struct LocalMusic: Codable, Identifiable, Hashable, Sendable {
     let track: MusicTrack

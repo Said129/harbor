@@ -15,18 +15,20 @@ final class MusicPlaylistStore {
     let owner: String
     private(set) var playlists: [MusicPlaylist] = []
     private(set) var ready = false
+    private(set) var tracks: [String: MusicTrack] = [:]
     var error: String?
-    private var key: String { "music-playlists-" + EBookShelf.hash(owner) }
-    init(owner: String) {
+    @ObservationIgnored private let persistence: any MusicPlaylistPersistence
+    init(owner: String, persistence: (any MusicPlaylistPersistence)? = nil) {
         self.owner = owner
+        self.persistence = persistence ?? KeychainMusicPlaylistPersistence()
         do {
-            let saved = try KeychainStore().read(key, as: [MusicPlaylist].self) ?? []
-            guard Self.valid(saved) else { throw HarborError(code: "music-store") }
-            playlists = saved; ready = true
+            let saved = try (self.persistence.read(owner: owner) ?? MusicPlaylistDocument()).validated()
+            playlists = saved.playlists; tracks = saved.tracks; ready = true
         } catch { self.error = "No se pudieron recuperar tus listas. Los datos se conservan." }
     }
-    func create(_ name: String) {
-        change { values in
+    @discardableResult func create(_ name: String) -> MusicPlaylist? {
+        var createdID: String?
+        let saved = change { values in
             let base = try Self.name(name)
             let names = Set(values.map { $0.name.trimmingCharacters(in: .whitespacesAndNewlines).lowercased(with: .current) })
             var title = base
@@ -34,8 +36,10 @@ final class MusicPlaylistStore {
             while names.contains(title.lowercased(with: .current)) { title = base + " (\(suffix))"; suffix += 1 }
             title = try Self.name(title)
             let now = Self.timestamp
-            values.insert(MusicPlaylist(id: UUID().uuidString, name: title, createdAt: now, updatedAt: now, trackIds: [], trackAddedAt: [:]), at: 0)
+            let id = UUID().uuidString; createdID = id
+            values.insert(MusicPlaylist(id: id, name: title, createdAt: now, updatedAt: now, trackIds: [], trackAddedAt: [:]), at: 0)
         }
+        return saved ? playlists.first { $0.id == createdID } : nil
     }
     func rename(_ id: String, name: String) {
         change { values in
@@ -47,13 +51,23 @@ final class MusicPlaylistStore {
     }
     func delete(_ id: String) { change { $0.removeAll { $0.id == id } } }
     func add(_ record: MusicRecord, to id: String) {
-        change { values in
+        add([record.local.track], to: id)
+    }
+    @discardableResult func add(_ recordings: [MusicTrack], to id: String) -> MusicPlaylist? {
+        let saved = change(upserting: recordings) { values in
             guard let index = values.firstIndex(where: { $0.id == id }) else { throw HarborError(code: "music-store") }
-            guard !values[index].trackIds.contains(record.id) else { return }
             let now = Self.timestamp
-            values[index].trackIds.append(record.id); values[index].trackAddedAt[record.id] = now
+            var known = Set(values[index].trackIds)
+            for track in recordings where known.insert(track.id).inserted {
+                values[index].trackIds.append(track.id); values[index].trackAddedAt[track.id] = now
+            }
             values[index].updatedAt = now
         }
+        return saved ? playlists.first { $0.id == id } : nil
+    }
+    func recordings(in id: String, local: [MusicRecord] = []) -> [MusicTrack] {
+        let imported = Dictionary(local.map { ($0.id, $0.local.track) }, uniquingKeysWith: { first, _ in first })
+        return (playlists.first { $0.id == id }?.trackIds ?? []).compactMap { tracks[$0] ?? imported[$0] }
     }
     func remove(_ track: String, from id: String) {
         change { values in
@@ -69,28 +83,21 @@ final class MusicPlaylistStore {
             values[index].updatedAt = Self.timestamp
         }
     }
-    private func change(_ mutation: (inout [MusicPlaylist]) throws -> Void) {
-        guard ready else { return }
+    @discardableResult private func change(upserting recordings: [MusicTrack] = [], _ mutation: (inout [MusicPlaylist]) throws -> Void) -> Bool {
+        guard ready else { return false }
         do {
-            var next = playlists; try mutation(&next)
-            guard Self.valid(next) else { throw HarborError(code: "music-store") }
-            next.sort { $0.updatedAt == $1.updatedAt ? $0.name.localizedStandardCompare($1.name) == .orderedAscending : (Int64($0.updatedAt) ?? 0) > (Int64($1.updatedAt) ?? 0) }
-            try KeychainStore().write(next, key: key)
-            playlists = next; error = nil
-        } catch { self.error = safeMessage(error) }
+            var next = MusicPlaylistDocument(playlists: playlists, tracks: tracks)
+            try mutation(&next.playlists)
+            for track in recordings { next.tracks[track.id] = track.playlistRecording(replacing: next.tracks[track.id]) }
+            next = try next.validated()
+            next.playlists.sort { $0.updatedAt == $1.updatedAt ? $0.name.localizedStandardCompare($1.name) == .orderedAscending : (Int64($0.updatedAt) ?? 0) > (Int64($1.updatedAt) ?? 0) }
+            try persistence.write(next, owner: owner)
+            playlists = next.playlists; tracks = next.tracks; error = nil; return true
+        } catch { self.error = safeMessage(error); return false }
     }
     private static var timestamp: String { String(Int64(Date().timeIntervalSince1970 * 1000)) }
     private static func name(_ input: String) throws -> String {
         try CoreBridge.invoke(JSONEncoder().encode(JSONValue.object(["operation": .string("musicPlaylistName"), "name": .string(input)])), as: String.self)
-    }
-    private static func valid(_ values: [MusicPlaylist]) -> Bool {
-        values.count <= 200 && Set(values.map(\.id)).count == values.count && values.allSatisfy { value in
-            UUID(uuidString: value.id) != nil && !value.name.isEmpty && value.name.unicodeScalars.count <= 100 && !value.name.contains("\0") &&
-            value.trackIds.count <= 500 && Set(value.trackIds).count == value.trackIds.count &&
-            value.trackIds.allSatisfy { !$0.isEmpty && $0.utf8.count <= 256 && !$0.contains("\0") } &&
-            value.trackAddedAt.count <= 500 && Set(value.trackAddedAt.keys).isSubset(of: Set(value.trackIds)) &&
-            Int64(value.createdAt) != nil && Int64(value.updatedAt) != nil
-        } && (try? JSONEncoder().encode(values).count).map { $0 <= 4 * 1024 * 1024 } == true
     }
 }
 
