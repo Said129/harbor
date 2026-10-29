@@ -2176,7 +2176,11 @@
 "music.library.loadMore" = "Muat lagi";
 "music.library.playlistEmpty" = "Tambahkan lagu tersimpan atau yang baru diputar dari daftar di bawah.";
 "music.loading" = "Memuat musik";
+"music.m3u.export" = "Ekspor";
+"music.m3u.exportedNotice" = "{count} lagu diekspor dari {name}.";
+"music.m3u.playlist" = "Daftar putar M3U";
 "music.metadata.deezerFans" = "Penggemar di Deezer";
+"music.mobile.exportFailed" = "Daftar putar tidak dapat diekspor. Periksa sumbernya dan coba lagi.";
 "music.mobile.missingFile" = "File berada di luar pustakamu";
 "music.mobile.moreInfo" = "Info lainnya";
 "music.mobile.options" = "Opsi";

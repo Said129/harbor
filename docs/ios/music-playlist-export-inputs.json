@@ -1,0 +1,30 @@
+{
+  "reference": "0834340cec5531650bfe78cd628628702e636987",
+  "original_modules": {
+    "src-tauri/src/music/m3u.rs": {
+      "committed_sha256": "9442b76f42206c10670f3960edf2112953b6a5d2de41ad477b4090b60383a183",
+      "checkout_sha256": "21a0b4e98320e97967cd0c264b07067774cf3e6cb471290349a17b510b96f692"
+    },
+    "src-tauri/src/music/commands/playback.rs": {
+      "committed_sha256": "164e3b96f17af64fd04fe6235f19ece37e697ab3aed9ed93fad56331cfdc051b",
+      "checkout_sha256": "31b56721cbfacaeabb45fb985c2f56787195444504dbcf9eeef7f4c01138eb53"
+    },
+    "src/views/music/music-playlist-page.tsx": {
+      "committed_sha256": "e7d82624b9d5bb57f4e2a2656d0c080c07840444a6ba3d382a437f64c026bdd8",
+      "checkout_sha256": "ad43e4f3799708cf33ba9deeee96175eed80cdf4276ad3aeebd6e3b72daa202f"
+    },
+    "src/lib/music/library.ts": {
+      "committed_sha256": "d4821bfd0d053ff9c4774283c24ee9080c25b0eb612889918fb26838a9a44fcd",
+      "checkout_sha256": "4ab18026d911676962bfe85929cb73b9b4cf6942910e0f378355ca1502ef121c"
+    }
+  },
+  "original_rust_or_dom_modules_executed": false,
+  "native_tests_executed": false,
+  "original_export_resolves_entire_stored_playlist_in_order": true,
+  "native_adaptations": [
+    "The system Files exporter replaces the Desktop save dialog.",
+    "Local audio locations remain paths within the app container; an M3U does not copy the audio."
+  ],
+  "m3u_import_implemented": false,
+  "full_desktop_parity_complete": false
+}

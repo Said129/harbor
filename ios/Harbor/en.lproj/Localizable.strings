@@ -1807,7 +1807,11 @@
 "music.library.loadMore" = "Load more";
 "music.library.playlistEmpty" = "Add a saved or recent track from the lists below.";
 "music.loading" = "Loading music";
+"music.m3u.export" = "Export";
+"music.m3u.exportedNotice" = "Exported {count} tracks from {name}.";
+"music.m3u.playlist" = "M3U playlist";
 "music.metadata.deezerFans" = "Deezer fans";
+"music.mobile.exportFailed" = "Could not export the playlist. Check its sources and try again.";
 "music.mobile.missingFile" = "File is outside your library";
 "music.mobile.moreInfo" = "More info";
 "music.mobile.options" = "Options";

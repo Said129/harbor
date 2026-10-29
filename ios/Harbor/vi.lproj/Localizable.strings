@@ -2176,7 +2176,11 @@
 "music.library.loadMore" = "Tải thêm";
 "music.library.playlistEmpty" = "Thêm bài hát đã lưu hoặc mới nghe từ các danh sách bên dưới.";
 "music.loading" = "Đang tải nhạc";
+"music.m3u.export" = "Xuất";
+"music.m3u.exportedNotice" = "Đã xuất {count} bài hát từ {name}.";
+"music.m3u.playlist" = "Danh sách phát M3U";
 "music.metadata.deezerFans" = "Người hâm mộ trên Deezer";
+"music.mobile.exportFailed" = "Không thể xuất danh sách phát. Hãy kiểm tra nguồn và thử lại.";
 "music.mobile.missingFile" = "Tệp không có trong thư viện của bạn";
 "music.mobile.moreInfo" = "Thông tin thêm";
 "music.mobile.options" = "Tùy chọn";

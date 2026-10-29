@@ -2176,7 +2176,11 @@
 "music.library.loadMore" = "और लोड करें";
 "music.library.playlistEmpty" = "नीचे दी गई सूचियों से कोई सहेजा गया या हाल का ट्रैक जोड़ें।";
 "music.loading" = "संगीत लोड हो रहा है";
+"music.m3u.export" = "निर्यात करें";
+"music.m3u.exportedNotice" = "{name} से {count} ट्रैक निर्यात किए गए।";
+"music.m3u.playlist" = "M3U प्लेलिस्ट";
 "music.metadata.deezerFans" = "Deezer प्रशंसक";
+"music.mobile.exportFailed" = "प्लेलिस्ट निर्यात नहीं हो सकी। उसके स्रोत जाँचें और फिर कोशिश करें।";
 "music.mobile.missingFile" = "फ़ाइल आपकी लाइब्रेरी में नहीं है";
 "music.mobile.moreInfo" = "अधिक जानकारी";
 "music.mobile.options" = "विकल्प";

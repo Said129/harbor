@@ -2176,7 +2176,11 @@
 "music.library.loadMore" = "Daha fazla yükle";
 "music.library.playlistEmpty" = "Aşağıdaki listelerden kaydedilmiş veya yakın zamanda çalınmış bir parça ekleyin.";
 "music.loading" = "Müzik yükleniyor";
+"music.m3u.export" = "Dışa aktar";
+"music.m3u.exportedNotice" = "{name} listesinden {count} parça dışa aktarıldı.";
+"music.m3u.playlist" = "M3U çalma listesi";
 "music.metadata.deezerFans" = "Deezer hayranları";
+"music.mobile.exportFailed" = "Çalma listesi dışa aktarılamadı. Kaynaklarını kontrol edip tekrar deneyin.";
 "music.mobile.missingFile" = "Dosya kitaplığında değil";
 "music.mobile.moreInfo" = "Daha fazla bilgi";
 "music.mobile.options" = "Seçenekler";

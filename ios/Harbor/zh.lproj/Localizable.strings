@@ -2176,7 +2176,11 @@
 "music.library.loadMore" = "加载更多";
 "music.library.playlistEmpty" = "从下方列表中添加已收藏或最近播放的歌曲。";
 "music.loading" = "正在加载音乐";
+"music.m3u.export" = "导出";
+"music.m3u.exportedNotice" = "已从 {name} 导出 {count} 首歌曲。";
+"music.m3u.playlist" = "M3U 播放列表";
 "music.metadata.deezerFans" = "Deezer 粉丝";
+"music.mobile.exportFailed" = "无法导出播放列表。请检查其来源后重试。";
 "music.mobile.missingFile" = "文件不在你的媒体库中";
 "music.mobile.moreInfo" = "更多信息";
 "music.mobile.options" = "选项";

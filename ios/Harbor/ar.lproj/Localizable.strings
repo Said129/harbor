@@ -2218,7 +2218,11 @@
 "music.library.loadMore" = "تحميل المزيد";
 "music.library.playlistEmpty" = "أضف مقطعًا محفوظًا أو حديثًا من القوائم أدناه.";
 "music.loading" = "جارٍ تحميل الموسيقى";
+"music.m3u.export" = "تصدير";
+"music.m3u.exportedNotice" = "تم تصدير {count} من المقاطع من {name}.";
+"music.m3u.playlist" = "قائمة تشغيل M3U";
 "music.metadata.deezerFans" = "متابعون على Deezer";
+"music.mobile.exportFailed" = "تعذر تصدير قائمة التشغيل. تحقق من مصادرها وحاول مجددًا.";
 "music.mobile.missingFile" = "الملف غير موجود في مكتبتك";
 "music.mobile.moreInfo" = "مزيد من المعلومات";
 "music.mobile.options" = "خيارات";

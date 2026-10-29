@@ -2191,7 +2191,11 @@
 "music.library.loadMore" = "Загрузить ещё";
 "music.library.playlistEmpty" = "Добавьте сохранённый или недавний трек из списков ниже.";
 "music.loading" = "Загрузка музыки";
+"music.m3u.export" = "Экспорт";
+"music.m3u.exportedNotice" = "Из {name} экспортировано треков: {count}.";
+"music.m3u.playlist" = "Плейлист M3U";
 "music.metadata.deezerFans" = "Поклонники на Deezer";
+"music.mobile.exportFailed" = "Не удалось экспортировать плейлист. Проверьте его источники и повторите попытку.";
 "music.mobile.missingFile" = "Файл отсутствует в вашей библиотеке";
 "music.mobile.moreInfo" = "Подробнее";
 "music.mobile.options" = "Параметры";

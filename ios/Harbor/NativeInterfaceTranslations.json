@@ -117,7 +117,8 @@
     "music.mobile.queueLimit": "La cola admite hasta 500 canciones.",
     "music.mobile.reverseOrder": "Orden inverso",
     "music.mobile.missingFile": "Archivo fuera de la biblioteca",
-    "music.mobile.playlistUnavailable": "Esta lista ya no está disponible."
+    "music.mobile.playlistUnavailable": "Esta lista ya no está disponible.",
+    "music.mobile.exportFailed": "No se pudo exportar la lista. Comprueba sus fuentes y vuelve a intentarlo."
   },
   "pt": {
     "Auto-sync": "Sincronização automática",
@@ -185,7 +186,8 @@
     "music.mobile.queueLimit": "A fila pode conter até 500 músicas.",
     "music.mobile.reverseOrder": "Ordem inversa",
     "music.mobile.missingFile": "O ficheiro não está na sua biblioteca",
-    "music.mobile.playlistUnavailable": "Esta playlist já não está disponível."
+    "music.mobile.playlistUnavailable": "Esta playlist já não está disponível.",
+    "music.mobile.exportFailed": "Não foi possível exportar a lista. Verifique as fontes e tente novamente."
   },
   "ru": {
     "Auto-sync": "Автосинхронизация",
@@ -252,7 +254,8 @@
     "music.mobile.queueLimit": "Очередь вмещает до 500 композиций.",
     "music.mobile.reverseOrder": "Обратный порядок",
     "music.mobile.missingFile": "Файл отсутствует в вашей библиотеке",
-    "music.mobile.playlistUnavailable": "Этот плейлист больше недоступен."
+    "music.mobile.playlistUnavailable": "Этот плейлист больше недоступен.",
+    "music.mobile.exportFailed": "Не удалось экспортировать плейлист. Проверьте его источники и повторите попытку."
   },
   "ar": {
     "Auto-sync": "مزامنة تلقائية",
@@ -319,7 +322,8 @@
     "music.mobile.queueLimit": "تتّسع قائمة الانتظار لما يصل إلى 500 أغنية.",
     "music.mobile.reverseOrder": "عكس الترتيب",
     "music.mobile.missingFile": "الملف غير موجود في مكتبتك",
-    "music.mobile.playlistUnavailable": "قائمة التشغيل هذه لم تعد متاحة."
+    "music.mobile.playlistUnavailable": "قائمة التشغيل هذه لم تعد متاحة.",
+    "music.mobile.exportFailed": "تعذر تصدير قائمة التشغيل. تحقق من مصادرها وحاول مجددًا."
   },
   "zh": {
     "Couldn't auto-sync": "无法自动同步",
@@ -358,7 +362,8 @@
     "music.mobile.queueLimit": "播放队列最多可容纳 500 首歌曲。",
     "music.mobile.reverseOrder": "反向排序",
     "music.mobile.missingFile": "文件不在你的媒体库中",
-    "music.mobile.playlistUnavailable": "此播放列表已不可用。"
+    "music.mobile.playlistUnavailable": "此播放列表已不可用。",
+    "music.mobile.exportFailed": "无法导出播放列表。请检查其来源后重试。"
   },
   "fr": {
     "Couldn't auto-sync": "Synchronisation automatique impossible",
@@ -397,7 +402,8 @@
     "music.mobile.queueLimit": "La file peut contenir jusqu’à 500 titres.",
     "music.mobile.reverseOrder": "Ordre inverse",
     "music.mobile.missingFile": "Le fichier est absent de votre bibliothèque",
-    "music.mobile.playlistUnavailable": "Cette playlist n’est plus disponible."
+    "music.mobile.playlistUnavailable": "Cette playlist n’est plus disponible.",
+    "music.mobile.exportFailed": "Impossible d’exporter la playlist. Vérifiez ses sources et réessayez."
   },
   "de": {
     "Couldn't auto-sync": "Automatische Synchronisierung nicht möglich",
@@ -436,7 +442,8 @@
     "music.mobile.queueLimit": "Die Warteschlange kann bis zu 500 Titel enthalten.",
     "music.mobile.reverseOrder": "Umgekehrte Reihenfolge",
     "music.mobile.missingFile": "Die Datei befindet sich nicht in deiner Bibliothek",
-    "music.mobile.playlistUnavailable": "Diese Playlist ist nicht mehr verfügbar."
+    "music.mobile.playlistUnavailable": "Diese Playlist ist nicht mehr verfügbar.",
+    "music.mobile.exportFailed": "Die Wiedergabeliste konnte nicht exportiert werden. Prüfe ihre Quellen und versuche es erneut."
   },
   "hi": {
     "Couldn't auto-sync": "अपने-आप सिंक नहीं हो सका",
@@ -475,7 +482,8 @@
     "music.mobile.queueLimit": "कतार में अधिकतम 500 गाने रखे जा सकते हैं।",
     "music.mobile.reverseOrder": "उल्टा क्रम",
     "music.mobile.missingFile": "फ़ाइल आपकी लाइब्रेरी में नहीं है",
-    "music.mobile.playlistUnavailable": "यह प्लेलिस्ट अब उपलब्ध नहीं है।"
+    "music.mobile.playlistUnavailable": "यह प्लेलिस्ट अब उपलब्ध नहीं है।",
+    "music.mobile.exportFailed": "प्लेलिस्ट निर्यात नहीं हो सकी। उसके स्रोत जाँचें और फिर कोशिश करें।"
   },
   "id": {
     "Couldn't auto-sync": "Tidak dapat menyinkronkan otomatis",
@@ -514,7 +522,8 @@
     "music.mobile.queueLimit": "Antrean dapat memuat hingga 500 lagu.",
     "music.mobile.reverseOrder": "Urutan terbalik",
     "music.mobile.missingFile": "File berada di luar pustakamu",
-    "music.mobile.playlistUnavailable": "Playlist ini tidak lagi tersedia."
+    "music.mobile.playlistUnavailable": "Playlist ini tidak lagi tersedia.",
+    "music.mobile.exportFailed": "Daftar putar tidak dapat diekspor. Periksa sumbernya dan coba lagi."
   },
   "it": {
     "Couldn't auto-sync": "Sincronizzazione automatica non riuscita",
@@ -553,7 +562,8 @@
     "music.mobile.queueLimit": "La coda può contenere fino a 500 brani.",
     "music.mobile.reverseOrder": "Ordine inverso",
     "music.mobile.missingFile": "Il file non è nella tua libreria",
-    "music.mobile.playlistUnavailable": "Questa playlist non è più disponibile."
+    "music.mobile.playlistUnavailable": "Questa playlist non è più disponibile.",
+    "music.mobile.exportFailed": "Impossibile esportare la playlist. Controlla le sue fonti e riprova."
   },
   "ja": {
     "Couldn't auto-sync": "自動同期できませんでした",
@@ -592,7 +602,8 @@
     "music.mobile.queueLimit": "再生キューには最大500曲を追加できます。",
     "music.mobile.reverseOrder": "逆順",
     "music.mobile.missingFile": "ファイルがライブラリにありません",
-    "music.mobile.playlistUnavailable": "このプレイリストは利用できなくなりました。"
+    "music.mobile.playlistUnavailable": "このプレイリストは利用できなくなりました。",
+    "music.mobile.exportFailed": "プレイリストを書き出せませんでした。ソースを確認して、もう一度お試しください。"
   },
   "ko": {
     "Couldn't auto-sync": "자동 동기화하지 못했습니다",
@@ -631,7 +642,8 @@
     "music.mobile.queueLimit": "대기열에는 최대 500곡을 담을 수 있습니다.",
     "music.mobile.reverseOrder": "역순",
     "music.mobile.missingFile": "라이브러리에 파일이 없습니다",
-    "music.mobile.playlistUnavailable": "이 재생목록은 더 이상 사용할 수 없습니다."
+    "music.mobile.playlistUnavailable": "이 재생목록은 더 이상 사용할 수 없습니다.",
+    "music.mobile.exportFailed": "재생목록을 내보내지 못했습니다. 소스를 확인한 후 다시 시도하세요."
   },
   "pl": {
     "Couldn't auto-sync": "Nie udało się zsynchronizować automatycznie",
@@ -670,7 +682,8 @@
     "music.mobile.queueLimit": "Kolejka może pomieścić do 500 utworów.",
     "music.mobile.reverseOrder": "Odwrócona kolejność",
     "music.mobile.missingFile": "Pliku nie ma w bibliotece",
-    "music.mobile.playlistUnavailable": "Ta playlista nie jest już dostępna."
+    "music.mobile.playlistUnavailable": "Ta playlista nie jest już dostępna.",
+    "music.mobile.exportFailed": "Nie udało się wyeksportować listy odtwarzania. Sprawdź jej źródła i spróbuj ponownie."
   },
   "tr": {
     "Couldn't auto-sync": "Otomatik eşitlenemedi",
@@ -709,7 +722,8 @@
     "music.mobile.queueLimit": "Kuyruk en fazla 500 şarkı içerebilir.",
     "music.mobile.reverseOrder": "Ters sıralama",
     "music.mobile.missingFile": "Dosya kitaplığında değil",
-    "music.mobile.playlistUnavailable": "Bu çalma listesi artık kullanılamıyor."
+    "music.mobile.playlistUnavailable": "Bu çalma listesi artık kullanılamıyor.",
+    "music.mobile.exportFailed": "Çalma listesi dışa aktarılamadı. Kaynaklarını kontrol edip tekrar deneyin."
   },
   "vi": {
     "Couldn't auto-sync": "Không thể tự động đồng bộ",
@@ -748,7 +762,8 @@
     "music.mobile.queueLimit": "Hàng đợi có thể chứa tối đa 500 bài hát.",
     "music.mobile.reverseOrder": "Đảo thứ tự",
     "music.mobile.missingFile": "Tệp không có trong thư viện của bạn",
-    "music.mobile.playlistUnavailable": "Danh sách phát này không còn khả dụng."
+    "music.mobile.playlistUnavailable": "Danh sách phát này không còn khả dụng.",
+    "music.mobile.exportFailed": "Không thể xuất danh sách phát. Hãy kiểm tra nguồn và thử lại."
   },
   "en": {
     "Browse services": "Browse services",
@@ -824,6 +839,7 @@
     "music.mobile.queueLimit": "The queue can hold up to 500 songs.",
     "music.mobile.reverseOrder": "Reverse order",
     "music.mobile.missingFile": "File is outside your library",
-    "music.mobile.playlistUnavailable": "This playlist is no longer available."
+    "music.mobile.playlistUnavailable": "This playlist is no longer available.",
+    "music.mobile.exportFailed": "Could not export the playlist. Check its sources and try again."
   }
 }

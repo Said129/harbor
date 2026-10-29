@@ -2203,7 +2203,11 @@
 "music.library.loadMore" = "Carregar mais";
 "music.library.playlistEmpty" = "Adicione uma faixa salva ou recente das listas abaixo.";
 "music.loading" = "Carregando músicas";
+"music.m3u.export" = "Exportar";
+"music.m3u.exportedNotice" = "{count} faixas exportadas de {name}.";
+"music.m3u.playlist" = "Playlist M3U";
 "music.metadata.deezerFans" = "Fãs no Deezer";
+"music.mobile.exportFailed" = "Não foi possível exportar a lista. Verifique as fontes e tente novamente.";
 "music.mobile.missingFile" = "O ficheiro não está na sua biblioteca";
 "music.mobile.moreInfo" = "Mais informações";
 "music.mobile.options" = "Opções";

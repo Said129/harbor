@@ -2176,7 +2176,11 @@
 "music.library.loadMore" = "더 불러오기";
 "music.library.playlistEmpty" = "아래 목록에서 저장했거나 최근 재생한 트랙을 추가하세요.";
 "music.loading" = "음악 불러오는 중";
+"music.m3u.export" = "내보내기";
+"music.m3u.exportedNotice" = "{name}에서 트랙 {count}개를 내보냈습니다.";
+"music.m3u.playlist" = "M3U 플레이리스트";
 "music.metadata.deezerFans" = "Deezer 팬";
+"music.mobile.exportFailed" = "재생목록을 내보내지 못했습니다. 소스를 확인한 후 다시 시도하세요.";
 "music.mobile.missingFile" = "라이브러리에 파일이 없습니다";
 "music.mobile.moreInfo" = "추가 정보";
 "music.mobile.options" = "옵션";

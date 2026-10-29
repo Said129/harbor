@@ -1,0 +1,159 @@
+{
+  "reference": "0834340cec5531650bfe78cd628628702e636987",
+  "original_label_count": 3,
+  "native_label_count": 1,
+  "keys": [
+    "music.m3u.playlist",
+    "music.m3u.export",
+    "music.m3u.exportedNotice",
+    "music.mobile.exportFailed"
+  ],
+  "languages": [
+    {
+      "code": "ar",
+      "expected": {
+        "music.m3u.playlist": "قائمة تشغيل M3U",
+        "music.m3u.export": "تصدير",
+        "music.m3u.exportedNotice": "تم تصدير {count} من المقاطع من {name}.",
+        "music.mobile.exportFailed": "تعذر تصدير قائمة التشغيل. تحقق من مصادرها وحاول مجددًا."
+      }
+    },
+    {
+      "code": "de",
+      "expected": {
+        "music.m3u.playlist": "M3U-Playlist",
+        "music.m3u.export": "Exportieren",
+        "music.m3u.exportedNotice": "{count} Titel aus {name} exportiert.",
+        "music.mobile.exportFailed": "Die Wiedergabeliste konnte nicht exportiert werden. Prüfe ihre Quellen und versuche es erneut."
+      }
+    },
+    {
+      "code": "en",
+      "expected": {
+        "music.m3u.playlist": "M3U playlist",
+        "music.m3u.export": "Export",
+        "music.m3u.exportedNotice": "Exported {count} tracks from {name}.",
+        "music.mobile.exportFailed": "Could not export the playlist. Check its sources and try again."
+      }
+    },
+    {
+      "code": "es",
+      "expected": {
+        "music.m3u.playlist": "Lista M3U",
+        "music.m3u.export": "Exportar",
+        "music.m3u.exportedNotice": "Se exportaron {count} pistas de {name}.",
+        "music.mobile.exportFailed": "No se pudo exportar la lista. Comprueba sus fuentes y vuelve a intentarlo."
+      }
+    },
+    {
+      "code": "fr",
+      "expected": {
+        "music.m3u.playlist": "Playlist M3U",
+        "music.m3u.export": "Exporter",
+        "music.m3u.exportedNotice": "{count} titres exportés depuis {name}.",
+        "music.mobile.exportFailed": "Impossible d’exporter la playlist. Vérifiez ses sources et réessayez."
+      }
+    },
+    {
+      "code": "hi",
+      "expected": {
+        "music.m3u.playlist": "M3U प्लेलिस्ट",
+        "music.m3u.export": "निर्यात करें",
+        "music.m3u.exportedNotice": "{name} से {count} ट्रैक निर्यात किए गए।",
+        "music.mobile.exportFailed": "प्लेलिस्ट निर्यात नहीं हो सकी। उसके स्रोत जाँचें और फिर कोशिश करें।"
+      }
+    },
+    {
+      "code": "id",
+      "expected": {
+        "music.m3u.playlist": "Daftar putar M3U",
+        "music.m3u.export": "Ekspor",
+        "music.m3u.exportedNotice": "{count} lagu diekspor dari {name}.",
+        "music.mobile.exportFailed": "Daftar putar tidak dapat diekspor. Periksa sumbernya dan coba lagi."
+      }
+    },
+    {
+      "code": "it",
+      "expected": {
+        "music.m3u.playlist": "Playlist M3U",
+        "music.m3u.export": "Esporta",
+        "music.m3u.exportedNotice": "Esportati {count} brani da {name}.",
+        "music.mobile.exportFailed": "Impossibile esportare la playlist. Controlla le sue fonti e riprova."
+      }
+    },
+    {
+      "code": "ja",
+      "expected": {
+        "music.m3u.playlist": "M3Uプレイリスト",
+        "music.m3u.export": "エクスポート",
+        "music.m3u.exportedNotice": "{name}から{count}曲をエクスポートしました。",
+        "music.mobile.exportFailed": "プレイリストを書き出せませんでした。ソースを確認して、もう一度お試しください。"
+      }
+    },
+    {
+      "code": "ko",
+      "expected": {
+        "music.m3u.playlist": "M3U 플레이리스트",
+        "music.m3u.export": "내보내기",
+        "music.m3u.exportedNotice": "{name}에서 트랙 {count}개를 내보냈습니다.",
+        "music.mobile.exportFailed": "재생목록을 내보내지 못했습니다. 소스를 확인한 후 다시 시도하세요."
+      }
+    },
+    {
+      "code": "pl",
+      "expected": {
+        "music.m3u.playlist": "Playlista M3U",
+        "music.m3u.export": "Eksportuj",
+        "music.m3u.exportedNotice": "Wyeksportowano {count} utworów z {name}.",
+        "music.mobile.exportFailed": "Nie udało się wyeksportować listy odtwarzania. Sprawdź jej źródła i spróbuj ponownie."
+      }
+    },
+    {
+      "code": "pt",
+      "expected": {
+        "music.m3u.playlist": "Playlist M3U",
+        "music.m3u.export": "Exportar",
+        "music.m3u.exportedNotice": "{count} faixas exportadas de {name}.",
+        "music.mobile.exportFailed": "Não foi possível exportar a lista. Verifique as fontes e tente novamente."
+      }
+    },
+    {
+      "code": "ru",
+      "expected": {
+        "music.m3u.playlist": "Плейлист M3U",
+        "music.m3u.export": "Экспорт",
+        "music.m3u.exportedNotice": "Из {name} экспортировано треков: {count}.",
+        "music.mobile.exportFailed": "Не удалось экспортировать плейлист. Проверьте его источники и повторите попытку."
+      }
+    },
+    {
+      "code": "tr",
+      "expected": {
+        "music.m3u.playlist": "M3U çalma listesi",
+        "music.m3u.export": "Dışa aktar",
+        "music.m3u.exportedNotice": "{name} listesinden {count} parça dışa aktarıldı.",
+        "music.mobile.exportFailed": "Çalma listesi dışa aktarılamadı. Kaynaklarını kontrol edip tekrar deneyin."
+      }
+    },
+    {
+      "code": "vi",
+      "expected": {
+        "music.m3u.playlist": "Danh sách phát M3U",
+        "music.m3u.export": "Xuất",
+        "music.m3u.exportedNotice": "Đã xuất {count} bài hát từ {name}.",
+        "music.mobile.exportFailed": "Không thể xuất danh sách phát. Hãy kiểm tra nguồn và thử lại."
+      }
+    },
+    {
+      "code": "zh",
+      "expected": {
+        "music.m3u.playlist": "M3U 播放列表",
+        "music.m3u.export": "导出",
+        "music.m3u.exportedNotice": "已从 {name} 导出 {count} 首歌曲。",
+        "music.mobile.exportFailed": "无法导出播放列表。请检查其来源后重试。"
+      }
+    }
+  ],
+  "comparisons": 64,
+  "native_tests_executed": false
+}

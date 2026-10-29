@@ -2176,7 +2176,11 @@
 "music.library.loadMore" = "さらに読み込む";
 "music.library.playlistEmpty" = "下のリストから保存済みまたは最近再生した曲を追加してください。";
 "music.loading" = "音楽を読み込み中";
+"music.m3u.export" = "エクスポート";
+"music.m3u.exportedNotice" = "{name}から{count}曲をエクスポートしました。";
+"music.m3u.playlist" = "M3Uプレイリスト";
 "music.metadata.deezerFans" = "Deezerのファン";
+"music.mobile.exportFailed" = "プレイリストを書き出せませんでした。ソースを確認して、もう一度お試しください。";
 "music.mobile.missingFile" = "ファイルがライブラリにありません";
 "music.mobile.moreInfo" = "詳細情報";
 "music.mobile.options" = "オプション";

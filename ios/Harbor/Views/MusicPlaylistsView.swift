@@ -102,6 +102,7 @@ struct MusicPlaylistChoices: View {
                     if displayedIDs.isEmpty, !model.loading { Text(DesktopInterfaceText.value(filters.active ? "music.searchEmpty" : "music.library.playlistEmpty")).foregroundStyle(.secondary) }
                 }
                 Section { Button { adding = true } label: { Label(DesktopInterfaceText.value("music.library.addTracks"), image: "music-plus") }.disabled(!store.ready) }
+                Section { MusicPlaylistExportButton(playlist: playlist, tracks: tracks, library: library, store: store) }
                 if model.failed { Button(DesktopInterfaceText.value("Retry")) { Task { await model.load(input) } } }
                 if let error = store.error { Text(error).foregroundStyle(.orange) }
                 Section { Button(DesktopInterfaceText.value("music.playlist.delete"), role: .destructive) { deleting = true } }
