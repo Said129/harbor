@@ -1,0 +1,48 @@
+{
+  "reference": "0834340cec5531650bfe78cd628628702e636987",
+  "original_modules": {
+    "src-tauri/src/music/connectors/subsonic/client.rs": {
+      "checkout_sha256": "306b98a983db9418f1c8eaff56b249a0e0aa21df168d8e9e721eb04290f5d1db",
+      "committed_sha256": "d991671d4f90fe848edea343b240fbd8c91d78847f14814e2c997f46f862efae"
+    },
+    "src-tauri/src/music/connectors/subsonic/model.rs": {
+      "checkout_sha256": "8f03fc910124d0306ba326546598f575f6c3c46b3f8cc5d85449929435a92118",
+      "committed_sha256": "f196a7f282d248487e50b7688bb8bc947cc8ab7cec7798d12bb033e4455b0972"
+    },
+    "src-tauri/src/music/connectors/subsonic/convert.rs": {
+      "checkout_sha256": "9709c1d62b919536c92f8e3b4333ba5bdaadda3b3856ac88e2474edaa6ca1b30",
+      "committed_sha256": "c37e672c3a171ecb73e1118c653592ac89094b99373ea99d9ad3d6151d6328ee"
+    },
+    "src-tauri/src/music/connectors/subsonic/catalog.rs": {
+      "checkout_sha256": "5fb7abb3ecbdfc78d7223fe9f64412a4fa0f80da2b9d07e90a6c1a14c8740fac",
+      "committed_sha256": "812965820546170e4074df27801a36f5f2885c62be77d276dd82805161ced3e5"
+    },
+    "src-tauri/src/music/connectors/subsonic/mod.rs": {
+      "checkout_sha256": "3072e03106aa89ff4b0d3d1258cd21ccfd4f9a2a7bded89dba9f3ce27ef61cc0",
+      "committed_sha256": "a23deecdbedcb5f58cf0d2f7fa2f3fbcf2765b227383f56cce339bb7a304aeae"
+    },
+    "src-tauri/src/music/connectors/subsonic/pairing.rs": {
+      "checkout_sha256": "082b33cac7a5d90153ac3ea3c3bd5ad8fd7f1083dd89ac8bf7bc64adccd41cad",
+      "committed_sha256": "16fc5589b1f4fa0092c4bbfb490caed3e8a00375b74b134a74793cedf3558f06"
+    }
+  },
+  "reference_modules_reviewed": true,
+  "complete_original_rust_modules_executed": false,
+  "native_tests_executed": false,
+  "live_private_server_requests_performed": false,
+  "native_models": "ios/Harbor/Models/SubsonicMusic.swift",
+  "native_service": "ios/Harbor/Services/SubsonicMusicService.swift",
+  "native_tests": "ios/HarborTests/SubsonicMusicServiceTests.swift",
+  "new_native_case_count": 6,
+  "desktop_protocol": {
+    "api_version": "1.16.1",
+    "client": "Harbor",
+    "user_agent": "Harbor/1.0",
+    "request_timeout_seconds": 20,
+    "cover_size": 512,
+    "home_size": 24,
+    "artist_album_limit": 4,
+    "artist_track_limit": 30,
+    "untranscoded_audio": true
+  }
+}

@@ -67,8 +67,9 @@ The resource, persistence, appearance, catalog/reading navigation and
 theme/indicator cases passed. The failed intent comparison exposed an omitted
 album that Desktop normalizes to an empty string; the adapter now retains that
 value. The failed isolation case returned an unsupported JavaScript result
-from its test probe; it now explicitly returns a boolean. Only those failed
-cases require another execution.
+from its test probe; it now explicitly returns a boolean. Both repaired cases
+passed in run 40864283892 at source 2a5df3754f6c8d2b84416dc04de1547d7ab6428e,
+with zero new warnings. The five prior passing cases were not replayed.
 
 All twelve originals were inspected individually. Their hierarchy captures
 sometimes show a previous WebKit scroll or theme state, and remote artwork is

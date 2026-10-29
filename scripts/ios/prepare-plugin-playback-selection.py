@@ -6,6 +6,9 @@ import re
 import runpy
 
 requested = os.environ.get('HARBOR_NATIVE_SELECTION', '').strip()
+if requested == 'affected:subsonic-music' or requested.startswith('HarborTests.SubsonicMusicServiceTests/'):
+    runpy.run_path('scripts/ios/prepare-subsonic-music-selection.py')
+    raise SystemExit(0)
 if requested == 'affected:spook-music-policy-repair' or requested.startswith('HarborTests.SpooktoberWorldTests/testSixteenExecutedDesktopIntentsAndMusicMappingsRetainIdentityPayloadAndAllowedPlaylists,HarborTests.SpooktoberWorldMountTests/testRealWorldBridgeCannotWriteOrRouteAfterTheProfileLeaseEnds,HarborTests.MusicSourcePolicyTests/'):
     runpy.run_path('scripts/ios/prepare-spook-music-policy-repair-selection.py')
     raise SystemExit(0)
