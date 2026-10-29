@@ -98,9 +98,9 @@ struct MusicQueueOrigin: Equatable, Sendable { let kind: String; let id: String;
     func play(_ item: MusicPlaybackItem) { admit(item, queue: items, continuing: true, origin: origin) }
     private func admit(_ item: MusicPlaybackItem, queue: [MusicPlaybackItem], continuing: Bool, origin: MusicQueueOrigin?) {
         var seen = Set<String>()
-        items = Array(queue.filter { seen.insert($0.id).inserted }.prefix(500))
+        items = queue.filter { seen.insert($0.id).inserted }
         if let index = items.firstIndex(where: { $0.id == item.id }) { items[index] = item }
-        else { items = Array(items.prefix(499)); items.append(item) }
+        else { items.append(item) }
         if !continuing { try? order.reset(); priority = nil }
         self.origin = origin; start(item)
     }
@@ -202,7 +202,6 @@ struct MusicQueueOrigin: Equatable, Sendable { let kind: String; let id: String;
     private func enqueue(_ item: MusicPlaybackItem, next: Bool) {
         guard let currentItem, currentItem.id != item.id else { return }
         items.removeAll { $0.id == item.id }
-        guard items.count < 500 else { error = DesktopInterfaceText.value("music.mobile.queueLimit"); return }
         if next, let index = items.firstIndex(where: { $0.id == currentItem.id }) { items.insert(item, at: index + 1); priority = item.track }
         else { items.append(item) }; refreshUpcoming()
     }

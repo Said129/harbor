@@ -20,10 +20,10 @@ pub fn playlist_order(
     track_id: &str,
     to_index: usize,
 ) -> Result<Vec<String>, &'static str> {
-    if ids.len() > 500
+    if ids.len() > 100_000
         || ids
             .iter()
-            .any(|id| id.is_empty() || id.len() > 256 || id.contains('\0'))
+            .any(|id| id.is_empty() || id.len() > 8192 || id.contains('\0'))
         || ids.iter().collect::<std::collections::HashSet<_>>().len() != ids.len()
     {
         return Err("music-playlist-order");
@@ -235,5 +235,21 @@ mod tests {
         );
         assert_eq!(playlist_order(ids(), "missing", 0).unwrap(), ids());
         assert!(playlist_order(vec!["a".into(), "a".into()], "a", 0).is_err());
+    }
+
+    #[test]
+    fn large_playlist_order_preserves_every_member_and_full_transport_ids() {
+        let mut ids: Vec<String> = (0..5_000).map(|index| format!("owned-{index}")).collect();
+        let first = format!("direct:{}", "x".repeat(4_096));
+        ids[0] = first.clone();
+        let reordered = playlist_order(ids.clone(), &first, 4_999).unwrap();
+        assert_eq!(reordered.len(), ids.len());
+        assert_eq!(&reordered[..4_999], &ids[1..]);
+        assert_eq!(reordered.last(), Some(&first));
+        assert_eq!(playlist_order(reordered, &first, 0).unwrap(), ids);
+        assert!(playlist_order(vec!["x".repeat(8_193)], "missing", 0).is_err());
+        assert!(
+            playlist_order((0..100_001).map(|i| i.to_string()).collect(), "missing", 0).is_err()
+        );
     }
 }

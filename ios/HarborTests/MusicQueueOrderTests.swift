@@ -40,7 +40,7 @@ import XCTest
         let previous = try controller.previous(tracks, index: try XCTUnwrap(tracks.firstIndex(of: next)), shuffle: true)
         XCTAssertEqual(previous, tracks[0])
         XCTAssertThrowsError(try controller.evaluate(.init(operation: "unknown")))
-        XCTAssertThrowsError(try controller.evaluate(.init(operation: "next", queue: Array(repeating: tracks[0], count: 501))))
+        XCTAssertEqual(try controller.next(Array(repeating: tracks[0], count: 501), index: 0, shuffle: false, repeatMode: .off, automatic: false, priority: nil), tracks[0])
         try controller.reset()
         XCTAssertEqual(try controller.next(tracks, index: 0, shuffle: false, repeatMode: .one, automatic: true, priority: nil), tracks[0])
         XCTAssertEqual(try controller.next(tracks, index: 0, shuffle: false, repeatMode: .one, automatic: false, priority: nil), tracks[1])

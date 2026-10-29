@@ -12,8 +12,8 @@ struct MusicPlaylistDocument: Codable, Sendable {
               Set(playlists.map(\.id)).count == playlists.count,
               playlists.allSatisfy({ value in
                   UUID(uuidString: value.id) != nil && !value.name.isEmpty && value.name.unicodeScalars.count <= 100 && !value.name.contains("\0") &&
-                  value.trackIds.count <= 500 && Set(value.trackIds).count == value.trackIds.count && value.trackIds.allSatisfy(Self.validID) &&
-                  value.trackAddedAt.count <= 500 && Set(value.trackAddedAt.keys).isSubset(of: Set(value.trackIds)) &&
+                  value.trackIds.count <= 100_000 && Set(value.trackIds).count == value.trackIds.count && value.trackIds.allSatisfy(Self.validID) &&
+                  value.trackAddedAt.count <= 100_000 && Set(value.trackAddedAt.keys).isSubset(of: Set(value.trackIds)) &&
                   Int64(value.createdAt) != nil && Int64(value.updatedAt) != nil
               }), tracks.count <= 100_000,
               tracks.allSatisfy({ key, track in

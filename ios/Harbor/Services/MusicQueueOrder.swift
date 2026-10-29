@@ -28,17 +28,17 @@ struct MusicQueueOrderRequest: Codable, Sendable {
               asset["inputs"].objectValue.count == 1, let source = asset["program"]["source"].string,
               let expected = asset["program"]["sha256"].string,
               SHA256.hash(data: Data(source.utf8)).map({ String(format: "%02x", $0) }).joined() == expected,
-              expected == "304e9e0a23fe198a59959cb9cb1b09cfc9228d026f72aa5c219341fb09ab391f", let context = JSContext() else { throw HarborError(code: "music-queue-order") }
+              expected == "224e1945b940bb26dabb04ffe9aea4761eb16e2de1fa61a8ba10245f71684718", let context = JSContext() else { throw HarborError(code: "music-queue-order") }
         context.evaluateScript(source)
         guard context.exception == nil, context.objectForKeyedSubscript("harborMusicQueueOrder")?.isUndefined == false else { throw HarborError(code: "music-queue-order") }
         self.context = context; return context
     }
     func evaluate(_ request: MusicQueueOrderRequest) throws -> JSONValue {
         let data = try JSONEncoder().encode(request)
-        guard data.count <= 1024 * 1024 else { throw HarborError(code: "music-queue-order") }
+        guard data.count <= 16 * 1024 * 1024 else { throw HarborError(code: "music-queue-order") }
         let context = try prepare(); context.exception = nil
         let result = context.objectForKeyedSubscript("harborMusicQueueOrder")?.call(withArguments: [String(decoding: data, as: UTF8.self)])
-        guard context.exception == nil, let raw = result?.toString(), let bytes = raw.data(using: .utf8), bytes.count <= 1024 * 1024 else { throw HarborError(code: "music-queue-order") }
+        guard context.exception == nil, let raw = result?.toString(), let bytes = raw.data(using: .utf8), bytes.count <= 16 * 1024 * 1024 else { throw HarborError(code: "music-queue-order") }
         return try JSONDecoder().decode(JSONValue.self, from: bytes)
     }
     private func decode<T: Decodable>(_ request: MusicQueueOrderRequest, as type: T.Type) throws -> T {
@@ -51,8 +51,8 @@ struct MusicQueueOrderRequest: Codable, Sendable {
     func previous(_ queue: [MusicTrack], index: Int, shuffle: Bool) throws -> MusicTrack? {
         try decode(.init(operation: "previous", queue: queue, index: index, shuffle: shuffle), as: MusicTrack?.self)
     }
-    func upcoming(_ queue: [MusicTrack], index: Int, shuffle: Bool, repeatMode: MusicRepeat, count: Int = 500) throws -> [MusicTrack] {
-        try decode(.init(operation: "upcoming", queue: queue, index: index, shuffle: shuffle, repeatMode: repeatMode.rawValue, count: count), as: [MusicTrack].self)
+    func upcoming(_ queue: [MusicTrack], index: Int, shuffle: Bool, repeatMode: MusicRepeat, count: Int? = nil) throws -> [MusicTrack] {
+        try decode(.init(operation: "upcoming", queue: queue, index: index, shuffle: shuffle, repeatMode: repeatMode.rawValue, count: count ?? queue.count), as: [MusicTrack].self)
     }
     nonisolated static func key(_ track: MusicTrack) -> String {
         (track.collectionOrigin?.connectorId ?? track.connectorId ?? "") + ":" + (track.collectionOrigin?.id ?? track.id)

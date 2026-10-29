@@ -25,7 +25,7 @@ const source = `(function(){"use strict"; const exports={};\n${compiled}
 let order=new exports.MusicQueueOrder();
 globalThis.harborMusicQueueOrder=function(raw){
  const input=JSON.parse(raw),queue=input.queue??[],index=input.index??-1;
- if(!Array.isArray(queue)||queue.length>500)throw Error("Invalid music queue");
+ if(!Array.isArray(queue)||queue.length>100000)throw Error("Invalid music queue");
  const modes={shuffle:input.shuffle===true,repeat:input.repeatMode??"off"};
  if(!["off","all","one"].includes(modes.repeat))throw Error("Invalid repeat mode");
  let offset=0;const random=()=>{const value=input.randoms?.[offset++];return typeof value==="number"&&Number.isFinite(value)&&value>=0&&value<1?value:Math.random();};
@@ -36,7 +36,7 @@ globalThis.harborMusicQueueOrder=function(raw){
  case "next":result=order.next(queue,index,modes,input.automatic===true,input.priority??null,random);break;
  case "previous":result=order.previous(queue,index,modes.shuffle);break;
  case "peekPrevious":result=order.peekPrevious(queue,index,modes.shuffle);break;
- case "upcoming":result=order.upcoming(queue,index,modes,Math.max(0,Math.min(500,input.count??0)),random);break;
+ case "upcoming":result=order.upcoming(queue,index,modes,Math.max(0,Math.min(100000,input.count??0)),random);break;
  default:throw Error("Unknown music queue operation");
  }
  return JSON.stringify(result??null);
