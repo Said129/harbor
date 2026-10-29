@@ -8,7 +8,7 @@ The original inputs are authenticated in `music-playlist-cover-inputs.json`. Des
 
 `MusicCollectionCover` reloads only when its profile, playlist or cover revision changes. A thumbnail for another identity is never shown while loading. Replacing an image keeps the old bitmap until the new one is decoded. Loading and decoding stay off the interface actor. This implementation choice is not a physical-device performance measurement.
 
-## Pending focused validation
+## Focused validation
 
 Four new functional cases are prepared: actual decoding of the five Desktop formats and 900-pixel/alpha output, invalid/oversized input and profile separation, held-stage permission/clear retirement, and 80 comparisons for the five source labels in all 16 languages. The input images contain only original code-generated pixels; all five files together are 1,832 bytes. No user's photos are test inputs or bundled assets.
 
@@ -18,6 +18,10 @@ Run 40962758995, pinned to c2d67d4c64ac457212edb2bf0928ca18664c75b4 before cover
 
 Playback metadata now avoids rewriting the complete Keychain playlist document when merging the supplied recordings would leave every cached entry identical and storage has no outstanding error. Sparse metadata still preserves the prior richer fields. New or changed entries and any previous write error use the existing validated transaction. One new counting-persistence case covers unchanged, sparse, changed, failed and retried saves and an unreadable store. This is an avoided-write optimization, not a measured physical-device speed claim.
 
-The focused selection contains six new cover/cache cases and the three affected mounts: nine native cases and 20 original images, with no IPA packaging. It has not executed yet.
+The focused selection contains six new cover/cache cases and the three affected mounts: nine native cases and 20 original images, with no IPA packaging. Its actual results are recorded below.
 
-These new cover cases have not executed in Apple yet. Independently mounting the interface and calling its actual file store does not prove normal picker navigation, HEIC/HEIF decoding, a real Photos permission flow, or physical iPhone/iPad behavior. Those limits remain explicit. Full Desktop styling and the larger Music and application parity work remain open. No IPA is requested by this slice.
+Independently mounting the interface and calling its actual file store does not prove normal picker navigation, HEIC/HEIF decoding, a real Photos permission flow, or physical iPhone/iPad behavior. Those limits remain explicit. Full Desktop styling and the larger Music and application parity work remain open. No IPA is requested by this slice.
+
+## Actual focused results
+
+Run 40970478036 at a769316867532adb1998185c3dd03fba53c46038 subsequently executed all nine selected native cases successfully, with no new compiler or appearance warnings. Its original archive SHA-256 is dcd3942ffd398c3d66b082cd67fd23f90405184ca81232ad4119ada0a7ca6ec3. The five-format/900-pixel/alpha, failure preservation, profile retirement, labels and avoided-write cases are now actual Apple passes. All 20 original captures were individually inspected: custom/restored covers fit, Recent now displays its four tracks, and the regular player's artwork is fully visible. The two connected-server images still omit their title, so the interface as a whole is not approved. The modal header is now separate from the conditional form; that correction still needs its affected mount reviewed. Other accepted cases are retained. Picker journeys and physical-device limits above still apply.

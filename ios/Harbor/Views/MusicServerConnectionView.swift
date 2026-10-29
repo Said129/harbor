@@ -9,7 +9,13 @@ import SwiftUI
         _model = State(initialValue: MusicServerConnectionModel(service: service)); self.onChange = onChange
     }
     var body: some View {
-        NavigationStack {
+        VStack(spacing: 0) {
+            HStack(spacing: 16) {
+                Text(text("music.connections.server")).font(.headline).accessibilityAddTraits(.isHeader)
+                    .accessibilityIdentifier("music-server-title")
+                Spacer(minLength: 12)
+                Button(text("Close")) { dismiss() }.frame(minWidth: 44, minHeight: 44)
+            }.padding(.horizontal, 20)
             Form {
                 Section {
                     HStack(spacing: 14) {
@@ -56,14 +62,7 @@ import SwiftUI
                         Button(text("Close")) { model.dismissFailure() }
                     }
                 }
-            }.scrollDismissesKeyboard(.interactively).navigationTitle(text("music.connections.server"))
-                .navigationBarTitleDisplayMode(.inline).accessibilityIdentifier("music-server-connection")
-                .toolbar {
-                    ToolbarItem(placement: .principal) {
-                        Text(text("music.connections.server")).font(.headline).accessibilityIdentifier("music-server-title")
-                    }
-                    ToolbarItem(placement: .topBarTrailing) { Button(text("Close")) { dismiss() } }
-                }
+            }.scrollDismissesKeyboard(.interactively).accessibilityIdentifier("music-server-connection")
         }.onDisappear { operation?.cancel(); operation = nil; model.close() }
     }
     private func text(_ key: String, variables: [String: String] = [:]) -> String { DesktopInterfaceText.value(key, variables: variables) }
