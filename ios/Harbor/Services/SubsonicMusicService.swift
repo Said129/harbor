@@ -31,6 +31,7 @@ struct URLSessionMusicServiceTransport: MusicServiceHTTPTransport {
 @MainActor @Observable final class SubsonicMusicService {
     let scope: PluginExecutionScope
     private var storedPairing: SubsonicPairing?
+    var active: Bool { !disposed && scope == currentScope() }
     var pairing: SubsonicPairing? { !disposed && scope == currentScope() ? storedPairing : nil }
     private(set) var health = MusicSourceCandidate.Health.unknown
     private(set) var storageFailure = false

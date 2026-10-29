@@ -1,244 +1,327 @@
 import AVFoundation
 import Foundation
-import Libmpv
 import MediaPlayer
 import Observation
 
-enum MusicRepeat: String, CaseIterable, Identifiable {
+enum MusicRepeat: String, CaseIterable, Identifiable, Sendable {
     case off, all, one
     var id: String { rawValue }
-    var title: String { switch self { case .off: "Sin repetir"; case .all: "Repetir cola"; case .one: "Repetir canción" } }
+    var title: String {
+        let key = switch self { case .off: "music.audio.replayOff"; case .all: "music.transport.repeatAll"; case .one: "music.transport.repeatOne" }
+        return DesktopInterfaceText.value(key)
+    }
 }
+struct MusicQueueOrigin: Equatable, Sendable { let kind: String; let id: String; let name: String }
 
-@MainActor @Observable
-final class MusicPlayback {
+@MainActor @Observable final class MusicPlayback {
     static let shared = MusicPlayback()
     private(set) var owner = "guest"
-    private(set) var queue: [MusicRecord] = []
-    private(set) var current: MusicRecord?
+    private(set) var items: [MusicPlaybackItem] = []
+    private(set) var currentItem: MusicPlaybackItem?
+    private(set) var upcomingItems: [MusicPlaybackItem] = []
+    private(set) var origin: MusicQueueOrigin?
+    // Retain the original local callers without inventing local records for a stream.
+    var queue: [MusicRecord] { items.compactMap(\.localRecord) }
+    var current: MusicRecord? { currentItem?.localRecord }
+    var currentTrack: MusicTrack? { currentItem?.track }
     private(set) var position = 0.0
     private(set) var duration = 0.0
     private(set) var paused = true
     private(set) var loaded = false
     private(set) var pausedForVideo = false
-    var shuffle = UserDefaults.standard.bool(forKey: "music.shuffle") { didSet { UserDefaults.standard.set(shuffle, forKey: "music.shuffle") } }
-    var repeatMode = MusicRepeat(rawValue: UserDefaults.standard.string(forKey: "music.repeat") ?? "off") ?? .off { didSet { UserDefaults.standard.set(repeatMode.rawValue, forKey: "music.repeat") } }
-    var volume = MusicPlayback.savedVolume() { didSet { if volume.isFinite && (0...100).contains(volume) { UserDefaults.standard.set(volume, forKey: "music.volume") } } }
-    var error: String?
-    private var handle: OpaquePointer?
-    private var poller: Task<Void, Never>?
-    private var tokens: [NSObjectProtocol] = []
-    private var played: Set<String> = []
-    private var remoteReady = false
-    private var ended = false
-    private var pendingLoad = false
-    private static func savedVolume() -> Double {
-        guard let value = UserDefaults.standard.object(forKey: "music.volume") as? Double, value.isFinite, (0...100).contains(value) else { return 82 }
-        return value
+    private(set) var resolving = false
+    var shuffle = UserDefaults.standard.bool(forKey: "music.shuffle") {
+        didSet { UserDefaults.standard.set(shuffle, forKey: "music.shuffle"); if oldValue != shuffle { try? order.reset(); refreshUpcoming() } }
     }
-
+    var repeatMode = MusicRepeat(rawValue: UserDefaults.standard.string(forKey: "music.repeat") ?? "off") ?? .off {
+        didSet { UserDefaults.standard.set(repeatMode.rawValue, forKey: "music.repeat"); refreshUpcoming() }
+    }
+    var volume = MusicPlayback.savedVolume() {
+        didSet { if volume.isFinite && (0...100).contains(volume) { UserDefaults.standard.set(volume, forKey: "music.volume") } }
+    }
+    var error: String?
+    var scrobbleError: String?
+    var phase: SpooktoberWorldMusicState.Phase {
+        if currentItem == nil { return .idle }
+        if error != nil { return .error }
+        if resolving || !loaded && !ended { return .resolving }
+        return paused || ended ? .paused : .playing
+    }
+    var worldState: SpooktoberWorldMusicState { .init(trackId: currentTrack?.id, originKind: origin?.kind, originId: origin?.id, phase: phase) }
+    @ObservationIgnored private let engine: any MusicAudioEngineOperating
+    @ObservationIgnored private let systemIntegration: Bool
+    @ObservationIgnored private let recordPlayed: @MainActor (MusicTrack, String) -> Void
+    @ObservationIgnored private var resolver: (any MusicPlaybackResolving)?
+    @ObservationIgnored private let order = MusicQueueOrder()
+    @ObservationIgnored private var resolution: MusicPlaybackResolution?
+    @ObservationIgnored private var resolutionTask: Task<Void, Never>?
+    @ObservationIgnored private var poller: Task<Void, Never>?
+    @ObservationIgnored private var request: UInt64 = 0
+    @ObservationIgnored private var tokens: [NSObjectProtocol] = []
+    @ObservationIgnored private var remoteReady = false
+    @ObservationIgnored private var ended = false
+    @ObservationIgnored private var desiredPause = false
+    @ObservationIgnored private var priority: MusicTrack?
+    @ObservationIgnored private var previousPosition: Double?
+    @ObservationIgnored private var listened = 0.0
+    @ObservationIgnored private var startedAt: UInt64 = 0
+    @ObservationIgnored private var scrobbleStarted = false
+    @ObservationIgnored private var recorded = false
+    init(engine: any MusicAudioEngineOperating = MusicAudioEngine(), systemIntegration: Bool = true,
+         recordPlayed: (@MainActor (MusicTrack, String) -> Void)? = nil) {
+        self.engine = engine; self.systemIntegration = systemIntegration
+        self.recordPlayed = recordPlayed ?? { track, owner in _ = MusicCollections.shared.recordPlayed(track.id, owner: owner) }
+    }
+    private static func savedVolume() -> Double {
+        guard let value = UserDefaults.standard.object(forKey: "music.volume") as? Double, value.isFinite, (0...100).contains(value) else { return 82 }; return value
+    }
+    func attach(_ session: any MusicPlaybackResolving) {
+        guard (try? session.validate()) != nil else { return }
+        if owner != session.scope.owner || resolver.map({ $0.scope != session.scope || ObjectIdentifier($0) != ObjectIdentifier(session) }) == true { stop() }
+        owner = session.scope.owner; resolver = session
+    }
     func play(_ record: MusicRecord, queue: [MusicRecord], owner: String, continuingQueue: Bool = false) {
         do {
-            let url = try MusicFileService.file(record, owner: owner)
-            if self.owner != owner { stop() }
+            _ = try MusicFileService.file(record, owner: owner)
+            if self.owner != owner { stop(); resolver = nil }
             self.owner = owner
-            self.queue = Array(queue.prefix(500))
-            if !self.queue.contains(where: { $0.id == record.id }) { self.queue = Array(self.queue.prefix(499)); self.queue.append(record) }
-            try setup()
-            guard let handle else { throw HarborError(code: "music-player") }
-            current = record; position = 0; duration = Double(record.local.track.durationSeconds)
-            loaded = false; error = nil; pausedForVideo = false; ended = false; pendingLoad = true
-            if !continuingQueue { played = [] }
-            played.insert(record.id)
-            set("volume", String(volume)); set("pause", "no")
-            try MusicMPV.command(handle, ["loadfile", url.path, "replace"])
-            nowPlaying()
+            admit(MusicPlaybackItem(record), queue: queue.map(MusicPlaybackItem.init), continuing: continuingQueue, origin: continuingQueue ? origin : nil)
         } catch { self.error = safeMessage(error) }
     }
-    func togglePause() { setPaused(!paused) }
+    func play(_ track: MusicTrack, queue: [MusicTrack], using session: any MusicPlaybackResolving, origin: MusicQueueOrigin? = nil) {
+        do {
+            try session.validate(); attach(session)
+            let values = queue.map { MusicPlaybackItem(track: $0, localRecord: session.localRecord($0)) }
+            admit(.init(track: track, localRecord: session.localRecord(track)), queue: values, continuing: false, origin: origin)
+        } catch { self.error = message(error) }
+    }
+    func play(_ item: MusicPlaybackItem) { admit(item, queue: items, continuing: true, origin: origin) }
+    private func admit(_ item: MusicPlaybackItem, queue: [MusicPlaybackItem], continuing: Bool, origin: MusicQueueOrigin?) {
+        var seen = Set<String>()
+        items = Array(queue.filter { seen.insert($0.id).inserted }.prefix(500))
+        if let index = items.firstIndex(where: { $0.id == item.id }) { items[index] = item }
+        else { items = Array(items.prefix(499)); items.append(item) }
+        if !continuing { try? order.reset(); priority = nil }
+        self.origin = origin; start(item)
+    }
+    private func start(_ item: MusicPlaybackItem) {
+        submitScrobbleIfEligible()
+        request &+= 1; let token = request, loadedOwner = owner, session = resolver
+        resolutionTask?.cancel(); poller?.cancel(); poller = nil; resolution = nil
+        currentItem = item; loaded = false; resolving = true; paused = true; desiredPause = false
+        pausedForVideo = false; ended = false; error = nil; scrobbleError = nil
+        position = 0; duration = Double(item.track.durationSeconds)
+        previousPosition = nil; listened = 0; scrobbleStarted = false; recorded = false
+        startedAt = UInt64(max(0, Date().timeIntervalSince1970))
+        refreshUpcoming(); if systemIntegration { remoteControls() }; nowPlaying()
+        resolutionTask = Task { [weak self] in
+            guard let self else { return }
+            defer { if self.request == token { self.resolutionTask = nil } }
+            await engine.stop(request: token)
+            do {
+                try Task.checkCancellation()
+                let resolved: MusicPlaybackResolution
+                if let session { try session.validate(); resolved = try await session.resolve(item.track) }
+                else if let record = item.localRecord {
+                    resolved = .init(stream: .init(url: try MusicFileService.file(record, owner: loadedOwner), httpHeaders: [:], mimeType: "audio/*", bitrate: 0), valid: { [weak self] in self?.owner == loadedOwner })
+                } else { throw HarborError(code: "music-source-required") }
+                try Task.checkCancellation()
+                guard request == token, resolved.valid() else { throw CancellationError() }
+                if !desiredPause { try activateAudio() }
+                resolution = resolved
+                try await engine.open(resolved.stream, request: token, volume: volume, paused: desiredPause)
+                try Task.checkCancellation()
+                guard request == token, resolved.valid() else { throw CancellationError() }
+                resolving = false; startPolling(token)
+            } catch {
+                await engine.stop(request: token)
+                guard request == token else { return }
+                resolving = false; loaded = false; paused = true
+                if error is CancellationError { stop(); return }
+                self.error = message(error); nowPlaying()
+            }
+        }
+    }
+    private func activateAudio() throws {
+        try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
+        try AVAudioSession.sharedInstance().setActive(true)
+    }
+    func togglePause() { setPaused(phase == .error ? false : phase == .resolving ? !desiredPause : !paused) }
     func setPaused(_ value: Bool) {
-        pausedForVideo = false
-        if !value, ended, let current { play(current, queue: queue, owner: owner, continuingQueue: true); return }
-        if !value { try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default); try? AVAudioSession.sharedInstance().setActive(true) }
-        set("pause", value ? "yes" : "no")
+        guard currentItem != nil else { return }
+        pausedForVideo = false; desiredPause = value
+        if !value, ended || error != nil, let item = currentItem { start(item); return }
+        if !value { try? activateAudio() }
+        send(.paused(value))
     }
     func pauseForVideo() {
-        guard current != nil, !paused else { return }
-        set("pause", "yes"); pausedForVideo = true
+        guard currentItem != nil, phase == .resolving ? !desiredPause : !paused else { return }
+        desiredPause = true; pausedForVideo = true; send(.paused(true))
     }
     func seek(_ value: Double) {
-        guard value.isFinite, value >= 0, let handle else { return }
-        do { try MusicMPV.command(handle, ["seek", String(min(value, max(duration, 0))), "absolute+exact"]) }
-        catch { self.error = safeMessage(error) }
+        guard value.isFinite, value >= 0 else { return }; send(.seek(min(value, max(0, duration))))
     }
     func changeVolume(_ value: Double) {
-        guard value.isFinite else { return }
-        volume = min(100, max(0, value)); set("volume", String(volume))
+        guard value.isFinite else { return }; volume = min(100, max(0, value)); send(.volume(volume))
+    }
+    private func send(_ command: MusicAudioCommand) {
+        let token = request
+        Task { [weak self] in
+            guard let self else { return }
+            do { try await engine.command(command, request: token) }
+            catch { if request == token { self.error = message(error) } }
+        }
     }
     func next(automatic: Bool = false) {
-        guard let current, let index = queue.firstIndex(where: { $0.id == current.id }) else { return }
-        if automatic && repeatMode == .one { play(current, queue: queue, owner: owner, continuingQueue: true); return }
-        var candidate: MusicRecord?
-        if shuffle {
-            var available = queue.filter { !played.contains($0.id) }
-            if available.isEmpty && repeatMode == .all { played = [current.id]; available = queue.filter { $0.id != current.id } }
-            candidate = available.randomElement()
-            if candidate == nil && repeatMode == .all { candidate = current }
-        } else if index + 1 < queue.count { candidate = queue[index + 1] }
-        else if repeatMode == .all { candidate = queue.first }
-        if let candidate { play(candidate, queue: queue, owner: owner, continuingQueue: true) }
-        else if automatic { setPaused(true); ended = true; loaded = false; position = duration; nowPlaying() }
+        guard let currentItem, let index = items.firstIndex(where: { $0.id == currentItem.id }) else { return }
+        do {
+            let selected = try order.next(items.map(\.track), index: index, shuffle: shuffle, repeatMode: repeatMode, automatic: automatic, priority: priority)
+            if !(automatic && repeatMode == .one) { priority = nil }
+            if let selected, let item = items.first(where: { $0.id == MusicQueueOrder.key(selected) }) { start(item) }
+            else if automatic { resolving = false; loaded = false; paused = true; ended = true; position = duration; nowPlaying() }
+        } catch { self.error = message(error) }
     }
     func previous() {
-        guard let current, let index = queue.firstIndex(where: { $0.id == current.id }) else { return }
-        if position > 3 { seek(0) }
-        else if index > 0 { play(queue[index - 1], queue: queue, owner: owner, continuingQueue: true) }
-        else { seek(0) }
-    }
-    func remove(_ record: MusicRecord) {
-        if current?.id == record.id { stop() }
-        else { queue.removeAll { $0.id == record.id } }
+        guard let currentItem, let index = items.firstIndex(where: { $0.id == currentItem.id }) else { return }
+        if position > 3 { seek(0); return }
+        do {
+            if let previous = try order.previous(items.map(\.track), index: index, shuffle: shuffle), let item = items.first(where: { $0.id == MusicQueueOrder.key(previous) }) { start(item) }
+            else { seek(0) }
+        } catch { self.error = message(error) }
     }
     func enqueue(_ record: MusicRecord, owner: String, next: Bool = false) {
-        guard self.owner == owner, let current else { play(record, queue: [record], owner: owner); return }
-        guard current.id != record.id else { return }
-        queue.removeAll { $0.id == record.id }
-        guard queue.count < 500 else { error = "La cola admite hasta 500 canciones."; return }
-        if next, let index = queue.firstIndex(where: { $0.id == current.id }) { queue.insert(record, at: index + 1) }
-        else { queue.append(record) }
-        played.remove(record.id)
+        guard self.owner == owner, currentItem != nil else { play(record, queue: [record], owner: owner); return }
+        enqueue(.init(record), next: next)
     }
-    func moveAfterCurrent(_ record: MusicRecord) {
-        guard let current, current.id != record.id, queue.contains(where: { $0.id == record.id }) else { return }
+    func enqueue(_ track: MusicTrack, using session: any MusicPlaybackResolving, next: Bool = false) {
+        attach(session)
+        guard owner == session.scope.owner, currentItem != nil else { play(track, queue: [track], using: session); return }
+        guard (try? session.validate()) != nil else { return }; resolver = session
+        enqueue(.init(track: track, localRecord: session.localRecord(track)), next: next)
+    }
+    private func enqueue(_ item: MusicPlaybackItem, next: Bool) {
+        guard let currentItem, currentItem.id != item.id else { return }
+        items.removeAll { $0.id == item.id }
+        guard items.count < 500 else { error = DesktopInterfaceText.value("music.mobile.queueLimit"); return }
+        if next, let index = items.firstIndex(where: { $0.id == currentItem.id }) { items.insert(item, at: index + 1); priority = item.track }
+        else { items.append(item) }; refreshUpcoming()
+    }
+    func moveAfterCurrent(_ record: MusicRecord) { if let item = items.first(where: { $0.localRecord?.id == record.id }) { moveAfterCurrent(item) } }
+    func moveAfterCurrent(_ item: MusicPlaybackItem) { guard items.contains(where: { $0.id == item.id }) else { return }; enqueue(item, next: true) }
+    func remove(_ record: MusicRecord) { if current?.id == record.id { stop() } else { items.removeAll { $0.localRecord?.id == record.id }; refreshUpcoming() } }
+    func removeFromQueue(_ record: MusicRecord) { if let item = items.first(where: { $0.localRecord?.id == record.id }) { removeFromQueue(item) } }
+    func removeFromQueue(_ item: MusicPlaybackItem) {
+        guard let index = items.firstIndex(where: { $0.id == item.id }) else { return }
+        let remaining = items.filter { $0.id != item.id }; items = remaining
+        if priority.map(MusicQueueOrder.key) == item.id { priority = nil }
+        if currentItem?.id == item.id {
+            if remaining.isEmpty { stop() } else { start(remaining[min(index, remaining.count - 1)]) }
+        } else { refreshUpcoming() }
+    }
+    private func refreshUpcoming() {
+        guard let currentItem, let index = items.firstIndex(where: { $0.id == currentItem.id }) else { upcomingItems = []; return }
         do {
-            let remaining = queue.filter { $0.id != record.id }
-            guard let index = remaining.firstIndex(where: { $0.id == current.id }) else { return }
-            let ids = try MusicOrdering.move(queue.map(\.id), track: record.id, to: index + 1)
-            let records = Dictionary(uniqueKeysWithValues: queue.map { ($0.id, $0) })
-            queue = ids.compactMap { records[$0] }; played.remove(record.id)
-        } catch { self.error = safeMessage(error) }
+            var tracks = try order.upcoming(items.map(\.track), index: index, shuffle: shuffle, repeatMode: repeatMode)
+            if repeatMode != .one, let priority, priority != currentItem.track { tracks.removeAll { MusicQueueOrder.key($0) == MusicQueueOrder.key(priority) }; tracks.insert(priority, at: 0) }
+            let byKey = Dictionary(items.map { ($0.id, $0) }, uniquingKeysWith: { first, _ in first })
+            upcomingItems = tracks.compactMap { byKey[MusicQueueOrder.key($0)] }
+        } catch { upcomingItems = []; self.error = message(error) }
     }
-    func removeFromQueue(_ record: MusicRecord) {
-        guard let index = queue.firstIndex(where: { $0.id == record.id }) else { return }
-        let remaining = queue.filter { $0.id != record.id }
-        if current?.id == record.id {
-            if !remaining.isEmpty { play(remaining[min(index, remaining.count - 1)], queue: remaining, owner: owner, continuingQueue: true) }
-            else { stop() }
-        } else { queue = remaining; played.remove(record.id) }
-    }
-    func stopForAccount(_ owner: String) { if self.owner != owner { stop(); self.owner = owner } }
+    func stopForAccount(_ owner: String) { if self.owner != owner { stop(); resolver = nil; self.owner = owner } }
     func reloadPreferences() {
         shuffle = UserDefaults.standard.bool(forKey: "music.shuffle")
         repeatMode = MusicRepeat(rawValue: UserDefaults.standard.string(forKey: "music.repeat") ?? "off") ?? .off
         changeVolume(Self.savedVolume())
     }
     func stop() {
-        poller?.cancel(); poller = nil
-        if let handle { mpv_terminate_destroy(handle) }
-        handle = nil; queue = []; current = nil; played = []
-        loaded = false; paused = true; pausedForVideo = false; position = 0; duration = 0; ended = false; pendingLoad = false
-        MPNowPlayingInfoCenter.default().nowPlayingInfo = nil
-        MPRemoteCommandCenter.shared().playCommand.isEnabled = false
-        MPRemoteCommandCenter.shared().pauseCommand.isEnabled = false
-        MPRemoteCommandCenter.shared().togglePlayPauseCommand.isEnabled = false
-        MPRemoteCommandCenter.shared().nextTrackCommand.isEnabled = false
-        MPRemoteCommandCenter.shared().previousTrackCommand.isEnabled = false
-        MPRemoteCommandCenter.shared().changePlaybackPositionCommand.isEnabled = false
+        submitScrobbleIfEligible(); request &+= 1; let token = request
+        resolutionTask?.cancel(); resolutionTask = nil; poller?.cancel(); poller = nil
+        Task { await engine.stop(request: token) }
+        items = []; currentItem = nil; upcomingItems = []; priority = nil; origin = nil; resolution = nil
+        loaded = false; resolving = false; paused = true; pausedForVideo = false; position = 0; duration = 0; ended = false
+        error = nil; scrobbleError = nil; previousPosition = nil; listened = 0; try? order.reset()
+        if systemIntegration { MPNowPlayingInfoCenter.default().nowPlayingInfo = nil; setRemoteEnabled(false) }
     }
-    private func setup() throws {
-        try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
-        try AVAudioSession.sharedInstance().setActive(true)
-        if handle == nil {
-            guard let created = mpv_create() else { throw HarborError(code: "music-player") }
-            do {
-                for (name, value) in [("config", "no"), ("terminal", "no"), ("msg-level", "all=no"), ("vo", "null"), ("vid", "no"), ("audio-display", "no"), ("access-references", "no"), ("keep-open", "no")] {
-                    guard mpv_set_option_string(created, name, value) >= 0 else { throw HarborError(code: "music-player") }
-                }
-                guard mpv_initialize(created) >= 0 else { throw HarborError(code: "music-player") }
-                for property in ["time-pos", "duration"] { guard mpv_observe_property(created, 0, property, MPV_FORMAT_DOUBLE) >= 0 else { throw HarborError(code: "music-player") } }
-                guard mpv_observe_property(created, 0, "pause", MPV_FORMAT_FLAG) >= 0 else { throw HarborError(code: "music-player") }
-                handle = created
-            } catch { mpv_terminate_destroy(created); throw error }
-            poller = Task { [weak self] in
-                while !Task.isCancelled {
-                    self?.events()
-                    do { try await Task.sleep(for: .milliseconds(200)) } catch { return }
-                }
+    private func startPolling(_ token: UInt64) {
+        poller = Task { [weak self] in
+            while !Task.isCancelled {
+                guard let self, request == token else { return }
+                guard resolution?.valid() == true else { stop(); return }
+                let events = await engine.read(request: token)
+                guard request == token else { return }
+                consume(events, token: token)
+                do { try await Task.sleep(for: .milliseconds(200)) } catch { return }
             }
         }
-        remoteControls()
     }
-    private func set(_ property: String, _ value: String) {
-        guard let handle else { return }
-        let status = value.withCString { pointer in
-            var string: UnsafePointer<CChar>? = pointer
-            return withUnsafeMutablePointer(to: &string) { mpv_set_property_async(handle, 0, property, MPV_FORMAT_STRING, $0) }
-        }
-        if status < 0 { error = "No se pudo cambiar el estado de Música." }
-    }
-    private func events() {
-        guard let handle else { return }
-        var endedNormally = false
-        for _ in 0..<64 {
-            guard let event = mpv_wait_event(handle, 0)?.pointee, event.event_id != MPV_EVENT_NONE else { break }
-            if event.event_id == MPV_EVENT_FILE_LOADED {
-                loaded = true
-                if !pendingLoad, let current {
-                    let id = current.id, loadedOwner = owner
-                    Task { @MainActor in MusicCollections.shared.recordPlayed(id, owner: loadedOwner) }
-                }
+    private func consume(_ events: [MusicAudioEvent], token: UInt64) {
+        guard !events.isEmpty else { return }
+        var natural = false
+        for event in events {
+            guard request == token else { return }
+            switch event {
+            case .started: loaded = false; position = 0; previousPosition = nil
+            case .loaded:
+                loaded = true; error = nil
+                if !recorded, let track = currentTrack { recorded = true; recordPlayed(track, owner) }
+            case .time(let value):
+                guard value.isFinite, value >= 0, loaded else { continue }
+                listened += MusicListening.increment(previous: previousPosition, current: value); previousPosition = value; position = value
+            case .duration(let value): if value.isFinite && value >= 0 { duration = value }
+            case .paused(let value): paused = value
+            case .volume(let value): if value.isFinite && (0...100).contains(value) { volume = value }
+            case .failed: error = message(HarborError(code: "music-player")); loaded = false; paused = true
+            case .ended(let eof, let failed):
+                submitScrobbleIfEligible(); natural = natural || eof
+                if failed { error = message(HarborError(code: "music-player")); loaded = false; paused = true }
             }
-            if event.event_id == MPV_EVENT_START_FILE { loaded = false; position = 0; pendingLoad = false }
-            if event.event_id == MPV_EVENT_PROPERTY_CHANGE, let data = event.data {
-                let property = data.assumingMemoryBound(to: mpv_event_property.self).pointee
-                guard let raw = property.name, let value = property.data else { continue }
-                let name = String(cString: raw)
-                if property.format == MPV_FORMAT_DOUBLE {
-                    let number = value.assumingMemoryBound(to: Double.self).pointee
-                    guard number.isFinite, number >= 0 else { continue }
-                    if name == "time-pos" && loaded { position = number }
-                    if name == "duration" { duration = number }
-                } else if name == "pause" && property.format == MPV_FORMAT_FLAG { paused = value.assumingMemoryBound(to: Int32.self).pointee != 0 }
-            }
-            if event.event_id == MPV_EVENT_END_FILE, let data = event.data {
-                let end = data.assumingMemoryBound(to: mpv_event_end_file.self).pointee
-                if end.error < 0 { error = "No se pudo reproducir este archivo de música."; loaded = false }
-                endedNormally = !pendingLoad && end.reason == MPV_END_FILE_REASON_EOF
-            }
-            if (event.event_id == MPV_EVENT_COMMAND_REPLY || event.event_id == MPV_EVENT_SET_PROPERTY_REPLY) && event.error < 0 { error = "La operación de Música ha fallado." }
         }
         nowPlaying()
-        if endedNormally { next(automatic: true) }
+        if natural { next(automatic: true) }
+    }
+    private func submitScrobbleIfEligible() {
+        guard !scrobbleStarted, let track = currentTrack, let resolver, let resolution, resolution.valid(),
+              MusicListening.shouldScrobble(listened: listened, duration: duration) else { return }
+        scrobbleStarted = true; let start = startedAt, token = request
+        Task { [weak self] in
+            guard resolution.valid() else { return }
+            do { try await resolver.scrobble(track, startedAt: start) }
+            catch { if self?.request == token { self?.scrobbleError = DesktopInterfaceText.value("music.mobile.scrobbleError") } }
+        }
+    }
+    private func message(_ failure: Error) -> String {
+        if let error = failure as? HarborError, error.code == "music-source-required" { return DesktopInterfaceText.value("music.source.none") }
+        return DesktopInterfaceText.value("music.error.playback")
     }
     private func nowPlaying() {
-        guard let track = current?.local.track else { return }
-        MPNowPlayingInfoCenter.default().nowPlayingInfo = [
-            MPMediaItemPropertyTitle: track.title, MPMediaItemPropertyArtist: track.artist,
+        guard systemIntegration, let track = currentTrack else { return }
+        MPNowPlayingInfoCenter.default().nowPlayingInfo = [MPMediaItemPropertyTitle: track.title, MPMediaItemPropertyArtist: track.artist,
             MPMediaItemPropertyAlbumTitle: track.album ?? "", MPMediaItemPropertyPlaybackDuration: duration,
-            MPNowPlayingInfoPropertyElapsedPlaybackTime: position, MPNowPlayingInfoPropertyPlaybackRate: paused ? 0.0 : 1.0
-        ]
+            MPNowPlayingInfoPropertyElapsedPlaybackTime: position, MPNowPlayingInfoPropertyPlaybackRate: paused ? 0.0 : 1.0]
+    }
+    private func setRemoteEnabled(_ enabled: Bool) {
+        let center = MPRemoteCommandCenter.shared()
+        for command in [center.playCommand, center.pauseCommand, center.togglePlayPauseCommand, center.nextTrackCommand, center.previousTrackCommand, center.changePlaybackPositionCommand] { command.isEnabled = enabled }
     }
     private func remoteControls() {
+        setRemoteEnabled(true); guard !remoteReady else { return }; remoteReady = true
         let center = MPRemoteCommandCenter.shared()
-        for command in [center.playCommand, center.pauseCommand, center.togglePlayPauseCommand, center.nextTrackCommand, center.previousTrackCommand, center.changePlaybackPositionCommand] { command.isEnabled = true }
-        guard !remoteReady else { return }
-        remoteReady = true
-        center.playCommand.addTarget { _ in Task { @MainActor in Self.shared.setPaused(false) }; return .success }
-        center.pauseCommand.addTarget { _ in Task { @MainActor in Self.shared.setPaused(true) }; return .success }
-        center.togglePlayPauseCommand.addTarget { _ in Task { @MainActor in Self.shared.togglePause() }; return .success }
-        center.nextTrackCommand.addTarget { _ in Task { @MainActor in Self.shared.next() }; return .success }
-        center.previousTrackCommand.addTarget { _ in Task { @MainActor in Self.shared.previous() }; return .success }
-        center.changePlaybackPositionCommand.addTarget { event in
+        center.playCommand.addTarget { [weak self] _ in Task { @MainActor in self?.setPaused(false) }; return .success }
+        center.pauseCommand.addTarget { [weak self] _ in Task { @MainActor in self?.setPaused(true) }; return .success }
+        center.togglePlayPauseCommand.addTarget { [weak self] _ in Task { @MainActor in self?.togglePause() }; return .success }
+        center.nextTrackCommand.addTarget { [weak self] _ in Task { @MainActor in self?.next() }; return .success }
+        center.previousTrackCommand.addTarget { [weak self] _ in Task { @MainActor in self?.previous() }; return .success }
+        center.changePlaybackPositionCommand.addTarget { [weak self] event in
             guard let position = (event as? MPChangePlaybackPositionCommandEvent)?.positionTime else { return .commandFailed }
-            Task { @MainActor in Self.shared.seek(position) }; return .success
+            Task { @MainActor in self?.seek(position) }; return .success
         }
-        tokens.append(NotificationCenter.default.addObserver(forName: AVAudioSession.interruptionNotification, object: nil, queue: nil) { notification in
+        tokens.append(NotificationCenter.default.addObserver(forName: AVAudioSession.interruptionNotification, object: nil, queue: nil) { [weak self] notification in
             let began = (notification.userInfo?[AVAudioSessionInterruptionTypeKey] as? UInt) == AVAudioSession.InterruptionType.began.rawValue
-            if began { Task { @MainActor in Self.shared.setPaused(true) } }
+            if began { Task { @MainActor in self?.setPaused(true) } }
         })
-        tokens.append(NotificationCenter.default.addObserver(forName: AVAudioSession.routeChangeNotification, object: nil, queue: nil) { notification in
+        tokens.append(NotificationCenter.default.addObserver(forName: AVAudioSession.routeChangeNotification, object: nil, queue: nil) { [weak self] notification in
             let unplugged = (notification.userInfo?[AVAudioSessionRouteChangeReasonKey] as? UInt) == AVAudioSession.RouteChangeReason.oldDeviceUnavailable.rawValue
-            if unplugged { Task { @MainActor in Self.shared.setPaused(true) } }
+            if unplugged { Task { @MainActor in self?.setPaused(true) } }
         })
     }
 }

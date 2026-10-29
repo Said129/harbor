@@ -17,18 +17,18 @@ import XCTest
         window.rootViewController = host; window.makeKeyAndVisible()
         try await Task.sleep(for: .milliseconds(400))
         for (label, size) in [("compact", CGSize(width: 390, height: 844)), ("regular", CGSize(width: 834, height: 1194))] {
-            for connected in [false, true] {
-                let scope = PluginExecutionScope(owner: "owned-server-interface-" + label, activation: UUID())
-                let disk = MountedServerDisk()
-                if connected { disk.pairing = .salted(baseUrl: "https://owned.example.test", username: "Owned listener", password: "owned", salt: "owned") }
-                let service = SubsonicMusicService(scope: scope, currentScope: { scope }, transport: MountedServerNoNetwork(), persistence: disk)
-                let content = MusicServerConnectionView(service: service) { XCTFail("A read-only mount must not change the connection") }
+            let scope = PluginExecutionScope(owner: "owned-server-interface-" + label, activation: UUID())
+            let disk = MountedServerDisk()
+            let service = SubsonicMusicService(scope: scope, currentScope: { scope }, transport: MountedServerOwnedWire(), persistence: disk)
+            let content = MusicServerConnectionView(service: service) { }
                     .id(scope.activation)
                     .environment(\.locale, Locale(identifier: "en")).environment(\.layoutDirection, .leftToRight)
                     .environment(\.horizontalSizeClass, size.width > 600 ? .regular : .compact).preferredColorScheme(.dark)
                     .transaction { $0.disablesAnimations = true }
-                UIView.performWithoutAnimation { host.rootView = AnyView(content) }
-                window.frame = CGRect(origin: .zero, size: size); host.view.frame = window.bounds
+            UIView.performWithoutAnimation { host.rootView = AnyView(content) }
+            window.frame = CGRect(origin: .zero, size: size); host.view.frame = window.bounds
+            for connected in [false, true] {
+                if connected { try await service.connect(address: "https://owned.example.test", username: "Owned listener", password: "owned") }
                 try await Task.sleep(for: .milliseconds(400)); window.layoutIfNeeded(); host.view.layoutIfNeeded()
                 XCTAssertEqual(host.view.bounds.width, size.width, accuracy: 1)
                 XCTAssertEqual(host.view.bounds.height, size.height, accuracy: 1)
@@ -40,8 +40,8 @@ import XCTest
                 let attachment = XCTAttachment(image: image)
                 attachment.name = "music-server-" + (connected ? "connected-" : "form-") + label
                 attachment.lifetime = .keepAlways; add(attachment)
-                service.dispose()
             }
+            service.dispose()
         }
         window.isHidden = true
         try await Task.sleep(for: .milliseconds(400))
@@ -50,9 +50,13 @@ import XCTest
 @MainActor private final class MountedServerDisk: SubsonicPairingPersistence {
     var pairing: SubsonicPairing?
     func read(owner: String) throws -> SubsonicPairing? { pairing }
-    func write(_ pairing: SubsonicPairing, owner: String) throws { XCTFail("Mount must not write credentials") }
+    func write(_ pairing: SubsonicPairing, owner: String) throws { self.pairing = pairing }
     func remove(owner: String) throws { XCTFail("Mount must not remove credentials") }
 }
-private struct MountedServerNoNetwork: MusicServiceHTTPTransport {
-    func perform(_ request: URLRequest) async throws -> MusicServiceHTTPResponse { XCTFail("Mount must not contact any music service"); throw SubsonicMusicError.network }
+private struct MountedServerOwnedWire: MusicServiceHTTPTransport {
+    func perform(_ request: URLRequest) async throws -> MusicServiceHTTPResponse {
+        if request.url?.lastPathComponent == "login" { return .init(status: 404, data: Data()) }
+        guard request.url?.lastPathComponent == "ping" else { XCTFail("The owned mount permits only pairing fixtures"); throw SubsonicMusicError.network }
+        return .init(status: 200, data: Data(#"{"subsonic-response":{"status":"ok"}}"#.utf8))
+    }
 }

@@ -29,6 +29,16 @@ final class AppModel {
     @ObservationIgnored private var pages: [String: ContentPageModel] = [:]
     private var preparedProfileActivation: UUID?
     @ObservationIgnored private var boundHarborIdentity: HarborProfileSync?
+    @ObservationIgnored private var cachedMusicWorkspace: MusicWorkspace?
+    func musicWorkspaceForCurrentProfile() -> MusicWorkspace {
+        let scope = pluginExecutionScope ?? .init(owner: "unavailable", activation: profileContext.activationID)
+        if let cachedMusicWorkspace, cachedMusicWorkspace.scope == scope, cachedMusicWorkspace.available { return cachedMusicWorkspace }
+        cachedMusicWorkspace?.dispose()
+        let workspace = MusicWorkspace(scope: scope, currentScope: { [weak self] in
+            self?.pluginExecutionScope ?? .init(owner: "locked", activation: scope.activation)
+        })
+        cachedMusicWorkspace = workspace; return workspace
+    }
     private(set) var storageReady: Bool {
         get { preparedProfileActivation == profileContext.activationID }
         set { preparedProfileActivation = newValue ? profileContext.activationID : nil }
@@ -344,6 +354,7 @@ final class AppModel {
             let accepted = try await profileContext.select(id, password: password, parentPassword: parentPassword)
             guard accepted else { storageReady = wasReady && profileContext.ready; return false }
             boundHarborIdentity?.unbindHouseholdContext(); boundHarborIdentity = nil
+            cachedMusicWorkspace?.dispose(); cachedMusicWorkspace = nil
             storageReady = false
             MusicPlayback.shared.stopForAccount(personalOwner)
             let configuration = profileContext.configuration

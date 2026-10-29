@@ -4,14 +4,23 @@ import SwiftUI
     let item: MusicCatalogItem
     let client: any MusicCatalogCalling
     let content: LabelContent
+    let queue: [MusicTrack]?
+    let origin: MusicQueueOrigin?
     @Environment(\.musicArtistMetadata) private var artistMetadata
-    init(item: MusicCatalogItem, client: any MusicCatalogCalling, @ViewBuilder label: () -> LabelContent) {
-        self.item = item; self.client = client; content = label()
+    @Environment(\.musicPlaybackSession) private var playbackSession
+    init(item: MusicCatalogItem, client: any MusicCatalogCalling, queue: [MusicTrack]? = nil, origin: MusicQueueOrigin? = nil, @ViewBuilder label: () -> LabelContent) {
+        self.item = item; self.client = client; self.queue = queue; self.origin = origin; content = label()
     }
     var body: some View {
-        NavigationLink {
-            MusicCatalogDetailView(item: item, client: client).environment(\.musicArtistMetadata, artistMetadata)
-        } label: { content }
+        if case .track(let track) = item, let playbackSession {
+            Button { MusicPlayback.shared.play(track, queue: queue ?? [track], using: playbackSession, origin: origin) } label: { content }
+                .contextMenu {
+                    MusicRecordingActions(track: track, session: playbackSession)
+                    NavigationLink(DesktopInterfaceText.value("music.mobile.moreInfo")) { MusicCatalogDetailView(item: item, client: client).environment(\.musicArtistMetadata, artistMetadata) }
+                }
+        } else {
+            NavigationLink { MusicCatalogDetailView(item: item, client: client).environment(\.musicArtistMetadata, artistMetadata) } label: { content }
+        }
     }
 }
 
@@ -30,7 +39,7 @@ import SwiftUI
                         ForEach(Array(stride(from: 0, to: row.items.count, by: 3)), id: \.self) { offset in
                             VStack(spacing: 12) {
                                 ForEach(Array(row.items[offset..<min(offset + 3, row.items.count)])) { item in
-                                    MusicCatalogLink(item: item, client: client) { MusicCatalogCompactItem(item: item) }
+                                    MusicCatalogLink(item: item, client: client, queue: recordings) { MusicCatalogCompactItem(item: item) }
                                         .buttonStyle(.plain).accessibilityIdentifier("music-catalog-item-" + item.id)
                                 }
                             }.frame(width: 280)
@@ -46,6 +55,7 @@ import SwiftUI
             }.scrollIndicators(.hidden)
         }.accessibilityElement(children: .contain).accessibilityIdentifier("music-catalog-row-" + row.id)
     }
+    private var recordings: [MusicTrack] { row.items.compactMap { if case .track(let track) = $0 { return track }; return nil } }
 }
 
 @MainActor struct MusicCatalogCoverCard: View {

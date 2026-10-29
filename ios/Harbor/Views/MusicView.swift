@@ -4,6 +4,7 @@ import UIKit
 
 struct MusicView: View {
     let app: AppModel
+    private let workspace: MusicWorkspace
     @State private var library: MusicLibrary
     @State private var playlists: MusicPlaylistStore
     @State private var filters = MusicFilters(sort: .title)
@@ -22,16 +23,12 @@ struct MusicView: View {
     @AppStorage("harbor.music.genres.explore.v1") private var genreFiltersRaw = "{}"
     @MainActor init(app: AppModel) {
         self.app = app
-        _library = State(initialValue: MusicLibrary(owner: app.personalOwner))
-        _playlists = State(initialValue: MusicPlaylistStore(owner: app.personalOwner))
-        let scope = PluginExecutionScope(owner: app.personalOwner, activation: app.profileContext.activationID)
-        let server = SubsonicMusicService(scope: scope, currentScope: { [weak app] in
-            app?.pluginExecutionScope ?? .init(owner: "locked", activation: scope.activation)
-        })
-        _server = State(initialValue: server)
-        _catalog = State(initialValue: MusicCatalogModel(client: MusicServerCatalogClient(server: server, currentScope: { [weak app] in
-            app?.pluginExecutionScope ?? .init(owner: "locked", activation: scope.activation)
-        })))
+        let workspace = app.musicWorkspaceForCurrentProfile(); self.workspace = workspace
+        let scope = workspace.scope
+        _library = State(initialValue: workspace.library)
+        _playlists = State(initialValue: workspace.playlists)
+        _server = State(initialValue: workspace.server)
+        _catalog = State(initialValue: workspace.catalog)
         _explore = State(initialValue: MusicExploreModel(client: MusicExploreClient(scope: scope, currentScope: { [weak app] in
             app?.pluginExecutionScope ?? .init(owner: "locked", activation: scope.activation)
         })))
@@ -80,6 +77,7 @@ struct MusicView: View {
         }.background(HarborTheme.background).navigationTitle("Música").navigationBarTitleDisplayMode(.inline)
             .searchable(text: search, prompt: screen == .forYou ? DesktopInterfaceText.value("Search music") : screen == .explore ? DesktopInterfaceText.value("music.taste.search") : DesktopInterfaceText.value("music.searchPlaceholder"))
             .task(id: screen.rawValue + "|" + query + "|" + serverRevision.uuidString) {
+                MusicPlayback.shared.attach(workspace.playback)
                 if screen == .forYou { await catalog.load(query: query) }
             }
             .onChange(of: filters.query) { _, value in if value.count > 200 { filters.query = String(value.prefix(200)) } }
@@ -100,6 +98,7 @@ struct MusicView: View {
                 }
             }
             .environment(\.musicArtistMetadata, artistMetadata)
+            .environment(\.musicPlaybackSession, workspace.playback)
             .fileImporter(isPresented: $importFiles, allowedContentTypes: selectFolder ? [.folder] : [.audio, .data], allowsMultipleSelection: !selectFolder) { result in
                 switch result {
                 case .success(let urls):
@@ -109,7 +108,7 @@ struct MusicView: View {
                 case .failure: library.error = "No se pudo abrir la selección de archivos."
                 }
             }
-            .onDisappear { if artistMetadata.scope != app.pluginExecutionScope { library.cancelImport(); explore.dispose(); billboard.dispose(); artistMetadata.dispose(); server.dispose() } }
+            .onDisappear { if artistMetadata.scope != app.pluginExecutionScope { workspace.dispose(); explore.dispose(); billboard.dispose(); artistMetadata.dispose() } }
             .accessibilityElement(children: .contain).accessibilityIdentifier("music-library")
     }
     private var localLibrary: some View {
@@ -244,79 +243,7 @@ struct MusicTrackRow: View {
     }
 }
 
-struct MusicMiniPlayer: View {
-    @Bindable private var player = MusicPlayback.shared
-    @State private var expanded = false
-    var body: some View {
-        if let record = player.current {
-            HStack(spacing: 12) {
-                Button { expanded = true } label: {
-                    HStack(spacing: 10) {
-                        MusicCover(record: record, owner: player.owner).frame(width: 42, height: 42)
-                        VStack(alignment: .leading, spacing: 3) {
-                            Text(record.local.track.title).font(.subheadline.weight(.semibold)).lineLimit(1)
-                            Text(player.pausedForVideo ? "Reanudar música" : record.local.track.artist).font(.caption).foregroundStyle(.secondary).lineLimit(1)
-                        }.frame(maxWidth: .infinity, alignment: .leading)
-                    }
-                }.buttonStyle(.plain).accessibilityLabel("Abrir reproductor de Música")
-                Button { player.togglePause() } label: { MusicGlyph(player.paused ? "play" : "pause").frame(width: 44, height: 44) }.accessibilityLabel(player.paused ? "Reproducir música" : "Pausar música")
-                Button { player.next() } label: { MusicGlyph("next").frame(width: 44, height: 44) }.accessibilityLabel("Siguiente canción")
-            }.padding(.horizontal, 14).padding(.vertical, 7).background(HarborTheme.surface)
-                .sheet(isPresented: $expanded) { NavigationStack { MusicPlayerView().toolbar { ToolbarItem(placement: .topBarTrailing) { Button("Cerrar") { expanded = false } } } } }
-        }
-    }
-}
-
-struct MusicPlayerView: View {
-    @Bindable private var player = MusicPlayback.shared
-    @State private var seek = 0.0
-    @State private var editing = false
-    var body: some View {
-        ScrollView {
-            VStack(spacing: 22) {
-                if let record = player.current {
-                    MusicCover(record: record, owner: player.owner).frame(width: 180, height: 180)
-                    VStack(spacing: 5) { Text(record.local.track.title).font(.title2.bold()); Text(record.local.track.artist).foregroundStyle(.secondary); if let album = record.local.track.album { Text(album).font(.caption).foregroundStyle(.secondary) } }.multilineTextAlignment(.center)
-                    transport
-                    if let error = player.error { Text(error).font(.caption).foregroundStyle(.orange) }
-                    VStack(alignment: .leading, spacing: 12) {
-                        Label("Cola de reproducción", image: "music-queue").font(.headline)
-                        ForEach(player.queue) { record in
-                            MusicTrackRow(record: record, owner: player.owner) { player.play(record, queue: player.queue, owner: player.owner) }
-                                .contextMenu {
-                                    Button("Reproducir después") { player.moveAfterCurrent(record) }
-                                    Button("Quitar de la cola", role: .destructive) { player.removeFromQueue(record) }
-                                }
-                        }
-                    }
-                    Button("Detener reproducción", role: .destructive) { player.stop() }
-                } else { ContentUnavailableView("Sin reproducción", image: "nav-music") }
-            }.padding(24)
-        }.background(HarborTheme.background).navigationTitle("Música").navigationBarTitleDisplayMode(.inline)
-            .onChange(of: player.position) { _, value in if !editing { seek = value } }
-            .onChange(of: player.current?.id) { _, _ in editing = false; seek = 0 }
-    }
-    private var transport: some View {
-        VStack(spacing: 14) {
-            Slider(value: $seek, in: 0...max(player.duration, 1)) { edit in editing = edit; if !edit { player.seek(seek) } }.accessibilityLabel("Posición de la canción")
-            HStack { Text(time(editing ? seek : player.position)); Spacer(); Text(time(player.duration)) }.font(.caption.monospacedDigit()).foregroundStyle(.secondary)
-            HStack(spacing: 10) {
-                Button { player.shuffle.toggle() } label: { MusicGlyph("shuffle").foregroundStyle(player.shuffle ? HarborTheme.accent : .secondary).frame(width: 44, height: 44) }.accessibilityLabel("Aleatorio").accessibilityValue(player.shuffle ? "Activado" : "Desactivado")
-                Button { player.previous() } label: { MusicGlyph("previous").frame(width: 44, height: 44) }.accessibilityLabel("Canción anterior")
-                Button { player.togglePause() } label: { MusicGlyph(player.paused ? "play" : "pause", size: 28).foregroundStyle(HarborTheme.background).frame(width: 54, height: 54).background(HarborTheme.ink, in: .circle) }.accessibilityLabel(player.paused ? "Reproducir" : "Pausar")
-                Button { player.next() } label: { MusicGlyph("next").frame(width: 44, height: 44) }.accessibilityLabel("Siguiente canción")
-                Menu { Picker("Repetición", selection: $player.repeatMode) { ForEach(MusicRepeat.allCases) { Text($0.title).tag($0) } } } label: { MusicGlyph(player.repeatMode == .one ? "repeat-one" : "repeat").foregroundStyle(player.repeatMode == .off ? .secondary : HarborTheme.accent).frame(width: 44, height: 44) }.accessibilityLabel(player.repeatMode.title)
-            }.buttonStyle(.plain)
-            Slider(value: Binding(get: { player.volume }, set: { player.changeVolume($0) }), in: 0...100) { Text("Volumen") } minimumValueLabel: { MusicGlyph("volume-low") } maximumValueLabel: { MusicGlyph("volume-high") }
-        }
-    }
-    private func time(_ seconds: Double) -> String {
-        let value = seconds.isFinite ? Int(max(0, min(seconds, 31_536_000))) : 0
-        return String(format: "%d:%02d", value / 60, value % 60)
-    }
-}
-
-private struct MusicGlyph: View {
+struct MusicGlyph: View {
     let name: String
     let size: CGFloat
     init(_ name: String, size: CGFloat = 20) { self.name = name; self.size = size }

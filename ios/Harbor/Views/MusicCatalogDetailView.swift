@@ -4,6 +4,7 @@ import SwiftUI
     let item: MusicCatalogItem
     let client: any MusicCatalogCalling
     @Environment(\.musicArtistMetadata) private var artistMetadata
+    @Environment(\.musicPlaybackSession) private var playbackSession
     @State private var model = MusicCatalogDetailModel()
     @State private var kind = MusicCatalogKind.tracks
     @State private var operation: Task<Void, Never>?
@@ -37,7 +38,7 @@ import SwiftUI
                     }
                 } else {
                     ForEach(model.items) { entry in
-                        MusicCatalogLink(item: entry, client: client) { MusicCatalogCompactItem(item: entry) }
+                        MusicCatalogLink(item: entry, client: client, queue: recordings, origin: playbackOrigin) { MusicCatalogCompactItem(item: entry) }
                             .buttonStyle(.plain).accessibilityIdentifier("music-detail-item-" + entry.id)
                     }
                 }
@@ -61,11 +62,38 @@ import SwiftUI
             .onDisappear { operation?.cancel() }
     }
     private var showsTrackList: Bool { switch item { case .album, .artist, .playlist: true; case .track, .station: false } }
+    private var showsPlayback: Bool { switch item { case .track, .album, .artist, .playlist: true; case .station: false } }
+    private var recordings: [MusicTrack] { model.items.compactMap { if case .track(let track) = $0 { return track }; return nil } }
+    private var playbackOrigin: MusicQueueOrigin? {
+        switch item {
+        case .track: return nil
+        case .album(let value): return .init(kind: "catalog", id: value.connectorId + ":album:" + value.id, name: value.title)
+        case .artist(let value): return .init(kind: "catalog", id: value.connectorId + ":artist:" + value.id, name: value.name)
+        case .playlist(let value): return .init(kind: "catalog", id: value.connectorId + ":playlist:" + value.id, name: value.name)
+        case .station(let value): return .init(kind: "catalog", id: value.connectorId + ":station:" + value.id, name: value.name)
+        }
+    }
+    private func play(shuffle: Bool) {
+        guard let playbackSession else { return }
+        let queue: [MusicTrack]
+        if case .track(let track) = item { queue = [track] } else { queue = recordings }
+        guard let first = shuffle ? queue.randomElement() : queue.first else { return }
+        if shuffle { MusicPlayback.shared.shuffle = true }
+        MusicPlayback.shared.play(first, queue: queue, using: playbackSession, origin: playbackOrigin)
+    }
     private var heading: some View {
         VStack(alignment: .leading, spacing: 14) {
             Artwork(url: item.artwork, maxPixels: 720, failureIcon: "nav-music")
                 .frame(width: 192, height: 192).clipShape(.rect(cornerRadius: item.isArtist ? 96 : 14))
             Text(item.title).font(.title.weight(.bold)).accessibilityIdentifier("music-catalog-detail-title")
+            if let playbackSession, showsPlayback {
+                HStack {
+                    Button { play(shuffle: false) } label: { Label(DesktopInterfaceText.value("music.play"), image: "music-play") }.buttonStyle(.borderedProminent).accessibilityIdentifier("music-shared-play-collection")
+                    if showsTrackList { Button { play(shuffle: true) } label: { Label(DesktopInterfaceText.value("music.transport.shuffle"), image: "music-shuffle") }.buttonStyle(.bordered) }
+                    if case .track(let track) = item { Menu { MusicRecordingActions(track: track, session: playbackSession) } label: { Image(systemName: "ellipsis.circle").frame(width: 44, height: 44) }.accessibilityLabel(DesktopInterfaceText.value("music.mobile.options")) }
+                }.disabled(showsTrackList && recordings.isEmpty)
+                if let error = playbackSession.playlists.error { Text(error).font(.caption).foregroundStyle(.orange) }
+            }
             if let subtitle = item.subtitle, !subtitle.isEmpty { Text(subtitle).font(.title3).foregroundStyle(.secondary) }
             if case .album(let album) = item {
                 HStack(spacing: 12) {

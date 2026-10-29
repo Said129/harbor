@@ -109,7 +109,12 @@
     "music.row.serverRandom": "Redescubre tus álbumes",
     "music.row.serverStarred": "Canciones favoritas",
     "music.row.serverArtists": "Artistas del servidor",
-    "music.row.serverPlaylists": "Listas del servidor"
+    "music.row.serverPlaylists": "Listas del servidor",
+    "music.mobile.resume": "Reanudar música",
+    "music.mobile.moreInfo": "Más información",
+    "music.mobile.options": "Opciones",
+    "music.mobile.scrobbleError": "No se pudo registrar la escucha de esta canción.",
+    "music.mobile.queueLimit": "La cola admite hasta 500 canciones."
   },
   "pt": {
     "Auto-sync": "Sincronização automática",
@@ -169,7 +174,12 @@
     "music.row.serverRandom": "Redescubra os seus álbuns",
     "music.row.serverStarred": "Músicas favoritas",
     "music.row.serverArtists": "Artistas do servidor",
-    "music.row.serverPlaylists": "Playlists do servidor"
+    "music.row.serverPlaylists": "Playlists do servidor",
+    "music.mobile.resume": "Retomar música",
+    "music.mobile.moreInfo": "Mais informações",
+    "music.mobile.options": "Opções",
+    "music.mobile.scrobbleError": "Não foi possível registar a audição desta música.",
+    "music.mobile.queueLimit": "A fila pode conter até 500 músicas."
   },
   "ru": {
     "Auto-sync": "Автосинхронизация",
@@ -228,7 +238,12 @@
     "music.row.serverRandom": "Откройте альбомы заново",
     "music.row.serverStarred": "Избранные композиции",
     "music.row.serverArtists": "Исполнители на сервере",
-    "music.row.serverPlaylists": "Плейлисты на сервере"
+    "music.row.serverPlaylists": "Плейлисты на сервере",
+    "music.mobile.resume": "Продолжить музыку",
+    "music.mobile.moreInfo": "Подробнее",
+    "music.mobile.options": "Параметры",
+    "music.mobile.scrobbleError": "Не удалось отправить историю прослушивания этой композиции.",
+    "music.mobile.queueLimit": "Очередь вмещает до 500 композиций."
   },
   "ar": {
     "Auto-sync": "مزامنة تلقائية",
@@ -287,7 +302,12 @@
     "music.row.serverRandom": "أعد اكتشاف ألبوماتك",
     "music.row.serverStarred": "الأغاني المفضلة",
     "music.row.serverArtists": "فنانو الخادم",
-    "music.row.serverPlaylists": "قوائم تشغيل الخادم"
+    "music.row.serverPlaylists": "قوائم تشغيل الخادم",
+    "music.mobile.resume": "استئناف الموسيقى",
+    "music.mobile.moreInfo": "مزيد من المعلومات",
+    "music.mobile.options": "خيارات",
+    "music.mobile.scrobbleError": "تعذّر تسجيل الاستماع إلى هذا المقطع.",
+    "music.mobile.queueLimit": "تتّسع قائمة الانتظار لما يصل إلى 500 أغنية."
   },
   "zh": {
     "Couldn't auto-sync": "无法自动同步",
@@ -318,7 +338,12 @@
     "music.row.serverRandom": "重温你的专辑",
     "music.row.serverStarred": "收藏的歌曲",
     "music.row.serverArtists": "服务器歌手",
-    "music.row.serverPlaylists": "服务器播放列表"
+    "music.row.serverPlaylists": "服务器播放列表",
+    "music.mobile.resume": "继续播放音乐",
+    "music.mobile.moreInfo": "更多信息",
+    "music.mobile.options": "选项",
+    "music.mobile.scrobbleError": "无法记录这首歌的收听记录。",
+    "music.mobile.queueLimit": "播放队列最多可容纳 500 首歌曲。"
   },
   "fr": {
     "Couldn't auto-sync": "Synchronisation automatique impossible",
@@ -349,7 +374,12 @@
     "music.row.serverRandom": "Redécouvrez vos albums",
     "music.row.serverStarred": "Titres favoris",
     "music.row.serverArtists": "Artistes du serveur",
-    "music.row.serverPlaylists": "Playlists du serveur"
+    "music.row.serverPlaylists": "Playlists du serveur",
+    "music.mobile.resume": "Reprendre la musique",
+    "music.mobile.moreInfo": "Plus d’informations",
+    "music.mobile.options": "Options",
+    "music.mobile.scrobbleError": "Impossible d’enregistrer l’écoute de ce titre.",
+    "music.mobile.queueLimit": "La file peut contenir jusqu’à 500 titres."
   },
   "de": {
     "Couldn't auto-sync": "Automatische Synchronisierung nicht möglich",
@@ -380,7 +410,12 @@
     "music.row.serverRandom": "Alben wiederentdecken",
     "music.row.serverStarred": "Lieblingstitel",
     "music.row.serverArtists": "Künstler auf dem Server",
-    "music.row.serverPlaylists": "Server-Playlists"
+    "music.row.serverPlaylists": "Server-Playlists",
+    "music.mobile.resume": "Musik fortsetzen",
+    "music.mobile.moreInfo": "Weitere Informationen",
+    "music.mobile.options": "Optionen",
+    "music.mobile.scrobbleError": "Das Hören dieses Titels konnte nicht erfasst werden.",
+    "music.mobile.queueLimit": "Die Warteschlange kann bis zu 500 Titel enthalten."
   },
   "hi": {
     "Couldn't auto-sync": "अपने-आप सिंक नहीं हो सका",
@@ -411,7 +446,12 @@
     "music.row.serverRandom": "अपने एल्बम फिर से खोजें",
     "music.row.serverStarred": "पसंदीदा गाने",
     "music.row.serverArtists": "सर्वर के कलाकार",
-    "music.row.serverPlaylists": "सर्वर की प्लेलिस्ट"
+    "music.row.serverPlaylists": "सर्वर की प्लेलिस्ट",
+    "music.mobile.resume": "संगीत फिर से चलाएँ",
+    "music.mobile.moreInfo": "अधिक जानकारी",
+    "music.mobile.options": "विकल्प",
+    "music.mobile.scrobbleError": "इस गाने का सुनने का रिकॉर्ड दर्ज नहीं हो सका।",
+    "music.mobile.queueLimit": "कतार में अधिकतम 500 गाने रखे जा सकते हैं।"
   },
   "id": {
     "Couldn't auto-sync": "Tidak dapat menyinkronkan otomatis",
@@ -442,7 +482,12 @@
     "music.row.serverRandom": "Temukan kembali albummu",
     "music.row.serverStarred": "Lagu favorit",
     "music.row.serverArtists": "Artis di server",
-    "music.row.serverPlaylists": "Playlist di server"
+    "music.row.serverPlaylists": "Playlist di server",
+    "music.mobile.resume": "Lanjutkan musik",
+    "music.mobile.moreInfo": "Info lainnya",
+    "music.mobile.options": "Opsi",
+    "music.mobile.scrobbleError": "Tidak dapat mencatat pemutaran lagu ini.",
+    "music.mobile.queueLimit": "Antrean dapat memuat hingga 500 lagu."
   },
   "it": {
     "Couldn't auto-sync": "Sincronizzazione automatica non riuscita",
@@ -473,7 +518,12 @@
     "music.row.serverRandom": "Riscopri i tuoi album",
     "music.row.serverStarred": "Brani preferiti",
     "music.row.serverArtists": "Artisti del server",
-    "music.row.serverPlaylists": "Playlist del server"
+    "music.row.serverPlaylists": "Playlist del server",
+    "music.mobile.resume": "Riprendi la musica",
+    "music.mobile.moreInfo": "Altre informazioni",
+    "music.mobile.options": "Opzioni",
+    "music.mobile.scrobbleError": "Impossibile registrare l’ascolto di questo brano.",
+    "music.mobile.queueLimit": "La coda può contenere fino a 500 brani."
   },
   "ja": {
     "Couldn't auto-sync": "自動同期できませんでした",
@@ -504,7 +554,12 @@
     "music.row.serverRandom": "アルバムを再発見",
     "music.row.serverStarred": "お気に入りの曲",
     "music.row.serverArtists": "サーバーのアーティスト",
-    "music.row.serverPlaylists": "サーバーのプレイリスト"
+    "music.row.serverPlaylists": "サーバーのプレイリスト",
+    "music.mobile.resume": "音楽を再開",
+    "music.mobile.moreInfo": "詳細情報",
+    "music.mobile.options": "オプション",
+    "music.mobile.scrobbleError": "この曲の再生履歴を送信できませんでした。",
+    "music.mobile.queueLimit": "再生キューには最大500曲を追加できます。"
   },
   "ko": {
     "Couldn't auto-sync": "자동 동기화하지 못했습니다",
@@ -535,7 +590,12 @@
     "music.row.serverRandom": "앨범 다시 발견하기",
     "music.row.serverStarred": "즐겨찾는 곡",
     "music.row.serverArtists": "서버 아티스트",
-    "music.row.serverPlaylists": "서버 재생목록"
+    "music.row.serverPlaylists": "서버 재생목록",
+    "music.mobile.resume": "음악 재개",
+    "music.mobile.moreInfo": "추가 정보",
+    "music.mobile.options": "옵션",
+    "music.mobile.scrobbleError": "이 곡의 청취 기록을 전송하지 못했습니다.",
+    "music.mobile.queueLimit": "대기열에는 최대 500곡을 담을 수 있습니다."
   },
   "pl": {
     "Couldn't auto-sync": "Nie udało się zsynchronizować automatycznie",
@@ -566,7 +626,12 @@
     "music.row.serverRandom": "Odkryj albumy na nowo",
     "music.row.serverStarred": "Ulubione utwory",
     "music.row.serverArtists": "Wykonawcy na serwerze",
-    "music.row.serverPlaylists": "Playlisty na serwerze"
+    "music.row.serverPlaylists": "Playlisty na serwerze",
+    "music.mobile.resume": "Wznów muzykę",
+    "music.mobile.moreInfo": "Więcej informacji",
+    "music.mobile.options": "Opcje",
+    "music.mobile.scrobbleError": "Nie udało się zapisać odsłuchania tego utworu.",
+    "music.mobile.queueLimit": "Kolejka może pomieścić do 500 utworów."
   },
   "tr": {
     "Couldn't auto-sync": "Otomatik eşitlenemedi",
@@ -597,7 +662,12 @@
     "music.row.serverRandom": "Albümlerini yeniden keşfet",
     "music.row.serverStarred": "Favori şarkılar",
     "music.row.serverArtists": "Sunucudaki sanatçılar",
-    "music.row.serverPlaylists": "Sunucudaki çalma listeleri"
+    "music.row.serverPlaylists": "Sunucudaki çalma listeleri",
+    "music.mobile.resume": "Müziği sürdür",
+    "music.mobile.moreInfo": "Daha fazla bilgi",
+    "music.mobile.options": "Seçenekler",
+    "music.mobile.scrobbleError": "Bu parçanın dinleme kaydı gönderilemedi.",
+    "music.mobile.queueLimit": "Kuyruk en fazla 500 şarkı içerebilir."
   },
   "vi": {
     "Couldn't auto-sync": "Không thể tự động đồng bộ",
@@ -628,7 +698,12 @@
     "music.row.serverRandom": "Khám phá lại album của bạn",
     "music.row.serverStarred": "Bài hát yêu thích",
     "music.row.serverArtists": "Nghệ sĩ trên máy chủ",
-    "music.row.serverPlaylists": "Danh sách phát trên máy chủ"
+    "music.row.serverPlaylists": "Danh sách phát trên máy chủ",
+    "music.mobile.resume": "Tiếp tục phát nhạc",
+    "music.mobile.moreInfo": "Thông tin thêm",
+    "music.mobile.options": "Tùy chọn",
+    "music.mobile.scrobbleError": "Không thể ghi nhận lượt nghe bài hát này.",
+    "music.mobile.queueLimit": "Hàng đợi có thể chứa tối đa 500 bài hát."
   },
   "en": {
     "Browse services": "Browse services",
@@ -696,6 +771,11 @@
     "music.row.serverRandom": "Rediscover your albums",
     "music.row.serverStarred": "Starred songs",
     "music.row.serverArtists": "Server artists",
-    "music.row.serverPlaylists": "Server playlists"
+    "music.row.serverPlaylists": "Server playlists",
+    "music.mobile.resume": "Resume music",
+    "music.mobile.moreInfo": "More info",
+    "music.mobile.options": "Options",
+    "music.mobile.scrobbleError": "Could not scrobble this track.",
+    "music.mobile.queueLimit": "The queue can hold up to 500 songs."
   }
 }
