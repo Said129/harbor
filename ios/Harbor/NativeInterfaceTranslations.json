@@ -103,7 +103,13 @@
     "Could not read your lists. Your saved data is preserved.": "No se pudieron leer tus listas. Los datos guardados se conservan.",
     "Your lists are kept in memory. Save them before closing the app.": "Tus listas se conservan en memoria. Guárdalas antes de cerrar la app.",
     "A short note about this list": "A short note about this list",
-    "The addons did not return metadata for this title.": "Los addons no devolvieron metadata para este título."
+    "The addons did not return metadata for this title.": "Los addons no devolvieron metadata para este título.",
+    "music.row.serverNewest": "Álbumes añadidos recientemente",
+    "music.row.serverFrequent": "Álbumes más escuchados",
+    "music.row.serverRandom": "Redescubre tus álbumes",
+    "music.row.serverStarred": "Canciones favoritas",
+    "music.row.serverArtists": "Artistas del servidor",
+    "music.row.serverPlaylists": "Listas del servidor"
   },
   "pt": {
     "Auto-sync": "Sincronização automática",
@@ -157,7 +163,13 @@
     "Could not read your lists. Your saved data is preserved.": "Não foi possível ler as suas listas. Os dados guardados foram preservados.",
     "Your lists are kept in memory. Save them before closing the app.": "As suas listas estão na memória. Guarde-as antes de fechar a aplicação.",
     "A short note about this list": "A short note about this list",
-    "The addons did not return metadata for this title.": "Os addons não devolveram metadados para este título."
+    "The addons did not return metadata for this title.": "Os addons não devolveram metadados para este título.",
+    "music.row.serverNewest": "Álbuns adicionados recentemente",
+    "music.row.serverFrequent": "Álbuns mais ouvidos",
+    "music.row.serverRandom": "Redescubra os seus álbuns",
+    "music.row.serverStarred": "Músicas favoritas",
+    "music.row.serverArtists": "Artistas do servidor",
+    "music.row.serverPlaylists": "Playlists do servidor"
   },
   "ru": {
     "Auto-sync": "Автосинхронизация",
@@ -210,7 +222,13 @@
     "Add a TMDB API key in Metadata settings to search for titles.": "Добавьте ключ API TMDB в настройках метаданных для поиска произведений.",
     "Could not read your lists. Your saved data is preserved.": "Не удалось прочитать ваши списки. Сохранённые данные не потеряны.",
     "Your lists are kept in memory. Save them before closing the app.": "Ваши списки находятся в памяти. Сохраните их перед закрытием приложения.",
-    "The addons did not return metadata for this title.": "Дополнения не вернули метаданные для этого произведения."
+    "The addons did not return metadata for this title.": "Дополнения не вернули метаданные для этого произведения.",
+    "music.row.serverNewest": "Недавно добавленные альбомы",
+    "music.row.serverFrequent": "Самые прослушиваемые альбомы",
+    "music.row.serverRandom": "Откройте альбомы заново",
+    "music.row.serverStarred": "Избранные композиции",
+    "music.row.serverArtists": "Исполнители на сервере",
+    "music.row.serverPlaylists": "Плейлисты на сервере"
   },
   "ar": {
     "Auto-sync": "مزامنة تلقائية",
@@ -263,7 +281,13 @@
     "Add a TMDB API key in Metadata settings to search for titles.": "أضف مفتاح API لخدمة TMDB في إعدادات البيانات الوصفية للبحث عن العناوين.",
     "Could not read your lists. Your saved data is preserved.": "تعذرت قراءة قوائمك. بياناتك المحفوظة محفوظة.",
     "Your lists are kept in memory. Save them before closing the app.": "قوائمك محفوظة في الذاكرة. احفظها قبل إغلاق التطبيق.",
-    "The addons did not return metadata for this title.": "لم تُرجع الإضافات بيانات وصفية لهذا العنوان."
+    "The addons did not return metadata for this title.": "لم تُرجع الإضافات بيانات وصفية لهذا العنوان.",
+    "music.row.serverNewest": "الألبومات المضافة حديثًا",
+    "music.row.serverFrequent": "الألبومات الأكثر استماعًا",
+    "music.row.serverRandom": "أعد اكتشاف ألبوماتك",
+    "music.row.serverStarred": "الأغاني المفضلة",
+    "music.row.serverArtists": "فنانو الخادم",
+    "music.row.serverPlaylists": "قوائم تشغيل الخادم"
   },
   "zh": {
     "Couldn't auto-sync": "无法自动同步",
@@ -288,7 +312,13 @@
     "Could not read your lists. Your saved data is preserved.": "无法读取你的列表。已保存的数据仍然保留。",
     "Your lists are kept in memory. Save them before closing the app.": "你的列表暂存在内存中。请在关闭应用前保存。",
     "A short note about this list": "A short note about this list",
-    "The addons did not return metadata for this title.": "插件未返回此作品的元数据。"
+    "The addons did not return metadata for this title.": "插件未返回此作品的元数据。",
+    "music.row.serverNewest": "最近添加的专辑",
+    "music.row.serverFrequent": "最常播放的专辑",
+    "music.row.serverRandom": "重温你的专辑",
+    "music.row.serverStarred": "收藏的歌曲",
+    "music.row.serverArtists": "服务器歌手",
+    "music.row.serverPlaylists": "服务器播放列表"
   },
   "fr": {
     "Couldn't auto-sync": "Synchronisation automatique impossible",
@@ -313,7 +343,13 @@
     "Could not read your lists. Your saved data is preserved.": "Impossible de lire vos listes. Vos données enregistrées sont conservées.",
     "Your lists are kept in memory. Save them before closing the app.": "Vos listes sont conservées en mémoire. Enregistrez-les avant de fermer l’application.",
     "A short note about this list": "A short note about this list",
-    "The addons did not return metadata for this title.": "Les extensions n’ont renvoyé aucune métadonnée pour ce titre."
+    "The addons did not return metadata for this title.": "Les extensions n’ont renvoyé aucune métadonnée pour ce titre.",
+    "music.row.serverNewest": "Albums ajoutés récemment",
+    "music.row.serverFrequent": "Albums les plus écoutés",
+    "music.row.serverRandom": "Redécouvrez vos albums",
+    "music.row.serverStarred": "Titres favoris",
+    "music.row.serverArtists": "Artistes du serveur",
+    "music.row.serverPlaylists": "Playlists du serveur"
   },
   "de": {
     "Couldn't auto-sync": "Automatische Synchronisierung nicht möglich",
@@ -338,7 +374,13 @@
     "Could not read your lists. Your saved data is preserved.": "Deine Listen konnten nicht gelesen werden. Die gespeicherten Daten bleiben erhalten.",
     "Your lists are kept in memory. Save them before closing the app.": "Deine Listen bleiben im Arbeitsspeicher. Speichere sie, bevor du die App schließt.",
     "A short note about this list": "A short note about this list",
-    "The addons did not return metadata for this title.": "Die Addons haben keine Metadaten für diesen Titel geliefert."
+    "The addons did not return metadata for this title.": "Die Addons haben keine Metadaten für diesen Titel geliefert.",
+    "music.row.serverNewest": "Zuletzt hinzugefügte Alben",
+    "music.row.serverFrequent": "Meistgehörte Alben",
+    "music.row.serverRandom": "Alben wiederentdecken",
+    "music.row.serverStarred": "Lieblingstitel",
+    "music.row.serverArtists": "Künstler auf dem Server",
+    "music.row.serverPlaylists": "Server-Playlists"
   },
   "hi": {
     "Couldn't auto-sync": "अपने-आप सिंक नहीं हो सका",
@@ -363,7 +405,13 @@
     "Could not read your lists. Your saved data is preserved.": "आपकी सूचियाँ पढ़ी नहीं जा सकीं। सहेजा गया डेटा सुरक्षित है।",
     "Your lists are kept in memory. Save them before closing the app.": "आपकी सूचियाँ मेमोरी में रखी गई हैं। ऐप बंद करने से पहले उन्हें सहेजें।",
     "A short note about this list": "A short note about this list",
-    "The addons did not return metadata for this title.": "ऐडऑन ने इस शीर्षक के लिए कोई मेटाडेटा नहीं दिया।"
+    "The addons did not return metadata for this title.": "ऐडऑन ने इस शीर्षक के लिए कोई मेटाडेटा नहीं दिया।",
+    "music.row.serverNewest": "हाल में जोड़े गए एल्बम",
+    "music.row.serverFrequent": "सबसे अधिक सुने गए एल्बम",
+    "music.row.serverRandom": "अपने एल्बम फिर से खोजें",
+    "music.row.serverStarred": "पसंदीदा गाने",
+    "music.row.serverArtists": "सर्वर के कलाकार",
+    "music.row.serverPlaylists": "सर्वर की प्लेलिस्ट"
   },
   "id": {
     "Couldn't auto-sync": "Tidak dapat menyinkronkan otomatis",
@@ -388,7 +436,13 @@
     "Could not read your lists. Your saved data is preserved.": "Daftar Anda tidak dapat dibaca. Data tersimpan tetap dipertahankan.",
     "Your lists are kept in memory. Save them before closing the app.": "Daftar Anda disimpan dalam memori. Simpan sebelum menutup aplikasi.",
     "A short note about this list": "A short note about this list",
-    "The addons did not return metadata for this title.": "Addon tidak mengembalikan metadata untuk judul ini."
+    "The addons did not return metadata for this title.": "Addon tidak mengembalikan metadata untuk judul ini.",
+    "music.row.serverNewest": "Album yang baru ditambahkan",
+    "music.row.serverFrequent": "Album paling sering diputar",
+    "music.row.serverRandom": "Temukan kembali albummu",
+    "music.row.serverStarred": "Lagu favorit",
+    "music.row.serverArtists": "Artis di server",
+    "music.row.serverPlaylists": "Playlist di server"
   },
   "it": {
     "Couldn't auto-sync": "Sincronizzazione automatica non riuscita",
@@ -413,7 +467,13 @@
     "Could not read your lists. Your saved data is preserved.": "Impossibile leggere le tue liste. I dati salvati sono conservati.",
     "Your lists are kept in memory. Save them before closing the app.": "Le tue liste sono conservate in memoria. Salvale prima di chiudere l’app.",
     "A short note about this list": "A short note about this list",
-    "The addons did not return metadata for this title.": "Gli addon non hanno restituito metadati per questo titolo."
+    "The addons did not return metadata for this title.": "Gli addon non hanno restituito metadati per questo titolo.",
+    "music.row.serverNewest": "Album aggiunti di recente",
+    "music.row.serverFrequent": "Album più ascoltati",
+    "music.row.serverRandom": "Riscopri i tuoi album",
+    "music.row.serverStarred": "Brani preferiti",
+    "music.row.serverArtists": "Artisti del server",
+    "music.row.serverPlaylists": "Playlist del server"
   },
   "ja": {
     "Couldn't auto-sync": "自動同期できませんでした",
@@ -438,7 +498,13 @@
     "Could not read your lists. Your saved data is preserved.": "リストを読み込めませんでした。保存済みデータは保持されています。",
     "Your lists are kept in memory. Save them before closing the app.": "リストはメモリ内に保持されています。アプリを閉じる前に保存してください。",
     "A short note about this list": "A short note about this list",
-    "The addons did not return metadata for this title.": "アドオンからこの作品のメタデータが返されませんでした。"
+    "The addons did not return metadata for this title.": "アドオンからこの作品のメタデータが返されませんでした。",
+    "music.row.serverNewest": "最近追加したアルバム",
+    "music.row.serverFrequent": "よく再生するアルバム",
+    "music.row.serverRandom": "アルバムを再発見",
+    "music.row.serverStarred": "お気に入りの曲",
+    "music.row.serverArtists": "サーバーのアーティスト",
+    "music.row.serverPlaylists": "サーバーのプレイリスト"
   },
   "ko": {
     "Couldn't auto-sync": "자동 동기화하지 못했습니다",
@@ -463,7 +529,13 @@
     "Could not read your lists. Your saved data is preserved.": "목록을 읽을 수 없습니다. 저장된 데이터는 유지됩니다.",
     "Your lists are kept in memory. Save them before closing the app.": "목록이 메모리에 보관되어 있습니다. 앱을 닫기 전에 저장하세요.",
     "A short note about this list": "A short note about this list",
-    "The addons did not return metadata for this title.": "애드온이 이 작품의 메타데이터를 반환하지 않았습니다."
+    "The addons did not return metadata for this title.": "애드온이 이 작품의 메타데이터를 반환하지 않았습니다.",
+    "music.row.serverNewest": "최근 추가한 앨범",
+    "music.row.serverFrequent": "가장 많이 재생한 앨범",
+    "music.row.serverRandom": "앨범 다시 발견하기",
+    "music.row.serverStarred": "즐겨찾는 곡",
+    "music.row.serverArtists": "서버 아티스트",
+    "music.row.serverPlaylists": "서버 재생목록"
   },
   "pl": {
     "Couldn't auto-sync": "Nie udało się zsynchronizować automatycznie",
@@ -488,7 +560,13 @@
     "Could not read your lists. Your saved data is preserved.": "Nie udało się odczytać list. Zapisane dane zostały zachowane.",
     "Your lists are kept in memory. Save them before closing the app.": "Listy są przechowywane w pamięci. Zapisz je przed zamknięciem aplikacji.",
     "A short note about this list": "A short note about this list",
-    "The addons did not return metadata for this title.": "Dodatki nie zwróciły metadanych dla tego tytułu."
+    "The addons did not return metadata for this title.": "Dodatki nie zwróciły metadanych dla tego tytułu.",
+    "music.row.serverNewest": "Ostatnio dodane albumy",
+    "music.row.serverFrequent": "Najczęściej odtwarzane albumy",
+    "music.row.serverRandom": "Odkryj albumy na nowo",
+    "music.row.serverStarred": "Ulubione utwory",
+    "music.row.serverArtists": "Wykonawcy na serwerze",
+    "music.row.serverPlaylists": "Playlisty na serwerze"
   },
   "tr": {
     "Couldn't auto-sync": "Otomatik eşitlenemedi",
@@ -513,7 +591,13 @@
     "Could not read your lists. Your saved data is preserved.": "Listeleriniz okunamadı. Kayıtlı verileriniz korunuyor.",
     "Your lists are kept in memory. Save them before closing the app.": "Listeleriniz bellekte tutuluyor. Uygulamayı kapatmadan önce kaydedin.",
     "A short note about this list": "A short note about this list",
-    "The addons did not return metadata for this title.": "Eklentiler bu başlık için meta veri döndürmedi."
+    "The addons did not return metadata for this title.": "Eklentiler bu başlık için meta veri döndürmedi.",
+    "music.row.serverNewest": "Son eklenen albümler",
+    "music.row.serverFrequent": "En çok çalınan albümler",
+    "music.row.serverRandom": "Albümlerini yeniden keşfet",
+    "music.row.serverStarred": "Favori şarkılar",
+    "music.row.serverArtists": "Sunucudaki sanatçılar",
+    "music.row.serverPlaylists": "Sunucudaki çalma listeleri"
   },
   "vi": {
     "Couldn't auto-sync": "Không thể tự động đồng bộ",
@@ -538,7 +622,13 @@
     "Could not read your lists. Your saved data is preserved.": "Không thể đọc danh sách của bạn. Dữ liệu đã lưu vẫn được giữ nguyên.",
     "Your lists are kept in memory. Save them before closing the app.": "Danh sách của bạn đang được giữ trong bộ nhớ. Hãy lưu trước khi đóng ứng dụng.",
     "A short note about this list": "A short note about this list",
-    "The addons did not return metadata for this title.": "Các tiện ích không trả về siêu dữ liệu cho tựa phim này."
+    "The addons did not return metadata for this title.": "Các tiện ích không trả về siêu dữ liệu cho tựa phim này.",
+    "music.row.serverNewest": "Album mới thêm",
+    "music.row.serverFrequent": "Album nghe nhiều nhất",
+    "music.row.serverRandom": "Khám phá lại album của bạn",
+    "music.row.serverStarred": "Bài hát yêu thích",
+    "music.row.serverArtists": "Nghệ sĩ trên máy chủ",
+    "music.row.serverPlaylists": "Danh sách phát trên máy chủ"
   },
   "en": {
     "Browse services": "Browse services",
@@ -600,6 +690,12 @@
     "A short note about this list": "A short note about this list",
     "Remove from list": "Remove from list",
     "Move up": "Move up",
-    "The addons did not return metadata for this title.": "The addons did not return metadata for this title."
+    "The addons did not return metadata for this title.": "The addons did not return metadata for this title.",
+    "music.row.serverNewest": "Recently added albums",
+    "music.row.serverFrequent": "Most played albums",
+    "music.row.serverRandom": "Rediscover your albums",
+    "music.row.serverStarred": "Starred songs",
+    "music.row.serverArtists": "Server artists",
+    "music.row.serverPlaylists": "Server playlists"
   }
 }

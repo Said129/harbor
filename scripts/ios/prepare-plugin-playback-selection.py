@@ -6,6 +6,9 @@ import re
 import runpy
 
 requested = os.environ.get('HARBOR_NATIVE_SELECTION', '').strip()
+if requested == 'affected:music-server-catalog' or requested.startswith('HarborTests.MusicServerCatalogTests/'):
+    runpy.run_path('scripts/ios/prepare-music-server-catalog-selection.py')
+    raise SystemExit(0)
 if requested == 'affected:subsonic-music' or requested.startswith('HarborTests.SubsonicMusicServiceTests/'):
     runpy.run_path('scripts/ios/prepare-subsonic-music-selection.py')
     raise SystemExit(0)

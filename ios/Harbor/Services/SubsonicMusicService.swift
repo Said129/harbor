@@ -57,6 +57,8 @@ struct URLSessionMusicServiceTransport: MusicServiceHTTPTransport {
         guard !disposed, scope == currentScope() else { dispose(); throw CancellationError() }
         if let version, version != credentialVersion { throw CancellationError() }
     }
+    func validateCatalogScope() throws { try validate() }
+    func cancelPendingConnection() { credentialVersion = UUID() }
     private func require() throws -> SubsonicPairing { try validate(); guard let pairing else { throw SubsonicMusicError.disconnected }; return pairing }
     private func send(_ url: URL, method: String = "GET", body: Data? = nil, version: UUID) async throws -> MusicServiceHTTPResponse {
         try validate(version)
@@ -177,7 +179,7 @@ struct URLSessionMusicServiceTransport: MusicServiceHTTPTransport {
     private func batches(_ requests: [(String,[(String,String)])], pairing: SubsonicPairing, version: UUID) async throws -> [Result<SubsonicBody,SubsonicMusicError>?] {
         let values = await withTaskGroup(of: (Int,Result<SubsonicBody,SubsonicMusicError>?).self) { group in
             for (index, request) in requests.enumerated() {
-                group.addTask { @MainActor in
+                group.addTask {
                     do { return (index,.success(try await self.call(request.0, pairing: pairing, parameters: request.1, version: version))) }
                     catch is CancellationError { return (index,nil) }
                     catch { return (index,.failure(error as? SubsonicMusicError ?? .unreadable)) }

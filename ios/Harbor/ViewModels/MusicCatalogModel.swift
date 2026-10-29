@@ -14,6 +14,11 @@ import Observation
     @ObservationIgnored private var cachedSearch: (String, MusicCatalogSearch)?
     init(client: any MusicCatalogCalling = MusicCatalogClient()) { self.client = client }
 
+    func invalidatePrivateServer() {
+        generation = UUID(); rows.removeAll { $0.source == "subsonic" }; result = nil; cachedSearch = nil
+        homeLoaded = false; loading = false; hasRequested = false; failure = nil
+    }
+
     func load(query raw: String, refresh: Bool = false, debounce: Bool = true) async {
         let query = raw.trimmingCharacters(in: .whitespacesAndNewlines)
         let token = UUID(); generation = token; activeQuery = query; failure = nil; result = nil; hasRequested = true

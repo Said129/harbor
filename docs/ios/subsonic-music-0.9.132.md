@@ -27,10 +27,16 @@ Six new native cases cover request/token/response contracts, exchanged pairing,
 salted fallback and failed writes, catalog partial results/order/concurrency,
 late profile and credential responses, and actual owner Keychain persistence
 with recovery from network and authentication errors. Their transport replies
-are owned fixtures; they have not executed on Apple yet, and do not claim a
-live private server or audio playback test.
+are owned fixtures. Apple run 40871194110, source
+`28f7ee165e7d4765731e9c791f381bd44e2492a0`, executed all six: six passed,
+zero failed or skipped. Its original 53,940-byte evidence archive has SHA-256
+`68f3d934b5d62b8850fc2a6e4f4c9a0276870dd1fb18e0815cb85e0415dd1c4d`,
+matching GitHub's digest. This does not claim a live private server or audio
+playback test. The run introduced one Sendable-closure warning in the fan-out
+helper; its correction and the one affected concurrency case require the next
+Apple gate. The other five successful service cases will not be repeated.
 
-This implements the private-server service. Connection settings, routing it
-through the Music catalog/source chooser, and the shared remote audio player
-remain to be connected. It does not replace the existing local audio player
-or certify the whole Music section. No IPA is built by this increment.
+The follow-up described in `music-server-catalog-0.9.132.md` connects server
+settings and catalog routing. Full source selection and shared remote audio
+playback remain open. This does not replace the existing local audio player
+or certify the whole Music section. No IPA is built by these validation slices.

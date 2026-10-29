@@ -16,13 +16,22 @@ struct MusicView: View {
     @State private var billboard: MusicBillboardClient
     @State private var artistMetadata: MusicArtistClient
     @State private var metadataSettings = false
+    @State private var serverSettings = false
+    @State private var serverRevision = UUID()
+    @State private var server: SubsonicMusicService
     @AppStorage("harbor.music.genres.explore.v1") private var genreFiltersRaw = "{}"
     @MainActor init(app: AppModel) {
         self.app = app
         _library = State(initialValue: MusicLibrary(owner: app.personalOwner))
         _playlists = State(initialValue: MusicPlaylistStore(owner: app.personalOwner))
-        _catalog = State(initialValue: MusicCatalogModel())
         let scope = PluginExecutionScope(owner: app.personalOwner, activation: app.profileContext.activationID)
+        let server = SubsonicMusicService(scope: scope, currentScope: { [weak app] in
+            app?.pluginExecutionScope ?? .init(owner: "locked", activation: scope.activation)
+        })
+        _server = State(initialValue: server)
+        _catalog = State(initialValue: MusicCatalogModel(client: MusicServerCatalogClient(server: server, currentScope: { [weak app] in
+            app?.pluginExecutionScope ?? .init(owner: "locked", activation: scope.activation)
+        })))
         _explore = State(initialValue: MusicExploreModel(client: MusicExploreClient(scope: scope, currentScope: { [weak app] in
             app?.pluginExecutionScope ?? .init(owner: "locked", activation: scope.activation)
         })))
@@ -70,19 +79,26 @@ struct MusicView: View {
             else { localLibrary }
         }.background(HarborTheme.background).navigationTitle("Música").navigationBarTitleDisplayMode(.inline)
             .searchable(text: search, prompt: screen == .forYou ? DesktopInterfaceText.value("Search music") : screen == .explore ? DesktopInterfaceText.value("music.taste.search") : DesktopInterfaceText.value("music.searchPlaceholder"))
-            .task(id: screen.rawValue + "|" + query) {
+            .task(id: screen.rawValue + "|" + query + "|" + serverRevision.uuidString) {
                 if screen == .forYou { await catalog.load(query: query) }
             }
             .onChange(of: filters.query) { _, value in if value.count > 200 { filters.query = String(value.prefix(200)) } }
             .onSubmit(of: .search) { UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil) }
             .toolbar { ToolbarItem(placement: .topBarTrailing) {
                 Menu {
+                    Button { serverSettings = true } label: { Label(DesktopInterfaceText.value("music.connections.server"), systemImage: "server.rack") }.accessibilityIdentifier("music-server-open")
                     Button { metadataSettings = true } label: { Label(DesktopInterfaceText.value("Metadata"), systemImage: "info.circle") }.accessibilityIdentifier("music-metadata-open")
-                    Button { openImport(folder: false) } label: { Label(DesktopInterfaceText.value("Import files"), image: "music-plus") }
-                    Button { openImport(folder: true) } label: { Label(DesktopInterfaceText.value("Import folder"), image: "music-folder-open") }
-                } label: { MusicGlyph("plus").frame(width: 44, height: 44) }.accessibilityLabel(DesktopInterfaceText.value("Options")).accessibilityIdentifier("music-actions").disabled(!library.ready || library.importing)
+                    Button { openImport(folder: false) } label: { Label(DesktopInterfaceText.value("Import files"), image: "music-plus") }.disabled(!library.ready || library.importing)
+                    Button { openImport(folder: true) } label: { Label(DesktopInterfaceText.value("Import folder"), image: "music-folder-open") }.disabled(!library.ready || library.importing)
+                } label: { MusicGlyph("plus").frame(width: 44, height: 44) }.accessibilityLabel(DesktopInterfaceText.value("Options")).accessibilityIdentifier("music-actions")
             } }
             .sheet(isPresented: $metadataSettings) { MusicMetadataSettingsView(client: artistMetadata) }
+            .sheet(isPresented: $serverSettings) {
+                MusicServerConnectionView(service: server) {
+                    catalog.invalidatePrivateServer()
+                    serverRevision = UUID()
+                }
+            }
             .environment(\.musicArtistMetadata, artistMetadata)
             .fileImporter(isPresented: $importFiles, allowedContentTypes: selectFolder ? [.folder] : [.audio, .data], allowsMultipleSelection: !selectFolder) { result in
                 switch result {
@@ -93,7 +109,7 @@ struct MusicView: View {
                 case .failure: library.error = "No se pudo abrir la selección de archivos."
                 }
             }
-            .onDisappear { if artistMetadata.scope != app.pluginExecutionScope { library.cancelImport(); explore.dispose(); billboard.dispose(); artistMetadata.dispose() } }
+            .onDisappear { if artistMetadata.scope != app.pluginExecutionScope { library.cancelImport(); explore.dispose(); billboard.dispose(); artistMetadata.dispose(); server.dispose() } }
             .accessibilityElement(children: .contain).accessibilityIdentifier("music-library")
     }
     private var localLibrary: some View {
