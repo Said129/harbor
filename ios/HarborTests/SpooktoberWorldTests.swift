@@ -11,7 +11,9 @@ import XCTest
         XCTAssertEqual(manifest["reference"].string, "0834340cec5531650bfe78cd628628702e636987")
         XCTAssertEqual(manifest["original_files_verified"].integer, 131)
         XCTAssertEqual(manifest["original_fonts_copied"], .bool(false))
-        XCTAssertEqual(manifest["files"].objectValue.count, 99)
+        XCTAssertEqual(manifest["files"].objectValue.count, 102)
+        XCTAssertEqual(manifest["additional_original_style_inputs"].objectValue.count, 2)
+        XCTAssertEqual(manifest["additional_original_glyph_inputs"].objectValue.count, 1)
         for (path, entry) in manifest["files"].objectValue {
             let resource = try await SpooktoberWorldResources.shared.resource(path)
             XCTAssertEqual(resource.data.count, entry["bytes"].integer)
@@ -28,6 +30,32 @@ import XCTest
         XCTAssertNil(SpooktoberWorldResources.imagePath("harbor-spook://world/spooktober/native-runtime.js"))
         XCTAssertNil(SpooktoberWorldResources.path(URL(string: "harbor-spook://another/index.html")!))
         do { _ = try await SpooktoberWorldResources.shared.resource("../private.json"); XCTFail("Only declared bundled resources may be served") } catch { }
+    }
+    func testAppearanceUsesAllOriginalStatusTranslationsRTLAndOnlyFinitePaletteChannels() throws {
+        let url = try XCTUnwrap(Bundle.main.url(forResource: "SpooktoberWorldAssets", withExtension: "json"))
+        let asset = try JSONDecoder().decode(JSONValue.self, from: Data(contentsOf: url))
+        XCTAssertEqual(asset["original_label_inputs"].objectValue.count, 16)
+        XCTAssertEqual(Set(asset["music_status_labels"].objectValue.keys), Set(InterfaceLanguage.all.map(\.code)))
+        for language in InterfaceLanguage.all {
+            let appearance = SpooktoberWorldAppearance(palette: [:], font: "system", language: language.code, showIMDb: true)
+            XCTAssertEqual(appearance.labels.count, 2)
+            XCTAssertTrue(appearance.labels.values.allSatisfy { !$0.isEmpty })
+            XCTAssertEqual(appearance.direction, language.rtl == true ? "rtl" : "ltr")
+            for (key, value) in appearance.labels { XCTAssertEqual(value, asset["music_status_labels"][language.code][key].string) }
+        }
+        let palette: [String: [Double]] = ["canvas": [0.1,0.2,0.3,1], "accent": [0,1,0,0.5],
+            "bad;token": [0,0,0,1], "nan": [.nan,0,0,1], "infinity": [.infinity,0,0,1],
+            "outside": [-0.1,0,0,1], "short": [0,0,0]]
+        let appearance = SpooktoberWorldAppearance(palette: palette, font: "system", language: "ar", showIMDb: false)
+        XCTAssertEqual(appearance.css.count, 3)
+        XCTAssertEqual(appearance.css["--color-canvas"], "rgba(25.500000,51.000000,76.500000,1.000000)")
+        XCTAssertEqual(appearance.css["--color-accent"], "rgba(0.000000,255.000000,0.000000,0.500000)")
+        XCTAssertEqual(appearance.direction, "rtl"); XCTAssertFalse(appearance.showIMDb)
+        XCTAssertEqual(appearance.labels["music.nowPlaying"], "قيد التشغيل الآن")
+        XCTAssertEqual(SpooktoberWorldAppearance(palette: [:], font: "inter", language: "en", showIMDb: true).labels["music.loading"], "Loading music")
+        XCTAssertEqual(SpooktoberWorldAppearance(palette: [:], font: "inter", language: "unsupported", showIMDb: true).labels["music.nowPlaying"], "Reproduciendo ahora")
+        let reordered = Dictionary(uniqueKeysWithValues: palette.sorted { $0.key > $1.key })
+        XCTAssertEqual(appearance.signature, SpooktoberWorldAppearance(palette: reordered, font: "system", language: "ar", showIMDb: false).signature)
     }
     func testSixteenExecutedDesktopIntentsAndMusicMappingsRetainIdentityPayloadAndAllowedPlaylists() throws {
         let url = try XCTUnwrap(Bundle(for: Self.self).url(forResource: "spooktober-world-reference", withExtension: "json", subdirectory: "Fixtures"))

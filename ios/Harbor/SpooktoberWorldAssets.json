@@ -136,6 +136,106 @@
     "twilight-data.json": "ac2199a6c24d8d732dd7a0e8e563e522159f7173db3aaf79281d942912e41216",
     "world.css": "76545c450a72a2c5c4c89eac4a8d9a064372fdbc4521313e0f19c99ea657e46e"
   },
+  "additional_original_style_inputs": {
+    "spooktober/harbor-theme.css": {
+      "source": "scripts/spooktober-native/theme.css",
+      "sha256": "40698089c71b63d77730a668ef44e403d12f63c49553d2a69a28759cf1c17ddd"
+    },
+    "spooktober/music-now-playing-mark.css": {
+      "source": "src/components/music/music-now-playing-mark.css",
+      "sha256": "42df1395e130b012251185fa7ff86c982177ab91e0e9823bc1cd0f80605ae276"
+    }
+  },
+  "additional_original_glyph_inputs": {
+    "spooktober/music-loading.svg": {
+      "source": "src/assets/music-icons/loading.svg",
+      "sha256": "5b29672ce76aa90101774dd5e09cb52ef6a81e1f09e99cc1e3e8237a57a7fe15"
+    }
+  },
+  "original_label_inputs": {
+    "src/lib/i18n/locales/en/music.ts": "cc5af2e595f96936b1917c6c3628f0bfa1958ddba669660956818aec4a077965",
+    "src/lib/i18n/locales/ar/music.ts": "57b2465b0c53c2f2c1076ea28073e27b980f56fed60a7436a6028658a35a0e83",
+    "src/lib/i18n/locales/zh/music.ts": "6a62cf087662e1a73fb84e9f66fab486936728adc9f01260ca2c8601ca096514",
+    "src/lib/i18n/locales/fr/music.ts": "127b81f43cfa069b34b57f8881dd10bd5347883bfe0f50e68ecab643f31dd5e9",
+    "src/lib/i18n/locales/de/music.ts": "3252d1d3ab98811467fc87e87c419c4032e331013dc2213f0ae64f4b4943afac",
+    "src/lib/i18n/locales/hi/music.ts": "158eb82ba816f5d525ec0c25bfae8ca8683d29a0615bab10c8bc7d0875e2289d",
+    "src/lib/i18n/locales/id/music.ts": "df20773e61a496b18b218da7b5bafd1267d46c93c845a5b2fcfd92d3ca95d9b4",
+    "src/lib/i18n/locales/it/music.ts": "900081d3356de86c5d7c65125839807c271db70e209f9247f54b5178ffd39e26",
+    "src/lib/i18n/locales/ja/music.ts": "91ceaf8db7a7019d36144d932cc9f4ad6da85942df46efe5491acc4ef7bcacf0",
+    "src/lib/i18n/locales/ko/music.ts": "509c31957b3ee90782eb00f0feb6e996948f0996abc335cdb4b3981da58e1c1a",
+    "src/lib/i18n/locales/pl/music.ts": "3f73dd39d5ca81b73b3d5388efa7e4388e3f5e9e3241e097896d723659920cf3",
+    "src/lib/i18n/locales/pt/music.ts": "1ac0ec5fa99e0385614bb6c6b182a4bc5be149baf4fe8e08aff8c037cf612187",
+    "src/lib/i18n/locales/ru/music.ts": "0876ae9b546b7e7444fc21a9fc7464fda1ea0846675b1f09d5abf39c38f2431b",
+    "src/lib/i18n/locales/es/music.ts": "799a729126343f92eb55c71d620c2a02beb6029306b228525c5d91b95ad8c8f5",
+    "src/lib/i18n/locales/tr/music.ts": "7aa4f7def735c9c8def4d9d2f3ef5bad17e459f49e454f8c055a4567510b8f1a",
+    "src/lib/i18n/locales/vi/music.ts": "496000fcd2e480336a162097645a2203b59c5e51035b52ae50e55456ef6d6b88"
+  },
+  "music_status_labels": {
+    "en": {
+      "music.loading": "Loading music",
+      "music.nowPlaying": "Now playing"
+    },
+    "ar": {
+      "music.loading": "\u062c\u0627\u0631\u064d \u062a\u062d\u0645\u064a\u0644 \u0627\u0644\u0645\u0648\u0633\u064a\u0642\u0649",
+      "music.nowPlaying": "\u0642\u064a\u062f \u0627\u0644\u062a\u0634\u063a\u064a\u0644 \u0627\u0644\u0622\u0646"
+    },
+    "zh": {
+      "music.loading": "\u6b63\u5728\u52a0\u8f7d\u97f3\u4e50",
+      "music.nowPlaying": "\u6b63\u5728\u64ad\u653e"
+    },
+    "fr": {
+      "music.loading": "Chargement de la musique",
+      "music.nowPlaying": "Lecture en cours"
+    },
+    "de": {
+      "music.loading": "Musik wird geladen",
+      "music.nowPlaying": "Aktuelle Wiedergabe"
+    },
+    "hi": {
+      "music.loading": "\u0938\u0902\u0917\u0940\u0924 \u0932\u094b\u0921 \u0939\u094b \u0930\u0939\u093e \u0939\u0948",
+      "music.nowPlaying": "\u0905\u092d\u0940 \u091a\u0932 \u0930\u0939\u093e \u0939\u0948"
+    },
+    "id": {
+      "music.loading": "Memuat musik",
+      "music.nowPlaying": "Sedang diputar"
+    },
+    "it": {
+      "music.loading": "Caricamento musica",
+      "music.nowPlaying": "In riproduzione"
+    },
+    "ja": {
+      "music.loading": "\u97f3\u697d\u3092\u8aad\u307f\u8fbc\u307f\u4e2d",
+      "music.nowPlaying": "\u518d\u751f\u4e2d"
+    },
+    "ko": {
+      "music.loading": "\uc74c\uc545 \ubd88\ub7ec\uc624\ub294 \uc911",
+      "music.nowPlaying": "\uc9c0\uae08 \uc7ac\uc0dd \uc911"
+    },
+    "pl": {
+      "music.loading": "Wczytywanie muzyki",
+      "music.nowPlaying": "Teraz odtwarzane"
+    },
+    "pt": {
+      "music.loading": "Carregando m\u00fasicas",
+      "music.nowPlaying": "Tocando agora"
+    },
+    "ru": {
+      "music.loading": "\u0417\u0430\u0433\u0440\u0443\u0437\u043a\u0430 \u043c\u0443\u0437\u044b\u043a\u0438",
+      "music.nowPlaying": "\u0421\u0435\u0439\u0447\u0430\u0441 \u0438\u0433\u0440\u0430\u0435\u0442"
+    },
+    "es": {
+      "music.loading": "Cargando m\u00fasica",
+      "music.nowPlaying": "Reproduciendo ahora"
+    },
+    "tr": {
+      "music.loading": "M\u00fczik y\u00fckleniyor",
+      "music.nowPlaying": "\u015eimdi \u00e7al\u0131yor"
+    },
+    "vi": {
+      "music.loading": "\u0110ang t\u1ea3i nh\u1ea1c",
+      "music.nowPlaying": "\u0110ang ph\u00e1t"
+    }
+  },
   "normalized_checkout_text_paths": [
     "alt-collections.json",
     "anime-expanded.json",
@@ -298,8 +398,8 @@
       "sha256": "c9428c348622292190cf1aa2e76fcac61e1c6912a76f6ac67d57b5c5b1c46a6d"
     },
     "index.js": {
-      "bytes": 922,
-      "sha256": "5e97a7fe9382ecb6954b7c21b07fa8f942ff904eb606b2e37f074f1a441c8478"
+      "bytes": 5544,
+      "sha256": "fb9b6d3610103edeccbf7e341386eed504ba03daff00f66362ab416f1a633404"
     },
     "spooktober/alt-collections.json": {
       "bytes": 22089,
@@ -613,6 +713,10 @@
       "bytes": 3009,
       "sha256": "d84dddf6564e9695734ff3fcbd300c5c9afd2249fcc2faef9c24ddc55740843d"
     },
+    "spooktober/harbor-theme.css": {
+      "bytes": 10788,
+      "sha256": "40698089c71b63d77730a668ef44e403d12f63c49553d2a69a28759cf1c17ddd"
+    },
     "spooktober/horror-paths.json": {
       "bytes": 56728,
       "sha256": "190783eb02c9b1ea1e3b1cb6f200e01b8ddde7d7daeee00f7c216e8a0ed9cb1d"
@@ -624,6 +728,14 @@
     "spooktober/manga-expanded.json": {
       "bytes": 42111,
       "sha256": "4cfbb9c16cdfc035210325f99e5709f3746a3d61a0da3e0ede60688a2d154cdf"
+    },
+    "spooktober/music-loading.svg": {
+      "bytes": 880,
+      "sha256": "5b29672ce76aa90101774dd5e09cb52ef6a81e1f09e99cc1e3e8237a57a7fe15"
+    },
+    "spooktober/music-now-playing-mark.css": {
+      "bytes": 1075,
+      "sha256": "42df1395e130b012251185fa7ff86c982177ab91e0e9823bc1cd0f80605ae276"
     },
     "spooktober/music.json": {
       "bytes": 460545,
@@ -690,6 +802,6 @@
       "sha256": "ac2199a6c24d8d732dd7a0e8e563e522159f7173db3aaf79281d942912e41216"
     }
   },
-  "zip_sha256": "8e3b9e510fd67769cd4bb5891606a4abecbf59b3412dcaf3b00809f16263e684",
-  "zip_bytes": 1755056
+  "zip_sha256": "0a9e8dbee7f916ce7d7add9b57c21bd05e96ce5a8ea8eecb33ee4d3e56f1888d",
+  "zip_bytes": 1761003
 }

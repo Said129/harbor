@@ -1,0 +1,251 @@
+{
+  "reference": "0834340cec5531650bfe78cd628628702e636987",
+  "original_modules": {
+    "src/components/music/music-now-playing-mark.tsx": "51b584254b20eecc4e203537a4630c89b5de5de5e27a0d31d5e651ab3ed5a982",
+    "src/views/spooktober/spooktober-playlist-indicator.tsx": "3513421258d79511cb68df7ed38f7a84aadfb49847e3e053a187475362de14f9"
+  },
+  "actual_original_indicator_and_mark_executed": true,
+  "provider_network_requests": 0,
+  "cases": [
+    {
+      "phase": "playing",
+      "originKind": "playlist",
+      "originId": "spooktober:party",
+      "trackId": "track",
+      "active": true,
+      "expected": {
+        "playlist": "party",
+        "paused": false,
+        "loading": false,
+        "labelKey": "music.nowPlaying",
+        "bars": 4,
+        "spinner": false
+      }
+    },
+    {
+      "phase": "paused",
+      "originKind": "playlist",
+      "originId": "spooktober:party",
+      "trackId": "track",
+      "active": true,
+      "expected": {
+        "playlist": "party",
+        "paused": true,
+        "loading": false,
+        "labelKey": "music.nowPlaying",
+        "bars": 4,
+        "spinner": false
+      }
+    },
+    {
+      "phase": "resolving",
+      "originKind": "playlist",
+      "originId": "spooktober:party",
+      "trackId": "track",
+      "active": true,
+      "expected": {
+        "playlist": "party",
+        "paused": false,
+        "loading": true,
+        "labelKey": "music.loading",
+        "bars": 0,
+        "spinner": true
+      }
+    },
+    {
+      "phase": "playing",
+      "originKind": "playlist",
+      "originId": "spooktober:dark",
+      "trackId": "track",
+      "active": true,
+      "expected": {
+        "playlist": "dark",
+        "paused": false,
+        "loading": false,
+        "labelKey": "music.nowPlaying",
+        "bars": 4,
+        "spinner": false
+      }
+    },
+    {
+      "phase": "playing",
+      "originKind": "playlist",
+      "originId": "spooktober:scores",
+      "trackId": "track",
+      "active": true,
+      "expected": {
+        "playlist": "scores",
+        "paused": false,
+        "loading": false,
+        "labelKey": "music.nowPlaying",
+        "bars": 4,
+        "spinner": false
+      }
+    },
+    {
+      "phase": "playing",
+      "originKind": "playlist",
+      "originId": "spooktober:goth",
+      "trackId": "track",
+      "active": true,
+      "expected": {
+        "playlist": "goth",
+        "paused": false,
+        "loading": false,
+        "labelKey": "music.nowPlaying",
+        "bars": 4,
+        "spinner": false
+      }
+    },
+    {
+      "phase": "playing",
+      "originKind": "playlist",
+      "originId": "spooktober:emo",
+      "trackId": "track",
+      "active": true,
+      "expected": {
+        "playlist": "emo",
+        "paused": false,
+        "loading": false,
+        "labelKey": "music.nowPlaying",
+        "bars": 4,
+        "spinner": false
+      }
+    },
+    {
+      "phase": "playing",
+      "originKind": "playlist",
+      "originId": "spooktober:darkpop",
+      "trackId": "track",
+      "active": true,
+      "expected": {
+        "playlist": "darkpop",
+        "paused": false,
+        "loading": false,
+        "labelKey": "music.nowPlaying",
+        "bars": 4,
+        "spinner": false
+      }
+    },
+    {
+      "phase": "idle",
+      "originKind": "playlist",
+      "originId": "spooktober:party",
+      "trackId": "track",
+      "active": true,
+      "expected": {
+        "playlist": null,
+        "paused": false,
+        "loading": false,
+        "labelKey": null,
+        "bars": 0,
+        "spinner": false
+      }
+    },
+    {
+      "phase": "error",
+      "originKind": "playlist",
+      "originId": "spooktober:party",
+      "trackId": "track",
+      "active": true,
+      "expected": {
+        "playlist": null,
+        "paused": false,
+        "loading": false,
+        "labelKey": null,
+        "bars": 0,
+        "spinner": false
+      }
+    },
+    {
+      "phase": "playing",
+      "originKind": "playlist",
+      "originId": "spooktober:party",
+      "trackId": null,
+      "active": true,
+      "expected": {
+        "playlist": null,
+        "paused": false,
+        "loading": false,
+        "labelKey": null,
+        "bars": 0,
+        "spinner": false
+      }
+    },
+    {
+      "phase": "playing",
+      "originKind": "catalog",
+      "originId": "spooktober:party",
+      "trackId": "track",
+      "active": true,
+      "expected": {
+        "playlist": null,
+        "paused": false,
+        "loading": false,
+        "labelKey": null,
+        "bars": 0,
+        "spinner": false
+      }
+    },
+    {
+      "phase": "playing",
+      "originKind": "playlist",
+      "originId": "ordinary-playlist",
+      "trackId": "track",
+      "active": true,
+      "expected": {
+        "playlist": null,
+        "paused": false,
+        "loading": false,
+        "labelKey": null,
+        "bars": 0,
+        "spinner": false
+      }
+    },
+    {
+      "phase": "playing",
+      "originKind": "playlist",
+      "originId": "spooktober:unknown",
+      "trackId": "track",
+      "active": true,
+      "expected": {
+        "playlist": null,
+        "paused": false,
+        "loading": false,
+        "labelKey": null,
+        "bars": 0,
+        "spinner": false
+      }
+    },
+    {
+      "phase": "playing",
+      "originKind": "playlist",
+      "originId": "spooktober:party",
+      "trackId": "track",
+      "active": false,
+      "expected": {
+        "playlist": null,
+        "paused": false,
+        "loading": false,
+        "labelKey": null,
+        "bars": 0,
+        "spinner": false
+      }
+    },
+    {
+      "phase": "playing",
+      "originKind": null,
+      "originId": null,
+      "trackId": "track",
+      "active": true,
+      "expected": {
+        "playlist": null,
+        "paused": false,
+        "loading": false,
+        "labelKey": null,
+        "bars": 0,
+        "spinner": false
+      }
+    }
+  ]
+}

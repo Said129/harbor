@@ -8,7 +8,7 @@ navigation and scene animation. Translating the nine-shelf approximation would
 leave that functional and visual gap open.
 
 The new package prepares the actual original world from commit
-`0834340cec5531650bfe78cd628628702e636987` for WebKit. Ninety-nine local
+`0834340cec5531650bfe78cd628628702e636987` for WebKit. One hundred two local
 resources occupy about 1.76 MB compressed. The runtime, environment, layout,
 styles, catalog data and artwork keep the committed original bytes. Three
 package files are native adapters: its host HTML/JS and font declarations.
@@ -35,13 +35,35 @@ Original meta, track, video, playlist, external, back and reload intents have
 typed native projections. The original callback and music converters are
 executed directly for sixteen reference cases.
 
+The actual Desktop view appends Harbor's theme and music-mark CSS after the
+original runtime mounts. Both exact committed sheets and the original music
+loading glyph are now bundled. Native appearance supplies the selected color
+tokens, system/bundled font choice, interface language, RTL direction and IMDb
+badge setting. Changed tokens are removed when switching themes. The two
+music status labels retain all 32 original translations across 16 languages.
+
+The playlist mark follows player identity, queue origin and phase, without
+tracking the playback clock. It uses the original four bars, paused state and
+loading glyph, follows cards replaced by the runtime, and removes stale marks
+when hidden or disposed. Sixteen expectations execute the actual original
+React indicator and mark. This adapter does not yet implement remote music
+playback or replace the app's seasonal route.
+
 ## Validation and remaining integration
 
-The selective Apple gate contains three resource/intent/persistence cases and
-two cases that run the actual original runtime in WebKit, including offline
-catalog search, movie routing, Books filtering, inline book detail, back, and
-late profile-message rejection. Eight compact/regular originals are required.
-Apple compilation, execution and visual inspection remain pending.
+The first Apple run, 40783739531, built the app but failed to compile the
+test target because WebKit returns an optional content rule. None of its five
+cases executed. That optional is now explicitly unwrapped. The archive reader
+also explicitly selects ZIPFoundation's throwing initializer, addressing both
+new warnings from that run.
+
+The follow-up selects those five unexecuted cases plus two new appearance and
+indicator cases. It covers offline catalog search, movie routing, Books
+filtering, inline book detail, back, late profile-message rejection, actual
+loaded WebKit fonts, theme/font/RTL/IMDb changes, all six playlist marks and
+card replacement. Twelve compact/regular originals are required. Apple
+compilation, execution and visual inspection of this source remain pending.
+Approved Home entry and Trakt cases are retained without replay.
 
 This prepares the replacement engine; the old room is still the app's active
 route in this commit. Wiring the normal room route, the six Desktop playlist

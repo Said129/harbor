@@ -41,10 +41,10 @@ actor SpooktoberWorldResources {
                   let package = Bundle.main.url(forResource: "SpooktoberWorld", withExtension: "zip") else { throw HarborError(code: "spooktober-assets") }
             let manifest = try JSONDecoder().decode(Manifest.self, from: Data(contentsOf: metadata))
             let bytes = try Data(contentsOf: package, options: .mappedIfSafe)
-            guard manifest.schema == 1, manifest.reference == "0834340cec5531650bfe78cd628628702e636987", manifest.files.count == 99,
+            guard manifest.schema == 1, manifest.reference == "0834340cec5531650bfe78cd628628702e636987", manifest.files.count == 102,
                   bytes.count <= 8 * 1024 * 1024, Self.hash(bytes) == manifest.zip_sha256,
-                  manifest.zip_sha256 == "8e3b9e510fd67769cd4bb5891606a4abecbf59b3412dcaf3b00809f16263e684" else { throw HarborError(code: "spooktober-assets") }
-            archive = try Archive(data: bytes, accessMode: .read); self.manifest = manifest
+                  manifest.zip_sha256 == "0a9e8dbee7f916ce7d7add9b57c21bd05e96ce5a8ea8eecb33ee4d3e56f1888d" else { throw HarborError(code: "spooktober-assets") }
+            archive = try Archive(data: bytes, accessMode: .read, pathEncoding: nil); self.manifest = manifest
         }
         guard let archive, let expected = manifest?.files[path], let entry = archive[path],
               entry.type == .file, expected.bytes >= 0, entry.uncompressedSize == UInt64(expected.bytes),

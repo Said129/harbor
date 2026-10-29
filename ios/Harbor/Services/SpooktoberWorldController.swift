@@ -35,14 +35,16 @@ import WebKit
     let store: SpooktoberWorldStore
     private let active: @MainActor () -> Bool
     private let intent: @MainActor (SpooktoberWorldIntent) -> Void
+    private(set) var appearance: SpooktoberWorldAppearance
+    private(set) var musicState: SpooktoberWorldMusicState = .idle
     private var visible = true
     private(set) var webView: WKWebView?
     @Published private(set) var ready = false
     @Published private(set) var failed = false
     @Published private(set) var storageError = false
     private(set) var diagnostic: String?
-    init(store: SpooktoberWorldStore, active: @escaping @MainActor () -> Bool, intent: @escaping @MainActor (SpooktoberWorldIntent) -> Void) {
-        self.store = store; self.active = active; self.intent = intent; super.init()
+    init(store: SpooktoberWorldStore, appearance: SpooktoberWorldAppearance? = nil, active: @escaping @MainActor () -> Bool, intent: @escaping @MainActor (SpooktoberWorldIntent) -> Void) {
+        self.store = store; self.appearance = appearance ?? .current(); self.active = active; self.intent = intent; super.init()
     }
     func start() {
         guard active(), store.ready else { failed = true; return }
@@ -66,8 +68,10 @@ import WebKit
     private func storageScript() -> String {
         let encoded = String(decoding: (try? JSONEncoder().encode(store.values)) ?? Data("{}".utf8), as: UTF8.self)
         let keys = String(decoding: (try? JSONEncoder().encode(SpooktoberWorldStore.keys.sorted())) ?? Data("[]".utf8), as: UTF8.self)
+        let appearance = String(decoding: (try? JSONEncoder().encode(appearance)) ?? Data("{}".utf8), as: UTF8.self)
+        let music = String(decoding: (try? JSONEncoder().encode(musicState)) ?? Data("{}".utf8), as: UTF8.self)
         return """
-        (()=>{let values=\(encoded);const allowed=new Set(\(keys));
+        (()=>{window.__harborSpookAppearance=\(appearance);window.__harborSpookMusicState=\(music);let values=\(encoded);const allowed=new Set(\(keys));
         const post=(key,value)=>window.webkit.messageHandlers.spooktober.postMessage(JSON.stringify({kind:"storage",key,value}));
         const storage={get length(){return Object.keys(values).length},key:index=>Object.keys(values)[index]??null,
           getItem:key=>values[String(key)]??null,
@@ -105,7 +109,26 @@ import WebKit
     func setVisible(_ value: Bool) {
         visible = value
         let enabled = value && active()
+        if enabled { applyAppearance(); applyMusicState() }
         webView?.evaluateJavaScript("window.__harborSpookWorld?.setActive(\(enabled ? "true" : "false"))")
+    }
+    func updateAppearance(_ value: SpooktoberWorldAppearance) {
+        guard active(), appearance != value else { return }
+        appearance = value
+        if visible { applyAppearance() }
+    }
+    private func applyAppearance() {
+        let encoded = String(decoding: (try? JSONEncoder().encode(appearance)) ?? Data("{}".utf8), as: UTF8.self)
+        webView?.evaluateJavaScript("window.__harborSpookAppearance=\(encoded);window.__harborSpookWorld?.setAppearance(window.__harborSpookAppearance)")
+    }
+    func updateMusicState(_ value: SpooktoberWorldMusicState) {
+        guard active(), musicState != value else { return }
+        musicState = value
+        if visible { applyMusicState() }
+    }
+    private func applyMusicState() {
+        let encoded = String(decoding: (try? JSONEncoder().encode(musicState)) ?? Data("{}".utf8), as: UTF8.self)
+        webView?.evaluateJavaScript("window.__harborSpookMusicState=\(encoded);window.__harborSpookWorld?.setMusicState(window.__harborSpookMusicState)")
     }
     func back() async -> Bool {
         guard active(), visible, let webView else { return false }

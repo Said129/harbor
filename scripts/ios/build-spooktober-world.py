@@ -2,6 +2,7 @@
 import argparse
 import hashlib
 import json
+import re
 from pathlib import Path
 import subprocess
 import zipfile
@@ -38,6 +39,27 @@ for entry in manifest["files"]:
     path=entry["path"]
     if path in roots or path.endswith(".json") or path.startswith("assets/") and not path.startswith("assets/fonts/"):
         files["spooktober/"+path]=input_data[path]
+styles={
+    "spooktober/harbor-theme.css":"scripts/spooktober-native/theme.css",
+    "spooktober/music-now-playing-mark.css":"src/components/music/music-now-playing-mark.css"
+}
+style_inputs={}
+for destination,source in styles.items():
+    data=subprocess.check_output(["git","show",revision+":"+source],cwd=repo)
+    files[destination]=data
+    style_inputs[destination]=dict(source=source,sha256=hashlib.sha256(data).hexdigest())
+glyph_path="src/assets/music-icons/loading.svg"
+glyph=subprocess.check_output(["git","show",revision+":"+glyph_path],cwd=repo)
+files["spooktober/music-loading.svg"]=glyph
+glyph_inputs={"spooktober/music-loading.svg":dict(source=glyph_path,sha256=hashlib.sha256(glyph).hexdigest())}
+music_labels={};label_inputs={}
+for language in json.loads((repo/"ios/Harbor/DesktopLanguages.json").read_text("utf-8")):
+    code=language["code"];path="src/lib/i18n/locales/"+code+"/music.ts"
+    data=subprocess.check_output(["git","show",revision+":"+path],cwd=repo)
+    label_inputs[path]=hashlib.sha256(data).hexdigest()
+    entries={key:json.loads(value) for key,value in re.findall(r'"(music\.(?:loading|nowPlaying))":\s*("(?:[^"\\]|\\.)*")',data.decode())}
+    assert len(entries)==2
+    music_labels[code]=entries
 # Keep the two original family names, using fonts already redistributed by iOS.
 # The original Nightmare metadata says personal use only. No original font is copied.
 files["spooktober/native-fonts.json"]=(json.dumps([
@@ -53,7 +75,8 @@ with zipfile.ZipFile(archive,"w",compression=zipfile.ZIP_DEFLATED,compresslevel=
         package.writestr(info,data)
 output=dict(schema=1,reference="0834340cec5531650bfe78cd628628702e636987",
     original_manifest_sha256=hashlib.sha256(manifest_data).hexdigest(),
-    original_files_verified=131,original_inputs=inputs,normalized_checkout_text_paths=normalized,
+    original_files_verified=131,original_inputs=inputs,additional_original_style_inputs=style_inputs,
+    additional_original_glyph_inputs=glyph_inputs,original_label_inputs=label_inputs,music_status_labels=music_labels,normalized_checkout_text_paths=normalized,
     upstream_manifest_differs_from_committed_blobs=stale,original_runtime_and_layout_preserved=True,
     original_fonts_copied=False,exact_original_typography=False,remote_code_updates=False,
     files={path:dict(bytes=len(data),sha256=hashlib.sha256(data).hexdigest()) for path,data in sorted(files.items())},
