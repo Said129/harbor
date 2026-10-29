@@ -136,7 +136,7 @@ import XCTest
         }
         XCTAssertEqual(comparisons, fixture["comparisons"].integer)
     }
-    static func track(_ id: String, source: String, connector: String = "direct", artwork: String = "") -> MusicTrack {
+    static func track(_ id: String, source: String, connector: String = "direct", artwork: String = "") -> Harbor.MusicTrack {
         .init(id: id, connectorId: connector, sourceId: source, playbackUrl: nil, title: "Owned " + id, artist: "Owned artist", album: "Owned album", artwork: artwork, durationSeconds: 8, durationLabel: "0:08")
     }
     private func wait(_ predicate: @MainActor () -> Bool) async throws {
