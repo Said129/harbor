@@ -61,9 +61,24 @@ The follow-up selects those five unexecuted cases plus two new appearance and
 indicator cases. It covers offline catalog search, movie routing, Books
 filtering, inline book detail, back, late profile-message rejection, actual
 loaded WebKit fonts, theme/font/RTL/IMDb changes, all six playlist marks and
-card replacement. Twelve compact/regular originals are required. Apple
-compilation, execution and visual inspection of this source remain pending.
-Approved Home entry and Trakt cases are retained without replay.
+card replacement. Run 40858847653 at source 4779e98c721fbe5a1ad19cf45095c41775fb4bba
+executed all seven cases: five passed and two failed, with zero new warnings.
+The resource, persistence, appearance, catalog/reading navigation and
+theme/indicator cases passed. The failed intent comparison exposed an omitted
+album that Desktop normalizes to an empty string; the adapter now retains that
+value. The failed isolation case returned an unsupported JavaScript result
+from its test probe; it now explicitly returns a boolean. Only those failed
+cases require another execution.
+
+All twelve originals were inspected individually. Their hierarchy captures
+sometimes show a previous WebKit scroll or theme state, and remote artwork is
+deliberately blocked by the offline case. They are not visual approval of the
+complete room. Future ordinary-route visual validation must capture the actual
+rendered WebKit state and include artwork; that requirement remains open.
+The 1,970,427-byte evidence archive matches GitHub's SHA-256 digest
+ff915d5155530dfcafeb9d40fc1a935900b1d91f09726d50a048e63426ba86fa.
+All five passed cases and the approved Home entry and Trakt cases are retained
+without replay.
 
 This prepares the replacement engine; the old room is still the app's active
 route in this commit. Wiring the normal room route, the six Desktop playlist

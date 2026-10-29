@@ -40,7 +40,7 @@ enum SpooktoberWorldIntent: Sendable {
             let duration = UInt64(max(0, number.rounded()))
             return .track(MusicTrack(id: source.map { "itunes:track:" + $0 } ?? "spooktober:" + id,
                 connectorId: "catalog", sourceId: source, playbackUrl: nil, title: title, artist: artist,
-                album: item["album"].string, artwork: artwork(item["poster"].string) ?? "",
+                album: item["album"].string ?? "", artwork: artwork(item["poster"].string) ?? "",
                 durationSeconds: duration, durationLabel: "\(duration / 60):" + String(format: "%02d", duration % 60),
                 explicit: item["explicit"] == .null ? nil : item["explicit"] == .bool(true), mediaKind: "audio"))
         }

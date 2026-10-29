@@ -24,9 +24,13 @@ URLs must be resolved again for playback. Original source SQL is executed in
 SQLite for eight ordered reference states, including blank and nullable values.
 This executes the original SQL fragments, not the complete Rust function.
 
-Four new native cases cover mixed recordings and shared updates, batch write
-failure and retry, real legacy Keychain migration, and the eight SQL reference
-states. They are prepared but have not executed on Apple yet. The already
+All four new native cases passed in Apple run 40860748738 at source
+2122caa82d2a30fa72e4ad5081bce5038d7f9942, with zero new compiler warnings.
+They cover mixed recordings and shared updates, batch write failure and retry,
+real legacy Keychain migration, and the eight SQL reference states. Its
+54,448-byte evidence archive matches GitHub's SHA-256 digest
+8a24528f94372c0e5c0bfb0cfd0011cafaa4267e0ce7abf786dd7f0b2598ddbe.
+No interface captures were required by this data-only scope. The already
 approved local audio playback case is retained without replay.
 
 The shared metadata is a foundation for the remaining source picker, remote

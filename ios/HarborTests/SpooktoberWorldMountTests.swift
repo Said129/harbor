@@ -74,6 +74,7 @@ import XCTest
         _ = try await web.evaluateJavaScript("""
         localStorage.setItem('spooktober-twilight-team','edward');
         window.webkit.messageHandlers.spooktober.postMessage(JSON.stringify({kind:'intent',message:{channel:'harbor-spooktober',intent:'playlist',id:'party'}}));
+        true;
         """)
         try await Task.sleep(for: .milliseconds(150))
         XCTAssertEqual(store.values["spooktober-twilight-team"], "jacob"); XCTAssertEqual(received, 0)

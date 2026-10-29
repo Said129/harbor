@@ -1,0 +1,1687 @@
+{
+  "reference": "0834340cec5531650bfe78cd628628702e636987",
+  "original_modules": {
+    "src/lib/music/source-version.ts": "53796a16421caf258ad8afa47715c66f8c31ef7258eb2e928d79159e11ecb278",
+    "src/lib/music/queue-source.ts": "b8d9814a0a7909932a3708440657514b2c4ccff3d50e2c75328de80e9b849385",
+    "src/lib/music/sources.ts": "4afe9ffc8b5a6373ace21b568564cdfe901e6d65c6574d9f9048cb3b2cea39f2",
+    "src/lib/music/play-track.ts": "1d5d2d2af4072000b4f8ec6f25ffe40da1f9373969c29ced04d863406a477a54"
+  },
+  "actual_original_functions_executed": true,
+  "complete_original_headless_resolver_executed_with_owned_transport_and_player": true,
+  "real_provider_or_audio_requests_performed": false,
+  "cases": [
+    {
+      "request": {
+        "operation": "adopt",
+        "track": {
+          "id": "itunes:track:42",
+          "connectorId": "catalog",
+          "sourceId": "itunes:track:42",
+          "title": "Owned song",
+          "artist": "Owned artist",
+          "album": "Owned album",
+          "artwork": "https://example.org/owned.jpg",
+          "durationSeconds": 182,
+          "durationLabel": "3:02"
+        },
+        "selected": {
+          "id": "upload:owned",
+          "connectorId": "youtube",
+          "sourceId": "upload:owned",
+          "title": "Uploader - Owned song",
+          "artist": "Uploader",
+          "album": "Upload",
+          "artwork": "",
+          "durationSeconds": 190,
+          "durationLabel": "3:10"
+        }
+      },
+      "expected": {
+        "id": "upload:owned",
+        "connectorId": "youtube",
+        "sourceId": "upload:owned",
+        "title": "Owned song",
+        "artist": "Owned artist",
+        "album": "Owned album",
+        "artwork": "https://example.org/owned.jpg",
+        "durationSeconds": 190,
+        "durationLabel": "3:10",
+        "collectionOrigin": {
+          "id": "itunes:track:42",
+          "connectorId": "catalog",
+          "title": "Owned song",
+          "artist": "Owned artist",
+          "artwork": "https://example.org/owned.jpg"
+        }
+      }
+    },
+    {
+      "request": {
+        "operation": "adopt",
+        "track": {
+          "id": "itunes:track:42",
+          "connectorId": "catalog",
+          "sourceId": "itunes:track:42",
+          "title": "",
+          "artist": "",
+          "album": "",
+          "artwork": "",
+          "durationSeconds": 182,
+          "durationLabel": "3:02",
+          "explicit": false
+        },
+        "selected": {
+          "id": "upload:owned",
+          "connectorId": "youtube",
+          "sourceId": "upload:owned",
+          "title": "Uploader - Owned song",
+          "artist": "Uploader",
+          "album": "Upload",
+          "artwork": "",
+          "durationSeconds": 190,
+          "durationLabel": "3:10",
+          "explicit": true
+        }
+      },
+      "expected": {
+        "id": "upload:owned",
+        "connectorId": "youtube",
+        "sourceId": "upload:owned",
+        "title": "Uploader - Owned song",
+        "artist": "Uploader",
+        "album": "",
+        "artwork": "",
+        "durationSeconds": 190,
+        "durationLabel": "3:10",
+        "explicit": false,
+        "collectionOrigin": {
+          "id": "itunes:track:42",
+          "connectorId": "catalog",
+          "title": "",
+          "artist": "",
+          "artwork": ""
+        }
+      }
+    },
+    {
+      "request": {
+        "operation": "adopt",
+        "track": {
+          "id": "itunes:track:42",
+          "connectorId": "catalog",
+          "sourceId": "itunes:track:42",
+          "title": "Owned song",
+          "artist": "Owned artist",
+          "album": "Owned album",
+          "artwork": "https://example.org/owned.jpg",
+          "durationSeconds": 182,
+          "durationLabel": "3:02",
+          "collectionOrigin": {
+            "id": "first-origin",
+            "connectorId": "catalog",
+            "title": "First title",
+            "artist": "First credit",
+            "artwork": "first-cover"
+          }
+        },
+        "selected": {
+          "id": "upload:owned",
+          "connectorId": "youtube",
+          "sourceId": "upload:owned",
+          "title": "Uploader - Owned song",
+          "artist": "Uploader",
+          "album": "Upload",
+          "artwork": "",
+          "durationSeconds": 190,
+          "durationLabel": "3:10"
+        }
+      },
+      "expected": {
+        "id": "upload:owned",
+        "connectorId": "youtube",
+        "sourceId": "upload:owned",
+        "title": "Owned song",
+        "artist": "Owned artist",
+        "album": "Owned album",
+        "artwork": "https://example.org/owned.jpg",
+        "durationSeconds": 190,
+        "durationLabel": "3:10",
+        "collectionOrigin": {
+          "id": "first-origin",
+          "connectorId": "catalog",
+          "title": "First title",
+          "artist": "First credit",
+          "artwork": "first-cover"
+        }
+      }
+    },
+    {
+      "request": {
+        "operation": "replace",
+        "queue": [
+          {
+            "id": "itunes:track:42",
+            "connectorId": "catalog",
+            "sourceId": "itunes:track:42",
+            "title": "Owned song",
+            "artist": "Owned artist",
+            "album": "Owned album",
+            "artwork": "https://example.org/owned.jpg",
+            "durationSeconds": 182,
+            "durationLabel": "3:02"
+          },
+          {
+            "id": "second",
+            "connectorId": "catalog",
+            "sourceId": "second",
+            "title": "Owned song",
+            "artist": "Owned artist",
+            "album": "Owned album",
+            "artwork": "https://example.org/owned.jpg",
+            "durationSeconds": 182,
+            "durationLabel": "3:02"
+          }
+        ],
+        "selected": {
+          "id": "upload:owned",
+          "connectorId": "youtube",
+          "sourceId": "upload:owned",
+          "title": "Uploader - Owned song",
+          "artist": "Uploader",
+          "album": "Upload",
+          "artwork": "",
+          "durationSeconds": 190,
+          "durationLabel": "3:10"
+        },
+        "index": -1
+      },
+      "expected": [
+        {
+          "id": "itunes:track:42",
+          "connectorId": "catalog",
+          "sourceId": "itunes:track:42",
+          "title": "Owned song",
+          "artist": "Owned artist",
+          "album": "Owned album",
+          "artwork": "https://example.org/owned.jpg",
+          "durationSeconds": 182,
+          "durationLabel": "3:02"
+        },
+        {
+          "id": "second",
+          "connectorId": "catalog",
+          "sourceId": "second",
+          "title": "Owned song",
+          "artist": "Owned artist",
+          "album": "Owned album",
+          "artwork": "https://example.org/owned.jpg",
+          "durationSeconds": 182,
+          "durationLabel": "3:02"
+        }
+      ]
+    },
+    {
+      "request": {
+        "operation": "replace",
+        "queue": [
+          {
+            "id": "itunes:track:42",
+            "connectorId": "catalog",
+            "sourceId": "itunes:track:42",
+            "title": "Owned song",
+            "artist": "Owned artist",
+            "album": "Owned album",
+            "artwork": "https://example.org/owned.jpg",
+            "durationSeconds": 182,
+            "durationLabel": "3:02"
+          },
+          {
+            "id": "second",
+            "connectorId": "catalog",
+            "sourceId": "second",
+            "title": "Owned song",
+            "artist": "Owned artist",
+            "album": "Owned album",
+            "artwork": "https://example.org/owned.jpg",
+            "durationSeconds": 182,
+            "durationLabel": "3:02"
+          }
+        ],
+        "selected": {
+          "id": "upload:owned",
+          "connectorId": "youtube",
+          "sourceId": "upload:owned",
+          "title": "Uploader - Owned song",
+          "artist": "Uploader",
+          "album": "Upload",
+          "artwork": "",
+          "durationSeconds": 190,
+          "durationLabel": "3:10"
+        },
+        "index": 0
+      },
+      "expected": [
+        {
+          "id": "upload:owned",
+          "connectorId": "youtube",
+          "sourceId": "upload:owned",
+          "title": "Owned song",
+          "artist": "Owned artist",
+          "album": "Owned album",
+          "artwork": "https://example.org/owned.jpg",
+          "durationSeconds": 190,
+          "durationLabel": "3:10",
+          "collectionOrigin": {
+            "id": "itunes:track:42",
+            "connectorId": "catalog",
+            "title": "Owned song",
+            "artist": "Owned artist",
+            "artwork": "https://example.org/owned.jpg"
+          }
+        },
+        {
+          "id": "second",
+          "connectorId": "catalog",
+          "sourceId": "second",
+          "title": "Owned song",
+          "artist": "Owned artist",
+          "album": "Owned album",
+          "artwork": "https://example.org/owned.jpg",
+          "durationSeconds": 182,
+          "durationLabel": "3:02"
+        }
+      ]
+    },
+    {
+      "request": {
+        "operation": "replace",
+        "queue": [
+          {
+            "id": "itunes:track:42",
+            "connectorId": "catalog",
+            "sourceId": "itunes:track:42",
+            "title": "Owned song",
+            "artist": "Owned artist",
+            "album": "Owned album",
+            "artwork": "https://example.org/owned.jpg",
+            "durationSeconds": 182,
+            "durationLabel": "3:02"
+          },
+          {
+            "id": "second",
+            "connectorId": "catalog",
+            "sourceId": "second",
+            "title": "Owned song",
+            "artist": "Owned artist",
+            "album": "Owned album",
+            "artwork": "https://example.org/owned.jpg",
+            "durationSeconds": 182,
+            "durationLabel": "3:02"
+          }
+        ],
+        "selected": {
+          "id": "upload:owned",
+          "connectorId": "youtube",
+          "sourceId": "upload:owned",
+          "title": "Uploader - Owned song",
+          "artist": "Uploader",
+          "album": "Upload",
+          "artwork": "",
+          "durationSeconds": 190,
+          "durationLabel": "3:10"
+        },
+        "index": 2
+      },
+      "expected": [
+        {
+          "id": "itunes:track:42",
+          "connectorId": "catalog",
+          "sourceId": "itunes:track:42",
+          "title": "Owned song",
+          "artist": "Owned artist",
+          "album": "Owned album",
+          "artwork": "https://example.org/owned.jpg",
+          "durationSeconds": 182,
+          "durationLabel": "3:02"
+        },
+        {
+          "id": "second",
+          "connectorId": "catalog",
+          "sourceId": "second",
+          "title": "Owned song",
+          "artist": "Owned artist",
+          "album": "Owned album",
+          "artwork": "https://example.org/owned.jpg",
+          "durationSeconds": 182,
+          "durationLabel": "3:02"
+        }
+      ]
+    },
+    {
+      "request": {
+        "operation": "replace",
+        "queue": [
+          {
+            "id": "itunes:track:42",
+            "connectorId": "catalog",
+            "sourceId": "itunes:track:42",
+            "title": "Owned song",
+            "artist": "Owned artist",
+            "album": "Owned album",
+            "artwork": "https://example.org/owned.jpg",
+            "durationSeconds": 182,
+            "durationLabel": "3:02"
+          },
+          {
+            "id": "second",
+            "connectorId": "catalog",
+            "sourceId": "second",
+            "title": "Owned song",
+            "artist": "Owned artist",
+            "album": "Owned album",
+            "artwork": "https://example.org/owned.jpg",
+            "durationSeconds": 182,
+            "durationLabel": "3:02"
+          }
+        ],
+        "selected": {
+          "id": "upload:owned",
+          "connectorId": "youtube",
+          "sourceId": "upload:owned",
+          "title": "Uploader - Owned song",
+          "artist": "Uploader",
+          "album": "Upload",
+          "artwork": "",
+          "durationSeconds": 190,
+          "durationLabel": "3:10"
+        },
+        "index": 9
+      },
+      "expected": [
+        {
+          "id": "itunes:track:42",
+          "connectorId": "catalog",
+          "sourceId": "itunes:track:42",
+          "title": "Owned song",
+          "artist": "Owned artist",
+          "album": "Owned album",
+          "artwork": "https://example.org/owned.jpg",
+          "durationSeconds": 182,
+          "durationLabel": "3:02"
+        },
+        {
+          "id": "second",
+          "connectorId": "catalog",
+          "sourceId": "second",
+          "title": "Owned song",
+          "artist": "Owned artist",
+          "album": "Owned album",
+          "artwork": "https://example.org/owned.jpg",
+          "durationSeconds": 182,
+          "durationLabel": "3:02"
+        }
+      ]
+    },
+    {
+      "request": {
+        "operation": "replace",
+        "queue": [
+          {
+            "id": "itunes:track:42",
+            "connectorId": "catalog",
+            "sourceId": "itunes:track:42",
+            "title": "Owned song",
+            "artist": "Owned artist",
+            "album": "Owned album",
+            "artwork": "https://example.org/owned.jpg",
+            "durationSeconds": 182,
+            "durationLabel": "3:02"
+          }
+        ],
+        "selected": {
+          "id": "itunes:track:42",
+          "connectorId": "catalog",
+          "sourceId": "itunes:track:42",
+          "title": "Same source must retain queued entry",
+          "artist": "Owned artist",
+          "album": "Owned album",
+          "artwork": "https://example.org/owned.jpg",
+          "durationSeconds": 182,
+          "durationLabel": "3:02"
+        },
+        "index": 0
+      },
+      "expected": [
+        {
+          "id": "itunes:track:42",
+          "connectorId": "catalog",
+          "sourceId": "itunes:track:42",
+          "title": "Owned song",
+          "artist": "Owned artist",
+          "album": "Owned album",
+          "artwork": "https://example.org/owned.jpg",
+          "durationSeconds": 182,
+          "durationLabel": "3:02"
+        }
+      ]
+    },
+    {
+      "request": {
+        "operation": "selectable",
+        "track": {
+          "id": "upload:owned",
+          "connectorId": "youtube",
+          "sourceId": "upload:owned",
+          "title": "Uploader - Owned song",
+          "artist": "Uploader",
+          "album": "Upload",
+          "artwork": "",
+          "durationSeconds": 190,
+          "durationLabel": "3:10"
+        },
+        "candidates": [
+          {
+            "connectorId": "youtube",
+            "connectorName": "youtube",
+            "health": "healthy",
+            "track": {
+              "id": "upload:owned",
+              "connectorId": "youtube",
+              "sourceId": "upload:owned",
+              "title": "Uploader - Owned song",
+              "artist": "Uploader",
+              "album": "Upload",
+              "artwork": "",
+              "durationSeconds": 190,
+              "durationLabel": "3:10"
+            }
+          },
+          {
+            "connectorId": "youtube",
+            "connectorName": "youtube",
+            "health": "healthy",
+            "track": {
+              "id": "alternative",
+              "connectorId": "youtube",
+              "sourceId": "alternative",
+              "title": "Owned song",
+              "artist": "Owned artist",
+              "album": "Owned album",
+              "artwork": "https://example.org/owned.jpg",
+              "durationSeconds": 182,
+              "durationLabel": "3:02"
+            }
+          },
+          {
+            "connectorId": "youtube",
+            "connectorName": "youtube",
+            "health": "healthy",
+            "track": {
+              "id": "youtube:owned",
+              "connectorId": "youtube",
+              "sourceId": "youtube:owned",
+              "title": "Owned song",
+              "artist": "Owned artist",
+              "album": "Owned album",
+              "artwork": "https://example.org/owned.jpg",
+              "durationSeconds": 182,
+              "durationLabel": "3:02"
+            }
+          },
+          {
+            "connectorId": "plex",
+            "connectorName": "plex",
+            "health": "offline",
+            "track": {
+              "id": "plex:owned",
+              "connectorId": "plex",
+              "sourceId": "plex:owned",
+              "title": "Owned song",
+              "artist": "Owned artist",
+              "album": "Owned album",
+              "artwork": "https://example.org/owned.jpg",
+              "durationSeconds": 182,
+              "durationLabel": "3:02"
+            }
+          },
+          {
+            "connectorId": "plex",
+            "connectorName": "plex",
+            "health": "degraded",
+            "track": {
+              "id": "plex:owned",
+              "connectorId": "plex",
+              "sourceId": "plex:owned",
+              "title": "Owned song",
+              "artist": "Owned artist",
+              "album": "Owned album",
+              "artwork": "https://example.org/owned.jpg",
+              "durationSeconds": 182,
+              "durationLabel": "3:02"
+            }
+          },
+          {
+            "connectorId": "local",
+            "connectorName": "local",
+            "health": "healthy",
+            "track": {
+              "id": "local:owned",
+              "connectorId": "local",
+              "sourceId": "local:owned",
+              "title": "Owned song",
+              "artist": "Owned artist",
+              "album": "Owned album",
+              "artwork": "https://example.org/owned.jpg",
+              "durationSeconds": 182,
+              "durationLabel": "3:02"
+            }
+          }
+        ]
+      },
+      "expected": [
+        {
+          "connectorId": "youtube",
+          "connectorName": "youtube",
+          "health": "healthy",
+          "track": {
+            "id": "alternative",
+            "connectorId": "youtube",
+            "sourceId": "alternative",
+            "title": "Owned song",
+            "artist": "Owned artist",
+            "album": "Owned album",
+            "artwork": "https://example.org/owned.jpg",
+            "durationSeconds": 182,
+            "durationLabel": "3:02"
+          }
+        },
+        {
+          "connectorId": "plex",
+          "connectorName": "plex",
+          "health": "degraded",
+          "track": {
+            "id": "plex:owned",
+            "connectorId": "plex",
+            "sourceId": "plex:owned",
+            "title": "Owned song",
+            "artist": "Owned artist",
+            "album": "Owned album",
+            "artwork": "https://example.org/owned.jpg",
+            "durationSeconds": 182,
+            "durationLabel": "3:02"
+          }
+        },
+        {
+          "connectorId": "local",
+          "connectorName": "local",
+          "health": "healthy",
+          "track": {
+            "id": "local:owned",
+            "connectorId": "local",
+            "sourceId": "local:owned",
+            "title": "Owned song",
+            "artist": "Owned artist",
+            "album": "Owned album",
+            "artwork": "https://example.org/owned.jpg",
+            "durationSeconds": 182,
+            "durationLabel": "3:02"
+          }
+        }
+      ]
+    },
+    {
+      "request": {
+        "operation": "selectable",
+        "track": {
+          "id": "itunes:track:42",
+          "connectorId": "catalog",
+          "sourceId": "itunes:track:42",
+          "title": "Owned song",
+          "artist": "Owned artist",
+          "album": "Owned album",
+          "artwork": "https://example.org/owned.jpg",
+          "durationSeconds": 182,
+          "durationLabel": "3:02"
+        },
+        "candidates": [
+          {
+            "connectorId": "youtube",
+            "connectorName": "youtube",
+            "health": "offline",
+            "track": {
+              "id": "youtube:owned",
+              "connectorId": "youtube",
+              "sourceId": "youtube:owned",
+              "title": "Owned song",
+              "artist": "Owned artist",
+              "album": "Owned album",
+              "artwork": "https://example.org/owned.jpg",
+              "durationSeconds": 182,
+              "durationLabel": "3:02"
+            }
+          },
+          {
+            "connectorId": "youtube",
+            "connectorName": "youtube",
+            "health": "healthy",
+            "track": {
+              "id": "youtube:owned",
+              "connectorId": "youtube",
+              "sourceId": "youtube:owned",
+              "title": "Owned song",
+              "artist": "Owned artist",
+              "album": "Owned album",
+              "artwork": "https://example.org/owned.jpg",
+              "durationSeconds": 182,
+              "durationLabel": "3:02"
+            }
+          },
+          {
+            "connectorId": "subsonic",
+            "connectorName": "subsonic",
+            "health": "unknown",
+            "track": {
+              "id": "subsonic:owned",
+              "connectorId": "subsonic",
+              "sourceId": "subsonic:owned",
+              "title": "Owned song",
+              "artist": "Owned artist",
+              "album": "Owned album",
+              "artwork": "https://example.org/owned.jpg",
+              "durationSeconds": 182,
+              "durationLabel": "3:02"
+            }
+          }
+        ]
+      },
+      "expected": [
+        {
+          "connectorId": "youtube",
+          "connectorName": "youtube",
+          "health": "healthy",
+          "track": {
+            "id": "youtube:owned",
+            "connectorId": "youtube",
+            "sourceId": "youtube:owned",
+            "title": "Owned song",
+            "artist": "Owned artist",
+            "album": "Owned album",
+            "artwork": "https://example.org/owned.jpg",
+            "durationSeconds": 182,
+            "durationLabel": "3:02"
+          }
+        },
+        {
+          "connectorId": "subsonic",
+          "connectorName": "subsonic",
+          "health": "unknown",
+          "track": {
+            "id": "subsonic:owned",
+            "connectorId": "subsonic",
+            "sourceId": "subsonic:owned",
+            "title": "Owned song",
+            "artist": "Owned artist",
+            "album": "Owned album",
+            "artwork": "https://example.org/owned.jpg",
+            "durationSeconds": 182,
+            "durationLabel": "3:02"
+          }
+        }
+      ]
+    },
+    {
+      "request": {
+        "operation": "backing",
+        "track": {
+          "id": "vocal",
+          "connectorId": "catalog",
+          "sourceId": "vocal",
+          "title": "Song",
+          "artist": "Owned artist",
+          "album": "Owned album",
+          "artwork": "https://example.org/owned.jpg",
+          "durationSeconds": 182,
+          "durationLabel": "3:02"
+        }
+      },
+      "expected": null
+    },
+    {
+      "request": {
+        "operation": "backing",
+        "track": {
+          "id": "vocal",
+          "connectorId": "catalog",
+          "sourceId": "vocal",
+          "title": "Song (instrumental)",
+          "artist": "Owned artist",
+          "album": "Owned album",
+          "artwork": "https://example.org/owned.jpg",
+          "durationSeconds": 182,
+          "durationLabel": "3:02"
+        }
+      },
+      "expected": "instrumental"
+    },
+    {
+      "request": {
+        "operation": "backing",
+        "track": {
+          "id": "vocal",
+          "connectorId": "catalog",
+          "sourceId": "vocal",
+          "title": "Song karaoke",
+          "artist": "Owned artist",
+          "album": "Owned album",
+          "artwork": "https://example.org/owned.jpg",
+          "durationSeconds": 182,
+          "durationLabel": "3:02"
+        }
+      },
+      "expected": "karaoke"
+    },
+    {
+      "request": {
+        "operation": "backing",
+        "track": {
+          "id": "vocal",
+          "connectorId": "catalog",
+          "sourceId": "vocal",
+          "title": "Song sing-along",
+          "artist": "Owned artist",
+          "album": "Owned album",
+          "artwork": "https://example.org/owned.jpg",
+          "durationSeconds": 182,
+          "durationLabel": "3:02"
+        }
+      },
+      "expected": "karaoke"
+    },
+    {
+      "request": {
+        "operation": "backing",
+        "track": {
+          "id": "vocal",
+          "connectorId": "catalog",
+          "sourceId": "vocal",
+          "title": "Song without vocals",
+          "artist": "Owned artist",
+          "album": "Owned album",
+          "artwork": "https://example.org/owned.jpg",
+          "durationSeconds": 182,
+          "durationLabel": "3:02"
+        }
+      },
+      "expected": "instrumental"
+    },
+    {
+      "request": {
+        "operation": "backing",
+        "track": {
+          "id": "vocal",
+          "connectorId": "catalog",
+          "sourceId": "vocal",
+          "title": "Song no vocals",
+          "artist": "Owned artist",
+          "album": "Owned album",
+          "artwork": "https://example.org/owned.jpg",
+          "durationSeconds": 182,
+          "durationLabel": "3:02"
+        }
+      },
+      "expected": "instrumental"
+    },
+    {
+      "request": {
+        "operation": "backing",
+        "track": {
+          "id": "vocal",
+          "connectorId": "catalog",
+          "sourceId": "vocal",
+          "title": "Song vocal removed",
+          "artist": "Owned artist",
+          "album": "Owned album",
+          "artwork": "https://example.org/owned.jpg",
+          "durationSeconds": 182,
+          "durationLabel": "3:02"
+        }
+      },
+      "expected": "instrumental"
+    },
+    {
+      "request": {
+        "operation": "backing",
+        "track": {
+          "id": "vocal",
+          "connectorId": "catalog",
+          "sourceId": "vocal",
+          "title": "ékaraoke",
+          "artist": "Owned artist",
+          "album": "Owned album",
+          "artwork": "https://example.org/owned.jpg",
+          "durationSeconds": 182,
+          "durationLabel": "3:02"
+        }
+      },
+      "expected": "karaoke"
+    },
+    {
+      "request": {
+        "operation": "backing",
+        "track": {
+          "id": "vocal",
+          "connectorId": "catalog",
+          "sourceId": "vocal",
+          "title": "Song backingtrack",
+          "artist": "Owned artist",
+          "album": "Owned album",
+          "artwork": "https://example.org/owned.jpg",
+          "durationSeconds": 182,
+          "durationLabel": "3:02"
+        }
+      },
+      "expected": "instrumental"
+    },
+    {
+      "request": {
+        "operation": "backing",
+        "track": {
+          "id": "vocal",
+          "connectorId": "catalog",
+          "sourceId": "vocal",
+          "title": "Song INSTRUMENTAL",
+          "artist": "Owned artist",
+          "album": "Owned album",
+          "artwork": "https://example.org/owned.jpg",
+          "durationSeconds": 182,
+          "durationLabel": "3:02"
+        }
+      },
+      "expected": "instrumental"
+    },
+    {
+      "request": {
+        "operation": "compatible",
+        "track": {
+          "id": "a",
+          "connectorId": "catalog",
+          "sourceId": "a",
+          "title": "Song",
+          "artist": "Owned artist",
+          "album": "Owned album",
+          "artwork": "https://example.org/owned.jpg",
+          "durationSeconds": 182,
+          "durationLabel": "3:02"
+        },
+        "selected": {
+          "id": "b",
+          "connectorId": "local",
+          "sourceId": "b",
+          "title": "Song karaoke",
+          "artist": "Owned artist",
+          "album": "Owned album",
+          "artwork": "https://example.org/owned.jpg",
+          "durationSeconds": 182,
+          "durationLabel": "3:02"
+        }
+      },
+      "expected": false
+    },
+    {
+      "request": {
+        "operation": "compatible",
+        "track": {
+          "id": "a",
+          "connectorId": "catalog",
+          "sourceId": "a",
+          "title": "Song",
+          "artist": "Owned artist",
+          "album": "Owned album",
+          "artwork": "https://example.org/owned.jpg",
+          "durationSeconds": 182,
+          "durationLabel": "3:02"
+        },
+        "selected": {
+          "id": "b",
+          "connectorId": "local",
+          "sourceId": "b",
+          "title": "Song",
+          "artist": "Owned artist",
+          "album": "Owned album",
+          "artwork": "https://example.org/owned.jpg",
+          "durationSeconds": 182,
+          "durationLabel": "3:02"
+        }
+      },
+      "expected": true
+    },
+    {
+      "request": {
+        "operation": "compatible",
+        "track": {
+          "id": "a",
+          "connectorId": "catalog",
+          "sourceId": "a",
+          "title": "Song instrumental",
+          "artist": "Owned artist",
+          "album": "Owned album",
+          "artwork": "https://example.org/owned.jpg",
+          "durationSeconds": 182,
+          "durationLabel": "3:02"
+        },
+        "selected": {
+          "id": "b",
+          "connectorId": "local",
+          "sourceId": "b",
+          "title": "Song backing track",
+          "artist": "Owned artist",
+          "album": "Owned album",
+          "artwork": "https://example.org/owned.jpg",
+          "durationSeconds": 182,
+          "durationLabel": "3:02"
+        }
+      },
+      "expected": true
+    },
+    {
+      "request": {
+        "operation": "compatible",
+        "track": {
+          "id": "a",
+          "connectorId": "catalog",
+          "sourceId": "a",
+          "title": "Song karaoke",
+          "artist": "Owned artist",
+          "album": "Owned album",
+          "artwork": "https://example.org/owned.jpg",
+          "durationSeconds": 182,
+          "durationLabel": "3:02"
+        },
+        "selected": {
+          "id": "b",
+          "connectorId": "local",
+          "sourceId": "b",
+          "title": "Song sing along",
+          "artist": "Owned artist",
+          "album": "Owned album",
+          "artwork": "https://example.org/owned.jpg",
+          "durationSeconds": 182,
+          "durationLabel": "3:02"
+        }
+      },
+      "expected": true
+    },
+    {
+      "request": {
+        "operation": "preferred",
+        "preferred": null
+      },
+      "expected": "youtube"
+    },
+    {
+      "request": {
+        "operation": "preferred",
+        "preferred": ""
+      },
+      "expected": "youtube"
+    },
+    {
+      "request": {
+        "operation": "preferred",
+        "preferred": "  soundcloud  "
+      },
+      "expected": "soundcloud"
+    },
+    {
+      "request": {
+        "operation": "priority",
+        "connectorId": null,
+        "preferred": "local"
+      },
+      "expected": 9
+    },
+    {
+      "request": {
+        "operation": "priority",
+        "connectorId": "catalog",
+        "preferred": "local"
+      },
+      "expected": 0
+    },
+    {
+      "request": {
+        "operation": "priority",
+        "connectorId": "youtube",
+        "preferred": "local"
+      },
+      "expected": 2
+    },
+    {
+      "request": {
+        "operation": "priority",
+        "connectorId": "local",
+        "preferred": "local"
+      },
+      "expected": -1
+    },
+    {
+      "request": {
+        "operation": "priority",
+        "connectorId": "subsonic",
+        "preferred": "local"
+      },
+      "expected": 7
+    },
+    {
+      "request": {
+        "operation": "priority",
+        "connectorId": "custom",
+        "preferred": "local"
+      },
+      "expected": 8
+    },
+    {
+      "request": {
+        "operation": "playbackSource",
+        "connectorId": null,
+        "preferred": "soundcloud"
+      },
+      "expected": "soundcloud"
+    },
+    {
+      "request": {
+        "operation": "playbackSource",
+        "connectorId": "catalog",
+        "preferred": "soundcloud"
+      },
+      "expected": "soundcloud"
+    },
+    {
+      "request": {
+        "operation": "playbackSource",
+        "connectorId": "local",
+        "preferred": "soundcloud"
+      },
+      "expected": "local"
+    },
+    {
+      "request": {
+        "operation": "shouldResolve",
+        "track": {
+          "id": "itunes:track:42",
+          "connectorId": "catalog",
+          "sourceId": "itunes:track:42",
+          "title": "Owned song",
+          "artist": "Owned artist",
+          "album": "Owned album",
+          "artwork": "https://example.org/owned.jpg",
+          "durationSeconds": 182,
+          "durationLabel": "3:02"
+        },
+        "preferred": "soundcloud"
+      },
+      "expected": true
+    },
+    {
+      "request": {
+        "operation": "shouldResolve",
+        "track": {
+          "id": "itunes:track:42",
+          "connectorId": "catalog",
+          "sourceId": "itunes:track:42",
+          "title": "Owned song",
+          "artist": "Owned artist",
+          "album": "Owned album",
+          "artwork": "https://example.org/owned.jpg",
+          "durationSeconds": 182,
+          "durationLabel": "3:02"
+        },
+        "preferred": "soundcloud",
+        "explicit": true
+      },
+      "expected": false
+    },
+    {
+      "request": {
+        "operation": "shouldResolve",
+        "track": {
+          "id": "itunes:track:42",
+          "connectorId": "catalog",
+          "sourceId": "itunes:track:42",
+          "title": "Owned song",
+          "artist": "Owned artist",
+          "album": "Owned album",
+          "artwork": "https://example.org/owned.jpg",
+          "durationSeconds": 182,
+          "durationLabel": "3:02"
+        },
+        "preferred": "soundcloud",
+        "failed": true
+      },
+      "expected": false
+    },
+    {
+      "request": {
+        "operation": "shouldResolve",
+        "track": {
+          "id": "local",
+          "connectorId": "local",
+          "sourceId": "local",
+          "title": "Owned song",
+          "artist": "Owned artist",
+          "album": "Owned album",
+          "artwork": "https://example.org/owned.jpg",
+          "durationSeconds": 182,
+          "durationLabel": "3:02"
+        },
+        "preferred": "soundcloud"
+      },
+      "expected": false
+    },
+    {
+      "request": {
+        "operation": "shouldResolve",
+        "track": {
+          "id": "file",
+          "connectorId": "catalog",
+          "sourceId": "file",
+          "title": "Owned song",
+          "artist": "Owned artist",
+          "album": "Owned album",
+          "artwork": "https://example.org/owned.jpg",
+          "durationSeconds": 182,
+          "durationLabel": "3:02",
+          "playbackUrl": "FiLe:///owned.wav"
+        },
+        "preferred": "soundcloud"
+      },
+      "expected": false
+    },
+    {
+      "request": {
+        "operation": "shouldResolve",
+        "track": {
+          "id": "video",
+          "connectorId": "youtube",
+          "sourceId": "video",
+          "title": "Owned song",
+          "artist": "Owned artist",
+          "album": "Owned album",
+          "artwork": "https://example.org/owned.jpg",
+          "durationSeconds": 182,
+          "durationLabel": "3:02",
+          "mediaKind": "video"
+        },
+        "preferred": "soundcloud"
+      },
+      "expected": false
+    },
+    {
+      "request": {
+        "operation": "choose",
+        "track": {
+          "id": "itunes:track:42",
+          "connectorId": "catalog",
+          "sourceId": "itunes:track:42",
+          "title": "Owned song",
+          "artist": "Owned artist",
+          "album": "Owned album",
+          "artwork": "https://example.org/owned.jpg",
+          "durationSeconds": 182,
+          "durationLabel": "3:02"
+        },
+        "queue": [
+          {
+            "id": "itunes:track:42",
+            "connectorId": "catalog",
+            "sourceId": "itunes:track:42",
+            "title": "Owned song",
+            "artist": "Owned artist",
+            "album": "Owned album",
+            "artwork": "https://example.org/owned.jpg",
+            "durationSeconds": 182,
+            "durationLabel": "3:02"
+          },
+          {
+            "id": "second",
+            "connectorId": "catalog",
+            "sourceId": "second",
+            "title": "Owned song",
+            "artist": "Owned artist",
+            "album": "Owned album",
+            "artwork": "https://example.org/owned.jpg",
+            "durationSeconds": 182,
+            "durationLabel": "3:02"
+          }
+        ],
+        "candidates": [
+          {
+            "connectorId": "youtube",
+            "connectorName": "youtube",
+            "health": "healthy",
+            "track": {
+              "id": "youtube:owned",
+              "connectorId": "youtube",
+              "sourceId": "youtube:owned",
+              "title": "Owned song",
+              "artist": "Owned artist",
+              "album": "Owned album",
+              "artwork": "https://example.org/owned.jpg",
+              "durationSeconds": 182,
+              "durationLabel": "3:02"
+            }
+          },
+          {
+            "connectorId": "local",
+            "connectorName": "local",
+            "health": "healthy",
+            "track": {
+              "id": "local:owned",
+              "connectorId": "local",
+              "sourceId": "local:owned",
+              "title": "Owned song",
+              "artist": "Owned artist",
+              "album": "Owned album",
+              "artwork": "https://example.org/owned.jpg",
+              "durationSeconds": 182,
+              "durationLabel": "3:02"
+            }
+          },
+          {
+            "connectorId": "soundcloud",
+            "connectorName": "soundcloud",
+            "health": "healthy",
+            "track": {
+              "id": "soundcloud:owned",
+              "connectorId": "soundcloud",
+              "sourceId": "soundcloud:owned",
+              "title": "Owned song",
+              "artist": "Owned artist",
+              "album": "Owned album",
+              "artwork": "https://example.org/owned.jpg",
+              "durationSeconds": 182,
+              "durationLabel": "3:02"
+            }
+          }
+        ],
+        "preferred": "local"
+      },
+      "expected": {
+        "track": {
+          "id": "local:owned",
+          "connectorId": "local",
+          "sourceId": "local:owned",
+          "title": "Owned song",
+          "artist": "Owned artist",
+          "album": "Owned album",
+          "artwork": "https://example.org/owned.jpg",
+          "durationSeconds": 182,
+          "durationLabel": "3:02",
+          "collectionOrigin": {
+            "id": "itunes:track:42",
+            "connectorId": "catalog",
+            "title": "Owned song",
+            "artist": "Owned artist",
+            "artwork": "https://example.org/owned.jpg"
+          }
+        },
+        "queue": [
+          {
+            "id": "local:owned",
+            "connectorId": "local",
+            "sourceId": "local:owned",
+            "title": "Owned song",
+            "artist": "Owned artist",
+            "album": "Owned album",
+            "artwork": "https://example.org/owned.jpg",
+            "durationSeconds": 182,
+            "durationLabel": "3:02",
+            "collectionOrigin": {
+              "id": "itunes:track:42",
+              "connectorId": "catalog",
+              "title": "Owned song",
+              "artist": "Owned artist",
+              "artwork": "https://example.org/owned.jpg"
+            }
+          },
+          {
+            "id": "second",
+            "connectorId": "catalog",
+            "sourceId": "second",
+            "title": "Owned song",
+            "artist": "Owned artist",
+            "album": "Owned album",
+            "artwork": "https://example.org/owned.jpg",
+            "durationSeconds": 182,
+            "durationLabel": "3:02"
+          }
+        ]
+      },
+      "original_play_calls": 1,
+      "original_queue_cancellations": 1
+    },
+    {
+      "request": {
+        "operation": "choose",
+        "track": {
+          "id": "itunes:track:42",
+          "connectorId": "catalog",
+          "sourceId": "itunes:track:42",
+          "title": "Owned song",
+          "artist": "Owned artist",
+          "album": "Owned album",
+          "artwork": "https://example.org/owned.jpg",
+          "durationSeconds": 182,
+          "durationLabel": "3:02"
+        },
+        "queue": [
+          {
+            "id": "itunes:track:42",
+            "connectorId": "catalog",
+            "sourceId": "itunes:track:42",
+            "title": "Owned song",
+            "artist": "Owned artist",
+            "album": "Owned album",
+            "artwork": "https://example.org/owned.jpg",
+            "durationSeconds": 182,
+            "durationLabel": "3:02"
+          }
+        ],
+        "candidates": [
+          {
+            "connectorId": "local",
+            "connectorName": "local",
+            "health": "offline",
+            "track": {
+              "id": "local:owned",
+              "connectorId": "local",
+              "sourceId": "local:owned",
+              "title": "Owned song",
+              "artist": "Owned artist",
+              "album": "Owned album",
+              "artwork": "https://example.org/owned.jpg",
+              "durationSeconds": 182,
+              "durationLabel": "3:02"
+            }
+          },
+          {
+            "connectorId": "youtube",
+            "connectorName": "youtube",
+            "health": "healthy",
+            "track": {
+              "id": "youtube:owned",
+              "connectorId": "youtube",
+              "sourceId": "youtube:owned",
+              "title": "Owned song",
+              "artist": "Owned artist",
+              "album": "Owned album",
+              "artwork": "https://example.org/owned.jpg",
+              "durationSeconds": 182,
+              "durationLabel": "3:02"
+            }
+          },
+          {
+            "connectorId": "soundcloud",
+            "connectorName": "soundcloud",
+            "health": "healthy",
+            "track": {
+              "id": "soundcloud:owned",
+              "connectorId": "soundcloud",
+              "sourceId": "soundcloud:owned",
+              "title": "Owned song",
+              "artist": "Owned artist",
+              "album": "Owned album",
+              "artwork": "https://example.org/owned.jpg",
+              "durationSeconds": 182,
+              "durationLabel": "3:02"
+            }
+          }
+        ],
+        "preferred": "local"
+      },
+      "expected": {
+        "track": {
+          "id": "youtube:owned",
+          "connectorId": "youtube",
+          "sourceId": "youtube:owned",
+          "title": "Owned song",
+          "artist": "Owned artist",
+          "album": "Owned album",
+          "artwork": "https://example.org/owned.jpg",
+          "durationSeconds": 182,
+          "durationLabel": "3:02",
+          "collectionOrigin": {
+            "id": "itunes:track:42",
+            "connectorId": "catalog",
+            "title": "Owned song",
+            "artist": "Owned artist",
+            "artwork": "https://example.org/owned.jpg"
+          }
+        },
+        "queue": [
+          {
+            "id": "youtube:owned",
+            "connectorId": "youtube",
+            "sourceId": "youtube:owned",
+            "title": "Owned song",
+            "artist": "Owned artist",
+            "album": "Owned album",
+            "artwork": "https://example.org/owned.jpg",
+            "durationSeconds": 182,
+            "durationLabel": "3:02",
+            "collectionOrigin": {
+              "id": "itunes:track:42",
+              "connectorId": "catalog",
+              "title": "Owned song",
+              "artist": "Owned artist",
+              "artwork": "https://example.org/owned.jpg"
+            }
+          }
+        ]
+      },
+      "original_play_calls": 1,
+      "original_queue_cancellations": 1
+    },
+    {
+      "request": {
+        "operation": "choose",
+        "track": {
+          "id": "itunes:track:42",
+          "connectorId": "catalog",
+          "sourceId": "itunes:track:42",
+          "title": "Owned song",
+          "artist": "Owned artist",
+          "album": "Owned album",
+          "artwork": "https://example.org/owned.jpg",
+          "durationSeconds": 182,
+          "durationLabel": "3:02"
+        },
+        "candidates": [
+          {
+            "connectorId": "soundcloud",
+            "connectorName": "soundcloud",
+            "health": "healthy",
+            "track": {
+              "id": "karaoke",
+              "connectorId": "soundcloud",
+              "sourceId": "karaoke",
+              "title": "Owned song karaoke",
+              "artist": "Owned artist",
+              "album": "Owned album",
+              "artwork": "https://example.org/owned.jpg",
+              "durationSeconds": 182,
+              "durationLabel": "3:02"
+            }
+          },
+          {
+            "connectorId": "youtube",
+            "connectorName": "youtube",
+            "health": "healthy",
+            "track": {
+              "id": "youtube:owned",
+              "connectorId": "youtube",
+              "sourceId": "youtube:owned",
+              "title": "Owned song",
+              "artist": "Owned artist",
+              "album": "Owned album",
+              "artwork": "https://example.org/owned.jpg",
+              "durationSeconds": 182,
+              "durationLabel": "3:02"
+            }
+          }
+        ],
+        "preferred": "soundcloud"
+      },
+      "expected": {
+        "track": {
+          "id": "youtube:owned",
+          "connectorId": "youtube",
+          "sourceId": "youtube:owned",
+          "title": "Owned song",
+          "artist": "Owned artist",
+          "album": "Owned album",
+          "artwork": "https://example.org/owned.jpg",
+          "durationSeconds": 182,
+          "durationLabel": "3:02",
+          "collectionOrigin": {
+            "id": "itunes:track:42",
+            "connectorId": "catalog",
+            "title": "Owned song",
+            "artist": "Owned artist",
+            "artwork": "https://example.org/owned.jpg"
+          }
+        },
+        "queue": [
+          {
+            "id": "youtube:owned",
+            "connectorId": "youtube",
+            "sourceId": "youtube:owned",
+            "title": "Owned song",
+            "artist": "Owned artist",
+            "album": "Owned album",
+            "artwork": "https://example.org/owned.jpg",
+            "durationSeconds": 182,
+            "durationLabel": "3:02",
+            "collectionOrigin": {
+              "id": "itunes:track:42",
+              "connectorId": "catalog",
+              "title": "Owned song",
+              "artist": "Owned artist",
+              "artwork": "https://example.org/owned.jpg"
+            }
+          }
+        ]
+      },
+      "original_play_calls": 1,
+      "original_queue_cancellations": 1
+    },
+    {
+      "request": {
+        "operation": "choose",
+        "track": {
+          "id": "itunes:track:42",
+          "connectorId": "catalog",
+          "sourceId": "itunes:track:42",
+          "title": "Owned song",
+          "artist": "Owned artist",
+          "album": "Owned album",
+          "artwork": "https://example.org/owned.jpg",
+          "durationSeconds": 182,
+          "durationLabel": "3:02"
+        },
+        "candidates": [
+          {
+            "connectorId": "youtube",
+            "connectorName": "youtube",
+            "health": "offline",
+            "track": {
+              "id": "youtube:owned",
+              "connectorId": "youtube",
+              "sourceId": "youtube:owned",
+              "title": "Owned song",
+              "artist": "Owned artist",
+              "album": "Owned album",
+              "artwork": "https://example.org/owned.jpg",
+              "durationSeconds": 182,
+              "durationLabel": "3:02"
+            }
+          }
+        ],
+        "preferred": null
+      },
+      "expected": null,
+      "original_play_calls": 0,
+      "original_queue_cancellations": 1
+    },
+    {
+      "request": {
+        "operation": "choose",
+        "track": {
+          "id": "itunes:track:42",
+          "connectorId": "catalog",
+          "sourceId": "itunes:track:42",
+          "title": "Owned song",
+          "artist": "Owned artist",
+          "album": "Owned album",
+          "artwork": "https://example.org/owned.jpg",
+          "durationSeconds": 182,
+          "durationLabel": "3:02"
+        },
+        "candidates": [],
+        "preferred": "youtube"
+      },
+      "expected": null,
+      "original_play_calls": 0,
+      "original_queue_cancellations": 1
+    },
+    {
+      "request": {
+        "operation": "choose",
+        "track": {
+          "id": "direct",
+          "connectorId": "direct",
+          "sourceId": "direct",
+          "title": "Owned song",
+          "artist": "Owned artist",
+          "album": "Owned album",
+          "artwork": "https://example.org/owned.jpg",
+          "durationSeconds": 182,
+          "durationLabel": "3:02",
+          "playbackUrl": "https://example.org/owned.wav"
+        },
+        "candidates": [],
+        "preferred": "youtube"
+      },
+      "expected": {
+        "track": {
+          "id": "direct",
+          "connectorId": "direct",
+          "sourceId": "direct",
+          "title": "Owned song",
+          "artist": "Owned artist",
+          "album": "Owned album",
+          "artwork": "https://example.org/owned.jpg",
+          "durationSeconds": 182,
+          "durationLabel": "3:02",
+          "playbackUrl": "https://example.org/owned.wav"
+        },
+        "queue": [
+          {
+            "id": "direct",
+            "connectorId": "direct",
+            "sourceId": "direct",
+            "title": "Owned song",
+            "artist": "Owned artist",
+            "album": "Owned album",
+            "artwork": "https://example.org/owned.jpg",
+            "durationSeconds": 182,
+            "durationLabel": "3:02",
+            "playbackUrl": "https://example.org/owned.wav"
+          }
+        ]
+      },
+      "original_play_calls": 1,
+      "original_queue_cancellations": 1
+    }
+  ]
+}
