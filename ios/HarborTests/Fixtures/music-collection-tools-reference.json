@@ -1,0 +1,6531 @@
+{
+  "reference": "0834340cec5531650bfe78cd628628702e636987",
+  "original_modules": {
+    "src/lib/music/playlist-filters.ts": "4eb27d62661ea80d31cbafbdbb8a3d1e2fb5e9fe30cb5db9c7b2be9d8fb687c0",
+    "src/lib/music/source-label.ts": "009ce2b56a0ebfa7fe3c68ec91b1200b1cc8258be2b95c3c1ba4574b05cbf608",
+    "src/lib/music/track-identity.ts": "0eca9a5b205cd71ce75d145405060dea48eccd624ba55c52924fa6088598cdf5",
+    "src/lib/music/search-normalize.ts": "2776b434b870c15114b58baca2548e0e7b0ea7b64c15943fe0b7d8bb76441385",
+    "src/lib/music/search-artists.ts": "6e0fae3c8faba2fe5e96e06ae98ac78f4482479e35effab9341a270efd435b84"
+  },
+  "whole_original_modules_executed": 4,
+  "selected_original_functions_executed": ["search-artists.artistCreditParts"],
+  "program_sha256": "85a0e907ad1a5c61c7720dd421738f6027efa96012d2d77a681d25224b94e994",
+  "comparisons": 60,
+  "cases": [
+    {
+      "name": "default/false",
+      "input": {
+        "operation": "filter",
+        "tracks": [
+          {
+            "id": "catalog:1",
+            "connectorId": "catalog",
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "catalog:1",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          },
+          {
+            "id": "subsonic:2",
+            "connectorId": "subsonic",
+            "title": "Cafe 2",
+            "artist": "Alpha",
+            "album": "Dawn",
+            "durationSeconds": 80,
+            "explicit": true,
+            "sourceId": "subsonic:2",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "1:20"
+          },
+          {
+            "id": "local:3",
+            "connectorId": "local",
+            "title": "Echo",
+            "artist": "Gamma",
+            "album": null,
+            "durationSeconds": 0,
+            "sourceId": "local:3",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "0:00"
+          },
+          {
+            "id": "youtube:4",
+            "connectorId": "youtube_music",
+            "title": "夜に駆ける",
+            "artist": "YOASOBI",
+            "album": "THE BOOK",
+            "durationSeconds": 261,
+            "explicit": false,
+            "sourceId": "youtube:4",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:21"
+          },
+          {
+            "id": "direct:5",
+            "connectorId": "direct",
+            "title": "مرحبا",
+            "artist": "علي",
+            "album": "",
+            "durationSeconds": 120,
+            "explicit": null,
+            "sourceId": "direct:5",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "2:00"
+          },
+          {
+            "id": "other:6",
+            "connectorId": null,
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "other:6",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          }
+        ],
+        "filters": {
+          "query": "",
+          "genre": null,
+          "source": "all",
+          "content": "all",
+          "sort": "default",
+          "descending": false,
+          "view": "list"
+        },
+        "metadata": {
+          "addedAt": {
+            "catalog:1": "2026-01-02T03:04:05Z",
+            "subsonic:2": "1790000000000",
+            "local:3": "not-a-date",
+            "youtube:4": "0",
+            "direct:5": "2026-01-02T03:04:05Z"
+          }
+        }
+      },
+      "expected": [
+        {
+          "id": "catalog:1",
+          "connectorId": "catalog",
+          "title": "Café 10",
+          "artist": "Alpha & Beta",
+          "album": "Night",
+          "durationSeconds": 240,
+          "explicit": false,
+          "sourceId": "catalog:1",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "4:00"
+        },
+        {
+          "id": "subsonic:2",
+          "connectorId": "subsonic",
+          "title": "Cafe 2",
+          "artist": "Alpha",
+          "album": "Dawn",
+          "durationSeconds": 80,
+          "explicit": true,
+          "sourceId": "subsonic:2",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "1:20"
+        },
+        {
+          "id": "local:3",
+          "connectorId": "local",
+          "title": "Echo",
+          "artist": "Gamma",
+          "album": null,
+          "durationSeconds": 0,
+          "sourceId": "local:3",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "0:00"
+        },
+        {
+          "id": "youtube:4",
+          "connectorId": "youtube_music",
+          "title": "夜に駆ける",
+          "artist": "YOASOBI",
+          "album": "THE BOOK",
+          "durationSeconds": 261,
+          "explicit": false,
+          "sourceId": "youtube:4",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "4:21"
+        },
+        {
+          "id": "direct:5",
+          "connectorId": "direct",
+          "title": "مرحبا",
+          "artist": "علي",
+          "album": "",
+          "durationSeconds": 120,
+          "explicit": null,
+          "sourceId": "direct:5",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "2:00"
+        },
+        {
+          "id": "other:6",
+          "connectorId": null,
+          "title": "Café 10",
+          "artist": "Alpha & Beta",
+          "album": "Night",
+          "durationSeconds": 240,
+          "explicit": false,
+          "sourceId": "other:6",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "4:00"
+        }
+      ]
+    },
+    {
+      "name": "default/true",
+      "input": {
+        "operation": "filter",
+        "tracks": [
+          {
+            "id": "catalog:1",
+            "connectorId": "catalog",
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "catalog:1",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          },
+          {
+            "id": "subsonic:2",
+            "connectorId": "subsonic",
+            "title": "Cafe 2",
+            "artist": "Alpha",
+            "album": "Dawn",
+            "durationSeconds": 80,
+            "explicit": true,
+            "sourceId": "subsonic:2",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "1:20"
+          },
+          {
+            "id": "local:3",
+            "connectorId": "local",
+            "title": "Echo",
+            "artist": "Gamma",
+            "album": null,
+            "durationSeconds": 0,
+            "sourceId": "local:3",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "0:00"
+          },
+          {
+            "id": "youtube:4",
+            "connectorId": "youtube_music",
+            "title": "夜に駆ける",
+            "artist": "YOASOBI",
+            "album": "THE BOOK",
+            "durationSeconds": 261,
+            "explicit": false,
+            "sourceId": "youtube:4",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:21"
+          },
+          {
+            "id": "direct:5",
+            "connectorId": "direct",
+            "title": "مرحبا",
+            "artist": "علي",
+            "album": "",
+            "durationSeconds": 120,
+            "explicit": null,
+            "sourceId": "direct:5",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "2:00"
+          },
+          {
+            "id": "other:6",
+            "connectorId": null,
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "other:6",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          }
+        ],
+        "filters": {
+          "query": "",
+          "genre": null,
+          "source": "all",
+          "content": "all",
+          "sort": "default",
+          "descending": true,
+          "view": "list"
+        },
+        "metadata": {
+          "addedAt": {
+            "catalog:1": "2026-01-02T03:04:05Z",
+            "subsonic:2": "1790000000000",
+            "local:3": "not-a-date",
+            "youtube:4": "0",
+            "direct:5": "2026-01-02T03:04:05Z"
+          }
+        }
+      },
+      "expected": [
+        {
+          "id": "catalog:1",
+          "connectorId": "catalog",
+          "title": "Café 10",
+          "artist": "Alpha & Beta",
+          "album": "Night",
+          "durationSeconds": 240,
+          "explicit": false,
+          "sourceId": "catalog:1",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "4:00"
+        },
+        {
+          "id": "subsonic:2",
+          "connectorId": "subsonic",
+          "title": "Cafe 2",
+          "artist": "Alpha",
+          "album": "Dawn",
+          "durationSeconds": 80,
+          "explicit": true,
+          "sourceId": "subsonic:2",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "1:20"
+        },
+        {
+          "id": "local:3",
+          "connectorId": "local",
+          "title": "Echo",
+          "artist": "Gamma",
+          "album": null,
+          "durationSeconds": 0,
+          "sourceId": "local:3",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "0:00"
+        },
+        {
+          "id": "youtube:4",
+          "connectorId": "youtube_music",
+          "title": "夜に駆ける",
+          "artist": "YOASOBI",
+          "album": "THE BOOK",
+          "durationSeconds": 261,
+          "explicit": false,
+          "sourceId": "youtube:4",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "4:21"
+        },
+        {
+          "id": "direct:5",
+          "connectorId": "direct",
+          "title": "مرحبا",
+          "artist": "علي",
+          "album": "",
+          "durationSeconds": 120,
+          "explicit": null,
+          "sourceId": "direct:5",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "2:00"
+        },
+        {
+          "id": "other:6",
+          "connectorId": null,
+          "title": "Café 10",
+          "artist": "Alpha & Beta",
+          "album": "Night",
+          "durationSeconds": 240,
+          "explicit": false,
+          "sourceId": "other:6",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "4:00"
+        }
+      ]
+    },
+    {
+      "name": "added/false",
+      "input": {
+        "operation": "filter",
+        "tracks": [
+          {
+            "id": "catalog:1",
+            "connectorId": "catalog",
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "catalog:1",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          },
+          {
+            "id": "subsonic:2",
+            "connectorId": "subsonic",
+            "title": "Cafe 2",
+            "artist": "Alpha",
+            "album": "Dawn",
+            "durationSeconds": 80,
+            "explicit": true,
+            "sourceId": "subsonic:2",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "1:20"
+          },
+          {
+            "id": "local:3",
+            "connectorId": "local",
+            "title": "Echo",
+            "artist": "Gamma",
+            "album": null,
+            "durationSeconds": 0,
+            "sourceId": "local:3",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "0:00"
+          },
+          {
+            "id": "youtube:4",
+            "connectorId": "youtube_music",
+            "title": "夜に駆ける",
+            "artist": "YOASOBI",
+            "album": "THE BOOK",
+            "durationSeconds": 261,
+            "explicit": false,
+            "sourceId": "youtube:4",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:21"
+          },
+          {
+            "id": "direct:5",
+            "connectorId": "direct",
+            "title": "مرحبا",
+            "artist": "علي",
+            "album": "",
+            "durationSeconds": 120,
+            "explicit": null,
+            "sourceId": "direct:5",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "2:00"
+          },
+          {
+            "id": "other:6",
+            "connectorId": null,
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "other:6",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          }
+        ],
+        "filters": {
+          "query": "",
+          "genre": null,
+          "source": "all",
+          "content": "all",
+          "sort": "added",
+          "descending": false,
+          "view": "list"
+        },
+        "metadata": {
+          "addedAt": {
+            "catalog:1": "2026-01-02T03:04:05Z",
+            "subsonic:2": "1790000000000",
+            "local:3": "not-a-date",
+            "youtube:4": "0",
+            "direct:5": "2026-01-02T03:04:05Z"
+          }
+        }
+      },
+      "expected": [
+        {
+          "id": "subsonic:2",
+          "connectorId": "subsonic",
+          "title": "Cafe 2",
+          "artist": "Alpha",
+          "album": "Dawn",
+          "durationSeconds": 80,
+          "explicit": true,
+          "sourceId": "subsonic:2",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "1:20"
+        },
+        {
+          "id": "catalog:1",
+          "connectorId": "catalog",
+          "title": "Café 10",
+          "artist": "Alpha & Beta",
+          "album": "Night",
+          "durationSeconds": 240,
+          "explicit": false,
+          "sourceId": "catalog:1",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "4:00"
+        },
+        {
+          "id": "direct:5",
+          "connectorId": "direct",
+          "title": "مرحبا",
+          "artist": "علي",
+          "album": "",
+          "durationSeconds": 120,
+          "explicit": null,
+          "sourceId": "direct:5",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "2:00"
+        },
+        {
+          "id": "local:3",
+          "connectorId": "local",
+          "title": "Echo",
+          "artist": "Gamma",
+          "album": null,
+          "durationSeconds": 0,
+          "sourceId": "local:3",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "0:00"
+        },
+        {
+          "id": "youtube:4",
+          "connectorId": "youtube_music",
+          "title": "夜に駆ける",
+          "artist": "YOASOBI",
+          "album": "THE BOOK",
+          "durationSeconds": 261,
+          "explicit": false,
+          "sourceId": "youtube:4",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "4:21"
+        },
+        {
+          "id": "other:6",
+          "connectorId": null,
+          "title": "Café 10",
+          "artist": "Alpha & Beta",
+          "album": "Night",
+          "durationSeconds": 240,
+          "explicit": false,
+          "sourceId": "other:6",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "4:00"
+        }
+      ]
+    },
+    {
+      "name": "added/true",
+      "input": {
+        "operation": "filter",
+        "tracks": [
+          {
+            "id": "catalog:1",
+            "connectorId": "catalog",
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "catalog:1",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          },
+          {
+            "id": "subsonic:2",
+            "connectorId": "subsonic",
+            "title": "Cafe 2",
+            "artist": "Alpha",
+            "album": "Dawn",
+            "durationSeconds": 80,
+            "explicit": true,
+            "sourceId": "subsonic:2",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "1:20"
+          },
+          {
+            "id": "local:3",
+            "connectorId": "local",
+            "title": "Echo",
+            "artist": "Gamma",
+            "album": null,
+            "durationSeconds": 0,
+            "sourceId": "local:3",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "0:00"
+          },
+          {
+            "id": "youtube:4",
+            "connectorId": "youtube_music",
+            "title": "夜に駆ける",
+            "artist": "YOASOBI",
+            "album": "THE BOOK",
+            "durationSeconds": 261,
+            "explicit": false,
+            "sourceId": "youtube:4",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:21"
+          },
+          {
+            "id": "direct:5",
+            "connectorId": "direct",
+            "title": "مرحبا",
+            "artist": "علي",
+            "album": "",
+            "durationSeconds": 120,
+            "explicit": null,
+            "sourceId": "direct:5",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "2:00"
+          },
+          {
+            "id": "other:6",
+            "connectorId": null,
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "other:6",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          }
+        ],
+        "filters": {
+          "query": "",
+          "genre": null,
+          "source": "all",
+          "content": "all",
+          "sort": "added",
+          "descending": true,
+          "view": "list"
+        },
+        "metadata": {
+          "addedAt": {
+            "catalog:1": "2026-01-02T03:04:05Z",
+            "subsonic:2": "1790000000000",
+            "local:3": "not-a-date",
+            "youtube:4": "0",
+            "direct:5": "2026-01-02T03:04:05Z"
+          }
+        }
+      },
+      "expected": [
+        {
+          "id": "catalog:1",
+          "connectorId": "catalog",
+          "title": "Café 10",
+          "artist": "Alpha & Beta",
+          "album": "Night",
+          "durationSeconds": 240,
+          "explicit": false,
+          "sourceId": "catalog:1",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "4:00"
+        },
+        {
+          "id": "direct:5",
+          "connectorId": "direct",
+          "title": "مرحبا",
+          "artist": "علي",
+          "album": "",
+          "durationSeconds": 120,
+          "explicit": null,
+          "sourceId": "direct:5",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "2:00"
+        },
+        {
+          "id": "subsonic:2",
+          "connectorId": "subsonic",
+          "title": "Cafe 2",
+          "artist": "Alpha",
+          "album": "Dawn",
+          "durationSeconds": 80,
+          "explicit": true,
+          "sourceId": "subsonic:2",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "1:20"
+        },
+        {
+          "id": "local:3",
+          "connectorId": "local",
+          "title": "Echo",
+          "artist": "Gamma",
+          "album": null,
+          "durationSeconds": 0,
+          "sourceId": "local:3",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "0:00"
+        },
+        {
+          "id": "youtube:4",
+          "connectorId": "youtube_music",
+          "title": "夜に駆ける",
+          "artist": "YOASOBI",
+          "album": "THE BOOK",
+          "durationSeconds": 261,
+          "explicit": false,
+          "sourceId": "youtube:4",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "4:21"
+        },
+        {
+          "id": "other:6",
+          "connectorId": null,
+          "title": "Café 10",
+          "artist": "Alpha & Beta",
+          "album": "Night",
+          "durationSeconds": 240,
+          "explicit": false,
+          "sourceId": "other:6",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "4:00"
+        }
+      ]
+    },
+    {
+      "name": "title/false",
+      "input": {
+        "operation": "filter",
+        "tracks": [
+          {
+            "id": "catalog:1",
+            "connectorId": "catalog",
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "catalog:1",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          },
+          {
+            "id": "subsonic:2",
+            "connectorId": "subsonic",
+            "title": "Cafe 2",
+            "artist": "Alpha",
+            "album": "Dawn",
+            "durationSeconds": 80,
+            "explicit": true,
+            "sourceId": "subsonic:2",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "1:20"
+          },
+          {
+            "id": "local:3",
+            "connectorId": "local",
+            "title": "Echo",
+            "artist": "Gamma",
+            "album": null,
+            "durationSeconds": 0,
+            "sourceId": "local:3",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "0:00"
+          },
+          {
+            "id": "youtube:4",
+            "connectorId": "youtube_music",
+            "title": "夜に駆ける",
+            "artist": "YOASOBI",
+            "album": "THE BOOK",
+            "durationSeconds": 261,
+            "explicit": false,
+            "sourceId": "youtube:4",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:21"
+          },
+          {
+            "id": "direct:5",
+            "connectorId": "direct",
+            "title": "مرحبا",
+            "artist": "علي",
+            "album": "",
+            "durationSeconds": 120,
+            "explicit": null,
+            "sourceId": "direct:5",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "2:00"
+          },
+          {
+            "id": "other:6",
+            "connectorId": null,
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "other:6",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          }
+        ],
+        "filters": {
+          "query": "",
+          "genre": null,
+          "source": "all",
+          "content": "all",
+          "sort": "title",
+          "descending": false,
+          "view": "list"
+        },
+        "metadata": {
+          "addedAt": {
+            "catalog:1": "2026-01-02T03:04:05Z",
+            "subsonic:2": "1790000000000",
+            "local:3": "not-a-date",
+            "youtube:4": "0",
+            "direct:5": "2026-01-02T03:04:05Z"
+          }
+        }
+      },
+      "expected": [
+        {
+          "id": "subsonic:2",
+          "connectorId": "subsonic",
+          "title": "Cafe 2",
+          "artist": "Alpha",
+          "album": "Dawn",
+          "durationSeconds": 80,
+          "explicit": true,
+          "sourceId": "subsonic:2",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "1:20"
+        },
+        {
+          "id": "catalog:1",
+          "connectorId": "catalog",
+          "title": "Café 10",
+          "artist": "Alpha & Beta",
+          "album": "Night",
+          "durationSeconds": 240,
+          "explicit": false,
+          "sourceId": "catalog:1",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "4:00"
+        },
+        {
+          "id": "other:6",
+          "connectorId": null,
+          "title": "Café 10",
+          "artist": "Alpha & Beta",
+          "album": "Night",
+          "durationSeconds": 240,
+          "explicit": false,
+          "sourceId": "other:6",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "4:00"
+        },
+        {
+          "id": "local:3",
+          "connectorId": "local",
+          "title": "Echo",
+          "artist": "Gamma",
+          "album": null,
+          "durationSeconds": 0,
+          "sourceId": "local:3",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "0:00"
+        },
+        {
+          "id": "direct:5",
+          "connectorId": "direct",
+          "title": "مرحبا",
+          "artist": "علي",
+          "album": "",
+          "durationSeconds": 120,
+          "explicit": null,
+          "sourceId": "direct:5",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "2:00"
+        },
+        {
+          "id": "youtube:4",
+          "connectorId": "youtube_music",
+          "title": "夜に駆ける",
+          "artist": "YOASOBI",
+          "album": "THE BOOK",
+          "durationSeconds": 261,
+          "explicit": false,
+          "sourceId": "youtube:4",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "4:21"
+        }
+      ]
+    },
+    {
+      "name": "title/true",
+      "input": {
+        "operation": "filter",
+        "tracks": [
+          {
+            "id": "catalog:1",
+            "connectorId": "catalog",
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "catalog:1",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          },
+          {
+            "id": "subsonic:2",
+            "connectorId": "subsonic",
+            "title": "Cafe 2",
+            "artist": "Alpha",
+            "album": "Dawn",
+            "durationSeconds": 80,
+            "explicit": true,
+            "sourceId": "subsonic:2",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "1:20"
+          },
+          {
+            "id": "local:3",
+            "connectorId": "local",
+            "title": "Echo",
+            "artist": "Gamma",
+            "album": null,
+            "durationSeconds": 0,
+            "sourceId": "local:3",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "0:00"
+          },
+          {
+            "id": "youtube:4",
+            "connectorId": "youtube_music",
+            "title": "夜に駆ける",
+            "artist": "YOASOBI",
+            "album": "THE BOOK",
+            "durationSeconds": 261,
+            "explicit": false,
+            "sourceId": "youtube:4",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:21"
+          },
+          {
+            "id": "direct:5",
+            "connectorId": "direct",
+            "title": "مرحبا",
+            "artist": "علي",
+            "album": "",
+            "durationSeconds": 120,
+            "explicit": null,
+            "sourceId": "direct:5",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "2:00"
+          },
+          {
+            "id": "other:6",
+            "connectorId": null,
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "other:6",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          }
+        ],
+        "filters": {
+          "query": "",
+          "genre": null,
+          "source": "all",
+          "content": "all",
+          "sort": "title",
+          "descending": true,
+          "view": "list"
+        },
+        "metadata": {
+          "addedAt": {
+            "catalog:1": "2026-01-02T03:04:05Z",
+            "subsonic:2": "1790000000000",
+            "local:3": "not-a-date",
+            "youtube:4": "0",
+            "direct:5": "2026-01-02T03:04:05Z"
+          }
+        }
+      },
+      "expected": [
+        {
+          "id": "youtube:4",
+          "connectorId": "youtube_music",
+          "title": "夜に駆ける",
+          "artist": "YOASOBI",
+          "album": "THE BOOK",
+          "durationSeconds": 261,
+          "explicit": false,
+          "sourceId": "youtube:4",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "4:21"
+        },
+        {
+          "id": "direct:5",
+          "connectorId": "direct",
+          "title": "مرحبا",
+          "artist": "علي",
+          "album": "",
+          "durationSeconds": 120,
+          "explicit": null,
+          "sourceId": "direct:5",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "2:00"
+        },
+        {
+          "id": "local:3",
+          "connectorId": "local",
+          "title": "Echo",
+          "artist": "Gamma",
+          "album": null,
+          "durationSeconds": 0,
+          "sourceId": "local:3",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "0:00"
+        },
+        {
+          "id": "catalog:1",
+          "connectorId": "catalog",
+          "title": "Café 10",
+          "artist": "Alpha & Beta",
+          "album": "Night",
+          "durationSeconds": 240,
+          "explicit": false,
+          "sourceId": "catalog:1",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "4:00"
+        },
+        {
+          "id": "other:6",
+          "connectorId": null,
+          "title": "Café 10",
+          "artist": "Alpha & Beta",
+          "album": "Night",
+          "durationSeconds": 240,
+          "explicit": false,
+          "sourceId": "other:6",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "4:00"
+        },
+        {
+          "id": "subsonic:2",
+          "connectorId": "subsonic",
+          "title": "Cafe 2",
+          "artist": "Alpha",
+          "album": "Dawn",
+          "durationSeconds": 80,
+          "explicit": true,
+          "sourceId": "subsonic:2",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "1:20"
+        }
+      ]
+    },
+    {
+      "name": "artist/false",
+      "input": {
+        "operation": "filter",
+        "tracks": [
+          {
+            "id": "catalog:1",
+            "connectorId": "catalog",
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "catalog:1",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          },
+          {
+            "id": "subsonic:2",
+            "connectorId": "subsonic",
+            "title": "Cafe 2",
+            "artist": "Alpha",
+            "album": "Dawn",
+            "durationSeconds": 80,
+            "explicit": true,
+            "sourceId": "subsonic:2",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "1:20"
+          },
+          {
+            "id": "local:3",
+            "connectorId": "local",
+            "title": "Echo",
+            "artist": "Gamma",
+            "album": null,
+            "durationSeconds": 0,
+            "sourceId": "local:3",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "0:00"
+          },
+          {
+            "id": "youtube:4",
+            "connectorId": "youtube_music",
+            "title": "夜に駆ける",
+            "artist": "YOASOBI",
+            "album": "THE BOOK",
+            "durationSeconds": 261,
+            "explicit": false,
+            "sourceId": "youtube:4",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:21"
+          },
+          {
+            "id": "direct:5",
+            "connectorId": "direct",
+            "title": "مرحبا",
+            "artist": "علي",
+            "album": "",
+            "durationSeconds": 120,
+            "explicit": null,
+            "sourceId": "direct:5",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "2:00"
+          },
+          {
+            "id": "other:6",
+            "connectorId": null,
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "other:6",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          }
+        ],
+        "filters": {
+          "query": "",
+          "genre": null,
+          "source": "all",
+          "content": "all",
+          "sort": "artist",
+          "descending": false,
+          "view": "list"
+        },
+        "metadata": {
+          "addedAt": {
+            "catalog:1": "2026-01-02T03:04:05Z",
+            "subsonic:2": "1790000000000",
+            "local:3": "not-a-date",
+            "youtube:4": "0",
+            "direct:5": "2026-01-02T03:04:05Z"
+          }
+        }
+      },
+      "expected": [
+        {
+          "id": "subsonic:2",
+          "connectorId": "subsonic",
+          "title": "Cafe 2",
+          "artist": "Alpha",
+          "album": "Dawn",
+          "durationSeconds": 80,
+          "explicit": true,
+          "sourceId": "subsonic:2",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "1:20"
+        },
+        {
+          "id": "catalog:1",
+          "connectorId": "catalog",
+          "title": "Café 10",
+          "artist": "Alpha & Beta",
+          "album": "Night",
+          "durationSeconds": 240,
+          "explicit": false,
+          "sourceId": "catalog:1",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "4:00"
+        },
+        {
+          "id": "other:6",
+          "connectorId": null,
+          "title": "Café 10",
+          "artist": "Alpha & Beta",
+          "album": "Night",
+          "durationSeconds": 240,
+          "explicit": false,
+          "sourceId": "other:6",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "4:00"
+        },
+        {
+          "id": "local:3",
+          "connectorId": "local",
+          "title": "Echo",
+          "artist": "Gamma",
+          "album": null,
+          "durationSeconds": 0,
+          "sourceId": "local:3",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "0:00"
+        },
+        {
+          "id": "youtube:4",
+          "connectorId": "youtube_music",
+          "title": "夜に駆ける",
+          "artist": "YOASOBI",
+          "album": "THE BOOK",
+          "durationSeconds": 261,
+          "explicit": false,
+          "sourceId": "youtube:4",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "4:21"
+        },
+        {
+          "id": "direct:5",
+          "connectorId": "direct",
+          "title": "مرحبا",
+          "artist": "علي",
+          "album": "",
+          "durationSeconds": 120,
+          "explicit": null,
+          "sourceId": "direct:5",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "2:00"
+        }
+      ]
+    },
+    {
+      "name": "artist/true",
+      "input": {
+        "operation": "filter",
+        "tracks": [
+          {
+            "id": "catalog:1",
+            "connectorId": "catalog",
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "catalog:1",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          },
+          {
+            "id": "subsonic:2",
+            "connectorId": "subsonic",
+            "title": "Cafe 2",
+            "artist": "Alpha",
+            "album": "Dawn",
+            "durationSeconds": 80,
+            "explicit": true,
+            "sourceId": "subsonic:2",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "1:20"
+          },
+          {
+            "id": "local:3",
+            "connectorId": "local",
+            "title": "Echo",
+            "artist": "Gamma",
+            "album": null,
+            "durationSeconds": 0,
+            "sourceId": "local:3",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "0:00"
+          },
+          {
+            "id": "youtube:4",
+            "connectorId": "youtube_music",
+            "title": "夜に駆ける",
+            "artist": "YOASOBI",
+            "album": "THE BOOK",
+            "durationSeconds": 261,
+            "explicit": false,
+            "sourceId": "youtube:4",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:21"
+          },
+          {
+            "id": "direct:5",
+            "connectorId": "direct",
+            "title": "مرحبا",
+            "artist": "علي",
+            "album": "",
+            "durationSeconds": 120,
+            "explicit": null,
+            "sourceId": "direct:5",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "2:00"
+          },
+          {
+            "id": "other:6",
+            "connectorId": null,
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "other:6",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          }
+        ],
+        "filters": {
+          "query": "",
+          "genre": null,
+          "source": "all",
+          "content": "all",
+          "sort": "artist",
+          "descending": true,
+          "view": "list"
+        },
+        "metadata": {
+          "addedAt": {
+            "catalog:1": "2026-01-02T03:04:05Z",
+            "subsonic:2": "1790000000000",
+            "local:3": "not-a-date",
+            "youtube:4": "0",
+            "direct:5": "2026-01-02T03:04:05Z"
+          }
+        }
+      },
+      "expected": [
+        {
+          "id": "direct:5",
+          "connectorId": "direct",
+          "title": "مرحبا",
+          "artist": "علي",
+          "album": "",
+          "durationSeconds": 120,
+          "explicit": null,
+          "sourceId": "direct:5",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "2:00"
+        },
+        {
+          "id": "youtube:4",
+          "connectorId": "youtube_music",
+          "title": "夜に駆ける",
+          "artist": "YOASOBI",
+          "album": "THE BOOK",
+          "durationSeconds": 261,
+          "explicit": false,
+          "sourceId": "youtube:4",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "4:21"
+        },
+        {
+          "id": "local:3",
+          "connectorId": "local",
+          "title": "Echo",
+          "artist": "Gamma",
+          "album": null,
+          "durationSeconds": 0,
+          "sourceId": "local:3",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "0:00"
+        },
+        {
+          "id": "catalog:1",
+          "connectorId": "catalog",
+          "title": "Café 10",
+          "artist": "Alpha & Beta",
+          "album": "Night",
+          "durationSeconds": 240,
+          "explicit": false,
+          "sourceId": "catalog:1",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "4:00"
+        },
+        {
+          "id": "other:6",
+          "connectorId": null,
+          "title": "Café 10",
+          "artist": "Alpha & Beta",
+          "album": "Night",
+          "durationSeconds": 240,
+          "explicit": false,
+          "sourceId": "other:6",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "4:00"
+        },
+        {
+          "id": "subsonic:2",
+          "connectorId": "subsonic",
+          "title": "Cafe 2",
+          "artist": "Alpha",
+          "album": "Dawn",
+          "durationSeconds": 80,
+          "explicit": true,
+          "sourceId": "subsonic:2",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "1:20"
+        }
+      ]
+    },
+    {
+      "name": "album/false",
+      "input": {
+        "operation": "filter",
+        "tracks": [
+          {
+            "id": "catalog:1",
+            "connectorId": "catalog",
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "catalog:1",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          },
+          {
+            "id": "subsonic:2",
+            "connectorId": "subsonic",
+            "title": "Cafe 2",
+            "artist": "Alpha",
+            "album": "Dawn",
+            "durationSeconds": 80,
+            "explicit": true,
+            "sourceId": "subsonic:2",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "1:20"
+          },
+          {
+            "id": "local:3",
+            "connectorId": "local",
+            "title": "Echo",
+            "artist": "Gamma",
+            "album": null,
+            "durationSeconds": 0,
+            "sourceId": "local:3",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "0:00"
+          },
+          {
+            "id": "youtube:4",
+            "connectorId": "youtube_music",
+            "title": "夜に駆ける",
+            "artist": "YOASOBI",
+            "album": "THE BOOK",
+            "durationSeconds": 261,
+            "explicit": false,
+            "sourceId": "youtube:4",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:21"
+          },
+          {
+            "id": "direct:5",
+            "connectorId": "direct",
+            "title": "مرحبا",
+            "artist": "علي",
+            "album": "",
+            "durationSeconds": 120,
+            "explicit": null,
+            "sourceId": "direct:5",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "2:00"
+          },
+          {
+            "id": "other:6",
+            "connectorId": null,
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "other:6",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          }
+        ],
+        "filters": {
+          "query": "",
+          "genre": null,
+          "source": "all",
+          "content": "all",
+          "sort": "album",
+          "descending": false,
+          "view": "list"
+        },
+        "metadata": {
+          "addedAt": {
+            "catalog:1": "2026-01-02T03:04:05Z",
+            "subsonic:2": "1790000000000",
+            "local:3": "not-a-date",
+            "youtube:4": "0",
+            "direct:5": "2026-01-02T03:04:05Z"
+          }
+        }
+      },
+      "expected": [
+        {
+          "id": "subsonic:2",
+          "connectorId": "subsonic",
+          "title": "Cafe 2",
+          "artist": "Alpha",
+          "album": "Dawn",
+          "durationSeconds": 80,
+          "explicit": true,
+          "sourceId": "subsonic:2",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "1:20"
+        },
+        {
+          "id": "catalog:1",
+          "connectorId": "catalog",
+          "title": "Café 10",
+          "artist": "Alpha & Beta",
+          "album": "Night",
+          "durationSeconds": 240,
+          "explicit": false,
+          "sourceId": "catalog:1",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "4:00"
+        },
+        {
+          "id": "other:6",
+          "connectorId": null,
+          "title": "Café 10",
+          "artist": "Alpha & Beta",
+          "album": "Night",
+          "durationSeconds": 240,
+          "explicit": false,
+          "sourceId": "other:6",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "4:00"
+        },
+        {
+          "id": "youtube:4",
+          "connectorId": "youtube_music",
+          "title": "夜に駆ける",
+          "artist": "YOASOBI",
+          "album": "THE BOOK",
+          "durationSeconds": 261,
+          "explicit": false,
+          "sourceId": "youtube:4",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "4:21"
+        },
+        {
+          "id": "local:3",
+          "connectorId": "local",
+          "title": "Echo",
+          "artist": "Gamma",
+          "album": null,
+          "durationSeconds": 0,
+          "sourceId": "local:3",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "0:00"
+        },
+        {
+          "id": "direct:5",
+          "connectorId": "direct",
+          "title": "مرحبا",
+          "artist": "علي",
+          "album": "",
+          "durationSeconds": 120,
+          "explicit": null,
+          "sourceId": "direct:5",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "2:00"
+        }
+      ]
+    },
+    {
+      "name": "album/true",
+      "input": {
+        "operation": "filter",
+        "tracks": [
+          {
+            "id": "catalog:1",
+            "connectorId": "catalog",
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "catalog:1",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          },
+          {
+            "id": "subsonic:2",
+            "connectorId": "subsonic",
+            "title": "Cafe 2",
+            "artist": "Alpha",
+            "album": "Dawn",
+            "durationSeconds": 80,
+            "explicit": true,
+            "sourceId": "subsonic:2",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "1:20"
+          },
+          {
+            "id": "local:3",
+            "connectorId": "local",
+            "title": "Echo",
+            "artist": "Gamma",
+            "album": null,
+            "durationSeconds": 0,
+            "sourceId": "local:3",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "0:00"
+          },
+          {
+            "id": "youtube:4",
+            "connectorId": "youtube_music",
+            "title": "夜に駆ける",
+            "artist": "YOASOBI",
+            "album": "THE BOOK",
+            "durationSeconds": 261,
+            "explicit": false,
+            "sourceId": "youtube:4",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:21"
+          },
+          {
+            "id": "direct:5",
+            "connectorId": "direct",
+            "title": "مرحبا",
+            "artist": "علي",
+            "album": "",
+            "durationSeconds": 120,
+            "explicit": null,
+            "sourceId": "direct:5",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "2:00"
+          },
+          {
+            "id": "other:6",
+            "connectorId": null,
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "other:6",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          }
+        ],
+        "filters": {
+          "query": "",
+          "genre": null,
+          "source": "all",
+          "content": "all",
+          "sort": "album",
+          "descending": true,
+          "view": "list"
+        },
+        "metadata": {
+          "addedAt": {
+            "catalog:1": "2026-01-02T03:04:05Z",
+            "subsonic:2": "1790000000000",
+            "local:3": "not-a-date",
+            "youtube:4": "0",
+            "direct:5": "2026-01-02T03:04:05Z"
+          }
+        }
+      },
+      "expected": [
+        {
+          "id": "youtube:4",
+          "connectorId": "youtube_music",
+          "title": "夜に駆ける",
+          "artist": "YOASOBI",
+          "album": "THE BOOK",
+          "durationSeconds": 261,
+          "explicit": false,
+          "sourceId": "youtube:4",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "4:21"
+        },
+        {
+          "id": "catalog:1",
+          "connectorId": "catalog",
+          "title": "Café 10",
+          "artist": "Alpha & Beta",
+          "album": "Night",
+          "durationSeconds": 240,
+          "explicit": false,
+          "sourceId": "catalog:1",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "4:00"
+        },
+        {
+          "id": "other:6",
+          "connectorId": null,
+          "title": "Café 10",
+          "artist": "Alpha & Beta",
+          "album": "Night",
+          "durationSeconds": 240,
+          "explicit": false,
+          "sourceId": "other:6",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "4:00"
+        },
+        {
+          "id": "subsonic:2",
+          "connectorId": "subsonic",
+          "title": "Cafe 2",
+          "artist": "Alpha",
+          "album": "Dawn",
+          "durationSeconds": 80,
+          "explicit": true,
+          "sourceId": "subsonic:2",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "1:20"
+        },
+        {
+          "id": "local:3",
+          "connectorId": "local",
+          "title": "Echo",
+          "artist": "Gamma",
+          "album": null,
+          "durationSeconds": 0,
+          "sourceId": "local:3",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "0:00"
+        },
+        {
+          "id": "direct:5",
+          "connectorId": "direct",
+          "title": "مرحبا",
+          "artist": "علي",
+          "album": "",
+          "durationSeconds": 120,
+          "explicit": null,
+          "sourceId": "direct:5",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "2:00"
+        }
+      ]
+    },
+    {
+      "name": "duration/false",
+      "input": {
+        "operation": "filter",
+        "tracks": [
+          {
+            "id": "catalog:1",
+            "connectorId": "catalog",
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "catalog:1",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          },
+          {
+            "id": "subsonic:2",
+            "connectorId": "subsonic",
+            "title": "Cafe 2",
+            "artist": "Alpha",
+            "album": "Dawn",
+            "durationSeconds": 80,
+            "explicit": true,
+            "sourceId": "subsonic:2",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "1:20"
+          },
+          {
+            "id": "local:3",
+            "connectorId": "local",
+            "title": "Echo",
+            "artist": "Gamma",
+            "album": null,
+            "durationSeconds": 0,
+            "sourceId": "local:3",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "0:00"
+          },
+          {
+            "id": "youtube:4",
+            "connectorId": "youtube_music",
+            "title": "夜に駆ける",
+            "artist": "YOASOBI",
+            "album": "THE BOOK",
+            "durationSeconds": 261,
+            "explicit": false,
+            "sourceId": "youtube:4",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:21"
+          },
+          {
+            "id": "direct:5",
+            "connectorId": "direct",
+            "title": "مرحبا",
+            "artist": "علي",
+            "album": "",
+            "durationSeconds": 120,
+            "explicit": null,
+            "sourceId": "direct:5",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "2:00"
+          },
+          {
+            "id": "other:6",
+            "connectorId": null,
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "other:6",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          }
+        ],
+        "filters": {
+          "query": "",
+          "genre": null,
+          "source": "all",
+          "content": "all",
+          "sort": "duration",
+          "descending": false,
+          "view": "list"
+        },
+        "metadata": {
+          "addedAt": {
+            "catalog:1": "2026-01-02T03:04:05Z",
+            "subsonic:2": "1790000000000",
+            "local:3": "not-a-date",
+            "youtube:4": "0",
+            "direct:5": "2026-01-02T03:04:05Z"
+          }
+        }
+      },
+      "expected": [
+        {
+          "id": "subsonic:2",
+          "connectorId": "subsonic",
+          "title": "Cafe 2",
+          "artist": "Alpha",
+          "album": "Dawn",
+          "durationSeconds": 80,
+          "explicit": true,
+          "sourceId": "subsonic:2",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "1:20"
+        },
+        {
+          "id": "direct:5",
+          "connectorId": "direct",
+          "title": "مرحبا",
+          "artist": "علي",
+          "album": "",
+          "durationSeconds": 120,
+          "explicit": null,
+          "sourceId": "direct:5",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "2:00"
+        },
+        {
+          "id": "catalog:1",
+          "connectorId": "catalog",
+          "title": "Café 10",
+          "artist": "Alpha & Beta",
+          "album": "Night",
+          "durationSeconds": 240,
+          "explicit": false,
+          "sourceId": "catalog:1",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "4:00"
+        },
+        {
+          "id": "other:6",
+          "connectorId": null,
+          "title": "Café 10",
+          "artist": "Alpha & Beta",
+          "album": "Night",
+          "durationSeconds": 240,
+          "explicit": false,
+          "sourceId": "other:6",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "4:00"
+        },
+        {
+          "id": "youtube:4",
+          "connectorId": "youtube_music",
+          "title": "夜に駆ける",
+          "artist": "YOASOBI",
+          "album": "THE BOOK",
+          "durationSeconds": 261,
+          "explicit": false,
+          "sourceId": "youtube:4",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "4:21"
+        },
+        {
+          "id": "local:3",
+          "connectorId": "local",
+          "title": "Echo",
+          "artist": "Gamma",
+          "album": null,
+          "durationSeconds": 0,
+          "sourceId": "local:3",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "0:00"
+        }
+      ]
+    },
+    {
+      "name": "duration/true",
+      "input": {
+        "operation": "filter",
+        "tracks": [
+          {
+            "id": "catalog:1",
+            "connectorId": "catalog",
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "catalog:1",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          },
+          {
+            "id": "subsonic:2",
+            "connectorId": "subsonic",
+            "title": "Cafe 2",
+            "artist": "Alpha",
+            "album": "Dawn",
+            "durationSeconds": 80,
+            "explicit": true,
+            "sourceId": "subsonic:2",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "1:20"
+          },
+          {
+            "id": "local:3",
+            "connectorId": "local",
+            "title": "Echo",
+            "artist": "Gamma",
+            "album": null,
+            "durationSeconds": 0,
+            "sourceId": "local:3",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "0:00"
+          },
+          {
+            "id": "youtube:4",
+            "connectorId": "youtube_music",
+            "title": "夜に駆ける",
+            "artist": "YOASOBI",
+            "album": "THE BOOK",
+            "durationSeconds": 261,
+            "explicit": false,
+            "sourceId": "youtube:4",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:21"
+          },
+          {
+            "id": "direct:5",
+            "connectorId": "direct",
+            "title": "مرحبا",
+            "artist": "علي",
+            "album": "",
+            "durationSeconds": 120,
+            "explicit": null,
+            "sourceId": "direct:5",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "2:00"
+          },
+          {
+            "id": "other:6",
+            "connectorId": null,
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "other:6",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          }
+        ],
+        "filters": {
+          "query": "",
+          "genre": null,
+          "source": "all",
+          "content": "all",
+          "sort": "duration",
+          "descending": true,
+          "view": "list"
+        },
+        "metadata": {
+          "addedAt": {
+            "catalog:1": "2026-01-02T03:04:05Z",
+            "subsonic:2": "1790000000000",
+            "local:3": "not-a-date",
+            "youtube:4": "0",
+            "direct:5": "2026-01-02T03:04:05Z"
+          }
+        }
+      },
+      "expected": [
+        {
+          "id": "youtube:4",
+          "connectorId": "youtube_music",
+          "title": "夜に駆ける",
+          "artist": "YOASOBI",
+          "album": "THE BOOK",
+          "durationSeconds": 261,
+          "explicit": false,
+          "sourceId": "youtube:4",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "4:21"
+        },
+        {
+          "id": "catalog:1",
+          "connectorId": "catalog",
+          "title": "Café 10",
+          "artist": "Alpha & Beta",
+          "album": "Night",
+          "durationSeconds": 240,
+          "explicit": false,
+          "sourceId": "catalog:1",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "4:00"
+        },
+        {
+          "id": "other:6",
+          "connectorId": null,
+          "title": "Café 10",
+          "artist": "Alpha & Beta",
+          "album": "Night",
+          "durationSeconds": 240,
+          "explicit": false,
+          "sourceId": "other:6",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "4:00"
+        },
+        {
+          "id": "direct:5",
+          "connectorId": "direct",
+          "title": "مرحبا",
+          "artist": "علي",
+          "album": "",
+          "durationSeconds": 120,
+          "explicit": null,
+          "sourceId": "direct:5",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "2:00"
+        },
+        {
+          "id": "subsonic:2",
+          "connectorId": "subsonic",
+          "title": "Cafe 2",
+          "artist": "Alpha",
+          "album": "Dawn",
+          "durationSeconds": 80,
+          "explicit": true,
+          "sourceId": "subsonic:2",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "1:20"
+        },
+        {
+          "id": "local:3",
+          "connectorId": "local",
+          "title": "Echo",
+          "artist": "Gamma",
+          "album": null,
+          "durationSeconds": 0,
+          "sourceId": "local:3",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "0:00"
+        }
+      ]
+    },
+    {
+      "name": "all/all",
+      "input": {
+        "operation": "filter",
+        "tracks": [
+          {
+            "id": "catalog:1",
+            "connectorId": "catalog",
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "catalog:1",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          },
+          {
+            "id": "subsonic:2",
+            "connectorId": "subsonic",
+            "title": "Cafe 2",
+            "artist": "Alpha",
+            "album": "Dawn",
+            "durationSeconds": 80,
+            "explicit": true,
+            "sourceId": "subsonic:2",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "1:20"
+          },
+          {
+            "id": "local:3",
+            "connectorId": "local",
+            "title": "Echo",
+            "artist": "Gamma",
+            "album": null,
+            "durationSeconds": 0,
+            "sourceId": "local:3",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "0:00"
+          },
+          {
+            "id": "youtube:4",
+            "connectorId": "youtube_music",
+            "title": "夜に駆ける",
+            "artist": "YOASOBI",
+            "album": "THE BOOK",
+            "durationSeconds": 261,
+            "explicit": false,
+            "sourceId": "youtube:4",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:21"
+          },
+          {
+            "id": "direct:5",
+            "connectorId": "direct",
+            "title": "مرحبا",
+            "artist": "علي",
+            "album": "",
+            "durationSeconds": 120,
+            "explicit": null,
+            "sourceId": "direct:5",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "2:00"
+          },
+          {
+            "id": "other:6",
+            "connectorId": null,
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "other:6",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          }
+        ],
+        "filters": {
+          "query": "",
+          "genre": null,
+          "source": "all",
+          "content": "all",
+          "sort": "default",
+          "descending": false,
+          "view": "list"
+        },
+        "metadata": {}
+      },
+      "expected": [
+        {
+          "id": "catalog:1",
+          "connectorId": "catalog",
+          "title": "Café 10",
+          "artist": "Alpha & Beta",
+          "album": "Night",
+          "durationSeconds": 240,
+          "explicit": false,
+          "sourceId": "catalog:1",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "4:00"
+        },
+        {
+          "id": "subsonic:2",
+          "connectorId": "subsonic",
+          "title": "Cafe 2",
+          "artist": "Alpha",
+          "album": "Dawn",
+          "durationSeconds": 80,
+          "explicit": true,
+          "sourceId": "subsonic:2",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "1:20"
+        },
+        {
+          "id": "local:3",
+          "connectorId": "local",
+          "title": "Echo",
+          "artist": "Gamma",
+          "album": null,
+          "durationSeconds": 0,
+          "sourceId": "local:3",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "0:00"
+        },
+        {
+          "id": "youtube:4",
+          "connectorId": "youtube_music",
+          "title": "夜に駆ける",
+          "artist": "YOASOBI",
+          "album": "THE BOOK",
+          "durationSeconds": 261,
+          "explicit": false,
+          "sourceId": "youtube:4",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "4:21"
+        },
+        {
+          "id": "direct:5",
+          "connectorId": "direct",
+          "title": "مرحبا",
+          "artist": "علي",
+          "album": "",
+          "durationSeconds": 120,
+          "explicit": null,
+          "sourceId": "direct:5",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "2:00"
+        },
+        {
+          "id": "other:6",
+          "connectorId": null,
+          "title": "Café 10",
+          "artist": "Alpha & Beta",
+          "album": "Night",
+          "durationSeconds": 240,
+          "explicit": false,
+          "sourceId": "other:6",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "4:00"
+        }
+      ]
+    },
+    {
+      "name": "all/clean",
+      "input": {
+        "operation": "filter",
+        "tracks": [
+          {
+            "id": "catalog:1",
+            "connectorId": "catalog",
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "catalog:1",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          },
+          {
+            "id": "subsonic:2",
+            "connectorId": "subsonic",
+            "title": "Cafe 2",
+            "artist": "Alpha",
+            "album": "Dawn",
+            "durationSeconds": 80,
+            "explicit": true,
+            "sourceId": "subsonic:2",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "1:20"
+          },
+          {
+            "id": "local:3",
+            "connectorId": "local",
+            "title": "Echo",
+            "artist": "Gamma",
+            "album": null,
+            "durationSeconds": 0,
+            "sourceId": "local:3",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "0:00"
+          },
+          {
+            "id": "youtube:4",
+            "connectorId": "youtube_music",
+            "title": "夜に駆ける",
+            "artist": "YOASOBI",
+            "album": "THE BOOK",
+            "durationSeconds": 261,
+            "explicit": false,
+            "sourceId": "youtube:4",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:21"
+          },
+          {
+            "id": "direct:5",
+            "connectorId": "direct",
+            "title": "مرحبا",
+            "artist": "علي",
+            "album": "",
+            "durationSeconds": 120,
+            "explicit": null,
+            "sourceId": "direct:5",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "2:00"
+          },
+          {
+            "id": "other:6",
+            "connectorId": null,
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "other:6",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          }
+        ],
+        "filters": {
+          "query": "",
+          "genre": null,
+          "source": "all",
+          "content": "clean",
+          "sort": "default",
+          "descending": false,
+          "view": "list"
+        },
+        "metadata": {}
+      },
+      "expected": [
+        {
+          "id": "catalog:1",
+          "connectorId": "catalog",
+          "title": "Café 10",
+          "artist": "Alpha & Beta",
+          "album": "Night",
+          "durationSeconds": 240,
+          "explicit": false,
+          "sourceId": "catalog:1",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "4:00"
+        },
+        {
+          "id": "youtube:4",
+          "connectorId": "youtube_music",
+          "title": "夜に駆ける",
+          "artist": "YOASOBI",
+          "album": "THE BOOK",
+          "durationSeconds": 261,
+          "explicit": false,
+          "sourceId": "youtube:4",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "4:21"
+        },
+        {
+          "id": "other:6",
+          "connectorId": null,
+          "title": "Café 10",
+          "artist": "Alpha & Beta",
+          "album": "Night",
+          "durationSeconds": 240,
+          "explicit": false,
+          "sourceId": "other:6",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "4:00"
+        }
+      ]
+    },
+    {
+      "name": "all/explicit",
+      "input": {
+        "operation": "filter",
+        "tracks": [
+          {
+            "id": "catalog:1",
+            "connectorId": "catalog",
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "catalog:1",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          },
+          {
+            "id": "subsonic:2",
+            "connectorId": "subsonic",
+            "title": "Cafe 2",
+            "artist": "Alpha",
+            "album": "Dawn",
+            "durationSeconds": 80,
+            "explicit": true,
+            "sourceId": "subsonic:2",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "1:20"
+          },
+          {
+            "id": "local:3",
+            "connectorId": "local",
+            "title": "Echo",
+            "artist": "Gamma",
+            "album": null,
+            "durationSeconds": 0,
+            "sourceId": "local:3",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "0:00"
+          },
+          {
+            "id": "youtube:4",
+            "connectorId": "youtube_music",
+            "title": "夜に駆ける",
+            "artist": "YOASOBI",
+            "album": "THE BOOK",
+            "durationSeconds": 261,
+            "explicit": false,
+            "sourceId": "youtube:4",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:21"
+          },
+          {
+            "id": "direct:5",
+            "connectorId": "direct",
+            "title": "مرحبا",
+            "artist": "علي",
+            "album": "",
+            "durationSeconds": 120,
+            "explicit": null,
+            "sourceId": "direct:5",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "2:00"
+          },
+          {
+            "id": "other:6",
+            "connectorId": null,
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "other:6",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          }
+        ],
+        "filters": {
+          "query": "",
+          "genre": null,
+          "source": "all",
+          "content": "explicit",
+          "sort": "default",
+          "descending": false,
+          "view": "list"
+        },
+        "metadata": {}
+      },
+      "expected": [
+        {
+          "id": "subsonic:2",
+          "connectorId": "subsonic",
+          "title": "Cafe 2",
+          "artist": "Alpha",
+          "album": "Dawn",
+          "durationSeconds": 80,
+          "explicit": true,
+          "sourceId": "subsonic:2",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "1:20"
+        }
+      ]
+    },
+    {
+      "name": "catalog/all",
+      "input": {
+        "operation": "filter",
+        "tracks": [
+          {
+            "id": "catalog:1",
+            "connectorId": "catalog",
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "catalog:1",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          },
+          {
+            "id": "subsonic:2",
+            "connectorId": "subsonic",
+            "title": "Cafe 2",
+            "artist": "Alpha",
+            "album": "Dawn",
+            "durationSeconds": 80,
+            "explicit": true,
+            "sourceId": "subsonic:2",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "1:20"
+          },
+          {
+            "id": "local:3",
+            "connectorId": "local",
+            "title": "Echo",
+            "artist": "Gamma",
+            "album": null,
+            "durationSeconds": 0,
+            "sourceId": "local:3",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "0:00"
+          },
+          {
+            "id": "youtube:4",
+            "connectorId": "youtube_music",
+            "title": "夜に駆ける",
+            "artist": "YOASOBI",
+            "album": "THE BOOK",
+            "durationSeconds": 261,
+            "explicit": false,
+            "sourceId": "youtube:4",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:21"
+          },
+          {
+            "id": "direct:5",
+            "connectorId": "direct",
+            "title": "مرحبا",
+            "artist": "علي",
+            "album": "",
+            "durationSeconds": 120,
+            "explicit": null,
+            "sourceId": "direct:5",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "2:00"
+          },
+          {
+            "id": "other:6",
+            "connectorId": null,
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "other:6",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          }
+        ],
+        "filters": {
+          "query": "",
+          "genre": null,
+          "source": "catalog",
+          "content": "all",
+          "sort": "default",
+          "descending": false,
+          "view": "list"
+        },
+        "metadata": {}
+      },
+      "expected": [
+        {
+          "id": "catalog:1",
+          "connectorId": "catalog",
+          "title": "Café 10",
+          "artist": "Alpha & Beta",
+          "album": "Night",
+          "durationSeconds": 240,
+          "explicit": false,
+          "sourceId": "catalog:1",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "4:00"
+        }
+      ]
+    },
+    {
+      "name": "catalog/clean",
+      "input": {
+        "operation": "filter",
+        "tracks": [
+          {
+            "id": "catalog:1",
+            "connectorId": "catalog",
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "catalog:1",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          },
+          {
+            "id": "subsonic:2",
+            "connectorId": "subsonic",
+            "title": "Cafe 2",
+            "artist": "Alpha",
+            "album": "Dawn",
+            "durationSeconds": 80,
+            "explicit": true,
+            "sourceId": "subsonic:2",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "1:20"
+          },
+          {
+            "id": "local:3",
+            "connectorId": "local",
+            "title": "Echo",
+            "artist": "Gamma",
+            "album": null,
+            "durationSeconds": 0,
+            "sourceId": "local:3",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "0:00"
+          },
+          {
+            "id": "youtube:4",
+            "connectorId": "youtube_music",
+            "title": "夜に駆ける",
+            "artist": "YOASOBI",
+            "album": "THE BOOK",
+            "durationSeconds": 261,
+            "explicit": false,
+            "sourceId": "youtube:4",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:21"
+          },
+          {
+            "id": "direct:5",
+            "connectorId": "direct",
+            "title": "مرحبا",
+            "artist": "علي",
+            "album": "",
+            "durationSeconds": 120,
+            "explicit": null,
+            "sourceId": "direct:5",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "2:00"
+          },
+          {
+            "id": "other:6",
+            "connectorId": null,
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "other:6",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          }
+        ],
+        "filters": {
+          "query": "",
+          "genre": null,
+          "source": "catalog",
+          "content": "clean",
+          "sort": "default",
+          "descending": false,
+          "view": "list"
+        },
+        "metadata": {}
+      },
+      "expected": [
+        {
+          "id": "catalog:1",
+          "connectorId": "catalog",
+          "title": "Café 10",
+          "artist": "Alpha & Beta",
+          "album": "Night",
+          "durationSeconds": 240,
+          "explicit": false,
+          "sourceId": "catalog:1",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "4:00"
+        }
+      ]
+    },
+    {
+      "name": "catalog/explicit",
+      "input": {
+        "operation": "filter",
+        "tracks": [
+          {
+            "id": "catalog:1",
+            "connectorId": "catalog",
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "catalog:1",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          },
+          {
+            "id": "subsonic:2",
+            "connectorId": "subsonic",
+            "title": "Cafe 2",
+            "artist": "Alpha",
+            "album": "Dawn",
+            "durationSeconds": 80,
+            "explicit": true,
+            "sourceId": "subsonic:2",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "1:20"
+          },
+          {
+            "id": "local:3",
+            "connectorId": "local",
+            "title": "Echo",
+            "artist": "Gamma",
+            "album": null,
+            "durationSeconds": 0,
+            "sourceId": "local:3",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "0:00"
+          },
+          {
+            "id": "youtube:4",
+            "connectorId": "youtube_music",
+            "title": "夜に駆ける",
+            "artist": "YOASOBI",
+            "album": "THE BOOK",
+            "durationSeconds": 261,
+            "explicit": false,
+            "sourceId": "youtube:4",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:21"
+          },
+          {
+            "id": "direct:5",
+            "connectorId": "direct",
+            "title": "مرحبا",
+            "artist": "علي",
+            "album": "",
+            "durationSeconds": 120,
+            "explicit": null,
+            "sourceId": "direct:5",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "2:00"
+          },
+          {
+            "id": "other:6",
+            "connectorId": null,
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "other:6",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          }
+        ],
+        "filters": {
+          "query": "",
+          "genre": null,
+          "source": "catalog",
+          "content": "explicit",
+          "sort": "default",
+          "descending": false,
+          "view": "list"
+        },
+        "metadata": {}
+      },
+      "expected": []
+    },
+    {
+      "name": "subsonic/all",
+      "input": {
+        "operation": "filter",
+        "tracks": [
+          {
+            "id": "catalog:1",
+            "connectorId": "catalog",
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "catalog:1",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          },
+          {
+            "id": "subsonic:2",
+            "connectorId": "subsonic",
+            "title": "Cafe 2",
+            "artist": "Alpha",
+            "album": "Dawn",
+            "durationSeconds": 80,
+            "explicit": true,
+            "sourceId": "subsonic:2",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "1:20"
+          },
+          {
+            "id": "local:3",
+            "connectorId": "local",
+            "title": "Echo",
+            "artist": "Gamma",
+            "album": null,
+            "durationSeconds": 0,
+            "sourceId": "local:3",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "0:00"
+          },
+          {
+            "id": "youtube:4",
+            "connectorId": "youtube_music",
+            "title": "夜に駆ける",
+            "artist": "YOASOBI",
+            "album": "THE BOOK",
+            "durationSeconds": 261,
+            "explicit": false,
+            "sourceId": "youtube:4",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:21"
+          },
+          {
+            "id": "direct:5",
+            "connectorId": "direct",
+            "title": "مرحبا",
+            "artist": "علي",
+            "album": "",
+            "durationSeconds": 120,
+            "explicit": null,
+            "sourceId": "direct:5",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "2:00"
+          },
+          {
+            "id": "other:6",
+            "connectorId": null,
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "other:6",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          }
+        ],
+        "filters": {
+          "query": "",
+          "genre": null,
+          "source": "subsonic",
+          "content": "all",
+          "sort": "default",
+          "descending": false,
+          "view": "list"
+        },
+        "metadata": {}
+      },
+      "expected": [
+        {
+          "id": "subsonic:2",
+          "connectorId": "subsonic",
+          "title": "Cafe 2",
+          "artist": "Alpha",
+          "album": "Dawn",
+          "durationSeconds": 80,
+          "explicit": true,
+          "sourceId": "subsonic:2",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "1:20"
+        }
+      ]
+    },
+    {
+      "name": "subsonic/clean",
+      "input": {
+        "operation": "filter",
+        "tracks": [
+          {
+            "id": "catalog:1",
+            "connectorId": "catalog",
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "catalog:1",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          },
+          {
+            "id": "subsonic:2",
+            "connectorId": "subsonic",
+            "title": "Cafe 2",
+            "artist": "Alpha",
+            "album": "Dawn",
+            "durationSeconds": 80,
+            "explicit": true,
+            "sourceId": "subsonic:2",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "1:20"
+          },
+          {
+            "id": "local:3",
+            "connectorId": "local",
+            "title": "Echo",
+            "artist": "Gamma",
+            "album": null,
+            "durationSeconds": 0,
+            "sourceId": "local:3",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "0:00"
+          },
+          {
+            "id": "youtube:4",
+            "connectorId": "youtube_music",
+            "title": "夜に駆ける",
+            "artist": "YOASOBI",
+            "album": "THE BOOK",
+            "durationSeconds": 261,
+            "explicit": false,
+            "sourceId": "youtube:4",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:21"
+          },
+          {
+            "id": "direct:5",
+            "connectorId": "direct",
+            "title": "مرحبا",
+            "artist": "علي",
+            "album": "",
+            "durationSeconds": 120,
+            "explicit": null,
+            "sourceId": "direct:5",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "2:00"
+          },
+          {
+            "id": "other:6",
+            "connectorId": null,
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "other:6",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          }
+        ],
+        "filters": {
+          "query": "",
+          "genre": null,
+          "source": "subsonic",
+          "content": "clean",
+          "sort": "default",
+          "descending": false,
+          "view": "list"
+        },
+        "metadata": {}
+      },
+      "expected": []
+    },
+    {
+      "name": "subsonic/explicit",
+      "input": {
+        "operation": "filter",
+        "tracks": [
+          {
+            "id": "catalog:1",
+            "connectorId": "catalog",
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "catalog:1",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          },
+          {
+            "id": "subsonic:2",
+            "connectorId": "subsonic",
+            "title": "Cafe 2",
+            "artist": "Alpha",
+            "album": "Dawn",
+            "durationSeconds": 80,
+            "explicit": true,
+            "sourceId": "subsonic:2",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "1:20"
+          },
+          {
+            "id": "local:3",
+            "connectorId": "local",
+            "title": "Echo",
+            "artist": "Gamma",
+            "album": null,
+            "durationSeconds": 0,
+            "sourceId": "local:3",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "0:00"
+          },
+          {
+            "id": "youtube:4",
+            "connectorId": "youtube_music",
+            "title": "夜に駆ける",
+            "artist": "YOASOBI",
+            "album": "THE BOOK",
+            "durationSeconds": 261,
+            "explicit": false,
+            "sourceId": "youtube:4",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:21"
+          },
+          {
+            "id": "direct:5",
+            "connectorId": "direct",
+            "title": "مرحبا",
+            "artist": "علي",
+            "album": "",
+            "durationSeconds": 120,
+            "explicit": null,
+            "sourceId": "direct:5",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "2:00"
+          },
+          {
+            "id": "other:6",
+            "connectorId": null,
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "other:6",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          }
+        ],
+        "filters": {
+          "query": "",
+          "genre": null,
+          "source": "subsonic",
+          "content": "explicit",
+          "sort": "default",
+          "descending": false,
+          "view": "list"
+        },
+        "metadata": {}
+      },
+      "expected": [
+        {
+          "id": "subsonic:2",
+          "connectorId": "subsonic",
+          "title": "Cafe 2",
+          "artist": "Alpha",
+          "album": "Dawn",
+          "durationSeconds": 80,
+          "explicit": true,
+          "sourceId": "subsonic:2",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "1:20"
+        }
+      ]
+    },
+    {
+      "name": "local/all",
+      "input": {
+        "operation": "filter",
+        "tracks": [
+          {
+            "id": "catalog:1",
+            "connectorId": "catalog",
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "catalog:1",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          },
+          {
+            "id": "subsonic:2",
+            "connectorId": "subsonic",
+            "title": "Cafe 2",
+            "artist": "Alpha",
+            "album": "Dawn",
+            "durationSeconds": 80,
+            "explicit": true,
+            "sourceId": "subsonic:2",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "1:20"
+          },
+          {
+            "id": "local:3",
+            "connectorId": "local",
+            "title": "Echo",
+            "artist": "Gamma",
+            "album": null,
+            "durationSeconds": 0,
+            "sourceId": "local:3",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "0:00"
+          },
+          {
+            "id": "youtube:4",
+            "connectorId": "youtube_music",
+            "title": "夜に駆ける",
+            "artist": "YOASOBI",
+            "album": "THE BOOK",
+            "durationSeconds": 261,
+            "explicit": false,
+            "sourceId": "youtube:4",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:21"
+          },
+          {
+            "id": "direct:5",
+            "connectorId": "direct",
+            "title": "مرحبا",
+            "artist": "علي",
+            "album": "",
+            "durationSeconds": 120,
+            "explicit": null,
+            "sourceId": "direct:5",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "2:00"
+          },
+          {
+            "id": "other:6",
+            "connectorId": null,
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "other:6",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          }
+        ],
+        "filters": {
+          "query": "",
+          "genre": null,
+          "source": "local",
+          "content": "all",
+          "sort": "default",
+          "descending": false,
+          "view": "list"
+        },
+        "metadata": {}
+      },
+      "expected": [
+        {
+          "id": "local:3",
+          "connectorId": "local",
+          "title": "Echo",
+          "artist": "Gamma",
+          "album": null,
+          "durationSeconds": 0,
+          "sourceId": "local:3",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "0:00"
+        },
+        {
+          "id": "direct:5",
+          "connectorId": "direct",
+          "title": "مرحبا",
+          "artist": "علي",
+          "album": "",
+          "durationSeconds": 120,
+          "explicit": null,
+          "sourceId": "direct:5",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "2:00"
+        }
+      ]
+    },
+    {
+      "name": "local/clean",
+      "input": {
+        "operation": "filter",
+        "tracks": [
+          {
+            "id": "catalog:1",
+            "connectorId": "catalog",
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "catalog:1",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          },
+          {
+            "id": "subsonic:2",
+            "connectorId": "subsonic",
+            "title": "Cafe 2",
+            "artist": "Alpha",
+            "album": "Dawn",
+            "durationSeconds": 80,
+            "explicit": true,
+            "sourceId": "subsonic:2",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "1:20"
+          },
+          {
+            "id": "local:3",
+            "connectorId": "local",
+            "title": "Echo",
+            "artist": "Gamma",
+            "album": null,
+            "durationSeconds": 0,
+            "sourceId": "local:3",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "0:00"
+          },
+          {
+            "id": "youtube:4",
+            "connectorId": "youtube_music",
+            "title": "夜に駆ける",
+            "artist": "YOASOBI",
+            "album": "THE BOOK",
+            "durationSeconds": 261,
+            "explicit": false,
+            "sourceId": "youtube:4",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:21"
+          },
+          {
+            "id": "direct:5",
+            "connectorId": "direct",
+            "title": "مرحبا",
+            "artist": "علي",
+            "album": "",
+            "durationSeconds": 120,
+            "explicit": null,
+            "sourceId": "direct:5",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "2:00"
+          },
+          {
+            "id": "other:6",
+            "connectorId": null,
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "other:6",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          }
+        ],
+        "filters": {
+          "query": "",
+          "genre": null,
+          "source": "local",
+          "content": "clean",
+          "sort": "default",
+          "descending": false,
+          "view": "list"
+        },
+        "metadata": {}
+      },
+      "expected": []
+    },
+    {
+      "name": "local/explicit",
+      "input": {
+        "operation": "filter",
+        "tracks": [
+          {
+            "id": "catalog:1",
+            "connectorId": "catalog",
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "catalog:1",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          },
+          {
+            "id": "subsonic:2",
+            "connectorId": "subsonic",
+            "title": "Cafe 2",
+            "artist": "Alpha",
+            "album": "Dawn",
+            "durationSeconds": 80,
+            "explicit": true,
+            "sourceId": "subsonic:2",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "1:20"
+          },
+          {
+            "id": "local:3",
+            "connectorId": "local",
+            "title": "Echo",
+            "artist": "Gamma",
+            "album": null,
+            "durationSeconds": 0,
+            "sourceId": "local:3",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "0:00"
+          },
+          {
+            "id": "youtube:4",
+            "connectorId": "youtube_music",
+            "title": "夜に駆ける",
+            "artist": "YOASOBI",
+            "album": "THE BOOK",
+            "durationSeconds": 261,
+            "explicit": false,
+            "sourceId": "youtube:4",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:21"
+          },
+          {
+            "id": "direct:5",
+            "connectorId": "direct",
+            "title": "مرحبا",
+            "artist": "علي",
+            "album": "",
+            "durationSeconds": 120,
+            "explicit": null,
+            "sourceId": "direct:5",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "2:00"
+          },
+          {
+            "id": "other:6",
+            "connectorId": null,
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "other:6",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          }
+        ],
+        "filters": {
+          "query": "",
+          "genre": null,
+          "source": "local",
+          "content": "explicit",
+          "sort": "default",
+          "descending": false,
+          "view": "list"
+        },
+        "metadata": {}
+      },
+      "expected": []
+    },
+    {
+      "name": "youtube/all",
+      "input": {
+        "operation": "filter",
+        "tracks": [
+          {
+            "id": "catalog:1",
+            "connectorId": "catalog",
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "catalog:1",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          },
+          {
+            "id": "subsonic:2",
+            "connectorId": "subsonic",
+            "title": "Cafe 2",
+            "artist": "Alpha",
+            "album": "Dawn",
+            "durationSeconds": 80,
+            "explicit": true,
+            "sourceId": "subsonic:2",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "1:20"
+          },
+          {
+            "id": "local:3",
+            "connectorId": "local",
+            "title": "Echo",
+            "artist": "Gamma",
+            "album": null,
+            "durationSeconds": 0,
+            "sourceId": "local:3",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "0:00"
+          },
+          {
+            "id": "youtube:4",
+            "connectorId": "youtube_music",
+            "title": "夜に駆ける",
+            "artist": "YOASOBI",
+            "album": "THE BOOK",
+            "durationSeconds": 261,
+            "explicit": false,
+            "sourceId": "youtube:4",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:21"
+          },
+          {
+            "id": "direct:5",
+            "connectorId": "direct",
+            "title": "مرحبا",
+            "artist": "علي",
+            "album": "",
+            "durationSeconds": 120,
+            "explicit": null,
+            "sourceId": "direct:5",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "2:00"
+          },
+          {
+            "id": "other:6",
+            "connectorId": null,
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "other:6",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          }
+        ],
+        "filters": {
+          "query": "",
+          "genre": null,
+          "source": "youtube",
+          "content": "all",
+          "sort": "default",
+          "descending": false,
+          "view": "list"
+        },
+        "metadata": {}
+      },
+      "expected": [
+        {
+          "id": "youtube:4",
+          "connectorId": "youtube_music",
+          "title": "夜に駆ける",
+          "artist": "YOASOBI",
+          "album": "THE BOOK",
+          "durationSeconds": 261,
+          "explicit": false,
+          "sourceId": "youtube:4",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "4:21"
+        }
+      ]
+    },
+    {
+      "name": "youtube/clean",
+      "input": {
+        "operation": "filter",
+        "tracks": [
+          {
+            "id": "catalog:1",
+            "connectorId": "catalog",
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "catalog:1",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          },
+          {
+            "id": "subsonic:2",
+            "connectorId": "subsonic",
+            "title": "Cafe 2",
+            "artist": "Alpha",
+            "album": "Dawn",
+            "durationSeconds": 80,
+            "explicit": true,
+            "sourceId": "subsonic:2",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "1:20"
+          },
+          {
+            "id": "local:3",
+            "connectorId": "local",
+            "title": "Echo",
+            "artist": "Gamma",
+            "album": null,
+            "durationSeconds": 0,
+            "sourceId": "local:3",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "0:00"
+          },
+          {
+            "id": "youtube:4",
+            "connectorId": "youtube_music",
+            "title": "夜に駆ける",
+            "artist": "YOASOBI",
+            "album": "THE BOOK",
+            "durationSeconds": 261,
+            "explicit": false,
+            "sourceId": "youtube:4",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:21"
+          },
+          {
+            "id": "direct:5",
+            "connectorId": "direct",
+            "title": "مرحبا",
+            "artist": "علي",
+            "album": "",
+            "durationSeconds": 120,
+            "explicit": null,
+            "sourceId": "direct:5",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "2:00"
+          },
+          {
+            "id": "other:6",
+            "connectorId": null,
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "other:6",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          }
+        ],
+        "filters": {
+          "query": "",
+          "genre": null,
+          "source": "youtube",
+          "content": "clean",
+          "sort": "default",
+          "descending": false,
+          "view": "list"
+        },
+        "metadata": {}
+      },
+      "expected": [
+        {
+          "id": "youtube:4",
+          "connectorId": "youtube_music",
+          "title": "夜に駆ける",
+          "artist": "YOASOBI",
+          "album": "THE BOOK",
+          "durationSeconds": 261,
+          "explicit": false,
+          "sourceId": "youtube:4",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "4:21"
+        }
+      ]
+    },
+    {
+      "name": "youtube/explicit",
+      "input": {
+        "operation": "filter",
+        "tracks": [
+          {
+            "id": "catalog:1",
+            "connectorId": "catalog",
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "catalog:1",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          },
+          {
+            "id": "subsonic:2",
+            "connectorId": "subsonic",
+            "title": "Cafe 2",
+            "artist": "Alpha",
+            "album": "Dawn",
+            "durationSeconds": 80,
+            "explicit": true,
+            "sourceId": "subsonic:2",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "1:20"
+          },
+          {
+            "id": "local:3",
+            "connectorId": "local",
+            "title": "Echo",
+            "artist": "Gamma",
+            "album": null,
+            "durationSeconds": 0,
+            "sourceId": "local:3",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "0:00"
+          },
+          {
+            "id": "youtube:4",
+            "connectorId": "youtube_music",
+            "title": "夜に駆ける",
+            "artist": "YOASOBI",
+            "album": "THE BOOK",
+            "durationSeconds": 261,
+            "explicit": false,
+            "sourceId": "youtube:4",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:21"
+          },
+          {
+            "id": "direct:5",
+            "connectorId": "direct",
+            "title": "مرحبا",
+            "artist": "علي",
+            "album": "",
+            "durationSeconds": 120,
+            "explicit": null,
+            "sourceId": "direct:5",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "2:00"
+          },
+          {
+            "id": "other:6",
+            "connectorId": null,
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "other:6",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          }
+        ],
+        "filters": {
+          "query": "",
+          "genre": null,
+          "source": "youtube",
+          "content": "explicit",
+          "sort": "default",
+          "descending": false,
+          "view": "list"
+        },
+        "metadata": {}
+      },
+      "expected": []
+    },
+    {
+      "name": "missing/all",
+      "input": {
+        "operation": "filter",
+        "tracks": [
+          {
+            "id": "catalog:1",
+            "connectorId": "catalog",
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "catalog:1",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          },
+          {
+            "id": "subsonic:2",
+            "connectorId": "subsonic",
+            "title": "Cafe 2",
+            "artist": "Alpha",
+            "album": "Dawn",
+            "durationSeconds": 80,
+            "explicit": true,
+            "sourceId": "subsonic:2",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "1:20"
+          },
+          {
+            "id": "local:3",
+            "connectorId": "local",
+            "title": "Echo",
+            "artist": "Gamma",
+            "album": null,
+            "durationSeconds": 0,
+            "sourceId": "local:3",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "0:00"
+          },
+          {
+            "id": "youtube:4",
+            "connectorId": "youtube_music",
+            "title": "夜に駆ける",
+            "artist": "YOASOBI",
+            "album": "THE BOOK",
+            "durationSeconds": 261,
+            "explicit": false,
+            "sourceId": "youtube:4",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:21"
+          },
+          {
+            "id": "direct:5",
+            "connectorId": "direct",
+            "title": "مرحبا",
+            "artist": "علي",
+            "album": "",
+            "durationSeconds": 120,
+            "explicit": null,
+            "sourceId": "direct:5",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "2:00"
+          },
+          {
+            "id": "other:6",
+            "connectorId": null,
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "other:6",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          }
+        ],
+        "filters": {
+          "query": "",
+          "genre": null,
+          "source": "missing",
+          "content": "all",
+          "sort": "default",
+          "descending": false,
+          "view": "list"
+        },
+        "metadata": {}
+      },
+      "expected": []
+    },
+    {
+      "name": "missing/clean",
+      "input": {
+        "operation": "filter",
+        "tracks": [
+          {
+            "id": "catalog:1",
+            "connectorId": "catalog",
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "catalog:1",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          },
+          {
+            "id": "subsonic:2",
+            "connectorId": "subsonic",
+            "title": "Cafe 2",
+            "artist": "Alpha",
+            "album": "Dawn",
+            "durationSeconds": 80,
+            "explicit": true,
+            "sourceId": "subsonic:2",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "1:20"
+          },
+          {
+            "id": "local:3",
+            "connectorId": "local",
+            "title": "Echo",
+            "artist": "Gamma",
+            "album": null,
+            "durationSeconds": 0,
+            "sourceId": "local:3",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "0:00"
+          },
+          {
+            "id": "youtube:4",
+            "connectorId": "youtube_music",
+            "title": "夜に駆ける",
+            "artist": "YOASOBI",
+            "album": "THE BOOK",
+            "durationSeconds": 261,
+            "explicit": false,
+            "sourceId": "youtube:4",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:21"
+          },
+          {
+            "id": "direct:5",
+            "connectorId": "direct",
+            "title": "مرحبا",
+            "artist": "علي",
+            "album": "",
+            "durationSeconds": 120,
+            "explicit": null,
+            "sourceId": "direct:5",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "2:00"
+          },
+          {
+            "id": "other:6",
+            "connectorId": null,
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "other:6",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          }
+        ],
+        "filters": {
+          "query": "",
+          "genre": null,
+          "source": "missing",
+          "content": "clean",
+          "sort": "default",
+          "descending": false,
+          "view": "list"
+        },
+        "metadata": {}
+      },
+      "expected": []
+    },
+    {
+      "name": "missing/explicit",
+      "input": {
+        "operation": "filter",
+        "tracks": [
+          {
+            "id": "catalog:1",
+            "connectorId": "catalog",
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "catalog:1",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          },
+          {
+            "id": "subsonic:2",
+            "connectorId": "subsonic",
+            "title": "Cafe 2",
+            "artist": "Alpha",
+            "album": "Dawn",
+            "durationSeconds": 80,
+            "explicit": true,
+            "sourceId": "subsonic:2",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "1:20"
+          },
+          {
+            "id": "local:3",
+            "connectorId": "local",
+            "title": "Echo",
+            "artist": "Gamma",
+            "album": null,
+            "durationSeconds": 0,
+            "sourceId": "local:3",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "0:00"
+          },
+          {
+            "id": "youtube:4",
+            "connectorId": "youtube_music",
+            "title": "夜に駆ける",
+            "artist": "YOASOBI",
+            "album": "THE BOOK",
+            "durationSeconds": 261,
+            "explicit": false,
+            "sourceId": "youtube:4",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:21"
+          },
+          {
+            "id": "direct:5",
+            "connectorId": "direct",
+            "title": "مرحبا",
+            "artist": "علي",
+            "album": "",
+            "durationSeconds": 120,
+            "explicit": null,
+            "sourceId": "direct:5",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "2:00"
+          },
+          {
+            "id": "other:6",
+            "connectorId": null,
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "other:6",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          }
+        ],
+        "filters": {
+          "query": "",
+          "genre": null,
+          "source": "missing",
+          "content": "explicit",
+          "sort": "default",
+          "descending": false,
+          "view": "list"
+        },
+        "metadata": {}
+      },
+      "expected": []
+    },
+    {
+      "name": "query/cafe",
+      "input": {
+        "operation": "filter",
+        "tracks": [
+          {
+            "id": "catalog:1",
+            "connectorId": "catalog",
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "catalog:1",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          },
+          {
+            "id": "subsonic:2",
+            "connectorId": "subsonic",
+            "title": "Cafe 2",
+            "artist": "Alpha",
+            "album": "Dawn",
+            "durationSeconds": 80,
+            "explicit": true,
+            "sourceId": "subsonic:2",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "1:20"
+          },
+          {
+            "id": "local:3",
+            "connectorId": "local",
+            "title": "Echo",
+            "artist": "Gamma",
+            "album": null,
+            "durationSeconds": 0,
+            "sourceId": "local:3",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "0:00"
+          },
+          {
+            "id": "youtube:4",
+            "connectorId": "youtube_music",
+            "title": "夜に駆ける",
+            "artist": "YOASOBI",
+            "album": "THE BOOK",
+            "durationSeconds": 261,
+            "explicit": false,
+            "sourceId": "youtube:4",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:21"
+          },
+          {
+            "id": "direct:5",
+            "connectorId": "direct",
+            "title": "مرحبا",
+            "artist": "علي",
+            "album": "",
+            "durationSeconds": 120,
+            "explicit": null,
+            "sourceId": "direct:5",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "2:00"
+          },
+          {
+            "id": "other:6",
+            "connectorId": null,
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "other:6",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          }
+        ],
+        "filters": {
+          "query": "cafe",
+          "genre": null,
+          "source": "all",
+          "content": "all",
+          "sort": "default",
+          "descending": false,
+          "view": "list"
+        },
+        "metadata": {}
+      },
+      "expected": [
+        {
+          "id": "catalog:1",
+          "connectorId": "catalog",
+          "title": "Café 10",
+          "artist": "Alpha & Beta",
+          "album": "Night",
+          "durationSeconds": 240,
+          "explicit": false,
+          "sourceId": "catalog:1",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "4:00"
+        },
+        {
+          "id": "subsonic:2",
+          "connectorId": "subsonic",
+          "title": "Cafe 2",
+          "artist": "Alpha",
+          "album": "Dawn",
+          "durationSeconds": 80,
+          "explicit": true,
+          "sourceId": "subsonic:2",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "1:20"
+        },
+        {
+          "id": "other:6",
+          "connectorId": null,
+          "title": "Café 10",
+          "artist": "Alpha & Beta",
+          "album": "Night",
+          "durationSeconds": 240,
+          "explicit": false,
+          "sourceId": "other:6",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "4:00"
+        }
+      ]
+    },
+    {
+      "name": "query/cafe alpha",
+      "input": {
+        "operation": "filter",
+        "tracks": [
+          {
+            "id": "catalog:1",
+            "connectorId": "catalog",
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "catalog:1",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          },
+          {
+            "id": "subsonic:2",
+            "connectorId": "subsonic",
+            "title": "Cafe 2",
+            "artist": "Alpha",
+            "album": "Dawn",
+            "durationSeconds": 80,
+            "explicit": true,
+            "sourceId": "subsonic:2",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "1:20"
+          },
+          {
+            "id": "local:3",
+            "connectorId": "local",
+            "title": "Echo",
+            "artist": "Gamma",
+            "album": null,
+            "durationSeconds": 0,
+            "sourceId": "local:3",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "0:00"
+          },
+          {
+            "id": "youtube:4",
+            "connectorId": "youtube_music",
+            "title": "夜に駆ける",
+            "artist": "YOASOBI",
+            "album": "THE BOOK",
+            "durationSeconds": 261,
+            "explicit": false,
+            "sourceId": "youtube:4",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:21"
+          },
+          {
+            "id": "direct:5",
+            "connectorId": "direct",
+            "title": "مرحبا",
+            "artist": "علي",
+            "album": "",
+            "durationSeconds": 120,
+            "explicit": null,
+            "sourceId": "direct:5",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "2:00"
+          },
+          {
+            "id": "other:6",
+            "connectorId": null,
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "other:6",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          }
+        ],
+        "filters": {
+          "query": "cafe alpha",
+          "genre": null,
+          "source": "all",
+          "content": "all",
+          "sort": "default",
+          "descending": false,
+          "view": "list"
+        },
+        "metadata": {}
+      },
+      "expected": [
+        {
+          "id": "catalog:1",
+          "connectorId": "catalog",
+          "title": "Café 10",
+          "artist": "Alpha & Beta",
+          "album": "Night",
+          "durationSeconds": 240,
+          "explicit": false,
+          "sourceId": "catalog:1",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "4:00"
+        },
+        {
+          "id": "subsonic:2",
+          "connectorId": "subsonic",
+          "title": "Cafe 2",
+          "artist": "Alpha",
+          "album": "Dawn",
+          "durationSeconds": 80,
+          "explicit": true,
+          "sourceId": "subsonic:2",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "1:20"
+        },
+        {
+          "id": "other:6",
+          "connectorId": null,
+          "title": "Café 10",
+          "artist": "Alpha & Beta",
+          "album": "Night",
+          "durationSeconds": 240,
+          "explicit": false,
+          "sourceId": "other:6",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "4:00"
+        }
+      ]
+    },
+    {
+      "name": "query/alpha night",
+      "input": {
+        "operation": "filter",
+        "tracks": [
+          {
+            "id": "catalog:1",
+            "connectorId": "catalog",
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "catalog:1",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          },
+          {
+            "id": "subsonic:2",
+            "connectorId": "subsonic",
+            "title": "Cafe 2",
+            "artist": "Alpha",
+            "album": "Dawn",
+            "durationSeconds": 80,
+            "explicit": true,
+            "sourceId": "subsonic:2",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "1:20"
+          },
+          {
+            "id": "local:3",
+            "connectorId": "local",
+            "title": "Echo",
+            "artist": "Gamma",
+            "album": null,
+            "durationSeconds": 0,
+            "sourceId": "local:3",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "0:00"
+          },
+          {
+            "id": "youtube:4",
+            "connectorId": "youtube_music",
+            "title": "夜に駆ける",
+            "artist": "YOASOBI",
+            "album": "THE BOOK",
+            "durationSeconds": 261,
+            "explicit": false,
+            "sourceId": "youtube:4",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:21"
+          },
+          {
+            "id": "direct:5",
+            "connectorId": "direct",
+            "title": "مرحبا",
+            "artist": "علي",
+            "album": "",
+            "durationSeconds": 120,
+            "explicit": null,
+            "sourceId": "direct:5",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "2:00"
+          },
+          {
+            "id": "other:6",
+            "connectorId": null,
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "other:6",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          }
+        ],
+        "filters": {
+          "query": "alpha night",
+          "genre": null,
+          "source": "all",
+          "content": "all",
+          "sort": "default",
+          "descending": false,
+          "view": "list"
+        },
+        "metadata": {}
+      },
+      "expected": [
+        {
+          "id": "catalog:1",
+          "connectorId": "catalog",
+          "title": "Café 10",
+          "artist": "Alpha & Beta",
+          "album": "Night",
+          "durationSeconds": 240,
+          "explicit": false,
+          "sourceId": "catalog:1",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "4:00"
+        },
+        {
+          "id": "other:6",
+          "connectorId": null,
+          "title": "Café 10",
+          "artist": "Alpha & Beta",
+          "album": "Night",
+          "durationSeconds": 240,
+          "explicit": false,
+          "sourceId": "other:6",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "4:00"
+        }
+      ]
+    },
+    {
+      "name": "query/CAFÉ 10",
+      "input": {
+        "operation": "filter",
+        "tracks": [
+          {
+            "id": "catalog:1",
+            "connectorId": "catalog",
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "catalog:1",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          },
+          {
+            "id": "subsonic:2",
+            "connectorId": "subsonic",
+            "title": "Cafe 2",
+            "artist": "Alpha",
+            "album": "Dawn",
+            "durationSeconds": 80,
+            "explicit": true,
+            "sourceId": "subsonic:2",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "1:20"
+          },
+          {
+            "id": "local:3",
+            "connectorId": "local",
+            "title": "Echo",
+            "artist": "Gamma",
+            "album": null,
+            "durationSeconds": 0,
+            "sourceId": "local:3",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "0:00"
+          },
+          {
+            "id": "youtube:4",
+            "connectorId": "youtube_music",
+            "title": "夜に駆ける",
+            "artist": "YOASOBI",
+            "album": "THE BOOK",
+            "durationSeconds": 261,
+            "explicit": false,
+            "sourceId": "youtube:4",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:21"
+          },
+          {
+            "id": "direct:5",
+            "connectorId": "direct",
+            "title": "مرحبا",
+            "artist": "علي",
+            "album": "",
+            "durationSeconds": 120,
+            "explicit": null,
+            "sourceId": "direct:5",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "2:00"
+          },
+          {
+            "id": "other:6",
+            "connectorId": null,
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "other:6",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          }
+        ],
+        "filters": {
+          "query": "CAFÉ 10",
+          "genre": null,
+          "source": "all",
+          "content": "all",
+          "sort": "default",
+          "descending": false,
+          "view": "list"
+        },
+        "metadata": {}
+      },
+      "expected": [
+        {
+          "id": "catalog:1",
+          "connectorId": "catalog",
+          "title": "Café 10",
+          "artist": "Alpha & Beta",
+          "album": "Night",
+          "durationSeconds": 240,
+          "explicit": false,
+          "sourceId": "catalog:1",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "4:00"
+        },
+        {
+          "id": "other:6",
+          "connectorId": null,
+          "title": "Café 10",
+          "artist": "Alpha & Beta",
+          "album": "Night",
+          "durationSeconds": 240,
+          "explicit": false,
+          "sourceId": "other:6",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "4:00"
+        }
+      ]
+    },
+    {
+      "name": "query/夜に",
+      "input": {
+        "operation": "filter",
+        "tracks": [
+          {
+            "id": "catalog:1",
+            "connectorId": "catalog",
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "catalog:1",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          },
+          {
+            "id": "subsonic:2",
+            "connectorId": "subsonic",
+            "title": "Cafe 2",
+            "artist": "Alpha",
+            "album": "Dawn",
+            "durationSeconds": 80,
+            "explicit": true,
+            "sourceId": "subsonic:2",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "1:20"
+          },
+          {
+            "id": "local:3",
+            "connectorId": "local",
+            "title": "Echo",
+            "artist": "Gamma",
+            "album": null,
+            "durationSeconds": 0,
+            "sourceId": "local:3",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "0:00"
+          },
+          {
+            "id": "youtube:4",
+            "connectorId": "youtube_music",
+            "title": "夜に駆ける",
+            "artist": "YOASOBI",
+            "album": "THE BOOK",
+            "durationSeconds": 261,
+            "explicit": false,
+            "sourceId": "youtube:4",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:21"
+          },
+          {
+            "id": "direct:5",
+            "connectorId": "direct",
+            "title": "مرحبا",
+            "artist": "علي",
+            "album": "",
+            "durationSeconds": 120,
+            "explicit": null,
+            "sourceId": "direct:5",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "2:00"
+          },
+          {
+            "id": "other:6",
+            "connectorId": null,
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "other:6",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          }
+        ],
+        "filters": {
+          "query": "夜に",
+          "genre": null,
+          "source": "all",
+          "content": "all",
+          "sort": "default",
+          "descending": false,
+          "view": "list"
+        },
+        "metadata": {}
+      },
+      "expected": [
+        {
+          "id": "youtube:4",
+          "connectorId": "youtube_music",
+          "title": "夜に駆ける",
+          "artist": "YOASOBI",
+          "album": "THE BOOK",
+          "durationSeconds": 261,
+          "explicit": false,
+          "sourceId": "youtube:4",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "4:21"
+        }
+      ]
+    },
+    {
+      "name": "query/مرحبا",
+      "input": {
+        "operation": "filter",
+        "tracks": [
+          {
+            "id": "catalog:1",
+            "connectorId": "catalog",
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "catalog:1",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          },
+          {
+            "id": "subsonic:2",
+            "connectorId": "subsonic",
+            "title": "Cafe 2",
+            "artist": "Alpha",
+            "album": "Dawn",
+            "durationSeconds": 80,
+            "explicit": true,
+            "sourceId": "subsonic:2",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "1:20"
+          },
+          {
+            "id": "local:3",
+            "connectorId": "local",
+            "title": "Echo",
+            "artist": "Gamma",
+            "album": null,
+            "durationSeconds": 0,
+            "sourceId": "local:3",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "0:00"
+          },
+          {
+            "id": "youtube:4",
+            "connectorId": "youtube_music",
+            "title": "夜に駆ける",
+            "artist": "YOASOBI",
+            "album": "THE BOOK",
+            "durationSeconds": 261,
+            "explicit": false,
+            "sourceId": "youtube:4",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:21"
+          },
+          {
+            "id": "direct:5",
+            "connectorId": "direct",
+            "title": "مرحبا",
+            "artist": "علي",
+            "album": "",
+            "durationSeconds": 120,
+            "explicit": null,
+            "sourceId": "direct:5",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "2:00"
+          },
+          {
+            "id": "other:6",
+            "connectorId": null,
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "other:6",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          }
+        ],
+        "filters": {
+          "query": "مرحبا",
+          "genre": null,
+          "source": "all",
+          "content": "all",
+          "sort": "default",
+          "descending": false,
+          "view": "list"
+        },
+        "metadata": {}
+      },
+      "expected": [
+        {
+          "id": "direct:5",
+          "connectorId": "direct",
+          "title": "مرحبا",
+          "artist": "علي",
+          "album": "",
+          "durationSeconds": 120,
+          "explicit": null,
+          "sourceId": "direct:5",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "2:00"
+        }
+      ]
+    },
+    {
+      "name": "query/  ALPHA  ",
+      "input": {
+        "operation": "filter",
+        "tracks": [
+          {
+            "id": "catalog:1",
+            "connectorId": "catalog",
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "catalog:1",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          },
+          {
+            "id": "subsonic:2",
+            "connectorId": "subsonic",
+            "title": "Cafe 2",
+            "artist": "Alpha",
+            "album": "Dawn",
+            "durationSeconds": 80,
+            "explicit": true,
+            "sourceId": "subsonic:2",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "1:20"
+          },
+          {
+            "id": "local:3",
+            "connectorId": "local",
+            "title": "Echo",
+            "artist": "Gamma",
+            "album": null,
+            "durationSeconds": 0,
+            "sourceId": "local:3",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "0:00"
+          },
+          {
+            "id": "youtube:4",
+            "connectorId": "youtube_music",
+            "title": "夜に駆ける",
+            "artist": "YOASOBI",
+            "album": "THE BOOK",
+            "durationSeconds": 261,
+            "explicit": false,
+            "sourceId": "youtube:4",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:21"
+          },
+          {
+            "id": "direct:5",
+            "connectorId": "direct",
+            "title": "مرحبا",
+            "artist": "علي",
+            "album": "",
+            "durationSeconds": 120,
+            "explicit": null,
+            "sourceId": "direct:5",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "2:00"
+          },
+          {
+            "id": "other:6",
+            "connectorId": null,
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "other:6",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          }
+        ],
+        "filters": {
+          "query": "  ALPHA  ",
+          "genre": null,
+          "source": "all",
+          "content": "all",
+          "sort": "default",
+          "descending": false,
+          "view": "list"
+        },
+        "metadata": {}
+      },
+      "expected": [
+        {
+          "id": "catalog:1",
+          "connectorId": "catalog",
+          "title": "Café 10",
+          "artist": "Alpha & Beta",
+          "album": "Night",
+          "durationSeconds": 240,
+          "explicit": false,
+          "sourceId": "catalog:1",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "4:00"
+        },
+        {
+          "id": "subsonic:2",
+          "connectorId": "subsonic",
+          "title": "Cafe 2",
+          "artist": "Alpha",
+          "album": "Dawn",
+          "durationSeconds": 80,
+          "explicit": true,
+          "sourceId": "subsonic:2",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "1:20"
+        },
+        {
+          "id": "other:6",
+          "connectorId": null,
+          "title": "Café 10",
+          "artist": "Alpha & Beta",
+          "album": "Night",
+          "durationSeconds": 240,
+          "explicit": false,
+          "sourceId": "other:6",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "4:00"
+        }
+      ]
+    },
+    {
+      "name": "query/unknown",
+      "input": {
+        "operation": "filter",
+        "tracks": [
+          {
+            "id": "catalog:1",
+            "connectorId": "catalog",
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "catalog:1",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          },
+          {
+            "id": "subsonic:2",
+            "connectorId": "subsonic",
+            "title": "Cafe 2",
+            "artist": "Alpha",
+            "album": "Dawn",
+            "durationSeconds": 80,
+            "explicit": true,
+            "sourceId": "subsonic:2",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "1:20"
+          },
+          {
+            "id": "local:3",
+            "connectorId": "local",
+            "title": "Echo",
+            "artist": "Gamma",
+            "album": null,
+            "durationSeconds": 0,
+            "sourceId": "local:3",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "0:00"
+          },
+          {
+            "id": "youtube:4",
+            "connectorId": "youtube_music",
+            "title": "夜に駆ける",
+            "artist": "YOASOBI",
+            "album": "THE BOOK",
+            "durationSeconds": 261,
+            "explicit": false,
+            "sourceId": "youtube:4",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:21"
+          },
+          {
+            "id": "direct:5",
+            "connectorId": "direct",
+            "title": "مرحبا",
+            "artist": "علي",
+            "album": "",
+            "durationSeconds": 120,
+            "explicit": null,
+            "sourceId": "direct:5",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "2:00"
+          },
+          {
+            "id": "other:6",
+            "connectorId": null,
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "other:6",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          }
+        ],
+        "filters": {
+          "query": "unknown",
+          "genre": null,
+          "source": "all",
+          "content": "all",
+          "sort": "default",
+          "descending": false,
+          "view": "list"
+        },
+        "metadata": {}
+      },
+      "expected": []
+    },
+    {
+      "name": "genre/0",
+      "input": {
+        "operation": "filter",
+        "tracks": [
+          {
+            "id": "catalog:1",
+            "connectorId": "catalog",
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "catalog:1",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          },
+          {
+            "id": "subsonic:2",
+            "connectorId": "subsonic",
+            "title": "Cafe 2",
+            "artist": "Alpha",
+            "album": "Dawn",
+            "durationSeconds": 80,
+            "explicit": true,
+            "sourceId": "subsonic:2",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "1:20"
+          },
+          {
+            "id": "local:3",
+            "connectorId": "local",
+            "title": "Echo",
+            "artist": "Gamma",
+            "album": null,
+            "durationSeconds": 0,
+            "sourceId": "local:3",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "0:00"
+          },
+          {
+            "id": "youtube:4",
+            "connectorId": "youtube_music",
+            "title": "夜に駆ける",
+            "artist": "YOASOBI",
+            "album": "THE BOOK",
+            "durationSeconds": 261,
+            "explicit": false,
+            "sourceId": "youtube:4",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:21"
+          },
+          {
+            "id": "direct:5",
+            "connectorId": "direct",
+            "title": "مرحبا",
+            "artist": "علي",
+            "album": "",
+            "durationSeconds": 120,
+            "explicit": null,
+            "sourceId": "direct:5",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "2:00"
+          },
+          {
+            "id": "other:6",
+            "connectorId": null,
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "other:6",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          }
+        ],
+        "filters": {
+          "query": "",
+          "genre": 0,
+          "source": "all",
+          "content": "all",
+          "sort": "default",
+          "descending": false,
+          "view": "list"
+        },
+        "metadata": {},
+        "genreTracks": {
+          "7": ["catalog:1", "local:3"]
+        }
+      },
+      "expected": []
+    },
+    {
+      "name": "genre/7",
+      "input": {
+        "operation": "filter",
+        "tracks": [
+          {
+            "id": "catalog:1",
+            "connectorId": "catalog",
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "catalog:1",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          },
+          {
+            "id": "subsonic:2",
+            "connectorId": "subsonic",
+            "title": "Cafe 2",
+            "artist": "Alpha",
+            "album": "Dawn",
+            "durationSeconds": 80,
+            "explicit": true,
+            "sourceId": "subsonic:2",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "1:20"
+          },
+          {
+            "id": "local:3",
+            "connectorId": "local",
+            "title": "Echo",
+            "artist": "Gamma",
+            "album": null,
+            "durationSeconds": 0,
+            "sourceId": "local:3",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "0:00"
+          },
+          {
+            "id": "youtube:4",
+            "connectorId": "youtube_music",
+            "title": "夜に駆ける",
+            "artist": "YOASOBI",
+            "album": "THE BOOK",
+            "durationSeconds": 261,
+            "explicit": false,
+            "sourceId": "youtube:4",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:21"
+          },
+          {
+            "id": "direct:5",
+            "connectorId": "direct",
+            "title": "مرحبا",
+            "artist": "علي",
+            "album": "",
+            "durationSeconds": 120,
+            "explicit": null,
+            "sourceId": "direct:5",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "2:00"
+          },
+          {
+            "id": "other:6",
+            "connectorId": null,
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "other:6",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          }
+        ],
+        "filters": {
+          "query": "",
+          "genre": 7,
+          "source": "all",
+          "content": "all",
+          "sort": "default",
+          "descending": false,
+          "view": "list"
+        },
+        "metadata": {},
+        "genreTracks": {
+          "7": ["catalog:1", "local:3"]
+        }
+      },
+      "expected": [
+        {
+          "id": "catalog:1",
+          "connectorId": "catalog",
+          "title": "Café 10",
+          "artist": "Alpha & Beta",
+          "album": "Night",
+          "durationSeconds": 240,
+          "explicit": false,
+          "sourceId": "catalog:1",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "4:00"
+        },
+        {
+          "id": "local:3",
+          "connectorId": "local",
+          "title": "Echo",
+          "artist": "Gamma",
+          "album": null,
+          "durationSeconds": 0,
+          "sourceId": "local:3",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "0:00"
+        }
+      ]
+    },
+    {
+      "name": "genre/99",
+      "input": {
+        "operation": "filter",
+        "tracks": [
+          {
+            "id": "catalog:1",
+            "connectorId": "catalog",
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "catalog:1",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          },
+          {
+            "id": "subsonic:2",
+            "connectorId": "subsonic",
+            "title": "Cafe 2",
+            "artist": "Alpha",
+            "album": "Dawn",
+            "durationSeconds": 80,
+            "explicit": true,
+            "sourceId": "subsonic:2",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "1:20"
+          },
+          {
+            "id": "local:3",
+            "connectorId": "local",
+            "title": "Echo",
+            "artist": "Gamma",
+            "album": null,
+            "durationSeconds": 0,
+            "sourceId": "local:3",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "0:00"
+          },
+          {
+            "id": "youtube:4",
+            "connectorId": "youtube_music",
+            "title": "夜に駆ける",
+            "artist": "YOASOBI",
+            "album": "THE BOOK",
+            "durationSeconds": 261,
+            "explicit": false,
+            "sourceId": "youtube:4",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:21"
+          },
+          {
+            "id": "direct:5",
+            "connectorId": "direct",
+            "title": "مرحبا",
+            "artist": "علي",
+            "album": "",
+            "durationSeconds": 120,
+            "explicit": null,
+            "sourceId": "direct:5",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "2:00"
+          },
+          {
+            "id": "other:6",
+            "connectorId": null,
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "other:6",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          }
+        ],
+        "filters": {
+          "query": "",
+          "genre": 99,
+          "source": "all",
+          "content": "all",
+          "sort": "default",
+          "descending": false,
+          "view": "list"
+        },
+        "metadata": {},
+        "genreTracks": {
+          "7": ["catalog:1", "local:3"]
+        }
+      },
+      "expected": []
+    },
+    {
+      "name": "recent/false",
+      "input": {
+        "operation": "filter",
+        "tracks": [
+          {
+            "id": "catalog:1",
+            "connectorId": "catalog",
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "catalog:1",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          },
+          {
+            "id": "subsonic:2",
+            "connectorId": "subsonic",
+            "title": "Cafe 2",
+            "artist": "Alpha",
+            "album": "Dawn",
+            "durationSeconds": 80,
+            "explicit": true,
+            "sourceId": "subsonic:2",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "1:20"
+          },
+          {
+            "id": "local:3",
+            "connectorId": "local",
+            "title": "Echo",
+            "artist": "Gamma",
+            "album": null,
+            "durationSeconds": 0,
+            "sourceId": "local:3",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "0:00"
+          },
+          {
+            "id": "youtube:4",
+            "connectorId": "youtube_music",
+            "title": "夜に駆ける",
+            "artist": "YOASOBI",
+            "album": "THE BOOK",
+            "durationSeconds": 261,
+            "explicit": false,
+            "sourceId": "youtube:4",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:21"
+          },
+          {
+            "id": "direct:5",
+            "connectorId": "direct",
+            "title": "مرحبا",
+            "artist": "علي",
+            "album": "",
+            "durationSeconds": 120,
+            "explicit": null,
+            "sourceId": "direct:5",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "2:00"
+          },
+          {
+            "id": "other:6",
+            "connectorId": null,
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "other:6",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          }
+        ],
+        "filters": {
+          "query": "",
+          "genre": null,
+          "source": "all",
+          "content": "all",
+          "sort": "added",
+          "descending": false,
+          "view": "list"
+        },
+        "metadata": {
+          "recentFirst": true
+        }
+      },
+      "expected": [
+        {
+          "id": "catalog:1",
+          "connectorId": "catalog",
+          "title": "Café 10",
+          "artist": "Alpha & Beta",
+          "album": "Night",
+          "durationSeconds": 240,
+          "explicit": false,
+          "sourceId": "catalog:1",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "4:00"
+        },
+        {
+          "id": "subsonic:2",
+          "connectorId": "subsonic",
+          "title": "Cafe 2",
+          "artist": "Alpha",
+          "album": "Dawn",
+          "durationSeconds": 80,
+          "explicit": true,
+          "sourceId": "subsonic:2",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "1:20"
+        },
+        {
+          "id": "local:3",
+          "connectorId": "local",
+          "title": "Echo",
+          "artist": "Gamma",
+          "album": null,
+          "durationSeconds": 0,
+          "sourceId": "local:3",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "0:00"
+        },
+        {
+          "id": "youtube:4",
+          "connectorId": "youtube_music",
+          "title": "夜に駆ける",
+          "artist": "YOASOBI",
+          "album": "THE BOOK",
+          "durationSeconds": 261,
+          "explicit": false,
+          "sourceId": "youtube:4",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "4:21"
+        },
+        {
+          "id": "direct:5",
+          "connectorId": "direct",
+          "title": "مرحبا",
+          "artist": "علي",
+          "album": "",
+          "durationSeconds": 120,
+          "explicit": null,
+          "sourceId": "direct:5",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "2:00"
+        },
+        {
+          "id": "other:6",
+          "connectorId": null,
+          "title": "Café 10",
+          "artist": "Alpha & Beta",
+          "album": "Night",
+          "durationSeconds": 240,
+          "explicit": false,
+          "sourceId": "other:6",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "4:00"
+        }
+      ]
+    },
+    {
+      "name": "recent/true",
+      "input": {
+        "operation": "filter",
+        "tracks": [
+          {
+            "id": "catalog:1",
+            "connectorId": "catalog",
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "catalog:1",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          },
+          {
+            "id": "subsonic:2",
+            "connectorId": "subsonic",
+            "title": "Cafe 2",
+            "artist": "Alpha",
+            "album": "Dawn",
+            "durationSeconds": 80,
+            "explicit": true,
+            "sourceId": "subsonic:2",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "1:20"
+          },
+          {
+            "id": "local:3",
+            "connectorId": "local",
+            "title": "Echo",
+            "artist": "Gamma",
+            "album": null,
+            "durationSeconds": 0,
+            "sourceId": "local:3",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "0:00"
+          },
+          {
+            "id": "youtube:4",
+            "connectorId": "youtube_music",
+            "title": "夜に駆ける",
+            "artist": "YOASOBI",
+            "album": "THE BOOK",
+            "durationSeconds": 261,
+            "explicit": false,
+            "sourceId": "youtube:4",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:21"
+          },
+          {
+            "id": "direct:5",
+            "connectorId": "direct",
+            "title": "مرحبا",
+            "artist": "علي",
+            "album": "",
+            "durationSeconds": 120,
+            "explicit": null,
+            "sourceId": "direct:5",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "2:00"
+          },
+          {
+            "id": "other:6",
+            "connectorId": null,
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "other:6",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          }
+        ],
+        "filters": {
+          "query": "",
+          "genre": null,
+          "source": "all",
+          "content": "all",
+          "sort": "added",
+          "descending": true,
+          "view": "list"
+        },
+        "metadata": {
+          "recentFirst": true
+        }
+      },
+      "expected": [
+        {
+          "id": "other:6",
+          "connectorId": null,
+          "title": "Café 10",
+          "artist": "Alpha & Beta",
+          "album": "Night",
+          "durationSeconds": 240,
+          "explicit": false,
+          "sourceId": "other:6",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "4:00"
+        },
+        {
+          "id": "direct:5",
+          "connectorId": "direct",
+          "title": "مرحبا",
+          "artist": "علي",
+          "album": "",
+          "durationSeconds": 120,
+          "explicit": null,
+          "sourceId": "direct:5",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "2:00"
+        },
+        {
+          "id": "youtube:4",
+          "connectorId": "youtube_music",
+          "title": "夜に駆ける",
+          "artist": "YOASOBI",
+          "album": "THE BOOK",
+          "durationSeconds": 261,
+          "explicit": false,
+          "sourceId": "youtube:4",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "4:21"
+        },
+        {
+          "id": "local:3",
+          "connectorId": "local",
+          "title": "Echo",
+          "artist": "Gamma",
+          "album": null,
+          "durationSeconds": 0,
+          "sourceId": "local:3",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "0:00"
+        },
+        {
+          "id": "subsonic:2",
+          "connectorId": "subsonic",
+          "title": "Cafe 2",
+          "artist": "Alpha",
+          "album": "Dawn",
+          "durationSeconds": 80,
+          "explicit": true,
+          "sourceId": "subsonic:2",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "1:20"
+        },
+        {
+          "id": "catalog:1",
+          "connectorId": "catalog",
+          "title": "Café 10",
+          "artist": "Alpha & Beta",
+          "album": "Night",
+          "durationSeconds": 240,
+          "explicit": false,
+          "sourceId": "catalog:1",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "4:00"
+        }
+      ]
+    },
+    {
+      "name": "view/list",
+      "input": {
+        "operation": "filter",
+        "tracks": [
+          {
+            "id": "catalog:1",
+            "connectorId": "catalog",
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "catalog:1",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          },
+          {
+            "id": "subsonic:2",
+            "connectorId": "subsonic",
+            "title": "Cafe 2",
+            "artist": "Alpha",
+            "album": "Dawn",
+            "durationSeconds": 80,
+            "explicit": true,
+            "sourceId": "subsonic:2",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "1:20"
+          },
+          {
+            "id": "local:3",
+            "connectorId": "local",
+            "title": "Echo",
+            "artist": "Gamma",
+            "album": null,
+            "durationSeconds": 0,
+            "sourceId": "local:3",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "0:00"
+          },
+          {
+            "id": "youtube:4",
+            "connectorId": "youtube_music",
+            "title": "夜に駆ける",
+            "artist": "YOASOBI",
+            "album": "THE BOOK",
+            "durationSeconds": 261,
+            "explicit": false,
+            "sourceId": "youtube:4",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:21"
+          },
+          {
+            "id": "direct:5",
+            "connectorId": "direct",
+            "title": "مرحبا",
+            "artist": "علي",
+            "album": "",
+            "durationSeconds": 120,
+            "explicit": null,
+            "sourceId": "direct:5",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "2:00"
+          },
+          {
+            "id": "other:6",
+            "connectorId": null,
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "other:6",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          }
+        ],
+        "filters": {
+          "query": "",
+          "genre": null,
+          "source": "local",
+          "content": "all",
+          "sort": "default",
+          "descending": false,
+          "view": "list"
+        },
+        "metadata": {}
+      },
+      "expected": [
+        {
+          "id": "local:3",
+          "connectorId": "local",
+          "title": "Echo",
+          "artist": "Gamma",
+          "album": null,
+          "durationSeconds": 0,
+          "sourceId": "local:3",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "0:00"
+        },
+        {
+          "id": "direct:5",
+          "connectorId": "direct",
+          "title": "مرحبا",
+          "artist": "علي",
+          "album": "",
+          "durationSeconds": 120,
+          "explicit": null,
+          "sourceId": "direct:5",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "2:00"
+        }
+      ]
+    },
+    {
+      "name": "view/compact",
+      "input": {
+        "operation": "filter",
+        "tracks": [
+          {
+            "id": "catalog:1",
+            "connectorId": "catalog",
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "catalog:1",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          },
+          {
+            "id": "subsonic:2",
+            "connectorId": "subsonic",
+            "title": "Cafe 2",
+            "artist": "Alpha",
+            "album": "Dawn",
+            "durationSeconds": 80,
+            "explicit": true,
+            "sourceId": "subsonic:2",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "1:20"
+          },
+          {
+            "id": "local:3",
+            "connectorId": "local",
+            "title": "Echo",
+            "artist": "Gamma",
+            "album": null,
+            "durationSeconds": 0,
+            "sourceId": "local:3",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "0:00"
+          },
+          {
+            "id": "youtube:4",
+            "connectorId": "youtube_music",
+            "title": "夜に駆ける",
+            "artist": "YOASOBI",
+            "album": "THE BOOK",
+            "durationSeconds": 261,
+            "explicit": false,
+            "sourceId": "youtube:4",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:21"
+          },
+          {
+            "id": "direct:5",
+            "connectorId": "direct",
+            "title": "مرحبا",
+            "artist": "علي",
+            "album": "",
+            "durationSeconds": 120,
+            "explicit": null,
+            "sourceId": "direct:5",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "2:00"
+          },
+          {
+            "id": "other:6",
+            "connectorId": null,
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "other:6",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          }
+        ],
+        "filters": {
+          "query": "",
+          "genre": null,
+          "source": "local",
+          "content": "all",
+          "sort": "default",
+          "descending": false,
+          "view": "compact"
+        },
+        "metadata": {}
+      },
+      "expected": [
+        {
+          "id": "local:3",
+          "connectorId": "local",
+          "title": "Echo",
+          "artist": "Gamma",
+          "album": null,
+          "durationSeconds": 0,
+          "sourceId": "local:3",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "0:00"
+        },
+        {
+          "id": "direct:5",
+          "connectorId": "direct",
+          "title": "مرحبا",
+          "artist": "علي",
+          "album": "",
+          "durationSeconds": 120,
+          "explicit": null,
+          "sourceId": "direct:5",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "2:00"
+        }
+      ]
+    },
+    {
+      "name": "source order",
+      "input": {
+        "operation": "sources",
+        "tracks": [
+          {
+            "id": "catalog:1",
+            "connectorId": "catalog",
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "catalog:1",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          },
+          {
+            "id": "subsonic:2",
+            "connectorId": "subsonic",
+            "title": "Cafe 2",
+            "artist": "Alpha",
+            "album": "Dawn",
+            "durationSeconds": 80,
+            "explicit": true,
+            "sourceId": "subsonic:2",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "1:20"
+          },
+          {
+            "id": "local:3",
+            "connectorId": "local",
+            "title": "Echo",
+            "artist": "Gamma",
+            "album": null,
+            "durationSeconds": 0,
+            "sourceId": "local:3",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "0:00"
+          },
+          {
+            "id": "youtube:4",
+            "connectorId": "youtube_music",
+            "title": "夜に駆ける",
+            "artist": "YOASOBI",
+            "album": "THE BOOK",
+            "durationSeconds": 261,
+            "explicit": false,
+            "sourceId": "youtube:4",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:21"
+          },
+          {
+            "id": "direct:5",
+            "connectorId": "direct",
+            "title": "مرحبا",
+            "artist": "علي",
+            "album": "",
+            "durationSeconds": 120,
+            "explicit": null,
+            "sourceId": "direct:5",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "2:00"
+          },
+          {
+            "id": "other:6",
+            "connectorId": null,
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "other:6",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          }
+        ]
+      },
+      "expected": ["catalog", "subsonic", "local", "youtube", "other"]
+    },
+    {
+      "name": "label/youtube_music",
+      "input": {
+        "operation": "label",
+        "source": "youtube_music"
+      },
+      "expected": "YouTube Music"
+    },
+    {
+      "name": "label/subsonic",
+      "input": {
+        "operation": "label",
+        "source": "subsonic"
+      },
+      "expected": "Subsonic"
+    },
+    {
+      "name": "label/local",
+      "input": {
+        "operation": "label",
+        "source": "local"
+      },
+      "expected": "Local files"
+    },
+    {
+      "name": "label/custom-service",
+      "input": {
+        "operation": "label",
+        "source": "custom-service"
+      },
+      "expected": "Custom service"
+    },
+    {
+      "name": "label/",
+      "input": {
+        "operation": "label",
+        "source": ""
+      },
+      "expected": ""
+    },
+    {
+      "name": "identity/catalog:1",
+      "input": {
+        "operation": "identity",
+        "track": {
+          "id": "catalog:1",
+          "connectorId": "catalog",
+          "title": "Café 10",
+          "artist": "Alpha & Beta",
+          "album": "Night",
+          "durationSeconds": 240,
+          "explicit": false,
+          "sourceId": "catalog:1",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "4:00"
+        }
+      },
+      "expected": "cafe 10::alpha"
+    },
+    {
+      "name": "identity/subsonic:2",
+      "input": {
+        "operation": "identity",
+        "track": {
+          "id": "subsonic:2",
+          "connectorId": "subsonic",
+          "title": "Cafe 2",
+          "artist": "Alpha",
+          "album": "Dawn",
+          "durationSeconds": 80,
+          "explicit": true,
+          "sourceId": "subsonic:2",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "1:20"
+        }
+      },
+      "expected": "cafe 2::alpha"
+    },
+    {
+      "name": "identity/local:3",
+      "input": {
+        "operation": "identity",
+        "track": {
+          "id": "local:3",
+          "connectorId": "local",
+          "title": "Echo",
+          "artist": "Gamma",
+          "album": null,
+          "durationSeconds": 0,
+          "sourceId": "local:3",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "0:00"
+        }
+      },
+      "expected": "echo::gamma"
+    },
+    {
+      "name": "identity/youtube:4",
+      "input": {
+        "operation": "identity",
+        "track": {
+          "id": "youtube:4",
+          "connectorId": "youtube_music",
+          "title": "夜に駆ける",
+          "artist": "YOASOBI",
+          "album": "THE BOOK",
+          "durationSeconds": 261,
+          "explicit": false,
+          "sourceId": "youtube:4",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "4:21"
+        }
+      },
+      "expected": "夜に駆ける::yoasobi"
+    },
+    {
+      "name": "identity/direct:5",
+      "input": {
+        "operation": "identity",
+        "track": {
+          "id": "direct:5",
+          "connectorId": "direct",
+          "title": "مرحبا",
+          "artist": "علي",
+          "album": "",
+          "durationSeconds": 120,
+          "explicit": null,
+          "sourceId": "direct:5",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "2:00"
+        }
+      },
+      "expected": "مرحبا::علي"
+    },
+    {
+      "name": "identity/other:6",
+      "input": {
+        "operation": "identity",
+        "track": {
+          "id": "other:6",
+          "connectorId": null,
+          "title": "Café 10",
+          "artist": "Alpha & Beta",
+          "album": "Night",
+          "durationSeconds": 240,
+          "explicit": false,
+          "sourceId": "other:6",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "4:00"
+        }
+      },
+      "expected": "cafe 10::alpha"
+    },
+    {
+      "name": "saved/recent tray identity",
+      "input": {
+        "operation": "addable",
+        "tracks": [
+          {
+            "id": "catalog:1",
+            "connectorId": "catalog",
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "catalog:1",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          }
+        ],
+        "candidates": [
+          {
+            "id": "catalog:1",
+            "connectorId": "catalog",
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "catalog:1",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          },
+          {
+            "id": "subsonic:2",
+            "connectorId": "subsonic",
+            "title": "Cafe 2",
+            "artist": "Alpha",
+            "album": "Dawn",
+            "durationSeconds": 80,
+            "explicit": true,
+            "sourceId": "subsonic:2",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "1:20"
+          },
+          {
+            "id": "subsonic:2",
+            "connectorId": "subsonic",
+            "title": "Cafe 2",
+            "artist": "Alpha",
+            "album": "Dawn",
+            "durationSeconds": 80,
+            "explicit": true,
+            "sourceId": "subsonic:2",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "1:20"
+          },
+          {
+            "id": "other:6",
+            "connectorId": null,
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "other:6",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          },
+          {
+            "id": "local:3",
+            "connectorId": "local",
+            "title": "Echo",
+            "artist": "Gamma",
+            "album": null,
+            "durationSeconds": 0,
+            "sourceId": "local:3",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "0:00",
+            "collectionOrigin": {
+              "id": "catalog:1",
+              "title": "Café 10",
+              "artist": "Alpha & Beta"
+            }
+          },
+          {
+            "id": "local:3",
+            "connectorId": "local",
+            "title": "Echo",
+            "artist": "Gamma",
+            "album": null,
+            "durationSeconds": 0,
+            "sourceId": "local:3",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "0:00"
+          }
+        ]
+      },
+      "expected": [
+        {
+          "id": "subsonic:2",
+          "connectorId": "subsonic",
+          "title": "Cafe 2",
+          "artist": "Alpha",
+          "album": "Dawn",
+          "durationSeconds": 80,
+          "explicit": true,
+          "sourceId": "subsonic:2",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "1:20"
+        },
+        {
+          "id": "local:3",
+          "connectorId": "local",
+          "title": "Echo",
+          "artist": "Gamma",
+          "album": null,
+          "durationSeconds": 0,
+          "sourceId": "local:3",
+          "playbackUrl": null,
+          "artwork": "",
+          "durationLabel": "0:00"
+        }
+      ]
+    },
+    {
+      "name": "empty tray 0",
+      "input": {
+        "operation": "addable",
+        "tracks": [],
+        "candidates": []
+      },
+      "expected": []
+    },
+    {
+      "name": "empty tray 6",
+      "input": {
+        "operation": "addable",
+        "tracks": [
+          {
+            "id": "catalog:1",
+            "connectorId": "catalog",
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "catalog:1",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          },
+          {
+            "id": "subsonic:2",
+            "connectorId": "subsonic",
+            "title": "Cafe 2",
+            "artist": "Alpha",
+            "album": "Dawn",
+            "durationSeconds": 80,
+            "explicit": true,
+            "sourceId": "subsonic:2",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "1:20"
+          },
+          {
+            "id": "local:3",
+            "connectorId": "local",
+            "title": "Echo",
+            "artist": "Gamma",
+            "album": null,
+            "durationSeconds": 0,
+            "sourceId": "local:3",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "0:00"
+          },
+          {
+            "id": "youtube:4",
+            "connectorId": "youtube_music",
+            "title": "夜に駆ける",
+            "artist": "YOASOBI",
+            "album": "THE BOOK",
+            "durationSeconds": 261,
+            "explicit": false,
+            "sourceId": "youtube:4",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:21"
+          },
+          {
+            "id": "direct:5",
+            "connectorId": "direct",
+            "title": "مرحبا",
+            "artist": "علي",
+            "album": "",
+            "durationSeconds": 120,
+            "explicit": null,
+            "sourceId": "direct:5",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "2:00"
+          },
+          {
+            "id": "other:6",
+            "connectorId": null,
+            "title": "Café 10",
+            "artist": "Alpha & Beta",
+            "album": "Night",
+            "durationSeconds": 240,
+            "explicit": false,
+            "sourceId": "other:6",
+            "playbackUrl": null,
+            "artwork": "",
+            "durationLabel": "4:00"
+          }
+        ],
+        "candidates": []
+      },
+      "expected": []
+    }
+  ]
+}

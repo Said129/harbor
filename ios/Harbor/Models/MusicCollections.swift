@@ -54,6 +54,11 @@ struct MusicCollectionsDocument: Codable, Equatable, Sendable {
         let lookup = Dictionary(library.map { ($0.id, $0) }, uniquingKeysWith: { first, _ in first })
         return (documents[owner]?.identifiers(collection) ?? []).compactMap { lookup[$0] }
     }
+    func tracks(_ collection: MusicPersonalCollection, store: MusicPlaylistStore, library: [MusicRecord], owner: String) -> [MusicTrack] {
+        guard store.owner == owner else { return [] }
+        let imported = Dictionary(library.map { ($0.id, $0.local.track) }, uniquingKeysWith: { first, _ in first })
+        return (documents[owner]?.identifiers(collection) ?? []).compactMap { store.tracks[$0] ?? imported[$0] }
+    }
     @discardableResult func setLiked(_ id: String, liked: Bool, owner: String) -> Bool {
         change(owner: owner) { value in
             value.liked.removeAll { $0 == id }

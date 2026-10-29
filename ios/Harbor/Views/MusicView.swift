@@ -207,12 +207,13 @@ struct MusicTrackActions: View {
 struct MusicCover: View {
     var record: MusicRecord?
     var owner = "guest"
+    var cornerRadius: CGFloat = 8
     @State private var image: UIImage?
     var body: some View {
         ZStack {
             if let image { BoundedArtworkImage(image: image, fit: .fill) }
             else { Image("music-music").resizable().scaledToFit().padding(12).background(HarborTheme.surface) }
-        }.clipShape(.rect(cornerRadius: 8)).accessibilityHidden(true).task(id: owner + "|" + (record?.filename ?? "")) {
+        }.clipShape(.rect(cornerRadius: cornerRadius)).accessibilityHidden(true).task(id: owner + "|" + (record?.filename ?? "")) {
             image = nil
             if let record, let data = try? await MusicFileService.shared.artwork(record, owner: owner) { image = UIImage(data: data) }
         }

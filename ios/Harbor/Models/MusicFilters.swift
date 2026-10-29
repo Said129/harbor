@@ -1,6 +1,6 @@
 import Foundation
 
-enum MusicSort: String, CaseIterable, Identifiable {
+enum MusicSort: String, CaseIterable, Identifiable, Codable, Sendable {
     case original = "default", added, title, artist, album, duration
     var id: String { rawValue }
     var title: String {
@@ -14,7 +14,7 @@ enum MusicSort: String, CaseIterable, Identifiable {
         }
     }
 }
-enum MusicContentFilter: String, CaseIterable, Identifiable {
+enum MusicContentFilter: String, CaseIterable, Identifiable, Codable, Sendable {
     case all, clean, explicit
     var id: String { rawValue }
     var title: String {

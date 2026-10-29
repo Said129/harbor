@@ -130,7 +130,7 @@ import XCTest
         var comparisons = 0
         for language in fixture["languages"].array {
             let code = try XCTUnwrap(language["code"].string)
-            for (key, value) in language["expected"].object {
+            for (key, value) in language["expected"].objectValue {
                 XCTAssertEqual(DesktopInterfaceText.value(key, language: code), try XCTUnwrap(value.string), code + ": " + key); comparisons += 1
             }
         }

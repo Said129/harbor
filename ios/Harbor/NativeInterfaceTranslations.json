@@ -114,7 +114,10 @@
     "music.mobile.moreInfo": "Más información",
     "music.mobile.options": "Opciones",
     "music.mobile.scrobbleError": "No se pudo registrar la escucha de esta canción.",
-    "music.mobile.queueLimit": "La cola admite hasta 500 canciones."
+    "music.mobile.queueLimit": "La cola admite hasta 500 canciones.",
+    "music.mobile.reverseOrder": "Orden inverso",
+    "music.mobile.missingFile": "Archivo fuera de la biblioteca",
+    "music.mobile.playlistUnavailable": "Esta lista ya no está disponible."
   },
   "pt": {
     "Auto-sync": "Sincronização automática",
@@ -179,7 +182,10 @@
     "music.mobile.moreInfo": "Mais informações",
     "music.mobile.options": "Opções",
     "music.mobile.scrobbleError": "Não foi possível registar a audição desta música.",
-    "music.mobile.queueLimit": "A fila pode conter até 500 músicas."
+    "music.mobile.queueLimit": "A fila pode conter até 500 músicas.",
+    "music.mobile.reverseOrder": "Ordem inversa",
+    "music.mobile.missingFile": "O ficheiro não está na sua biblioteca",
+    "music.mobile.playlistUnavailable": "Esta playlist já não está disponível."
   },
   "ru": {
     "Auto-sync": "Автосинхронизация",
@@ -243,7 +249,10 @@
     "music.mobile.moreInfo": "Подробнее",
     "music.mobile.options": "Параметры",
     "music.mobile.scrobbleError": "Не удалось отправить историю прослушивания этой композиции.",
-    "music.mobile.queueLimit": "Очередь вмещает до 500 композиций."
+    "music.mobile.queueLimit": "Очередь вмещает до 500 композиций.",
+    "music.mobile.reverseOrder": "Обратный порядок",
+    "music.mobile.missingFile": "Файл отсутствует в вашей библиотеке",
+    "music.mobile.playlistUnavailable": "Этот плейлист больше недоступен."
   },
   "ar": {
     "Auto-sync": "مزامنة تلقائية",
@@ -307,7 +316,10 @@
     "music.mobile.moreInfo": "مزيد من المعلومات",
     "music.mobile.options": "خيارات",
     "music.mobile.scrobbleError": "تعذّر تسجيل الاستماع إلى هذا المقطع.",
-    "music.mobile.queueLimit": "تتّسع قائمة الانتظار لما يصل إلى 500 أغنية."
+    "music.mobile.queueLimit": "تتّسع قائمة الانتظار لما يصل إلى 500 أغنية.",
+    "music.mobile.reverseOrder": "عكس الترتيب",
+    "music.mobile.missingFile": "الملف غير موجود في مكتبتك",
+    "music.mobile.playlistUnavailable": "قائمة التشغيل هذه لم تعد متاحة."
   },
   "zh": {
     "Couldn't auto-sync": "无法自动同步",
@@ -343,7 +355,10 @@
     "music.mobile.moreInfo": "更多信息",
     "music.mobile.options": "选项",
     "music.mobile.scrobbleError": "无法记录这首歌的收听记录。",
-    "music.mobile.queueLimit": "播放队列最多可容纳 500 首歌曲。"
+    "music.mobile.queueLimit": "播放队列最多可容纳 500 首歌曲。",
+    "music.mobile.reverseOrder": "反向排序",
+    "music.mobile.missingFile": "文件不在你的媒体库中",
+    "music.mobile.playlistUnavailable": "此播放列表已不可用。"
   },
   "fr": {
     "Couldn't auto-sync": "Synchronisation automatique impossible",
@@ -379,7 +394,10 @@
     "music.mobile.moreInfo": "Plus d’informations",
     "music.mobile.options": "Options",
     "music.mobile.scrobbleError": "Impossible d’enregistrer l’écoute de ce titre.",
-    "music.mobile.queueLimit": "La file peut contenir jusqu’à 500 titres."
+    "music.mobile.queueLimit": "La file peut contenir jusqu’à 500 titres.",
+    "music.mobile.reverseOrder": "Ordre inverse",
+    "music.mobile.missingFile": "Le fichier est absent de votre bibliothèque",
+    "music.mobile.playlistUnavailable": "Cette playlist n’est plus disponible."
   },
   "de": {
     "Couldn't auto-sync": "Automatische Synchronisierung nicht möglich",
@@ -415,7 +433,10 @@
     "music.mobile.moreInfo": "Weitere Informationen",
     "music.mobile.options": "Optionen",
     "music.mobile.scrobbleError": "Das Hören dieses Titels konnte nicht erfasst werden.",
-    "music.mobile.queueLimit": "Die Warteschlange kann bis zu 500 Titel enthalten."
+    "music.mobile.queueLimit": "Die Warteschlange kann bis zu 500 Titel enthalten.",
+    "music.mobile.reverseOrder": "Umgekehrte Reihenfolge",
+    "music.mobile.missingFile": "Die Datei befindet sich nicht in deiner Bibliothek",
+    "music.mobile.playlistUnavailable": "Diese Playlist ist nicht mehr verfügbar."
   },
   "hi": {
     "Couldn't auto-sync": "अपने-आप सिंक नहीं हो सका",
@@ -451,7 +472,10 @@
     "music.mobile.moreInfo": "अधिक जानकारी",
     "music.mobile.options": "विकल्प",
     "music.mobile.scrobbleError": "इस गाने का सुनने का रिकॉर्ड दर्ज नहीं हो सका।",
-    "music.mobile.queueLimit": "कतार में अधिकतम 500 गाने रखे जा सकते हैं।"
+    "music.mobile.queueLimit": "कतार में अधिकतम 500 गाने रखे जा सकते हैं।",
+    "music.mobile.reverseOrder": "उल्टा क्रम",
+    "music.mobile.missingFile": "फ़ाइल आपकी लाइब्रेरी में नहीं है",
+    "music.mobile.playlistUnavailable": "यह प्लेलिस्ट अब उपलब्ध नहीं है।"
   },
   "id": {
     "Couldn't auto-sync": "Tidak dapat menyinkronkan otomatis",
@@ -487,7 +511,10 @@
     "music.mobile.moreInfo": "Info lainnya",
     "music.mobile.options": "Opsi",
     "music.mobile.scrobbleError": "Tidak dapat mencatat pemutaran lagu ini.",
-    "music.mobile.queueLimit": "Antrean dapat memuat hingga 500 lagu."
+    "music.mobile.queueLimit": "Antrean dapat memuat hingga 500 lagu.",
+    "music.mobile.reverseOrder": "Urutan terbalik",
+    "music.mobile.missingFile": "File berada di luar pustakamu",
+    "music.mobile.playlistUnavailable": "Playlist ini tidak lagi tersedia."
   },
   "it": {
     "Couldn't auto-sync": "Sincronizzazione automatica non riuscita",
@@ -523,7 +550,10 @@
     "music.mobile.moreInfo": "Altre informazioni",
     "music.mobile.options": "Opzioni",
     "music.mobile.scrobbleError": "Impossibile registrare l’ascolto di questo brano.",
-    "music.mobile.queueLimit": "La coda può contenere fino a 500 brani."
+    "music.mobile.queueLimit": "La coda può contenere fino a 500 brani.",
+    "music.mobile.reverseOrder": "Ordine inverso",
+    "music.mobile.missingFile": "Il file non è nella tua libreria",
+    "music.mobile.playlistUnavailable": "Questa playlist non è più disponibile."
   },
   "ja": {
     "Couldn't auto-sync": "自動同期できませんでした",
@@ -559,7 +589,10 @@
     "music.mobile.moreInfo": "詳細情報",
     "music.mobile.options": "オプション",
     "music.mobile.scrobbleError": "この曲の再生履歴を送信できませんでした。",
-    "music.mobile.queueLimit": "再生キューには最大500曲を追加できます。"
+    "music.mobile.queueLimit": "再生キューには最大500曲を追加できます。",
+    "music.mobile.reverseOrder": "逆順",
+    "music.mobile.missingFile": "ファイルがライブラリにありません",
+    "music.mobile.playlistUnavailable": "このプレイリストは利用できなくなりました。"
   },
   "ko": {
     "Couldn't auto-sync": "자동 동기화하지 못했습니다",
@@ -595,7 +628,10 @@
     "music.mobile.moreInfo": "추가 정보",
     "music.mobile.options": "옵션",
     "music.mobile.scrobbleError": "이 곡의 청취 기록을 전송하지 못했습니다.",
-    "music.mobile.queueLimit": "대기열에는 최대 500곡을 담을 수 있습니다."
+    "music.mobile.queueLimit": "대기열에는 최대 500곡을 담을 수 있습니다.",
+    "music.mobile.reverseOrder": "역순",
+    "music.mobile.missingFile": "라이브러리에 파일이 없습니다",
+    "music.mobile.playlistUnavailable": "이 재생목록은 더 이상 사용할 수 없습니다."
   },
   "pl": {
     "Couldn't auto-sync": "Nie udało się zsynchronizować automatycznie",
@@ -631,7 +667,10 @@
     "music.mobile.moreInfo": "Więcej informacji",
     "music.mobile.options": "Opcje",
     "music.mobile.scrobbleError": "Nie udało się zapisać odsłuchania tego utworu.",
-    "music.mobile.queueLimit": "Kolejka może pomieścić do 500 utworów."
+    "music.mobile.queueLimit": "Kolejka może pomieścić do 500 utworów.",
+    "music.mobile.reverseOrder": "Odwrócona kolejność",
+    "music.mobile.missingFile": "Pliku nie ma w bibliotece",
+    "music.mobile.playlistUnavailable": "Ta playlista nie jest już dostępna."
   },
   "tr": {
     "Couldn't auto-sync": "Otomatik eşitlenemedi",
@@ -667,7 +706,10 @@
     "music.mobile.moreInfo": "Daha fazla bilgi",
     "music.mobile.options": "Seçenekler",
     "music.mobile.scrobbleError": "Bu parçanın dinleme kaydı gönderilemedi.",
-    "music.mobile.queueLimit": "Kuyruk en fazla 500 şarkı içerebilir."
+    "music.mobile.queueLimit": "Kuyruk en fazla 500 şarkı içerebilir.",
+    "music.mobile.reverseOrder": "Ters sıralama",
+    "music.mobile.missingFile": "Dosya kitaplığında değil",
+    "music.mobile.playlistUnavailable": "Bu çalma listesi artık kullanılamıyor."
   },
   "vi": {
     "Couldn't auto-sync": "Không thể tự động đồng bộ",
@@ -703,7 +745,10 @@
     "music.mobile.moreInfo": "Thông tin thêm",
     "music.mobile.options": "Tùy chọn",
     "music.mobile.scrobbleError": "Không thể ghi nhận lượt nghe bài hát này.",
-    "music.mobile.queueLimit": "Hàng đợi có thể chứa tối đa 500 bài hát."
+    "music.mobile.queueLimit": "Hàng đợi có thể chứa tối đa 500 bài hát.",
+    "music.mobile.reverseOrder": "Đảo thứ tự",
+    "music.mobile.missingFile": "Tệp không có trong thư viện của bạn",
+    "music.mobile.playlistUnavailable": "Danh sách phát này không còn khả dụng."
   },
   "en": {
     "Browse services": "Browse services",
@@ -776,6 +821,9 @@
     "music.mobile.moreInfo": "More info",
     "music.mobile.options": "Options",
     "music.mobile.scrobbleError": "Could not scrobble this track.",
-    "music.mobile.queueLimit": "The queue can hold up to 500 songs."
+    "music.mobile.queueLimit": "The queue can hold up to 500 songs.",
+    "music.mobile.reverseOrder": "Reverse order",
+    "music.mobile.missingFile": "File is outside your library",
+    "music.mobile.playlistUnavailable": "This playlist is no longer available."
   }
 }

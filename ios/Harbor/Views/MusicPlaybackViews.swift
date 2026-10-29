@@ -137,6 +137,14 @@ extension EnvironmentValues {
     let track: MusicTrack
     let session: MusicPlaybackSession
     var body: some View {
+        let collections = MusicCollections.shared
+        let liked = collections.isLiked(track.id, owner: session.scope.owner)
+        Button {
+            guard (try? session.validate()) != nil, session.playlists.remember([track]) else { return }
+            collections.setLiked(track.id, liked: !liked, owner: session.scope.owner)
+        } label: {
+            Label(DesktopInterfaceText.value(liked ? "Remove from saved tracks" : "Save track"), systemImage: liked ? "heart.slash" : "heart")
+        }.disabled(!session.playlists.ready).accessibilityIdentifier("music-shared-like")
         Button(DesktopInterfaceText.value("music.queue.playNext")) { MusicPlayback.shared.enqueue(track, using: session, next: true) }
         Button(DesktopInterfaceText.value("music.card.addToQueue")) { MusicPlayback.shared.enqueue(track, using: session) }
         Menu(DesktopInterfaceText.value("music.card.addToPlaylist")) {
