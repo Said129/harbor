@@ -170,7 +170,7 @@ fn listens(count: u64) -> String {
     let raw = count.to_string();
     let mut grouped = String::new();
     for (index, character) in raw.chars().enumerate() {
-        if index > 0 && (raw.len() - index) % 3 == 0 {
+        if index > 0 && (raw.len() - index).is_multiple_of(3) {
             grouped.push(',');
         }
         grouped.push(character);

@@ -106,7 +106,7 @@ impl MusicRowLayout {
         }
     }
 
-    pub fn from_str(value: &str) -> Self {
+    pub fn from_name(value: &str) -> Self {
         match value {
             "circles" => Self::Circles,
             "trackGrid" => Self::TrackGrid,
@@ -279,7 +279,7 @@ mod tests {
         ] {
             assert_eq!(serde_json::to_value(layout).expect("layout"), expected);
             assert_eq!(layout.as_str(), expected);
-            assert_eq!(MusicRowLayout::from_str(expected), layout);
+            assert_eq!(MusicRowLayout::from_name(expected), layout);
         }
     }
 
