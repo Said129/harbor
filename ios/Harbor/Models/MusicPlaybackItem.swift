@@ -10,6 +10,7 @@ struct MusicPlaybackItem: Identifiable, Hashable, Sendable {
 struct MusicPlaybackResolution: Sendable {
     let stream: MusicAudioStream
     let valid: @MainActor @Sendable () -> Bool
+    var recording: MusicTrack? = nil
 }
 @MainActor protocol MusicPlaybackResolving: AnyObject {
     var scope: PluginExecutionScope { get }

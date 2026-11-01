@@ -37,12 +37,10 @@ actor MusicFileService {
         let values = try input.resourceValues(forKeys: [.isRegularFileKey, .isSymbolicLinkKey, .fileSizeKey])
         let ext = input.pathExtension.lowercased()
         guard Self.extensions.contains(ext), values.isRegularFile == true, values.isSymbolicLink != true,
-              let size = values.fileSize, size > 0, size <= 512 * 1024 * 1024 else { throw HarborError(code: "music-file") }
+              let size = values.fileSize, size > 0 else { throw HarborError(code: "music-file") }
         let root = try Self.root(owner: owner)
-        let owned = try FileManager.default.contentsOfDirectory(at: root, includingPropertiesForKeys: [.fileSizeKey], options: [.skipsHiddenFiles])
-        guard owned.count < 1_000 else { throw HarborError(code: "music-capacity") }
-        let used = try owned.reduce(Int64(0)) { try $0 + Int64($1.resourceValues(forKeys: [.fileSizeKey]).fileSize ?? 0) }
-        guard used + Int64(size) <= 4 * 1024 * 1024 * 1024 else { throw HarborError(code: "music-capacity") }
+        let capacity = try? root.resourceValues(forKeys: [.volumeAvailableCapacityForImportantUsageKey]).volumeAvailableCapacityForImportantUsage
+        if let capacity, capacity < Int64(size) { throw HarborError(code: "music-capacity") }
         let staging = root.appendingPathComponent("." + UUID().uuidString + ".import")
         defer { try? FileManager.default.removeItem(at: staging) }
         guard FileManager.default.createFile(atPath: staging.path, contents: nil, attributes: [.protectionKey: FileProtectionType.completeUntilFirstUserAuthentication]) else { throw HarborError(code: "music-file") }

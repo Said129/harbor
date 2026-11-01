@@ -24,6 +24,8 @@ struct MusicQueueOrigin: Equatable, Sendable { let kind: String; let id: String;
     var queue: [MusicRecord] { items.compactMap(\.localRecord) }
     var current: MusicRecord? { currentItem?.localRecord }
     var currentTrack: MusicTrack? { currentItem?.track }
+    var lyricsClient: MusicLyricsClient? { (resolver as? MusicPlaybackSession)?.lyrics }
+    var playbackSession: MusicPlaybackSession? { resolver as? MusicPlaybackSession }
     private(set) var position = 0.0
     private(set) var duration = 0.0
     private(set) var paused = true
@@ -67,6 +69,7 @@ struct MusicQueueOrigin: Equatable, Sendable { let kind: String; let id: String;
     @ObservationIgnored private var startedAt: UInt64 = 0
     @ObservationIgnored private var scrobbleStarted = false
     @ObservationIgnored private var recorded = false
+    @ObservationIgnored private var pendingResume: Double?
     init(engine: any MusicAudioEngineOperating = MusicAudioEngine(), systemIntegration: Bool = true,
          recordPlayed: (@MainActor (MusicTrack, String) -> Void)? = nil) {
         self.engine = engine; self.systemIntegration = systemIntegration
@@ -104,11 +107,12 @@ struct MusicQueueOrigin: Equatable, Sendable { let kind: String; let id: String;
         if !continuing { try? order.reset(); priority = nil }
         self.origin = origin; start(item)
     }
-    private func start(_ item: MusicPlaybackItem) {
+    private func start(_ item: MusicPlaybackItem, resuming position: Double = 0, paused: Bool = false) {
         submitScrobbleIfEligible()
         request &+= 1; let token = request, loadedOwner = owner, session = resolver
         resolutionTask?.cancel(); poller?.cancel(); poller = nil; resolution = nil
-        currentItem = item; loaded = false; resolving = true; paused = true; desiredPause = false
+        currentItem = item; loaded = false; resolving = true; self.paused = true; desiredPause = paused
+        pendingResume = position.isFinite && position > 0 ? position : nil
         pausedForVideo = false; ended = false; error = nil; scrobbleError = nil
         position = 0; duration = Double(item.track.durationSeconds)
         previousPosition = nil; listened = 0; scrobbleStarted = false; recorded = false
@@ -127,6 +131,11 @@ struct MusicQueueOrigin: Equatable, Sendable { let kind: String; let id: String;
                 } else { throw HarborError(code: "music-source-required") }
                 try Task.checkCancellation()
                 guard request == token, resolved.valid() else { throw CancellationError() }
+                if let recording = resolved.recording {
+                    let replacement = MusicPlaybackItem(track: recording, localRecord: session?.localRecord(recording))
+                    if let index = items.firstIndex(where: { $0.id == item.id }) { items[index] = replacement }
+                    currentItem = replacement; duration = Double(recording.durationSeconds); refreshUpcoming()
+                }
                 if !desiredPause { try activateAudio() }
                 resolution = resolved
                 try await engine.open(resolved.stream, request: token, volume: volume, paused: desiredPause)
@@ -143,6 +152,7 @@ struct MusicQueueOrigin: Equatable, Sendable { let kind: String; let id: String;
         }
     }
     private func activateAudio() throws {
+        SpotifyMusicService.active?.pauseForVideo()
         try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
         try AVAudioSession.sharedInstance().setActive(true)
     }
@@ -163,6 +173,13 @@ struct MusicQueueOrigin: Equatable, Sendable { let kind: String; let id: String;
     }
     func changeVolume(_ value: Double) {
         guard value.isFinite else { return }; volume = min(100, max(0, value)); send(.volume(volume))
+    }
+    func switchSource(_ track: MusicTrack) throws {
+        guard let session = playbackSession, let currentItem, let index = items.firstIndex(where: { $0.id == currentItem.id }) else { throw HarborError(code: "music-source-required") }
+        let selected = try session.choose(track, for: currentItem.track)
+        let item = MusicPlaybackItem(track: selected, localRecord: session.localRecord(selected))
+        items[index] = item
+        start(item, resuming: position, paused: paused)
     }
     private func send(_ command: MusicAudioCommand) {
         let token = request
@@ -239,6 +256,7 @@ struct MusicQueueOrigin: Equatable, Sendable { let kind: String; let id: String;
         items = []; currentItem = nil; upcomingItems = []; priority = nil; origin = nil; resolution = nil
         loaded = false; resolving = false; paused = true; pausedForVideo = false; position = 0; duration = 0; ended = false
         error = nil; scrobbleError = nil; previousPosition = nil; listened = 0; try? order.reset()
+        pendingResume = nil
         if systemIntegration { MPNowPlayingInfoCenter.default().nowPlayingInfo = nil; setRemoteEnabled(false) }
     }
     private func startPolling(_ token: UInt64) {
@@ -262,6 +280,7 @@ struct MusicQueueOrigin: Equatable, Sendable { let kind: String; let id: String;
             case .started: loaded = false; position = 0; previousPosition = nil
             case .loaded:
                 loaded = true; error = nil
+                if let position = pendingResume { pendingResume = nil; send(.seek(position)) }
                 if !recorded, let track = currentTrack { recorded = true; recordPlayed(track, owner) }
             case .time(let value):
                 guard value.isFinite, value >= 0, loaded else { continue }

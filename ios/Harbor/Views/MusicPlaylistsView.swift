@@ -5,11 +5,16 @@ import SwiftUI
     let store: MusicPlaylistStore
     let query: String
     @State private var creating = false
+    @State private var importingM3U = false
+    @State private var importNotice: String?
     private var lists: [MusicPlaylist] { store.owner == library.owner ? store.playlists.filter { query.isEmpty || $0.name.localizedCaseInsensitiveContains(query) } : [] }
     var body: some View {
         List {
             MusicPersonalCollectionLinks(library: library, playlists: store, query: query)
             Button { creating = true } label: { Label(DesktopInterfaceText.value("music.playlist.create"), image: "music-plus") }.disabled(!store.ready || store.owner != library.owner)
+            Button { importingM3U = true } label: { Label(DesktopInterfaceText.value("music.m3u.import"), systemImage: "square.and.arrow.down") }
+                .disabled(!store.ready || !library.ready || library.importing || store.owner != library.owner).accessibilityIdentifier("music-library-import-m3u")
+            if let importNotice { Text(importNotice).font(.caption).foregroundStyle(.secondary).accessibilityIdentifier("music-library-import-notice") }
             if lists.isEmpty { Text(DesktopInterfaceText.value(query.isEmpty ? "music.playlist.first" : "music.playlist.noMatches")).foregroundStyle(.secondary) }
             ForEach(lists) { playlist in
                 NavigationLink {
@@ -24,6 +29,11 @@ import SwiftUI
         }.listStyle(.plain).scrollContentBackground(.hidden)
             .task(id: library.owner) { MusicCollections.shared.prepare(owner: library.owner) }
             .sheet(isPresented: $creating) { MusicPlaylistNameView(store: store) }
+            .sheet(isPresented: $importingM3U) {
+                MusicPlaylistImportView(library: library, store: store) { playlist in
+                    importNotice = DesktopInterfaceText.value("music.m3u.importedNotice", variables: ["count": String(playlist.trackIds.count), "name": playlist.name])
+                }
+            }
     }
 }
 
@@ -81,13 +91,13 @@ struct MusicPlaylistChoices: View {
                 }
                 Section {
                     let lookup = Dictionary(tracks.map { ($0.id, $0) }, uniquingKeysWith: { first, _ in first })
-                    let imported = Dictionary(library.records.map { ($0.id, $0) }, uniquingKeysWith: { first, _ in first })
+                    let imported = MusicLocalRecordIndex(library.records)
                     ForEach(displayedIDs, id: \.self) { trackID in
                         if let track = lookup[trackID] {
-                            MusicCollectionTrackRow(track: track, record: imported[trackID], owner: library.owner) { play(track) }
+                            MusicCollectionTrackRow(track: track, record: imported.record(track), owner: library.owner) { play(track) }
                                 .disabled(model.loading).contextMenu {
                                     if let session, session.scope.owner == library.owner { MusicRecordingActions(track: track, session: session) }
-                                    else if let record = imported[trackID] { MusicTrackActions(record: record, owner: library.owner, playlists: store) }
+                                    else if let record = imported.record(track) { MusicTrackActions(record: record, owner: library.owner, playlists: store) }
                                     Button(DesktopInterfaceText.value("music.playlist.remove"), role: .destructive) { store.remove(track.id, from: id) }
                                 }
                         } else { Text(DesktopInterfaceText.value("music.mobile.missingFile")).foregroundStyle(.secondary) }
@@ -129,9 +139,9 @@ struct MusicPlaylistChoices: View {
     private func play(_ track: MusicTrack) {
         if let session, session.scope.owner == library.owner {
             MusicPlayback.shared.play(track, queue: model.tracks, using: session, origin: .init(kind: "playlist", id: id, name: playlist?.name ?? ""))
-        } else if let record = library.records.first(where: { $0.id == track.id }) {
-            let imported = Dictionary(library.records.map { ($0.id, $0) }, uniquingKeysWith: { first, _ in first })
-            MusicPlayback.shared.play(record, queue: model.tracks.compactMap { imported[$0.id] }, owner: library.owner)
+        } else if let record = MusicLocalRecordIndex(library.records).record(track) {
+            let imported = MusicLocalRecordIndex(library.records)
+            MusicPlayback.shared.play(record, queue: model.tracks.compactMap { imported.record($0) }, owner: library.owner)
         }
     }
 }

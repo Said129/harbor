@@ -12,6 +12,9 @@ settings:
     CODE_SIGNING_ALLOWED: NO
     ENABLE_USER_SCRIPT_SANDBOXING: YES
 packages:
+  SpotifyiOS:
+    url: https://github.com/spotify/ios-sdk.git
+    revision: 8d3a71dc25282072f8aa8bb0611cea2324e18f28
   MPVKit:
     url: https://github.com/mpvkit/MPVKit.git
     revision: f82e06d4f5ef4fc4aa9faba3782a462dbbef870c
@@ -80,6 +83,7 @@ targets:
         CFBundleURLTypes:
           - CFBundleURLName: site.harbor.iphone.login
             CFBundleURLSchemes: [harbor-iphone]
+        LSApplicationQueriesSchemes: [spotify]
         UILaunchScreen: {}
         UIRequiresFullScreen: NO
         UISupportedInterfaceOrientations:
@@ -96,6 +100,8 @@ targets:
         NSAppTransportSecurity:
           NSAllowsArbitraryLoads: YES
     dependencies:
+      - package: SpotifyiOS
+        product: SpotifyiOS
       - framework: Frameworks/HarborCore.xcframework
         embed: true
       - package: MPVKit
@@ -128,8 +134,32 @@ targets:
         GENERATE_INFOPLIST_FILE: YES
     dependencies:
       - target: Harbor
+      - package: SpotifyiOS
+        product: SpotifyiOS
       - package: Lottie
         product: Lottie
+      - framework: Frameworks/HarborCore.xcframework
+        embed: false
+  HarborChangedTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: HarborTests/SubtitleSeekTests.swift
+      - path: HarborTests/MusicPlaylistImportTests.swift
+      - path: HarborTests/MusicLyricsTests.swift
+      - path: HarborTests/SpotifyMusicTests.swift
+      - path: HarborTests/SoundCloudMusicTests.swift
+      - path: HarborTests/Fixtures
+        type: folder
+        buildPhase: resources
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: site.harbor.iphone.changed-tests
+        GENERATE_INFOPLIST_FILE: YES
+    dependencies:
+      - target: Harbor
+      - package: SpotifyiOS
+        product: SpotifyiOS
       - framework: Frameworks/HarborCore.xcframework
         embed: false
   HarborIntegrationTests:
@@ -177,6 +207,13 @@ targets:
         PRODUCT_BUNDLE_IDENTIFIER: site.harbor.iphone.existing-app-ui-tests
         GENERATE_INFOPLIST_FILE: YES
 schemes:
+  HarborFocused:
+    build:
+      targets:
+        Harbor: all
+        HarborChangedTests: [test]
+    test:
+      targets: [HarborChangedTests]
   HarborExistingAppUI:
     build:
       targets:

@@ -16,7 +16,7 @@ extension MusicFileService {
         while let file = entries.nextObject() as? URL {
             try Task.checkCancellation()
             visited += 1
-            guard visited <= 20_000 else { throw HarborError(code: "music-folder-limit") }
+            guard visited <= 400_000 else { throw HarborError(code: "music-folder-limit") }
             if visited.isMultiple(of: 128) { await Task.yield() }
             guard file.standardizedFileURL.path.hasPrefix(prefix) else { throw HarborError(code: "music-folder") }
             let info = try file.resourceValues(forKeys: keys)
@@ -33,7 +33,7 @@ extension MusicFileService {
                 continue
             }
             guard info.isRegularFile == true, Self.extensions.contains(file.pathExtension.lowercased()) else { continue }
-            guard files.count < 500 else { throw HarborError(code: "music-folder-limit") }
+            guard files.count < 100_000 else { throw HarborError(code: "music-folder-limit") }
             files.append(file)
         }
         guard !failed else { throw HarborError(code: "music-folder") }

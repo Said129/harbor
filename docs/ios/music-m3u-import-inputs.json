@@ -1,0 +1,21 @@
+{
+  "reference": "0834340cec5531650bfe78cd628628702e636987",
+  "original_module": "src-tauri/src/music/m3u.rs",
+  "committed_sha256": "9442b76f42206c10670f3960edf2112953b6a5d2de41ad477b4090b60383a183",
+  "checkout_sha256": "21a0b4e98320e97967cd0c264b07067774cf3e6cb471290349a17b510b96f692",
+  "unchanged_original_functions": [
+    "parse",
+    "parse_metadata",
+    "normalize_location",
+    "title_from_location",
+    "stable_hash"
+  ],
+  "selected_function_source_sha256": "06b9643247c4920395158ce9a89a6268149b4d5561b050cb7065a129974499a4",
+  "original_database_and_filesystem_layer_executed": false,
+  "native_tests_executed": false,
+  "native_adaptations": [
+    "User-selected audio folders grant access to external local tracks.",
+    "Genuine imported files back local M3U identities through an owned filename index."
+  ],
+  "full_desktop_parity_complete": false
+}

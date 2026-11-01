@@ -11,8 +11,12 @@ build = root / "ios/build"
 logs = build / "logs"
 logs.mkdir(parents=True, exist_ok=True)
 selected = os.environ["HARBOR_FOCUSED_SELECTION"].split(",")
-assert selected and all(re.fullmatch(r"HarborTests/[A-Za-z0-9_]+/test[A-Za-z0-9_]+", name) for name in selected)
+assert selected and all(re.fullmatch(r"Harbor(?:Changed)?Tests/[A-Za-z0-9_]+/test[A-Za-z0-9_]+", name) for name in selected)
 assert len(selected) == len(set(selected))
+modules = {name.split("/")[0] for name in selected}
+assert len(modules) == 1
+module = modules.pop()
+scheme = "HarborFocused" if module == "HarborChangedTests" else "Harbor"
 report = {"source": os.environ["GITHUB_SHA"], "selected": selected, "complete": False, "package_requested": os.environ.get("INPUT_PACKAGE") == "true"}
 target = build / "focused-results.json"
 
@@ -38,7 +42,7 @@ os.environ["IOS_SIMULATOR"] = device
 os.environ["IOS_SIMULATOR_ARCH"] = os.uname().machine
 subprocess.run(["xcrun", "simctl", "bootstatus", device, "-b"], check=True, timeout=300)
 subprocess.run(["python3", "scripts/ios/prepare-simulator-webkit.py"], check=True)
-command = ["xcodebuild", "-project", "ios/Harbor.xcodeproj", "-scheme", "Harbor", "-configuration", "Debug",
+command = ["xcodebuild", "-project", "ios/Harbor.xcodeproj", "-scheme", scheme, "-configuration", "Debug",
            "-destination", f"platform=iOS Simulator,id={device},arch={os.uname().machine}",
            "-derivedDataPath", "ios/build/DerivedData", "-clonedSourcePackagesDirPath", "ios/build/SourcePackages",
            "-parallel-testing-enabled", "NO", "CODE_SIGNING_ALLOWED=YES", "CODE_SIGN_IDENTITY=-"]
@@ -50,8 +54,8 @@ container = subprocess.check_output(["xcrun", "simctl", "get_app_container", dev
 subprocess.run(["python3", "scripts/ios/prepare-model-test-startup.py", "--container", container], check=True)
 run(command + selection + ["-resultBundlePath", "ios/build/FocusedTests.xcresult", "test-without-building"], "focused-tests")
 text = (logs / "focused-tests.log").read_text(encoding="utf-8", errors="replace")
-rows = re.findall(r"Test Case '-\[HarborTests\.([A-Za-z0-9_]+) ([A-Za-z0-9_]+)\]' (passed|failed|skipped)", text)
-completed = ["HarborTests/" + group + "/" + method for group, method, status in rows if status == "passed"]
+rows = re.findall(r"Test Case '-\[" + re.escape(module) + r"\.([A-Za-z0-9_]+) ([A-Za-z0-9_]+)\]' (passed|failed|skipped)", text)
+completed = [module + "/" + group + "/" + method for group, method, status in rows if status == "passed"]
 report["passed"] = completed
 report["rows"] = rows
 report["complete"] = sorted(completed) == sorted(selected) and len(rows) == len(selected) and "Restarting after" not in text

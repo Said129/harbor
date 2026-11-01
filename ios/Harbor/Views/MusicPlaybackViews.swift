@@ -64,6 +64,7 @@ extension EnvironmentValues {
 @MainActor struct MusicPlayerView: View {
     @Bindable var player: MusicPlayback
     @Environment(\.dismiss) private var dismiss
+    @State private var choosingSource = false
     init() { player = .shared }
     init(player: MusicPlayback) { self.player = player }
     var body: some View {
@@ -76,6 +77,12 @@ extension EnvironmentValues {
                         if let album = item.track.album { Text(album).font(.caption).foregroundStyle(.secondary) }
                     }.multilineTextAlignment(.center).accessibilityIdentifier("music-shared-current-metadata")
                     MusicTransportControls(player: player)
+                    if player.playbackSession != nil {
+                        Button(DesktopInterfaceText.value("music.source.title")) { choosingSource = true }.disabled(player.resolving)
+                    }
+                    DisclosureGroup(DesktopInterfaceText.value("music.lyrics.title")) {
+                        MusicLyricsView(player: player, client: player.lyricsClient)
+                    }
                     if let error = player.error { Text(error).font(.caption).foregroundStyle(.orange).accessibilityIdentifier("music-shared-error") }
                     if let error = player.scrobbleError { Text(error).font(.caption).foregroundStyle(.secondary) }
                     VStack(alignment: .leading, spacing: 12) {
@@ -89,6 +96,13 @@ extension EnvironmentValues {
                 } else { ContentUnavailableView(DesktopInterfaceText.value("Music"), image: "nav-music") }
             }.padding(24).frame(maxWidth: 800).frame(maxWidth: .infinity)
         }.background(HarborTheme.background).navigationTitle(DesktopInterfaceText.value("Music")).navigationBarTitleDisplayMode(.inline)
+            .sheet(isPresented: $choosingSource) {
+                if let session = player.playbackSession {
+                    NavigationStack { MusicSourcePickerView(player: player, session: session).toolbar {
+                        ToolbarItem(placement: .topBarTrailing) { Button(DesktopInterfaceText.value("Close")) { choosingSource = false } }
+                    } }
+                }
+            }
             .accessibilityIdentifier("music-shared-player")
     }
     private func row(_ item: MusicPlaybackItem) -> some View {

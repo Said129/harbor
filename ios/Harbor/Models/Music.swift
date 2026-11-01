@@ -63,7 +63,8 @@ final class MusicLibrary {
     let owner: String
     private(set) var records: [MusicRecord] = []
     private(set) var ready = false
-    private(set) var importing = false
+    var importing: Bool { MusicImportCoordinator.shared.busy(owner) }
+    private(set) var revision: UInt64 = 0
     private(set) var scanning = false
     private(set) var importCompleted = 0
     private(set) var importTotal = 0
@@ -81,28 +82,47 @@ final class MusicLibrary {
     }
     func importFiles(_ urls: [URL]) {
         guard ready, !importing else { return }
-        guard urls.count <= 20 else { error = "Selecciona hasta 20 archivos por importación."; return }
+        guard urls.count <= 100_000 else { error = safeMessage(HarborError(code: "music-capacity")); return }
         startImport(urls, folder: nil)
     }
     func importFolder(_ url: URL) {
         guard ready, !importing else { return }
         startImport([], folder: url)
     }
-    func cancelImport() { importTask?.cancel() }
+    func cancelImport() { MusicImportCoordinator.shared.cancel(owner) }
+    func acquireImport(cancel: @escaping @MainActor () -> Void) throws -> UUID {
+        guard ready, let token = MusicImportCoordinator.shared.acquire(owner, cancel: cancel) else { throw HarborError(code: "music-store") }
+        return token
+    }
+    func finishImport(_ token: UUID) { MusicImportCoordinator.shared.release(owner, token: token); scanning = false }
+    func commitImportedFiles(_ added: [MusicRecord], token: UUID) throws {
+        guard ready, MusicImportCoordinator.shared.contains(owner, token: token) else { throw CancellationError() }
+        guard !added.isEmpty else { return }
+        var next = records
+        var positions = Dictionary(records.enumerated().map { ($0.element.id, $0.offset) }, uniquingKeysWith: { first, _ in first })
+        for record in added {
+            if let index = positions[record.id] { next[index] = record }
+            else { positions[record.id] = next.count; next.append(record) }
+        }
+        guard Self.valid(next) else { throw HarborError(code: "music-store") }
+        try KeychainStore().write(next, key: key); records = next; revision &+= 1
+    }
     private func startImport(_ urls: [URL], folder: URL?) {
-        importing = true; scanning = folder != nil; error = nil; importMessage = nil
+        guard let token = try? acquireImport(cancel: { [weak self] in self?.importTask?.cancel() }) else { return }
+        scanning = folder != nil; error = nil; importMessage = nil
         importCompleted = 0; importTotal = 0
+        let owner = owner
         importTask = Task { [weak self] in
-            guard let self else { return }
-            await self.performImport(urls, folder: folder)
+            guard let self else { MusicImportCoordinator.shared.release(owner, token: token); return }
+            await self.performImport(urls, folder: folder, token: token)
             self.importTask = nil
         }
     }
-    private func performImport(_ urls: [URL], folder: URL?) async {
+    private func performImport(_ urls: [URL], folder: URL?, token: UUID) async {
         let access = folder?.startAccessingSecurityScopedResource() ?? false
         defer {
             if access { folder?.stopAccessingSecurityScopedResource() }
-            importing = false; scanning = false
+            finishImport(token)
         }
         let files: [URL]
         do {
@@ -122,9 +142,8 @@ final class MusicLibrary {
                 var next = records.filter { $0.id != imported.record.id }; next.append(imported.record)
                 do {
                     try Task.checkCancellation()
-                    guard next.count <= 500 else { throw HarborError(code: "music-capacity") }
                     guard Self.valid(next) else { throw HarborError(code: "music-store") }
-                    try KeychainStore().write(next, key: key); records = next
+                    try KeychainStore().write(next, key: key); records = next; revision &+= 1
                     if known { existing += 1 } else { added += 1 }
                 } catch {
                     if imported.createdFile { try? await MusicFileService.shared.remove(imported.record, owner: owner) }
@@ -145,13 +164,13 @@ final class MusicLibrary {
         guard ready, !importing else { return }
         do {
             let next = records.filter { $0.id != record.id }
-            try KeychainStore().write(next, key: key); records = next
+            try KeychainStore().write(next, key: key); records = next; revision &+= 1
             try await MusicFileService.shared.remove(record, owner: owner)
         } catch { self.error = "No se pudo completar la eliminación de este archivo." }
     }
     private static func valid(_ records: [MusicRecord]) -> Bool {
-        records.count <= 500 && Set(records.map(\.id)).count == records.count &&
-        records.allSatisfy { MusicFileService.validFilename($0.filename) && $0.local.track.sourceId == $0.filename && $0.local.track.connectorId == "local" && $0.size > 0 && $0.size <= 512 * 1024 * 1024 } &&
-        (try? JSONEncoder().encode(records).count).map { $0 <= 8 * 1024 * 1024 } == true
+        records.count <= 100_000 && Set(records.map(\.id)).count == records.count &&
+        records.allSatisfy { MusicFileService.validFilename($0.filename) && $0.local.track.sourceId == $0.filename && $0.local.track.connectorId == "local" && $0.size > 0 } &&
+        (try? JSONEncoder().encode(records).count).map { $0 <= 16 * 1024 * 1024 } == true
     }
 }

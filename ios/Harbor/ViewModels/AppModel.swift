@@ -162,6 +162,10 @@ final class AppModel {
         (profileContext.profiles.active ?? profileContext.profiles.requestedProfile).map { HouseholdProfileScope.hash([profileContext.profiles.scope.key, $0.id]) }
     }
     func openDocument(_ url: URL) {
+        if url.scheme == "harbor-iphone", url.host == "spotify-login-callback" {
+            _ = cachedMusicWorkspace?.spotify.accept(url)
+            return
+        }
         guard url.isFileURL, ["epub", "pdf"].contains(url.pathExtension.lowercased()) else { return }
         pendingDocument = PendingProfileDocument(url: url, profile: documentOwner)
     }

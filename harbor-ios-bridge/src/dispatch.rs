@@ -1,3 +1,4 @@
+use base64::Engine;
 use harbor_core::{addons, resume, ScoreOptions, Stream, TrustOptions};
 use serde::Deserialize;
 use serde_json::{json, Value};
@@ -68,6 +69,17 @@ enum Request {
     MusicPlaylistName {
         name: String,
     },
+    #[serde(rename = "musicImportM3U")]
+    MusicImportM3U {
+        #[serde(rename = "contentBase64")]
+        content_base64: String,
+        #[serde(rename = "basePath")]
+        base_path: String,
+    },
+    MusicScoreCandidates {
+        track: harbor_core::music::MusicTrack,
+        candidates: Vec<harbor_core::music::MusicTrack>,
+    },
     MusicPlaylistOrder {
         ids: Vec<String>,
         #[serde(rename = "trackId")]
@@ -135,6 +147,34 @@ pub fn dispatch(bytes: &[u8]) -> Result<Value, &'static str> {
         Request::ResolveDirect { stream } => resolve_direct(stream),
         Request::MusicLocalTrack { tags } => Ok(json!(harbor_core::music::local_track(tags)?)),
         Request::MusicPlaylistName { name } => Ok(json!(harbor_core::music::playlist_name(&name)?)),
+        Request::MusicImportM3U {
+            content_base64,
+            base_path,
+        } => {
+            if content_base64.len() > harbor_core::music_m3u::MAX_M3U_BYTES.div_ceil(3) * 4 {
+                return Err("music-m3u-size");
+            }
+            let content = base64::engine::general_purpose::URL_SAFE_NO_PAD
+                .decode(content_base64)
+                .map_err(|_| "music-m3u-format")?;
+            let tracks =
+                harbor_core::music_m3u::parse_bytes(&content, std::path::Path::new(&base_path))
+                    .map_err(|error| match error.as_str() {
+                        "M3U file is larger than 5 MB" => "music-m3u-size",
+                        "M3U file contains more than 5000 tracks" => "music-m3u-count",
+                        _ => "music-m3u-format",
+                    })?;
+            Ok(json!(tracks))
+        }
+        Request::MusicScoreCandidates { track, candidates } => {
+            if candidates.len() > 1000 {
+                return Err("music-matching-count");
+            }
+            Ok(json!(candidates
+                .iter()
+                .map(|candidate| harbor_core::music_matching::candidate_score(&track, candidate))
+                .collect::<Vec<_>>()))
+        }
         Request::MusicPlaylistOrder {
             ids,
             track_id,

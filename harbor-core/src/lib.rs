@@ -2,6 +2,8 @@
 pub mod account;
 pub mod addons;
 pub mod music;
+pub mod music_m3u;
+pub mod music_matching;
 pub mod parser;
 pub mod resume;
 pub mod scoring;

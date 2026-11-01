@@ -4,12 +4,13 @@ import Foundation
 /// server in one route. A private reference never falls back to the public API.
 @MainActor final class MusicServerCatalogClient: MusicCatalogCalling {
     let server: SubsonicMusicService
+    let soundcloud: SoundCloudMusicService?
     private let catalog: any MusicCatalogCalling
     private let currentScope: @MainActor () -> PluginExecutionScope
     private let browseTimeout: Duration
-    init(server: SubsonicMusicService, catalog: any MusicCatalogCalling = MusicCatalogClient(),
+    init(server: SubsonicMusicService, catalog: any MusicCatalogCalling = MusicCatalogClient(), soundcloud: SoundCloudMusicService? = nil,
          browseTimeout: Duration = .seconds(12), currentScope: @escaping @MainActor () -> PluginExecutionScope) {
-        self.server = server; self.catalog = catalog; self.browseTimeout = browseTimeout; self.currentScope = currentScope
+        self.server = server; self.catalog = catalog; self.soundcloud = soundcloud; self.browseTimeout = browseTimeout; self.currentScope = currentScope
     }
     private func validate(_ version: UUID) throws {
         try server.validateCatalogScope()
@@ -20,16 +21,21 @@ import Foundation
         do { let value = try await work(); try validate(version); return value }
         catch { try validate(version); throw error }
     }
-    private func client(_ id: String) -> any MusicCatalogCalling { if id == "subsonic" { return server }; return catalog }
+    private func client(_ id: String) -> any MusicCatalogCalling {
+        if id == "subsonic" { return server }
+        if id == "soundcloud", let soundcloud { return soundcloud }
+        return catalog
+    }
     func home() async throws -> [MusicCatalogRow] {
         try await scoped {
             async let publicRows = Self.rows(catalog, timeout: browseTimeout)
             async let privateRows = Self.rows(server, timeout: browseTimeout)
             let replies = await (publicRows, privateRows)
+            let cloudRows = if let soundcloud, soundcloud.enabled { await Self.rows(soundcloud, timeout: browseTimeout) } else { [MusicCatalogRow]() }
             var seen = Set<String>()
             // rows::order_rows ranks catalog before subsonic, omits failed
             // sources and retains the first row with a given id.
-            return (replies.0 + replies.1).filter { seen.insert($0.id).inserted }
+            return (replies.0 + cloudRows + replies.1).filter { seen.insert($0.id).inserted }
         }
     }
     private static func rows(_ client: any MusicCatalogCalling, timeout: Duration) async -> [MusicCatalogRow] {
@@ -41,6 +47,14 @@ import Foundation
     }
     func search(_ query: String, limit: Int) async throws -> MusicCatalogSearch {
         try await scoped {
+            if let soundcloud, soundcloud.enabled {
+                async let publicResult = Self.search(catalog, query: query, limit: limit)
+                async let cloudResult = Self.search(soundcloud, query: query, limit: limit)
+                let replies = await (publicResult, cloudResult)
+                var results = [replies.0, replies.1]
+                if server.configured, server.health != .offline { results.append(await Self.search(server, query: query, limit: limit)) }
+                return try MusicCatalogMerge.search(results, limit: limit)
+            }
             guard server.configured, server.health != .offline else { return try await catalog.search(query, limit: limit) }
             // Registry fan-out is ordered by connector id: catalog, subsonic.
             async let publicResult = Self.search(catalog, query: query, limit: limit)

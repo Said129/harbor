@@ -21,8 +21,9 @@ import SwiftUI
         NavigationStack {
             List {
                 Text(DesktopInterfaceText.value("music.library.addTracksCount", variables: ["count": String(candidates.count)])).font(.caption).foregroundStyle(.secondary)
+                let imported = MusicLocalRecordIndex(library.records)
                 ForEach(candidates) { track in
-                    MusicCollectionTrackRow(track: track, record: library.records.first { $0.id == track.id }, owner: library.owner) {
+                    MusicCollectionTrackRow(track: track, record: imported.record(track), owner: library.owner) {
                         guard store.owner == library.owner, session.map({ $0.scope.owner == library.owner && (try? $0.validate()) != nil }) ?? true else { return }
                         store.add([track], to: id)
                     }.disabled(!store.ready)

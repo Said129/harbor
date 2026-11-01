@@ -26,9 +26,9 @@ final class MusicPlaylistStore {
             playlists = saved.playlists; tracks = saved.tracks; ready = true
         } catch { self.error = "No se pudieron recuperar tus listas. Los datos se conservan." }
     }
-    @discardableResult func create(_ name: String) -> MusicPlaylist? {
+    @discardableResult func create(_ name: String, recordings: [MusicTrack] = []) -> MusicPlaylist? {
         var createdID: String?
-        let saved = change { values in
+        let saved = change(upserting: recordings) { values in
             let base = try Self.name(name)
             let names = Set(values.map { $0.name.trimmingCharacters(in: .whitespacesAndNewlines).lowercased(with: .current) })
             var title = base
@@ -37,7 +37,9 @@ final class MusicPlaylistStore {
             title = try Self.name(title)
             let now = Self.timestamp
             let id = UUID().uuidString; createdID = id
-            values.insert(MusicPlaylist(id: id, name: title, createdAt: now, updatedAt: now, trackIds: [], trackAddedAt: [:]), at: 0)
+            var seen = Set<String>()
+            let ids = recordings.map(\.id).filter { seen.insert($0).inserted }
+            values.insert(MusicPlaylist(id: id, name: title, createdAt: now, updatedAt: now, trackIds: ids, trackAddedAt: Dictionary(uniqueKeysWithValues: ids.map { ($0, now) })), at: 0)
         }
         return saved ? playlists.first { $0.id == createdID } : nil
     }

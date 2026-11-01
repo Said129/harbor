@@ -52,12 +52,12 @@ import SwiftUI
                     .accessibilityIdentifier("music-collection-play").disabled(model.loading || model.tracks.isEmpty)
                 MusicCollectionToolsView(filters: $filters, model: model, canSortAdded: collection == .recent)
             }
-            let imported = Dictionary(library.records.map { ($0.id, $0) }, uniquingKeysWith: { first, _ in first })
+            let imported = MusicLocalRecordIndex(library.records)
             ForEach(model.tracks) { track in
-                MusicCollectionTrackRow(track: track, record: imported[track.id], owner: library.owner) { play(track) }
+                MusicCollectionTrackRow(track: track, record: imported.record(track), owner: library.owner) { play(track) }
                     .contextMenu {
                         if let session, session.scope.owner == library.owner { MusicRecordingActions(track: track, session: session) }
-                        else if let record = imported[track.id] { MusicTrackActions(record: record, owner: library.owner, playlists: playlists) }
+                        else if let record = imported.record(track) { MusicTrackActions(record: record, owner: library.owner, playlists: playlists) }
                     }.accessibilityIdentifier("music-collection-track-" + track.id)
             }
             if model.tracks.isEmpty, !model.loading {
@@ -82,8 +82,8 @@ import SwiftUI
         if let session, session.scope.owner == library.owner {
             MusicPlayback.shared.play(track, queue: model.tracks, using: session, origin: .init(kind: collection.rawValue, id: collection.rawValue, name: collection.title))
         } else {
-            let imported = Dictionary(library.records.map { ($0.id, $0) }, uniquingKeysWith: { first, _ in first })
-            if let record = imported[track.id] { MusicPlayback.shared.play(record, queue: model.tracks.compactMap { imported[$0.id] }, owner: library.owner) }
+            let imported = MusicLocalRecordIndex(library.records)
+            if let record = imported.record(track) { MusicPlayback.shared.play(record, queue: model.tracks.compactMap { imported.record($0) }, owner: library.owner) }
         }
     }
 }

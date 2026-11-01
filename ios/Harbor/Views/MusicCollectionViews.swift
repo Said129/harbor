@@ -9,10 +9,10 @@ import SwiftUI
     @State private var custom: DecodedArtworkBitmap?
     @State private var customIdentity = ""
     private var tiles: [MusicPlaybackItem] {
-        let imported = Dictionary(local.map { ($0.id, $0) }, uniquingKeysWith: { first, _ in first })
+        let imported = MusicLocalRecordIndex(local)
         var seen = Set<String>(), result: [MusicPlaybackItem] = []
         for track in tracks {
-            let record = imported[track.id], artwork = track.artwork.trimmingCharacters(in: .whitespacesAndNewlines)
+            let record = imported.record(track), artwork = track.artwork.trimmingCharacters(in: .whitespacesAndNewlines)
             let key = !artwork.isEmpty ? artwork : record?.cover.map { "local:" + $0 } ?? ""
             if !key.isEmpty, seen.insert(key).inserted { result.append(.init(track: track, localRecord: record)) }
             if result.count == 4 { break }
