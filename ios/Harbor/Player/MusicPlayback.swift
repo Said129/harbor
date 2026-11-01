@@ -107,12 +107,12 @@ struct MusicQueueOrigin: Equatable, Sendable { let kind: String; let id: String;
         if !continuing { try? order.reset(); priority = nil }
         self.origin = origin; start(item)
     }
-    private func start(_ item: MusicPlaybackItem, resuming position: Double = 0, paused: Bool = false) {
+    private func start(_ item: MusicPlaybackItem, resuming resumeAt: Double = 0, paused startPaused: Bool = false) {
         submitScrobbleIfEligible()
         request &+= 1; let token = request, loadedOwner = owner, session = resolver
         resolutionTask?.cancel(); poller?.cancel(); poller = nil; resolution = nil
-        currentItem = item; loaded = false; resolving = true; self.paused = true; desiredPause = paused
-        pendingResume = position.isFinite && position > 0 ? position : nil
+        currentItem = item; loaded = false; resolving = true; self.paused = true; desiredPause = startPaused
+        pendingResume = resumeAt.isFinite && resumeAt > 0 ? resumeAt : nil
         pausedForVideo = false; ended = false; error = nil; scrobbleError = nil
         position = 0; duration = Double(item.track.durationSeconds)
         previousPosition = nil; listened = 0; scrobbleStarted = false; recorded = false

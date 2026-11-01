@@ -60,5 +60,6 @@ report["passed"] = completed
 report["rows"] = rows
 report["complete"] = sorted(completed) == sorted(selected) and len(rows) == len(selected) and "Restarting after" not in text
 save("finished")
+subprocess.run(["xcrun", "xcresulttool", "export", "attachments", "--path", "ios/build/FocusedTests.xcresult", "--output-path", "ios/build/focused-attachments"], check=True)
 assert report["complete"], "Selected native executions were incomplete; inspect original log"
 print(json.dumps(report), flush=True)

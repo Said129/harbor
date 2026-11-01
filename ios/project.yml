@@ -145,6 +145,7 @@ targets:
     platform: iOS
     sources:
       - path: HarborTests/SubtitleSeekTests.swift
+      - path: HarborTests/SubtitleRangeFixture.swift
       - path: HarborTests/MusicPlaylistImportTests.swift
       - path: HarborTests/MusicLyricsTests.swift
       - path: HarborTests/SpotifyMusicTests.swift
