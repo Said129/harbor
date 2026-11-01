@@ -1,0 +1,99 @@
+name: iOS focused changes
+on:
+  workflow_call:
+    inputs:
+      selection:
+        required: true
+        type: string
+      package:
+        type: boolean
+        default: false
+  workflow_dispatch:
+    inputs:
+      selection:
+        description: Comma separated XCTest identifiers for changed behavior only
+        required: true
+        type: string
+      package:
+        description: Build the next requested interim IPA after the selected tests pass
+        type: boolean
+        default: false
+permissions:
+  contents: read
+concurrency:
+  group: ios-focused-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  changed:
+    runs-on: macos-15-intel
+    timeout-minutes: 120
+    env:
+      HARBOR_FOCUSED_SELECTION: ${{ inputs.selection }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Parse changed native code
+        run: python3 scripts/ios/parse-swift.py
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: aarch64-apple-ios,aarch64-apple-ios-sim,x86_64-apple-ios
+      - uses: Swatinem/rust-cache@v2
+        with:
+          cache-on-failure: true
+          workspaces: |
+            harbor-core
+            harbor-ios-bridge
+      - uses: actions/cache/restore@v6
+        id: spm
+        with:
+          path: ios/build/SourcePackages
+          key: iphone-spm-${{ runner.os }}-${{ hashFiles('ios/project.yml') }}
+          restore-keys: iphone-spm-${{ runner.os }}-
+      - name: Build shared native library
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ios/build/logs
+          if [[ '${{ inputs.package }}' == 'true' ]]; then mode=--all; else mode=--simulator-only; fi
+          bash scripts/ios/build-rust.sh "$mode" 2>&1 | tee ios/build/logs/rust.log
+      - name: Prepare the native project
+        run: |
+          python3 scripts/ios/fetch-interface-font.py
+          python3 scripts/ios/fetch-manga-font.py
+          brew list xcodegen >/dev/null 2>&1 || brew install xcodegen
+          xcodegen generate --spec ios/project.yml
+          python3 scripts/ios/resolve-packages.py
+      - name: Build once and execute only the requested cases
+        timeout-minutes: 55
+        run: python3 scripts/ios/run-focused-changes.py
+      - name: Preserve results before cache housekeeping
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: focused-results
+          path: |
+            ios/build/logs/
+            ios/build/focused-results.json
+            ios/build/FocusedTests.xcresult/
+          retention-days: 7
+          if-no-files-found: error
+      - name: Package the requested interim IPA
+        if: ${{ inputs.package }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          xcodebuild -project ios/Harbor.xcodeproj -scheme Harbor -configuration Release -destination 'generic/platform=iOS' -derivedDataPath ios/build/DeviceDerivedData -clonedSourcePackagesDirPath ios/build/SourcePackages CODE_SIGNING_ALLOWED=NO build 2>&1 | tee ios/build/logs/device.log
+          python3 scripts/ios/package-ipa.py --app ios/build/DeviceDerivedData/Build/Products/Release-iphoneos/Harbor.app --output ios/build/Harbor-unsigned.ipa --commit "$GITHUB_SHA"
+      - uses: actions/upload-artifact@v4
+        if: ${{ inputs.package }}
+        with:
+          name: iphone-unsigned-ipa
+          path: |
+            ios/build/Harbor-unsigned.ipa
+            ios/build/Harbor-unsigned.json
+          retention-days: 7
+          if-no-files-found: error
+      - uses: actions/cache/save@v6
+        if: ${{ always() && steps.spm.outputs.cache-hit != 'true' }}
+        with:
+          path: ios/build/SourcePackages
+          key: ${{ steps.spm.outputs.cache-primary-key }}

@@ -20,6 +20,7 @@ on:
         type: choice
         options:
           [
+            focused,
             full,
             affected,
             sources-search-subtitles,
@@ -122,9 +123,15 @@ concurrency:
   group: iphone-${{ github.event_name }}-${{ github.event.pull_request.head.repo.full_name || github.repository }}-${{ github.head_ref || github.ref_name }}
   cancel-in-progress: true
 jobs:
+  focused:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.validation_scope == 'focused' }}
+    uses: ./.github/workflows/ios-focused.yml
+    with:
+      selection: ${{ inputs.native_test_selection }}
+      package: ${{ !inputs.validation_only }}
   apple:
     name: Apple SDK / Swift / iPhone
-    if: ${{ github.event_name == 'workflow_dispatch' && github.event.repository.private == false && inputs.validation_scope != 'reuse' && inputs.validation_scope != 'continuation-sendable' }}
+    if: ${{ github.event_name == 'workflow_dispatch' && github.event.repository.private == false && inputs.validation_scope != 'focused' && inputs.validation_scope != 'reuse' && inputs.validation_scope != 'continuation-sendable' }}
     runs-on: ${{ inputs.apple_runner || 'macos-15-intel' }}
     timeout-minutes: 120
     permissions:
