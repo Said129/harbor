@@ -18,13 +18,13 @@ final class EBookDetailInterfaceSeedTests: XCTestCase {
         try await Self.prepare()
     }
     @MainActor static func prepare() async throws {
-        guard try KeychainStore().read("account.v1", as: JSONValue.self) == nil else { XCTFail("Refuse configured account"); return }
+        guard try KeychainStore().read("account.v1", as: JSONValue.self) == nil else { XCTFail("Refuse configured account"); throw HarborError(code: "owned-reading-seed-safety") }
         let context = AppProfileContext.shared; try context.prepare()
         guard context.profiles.profiles.count == 1, context.profiles.active?.credential == nil,
-              context.configuration?.account == nil, let owner = context.binding?.personalOwner else { XCTFail("Refuse configured profiles"); return }
+              context.configuration?.account == nil, let owner = context.binding?.personalOwner else { XCTFail("Refuse configured profiles"); throw HarborError(code: "owned-reading-seed-safety") }
         if context.configuration?.guestAddons == nil { try context.save(HouseholdSourceAccount(account: nil, guestAddons: [])) }
         let store = try HarborReadingPluginStore(), document = try await store.load()
-        guard document.plugins.isEmpty, document.repositories.isEmpty else { XCTFail("Refuse existing reading sources"); return }
+        guard document.plugins.isEmpty, document.repositories.isEmpty else { XCTFail("Refuse existing reading sources"); throw HarborError(code: "owned-reading-seed-safety") }
         let scope = PluginExecutionScope(owner: owner, activation: UUID())
         let manager = HarborReadingPluginManager(scope: scope, currentScope: { scope }, store: store, network: BookChapterNetwork())
         defer { manager.dispose() }; try await manager.load()

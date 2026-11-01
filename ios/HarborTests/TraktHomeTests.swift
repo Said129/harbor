@@ -2,6 +2,7 @@ import XCTest
 @testable import Harbor
 
 @MainActor final class TraktHomeTests: XCTestCase {
+    static let referenceDate = Date(timeIntervalSince1970: 1_793_230_800)
     private let configuration = MetadataConfiguration(tmdbKey: "owned-tmdb-key", region: "US", language: "en-US", translateTitles: true)
     static func reference() throws -> JSONValue {
         let url = try XCTUnwrap(Bundle(for: TraktHomeTests.self).url(forResource: "trakt-home-reference", withExtension: "json", subdirectory: "Fixtures"))
@@ -16,7 +17,7 @@ import XCTest
     static func transport(_ scenario: JSONValue) -> OwnedTraktTransport {
         OwnedTraktTransport(fallback: { request in
             let url = try XCTUnwrap(request.url), path = url.path + (url.query.map { "?" + $0 } ?? "")
-            let name = try XCTUnwrap(scenario["paths"].objectValue.first { $0.value.string == path }?.key)
+            let name = try XCTUnwrap(scenario["paths"].objectValue.first { $0.value.string == path }?.key, "Unexpected owned Trakt path: \(path)")
             let failed = scenario["failed"].array.contains(.string(name))
             return .init(status: failed ? 503 : 200, data: try JSONEncoder().encode(failed ? .null : scenario["input"][name]))
         })
@@ -53,7 +54,7 @@ import XCTest
             let account = try Self.account(), transport = Self.transport(scenario)
             let model = TraktHomeModel(account: account, client: .init(transport: { try await transport.send($0) }), hydrator: Self.hydrator(scenario), active: { true })
             var config = configuration; config.tmdbKey = scenario["key"].string ?? ""
-            await model.load(configuration: config, date: Date(timeIntervalSince1970: 1_793_230_800))
+            await model.load(configuration: config, date: Self.referenceDate)
             let expected = scenario["expected"].array
             XCTAssertEqual(model.rows.map(\.id), expected.compactMap { $0["id"].string }, scenario["name"].string ?? "")
             XCTAssertEqual(model.rows.map(\.kind), expected.compactMap { $0["kind"].string })
@@ -86,14 +87,14 @@ import XCTest
         let disconnected = try Self.account(), unused = Self.transport(scenario)
         try disconnected.set(nil)
         let disconnectedModel = TraktHomeModel(account: disconnected, client: .init(transport: { try await unused.send($0) }), hydrator: Self.hydrator(scenario), active: { true })
-        await disconnectedModel.load(configuration: configuration)
+        await disconnectedModel.load(configuration: configuration, date: Self.referenceDate)
         let unusedRequests = await unused.requests
         XCTAssertTrue(unusedRequests.isEmpty); XCTAssertTrue(disconnectedModel.rows.isEmpty)
         for replacement in [false, true] {
             let account = try Self.account(), transport = Self.transport(scenario)
             let gate = OwnedTraktHomeHeldReply()
             let model = TraktHomeModel(account: account, client: .init(transport: { request in await gate.wait(); return try await transport.send(request) }), hydrator: Self.hydrator(scenario), active: { true })
-            let loading = Task { await model.load(configuration: configuration) }
+            let loading = Task { await model.load(configuration: configuration, date: Self.referenceDate) }
             for _ in 0..<100 { if await gate.isHolding { break }; try await Task.sleep(for: .milliseconds(10)) }
             let holding = await gate.isHolding; XCTAssertTrue(holding)
             try account.set(replacement ? .init(accessToken: "owned-second", refreshToken: "owned-second-refresh", createdAt: 1_700_000_000, expiresIn: 7_776_000) : nil)
@@ -103,7 +104,7 @@ import XCTest
         }
         let account = try Self.account(), transport = Self.transport(scenario), activation = OwnedTraktHomeActivation()
         let model = TraktHomeModel(account: account, client: .init(transport: { try await transport.send($0) }), hydrator: Self.hydrator(scenario), active: { activation.current })
-        await model.load(configuration: configuration)
+        await model.load(configuration: configuration, date: Self.referenceDate)
         let oldPager = try XCTUnwrap(model.rows.first?.personal)
         activation.current = false
         XCTAssertTrue(model.rows.isEmpty); XCTAssertFalse(oldPager.available())
@@ -128,7 +129,7 @@ import XCTest
     func testTraktRowsParticipateInExistingHomeLayoutWithoutExposingCredentialOrLosingOtherRows() async throws {
         let scenario = try XCTUnwrap(Self.reference()["cases"].array.first), account = try Self.account()
         let transport = Self.transport(scenario), model = TraktHomeModel(account: account, client: .init(transport: { try await transport.send($0) }), hydrator: Self.hydrator(scenario), active: { true })
-        await model.load(configuration: configuration)
+        await model.load(configuration: configuration, date: Self.referenceDate)
         let owner = "owned-trakt-home-layout-" + UUID().uuidString
         defer { UserDefaults.standard.removeObject(forKey: "page-layout-" + EBookShelf.hash(owner + "|home")) }
         let customization = PageCustomization(owner: owner, page: "home")

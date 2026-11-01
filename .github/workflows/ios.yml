@@ -22,6 +22,7 @@ on:
           [
             full,
             affected,
+            candidate-review,
             sources-search-subtitles,
             mobile-sources-subtitles,
             stable-mobile,
@@ -298,7 +299,7 @@ jobs:
             harbor-core
             harbor-ios-bridge
       - name: Verify shared Rust on the Apple build host
-        if: ${{ inputs.validation_scope != 'affected' && inputs.validation_scope != 'sources-search-subtitles' && inputs.validation_scope != 'mobile-sources-subtitles' && inputs.validation_scope != 'stable-mobile' && inputs.validation_scope != 'stable-tablet-ui' && inputs.validation_scope != 'stable-tablet-rotation' && inputs.validation_scope != 'reading-intro' && inputs.validation_scope != 'reading-followup' && inputs.validation_scope != 'reading-final' && inputs.validation_scope != 'reading-tablet-final' && inputs.validation_scope != 'anime-episodes' && inputs.validation_scope != 'anime-episodes-ui' && inputs.validation_scope != 'continuation-parity' && inputs.validation_scope != 'language-reference' && inputs.validation_scope != 'system-maintenance' && inputs.validation_scope != 'navigation-sync' && inputs.validation_scope != 'onboarding-desktop' && inputs.validation_scope != 'service-browser' && inputs.validation_scope != 'streaming-sync' && inputs.validation_scope != 'services-complete' && inputs.validation_scope != 'services-ui' && inputs.validation_scope != 'profile-context' && inputs.validation_scope != 'profile-editor' && inputs.validation_scope != 'profile-gate' && inputs.validation_scope != 'profile-appearance' && inputs.validation_scope != 'profile-ui' && inputs.validation_scope != 'player-caption' && inputs.validation_scope != 'startup-anime' && inputs.validation_scope != 'startup-anime-ui' && inputs.validation_scope != 'tvdb-proxy' && inputs.validation_scope != 'episode-order' && inputs.validation_scope != 'episode-panel' && inputs.validation_scope != 'anime-franchise' && inputs.validation_scope != 'anime-episode-pool' && inputs.validation_scope != 'franchise-extras' && inputs.validation_scope != 'season-artwork' && inputs.validation_scope != 'profile-return' && inputs.validation_scope != 'mobile-integration' && inputs.validation_scope != 'plugin-catalog' && inputs.validation_scope != 'plugin-followup' && inputs.validation_scope != 'plugin-network' && inputs.validation_scope != 'plugin-manager' && inputs.validation_scope != 'plugin-integration' && inputs.validation_scope != 'plugin-playback' }}
+        if: ${{ inputs.validation_scope != 'affected' && inputs.validation_scope != 'sources-search-subtitles' && inputs.validation_scope != 'mobile-sources-subtitles' && inputs.validation_scope != 'stable-mobile' && inputs.validation_scope != 'stable-tablet-ui' && inputs.validation_scope != 'stable-tablet-rotation' && inputs.validation_scope != 'reading-intro' && inputs.validation_scope != 'reading-followup' && inputs.validation_scope != 'reading-final' && inputs.validation_scope != 'reading-tablet-final' && inputs.validation_scope != 'anime-episodes' && inputs.validation_scope != 'anime-episodes-ui' && inputs.validation_scope != 'continuation-parity' && inputs.validation_scope != 'language-reference' && inputs.validation_scope != 'system-maintenance' && inputs.validation_scope != 'navigation-sync' && inputs.validation_scope != 'onboarding-desktop' && inputs.validation_scope != 'service-browser' && inputs.validation_scope != 'streaming-sync' && inputs.validation_scope != 'services-complete' && inputs.validation_scope != 'services-ui' && inputs.validation_scope != 'profile-context' && inputs.validation_scope != 'profile-editor' && inputs.validation_scope != 'profile-gate' && inputs.validation_scope != 'profile-appearance' && inputs.validation_scope != 'profile-ui' && inputs.validation_scope != 'player-caption' && inputs.validation_scope != 'startup-anime' && inputs.validation_scope != 'startup-anime-ui' && inputs.validation_scope != 'tvdb-proxy' && inputs.validation_scope != 'episode-order' && inputs.validation_scope != 'episode-panel' && inputs.validation_scope != 'anime-franchise' && inputs.validation_scope != 'anime-episode-pool' && inputs.validation_scope != 'franchise-extras' && inputs.validation_scope != 'season-artwork' && inputs.validation_scope != 'profile-return' && inputs.validation_scope != 'mobile-integration' && inputs.validation_scope != 'plugin-catalog' && inputs.validation_scope != 'plugin-followup' && inputs.validation_scope != 'plugin-network' && inputs.validation_scope != 'plugin-manager' && inputs.validation_scope != 'plugin-integration' && inputs.validation_scope != 'plugin-playback' && inputs.validation_scope != 'candidate-review' }}
         shell: bash
         run: |
           set -euo pipefail
@@ -529,9 +530,13 @@ jobs:
           test "${{ inputs.validation_only }}" = "true"
           test "${{ inputs.run_live_integration }}" = "false"
           python3 scripts/ios/prepare-plugin-followup-selection.py
+      - name: Review only unresolved candidate cases in clean simulators
+        if: ${{ inputs.validation_scope == 'candidate-review' }}
+        timeout-minutes: 45
+        run: python3 scripts/ios/review-candidate.py
       - name: Run bridge and model tests on iPhone simulator
         id: offline_tests
-        if: ${{ inputs.validation_scope != 'stable-tablet-ui' && inputs.validation_scope != 'stable-tablet-rotation' && inputs.validation_scope != 'anime-episodes-ui' && inputs.validation_scope != 'services-ui' && inputs.validation_scope != 'profile-ui' && inputs.validation_scope != 'startup-anime-ui' }}
+        if: ${{ inputs.validation_scope != 'stable-tablet-ui' && inputs.validation_scope != 'stable-tablet-rotation' && inputs.validation_scope != 'anime-episodes-ui' && inputs.validation_scope != 'services-ui' && inputs.validation_scope != 'profile-ui' && inputs.validation_scope != 'startup-anime-ui' && inputs.validation_scope != 'candidate-review' }}
         timeout-minutes: 25
         shell: bash
         run: |
@@ -1250,7 +1255,7 @@ jobs:
           if-no-files-found: warn
           retention-days: 1
       - name: Upload unsigned build products
-        if: ${{ inputs.upload_artifacts == true }}
+        if: ${{ inputs.upload_artifacts == true && inputs.validation_scope != 'candidate-review' }}
         uses: actions/upload-artifact@v4
         with:
           name: iphone-unsigned-products
@@ -1262,6 +1267,18 @@ jobs:
             ios/build/Harbor-unsigned.ipa
             ios/build/Harbor-unsigned.json
           retention-days: 1
+
+      - name: Preserve candidate review logs and original captures
+        if: ${{ always() && inputs.validation_scope == 'candidate-review' && inputs.upload_artifacts == true }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: candidate-review-evidence
+          path: |
+            ios/build/candidate-review/*.log
+            ios/build/candidate-review/review.json
+            ios/build/candidate-review/attachments
+          if-no-files-found: error
+          retention-days: 7
 
   package-reviewed:
     name: Package iPhone from preserved validation

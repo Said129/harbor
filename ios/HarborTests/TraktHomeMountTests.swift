@@ -20,7 +20,7 @@ import XCTest
             var media = Media.parse(scenario["cinemetaRaw"][id], kind: kind); media?.poster = base + "/poster.png"; return media
         })
         let model = TraktHomeModel(account: account, client: .init(transport: { try await transport.send($0) }), hydrator: hydrator, active: { true })
-        await model.load(configuration: .init(tmdbKey: "", region: "US", language: "en-US", translateTitles: true))
+        await model.load(configuration: .init(tmdbKey: "", region: "US", language: "en-US", translateTitles: true), date: TraktHomeTests.referenceDate)
         XCTAssertEqual(model.rows.count, 4)
         let app = AppModel(), owner = "owned-trakt-home-mount-" + UUID().uuidString
         let customization = PageCustomization(owner: owner, page: "home"), rows = model.rows.map(PageRail.discovery)
