@@ -13,6 +13,7 @@ import Foundation
     let lyrics: MusicLyricsClient
     let soundcloud: SoundCloudMusicService
     let audio: MusicAudioPreferences
+    let lastfm: LastFmMusicService
     let catalog: MusicCatalogModel
     let playback: MusicPlaybackSession
     private var disposed = false
@@ -28,8 +29,9 @@ import Foundation
         let lyrics = MusicLyricsClient(scope: scope, currentScope: currentScope); self.lyrics = lyrics
         let soundcloud = SoundCloudMusicService(scope: scope, currentScope: currentScope); self.soundcloud = soundcloud
         let audio = MusicAudioPreferences(owner: scope.owner); self.audio = audio
+        let lastfm = LastFmMusicService(scope: scope, currentScope: currentScope); self.lastfm = lastfm
         catalog = MusicCatalogModel(client: MusicServerCatalogClient(server: server, soundcloud: soundcloud, jellyfin: jellyfin, plex: plex, currentScope: currentScope))
-        playback = MusicPlaybackSession(server: server, playlists: playlists, localRecords: { library.records }, localRevision: { library.revision }, lyrics: lyrics, soundcloud: soundcloud, jellyfin: jellyfin, plex: plex, audio: audio, currentScope: currentScope)
+        playback = MusicPlaybackSession(server: server, playlists: playlists, localRecords: { library.records }, localRevision: { library.revision }, lyrics: lyrics, soundcloud: soundcloud, jellyfin: jellyfin, plex: plex, audio: audio, lastfm: lastfm, currentScope: currentScope)
     }
-    func dispose() { disposed = true; plex.dispose(); jellyfin.dispose(); soundcloud.dispose(); lyrics.dispose(); spotify.dispose(); server.dispose(); library.cancelImport(); catalog.invalidatePrivateServer() }
+    func dispose() { disposed = true; lastfm.dispose(); plex.dispose(); jellyfin.dispose(); soundcloud.dispose(); lyrics.dispose(); spotify.dispose(); server.dispose(); library.cancelImport(); catalog.invalidatePrivateServer() }
 }

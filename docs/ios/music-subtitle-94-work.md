@@ -499,3 +499,48 @@ contains three new parametric/speed cases, the changed audio form, the corrected
 lyrics ownership case and the indexed HTTP journey. The five-case binary
 candidate run remains 41544752262; neither live run is restarted. No IPA is
 requested by either run.
+
+## Extended runtime actually executed
+
+Candidate run 41544752262, source 0c4a1202, compiled and executed five cases
+without restart: four passed and the original unindexed/tiny-cache HTTP case
+failed with the same position=3.0 / EMBEDDED CUE 0 as the baseline. The extended
+case actually found all 14 filters and avfilter 11.14.102, applied all six
+parametric types plus crossfeed/reverb to a real audio core, then applied each
+effect, played/seeks/paused and bypassed them successfully. The audio transport,
+source-switch and Community seek cases also passed. Do not repeat these
+unchanged executions solely because the aggregate run failed elsewhere.
+
+Original artifact SHA-256:
+f4bace714ff818dad1d1c5afdc739c93d84e179c9580ebdc6f479fded12b9f17.
+Export-only run 41548648421 retained its two Community captures, archive
+d68187a6bb967511cec4bf34df3faa8958389df3692293c57ee925db88a7d563.
+Both were visually inspected: the expected glyphs remain visible at 17/5
+seconds under the changed library. No test was repeated for that export.
+The package metadata now records this scoped native evidence. The original
+component-build runtime.json is preserved. No default-package adoption, device
+app link, physical-device reproduction or complete validation is claimed.
+
+## Last.fm source port
+
+The original browser-token/session flow and recording POST fields now have a
+native profile-owned adapter. CryptoKit implements the original sorted UTF-8
+MD5 protocol signature; the existing Rust network executor sends bounded
+public-only HTTPS POSTs with redirects disabled. Keys, shared secret and
+session are scoped in Keychain; pending auth stays in memory, expires after
+its documented hour, and cannot save through a retired owner or account.
+The native connection form shares the profile's metadata API key and retains
+the original translated authorize/finish/profile/disconnect controls.
+
+The native audio player's existing seek-resistant half-song/four-minute counter
+now calls Last.fm after Subsonic bookkeeping. A failed Subsonic submission
+cannot prevent Last.fm, matching Desktop's dispatcher; a Last.fm failure
+affects the separate bookkeeping status, not playback. Spotify App Remote's
+scrobble path remains separate unfinished work.
+
+Three new native journeys cover the original signature vector, real owned HTTP
+auth/session/submission and Unicode form fields, private-stream exclusion,
+restart, actual player-clock eligibility/seek/duplicate/error separation,
+Subsonic failure fallback, late-owner response rejection, and phone/tablet-size
+forms with sixteen-language labels. Those cases and real-account use remain
+pending. Source hashes and primary references are in lastfm-music-port-inputs.json.

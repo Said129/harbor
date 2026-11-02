@@ -23,3 +23,11 @@ specification. It does not edit ios/project.yml.
 Successful component compilation does not establish application integration.
 The selected native audio and playback cases must pass before adopting this
 package for delivery.
+
+Native run 41544752262 on source 0c4a1202 executed the extended filters and
+effects, audio transport/source changes and Community-style subtitles
+successfully. Its separate unindexed/tiny-cache HTTP case failed exactly as
+with the baseline library. package-inputs.json records all four passing
+executions and that remaining failure. The default package remains unchanged;
+the indexed HTTP journey, new editor and device application build have their
+own outstanding gates.

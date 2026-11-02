@@ -9,6 +9,7 @@ import Foundation
     let jellyfin: JellyfinMusicService?
     let soundcloud: SoundCloudMusicService?
     let audio: MusicAudioPreferences?
+    let lastfm: LastFmMusicService?
     private let policy = MusicSourcePolicy()
     private let localRecords: @MainActor () -> [MusicRecord]
     private let localRevision: (@MainActor () -> UInt64)?
@@ -17,17 +18,19 @@ import Foundation
     private let currentScope: @MainActor () -> PluginExecutionScope
     init(server: SubsonicMusicService, playlists: MusicPlaylistStore,
          localRecords: @escaping @MainActor () -> [MusicRecord], localRevision: (@MainActor () -> UInt64)? = nil,
-         lyrics: MusicLyricsClient? = nil, soundcloud: SoundCloudMusicService? = nil, jellyfin: JellyfinMusicService? = nil, plex: PlexMusicService? = nil, audio: MusicAudioPreferences? = nil, currentScope: @escaping @MainActor () -> PluginExecutionScope) {
+         lyrics: MusicLyricsClient? = nil, soundcloud: SoundCloudMusicService? = nil, jellyfin: JellyfinMusicService? = nil, plex: PlexMusicService? = nil, audio: MusicAudioPreferences? = nil, lastfm: LastFmMusicService? = nil, currentScope: @escaping @MainActor () -> PluginExecutionScope) {
         self.server = server; scope = server.scope; self.playlists = playlists
         self.localRecords = localRecords; self.localRevision = localRevision; self.currentScope = currentScope
         self.lyrics = lyrics
         self.soundcloud = soundcloud; self.jellyfin = jellyfin; self.plex = plex
         self.audio = audio
+        self.lastfm = lastfm
     }
     func validate() throws {
         try server.validateCatalogScope()
         guard scope == currentScope(), playlists.owner == scope.owner,
-              audio == nil || audio?.owner == scope.owner else { throw CancellationError() }
+              audio == nil || audio?.owner == scope.owner,
+              lastfm == nil || lastfm?.scope == scope else { throw CancellationError() }
     }
     func localRecord(_ track: MusicTrack) -> MusicRecord? {
         guard (try? validate()) != nil, track.connectorId == "local" else { return nil }
@@ -110,6 +113,11 @@ import Foundation
         })
     }
     func scrobble(_ track: MusicTrack, startedAt: UInt64) async throws {
-        try validate(); _ = try await server.submitScrobble(track, startedAtSeconds: startedAt)
+        try validate()
+        do { _ = try await server.submitScrobble(track, startedAtSeconds: startedAt) }
+        catch is CancellationError { throw CancellationError() }
+        catch { Diagnostics.shared.recordFailure(error) }
+        try validate()
+        try await lastfm?.scrobble(track, startedAt: startedAt)
     }
 }

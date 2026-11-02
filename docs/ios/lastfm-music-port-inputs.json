@@ -1,0 +1,29 @@
+{
+  "referenceCommit": "0834340cec5531650bfe78cd628628702e636987",
+  "referenceVersion": "0.9.132 Beta",
+  "originalFilesSHA256": {
+    "src-tauri/src/music/lastfm.rs": "1aeb8af00da6857a1532a1ab8b56affce885599081f0b57b8e4fc7d0715be10f",
+    "src-tauri/src/music/commands/accounts.rs": "66ab39e98379efd82185b7347c377ffa6aab9cfd5f0bcac33b4b5da8beb025c6",
+    "src/components/music/music-lastfm.tsx": "5eaf9f965637c9e2f3b77e60863876ee7c080afd6b4a0e42166fc5cef7e21274",
+    "src/lib/music/lastfm.ts": "cab0933dbec0582f387367d55c55b6007fb9ac64ab61e60ee5bfcc20794e9260"
+  },
+  "adaptations": [
+    "Original token/session authentication, sorted UTF-8 parameter signing and single-recording POST metadata retained.",
+    "CryptoKit supplies the protocol-required MD5; bounded public-only HTTPS requests execute on the existing native Rust network executor.",
+    "API key, shared secret and session stored in Keychain under the active Harbor profile; no fixed shared application credentials.",
+    "Authorization token stays in memory for its documented lifetime; account revision, cancellation and profile fences protect late responses.",
+    "The existing native listening counter triggers once after half the song or four minutes and ignores seek jumps. Subsonic bookkeeping failure does not prevent Last.fm submission, as in the pinned Desktop dispatcher.",
+    "Native credential fields, browser authorization/finish flow, account profile link and disconnect reuse the original translated labels.",
+    "Spotify App Remote scrobbling remains separate pending work; this integration currently serves the native audio player."
+  ],
+  "officialReferences": [
+    "https://www.last.fm/api/desktopauth",
+    "https://www.last.fm/api/show/track.scrobble"
+  ],
+  "validation": {
+    "nativeHTTPAndListeningJourney": "pending",
+    "lateProfileAuthorization": "pending",
+    "phoneAndTabletCaptures": "pending",
+    "realLastFmAccount": "not tested"
+  }
+}

@@ -79,6 +79,6 @@ logs.mkdir(parents=True, exist_ok=True)
     "generatedSpecSHA256": hashlib.sha256(candidate.encode()).hexdigest(),
     "runtimeCandidateSelected": True,
     "applicationDefaultChanged": False,
-    "nativeExecutionValidated": False,
+    "currentRunExecutionValidated": False,
 }, indent=2) + "\n", "utf-8")
 print("Verified device/simulator filter candidate prepared; default project unchanged.")

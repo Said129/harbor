@@ -7,7 +7,7 @@
   "ffmpegSource": "38b88335f99e76ed89ff3c93f877fdefce736c13",
   "publicHeadersMatchBaseline": true,
   "applicationDefaultChanged": false,
-  "nativeExecutionValidated": false,
+  "nativeExecutionValidated": true,
   "packageShims": {
     "Sources/_MPVKit/dummy.c": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "Sources/_MPVKit/include/dummy.h": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -22,5 +22,22 @@
     "MPVKit-LICENSE.txt": "ea8af5e789cb2d4e9b10bce3874982ade163b749b6bfbdb32e2df21c4d106de1",
     "FFmpeg-LICENSE.md": "2e1d16c72fd74e12063776371da757322f8b77589386532f4fd8634bde7de1af",
     "COPYING.LGPLv2.1": "246041b6ecf9bc32d718a62c57877c78b5eb397b6467e74ed7ae2626ab189c30"
+  },
+  "nativeValidation": {
+    "run": 41544752262,
+    "source": "0c4a120262ca1c8123677ce835b21bc88a793cee",
+    "artifactSHA256": "f4bace714ff818dad1d1c5afdc739c93d84e179c9580ebdc6f479fded12b9f17",
+    "passed": [
+      "MusicAudioTests/testChangingARealMusicSourcePreservesPositionAndPausedState",
+      "MusicAudioTests/testRealNativeDSPChangesApplyWithoutResettingPauseOrSeekPosition",
+      "MusicExtendedAudioTests/testOriginalParametricCrossfeedReverbAndEffectsExecuteInTheNativeAudioCore",
+      "SubtitleSeekTests/testDownloadedCommunityWebVTTCuesFollowSeeksAfterResumingMidVideo"
+    ],
+    "knownFailingCase": [
+      "SubtitleSeekTests/testHTTPRangeSeeksRetainEmbeddedAndExternalCuesAndRenderedSubtitles"
+    ],
+    "completeRun": false,
+    "deviceApplicationBuild": "pending",
+    "defaultAdopted": false
   }
 }

@@ -30,6 +30,9 @@ import SwiftUI
                     Button("Subsonic / Navidrome / Ampache") { server = true }
                 }
                 Section(DesktopInterfaceText.value("Metadata")) { NavigationLink("Last.fm / MusicBrainz") { MusicMetadataSettingsView(client: metadata) } }
+                Section(DesktopInterfaceText.value("music.connections.scrobbler")) {
+                    NavigationLink("Last.fm") { LastFmMusicConnectionView(service: workspace.lastfm, metadata: metadata) }
+                }
                 Section(DesktopInterfaceText.value("music.audio.preferredSource")) {
                     Picker(DesktopInterfaceText.value("music.audio.preferredSource"), selection: Binding(get: { UserDefaults.standard.string(forKey: "harbor.music.preferredSource") ?? "auto" }, set: { UserDefaults.standard.set($0, forKey: "harbor.music.preferredSource") })) {
                         Text(DesktopInterfaceText.value("Auto")).tag("auto")
