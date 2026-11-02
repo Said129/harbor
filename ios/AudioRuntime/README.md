@@ -8,6 +8,8 @@ music effects. The default app project still uses its original MPVKit package.
 
 runtime.json records the build configuration, architecture slices and source
 inputs. Both source patches and license notices are retained here. The
+upstream license bytes are excluded from formatting and newline conversion.
+The
 VideoToolbox patch belongs to the upstream full FFmpeg build; this candidate
 replaces only Libavfilter. The deployed libavcodec and libmpv archives do not
 change.
