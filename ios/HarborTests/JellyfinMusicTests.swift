@@ -72,6 +72,22 @@ import XCTest
         XCTAssertNil(service.account)
     }
 
+    func testDisconnectRejectsPrivateRowsWhileAnotherCatalogIsStillLoading() async throws {
+        let fixture = try JellyfinMusicFixture(audio: Data()), origin = try await fixture.start(), scope = SharedMusicScope()
+        let service = JellyfinMusicService(scope: scope.scope, currentScope: { scope.scope })
+        let server = SubsonicMusicService(scope: scope.scope, currentScope: { scope.scope }, persistence: SharedMusicPairingDisk())
+        let gate = SharedMusicGate(), catalog = JellyfinWaitingPublicCatalog(gate: gate)
+        let client = MusicServerCatalogClient(server: server, catalog: catalog, jellyfin: service, currentScope: { scope.scope })
+        defer { Task { await gate.release() } }
+        defer { service.dispose(); server.dispose(); fixture.stop(); try? KeychainStore().remove("music-jellyfin-account-" + EBookShelf.hash(scope.scope.owner)) }
+        try await service.connect(address: origin.absoluteString, username: "owned", password: "owned-password")
+        let task = Task { try await client.home() }
+        try await wait { fixture.requests.filter { $0.hasPrefix("GET /jellyfin/Items?") }.count >= 4 }
+        try await Task.sleep(for: .milliseconds(100))
+        try service.disconnect(); await gate.release()
+        do { _ = try await task.value; XCTFail("An old account's rows must not return after disconnect") } catch is CancellationError { }
+    }
+
     func testJellyfinConnectionRendersForPhoneAndTabletWithoutDesktopFields() async throws {
         let scope = SharedMusicScope(), service = JellyfinMusicService(scope: scope.scope, currentScope: { scope.scope })
         defer { service.dispose() }
@@ -94,4 +110,15 @@ import XCTest
         while Date() < deadline { if condition() { return }; try await Task.sleep(for: .milliseconds(30)) }
         XCTFail("Owned Jellyfin operation did not settle"); throw HarborError(code: "owned-jellyfin-timeout")
     }
+}
+
+private struct JellyfinWaitingPublicCatalog: MusicCatalogCalling {
+    let gate: SharedMusicGate
+    func home() async throws -> [MusicCatalogRow] { await gate.hold(); return [] }
+    func search(_ query: String, limit: Int) async throws -> MusicCatalogSearch { throw CancellationError() }
+    func albumTracks(_ album: MusicCatalogAlbum) async throws -> [MusicTrack] { throw CancellationError() }
+    func artistTop(_ artist: MusicCatalogArtist) async throws -> [MusicTrack] { throw CancellationError() }
+    func artistRows(_ artist: MusicCatalogArtist) async throws -> [MusicCatalogRow] { throw CancellationError() }
+    func artistCatalog(_ artist: MusicCatalogArtist, kind: MusicCatalogKind, cursor: String?) async throws -> MusicCatalogPage { throw CancellationError() }
+    func playlistTracks(_ playlist: MusicCatalogPlaylist) async throws -> [MusicTrack] { throw CancellationError() }
 }

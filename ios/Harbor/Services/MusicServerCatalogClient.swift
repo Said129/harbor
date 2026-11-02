@@ -13,14 +13,15 @@ import Foundation
          browseTimeout: Duration = .seconds(12), currentScope: @escaping @MainActor () -> PluginExecutionScope) {
         self.server = server; self.catalog = catalog; self.jellyfin = jellyfin; self.soundcloud = soundcloud; self.browseTimeout = browseTimeout; self.currentScope = currentScope
     }
-    private func validate(_ version: UUID) throws {
+    private func validate(_ version: UUID, jellyfinVersion: UUID?) throws {
         try server.validateCatalogScope(); try jellyfin?.validate()
-        guard server.scope == currentScope(), version == server.credentialVersion else { throw CancellationError() }
+        guard server.scope == currentScope(), version == server.credentialVersion, jellyfinVersion == jellyfin?.credentialVersion else { throw CancellationError() }
     }
     private func scoped<T: Sendable>(_ work: @MainActor () async throws -> T) async throws -> T {
-        let version = server.credentialVersion; try validate(version)
-        do { let value = try await work(); try validate(version); return value }
-        catch { try validate(version); throw error }
+        let version = server.credentialVersion, jellyfinVersion = jellyfin?.credentialVersion
+        try validate(version, jellyfinVersion: jellyfinVersion)
+        do { let value = try await work(); try validate(version, jellyfinVersion: jellyfinVersion); return value }
+        catch { try validate(version, jellyfinVersion: jellyfinVersion); throw error }
     }
     private func client(_ id: String) throws -> any MusicCatalogCalling {
         if id == "jellyfin" {
