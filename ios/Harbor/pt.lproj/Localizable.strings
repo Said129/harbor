@@ -44,6 +44,7 @@
 "Accent" = "Destaque";
 "Accents" = "Accents";
 "Accept" = "Aceitar";
+"Access token" = "Token de acesso";
 "Account" = "Conta";
 "Account & setup" = "Conta e configuração";
 "Acento" = "Destaque";
@@ -2703,6 +2704,7 @@
 "music.mobile.moreInfo" = "Mais informações";
 "music.mobile.options" = "Opções";
 "music.mobile.playlistUnavailable" = "Esta playlist já não está disponível.";
+"music.mobile.plex.discovery" = "Deixe o endereço do servidor vazio para procurar bibliotecas de música com o token da sua conta Plex.";
 "music.mobile.queueLimit" = "A fila pode conter até 500 músicas.";
 "music.mobile.resume" = "Retomar música";
 "music.mobile.reverseOrder" = "Ordem inversa";

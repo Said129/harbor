@@ -39,6 +39,7 @@
 "Accent" = "Couleur d’accentuation";
 "Accents" = "Accents";
 "Accept" = "Accepter";
+"Access token" = "Jeton d’accès";
 "Account" = "Compte";
 "Account & setup" = "Compte et configuration";
 "Acento" = "Couleur d’accentuation";
@@ -2676,6 +2677,7 @@
 "music.mobile.moreInfo" = "Plus d’informations";
 "music.mobile.options" = "Options";
 "music.mobile.playlistUnavailable" = "Cette playlist n’est plus disponible.";
+"music.mobile.plex.discovery" = "Laissez l’adresse du serveur vide pour rechercher des bibliothèques musicales avec le jeton de votre compte Plex.";
 "music.mobile.queueLimit" = "La file peut contenir jusqu’à 500 titres.";
 "music.mobile.resume" = "Reprendre la musique";
 "music.mobile.reverseOrder" = "Ordre inverse";

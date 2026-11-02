@@ -39,6 +39,7 @@
 "Accent" = "Màu nhấn";
 "Accents" = "Accents";
 "Accept" = "Chấp nhận";
+"Access token" = "Mã thông báo truy cập";
 "Account" = "Tài khoản";
 "Account & setup" = "Tài khoản và thiết lập";
 "Acento" = "Màu nhấn";
@@ -2676,6 +2677,7 @@
 "music.mobile.moreInfo" = "Thông tin thêm";
 "music.mobile.options" = "Tùy chọn";
 "music.mobile.playlistUnavailable" = "Danh sách phát này không còn khả dụng.";
+"music.mobile.plex.discovery" = "Để trống địa chỉ máy chủ để tìm thư viện nhạc bằng mã thông báo tài khoản Plex của bạn.";
 "music.mobile.queueLimit" = "Hàng đợi có thể chứa tối đa 500 bài hát.";
 "music.mobile.resume" = "Tiếp tục phát nhạc";
 "music.mobile.reverseOrder" = "Đảo thứ tự";

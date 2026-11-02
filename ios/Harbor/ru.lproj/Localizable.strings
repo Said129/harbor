@@ -41,6 +41,7 @@
 "Accent" = "Акцент";
 "Accents" = "Accents";
 "Accept" = "Принять";
+"Access token" = "Токен доступа";
 "Account" = "Аккаунт";
 "Account & setup" = "Аккаунт и настройка";
 "Acento" = "Акцент";
@@ -2691,6 +2692,7 @@
 "music.mobile.moreInfo" = "Подробнее";
 "music.mobile.options" = "Параметры";
 "music.mobile.playlistUnavailable" = "Этот плейлист больше недоступен.";
+"music.mobile.plex.discovery" = "Оставьте адрес сервера пустым, чтобы найти музыкальные библиотеки с помощью токена аккаунта Plex.";
 "music.mobile.queueLimit" = "Очередь вмещает до 500 композиций.";
 "music.mobile.resume" = "Продолжить музыку";
 "music.mobile.reverseOrder" = "Обратный порядок";

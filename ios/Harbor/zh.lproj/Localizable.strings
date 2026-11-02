@@ -39,6 +39,7 @@
 "Accent" = "强调色";
 "Accents" = "Accents";
 "Accept" = "接受";
+"Access token" = "访问令牌";
 "Account" = "账户";
 "Account & setup" = "账号与设置";
 "Acento" = "强调色";
@@ -2676,6 +2677,7 @@
 "music.mobile.moreInfo" = "更多信息";
 "music.mobile.options" = "选项";
 "music.mobile.playlistUnavailable" = "此播放列表已不可用。";
+"music.mobile.plex.discovery" = "将服务器地址留空，即可使用 Plex 帐户令牌发现音乐资料库。";
 "music.mobile.queueLimit" = "播放队列最多可容纳 500 首歌曲。";
 "music.mobile.resume" = "继续播放音乐";
 "music.mobile.reverseOrder" = "反向排序";

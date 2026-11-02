@@ -39,6 +39,7 @@
 "Accent" = "एक्सेंट";
 "Accents" = "Accents";
 "Accept" = "स्वीकार करें";
+"Access token" = "एक्सेस टोकन";
 "Account" = "अकाउंट";
 "Account & setup" = "खाता और सेटअप";
 "Acento" = "एक्सेंट";
@@ -2676,6 +2677,7 @@
 "music.mobile.moreInfo" = "अधिक जानकारी";
 "music.mobile.options" = "विकल्प";
 "music.mobile.playlistUnavailable" = "यह प्लेलिस्ट अब उपलब्ध नहीं है।";
+"music.mobile.plex.discovery" = "अपने Plex खाते के टोकन से संगीत लाइब्रेरी खोजने के लिए सर्वर का पता खाली छोड़ें।";
 "music.mobile.queueLimit" = "कतार में अधिकतम 500 गाने रखे जा सकते हैं।";
 "music.mobile.resume" = "संगीत फिर से चलाएँ";
 "music.mobile.reverseOrder" = "उल्टा क्रम";

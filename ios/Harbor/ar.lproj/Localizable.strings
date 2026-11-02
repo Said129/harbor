@@ -46,6 +46,7 @@
 "Accent" = "لون مميز";
 "Accents" = "Accents";
 "Accept" = "قبول";
+"Access token" = "رمز الوصول";
 "Account" = "الحساب";
 "Account & setup" = "الحساب والإعداد";
 "Acento" = "لون مميز";
@@ -2718,6 +2719,7 @@
 "music.mobile.moreInfo" = "مزيد من المعلومات";
 "music.mobile.options" = "خيارات";
 "music.mobile.playlistUnavailable" = "قائمة التشغيل هذه لم تعد متاحة.";
+"music.mobile.plex.discovery" = "اترك عنوان الخادم فارغًا لاكتشاف مكتبات الموسيقى باستخدام رمز حساب Plex الخاص بك.";
 "music.mobile.queueLimit" = "تتّسع قائمة الانتظار لما يصل إلى 500 أغنية.";
 "music.mobile.resume" = "استئناف الموسيقى";
 "music.mobile.reverseOrder" = "عكس الترتيب";

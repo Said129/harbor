@@ -39,6 +39,7 @@
 "Accent" = "Aksen";
 "Accents" = "Accents";
 "Accept" = "Terima";
+"Access token" = "Token akses";
 "Account" = "Akun";
 "Account & setup" = "Akun & penyiapan";
 "Acento" = "Aksen";
@@ -2676,6 +2677,7 @@
 "music.mobile.moreInfo" = "Info lainnya";
 "music.mobile.options" = "Opsi";
 "music.mobile.playlistUnavailable" = "Playlist ini tidak lagi tersedia.";
+"music.mobile.plex.discovery" = "Kosongkan alamat server untuk menemukan pustaka musik dengan token akun Plex Anda.";
 "music.mobile.queueLimit" = "Antrean dapat memuat hingga 500 lagu.";
 "music.mobile.resume" = "Lanjutkan musik";
 "music.mobile.reverseOrder" = "Urutan terbalik";

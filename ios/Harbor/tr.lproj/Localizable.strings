@@ -39,6 +39,7 @@
 "Accent" = "Vurgu";
 "Accents" = "Accents";
 "Accept" = "Kabul et";
+"Access token" = "Erişim belirteci";
 "Account" = "Hesap";
 "Account & setup" = "Hesap ve kurulum";
 "Acento" = "Vurgu";
@@ -2676,6 +2677,7 @@
 "music.mobile.moreInfo" = "Daha fazla bilgi";
 "music.mobile.options" = "Seçenekler";
 "music.mobile.playlistUnavailable" = "Bu çalma listesi artık kullanılamıyor.";
+"music.mobile.plex.discovery" = "Plex hesap belirtecinizle müzik kitaplıklarını bulmak için sunucu adresini boş bırakın.";
 "music.mobile.queueLimit" = "Kuyruk en fazla 500 şarkı içerebilir.";
 "music.mobile.resume" = "Müziği sürdür";
 "music.mobile.reverseOrder" = "Ters sıralama";

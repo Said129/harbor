@@ -26,6 +26,7 @@
 "Abrir reproductor de Música" = "Open music player";
 "Accent" = "Accent";
 "Accents" = "Accents";
+"Access token" = "Access token";
 "Account" = "Account";
 "Account & setup" = "Account & setup";
 "Acento" = "Accent";
@@ -2302,6 +2303,7 @@
 "music.mobile.moreInfo" = "More info";
 "music.mobile.options" = "Options";
 "music.mobile.playlistUnavailable" = "This playlist is no longer available.";
+"music.mobile.plex.discovery" = "Leave the server address empty to discover music libraries with your Plex account token.";
 "music.mobile.queueLimit" = "The queue can hold up to 500 songs.";
 "music.mobile.resume" = "Resume music";
 "music.mobile.reverseOrder" = "Reverse order";

@@ -39,6 +39,7 @@
 "Accent" = "강조색";
 "Accents" = "Accents";
 "Accept" = "수락";
+"Access token" = "액세스 토큰";
 "Account" = "계정";
 "Account & setup" = "계정 및 초기 설정";
 "Acento" = "강조색";
@@ -2676,6 +2677,7 @@
 "music.mobile.moreInfo" = "추가 정보";
 "music.mobile.options" = "옵션";
 "music.mobile.playlistUnavailable" = "이 재생목록은 더 이상 사용할 수 없습니다.";
+"music.mobile.plex.discovery" = "서버 주소를 비워 두면 Plex 계정 토큰으로 음악 라이브러리를 찾습니다.";
 "music.mobile.queueLimit" = "대기열에는 최대 500곡을 담을 수 있습니다.";
 "music.mobile.resume" = "음악 재개";
 "music.mobile.reverseOrder" = "역순";

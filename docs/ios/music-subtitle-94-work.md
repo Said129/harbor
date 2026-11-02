@@ -324,3 +324,40 @@ provider journey: the shared private-provider request gained a typed sum for
 Plex/Jellyfin with transparent encoding, so its original JSON boundary needs
 this affected compatibility check. The twenty-four-case corrective run uses
 source `3193fb4d` and is kept independent of these new Plex files.
+
+## Results collected after resume
+
+Both `41495696602` (source `3193fb4d`) and `41496910543` (source `0f7deb9b`)
+stopped while compiling new tests; no selected native case executed. The
+Jellyfin/Plex test source had malformed shorthand member references where Swift
+requires key paths, plus a missing environment key-path prefix. These are now
+corrected, and the station list has an explicit element type. Preserved ZIPs:
+
+- `native-corrected-41495696602.zip`, SHA-256
+  `e37789b2668f0360bad66055a2f2c6a95616ce62362f9d0e23457eb45524cc42`.
+- `plex-compile-41496910543.zip`, SHA-256
+  `de53063380126de39284e5dbede7fde6a43f938aceeb49c2fc8a22c43b659b6f`.
+
+The second run's real host cargo check and **22 original Plex cases passed**
+without warnings. Retain those passes for Plex tree
+`4816e1f3e17a31cb972b7010cf3a86d4ca0f0718`. The accepted full host Rust check is
+reusable only for unchanged bridge/core trees `69950e235d2c64dbd5817ca742d9eff48ff755d7`
+and `46951aae1f450e6013ca10958d9f7be0aaf311b7`. Native builds and cases remain
+separate required evidence.
+
+The new Plex description and Access token field are now regenerated into all
+sixteen Localizable.strings files, using only those two labels. Other accepted
+translations are preserved. Native bundle lookups are still part of the pending
+UI case. The combined corrective selection is the deduplicated union of all
+24 unexecuted cases and the three new Plex cases, for 27 actual executions.
+
+DSP build `41489407298` succeeded. Its outer artifact ZIP is
+`music-dsp-41489407298.zip`, SHA-256
+`bf52d661b8657d8a7cc0c27b6c0cd3ba3d155124aeef74489a25e59f5f755cc6`.
+The inner Libavfilter archive SHA-256 is
+`b3d8406c8ebf61018709e18fac526e13910e032b870ff9fe35ac4a1ef2f6934a`.
+All 14 requested filter definitions and device arm64/simulator arm64+x86_64
+slices were checked, with the matching deployed 8.1.2 ABI. This proves the
+component build, not application integration or actual native effect execution.
+Those two gates are still open. No subtitle production seek fix or new IPA is
+claimed by these build results.

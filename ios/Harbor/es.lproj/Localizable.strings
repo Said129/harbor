@@ -39,6 +39,7 @@
 "Accent" = "Acento";
 "Accents" = "Accents";
 "Accept" = "Aceptar";
+"Access token" = "Token de acceso";
 "Account" = "Cuenta";
 "Account & setup" = "Cuenta y configuración";
 "Acento" = "Acento";
@@ -2676,6 +2677,7 @@
 "music.mobile.moreInfo" = "Más información";
 "music.mobile.options" = "Opciones";
 "music.mobile.playlistUnavailable" = "Esta lista ya no está disponible.";
+"music.mobile.plex.discovery" = "Deja vacía la dirección del servidor para buscar bibliotecas de música con el token de tu cuenta de Plex.";
 "music.mobile.queueLimit" = "La cola admite hasta 500 canciones.";
 "music.mobile.resume" = "Reanudar música";
 "music.mobile.reverseOrder" = "Orden inverso";

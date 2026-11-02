@@ -31,9 +31,9 @@ import XCTest
         XCTAssertEqual(fixture.requests.filter { $0.hasPrefix("GET /photo/:/transcode?") }.count, 1)
         let album = try XCTUnwrap(result.albums.first), playlist = try XCTUnwrap(result.playlists.first), artist = try XCTUnwrap(result.artists.first)
         let albums = try await plex.albumTracks(album), lists = try await plex.playlistTracks(playlist), artists = try await plex.artistTop(artist)
-        XCTAssertEqual(albums.map(.id), ["plex:1"]); XCTAssertEqual(lists.map(.id), ["plex:1"]); XCTAssertEqual(artists.map(.id), ["plex:1"])
+        XCTAssertEqual(albums.map(\.id), ["plex:1"]); XCTAssertEqual(lists.map(\.id), ["plex:1"]); XCTAssertEqual(artists.map(\.id), ["plex:1"])
         let rows = try await plex.home()
-        let stations: [MusicCatalogStation] = rows.flatMap(.items).compactMap { if case .station(let value) = $0 { value } else { nil } }
+        let stations: [MusicCatalogStation] = rows.flatMap(\.items).compactMap { if case .station(let value) = $0 { value } else { nil } }
         let detail = MusicCatalogDetailModel(); await detail.load(.station(try XCTUnwrap(stations.first)), kind: .tracks, client: plex)
         XCTAssertEqual(detail.items.count, 1); XCTAssertNil(detail.failure)
         let choices = try await session.sources(for: track); XCTAssertTrue(choices.contains { $0.connectorId == "plex" })
@@ -82,7 +82,7 @@ import XCTest
         let result = try await service.search("Owned", limit: 24), track = try XCTUnwrap(result.tracks.first)
         _ = try await service.artwork(track.artwork)
         for (name, size) in [("phone", CGSize(width: 390, height: 844)), ("tablet", CGSize(width: 1024, height: 1366))] {
-            try await capture(VStack { MusicArtwork(url: track.artwork).frame(width: 180, height: 180); NavigationStack { PlexMusicConnectionView(service: service, changed: {}) } }.environment(.musicPlaybackSession, session), name: "plex-cover-connected-" + name, size: size)
+            try await capture(VStack { MusicArtwork(url: track.artwork).frame(width: 180, height: 180); NavigationStack { PlexMusicConnectionView(service: service, changed: {}) } }.environment(\.musicPlaybackSession, session), name: "plex-cover-connected-" + name, size: size)
         }
     }
     private func capture<V: View>(_ content: V, name: String, size: CGSize) async throws {

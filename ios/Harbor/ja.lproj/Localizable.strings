@@ -39,6 +39,7 @@
 "Accent" = "アクセント";
 "Accents" = "Accents";
 "Accept" = "承認";
+"Access token" = "アクセストークン";
 "Account" = "アカウント";
 "Account & setup" = "アカウントと初期設定";
 "Acento" = "アクセント";
@@ -2676,6 +2677,7 @@
 "music.mobile.moreInfo" = "詳細情報";
 "music.mobile.options" = "オプション";
 "music.mobile.playlistUnavailable" = "このプレイリストは利用できなくなりました。";
+"music.mobile.plex.discovery" = "サーバーのアドレスを空欄にすると、Plex アカウントのトークンで音楽ライブラリを検索します。";
 "music.mobile.queueLimit" = "再生キューには最大500曲を追加できます。";
 "music.mobile.resume" = "音楽を再開";
 "music.mobile.reverseOrder" = "逆順";

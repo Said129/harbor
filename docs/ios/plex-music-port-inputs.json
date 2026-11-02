@@ -20,7 +20,12 @@
     "The original artist catalog limitation and first-music-library selection remain explicit."
   ],
   "validation": {
-    "originalRustCases": "pending",
+    "originalRustCases": {
+      "passed": 22,
+      "source": "0f7deb9b134233c831111767f2061bd6582f4af3",
+      "run": 41496910543,
+      "artifactSHA256": "de53063380126de39284e5dbede7fde6a43f938aceeb49c2fc8a22c43b659b6f"
+    },
     "nativeProviderJourneys": "pending",
     "phoneAndTabletVisualReview": "pending",
     "realPrivateServer": "not tested"

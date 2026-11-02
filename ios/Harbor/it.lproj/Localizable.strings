@@ -39,6 +39,7 @@
 "Accent" = "Colore principale";
 "Accents" = "Accents";
 "Accept" = "Accetta";
+"Access token" = "Token di accesso";
 "Account" = "Account";
 "Account & setup" = "Account e configurazione";
 "Acento" = "Colore principale";
@@ -2676,6 +2677,7 @@
 "music.mobile.moreInfo" = "Altre informazioni";
 "music.mobile.options" = "Opzioni";
 "music.mobile.playlistUnavailable" = "Questa playlist non è più disponibile.";
+"music.mobile.plex.discovery" = "Lascia vuoto l’indirizzo del server per trovare librerie musicali con il token del tuo account Plex.";
 "music.mobile.queueLimit" = "La coda può contenere fino a 500 brani.";
 "music.mobile.resume" = "Riprendi la musica";
 "music.mobile.reverseOrder" = "Ordine inverso";
