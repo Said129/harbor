@@ -270,3 +270,26 @@ Read-only investigation of mpv issue 18676 found a reported external PGS seek
 state issue on 0.41/FFmpeg 8.1.2. That is not evidence for the user's Community
 VTT case; no PGS workaround, subtitle reload or timing reset was added based on
 it. Source: https://github.com/mpv-player/mpv/issues/18676.
+
+Run `41489402451`, source `39c50ab4`, compiled the application but could not
+compile the owned HTTP fixture: nested closures required `self.ready` and
+`self.connections`. Its nineteen selected native cases never executed. Both
+captures are now explicit. The verified artifact is preserved at
+`work/music-subtitle-94-review/native-compile-41489402451.zip`, SHA-256
+`08394467215ca872013148597e0412379105594e82e6f09399e3c7dbaff2c58c`.
+Only the previously known OpenGLES deprecations precede those two test errors.
+
+The redundant three-case build `41492339187` was deliberately cancelled after
+proving its fixture source blob exactly matched the compiler-rejected blob
+`2ddb487292e3d81680e6278a175f4201f8e1648d`. It was not cancelled because of
+an observation timeout. Its native cases did not execute. Its real host
+`cargo check` and **26 original Jellyfin cases passed**, with no warning/error
+in those preserved logs. Artifact SHA-256:
+`7d096453c009e0636f46bb55a0536566b43a907be73a329a290f0498bf1c1768`, at
+`work/music-subtitle-94-review/jellyfin-original-41492339187.zip`.
+Reuse those 26 passes only for Jellyfin tree
+`0f338bc5a8c3fdf473b47bb840ec871de86a61d5`. The next corrected native selection
+contains the nineteen unexecuted cases, all four Jellyfin journeys and the new
+typed SoundCloud journey, for 24 explicitly required executions. It excludes
+the already accepted unchanged local subtitle baseline. The in-progress Plex
+source port is kept outside this corrective validation commit.
