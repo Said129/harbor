@@ -2695,6 +2695,12 @@
 "music.mobile.resume" = "Продолжить музыку";
 "music.mobile.reverseOrder" = "Обратный порядок";
 "music.mobile.scrobbleError" = "Не удалось отправить историю прослушивания этой композиции.";
+"music.mobile.soundcloud.consent" = "Поиск и воспроизведение обращаются к SoundCloud и его серверам. Harbor использует доступные полные потоки согласно условиям поставщика.";
+"music.mobile.spotify.advertisement" = "Реклама Spotify";
+"music.mobile.spotify.external" = "Открытие Spotify без Client ID не подключает его управление к Harbor.";
+"music.mobile.spotify.install" = "Установите Spotify и войдите в официальное приложение.";
+"music.mobile.spotify.remote" = "Spotify воспроизводит звук в официальном приложении. Для аккаунтов Free сохраняются реклама и ограничения воспроизведения.";
+"music.mobile.spotify.restricted" = "Spotify не разрешает это действие при текущем состоянии или ограничениях вашей учётной записи.";
 "music.mute" = "Выключить звук";
 "music.newRelease.action" = "Listen now";
 "music.newRelease.eyebrow" = "New release";

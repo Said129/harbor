@@ -68,9 +68,12 @@ now affects a tapped line's seek destination as well as its highlighted line.
 
 The official Spotify SDK now has content/artwork bridge requests, a connected
 content browser and a global mini player. Actual Spotify authorization, Free
-restrictions and authenticated browsing remain unverified. New mobile Spotify
-setup/consent paragraphs still need full localization. Existing original Music
-labels have been transferred for all sixteen Desktop languages.
+restrictions and authenticated browsing remain unverified. Original Music
+labels have been transferred for all sixteen Desktop languages. The subsequent
+source/setup increment also localizes the six mobile-specific Spotify and
+SoundCloud explanations/errors in all sixteen languages, using the original
+Desktop setup labels for the remaining form controls. A new native case checks
+the 96 values against the compiled language bundles; execution is pending.
 
 Both native runs stopped at Swift compilation; no selected native case executed.
 `41447516378` and `41449579804` exposed an implicit `catch error` shadowing the
@@ -107,6 +110,13 @@ as fallback if hashing is unsupported. Playback is not blocked or reloaded.
 Two new native cases and the original two Rust arithmetic cases are pending.
 This closes a concrete parity gap but does not establish the cause of seeking
 drift or prove it fixed.
+
+The next Spotify increment also uses the official playback speed and timestamp
+to advance its position display between SDK events. Authorization has a bounded,
+profile-fenced timeout and clears cancellation when returning from Spotify,
+instead of leaving the form waiting indefinitely. These paths still require
+actual-account execution; no Free/Premium playback claim is inferred from UI
+captures or syntax checks.
 
 ## Validation approach
 

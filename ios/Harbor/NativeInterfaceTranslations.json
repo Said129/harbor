@@ -124,7 +124,13 @@
     "music.mobile.m3uFolderHelp": "Para canciones locales, selecciona la carpeta que contiene sus archivos de audio.",
     "music.mobile.m3uAudioFolder": "Elegir carpeta de audio",
     "music.mobile.m3uFailed": "No se pudo importar la lista. Revisa el archivo y la carpeta de audio seleccionada.",
-    "music.lyrics.follow": "Seguir la letra"
+    "music.lyrics.follow": "Seguir la letra",
+    "music.mobile.spotify.remote": "Spotify reproduce el audio en su aplicación oficial. Las cuentas Free conservan sus anuncios y límites de reproducción.",
+    "music.mobile.spotify.external": "Abrir Spotify sin Client ID no conecta sus controles con Harbor.",
+    "music.mobile.soundcloud.consent": "La búsqueda y reproducción consultan SoundCloud y sus servidores. Harbor usa las fuentes completas disponibles, sujetas a las condiciones del proveedor.",
+    "music.mobile.spotify.install": "Instala Spotify e inicia sesión en su aplicación oficial.",
+    "music.mobile.spotify.restricted": "Spotify no permite esta acción con el estado o los límites actuales de tu cuenta.",
+    "music.mobile.spotify.advertisement": "Publicidad de Spotify"
   },
   "pt": {
     "Auto-sync": "Sincronização automática",
@@ -199,7 +205,13 @@
     "music.mobile.m3uFolderHelp": "Para músicas locais, selecione a pasta que contém os arquivos de áudio.",
     "music.mobile.m3uAudioFolder": "Escolher pasta de áudio",
     "music.mobile.m3uFailed": "Não foi possível importar a lista. Verifique o arquivo e a pasta de áudio selecionada.",
-    "music.lyrics.follow": "Acompanhar a letra"
+    "music.lyrics.follow": "Acompanhar a letra",
+    "music.mobile.spotify.remote": "O Spotify reproduz o áudio no aplicativo oficial. As contas Free mantêm os anúncios e os limites de reprodução.",
+    "music.mobile.spotify.external": "Abrir o Spotify sem um Client ID não conecta os controles ao Harbor.",
+    "music.mobile.soundcloud.consent": "A pesquisa e a reprodução consultam o SoundCloud e seus servidores. O Harbor usa as fontes completas disponíveis, conforme os termos do provedor.",
+    "music.mobile.spotify.install": "Instale o Spotify e entre no aplicativo oficial.",
+    "music.mobile.spotify.restricted": "O Spotify não permite esta ação com o estado ou os limites atuais da sua conta.",
+    "music.mobile.spotify.advertisement": "Publicidade do Spotify"
   },
   "ru": {
     "Auto-sync": "Автосинхронизация",
@@ -273,7 +285,13 @@
     "music.mobile.m3uFolderHelp": "Для локальных песен выберите папку с их аудиофайлами.",
     "music.mobile.m3uAudioFolder": "Выбрать папку аудио",
     "music.mobile.m3uFailed": "Не удалось импортировать плейлист. Проверьте файл и выбранную папку аудио.",
-    "music.lyrics.follow": "Следовать за текстом"
+    "music.lyrics.follow": "Следовать за текстом",
+    "music.mobile.spotify.remote": "Spotify воспроизводит звук в официальном приложении. Для аккаунтов Free сохраняются реклама и ограничения воспроизведения.",
+    "music.mobile.spotify.external": "Открытие Spotify без Client ID не подключает его управление к Harbor.",
+    "music.mobile.soundcloud.consent": "Поиск и воспроизведение обращаются к SoundCloud и его серверам. Harbor использует доступные полные потоки согласно условиям поставщика.",
+    "music.mobile.spotify.install": "Установите Spotify и войдите в официальное приложение.",
+    "music.mobile.spotify.restricted": "Spotify не разрешает это действие при текущем состоянии или ограничениях вашей учётной записи.",
+    "music.mobile.spotify.advertisement": "Реклама Spotify"
   },
   "ar": {
     "Auto-sync": "مزامنة تلقائية",
@@ -347,7 +365,13 @@
     "music.mobile.m3uFolderHelp": "للأغاني المحلية، اختر المجلد الذي يحتوي على ملفاتها الصوتية.",
     "music.mobile.m3uAudioFolder": "اختيار مجلد الصوت",
     "music.mobile.m3uFailed": "تعذر استيراد قائمة التشغيل. تحقق من الملف ومجلد الصوت المحدد.",
-    "music.lyrics.follow": "متابعة كلمات الأغنية"
+    "music.lyrics.follow": "متابعة كلمات الأغنية",
+    "music.mobile.spotify.remote": "يشغّل Spotify الصوت في تطبيقه الرسمي. تبقى الإعلانات وقيود التشغيل في حسابات Free.",
+    "music.mobile.spotify.external": "فتح Spotify دون Client ID لا يربط عناصر التحكم فيه بتطبيق Harbor.",
+    "music.mobile.soundcloud.consent": "يتصل البحث والتشغيل بخدمة SoundCloud وخوادمها. يستخدم Harbor التدفقات الكاملة المتاحة وفق شروط المزوّد.",
+    "music.mobile.spotify.install": "ثبّت Spotify وسجّل الدخول في تطبيقه الرسمي.",
+    "music.mobile.spotify.restricted": "لا يسمح Spotify بهذا الإجراء وفق الحالة الحالية لحسابك أو قيوده.",
+    "music.mobile.spotify.advertisement": "إعلان Spotify"
   },
   "zh": {
     "Couldn't auto-sync": "无法自动同步",
@@ -393,7 +417,13 @@
     "music.mobile.m3uFolderHelp": "对于本地歌曲，请选择包含其音频文件的文件夹。",
     "music.mobile.m3uAudioFolder": "选择音频文件夹",
     "music.mobile.m3uFailed": "无法导入播放列表。请检查文件及所选音频文件夹。",
-    "music.lyrics.follow": "跟随歌词"
+    "music.lyrics.follow": "跟随歌词",
+    "music.mobile.spotify.remote": "Spotify 在其官方应用中播放音频。Free 账户仍有广告和播放限制。",
+    "music.mobile.spotify.external": "不提供 Client ID 而打开 Spotify，不会将其播放控制连接到 Harbor。",
+    "music.mobile.soundcloud.consent": "搜索和播放会连接 SoundCloud 及其媒体服务器。Harbor 按照提供商条款使用可用的完整音频流。",
+    "music.mobile.spotify.install": "请安装 Spotify 并在其官方应用中登录。",
+    "music.mobile.spotify.restricted": "由于账户当前的状态或限制，Spotify 不允许此操作。",
+    "music.mobile.spotify.advertisement": "Spotify 广告"
   },
   "fr": {
     "Couldn't auto-sync": "Synchronisation automatique impossible",
@@ -439,7 +469,13 @@
     "music.mobile.m3uFolderHelp": "Pour les morceaux locaux, sélectionnez le dossier contenant leurs fichiers audio.",
     "music.mobile.m3uAudioFolder": "Choisir le dossier audio",
     "music.mobile.m3uFailed": "Impossible d’importer la playlist. Vérifiez le fichier et le dossier audio sélectionné.",
-    "music.lyrics.follow": "Suivre les paroles"
+    "music.lyrics.follow": "Suivre les paroles",
+    "music.mobile.spotify.remote": "Spotify lit le son dans son application officielle. Les comptes Free conservent les publicités et les limites de lecture.",
+    "music.mobile.spotify.external": "Ouvrir Spotify sans Client ID ne relie pas ses commandes à Harbor.",
+    "music.mobile.soundcloud.consent": "La recherche et la lecture contactent SoundCloud et ses serveurs. Harbor utilise les flux complets disponibles selon les conditions du fournisseur.",
+    "music.mobile.spotify.install": "Installez Spotify et connectez-vous dans son application officielle.",
+    "music.mobile.spotify.restricted": "Spotify ne permet pas cette action avec l’état ou les limites actuelles de votre compte.",
+    "music.mobile.spotify.advertisement": "Publicité Spotify"
   },
   "de": {
     "Couldn't auto-sync": "Automatische Synchronisierung nicht möglich",
@@ -485,7 +521,13 @@
     "music.mobile.m3uFolderHelp": "Wähle für lokale Titel den Ordner mit ihren Audiodateien aus.",
     "music.mobile.m3uAudioFolder": "Audioordner auswählen",
     "music.mobile.m3uFailed": "Die Wiedergabeliste konnte nicht importiert werden. Prüfe die Datei und den ausgewählten Audioordner.",
-    "music.lyrics.follow": "Liedtext folgen"
+    "music.lyrics.follow": "Liedtext folgen",
+    "music.mobile.spotify.remote": "Spotify spielt Audio in seiner offiziellen App ab. Free-Konten behalten Werbung und Wiedergabebeschränkungen.",
+    "music.mobile.spotify.external": "Spotify ohne Client ID zu öffnen verbindet seine Steuerung nicht mit Harbor.",
+    "music.mobile.soundcloud.consent": "Suche und Wiedergabe greifen auf SoundCloud und dessen Server zu. Harbor nutzt vollständige verfügbare Streams gemäß den Bedingungen des Anbieters.",
+    "music.mobile.spotify.install": "Installiere Spotify und melde dich in der offiziellen App an.",
+    "music.mobile.spotify.restricted": "Spotify erlaubt diese Aktion mit dem aktuellen Status oder den Beschränkungen deines Kontos nicht.",
+    "music.mobile.spotify.advertisement": "Spotify-Werbung"
   },
   "hi": {
     "Couldn't auto-sync": "अपने-आप सिंक नहीं हो सका",
@@ -531,7 +573,13 @@
     "music.mobile.m3uFolderHelp": "स्थानीय गानों के लिए उनके ऑडियो फ़ाइलों वाला फ़ोल्डर चुनें।",
     "music.mobile.m3uAudioFolder": "ऑडियो फ़ोल्डर चुनें",
     "music.mobile.m3uFailed": "प्लेलिस्ट आयात नहीं हो सकी। फ़ाइल और चुना हुआ ऑडियो फ़ोल्डर जाँचें।",
-    "music.lyrics.follow": "गीत के बोलों का अनुसरण करें"
+    "music.lyrics.follow": "गीत के बोलों का अनुसरण करें",
+    "music.mobile.spotify.remote": "Spotify अपने आधिकारिक ऐप में ऑडियो चलाता है। Free खातों में विज्ञापन और प्लेबैक सीमाएँ बनी रहती हैं।",
+    "music.mobile.spotify.external": "Client ID के बिना Spotify खोलने से उसके नियंत्रण Harbor से नहीं जुड़ते।",
+    "music.mobile.soundcloud.consent": "खोज और प्लेबैक SoundCloud और उसके मीडिया सर्वर से संपर्क करते हैं। Harbor प्रदाता की शर्तों के अनुसार उपलब्ध पूर्ण स्ट्रीम का उपयोग करता है।",
+    "music.mobile.spotify.install": "Spotify इंस्टॉल करें और उसके आधिकारिक ऐप में साइन इन करें।",
+    "music.mobile.spotify.restricted": "आपके खाते की वर्तमान स्थिति या सीमाओं के कारण Spotify यह कार्रवाई करने की अनुमति नहीं देता।",
+    "music.mobile.spotify.advertisement": "Spotify विज्ञापन"
   },
   "id": {
     "Couldn't auto-sync": "Tidak dapat menyinkronkan otomatis",
@@ -577,7 +625,13 @@
     "music.mobile.m3uFolderHelp": "Untuk lagu lokal, pilih folder yang berisi berkas audionya.",
     "music.mobile.m3uAudioFolder": "Pilih folder audio",
     "music.mobile.m3uFailed": "Daftar putar tidak dapat diimpor. Periksa berkas dan folder audio yang dipilih.",
-    "music.lyrics.follow": "Ikuti lirik"
+    "music.lyrics.follow": "Ikuti lirik",
+    "music.mobile.spotify.remote": "Spotify memutar audio di aplikasi resminya. Akun Free tetap memiliki iklan dan batas pemutaran.",
+    "music.mobile.spotify.external": "Membuka Spotify tanpa Client ID tidak menghubungkan kontrolnya ke Harbor.",
+    "music.mobile.soundcloud.consent": "Pencarian dan pemutaran menghubungi SoundCloud dan server medianya. Harbor menggunakan stream lengkap yang tersedia sesuai ketentuan penyedia.",
+    "music.mobile.spotify.install": "Instal Spotify dan masuk di aplikasi resminya.",
+    "music.mobile.spotify.restricted": "Spotify tidak mengizinkan tindakan ini dengan status atau batas akun Anda saat ini.",
+    "music.mobile.spotify.advertisement": "Iklan Spotify"
   },
   "it": {
     "Couldn't auto-sync": "Sincronizzazione automatica non riuscita",
@@ -623,7 +677,13 @@
     "music.mobile.m3uFolderHelp": "Per i brani locali, seleziona la cartella che contiene i file audio.",
     "music.mobile.m3uAudioFolder": "Scegli cartella audio",
     "music.mobile.m3uFailed": "Impossibile importare la playlist. Controlla il file e la cartella audio selezionata.",
-    "music.lyrics.follow": "Segui il testo"
+    "music.lyrics.follow": "Segui il testo",
+    "music.mobile.spotify.remote": "Spotify riproduce l’audio nella sua app ufficiale. Gli account Free mantengono pubblicità e limiti di riproduzione.",
+    "music.mobile.spotify.external": "Aprire Spotify senza Client ID non collega i suoi controlli a Harbor.",
+    "music.mobile.soundcloud.consent": "La ricerca e la riproduzione contattano SoundCloud e i suoi server. Harbor usa le fonti complete disponibili secondo le condizioni del fornitore.",
+    "music.mobile.spotify.install": "Installa Spotify e accedi nella sua app ufficiale.",
+    "music.mobile.spotify.restricted": "Spotify non consente questa azione con lo stato o i limiti attuali del tuo account.",
+    "music.mobile.spotify.advertisement": "Pubblicità Spotify"
   },
   "ja": {
     "Couldn't auto-sync": "自動同期できませんでした",
@@ -669,7 +729,13 @@
     "music.mobile.m3uFolderHelp": "ローカル曲の場合は、音声ファイルが入っているフォルダを選択してください。",
     "music.mobile.m3uAudioFolder": "音声フォルダを選択",
     "music.mobile.m3uFailed": "プレイリストを読み込めませんでした。ファイルと選択した音声フォルダを確認してください。",
-    "music.lyrics.follow": "歌詞を追従"
+    "music.lyrics.follow": "歌詞を追従",
+    "music.mobile.spotify.remote": "Spotify の公式アプリで音声を再生します。Free アカウントでは広告と再生制限が維持されます。",
+    "music.mobile.spotify.external": "Client ID なしで Spotify を開いても、再生操作は Harbor に接続されません。",
+    "music.mobile.soundcloud.consent": "検索と再生は SoundCloud とそのメディアサーバーに接続します。Harbor は提供元の規約に従い、利用可能な完全なストリームを使用します。",
+    "music.mobile.spotify.install": "Spotify をインストールし、公式アプリでログインしてください。",
+    "music.mobile.spotify.restricted": "現在のアカウントの状態または制限により、Spotify はこの操作を許可していません。",
+    "music.mobile.spotify.advertisement": "Spotify の広告"
   },
   "ko": {
     "Couldn't auto-sync": "자동 동기화하지 못했습니다",
@@ -715,7 +781,13 @@
     "music.mobile.m3uFolderHelp": "로컬 노래는 오디오 파일이 들어 있는 폴더를 선택하세요.",
     "music.mobile.m3uAudioFolder": "오디오 폴더 선택",
     "music.mobile.m3uFailed": "재생목록을 가져올 수 없습니다. 파일과 선택한 오디오 폴더를 확인하세요.",
-    "music.lyrics.follow": "가사 따라가기"
+    "music.lyrics.follow": "가사 따라가기",
+    "music.mobile.spotify.remote": "Spotify 공식 앱에서 오디오를 재생합니다. Free 계정에는 광고와 재생 제한이 그대로 적용됩니다.",
+    "music.mobile.spotify.external": "Client ID 없이 Spotify를 열어도 재생 제어가 Harbor에 연결되지 않습니다.",
+    "music.mobile.soundcloud.consent": "검색과 재생은 SoundCloud 및 미디어 서버에 연결됩니다. Harbor는 제공업체 약관에 따라 이용 가능한 전체 스트림을 사용합니다.",
+    "music.mobile.spotify.install": "Spotify를 설치하고 공식 앱에서 로그인하세요.",
+    "music.mobile.spotify.restricted": "계정의 현재 상태나 제한으로 인해 Spotify에서 이 작업을 허용하지 않습니다.",
+    "music.mobile.spotify.advertisement": "Spotify 광고"
   },
   "pl": {
     "Couldn't auto-sync": "Nie udało się zsynchronizować automatycznie",
@@ -761,7 +833,13 @@
     "music.mobile.m3uFolderHelp": "W przypadku lokalnych utworów wybierz folder zawierający ich pliki audio.",
     "music.mobile.m3uAudioFolder": "Wybierz folder audio",
     "music.mobile.m3uFailed": "Nie udało się zaimportować listy. Sprawdź plik i wybrany folder audio.",
-    "music.lyrics.follow": "Śledź tekst"
+    "music.lyrics.follow": "Śledź tekst",
+    "music.mobile.spotify.remote": "Spotify odtwarza dźwięk w swojej oficjalnej aplikacji. Konta Free zachowują reklamy i ograniczenia odtwarzania.",
+    "music.mobile.spotify.external": "Otwarcie Spotify bez Client ID nie łączy jego sterowania z Harbor.",
+    "music.mobile.soundcloud.consent": "Wyszukiwanie i odtwarzanie łączą się z SoundCloud i jego serwerami. Harbor używa dostępnych pełnych strumieni zgodnie z warunkami dostawcy.",
+    "music.mobile.spotify.install": "Zainstaluj Spotify i zaloguj się w oficjalnej aplikacji.",
+    "music.mobile.spotify.restricted": "Spotify nie zezwala na tę czynność przy obecnym stanie lub ograniczeniach konta.",
+    "music.mobile.spotify.advertisement": "Reklama Spotify"
   },
   "tr": {
     "Couldn't auto-sync": "Otomatik eşitlenemedi",
@@ -807,7 +885,13 @@
     "music.mobile.m3uFolderHelp": "Yerel şarkılar için ses dosyalarının bulunduğu klasörü seçin.",
     "music.mobile.m3uAudioFolder": "Ses klasörü seç",
     "music.mobile.m3uFailed": "Çalma listesi içe aktarılamadı. Dosyayı ve seçilen ses klasörünü kontrol edin.",
-    "music.lyrics.follow": "Şarkı sözlerini takip et"
+    "music.lyrics.follow": "Şarkı sözlerini takip et",
+    "music.mobile.spotify.remote": "Spotify sesi resmî uygulamasında çalar. Free hesaplarda reklamlar ve oynatma sınırları devam eder.",
+    "music.mobile.spotify.external": "Spotify’ı Client ID olmadan açmak, kontrollerini Harbor’a bağlamaz.",
+    "music.mobile.soundcloud.consent": "Arama ve oynatma, SoundCloud ve medya sunucularına bağlanır. Harbor, sağlayıcının koşullarına göre sunulan tam akışları kullanır.",
+    "music.mobile.spotify.install": "Spotify’ı yükleyin ve resmî uygulamasında oturum açın.",
+    "music.mobile.spotify.restricted": "Spotify, hesabınızın mevcut durumu veya sınırları nedeniyle bu işleme izin vermiyor.",
+    "music.mobile.spotify.advertisement": "Spotify reklamı"
   },
   "vi": {
     "Couldn't auto-sync": "Không thể tự động đồng bộ",
@@ -853,7 +937,13 @@
     "music.mobile.m3uFolderHelp": "Với bài hát cục bộ, chọn thư mục chứa các tệp âm thanh.",
     "music.mobile.m3uAudioFolder": "Chọn thư mục âm thanh",
     "music.mobile.m3uFailed": "Không thể nhập danh sách phát. Hãy kiểm tra tệp và thư mục âm thanh đã chọn.",
-    "music.lyrics.follow": "Theo dõi lời bài hát"
+    "music.lyrics.follow": "Theo dõi lời bài hát",
+    "music.mobile.spotify.remote": "Spotify phát âm thanh trong ứng dụng chính thức. Tài khoản Free vẫn có quảng cáo và giới hạn phát.",
+    "music.mobile.spotify.external": "Mở Spotify mà không có Client ID sẽ không kết nối các nút điều khiển với Harbor.",
+    "music.mobile.soundcloud.consent": "Tìm kiếm và phát nhạc kết nối với SoundCloud cùng máy chủ nội dung. Harbor sử dụng các luồng đầy đủ có sẵn theo điều khoản của nhà cung cấp.",
+    "music.mobile.spotify.install": "Cài đặt Spotify và đăng nhập trong ứng dụng chính thức.",
+    "music.mobile.spotify.restricted": "Spotify không cho phép thao tác này với trạng thái hoặc giới hạn hiện tại của tài khoản.",
+    "music.mobile.spotify.advertisement": "Quảng cáo Spotify"
   },
   "en": {
     "Browse services": "Browse services",
@@ -936,6 +1026,12 @@
     "music.mobile.m3uFolderHelp": "For local songs, select the folder containing their audio files.",
     "music.mobile.m3uAudioFolder": "Choose audio folder",
     "music.mobile.m3uFailed": "Could not import the playlist. Check the file and selected audio folder.",
-    "music.lyrics.follow": "Follow lyrics"
+    "music.lyrics.follow": "Follow lyrics",
+    "music.mobile.spotify.remote": "Spotify plays audio in its official app. Free accounts keep its ads and playback limits.",
+    "music.mobile.spotify.external": "Opening Spotify without a Client ID does not connect its controls to Harbor.",
+    "music.mobile.soundcloud.consent": "Search and playback contact SoundCloud and its media servers. Harbor uses full streams made available under the provider’s terms.",
+    "music.mobile.spotify.install": "Install Spotify and sign in to its official app.",
+    "music.mobile.spotify.restricted": "Spotify does not allow this action with your account’s current state or limits.",
+    "music.mobile.spotify.advertisement": "Spotify advertisement"
   }
 }

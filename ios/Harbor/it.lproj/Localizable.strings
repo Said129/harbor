@@ -2680,6 +2680,12 @@
 "music.mobile.resume" = "Riprendi la musica";
 "music.mobile.reverseOrder" = "Ordine inverso";
 "music.mobile.scrobbleError" = "Impossibile registrare l’ascolto di questo brano.";
+"music.mobile.soundcloud.consent" = "La ricerca e la riproduzione contattano SoundCloud e i suoi server. Harbor usa le fonti complete disponibili secondo le condizioni del fornitore.";
+"music.mobile.spotify.advertisement" = "Pubblicità Spotify";
+"music.mobile.spotify.external" = "Aprire Spotify senza Client ID non collega i suoi controlli a Harbor.";
+"music.mobile.spotify.install" = "Installa Spotify e accedi nella sua app ufficiale.";
+"music.mobile.spotify.remote" = "Spotify riproduce l’audio nella sua app ufficiale. Gli account Free mantengono pubblicità e limiti di riproduzione.";
+"music.mobile.spotify.restricted" = "Spotify non consente questa azione con lo stato o i limiti attuali del tuo account.";
 "music.mute" = "Disattiva audio";
 "music.newRelease.action" = "Listen now";
 "music.newRelease.eyebrow" = "New release";

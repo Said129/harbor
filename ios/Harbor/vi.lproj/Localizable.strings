@@ -2680,6 +2680,12 @@
 "music.mobile.resume" = "Tiếp tục phát nhạc";
 "music.mobile.reverseOrder" = "Đảo thứ tự";
 "music.mobile.scrobbleError" = "Không thể ghi nhận lượt nghe bài hát này.";
+"music.mobile.soundcloud.consent" = "Tìm kiếm và phát nhạc kết nối với SoundCloud cùng máy chủ nội dung. Harbor sử dụng các luồng đầy đủ có sẵn theo điều khoản của nhà cung cấp.";
+"music.mobile.spotify.advertisement" = "Quảng cáo Spotify";
+"music.mobile.spotify.external" = "Mở Spotify mà không có Client ID sẽ không kết nối các nút điều khiển với Harbor.";
+"music.mobile.spotify.install" = "Cài đặt Spotify và đăng nhập trong ứng dụng chính thức.";
+"music.mobile.spotify.remote" = "Spotify phát âm thanh trong ứng dụng chính thức. Tài khoản Free vẫn có quảng cáo và giới hạn phát.";
+"music.mobile.spotify.restricted" = "Spotify không cho phép thao tác này với trạng thái hoặc giới hạn hiện tại của tài khoản.";
 "music.mute" = "Tắt tiếng";
 "music.newRelease.action" = "Listen now";
 "music.newRelease.eyebrow" = "New release";

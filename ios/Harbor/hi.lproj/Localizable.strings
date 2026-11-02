@@ -2680,6 +2680,12 @@
 "music.mobile.resume" = "संगीत फिर से चलाएँ";
 "music.mobile.reverseOrder" = "उल्टा क्रम";
 "music.mobile.scrobbleError" = "इस गाने का सुनने का रिकॉर्ड दर्ज नहीं हो सका।";
+"music.mobile.soundcloud.consent" = "खोज और प्लेबैक SoundCloud और उसके मीडिया सर्वर से संपर्क करते हैं। Harbor प्रदाता की शर्तों के अनुसार उपलब्ध पूर्ण स्ट्रीम का उपयोग करता है।";
+"music.mobile.spotify.advertisement" = "Spotify विज्ञापन";
+"music.mobile.spotify.external" = "Client ID के बिना Spotify खोलने से उसके नियंत्रण Harbor से नहीं जुड़ते।";
+"music.mobile.spotify.install" = "Spotify इंस्टॉल करें और उसके आधिकारिक ऐप में साइन इन करें।";
+"music.mobile.spotify.remote" = "Spotify अपने आधिकारिक ऐप में ऑडियो चलाता है। Free खातों में विज्ञापन और प्लेबैक सीमाएँ बनी रहती हैं।";
+"music.mobile.spotify.restricted" = "आपके खाते की वर्तमान स्थिति या सीमाओं के कारण Spotify यह कार्रवाई करने की अनुमति नहीं देता।";
 "music.mute" = "आवाज़ बंद करें";
 "music.newRelease.action" = "Listen now";
 "music.newRelease.eyebrow" = "New release";

@@ -2680,6 +2680,12 @@
 "music.mobile.resume" = "继续播放音乐";
 "music.mobile.reverseOrder" = "反向排序";
 "music.mobile.scrobbleError" = "无法记录这首歌的收听记录。";
+"music.mobile.soundcloud.consent" = "搜索和播放会连接 SoundCloud 及其媒体服务器。Harbor 按照提供商条款使用可用的完整音频流。";
+"music.mobile.spotify.advertisement" = "Spotify 广告";
+"music.mobile.spotify.external" = "不提供 Client ID 而打开 Spotify，不会将其播放控制连接到 Harbor。";
+"music.mobile.spotify.install" = "请安装 Spotify 并在其官方应用中登录。";
+"music.mobile.spotify.remote" = "Spotify 在其官方应用中播放音频。Free 账户仍有广告和播放限制。";
+"music.mobile.spotify.restricted" = "由于账户当前的状态或限制，Spotify 不允许此操作。";
 "music.mute" = "静音";
 "music.newRelease.action" = "Listen now";
 "music.newRelease.eyebrow" = "New release";

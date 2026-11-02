@@ -2680,6 +2680,12 @@
 "music.mobile.resume" = "Müziği sürdür";
 "music.mobile.reverseOrder" = "Ters sıralama";
 "music.mobile.scrobbleError" = "Bu parçanın dinleme kaydı gönderilemedi.";
+"music.mobile.soundcloud.consent" = "Arama ve oynatma, SoundCloud ve medya sunucularına bağlanır. Harbor, sağlayıcının koşullarına göre sunulan tam akışları kullanır.";
+"music.mobile.spotify.advertisement" = "Spotify reklamı";
+"music.mobile.spotify.external" = "Spotify’ı Client ID olmadan açmak, kontrollerini Harbor’a bağlamaz.";
+"music.mobile.spotify.install" = "Spotify’ı yükleyin ve resmî uygulamasında oturum açın.";
+"music.mobile.spotify.remote" = "Spotify sesi resmî uygulamasında çalar. Free hesaplarda reklamlar ve oynatma sınırları devam eder.";
+"music.mobile.spotify.restricted" = "Spotify, hesabınızın mevcut durumu veya sınırları nedeniyle bu işleme izin vermiyor.";
 "music.mute" = "Sesi kapat";
 "music.newRelease.action" = "Listen now";
 "music.newRelease.eyebrow" = "New release";

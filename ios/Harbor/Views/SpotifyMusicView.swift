@@ -9,47 +9,51 @@ import UIKit
     @State private var seeking = false
     var body: some View {
         Form {
-            Section("Spotify en iPhone y iPad") {
-                Text("Harbor controla la aplicación oficial de Spotify. Puedes conectar una cuenta Free; Spotify decide qué canciones, saltos y controles admite, y conserva sus anuncios.").font(.footnote)
-                Label(service.connected ? "Conectado" : "Sin conectar", systemImage: service.connected ? "checkmark.circle.fill" : "link")
+            Section("Spotify · iPhone / iPad") {
+                Text(DesktopInterfaceText.value("music.mobile.spotify.remote")).font(.footnote)
+                Label(DesktopInterfaceText.value(service.connected ? "music.connections.statusConnected" : "music.connections.statusDisconnected"), systemImage: service.connected ? "checkmark.circle.fill" : "link")
                 if let snapshot = service.snapshot {
                     SpotifyCover(service: service, uri: snapshot.uri).frame(width: 160, height: 160).frame(maxWidth: .infinity)
                     VStack(alignment: .leading, spacing: 5) {
                         Text(snapshot.title).font(.headline); Text(snapshot.artist).foregroundStyle(.secondary)
-                        if snapshot.advertisement { Text("Publicidad de Spotify").font(.caption) }
+                        if snapshot.advertisement { Text(DesktopInterfaceText.value("music.mobile.spotify.advertisement")).font(.caption) }
                     }
-                    Slider(value: $position, in: 0...max(1, snapshot.duration)) { editing in
-                        seeking = editing; if !editing { service.seek(position) }
-                    }.disabled(!snapshot.canSeek || !service.connected).accessibilityLabel("Posición")
+                    TimelineView(.periodic(from: .now, by: 0.5)) { timeline in
+                        Slider(value: Binding(get: { seeking ? position : service.position(at: timeline.date) }, set: { position = $0 }), in: 0...max(1, snapshot.duration)) { editing in
+                            if editing { position = service.position(at: Date()) }
+                            seeking = editing; if !editing { service.seek(position) }
+                        }.disabled(!snapshot.canSeek || !service.connected).accessibilityLabel(DesktopInterfaceText.value("music.position"))
+                    }
                     HStack {
-                        Button { service.previous() } label: { Image(systemName: "backward.end.fill").frame(width: 44, height: 44) }.disabled(!snapshot.canSkipPrevious)
-                        Button { service.togglePause() } label: { Image(systemName: snapshot.paused ? "play.fill" : "pause.fill").frame(width: 44, height: 44) }
-                        Button { service.next() } label: { Image(systemName: "forward.end.fill").frame(width: 44, height: 44) }.disabled(!snapshot.canSkipNext)
+                        Button { service.previous() } label: { Image(systemName: "backward.end.fill").frame(width: 44, height: 44) }.disabled(!snapshot.canSkipPrevious).accessibilityLabel(DesktopInterfaceText.value("music.previous"))
+                        Button { service.togglePause() } label: { Image(systemName: snapshot.paused ? "play.fill" : "pause.fill").frame(width: 44, height: 44) }.accessibilityLabel(DesktopInterfaceText.value(snapshot.paused ? "music.play" : "music.pause"))
+                        Button { service.next() } label: { Image(systemName: "forward.end.fill").frame(width: 44, height: 44) }.disabled(!snapshot.canSkipNext).accessibilityLabel(DesktopInterfaceText.value("music.next"))
                     }.buttonStyle(.borderless).disabled(!service.connected)
                 }
                 if service.connected {
                     NavigationLink(DesktopInterfaceText.value("music.discover")) { SpotifyCatalogView(service: service) }
                 }
-                if service.authorizing { ProgressView("Esperando autorización de Spotify…") }
-                Button(service.connected ? "Volver a autorizar" : "Conectar Spotify") { service.authorize() }.disabled(service.clientID.isEmpty || service.authorizing)
-                if service.connected { Button("Desconectar", role: .destructive) { service.disconnect() } }
+                if service.authorizing { ProgressView(DesktopInterfaceText.value("music.source.loading")) }
+                Button(DesktopInterfaceText.value("music.spotifySetup.authorize")) { service.authorize() }.disabled(service.clientID.isEmpty || service.authorizing)
+                if service.connected { Button(DesktopInterfaceText.value("music.connect.disconnect"), role: .destructive) { service.disconnect() } }
                 if let error = service.error { Text(error).foregroundStyle(.orange).font(.footnote) }
             }
-            Section("Tu aplicación de Spotify") {
-                Text("Spotify exige Premium al propietario del Client ID en modo de desarrollo, aunque el SDK de iOS admita oyentes Free. Añade cada oyente en Users Management. Harbor no proporciona un Client ID compartido.").font(.footnote).foregroundStyle(.secondary)
-                Link("Abrir Spotify for Developers", destination: URL(string: "https://developer.spotify.com/dashboard")!)
+            Section(DesktopInterfaceText.value("music.spotifySetup.createTitle")) {
+                Text(DesktopInterfaceText.value("music.spotifySetup.createBody")).font(.footnote).foregroundStyle(.secondary)
+                Text(DesktopInterfaceText.value("music.spotifySetup.accountHint")).font(.footnote).foregroundStyle(.secondary)
+                Link(DesktopInterfaceText.value("music.spotifySetup.dashboard"), destination: URL(string: "https://developer.spotify.com/dashboard")!)
                 TextField("Client ID", text: $clientID).textInputAutocapitalization(.never).autocorrectionDisabled()
-                Button("Guardar Client ID") { do { try service.saveClientID(clientID) } catch { service.error = "Introduce un Client ID válido de 32 caracteres." } }
+                Button(DesktopInterfaceText.value("Save")) { do { try service.saveClientID(clientID) } catch { service.error = DesktopInterfaceText.value("music.spotifySetup.rejected") } }
                 LabeledContent("Bundle ID", value: "site.harbor.iphone")
-                Text("Añade exactamente esta URI de redirección:").font(.footnote)
+                Text(DesktopInterfaceText.value("music.spotifySetup.redirectBody")).font(.footnote)
                 Text(SpotifyMusicService.redirect).font(.caption.monospaced()).textSelection(.enabled)
-                Button("Copiar URI") { UIPasteboard.general.string = SpotifyMusicService.redirect }
+                Button(DesktopInterfaceText.value("music.spotifySetup.copyUri")) { UIPasteboard.general.string = SpotifyMusicService.redirect }
             }
-            Section("Abrir música") {
-                TextField("Enlace o URI de Spotify", text: $link).textInputAutocapitalization(.never).autocorrectionDisabled()
-                Button("Reproducir en Spotify") { if let uri = SpotifyMusicLink.uri(link) { service.play(uri) } }.disabled(!service.connected || SpotifyMusicLink.uri(link) == nil)
-                Link("Abrir Spotify sin Client ID", destination: URL(string: "https://open.spotify.com")!)
-                Text("Abrir Spotify sin Client ID funciona con cuentas gratuitas, pero no conecta sus controles a Harbor.").font(.footnote).foregroundStyle(.secondary)
+            Section(DesktopInterfaceText.value("Open")) {
+                TextField("Spotify URL / URI", text: $link).textInputAutocapitalization(.never).autocorrectionDisabled()
+                Button(DesktopInterfaceText.value("music.play") + " · Spotify") { if let uri = SpotifyMusicLink.uri(link) { service.play(uri) } }.disabled(!service.connected || SpotifyMusicLink.uri(link) == nil)
+                Link(DesktopInterfaceText.value("Open") + " · Spotify", destination: URL(string: "https://open.spotify.com")!)
+                Text(DesktopInterfaceText.value("music.mobile.spotify.external")).font(.footnote).foregroundStyle(.secondary)
             }
         }.navigationTitle("Spotify").navigationBarTitleDisplayMode(.inline)
             .onAppear { clientID = service.clientID; position = service.snapshot?.position ?? 0 }

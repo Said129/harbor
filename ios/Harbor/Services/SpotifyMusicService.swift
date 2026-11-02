@@ -10,6 +10,7 @@ struct SpotifyPlaybackSnapshot: Sendable {
     let uri: String
     let position: Double
     let duration: Double
+    let speed: Double
     let paused: Bool
     let canSeek: Bool
     let canSkipNext: Bool
@@ -19,6 +20,7 @@ struct SpotifyPlaybackSnapshot: Sendable {
         title = state.track.name; artist = state.track.artist.name; album = state.track.album.name
         uri = state.track.uri; position = Double(state.playbackPosition) / 1000
         duration = Double(state.track.duration) / 1000; paused = state.isPaused
+        let speed = Double(state.playbackSpeed); self.speed = speed.isFinite && speed > 0 ? speed : 1
         canSeek = state.playbackRestrictions.canSeek; canSkipNext = state.playbackRestrictions.canSkipNext
         canSkipPrevious = state.playbackRestrictions.canSkipPrevious; advertisement = state.track.isAdvertisement
     }
@@ -54,6 +56,8 @@ struct SpotifyContentItem: Decodable, Identifiable, Sendable {
     @ObservationIgnored private let currentScope: @MainActor () -> PluginExecutionScope
     @ObservationIgnored private var remote: SPTAppRemote?
     @ObservationIgnored private var pendingAuthorization = false
+    @ObservationIgnored private var authorizationAttempt = UUID()
+    @ObservationIgnored private var authorizationTimeout: Task<Void, Never>?
     @ObservationIgnored private var disposed = false
     @ObservationIgnored private var tokens: [NSObjectProtocol] = []
     @ObservationIgnored private var contentRequests: [UUID: (CheckedContinuation<Data, Error>, Task<Void, Never>)] = [:]
@@ -63,7 +67,7 @@ struct SpotifyContentItem: Decodable, Identifiable, Sendable {
         self.scope = scope; self.currentScope = currentScope
         super.init()
         do { clientID = try KeychainStore().read(storageKey, as: String.self) ?? "" }
-        catch { self.error = "No se pudo recuperar la configuración de Spotify." }
+        catch { self.error = DesktopInterfaceText.value("music.spotifySetup.rejected") }
         if !clientID.isEmpty { makeRemote() }
         let center = NotificationCenter.default
         tokens.append(center.addObserver(forName: UIApplication.willResignActiveNotification, object: nil, queue: nil) { [weak self] _ in
@@ -71,8 +75,12 @@ struct SpotifyContentItem: Decodable, Identifiable, Sendable {
         })
         tokens.append(center.addObserver(forName: UIApplication.didBecomeActiveNotification, object: nil, queue: nil) { [weak self] _ in
             Task { @MainActor in
-                guard let self, self.valid, !self.pendingAuthorization, self.remote?.connectionParameters.accessToken != nil else { return }
-                self.remote?.connect()
+                guard let self, self.valid else { return }
+                if self.pendingAuthorization {
+                    let attempt = self.authorizationAttempt
+                    do { try await Task.sleep(for: .seconds(1)) } catch { return }
+                    if self.valid, self.pendingAuthorization, self.authorizationAttempt == attempt { self.endAuthorization(DesktopInterfaceText.value("music.spotifySetup.rejected")) }
+                } else if self.remote?.connectionParameters.accessToken != nil { self.remote?.connect() }
             }
         })
     }
@@ -91,29 +99,44 @@ struct SpotifyContentItem: Decodable, Identifiable, Sendable {
         value.delegate = self; remote = value
     }
     func authorize() {
-        guard valid, let remote else { error = "Introduce primero el Client ID de tu aplicación de Spotify."; return }
+        guard !authorizing else { return }
+        guard valid, let remote else { error = DesktopInterfaceText.value("music.spotifySetup.missingSaved"); return }
         guard UIApplication.shared.canOpenURL(URL(string: "spotify:")!) else {
-            error = "Instala la aplicación oficial de Spotify e inicia sesión allí."; return
+            error = DesktopInterfaceText.value("music.mobile.spotify.install"); return
         }
         MusicPlayback.shared.stop()
         error = nil; pendingAuthorization = true; authorizing = true
+        authorizationTimeout?.cancel(); authorizationAttempt = UUID(); let attempt = authorizationAttempt
+        authorizationTimeout = Task { @MainActor [weak self] in
+            do { try await Task.sleep(for: .seconds(120)) } catch { return }
+            guard let self, self.valid, self.authorizationAttempt == attempt, self.pendingAuthorization else { return }
+            self.endAuthorization(DesktopInterfaceText.value("music.spotifySetup.rejected"))
+        }
         remote.authorizeAndPlayURI("") { [weak self] success in
             guard !success else { return }
-            Task { @MainActor in self?.pendingAuthorization = false; self?.authorizing = false; self?.error = "No se pudo abrir Spotify." }
+            Task { @MainActor in
+                guard let self, self.valid, self.authorizationAttempt == attempt else { return }
+                self.endAuthorization(DesktopInterfaceText.value("music.spotifySetup.rejected"))
+            }
         }
+    }
+    private func endAuthorization(_ message: String? = nil) {
+        pendingAuthorization = false; authorizing = false; authorizationAttempt = UUID()
+        authorizationTimeout?.cancel(); authorizationTimeout = nil
+        if let message { error = message }
     }
     @discardableResult func accept(_ url: URL) -> Bool {
         guard url.scheme == "harbor-iphone", url.host == "spotify-login-callback" else { return false }
         guard valid, pendingAuthorization, let remote else { return true }
-        pendingAuthorization = false; authorizing = false
+        endAuthorization()
         guard let parameters = remote.authorizationParameters(from: url), let token = parameters[SPTAppRemoteAccessTokenKey], !token.isEmpty else {
-            error = "Spotify no autorizó la conexión. Revisa el Client ID, la URI y los usuarios permitidos."; return true
+            error = DesktopInterfaceText.value("music.spotifySetup.rejected"); return true
         }
         remote.connectionParameters.accessToken = token
         remote.connect(); return true
     }
     func disconnect() {
-        pendingAuthorization = false; authorizing = false
+        endAuthorization()
         remote?.playerAPI?.delegate = nil
         remote?.disconnect(); remote?.connectionParameters.accessToken = nil
         if Self.active === self { SpotifyMusicSelection.shared.active = nil }
@@ -146,7 +169,7 @@ struct SpotifyContentItem: Decodable, Identifiable, Sendable {
             let failed = failure != nil
             Task { @MainActor in
                 guard let self, self.valid else { return }
-                if failed { self.error = "Spotify no permite esta acción ahora. Se mantienen las condiciones de tu cuenta." }
+                if failed { self.error = DesktopInterfaceText.value("music.mobile.spotify.restricted") }
             }
         }
     }
@@ -166,14 +189,20 @@ struct SpotifyContentItem: Decodable, Identifiable, Sendable {
         let identity = ObjectIdentifier(appRemote)
         Task { @MainActor [weak self] in
             guard let self, self.valid, self.remote.map(ObjectIdentifier.init) == identity else { return }
-            connected = false; authorizing = false
+            connected = false
+            if !pendingAuthorization { authorizing = false }
             failContentRequests()
-            if failed { self.error = "Abre Spotify y vuelve a conectar. Revisa también el acceso de tu aplicación de desarrollador." }
+            if failed { self.error = DesktopInterfaceText.value("music.spotifySetup.rejected") }
         }
     }
     nonisolated func playerStateDidChange(_ playerState: any SPTAppRemotePlayerState) {
         let value = SpotifyPlaybackSnapshot(playerState)
         Task { @MainActor [weak self] in guard let self, self.valid, self.connected else { return }; snapshot = value; snapshotAt = Date() }
+    }
+    func position(at date: Date) -> Double {
+        guard let snapshot else { return 0 }
+        let elapsed = connected && !snapshot.paused ? max(0, date.timeIntervalSince(snapshotAt)) * snapshot.speed : 0
+        return min(snapshot.duration, max(0, snapshot.position + elapsed))
     }
     private func contentData(_ uri: String?, artwork: Bool) async throws -> Data {
         guard valid, connected, let remote else { throw HarborError(code: "spotify-content") }

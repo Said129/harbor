@@ -4,6 +4,20 @@ import XCTest
 
 @MainActor private final class OwnedSpotifyScope { var value = PluginExecutionScope(owner: "owned-spotify-" + UUID().uuidString, activation: UUID()) }
 @MainActor final class SpotifyMusicTests: XCTestCase {
+    func testNewNativeSourceAndFreeAccountLabelsExistInAllSixteenLanguageBundles() throws {
+        let file = try XCTUnwrap(Bundle.main.url(forResource: "NativeInterfaceTranslations", withExtension: "json"))
+        let expected = try JSONDecoder().decode([String: [String: String]].self, from: Data(contentsOf: file))
+        let keys = ["music.mobile.spotify.remote", "music.mobile.spotify.external", "music.mobile.soundcloud.consent", "music.mobile.spotify.install", "music.mobile.spotify.restricted", "music.mobile.spotify.advertisement"]
+        var comparisons = 0
+        for language in ["en", "ar", "zh", "fr", "de", "hi", "id", "it", "ja", "ko", "pl", "pt", "ru", "es", "tr", "vi"] {
+            for key in keys {
+                let translation = try XCTUnwrap(expected[language]?[key])
+                XCTAssertEqual(DesktopInterfaceText.value(key, language: language), translation, language + ": " + key)
+                XCTAssertFalse(translation.isEmpty); comparisons += 1
+            }
+        }
+        XCTAssertEqual(comparisons, 96)
+    }
     func testOnlyOfficialSpotifyLinksAndPlayableURIsAreAccepted() {
         let id = "0123456789ABCDEFGHIJKL"
         XCTAssertEqual(SpotifyMusicLink.uri("https://open.spotify.com/intl-es/track/\(id)?si=owned"), "spotify:track:" + id)

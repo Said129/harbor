@@ -2680,6 +2680,12 @@
 "music.mobile.resume" = "음악 재개";
 "music.mobile.reverseOrder" = "역순";
 "music.mobile.scrobbleError" = "이 곡의 청취 기록을 전송하지 못했습니다.";
+"music.mobile.soundcloud.consent" = "검색과 재생은 SoundCloud 및 미디어 서버에 연결됩니다. Harbor는 제공업체 약관에 따라 이용 가능한 전체 스트림을 사용합니다.";
+"music.mobile.spotify.advertisement" = "Spotify 광고";
+"music.mobile.spotify.external" = "Client ID 없이 Spotify를 열어도 재생 제어가 Harbor에 연결되지 않습니다.";
+"music.mobile.spotify.install" = "Spotify를 설치하고 공식 앱에서 로그인하세요.";
+"music.mobile.spotify.remote" = "Spotify 공식 앱에서 오디오를 재생합니다. Free 계정에는 광고와 재생 제한이 그대로 적용됩니다.";
+"music.mobile.spotify.restricted" = "계정의 현재 상태나 제한으로 인해 Spotify에서 이 작업을 허용하지 않습니다.";
 "music.mute" = "음소거";
 "music.newRelease.action" = "Listen now";
 "music.newRelease.eyebrow" = "New release";

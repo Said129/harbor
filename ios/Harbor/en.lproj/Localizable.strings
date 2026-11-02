@@ -2306,6 +2306,12 @@
 "music.mobile.resume" = "Resume music";
 "music.mobile.reverseOrder" = "Reverse order";
 "music.mobile.scrobbleError" = "Could not scrobble this track.";
+"music.mobile.soundcloud.consent" = "Search and playback contact SoundCloud and its media servers. Harbor uses full streams made available under the provider’s terms.";
+"music.mobile.spotify.advertisement" = "Spotify advertisement";
+"music.mobile.spotify.external" = "Opening Spotify without a Client ID does not connect its controls to Harbor.";
+"music.mobile.spotify.install" = "Install Spotify and sign in to its official app.";
+"music.mobile.spotify.remote" = "Spotify plays audio in its official app. Free accounts keep its ads and playback limits.";
+"music.mobile.spotify.restricted" = "Spotify does not allow this action with your account’s current state or limits.";
 "music.mute" = "Mute";
 "music.newRelease.action" = "Listen now";
 "music.newRelease.eyebrow" = "New release";

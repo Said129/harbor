@@ -2680,6 +2680,12 @@
 "music.mobile.resume" = "Lanjutkan musik";
 "music.mobile.reverseOrder" = "Urutan terbalik";
 "music.mobile.scrobbleError" = "Tidak dapat mencatat pemutaran lagu ini.";
+"music.mobile.soundcloud.consent" = "Pencarian dan pemutaran menghubungi SoundCloud dan server medianya. Harbor menggunakan stream lengkap yang tersedia sesuai ketentuan penyedia.";
+"music.mobile.spotify.advertisement" = "Iklan Spotify";
+"music.mobile.spotify.external" = "Membuka Spotify tanpa Client ID tidak menghubungkan kontrolnya ke Harbor.";
+"music.mobile.spotify.install" = "Instal Spotify dan masuk di aplikasi resminya.";
+"music.mobile.spotify.remote" = "Spotify memutar audio di aplikasi resminya. Akun Free tetap memiliki iklan dan batas pemutaran.";
+"music.mobile.spotify.restricted" = "Spotify tidak mengizinkan tindakan ini dengan status atau batas akun Anda saat ini.";
 "music.mute" = "Bisukan";
 "music.newRelease.action" = "Listen now";
 "music.newRelease.eyebrow" = "New release";

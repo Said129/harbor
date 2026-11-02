@@ -2722,6 +2722,12 @@
 "music.mobile.resume" = "استئناف الموسيقى";
 "music.mobile.reverseOrder" = "عكس الترتيب";
 "music.mobile.scrobbleError" = "تعذّر تسجيل الاستماع إلى هذا المقطع.";
+"music.mobile.soundcloud.consent" = "يتصل البحث والتشغيل بخدمة SoundCloud وخوادمها. يستخدم Harbor التدفقات الكاملة المتاحة وفق شروط المزوّد.";
+"music.mobile.spotify.advertisement" = "إعلان Spotify";
+"music.mobile.spotify.external" = "فتح Spotify دون Client ID لا يربط عناصر التحكم فيه بتطبيق Harbor.";
+"music.mobile.spotify.install" = "ثبّت Spotify وسجّل الدخول في تطبيقه الرسمي.";
+"music.mobile.spotify.remote" = "يشغّل Spotify الصوت في تطبيقه الرسمي. تبقى الإعلانات وقيود التشغيل في حسابات Free.";
+"music.mobile.spotify.restricted" = "لا يسمح Spotify بهذا الإجراء وفق الحالة الحالية لحسابك أو قيوده.";
 "music.mute" = "كتم الصوت";
 "music.newRelease.action" = "Listen now";
 "music.newRelease.eyebrow" = "New release";

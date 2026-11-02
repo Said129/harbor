@@ -17,7 +17,7 @@ import SwiftUI
                     NavigationLink("SoundCloud") {
                         Form {
                             Section("SoundCloud") {
-                                Text("La búsqueda y la reproducción consultan SoundCloud y sus servidores multimedia. Harbor sólo usa las fuentes completas que ofrece el proveedor; respeta su disponibilidad y sus condiciones.").font(.footnote)
+                                Text(DesktopInterfaceText.value("music.mobile.soundcloud.consent")).font(.footnote)
                                 Link(DesktopInterfaceText.value("Terms"), destination: URL(string: "https://soundcloud.com/terms-of-use")!)
                                 Toggle(DesktopInterfaceText.value("Enabled"), isOn: Binding(get: { workspace.soundcloud.enabled }, set: { workspace.soundcloud.setEnabled($0); changed() }))
                             }
