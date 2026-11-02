@@ -4,26 +4,30 @@ import Foundation
 /// server in one route. A private reference never falls back to the public API.
 @MainActor final class MusicServerCatalogClient: MusicCatalogCalling {
     let server: SubsonicMusicService
+    let plex: PlexMusicService?
     let jellyfin: JellyfinMusicService?
     let soundcloud: SoundCloudMusicService?
     private let catalog: any MusicCatalogCalling
     private let currentScope: @MainActor () -> PluginExecutionScope
     private let browseTimeout: Duration
-    init(server: SubsonicMusicService, catalog: any MusicCatalogCalling = MusicCatalogClient(), soundcloud: SoundCloudMusicService? = nil, jellyfin: JellyfinMusicService? = nil,
+    init(server: SubsonicMusicService, catalog: any MusicCatalogCalling = MusicCatalogClient(), soundcloud: SoundCloudMusicService? = nil, jellyfin: JellyfinMusicService? = nil, plex: PlexMusicService? = nil,
          browseTimeout: Duration = .seconds(12), currentScope: @escaping @MainActor () -> PluginExecutionScope) {
-        self.server = server; self.catalog = catalog; self.jellyfin = jellyfin; self.soundcloud = soundcloud; self.browseTimeout = browseTimeout; self.currentScope = currentScope
+        self.server = server; self.catalog = catalog; self.jellyfin = jellyfin; self.plex = plex; self.soundcloud = soundcloud; self.browseTimeout = browseTimeout; self.currentScope = currentScope
     }
-    private func validate(_ version: UUID, jellyfinVersion: UUID?) throws {
-        try server.validateCatalogScope(); try jellyfin?.validate()
-        guard server.scope == currentScope(), version == server.credentialVersion, jellyfinVersion == jellyfin?.credentialVersion else { throw CancellationError() }
+    private func validate(_ version: UUID, jellyfinVersion: UUID?, plexVersion: UUID?) throws {
+        try server.validateCatalogScope(); try jellyfin?.validate(); try plex?.validate()
+        guard server.scope == currentScope(), version == server.credentialVersion, jellyfinVersion == jellyfin?.credentialVersion, plexVersion == plex?.credentialVersion else { throw CancellationError() }
     }
     private func scoped<T: Sendable>(_ work: @MainActor () async throws -> T) async throws -> T {
-        let version = server.credentialVersion, jellyfinVersion = jellyfin?.credentialVersion
-        try validate(version, jellyfinVersion: jellyfinVersion)
-        do { let value = try await work(); try validate(version, jellyfinVersion: jellyfinVersion); return value }
-        catch { try validate(version, jellyfinVersion: jellyfinVersion); throw error }
+        let version = server.credentialVersion, jellyfinVersion = jellyfin?.credentialVersion, plexVersion = plex?.credentialVersion
+        try validate(version, jellyfinVersion: jellyfinVersion, plexVersion: plexVersion)
+        do { let value = try await work(); try validate(version, jellyfinVersion: jellyfinVersion, plexVersion: plexVersion); return value }
+        catch { try validate(version, jellyfinVersion: jellyfinVersion, plexVersion: plexVersion); throw error }
     }
     private func client(_ id: String) throws -> any MusicCatalogCalling {
+        if id == "plex" {
+            guard let plex else { throw HarborError(code: "music-plex-disconnected") }; return plex
+        }
         if id == "jellyfin" {
             guard let jellyfin else { throw HarborError(code: "music-jellyfin-disconnected") }; return jellyfin
         }
@@ -37,11 +41,12 @@ import Foundation
             async let privateRows = Self.rows(server, timeout: browseTimeout)
             async let streamingRows = cloudRows()
             async let jellyfinRows = configuredJellyfinRows()
-            let replies = await (publicRows, privateRows, streamingRows, jellyfinRows)
+            async let plexRows = configuredPlexRows()
+            let replies = await (publicRows, privateRows, streamingRows, jellyfinRows, plexRows)
             var seen = Set<String>()
             // rows::order_rows ranks catalog before subsonic, omits failed
             // sources and retains the first row with a given id.
-            return (replies.0 + replies.3 + replies.2 + replies.1).filter { seen.insert($0.id).inserted }
+            return (replies.0 + replies.3 + replies.4 + replies.2 + replies.1).filter { seen.insert($0.id).inserted }
         }
     }
     private func cloudRows() async -> [MusicCatalogRow] {
@@ -61,9 +66,18 @@ import Foundation
             async let privateResult = configuredServerSearch(query, limit: limit)
             async let jellyfinResult = configuredJellyfinSearch(query, limit: limit)
             async let cloudResult = configuredCloudSearch(query, limit: limit)
-            let replies = await (publicResult, jellyfinResult, cloudResult, privateResult)
-            return try MusicCatalogMerge.search([replies.0, replies.1, replies.2, replies.3], limit: limit)
+            async let plexResult = configuredPlexSearch(query, limit: limit)
+            let replies = await (publicResult, jellyfinResult, cloudResult, privateResult, plexResult)
+            return try MusicCatalogMerge.search([replies.0, replies.1, replies.4, replies.2, replies.3], limit: limit)
         }
+    }
+    private func configuredPlexRows() async -> [MusicCatalogRow] {
+        guard let plex, plex.configured else { return [] }
+        return await Self.rows(plex, timeout: browseTimeout)
+    }
+    private func configuredPlexSearch(_ query: String, limit: Int) async -> MusicCatalogReply {
+        guard let plex, plex.configured else { return .failure }
+        return await Self.search(plex, query: query, limit: limit)
     }
     private func configuredJellyfinRows() async -> [MusicCatalogRow] {
         guard let jellyfin, jellyfin.configured else { return [] }

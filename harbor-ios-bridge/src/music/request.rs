@@ -10,6 +10,9 @@ use std::sync::OnceLock;
 #[serde(tag = "operation", rename_all = "camelCase", deny_unknown_fields)]
 pub(crate) enum Request {
     Home,
+    Plex {
+        request: super::connectors::plex::Request,
+    },
     Jellyfin {
         request: super::connectors::jellyfin::Request,
     },
@@ -49,6 +52,7 @@ pub(crate) async fn execute(request: Request) -> Result<Value, String> {
         Request::Jellyfin { request } => {
             return super::connectors::jellyfin::execute(request).await
         }
+        Request::Plex { request } => return super::connectors::plex::execute(request).await,
         Request::Home => serde_json::to_value(catalog.browse_home(&context).await?),
         Request::Search { query, limit } => {
             let query = query.trim();

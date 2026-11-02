@@ -5,6 +5,7 @@ import Foundation
     let server: SubsonicMusicService
     let playlists: MusicPlaylistStore
     let lyrics: MusicLyricsClient?
+    let plex: PlexMusicService?
     let jellyfin: JellyfinMusicService?
     let soundcloud: SoundCloudMusicService?
     let audio: MusicAudioPreferences?
@@ -16,11 +17,11 @@ import Foundation
     private let currentScope: @MainActor () -> PluginExecutionScope
     init(server: SubsonicMusicService, playlists: MusicPlaylistStore,
          localRecords: @escaping @MainActor () -> [MusicRecord], localRevision: (@MainActor () -> UInt64)? = nil,
-         lyrics: MusicLyricsClient? = nil, soundcloud: SoundCloudMusicService? = nil, jellyfin: JellyfinMusicService? = nil, audio: MusicAudioPreferences? = nil, currentScope: @escaping @MainActor () -> PluginExecutionScope) {
+         lyrics: MusicLyricsClient? = nil, soundcloud: SoundCloudMusicService? = nil, jellyfin: JellyfinMusicService? = nil, plex: PlexMusicService? = nil, audio: MusicAudioPreferences? = nil, currentScope: @escaping @MainActor () -> PluginExecutionScope) {
         self.server = server; scope = server.scope; self.playlists = playlists
         self.localRecords = localRecords; self.localRevision = localRevision; self.currentScope = currentScope
         self.lyrics = lyrics
-        self.soundcloud = soundcloud; self.jellyfin = jellyfin
+        self.soundcloud = soundcloud; self.jellyfin = jellyfin; self.plex = plex
         self.audio = audio
     }
     func validate() throws {
@@ -46,15 +47,16 @@ import Foundation
     }
     func sources(for track: MusicTrack) async throws -> [MusicSourceCandidate] {
         try validate()
-        let version = server.credentialVersion, cloudVersion = soundcloud?.connectionRevision, jellyfinVersion = jellyfin?.credentialVersion
+        let version = server.credentialVersion, cloudVersion = soundcloud?.connectionRevision, jellyfinVersion = jellyfin?.credentialVersion, plexVersion = plex?.credentialVersion
         let locals = localRecords().map(\.local.track)
         async let localMatches = MusicRecordingMatching.ranked(locals, for: track)
         async let serverMatches = matching(server.configured ? server : nil, track: track)
         async let cloudMatches = matching(soundcloud?.enabled == true ? soundcloud : nil, track: track)
         async let jellyfinMatches = matching(jellyfin?.configured == true ? jellyfin : nil, track: track)
-        let replies = try await (localMatches, serverMatches, cloudMatches, jellyfinMatches)
+        async let plexMatches = matching(plex?.configured == true ? plex : nil, track: track)
+        let replies = try await (localMatches, serverMatches, cloudMatches, jellyfinMatches, plexMatches)
         try validate()
-        guard version == server.credentialVersion, cloudVersion == soundcloud?.connectionRevision, jellyfinVersion == jellyfin?.credentialVersion else { throw CancellationError() }
+        guard version == server.credentialVersion, cloudVersion == soundcloud?.connectionRevision, jellyfinVersion == jellyfin?.credentialVersion, plexVersion == plex?.credentialVersion else { throw CancellationError() }
         var values: [MusicSourceCandidate] = []
         if track.playbackUrl != nil || localRecord(track) != nil {
             values.append(.init(connectorId: track.connectorId ?? "direct", connectorName: track.connectorId ?? "Direct stream", health: .healthy, track: track))
@@ -63,6 +65,7 @@ import Foundation
         values += replies.1.prefix(3).map { .init(connectorId: "subsonic", connectorName: "Subsonic", health: server.health, track: $0) }
         values += replies.2.prefix(3).map { .init(connectorId: "soundcloud", connectorName: "SoundCloud", health: soundcloud?.health ?? .unknown, track: $0) }
         values += replies.3.prefix(3).map { .init(connectorId: "jellyfin", connectorName: "Jellyfin", health: jellyfin?.health ?? .unknown, track: $0) }
+        values += replies.4.prefix(3).map { .init(connectorId: "plex", connectorName: "Plex", health: plex?.health ?? .unknown, track: $0) }
         var seen = Set<String>()
         return values.filter { seen.insert($0.id).inserted }
     }
@@ -79,6 +82,10 @@ import Foundation
         try validate(); let version = server.credentialVersion
         let cloudVersion = soundcloud?.connectionRevision
         guard playlists.remember([track]) else { throw HarborError(code: "music-store") }
+        if track.connectorId == "plex" {
+            guard let plex else { throw HarborError(code: "music-source-required") }
+            let resolution = try await plex.resolve(track); try validate(); return resolution
+        }
         if track.connectorId == "jellyfin" {
             guard let jellyfin else { throw HarborError(code: "music-source-required") }
             let resolution = try await jellyfin.resolve(track); try validate(); return resolution

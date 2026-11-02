@@ -47,7 +47,7 @@ import Observation
     private func send(_ request: JellyfinMusicRequest, version: UUID) async throws -> Data {
         try validate(version)
         let token = UUID(), network = network
-        let task = Task { try await network.performMusicCatalog(.init(operation: "jellyfin", request: request)) }
+        let task = Task { try await network.performMusicCatalog(.init(operation: "jellyfin", request: .jellyfin(request))) }
         operations[token] = task
         defer { operations[token] = nil }
         do {

@@ -91,7 +91,7 @@ enum MusicNativeScreen: String, CaseIterable, Identifiable {
     var body: some View {
         MusicCatalogLink(item: item, client: client) {
             ZStack(alignment: .bottomLeading) {
-                Artwork(url: item.artwork, maxPixels: 900, failureIcon: "nav-music").frame(height: 300)
+                MusicArtwork(url: item.artwork, maxPixels: 900).frame(height: 300)
                 LinearGradient(colors: [.clear, .black.opacity(0.94)], startPoint: .top, endPoint: .bottom)
                 VStack(alignment: .leading, spacing: 8) {
                     Text(eyebrow).font(.caption.weight(.semibold)).textCase(.uppercase).tracking(2)

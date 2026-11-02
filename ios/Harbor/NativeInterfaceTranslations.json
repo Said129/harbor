@@ -130,7 +130,8 @@
     "music.mobile.soundcloud.consent": "La búsqueda y reproducción consultan SoundCloud y sus servidores. Harbor usa las fuentes completas disponibles, sujetas a las condiciones del proveedor.",
     "music.mobile.spotify.install": "Instala Spotify e inicia sesión en su aplicación oficial.",
     "music.mobile.spotify.restricted": "Spotify no permite esta acción con el estado o los límites actuales de tu cuenta.",
-    "music.mobile.spotify.advertisement": "Publicidad de Spotify"
+    "music.mobile.spotify.advertisement": "Publicidad de Spotify",
+    "music.mobile.plex.discovery": "Deja vacía la dirección del servidor para buscar bibliotecas de música con el token de tu cuenta de Plex."
   },
   "pt": {
     "Auto-sync": "Sincronização automática",
@@ -211,7 +212,8 @@
     "music.mobile.soundcloud.consent": "A pesquisa e a reprodução consultam o SoundCloud e seus servidores. O Harbor usa as fontes completas disponíveis, conforme os termos do provedor.",
     "music.mobile.spotify.install": "Instale o Spotify e entre no aplicativo oficial.",
     "music.mobile.spotify.restricted": "O Spotify não permite esta ação com o estado ou os limites atuais da sua conta.",
-    "music.mobile.spotify.advertisement": "Publicidade do Spotify"
+    "music.mobile.spotify.advertisement": "Publicidade do Spotify",
+    "music.mobile.plex.discovery": "Deixe o endereço do servidor vazio para procurar bibliotecas de música com o token da sua conta Plex."
   },
   "ru": {
     "Auto-sync": "Автосинхронизация",
@@ -291,7 +293,8 @@
     "music.mobile.soundcloud.consent": "Поиск и воспроизведение обращаются к SoundCloud и его серверам. Harbor использует доступные полные потоки согласно условиям поставщика.",
     "music.mobile.spotify.install": "Установите Spotify и войдите в официальное приложение.",
     "music.mobile.spotify.restricted": "Spotify не разрешает это действие при текущем состоянии или ограничениях вашей учётной записи.",
-    "music.mobile.spotify.advertisement": "Реклама Spotify"
+    "music.mobile.spotify.advertisement": "Реклама Spotify",
+    "music.mobile.plex.discovery": "Оставьте адрес сервера пустым, чтобы найти музыкальные библиотеки с помощью токена аккаунта Plex."
   },
   "ar": {
     "Auto-sync": "مزامنة تلقائية",
@@ -371,7 +374,8 @@
     "music.mobile.soundcloud.consent": "يتصل البحث والتشغيل بخدمة SoundCloud وخوادمها. يستخدم Harbor التدفقات الكاملة المتاحة وفق شروط المزوّد.",
     "music.mobile.spotify.install": "ثبّت Spotify وسجّل الدخول في تطبيقه الرسمي.",
     "music.mobile.spotify.restricted": "لا يسمح Spotify بهذا الإجراء وفق الحالة الحالية لحسابك أو قيوده.",
-    "music.mobile.spotify.advertisement": "إعلان Spotify"
+    "music.mobile.spotify.advertisement": "إعلان Spotify",
+    "music.mobile.plex.discovery": "اترك عنوان الخادم فارغًا لاكتشاف مكتبات الموسيقى باستخدام رمز حساب Plex الخاص بك."
   },
   "zh": {
     "Couldn't auto-sync": "无法自动同步",
@@ -423,7 +427,8 @@
     "music.mobile.soundcloud.consent": "搜索和播放会连接 SoundCloud 及其媒体服务器。Harbor 按照提供商条款使用可用的完整音频流。",
     "music.mobile.spotify.install": "请安装 Spotify 并在其官方应用中登录。",
     "music.mobile.spotify.restricted": "由于账户当前的状态或限制，Spotify 不允许此操作。",
-    "music.mobile.spotify.advertisement": "Spotify 广告"
+    "music.mobile.spotify.advertisement": "Spotify 广告",
+    "music.mobile.plex.discovery": "将服务器地址留空，即可使用 Plex 帐户令牌发现音乐资料库。"
   },
   "fr": {
     "Couldn't auto-sync": "Synchronisation automatique impossible",
@@ -475,7 +480,8 @@
     "music.mobile.soundcloud.consent": "La recherche et la lecture contactent SoundCloud et ses serveurs. Harbor utilise les flux complets disponibles selon les conditions du fournisseur.",
     "music.mobile.spotify.install": "Installez Spotify et connectez-vous dans son application officielle.",
     "music.mobile.spotify.restricted": "Spotify ne permet pas cette action avec l’état ou les limites actuelles de votre compte.",
-    "music.mobile.spotify.advertisement": "Publicité Spotify"
+    "music.mobile.spotify.advertisement": "Publicité Spotify",
+    "music.mobile.plex.discovery": "Laissez l’adresse du serveur vide pour rechercher des bibliothèques musicales avec le jeton de votre compte Plex."
   },
   "de": {
     "Couldn't auto-sync": "Automatische Synchronisierung nicht möglich",
@@ -527,7 +533,8 @@
     "music.mobile.soundcloud.consent": "Suche und Wiedergabe greifen auf SoundCloud und dessen Server zu. Harbor nutzt vollständige verfügbare Streams gemäß den Bedingungen des Anbieters.",
     "music.mobile.spotify.install": "Installiere Spotify und melde dich in der offiziellen App an.",
     "music.mobile.spotify.restricted": "Spotify erlaubt diese Aktion mit dem aktuellen Status oder den Beschränkungen deines Kontos nicht.",
-    "music.mobile.spotify.advertisement": "Spotify-Werbung"
+    "music.mobile.spotify.advertisement": "Spotify-Werbung",
+    "music.mobile.plex.discovery": "Lass die Serveradresse leer, um mit deinem Plex-Kontotoken nach Musikbibliotheken zu suchen."
   },
   "hi": {
     "Couldn't auto-sync": "अपने-आप सिंक नहीं हो सका",
@@ -579,7 +586,8 @@
     "music.mobile.soundcloud.consent": "खोज और प्लेबैक SoundCloud और उसके मीडिया सर्वर से संपर्क करते हैं। Harbor प्रदाता की शर्तों के अनुसार उपलब्ध पूर्ण स्ट्रीम का उपयोग करता है।",
     "music.mobile.spotify.install": "Spotify इंस्टॉल करें और उसके आधिकारिक ऐप में साइन इन करें।",
     "music.mobile.spotify.restricted": "आपके खाते की वर्तमान स्थिति या सीमाओं के कारण Spotify यह कार्रवाई करने की अनुमति नहीं देता।",
-    "music.mobile.spotify.advertisement": "Spotify विज्ञापन"
+    "music.mobile.spotify.advertisement": "Spotify विज्ञापन",
+    "music.mobile.plex.discovery": "अपने Plex खाते के टोकन से संगीत लाइब्रेरी खोजने के लिए सर्वर का पता खाली छोड़ें।"
   },
   "id": {
     "Couldn't auto-sync": "Tidak dapat menyinkronkan otomatis",
@@ -631,7 +639,8 @@
     "music.mobile.soundcloud.consent": "Pencarian dan pemutaran menghubungi SoundCloud dan server medianya. Harbor menggunakan stream lengkap yang tersedia sesuai ketentuan penyedia.",
     "music.mobile.spotify.install": "Instal Spotify dan masuk di aplikasi resminya.",
     "music.mobile.spotify.restricted": "Spotify tidak mengizinkan tindakan ini dengan status atau batas akun Anda saat ini.",
-    "music.mobile.spotify.advertisement": "Iklan Spotify"
+    "music.mobile.spotify.advertisement": "Iklan Spotify",
+    "music.mobile.plex.discovery": "Kosongkan alamat server untuk menemukan pustaka musik dengan token akun Plex Anda."
   },
   "it": {
     "Couldn't auto-sync": "Sincronizzazione automatica non riuscita",
@@ -683,7 +692,8 @@
     "music.mobile.soundcloud.consent": "La ricerca e la riproduzione contattano SoundCloud e i suoi server. Harbor usa le fonti complete disponibili secondo le condizioni del fornitore.",
     "music.mobile.spotify.install": "Installa Spotify e accedi nella sua app ufficiale.",
     "music.mobile.spotify.restricted": "Spotify non consente questa azione con lo stato o i limiti attuali del tuo account.",
-    "music.mobile.spotify.advertisement": "Pubblicità Spotify"
+    "music.mobile.spotify.advertisement": "Pubblicità Spotify",
+    "music.mobile.plex.discovery": "Lascia vuoto l’indirizzo del server per trovare librerie musicali con il token del tuo account Plex."
   },
   "ja": {
     "Couldn't auto-sync": "自動同期できませんでした",
@@ -735,7 +745,8 @@
     "music.mobile.soundcloud.consent": "検索と再生は SoundCloud とそのメディアサーバーに接続します。Harbor は提供元の規約に従い、利用可能な完全なストリームを使用します。",
     "music.mobile.spotify.install": "Spotify をインストールし、公式アプリでログインしてください。",
     "music.mobile.spotify.restricted": "現在のアカウントの状態または制限により、Spotify はこの操作を許可していません。",
-    "music.mobile.spotify.advertisement": "Spotify の広告"
+    "music.mobile.spotify.advertisement": "Spotify の広告",
+    "music.mobile.plex.discovery": "サーバーのアドレスを空欄にすると、Plex アカウントのトークンで音楽ライブラリを検索します。"
   },
   "ko": {
     "Couldn't auto-sync": "자동 동기화하지 못했습니다",
@@ -787,7 +798,8 @@
     "music.mobile.soundcloud.consent": "검색과 재생은 SoundCloud 및 미디어 서버에 연결됩니다. Harbor는 제공업체 약관에 따라 이용 가능한 전체 스트림을 사용합니다.",
     "music.mobile.spotify.install": "Spotify를 설치하고 공식 앱에서 로그인하세요.",
     "music.mobile.spotify.restricted": "계정의 현재 상태나 제한으로 인해 Spotify에서 이 작업을 허용하지 않습니다.",
-    "music.mobile.spotify.advertisement": "Spotify 광고"
+    "music.mobile.spotify.advertisement": "Spotify 광고",
+    "music.mobile.plex.discovery": "서버 주소를 비워 두면 Plex 계정 토큰으로 음악 라이브러리를 찾습니다."
   },
   "pl": {
     "Couldn't auto-sync": "Nie udało się zsynchronizować automatycznie",
@@ -839,7 +851,8 @@
     "music.mobile.soundcloud.consent": "Wyszukiwanie i odtwarzanie łączą się z SoundCloud i jego serwerami. Harbor używa dostępnych pełnych strumieni zgodnie z warunkami dostawcy.",
     "music.mobile.spotify.install": "Zainstaluj Spotify i zaloguj się w oficjalnej aplikacji.",
     "music.mobile.spotify.restricted": "Spotify nie zezwala na tę czynność przy obecnym stanie lub ograniczeniach konta.",
-    "music.mobile.spotify.advertisement": "Reklama Spotify"
+    "music.mobile.spotify.advertisement": "Reklama Spotify",
+    "music.mobile.plex.discovery": "Pozostaw adres serwera pusty, aby znaleźć biblioteki muzyczne za pomocą tokenu konta Plex."
   },
   "tr": {
     "Couldn't auto-sync": "Otomatik eşitlenemedi",
@@ -891,7 +904,8 @@
     "music.mobile.soundcloud.consent": "Arama ve oynatma, SoundCloud ve medya sunucularına bağlanır. Harbor, sağlayıcının koşullarına göre sunulan tam akışları kullanır.",
     "music.mobile.spotify.install": "Spotify’ı yükleyin ve resmî uygulamasında oturum açın.",
     "music.mobile.spotify.restricted": "Spotify, hesabınızın mevcut durumu veya sınırları nedeniyle bu işleme izin vermiyor.",
-    "music.mobile.spotify.advertisement": "Spotify reklamı"
+    "music.mobile.spotify.advertisement": "Spotify reklamı",
+    "music.mobile.plex.discovery": "Plex hesap belirtecinizle müzik kitaplıklarını bulmak için sunucu adresini boş bırakın."
   },
   "vi": {
     "Couldn't auto-sync": "Không thể tự động đồng bộ",
@@ -943,7 +957,8 @@
     "music.mobile.soundcloud.consent": "Tìm kiếm và phát nhạc kết nối với SoundCloud cùng máy chủ nội dung. Harbor sử dụng các luồng đầy đủ có sẵn theo điều khoản của nhà cung cấp.",
     "music.mobile.spotify.install": "Cài đặt Spotify và đăng nhập trong ứng dụng chính thức.",
     "music.mobile.spotify.restricted": "Spotify không cho phép thao tác này với trạng thái hoặc giới hạn hiện tại của tài khoản.",
-    "music.mobile.spotify.advertisement": "Quảng cáo Spotify"
+    "music.mobile.spotify.advertisement": "Quảng cáo Spotify",
+    "music.mobile.plex.discovery": "Để trống địa chỉ máy chủ để tìm thư viện nhạc bằng mã thông báo tài khoản Plex của bạn."
   },
   "en": {
     "Browse services": "Browse services",
@@ -1032,6 +1047,7 @@
     "music.mobile.soundcloud.consent": "Search and playback contact SoundCloud and its media servers. Harbor uses full streams made available under the provider’s terms.",
     "music.mobile.spotify.install": "Install Spotify and sign in to its official app.",
     "music.mobile.spotify.restricted": "Spotify does not allow this action with your account’s current state or limits.",
-    "music.mobile.spotify.advertisement": "Spotify advertisement"
+    "music.mobile.spotify.advertisement": "Spotify advertisement",
+    "music.mobile.plex.discovery": "Leave the server address empty to discover music libraries with your Plex account token."
   }
 }

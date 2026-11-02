@@ -6,6 +6,7 @@ pub use model::*;
 pub mod connectors {
     pub mod catalog;
     pub mod jellyfin;
+    pub mod plex;
 }
 mod request;
 pub(crate) use request::{execute, Request};

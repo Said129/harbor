@@ -153,6 +153,8 @@ targets:
       - path: HarborTests/MusicPlaylistImportTests.swift
       - path: HarborTests/MusicLyricsTests.swift
       - path: HarborTests/MusicAudioTests.swift
+      - path: HarborTests/PlexMusicTests.swift
+      - path: HarborTests/PlexMusicFixture.swift
       - path: HarborTests/JellyfinMusicTests.swift
       - path: HarborTests/JellyfinMusicFixture.swift
       - path: HarborTests/MusicPreferencesTests.swift

@@ -83,7 +83,7 @@ import SwiftUI
     }
     private var heading: some View {
         VStack(alignment: .leading, spacing: 14) {
-            Artwork(url: item.artwork, maxPixels: 720, failureIcon: "nav-music")
+            MusicArtwork(url: item.artwork, maxPixels: 720)
                 .frame(width: 192, height: 192).clipShape(.rect(cornerRadius: item.isArtist ? 96 : 14))
             Text(item.title).font(.title.weight(.bold)).accessibilityIdentifier("music-catalog-detail-title")
             if let playbackSession, showsPlayback {

@@ -14,7 +14,7 @@ extension EnvironmentValues {
     var body: some View {
         Group {
             if let local = item.localRecord { MusicCover(record: local, owner: owner) }
-            else { Artwork(url: item.track.artwork, maxPixels: 720, failureIcon: "nav-music").clipShape(.rect(cornerRadius: 8)) }
+            else { MusicArtwork(url: item.track.artwork, maxPixels: 720).clipShape(.rect(cornerRadius: 8)) }
         }.accessibilityHidden(true)
     }
 }
@@ -56,6 +56,7 @@ extension EnvironmentValues {
                 }.accessibilityLabel(DesktopInterfaceText.value(player.paused ? "music.play" : "music.pause"))
                 Button { player.next() } label: { MusicGlyph("next").frame(width: 44, height: 44) }.accessibilityLabel(DesktopInterfaceText.value("music.next"))
             }.padding(.horizontal, 14).padding(.vertical, 7).background(HarborTheme.surface).accessibilityIdentifier("music-shared-mini-player")
+                .environment(\.musicPlaybackSession, player.playbackSession)
                 .sheet(isPresented: $expanded) { NavigationStack { MusicPlayerView(player: player).toolbar { ToolbarItem(placement: .topBarTrailing) { Button(DesktopInterfaceText.value("Close")) { expanded = false } } } } }
         } else if let spotify = SpotifyMusicSelection.shared.active {
             SpotifyMiniPlayer(service: spotify)
@@ -108,6 +109,7 @@ extension EnvironmentValues {
                 }
             }
             .accessibilityIdentifier("music-shared-player")
+            .environment(\.musicPlaybackSession, player.playbackSession)
             .sheet(isPresented: $audioSettings) {
                 if let session = player.playbackSession { MusicAudioSettingsView(session: session, player: player) }
             }

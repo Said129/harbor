@@ -55,7 +55,7 @@ import SwiftUI
     private func tile(_ item: MusicPlaybackItem, width: CGFloat, height: CGFloat) -> some View {
         Group {
             if let record = item.localRecord { MusicCover(record: record, owner: owner, cornerRadius: 0) }
-            else { Artwork(url: item.track.artwork.trimmingCharacters(in: .whitespacesAndNewlines), maxPixels: 480, failureIcon: "nav-music") }
+            else { MusicArtwork(url: item.track.artwork.trimmingCharacters(in: .whitespacesAndNewlines), maxPixels: 480) }
         }.frame(width: width, height: height).clipped()
     }
 }

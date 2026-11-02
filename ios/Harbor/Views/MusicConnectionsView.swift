@@ -25,6 +25,7 @@ import SwiftUI
                     }
                 }
                 Section(DesktopInterfaceText.value("music.connections.server")) {
+                    NavigationLink("Plex") { PlexMusicConnectionView(service: workspace.plex, changed: changed) }
                     NavigationLink("Jellyfin") { JellyfinMusicConnectionView(service: workspace.jellyfin, changed: changed) }
                     Button("Subsonic / Navidrome / Ampache") { server = true }
                 }
@@ -34,6 +35,7 @@ import SwiftUI
                         Text(DesktopInterfaceText.value("Auto")).tag("auto")
                         Text(DesktopInterfaceText.value("music.home.yourFiles")).tag("local")
                         Text("Subsonic").tag("subsonic")
+                        if workspace.plex.configured { Text("Plex").tag("plex") }
                         if workspace.jellyfin.configured { Text("Jellyfin").tag("jellyfin") }
                         if workspace.soundcloud.enabled { Text("SoundCloud").tag("soundcloud") }
                     }

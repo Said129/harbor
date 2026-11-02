@@ -1,0 +1,28 @@
+{
+  "referenceCommit": "0834340cec5531650bfe78cd628628702e636987",
+  "referenceVersion": "0.9.132 Beta",
+  "source": "src-tauri/src/music/connectors/plex",
+  "originalFilesSHA256": {
+    "browse.rs": "27fee524815d55f793796d175e3d607ff5baea6237560b1a8a8655c6920cd4f6",
+    "client.rs": "437cc5a08e58ba3ff197bc370450b99ec41266b6eafd96b3efa158820cc9b978",
+    "mod.rs": "f0d9dce665ff6886dda6c0cd3c86bc0c8842ac9c798ca48faa06365971326fe5",
+    "parse.rs": "c3232265422cb4307984bf804445f3a45c3f415fe25eb63c513f08c5f15d8740",
+    "session.rs": "afaa3742bf111a4ba28bf53160a1c6179ea2bbd706e4f2a19e06d3017a58ee4f"
+  },
+  "adaptations": [
+    "Original Rust metadata, hub, search, album, artist, playlist, radio and direct/transcode selection retained.",
+    "Native Keychain account supplied per cancellable operation; no global private account cache or persisted plaintext token in playlist metadata.",
+    "Explicit server-token connection and account-token resource discovery are available. Desktop shared-video-login secret discovery has no native counterpart yet.",
+    "Private artwork is represented by a connection-scoped token-free URI; original Plex inner and outer transcoder authorization is supplied only during bounded IO.",
+    "Artwork decoding and memory cache are bounded, per profile and retired on credential changes. Remote inner artwork sources are rejected.",
+    "Native UUID supplies a transcode session identifier; no new Rust randomness dependency or source-version change.",
+    "JSON API bodies capped at 8 MiB, cover bodies at 2 MiB, authenticated redirects confined to the original origin.",
+    "The original artist catalog limitation and first-music-library selection remain explicit."
+  ],
+  "validation": {
+    "originalRustCases": "pending",
+    "nativeProviderJourneys": "pending",
+    "phoneAndTabletVisualReview": "pending",
+    "realPrivateServer": "not tested"
+  }
+}

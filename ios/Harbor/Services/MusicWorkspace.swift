@@ -6,6 +6,7 @@ import Foundation
     let scope: PluginExecutionScope
     let library: MusicLibrary
     let playlists: MusicPlaylistStore
+    let plex: PlexMusicService
     let jellyfin: JellyfinMusicService
     let server: SubsonicMusicService
     let spotify: SpotifyMusicService
@@ -21,13 +22,14 @@ import Foundation
         let library = MusicLibrary(owner: scope.owner), playlists = MusicPlaylistStore(owner: scope.owner)
         let server = SubsonicMusicService(scope: scope, currentScope: currentScope)
         self.library = library; self.playlists = playlists; self.server = server
+        let plex = PlexMusicService(scope: scope, currentScope: currentScope); self.plex = plex
         let jellyfin = JellyfinMusicService(scope: scope, currentScope: currentScope); self.jellyfin = jellyfin
         spotify = SpotifyMusicService(scope: scope, currentScope: currentScope)
         let lyrics = MusicLyricsClient(scope: scope, currentScope: currentScope); self.lyrics = lyrics
         let soundcloud = SoundCloudMusicService(scope: scope, currentScope: currentScope); self.soundcloud = soundcloud
         let audio = MusicAudioPreferences(owner: scope.owner); self.audio = audio
-        catalog = MusicCatalogModel(client: MusicServerCatalogClient(server: server, soundcloud: soundcloud, jellyfin: jellyfin, currentScope: currentScope))
-        playback = MusicPlaybackSession(server: server, playlists: playlists, localRecords: { library.records }, localRevision: { library.revision }, lyrics: lyrics, soundcloud: soundcloud, jellyfin: jellyfin, audio: audio, currentScope: currentScope)
+        catalog = MusicCatalogModel(client: MusicServerCatalogClient(server: server, soundcloud: soundcloud, jellyfin: jellyfin, plex: plex, currentScope: currentScope))
+        playback = MusicPlaybackSession(server: server, playlists: playlists, localRecords: { library.records }, localRevision: { library.revision }, lyrics: lyrics, soundcloud: soundcloud, jellyfin: jellyfin, plex: plex, audio: audio, currentScope: currentScope)
     }
-    func dispose() { disposed = true; jellyfin.dispose(); soundcloud.dispose(); lyrics.dispose(); spotify.dispose(); server.dispose(); library.cancelImport(); catalog.invalidatePrivateServer() }
+    func dispose() { disposed = true; plex.dispose(); jellyfin.dispose(); soundcloud.dispose(); lyrics.dispose(); spotify.dispose(); server.dispose(); library.cancelImport(); catalog.invalidatePrivateServer() }
 }

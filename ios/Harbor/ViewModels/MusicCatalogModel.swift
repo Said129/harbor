@@ -15,7 +15,7 @@ import Observation
     init(client: any MusicCatalogCalling = MusicCatalogClient()) { self.client = client }
 
     func invalidatePrivateServer() {
-        generation = UUID(); rows.removeAll { ["subsonic", "jellyfin"].contains($0.source) }; result = nil; cachedSearch = nil
+        generation = UUID(); rows.removeAll { ["subsonic", "jellyfin", "plex"].contains($0.source) }; result = nil; cachedSearch = nil
         homeLoaded = false; loading = false; hasRequested = false; failure = nil
     }
 

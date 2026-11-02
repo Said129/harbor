@@ -64,7 +64,7 @@ import SwiftUI
     private var width: CGFloat { wide ? 220 : 140 }
     var body: some View {
         VStack(alignment: .leading, spacing: 7) {
-            Artwork(url: item.artwork, maxPixels: 480, failureIcon: "nav-music")
+            MusicArtwork(url: item.artwork, maxPixels: 480)
                 .frame(width: width, height: wide ? 132 : width)
                 .clipShape(.rect(cornerRadius: item.isArtist ? width / 2 : 12)).accessibilityHidden(true)
             Text(item.title).font(.subheadline.weight(.medium)).lineLimit(2)
@@ -77,7 +77,7 @@ import SwiftUI
     let item: MusicCatalogItem
     var body: some View {
         HStack(spacing: 12) {
-            Artwork(url: item.artwork, maxPixels: 240, failureIcon: "nav-music")
+            MusicArtwork(url: item.artwork, maxPixels: 240)
                 .frame(width: 48, height: 48).clipShape(.rect(cornerRadius: item.isArtist ? 24 : 8)).accessibilityHidden(true)
             VStack(alignment: .leading, spacing: 4) {
                 Text(item.title).font(.subheadline.weight(.medium)).lineLimit(2)

@@ -293,3 +293,34 @@ contains the nineteen unexecuted cases, all four Jellyfin journeys and the new
 typed SoundCloud journey, for 24 explicitly required executions. It excludes
 the already accepted unchanged local subtitle baseline. The in-progress Plex
 source port is kept outside this corrective validation commit.
+
+## Plex music source port added 2 November
+
+The pinned Plex Rust connector now powers native home hubs, typed search,
+albums, artists, playlists, radios and direct/transcoded audio. The connection
+form accepts an explicit server token or an account token with a blank address
+for original ranked local/remote/relay discovery. It does not yet replace the
+shared Desktop video Plex login flow. The original first-library choice and
+limited artist-catalog contract are retained.
+
+Unlike the original metadata representation, a remembered/exported cover is a
+connection-scoped `harbor-music-art` reference without a token or server URL.
+Native rendering restores Plex's inner and outer transcoder authorization only
+for the actual private request, bounds cover bytes/decoding/cache, rejects
+remote inner sources and fences account changes. The shared public image path
+continues to serve ordinary public Music covers. The mini-player and expanded
+player supply their real profile playback session to cover rendering.
+
+Three owned-server journeys cover actual Rust/HTTP catalog and radios, private
+cover fetching and cache coalescing, remembered metadata without credentials,
+real libmpv audio and seeks, Keychain restart, late profile authorization, and
+phone/tablet-size connection and loaded-cover captures. The discovery help is
+present in all sixteen app languages. Real-server use and native execution are
+still pending. The package has not adopted the new DSP library and no IPA has
+been packaged. Provenance is in `plex-music-port-inputs.json`.
+
+The Plex validation selection must also execute the existing Jellyfin native
+provider journey: the shared private-provider request gained a typed sum for
+Plex/Jellyfin with transparent encoding, so its original JSON boundary needs
+this affected compatibility check. The twenty-four-case corrective run uses
+source `3193fb4d` and is kept independent of these new Plex files.
