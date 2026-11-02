@@ -76,6 +76,36 @@ import XCTest
         }
     }
 
+    func testSavedSpeedCombinationsReplaceByNameKeepOtherDSPAndRemainProfileOwned() throws {
+        let owner = "owned-speed-" + UUID().uuidString, other = owner + "-other"
+        defer {
+            for value in [owner, other] { try? KeychainStore().remove("music-speed-presets-" + EBookShelf.hash(value)) }
+        }
+        let preferences = MusicAudioPreferences(owner: owner)
+        var settings = MusicAudioOptions()
+        settings.speed = 0.8; settings.reverb = 0.6; settings.pitch = -2; settings.keepPitch = true
+        try preferences.saveSpeedPreset(name: " Owned combo ", settings: settings)
+        settings.speed = 0.9
+        try preferences.saveSpeedPreset(name: "Owned combo", settings: settings)
+        let reloaded = MusicAudioPreferences(owner: owner)
+        XCTAssertEqual(reloaded.speedPresets.count, 1)
+        XCTAssertTrue(MusicAudioPreferences(owner: other).speedPresets.isEmpty)
+        var routing = MusicAudioOptions()
+        routing.eqEnabled = true; routing.eqBands[2] = -4; routing.preampDb = -3
+        routing.sampleRate = 96000; routing.balance = 0.5; routing.volumeLimit = 1.5
+        let preset = try XCTUnwrap(reloaded.speedPresets.first), loaded = preset.loading(into: routing)
+        XCTAssertEqual(loaded.speed, 0.9); XCTAssertEqual(loaded.reverb, 0.6)
+        XCTAssertEqual(loaded.pitch, -2); XCTAssertTrue(loaded.keepPitch)
+        XCTAssertEqual(loaded.eqBands, routing.eqBands); XCTAssertEqual(loaded.preampDb, -3)
+        XCTAssertEqual(loaded.sampleRate, 96000); XCTAssertEqual(loaded.volumeLimit, 1.5)
+        XCTAssertEqual(loaded.balance, 0.5); XCTAssertTrue(loaded.eqEnabled)
+        settings.speed = .nan
+        XCTAssertThrowsError(try reloaded.saveSpeedPreset(name: "Invalid", settings: settings))
+        XCTAssertEqual(MusicAudioPreferences(owner: owner).speedPresets.count, 1)
+        try reloaded.deleteSpeedPreset(preset.id)
+        XCTAssertTrue(MusicAudioPreferences(owner: owner).speedPresets.isEmpty)
+    }
+
     private func capture<V: View>(_ view: V, name: String, size: CGSize) async throws {
         let scene = try XCTUnwrap(UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }.first)
         let previous = scene.windows.first { $0.isKeyWindow }, window = UIWindow(windowScene: scene)

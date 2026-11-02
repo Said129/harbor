@@ -414,7 +414,11 @@ after a short cancellable debounce rather than on every SwiftUI body evaluation.
 
 The form also exposes the original supported sample-rate choices, crossfeed,
 reverb and five speed presets. Controls requiring extra filters check the actual
-runtime registry. Custom speed combinations remain separate unfinished work.
+runtime registry. Named custom speed/pitch/reverb/key combinations now persist
+per Harbor profile, replace a same-named combination and can be removed. Loading
+one edits those four draft fields only. A new case checks restart, replacement,
+other-profile separation, invalid-value rejection and preservation of EQ,
+preamp, routing and volume ceiling. This case remains pending native execution.
 The new correction round-trip/native-plan case and phone/tablet-size plus RTL
 editor captures are pending Apple execution and visual review. The existing
 audio-form capture is affected by these new controls; its Spotify half remains

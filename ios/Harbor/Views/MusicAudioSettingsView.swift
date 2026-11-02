@@ -18,6 +18,7 @@ import SwiftUI
                 equalizerSection
                 processingSection
                 speedSection
+                savedSpeedSection
                 signalSection
                 profilesSection
                 saveSection
@@ -139,6 +140,12 @@ import SwiftUI
             .accessibilityAddTraits(active ? .isSelected : [])
     }
 
+    @ViewBuilder private var savedSpeedSection: some View {
+        if let preferences = session.audio {
+            MusicSavedSpeedPresets(draft: $draft, preferences: preferences, validate: { try session.validate() })
+        }
+    }
+
     @ViewBuilder private var signalSection: some View {
         if let signal {
             Section(text("music.now.signal")) {
@@ -219,6 +226,36 @@ import SwiftUI
             }.font(.subheadline)
             Slider(value: value, in: range, step: step).accessibilityLabel(text(key))
         }.disabled(draft.dspBypass && key != "music.audio.ceiling" && key != "music.speed.speed")
+    }
+}
+
+@MainActor struct MusicSavedSpeedPresets: View {
+    @Binding var draft: MusicAudioOptions
+    let preferences: MusicAudioPreferences
+    let validate: @MainActor () throws -> Void
+    @State private var name = ""
+    @State private var failed = false
+    private func text(_ key: String) -> String { DesktopInterfaceText.value(key) }
+    var body: some View {
+        Section(text("music.speed.saveCurrent")) {
+            TextField(text("music.speed.namePlaceholder"), text: $name)
+            Button(text("music.speed.save")) {
+                do { try validate(); try preferences.saveSpeedPreset(name: name, settings: draft); name = ""; failed = false }
+                catch { failed = true }
+            }.disabled(!preferences.speedPresetsReady || name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
+            ForEach(preferences.speedPresets) { preset in
+                HStack {
+                    Button(preset.name) { draft = preset.loading(into: draft) }.buttonStyle(.borderless)
+                    Spacer()
+                    Button(role: .destructive) {
+                        do { try validate(); try preferences.deleteSpeedPreset(preset.id); failed = false }
+                        catch { failed = true }
+                    } label: { Image(systemName: "trash").frame(width: 44, height: 44) }
+                        .buttonStyle(.borderless).accessibilityLabel(DesktopInterfaceText.value("music.speed.forget", variables: ["name": preset.name]))
+                }
+            }
+            if failed { Text(text("music.audio.saveError")).foregroundStyle(.orange) }
+        }
     }
 }
 

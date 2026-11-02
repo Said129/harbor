@@ -118,6 +118,7 @@ private struct MusicEQNumericField: View {
                 .accessibilityLabel(label)
             Stepper(label, value: $value, in: range, step: step).labelsHidden().accessibilityLabel(label)
         }.onAppear { input = formatted }
+            .onDisappear { commit() }
             .onChange(of: editing) { _, active in if !active { commit() } }
             .onChange(of: value) { _, _ in if !editing { input = formatted } }
     }

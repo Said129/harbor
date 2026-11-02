@@ -93,6 +93,20 @@ struct MusicListeningProfile: Codable, Identifiable, Sendable {
     }
 }
 
+struct MusicSpeedPreset: Codable, Identifiable, Sendable {
+    let id: String
+    let name: String
+    let speed: Double
+    let pitch: Double
+    let reverb: Double
+    let keepPitch: Bool
+    func loading(into current: MusicAudioOptions) -> MusicAudioOptions {
+        var next = current
+        next.speed = speed; next.pitch = pitch; next.reverb = reverb; next.keepPitch = keepPitch
+        return next
+    }
+}
+
 @MainActor @Observable final class MusicAudioPreferences {
     let owner: String
     private(set) var options: MusicAudioOptions
@@ -100,8 +114,11 @@ struct MusicListeningProfile: Codable, Identifiable, Sendable {
     private(set) var revision = UUID()
     private(set) var profiles: [MusicListeningProfile] = []
     private(set) var profilesReady = false
+    private(set) var speedPresets: [MusicSpeedPreset] = []
+    private(set) var speedPresetsReady = false
     private var key: String { "music-audio-options-" + EBookShelf.hash(owner) }
     private var profileKey: String { "music-listening-profiles-" + EBookShelf.hash(owner) }
+    private var speedKey: String { "music-speed-presets-" + EBookShelf.hash(owner) }
     init(owner: String) {
         self.owner = owner
         do { options = try KeychainStore().read("music-audio-options-" + EBookShelf.hash(owner), as: MusicAudioOptions.self) ?? .init() }
@@ -110,6 +127,10 @@ struct MusicListeningProfile: Codable, Identifiable, Sendable {
         do {
             profiles = Array((try KeychainStore().read(profileKey, as: [MusicListeningProfile].self) ?? []).prefix(20))
             profilesReady = true
+        } catch { self.error = true }
+        do {
+            speedPresets = try KeychainStore().read(speedKey, as: [MusicSpeedPreset].self) ?? []
+            speedPresetsReady = true
         } catch { self.error = true }
     }
     func plan(_ supplied: MusicAudioOptions? = nil) async throws -> MusicAudioPlan {
@@ -131,5 +152,20 @@ struct MusicListeningProfile: Codable, Identifiable, Sendable {
         guard profilesReady else { throw HarborError(code: "music-audio-profile") }
         let values = profiles.filter { $0.id != id }
         try KeychainStore().write(values, key: profileKey); profiles = values
+    }
+    func saveSpeedPreset(name: String, settings: MusicAudioOptions) throws {
+        let name = String(name.filter { !$0.unicodeScalars.contains(where: CharacterSet.controlCharacters.contains) }.trimmingCharacters(in: .whitespacesAndNewlines).prefix(100))
+        guard speedPresetsReady, !name.isEmpty, speedPresets.count < 64 || speedPresets.contains(where: { $0.name == name }),
+              settings.speed.isFinite, (0.5...1.6).contains(settings.speed),
+              settings.pitch.isFinite, (-12...12).contains(settings.pitch),
+              settings.reverb.isFinite, (0...1).contains(settings.reverb) else { throw HarborError(code: "music-audio-profile") }
+        let preset = MusicSpeedPreset(id: UUID().uuidString, name: name, speed: settings.speed, pitch: settings.pitch, reverb: settings.reverb, keepPitch: settings.keepPitch)
+        let values = speedPresets.filter { $0.name != name } + [preset]
+        try KeychainStore().write(values, key: speedKey); speedPresets = values
+    }
+    func deleteSpeedPreset(_ id: String) throws {
+        guard speedPresetsReady else { throw HarborError(code: "music-audio-profile") }
+        let values = speedPresets.filter { $0.id != id }
+        try KeychainStore().write(values, key: speedKey); speedPresets = values
     }
 }
