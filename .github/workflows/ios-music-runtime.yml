@@ -1,0 +1,37 @@
+name: iOS music DSP runtime
+on:
+  workflow_call:
+permissions:
+  contents: read
+jobs:
+  filters:
+    runs-on: macos-15-intel
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: mpvkit/MPVKit
+          ref: f82e06d4f5ef4fc4aa9faba3782a462dbbef870c
+          path: ios/build/MPVKit
+          persist-credentials: false
+      - name: Prepare pinned audio filter sources
+        run: python3 scripts/ios/music-dsp-runtime.py prepare --sdk ios/build/MPVKit --output ios/build/music-dsp-runtime
+      - name: Build device and simulator audio filters
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ios/build/logs
+          cd ios/build/MPVKit
+          make build platform=ios 2>&1 | tee ../logs/music-dsp-build.log
+      - name: Verify filter configuration and architecture slices
+        run: python3 scripts/ios/music-dsp-runtime.py collect --sdk ios/build/MPVKit --output ios/build/music-dsp-runtime
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: music-dsp-runtime
+          path: |
+            ios/build/music-dsp-runtime/
+            ios/build/logs/music-dsp-build.log
+          retention-days: 30
+          if-no-files-found: error

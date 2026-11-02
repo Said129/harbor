@@ -118,6 +118,19 @@ instead of leaving the form waiting indefinitely. These paths still require
 actual-account execution; no Free/Premium playback claim is inferred from UI
 captures or syntax checks.
 
+### Completing the missing DSP runtime
+
+`scripts/ios/music-dsp-runtime.py` and the `music-runtime` workflow scope build
+the extra filters from the same MPVKit source and exact FFmpeg commit
+`bf1b838f2ab88b4f8fd83443325c782ea0e0f7fa` (n9.0.1). Only a prospective
+Libavfilter replacement is collected, for arm64 devices and arm64/x86_64
+simulators; the application has not adopted it. The additional filters cover
+the original reverb/crossfeed/shelf/pass/notch processing, signal metering and
+audio transitions. Collection requires their real configure definitions for
+each architecture and records source diffs, archive hashes and notices.
+Actual native effect execution and an explicitly verified package integration
+remain required. This workflow does not package an IPA or change libmpv.
+
 ## Validation approach
 
 Keep previously accepted unchanged Music, Rust and app evidence. A focused
