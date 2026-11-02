@@ -21,11 +21,11 @@ final class SubtitleRangeFixture: @unchecked Sendable {
         listener = try NWListener(using: parameters)
         listener.stateUpdateHandler = { [weak self] state in
             guard let self else { return }
-            if case .ready = state { locked { ready = true } }
+            if case .ready = state { self.locked { self.ready = true } }
         }
         listener.newConnectionHandler = { [weak self] connection in
             guard let self else { connection.cancel(); return }
-            locked { connections.append(connection) }
+            self.locked { self.connections.append(connection) }
             connection.start(queue: queue); receive(connection, bytes: Data())
         }
         listener.start(queue: queue)
