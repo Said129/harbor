@@ -80,6 +80,10 @@ enum Request {
         track: harbor_core::music::MusicTrack,
         candidates: Vec<harbor_core::music::MusicTrack>,
     },
+    MusicAudioPlan {
+        settings: harbor_core::music_audio::MusicAudioSettings,
+        effects: Option<harbor_core::music_audio::fx::MusicFx>,
+    },
     MusicPlaylistOrder {
         ids: Vec<String>,
         #[serde(rename = "trackId")]
@@ -174,6 +178,15 @@ pub fn dispatch(bytes: &[u8]) -> Result<Value, &'static str> {
                 .iter()
                 .map(|candidate| harbor_core::music_matching::candidate_score(&track, candidate))
                 .collect::<Vec<_>>()))
+        }
+        Request::MusicAudioPlan { settings, effects } => {
+            let settings = settings.normalized();
+            let effects = effects
+                .unwrap_or(harbor_core::music_audio::fx::MusicFx::OFF)
+                .normalized();
+            Ok(
+                json!({"filter": settings.filter_with_fx(effects), "settings": settings, "effects": effects}),
+            )
         }
         Request::MusicPlaylistOrder {
             ids,

@@ -10,6 +10,7 @@ import Foundation
     let spotify: SpotifyMusicService
     let lyrics: MusicLyricsClient
     let soundcloud: SoundCloudMusicService
+    let audio: MusicAudioPreferences
     let catalog: MusicCatalogModel
     let playback: MusicPlaybackSession
     private var disposed = false
@@ -22,8 +23,9 @@ import Foundation
         spotify = SpotifyMusicService(scope: scope, currentScope: currentScope)
         let lyrics = MusicLyricsClient(scope: scope, currentScope: currentScope); self.lyrics = lyrics
         let soundcloud = SoundCloudMusicService(scope: scope, currentScope: currentScope); self.soundcloud = soundcloud
+        let audio = MusicAudioPreferences(owner: scope.owner); self.audio = audio
         catalog = MusicCatalogModel(client: MusicServerCatalogClient(server: server, soundcloud: soundcloud, currentScope: currentScope))
-        playback = MusicPlaybackSession(server: server, playlists: playlists, localRecords: { library.records }, localRevision: { library.revision }, lyrics: lyrics, soundcloud: soundcloud, currentScope: currentScope)
+        playback = MusicPlaybackSession(server: server, playlists: playlists, localRecords: { library.records }, localRevision: { library.revision }, lyrics: lyrics, soundcloud: soundcloud, audio: audio, currentScope: currentScope)
     }
     func dispose() { disposed = true; soundcloud.dispose(); lyrics.dispose(); spotify.dispose(); server.dispose(); library.cancelImport(); catalog.invalidatePrivateServer() }
 }

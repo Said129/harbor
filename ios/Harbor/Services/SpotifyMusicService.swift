@@ -24,22 +24,40 @@ struct SpotifyPlaybackSnapshot: Sendable {
     }
 }
 
+struct SpotifyContentItem: Decodable, Identifiable, Sendable {
+    let id: String
+    let uri: String
+    let title: String
+    let subtitle: String
+    let playable: Bool
+    let container: Bool
+    let offline: Bool
+}
+
+@MainActor @Observable final class SpotifyMusicSelection {
+    static let shared = SpotifyMusicSelection()
+    var active: SpotifyMusicService?
+}
+
 /// Spotify owns audio, advertisements, subscription restrictions and its iOS
 /// background session. Tokens never become Harbor stream URLs or public state.
 @MainActor @Observable final class SpotifyMusicService: NSObject, SPTAppRemoteDelegate, SPTAppRemotePlayerStateDelegate {
-    static weak var active: SpotifyMusicService?
+    static var active: SpotifyMusicService? { SpotifyMusicSelection.shared.active }
     static let redirect = "harbor-iphone://spotify-login-callback"
     let scope: PluginExecutionScope
     private(set) var clientID = ""
     private(set) var connected = false
     private(set) var authorizing = false
     private(set) var snapshot: SpotifyPlaybackSnapshot?
+    private(set) var snapshotAt = Date()
     var error: String?
     @ObservationIgnored private let currentScope: @MainActor () -> PluginExecutionScope
     @ObservationIgnored private var remote: SPTAppRemote?
     @ObservationIgnored private var pendingAuthorization = false
     @ObservationIgnored private var disposed = false
     @ObservationIgnored private var tokens: [NSObjectProtocol] = []
+    @ObservationIgnored private var contentRequests: [UUID: (CheckedContinuation<Data, Error>, Task<Void, Never>)] = [:]
+    @ObservationIgnored private let images = NSCache<NSString, UIImage>()
     private var storageKey: String { "music-spotify-client-" + EBookShelf.hash(scope.owner) }
     init(scope: PluginExecutionScope, currentScope: @escaping @MainActor () -> PluginExecutionScope) {
         self.scope = scope; self.currentScope = currentScope
@@ -98,7 +116,8 @@ struct SpotifyPlaybackSnapshot: Sendable {
         pendingAuthorization = false; authorizing = false
         remote?.playerAPI?.delegate = nil
         remote?.disconnect(); remote?.connectionParameters.accessToken = nil
-        if Self.active === self { Self.active = nil }
+        if Self.active === self { SpotifyMusicSelection.shared.active = nil }
+        failContentRequests()
         connected = false; snapshot = nil
     }
     func forget() throws {
@@ -136,7 +155,7 @@ struct SpotifyPlaybackSnapshot: Sendable {
         Task { @MainActor [weak self] in
             guard let self, valid, remote.map(ObjectIdentifier.init) == identity else { return }
             connected = true; authorizing = false; error = nil
-            Self.active = self
+            SpotifyMusicSelection.shared.active = self
             remote?.playerAPI?.delegate = self
             remote?.playerAPI?.subscribe(toPlayerState: callback)
         }
@@ -148,12 +167,60 @@ struct SpotifyPlaybackSnapshot: Sendable {
         Task { @MainActor [weak self] in
             guard let self, valid, remote.map(ObjectIdentifier.init) == identity else { return }
             connected = false; authorizing = false
+            failContentRequests()
             if failed { self.error = "Abre Spotify y vuelve a conectar. Revisa también el acceso de tu aplicación de desarrollador." }
         }
     }
     nonisolated func playerStateDidChange(_ playerState: any SPTAppRemotePlayerState) {
         let value = SpotifyPlaybackSnapshot(playerState)
-        Task { @MainActor [weak self] in guard let self, valid, connected else { return }; snapshot = value }
+        Task { @MainActor [weak self] in guard let self, valid, connected else { return }; snapshot = value; snapshotAt = Date() }
+    }
+    private func contentData(_ uri: String?, artwork: Bool) async throws -> Data {
+        guard valid, connected, let remote else { throw HarborError(code: "spotify-content") }
+        let request = UUID()
+        return try await withTaskCancellationHandler {
+            try await withCheckedThrowingContinuation { continuation in
+                let timeout = Task { @MainActor [weak self] in
+                    do { try await Task.sleep(for: .seconds(15)) } catch { return }
+                    self?.finishContent(request, result: .failure(HarborError(code: "spotify-content")))
+                }
+                contentRequests[request] = (continuation, timeout)
+                let completion: HarborSpotifyContentReply = { [weak self] data, error in
+                    let failed = error != nil
+                    Task { @MainActor in
+                        guard let self else { return }
+                        if !valid || !connected { finishContent(request, result: .failure(CancellationError())) }
+                        else if !failed, let data, data.count <= 8 * 1024 * 1024 { finishContent(request, result: .success(data)) }
+                        else { finishContent(request, result: .failure(HarborError(code: "spotify-content"))) }
+                    }
+                }
+                if artwork, let uri { HarborSpotifyArtwork(remote, uri, completion) }
+                else { HarborSpotifyContent(remote, uri, completion) }
+            }
+        } onCancel: { Task { @MainActor [weak self] in self?.finishContent(request, result: .failure(CancellationError())) } }
+    }
+    private func finishContent(_ request: UUID, result: Result<Data, Error>) {
+        guard let pending = contentRequests.removeValue(forKey: request) else { return }
+        pending.1.cancel(); pending.0.resume(with: result)
+    }
+    private func failContentRequests() {
+        for id in Array(contentRequests.keys) { finishContent(id, result: .failure(CancellationError())) }
+        images.removeAllObjects()
+    }
+    func content(_ uri: String? = nil) async throws -> [SpotifyContentItem] {
+        let data = try await contentData(uri, artwork: false)
+        try Task.checkCancellation()
+        return try JSONDecoder().decode([SpotifyContentItem].self, from: data)
+    }
+    func artwork(_ uri: String) async throws -> UIImage {
+        guard valid, connected else { throw CancellationError() }
+        if let image = images.object(forKey: uri as NSString) { return image }
+        let data = try await contentData(uri, artwork: true)
+        try Task.checkCancellation()
+        guard let image = UIImage(data: data) else { throw HarborError(code: "spotify-content") }
+        images.countLimit = 48; images.totalCostLimit = 16 * 1024 * 1024
+        images.setObject(image, forKey: uri as NSString, cost: Int(image.size.width * image.scale * image.size.height * image.scale * 4))
+        return image
     }
     func dispose() {
         guard !disposed else { return }; disconnect(); disposed = true; remote?.delegate = nil; remote = nil

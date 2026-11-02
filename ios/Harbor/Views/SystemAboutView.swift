@@ -25,6 +25,7 @@ struct SystemAboutView: View {
                     NavigationLink { ReadingFontNoticesView() } label: {
                         Text(DesktopInterfaceText.value("Legal") + " · wuff / Brotli")
                     }
+                    NavigationLink { MusicSDKNoticesView() } label: { Text(DesktopInterfaceText.value("Legal") + " · Spotify SDK") }
                     Text(DesktopInterfaceText.value("Harbor is an independent, open-source client for iPhone and iPad.")).font(.subheadline).foregroundStyle(.secondary)
                     Text(DesktopInterfaceText.value("It is not affiliated with, endorsed by, sponsored by, or in any way associated with {company}.", variables: ["company": "Stremio Ltd."])).font(.subheadline)
                     Text(DesktopInterfaceText.value("It is not affiliated with the maker of {product}, or with any company, addon author, or trademark holder referenced inside the app.", variables: ["product": "Stremio"])).font(.subheadline).foregroundStyle(.secondary)

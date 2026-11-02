@@ -38,11 +38,14 @@ targets:
             PluginRuntimeHost.js,
             ReadingFontNotices.txt,
             EBookNarrationNotices.txt,
+            SpotifySDKNotices.txt,
             EBookEdgeTokenV2.js,
           ]
       - path: Harbor/ReadingFontNotices.txt
         buildPhase: resources
       - path: Harbor/EBookNarrationNotices.txt
+        buildPhase: resources
+      - path: Harbor/SpotifySDKNotices.txt
         buildPhase: resources
       - path: Harbor/EBookEdgeTokenV2.js
         buildPhase: resources
@@ -65,7 +68,7 @@ targets:
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
         SWIFT_STRICT_CONCURRENCY: complete
         SWIFT_OBJC_BRIDGING_HEADER: Harbor/Harbor-Bridging-Header.h
-        OTHER_LDFLAGS: ["$(inherited)", "-lresolv", "-liconv"]
+        OTHER_LDFLAGS: ["$(inherited)", "-ObjC", "-lresolv", "-liconv"]
     info:
       path: Info.plist
       properties:
@@ -145,8 +148,11 @@ targets:
     platform: iOS
     sources:
       - path: HarborTests/SubtitleSeekTests.swift
+      - path: HarborTests/SubtitleRangeFixture.swift
       - path: HarborTests/MusicPlaylistImportTests.swift
       - path: HarborTests/MusicLyricsTests.swift
+      - path: HarborTests/MusicAudioTests.swift
+      - path: HarborTests/SharedMusicTestSupport.swift
       - path: HarborTests/SpotifyMusicTests.swift
       - path: HarborTests/SoundCloudMusicTests.swift
       - path: HarborTests/Fixtures

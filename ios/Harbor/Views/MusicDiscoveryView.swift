@@ -17,7 +17,11 @@ enum MusicNativeScreen: String, CaseIterable, Identifiable {
     let library: MusicLibrary
     let query: String
     @State private var retry: Task<Void, Never>?
-    private var recent: [MusicRecord] { MusicCollections.shared.records(.recent, library: library.records, owner: library.owner) }
+    @Environment(\.musicPlaybackSession) private var session
+    private var recent: [MusicTrack] {
+        if let session { return MusicCollections.shared.tracks(.recent, store: session.playlists, library: library.records, owner: library.owner) }
+        return MusicCollections.shared.records(.recent, library: library.records, owner: library.owner).map(\.local.track)
+    }
     private var hero: (item: MusicCatalogItem, title: String)? {
         for row in model.rows {
             if let item = row.items.first(where: { if case .album = $0 { true } else { false } }) { return (item, row.displayTitle) }
@@ -55,18 +59,24 @@ enum MusicNativeScreen: String, CaseIterable, Identifiable {
             .onDisappear { retry?.cancel() }
     }
     private var recentBand: some View {
-        VStack(alignment: .leading, spacing: 12) {
+        let recent = recent
+        let imported = session == nil ? MusicLocalRecordIndex(library.records) : nil
+        let localQueue = imported.map { index in recent.compactMap { index.record($0) } } ?? []
+        return VStack(alignment: .leading, spacing: 12) {
             Text(DesktopInterfaceText.value("Recently played")).font(.title3.weight(.semibold)).padding(.horizontal, 18)
             ScrollView(.horizontal) {
                 LazyHStack(spacing: 14) {
-                    ForEach(Array(recent.prefix(10))) { record in
-                        Button { MusicPlayback.shared.play(record, queue: recent, owner: library.owner) } label: {
+                    ForEach(Array(recent.prefix(10))) { track in
+                        Button {
+                            if let session { MusicPlayback.shared.play(track, queue: recent, using: session) }
+                            else if let record = imported?.record(track) { MusicPlayback.shared.play(record, queue: localQueue, owner: library.owner) }
+                        } label: {
                             VStack(alignment: .leading, spacing: 7) {
-                                MusicCover(record: record, owner: library.owner).frame(width: 140, height: 140)
-                                Text(record.local.track.title).font(.subheadline.weight(.medium)).lineLimit(2)
-                                Text(record.local.track.artist).font(.caption).foregroundStyle(.secondary).lineLimit(1)
+                                MusicPlaybackCover(item: .init(track: track, localRecord: session?.localRecord(track) ?? imported?.record(track)), owner: library.owner).frame(width: 140, height: 140)
+                                Text(track.title).font(.subheadline.weight(.medium)).lineLimit(2)
+                                Text(track.artist).font(.caption).foregroundStyle(.secondary).lineLimit(1)
                             }.frame(width: 140, alignment: .leading).foregroundStyle(HarborTheme.ink)
-                        }.buttonStyle(.plain).accessibilityIdentifier("music-for-you-recent-" + record.id)
+                        }.buttonStyle(.plain).accessibilityIdentifier("music-for-you-recent-" + track.id)
                     }
                 }.padding(.horizontal, 18)
             }.scrollIndicators(.hidden)

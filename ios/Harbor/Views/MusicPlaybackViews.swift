@@ -57,6 +57,8 @@ extension EnvironmentValues {
                 Button { player.next() } label: { MusicGlyph("next").frame(width: 44, height: 44) }.accessibilityLabel(DesktopInterfaceText.value("music.next"))
             }.padding(.horizontal, 14).padding(.vertical, 7).background(HarborTheme.surface).accessibilityIdentifier("music-shared-mini-player")
                 .sheet(isPresented: $expanded) { NavigationStack { MusicPlayerView(player: player).toolbar { ToolbarItem(placement: .topBarTrailing) { Button(DesktopInterfaceText.value("Close")) { expanded = false } } } } }
+        } else if let spotify = SpotifyMusicSelection.shared.active {
+            SpotifyMiniPlayer(service: spotify)
         }
     }
 }
@@ -65,6 +67,7 @@ extension EnvironmentValues {
     @Bindable var player: MusicPlayback
     @Environment(\.dismiss) private var dismiss
     @State private var choosingSource = false
+    @State private var audioSettings = false
     init() { player = .shared }
     init(player: MusicPlayback) { self.player = player }
     var body: some View {
@@ -78,9 +81,10 @@ extension EnvironmentValues {
                     }.multilineTextAlignment(.center).accessibilityIdentifier("music-shared-current-metadata")
                     MusicTransportControls(player: player)
                     if player.playbackSession != nil {
-                        Button(DesktopInterfaceText.value("music.source.title")) { choosingSource = true }.disabled(player.resolving)
+                        Button(DesktopInterfaceText.value("music.source.playOn")) { choosingSource = true }.disabled(player.resolving)
+                        Button(DesktopInterfaceText.value("music.audio.title")) { audioSettings = true }
                     }
-                    DisclosureGroup(DesktopInterfaceText.value("music.lyrics.title")) {
+                    DisclosureGroup(DesktopInterfaceText.value("Lyrics")) {
                         MusicLyricsView(player: player, client: player.lyricsClient)
                     }
                     if let error = player.error { Text(error).font(.caption).foregroundStyle(.orange).accessibilityIdentifier("music-shared-error") }
@@ -104,6 +108,9 @@ extension EnvironmentValues {
                 }
             }
             .accessibilityIdentifier("music-shared-player")
+            .sheet(isPresented: $audioSettings) {
+                if let session = player.playbackSession { MusicAudioSettingsView(session: session, player: player) }
+            }
     }
     private func row(_ item: MusicPlaybackItem) -> some View {
         MusicPlaybackRow(item: item, owner: player.owner) { player.play(item) }
@@ -136,7 +143,7 @@ extension EnvironmentValues {
                     MusicGlyph(player.repeatMode == .one ? "repeat-one" : "repeat").foregroundStyle(player.repeatMode == .off ? .secondary : HarborTheme.accent).frame(width: 44, height: 44)
                 }.accessibilityLabel(DesktopInterfaceText.value("music.transport.repeat")).accessibilityValue(player.repeatMode.title)
             }.buttonStyle(.plain)
-            Slider(value: Binding(get: { player.volume }, set: { player.changeVolume($0) }), in: 0...100) { Text(DesktopInterfaceText.value("music.volume")) } minimumValueLabel: { MusicGlyph("volume-low") } maximumValueLabel: { MusicGlyph("volume-high") }
+            Slider(value: Binding(get: { min(player.volumeMaximum, player.volume) }, set: { player.changeVolume($0) }), in: 0...player.volumeMaximum) { Text(DesktopInterfaceText.value("music.volume")) } minimumValueLabel: { MusicGlyph("volume-low") } maximumValueLabel: { MusicGlyph("volume-high") }
         }.onChange(of: player.position) { _, value in if !editing { seek = value } }
             .onChange(of: player.currentItem?.id) { _, _ in editing = false; seek = 0 }
             .onAppear { seek = player.position }

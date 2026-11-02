@@ -35,6 +35,43 @@ without changing the seek implementation. Its result must be collected before
 claiming to reproduce or fix the reported drift. The user's hypothesis is not
 yet a diagnosis.
 
+### Current evidence, 2 November
+
+The baseline run above completed successfully: its single local embedded and
+external changing-cue seek case passed in 17.502 seconds. This did not reproduce
+the physical-device fault. The user then confirmed that Software decoding also
+drifts, and that voices still match the picture: only the subtitle text drifts.
+Do not describe decoder changes or the local pass as a subtitle fix.
+
+Focused run `41447516378`, source `4285c29eae331cfc48689e7680bf879fffb773c5`,
+executes the new HTTP range seek case with four rendered subtitle captures,
+plus the nine Music cases that never executed in run `41301181420` because of
+two shadowed Swift parameters. That compilation fault is fixed. The accepted
+two M3U and fifteen matching Rust passes from that run are reused only if the
+respective source blob hashes still match. No IPA was requested from this run.
+
+### Additional integration awaiting Apple execution
+
+Original audio/DSP math is retained in Rust. Native audio preferences, the
+nineteen original EQ presets, the graphic curve, EQ/preamp/balance/ReplayGain,
+speed/pitch, volume ceiling, profile-owned listening profiles and actual signal
+properties are connected to the native engine. The output chooser uses AVKit.
+Unsupported effects remain a completion gap: the pinned FFmpeg build lacks
+echo, crossfeed, shelf/pass/notch filters. They are rejected explicitly, never
+silently removed. The initial settings view exposes the working graphic path;
+the full parametric/effects interface still requires the appropriate runtime.
+
+New audio cases cover live engine changes across pause/seek, retired requests,
+original preset data, profile reload and routing/volume protection, and phone/
+tablet render captures. They have not yet executed. The original lyrics offset
+now affects a tapped line's seek destination as well as its highlighted line.
+
+The official Spotify SDK now has content/artwork bridge requests, a connected
+content browser and a global mini player. Actual Spotify authorization, Free
+restrictions and authenticated browsing remain unverified. New mobile Spotify
+setup/consent paragraphs still need full localization. Existing original Music
+labels have been transferred for all sixteen Desktop languages.
+
 ## Validation approach
 
 Keep previously accepted unchanged Music, Rust and app evidence. A focused

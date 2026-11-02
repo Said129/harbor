@@ -8,10 +8,18 @@ enum MusicAudioEvent: Sendable {
 }
 enum MusicAudioCommand: Sendable { case paused(Bool), seek(Double), volume(Double) }
 protocol MusicAudioEngineOperating: Sendable {
+    func configure(_ plan: MusicAudioPlan, request: UInt64) async throws
     func open(_ stream: MusicAudioStream, request: UInt64, volume: Double, paused: Bool) async throws
     func read(request: UInt64) async -> [MusicAudioEvent]
     func command(_ command: MusicAudioCommand, request: UInt64) async throws
+    func signal(request: UInt64) async -> MusicAudioSignal?
     func stop(request: UInt64) async
+}
+extension MusicAudioEngineOperating {
+    func signal(request: UInt64) async -> MusicAudioSignal? { nil }
+    func configure(_ plan: MusicAudioPlan, request: UInt64) async throws {
+        guard plan == .defaults else { throw HarborError(code: "music-audio-unavailable") }
+    }
 }
 
 /// One serialized owner for libmpv. Core construction and teardown never run on
@@ -19,6 +27,25 @@ protocol MusicAudioEngineOperating: Sendable {
 actor MusicAudioEngine: MusicAudioEngineOperating {
     private var handle: OpaquePointer?
     private var newest: UInt64 = 0
+    private var processing = MusicAudioPlan.defaults
+    func configure(_ plan: MusicAudioPlan, request: UInt64) async throws {
+        guard request >= newest else { throw CancellationError() }
+        guard plan.settings.supported, plan.effects.kind == "off" else { throw HarborError(code: "music-audio-unavailable") }
+        if let handle, request == newest {
+            do { try apply(plan, to: handle) }
+            catch { try? apply(processing, to: handle); throw error }
+        }
+        processing = plan
+    }
+    private func apply(_ plan: MusicAudioPlan, to handle: OpaquePointer) throws {
+        for (name, value) in [("af", plan.filter), ("replaygain", plan.settings.dspBypass || plan.settings.replayGain == "off" ? "no" : plan.settings.replayGain),
+                              ("replaygain-clip", "no"), ("replaygain-preamp", "0"), ("replaygain-fallback", "0"),
+                              ("speed", String(plan.settings.speed)), ("audio-pitch-correction", plan.settings.keepPitch ? "yes" : "no"),
+                              ("audio-samplerate", String(plan.settings.sampleRate)),
+                              ("volume-max", String(plan.volumeMaximum))] {
+            guard mpv_set_property_string(handle, name, value) >= 0 else { throw HarborError(code: "music-audio-unavailable") }
+        }
+    }
     func open(_ stream: MusicAudioStream, request: UInt64, volume: Double, paused: Bool) async throws {
         try Task.checkCancellation()
         guard request >= newest else { throw CancellationError() }
@@ -32,6 +59,7 @@ actor MusicAudioEngine: MusicAudioEngineOperating {
             }
             for (name, value) in [("ytdl", "no"), ("cache", "yes"), ("cache-secs", "30"), ("cache-pause", "yes"), ("network-timeout", "30")] { _ = mpv_set_option_string(created, name, value) }
             guard mpv_initialize(created) >= 0 else { throw HarborError(code: "music-player") }
+            try apply(processing, to: created)
             let agent: String
             if let value = mpv_get_property_string(created, "user-agent") { agent = String(cString: value); mpv_free(value) }
             else { agent = "Harbor/1.0" }
@@ -40,7 +68,7 @@ actor MusicAudioEngine: MusicAudioEngineOperating {
                 guard mpv_observe_property(created, 0, property, MPV_FORMAT_DOUBLE) >= 0 else { throw HarborError(code: "music-player") }
             }
             guard mpv_observe_property(created, 0, "pause", MPV_FORMAT_FLAG) >= 0 else { throw HarborError(code: "music-player") }
-            guard mpv_set_property_string(created, "volume", String(min(100, max(0, volume)))) >= 0,
+            guard mpv_set_property_string(created, "volume", String(min(processing.volumeMaximum, max(0, volume)))) >= 0,
                   mpv_set_property_string(created, "pause", paused ? "yes" : "no") >= 0 else { throw HarborError(code: "music-player") }
             try Task.checkCancellation()
             try MusicMPV.command(created, ["loadfile", stream.url.isFileURL ? stream.url.path : stream.url.absoluteString, "replace"])
@@ -55,6 +83,23 @@ actor MusicAudioEngine: MusicAudioEngineOperating {
         let previous = handle; handle = nil
         if let previous { mpv_terminate_destroy(previous) }
     }
+    func signal(request: UInt64) async -> MusicAudioSignal? {
+        guard request == newest, let handle else { return nil }
+        func string(_ name: String) -> String? {
+            guard let value = mpv_get_property_string(handle, name) else { return nil }
+            defer { mpv_free(value) }; let text = String(cString: value)
+            return text.isEmpty ? nil : text
+        }
+        func number(_ name: String) -> Double? {
+            var value = 0.0
+            guard mpv_get_property(handle, name, MPV_FORMAT_DOUBLE, &value) >= 0, value.isFinite else { return nil }
+            return value
+        }
+        return MusicAudioSignal(codec: string("audio-codec-name"), sourceRate: number("audio-params/samplerate"), outputRate: number("audio-out-params/samplerate"),
+                                sourceChannels: string("audio-params/hr-channels"), outputChannels: string("audio-out-params/hr-channels"),
+                                format: string("audio-params/format"), bitrate: number("audio-bitrate"), backend: string("current-ao"),
+                                filters: string("af"), speed: number("speed"), replayGain: string("replaygain"))
+    }
     func command(_ command: MusicAudioCommand, request: UInt64) async throws {
         guard request == newest, let handle else { return }
         let result: Int32
@@ -63,7 +108,7 @@ actor MusicAudioEngine: MusicAudioEngineOperating {
             var flag: Int32 = value ? 1 : 0
             result = mpv_set_property_async(handle, 0, "pause", MPV_FORMAT_FLAG, &flag)
         case .volume(let value):
-            guard value.isFinite else { throw HarborError(code: "music-player") }; var volume = min(100, max(0, value))
+            guard value.isFinite else { throw HarborError(code: "music-player") }; var volume = min(processing.volumeMaximum, max(0, value))
             result = mpv_set_property_async(handle, 0, "volume", MPV_FORMAT_DOUBLE, &volume)
         case .seek(let value):
             guard value.isFinite, value >= 0 else { throw HarborError(code: "music-player") }

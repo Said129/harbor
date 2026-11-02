@@ -10,7 +10,7 @@ import SwiftUI
     @State private var retry = 0
     var body: some View {
         List {
-            if loading { ProgressView(DesktopInterfaceText.value("music.source.searching")) }
+            if loading { ProgressView(DesktopInterfaceText.value("music.source.loading")) }
             if failed {
                 Text(DesktopInterfaceText.value("music.source.none")).foregroundStyle(.secondary)
                 Button(DesktopInterfaceText.value("Retry")) { retry += 1 }
@@ -32,7 +32,7 @@ import SwiftUI
                 }.buttonStyle(.plain)
             }
             if !loading, candidates.isEmpty, !failed { Text(DesktopInterfaceText.value("music.source.none")).foregroundStyle(.secondary) }
-        }.listStyle(.plain).navigationTitle(DesktopInterfaceText.value("music.source.title")).navigationBarTitleDisplayMode(.inline)
+        }.listStyle(.plain).navigationTitle(DesktopInterfaceText.value("music.source.playOn")).navigationBarTitleDisplayMode(.inline)
             .task(id: (player.currentTrack?.id ?? "") + "|" + String(retry)) {
                 loading = true; failed = false; defer { loading = false }
                 guard let track = player.currentTrack else { return }

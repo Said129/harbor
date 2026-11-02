@@ -26,6 +26,9 @@ struct MusicQueueOrigin: Equatable, Sendable { let kind: String; let id: String;
     var currentTrack: MusicTrack? { currentItem?.track }
     var lyricsClient: MusicLyricsClient? { (resolver as? MusicPlaybackSession)?.lyrics }
     var playbackSession: MusicPlaybackSession? { resolver as? MusicPlaybackSession }
+    private(set) var audioPlan = MusicAudioPlan.defaults
+    private(set) var audioApplying = false
+    var volumeMaximum: Double { audioPlan.volumeMaximum }
     private(set) var position = 0.0
     private(set) var duration = 0.0
     private(set) var paused = true
@@ -39,7 +42,7 @@ struct MusicQueueOrigin: Equatable, Sendable { let kind: String; let id: String;
         didSet { UserDefaults.standard.set(repeatMode.rawValue, forKey: "music.repeat"); refreshUpcoming() }
     }
     var volume = MusicPlayback.savedVolume() {
-        didSet { if volume.isFinite && (0...100).contains(volume) { UserDefaults.standard.set(volume, forKey: "music.volume") } }
+        didSet { if volume.isFinite && (0...500).contains(volume) { UserDefaults.standard.set(volume, forKey: "music.volume") } }
     }
     var error: String?
     var scrobbleError: String?
@@ -76,7 +79,7 @@ struct MusicQueueOrigin: Equatable, Sendable { let kind: String; let id: String;
         self.recordPlayed = recordPlayed ?? { track, owner in _ = MusicCollections.shared.recordPlayed(track.id, owner: owner) }
     }
     private static func savedVolume() -> Double {
-        guard let value = UserDefaults.standard.object(forKey: "music.volume") as? Double, value.isFinite, (0...100).contains(value) else { return 82 }; return value
+        guard let value = UserDefaults.standard.object(forKey: "music.volume") as? Double, value.isFinite, (0...500).contains(value) else { return 82 }; return value
     }
     func attach(_ session: any MusicPlaybackResolving) {
         guard (try? session.validate()) != nil else { return }
@@ -107,12 +110,12 @@ struct MusicQueueOrigin: Equatable, Sendable { let kind: String; let id: String;
         if !continuing { try? order.reset(); priority = nil }
         self.origin = origin; start(item)
     }
-    private func start(_ item: MusicPlaybackItem, resuming position: Double = 0, paused: Bool = false) {
+    private func start(_ item: MusicPlaybackItem, resuming resumeAt: Double = 0, paused startPaused: Bool = false) {
         submitScrobbleIfEligible()
         request &+= 1; let token = request, loadedOwner = owner, session = resolver
         resolutionTask?.cancel(); poller?.cancel(); poller = nil; resolution = nil
-        currentItem = item; loaded = false; resolving = true; self.paused = true; desiredPause = paused
-        pendingResume = position.isFinite && position > 0 ? position : nil
+        currentItem = item; loaded = false; resolving = true; paused = true; desiredPause = startPaused
+        pendingResume = resumeAt.isFinite && resumeAt > 0 ? resumeAt : nil
         pausedForVideo = false; ended = false; error = nil; scrobbleError = nil
         position = 0; duration = Double(item.track.durationSeconds)
         previousPosition = nil; listened = 0; scrobbleStarted = false; recorded = false
@@ -136,9 +139,26 @@ struct MusicQueueOrigin: Equatable, Sendable { let kind: String; let id: String;
                     if let index = items.firstIndex(where: { $0.id == item.id }) { items[index] = replacement }
                     currentItem = replacement; duration = Double(recording.durationSeconds); refreshUpcoming()
                 }
+                let preferences = (session as? MusicPlaybackSession)?.audio
+                let processingRevision = preferences?.revision
+                let plan = try await preferences?.plan() ?? .defaults
+                guard request == token, resolved.valid() else { throw CancellationError() }
+                try await engine.configure(plan, request: token)
+                try Task.checkCancellation()
+                guard request == token, resolved.valid() else { throw CancellationError() }
+                audioPlan = plan
                 if !desiredPause { try activateAudio() }
                 resolution = resolved
                 try await engine.open(resolved.stream, request: token, volume: volume, paused: desiredPause)
+                try Task.checkCancellation()
+                guard request == token, resolved.valid() else { throw CancellationError() }
+                if preferences?.revision != processingRevision, let preferences {
+                    let latest = try await preferences.plan()
+                    guard request == token, resolved.valid() else { throw CancellationError() }
+                    try await engine.configure(latest, request: token)
+                    guard request == token, resolved.valid() else { throw CancellationError() }
+                    audioPlan = latest
+                }
                 try Task.checkCancellation()
                 guard request == token, resolved.valid() else { throw CancellationError() }
                 resolving = false; startPolling(token)
@@ -154,6 +174,7 @@ struct MusicQueueOrigin: Equatable, Sendable { let kind: String; let id: String;
     private func activateAudio() throws {
         SpotifyMusicService.active?.pauseForVideo()
         try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
+        if audioPlan.settings.sampleRate > 0 { try AVAudioSession.sharedInstance().setPreferredSampleRate(Double(audioPlan.settings.sampleRate)) }
         try AVAudioSession.sharedInstance().setActive(true)
     }
     func togglePause() { setPaused(phase == .error ? false : phase == .resolving ? !desiredPause : !paused) }
@@ -172,7 +193,30 @@ struct MusicQueueOrigin: Equatable, Sendable { let kind: String; let id: String;
         guard value.isFinite, value >= 0 else { return }; send(.seek(min(value, max(0, duration))))
     }
     func changeVolume(_ value: Double) {
-        guard value.isFinite else { return }; volume = min(100, max(0, value)); send(.volume(volume))
+        guard value.isFinite else { return }; volume = min(volumeMaximum, max(0, value)); send(.volume(volume))
+    }
+    func applyAudio(_ options: MusicAudioOptions, using session: MusicPlaybackSession) async throws {
+        try session.validate()
+        guard !audioApplying, let preferences = session.audio else { throw HarborError(code: "music-audio-unavailable") }
+        audioApplying = true; defer { audioApplying = false }
+        let plan = try await preferences.plan(options), token = request
+        guard plan.settings.supported else { throw HarborError(code: "music-audio-unavailable") }
+        try session.validate()
+        if owner == session.scope.owner, resolver.map({ ObjectIdentifier($0) == ObjectIdentifier(session) }) == true, currentItem != nil, !resolving {
+            let previous = audioPlan
+            try await engine.configure(plan, request: token)
+            try session.validate()
+            guard token == request else { throw CancellationError() }
+            do { try preferences.save(plan) }
+            catch { try? await engine.configure(previous, request: token); throw error }
+            audioPlan = plan; changeVolume(volume)
+            nowPlaying()
+        } else { try preferences.save(plan) }
+    }
+    func audioSignal() async -> MusicAudioSignal? {
+        let token = request, value = await engine.signal(request: request)
+        guard request == token, resolution?.valid() == true else { return nil }
+        return value
     }
     func switchSource(_ track: MusicTrack) throws {
         guard let session = playbackSession, let currentItem, let index = items.firstIndex(where: { $0.id == currentItem.id }) else { throw HarborError(code: "music-source-required") }
@@ -287,7 +331,7 @@ struct MusicQueueOrigin: Equatable, Sendable { let kind: String; let id: String;
                 listened += MusicListening.increment(previous: previousPosition, current: value); previousPosition = value; position = value
             case .duration(let value): if value.isFinite && value >= 0 { duration = value }
             case .paused(let value): paused = value
-            case .volume(let value): if value.isFinite && (0...100).contains(value) { volume = value }
+            case .volume(let value): if value.isFinite && (0...volumeMaximum).contains(value) { volume = value }
             case .failed: error = message(HarborError(code: "music-player")); loaded = false; paused = true
             case .ended(let eof, let failed):
                 submitScrobbleIfEligible(); natural = natural || eof
@@ -315,7 +359,7 @@ struct MusicQueueOrigin: Equatable, Sendable { let kind: String; let id: String;
         guard systemIntegration, let track = currentTrack else { return }
         MPNowPlayingInfoCenter.default().nowPlayingInfo = [MPMediaItemPropertyTitle: track.title, MPMediaItemPropertyArtist: track.artist,
             MPMediaItemPropertyAlbumTitle: track.album ?? "", MPMediaItemPropertyPlaybackDuration: duration,
-            MPNowPlayingInfoPropertyElapsedPlaybackTime: position, MPNowPlayingInfoPropertyPlaybackRate: paused ? 0.0 : 1.0]
+            MPNowPlayingInfoPropertyElapsedPlaybackTime: position, MPNowPlayingInfoPropertyPlaybackRate: paused ? 0.0 : audioPlan.settings.speed]
     }
     private func setRemoteEnabled(_ enabled: Bool) {
         let center = MPRemoteCommandCenter.shared()

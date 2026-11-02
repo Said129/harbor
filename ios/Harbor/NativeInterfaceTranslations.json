@@ -118,7 +118,13 @@
     "music.mobile.reverseOrder": "Orden inverso",
     "music.mobile.missingFile": "Archivo fuera de la biblioteca",
     "music.mobile.playlistUnavailable": "Esta lista ya no está disponible.",
-    "music.mobile.exportFailed": "No se pudo exportar la lista. Comprueba sus fuentes y vuelve a intentarlo."
+    "music.mobile.exportFailed": "No se pudo exportar la lista. Comprueba sus fuentes y vuelve a intentarlo.",
+    "music.mobile.m3uHelp": "Importa listas M3U/M3U8. El audio importado pertenece sólo a este perfil.",
+    "music.mobile.m3uSelect": "Elegir lista",
+    "music.mobile.m3uFolderHelp": "Para canciones locales, selecciona la carpeta que contiene sus archivos de audio.",
+    "music.mobile.m3uAudioFolder": "Elegir carpeta de audio",
+    "music.mobile.m3uFailed": "No se pudo importar la lista. Revisa el archivo y la carpeta de audio seleccionada.",
+    "music.lyrics.follow": "Seguir la letra"
   },
   "pt": {
     "Auto-sync": "Sincronização automática",
@@ -187,7 +193,13 @@
     "music.mobile.reverseOrder": "Ordem inversa",
     "music.mobile.missingFile": "O ficheiro não está na sua biblioteca",
     "music.mobile.playlistUnavailable": "Esta playlist já não está disponível.",
-    "music.mobile.exportFailed": "Não foi possível exportar a lista. Verifique as fontes e tente novamente."
+    "music.mobile.exportFailed": "Não foi possível exportar a lista. Verifique as fontes e tente novamente.",
+    "music.mobile.m3uHelp": "Importe listas M3U/M3U8. O áudio importado pertence apenas a este perfil.",
+    "music.mobile.m3uSelect": "Escolher lista",
+    "music.mobile.m3uFolderHelp": "Para músicas locais, selecione a pasta que contém os arquivos de áudio.",
+    "music.mobile.m3uAudioFolder": "Escolher pasta de áudio",
+    "music.mobile.m3uFailed": "Não foi possível importar a lista. Verifique o arquivo e a pasta de áudio selecionada.",
+    "music.lyrics.follow": "Acompanhar a letra"
   },
   "ru": {
     "Auto-sync": "Автосинхронизация",
@@ -255,7 +267,13 @@
     "music.mobile.reverseOrder": "Обратный порядок",
     "music.mobile.missingFile": "Файл отсутствует в вашей библиотеке",
     "music.mobile.playlistUnavailable": "Этот плейлист больше недоступен.",
-    "music.mobile.exportFailed": "Не удалось экспортировать плейлист. Проверьте его источники и повторите попытку."
+    "music.mobile.exportFailed": "Не удалось экспортировать плейлист. Проверьте его источники и повторите попытку.",
+    "music.mobile.m3uHelp": "Импортируйте плейлисты M3U/M3U8. Импортированное аудио доступно только этому профилю.",
+    "music.mobile.m3uSelect": "Выбрать плейлист",
+    "music.mobile.m3uFolderHelp": "Для локальных песен выберите папку с их аудиофайлами.",
+    "music.mobile.m3uAudioFolder": "Выбрать папку аудио",
+    "music.mobile.m3uFailed": "Не удалось импортировать плейлист. Проверьте файл и выбранную папку аудио.",
+    "music.lyrics.follow": "Следовать за текстом"
   },
   "ar": {
     "Auto-sync": "مزامنة تلقائية",
@@ -323,7 +341,13 @@
     "music.mobile.reverseOrder": "عكس الترتيب",
     "music.mobile.missingFile": "الملف غير موجود في مكتبتك",
     "music.mobile.playlistUnavailable": "قائمة التشغيل هذه لم تعد متاحة.",
-    "music.mobile.exportFailed": "تعذر تصدير قائمة التشغيل. تحقق من مصادرها وحاول مجددًا."
+    "music.mobile.exportFailed": "تعذر تصدير قائمة التشغيل. تحقق من مصادرها وحاول مجددًا.",
+    "music.mobile.m3uHelp": "استورد قوائم تشغيل M3U/M3U8. يخص الصوت المستورد هذا الملف الشخصي فقط.",
+    "music.mobile.m3uSelect": "اختيار قائمة تشغيل",
+    "music.mobile.m3uFolderHelp": "للأغاني المحلية، اختر المجلد الذي يحتوي على ملفاتها الصوتية.",
+    "music.mobile.m3uAudioFolder": "اختيار مجلد الصوت",
+    "music.mobile.m3uFailed": "تعذر استيراد قائمة التشغيل. تحقق من الملف ومجلد الصوت المحدد.",
+    "music.lyrics.follow": "متابعة كلمات الأغنية"
   },
   "zh": {
     "Couldn't auto-sync": "无法自动同步",
@@ -363,7 +387,13 @@
     "music.mobile.reverseOrder": "反向排序",
     "music.mobile.missingFile": "文件不在你的媒体库中",
     "music.mobile.playlistUnavailable": "此播放列表已不可用。",
-    "music.mobile.exportFailed": "无法导出播放列表。请检查其来源后重试。"
+    "music.mobile.exportFailed": "无法导出播放列表。请检查其来源后重试。",
+    "music.mobile.m3uHelp": "导入 M3U/M3U8 播放列表。导入的音频仅属于此个人资料。",
+    "music.mobile.m3uSelect": "选择播放列表",
+    "music.mobile.m3uFolderHelp": "对于本地歌曲，请选择包含其音频文件的文件夹。",
+    "music.mobile.m3uAudioFolder": "选择音频文件夹",
+    "music.mobile.m3uFailed": "无法导入播放列表。请检查文件及所选音频文件夹。",
+    "music.lyrics.follow": "跟随歌词"
   },
   "fr": {
     "Couldn't auto-sync": "Synchronisation automatique impossible",
@@ -403,7 +433,13 @@
     "music.mobile.reverseOrder": "Ordre inverse",
     "music.mobile.missingFile": "Le fichier est absent de votre bibliothèque",
     "music.mobile.playlistUnavailable": "Cette playlist n’est plus disponible.",
-    "music.mobile.exportFailed": "Impossible d’exporter la playlist. Vérifiez ses sources et réessayez."
+    "music.mobile.exportFailed": "Impossible d’exporter la playlist. Vérifiez ses sources et réessayez.",
+    "music.mobile.m3uHelp": "Importez des playlists M3U/M3U8. Les fichiers audio importés appartiennent uniquement à ce profil.",
+    "music.mobile.m3uSelect": "Choisir une playlist",
+    "music.mobile.m3uFolderHelp": "Pour les morceaux locaux, sélectionnez le dossier contenant leurs fichiers audio.",
+    "music.mobile.m3uAudioFolder": "Choisir le dossier audio",
+    "music.mobile.m3uFailed": "Impossible d’importer la playlist. Vérifiez le fichier et le dossier audio sélectionné.",
+    "music.lyrics.follow": "Suivre les paroles"
   },
   "de": {
     "Couldn't auto-sync": "Automatische Synchronisierung nicht möglich",
@@ -443,7 +479,13 @@
     "music.mobile.reverseOrder": "Umgekehrte Reihenfolge",
     "music.mobile.missingFile": "Die Datei befindet sich nicht in deiner Bibliothek",
     "music.mobile.playlistUnavailable": "Diese Playlist ist nicht mehr verfügbar.",
-    "music.mobile.exportFailed": "Die Wiedergabeliste konnte nicht exportiert werden. Prüfe ihre Quellen und versuche es erneut."
+    "music.mobile.exportFailed": "Die Wiedergabeliste konnte nicht exportiert werden. Prüfe ihre Quellen und versuche es erneut.",
+    "music.mobile.m3uHelp": "Importiere M3U/M3U8-Wiedergabelisten. Importierte Audiodateien gehören nur zu diesem Profil.",
+    "music.mobile.m3uSelect": "Wiedergabeliste auswählen",
+    "music.mobile.m3uFolderHelp": "Wähle für lokale Titel den Ordner mit ihren Audiodateien aus.",
+    "music.mobile.m3uAudioFolder": "Audioordner auswählen",
+    "music.mobile.m3uFailed": "Die Wiedergabeliste konnte nicht importiert werden. Prüfe die Datei und den ausgewählten Audioordner.",
+    "music.lyrics.follow": "Liedtext folgen"
   },
   "hi": {
     "Couldn't auto-sync": "अपने-आप सिंक नहीं हो सका",
@@ -483,7 +525,13 @@
     "music.mobile.reverseOrder": "उल्टा क्रम",
     "music.mobile.missingFile": "फ़ाइल आपकी लाइब्रेरी में नहीं है",
     "music.mobile.playlistUnavailable": "यह प्लेलिस्ट अब उपलब्ध नहीं है।",
-    "music.mobile.exportFailed": "प्लेलिस्ट निर्यात नहीं हो सकी। उसके स्रोत जाँचें और फिर कोशिश करें।"
+    "music.mobile.exportFailed": "प्लेलिस्ट निर्यात नहीं हो सकी। उसके स्रोत जाँचें और फिर कोशिश करें।",
+    "music.mobile.m3uHelp": "M3U/M3U8 प्लेलिस्ट आयात करें। आयात किया गया ऑडियो केवल इस प्रोफ़ाइल का है।",
+    "music.mobile.m3uSelect": "प्लेलिस्ट चुनें",
+    "music.mobile.m3uFolderHelp": "स्थानीय गानों के लिए उनके ऑडियो फ़ाइलों वाला फ़ोल्डर चुनें।",
+    "music.mobile.m3uAudioFolder": "ऑडियो फ़ोल्डर चुनें",
+    "music.mobile.m3uFailed": "प्लेलिस्ट आयात नहीं हो सकी। फ़ाइल और चुना हुआ ऑडियो फ़ोल्डर जाँचें।",
+    "music.lyrics.follow": "गीत के बोलों का अनुसरण करें"
   },
   "id": {
     "Couldn't auto-sync": "Tidak dapat menyinkronkan otomatis",
@@ -523,7 +571,13 @@
     "music.mobile.reverseOrder": "Urutan terbalik",
     "music.mobile.missingFile": "File berada di luar pustakamu",
     "music.mobile.playlistUnavailable": "Playlist ini tidak lagi tersedia.",
-    "music.mobile.exportFailed": "Daftar putar tidak dapat diekspor. Periksa sumbernya dan coba lagi."
+    "music.mobile.exportFailed": "Daftar putar tidak dapat diekspor. Periksa sumbernya dan coba lagi.",
+    "music.mobile.m3uHelp": "Impor daftar putar M3U/M3U8. Audio yang diimpor hanya milik profil ini.",
+    "music.mobile.m3uSelect": "Pilih daftar putar",
+    "music.mobile.m3uFolderHelp": "Untuk lagu lokal, pilih folder yang berisi berkas audionya.",
+    "music.mobile.m3uAudioFolder": "Pilih folder audio",
+    "music.mobile.m3uFailed": "Daftar putar tidak dapat diimpor. Periksa berkas dan folder audio yang dipilih.",
+    "music.lyrics.follow": "Ikuti lirik"
   },
   "it": {
     "Couldn't auto-sync": "Sincronizzazione automatica non riuscita",
@@ -563,7 +617,13 @@
     "music.mobile.reverseOrder": "Ordine inverso",
     "music.mobile.missingFile": "Il file non è nella tua libreria",
     "music.mobile.playlistUnavailable": "Questa playlist non è più disponibile.",
-    "music.mobile.exportFailed": "Impossibile esportare la playlist. Controlla le sue fonti e riprova."
+    "music.mobile.exportFailed": "Impossibile esportare la playlist. Controlla le sue fonti e riprova.",
+    "music.mobile.m3uHelp": "Importa playlist M3U/M3U8. L’audio importato appartiene solo a questo profilo.",
+    "music.mobile.m3uSelect": "Scegli playlist",
+    "music.mobile.m3uFolderHelp": "Per i brani locali, seleziona la cartella che contiene i file audio.",
+    "music.mobile.m3uAudioFolder": "Scegli cartella audio",
+    "music.mobile.m3uFailed": "Impossibile importare la playlist. Controlla il file e la cartella audio selezionata.",
+    "music.lyrics.follow": "Segui il testo"
   },
   "ja": {
     "Couldn't auto-sync": "自動同期できませんでした",
@@ -603,7 +663,13 @@
     "music.mobile.reverseOrder": "逆順",
     "music.mobile.missingFile": "ファイルがライブラリにありません",
     "music.mobile.playlistUnavailable": "このプレイリストは利用できなくなりました。",
-    "music.mobile.exportFailed": "プレイリストを書き出せませんでした。ソースを確認して、もう一度お試しください。"
+    "music.mobile.exportFailed": "プレイリストを書き出せませんでした。ソースを確認して、もう一度お試しください。",
+    "music.mobile.m3uHelp": "M3U/M3U8 のプレイリストを読み込みます。読み込んだ音声はこのプロフィール専用です。",
+    "music.mobile.m3uSelect": "プレイリストを選択",
+    "music.mobile.m3uFolderHelp": "ローカル曲の場合は、音声ファイルが入っているフォルダを選択してください。",
+    "music.mobile.m3uAudioFolder": "音声フォルダを選択",
+    "music.mobile.m3uFailed": "プレイリストを読み込めませんでした。ファイルと選択した音声フォルダを確認してください。",
+    "music.lyrics.follow": "歌詞を追従"
   },
   "ko": {
     "Couldn't auto-sync": "자동 동기화하지 못했습니다",
@@ -643,7 +709,13 @@
     "music.mobile.reverseOrder": "역순",
     "music.mobile.missingFile": "라이브러리에 파일이 없습니다",
     "music.mobile.playlistUnavailable": "이 재생목록은 더 이상 사용할 수 없습니다.",
-    "music.mobile.exportFailed": "재생목록을 내보내지 못했습니다. 소스를 확인한 후 다시 시도하세요."
+    "music.mobile.exportFailed": "재생목록을 내보내지 못했습니다. 소스를 확인한 후 다시 시도하세요.",
+    "music.mobile.m3uHelp": "M3U/M3U8 재생목록을 가져옵니다. 가져온 오디오는 이 프로필에만 속합니다.",
+    "music.mobile.m3uSelect": "재생목록 선택",
+    "music.mobile.m3uFolderHelp": "로컬 노래는 오디오 파일이 들어 있는 폴더를 선택하세요.",
+    "music.mobile.m3uAudioFolder": "오디오 폴더 선택",
+    "music.mobile.m3uFailed": "재생목록을 가져올 수 없습니다. 파일과 선택한 오디오 폴더를 확인하세요.",
+    "music.lyrics.follow": "가사 따라가기"
   },
   "pl": {
     "Couldn't auto-sync": "Nie udało się zsynchronizować automatycznie",
@@ -683,7 +755,13 @@
     "music.mobile.reverseOrder": "Odwrócona kolejność",
     "music.mobile.missingFile": "Pliku nie ma w bibliotece",
     "music.mobile.playlistUnavailable": "Ta playlista nie jest już dostępna.",
-    "music.mobile.exportFailed": "Nie udało się wyeksportować listy odtwarzania. Sprawdź jej źródła i spróbuj ponownie."
+    "music.mobile.exportFailed": "Nie udało się wyeksportować listy odtwarzania. Sprawdź jej źródła i spróbuj ponownie.",
+    "music.mobile.m3uHelp": "Importuj listy M3U/M3U8. Zaimportowane pliki audio należą tylko do tego profilu.",
+    "music.mobile.m3uSelect": "Wybierz listę",
+    "music.mobile.m3uFolderHelp": "W przypadku lokalnych utworów wybierz folder zawierający ich pliki audio.",
+    "music.mobile.m3uAudioFolder": "Wybierz folder audio",
+    "music.mobile.m3uFailed": "Nie udało się zaimportować listy. Sprawdź plik i wybrany folder audio.",
+    "music.lyrics.follow": "Śledź tekst"
   },
   "tr": {
     "Couldn't auto-sync": "Otomatik eşitlenemedi",
@@ -723,7 +801,13 @@
     "music.mobile.reverseOrder": "Ters sıralama",
     "music.mobile.missingFile": "Dosya kitaplığında değil",
     "music.mobile.playlistUnavailable": "Bu çalma listesi artık kullanılamıyor.",
-    "music.mobile.exportFailed": "Çalma listesi dışa aktarılamadı. Kaynaklarını kontrol edip tekrar deneyin."
+    "music.mobile.exportFailed": "Çalma listesi dışa aktarılamadı. Kaynaklarını kontrol edip tekrar deneyin.",
+    "music.mobile.m3uHelp": "M3U/M3U8 çalma listelerini içe aktarın. İçe aktarılan sesler yalnızca bu profile aittir.",
+    "music.mobile.m3uSelect": "Çalma listesi seç",
+    "music.mobile.m3uFolderHelp": "Yerel şarkılar için ses dosyalarının bulunduğu klasörü seçin.",
+    "music.mobile.m3uAudioFolder": "Ses klasörü seç",
+    "music.mobile.m3uFailed": "Çalma listesi içe aktarılamadı. Dosyayı ve seçilen ses klasörünü kontrol edin.",
+    "music.lyrics.follow": "Şarkı sözlerini takip et"
   },
   "vi": {
     "Couldn't auto-sync": "Không thể tự động đồng bộ",
@@ -763,7 +847,13 @@
     "music.mobile.reverseOrder": "Đảo thứ tự",
     "music.mobile.missingFile": "Tệp không có trong thư viện của bạn",
     "music.mobile.playlistUnavailable": "Danh sách phát này không còn khả dụng.",
-    "music.mobile.exportFailed": "Không thể xuất danh sách phát. Hãy kiểm tra nguồn và thử lại."
+    "music.mobile.exportFailed": "Không thể xuất danh sách phát. Hãy kiểm tra nguồn và thử lại.",
+    "music.mobile.m3uHelp": "Nhập danh sách phát M3U/M3U8. Âm thanh được nhập chỉ thuộc hồ sơ này.",
+    "music.mobile.m3uSelect": "Chọn danh sách phát",
+    "music.mobile.m3uFolderHelp": "Với bài hát cục bộ, chọn thư mục chứa các tệp âm thanh.",
+    "music.mobile.m3uAudioFolder": "Chọn thư mục âm thanh",
+    "music.mobile.m3uFailed": "Không thể nhập danh sách phát. Hãy kiểm tra tệp và thư mục âm thanh đã chọn.",
+    "music.lyrics.follow": "Theo dõi lời bài hát"
   },
   "en": {
     "Browse services": "Browse services",
@@ -840,6 +930,12 @@
     "music.mobile.reverseOrder": "Reverse order",
     "music.mobile.missingFile": "File is outside your library",
     "music.mobile.playlistUnavailable": "This playlist is no longer available.",
-    "music.mobile.exportFailed": "Could not export the playlist. Check its sources and try again."
+    "music.mobile.exportFailed": "Could not export the playlist. Check its sources and try again.",
+    "music.mobile.m3uHelp": "Import M3U/M3U8 playlists. Imported audio belongs only to this profile.",
+    "music.mobile.m3uSelect": "Choose playlist",
+    "music.mobile.m3uFolderHelp": "For local songs, select the folder containing their audio files.",
+    "music.mobile.m3uAudioFolder": "Choose audio folder",
+    "music.mobile.m3uFailed": "Could not import the playlist. Check the file and selected audio folder.",
+    "music.lyrics.follow": "Follow lyrics"
   }
 }

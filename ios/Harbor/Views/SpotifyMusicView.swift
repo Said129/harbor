@@ -13,6 +13,7 @@ import UIKit
                 Text("Harbor controla la aplicación oficial de Spotify. Puedes conectar una cuenta Free; Spotify decide qué canciones, saltos y controles admite, y conserva sus anuncios.").font(.footnote)
                 Label(service.connected ? "Conectado" : "Sin conectar", systemImage: service.connected ? "checkmark.circle.fill" : "link")
                 if let snapshot = service.snapshot {
+                    SpotifyCover(service: service, uri: snapshot.uri).frame(width: 160, height: 160).frame(maxWidth: .infinity)
                     VStack(alignment: .leading, spacing: 5) {
                         Text(snapshot.title).font(.headline); Text(snapshot.artist).foregroundStyle(.secondary)
                         if snapshot.advertisement { Text("Publicidad de Spotify").font(.caption) }
@@ -25,6 +26,9 @@ import UIKit
                         Button { service.togglePause() } label: { Image(systemName: snapshot.paused ? "play.fill" : "pause.fill").frame(width: 44, height: 44) }
                         Button { service.next() } label: { Image(systemName: "forward.end.fill").frame(width: 44, height: 44) }.disabled(!snapshot.canSkipNext)
                     }.buttonStyle(.borderless).disabled(!service.connected)
+                }
+                if service.connected {
+                    NavigationLink(DesktopInterfaceText.value("music.discover")) { SpotifyCatalogView(service: service) }
                 }
                 if service.authorizing { ProgressView("Esperando autorización de Spotify…") }
                 Button(service.connected ? "Volver a autorizar" : "Conectar Spotify") { service.authorize() }.disabled(service.clientID.isEmpty || service.authorizing)

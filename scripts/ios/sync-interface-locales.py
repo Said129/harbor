@@ -12,7 +12,12 @@ p.add_argument('--reference', type=Path, required=True)
 p.add_argument('--output', type=Path)
 p.add_argument('--report', type=Path)
 p.add_argument('--only-label', action='append', default=[], help='Update these labels while preserving all other existing translations')
+p.add_argument('--only-labels-file', type=Path, help='JSON string array for selections exceeding shell argument limits')
 a = p.parse_args()
+if a.only_labels_file:
+    selected = json.loads(a.only_labels_file.read_text('utf-8'))
+    assert isinstance(selected, list) and all(isinstance(key, str) for key in selected)
+    a.only_label.extend(selected)
 repository = Path(__file__).resolve().parents[2]
 native = repository / 'ios/Harbor'
 output = a.output or native
@@ -35,6 +40,7 @@ extras = json.loads((native / 'NativeInterfaceTranslations.json').read_text('utf
 english = reference['catalogs']['en']
 source_by_value = {value: key for key, value in english.items()}
 used = set(spanish) | set(aliases) | set(aliases.values())
+used.update(a.only_label)
 for catalog in extras.values(): used.update(catalog)
 for path in native.rglob('*.swift'):
     used.update(re.findall(r'"([^"\n]*)"', path.read_text('utf-8')))

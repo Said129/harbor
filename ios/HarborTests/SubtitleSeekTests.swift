@@ -5,6 +5,54 @@ import XCTest
 
 final class SubtitleSeekTests: XCTestCase {
     @available(iOS, deprecated: 12.0)
+    @MainActor func testHTTPRangeSeeksRetainEmbeddedAndExternalCuesAndRenderedSubtitles() async throws {
+        let clip = try XCTUnwrap(Bundle(for: Self.self).url(forResource: "owned-subtitle-seek", withExtension: "mkv", subdirectory: "Fixtures"))
+        let server = try SubtitleRangeFixture(data: Data(contentsOf: clip)); defer { server.stop() }
+        let url = try await server.start()
+        let scene = try XCTUnwrap(UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }.first)
+        let previous = scene.windows.first { $0.isKeyWindow }, window = UIWindow(windowScene: scene)
+        window.frame = CGRect(x: 0, y: 0, width: 640, height: 360)
+        let preferences = PlaybackPreferences.shared.options
+        PlaybackPreferences.shared.options = PlaybackOptions()
+        defer { window.isHidden = true; window.rootViewController = nil; previous?.makeKeyAndVisible(); PlaybackPreferences.shared.options = preferences }
+        let state = PlayerState(), controller = MPVController(source: .init(url: url.absoluteString, headers: nil, subtitles: nil, via: "test-fixture"), state: state, startPaused: true)
+        window.rootViewController = controller; window.makeKeyAndVisible(); controller.view.layoutIfNeeded()
+        defer { controller.close() }
+        let surface = try XCTUnwrap(controller.view as? GLKView)
+        try await wait(surface, state: state) { state.loaded && state.paused && state.tracks.contains { $0.type == "sub" } }
+        controller.set("demuxer-max-bytes", "64KiB")
+        controller.set("demuxer-max-back-bytes", "32KiB")
+        let embedded = try XCTUnwrap(state.tracks.first { $0.type == "sub" && !$0.external })
+        controller.selectSubtitle(String(embedded.id))
+        try await wait(surface, state: state) { !state.subtitleChanging && state.primarySubtitle?.id == embedded.id }
+        try await exercise(controller, surface: surface, state: state, prefix: "EMBEDDED")
+        try await captureSeek(controller, surface: surface, state: state, prefix: "EMBEDDED", target: 17, cue: 4)
+        try await captureSeek(controller, surface: surface, state: state, prefix: "EMBEDDED", target: 5, cue: 1)
+        let input = FileManager.default.temporaryDirectory.appendingPathComponent("http-seek-" + UUID().uuidString + ".srt")
+        defer { try? FileManager.default.removeItem(at: input) }
+        let text = (0..<7).map { index in "\(index + 1)\n00:00:\(String(format: "%02d", index * 4)),000 --> 00:00:\(String(format: "%02d", index * 4 + 3)),500\nEXTERNAL CUE \(index)\n" }.joined(separator: "\n")
+        try text.write(to: input, atomically: true, encoding: .utf8)
+        controller.importLocalSubtitle(input)
+        try await wait(surface, state: state) { !state.subtitleChanging && state.primarySubtitle?.external == true }
+        try await exercise(controller, surface: surface, state: state, prefix: "EXTERNAL")
+        try await captureSeek(controller, surface: surface, state: state, prefix: "EXTERNAL", target: 17, cue: 4)
+        try await captureSeek(controller, surface: surface, state: state, prefix: "EXTERNAL", target: 5, cue: 1)
+        XCTAssertTrue(server.requestedOffsets.contains { $0 > 0 }, "The test must execute actual HTTP range reads, not only a cached local file")
+        XCTAssertNil(state.subtitleIssue)
+        XCTAssertEqual(state.subtitleDelay, 0, accuracy: 0.001)
+    }
+
+    @available(iOS, deprecated: 12.0)
+    @MainActor private func captureSeek(_ controller: MPVController, surface: GLKView, state: PlayerState, prefix: String, target: Double, cue: Int) async throws {
+        controller.run(["seek", String(target), "absolute+exact"])
+        try await wait(surface, state: state) { abs(state.position - target) < 0.3 && state.primarySubtitleText.contains("\(prefix) CUE \(cue)") }
+        for _ in 0..<3 { surface.display(); try await Task.sleep(for: .milliseconds(50)) }
+        let image = surface.snapshot
+        let attachment = XCTAttachment(image: image)
+        attachment.name = "http-seek-\(prefix.lowercased())-\(Int(target))-cue-\(cue)"; attachment.lifetime = .keepAlways; add(attachment)
+    }
+
+    @available(iOS, deprecated: 12.0)
     @MainActor func testEmbeddedAndExternalCuesFollowForwardBackwardAndPausedSeeks() async throws {
         let scene = try XCTUnwrap(UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }.first)
         let previous = scene.windows.first { $0.isKeyWindow }

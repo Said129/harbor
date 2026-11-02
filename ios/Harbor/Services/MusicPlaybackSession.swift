@@ -6,6 +6,7 @@ import Foundation
     let playlists: MusicPlaylistStore
     let lyrics: MusicLyricsClient?
     let soundcloud: SoundCloudMusicService?
+    let audio: MusicAudioPreferences?
     private let policy = MusicSourcePolicy()
     private let localRecords: @MainActor () -> [MusicRecord]
     private let localRevision: (@MainActor () -> UInt64)?
@@ -14,15 +15,17 @@ import Foundation
     private let currentScope: @MainActor () -> PluginExecutionScope
     init(server: SubsonicMusicService, playlists: MusicPlaylistStore,
          localRecords: @escaping @MainActor () -> [MusicRecord], localRevision: (@MainActor () -> UInt64)? = nil,
-         lyrics: MusicLyricsClient? = nil, soundcloud: SoundCloudMusicService? = nil, currentScope: @escaping @MainActor () -> PluginExecutionScope) {
+         lyrics: MusicLyricsClient? = nil, soundcloud: SoundCloudMusicService? = nil, audio: MusicAudioPreferences? = nil, currentScope: @escaping @MainActor () -> PluginExecutionScope) {
         self.server = server; scope = server.scope; self.playlists = playlists
         self.localRecords = localRecords; self.localRevision = localRevision; self.currentScope = currentScope
         self.lyrics = lyrics
         self.soundcloud = soundcloud
+        self.audio = audio
     }
     func validate() throws {
         try server.validateCatalogScope()
-        guard scope == currentScope(), playlists.owner == scope.owner else { throw CancellationError() }
+        guard scope == currentScope(), playlists.owner == scope.owner,
+              audio == nil || audio?.owner == scope.owner else { throw CancellationError() }
     }
     func localRecord(_ track: MusicTrack) -> MusicRecord? {
         guard (try? validate()) != nil, track.connectorId == "local" else { return nil }

@@ -30,13 +30,17 @@ import Foundation
         try await scoped {
             async let publicRows = Self.rows(catalog, timeout: browseTimeout)
             async let privateRows = Self.rows(server, timeout: browseTimeout)
-            let replies = await (publicRows, privateRows)
-            let cloudRows = if let soundcloud, soundcloud.enabled { await Self.rows(soundcloud, timeout: browseTimeout) } else { [MusicCatalogRow]() }
+            async let streamingRows = cloudRows()
+            let replies = await (publicRows, privateRows, streamingRows)
             var seen = Set<String>()
             // rows::order_rows ranks catalog before subsonic, omits failed
             // sources and retains the first row with a given id.
-            return (replies.0 + cloudRows + replies.1).filter { seen.insert($0.id).inserted }
+            return (replies.0 + replies.2 + replies.1).filter { seen.insert($0.id).inserted }
         }
+    }
+    private func cloudRows() async -> [MusicCatalogRow] {
+        guard let soundcloud, soundcloud.enabled else { return [] }
+        return await Self.rows(soundcloud, timeout: browseTimeout)
     }
     private static func rows(_ client: any MusicCatalogCalling, timeout: Duration) async -> [MusicCatalogRow] {
         await withTaskGroup(of: [MusicCatalogRow].self) { group in
@@ -50,10 +54,9 @@ import Foundation
             if let soundcloud, soundcloud.enabled {
                 async let publicResult = Self.search(catalog, query: query, limit: limit)
                 async let cloudResult = Self.search(soundcloud, query: query, limit: limit)
-                let replies = await (publicResult, cloudResult)
-                var results = [replies.0, replies.1]
-                if server.configured, server.health != .offline { results.append(await Self.search(server, query: query, limit: limit)) }
-                return try MusicCatalogMerge.search(results, limit: limit)
+                async let privateResult = configuredServerSearch(query, limit: limit)
+                let replies = await (publicResult, cloudResult, privateResult)
+                return try MusicCatalogMerge.search([replies.0, replies.1, replies.2], limit: limit)
             }
             guard server.configured, server.health != .offline else { return try await catalog.search(query, limit: limit) }
             // Registry fan-out is ordered by connector id: catalog, subsonic.
@@ -62,6 +65,10 @@ import Foundation
             let replies = await (publicResult, privateResult)
             return try MusicCatalogMerge.search([replies.0, replies.1], limit: limit)
         }
+    }
+    private func configuredServerSearch(_ query: String, limit: Int) async -> MusicCatalogReply {
+        guard server.configured, server.health != .offline else { return .failure }
+        return await Self.search(server, query: query, limit: limit)
     }
     private static func search(_ client: any MusicCatalogCalling, query: String, limit: Int) async -> MusicCatalogReply {
         do { return .success(try await client.search(query, limit: limit)) }

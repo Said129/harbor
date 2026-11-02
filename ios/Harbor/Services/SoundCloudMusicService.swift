@@ -34,7 +34,7 @@ import Observation
         guard let url = URL(string: raw), url.scheme == "https", url.user == nil, url.password == nil, url.port == nil,
               ["soundcloud.com", "a-v2.sndcdn.com", "api-v2.soundcloud.com"].contains(url.host ?? "") else { throw HarborError(code: "music-soundcloud-host") }
         var request = HarborNetworkRequest(url: raw)
-        request.publicNetworkOnly = true; request.timeoutMs = range ? 2000 : 8000
+        request.publicNetworkOnly = true; request.timeoutMs = range || url.host == "soundcloud.com" ? 2000 : 8000
         request.maxResponseBytes = range ? 50_001 : 2 * 1024 * 1024
         request.headers = ["User-Agent": "Mozilla/5.0 Harbor/0.9.132"]
         if range { request.headers["Range"] = "bytes=0-50000" }
@@ -47,6 +47,7 @@ import Observation
         let version = revision
         let task = Task { @MainActor [weak self] () throws -> String in
             guard let self else { throw CancellationError() }
+            let deadline = Date().addingTimeInterval(5)
             let response = try await fetch("https://soundcloud.com/")
             guard response.ok else { throw HarborError(code: "music-soundcloud-unavailable") }
             let html = String(decoding: try response.bytes(), as: UTF8.self)
@@ -54,15 +55,31 @@ import Observation
             let ns = html as NSString
             var seen = Set<String>()
             let candidates = scripts.matches(in: html, range: NSRange(location: 0, length: ns.length)).map { ns.substring(with: $0.range) }.filter { seen.insert($0).inserted }.reversed().prefix(6)
-            let pattern = try NSRegularExpression(pattern: #"client_id\s*:\s*"([0-9a-zA-Z]{32})""#)
-            for url in candidates {
-                try validate(version)
-                guard let response = try? await fetch(url, range: true), response.ok, let bytes = try? response.bytes() else { continue }
-                let body = String(decoding: bytes, as: UTF8.self) as NSString
-                if let match = pattern.firstMatch(in: body as String, range: NSRange(location: 0, length: body.length)) {
-                    return body.substring(with: match.range(at: 1))
+            let found = await withTaskGroup(of: (Bool, String?).self) { group -> String? in
+                for url in candidates {
+                    group.addTask { [weak self] in
+                        guard let self, let response = try? await self.fetch(url, range: true), response.ok, let bytes = try? response.bytes() else { return (false, nil) }
+                        let body = String(decoding: bytes, as: UTF8.self) as NSString
+                        guard let pattern = try? NSRegularExpression(pattern: #"client_id\s*:\s*"([0-9a-zA-Z]{32})""#),
+                              let match = pattern.firstMatch(in: body as String, range: NSRange(location: 0, length: body.length)) else { return (false, nil) }
+                        return (false, body.substring(with: match.range(at: 1)))
+                    }
                 }
+                group.addTask {
+                    do { try await Task.sleep(for: .seconds(max(0, deadline.timeIntervalSinceNow))) } catch { }
+                    return (true, nil)
+                }
+                var completed = 0
+                while let (expired, value) = await group.next() {
+                    if let value { group.cancelAll(); return value }
+                    if expired { group.cancelAll(); return nil }
+                    completed += 1
+                    if completed == candidates.count { group.cancelAll(); return nil }
+                }
+                return nil
             }
+            try validate(version)
+            if let found { return found }
             throw HarborError(code: "music-soundcloud-identity")
         }
         identityTask = task

@@ -20,6 +20,7 @@ struct MusicView: View {
     @State private var serverSettings = false
     @State private var spotifySettings = false
     @State private var connections = false
+    @State private var audioSettings = false
     @State private var serverRevision = UUID()
     @State private var server: SubsonicMusicService
     @AppStorage("harbor.music.genres.explore.v1") private var genreFiltersRaw = "{}"
@@ -87,6 +88,7 @@ struct MusicView: View {
             .toolbar { ToolbarItem(placement: .topBarTrailing) {
                 Menu {
                     Button { connections = true } label: { Label(DesktopInterfaceText.value("music.connections.title"), systemImage: "link") }
+                    Button { audioSettings = true } label: { Label(DesktopInterfaceText.value("music.audio.title"), systemImage: "slider.horizontal.3") }
                     Button { spotifySettings = true } label: { Label("Spotify · Free / Premium", systemImage: "music.note") }
                     Button { serverSettings = true } label: { Label(DesktopInterfaceText.value("music.connections.server"), systemImage: "server.rack") }.accessibilityIdentifier("music-server-open")
                     Button { metadataSettings = true } label: { Label(DesktopInterfaceText.value("Metadata"), systemImage: "info.circle") }.accessibilityIdentifier("music-metadata-open")
@@ -95,6 +97,7 @@ struct MusicView: View {
                 } label: { MusicGlyph("plus").frame(width: 44, height: 44) }.accessibilityLabel(DesktopInterfaceText.value("Options")).accessibilityIdentifier("music-actions")
             } }
             .sheet(isPresented: $metadataSettings) { MusicMetadataSettingsView(client: artistMetadata) }
+            .sheet(isPresented: $audioSettings) { MusicAudioSettingsView(session: workspace.playback, player: .shared) }
             .sheet(isPresented: $connections) { MusicConnectionsView(workspace: workspace, metadata: artistMetadata) {
                 catalog.invalidatePrivateServer(); serverRevision = UUID()
             } }
