@@ -84,6 +84,11 @@ enum Request {
         settings: harbor_core::music_audio::MusicAudioSettings,
         effects: Option<harbor_core::music_audio::fx::MusicFx>,
     },
+    SubtitleMovieHash {
+        size: u64,
+        head: String,
+        tail: String,
+    },
     MusicPlaylistOrder {
         ids: Vec<String>,
         #[serde(rename = "trackId")]
@@ -186,6 +191,23 @@ pub fn dispatch(bytes: &[u8]) -> Result<Value, &'static str> {
                 .normalized();
             Ok(
                 json!({"filter": settings.filter_with_fx(effects), "settings": settings, "effects": effects}),
+            )
+        }
+        Request::SubtitleMovieHash { size, head, tail } => {
+            if size < 131_072 || head.len() != 87_384 || tail.len() != 87_384 {
+                return Err("subtitle-hash-size");
+            }
+            let head = base64::engine::general_purpose::STANDARD
+                .decode(head)
+                .map_err(|_| "subtitle-hash-format")?;
+            let tail = base64::engine::general_purpose::STANDARD
+                .decode(tail)
+                .map_err(|_| "subtitle-hash-format")?;
+            if head.len() != 65_536 || tail.len() != 65_536 {
+                return Err("subtitle-hash-size");
+            }
+            Ok(
+                json!({ "hash": harbor_core::subtitle_moviehash::hash_from_ends(size, &head, &tail), "size": size }),
             )
         }
         Request::MusicPlaylistOrder {

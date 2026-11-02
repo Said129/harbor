@@ -88,6 +88,26 @@ A further owned native case downloads changing WebVTT through the actual addon
 file service after starting playback at eight seconds, then checks seeks and
 captures rendered cues. It has not run yet and is not a claimed drift fix.
 
+Run `41479583285`, source `49ecf48aab3144b6347b5a2b7391f4d7c1c9f400`,
+executes the fifteen still-unexecuted native cases after the compile corrections:
+M3U (3), lyrics (2), Spotify configuration (2), SoundCloud (2), audio/source
+switching/phone-tablet captures (4), HTTP seeks (1), downloaded VTT seeks (1).
+The accepted local seek case and exact-source Rust cases are excluded.
+
+### Movie-version matching gap
+
+Pinned Desktop's `src/views/player/hooks/use-track-autoload.ts` computes a movie
+hash with an 1800 ms budget before subtitle lookup. Native iOS had only forwarded
+an optional addon-provided hash. The original hash arithmetic is now in shared
+Rust, and native IO reads precisely the first/last 64 KiB with HTTP 206 range
+validation and a common 1800 ms deadline. Private video headers remain confined
+to video requests; cross-origin redirects discard them. Computed hash/size
+enrich the selected video's subtitle request, with the existing hints retained
+as fallback if hashing is unsupported. Playback is not blocked or reloaded.
+Two new native cases and the original two Rust arithmetic cases are pending.
+This closes a concrete parity gap but does not establish the cause of seeking
+drift or prove it fixed.
+
 ## Validation approach
 
 Keep previously accepted unchanged Music, Rust and app evidence. A focused

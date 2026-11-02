@@ -149,6 +149,7 @@ targets:
     sources:
       - path: HarborTests/SubtitleSeekTests.swift
       - path: HarborTests/SubtitleRangeFixture.swift
+      - path: HarborTests/SubtitleMovieHashTests.swift
       - path: HarborTests/MusicPlaylistImportTests.swift
       - path: HarborTests/MusicLyricsTests.swift
       - path: HarborTests/MusicAudioTests.swift

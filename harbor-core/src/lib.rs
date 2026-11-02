@@ -8,6 +8,7 @@ pub mod music_matching;
 pub mod parser;
 pub mod resume;
 pub mod scoring;
+pub mod subtitle_moviehash;
 pub mod trust;
 mod types;
 pub use types::*;

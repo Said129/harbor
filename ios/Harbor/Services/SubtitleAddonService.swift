@@ -7,6 +7,7 @@ struct SubtitleRequest: Sendable {
     let episode: Int?
     let addons: [Addon]
     let stream: JSONValue
+    var movieHash: SubtitleMovieHash? = nil
 
     var extras: String {
         let hints = stream["behaviorHints"]
@@ -14,6 +15,7 @@ struct SubtitleRequest: Sendable {
         if let hash = hints["videoHash"].string, !hash.isEmpty { values["videoHash"] = hash }
         if let size = hints["videoSize"].integer, size > 0 { values["videoSize"] = String(size) }
         if let name = hints["filename"].string ?? hints["fileName"].string, !name.isEmpty { values["filename"] = name }
+        if let movieHash { values["videoHash"] = movieHash.hash; values["videoSize"] = String(movieHash.size) }
         let allowed = CharacterSet.alphanumerics.union(CharacterSet(charactersIn: "-._~"))
         return values.sorted { $0.key < $1.key }.map { $0.key + "=" + ($0.value.addingPercentEncoding(withAllowedCharacters: allowed) ?? "") }.joined(separator: "&")
     }
@@ -50,8 +52,13 @@ struct SubtitleAddonService: Sendable {
         var providers = 0
     }
 
-    func search(_ request: SubtitleRequest, onBatch: (@MainActor @Sendable ([PlaybackSource.Subtitle]) -> Void)? = nil,
+    func search(_ request: SubtitleRequest, source: PlaybackSource? = nil, onBatch: (@MainActor @Sendable ([PlaybackSource.Subtitle]) -> Void)? = nil,
                 load: @escaping @Sendable (RequestPlan) async throws -> JSONValue = { try await HTTPClient().json($0.url, timeout: Double($0.timeoutMs) / 1000) }) async throws -> Result {
+        var request = request
+        if let source, request.movieHash == nil {
+            request.movieHash = await SubtitleMovieHashService.automatic(source)
+        }
+        try Task.checkCancellation()
         let plans = try await request.plans()
         return try await withThrowingTaskGroup(of: (RequestPlan, JSONValue?).self) { group in
             var iterator = plans.makeIterator()

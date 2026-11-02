@@ -283,7 +283,7 @@ struct PlayerView: View {
             let retry = state.addonSubtitlesRetry
             defer { if generation == state.mediaGeneration, retry == state.addonSubtitlesRetry { state.addonSubtitlesLoading = false } }
             do {
-                let result = try await SubtitleAddonService().search(request) { batch in
+                let result = try await SubtitleAddonService().search(request, source: session.source) { batch in
                     guard !Task.isCancelled, generation == state.mediaGeneration, library.map({ $0.owner == session.owner }) ?? true else { return }
                     var urls = Set(state.addonSubtitles.map(\.url))
                     state.addonSubtitles += batch.filter { urls.insert($0.url).inserted }

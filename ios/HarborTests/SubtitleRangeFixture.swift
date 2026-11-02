@@ -5,14 +5,16 @@ import Foundation
 final class SubtitleRangeFixture: @unchecked Sendable {
     private let data: Data
     private let subtitle: Data?
+    private let honorsRanges: Bool
     private let listener: NWListener
     private let queue = DispatchQueue(label: "owned-subtitle-ranges")
     private let lock = NSLock()
     private var ready = false
     private var connections: [NWConnection] = []
     private var starts: [Int] = []
-    init(data: Data, subtitle: Data? = nil) throws {
-        self.data = data; self.subtitle = subtitle
+    private var captured: [String] = []
+    init(data: Data, subtitle: Data? = nil, honorsRanges: Bool = true) throws {
+        self.data = data; self.subtitle = subtitle; self.honorsRanges = honorsRanges
         let parameters = NWParameters.tcp
         parameters.requiredLocalEndpoint = .hostPort(host: "127.0.0.1", port: .any)
         listener = try NWListener(using: parameters)
@@ -36,6 +38,7 @@ final class SubtitleRangeFixture: @unchecked Sendable {
         throw NSError(domain: "owned-subtitle-server", code: 1)
     }
     var requestedOffsets: [Int] { locked { starts } }
+    var requests: [String] { locked { captured } }
     func stop() { listener.cancel(); let values = locked { connections }; values.forEach { $0.cancel() } }
     private func receive(_ connection: NWConnection, bytes: Data) {
         connection.receive(minimumIncompleteLength: 1, maximumLength: 16_384) { [weak self] chunk, _, complete, error in
@@ -48,9 +51,10 @@ final class SubtitleRangeFixture: @unchecked Sendable {
     }
     private func reply(_ connection: NWConnection, request: Data) {
         let text = String(decoding: request, as: UTF8.self), lines = text.lowercased().components(separatedBy: "\r\n")
+        locked { captured.append(text) }
         let caption = lines.first?.contains(" /community.vtt ") == true
         let data = caption ? subtitle ?? Data() : self.data
-        let range = lines.first { $0.hasPrefix("range: bytes=") }.map { String($0.dropFirst("range: bytes=".count)) }
+        let range = honorsRanges ? lines.first { $0.hasPrefix("range: bytes=") }.map { String($0.dropFirst("range: bytes=".count)) } : nil
         let parts = range?.split(separator: "-", omittingEmptySubsequences: false)
         let start = parts?.first.flatMap { Int($0) } ?? 0
         guard start >= 0, start < data.count else { connection.cancel(); return }
