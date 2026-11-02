@@ -40,8 +40,14 @@ struct MusicLyricsTransport: HarborPluginHostTransport {
                 scope: scope, currentScope: currentScope, transport: transport)
         }
         guard let runtime else { throw CancellationError() }
-        let value = try await runtime.call("content", arguments: [.object(input)], timeout: 30)
-        try validate(); return value
+        do {
+            let value = try await runtime.call("content", arguments: [.object(input)], timeout: 30)
+            try validate(); return value
+        } catch {
+            // A retired native owner is cancellation even if the worker reports
+            // its own scope fence before returning to this adapter.
+            try validate(); throw error
+        }
     }
     func load(_ track: MusicTrack) async throws -> [MusicLyricLine]? {
         // Only identity metadata goes to LRCLIB; never send a private stream URL.

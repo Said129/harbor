@@ -4,10 +4,14 @@ No external media or FFmpeg install is needed. The input has one video track,
 no B frames and contiguous samples (generate-render-fixtures.py).
 """
 from pathlib import Path
+import argparse
 import math
 import struct
 
 folder = Path(__file__).resolve().parents[2] / "ios/HarborTests/Fixtures"
+parser = argparse.ArgumentParser()
+parser.add_argument("--indexed", action="store_true", help="Create a separate HTTP fixture with one-second closed GOPs and explicit video/subtitle cues")
+indexed = parser.parse_args().indexed
 source = (folder / "render-8bit.mp4").read_bytes()
 
 
@@ -48,6 +52,11 @@ for size in sizes:
 assert len(frames) == 180 and sum(sizes) == len(box(b"mdat"))
 sync = box(b"stss")
 keyframes = set(struct.unpack_from(">" + "I" * struct.unpack_from(">I", sync, 4)[0], sync, 8))
+if indexed:
+    # Repeating the complete initial six-frame closed GOP starts each second
+    # with the original IDR, rather than inserting IDRs into a dependent GOP.
+    frames = frames[:6] * 30
+    keyframes = set(range(1, len(frames) + 1, 6))
 video = element("E0", uint("B0", 64) + uint("BA", 32))
 audio = element("E1", element("B5", struct.pack(">d", 8000)) + uint("9F", 1) + uint("6264", 16))
 tracks = element("1654AE6B", track(1, 1, "V_MPEG4/ISO/AVC", element("63A2", box(b"avcC")) + video)
@@ -63,15 +72,43 @@ for second in range(30):
 for index in range(7):
     packets.append((index * 4000, 3, f"EMBEDDED CUE {index}".encode(), True, 3500))
 clusters = []
-for start in range(0, 30_000, 4000):
+cue_points = []
+for start in range(0, 30_000, 1000 if indexed else 4000):
     data = uint("E7", start)
     for at, number, value, keyframe, duration in sorted(packets, key=lambda p: (p[0], p[1])):
-        if start <= at < start + 4000:
+        if start <= at < start + (1000 if indexed else 4000):
             block = bytes([0x80 | number]) + struct.pack(">hB", at - start, 0x80 if keyframe and duration is None else 0) + value
+            if indexed and (number == 1 and keyframe or number == 3):
+                cue_points.append((at, number, len(clusters), len(data), duration))
             data += element("A3", block) if duration is None else element("A0", element("A1", block) + uint("9B", duration))
     clusters.append(element("1F43B675", data))
 header = element("1A45DFA3", uint("4286", 1) + uint("42F7", 1) + uint("42F2", 4) + uint("42F3", 8)
                  + text("4282", "matroska") + uint("4287", 4) + uint("4285", 2))
-target = folder / "owned-subtitle-seek.mkv"
-target.write_bytes(header + element("18538067", info + tracks + b"".join(clusters)))
+cues = b""
+if indexed:
+    # CueClusterPosition is relative to Segment payload; CueRelativePosition
+    # is relative to Cluster payload (Matroska's public element specification).
+    for _ in range(10):
+        offsets = []
+        offset = len(info) + len(tracks) + len(cues)
+        for cluster in clusters:
+            offsets.append(offset); offset += len(cluster)
+        points = []
+        for at, number, cluster, relative, duration in sorted(cue_points):
+            position = uint("F7", number) + uint("F1", offsets[cluster]) + uint("F0", relative)
+            if duration is not None:
+                position += uint("B2", duration)
+            points.append(element("BB", uint("B3", at) + element("B7", position)))
+        next_cues = element("1C53BB6B", b"".join(points))
+        if len(next_cues) == len(cues):
+            cues = next_cues; break
+        cues = next_cues
+    else:
+        raise RuntimeError("Cue offsets did not converge")
+    payload = info + tracks + cues + b"".join(clusters)
+    assert all(payload[offset:offset + 4] == bytes.fromhex("1F43B675") for offset in offsets)
+else:
+    payload = info + tracks + b"".join(clusters)
+target = folder / ("owned-indexed-subtitle-seek.mkv" if indexed else "owned-subtitle-seek.mkv")
+target.write_bytes(header + element("18538067", payload))
 print(f"Generated {target.name}: {target.stat().st_size} bytes")

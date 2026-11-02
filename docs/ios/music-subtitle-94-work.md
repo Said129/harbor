@@ -429,3 +429,43 @@ exports attachments even when xcodebuild returns a failing test status. A
 nonzero status, missing execution, duplicate/restarted session or failed export
 still prevents a clean result. This does not alter either already live run or
 convert partial evidence into a passing validation.
+
+## First actual combined native executions
+
+Run 41540825290, source 0e95ae05, built successfully and executed all 27
+selected cases once: 25 passed and two failed. There was no restart or skip.
+The complete original artifact is combined-native-41540825290.zip, SHA-256
+5d7b69cf5cfda5d21b00fb25b40e9100c5f7ed33f78a7bf49fc9a11a52b769c9.
+The failing xcodebuild status prevented that old runner from exporting
+attachments or final rows, so retain the original log/xcresult and export its
+captures separately without repeating any tests.
+
+All Jellyfin/Plex, M3U import, SoundCloud, Spotify adapter/labels, preferred
+source, audio processing/profile/transport and movie-hash cases passed. The
+LRC parser/native clock case and the Community-style downloaded VTT seek case
+also passed. Connection/audio/Community captures still need visual review.
+This does not establish a real Spotify account connection or physical-device
+subtitle behavior.
+
+The lyrics failure was the deliberate late-owner response: the worker correctly
+rejected its retired scope, but its plugin-scope error escaped the native lyrics
+adapter instead of becoming cancellation. The adapter now validates its scope
+on the error path too. Only the affected lyrics-load journey needs repetition.
+
+The small-cache HTTP case failed with video position stuck at 3 seconds and
+EMBEDDED CUE 0; it did not demonstrate the reported subtitle-only drift while
+video/audio advance normally. Its original 30-second GOP fixture has a single
+keyframe and no Cues. A separate HTTP fixture now uses one-second closed GOPs
+and explicit video/subtitle cue positions, retaining the original fixture and
+accepted local test bytes. The same strict range/seek/render assertions remain.
+This is a harness investigation, not a production subtitle seek correction.
+The original unindexed/tiny-cache failure remains recorded here.
+
+The new generator follows the public Matroska Cues recommendations and element
+positions: https://www.matroska.org/technical/cues.html and
+https://www.matroska.org/technical/elements.html. The new fixture SHA-256 is
+3c42770cb9b0448dd732cda0c760b99219903b3eaed0a78105c02f809c7cb6f4;
+the unchanged original is
+f245cb2e8002fd89c42742a6166feb88399f9953092bedb1be6b787714540a54.
+Both the changed HTTP journey and new listening controls remain pending native
+execution. No broad repeat of the 25 passing cases is requested.

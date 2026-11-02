@@ -26,6 +26,7 @@ on:
           [
             focused,
             music-runtime,
+            review-results,
             full,
             affected,
             sources-search-subtitles,
@@ -128,6 +129,48 @@ concurrency:
   group: iphone-${{ github.event_name }}-${{ github.event.pull_request.head.repo.full_name || github.repository }}-${{ github.head_ref || github.ref_name }}
   cancel-in-progress: true
 jobs:
+  review-results:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.validation_scope == 'review-results' }}
+    runs-on: macos-15-intel
+    timeout-minutes: 15
+    permissions:
+      contents: read
+      actions: read
+    env:
+      REVIEW_SOURCE: ${{ inputs.source_sha }}
+      REVIEW_RUN: ${{ inputs.evidence_run }}
+    steps:
+      - name: Validate the existing evidence coordinates
+        run: |
+          python3 - <<'PY'
+          import os, re
+          assert re.fullmatch(r"[0-9]+", os.environ["REVIEW_RUN"])
+          assert re.fullmatch(r"[0-9a-f]{40}", os.environ["REVIEW_SOURCE"])
+          PY
+      - uses: actions/download-artifact@v4
+        with:
+          name: focused-results
+          run-id: ${{ inputs.evidence_run }}
+          github-token: ${{ github.token }}
+          path: evidence
+      - name: Export existing captures without executing tests
+        run: |
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          report = json.loads(Path("evidence/focused-results.json").read_text())
+          assert report["source"] == os.environ["REVIEW_SOURCE"]
+          assert Path("evidence/FocusedTests.xcresult").is_dir()
+          Path("review").mkdir()
+          Path("review/source.json").write_text(json.dumps({"run": os.environ["REVIEW_RUN"], "source": report["source"], "testsRepeated": False}, indent=2))
+          PY
+          xcrun xcresulttool export attachments --path evidence/FocusedTests.xcresult --output-path review/attachments
+      - uses: actions/upload-artifact@v4
+        with:
+          name: reviewed-existing-captures
+          path: review/
+          retention-days: 7
+          if-no-files-found: error
   music-runtime:
     if: ${{ github.event_name == 'workflow_dispatch' && inputs.validation_scope == 'music-runtime' }}
     uses: ./.github/workflows/ios-music-runtime.yml
@@ -140,7 +183,7 @@ jobs:
       runtime_candidate: ${{ inputs.music_runtime_candidate }}
   apple:
     name: Apple SDK / Swift / iPhone
-    if: ${{ github.event_name == 'workflow_dispatch' && github.event.repository.private == false && inputs.validation_scope != 'music-runtime' && inputs.validation_scope != 'focused' && inputs.validation_scope != 'reuse' && inputs.validation_scope != 'continuation-sendable' }}
+    if: ${{ github.event_name == 'workflow_dispatch' && github.event.repository.private == false && inputs.validation_scope != 'music-runtime' && inputs.validation_scope != 'review-results' && inputs.validation_scope != 'focused' && inputs.validation_scope != 'reuse' && inputs.validation_scope != 'continuation-sendable' }}
     runs-on: ${{ inputs.apple_runner || 'macos-15-intel' }}
     timeout-minutes: 120
     permissions:

@@ -32,7 +32,7 @@ final class SubtitleSeekTests: XCTestCase {
 
     @available(iOS, deprecated: 12.0)
     @MainActor func testHTTPRangeSeeksRetainEmbeddedAndExternalCuesAndRenderedSubtitles() async throws {
-        let clip = try XCTUnwrap(Bundle(for: Self.self).url(forResource: "owned-subtitle-seek", withExtension: "mkv", subdirectory: "Fixtures"))
+        let clip = try XCTUnwrap(Bundle(for: Self.self).url(forResource: "owned-indexed-subtitle-seek", withExtension: "mkv", subdirectory: "Fixtures"))
         let server = try SubtitleRangeFixture(data: Data(contentsOf: clip), chunkDelay: 0.015); defer { server.stop() }
         let url = try await server.start()
         let scene = try XCTUnwrap(UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }.first)
@@ -125,7 +125,7 @@ final class SubtitleSeekTests: XCTestCase {
     @MainActor private func exercise(_ controller: MPVController, surface: GLKView, state: PlayerState, prefix: String) async throws {
         for (target, cue) in [(1.0, 0), (17, 4), (5, 1), (25, 6), (9, 2)] {
             controller.run(["seek", String(target), "absolute+exact"])
-            try await wait(surface, state: state) { abs(state.position - target) < 0.3 && state.primarySubtitleText.contains("\(prefix) CUE \(cue)") }
+            try await wait(surface, state: state, context: "\(prefix) absolute seek \(target)") { abs(state.position - target) < 0.3 && state.primarySubtitleText.contains("\(prefix) CUE \(cue)") }
         }
         controller.seekRelative(8)
         try await wait(surface, state: state) { abs(state.position - 17) < 0.3 && state.primarySubtitleText.contains("\(prefix) CUE 4") }
@@ -140,14 +140,14 @@ final class SubtitleSeekTests: XCTestCase {
     }
 
     @available(iOS, deprecated: 12.0)
-    @MainActor private func wait(_ surface: GLKView, state: PlayerState, until condition: () -> Bool) async throws {
+    @MainActor private func wait(_ surface: GLKView, state: PlayerState, context: String = "", until condition: () -> Bool) async throws {
         let deadline = Date().addingTimeInterval(12)
         while Date() < deadline, state.error == nil {
             surface.display()
             if condition() { return }
             try await Task.sleep(for: .milliseconds(40))
         }
-        XCTFail("Native seek did not settle: position=\(state.position), text=\(state.primarySubtitleText), error=\(state.error ?? "none")")
+        XCTFail("Native seek did not settle (\(context)): position=\(state.position), paused=\(state.paused), buffering=\(state.buffering), text=\(state.primarySubtitleText), error=\(state.error ?? "none")")
         throw HarborError(code: "subtitle-seek-timeout")
     }
 }
