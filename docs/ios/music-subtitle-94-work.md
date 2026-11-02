@@ -411,6 +411,8 @@ context. It has no network or account bridge. The generator records the input
 and executable hashes; native loading verifies the exact program hash.
 Original strict command/size/filter/range rejection is preserved. Curves update
 after a short cancellable debounce rather than on every SwiftUI body evaluation.
+The pure context is retained in native view state across draft changes, so
+dragging a control does not recreate the executable context each time.
 
 The form also exposes the original supported sample-rate choices, crossfeed,
 reverb and five speed presets. Controls requiring extra filters check the actual

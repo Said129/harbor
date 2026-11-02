@@ -7,7 +7,7 @@ import SwiftUI
     @State private var correction = ""
     @State private var invalid = false
     @State private var responseFailed = false
-    private let processor = MusicParametricEQ()
+    @State private var processor = MusicParametricEQ()
     private func text(_ key: String) -> String { DesktopInterfaceText.value(key) }
 
     var body: some View {
