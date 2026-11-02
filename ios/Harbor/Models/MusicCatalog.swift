@@ -126,4 +126,5 @@ struct MusicCatalogRequest: Encodable, Sendable {
     var kind: MusicCatalogKind?
     var cursor: String?
     var playlist: MusicCatalogPlaylist?
+    var request: JellyfinMusicRequest?
 }

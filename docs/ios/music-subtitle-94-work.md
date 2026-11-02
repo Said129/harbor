@@ -218,3 +218,35 @@ original artwork/visualizers/layouts/motion, all 16 languages, and affected
 phone/tablet visual validation. Reconcile against pinned Desktop 0.9.132 source,
 not merely the older partial inventory. Do not replace missing features with
 inactive controls or claim physical-device validation from a simulator.
+
+## Jellyfin source port added 2 November
+
+The pinned Desktop Jellyfin music implementation now supplies native iOS home
+rows, typed search, albums, playlists, favourite tracks, artist top tracks,
+Instant Mix stations and direct/transcoded stream negotiation through the
+existing cancellable Rust music ABI. The original Desktop artist-catalog
+limitation is retained rather than advertising unavailable full pagination.
+
+The native connection form saves only the resulting account token in the active
+profile's Keychain entry. There is no persisted password, global account cache,
+or credential embedded in remembered tracks. Requests retain reverse-proxy
+subpaths, enforce an 8 MiB API-body limit and avoid forwarding the authorization
+header to another origin. Late/cancelled authorizations cannot commit to a
+retired profile. Stream start/stop reports are ordered from real player load and
+termination events. Source matching and the preferred-source picker include
+Jellyfin; Instant Mix now uses the shared radio detail and queue route.
+
+Three new native journeys use an owned loopback server: original provider
+requests plus real libmpv playback/seeking/reporting; Keychain restart and profile
+retirement/cancellation; phone and tablet-size connection captures. Original
+ported Rust cases are selected separately. Both native execution and visual
+review are pending, and no real private Jellyfin server is claimed tested.
+Provenance and adaptation boundaries are in `jellyfin-music-port-inputs.json`.
+
+The changed JSON/YAML files pass formatter checks. `pnpm run check` cannot start
+lint analysis when that changed selection has no supported lint source; this is
+recorded as not applicable, not a successful lint pass. Windows's previously
+recorded missing MSVC linker and unavailable Linux host remain unchanged. New
+Rust compile/check/tests and Apple compilation will run in the affected CI job.
+The earlier nineteen-case and corrected FFmpeg 8.1.2 jobs are still running;
+their accepted or failed rows must be collected from their existing run IDs.

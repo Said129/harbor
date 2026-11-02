@@ -11,6 +11,8 @@ struct MusicPlaybackResolution: Sendable {
     let stream: MusicAudioStream
     let valid: @MainActor @Sendable () -> Bool
     var recording: MusicTrack? = nil
+    var onLoaded: (@MainActor @Sendable () -> Void)? = nil
+    var onStopped: (@MainActor @Sendable () -> Void)? = nil
 }
 @MainActor protocol MusicPlaybackResolving: AnyObject {
     var scope: PluginExecutionScope { get }

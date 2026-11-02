@@ -113,6 +113,7 @@ struct MusicQueueOrigin: Equatable, Sendable { let kind: String; let id: String;
     private func start(_ item: MusicPlaybackItem, resuming resumeAt: Double = 0, paused startPaused: Bool = false) {
         submitScrobbleIfEligible()
         request &+= 1; let token = request, loadedOwner = owner, session = resolver
+        resolution?.onStopped?()
         resolutionTask?.cancel(); poller?.cancel(); poller = nil; resolution = nil
         currentItem = item; loaded = false; resolving = true; paused = true; desiredPause = startPaused
         pendingResume = resumeAt.isFinite && resumeAt > 0 ? resumeAt : nil
@@ -165,6 +166,7 @@ struct MusicQueueOrigin: Equatable, Sendable { let kind: String; let id: String;
             } catch {
                 await engine.stop(request: token)
                 guard request == token else { return }
+                resolution?.onStopped?(); resolution = nil
                 resolving = false; loaded = false; paused = true
                 if error is CancellationError { stop(); return }
                 self.error = message(error); nowPlaying()
@@ -294,7 +296,8 @@ struct MusicQueueOrigin: Equatable, Sendable { let kind: String; let id: String;
         changeVolume(Self.savedVolume())
     }
     func stop() {
-        submitScrobbleIfEligible(); request &+= 1; let token = request
+        submitScrobbleIfEligible(); resolution?.onStopped?(); resolution = nil
+        request &+= 1; let token = request
         resolutionTask?.cancel(); resolutionTask = nil; poller?.cancel(); poller = nil
         Task { await engine.stop(request: token) }
         items = []; currentItem = nil; upcomingItems = []; priority = nil; origin = nil; resolution = nil
@@ -323,6 +326,7 @@ struct MusicQueueOrigin: Equatable, Sendable { let kind: String; let id: String;
             switch event {
             case .started: loaded = false; position = 0; previousPosition = nil
             case .loaded:
+                if !loaded { resolution?.onLoaded?() }
                 loaded = true; error = nil
                 if let position = pendingResume { pendingResume = nil; send(.seek(position)) }
                 if !recorded, let track = currentTrack { recorded = true; recordPlayed(track, owner) }
@@ -332,9 +336,12 @@ struct MusicQueueOrigin: Equatable, Sendable { let kind: String; let id: String;
             case .duration(let value): if value.isFinite && value >= 0 { duration = value }
             case .paused(let value): paused = value
             case .volume(let value): if value.isFinite && (0...volumeMaximum).contains(value) { volume = value }
-            case .failed: error = message(HarborError(code: "music-player")); loaded = false; paused = true
+            case .failed:
+                resolution?.onStopped?(); resolution?.onStopped = nil
+                error = message(HarborError(code: "music-player")); loaded = false; paused = true
             case .ended(let eof, let failed):
-                submitScrobbleIfEligible(); natural = natural || eof
+                submitScrobbleIfEligible(); resolution?.onStopped?(); resolution?.onStopped = nil
+                natural = natural || eof
                 if failed { error = message(HarborError(code: "music-player")); loaded = false; paused = true }
             }
         }

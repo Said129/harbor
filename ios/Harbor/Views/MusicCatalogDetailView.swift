@@ -61,8 +61,8 @@ import SwiftUI
             .task(id: item.id + "|" + kind.rawValue) { operation?.cancel(); await model.load(item, kind: kind, client: client) }
             .onDisappear { operation?.cancel() }
     }
-    private var showsTrackList: Bool { switch item { case .album, .artist, .playlist: true; case .track, .station: false } }
-    private var showsPlayback: Bool { switch item { case .track, .album, .artist, .playlist: true; case .station: false } }
+    private var showsTrackList: Bool { switch item { case .album, .artist, .playlist, .station: true; case .track: false } }
+    private var showsPlayback: Bool { true }
     private var recordings: [MusicTrack] { model.items.compactMap { if case .track(let track) = $0 { return track }; return nil } }
     private var playbackOrigin: MusicQueueOrigin? {
         switch item {

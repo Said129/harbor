@@ -5,6 +5,7 @@ pub mod model;
 pub use model::*;
 pub mod connectors {
     pub mod catalog;
+    pub mod jellyfin;
 }
 mod request;
 pub(crate) use request::{execute, Request};

@@ -15,7 +15,7 @@ import Observation
     init(client: any MusicCatalogCalling = MusicCatalogClient()) { self.client = client }
 
     func invalidatePrivateServer() {
-        generation = UUID(); rows.removeAll { $0.source == "subsonic" }; result = nil; cachedSearch = nil
+        generation = UUID(); rows.removeAll { ["subsonic", "jellyfin"].contains($0.source) }; result = nil; cachedSearch = nil
         homeLoaded = false; loading = false; hasRequested = false; failure = nil
     }
 
@@ -78,7 +78,10 @@ import Observation
                 let page = try await client.artistCatalog(artist, kind: kind, cursor: nil); try Task.checkCancellation()
                 guard token == generation else { return }
                 route = (artist, kind); apply(page, appending: false)
-            case .track, .station: break
+            case .station(let station):
+                let value = try await client.stationTracks(station); try Task.checkCancellation()
+                guard token == generation else { return }; items = value.map(MusicCatalogItem.track)
+            case .track: break
             }
         } catch is CancellationError { }
         catch {

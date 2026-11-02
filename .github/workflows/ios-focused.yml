@@ -81,6 +81,13 @@ jobs:
             cargo test --locked --manifest-path harbor-core/Cargo.toml --no-default-features music_m3u::tests 2>&1 | tee ios/build/logs/music-m3u-tests.log
             cargo test --locked --manifest-path harbor-core/Cargo.toml --no-default-features music_matching::tests 2>&1 | tee ios/build/logs/music-matching-tests.log
           fi
+      - name: Validate the ported original Jellyfin connector
+        if: ${{ contains(inputs.selection, 'JellyfinMusicTests') }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          cargo check --locked --manifest-path harbor-ios-bridge/Cargo.toml 2>&1 | tee ios/build/logs/jellyfin-bridge-check.log
+          cargo test --locked --manifest-path harbor-ios-bridge/Cargo.toml music::connectors::jellyfin:: 2>&1 | tee ios/build/logs/jellyfin-original-tests.log
       - name: Prepare the native project
         run: |
           python3 scripts/ios/fetch-interface-font.py

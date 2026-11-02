@@ -11,6 +11,10 @@ protocol MusicCatalogCalling: Sendable {
     func artistRows(_ artist: MusicCatalogArtist) async throws -> [MusicCatalogRow]
     func artistCatalog(_ artist: MusicCatalogArtist, kind: MusicCatalogKind, cursor: String?) async throws -> MusicCatalogPage
     func playlistTracks(_ playlist: MusicCatalogPlaylist) async throws -> [MusicTrack]
+    func stationTracks(_ station: MusicCatalogStation) async throws -> [MusicTrack]
+}
+extension MusicCatalogCalling {
+    func stationTracks(_ station: MusicCatalogStation) async throws -> [MusicTrack] { throw HarborError(code: "music-station-unavailable") }
 }
 struct MusicCatalogClient: MusicCatalogCalling {
     var network: any MusicCatalogNetworking = HarborNativeNetwork()

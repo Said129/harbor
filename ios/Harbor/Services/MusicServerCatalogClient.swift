@@ -4,16 +4,17 @@ import Foundation
 /// server in one route. A private reference never falls back to the public API.
 @MainActor final class MusicServerCatalogClient: MusicCatalogCalling {
     let server: SubsonicMusicService
+    let jellyfin: JellyfinMusicService?
     let soundcloud: SoundCloudMusicService?
     private let catalog: any MusicCatalogCalling
     private let currentScope: @MainActor () -> PluginExecutionScope
     private let browseTimeout: Duration
-    init(server: SubsonicMusicService, catalog: any MusicCatalogCalling = MusicCatalogClient(), soundcloud: SoundCloudMusicService? = nil,
+    init(server: SubsonicMusicService, catalog: any MusicCatalogCalling = MusicCatalogClient(), soundcloud: SoundCloudMusicService? = nil, jellyfin: JellyfinMusicService? = nil,
          browseTimeout: Duration = .seconds(12), currentScope: @escaping @MainActor () -> PluginExecutionScope) {
-        self.server = server; self.catalog = catalog; self.soundcloud = soundcloud; self.browseTimeout = browseTimeout; self.currentScope = currentScope
+        self.server = server; self.catalog = catalog; self.jellyfin = jellyfin; self.soundcloud = soundcloud; self.browseTimeout = browseTimeout; self.currentScope = currentScope
     }
     private func validate(_ version: UUID) throws {
-        try server.validateCatalogScope()
+        try server.validateCatalogScope(); try jellyfin?.validate()
         guard server.scope == currentScope(), version == server.credentialVersion else { throw CancellationError() }
     }
     private func scoped<T: Sendable>(_ work: @MainActor () async throws -> T) async throws -> T {
@@ -21,7 +22,10 @@ import Foundation
         do { let value = try await work(); try validate(version); return value }
         catch { try validate(version); throw error }
     }
-    private func client(_ id: String) -> any MusicCatalogCalling {
+    private func client(_ id: String) throws -> any MusicCatalogCalling {
+        if id == "jellyfin" {
+            guard let jellyfin else { throw HarborError(code: "music-jellyfin-disconnected") }; return jellyfin
+        }
         if id == "subsonic" { return server }
         if id == "soundcloud", let soundcloud { return soundcloud }
         return catalog
@@ -31,11 +35,12 @@ import Foundation
             async let publicRows = Self.rows(catalog, timeout: browseTimeout)
             async let privateRows = Self.rows(server, timeout: browseTimeout)
             async let streamingRows = cloudRows()
-            let replies = await (publicRows, privateRows, streamingRows)
+            async let jellyfinRows = configuredJellyfinRows()
+            let replies = await (publicRows, privateRows, streamingRows, jellyfinRows)
             var seen = Set<String>()
             // rows::order_rows ranks catalog before subsonic, omits failed
             // sources and retains the first row with a given id.
-            return (replies.0 + replies.2 + replies.1).filter { seen.insert($0.id).inserted }
+            return (replies.0 + replies.3 + replies.2 + replies.1).filter { seen.insert($0.id).inserted }
         }
     }
     private func cloudRows() async -> [MusicCatalogRow] {
@@ -51,20 +56,25 @@ import Foundation
     }
     func search(_ query: String, limit: Int) async throws -> MusicCatalogSearch {
         try await scoped {
-            if let soundcloud, soundcloud.enabled {
-                async let publicResult = Self.search(catalog, query: query, limit: limit)
-                async let cloudResult = Self.search(soundcloud, query: query, limit: limit)
-                async let privateResult = configuredServerSearch(query, limit: limit)
-                let replies = await (publicResult, cloudResult, privateResult)
-                return try MusicCatalogMerge.search([replies.0, replies.1, replies.2], limit: limit)
-            }
-            guard server.configured, server.health != .offline else { return try await catalog.search(query, limit: limit) }
-            // Registry fan-out is ordered by connector id: catalog, subsonic.
             async let publicResult = Self.search(catalog, query: query, limit: limit)
-            async let privateResult = Self.search(server, query: query, limit: limit)
-            let replies = await (publicResult, privateResult)
-            return try MusicCatalogMerge.search([replies.0, replies.1], limit: limit)
+            async let privateResult = configuredServerSearch(query, limit: limit)
+            async let jellyfinResult = configuredJellyfinSearch(query, limit: limit)
+            async let cloudResult = configuredCloudSearch(query, limit: limit)
+            let replies = await (publicResult, jellyfinResult, cloudResult, privateResult)
+            return try MusicCatalogMerge.search([replies.0, replies.1, replies.2, replies.3], limit: limit)
         }
+    }
+    private func configuredJellyfinRows() async -> [MusicCatalogRow] {
+        guard let jellyfin, jellyfin.configured else { return [] }
+        return await Self.rows(jellyfin, timeout: browseTimeout)
+    }
+    private func configuredJellyfinSearch(_ query: String, limit: Int) async -> MusicCatalogReply {
+        guard let jellyfin, jellyfin.configured else { return .failure }
+        return await Self.search(jellyfin, query: query, limit: limit)
+    }
+    private func configuredCloudSearch(_ query: String, limit: Int) async -> MusicCatalogReply {
+        guard let soundcloud, soundcloud.enabled else { return .failure }
+        return await Self.search(soundcloud, query: query, limit: limit)
     }
     private func configuredServerSearch(_ query: String, limit: Int) async -> MusicCatalogReply {
         guard server.configured, server.health != .offline else { return .failure }
@@ -89,6 +99,9 @@ import Foundation
     }
     func playlistTracks(_ playlist: MusicCatalogPlaylist) async throws -> [MusicTrack] {
         try await scoped { try await client(playlist.connectorId).playlistTracks(playlist) }
+    }
+    func stationTracks(_ station: MusicCatalogStation) async throws -> [MusicTrack] {
+        try await scoped { try await client(station.connectorId).stationTracks(station) }
     }
 }
 

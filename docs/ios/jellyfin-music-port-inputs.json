@@ -1,0 +1,29 @@
+{
+  "referenceCommit": "0834340cec5531650bfe78cd628628702e636987",
+  "referenceVersion": "0.9.132 Beta",
+  "source": "src-tauri/src/music/connectors/jellyfin",
+  "originalFilesSHA256": {
+    "api.rs": "10745f898f4b4126f157c5491337348c87f8697bbf1a7126b5dc73cc6086ffe5",
+    "browse.rs": "5ff69f4632600e7d736a901a8e7711cbc627fd9814d07cdaf1bd40695c1eb70d",
+    "config.rs": "9d53efe844a1e535132e03c0156663c0707b697821cb0b5cec1e9133ec4a59ed",
+    "http.rs": "069ee61692522a359889dae83496db936ec76cec7c377b7150a817451c2608ff",
+    "items.rs": "8f7969f18e5082aadd5511af67c8dca0fb5ae8cbc30d89af4feb433b1764d663",
+    "mod.rs": "8fb2c608ba21715d7b6b5eacb7e249f8239d552e870c6054ac7d30c8e3274e0c",
+    "rows.rs": "ffc4299a8ba52b19da5ec18c5bfbd33a0ff1d108eb1e198a577e294be9560957",
+    "stream.rs": "7339169fcef459f60057bb77217169f56c7bea88f8275a0a5a2e11e9ea970bae"
+  },
+  "adaptations": [
+    "Original Rust item conversion, browse queries, home rows and stream negotiation reused.",
+    "Tauri config and connector registry replaced by cancellable per-request native JSON adapter; profile credentials live in iOS Keychain.",
+    "Native device ID assigned per signed-in account; no desktop path identity or global private credential cache.",
+    "API body capped at 8 MiB; API redirects restricted to original origin; authorization fields validated before IO.",
+    "No raw password persisted; token-bearing playback URL stays in ephemeral resolution, outside remembered track metadata.",
+    "Server start/stop notifications are ordered from real player lifecycle events, after load rather than during stream resolution."
+  ],
+  "validation": {
+    "originalRustCases": "pending",
+    "nativeJourneys": "pending",
+    "phoneAndTabletVisualReview": "pending",
+    "liveUserServer": "not tested"
+  }
+}

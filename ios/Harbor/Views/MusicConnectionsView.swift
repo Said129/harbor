@@ -25,6 +25,7 @@ import SwiftUI
                     }
                 }
                 Section(DesktopInterfaceText.value("music.connections.server")) {
+                    NavigationLink("Jellyfin") { JellyfinMusicConnectionView(service: workspace.jellyfin, changed: changed) }
                     Button("Subsonic / Navidrome / Ampache") { server = true }
                 }
                 Section(DesktopInterfaceText.value("Metadata")) { NavigationLink("Last.fm / MusicBrainz") { MusicMetadataSettingsView(client: metadata) } }
@@ -33,6 +34,7 @@ import SwiftUI
                         Text(DesktopInterfaceText.value("Auto")).tag("auto")
                         Text(DesktopInterfaceText.value("music.home.yourFiles")).tag("local")
                         Text("Subsonic").tag("subsonic")
+                        if workspace.jellyfin.configured { Text("Jellyfin").tag("jellyfin") }
                         if workspace.soundcloud.enabled { Text("SoundCloud").tag("soundcloud") }
                     }
                 }
