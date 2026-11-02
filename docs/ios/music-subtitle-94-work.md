@@ -423,3 +423,9 @@ The new correction round-trip/native-plan case and phone/tablet-size plus RTL
 editor captures are pending Apple execution and visual review. The existing
 audio-form capture is affected by these new controls; its Spotify half remains
 unchanged. No new IPA or complete Music parity is claimed.
+
+The focused runner now preserves explicit passed/failed/skipped rows and
+exports attachments even when xcodebuild returns a failing test status. A
+nonzero status, missing execution, duplicate/restarted session or failed export
+still prevents a clean result. This does not alter either already live run or
+convert partial evidence into a passing validation.

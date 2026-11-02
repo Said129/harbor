@@ -27,14 +27,16 @@ def save(phase):
     target.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
 
 
-def run(command, name, timeout=1500):
+def run(command, name, timeout=1500, allow_failure=False):
     save(name)
     print("Native phase:", name, flush=True)
     with (logs / (name + ".log")).open("w", encoding="utf-8") as output:
         result = subprocess.run(command, stdout=output, stderr=subprocess.STDOUT, text=True, timeout=timeout)
     if result.returncode:
         print((logs / (name + ".log")).read_text(encoding="utf-8", errors="replace")[-25000:], flush=True)
-        raise SystemExit(result.returncode)
+        if not allow_failure:
+            raise SystemExit(result.returncode)
+    return result.returncode
 
 
 devices = json.loads(subprocess.check_output(["xcrun", "simctl", "list", "devices", "available", "--json"], text=True))
@@ -53,14 +55,19 @@ app = build / "DerivedData/Build/Products/Debug-iphonesimulator/Harbor.app"
 subprocess.run(["xcrun", "simctl", "install", device, str(app)], check=True, timeout=90)
 container = subprocess.check_output(["xcrun", "simctl", "get_app_container", device, "site.harbor.iphone", "data"], text=True).strip()
 subprocess.run(["python3", "scripts/ios/prepare-model-test-startup.py", "--container", container], check=True)
-run(command + selection + ["-resultBundlePath", "ios/build/FocusedTests.xcresult", "test-without-building"], "focused-tests")
+test_status = run(command + selection + ["-resultBundlePath", "ios/build/FocusedTests.xcresult", "test-without-building"], "focused-tests", allow_failure=True)
 text = (logs / "focused-tests.log").read_text(encoding="utf-8", errors="replace")
 rows = re.findall(r"Test Case '-\[" + re.escape(module) + r"\.([A-Za-z0-9_]+) ([A-Za-z0-9_]+)\]' (passed|failed|skipped)", text)
 completed = [module + "/" + group + "/" + method for group, method, status in rows if status == "passed"]
 report["passed"] = completed
 report["rows"] = rows
-report["complete"] = sorted(completed) == sorted(selected) and len(rows) == len(selected) and "Restarting after" not in text
+report["test_exit_code"] = test_status
+report["complete"] = test_status == 0 and sorted(completed) == sorted(selected) and len(rows) == len(selected) and "Restarting after" not in text
 save("finished")
-subprocess.run(["xcrun", "xcresulttool", "export", "attachments", "--path", "ios/build/FocusedTests.xcresult", "--output-path", "ios/build/focused-attachments"], check=True)
+if (build / "FocusedTests.xcresult").exists():
+    export = subprocess.run(["xcrun", "xcresulttool", "export", "attachments", "--path", "ios/build/FocusedTests.xcresult", "--output-path", "ios/build/focused-attachments"], check=False)
+    report["attachments_export_exit_code"] = export.returncode
+    save("finished")
+    assert export.returncode == 0, "Preserve original results; attachment export failed"
 assert report["complete"], "Selected native executions were incomplete; inspect original log"
 print(json.dumps(report), flush=True)
