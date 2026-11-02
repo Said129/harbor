@@ -29,6 +29,7 @@ jobs:
     timeout-minutes: 120
     env:
       HARBOR_FOCUSED_SELECTION: ${{ inputs.selection }}
+      INPUT_PACKAGE: ${{ inputs.package }}
     steps:
       - uses: actions/checkout@v4
       - name: Parse changed native code
@@ -48,6 +49,19 @@ jobs:
           path: ios/build/SourcePackages
           key: iphone-spm-${{ runner.os }}-${{ hashFiles('ios/project.yml') }}
           restore-keys: iphone-spm-${{ runner.os }}-
+      - name: Identify the native compiler cache
+        id: native-toolchain
+        shell: bash
+        run: echo "version=$(xcodebuild -version | shasum -a 256 | cut -d ' ' -f 1)" >> "$GITHUB_OUTPUT"
+      - uses: actions/cache/restore@v6
+        id: native-build
+        with:
+          path: |
+            ios/build/DerivedData/Build/Intermediates.noindex
+            ios/build/DerivedData/Build/Products
+            ios/build/DerivedData/ModuleCache.noindex
+          key: iphone-native-${{ runner.os }}-${{ runner.arch }}-${{ steps.native-toolchain.outputs.version }}-${{ github.sha }}
+          restore-keys: iphone-native-${{ runner.os }}-${{ runner.arch }}-${{ steps.native-toolchain.outputs.version }}-
       - name: Build shared native library
         shell: bash
         run: |
@@ -127,3 +141,11 @@ jobs:
         with:
           path: ios/build/SourcePackages
           key: ${{ steps.spm.outputs.cache-primary-key }}
+      - uses: actions/cache/save@v6
+        if: ${{ always() && steps.native-build.outputs.cache-primary-key != '' && steps.native-build.outputs.cache-hit != 'true' }}
+        with:
+          path: |
+            ios/build/DerivedData/Build/Intermediates.noindex
+            ios/build/DerivedData/Build/Products
+            ios/build/DerivedData/ModuleCache.noindex
+          key: ${{ steps.native-build.outputs.cache-primary-key }}

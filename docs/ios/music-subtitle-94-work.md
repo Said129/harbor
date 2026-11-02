@@ -131,6 +131,26 @@ each architecture and records source diffs, archive hashes and notices.
 Actual native effect execution and an explicitly verified package integration
 remain required. This workflow does not package an IPA or change libmpv.
 
+The user confirmed Auto-sync was **off** for the Obsession case. Automatic VAD
+analysis is therefore not the active path in that example. Also inspected
+mpv v0.41.0 `include/mpv/render.h` and `video/out/vo_libmpv.c`: render-context
+updates are optional when advanced control is absent, and rendering implicitly
+pulls the queued frame. Do not claim the missing optional update call as a
+diagnosed fix or add a subtitle-delay reset without reproducing the fault.
+
+Live handles at the next checkpoint: native fifteen-case run `41479583285`
+(job `125394032213`), movie-hash run `41480784667` (job `125398207543`),
+and DSP library run `41483844236` (job `125408869087`). The latter uses source
+`b7844cf511b178a77d78d95a4b31fc6b7a55a6da`. Job-log download returned 404 while
+the native job was live; that was an unavailable log, not a terminal job.
+
+Future focused builds preserve compiler intermediates/products/module caches
+under an architecture/Xcode/source key. This caches compilation only: the
+explicitly selected new cases still execute, and their result rows remain
+mandatory. The native build command gets 35 minutes within its 55-minute step
+instead of a 25-minute cold-build limit. No running job was cancelled for this
+change. Current validation results must still be collected from their handles.
+
 ## Validation approach
 
 Keep previously accepted unchanged Music, Rust and app evidence. A focused

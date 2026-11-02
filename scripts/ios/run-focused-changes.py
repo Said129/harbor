@@ -47,7 +47,7 @@ command = ["xcodebuild", "-project", "ios/Harbor.xcodeproj", "-scheme", scheme, 
            "-derivedDataPath", "ios/build/DerivedData", "-clonedSourcePackagesDirPath", "ios/build/SourcePackages",
            "-parallel-testing-enabled", "NO", "CODE_SIGNING_ALLOWED=YES", "CODE_SIGN_IDENTITY=-"]
 selection = ["-only-testing:" + name for name in selected]
-run(command + selection + ["build-for-testing"], "focused-build")
+run(command + selection + ["build-for-testing"], "focused-build", timeout=2100)
 app = build / "DerivedData/Build/Products/Debug-iphonesimulator/Harbor.app"
 subprocess.run(["xcrun", "simctl", "install", device, str(app)], check=True, timeout=90)
 container = subprocess.check_output(["xcrun", "simctl", "get_app_container", device, "site.harbor.iphone", "data"], text=True).strip()
