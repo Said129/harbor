@@ -153,6 +153,7 @@ targets:
       - path: HarborTests/MusicPlaylistImportTests.swift
       - path: HarborTests/MusicLyricsTests.swift
       - path: HarborTests/MusicAudioTests.swift
+      - path: HarborTests/MusicPreferencesTests.swift
       - path: HarborTests/SharedMusicTestSupport.swift
       - path: HarborTests/SpotifyMusicTests.swift
       - path: HarborTests/SoundCloudMusicTests.swift

@@ -167,6 +167,11 @@ byte range must be observed **after** loading. An initial metadata range cannot
 satisfy the assertion. This changed case requires its own actual execution;
 the accepted local seek test remains untouched.
 
+The new preferred music source is now part of the existing profile settings
+mirror, alongside shuffle/repeat/volume. It previously used a global defaults
+key without inclusion in that mirror. A new isolated persistence case switches
+independent owners and restarts the store to verify their choices stay separate.
+
 ## Validation approach
 
 Keep previously accepted unchanged Music, Rust and app evidence. A focused
