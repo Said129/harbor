@@ -63,7 +63,7 @@ struct SpotifyContentItem: Decodable, Identifiable, Sendable {
         self.scope = scope; self.currentScope = currentScope
         super.init()
         do { clientID = try KeychainStore().read(storageKey, as: String.self) ?? "" }
-        catch { error = "No se pudo recuperar la configuración de Spotify." }
+        catch { self.error = "No se pudo recuperar la configuración de Spotify." }
         if !clientID.isEmpty { makeRemote() }
         let center = NotificationCenter.default
         tokens.append(center.addObserver(forName: UIApplication.willResignActiveNotification, object: nil, queue: nil) { [weak self] _ in
@@ -71,8 +71,8 @@ struct SpotifyContentItem: Decodable, Identifiable, Sendable {
         })
         tokens.append(center.addObserver(forName: UIApplication.didBecomeActiveNotification, object: nil, queue: nil) { [weak self] _ in
             Task { @MainActor in
-                guard let self, valid, !pendingAuthorization, remote?.connectionParameters.accessToken != nil else { return }
-                remote?.connect()
+                guard let self, self.valid, !self.pendingAuthorization, self.remote?.connectionParameters.accessToken != nil else { return }
+                self.remote?.connect()
             }
         })
     }
@@ -145,15 +145,15 @@ struct SpotifyContentItem: Decodable, Identifiable, Sendable {
         { [weak self] _, failure in
             let failed = failure != nil
             Task { @MainActor in
-                guard let self, valid else { return }
-                if failed { error = "Spotify no permite esta acción ahora. Se mantienen las condiciones de tu cuenta." }
+                guard let self, self.valid else { return }
+                if failed { self.error = "Spotify no permite esta acción ahora. Se mantienen las condiciones de tu cuenta." }
             }
         }
     }
     nonisolated func appRemoteDidEstablishConnection(_ appRemote: SPTAppRemote) {
         let identity = ObjectIdentifier(appRemote)
         Task { @MainActor [weak self] in
-            guard let self, valid, remote.map(ObjectIdentifier.init) == identity else { return }
+            guard let self, self.valid, self.remote.map(ObjectIdentifier.init) == identity else { return }
             connected = true; authorizing = false; error = nil
             SpotifyMusicSelection.shared.active = self
             remote?.playerAPI?.delegate = self
@@ -165,7 +165,7 @@ struct SpotifyContentItem: Decodable, Identifiable, Sendable {
     nonisolated private func disconnected(_ appRemote: SPTAppRemote, failed: Bool) {
         let identity = ObjectIdentifier(appRemote)
         Task { @MainActor [weak self] in
-            guard let self, valid, remote.map(ObjectIdentifier.init) == identity else { return }
+            guard let self, self.valid, self.remote.map(ObjectIdentifier.init) == identity else { return }
             connected = false; authorizing = false
             failContentRequests()
             if failed { self.error = "Abre Spotify y vuelve a conectar. Revisa también el acceso de tu aplicación de desarrollador." }
@@ -173,7 +173,7 @@ struct SpotifyContentItem: Decodable, Identifiable, Sendable {
     }
     nonisolated func playerStateDidChange(_ playerState: any SPTAppRemotePlayerState) {
         let value = SpotifyPlaybackSnapshot(playerState)
-        Task { @MainActor [weak self] in guard let self, valid, connected else { return }; snapshot = value; snapshotAt = Date() }
+        Task { @MainActor [weak self] in guard let self, self.valid, self.connected else { return }; snapshot = value; snapshotAt = Date() }
     }
     private func contentData(_ uri: String?, artwork: Bool) async throws -> Data {
         guard valid, connected, let remote else { throw HarborError(code: "spotify-content") }
@@ -189,9 +189,9 @@ struct SpotifyContentItem: Decodable, Identifiable, Sendable {
                     let failed = error != nil
                     Task { @MainActor in
                         guard let self else { return }
-                        if !valid || !connected { finishContent(request, result: .failure(CancellationError())) }
-                        else if !failed, let data, data.count <= 8 * 1024 * 1024 { finishContent(request, result: .success(data)) }
-                        else { finishContent(request, result: .failure(HarborError(code: "spotify-content"))) }
+                        if !self.valid || !self.connected { self.finishContent(request, result: .failure(CancellationError())) }
+                        else if !failed, let data, data.count <= 8 * 1024 * 1024 { self.finishContent(request, result: .success(data)) }
+                        else { self.finishContent(request, result: .failure(HarborError(code: "spotify-content"))) }
                     }
                 }
                 if artwork, let uri { HarborSpotifyArtwork(remote, uri, completion) }

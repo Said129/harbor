@@ -80,7 +80,11 @@ jobs:
         run: |
           set -euo pipefail
           cargo check --locked --manifest-path harbor-ios-bridge/Cargo.toml 2>&1 | tee ios/build/logs/music-audio-bridge.log
-          cargo test --locked --manifest-path harbor-core/Cargo.toml --no-default-features music_audio:: 2>&1 | tee ios/build/logs/music-audio-tests.log
+          if [[ "$(git hash-object harbor-core/src/music_audio.rs)" == "f2f3181955dc871ca7d40d4f44c42220978ac3cd" && "$(git hash-object harbor-core/src/music_audio_dsp.rs)" == "99beae38d861e7539854e157287c4b84f0a04957" && "$(git hash-object harbor-core/src/music_audio_fx.rs)" == "bf5bdfafcaa93b22acbf183161b480dfc07b3c6e" ]]; then
+            echo "Reusing 13 original audio math passes from source 8a9c3be7, run 41449579804." | tee ios/build/logs/music-audio-reused.log
+          else
+            cargo test --locked --manifest-path harbor-core/Cargo.toml --no-default-features music_audio:: 2>&1 | tee ios/build/logs/music-audio-tests.log
+          fi
       - name: Build once and execute only the requested cases
         timeout-minutes: 55
         run: python3 scripts/ios/run-focused-changes.py

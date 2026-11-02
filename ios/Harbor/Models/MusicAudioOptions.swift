@@ -109,12 +109,12 @@ struct MusicListeningProfile: Codable, Identifiable, Sendable {
     init(owner: String) {
         self.owner = owner
         do { options = try KeychainStore().read("music-audio-options-" + EBookShelf.hash(owner), as: MusicAudioOptions.self) ?? .init() }
-        catch { options = .init(); error = true }
+        catch { options = .init(); self.error = true }
         options.eqBands = (0..<10).map { options.eqBands.indices.contains($0) ? min(12, max(-12, options.eqBands[$0])) : 0 }
         do {
             profiles = Array((try KeychainStore().read(profileKey, as: [MusicListeningProfile].self) ?? []).prefix(20))
             profilesReady = true
-        } catch { error = true }
+        } catch { self.error = true }
     }
     func plan(_ supplied: MusicAudioOptions? = nil) async throws -> MusicAudioPlan {
         let value = supplied ?? options

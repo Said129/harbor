@@ -72,6 +72,22 @@ restrictions and authenticated browsing remain unverified. New mobile Spotify
 setup/consent paragraphs still need full localization. Existing original Music
 labels have been transferred for all sixteen Desktop languages.
 
+Both native runs stopped at Swift compilation; no selected native case executed.
+`41447516378` and `41449579804` exposed an implicit `catch error` shadowing the
+Spotify status property and nested callback captures requiring explicit `self`.
+Those errors, and the same shadowing in the new audio preference loader, are
+corrected. Run `41449579804` did execute and pass all thirteen original Rust
+audio math cases before the Swift failure. Preserve that exact-source evidence.
+The original artifacts are downloaded and SHA-256 verified under
+`work/music-subtitle-94-review/{http-compile-41447516378,audio-compile-41449579804}`.
+
+The user's concrete example is **Obsession, Stremio Community Subtitles**.
+That provider publishes external VTT/ASS tracks. Its public source was inspected
+at `skoruppa/stremio-community-subtitles`, especially `app/routes/subtitles.py`.
+A further owned native case downloads changing WebVTT through the actual addon
+file service after starting playback at eight seconds, then checks seeks and
+captures rendered cues. It has not run yet and is not a claimed drift fix.
+
 ## Validation approach
 
 Keep previously accepted unchanged Music, Rust and app evidence. A focused

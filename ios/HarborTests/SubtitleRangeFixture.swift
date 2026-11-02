@@ -4,14 +4,15 @@ import Foundation
 /// An owned HTTP file with real byte ranges, served only on loopback.
 final class SubtitleRangeFixture: @unchecked Sendable {
     private let data: Data
+    private let subtitle: Data?
     private let listener: NWListener
     private let queue = DispatchQueue(label: "owned-subtitle-ranges")
     private let lock = NSLock()
     private var ready = false
     private var connections: [NWConnection] = []
     private var starts: [Int] = []
-    init(data: Data) throws {
-        self.data = data
+    init(data: Data, subtitle: Data? = nil) throws {
+        self.data = data; self.subtitle = subtitle
         let parameters = NWParameters.tcp
         parameters.requiredLocalEndpoint = .hostPort(host: "127.0.0.1", port: .any)
         listener = try NWListener(using: parameters)
@@ -47,6 +48,8 @@ final class SubtitleRangeFixture: @unchecked Sendable {
     }
     private func reply(_ connection: NWConnection, request: Data) {
         let text = String(decoding: request, as: UTF8.self), lines = text.lowercased().components(separatedBy: "\r\n")
+        let caption = lines.first?.contains(" /community.vtt ") == true
+        let data = caption ? subtitle ?? Data() : self.data
         let range = lines.first { $0.hasPrefix("range: bytes=") }.map { String($0.dropFirst("range: bytes=".count)) }
         let parts = range?.split(separator: "-", omittingEmptySubsequences: false)
         let start = parts?.first.flatMap { Int($0) } ?? 0
@@ -55,7 +58,7 @@ final class SubtitleRangeFixture: @unchecked Sendable {
         guard end >= start else { connection.cancel(); return }
         locked { starts.append(start) }
         let status = range == nil ? "200 OK" : "206 Partial Content"
-        var header = "HTTP/1.1 \(status)\r\nContent-Type: video/x-matroska\r\nAccept-Ranges: bytes\r\nContent-Length: \(end - start + 1)\r\nConnection: close\r\n"
+        var header = "HTTP/1.1 \(status)\r\nContent-Type: \(caption ? "text/vtt" : "video/x-matroska")\r\nAccept-Ranges: bytes\r\nContent-Length: \(end - start + 1)\r\nConnection: close\r\n"
         if range != nil { header += "Content-Range: bytes \(start)-\(end)/\(data.count)\r\n" }
         var response = Data((header + "\r\n").utf8)
         if !lines[0].hasPrefix("head ") { response.append(data[start...end]) }

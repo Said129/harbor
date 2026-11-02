@@ -5,6 +5,32 @@ import XCTest
 
 final class SubtitleSeekTests: XCTestCase {
     @available(iOS, deprecated: 12.0)
+    @MainActor func testDownloadedCommunityWebVTTCuesFollowSeeksAfterResumingMidVideo() async throws {
+        let clip = try XCTUnwrap(Bundle(for: Self.self).url(forResource: "owned-subtitle-seek", withExtension: "mkv", subdirectory: "Fixtures"))
+        let vtt = "WEBVTT\n\n" + (0..<7).map { index in "00:00:\(String(format: "%02d", index * 4)).000 --> 00:00:\(String(format: "%02d", index * 4 + 3)).500\nCOMMUNITY CUE \(index)\n" }.joined(separator: "\n")
+        let server = try SubtitleRangeFixture(data: Data(contentsOf: clip), subtitle: Data(vtt.utf8))
+        defer { server.stop() }
+        let url = try await server.start(), caption = url.deletingLastPathComponent().appendingPathComponent("community.vtt")
+        let scene = try XCTUnwrap(UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }.first)
+        let previous = scene.windows.first { $0.isKeyWindow }, window = UIWindow(windowScene: scene)
+        window.frame = CGRect(x: 0, y: 0, width: 640, height: 360)
+        let preferences = PlaybackPreferences.shared.options; PlaybackPreferences.shared.options = PlaybackOptions()
+        defer { window.isHidden = true; window.rootViewController = nil; previous?.makeKeyAndVisible(); PlaybackPreferences.shared.options = preferences }
+        let state = PlayerState(), controller = MPVController(source: .init(url: url.absoluteString, headers: nil, subtitles: nil, via: "test-fixture"), state: state, startMs: 8000, preservePosition: true, startPaused: true)
+        window.rootViewController = controller; window.makeKeyAndVisible(); controller.view.layoutIfNeeded()
+        defer { controller.close() }
+        let surface = try XCTUnwrap(controller.view as? GLKView)
+        try await wait(surface, state: state) { state.loaded && state.paused && state.position >= 8 }
+        controller.loadAddonSubtitle(.init(url: caption.absoluteString, lang: "spa", id: "owned-community", title: "Owned Community fixture"))
+        try await wait(surface, state: state) { !state.subtitleChanging && state.primarySubtitle?.external == true }
+        try await exercise(controller, surface: surface, state: state, prefix: "COMMUNITY")
+        try await captureSeek(controller, surface: surface, state: state, prefix: "COMMUNITY", target: 17, cue: 4)
+        try await captureSeek(controller, surface: surface, state: state, prefix: "COMMUNITY", target: 5, cue: 1)
+        XCTAssertNotNil(state.addonSubtitleTracks[caption.absoluteString]); XCTAssertNil(state.subtitleIssue)
+        XCTAssertEqual(state.subtitleDelay, 0, accuracy: 0.001)
+    }
+
+    @available(iOS, deprecated: 12.0)
     @MainActor func testHTTPRangeSeeksRetainEmbeddedAndExternalCuesAndRenderedSubtitles() async throws {
         let clip = try XCTUnwrap(Bundle(for: Self.self).url(forResource: "owned-subtitle-seek", withExtension: "mkv", subdirectory: "Fixtures"))
         let server = try SubtitleRangeFixture(data: Data(contentsOf: clip)); defer { server.stop() }
