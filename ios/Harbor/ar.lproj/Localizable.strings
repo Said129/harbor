@@ -2298,9 +2298,9 @@
 "music.connect.shelfTitle" = "اربط {name} لملء هذا الرف";
 "music.connect.stationsBody" = "Radio and mixes are built by a connected playback source.";
 "music.connect.title" = "ربط {name}";
-"music.connections.capability.browse" = "Browse";
-"music.connections.capability.library" = "Library";
-"music.connections.capability.play" = "Play";
+"music.connections.capability.browse" = "تصفّح";
+"music.connections.capability.library" = "المكتبة";
+"music.connections.capability.play" = "تشغيل";
 "music.connections.capability.scrobble" = "Scrobble";
 "music.connections.capability.search" = "بحث";
 "music.connections.catalog" = "Catalog";

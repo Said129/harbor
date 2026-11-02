@@ -2256,9 +2256,9 @@
 "music.connect.shelfTitle" = "{name} verbinden, um dieses Regal zu füllen";
 "music.connect.stationsBody" = "Radio and mixes are built by a connected playback source.";
 "music.connect.title" = "{name} verbinden";
-"music.connections.capability.browse" = "Browse";
-"music.connections.capability.library" = "Library";
-"music.connections.capability.play" = "Play";
+"music.connections.capability.browse" = "Durchsuchen";
+"music.connections.capability.library" = "Mediathek";
+"music.connections.capability.play" = "Abspielen";
 "music.connections.capability.scrobble" = "Scrobble";
 "music.connections.capability.search" = "Suche";
 "music.connections.catalog" = "Catalog";

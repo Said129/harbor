@@ -2256,9 +2256,9 @@
 "music.connect.shelfTitle" = "यह शेल्फ़ भरने के लिए {name} कनेक्ट करें";
 "music.connect.stationsBody" = "Radio and mixes are built by a connected playback source.";
 "music.connect.title" = "{name} कनेक्ट करें";
-"music.connections.capability.browse" = "Browse";
-"music.connections.capability.library" = "Library";
-"music.connections.capability.play" = "Play";
+"music.connections.capability.browse" = "ब्राउज़ करें";
+"music.connections.capability.library" = "लाइब्रेरी";
+"music.connections.capability.play" = "चलाएँ";
 "music.connections.capability.scrobble" = "Scrobble";
 "music.connections.capability.search" = "खोज";
 "music.connections.catalog" = "Catalog";

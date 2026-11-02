@@ -26,8 +26,25 @@
       "run": 41496910543,
       "artifactSHA256": "de53063380126de39284e5dbede7fde6a43f938aceeb49c2fc8a22c43b659b6f"
     },
-    "nativeProviderJourneys": "pending",
-    "phoneAndTabletVisualReview": "pending",
+    "nativeProviderJourneys": {
+      "source": "0e95ae05d9f26a3f0090337669628ce0218be1de",
+      "run": 41540825290,
+      "artifactSHA256": "5d7b69cf5cfda5d21b00fb25b40e9100c5f7ed33f78a7bf49fc9a11a52b769c9",
+      "passed": [
+        "testLatePlexConnectionAndRememberedAccountStayWithinTheirProfile",
+        "testPlexCatalogPrivateCoversStationsAndRealNativePlaybackUseTheOwnedServer",
+        "testPlexConnectionAndPrivateMusicCoverRenderForPhoneAndTabletInSixteenLanguages"
+      ],
+      "server": "owned loopback fixture"
+    },
+    "phoneAndTabletVisualReview": {
+      "originalRun": 41540825290,
+      "exportOnlyRun": 41546821220,
+      "capturesArtifactSHA256": "a8dcea27c9169778d21859bf520b06d2fece48c790c668ea9212b536d336ccd4",
+      "layout": "reviewed; controls and private covers visible without overlap",
+      "translationFollowup": "three capability captions corrected separately using existing 16-language labels",
+      "physicalIPad": false
+    },
     "realPrivateServer": "not tested"
   }
 }

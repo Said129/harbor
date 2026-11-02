@@ -2283,9 +2283,9 @@
 "music.connect.shelfTitle" = "Conecte {name} para preencher esta prateleira";
 "music.connect.stationsBody" = "Radio and mixes are built by a connected playback source.";
 "music.connect.title" = "Conectar {name}";
-"music.connections.capability.browse" = "Browse";
-"music.connections.capability.library" = "Library";
-"music.connections.capability.play" = "Play";
+"music.connections.capability.browse" = "Explorar";
+"music.connections.capability.library" = "Biblioteca";
+"music.connections.capability.play" = "Reproduzir";
 "music.connections.capability.scrobble" = "Scrobble";
 "music.connections.capability.search" = "Buscar";
 "music.connections.catalog" = "Catalog";

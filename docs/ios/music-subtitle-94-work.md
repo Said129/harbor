@@ -469,3 +469,31 @@ the unchanged original is
 f245cb2e8002fd89c42742a6166feb88399f9953092bedb1be6b787714540a54.
 Both the changed HTTP journey and new listening controls remain pending native
 execution. No broad repeat of the 25 passing cases is requested.
+
+Run 41546821220 exported the original attachments successfully without building
+or executing tests. Its archive SHA-256 is
+a8dcea27c9169778d21859bf520b06d2fece48c790c668ea9212b536d336ccd4.
+All twelve captures were inspected: phone/tablet-size Jellyfin, Plex connection
+and loaded private covers, audio settings, Spotify setup, and Community glyphs
+4/1 visibly drawn after seeking to 17/5 seconds. Controls fit without overlap;
+the old audio layout is superseded by the pending new editor. These are window
+sizes on the iPhone simulator, not physical-iPad validation.
+
+That inspection found untranslated capability words in the original music
+labels and an unmapped generic Open label in Spotify. The three capability
+translations now reuse the already translated Browse/Play/Library values in
+all sixteen native bundles. Spotify uses its existing Open on Spotify key.
+No provider, audio or credential behavior changed for this wording follow-up.
+
+The build log also contains the original GLES deprecations, Xcode's optional
+AppIntents notice and quoted-sibling-include warnings from the unmodified
+Spotify binary headers. The project disables only that vendor include-style
+category, retaining Swift/API warnings and the exact SDK bytes. The next
+affected Apple build must check that configuration; no existing test pass is
+repeated solely for this diagnostic setting.
+
+The six-case listening-controls run is 41546828656 on source 2370ec6c. It
+contains three new parametric/speed cases, the changed audio form, the corrected
+lyrics ownership case and the indexed HTTP journey. The five-case binary
+candidate run remains 41544752262; neither live run is restarted. No IPA is
+requested by either run.

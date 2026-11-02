@@ -11,6 +11,9 @@ settings:
     SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD: NO
     CODE_SIGNING_ALLOWED: NO
     ENABLE_USER_SCRIPT_SANDBOXING: YES
+    # The pinned, unmodified Spotify framework uses quoted sibling includes.
+    # Keep Swift/API warnings enabled; this category is vendor header style.
+    CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER: NO
 packages:
   SpotifyiOS:
     url: https://github.com/spotify/ios-sdk.git

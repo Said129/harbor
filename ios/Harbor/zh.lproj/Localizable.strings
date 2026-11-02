@@ -2256,9 +2256,9 @@
 "music.connect.shelfTitle" = "连接 {name} 来填满这一栏";
 "music.connect.stationsBody" = "Radio and mixes are built by a connected playback source.";
 "music.connect.title" = "连接 {name}";
-"music.connections.capability.browse" = "Browse";
-"music.connections.capability.library" = "Library";
-"music.connections.capability.play" = "Play";
+"music.connections.capability.browse" = "浏览";
+"music.connections.capability.library" = "媒体库";
+"music.connections.capability.play" = "播放";
 "music.connections.capability.scrobble" = "Scrobble";
 "music.connections.capability.search" = "搜索";
 "music.connections.catalog" = "Catalog";

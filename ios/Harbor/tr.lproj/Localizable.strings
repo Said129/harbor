@@ -2256,9 +2256,9 @@
 "music.connect.shelfTitle" = "Bu rafı doldurmak için {name} bağlayın";
 "music.connect.stationsBody" = "Radio and mixes are built by a connected playback source.";
 "music.connect.title" = "{name} bağla";
-"music.connections.capability.browse" = "Browse";
-"music.connections.capability.library" = "Library";
-"music.connections.capability.play" = "Play";
+"music.connections.capability.browse" = "Göz at";
+"music.connections.capability.library" = "Kütüphane";
+"music.connections.capability.play" = "Oynat";
 "music.connections.capability.scrobble" = "Scrobble";
 "music.connections.capability.search" = "Ara";
 "music.connections.catalog" = "Catalog";

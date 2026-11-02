@@ -2271,9 +2271,9 @@
 "music.connect.shelfTitle" = "Подключите {name}, чтобы заполнить эту полку";
 "music.connect.stationsBody" = "Radio and mixes are built by a connected playback source.";
 "music.connect.title" = "Подключить {name}";
-"music.connections.capability.browse" = "Browse";
-"music.connections.capability.library" = "Library";
-"music.connections.capability.play" = "Play";
+"music.connections.capability.browse" = "Каталог";
+"music.connections.capability.library" = "Библиотека";
+"music.connections.capability.play" = "Воспроизвести";
 "music.connections.capability.scrobble" = "Scrobble";
 "music.connections.capability.search" = "Поиск";
 "music.connections.catalog" = "Catalog";

@@ -2256,9 +2256,9 @@
 "music.connect.shelfTitle" = "{name} を接続してこの棚を埋める";
 "music.connect.stationsBody" = "Radio and mixes are built by a connected playback source.";
 "music.connect.title" = "{name} を接続";
-"music.connections.capability.browse" = "Browse";
-"music.connections.capability.library" = "Library";
-"music.connections.capability.play" = "Play";
+"music.connections.capability.browse" = "一覧";
+"music.connections.capability.library" = "ライブラリ";
+"music.connections.capability.play" = "再生";
 "music.connections.capability.scrobble" = "Scrobble";
 "music.connections.capability.search" = "検索";
 "music.connections.catalog" = "Catalog";

@@ -2256,9 +2256,9 @@
 "music.connect.shelfTitle" = "{name}을(를) 연결해 이 선반을 채우세요";
 "music.connect.stationsBody" = "Radio and mixes are built by a connected playback source.";
 "music.connect.title" = "{name} 연결";
-"music.connections.capability.browse" = "Browse";
-"music.connections.capability.library" = "Library";
-"music.connections.capability.play" = "Play";
+"music.connections.capability.browse" = "탐색";
+"music.connections.capability.library" = "라이브러리";
+"music.connections.capability.play" = "재생";
 "music.connections.capability.scrobble" = "Scrobble";
 "music.connections.capability.search" = "검색";
 "music.connections.catalog" = "Catalog";

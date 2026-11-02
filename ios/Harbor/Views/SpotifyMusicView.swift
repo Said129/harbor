@@ -49,10 +49,10 @@ import UIKit
                 Text(SpotifyMusicService.redirect).font(.caption.monospaced()).textSelection(.enabled)
                 Button(DesktopInterfaceText.value("music.spotifySetup.copyUri")) { UIPasteboard.general.string = SpotifyMusicService.redirect }
             }
-            Section(DesktopInterfaceText.value("Open")) {
+            Section(DesktopInterfaceText.value("music.spotifyLibrary.open")) {
                 TextField("Spotify URL / URI", text: $link).textInputAutocapitalization(.never).autocorrectionDisabled()
                 Button(DesktopInterfaceText.value("music.play") + " · Spotify") { if let uri = SpotifyMusicLink.uri(link) { service.play(uri) } }.disabled(!service.connected || SpotifyMusicLink.uri(link) == nil)
-                Link(DesktopInterfaceText.value("Open") + " · Spotify", destination: URL(string: "https://open.spotify.com")!)
+                Link(DesktopInterfaceText.value("music.spotifyLibrary.open"), destination: URL(string: "https://open.spotify.com")!)
                 Text(DesktopInterfaceText.value("music.mobile.spotify.external")).font(.footnote).foregroundStyle(.secondary)
             }
         }.navigationTitle("Spotify").navigationBarTitleDisplayMode(.inline)
