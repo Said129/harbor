@@ -127,15 +127,35 @@ import Observation
     }
     func search(_ query: String, limit: Int) async throws -> MusicCatalogSearch {
         guard enabled else { return .init(top: nil, tracks: [], albums: [], artists: [], playlists: []) }
-        let params = ["q": String(query.prefix(200)), "limit": String(min(100, max(1, limit))), "linked_partitioning": "1"]
-        let result = try await call("/search/tracks", parameters: params)
-        let tracks = result["collection"].array.compactMap(Self.track)
-        return .init(top: tracks.first.map(MusicCatalogItem.track), tracks: tracks, albums: [], artists: [], playlists: [])
+        try validate(); let version = revision, maximum = min(100, max(1, limit)), side = min(12, max(1, limit))
+        let query = String(query.trimmingCharacters(in: .whitespacesAndNewlines).prefix(200))
+        if query.isEmpty { return .init(top: nil, tracks: [], albums: [], artists: [], playlists: []) }
+        let params = ["q": query, "limit": String(min(50, maximum)), "offset": "0", "linked_partitioning": "1"]
+        let sideParams = ["q": query, "limit": String(side), "offset": "0", "linked_partitioning": "1"]
+        // Desktop typed_search requires tracks but permits a failed side bucket.
+        async let tracksResult = call("/search/tracks", parameters: params)
+        async let usersResult = optionalCollection("/search/users", parameters: sideParams)
+        async let playlistsResult = optionalCollection("/search/playlists", parameters: sideParams)
+        let replies = try await (tracksResult, usersResult, playlistsResult)
+        try validate(version); health = .healthy
+        let tracks = Array(replies.0["collection"].array.compactMap(Self.track).prefix(maximum))
+        return .init(top: tracks.first.map(MusicCatalogItem.track), tracks: tracks, albums: [],
+                     artists: replies.1.compactMap(Self.artist), playlists: replies.2.compactMap(Self.playlist))
+    }
+    private func optionalCollection(_ path: String, parameters: [String: String]) async throws -> [JSONValue] {
+        do { return try await call(path, parameters: parameters)["collection"].array }
+        catch is CancellationError { throw CancellationError() }
+        catch { return [] }
+    }
+    private static func artist(_ value: JSONValue) -> MusicCatalogArtist? {
+        guard let id = value["id"].integer, let name = value["username"].string?.trimmingCharacters(in: .whitespacesAndNewlines), !name.isEmpty else { return nil }
+        let artwork = value["avatar_url"].string?.trimmingCharacters(in: .whitespacesAndNewlines).replacingOccurrences(of: "-large.jpg", with: "-t500x500.jpg")
+        return .init(id: String(id), connectorId: "soundcloud", name: name, artwork: artwork?.isEmpty == false ? artwork : nil, subtitle: nil)
     }
     func albumTracks(_ album: MusicCatalogAlbum) async throws -> [MusicTrack] { throw HarborError(code: "music-soundcloud-album") }
     func artistTop(_ artist: MusicCatalogArtist) async throws -> [MusicTrack] {
         guard let id = UInt64(artist.id.split(separator: ":").last ?? "") else { throw HarborError(code: "music-soundcloud-artist") }
-        return try await call("/users/\(id)/tracks", parameters: ["limit": "50", "linked_partitioning": "1"])["collection"].array.compactMap(Self.track)
+        return try await call("/users/\(id)/tracks", parameters: ["limit": "20", "linked_partitioning": "1"])["collection"].array.compactMap(Self.track)
     }
     func artistRows(_ artist: MusicCatalogArtist) async throws -> [MusicCatalogRow] { try validate(); return [] }
     func artistCatalog(_ artist: MusicCatalogArtist, kind: MusicCatalogKind, cursor: String?) async throws -> MusicCatalogPage {
@@ -147,7 +167,7 @@ import Observation
         if playlist.id.hasPrefix("soundcloud:system-playlists:") { path = "/system-playlists/" + playlist.id }
         else if let id = UInt64(playlist.id) { path = "/playlists/\(id)" }
         else { throw HarborError(code: "music-soundcloud-playlist") }
-        let tracks = try await call(path)["tracks"].array
+        let tracks = Array(try await call(path)["tracks"].array.prefix(100))
         var output: [MusicTrack] = []
         for start in stride(from: 0, to: tracks.count, by: 50) {
             let entries = Array(tracks[start..<min(start + 50, tracks.count)])

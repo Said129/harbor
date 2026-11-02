@@ -250,3 +250,23 @@ recorded missing MSVC linker and unavailable Linux host remain unchanged. New
 Rust compile/check/tests and Apple compilation will run in the affected CI job.
 The earlier nineteen-case and corrected FFmpeg 8.1.2 jobs are still running;
 their accepted or failed rows must be collected from their existing run IDs.
+
+A fourth Jellyfin journey now checks disconnect while the public catalog is
+still loading. The merged result also fences Jellyfin's credential revision,
+so an old account's completed rows cannot appear after disconnection. That case
+is pending execution and was not part of the original three-case dispatch.
+
+SoundCloud typed search now follows Desktop's three parallel buckets: tracks
+are required, artists and playlists tolerate independent source failure, with
+its 12-item side limit and 50-item endpoint page ceiling. Artist cover upgrades,
+20 top tracks and the 100-track playlist bound match the pinned connector.
+The new typed-search journey plus the existing affected search/resolve journey
+need execution on this new source; the unchanged transcoding preference case
+need not be rerun after acceptance. These follow-up cases should use available
+native compile caches rather than starting another duplicate cold build while
+the current jobs are live.
+
+Read-only investigation of mpv issue 18676 found a reported external PGS seek
+state issue on 0.41/FFmpeg 8.1.2. That is not evidence for the user's Community
+VTT case; no PGS workaround, subtitle reload or timing reset was added based on
+it. Source: https://github.com/mpv-player/mpv/issues/18676.
