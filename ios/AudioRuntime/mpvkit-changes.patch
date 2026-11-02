@@ -1,0 +1,34 @@
+diff --git a/Sources/BuildScripts/XCFrameworkBuild/main.swift b/Sources/BuildScripts/XCFrameworkBuild/main.swift
+index e5f872c..6fd1a64 100644
+--- a/Sources/BuildScripts/XCFrameworkBuild/main.swift
++++ b/Sources/BuildScripts/XCFrameworkBuild/main.swift
+@@ -18,7 +18,7 @@ do {
+     try BuildASS().buildALL()
+ 
+     // libsmbclient
+-    try BuildSmbclient().buildALL()
++
+ 
+     // libbluray
+     try BuildBluray().buildALL()
+@@ -34,9 +34,9 @@ do {
+     try BuildFFMPEG().buildALL()
+ 
+     // mpv
+-    try BuildUchardet().buildALL()
+-    try BuildLuaJIT().buildALL()
+-    try BuildMPV().buildALL()
++
++
++
+ } catch {
+     print(error.localizedDescription)
+     exit(1)
+@@ -733,6 +733,7 @@ private class BuildFFMPEG: BaseBuild {
+ 
+         // ./configure --list-filters
+         "--disable-filters",
++        "--enable-filter=aecho", "--enable-filter=crossfeed", "--enable-filter=bass", "--enable-filter=treble", "--enable-filter=lowpass", "--enable-filter=highpass", "--enable-filter=bandreject", "--enable-filter=astats", "--enable-filter=ametadata", "--enable-filter=afade", "--enable-filter=acrossfade", "--enable-filter=asplit", "--enable-filter=asetpts", "--enable-filter=alimiter",
+         "--enable-filter=aformat", "--enable-filter=amix", "--enable-filter=anull", "--enable-filter=aresample",
+         "--enable-filter=areverse", "--enable-filter=asetrate", "--enable-filter=atempo", "--enable-filter=atrim",
+         "--enable-filter=bwdif", "--enable-filter=delogo",

@@ -30,7 +30,7 @@ actor MusicAudioEngine: MusicAudioEngineOperating {
     private var processing = MusicAudioPlan.defaults
     func configure(_ plan: MusicAudioPlan, request: UInt64) async throws {
         guard request >= newest else { throw CancellationError() }
-        guard plan.settings.supported, plan.effects.kind == "off" else { throw HarborError(code: "music-audio-unavailable") }
+        guard MusicAudioRuntime.supports(plan) else { throw HarborError(code: "music-audio-unavailable") }
         if let handle, request == newest {
             do { try apply(plan, to: handle) }
             catch { try? apply(processing, to: handle); throw error }

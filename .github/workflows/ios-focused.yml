@@ -8,6 +8,9 @@ on:
       package:
         type: boolean
         default: false
+      runtime_candidate:
+        type: boolean
+        default: false
   workflow_dispatch:
     inputs:
       selection:
@@ -16,6 +19,10 @@ on:
         type: string
       package:
         description: Build the next requested interim IPA after the selected tests pass
+        type: boolean
+        default: false
+      runtime_candidate:
+        description: Validate the verified audio filter candidate without changing the default runtime
         type: boolean
         default: false
 permissions:
@@ -30,6 +37,7 @@ jobs:
     env:
       HARBOR_FOCUSED_SELECTION: ${{ inputs.selection }}
       INPUT_PACKAGE: ${{ inputs.package }}
+      HARBOR_MUSIC_RUNTIME_CANDIDATE: ${{ inputs.runtime_candidate }}
     steps:
       - uses: actions/checkout@v4
       - name: Parse changed native code
@@ -47,7 +55,7 @@ jobs:
         id: spm
         with:
           path: ios/build/SourcePackages
-          key: iphone-spm-${{ runner.os }}-${{ hashFiles('ios/project.yml') }}
+          key: iphone-spm-${{ runner.os }}-${{ inputs.runtime_candidate }}-${{ hashFiles('ios/project.yml', 'ios/MPVKitMusic/Package.swift', 'ios/AudioRuntime/package-inputs.json') }}
           restore-keys: iphone-spm-${{ runner.os }}-
       - name: Identify the native compiler cache
         id: native-toolchain
@@ -114,7 +122,12 @@ jobs:
           python3 scripts/ios/fetch-interface-font.py
           python3 scripts/ios/fetch-manga-font.py
           brew list xcodegen >/dev/null 2>&1 || brew install xcodegen
-          xcodegen generate --spec ios/project.yml
+          spec=ios/project.yml
+          if [[ '${{ inputs.runtime_candidate }}' == 'true' ]]; then
+            python3 scripts/ios/prepare-music-runtime.py
+            spec=ios/project.music-runtime.generated.yml
+          fi
+          xcodegen generate --spec "$spec"
           python3 scripts/ios/resolve-packages.py
       - name: Validate original audio processing math
         if: ${{ contains(inputs.selection, 'MusicAudioTests') }}

@@ -33,11 +33,7 @@ struct MusicAudioOptions: Codable, Equatable, Sendable {
     var pitch = 0.0
     var broadcastEnabled = false
     var broadcastDevice = "auto"
-    // These filters are present in the pinned MPVKit build. Keep the full
-    // Desktop document so unsupported effects are never silently discarded.
-    var supported: Bool {
-        dspBypass || reverb == 0 && crossfeed == 0 && (eqMode != "parametric" || peqFilters.filter(\.enabled).allSatisfy { $0.type == "peak" })
-    }
+    var supported: Bool { MusicAudioRuntime.supports(self) }
 }
 struct MusicAudioSignal: Sendable {
     let codec: String?
@@ -121,7 +117,7 @@ struct MusicListeningProfile: Codable, Identifiable, Sendable {
         return try await CoreBridge().call("musicAudioPlan", ["settings": try .encoded(value)])
     }
     func save(_ plan: MusicAudioPlan) throws {
-        guard plan.settings.supported, plan.effects.kind == "off" else { throw HarborError(code: "music-audio-unavailable") }
+        guard MusicAudioRuntime.supports(plan) else { throw HarborError(code: "music-audio-unavailable") }
         try KeychainStore().write(plan.settings, key: key)
         options = plan.settings; error = false; revision = UUID()
     }

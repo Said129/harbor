@@ -39,6 +39,7 @@ targets:
             ReadingFontNotices.txt,
             EBookNarrationNotices.txt,
             SpotifySDKNotices.txt,
+            MusicRuntimeNotices.txt,
             EBookEdgeTokenV2.js,
           ]
       - path: Harbor/ReadingFontNotices.txt
@@ -46,6 +47,8 @@ targets:
       - path: Harbor/EBookNarrationNotices.txt
         buildPhase: resources
       - path: Harbor/SpotifySDKNotices.txt
+        buildPhase: resources
+      - path: Harbor/MusicRuntimeNotices.txt
         buildPhase: resources
       - path: Harbor/EBookEdgeTokenV2.js
         buildPhase: resources
@@ -153,6 +156,7 @@ targets:
       - path: HarborTests/MusicPlaylistImportTests.swift
       - path: HarborTests/MusicLyricsTests.swift
       - path: HarborTests/MusicAudioTests.swift
+      - path: HarborTests/MusicExtendedAudioTests.swift
       - path: HarborTests/PlexMusicTests.swift
       - path: HarborTests/PlexMusicFixture.swift
       - path: HarborTests/JellyfinMusicTests.swift

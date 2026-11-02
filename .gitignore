@@ -46,6 +46,8 @@ local_docs/
 /ios/build/
 /ios/Harbor.xcodeproj/
 /ios/Info.plist
+/ios/project.music-runtime.generated.yml
+/ios/MPVKitMusic/Libavfilter.xcframework/
 /scripts/ios/__pycache__/
 
 # Original Fontshare resource is fetched directly for app embedding at build.

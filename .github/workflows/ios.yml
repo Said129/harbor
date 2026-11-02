@@ -6,6 +6,10 @@ on:
         description: "Validate affected changes without building an IPA; disable only for the consolidated final delivery"
         type: boolean
         default: true
+      music_runtime_candidate:
+        description: "Validate the verified audio-filter candidate without changing the default app runtime"
+        type: boolean
+        default: false
       run_live_integration:
         description: "Test the native services and UI with real public addons"
         type: boolean
@@ -133,6 +137,7 @@ jobs:
     with:
       selection: ${{ inputs.native_test_selection }}
       package: ${{ !inputs.validation_only }}
+      runtime_candidate: ${{ inputs.music_runtime_candidate }}
   apple:
     name: Apple SDK / Swift / iPhone
     if: ${{ github.event_name == 'workflow_dispatch' && github.event.repository.private == false && inputs.validation_scope != 'music-runtime' && inputs.validation_scope != 'focused' && inputs.validation_scope != 'reuse' && inputs.validation_scope != 'continuation-sendable' }}

@@ -18,6 +18,7 @@ assert len(modules) == 1
 module = modules.pop()
 scheme = "HarborFocused" if module == "HarborChangedTests" else "Harbor"
 report = {"source": os.environ["GITHUB_SHA"], "selected": selected, "complete": False, "package_requested": os.environ.get("INPUT_PACKAGE") == "true"}
+report["runtime_candidate"] = os.environ.get("HARBOR_MUSIC_RUNTIME_CANDIDATE") == "true"
 target = build / "focused-results.json"
 
 

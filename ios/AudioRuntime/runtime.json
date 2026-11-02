@@ -1,0 +1,134 @@
+{
+  "mpvkit": "288527dffbc6d3e63cce147fc7b520c64a791603",
+  "ffmpeg": "38b88335f99e76ed89ff3c93f877fdefce736c13",
+  "ffmpegVersion": "n8.1.2",
+  "filters": [
+    "aecho",
+    "crossfeed",
+    "bass",
+    "treble",
+    "lowpass",
+    "highpass",
+    "bandreject",
+    "astats",
+    "ametadata",
+    "afade",
+    "acrossfade",
+    "asplit",
+    "asetpts",
+    "alimiter"
+  ],
+  "baselineBinarySha256": {
+    "Libavfilter": "3e71af8633d99d365f14b88064bceafd57acb23fc64db90e55b715a9c0dca328",
+    "Libavutil": "5dc251c8807c501982edfb0bc9bddfee4148733142d6ebb947738c60fb3bf8d8"
+  },
+  "originalBuilderSha256": "6c16aa24952165db875497af758968880bba5549157687c17f9014eb859a906c",
+  "patchedBuilderSha256": "a255c86a99894dd715ce4b8b3d5d58daaec9be478fddbc38cab4f43077782a42",
+  "architectures": [
+    {
+      "platform": "ios",
+      "architecture": "arm64",
+      "configSha256": "d521b652ded48362f2bb788bd7ba262ebc857281700c6b28bd86e214190b3fcc"
+    },
+    {
+      "platform": "isimulator",
+      "architecture": "arm64",
+      "configSha256": "d521b652ded48362f2bb788bd7ba262ebc857281700c6b28bd86e214190b3fcc"
+    },
+    {
+      "platform": "isimulator",
+      "architecture": "x86_64",
+      "configSha256": "d521b652ded48362f2bb788bd7ba262ebc857281700c6b28bd86e214190b3fcc"
+    }
+  ],
+  "archiveSha256": "b3d8406c8ebf61018709e18fac526e13910e032b870ff9fe35ac4a1ef2f6934a",
+  "libraries": [
+    {
+      "BinaryPath": "Libavfilter.framework/Libavfilter",
+      "LibraryIdentifier": "ios-arm64",
+      "LibraryPath": "Libavfilter.framework",
+      "SupportedArchitectures": ["arm64"],
+      "SupportedPlatform": "ios"
+    },
+    {
+      "BinaryPath": "Libavfilter.framework/Libavfilter",
+      "LibraryIdentifier": "ios-arm64_x86_64-simulator",
+      "LibraryPath": "Libavfilter.framework",
+      "SupportedArchitectures": ["arm64", "x86_64"],
+      "SupportedPlatform": "ios",
+      "SupportedPlatformVariant": "simulator"
+    }
+  ],
+  "downloadedDependencyArchives": [
+    {
+      "path": "gmp-3.8.11/gmp.zip",
+      "sha256": "cef5c3ff12260528a5971d2bd7bb3bc31ae85fac1235c06eff3de96c28c38aa2"
+    },
+    {
+      "path": "gnutls-3.8.11/gnutls.zip",
+      "sha256": "6e125d9d7be4e09e112950703b0563324f5a05e546782e542b353db360f59b59"
+    },
+    {
+      "path": "lcms2-2.17.0/lcms2.zip",
+      "sha256": "8c118b2c04e2440ecf25ffebfa7952ebb09aba83a71378e3b9ed45dae3a6115a"
+    },
+    {
+      "path": "libass-0.17.5/libass.zip",
+      "sha256": "d5e4b6046d0a4198fb97083816348b2229071749de8c429747a9558c325a1d3a"
+    },
+    {
+      "path": "libbluray-1.4.0/libbluray.zip",
+      "sha256": "c0302f43258ba41d9661dea0be4a7c9c1dd59d30d284ecfbf7319157c8e8a8de"
+    },
+    {
+      "path": "libdav1d-1.5.3/libdav1d.zip",
+      "sha256": "5d9ca131372bc9513100dbc43a59582ad1cf7acf6136ad4e6fecd63dc0075d82"
+    },
+    {
+      "path": "libdovi-3.3.2/libdovi.zip",
+      "sha256": "81b85386016a012391c473674ef96e4e494fa76aef2f7b6c102a335e844644f8"
+    },
+    {
+      "path": "libfreetype-0.17.5/libfreetype.zip",
+      "sha256": "d5fb41dd3d66c6e433b389a398571b51b8d65f3f9e81f10ee61d5434a647749e"
+    },
+    {
+      "path": "libfribidi-0.17.5/libfribidi.zip",
+      "sha256": "7ae8cf8c8b16a8b4ebc004f3368044d9baf8454398d18d9e8bc37964b04a2fe6"
+    },
+    {
+      "path": "libharfbuzz-0.17.5/libharfbuzz.zip",
+      "sha256": "ff67179fb84a9a0f34b2ba276c4028823fecd90315cf18496be400cdfc768a3e"
+    },
+    {
+      "path": "libplacebo-7.360.1/libplacebo.zip",
+      "sha256": "cdb8a07563bca119ca909ab4a3503825c27678736cdab294338b0a7dbe2cf35c"
+    },
+    {
+      "path": "libshaderc-2025.5.0/libshaderc.zip",
+      "sha256": "1079da73a292e5b2cea6a02fa2208c4935ead79a98043f81708424510e0ab53f"
+    },
+    {
+      "path": "libuavs3d-1.2.1-fix/libuavs3d.zip",
+      "sha256": "8644c7a8182679dbe762b522356606220bb6d2196a5ec65511eda42ef48b3e7a"
+    },
+    {
+      "path": "libunibreak-0.17.5/libunibreak.zip",
+      "sha256": "a7a9c0afa36e2301eec583e5575c30c1609357045d718565d06faf93abc56617"
+    },
+    {
+      "path": "nettle-3.8.11/nettle.zip",
+      "sha256": "7c1606e5acdc0be563f5a6bb19cd2fe3e1e93b30154ac22fc2f80bffcf3151c2"
+    },
+    {
+      "path": "openssl-3.3.5/openssl.zip",
+      "sha256": "8bc37424aa98fdeac17fd00fbeea7b784a39f1f800cc7f9e0c948d3b169c6f2f"
+    },
+    {
+      "path": "vulkan-1.4.2/vulkan.zip",
+      "sha256": "551bf9ee4e6fe1f9a148a6aef8eff5e5e6e0c0be9dedda2405812023d4a38c60"
+    }
+  ],
+  "applicationIntegrated": false,
+  "nativeFilterExecutionValidated": false
+}

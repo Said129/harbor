@@ -361,3 +361,30 @@ slices were checked, with the matching deployed 8.1.2 ABI. This proves the
 component build, not application integration or actual native effect execution.
 Those two gates are still open. No subtitle production seek fix or new IPA is
 claimed by these build results.
+
+## Audio runtime integration candidate, 3 November
+
+The verified Libavfilter component and matching package manifest are retained
+under ios/AudioRuntime and ios/MPVKitMusic. Only this one non-GPL binary target
+differs from the pinned package; the original remote URLs/checksums and package
+shims remain intact. The archive, manifest, shims and notices are verified before
+preparing a separate generated XcodeGen specification. The default project
+continues to select the original remote MPVKit package.
+
+The native capability bridge checks the actual loaded filter registry before
+accepting an audio plan. This allows the original six parametric filter types,
+crossfeed, reverb and four effects only where their filters are available.
+License notices are included in the app's existing legal screen. No user-facing
+effects editor or default-runtime switch is claimed by this integration step.
+
+A new native case exercises all six original parametric types and crossfeed/
+reverb, then applies each original effect and bypass to a real audio core while
+seeking and retaining pause state. The candidate also needs the affected audio
+transport and HTTP subtitle cases because the linked filter library changes.
+Those executions are pending. The independent 27-case corrective run remains
+41540825290 on source 0e95ae05 and is not restarted.
+
+Local preparation and Python parsing passed. The supported changed YAML/JSON/
+Markdown files pass formatting. The scoped pnpm check has no JavaScript or
+TypeScript input to lint and exits before lint analysis; no TypeScript changed.
+Apple parsing, linking and native filter execution remain CI gates.

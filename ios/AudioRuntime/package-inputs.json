@@ -1,0 +1,26 @@
+{
+  "originalPackageSource": "f82e06d4f5ef4fc4aa9faba3782a462dbbef870c",
+  "originalPackageSHA256": "36f629e68ec8ed0d8c7963e726b40edb6beffc261b196cfba86789cf399f130c",
+  "candidatePackageSHA256": "b49c615856f61a37e686a6e59673962a7b1ace2ad570378ed65e93a54a500de2",
+  "componentSHA256": "b3d8406c8ebf61018709e18fac526e13910e032b870ff9fe35ac4a1ef2f6934a",
+  "builderSource": "288527dffbc6d3e63cce147fc7b520c64a791603",
+  "ffmpegSource": "38b88335f99e76ed89ff3c93f877fdefce736c13",
+  "publicHeadersMatchBaseline": true,
+  "applicationDefaultChanged": false,
+  "nativeExecutionValidated": false,
+  "packageShims": {
+    "Sources/_MPVKit/dummy.c": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "Sources/_MPVKit/include/dummy.h": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "Sources/_FFmpeg/dummy.c": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "Sources/_FFmpeg/include/dummy.h": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "Sources/_MPVKit-GPL/dummy.c": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "Sources/_MPVKit-GPL/include/dummy.h": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "Sources/_FFmpeg-GPL/dummy.c": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "Sources/_FFmpeg-GPL/include/dummy.h": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "licenseSHA256": {
+    "MPVKit-LICENSE.txt": "ea8af5e789cb2d4e9b10bce3874982ade163b749b6bfbdb32e2df21c4d106de1",
+    "FFmpeg-LICENSE.md": "2e1d16c72fd74e12063776371da757322f8b77589386532f4fd8634bde7de1af",
+    "COPYING.LGPLv2.1": "246041b6ecf9bc32d718a62c57877c78b5eb397b6467e74ed7ae2626ab189c30"
+  }
+}
