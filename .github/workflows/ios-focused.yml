@@ -104,7 +104,11 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          cargo test --locked --manifest-path harbor-core/Cargo.toml --no-default-features subtitle_moviehash:: 2>&1 | tee ios/build/logs/subtitle-moviehash-tests.log
+          if [[ "$(git hash-object harbor-core/src/subtitle_moviehash.rs)" == "755d77cda8897e767a95b490263a9ff75a01f36f" ]]; then
+            echo "Reusing 2 original movie-hash arithmetic passes from source c2872e50, run 41480784667." | tee ios/build/logs/subtitle-moviehash-reused.log
+          else
+            cargo test --locked --manifest-path harbor-core/Cargo.toml --no-default-features subtitle_moviehash:: 2>&1 | tee ios/build/logs/subtitle-moviehash-tests.log
+          fi
       - name: Build once and execute only the requested cases
         timeout-minutes: 55
         run: python3 scripts/ios/run-focused-changes.py

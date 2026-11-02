@@ -121,8 +121,9 @@ captures or syntax checks.
 ### Completing the missing DSP runtime
 
 `scripts/ios/music-dsp-runtime.py` and the `music-runtime` workflow scope build
-the extra filters from the same MPVKit source and exact FFmpeg commit
-`bf1b838f2ab88b4f8fd83443325c782ea0e0f7fa` (n9.0.1). Only a prospective
+the extra filters from the actual 1.0.0 release builder, MPVKit commit
+`288527dffbc6d3e63cce147fc7b520c64a791603`, and exact FFmpeg commit
+`38b88335f99e76ed89ff3c93f877fdefce736c13` (n8.1.2). Only a prospective
 Libavfilter replacement is collected, for arm64 devices and arm64/x86_64
 simulators; the application has not adopted it. The additional filters cover
 the original reverb/crossfeed/shelf/pass/notch processing, signal metering and
@@ -130,6 +131,25 @@ audio transitions. Collection requires their real configure definitions for
 each architecture and records source diffs, archive hashes and notices.
 Actual native effect execution and an explicitly verified package integration
 remain required. This workflow does not package an IPA or change libmpv.
+
+Run `41483844236` was explicitly cancelled after inspecting the deployed
+framework archives, not due to an observation timeout: the app's pinned newer
+Package.swift still points to binary release 1.0.0, whose checked headers say
+FFmpeg n8.1.2, libavutil 60.26.102 and libavfilter 11.14.102. Building n9.0.1
+would be ABI-incompatible. Both downloaded original archives match the SHA-256
+checksums in the app's package pin and in the 1.0.0 release source. The corrected
+builder now asserts those exact ABI versions before collecting a replacement.
+The original app dependency pin and IPA 93 have not changed.
+
+The movie-hash run `41480784667` also reached its 1500-second build limit. Its
+two native cases never executed, but its two original Rust arithmetic tests
+passed. Verified artifact SHA-256:
+`e7f808da6537a062df0869224dbb12be6f63ccf36a44bf6dfb3a044d992ba303`, preserved at
+`work/music-subtitle-94-review/moviehash-timeout-41480784667`. The native build
+log has no compiler error before timeout. Reuse those two Rust passes only
+when the hash module source blob is unchanged. For fresh job phase/status,
+GitHub's direct no-cache API was needed: the connector's step snapshot still
+showed compilation while the actual job was already completing cleanup.
 
 The user confirmed Auto-sync was **off** for the Obsession case. Automatic VAD
 analysis is therefore not the active path in that example. Also inspected

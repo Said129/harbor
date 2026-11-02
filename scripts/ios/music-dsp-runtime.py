@@ -9,8 +9,13 @@ import shutil
 import subprocess
 import zipfile
 
-SDK = "f82e06d4f5ef4fc4aa9faba3782a462dbbef870c"
-FFMPEG = "bf1b838f2ab88b4f8fd83443325c782ea0e0f7fa"
+# The app's newer Package.swift still consumes the 1.0.0 binary release.
+# Use that release's actual builder and verified 8.1.2 ABI, not its newer README.
+SDK = "288527dffbc6d3e63cce147fc7b520c64a791603"
+FFMPEG = "38b88335f99e76ed89ff3c93f877fdefce736c13"
+FFMPEG_VERSION = "n8.1.2"
+BASELINE_BINARY_HASHES = {"Libavfilter": "3e71af8633d99d365f14b88064bceafd57acb23fc64db90e55b715a9c0dca328",
+                          "Libavutil": "5dc251c8807c501982edfb0bc9bddfee4148733142d6ebb947738c60fb3bf8d8"}
 FILTERS = ["aecho", "crossfeed", "bass", "treble", "lowpass", "highpass", "bandreject",
            "astats", "ametadata", "afade", "acrossfade", "asplit", "asetpts", "alimiter"]
 
@@ -33,7 +38,10 @@ def prepare(sdk, output):
     source = sdk / "Sources/BuildScripts/XCFrameworkBuild/main.swift"
     text = source.read_text(encoding="utf-8")
     original_hash = digest(source)
-    assert 'return "n9.0.1"' in text
+    assert 'return "' + FFMPEG_VERSION + '"' in text
+    package = (sdk / "Package.swift").read_text(encoding="utf-8")
+    for name, expected in BASELINE_BINARY_HASHES.items():
+        assert re.search(r'name: "' + name + r'",\s*url: "[^"]+/1\.0\.0/' + name + r'\.xcframework\.zip",\s*checksum: "' + expected + '"', package)
     assert text.count('"--disable-filters",') == 1
     # Build the same FFmpeg and dependency configuration. libmpv itself, its
     # subtitle decoder and the other shipped frameworks remain the pinned ones.
@@ -46,7 +54,7 @@ def prepare(sdk, output):
     source.write_text(text, encoding="utf-8", newline="\n")
     dist = sdk / "dist"
     dist.mkdir(exist_ok=True)
-    ffmpeg = dist / "FFmpeg-n9.0.1"
+    ffmpeg = dist / ("FFmpeg-" + FFMPEG_VERSION)
     if not ffmpeg.exists():
         subprocess.run(["git", "init", str(ffmpeg)], check=True)
         subprocess.run(["git", "-C", str(ffmpeg), "remote", "add", "origin", "https://github.com/FFmpeg/FFmpeg.git"], check=True)
@@ -55,7 +63,8 @@ def prepare(sdk, output):
     assert git(ffmpeg, "rev-parse", "HEAD") == FFMPEG
     assert not git(ffmpeg, "status", "--porcelain")
     output.mkdir(parents=True, exist_ok=True)
-    plan = {"mpvkit": SDK, "ffmpeg": FFMPEG, "filters": FILTERS,
+    plan = {"mpvkit": SDK, "ffmpeg": FFMPEG, "ffmpegVersion": FFMPEG_VERSION, "filters": FILTERS,
+            "baselineBinarySha256": BASELINE_BINARY_HASHES,
             "originalBuilderSha256": original_hash, "patchedBuilderSha256": digest(source)}
     (output / "prepare.json").write_text(json.dumps(plan, indent=2) + "\n", encoding="utf-8")
     (output / "mpvkit-changes.patch").write_text(git(sdk, "diff", "--", "Sources/BuildScripts/XCFrameworkBuild/main.swift") + "\n", encoding="utf-8")
@@ -77,6 +86,14 @@ def collect(sdk, output):
     archive = sdk / "dist/release/Libavfilter.xcframework.zip"
     with zipfile.ZipFile(archive) as value:
         info = plistlib.loads(value.read("Libavfilter.xcframework/Info.plist"))
+        filter_version = value.read("Libavfilter.xcframework/ios-arm64/Libavfilter.framework/Headers/version.h").decode()
+        filter_major = value.read("Libavfilter.xcframework/ios-arm64/Libavfilter.framework/Headers/version_major.h").decode()
+    assert re.search(r"#define LIBAVFILTER_VERSION_MAJOR\s+11\b", filter_major)
+    assert re.search(r"#define LIBAVFILTER_VERSION_MINOR\s+14\b", filter_version)
+    assert re.search(r"#define LIBAVFILTER_VERSION_MICRO\s+102\b", filter_version)
+    util_version = (sdk / "dist/FFmpeg/ios/thin/arm64/include/libavutil/version.h").read_text(encoding="utf-8")
+    for component, expected in [("MAJOR", 60), ("MINOR", 26), ("MICRO", 102)]:
+        assert re.search(r"#define LIBAVUTIL_VERSION_" + component + r"\s+" + str(expected) + r"\b", util_version)
     libraries = info["AvailableLibraries"]
     device = [item for item in libraries if item["SupportedPlatform"] == "ios" and "SupportedPlatformVariant" not in item]
     simulator = [item for item in libraries if item["SupportedPlatform"] == "ios" and item.get("SupportedPlatformVariant") == "simulator"]
@@ -85,8 +102,8 @@ def collect(sdk, output):
     assert set(simulator[0]["SupportedArchitectures"]) == {"arm64", "x86_64"}
     shutil.copyfile(archive, output / archive.name)
     shutil.copyfile(sdk / "LICENSE", output / "MPVKit-LICENSE.txt")
-    shutil.copyfile(sdk / "dist/FFmpeg-n9.0.1/LICENSE.md", output / "FFmpeg-LICENSE.md")
-    (output / "ffmpeg-changes.patch").write_text(git(sdk / "dist/FFmpeg-n9.0.1", "diff") + "\n", encoding="utf-8")
+    shutil.copyfile(sdk / ("dist/FFmpeg-" + FFMPEG_VERSION) / "LICENSE.md", output / "FFmpeg-LICENSE.md")
+    (output / "ffmpeg-changes.patch").write_text(git(sdk / ("dist/FFmpeg-" + FFMPEG_VERSION), "diff") + "\n", encoding="utf-8")
     dependencies = [{"path": str(path.relative_to(sdk / "dist")), "sha256": digest(path)}
                     for path in sorted((sdk / "dist").glob("*/*.zip")) if path.parent.name != "release"]
     report = {**plan, "architectures": checked, "archiveSha256": digest(archive),

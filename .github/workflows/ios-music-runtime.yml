@@ -12,7 +12,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           repository: mpvkit/MPVKit
-          ref: f82e06d4f5ef4fc4aa9faba3782a462dbbef870c
+          ref: 288527dffbc6d3e63cce147fc7b520c64a791603
           path: ios/build/MPVKit
           persist-credentials: false
       - name: Prepare pinned audio filter sources
