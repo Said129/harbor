@@ -33,7 +33,7 @@ final class SubtitleSeekTests: XCTestCase {
     @available(iOS, deprecated: 12.0)
     @MainActor func testHTTPRangeSeeksRetainEmbeddedAndExternalCuesAndRenderedSubtitles() async throws {
         let clip = try XCTUnwrap(Bundle(for: Self.self).url(forResource: "owned-subtitle-seek", withExtension: "mkv", subdirectory: "Fixtures"))
-        let server = try SubtitleRangeFixture(data: Data(contentsOf: clip)); defer { server.stop() }
+        let server = try SubtitleRangeFixture(data: Data(contentsOf: clip), chunkDelay: 0.015); defer { server.stop() }
         let url = try await server.start()
         let scene = try XCTUnwrap(UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }.first)
         let previous = scene.windows.first { $0.isKeyWindow }, window = UIWindow(windowScene: scene)
@@ -51,6 +51,7 @@ final class SubtitleSeekTests: XCTestCase {
         let embedded = try XCTUnwrap(state.tracks.first { $0.type == "sub" && !$0.external })
         controller.selectSubtitle(String(embedded.id))
         try await wait(surface, state: state) { !state.subtitleChanging && state.primarySubtitle?.id == embedded.id }
+        let initialRequests = server.requestedOffsets.count
         try await exercise(controller, surface: surface, state: state, prefix: "EMBEDDED")
         try await captureSeek(controller, surface: surface, state: state, prefix: "EMBEDDED", target: 17, cue: 4)
         try await captureSeek(controller, surface: surface, state: state, prefix: "EMBEDDED", target: 5, cue: 1)
@@ -63,7 +64,7 @@ final class SubtitleSeekTests: XCTestCase {
         try await exercise(controller, surface: surface, state: state, prefix: "EXTERNAL")
         try await captureSeek(controller, surface: surface, state: state, prefix: "EXTERNAL", target: 17, cue: 4)
         try await captureSeek(controller, surface: surface, state: state, prefix: "EXTERNAL", target: 5, cue: 1)
-        XCTAssertTrue(server.requestedOffsets.contains { $0 > 0 }, "The test must execute actual HTTP range reads, not only a cached local file")
+        XCTAssertTrue(server.requestedOffsets.dropFirst(initialRequests).contains { $0 > 0 }, "Seeking must trigger a new HTTP range read after loading; an initial metadata probe is insufficient")
         XCTAssertNil(state.subtitleIssue)
         XCTAssertEqual(state.subtitleDelay, 0, accuracy: 0.001)
     }

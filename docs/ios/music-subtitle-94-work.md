@@ -151,6 +151,22 @@ mandatory. The native build command gets 35 minutes within its 55-minute step
 instead of a 25-minute cold-build limit. No running job was cancelled for this
 change. Current validation results must still be collected from their handles.
 
+The fifteen-case run `41479583285` subsequently terminated: **native build timed
+out after 1500 seconds**, not a native test failure. All fifteen executions are
+still unexecuted. Its verified artifact SHA-256 is
+`d4eed0b10377097726da56733b0d1fef124b081916078a1eb8630b6320ed4413`, preserved in
+`work/music-subtitle-94-review/native-timeout-41479583285`. The original build
+log contains no compiler error before timeout and only the existing OpenGLES
+deprecations. The new audio form is now split into seven opaque view sections
+with explicit curve number types to reduce Swift constraint solving; this has
+not yet proved a compile-time improvement.
+
+The HTTP seek fixture is also strengthened: small delayed network chunks let
+the cache limits apply before the entire clip is prefetched, and a new positive
+byte range must be observed **after** loading. An initial metadata range cannot
+satisfy the assertion. This changed case requires its own actual execution;
+the accepted local seek test remains untouched.
+
 ## Validation approach
 
 Keep previously accepted unchanged Music, Rust and app evidence. A focused

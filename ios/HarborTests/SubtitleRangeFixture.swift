@@ -6,6 +6,7 @@ final class SubtitleRangeFixture: @unchecked Sendable {
     private let data: Data
     private let subtitle: Data?
     private let honorsRanges: Bool
+    private let chunkDelay: TimeInterval
     private let listener: NWListener
     private let queue = DispatchQueue(label: "owned-subtitle-ranges")
     private let lock = NSLock()
@@ -13,8 +14,8 @@ final class SubtitleRangeFixture: @unchecked Sendable {
     private var connections: [NWConnection] = []
     private var starts: [Int] = []
     private var captured: [String] = []
-    init(data: Data, subtitle: Data? = nil, honorsRanges: Bool = true) throws {
-        self.data = data; self.subtitle = subtitle; self.honorsRanges = honorsRanges
+    init(data: Data, subtitle: Data? = nil, honorsRanges: Bool = true, chunkDelay: TimeInterval = 0) throws {
+        self.data = data; self.subtitle = subtitle; self.honorsRanges = honorsRanges; self.chunkDelay = chunkDelay
         let parameters = NWParameters.tcp
         parameters.requiredLocalEndpoint = .hostPort(host: "127.0.0.1", port: .any)
         listener = try NWListener(using: parameters)
@@ -66,6 +67,15 @@ final class SubtitleRangeFixture: @unchecked Sendable {
         if range != nil { header += "Content-Range: bytes \(start)-\(end)/\(data.count)\r\n" }
         var response = Data((header + "\r\n").utf8)
         if !lines[0].hasPrefix("head ") { response.append(data[start...end]) }
-        connection.send(content: response, completion: .contentProcessed { _ in connection.cancel() })
+        if chunkDelay > 0 { send(connection, data: response, offset: 0) }
+        else { connection.send(content: response, completion: .contentProcessed { _ in connection.cancel() }) }
+    }
+    private func send(_ connection: NWConnection, data: Data, offset: Int) {
+        let end = min(data.count, offset + 8192)
+        connection.send(content: data.subdata(in: offset..<end), completion: .contentProcessed { [weak self] error in
+            guard error == nil, let self else { connection.cancel(); return }
+            guard end < data.count else { connection.cancel(); return }
+            self.queue.asyncAfter(deadline: .now() + self.chunkDelay) { [weak self] in self?.send(connection, data: data, offset: end) }
+        })
     }
 }
