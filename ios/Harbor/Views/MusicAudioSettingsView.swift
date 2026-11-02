@@ -33,6 +33,11 @@ import SwiftUI
             Text(text("music.audio.scope")).font(.footnote)
             Text(text("music.audio.spotify")).font(.footnote).foregroundStyle(.secondary)
             HStack { Text(text("music.audio.output")); Spacer(); MusicOutputPicker().frame(width: 44, height: 44) }
+            Picker(text("music.lab.sampleRate"), selection: $draft.sampleRate) {
+                Text(text("music.lab.sourceRate")).tag(0)
+                ForEach([44100, 48000, 88200, 96000, 176400, 192000], id: \.self) { rate in Text((Double(rate) / 1000).formatted() + " kHz").tag(rate) }
+            }
+            Text(text("music.lab.rateHelp")).font(.caption).foregroundStyle(.secondary)
             TextField(text("music.audio.equipment"), text: $draft.equipmentLabel)
             Text(text("music.audio.equipmentHelp")).font(.caption).foregroundStyle(.secondary)
         }
@@ -43,25 +48,40 @@ import SwiftUI
             Toggle(text("music.lab.bypass"), isOn: $draft.dspBypass)
             Text(text("music.lab.bypassHelp")).font(.caption).foregroundStyle(.secondary)
             Toggle(text("music.audio.equalizer"), isOn: $draft.eqEnabled)
+            Picker(text("music.lab.mode"), selection: $draft.eqMode) {
+                Text(text("music.audio.equalizer")).tag("graphic")
+                Text(text("music.lab.parametric")).tag("parametric")
+            }.disabled(draft.dspBypass)
             Picker(text("music.audio.presets"), selection: preset) {
                 Text(text("music.eq.preset.custom")).tag("custom")
                 ForEach(MusicEQPresetCatalog.original?.presets ?? []) { value in Text(text(value.labelKey)).tag(value.id) }
             }.disabled(draft.dspBypass)
-            MusicGraphicEQ(bands: $draft.eqBands).disabled(draft.dspBypass || !draft.eqEnabled)
-            ForEach(Array(MusicEQPresetCatalog.frequencies.enumerated()), id: \.offset) { index, frequency in
-                VStack(alignment: .leading, spacing: 4) {
-                    HStack {
-                        Text(frequency.formatted() + " Hz"); Spacer()
-                        Text(String(format: "%+.1f dB", draft.eqBands[index])).monospacedDigit()
-                    }.font(.caption)
-                    Slider(value: $draft.eqBands[index], in: -12...12, step: 0.5)
-                        .accessibilityLabel(DesktopInterfaceText.value("music.audio.band", variables: ["frequency": frequency.formatted()]))
-                }.disabled(draft.dspBypass || !draft.eqEnabled)
+            if draft.eqMode == "parametric" {
+                MusicParametricEditor(draft: $draft, applied: session.audio?.options ?? .init())
+            } else {
+                graphicEqualizer
             }
-            Button(text("music.audio.reset")) { draft.eqMode = "graphic"; draft.eqBands = Array(repeating: 0, count: 10) }
+            Button(text("music.audio.reset")) {
+                if draft.eqMode == "parametric" { draft.peqFilters = [] }
+                else { draft.eqBands = Array(repeating: 0, count: 10) }
+            }
             Toggle(text("music.audio.headroom"), isOn: $draft.autoHeadroom).disabled(draft.dspBypass)
             Text(text("music.audio.headroomHelp")).font(.caption).foregroundStyle(.secondary)
             dial("music.lab.preamp", value: $draft.preampDb, range: -60...12, step: 0.5, unit: " dB")
+        }
+    }
+
+    @ViewBuilder private var graphicEqualizer: some View {
+        MusicGraphicEQ(bands: $draft.eqBands).disabled(draft.dspBypass || !draft.eqEnabled)
+        ForEach(Array(MusicEQPresetCatalog.frequencies.enumerated()), id: \.offset) { index, frequency in
+            VStack(alignment: .leading, spacing: 4) {
+                HStack {
+                    Text(frequency.formatted() + " Hz"); Spacer()
+                    Text(String(format: "%+.1f dB", draft.eqBands[index])).monospacedDigit()
+                }.font(.caption)
+                Slider(value: $draft.eqBands[index], in: -12...12, step: 0.5)
+                    .accessibilityLabel(DesktopInterfaceText.value("music.audio.band", variables: ["frequency": frequency.formatted()]))
+            }.disabled(draft.dspBypass || !draft.eqEnabled)
         }
     }
 
@@ -69,6 +89,10 @@ import SwiftUI
         Section(text("music.audio.title")) {
             dial("music.audio.balance", value: $draft.balance, range: -1...1, step: 0.05, unit: "")
             Text(text("music.audio.balanceHelp")).font(.caption).foregroundStyle(.secondary)
+            if MusicAudioRuntime.supports(["crossfeed"]) {
+                dial("music.lab.crossfeed", value: $draft.crossfeed, range: 0...1, step: 0.01, unit: "", percentage: true)
+                Text(text("music.lab.crossfeedHelp")).font(.caption).foregroundStyle(.secondary)
+            }
             Picker(text("music.audio.replayGain"), selection: $draft.replayGain) {
                 Text(text("music.audio.replayOff")).tag("off")
                 Text(text("music.audio.replayTrack")).tag("track")
@@ -83,12 +107,36 @@ import SwiftUI
 
     @ViewBuilder private var speedSection: some View {
         Section(text("music.speed.title")) {
+            speedPresets
             dial("music.speed.speed", value: $draft.speed, range: 0.5...1.6, step: 0.01, unit: "×")
             Toggle(text("music.speed.keepPitch"), isOn: $draft.keepPitch)
             Text(text("music.speed.keepPitchHelp")).font(.caption).foregroundStyle(.secondary)
             dial("music.speed.pitch", value: $draft.pitch, range: -12...12, step: 0.5, unit: "")
-            Button(text("music.speed.reset")) { draft.speed = 1; draft.pitch = 0; draft.keepPitch = false }
+            if MusicAudioRuntime.supports(["aecho"]) {
+                dial("music.speed.reverb", value: $draft.reverb, range: 0...1, step: 0.01, unit: "", percentage: true)
+            }
+            Button(text("music.speed.reset")) { draft.speed = 1; draft.pitch = 0; draft.reverb = 0; draft.keepPitch = false }
         }
+    }
+
+    private var speedPresets: some View {
+        ScrollView(.horizontal) {
+            HStack {
+                speedPreset("music.speed.normal", speed: 1, reverb: 0)
+                speedPreset("music.speed.nightcore", speed: 1.25, reverb: 0)
+                speedPreset("music.speed.slowed", speed: 0.85, reverb: 0)
+                if MusicAudioRuntime.supports(["aecho"]) {
+                    speedPreset("music.speed.slowedReverb", speed: 0.8, reverb: 0.6)
+                    speedPreset("music.speed.daycore", speed: 0.75, reverb: 0.3)
+                }
+            }.padding(.vertical, 3)
+        }.scrollIndicators(.hidden)
+    }
+    private func speedPreset(_ label: String, speed: Double, reverb: Double) -> some View {
+        let active = abs(draft.speed - speed) < 0.001 && abs(draft.reverb - reverb) < 0.001 && abs(draft.pitch) < 0.001 && !draft.keepPitch
+        return Button(text(label)) { draft.speed = speed; draft.reverb = reverb; draft.pitch = 0; draft.keepPitch = false }
+            .buttonStyle(.bordered).tint(active ? HarborTheme.accent : .secondary)
+            .accessibilityAddTraits(active ? .isSelected : [])
     }
 
     @ViewBuilder private var signalSection: some View {
@@ -146,16 +194,29 @@ import SwiftUI
 
     private var preset: Binding<String> {
         Binding(get: {
-            guard draft.eqMode == "graphic" else { return "custom" }
+            if draft.eqMode == "parametric" {
+                return MusicEQPresetCatalog.original?.presets.first { value in
+                    value.filters.count == draft.peqFilters.count && value.filters.allSatisfy { wanted in
+                        draft.peqFilters.contains { have in
+                            have.type == wanted.type && abs(have.frequency - wanted.frequency) < 0.5 && abs(have.gain - wanted.gain) < 0.25 && abs(have.q - wanted.q) < 0.05
+                        }
+                    }
+                }?.id ?? "custom"
+            }
             return MusicEQPresetCatalog.original?.presets.first { value in zip(value.bands, draft.eqBands).allSatisfy { abs($0.0 - $0.1) < 0.25 } }?.id ?? "custom"
         }, set: { id in
             guard let value = MusicEQPresetCatalog.original?.presets.first(where: { $0.id == id }) else { return }
-            draft.eqMode = "graphic"; draft.eqBands = value.bands; draft.eqEnabled = true
+            if draft.eqMode == "parametric" { draft.peqFilters = value.filters }
+            else { draft.eqBands = value.bands }
+            draft.eqEnabled = true
         })
     }
-    private func dial(_ key: String, value: Binding<Double>, range: ClosedRange<Double>, step: Double, unit: String) -> some View {
+    private func dial(_ key: String, value: Binding<Double>, range: ClosedRange<Double>, step: Double, unit: String, percentage: Bool = false) -> some View {
         VStack(alignment: .leading) {
-            HStack { Text(text(key)); Spacer(); Text(value.wrappedValue.formatted(.number.precision(.fractionLength(0...2))) + unit).monospacedDigit() }.font(.subheadline)
+            HStack {
+                Text(text(key)); Spacer()
+                Text(percentage ? value.wrappedValue.formatted(.percent.precision(.fractionLength(0))) : value.wrappedValue.formatted(.number.precision(.fractionLength(0...2))) + unit).monospacedDigit()
+            }.font(.subheadline)
             Slider(value: value, in: range, step: step).accessibilityLabel(text(key))
         }.disabled(draft.dspBypass && key != "music.audio.ceiling" && key != "music.speed.speed")
     }

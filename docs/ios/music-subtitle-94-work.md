@@ -388,3 +388,34 @@ Local preparation and Python parsing passed. The supported changed YAML/JSON/
 Markdown files pass formatting. The scoped pnpm check has no JavaScript or
 TypeScript input to lint and exits before lint analysis; no TypeScript changed.
 Apple parsing, linking and native filter execution remain CI gates.
+
+The candidate validation is run 41544752262, source
+0c4a120262ca1c8123677ce835b21bc88a793cee, with exactly five selected cases:
+extended original filters/effects, existing audio transport, source switching,
+and the two new HTTP subtitle journeys. It requests no package. Keep its
+handle and artifacts independent from the 27-case default-runtime run.
+
+## Parametric editor source port
+
+The native audio form now selects graphic or parametric mode, uses the original
+nineteen presets for either mode, and retains the inactive mode's draft. The
+parametric editor supports 24 enabled/disabled filters, all six types, numeric
+frequency/gain/Q editing, correction strength, draft/applied response curves,
+and strict Equalizer APO / AutoEQ text import/export and sharing. Import edits
+the draft and keeps output routing, sample rate and volume ceiling intact.
+Export incorporates the current strength and automatic headroom as Desktop does.
+
+The parser, exporter and response calculation are compiled directly from the
+pinned original src/lib/music/parametric-eq.ts into a bounded, pure JavaScriptCore
+context. It has no network or account bridge. The generator records the input
+and executable hashes; native loading verifies the exact program hash.
+Original strict command/size/filter/range rejection is preserved. Curves update
+after a short cancellable debounce rather than on every SwiftUI body evaluation.
+
+The form also exposes the original supported sample-rate choices, crossfeed,
+reverb and five speed presets. Controls requiring extra filters check the actual
+runtime registry. Custom speed combinations remain separate unfinished work.
+The new correction round-trip/native-plan case and phone/tablet-size plus RTL
+editor captures are pending Apple execution and visual review. The existing
+audio-form capture is affected by these new controls; its Spotify half remains
+unchanged. No new IPA or complete Music parity is claimed.
