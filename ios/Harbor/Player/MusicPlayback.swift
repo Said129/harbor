@@ -381,6 +381,46 @@ struct MusicQueueOrigin: Codable, Equatable, Sendable { let kind: String; let id
             if remaining.isEmpty { stop() } else { start(remaining[min(index, remaining.count - 1)]) }
         } else { refreshUpcoming() }
     }
+    var queueSnapshot: MusicQueueSnapshot {
+        guard let currentItem, let index = items.firstIndex(where: { $0.id == currentItem.id }) else {
+            return .init(owner: owner, revision: queueRevision, current: currentItem, previous: [], upcoming: [])
+        }
+        return .init(owner: owner, revision: queueRevision, current: currentItem,
+                     previous: Array(items.prefix(index)), upcoming: Array(items.dropFirst(index + 1)))
+    }
+    private func ownsQueue(_ snapshot: MusicQueueSnapshot) -> Bool {
+        guard snapshot.owner == owner, snapshot.revision == queueRevision, snapshot.current?.id == currentItem?.id else { return false }
+        if let resolver { return (try? resolver.validate()) != nil }
+        return true
+    }
+    func moveUpcoming(from offsets: IndexSet, to destination: Int, in snapshot: MusicQueueSnapshot) {
+        guard ownsQueue(snapshot), !offsets.isEmpty, destination >= 0, destination <= snapshot.upcoming.count,
+              offsets.allSatisfy({ snapshot.upcoming.indices.contains($0) }) else { return }
+        let moving = offsets.map { snapshot.upcoming[$0] }
+        var tail = snapshot.upcoming.enumerated().filter { !offsets.contains($0.offset) }.map { $0.element }
+        let insertion = destination - offsets.filter { $0 < destination }.count
+        tail.insert(contentsOf: moving, at: insertion)
+        items = snapshot.previous + [snapshot.current].compactMap { $0 } + tail
+        refreshUpcoming()
+    }
+    func clearUpcoming(in snapshot: MusicQueueSnapshot) {
+        guard ownsQueue(snapshot) else { return }
+        priority = nil
+        items = snapshot.previous + [snapshot.current].compactMap { $0 }
+        refreshUpcoming()
+    }
+    func removeQueueItem(_ item: MusicPlaybackItem, in snapshot: MusicQueueSnapshot) {
+        guard ownsQueue(snapshot) else { return }
+        removeFromQueue(item)
+    }
+    func playQueueItem(_ item: MusicPlaybackItem, in snapshot: MusicQueueSnapshot) {
+        guard ownsQueue(snapshot) else { return }
+        if currentItem?.id == item.id { togglePause() } else { play(item) }
+    }
+    func prioritizeQueueItem(_ item: MusicPlaybackItem, in snapshot: MusicQueueSnapshot) {
+        guard ownsQueue(snapshot) else { return }
+        moveAfterCurrent(item)
+    }
     private func refreshUpcoming() {
         defer { saveCheckpoint(force: true) }
         guard let currentItem, let index = items.firstIndex(where: { $0.id == currentItem.id }) else { upcomingItems = []; return }

@@ -1,0 +1,23 @@
+{
+  "referenceCommit": "0834340cec5531650bfe78cd628628702e636987",
+  "referenceVersion": "0.9.132 Beta",
+  "originalFilesSHA256": {
+    "src/components/music/music-queue.tsx": "2a5fad6212f706243b498041df4405d35e37b89dc9f4b4cd49c481494ae81beb",
+    "src/lib/music/player.ts": "c2a2088d6f0b4038178f62a789d266a2a9c36d2b358068274e137e157ffd6792"
+  },
+  "retained": [
+    "Current recording, raw upcoming queue and previous history are separate. Only upcoming items can be reordered.",
+    "Clear removes only upcoming items and priority-next; the current recording and previous queue remain.",
+    "Reordering preserves current recording, decoder, position and pause; priority-next and the existing original shuffle planner retain their own policy."
+  ],
+  "mobileAdaptations": [
+    "Native Edit drag handles replace mouse dragging; swipe removal and the existing play-next menu remain available.",
+    "Owner, queue revision, current recording and active resolver fence every delayed queue-panel action.",
+    "Queue mutations flow through the existing checkpoint writer without restarting audio."
+  ],
+  "validation": {
+    "newQueueOperations": "pending native execution",
+    "phoneTabletArabicCaptures": "pending review",
+    "ipaPackaged": false
+  }
+}

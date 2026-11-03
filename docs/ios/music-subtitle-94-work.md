@@ -754,3 +754,34 @@ physical-device drift. The same assertion is retained, with three bounded
 post-seek frame captures and draw timing added to distinguish the rendered
 subtitle from observation delays. No production subtitle reset, decoder
 change or seek-option workaround is applied.
+
+The user confirms Auto Sync was disabled in the physical Obsession /
+Community Subtitles example. The affected HTTP follow-up now explicitly
+sets the same preference for that case and restores it afterward.
+
+## Native queue editing
+
+The queue panel now presents the current recording, raw upcoming items and
+previous history like the original queue component. Native editing handles
+reorder only upcoming items; swipe removal and play-next are available.
+Clear removes upcoming items and priority-next while retaining the current
+recording and history. Reordering does not reopen the decoder, seek or change
+pause state. Owner, queue revision, current identity and active resolver
+reject delayed actions from a replaced queue or profile.
+
+Two new affected journeys cover multi-item moves, clear, invalid offsets,
+retired queue/profile actions and phone/tablet/Arabic layouts. They reuse the
+accepted original order planner instead of changing its shuffle math.
+These executions and new captures remain pending. Only eight original
+interface labels were selected; the existing catalogs already contained them,
+so no translation catalogs changed. Provenance is in
+music-queue-editing-port-inputs.json.
+
+Local checks: the owned meter WAV's format, silence, independent tone
+projections and eight original source hashes pass. The new eight-band graph
+also produces all named band metadata in the separate Windows FFmpeg tool;
+this is not Apple-runtime evidence. The required vp check accepts formatting
+for the changed JSON/Markdown/YAML but exits because none are lintable source
+files. Swift type checking and actual native execution remain the Apple
+runner's responsibility; unchanged Windows Apple/Linux toolchain limitations
+are retained without another retry.

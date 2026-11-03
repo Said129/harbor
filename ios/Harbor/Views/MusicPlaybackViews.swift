@@ -105,6 +105,7 @@ extension EnvironmentValues {
                     if let error = player.scrobbleError { Text(error).font(.caption).foregroundStyle(.secondary) }
                     VStack(alignment: .leading, spacing: 12) {
                         Label(DesktopInterfaceText.value("music.now.next"), image: "music-queue").font(.headline)
+                        NavigationLink(DesktopInterfaceText.value("music.transport.queue")) { MusicQueueView(player: player) }
                         ForEach(player.upcomingItems) { entry in row(entry) }
                         DisclosureGroup(DesktopInterfaceText.value("music.search.tracks")) {
                             ForEach(player.items) { entry in row(entry) }

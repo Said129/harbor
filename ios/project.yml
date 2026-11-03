@@ -167,6 +167,7 @@ targets:
       - path: HarborTests/MusicSessionTests.swift
       - path: HarborTests/MusicEffectsTests.swift
       - path: HarborTests/MusicMeterTests.swift
+      - path: HarborTests/MusicQueueEditingTests.swift
       - path: HarborTests/PlexMusicTests.swift
       - path: HarborTests/PlexMusicFixture.swift
       - path: HarborTests/JellyfinMusicTests.swift

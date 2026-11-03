@@ -43,8 +43,14 @@ final class SubtitleSeekTests: XCTestCase {
         let previous = scene.windows.first { $0.isKeyWindow }, window = UIWindow(windowScene: scene)
         window.frame = CGRect(x: 0, y: 0, width: 640, height: 360)
         let preferences = PlaybackPreferences.shared.options
+        let autoSync = UserDefaults.standard.bool(forKey: "subtitleAutoSync")
         PlaybackPreferences.shared.options = PlaybackOptions()
-        defer { window.isHidden = true; window.rootViewController = nil; previous?.makeKeyAndVisible(); PlaybackPreferences.shared.options = preferences }
+        UserDefaults.standard.set(false, forKey: "subtitleAutoSync")
+        defer {
+            window.isHidden = true; window.rootViewController = nil; previous?.makeKeyAndVisible()
+            PlaybackPreferences.shared.options = preferences
+            UserDefaults.standard.set(autoSync, forKey: "subtitleAutoSync")
+        }
         let state = PlayerState(), controller = MPVController(source: .init(url: url.absoluteString, headers: nil, subtitles: nil, via: "test-fixture"), state: state, startPaused: true)
         window.rootViewController = controller; window.makeKeyAndVisible(); controller.view.layoutIfNeeded()
         defer { controller.close() }
