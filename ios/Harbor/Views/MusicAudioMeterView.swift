@@ -78,15 +78,38 @@ enum MusicMeterPresentation: Equatable { case levels, spectrum }
                 ForEach(0..<8, id: \.self) { index in
                     let level = live && measurement?.spectrumDb.count == 8 ? measurement?.spectrumDb[index] ?? -120 : -120
                     let amplitude = live ? pow(min(1, max(0, (level + 60) / 50)), 1.5) : 0
-                    RoundedRectangle(cornerRadius: 2).fill(ThemePreferences.shared.color("ink-muted"))
-                        .overlay { RoundedRectangle(cornerRadius: 2).fill(HarborTheme.accent.opacity(0.35)) }
-                        .frame(height: max(1, geometry.size.height * CGFloat(0.08 + amplitude * 0.92)))
-                        .animation(reduceMotion ? nil : .easeOut(duration: 0.045), value: amplitude)
-                        .opacity(live && measurement?.spectrumDb.contains(where: { $0 > -60 }) == true ? 0.55 + amplitude * 0.45 : 0.25)
-                        .animation(reduceMotion ? nil : .linear(duration: 0.08), value: amplitude)
+                    MusicSpectrumBar(amplitude: amplitude,
+                                     resting: !live || measurement?.spectrumDb.contains(where: { $0 > -60 }) != true,
+                                     reduceMotion: reduceMotion)
+                        .frame(height: geometry.size.height)
                 }
             }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
         }.environment(\.layoutDirection, .leftToRight).accessibilityIdentifier("music-native-spectrum")
     }
     private func fraction(_ db: Double) -> Double { live && db.isFinite ? min(1, max(0, (db + 60) / 60)) : 0 }
+}
+
+private struct MusicSpectrumBar: View {
+    let amplitude: Double
+    let resting: Bool
+    let reduceMotion: Bool
+    @State private var height = 0.08
+    @State private var opacity = 0.25
+    var body: some View {
+        RoundedRectangle(cornerRadius: 2).fill(ThemePreferences.shared.color("ink-muted"))
+            .overlay { RoundedRectangle(cornerRadius: 2).fill(HarborTheme.accent.opacity(0.35)) }
+            .scaleEffect(x: 1, y: height, anchor: .bottom).opacity(opacity)
+            .onChange(of: amplitude, initial: true) { previous, next in
+                withAnimation(reduceMotion ? nil : .easeOut(duration: next > previous ? 0.045 : 0.180)) {
+                    height = 0.08 + next * 0.92
+                }
+                updateOpacity()
+            }
+            .onChange(of: resting) { _, _ in updateOpacity() }
+    }
+    private func updateOpacity() {
+        withAnimation(reduceMotion ? nil : .linear(duration: 0.080)) {
+            opacity = resting ? 0.25 : 0.55 + amplitude * 0.45
+        }
+    }
 }

@@ -14,7 +14,7 @@
   "retained": [
     "The original analysis-only lavfi graph: 24 kHz, 1200-sample windows, eight octave-width bandpasses at 60/120/250/500/1000/2000/4000/8000 Hz.",
     "Per-channel real RMS and peak metadata, bounded named log parsing and 128 timestamped samples per band; future and stale data cannot animate the current clock.",
-    "The original dB scales, nonlinear spectrum mapping, eight-percent idle height and 45/80/95 ms transitions; technical axes remain LTR.",
+    "The original dB scales, nonlinear spectrum mapping, eight-percent idle height, 45 ms rise/180 ms fall, 80 ms opacity and 95 ms RMS transitions; technical axes remain LTR.",
     "Meters stop consuming native analysis when hidden or inactive; reduced motion disables the spectrum animation."
   ],
   "mobileAdaptations": [
