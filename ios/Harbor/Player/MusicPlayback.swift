@@ -299,13 +299,14 @@ struct MusicQueueOrigin: Codable, Equatable, Sendable { let kind: String; let id
         return value
     }
     func acquireMeter() -> UUID {
-        let lease = UUID(); meterUsers.insert(lease); meterRevision &+= 1
+        if meterUsers.isEmpty { meterRevision &+= 1 }
+        let lease = UUID(); meterUsers.insert(lease)
         return lease
     }
     func releaseMeter(_ lease: UUID) async {
         guard meterUsers.remove(lease) != nil else { return }
-        meterRevision &+= 1
         guard meterUsers.isEmpty else { return }
+        meterRevision &+= 1
         do { try await engine.setMetering(false, request: request, revision: meterRevision) }
         catch is CancellationError { }
         catch { Diagnostics.shared.recordFailure(HarborError(code: "music-meter-unavailable")) }
