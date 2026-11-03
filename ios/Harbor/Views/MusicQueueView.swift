@@ -18,7 +18,10 @@ import SwiftUI
                 ForEach(snapshot.upcoming) { item in row(item, snapshot: snapshot) }
                     .onMove { offsets, destination in player.moveUpcoming(from: offsets, to: destination, in: snapshot) }
             } header: {
-                Text(text("music.row.upNext"))
+                HStack {
+                    Text(text("music.row.upNext")); Spacer()
+                    Text(DesktopInterfaceText.value("music.queue.count", variables: ["count": String(snapshot.upcoming.count)]))
+                }
             } footer: {
                 if !snapshot.upcoming.isEmpty { Text(text("music.queue.dragHint")) }
             }
@@ -44,6 +47,18 @@ import SwiftUI
                 }
             }.contextMenu {
                 Button(text("music.queue.playNext")) { player.prioritizeQueueItem(item, in: snapshot) }
+                if let index = snapshot.upcoming.firstIndex(where: { $0.id == item.id }) {
+                    Button {
+                        player.moveUpcoming(from: IndexSet(integer: index), to: index - 1, in: snapshot)
+                    } label: {
+                        Label(DesktopInterfaceText.value("music.queue.moveUp", variables: ["title": item.track.title]), systemImage: "arrow.up")
+                    }.disabled(index == 0)
+                    Button {
+                        player.moveUpcoming(from: IndexSet(integer: index), to: index + 2, in: snapshot)
+                    } label: {
+                        Label(DesktopInterfaceText.value("music.queue.moveDown", variables: ["title": item.track.title]), systemImage: "arrow.down")
+                    }.disabled(index == snapshot.upcoming.count - 1)
+                }
                 Button(DesktopInterfaceText.value("music.queue.remove", variables: ["title": item.track.title]), role: .destructive) { player.removeQueueItem(item, in: snapshot) }
             }
     }

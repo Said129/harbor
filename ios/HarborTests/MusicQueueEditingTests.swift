@@ -75,7 +75,8 @@ import XCTest
         }
         for code in InterfaceLanguage.all.map(\.code) {
             for key in ["music.queue.nowPlaying", "music.row.upNext", "music.queue.previous", "music.queue.empty",
-                        "music.queue.dragHint", "music.queue.shuffleNote", "music.transport.queue", "music.transport.clearQueue"] {
+                        "music.queue.dragHint", "music.queue.shuffleNote", "music.transport.queue", "music.transport.clearQueue",
+                        "music.queue.moveUp", "music.queue.moveDown", "music.queue.count"] {
                 XCTAssertNotEqual(DesktopInterfaceText.value(key, language: code), key)
             }
         }
