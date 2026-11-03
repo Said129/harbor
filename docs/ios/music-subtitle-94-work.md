@@ -544,3 +544,9 @@ restart, actual player-clock eligibility/seek/duplicate/error separation,
 Subsonic failure fallback, late-owner response rejection, and phone/tablet-size
 forms with sixteen-language labels. Those cases and real-account use remain
 pending. Source hashes and primary references are in lastfm-music-port-inputs.json.
+
+Last.fm validation is run 41549661329 on source
+42889557f2afceada9ec82c50332453de285c52c, ref ios/music-lastfm-94, with exactly
+those three new cases and the verified runtime candidate selected. It requests
+no IPA. The separate six-case controls/lyrics/indexed-HTTP run 41546828656 is
+still live on its original source; keep that handle rather than restarting it.
