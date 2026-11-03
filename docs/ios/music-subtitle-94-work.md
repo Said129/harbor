@@ -785,3 +785,10 @@ for the changed JSON/Markdown/YAML but exits because none are lintable source
 files. Swift type checking and actual native execution remain the Apple
 runner's responsibility; unchanged Windows Apple/Linux toolchain limitations
 are retained without another retry.
+
+The resource trace from the completed six-case run also shows simulator
+services consuming CPU throughout compilation. The focused runner now boots
+the selected simulator after build-for-testing, preserving its existing
+runtime overlay preparation, destination, selections and assertions. This
+changes validation scheduling only; no application option or timeout is
+relaxed. Actual speed improvement must be measured in the next affected run.

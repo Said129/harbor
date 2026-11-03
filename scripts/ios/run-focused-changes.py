@@ -90,7 +90,6 @@ devices = json.loads(subprocess.check_output(["xcrun", "simctl", "list", "device
 device = next(d["udid"] for runtime, values in devices["devices"].items() if "iOS" in runtime for d in values if d["name"].startswith("iPhone"))
 os.environ["IOS_SIMULATOR"] = device
 os.environ["IOS_SIMULATOR_ARCH"] = os.uname().machine
-subprocess.run(["xcrun", "simctl", "bootstatus", device, "-b"], check=True, timeout=300)
 subprocess.run(["python3", "scripts/ios/prepare-simulator-webkit.py"], check=True)
 command = ["xcodebuild", "-project", "ios/Harbor.xcodeproj", "-scheme", scheme, "-configuration", "Debug",
            "-destination", f"platform=iOS Simulator,id={device},arch={os.uname().machine}",
@@ -98,6 +97,10 @@ command = ["xcodebuild", "-project", "ios/Harbor.xcodeproj", "-scheme", scheme, 
            "-parallel-testing-enabled", "NO", "CODE_SIGNING_ALLOWED=YES", "CODE_SIGN_IDENTITY=-"]
 selection = ["-only-testing:" + name for name in selected]
 run(command + selection + ["build-for-testing"], "focused-build", timeout=2700)
+# The resource trace showed simulator services competing with the compiler.
+# Build for the selected device first; launch it only for actual execution.
+subprocess.run(["xcrun", "simctl", "bootstatus", device, "-b"], check=True, timeout=300)
+report["simulator_boot_after_build"] = True
 app = build / "DerivedData/Build/Products/Debug-iphonesimulator/Harbor.app"
 subprocess.run(["xcrun", "simctl", "install", device, str(app)], check=True, timeout=90)
 container = subprocess.check_output(["xcrun", "simctl", "get_app_container", device, "site.harbor.iphone", "data"], text=True).strip()
