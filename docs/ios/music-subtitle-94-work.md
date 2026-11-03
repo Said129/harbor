@@ -726,3 +726,31 @@ is included only in test resources. Detailed source hashes and adaptations
 are in music-meter-port-inputs.json. Native execution waits for the additional
 three analysis filters; the packaged 14-filter candidate is still unchanged.
 No new IPA, verified meter behavior or completed Music parity is claimed.
+
+## Consolidated native results, 3 November
+
+Run 41731990004 on 0c0f5989 executed exactly the six selected cases without
+a restart. Four passed: Last.fm authorization/native-clock submission, its
+changed phone/tablet and sixteen-language form, profile-owned corrupt/late
+checkpoint recovery, and confirmed Spotify position accounting. Preserve
+these passes for their unchanged areas. The four exported Last.fm images
+were opened and visually reviewed: translated copy, permanent credential
+captions and connected state fit the phone and tablet layouts.
+The artifact SHA-256 is
+b523e08de144f3c282adbc6a168938c76e03c9e5441c1c873a052e4d1733c0a6.
+
+The native HTTP checkpoint journey failed because its resolver used the
+owned publisher's root URL, which deliberately returns HTTP 404. The test
+now points at the existing /audio.wav endpoint. No production playback or
+checkpoint workaround was added. Failure attachments now identify the
+exact phase and both players' bounded public states.
+
+The indexed HTTP subtitle case failed at the playing seek to 21 seconds.
+Its trace observed 5.667 seconds, then 23.667 after a three-second observation
+gap, then the correct CUE 6 at 24 seconds. Delay and FPS correction stayed
+zero. The 21-second CUE 5 observation window was missed; the evidence does
+not prove that this cue was rendered incorrectly or explain the user's
+physical-device drift. The same assertion is retained, with three bounded
+post-seek frame captures and draw timing added to distinguish the rendered
+subtitle from observation delays. No production subtitle reset, decoder
+change or seek-option workaround is applied.

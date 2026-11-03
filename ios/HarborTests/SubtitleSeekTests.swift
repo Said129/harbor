@@ -146,14 +146,22 @@ final class SubtitleSeekTests: XCTestCase {
     @available(iOS, deprecated: 12.0)
     @MainActor private func wait(_ surface: GLKView, state: PlayerState, context: String = "", until condition: () -> Bool) async throws {
         let deadline = Date().addingTimeInterval(12)
-        var trace: [String] = [], bucket = -1, captured = false
+        var trace: [String] = [], bucket = -1, captured = false, playingFrames = 0
         while Date() < deadline, state.error == nil {
+            let before = Date(), previousPosition = state.position
             surface.display()
+            let drawing = Date().timeIntervalSince(before)
             if condition() { return }
             let elapsed = max(0, 12 - deadline.timeIntervalSinceNow), current = Int(elapsed * 2)
             if current != bucket {
                 bucket = current
-                trace.append("t=\(elapsed) position=\(state.position) paused=\(state.paused) buffered=\(state.buffering) text=\(state.primarySubtitleText) delay=\(state.subtitleDelay) fps=\(String(describing: state.subtitleFPS))")
+                trace.append("t=\(elapsed) positionBeforeDraw=\(previousPosition) drawSeconds=\(drawing) position=\(state.position) paused=\(state.paused) buffered=\(state.buffering) text=\(state.primarySubtitleText) delay=\(state.subtitleDelay) fps=\(String(describing: state.subtitleFPS))")
+            }
+            if context.contains("playing seek"), playingFrames < 3 {
+                playingFrames += 1
+                let attachment = XCTAttachment(image: surface.snapshot)
+                attachment.name = context + "-observed-frame-" + String(playingFrames)
+                attachment.lifetime = .keepAlways; add(attachment)
             }
             if !captured, context.contains("playing seek"), state.position >= 21.2, state.position < 23 {
                 captured = true

@@ -82,8 +82,16 @@ import XCTest
             await player.releaseMeter(first)
             let retained = await player.audioSignal(); XCTAssertTrue(retained?.filters?.contains("harbor_meter") == true)
             let retired = try await player.meterSnapshot(first); XCTAssertNil(retired)
+            let effect = try player.beginEffects(using: session)
+            try await player.applyEffects(.init(kind: "echo", depth: 0.4, beats: 0.5, bpm: 120), lease: effect, using: session)
+            let combined = await player.audioSignal()
+            XCTAssertTrue(combined?.filters?.contains("aecho=") == true)
+            XCTAssertTrue(combined?.filters?.contains("harbor_meter") == true)
             await player.releaseMeter(second)
             let released = await player.audioSignal(); XCTAssertFalse(released?.filters?.contains("harbor_meter") == true)
+            XCTAssertTrue(released?.filters?.contains("aecho=") == true)
+            await player.endEffects(effect, using: session)
+            let cleared = await player.audioSignal(); XCTAssertFalse(cleared?.filters?.contains("aecho=") == true)
             for (name, size, language, direction) in [
                 ("phone", CGSize(width: 390, height: 844), "es", LayoutDirection.leftToRight),
                 ("tablet", CGSize(width: 1024, height: 1366), "es", LayoutDirection.leftToRight),

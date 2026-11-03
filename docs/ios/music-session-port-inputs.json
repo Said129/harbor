@@ -21,8 +21,8 @@
     "OS force termination may precede an inactivity flush; the last completed atomic checkpoint remains usable."
   ],
   "validation": {
-    "nativeHTTPAudioAndFileRestart": "pending",
-    "lateOwnerAndCorruptQueueRecovery": "pending",
+    "nativeHTTPAudioAndFileRestart": "run 41731990004 exposed a test resolver pointing at the publisher's 404 root; corrected to /audio.wav, affected rerun pending",
+    "lateOwnerAndCorruptQueueRecovery": "passed on 0c0f5989 in run 41731990004; unchanged model case retained",
     "physicalDeviceRestart": "not tested"
   }
 }

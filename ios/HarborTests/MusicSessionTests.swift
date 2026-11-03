@@ -34,7 +34,8 @@ private actor HeldMusicSessionStore: MusicSessionPersisting {
 @MainActor final class MusicSessionTests: XCTestCase {
     func testNativeHTTPAudioCheckpointRestoresPausedQueueOriginAndSeekWithoutPersistingResolvedURLs() async throws {
         let file = try XCTUnwrap(Bundle(for: Self.self).url(forResource: "owned-tone", withExtension: "wav", subdirectory: "Fixtures"))
-        let publisher = try SharedMusicPublisher(audio: Data(contentsOf: file)), url = try await publisher.start()
+        let publisher = try SharedMusicPublisher(audio: Data(contentsOf: file))
+        let url = try await publisher.start().appendingPathComponent("audio.wav")
         let directory = FileManager.default.temporaryDirectory.appendingPathComponent("owned-music-session-" + UUID().uuidString)
         let owner = "owned-checkpoint-" + UUID().uuidString
         let store = MusicSessionFileStore(directory: directory), engine = MusicAudioEngine()
@@ -49,12 +50,15 @@ private actor HeldMusicSessionStore: MusicSessionPersisting {
             player.stop(); resumed.stop(); publisher.stop()
             player.shuffle = oldShuffle; player.repeatMode = oldRepeat; player.volume = oldVolume
         }
+        var phase = "initial native HTTP audio load"
         do {
             let song = track("saved-source"), next = track("next-source")
             let origin = MusicQueueOrigin(kind: "playlist", id: "owned-checkpoint-list", name: "Owned queue")
             player.play(song, queue: [song, next], using: resolver, origin: origin)
             try await wait { player.loaded && player.position > 0.1 }
+            phase = "pause original recording"
             player.setPaused(true); try await wait { player.paused }
+            phase = "seek original recording to checkpoint"
             player.seek(3); try await wait { abs(player.position - 3) < 0.2 }
             await player.flushCheckpoint()
             let stored = try await store.read(owner: owner)
@@ -63,6 +67,7 @@ private actor HeldMusicSessionStore: MusicSessionPersisting {
             XCTAssertEqual(saved.origin, origin); XCTAssertEqual(saved.queue.map(\.id), [song.id, next.id])
             XCTAssertEqual(saved.position, 3, accuracy: 0.2)
             player.stop(); await player.flushCheckpoint(); await engine.stop(request: .max)
+            phase = "restore paused metadata without opening audio"
             resumed.attach(resolver)
             try await wait { resumed.restored }
             XCTAssertEqual(resumed.phase, .paused); XCTAssertTrue(resumed.paused); XCTAssertFalse(resumed.loaded)
@@ -70,9 +75,11 @@ private actor HeldMusicSessionStore: MusicSessionPersisting {
             XCTAssertEqual(resumed.currentTrack?.id, song.id); XCTAssertEqual(resumed.items.count, 2)
             let beforePlay = await resumedEngine.signal(request: 0)
             XCTAssertNil(beforePlay, "Restoring metadata must not open a network stream or activate audio")
+            phase = "play restored recording from confirmed checkpoint"
             resumed.togglePause()
             try await wait { resumed.loaded && !resumed.paused && resumed.position >= 2.9 }
             XCTAssertLessThan(resumed.position, 4); XCTAssertNil(resumed.error)
+            phase = "pause restored recording"
             resumed.setPaused(true); try await wait { resumed.paused }
             await resumed.flushCheckpoint()
             let otherOwner = try await store.read(owner: "different-owner")
@@ -85,6 +92,8 @@ private actor HeldMusicSessionStore: MusicSessionPersisting {
             resumed.stop(); await resumed.flushCheckpoint(); await resumedEngine.stop(request: .max)
             try FileManager.default.removeItem(at: directory)
         } catch {
+            let attachment = XCTAttachment(string: "\(phase)\noriginal loaded=\(player.loaded), paused=\(player.paused), position=\(player.position), error=\(player.error ?? "none")\nrestored=\(resumed.restored), loaded=\(resumed.loaded), paused=\(resumed.paused), position=\(resumed.position), error=\(resumed.error ?? "none")")
+            attachment.name = "owned-checkpoint-failure-phase"; attachment.lifetime = .keepAlways; add(attachment)
             player.stop(); resumed.stop()
             await player.flushCheckpoint(); await resumed.flushCheckpoint()
             await engine.stop(request: .max); await resumedEngine.stop(request: .max)

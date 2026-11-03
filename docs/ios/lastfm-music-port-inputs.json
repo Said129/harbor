@@ -23,11 +23,11 @@
     "https://www.last.fm/api/show/track.scrobble"
   ],
   "validation": {
-    "nativeHTTPAndListeningJourney": "run 41549661329 failed at the native listening threshold; follow-up submits on confirmed clock events and fixes a URL.path test normalization",
+    "nativeHTTPAndListeningJourney": "passed on 0c0f5989 in run 41731990004 after the confirmed-clock submission and URLComponents.path correction",
     "lateProfileAuthorization": "passed once on 42889557 in run 41549661329; unchanged account lifecycle retained",
-    "phoneAndTabletCaptures": "four original captures inspected from run 41549661329; permanent credential captions and four translated labels subsequently changed and await affected visual confirmation",
+    "phoneAndTabletCaptures": "changed form passed on 0c0f5989 in run 41731990004; all four exported phone/tablet images opened and visually reviewed, including permanent credential captions and translated labels",
     "realLastFmAccount": "not tested",
-    "confirmedSpotifyPositions": "pending native execution",
+    "confirmedSpotifyPositions": "passed on 0c0f5989 in run 41731990004; owned confirmed-position inputs and actual native Last.fm HTTP submission, not a real Spotify account",
     "realSpotifyAccountAndSDKPolling": "not tested",
     "backgroundSpotifyListening": "not inferred; official SDK connection is suspended"
   }
