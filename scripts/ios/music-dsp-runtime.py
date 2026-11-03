@@ -17,7 +17,8 @@ FFMPEG_VERSION = "n8.1.2"
 BASELINE_BINARY_HASHES = {"Libavfilter": "3e71af8633d99d365f14b88064bceafd57acb23fc64db90e55b715a9c0dca328",
                           "Libavutil": "5dc251c8807c501982edfb0bc9bddfee4148733142d6ebb947738c60fb3bf8d8"}
 FILTERS = ["aecho", "crossfeed", "bass", "treble", "lowpass", "highpass", "bandreject",
-           "astats", "ametadata", "afade", "acrossfade", "asplit", "asetpts", "alimiter"]
+           "astats", "ametadata", "afade", "acrossfade", "asplit", "asetpts", "alimiter",
+           "bandpass", "asetnsamples", "anullsink"]
 
 
 def digest(path):

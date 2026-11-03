@@ -686,3 +686,12 @@ generated; all other translations were preserved. Those new executions are
 pending. This adds the beat-effect bank; the complete DJ deck, scratch,
 release effects, waveform and second deck remain unfinished Music work.
 Source provenance is in music-beat-effects-port-inputs.json. No IPA is built.
+
+The original measured eight-band visualizer also requires bandpass,
+asetnsamples and anullsink, which are absent from the currently packaged
+14-filter extension. The next component build enables those three definitions
+using the same pinned FFmpeg/SDK/ABI. This prepares the actual original
+analysis graph instead of fabricating animation levels. The accepted
+14-filter archive and current application package remain in place; a new
+component must be verified and exercised before integration. No meter,
+spectrum or visualizer behavior is claimed implemented by this build change.
