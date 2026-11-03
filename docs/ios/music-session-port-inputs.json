@@ -1,0 +1,28 @@
+{
+  "referenceCommit": "0834340cec5531650bfe78cd628628702e636987",
+  "referenceVersion": "0.9.132 Beta",
+  "originalFilesSHA256": {
+    "src/lib/music/session-checkpoint.ts": "87327193858035023de267d989b98e729f54c2b7bc3090f81e0a1ad1b24cbadb",
+    "src/lib/music/player.ts": "c2a2088d6f0b4038178f62a789d266a2a9c36d2b358068274e137e157ffd6792"
+  },
+  "retained": [
+    "Restore the chosen recording, queue, origin and usable playback position in a paused dock; restoring metadata does not open streams or activate audio.",
+    "The checkpoint carries its current recording independently of the queue, retaining a substitute source when queue membership no longer matches.",
+    "Unknown duration permits a positive finite position; a position within the last two seconds of a known duration resumes from zero.",
+    "An idle player or profile switch does not erase the previous profile's checkpoint.",
+    "Periodic two-second writes and pause, queue and app-inactivity flushes; storage failure does not interrupt playback."
+  ],
+  "mobileAdaptations": [
+    "Profile-owned protected atomic files in Application Support replace IndexedDB and localStorage; catalog cache pressure cannot evict the checkpoint.",
+    "Queue metadata is serialized only when its revision changes, on a dedicated actor; ordinary time updates write a small checkpoint.",
+    "Remote resolved stream URLs and HTTP headers are not persisted. Configured direct/local recording references follow the existing owned playlist metadata policy.",
+    "Activation, resolver identity, cancellation and player request fences reject a late restore after profile change or a new play request.",
+    "The native bootstrap reads the checkpoint asynchronously and constructs the music workspace only when saved metadata exists.",
+    "OS force termination may precede an inactivity flush; the last completed atomic checkpoint remains usable."
+  ],
+  "validation": {
+    "nativeHTTPAudioAndFileRestart": "pending",
+    "lateOwnerAndCorruptQueueRecovery": "pending",
+    "physicalDeviceRestart": "not tested"
+  }
+}

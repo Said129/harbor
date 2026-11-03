@@ -2,6 +2,7 @@ import AVFoundation
 import Foundation
 import MediaPlayer
 import Observation
+import UIKit
 
 enum MusicRepeat: String, CaseIterable, Identifiable, Sendable {
     case off, all, one
@@ -11,12 +12,12 @@ enum MusicRepeat: String, CaseIterable, Identifiable, Sendable {
         return DesktopInterfaceText.value(key)
     }
 }
-struct MusicQueueOrigin: Equatable, Sendable { let kind: String; let id: String; let name: String }
+struct MusicQueueOrigin: Codable, Equatable, Sendable { let kind: String; let id: String; let name: String }
 
 @MainActor @Observable final class MusicPlayback {
-    static let shared = MusicPlayback()
+    static let shared = MusicPlayback(checkpoints: MusicSessionFileStore.shared)
     private(set) var owner = "guest"
-    private(set) var items: [MusicPlaybackItem] = []
+    private(set) var items: [MusicPlaybackItem] = [] { didSet { queueRevision = UUID() } }
     private(set) var currentItem: MusicPlaybackItem?
     private(set) var upcomingItems: [MusicPlaybackItem] = []
     private(set) var origin: MusicQueueOrigin?
@@ -49,7 +50,7 @@ struct MusicQueueOrigin: Equatable, Sendable { let kind: String; let id: String;
     var phase: SpooktoberWorldMusicState.Phase {
         if currentItem == nil { return .idle }
         if error != nil { return .error }
-        if resolving || !loaded && !ended { return .resolving }
+        if resolving || !loaded && !ended && !restored { return .resolving }
         return paused || ended ? .paused : .playing
     }
     var worldState: SpooktoberWorldMusicState { .init(trackId: currentTrack?.id, originKind: origin?.kind, originId: origin?.id, phase: phase) }
@@ -73,18 +74,35 @@ struct MusicQueueOrigin: Equatable, Sendable { let kind: String; let id: String;
     @ObservationIgnored private var scrobbleStarted = false
     @ObservationIgnored private var recorded = false
     @ObservationIgnored private var pendingResume: Double?
+    @ObservationIgnored private var checkpointTarget: Double?
+    @ObservationIgnored private let checkpoints: (any MusicSessionPersisting)?
+    @ObservationIgnored private var queueRevision = UUID()
+    @ObservationIgnored private var checkpointQueueRevision: UUID?
+    @ObservationIgnored private var checkpointQueue: [MusicTrack] = []
+    @ObservationIgnored private var lastCheckpoint = Date.distantPast
+    @ObservationIgnored private var checkpointWrite: Task<Void, Never>?
+    @ObservationIgnored private var restoreTask: Task<Void, Never>?
+    @ObservationIgnored private var restoreScope: PluginExecutionScope?
+    private(set) var restored = false
     init(engine: any MusicAudioEngineOperating = MusicAudioEngine(), systemIntegration: Bool = true,
-         recordPlayed: (@MainActor (MusicTrack, String) -> Void)? = nil) {
+         recordPlayed: (@MainActor (MusicTrack, String) -> Void)? = nil, checkpoints: (any MusicSessionPersisting)? = nil) {
         self.engine = engine; self.systemIntegration = systemIntegration
+        self.checkpoints = checkpoints
         self.recordPlayed = recordPlayed ?? { track, owner in _ = MusicCollections.shared.recordPlayed(track.id, owner: owner) }
+        if systemIntegration {
+            tokens.append(NotificationCenter.default.addObserver(forName: UIApplication.willResignActiveNotification, object: nil, queue: nil) { [weak self] _ in
+                Task { @MainActor in self?.saveCheckpoint(force: true) }
+            })
+        }
     }
     private static func savedVolume() -> Double {
         guard let value = UserDefaults.standard.object(forKey: "music.volume") as? Double, value.isFinite, (0...500).contains(value) else { return 82 }; return value
     }
-    func attach(_ session: any MusicPlaybackResolving) {
+    func attach(_ session: any MusicPlaybackResolving, restoring saved: MusicSessionSnapshot? = nil) {
         guard (try? session.validate()) != nil else { return }
         if owner != session.scope.owner || resolver.map({ $0.scope != session.scope || ObjectIdentifier($0) != ObjectIdentifier(session) }) == true { stop() }
         owner = session.scope.owner; resolver = session
+        restoreCheckpoint(using: session, saved: saved)
     }
     func play(_ record: MusicRecord, queue: [MusicRecord], owner: String, continuingQueue: Bool = false) {
         do {
@@ -112,11 +130,13 @@ struct MusicQueueOrigin: Equatable, Sendable { let kind: String; let id: String;
     }
     private func start(_ item: MusicPlaybackItem, resuming resumeAt: Double = 0, paused startPaused: Bool = false) {
         submitScrobbleIfEligible()
+        restoreTask?.cancel(); restoreTask = nil; restored = false
         request &+= 1; let token = request, loadedOwner = owner, session = resolver
         resolution?.onStopped?()
         resolutionTask?.cancel(); poller?.cancel(); poller = nil; resolution = nil
         currentItem = item; loaded = false; resolving = true; paused = true; desiredPause = startPaused
         pendingResume = resumeAt.isFinite && resumeAt > 0 ? resumeAt : nil
+        checkpointTarget = checkpoints == nil ? nil : pendingResume
         pausedForVideo = false; ended = false; error = nil; scrobbleError = nil
         position = 0; duration = Double(item.track.durationSeconds)
         previousPosition = nil; listened = 0; scrobbleStarted = false; recorded = false
@@ -183,6 +203,10 @@ struct MusicQueueOrigin: Equatable, Sendable { let kind: String; let id: String;
     func setPaused(_ value: Bool) {
         guard currentItem != nil else { return }
         pausedForVideo = false; desiredPause = value
+        if restored {
+            if !value, let item = currentItem { start(item, resuming: position) }
+            return
+        }
         if !value, ended || error != nil, let item = currentItem { start(item); return }
         if !value { try? activateAudio() }
         send(.paused(value))
@@ -192,7 +216,10 @@ struct MusicQueueOrigin: Equatable, Sendable { let kind: String; let id: String;
         desiredPause = true; pausedForVideo = true; send(.paused(true))
     }
     func seek(_ value: Double) {
-        guard value.isFinite, value >= 0 else { return }; send(.seek(min(value, max(0, duration))))
+        guard value.isFinite, value >= 0 else { return }
+        if restored { position = duration > 0 ? min(value, duration) : value; saveCheckpoint(force: true); return }
+        checkpointTarget = nil
+        send(.seek(min(value, max(0, duration))))
     }
     func changeVolume(_ value: Double) {
         guard value.isFinite else { return }; volume = min(volumeMaximum, max(0, value)); send(.volume(volume))
@@ -281,6 +308,7 @@ struct MusicQueueOrigin: Equatable, Sendable { let kind: String; let id: String;
         } else { refreshUpcoming() }
     }
     private func refreshUpcoming() {
+        defer { saveCheckpoint(force: true) }
         guard let currentItem, let index = items.firstIndex(where: { $0.id == currentItem.id }) else { upcomingItems = []; return }
         do {
             var tracks = try order.upcoming(items.map(\.track), index: index, shuffle: shuffle, repeatMode: repeatMode)
@@ -296,6 +324,8 @@ struct MusicQueueOrigin: Equatable, Sendable { let kind: String; let id: String;
         changeVolume(Self.savedVolume())
     }
     func stop() {
+        saveCheckpoint(force: true)
+        restoreTask?.cancel(); restoreTask = nil; restored = false
         submitScrobbleIfEligible(); resolution?.onStopped?(); resolution = nil
         request &+= 1; let token = request
         resolutionTask?.cancel(); resolutionTask = nil; poller?.cancel(); poller = nil
@@ -304,6 +334,8 @@ struct MusicQueueOrigin: Equatable, Sendable { let kind: String; let id: String;
         loaded = false; resolving = false; paused = true; pausedForVideo = false; position = 0; duration = 0; ended = false
         error = nil; scrobbleError = nil; previousPosition = nil; listened = 0; try? order.reset()
         pendingResume = nil
+        checkpointTarget = nil
+        checkpointQueue = []; checkpointQueueRevision = nil
         if systemIntegration { MPNowPlayingInfoCenter.default().nowPlayingInfo = nil; setRemoteEnabled(false) }
     }
     private func startPolling(_ token: UInt64) {
@@ -332,6 +364,7 @@ struct MusicQueueOrigin: Equatable, Sendable { let kind: String; let id: String;
                 if !recorded, let track = currentTrack { recorded = true; recordPlayed(track, owner) }
             case .time(let value):
                 guard value.isFinite, value >= 0, loaded else { continue }
+                if let target = checkpointTarget, abs(value - target) < 0.4 { checkpointTarget = nil }
                 listened += MusicListening.increment(previous: previousPosition, current: value); previousPosition = value; position = value
             case .duration(let value): if value.isFinite && value >= 0 { duration = value }
             case .paused(let value): paused = value
@@ -345,9 +378,56 @@ struct MusicQueueOrigin: Equatable, Sendable { let kind: String; let id: String;
                 if failed { error = message(HarborError(code: "music-player")); loaded = false; paused = true }
             }
         }
+        submitScrobbleIfEligible()
         nowPlaying()
+        saveCheckpoint(force: events.contains { if case .paused = $0 { return true }; return false })
         if natural { next(automatic: true) }
     }
+    private func restoreCheckpoint(using session: any MusicPlaybackResolving, saved: MusicSessionSnapshot?) {
+        guard let checkpoints, restoreScope != session.scope else { return }
+        restoreScope = session.scope
+        guard currentItem == nil else { return }
+        let token = request, previousWrite = checkpointWrite
+        restoreTask = Task { @MainActor [weak self] in
+            await previousWrite?.value
+            do {
+                let value: MusicSessionSnapshot?
+                if let saved { value = saved } else { value = try await checkpoints.read(owner: session.scope.owner) }
+                try Task.checkCancellation(); try session.validate()
+                guard let self, self.request == token, self.owner == session.scope.owner,
+                      self.resolver.map({ ObjectIdentifier($0) == ObjectIdentifier(session) }) == true,
+                      self.currentItem == nil, let value else { return }
+                var seen = Set<String>()
+                self.items = value.queue.filter { seen.insert(MusicQueueOrder.key($0)).inserted }
+                    .map { .init(track: $0, localRecord: session.localRecord($0)) }
+                let current = MusicPlaybackItem(track: value.current, localRecord: session.localRecord(value.current))
+                if let index = self.items.firstIndex(where: { $0.id == current.id }) { self.items[index] = current }
+                else { self.items.insert(current, at: 0) }
+                self.currentItem = current; self.origin = value.origin
+                self.duration = Double(current.track.durationSeconds)
+                self.position = MusicSessionSnapshot.usablePosition(value.position, duration: self.duration)
+                self.restored = true; self.loaded = false; self.resolving = false; self.paused = true; self.desiredPause = true
+                self.refreshUpcoming()
+            } catch is CancellationError { }
+            catch { Diagnostics.shared.recordFailure(HarborError(code: "music-session")) }
+        }
+    }
+    private func saveCheckpoint(force: Bool = false) {
+        guard let checkpoints, let currentTrack, force || Date().timeIntervalSince(lastCheckpoint) >= 2 else { return }
+        lastCheckpoint = Date()
+        if checkpointQueueRevision != queueRevision {
+            checkpointQueue = items.map(\.track); checkpointQueueRevision = queueRevision
+        }
+        let value = MusicSessionSnapshot(revision: queueRevision, queue: checkpointQueue, current: currentTrack,
+                                         origin: origin, position: checkpointTarget ?? pendingResume ?? position, savedAt: lastCheckpoint)
+        let previous = checkpointWrite, owner = owner
+        checkpointWrite = Task {
+            await previous?.value
+            do { try await checkpoints.write(value, owner: owner) }
+            catch { Diagnostics.shared.recordFailure(HarborError(code: "music-session")) }
+        }
+    }
+    func flushCheckpoint() async { saveCheckpoint(force: true); await checkpointWrite?.value }
     private func submitScrobbleIfEligible() {
         guard !scrobbleStarted, let track = currentTrack, let resolver, let resolution, resolution.valid(),
               MusicListening.shouldScrobble(listened: listened, duration: duration) else { return }

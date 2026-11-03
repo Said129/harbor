@@ -2219,7 +2219,7 @@
 "music.lastfm.finish" = "Finish connection";
 "music.lastfm.getKey" = "Get an API key";
 "music.lastfm.history" = "Keep your listening history";
-"music.lastfm.keyHelp" = "Last.fm asks every app to identify itself. Create a free API account, then paste the key and shared secret it shows you. Harbor keeps both on this device.";
+"music.lastfm.keyHelp" = "Last.fm needs to identify each app. Create a free API account, then paste the key and shared secret it provides. Harbor keeps both on this device.";
 "music.lastfm.live" = "Live";
 "music.lastfm.saved" = "Credentials saved";
 "music.lastfm.secret" = "Shared secret";

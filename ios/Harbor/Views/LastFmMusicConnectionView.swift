@@ -40,8 +40,14 @@ import SwiftUI
     private var credentialsSection: some View {
         Section {
             Text(text("music.lastfm.keyHelp")).font(.footnote).foregroundStyle(.secondary)
-            SecureField(text("music.lastfm.apiKey"), text: $apiKey).textInputAutocapitalization(.never).autocorrectionDisabled()
-            SecureField(text("music.lastfm.secret"), text: $secret).textInputAutocapitalization(.never).autocorrectionDisabled()
+            VStack(alignment: .leading, spacing: 6) {
+                Text(text("music.lastfm.apiKey")).font(.caption).foregroundStyle(.secondary)
+                SecureField(text("music.lastfm.apiKey"), text: $apiKey).textInputAutocapitalization(.never).autocorrectionDisabled()
+            }
+            VStack(alignment: .leading, spacing: 6) {
+                Text(text("music.lastfm.secret")).font(.caption).foregroundStyle(.secondary)
+                SecureField(text("music.lastfm.secret"), text: $secret).textInputAutocapitalization(.never).autocorrectionDisabled()
+            }
             Link(text("music.lastfm.getKey"), destination: URL(string: "https://www.last.fm/api/account/create")!)
             Link(text("music.lastfm.createAccount"), destination: URL(string: "https://www.last.fm/join")!)
             Button(text("Save")) {

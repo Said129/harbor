@@ -135,7 +135,11 @@
     "Access token": "Token de acceso",
     "music.connections.capability.browse": "Explorar",
     "music.connections.capability.play": "Reproducir",
-    "music.connections.capability.library": "Biblioteca"
+    "music.connections.capability.library": "Biblioteca",
+    "music.lastfm.keyHelp": "Last.fm necesita identificar cada aplicación. Crea una cuenta de API gratuita y pega la clave y el secreto compartido que te proporciona. Harbor guarda ambos en este dispositivo.",
+    "music.lastfm.getKey": "Obtener una clave de API",
+    "music.lastfm.createAccount": "Crear una cuenta de Last.fm",
+    "music.lastfm.viewProfile": "Ver perfil"
   },
   "pt": {
     "Auto-sync": "Sincronização automática",
@@ -221,7 +225,11 @@
     "Access token": "Token de acesso",
     "music.connections.capability.browse": "Explorar",
     "music.connections.capability.play": "Reproduzir",
-    "music.connections.capability.library": "Biblioteca"
+    "music.connections.capability.library": "Biblioteca",
+    "music.lastfm.keyHelp": "O Last.fm precisa identificar cada aplicação. Crie uma conta de API gratuita e cole a chave e o segredo partilhado fornecidos. O Harbor guarda ambos neste dispositivo.",
+    "music.lastfm.getKey": "Obter uma chave de API",
+    "music.lastfm.createAccount": "Criar uma conta Last.fm",
+    "music.lastfm.viewProfile": "Ver perfil"
   },
   "ru": {
     "Auto-sync": "Автосинхронизация",
@@ -306,7 +314,11 @@
     "Access token": "Токен доступа",
     "music.connections.capability.browse": "Каталог",
     "music.connections.capability.play": "Воспроизвести",
-    "music.connections.capability.library": "Библиотека"
+    "music.connections.capability.library": "Библиотека",
+    "music.lastfm.keyHelp": "Last.fm требует идентификации каждого приложения. Создайте бесплатную учётную запись API и вставьте выданные ключ и общий секрет. Harbor хранит их на этом устройстве.",
+    "music.lastfm.getKey": "Получить ключ API",
+    "music.lastfm.createAccount": "Создать аккаунт Last.fm",
+    "music.lastfm.viewProfile": "Открыть профиль"
   },
   "ar": {
     "Auto-sync": "مزامنة تلقائية",
@@ -391,7 +403,11 @@
     "Access token": "رمز الوصول",
     "music.connections.capability.browse": "تصفّح",
     "music.connections.capability.play": "تشغيل",
-    "music.connections.capability.library": "المكتبة"
+    "music.connections.capability.library": "المكتبة",
+    "music.lastfm.keyHelp": "يحتاج Last.fm إلى التعرف على كل تطبيق. أنشئ حساب API مجانيًا، ثم الصق المفتاح والسر المشترك اللذين تحصل عليهما. يحفظهما Harbor على هذا الجهاز.",
+    "music.lastfm.getKey": "الحصول على مفتاح API",
+    "music.lastfm.createAccount": "إنشاء حساب Last.fm",
+    "music.lastfm.viewProfile": "عرض الملف الشخصي"
   },
   "zh": {
     "Couldn't auto-sync": "无法自动同步",
@@ -448,7 +464,11 @@
     "Access token": "访问令牌",
     "music.connections.capability.browse": "浏览",
     "music.connections.capability.play": "播放",
-    "music.connections.capability.library": "媒体库"
+    "music.connections.capability.library": "媒体库",
+    "music.lastfm.keyHelp": "Last.fm 需要识别每个应用。请创建免费的 API 账户，然后粘贴获得的密钥和共享密钥。Harbor 会将两者保存在此设备上。",
+    "music.lastfm.getKey": "获取 API 密钥",
+    "music.lastfm.createAccount": "创建 Last.fm 账户",
+    "music.lastfm.viewProfile": "查看个人资料"
   },
   "fr": {
     "Couldn't auto-sync": "Synchronisation automatique impossible",
@@ -505,7 +525,11 @@
     "Access token": "Jeton d’accès",
     "music.connections.capability.browse": "Parcourir",
     "music.connections.capability.play": "Lire",
-    "music.connections.capability.library": "Bibliothèque"
+    "music.connections.capability.library": "Bibliothèque",
+    "music.lastfm.keyHelp": "Last.fm doit identifier chaque application. Créez un compte API gratuit, puis collez la clé et le secret partagé fournis. Harbor les conserve sur cet appareil.",
+    "music.lastfm.getKey": "Obtenir une clé API",
+    "music.lastfm.createAccount": "Créer un compte Last.fm",
+    "music.lastfm.viewProfile": "Voir le profil"
   },
   "de": {
     "Couldn't auto-sync": "Automatische Synchronisierung nicht möglich",
@@ -562,7 +586,11 @@
     "Access token": "Zugriffstoken",
     "music.connections.capability.browse": "Durchsuchen",
     "music.connections.capability.play": "Abspielen",
-    "music.connections.capability.library": "Mediathek"
+    "music.connections.capability.library": "Mediathek",
+    "music.lastfm.keyHelp": "Last.fm muss jede App identifizieren. Erstelle ein kostenloses API-Konto und füge den bereitgestellten Schlüssel und das gemeinsame Geheimnis ein. Harbor speichert beides auf diesem Gerät.",
+    "music.lastfm.getKey": "API-Schlüssel anfordern",
+    "music.lastfm.createAccount": "Last.fm-Konto erstellen",
+    "music.lastfm.viewProfile": "Profil ansehen"
   },
   "hi": {
     "Couldn't auto-sync": "अपने-आप सिंक नहीं हो सका",
@@ -619,7 +647,11 @@
     "Access token": "एक्सेस टोकन",
     "music.connections.capability.browse": "ब्राउज़ करें",
     "music.connections.capability.play": "चलाएँ",
-    "music.connections.capability.library": "लाइब्रेरी"
+    "music.connections.capability.library": "लाइब्रेरी",
+    "music.lastfm.keyHelp": "Last.fm को हर ऐप की पहचान चाहिए। मुफ़्त API खाता बनाएँ और मिली हुई कुंजी और साझा सीक्रेट यहाँ पेस्ट करें। Harbor दोनों को इस डिवाइस पर सहेजता है।",
+    "music.lastfm.getKey": "API कुंजी प्राप्त करें",
+    "music.lastfm.createAccount": "Last.fm खाता बनाएँ",
+    "music.lastfm.viewProfile": "प्रोफ़ाइल देखें"
   },
   "id": {
     "Couldn't auto-sync": "Tidak dapat menyinkronkan otomatis",
@@ -676,7 +708,11 @@
     "Access token": "Token akses",
     "music.connections.capability.browse": "Jelajahi",
     "music.connections.capability.play": "Putar",
-    "music.connections.capability.library": "Perpustakaan"
+    "music.connections.capability.library": "Perpustakaan",
+    "music.lastfm.keyHelp": "Last.fm perlu mengidentifikasi setiap aplikasi. Buat akun API gratis, lalu tempel kunci dan rahasia bersama yang diberikan. Harbor menyimpan keduanya di perangkat ini.",
+    "music.lastfm.getKey": "Dapatkan kunci API",
+    "music.lastfm.createAccount": "Buat akun Last.fm",
+    "music.lastfm.viewProfile": "Lihat profil"
   },
   "it": {
     "Couldn't auto-sync": "Sincronizzazione automatica non riuscita",
@@ -733,7 +769,11 @@
     "Access token": "Token di accesso",
     "music.connections.capability.browse": "Esplora",
     "music.connections.capability.play": "Riproduci",
-    "music.connections.capability.library": "Libreria"
+    "music.connections.capability.library": "Libreria",
+    "music.lastfm.keyHelp": "Last.fm deve identificare ogni app. Crea un account API gratuito, poi incolla la chiave e il segreto condiviso forniti. Harbor li conserva su questo dispositivo.",
+    "music.lastfm.getKey": "Ottieni una chiave API",
+    "music.lastfm.createAccount": "Crea un account Last.fm",
+    "music.lastfm.viewProfile": "Visualizza profilo"
   },
   "ja": {
     "Couldn't auto-sync": "自動同期できませんでした",
@@ -790,7 +830,11 @@
     "Access token": "アクセストークン",
     "music.connections.capability.browse": "一覧",
     "music.connections.capability.play": "再生",
-    "music.connections.capability.library": "ライブラリ"
+    "music.connections.capability.library": "ライブラリ",
+    "music.lastfm.keyHelp": "Last.fm は各アプリを識別する必要があります。無料の API アカウントを作成し、発行されたキーと共有シークレットを貼り付けてください。Harbor は両方をこのデバイスに保存します。",
+    "music.lastfm.getKey": "API キーを取得",
+    "music.lastfm.createAccount": "Last.fm アカウントを作成",
+    "music.lastfm.viewProfile": "プロフィールを表示"
   },
   "ko": {
     "Couldn't auto-sync": "자동 동기화하지 못했습니다",
@@ -847,7 +891,11 @@
     "Access token": "액세스 토큰",
     "music.connections.capability.browse": "탐색",
     "music.connections.capability.play": "재생",
-    "music.connections.capability.library": "라이브러리"
+    "music.connections.capability.library": "라이브러리",
+    "music.lastfm.keyHelp": "Last.fm은 각 앱을 식별해야 합니다. 무료 API 계정을 만든 다음 발급받은 키와 공유 비밀키를 붙여넣으세요. Harbor는 둘 다 이 기기에 저장합니다.",
+    "music.lastfm.getKey": "API 키 받기",
+    "music.lastfm.createAccount": "Last.fm 계정 만들기",
+    "music.lastfm.viewProfile": "프로필 보기"
   },
   "pl": {
     "Couldn't auto-sync": "Nie udało się zsynchronizować automatycznie",
@@ -904,7 +952,11 @@
     "Access token": "Token dostępu",
     "music.connections.capability.browse": "Przeglądaj",
     "music.connections.capability.play": "Odtwórz",
-    "music.connections.capability.library": "Biblioteka"
+    "music.connections.capability.library": "Biblioteka",
+    "music.lastfm.keyHelp": "Last.fm musi identyfikować każdą aplikację. Utwórz bezpłatne konto API, a następnie wklej otrzymany klucz i wspólny sekret. Harbor przechowuje je na tym urządzeniu.",
+    "music.lastfm.getKey": "Uzyskaj klucz API",
+    "music.lastfm.createAccount": "Utwórz konto Last.fm",
+    "music.lastfm.viewProfile": "Zobacz profil"
   },
   "tr": {
     "Couldn't auto-sync": "Otomatik eşitlenemedi",
@@ -961,7 +1013,11 @@
     "Access token": "Erişim belirteci",
     "music.connections.capability.browse": "Göz at",
     "music.connections.capability.play": "Oynat",
-    "music.connections.capability.library": "Kütüphane"
+    "music.connections.capability.library": "Kütüphane",
+    "music.lastfm.keyHelp": "Last.fm her uygulamayı tanımlamak ister. Ücretsiz bir API hesabı oluşturup verilen anahtarı ve paylaşılan gizli anahtarı yapıştırın. Harbor ikisini de bu cihazda saklar.",
+    "music.lastfm.getKey": "API anahtarı al",
+    "music.lastfm.createAccount": "Last.fm hesabı oluştur",
+    "music.lastfm.viewProfile": "Profili görüntüle"
   },
   "vi": {
     "Couldn't auto-sync": "Không thể tự động đồng bộ",
@@ -1018,7 +1074,11 @@
     "Access token": "Mã thông báo truy cập",
     "music.connections.capability.browse": "Duyệt",
     "music.connections.capability.play": "Phát",
-    "music.connections.capability.library": "Thư viện"
+    "music.connections.capability.library": "Thư viện",
+    "music.lastfm.keyHelp": "Last.fm cần xác định từng ứng dụng. Tạo tài khoản API miễn phí, rồi dán khóa và mã bí mật dùng chung được cấp. Harbor lưu cả hai trên thiết bị này.",
+    "music.lastfm.getKey": "Lấy khóa API",
+    "music.lastfm.createAccount": "Tạo tài khoản Last.fm",
+    "music.lastfm.viewProfile": "Xem hồ sơ"
   },
   "en": {
     "Browse services": "Browse services",
@@ -1112,6 +1172,10 @@
     "Access token": "Access token",
     "music.connections.capability.browse": "Browse",
     "music.connections.capability.play": "Play",
-    "music.connections.capability.library": "Library"
+    "music.connections.capability.library": "Library",
+    "music.lastfm.keyHelp": "Last.fm needs to identify each app. Create a free API account, then paste the key and shared secret it provides. Harbor keeps both on this device.",
+    "music.lastfm.getKey": "Get an API key",
+    "music.lastfm.createAccount": "Create a Last.fm account",
+    "music.lastfm.viewProfile": "View profile"
   }
 }

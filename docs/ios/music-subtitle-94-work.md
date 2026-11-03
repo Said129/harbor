@@ -601,3 +601,55 @@ real Spotify account or prove an actual Free-account SDK connection.
 Native execution of this new case is pending. Last.fm's separate three
 auth/native-player/UI cases retain run 41549661329 and are not restarted.
 No IPA has been requested or created by these validation runs.
+
+## Last.fm affected result and the next consolidated selection
+
+Run 41549661329 executed exactly three cases on 42889557: late-profile
+authorization and native phone/tablet-size forms passed; the native listening
+journey failed. Archive SHA-256:
+6f18dc6c1349cc2ee3c96890a2e50b83ed30b1401e5952420cd672f4e49b7779.
+All four form/connected captures were inspected. They exposed untranslated
+help/links and credential rows with no permanent caption once filled.
+Four labels now have native translations in all sixteen languages, and the
+two secure rows keep their captions. This changed form needs affected visual
+confirmation; the unchanged late-owner pass is retained. The build log
+confirms the vendor quoted-header warnings are gone; original GLES and
+optional AppIntents notices remain.
+
+The failed journey also used URL.path to compare a trailing slash, although
+Foundation normalizes that accessor. The assertion now checks the actual
+URLComponents path. Code inspection found the native player's eligibility
+counter was only submitted on end/start/stop, so it could not submit at the
+threshold while the recording kept playing. It now checks eligibility after
+confirmed native clock events, retaining the existing once-only guard.
+Wait failures identify their exact phase. This corrected journey must execute;
+the earlier failed result is not counted as a pass.
+
+The Spotify/indexed-HTTP run 41553486953 on 7bc7c947 terminated during its
+35-minute native build deadline: zero test executions. Its evidence archive
+SHA-256 is d3ba01fc79981f2e6a53b8790d522b7c9c1b30137cac17d4d2a8560e0b9fd65f.
+No Swift error is present in the retained build log. The next single build
+consolidates those unexecuted cases, the new session journeys and the affected
+Last.fm follow-up. A bounded resource log will distinguish compiler pressure
+from slow type checking. Build allowance is 45 minutes, with compiler process
+group cleanup on timeout; the test selection and all assertions stay explicit.
+
+## Paused music session restoration
+
+The native player now retains the Desktop recording/queue/origin/resume
+semantics using profile-owned protected atomic files. Queue serialization runs
+off the main actor only when its revision changes; ordinary position updates
+write a small checkpoint every two seconds. Pause, queue changes, stopping and
+app inactivity flush the latest state. A failed write cannot interrupt audio.
+The bootstrap probes asynchronously and only constructs a music workspace
+when saved state exists. The dock restores paused and does not fetch a stream
+until Play. Scope, request and resolver fences reject late restore replies.
+Unknown duration and a replaced source retain their own checkpoint rules;
+an interrupted/corrupt queue can recover the separately saved recording.
+The original audio seeking and source-switch commands are unchanged.
+
+Two new journeys cover protected file restart plus actual native HTTP audio
+resume, queue/origin restoration without autoplay, private resolved URL
+exclusion, unknown/end positions, substitute recovery and a delayed old-profile
+read. Native execution remains pending. Detailed provenance is in
+music-session-port-inputs.json. No new IPA or complete Music parity is claimed.

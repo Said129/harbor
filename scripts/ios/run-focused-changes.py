@@ -3,7 +3,10 @@ import json
 import os
 from pathlib import Path
 import re
+import signal
 import subprocess
+import threading
+import time
 
 root = Path(__file__).resolve().parents[2]
 os.chdir(root)
@@ -30,13 +33,57 @@ def save(phase):
 def run(command, name, timeout=1500, allow_failure=False):
     save(name)
     print("Native phase:", name, flush=True)
-    with (logs / (name + ".log")).open("w", encoding="utf-8") as output:
-        result = subprocess.run(command, stdout=output, stderr=subprocess.STDOUT, text=True, timeout=timeout)
-    if result.returncode:
+    finished = threading.Event()
+
+    def resources():
+        with (logs / (name + "-resources.log")).open("w", encoding="utf-8") as stats:
+            while not finished.is_set():
+                stats.write(f"monotonic_seconds={time.monotonic():.1f}\n")
+                try:
+                    result = subprocess.run(["ps", "-axo", "pid,ppid,%cpu,rss,comm"], capture_output=True, text=True, timeout=10)
+                    lines = result.stdout.splitlines()
+                    rows = sorted(lines[1:], key=lambda line: int(line.split(None, 4)[3]), reverse=True)
+                    stats.write("\n".join([lines[0], *rows[:12]]) + "\n")
+                    memory = subprocess.run(["vm_stat"], capture_output=True, text=True, timeout=10)
+                    stats.write(memory.stdout + "\n"); stats.flush()
+                except (OSError, ValueError, IndexError, subprocess.TimeoutExpired):
+                    stats.write("Resource sample unavailable\n"); stats.flush()
+                if finished.wait(60):
+                    return
+
+    sampler = threading.Thread(target=resources, daemon=True)
+    sampler.start()
+    try:
+        with (logs / (name + ".log")).open("w", encoding="utf-8") as output:
+            process = subprocess.Popen(command, stdout=output, stderr=subprocess.STDOUT, text=True, start_new_session=True)
+            try:
+                status = process.wait(timeout=timeout)
+            except subprocess.TimeoutExpired:
+                # Stop the actual compiler group too; killing xcodebuild alone
+                # leaves expensive frontend children running during cleanup.
+                try:
+                    os.killpg(process.pid, signal.SIGTERM)
+                except ProcessLookupError:
+                    pass
+                try:
+                    process.wait(timeout=30)
+                except subprocess.TimeoutExpired:
+                    try:
+                        os.killpg(process.pid, signal.SIGKILL)
+                    except ProcessLookupError:
+                        pass
+                    process.wait(timeout=30)
+                report["timed_out_phase"] = name
+                save(name + "-timeout")
+                status = 124
+    finally:
+        finished.set()
+        sampler.join(timeout=25)
+    if status:
         print((logs / (name + ".log")).read_text(encoding="utf-8", errors="replace")[-25000:], flush=True)
         if not allow_failure:
-            raise SystemExit(result.returncode)
-    return result.returncode
+            raise SystemExit(status)
+    return status
 
 
 devices = json.loads(subprocess.check_output(["xcrun", "simctl", "list", "devices", "available", "--json"], text=True))
@@ -50,7 +97,7 @@ command = ["xcodebuild", "-project", "ios/Harbor.xcodeproj", "-scheme", scheme, 
            "-derivedDataPath", "ios/build/DerivedData", "-clonedSourcePackagesDirPath", "ios/build/SourcePackages",
            "-parallel-testing-enabled", "NO", "CODE_SIGNING_ALLOWED=YES", "CODE_SIGN_IDENTITY=-"]
 selection = ["-only-testing:" + name for name in selected]
-run(command + selection + ["build-for-testing"], "focused-build", timeout=2100)
+run(command + selection + ["build-for-testing"], "focused-build", timeout=2700)
 app = build / "DerivedData/Build/Products/Debug-iphonesimulator/Harbor.app"
 subprocess.run(["xcrun", "simctl", "install", device, str(app)], check=True, timeout=90)
 container = subprocess.check_output(["xcrun", "simctl", "get_app_container", device, "site.harbor.iphone", "data"], text=True).strip()

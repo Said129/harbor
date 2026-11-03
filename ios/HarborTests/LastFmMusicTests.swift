@@ -22,7 +22,8 @@ private actor LastFmFailingSubsonic: MusicServiceHTTPTransport {
         defer { player.stop(); service.dispose(); fixture.stop(); cleanup(owner) }
         try service.saveCredentials(apiKey: "key", secret: "secret")
         let auth = try await service.beginAuthorization()
-        XCTAssertEqual(auth.host, "www.last.fm"); XCTAssertEqual(auth.path, "/api/auth/")
+        XCTAssertEqual(auth.host, "www.last.fm")
+        XCTAssertEqual(URLComponents(url: auth, resolvingAgainstBaseURL: false)?.path, "/api/auth/")
         try await service.completeAuthorization()
         XCTAssertTrue(service.connected); XCTAssertEqual(service.username, "Owned Listener")
         let restored = LastFmMusicService(scope: scope.scope, currentScope: { scope.scope })
@@ -42,13 +43,13 @@ private actor LastFmFailingSubsonic: MusicServiceHTTPTransport {
         let session = MusicPlaybackSession(server: server, playlists: MusicPlaylistStore(owner: owner, persistence: SharedMusicDisk()),
                                           localRecords: { [] }, lastfm: service, currentScope: { scope.scope })
         player.play(track, queue: [track], using: session)
-        try await wait { player.loaded && !player.paused && player.position > 0 }
-        player.seek(6); try await wait { player.position == 6 }
+        try await wait(context: "native player initially loaded") { player.loaded && !player.paused && player.position > 0 }
+        player.seek(6); try await wait(context: "known seek observed") { player.position == 6 }
         XCTAssertEqual(fixture.requests.filter { $0["method"] == "track.scrobble" }.count, 1)
         await engine.emit([.time(0.25), .time(1.25), .time(2.25), .time(3.25), .time(4.25)])
-        try await wait { fixture.requests.filter { $0["method"] == "track.scrobble" }.count == 2 }
+        try await wait(context: "native listening threshold submits") { fixture.requests.filter { $0["method"] == "track.scrobble" }.count == 2 }
         await engine.emit([.time(5.25), .time(6.25)])
-        try await wait { player.position == 6.25 }
+        try await wait(context: "subsequent clock observed") { player.position == 6.25 }
         XCTAssertEqual(fixture.requests.filter { $0["method"] == "track.scrobble" }.count, 2)
         XCTAssertNil(player.error); XCTAssertNil(player.scrobbleError)
         let failingTransport = LastFmFailingSubsonic(), pairing = SharedMusicPairingDisk()
@@ -66,9 +67,9 @@ private actor LastFmFailingSubsonic: MusicServiceHTTPTransport {
         XCTAssertEqual(fixture.requests.last?["track"], "Owned fallback")
         fixture.failScrobbles()
         player.play(track, queue: [track], using: session)
-        try await wait { player.loaded && player.position < 1 }
+        try await wait(context: "second recording loaded") { player.loaded && player.position < 1 }
         await engine.emit([.time(1.25), .time(2.25), .time(3.25), .time(4.25)])
-        try await wait { player.scrobbleError != nil }
+        try await wait(context: "rejected bookkeeping separated from playback") { player.scrobbleError != nil }
         XCTAssertNil(player.error); XCTAssertTrue(player.loaded); XCTAssertFalse(player.paused)
         XCTAssertEqual(player.phase, .playing)
         try service.disconnect()
@@ -119,10 +120,10 @@ private actor LastFmFailingSubsonic: MusicServiceHTTPTransport {
     private func cleanup(_ owner: String) {
         for prefix in ["music-lastfm-account-", "music-lastfm-api-key-"] { try? KeychainStore().remove(prefix + EBookShelf.hash(owner)) }
     }
-    private func wait(_ condition: @MainActor () -> Bool) async throws {
+    private func wait(context: String = "authorization", _ condition: @MainActor () -> Bool) async throws {
         let deadline = Date().addingTimeInterval(8)
         while Date() < deadline { if condition() { return }; try await Task.sleep(for: .milliseconds(25)) }
-        XCTFail("Owned Last.fm operation did not settle"); throw HarborError(code: "owned-lastfm-timeout")
+        XCTFail("Owned Last.fm operation did not settle: " + context); throw HarborError(code: "owned-lastfm-timeout")
     }
     private func capture<V: View>(_ view: V, name: String, size: CGSize) async throws {
         let scene = try XCTUnwrap(UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }.first)

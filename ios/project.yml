@@ -164,6 +164,7 @@ targets:
       - path: HarborTests/LastFmMusicTests.swift
       - path: HarborTests/LastFmMusicFixture.swift
       - path: HarborTests/SpotifyScrobbleTests.swift
+      - path: HarborTests/MusicSessionTests.swift
       - path: HarborTests/PlexMusicTests.swift
       - path: HarborTests/PlexMusicFixture.swift
       - path: HarborTests/JellyfinMusicTests.swift

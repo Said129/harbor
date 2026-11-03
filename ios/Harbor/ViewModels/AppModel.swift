@@ -39,6 +39,16 @@ final class AppModel {
         })
         cachedMusicWorkspace = workspace; return workspace
     }
+    private func restoreMusicCheckpoint() {
+        guard let scope = pluginExecutionScope else { return }
+        Task { @MainActor [weak self] in
+            do {
+                guard let saved = try await MusicSessionFileStore.shared.read(owner: scope.owner),
+                      let self, self.pluginExecutionScope == scope else { return }
+                MusicPlayback.shared.attach(self.musicWorkspaceForCurrentProfile().playback, restoring: saved)
+            } catch { Diagnostics.shared.recordFailure(HarborError(code: "music-session")) }
+        }
+    }
     private(set) var storageReady: Bool {
         get { preparedProfileActivation == profileContext.activationID }
         set { preparedProfileActivation = newValue ? profileContext.activationID : nil }
@@ -252,6 +262,7 @@ final class AppModel {
             try await setProgressOwner(progressOwner)
             await bindLibrary(nil)
             storageReady = true
+            restoreMusicCheckpoint()
             Diagnostics.shared.record(.coreReady)
             if configuration?.guestAddons == nil {
                 Task { await initializeDefaultSourceAndHome() }
@@ -367,6 +378,7 @@ final class AppModel {
             error = nil; accountError = nil; lastAddonRefresh = .distantPast
             try await setProgressOwner(progressOwner); await bindLibrary(nil)
             storageReady = true
+            restoreMusicCheckpoint()
             if recordSelection { ProfileSelectionClock(scope: profileContext.profiles.scope).recordSelection() }
             automaticProfilePromptPending = false
             Task {

@@ -150,7 +150,7 @@ jobs:
             cargo test --locked --manifest-path harbor-core/Cargo.toml --no-default-features subtitle_moviehash:: 2>&1 | tee ios/build/logs/subtitle-moviehash-tests.log
           fi
       - name: Build once and execute only the requested cases
-        timeout-minutes: 55
+        timeout-minutes: 80
         run: python3 scripts/ios/run-focused-changes.py
       - name: Preserve results before cache housekeeping
         if: always()
