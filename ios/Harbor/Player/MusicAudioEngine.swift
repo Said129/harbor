@@ -13,10 +13,16 @@ protocol MusicAudioEngineOperating: Sendable {
     func read(request: UInt64) async -> [MusicAudioEvent]
     func command(_ command: MusicAudioCommand, request: UInt64) async throws
     func signal(request: UInt64) async -> MusicAudioSignal?
+    func setMetering(_ enabled: Bool, request: UInt64, revision: UInt64) async throws
+    func meterSnapshot(request: UInt64) async -> MusicMeterMeasurement?
     func stop(request: UInt64) async
 }
 extension MusicAudioEngineOperating {
     func signal(request: UInt64) async -> MusicAudioSignal? { nil }
+    func setMetering(_ enabled: Bool, request: UInt64, revision: UInt64) async throws {
+        if enabled { throw HarborError(code: "music-meter-unavailable") }
+    }
+    func meterSnapshot(request: UInt64) async -> MusicMeterMeasurement? { nil }
     func configure(_ plan: MusicAudioPlan, request: UInt64) async throws {
         guard plan == .defaults else { throw HarborError(code: "music-audio-unavailable") }
     }
@@ -28,6 +34,9 @@ actor MusicAudioEngine: MusicAudioEngineOperating {
     private var handle: OpaquePointer?
     private var newest: UInt64 = 0
     private var processing = MusicAudioPlan.defaults
+    private var metering = false
+    private var latestMeterRevision: UInt64 = 0
+    private var spectrum = MusicAudioSpectrum()
     func configure(_ plan: MusicAudioPlan, request: UInt64) async throws {
         guard request >= newest else { throw CancellationError() }
         guard MusicAudioRuntime.supports(plan) else { throw HarborError(code: "music-audio-unavailable") }
@@ -38,13 +47,14 @@ actor MusicAudioEngine: MusicAudioEngineOperating {
         processing = plan
     }
     private func apply(_ plan: MusicAudioPlan, to handle: OpaquePointer) throws {
-        for (name, value) in [("af", plan.filter), ("replaygain", plan.settings.dspBypass || plan.settings.replayGain == "off" ? "no" : plan.settings.replayGain),
+        for (name, value) in [("af", MusicAudioMeter.chain(plan.filter, enabled: metering)), ("replaygain", plan.settings.dspBypass || plan.settings.replayGain == "off" ? "no" : plan.settings.replayGain),
                               ("replaygain-clip", "no"), ("replaygain-preamp", "0"), ("replaygain-fallback", "0"),
                               ("speed", String(plan.settings.speed)), ("audio-pitch-correction", plan.settings.keepPitch ? "yes" : "no"),
                               ("audio-samplerate", String(plan.settings.sampleRate)),
                               ("volume-max", String(plan.volumeMaximum))] {
             guard mpv_set_property_string(handle, name, value) >= 0 else { throw HarborError(code: "music-audio-unavailable") }
         }
+        spectrum.clear()
     }
     func open(_ stream: MusicAudioStream, request: UInt64, volume: Double, paused: Bool) async throws {
         try Task.checkCancellation()
@@ -81,7 +91,26 @@ actor MusicAudioEngine: MusicAudioEngineOperating {
     }
     private func retire() {
         let previous = handle; handle = nil
+        metering = false; latestMeterRevision = 0; spectrum.clear()
         if let previous { mpv_terminate_destroy(previous) }
+    }
+    func setMetering(_ enabled: Bool, request: UInt64, revision: UInt64) throws {
+        guard request == newest, revision >= latestMeterRevision else { throw CancellationError() }
+        latestMeterRevision = revision
+        guard enabled != metering else { return }
+        guard let handle else { if enabled { throw CancellationError() }; return }
+        guard !enabled || MusicAudioMeter.supported else { throw HarborError(code: "music-meter-unavailable") }
+        let next = MusicAudioMeter.chain(processing.filter, enabled: enabled)
+        guard mpv_set_property_string(handle, "af", next) >= 0 else { throw HarborError(code: "music-meter-unavailable") }
+        guard mpv_request_log_messages(handle, enabled ? "v" : "no") >= 0 else {
+            _ = mpv_set_property_string(handle, "af", MusicAudioMeter.chain(processing.filter, enabled: metering))
+            throw HarborError(code: "music-meter-unavailable")
+        }
+        metering = enabled; spectrum.clear()
+    }
+    func meterSnapshot(request: UInt64) -> MusicMeterMeasurement? {
+        guard request == newest, metering, let handle else { return nil }
+        return MusicAudioMeter.snapshot(handle, spectrum: spectrum)
     }
     func signal(request: UInt64) async -> MusicAudioSignal? {
         guard request == newest, let handle else { return nil }
@@ -112,6 +141,7 @@ actor MusicAudioEngine: MusicAudioEngineOperating {
             result = mpv_set_property_async(handle, 0, "volume", MPV_FORMAT_DOUBLE, &volume)
         case .seek(let value):
             guard value.isFinite, value >= 0 else { throw HarborError(code: "music-player") }
+            spectrum.clear()
             try MusicMPV.command(handle, ["seek", String(value), "absolute+exact"]); return
         }
         guard result >= 0 else { throw HarborError(code: "music-player") }
@@ -119,9 +149,15 @@ actor MusicAudioEngine: MusicAudioEngineOperating {
     func read(request: UInt64) async -> [MusicAudioEvent] {
         guard request == newest, let handle else { return [] }
         var result: [MusicAudioEvent] = []
-        for _ in 0..<64 {
+        for _ in 0..<(metering ? 256 : 64) {
             guard let event = mpv_wait_event(handle, 0)?.pointee, event.event_id != MPV_EVENT_NONE else { break }
             switch event.event_id {
+            case MPV_EVENT_LOG_MESSAGE:
+                if metering, let data = event.data {
+                    let message = data.assumingMemoryBound(to: mpv_event_log_message.self).pointee
+                    if MusicAudioMeter.bounded(message.prefix, limit: 32) == "ffmpeg",
+                       let text = MusicAudioMeter.bounded(message.text, limit: 4096) { spectrum.ingest(text) }
+                }
             case MPV_EVENT_START_FILE: result.append(.started)
             case MPV_EVENT_FILE_LOADED: result.append(.loaded)
             case MPV_EVENT_END_FILE:

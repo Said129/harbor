@@ -86,6 +86,9 @@ struct MusicQueueOrigin: Codable, Equatable, Sendable { let kind: String; let id
     @ObservationIgnored private var restoreScope: PluginExecutionScope?
     @ObservationIgnored private var effectLease: UUID?
     @ObservationIgnored private var effectRevision = UUID()
+    @ObservationIgnored private var meterUsers = Set<UUID>()
+    @ObservationIgnored private var meterRevision: UInt64 = 0
+    @ObservationIgnored private var lastSystemClock = Date.distantPast
     private(set) var restored = false
     init(engine: any MusicAudioEngineOperating = MusicAudioEngine(), systemIntegration: Bool = true,
          recordPlayed: (@MainActor (MusicTrack, String) -> Void)? = nil, checkpoints: (any MusicSessionPersisting)? = nil) {
@@ -295,6 +298,29 @@ struct MusicQueueOrigin: Codable, Equatable, Sendable { let kind: String; let id
         guard request == token, resolution?.valid() == true else { return nil }
         return value
     }
+    func acquireMeter() -> UUID {
+        let lease = UUID(); meterUsers.insert(lease); meterRevision &+= 1
+        return lease
+    }
+    func releaseMeter(_ lease: UUID) async {
+        guard meterUsers.remove(lease) != nil else { return }
+        meterRevision &+= 1
+        guard meterUsers.isEmpty else { return }
+        do { try await engine.setMetering(false, request: request, revision: meterRevision) }
+        catch is CancellationError { }
+        catch { Diagnostics.shared.recordFailure(HarborError(code: "music-meter-unavailable")) }
+    }
+    func meterSnapshot(_ lease: UUID) async throws -> MusicMeterSnapshot? {
+        guard meterUsers.contains(lease), loaded, !resolving, resolution?.valid() == true,
+              let track = currentTrack else { return nil }
+        let token = request, revision = meterRevision
+        try await engine.setMetering(true, request: token, revision: revision)
+        let value = await engine.meterSnapshot(request: token)
+        try Task.checkCancellation()
+        guard token == request, meterUsers.contains(lease), resolution?.valid() == true,
+              currentTrack.map(MusicQueueOrder.key) == MusicQueueOrder.key(track) else { throw CancellationError() }
+        return value.map { .init(trackID: track.id, connectorID: track.connectorId, measurement: $0) }
+    }
     func switchSource(_ track: MusicTrack) throws {
         guard let session = playbackSession, let currentItem, let index = items.firstIndex(where: { $0.id == currentItem.id }) else { throw HarborError(code: "music-source-required") }
         let selected = try session.choose(track, for: currentItem.track)
@@ -375,6 +401,7 @@ struct MusicQueueOrigin: Codable, Equatable, Sendable { let kind: String; let id
         saveCheckpoint(force: true)
         restoreTask?.cancel(); restoreTask = nil; restored = false
         effectLease = nil; audioEffects = .init(); effectRevision = UUID()
+        meterUsers.removeAll(); meterRevision &+= 1
         submitScrobbleIfEligible(); resolution?.onStopped?(); resolution = nil
         request &+= 1; let token = request
         resolutionTask?.cancel(); resolutionTask = nil; poller?.cancel(); poller = nil
@@ -395,7 +422,7 @@ struct MusicQueueOrigin: Codable, Equatable, Sendable { let kind: String; let id
                 let events = await engine.read(request: token)
                 guard request == token else { return }
                 consume(events, token: token)
-                do { try await Task.sleep(for: .milliseconds(200)) } catch { return }
+                do { try await Task.sleep(for: .milliseconds(meterUsers.isEmpty ? 200 : 50)) } catch { return }
             }
         }
     }
@@ -428,7 +455,7 @@ struct MusicQueueOrigin: Codable, Equatable, Sendable { let kind: String; let id
             }
         }
         submitScrobbleIfEligible()
-        nowPlaying()
+        nowPlaying(force: events.contains { if case .time = $0 { return false }; return true })
         saveCheckpoint(force: events.contains { if case .paused = $0 { return true }; return false })
         if natural { next(automatic: true) }
     }
@@ -491,8 +518,11 @@ struct MusicQueueOrigin: Codable, Equatable, Sendable { let kind: String; let id
         if let error = failure as? HarborError, error.code == "music-source-required" { return DesktopInterfaceText.value("music.source.none") }
         return DesktopInterfaceText.value("music.error.playback")
     }
-    private func nowPlaying() {
+    private func nowPlaying(force: Bool = true) {
         guard systemIntegration, let track = currentTrack else { return }
+        let now = Date()
+        guard force || now.timeIntervalSince(lastSystemClock) >= 0.2 else { return }
+        lastSystemClock = now
         MPNowPlayingInfoCenter.default().nowPlayingInfo = [MPMediaItemPropertyTitle: track.title, MPMediaItemPropertyArtist: track.artist,
             MPMediaItemPropertyAlbumTitle: track.album ?? "", MPMediaItemPropertyPlaybackDuration: duration,
             MPNowPlayingInfoPropertyElapsedPlaybackTime: position, MPNowPlayingInfoPropertyPlaybackRate: paused ? 0.0 : audioPlan.settings.speed]

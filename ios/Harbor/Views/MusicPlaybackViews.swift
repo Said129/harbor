@@ -45,10 +45,17 @@ extension EnvironmentValues {
                 Button { expanded = true } label: {
                     HStack(spacing: 10) {
                         MusicPlaybackCover(item: item, owner: player.owner).frame(width: 42, height: 42)
-                        VStack(alignment: .leading, spacing: 3) {
-                            Text(item.track.title).font(.subheadline.weight(.semibold)).lineLimit(1)
-                            Text(player.pausedForVideo ? DesktopInterfaceText.value("music.mobile.resume") : item.track.artist).font(.caption).foregroundStyle(.secondary).lineLimit(1)
-                        }.frame(maxWidth: .infinity, alignment: .leading)
+                        GeometryReader { geometry in
+                            HStack {
+                                VStack(alignment: .leading, spacing: 3) {
+                                    Text(item.track.title).font(.subheadline.weight(.semibold)).lineLimit(1)
+                                    Text(player.pausedForVideo ? DesktopInterfaceText.value("music.mobile.resume") : item.track.artist).font(.caption).foregroundStyle(.secondary).lineLimit(1)
+                                }.frame(maxWidth: .infinity, alignment: .leading)
+                                if geometry.size.width >= 220, MusicAudioMeter.supported, player.playbackSession?.audio?.dockVisualizer == true {
+                                    MusicAudioMeterView(player: player, presentation: .spectrum).frame(width: 76, height: 16)
+                                }
+                            }.frame(height: geometry.size.height)
+                        }.frame(height: 44)
                     }
                 }.buttonStyle(.plain).accessibilityLabel(DesktopInterfaceText.value("Music"))
                 Button { player.togglePause() } label: {
@@ -81,6 +88,12 @@ extension EnvironmentValues {
                         if let album = item.track.album { Text(album).font(.caption).foregroundStyle(.secondary) }
                     }.multilineTextAlignment(.center).accessibilityIdentifier("music-shared-current-metadata")
                     MusicTransportControls(player: player)
+                    if MusicAudioMeter.supported {
+                        if player.playbackSession?.audio?.showLevels != false { MusicAudioMeterView(player: player) }
+                        if player.playbackSession?.audio?.dockVisualizer == true {
+                            MusicAudioMeterView(player: player, presentation: .spectrum).frame(width: 152, height: 32)
+                        }
+                    }
                     if player.playbackSession != nil {
                         Button(DesktopInterfaceText.value("music.source.playOn")) { choosingSource = true }.disabled(player.resolving)
                         Button(DesktopInterfaceText.value("music.audio.title")) { audioSettings = true }

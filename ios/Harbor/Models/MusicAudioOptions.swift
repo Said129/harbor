@@ -109,6 +109,8 @@ struct MusicSpeedPreset: Codable, Identifiable, Sendable {
 
 @MainActor @Observable final class MusicAudioPreferences {
     let owner: String
+    var showLevels = true { didSet { UserDefaults.standard.set(showLevels, forKey: "music-levels-" + EBookShelf.hash(owner)) } }
+    var dockVisualizer = false { didSet { UserDefaults.standard.set(dockVisualizer, forKey: "music-spectrum-" + EBookShelf.hash(owner)) } }
     private(set) var options: MusicAudioOptions
     private(set) var error = false
     private(set) var revision = UUID()
@@ -121,6 +123,8 @@ struct MusicSpeedPreset: Codable, Identifiable, Sendable {
     private var speedKey: String { "music-speed-presets-" + EBookShelf.hash(owner) }
     init(owner: String) {
         self.owner = owner
+        showLevels = UserDefaults.standard.object(forKey: "music-levels-" + EBookShelf.hash(owner)) as? Bool ?? true
+        dockVisualizer = UserDefaults.standard.object(forKey: "music-spectrum-" + EBookShelf.hash(owner)) as? Bool ?? false
         do { options = try KeychainStore().read("music-audio-options-" + EBookShelf.hash(owner), as: MusicAudioOptions.self) ?? .init() }
         catch { options = .init(); self.error = true }
         options.eqBands = (0..<10).map { options.eqBands.indices.contains($0) ? min(12, max(-12, options.eqBands[$0])) : 0 }

@@ -38,6 +38,10 @@ import SwiftUI
         Section {
             Text(text("music.audio.scope")).font(.footnote)
             Text(text("music.audio.spotify")).font(.footnote).foregroundStyle(.secondary)
+            if MusicAudioMeter.supported, let preferences = session.audio {
+                Toggle(text("music.quality.levels"), isOn: Binding(get: { preferences.showLevels }, set: { preferences.showLevels = $0 }))
+                Toggle(text("music.now.visualizer"), isOn: Binding(get: { preferences.dockVisualizer }, set: { preferences.dockVisualizer = $0 }))
+            }
             HStack { Text(text("music.audio.output")); Spacer(); MusicOutputPicker().frame(width: 44, height: 44) }
             Picker(text("music.lab.sampleRate"), selection: $draft.sampleRate) {
                 Text(text("music.lab.sourceRate")).tag(0)

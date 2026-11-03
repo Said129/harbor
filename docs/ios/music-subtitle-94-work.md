@@ -707,3 +707,22 @@ The additional analysis-filter component is run 41734710275, job
 126260802189, source cb230f53dcf782eff0d7cb3586a5d8060a8306d9,
 ref ios/music-meter-runtime-94. It is building device and both simulator
 slices; the verified packaged 14-filter candidate remains unchanged.
+
+## Measured music levels and spectrum
+
+The native implementation now mirrors the pinned telemetry and spectrum
+graph, its eight frequencies, playback-timed bounded history, RMS/peak
+metadata and original display mapping. No random bars or volume-derived
+values are used. Profile preferences control the level panel and visualizer.
+Analysis consumers share leases; the last hidden/inactive consumer releases
+the filter, and stale revisions cannot restart a retired audio core.
+Reduced motion suppresses the spectrum animation. Measurement updates stay
+inside the small meter views; system playback-clock publication is bounded.
+
+Two new native journeys are prepared: generated stereo tones, silence and
+seeks against the actual native graph; and shared-consumer retirement plus
+phone, tablet and Arabic captures. The fixture is owned generated audio and
+is included only in test resources. Detailed source hashes and adaptations
+are in music-meter-port-inputs.json. Native execution waits for the additional
+three analysis filters; the packaged 14-filter candidate is still unchanged.
+No new IPA, verified meter behavior or completed Music parity is claimed.

@@ -1,0 +1,39 @@
+{
+  "referenceCommit": "0834340cec5531650bfe78cd628628702e636987",
+  "referenceVersion": "0.9.132 Beta",
+  "originalFilesSHA256": {
+    "src-tauri/src/music/telemetry.rs": "d4fc0b5caef1f90c39f9b6a3231e76b2575a353ebbdaf8e19a4eae14ddc6cbf0",
+    "src-tauri/src/music/spectrum.rs": "34c7fea259739f772d81b3cd1cca5845c661ce2e6211396dfe280d3f34ad4203",
+    "src/lib/music/audio-meter.ts": "c2f2d2d86ab16537400e049a5b31dd8c7b38b972e1304d40182bc2b028b024c0",
+    "src/lib/music/dock-visualizer.ts": "84f0c8a776b91a96e9b2782d01dfb0ffbaf1024d58096ed70b44f03a150961b9",
+    "src/components/music/music-signal-details.tsx": "f6223a3a183ede045ee055b33fcbc8f8ab224ad8dd6472e1d9b2d7f31ae9c798",
+    "src/components/music/music-dock-visualizer.tsx": "e17057e52ecf757ac32052dd2bd1c10ef17cb4f18f60480615d418bb9bba0015",
+    "src/components/music/music-dock-visualizer.css": "cb7c91edcdbce4216a790bd9036b411bdcc25c66a17a6b65b29417992abd23db",
+    "src/components/music/music-signal.css": "adf3944119230b162e69d9502e9b475a7fc0994fdc58ced6c66e66541a340d54"
+  },
+  "retained": [
+    "The original analysis-only lavfi graph: 24 kHz, 1200-sample windows, eight octave-width bandpasses at 60/120/250/500/1000/2000/4000/8000 Hz.",
+    "Per-channel real RMS and peak metadata, bounded named log parsing and 128 timestamped samples per band; future and stale data cannot animate the current clock.",
+    "The original dB scales, nonlinear spectrum mapping, eight-percent idle height and 45/80/95 ms transitions; technical axes remain LTR.",
+    "Meters stop consuming native analysis when hidden or inactive; reduced motion disables the spectrum animation."
+  ],
+  "mobileAdaptations": [
+    "Profile-owned preferences control levels and spectrum. The compact dock reserves metadata space, with a larger spectrum available in the expanded player.",
+    "Shared leases and monotonic revisions prevent an old view from disabling a newer consumer or restarting a retired decoder.",
+    "Native event polling increases only while analysis has a consumer. System Now Playing clock publication remains bounded to five updates per second.",
+    "Artwork-derived color tuning, Miku/GIF modes and the complete DJ deck remain unfinished."
+  ],
+  "ownedFixture": {
+    "path": "ios/HarborTests/Fixtures/owned-meter-tones.wav",
+    "generator": "scripts/ios/make-music-meter-fixture.py",
+    "sha256": "d440f14ae68349098bf3acac0d599d5131bb4fc44469b5f8a0dd242a7a6e9124",
+    "description": "Twelve seconds of generated stereo sine tones with a two-second silence interval. No third-party recording."
+  },
+  "validation": {
+    "requiredComponentRun": 41734710275,
+    "nativeMeasuredBandsAndSeeks": "pending",
+    "nativeConsumerOwnership": "pending",
+    "phoneTabletAndArabicCaptures": "pending",
+    "ipaPackaged": false
+  }
+}
