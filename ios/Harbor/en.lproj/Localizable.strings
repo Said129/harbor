@@ -1688,6 +1688,15 @@
 "code" = "code";
 "common.back" = "Back";
 "common.retry" = "Retry";
+"dj.bpm" = "BPM";
+"dj.fx.beat" = "Beat FX";
+"dj.fx.beats" = "Beats";
+"dj.fx.delay" = "Delay";
+"dj.fx.depth" = "Depth";
+"dj.fx.echo" = "Echo";
+"dj.fx.spiral" = "Spiral";
+"dj.fx.title" = "Effects";
+"dj.fx.wide" = "Wide";
 "eBook" = "eBook";
 "estrellas" = "stars";
 "h" = "h";

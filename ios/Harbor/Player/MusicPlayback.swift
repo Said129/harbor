@@ -28,6 +28,7 @@ struct MusicQueueOrigin: Codable, Equatable, Sendable { let kind: String; let id
     var lyricsClient: MusicLyricsClient? { (resolver as? MusicPlaybackSession)?.lyrics }
     var playbackSession: MusicPlaybackSession? { resolver as? MusicPlaybackSession }
     private(set) var audioPlan = MusicAudioPlan.defaults
+    private(set) var audioEffects = MusicAudioEffects()
     private(set) var audioApplying = false
     var volumeMaximum: Double { audioPlan.volumeMaximum }
     private(set) var position = 0.0
@@ -83,6 +84,8 @@ struct MusicQueueOrigin: Codable, Equatable, Sendable { let kind: String; let id
     @ObservationIgnored private var checkpointWrite: Task<Void, Never>?
     @ObservationIgnored private var restoreTask: Task<Void, Never>?
     @ObservationIgnored private var restoreScope: PluginExecutionScope?
+    @ObservationIgnored private var effectLease: UUID?
+    @ObservationIgnored private var effectRevision = UUID()
     private(set) var restored = false
     init(engine: any MusicAudioEngineOperating = MusicAudioEngine(), systemIntegration: Bool = true,
          recordPlayed: (@MainActor (MusicTrack, String) -> Void)? = nil, checkpoints: (any MusicSessionPersisting)? = nil) {
@@ -162,7 +165,8 @@ struct MusicQueueOrigin: Codable, Equatable, Sendable { let kind: String; let id
                 }
                 let preferences = (session as? MusicPlaybackSession)?.audio
                 let processingRevision = preferences?.revision
-                let plan = try await preferences?.plan() ?? .defaults
+                let processingEffects = effectRevision
+                let plan = try await preferences?.plan(effects: audioEffects) ?? .defaults
                 guard request == token, resolved.valid() else { throw CancellationError() }
                 try await engine.configure(plan, request: token)
                 try Task.checkCancellation()
@@ -173,8 +177,8 @@ struct MusicQueueOrigin: Codable, Equatable, Sendable { let kind: String; let id
                 try await engine.open(resolved.stream, request: token, volume: volume, paused: desiredPause)
                 try Task.checkCancellation()
                 guard request == token, resolved.valid() else { throw CancellationError() }
-                if preferences?.revision != processingRevision, let preferences {
-                    let latest = try await preferences.plan()
+                if preferences?.revision != processingRevision || effectRevision != processingEffects, let preferences {
+                    let latest = try await preferences.plan(effects: audioEffects)
                     guard request == token, resolved.valid() else { throw CancellationError() }
                     try await engine.configure(latest, request: token)
                     guard request == token, resolved.valid() else { throw CancellationError() }
@@ -228,9 +232,12 @@ struct MusicQueueOrigin: Codable, Equatable, Sendable { let kind: String; let id
         try session.validate()
         guard !audioApplying, let preferences = session.audio else { throw HarborError(code: "music-audio-unavailable") }
         audioApplying = true; defer { audioApplying = false }
-        let plan = try await preferences.plan(options), token = request
+        let token = request, effectsVersion = effectRevision
+        let effects = owner == session.scope.owner ? audioEffects : .init()
+        let plan = try await preferences.plan(options, effects: effects)
         guard plan.settings.supported else { throw HarborError(code: "music-audio-unavailable") }
         try session.validate()
+        guard token == request, effectsVersion == effectRevision else { throw CancellationError() }
         if owner == session.scope.owner, resolver.map({ ObjectIdentifier($0) == ObjectIdentifier(session) }) == true, currentItem != nil, !resolving {
             let previous = audioPlan
             try await engine.configure(plan, request: token)
@@ -241,6 +248,47 @@ struct MusicQueueOrigin: Codable, Equatable, Sendable { let kind: String; let id
             audioPlan = plan; changeVolume(volume)
             nowPlaying()
         } else { try preferences.save(plan) }
+    }
+    func beginEffects(using session: MusicPlaybackSession, lease: UUID = UUID()) throws -> UUID {
+        try session.validate()
+        guard owner == session.scope.owner, resolver.map({ ObjectIdentifier($0) == ObjectIdentifier(session) }) == true,
+              currentItem != nil, !audioApplying, !resolving else { throw CancellationError() }
+        effectLease = lease; return lease
+    }
+    func applyEffects(_ effects: MusicAudioEffects, lease: UUID, using session: MusicPlaybackSession) async throws {
+        try session.validate()
+        guard effectLease == lease, owner == session.scope.owner,
+              resolver.map({ ObjectIdentifier($0) == ObjectIdentifier(session) }) == true,
+              currentItem != nil, !resolving, !audioApplying, let preferences = session.audio else { throw CancellationError() }
+        audioApplying = true; defer { audioApplying = false }
+        let token = request
+        let plan = try await preferences.plan(effects: effects)
+        try session.validate()
+        guard token == request, effectLease == lease, MusicAudioRuntime.supports(plan) else { throw CancellationError() }
+        if loaded {
+            guard resolution?.valid() == true else { throw CancellationError() }
+            try await engine.configure(plan, request: token)
+        }
+        // Once the serialized engine has acknowledged this plan, retain that
+        // exact state even if its view's next edit has already been queued.
+        guard token == request, effectLease == lease else { throw CancellationError() }
+        audioEffects = plan.effects; effectRevision = UUID(); audioPlan = plan
+        nowPlaying()
+    }
+    func endEffects(_ lease: UUID, using session: MusicPlaybackSession) async {
+        while true {
+            guard effectLease == lease, owner == session.scope.owner, (try? session.validate()) != nil else { return }
+            if resolving {
+                effectLease = nil; audioEffects = .init(); effectRevision = UUID()
+                return
+            }
+            if !audioApplying { break }
+            do { try await Task.sleep(for: .milliseconds(25)) } catch { return }
+        }
+        guard effectLease == lease, !audioApplying, !resolving else { return }
+        do { try await applyEffects(.init(), lease: lease, using: session) }
+        catch { Diagnostics.shared.recordFailure(HarborError(code: "music-effects")) }
+        if effectLease == lease { effectLease = nil }
     }
     func audioSignal() async -> MusicAudioSignal? {
         let token = request, value = await engine.signal(request: request)
@@ -326,6 +374,7 @@ struct MusicQueueOrigin: Codable, Equatable, Sendable { let kind: String; let id
     func stop() {
         saveCheckpoint(force: true)
         restoreTask?.cancel(); restoreTask = nil; restored = false
+        effectLease = nil; audioEffects = .init(); effectRevision = UUID()
         submitScrobbleIfEligible(); resolution?.onStopped?(); resolution = nil
         request &+= 1; let token = request
         resolutionTask?.cancel(); resolutionTask = nil; poller?.cancel(); poller = nil

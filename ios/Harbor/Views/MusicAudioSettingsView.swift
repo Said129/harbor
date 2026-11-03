@@ -9,6 +9,7 @@ import SwiftUI
     @State private var failed = false
     @State private var saved = false
     @State private var signal: MusicAudioSignal?
+    @State private var effectsOwner = UUID()
     @Environment(\.dismiss) private var dismiss
     private func text(_ key: String) -> String { DesktopInterfaceText.value(key) }
     var body: some View {
@@ -19,12 +20,16 @@ import SwiftUI
                 processingSection
                 speedSection
                 savedSpeedSection
+                if player.playbackSession === session, player.currentItem != nil, session.audio != nil {
+                    MusicBeatEffectsSection(player: player, session: session, owner: effectsOwner)
+                }
                 signalSection
                 profilesSection
                 saveSection
             }.navigationTitle(text("music.audio.title")).navigationBarTitleDisplayMode(.inline)
                 .toolbar { ToolbarItem(placement: .confirmationAction) { Button(text("Close")) { dismiss() } } }
         }.onAppear { draft = session.audio?.options ?? .init() }
+            .onDisappear { Task { await player.endEffects(effectsOwner, using: session) } }
             .task { while !Task.isCancelled { signal = await player.audioSignal(); do { try await Task.sleep(for: .seconds(1)) } catch { return } } }
             .onChange(of: draft) { _, _ in saved = false }
             .accessibilityIdentifier("music-audio-settings")

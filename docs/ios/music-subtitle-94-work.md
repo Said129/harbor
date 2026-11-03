@@ -660,3 +660,29 @@ It selects the two new session cases, the failed native Last.fm journey,
 the subsequently changed Last.fm form, the unexecuted Spotify recorder case
 and the unexecuted labeled indexed-HTTP follow-up. The Apple syntax parser
 has passed; build and actual execution remain pending. No IPA is requested.
+
+## Live beat-effect controls
+
+The native audio panel now exposes Desktop's echo, delay, spiral and wide
+bank, all eleven original beat divisions and depth, with a bounded manual
+BPM control. The existing shared Rust DSP builds the exact original chain;
+no new math or audio library is substituted. The previously accepted direct
+native filter execution is retained. Touch edits coalesce for 90 ms as in
+the original hook, and acknowledge the serialized audio core before publishing.
+
+The player's temporary effect state survives a recording change while its
+panel stays open, and is cleared when that owning audio panel closes.
+Navigating into another page of that panel preserves it. Panel leases reject
+late cleanup from an older view. A close during replacement-file loading
+changes the effect revision, forcing the new core to receive the cleared
+plan. Saving EQ/output settings preserves the active effect, while Keychain
+preferences retain only normal listening settings. Profiles and player
+requests cannot borrow another session's effect command.
+
+New native journeys cover real paused audio and saved-processing preservation,
+a delayed replacement load and stale-panel cleanup, and the new controls in
+phone/tablet-size and Arabic RTL captures. Only nine labels per language were
+generated; all other translations were preserved. Those new executions are
+pending. This adds the beat-effect bank; the complete DJ deck, scratch,
+release effects, waveform and second deck remain unfinished Music work.
+Source provenance is in music-beat-effects-port-inputs.json. No IPA is built.

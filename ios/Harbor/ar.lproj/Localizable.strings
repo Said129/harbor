@@ -2094,6 +2094,15 @@
 "common.back" = "رجوع";
 "common.retry" = "إعادة المحاولة";
 "default" = "افتراضي";
+"dj.bpm" = "نبضة/دقيقة";
+"dj.fx.beat" = "مؤثرات الإيقاع";
+"dj.fx.beats" = "نبضات";
+"dj.fx.delay" = "تأخير";
+"dj.fx.depth" = "عمق";
+"dj.fx.echo" = "ترديد";
+"dj.fx.spiral" = "تصاعد";
+"dj.fx.title" = "المؤثرات";
+"dj.fx.wide" = "اتساع";
 "downloads" = "تنزيلات";
 "eBook" = "كتاب إلكتروني";
 "episodes" = "حلقات";

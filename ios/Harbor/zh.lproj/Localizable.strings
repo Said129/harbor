@@ -2052,6 +2052,15 @@
 "common.back" = "返回";
 "common.retry" = "重试";
 "default" = "默认";
+"dj.bpm" = "BPM";
+"dj.fx.beat" = "节拍效果";
+"dj.fx.beats" = "拍数";
+"dj.fx.delay" = "延迟";
+"dj.fx.depth" = "深度";
+"dj.fx.echo" = "回声";
+"dj.fx.spiral" = "螺旋";
+"dj.fx.title" = "效果";
+"dj.fx.wide" = "展宽";
 "downloads" = "下载";
 "eBook" = "电子书";
 "episodes" = "集";

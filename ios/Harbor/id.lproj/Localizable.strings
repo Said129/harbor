@@ -2052,6 +2052,15 @@
 "common.back" = "Kembali";
 "common.retry" = "Coba lagi";
 "default" = "bawaan";
+"dj.bpm" = "BPM";
+"dj.fx.beat" = "FX ketukan";
+"dj.fx.beats" = "Ketukan";
+"dj.fx.delay" = "Delay";
+"dj.fx.depth" = "Kedalaman";
+"dj.fx.echo" = "Gema";
+"dj.fx.spiral" = "Spiral";
+"dj.fx.title" = "Efek";
+"dj.fx.wide" = "Lebar";
 "downloads" = "unduhan";
 "eBook" = "eBook";
 "episodes" = "episode";

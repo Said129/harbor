@@ -2052,6 +2052,15 @@
 "common.back" = "वापस";
 "common.retry" = "फिर कोशिश करें";
 "default" = "डिफ़ॉल्ट";
+"dj.bpm" = "BPM";
+"dj.fx.beat" = "बीट FX";
+"dj.fx.beats" = "बीट्स";
+"dj.fx.delay" = "डिले";
+"dj.fx.depth" = "गहराई";
+"dj.fx.echo" = "इको";
+"dj.fx.spiral" = "स्पाइरल";
+"dj.fx.title" = "इफ़ेक्ट";
+"dj.fx.wide" = "चौड़ाई";
 "downloads" = "डाउनलोड";
 "eBook" = "ई-बुक";
 "episodes" = "एपिसोड";

@@ -2052,6 +2052,15 @@
 "common.back" = "Wstecz";
 "common.retry" = "Spróbuj ponownie";
 "default" = "domyślne";
+"dj.bpm" = "BPM";
+"dj.fx.beat" = "Efekty rytmiczne";
+"dj.fx.beats" = "Uderzenia";
+"dj.fx.delay" = "Delay";
+"dj.fx.depth" = "Głębia";
+"dj.fx.echo" = "Echo";
+"dj.fx.spiral" = "Spirala";
+"dj.fx.title" = "Efekty";
+"dj.fx.wide" = "Szerokość";
 "downloads" = "pobrane";
 "eBook" = "E-book";
 "episodes" = "odcinki";

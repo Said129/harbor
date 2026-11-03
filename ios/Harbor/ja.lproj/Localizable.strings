@@ -2052,6 +2052,15 @@
 "common.back" = "戻る";
 "common.retry" = "再試行";
 "default" = "デフォルト";
+"dj.bpm" = "BPM";
+"dj.fx.beat" = "ビートFX";
+"dj.fx.beats" = "拍";
+"dj.fx.delay" = "ディレイ";
+"dj.fx.depth" = "深さ";
+"dj.fx.echo" = "エコー";
+"dj.fx.spiral" = "スパイラル";
+"dj.fx.title" = "エフェクト";
+"dj.fx.wide" = "ワイド";
 "downloads" = "ダウンロード";
 "eBook" = "電子書籍";
 "episodes" = "話";

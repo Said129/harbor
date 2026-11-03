@@ -2067,6 +2067,15 @@
 "common.back" = "Назад";
 "common.retry" = "Повторить";
 "default" = "по умолчанию";
+"dj.bpm" = "BPM";
+"dj.fx.beat" = "Битовые эффекты";
+"dj.fx.beats" = "Доли";
+"dj.fx.delay" = "Дилей";
+"dj.fx.depth" = "Глубина";
+"dj.fx.echo" = "Эхо";
+"dj.fx.spiral" = "Спираль";
+"dj.fx.title" = "Эффекты";
+"dj.fx.wide" = "Ширина";
 "downloads" = "загрузок";
 "eBook" = "Электронная книга";
 "episodes" = "серии";

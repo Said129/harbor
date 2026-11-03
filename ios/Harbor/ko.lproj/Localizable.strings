@@ -2052,6 +2052,15 @@
 "common.back" = "뒤로";
 "common.retry" = "다시 시도";
 "default" = "기본값";
+"dj.bpm" = "BPM";
+"dj.fx.beat" = "비트 FX";
+"dj.fx.beats" = "박자";
+"dj.fx.delay" = "딜레이";
+"dj.fx.depth" = "깊이";
+"dj.fx.echo" = "에코";
+"dj.fx.spiral" = "스파이럴";
+"dj.fx.title" = "이펙트";
+"dj.fx.wide" = "와이드";
 "downloads" = "다운로드";
 "eBook" = "eBook";
 "episodes" = "에피소드";

@@ -133,9 +133,9 @@ struct MusicSpeedPreset: Codable, Identifiable, Sendable {
             speedPresetsReady = true
         } catch { self.error = true }
     }
-    func plan(_ supplied: MusicAudioOptions? = nil) async throws -> MusicAudioPlan {
+    func plan(_ supplied: MusicAudioOptions? = nil, effects: MusicAudioEffects = .init()) async throws -> MusicAudioPlan {
         let value = supplied ?? options
-        return try await CoreBridge().call("musicAudioPlan", ["settings": try .encoded(value)])
+        return try await CoreBridge().call("musicAudioPlan", ["settings": try .encoded(value), "effects": try .encoded(effects)])
     }
     func save(_ plan: MusicAudioPlan) throws {
         guard MusicAudioRuntime.supports(plan) else { throw HarborError(code: "music-audio-unavailable") }

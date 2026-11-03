@@ -2052,6 +2052,15 @@
 "common.back" = "Geri";
 "common.retry" = "Yeniden dene";
 "default" = "varsayılan";
+"dj.bpm" = "BPM";
+"dj.fx.beat" = "Vuruş FX";
+"dj.fx.beats" = "Vuruş";
+"dj.fx.delay" = "Delay";
+"dj.fx.depth" = "Derinlik";
+"dj.fx.echo" = "Eko";
+"dj.fx.spiral" = "Spiral";
+"dj.fx.title" = "Efektler";
+"dj.fx.wide" = "Genişlik";
 "downloads" = "indirilenler";
 "eBook" = "e-Kitap";
 "episodes" = "bölümler";

@@ -1,0 +1,31 @@
+{
+  "referenceCommit": "0834340cec5531650bfe78cd628628702e636987",
+  "referenceVersion": "0.9.132 Beta",
+  "originalFilesSHA256": {
+    "src/lib/music/fx.ts": "e2a7b455c05d199303f180fc65c7ae6a4eb27cf626af0e9af86d39cae5bedd9b",
+    "src/views/dj/fx-bay.tsx": "77ec7e3cb021331e8cf54f99e1e69ca08f2b82cc61361a6dd2c1d7c36dd3d277",
+    "src/views/dj/fx-rack.tsx": "d57263ad1baf610e801b384b29c360389b0f31e2f0babedfcc1f6a6e18461a80",
+    "src/views/dj/use-deck-fx.ts": "307e0683a8a5cc35d85e90a3d02bf2a25fda491c6e897bfe5335d7bb42e08606",
+    "src-tauri/src/music/commands/fx.rs": "f0372d5383451d74762e36202e072bf4d552e5ae0a689d3fc7bee20d59f43742",
+    "src-tauri/src/music/audio_fx.rs": "b76557fb7b24d595724823f89a747c6065d682583b17f73786f1b67daa4ec0c8"
+  },
+  "retained": [
+    "Original echo, delay, spiral and wide algorithms already execute in the shared Rust planner; no new DSP mathematics.",
+    "All eleven beat divisions, depth, original BPM bounds and 90 ms edit coalescing.",
+    "An acknowledged live plan preserves saved EQ, speed, pitch, output and headroom; temporary effects are not written into listening preferences.",
+    "Closing the owning audio panel clears temporary effects. Navigation within that panel preserves them.",
+    "Only effects actually available in the linked runtime are presented."
+  ],
+  "mobileAdaptations": [
+    "Touch buttons and native sliders/stepper replace mouse knobs, using the original labels in all sixteen language catalogs.",
+    "A panel lease prevents a retired view from clearing or applying to a newer panel.",
+    "Native playback request and effect revisions fence late replies and reapply a clear made during replacement-file loading.",
+    "The complete DJ deck, waveform/scratch, release FX, second deck and automatic tempo analysis remain separate unfinished work."
+  ],
+  "validation": {
+    "originalExtendedFilterExecution": "accepted run 41544752262 on 0c4a1202; unchanged algorithms are not repeated",
+    "newPlayerIntegration": "pending",
+    "replacementLoadOwnership": "pending",
+    "newPhoneTabletAndArabicCaptures": "pending"
+  }
+}

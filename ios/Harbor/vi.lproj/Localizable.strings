@@ -2052,6 +2052,15 @@
 "common.back" = "Quay lại";
 "common.retry" = "Thử lại";
 "default" = "mặc định";
+"dj.bpm" = "BPM";
+"dj.fx.beat" = "FX theo nhịp";
+"dj.fx.beats" = "Nhịp";
+"dj.fx.delay" = "Trễ";
+"dj.fx.depth" = "Độ sâu";
+"dj.fx.echo" = "Vọng âm";
+"dj.fx.spiral" = "Xoáy";
+"dj.fx.title" = "Hiệu ứng";
+"dj.fx.wide" = "Độ rộng";
 "downloads" = "nội dung tải xuống";
 "eBook" = "Sách điện tử";
 "episodes" = "tập";
