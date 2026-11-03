@@ -46,6 +46,7 @@ enum LastFmMusicProtocol {
     var connected: Bool { !disposed && scope == currentScope() && stored?.sessionKey?.isEmpty == false }
     var username: String? { connected ? stored?.username : nil }
     var hasCredentials: Bool { !disposed && scope == currentScope() && stored != nil }
+    var connectionRevision: UUID { version }
     init(scope: PluginExecutionScope, network: any HarborNativeNetworkCalling = HarborNativeNetwork(),
          currentScope: @escaping @MainActor () -> PluginExecutionScope) {
         self.scope = scope; self.network = network; self.currentScope = currentScope

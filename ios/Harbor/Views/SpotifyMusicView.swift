@@ -37,6 +37,7 @@ import UIKit
                 Button(DesktopInterfaceText.value("music.spotifySetup.authorize")) { service.authorize() }.disabled(service.clientID.isEmpty || service.authorizing)
                 if service.connected { Button(DesktopInterfaceText.value("music.connect.disconnect"), role: .destructive) { service.disconnect() } }
                 if let error = service.error { Text(error).foregroundStyle(.orange).font(.footnote) }
+                if let error = service.scrobbleError { Text(error).foregroundStyle(.orange).font(.footnote) }
             }
             Section(DesktopInterfaceText.value("music.spotifySetup.createTitle")) {
                 Text(DesktopInterfaceText.value("music.spotifySetup.createBody")).font(.footnote).foregroundStyle(.secondary)

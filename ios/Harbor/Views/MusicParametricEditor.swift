@@ -153,7 +153,8 @@ private struct MusicParametricCurve: View {
                         .position(x: 30 + max(1, geometry.size.width - 38) * CGFloat(log10(value / 20) / 3), y: 7)
                 }
             }.frame(height: 14)
-        }.accessibilityElement(children: .ignore).accessibilityLabel(DesktopInterfaceText.value("music.lab.response"))
+        }.environment(\.layoutDirection, .leftToRight)
+            .accessibilityElement(children: .ignore).accessibilityLabel(DesktopInterfaceText.value("music.lab.response"))
     }
     private func curve(_ values: [Double], width: CGFloat, height: CGFloat) -> Path {
         Path { path in

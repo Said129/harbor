@@ -550,3 +550,54 @@ Last.fm validation is run 41549661329 on source
 those three new cases and the verified runtime candidate selected. It requests
 no IPA. The separate six-case controls/lyrics/indexed-HTTP run 41546828656 is
 still live on its original source; keep that handle rather than restarting it.
+
+## Listening controls: preserved results and visual follow-up
+
+Run 41546828656 on exact source
+2370ec6c25debee01ece5a83675ccc900515b9c1 executed exactly six cases without
+restart: five passed and only the indexed HTTP subtitle journey failed.
+The passing cases cover APO/headroom/profile routing, parametric rendering,
+saved speed combinations, the audio/Spotify forms and the corrected lyrics
+owner cancellation. The latter now cancels a retired profile cleanly.
+Archive SHA-256 is
+99dc7a2764564e392e41f9844bd06d113a6750e84e57ca9c66ba6ac8fc98e6a9.
+Keep those five executions; do not rerun unaffected behavior because of the
+separate subtitle failure.
+
+All nine exported captures have been inspected. Phone and tablet-size layouts
+are readable, with two actual follow-ups: the phone's equalizer mode value
+truncates, and RTL mirrors the technical frequency axis. The mode now has its
+own full-width row; only the two technical plots force left-to-right
+coordinates while the surrounding interface keeps its chosen direction.
+These small layout changes await subsequent visual confirmation. The old
+Spotify Open wording in this source was already corrected in 57dbd09f.
+These are simulator window sizes, not physical-iPad evidence.
+
+The indexed HTTP failure reaches position 29.667, playing, with no text and
+no playback error. Its old unlabeled wait does not identify the failing
+phase. The follow-up keeps all targets, cache limits and cue assertions,
+labels every seek phase, and attaches a bounded owned-cue timeline and
+HTTP range offsets on failure. No production subtitle reset, reload,
+decoder switch or speculative mpv option has been introduced.
+The user's Obsession/Community case has Auto Sync disabled; the physical
+subtitle-only drift after seeking is still unresolved.
+
+## Spotify confirmed-position listening
+
+The original half-song/four-minute Last.fm submission now has a separate
+Spotify recorder driven by actual SDK getPlayerState responses rather than
+the UI's interpolated position. Only one bounded request runs at a time.
+Profile, credential and connection revisions reject stale callbacks.
+Advertisements, episodes, known seeks, pause transitions and disconnected
+intervals cannot contribute assumed listening time. Reconnecting the same
+recording keeps its submission flag; an observed natural repeat starts a
+new recording. Background playback is owned by Spotify, and Harbor does
+not extrapolate listening after its official SDK connection is suspended.
+
+The new owned-HTTP journey checks those transitions, one submission per
+recording, actual Unicode form fields through the existing Last.fm path,
+credential replacement and error separation. It does not authenticate a
+real Spotify account or prove an actual Free-account SDK connection.
+Native execution of this new case is pending. Last.fm's separate three
+auth/native-player/UI cases retain run 41549661329 and are not restarted.
+No IPA has been requested or created by these validation runs.

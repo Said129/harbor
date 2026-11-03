@@ -14,7 +14,9 @@
     "Authorization token stays in memory for its documented lifetime; account revision, cancellation and profile fences protect late responses.",
     "The existing native listening counter triggers once after half the song or four minutes and ignores seek jumps. Subsonic bookkeeping failure does not prevent Last.fm submission, as in the pinned Desktop dispatcher.",
     "Native credential fields, browser authorization/finish flow, account profile link and disconnect reuse the original translated labels.",
-    "Spotify App Remote scrobbling remains separate pending work; this integration currently serves the native audio player."
+    "Spotify App Remote supplies serial, confirmed player-state snapshots only while Harbor is active and Last.fm is connected. Its separate recorder excludes advertisements, episodes, known seek transitions, stale connection replies and unobserved background time.",
+    "A reconnect preserves an already submitted recording without counting the disconnected interval; natural end-to-start repetition opens a new recording. Last.fm failure remains separate from Spotify playback.",
+    "No real Spotify or Last.fm account session has been validated by the owned HTTP fixture."
   ],
   "officialReferences": [
     "https://www.last.fm/api/desktopauth",
@@ -24,6 +26,9 @@
     "nativeHTTPAndListeningJourney": "pending",
     "lateProfileAuthorization": "pending",
     "phoneAndTabletCaptures": "pending",
-    "realLastFmAccount": "not tested"
+    "realLastFmAccount": "not tested",
+    "confirmedSpotifyPositions": "pending native execution",
+    "realSpotifyAccountAndSDKPolling": "not tested",
+    "backgroundSpotifyListening": "not inferred; official SDK connection is suspended"
   }
 }

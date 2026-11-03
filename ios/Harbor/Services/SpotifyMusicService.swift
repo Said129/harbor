@@ -16,6 +16,7 @@ struct SpotifyPlaybackSnapshot: Sendable {
     let canSkipNext: Bool
     let canSkipPrevious: Bool
     let advertisement: Bool
+    let episode: Bool
     init(_ state: any SPTAppRemotePlayerState) {
         title = state.track.name; artist = state.track.artist.name; album = state.track.album.name
         uri = state.track.uri; position = Double(state.playbackPosition) / 1000
@@ -23,6 +24,7 @@ struct SpotifyPlaybackSnapshot: Sendable {
         let speed = Double(state.playbackSpeed); self.speed = speed.isFinite && speed > 0 ? speed : 1
         canSeek = state.playbackRestrictions.canSeek; canSkipNext = state.playbackRestrictions.canSkipNext
         canSkipPrevious = state.playbackRestrictions.canSkipPrevious; advertisement = state.track.isAdvertisement
+        episode = state.track.isEpisode || state.track.isPodcast
     }
 }
 
@@ -53,6 +55,7 @@ struct SpotifyContentItem: Decodable, Identifiable, Sendable {
     private(set) var snapshot: SpotifyPlaybackSnapshot?
     private(set) var snapshotAt = Date()
     var error: String?
+    var scrobbleError: String? { listening?.error }
     @ObservationIgnored private let currentScope: @MainActor () -> PluginExecutionScope
     @ObservationIgnored private var remote: SPTAppRemote?
     @ObservationIgnored private var pendingAuthorization = false
@@ -62,6 +65,10 @@ struct SpotifyContentItem: Decodable, Identifiable, Sendable {
     @ObservationIgnored private var tokens: [NSObjectProtocol] = []
     @ObservationIgnored private var contentRequests: [UUID: (CheckedContinuation<Data, Error>, Task<Void, Never>)] = [:]
     @ObservationIgnored private let images = NSCache<NSString, UIImage>()
+    @ObservationIgnored private var listening: SpotifyListeningRecorder?
+    @ObservationIgnored private var listeningConnection: UUID?
+    @ObservationIgnored private var listeningPoller: Task<Void, Never>?
+    @ObservationIgnored private var stateRequest: (id: UUID, continuation: CheckedContinuation<SpotifyPlaybackSnapshot, Error>, deadline: Task<Void, Never>)?
     private var storageKey: String { "music-spotify-client-" + EBookShelf.hash(scope.owner) }
     init(scope: PluginExecutionScope, currentScope: @escaping @MainActor () -> PluginExecutionScope) {
         self.scope = scope; self.currentScope = currentScope
@@ -71,7 +78,7 @@ struct SpotifyContentItem: Decodable, Identifiable, Sendable {
         if !clientID.isEmpty { makeRemote() }
         let center = NotificationCenter.default
         tokens.append(center.addObserver(forName: UIApplication.willResignActiveNotification, object: nil, queue: nil) { [weak self] _ in
-            Task { @MainActor in self?.remote?.disconnect() }
+            Task { @MainActor in self?.stopListening(); self?.remote?.disconnect() }
         })
         tokens.append(center.addObserver(forName: UIApplication.didBecomeActiveNotification, object: nil, queue: nil) { [weak self] _ in
             Task { @MainActor in
@@ -137,6 +144,7 @@ struct SpotifyContentItem: Decodable, Identifiable, Sendable {
     }
     func disconnect() {
         endAuthorization()
+        stopListening(); listening?.playRequested()
         remote?.playerAPI?.delegate = nil
         remote?.disconnect(); remote?.connectionParameters.accessToken = nil
         if Self.active === self { SpotifyMusicSelection.shared.active = nil }
@@ -154,15 +162,16 @@ struct SpotifyContentItem: Decodable, Identifiable, Sendable {
         else { pause() }
     }
     private func pause() { guard valid, connected else { return }; remote?.playerAPI?.pause(callback) }
-    func next() { guard valid, connected, snapshot?.canSkipNext == true else { return }; remote?.playerAPI?.skip(toNext: callback) }
-    func previous() { guard valid, connected, snapshot?.canSkipPrevious == true else { return }; remote?.playerAPI?.skip(toPrevious: callback) }
+    func next() { guard valid, connected, snapshot?.canSkipNext == true else { return }; invalidateListeningPosition(newPlay: true); remote?.playerAPI?.skip(toNext: callback) }
+    func previous() { guard valid, connected, snapshot?.canSkipPrevious == true else { return }; invalidateListeningPosition(newPlay: true); remote?.playerAPI?.skip(toPrevious: callback) }
     func seek(_ seconds: Double) {
         guard valid, connected, snapshot?.canSeek == true, seconds.isFinite, seconds >= 0 else { return }
+        invalidateListeningPosition(newPlay: false)
         remote?.playerAPI?.seek(toPosition: Int(min(seconds, snapshot?.duration ?? 0) * 1000), callback: callback)
     }
     func play(_ uri: String) {
         guard valid, connected, uri.hasPrefix("spotify:"), !uri.contains(where: { $0.isWhitespace }) else { return }
-        MusicPlayback.shared.stop(); remote?.playerAPI?.play(uri, callback: callback)
+        MusicPlayback.shared.stop(); invalidateListeningPosition(newPlay: true); remote?.playerAPI?.play(uri, callback: callback)
     }
     private var callback: SPTAppRemoteCallback {
         { [weak self] _, failure in
@@ -181,6 +190,7 @@ struct SpotifyContentItem: Decodable, Identifiable, Sendable {
             SpotifyMusicSelection.shared.active = self
             remote?.playerAPI?.delegate = self
             remote?.playerAPI?.subscribe(toPlayerState: callback)
+            startListening()
         }
     }
     nonisolated func appRemote(_ appRemote: SPTAppRemote, didDisconnectWithError error: Error?) { disconnected(appRemote, failed: false) }
@@ -190,6 +200,7 @@ struct SpotifyContentItem: Decodable, Identifiable, Sendable {
         Task { @MainActor [weak self] in
             guard let self, self.valid, self.remote.map(ObjectIdentifier.init) == identity else { return }
             connected = false
+            stopListening()
             if !pendingAuthorization { authorizing = false }
             failContentRequests()
             if failed { self.error = DesktopInterfaceText.value("music.spotifySetup.rejected") }
@@ -203,6 +214,82 @@ struct SpotifyContentItem: Decodable, Identifiable, Sendable {
         guard let snapshot else { return 0 }
         let elapsed = connected && !snapshot.paused ? max(0, date.timeIntervalSince(snapshotAt)) * snapshot.speed : 0
         return min(snapshot.duration, max(0, snapshot.position + elapsed))
+    }
+    func configureScrobbling(_ account: LastFmMusicService) {
+        stopListening(); listening?.dispose(); listening = nil
+        guard valid, account.scope == scope else { return }
+        listening = SpotifyListeningRecorder(lastfm: account, currentScope: currentScope)
+        if connected { startListening() }
+    }
+    private func startListening() {
+        stopListening()
+        guard valid, connected, listening != nil else { return }
+        let connection = UUID(); listeningConnection = connection; listening?.connect(connection)
+        listeningPoller = Task { @MainActor [weak self] in
+            while !Task.isCancelled {
+                guard let self, self.valid, self.connected, self.listeningConnection == connection else { return }
+                if UIApplication.shared.applicationState == .active, self.listening?.enabled == true {
+                    do {
+                        let value = try await self.confirmedPlayerState(connection)
+                        if value.advertisement { self.listening?.suspend() }
+                        else if value.episode || !value.duration.isFinite || value.duration <= 0 || value.duration > Double(UInt32.max) {
+                            self.listening?.playRequested()
+                        } else {
+                            let seconds = UInt64(value.duration)
+                            let track = MusicTrack(id: value.uri, connectorId: "spotify", sourceId: value.uri, playbackUrl: nil,
+                                title: value.title, artist: value.artist, album: value.album.isEmpty ? nil : value.album, artwork: "",
+                                durationSeconds: seconds, durationLabel: "\(seconds / 60):" + String(format: "%02llu", seconds % 60))
+                            self.listening?.observe(track, position: value.position, paused: value.paused, advertisement: false, connection: connection)
+                        }
+                    } catch is CancellationError { return }
+                    catch { self.listening?.suspend() }
+                } else { self.listening?.suspend() }
+                do { try await Task.sleep(for: .seconds(1)) } catch { return }
+            }
+        }
+    }
+    private func invalidateListeningPosition(newPlay: Bool) {
+        if newPlay { listening?.playRequested() } else { listening?.seekRequested() }
+        if let pending = stateRequest {
+            finishPlayerState(pending.id, result: .failure(HarborError(code: "spotify-state-reset")))
+        }
+    }
+    private func stopListening() {
+        let old = listeningConnection; listeningConnection = nil
+        listeningPoller?.cancel(); listeningPoller = nil
+        if let old { listening?.disconnect(old) }
+        if let pending = stateRequest { finishPlayerState(pending.id, result: .failure(CancellationError())) }
+    }
+    private func confirmedPlayerState(_ connection: UUID) async throws -> SpotifyPlaybackSnapshot {
+        guard valid, connected, listeningConnection == connection, let api = remote?.playerAPI,
+              stateRequest == nil else { throw CancellationError() }
+        let request = UUID()
+        return try await withTaskCancellationHandler {
+            try await withCheckedThrowingContinuation { continuation in
+                let deadline = Task { @MainActor [weak self] in
+                    do { try await Task.sleep(for: .seconds(3)) } catch { return }
+                    self?.finishPlayerState(request, result: .failure(HarborError(code: "spotify-state")))
+                }
+                stateRequest = (request, continuation, deadline)
+                api.getPlayerState { [weak self] result, error in
+                    let value: SpotifyPlaybackSnapshot?
+                    if error == nil, let state = result as? any SPTAppRemotePlayerState { value = SpotifyPlaybackSnapshot(state) }
+                    else { value = nil }
+                    Task { @MainActor in
+                        guard let self else { return }
+                        guard self.valid, self.connected, self.listeningConnection == connection, UIApplication.shared.applicationState == .active else {
+                            self.finishPlayerState(request, result: .failure(CancellationError())); return
+                        }
+                        if let value { self.finishPlayerState(request, result: .success(value)) }
+                        else { self.finishPlayerState(request, result: .failure(HarborError(code: "spotify-state"))) }
+                    }
+                }
+            }
+        } onCancel: { Task { @MainActor [weak self] in self?.finishPlayerState(request, result: .failure(CancellationError())) } }
+    }
+    private func finishPlayerState(_ request: UUID, result: Result<SpotifyPlaybackSnapshot, Error>) {
+        guard let pending = stateRequest, pending.id == request else { return }
+        stateRequest = nil; pending.deadline.cancel(); pending.continuation.resume(with: result)
     }
     private func contentData(_ uri: String?, artwork: Bool) async throws -> Data {
         guard valid, connected, let remote else { throw HarborError(code: "spotify-content") }
@@ -253,6 +340,7 @@ struct SpotifyContentItem: Decodable, Identifiable, Sendable {
     }
     func dispose() {
         guard !disposed else { return }; disconnect(); disposed = true; remote?.delegate = nil; remote = nil
+        listening?.dispose(); listening = nil
         for token in tokens { NotificationCenter.default.removeObserver(token) }; tokens = []
     }
 }

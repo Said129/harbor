@@ -49,9 +49,12 @@ import SwiftUI
             Toggle(text("music.lab.bypass"), isOn: $draft.dspBypass)
             Text(text("music.lab.bypassHelp")).font(.caption).foregroundStyle(.secondary)
             Toggle(text("music.audio.equalizer"), isOn: $draft.eqEnabled)
-            Picker(text("music.lab.mode"), selection: $draft.eqMode) {
-                Text(text("music.audio.equalizer")).tag("graphic")
-                Text(text("music.lab.parametric")).tag("parametric")
+            VStack(alignment: .leading, spacing: 6) {
+                Text(text("music.lab.mode"))
+                Picker(text("music.lab.mode"), selection: $draft.eqMode) {
+                    Text(text("music.audio.equalizer")).tag("graphic")
+                    Text(text("music.lab.parametric")).tag("parametric")
+                }.labelsHidden()
             }.disabled(draft.dspBypass)
             Picker(text("music.audio.presets"), selection: preset) {
                 Text(text("music.eq.preset.custom")).tag("custom")
@@ -291,7 +294,7 @@ private struct MusicGraphicEQ: View {
                 let gain = Double((12 + height / 2 - event.location.y) / (height / 2)) * 12
                 bands[index] = (min(12, max(-12, gain)) * 2).rounded() / 2
             }.onEnded { _ in dragging = nil })
-        }.frame(height: 160).accessibilityHidden(true)
+        }.frame(height: 160).environment(\.layoutDirection, .leftToRight).accessibilityHidden(true)
     }
 }
 
