@@ -653,3 +653,10 @@ resume, queue/origin restoration without autoplay, private resolved URL
 exclusion, unknown/end positions, substitute recovery and a delayed old-profile
 read. Native execution remains pending. Detailed provenance is in
 music-session-port-inputs.json. No new IPA or complete Music parity is claimed.
+
+The consolidated affected run is 41731990004, job 126251424479, on exact source
+0c0f5989fbe2275d111d2373ea9aa2651b7d6a64, ref ios/music-session-recovery-94.
+It selects the two new session cases, the failed native Last.fm journey,
+the subsequently changed Last.fm form, the unexecuted Spotify recorder case
+and the unexecuted labeled indexed-HTTP follow-up. The Apple syntax parser
+has passed; build and actual execution remain pending. No IPA is requested.
