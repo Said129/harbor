@@ -792,3 +792,12 @@ the selected simulator after build-for-testing, preserving its existing
 runtime overlay preparation, destination, selections and assertions. This
 changes validation scheduling only; no application option or timeout is
 relaxed. Actual speed improvement must be measured in the next affected run.
+
+The native compiler cache also now retains its input timestamps by verified
+SHA-256 content. A new checkout normally gives every unchanged source a fresh
+date. Only byte-identical files in the known native source/project/framework
+roots can recover the cached date; changed bytes retain their new timestamp.
+The manifest stays inside the existing intermediate cache. It cannot name
+extra files to mutate, and symlink/out-of-root inputs are rejected. The helper
+only runs in isolated CI, not against the user's checkout. This is preparation
+for useful incremental builds; no build-speed claim is made before execution.

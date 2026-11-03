@@ -96,6 +96,7 @@ command = ["xcodebuild", "-project", "ios/Harbor.xcodeproj", "-scheme", scheme, 
            "-derivedDataPath", "ios/build/DerivedData", "-clonedSourcePackagesDirPath", "ios/build/SourcePackages",
            "-parallel-testing-enabled", "NO", "CODE_SIGNING_ALLOWED=YES", "CODE_SIGN_IDENTITY=-"]
 selection = ["-only-testing:" + name for name in selected]
+subprocess.run(["python3", "scripts/ios/reuse-native-source-times.py"], check=True)
 run(command + selection + ["build-for-testing"], "focused-build", timeout=2700)
 # The resource trace showed simulator services competing with the compiler.
 # Build for the selected device first; launch it only for actual execution.
