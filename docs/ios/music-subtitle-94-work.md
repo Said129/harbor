@@ -695,3 +695,15 @@ analysis graph instead of fabricating animation levels. The accepted
 14-filter archive and current application package remain in place; a new
 component must be verified and exercised before integration. No meter,
 spectrum or visualizer behavior is claimed implemented by this build change.
+
+Beat-effect validation is run 41734304782, job 126259401921, on source
+d5eacba8da14d4a8eab993bed5f12bab5be29862, ref ios/music-beat-effects-94.
+It selects only the three new player/ownership/control journeys, including
+the changed full audio form captures. The separate six-case session/Last.fm/
+Spotify/indexed-HTTP run 41731990004 remains live on its original source.
+Neither run is restarted or requests an IPA.
+
+The additional analysis-filter component is run 41734710275, job
+126260802189, source cb230f53dcf782eff0d7cb3586a5d8060a8306d9,
+ref ios/music-meter-runtime-94. It is building device and both simulator
+slices; the verified packaged 14-filter candidate remains unchanged.
